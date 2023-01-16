@@ -1,0 +1,314 @@
+---
+title: Redirection(重定向)
+---
+
+# 概述
+
+在执行命令之前，可以使用由 Shell 的特殊符号来重定向其输入和输出。 重定向还可以用于打开和关闭当前 Shell 执行环境的文件。 重定向操作符可以出现在简单命令的前面，也可以出现在命令的后面。重定向按照它们出现的顺序进行处理。 重定向按照从左到右的顺序显示。
+
+用一个简单的例子来理解一下什么是重定向
+
+    [root@ansible ~]# ls
+    anaconda-ks.cfg  playbook  scripts
+    [root@ansible ~]# ls > dirlist
+    [root@ansible ~]# cat dirlist
+    anaconda-ks.cfg
+    dirlist
+    playbook
+    scripts
+
+这个例子就是将 ls 命令的标准输出的内容，重定向到 dirlist 文件中。(默认一个命令执行时，输出内容会打印在屏幕上，但是重定向后，将内容写入文件中)
+
+每个程序在运行后，都会至少打开三个 文件描述符，分别是
+
+- 0：标准输入
+- 1：标准输出
+- 2：标准错误
+
+文件描述符介绍详见：文件描述符与打开文件之间的关系
+
+所以，shell 可以实现重定向，就是这 3 者其中之一，或者全部三者。
+
+# 重定向的种类
+
+在下面各种重定向的语法中，n 表示文件描述符
+
+## Redirecting Input 重定向输入
+
+输入的重定向将打开名称为 WORD 的文件，以便在文件描述符 n 下打开标准输入，n 默认为 0。
+
+语法：COMMAND \[n]< WORD
+
+EXAMPLE
+
+## Redirecting Output 重定向输出
+
+输出重定向将打开名称为 WORD 的文件，以便在文件描述符 n 上进行写操作，n 默认为 1。 如果 WORD 文件不存在，则创建该文件； 如果存在，则将其截断为零大小。
+
+语法：COMMAND \[n]> WORD
+
+EXAMPLE
+
+    # 将某个程序产生的标准输出和标注错误分别重定向到不同文件
+    [root@ansible te]# ls a.txt b.txt
+    ls: cannot access b.txt: No such file or directory
+    a.txt
+    [root@ansible te]# ls a.txt b.txt 1> stdout.log 2> errout.log
+    [root@ansible te]# ls
+    a.txt  errout.log  stdout.log
+    [root@ansible te]# cat errout.log
+    ls: cannot access b.txt: No such file or directory
+    [root@ansible te]# cat stdout.log
+    a.txt
+
+## Appending Redirected Output 重定向输出(追加方式)
+
+语法：COMMAND \[n]>> WORD
+
+## Redirecting Standard Output and Standard Error 重定向标准输出和标准错误
+
+此结构允许将标准输出（文件描述符 1）和标准错误输出（文件描述符 2）都重定向到名称为 word 扩展的文件。
+
+语法：
+
+COMMAND > WORD 2>&1 #标准错误的信息传递给标准输出通道。&1 表示 标注输出通道。同理 1>&2 反过来理解即可。
+
+EXAMPLE
+
+    # 与重定向输入的例子类似，这种符号可以理解为将 ls 命令的标准输出重定向到 out.log 文件中
+    # 而该命令的 标准错误 则传递到 标注输出 中，与标准输出一起重定向到 out.log 文件中
+    [root@ansible te]# ls a.txt b.txt
+    ls: cannot access b.txt: No such file or directory
+    a.txt
+    [root@ansible te]# ls a.txt b.txt > out.log 2>&1
+    [root@ansible te]# cat out.log
+    ls: cannot access b.txt: No such file or directory
+    a.txt
+
+## Here Document（<\<TAG 的重定向模式
+
+**Here Document(简称 Heredoc)** 是 shell 中的一种特殊重定向方式，用来将输入重定向到一个交互式的 shell 脚本或程序。
+
+语法：
+
+    COMMAND [n] << TAG
+        Document
+    TAG
+
+它的作用是将两个 TAG 之间的内容（docuemnt）作为输入传递给 n。
+
+注意：
+
+- 结尾的 TAG 一定要顶头写，前面不能有任何字符，后面也不能有任何字符，包括空格和 tab 缩进。
+- 开始的前后的空格不要被忽略掉。
+- TAG 这三个字符可以用任意字符代替，日常常用 EOF 来标识，只要开头与结尾的字符相同即可
+
+实例：
+在命令行中通过 wc -l 命令计算 Here Document 的行数
+
+    wc -l << EOF
+    学习使用shell 编程
+    www.xuhaoblog.com
+    EOF
+
+输出的结果为 2。
+
+我们也可以将 Here Document 用在脚本中，例如：
+
+    #!/bin/bash
+    cat << EOF
+    学习使用shell脚本编程
+    www.xuhaoblog.com
+    EOF
+
+注意！！！：
+
+- EOF 如果在写入内容时，想要防止将变量替换成值的话，需要在第一行 EOF 之前加 `\` 或 `-`，否则写入内容中如果有执行命令或者变量，则无法以文本写入。
+
+效果如下
+
+    [root@lichenhao ~]# cat > 123 << EOF
+    > $123
+    > EOF
+    [root@lichenhao ~]# cat 123
+    23
+    [root@lichenhao ~]# cat > 123 << \EOF
+    > $123
+    > EOF
+    [root@lichenhao ~]# cat 123
+    $123
+
+## Here Strings
+
+## Duplicating File Descriptors
+
+       The redirection operator              [n]<&word       is used to duplicate input file descriptors.  If word expands to one       or more digits, the file descriptor denoted by n is made to be a copy       of that file descriptor.  If the digits in word do not specify a file       descriptor open for input, a redirection error occurs.  If word       evaluates to -, file descriptor n is closed.  If n is not specified,       the standard input (file descriptor 0) is used.       The operator              [n]>&word       is used similarly to duplicate output file descriptors.  If n is not       specified, the standard output (file descriptor 1) is used.  If the       digits in word do not specify a file descriptor open for output, a       redirection error occurs.  If word evaluates to -, file descriptor n       is closed.  As a special case, if n is omitted, and word does not       expand to one or more digits or -, the standard output and standard       error are redirected as described previously.
+
+## Moving File Descriptors
+
+       The redirection operator              [n]<&digit-       moves the file descriptor digit to file descriptor n, or the standard       input (file descriptor 0) if n is not specified.  digit is closed       after being duplicated to n.       Similarly, the redirection operator              [n]>&digit-       moves the file descriptor digit to file descriptor n, or the standard       output (file descriptor 1) if n is not specified.
+
+## Opening File Descriptors for Reading and Writing
+
+The redirection operator \[n]<>word causes the file whose name is the expansion of word to be opened for both reading and writing on file descriptor n, or on file descriptor 0 if n is not specified. If the file does not exist, it is created.
+
+# 简单总结
+
+| 命令            | 说明                                               |
+| --------------- | -------------------------------------------------- |
+| command > file  | 将输出重定向到 file。                              |
+| command < file  | 将输入重定向到 command。                           |
+| command >> file | 将输出以追加的方式重定向到 file。                  |
+| n > file        | 将文件描述符为 n 的文件重定向到 file。             |
+| n >> file       | 将文件描述符为 n 的文件以追加的方式重定向到 file。 |
+| n >& m          | 将输出文件 m 和 n 合并。                           |
+| n <& m          | 将输入文件 m 和 n 合并。                           |
+| << tag          | 将开始标记 tag 和结束标记 tag 之间的内容作为输入。 |
+
+# 如何理解 Linux shell 中重定向
+
+前言
+
+有时候我们常看到类似这样的脚本调用：
+
+./test.sh > log.txt 2>&1
+
+这里的 2>&1 是什么意思？该如何理解？
+
+先说结论：上面的调用表明将./test.sh 的输出重定向到 log.txt 文件中，同时将标准错误也重定向到 log.txt 文件中。
+
+有何妙用
+
+（如果已经明白是什么作用，可跳过此小节）
+
+上面到底是什么意思呢？我们来看下面的例子，假如有脚本 test.sh：
+
+\#!/bin/bashdate #打印当前时间 while true #死循环 do #每隔 2 秒打印一次 sleep 2 whatthis #不存在的命令 echo -e "std output"done
+
+脚本中先打印当前日期，然后每隔 2 秒执行 whatthis 并打印一段字符。由于系统中不存在 whatthis 命令，因此执行会报错。
+
+假如我们想保存该脚本的打印结果，只需将 test.sh 的结果重定向到 log.txt 中即可：
+
+./test.sh > log.txt
+
+执行结果如下：
+
+ubuntu$ ./test.sh >log.txt./test.sh: 行 7: whatthis: 未找到命令
+
+我们明明将打印内容重定向到 log.txt 中了，但是这条错误信息却没有重定向到 log.txt 中。如果你是使用程序调用该脚本，当查看脚本日志的时候，将会完全看不到这条错误信息。而使用下面的方式则会将出错信息也重定向到 log.txt 中：
+
+./test.sh > log.txt 2>&1
+
+以这样的方式调用脚本，可以很好的将错误信息保存，帮助我们定位问题。
+
+如何理解
+
+每个程序在运行后，都会至少打开三个文件描述符，分别是 0：标准输入；1：标准输出；2：标准错误。
+
+例如，对于前面的 test.sh 脚本，我们通过下面的步骤看到它至少打开了三个文件描述符：
+
+./test.sh #运行脚本 ps -ef|grep test.sh #重新打开命令串口，使用 ps 命令找到 test.sh 的 pidhyb 5270 4514 0 19:20 pts/7 00:00:00 /bin/bash ./test.shhyb 5315 5282 0 19:20 pts/11 00:00:00 grep --color=auto test.sh
+
+可以看到 test.sh 的 pid 为 5270，进入到相关 fd 目录：
+
+cd /proc/5270/fd #进程 5270 所有打开的文件描述符信息都在此 ls -l #列出目录下的内容 0 -> /dev/pts/7 1 -> /dev/pts/7 2 -> /dev/pts/7 255 -> /home/hyb/workspaces/shell/test.sh
+
+可以看到，test.sh 打开了 0，1，2 三个文件描述符。同样的，如果有兴趣，也可以查看其他运行进程的文件描述符打开情况，除非关闭了否则都会有这三个文件描述符。
+
+那么现在就容易理解前面的疑问了，2>&1 表明将文件描述 2（标准错误输出）的内容重定向到文件描述符 1（标准输出），为什么 1 前面需要&？当没有&时，1 会被认为是一个普通的文件，有&表示重定向的目标不是一个文件，而是一个文件描述符。在前面我们知道，test.sh >log.txt 又将文件描述符 1 的内容重定向到了文件 log.txt，那么最终标准错误也会重定向到 log.txt。我们同样通过前面的方法，可以看到 test.sh 进程的文件描述符情况如下：
+
+0 -> /dev/pts/7 1 -> /home/hyb/workspaces/shell/log.txt 2 -> /home/hyb/workspaces/shell/log.txt 255 -> /home/hyb/workspaces/shell/test.sh
+
+我们可以很明显地看到，文件描述符 1 和 2 都指向了 log.txt 文件，也就得到了我们最终想要的效果：将标准错误输出重定向到文件中。
+
+它们还有两种等价写法：
+
+./test.sh >& log.txt./test.sh &> log.txt
+
+总结
+
+我们总结一下前面的内容：
+
+- 程序运行后会打开三个文件描述符，分别是标准输入，标准输出和标准错误输出。
+- 在调用脚本时，可使用 2>&1 来将标准错误输出重定向。
+- 只需要查看脚本的错误时，可将标准输出重定向到文件，而标准错误会打印在控制台，便于查看。
+- > > log.txt 会将重定向内容追加到 log.txt 文件末尾。
+- 通过查看/proc/进程 id/fd 下的内容，可了解进程打开的文件描述符信息。
+
+# 重定向应用示例
+
+## 一般来说, "1>" 通常可以省略成 ">".
+
+即可以把如上命令写成: ls a.txt b.txt >file.out 2>file.err
+
+有了这些认识才能理解 "1>&2" 和 "2>&1".
+
+1>&2 正确返回值传递给 2 输出通道 &2 表示 2 输出通道
+
+如果此处错写成 1>2, 就表示把 1 输出重定向到文件 2 中.
+
+2>&1 错误返回值传递给 1 输出通道, 同样&1 表示 1 输出通道.
+
+举个例子.
+
+\[root@redhat box]# ls a.txt b.txt 1>file.out 2>&1
+
+\[root@redhat box]# cat file.out
+
+ls: b.txt: No such file or directory
+
+a.txt
+
+现在, 正确的输出和错误的输出都定向到了 file.out 这个文件中, 而不显示在前端.
+
+补充下, 输出不只 1 和 2, 还有其他的类型, 这两种只是最常用和最基本的.
+
+例如：
+
+rm -f $(find / -name core) &> /dev/null，/dev/null 是一个文件，这个文件比较特殊，所有传给它的东西它都丢弃掉。
+
+例如：
+
+注意，为了方便理解，必须设置一个环境使得执行 grep da \*命令会有正常输出和错误输出，然后分别使用下面的命令生成三个文件：
+
+grep da \* > greplog1
+
+grep da \* > greplog2 1>&2
+
+grep da _ > greplog3 2>&1 //grep da _ 2> greplog4 1>&2 结果一样
+
+\#查看 greplog1 会发现里面只有正常输出内容
+
+\#查看 greplog2 会发现里面什么都没有#查看 greplog3 会发现里面既有正常输出内容又有错误输出内容
+
+# tee 命令
+
+在非 root 用户时，重定向总是会提示权限不够，这时候，可以使用 tee 命令来代替重定向符号
+比如
+`containerd config default | sudo tee /etc/containerd/config.toml`
+等效于
+`containerd config default > /etc/containerd/config.toml`
+
+还可以这么用
+
+```bash
+sudo tee ~/test_dir/test.sh <<EOF
+${abc}
+EOF
+```
+
+若要让写入文件中的内容，将 `$` 等符号当做字符串处理的话，则这么用：
+
+```bash
+sudo tee ~/test_dir/test.sh <<-"EOF"
+${abc}
+EOF
+```
+
+## Syntax(语法)
+
+**tee \[OPTIONS] FILE**
+
+OPTIONS
+
+- **-a, --append **# 将读取到内容追加到文件中，而不是覆盖。等效于 `>>` 符号

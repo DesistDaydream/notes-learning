@@ -1,0 +1,41 @@
+---
+title: GNU C Library 管理工具
+---
+
+# 概述
+
+CentOS 与 Ubuntu 中关于 glibc 的管理工具包的名称不太一样
+
+- CentOS 为 glibc-common
+- Ubuntu 为 libc-bin、libc-dev-bin
+
+# ldd
+
+这个命令可以显示一个可执行文件所使用的动态链接库。如：
+
+    [root@centos8 bin]# ldd ls
+    	linux-vdso.so.1 (0x00007ffe2f157000)
+    	libselinux.so.1 => /lib64/libselinux.so.1 (0x00007f7d953a3000)
+    	libcap.so.2 => /lib64/libcap.so.2 (0x00007f7d9519d000)
+    	libc.so.6 => /lib64/libc.so.6 (0x00007f7d94ddb000)
+    	libpcre2-8.so.0 => /lib64/libpcre2-8.so.0 (0x00007f7d94b57000)
+    	libdl.so.2 => /lib64/libdl.so.2 (0x00007f7d94953000)
+    	/lib64/ld-linux-x86-64.so.2 (0x00007f7d957f1000)
+    	libpthread.so.0 => /lib64/libpthread.so.0 (0x00007f7d94733000)
+
+# ldconfig
+
+lbconfig 是一个动态链接库的管理命令。可以创建必要的链接并缓存到指定文件中
+
+### 配置
+
+**/lib64/ld-linux.so.\*** # 运行时链接器/加载器
+**/etc/ld.so.conf** # 从配置文件中指定的目录中搜索库
+**/etc/ld.so.conf.d/\*** # 从配置文件中指定的目录中搜索库
+**/etc/ld.so.cache** # 搜索到的库列表被缓存到该文件中
+
+### Syntax(语法)
+
+OPTIONS
+
+- **-p, --print-cache** # 输出当前系统已经加载的动态库

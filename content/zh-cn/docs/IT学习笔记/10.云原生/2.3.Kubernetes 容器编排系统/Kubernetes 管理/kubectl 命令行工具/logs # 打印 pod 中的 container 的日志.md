@@ -1,0 +1,25 @@
+---
+title: "logs # 打印 pod 中的 container 的日志"
+---
+
+#
+
+## kubectl logs \[-f] \[-p] (POD | TYPE/NAME) \[-c CONTAINER] \[options]
+
+语法结构
+
+1. kubectl logs <PodName> # 查看指定 pod 的日志
+
+2. kubectl logs -f <PodName> # 类似 tail -f 的方式查看(tail -f 实时查看日志文件 tail -f 日志文件 log)
+
+3. kubectl logs <PodName> -c \<container_name> # 查看指定 pod 中指定容器的日志
+
+OPTIONS
+
+1. **-f** # 实时查看日志文件，类似于 tailf
+
+2. **-p,--previous **# 输出 pod 中曾经运行过，但目前已终止的容器的日志。(i.e 查看一个 container 重启之前的日志，用于排障)
+
+EXAMPLE
+
+1. kubectl logs --namespace=kube-system calico-node-krgz6 calico-node #查看 calico-node-krgz6 这个 pod 的日志

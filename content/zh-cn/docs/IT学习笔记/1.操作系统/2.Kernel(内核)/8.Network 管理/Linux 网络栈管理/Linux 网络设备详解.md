@@ -1,0 +1,394 @@
+---
+title: Linux 网络设备详解
+---
+
+# 概述
+
+> 参考：
+
+# 虚拟网络设备
+
+> 参考：
+> - <https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#>
+> - [本知识库虚拟化网络章节](✏IT 学习笔记/☁️10.云原生/1.1.虚拟化/Network%20Virtual(网络虚拟化).md Virtual(网络虚拟化).md)
+
+Linux 具有丰富的虚拟网络功能，可用作托管 VM 和容器以及云环境的基础。在这篇文章中，我将简要介绍所有常用的虚拟网络接口类型。没有代码分析，只简单介绍了接口及其在 Linux 上的使用。任何有网络背景的人都可能对这篇博文感兴趣。可以使用命令 ip link help 获取接口列表。
+
+这篇文章涵盖了以下常用网络设备和一些容易相互混淆的网络设备：
+
+- [Bridge](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#bridge)
+- [Bond](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#bonded)
+- [Team device](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#team)
+- [VLAN (Virtual LAN)](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#vlan)
+- [VXLAN (Virtual eXtensible Local Area Network)](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#vxlan)
+- [MACVLAN](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#macvlan)
+- [IPVLAN](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#ipvlan)
+- [MACVTAP/IPVTAP](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#macvtap)
+- [MACsec (Media Access Control Security)](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#macsec)
+- [VETH (Virtual Ethernet)](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#veth)
+- [VCAN (Virtual CAN)](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#vcan)
+- [VXCAN (Virtual CAN tunnel)](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#vxcan)
+- [IPOIB (IP-over-InfiniBand)](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#ipoib)
+- [NLMON (NetLink MONitor)](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#nlmon)
+- [Dummy](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#dummy)
+- [IFB (Intermediate Functional Block)](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#ifb)
+- [netdevsim](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#netdevsim)
+
+## Bridge
+
+Bridge 网络设备的行为类似于网络交换机。它在连接到它的网络设备之间转发数据包。通常用于在 路由器、网关、虚拟机、网络名称空间之间转发数据包。同时 Bridge 设备还支持 STP、VLAN 过滤和组播侦听。
+
+当我们想要在 虚拟机、容器、宿主机 之间建立通信时，Bridge 设备是必不可少的。
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493495381-a7c7e048-4783-45a6-a1d1-c44526401132.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/bridge.png)
+下面是一个是创建 Brdige 并连接其他网络设备的示例：
+
+```bash
+ip link add br0 type bridge
+ip link set eth0 master br0
+ip link set tap1 master br0
+ip link set tap2 master br0
+ip link set veth1 master br0
+```
+
+上面的例子将会创建一个名为 `br0` 的 Bridge 设备，并将两个 TAP 设备和一个 VETH 设备作为其从属设备。
+
+## Bond
+
+The Linux bonding driver provides a method for aggregating multiple network interfaces into a single logical "bonded" interface. The behavior of the bonded interface depends on the mode; generally speaking, modes provide either hot standby or load balancing services.
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493495394-4aaea4bd-34d9-4987-9873-38af16247d1b.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/bond.png)
+Use a bonded interface when you want to increase your link speed or do a failover on your server.
+Here's how to create a bonded interface:
+ip link add bond1 type bond miimon 100 mode active-backup ip link set eth0 master bond1 ip link set eth1 master bond1&#x20;
+This creates a bonded interface named bond1 with mode active-backup. For other modes, please see the [kernel documentation](https://www.kernel.org/doc/Documentation/networking/bonding.txt).
+
+## Team
+
+Similar a bonded interface, the purpose of a team device is to provide a mechanism to group multiple NICs (ports) into one logical one (teamdev) at the L2 layer.
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493495378-cdc041c4-6321-49b7-b532-63f2cded7392.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/team.png)
+The main thing to realize is that a team device is not trying to replicate or mimic a bonded interface. What it does is to solve the same problem using a different approach, using, for example, a lockless (RCU) TX/RX path and modular design.
+But there are also some functional differences between a bonded interface and a team. For example, a team supports LACP load-balancing, NS/NA (IPV6) link monitoring, D-Bus interface, etc., which are absent in bonding. For further details about the differences between bonding and team, see [Bonding vs. Team features](https://github.com/jpirko/libteam/wiki/Bonding-vs.-Team-features).
+Use a team when you want to use some features that bonding doesn't provide.
+Here's how to create a team:
+\# teamd -o -n -U -d -t team0 -c '{"runner": {"name": "activebackup"},"link_watch": {"name": "ethtool"}}' # ip link set eth0 down # ip link set eth1 down # teamdctl team0 port add eth0 # teamdctl team0 port add eth1&#x20;
+This creates a team interface named team0 with mode active-backup, and it adds eth0 and eth1 as team0's sub-interfaces.
+A new driver called [net_failover](https://www.kernel.org/doc/html/latest/networking/net_failover.html) has been added to Linux recently. It's another failover master net device for virtualization and manages a primary ([passthru/VF \[Virtual Function\]](https://wiki.libvirt.org/page/Networking#PCI_Passthrough_of_host_network_devices) device) slave net device and a standby (the original paravirtual interface) slave net device.
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493495395-cb9efff7-7595-4750-b0a0-18f0ef15f765.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/net_failover.png)
+
+## VLAN
+
+A VLAN, aka virtual LAN, separates broadcast domains by adding tags to network packets. VLANs allow network administrators to group hosts under the same switch or between different switches.
+The VLAN header looks like:
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493495406-ba20c202-7aec-4f2d-8e4a-718c8db481ad.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/vlan_01.png)
+Use a VLAN when you want to separate subnet in VMs, namespaces, or hosts.
+Here's how to create a VLAN:
+\# ip link add link eth0 name eth0.2 type vlan id 2 # ip link add link eth0 name eth0.3 type vlan id 3&#x20;
+This adds VLAN 2 with name eth0.2 and VLAN 3 with name eth0.3. The topology looks like this:
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493496104-953046d4-0fac-4ca7-908d-45785c3a097d.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/vlan.png)
+**_Note_**: When configuring a VLAN, you need to make sure the switch connected to the host is able to handle VLAN tags, for example, by setting the switch port to trunk mode.
+
+## VXLAN
+
+VXLAN (Virtual eXtensible Local Area Network) is a tunneling protocol designed to solve the problem of limited VLAN IDs (4,096) in IEEE 802.1q. It is described by [IETF RFC 7348](https://tools.ietf.org/html/rfc7348).
+With a 24-bit segment ID, aka VXLAN Network Identifier (VNI), VXLAN allows up to 2^24 (16,777,216) virtual LANs, which is 4,096 times the VLAN capacity.
+VXLAN encapsulates Layer 2 frames with a VXLAN header into a UDP-IP packet, which looks like this:
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493496161-ef228755-9102-427a-b3fa-f9d8f5cae248.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/vxlan_01.png)
+VXLAN is typically deployed in data centers on virtualized hosts, which may be spread across multiple racks.
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493496231-8fa6bbd6-045f-43f3-a2f9-58039a973086.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/vxlan.png)
+Here's how to use VXLAN:
+\# ip link add vx0 type vxlan id 100 local 1.1.1.1 remote 2.2.2.2 dev eth0 dstport 4789&#x20;
+For reference, you can read the [VXLAN kernel documentation](https://www.kernel.org/doc/Documentation/networking/vxlan.txt) or [this VXLAN introduction](https://vincent.bernat.ch/en/blog/2017-vxlan-linux).
+
+## MACVLAN
+
+With VLAN, you can create multiple interfaces on top of a single one and filter packages based on a VLAN tag. With MACVLAN, you can create multiple interfaces with different Layer 2 (that is, Ethernet MAC) addresses on top of a single one.
+Before MACVLAN, if you wanted to connect to physical network from a VM or namespace, you would have needed to create TAP/VETH devices and attach one side to a bridge and attach a physical interface to the bridge on the host at the same time, as shown below.
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493496373-bba2ae90-3c29-497b-9cf2-9707146ab063.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/br_ns.png)
+Now, with MACVLAN, you can bind a physical interface that is associated with a MACVLAN directly to namespaces, without the need for a bridge.
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493496402-8b2910b5-780c-4a7b-885d-e1ae96f70a20.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvlan.png)
+There are five MACVLAN types:
+1\. Private: doesn't allow communication between MACVLAN instances on the same physical interface, even if the external switch supports hairpin mode.
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493496672-ece58d6f-86b8-4bb6-bfdc-4877583cf2a8.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvlan_01.png)
+2\. VEPA: data from one MACVLAN instance to the other on the same physical interface is transmitted over the physical interface. Either the attached switch needs to support hairpin mode or there must be a TCP/IP router forwarding the packets in order to allow communication.
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493497664-fcf059dc-8d97-4d85-83dc-79e35d8a0502.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvlan_02.png)
+3\. Bridge: all endpoints are directly connected to each other with a simple bridge via the physical interface.
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493497742-be699130-38ef-45a2-a657-a7d90bcbbe81.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvlan_03.png)
+4\. Passthru: allows a single VM to be connected directly to the physical interface.
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493497676-73e85ca2-4f2a-47b9-b14b-1d5fb34c877b.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvlan_04.png)
+5\. Source: the source mode is used to filter traffic based on a list of allowed source MAC addresses to create MAC-based VLAN associations. Please see the [commit message](https://git.kernel.org/pub/scm/linux/kernel/git/davem/net.git/commit/?id=79cf79abce71).
+The type is chosen according to different needs. Bridge mode is the most commonly used.
+Use a MACVLAN when you want to connect directly to a physical network from containers.
+Here's how to set up a MACVLAN:
+\# ip link add macvlan1 link eth0 type macvlan mode bridge # ip link add macvlan2 link eth0 type macvlan mode bridge # ip netns add net1 # ip netns add net2 # ip link set macvlan1 netns net1 # ip link set macvlan2 netns net2&#x20;
+This creates two new MACVLAN devices in bridge mode and assigns these two devices to two different namespaces.
+
+## IPVLAN
+
+IPVLAN is similar to MACVLAN with the difference being that the endpoints have the same MAC address.
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493497707-c70596b7-5689-41be-a5b3-94b69d978090.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/ipvlan.png)
+IPVLAN supports L2 and L3 mode. IPVLAN L2 mode acts like a MACVLAN in bridge mode. The parent interface looks like a bridge or switch.
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493497736-65194dad-9ecb-4e91-af55-b16fae98721f.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/ipvlan_01.png)
+In IPVLAN L3 mode, the parent interface acts like a router and packets are routed between endpoints, which gives better scalability.
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493498348-d23366af-ed6b-46f0-8bcc-4997dacca461.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/ipvlan_02.png)
+Regarding when to use an IPVLAN, the [IPVLAN kernel documentation](https://www.kernel.org/doc/Documentation/networking/ipvlan.txt) says that MACVLAN and IPVLAN "are very similar in many regards and the specific use case could very well define which device to choose. if one of the following situations defines your use case then you can choose to use ipvlan -
+(a) The Linux host that is connected to the external switch / router has policy configured that allows only one mac per port.
+(b) No of virtual devices created on a master exceed the mac capacity and puts the NIC in promiscuous mode and degraded performance is a concern.
+(c) If the slave device is to be put into the hostile / untrusted network namespace where L2 on the slave could be changed / misused."
+Here's how to set up an IPVLAN instance:
+\# ip netns add ns0 # ip link add name ipvl0 link eth0 type ipvlan mode l2 # ip link set dev ipvl0 netns ns0&#x20;
+This creates an IPVLAN device named ipvl0 with mode L2, assigned to namespace ns0.
+
+## MACVTAP/IPVTAP
+
+MACVTAP/IPVTAP is a new device driver meant to simplify virtualized bridged networking. When a MACVTAP/IPVTAP instance is created on top of a physical interface, the kernel also creates a character device/dev/tapX to be used just like a [TUN/TAP](https://en.wikipedia.org/wiki/TUN/TAP) device, which can be directly used by KVM/QEMU.
+With MACVTAP/IPVTAP, you can replace the combination of TUN/TAP and bridge drivers with a single module:
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493498407-337b9bb8-cbee-4990-8283-55a3f5c36e66.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/macvtap.png)
+Typically, MACVLAN/IPVLAN is used to make both the guest and the host show up directly on the switch to which the host is connected. The difference between MACVTAP and IPVTAP is same as with MACVLAN/IPVLAN.
+Here's how to create a MACVTAP instance:
+\# ip link add link eth0 name macvtap0 type macvtap
+
+## MACsec
+
+MACsec (Media Access Control Security) is an IEEE standard for security in wired Ethernet LANs. Similar to IPsec, as a layer 2 specification, MACsec can protect not only IP traffic but also ARP, neighbor discovery, and DHCP. The MACsec headers look like this:
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493498628-bcdf3cf6-08f5-4bd3-bac8-ef3412bea0d3.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/macsec_01.png)
+The main use case for MACsec is to secure all messages on a standard LAN including ARP, NS, and DHCP messages.
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493498641-f72e7987-0e5b-438c-959d-6d0397b337d6.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/macsec.png)
+Here's how to set up a MACsec configuration:
+\# ip link add macsec0 link eth1 type macsec&#x20;
+**_Note_**: This only adds a MACsec device called macsec0 on interface eth1. For more detailed configurations, please see the "Configuration example" section in this [MACsec introduction by Sabrina Dubroca](https://developers.redhat.com/blog/2016/10/14/macsec-a-different-solution-to-encrypt-network-traffic/).
+
+## VETH
+
+The VETH (virtual Ethernet) device is a local Ethernet tunnel. Devices are created in pairs, as shown in the diagram below.
+Packets transmitted on one device in the pair are immediately received on the other device. When either device is down, the link state of the pair is down.
+[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493498671-cf9ff7ff-0ee0-469e-adff-620edf2a237a.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/veth.png)
+Use a VETH configuration when namespaces need to communicate to the main host namespace or between each other.
+Here's how to set up a VETH configuration:
+\# ip netns add net1 # ip netns add net2 # ip link add veth1 netns net1 type veth peer name veth2 netns net2&#x20;
+This creates two namespaces, net1 and net2, and a pair of VETH devices, and it assigns veth1 to namespace net1 and veth2 to namespace net2. These two namespaces are connected with this VETH pair. Assign a pair of IP addresses, and you can ping and communicate between the two namespaces.
+
+## VCAN
+
+Similar to the network loopback devices, the VCAN (virtual CAN) driver offers a virtual local CAN (Controller Area Network) interface, so users can send/receive CAN messages via a VCAN interface. CAN is mostly used in the automotive field nowadays.
+For more CAN protocol information, please refer to the [kernel CAN documentation](https://www.kernel.org/doc/Documentation/networking/can.txt).
+Use a VCAN when you want to test a CAN protocol implementation on the local host.
+Here's how to create a VCAN:
+\# ip link add dev vcan1 type vcan
+
+## VXCAN
+
+Similar to the VETH driver, a VXCAN (Virtual CAN tunnel) implements a local CAN traffic tunnel between two VCAN network devices. When you create a VXCAN instance, two VXCAN devices are created as a pair. When one end receives the packet, the packet appears on the device's pair and vice versa. VXCAN can be used for cross-namespace communication.
+Use a VXCAN configuration when you want to send CAN message across namespaces.
+Here's how to set up a VXCAN instance:
+\# ip netns add net1 # ip netns add net2 # ip link add vxcan1 netns net1 type vxcan peer name vxcan2 netns net2&#x20;
+**_Note_**: VXCAN is not yet supported in Red Hat Enterprise Linux.
+
+## IPOIB
+
+An IPOIB device supports the IP-over-InfiniBand protocol. This transports IP packets over InfiniBand (IB) so you can use your IB device as a fast NIC.
+The IPoIB driver supports two modes of operation: datagram and connected. In datagram mode, the IB UD (Unreliable Datagram) transport is used. In connected mode, the IB RC (Reliable Connected) transport is used. The connected mode takes advantage of the connected nature of the IB transport and allows an MTU up to the maximal IP packet size of 64K.
+For more details, please see the [IPOIB kernel documentation](https://www.kernel.org/doc/Documentation/infiniband/ipoib.txt).
+Use an IPOIB device when you have an IB device and want to communicate with a remote host via IP.
+Here's how to create an IPOIB device:
+\# ip link add ib0 name ipoib0 type ipoib pkey IB_PKEY mode connected
+
+## NLMON
+
+NLMON is a Netlink monitor device.
+Use an NLMON device when you want to monitor system Netlink messages.
+Here's how to create an NLMON device:
+\# ip link add nlmon0 type nlmon # ip link set nlmon0 up # tcpdump -i nlmon0 -w nlmsg.pcap&#x20;
+This creates an NLMON device named nlmon0 and sets it up. Use a packet sniffer (for example, tcpdump) to capture Netlink messages. Recent versions of Wireshark feature decoding of Netlink messages.
+
+## Dummy
+
+dummy 是一个网络接口，是完全虚拟的，就像 loopback 设备。dummy 设备的目的是提供一种网络设备，用以路由数据包，而无需实际传输他们
+
+使用 dummy 设备使不活动的 SLIP(串行线路 Internet 协议) 地址看起来像本地程序的真实地址。 现在，dummy 设备主要用于测试和调试，同时，在 Kubernetes 中，Flannel 在 ipvs 模式下，也会创建一个名为 kube-ipvs0 的网络设备来路由数据包。
+
+dummy 设备的创建方式如下：
+
+```bash
+ip link add dummy1 type dummy
+ip addr add 1.1.1.1/24 dev dummy1
+ip link set dummy1 up
+```
+
+## IFB
+
+The IFB (Intermediate Functional Block) driver supplies a device that allows the concentration of traffic from several sources and the shaping incoming traffic instead of dropping it.
+Use an IFB interface when you want to queue and shape incoming traffic.
+Here's how to create an IFB interface:
+\# ip link add ifb0 type ifb # ip link set ifb0 up # tc qdisc add dev ifb0 root sfq # tc qdisc add dev eth0 handle ffff: ingress # tc filter add dev eth0 parent ffff: u32 match u32 0 0 action mirred egress redirect dev ifb0&#x20;
+This creates an IFB device named ifb0 and replaces the root qdisc scheduler with SFQ (Stochastic Fairness Queueing), which is a classless queueing scheduler. Then it adds an ingress qdisc scheduler on eth0 and redirects all ingress traffic to ifb0.
+For more IFB qdisc use cases, please refer to this [Linux Foundation wiki on IFB](https://wiki.linuxfoundation.org/networking/ifb).
+
+## Additional resources
+
+- [Virtual networking articles](https://developers.redhat.com/blog/tag/virtual-networking/) on the Red Hat Developer blog
+- [Dynamic IP Address Management in Open Virtual Network (OVN)](https://developers.redhat.com/blog/2018/09/03/ovn-dynamic-ip-address-management/)
+- [Non-root Open vSwitch in Red Hat Enterprise Linux](https://developers.redhat.com/blog/2018/03/23/non-root-open-vswitch-rhel/)
+- [Open vSwitch articles](https://developers.redhat.com/blog/tag/open-vswitch/) on the Red hat Developer Blog
+
+## netdevsim interface
+
+netdevsim is a simulated networking device which is used for testing various networking APIs. At this time it is particularly focused on testing hardware
+offloading, tc/XDP BPF and SR-IOV.
+A netdevsim device can be created as follows
+\# ip link add dev sim0 type netdevsim # ip link set dev sim0 up&#x20;
+To enable tc offload:
+\# ethtool -K sim0 hw-tc-offload on&#x20;
+To load XDP BPF or tc BPF programs:
+\# ip link set dev sim0 xdpoffload obj prog.o&#x20;
+To add VFs for SR-IOV testing:
+\# echo 3 > /sys/class/net/sim0/device/sriov*numvfs # ip link set sim0 vf 0 mac &#x20;
+To change the vf numbers, you need to disable them completely first:
+\# echo 0 > /sys/class/net/sim0/device/sriov_numvfs # echo 5 > /sys/class/net/sim0/device/sriov_numvfs&#x20;
+Note: netdevsim is not compiled in RHEL by default
+\_Last updated: September 11, 2019*
+
+# 隧道网络设备
+
+> 参考：
+> - <https://developers.redhat.com/blog/2019/05/17/an-introduction-to-linux-virtual-interfaces-tunnels#>
+
+Linux 支持多种隧道，但新用户可能会对它们的差异感到困惑，并不确定哪一种最适合给定的用例。在本文中，我将简要介绍 Linux 内核中常用的隧道接口。没有代码分析，只简单介绍了接口及其在 Linux 上的使用。任何有网络背景的人都可能对这些信息感兴趣。可以通过发出 iproute2 命令 ip link help 获得隧道接口列表以及特定隧道配置的帮助。
+
+这篇文章涵盖了以下常用接口：
+
+- [IPIP Tunnel](https://developers.redhat.com/blog/2019/05/17/an-introduction-to-linux-virtual-interfaces-tunnels#ipip)
+- [SIT Tunnel](https://developers.redhat.com/blog/2019/05/17/an-introduction-to-linux-virtual-interfaces-tunnels#sit)
+- [ip6tnl Tunnel](https://developers.redhat.com/blog/2019/05/17/an-introduction-to-linux-virtual-interfaces-tunnels#ip6tnl)
+- [VTI and VTI6](https://developers.redhat.com/blog/2019/05/17/an-introduction-to-linux-virtual-interfaces-tunnels#vti)
+- [GRE and GRETAP](https://developers.redhat.com/blog/2019/05/17/an-introduction-to-linux-virtual-interfaces-tunnels#gre)
+- [IP6GRE and IP6GRETAP](https://developers.redhat.com/blog/2019/05/17/an-introduction-to-linux-virtual-interfaces-tunnels#ip6gre)
+- [FOU](https://developers.redhat.com/blog/2019/05/17/an-introduction-to-linux-virtual-interfaces-tunnels#fou)
+- [GUE](https://developers.redhat.com/blog/2019/05/17/an-introduction-to-linux-virtual-interfaces-tunnels#gue)
+- [GENEVE](https://developers.redhat.com/blog/2019/05/17/an-introduction-to-linux-virtual-interfaces-tunnels#geneve)
+- [ERSPAN and IP6ERSPAN](https://developers.redhat.com/blog/2019/05/17/an-introduction-to-linux-virtual-interfaces-tunnels#erspan)
+
+## IPIP Tunnel
+
+IPIP tunnel, just as the name suggests, is an IP over IP tunnel, defined in [RFC 2003](https://tools.ietf.org/html/rfc2003). The IPIP tunnel header looks like:
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493541929-3c498a49-7406-4a02-ae97-da31bd386c6b.png)
+It's typically used to connect two internal IPv4 subnets through public IPv4 internet. It has the lowest overhead but can only transmit IPv4 unicast traffic. That means you **cannot** send multicast via IPIP tunnel.
+IPIP tunnel supports both IP over IP and MPLS over IP.
+**Note**: When the ipip module is loaded, or an IPIP device is created for the first time, the Linux kernel will create a tunl0 default device in each namespace, with attributes local=any and remote=any. When receiving IPIP protocol packets, the kernel will forward them to tunl0 as a fallback device if it can't find another device whose local/remote attributes match their source or destination address more closely.
+Here is how to create an IPIP tunnel:
+On Server A: # ip link add name ipip0 type ipip local LOCAL_IPv4_ADDR remote REMOTE_IPv4_ADDR # ip link set ipip0 up # ip addr add INTERNAL_IPV4_ADDR/24 dev ipip0 Add a remote internal subnet route if the endpoints don't belong to the same subnet # ip route add REMOTE_INTERNAL_SUBNET/24 dev ipip0 On Server B: # ip link add name ipip0 type ipip local LOCAL_IPv4_ADDR remote REMOTE_IPv4_ADDR # ip link set ipip0 up # ip addr add INTERNAL_IPV4_ADDR/24 dev ipip0 # ip route add REMOTE_INTERNAL_SUBNET/24 dev ipip0&#x20;
+Note: Please replace LOCAL_IPv4_ADDR, REMOTE_IPv4_ADDR, INTERNAL_IPV4_ADDR, REMOTE_INTERNAL_SUBNET to the addresses based on your testing environment. The same with following example configs.
+
+## SIT Tunnel
+
+SIT stands for Simple Internet Transition. The main purpose is to interconnect isolated IPv6 networks, located in global IPv4 internet.
+Initially, it only had an IPv6 over IPv4 tunneling mode. After years of development, however, it acquired support for several different modes, such as ipip (the same with IPIP tunnel), ip6ip, mplsip, and any. Mode any is used to accept both IP and IPv6 traffic, which may prove useful in some deployments. SIT tunnel also supports [ISATA](https://www.ietf.org/rfc/rfc4214.txt), and here is a [usage example](http://www.litech.org/isatap).
+The SIT tunnel header looks like:
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493541941-c151c630-2925-4a09-aa89-845588e3e5b3.png)
+When the sit module is loaded, the Linux kernel will create a default device, named sit0.
+Here is how to create a SIT tunnel:
+On Server A: # ip link add name sit1 type sit local LOCAL_IPv4_ADDR remote REMOTE_IPv4_ADDR mode any # ip link set sit1 up # ip addr add INTERNAL_IPV4_ADDR/24 dev sit1&#x20;
+Then, perform the same steps on the remote side.
+
+## ip6tnl Tunnel
+
+ip6tnl is an IPv4/IPv6 over IPv6 tunnel interface, which looks like an IPv6 version of the SIT tunnel. The tunnel header looks like:
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493541939-55d26347-12f2-4dab-b439-a20720e2714e.png)
+ip6tnl supports modes ip6ip6, ipip6, any. Mode ipip6 is IPv4 over IPv6, and mode ip6ip6 is IPv6 over IPv6, and mode any supports both IPv4/IPv6 over IPv6.
+When the ip6tnl module is loaded, the Linux kernel will create a default device, named ip6tnl0.
+Here is how to create an ip6tnl tunnel:
+\# ip link add name ipip6 type ip6tnl local LOCAL_IPv6_ADDR remote REMOTE_IPv6_ADDR mode any
+
+## VTI and VTI6
+
+Virtual Tunnel Interface (VTI) on Linux is similar to Cisco's VTI and Juniper's implementation of secure tunnel (st.xx).
+This particular tunneling driver implements IP encapsulations, which can be used with xfrm to give the notion of a secure tunnel and then use kernel routing on top.
+In general, VTI tunnels operate in almost the same way as ipip or sit tunnels, except that they add a fwmark and IPsec encapsulation/decapsulation.
+VTI6 is the IPv6 equivalent of VTI.
+Here is how to create a VTI tunnel:
+\# ip link add name vti1 type vti key VTI_KEY local LOCAL_IPv4_ADDR remote REMOTE_IPv4_ADDR # ip link set vti1 up # ip addr add LOCAL_VIRTUAL_ADDR/24 dev vti1 # ip xfrm state add src LOCAL_IPv4_ADDR dst REMOTE_IPv4_ADDR spi SPI PROTO ALGR mode tunnel # ip xfrm state add src REMOTE_IPv4_ADDR dst LOCAL_IPv4_ADDR spi SPI PROTO ALGR mode tunnel # ip xfrm policy add dir in tmpl src REMOTE_IPv4_ADDR dst LOCAL_IPv4_ADDR PROTO mode tunnel mark VTI_KEY # ip xfrm policy add dir out tmpl src LOCAL_IPv4_ADDR dst REMOTE_IPv4_ADDR PROTO mode tunnel mark VTI_KEY&#x20;
+You can also configure IPsec via [libreswan](https://libreswan.org/wiki/Route-based_VPN_using_VTI) or [strongSwan](https://wiki.strongswan.org/projects/strongswan/wiki/RouteBasedVPN).
+
+## GRE and GRETAP
+
+Generic Routing Encapsulation, also known as GRE, is defined in [RFC 2784](https://tools.ietf.org/html/rfc2784)
+GRE tunneling adds an additional GRE header between the inside and outside IP headers. In theory, GRE could encapsulate any Layer 3 protocol with a valid Ethernet type, unlike IPIP, which can only encapsulate IP. The GRE header looks like:
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493541950-7306c06b-3438-4a0c-98f1-1dfac809d7a8.png)
+Note that you can transport multicast traffic and IPv6 through a GRE tunnel.
+When the gre module is loaded, the Linux kernel will create a default device, named gre0.
+Here is how to create a GRE tunnel:
+\# ip link add name gre1 type gre local LOCAL_IPv4_ADDR remote REMOTE_IPv4_ADDR \[seq] key KEY&#x20;
+While GRE tunnels operate at OSI Layer 3, GRETAP works at OSI Layer 2, which means there is an Ethernet header in the inner header.
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493541978-5b18c4ce-a484-4882-90a4-1341aab450fd.png)
+Here is how to create a GRETAP tunnel:
+\# ip link add name gretap1 type gretap local LOCAL_IPv4_ADDR remote REMOTE_IPv4_ADDR
+
+## IP6GRE and IP6GRETAP
+
+IP6GRE is the IPv6 equivalent of GRE, which allows us to encapsulate any Layer 3 protocol over IPv6. The tunnel header looks like:
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493543192-8bbd04d7-88b1-407e-b183-27e70ac3142e.png)
+IP6GRETAP, just like GRETAP, has an Ethernet header in the inner header:
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493543437-bc1c8e95-4dee-449b-a31d-61154a0bbd85.png)
+Here is how to create a GRE tunnel:
+\# ip link add name gre1 type ip6gre local LOCAL_IPv6_ADDR remote REMOTE_IPv6_ADDR # ip link add name gretap1 type ip6gretap local LOCAL_IPv6_ADDR remote REMOTE_IPv6_ADDR
+
+## FOU
+
+Tunneling can happen at multiple levels in the networking stack. IPIP, SIT, GRE tunnels are at the IP level, while FOU (foo over UDP) is UDP-level tunneling.
+There are some advantages of using UDP tunneling as UDP works with existing HW infrastructure, like [RSS](https://en.wikipedia.org/wiki/Network_interface_controller#RSS) in NICs, [ECMP](https://en.wikipedia.org/wiki/Equal-cost_multi-path_routing) in switches, and checksum offload. The developer's [patch set](https://lwn.net/Articles/614433/) shows significant performance increases for the SIT and IPIP protocols.
+Currently, the FOU tunnel supports encapsulation protocol based on IPIP, SIT, GRE. An example FOU header looks like:
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493543253-f5dddca7-c7be-42cd-8f26-7f17a6b45499.png)
+Here is how to create a FOU tunnel:
+\# ip fou add port 5555 ipproto 4 # ip link add name tun1 type ipip remote 192.168.1.1 local 192.168.1.2 ttl 225 encap fou encap-sport auto encap-dport 5555&#x20;
+The first command configured a FOU receive port for IPIP bound to 5555; for GRE, you need to set ipproto 47. The second command set up a new IPIP virtual interface (tun1) configured for FOU encapsulation, with dest port 5555.
+**NOTE**: FOU is not supported in Red Hat Enterprise Linux.
+
+## GUE
+
+[Generic UDP Encapsulation](https://tools.ietf.org/html/draft-ietf-intarea-gue) (GUE) is another kind of UDP tunneling. The difference between FOU and GUE is that GUE has its own encapsulation header, which contains the protocol info and other data.
+Currently, GUE tunnel supports inner IPIP, SIT, GRE encapsulation. An example GUE header looks like:
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493543283-20ce12c4-edf1-4a2b-8888-42d3bdb4d08e.png)
+Here is how to create a GUE tunnel:
+\# ip fou add port 5555 gue # ip link add name tun1 type ipip remote 192.168.1.1 local 192.168.1.2 ttl 225 encap gue encap-sport auto encap-dport 5555&#x20;
+This will set up a GUE receive port for IPIP bound to 5555, and an IPIP tunnel configured for GUE encapsulation.
+**NOTE**: GUE is not supported in Red Hat Enterprise Linux.
+
+## GENEVE
+
+Generic Network Virtualization Encapsulation (GENEVE) supports all of the capabilities of VXLAN, NVGRE, and STT and was designed to overcome their perceived limitations. Many believe GENEVE could eventually replace these earlier formats entirely. The tunnel header looks like:
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493543437-55251107-feaf-4448-9a65-9b726a1fa1bb.png)
+which looks very similar to [VXLAN](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking/#vxlan). The main difference is that the GENEVE header is flexible. It's very easy to add new features by extending the header with a new Type-Length-Value (TLV) field. For more details, you can see the latest [geneve ietf draft](https://tools.ietf.org/html/draft-ietf-nvo3-geneve-08) or refer to this [What is GENEVE?](https://www.redhat.com/en/blog/what-geneve) article.
+[Open Virtual Network (OVN)](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/13/html/networking_with_open_virtual_network/open_virtual_network_ovn) uses GENEVE as default encapsulation. Here is how to create a GENEVE tunnel:
+\# ip link add name geneve0 type geneve id VNI remote REMOTE_IPv4_ADDR
+
+## ERSPAN and IP6ERSPAN
+
+Encapsulated Remote Switched Port Analyzer (ERSPAN) uses GRE encapsulation to extend the basic port mirroring capability from Layer 2 to Layer 3, which allows the mirrored traffic to be sent through a routable IP network. The ERSPAN header looks like:
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493544476-8decf814-c9a0-4c61-9005-e7626ca9ae4a.png)
+The ERSPAN tunnel allows a Linux host to act as an ERSPAN traffic source and send the ERSPAN mirrored traffic to either a remote host or to an ERSPAN destination, which receives and parses the ERSPAN packets generated from Cisco or other ERSPAN-capable switches. This setup could be used to analyze, diagnose, and detect malicious traffic.
+Linux currently supports most features of two ERSPAN versions: v1 (type II) and v2 (type III).
+Here is how to create an ERSPAN tunnel:
+\# ip link add dev erspan1 type erspan local LOCAL_IPv4_ADDR remote REMOTE_IPv4_ADDR seq key KEY erspan_ver 1 erspan IDX or # ip link add dev erspan1 type erspan local LOCAL_IPv4_ADDR remote REMOTE_IPv4_ADDR seq key KEY erspan_ver 2 erspan_dir DIRECTION erspan_hwid HWID Add tc filter to monitor traffic # tc qdisc add dev MONITOR_DEV handle ffff: ingress # tc filter add dev MONITOR_DEV parent ffff: matchall skip_hw action mirred egress mirror dev erspan1
+
+## Summary
+
+Here is a summary of all the tunnels we introduced.
+
+| Tunnel/Link Type | Outer Header | Encapsulate Header | Inner Header      |
+| ---------------- | ------------ | ------------------ | ----------------- |
+| ipip             | IPv4         | None               | IPv4              |
+| sit              | IPv4         | None               | IPv4/IPv6         |
+| ip6tnl           | IPv6         | None               | IPv4/IPv6         |
+| vti              | IPv4         | IPsec              | IPv4              |
+| vti6             | IPv6         | IPsec              | IPv6              |
+| gre              | IPv4         | GRE                | IPv4/IPv6         |
+| gretap           | IPv4         | GRE                | Ether + IPv4/IPv6 |
+| ip6gre           | IPv6         | GRE                | IPv4/IPv6         |
+| ip6gretap        | IPv6         | GRE                | Ether + IPv4/IPv6 |
+| fou              | IPv4/IPv6    | UDP                | IPv4/IPv6/GRE     |
+| gue              | IPv4/IPv6    | UDP + GUE          | IPv4/IPv6/GRE     |
+| geneve           | IPv4/IPv6    | UDP + Geneve       | Ether + IPv4/IPv6 |
+| erspan           | IPv4         | GRE + ERSPAN       | IPv4/IPv6         |
+| ip6erspan        | IPv6         | GRE + ERSPAN       | IPv4/IPv6         |
+
+**Note**: All configurations in this tutorial are volatile and won’t survive to a server reboot. If you want to make the configuration persistent across reboots, please consider using a networking configuration daemon, such as [NetworkManager](https://developer.gnome.org/NetworkManager/stable/), or distribution-specific mechanisms.
+\_Also read: \_[Introduction to Linux interfaces for virtual networking](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking/)
+_Last updated: October 18, 2019_

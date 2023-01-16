@@ -1,0 +1,115 @@
+---
+title: Linux 的紧急模式或救援模式
+---
+
+# 概述
+
+Linux 系统难免出现问题，下面总结了一些在出现问题时，可以用到的修复方式。
+
+比如 单用户模式、GRUB 命令操作、Linux 救援模式 的故障修复案例。
+
+一般的故障修复，都是通过进入一个微型系统，并在微型系统中关联正常系统，来实现对正常系统进行修复操作的。这种微型系统可以存在于内核中，通过内核来启动\；也可以通过外部挂载(光盘、usb 等)的方式来启动。
+
+# Emergency(紧急) 模式
+
+Linux 系统提供了紧急模式(类似 Windows 安全模式)，该模式镶嵌在内核中。可以在最小环境中(仅仅运行系统所需的必要程序)进行系统维护。在紧急模式中，Linux 引导进入根 shell，网络被禁用，只有少数进程运行。紧急模式可以用来修改文件系统损坏、还原配置文件、移动用户数据等。
+
+## 启动紧急模式
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ewdpso/1616163959565-28b07db0-d297-4c04-bdf7-b31a43af0106.jpeg)
+在该界面选中想要使用的内核后，按 e 键 ，进入编辑启动参数界面
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ewdpso/1616163959592-6d0be599-731a-4f6c-b6b1-9e195991cfb9.jpeg)
+在上图红框位置将 ro 改为 rw init=/sysroot/bin/sh 。然后按 ctrl+x 来启动。这时候，就进入了紧急模式，紧急模式的界面是像下图这样的
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ewdpso/1616163959556-b1d3734e-d706-47fc-a83c-131c6f049baa.jpeg)
+这是一个 sh 的 shell(也可以启动其他 shell，比如 bash 等)，可以执行一些基本命令，目录结构如下
+
+```bash
+:/# ls
+bin dev dracut-state.sh etc init lib lib64 proc root run sbin shutdown sys sysroot tmp usr var
+```
+
+其中 `sysroot` 目录，就是我们正常启动系统时，所看到的 `/` 目录
+
+在这种模式下，可以看到，仅有个别进程在运行，/init rhgb 是该系统模式下的第一个进程，与正常系统不同。
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ewdpso/1616163959562-5047fe7d-4089-43e3-933c-0eb9ab6c80d4.jpeg)
+sh 进程是因为我们需要一个可以操作的 shell，所以在修改启动项时添加的。
+
+实际上，所谓的紧急模式，就是在安装 linux 系统时，内核中内置的一个微型系统，进入该微型系统后，咱正常系统的根目录，就被挂载到微型系统的/sysroot 下了，由于没有挂载其他物理磁盘，也没有任何多余进程运行，所以只要内核是好的，那么紧急模式是可以正常进入的。
+
+该模式可以用来修复一些与非内核错误的一些故障
+
+# Rescue(救援) 模式
+
+当紧急模式不可用时，说明内核或者内核相关出现问题，这时候，我们就需要使用救援模式了。
+
+救援模式并不在已经安装的系统或者内核上，而是通过外部挂载 linux 系统镜像来启动。相当于通过外挂的系统镜像来启动一个微型系统，来诊断并修复当前系统
+
+## 启动救援模式
+
+首先需要将系统镜像挂载到设备上，物理机直接插入光盘或者 U 盘，并修改启动项；虚拟机的话同理，将 linux 系统镜像挂载进虚拟机然后通过该系统镜像启动系统。
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ewdpso/1616163959557-c45d87ec-9d2c-4296-b14a-fdd3f7b710e1.jpeg)
+在上图选择 Troubleshooting 后，选择 Rescue a CentOS system（救援一个 centos 系统）
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ewdpso/1616163959573-28e0e935-14ef-4a12-8d1f-20ad9d79a274.jpeg)
+在上图蓝线上半部分，选择 1 继续之后。将会启动一个微型系统，并进入一个 shell，其中会提示我们，设备上正常系统的 / 目录被挂载到 /mnt/sysimage ，该情况与 紧急模式 一样，只是正常系统的跟目录被挂载的路径不同罢了。
+
+通过光盘启动的微型系统，明显比紧急模式的微型系统 功能更加完善，可以看到有很多进程
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ewdpso/1616163959579-0a7e5ff3-ae98-4560-8a00-c3b58808a04d.jpeg)
+同样也是一个 sh 的 shell。可以在该 shell 下，进入 /mnt/sysimage 目录来对正常的系统进行修复
+
+## 这类模式常见使用方式
+
+由于进入这类救援模式后，原本系统的 `/` 被挂载到微型系统的的其他目录，这之后直接使用 chroot /PATH/DIR 命令，即可将当前 / 目录转变到原本系统上，然后就可以更方便的定位问题了，如果不进行 chroot，那么操作目录的时候，其实挺不方便的~~~~
+
+## Ubuntu 的 Rescue 模式
+
+网上充斥着大量的垃圾信息，并没有明确指导如何通过挂盘来进入 Rescue 模式，实际上，Ubuntu Server 版的 ISO 并没有提供这个功能，那么有两种方式来实现：
+
+- 使用 Ubuntu Desktop 的 ISO，进入界面后选择 **Try Ubuntu**，也就是网上常说的 **Live CD** 模式。只不过这是图形界面，进入后配置好 root 密码，可以使用 `ctrl + alt + f3` 来切换 TTY，并在 CLI 下进行修复工作
+- 使用 CentOS 的 ISO 进入 Rescue 模式，同样可以修复挂载 Ubuntu 的分区到指定的目录。
+
+# 如何在 CentOS 8 上启动到紧急模式
+
+原文链接：<https://linuxhint.com/boot-emergency-mode-centos-8/>
+在最新的 CentOS 中，即 CentOS 8 紧急模式和救援模式已经取代了运行级别的概念。运行级别是用于各种任务的不同模式。在 CentOS 8 中，Rescue 模式相当于单用户模式，而紧急启动模式提供了一个最小的环境来修复您的系统。
+今天我们将学习如何将 CentOS 8 启动到救援和紧急模式。
+
+## 如何启动进入救援模式
+
+救援模式需要 root 密码进行身份验证，并允许您在正常启动过程不起作用时恢复系统。救援模式将尝试设置所有本地文件系统并启动一些基本系统服务。救援模式不启动网络接口，也不允许多个用户登录。
+启动计算机并等待 GRUB 菜单出现。
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ewdpso/1630379281707-861e3e5b-49c3-4721-9e4e-d2f0dd9239cc.png)
+现在按“e”打开编辑菜单：
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ewdpso/1630379281756-579ed222-fa5a-48c6-9182-5a19adc12983.png)
+现在，找到以下面的屏幕截图所示的“Linux”关键字开头的行：
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ewdpso/1630379280843-f87b7899-36d3-4049-8ba5-38f918926497.png)
+使用键盘上的终点按钮转到线的末尾，并在行结束时添加以下参数：
+systemd.Unit = Rescue.target.
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ewdpso/1630379280876-d0125040-66ac-4757-abde-e5089a4c1b4e.png)
+按 Ctrl + X 启动系统，但此时使用新参数将让您输入救援模式。
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ewdpso/1630379280860-c9be44a2-22e8-4fa5-a6c7-4dc77dffa729.png)
+操作系统会要求 root 密码。在提供密码后，您将进入救援模式。
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ewdpso/1630379281433-ed1c7906-6118-4f92-a7cc-1dc556b445a6.png)
+现在，您可以在救援模式下修复系统。
+完成救援模式后，您可以通过运行“退出”命令来退出救援/紧急模式。
+
+## 启动进入紧急模式
+
+紧急模式甚至救援模式不起作用时，恢复系统的最小环境。紧急将根文件安装为只读，并不尝试挂载本地文件系统。紧急模式也没有启动网络接口。
+
+将系统启动到紧急模式的过程与救援模式相同。
+首先，启动计算机并等待 GRUB 菜单显示：
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ewdpso/1630379281944-4f628d77-411e-4319-af8c-1a1557c7e8ce.png)
+现在按“E”打开编辑菜单：
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ewdpso/1630379282293-94e66990-034a-4b85-8cfa-7e9262ade0a8.png)
+现在定位以“Linux”关键字开头的行，如下屏幕截图所示：
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ewdpso/1630379282273-c76fcd43-02db-4a14-b7e3-52b4ca27cb3e.png)
+使用键盘上的终点按钮转到线的末尾，并在行结束时添加以下参数：
+systemd.unit = Encrasst.target.
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ewdpso/1630379283117-bf48ec7a-b48c-4d23-bd05-b284dce0dcb3.png)
+按 Ctrl + X 启动系统，但此时使用新参数将让您输入紧急模式。
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ewdpso/1630379283276-16043784-d87e-4a63-8c3b-95c4c030fd98.png)
+提供密码后，您将进入紧急模式。
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ewdpso/1630379283239-886da796-8374-441c-a133-2e28b376336d.png)
+现在，即使救援模式不起作用，您也可以在紧急模式下修复系统。
+
+完成紧急模式后，您可以通过运行“退出”命令来退出救援/紧急模式。

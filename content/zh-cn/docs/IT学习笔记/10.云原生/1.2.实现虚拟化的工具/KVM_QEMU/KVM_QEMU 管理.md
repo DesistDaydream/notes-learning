@@ -1,0 +1,130 @@
+---
+title: KVM/QEMU 管理
+---
+
+# 概述
+
+# 多 KVM/QEMU 集中管理
+
+除了 OpenStack 以外，市面上没有多少可以批量管理 KVM 主机的项目~~~o(╯□╰)o~~~ 唯一能搜到的只有一个 WebVirtCloud ~~~~
+为什么要用 Python 写前端呢。。。裂开了。。。。o(╯□╰)o
+
+## WebVirtCloud
+
+> 参考：
+> - [GitHub 项目，retspen/webvirtmgr](https://github.com/retspen/webvirtmgr)(已于 2018 年停止更新，被 webvirtcloud 代替)
+> - [GitHub 项目，retspen/webvirtcloud](https://github.com/retspen/webvirtcloud)
+
+WebVirtCloud 是一个由 Python 的 Web 框架 Django 编写的前后端一体项目。
+WebVirtCloud 有多个组件
+
+- **Nginx** 监听 80 端口，入口，用来响应 `/static/` 下的各种静态资源
+- **Webvirtcloud** 监听 8000 端口，处理 `IP:PORT/` 路径的访问请求，展示出的进程名为 gunicorn
+  - Gunicorn(Green Unicorn) 是一个 UNIX 下符合 [WSGI](https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface) 规范的 HTTP 服务器(说简单点就是一个类似 Nginx 程序)。
+    - WSGI 指定了“web 服务器”和“Python web 应用/ web 框架”之间的标准接口，以提高 web 应用在一系列 web 服务器间的移植性。
+- **Novnc** 监听 6080 端口，处理 `IP:PORT/novncd/` 路径的访问请求，展示出的进程名为 novncd
+
+WebVirtCloud 在容器中通过老式的 runsvdir 运行，runsvdir 会读取 -P 选项指定的目录，可以看到，runsv 程序后的参数，就是 /etc/service/ 目录下的目录名
+
+```bash
+root@e7d4f80811cb:~# ll /etc/service
+lrwxrwxrwx 1 root root 22 Nov 16  2017 /etc/service -> runit/runsvdir/default/
+root@e7d4f80811cb:~# ll /etc/runit/runsvdir/default/
+total 40
+drwxr-xr-x 1 root root 4096 Jun  2 15:16 ./
+drwxr-xr-x 1 root root 4096 Sep  2  2021 ../
+drwxr-xr-x 1 root root 4096 Jun  3 06:29 cron/
+drwxr-xr-x 1 root root 4096 Jun  3 06:29 nginx/
+drwxr-xr-x 1 root root 4096 Jun  3 06:29 nginx-log-forwarder/
+drwxr-xr-x 1 root root 4096 Jun  3 06:29 novnc/
+drwxr-xr-x 1 root root 4096 Jun  3 06:29 sshd/
+drwxr-xr-x 1 root root 4096 Jun  3 07:05 webvirtcloud/
+
+root@e7d4f80811cb:~# ps -ef f
+root     1616850       1  0 14:29 ?        Sl     0:00 /usr/local/bin/containerd-shim-runc-v2 -namespace moby -id e7d4f80811cb5aaeec2cbc132a5995dac13ae4c25d21528d421d9d5c1481b36f -address /run/containerd/containerd.sock
+root     1616872 1616850  0 14:29 ?        Ss     0:00  \_ /usr/bin/python3 -u /sbin/my_init
+root     1616921 1616872  0 14:29 ?        S      0:00  |   \_ /usr/sbin/syslog-ng --pidfile /var/run/syslog-ng.pid -F --no-caps
+root     1616928 1616872  0 14:29 ?        S      0:00  |   \_ /usr/bin/runsvdir -P /etc/service
+root     1616929 1616928  0 14:29 ?        Ss     0:00  |       \_ runsv cron
+root     1616935 1616929  0 14:29 ?        S      0:00  |       |   \_ /usr/sbin/cron -f
+root     1616930 1616928  0 14:29 ?        Ss     0:00  |       \_ runsv sshd
+root     1616931 1616928  0 14:29 ?        Ss     0:00  |       \_ runsv webvirtcloud
+www-data 1616938 1616931  0 14:29 ?        S      0:00  |       |   \_ /srv/webvirtcloud/venv/bin/python3 /srv/webvirtcloud/venv/bin/gunicorn webvirtcloud.wsgi:application -c /srv/webvirtcloud/gunicorn.conf.py
+www-data 1616948 1616938  0 14:29 ?        Sl     0:00  |       |       \_ /srv/webvirtcloud/venv/bin/python3 /srv/webvirtcloud/venv/bin/gunicorn webvirtcloud.wsgi:application -c /srv/webvirtcloud/gunicorn.conf.py
+www-data 1616949 1616938  0 14:29 ?        Sl     0:00  |       |       \_ /srv/webvirtcloud/venv/bin/python3 /srv/webvirtcloud/venv/bin/gunicorn webvirtcloud.wsgi:application -c /srv/webvirtcloud/gunicorn.conf.py
+www-data 1616950 1616938  0 14:29 ?        Sl     0:00  |       |       \_ /srv/webvirtcloud/venv/bin/python3 /srv/webvirtcloud/venv/bin/gunicorn webvirtcloud.wsgi:application -c /srv/webvirtcloud/gunicorn.conf.py
+www-data 1616951 1616938  0 14:29 ?        Sl     0:00  |       |       \_ /srv/webvirtcloud/venv/bin/python3 /srv/webvirtcloud/venv/bin/gunicorn webvirtcloud.wsgi:application -c /srv/webvirtcloud/gunicorn.conf.py
+www-data 1616953 1616938  0 14:29 ?        Sl     0:00  |       |       \_ /srv/webvirtcloud/venv/bin/python3 /srv/webvirtcloud/venv/bin/gunicorn webvirtcloud.wsgi:application -c /srv/webvirtcloud/gunicorn.conf.py
+root     1616932 1616928  0 14:29 ?        Ss     0:00  |       \_ runsv novnc
+www-data 1616939 1616932  0 14:29 ?        Sl     0:00  |       |   \_ /srv/webvirtcloud/venv/bin/python3 /srv/webvirtcloud/console/novncd
+root     1616933 1616928  0 14:29 ?        Ss     0:00  |       \_ runsv nginx-log-forwarder
+root     1616940 1616933  0 14:29 ?        S      0:00  |       |   \_ tail -F /var/log/nginx/error.log
+root     1616934 1616928  0 14:29 ?        Ss     0:00  |       \_ runsv nginx
+root     1616943 1616934  0 14:29 ?        S      0:00  |           \_ nginx: master process /usr/sbin/nginx
+www-data 1616944 1616943  0 14:29 ?        S      0:00  |               \_ nginx: worker process
+www-data 1616945 1616943  0 14:29 ?        S      0:00  |               \_ nginx: worker process
+```
+
+### 部署
+
+#### 构建镜像
+
+> 参考：
+> - [GitHub 项目 Wiki，Docker Installation & Update](https://github.com/retspen/webvirtcloud/wiki/Docker-Installation-&-Update)
+
+执行完第二步 Clone 代码后，需要修改一下 db.sqlite3 保存位置，以便可以将数据库挂载到容器外部，默认情况下数据库文件在根目录跟很多文件在一起，并且没法修改数据保存位置。。。。o(╯□╰)o
+代码：`webvirtcloud/settings.py.template`
+
+```python
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        # "NAME": Path.joinpath(BASE_DIR, "db.sqlite3"),
+        # 改为下面的代码
+        "NAME": Path.joinpath(BASE_DIR, "data/db.sqlite3"),
+    }
+}
+```
+
+然后继续执行后续构建操作即可。
+
+> 注意：构建镜像时，将会初始化数据库，生成所需的各种表
+
+#### 运行
+
+准备目录
+
+```bash
+mkdir -p /opt/webvirtcloud/{ssh,data}
+
+# 将构建时初始化的数据库文件拷贝到本地
+docker run --rm -d --name webvirtcloud lchdzh/webvirtcloud
+docker cp webvirtcloud:/srv/webvirtcloud/data/db.sqlite3 /opt/webvirtcloud/data/
+docker stop webvirtcloud
+
+chown -R www-data:www-data /opt/webvirtcloud/{ssh,data}
+```
+
+运行
+
+```bash
+nerdctl run -d --name webvirtcloud \
+  --network host \
+  -v /opt/webvirtcloud/data:/srv/webvirtcloud/data \
+  -v /opt/webvirtcloud/ssh:/var/www/.ssh \
+  lchdzh/webvirtcloud
+```
+
+在容器中生成密钥，禁用 StrictHostKeyChecking
+
+```bash
+cat > ~www-data/.ssh/config << EOF
+Host *
+StrictHostKeyChecking no
+EOF
+chown www-data -R ~www-data/.ssh/
+chown www-data -R /srv/webvirtcloud/data
+
+setuser www-data ssh-keygen -t rsa -P '' -f /var/www/.ssh/id_rsa
+setuser www-data ssh-copy-id -i /var/www/.ssh/id_rsa.pub root@192.168.0.10
+```

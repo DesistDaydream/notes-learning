@@ -1,0 +1,8 @@
+{
+  "readableLineLength": false,
+  "alwaysUpdateLinks": true,
+  "promptDelete": false,
+  "newFileLocation": "current",
+  "newLinkFormat": "absolute",
+  "useMarkdownLinks": true
+}
