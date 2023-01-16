@@ -5,7 +5,7 @@ title: ECMAScript 包管理器
 # 概述
 
 > 参考：
-> - 
+> -
 
 当我们使用包管理命令安装各种第三方库(依赖包)及其衍生物通常会保存在两类地方
 - **Locally(本地)** # 这是默认的行为，安装的东西放在当前目录的 `./node_modules/` 目录中
@@ -108,11 +108,11 @@ corepack prepare pnpm@7.14.1 --activate
 # npm 与 pnpm Syntax(语法)
 
 > 参考：
-> - 
+> -
 
 通常，适用于 npm 的选项，也适用于 pnpm
 
-**npm \[OPTIONS] COMMAND \[OPTIONS]**
+**npm [OPTIONS] COMMAND [OPTIONS]**
 
 **OPTIONS**
 
@@ -137,11 +137,9 @@ OPTIONS
   - `npm config set registry="https://registry.npmmirror.com"`
 
 ## npm exec
-
 从本地或远程 npm 包运行命令
 
 ### Syntax(语法)
-
 **npm exec -- <pkg>[@<version>] [args...]**
 **npm exec --package=<pkg>[@<version>] -- <cmd> [args...]**
 **npm exec -c '<cmd> [args...]'**
@@ -162,10 +160,9 @@ OPTIONS
 创建一个 package.json 文件。用来初始化一个项目
 
 ### Syntax(语法)
-
-**npm init \[--force|-f|--yes|-y|--scope]**
+**npm init [--force|-f|--yes|-y|--scope]**
 **npm init <@scope> (same as `npx <@scope>/create`)**
-**npm init \[<@scope>/]<name> (same as `npx [<@scope>/]create-<name>`)**
+**npm init [<@scope>]<name> (same as `npx [<@scope>/]create-<name>`)**
 
 OPTIONS
 
@@ -209,6 +206,6 @@ export PATH=$PATH:~/.config/yarn/global/node_modules/.bin
 ## Yarn 关联文件与配置
 
 **~/.yarnrc** # 配置文件
-**~/.config/yarn/\*** #
+**~/.config/yarn/*** #
 
 # yarn Syntax(语法)
