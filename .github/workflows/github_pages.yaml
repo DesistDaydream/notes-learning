@@ -22,7 +22,11 @@ jobs:
           extended: true
 
       - name: Build
-        run: hugo --minify # 使用hugo构建静态网页
+        run: |
+          npm install -D autoprefixer
+          npm install -D postcss-cli
+          npm install -D postcss
+          hugo --minify # 使用hugo构建静态网页
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3 # 一个自动发布github pages的action

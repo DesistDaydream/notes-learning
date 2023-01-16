@@ -1,6 +1,8 @@
-content/zh-cn/docs/.obsidian/plugins/*
-content/zh-cn/docs/.obsidian/workspace.json
+content/zh-cn/.obsidian/plugins/*
+content/zh-cn/.obsidian/workspace.json
 
 resources/*
 public/*
 docs/*
+
+

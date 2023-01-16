@@ -8,7 +8,7 @@
 - 
 
 喜欢的主题：
-- https://themes.gohugo.io/themes/hugo-theme-techdoc/
+- https://themes.gohugo.io/themes/hugo-theme-techdoc/E
 
 # 安装 Hugo
 
