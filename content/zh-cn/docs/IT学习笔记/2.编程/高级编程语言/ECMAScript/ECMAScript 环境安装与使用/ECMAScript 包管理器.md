@@ -4,10 +4,10 @@ title: ECMAScript 包管理器
 
 # 概述
 
-> ## 参考：
+> 参考：
+> - 
 
 当我们使用包管理命令安装各种第三方库(依赖包)及其衍生物通常会保存在两类地方
-
 - **Locally(本地)** # 这是默认的行为，安装的东西放在当前目录的 `./node_modules/` 目录中
   - 当我们想要在代码中使用 require() 或 import 导入模块时，通常安装在本地
 - **Globally(全局)** # 使用 `-g` 选项，将安装的东西放在 `${PREFIX}/lib/node_modules/` 目录中；若安装的东西中具有可以在 CLI 执行的工具，则同时会在 `${PREFIX}/bin/` 目录下生成指向原始文件的软链接，`${PREFIX}/bin/` 目录通常都会加入到 `${PATH}` 变量中。
@@ -24,7 +24,6 @@ title: ECMAScript 包管理器
 **Node.js Package Manager(简称 NPM)** 是 Node.js 自带的包管理工具，通常与 Node.js 一同安装，最初版本于 2010 年 1 月发行。NPM 本质是一个第三方模块，可以在 **${PREFIX}/lib/node_modules/npm/\*** 目录下找到 npm 的所有文件。
 
 > 注意：
->
 > - `${PREFIX}` 指 **Node.js 的安装路径**，Linux 中通常装在 /usr/local/nodejs 目录下，Windows 则随意了~~
 
 ## npx
@@ -108,7 +107,8 @@ corepack prepare pnpm@7.14.1 --activate
 
 # npm 与 pnpm Syntax(语法)
 
-> ## 参考：
+> 参考：
+> - 
 
 通常，适用于 npm 的选项，也适用于 pnpm
 
@@ -123,19 +123,16 @@ corepack prepare pnpm@7.14.1 --activate
 npm config 用来管理 npm 的配置文件，i.e.npmrc 文件。
 
 ### Syntax(语法)
-
-**npm config set <KEY>=<VALUE> \[<KEY>=<VALUE> ...]**
-**npm config get \[<KEY> \[<KEY> ...]]**
-**npm config delete <KEY> \[<KEY> ...]**
-**npm config list \[--json]**
+**npm config set <KEY>=<VALUE> [<KEY>=<VALUE> ...]**
+**npm config get [<KEY> [<KEY> ...]]**
+**npm config delete <KEY> [<KEY> ...]**
+**npm config list [--json]**
 **npm config edit**
 
 OPTIONS
-
 - **-g, --global** # 对全局配置文件(${PREFIX}/etc/npmrc) 执行操作
 
 ### EXAMPLE
-
 - 配置镜像源为淘宝的
   - `npm config set registry="https://registry.npmmirror.com"`
 
@@ -145,16 +142,20 @@ OPTIONS
 
 ### Syntax(语法)
 
-**npm exec -- <pkg>\[@<version>] \[args...]**
-**npm exec --package=<pkg>\[@<version>] -- <cmd> \[args...]**
-**npm exec -c '<cmd> \[args...]'**
-**npm exec --package=foo -c '<cmd> \[args...]'**
+**npm exec -- <pkg>[@<version>] [args...]**
+**npm exec --package=<pkg>[@<version>] -- <cmd> [args...]**
+**npm exec -c '<cmd> [args...]'**
+**npm exec --package=foo -c '<cmd> [args...]'**
 
 OPTIONS
 
 -
 
 ## npm install
+### Syntax(语法)
+
+OPTIONS
+- **-D, --save-dev** # 安装的包将会出现在 `devDependencies` 中
 
 ## npm init
 
