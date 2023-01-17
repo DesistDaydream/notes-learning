@@ -70,7 +70,7 @@ windows 版 git 安装完成后，git config --global core.autocrlf input 执行
 
 配置换行符官方文档：<https://docs.github.com/cn/github/using-git/configuring-git-to-handle-line-endings>
 
-# Git 关联文件
+# Git 关联文件与配置
 
 **~/.gitconfig** # git 通用配置文件
 **~/.git-credentials** # 登录后凭据的保存路径

@@ -1,10 +1,11 @@
 name: github pages # 名字自取
 
 on:
-  push:
-    branches:
-      - main
-      # - github-actions # 这里的意思是当 main分支发生push的时候，运行下面的jobs，这里先改为github-actions
+  workflow_dispatch: {}
+  # push:
+  #   branches:
+  #     - main
+  #     - github-actions # 这里的意思是当 main 分支发生 push的时候，运行下面的jobs，这里先改为github-actions
 
 jobs:
   deploy: # 任务名自取

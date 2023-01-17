@@ -1,11 +1,10 @@
 ---
-title: 如何参与开源项目 - 细说 GitHub 上的 PR 全过程
+title: 如何参与开源项目-细说 GitHub 上的 PR 全过程
 ---
 
 ## 一、概述
 
 > 原文链接：
->
 > - <https://mp.weixin.qq.com/s/8tKpPqFeZOEE4ldEWptMZg>
 
 **今天我准备和你详细介绍如何开始参与开源项目，帮助你在 GitHub 上完成第一个 PR 的合入**。
@@ -145,8 +144,8 @@ DevStream Fork
 接着就是几行通用的命令来完成 clone 等操作了：
 
 - clone 等
-
-\`mkdir -p ${WORKING_PATH}
+```
+mkdir -p ${WORKING_PATH}
 cd ${WORKING_PATH}
 
 # You can also use the url: <git@github.com>:![](https://notes-learning.oss-cn-beijing.aliyuncs.com/a781caab-57c4-4243-85ca-0fc5495b12de/latex){PROJECT}.git
@@ -161,9 +160,7 @@ git remote add upstream [https://github.com/{PROJECT}.git](https://notes-learnin
 # Never push to upstream locally
 
 git remote set-url --push upstream no_push
-
-\`
-
+```
 如果你配置好了 ssh 方式来 clone 代码，当然，git clone 命令用的 url 可以改成`git@github.com:${USER}/${PROJECT}.git`。
 
 完成这一步后，我们在本地看到的 remote 信息应该是这样的：
