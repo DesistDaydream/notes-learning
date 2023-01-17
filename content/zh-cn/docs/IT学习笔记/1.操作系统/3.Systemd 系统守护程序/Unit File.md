@@ -184,4 +184,4 @@ WantedBy=multi-user.target
 
 # Unit File 加载示例
 
-可以通过 [系统启动流程](/docs/IT学习笔记/1.操作系统/操作系统/系统启动流程.md) 看出来 Systemd 是如何加载 Unit File 的
+可以通过 [系统启动流程](docs/IT学习笔记/1.操作系统/0_操作系统/系统启动流程.md) 看出来 Systemd 是如何加载 Unit File 的

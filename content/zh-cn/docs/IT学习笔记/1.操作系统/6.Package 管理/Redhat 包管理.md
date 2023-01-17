@@ -161,23 +161,22 @@ EOF
 ### COMMAND
 
 - **autoremove** # 移除已经没有被依赖的软件包
-- **autoremove \<Package> **# 删除名为 Package 的包以及其依赖的包
-- **clean \<all|headers|packages|metadata|dbcache|plugins|expire-cache|rpmdb> **# 用于清理在 yum 缓存目录中随时间积累的各种东西
+- **autoremove \<Package>** # 删除名为 Package 的包以及其依赖的包
+- **clean \<all|headers|packages|metadata|dbcache|plugins|expire-cache|rpmdb>** # 用于清理在 yum 缓存目录中随时间积累的各种东西
 - **deplist \<PACKAGE>** # 查看 Package 这个包的依赖关系
   - dependency # 表示 PACKAGE 依赖哪些库
   - provider # 表示 dependency 中的库由哪个包提供
 - **groups** # 对一组安装包组执行操作
-- **info \[STRING]** # 显示包的详细信息，类似于 rpm -qai，可以使用 string 表达式，模糊搜索包名
+- **info \<STRING>** # 显示包的详细信息，类似于 rpm -qai，可以使用 string 表达式，模糊搜索包名
 - **list \[LIST OPTIONS] \[STRING]** # 显示包的信息，类似于 rpm -qa，可以使用 string 表达式，模糊搜索包名
-- **install \<PACKAGE> **# 安装包
-- localinstall #
+- **install \<PACKAGE>** # 安装包
+- **localinstall** #
   - 注意：install 与 localinstall
 - **makecache** # 生成 yum 缓存，以便使用 yum 命令进行安装或者查找的时候，可以从缓存中提取数据进行搜索
 - **repolist** # 列出当前所有已经启用的存储库
 - **search \<STRING>** # 从包名以及该包的描述中搜索 STRING(字符串)的内容
 
 ### list OPTIONS
-
 - **installed** # 列出已安装的包
 
 ## EXAMPLE
