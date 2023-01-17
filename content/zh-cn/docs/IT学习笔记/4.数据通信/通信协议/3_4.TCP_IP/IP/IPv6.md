@@ -256,7 +256,7 @@ ND 不是一个具体协议，而是用来描述多个相关功能的协议的**
 - ping：发送 icmp 的 echo request 报文，对端响应 icmp 的 echo reply 报文
 - 地址解析：发送 icmp 的 ns 报文，对端响应 icmp 的 na 报文
 
-更多详情见《[ARP 与 NDP](✏IT 学习笔记/🌐4.数据通信/通信协议/2.ARP%20 与%20NDP.md 与 NDP.md)》
+更多详情见《[ARP 与 NDP](/docs/IT学习笔记/4.数据通信/通信协议/2.ARP%20与%20NDP.md)》
 
 ### Router Advertisement(路由通告)
 
@@ -338,7 +338,7 @@ net.ipv6.conf.default.use_tempaddr = 0
 
 网络前缀由 IANA 一层层分配。[IPv6 地址空间](https://www.iana.org/assignments/ipv6-address-space/ipv6-address-space.xhtml) 中包含了当前 IPv6 地址的总体分配情况，[IPv6 全局单播地址分配](https://www.iana.org/assignments/ipv6-unicast-address-assignments/ipv6-unicast-address-assignments.xhtml)中，则是单播地址的分配情况。
 
-详见[《IP》章节的 Ip 地址分配机制](.md)部分
+详见[《IP》章节的 Ip 地址分配机制](/docs/IT学习笔记/4.数据通信/通信协议/3_4.TCP_IP/IP.md#IP%20地址分配机制)部分
 
 ## ISP 分配机制
 
@@ -360,8 +360,6 @@ ISP 给我们分配 IPv6 时，会同时分配两个不同网段的 IPv6 地址
 `2408:8210:3c36:c1c0::1/56`
 当你的手机连接 WIFI 的时候，路由器就会按照这个前缀地址给你的手机向下分配剩余的地址，如：
 `2408:8210:3c36:c1c0:XXXX:XXXX:XXXX:XXXX`
-\[
+[](https://cloud.tencent.com/developer/article/1468099)
 
-]\(https://cloud.tencent.com/developer/article/1468099)
 
-##

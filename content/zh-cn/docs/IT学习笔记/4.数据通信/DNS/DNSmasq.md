@@ -73,7 +73,7 @@ nameserver 1.1.1.1
   Main PID: 3844 (dnsmasq)
   CGroup: /system.slice/dnsmasq.service
   └─3844 /usr/sbin/dnsmasq -k
-  12 月 23 09:00:12 ansheng systemd\[1]: Started DNS caching server..
+  12 月 23 09:00:12 ansheng systemd[1]: Started DNS caching server..
   12 月 23 09:00:12 ansheng dnsmasq\[3844]: started, version 2.76 cachesize 10000
   12 月 23 09:00:12 ansheng dnsmasq\[3844]: compile time options: IPv6 GNU-getopt DBus no-i18n IDN DHCP DHCPv6 no-Lua TFTP no-conntrack ipset auth no-DNSSEC loop-detect inotify
   12 月 23 09:00:12 ansheng dnsmasq\[3844]: reading /etc/resolv.conf

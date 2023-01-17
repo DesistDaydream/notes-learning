@@ -17,7 +17,7 @@ title: Prometheus Manifest 详解
 
 ## additionalScrapeConfigs: <Object> # 额外的抓取配置。
 
-该字段可以通过 [additional 功能](.md)为 Prometheus Server 创建额外的 Scrape 配置。这种方式常用来为 Prometheus Server 创建静态的 Scrape 配置。
+该字段可以通过 [additional 功能](docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus%20衍生品/Prometheus%20Operator/CR%20详解/Prometheus/_index.md#additionalScrapeConfigs) 为 Prometheus Server 创建额外的 Scrape 配置。这种方式常用来为 Prometheus Server 创建静态的 Scrape 配置。
 
 - **key: <STRING>** # 要引用的 secret 对象中 .data 字段下，指定的 key 的值
 - **name:<STRING>** # 要使用的 secret 对象名称

@@ -30,7 +30,7 @@ Prometheus 还提供了下列内置的聚合运算符，这些运算符仅作用
   - **by** # 聚合 by 后面指定的 LabelName 样本数据，并将聚合以外的标签的移除
   - **without** # 与 by 相反，聚合 without 后面没有指定的 LabelName 样本数据。并将聚合以外的标签的移除
 - **Parameter #** 参数，其中只有 count_values, quantile, topk, bottomk 支持
-- **VectorExpression** # 向量表达式。详见 [PromQL](.md) 章节
+- **VectorExpression** # 向量表达式。详见 [PromQL](/docs/IT学习笔记/6.可观测性/监控系统/Prometheus/PromQL/PromQL.md) 章节
 
 # sum 与 min 与 max 与 avg 详解
 
