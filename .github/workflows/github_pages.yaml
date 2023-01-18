@@ -27,7 +27,7 @@ jobs:
           npm install -D autoprefixer
           npm install -D postcss-cli
           npm install -D postcss
-          hugo --minify # 使用hugo构建静态网页
+          hugo --minify
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3 # 一个自动发布github pages的action
