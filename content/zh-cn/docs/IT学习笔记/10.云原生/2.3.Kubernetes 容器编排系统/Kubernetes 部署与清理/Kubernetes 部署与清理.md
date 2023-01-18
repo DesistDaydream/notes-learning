@@ -233,7 +233,7 @@ curl -sSL "https://raw.githubusercontent.com/kubernetes/release/${RELEASE_VERSIO
 
     kubeadm init --kubernetes-version=v1.18.8 --pod-network-cidr=10.244.0.0/16 --image-repository="registry.aliyuncs.com/k8sxio"
 
-- kubeadm 也可通过配置文件加载配置，以定制更丰富的部署选项，kubeadm-config.yaml 文件配置详见 《[kubeadm 命令行工具](✏IT 学习笔记/☁️10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubeadm%20 命令行工具.md 管理/kubeadm 命令行工具.md)》
+- kubeadm 也可通过配置文件加载配置，以定制更丰富的部署选项，kubeadm-config.yaml 文件配置详见 《[kubeadm 命令行工具](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubeadm%20 命令行工具.md 管理/kubeadm 命令行工具.md)》
 
 <!---->
 

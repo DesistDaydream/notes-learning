@@ -137,9 +137,9 @@ ConfigMap 和 Secret 包含其他 Kubernetes 对象（如 Pod）所需要的配�
 
 详见 Kustomization Manifest 详解中的各个字段：
 
-- [configMapGenerator](✏IT 学习笔记/☁️10.云原生/云原生应用管理/Kustomize/Kustomization%20Manifest%20 详解.md Manifest 详解.md)
-- [secretGenerator](✏IT 学习笔记/☁️10.云原生/云原生应用管理/Kustomize/Kustomization%20Manifest%20 详解.md Manifest 详解.md)
-- [generatorOptions](✏IT 学习笔记/☁️10.云原生/云原生应用管理/Kustomize/Kustomization%20Manifest%20 详解.md Manifest 详解.md)
+- [configMapGenerator](/docs/IT学习笔记/10.云原生/云原生应用管理/Kustomize/Kustomization%20Manifest%20 详解.md Manifest 详解.md)
+- [secretGenerator](/docs/IT学习笔记/10.云原生/云原生应用管理/Kustomize/Kustomization%20Manifest%20 详解.md Manifest 详解.md)
+- [generatorOptions](/docs/IT学习笔记/10.云原生/云原生应用管理/Kustomize/Kustomization%20Manifest%20 详解.md Manifest 详解.md)
 
 ## 设置贯穿性字段
 

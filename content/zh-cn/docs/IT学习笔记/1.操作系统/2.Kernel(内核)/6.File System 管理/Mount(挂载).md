@@ -143,6 +143,6 @@ mount \[-t ] #查看当前系统下的挂载信息\[查看指定的类型]
 
 # systemd 管理 mount
 
-详见 [mount Unit](✏IT 学习笔记/📄1.操作系统/3.Systemd%20 系统守护程序/Unit%20File/mount%20Unit.md 系统守护程序/Unit File/mount Unit.md)
+详见 [mount Unit](/docs/IT学习笔记/1.操作系统/3.Systemd%20 系统守护程序/Unit%20File/mount%20Unit.md 系统守护程序/Unit File/mount Unit.md)
 [
 ](<https://wiki.archlinux.org/index.php/Fstab_(%25E7%25AE%2580%25E4%25BD%2593%25E4%25B8%25AD%25E6%2596%2587)>)

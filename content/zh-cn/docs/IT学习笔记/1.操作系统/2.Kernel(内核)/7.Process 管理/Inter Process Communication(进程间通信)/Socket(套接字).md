@@ -38,7 +38,7 @@ Unix domain socket 是 POSIX 标准中的一个组件，所以不要被名字迷
 
 ## Network Socket
 
-详见 [Network Socket](✏IT 学习笔记/🌐4.数据通信/数据通信/Network%20Socket.md Socket.md)
+详见 [Network Socket](/docs/IT学习笔记/4.数据通信/数据通信/Network%20Socket.md Socket.md)
 
 ## Berkeley Sockets API
 

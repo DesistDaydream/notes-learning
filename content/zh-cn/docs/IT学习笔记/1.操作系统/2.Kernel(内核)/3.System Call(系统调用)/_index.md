@@ -37,7 +37,7 @@ title: 3.System Call(系统调用)
 
 # Interrupts(中断)
 
-详见：[Interrupts(中断) 概念详解](✏IT 学习笔记/📄1.操作系统/2.Kernel(内核)/4.CPU%20 管理/Interrupts(中断).md 管理/Interrupts(中断).md)
+详见：[Interrupts(中断) 概念详解](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/4.CPU%20 管理/Interrupts(中断).md 管理/Interrupts(中断).md)
 
 # syscall 的方式
 

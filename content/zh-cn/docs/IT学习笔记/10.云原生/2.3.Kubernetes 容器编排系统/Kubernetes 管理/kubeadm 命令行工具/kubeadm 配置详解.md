@@ -124,7 +124,7 @@ ClusterConfiguration 类型应用于配置群集范围的设置，包括以下�
 > - [官方文档,入门-生产环境-使用部署工具安装 Kubernetes-使用 kubeadm 配置集群中的每个 kubelet](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/kubelet-integration/)
 > - [官方文档,参考-配置 APIs-kubelet 配置(v1beta1)](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)
 > - [kubelet 代码中 struct 与 yaml 字段对应(v1beta1)](https://pkg.go.dev/k8s.io/kubelet/config/v1beta1#KubeletConfiguration)
-> - [kubelet 配置详解](✏IT 学习笔记/☁️10.云原生/2.3.Kubernetes%20 容器编排系统/2.Kubelet%20 节点代理/Kubelet%20 配置详解.md 节点代理/Kubelet 配置详解.md)
+> - [kubelet 配置详解](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/2.Kubelet%20 节点代理/Kubelet%20 配置详解.md 节点代理/Kubelet 配置详解.md)
 
 KubeletConfiguration 类型的配置中的字段，将会覆盖 kubelet 的配置文件(默认路径为 /var/lib/kubelet/config.yaml)中的字段
 
@@ -135,7 +135,7 @@ KubeletConfiguration 类型的配置中的字段，将会覆盖 kubelet 的配�
 
 > 参考：
 > - [kube-proxy 代码(v1alpha1)](https://pkg.go.dev/k8s.io/kube-proxy/config/v1alpha1#KubeProxyConfiguration)
-> - [kube-proxy 配置详解](✏IT 学习笔记/☁️10.云原生/2.3.Kubernetes%20 容器编排系统/8.Kubernetes%20 网络/kube-proxy(实现%20Service%20 功能的组件).md 网络/kube-proxy(实现 Service 功能的组件).md)
+> - [kube-proxy 配置详解](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/8.Kubernetes%20 网络/kube-proxy(实现%20Service%20 功能的组件).md 网络/kube-proxy(实现 Service 功能的组件).md)
 
 与 KubeletConfiguration 类型配置一样，将会覆盖 kubeproxy 的配置。可以根据 [**kube-proxy 命令行工具官方文档**](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy/) 或 [**kubeproxy 代码**](https://pkg.go.dev/k8s.io/kube-proxy/config/v1alpha1#KubeProxyConfiguration) 参考这个类型配置应如何配置
 

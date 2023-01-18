@@ -77,7 +77,7 @@ Docker 这门技术成功了，Docker 这个公司却失败了。
 - .**/io.containerd.content.v1.content/\* **# 镜像的上下文
   - .**/blobs/\* **# 镜像文件系统布局中，blobs 目录数据的存放路径
 - **./io.containerd.snapshotter.v1.overlayfs/\*** # 镜像的层信息所在目录。
-- /var/lib/containerd 目录下的内容详解，见 [《Containerd Image 章节》](✏IT 学习笔记/☁️10.云原生/2.2.实现容器的工具/Containerd/Containerd%20Image.md Image.md)
+- /var/lib/containerd 目录下的内容详解，见 [《Containerd Image 章节》](/docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/Containerd%20Image.md Image.md)
 
 **/run/containerd/\*** # State(状态) 文件夹。用于保存运行时产生的临时数据，也就是容器启动后数据存放目录。包括 sockets、pid、挂载点、运行时状态以及不需要持久化保存的插件数据。
 

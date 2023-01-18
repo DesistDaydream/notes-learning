@@ -1,6 +1,6 @@
 ---
-title: "主题"
-linkTitle: "主题"
+title: "_index"
+linkTitle: "_index"
 weight: 20
 ---
 

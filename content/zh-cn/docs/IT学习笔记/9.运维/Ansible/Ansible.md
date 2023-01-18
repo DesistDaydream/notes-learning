@@ -50,4 +50,4 @@ Playbooks 是 Ansible 的精髓，如果把 Ansible 当做一门语言，那么�
 
 - 单独 host，任何未分组的主机，需要在定义主机组之前定义各单独的 host，可以是 IP 地址或者主机名
 - 主机组，定义一个主机组，组名用\[]括起来，可以定义多个主机组；当使用 ansible 命令的时候，可以使用组名来对该组内所有主机进行操作
-- 配置文件说明：详见：[inventory 配置文件详解](✏IT 学习笔记/🛠️9.运维/Ansible/Inventory%20 配置文件详解.md 配置文件详解.md)
+- 配置文件说明：详见：[inventory 配置文件详解](/docs/IT学习笔记/9.运维/Ansible/Inventory%20 配置文件详解.md 配置文件详解.md)

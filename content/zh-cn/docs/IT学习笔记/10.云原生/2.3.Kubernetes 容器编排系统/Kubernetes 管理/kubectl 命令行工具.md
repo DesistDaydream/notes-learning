@@ -141,7 +141,7 @@ kubectl explain RESOURCE\[.FIELD1.FELD2...FIELDn] \[options] #每个 FIELD(字�
 
 ### edit # 编辑服务器上的资源
 
-详见《[对象的创建与修改命令](✏IT 学习笔记/☁️10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubectl%20 命令行工具/对象的创建与修改命令.md 命令行工具/对象的创建与修改命令.md)》
+详见《[对象的创建与修改命令](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubectl%20 命令行工具/对象的创建与修改命令.md 命令行工具/对象的创建与修改命令.md)》
 
 ### delete # 通过文件名、标准输入、资源名或者资源表删除资源
 
@@ -225,7 +225,7 @@ EXAMPLE
 
 ### debug # 创建调试 Pod 以便对工作负载或节点进行故障排除
 
-详见：[故障处理技巧章节](✏IT 学习笔记/☁️10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/性能优化%20 与%20 故障处理/故障处理技巧.md 与 故障处理/故障处理技巧.md)
+详见：[故障处理技巧章节](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/性能优化%20 与%20 故障处理/故障处理技巧.md 与 故障处理/故障处理技巧.md)
 
 ### describe # 显示特定资源或资源组的详细信息
 
@@ -311,7 +311,7 @@ auth           Inspect authorization
 
 ### apply # 通过文件或标准输入将配置应用到资源
 
-详见《[对象的创建与修改命令](✏IT 学习笔记/☁️10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubectl%20 命令行工具/对象的创建与修改命令.md 命令行工具/对象的创建与修改命令.md)》
+详见《[对象的创建与修改命令](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubectl%20 命令行工具/对象的创建与修改命令.md 命令行工具/对象的创建与修改命令.md)》
 
 ### patch #   用 strategic merge、JSON merge、JSON，更新一个资源的字段
 
@@ -319,7 +319,7 @@ auth           Inspect authorization
 
 ### replace # 替换。使用文件或标准输入替换一个资源
 
-详见《[对象的创建与修改命令](✏IT 学习笔记/☁️10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubectl%20 命令行工具/对象的创建与修改命令.md 命令行工具/对象的创建与修改命令.md)》
+详见《[对象的创建与修改命令](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubectl%20 命令行工具/对象的创建与修改命令.md 命令行工具/对象的创建与修改命令.md)》
 
 ### wait # Experimental: Wait for one condition on one or many resources
 

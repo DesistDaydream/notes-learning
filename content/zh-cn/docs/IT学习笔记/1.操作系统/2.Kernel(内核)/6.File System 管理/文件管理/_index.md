@@ -11,7 +11,7 @@ title: 文件管理
 > - [公众号，小林 coding-一口气搞懂「文件系统」，就靠这 25 张图了](https://mp.weixin.qq.com/s/qJdoXTv_XS_4ts9YuzMNIw)
 > - [另一个公众号](https://mp.weixin.qq.com/s/tXEfsLqdePjcPS6FKa-qzg)
 
-从[文件系统](<✏IT 学习笔记/📄1.操作系统/2.Kernel(内核)/6.File%20System%20 管理/6.File%20System%20 管理.md>>)文章可以看出来，File(文件) 是一个组织存储在计算机中数据的逻辑概念，以便让人们可以清楚得知道每一段数据的起始位置、结束位置，甚至可以通过为文件命名来立刻反应过来这段数据的作用。
+从[文件系统](</docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File%20System%20 管理/6.File%20System%20 管理.md>>)文章可以看出来，File(文件) 是一个组织存储在计算机中数据的逻辑概念，以便让人们可以清楚得知道每一段数据的起始位置、结束位置，甚至可以通过为文件命名来立刻反应过来这段数据的作用。
 
 所谓的查看文件，其实是指找到一段数据的开头和结尾，并查看这段数据。对于程序员来说文件是一个很简单的概念，我们只需要将其理解为一个 N byte 的序列就可以了：**b1, b2, b3, b4, ....... bN。**程序员使用 I/O 最终都逃不过文件。
 
@@ -96,7 +96,7 @@ Linux 中的文件有下面几种类型(左侧是该类型文件的标识符)：
 > - [Wiki,Hard link](https://en.wikipedia.org/wiki/Hard_link)
 > - [WIki,Symbolic link](https://en.wikipedia.org/wiki/Symbolic_link)
 
-从[文件系统章节中的文件组织结构]()可知，我们使用 [Inode(索引节点)](<✏IT 学习笔记/📄1.操作系统/2.Kernel(内核)/6.File%20System%20 管理/文件管理/Inode.md>>) 定位一个文件。而打开文件后，我们可以获取到文件的 [FileDesc(文件描述符)](✏IT 学习笔记/📄1.操作系统/2.Kernel(内核)/6.File%20System%20 管理/文件管理/File%20Descriptor(文件描述符).md Descriptor(文件描述符).md)，所有对文件的读写操作，都是基于文件描述符进行的。
+从[文件系统章节中的文件组织结构]()可知，我们使用 [Inode(索引节点)](</docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File%20System%20 管理/文件管理/Inode.md>>) 定位一个文件。而打开文件后，我们可以获取到文件的 [FileDesc(文件描述符)](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File%20System%20 管理/文件管理/File%20Descriptor(文件描述符).md Descriptor(文件描述符).md)，所有对文件的读写操作，都是基于文件描述符进行的。
 
 **我们平时看到的人类可读的文件名，实际上是一个指向 Inode 的硬连接**。
 

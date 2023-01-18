@@ -60,7 +60,7 @@ Prometheus 可以通过 3 种方式从目标上 Scrape(抓取) 指标：
 
 ## Label 与 Relabeling
 
-详见 [Label 与 Relabeling 章节](✏IT 学习笔记/👀6.可观测性/监控系统/Prometheus/Target(目标)%20 与%20Relabeling(重新标记).md 与 Relabeling(重新标记).md)
+详见 [Label 与 Relabeling 章节](/docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Target(目标)%20 与%20Relabeling(重新标记).md 与 Relabeling(重新标记).md)
 
 ## Instrumenting 的安装与使用
 

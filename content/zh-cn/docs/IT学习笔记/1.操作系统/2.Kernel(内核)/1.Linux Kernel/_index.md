@@ -30,7 +30,7 @@ Linux 内核由如下几部分组成：内存管理、进程管理、设备驱�
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fkp6xi/1616168349819-c21dd43c-79b7-4ec2-abd4-c8bb0e3c7686.jpeg)
 **System Call Interface(系统调用接口，简称 SCI) **层提供了某些机制执行从用户空间到内核的函数调用。这个接口依赖于体系结构，甚至在相同的处理器家族内也是如此。SCI 实际上是一个非常有用的函数调用多路复用和多路分解服务。
 
-系统调用介绍详见[ system call(系统调用)](✏IT 学习笔记/📄1.操作系统/2.Kernel(内核)/3.System%20Call(系统调用).md Call(系统调用).md) 章节
+系统调用介绍详见[ system call(系统调用)](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/3.System%20Call(系统调用).md Call(系统调用).md) 章节
 
 ## Linux man 手册使用说明
 

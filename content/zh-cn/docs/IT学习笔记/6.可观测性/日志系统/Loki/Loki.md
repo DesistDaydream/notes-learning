@@ -134,7 +134,7 @@ Monolithic 模式非常适合于本地开发、小规模等场景，Monolithic �
 
 - 每个组件都产生一个 gRPC 监听(默认 9095 端口)和一个 HTTP 监听(默认 3100 端口)。
   - 通常情况下，gRPC 端口用于组件间通信；HTTP 端口用于暴露一些管理 API(比如 指标、运行状态、就绪性)
-- 各个组件可以暴露的 HTTP API 详见 [Loki API 章节](✏IT 学习笔记/👀6.可观测性/日志系统/Loki/Loki%20API.md API.md)。通过 API，我们可以更清晰得了解到，每个组件可以实现的具体功能
+- 各个组件可以暴露的 HTTP API 详见 [Loki API 章节](/docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki%20API.md API.md)。通过 API，我们可以更清晰得了解到，每个组件可以实现的具体功能
 - 各个组件通过 memberlist 统一到一个哈希环上，以互相发现。当我们部署在 K8S 中时，将会配置 `memberlist.join_members` 字段，并且需要创建对应的 service 资源，service 的 endpoint 将会关联到所有 Distributor、Ingester、Querier 组件。
 
 ### Gateway(网关)
@@ -203,7 +203,7 @@ Distributor 通过 gRPC 与 Ingester 通信，它们都是无状态的，可以�
 ## Ingester(摄取器)
 
 Ingester 服务负责将日志数据写入长期存储后端（DynamoDB、S3、Cassandra 等）。此外 Ingester 会验证摄取的日志行是按照时间戳递增的顺序接收的（即每条日志的时间戳都比前面的日志晚一些），当 Ingester 收到不符合这个顺序的日志时，该日志行会被拒绝并返回一个错误。
-注意：虽然 Ingester 支持 BoltDB 写入本地文件系统，但是这仅适用于[单进程模式](✏IT 学习笔记/👀6.可观测性/日志系统/Loki/Loki%20 部署.md 部署.md)，因为 Querier 也需要访问相同的存储，而 BoltDB 仅允许一个进程在同一时间锁定数据库。
+注意：虽然 Ingester 支持 BoltDB 写入本地文件系统，但是这仅适用于[单进程模式](/docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki%20 部署.md 部署.md)，因为 Querier 也需要访问相同的存储，而 BoltDB 仅允许一个进程在同一时间锁定数据库。
 
 ## Querier(查询器)
 

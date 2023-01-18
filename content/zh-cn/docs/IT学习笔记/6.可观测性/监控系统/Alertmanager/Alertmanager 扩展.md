@@ -34,9 +34,9 @@ curl -XPOST http://localhost:19093/api/v2/alerts -d @./alerts.json
 **receivers: <OBJECT>** #
 
 - **globalReceiverSelector: <OBJECT>** #
-  - 该字段内容详见[ LabelSelector](✏IT 学习笔记/☁️10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/LabelSelector 详解.md)。
+  - 该字段内容详见[ LabelSelector](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/LabelSelector 详解.md)。
 - **tenantReceiverSelector: <OBJECT>** #
-  - 该字段内容详见[ LabelSelector](✏IT 学习笔记/☁️10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/LabelSelector 详解.md)。
+  - 该字段内容详见[ LabelSelector](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/LabelSelector 详解.md)。
 - **tenantKey: <STRING>** #
 
 示例:
@@ -77,7 +77,7 @@ receivers:
 
 **alertSelector: <OBJECT>** # 告警标签选择器。与 K8S 的 LabelSelector 的功能完全一样
 
-- 该字段内容详见[ LabelSelector](✏IT 学习笔记/☁️10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/LabelSelector 详解.md)。注意一点：多个匹配条件之间的关键是 AND。如果想要使用 OR 的逻辑，以根据多个条件匹配多条告警，需要使用多个 Router，详见 [Issue #153](https://github.com/kubesphere/notification-manager/issues/153)
+- 该字段内容详见[ LabelSelector](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/LabelSelector 详解.md)。注意一点：多个匹配条件之间的关键是 AND。如果想要使用 OR 的逻辑，以根据多个条件匹配多条告警，需要使用多个 Router，详见 [Issue #153](https://github.com/kubesphere/notification-manager/issues/153)
 
 ## Receiver CRD
 

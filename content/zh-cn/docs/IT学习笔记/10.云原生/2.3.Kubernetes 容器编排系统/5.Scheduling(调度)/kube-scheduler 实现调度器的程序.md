@@ -11,11 +11,11 @@ kube-scheduler 启动后监听两个端口：
 
 ## kube-scheduler 高科用
 
-与 [kube-controller-manager 高可用](✏IT 学习笔记/☁️10.云原生/2.3.Kubernetes%20 容器编排系统/4.Controller(控制器)/kube-controller-manager%20 实现控制器的程序.md 实现控制器的程序.md) 原理相同。
+与 [kube-controller-manager 高可用](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/4.Controller(控制器)/kube-controller-manager%20 实现控制器的程序.md 实现控制器的程序.md) 原理相同。
 
 ## kube-scheduler 监控指标
 
-详见：[kubernetes 监控](✏IT 学习笔记/☁️10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/Kubernetes%20 监控/Kubernetes%20 系统组件指标.md 管理/Kubernetes 监控/Kubernetes 系统组件指标.md)
+详见：[kubernetes 监控](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/Kubernetes%20 监控/Kubernetes%20 系统组件指标.md 管理/Kubernetes 监控/Kubernetes 系统组件指标.md)
 
 # Kube-scheduler 参数详解
 

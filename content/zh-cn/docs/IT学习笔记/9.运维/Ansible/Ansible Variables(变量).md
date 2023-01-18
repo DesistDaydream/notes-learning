@@ -230,7 +230,7 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 
 ### 在 Inventory 中定义变量
 
-详见 [Inventory 配置文件详解](✏IT 学习笔记/🛠️9.运维/Ansible/Inventory%20 配置文件详解.md 配置文件详解.md)
+详见 [Inventory 配置文件详解](/docs/IT学习笔记/9.运维/Ansible/Inventory%20 配置文件详解.md 配置文件详解.md)
 
 ### 在 Playbooks 中定义变量
 

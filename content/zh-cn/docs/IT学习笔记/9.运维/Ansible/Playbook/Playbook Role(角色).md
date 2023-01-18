@@ -170,4 +170,4 @@ roles/
     fooapp/
 ```
 
-至于 group_vars 与 host_vars 在不同目录的优先级可以参考 [Ansible 变量-优先级](✏IT 学习笔记/🛠️9.运维/Ansible/Ansible%20Variables(变量).md Variables(变量).md) 部分
+至于 group_vars 与 host_vars 在不同目录的优先级可以参考 [Ansible 变量-优先级](/docs/IT学习笔记/9.运维/Ansible/Ansible%20Variables(变量).md Variables(变量).md) 部分

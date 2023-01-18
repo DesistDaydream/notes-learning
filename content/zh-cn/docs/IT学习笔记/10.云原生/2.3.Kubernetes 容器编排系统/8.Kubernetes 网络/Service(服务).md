@@ -25,7 +25,7 @@ Endpoints 是一个由 IP 和 PORT 组成的 endpoint 列表，Endpoints 的这�
 
 # Service 的实现
 
-Service 是 k8s 中的一种资源，但是如果想要实现 Service 资源定义的那些内容，则需要 [kube-proxy](✏IT 学习笔记/☁️10.云原生/2.3.Kubernetes%20 容器编排系统/8.Kubernetes%20 网络/kube-proxy(实现%20Service%20 功能的组件).md Service 功能的组件).md) 这个程序，实际上，创建一个 service，就是让 kube-proxy 创建一系列 iptables 或者 ipvs 规则
+Service 是 k8s 中的一种资源，但是如果想要实现 Service 资源定义的那些内容，则需要 [kube-proxy](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/8.Kubernetes%20 网络/kube-proxy(实现%20Service%20 功能的组件).md Service 功能的组件).md) 这个程序，实际上，创建一个 service，就是让 kube-proxy 创建一系列 iptables 或者 ipvs 规则
 
 - userspace：在 1.1.0 版本之前使用该模型，由于需要把报文转到内核空间再回到用户空间过于低效
 - iptables：通过 Kube-proxy 监听 Pod 变化在宿主机上生成并维护。由于 kube-proxy 需要在总之循环里不断得刷新 iptables 规则来确保它们始终是正确的，这样当 Host 上有大量 Pod 时，会产生极多 Iptables 规则，大量占用 Host 的 CPU 资源，这时候 ipvs 模型就可以解决该问题

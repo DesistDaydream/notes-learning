@@ -162,7 +162,7 @@ console.log(stringObjType)
 
 Javascript 中，提供了很多方法可以对数据直接进行操作(比如 类型转换、数组排序、遍历 等等)。在 [MDN 官方文档，Javascript 标准内置对象](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects) 中可以查看所有 Javascript 中内置的操作，这里是以对象类型进行分类，每个类型的对象都有很多可以操作其自身的方法。
 
-> [这里](✏IT 学习笔记/👨‍💻2.编程/高级编程语言/ECMAScript/JavaScript%20 标准库/各种类型的%20object(对象)%20 的常见方法.md 标准库/各种类型的 object(对象) 的常见方法.md)也列出了一些日常使用率非常高的对象方法
+> [这里](/docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/JavaScript%20 标准库/各种类型的%20object(对象)%20 的常见方法.md 标准库/各种类型的 object(对象) 的常见方法.md)也列出了一些日常使用率非常高的对象方法
 
 这种行为本质就是调用对象上的方法，与其他语言是类似的效果，我们使用 `new` 关键字与构造函数创建出 A 类型的实例化对象(其实就是一个变量)，这个变量是 A 数据类型，然后就可以直接调用 A 数据类型下所有可用的方法。
 

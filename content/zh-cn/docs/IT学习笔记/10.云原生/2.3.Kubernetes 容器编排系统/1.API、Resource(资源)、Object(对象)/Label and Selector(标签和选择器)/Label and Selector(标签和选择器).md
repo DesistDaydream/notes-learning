@@ -71,7 +71,7 @@ spec:
 
 ## Selector Manifest
 
-选择器的 Manifest 字段及其写法详见 [API 参考-LabelSelector](✏IT 学习笔记/☁️10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 参考/Common Definitions(通用定义)/LabelSelector 详解.md)
+选择器的 Manifest 字段及其写法详见 [API 参考-LabelSelector](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 参考/Common Definitions(通用定义)/LabelSelector 详解.md)
 
 # Label 的使用方式
 

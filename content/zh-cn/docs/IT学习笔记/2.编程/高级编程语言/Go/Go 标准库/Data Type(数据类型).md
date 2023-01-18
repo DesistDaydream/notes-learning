@@ -48,13 +48,13 @@ Go 语言将数据类型分为四类：基础类型、复合类型、引用类�
 
 格式：`type TypeID BaseType`
 
-如果自定义数据类型的 BaseType 是由零个或多个任意类型的值(每个值对应一个类型)聚合成的实体，则需要使用 [Struct](✏IT 学习笔记/👨‍💻2.编程/高级编程语言/Go/Go%20 标准库/Maps(映射)%20 与%20Struct(结构体).md 与 Struct(结构体).md)
+如果自定义数据类型的 BaseType 是由零个或多个任意类型的值(每个值对应一个类型)聚合成的实体，则需要使用 [Struct](/docs/IT学习笔记/2.编程/高级编程语言/Go/Go%20 标准库/Maps(映射)%20 与%20Struct(结构体).md 与 Struct(结构体).md)
 
 **Type Definition(类型定义)** 是 Go 实现面向对象编程的最基本要素
 
 # 类型检测
 
-详见 [反射](<✏IT 学习笔记/👨‍💻2.编程/高级编程语言/Go/Go%20 标准库/Method(方法)、Interface(接口).md>>) 特性
+详见 [反射](</docs/IT学习笔记/2.编程/高级编程语言/Go/Go%20 标准库/Method(方法)、Interface(接口).md>>) 特性
 
 # 类型转换
 

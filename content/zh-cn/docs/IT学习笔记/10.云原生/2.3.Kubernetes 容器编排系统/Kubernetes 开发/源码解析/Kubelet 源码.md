@@ -150,7 +150,7 @@ Kubelet 整体由多个模块组成，这些模块通过多个途径来初始化
     - 注意：这里的模块不能依赖于未在此处初始化的模块
   - `kubelet.initialieRuntimeDependentModules()` # 初始化需要容器运行时的内部模块
 
-在 《[Kubelet 启动流程](✏IT 学习笔记/☁️10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 开发/源码解析/Kubelet%20 源码/Kubelet%20 启动流程.md 源码/Kubelet 启动流程.md)》章节中包含了初始化模块的执行逻辑
+在 《[Kubelet 启动流程](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 开发/源码解析/Kubelet%20 源码/Kubelet%20 启动流程.md 源码/Kubelet 启动流程.md)》章节中包含了初始化模块的执行逻辑
 
 在 Kubelet 代码中，每个模块通常都放在 `pkg/kubelet/` 目录下的某个单独的目录中。所有的模块通常都被包含在两个结构体中：
 
@@ -645,7 +645,7 @@ type SyncHandler interface {
 
 ## PodWorkers 接口
 
-详见《[PodWorker 模块](✏IT 学习笔记/☁️10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 开发/源码解析/Kubelet%20 源码/PodWorker%20 模块.md 源码/PodWorker 模块.md)》，PodWorkders 用于处理 Pod
+详见《[PodWorker 模块](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 开发/源码解析/Kubelet%20 源码/PodWorker%20 模块.md 源码/PodWorker 模块.md)》，PodWorkders 用于处理 Pod
 
 ## Runtime 接口
 

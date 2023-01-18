@@ -102,7 +102,7 @@ EXAMPLE
 
 ## volume # 管理 docker 的卷
 
-详见 《[Docker 存储](✏IT 学习笔记/☁️10.云原生/2.2.实现容器的工具/Docker/Docker%20 存储.md 存储.md)》
+详见 《[Docker 存储](/docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker%20 存储.md 存储.md)》
 
 # COMMANDS
 
@@ -264,7 +264,7 @@ EXAMPLE
 
 docker run \[OPTIONS] IMAGE \[COMMAND] \[ARG...]
 
-具体用法见笔记：[docker run 运行容器](✏IT 学习笔记/☁️10.云原生/2.2.实现容器的工具/Docker/Docker%20 命令行工具/run%20 运行容器.md 命令行工具/run 运行容器.md)
+具体用法见笔记：[docker run 运行容器](/docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker%20 命令行工具/run%20 运行容器.md 命令行工具/run 运行容器.md)
 
 ## save # 保存一个或多个镜像为一个 tar 包(对应 load)
 

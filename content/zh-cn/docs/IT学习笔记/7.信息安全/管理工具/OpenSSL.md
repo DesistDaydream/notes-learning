@@ -55,7 +55,7 @@ openssl 程序提供了丰富的子命令，以实现 TLS/SSL 网络协议以及
 
 ## Standard commands #标准命令
 
-[Standard commands(标准命令)](✏IT 学习笔记/🔐7.信息安全/管理工具/OpenSSL/Standard%20commands(标准命令).md commands(标准命令).md)
+[Standard commands(标准命令)](/docs/IT学习笔记/7.信息安全/管理工具/OpenSSL/Standard%20commands(标准命令).md commands(标准命令).md)
 
 ## Message Digest commands # 消息摘要命令
 

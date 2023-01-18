@@ -100,7 +100,7 @@ ADDRESS 有多种表示方法
 - **IP:PORT** # ，当只有一台可用的后端服务器时可以使用这种方式，这样就不用再使用 upstream 指令块定义了
 - **unix:/PATH/TO/FILE;** # 将流量代理到本地的 UNIX-domain Socket 上
 
-在[其他指令](✏IT 学习笔记/✨3.集群与分布式/Nginx/Nginx%20 配置详解/stream%20 模块指令.md 模块指令.md)中，以 `proxy_` 开头的简单指令，都可以作为 `proxy_pass` 指令的扩充，以定义更加丰富多样的流量处理功能。
+在[其他指令](/docs/IT学习笔记/3.集群与分布式/Nginx/Nginx%20 配置详解/stream%20 模块指令.md 模块指令.md)中，以 `proxy_` 开头的简单指令，都可以作为 `proxy_pass` 指令的扩充，以定义更加丰富多样的流量处理功能。
 
 # 其他指令
 

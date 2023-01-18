@@ -99,8 +99,8 @@ systemd.kill 类的指令用于配置进程停止时，应该使用方式方法�
 
 ## [\[Service\]](https://man7.org/linux/man-pages/man5/systemd.service.5.html) 部分的指令
 
-详见 [service Unit](✏IT 学习笔记/📄1.操作系统/3.Systemd%20 系统守护程序/Unit%20File/service%20Unit.md Unit.md)
+详见 [service Unit](/docs/IT学习笔记/1.操作系统/3.Systemd%20 系统守护程序/Unit%20File/service%20Unit.md Unit.md)
 
 ## [\[timer\]](https://man7.org/linux/man-pages/man5/systemd.timer.5.html) 部分指令
 
-详见 [timer Unit](✏IT 学习笔记/📄1.操作系统/3.Systemd%20 系统守护程序/Unit%20File/timer%20Unit.md Unit.md)
+详见 [timer Unit](/docs/IT学习笔记/1.操作系统/3.Systemd%20 系统守护程序/Unit%20File/timer%20Unit.md Unit.md)

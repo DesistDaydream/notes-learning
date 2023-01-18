@@ -177,11 +177,11 @@ http_request_total{}\[1d] offset 1d #
 
 ## Operators(运算符)
 
-Prometheus 支持许多二进制和聚合运算符。详见《[PromQL Operators](✏IT 学习笔记/👀6.可观测性/监控系统/Prometheus/PromQL/PromQL%20Operators(运算符).md Operators(运算符).md)》章节
+Prometheus 支持许多二进制和聚合运算符。详见《[PromQL Operators](/docs/IT学习笔记/6.可观测性/监控系统/Prometheus/PromQL/PromQL%20Operators(运算符).md Operators(运算符).md)》章节
 
 ## Functions(函数)
 
-Prometheus 支持多种对数据进行操作的函数。详见《[PromQL Functions](✏IT 学习笔记/👀6.可观测性/监控系统/Prometheus/PromQL/PromQL%20Functions(函数).md Functions(函数).md)》章节
+Prometheus 支持多种对数据进行操作的函数。详见《[PromQL Functions](/docs/IT学习笔记/6.可观测性/监控系统/Prometheus/PromQL/PromQL%20Functions(函数).md Functions(函数).md)》章节
 
 # 表达式样例
 

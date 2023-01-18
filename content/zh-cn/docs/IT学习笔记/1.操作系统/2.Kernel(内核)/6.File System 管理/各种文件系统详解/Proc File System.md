@@ -231,7 +231,7 @@ VmRSS # 也就是进程当前时刻占用的物理内存。与 statm 文件中�
 
 # /proc/meminfo # 系统上内存使用情况的统计信息
 
-详见：《[Memory 管理工具](✏IT 学习笔记/📄1.操作系统/X.Linux%20 管理/Linux%20 系统管理工具/Memory%20 管理工具.md 管理/Linux 系统管理工具/Memory 管理工具.md)》 章节
+详见：《[Memory 管理工具](/docs/IT学习笔记/1.操作系统/X.Linux%20 管理/Linux%20 系统管理工具/Memory%20 管理工具.md 管理/Linux 系统管理工具/Memory 管理工具.md)》 章节
 
 # /proc/modules
 

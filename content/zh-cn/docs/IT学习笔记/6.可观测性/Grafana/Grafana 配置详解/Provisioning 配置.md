@@ -65,7 +65,7 @@ datasources:
 - **allowUiUpdates: <bool>** # 是否允许通过 Web UI 更新目录下仪表盘
 - **options: <Object>**
   - **path: <string>** # 必须的。要加载仪表盘的目录。该目录下的所有 .json 文件都会被 Grafana 加载为仪表盘
-  - **foldersFromFilesStructure: <bool>** # 使用文件系统中的文件夹名称作为 Grafana Web UI 中的文件夹名。`默认值：false`。具体用法详见《[文件系统结构映射到 WebUI 中的文件夹](✏IT 学习笔记/👀6.可观测性/Grafana/Grafana%20 配置详解/Provisioning%20 配置.md 配置.md)》
+  - **foldersFromFilesStructure: <bool>** # 使用文件系统中的文件夹名称作为 Grafana Web UI 中的文件夹名。`默认值：false`。具体用法详见《[文件系统结构映射到 WebUI 中的文件夹](/docs/IT学习笔记/6.可观测性/Grafana/Grafana%20 配置详解/Provisioning%20 配置.md 配置.md)》
     - 注意：该字段与 `folder` 和 `folderUid` 冲突。
 
 ## 配置文件示例

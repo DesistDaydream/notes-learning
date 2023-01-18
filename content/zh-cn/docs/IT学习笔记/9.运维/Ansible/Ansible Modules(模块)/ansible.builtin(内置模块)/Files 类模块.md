@@ -292,7 +292,7 @@ ansible -m template -a 'src=/mytemplates/foo.j2 dest=/tmp/foo.conf lstrip_blocks
 }
 ```
 
-更多 template 模块原理及应用，详见 [Playbook 章节中的 Templates](✏IT 学习笔记/🛠️9.运维/Ansible/Playbook/Templates%20 模板(Jinja2).md 模板(Jinja2).md)
+更多 template 模块原理及应用，详见 [Playbook 章节中的 Templates](/docs/IT学习笔记/9.运维/Ansible/Playbook/Templates%20 模板(Jinja2).md 模板(Jinja2).md)
 
 # [unarchive](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/unarchive_module.html) # 解压缩一个归档文件。就是 tar 命令。
 

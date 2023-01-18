@@ -46,7 +46,7 @@ bundle 中包含了运行容器所需要的所有信息，有了这个 bundle �
 rootfs OCI 镜像规范中，blobs 目录下的镜像层文件。config.json 可以通过 OCI 官方提供的 [runtime-tools](https://github.com/opencontainers/runtime-tools) 工具生成，现在我们操作一下:
 
 > 也可以使用 `runc spec` 命令生成 config.json 文件
-> 这里接着 [OCI Image 规范中的实验](✏IT 学习笔记/☁️10.云原生/2.1.容器/Open%20Containers%20Initiative(开放容器倡议)/OCI%20Image%20 规范.md Image 规范.md)中的 [Layers 文件](✏IT 学习笔记/☁️10.云原生/2.1.容器/Open%20Containers%20Initiative(开放容器倡议)/OCI%20Image%20 规范.md Image 规范.md)章节，使用 lchdzh/k8s-debug 镜像。
+> 这里接着 [OCI Image 规范中的实验](/docs/IT学习笔记/10.云原生/2.1.容器/Open%20Containers%20Initiative(开放容器倡议)/OCI%20Image%20 规范.md Image 规范.md)中的 [Layers 文件](/docs/IT学习笔记/10.云原生/2.1.容器/Open%20Containers%20Initiative(开放容器倡议)/OCI%20Image%20 规范.md Image 规范.md)章节，使用 lchdzh/k8s-debug 镜像。
 
 ```bash
 ~]# cd /root/test_dir/k8s-debug/layers

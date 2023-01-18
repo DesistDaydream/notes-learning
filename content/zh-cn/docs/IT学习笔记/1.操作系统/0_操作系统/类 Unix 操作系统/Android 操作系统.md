@@ -11,7 +11,7 @@ QQ 接收的文件也切换到了 `Android/data/com.tencent.mobileqq/Tencent/QQf
 
 # 目录结构
 
-安卓的目录结构与 [Linux 内核的目录结构](✏IT 学习笔记/📄1.操作系统/2.Kernel(内核)/6.File%20System%20 管理/FHS(文件系统层次标准).md System 管理/FHS(文件系统层次标准).md)类似，但是有一些约定俗成的用于保存各类数据的目录
+安卓的目录结构与 [Linux 内核的目录结构](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File%20System%20 管理/FHS(文件系统层次标准).md System 管理/FHS(文件系统层次标准).md)类似，但是有一些约定俗成的用于保存各类数据的目录
 
 ## /data # ？
 

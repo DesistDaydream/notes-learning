@@ -93,8 +93,8 @@ metrics-server 的部署文件在这个网址中：<https://github.com/kubernete
 
 # kube-state-metrics
 
-详见 [kube-state-metrics](✏IT 学习笔记/☁️10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/Kubernetes%20 监控/kube-state-metrics.md 监控/kube-state-metrics.md)
+详见 [kube-state-metrics](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/Kubernetes%20 监控/kube-state-metrics.md 监控/kube-state-metrics.md)
 
 # 系统组件指标
 
-详见 [Kubernetes 系统组件指标](✏IT 学习笔记/☁️10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/Kubernetes%20 监控/Kubernetes%20 系统组件指标.md 监控/Kubernetes 系统组件指标.md)
+详见 [Kubernetes 系统组件指标](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/Kubernetes%20 监控/Kubernetes%20 系统组件指标.md 监控/Kubernetes 系统组件指标.md)

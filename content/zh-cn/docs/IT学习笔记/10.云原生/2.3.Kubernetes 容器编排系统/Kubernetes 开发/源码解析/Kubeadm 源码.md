@@ -298,7 +298,7 @@ func NewSelfSignedCACert(cfg Config, key crypto.Signer) (*x509.Certificate, erro
 }
 ```
 
-所以，我们在 [编译 kubeadm 修改证书过期时间](✏IT 学习笔记/☁️10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubeadm%20 命令行工具/编译%20kubeadm%20 修改证书过期时间.md 管理/kubeadm 命令行工具/编译 kubeadm 修改证书过期时间.md) 中会修改 client-go 中的源码，也就是常量 `duration365d` 的值
+所以，我们在 [编译 kubeadm 修改证书过期时间](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubeadm%20 命令行工具/编译%20kubeadm%20 修改证书过期时间.md 管理/kubeadm 命令行工具/编译 kubeadm 修改证书过期时间.md) 中会修改 client-go 中的源码，也就是常量 `duration365d` 的值
 
 ### 使用 CA 签其他证书
 

@@ -33,7 +33,7 @@ title: Memory 管理工具
 
 ### Buffers 与 Cached
 
-详见：《[Memory 的缓存机制](✏IT 学习笔记/📄1.操作系统/2.Kernel(内核)/5.Memory%20 管理/Memory%20 的缓存机制.md 管理/Memory 的缓存机制.md)》
+详见：《[Memory 的缓存机制](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/5.Memory%20 管理/Memory%20 的缓存机制.md 管理/Memory 的缓存机制.md)》
 
 ### Active
 

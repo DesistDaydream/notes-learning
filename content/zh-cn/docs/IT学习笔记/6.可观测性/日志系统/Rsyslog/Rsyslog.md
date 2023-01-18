@@ -123,7 +123,7 @@ ffff99c534a7d800: 00000002 00000000 00000000 0002 01 15881 /run/systemd/journal/
 srw-rw-rw- 1 root root 0 Oct 19 21:16 /run/systemd/journal/syslog=
 ```
 
-这是一个 socket 文件，从 lsof 命令中可以看到是是一个用于实现 本地数据报通信的 [DGRAM 类型的 Unix Socket](✏IT 学习笔记/📄1.操作系统/2.Kernel(内核)/7.Process%20 管理/Inter%20Process%20Communication(进程间通信).md 管理/Inter Process Communication(进程间通信).md)。
+这是一个 socket 文件，从 lsof 命令中可以看到是是一个用于实现 本地数据报通信的 [DGRAM 类型的 Unix Socket](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process%20 管理/Inter%20Process%20Communication(进程间通信).md 管理/Inter Process Communication(进程间通信).md)。
 
 这个文件替代了传统的 /dev/log 文件，/dev/log 变成了指向 /run/systemd/journal/dev-log 的软链接
 

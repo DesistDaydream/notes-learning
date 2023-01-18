@@ -6,7 +6,7 @@ title: config 子命令，修改kubeconfig文件
 
 **kubectl config SUBCOMMAND \[options] #使用子命令修改 kubeconfig 文件**
 
-Note：该命令的功能详见 [认证与授权章节中的 KubeConfig 文件详解](✏IT 学习笔记/☁️10.云原生/2.3.Kubernetes%20 容器编排系统/7.API%20 访问控制/1.Authenticating(认证)/User%20Account%20 详解.md 访问控制/1.Authenticating(认证)/User Account 详解.md)
+Note：该命令的功能详见 [认证与授权章节中的 KubeConfig 文件详解](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/7.API%20 访问控制/1.Authenticating(认证)/User%20Account%20 详解.md 访问控制/1.Authenticating(认证)/User Account 详解.md)
 
 SUBCOMMAND 包括：
 

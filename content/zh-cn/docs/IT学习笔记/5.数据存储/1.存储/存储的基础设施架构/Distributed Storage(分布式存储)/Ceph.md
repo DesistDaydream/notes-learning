@@ -93,7 +93,7 @@ ceph-mgr 曾经是 ceph-mon 的一部分，自 luinous(12.x) 版本依赖，ceph
 
 Dashboard 模块是一个内置的基于 Web 的 Ceph 管理和监控程序，通过它可以检查和管理 Ceph 集群中的各个方面和资源。默认监听 `8443` 端口
 
-在 Dashboard 模块中，提供了一组用于管理集群的 RESTful 风格的 API 接口。这组 API 位于 `/api` 路径下。详见《[API](<✏IT 学习笔记/📼5.数据存储/1.存储/存储的基础设施架构/Distributed%20Storage(分布式存储)/Ceph/API.md>>)》章节
+在 Dashboard 模块中，提供了一组用于管理集群的 RESTful 风格的 API 接口。这组 API 位于 `/api` 路径下。详见《[API](</docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed%20Storage(分布式存储)/Ceph/API.md>>)》章节
 
 ###
 

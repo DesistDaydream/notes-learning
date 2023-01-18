@@ -239,7 +239,7 @@ Prometheus 将会根据这里的字段配置，以发现需要 Scrape 指标的�
 
 - 具体配置详见下文[动态目标发现](#IWvg5)
 - 不同的服务发现，有不同的配置方式。比如 `kubernetes_sd_configs`、`file_sd_configs` 等等。
-- 注意：当 Prometheus 自动发现这些待抓取目标时，会附带一些原始标签，这些标签以 `__meta_XX` 开头，不同的服务发现配置发现标签不同，具体说明详见[《Label 与 Relabel》文章中的 Discovered Labels 章节](✏IT 学习笔记/👀6.可观测性/监控系统/Prometheus/Target(目标)%20 与%20Relabeling(重新标记).md 与 Relabeling(重新标记).md) 的说明
+- 注意：当 Prometheus 自动发现这些待抓取目标时，会附带一些原始标签，这些标签以 `__meta_XX` 开头，不同的服务发现配置发现标签不同，具体说明详见[《Label 与 Relabel》文章中的 Discovered Labels 章节](/docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Target(目标)%20 与%20Relabeling(重新标记).md 与 Relabeling(重新标记).md) 的说明
 
 `XX_sd_configs` 与 `static_configs` 的区别：静态配置与动态配置就好比主机获取 IP 时是 DHCP 还是 STATIC。动态配置可以动态获取要抓取的 Targets、静态就是指定哪个 Target 就去哪个 Target 抓取 Metrics
 
@@ -308,12 +308,12 @@ Prometheus 根据这部分配置来推送需要
 
 ## remote_write: <\[]Object>
 
-与远程写相关的配置，详见 [Prometheus 存储章节](<✏IT 学习笔记/👀6.可观测性/监控系统/Prometheus/Storage(存储).md>>)
+与远程写相关的配置，详见 [Prometheus 存储章节](</docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Storage(存储).md>>)
 **url: <STRING>** # 指定要发送时间序列数据到远程存储的端点的 URL
 
 ## remote_read: <\[]Object>
 
-与远程读相关的配置，详见 [Prometheus 存储章节](<✏IT 学习笔记/👀6.可观测性/监控系统/Prometheus/Storage(存储).md>>)
+与远程读相关的配置，详见 [Prometheus 存储章节](</docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Storage(存储).md>>)
 **url: <STRING>** # 指定发起查询请求的远程数据库的端点的 URL
 
 # 配置文件中的通用配置字段
@@ -488,7 +488,7 @@ relabel_configs:
 
 > 参考：
 > - [官方文档](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config)
-> - [Label 与 Relabeling](✏IT 学习笔记/👀6.可观测性/监控系统/Prometheus/Target(目标)%20 与%20Relabeling(重新标记).md 与 Relabeling(重新标记).md)
+> - [Label 与 Relabeling](/docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Target(目标)%20 与%20Relabeling(重新标记).md 与 Relabeling(重新标记).md)
 
 relabel 用于将抓取到的样本中的原始 label 进行重新标记以生成新的 label。
 **source_labels: \[ <LabelName>, ... ]** # 从现有的标签中选择将要获取值的标签作为 source_labels。source_labels 可以有多个。separator: <STRING> # 指定 source_labels 中所有值之间的分隔符。默认值： ;。

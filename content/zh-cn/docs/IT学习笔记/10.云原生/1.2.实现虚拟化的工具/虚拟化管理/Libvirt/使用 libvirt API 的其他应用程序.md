@@ -21,7 +21,7 @@ virt-manager 提供了多个配套的工具
 - virt-xml # 是一个命令行工具，用于使用 virt-install 的命令行选项轻松编辑 libvirt 域 XML。
 - virt-bootstrap # 是一个命令行工具，提供了一种简单的方法来为基于 libvirt 的容器设置根文件系统。
 
-详见 [《virt-manager》](✏IT 学习笔记/☁️10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用%20libvirt%20API%20 的其他应用程序/virt-manager.md libvirt API 的其他应用程序/virt-manager.md) 章节
+详见 [《virt-manager》](/docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用%20libvirt%20API%20 的其他应用程序/virt-manager.md libvirt API 的其他应用程序/virt-manager.md) 章节
 
 # libguestfs：是一组用于访问和修改虚拟机（VM）磁盘映像的工具。
 
