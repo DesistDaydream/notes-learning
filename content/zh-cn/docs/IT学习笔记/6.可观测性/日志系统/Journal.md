@@ -1,5 +1,6 @@
 ---
 title: Journal
+weight: 4
 ---
 
 # 概述

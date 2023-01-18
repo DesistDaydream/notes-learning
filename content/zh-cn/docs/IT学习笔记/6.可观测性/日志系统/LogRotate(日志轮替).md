@@ -1,5 +1,6 @@
 ---
 title: LogRotate(日志轮替)
+weight: 3
 ---
 
 # 概述

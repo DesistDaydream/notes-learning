@@ -1,5 +1,6 @@
 ---
 title: dell硬件监控OMSA
+weight: 50
 ---
 
 # OMSA（全称 Openmanage Server Administrator),是戴尔公司自主研发的 IT 系统管理解决方案。
