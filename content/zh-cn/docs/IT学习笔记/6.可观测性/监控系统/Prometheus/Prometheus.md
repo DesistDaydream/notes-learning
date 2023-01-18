@@ -1,5 +1,6 @@
 ---
 title: Prometheus
+weight: 1
 ---
 
 # 概述
@@ -53,14 +54,14 @@ Prometheus 不适用的场景
 
 Prometheus 可以通过 3 种方式从目标上 Scrape(抓取) 指标：
 
-- **Exporters **# 外部抓取程序
+- **Exporters** # 外部抓取程序
 - **Instrumentation** # 可以理解为内嵌的 Exporter，比如 Prometheus Server 的 9090 端口的 `/metrics` 就属于此类。
   - 说白了，就是目标自己就可以吐出符合 Prometheus 格式的指标数据
 - **Pushgateway** # 针对需要推送指标的应用
 
 ## Label 与 Relabeling
 
-详见 [Label 与 Relabeling 章节](/docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Target(目标)%20 与%20Relabeling(重新标记).md 与 Relabeling(重新标记).md)
+详见 [Label 与 Relabeling 章节](/docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Target(目标)%20与%20Relabeling(重新标记).md)
 
 ## Instrumenting 的安装与使用
 

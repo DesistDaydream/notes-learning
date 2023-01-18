@@ -4,7 +4,7 @@ title: Prometheus
 
 # 概述
 
-参考 [Prometheus](docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus.md) 文中关于 Prometheus Server 的部署我们发现，手动来维护 Prometheus Server 是相当费力的，而在 kubernetes 中，可以借助 operater 帮助我们来完成 Prometheus Server 的创建与维护工作，甚至连自动发现配置都可以。
+参考 [Prometheus](/docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus.md) 文中关于 Prometheus Server 的部署我们发现，手动来维护 Prometheus Server 是相当费力的，而在 kubernetes 中，可以借助 operater 帮助我们来完成 Prometheus Server 的创建与维护工作，甚至连自动发现配置都可以。
 
 # Prometheus CRD 部署
 

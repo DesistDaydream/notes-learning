@@ -1,0 +1,5 @@
+offlineSearch = true
+
+# 页面显示内容配置
+[ui]
+sidebar_menu_foldable = true # 侧边栏菜单是否可折叠

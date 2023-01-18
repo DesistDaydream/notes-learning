@@ -11,6 +11,8 @@ weight: 20
 
 Kubernetes 的官网就是 Docsy 主题
 
+# 使用 Docsy
+
 ## 环境准备
 ```bash
 npm install -D autoprefixer
@@ -53,6 +55,9 @@ hugo server
 
 ## 常见问题
 [构建站点时出错：# POSTCSS: failed to transform "scss/main.css"](https://github.com/google/docsy/issues/235)
+
+# Docsy 配置与关联文件
+Docsy 也会使用 Hugo 的 config 文件来配置站点。
 
 # 待整理
 https://lucumt.info/post/hugo/using-github-action-to-auto-build-deploy/

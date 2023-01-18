@@ -1,0 +1,12 @@
+[zh-cn]
+title = "断念梦"
+description = "个人站点"
+languageName ="中文"
+# 用于权重的排序
+weight = 1
+
+[en]
+title = "DesistDaydream"
+description = "A Docsy example site"
+languageName ="English"
+weight = 2

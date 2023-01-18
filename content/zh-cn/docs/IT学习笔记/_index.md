@@ -1,5 +1,6 @@
 ---
 title: IT学习笔记
+weight: 1
 ---
 
 <https://mp.weixin.qq.com/s/rKFibBQukeM_fe3McNfhBA>

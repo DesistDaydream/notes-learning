@@ -1,0 +1,8 @@
+baseURL = 'https://desistdaydream.github.io/'
+# publishDir = "desistdaydream.github.io" # 指定用于构建静态文件后，这些文件的保存目录。默认是 /publish 目录。
+title = '断念梦的站点'
+
+# 语言设置
+contentDir = "content/zh-cn"
+defaultContentLanguage = "zh-cn"
+defaultContentLanguageInSubdir = false
