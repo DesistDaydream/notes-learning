@@ -1,5 +1,6 @@
 ---
 title: OpenTelemetry
+weight: 2
 ---
 
 # 概述

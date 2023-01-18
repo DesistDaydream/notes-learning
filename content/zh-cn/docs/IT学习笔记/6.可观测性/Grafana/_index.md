@@ -1,5 +1,6 @@
 ---
 title: Grafana
+weight: 7
 ---
 
 # 概述
