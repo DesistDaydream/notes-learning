@@ -1,11 +1,60 @@
+---
+title: "Hugo"
+linkTitle: "Hugo"
+weight: 20
+2023-01-18
+---
+
 # 概述
 
 > 参考：
 > - [GitHub 项目，gohugoio/hugo](https://github.com/gohugoio/hugo)
+> - [官网](https://gohugo.io/)
 
 
+## 目录结构
+> 参考：
+> - [官方文档，入门-目录结构](https://gohugo.io/getting-started/directory-structure/)
+
+`hugo new site example` 命令将会创建一个包含以下元素的目录结构：
+```
+example/
+├── archetypes/
+│   └── default.md
+├── assets/
+├── content/
+├── data/
+├── layouts/
+├── public/
+├── static/
+├── themes/
+└── config.toml
+```
+archetypes/
+- default.md
+
+assets/ # 存放所有需要由 Hugo Pipes 处理的文件。
+
+content/
+
+data/
+
+layouts/
+
+public/
+
+static/
+
+themes/
+
+config.toml
 
 
+# Hugo Modules(模块)
+Hugo 模块是一个类似 Go 模块一样的存在。模块可以我们的主项目或较小的模块，提供 Hugo 的 7 种组件类型中的一种或多种：
+- 
+
+在 config.toml 文件中的 module 字段添加配置，即可为站点设置引用的模块，我们可以将主题当做一个模块，
 
 
 
@@ -13,61 +62,12 @@
 
 
 # 关联文件与配置
-**${TMP}/hugo_cache/*** # 运行时的缓存。包括模块等
-- Windows 的 ${TMP} 通常在 `%USERPROFILE%\AppData\Local\Temp\`
+config.toml | config.yaml | config.json # 站点的配置文件
+
+Hugo 运行时所需的缓存目录。包括需要使用的模块等：
+- Windows:
+	- **%TMP%/hugo_cache/\***
+- Linux:
+	- **${TMP}/hugo_cache/\***
 
 
-# Docsy 主题
-> 参考：
-> - [官网](https://www.docsy.dev/)
-
-Kubernetes 的官网就是 Docsy 主题
-
-## 环境准备
-```bash
-npm install -D autoprefixer
-npm install -D postcss-cli
-npm install -D postcss
-```
-> 若不在本地安装，则使用 `hugo` 命令构建静态文件时将会报错
-
-## 生成站点
-
-### 生成模板站点
-```bash
-export MY_SITE_DIR="docsy"
-git clone https://github.com/google/docsy-example.git ${MY_SITE_DIR}
-cd  ${MY_SITE_DIR}
-hugo server
-```
-
-### 生成空白站点
-```Bash
-hugo new site .
-hugo mod init github.com/me/my-new-site
-hugo mod get github.com/google/docsy@v0.6.0
-cat >> config.toml <<EOL
-[module]
-proxy = "direct"
-[[module.imports]]
-path = "github.com/google/docsy"
-[[module.imports]]
-path = "github.com/google/docsy/dependencies"
-EOL
-```
-
-## 本地运行
-```bash
-hugo server
-```
-## 构建静态文件
-
-
-## 常见问题
-[构建站点时出错：# POSTCSS: failed to transform "scss/main.css"](https://github.com/google/docsy/issues/235)
-
-# 待整理
-https://lucumt.info/post/hugo/using-github-action-to-auto-build-deploy/
-https://tomial.github.io/posts/hugo%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%88%B0github-pages/
-https://www.bloghome.com.cn/post/git-zi-mo-kuai-yi-ge-cang-ku-bao-han-ling-yi-ge-cang-ku.html
-使用 Hugo 搭建 GitHub Pages https://zz2summer.github.io/github-pages-hugo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#%E4%B8%83%E6%97%A5%E5%B8%B8%E6%93%8D%E4%BD%9C

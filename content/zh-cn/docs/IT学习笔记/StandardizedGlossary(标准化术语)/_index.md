@@ -1,5 +1,6 @@
 ---
 title: StandardizedGlossary(标准化术语)
+weight: 15
 ---
 
 # 黑盒学习 与 白盒学习

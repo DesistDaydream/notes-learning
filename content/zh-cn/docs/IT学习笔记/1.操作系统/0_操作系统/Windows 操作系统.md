@@ -1,19 +1,35 @@
 ---
-title: Windows 操作系统
+title: "Windows 操作系统"
+linkTitle: "Windows 操作系统"
+weight: 20
+2023-01-18
 ---
 
 # 概述
+> 参考：
+> - 
+
+
+
+
+# 变量
+引用方式：`%VAR%`
+
+## 常用环境变量
+`%USERPROFILE%` # 用户家目录
+`%TMP` # 临时目录。
+- 系统变量 `C:/WINDOWS/TEMP`
+- 用户变量 `%USERPROFILE%/AppData/Local/Temp`
 
 # 文件系统管理
 
 > 参考：
 > - <https://www.howtogeek.com/318177/what-is-the-appdata-folder-in-windows/>
 
-**C:\Users\<USER>\AppData\*** #
-
-- **.\Local\*** #
-- **.\LocalLow\*** #
-- **.\Roaming\*** #
+**%USERPROFILE%/AppData/\*** #
+- **./Local/\*** #
+- **./LocalLow/\*** #
+- **./Roaming/\*** #
 
 # 注册表
 
