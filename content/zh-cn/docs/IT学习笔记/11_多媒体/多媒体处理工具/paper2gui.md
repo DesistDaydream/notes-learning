@@ -1,5 +1,5 @@
 ---
-title: AI 工具
+title: paper2gui
 ---
 
 # paper2gui
