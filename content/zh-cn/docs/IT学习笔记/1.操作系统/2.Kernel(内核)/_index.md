@@ -1,5 +1,6 @@
 ---
 title: 2.Kernel(内核)
+weight: 2
 ---
 
 ## 操作系统 OS 与内核 Kernel 有什么区别？

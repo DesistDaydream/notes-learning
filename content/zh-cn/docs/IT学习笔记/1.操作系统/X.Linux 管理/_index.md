@@ -1,5 +1,6 @@
 ---
 title: X.Linux 管理
+weight: 9
 ---
 
 # 概述

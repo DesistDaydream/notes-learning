@@ -1,5 +1,6 @@
 ---
 title: CPU
+weight: 1
 ---
 
 # **中央处理器(CPU) 介绍**

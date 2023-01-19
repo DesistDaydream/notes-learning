@@ -1,5 +1,6 @@
 ---
 title: Memory
+weight: 2
 ---
 
 > 参考：[Wiki,Computer memory](https://en.wikipedia.org/wiki/Computer_memory)

@@ -1,5 +1,6 @@
 ---
 title: Y.Windows 管理工具
+weight: 10
 ---
 
 # 概述

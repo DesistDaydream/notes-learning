@@ -35,8 +35,6 @@ Tailscale 是一种基于 WireGuard 的虚拟组网工具，和 Netmaker 类似�
 
 简而言之，我们可以将 Tailscale 看成是更为易用、功能更完善的 WireGuard。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/640)
-
 光有这些还不够，作为一个白嫖党，咱更关心的是**免费**与**开源**。
 
 Tailscale 是一款商业产品，但个人用户是可以白嫖的，个人用户在接入设备不超过 20 台的情况下是可以免费使用的（虽然有一些限制，比如子网网段无法自定义，且无法设置多个子网）。除 Windows 和 macOS 的图形应用程序外，其他 Tailscale 客户端的组件（包含 Android 客户端）是在 BSD 许可下以开源项目的形式开发的，你可以在他们的 GitHub 仓库\[3]找到各个操作系统的客户端源码。

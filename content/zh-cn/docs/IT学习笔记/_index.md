@@ -3,12 +3,13 @@ title: IT学习笔记
 weight: 1
 ---
 
-<https://mp.weixin.qq.com/s/rKFibBQukeM_fe3McNfhBA>
-<https://mp.weixin.qq.com/s/DlbRlCT--fmthtyLzwIpUA>
+# 概述
+> 参考：
+> - [公众号-小林coding，B 站，真滴牛逼！](https://mp.weixin.qq.com/s/rKFibBQukeM_fe3McNfhBA)
+> - [公众号-小林coding，B 站，强的离谱！](https://mp.weixin.qq.com/s/DlbRlCT--fmthtyLzwIpUA)
+> - [GitHub 项目，PKUFlyingPig/cs-self-learning](https://github.com/PKUFlyingPig/cs-self-learning)
 
-<https://github.com/PKUFlyingPig/cs-self-learning>
 
-- <https://www.bilibili.com/medialist/play/watchlater/BV18Y411d7wH>
 
 ### 计算机网络
 

@@ -4,10 +4,13 @@ title: TC 模块
 
 # 概述
 
-> 参考：[原文链接](https://github.com/liucimin/Learning/blob/master/linux%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3/Linux-TC%E6%A1%86%E6%9E%B6%E8%AF%A6%E8%A7%A3.md)、[Linux 的高级路由和流量控制](http://www.lartc.org/LARTC-zh_CN.GB2312.pdf)、[Open vSwitch 之 QoS 的实现](http://www.sdnlab.com/19208.html) > [arthurchiao.art 的文章](http://arthurchiao.art/index.html)：
->
-> - [\[译\] 《Linux 高级路由与流量控制手册（2012）》第九章：用 tc qdisc 管理 Linux 网络带宽](http://arthurchiao.art/blog/lartc-qdisc-zh/#91-%E9%98%9F%E5%88%97queues%E5%92%8C%E6%8E%92%E9%98%9F%E8%A7%84%E5%88%99queueing-disciplines)
-> - [\[译\] 深入理解 tc ebpf 的 direct-action (da) 模式（2020）](http://arthurchiao.art/blog/understanding-tc-da-mode-zh/#5-%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8Bebpf-%E7%A8%8B%E5%BA%8F--tc-%E5%91%BD%E4%BB%A4)
+> 参考：
+> - [原文链接](https://github.com/liucimin/Learning/blob/master/linux%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3/Linux-TC%E6%A1%86%E6%9E%B6%E8%AF%A6%E8%A7%A3.md)
+>   - [Linux 的高级路由和流量控制](http://www.lartc.org/LARTC-zh_CN.GB2312.pdf)
+>   - [Open vSwitch 之 QoS 的实现](http://www.sdnlab.com/19208.html)
+> - [arthurchiao.art 的文章](http://arthurchiao.art/index.html)：
+>   - [[译] 《Linux 高级路由与流量控制手册（2012）》第九章：用 tc qdisc 管理 Linux 网络带宽](http://arthurchiao.art/blog/lartc-qdisc-zh/#91-%E9%98%9F%E5%88%97queues%E5%92%8C%E6%8E%92%E9%98%9F%E8%A7%84%E5%88%99queueing-disciplines)
+>   - [[译] 深入理解 tc ebpf 的 direct-action (da) 模式（2020）](http://arthurchiao.art/blog/understanding-tc-da-mode-zh/#5-%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8Bebpf-%E7%A8%8B%E5%BA%8F--tc-%E5%91%BD%E4%BB%A4)
 
 Linux 中的 TC 模块已经在内核中存在很多年了，但是直到 eBPF 流行起来之前，文档以及使用者都非常之少，并仍处于活跃开发状态中。Kernel 4.1 版本中添加了一些新的 Hook，并支持将 eBPF 程序作为 tc classifier(也称为 filter) 或 tc action 加载到这些 Hook 点。大概六个月后，Kernel 4.4 版本发布时，iproute2 引入了一个 direct-action 模式，但是关于这个模式的[文档依然少得可怜](https://qmonnet.github.io/whirl-offload/2016/09/01/dive-into-bpf/#about-tc)。。。。。
 
@@ -32,7 +35,6 @@ TC 是一个强大但复杂的框架。 它的**几个核心概念**：
    - `-1`：表示这个 filter 上配置的**默认 classid**。
    - 其他值：**表示一个 classid**。系统接下来应该将包送往这个指定的 class。可以看到，通过这种方式可以实现非线性分类（non-linear classification）。
 4. 另外，**可以给 filter 添加 action**。例如，将选中的包丢弃（drop），或者将流量镜像到另一个网络设备等等。
-
 5. 除此之外，qdisc 和 class 还可以循环嵌套，即： **class 里加入新 qdisc，然后新 qdisc 里又可以继续添加新 class**， 最终形成的是一个以 root qdisc 为根的树。但对于本文接下来的内容，我们不需要了解这么多。
 
 # TC 原理介绍
@@ -61,7 +63,7 @@ Linux 操作系统中的流量控制器 TC(Traffic Control) 用于 Linux 内核�
 
 Linux 流量控制的基本原理如下图所示。
 
-![](..%5CImages%5C20150511093020861.png#alt=)
+![](https://notes-picgo.oss-cn-beijing.aliyuncs.com/20230119084348.png)
 
 接收包从输入接口（Input Interface）进来后，经过流量限制（Ingress Policing）丢弃不符合规定的数据包，由输入多路分配器（Input  De-Multiplexing）进行判断选择。如果接收包的目的地是本主机，那么将该包送给上层处理，否则需要进行转发，将接收包交到转发块（ForwardingBlock）处理。转发块同时也接收本主机上层（TCP、UDP 等）产生的包。转发块通过查看路由表，决定所处理包的下一跳。然后，对包进行排列以便将它们传送到输出接口（Output Interface）。
 
@@ -145,7 +147,7 @@ HTB 型的一些注意：
     3. tc filter的prio使用提示，prio表示该filter的测试顺序，小的会优先进行测试，如果匹配到，则不会继续测试。故此filter 的prio跟class的prio并不一样，class的prio表明了此class的优先级：当有空闲带宽时prio 数值低的（优先级高）class会优先占用空闲。
      若不同优先级的filter都可以匹配到包，则优先级高的filter起作用。相同优先级的filter（必须为同种类型classifier）严格按照命令的输入顺序进行匹配，先执行的filter起作用。
 
-#### **           操作原理**
+#### 操作原理
 
 \*\*             \*\*类（class）组成一个树，每个类都只有一个父类，而一个类可以有多个子类。某些 qdisc （例如：CBQ 和 HTB）允许在运行时动态添加类，而其它的 qdisc（例如：PRIO）不允许动态建立类。允许动态添加类的 qdisc 可以有零个或者多个子类，由它们为数据包排队。此外，每个类都有一个叶子 qdisc，默认情况下，这个也在 qdisc 有可分类，不过每个子类只能有一个叶子 qdisc。 当一个数据包进入一个分类 qdisc，它会被归入某个子类。我们可以使用一下三种方式为数据包归类，不过不是所有的 qdisc 都能够使用这三种方式。
 
@@ -153,7 +155,7 @@ HTB 型的一些注意：
 
 树的每个节点都可以有自己的过滤器，但是高层的过滤器也可以一直接用于其子类。如果数据包没有被成功归类，就会被排到这个类的叶子 qdisc 的队中。相关细节在各个 qdisc 的手册页中。
 
-#### **命名规则**
+#### 命名规则
 
 所有的 qdisc、类、和过滤器都有 ID。ID 可以手工设置，也可以由内核自动分配。ID 由一个主序列号和一个从序列号组成，两个数字用一个冒号分开。
 
@@ -163,21 +165,19 @@ qdisc，一个 qdisc 会被分配一个主序列号，叫做句柄（handle）�
 
 过滤器（Filter），过滤器的 ID 有三部分，只有在对过滤器进行散列组织才会用到。详情请参考 tc-filtes 手册页。
 
-#### **         单位**
+#### 单位
 
 \*\*            \*\*tc 命令所有的参数都可以使用浮点数，可能会涉及到以下计数单位。
 
 ##### 带宽或者流速单位：
 
-![](.%5CImages%5C20150511134819738.png#alt=)
 
 ##### 数据的数量单位
 
-![](.%5CImages%5C20150511135207564.png#alt=)
 
 ##### 时间的计量单位：
 
-![](.%5CImages%5C20150511135126939.png#alt=)
+
 
 # TC 的安装
 
@@ -222,7 +222,7 @@ tc 命令的格式：
 
 Linux 流量控制主要分为建立队列、建立分类和建立过滤器三个方面。
 
-## **   基本实现步骤**。
+## 基本实现步骤
 
 1) 针对网络物理设备（如以太网卡 eth0）绑定一个队列 qdisc；
 
@@ -232,7 +232,7 @@ Linux 流量控制主要分为建立队列、建立分类和建立过滤器三�
 
 4) 最后与过滤器相配合，建立特定的路由表。
 
-## ** 环境模拟实例**。
+## 环境模拟实例
 
 流量控制器上的以太网卡（eth0）的 IP 地址为 192.168.1.66， 在其上建立一个 CBQ 队列。假设包的平均大小为 1000 字节，包间隔发送单元的大小             为 8 字节，可接收冲突的发送最长包的数目为 20 字节。
 
