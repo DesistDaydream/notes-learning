@@ -19,9 +19,9 @@ Get-Service # 列出所有服务
 
 ### Syntax(语法)
 
-mklink \[\[/d] | \[/h] | \[/j]] <link> <target>
+mklink \[\[/d] | \[/h] | \[/j]] \<link> \<target>
 为 target 创建一个名为 link 的链接文件。即 link 是要创建的新文件
 
 EXAMPLE
 
-- mklink /D C:\Users\DesistDaydream\AppData\Roaming\yuzu F:\yuzu\user
+- mklink /D C:/Users/DesistDaydream/AppData/Roaming/yuzu F:/yuzu/user
