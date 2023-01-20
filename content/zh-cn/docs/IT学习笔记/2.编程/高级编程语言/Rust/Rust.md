@@ -6,7 +6,8 @@ title: Rust
 
 > 参考：
 > - [GitHub 项目，rust-lang/rust](https://github.com/rust-lang/rust)
-> - [官网](https://www.rust-lang.org/)、[官方文档](https://doc.rust-lang.org/book/)
+> - [官网](https://www.rust-lang.org/)、
+> - [官方文档](https://doc.rust-lang.org/book/)
 
 # 学习资料
 
@@ -75,4 +76,5 @@ Hello, world!
 
 # Rust 语言规范
 
-> ## 参考：
+> 参考：
+> - 
