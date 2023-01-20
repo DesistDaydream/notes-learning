@@ -417,7 +417,7 @@ ModuleNotFoundError: No module named 'XXXXX'
 
 管理 Python 的模块和包所在路径非常乱，不知道是何原因。
 
-[pip](#fgjXo) 是首选的安装程序。从 Python 3.4 开始，它默认包含在 Python 二进制安装程序中。就算你是用 pipenv，poetry，底层依然是 pip，一律适用。
+[pip](#pip) 是首选的安装程序。从 Python 3.4 开始，它默认包含在 Python 二进制安装程序中。就算你是用 pipenv，poetry，底层依然是 pip，一律适用。
 
 运行 pip 有两种方式：
 
