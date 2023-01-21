@@ -159,7 +159,7 @@ yield
 
 # JavaScript 基本语法规范
 
-## 语句 [#](#%E8%AF%AD%E5%8F%A5)
+## 语句
 
 JavaScript 程序的执行单位为行（line），也就是一行一行地执行。一般情况下，每一行就是一个语句。
 
@@ -188,9 +188,9 @@ JavaScript 程序的执行单位为行（line），也就是一行一行地执�
 
 上面两行语句只是单纯地产生一个值，并没有任何实际的意义。
 
-## 变量 [#](#%E5%8F%98%E9%87%8F)
+## 变量
 
-### 概念 [#](#%E6%A6%82%E5%BF%B5)
+### 概念
 
 变量是对“值”的具名引用。变量就是为“值”起名，然后引用这个名字，就等同于引用这个值。变量的名字就是变量名。
 
@@ -267,7 +267,7 @@ JavaScript 引擎的工作方式是，先解析代码，获取所有被声明的
 
 最后的结果是显示`undefined`，表示变量`a`已声明，但还未赋值。
 
-## 标识符 [#](#%E6%A0%87%E8%AF%86%E7%AC%A6)
+## 标识符
 
 标识符（identifier）指的是用来识别各种值的合法名称。最常见的标识符就是变量名，以及后面要提到的函数名。JavaScript 语言的标识符对大小写敏感，所以`a`和`A`是两个不同的标识符。
 
@@ -299,7 +299,7 @@ JavaScript 引擎的工作方式是，先解析代码，获取所有被声明的
 
 > JavaScript 有一些保留字，不能用作标识符：arguments、break、case、catch、class、const、continue、debugger、default、delete、do、else、enum、eval、export、extends、false、finally、for、function、if、implements、import、in、instanceof、interface、let、new、null、package、private、protected、public、return、static、super、switch、this、throw、true、try、typeof、var、void、while、with、yield。
 
-## 注释 [#](#%E6%B3%A8%E9%87%8A)
+## 注释
 
 源码中被 JavaScript 引擎忽略的部分就叫做注释，它的作用是对代码进行解释。JavaScript 提供两种注释的写法：一种是单行注释，用`//`起头；另一种是多行注释，放在`/*`和`*/`之间。
 
@@ -319,7 +319,7 @@ JavaScript 引擎的工作方式是，先解析代码，获取所有被声明的
 
 上面代码中，`n --> 0`实际上会当作`n-- > 0`，因此输出 2、1、0。
 
-## 区块 [#](#%E5%8C%BA%E5%9D%97)
+## 区块
 
 JavaScript 使用大括号，将多个相关的语句组合在一起，称为“区块”（block）。
 
@@ -333,11 +333,11 @@ JavaScript 使用大括号，将多个相关的语句组合在一起，称为“
 
 上面代码在区块内部，使用`var`命令声明并赋值了变量`a`，然后在区块外部，变量`a`依然有效，区块对于`var`命令不构成单独的作用域，与不使用区块的情况没有任何区别。在 JavaScript 语言中，单独使用区块并不常见，区块往往用来构成其他更复杂的语法结构，比如`for`、`if`、`while`、`function`等。
 
-## 条件语句 [#](#%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5)
+## 条件语句
 
 JavaScript 提供`if`结构和`switch`结构，完成条件判断，即只有满足预设的条件，才会执行相应的语句。
 
-### if 结构 [#](#if-%E7%BB%93%E6%9E%84)
+### if 结构
 
 `if`结构先判断一个表达式的布尔值，然后根据布尔值的真伪，执行不同的语句。所谓布尔值，指的是 JavaScript 的两个特殊值，`true`表示“真”，`false`表示“伪”。
 
@@ -378,7 +378,7 @@ JavaScript 提供`if`结构和`switch`结构，完成条件判断，即只有满
 
 至于为什么优先采用“严格相等运算符”（`===`），而不是“相等运算符”（`==`），请参考《运算符》章节。
 
-### if...else 结构 [#](#ifelse-%E7%BB%93%E6%9E%84)
+### if...else 结构
 
 `if`代码块后面，还可以跟一个`else`代码块，表示不满足条件时，所要执行的代码。
 
@@ -431,7 +431,7 @@ JavaScript 提供`if`结构和`switch`结构，完成条件判断，即只有满
       console.log('world');
     }
 
-### switch 结构 [#](#switch-%E7%BB%93%E6%9E%84)
+### switch 结构
 
 多个`if...else`连在一起使用的时候，可以转为使用更方便的`switch`结构。
 
@@ -498,7 +498,7 @@ JavaScript 提供`if`结构和`switch`结构，完成条件判断，即只有满
 
 上面代码中，由于变量`x`没有发生类型转换，所以不会执行`case true`的情况。这表明，`switch`语句内部采用的是“严格相等运算符”，详细解释请参考《运算符》一节。
 
-### 三元运算符 ?: [#](#%E4%B8%89%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6-)
+### 三元运算符 ?:
 
 JavaScript 还有一个三元运算符（即该运算符需要三个运算子）`?:`，也可以用于逻辑判断。
 
@@ -532,11 +532,11 @@ JavaScript 还有一个三元运算符（即该运算符需要三个运算子）
 
 上面代码利用三元运算符，在字符串之中插入不同的值。
 
-## 循环语句 [#](#%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5)
+## 循环语句
 
 循环语句用于重复执行某个操作，它有多种形式。
 
-### while 循环 [#](#while-%E5%BE%AA%E7%8E%AF)
+### while 循环
 
 `While`语句包括一个循环条件和一段代码块，只要条件为真，就不断循环执行代码块。
 
@@ -568,7 +568,7 @@ JavaScript 还有一个三元运算符（即该运算符需要三个运算子）
       console.log('Hello, world');
     }
 
-### for 循环 [#](#for-%E5%BE%AA%E7%8E%AF)
+### for 循环
 
 `for`语句是循环命令的另一种形式，可以指定循环的起点、终点和终止条件。它的格式如下。
 
@@ -612,7 +612,7 @@ JavaScript 还有一个三元运算符（即该运算符需要三个运算子）
 
 上面代码省略了`for`语句表达式的三个部分，结果就导致了一个无限循环。
 
-### do...while 循环 [#](#dowhile-%E5%BE%AA%E7%8E%AF)
+### do...while 循环
 
 `do...while`循环与`while`循环类似，唯一的区别就是先运行一次循环体，然后判断循环条件。
 
@@ -636,7 +636,7 @@ JavaScript 还有一个三元运算符（即该运算符需要三个运算子）
       i++;
     } while(i < x);
 
-### break 语句和 continue 语句 [#](#break-%E8%AF%AD%E5%8F%A5%E5%92%8C-continue-%E8%AF%AD%E5%8F%A5)
+### break 语句和 continue 语句
 
 `break`语句和`continue`语句都具有跳转作用，可以让代码不按既有的顺序执行。
 
@@ -676,7 +676,7 @@ JavaScript 还有一个三元运算符（即该运算符需要三个运算子）
 
 如果存在多重循环，不带参数的`break`语句和`continue`语句都只针对最内层循环。
 
-### 标签（label） [#](#%E6%A0%87%E7%AD%BElabel)
+### 标签（label）
 
 JavaScript 语言允许，语句的前面有标签（label），相当于定位符，用于跳转到程序的任意位置，标签的格式如下。
 
@@ -720,6 +720,6 @@ JavaScript 语言允许，语句的前面有标签（label），相当于定位�
 
 上面代码中，`continue`命令后面有一个标签名，满足条件时，会跳过当前循环，直接进入下一轮外层循环。如果`continue`语句后面不使用标签，则只能进入下一轮的内层循环。
 
-## 参考链接 [#](#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5)
+## 参考链接
 
 - Axel Rauschmayer, [A quick overview of JavaScript](http://www.2ality.com/2011/10/javascript-overview.html)

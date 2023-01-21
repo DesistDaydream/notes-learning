@@ -12,16 +12,14 @@ title: Visual Studio Code
 # VS Code 关联文件与配置
 
 **${UserDataDir}** # 用户数据目录。VS Code 运行时生成的持久化数据通常都在同一个目录中。之所以称为用户数据目录，是因为需要以用户为基础来运行一个进程，不同的用户运行的 VS Code，读取的数据应该是不同的。所以这些数据一般就保存在用户的家目录中。
-
-- Windows 默认在 `C:\Users\<USER>\AppData\Roaming\Code`
+- Windows 默认在 `%USERPROFILE%/AppData/Roaming/Code`
 - Linux 默认在 `~/`
 - .**/User/\*** #
   - **./workspaceStorage/\*** # 工作空间的配置与持久化数据
   - **./settings.json** # 用户自定义的配置。默认配置在代码内部。
 
 **${ExtensionsDir}** # 扩展目录。
-
-- Windows 默认在 `C:\Users\<USER>\.vscode\extensions`
+- Windows 默认在 `%USERPROFILE%/.vscode/extensions`
 - Linux 默认在
 
 ## 配置

@@ -126,5 +126,13 @@
       ],
       "key": "N"
     }
+  ],
+  "file-explorer:open": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "Q"
+    }
   ]
 }
