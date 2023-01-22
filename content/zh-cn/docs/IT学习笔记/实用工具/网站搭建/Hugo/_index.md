@@ -90,6 +90,7 @@ Hugo 从 `content/` 目录中渲染内容到页面，我们使用 `hugo new post
 </html>
 ```
 此时我们直接访问 `http://localhost:1313/posts/my-first-post/` 即可看到我们刚才添加的 markdown 的内容。只不过没有任何样式，光秃秃的~
+
 ![image.png](https://notes-picgo.oss-cn-beijing.aliyuncs.com/20230122175219.png)
 
 
@@ -107,6 +108,7 @@ echo "theme = 'ananke'" >> config.toml
 主题将会被下载到 thems/ 目录中，并且我们在 config.toml 文件中指定要使用的主题名称。
 
 此时再打开 1313 端口，我们就可以看到我们的站点了，第一篇文章以标题和概要的形式被展现在首页中。
+
 ![image.png](https://notes-picgo.oss-cn-beijing.aliyuncs.com/20230122164828.png)
 
 ### 通过 Hugo 模块使用主题
@@ -191,7 +193,13 @@ Hugo 运行站点时所使用的配置文件。
 
 # Hugo Modules(模块)
 Hugo 模块是一个类似 Go 模块一样的存在。模块可以是我们的主项目或其他较小的模块，提供 Hugo 的 7 种组件类型中的一种或多种：
-- 
+- **static**
+- **content**
+- **layouts**
+- **data**
+- **assets**
+- **i18n**
+- **archetypes**
 
 在 config.toml 文件中的 module 字段添加配置，即可为站点设置引用的模块，我们可以将主题当做一个模块，
 
