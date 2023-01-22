@@ -34,15 +34,15 @@ fetch Download objects and refs from another repository
 
 grep Print lines matching a pattern
 
-init #创建一个空的 Git 存储库或重新初始化现有的存储库
+init # 创建一个空的 Git 存储库或重新初始化现有的存储库
 
-## log #展示所有 commit 的记录。默认展示当前分支。
+## log # 展示所有 commit 的记录。默认展示当前分支。
 
 git log \[] \[] \[\[--] ...]
 
 EXAMPLE
 
-- git log -p -2 prometheus-rules.yaml #查看 prometheus-rules.yaml 文件最近两次的修改记录
+- git log -p -2 prometheus-rules.yaml # 查看 prometheus-rules.yaml 文件最近两次的修改记录
 
 merge Join two or more development histories together
 
@@ -68,9 +68,9 @@ tag Create, list, delete or verify a tag object signed with GPG
 
 git 放弃本地修改，强制拉取更新
 
-- git fetch --all #指令是下载远程仓库最新内容，不做合并
-- git reset --hard origin/master #指令把 HEAD 指向 master 最新版本
-- git pull #可以省略
+- git fetch --all # 指令是下载远程仓库最新内容，不做合并
+- git reset --hard origin/master # 指令把 HEAD 指向 master 最新版本
+- git pull # 可以省略
 
 本地所有修改，没有提交的文件，都返回到原来的状态
 

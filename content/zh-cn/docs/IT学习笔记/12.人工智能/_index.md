@@ -3,10 +3,19 @@ title: 12.人工智能
 weight: 12
 ---
 
+# 概述
+
+
+NovelAI # https://novelai.net/ 写故事、作图
+
 # ChatGPT
 
 <https://github.com/wangrongding/wechat-bot>
 <https://github.com/fuergaosi233/wechat-chatgpt>
+
+注册 ChatGPT # https://zblogs.top/how-to-register-openai-chatgpt-in-china/
+
+使用虚拟号码接收短信验证码：https://sms-activate.org/
 
 ## 基于 ChatGPT 的项目
 
