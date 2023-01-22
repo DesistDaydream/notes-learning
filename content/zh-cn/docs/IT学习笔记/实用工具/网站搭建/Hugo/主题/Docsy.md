@@ -63,5 +63,6 @@ https://www.bloghome.com.cn/post/git-zi-mo-kuai-yi-ge-cang-ku-bao-han-ling-yi-ge
 [构建站点时出错：# POSTCSS: failed to transform "scss/main.css"](https://github.com/google/docsy/issues/235)
 
 # Docsy 配置与关联文件
-Docsy 也会使用 Hugo 的 CONFIG 文件来配置站点。参考[官网，内容和定制](https://www.docsy.dev/docs/adding-content/)章节来修改 CONFIG 文件，以改变主题样式
+Docsy 也会使用 Hugo 的 CONFIG 文件来配置站点。参考[官网，内容和定制](https://www.docsy.dev/docs/adding-content/)章节来修改 CONFIG 文件，以改变主题样式。
+
 

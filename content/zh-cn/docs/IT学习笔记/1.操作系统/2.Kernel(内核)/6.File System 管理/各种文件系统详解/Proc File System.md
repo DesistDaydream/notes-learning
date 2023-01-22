@@ -17,7 +17,7 @@ proc 文件系统不用于存储。其主要目的是为硬件，内存，运行
 
 ## ./cgroup # 进程所属的控制组信息
 
-详见 [Cgroup](/docs/IT学习笔记/10.云原生/2.1.容器/2.CGroup.md)
+详见 [Cgroup](docs/IT学习笔记/10.云原生/2.1.容器/2.CGroup/2.CGroup.md)
 
 ## ./cmdline # 该进程的完整命令
 

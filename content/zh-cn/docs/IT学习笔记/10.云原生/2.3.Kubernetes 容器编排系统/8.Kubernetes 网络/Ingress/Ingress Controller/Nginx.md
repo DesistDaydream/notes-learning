@@ -41,7 +41,7 @@ title: Nginx
 部署完成后，即可创建 Ingress 对象，关联后端 Service
 
 - 配置好域名解析，直接使用域名访问即可，不用域名会出现问题。(如果 ingress 中没有配置 host 字段，则无需解析)
-  - 因为在 《[HTTP](/docs/IT学习笔记/4.数据通信/通信协议/7.HTTP.md)》 文章中，http 协议的 Request-URL 中包含了 client 访问时输入的网址，可以是 IP 或者域名，而 ingress 对象的配置中，host 配置的都是域名，如果是 ip 的话， ingress 是无法识别出带有 IP 的 URL 的。
+  - 因为在 《[HTTP](docs/IT学习笔记/4.数据通信/通信协议/7.HTTP/7.HTTP.md)》 文章中，http 协议的 Request-URL 中包含了 client 访问时输入的网址，可以是 IP 或者域名，而 ingress 对象的配置中，host 配置的都是域名，如果是 ip 的话， ingress 是无法识别出带有 IP 的 URL 的。
 
 ## Nginx 官方版部署方式：
 
@@ -49,7 +49,7 @@ title: Nginx
   - 直接创建一个 daemonset 类型的 nginx-ingress(就是 ingress-controller)
 - 创建 Ingress 对象，关联后端 Service
 - 配置好域名解析，直接使用域名访问即可。(如果 ingress 中没有配置 host 字段，则无需解析)
-  - Note：不用域名会出现问题。因为在 《[HTTP](/docs/IT学习笔记/4.数据通信/通信协议/7.HTTP.md)》 文章中，http 协议的 Request-URL 中包含了 client 访问时输入的网址，可以是 IP 或者域名，而 ingress 对象的配置中，host 配置的都是域名，如果是 ip 的话， ingress 是无法识别出带有 IP 的 URL 的。
+  - Note：不用域名会出现问题。因为在 《[HTTP](docs/IT学习笔记/4.数据通信/通信协议/7.HTTP/7.HTTP.md)》 文章中，http 协议的 Request-URL 中包含了 client 访问时输入的网址，可以是 IP 或者域名，而 ingress 对象的配置中，host 配置的都是域名，如果是 ip 的话， ingress 是无法识别出带有 IP 的 URL 的。
 
 # 关联文件与配置
 

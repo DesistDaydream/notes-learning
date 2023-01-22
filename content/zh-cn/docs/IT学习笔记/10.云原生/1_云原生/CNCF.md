@@ -13,7 +13,10 @@ title: CNCF
 
 # CNCF 项目治理
 
-参考：[官方文档](https://www.cncf.io/projects/)、[jimmysong](https://jimmysong.io/kubernetes-handbook/cloud-native/cncf-project-governing.html)
+> 参考：
+> - [官方文档](https://www.cncf.io/projects/)
+> - [jimmysong](https://jimmysong.io/kubernetes-handbook/cloud-native/cncf-project-governing.html)
+
 CNCF 根据“[鸿沟理论](https://www.jianshu.com/p/a305fa93580b)”将其托管的项目分成三个成熟阶段，并设置了项目晋级到更高阶段的标准。
 
 > “[鸿沟理论](https://www.jianshu.com/p/a305fa93580b)”是由 Geoffrey A. Moore 提出的高科技产品的市场营销理论。新技术要想跨越鸿沟，必须能够实现一些跨越式的发展，**拥有某一些以前不可能实现的功能**，具有某种内在价值并能够**赢得非技术人员的**青睐。
@@ -28,7 +31,9 @@ CNCF 根据“[鸿沟理论](https://www.jianshu.com/p/a305fa93580b)”将其托
 
 # CNCF Ambassador(CNCF 大使)
 
-参考：[CNCF 官网](https://www.cncf.io/people/ambassadors/)
+> 参考：
+> - [CNCF 官网](https://www.cncf.io/people/ambassadors/)
+
 可以通过以下方式成为 CNCF Ambassador：
 
 - 成为 CNCF 会员或对成为某个 CNCF 的项目的贡献者

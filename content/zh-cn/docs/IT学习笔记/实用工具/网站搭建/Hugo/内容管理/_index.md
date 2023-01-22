@@ -8,9 +8,24 @@ weight: 20
 > 参考：
 > - [官方文档，内容管理](https://gohugo.io/content-management/)
 
+为了让静态站点生成器实现可扩展性和可管理型，我们可以为文章添加 **FrontMatter(前页)** 和 **Templates(模板)**。Hugo 基于这种特性，设计时不仅考虑了开发人员，还考虑到了内容管理者和作者。
+
+## 页面渲染逻辑
+网页中 URL 的生成逻辑
+- 网页中的 URL 将会根据目录名和文件名生成
+- 目录名、文件名中各种字符、特殊符号变成 URL 之后将会进行一些特殊处理
+  - 空格在 URL 中为 `-` 符号
+  - 字母在 URL 中为小写
+  - `()` 符号被删除
+
+比如
+  - content/zh-cn/docs/IT学习笔记/10.云原生/Cloud Native(云原生)/Cloud Native(云原生).md，访问该文件时时，URL 为 `http://localhost/docs/it学习笔记/10.云原生/cloud-native云原生/cloud-native云原生/`
 
 
-# FrontMatter(前页) 配置
+# FrontMatter(前页)
+> 参考：
+> - [官方文档，内容管理-前页](https://gohugo.io/content-management/front-matter/)
+
 在每篇文档的开头，我们可以使用 TOML、YAML、JSON、ORG 这四种格式配置文档的元数据，通过这些元数据，我们可以让 Hugo 或 Hugo 主题提供更强大的功能。
 
 各种格式使用不同的符号来识别：

@@ -13,6 +13,7 @@ weight: 20
 
 Hugo 是用 Go 语言编写的静态站点生成器。Steve Francia 最初于 2013 年将 Hugo 创建为开源项目。
 
+
 ## 目录结构
 > 参考：
 > - [官方文档，入门-目录结构](https://gohugo.io/getting-started/directory-structure/)
@@ -102,5 +103,4 @@ Hugo 运行时所需的缓存目录。包括需要使用的模块等：
 	- **%TMP%/hugo_cache/\***
 - Linux:
 	- **${TMP}/hugo_cache/\***
-
 
