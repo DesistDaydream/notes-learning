@@ -1,7 +1,13 @@
 ---
-title: StandardizedGlossary(标准化术语)
+title: "📚标准化术语"
 weight: 15
 ---
+
+# 概述
+> 参考：
+> - 
+
+StandardizedGlossary(标准化术语)
 
 # 黑盒学习 与 白盒学习
 
