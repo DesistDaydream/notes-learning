@@ -1,6 +1,6 @@
 ---
-title: "_index"
-linkTitle: "_index"
+title: "其他"
+linkTitle: "其他"
 weight: 20
 ---
 
