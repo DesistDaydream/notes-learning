@@ -4,13 +4,17 @@ title: Apifox
 
 # 自带的动态变量
 
-参考：[Postman 官方文档](https://learning.postman.com/docs/writing-scripts/script-references/variables-list/)、[ApiFox 官方文档](https://www.apifox.cn/help/app/api-manage/dynamic-variables/)
+> 参考：
+> - [Postman 官方文档](https://learning.postman.com/docs/writing-scripts/script-references/variables-list/)
+> - [ApiFox 官方文档](https://www.apifox.cn/help/app/api-manage/dynamic-variables/)
 
 - {{$timestamp}} # 当前时间戳
 
 程序脚本
 
-参考：[Postman 官方文档](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/)、[ApiFox 官方文档](https://www.apifox.cn/help/app/scripts/)
+> 参考：
+> - [Postman 官方文档](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/)
+> - [ApiFox 官方文档](https://www.apifox.cn/help/app/scripts/)
 
 ## Gdas 签名
 

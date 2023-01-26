@@ -4,11 +4,11 @@ title: SCM
 
 # 概述
 
-> ## 参考：
+> 参考：
 
-SCM(Software Configuration Management)，软件配置管理系统。
+SCM(Software Configuration Management，软件配置管理系统)。
 
-SCM(Source Control Management)，源代码控制管理系统。
+SCM(Source Control Management，源代码控制管理系统)。
 
 git、Subversion(SVN)、CVS、Perforce、ClearCase 等都可以称为 SCM。
 

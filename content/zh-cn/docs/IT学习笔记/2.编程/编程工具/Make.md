@@ -9,7 +9,7 @@ title: Make 命令教程
 > - [Wiki,Make(software)](<https://en.wikipedia.org/wiki/Make_(software)>)
 > - [阮一峰博客，Make 命令教程](https://www.ruanyifeng.com/blog/2015/02/make.html)
 
-# Make 命令教程
+# Make
 
 代码变成可执行文件，叫做[编译](https://www.ruanyifeng.com/blog/2014/11/compiler.html)（compile）；先编译这个，还是先编译那个（即编译的安排），叫做[构建](https://en.wikipedia.org/wiki/Software_build)（build）。
 

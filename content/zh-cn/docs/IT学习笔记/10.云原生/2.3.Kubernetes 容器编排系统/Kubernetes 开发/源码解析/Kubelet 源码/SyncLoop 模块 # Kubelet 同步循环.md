@@ -4,7 +4,7 @@ title: "SyncLoop 模块 # Kubelet 同步循环"
 
 # 概述
 
-> ## 参考：
+> 参考：
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/paseql/1645680266069-2cc34f9d-ed55-45dd-8df4-ac0ed0c8c388.png)
 kubelet 的工作核心就是在围绕着不同的生产者生产出来的不同的有关 pod 的消息来调用相应的消费者（不同的子模块）完成不同的行为(创建和删除 pod 等)，即图中的控制循环（SyncLoop），通过不同的事件驱动这个控制循环运行。

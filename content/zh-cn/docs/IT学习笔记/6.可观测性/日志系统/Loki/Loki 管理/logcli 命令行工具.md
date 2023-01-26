@@ -4,7 +4,7 @@ title: logcli 命令行工具
 
 # 概述
 
-> ## 参考：
+> 参考：
 
 export LOKI_ADDR=http://localhost:3100
 

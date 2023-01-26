@@ -5,7 +5,7 @@ weight: 5
 
 # 概述
 
-> ## 参考：
+> 参考：
 
 想要登录 Linux，必须通过 [**Terminal(终端)**](/docs/IT学习笔记/1.操作系统/4.Terminal%20 与%20Shell/4.Terminal%20 与%20Shell.md 与 Shell.md)，我们才可以与操作系统进行交互。
 

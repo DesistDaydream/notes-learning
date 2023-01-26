@@ -4,7 +4,7 @@ title: GSettings 与 Dconf
 
 # 概述
 
-> ## 参考：
+> 参考：
 
 # gsetting 命令行工具
 

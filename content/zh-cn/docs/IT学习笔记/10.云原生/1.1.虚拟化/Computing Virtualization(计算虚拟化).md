@@ -4,7 +4,7 @@ title: Computing Virtualization(计算虚拟化)
 
 # 概述
 
-> ## 参考：
+> 参考：
 
 CPU 虚拟化(vCPU=virtual CPU #虚拟 CPU)
 

@@ -4,7 +4,7 @@ title: 使用 VNC 访问虚拟机
 
 # 概述
 
-> ## 参考：
+> 参考：
 
 在 [rfbproto/rfbproto 的 #18 issue](https://github.com/rfbproto/rfbproto/issues/18) 中，表示 QEMU 中内置了 VNC/RFB，并对该协议进行了一些修改以支持一些额外的功能。所以，我们可以使用 VNC 客户端，使用 QEMU/KVM 为虚拟机暴露的 VNC 端口，连接到虚拟机(不管是 图形界面的虚拟机 还是 命令行界面的虚拟机)。
 

@@ -4,7 +4,7 @@ title: ECMAScript 环境安装与使用
 
 # 概述
 
-> ## 参考：
+> 参考：
 
 有两种运行时环境可以运行 ECMAScript 代码(Javascript、Typescript)
 

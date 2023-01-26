@@ -12,13 +12,13 @@ title: CPU 精简指令集
 
 时间来到了 1980s 年代，此时容量 “高达”64K 的内存开始出现，内存容量上终于不再捉襟见肘，价格也开始急速下降，在 1977 年，1MB 内存的价格高达**$5000**，要知道这可是 1977 年的 5000 刀，但到了 1994 年，1MB 内存价格就急速下降到大概只有 $6，这是第一个趋势。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/bd3e175a-3a81-4d09-b35a-401cb5aa8d1f/640)
+![](https://mmbiz.qpic.cn/mmbiz_png/8g3rwJPmya12ltUymX3TQqpBNV7EhMcyvicvtS0zS0TmLEyibzO3IPzDBIcp5EPKmFQBgickYJ9YjKIcmOZgyeMwA/640?wx_fmt=png#id=kl2bC&originHeight=460&originWidth=715&originalType=binary&ratio=1&status=done&style=none)
 
 此外在这一时期随着编译技术的进步，编译器越来越成熟，**渐渐的程序员们开始依靠编译器来生成汇编指令而不再自己手工编写**。
 
 这两个趋势的出现让人们有了更多思考。
 
-#####
+##### 
 
 **化繁为简**
 
@@ -30,17 +30,17 @@ title: CPU 精简指令集
 
 他的早期工作提出一个关键点，复杂指令集中那些被认为可以提高性能的指令其实在内部被微代码拖后腿了，如果移除掉微代码，程序反而可以运行的更快，并且可以节省构造 CPU 消耗的晶体管数量。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/bd3e175a-3a81-4d09-b35a-401cb5aa8d1f/640)
+![](https://mmbiz.qpic.cn/mmbiz_png/8g3rwJPmya12ltUymX3TQqpBNV7EhMcyJfsicib1IzSjnYicl0YqHiaeWFPzqicwd4PLZAQWVXh1UV40bTEAA1bY9Gg/640?wx_fmt=png#id=lApuZ&originHeight=657&originWidth=1030&originalType=binary&ratio=1&status=done&style=none)
 
 由于微代码的设计思想是将复杂机器指令**在 CPU 内部**转为相对简单的机器指令，这一过程对编译器不可见，也就是说你没有办法通过编译器去影响 CPU 内部的微代码运行行为，因此如果微代码出现 bug 那么编译器是无能为力的，你没有办法通过编译器生成其它机器指令来修复问题而只能去修改微代码本身。
 
 此外他还发现，有时一些复杂的机器指令执行起来要比等价的多个简单指令要。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/bd3e175a-3a81-4d09-b35a-401cb5aa8d1f/640)
+![](https://mmbiz.qpic.cn/mmbiz_png/8g3rwJPmya12ltUymX3TQqpBNV7EhMcyMXxicNgpjphy7Ynbe4XbbhwEeCdzIPia3zSXFIyIiatvhx4ZZF9DxphvQ/640?wx_fmt=png#id=m5lPU&originHeight=306&originWidth=1080&originalType=binary&ratio=1&status=done&style=none)
 
 这一切都在提示：**为什么不直接用一些简单到指令来替换掉那些复杂的指令呢**？
 
-#####
+##### 
 
 **精简指令集哲学**
 
@@ -58,7 +58,7 @@ title: CPU 精简指令集
 
 博主在《[你管这破玩意叫编程语言](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247485439&idx=1&sn=5045e795fe3a881ec719ffd0ea41302a&chksm=fcb980a1cbce09b7cb79cac0964d082bda3f8b94701012ab5fbd911d630bd5fef6017feb6dd9&scene=21#wechat_redirect)》一文中举得例子其实更形象一些，复杂指令集下一条指令可以表示 “给我端杯水”，而在精简指令集下你需要这样表示：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/bd3e175a-3a81-4d09-b35a-401cb5aa8d1f/640)
+![](https://mmbiz.qpic.cn/mmbiz_png/8g3rwJPmya12ltUymX3TQqpBNV7EhMcySDa83ZSlHPLnmsafM68EYYLxfE3Fblhxx23ps9avicNcO3bXibVm23yQ/640?wx_fmt=png#id=hfbSU&originHeight=711&originWidth=1078&originalType=binary&ratio=1&status=done&style=none)
 
 **2，编译器**
 
@@ -74,7 +74,7 @@ title: CPU 精简指令集
 
 但在精简指令集下，这绝对是大写的禁忌，**精简指令集下的指令只能操作寄存器中的数据**，不可以直接操作内存中的数据，也就是说这些指令比如加法指令不会去访问内存。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/bd3e175a-3a81-4d09-b35a-401cb5aa8d1f/640)
+![](https://mmbiz.qpic.cn/mmbiz_png/8g3rwJPmya12ltUymX3TQqpBNV7EhMcyaTUmS8YAejM93sc6xgDjZq75M5vYuzejCmrU2MYcr04M3FBr9DegrA/640?wx_fmt=png#id=eRUmP&originHeight=407&originWidth=1080&originalType=binary&ratio=1&status=done&style=none)
 
 毕竟数据还是存放在内存中的，那么谁来读写内存呢？
 
@@ -86,13 +86,13 @@ title: CPU 精简指令集
 
 接下来我们用一个例子来看下 RISC 和 CISC 的区别。
 
-#####
+##### 
 
 **两数相乘**
 
 如图所示就是最经典的计算模型，最右边是内存，存放机器指令和数据，最左侧是 CPU，CPU 内部是寄存器和计算单元 ALU，进一步了解 CPU 请参考《[你管这破玩意叫 CPU？](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247485529&idx=1&sn=4a1154e4acfb4335a44a81260485c7ca&chksm=fcb98f07cbce061138c68333f6c9c73e02321400c66c9835aee956a00bf4e8c54fefee678fd7&scene=21#wechat_redirect)》
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/bd3e175a-3a81-4d09-b35a-401cb5aa8d1f/640)
+![](https://mmbiz.qpic.cn/mmbiz_png/8g3rwJPmya12ltUymX3TQqpBNV7EhMcyZUH7DF0reMeGnpyd85zkgY6iaLhIpsibB6Est16RF0KNLwdGGmg0ERjQ/640?wx_fmt=png#id=iVDq5&originHeight=338&originWidth=429&originalType=binary&ratio=1&status=done&style=none)
 
 内存中的地址 A 和地址 B 分别存放了两个数，假设我们想计算这两个数字之和，然后再把计算结果写回内存地址 A。
 
@@ -153,11 +153,11 @@ STORE A, RA
 
 现在你应该看到了，同样一项任务，在 CISC 下只需要一条机器指令，而在 RISC 下需要四条机器指令，显然 RISC 下的程序本身所占据的空间要比 CISC 大，而且这对直接用汇编语言来写程序的程序员来说是很不友好的，因为更繁琐嘛！再来看看这样图感受一下：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/bd3e175a-3a81-4d09-b35a-401cb5aa8d1f/640)
+![](https://mmbiz.qpic.cn/mmbiz_png/8g3rwJPmya12ltUymX3TQqpBNV7EhMcySDa83ZSlHPLnmsafM68EYYLxfE3Fblhxx23ps9avicNcO3bXibVm23yQ/640?wx_fmt=png#id=B2xzX&originHeight=711&originWidth=1078&originalType=binary&ratio=1&status=done&style=none)
 
 但 RISC 设计的初衷也**不是让程序员直接使用汇编语言来写程序**，而是把这项任务交给编译器，让编译器来生成机器指令。
 
-#####
+##### 
 
 **标准从来都是一个好东西**
 
@@ -176,7 +176,7 @@ STORE A, RA
 
 我们在《[CPU 遇上特斯拉，程序员的心思你别猜](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247485484&idx=1&sn=d5d00e08b7e91caaf35c03f3ef19d47b&chksm=fcb98f72cbce0664139f9b0ab9e23f5c88164bac95c7dd146cf29484e96ebc2c7ea13e9b01ed&scene=21#wechat_redirect)》这篇文章中提到过，这就是有名的**流水线技术**。
 
-#####
+##### 
 
 **指令流水线**
 
@@ -186,7 +186,7 @@ STORE A, RA
 
 假设组装一辆汽车需要经过四个步骤：组装车架、安装引擎、安装电池、检验。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/bd3e175a-3a81-4d09-b35a-401cb5aa8d1f/640)
+![](https://mmbiz.qpic.cn/mmbiz_png/8g3rwJPmya12ltUymX3TQqpBNV7EhMcySVK3y9s6QojhMRsCSuCnFZcYgDyQIL32cWseMlj40cr0R77eTc2DZA/640?wx_fmt=png#id=FKiie&originHeight=833&originWidth=895&originalType=binary&ratio=1&status=done&style=none)
 
 假设这每个步骤需要 10 分钟，如果没有流水线技术，那么生产一辆汽车的时间是 40 分钟，只有第一辆汽车完整的经过这四个步骤后下一辆车才能进入生产车间。
 
@@ -212,7 +212,7 @@ CPU 的道理也是一样的，低效的原因在于没有充分利用资源，�
 
 有流水线技术的加持，采用精简指令集设计的 CPU 在性能上开始横扫其复杂指令集对手。
 
-#####
+##### 
 
 **名扬天下**
 
@@ -222,15 +222,13 @@ CPU 的道理也是一样的，低效的原因在于没有充分利用资源，�
 
 所有其它 CPU 生成厂商都开始跟进 RISC，积极采纳精简指令集设计思想，甚至操作系统 MINIX（就是那个 Linus 上大学时使用的操作系统）的作者 Andrew Tanenbaum 在 90 年代初预言：“5 年后 x86 将无人问津”，x86 正是基于 CISC。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/bd3e175a-3a81-4d09-b35a-401cb5aa8d1f/640)
-
 **CISC 迎来至暗时刻**。
 
 接下来 CISC 该如何绝地反击，要知道 Inter 以及 AMD (x86 处理器两大知名生产商) 的硬件工程师们绝非等闲之辈。
 
 预知后事如何，请听下回分解。
 
-#####
+##### 
 
 **总结**
 
@@ -240,8 +238,4 @@ RISC 中每条指令更加简单，执行时间比较标准，因此可以很高
 
 面对 RISC，CISC 阵营也开始全面反思应如何应对挑战。后续文章将继续这一话题。
 
-希望本文对大家理解精简指令集有所帮助。
 
-**关注 “码农的荒岛求生”**
-
-**哦对了，《**深入理解操作系统**》现已全部更新完毕啦，扫描下方二维码即可一键购买全部章节。**

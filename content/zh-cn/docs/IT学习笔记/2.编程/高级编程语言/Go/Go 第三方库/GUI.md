@@ -4,7 +4,7 @@ title: GUI
 
 # 概述
 
-> ## 参考：
+> 参考：
 
 # Go OpenCV
 

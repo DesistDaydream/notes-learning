@@ -4,7 +4,7 @@ title: Thanos 配置详解
 
 # 概述
 
-> ## 参考：
+> 参考：
 
 # Sidecar 配置
 

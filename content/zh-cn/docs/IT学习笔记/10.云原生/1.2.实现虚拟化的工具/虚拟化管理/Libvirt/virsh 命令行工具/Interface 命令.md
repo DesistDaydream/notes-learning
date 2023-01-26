@@ -4,7 +4,7 @@ title: Interface 命令
 
 # 概述
 
-> ## 参考：
+> 参考：
 
 iface-begin create a snapshot of current interfaces settings, which can be later committed (iface-commit) or restored (iface-rollback)
 iface-bridge create a bridge device and attach an existing network device to it

@@ -4,7 +4,7 @@ title: Function(函数)
 
 # 概述
 
-> ## 参考：
+> 参考：
 
 DRY 原则：Don't Repeart Yourself(不要重复你自己)
 

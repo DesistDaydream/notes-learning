@@ -4,7 +4,7 @@ title: TCP Wrappers
 
 # 概述
 
-> ## 参考：
+> 参考：
 
 注意：CentOS8 及 RHEL8 不再支持 TCP_Wrappers！！！！使用 firewalld 代替！！
 
