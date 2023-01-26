@@ -17,7 +17,7 @@ OPTIONS:
 - **-f **# 指定被处理的文件（在所有选项里一定要放最后一个，否则会报错）
 - **-x** # 解包文件
 - **-c** # 打包文件
-- **-C, --directory=<DIR> **# 解包到指定目录
+- **-C, --directory=\<DIR> **# 解包到指定目录
 - **-v **# 显示执行命令时的详细过程
 - **-t** # 查看已经打包的文件中的内容
 - **-z** # 通过 gzip 指令处理打包的文件；
@@ -25,10 +25,10 @@ OPTIONS:
 
 EXAMPLE:
 
-- tar -zcvf xxx.tar.gz /tmp/test/\* #把/tmp/test/下所有的文件和目录都打包并压缩成 xxx.tar.gz
-- tar -zxvf xxx.tar.gz \[-C /XXX] #解压 xxx.tar.gz 文件（加-C /tmp/test2/ 指定解压缩的路径，解压缩到/tmp/test2/目录下）
-- tar -tvf xxx.tar.gz #不解包查看压缩文件里有哪些文件和目录
-- zcat xxx.tar.gz #读取打包文件的内容等详细信息
+- tar -zcvf xxx.tar.gz /tmp/test/\* # 把/tmp/test/下所有的文件和目录都打包并压缩成 xxx.tar.gz
+- tar -zxvf xxx.tar.gz \[-C /XXX] # 解压 xxx.tar.gz 文件（加-C /tmp/test2/ 指定解压缩的路径，解压缩到/tmp/test2/目录下）
+- tar -tvf xxx.tar.gz # 不解包查看压缩文件里有哪些文件和目录
+- zcat xxx.tar.gz # 读取打包文件的内容等详细信息
 
 # gzip
 
