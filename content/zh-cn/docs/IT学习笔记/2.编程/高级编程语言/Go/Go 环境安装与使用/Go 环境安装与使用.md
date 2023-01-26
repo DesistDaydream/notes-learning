@@ -51,7 +51,7 @@ source /etc/profile.d/go.sh
 配置环境变量，执行命令
 
 - go env -w GOPATH=D:\Tools\GoPath
-- go env -w GOPROXY=https://goproxy.cn,https://goproxy.io,https://mirrors.aliyun.com/goproxy/,direct
+- go env -w GOPROXY=https://goproxy.cn,https://goproxy.io,direct
 - go env -w GO111MODULE=on
 
 ## 安装多个版本的 Go

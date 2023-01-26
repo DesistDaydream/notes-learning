@@ -24,4 +24,4 @@ mklink \[\[/d] | \[/h] | \[/j]] \<link> \<target>
 
 EXAMPLE
 
-- mklink /D C:/Users/DesistDaydream/AppData/Roaming/yuzu F:/yuzu/user
+- mklink /D C:/Users/DesistDaydream/AppData/Roaming/yuzu E:/yuzu/user
