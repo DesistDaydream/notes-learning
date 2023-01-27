@@ -12,17 +12,21 @@ weight: 14
 
 - <https://bbs.360.cn/thread-16040300-1-1.html>
 
-Geek Uninstaller # 彻底写在软件
+Geek Uninstaller # 彻底卸载软件
 
 - <https://geekuninstaller.com/>
 
 ## Windows 磁盘空间管理工具
 
 SpaceSniffer
+
 官网：<http://www.uderzo.it/main_products/space_sniffer/>
 
 Dism++
+
 <https://github.com/Chuyu-Team/Dism-Multi-language>
+
+还可以控制系统软件、系统服务，不过好像很久不更新了，最后一次 release 还是 2021 年。。。( ╯□╰ )
 
 ## Everything
 

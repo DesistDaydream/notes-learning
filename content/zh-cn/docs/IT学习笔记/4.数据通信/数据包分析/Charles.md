@@ -11,8 +11,10 @@ title: Charles
 > - ISO 安装 Charles 证书：<https://www.jianshu.com/p/08f602eabb54>
 >   - 苹果的能用 2022.9.19
 > - <https://www.charles.ren/> 生成注册码
+>   - 生成码之后直接使用即可
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/arzv8v/1671955685091-ae697c1c-96a5-4d8c-8b3c-e47da76fc75e.png)
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/arzv8v/1671955755610-395fe14a-f08d-42a7-877c-7296c96e473f.png)
 
 在手机、pad 上配置 WLAN 代理，访问 `chls.pro/ssl` 下载证书。

@@ -35,6 +35,11 @@ wsl --install
 wsl --set-default-version 2
 ```
 
+忘记密码时，可以在 PowerShell 中使用 wsl 命令直接以 root 用户登录 wsl
+
+```shell
+wsl.exe --user root
+```
 
 # 为 WSL2 设置代理
 
@@ -51,38 +56,10 @@ export ALL_PROXY="sock5://${hostip}:7890"
 # 访问 WSL 文件系统
 
 在 Windows 资源管理器中，访问 `\\wsl$` 即可访问 WSL 文件系统
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/tqwpkc/1654930585949-71f955ca-97c4-45d8-be77-a637670803eb.png)
+
 
 # WSL 关联文件与配置
 
-```json
-        "list":
-        [
-            {
-                "commandline": "powershell.exe",
-                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-                "hidden": false,
-                "name": "Windows PowerShell"
-            },
-            {
-                "commandline": "cmd.exe",
-                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-                "hidden": false,
-                "name": "\u547d\u4ee4\u63d0\u793a\u7b26"
-            },
-            {
-                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
-                "hidden": false,
-                "name": "Azure Cloud Shell",
-                "source": "Windows.Terminal.Azure"
-            },
-            {
-                "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
-                "hidden": false,
-                "name": "Ubuntu",
-                "source": "Windows.Terminal.Wsl"
-            }
-        ]
-    },
-```
 
