@@ -16,7 +16,8 @@ title: Python 环境安装与使用
 ## Windows
 
 从官网下载 Windows 版的 exe 安装包，勾选 `Add Python ${版本号} to PATH`。安装包中包括 IDLE、pip、Python 文档。
-安装完成后会提示关闭 Path 变量值得长度限制
+
+安装完成后会提示关闭 Path 变量值的长度限制
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gzv1ih/1659885506889-188054a3-8a67-4039-ab87-16f8ff3a3e38.png)
 
 ### 安装完成后自动设置的内容
@@ -27,8 +28,8 @@ title: Python 环境安装与使用
 
 同时将会在用户变量中的 Path 环境变量中添加如下值：
 
-- %USERPROFILE%\AppData\Local\Programs\Python\Python310\Scripts\\
-- %USERPROFILE%\AppData\Local\Programs\Python\Python310\\
+- %USERPROFILE%/AppData/Local/Programs/Python/Python310/Scripts/
+- %USERPROFILE%/AppData/Local/Programs/Python/Python310/
 
 在 `%USERPROFILE%\AppData\Local\Programs\Python\Python310\Scripts\` 目录中将会添加 pip 二进制命令。
 

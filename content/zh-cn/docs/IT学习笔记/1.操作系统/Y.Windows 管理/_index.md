@@ -9,10 +9,12 @@ weight: 10
 
 # 服务管理工具
 
-> https://docs.microsoft.com/zh-cn/dotnet/framework/windows-services/
-> https://docs.microsoft.com/zh-cn/powershell/scripting/samples/managing-services?view=powershell-7.2
+> 参考：
+> - https://docs.microsoft.com/zh-cn/dotnet/framework/windows-services/
+> - https://docs.microsoft.com/zh-cn/powershell/scripting/samples/managing-services?view=powershell-7.2
 
 Get-Service # 列出所有服务
+
 
 # 链接文件管理
 

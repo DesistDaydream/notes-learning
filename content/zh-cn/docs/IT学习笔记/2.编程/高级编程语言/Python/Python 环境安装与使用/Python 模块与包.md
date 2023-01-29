@@ -274,15 +274,19 @@ $ python3 test/test.py
 
 `sys.path` 变量中除了第一个元素之外，其他的元素是**通过 Python 解释器(i.e.python 可执行文件)推导出来**的。启动 Python 交互环境或者用解释器运行脚本时，将会为如下几个变量生成值
 
-- `sys.prefix` # Python 标准模块(标准库)目录前缀。可以用过 `${PYTHONHOME}` 变量覆盖初始值
+- `sys.prefix` # Python 标准模块(标准库)目录前缀。默认通过运行的 python 解释器推导出来。可以用过 `${PYTHONHOME}` 变量覆盖初始值
 - `sys.exec_prefix` # Python 扩展模块(第三方库)目录前缀。可以用过 `${PYTHONHOME}` 变量覆盖初始值
 - `sys.executable` # Python 解释器的路径。
 
 ### 推导 sys.prefix 变量
 
-假如 Python 解释器的路径是 `/usr/bin/python3`，生成的值如下：
+假如 Python 解释器的路径
+- 在 Linux 中是 `/usr/bin/python3`
+- 在 Windows 中是 `C:\Users\DesistDaydream\AppData\Local\Programs\Python\Python310\python.exe`
 
-> 这里用的是 Linux 上的默认 Python，`${sys.prefix}` 就是 `/usr`。
+生成的值如下：
+
+Linux 上的默认 Python，`${sys.prefix}` 是：
 
 ```python
 >>> import sys
@@ -294,19 +298,23 @@ $ python3 test/test.py
 '/usr/bin/python3'
 ```
 
-Windows 的话则直接实在 ${sys.prefix}/ 目录下查找其他路径
+Windows 上默认安装路径的 Python，`${sys.prefix}` 是：
 
 ```python
 >>> import sys
 >>> sys.prefix
 'C:\\Users\\DesistDaydream\\AppData\\Local\\Programs\\Python\\Python310'
+>>> sys.exec_prefix
+'C:\\Users\\DesistDaydream\\AppData\\Local\\Programs\\Python\\Python310'
 >>> sys.executable
 'C:\\Users\\DesistDaydream\\AppData\\Local\\Programs\\Python\\Python310\\python.exe'
 ```
 
-推导出 `sys.prefix` 之后，**通常会在 **`**${sys.prefix}/lib/**`** 目录下查找其他的路径。**Windows 则是直接在 `${sys.prefix}/` 目录下查找其他路径
+推导出 `sys.prefix` 之后
+- Linux 通常会在 `${sys.prefix}/lib/` 目录下查找其他的路径。
+	- 有的发行版则通常会在 ${sys.prefix}/lib64/ 目录下查找其他路径，比如 CentOS。
+- Windows 则是直接在 `${sys.prefix}/` 目录下查找其他路径
 
-> 有的发行版则通常会在 ${sys.prefix}/lib64/ 目录下查找其他路径，比如 CentOS。
 
 ### 生成基本路径
 
@@ -401,7 +409,7 @@ ENABLE_USER_SITE: False
 ['', '/usr/lib/python38.zip', '/usr/lib/python3.8', '/usr/lib/python3.8/lib-dynload', '/home/lichenhao/.local/lib/python3.8/site-packages', '/usr/local/lib/python3.8/dist-packages', '/usr/lib/python3/dist-packages']
 ```
 
-到这里可以发现，**关于包路径搜索最重要的就是这个 **`**${sys.prefix}**`**路径前缀**，而这个值又是从使用的 Python 解释器路径推导出来的。所以要找到包的路径，只需要知道解释器的路径就可以了，如果遇到改变包的路径，只需要通过正确的 PATH 设置，指定你想要的 Python 解释器即可。
+到这里可以发现，**关于包路径搜索最重要的就是这个 `${sys.prefix}` 路径前缀**，而这个值又是从使用的 Python 解释器路径推导出来的。所以要找到包的路径，只需要知道解释器的路径就可以了，如果遇到改变包的路径，只需要通过正确的 PATH 设置，指定你想要的 Python 解释器即可。
 
 若 `sys.path` 中的所有目录都无法找到想要导入的模块，将会出现如下报错：
 
@@ -481,7 +489,8 @@ pip 是 Python 的包管理程序。可以使用它来安装来自 Python 包索
 
 ## 关联文件与配置
 
-**~/.pip/pip.conf **# 配置文件
+**~/.pip/pip.conf** # Linux 配置文件
+**%USERPROFILE%/pip/pip.ini** # Windows 配置文件
 
 pip 安装的模块我们可以从如下目录中找到，该目录下的目录名或文件名通常来说即是包名
 
@@ -500,6 +509,27 @@ pip 安装的模块我们可以从如下目录中找到，该目录下的目录�
   - 普通 用户：**~/.local/bin/\***
 
 ## Syntax(语法)
+pip <command> \[OPTIONS] COMMAND
+
+Commands:
+  install                     Install packages.
+  download                    Download packages.
+  uninstall                   Uninstall packages.
+  freeze                      Output installed packages in requirements format.
+  inspect                     Inspect the python environment.
+  list                        List installed packages.
+  show                        Show information about installed packages.
+  check                       Verify installed packages have compatible dependencies.
+  config                      Manage local and global configuration.
+  search                      Search PyPI for packages.
+  cache                       Inspect and manage pip's wheel cache.
+  index                       Inspect information available from package indexes.
+  wheel                       Build wheels from your requirements.
+  hash                        Compute hashes of package archives.
+  completion                  A helper command used for command completion.
+  debug                       Show information useful for debugging.
+  help                        Show help for commands.
+
 
 ### 应用示例
 
@@ -532,4 +562,4 @@ index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 trusted-host=mirrors.aliyun.com
 ```
 
-windows 下，直接在 user 目录中创建一个 pip 目录，如：C:\Users\xx\pip，新建文件 pip.ini。内容同上。
+windows 下，直接在 user 目录中创建一个 pip 目录，如：C:/Users/xx/pip，新建文件 pip.ini。内容同上。
