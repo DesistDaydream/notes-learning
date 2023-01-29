@@ -47,26 +47,26 @@ title: CPU资源的调度和管理(CFS)
 
 5.  labels:
 
-6.       app: busybox<br />
+6.        app: busybox
 7.  spec:
 
 8.  containers:
 
 9.  - image: busybox
 
-10.     resources:<br />
-11.       requests:<br />
-12.         memory: "64Mi"<br />
-13.         cpu: "250m"<br />
-14.       limits:<br />
-15.         memory: "128Mi"<br />
-16.         cpu: "500m"<br />
-17.     command:<br />
-18.       - "/bin/sh"<br />
-19.       - "-c"<br />
-20.       - "while true; do sleep 10; done" <br />
-21.     imagePullPolicy: IfNotPresent<br />
-22.     name: busybox<br />
+10.     resources:
+11.       requests:
+12.         memory: "64Mi"
+13.         cpu: "250m"
+14.       limits:
+15.         memory: "128Mi"
+16.         cpu: "500m"
+17.     command:
+18.       - "/bin/sh"
+19.       - "-c"
+20.       - "while true; do sleep 10; done"
+21.     imagePullPolicy: IfNotPresent
+22.     name: busybox
 23. restartPolicy: Always
 
 可以看到该容器内部的进程对应的 CPU 调度信息变化如下：
@@ -209,13 +209,13 @@ title: CPU资源的调度和管理(CFS)
 
 根据文章《Kubernetes 生产实践系列之三十：Kubernetes 基础技术之集群计算资源管理》的描述，Kubernetes 的资源定义：
 
-1.       resources:<br />
-2.         requests:<br />
-3.           memory: "64Mi"<br />
-4.           cpu: "250m"<br />
-5.         limits:<br />
-6.           memory: "128Mi"<br />
-7.           cpu: "500m"<br />
+1.        resources:
+2.          requests:
+3.            memory: "64Mi"
+4.            cpu: "250m"
+5.          limits:
+6.            memory: "128Mi"
+7.            cpu: "500m"
 
 比如里面的 CPU 需求，会被翻译成容器 runtime 的运行时参数，并最终变成 cgroups 和 CFS 的参数配置：
 

@@ -5,6 +5,7 @@ title: Sys File System
 # Sys File System
 
 > 参考：
+>
 > - [Manual(手册)](https://man7.org/linux/man-pages/man5/sysfs.5.html)
 > - [Linux Kernel 官方文档,Block-Queue sysfs files](https://www.kernel.org/doc/html/latest/block/queue-sysfs.html)
 
@@ -119,8 +120,8 @@ lrwxrwxrwx  1 root root 0 9月   1 10:50 wg0 -> ../../devices/virtual/net/wg0/
   - ./rotational # 块设备旋转的类型，旋转就是 HHD，不旋转就是 SSD，非常形象生动得比喻磁盘使用的情况~哈哈。`0 表示 SSD`，`1 表示 HDD`
     - 注意：如果磁盘已经被做了 Raid，那么这个值将会一直都是 1。这个说法忘记了出处，找到后补充。
 
-<br />
 ## /sys/devices/
+
 该目录下是全局设备结构体系，包含所有被发现的注册在各种总线上的各种物理设备。一般来说，所有的物理设备都按其在总线上的拓扑结构来显示，但有两个例外即 platform devices 和 system devices。
 
 - platform devices 一般是挂在芯片内部的高速或者低速总线上的各种控制器和外设，它们能被 CPU 直接寻址；

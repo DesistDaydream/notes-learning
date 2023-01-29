@@ -44,7 +44,6 @@ Note：
 - 有一点需要明确，系统下的任何程序运行都需要一个用户，哪怕在刚装完系统第一次启动，所有进程也是基于 root 用户来运行的，所以脱离用户讨论 shell 是不对的。
 - **由于 linux 常用的 shell 为 bash，下面主要描述的都是关于 bash shell 的配置**
 
-<br />
 ## Terminal(终端)
 > 参考： - [Wiki,Computer Terminal](https://en.wikipedia.org/wiki/Computer_terminal)
 > - [Wiki,TTY](https://en.wikipedia.org/wiki/Teleprinter)

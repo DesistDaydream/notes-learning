@@ -10,13 +10,22 @@ weight: 14
 
 360 文件夹 # 包含类似 Everythiny 的功能，完美代替 windows 自带的资源管理器。
 
-- <https://bbs.360.cn/thread-16040300-1-1.html>
+- https://bbs.360.cn/thread-16040300-1-1.html
 
-Geek Uninstaller # 彻底卸载软件
+# Windows 工具
 
-- <https://geekuninstaller.com/>
+## 卸载工具
 
-## Windows 磁盘空间管理工具
+Revo Uninstaller # 
+- https://www.revouninstaller.com/
+- https://www.bilibili.com/video/BV13x4y1G7Qc
+	- 30天过后请按照我的教程走一遍就好了哈
+
+Geek Uninstaller # 
+- https://geekuninstaller.com/
+	- 卸载完成后扫描系统和注册表，手动选择要删除的项目
+
+## 磁盘空间管理工具
 
 SpaceSniffer
 

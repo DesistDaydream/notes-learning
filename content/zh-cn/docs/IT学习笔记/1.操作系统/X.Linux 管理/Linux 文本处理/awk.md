@@ -5,6 +5,7 @@ title: awk
 # 概述
 
 > 参考：
+>
 > - [官网](https://www.gnu.org/software/gawk/)
 > - [官方文档](https://www.gnu.org/software/gawk/manual/gawkinet/)
 
@@ -117,8 +118,7 @@ Hello World Text
     - cat /etc/passwd | awk -F : '$7=="/bin/bash"/{print $1,$3}'
 - 以冒号为分隔符的第三个字段数小于 10 的那些行，输出其中的第一和第三个字段
   - cat /etc/passwd | awk -F : '$3<10{print $1,$3}'
-- <br />
-   - cat /etc/passwd | awk 'BEGIN{FS=":"}{print "UserName\n-----------"}$3<10{print $1,$3}'
+- - cat /etc/passwd | awk 'BEGIN{FS=":"}{print "UserName\n-----------"}$3<10{print $1,$3}'
 - 以=号为分隔符，不包含开头带#或者空白行的所有行，显示这些行的第一个字段,判断模式与搜索模式并用
   - awk -F = '!/^#|^$/{print $1}' /etc/sysctl.conf
     - awk -F = '/^\[^#]/{print $1}' /etc/sysctl.conf #不含#的行

@@ -5,6 +5,7 @@ title: Ceph 命令行工具
 # 概述
 
 > 参考：
+>
 > - [官方文档,Ceph 存储集群-手册页](https://docs.ceph.com/en/latest/rados/man/)
 > - [官方文档,Ceph 对象网关-radosgw-admin 手册页](https://docs.ceph.com/en/latest/man/8/radosgw-admin/#)
 
@@ -59,9 +60,10 @@ OPTIONS
 
 - **radosgw-admin user create --uid=lichenhao --display-name=lichenhao --system**
 
-<br />
 ## bucket
+
 ### Syntax(语法)
+
 **radosgw-admin bucket COMMAND [OPTIONS]**
 
 COMMAND

@@ -5,6 +5,7 @@ title: nerdctl
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目](https://github.com/containerd/nerdctl)
 > - [官方文档,命令参考](https://github.com/containerd/nerdctl#command-reference)
 
@@ -114,9 +115,9 @@ nerdctl 除了可以通过全局选项改变运行行为，还可以通过环境
   - 可用的值有： cgroupfs、systemd
 - **--insecure-registry <BOOLEAN>** # 是否跳过 HTTPS 证书的验证行为，并允许回退到纯 HTTP。`默认值：false`
 
-<br />
 # Management Commands (管理命令)
-management command 在使用的时候，当后面还需要跟其子命令的时候，是可省的。直接使用子命令就表示对其执行，但是有的管理命令不行，比如create，对于container可省，对于network不可省
+
+management command 在使用的时候，当后面还需要跟其子命令的时候，是可省的。直接使用子命令就表示对其执行，但是有的管理命令不行，比如 create，对于 container 可省，对于 network 不可省
 
 # Other Commands
 

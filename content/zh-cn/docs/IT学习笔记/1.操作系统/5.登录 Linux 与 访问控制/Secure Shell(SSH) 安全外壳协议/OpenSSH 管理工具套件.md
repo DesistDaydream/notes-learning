@@ -116,9 +116,9 @@ OPTIONS
 - 连接时启用 X11 转发，常用于在 Linux 系统上连接后启动
   - ssh -X -C 192.168.0.1
 
-<br />
-# scp # 基于ssh协议的文件传输工具
-**scp [OPTIONS] SourceFILE DestinationFILE**<br />Note：远程FILE的格式为：USER@IP:/PATH/FILE)
+# scp # 基于 ssh 协议的文件传输工具
+
+**scp [OPTIONS] SourceFILE DestinationFILE**<br />Note：远程 FILE 的格式为：USER@IP:/PATH/FILE)
 
 OPTIONS：
 

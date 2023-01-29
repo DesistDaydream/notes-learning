@@ -101,8 +101,6 @@ TCPDUMP does the same job irrespective to what technology (or) server you are us
 If you would like to capture the traffic of weblogic (or) Websphere or any application servers. All you have to do is change the port number in which your application server is listening
 Though we have given examples for both web and application server here.  All you should be aware of is that. There is nothing specific to technology. We just change the port number (or) interface. That’s all.
 
-
-
 ### How to capture All incoming  HTTP GET  traffic (or) requests
 
 tcpdump -i enp0s8 -s 0 -A 'tcp\[((tcp\[12:1] & 0xf0) >> 2):4] = 0x47455420'
@@ -148,8 +146,6 @@ MyName: SaravAK
 1 packet received by filter
 0 packets dropped by kernel
 \[root@mwiws01 ~]#
-
-
 
 ### How to capture only **HTTP GET** requests Incoming to port 80 ( Apache/NGINX)
 
@@ -200,8 +196,6 @@ MyName: SaravAK
 
 tcpdump -i enp0s8 -s 0 -A 'tcp dst port 443 and tcp\[((tcp\[12:1] & 0xf0) >> 2):4] = 0x47455420'
 
-
-
 ### How to capture only HTTP POST calls Incoming to port 443 ( Apache/NGINX)
 
 tcpdump -i enp0s8 -s 0 -A 'tcp dst port 443 and tcp\[((tcp\[12:1] & 0xf0) >> 2):4] = 0x504F5354'
@@ -231,26 +225,18 @@ In the preceding illustrations,  you can see the output of tcpdump command (to 
 
 tcpdump -i enp0s8 -s 0 -v -n -l | egrep -i "POST /|GET /|Host:"
 
-
-
 ### How to  capture HTTP Passwords in POST Requests
 
 tcpdump -i enp0s8 -s 0 -A -n -l | egrep -i "POST /|pwd=|passwd=|password=|Host:"
-
-
 
 ### How to capture the Cookies from Server and from Client ( Request & Response)&#xA;
 
 tcpdump -i enp0s8 -nn -A -s0 -l | egrep -i 'Set-Cookie|Host:|Cookie:'
 
-
-
 ## How to Filter HTTP User Agents
 
 Extract HTTP User Agent from HTTP request header.
 tcpdump -vvAls0 | grep 'User-Agent:'
-
-
 
 ## How to capture the HTTP packets being transmitted between Webserver and Application server both GET & POST?
 
@@ -304,7 +290,7 @@ aksarav@middlewareinventory:~$ curl -v "-H X-Forwarded-By: middlewareinventory" 
   < Content-Length: 475
   < Content-Type: text/html
   < Last-Modified: Sat, 28 Jul 2018 15:41:10 GMT
-  <  <!DOCTYPE html> <!--<br />To change this license header, choose License Headers in Project Properties.<br />To change this template file, choose Tools | Templates<br />and open the template in the editor.<br />--> <html> <head> <title>Sample WebService Application</title> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> </head> <body> <div>This is Sample WebService Application</div> </body> </html>
+  <  <!DOCTYPE html> <!--<br />To change this license header, choose License Headers in Project Properties.<br />To change this template file, choose Tools | Templatesand open the template in the editor.<br />--> <html> <head> <title>Sample WebService Application</title> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> </head> <body> <div>This is Sample WebService Application</div> </body> </html>
 - Connection #0 to host 192.168.60.4 left intact
 
 **Response**
@@ -331,8 +317,6 @@ Last-Modified: Sat, 28 Jul 2018 15:41:10 GMT
 02:49:12.426683 IP mwiapp01.18001 > 192.168.60.1.60442: Flags \[P.], seq 171:646, ack 136, win 235, options \[nop,nop,TS val 4685371 ecr 317440920], length 475
 E...-.@.@.....<...<.FQ....S.!N.......W.....
 .G~;....<!DOCTYPE html> <!--<br />To change this license header, choose License Headers in Project Properties.<br />To change this template file, choose Tools | Templates<br />and open the template in the editor.<br />--> <html> <head> <title>Sample WebService Application</title> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> </head> <body> <div>This is Sample WebService Application</div> </body> </html>
-
-
 
 ### SOAP Webservice Capture&#xA;
 
@@ -393,16 +377,12 @@ So far we have discussed various usage and examples of TCPDUMP.  But I am certa
 Instead of using the tcpdump command precisely to perform/capture request (or) response.
 You could also record the tcpdump session ( take a dump of tcpdump) and analyze, In fact, it is more trustworthy and easy rather trying to write command with ASCII code matching.
 
-
-
 ### How to record a TCPDUMP Session (or) Capture packets with tcpdump
 
 To record the tcpdump session, you can use the following command
 **Note\*:** here I have used any as an interface to capture all the packets across all the channels/interfaces available in my server
 tcpdump -i any -s 0 -X -w /tmp/tcpdump.pcap
 `pcap` is a widely accepted extension for the tcpdump output.
-
-
 
 ### How to read the TCPDUMP recorded session (or) packet capture – pcap file
 

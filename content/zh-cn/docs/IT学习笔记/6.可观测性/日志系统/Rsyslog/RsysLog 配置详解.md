@@ -5,6 +5,7 @@ title: RsysLog 配置详解
 # 概述
 
 > 参考：
+>
 > - [Manual(手册),rsyslog.conf(5)](https://man7.org/linux/man-pages/man5/rsyslog.conf.5.html)
 
 配置文件新老版本有两种格式，下面这两种写法，都可以表示让 Rsyslog 加载 imuxsock 模块
@@ -12,8 +13,8 @@ title: RsysLog 配置详解
 - **$ModLoad imuxsock # 老版本语法**
 - **module(load="imuxsock") # 新版本语法**
 
-<br />
 # MODULES 模块配置
+
 **module(load="imuxsock") **# 加载 imuxsock 模块，以便让 Rsyslog 可以监听 /dev/log 这个 Unix Socket 以接收日志消息<br />配置 TCP 协议的 syslog 接收，用于在日志服务器的时候配置
 
 - **$ModLoad imtcp** # 使用 tcp 进行传输

@@ -5,6 +5,7 @@ title: Redis 基础、高级特性与性能调优
 # 概述
 
 > 参考：
+>
 > - [公众号,Redis 基础、高级特性与性能调优](https://mp.weixin.qq.com/s/yUtZrmaE9EbhjoGzMCkFAw)
 > - [公众号,万字总结，Redis 性能问题排查解决手册](https://mp.weixin.qq.com/s/7ZlEkS63yl_DahOzq6LxQA)
 
@@ -334,7 +335,7 @@ AOF rewrite 可以通过**BGREWRITEAOF**命令触发，也可以配置 Redis 定
 
     auto-aof-rewrite-percentage 100auto-aof-rewrite-min-size 64mb
 
-`<br />`上面两行配置的含义是，Redis 在每次 AOF rewrite 时，会记录完成 rewrite 后的 AOF 日志大小，当 AOF 日志大小在该基础上增长了 100%后，自动进行 AOF rewrite。同时如果增长的大小没有达到 64mb，则不会进行 rewrite。**AOF 的优点：**
+上面两行配置的含义是，Redis 在每次 AOF rewrite 时，会记录完成 rewrite 后的 AOF 日志大小，当 AOF 日志大小在该基础上增长了 100%后，自动进行 AOF rewrite。同时如果增长的大小没有达到 64mb，则不会进行 rewrite。**AOF 的优点：**
 
 - 最安全，在启用 appendfsync always 时，任何已写入的数据都不会丢失，使用在启用 appendfsync everysec 也至多只会丢失 1 秒的数据。
 - AOF 文件在发生断电等问题时也不会损坏，即使出现了某条日志只写入了一半的情况，也可以使用 redis-check-aof 工具轻松修复。
@@ -406,7 +407,7 @@ Redis 提供许多批量操作的命令，如 MSET/MGET/HMSET/HMGET 等等，这
 
     SET a "abc"INCR bHSET c name "hi"
 
-`<br />`此时便可以使用 Redis 提供的 pipelining 功能来实现在一次交互中执行多条命令。
+此时便可以使用 Redis 提供的 pipelining 功能来实现在一次交互中执行多条命令。
 使用 pipelining 时，只需要从客户端一次向 Redis 发送多条命令（以\r\n）分隔，Redis 就会依次执行这些命令，并且把每个命令的返回按顺序组装在一起一次返回，比如：
 
 -
@@ -421,7 +422,7 @@ Redis 提供许多批量操作的命令，如 MSET/MGET/HMSET/HMGET 等等，这
 
     $ (printf "PING\r\nPING\r\nPING\r\n"; sleep 1) | nc localhost 6379+PONG+PONG+PONG
 
-`<br />`大部分的 Redis 客户端都对 Pipelining 提供支持，所以开发者通常并不需要自己手工拼装命令列表。
+大部分的 Redis 客户端都对 Pipelining 提供支持，所以开发者通常并不需要自己手工拼装命令列表。
 
 ##### **Pipelining 的局限性**
 
@@ -443,7 +444,7 @@ Pipelining 能够让 Redis 在一次交互中处理多条命令，然而在一�
 
     > GET vCount12384> SET vCount 0OK
 
-`<br />`如果在 GET 和 SET 命令之间插进来一个 INCR vCount，就会使客户端拿到的 vCount 不准确。Redis 的事务可以确保复数命令执行时的原子性。也就是说 Redis 能够保证：一个事务中的一组命令是绝对连续执行的，在这些命令执行完成之前，绝对不会有来自于其他连接的其他命令插进去执行。通过 MULTI 和 EXEC 命令来把这两个命令加入一个事务中：
+如果在 GET 和 SET 命令之间插进来一个 INCR vCount，就会使客户端拿到的 vCount 不准确。Redis 的事务可以确保复数命令执行时的原子性。也就是说 Redis 能够保证：一个事务中的一组命令是绝对连续执行的，在这些命令执行完成之前，绝对不会有来自于其他连接的其他命令插进去执行。通过 MULTI 和 EXEC 命令来把这两个命令加入一个事务中：
 
 -
 
@@ -467,7 +468,7 @@ Pipelining 能够让 Redis 在一次交互中处理多条命令，然而在一�
 
     > MULTIOK> GET vCountQUEUED> SET vCount 0QUEUED> EXEC1) 123842) OK
 
-`<br />`Redis 在接收到 MULTI 命令后便会开启一个事务，这之后的所有读写命令都会保存在队列中但并不执行，直到接收到 EXEC 命令后，Redis 会把队列中的所有命令连续顺序执行，并以数组形式返回每个命令的返回结果。可以使用 DISCARD 命令放弃当前的事务，将保存的命令队列清空。需要注意的是，**Redis 事务不支持回滚**：
+Redis 在接收到 MULTI 命令后便会开启一个事务，这之后的所有读写命令都会保存在队列中但并不执行，直到接收到 EXEC 命令后，Redis 会把队列中的所有命令连续顺序执行，并以数组形式返回每个命令的返回结果。可以使用 DISCARD 命令放弃当前的事务，将保存的命令队列清空。需要注意的是，**Redis 事务不支持回滚**：
 如果一个事务中的命令出现了语法错误，大部分客户端驱动会返回错误，2.6.5 版本以上的 Redis 也会在执行 EXEC 时检查队列中的命令是否存在语法错误，如果存在，则会自动放弃事务并返回错误。
 但如果一个事务中的命令有非语法类的错误（比如对 String 执行 HSET 操作），无论客户端驱动还是 Redis 都无法在真正执行这条命令之前发现，所以事务中的所有命令仍然会被依次执行。在这种情况下，会出现一个事务中部分命令成功部分命令失败的情况，然而与 RDBMS 不同，Redis 不提供事务回滚的功能，所以只能通过其他方法进行数据的回滚。
 
@@ -485,7 +486,7 @@ Redis 提供了 WATCH 命令与事务搭配使用，实现 CAS 乐观锁的机�
 
     if(exec(HGET stock:1001 state) == "in stock")    exec(HSET stock:1001 state "sold");
 
-`<br />`这一伪代码执行时，无法确保并发安全性，有可能多个客户端都获取到了"in stock"的状态，导致一个库存被售卖多次。使用 WATCH 命令和事务可以解决这一问题：
+这一伪代码执行时，无法确保并发安全性，有可能多个客户端都获取到了"in stock"的状态，导致一个库存被售卖多次。使用 WATCH 命令和事务可以解决这一问题：
 
 -
 
@@ -503,7 +504,7 @@ Redis 提供了 WATCH 命令与事务搭配使用，实现 CAS 乐观锁的机�
 
     exec(WATCH stock:1001);if(exec(HGET stock:1001 state) == "in stock") {    exec(MULTI);    exec(HSET stock:1001 state "sold");    exec(EXEC);}
 
-`<br />`WATCH 的机制是：在事务 EXEC 命令执行时，Redis 会检查被 WATCH 的 key，只有被 WATCH 的 key 从 WATCH 起始时至今没有发生过变更，EXEC 才会被执行。如果 WATCH 的 key 在 WATCH 命令到 EXEC 命令之间发生过变化，则 EXEC 命令会返回失败。
+WATCH 的机制是：在事务 EXEC 命令执行时，Redis 会检查被 WATCH 的 key，只有被 WATCH 的 key 从 WATCH 起始时至今没有发生过变更，EXEC 才会被执行。如果 WATCH 的 key 在 WATCH 命令到 EXEC 命令之间发生过变化，则 EXEC 命令会返回失败。
 
 ### **Scripting**
 
@@ -548,7 +549,7 @@ Redis 提供了 SCAN 命令，可以对 Redis 中存储的所有 key 进行游�
 
     slowlog-log-slower-than xxxms  #执行时间慢于xxx毫秒的命令计入Slow Logslowlog-max-len xxx  #Slow Log的长度，即最大纪录多少条Slow Log
 
-`<br />`使用**SLOWLOG GET \[number]**命令，可以输出最近进入 Slow Log 的 number 条命令。
+使用**SLOWLOG GET \[number]**命令，可以输出最近进入 Slow Log 的 number 条命令。
 使用**SLOWLOG RESET**命令，可以重置 Slow Log
 
 ###

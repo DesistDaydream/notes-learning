@@ -5,14 +5,14 @@ title: Bash 变量
 # 概述
 
 > 参考：
-> - [Manual(手册),bash(1)-参数](https://www.man7.org/linux/man-pages/man1/bash.1.html#PARAMETERS)-Shell 变量
+> - [Manual(手册),bash(1)-形参](https://www.man7.org/linux/man-pages/man1/bash.1.html#PARAMETERS)-Shell 变量
 
 环境变量是对当前环境起作用的变量，在日常操作中，我们最常用的就是 bash 这个 shell。
 
 # Bash 自带的变量
 
 > 参考：
-> - [手册，参数-](https://www.man7.org/linux/man-pages/man1/bash.1.html#PARAMETERS)Shell 变量
+> - [Manual(手册),bash(1)，形参-](https://www.man7.org/linux/man-pages/man1/bash.1.html#PARAMETERS)Shell 变量
 
 **EDITOR=STRING** # 当 Bash 需要调用编辑器时，使用该变量指定的编辑器。
 **IFS=STRING** # (Internal Field Separator)输入字段分隔符。`默认值：IFS 包含空格、制表符和回车`。
@@ -26,7 +26,7 @@ a,b
 a b
 ```
 
-**PATH=<STRING>** # 命令的搜索路径。以 `:` 分隔的目录列表，bash 执行命令时将会从 $PATH 中查找用户输入的命令，以便执行这些命令，如果在 $PATH 中无法找到，则无法执行。`默认值：取决于操作系统`，通常都是 `/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin`
+**PATH=\<STRING>** # 命令的搜索路径。以 `:` 分隔的目录列表，bash 执行命令时将会从 $PATH 中查找用户输入的命令，以便执行这些命令，如果在 $PATH 中无法找到，则无法执行。`默认值：取决于操作系统`，通常都是 `/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin`
 
 - 在 bash 的源码(`[./config-top.h](https://git.savannah.gnu.org/cgit/bash.git/tree/config-top.h)`)中，我们可以看到 PATH 变量的默认值由 DEFAULT_PATH_VALUE 定义：
 

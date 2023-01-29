@@ -5,6 +5,7 @@ title: Proc File System
 # 概述
 
 > 参考：
+>
 > - [Manual(手册),proc(5)](https://man7.org/linux/man-pages/man5/proc.5.html)
 
 **process information pseudo-filesystem(进程信息伪文件系统，简称 proc)**， 提供了内核数据结构的接口。`一般挂载到 /proc 目录`。一般情况是由操作系统自动挂载的，也可以通过`mount -t proc proc /proc`命令手动挂载。proc 文件系统中的大多数文件都是只读的，但是有些文件是可写的，用于改变内核参数。
@@ -231,7 +232,7 @@ VmRSS # 也就是进程当前时刻占用的物理内存。与 statm 文件中�
 
 # /proc/meminfo # 系统上内存使用情况的统计信息
 
-详见：《[Memory 管理工具](/docs/IT学习笔记/1.操作系统/X.Linux%20 管理/Linux%20 系统管理工具/Memory%20 管理工具.md 管理/Linux 系统管理工具/Memory 管理工具.md)》 章节
+详见：《[Memory 管理工具](/docs/IT 学习笔记/1.操作系统/X.Linux%20 管理/Linux%20 系统管理工具/Memory%20 管理工具.md 管理/Linux 系统管理工具/Memory 管理工具.md)》 章节
 
 # /proc/modules
 
@@ -277,12 +278,16 @@ root@lichenhao:~# cat /proc/net/tcp
 
 # /proc/softirqs # **软中断统计信息**
 
-<br />
 # /proc/self
+
 **当某一进程访问此软连接时，该软连接将指向该进程自己的 /proc/PID/ 目录。**
-# /proc/sys/*
+
+# /proc/sys/\*
+
 **sys 目录是可写的，可以通过它来访问或修改内核的参数。详见 **[**Kernel 参数**](https://www.yuque.com/desistdaydream/learning/fsqn9p)** 文章**
+
 # /proc/stat
+
 **系统的不同状态，例如，系统启动后页面发生错误的次数。**
 
 该文件包含系统启动以来的很多系统和内核的统计信息，平时大家比较关心的比如包括 CPU 运行情况、中断情况、启动时间、上线文切换次数、运行中的进程等信息都在其中。

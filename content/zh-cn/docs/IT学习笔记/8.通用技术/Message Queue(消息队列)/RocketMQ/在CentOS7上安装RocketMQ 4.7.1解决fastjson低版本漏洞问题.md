@@ -42,7 +42,7 @@ title: 在CentOS7上安装RocketMQ 4.7.1解决fastjson低版本漏洞问题
 
 - 参考文档
 
-- 扩展阅读 <br />
+- 扩展阅读
 
 # 在 CentOS7 上安装 RocketMQ 4.7.1 解决 fastjson 低版本漏洞问题<a name="Nrrtn"></a>## 前言
 
@@ -101,7 +101,7 @@ title: 在CentOS7上安装RocketMQ 4.7.1解决fastjson低版本漏洞问题
 - bin/tools.sh
   > 修改前记得先备份相应脚本，具体 JVM 大小根据实际情况设定。
   > bin/runserver.sh 修改前：
-      JAVA_OPT="${JAVA_OPT} -server -Xms4g -Xmx4g -Xmn2g -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=320m"1
+        JAVA_OPT="${JAVA_OPT} -server -Xms4g -Xmx4g -Xmn2g -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=320m"1
   Plain Text 修改后：
   JAVA_OPT="${JAVA_OPT} -server -Xms256m -Xmx256m -Xmn128m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=320m"1
 Plain Textbin/runserver.sh修改前：
@@ -119,12 +119,12 @@ Plain Textbin/tools.sh修改前：
   Plain Text
   > 可以将启动 Name Server 命令保存为脚本，以方便下次启动。<a name="ysGL0"></a>### 启动 Broker
   > 启动 Broker 时需要指定要连接的 Name Server：
-      # 后台启动
-      nohup sh bin/mqbroker -n localhost:9876 >/dev/null 2>&1 &1
+        # 后台启动
+        nohup sh bin/mqbroker -n localhost:9876 >/dev/null 2>&1 &1
   2
   Plain Text
   > 可以将启动 Broker 命令保存为脚本，以方便下次启动。<a name="ll44E"></a>### 查看 RocketMQ 进程 ps -ef | grep -v grep | grep rocketmq
-      11
+        11
   2
   3
   Plain Text
@@ -149,7 +149,7 @@ Plain Textbin/tools.sh修改前：
   3
   Plain Text
   > 可以将关闭 Broker 命令保存为脚本，以方便下次关闭。<a name="xLID9"></a>### 关闭 Name Server sh bin/mqshutdown namesrv
-      11
+        11
   2
   3
   Plain Text

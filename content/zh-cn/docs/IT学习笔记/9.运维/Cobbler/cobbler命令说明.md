@@ -6,8 +6,8 @@ title: cobbler命令说明
 
 1. cobbler distro report --name=CentOS7-1810 #查看安装镜像文件信息
 
-<br />
 ## import
+
 <br />cobbler import [OPTIONS]
 
 OPTIONS
@@ -22,16 +22,14 @@ EXAMPLE
 
 1. cobbler import --path=/mnt/ --name=CentOS7-1810 --arch=x86_64 #
 
-<br />
 ## profile
 
 1. cobbler profile report --name=CentOS7-x86_64 #查看指定的 profile 设置
 
-<br />
 ## system
 
 1. cobbler system list #列出
 
-<br />
 ## ksvalidator FILE
-<br />用于测试指定FILE的kickstart语法是否正确<br />
+
+<br />用于测试指定 FILE 的 kickstart 语法是否正确
