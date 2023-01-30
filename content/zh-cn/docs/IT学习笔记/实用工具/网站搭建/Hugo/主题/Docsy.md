@@ -9,7 +9,9 @@ weight: 20
 > - [GitHub 项目，google/docsy](https://github.com/google/docsy)
 > - [官网](https://www.docsy.dev/)
 
-Kubernetes 的官网就是 Docsy 主题
+Kubernetes 的官网就是 Docsy 主题。
+
+注意：Docsy 必须使用 扩展版 hugo，即 hugo_extended。
 
 # 预览和部署 Docsy 主题网站
 > 参考：

@@ -205,7 +205,7 @@ Hugo 模块是一个类似 Go 模块一样的存在。模块可以是我们的�
 
 # 安装 Hugo
 
-安装 `hogo` 命令行工具，即可开始使用 Hugo。
+安装 `hogo` 命令行工具，即可开始使用 Hugo。推荐下载扩展版 hugo，即名字带有 extended 的文件。
 
 # 关联文件与配置
 **config.toml | config.yaml | config.json** # 站点的配置文件，通常在站点的根目录

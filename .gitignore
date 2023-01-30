@@ -4,3 +4,5 @@ content/zh-cn/.obsidian/workspace.json
 resources/*
 public/*
 docs/*
+
+node_modules/*

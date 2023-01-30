@@ -24,4 +24,4 @@ Remove-AppxPackage
 
 # winget
 > 参考：
-> - [官方文档](https://learn.microsoft.com/en-us/windows/package-manager/)
+> - [官方文档-Windows，包管理器](https://learn.microsoft.com/en-us/windows/package-manager/)
