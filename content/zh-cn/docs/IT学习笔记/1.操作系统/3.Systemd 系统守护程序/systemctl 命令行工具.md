@@ -124,8 +124,9 @@ help PATTERN...|PID... Show manual for one or more units
 reset-failed \[PATTERN...] Reset failed state for all, one, or more units
 
 ## list-dependencies
-列出所依赖的服务，即给定的 UNIT 还需要哪些 UNIT 才能启动，默认列出 default.target 的依赖。
+列出服务的依赖关系，树状显示。默认列出 default.target 的依赖树，即 default.target **被哪些服务依赖**。
 
+### Syntax(语法)
 **systemctl list-dependencies \[OPTIONS] \[UnitName]**
 
 可以指定 Unit，以列出该 UNIT **被哪些服务依赖**
