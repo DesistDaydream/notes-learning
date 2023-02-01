@@ -1,5 +1,5 @@
- ---
-title: Y.Windows 管理工具
+---
+title: Y.Windows 管理
 weight: 10
 ---
 

@@ -7,7 +7,7 @@ weight: 20
 # 概述
 > 参考：
 > - [官方文档，Windows 命令](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands)
-> - [官方文档，PowerShell 模块参考](https://learn.microsoft.com/en-us/powershell/module/cimcmdlets)
+> - [官方文档，PowerShell 模块参考](https://learn.microsoft.com/en-us/powershell/module)
 
 所有受支持的 Windows 和 Windows Server 版本都内置了一组 Win32 控制台命令。同时，[PowerShell](/docs/IT学习笔记/1.操作系统/4.Terminal%20与%20Shell/Windows_Shell/PowerShell.md) 也内置了一组 cmdlet
 

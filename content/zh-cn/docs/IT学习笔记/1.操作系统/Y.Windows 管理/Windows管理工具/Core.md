@@ -17,7 +17,7 @@ weight: 1
 
 ## Syntax(语法)
 
-Get-Command \[OPTIONS]
+**Get-Command \[OPTIONS]**
 
 **OPTIONS**
 
