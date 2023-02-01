@@ -76,7 +76,6 @@ COMMAND:
 
 - df # 显示 docker 系统的磁盘使用情况，效果如下：
 
-<!---->
 
     [root@master-1 ~]# docker system df
     TYPE                TOTAL               ACTIVE              SIZE                RECLAIMABLE
@@ -89,7 +88,6 @@ COMMAND:
 - info # 等同于 docker info 命令
 - prune # 删除未使用的数据。删除内容如下
 
-<!---->
 
     [root@lichenhao ~]# docker system prune
     WARNING! This will remove:

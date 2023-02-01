@@ -56,21 +56,18 @@ Sending build context to Docker daemon  2.048kB
 
 - 执行文件中 FROM 指令,将 ubuntu 作为基础镜像，IMAGE ID 为 93fd78260bd1
 
-<!---->
 
     Step 1/3 : FROM ubuntu
      ---> 93fd78260bd1
 
 - 基于 93fd78260bd1 这个 IMAGE 启动名为 607ce2e8553f 的临时容器，执行 RUN 后面的命令执行文件中的第二行 RUN 指令,安装 VIM
 
-<!---->
 
     Step 2/3 : RUN apt update && apt install -y vim
      ---> Running in 607ce2e8553f
 
 - 开始执行安装程序，会有警告，具体过程忽略不截图了
 
-<!---->
 
     WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
     Get:1 http://archive.ubuntu.com/ubuntu bionic InRelease [242 kB]
@@ -85,14 +82,12 @@ Sending build context to Docker daemon  2.048kB
 - 生成临时 IMAGE，ID 为 f5d8205bae1b，移除临时容器 607ce2e8553f
 - 注：这一步使用的就是 docker commit 命令类似的功能，提交一个运行中的容器生成镜像，只不过该容器是缓存状态，最后会彻底删除
 
-<!---->
 
     Removing intermediate container 607ce2e8553f
      ---> f5d8205bae1b
 
 - 基于 f5d8205bae1b 这个临时 IMAGE 启动 ddceac75c0ef 容器，执行 Dockerfile 中第三行的 RUN 指令
 
-<!---->
 
     Step 3/3 : RUN apt install -y iproute2
      ---> Running in ddceac75c0ef .......命令执行结果省略
@@ -100,7 +95,6 @@ Sending build context to Docker daemon  2.048kB
 - 处理成功，生成最终 IMAGE，ID 为 9e0ddfd39bb1，并移除临时容器 ddceac75c0ef
 - 注：这一步使用的就是 docker commit 命令类似的功能，提交一个运行中的容器生成镜像，只不过该容器是缓存状态，最后会彻底删除
 
-<!---->
 
     Processing triggers for libc-bin (2.27-3ubuntu1) ...
     Removing intermediate container ddceac75c0ef
@@ -108,14 +102,12 @@ Sending build context to Docker daemon  2.048kB
 
 - 创建 IMAGE ID 为 9e0ddfd39bb1 的 IMAGE 成功，并成功给 IMAGE 打上标签为 ubuntu-vi:latest
 
-<!---->
 
     Successfully built 9e0ddfd39bb1
     Successfully tagged ubuntu-vi:latest
 
 - 下图是创建过程中查询容器，会发现，中间创建的临时 Container 已经都被删除了，并且还会有一个没有名字只有 IMAGE ID 的 IMAGE
 
-<!---->
 
     [root@master0 ~]# docker ps -a
     CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES

@@ -96,7 +96,6 @@ C：一般用户（luke）的登录信息
         "ping": "pong"
     }
 
-<!---->
 
     # ansible all --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q lichenhao@10.0.13.251"' -m command -a 'pwd'
     192.22.4.46 | CHANGED | rc=0 >>

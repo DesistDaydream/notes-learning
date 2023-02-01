@@ -175,7 +175,6 @@ ERROR 1046 (3D000): No database selected
   - Default # 该列插入空值时。默认插入什么值。
   - Extra # 该列额外的参数。
 
-<!---->
 
     MariaDB [mysql]> SHOW COLUMNS FROM db;
     +-----------------------+---------------+------+-----+---------+-------+
@@ -189,7 +188,6 @@ ERROR 1046 (3D000): No database selected
 
 - select Host,db from db; #显示 db 表中，Host 和 Db 列及其内容，效果如下
 
-<!---->
 
     MariaDB [mysql]> SELECT Host,db from db;
     +-----------+---------+

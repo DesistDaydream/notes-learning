@@ -62,7 +62,6 @@ lsof 和 fuser 都是返回空的，最后就`ps aux`一个个看，发现了个
       1 logical volume(s) in volume group "suse" now active
       4 logical volume(s) in volume group "vgsap" now active
 
-<!---->
 
     [anaconda root@localhost /]# xfs_repair /dev/mapper/suse-lv_root
     ERROR: The filesystem has valuable metadata changes in a log which needs to

@@ -593,7 +593,6 @@ sed = filename | sed 'N;s/^/ /; s/ \*(.{6,})\n/\1 /' # 对文件中的所有行�
   - sed -i "$a${Masters\[${i}]%%=*} ${Masters\[${i}]##\*=}" /tmp/hosts #
 - 在开头是 kind: Deployment 这行的下一行的下一行，添加 namespace: redis 行
 
-<!---->
 
     sed -n '/^kind: Deployment/{N;a\  namespace: redis
     p}' all-redis-operator-resources.yaml

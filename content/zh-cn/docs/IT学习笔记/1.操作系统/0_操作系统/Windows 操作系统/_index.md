@@ -12,5 +12,5 @@ weight: 20
 
 [官方学习](https://learn.microsoft.com/)
 - [培训](https://learn.microsoft.com/training/)
--[ 认证](https://learn.microsoft.com/certifications/)
+- [认证](https://learn.microsoft.com/certifications/)
 - [文档](https://learn.microsoft.com//docs/)

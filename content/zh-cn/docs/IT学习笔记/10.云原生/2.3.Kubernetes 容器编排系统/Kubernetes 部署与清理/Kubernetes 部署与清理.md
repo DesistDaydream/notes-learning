@@ -229,13 +229,11 @@ curl -sSL "https://raw.githubusercontent.com/kubernetes/release/${RELEASE_VERSIO
 - 初始化集群的 master 节点
   - 使用该命令进行初始化并对初始化的内容进行一些设定，如果可以没法翻墙，那么就会卡在 pull 的位置，从 google 拉不到 images(注意 IP 位置需要自己改成自己所需的 IP)
 
-<!---->
 
     kubeadm init --kubernetes-version=v1.18.8 --pod-network-cidr=10.244.0.0/16 --image-repository="registry.aliyuncs.com/k8sxio"
 
 - kubeadm 也可通过配置文件加载配置，以定制更丰富的部署选项，kubeadm-config.yaml 文件配置详见 《[kubeadm 命令行工具](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubeadm%20 命令行工具.md 管理/kubeadm 命令行工具.md)》
 
-<!---->
 
     kubeadm init --config kubeadm-config.yaml
 

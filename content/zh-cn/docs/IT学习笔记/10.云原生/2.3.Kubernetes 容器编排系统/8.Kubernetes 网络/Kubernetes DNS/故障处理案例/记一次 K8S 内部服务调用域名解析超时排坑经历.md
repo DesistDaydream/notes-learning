@@ -161,7 +161,6 @@ linux 中 `glibc` 的 resolver 的缺省超时时间是 5s，而导致超时的�
 
 1. 通过修改 pod 的 postStart hook 来设置
 
-<!---->
 
     lifecycle:
       postStart:
@@ -173,7 +172,6 @@ linux 中 `glibc` 的 resolver 的缺省超时时间是 5s，而导致超时的�
 
 1. 通过修改 pod 的 template.spec.dnsConfig 来设置
 
-<!---->
 
     template:
       spec:
@@ -197,7 +195,6 @@ linux 中 `glibc` 的 resolver 的缺省超时时间是 5s，而导致超时的�
 
 1. 获取当前`kube-dns service`的 clusterIP
 
-<!---->
 
     # kubectl -n kube-system get svc kube-dns -o jsonpath="{.spec.clusterIP}"
     10.96.0.10
@@ -205,7 +202,6 @@ linux 中 `glibc` 的 resolver 的缺省超时时间是 5s，而导致超时的�
 
 1. 下载官方提供的 yaml 模板进行关键字替换
 
-<!---->
 
     wget -O nodelocaldns.yaml "https://github.com/kubernetes/kubernetes/raw/master/cluster/addons/dns/nodelocaldns/nodelocaldns.yaml" && \
     sed -i 's/__PILLAR__DNS__SERVER__/10.96.0.10/g' nodelocaldns.yaml && \
@@ -216,7 +212,6 @@ linux 中 `glibc` 的 resolver 的缺省超时时间是 5s，而导致超时的�
 
 1. 最终 yaml 文件如下：
 
-<!---->
 
     # Copyright 2018 The Kubernetes Authors.
     #
@@ -433,7 +428,6 @@ linux 中 `glibc` 的 resolver 的缺省超时时间是 5s，而导致超时的�
 
 - 方案（一）：通过修改 pod 的 template.spec.dnsConfig 来设置，并将`dnsPolicy`设置为`None`
 
-<!---->
 
     template:
       spec:
@@ -451,7 +445,6 @@ linux 中 `glibc` 的 resolver 的缺省超时时间是 5s，而导致超时的�
 
 - 方案（二）：修改默认的`cluster-dns`，在 node 节点上将`/etc/systemd/system/kubelet.service.d/10-kubeadm.conf`文件中的`--cluster-dns`参数值修改为`169.254.20.10`，然后重启`kubelet`
 
-<!---->
 
     systemctl restart kubelet
 

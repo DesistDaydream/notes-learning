@@ -65,7 +65,6 @@ k8s-pod.yaml #用于部署到 k8s 的 yaml 文件
           - k8s-*.yaml #指定上传完images后，通过哪些yaml文件来部署到kubernetes集群中
     EOF
 
-<!---->
 
     cat > main.go <<EOF
     package main
@@ -81,7 +80,6 @@ k8s-pod.yaml #用于部署到 k8s 的 yaml 文件
     }
     EOF
 
-<!---->
 
     cat > Dockerfile << EOF
     FROM golang:1.14.7 as builder
@@ -92,7 +90,6 @@ k8s-pod.yaml #用于部署到 k8s 的 yaml 文件
     CMD ["./app"]
     EOF
 
-<!---->
 
     cat > k8s-pod.yaml << EOF
     apiVersion: v1

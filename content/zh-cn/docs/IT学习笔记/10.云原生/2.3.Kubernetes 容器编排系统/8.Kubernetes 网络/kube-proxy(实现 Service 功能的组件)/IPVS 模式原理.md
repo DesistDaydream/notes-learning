@@ -48,7 +48,6 @@ kube-proxy 有三种模式：`userspace`、`iptables` 和 `IPVS`，其中 `users
 - 添加 iptables 规则，允许流量进出 `bridge_home` 接口
 - 添加 iptables 规则，针对 `10.0.0.0/24` 网段进行流量伪装
 
-<!---->
 
     $ ip link add dev bridge_home type bridge
     $ ip address add 10.0.0.1/24 dev bridge_home

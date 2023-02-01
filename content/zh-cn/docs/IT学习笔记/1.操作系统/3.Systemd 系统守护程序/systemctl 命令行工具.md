@@ -15,7 +15,6 @@ systemctl 命令用来对整个“systemd”的系统和服务进行管理
 UNIT 为 Unit 名称，如果指定了 UNIT 则只对这个 Unit 执行 COMMAND，如果不指定则对全局 Unit 进行操作
 
 ## OPTIONS
-
 - **-t ** # 对指定类型的 unit 进行操作
 - **--all** #
 - **--now** # 该选项可以与 enable、disable、mask 命令一起使用。
@@ -24,24 +23,26 @@ UNIT 为 Unit 名称，如果指定了 UNIT 则只对这个 Unit 执行 COMMAND�
   - 注意：只有当 enable 或 disable 命令成功时，才会执行启动或停止操作。加了该选项就类似于执行了 `systemctl enable UNIT && systemctl start UNIT` 命令
 
 ## COMMAND 分类
-
-- [Unit Command](#VA1dB)
-- Unit File Commands
+- [Unit Command](#Unit%20Command) # 对 unit 执行操作的命令
+- [Unit File Commands](#Unit%20File%20Commands) # 对 Unit 文件执行操作的命令
 - Machine Commands
 - Job Commands
 - Snapshot Commands
 - Environment Commands
-- Manager Lifecycle Commands
+- [Manager Lifecycle Commands](#Manager%20Lifecycle%20Commands) # 生命周期管理器的命令
 - System Commands
 
 注意：OBJECT 可以使用 PATTERN(模式)来进行匹配，i.e.使用正则表达式来通过关键字查找 unit 来显示包含这些关键字的 unit 的状态
 
-# Unit Command # 对 unit 执行操作的命令
+# Unit Command
 
-## list-units \[PATTERN] # 默认命令，当 COMMAND 为空时，默认执行该命令列出已加载(已启动)的 UNIT
+## list-units
+**默认命令**，当 COMMAND 为空时，默认执行该命令列出已加载(已启动)的 UNIT
 
-EXAMPLE
+### Syntax(语法)
+**systemctl list-units \[PATTERN]**
 
+### EXAMPLE
 - systemctl -t service # 查看所有 service unit 的信息，systemctl 命令默认列出所有 unit
 - systemctl list-units --failed # 列出所有失败的 unit
 
@@ -51,7 +52,8 @@ list-timers \[PATTERN] List loaded timers ordered by next elapse
 
 {start | stop | restart} UnitName #立刻启动或者关闭或者重启某个 Unit
 
-## reload NAME # 不关闭 UNIT 的情况下重新载入配置文件，让配置生效，只重新加载.conf 类的文件
+## reload NAME
+不关闭 UNIT 的情况下重新载入配置文件，让配置生效，只重新加载.conf 类的文件
 
 try-restart NAME... Restart one or more units if active
 
@@ -59,14 +61,14 @@ reload-or-restart NAME... Reload one or more units if possible, otherwise start 
 
 reload-or-try-restart NAME... Reload one or more units if possible,otherwise restart if active
 
-## isolate NAME # 启动一个 unit 并关闭其他的。如果指定的 Unit 没写扩展名，则默认 target。
+## isolate NAME
+启动一个 unit 并关闭其他的。如果指定的 Unit 没写扩展名，则默认 target。
 
 这个命令的作用类似于老的 init 系统中修改运行级别的效果
 
 EXAMPLE
-
-- systemctl isolate multi-user.target #启动 multi-user.target 这个 unit 并关闭其他(类似于切换成纯文本运行方式)
-- systemctl isolate graphical.target #类似于切换成图形模式
+- systemctl isolate multi-user.target # 启动 multi-user.target 这个 unit 并关闭其他(类似于切换成纯文本运行方式)
+- systemctl isolate graphical.target # 类似于切换成图形模式
 
 kill NAME... Send signal to processes of a unit
 
@@ -74,22 +76,22 @@ is-active PATTERN... Check whether units are active
 
 is-failed PATTERN... Check whether units are failed
 
-## status \[PATTERN|PID] #显示整个系统的 Unit 状态信息包括树状关联信息,如果指定了\[]中的内容,则显示指定 Unit 运行时的状态信息
+## status [PATTERN|PID]
+显示整个系统的 Unit 状态信息包括树状关联信息,如果指定了 `[]` 中的内容,则显示指定 Unit 运行时的状态信息
 
 EXAMPLE
 
-- systemctl status ssh.service #查看 ssh.service 这个 unit 的状态
-
+- systemctl status ssh.service # 查看 ssh.service 这个 unit 的状态
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iqtd0r/1616167368492-74c581c3-e6a6-48e6-b6db-49e0fd799a63.jpeg)
 
 show \[PATTERN...|JOB...] Show properties of one or more units/jobs or the manager
 
-## cat PATTERN # 显示一个或多个 unit 的文件及其内容
+## cat PATTERN
+显示一个或多个 unit 的文件及其内容
 
-systemctl cat sshd.service # 查看 sshd 这个服务的配置文件路径以及配置文件的内容，效果如下
-
+查看 sshd 这个服务的配置文件路径以及配置文件的内容，效果如下
 ```bash
- ~]# systemctl cat sshd
+~]# systemctl cat sshd
 # /lib/systemd/system/ssh.service
 [Unit]
 Description=OpenBSD Secure Shell server
@@ -121,20 +123,27 @@ help PATTERN...|PID... Show manual for one or more units
 
 reset-failed \[PATTERN...] Reset failed state for all, one, or more units
 
-## list-dependencies #列出所依赖的服务，即给定的 UNIT 还需要哪些 UNIT 才能启动，默认列出 default.target 的依赖。
+## list-dependencies
+列出所依赖的服务，即给定的 UNIT 还需要哪些 UNIT 才能启动，默认列出 default.target 的依赖。
 
-systemctl list-dependencies \[OPTIONS] \[UnitName]
+**systemctl list-dependencies \[OPTIONS] \[UnitName]**
 
-1. OPTIONS
-   1. \--reverse #列出该 ARGS 表示该 UNIT 可以给谁提供依赖，即被谁需要，即启动哪些 UNIT 需要以这个 UNIT 启动为前提
-2. EXAMPLE
-   1. systemctl list-dependencies sshd.service --reverse # 列出 sshd.service 这个 unit 可以给谁提供依赖
+可以指定 Unit，以列出该 UNIT **被哪些服务依赖**
 
-# Unit File Commands #对 Unit 文件执行操作的命令
+**OPTIONS**
+- **--reverse** # 反向追踪，列出该 UNIT **依赖于哪些服务**。即该 UNIT 可以给谁提供依赖，即被谁需要，即启动哪些 UNIT 需要以这个 UNIT 启动为前提
 
-## list-unit-files \[PATTERN...] #列出所有已经安装的 Unit 的配置文件。（目录为/usr/lib/systemd/system/下的所有文件）
+### EXAMPLE
+列出 sshd.service 这个 unit 可以给谁提供依赖
+- systemctl list-dependencies sshd.service --reverse
 
-## {enable|disable} NAME... # 启用或禁用一个或多个 Unit 文件
+# Unit File Commands
+
+## list-unit-files [PATTERN...]
+列出所有已经安装的 Unit 的配置文件。（目录为/usr/lib/systemd/system/下的所有文件）
+
+## {enable|disable} NAME...
+启用或禁用一个或多个 Unit 文件
 
 reenable NAME... Reenable one or more unit files
 
@@ -195,9 +204,10 @@ unset-environment NAME... Unset one or more environment variables
 
 import-environment \[NAME...] Import all or some environment variables
 
-# Manager Lifecycle Commands #生命周期管理器的命令
+# Manager Lifecycle Commands
 
-## daemon-reload #重新加载所有 daemon 的配置文件，包括.service 等文件一起重新加载
+## daemon-reload
+重新加载所有 daemon 的配置文件，包括.service 等文件一起重新加载
 
 daemon-reexec Reexecute systemd manager
 

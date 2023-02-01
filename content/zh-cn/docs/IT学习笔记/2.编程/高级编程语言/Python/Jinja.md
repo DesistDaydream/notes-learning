@@ -476,7 +476,6 @@ JinJa 内置了多个过滤器函数，Ansible 自身也扩展了一些方便的
 - `map(attribute='xxx')` # 如果一个列表中包含了多个 dict，map 可根据指定的属性名 (即 dict 的 key)，从列表中各 dict 内筛选出该属性值部分。
   - 例如，对于如下变量：
 
-<!---->
 
     p:
       - name: "junma"
@@ -491,7 +490,6 @@ JinJa 内置了多个过滤器函数，Ansible 自身也扩展了一些方便的
 - `p|map(attribute="name")|list`将得到`["junma","woniu","tuner"]`。
 - `select()`、`reject()` # 从序列中选中、排除满足条件的项。例如：
 
-<!---->
 
     {{ numbers|select("odd") }}         ->选出奇数
     {{ numbers|select("even") }}        ->选出偶数
@@ -502,7 +500,6 @@ JinJa 内置了多个过滤器函数，Ansible 自身也扩展了一些方便的
 - 其中测试参数可以指定为支持的测试函数，在前文已经介绍过。
 - `selectattr()`、`rejectattr()` # 根据对象属性筛选、排除序列中的多个元素。这个有时候很好用。比如：
 
-<!---->
 
     p:
       - name: "junma"

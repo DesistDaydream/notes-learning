@@ -119,7 +119,6 @@ Note:
 1. 如果跳过了该向导中创建用户的步骤，则日志中输出的密码可以作为 admin 用户的密码使用。如果创建了用户，则 initialAdminPassword 文件会被自动删除。因为新创建的用户就是具有最高权限的 admin 用户。
 2. 如果输入密码后没有开始初始化向导页面。有可能是因为 Jenkins 的升级中心网站被墙的原因导致的，可以修改 $JENKINS_HOME/hudson.model.UpdateCenter.xml 文件中的 字段，将 Jenkins 的升级中心网址改为其他即可
 
-<!---->
 
     <?xml version='1.0' encoding='UTF-8'?>
      <sites>

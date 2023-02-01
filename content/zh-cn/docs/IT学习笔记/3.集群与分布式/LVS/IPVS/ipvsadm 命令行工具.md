@@ -81,7 +81,6 @@ TCP  10.10.9.60:30000 rr persistent 30
 - InActConn # 指除了 ESTABLISHED 以外的,所有的其它状态的 tcp 连接.
 - **-c, --connection** # 输出 ipvs 当 前的连接状态信息。效果如下：
 
-<!---->
 
     [root@node-1 ~]# ipvsadm --list -nc
     IPVS connection entries
@@ -92,7 +91,6 @@ TCP  10.10.9.60:30000 rr persistent 30
 
 - **--timeout** # 输出 TCP 会话，接收到 FIN 数据包后的 TCP 会话和 UDP 数据包的超时值（以秒为单位）。效果如下：
 
-<!---->
 
     [root@node-1 ~]# ipvsadm -ln --timeout
     Timeout (tcp tcpfin udp): 900 120 300
@@ -100,7 +98,6 @@ TCP  10.10.9.60:30000 rr persistent 30
 - **--daemon **# Daemon information output. The list command with this option will display the daemon status and its multicast interface.
 - **--stats** # 显示统计数据，效果如下
 
-<!---->
 
     [root@node-1 ~]# ipvsadm -ln --stats
     IP Virtual Server version 1.2.1 (size=4096)

@@ -132,7 +132,6 @@ json 解析器有两种模式运行。
 
 - 例如，使用 json 解析器从以下文件内容中提取标签。
 
-<!---->
 
     {
       "protocol": "HTTP/2.0",
@@ -156,7 +155,6 @@ json 解析器有两种模式运行。
 
 - 可以得到如下所示的标签列表：
 
-<!---->
 
     "protocol" => "HTTP/2.0"
     "request_time" => "6.032"
@@ -171,7 +169,6 @@ json 解析器有两种模式运行。
      当前仅支持字段访问（`my.field`, `my["field"]`）和数组访问（`list[0]`），以及任何级别嵌套中的这些组合（`my.list[0]["field"]`）。
      例如，`|json first_server="servers[0]", ua="request.headers[\"User-Agent\"]` 将从以下日志文件中提取标签：
 
-<!---->
 
     {
       "protocol": "HTTP/2.0",
@@ -195,14 +192,12 @@ json 解析器有两种模式运行。
 
 - 提取的标签列表为：
 
-<!---->
 
     "first_server" => "129.0.1.1"
     "ua" => "curl/7.68.0"
 
 - 如果表达式返回一个数组或对象，它将以 json 格式分配给标签。例如，`|json server_list="services", headers="request.headers` 将提取到如下标签：
 
-<!---->
 
     "server_list" => `["129.0.1.1","10.2.1.3"]`
     "headers" => `{"Accept": "*/*", "User-Agent": "curl/7.68.0"}`

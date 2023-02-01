@@ -63,7 +63,6 @@ Linux 查看内存的频率：
 
     mii-tool
 
-<!---->
 
     dmidecode|grep -P 'Maximum\s+Capacity'    //最大支持几G内存
     # dmidecode  |grep  "Product Name"  //查看服务器品牌和型号
@@ -75,11 +74,9 @@ Linux 查看内存的频率：
     Size: No Module Installed       //此插槽未使用
     Size: No Module Installed       //此插槽未使用
 
-<!---->
 
     # dmidecode -t 17        //数字17是dmidecode的参数，本文最后有其他数字参数
 
-<!---->
 
     # dmidecode 2.7
     SMBIOS 2.4 present.

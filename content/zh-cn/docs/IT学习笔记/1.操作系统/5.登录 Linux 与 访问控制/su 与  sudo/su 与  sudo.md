@@ -73,7 +73,6 @@ EXAMPLE
 
 - sudo -u lichenhao whoami #使用用户 lichenhao 来执行 whoami 命令
 
-<!---->
 
     [root@master ~]# whoami
     root

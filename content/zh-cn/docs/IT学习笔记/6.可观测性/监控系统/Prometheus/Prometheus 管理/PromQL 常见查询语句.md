@@ -95,7 +95,6 @@ avg_over_time(up{}[1h])
 
 - 根据磁盘 1 小时的变化速率，预测 4 小时内会不会被写满
 
-<!---->
 
     predict_linear(node_filesystem_free_bytes{fstype!~"tmpfs"}[1h], 4 * 3600) < 0
 

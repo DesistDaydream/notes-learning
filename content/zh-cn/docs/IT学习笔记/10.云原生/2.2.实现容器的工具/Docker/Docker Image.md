@@ -274,7 +274,6 @@ drwx------ 2 root root 142 Jun 21 21:01 l
 
 3. 在 dockerfile 中，使用脚本作为镜像入口，然后利用脚本运行修改 hosts 文件的命令以及真正的应用程序入口，下面是一个 Dockerfile 实例：
 
-<!---->
 
     FROM centos:6
     RUN mkdir /data

@@ -421,7 +421,6 @@ func rootRun(cmd *cobra.Command, args []string) {
     cli remove --name test
     `,
 
-<!---->
 
     go run main.go app remove
     A longer description that spans multiple lines and likely contains examples

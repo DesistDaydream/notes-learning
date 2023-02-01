@@ -122,7 +122,6 @@ etcd 还实现了双向 TLS 来对客户端和对其他对等节点进行身份�
 1. 对于每个配置，请都使用给定的 CN 和 O 生成 x509 证书/密钥偶对。
 2. 为每个配置运行下面的 `kubectl` 命令：
 
-<!---->
 
     KUBECONFIG=<filename> kubectl config set-cluster default-cluster --server=https://<host ip>:6443 --certificate-authority <path-to-kubernetes-ca> --embed-certs
     KUBECONFIG=<filename> kubectl config set-credentials <credential-name> --client-key <path-to-key>.pem --client-certificate <path-to-cert>.pem --embed-certs

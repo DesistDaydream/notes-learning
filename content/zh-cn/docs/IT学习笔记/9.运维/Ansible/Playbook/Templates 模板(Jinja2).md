@@ -385,7 +385,6 @@ Ansible 提供了集合理论类的求值操作：
 - difference：差集，即返回只在第一个集合中，不在第二个集合中的元素
 - symmetric_difference：对称差集，即返回两个集合中不重复的元素
 
-<!---->
 
     - name: return [1,2,3]
       debug:

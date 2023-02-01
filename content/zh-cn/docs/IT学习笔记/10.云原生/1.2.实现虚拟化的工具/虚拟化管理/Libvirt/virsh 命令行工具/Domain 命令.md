@@ -316,7 +316,6 @@ EXAMPLE
 1. **virsh domxml-to-native qemu-argv --domain lichenhao.bj-net **# 根据 lichenhao.bj-net 虚拟机的 xml 文件，生成 qemu-kvm 命令行
 2. lichenhao.bj-net.xml 该文件会转换成如下内容
 
-<!---->
 
     LC_ALL=C PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
     QEMU_AUDIO_DRV=none

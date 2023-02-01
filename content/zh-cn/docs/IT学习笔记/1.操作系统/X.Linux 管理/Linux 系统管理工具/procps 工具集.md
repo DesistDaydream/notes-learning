@@ -11,14 +11,28 @@ procps 是一组命令行和全屏实用程序，它们从伪文件系统(/proc)
 
 Note：该工具集就算是最小化安装的 linux 发行版系统也是默认包含的~
 
-# free：显示系统中可用和已用的内存量
+# free-显示系统中可用和已用的内存量
 
-# kill - Send a signal to a process based on PID
+# kill-向指定PID的进程发送信号
 
-# pgrep，pkill，pidwait # 根据名字或其他属性列出进程、发送信号、暂停进程
+可用的信号详见 [Signal(信号)](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process%20管理/Inter%20Process%20Communication(进程间通信)/Signal(信号).md)
+
+kill 命令将指定的信号发送到指定的进程或进程组。 如果未指定信号，则发送 TERM 信号。 TERM 信号将杀死不捕获该信号的进程。对于其他过程，由于无法捕获该信号，可能需要使用 KILL（9）信号。
+
+大多数现代 Shell 具有内置的 kill 函数，其用法与此处描述的命令非常相似。 '-a' 和'-p' 选项以及通过命令名称指定进程的可能性是 本地扩展。
+
+如果 sig 为 0，则不发送信号，但仍执行错误检查。
+
+“信号 0”有点像精神上的“ ping”。在 shell 程序脚本中使用 kill -0 PID 是判断 PID 是否有效的好方法。信号 0 仅用于检查进程是否存在。
+
+## Syntax(语法)
+
+**kill \[-s signal|-p] \[-q sigval] \[-a] \[--] pid...**
+
+# pgrep，pkill，pidwait-根据名字或其他属性列出进程、发送信号、暂停进程
 
 > 参考：
-> - [Manual(手册),pgrep(1)](https://man7.org/linux/man-pages/man1/pgrep.1.html)
+> - [Manual(手册)，pgrep(1)](https://man7.org/linux/man-pages/man1/pgrep.1.html)
 
 pgrep 查看当前正在运行的进程，并列出所有符合匹配模式的进程 ID。比如：`pgrep -u root sshd` 命令将会列出由 root 用户运行的进程命令中包含 `sshd` 字符串的进程 ID。效果如下：
 
@@ -58,37 +72,39 @@ PATTERN(模式) 代指正则表达式的匹配模式。比如 pgrep 根据 PATTE
   - **pkill -kill -t pts/1**
   - 注意：想要获取一个用户所使用的终端，可以通过 [procps 包中的 w 工具](#hq2tD)即可
 
-# pmap - Report memory map of a process
+# pmap-Report memory map of a process
 
-# ps # process status(进程状态)，报告进程的信息
+# ps-报告进程的信息
 
 > 参考：
-> - [Manual(手册)](https://man.cx/ps)
+> - [Manual(手册)，ps(1)](https://man7.org/linux/man-pages/man1/ps.1.html)
+
+ps 是 process status(进程状态) 的简称~
 
 Note：该命令显示出来的带 `[]` 的进程为内核线程，一般不用关注。出现这种情况一般是因为 ps 命令无法获取进程的命令参数，所以会将命令名称放入括号中。毕竟用户态的 ps 命令怎么可能会获得内核内部程序的参数呢~~~
 
 ps 命令输出的内容中部分字段的含义说明：
 
-1. PID # Process ID(进程标识符)
-2. PPID # Parent Process ID(父进程标识符)，父进程是创建一个或多个子进程的进程。
-3. VSZ # Virtual Memory Size(虚拟内存大小)，包括进程可以访问的所有内存，包括进入交换分区的内容，以及共享库占用的内存。有的地方也称为 total_vm、VIRT
-4. RRS # Resident Set Size(实际内存用量)，不包括进入交换分区的内存。RSS 包括共享库占用的内存（只要共享库在内存中）。RSS 包括所有分配的栈内存和堆内存。
-5. LWP # 线程 ID
-6. NLWP # 线程数量
-7. STAT # 进程的当前状态
-   1. D # 不可中断的休眠。通常是 IO。
-   2. R # 运行。正在运行或者在运行队列中等待。
-   3. S # 休眠。在等待某个事件，信号。
-   4. T # 停止。进程接收到信息 SIGSTOP，SIGSTP，SIGTIN，SIGTOU 信号。
-   5. X # 死掉的进程，不应该出现。
-   6. Z # 僵死进程。
-      1. 通常还会跟随如下字母表示更详细的状态。
-         1. < 高优先级
-         2. N 低优先级
-         3. L 有 pages 在内存中 locked。用于实时或者自定义 IO。
-         4. s 进程领导者，其有子进程。
-         5. l 多线程
-         6. - 位于前台进程组。
+- PID # Process ID(进程标识符)
+- PPID # Parent Process ID(父进程标识符)，父进程是创建一个或多个子进程的进程。
+- VSZ # Virtual Memory Size(虚拟内存大小)，包括进程可以访问的所有内存，包括进入交换分区的内容，以及共享库占用的内存。有的地方也称为 total_vm、VIRT
+- RRS # Resident Set Size(实际内存用量)，不包括进入交换分区的内存。RSS 包括共享库占用的内存（只要共享库在内存中）。RSS 包括所有分配的栈内存和堆内存。
+- LWP # 线程 ID
+- NLWP # 线程数量
+- STAT # 进程的当前状态
+   - D # 不可中断的休眠。通常是 IO。
+   - R # 运行。正在运行或者在运行队列中等待。
+   - S # 休眠。在等待某个事件，信号。
+   - T # 停止。进程接收到信息 SIGSTOP，SIGSTP，SIGTIN，SIGTOU 信号。
+   - X # 死掉的进程，不应该出现。
+   - Z # 僵死进程。
+      - 通常还会跟随如下字母表示更详细的状态。
+         - < 高优先级
+         - N 低优先级
+         - L 有 pages 在内存中 locked。用于实时或者自定义 IO。
+         - s 进程领导者，其有子进程。
+         - l 多线程
+         - - 位于前台进程组。
 
 可以使用 **-o FORMAT **选项来自定义输出的格式(就是字段)。 FORMAT 是单个参数，格式为空格分隔或逗号分隔的列表，它提供了一种指定单个输出列的方法。 可以在 man 手册的 [STANDARD FORMAT SPECIFIERS(标准格式说明符)](https://man7.org/linux/man-pages/man1/ps.1.html#STANDARD_FORMAT_SPECIFIERS) 部分中找到所有可用的关键字。
 
@@ -144,8 +160,8 @@ root@lichenhao:~# ps -p 38095 -o etime,pid,cmd
 - 整体选择
   - **-e, -A** # 选择所有进程，包括不在本 shell 环境下的进程进行展示
 - 按列表选择
-  - **-p, --pid <PIDList>** # 选择 PIDList 中列出来的进程。多个 PID 以逗号分隔
-  - **--ppid <PIDList>** # 选择 PIDList 中列出来的进程的子进程。多个 PID 以逗号分割
+  - **-p, --pid \<PIDList>** # 选择 PIDList 中列出来的进程。多个 PID 以逗号分隔
+  - **--ppid \<PIDList>** # 选择 PIDList 中列出来的进程的子进程。多个 PID 以逗号分割
 - 通用选择
   - **-N, --deselect ** # 取消选择。也可以理解为 反向选择。即，选择“通过 整体选择 与 按列表选择 中选择到的”进程以外的所有进程
 
@@ -153,13 +169,13 @@ root@lichenhao:~# ps -p 38095 -o etime,pid,cmd
 
 - **-f** # 更多显示信息
 - **-l** # 显示进程的详细信息
-- **-o <FORMAT>** # 使用指定的格式输出。
+- **-o \<FORMAT>** # 使用指定的格式输出。
 - **-ww** # 更宽的输出，让输出的内容不受屏幕限制，可以换行显示
 
 #### [OUTPUT MODIFIERS](https://man.cx/ps#heading8)(输出模式)
 
 - **f,--forest** # 以树状结构显示输出结果。与显示线程的选项冲突
-- **-o <FORMAT> **# 以自定义的格式 FORMAT 输出信息。FORMAT 是以逗号或空格分隔的参数列表，详见前文
+- **-o \<FORMAT> **# 以自定义的格式 FORMAT 输出信息。FORMAT 是以逗号或空格分隔的参数列表，详见前文
 
 #### [THREAD DISPLAY](https://man.cx/ps#heading9)(线程显示)
 
@@ -169,11 +185,41 @@ root@lichenhao:~# ps -p 38095 -o etime,pid,cmd
 
 ## EXAMPLE
 
-- 不显示内核进程，以树状格式显示。
-  - ps -N -p 2 --ppid 2 -f f
+简单使用
+```bash
+~]# ps -elf
+F S UID         PID   PPID  C PRI  NI ADDR SZ WCHAN  STIME TTY          TIME CMD
+4 S root          1      0  0  80   0 - 32013 ep_pol 15:16 ?        00:00:01 /usr/lib/systemd/systemd --switched-root --system --deserialize 2
+1 S root          2      0  0  80   0 -     0 kthrea 15:16 ?        00:00:00 [kthreadd]
+```
 
 ```bash
-[root@common-centos-test ~]# ps --deselect -p 2 --ppid 2 -f f
+~]# ps aux
+USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root          1  0.0  0.4 128052  6596 ?        Ss   15:16   0:01 /usr/lib/systemd/systemd --switched-root --system --deserialize 22
+root          2  0.0  0.0      0     0 ?        S    15:16   0:00 [kthreadd]
+```
+
+显示 ps 的完整内容，不受 COMMAND 命令有字符限制影响。说白了就是，让过长的内容可以换行显示，而不是截断
+```bash
+~]# ps -efww
+```
+
+以树状形式显示，且带中括号的内核进程将会放在最上面，与下面的系统进程分开，显示较为直观，效果如下
+```bash
+~]# ps -ef f
+root         1     0  0 Dec24 ?        Ss     0:04 /usr/lib/systemd/systemd --switched-root --system --deserialize 22
+.......
+root      2827     1  0 Dec24 ?        Ss     0:00 /usr/sbin/sshd -D
+root      6400  2827  0 10:51 ?        Ss     0:00  \_ sshd: root@pts/0
+root      6402  6400  0 10:51 pts/0    Ss     0:00      \_ -bash
+root      6720  6402  0 10:52 pts/0    R+     0:00          \_ ps -ef f
+```
+
+不显示内核进程，以树状格式显示
+  - ps -N -p 2 --ppid 2 -f f
+```bash
+~]# ps --deselect -p 2 --ppid 2 -f f
 UID        PID  PPID  C STIME TTY      STAT   TIME CMD
 root         1     0  0 Oct19 ?        Ss     0:16 /usr/lib/systemd/systemd --switched-root --system --deserialize 22
 root       478     1  0 Oct19 ?        Ss     0:03 /usr/lib/systemd/systemd-journald
@@ -198,44 +244,12 @@ root     17325 17321  0 09:18 pts/0    Ss     0:00      \_ -bash
 root     17365 17325  0 09:23 pts/0    R+     0:00          \_ ps --deselect -p 2 --ppid 2 -f f
 ```
 
-bash
-
-- ps -elf
-
-<!---->
-
-    [root@master0 ~]# ps -elf
-    F S UID         PID   PPID  C PRI  NI ADDR SZ WCHAN  STIME TTY          TIME CMD
-    4 S root          1      0  0  80   0 - 32013 ep_pol 15:16 ?        00:00:01 /usr/lib/systemd/systemd --switched-root --system --deserialize 2
-    1 S root          2      0  0  80   0 -     0 kthrea 15:16 ?        00:00:00 [kthreadd]
-
-- ps -aux
-
-<!---->
-
-    [root@master0 ~]# ps aux
-    USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-    root          1  0.0  0.4 128052  6596 ?        Ss   15:16   0:01 /usr/lib/systemd/systemd --switched-root --system --deserialize 22
-    root          2  0.0  0.0      0     0 ?        S    15:16   0:00 [kthreadd]
-
-- ps -efww #显示 ps 的完整内容，不受 COMMAND 命令有字符限制影响
-- ps -ef f #以树状形式显示，且带中括号的内核进程将会放在最上面，与下面的系统进程分开，显示较为直观，效果如下
-
-<!---->
-
-    root         1     0  0 Dec24 ?        Ss     0:04 /usr/lib/systemd/systemd --switched-root --system --deserialize 22
-    .......
-    root      2827     1  0 Dec24 ?        Ss     0:00 /usr/sbin/sshd -D
-    root      6400  2827  0 10:51 ?        Ss     0:00  \_ sshd: root@pts/0
-    root      6402  6400  0 10:51 pts/0    Ss     0:00      \_ -bash
-    root      6720  6402  0 10:52 pts/0    R+     0:00          \_ ps -ef f
-
-- ps -eo rss,pid,user,command | sort -rn | head -10 | awk '{ hr\[1024**2]="GB"; hr\[1024]="MB";for (x=1024**3; x>=1024; x/=1024) { if ($1>=x) { printf ("%-6.2f %s ", $1/x, hr\[x]); break }} } { printf ("%-6s %-10s ", $2, $3) }{ for ( x=4 ; x<=NF ; x++ ) { printf ("%s ",$x) } print ("\n") }'
-
-<!---->
-
-    15.94  MB 627    root       /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
-    15.18  MB 683    root       /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+这是(⊙o⊙)啥？~~
+```bash
+~]# ps -eo rss,pid,user,command | sort -rn | head -10 | awk '{ hr\[1024**2]="GB"; hr\[1024]="MB";for (x=1024**3; x>=1024; x/=1024) { if ($1>=x) { printf ("%-6.2f %s ", $1/x, hr\[x]); break }} } { printf ("%-6s %-10s ", $2, $3) }{ for ( x=4 ; x<=NF ; x++ ) { printf ("%s ",$x) } print ("\n") }'
+15.94  MB 627    root       /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers 
+15.18  MB 683    root       /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+```
 
 # pwdx - Report current directory of a process
 

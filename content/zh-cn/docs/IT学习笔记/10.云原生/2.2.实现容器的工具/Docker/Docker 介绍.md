@@ -101,19 +101,16 @@ Dokcer 默认的日志日志驱动是 json-file，该驱动将将来自容器的
 
 - 查看 Docker 当前的日志驱动配置
 
-<!---->
 
     $ docker  info |grep  "Logging Driver"
 
 - 查看单个容器的设置的日志驱动
 
-<!---->
 
     $ docker inspect  -f '{{.HostConfig.LogConfig.Type}}'   容器id
 
 - Docker 日志驱动全局配置，全局配置意味所有容器都生效，编辑 /etc/docker/daemon.json 文件（如果文件不存在新建一个），添加日志驱动配置。示例：配置 Docker 引擎日志驱动为 syslog
 
-<!---->
 
     {
       "log-driver": "syslog"
@@ -121,7 +118,6 @@ Dokcer 默认的日志日志驱动是 json-file，该驱动将将来自容器的
 
 - 给特定容器配置日志驱动，在启动容器时指定日志驱动 --log-driver 参数。示例：启动 nginx 容器，日志驱动指定为 journald
 
-<!---->
 
     $ docker  run --name nginx -d --log-driver journald nginx
 

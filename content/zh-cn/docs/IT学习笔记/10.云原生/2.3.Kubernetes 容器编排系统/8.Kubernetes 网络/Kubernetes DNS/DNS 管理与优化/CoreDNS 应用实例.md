@@ -16,7 +16,6 @@ title: CoreDNS 应用实例
 
 - 定义 host
 
-<!---->
 
     .:53 {
         hosts {
@@ -28,7 +27,6 @@ title: CoreDNS 应用实例
 
 - 加载 hosts 文件
 
-<!---->
 
     #直接从/etc/hosts加载host信息
     . {

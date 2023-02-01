@@ -222,16 +222,6 @@ int sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)
 
 - sigsuspend(const sigset_t \*mask))：用 mask 代替进程的原有掩码，并暂停进程执行，直到收到信号再恢复原有掩码并继续执行进程。
 
-# kill 命令行工具 # 用来将指定的信号发送到指定的进程或进程组
+# 信号发送工具
 
-kill 命令将指定的信号发送到指定的进程或进程组。 如果未指定信号，则发送 TERM 信号。 TERM 信号将杀死不捕获该信号的进程。对于其他过程，由于无法捕获该信号，可能需要使用 KILL（9）信号。
-
-大多数现代 Shell 具有内置的 kill 函数，其用法与此处描述的命令非常相似。 '-a' 和'-p' 选项以及通过命令名称指定进程的可能性是 本地扩展。
-
-如果 sig 为 0，则不发送信号，但仍执行错误检查。
-
-“信号 0”有点像精神上的“ ping”。在 shell 程序脚本中使用 kill -0 PID 是判断 PID 是否有效的好方法。信号 0 仅用于检查进程是否存在。
-
-## kill \[-s signal|-p] \[-q sigval] \[-a] \[--] pid...
-
-kill -l \[signal]
+我们可以使用 [kill](/docs/IT学习笔记/1.操作系统/X.Linux%20管理/Linux%20系统管理工具/procps%20工具集.md#kill-向指定PID的进程发送信号) 命令行工具将指定的信号发送到指定的进程或进程组

@@ -409,6 +409,5 @@ Zapping Devices
     ssh $host "rm -rf /var/lib/rook/*"
     done
 
-<!---->
 
     # kubectl delete -f cluster.yaml

@@ -287,7 +287,6 @@ Fig 2-1. List operation processing in apiserver
 4. 将 API 侧的 ListOption 转成底层存储的 ListOption，字段区别见下文
    `metainternalversion.ListOptions` 是 **API 侧的结构体**，包含了
 
-<!---->
 
      // staging/src/k8s.io/apimachinery/pkg/apis/meta/internalversion/types.go
 
@@ -853,7 +852,6 @@ etcd 中 namespace 是前缀的一部分，因此能指定 namespace 过滤资�
 3. 大 LIST 请求数量及响应耗时
    比如下面这个 `LIST all pods` 日志：
 
-<!---->
 
      {  "level":"warn",  "msg":"apply request took too long",  "took":"5357.87304ms",  "expected-duration":"100ms",  "prefix":"read-only range ",  "request":"key:\"/registry/pods/\" range_end:\"/registry/pods0\" ",  "response":"range_response_count:60077 size:602251227"  }
 

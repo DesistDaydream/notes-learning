@@ -14,7 +14,6 @@ title: client-go连接K8s集群进行pod的增删改查
 2. 导入到`IDE`。
 3. 运行 `examples/create-update-delete-deployment/main.go` 正常情况下会提示如下错误：
 
-<!---->
 
     panic: CreateFile C:\Users\shj\.kube\config: The system cannot find the path spe
     cified.

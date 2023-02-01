@@ -80,7 +80,6 @@ Note：
 - nmcli con show eth0 # 查看 eth1 这个 connectin 的所有状态，该命令会列出该 connection 的全部属性
 - nmcli -f bond con show bridge-slave-bond0 # 查看 bridge-slave-bond0 这个连接配置中，bond 这个 SETTING 的所有属性及其值。效果如下
 
-<!---->
 
     [root@lichenhao ~]# nmcli -f bond con show bridge-slave-bond0
     bond.options:                           mode=active-backup

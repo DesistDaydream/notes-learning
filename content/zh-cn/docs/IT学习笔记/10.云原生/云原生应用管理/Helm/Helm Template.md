@@ -225,7 +225,6 @@ data:
 2. array 数据用 \[] 符号表示
    1. index 函数用来获取 array 中的指定索引号的元素的值，index 函数语法为
 
-<!---->
 
     {{ index PIPELINE NUM }}
 

@@ -147,7 +147,6 @@ title: HTTP 的 持久化 与 认证/授权
   - 客户端将 token 保存到本地（通常使用 localstorage，也可以使用 cookie）
   - 当用户希望访问一个受保护的路由或者资源的时候，需要请求头的 Authorization 字段中使用 Bearer 模式添加 JWT，其内容看起来是下面这样
 
-<!---->
 
     Authorization: Bearer <token>
     复制代码
@@ -165,7 +164,6 @@ title: HTTP 的 持久化 与 认证/授权
 
 - 当用户希望访问一个受保护的路由或者资源的时候，可以把它放在 Cookie 里面自动发送，但是这样不能跨域，所以更好的做法是放在 HTTP 请求头信息的 Authorization 字段里，使用 Bearer 模式添加 JWT。
 
-<!---->
 
     GET /calendar/v1/events
     Host: api.example.com
@@ -186,7 +184,6 @@ title: HTTP 的 持久化 与 认证/授权
 
 - 通过 URL 传输
 
-<!---->
 
     http://www.example.com/user?token=xxx
     复制代码

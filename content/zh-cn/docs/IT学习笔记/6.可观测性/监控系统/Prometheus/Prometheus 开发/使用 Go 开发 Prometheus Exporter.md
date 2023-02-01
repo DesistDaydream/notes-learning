@@ -69,7 +69,6 @@ Go
 
 - 获取 channel id 和名称映射
 
-<!---->
 
     curl -k --location --request GET '<https://apihost/api/channels/statistics>' \\
     --user admin:admin

@@ -311,7 +311,6 @@ Arguments：
 
 - pid: int
 
-<!---->
 
     { "execute": "guest-exec-status", "arguments": { "pid": PID } }
 
@@ -337,7 +336,6 @@ err-truncated: boolean (optional)，如果由于大小限制而没有完全捕�
 - input-data: string (optional)，所需数据
 - capture-output: boolean (optional)，获取进程的 stdout/stderr
 
-<!---->
 
     { "execute": "guest-exec", "arguments": { "path": "ip", "arg": [ "addr", "list" ], "capture-output": true } }
 

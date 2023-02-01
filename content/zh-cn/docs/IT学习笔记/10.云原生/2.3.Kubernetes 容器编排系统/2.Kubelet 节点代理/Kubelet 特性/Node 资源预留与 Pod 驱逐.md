@@ -79,7 +79,6 @@ allocatable 的值即对应 describe node 时看到的 allocatable 容量，pod 
 
     假如想为系统进程和k8s进程也做cgroup级别的硬限制，还可以在限制列表中再加system-reserved和kube-reserved，同时还要分别加上--kube-reserved-cgroup和--system-reserved-cgroup以指定分别限制在哪个cgroup里。
 
-<!---->
 
     配置：--enforce-node-allocatable\=pods,kube-reserved,system-reserved
 
@@ -89,7 +88,6 @@ allocatable 的值即对应 describe node 时看到的 allocatable 容量，pod 
 
     注意，这里指定的cgroup及其子系统需要预先创建好，kubelet并不会为你自动创建好。
 
-<!---->
 
     配置：--kube-reserved-cgroup=/system.slice/kubelet.service
 
@@ -121,7 +119,6 @@ allocatable 的值即对应 describe node 时看到的 allocatable 容量，pod 
 
     注意，除了考虑为系统进程预留的量之外，还应该为kernel和用户登录会话预留一些内存。
 
-<!---->
 
     配置：--system\-reserved=cpu=200m,memory\=250Mi
 
@@ -133,7 +130,6 @@ allocatable 的值即对应 describe node 时看到的 allocatable 容量，pod 
 
     kubelet 将会对pod进行驱逐。
 
-<!---->
 
     配置：--eviction-hard=memory.available<5%,nodefs.available<10%,imagefs.available<10%
 

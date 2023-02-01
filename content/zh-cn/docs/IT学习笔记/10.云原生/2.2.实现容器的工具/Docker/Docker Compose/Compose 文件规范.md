@@ -76,7 +76,6 @@ title: Compose 文件规范
 - docker-compose up SERVICE ：自动包含 SERVICE 的依赖项。在以下示例中，docker-compose up web 还将创建并启动 db 和 redis。
 - docker-compose stop ：按依赖关系顺序停止服务。在以下示例中，web 在 db 和 redis 之前停止。
 
-<!---->
 
     version: "3.7"
     services:
@@ -268,7 +267,6 @@ syslog 驱动程序下，可以使用 syslog-address 指定日志接收地址。
 - on-failure：在容器非正常退出时（退出状态非 0），才会重启容器。
 - unless-stopped：在容器退出时总是重启容器，但是不考虑在 Docker 守护进程启动时就已经停止了的容器
 
-<!---->
 
     restart: "no"
     restart: always

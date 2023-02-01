@@ -219,7 +219,6 @@ Note:在了解过 Calico 的工作方式之后，其实会有这么一个疑问�
 
 - Note:该文件会由将 Flannel 分配的子网信息都记录下来，并交给每个节点的 cni0 或者 flannel0 使用，如果想要修改 flannel 配置，则需要删除每个节点上的这个文件，该文件内容如下所示
 
-<!---->
 
     [root@master-1 CNI]# cat /run/flannel/subnet.env
     FLANNEL_NETWORK=10.252.0.0/16

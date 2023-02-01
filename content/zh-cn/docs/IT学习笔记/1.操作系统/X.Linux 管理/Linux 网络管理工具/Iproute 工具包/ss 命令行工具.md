@@ -45,7 +45,6 @@ ss 用于转储 socket 统计信息。 它允许显示类似于 netstat 工具�
   - retrans # 重新传输的次数。即 TCP keepalive 探测是重试的次数。
 - **-s, --summary **# 输出摘要统计信息. 此选项不解析套接字列表，以从各种来源获取摘要。 常用于套接字数量太大以至于无法解析 /proc/net/tcp 时。输出信息如下：
 
-<!---->
 
     [root@lichenhao ~]# ss -s
     Total: 170

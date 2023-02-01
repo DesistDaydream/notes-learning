@@ -93,7 +93,6 @@ qemu-img convert \[-c] \[-p] \[-q] \[-n] \[-f fmt] \[-t cache] \[-T src_cache] \
 - 压缩 test.qcow2 镜像,生成新的名为 test.qcow2.new 的镜像，新的镜像文件大小更小
   - **qemu-img convert -c -O qcow2 test.qcow2 test.qcow2.new**
 
-<!---->
 
     # 压缩前的镜像信息
     [root@host-3 backingFile]# qemu-img check centos8-2004.qcow2.src

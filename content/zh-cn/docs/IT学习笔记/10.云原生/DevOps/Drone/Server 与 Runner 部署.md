@@ -32,7 +32,6 @@ title: Server 与 Runner 部署
 
 3. 使用 docker 镜像运行 Drone 的 GitHub Server 端
 
-<!---->
 
     docker run \
       --volume=/var/lib/drone:/data \
@@ -92,7 +91,6 @@ GitLab Server 的部署方式与 GitHub 基本一致
 
 3. 使用 docker 镜像运行 Drone 的 GitLab Server 端
 
-<!---->
 
     docker run \
       --volume=/var/lib/drone:/data \

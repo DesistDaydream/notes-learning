@@ -145,7 +145,6 @@ fio --rw=write --ioengine=sync --fdatasync=1 --directory=/var/lib/etcd --size=22
 - 您需要的 Fio 版本至少应为 3.5， 因为较旧的版本不会报告 fdatasync 持续时间百分位数。
 - 上面的输出只是来自的整个输出的一小部分摘录 fio。
 
-<!---->
 
     fio --randrepeat=1 \
       --ioengine=libaio \

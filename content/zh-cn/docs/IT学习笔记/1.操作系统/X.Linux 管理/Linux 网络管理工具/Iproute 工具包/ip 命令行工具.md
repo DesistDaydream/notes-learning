@@ -88,7 +88,6 @@ Command "-c" is unknown, try "ip route help".
 - 简略显示网络设备信息
   - ip -4 -o a s
 
-<!---->
 
     root@lichenhao:~/projects/kubeappsops# ip -4 -o a s
     1: lo    inet 127.0.0.1/8 scope host lo\       valid_lft forever preferred_lft forever

@@ -86,7 +86,6 @@ INCR/DECR 系列命令要求操作的 value 类型为 String，并可以转换�
 
 -
 
-<!---->
 
     SET inv:remain "100"
 
@@ -94,7 +93,6 @@ INCR/DECR 系列命令要求操作的 value 类型为 String，并可以转换�
 
 -
 
-<!---->
 
     DECR inv:remain
 
@@ -109,7 +107,6 @@ INCR/DECR 系列命令要求操作的 value 类型为 String，并可以转换�
 
 -
 
-<!---->
 
     SET sequence "10000"
 
@@ -117,7 +114,6 @@ INCR/DECR 系列命令要求操作的 value 类型为 String，并可以转换�
 
 -
 
-<!---->
 
     INCR sequence
 
@@ -126,7 +122,6 @@ INCR/DECR 系列命令要求操作的 value 类型为 String，并可以转换�
 
 -
 
-<!---->
 
     INCRBY sequence 100
 
@@ -268,7 +263,6 @@ Redis 的数据持久化机制是可以关闭的。如果你只把 Redis 作为�
 
 -
 
-<!---->
 
     save [seconds] [changes]
 
@@ -276,7 +270,6 @@ Redis 的数据持久化机制是可以关闭的。如果你只把 Redis 作为�
 
 -
 
-<!---->
 
     save 60 100
 
@@ -290,7 +283,6 @@ Redis 默认开启 RDB 快照，默认的 RDB 策略如下：
 
 -
 
-<!---->
 
     save 900 1save 300 10save 60 10000
 
@@ -313,7 +305,6 @@ Redis 默认开启 RDB 快照，默认的 RDB 策略如下：
 
 -
 
-<!---->
 
     appendonly yes
 
@@ -331,7 +322,6 @@ AOF rewrite 可以通过**BGREWRITEAOF**命令触发，也可以配置 Redis 定
 
 -
 
-<!---->
 
     auto-aof-rewrite-percentage 100auto-aof-rewrite-min-size 64mb
 
@@ -357,7 +347,6 @@ AOF rewrite 可以通过**BGREWRITEAOF**命令触发，也可以配置 Redis 定
 
 -
 
-<!---->
 
     maxmemory 100mb
 
@@ -386,7 +375,6 @@ Redis 提供了 5 种数据淘汰策略：
 
 -
 
-<!---->
 
     maxmemory-policy volatile-lru   #默认是noeviction，即不进行数据淘汰
 
@@ -403,7 +391,6 @@ Redis 提供许多批量操作的命令，如 MSET/MGET/HMSET/HMGET 等等，这
 
 -
 
-<!---->
 
     SET a "abc"INCR bHSET c name "hi"
 
@@ -418,7 +405,6 @@ Redis 提供许多批量操作的命令，如 MSET/MGET/HMSET/HMGET 等等，这
 
 -
 
-<!---->
 
     $ (printf "PING\r\nPING\r\nPING\r\n"; sleep 1) | nc localhost 6379+PONG+PONG+PONG
 
@@ -440,7 +426,6 @@ Pipelining 能够让 Redis 在一次交互中处理多条命令，然而在一�
 
 -
 
-<!---->
 
     > GET vCount12384> SET vCount 0OK
 
@@ -464,7 +449,6 @@ Pipelining 能够让 Redis 在一次交互中处理多条命令，然而在一�
 
 -
 
-<!---->
 
     > MULTIOK> GET vCountQUEUED> SET vCount 0QUEUED> EXEC1) 123842) OK
 
@@ -482,7 +466,6 @@ Redis 提供了 WATCH 命令与事务搭配使用，实现 CAS 乐观锁的机�
 
 -
 
-<!---->
 
     if(exec(HGET stock:1001 state) == "in stock")    exec(HSET stock:1001 state "sold");
 
@@ -500,7 +483,6 @@ Redis 提供了 WATCH 命令与事务搭配使用，实现 CAS 乐观锁的机�
 
 -
 
-<!---->
 
     exec(WATCH stock:1001);if(exec(HGET stock:1001 state) == "in stock") {    exec(MULTI);    exec(HSET stock:1001 state "sold");    exec(EXEC);}
 
@@ -520,7 +502,6 @@ WATCH 的机制是：在事务 EXEC 命令执行时，Redis 会检查被 WATCH �
 - 操作系统的 Transparent huge pages 功能必须关闭：
 -
 
-<!---->
 
     echo never > /sys/kernel/mm/transparent_hugepage/enabled
 
@@ -545,7 +526,6 @@ Redis 提供了 SCAN 命令，可以对 Redis 中存储的所有 key 进行游�
 
 -
 
-<!---->
 
     slowlog-log-slower-than xxxms  #执行时间慢于xxx毫秒的命令计入Slow Logslowlog-max-len xxx  #Slow Log的长度，即最大纪录多少条Slow Log
 
@@ -608,7 +588,6 @@ Redis 支持一主多从的主从复制架构。一个 Master 实例负责处理
 
 -
 
-<!---->
 
     slaveof 192.168.1.1 6379  #指定Master的IP和端口
 
@@ -626,7 +605,6 @@ Redis 的主从复制功能本身只是做数据同步，并不提供监控和�
 
 -
 
-<!---->
 
     sentinel monitor mymaster 127.0.0.1 6379 2  #Master实例的IP、端口，以及选举需要的赞成票数sentinel down-after-milliseconds mymaster 60000  #多长时间没有响应视为Master失效sentinel failover-timeout mymaster 180000  #两次failover尝试间的间隔时长sentinel parallel-syncs mymaster 1  #如果有多个Slave，可以通过此配置指定同时从新Master进行数据同步的Slave数，避免所有Slave同时进行数据同步导致查询服务也不可用
 

@@ -82,7 +82,6 @@ kubelet 执行逻辑：<https://github.com/kubernetes/kubernetes/blob/release-1.
 
     watch chan error: etcdserver: mvcc: required revision has been compacted
 
-<!---->
 
     [root@master-1 manifests]# kubectl get cs
     NAME                 AGE

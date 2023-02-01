@@ -233,7 +233,6 @@ EXAMPLE
 
 1. rabbitmqctl list_queues # 列出 / vhost 下的队列名及其消息数量，效果如下
 
-<!---->
 
     rabbitmq@hello-world-rabbitmq-server-0:/$ rabbitmqctl list_queues
     Timeout: 60.0 seconds ...

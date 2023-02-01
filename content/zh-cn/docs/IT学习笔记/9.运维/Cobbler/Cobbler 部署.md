@@ -120,7 +120,6 @@ cp /etc/xinetd.d/tftp{,.bak}
 2. vim centos7.ks #（sample_end.ks（默认使用的 ks 文件））修改成以下内容
 3. 注意：文件中不能有中文，即使注释掉也不行，否则会导致安装失败
 
-<!---->
 
     #platform=x86, AMD64, or Intel EM64T
     # System authorization information系统认证信息，使用加密，md5方式加密
@@ -226,7 +225,6 @@ Note：
 
 - 此功能需要在 ks 文件中添加如下内容，否则在自动安装中，读取 ks 文件的时候会报错：unable to open input kickstart file:error opening file:No such file or directory: '/tmp/pre_install_network_config'
 
-<!---->
 
     ...
     %pre
@@ -236,7 +234,6 @@ Note：
 
 - 如果有多块网卡的话，只自定义第二块网卡为外网，第一块网卡不一起配置，就会还是出现上文。多网卡像这样指定 IP 和网卡
 
-<!---->
 
     [root@cobbler ~]# cobbler system add --name=test --mac=52:54:00:be:29:97  --profile=CentOS8-2004-x86_64 --ip-address=10.0.0.82 --subnet=255.255.255.0 --interface=eth0 --static=1
     [root@cobbler ~]# cobbler system edit --name=test --mac=52:54:00:04:89:ee  --profile=CentOS8-2004-x86_64 --ip-address=192.168.31.82 --subnet=255.255.255.0 --gateway=192.168.31.1 --interface=eth1 --static=1 --hostname=zabbix --name-servers="223.5.5.5"
@@ -306,7 +303,6 @@ e.g./etc/cobbler/dhcp.template
 
 1. 需要注释掉 cobbler 与 dhcp 设备所在网段的网关配置，否则部署不同网段会失败，原因未知，待验证
 
-<!---->
 
     ddns-update-style interim;
 

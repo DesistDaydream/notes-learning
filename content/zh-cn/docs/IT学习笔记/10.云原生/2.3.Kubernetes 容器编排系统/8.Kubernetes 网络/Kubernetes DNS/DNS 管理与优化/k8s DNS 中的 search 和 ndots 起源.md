@@ -71,7 +71,6 @@ nameserver 即为 kubernetes 集群中，kube-dns 的 svc IP，集群中容器�
     	defaultDNSOptions = []string{"ndots:5"}
     )
 
-<!---->
 
     func (c *Configurer) generateSearchesForDNSClusterFirst(hostSearch []string, pod *v1.Pod) []string {
     	if c.ClusterDomain == "" {
@@ -83,7 +82,6 @@ nameserver 即为 kubernetes 集群中，kube-dns 的 svc IP，集群中容器�
     	return omitDuplicates(append(clusterSearch, hostSearch...))
     }
 
-<!---->
 
     func (c *Configurer) GetPodDNS(pod *v1.Pod) (*runtimeapi.DNSConfig, error) {
     	...

@@ -94,7 +94,6 @@ Label 属性用于指定界面中变量的显示名称，Hide 属性则用于指
     # 将10.10.15.xxx段的ip地址替换为10.20.15.xxx段 注：替换端口同理
     query_result(label_replace(kube_pod_info{pod=~"$pod"}, "node", "10.20.15.$1", "node", "10.10.15.(.*)"))
 
-<!---->
 
     # 通过正则从返回结果中匹配出所需要的ip地址
     regex：/.*node="(.*?)".*/

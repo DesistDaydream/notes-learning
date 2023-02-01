@@ -50,7 +50,6 @@ title: "panic: send on closed channel 解法"
 2. 释放资源，唤醒所有等待取元素的协程；
 3. 释放资源，唤醒所有等待写元素的协程；
 
-<!---->
 
     func closechan(c *hchan) {
      // 以下为锁内操作
