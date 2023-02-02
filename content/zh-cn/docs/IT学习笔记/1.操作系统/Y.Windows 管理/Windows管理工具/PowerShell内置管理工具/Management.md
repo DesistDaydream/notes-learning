@@ -50,7 +50,7 @@ OPTIONS
 - **-Exclude <String[]>** # 
 
 ### EXAMPLE
-列出服务并按照状态排序
+列出服务名 s 开头的所有服务并按照状态排序
 - Get-Service "s*" | Sort-Object status
 
 

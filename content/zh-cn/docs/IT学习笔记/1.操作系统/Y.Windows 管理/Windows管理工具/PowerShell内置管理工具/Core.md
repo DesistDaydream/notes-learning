@@ -1,7 +1,7 @@
 ---
 title: "Core"
 linkTitle: "Core"
-weight: 1
+weight: 2
 ---
 
 # 概述
