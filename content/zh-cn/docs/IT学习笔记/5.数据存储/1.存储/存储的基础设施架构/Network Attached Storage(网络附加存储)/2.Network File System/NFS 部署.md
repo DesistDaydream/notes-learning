@@ -4,7 +4,8 @@ title: NFS 部署
 
 # 概述
 
-> 参考：[Ubuntu 官方文档](https://ubuntu.com/server/docs/service-nfs)
+> 参考：
+> - [Ubuntu 官方文档](https://ubuntu.com/server/docs/service-nfs)
 
 # 服务端部署
 
