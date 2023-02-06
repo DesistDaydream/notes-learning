@@ -6,20 +6,33 @@ title: eBPF
 
 > 参考：
 > - [官网](https://ebpf.io/)
+> - [Kernel 官方文档，BPF](https://www.kernel.org/doc/html/latest/bpf/)
+> 	- [Kernel 官方文档](https://www.infradead.org/~mchehab/kernel_docs/bpf/index.html)
+> 	- [Cilium 官方文档，BPF](https://docs.cilium.io/en/latest/bpf/) Kernel 官方文档中指向的另一个文档
 > - [GitHub 项目，torvalds/linux/tools/lib/bpf](https://github.com/torvalds/linux/tree/master/tools/lib/bpf)(libbpf 库)
-> - [GitHub 项目，DavadDi/bpf_study](https://github.com/DavadDi/bpf_study)(DavaDi 的 BPF 学习文章)
-> - [arthurchiao.art 的文章](http://arthurchiao.art/index.html)：
->   - [\[译\] 大规模微服务利器：eBPF + Kubernetes（KubeCon, 2020）](http://arthurchiao.art/blog/ebpf-and-k8s-zh/)
-> - [公众号，深入浅出 BPF](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzA3NzUzNTM4NA==&action=getalbum&album_id=1996568890906148869&scene=173&from_msgid=2649613575&from_itemidx=1&count=3&nolastread=1#wechat_redirect)
->   - [eBPF 概述：第 1 部分：介绍](https://mp.weixin.qq.com/s/DK3Fv96m8dzKomSNGBznPw)
->   - [eBPF 概述：第 2 部分：机器和字节码](https://mp.weixin.qq.com/s/CWxRROFmP2E4iUCXy5FzWA)
->   - [eBPF 概述：第 3 部分：软件开发生态](https://mp.weixin.qq.com/s/H61TdIKCF-soyazJmWItTg)
->   - [eBPF 概述：第 4 部分：在嵌入式系统运行](https://mp.weixin.qq.com/s/7JGZHqn_sglGMWoRs4CcbQ)
->   - [eBPF 概述：第 5 部分：跟踪用户进程](https://mp.weixin.qq.com/s/zgu68HrCltVt7A0xs3f-nQ)
->   - [高效入门 eBPF](https://mp.weixin.qq.com/s/xs3ckWeCXKnE-lUoMQrUEw)
-> - [公众号，阿里云云原生-深入浅出 eBPF | 你要了解的 7 个核心问题](https://mp.weixin.qq.com/s/LaoNpE5MNMrEeKzOFb_lYA)
 
-## 为什么要使用 eBPF
+
+
+
+# 学习资料
+
+[arthurchiao.art 的文章](http://arthurchiao.art/index.html)：
+- [\[译\] 大规模微服务利器：eBPF + Kubernetes（KubeCon, 2020）](http://arthurchiao.art/blog/ebpf-and-k8s-zh/)
+
+[公众号，深入浅出 BPF](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzA3NzUzNTM4NA==&action=getalbum&album_id=1996568890906148869&scene=173&from_msgid=2649613575&from_itemidx=1&count=3&nolastread=1#wechat_redirect)
+- [eBPF 概述：第 1 部分：介绍](https://mp.weixin.qq.com/s/DK3Fv96m8dzKomSNGBznPw)
+- [eBPF 概述：第 2 部分：机器和字节码](https://mp.weixin.qq.com/s/CWxRROFmP2E4iUCXy5FzWA)
+- [eBPF 概述：第 3 部分：软件开发生态](https://mp.weixin.qq.com/s/H61TdIKCF-soyazJmWItTg)
+- [eBPF 概述：第 4 部分：在嵌入式系统运行](https://mp.weixin.qq.com/s/7JGZHqn_sglGMWoRs4CcbQ)
+- [eBPF 概述：第 5 部分：跟踪用户进程](https://mp.weixin.qq.com/s/zgu68HrCltVt7A0xs3f-nQ)
+
+[高效入门 eBPF](https://mp.weixin.qq.com/s/xs3ckWeCXKnE-lUoMQrUEw)
+
+[公众号，阿里云云原生-深入浅出 eBPF | 你要了解的 7 个核心问题](https://mp.weixin.qq.com/s/LaoNpE5MNMrEeKzOFb_lYA)
+
+[GitHub 项目，DavadDi/bpf_study](https://github.com/DavadDi/bpf_study)(DavaDi 的 BPF 学习文章)
+
+# 为什么要使用 eBPF
 
 > 参考：
 > - [公众号，云原生实验室，为什么 eBPF 如此受欢迎](https://mp.weixin.qq.com/s/K5bVHjJeOm8KpluPW1iyvw)
@@ -49,8 +62,9 @@ eBPF 还有一个黑科技，它会使用 **eBPF Map(eBPF 映射)** 来允许用
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kqvmni/1656471724028-9a437fff-c998-434e-a75d-808c9e309295.jpeg)
 现在你应该理解为什么 eBPF 这么高效了吧？主要还是 **eBPF 提供了一种直接在内核空间运行自定义程序，并且避免了在内核空间和用户空间之间复制无关数据的方法。**
 
-# eBPF 原理与架构简述![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/kqvmni/1649300475763-25ddd536-5730-4065-a33c-5fb8fdd1c097.png)
+# eBPF 原理与架构简述
 
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/kqvmni/1649300475763-25ddd536-5730-4065-a33c-5fb8fdd1c097.png)
 众所周知，Linux 内核是一个事件驱动的系统设计，这意味着所有的操作都是基于事件来描述和执行的。比如打开文件是一种事件、CPU 执行指令是一种事件、接收网络数据包是一种事件等等。eBPF 作为内核中的一个子系统，可以检查这些基于事件的信息源，并且允许开发者编写并运行在内核触发任何事件时安全执行的 BPF 程序。
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kqvmni/1619101127228-9138d591-82c8-4ce2-9f45-c431a34d3189.png)
 下图简要描述了 eBPF 的架构及基本的工作流程。![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kqvmni/1619101126880-5136401c-dbad-4b75-be67-a9756c5df522.png)
