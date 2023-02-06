@@ -32,6 +32,8 @@ title: eBPF
 
 [GitHub 项目，DavadDi/bpf_study](https://github.com/DavadDi/bpf_study)(DavaDi 的 BPF 学习文章)
 
+https://coolshell.cn/articles/22320.html
+
 # 为什么要使用 eBPF
 
 > 参考：
@@ -55,21 +57,22 @@ eBPF 程序比传统程序“跑得”更快，因为它的代码是直接在内
 
 eBPF 无需将数据从内核空间复制到用户空间，你可以直接在内核空间运行监控程序来聚合可观测性数据，并将其发送到用户空间。eBPF 也可以直接在内核空间过滤数据以及创建 Histogram，这比在用户空间和内核空间之间交换大量数据要快得多。
 
-### eBPF Map(eBPF 映射)
+# eBPF Map
+eBPF 有一个黑科技，它会使用 **eBPF Map(eBPF 映射)** 来允许用户空间和内核空间之间进行双向数据交换。在 Linux 中，映射（Map）是一种通用的存储类型，用于在用户空间和内核空间之间共享数据，它们是驻留在内核中的键值存储。
 
-eBPF 还有一个黑科技，它会使用 **eBPF Map(eBPF 映射)** 来允许用户空间和内核空间之间进行双向数据交换。在 Linux 中，映射（Map）是一种通用的存储类型，用于在用户空间和内核空间之间共享数据，它们是驻留在内核中的键值存储。
 对于可观测性这种应用场景，eBPF 程序会直接在内核空间进行计算，并将结果写入用户空间应用程序可以读取/写入的 eBPF 映射中。
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kqvmni/1656471724028-9a437fff-c998-434e-a75d-808c9e309295.jpeg)
-现在你应该理解为什么 eBPF 这么高效了吧？主要还是 **eBPF 提供了一种直接在内核空间运行自定义程序，并且避免了在内核空间和用户空间之间复制无关数据的方法。**
+eBPF 的高效主要还是 **eBPF 提供了一种直接在内核空间运行自定义程序，并且避免了在内核空间和用户空间之间复制无关数据的方法。**
 
 # eBPF 原理与架构简述
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/kqvmni/1649300475763-25ddd536-5730-4065-a33c-5fb8fdd1c097.png)
 众所周知，Linux 内核是一个事件驱动的系统设计，这意味着所有的操作都是基于事件来描述和执行的。比如打开文件是一种事件、CPU 执行指令是一种事件、接收网络数据包是一种事件等等。eBPF 作为内核中的一个子系统，可以检查这些基于事件的信息源，并且允许开发者编写并运行在内核触发任何事件时安全执行的 BPF 程序。
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kqvmni/1619101127228-9138d591-82c8-4ce2-9f45-c431a34d3189.png)
-下图简要描述了 eBPF 的架构及基本的工作流程。![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kqvmni/1619101126880-5136401c-dbad-4b75-be67-a9756c5df522.png)
+下图简要描述了 eBPF 的架构及基本的工作流程。
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/0-picgo/20230206115723.png)
 首先，开发者可以使用 C 语言（或者 Python 等其他高级程序语言）编写自己的 eBPF 程序，然后通过 LLVM 或者 GNU、Clang 等编译器，将其编译成 eBPF 字节码。Linux 提供了一个 bpf() 系统调用，通过 bpf() 系统调用，将这段编译之后的字节码传入内核空间。
-&#x20;
+
 传入内核空间之后的 BPF 程序，并不是直接就在其指定的内核跟踪点上开始执行，而是先通过 Verifier 这个组件，来保证我们传入的这个 BPF 程序可以在内核中安全的运行。经过安全检测之后，Linux 内核 还为 eBPF 字节码提供了一个实时的编译器（Just-In-Time，JIT），JIT 将确认后的 eBPF 字节码编译为对应的机器码。这样就可以在 eBPF 指定的跟踪点上执行我们的操作逻辑了。
 
 那么，用户空间的应用程序怎么样拿到我们插入到内核中的 BPF 程序产生的数据呢？BPF 是通过一种 MAP 的数据结构来进行数据的存储和管理的，BPF 将产生的数据，通过指定的 MAP 数据类型进行存储，用户空间的应用程序，作为消费者，通过 bpf() 系统调用，从 MAP 数据结构中读取数据并进行相应的存储和处理。这样一个完整 BPF 程序的流程就完成了。
