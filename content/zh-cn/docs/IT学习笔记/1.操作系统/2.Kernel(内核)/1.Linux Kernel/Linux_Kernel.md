@@ -67,7 +67,7 @@ vmlinuz 位于 /boot 目录中，该目录包含开始引导系统所需的文�
 
 > `make bzImage`
 
-这会在 \_/usr/src/linux/arch/i386/linux/boot/ \_等目录中创建名为\_bzImage\_的文件。
+这会在 /usr/src/linux/arch/i386/linux/boot/ 等目录中创建名为\_bzImage\_的文件。
 
 编译是将内核的[_源代码_](http://www.linfo.org/source_code.html)（即内核由人类编写的原始形式）转换为\_目标代码\_（计算机处理器可以直接理解）。它由称为[_编译器_](http://www.linfo.org/compiler.html)的专门程序执行，通常是[_GCC_](http://www.linfo.org/gcc.html)（[GNU](http://www.linfo.org/gnu.html)编译器集合）中的一个。
 
