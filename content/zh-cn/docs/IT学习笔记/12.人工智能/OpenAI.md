@@ -6,7 +6,12 @@ weight: 20
 
 # 概述
 > 参考：
-> -
+> - [官网](https://openai.com/)
+
+
+# API
+> 参考：
+> - [官方文档，API 参考](https://platform.openai.com/docs/api-reference/introduction)
 
 
 # ChatGPT
@@ -14,11 +19,12 @@ weight: 20
 > - https://github.com/wangrongding/wechat-bot
 > - https://github.com/fuergaosi233/wechat-chatgpt
 > - https://zblogs.top/how-to-register-openai-chatgpt-in-china
-> 	- 注册 ChatGPT
+> 	- 注册 ChatGPT 教程
 > - 使用虚拟号码接收短信验证码：https://sms-activate.org/
-> - [官方文档，API 参考](https://platform.openai.com/docs/api-reference/)
+
 
 上下文联系功能说明
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/0-picgo/20230204001925.png)
 
 
