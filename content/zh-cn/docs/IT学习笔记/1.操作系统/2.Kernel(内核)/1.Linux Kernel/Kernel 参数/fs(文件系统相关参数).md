@@ -3,7 +3,7 @@ title: fs(文件系统相关参数)
 ---
 
 > 参考：
-> - [官方文档,Linux 内核用户和管理员指南-/proc/sys 文档-/proc/sys/fs 文档](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/fs.html)
+> - [官方文档，Linux 内核用户和管理员指南-/proc/sys 文档-/proc/sys/fs 文档](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/fs.html)
 
 ## file-max 与 file-nr
 

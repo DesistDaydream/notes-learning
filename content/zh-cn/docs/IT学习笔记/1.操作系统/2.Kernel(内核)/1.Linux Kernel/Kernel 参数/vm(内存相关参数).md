@@ -5,7 +5,7 @@ title: vm(内存相关参数)
 # 概述
 
 > 参考：
-> - [官方文档,Linux 内核用户和管理员指南-/proc/sys 文档-/proc/sys/vm 文档](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/vm.html)
+> - [官方文档，Linux 内核用户和管理员指南-/proc/sys 文档-/proc/sys/vm 文档](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/vm.html)
 
 /proc/sys/vm/ 目录下的文件可用于调整 Linux Kernel 中有关 Virtual Memory(虚拟内存) 子系统的操作。
 

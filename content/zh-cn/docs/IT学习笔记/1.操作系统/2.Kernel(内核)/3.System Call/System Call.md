@@ -1,5 +1,5 @@
 ---
-title: 3.System Call(系统调用)
+title: 3.System Call
 ---
 
 # 概述

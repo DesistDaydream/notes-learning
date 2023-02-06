@@ -24,7 +24,7 @@ title: net(网络相关参数)
 # ipv4 参数
 
 > 参考：
-> - [官方文档，网络-IP Sysctl-/proc/sys/net/ipv4/\* 变量](https://www.kernel.org/doc/html/latest/networking/ip-sysctl.html#proc-sys-net-ipv4-variables)
+> - [官方文档，网络-IP Sysctl-/proc/sys/net/ipv4/* 变量](https://www.kernel.org/doc/html/latest/networking/ip-sysctl.html#proc-sys-net-ipv4-variables)
 
 ## net.ipv4.ip_forward = <0 | 非 0>
 

@@ -9,6 +9,7 @@ title: 1.Linux Kernel
 > - [GitHub,Linux 内核项目](https://github.com/torvalds/linux)
 > - [官网](https://www.kernel.org/)
 > - [官方文档](https://www.kernel.org/doc/html/latest/)
+> 	- https://www.infradead.org/~mchehab/kernel_docs/index.html 这是哪里的官方文档？
 > - [官方 Manual(手册)](https://www.kernel.org/doc/man-pages/index.html)
 > - [Wiki,Kernel](<https://en.wikipedia.org/wiki/Kernel_(operating_system)>)
 > - [Wiki,/boot](https://en.wikipedia.org/wiki//boot/)
@@ -20,22 +21,21 @@ title: 1.Linux Kernel
 > - <http://www.linfo.org/vmlinuz.html>
 > - [知乎,initrd 和 initramfs 的区别](https://www.zhihu.com/question/22045825)
 
-**Kernel(内核) **是一个作为操作系统核心的计算机程序，对系统中的一切具有完全控制权。它负责管理系统的进程、内存、设备驱动程序、文件和网络系统，决定着系统的性能和稳定性。
+**Kernel(内核)** 是一个作为操作系统核心的计算机程序，对系统中的一切具有完全控制权。它负责管理系统的进程、内存、设备驱动程序、文件和网络系统，决定着系统的性能和稳定性。
 
 Kernel 是计算器启动时首先加载程序之一(在 [Bootloader](/docs/IT学习笔记/1.操作系统/1.Bootloader/1.Bootloader.md)并处理硬件和软件之间的交互。并且处理启动过程的其余部分、以及内存、外设、和来自软件的输入/输出请求，将他们转换为 CPU 的数据处理指令。
 
-## Kernel 组成 及 系统调用
+## Kernel 组成及系统调用
 
 Linux 内核由如下几部分组成：内存管理、进程管理、设备驱动程序管理、文件系统管理、网络管理等。如图：
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fkp6xi/1616168349819-c21dd43c-79b7-4ec2-abd4-c8bb0e3c7686.jpeg)
 **System Call Interface(系统调用接口，简称 SCI) **层提供了某些机制执行从用户空间到内核的函数调用。这个接口依赖于体系结构，甚至在相同的处理器家族内也是如此。SCI 实际上是一个非常有用的函数调用多路复用和多路分解服务。
 
-系统调用介绍详见[ system call(系统调用)](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/3.System%20Call(系统调用).md Call(系统调用).md) 章节
+系统调用介绍详见 [System Call(系统调用)](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/3.System%20Call/System%20Call.md) 章节
 
 ## Linux man 手册使用说明
 
 在 Linux Kernel 的官方 man 手册中，记录了用户空间程序使用 Linux 内核 和 C 库的接口。对于 C 库，主要聚焦于 GUN C(glibc)，尽管在已知的情况下，还包括可用于 Linux 的其他 C 库中的变体文档。在这个 man 手册中，分为如下几部分
-
 - **[User commands](https://man7.org/linux/man-pages/dir_section_1.html)(用户命令)** # 介绍一些用户空间的应用程序。
 - **[System calls](https://man7.org/linux/man-pages/dir_section_2.html)(系统调用)** # Linux Kernel 可以提供的所有 System Calls(系统调用)
 - **[Library functions](https://man7.org/linux/man-pages/dir_section_3.html)(库函数)** # C 标准库可以提供的函数。
@@ -52,13 +52,13 @@ Kernel 会被安装到 /boot 目录中，并生成 **config、initrd.img、Syste
 
 ## vmlinuz
 
-\_vmlinuz \_是 [Linux](http://www.linfo.org/linuxdef.html) [_内核_](http://www.linfo.org/kernel.html) \_可执行文件\_的名称。
+vmlinuz 是 [Linux](http://www.linfo.org/linuxdef.html) [_内核_](http://www.linfo.org/kernel.html) 可执行文件的名称。
 
 vmlinuz 是一个压缩的 Linux 内核，它是\_可引导的\_。可引导意味着它能够将操作系统加载到内存中，以便计算机变得可用并且可以运行应用程序。
 
 vmlinuz 不应与\_vmlinux\_混淆，后者是非压缩和不可引导形式的内核。vmlinux 通常只是生成 vmlinuz 的中间步骤。
 
-vmlinuz 位于\_/boot\_目录中，该目录包含开始引导系统所需的文件。名为\_vmlinuz\_的文件可能是实际的内核可执行文件本身，也可能是内核可执行文件的链接，该链接可能带有诸如\_/boot/vmlinuz-2.4.18-19.8.0\_之类的名称（即特定内核的名称）内核版本）。这可以通过使用\_ls\_ [命令](http://www.linfo.org/command.html)（其目的是列出指定目录的内容）及其\_-l\_选项（它告诉 ls 提供有关指定目录中每个对象的详细信息）来轻松确定，如下所示：
+vmlinuz 位于 /boot 目录中，该目录包含开始引导系统所需的文件。名为 vmlinuz 的文件可能是实际的内核可执行文件本身，也可能是内核可执行文件的链接，该链接可能带有诸如 `/boot/vmlinuz-2.4.18-19.8.0` 之类的名称（即特定内核的名称）内核版本）。这可以通过使用 ls  [命令](http://www.linfo.org/command.html)（其目的是列出指定目录的内容）及其 -l 选项（它告诉 ls 提供有关指定目录中每个对象的详细信息）来轻松确定，如下所示：
 
 > `ls -l /boot`
 
@@ -89,8 +89,8 @@ _vmlinuz_ 这个名字很大程度上是历史的偶然。在贝尔实验室开�
 
 **Initial RAM Disk(初始内存磁盘，简称 initrd)** 是一种将临时根文件系统加载到内存中的方案，可以作为 Linux 启动过程的一部分。有两种方法来实现这种方案：
 
-- **initrd # Initial RAM Disk。**就是把一块内存（ram）当做磁盘（disk）去挂载，然后找到 ram 里的 init 执行。
-- **initramfs # Initial RAM Filesystem。**直接在 ram 上挂载文件系统，执行文件系统中的 init。
+- **initrd # Initial RAM Disk。** 就是把一块内存（ram）当做磁盘（disk）去挂载，然后找到 ram 里的 init 执行。
+- **initramfs # Initial RAM Filesystem。** 直接在 ram 上挂载文件系统，执行文件系统中的 init。
 
 这两者通常用于在挂载真正的根文件系统之前执行一些准备工作。
 
@@ -144,15 +144,14 @@ bin  dev  early_cpio  etc  init  kernel  lib  lib64  proc  root  run  sbin  shut
 
 # Kernel 关联文件
 
-**/boot/\* **#
-
-- **./config-$(uname -r) **# Kernel 的扩展配置文件。Kernel 文档中，将该文件称为 **Boot Configuration**。
+**/boot/\*** #
+- **./config-$(uname -r)** # Kernel 的扩展配置文件。Kernel 文档中，将该文件称为 **Boot Configuration**。
 - **./initrd.img** # 在内核挂载真正的根文件系统前使用的临时文件系统
 - **./vmlinuz** # Linux 内核
 
-**/etc/sysctl.conf **# 系统启动时读取的内核参数文件
+**/etc/sysctl.conf** # 系统启动时读取的内核参数文件
+- **/etc/sysctl.d/\*** # 系统启动时时读取的内核参数目录
 
-- **/etc/sysctl.d/\* **# 系统启动时时读取的内核参数目录
+**/usr/lib/sysctl.d/\*** #
 
-**/usr/lib/sysctl.d/\* **#
-**/proc/sys/\* **# 内核参数(也称为内核变量)所在路径。该目录(从 1.3.57 版本开始)包含许多与内核变量相对应的文件和子目录。 可以使用 [proc 文件系统](https://www.yuque.com/go/doc/33222789) 以及 sysctl(2) 系统读取或加载这些变量，有时可以对其进行修改。
+**/proc/sys/\*** # 内核参数(也称为内核变量)所在路径。该目录(从 1.3.57 版本开始)包含许多与内核变量相对应的文件和子目录。 可以使用 [proc 文件系统](https://www.yuque.com/go/doc/33222789) 以及 sysctl(2) 系统读取或加载这些变量，有时可以对其进行修改。
