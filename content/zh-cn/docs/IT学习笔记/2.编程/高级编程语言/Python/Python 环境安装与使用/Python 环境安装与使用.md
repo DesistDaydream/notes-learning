@@ -40,8 +40,24 @@ title: Python 环境安装与使用
 ## 安装多个版本的 Python
 
 # 编译 Python
+> 参考：
+> - [GitHub 项目，pyinstaller/pyinstaller](https://github.com/pyinstaller/pyinstaller)
 
-用 pyinstaller 编译？但是编译之后还是没法像 go 一样一个二进制文件导出运行。
+Python 官方并未提供可以将代码编译成一个独立的可执行文件的工具。如果想要运行 Python 代码，通常来说都要先在目标机器上安装 Python 环境以及所需的依赖库。
+
+但是，我们可以使用第三方工具，如 PyInstaller、cx_Freeze 等将 Python 代码编译成独立的可执行文件。这些工具会将 Python 解释器和所需的所有库打包到单个文件中，因此在未安装 Python 环境的计算机上也可以运行它。
+
+使用方法：
+
+安装
+
+`pip install pyinstaller` 
+
+使用命令行将 Python 文件编译为可执行文件：
+
+`pyinstaller --onefile myscript.py`
+
+这样，您就可以在任何没有 Python 环境的计算机上运行生成的可执行文件了。
 
 # Python 关联文件与配置
 

@@ -31,7 +31,7 @@ string str = "hello world！"
 
 [原始数据类型](https://en.wikipedia.org/wiki/Primitive_data_type)通常是语言实现的内置或基础类型。
 
-#### Machine Data Type(机器数据类型)
+### Machine Data Type(机器数据类型)
 
 基于数字电子的计算机中的所有数据都表示为最低级别的[位](https://en.wikipedia.org/wiki/Bit)（替代 0 和 1）。数据的最小可寻址单元通常是一组称为[字节](https://en.wikipedia.org/wiki/Byte)的位（通常是一个[八位组](<https://en.wikipedia.org/wiki/Octet_(computing)>)，即 8 位）。由[机器代码](https://en.wikipedia.org/wiki/Machine_code)指令处理的单元称为[字](<https://en.wikipedia.org/wiki/Word_(data_type)>)（截至 2011 年，通常为 32 或 64 位）。大多数指令将字解释为[二进制数](https://en.wikipedia.org/wiki/Binary_number)，因此 32 位字可以表示从 0 到 232 - 1 或有符号整数值来自 -231 到 231 - 1 由于[二进制补码](https://en.wikipedia.org/wiki/Two%27s_complement)，机器语言和机器在大多数情况下不需要区分这些无符号和有符号数据类型。
 
@@ -41,18 +41,18 @@ string str = "hello world！"
 
 在更高级别的编程中，机器数据类型通常被隐藏或\_抽象\_为一个实现细节，如果暴露，会使代码的可移植性降低。例如，numeric 可以提供泛型类型而不是某些特定位宽的整数。
 
-#### Boolean Type(布尔类型)
+### Boolean Type(布尔类型)
 
 [Boolean(布尔)](https://en.wikipedia.org/wiki/Boolean_type) 类型表示值 [true(真)](https://en.wikipedia.org/wiki/Logical_truth) 和 [false(假)](https://en.wikipedia.org/wiki/Logical_truth)。尽管只有两个值是可能的，但出于效率原因，它们很少被实现为单个二进制数字。许多编程语言没有明确的布尔类型，**而是将 0 解释为 false，将其他值解释为 true**。布尔数据是指如何将语言解释为机器语言的逻辑结构。在这种情况下，布尔值 0 指的是逻辑 False。True 总是非零，尤其是被称为布尔值 1 的一。
 
-#### Numeric Type(数字类型)
+### Numeric Type(数字类型)
 
 - [Integer(整数，简写 int)](<https://en.wikipedia.org/wiki/Integer_(computing)>) 数据类型，或“非分数”。可以根据它们包含负值的能力进行子类型化（例如 unsigned 在 C 和 C++ 中）。也可具有小的预定义数目的亚型（如 short 和 long 在 C / C ++）; 或允许用户自由定义子范围，例如 1..12（例如[Pascal](<https://en.wikipedia.org/wiki/Pascal_(programming_language)>) / [Ada](<https://en.wikipedia.org/wiki/Ada_(programming_language)>)）。
 - [Floating Point(浮点)](https://en.wikipedia.org/wiki/Floating_point) 数据类型通常将值表示为高精度分数值（[有理数](https://en.wikipedia.org/wiki/Rational_numbers)，数学上），但有时会误导性地称为实数（令人联想到数学[实数](https://en.wikipedia.org/wiki/Real_numbers)）。它们通常对最大值和精度都有预定义的限制。通常以 a × 2 b 的形式在内部存储（其中 a 和 b 是整数），但以熟悉的[十进制](https://en.wikipedia.org/wiki/Decimal)形式显示。
 - [Fixed Point(定点)](<https://en.wikipedia.org/wiki/Fixed_point_(computing)>) 数据类型便于表示货币值。它们通常在内部实现为整数，从而导致预定义的限制。
 - [Bignum](https://en.wikipedia.org/wiki/Bignum)或[任意精度](https://en.wikipedia.org/wiki/Arbitrary_precision)数字类型缺乏预定义的限制。它们不是原始类型，出于效率原因很少使用。
 
-#### Enumerations(枚举)
+### Enumerations(枚举)
 
 [枚举类型](https://en.wikipedia.org/wiki/Enumerated_type)具有不同的值，其可以被比较和分配，但不一定必须在计算机的存储器中的任何特定的具体表示; 编译器和解释器可以任意表示它们。例如，一副扑克牌中的四个花色可能是名为 CLUB、DIAMOND、HEART、SPADE 的四个枚举数，属于一个名为 suit 的枚举类型。如果变量 V 被声明为具有花色作为它的数据类型，可以为它分配这四个值中的任何一个。一些实现允许程序员为枚举值分配整数值，甚至将它们视为与整数类型等效的。
 
@@ -60,12 +60,12 @@ string str = "hello world！"
 
 [复合类型](https://en.wikipedia.org/wiki/Composite_type)派生自多个原始类型。这可以通过多种方式完成。它们组合的方式称为[数据结构](https://en.wikipedia.org/wiki/Data_structure)。构成一个基本类型为化合物类型通常导致新类型，例如阵列的整数是一个不同类型的整数。
 
-- [**Array(数组**](https://en.wikipedia.org/wiki/Array_data_type)**，也称为载体，**[**列表**](<https://en.wikipedia.org/wiki/List_(abstract_data_type)>)**，或序列)** 的存储数量的元件，并提供[随机接入](https://en.wikipedia.org/wiki/Random_access)到单个元件。数组的元素通常（但并非在所有上下文中）需要具有相同的类型。数组可以是固定长度的或可扩展的。数组中的索引通常需要是来自特定范围的整数（如果不是，可以通过谈论[关联数组](https://en.wikipedia.org/wiki/Associative_array)来强调这种放松）（如果不是该范围内的所有索引都对应于元素，则它可能是一个[稀疏数组](https://en.wikipedia.org/wiki/Sparse_array)）。
+- **[Array(数组)](https://en.wikipedia.org/wiki/Array_data_type)**，也称为载体，**[列表或序列](<https://en.wikipedia.org/wiki/List_(abstract_data_type)>)** 的存储数量的元件，并提供[随机接入](https://en.wikipedia.org/wiki/Random_access)到单个元件。数组的元素通常（但并非在所有上下文中）需要具有相同的类型。数组可以是固定长度的或可扩展的。数组中的索引通常需要是来自特定范围的整数（如果不是，可以通过谈论[关联数组](https://en.wikipedia.org/wiki/Associative_array)来强调这种放松）（如果不是该范围内的所有索引都对应于元素，则它可能是一个[稀疏数组](https://en.wikipedia.org/wiki/Sparse_array)）。
 - [**Record(记录)，也称为 tuple(元组) 或 struct(结构)**](<https://en.wikipedia.org/wiki/Record_(computer_science)>) 是最简单的[数据结构之一](https://en.wikipedia.org/wiki/Data_structure)。记录是包含其他值的值，通常采用固定数量和顺序，通常按 1 名称索引。记录的元素通常称为 **Fields(字段)** 或 **Members(成员)**。
-- [**Union(联合)**](<https://en.wikipedia.org/wiki/Union_(computer_science)>) 类型定义将指定许多允许的原始类型中的哪一个可以存储在其实例中，例如“浮点数或长整数”。与[记录](<https://en.wikipedia.org/wiki/Record_(computer_science)>)相反，[记录](<https://en.wikipedia.org/wiki/Record_(computer_science)>)可以定义为包含一个浮点数和一个整数；而在联合中，一次只允许一种类型。
+- **[Union(联合)](https://en.wikipedia.org/wiki/Union_type)** 类型定义将指定许多允许的原始类型中的哪一个可以存储在其实例中，例如“浮点数或长整数”。与[记录](<https://en.wikipedia.org/wiki/Record_(computer_science)>)相反，[记录](<https://en.wikipedia.org/wiki/Record_(computer_science)>)可以定义为包含一个浮点数和一个整数；而在联合中，一次只允许一种类型。
   - 甲[标签联合](https://en.wikipedia.org/wiki/Tagged_union)（也称为[变体](https://en.wikipedia.org/wiki/Variant_type)，变体记录，识别联合，或不相交并）包含一个附加的字段，指示其当前型增强型安全性。
 - [**Set(集)**](<https://en.wikipedia.org/wiki/Set_(abstract_data_type)>) 是一个[抽象的数据结构](https://en.wikipedia.org/wiki/Abstract_data_structure)可以存储某些值，没有任何特别的[顺序](https://en.wikipedia.org/wiki/Sequence)，并且不重复的值。值本身不是从集合中检索的，而是测试成员资格的值以获得布尔值“in”或“not in”。
-- [**Object(对象)**](<https://en.wikipedia.org/wiki/Object_(computer_science)>)\*\* \*\*包含许多数据字段，如 Record，以及许多用于访问或修改它们的子程序，称为 [Methods(方法)](<https://en.wikipedia.org/wiki/Method_(computer_programming)>)。
+- **[Object(对象)](https://en.wikipedia.org/wiki/Object_(computer_science))** 包含许多数据字段，如 Record，以及许多用于访问或修改它们的子程序，称为 [Methods(方法)](<https://en.wikipedia.org/wiki/Method_(computer_programming)>)。
 
 许多其他的都是可能的，但它们往往是上述的进一步变体和化合物。例如，[链表](https://en.wikipedia.org/wiki/Linked_list)可以存储与数组相同的数据，但提供[顺序访问](https://en.wikipedia.org/wiki/Sequential_access)而不是随机[访问](https://en.wikipedia.org/wiki/Sequential_access)，并且由[动态内存中](https://en.wikipedia.org/wiki/Dynamic_memory)的记录组成；虽然可以说是一种数据结构而不是类型本身，但它也很常见且足够独特，因此将其包含在复合类型的讨论中是合理的。
 
