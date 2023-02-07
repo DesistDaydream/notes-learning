@@ -9,3 +9,6 @@ weight: 12
 
 NovelAI # https://novelai.net/ 写故事、作图
 
+# 类 ChatGPT 项目
+bard，google 的
+文心一言，百度的

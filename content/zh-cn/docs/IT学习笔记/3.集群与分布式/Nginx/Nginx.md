@@ -51,7 +51,7 @@ Nginx 特性：
 
 ## Nginx 架构
 
-详见 [Nginx 源码解析模块架构](https://www.yuque.com/go/doc/44635547)
+详见 [Nginx 源码解析](/docs/IT学习笔记/3.集群与分布式/Nginx/Nginx%20源码解析.md)
 
 ## 总结
 

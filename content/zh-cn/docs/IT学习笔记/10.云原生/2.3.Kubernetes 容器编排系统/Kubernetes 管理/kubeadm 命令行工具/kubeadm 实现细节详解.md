@@ -4,9 +4,10 @@ title: kubeadm 实现细节详解
 
 # kubeadm 核心设计原则
 
-参考：[**官方文档**](https://kubernetes.io/docs/reference/setup-tools/kubeadm/implementation-details/)
-`kubeadm init` 和 `kubeadm join` 结合在一起提供了良好的用户体验。`kubeadm init` 和 `kubeadm join` 设置的集群应为：
+> 参考：
+> - [**官方文档**](https://kubernetes.io/docs/reference/setup-tools/kubeadm/implementation-details/)
 
+`kubeadm init` 和 `kubeadm join` 结合在一起提供了良好的用户体验。`kubeadm init` 和 `kubeadm join` 设置的集群应为：
 - Secure 安全——应采用最新的最佳做法
   - 加强 RBAC
   - 使用节点授权器
@@ -59,7 +60,7 @@ kubeadm init 的[内部的工作流程](https://kubernetes.io/docs/reference/set
 
 [kubeadm init phase](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init-phase/) 命令允许用户单独调用每个任务，并最终提供可重用和可组合的 API /工具箱，其他 Kubernetes 引导工具，任何 IT 自动化工具或高级用户都可以使用该 API /工具来创建自定义群集。
 
-## Prefight checks(事前准备核对清单)
+## Preflight checks(事前准备核对清单)
 
 Kubeadm 在启动 init 之前执行一组 prefight checks(预检检查)，目的是验证先决条件并避免常见的集群启动问题。用户可以选择跳过特定的 prefight checks 或全部跳过--ignore-preflight-errors。
 
@@ -89,7 +90,7 @@ Kubeadm 在启动 init 之前执行一组 prefight checks(预检检查)，目的
 - \[错误]如果 conntrack，ip，iptables，mount，nsenter 的命令不存在于该命令路径
 - \[警告]如果 ebtables，ethtool，socat，tc，touch，crictl 的命令不存在于该命令路径
 - \[警告]如果 API 服务器，控制器管理器，调度程序的额外 arg 标志包含一些无效选项
-- \[警告]如果与 https：[//API.AdvertiseAddress](//API.AdvertiseAddress)：API.BindPort 的连接通过代理
+- \[警告]如果与 https://API.AdvertiseAddress:API.BindPort 的连接通过代理
 - \[警告]如果服务子网的连接通过代理进行（仅检查第一个地址）
 - \[警告]如果 Pods 子网的连接通过代理进行（仅检查第一个地址）
 - 如果提供了外部 etcd：

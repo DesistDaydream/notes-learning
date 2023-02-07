@@ -29,7 +29,7 @@ dmesg 命令是用来在 Unix-like 系统中显示内核的相关信息的。dme
   - notice - normal but significant condition
   - info - informational
   - debug - debug-level messages
-- **-f, --facility LIST** # 指定要输出的 [Facility(设施)](../../6.可观测性/日志系统.md)，多个设施以逗号分隔。可用的 Facility 有[Facility(设施)](/docs/IT学习笔记/6.可观测性/日志系统/日志系统.md)ser - random user-level messages
+- **-f, --facility LIST** # 指定要输出的 [Facility(设施)](/docs/IT学习笔记/6.可观测性/日志系统/日志系统.md#Facility(设施))，多个设施以逗号分隔。可用的 Facility 有[Facility(设施)](/docs/IT学习笔记/6.可观测性/日志系统/日志系统.md)ser - random user-level messages
   - mail - mail system
   - daemon - system daemons
   - auth - security/authorization messages

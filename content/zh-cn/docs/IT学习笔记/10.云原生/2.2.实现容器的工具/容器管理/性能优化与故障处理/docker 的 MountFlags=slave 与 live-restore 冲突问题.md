@@ -119,11 +119,12 @@ func (d _Driver) Put(id string) error {
 `[stupig@hostname ~]$ ps -ef|grep -E "22283|22407|28454|28530" root      22283      1  0 10:48 ?        00:00:00 docker-containerd-shim -namespace moby root      22407      1  0 10:48 ?        00:00:00 docker-containerd-shim -namespace moby root      28454      1  0 10:49 ?        00:00:00 docker-containerd-shim -namespace moby root      28530      1  0 10:49 ?        00:00:00 docker-containerd-shim -namespace moby`
 
 容器读写层挂载信息没有出现在 dockerd 进程命名空间中，却出现在其他容器的托管服务 shim 进程的命名空间内，推断 dockerd 进程发生了重启，对比进程启动时间与命名空间详情可以进行验证：
+```
 
-\`\[stupig[@hostname ](/hostname) ~]$ ps -eo pid,cmd,lstart|grep dockerd&#x20;
+~]$ ps -eo pid,cmd,lstart|grep dockerd&#x20;
  34836 /usr/bin/dockerd --storage- Wed Oct 14 10:50:15 2020
 
-\[stupig[@hostname ](https://notes-learning.oss-cn-beijing.aliyuncs.com/4d90f6bb-b649-46d3-870f-b087ab75cbf9/latex)(pidof dockerd)/ns
+[stupig[@hostname ](https://notes-learning.oss-cn-beijing.aliyuncs.com/4d90f6bb-b649-46d3-870f-b087ab75cbf9/latex)(pidof dockerd)/ns
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 ipc -> ipc:\[4026531839]
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 mnt -> mnt:\[4026533327]
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 net -> net:\[4026531968]
@@ -131,10 +132,10 @@ lrwxrwxrwx 1 root root 0 Oct 14 10:50 pid -> pid:\[4026531836]
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 user -> user:\[4026531837]
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 uts -> uts:\[4026531838]
 
-\[stupig[@hostname ](/hostname) ~]$ ps -eo pid,cmd,lstart|grep -w containerd|grep -v shim&#x20;
+[stupig[@hostname ](/hostname) ~]$ ps -eo pid,cmd,lstart|grep -w containerd|grep -v shim&#x20;
  34849 docker-containerd --config  Wed Oct 14 10:50:15 2020
 
-\[stupig[@hostname ](https://notes-learning.oss-cn-beijing.aliyuncs.com/4d90f6bb-b649-46d3-870f-b087ab75cbf9/latex)(pidof docker-containerd)/ns
+[stupig[@hostname ](https://notes-learning.oss-cn-beijing.aliyuncs.com/4d90f6bb-b649-46d3-870f-b087ab75cbf9/latex)(pidof docker-containerd)/ns
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 ipc -> ipc:\[4026531839]
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 mnt -> mnt:\[4026533327]
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 net -> net:\[4026531968]
@@ -142,13 +143,13 @@ lrwxrwxrwx 1 root root 0 Oct 14 10:50 pid -> pid:\[4026531836]
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 user -> user:\[4026531837]
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 uts -> uts:\[4026531838]
 
-\[stupig[@hostname ](/hostname) ~]$ ps -eo pid,cmd,lstart|grep -w containerd-shim&#x20;
+[stupig[@hostname ](/hostname) ~]$ ps -eo pid,cmd,lstart|grep -w containerd-shim&#x20;
  22283 docker-containerd-shim -nam Wed Oct 14 10:48:50 2020
  22407 docker-containerd-shim -nam Wed Oct 14 10:48:55 2020
  28454 docker-containerd-shim -nam Wed Oct 14 10:49:53 2020
  28530 docker-containerd-shim -nam Wed Oct 14 10:49:53 2020
 
-\[stupig[@hostname ](/hostname) ~]$ sudo ls -la /proc/28454/ns&#x20;
+[stupig[@hostname ](/hostname) ~]$ sudo ls -la /proc/28454/ns&#x20;
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 ipc -> ipc:\[4026531839]
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 mnt -> mnt:\[4026533200]
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 net -> net:\[4026531968]
@@ -156,15 +157,14 @@ lrwxrwxrwx 1 root root 0 Oct 14 10:50 pid -> pid:\[4026531836]
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 user -> user:\[4026531837]
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 uts -> uts:\[4026531838]
 
-\[stupig[@hostname ](https://notes-learning.oss-cn-beijing.aliyuncs.com/4d90f6bb-b649-46d3-870f-b087ab75cbf9/latex)$/ns
+[stupig[@hostname ](https://notes-learning.oss-cn-beijing.aliyuncs.com/4d90f6bb-b649-46d3-870f-b087ab75cbf9/latex)$/ns
 lrwxrwxrwx 1 panpeilong panpeilong 0 Oct 14 21:49 ipc -> ipc:\[4026531839]
 lrwxrwxrwx 1 panpeilong panpeilong 0 Oct 14 21:49 mnt -> mnt:\[4026531840]
 lrwxrwxrwx 1 panpeilong panpeilong 0 Oct 14 21:49 net -> net:\[4026531968]
 lrwxrwxrwx 1 panpeilong panpeilong 0 Oct 14 21:49 pid -> pid:\[4026531836]
 lrwxrwxrwx 1 panpeilong panpeilong 0 Oct 14 21:49 user -> user:\[4026531837]
 lrwxrwxrwx 1 panpeilong panpeilong 0 Oct 14 21:49 uts -> uts:\[4026531838]
-
-\`
+```
 
 结果验证了我们推断的正确性。现在再补充下 docker 组件的进程树模型，用以解释这个现象，模型如下：
 

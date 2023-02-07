@@ -107,10 +107,15 @@ http 模块属于 NGX_CORE_MODULE 类型如果看 src/stream/ngx_stream.c、src/
   - ...... 太多了就不一一列举了，详见官网
 
 从上面的分类也可以看出来，每个类型的模块都有一个被称为 core 的模块来实现这个类型的功能。这其实就可以组成一个树状的结构：
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/eygybr/1619798135171-e81a3491-2566-4f50-ab0f-4b0868a5670e.png)这个图不太好，有机会自己画一个。
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/eygybr/1619798135171-e81a3491-2566-4f50-ab0f-4b0868a5670e.png)
+
+这个图不太好，有机会自己画一个。
 
 画成图就是这个样子的：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/eygybr/1619768579247-4047676f-2ece-4b9c-bed2-7d53d7f32ae4.png)
+
 就像 [官方文档的模块参考](http://nginx.org/en/docs/) 页面一样，我们可以看到下面这样的命名规则 `ngx_XXX_YYY_module`。其中 XXX 就是顶级模块名，YYY 就是属于 XXX 模块的次级模块名。效果如下：
 
 ```bash
@@ -134,6 +139,6 @@ ngx_stream_geo_module
 
 Nginx 通过这种架构，将各个模块组织成一条链，当有请求到达时，请求依次经过这条链上的部分或者全部模块，进行处理。每个模块实现特定的功能。
 
-而这些模块的运行行为，就是通过配置文件中的 [**Directive(指令)**](/docs/IT学习笔记/3.集群与分布式/Nginx/Nginx%20 配置详解/Nginx%20 配置详解.md 配置详解.md) 实现的。一般每个顶级模块都有一个同名的 顶级指令，比如 http 模块对应 http{} 顶级指令。
+而这些模块的运行行为，就是通过配置文件中的 [**Directive(指令)**](/docs/IT学习笔记/3.集群与分布式/Nginx/Nginx%20配置详解/Nginx%20配置详解.md) 实现的。一般每个顶级模块都有一个同名的 顶级指令，比如 http 模块对应 http{} 顶级指令。
 
 Nginx 模块的架构，也使得 Nginx 实现了灵活得可扩展性。
