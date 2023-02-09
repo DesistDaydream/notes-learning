@@ -63,6 +63,12 @@ IsRunspacePushed : False
 Runspace         : System.Management.Automation.Runspaces.LocalRunspace
 ```
 
+# 安装与更新
+
+# 使用 PowerShell
+
+`powershell` 和 `pwsh` 这几个命令一般都是用来打开 PowerShell 的，同时也是执行 PowerShell 脚本的前置命令。就像执行 Bash 脚本前加个 `bash` 命令一样
+
 # ITEM
 > 参考：
 > - [官方文档-PowerShell，脚本-基本概念-Items](https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-03#33-items)

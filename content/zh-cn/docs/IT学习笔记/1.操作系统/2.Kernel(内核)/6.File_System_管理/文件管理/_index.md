@@ -96,7 +96,7 @@ Linux 中的文件有下面几种类型(左侧是该类型文件的标识符)：
 > - [Wiki,Hard link](https://en.wikipedia.org/wiki/Hard_link)
 > - [WIki,Symbolic link](https://en.wikipedia.org/wiki/Symbolic_link)
 
-从[文件系统章节中的文件组织结构](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File%20System%20管理/_index.md#文件组织结构)可知，我们使用 [Inode(索引节点)](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File%20System%20管理/文件管理/Inode.md) 定位一个文件。而打开文件后，我们可以获取到文件的 [FileDesc(文件描述符)](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File%20System%20管理/文件管理/File%20Descriptor(文件描述符).md Descriptor(文件描述符).md)，所有对文件的读写操作，都是基于文件描述符进行的。
+从[文件系统章节中的文件组织结构](docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/_index.md#文件组织结构)可知，我们使用 [Inode(索引节点)](docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/Inode.md) 定位一个文件。而打开文件后，我们可以获取到文件的 [FileDesc(文件描述符)](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File%20System%20管理/文件管理/File%20Descriptor(文件描述符).md Descriptor(文件描述符).md)，所有对文件的读写操作，都是基于文件描述符进行的。
 
 **我们平时看到的人类可读的文件名，实际上是一个指向 Inode 的硬连接**。
 
@@ -104,7 +104,7 @@ Linux 中的文件有下面几种类型(左侧是该类型文件的标识符)：
 
 在计算机中 **Symbolic link(符号链接，也称为 软连接) **与 **Hard link(硬连接)** 都是用以指向一个目标的文件或路径。
 
-- Hard link 是将名称与文件相关联的 directory entry(目录项)，目录项概念详见《[文件系统管理](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File%20System%20管理/_index.md)》章节
+- Hard link 是将名称与文件相关联的 directory entry(目录项)，目录项概念详见《[文件系统管理](docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/_index.md)》章节
 - Symbolic link 是一个文件，通过指定路径指向一个目标(文件或目录)
 
 在文件系统中，人类看到的每个文件都是一个 inode 的硬连接。为文件创建额外的硬链接使得该文件的内容可以通过额外的路径访问（即通过不同的名称或在不同的目录中）。但是并不一定需要软链接，软链接与目标文件本质上是两个完全不通的文件。

@@ -14,7 +14,7 @@ weight: 20
 
 > 参考：
 > - [官方文档，学习PowerShell-脚本示例-管理进程和服务-管理服务](https://learn.microsoft.com/en-us/powershell/scripting/samples/managing-services)
-> - https://docs.microsoft.com/zh-cn/dotnet/framework/windows-services/
+> - [官方文档，.Net-开发 Windows 服务应用](https://learn.microsoft.com/zh-cn/dotnet/framework/windows-services/)
 
 ## 启动、停止、重启、暂停服务
 
@@ -55,6 +55,7 @@ OPTIONS
 
 
 ## New-Service
+
 创建服务
 
 ## Remove-Service
