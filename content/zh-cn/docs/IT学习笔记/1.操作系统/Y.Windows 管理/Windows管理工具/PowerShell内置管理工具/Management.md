@@ -6,14 +6,29 @@ weight: 20
 
 # 概述
 > 参考：
-> - [官方文档，PowerShell-参考-Management 模块](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management)
+> - [官方文档-PowerShell，模块-Management](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management)
 
 管理模块可以让我们在 PowerShell 中管理系统中的进程、服务等。
+
+# Item 管理工具
+
+## Get-ChildItem
+> 参考：
+> - [官方文档-PowerShell，模块-管理-Get-ChildItem](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-childitem)
+
+### Syntax(语法)
+**OPTIONS**
+- **-Path \<STRING>** # 指定一个或多个位置的路径，可以使用通配符。`默认值：.`
+
+### EXAMPLE
+实现类似 tree 命令的效果
+- Get-ChildItem -Path D:/Tools -Recurse -Depth 2 | Select-Object FullName
+
 
 # 服务管理工具
 
 > 参考：
-> - [官方文档，学习PowerShell-脚本示例-管理进程和服务-管理服务](https://learn.microsoft.com/en-us/powershell/scripting/samples/managing-services)
+> - [官方文档，PowerShell-脚本示例-管理进程和服务-管理服务](https://learn.microsoft.com/en-us/powershell/scripting/samples/managing-services)
 > - [官方文档，.Net-开发 Windows 服务应用](https://learn.microsoft.com/zh-cn/dotnet/framework/windows-services/)
 
 ## 启动、停止、重启、暂停服务
@@ -73,3 +88,4 @@ OPTIONS
 [Wait-Process](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/wait-process?view=powershell-7.3)
 
 [Debug-Process](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/debug-process?view=powershell-7.3)
+

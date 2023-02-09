@@ -13,15 +13,17 @@ CentOS 与 Ubuntu 中关于 glibc 的管理工具包的名称不太一样
 
 这个命令可以显示一个可执行文件所使用的动态链接库。如：
 
-    [root@centos8 bin]# ldd ls
-    	linux-vdso.so.1 (0x00007ffe2f157000)
-    	libselinux.so.1 => /lib64/libselinux.so.1 (0x00007f7d953a3000)
-    	libcap.so.2 => /lib64/libcap.so.2 (0x00007f7d9519d000)
-    	libc.so.6 => /lib64/libc.so.6 (0x00007f7d94ddb000)
-    	libpcre2-8.so.0 => /lib64/libpcre2-8.so.0 (0x00007f7d94b57000)
-    	libdl.so.2 => /lib64/libdl.so.2 (0x00007f7d94953000)
-    	/lib64/ld-linux-x86-64.so.2 (0x00007f7d957f1000)
-    	libpthread.so.0 => /lib64/libpthread.so.0 (0x00007f7d94733000)
+```
+~]# ldd /usr/bin/ls
+	linux-vdso.so.1 (0x00007ffd37562000)
+	libselinux.so.1 => /lib/x86_64-linux-gnu/libselinux.so.1 (0x00007f76b6c46000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f76b6a54000)
+	libpcre2-8.so.0 => /lib/x86_64-linux-gnu/libpcre2-8.so.0 (0x00007f76b69c4000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f76b69be000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f76b6ca2000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f76b699b000)
+```
+
 
 # ldconfig
 

@@ -6,8 +6,7 @@ weight: 20
 
 # 概述
 > 参考：
-> - [官方文档，PowerShell-参考-Security 模块](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security)
-> -
+> - [官方文档-PowerShell，模块-Security](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security)
 
 
 # Get-ExecutionPolicy

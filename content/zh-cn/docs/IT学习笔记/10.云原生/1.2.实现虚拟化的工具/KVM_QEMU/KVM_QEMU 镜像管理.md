@@ -12,7 +12,7 @@ title: KVM/QEMU 镜像管理
 >   - <https://www.unixmen.com/qemu-kvm-using-copy-write-mode/>
 >   - <https://opengers.github.io/virtualization/kvm-libvirt-qemu-5/>
 
-KVM/QEMU 通过 `[qemu-img](https://www.yuque.com/desistdaydream/learning/hnav1v)` 命令行工具管理虚拟机镜像。
+KVM/QEMU 通过 [qemu-img](/docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU%20命令行工具/qemu-img.md) 命令行工具管理虚拟机镜像。
 
 # QEMU Copy On Write
 
@@ -24,9 +24,12 @@ KVM/QEMU 通过 `[qemu-img](https://www.yuque.com/desistdaydream/learning/hnav1v
 
 当使用 QCOW 时，不会对原始磁盘映像应用任何更改。所有更改都记录在其他的 QCOW 文件中。多个 QCOW 文件可以指向同一个镜像，而不会危及基本系统。QEMU/KVM 允许将 QCOW 文件的更改合并到原始图像中。
 
-# [ 修改 backingfile 后，导致依赖 backingfile 的虚拟机的文件系统](https://www.cnblogs.com/fengrenzw/p/3383773.html)
+# 修改 backingfile 后，导致依赖 backingfile 的虚拟机的文件系统
+
+https://www.cnblogs.com/fengrenzw/p/3383773.html
 
 <https://www.cnblogs.com/fengrenzw/p/3383773.html>
+
 我们知道 qcow2 的磁盘格式可以带来很大的便利性，因为部署的时候可以减少大量的时间、空间，可以增量备份、快照等非常诱人的特性。
 因为下边可能会有点绕：
 backing_file：后端，母镜像
