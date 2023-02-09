@@ -7,7 +7,6 @@ weight: 20
 # 概述
 > 参考：
 > - [官方文档-PowerShell，脚本-基本概念-环境变量](https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-03?view=powershell-7.3#312-environment-variables)
-> - [官方文档-Windows，部署-公认的环境变量](https://learn.microsoft.com/en-us/windows/deployment/usmt/usmt-recognized-environment-variables)
 > - https://sysin.org/blog/windows-env/
 > - https://ss64.com/nt/syntax-variables.html
 
@@ -39,12 +38,17 @@ TODO: Windows 中的变量好像不区分大小写？
 
 **LOCALAPPDATA** # 应用程序的本地数据保存路径。默认值：`%USERPROFILE%/AppData/Local/`
 
+**ProgramData** # 指定程序数据文件夹的路径。与 Program Files 文件夹不同，应用程序可以使用此文件夹为标准用户存储数据，因为它不需要提升的权限。`默认值：C:/ProgramData`
+
+**ProgramFiles** # `默认值：C:/Program Files`
+
 注意：
 - Windows 中没有指向 “文档”、“视频” 等等目录的变量，可以在 PowerShell 中使用 `[environment]::getfolderpath("mydocuments")` 获取。
 	- 参考：https://stackoverflow.com/questions/3492920/is-there-a-system-defined-environment-variable-for-documents-directory
 
 想要获取变量，有几下几种方式：
 - Get-Item Env:*
+- ls env:
 - Get-Variable
 
 # 变量管理工具
