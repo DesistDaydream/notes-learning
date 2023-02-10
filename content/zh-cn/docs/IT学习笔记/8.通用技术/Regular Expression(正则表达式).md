@@ -9,9 +9,11 @@ title: Regular Expression(正则表达式)
 > - [正则表达式在线测试](https://regex101.com/)
 > - <https://r2coding.com/#/README?id=%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f>
 
+**记于 2023 年 2 月10 日：有了 ChatGPT，这正则表达式。。。我想。。。应该再也不用背了。。。。**
+
 **Regular Expression(正则表达式，简称 RegEX 或 RegEXP)** 是用于定义 Search Pattern(搜索模式) 的一系列字符串。这种 **Pattern(模式)** 通常被字符串搜索算法用于 find(查找) 字符串、或 find and replace(查找并替换) 字符串、或者验证输入内容。RegEX 是一种在 Theoretical Computer Science(理论计算机科学) 和 Formal Language(形式语言) 理论中发展起来的技术。
 
-用白话说，所谓的 正则表达式，就是用来通过一种称为 **Pattern(模式) **的方式，筛选出长篇内容里的部分内容。其实就是一堆字符组合在一起形成一种行为，这个行为就是匹配字符行为。也可以勉强算编程语言的一种吧~
+用白话说，所谓的 正则表达式，就是用来通过一种称为 **Pattern(模式)** 的方式，筛选出长篇内容里的部分内容。其实就是一堆字符组合在一起形成一种行为，这个行为就是匹配字符行为。也可以勉强算编程语言的一种吧~
 
 **所以，这个世界在很多时候，把正则表达式这个概念，用 RegEX、RegEXP、Pattern 这几种单词表示。**
 
@@ -106,7 +108,7 @@ a or b, pick one! | 表示“或”，即匹配其中任何一个，”book|desk
 | (?!...)       | 正向否定零宽断言                               | /foo(?!bar)/ |
 | foobar foobaz | 子表达式不可在此后成功匹配的位置，不占用字符。 |
 | (?=)          |                                                |              |      |
-|               |                                                |              |      |
+
 
 | **表达式** | **描述**                                                                                         |     |     |
 | ---------- | ------------------------------------------------------------------------------------------------ | --- | --- |
@@ -115,7 +117,9 @@ a or b, pick one! | 表示“或”，即匹配其中任何一个，”book|desk
 | (?<=)      | 反向预查。比如(?<=Code)Sheep 能匹配 CodeSheep 中的 Sheep，但不能匹配 ReadSheep 中的 Sheep。      |     |     |
 | (?\<!)     | 反向否定预查。比如(?\<!Code)Sheep 不能匹配 CodeSheep 中的 Sheep，但能匹配 ReadSheep 中的 Sheep。 |     |     |
 
-基本和扩展正则表达式具体区别见下图，扩展中的元字符如果用在基本正则表达式中，需要在每个元字符前面加转义符\<br />![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gpte3g/1616130197884-a0718c40-7e61-429d-9f4b-fe45a665d0d7.jpeg)
+基本和扩展正则表达式具体区别见下图，扩展中的元字符如果用在基本正则表达式中，需要在每个元字符前面加转义符
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gpte3g/1616130197884-a0718c40-7e61-429d-9f4b-fe45a665d0d7.jpeg)
 
 # 示例
 

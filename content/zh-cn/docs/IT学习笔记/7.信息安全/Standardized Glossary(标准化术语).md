@@ -7,7 +7,7 @@ title: Standardized Glossary(标准化术语)
 > 参考：
 > - [RFC 4949(互联网安全术语)](https://datatracker.ietf.org/doc/html/rfc4949)
 
-**Entity(实体) **# 是任何存在的东西（anything that exists） —— 即使 只在逻辑或概念上存在（even if only exists logically or conceptually）。 例如，
+**Entity(实体)** # 是任何存在的东西（anything that exists） —— 即使 只在逻辑或概念上存在（even if only exists logically or conceptually）。 例如，
 
 - 你的计算机是一个 entity，
 - 你写的代码也是一个 entity，
@@ -57,8 +57,7 @@ title: Standardized Glossary(标准化术语)
 
 **Decrypt(解密)** # 使用 Key(密钥) 对信息进行解码的过程
 
-**Encoding(编码) 与 Encrypt(加密) 的区别 **#
-
+**Encoding(编码) 与 Encrypt(加密) 的区别**
 - 编码使用公开的方案，将数据转换为另一种格式，便于维护数据与传播。任何人都可以使用相同的编码规范，解码数据
 - 加密使用私密的方法，将数据抓换为另一种格式，着重于数据的保密。只有拥有相同 Key 的人才可以使用相同的加密规范，解密数据
 - 总结：编码和加密都是对格式的一种转换，但是它们是有区别的。**编码是公开的**，比如 Base 64 编码，任何人都可以解码；**而加密则相反，你只希望自己或者特定的人才可以对内容进行解密。**
@@ -67,10 +66,10 @@ title: Standardized Glossary(标准化术语)
 
 **Verifying(验证)** # 非对称加密中，使用公钥验证数字签名的行为。
 
-**Digital Signature(数字签名)** # [详见 Wiki](https://en.wikipedia.org/wiki/Digital_signature)**。**用于检验数字消息或文件的真实性的数学方案
+**Digital Signature(数字签名)** # [详见 Wiki](https://en.wikipedia.org/wiki/Digital_signature)。用于检验数字消息或文件的真实性的数学方案
 
-**Public Key Cryptography Standards(非对称密钥加密标准，简称 PKCS) **# [详见 Wiki](https://en.wikipedia.org/wiki/PKCS)。该标准指定了使用公开密钥加密技术时所应该遵守的标准
+**Public Key Cryptography Standards(非对称密钥加密标准，简称 PKCS)** # [详见 Wiki](https://en.wikipedia.org/wiki/PKCS)。该标准指定了使用公开密钥加密技术时所应该遵守的标准
 
 **Public Key Infrastructure(非对称密钥基础设施，简称 PKI)** # [详见 Wiki](https://en.wikipedia.org/wiki/Public_key_infrastructure)。一个包括硬件、软件、人员、策略和规程的集合，用来实现基于公钥密码体制的密钥和证书的产生、管理、存储、分发和撤销等功能。
 
-**Secure Hash Algorithm(安全哈希算法，简称 SHA)** #&#x20;
+**Secure Hash Algorithm(安全哈希算法，简称 SHA)**

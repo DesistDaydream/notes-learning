@@ -43,9 +43,9 @@ openssl 程序提供了丰富的子命令，以实现 TLS/SSL 网络协议以及
 
 - Standard commands # 标准命令
   - asn1parse，ca，ciphers，cms，crl，crl2pkcs7，dgst，dh，dhparam，dsa，dsaparam，ec，ecparam，enc，engine，errstr，gendh，gendsa，genpkey，genrsa，nseq，ocsp，passwd，pkcs12，pkcs7，pkcs8，pkey，pkeyparam，pkeyutl，prime，rand，req，rsa，rsautl，s_client，s_server，s_time，sess_id，smime，speed，spkac，ts，verify，version，x509
-- Message Digest commands #消息摘要命令，消息摘要算法的实现(用于单向加密)。使用 dgst 命令
+- Message Digest commands # 消息摘要命令，消息摘要算法的实现(用于单向加密)。使用 dgst 命令
   - md2，md4，md5，rmd160，sha，sha1
-- Cipher commands #密码命令（其中都是各种加密算法，用于对称加密）。使用 enc 命令
+- Cipher commands # 密码命令（其中都是各种加密算法，用于对称加密）。使用 enc 命令
   - aes-128-cbc，aes-128-ecb，aes-192-cbc，aes-192-ecb，aes-256-cbc，aes-256-ecb，base64，bf，bf-cbc，bf-cfb，bf-ecb，bf-ofb，camellia-128-cbc，camellia-128-ecb，camellia-192-cbc，camellia-192-ecb，camellia-256-cbc，camellia-256-ecb，cast，cast-cbc，cast5-cbc，cast5-cfb，cast5-ecb，cast5-ofb，des，des-cbc，des-cfb，des-ecb，des-ede，des-ede-cbc，des-ede-cfb，des-ede-ofb，des-ede3，des-ede3-cbc，des-ede3-cfb，des-ede3-ofb，des-ofb，des3，desx，idea，idea-cbc，idea-cfb，idea-ecb，idea-ofb，rc2，rc2-40-cbc，rc2-64-cbc，rc2-cbc，rc2-cfb，rc2-ecb，rc2-ofb，rc4，rc4-40，rc5，rc5-cbc，rc5-cfb，rc5-ecb，rc5-ofb，seed，seed-cbc，seed-cfb，seed-ecb，seed-ofb，zlib
 
 ### Global OPTIONS
@@ -53,7 +53,7 @@ openssl 程序提供了丰富的子命令，以实现 TLS/SSL 网络协议以及
 - -in FILE # 指明使用的文件
 - -out FILE # 指明输出的文件
 
-## Standard commands #标准命令
+## Standard commands # 标准命令
 
 [Standard commands(标准命令)](/docs/IT学习笔记/7.信息安全/管理工具/OpenSSL/Standard%20commands(标准命令).md commands(标准命令).md)
 

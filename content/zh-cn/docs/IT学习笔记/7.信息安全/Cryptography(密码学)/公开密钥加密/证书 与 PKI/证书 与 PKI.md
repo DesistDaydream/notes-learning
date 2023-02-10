@@ -19,7 +19,7 @@ Certificate 与 PKI 的目标很简单：Bind names to Public Keys(将名字关�
 
 # Certificate
 
-**Certificate(证书)** 在密码学中，是指 [公开密钥加密](/docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密.md) 中完善其签名[缺点](/docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密.md#缺点)的 **Public Key Certificate(公钥证书)**。在公开密钥加密的介绍中，我们看到了公钥加密的特点，并且也发现了缺点，公钥容易被劫持。那么为了解决这个问题，就需要一个东西可以**验证公钥的真实性**。公钥证书也就由此而来。
+**Certificate(证书)** 在密码学中，是指 [公开密钥加密](docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密/公开密钥加密.md) 中完善其签名[缺点](docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密/公开密钥加密.md#缺点)的 **Public Key Certificate(公钥证书)**。在公开密钥加密的介绍中，我们看到了公钥加密的特点，并且也发现了缺点，公钥容易被劫持。那么为了解决这个问题，就需要一个东西可以**验证公钥的真实性**。公钥证书也就由此而来。
 
 **Public Key Certificate(公钥证书，简称 PKC)** 也称为 **Digital Certifacte(数字证书)** 或 **Identity Certificate(身份证书)**，是一种用于证明公钥的所有权的电子文档。
 
