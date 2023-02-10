@@ -1,5 +1,6 @@
 ---
 title: Containerd 部署
+weight: 2
 ---
 
 # 概述
@@ -7,11 +8,11 @@ title: Containerd 部署
 > 参考：
 > - [GitHub 文档，containerd/containerd/docs/getting-started.md](https://github.com/containerd/containerd/blob/main/docs/getting-started.md)
 
-# 安装 Containerd 套件
+# 安装 Containerd
 
 是否需要 libseccomp2 依赖？待验证
 
-## 方法 1：使用 Linux 的包管理器安装
+## 使用包管理器安装
 
 ### CentOS
 
@@ -35,20 +36,46 @@ sudo apt-get -y install containerd.io
 
 略
 
-## 方法 2：使用二进制文件安装
+## 使用二进制文件安装
 
-以 1.4.4 版本为例
+通常，我们使用二进制安装 Containerd 时，除了 Containerd 的本体，还需要安装 runc 与 CNI。
 
 注意：在 1.6.0 版本的更新说明中，对 Releases 中的包进行一些调整，将在未来的 2.0 版本之后弃用一些东西
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gg4dmt/1654268589875-dff18ee5-d643-489f-9c13-b8bc1dd4e99d.png)
 
-### 安装 Containerd 套件
+这里说的主要是对那些整合包的弃用，让 containerd 的 realease 更纯粹，那些带着 cni 或 cri 的整合包，都没有了。并且，根据 1.6 版本的官方文档的安装说明，CRI 功能已经整合在 containerd 中，所以更无须下载整合包了。
 
-在 [release](https://github.com/containerd/containerd/releases) 页面下载 [1.4.4 版本](https://github.com/containerd/containerd/releases/tag/v1.4.4)的二进制程序压缩包(注意，这里推荐使用带有 runc 的压缩包)，解压并将二进制程序放到 $PATH 中
+### 安装 Containerd
+
+在 [release](https://github.com/containerd/containerd/releases) 页面下载二进制程序压缩包，解压并将二进制程序放到 $PATH 中
+```bash
+export ARCH="amd64"
+export CONTAINER_VERSION="1.6.16"
+export OS="linux"
+wget https://github.com/containerd/containerd/releases/download/v${CONTAINER_VERSION}/containerd-${CONTAINER_VERSION}-${OS}-${ARCH}.tar.gz
+tar Cxzvf /usr/local containerd-${CONTAINER_VERSION}-${OS}-${ARCH}.tar.gz
+```
+
+### 安装 runc
+
+从 [GitHub 项目，opencontainers/runc 的 Releases](https://github.com/opencontainers/runc/releases) 处下载 `runc.<ARCH>` 二进制文件，拷贝到 `/usr/local/sbin/runc` 处
 
 ```bash
-wget https://github.com/containerd/containerd/releases/download/v1.4.4/cri-containerd-cni-1.4.4-linux-amd64.tar.gz
-tar -zxvf cri-containerd-cni-1.4.4-linux-amd64.tar.gz -C /
+export ARCH=amd64
+cp runc.${ARCH} /usr/local/sbin/runc && chmod 755 /usr/local/sbin/runc
+```
+
+### 安装 CNI 插件
+
+从 [GitHub 项目，containernetworking/plugins 的 Releases](https://github.com/containernetworking/plugins/releases) 处下载 `cni-plugins-<OS>-<ARCH>-<VERSION>.tgz` 文件，解压到 `/opt/cni/bin/` 目录下
+
+```bash
+export OS=linux
+export ARCH=amd64
+export VERSION=v1.1.1
+mkdir -p /opt/cni/bin
+tar Cxzvf /opt/cni/bin cni-plugins-${OS}-${ARCH}-${VERSION}.tgz
 ```
 
 ### 配置 Unit 文件
@@ -86,27 +113,6 @@ OOMScoreAdjust=-999
 WantedBy=multi-user.target
 ```
 
-### 安装 runc
-
-从 [GitHub 项目，opencontainers/runc 的 Releases](https://github.com/opencontainers/runc/releases) 处下载 `runc.<ARCH>` 二进制文件，拷贝到 `/usr/local/sbin/runc` 处
-
-```bash
-export ARCH=amd64
-cp runc.${ARCH} /usr/local/sbin/runc && chmod 755 /usr/local/sbin/runc
-```
-
-### 安装 CNI 插件
-
-从 [GitHub 项目，containernetworking/plugins 的 Releases](https://github.com/containernetworking/plugins/releases) 处下载 `cni-plugins-<OS>-<ARCH>-<VERSION>.tgz` 文件，解压到 `/opt/cni/bin/` 目录下
-
-```bash
-export OS=linux
-export ARCH=amd64
-export VERSION=v1.1.1
-mkdir -p /opt/cni/bin
-tar Cxzvf /opt/cni/bin cni-plugins-${OS}-${ARCH}-${VERSION}.tgz
-```
-
 # 配置并启动 Containerd
 
 ## 添加 containerd 配置文件
@@ -134,6 +140,8 @@ systemctl enable containerd --now
 ```
 
 # rootless 模式
+
+强烈推荐开启 cgroup v2，否则最好不要使用 rootless 模式，开启参考：https://rootlesscontaine.rs/getting-started/common/cgroup2/
 
 ```bash
 [INFO] Checking RootlessKit functionality

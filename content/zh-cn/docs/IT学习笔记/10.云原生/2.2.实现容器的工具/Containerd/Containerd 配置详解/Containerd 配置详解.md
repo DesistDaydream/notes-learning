@@ -1,12 +1,13 @@
 ---
 title: Containerd 配置详解
+weight: 1
 ---
 
 # 概述
 
 > 参考：
 > - [Manual(手册),containerd-config.toml(5)](https://github.com/containerd/containerd/blob/main/docs/man/containerd-config.toml.5.md)
->   - [Debian Manual](https://manpages.debian.org/bullseye/containerd/containerd-config.toml.5.en.html)
+> - [Debian Manual](https://manpages.debian.org/bullseye/containerd/containerd-config.toml.5.en.html)
 
 Containerd 使用 [TOML](/docs/IT学习笔记/2.编程/无法分类的语言/TOML.md) 作为配置文件的格式，默认配置文件为 /etc/containerd/config.toml，我们可以通过命令来生成一个包含所有配置字段的默认配置文件
 
@@ -20,8 +21,8 @@ containerd config default > /etc/containerd/config.toml
 # \[通用]配置
 
 **version = 2** #&#x20;
-**root = <STRING>** # Containerd 持久化数据路径。`默认值：/var/lib/containerd`。
-**state = <STRING>** # Containerd 临时数据路径。`默认值：/run/containerd`。
+**root = \<STRING>** # Containerd 持久化数据路径。`默认值：/var/lib/containerd`。
+**state = \<STRING>** # Containerd 临时数据路径。`默认值：/run/containerd`。
 **oom_score = 0** # 设置 Containerd 的 OOM 权重。`默认值：0`。
 Containerd 是容器的守护者，一旦发生内存不足的情况，理想的情况应该是先杀死容器，而不是杀死 Containerd。所以需要调整 Containerd 的 `OOM` 权重，减少其被 **OOM Kill** 的几率。最好是将 `oom_score` 的值调整为比其他守护进程略低的值。这里的 oom_socre 其实对应的是 `/proc/<pid>/oom_socre_adj`，在早期的 Linux 内核版本里使用 `oom_adj` 来调整权重, 后来改用 `oom_socre_adj` 了。该文件描述如下：
 在计算最终的 `badness score` 时，会在计算结果是中加上 `oom_score_adj` ,这样用户就可以通过该在值来保护某个进程不被杀死或者每次都杀某个进程。其取值范围为 `-1000` 到 `1000`。如果将该值设置为 `-1000`，则进程永远不会被杀死，因为此时 `badness score` 永远返回 0。建议 Containerd 将该值设置为 `-999` 到 `0` 之间。如果作为 Kubernetes 的 Worker 节点，可以考虑设置为 `-999`。

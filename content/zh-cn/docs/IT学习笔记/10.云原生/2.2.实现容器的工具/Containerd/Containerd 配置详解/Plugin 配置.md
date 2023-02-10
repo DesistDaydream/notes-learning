@@ -1,5 +1,6 @@
 ---
 title: Plugin 配置
+weight: 20
 ---
 
 # 概述
