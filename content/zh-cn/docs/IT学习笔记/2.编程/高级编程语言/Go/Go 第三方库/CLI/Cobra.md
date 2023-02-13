@@ -198,10 +198,10 @@ rootCmd.Flags().BoolP("toggle", "t", false, "关于toggle标志的帮助信息")
 实际命令都有选项，分为持久和本地，持久例如`kubectl`的`-n`可以用在很多二级命令下，本地命令选项则不会被继承到子命令。我们给 remove 添加一个移除指定名字的选项，修改`cmd/remove.go`的 init 函数：
 添加 Flags 使用 `Command.Flags()` 或 `cmd.PersistentFlags()` 方法，具体有以下使用规律
 
-- <type>
-- <type>P
-- <type>Var
-- <type>VarP
+- \<type>
+- \<type>P
+- \<type>Var
+- \<type>VarP
 
 带 P 的相对没带 P 的多了个短选项,没带 P 的选项只能用`--long-iotion`这样，而不能使用 `-l` 这种。
 
@@ -361,95 +361,106 @@ func rootRun(cmd *cobra.Command, args []string) {
 }
 ```
 
-# cobra.Command 结构体解析
+# cobra.Command 结构体解析（待整理）
 
-### 别名(Aliases)
+## 别名(Aliases)
 
 现在我们想添加一个别名
 
-    cli
-    |----app
-          |----remove|rm
+```
+cli  
+|----app  
+|----remove|rm
+```
 
 我们修改下初始化值即可
 
-    var removeCmd = &cobra.Command{
-    	Use:   "remove",
-        Aliases: []string{"rm"},
+```go
+var removeCmd = &cobra.Command{  
+	Use:   "remove",  
+    Aliases: []string{"rm"},
+```
 
-### 命令帮助添加示例(Example)
+## 命令帮助添加示例(Example)
 
 我们修改下 remove 的 Run 为下面
 
-    Run: func(cmd *cobra.Command, args []string) {
-               if len(args) == 0 {
-                  cmd.Help()
-                  return
-               }
-    },
+```go
+Run: func(cmd *cobra.Command, args []string) {  
+           if len(args) == 0 {  
+              cmd.Help()  
+              return  
+           }  
+},
+```
 
 运行输出里 example 是空的
 
-    [root@k8s-m1 cli]# go run main.go app remove
-    A longer description that spans multiple lines and likely contains examples
-    and usage of using your command. For example:
-
-    Cobra is a CLI library for Go that empowers applications.
-    This application is a tool to generate the needed files
-    to quickly create a Cobra application.
-
-    Usage:
-      cli app remove [flags]
-
-    Aliases:
-      remove, rm
-
-    Flags:
-      -h, --help          help for remove
-      -n, --name string   The application to be executed
-
-    Global Flags:
-          --config string   config file (default is $HOME/.cli.yaml)
+```go
+[root@k8s-m1 cli]# go run main.go app remove   
+A longer description that spans multiple lines and likely contains examples  
+and usage of using your command. For example:  
+  
+Cobra is a CLI library for Go that empowers applications.  
+This application is a tool to generate the needed files  
+to quickly create a Cobra application.  
+  
+Usage:  
+  cli app remove [flags]  
+  
+Aliases:  
+  remove, rm  
+  
+Flags:  
+  -h, --help          help for remove  
+  -n, --name string   The application to be executed  
+  
+Global Flags:  
+      --config string   config file (default is $HOME/.cli.yaml)
+```
 
 添加 example
 
-    var removeCmd = &cobra.Command{
-    	Use:   "remove",
-            Aliases: []string{"rm"},
-            Example: `
-    cli remove -n test
-    cli remove --name test
-    `,
+```go
+var removeCmd = &cobra.Command{  
+	Use:   "remove",  
+        Aliases: []string{"rm"},  
+        Example: `  
+cli remove -n test  
+cli remove --name test  
+`,
+```
 
+```go
+go run main.go app remove   
+A longer description that spans multiple lines and likely contains examples  
+and usage of using your command. For example:  
+  
+Cobra is a CLI library for Go that empowers applications.  
+This application is a tool to generate the needed files  
+to quickly create a Cobra application.  
+  
+Usage:  
+  cli app remove [flags]  
+  
+Aliases:  
+  remove, rm  
+  
+Examples:  
+  
+cli remove -n test  
+cli remove --name test  
+  
+  
+Flags:  
+  -h, --help          help for remove  
+  -n, --name string   The application to be executed  
+  
+Global Flags:  
+      --config string   config file (default is $HOME/.cli.yaml)
+```
 
-    go run main.go app remove
-    A longer description that spans multiple lines and likely contains examples
-    and usage of using your command. For example:
-
-    Cobra is a CLI library for Go that empowers applications.
-    This application is a tool to generate the needed files
-    to quickly create a Cobra application.
-
-    Usage:
-      cli app remove [flags]
-
-    Aliases:
-      remove, rm
-
-    Examples:
-
-    cli remove -n test
-    cli remove --name test
-
-
-    Flags:
-      -h, --help          help for remove
-      -n, --name string   The application to be executed
-
-    Global Flags:
-          --config string   config file (default is $HOME/.cli.yaml)
-
-### 参数验证器(Args)
+## 参数验证器(Args)
 
 该字段接收类型为`type PositionalArgs func(cmd *Command, args []string) error`
 内置的为下面几个:
@@ -461,65 +472,44 @@ func rootRun(cmd *cobra.Command, args []string) {
 - `MaximumNArgs(int)`: 如果有多于 N 个位置参数，该命令将报告错误。
 - `ExactArgs(int)`: 如果没有确切的 N 位置参数，该命令将报告错误。
 - `RangeArgs(min, max):` 如果 args 的数量不在预期 args 的最小和最大数量之间，则该命令将报告错误。
-- 自己写的话传入符合类型定义的函数即可\`\`\`plaintext
-  Args: func(cmd \*cobra.Command, args \[]string) error {
-  if len(args) < 1 {
-  return errors.New("requires at least one arg")
-  }
-  if myapp.IsValidColor(args\[0]) {
-  return nil
-  }
-  return fmt.Errorf("invalid color specified: %s", args\[0])
-  },
+- 自己写的话传入符合类型定义的函数即可
 
+```go
+  Args: func(cmd *cobra.Command, args []string) error {  
+  if len(args) < 1 {  
+    return errors.New("requires at least one arg")  
+  }  
+  if myapp.IsValidColor(args[0]) {  
+    return nil  
+  }  
+  return fmt.Errorf("invalid color specified: %s", args[0])  
+},
 ```
 
 前面说的没传递选项和任何值希望打印命令帮助也可以用`MinimumNArgs(1)`来触发
 
-### [](#Run的hook "Run的hook")Run的hook[](#Run的hook)
 
-Run功能的执行先后顺序如下：
+
+# 自定义 help,usage 输出
+
+help
+
+```go
+command.SetHelpCommand(cmd *Command)
+command.SetHelpFunc(f func(*Command, []string))
+command.SetHelpTemplate(s string)
 ```
 
-- PersistentPreRun
-- PreRun
-- Run
-- PostRun
-- PersistentPostRun
-  接收`func(cmd *Command, args []string)`类型的函数，Persistent 的能被下面的子命令继承
-  RunE 功能的执行先后顺序如下：
-- PersistentPreRunE
-- PreRunE
-- RunE
-- PostRunE
-- PersistentPostRunE
+usage
 
-接收`func(cmd *Command, args []string) error`的函数
-
-### 自定义 help,usage 输出
-
-- help\`\`\`plaintext
-  command.SetHelpCommand(cmd *Command)
-  command.SetHelpFunc(f func(*Command, \[]string))
-  command.SetHelpTemplate(s string)
-
-- usage\`\`\`plaintext
-  command.SetUsageFunc(f func(\*Command) error)
-  command.SetUsageTemplate(s string)
-
-```
-
-[http://www.xtgxiso.com/golang%E5%AE%9E%E7%8E%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%85%B3%E6%B3%A8%E5%93%8D%E5%BA%94%E7%9A%84http%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1/](http://www.xtgxiso.com/golang%E5%AE%9E%E7%8E%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%85%B3%E6%B3%A8%E5%93%8D%E5%BA%94%E7%9A%84http%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1/)
-[https://blog.csdn.net/cs380637384/article/details/81231817](https://blog.csdn.net/cs380637384/article/details/81231817)
-[https://studygolang.com/articles/7588](https://studygolang.com/articles/7588)
-[https://www.cppentry.com/bencandy.php?fid=78&aid=213235&page=2](https://www.cppentry.com/bencandy.php?fid=78&aid=213235&page=2)
-[https://ordina-jworks.github.io/development/2018/10/20/make-your-own-cli-with-golang-and-cobra.html#getting-started](https://ordina-jworks.github.io/development/2018/10/20/make-your-own-cli-with-golang-and-cobra.html#getting-started)
+```go
+command.SetUsageFunc(f func(*Command) error)
+command.SetUsageTemplate(s string)
 ```
 
 # Run 的 hook
 
 Run 功能的执行先后顺序如下：
-
 - PersistentPreRun
 - PreRun
 - Run
@@ -527,8 +517,8 @@ Run 功能的执行先后顺序如下：
 - PersistentPostRun
 
 接收 `func(cmd *Command, args []string)` 类型的函数，Persistent 的能被下面的子命令继承
-RunE 功能的执行先后顺序如下：
 
+RunE 功能的执行先后顺序如下：
 - PersistentPreRunE
 - PreRunE
 - RunE
@@ -537,21 +527,19 @@ RunE 功能的执行先后顺序如下：
 
 接收 `func(cmd *Command, args []string) error` 的函数
 
-### 注意
+## 预处理相关函数说明
 
 当具有多级子命令时，`PersistentXXX()` 相关函数只会执行一次
-比如现在创建了一个 cobra 命令，具有如下几个子命令
 
+比如现在创建了一个 cobra 命令，具有如下几个子命令：
 - add
   - command
   - args
 - del
 
-如果在 cobra 和 add 中都使用了 PersistentPreRun() 函数的话，只会有第一个执行，并且是子命令的方法优先
-参考 Issue：
-
-- <https://github.com/spf13/cobra/issues/216>
-- <https://github.com/spf13/cobra/issues/252>
+如果在 cobra 和 add 中都使用了 PersistentPreRun() 函数的话，只会有第一个执行，并且是子命令的方法优先，参考 Issue：
+- https://github.com/spf13/cobra/issues/216
+- https://github.com/spf13/cobra/issues/252
 
 可以在最底层的子命令中，通过如下方式执行父命令的 `PersistenXXX()` 函数
 
@@ -579,22 +567,13 @@ func subPersistentPreRun(cmd *cobra.Command, args []string) {
 }
 ```
 
-### 注意 2：
+### OnInitialize与OnFinalize函数
 
-`parent.PersistentPreRun(parent, args)` 函数只会让下面一层子命令集成，也就是说，如果有这么一个命令 `cmd c1 c2 c3 c4`，此时我们在 c1 出执行 `parent.PersistentPreRun(parent, args)`，那么执行 c3 或 c4 时，上述继承效果将不会生效。如果想要让 c4 也继承 c1 的，则需要在 c2 和 c3 出也执行 `parent.PersistentPreRun(parent, args)` 函数
+除了 PersistentXXX() 这种函数以外，我们还可以使用 `OnInitialize()` 函数来执行预运行的逻辑，该函数可以避免在每一个子命令的  `PersistentPreRun()` 中重复调用 `parent.PersistentPreRun`。
+- `OnInitialize()` 函数会在**调用**每个命令的 `Execute()` 方法时运行。
+- `OnFinalize()` 函数则会在**完成**每个命令的 `Execute()` 方法时运行。
 
-## 自定义 help,usage 输出
+`OnInitialize()` 会将其参数赋值给 initializers 变量(这个变量的类型是一个函数)，该变量会在 Command.preRun() 函数中被执行
+> 注意，这个 Command.preRun() 与 Command.PreRun() 不同。前者是 Command 结构体的方法，后者是 Command 的一个属性。
+> 在 execute() 中，preRun 在 PreRun 之前执行。
 
-- help
-
-                command.SetHelpCommand(cmd *Command)command.SetHelpFunc(f func(*Command, []string))command.SetHelpTemplate(s string)
-
-- usage
-
-                command.SetUsageFunc(f func(*Command) error)command.SetUsageTemplate(s string)
-
-[http://www.xtgxiso.com/golang%E5%AE%9E%E7%8E%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%85%B3%E6%B3%A8%E5%93%8D%E5%BA%94%E7%9A%84http%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1/](http://www.xtgxiso.com/golang%25E5%25AE%259E%25E7%258E%25B0%25E7%259A%2584%25E4%25B8%2580%25E4%25B8%25AA%25E4%25B8%258D%25E5%2585%25B3%25E6%25B3%25A8%25E5%2593%258D%25E5%25BA%2594%25E7%259A%2584http%25E4%25BB%25A3%25E7%2590%2586%25E6%259C%258D%25E5%258A%25A1/)
-<https://blog.csdn.net/cs380637384/article/details/81231817>
-<https://studygolang.com/articles/7588>
-<https://www.cppentry.com/bencandy.php?fid=78&aid=213235&page=2>
-<https://ordina-jworks.github.io/development/2018/10/20/make-your-own-cli-with-golang-and-cobra.html#getting-started>
