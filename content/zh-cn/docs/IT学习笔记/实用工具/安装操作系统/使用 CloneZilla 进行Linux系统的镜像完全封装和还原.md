@@ -7,7 +7,7 @@ title: 使用 CloneZilla 进行Linux系统的镜像完全封装和还原
 
 **注意：进行还原的机器需要与进行镜像封装的机器关键硬件配置一致，否则可能产生显卡驱动无法使用等问题**
 
-## **1.下载 CloneZilla**
+## 1.下载 CloneZilla
 
 下载链接：[https://clonezilla.org/downloads.php](https://link.zhihu.com/?target=https%3A//clonezilla.org/downloads.php)
 
@@ -19,7 +19,7 @@ title: 使用 CloneZilla 进行Linux系统的镜像完全封装和还原
 
 选择 2 文件格式，可以在 zip 和 iso 间进行切换
 
-## **2.制作 CloneZilla 启动 U 盘**
+## 2.制作 CloneZilla 启动 U 盘
 
 根据第 1 步操作下载的文件选择以下两种方式进行 U 盘制作：
 
@@ -63,7 +63,7 @@ title: 使用 CloneZilla 进行Linux系统的镜像完全封装和还原
 
 至此 CloneZilla 启动 U 盘制作完毕。
 
-## **3.进行 Linux 系统的封装**
+## 3.进行 Linux 系统的封装
 
 **1）准备另一个 U 盘作为封装镜像的存储盘**
 
