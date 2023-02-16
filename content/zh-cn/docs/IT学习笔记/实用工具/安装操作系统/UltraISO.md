@@ -8,6 +8,8 @@ weight: 20
 > 参考：
 > - [官网](https://www.ultraiso.com/)
 
+UltraISO 是一个运行在Microsoft Windows平台上的用来创建、修改和转换ISO文件的软件。
+
 官方似乎没有 Portable(便携版)~~ o(╯□╰)o
 
 ## 将 ISO 文件写到 U 盘

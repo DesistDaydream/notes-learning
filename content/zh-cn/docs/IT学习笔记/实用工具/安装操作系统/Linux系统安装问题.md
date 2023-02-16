@@ -1,5 +1,5 @@
 ---
-title: Linux系统安装问题
+title: Linux 系统安装问题
 ---
 
 使用 U 盘安装 CentOS7 卡在”Starting dracut initqueue hook…”
@@ -58,19 +58,6 @@ title: Linux系统安装问题
 
 首先等待 timeout 报错完成，这是会进入 dracut 的简易终端，cd /dev 执行 ls 查看有哪些分区，我的分区有 sda 和 sdb、sdb4，所以 sdb4 就是镜像所在的分区，编辑 inst.stage2=hd:LABEL=CentOS\x207\x2086_64 为 inst.stage2=hd:/dev/sdb4 按 enter 开机，efi 安装按 ctrl+x 启动。之后就能正常开机了。
 
-2. 这个问题很好解决，看有人说用 DD 安装到 U 盘，又有个博客说是他用了个山寨 U 盘。。。 其实真正的问题原因是路径问题，修复这个问题超级简单，简单的要哭！！！ 好了，哭够了，再次送给那些 XX，SB 二字，接下来说说怎么解决。
-
-解决办法 1： **修改 U 盘的标签！说出来你都不信。**
-
-解决办法 2：**修改启动菜单，说出来你更不信**
-
-大家可以打开 ISO 看下，在 /isolinux/isolinux.cfg 找到 Install CentOS 7
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/nebxk0/1616168532273-570cb2a3-b1cd-40a3-a321-2f24764c6547.png)
-
-此处 inst.stage2=hd:LABEL=CentOS\x207\x20x86_64
-
-这就是造成超时的原因，inst.stage2 这里应该是指向一个具体的地址，如果是 DVD，它的标签就是“CentOS 7 x86_64”，而 U 盘则可能是你自己定义的标签。 这就造成了 DVD 能正常安装，U 盘就不行了。 所以上面所说的 2 个解决办法，其实都是在修改同一个原因。
 
 ## 因此，具体操作有 2 个
 

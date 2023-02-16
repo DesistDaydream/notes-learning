@@ -1,19 +1,30 @@
 ---
-title: 使用 CloneZilla 进行Linux系统的镜像完全封装和还原
+title: Clonezilla
 ---
 
+## 概述
 
-# 概述
 > 参考：
-> - 原文链接：<https://zhuanlan.zhihu.com/p/354584111>
+> - [官网](https://clonezilla.org/)
+> - [知乎，使用再生龙CloneZilla进行Linux系统的镜像完全封装和还原](https://zhuanlan.zhihu.com/p/354584111)
+
+Clonezilla 是类似于 [True Image](http://en.wikipedia.org/wiki/Acronis_True_Image) 或 [Norton Ghost](http://en.wikipedia.org/wiki/Ghost_%28software%29) 的分区和磁盘映像/克隆程序。它可以帮助您进行系统部署、裸机备份和恢复。可以使用三种类型的 Clonezilla：
+- [Clonezilla live](https://clonezilla.org/clonezilla-live.php) # Clonezilla live 允许您使用 CD/DVD 或 USB 闪存驱动器启动和运行 clonezilla（仅限单播）
+- [Clonezilla lite server](https://clonezilla.org/show-live-doc-content.php?topic=clonezilla-live/doc/11_lite_server) # Clonezilla 精简版服务器允许您使用 Clonezilla live 进行大规模克隆（支持单播、广播、多播、比特流）
+- [Clonezilla SE](https://clonezilla.org/clonezilla-SE/) # Clonezilla SE 包含在 DRBL 中，因此必须首先设置 DRBL 服务器才能使用 Clonezilla 进行大规模克隆（支持单播、广播和组播）
+
+Clonezilla live 适用于单机备份和恢复。虽然 Clonezilla 精简版服务器或 SE 用于大规模部署，但它可以同时克隆多台（40 多台！）计算机。Clonezilla 仅保存和恢复硬盘中使用过的块。这提高了克隆效率。对于 42 节点集群中的一些高端硬件，报告了以 8 GB/分钟的速率恢复的多播。
 
 **CloneZilla 可以将 Linux 完整移植到另一台机器中，保证数据，分区，挂载，启动项。。所有的一切完全一致**
+> 注意：进行还原的机器需要与进行镜像封装的机器关键硬件配置一致，否则可能产生显卡驱动无法使用等问题
 
-**注意：进行还原的机器需要与进行镜像封装的机器关键硬件配置一致，否则可能产生显卡驱动无法使用等问题**
+Clonezilla Live 本身就是一个小型的 Liunx 发行版，这就像是 Linux 版的 WinPE 一样。除了图形页面可供操作外，还可以通过命令行，执行诸如 ssh 之类的命令。这也就意味着，Clonezilla 可以读写远程存储设备中，封装好的 Linux 镜像可以直接写入到 NFS、S3 中，还原 Linux 时，也可以从这些远程存储设备中读取镜像。
 
-# 1.下载 CloneZilla
+Clonezilla 源码实际上是运行程序本身，因为它们使用脚本(bash 或 perl)编写的。最初始保存在 [NCHC 存储库](https://free.nchc.org.tw/clonezilla-live/)中。在这个存储库中，我们可以从 [experimental/](https://free.nchc.org.tw/clonezilla-live/experimental/) 目录下找到 ARM 版本的 Clonezilla。
 
-下载链接：https://clonezilla.org/downloads.php
+# CloneZilla Live 安装与使用
+
+从[此处](https://clonezilla.org/downloads.php)可以看到 Clonezilla Live 的所有下载链接
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/1f12dbea-164d-4f41-9cd2-fd92952d6310/v2-bb25fa732ef006ca39284e3f44683cbb_b.jpg)
 
@@ -23,11 +34,11 @@ title: 使用 CloneZilla 进行Linux系统的镜像完全封装和还原
 
 选择 2 文件格式，可以在 zip 和 iso 间进行切换
 
-# 2.制作 CloneZilla 启动 U 盘
+## 制作 CloneZilla 启动 U 盘
 
-根据第 1 步操作下载的文件选择以下两种方式进行 U 盘制作：
+根据下载的文件类型的不同，有两种方式进行 U 盘制作
 
-**1）ISO 文件**
+### ISO 文件
 
 若选择 iso 则通过**软碟通 UltraISO** ([https://cn.ultraiso.net/xiazai.html](https://link.zhihu.com/?target=https%3A//cn.ultraiso.net/xiazai.html))在 windows 设备上进行 U 盘刻录。
 
@@ -53,7 +64,7 @@ title: 使用 CloneZilla 进行Linux系统的镜像完全封装和还原
 
 至此 CloneZilla 启动 U 盘制作完毕
 
-**2）zip 文件**
+### zip 文件
 
 若选择 zip 则通过 Tuxboot ([https://tuxboot.org/download/](https://link.zhihu.com/?target=https%3A//tuxboot.org/download/))进行 U 盘制作
 
@@ -67,13 +78,9 @@ title: 使用 CloneZilla 进行Linux系统的镜像完全封装和还原
 
 至此 CloneZilla 启动 U 盘制作完毕。
 
-# 3.进行 Linux 系统的封装
+# 封装Linux系统
 
-
-
-**2）进行 Linux 系统封装**
-
-(1) 重启电脑后，设置 BIOS 启动顺序，优先从 USB 启动，进入 CloneZilla，界面如下：
+启动服务器，优先从 USB 启动，进入 CloneZilla，界面如下：
 - 选择第一项 **Clonezilla live (VGA 800 * 600)**，进入图形化界面
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/1f12dbea-164d-4f41-9cd2-fd92952d6310/v2-2bca4e983efc7609b7a240f20db8fbb6_b.jpg)
@@ -164,57 +171,58 @@ s3fs my-ocs-img /home/partimag -o passwd_file=/root/.passwd-s3fs -o url="${ENDPO
 
 
 ## 选择要执行的操作
-(13) 选择“savedisk 存储本机硬盘为镜像文件”
+
+选择“savedisk 存储本机硬盘为镜像文件”
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/1f12dbea-164d-4f41-9cd2-fd92952d6310/v2-5d8aaf82a29d7cf4135abf9f852ecd7c_b.jpg)
 
-(14) 输入要保存的镜像名称，并按 enter 结束
+输入要保存的镜像名称，并按 enter 结束
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/1f12dbea-164d-4f41-9cd2-fd92952d6310/v2-d6337a094a761676414588886281a421_b.jpg)
 
-(15) 选择要封装的硬盘，如果机器上有多个硬盘，此时可以选择多个要备份的硬盘，空格键选中，回车继续
+选择要封装的硬盘，如果机器上有多个硬盘，此时可以选择多个要备份的硬盘，空格键选中，回车继续
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/1f12dbea-164d-4f41-9cd2-fd92952d6310/v2-a65dbd0d6faadf8acc2fc704157cab01_b.jpg)
 
-(16) 选择第一项默认使用 zip 压缩方式
+选择第一项默认使用 zip 压缩方式
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/1f12dbea-164d-4f41-9cd2-fd92952d6310/v2-55752fc86cbac54e4d4f0d23e180df46_b.jpg)
 
-(17) 选择“跳过检查与修正来源分区的文件系统”，这一步是用来检查硬盘的文件系统是否符合要求
+选择“跳过检查与修正来源分区的文件系统”，这一步是用来检查硬盘的文件系统是否符合要求
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/1f12dbea-164d-4f41-9cd2-fd92952d6310/v2-384ae83f7ff238930dad965944266a78_b.jpg)
 
-(18) 选择“否”，这一步是用来检查保存的镜像是否可以被还原的
+选择“否”，这一步是用来检查保存的镜像是否可以被还原的
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/1f12dbea-164d-4f41-9cd2-fd92952d6310/v2-0816cacf4b7fc828d8cc5ebf3e6dc10c_b.jpg)
 
-(19) 选择是否要对镜像进行加密，这里选择“不加密”
+选择是否要对镜像进行加密，这里选择“不加密”
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/1f12dbea-164d-4f41-9cd2-fd92952d6310/v2-4750ed41e41ccfd9b31336e038ca342a_b.jpg)
 
-(20) 这一步用于选择镜像封装完成后要执行的操作，可选“关机”、“重启”等，这里选择“当操作执行完后再选择”
+这一步用于选择镜像封装完成后要执行的操作，可选“关机”、“重启”等，这里选择“当操作执行完后再选择”
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/1f12dbea-164d-4f41-9cd2-fd92952d6310/v2-c54a7964c1e3b205a16712610fcd7fe1_b.jpg)
 
-(21) 输入 y 后按“enter”回车，即可开始进行镜像封装了
+输入 y 后按“enter”回车，即可开始进行镜像封装了
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/1f12dbea-164d-4f41-9cd2-fd92952d6310/v2-ffb2f474690186d539f5f4ac93b2fbf0_b.jpg)
 
-(22) 镜像封装中
+镜像封装中
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/1f12dbea-164d-4f41-9cd2-fd92952d6310/v2-4c8fd45ccb63cd91da2691331cb6f327_b.jpg)
 
-(23) 镜像封装完成，按 enter 键继续
+镜像封装完成，按 enter 键继续
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/1f12dbea-164d-4f41-9cd2-fd92952d6310/v2-32ccb6c402a0c4aecde904f9c8d6e151_b.jpg)
 
-(24) 选择“关机”或“重启”，**注意：若(20)选择“关机”或“重启”，不会有该界面出现，直接关机或重启；若选择重启，待屏幕黑屏后需将启动盘拔出。**
+选择“关机”或“重启”，**注意：若选择“关机”或“重启”，不会有该界面出现，直接关机或重启；若选择重启，待屏幕黑屏后需将启动盘拔出。**
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/1f12dbea-164d-4f41-9cd2-fd92952d6310/v2-74c60fc40ab08d48b204f3a00adbec58_b.jpg)
 
-# 4.进行 Linux 系统还原
+# 还原Linux系统
 
-(1) - (12)步与进行封装的操作一致
+在选择执行操作前，所有步骤与[封装Linux系统](#封装Linux系统)前面的步骤一样
 
 ## 选择要执行的操作
 
