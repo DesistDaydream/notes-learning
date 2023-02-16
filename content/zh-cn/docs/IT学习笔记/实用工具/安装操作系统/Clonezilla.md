@@ -7,6 +7,9 @@ title: Clonezilla
 > 参考：
 > - [官网](https://clonezilla.org/)
 > - [知乎，使用再生龙CloneZilla进行Linux系统的镜像完全封装和还原](https://zhuanlan.zhihu.com/p/354584111)
+> - 其他实践：
+> 	- https://blog.csdn.net/zhaoxinfan/article/details/126474777
+> 	- https://blog.csdn.net/zhangjia453/article/details/115353982
 
 Clonezilla 是类似于 [True Image](http://en.wikipedia.org/wiki/Acronis_True_Image) 或 [Norton Ghost](http://en.wikipedia.org/wiki/Ghost_%28software%29) 的分区和磁盘映像/克隆程序。它可以帮助您进行系统部署、裸机备份和恢复。可以使用三种类型的 Clonezilla：
 - [Clonezilla live](https://clonezilla.org/clonezilla-live.php) # Clonezilla live 允许您使用 CD/DVD 或 USB 闪存驱动器启动和运行 clonezilla（仅限单播）
