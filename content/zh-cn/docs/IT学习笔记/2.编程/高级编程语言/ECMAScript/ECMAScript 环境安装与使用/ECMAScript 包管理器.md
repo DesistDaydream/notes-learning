@@ -22,9 +22,10 @@ ECMAScript 的包管理器安装各种包、依赖时，早起都是分开的，
 - **Globally(全局)** # 使用 `-g` 选项，将安装的东西放在 `${PREFIX}/lib/node_modules/` 目录中；若安装的东西中具有可以在 CLI 执行的工具，则同时会在 `${PREFIX}/bin/` 目录下生成指向原始文件的软链接，`${PREFIX}/bin/` 目录通常都会加入到 `${PATH}` 变量中。
   - 当我们想要在命令行上运行安装的命令行工具，通常安装在全局
 
-> 注意：`${PREFIX}` 在不同系统中，默认路径不太一样
->   - Linux 默认为 **Node.js 的安装路径**，通常装在 `/usr/local/nodejs/` 目录下。
->   - Windows 默认在 `%APPDATA%/npm/` 目录下。
+> 注意：`${PREFIX}` 默认为 **Node.js 的安装路径**
+>   - Linux ，通常装在 `/usr/local/nodejs/` 目录下。
+>   - Windows 由于某些原因，将该配置改为 `${APPDATA}/npm/`，而不是安装目录。
+>     - 可以从 nodejs 安装路径下的 node_modules/npm/npmrc 文件中看到有这么一条配置：`prefix=${APPDATA}\npm`
 
 我们可以通过 `npm config get prefix` 命令查看 ${PREFIX} 的值。
 
