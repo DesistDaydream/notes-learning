@@ -154,8 +154,6 @@ Clonezilla 源码实际上是运行程序本身，因为它们使用脚本(bash 
 
 ### S3
 
-
-
 ```
 export AK="XXX"
 export SK="YYY"
@@ -169,6 +167,9 @@ chmod 600 /root/.passwd-s3fs
 
 s3fs my-ocs-img /home/partimag -o passwd_file=/root/.passwd-s3fs -o url="https://${ENDPOINT}"
 ```
+
+其本质是执行了如下命令：`/usr/sbin/ocs-sr -q2 -c -j2 -zip -i 19146 -sfsck -senc -p choose savedisk sdo-img sdo`
+
 
 ## 配置运行时参数
 

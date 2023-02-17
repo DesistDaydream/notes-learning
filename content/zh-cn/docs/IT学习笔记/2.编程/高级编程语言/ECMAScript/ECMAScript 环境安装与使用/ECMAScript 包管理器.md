@@ -5,7 +5,16 @@ title: ECMAScript 包管理器
 # 概述
 
 > 参考：
-> -
+> - 包管理器可是够多的。。。。
+
+ECMAScript 的包管理器安装各种包、依赖时，早起都是分开的，可以安装在项目当前目录，或某一个统一目录。但是如果项目想要启动，一般都只能安装在项目的当前目录（历史原因已不可考，反正很恶心）。
+
+# NPM
+
+> 参考：
+> - [官网](https://www.npmjs.com/)
+
+**Node.js Package Manager(简称 NPM)** 是 Node.js 自带的包管理工具，通常与 Node.js 一同安装，最初版本于 2010 年 1 月发行。NPM 本质是一个第三方模块，可以在 NodeJS 安装目录下的 **lib/node_modules/npm/*** 目录下找到 npm 的所有文件。
 
 当我们使用包管理命令安装各种第三方库(依赖包)及其衍生物通常会保存在两类地方
 - **Locally(本地)** # 这是默认的行为，安装的东西放在当前目录的 `./node_modules/` 目录中
@@ -13,18 +22,13 @@ title: ECMAScript 包管理器
 - **Globally(全局)** # 使用 `-g` 选项，将安装的东西放在 `${PREFIX}/lib/node_modules/` 目录中；若安装的东西中具有可以在 CLI 执行的工具，则同时会在 `${PREFIX}/bin/` 目录下生成指向原始文件的软链接，`${PREFIX}/bin/` 目录通常都会加入到 `${PATH}` 变量中。
   - 当我们想要在命令行上运行安装的命令行工具，通常安装在全局
 
+> 注意：`${PREFIX}` 在不同系统中，默认路径不太一样
+>   - Linux 默认为 **Node.js 的安装路径**，通常装在 `/usr/local/nodejs/` 目录下。
+>   - Windows 默认在 `%APPDATA%/npm/` 目录下。
+
+我们可以通过 `npm config get prefix` 命令查看 ${PREFIX} 的值。
+
 随着时代的发展，出现了 pnpm、(期待有更好的)等 工具，可以让我们将各种不同的项目的依赖放在同一个路径下进行统一管理。
-
-# NPM
-
-> 参考：
-> - [官网](https://www.npmjs.com/)
-> - [官方文档，cli](https://docs.npmjs.com/cli)
-
-**Node.js Package Manager(简称 NPM)** 是 Node.js 自带的包管理工具，通常与 Node.js 一同安装，最初版本于 2010 年 1 月发行。NPM 本质是一个第三方模块，可以在 **${PREFIX}/lib/node_modules/npm/\*** 目录下找到 npm 的所有文件。
-
-> 注意：
-> - `${PREFIX}` 指 **Node.js 的安装路径**，Linux 中通常装在 /usr/local/nodejs 目录下，Windows 则随意了~~
 
 ## npx
 
@@ -41,32 +45,24 @@ npx 是 NPM 中自带的工具
 > - [官方文档，cli-配置 npm-文件夹](https://docs.npmjs.com/cli/v8/configuring-npm/folders)
 > - [官方文档，cli-使用 npm-配置](https://docs.npmjs.com/cli/v8/using-npm/config)
 
-当我们使用 `npm install` 命令安装各种第三方库(依赖包)及其衍生物通常会保存在两类地方
-
-- **Locally(本地)** # 这是默认的行为，安装的东西放在当前目录的 `./node_modules/` 目录中
-  - 当我们想要在代码中使用 require() 或 import 导入模块时，通常安装在本地
-- **Globally(全局)** # 使用 `-g` 选项，将安装的东西放在 `${PREFIX}/lib/node_modules/` 目录中；若安装的东西中具有可以在 CLI 执行的工具，则同时会在 `${PREFIX}/bin/` 目录下生成指向原始文件的软链接，`${PREFIX}/bin/` 目录通常都会加入到 `${PATH}` 变量中。
-  - 当我们想要在命令行上运行安装的命令行工具，通常安装在全局
-
 npm 从 命令行、环境变量、npmrc 文件、某些情况下从 package.json 文件 这些地方获取其配置信息
 
 npm 从以下地方获取其运行时配置
 
 - **命令行标志**
 - **环境变量**
-- **npmrc 文件** # npm 从以下几个地方依次读取 nmrc 文件
-  - **/PATH/TO/NPM/npmrc** # npm 内置的配置文件
+- **npmrc 文件** # npm 从以下几个地方依次读取 npmrc 文件
+  - **/PATH/TO/NPM/npmrc** # npm 内置的配置文件。这内置的文件是不是不可见的？o(╯□╰)o
   - **${PREFIX}/etc/npmrc** # 全局配置文件，可以通过 `--globalconfig` 命令行选项或 `${NPM_CONFIG_GLOBALCONFIG}` 环境变量改变其值
-  - **~/.npmrc** # 用户
-  - 配置文件，可以通过 `--userconfig` 命令行选项或 `${NPM_CONFIG_USERCONFIG}` 环境变量改变其值
+  - **~/.npmrc** # 用户配置文件，可以通过 `--userconfig` 命令行选项或 `${NPM_CONFIG_USERCONFIG}` 环境变量改变其值
   - **/PATH/TO/MY/PROJECT/.npmrc** # 每个项目自己的配置
 
-**${PREFIX}/lib/node_modules/npm/\* **# npm 作为一个第三方模块，跟随 Node.js 一起安装，被放在该目录下。
-**${PREFIX}/bin\* **# npm 安装的各种依赖包中若包含命令行工具，则会在此目录创建软链接。该目录通常都会加入到 `${PATH}` 变量中。
+**${PREFIX}/lib/node_modules/npm/*** # npm 作为一个第三方模块，跟随 Node.js 一起安装，被放在该目录下。
+**${PREFIX}/bin/*** # npm 安装的各种依赖包中若包含命令行工具，则会在此目录创建软链接。该目录通常都会加入到 `${PATH}` 变量中。
 
 ### 配置文件详解
 
-所有可供配置的信息可从 <https://docs.npmjs.com/cli/v8/using-npm/config#config-settings> 查看
+所有可供配置的信息可从 https://docs.npmjs.com/cli/v8/using-npm/config#config-settings 查看
 
 # PNPM
 
@@ -82,15 +78,19 @@ npm 从以下地方获取其运行时配置
 
 因此，您在磁盘上节省了大量空间，这与项目和依赖项的数量成正比，并且安装速度要快得多！
 
+store-dir 说明：
+- **项目中的 node_models/ 应该使用与 store-dir 目录在同一个分区中**
+
 ## 安装 pnpm
 
 使用 `corepack enable` 指令启用 pnpm。
+
 设置包的存储路径：
 
-- Windows：`pnpm config set store-dir D:\Projects\.pnpm-store`
-- Linux：`pnpm config set store-dir /mnt/d/Projects/.pnpm-store`
+- Windows：`pnpm config -g set store-dir D:\Projects\.pnpm-store`
+- Linux：`pnpm config -g set store-dir /mnt/d/Projects/.pnpm-store`
 
-配置镜像源 `pnpm config set registry="https://registry.npmmirror.com"`
+配置镜像源 `pnpm config -g set registry="https://registry.npmmirror.com"`
 
 若 Windows 无法执行 pnpm，报错：`pnpm : 无法加载文件 D:\Tools\nodejs\pnpm.ps1，因为在此系统上禁止运行脚本。有关详细信息，请参阅 https:/go.microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。`
 
@@ -99,7 +99,9 @@ npm 从以下地方获取其运行时配置
 
 ### 更新
 
+```
 corepack prepare pnpm@7.14.1 --activate
+```
 
 ## pnpm 关键文件与配置
 
@@ -108,7 +110,7 @@ corepack prepare pnpm@7.14.1 --activate
 # npm 与 pnpm Syntax(语法)
 
 > 参考：
-> -
+> - [官方文档，cli](https://docs.npmjs.com/cli)
 
 通常，适用于 npm 的选项，也适用于 pnpm
 
@@ -123,33 +125,46 @@ corepack prepare pnpm@7.14.1 --activate
 npm config 用来管理 npm 的配置文件，i.e.npmrc 文件。
 
 ### Syntax(语法)
-**npm config set <KEY>=<VALUE> [<KEY>=<VALUE> ...]**
-**npm config get [<KEY> [<KEY> ...]]**
-**npm config delete <KEY> [<KEY> ...]**
-**npm config list [--json]**
-**npm config edit**
 
-OPTIONS
+**npm config COMMAND [KEY=VALUE]**
+
+**COMMAND**
+- set
+- get
+- delete
+- list
+- edit
+
+**OPTIONS**
 - **-g, --global** # 对全局配置文件(${PREFIX}/etc/npmrc) 执行操作
 
 ### EXAMPLE
-- 配置镜像源为淘宝的
-  - `npm config set registry="https://registry.npmmirror.com"`
+配置镜像源为淘宝的
+  - `npm config -g set registry="https://registry.npmmirror.com"`
+
+列出所有已知配置
+- npm config ls -l
+
+获取 prefix 配置的值
+- npm config get prefix
 
 ## npm exec
 从本地或远程 npm 包运行命令
 
 ### Syntax(语法)
-**npm exec -- <pkg>[@<version>] [args...]**
-**npm exec --package=<pkg>[@<version>] -- <cmd> [args...]**
-**npm exec -c '<cmd> [args...]'**
-**npm exec --package=foo -c '<cmd> [args...]'**
+**npm exec -- \<pkg>[@\<version>] [args...]**
+**npm exec --package=\<pkg>[@\<version>] -- \<cmd> [args...]**
+**npm exec -c '\<cmd> [args...]'**
+**npm exec --package=foo -c '\<cmd> [args...]'**
 
-OPTIONS
-
--
+**OPTIONS**
 
 ## npm install
+
+安装项目的所有依赖
+
+install 可以简写为 i。
+
 ### Syntax(语法)
 
 OPTIONS
@@ -162,11 +177,9 @@ OPTIONS
 ### Syntax(语法)
 **npm init [--force|-f|--yes|-y|--scope]**
 **npm init <@scope> (same as `npx <@scope>/create`)**
-**npm init [<@scope>]<name> (same as `npx [<@scope>/]create-<name>`)**
+**npm init [<@scope>]\<name> (same as `npx [<@scope>/]create-<name>`)**
 
-OPTIONS
-
--
+**OPTIONS**
 
 ## npm list
 
