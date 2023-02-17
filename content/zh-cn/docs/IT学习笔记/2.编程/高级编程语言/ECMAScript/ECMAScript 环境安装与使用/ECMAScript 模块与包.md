@@ -1,5 +1,6 @@
 ---
 title: ECMAScript 模块与包
+weight: 2
 ---
 
 # 概述
@@ -87,7 +88,7 @@ import { stat, exists, readFile } from "fs"
 
 在 Node.js 环境和 Browser 环境中加载 ESM 的方式不太一样
 
-- **Node.js** # 可以使用模块名称。从根目录下的 node_modules 中查找模块
+- **Node.js** # 可以使用模块名称。从根目录下的 node_modules/ 中查找模块
 - **Browser** # 不可以使用模块名称。必须通过编译工具将模块编译成单一文件，并修改 import 指向单一文件，以便可以发起请求获取这个静态资源
 
 ## 浏览器中使用 ESM 的常见问题

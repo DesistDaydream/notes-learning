@@ -1,5 +1,6 @@
 ---
 title: ECMAScript 环境安装与使用
+weight: 1
 ---
 
 # 概述
@@ -59,7 +60,7 @@ Node.js 和 浏览器都无法直接运行 TypeScript 代码，这是因为 TS �
 - **tsc** # 将 TS 代码转换为 JS 代码。`npm install -g typescript`
 - **ts-node** # 可以直接转换并运行 TS 代码，`npm install -g ts-node` 安装即可
 
-# NodeJS
+# Node.js
 
 > 参考：
 > - [org 官网](https://nodejs.org/en/)
@@ -76,7 +77,7 @@ Browser 和 Node.js 都是 ECMAScript 的运行时环境，但是这两者可以
 
 通过 Node.js，可以让我们使用一种语言编写前端与后端。我们甚至可以通过 npm 与 yarn 安装第三方库后，使用 Node.js 在本地监听端口并响应给客户端静态资源文件。
 
-## 安装 NodeJS
+## 安装 Node.js
 
 ### Linux
 
@@ -100,9 +101,79 @@ EOF
 
 ### Windows
 
-下载安装包，安装。
+警告！！！由于 msi 安装包会修改 %PREFIX% 为 `%APPDATA%\npm` ，并将该目录到 $PATH。我个人推荐下载 zip，并自己解压到想要的位置后，手动配置环境变量。
 
-会自动添加 `%APPDATA%\npm` 目录到 $PATH。并且会将 $PREFIX 改为该目录
+```powershell
+$NodejsVersion = "18.14.1"
+$NodejsUrl = "https://nodejs.org/dist/v$NodejsVersion/node-v$NodejsVersion-win-x64.zip"
+$TempZipFile = "D:\tmp\nodejs.zip"
+$ExtractPath = "D:\Tools"
+
+# Download the zip file to a temporary location
+Invoke-WebRequest -Uri $NodejsUrl -OutFile $TempZipFile
+
+# Extract the contents of the zip file to the installation directory and rename the top-level directory to "nodejs"
+Expand-Archive -Path $TempZipFile -DestinationPath $ExtractPath
+Rename-Item -Path "$ExtractPath\node-v$NodejsVersion-win-x64" -NewName "nodejs"
+```
+
+将 nodejs/ 目录添加到用户的 PATH 环境变量中
+
+```powershell
+$path = [Environment]::GetEnvironmentVariable("Path", "User")
+$newPath = "D:\Tools\nodejs"
+[Environment]::SetEnvironmentVariable("Path", "$path;$newPath", "User")
+```
+
+### 目录结构
+
+Linux 目录结构，node_modules/ 目录在 lib/ 目录下，这点与 Windows 不同。
+```bash
+]# tree -L 2 -F
+.
+├── bin/
+│   ├── corepack -> ../lib/node_modules/corepack/dist/corepack.js*
+│   ├── node*
+│   ├── npm -> ../lib/node_modules/npm/bin/npm-cli.js*
+│   ├── npx -> ../lib/node_modules/npm/bin/npx-cli.js*
+│   ├── pnpm -> ../lib/node_modules/corepack/dist/pnpm.js*
+│   ├── pnpx -> ../lib/node_modules/corepack/dist/pnpx.js*
+│   ├── yarn -> ../lib/node_modules/corepack/dist/yarn.js*
+│   └── yarnpkg -> ../lib/node_modules/corepack/dist/yarnpkg.js*
+├── CHANGELOG.md
+├── include/
+│   └── node/
+├── lib/
+│   └── node_modules/
+├── LICENSE
+├── README.md
+└── share/
+    ├── doc/
+    ├── man/
+    └── systemtap/
+```
+
+Windows 目录结构
+```bash
+$ tree -L 2 -F
+./
+├── CHANGELOG.md*
+├── LICENSE*
+├── README.md*
+├── corepack*
+├── corepack.cmd*
+├── install_tools.bat*
+├── node.exe*
+├── node_etw_provider.man*
+├── node_modules/
+│   ├── corepack/
+│   └── npm/
+├── nodevars.bat*
+├── npm*
+├── npm.cmd*
+├── npx*
+└── npx.cmd*
+```
 
 ## NVM
 
@@ -111,14 +182,9 @@ EOF
 
 **Node Version Manager(Node.js 版本管理器，简称 NVM)**
 
-## Node.js 配置与关联文件
+## Node.js 关联文件与配置
 
-**${PREFIX}/\*** # $PREFIX 指 Node.js 的安装路径，个人通常装在 /usr/local/nodejs 目录下
-- **./bin/\*** # 第三方模块可用的工具以及 node 二进制文件保存路径
-  - 这个目录下的第三方模块工具通常都是一个软链接，指向 ${PREFIX}/lib/node_modeuls/XX 目录下的某个目录中文件，具体路径由模块自身定义
-- **./lib/node_modules/\*** # 通过 npm、yarn 等包管理器安装**全局**的第三方依赖包的保存路径。通常 Node.js 默认自带 corepack、npm 这两个包
-  - **./corepack/\*** # corepack 工具
-  - **./npm/\*** # npm 工具
+详见：[npm 关键文件与配置](/docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/ECMAScript%20环境安装与使用/ECMAScript%20包管理器.md#npm%20关联文件与配置)
 
 # 初始化项目
 

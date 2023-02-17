@@ -11,9 +11,9 @@ title: nmcli connection 子命令
 
 # up | down # 启动 | 停止连接
 
-nmcli connection up \[\[id | uuid | path] <ID>] \[ifname <ifname>] \[ap <BSSID>] \[passwd-file <file with passwords>] # 启动连接
+nmcli connection up [[id | uuid | path] \<ID>] [ifname \<ifname>] [ap <BSSID>] \[passwd-file \<file with passwords>] # 启动连接
 
-nmcli connection down \[id | uuid | path | apath] <ID> ... # 停止连接
+nmcli connection down \[id | uuid | path | apath] \<ID> ... # 停止连接
 
 EXAMPLE
 
@@ -52,7 +52,7 @@ Note：
 
 ## Syntax(语法)
 
-**nmcli connection delete \[id | uuid | path] <ID> # 删除连接**
+**nmcli connection delete \[id | uuid | path] \<ID> # 删除连接**
 
 # modify 修改连接
 
@@ -73,7 +73,7 @@ Note：
 
 ## Syntax(语法)
 
-**nmcli connection show \[--active] \[--order <order spec>] \[id | uuid | path | apath] <ID> ...**
+**nmcli connection show \[--active] \[--order \<order spec>] \[id | uuid | path | apath] \<ID> ...**
 
 ## EXAMPLE
 

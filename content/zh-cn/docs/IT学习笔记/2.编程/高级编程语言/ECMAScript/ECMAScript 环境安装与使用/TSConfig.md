@@ -1,5 +1,6 @@
 ---
 title: TSConfig
+weight: 20
 ---
 
 # 概述

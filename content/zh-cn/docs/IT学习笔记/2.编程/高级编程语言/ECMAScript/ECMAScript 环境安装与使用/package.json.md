@@ -1,5 +1,6 @@
 ---
 title: package.json
+weight: 4
 ---
 
 ## 概述
