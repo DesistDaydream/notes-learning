@@ -1,5 +1,6 @@
 ---
 title: Go Module
+weight: 2
 ---
 
 # 概述
