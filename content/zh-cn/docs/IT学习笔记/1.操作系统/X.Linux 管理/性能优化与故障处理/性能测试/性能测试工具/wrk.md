@@ -1,5 +1,5 @@
 ---
-title: "wrk # HTTP基准测试小型工具"
+title: "wrk"
 ---
 
 # 概述
@@ -7,7 +7,7 @@ title: "wrk # HTTP基准测试小型工具"
 > 参考：
 > - [GitHub 项目,wrk](https://github.com/wg/wrk)
 
-wrk 是一种现代 HTTP 基准测试工具，当在单个多核 CPU 上运行时，能够产生大量负载。它结合了多线程设计和可扩展的事件通知系统，例如 epoll 和 kqueue。
+wrk 是一种现代 HTTP 基准测试小型工具，当在单个多核 CPU 上运行时，能够产生大量负载。它结合了多线程设计和可扩展的事件通知系统，例如 epoll 和 kqueue。
 
 可选的 LuaJIT 脚本可以执行 HTTP 请求生成，响应处理和自定义报告。详细信息可在 SCRIPTING 中找到，几个示例位于 scripts /中
 

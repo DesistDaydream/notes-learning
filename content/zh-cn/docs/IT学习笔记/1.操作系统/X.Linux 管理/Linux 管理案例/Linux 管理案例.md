@@ -1,5 +1,6 @@
 ---
 title: Linux 管理案例
+weight: 1
 ---
 
 # 重置 Linux 的 root 密码

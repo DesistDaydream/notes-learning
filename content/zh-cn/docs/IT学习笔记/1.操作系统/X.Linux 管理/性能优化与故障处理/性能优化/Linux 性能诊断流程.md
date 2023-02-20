@@ -1,10 +1,11 @@
 ---
-title: 60,000 毫秒内对 Linux 的性能诊断
+title: Linux 性能诊断流程
 ---
 
-### [60,000 毫秒内对 Linux 的性能诊断](https://segmentfault.com/a/1190000004104493)
-
-[英文原文](https://netflixtechblog.com/linux-performance-analysis-in-60-000-milliseconds-accc10403c55?gi=cd96c338a83b)
+# 概述
+> 参考：
+> - [思否，60000 毫秒内对 Linux 的性能诊断](https://segmentfault.com/a/1190000004104493)
+>   - [英文原文](https://netflixtechblog.com/linux-performance-analysis-in-60-000-milliseconds-accc10403c55?gi=cd96c338a83b)
 
 当你为了解决一个性能问题登录到一台 Linux 服务器：在第一分钟你应该检查些什么？
 
@@ -35,8 +36,10 @@ top
 
 ### 1. uptime
 
-    $ uptime
-     23:51:26 up 21:31,  1 user,  load average: 30.02, 26.43, 19.02
+```
+$ uptime
+23:51:26 up 21:31,  1 user,  load average: 30.02, 26.43, 19.02
+```
 
 这是一种用来快速查看系统平均负载的方法，它表明了系统中有多少要运行的任务（进程）。在 Linux 系统中，这些数字包含了需要在 CPU 中运行的进程以及正在等待 I/O（通常是磁盘 I/O）的进程。它仅仅是对系统负载的一个粗略展示，稍微看下即可。你还需要其他工具来进一步了解具体情况。
 
@@ -252,4 +255,4 @@ top 的一个缺点是，很难看到数据随时间变动的趋势。vmstat 和
 还有更多命令和方法可以用于更深入的分析。查看 Brendan 在 Velocity 2015 大会上的 [Linux 性能工具教程](http://techblog.netflix.com/2015/08/netflix-at-velocity-2015-linux.html)，其中包含了超过 40 个命令，涵盖了可观测性、标杆管理、调优、静态性能调优、分析，和跟踪等方面。
 
 在全网规模应对系统的可靠性和性能问题是我们的爱好之一。如果你想要加入我们来一起应对这种挑战，我们正在招聘！
-<https://www.oschina.net/translate/linux-performance-analysis-in-60s?print>
+https://www.oschina.net/translate/linux-performance-analysis-in-60s?print

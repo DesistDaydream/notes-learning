@@ -2,11 +2,12 @@
 title: Redhat 优化
 ---
 
+# 概述
 Redhat 官方文档：<https://access.redhat.com/documentation/zh-CN/Red_Hat_Enterprise_Linux/7/html/Performance_Tuning_Guide/>
 
 参考文章：<https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/index>
 
-Tuned 概述
+# Tuned 概述
 
 Tuned 是一项服务，可监视您的系统并在某些工作负载下优化性能。Tuned 的核心是配置文件，它们可以针对不同的用例调整您的系统。
 
@@ -22,7 +23,7 @@ Tuned 是一项服务，可监视您的系统并在某些工作负载下优化�
 
 您还可以配置“Tuned”以对设备使用情况的变化做出反应，并调整设置以提高活动设备的性能并降低非活动设备的功耗。
 
-配置文件
+## 配置文件
 
 /usr/lib/tuned/_ #特定于发行版的概要文件存储在目录中。每个配置文件都有其自己的目录。该配置文件由名为 tuned.conf 的主要配置文件以及其他文件（例如帮助程序脚本）组成。
 /etc/tuned/_ #如果需要定制概要文件，请将概要文件目录复制到用于定制概要文件的目录中。如果有两个同名的配置文件，则使用 /etc/tuned/ 中的自定义配置文件。
