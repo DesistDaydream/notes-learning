@@ -6,7 +6,6 @@ title: Load 高/CPU 使用率 问题及实用脚本
 
 > 参考：
 > - [公众号,CPU 飙高，系统性能问题如何排查？](https://mp.weixin.qq.com/s/fzLcAkYwKhj-9hgoVkTzaw)
-
 > - [阿里云,ECS 运维指南之 LInux 系统诊断-找到 Linux 虚机 Load 高的元凶](https://developer.aliyun.com/topic/download?id=143)
 
 Load Average 和 CPU 使用率 可被细分为不同的子域指标，指向不同的资源瓶颈。总体来说，指标与资源瓶颈的对应关系基本如下图所示。
