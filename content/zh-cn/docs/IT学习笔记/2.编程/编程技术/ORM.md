@@ -3,14 +3,90 @@ title: ORM
 ---
 
 # 概述
+
 > 参考：
 > - [Wiki,Object–relational mapping](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping)
 > - [C 语言中文网，ORM 是什么](http://c.biancheng.net/hibernate/orm.html)
+> - [B 站-哔哩哔哩技术，如何用 go 实现一个 ORM（为什么需要 ORM）](https://www.bilibili.com/read/cv21943763)
 
 **Object Relational Mapping(对象关系映射，简称 ORM)** 是一种用于在关系数据库和面向对象变成语言之间转换数据的编程技术。解决了代码和关系型数据库之间的数据交互问题。这实际上创建了一个可以在编程语言中使用的虚拟对象数据库。
 
+## 为什么需要 ORM
+
+**直接使用 database/sql 的痛点**
+
+首先看看用 database/sql 如何查询数据库
+
+我们用 user 表来做例子，一般的工作流程是先做技术方案，其中排在比较前面的是数据库表的设计，大部分公司应该有严格的数据库权限控制，不会给线上程序使用比较危险的操作权限，比如创建删除数据库，表，删除数据等。
+
+表结构如下：
+
+```sql
+CREATE TABLE `user` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `name` varchar(100) NOT NULL COMMENT '名称',
+  `age` int(11) NOT NULL DEFAULT '0' COMMENT '年龄',
+  `ctime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `mtime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4
+```
+
+首先我们要写出和表结构对应的结构体 User，如果你足够勤奋和努力，相应的 json tag 和注释都可以写上，这个过程无聊且重复，因为在设计表结构的时候你已经写过一遍了。
+
+```go
+type User struct {
+    Id    int64     `json:"id"`
+    Name  string    `json:"name"`
+    Age   int64
+    Ctime time.Time
+    Mtime time.Time
+}
+```
+
+定义好结构体，我们写一个查询年龄在 20 以下且按照 id 字段顺序排序的前 20 名用户的 go 代码
+
+```go
+func FindUsers(ctx context.Context) ([]*User, error) {
+    rows, err := db.QueryContext(ctx, "SELECT `id`,`name`,`age`,`ctime`,`mtime` FROM user WHERE `age`<? ORDER BY `id` LIMIT 20 ", 20)
+    if err != nil {
+        return nil, err
+    }
+    defer rows.Close()
+    result := []*User{}
+    for rows.Next() {
+        a := &User{}
+        if err := rows.Scan(&a.Id, &a.Name, &a.Age, &a.Ctime, &a.Mtime); err != nil {
+            return nil, err
+        }
+        result = append(result, a)
+    }
+    if rows.Err() != nil {
+        return nil, rows.Err()
+    }
+    return result, nil
+}
+```
+
+当我们写少量这样的代码的时候我们可能还觉得轻松，但是当你业务工期排的很紧，并且要写大量的定制化查询的时候，这样的重复代码会越来越多。
+上面的的代码我们发现有这么几个问题：
+
+1. SQL 语句是硬编码在程序里面的，当我需要增加查询条件的时候我需要另外再写一个方法，整个方法需要拷贝一份，很不灵活。
+2. 在查询表所有字段的情况下，第 2 行下面的代码都是一样重复的，不管 sql 语句后面的条件是怎么样的。
+3. 我们发现第 1 行 SQL 语句编写和 rows.Scan()那行，写的枯燥层度是和表字段的数量成正比的，如果一个表有 50 个字段或者 100 个字段，手写是非常乏味的。
+4. 在开发过程中 rows.Close()  和 rows.Err()忘记写是常见的错误。
+
+我们总结出来用 database/sql 标准库开发的痛点：
+
+- **开发效率很低**
+  - 很显然写上面的那种代码是很耗费时间的，因为手误容易写错，无可避免要增加自测的时间。如果上面的结构体 User、 查询方法 FindUsers()  代码能够自动生成，那么那将会极大的提高开发效率并且减少 human error 的发生从而提高开发质量。
+- **心智负担很重**
+  - 如果一个开发人员把大量的时间花在这些代码上，那么他其实是在浪费自己的时间，不管在工作中还是在个人项目中，应该把重点花在架构设计，业务逻辑设计，困难点攻坚上面，去探索和开拓自己没有经验的领域，这块 Dao 层的代码最好在 10 分钟内完成。
+
 # ORM 实例教程
+
 > 参考：
+>
 > - [阮一峰，ORM 实例教程](http://www.ruanyifeng.com/blog/2019/02/orm-tutorial.html)
 
 ## 一、概述
@@ -22,6 +98,7 @@ title: ORM
 **简单说，ORM 就是通过实例对象的语法，完成关系型数据库的操作的技术，是"对象-关系映射"（Object/Relational Mapping） 的缩写。**
 
 ORM 把数据库映射成对象：
+
 - 数据库的表（table） --> 类（class）
 - 记录（record，行数据）--> 对象（object）
 - 字段（field）--> 对象的属性（attribute）
@@ -29,24 +106,31 @@ ORM 把数据库映射成对象：
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/d1eab7a7-0bbc-41e6-bde2-aa8c6027347f/bg2019021803.png)
 
 举例来说，下面是一行 SQL 语句。
+
 ```sql
 SELECT id, first_name, last_name, phone, birth_date, sex
 FROM persons
 WHERE id = 10
 ```
+
 程序直接运行 SQL，操作数据库的写法如下。
+
 ```javascript
-res = db.execSql(sql);
-name = res[0]["FIRST_NAME"];
+res = db.execSql(sql)
+name = res[0]["FIRST_NAME"]
 ```
+
 改成 ORM 的写法如下。
+
 ```javascript
-p = Person.get(10);
-name = p.first_name;
+p = Person.get(10)
+name = p.first_name
 ```
+
 一比较就可以发现，ORM 使用对象，封装了数据库操作，因此可以不碰 SQL 语言。开发者只使用面向对象编程，与数据对象直接交互，不用关心底层数据库。
 
 总结起来，ORM 有下面这些优点。
+
 - 数据模型都在一个地方定义，更容易更新和维护，也利于重用代码。
 - ORM 有现成的工具，很多功能都可以自动完成，比如数据消毒、预处理、事务等等。
 - 它迫使你使用 MVC 架构，ORM 就是天然的 Model，最终使代码更清晰。
@@ -54,6 +138,7 @@ name = p.first_name;
 - 你不必编写性能不佳的 SQL。
 
 但是，ORM 也有很突出的缺点。
+
 - ORM 库不是轻量级工具，需要花很多精力学习和设置。
 - 对于复杂的查询，ORM 要么是无法表达，要么是性能不如原生的 SQL。
 - ORM 抽象掉了数据库层，开发者无法了解底层的数据库操作，也无法定制一些特殊的 SQL。
@@ -76,12 +161,12 @@ name = p.first_name;
 
 OpenRecord 是仿 Active Record 的，将其移植到了 JavaScript，而且实现得很轻量级，学习成本较低。我写了一个[示例库](https://github.com/ruanyf/openrecord-demos)，请将它克隆到本地。
 
-     $ git clone https://github.com/ruanyf/openrecord-demos.git
+     git clone https://github.com/ruanyf/openrecord-demos.git
 
 然后，安装依赖。
 
-     $ cd openrecord-demos
-    $ npm install
+     cd openrecord-demos
+    npm install
 
 示例库里面的数据库，是从[网上拷贝](http://www.sqlitetutorial.net/sqlite-sample-database/)的 Sqlite 数据库。它的 Schema 图如下（[PDF](http://www.sqlitetutorial.net/wp-content/uploads/2018/03/sqlite-sample-database-diagram-color.pdf) 大图下载）。
 
@@ -139,9 +224,9 @@ Model 里面可以详细描述数据库表的定义，并且定义自己的方�
       }
     }
 
-上面代码告诉 Model，`CustomerId`是主键，`FirstName`和`LastName`是字符串，并且不得为`null`，还定义了一个`getFullName()`方法。
+上面代码告诉 Model，`CustomerId`是主键，`FirstName` 和 `LastName` 是字符串，并且不得为 `null`，还定义了一个 `getFullName()` 方法。
 
-实例对象可以直接调用`getFullName()`方法。
+实例对象可以直接调用 `getFullName()` 方法。
 
     const customer = await Customer.find(1);
     console.log(customer.getFullName());
@@ -154,7 +239,7 @@ ORM 将这四类操作，都变成了对象的方法。
 
 ### 6.1 查询
 
-前面已经说过，`find()`方法用于根据主键，获取单条记录（[完整代码](https://github.com/ruanyf/openrecord-demos/blob/master/demos/demo02.js)看这里）或多条记录（[完整代码](https://github.com/ruanyf/openrecord-demos/blob/master/demos/demo04.js)看这里）。
+前面已经说过，`find()` 方法用于根据主键，获取单条记录（[完整代码](https://github.com/ruanyf/openrecord-demos/blob/master/demos/demo02.js)看这里）或多条记录（[完整代码](https://github.com/ruanyf/openrecord-demos/blob/master/demos/demo04.js)看这里）。
 
     Customer.find(1)
     Customer.find([1, 2, 3])
