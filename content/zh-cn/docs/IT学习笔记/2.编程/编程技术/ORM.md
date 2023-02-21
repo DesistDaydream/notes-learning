@@ -5,6 +5,7 @@ title: ORM
 # 概述
 
 > 参考：
+>
 > - [Wiki,Object–relational mapping](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping)
 > - [C 语言中文网，ORM 是什么](http://c.biancheng.net/hibernate/orm.html)
 > - [B 站-哔哩哔哩技术，如何用 go 实现一个 ORM（为什么需要 ORM）](https://www.bilibili.com/read/cv21943763)
@@ -13,12 +14,11 @@ title: ORM
 
 ## 为什么需要 ORM
 
-**直接使用 database/sql 的痛点**
+**直接使用 database/sql 的痛点：**
 
-首先看看用 database/sql 如何查询数据库
+首先看看用 database/sql 如何查询数据库。
 
 我们用 user 表来做例子，一般的工作流程是先做技术方案，其中排在比较前面的是数据库表的设计，大部分公司应该有严格的数据库权限控制，不会给线上程序使用比较危险的操作权限，比如创建删除数据库，表，删除数据等。
-
 表结构如下：
 
 ```sql
@@ -161,12 +161,12 @@ name = p.first_name
 
 OpenRecord 是仿 Active Record 的，将其移植到了 JavaScript，而且实现得很轻量级，学习成本较低。我写了一个[示例库](https://github.com/ruanyf/openrecord-demos)，请将它克隆到本地。
 
-     git clone https://github.com/ruanyf/openrecord-demos.git
+git clone <https://github.com/ruanyf/openrecord-demos.git>
 
 然后，安装依赖。
 
-     cd openrecord-demos
-    npm install
+cd openrecord-demos
+npm install
 
 示例库里面的数据库，是从[网上拷贝](http://www.sqlitetutorial.net/sqlite-sample-database/)的 Sqlite 数据库。它的 Schema 图如下（[PDF](http://www.sqlitetutorial.net/wp-content/uploads/2018/03/sqlite-sample-database-diagram-color.pdf) 大图下载）。
 
@@ -177,15 +177,18 @@ OpenRecord 是仿 Active Record 的，将其移植到了 JavaScript，而且实�
 
 使用 ORM 的第一步，就是你必须告诉它，怎么连接数据库（[完整代码](https://github.com/ruanyf/openrecord-demos/blob/master/demos/demo01.js)看这里）。
 
-    const Store = require('openrecord/store/sqlite3');
+```js
+// demo01.js
+const Store = require('openrecord/store/sqlite3');
 
-    const store = new Store({
-      type: 'sqlite3',
-      file: './db/sample.db',
-      autoLoad: true,
-    });
+const store = new Store({
+  type: 'sqlite3',
+  file: './db/sample.db',
+  autoLoad: true,
+});
 
-    await store.connect();
+await store.connect();
+```
 
 连接成功以后，就可以操作数据库了。
 
@@ -195,15 +198,21 @@ OpenRecord 是仿 Active Record 的，将其移植到了 JavaScript，而且实�
 
 连接数据库以后，下一步就要把数据库的表，转成一个类，叫做数据模型（Model）。下面就是一个最简单的 Model（[完整代码](https://github.com/ruanyf/openrecord-demos/blob/master/demos/demo02.js)看这里）。
 
-    class Customer extends Store.BaseModel {
-    }
+```js
+// demo02.js
+class Customer extends Store.BaseModel {
+}
 
-    store.Model(Customer);
+store.Model(Customer);
+```
 
 上面代码新建了一个`Customer`类，ORM（OpenRecord）会自动将它映射到`customers`表。使用这个类就很简单。
 
-    const customer = await Customer.find(1);
-    console.log(customer.FirstName, customer.LastName);
+```js
+// demo02.js
+const customer = await Customer.find(1);
+console.log(customer.FirstName, customer.LastName);
+```
 
 上面代码中，查询数据使用的是 ORM 提供的`find()`方法，而不是直接操作 SQL。`Customer.find(1)`表示返回`id`为`1`的记录，该记录会自动转成对象，`customer.FirstName`属性就对应`FirstName`字段。
 
@@ -211,25 +220,28 @@ OpenRecord 是仿 Active Record 的，将其移植到了 JavaScript，而且实�
 
 Model 里面可以详细描述数据库表的定义，并且定义自己的方法（[完整代码](https://github.com/ruanyf/openrecord-demos/blob/master/demos/demo03.js)看这里）。
 
-    class Customer extends Store.BaseModel {
-      static definition(){
-        this.attribute('CustomerId', 'integer', { primary: true });
-        this.attribute('FirstName', 'string');
-        this.attribute('LastName', 'string');
-        this.validatesPresenceOf('FirstName', 'LastName');
-      }
+```js
+class Customer extends Store.BaseModel {
+  static definition(){
+    this.attribute('CustomerId', 'integer', { primary: true });
+    this.attribute('FirstName', 'string');
+    this.attribute('LastName', 'string');
+    this.validatesPresenceOf('FirstName', 'LastName');
+  }
+  getFullName(){
+    return this.FirstName + ' ' + this.LastName;
+  }
+}
+```
 
-      getFullName(){
-        return this.FirstName + ' ' + this.LastName;
-      }
-    }
+上面代码告诉 Model，`CustomerId`是主键，`FirstName`和`LastName`是字符串，并且不得为`null`，还定义了一个`getFullName()`方法。
 
-上面代码告诉 Model，`CustomerId`是主键，`FirstName` 和 `LastName` 是字符串，并且不得为 `null`，还定义了一个 `getFullName()` 方法。
+实例对象可以直接调用`getFullName()`方法。
 
-实例对象可以直接调用 `getFullName()` 方法。
-
-    const customer = await Customer.find(1);
-    console.log(customer.getFullName());
+```js
+const customer = await Customer.find(1);
+console.log(customer.getFullName());
+```
 
 ## 六、CRUD 操作
 
@@ -239,51 +251,65 @@ ORM 将这四类操作，都变成了对象的方法。
 
 ### 6.1 查询
 
-前面已经说过，`find()` 方法用于根据主键，获取单条记录（[完整代码](https://github.com/ruanyf/openrecord-demos/blob/master/demos/demo02.js)看这里）或多条记录（[完整代码](https://github.com/ruanyf/openrecord-demos/blob/master/demos/demo04.js)看这里）。
+前面已经说过，`find()`方法用于根据主键，获取单条记录（[完整代码](https://github.com/ruanyf/openrecord-demos/blob/master/demos/demo02.js)看这里）或多条记录（[完整代码](https://github.com/ruanyf/openrecord-demos/blob/master/demos/demo04.js)看这里）。
 
-    Customer.find(1)
-    Customer.find([1, 2, 3])
+```js
+Customer.find(1)
+Customer.find([1, 2, 3])
+```
 
 `where()`方法用于指定查询条件（[完整代码](https://github.com/ruanyf/openrecord-demos/blob/master/demos/demo04.js)看这里）。
 
-    Customer.where({Company: 'Apple Inc.'}).first()
+```js
+Customer.where({Company: 'Apple Inc.'}).first()
+```
 
 如果直接读取类，将返回所有记录。
 
-    const customers = await Customer;
+```js
+const customers = await Customer;
+```
 
 但是，通常不需要返回所有记录，而是使用`limit(limit[, offset])`方法指定返回记录的位置和数量（[完整代码](https://github.com/ruanyf/openrecord-demos/blob/master/demos/demo06.js)看这里）。
 
-    const customers = await Customer.limit(5, 10);)
+```js
+const customers = await Customer.limit(5, 10);)
+```
 
-上面的代码制定从第 10 条记录开始，返回 5 条记录。
+上面的代码制定从第10条记录开始，返回5条记录。
 
 ### 6.2 新建记录
 
 `create()`方法用于新建记录（[完整代码](https://github.com/ruanyf/openrecord-demos/blob/master/demos/demo12.js)看这里）。
 
-    Customer.create({
-      Email: '[president@whitehouse.gov](mailto:president@whitehouse.gov)',
-      FirstName: 'Donald',
-      LastName: 'Trump',
-      Address: 'Whitehouse, Washington'
-    })
+```js
+Customer.create({
+  Email: '[president@whitehouse.gov](mailto:president@whitehouse.gov)',
+  FirstName: 'Donald',
+  LastName: 'Trump',
+  Address: 'Whitehouse, Washington'
+})
+```
 
 ### 6.3 更新记录
 
 `update()`方法用于更新记录（[完整代码](https://github.com/ruanyf/openrecord-demos/blob/master/demos/demo13.js)看这里）。
 
-    const customer = await Customer.find(60);
-    await customer.update({
-      Address: 'Whitehouse'
-    });
+```js
+const customer = await Customer.find(60);
+await customer.update({
+  Address: 'Whitehouse'
+});
+```
 
 ### 6.4 删除记录
 
 `destroy()`方法用于删除记录（[完整代码](https://github.com/ruanyf/openrecord-demos/blob/master/demos/demo14.js)看这里）。
 
-    const customer = await Customer.find(60);
-    await customer.destroy();
+```js
+const customer = await Customer.find(60);
+await customer.destroy();
+```
 
 ## 七、关系
 
@@ -301,11 +327,13 @@ ORM 将这四类操作，都变成了对象的方法。
 
 `Customer`内部使用`this.hasOne()`方法，指定每个实例对应另一个 Model 的一个实例。
 
-     class Customer extends Store.BaseModel {
-      static definition(){
-        this.hasOne('invoices', {model: 'Invoice', from: 'CustomerId', to: 'CustomerId'});
-      }
-    }
+```js
+class Customer extends Store.BaseModel {
+  static definition(){
+    this.hasOne('invoices', {model: 'Invoice', from: 'CustomerId', to: 'CustomerId'});
+  }
+}
+```
 
 上面代码中，`this.hasOne(name, option)`的第一个参数是该关系的名称，可以随便起，只要引用的时候保持一致就可以了。第二个参数是关系的配置，这里只用了三个属性。
 
@@ -315,17 +343,21 @@ ORM 将这四类操作，都变成了对象的方法。
 
 然后，`Invoice`内部使用`this.belongsTo()`方法，回应`Customer.hasOne()`方法。
 
-     class Invoice extends Store.BaseModel {
-      static definition(){
-        this.belongsTo('customer', {model: 'Customer', from: 'CustomerId', to: 'CustomerId'});
-      }
-    }
+```js
+class Invoice extends Store.BaseModel {
+  static definition(){
+    this.belongsTo('customer', {model: 'Customer', from: 'CustomerId', to: 'CustomerId'});
+  }
+}
+```
 
 接下来，查询的时候，要用`include(name)`方法，将对应的 Model 包括进来。
 
-     const invoice = await Invoice.find(1).include('customer');
-    const customer = await invoice.customer;
-    console.log(customer.getFullName());
+```js
+const invoice = await Invoice.find(1).include('customer');
+const customer = await invoice.customer;
+console.log(customer.getFullName());
+```
 
 上面代码中，`Invoice.find(1).include('customer')`表示`Invoice`的第一条记录要用`customer`关系，将`Customer`这个 Model 包括进来。也就是说，可以从`invoice.customer`属性上，读到对应的那一条 Customer 的记录。
 
@@ -335,17 +367,18 @@ ORM 将这四类操作，都变成了对象的方法。
 
 一对多关系的处理，跟一对一关系很像，唯一的区别就是把`this.hasOne()`换成`this.hasMany()`方法。从名字上就能看出，这个方法指定了 Customer 的一条记录，对应多个 Invoice（[完整代码](https://github.com/ruanyf/openrecord-demos/blob/master/demos/demo08.js)看这里）。
 
-    class Customer extends Store.BaseModel {
-      static definition(){
-        this.hasMany('invoices', {model: 'Invoice', from: 'CustomerId', to: 'CustomerId'});
-      }
-    }
-
-    class Invoice extends Store.BaseModel {
-      static definition(){
-        this.belongsTo('customer', {model: 'Customer', from: 'CustomerId', to: 'CustomerId'});
-      }
-    }
+```js
+class Customer extends Store.BaseModel {
+  static definition(){
+    this.hasMany('invoices', {model: 'Invoice', from: 'CustomerId', to: 'CustomerId'});
+  }
+}
+class Invoice extends Store.BaseModel {
+  static definition(){
+    this.belongsTo('customer', {model: 'Customer', from: 'CustomerId', to: 'CustomerId'});
+  }
+}
+```
 
 上面代码中，除了`this.hasMany()`那一行，其他都跟上一小节完全一样。
 
@@ -355,35 +388,37 @@ ORM 将这四类操作，都变成了对象的方法。
 
 因此，定义 Model 就需要定义三个 Model（[完整代码](https://github.com/ruanyf/openrecord-demos/blob/master/demos/demo10.js)看这里）。
 
-    class Track extends Store.BaseModel{
-      static definition() {
-        this.hasMany('track_playlists', { model: 'PlaylistTrack', from: 'TrackId', to: 'TrackId'});
-        this.hasMany('playlists', { model: 'Playlist', through: 'track_playlists' });
-      }
-    }
-
-    class Playlist extends Store.BaseModel{
-      static definition(){
-        this.hasMany('playlist_tracks', { model: 'PlaylistTrack', from: 'PlaylistId', to: 'PlaylistId' });
-        this.hasMany('tracks', { model : 'Track', through: 'playlist_tracks' });
-      }
-    }
-
-    class PlaylistTrack extends Store.BaseModel{
-      static definition(){
-        this.tableName = 'playlist_track';
-        this.belongsTo('playlists', { model: 'Playlist', from: 'PlaylistId', to: 'PlaylistId'});
-        this.belongsTo('tracks', { model: 'Track', from: 'TrackId', to: 'TrackId'});
-      }
-    }
+```js
+class Track extends Store.BaseModel{
+  static definition() {
+    this.hasMany('track_playlists', { model: 'PlaylistTrack', from: 'TrackId', to: 'TrackId'});
+    this.hasMany('playlists', { model: 'Playlist', through: 'track_playlists' });
+  }
+}
+class Playlist extends Store.BaseModel{
+  static definition(){
+    this.hasMany('playlist_tracks', { model: 'PlaylistTrack', from: 'PlaylistId', to: 'PlaylistId' });
+    this.hasMany('tracks', { model : 'Track', through: 'playlist_tracks' });
+  }
+}
+class PlaylistTrack extends Store.BaseModel{
+  static definition(){
+    this.tableName = 'playlist_track';
+    this.belongsTo('playlists', { model: 'Playlist', from: 'PlaylistId', to: 'PlaylistId'});
+    this.belongsTo('tracks', { model: 'Track', from: 'TrackId', to: 'TrackId'});
+  }
+}
+```
 
 上面代码中，`Track`这个 Model 里面，通过`this.hasMany('playlists')`指定对应多个歌单。但不是直接关联，而是通过`through`属性，指定中间关系`track_playlists`进行关联。所以，Track 也要通过`this.hasMany('track_playlists')`，指定跟中间表的一对多关系。相应地，`PlaylistTrack`这个 Model 里面，要用两个`this.belongsTo()`方法，分别跟另外两个 Model 进行连接。
 
 查询的时候，不用考虑中间关系，就好像中间表不存在一样。
 
-    const track = await Track.find(1).include('playlists');
-    const playlists = await track.playlists;
-    playlists.forEach(l => console.log(l.PlaylistId));
+```js
+const track = await Track.find(1).include('playlists');
+const playlists = await track.playlists;
+playlists.forEach(l => console.log(l.PlaylistId));
+```
 
 上面代码中，一首单曲对应多张歌单，所以`track.playlists`返回的是一个数组。
 
