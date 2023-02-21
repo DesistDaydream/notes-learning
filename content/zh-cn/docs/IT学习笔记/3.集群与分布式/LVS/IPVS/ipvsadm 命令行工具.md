@@ -35,12 +35,12 @@ title: ipvsadm 命令行工具
 
 管理集群服务的 COMMAND
 
-- ** -A, --add-service** # 创建一个 VirtualService . 服务地址由 IP，PORT，protocol(协议)组成
+- **-A, --add-service** # 创建一个 VirtualService . 服务地址由 IP，PORT，protocol(协议)组成
 - **-E, --edit-service** # 修改一个 VirtualService
 - **-D, --delete-service** # 删除一个虚拟服务,以及相关的 RS
 - **-C, --clear** # 清空这个虚拟服务器的表
 - **-R, --restore** # 从标准输出还原 ipvs 规则
-- **-S, --save **# 保存 ipvs 规则到标准输出
+- **-S, --save**# 保存 ipvs 规则到标准输出
 
 管理集群服务中的 RS 的 COMMAND
 
@@ -52,7 +52,7 @@ title: ipvsadm 命令行工具
 
 - **-Z, --zero** # 清空一个或所有 Virtual Service 下的数据包
 - **-L, -l, --list** # 如果没有指定参数，则列出虚拟服务器表。如果输入了 service-address，只列出该服务。
-- **--set TCP TCPFIN UDP **# 更改用于 IPVS 连接的超时值。 此命令始终使用 3 个参数，分别表示 TCP 会话，接收到 FIN 数据包后的 TCP 会话和 UDP 数据包的超时值（以秒为单位）。 超时值 0 表示保留了相应条目的当前超时值。`默认值：900 120 300`。
+- **--set TCP TCPFIN UDP** # 更改用于 IPVS 连接的超时值。 此命令始终使用 3 个参数，分别表示 TCP 会话，接收到 FIN 数据包后的 TCP 会话和 UDP 数据包的超时值（以秒为单位）。 超时值 0 表示保留了相应条目的当前超时值。`默认值：900 120 300`。
 
 ## OPTIONS
 
@@ -117,13 +117,13 @@ TCP  10.10.9.60:30000 rr persistent 30
 # EXAMPLE
 
 - 管理集群服务
-  - ipvsadm -A|E virtual-service \[-s SCHEDULER] #增加修改
-    - ipvsadm -A -t 192.168.0.63:80 -s rr #添加一个虚拟服务，调度模式为轮询
-    - ipvsadm -D virtual-service #删除
+  - ipvsadm -A|E virtual-service \[-s SCHEDULER] # 增加修改
+    - ipvsadm -A -t 192.168.0.63:80 -s rr # 添加一个虚拟服务，调度模式为轮询
+    - ipvsadm -D virtual-service # 删除
 - 管理集群服务中的 RS
   - ipvsadm -a|e virtual-service -r server-address \[-g|i|m] \[-w weight] \[-x upper] \[-y lower]
   - ipvsadm -d virtual-service -r server-address
-    - ipvsadm -a -t 192.168.0.60:80 -r 192.168.0.62 -g #添加一个 IP 为 0.62 的 RS 到 0.60 的 LVS 中，LVS 类型为-g,dr 类型
+    - ipvsadm -a -t 192.168.0.60:80 -r 192.168.0.62 -g # 添加一个 IP 为 0.62 的 RS 到 0.60 的 LVS 中，LVS 类型为-g,dr 类型
 - 通用
   - ipvsadm -C # 清空
   - ipvsadm -L|l \[virtual-service] \[options] # 查询

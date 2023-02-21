@@ -62,10 +62,6 @@ RS1 与 RS2 主机使用同一个 vmnet 网卡
 
 同步 ibm1 与 ibm2 的时间!这个在集群服务中很重要！！下面两步即同
 
-!\[1.编辑/etc/chrony.conf 配置文件]\(http://upload-images.jianshu.io/upload_images/2057465->
-
-da3b895ab16765f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/rlona8/1616132564982-ee55e0f5-4497-47b9-bb50-7c46bf1028ab.jpeg)
 
 2.重启 chronyd 服务

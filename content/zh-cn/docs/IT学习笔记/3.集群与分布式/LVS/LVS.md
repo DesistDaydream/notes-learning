@@ -1,5 +1,6 @@
 ---
 title: LVS
+weight: 1
 ---
 
 # 概述
@@ -13,7 +14,7 @@ title: LVS
 
 **Linux Virtual Server(Linux 虚拟服务器，简称 LVC)** 是一个可以实现虚拟的服务器集群功能的项目，用于实现负载均衡的软件技术。一般情况下，LVS 代之一组服务器，对于外部客户端来说，这似乎是一台服务器，所以，也称为 **。**
 
-目前，LVS 项目已经被集成到 Linux 内核中，并通过 [IPVS](/docs/IT学习笔记/3.集群与分布式/LVS/IPVS.md)模块实现。LVS 具有良好的可靠性、可扩展性和可操作性，加上其实现最优的集群服务性能所需的低廉成本， LVS 的负载均衡功能经常被用于高性能、高可用的服务器群集中。
+目前，LVS 项目已经被集成到 Linux 内核中，并通过 [IPVS](docs/IT学习笔记/3.集群与分布式/LVS/IPVS/IPVS.md)模块实现。LVS 具有良好的可靠性、可扩展性和可操作性，加上其实现最优的集群服务性能所需的低廉成本， LVS 的负载均衡功能经常被用于高性能、高可用的服务器群集中。
 
 LVS 项目在 1998 年 5 月由[章文嵩](https://baike.baidu.com/item/%E7%AB%A0%E6%96%87%E5%B5%A9/6689425)博士成立，是中国国内最早出现的自由软件项目之一。在 linux2.2 内核时，IPVS 就已经以内核补丁的形式出现。从 2.4 版本以后 IPVS 已经成为 Linux 内核官方标准内核的一部分
 
@@ -251,34 +252,34 @@ IPVS 有一个缺陷，无法检查后端 Real Server 的健康状态，就是�
 
 ## ldirectord.cf 文件说明
 
-**Global Directives** #全局指令，对所有的 Virtual Services 都有效
+**Global Directives** # 全局指令，对所有的 Virtual Services 都有效
 
-- checktimeout=3 #检查的超时时间，当对 RS 的健康检查时间超过 3 秒的时候的则认为该 RS 不可用
-- checkinterval=1 #检查时间间隔，即每 1 秒都对后端 RS 进行一次健康检查
+- checktimeout=3 # 检查的超时时间，当对 RS 的健康检查时间超过 3 秒的时候的则认为该 RS 不可用
+- checkinterval=1 # 检查时间间隔，即每 1 秒都对后端 RS 进行一次健康检查
 - \#fallback=127.0.0.1:80 #
-- autoreload=yes #该配置文件是否自动装载
-- \#logfile="/var/log/ldirectord.log" #指明日志文件的 PATH
+- autoreload=yes # 该配置文件是否自动装载
+- \#logfile="/var/log/ldirectord.log" # 指明日志文件的 PATH
 - \#logfile="local0" #
-- \#emailalert="admin@x.y.z" #警告信息发送的邮箱地址
-- \#emailalertfreq=3600 #每隔多久发送一次警告信息到邮箱
-- \#emailalertstatus=all #通知的 email 信息是全部
-- quiescent=no #静默工作模式
+- \#emailalert="admin@x.y.z" # 警告信息发送的邮箱地址
+- \#emailalertfreq=3600 # 每隔多久发送一次警告信息到邮箱
+- \#emailalertstatus=all # 通知的 email 信息是全部
+- quiescent=no # 静默工作模式
 
-**Sample for an XXXXX** #对于多种虚拟服务的配置样例，直接修改这一部分内容，可以实现健康检查的基本模式，其中前三行为必须要定义的 LVS 的定义以及调度规则，剩下的所有行定义的都是为 ldirectord 对后端 RS 的健康检查方式，当这些健康检查方式失败的时候，则说明该 RS 不可用
+**Sample for an XXXXX** # 对于多种虚拟服务的配置样例，直接修改这一部分内容，可以实现健康检查的基本模式，其中前三行为必须要定义的 LVS 的定义以及调度规则，剩下的所有行定义的都是为 ldirectord 对后端 RS 的健康检查方式，当这些健康检查方式失败的时候，则说明该 RS 不可用
 
-- virtual=IP:PORT #定义 VIP 的地址和端口
-- real=IP\[\[->IP]:\[PORT]] TYPE #定义 RS 的 IP 地址和 LVS 类型，类型名介绍详见 LB 的 Packet-Forwarding-Method(LVS Type)内容，其中->IP 可以实现从哪个 IP 至哪个 IP 的地址段的定义
-  - gate #TYPE 为 DR 类型
-- fallback=IP:PORT TYPE #定义当 RS 全部失效时，使用的 server 的地址，端口，LVS 类型。
-- scheduler=SCHEDULER #定义 LB 集群中的调度规则，规则类型详见 LB 中的 Director 调度方法
-- service=TYPE #定义健康检查的应用层 Protocol，注意：只有当 checktype 指定为 negotiate 的时候，该定义才有意义
+- virtual=IP:PORT # 定义 VIP 的地址和端口
+- real=IP\[\[->IP]:\[PORT]] TYPE # 定义 RS 的 IP 地址和 LVS 类型，类型名介绍详见 LB 的 Packet-Forwarding-Method(LVS Type)内容，其中->IP 可以实现从哪个 IP 至哪个 IP 的地址段的定义
+  - gate # TYPE 为 DR 类型
+- fallback=IP:PORT TYPE # 定义当 RS 全部失效时，使用的 server 的地址，端口，LVS 类型。
+- scheduler=SCHEDULER # 定义 LB 集群中的调度规则，规则类型详见 LB 中的 Director 调度方法
+- service=TYPE # 定义健康检查的应用层 Protocol，注意：只有当 checktype 指定为 negotiate 的时候，该定义才有意义
   - TYPE 类型包括：ftp|http|stmp|mysql 等
-- protocol=tcp #定义健康检查的传输层 Protocol
-- checktype=negotiate #定义健康检查的方法
-  - connect #传输层检查，向对方端口尝试发送连接请求
-  - negotiate #应用层检查协商方法
-  - ping #网络层检查，ICMP 协议
-- checkport=80 #定义健康检查的端口号
-- request="index.html" #定义健康检查请求目标 server 的哪个页面
-- receive="Test Page" #定义健康检查中 request 中所定义的页面请求后回复的内容包含什么信息
-- virtualhost=www.x.y.z #定义健康检查虚拟主机的主机名
+- protocol=tcp # 定义健康检查的传输层 Protocol
+- checktype=negotiate # 定义健康检查的方法
+  - connect # 传输层检查，向对方端口尝试发送连接请求
+  - negotiate # 应用层检查协商方法
+  - ping # 网络层检查，ICMP 协议
+- checkport=80 # 定义健康检查的端口号
+- request="index.html" # 定义健康检查请求目标 server 的哪个页面
+- receive="Test Page" # 定义健康检查中 request 中所定义的页面请求后回复的内容包含什么信息
+- virtualhost=www.x.y.z # 定义健康检查虚拟主机的主机名
