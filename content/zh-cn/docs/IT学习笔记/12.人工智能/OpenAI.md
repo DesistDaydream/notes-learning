@@ -16,8 +16,6 @@ weight: 20
 
 # ChatGPT
 > 参考：
-> - https://github.com/wangrongding/wechat-bot
-> - https://github.com/fuergaosi233/wechat-chatgpt
 > - https://zblogs.top/how-to-register-openai-chatgpt-in-china
 > 	- 注册 ChatGPT 教程
 > - 使用虚拟号码接收短信验证码：https://sms-activate.org/
@@ -42,13 +40,18 @@ https://github.com/acheong08/ChatGPT
 
 微信接入
 
-<https://github.com/fuergaosi233/wechat-chatgpt>
+https://github.com/fuergaosi233/wechat-chatgpt
+- 用法：https://mp.weixin.qq.com/s/dLzemMUcIfjvWd_AF_yDJw
 
-- 用法：<https://mp.weixin.qq.com/s/dLzemMUcIfjvWd_AF_yDJw>
+https://github.com/AutumnWhj/ChatGPT-wechat-bot
 
-<https://github.com/AutumnWhj/ChatGPT-wechat-bot>
+https://github.com/wangrongding/wechat-bot
 
 接入 GitLab
 
 <https://mp.weixin.qq.com/s/y_ppQdKVXWZPNyP9BxGWpg>
 
+简单的 web 页面
+
+https://github.com/sbaliyun/chatgpt-html
+- 用法：https://zblogs.top/deploy-chatgpt-on-your-server
