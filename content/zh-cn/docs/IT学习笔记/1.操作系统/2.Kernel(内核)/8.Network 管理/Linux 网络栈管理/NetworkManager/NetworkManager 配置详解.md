@@ -10,7 +10,7 @@ title: NetworkManager 配置详解
 > - <https://wiki.gnome.org/Projects/NetworkManager/DNS>
 > - <https://cloud.tencent.com/developer/article/1710514>
 
-NetworkManager 的配置文件是 INI 格式的，由 **Sections(部分) **和 **Key/Value Pairs(键/值对)** 组成。
+NetworkManager 的配置文件是 INI 格式的，由 **Sections(部分)** 和 **Key/Value Pairs(键/值对)** 组成。
 
 可用的 Sections 有如下几种：
 
@@ -27,7 +27,7 @@ NetworkManager 的配置文件是 INI 格式的，由 **Sections(部分) **和 *
 
 # main 部分
 
-**dns=<MODE> # 设置 DNS 处理模式。**
+**dns=\<MODE>** # 设置 DNS 处理模式。
 可用的模式有如下几种：
 
 - default #
@@ -36,12 +36,14 @@ NetworkManager 的配置文件是 INI 格式的，由 **Sections(部分) **和 *
 - unbound #
 - **none** # NetworkManager 程序不会修改 resovl.conf 文件。
 
-**plugins=<STRING> # 设置控制 Connections 配置文件的插件，多个插件以 **`**,**`** 分隔。**
+**plugins=\<STRING>** # 设置控制 Connections 配置文件的插件，多个插件以 **`,`** 分隔。
+
 注意，NetworkManager 原生的 keyfile 插件始终附加到此列表的末尾。也就意味着，NetworkManager 始终都会加载 keyfile 插件。
 
 # keyfile 部分
 
-**path=<STRING> # 读取和存储 Connection 配置文件的目录。**`默认值：/etc/NetworkManager/system-connections`
-**unmanaged-devices=<STRING> # 指定 keyfile 不管理的网络设备**
+**path=\<STRING>** # 读取和存储 Connection 配置文件的目录`默认值：/etc/NetworkManager/system-connections`
+
+**unmanaged-devices=\<STRING>** # 指定 keyfile 不管理的网络设备
 
 # logging 部分

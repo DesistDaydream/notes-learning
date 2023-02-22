@@ -39,7 +39,7 @@ Note：
 - **SETTING.PROPERTY(设置.属性)** # 该连接包含的属性。SETTING.PROPERTY 简称 property(属性) 用来指定要增加的连接的配置信息。
   - 如果 SETTING 和 PROPERTY 是 唯一的，则可以使用缩写(比如 connection.type 缩写为 type)。不同的 SETTING 中有不同的 PROPERTY。并非所有属性都适用于所有类型的连接(type 是创建连接时必须指定的一个属性)。也就是说 property(属性) 分为两种，一种适用于全局的通用属性，另一种是只对特定类型的连接生效。比如我当前创建一个 ethernet 类型的连接，那么就不能使用 bond 属性。
   - 注意：如果要在脚本中使用 nmcli 命令，最好不要使用别名
-  - 可用的 SETTING.PROPERTY 详见 [Connection 配置详解](https://www.yuque.com/go/doc/33221861)，在命令行中的写法与配置文件中是一致的，SETTING 就是 配置文件中的 SETTING，PROPERTY 就是配置文件中所属 SETTING 的 PROPERTY。
+  - 可用的 SETTING.PROPERTY 详见 [Connection 配置详解](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network%20管理/Linux%20网络栈管理/NetworkManager/Connection%20配置详解.md)，在命令行中的写法与配置文件中是一致的，SETTING 就是 配置文件中的 SETTING，PROPERTY 就是配置文件中所属 SETTING 的 PROPERTY。
   - 特殊连接类型的属性
     - 在命令使用中，特殊类型的属性可能并不在文档中，比如 bond 类型中，可以使用 mode 属性指定 bond 类型。
     - bond 类型的连接可以使用 mode 属性，该属性的值会添加到 bond.options 属性的值中，作为 mode=MODE 这种键值对存在。

@@ -5,7 +5,7 @@ title: nmcli 命令行工具
 # 概述
 
 > 参考：
-> - 红帽官方文档：<https://access.redhat.com/documentation/zh-cn/red_hat_enterprise_linux/7/html/networking_guide/sec-using_the_networkmanager_command_line_tool_nmcli>
+> - [红帽官方文档](https://access.redhat.com/documentation/zh-cn/red_hat_enterprise_linux/7/html/networking_guide/sec-using_the_networkmanager_command_line_tool_nmcli)
 > - [Manual(手册)，nmcli(1)](https://networkmanager.dev/docs/api/latest/nmcli.html)
 
 nmcli 用于 NetworkManager 的命令行工具
@@ -32,7 +32,7 @@ OPTIONS
 - -s, --show-secrets allow displaying passwords
 - **-t, --terse** # 简洁的输出
 - -v, --version show program version
-- -w, --wait <seconds> set timeout waiting for finishing operations
+- -w, --wait \<seconds> set timeout waiting for finishing operations
 
 OBJECT
 
@@ -42,7 +42,7 @@ OBJECT
 - **c\[onnection]** # NetworkManager's connections
 - **d\[evice]** # devices managed by NetworkManager
 - **a\[gent]** # NetworkManager secret agent or polkit agent
-- **m\[onitor]** #monitor NetworkManager changes
+- **m\[onitor]** # monitor NetworkManager changes
 
 # g\[eneral] # NetworkManager 的一般状态和操作
 
@@ -56,17 +56,17 @@ OBJECT
 
 ## clone 克隆连接
 
-clone \[--temporary] \[id | uuid | path ] <ID> <new name> # 克隆连接
+clone \[--temporary] \[id | uuid | path ] \<ID> \<new name> # 克隆连接
 
 ## edit 在交互模式的编辑器中修改连接
 
-edit \[id | uuid | path] <ID> # 进入交互编辑器修改连接
+edit \[id | uuid | path] \<ID> # 进入交互编辑器修改连接
 
 edit \[type \<new_con_type>] \[con-name \<new_con_name>]
 
 ## monitor 监控连接
 
-monitor \[id | uuid | path] <ID> ... #监控连接
+monitor \[id | uuid | path] \<ID> ... # 监控连接
 
 ## reload、load 加载连接信息
 
@@ -74,15 +74,15 @@ monitor \[id | uuid | path] <ID> ... #监控连接
 
 从磁盘加载/重新加载一个或多个连接文件。 手动编辑连接文件后使用此命令可确保 NetworkManager 知道其最新状态。
 
-reload #从 /etc/sysconfig/network-scripts/ 目录重新加载连接文件
+reload # 从 /etc/sysconfig/network-scripts/ 目录重新加载连接文件
 
-load <filename> \[ <filename>... ] #
+load \<filename> \[ \<filename>... ] #
 
 ## 其他
 
-import \[--temporary] type <type> file <file to import>
+import \[--temporary] type \<type> file \<file to import>
 
-export \[id | uuid | path] <ID> \[<output file>]
+export \[id | uuid | path] \<ID> \[\<output file>]
 
 # d\[evice] # 通过 NetworkManager 来管理网络设备
 

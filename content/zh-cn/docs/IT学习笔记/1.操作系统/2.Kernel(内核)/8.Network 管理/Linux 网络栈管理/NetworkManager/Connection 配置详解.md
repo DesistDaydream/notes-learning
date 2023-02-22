@@ -40,9 +40,14 @@ s "bridge-slave-bond0"
 
 # connection SETTING
 
+通用的 connection 配置设置
+
 **autoconnect=\<BOOLEAN>** # 别名 autoconnect。该连接是否自动连接。
+
 **id=\<STRING>** # 别名 con-name。该连接的名称。若不指定，则会默认生成一个
+
 **interface-name STRING** # 别名 ifname。该连接绑定的网络设备名称。
+
 **master=\<STRING>** # 别名 master。该连接的主设备的 name 或 UUID。具有 master 属性的连接将会降级为从设备.常用于向 bond 或者 brdige 设备中添加从设备时使用。
 
 - 在使用 nmcli 命令时如果使用 master 别名，则会自动为连接添加 slave-type 属性，属性根据主设备的类型决定。如果不使用别名，则需要显式得使用 connection.slave-type 来指定该连接的从属类型。
@@ -50,7 +55,9 @@ s "bridge-slave-bond0"
 
 **type=\<STRING>** # 别名 type。连接类型，常用的有 ethernet、bridge、bridge-slave、bond、bond-slave、tun 等等。其实就是要添加的连接的网络设备的类型。**必选，每个连接必须有一个 type**
 
-# ipv4 SETTING
+# ipv4 SETTING、
+
+用于配置一个 connection 的 IPv4 信息
 
 **address=<\[]UNIT32>** # 别名 ip4。指定该连接的 IP 地址。可以使用 192.168.0.0/24 这种格式
 
@@ -75,6 +82,8 @@ s "bridge-slave-bond0"
 **routing-rule=\<RULEs>** # 设定路由策略。
 
 # ipv6 SETTING
+
+用于配置一个 connection 的 IPv6 信息
 
 **method=\<METHOD>** # 与 ipv4.method 基本相同
 
@@ -104,6 +113,8 @@ vlan2-eth0  0a557c85-f98a-44c3-a2a5-31645efb98b9  vlan      eth0.2
 # 802-3-ethernet SETTING
 
 别名 ethernet
+
+有线以太网的配置
 
 **mtu=\<UINT32>** # 别名 mtu。连接关联的物理设备的 MTU 的值。`默认值：auto`
 
