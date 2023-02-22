@@ -1,22 +1,23 @@
 ---
 title: NetworkManager
+weight: 1
 ---
 
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，NetworkManager/NetworkManager](https://github.com/NetworkManager/NetworkManager)
 > - [GitLab 项目，freedesktop-NetworkManager/NetworkManager](https://gitlab.freedesktop.org/NetworkManager/NetworkManager)
 > - [Manual(手册),NetworkManager.conf(5)](https://networkmanager.dev/docs/api/latest/NetworkManager.conf.html)
 > - [官网](https://networkmanager.dev/)
 
-**NetworkManager daemon **是管理网络的守护进程
-
-NetworkManager daemon 尝试通过管理主网络连接和其他网络接口（如以太网，WiFi 和移动宽带设备），使网络配置和操作尽可能轻松自动。 除非禁用该行为，否则 NetworkManager 将在该设备的连接可用时连接任何网络设备。 有关网络的信息通过 D-Bus 接口导出到任何感兴趣的应用程序，提供丰富的 API，用于检查和控制网络设置和操作。
+**NetworkManager daemon** 是管理网络的守护进程。该守护进程尝试通过管理主网络连接和其他网络接口（如以太网，WiFi 和移动宽带设备），使网络配置和操作尽可能轻松自动。 除非禁用该行为，否则 NetworkManager 将在该设备的连接可用时连接任何网络设备。 有关网络的信息通过 D-Bus 接口导出到任何感兴趣的应用程序，提供丰富的 API，用于检查和控制网络设置和操作。
 
 # Connection
 
 > 参考：
+>
 > - [Manual(手册),nm-settings-nmcli(5)](https://networkmanager.dev/docs/api/latest/nm-settings-nmcli.html)
 > - [Manual(手册),nm-settings-dbus(5)](https://networkmanager.dev/docs/api/latest/nm-settings-dbus.html)
 > - [Manual(手册),nm-settings-keyfile(5)](https://networkmanager.dev/docs/api/latest/nm-settings-keyfile.html)
@@ -24,7 +25,7 @@ NetworkManager daemon 尝试通过管理主网络连接和其他网络接口（�
 
 NetworkManager 将所有网络配置抽象成 **Connection(连接)**，这些 Connection 的配置中包含网络配置(比如 IP 地址、网关等)。当 NetworkManager 激活网络设备上的 Connection 时，将为这个网络设备应用配置文件中的内容，并建立活动的网络连接。所以，可以创建多个 Connection 来关联到一个网络设备上；这样，它们就可以灵活地具有用于不同网络需求的各种网络配置。
 
-**用白话说就是：Connection 就是“网络配置”，网络设备(device)关联并使用“网络配置”来实现联网。而 NetworkManager 就是管理这些 Connection 的**。**Connection 可以表示一个概念，也可以表示一个配置文件。**
+**用白话说就是：Connection 就是“网络配置”，网络设备(device)关联并使用“网络配置”来实现联网。而 NetworkManager 就是管理这些 Connection 的。Connection 可以表示一个概念，也可以表示一个配置文件。**
 
 ## Connection 插件
 
@@ -33,6 +34,7 @@ NetworkManager 通过 **Plugins(插件)** 的方式来管理 Connection 配置�
 可以在 /etc/NetworkManager/NetworkManager.conf 文件中配置想要使用的插件，插件用于读写系统范围的连接配置文件。当指定多个插件时，将从所有列出的插件中读取 Connections。写入 Connections 时，会要求插件按照此处列出的顺序保存连接；如果第一个插件无法写出该连接类型（或无法写出任何连接），则尝试下一个插件。如果没有插件可以保存连接，则会向用户返回错误。
 
 可用插件的数量是特定于发行版的。所有可用的插件详见 [Manual(手册) 中 Plugins 章节](https://networkmanager.dev/docs/api/latest/NetworkManager.conf.html#settings-plugins)
+
 **keyfile**
 
 - keyfile 插件是支持 NetworkManager 拥有的所有连接类型和功能的**通用插件**。它以 .ini 格式在 /etc/NetworkManager/system-connections 文件中写入连接配置。
@@ -61,10 +63,12 @@ NetworkManager 通过 **Plugins(插件)** 的方式来管理 Connection 配置�
 
 ## Connection D-Bus
 
-NetworkManager 还会将这些 Connection 配置导出到 D-Bus 上，比如，通过** busctl **命令，可也获取 Connection 中的内容：
+NetworkManager 还会将这些 Connection 配置导出到 D-Bus 上，比如，通过 **busctl** 命令，可也获取 Connection 中的内容：
 
-    [root@ansible dispatcher.d]# busctl get-property org.freedesktop.NetworkManager /org/freedesktop/NetworkManager/Devices/2 org.freedesktop.NetworkManager.Device Interface
-    s "ens33"
+```bash
+[root@ansible dispatcher.d]# busctl get-property org.freedesktop.NetworkManager /org/freedesktop/NetworkManager/Devices/2 org.freedesktop.NetworkManager.Device Interface
+s "ens33"
+```
 
 所以，真正的底层实现，是通过 D-bus 中的网络设备配置文件来实现的
 
@@ -80,30 +84,30 @@ NetworkManager 还会将这些 Connection 配置导出到 D-Bus 上，比如，�
 
 在 D-Bus API 上的 Connection 配置中，将 INI 中的 **Sections(部分) 称为 Settings(设置)**，Setting 即是 **Properties(属性)** 的集合。所以，很多文档，都将 Connection 表示为一组特定的、封装好的、独立的 **Settings(集合)** 集合。Connection 由一个或多个 Settings 组成。
 
-**Settings **用于描述一个 Connection。每个 Setting 都具有一个或多个 `**Property(属性)**` 。Setting 与 Property 中间以点 `.` 连接。每个 Setting.Property 都会有一个值。
+**Settings**用于描述一个 Connection。每个 Setting 都具有一个或多个 `**Property(属性)**` 。Setting 与 Property 中间以点 `.` 连接。每个 Setting.Property 都会有一个值。
 
-一个 Connection 有哪些 Settings，Setting 又有哪些 Property，以及这些 Property 都有什么作用，详见[ Connection 配置文件详解](https://www.yuque.com/go/doc/33221861)
+一个 Connection 有哪些 Settings，Setting 又有哪些 Property，以及这些 Property 都有什么作用，详见[Connection 配置文件详解](https://www.yuque.com/go/doc/33221861)
 
 下面的命令，可以从 D-Bus API 中获取配置文件所在路径
 
 ```bash
 # CentOS 中使用 ifcfg-rh 插件
-[root@host-3 system-connections]# busctl get-property org.freedesktop.NetworkManager /org/freedesktop/NetworkManager/Settings/4 org.freedesktop.NetworkManager.Settings.Connection Filename
+~]# busctl get-property org.freedesktop.NetworkManager /org/freedesktop/NetworkManager/Settings/4 org.freedesktop.NetworkManager.Settings.Connection Filename
 s "/etc/sysconfig/network-scripts/ifcfg-enp25s0f3"
 
 # CentOS 中不使用 ifcfg-rh 插件
-[root@common-centos-test system-connections]# busctl get-property org.freedesktop.NetworkManager /org/freedesktop/NetworkManager/Settings/4 org.freedesktop.NetworkManager.Settings.Connection Filename
+~]# busctl get-property org.freedesktop.NetworkManager /org/freedesktop/NetworkManager/Settings/4 org.freedesktop.NetworkManager.Settings.Connection Filename
 s "/etc/NetworkManager/system-connections/eth1"
 ```
 
 可以看到，使用不同的插件，配置文件所在路径是不同的
 
-**用白话说：如果说 Connection 是一个配置文件的话，Setting 就是配置文件中的**`**context（配置段，或称为"配置环境")**`**，Property(属性) 是该配置环境下的**`**keyword(关键字,或称为"键"、"字段")**`**。**所以，一般情况下，Connection 也可以描述为由一个或多个 Property(属性) 组成。我们都把 `Setting.Property` 简称为 `属性`。\*\*
+**用白话说：如果说 Connection 是一个配置文件的话，Setting 就是配置文件中的 `context(配置段，或称为"配置环境")`，`Property(属性)` 是该配置环境下的 `keyword(关键字,或称为"键"、"字段")`**。所以，一般情况下，Connection 也可以描述为由一个或多个 Property(属性) 组成。我们都把 Setting.Property 简称为 属性。**其实 Setting 就是很多产品的配置文件中的 Context**。
 
 ### 配置文件示例
 
 ```bash
-root@lichenhao:~# cat /etc/NetworkManager/system-connections/ens3.nmconnection
+~]# cat /etc/NetworkManager/system-connections/ens3.nmconnection
 [connection]
 id=ens3
 uuid=8f8541bc-4893-418b-98d4-fbc7433747cf
@@ -130,7 +134,7 @@ method=auto
 如果通过 nmcli 命令查看这个 Connection，格式如下：
 
 ```bash
-[root@lichenhao ~]# nmcli connection show eth0
+~]# nmcli connection show eth0
 connection.id:                          ens3
 connection.uuid:                        8f8541bc-4893-418b-98d4-fbc7433747cf
 connection.type:                        802-3-ethernet

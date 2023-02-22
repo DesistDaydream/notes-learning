@@ -5,13 +5,15 @@ title: nmcli connection 子命令
 # 概述
 
 > 参考：
+>
+>- [Manual(手册)，nmcli(1)-Connection Management Commands](https://networkmanager.dev/docs/api/latest/nmcli.html#connection_management_commands)
 > - [红帽官方文档,RedHat7-网络指南-使用 nmcli 创建带有 VLAN 的 bond 并作为 Bridge 的从设备](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-vlan_on_bond_and_bridge_using_the_networkmanager_command_line_tool_nmcli)
 
 **nmcli connection {show | up | down | modify | add | edit | clone | delete | monitor | reload | load | import | export} \[ARGUMENTS...]**
 
 # up | down # 启动 | 停止连接
 
-nmcli connection up [[id | uuid | path] \<ID>] [ifname \<ifname>] [ap <BSSID>] \[passwd-file \<file with passwords>] # 启动连接
+nmcli connection up [[id | uuid | path] \<ID>] [ifname \<ifname>] \[ap \<BSSID>] \[passwd-file \<file with passwords>] # 启动连接
 
 nmcli connection down \[id | uuid | path | apath] \<ID> ... # 停止连接
 
@@ -20,7 +22,7 @@ EXAMPLE
 - 启动名为 eth0 的 connection。i.e.把配置应用到指定的网络设备上，并且会自动重启网络设备
   - **nmcli con up eth0**
 
-# add # 增加连接
+# add 增加连接
 
 使用指定的 PROPERTY(属性) 创建一个新的连接
 
@@ -31,7 +33,7 @@ Note：
 
 ## Syntax(语法)
 
-**nmcli connection add \[save BOOLEAN] SETTING.PROPERTY VALUE ...**
+**nmcli connection add [save BOOLEAN] SETTING.PROPERTY VALUE ...**
 
 - **save** # 指定该连接创建完成后，是否以文件形式保存到本地磁盘。默认为 true。
 - **SETTING.PROPERTY(设置.属性)** # 该连接包含的属性。SETTING.PROPERTY 简称 property(属性) 用来指定要增加的连接的配置信息。
@@ -52,13 +54,13 @@ Note：
 
 ## Syntax(语法)
 
-**nmcli connection delete \[id | uuid | path] \<ID> # 删除连接**
+**nmcli connection delete [id | uuid | path] \<ID>**
 
 # modify 修改连接
 
 ## Syntax(语法)
 
-**nmcli connection modify \[+|-]PROPETY VALUE # 修改连接。**
+**nmcli connection modify [+|-]PROPETY VALUE # 修改连接。**
 
 Note：
 
@@ -80,9 +82,10 @@ Note：
 - nmcli con show eth0 # 查看 eth1 这个 connectin 的所有状态，该命令会列出该 connection 的全部属性
 - nmcli -f bond con show bridge-slave-bond0 # 查看 bridge-slave-bond0 这个连接配置中，bond 这个 SETTING 的所有属性及其值。效果如下
 
-
-    [root@lichenhao ~]# nmcli -f bond con show bridge-slave-bond0
-    bond.options:                           mode=active-backup
+```bash
+~]# nmcli -f bond con show bridge-slave-bond0
+bond.options:                           mode=active-backup
+```
 
 # 应用示例
 

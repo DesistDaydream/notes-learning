@@ -4,6 +4,8 @@
     },
     "markdownlint.config": {
         "single-h1": false,
+        "no-duplicate-header": false,
+        "no-emphasis-as-header": false,
         "no-alt-text": false,
         // "hard_tab": false
     },

@@ -6,7 +6,7 @@ title: nmcli 命令行工具
 
 > 参考：
 > - 红帽官方文档：<https://access.redhat.com/documentation/zh-cn/red_hat_enterprise_linux/7/html/networking_guide/sec-using_the_networkmanager_command_line_tool_nmcli>
-> - [Manual(手册),nmcli(1)](<https://man.cx/nmcli(1)>)
+> - [Manual(手册)，nmcli(1)](https://networkmanager.dev/docs/api/latest/nmcli.html)
 
 nmcli 用于 NetworkManager 的命令行工具
 
