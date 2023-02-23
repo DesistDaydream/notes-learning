@@ -1,5 +1,6 @@
 ---
 title: Ansible
+weith
 ---
 
 # 概述
@@ -18,15 +19,20 @@ Ansible 的主要目标是简单易用。它还非常注重安全性和可靠性
 ## 概念
 
 **Control node(控制节点)** # 任何安装了 Ansible 的机器都可以称为控制节点。在控制节点中可以通过调用 `ansible` 或 `ansible-playbook` 命令来运行 Ansible 相关命令和 Playbooks。
+
 **Managed nodes(受管理节点)** # 使用 Ansible 管理的 网络设备 或 服务器。受管理节点有时候也称为 **hosts**。
+
 **Inventory(库存)** # 库存是一个受管理节点的列表。库存有时候也称为 **hostfile**。Inventory 还可以用来组织受管理节点，将每个节点进行分组，以便于扩展
+
 **Collections** # 2.10 版本之后的新概念。Collections 是 Ansible 内容的分发格式，可以包括 Playbooks、Role、Modules、Plugins。新版中，Modules 就被托管于 Collections 中。
 
 - 随着 Ansible 的发展，越来越多的模块、插件被开发并加入到 Ansible 的大家庭，这时候难免会出现命名上的冲突，或者调用上的重复。所以，从 2.10 版本之后，提出了 Collections 的概念。
   - Collections 最大的一个功能就是将模块分类，比如以前 核心模块 command，现在的全名就叫 ansible.builtin.command，前面的 ansible.builtin 就是 command 的 Collections。这种全名称为 **Full Qualified Class Name(完全限定类名，简称 FQCN)**。
 
 **Tasks(任务)** # Ansible 工作的最小单元，Ansible 对受管理节点执行的操作，称为任务。
+
 **Modules(模块)** # 模块就是 Ansible 用来执行 Tasks 的代码。
+
 **Playbooks(剧本)** # 一个被保存起来的有序的 Tasks 列表，通过重复运行 Playbooks，可以方便得重复一组任务。Playbooks 中还可以包含变量、模板、条件语句、控制循环，从本质上来说，编写一个 Playbooks，就好像编写一个脚本代码一样。
 
 Playbooks 是 Ansible 的精髓，如果把 Ansible 当做一门语言，那么就成可以称为 Playbooks 脚本编程语言。
@@ -35,7 +41,7 @@ Playbooks 是 Ansible 的精髓，如果把 Ansible 当做一门语言，那么�
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ot4g6f/1616125280904-828340be-8634-4a3f-a97b-d4600818bd6e.jpeg)
 
-- **ansible core** #核心组件，ansible 本身
+- **ansible core** # 核心组件，ansible 本身
 - **host inventory** # 主机库存，Ansible 所管理的主机清单，一个文本文件
 - **Modules **# 模块。ansible 的 modules 是实现 ansible 的核心，
   - **core modules** # 核心模块
@@ -45,9 +51,9 @@ Playbooks 是 Ansible 的精髓，如果把 Ansible 当做一门语言，那么�
 
 # Ansible 关联文件与配置
 
-/etc/ansible/ansible.cfg # ansible 使用时调用的配置文件
-/etc/ansible/hosts # Inventory 的默认配置文件。该文件可以定义被管理主机的 IP，port 等，都可以定义在该文件中，具体格式如下
+**/etc/ansible/ansible.cfg** # ansible 使用时调用的配置文件
+**/etc/ansible/hosts** # Inventory 的默认配置文件。该文件可以定义被管理主机的 IP，port 等，都可以定义在该文件中，具体格式如下
 
 - 单独 host，任何未分组的主机，需要在定义主机组之前定义各单独的 host，可以是 IP 地址或者主机名
 - 主机组，定义一个主机组，组名用\[]括起来，可以定义多个主机组；当使用 ansible 命令的时候，可以使用组名来对该组内所有主机进行操作
-- 配置文件说明：详见：[inventory 配置文件详解](/docs/IT学习笔记/9.运维/Ansible/Inventory%20 配置文件详解.md 配置文件详解.md)
+- 配置文件说明：详见：[inventory 配置文件详解](/docs/IT学习笔记/9.运维/Ansible/Inventory%20配置文件详解.md)

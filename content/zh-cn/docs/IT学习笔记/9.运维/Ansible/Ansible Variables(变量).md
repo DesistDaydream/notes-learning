@@ -5,6 +5,7 @@ title: Ansible Variables(变量)
 # group_vars 概述
 
 > 参考：
+>
 > - [官方文档,传统目录-使用变量](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html)
 > - [官方文档,传统目录-使用变量-变量优先级](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable)
 
@@ -58,7 +59,7 @@ Note：可以说 ansible playbook 中写的所有内容都是变量。都是可�
 
 # 变量的定义与引用
 
-变量名应为字母、数字、下划线。并且始终应该以字母开头。可以在 Inventory、Playbooks、命令行 中定义变量。Ansible 会加载它找到的每个可能的变量，然后根据[变量优先级规则](#ZixgX)选择要应用的变量
+变量名应为字母、数字、下划线。并且始终应该以字母开头。可以在 Inventory、Playbooks、命令行 中定义变量。Ansible 会加载它找到的每个可能的变量，然后根据[变量优先级规则](#变量的优先级)选择要应用的变量
 
 可以通过 -e 选项直接定义一个变量，比如 `ansible -e "test_var=hello_world"`，这里定义了 test_var 变量，变量的值为 hello_world。
 
@@ -276,18 +277,21 @@ docker:
 
 应用示例：
 
-    - hosts: all
-      tasks:
-      - name: list contents of directory
-        command: ls /root/
-        register: contents #将该任务执行后的ansible报告的信息保存在名为contents变量中
-      - debug:
-          msg: "{{contents}}" #输出contents变量
-      - debug：
-          msg: "{{contents.stdout}}" #输出contents下的stdout变量的值，值为anaconda-ks.cfg\nScripts
+```yaml
+- hosts: all
+    tasks:
+    - name: list contents of directory
+    command: ls /root/
+    register: contents #将该任务执行后的ansible报告的信息保存在名为contents变量中
+    - debug:
+        msg: "{{contents}}" #输出contents变量
+    - debug：
+        msg: "{{contents.stdout}}" #输出contents下的stdout变量的值，值为anaconda-ks.cfg\nScripts
+```
 
 比如下面，就是是 contents 变量的值。这其中包括要执行的命令、命令执行的日期、执行结果，等等 ansible 执行该 playbook 后的信息。
 
+```json
     TASK [debug] *************************************************************
     ok: [10.10.100.200] => {
         "msg": {
@@ -310,9 +314,11 @@ docker:
             ]
         }
     }
+```
 
 还可以将 register 与循环配合使用，通过命令获取的多个值注册到变量中，然后使用循环逐一读取变量的值
 
+```yaml
     - name: retrieve the list of home directories
       command: ls /home
       register: home_dirs
@@ -322,6 +328,7 @@ docker:
         src: /home/{{ item }}
         state: link
       loop: "{{ home_dirs.stdout_lines }}" # loop也可以使用这样的方式来获取每一行的值: "{{ home_dirs.stdout.split() }}"
+```
 
 这个例子就是查看/mnt/bkspool/目录下的内容，然后将其中所有文件注意拷贝到/home/目录下
 
@@ -353,9 +360,9 @@ docker:
 - **groups** # 默认值为 inbentory 下所有组及其组内的 host
 - **group_names** # 默认值为当前主机所属组的列表。
 - **inventory_hostname** # 默认值为 inventory 文件中配置的主机名称。即.ansible 的 hosts 文件的第一列内容
-- **inventory_dir **# 默认值为 ansible 保存 hosts 文件的目录的绝对路径。默认路径为/etc/ansible/
-- **play_hosts **# 默认值为当前 play 范围中可用的一组主机名
-- **role_path **# 默认值为当前 role 的目录的绝对路径
+- **inventory_dir**# 默认值为 ansible 保存 hosts 文件的目录的绝对路径。默认路径为/etc/ansible/
+- **play_hosts**# 默认值为当前 play 范围中可用的一组主机名
+- **role_path**# 默认值为当前 role 的目录的绝对路径
 
 应用实例：
 **groups\["{{ansible\_play\_name}}"]** # 获取当前 play 下的主机列表
@@ -432,8 +439,10 @@ Note：当进行大规模设备使用 ansible 时，如果每台设备都要获�
 
 ## 获取组中的主机数量
 
+```yaml
       vars:
         HOST_COUNT: "{{ groups['组名'] | length }}"
+```
 
 获取 test 组中主机的总数量
 

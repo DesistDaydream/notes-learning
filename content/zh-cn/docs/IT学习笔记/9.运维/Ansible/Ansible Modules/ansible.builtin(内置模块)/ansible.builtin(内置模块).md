@@ -79,7 +79,7 @@ title: ansible.builtin(内置模块)
 
 根据 [2.9 版本的模块索引](https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html)文档，我们可以将上面这些内置模块进行类别划分
 
-# Commands # 命令模块
+# Commands - 命令模块
 
 > 官方文档：<https://docs.ansible.com/ansible/2.9/modules/list_of_commands_modules.html>
 
@@ -91,15 +91,19 @@ title: ansible.builtin(内置模块)
 - [shell – Execute shell commands on targets](https://docs.ansible.com/ansible/2.9/modules/shell_module.html#shell-module)
 - [telnet – Executes a low-down and dirty telnet command](https://docs.ansible.com/ansible/2.9/modules/telnet_module.html#telnet-module)
 
-## [command](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html) # 在受管理节点上执行命令
+## command - 在受管理节点上执行命令
 
-## [script](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/script_module.html) # 将本地脚本传输到受管理节点上并运行
+官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html
 
-# Files # 文件处理模块
+## script - 将本地脚本传输到受管理节点上并运行
 
-详见 《[Files 类模块](/docs/IT学习笔记/9.运维/Ansible/Ansible%20Modules(模块)/ansible.builtin(内置模块)/Files%20 类模块.md 类模块.md)》
+官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/script_module.html
 
-# Packaging # 包模块
+# Files - 文件处理模块
+
+详见《[Files 处理模块](docs/IT学习笔记/9.运维/Ansible/Ansible%20Modules/ansible.builtin(内置模块)/Files%20处理模块.md)》
+
+# Packaging - 包模块
 
 > 官方文档：<https://docs.ansible.com/ansible/2.9/modules/list_of_packaging_modules.html>
 
@@ -118,7 +122,7 @@ title: ansible.builtin(内置模块)
 - [pip_package_info – pip package information](https://docs.ansible.com/ansible/2.9/modules/pip_package_info_module.html#pip-package-info-module)
 - [yarn – Manage node.js packages with Yarn](https://docs.ansible.com/ansible/2.9/modules/yarn_module.html#yarn-module)
 
-## Os
+## OS
 
 - [apk – Manages apk packages](https://docs.ansible.com/ansible/2.9/modules/apk_module.html#apk-module)
 - [apt – Manages apt-packages](https://docs.ansible.com/ansible/2.9/modules/apt_module.html#apt-module)
@@ -168,12 +172,14 @@ title: ansible.builtin(内置模块)
 - [zypper – Manage packages on SUSE and openSUSE](https://docs.ansible.com/ansible/2.9/modules/zypper_module.html#zypper-module)
 - [zypper_repository – Add and remove Zypper repositories](https://docs.ansible.com/ansible/2.9/modules/zypper_repository_module.html#zypper-repository-module)
 
-## [yum](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/yum_module.html) # 使用主机上的 yum 工具管理包
+## yum - 使用主机上的 yum 工具管理包
+
+官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/yum_module.html
 
 ### 参数
 
-- **name: <STRING>** # 包的名称
-- **state: <STRING>** # 指定要执行的操作，是安装还是移除包。可用的值有如下几个：
+- **name: \<STRING>** # 包的名称
+- **state: \<STRING>** # 指定要执行的操作，是安装还是移除包。可用的值有如下几个：
   - absent 与 removed # 移除指定的包
   - installed 与 present # 简单得确保安装了指定的包
   - latest # 安装最新版本的包，若当前包不是最新版本，则更新它。
@@ -193,7 +199,7 @@ ansible all -m yum -a "name=net-bash-completion,vim state=latest"
     state: latest
 ```
 
-# System # 系统模块
+# System - 系统模块
 
 > 官方文档：<https://docs.ansible.com/ansible/latest/modules/list_of_system_modules.html>
 
@@ -271,17 +277,19 @@ ansible all -m yum -a "name=net-bash-completion,vim state=latest"
 - [xfconf – Edit XFCE4 Configurations](https://docs.ansible.com/ansible/2.9/modules/xfconf_module.html#xfconf-module)
 - [xfs_quota – Manage quotas on XFS filesystems](https://docs.ansible.com/ansible/2.9/modules/xfs_quota_module.html#xfs-quota-module)
 
-## [systemd](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/systemd_module.html) # 控制远程主机上以 systemd 运行的服务
+## systemd - 控制远程主机上以 systemd 运行的服务
+
+官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/systemd_module.html
 
 ### 参数
 
-- **name: <STRING>** # Unit 的名称
-- **state: <STRING>** # 设置 Unit 的状态。可用的值有
+- **name: \<STRING>** # Unit 的名称
+- **state: \<STRING>** # 设置 Unit 的状态。可用的值有
   - reloaded
   - restarted
   - started
   - stopped
-- **enabled: <BOOLEAN>** # 设置 Unit 是否应该自启动
+- **enabled: \<BOOLEAN>** # 设置 Unit 是否应该自启动
 
 ### 使用示例
 
@@ -297,7 +305,9 @@ ansible all -m yum -a "name=net-bash-completion,vim state=latest"
     - kube-proxy
 ```
 
-## [user](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html) # 管理远程主机上的用户账户
+## user # 管理远程主机上的用户账户
+
+官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html
 
 ### 参数
 
@@ -324,7 +334,7 @@ Note：生成加密密码的方式
   - 命令中的 mypassword 就是想要使用的密码，mysecretsalt 则是密码学中加的盐，详见<https://zh.wikipedia.org/wiki/%E7%9B%90_(%E5%AF%86%E7%A0%81%E5%AD%A6)>
   - 将输出信息引号内的部分直接当做 password 的值即可
 
-# Utilities 实用程序模块
+# Utilities - 实用程序模块
 
 ## Helper
 
@@ -349,7 +359,9 @@ Note：生成加密密码的方式
 - [wait_for – Waits for a condition before continuing](https://docs.ansible.com/ansible/2.9/modules/wait_for_module.html#wait-for-module)
 - [wait_for_connection – Waits until remote system is reachable/usable](https://docs.ansible.com/ansible/2.9/modules/wait_for_connection_module.html#wait-for-connection-module)
 
-## [debug](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/debug_module.html) # 输出变量或表达式
+## debug - 输出变量或表达式
+
+官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/debug_module.html
 
 该模块可以在 playbook 执行期间，输出指定的内容，而不用停止 playbook。常用于调试变量或者表达式。比如使用 shell 模块的时候，可以通过 debug 模块来输出 shell 模块定义的语句的执行结果
 
@@ -382,14 +394,16 @@ Note：生成加密密码的方式
       - "These servers were built using the password of '{{ password_used }}'. Please retain this for later use."
 ```
 
-## [fail](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/fail_module.html) # 终止任务的执行，并输出自定义的消息
+## fail - 终止任务的执行，并输出自定义的消息
 
-## import 与 include 模块 # 在主任务中导入其他任务或变量
+官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/fail_module.html
+
+## import 与 include 模块 - 在主任务中导入其他任务或变量
 
 > 参考：
 > - <https://www.cnblogs.com/mauricewei/p/10054041.html>
-> - https://docs.ansible.com/ansible/2.5/user\_guide/playbooks\_reuse.html#differences-between-static-and-dynamic
-> - https://docs.ansible.com/ansible/2.5/user\_guide/playbooks\_conditionals.html#applying-when-to-roles-imports-and-includes
+> - https://docs.ansible.com/ansible/2.5/user_guide/playbooks_reuse.html#differences-between-static-and-dynamic
+> - https://docs.ansible.com/ansible/2.5/user_guide/playbooks_conditionals.html#applying-when-to-roles-imports-and-includes
 
 随着要管理的服务不断增多，我们的 Playbook 也会越来越大，内容越来越多，管理起来也会随着复杂。这时，我们可以将某些 tasks 分散到很多文件中，通过 import 和 include 相关模块，实现 tasks 文件之间的相互调用。
 
@@ -412,15 +426,19 @@ Note：生成加密密码的方式
 - include_tasks(Dynamic) 方法则是在执行 play 之前才会加载自己变量
 
 可能有点懵，举例说明
-**下面两个例子是 test.yml 里的 task 调用 test2.yml，不同之处是一个使用 import_tasks 另一个使用 include_tasks**&#x20;
+
+**下面两个例子是 test.yml 里的 task 调用 test2.yml，不同之处是一个使用 import_tasks 另一个使用 include_tasks**
+
 import_tasks：在执行 tasks 之前，ansible 解释器会先加载 test.yml 里的变量同时再加载 test2.yml 里的变量，那么 ansible_os_family 变量会有一个覆盖现象产生，最终的参数应为“BlackHat”，所以当 test.yml 里执行 when 语句时，ansible_os_family 被判定为“BlackHat”，when 的判断结果为 false，也就不会调用 test2.yml 了
 
 执行结果如下，test2.yml 里的 task 都被 skip 了：
 
 include_tasks：ansible 会在完全执行完 test.yml 里的 task 后才会加载 test2.yml 里的变量，所以当执行 when 语句时，ansible_os_family 的参数应为“RedHat”，此时 when 语句判断结果是 true，也就是 test2.yml 里的 tasks 会被执行。
+
 将第一张图 test.yaml 里的 import_tasks 换成 include_tasks，执行结果如下：
 
 我们发现自 test2.yml 里的 task 被执行了，并且在 test2.yml 里 ansible_os_family 的参数变为了“BlackHat”。
+
 这就是 include_tasts 和 import_tasks 方法的第一个区别。
 
 #### 区别二
@@ -429,11 +447,13 @@ include_tasks：ansible 会在完全执行完 test.yml 里的 task 后才会加�
 - import_tasks 方法调用的文件名称不可以有变量
 
 这个区别比较简单，直接上示例：
+
 当调用的文件名称有变量时，使用 include_tasks 方法：
 
 能够正常调用 test2.yml，执行结果如下：
-&#x20;
+
 当使用 import_tasks 方法时，执行报错。
+
 ansible 也给出了错误原因，当使用 static include 时，是不能使用变量的：
-&#x20;
+
 这就是 include_tasts 和 import_tasks 方法的第二个区别。

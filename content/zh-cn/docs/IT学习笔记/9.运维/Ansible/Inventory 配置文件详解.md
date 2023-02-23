@@ -234,17 +234,16 @@ ansible 支持主机列表的正则匹配
 - 切片： `[]`
 - 正则匹配： 以 `~` 开头
 
-ansible all -m ping #所有默认 inventory 文件中的机器
-ansible "_" -m ping #同上
-ansible 121.28.13._ -m ping #所有 122.28.13.X 机器
-ansible web1:web2 -m ping #所有属于组 web1 或属于 web2 的机器
-ansible web1:!web2 -m ping #属于组 web1，但不属于 web2 的机器
-ansible web1\&web2 -m ping #属于组 web1 又属于 web2 的机器
-ansible webserver\[0] -m ping #属于组 webserver 的第 1 台机器
-ansible webserver\[0:5] -m ping #属于组 webserver 的第 1 到 4 台机器
+ansible all -m ping # 所有默认 inventory 文件中的机器
+ansible "_" -m ping # 同上
+ansible 121.28.13._ -m ping # 所有 122.28.13.X 机器
+ansible web1:web2 -m ping # 所有属于组 web1 或属于 web2 的机器
+ansible web1:!web2 -m ping # 属于组 web1，但不属于 web2 的机器
+ansible web1\&web2 -m ping # 属于组 web1 又属于 web2 的机器
+ansible webserver\[0] -m ping # 属于组 webserver 的第 1 台机器
+ansible webserver\[0:5] -m ping # 属于组 webserver 的第 1 到 4 台机器
 ansible "~(beta|web).example.(com|org)" -m ping
-[
-](https://blog.51cto.com/kusorz/1936708)
+
 
 # Inventory 参数详解
 
@@ -253,9 +252,9 @@ ansible "~(beta|web).example.(com|org)" -m ping
 
 如同前面提到的,通过设置下面的参数,可以控制 ansible 与远程主机的交互方式,
 
-ansible_connection #指定 ansible 与远程主机的 connector(连接器)，默认为 ssh 的 smart 类型。'smart' 方式会根据是否支持 ControlPersist, 来判断'ssh' 方式是否可行.
+ansible_connection # 指定 ansible 与远程主机的 connector(连接器)，默认为 ssh 的 smart 类型。'smart' 方式会根据是否支持 ControlPersist, 来判断'ssh' 方式是否可行.
 
-- smart、ssh、paramiko #这三种类型都是 ssh 连接器下的类型。默认为 smart
+- smart、ssh、paramiko # 这三种类型都是 ssh 连接器下的类型。默认为 smart
 - local
 - docker
 

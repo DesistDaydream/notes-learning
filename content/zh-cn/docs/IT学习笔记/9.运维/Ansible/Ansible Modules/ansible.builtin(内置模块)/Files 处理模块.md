@@ -31,7 +31,9 @@ Files 类别模块用来处理文件、文本
 - [xattr – Manage user defined extended attributes](https://docs.ansible.com/ansible/2.9/modules/xattr_module.html#xattr-module)
 - [xml – Manage bits and pieces of XML files or strings](https://docs.ansible.com/ansible/2.9/modules/xml_module.html#xml-module)
 
-# [blockinfile](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/blockinfile_module.html) # 添加、更新、删除指定的多行文本
+# blockinfile - 添加、更新、删除指定的多行文本
+
+官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/blockinfile_module.html
 
 blockinfile 模块使用示例：
 
@@ -62,14 +64,16 @@ Note：
   - block 位置是由 # BEGIN ANSIBLE MANAGED BLOCK 与 # END ANSIBLE MANAGED BLOCK 两行夹在中间的所有位置。
 - 如果再次执行该任务，则会将 block 下指定的文本块覆盖到目标文件 ANSIBLE 所表示的那几行，而不会添加到文件末尾
 
-# [copy](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html) # 用于将文件拷贝到被管理设备上的某个位置
+# copy - 用于将文件拷贝到被管理设备上的某个位置
+
+官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
 
 ## 参数
 
 - 必选参数
-  - **src: <PATH>** # 待拷贝的源文件路径。默认从 Ansible 控制节点搜索路径，搜索逻辑可以被 remote_src 参数修改
+  - **src: \<PATH>** # 待拷贝的源文件路径。默认从 Ansible 控制节点搜索路径，搜索逻辑可以被 remote_src 参数修改
 - 可选参数
-  - **remote_src: <BOOLEAN>** # 若开启 remote_src 参数，则 src 参数将会从被管理节点搜索待拷贝的源文件。`默认值:false`
+  - **remote_src: \<BOOLEAN>** # 若开启 remote_src 参数，则 src 参数将会从被管理节点搜索待拷贝的源文件。`默认值:false`
 
 ## 应用示例
 
@@ -92,9 +96,11 @@ Note：
     state: directory
 ```
 
-# [file](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html#file-module) # 用于创建文件、目录等
+# file - 用于创建文件、目录等
 
-file 模块示例：
+官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html#file-module
+
+## 应用示例：
 
 ```yaml
 - name: 创建名为k8s的目录
@@ -119,7 +125,9 @@ lineinfile、replace、blockinfile 这三个模块可以实现文本编辑功能
 
 虽然都是行匹配，但是 replace 只会替换匹配到行的字符串，而 lineinfile 则会替换匹配到整行。
 
-## [lineinfile](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html) # 行替换
+## lineinfile - 行替换
+
+官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html
 
 - 此模块确保文件中包含特定行，或使用向后引用的正则表达式替换现有行。
 - 当我们只想更改文件中的单行时，这主要有用。如果匹配到多行，那么只会对最后一行进行操作
@@ -141,7 +149,7 @@ lineinfile、replace、blockinfile 这三个模块可以实现文本编辑功能
 
 ### 应用示例
 
-取消 UseDNS no 行前的 # 号
+取消 UseDNS no 行前的 `#` 号
 
 ```yaml
 - name: 修改指定行的内容
@@ -180,7 +188,9 @@ lineinfile、replace、blockinfile 这三个模块可以实现文本编辑功能
         backrefs: yes
 ```
 
-## [replace](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/replace_module.html) # 字符替换
+## replace - 字符替换
+
+官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/replace_module.html
 
 ### 参数
 
@@ -192,8 +202,6 @@ lineinfile、replace、blockinfile 这三个模块可以实现文本编辑功能
 
 其他参数：
 
--
-
 ### 应用示例
 
 ```yaml
@@ -203,13 +211,17 @@ lineinfile、replace、blockinfile 这三个模块可以实现文本编辑功能
     replace: "0"
 ```
 
-# [stat](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/stat_module.html#stat-module) # 获取文件或文件系统状态
+# stat - 获取文件或文件系统状态
+
+官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/stat_module.html#stat-module
 
 stat 模块类似于 Linux 中的 `stat` 命令。常用来在改变文件之间，获取某些文件状态，并注册为变量，以便为后续任务进行判断。
 
 ## 应用示例
 
-# [template](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html) # 根据文件模板，在远程主机上生成新文件
+# template - 根据文件模板，在远程主机上生成新文件
+
+官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html
 
 template 模块使用 Jinja2 模板语言处理文件，并将渲染后的文件传送到目标主机上。
 
@@ -237,7 +249,7 @@ Jinja 行为控制
 
 其他参数
 
-- **backup: <BOOLEAN>** # 是否创建一个包含时间戳信息的备份文件。`默认值：no`
+- **backup: \<BOOLEAN>** # 是否创建一个包含时间戳信息的备份文件。`默认值：no`
 
 ## 返回值
 
@@ -294,7 +306,9 @@ ansible -m template -a 'src=/mytemplates/foo.j2 dest=/tmp/foo.conf lstrip_blocks
 
 更多 template 模块原理及应用，详见 [Playbook 章节中的 Templates](/docs/IT学习笔记/9.运维/Ansible/Playbook/Templates%20 模板(Jinja2).md 模板(Jinja2).md)
 
-# [unarchive](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/unarchive_module.html) # 解压缩一个归档文件。就是 tar 命令。
+# unarchive - 解压缩一个归档文件。就是 tar 命令。
+
+官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/unarchive_module.html
 
 ## 参数
 

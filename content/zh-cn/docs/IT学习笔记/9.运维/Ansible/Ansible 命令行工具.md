@@ -5,6 +5,7 @@ title: Ansible 命令行工具
 # 概述
 
 > 参考：
+>
 > - [官方文档,用户指南-命令行工具](https://docs.ansible.com/ansible/latest/user_guide/command_line_tools.html#command-line-tools)
 > - [官方文档,用户指南-传统目录-临时命令简介](https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html)
 
@@ -15,6 +16,7 @@ Note：Ansible 的控制节点和受管理节点的 Python 版本需要一致，
 # ansible
 
 > 参考：
+>
 > - [官方文档，用户指南-使用命令行工具工作-ansible](https://docs.ansible.com/ansible/latest/cli/ansible.html)
 
 ansible 是 Ansible 的一个 ad-hoc(临时) 命令，可以在一个或多个受管理节点上自动执行单个任务。ansible 命令即简单又快速，但并不具备可重复性，通过 ansible 命令的使用，我们可以了解到 Ansible 的简单性和强大的功能。**并且，可以将类似的操作，直接移植到 Playbooks 中**。
@@ -23,9 +25,9 @@ ansible 是 Ansible 的一个 ad-hoc(临时) 命令，可以在一个或多个�
 
 ## Syntax(语法)
 
-**ansible <HostPattern> \[OPTIONS]**
+**ansible \<HostPattern> \[OPTIONS]**
 
-- **HostPattern** #主机模式,可以是主机名，主机 IP，组名，还有一个 all(所有 hosts 里定义的主机)
+- **HostPattern** # 主机模式,可以是主机名，主机 IP，组名，还有一个 all(所有 hosts 里定义的主机)
 
 ### OPTIONS
 
@@ -35,7 +37,7 @@ ansible 是 Ansible 的一个 ad-hoc(临时) 命令，可以在一个或多个�
 - **Modules Options(模块选项)**
   - **-a, --args \<MODULE_ARGS>** # 以空格分割的模块参数。格式为 `ARG1=VAL1 ARG2=VAL2......`，注意使用引号，有的 VAL 也需要使用引号引起来
   - 只要使用 -m 选项，就必须要是使用 -a 选项
-  - **-m, --module-name <ModuleName>** # 执行任务要使用的模块，默认模块为 command。
+  - **-m, --module-name \<ModuleName>** # 执行任务要使用的模块，默认模块为 command。
 - **Privilege Escalation Options(权限提升选项)**
   - **-b, --become** # 使用 become 模块执行所有操作。即开启权限提升功能
 
@@ -52,7 +54,9 @@ ansible 是 Ansible 的一个 ad-hoc(临时) 命令，可以在一个或多个�
 
 ### 常见模块命令示例
 
-> 参考：<https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html#use-cases-for-ad-hoc-tasks>
+> 参考：
+>
+> - <https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html#use-cases-for-ad-hoc-tasks>
 
 - **文件管理**
   - 拷贝文件
@@ -118,15 +122,14 @@ EXAMPLE
 **ansible-inventory OPTIONS <--list] | --host HOST | --graph>**
 
 - **--list** # 输出所有主机信息
-- **--host <HOST>** # 输出指定主机信息
+- **--host \<HOST>** # 输出指定主机信息
 - **--graph** #
 
 **OPTIONS**
 
 - **--export** # 使用 --list 时，优化输出内容，以便进行导出；而不是准确表示 Ansible 如何处理清单文件
   - 用人话说：如果不加 --export，那么当多个主机共享了 1 个变量时，输出的主机信息，会给每个主机都添加这个变量。不利于人类阅读与维护
-- **-i, --inventory <INVENTORY>** # 指定主机清单或逗号分割的主机列表
-- **--output \</PATH/TO/FILE>** # 使用 --list 时，将输出的内容保存到指定文件中，而不是输出到标准输出
+- **-i, --inventory** # 使用 --list 时，将输出的内容保存到指定文件中，而不是输出到标准输出
 - **-y, --yaml** # 使用 YAML 格式输出信息
 
 ## EXAMPLE
