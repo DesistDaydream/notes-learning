@@ -1,6 +1,6 @@
 ---
 title: Ansible
-weith
+weith: 1
 ---
 
 # 概述
