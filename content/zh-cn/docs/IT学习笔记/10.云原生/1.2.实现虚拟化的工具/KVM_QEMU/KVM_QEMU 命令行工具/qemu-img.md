@@ -35,7 +35,7 @@ title: qemu-img
 - resize \[-q] filename \[+ | -]size
 - amend \[-q] \[-f fmt] \[-t cache] -o options filename
 
-# check # 检查 VM 镜像文件
+# check - 检查 VM 镜像文件
 
 qemu-img check \[-q] \[-f fmt] \[--output=ofmt] \[-r \[leaks | all]] \[-T src_cache] filename
 
@@ -54,7 +54,7 @@ Image end offset: 2148270080
 
 仅格式“ qcow2”，“ qed”和“ vdi”支持一致性检查。
 
-# create # 创建虚拟机的镜像文件
+# create - 创建虚拟机的镜像文件
 
 Note：
 
@@ -68,7 +68,8 @@ Note：
 
 OPTIONS
 
-- **-f FMT** # 指定该镜像文件的格式为 FMT。默认为 raw 格式。
+- **-f FMT** # 指定第一个镜像文件的格式为 FMT。默认为 raw 格式。
+- **-F FMT** # 指定第二个镜像文件的格式为 FMT。默认为 raw 格式。
 - **-o OPTIONS** # 指定参数。可以使用 -o ? 来查看支持的参数。Note：查看可用的参数会根据不同的-f FMT，有不同的显示。Note：各个不同参数可以使用简化 OPTIONS 来指定
   - **backing_file=BaseFILE** # 指定基础镜像为 BaseFILE。简化为 -b
   - **size=SIZE** # 指定新镜像文件的大小为 SIZE
@@ -77,12 +78,12 @@ OPTIONS
 
 - 创建一个 1T 容量的 qcow2 格式的镜像文件
   - **qemu-img create -f qcow2 -o size=1Ti data.bj-cs.qcow2**
-- 基于 cen    tos8-2004.qcow2 镜像文件，创建一个名为 lichenhao.bj-net.qcow2 的增量镜像文件
-  - **qemu-img create -f qcow2 -b /var/lib/libvirt/images/backingFile/centos8-2004.qcow2 lichenhao.bj-net.qcow2**
-  - **qemu-img create -f qcow2 -b /var/lib/libvirt/images/backingFile/centos8-2004.qcow2 lichenhao.bj-net.qcow2 **# 其中 -o backing_file 可以简写为 -b
-  - **qemu-img create -f qcow2 -b /var/lib/libvirt/images/backingFile/centos8-2004.qcow2 -o size=1Ti lichenhao.bj-net.qcow2** # 创建时指定新镜像文件的大小
+- 基于 centos8-2004.qcow2 镜像文件，创建一个名为 lichenhao.bj-net.qcow2 的增量镜像文件
+  - **qemu-img create -f qcow2 -b /var/lib/libvirt/images/backingFile/centos8-2004.qcow2 -F qcow2 lichenhao.bj-net.qcow2**
+  - **qemu-img create -f qcow2 -b /var/lib/libvirt/images/backingFile/centos8-2004.qcow2 -F qcow2 lichenhao.bj-net.qcow2** # 其中 -o backing_file 可以简写为 -b
+  - **qemu-img create -f qcow2 -b /var/lib/libvirt/images/backingFile/centos8-2004.qcow2 -o size=1Ti -F qcow2 lichenhao.bj-net.qcow2** # 创建时指定新镜像文件的大小
 
-# convert # 转换 VM 镜像文件的格式
+# convert - 转换 VM 镜像文件的格式
 
 ### Syntax(语法)
 
@@ -91,21 +92,22 @@ qemu-img convert \[-c] \[-p] \[-q] \[-n] \[-f fmt] \[-t cache] \[-T src_cache] \
 ### EXAMPLE
 
 - 压缩 test.qcow2 镜像,生成新的名为 test.qcow2.new 的镜像，新的镜像文件大小更小
-  - **qemu-img convert -c -O qcow2 test.qcow2 test.qcow2.new**
+  - `qemu-img convert -c -O qcow2 test.qcow2 test.qcow2.new`
 
+```
+# 压缩前的镜像信息
+~]# qemu-img check centos8-2004.qcow2.src
+No errors were found on the image.
+8192000/8192000 = 100.00% allocated, 0.00% fragmented, 0.00% compressed clusters
+Image end offset: 536953094144
+# 压缩后的镜像信息
+~]# qemu-img check centos8-2004.qcow2
+No errors were found on the image.
+36060/8192000 = 0.44% allocated, 91.45% fragmented, 89.83% compressed clusters
+Image end offset: 1085603840
+```
 
-    # 压缩前的镜像信息
-    [root@host-3 backingFile]# qemu-img check centos8-2004.qcow2.src
-    No errors were found on the image.
-    8192000/8192000 = 100.00% allocated, 0.00% fragmented, 0.00% compressed clusters
-    Image end offset: 536953094144
-    # 压缩后的镜像信息
-    [root@host-3 backingFile]# qemu-img check centos8-2004.qcow2
-    No errors were found on the image.
-    36060/8192000 = 0.44% allocated, 91.45% fragmented, 89.83% compressed clusters
-    Image end offset: 1085603840
-
-# info # 显示 VM 镜像文件的信息
+# info - 显示 VM 镜像文件的信息
 
 info \[-f fmt] \[--output=ofmt] \[--backing-chain] filename
 

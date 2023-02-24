@@ -52,15 +52,23 @@ LISTEN     0      5         [::]:5906                  [::]:*                   
 ```
 
 使用 vnc 进行登录
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/vbc6tk/1653399424256-1aebe374-71df-4b7e-adc6-7a75259d03a0.png)
 
 在 virt-manager 里 VNC 的修改方式
+
 ![image.jpeg](https://notes-learning.oss-cn-beijing.aliyuncs.com/vbc6tk/1616123512562-2e6de574-d197-4b52-a26d-40b0c09db446.jpeg)
+
 可以通过如下命令设置 vnc
+
 virt-install --import --name test --memory 2048 --vcpus 2 --os-variant centos7.0 --disk /var/lib/libvirt/images/test.qcow2,size=20 --network bridge=br0,model=virtio --graphics vnc,listen=0.0.0.0,port=5910
+
 备注：第一次在使用 vnc 访问虚拟机的时候会出现一闪就不见了的问题？具体的解决方法如下：
+
 依次打开 vnc 客户端--->依次点击 option--->Advanced--->Expert--->找到 ColourLevel,默认的值是 pal8，修改为 rgb222 或 full.,见下图一图二:1,2,3
+
 ![image.jpeg](https://notes-learning.oss-cn-beijing.aliyuncs.com/vbc6tk/1616123512600-5a0611f4-2ac1-4cf8-b02f-bf100cda25da.jpeg)
+
 ![image.jpeg](https://notes-learning.oss-cn-beijing.aliyuncs.com/vbc6tk/1616123512705-58b3ebe2-934c-4b6f-90fd-2c5749dbac8c.jpeg)
 
 # 常见问题

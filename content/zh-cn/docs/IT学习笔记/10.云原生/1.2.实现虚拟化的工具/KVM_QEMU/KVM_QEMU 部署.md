@@ -1,5 +1,6 @@
 ---
 title: KVM/QEMU 部署
+weight: 2
 ---
 
 # 概述

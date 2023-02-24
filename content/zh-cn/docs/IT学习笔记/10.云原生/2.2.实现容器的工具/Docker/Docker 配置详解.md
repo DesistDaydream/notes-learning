@@ -5,17 +5,16 @@ title: Docker 配置详解
 # 概述
 
 > 参考：
-> - 官方文档：<https://docs.docker.com/engine/reference/commandline/dockerd/#/linux-configuration-file>
-> - <https://blog.csdn.net/u013948858/article/details/79974796>
+> - [官方文档，参考-命令行参考-Daemon CLI](https://docs.docker.com/engine/reference/commandline/dockerd/)
+> - https://blog.csdn.net/u013948858/article/details/79974796
 
 Docker 的守护进程为 dockerd，dockerd 可以通过两种方式配置运行时行为
 
-1. 通过配置文件 /etc/docker/daemon.json 进行配置
-2. 使用 dockerd 命令的 flags 进行配置，可以将 flags 添加到 dockerd.service 中。
+- 通过配置文件 /etc/docker/daemon.json 进行配置
+- 使用 dockerd 命令的 flags 进行配置，可以将 flags 添加到 dockerd.service 中。
 
-Note：
-
-1. 配置文件中的配置，也可以通过 dockerd 的命令行参数(也就是 flags)指定，比如配置文件中的 data-root 字段，对应的 dockerd flags 为 --data-root STRING。
+> Note：
+> 配置文件中的配置，也可以通过 dockerd 的命令行参数(也就是 flags)指定，比如配置文件中的 data-root 字段，对应的 dockerd flags 为 --data-root STRING。
 
 ## 配置文件示例
 
@@ -47,7 +46,9 @@ dockerd 配置文件是 JSON 格式，基本常用的配置内容如下。
 
 # 命令行标志详解
 
-参考[配置文件详解](/docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker%20 配置详解.md 配置详解.md)，将配置文件中的字段转成 --OPTIONS 即可。
+绝大部分的命令行标志都可以参考[配置文件详解](#配置文件详解)进行使用
+
+**-H, --host \<LIST>** # 要连接的守护进程 socket。官方给的 systemd 的 service 中，使用的是 `docker -H fd://`，这样的用法必须要先启动 docker.socket
 
 # 配置文件详解
 
@@ -61,7 +62,7 @@ dockerd 配置文件是 JSON 格式，基本常用的配置内容如下。
 
 ## hosts: \[] # 指定 docker 守护进程监听的端口
 
-可以从其他机器使用 docker -H URL 命令对该设备进行 docker 操作
+可以从其他机器使用 `docker -H URL` 命令对该设备进行 docker 操作
 
 ## live-restore: BOOL
 
@@ -74,7 +75,9 @@ dockerd 配置文件是 JSON 格式，基本常用的配置内容如下。
 
 ## registry-mirrors: \[] # 指定 pull、push 镜像时候的加速器地址
 
-## 下面是[官网给的配置文件中所有可用字段的说明](https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file)：
+## 下面是官网给的配置文件中所有可用字段的说明
+
+https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file
 
 ```json
 {

@@ -13,9 +13,12 @@ title: qemu-system-x86_64
 # Syntax(语法)
 
 **qemu-system-x86_64 \[OPTIONS] \[DISK_IMAGE]**
+
 DISK_IMAGE 是 IDE 硬盘 0 的原始硬盘映像。有些目标不需要磁盘映像。
 
-## [Standard OPTIONS](https://www.qemu.org/docs/master/system/qemu-manpage.html#hxtool-0)(标准选项)
+## Standard OPTIONS(标准选项)
+
+https://www.qemu.org/docs/master/system/qemu-manpage.html#hxtool-0
 
 **-name** #
 
@@ -44,7 +47,9 @@ DISK_IMAGE 是 IDE 硬盘 0 的原始硬盘映像。有些目标不需要磁盘�
   - virtio-serial-pci # bus PCI。别名：virtio-serial
   - virtserialport # bus virtio-serial-bus
 
-## [Block Device OPTIONS](https://www.qemu.org/docs/master/system/qemu-manpage.html#hxtool-1)(块设备选项)
+## Block Device OPTIONS(块设备选项)
+
+https://www.qemu.org/docs/master/system/qemu-manpage.html#hxtool-1
 
 **-cdrom FILE** # 将指定文件作为 VM 的 CD-ROM。可以使用 /dev/cdrom 作为 FILE 让 VM 使用宿主机的 CD-ROM。
 
@@ -60,7 +65,9 @@ DISK_IMAGE 是 IDE 硬盘 0 的原始硬盘映像。有些目标不需要磁盘�
 - cache=CACHE # 定义如何使用物理机缓存来访问块数据，如 none、writeback、writethrough、unsafe
 - format=FORMAT # 指定映像文件的格式，具体格式参考 qemu-img
 
-## [Display OPTIONS(](https://www.qemu.org/docs/master/system/qemu-manpage.html#hxtool-3)显示选项)
+## Display OPTIONS(显示选项)
+
+https://www.qemu.org/docs/master/system/qemu-manpage.html#hxtool-3
 
 **-vnc DISPLAY\[,option\[,option\[,...]]]**
 该选项可以让 QEMU 监听一个端口，并通过 VNC 会话重定向 VGA 显示。
@@ -69,11 +76,12 @@ DISK_IMAGE 是 IDE 硬盘 0 的原始硬盘映像。有些目标不需要磁盘�
 
 在使用 VNC 显示时，如果不使用 en-us，则必须使用-k 参数设置键盘布局。显示的有效语法为
 
-## [Network OPTIONS](https://www.qemu.org/docs/master/system/qemu-manpage.html#hxtool-5)(网络选项)
+## Network OPTIONS(网络选项)
+
+https://www.qemu.org/docs/master/system/qemu-manpage.html#hxtool-5
 
 > 注意：
->
-> - -net 选项不再推荐使用，详见：<https://www.qemu.org/2018/05/31/nic-parameter/>
+> -net 选项不再推荐使用，详见：<https://www.qemu.org/2018/05/31/nic-parameter/>
 
 **-netdev tap,id=ID\[,fd=H]\[,ifname=NAME]\[,script=FILE]\[,downscript=DFILE]\[,helper=HELPER]**
 在宿主机上自动创建一个 tap 类型的网络设备，并使用 ID 作为该 netdev 的标识符，用于与 -device 进行关联
@@ -95,7 +103,9 @@ DISK_IMAGE 是 IDE 硬盘 0 的原始硬盘映像。有些目标不需要磁盘�
 
 **-nographic # **让虚拟机在前台运行，虚拟机的输出信息会在 宿主机直接显示，类似于 virsh console 命令
 
-## [Character Device OPTIONS](https://www.qemu.org/docs/master/system/qemu-manpage.html#hxtool-6)(字符设备选项)
+## Character Device OPTIONS(字符设备选项)
+
+https://www.qemu.org/docs/master/system/qemu-manpage.html#hxtool-6
 
 **-chardev BACKEND,id=ID\[,mux=on|off]\[,OPTIONS]**
 BACKEND 可以是以下设备之一：`null`, `socket`, `udp`, `msmouse`, `vc`, `ringbuf`, `file`, `pipe`, `console`, `serial`, `pty`, `stdio`, `braille`, `tty`, `parallel`, `parport`, `spicevmc`, `spiceport`。特定的后端将确定适用的选项。

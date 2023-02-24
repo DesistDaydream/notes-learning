@@ -1,5 +1,6 @@
 ---
 title: KVM/QEMU 镜像管理
+weight: 3
 ---
 
 # 概述
@@ -31,14 +32,23 @@ https://www.cnblogs.com/fengrenzw/p/3383773.html
 <https://www.cnblogs.com/fengrenzw/p/3383773.html>
 
 我们知道 qcow2 的磁盘格式可以带来很大的便利性，因为部署的时候可以减少大量的时间、空间，可以增量备份、快照等非常诱人的特性。
+
 因为下边可能会有点绕：
+
 backing_file：后端，母镜像
+
 qcow2：前端，子镜像
+
 在使用的时候可能会遇到一种情况，就是使用 backing_file 时，如果修改了 backing_file，“可能”会导致前端的 qcow2 的崩溃，出现这种问题个人觉得是很正常的，并且是可以完全避免的。所以，在 openstack 在使用 qcow2 的过程中会使用 glance 镜像管理来保证它的安全和完整性，我们在使用 qcow2 的时候也务必不回去修改它。
+
 至于为什么会出现这种现象，下面简单分析一下，可能会有些纰漏、错误，但感觉整体思路上不会有太大的偏差。
+
 什么是 qcow2？
+
 之前的博客也讲述过，qcow2：就是 qemu 的 cow 磁盘的第 2 版。既然是 cow，必然是创建的前端磁盘内容是“空”的，即只有 qcow2 磁盘格式的数据结构（当然包含 backing_file 的指针），而不包含任何磁盘内应该存放的实际内容。
+
 我们启动虚拟机的时候，指定的是 qcow2，但同时会加载 backing_file（使用 qmp，info block 可以查看，或者/proc/$pid/fd/）。当读取文件的时候，根据 qcow2 内部的指针指向 backing_file，读取 backing_file 磁盘块上的内容。如果需要修改文件，则修改后的文件会保存到 qcow2 文件上。
+
 那我们在使用 backing_file 特性时，再修改 backing_file（后端）时可能就出现大概三种情况：
 
 - backing_ing 删除或修改了 qcow2 中没修改过的内容

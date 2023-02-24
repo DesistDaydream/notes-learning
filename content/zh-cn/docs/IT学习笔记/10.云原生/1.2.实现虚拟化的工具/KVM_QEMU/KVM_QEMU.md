@@ -1,5 +1,6 @@
 ---
 title: KVM/QEMU
+weight: 1
 ---
 
 # 概述

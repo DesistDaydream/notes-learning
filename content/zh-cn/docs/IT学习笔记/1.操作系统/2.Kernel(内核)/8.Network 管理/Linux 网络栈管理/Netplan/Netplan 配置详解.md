@@ -17,7 +17,15 @@ Netplan 的配置文件使用 YAML 格式。`/{lib,etc,run}/netplan/*.yaml` 都�
 
 ## renderere: \<STRING>
 
-## ethernetes: <**OBJECT**>
+## ethernetes: \<OBJECT>
+
+以太网设备的专用属性
+
+## bridge: \<OBJECT>
+
+桥设备的专用属性
+
+
 
 ## 所有设备的通用属性
 
@@ -71,6 +79,32 @@ DNS=8.8.8.8
 ```
 
 ## Bridge 配置示例
+
+```yaml
+# cat /etc/netplan/br0.yaml 
+network:
+  version: 2
+  ethernets:
+    eno1:
+      dhcp4: false
+      dhcp6: false
+  bridges:
+    br0:
+      interfaces:
+        - eno1
+      dhcp4: false
+      addresses:
+        - 172.38.180.100/24
+      routes:
+        - to: default
+          via: 172.38.180.254
+      nameservers:
+        addresses:
+          - 8.8.8.8
+      parameters:
+        stp: false
+      dhcp6: false
+```
 
 应用配置
 **netplan apply**
