@@ -56,6 +56,7 @@ ln -sv /usr/bin/kvm /usr/bin/
 安装虚拟机文件系统的管理工具
 
 - apt install libguestfs-tools -y
+- apt install virt-manager -y
 
 # 安转 VPN 与桌面(可选)
 

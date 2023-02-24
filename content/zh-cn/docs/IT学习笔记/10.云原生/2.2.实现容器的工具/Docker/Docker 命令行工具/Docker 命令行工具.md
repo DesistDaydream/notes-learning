@@ -13,15 +13,15 @@ title: Docker 命令行工具
 
 ## OPTIONS:
 
-- \--config=~/.docker #Location of client config files #客户端配置文件的位置
-- -D, --debug=false #Enable debug mode #启用 Debug 调试模式
-- -H, --host=\[] #Daemon socket(s) to connectto #守护进程的套接字（Socket）连接
-- -l, --log-level=info #Set the logging level #设置日志级别
-- \--tls=false #Use TLS; implied by--tlsverify #
-- \--tlscacert=~/.docker/ca.pem #Trust certs signed only by this CA #信任证书签名 CA
-- \--tlscert=~/.docker/cert.pem #Path to TLS certificate file #TLS 证书文件路径
-- \--tlskey=~/.docker/key.pem #Path to TLS key file #TLS 密钥文件路径
-- \--tlsverify=false #Use TLS and verify theremote #使用 TLS 验证远程
+- --config=~/.docker # Location of client config files # 客户端配置文件的位置
+- -D, --debug=false # Enable debug mode # 启用 Debug 调试模式
+- -H, --host=\[] # Daemon socket(s) to connectto # 守护进程的套接字（Socket）连接
+- -l, --log-level=info # Set the logging level # 设置日志级别
+- --tls=false # Use TLS; implied by--tlsverify #
+- --tlscacert=~/.docker/ca.pem # Trust certs signed only by this CA # 信任证书签名 CA
+- --tlscert=~/.docker/cert.pem # Path to TLS certificate file # TLS 证书文件路径
+- --tlskey=~/.docker/key.pem # Path to TLS key file # TLS 密钥文件路径
+- --tlsverify=false # Use TLS and verify theremote # 使用 TLS 验证远程
 
 # Management Commands
 
