@@ -2,18 +2,19 @@
 title: Docker Compose
 ---
 
-参考：[官方文档](https://docs.docker.com/compose/)、[菜鸟教程](https://compose-spec.io/)、[Compose 规范](https://compose-spec.io/)
+# 概述
 
-# Docker Compose 简介
+> 参考：
+> - [官方文档](https://docs.docker.com/compose/)
+> - [菜鸟教程](https://compose-spec.io/)
+> - [Compose 规范](https://compose-spec.io/)
 
 Compose 是用于定义和运行多容器 Docker 应用程序的工具。通过 Compose，您可以使用 YML 文件来配置应用程序需要的所有服务。然后，使用一个命令，就可以通过该配置文件创建并启动所有服务。
 
 Compose 使用的三个步骤：
 
 - 使用 Dockerfile 定义应用程序的环境。
-
 - 使用 docker-compose.yml 定义构成应用程序的服务，这样它们可以在隔离环境中一起运行。
-
 - 最后，执行 docker-compose up 命令来启动并运行整个应用程序。
 
 docker-compose.yml 的配置案例如下（配置参数参考下文）：
@@ -37,33 +38,44 @@ docker-compose.yml 的配置案例如下（配置参数参考下文）：
     volumes:
       logvolume01: {}
 
+## 与 Docker 的版本兼容列表
+
+>参考：
+>- [官方文档，Compose 文件参考-版本和更新相关-兼容矩阵](https://docs.docker.com/compose/compose-file/compose-versioning/#compatibility-matrix)
+
+详见官网
+
 # Compose 安装
 
 Linux 上我们可以从 Github 上下载它的二进制包来使用，最新发行的版本地址：<https://github.com/docker/compose/releases>。
 
 运行以下命令以下载 Docker Compose 的当前稳定版本：
 
-    $ sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-
-要安装其他版本的 Compose，请替换 1.24.1。
+```bash
+export DOCKER_COMPOSE_VERSION="1.27.4"
+sudo curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}$/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+```
 
 将可执行权限应用于二进制文件：
 
-    $ sudo chmod +x /usr/local/bin/docker-compose
+```bash
+sudo chmod +x /usr/local/bin/docker-compose
+```
 
 测试是否安装成功：
 
-    $ docker-compose version
-    docker-compose version 1.27.4, build 40524192
-    docker-py version: 4.3.1
-    CPython version: 3.7.7
-    OpenSSL version: OpenSSL 1.1.0l  10 Sep 2019
+```bash
+$ docker-compose version
+docker-compose version 1.27.4, build 40524192
+docker-py version: 4.3.1
+CPython version: 3.7.7
+OpenSSL version: OpenSSL 1.1.0l  10 Sep 2019
+```
 
 **注意**： 对于 alpine，需要以下依赖包： py-pip，python-dev，libffi-dev，openssl-dev，gcc，libc-dev，和 make。
 
-使用
 
-### 1、准备&#xA;
+### 1、准备
 
 创建一个测试目录：
 

@@ -13,19 +13,19 @@ Netplan 的配置文件使用 YAML 格式。`/{lib,etc,run}/netplan/*.yaml` 都�
 
 该 YAML 文件只有一个顶级节点：`network: <Object>`，其中包括 version、设备类型(例如 ethernets、modems、wifis、birdge 等)、renderer。
 
-## version: <INT>
+## version: \<INT>
 
-## renderere: <STRING>
+## renderere: \<STRING>
 
 ## ethernetes: <**OBJECT**>
 
 ## 所有设备的通用属性
 
 **addresses: <\[]OBJECT>** #&#x20;
-**dtcp4: <BOOL>** # 为 IPv4 启用 DHCP。`默认值：false`
-**dhcp6: <BOOL>** # 为 IPv6 启用 DHCP。`默认值：false`
-**gateway4 | gateway6: <STRING>** # **已弃用，使用 **`**routes**`** 字段。**
-**nameservers: <OBJECT> **# 设置 DNS 服务器和搜索域，用于手动地址配置
+**dtcp4: \<BOOL>** # 为 IPv4 启用 DHCP。`默认值：false`
+**dhcp6: \<BOOL>** # 为 IPv6 启用 DHCP。`默认值：false`
+**gateway4 | gateway6: \<STRING>** # **已弃用**。使用 `routes` 字段。
+**nameservers: \<OBJECT>** # 设置 DNS 服务器和搜索域，用于手动地址配置
 **routes: <\[]OBJECT>** # 为设备配置静态路由；请参阅下面的路由部分。
 
 # 配置示例
@@ -56,7 +56,7 @@ network:
 生成如下配置
 
 ```bash
-root@lichenhao:/etc/netplan# cat /run/systemd/network/10-netplan-ens3.network
+~]# cat /run/systemd/network/10-netplan-ens3.network
 [Match]
 Name=ens3
 

@@ -48,9 +48,10 @@ title: KVM/QEMU 部署
 - kvm-ok
 
 ln -sv /usr/bin/kvm /usr/bin/
+
 安装虚拟化环境
 
-- sudo apt install -y qumu-kvm libvirt-daemon-system libvirt-daemon libvirt-clients
+- sudo apt install -y qemu-kvm libvirt-daemon-system libvirt-daemon libvirt-clients
 
 安装虚拟机文件系统的管理工具
 

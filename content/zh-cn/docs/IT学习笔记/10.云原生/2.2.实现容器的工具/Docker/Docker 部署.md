@@ -4,7 +4,10 @@ title: Docker 部署
 
 # 概述
 
-> 参考：[官方文档](https://docs.docker.com/engine/install/)、[Centos 安装](https://docs.docker.com/engine/install/centos/)、[Ubuntu 安装](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
+> 参考：
+> - [官方文档](https://docs.docker.com/engine/install/)
+> - [Centos 安装](https://docs.docker.com/engine/install/centos/)
+> - [Ubuntu 安装](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
 
 # 安装 Docker 套件
 
@@ -50,6 +53,9 @@ cp docker/* /usr/bin/
 ```
 
 ### 配置 Unit 文件
+
+> 参考：
+> - [官方文档，使用 systemd 配置守护进程](https://docs.docker.com/config/daemon/systemd/)
 
 #### containerd.service
 
@@ -137,6 +143,14 @@ OOMScoreAdjust=-500
 [Install]
 WantedBy=multi-user.target
 EOF
+```
+
+### 安装 CLI 补全文件
+
+我们可以在 [GitHub 项目，docker/cli 中的 contrib/completion](https://github.com/docker/cli/tree/master/contrib/completion ) 目录下找到各种 Shell 的 CLI 补全文件
+
+```bash
+curl https://raw.githubusercontent.com/docker/cli/master/contrib/completion/bash/docker -o /usr/share/bash-completion/completions/docker
 ```
 
 # 配置并启动 Docker
