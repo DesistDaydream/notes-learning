@@ -27,3 +27,7 @@ else
 fi
 
 ```
+
+# Ubuntu 发行版
+
+Ubuntu Server 安装完成后，通常需要关闭自动更新~~

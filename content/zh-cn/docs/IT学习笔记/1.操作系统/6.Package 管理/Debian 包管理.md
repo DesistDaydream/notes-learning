@@ -62,12 +62,12 @@ dpki-query 是一个查询工具，可以从 dpkg 数据库中查询包的信息
 
 - **COMMAND**
 
-- **-L, --listfiles <PACKAGE>** # 列出系统中 PACKAGE 的安装路径，所有关联的安装文件都会列出
+- **-L, --listfiles \<PACKAGE>** # 列出系统中 PACKAGE 的安装路径，所有关联的安装文件都会列出
 - **-l, --list \[PACKAGE]** # 列出所有包，或指定的 PACKAGE，PACKAGE 可以使用通配符。
-- **-S, --search <FILE>** # 搜索 FILE 属于哪个 Package。FILE 可以使用通配符。
+- **-S, --search \<FILE>** # 搜索 FILE 属于哪个 Package。FILE 可以使用通配符。
   - 注意：当我们搜索二进制的命令文件属于哪个 Package 时，经常会搜不到，这是因为 which 命令查到的命令路径是 **/usr/bin**，但是 Debian 包安装的程序，通常都是在 **/bin** 目录下，虽然这俩是具有软链接的关系。
   - 所以，当我们搜不到时，可以尝试使用 /bin 目录作为二进制文件的路径前缀。
-- **-s, --status <PackageName>** # 报告所输入的(PackageName)这个软件包的状态
+- **-s, --status \<PackageName>** # 报告所输入的(PackageName)这个软件包的状态
 
 ## dpkg 相关程序示例
 
@@ -157,9 +157,9 @@ EOF
 - **update** # 更新软件包的索引。更新 source.list 文件或长时间没更新时，需要先 update 再安装包。
 - **upgrade** # 升级所有软件包。
   - 注意：upgrade 之前必须要执行 `apt update`，以便让 ATP 知道有新版本的软件包可用。
-- **reinstall <PKG>** # 重新安装软件包
-- **remove <PKG>** # 删除指定的软件包
-- **purge <PKG>** # 删除指定得软件包及其配置文件
+- **reinstall \<PKG>** # 重新安装软件包
+- **remove \<PKG>** # 删除指定的软件包
+- **purge \<PKG>** # 删除指定得软件包及其配置文件
 - **clean** # 清除本地存储库内的已检索到的软件包文件。
   - 该命令会从 /var/cache/apt/archives/ 和 /var/cache/apt/archives/partial/ 目录中删除除了锁文件以外的所有文件。
 - **autoremove **# 自动清理所有不再使用的依赖
@@ -193,12 +193,12 @@ EOF
 
 **COMMAND**
 
-- **madison <PKG>** # 显示包的可用版本
-- **policy \[PKG]** # 显示包源的优先级。若指定了 PKG，则显示包的三个信息：1.已安装的版本。2.可安装的最高版本。3.版本列表
+- **madison \<PKG>** # 显示包的可用版本
+- **policy [PKG]** # 显示包源的优先级。若指定了 PKG，则显示包的三个信息：1.已安装的版本。2.可安装的最高版本。3.版本列表
 - **stats** # 显示缓存中包的统计信息
 - 依赖关系命令
-  - **depends <PKG>** # 列出程序包具有的每个依赖关系以及可以满足该依赖关系的所有其他可能的程序包。
-  - **rdepends <PKG>** # 显示了程序包具有的每个反向依赖项的列表。
+  - **depends \<PKG>** # 列出程序包具有的每个依赖关系以及可以满足该依赖关系的所有其他可能的程序包。
+  - **rdepends \<PKG>** # 显示了程序包具有的每个反向依赖项的列表。
 
 ### EXAMPLE
 
@@ -229,7 +229,7 @@ EOF
 
 > 参考：
 > - [Ubuntu 官方文档，软件-包管理](https://ubuntu.com/server/docs/package-management)-自动更新(这个小节没有链接)
-> - <https://wiki.debian.org/UnattendedUpgrades>
+> - https://wiki.debian.org/UnattendedUpgrades
 > - [GitHub 项目，mvo5/unattended-upgrades](https://github.com/mvo5/unattended-upgrades)
 
 APT 工具可以实现软件包的 Automatic Updates(自动更新) 功能，主要依赖于 unattended-upgrades 软件来实现，该软件现在随系统默认安装。该软件安装完成后，会自动启动 **unattended-upgrades.service** 服务。
