@@ -8,6 +8,7 @@ title: Docker 部署
 > - [官方文档](https://docs.docker.com/engine/install/)
 > - [Centos 安装](https://docs.docker.com/engine/install/centos/)
 > - [Ubuntu 安装](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
+> - [二进制安装](https://docs.docker.com/engine/install/binaries/)
 
 # 安装 Docker 套件
 
@@ -57,7 +58,21 @@ cp docker/* /usr/bin/
 > 参考：
 > - [官方文档，使用 systemd 配置守护进程](https://docs.docker.com/config/daemon/systemd/)
 
-#### containerd.service
+有两种配置 Docker 的 Unit 文件的方式
+
+#### 第一种是官方推荐的
+
+从 [GitHub 项目，moby/moby 的 contrib/init/systemd/](https://github.com/moby/moby/tree/master/contrib/init/systemd) 目录中下载如下两个文件
+- [docker.service](https://raw.githubusercontent.com/moby/moby/master/contrib/init/systemd/docker.service)
+- [docker.socket](https://raw.githubusercontent.com/moby/moby/master/contrib/init/systemd/docker.socket)
+
+将上述两个文件放到 /etc/systemd/system/ 目录下
+
+#### 第二种是通过包管理器安装后推导出来的
+
+与官方推荐的不同，docker 的启动参数不是 `-H fd://`，而是 `--containerd=/run/containerd/containerd.sock`
+
+containerd.service
 
 ```bash
 cat > /usr/lib/systemd/system/containerd.service << EOF
@@ -90,7 +105,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-#### docker.service
+docker.service
 
 ```bash
 cat > /usr/lib/systemd/system/docker.service <<EOF
