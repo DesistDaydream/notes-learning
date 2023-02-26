@@ -1,14 +1,20 @@
 ---
 title: Percona Monitoring and Management
+weight: 2
 ---
 
-参考：[官网介绍](https://www.percona.com/software/database-tools/percona-monitoring-and-management)，[官方文档](https://www.percona.com/doc/percona-monitoring-and-management/2.x/index.html)、[原文链接](https://www.cnblogs.com/okchy/p/13605701.html)
+# 概述
+
+> 参考：
+> - [官网介绍](https://www.percona.com/software/database-tools/percona-monitoring-and-management)
+> - [官方文档](https://www.percona.com/doc/percona-monitoring-and-management/2.x/index.html)
+> - [原文链接](https://www.cnblogs.com/okchy/p/13605701.html)
 
 分析慢查询的:<https://www.percona.com/blog/2020/10/07/how-to-find-query-slowdowns-using-percona-monitoring-and-management/>
 
 基于 pmm2 去排查故障的官方文档:<https://www.percona.com/blog/2020/07/15/mysql-query-performance-troubleshooting-resource-based-approach/>
 
-**Percona Monitoring and Management(简称 PMM) **是一个用于管理和监控 MySQL、PostgreSQL、MongoDB 和 ProxySQL 性能的开源平台。它是由 Percona 与管理数据库服务、支助和咨询领域的专家合作开发的。
+**Percona Monitoring and Management(简称 PMM)** 是一个用于管理和监控 MySQL、PostgreSQL、MongoDB 和 ProxySQL 性能的开源平台。它是由 Percona 与管理数据库服务、支助和咨询领域的专家合作开发的。
 
 PMM 是一种免费的开源解决方案，您可以在自己的环境中运行它，以获得最大的安全性和可靠性。它为 MySQL、PostgreSQL 和 MongoDB 服务器提供了全面的基于时间的分析，以确保您的数据尽可能高效地工作。
 
@@ -162,7 +168,7 @@ yum install pmm2-client -y
 
 6.连接 PMM Server。
 
-pmm-admin config --server-insecure-tls --server-url=https://admin:admin@<IP Address>:443
+pmm-admin config --server-insecure-tls --server-url=\https://admin:admin@\<IP Address>:443
 
 例：pmm-admin config --server-insecure-tls --server-url=https://admin:admin@192.168.24.90:443
 
@@ -180,15 +186,15 @@ pmm-admin config --server-insecure-tls --server-url=https://admin:admin@<IP Addr
 
 \#pmm-admin 管理命令
 
-annotate \[<flags>] <text>
+annotate \[\<flags>] \<text>
 
 在 Grafana 图表中添加注释
 
-config \[<flags>] \[<node-address>] \[<node-type>] \[<node-name>]
+config \[\<flags>] \[\<node-address>] \[\<node-type>] \[\<node-name>]
 
 配置本地 pmm-agent
 
-list \[<flags>]
+list \[\<flags>]
 
 显示在此节点上运行的服务和代理
 
@@ -196,7 +202,7 @@ status
 
 显示关于本地 pmm 代理的信息
 
-summary \[<flags>]
+summary \[\<flags>]
 
 获取系统数据以进行诊断
 
