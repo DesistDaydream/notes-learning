@@ -12,19 +12,19 @@ title: image 镜像管理命令
 
 ## load Load an image from a tar archive or STDIN
 
-## ls #列出所有镜像
+## ls # 列出所有镜像
 
-## prune #移除未使用的镜像
+## prune # 移除未使用的镜像
 
 **docker image prune \[OPTIONS]**
 OPTIONS
 
-- -a, --all #Remove all unused images, not just dangling ones
-- -f, --force #Do not prompt for confirmation
+- **-a, --all** # Remove all unused images, not just dangling ones
+- **-f, --force** # Do not prompt for confirmation
 
 EXAMPLE
 
-- docker image prune -a #清理所有没有使用的镜像
+- docker image prune -a # 清理所有没有使用的镜像
 
 ## pull Pull an image or a repository from a registry
 

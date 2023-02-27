@@ -21,11 +21,12 @@ title: ps、stats 容器状态查看
   - 可用的 Go 模板占位符详见：<https://docs.docker.com/engine/reference/commandline/ps/#formatting>
   - 可以使用 table 指令，让输出内容以表格的方式呈现，效果如下(如果没有 table 指令，那么输出内容将会扎堆)。
 
-
-    [root@k8s-monitor-agent ~]# docker ps --format "table {{.Names}}\t{{.Size}}"
-    NAMES               SIZE
-    pushgateway         46B (virtual 19.4MB)
-    node_exporter       16B (virtual 22.9MB)
+```bash
+~]# docker ps --format "table {{.Names}}\t{{.Size}}"
+NAMES               SIZE
+pushgateway         46B (virtual 19.4MB)
+node_exporter       16B (virtual 22.9MB)
+```
 
 - **-n, --last INT** # Show n last created containers (includes all states) (default -1)
 - **-l, --latest** # 显示最后创建的容器(所有状态)
