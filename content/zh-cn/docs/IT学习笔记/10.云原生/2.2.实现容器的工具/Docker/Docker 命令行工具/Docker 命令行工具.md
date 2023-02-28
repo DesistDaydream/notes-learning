@@ -47,16 +47,16 @@ commit create exec inspect logs pause prune restart run stats top update
 
 EXAMPLE
 
-1. docker container prune -a #清理所有已经停止的 container
+- docker container prune -a # 清理所有已经停止的 container
 
-## image # docker 镜像的管理命令 docker image 命令.note
+## image - docker 镜像的管理命令 docker image 命令.note
 
 build history import inspect load ls prune pull push rm save tag
 
 **docker image \[OPTIONS]**
 EXAMPLE
 
-1. docker image prune -a #清理所有没有使用的 image
+- docker image prune -a # 清理所有没有使用的 image
 
 ## network # docker 网络的管理命令 docker network，docker 网络管理命令.note
 
@@ -106,7 +106,7 @@ EXAMPLE
 
 ## attach # 当前 shell 下 attach(连接)到指定运行中的镜像
 
-Attach local standard input, output, and error streams to a running container #把本地终端上的标准输入、输出和错误数据流连接到一个运行中的容器(即从一个运行中的容器剥离了其终端，再重新连接到其终端)
+Attach local standard input, output, and error streams to a running container # 把本地终端上的标准输入、输出和错误数据流连接到一个运行中的容器(即从一个运行中的容器剥离了其终端，再重新连接到其终端)
 
 ## build # 通过 Dockerfile 定制镜像
 
@@ -116,14 +116,14 @@ docker build \[OPTIONS] PATH # 使用 dockerfile 文件自动创建镜像
 
 OPTIONS：
 
-- -t <NAME> # 自己定义一个创建完成后的镜像名 NAME
-- -f <NAME> # 指定使用创建环境中哪个 NAME 文件作为 Dockerfile,默认使用文件名为 Dockerfile 的文件
+- -t \<NAME> # 自己定义一个创建完成后的镜像名 NAME
+- -f \<NAME> # 指定使用创建环境中哪个 NAME 文件作为 Dockerfile,默认使用文件名为 Dockerfile 的文件
 - \--no-cache # 创建镜像时不使用缓存
 
 EXAMPLE
 
-- docker build ./ #从当前目录下查找名为 Dockerfile 的文件进行 Image 的创建
-- docker build -t ubuntu-vi -f test /dockerfile/ #使用 dockerfile 目录，并使用该目录中的 test 文件作为 dockerfile 文件，创建一个名为 ubuntu-vi 的 Image
+- docker build ./ # 从当前目录下查找名为 Dockerfile 的文件进行 Image 的创建
+- docker build -t ubuntu-vi -f test /dockerfile/ # 使用 dockerfile 目录，并使用该目录中的 test 文件作为 dockerfile 文件，创建一个名为 ubuntu-vi 的 Image
 
 ## commit # 从容器的变化中创建一个新的 image。提交当前容器为新的镜像
 
@@ -135,17 +135,17 @@ docker commit \[OPTIONS] CONTAINER \[REPOSITORY\[:TAG]]
 
 每一次 commit 就相当于把当前的可写入层变成 image 的一层
 
-## cp # Copy files/folders from a container to a HOSTDIR or to STDOUT #从容器中拷贝指定文件或者目录到宿主机中
+## cp - Copy files/folders from a container to a HOSTDIR or to STDOUT 从容器中拷贝指定文件或者目录到宿主机中
 
-## create # Create a new container #创建一个新的容器，同 run 但不启动容器
+## create # Create a new container 创建一个新的容器，同 run 但不启动容器
 
-## diff # Inspect changes on a container's filesystem #查看 docker 容器变化
+## diff # Inspect changes on a container's filesystem 查看 docker 容器变化
 
-## events # Get real time events from the server #从 docker 服务获取容器实时事件
+## events # Get real time events from the server 从 docker 服务获取容器实时事件
 
-## exec # Run a command in a running container #在运行中的容器上执行命令
+## exec # Run a command in a running container 在运行中的容器上执行命令
 
-## export # Export a container's filesystem as a tar archive #导出容器的内容流作为一个 tar 归档文件(对应 import)
+## export # Export a container's filesystem as a tar archive 导出容器的内容流作为一个 tar 归档文件(对应 import)
 
 ## history # 展示一个镜像形成历史
 
@@ -153,7 +153,7 @@ docker history \[OPTIONS] IMAGE
 
 OPTIONS
 
-1. \--no-trunc #不要截断输出 i.e.每列显示的内容都是完整内容，不会被截断
+- --no-trunc # 不要截断输出 i.e.每列显示的内容都是完整内容，不会被截断
 
 EXAMPLE
 
@@ -161,13 +161,13 @@ EXAMPLE
 
 OPTIONS
 
-- \--all , -a # Show all images (default hides intermediate images)
-- \--digests #Show digests
-- \--filter , -f # Filter output based on conditions provided
-- \--format # Pretty-print images using a Go template
-  - 可用的 Go 模板占位符详见：<https://docs.docker.com/engine/reference/commandline/images/#format-the-output>
-- \--no-trunc # Don’t truncate output
-- \--quiet , -q # Only show numeric IDs
+- --all , -a # Show all images (default hides intermediate images)
+- --digests # Show digests
+- --filter , -f # Filter output based on conditions provided
+- --format # Pretty-print images using a Go template
+  - 可用的 Go 模板占位符详见：https://docs.docker.com/engine/reference/commandline/images/#format-the-output
+- --no-trunc # Don’t truncate output
+- --quiet , -q # Only show numeric IDs
 
 EXAMPLE
 
@@ -175,7 +175,7 @@ EXAMPLE
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/urb4r9/1616121613241-36e0f6eb-bee7-4db6-a9ed-d02ca5cd679d.png)
 
-## import # Import the contents from a tarball to create a filesystem image #从 tar 包中的内容创建一个新的文件系统映像(对应 export)
+## import # Import the contents from a tarball to create a filesystem image 从 tar 包中的内容创建一个新的文件系统映像(对应 export)
 
 ## info # 与 docker system info 命令效果相同
 
@@ -191,16 +191,18 @@ EXAMPLE
 - 获取 snmp_exporter 容器 merged 目录的绝对路径
   - **docker inspect snmp_exporter | jq .\[0].GraphDriver.Data.MergedDir | tr -d """**
   - **docker inspect snmp_exporter --format='{{.GraphDriver.Data.MergedDir}}'**
+- 获取容器的 PID
+	- docker inspect mysql-pxc1-1 --format='{{.State.Pid}}'
 
-## kill #kill 一个运行中的容器
+## kill - kill 一个运行中的容器
 
-## load #从 tar 包 或标准输入中加载一个镜像(对应 save)
+## load - 从 tar 包 或标准输入中加载一个镜像(对应 save)
 
 **docker load \[OPTIONS]FILE**
 
 OPTIONS
 
-- -i #从 tar 存档文件读取，而不是 STDIN
+- -i # 从 tar 存档文件读取，而不是 STDIN
 
 EXAMPLE
 
