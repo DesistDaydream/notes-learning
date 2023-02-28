@@ -21,7 +21,7 @@ title: IP
 
 IP 基于数据包的 Header 中的 IP 地址，将数据包从源主机发送到目标主机。基于此目的，IP 还定义了数据包的封装结构、以及一种寻址方法。寻址方法用来使用源和目标的信息标记数据报。
 
-从历史上看，IP 是在 1974 年由 Vint Cerf 和 Bob Kahn 引入的原始 **Transmission Control Program(传输控制程序) **中的[无连接](https://en.wikipedia.org/wiki/Connectionless_communication)数据报服务。该服务由一项面向连接的服务补充，成为 [**Transmission Control Protocol(传输控制协议，简称 TCP)**](/docs/IT学习笔记/4.数据通信/通信协议/3_4.TCP_IP/TCP.md) 的基础。因此 IP 套件通常称为 TCP/IP。IP 的第一个版本是 IPv4，继任者是 IPv6
+从历史上看，IP 是在 1974 年由 Vint Cerf 和 Bob Kahn 引入的原始 **Transmission Control Program(传输控制程序) **中的[无连接](https://en.wikipedia.org/wiki/Connectionless_communication)数据报服务。该服务由一项面向连接的服务补充，成为 [**Transmission Control Protocol(传输控制协议，简称 TCP)**](docs/IT学习笔记/4.数据通信/通信协议/3_4.TCP_IP/TCP/TCP.md) 的基础。因此 IP 套件通常称为 TCP/IP。IP 的第一个版本是 IPv4，继任者是 IPv6
 
 # IPv4 地址
 

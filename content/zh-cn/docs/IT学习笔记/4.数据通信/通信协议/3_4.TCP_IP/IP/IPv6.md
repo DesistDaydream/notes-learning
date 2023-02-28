@@ -338,7 +338,7 @@ net.ipv6.conf.default.use_tempaddr = 0
 
 网络前缀由 IANA 一层层分配。[IPv6 地址空间](https://www.iana.org/assignments/ipv6-address-space/ipv6-address-space.xhtml) 中包含了当前 IPv6 地址的总体分配情况，[IPv6 全局单播地址分配](https://www.iana.org/assignments/ipv6-unicast-address-assignments/ipv6-unicast-address-assignments.xhtml)中，则是单播地址的分配情况。
 
-详见[《IP》章节的 Ip 地址分配机制](/docs/IT学习笔记/4.数据通信/通信协议/3_4.TCP_IP/IP.md#IP%20地址分配机制)部分
+详见[《IP》章节的 Ip 地址分配机制](docs/IT学习笔记/4.数据通信/通信协议/3_4.TCP_IP/IP/IP.md#IP%20地址分配机制)部分
 
 ## ISP 分配机制
 
