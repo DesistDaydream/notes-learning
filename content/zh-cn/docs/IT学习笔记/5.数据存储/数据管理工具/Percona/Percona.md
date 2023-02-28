@@ -27,3 +27,14 @@ weight: 1
 > - [官网](https://www.percona.com/software/mysql-database/percona-xtradb-cluster)
 
 
+## 部署 PXC 集群
+
+> 参考：
+> - [官方文档，安装 PXC 集群](https://docs.percona.com/percona-xtradb-cluster/latest/install/index.html)
+
+
+### 使用 Docker 部署
+
+> 参考：
+> - [Running Percona XtraDB Cluster in a Docker Container - Percona XtraDB Cluster](https://docs.percona.com/percona-xtradb-cluster/8.0/install/docker.html#docker)
+

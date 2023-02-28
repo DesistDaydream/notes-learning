@@ -171,7 +171,7 @@ OPTIONS
 
 EXAMPLE
 
-- docker images #查看本地 images，效果如图
+- docker images # 查看本地 images，效果如图
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/urb4r9/1616121613241-36e0f6eb-bee7-4db6-a9ed-d02ca5cd679d.png)
 
