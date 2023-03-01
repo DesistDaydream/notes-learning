@@ -9,7 +9,9 @@ title: Playbook 命令行工具
 
 ansible-playbook 用来运行运行 Ansible playbook，以便在目标主机上执行定义的任务。
 
-# ansible-playbook # 运行 Ansible playbooks，并在目标主机上执行剧本中定义的任务
+# ansible-playbook
+
+运行 Ansible playbooks，并在目标主机上执行剧本中定义的任务
 
 ## Syntax(语法)
 
@@ -21,10 +23,12 @@ ansible-playbook 用来运行运行 Ansible playbook，以便在目标主机上�
 - \--become-method # privilege escalation method to use (default=%(default)s), use ansible-doc -t become -l to list valid choices.
 - \--become-user # run operations as this user (default=root)
 - **-C, --check** # 不在目标主机上执行任务，仅检查任务是否可以完成
+- **-C, --connection \<CONNECTION>** # 要使用的连接插件。`默认值：smart`
+	- 可以设置为 local 以便让 playbook 在本地执行而不用去远程机器上运行
 - \--flush-cache # clear the fact cache for every host in inventory
 - \--force-handlers # run handlers even if a task fails
 - **-i, --inventory, --inventory-file** # 指定 inventory 文件路径或者以逗号分隔的主机列表。(不推荐使用该选项)
-- **-l , --limit <SUBSET>** # 限定执行的主机范围。可以对一批主机的其中一台执行操作，但是依然可以使用其他主机的变量。further limit selected hosts to an additional pattern
+- **-l , --limit \<SUBSET>** # 限定执行的主机范围。可以对一批主机的其中一台执行操作，但是依然可以使用其他主机的变量。further limit selected hosts to an additional pattern
 - **--list-hosts** # 列出执行该剧本所能匹配到的主机，但并不会执行
 - **--list-tags** # 列出所有可用的 tags
 - **--list-tasks** # 列出所有即将被执行的任务
@@ -60,3 +64,9 @@ ansible-playbook 用来运行运行 Ansible playbook，以便在目标主机上�
   - ansible-playbook playbook.yml --start-at="install packages"
 - 只对 HLJHEB-PSC-SCORE-PM-OS04-EBRS-HA02 主机执行 playbook
   - ansible-playbook -i inventory/ssc-pool-unicom-ha --limit HLJHEB-PSC-SCORE-PM-OS04-EBRS-HA02 ha-gdas-proxy.yaml
+
+### 常见的本地调试
+
+提前检查渲染的模板。通过 --connectoin=local 以在本地运行，使用 --diff 展示渲染后差异。
+
+- ansible-playbook -i inventory/all.yaml  deploy-mysql.yaml --tag config-mysql --check --diff --connection=local --limit tj-test-spst-node-2

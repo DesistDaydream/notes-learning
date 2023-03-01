@@ -1,11 +1,12 @@
 ---
-title: Plugins(插件)
+title: "Plugins"
+linkTitle: "Plugins"
+weight: 1
 ---
 
 # 概述
-
 > 参考：
-> - 官方文档：<https://docs.ansible.com/ansible/latest/plugins/plugins.html>
+> - [官方文档，使用插件](https://docs.ansible.com/ansible/latest/plugins/plugins.html)
 
 插件是增强 Ansible 核心功能的代码段。Ansible 使用插件架构来启用丰富，灵活和可扩展的功能集。
 
@@ -18,7 +19,7 @@ title: Plugins(插件)
 - [Cache Plugins](https://docs.ansible.com/ansible/latest/plugins/cache.html)
 - [Callback Plugins](https://docs.ansible.com/ansible/latest/plugins/callback.html)
 - [Cliconf Plugins](https://docs.ansible.com/ansible/latest/plugins/cliconf.html)
-- [Connection Plugins](https://docs.ansible.com/ansible/latest/plugins/connection.html)
+- [Connection 插件](/docs/IT学习笔记/9.运维/Ansible/Plugins/Connection%20插件.md)
 - [Httpapi Plugins](https://docs.ansible.com/ansible/latest/plugins/httpapi.html)
 - [Inventory Plugins](https://docs.ansible.com/ansible/latest/plugins/inventory.html)
 - [Lookup Plugins](https://docs.ansible.com/ansible/latest/plugins/lookup.html)

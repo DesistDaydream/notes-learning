@@ -34,11 +34,15 @@ ansible 是 Ansible 的一个 ad-hoc(临时) 命令，可以在一个或多个�
 - **--list-hosts** # 列出所有 HostPattern 定义的被管理 host 并统计数量，一般用于查看组内的主机有多少
 - **-i,--inventory,--inventory-file INVENTORY** # 指定具体的 INVENTORY 路径或文件，而不使用配置中默认的。
   - INVENTORY 可以是目录或者文件
-- **Modules Options(模块选项)**
+
+**Modules Options(模块选项)**
+
   - **-a, --args \<MODULE_ARGS>** # 以空格分割的模块参数。格式为 `ARG1=VAL1 ARG2=VAL2......`，注意使用引号，有的 VAL 也需要使用引号引起来
   - 只要使用 -m 选项，就必须要是使用 -a 选项
   - **-m, --module-name \<ModuleName>** # 执行任务要使用的模块，默认模块为 command。
-- **Privilege Escalation Options(权限提升选项)**
+
+**Privilege Escalation Options(权限提升选项)**
+
   - **-b, --become** # 使用 become 模块执行所有操作。即开启权限提升功能
 
 ## EXAMPLE

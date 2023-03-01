@@ -24,7 +24,7 @@ Ansible 的主要目标是简单易用。它还非常注重安全性和可靠性
 
 **Inventory(库存)** # 库存是一个受管理节点的列表。库存有时候也称为 **hostfile**。Inventory 还可以用来组织受管理节点，将每个节点进行分组，以便于扩展
 
-**Collections** # 2.10 版本之后的新概念。Collections 是 Ansible 内容的分发格式，可以包括 Playbooks、Role、Modules、Plugins。新版中，Modules 就被托管于 Collections 中。
+**Collections** # 2.10 版本之后的新概念。Collections 是 Ansible 内容的分发格式，可以包括 Playbooks、Role、Modules、Plugins。新版中，Modules 和 Plugins 就被托管于 Collections 中。
 
 - 随着 Ansible 的发展，越来越多的模块、插件被开发并加入到 Ansible 的大家庭，这时候难免会出现命名上的冲突，或者调用上的重复。所以，从 2.10 版本之后，提出了 Collections 的概念。
   - Collections 最大的一个功能就是将模块分类，比如以前 核心模块 command，现在的全名就叫 ansible.builtin.command，前面的 ansible.builtin 就是 command 的 Collections。这种全名称为 **Full Qualified Class Name(完全限定类名，简称 FQCN)**。
@@ -43,11 +43,22 @@ Playbooks 是 Ansible 的精髓，如果把 Ansible 当做一门语言，那么�
 
 - **ansible core** # 核心组件，ansible 本身
 - **host inventory** # 主机库存，Ansible 所管理的主机清单，一个文本文件
-- **Modules **# 模块。ansible 的 modules 是实现 ansible 的核心，
+- **Modules** # 模块。ansible 的 modules 是实现 ansible 的核心，
   - **core modules** # 核心模块
     - ansible 执行任何命令，都是通过 module 来完成；比如 ansible 让被管理机创建一个用户，那么就会去 core modules 中调用一个能实现创建用户功能的模块，来执行这个操作。
   - **custom modules** # 自定义模块
     - 可以使用任何编程语言来编写模块，只要符合 ansible 的标准即可，可以实现 ansible 本身不具备的功能
+
+# Ansible 模块与插件
+
+> 参考：
+> - [官方文档，使用 Ansible 模块与插件]([使用 Ansible 模块和插件 — Ansible 文档](https://docs.ansible.com/ansible/latest/module_plugin_guide/index.html))
+
+[Ansible Modules(模块)](/docs/IT学习笔记/9.运维/Ansible/Modules/Modules.md) 是可以控制系统资源或执行系统命令的代码单元。 Ansible 提供了一个模块库，您可以直接在远程主机上或通过剧本执行。您还可以编写自定义模块。
+
+[Ansible Plugins(插件)](/docs/IT学习笔记/9.运维/Ansible/Plugins/Plugins.md) 与模块类似，它们是扩展核心 Ansible 功能的代码片段。 Ansible 使用插件架构来实现丰富、灵活和可扩展的功能集。 Ansible 附带了几个插件，让您可以轻松使用自己的插件。
+
+比如，我们通过控制节点连接到被管理节点时所使用的连接方式，就是通过连接插件来实现的。而连接到目标节点后要执行的任务，则是由模块来实现的。
 
 # Ansible 关联文件与配置
 

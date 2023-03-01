@@ -1,5 +1,6 @@
 ---
-title: Ansible Modules
+title: Modules
+weight: 1
 ---
 
 # 概述

@@ -153,7 +153,9 @@ root@lichenhao:~# ps -p 38095 -o etime,pid,cmd
 
 ### OPTIONS
 
-#### [PROCESS SELECTION](https://man.cx/ps#heading5)(进程选择)
+#### PROCESS SELECTION(进程选择)
+
+https://man.cx/ps#heading5
 
 一共有两种选择进程的方式，且两种方式互相冲突，比如使用 -e 选项后， -p 选项则毫无意义，依然会输出所有进程
 
@@ -165,19 +167,25 @@ root@lichenhao:~# ps -p 38095 -o etime,pid,cmd
 - 通用选择
   - **-N, --deselect ** # 取消选择。也可以理解为 反向选择。即，选择“通过 整体选择 与 按列表选择 中选择到的”进程以外的所有进程
 
-#### [OUTPUT FORMAT CONTROL](https://man.cx/ps#heading7)(输出格式控制)
+#### OUTPUT FORMAT CONTROL(输出格式控制)
+
+https://man.cx/ps#heading7
 
 - **-f** # 更多显示信息
 - **-l** # 显示进程的详细信息
 - **-o \<FORMAT>** # 使用指定的格式输出。
 - **-ww** # 更宽的输出，让输出的内容不受屏幕限制，可以换行显示
 
-#### [OUTPUT MODIFIERS](https://man.cx/ps#heading8)(输出模式)
+#### OUTPUT MODIFIERS(输出模式)
+
+https://man.cx/ps#heading8
 
 - **f,--forest** # 以树状结构显示输出结果。与显示线程的选项冲突
 - **-o \<FORMAT> **# 以自定义的格式 FORMAT 输出信息。FORMAT 是以逗号或空格分隔的参数列表，详见前文
 
-#### [THREAD DISPLAY](https://man.cx/ps#heading9)(线程显示)
+#### THREAD DISPLAY(线程显示)
+
+https://man.cx/ps#heading9
 
 显示线程的选项与 -f, --forest 选项不可同时使用。
 
@@ -294,12 +302,12 @@ Swap: 32764556k total,        0k used, 32764556k free,  3612636k cached
 
 1. 14:06:23 # 当前系统时间
 2. up 70 days, 16:44 # 系统已经运行了 70 天 16 小时 44 分钟
-3. 2 users #当前有 2 个用户登录系统
-4. load average: 1.25, 1.32, 1.35 #load average 后面的三个数分别是 1 分钟、5 分钟、15 分钟的负载情况。
+3. 2 users # 当前有 2 个用户登录系统
+4. load average: 1.25, 1.32, 1.35 # load average 后面的三个数分别是 1 分钟、5 分钟、15 分钟的负载情况。
    1. load average 数据是每隔 5 秒钟检查一次活跃的进程数，然后按特定算法计算出的数值。如果这个数除以逻辑 CPU 的数量，结果高于 5 的时候就表明系统在超负荷运转了。
    2. 关于 load average 的说明详见：理解 load average—Linux 系统负荷
 
-第二行解析：Tasks #任务（进程），具体信息说明如下：
+第二行解析：Tasks # 任务（进程），具体信息说明如下：
 
 1. total # 系统全部的进程数。现在共有 206 个进程
 2. running # 运行状态的进程数
@@ -358,9 +366,9 @@ Swap: 32764556k total,        0k used, 32764556k free,  3612636k cached
 
 OPTIONS
 
-- **-d <NUM>** # 设定整个进程视图更新的秒数，默认为 5 秒更新一次
-- **-H **# 显示线程。 如果没有此命令行选项，则显示每个进程中所有线程的总和。 稍后，可以使用“ H”交互式命令来更改它。
-- **-p <PID>** # 指定 PID 进程进行观察
+- **-d \<NUM>** # 设定整个进程视图更新的秒数，默认为 5 秒更新一次
+- **-H**# 显示线程。 如果没有此命令行选项，则显示每个进程中所有线程的总和。 稍后，可以使用“ H”交互式命令来更改它。
+- **-p \<PID>** # 指定 PID 进程进行观察
 
 EXAMPLE
 
