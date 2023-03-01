@@ -385,9 +385,9 @@ EXAMPLE
 - 查看 744 进程及其线程的动态试图
   - top -p 744 -H
 
-# uptime：显示系统运行了多长时间
+# uptime -显示系统运行了多长时间
 
-# vmstat：报告虚拟内存状态，还有 io、系统、cpu 等信息
+# vmstat - 报告虚拟内存状态，还有 io、系统、cpu 等信息
 
 ```bash
 [root@ansible ~]# vmstat -w
@@ -431,11 +431,11 @@ cpu
 **vmstat \[OTIONS] \[DELAY \[COUNT]]**
 DELAY # 延迟时间(单位是秒)。指定 DELAY 后，程序每隔 DELAY 时间运行一次。如果未指定 DELAY，则值输出一行结果，其中包含自 vmstat 启动到结束的平均值。
 
-1. **COUNT **# 每隔 DELAY 时间，程序运行的次数。若不指定则一直运行。
+- **COUNT** # 每隔 DELAY 时间，程序运行的次数。若不指定则一直运行。
 
 OPTIONS
 
-1. **-w** # 格式化输出。如果不加 -w ,则输出非常紧凑，不利于人们观察，且每行最大 80 字符。
+- **-w** # 格式化输出。如果不加 -w ,则输出非常紧凑，不利于人们观察，且每行最大 80 字符。
 
 EXAMPLE
 

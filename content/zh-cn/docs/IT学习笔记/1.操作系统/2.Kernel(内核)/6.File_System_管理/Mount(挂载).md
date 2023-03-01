@@ -4,8 +4,8 @@ title: Mount(挂载)
 
 # 概述
 
-> 参考： - [Manual(手册),fstab(5)](https://man7.org/linux/man-pages/man5/fstab.5.html)
->
+> 参考：
+> - [Manual(手册),fstab(5)](https://man7.org/linux/man-pages/man5/fstab.5.html)
 > - [Manual(手册),mount(8)](https://man7.org/linux/man-pages/man8/mount.8.html)
 
 注意：
@@ -24,7 +24,9 @@ TARGET                                SOURCE                                  FS
 # 挂载配置
 
 /etc/fstab # 包含各种 file systems 的描述性信息。系统启动时，根据该文件配置挂载分区到指定路径。
+
 /etc/mtab # 是一个软连接，连接到 /proc/self/mounts
+
 XXX.mount # 以 .mount 为后缀的 unit 文件，是由 systemd 管理的文件系统描述信息。systemd 将根据这些 unit 文件，将指定的文件系统挂载到系统中。
 
 ## fstab 文件详解
@@ -65,8 +67,8 @@ LABEL=t-home2 /home ext4 defaults,auto_da_alloc 0 2
 
 dump 工具通过该字段的值决定何时作备份。 允许的数字是 0 和 1 。
 
-- 0 #(默认值)表示忽略
-- 1 #表示进行备份。
+- 0 # (默认值)表示忽略
+- 1 # 表示进行备份。
 
 大部分的用户是没有安装 dump 的 ，对这些用户而言该字段值应设为 0。
 
@@ -80,25 +82,26 @@ fsck 工具读取该字段的值来决定需要检查的文件系统的检查顺
 
 # mount/umount # 文件系统挂载/卸载工具
 
-> 参考： - [Manual(手册)，mount(8)](https://man7.org/linux/man-pages/man8/mount.8.html)
+> 参考：
+> - [Manual(手册)，mount(8)](https://man7.org/linux/man-pages/man8/mount.8.html)
 
 ## Syntax(语法)
 
 **mount \[-l] \[-t fstype]**
 **mount -a \[-fFnrsvw] \[-t fstype] \[-O optlist]**
 **mount \[-fnrsvw] \[-o options] \<DEVICE | MountPoint>** # 从 /etc/fstab 文件读取 Device 或 MountPoint 的信息后执行对应的挂载操作
-**mount \[-fnrsvw] \[-t fstype] \[-o options] DEVICE MountPoint **# 将 DEVICE 设备挂载到 MountPoint 上
+**mount \[-fnrsvw] \[-t fstype] \[-o options] DEVICE MountPoint** # 将 DEVICE 设备挂载到 MountPoint 上
 
 - MountPoint 通常是一个绝对路径，/PATH/DIR，即将 DEVICE 设备挂载在 PATH 路径下的 DIR 目录上
 
-**mount --bind|--rbind|--move <OldDIR> <NewDIR>** # 执行 bind 挂载，将 OldDIR 目录挂载到 NewDIR 目录上
+**mount --bind|--rbind|--move \<OldDIR> \<NewDIR>** # 执行 bind 挂载，将 OldDIR 目录挂载到 NewDIR 目录上
 **mount --make-\[shared|slave|private|unbindable|rshared|rslave|rprivate|runbindable] MountPoint**
 
 OPTIONS
 
-- **-o, --options <OPTS>** # 使用指定选项挂载，OPTS 是一个逗号分割的列表，可以从下面的 [Mount OPTIONS](#PTV0x) 中查看所有可用的选项。
-- **-r, --read-only **# 以只读方式挂载。可以被 `-o ro` 选项替代
-- **-t <STRING>** # 指明文件系统的类型。当前内核支持的文件系统类型可以从 /proc/filesystems 或 /lib/modules/$(uname -r)/kernel/fs 文件中获取
+- **-o, --options \<OPTS>** # 使用指定选项挂载，OPTS 是一个逗号分割的列表，可以从下面的 [Mount OPTIONS](#Mount%20OPTIONS(挂载选项)) 中查看所有可用的选项。
+- **-r, --read-only** # 以只读方式挂载。可以被 `-o ro` 选项替代
+- **-t \<STRING>** # 指明文件系统的类型。当前内核支持的文件系统类型可以从 /proc/filesystems 或 /lib/modules/$(uname -r)/kernel/fs 文件中获取
 - **--bind|--rbind|--move** # 进行 bind 模式挂载
 
 ### Mount OPTIONS(挂载选项)
@@ -112,10 +115,10 @@ async # I/O 异步进行。
 auto # 在启动时或键入了 mount -a 命令时自动挂载。
 defaults # 使用文件系统的默认挂载参数，例如 ext4 的默认参数为:rw, suid, dev, exec, auto, nouser, async.
 dev - 解析文件系统上的块特殊设备。
-exec #允许执行此分区的二进制文件。
+exec # 允许执行此分区的二进制文件。
 flush - vfat 的选项，更频繁的刷新数据，复制对话框或进度条在全部数据都写入后才消失。
 **noatime** # 不更新文件系统上 inode 访问记录。**可以提升性能**。
-noauto #只在你的命令下被挂载。
+noauto # 只在你的命令下被挂载。
 nodev - 不解析文件系统上的块特殊设备。
 nodiratime - 不更新文件系统上的目录 inode 访问记录，可以提升性能(参见 atime 参数)。
 noexec # 不允许执行此文件系统上的二进制文件。
@@ -132,11 +135,11 @@ users - 允许所有 users 组中的用户挂载文件系统.
 
 ## EXAMPLE
 
-- mount -a #会将 /etc/fstab 中定义的所有挂载点都挂上(一般是在系统启动时的脚本中调用，自己最好别用！)。
-- mount /dev/sdb1 /mnt #/把/dev/sdb1 分区挂载到/mnt 目录
+- mount -a # 会将 /etc/fstab 中定义的所有挂载点都挂上(一般是在系统启动时的脚本中调用，自己最好别用！)。
+- mount /dev/sdb1 /mnt # /把/dev/sdb1 分区挂载到/mnt 目录
 - mount --bind /root/tmp_one /root/tmp_two # 将 /root/tmp_one 目录挂载到 /root/tmp_two 目录下。
 
-mount \[-t ] #查看当前系统下的挂载信息\[查看指定的类型]
+mount \[-t ] # 查看当前系统下的挂载信息\[查看指定的类型]
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hla4gc/1616167790128-b08b713d-147f-4c61-8289-47133e8124cf.jpeg)
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hla4gc/1616167790134-5f30f99c-3a70-44b7-b9c4-6c1cc3f9429f.jpeg)
 各段落含义与 fstab 文件相同
@@ -144,5 +147,5 @@ mount \[-t ] #查看当前系统下的挂载信息\[查看指定的类型]
 # systemd 管理 mount
 
 详见 [mount Unit](/docs/IT学习笔记/1.操作系统/3.Systemd%20 系统守护程序/Unit%20File/mount%20Unit.md 系统守护程序/Unit File/mount Unit.md)
-[
-](<https://wiki.archlinux.org/index.php/Fstab_(%25E7%25AE%2580%25E4%25BD%2593%25E4%25B8%25AD%25E6%2596%2587)>)
+
+https://wiki.archlinux.org/index.php/Fstab_(%25E7%25AE%2580%25E4%25BD%2593%25E4%25B8%25AD%25E6%2596%2587

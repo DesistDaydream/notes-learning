@@ -5,8 +5,10 @@ weight: 20
 ---
 
 # 概述
+
 > 参考：
-> - [官方文档，参考-Collection 索引]([Collection Index — Ansible Documentation](https://docs.ansible.com/ansible/latest/collections/index.html))
+> - 官方文档，使用 Ansible collections
+> - [官方文档，参考-Collection 索引](https://docs.ansible.com/ansible/latest/collections/index.html)
 
 
 # ansible.builtin
