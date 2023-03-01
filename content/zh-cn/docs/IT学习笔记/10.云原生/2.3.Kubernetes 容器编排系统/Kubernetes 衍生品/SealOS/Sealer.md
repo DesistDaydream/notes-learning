@@ -12,6 +12,7 @@ title: Sealer
 # 问题
 
 尴尬。。。快速开始都报错了。。。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/virv3w/1622037606609-84ee7ea6-d616-4ebe-ab7e-1defcc4905ce.png)
 
 镜像目录结构

@@ -5,6 +5,7 @@ title: K3S
 # 概述
 
 > 参考：
+> - [GitHub 项目，k3s-io/k3s](https://github.com/k3s-io/k3s)
 > - [官方文档](https://rancher.com/docs/k3s/latest/en/)
 >   - [中文官方文档](https://docs.rancher.cn/k3s/)
 > - [公众号-云原生实验室，K3S 工具进阶完全指南](https://mp.weixin.qq.com/s/ARhxWGypG0wepMqwTLH0mQ)

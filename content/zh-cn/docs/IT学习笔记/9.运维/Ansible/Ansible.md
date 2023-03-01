@@ -52,13 +52,13 @@ Playbooks 是 Ansible 的精髓，如果把 Ansible 当做一门语言，那么�
 # Ansible 模块与插件
 
 > 参考：
-> - [官方文档，使用 Ansible 模块与插件]([使用 Ansible 模块和插件 — Ansible 文档](https://docs.ansible.com/ansible/latest/module_plugin_guide/index.html))
+> - [官方文档，使用 Ansible 模块与插件](https://docs.ansible.com/ansible/latest/module_plugin_guide/index.html)
 
 [Ansible Modules(模块)](/docs/IT学习笔记/9.运维/Ansible/Modules/Modules.md) 是可以控制系统资源或执行系统命令的代码单元。 Ansible 提供了一个模块库，您可以直接在远程主机上或通过剧本执行。您还可以编写自定义模块。
 
 [Ansible Plugins(插件)](/docs/IT学习笔记/9.运维/Ansible/Plugins/Plugins.md) 与模块类似，它们是扩展核心 Ansible 功能的代码片段。 Ansible 使用插件架构来实现丰富、灵活和可扩展的功能集。 Ansible 附带了几个插件，让您可以轻松使用自己的插件。
 
-比如，我们通过控制节点连接到被管理节点时所使用的连接方式，就是通过连接插件来实现的。而连接到目标节点后要执行的任务，则是由模块来实现的。
+比如，**Ansible 的控制节点连接到被管理节点时所使用的连接方式，就是通过 Connection 插件来实现的**。而连接到目标节点后要执行的任务，则是由模块来实现的。
 
 再比如，我们在写 Playbook 时，会遇上处理需要文本的情况，比如大写转小写、获取第一个或最后一个字符等等，这些都是使用一种 Filters 的插件实现的。
 

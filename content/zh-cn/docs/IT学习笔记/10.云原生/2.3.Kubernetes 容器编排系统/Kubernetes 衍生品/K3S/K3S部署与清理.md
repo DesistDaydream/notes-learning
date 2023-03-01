@@ -5,7 +5,7 @@ title: K3S部署与清理
 # 概述
 
 > 参考：
-> - [**官方文档**](https://docs.rancher.cn/docs/k3s/quick-start/_index/)
+> - [官方文档](https://docs.rancher.cn/docs/k3s/quick-start/_index/)
 
 `curl -sfL https://get.k3s.io | sh -` 使用该脚本，可以自动创建用于运行 k3s 二进制文件的 service 文件，并通过 systemd 启动。
 
@@ -212,4 +212,4 @@ fi
 
 # 部署 k3s 并修改参数
 
-参考：[**基杨文章**](https://mp.weixin.qq.com/s?__biz=MzU1MzY4NzQ1OA==&mid=2247485580&idx=1&sn=b474d3736caa99bb45cca993c455bd64&chksm=fbee4841cc99c1579ae6139b5959f9a9d5cceaee77b2335e1c30c96d19e003cfb1d2dca9ecff&scene=21#wechat_redirect)
+参考：[基杨文章](https://mp.weixin.qq.com/s/xpqZyoZltRkXcMQBcHos0Q)
