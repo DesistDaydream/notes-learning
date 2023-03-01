@@ -1,11 +1,11 @@
 ---
-title: K3S部署与清理
+title: K3S 部署与清理
 ---
 
 # 概述
 
 > 参考：
-> - [官方文档](https://docs.rancher.cn/docs/k3s/quick-start/_index/)
+> - [官方文档，快速开始指南](https://docs.k3s.io/quick-start)
 
 `curl -sfL https://get.k3s.io | sh -` 使用该脚本，可以自动创建用于运行 k3s 二进制文件的 service 文件，并通过 systemd 启动。
 
@@ -158,6 +158,27 @@ for cmd in kubectl crictl ctr; do
     ln -sf k3s /usr/local/bin/${cmd}
 done
 ```
+
+# 离线部署高可用节点
+
+下载 k3s 二进制文件到 `/usr/local/bin/` 目录下
+
+下载安装脚本
+
+下载所需镜像
+
+初始化第一个 Master 节点
+
+INSTALL_K3S_SKIP_DOWNLOAD=true K3S_TOKEN=SECRET INSTALL_K3S_EXEC='server --cluster-init' ./install-zh.sh
+
+添加另外两个 Master 节点
+
+INSTALL_K3S_SKIP_DOWNLOAD=true K3S_TOKEN=SECRET INSTALL_K3S_EXEC='server --server https://172.38.180.216:6443' ./install-zh.sh
+
+添加 Node 节点
+
+INSTALL_K3S_SKIP_DOWNLOAD=true K3S_TOKEN=SECRET INSTALL_K3S_EXEC='agent --server https://172.38.180.216:6443' ./install-zh.sh
+
 
 # 清理 k3s
 
