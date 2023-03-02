@@ -103,7 +103,7 @@ CSA 的工作工作机制大致如下：当 apply 一个对象，如果该对象
 > - <https://cloud.tencent.com/developer/article/1610073>
 > - <https://yanhang.me/post/2021-ssa/>
 
-**SSA 是另一种声明式的对象管理方式，和 CSA 的作用是基本一致的。**SSA 始于从 1.14 开始发布 alpha 版本，到 1.16 beta，到 1.18 beta2，终于在 1.22 升级为 GA。
+**SSA 是另一种声明式的对象管理方式，和 CSA 的作用是基本一致的**。SSA 始于从 1.14 开始发布 alpha 版本，到 1.16 beta，到 1.18 beta2，终于在 1.22 升级为 GA。
 
 从 Kubernetes 1.18 开始可以看到一个明显的变化就是资源的 YAML 在 metadata 字段多了很多一个 `managedFields` 字段，该字段用来声明一个资源的各个字段的具体的管理者是谁。
 

@@ -51,7 +51,6 @@ yum install -y kubectl
 ```bash
 export RELEASE="v1.26.1"
 export ARCH="amd64"
-https://storage.googleapis.com/kubernetes-release/release/${RELEASE}/bin/linux/${ARCH}/kubectl
 curl -LO https://dl.k8s.io/release/${RELEASE}/bin/linux/${ARCH}/kubectl
 ```
 
@@ -107,7 +106,7 @@ kubeamd 部署的集群一般直接使用 /etc/kubernetes/admin.conf 文件拷�
 - --token='': Bearer token for authentication to the API server
 - --user='': The name of the kubeconfig user to use
 - --username='': Username for basic authentication to the API server
-- **-v=NUM **# 指定 kubectl 命令执行的 debug 级别，默认为 0。如果使用高级别，可以看到 RESTful 风格请求 APIServer 时的请求头以及响应头信息。打开调试日志也可以看到每个 API 调用的格式。number for the log level verbosity
+- **-v=NUM** # 指定 kubectl 命令执行的 debug 级别，默认为 0。如果使用高级别，可以看到 RESTful 风格请求 APIServer 时的请求头以及响应头信息。打开调试日志也可以看到每个 API 调用的格式。number for the log level verbosity
 - --vmodule=: comma-separated list of pattern=N settings for file-filtered logging
 
 ## Basic Commands (Beginner)(基本命令(初学者))
@@ -240,15 +239,15 @@ EXAMPLE
 - kubectl describe node
 - kubectl describe pod kubernetes-dashboard-87f58dc9-j244f --namespace=kube-system
 
-\[
-
-]\(https://thoughts.teambition.com/workspaces/5f90e312c800160016ea22fb/docs/5f9a51a037398300016b16b3)
 
 ### logs # 打印出在一个 pod 中的一个 container 的日志
 
 kubectl logs \[-f] \[-p] (POD | TYPE/NAME) \[OPTIONS]
+
 详解见：logs.note
+
 attach # 连接到一个正在运行的容器上(进入容器)
+
 EXAMPLE
 
 - kubectl attach client-7c9999bd74-76s4t -it # 进入该 pod 中
@@ -256,15 +255,17 @@ EXAMPLE
 ### exec # 在一个容器中执行一条命令
 
 可执行/bin/sh 命令来进入容器当中
+
 **kubectl exec POD \[-c CONTAINER] -- COMMAND \[args...] \[options]**
+
 OPTIONS
 
-- -i, --stdin=false #传递 STDIN(标准输入)到这个容器
-- -t, --tty=false #STDIN(标准输入)是一个 TTY 终端
+- -i, --stdin=false # 传递 STDIN(标准输入)到这个容器
+- -t, --tty=false # STDIN(标准输入)是一个 TTY 终端
 
 EXAMPLE
 
-- kubectl exec -it httpd-79c4f99955-2s8rw -- /bin/sh #以 TTY 终端的形式传递/bin/sh 命令到容器中
+- kubectl exec -it httpd-79c4f99955-2s8rw -- /bin/sh # 以 TTY 终端的形式传递/bin/sh 命令到容器中
 
 ### port-forward # 转发一个或多个本地端口到一个 pod 上
 
@@ -281,17 +282,18 @@ EXAMPLE
 ### proxy # 运行一个到 kubernetes 的 API 服务器的代理程序。
 
 在服务器和 Kubernetes API Server 之间创建代理服务器或应用程序级网关。 它还允许在指定的 HTTP 路径上保留静态内容。 所有传入数据都通过一个端口进入，并转发到远程 kubernetes API 服务器端口，但与静态内容路径匹配的路径除外
+
 **kubectl proxy \[--port=PORT] \[--www=static-dir] \[--www-prefix=prefix] \[--api-prefix=prefix] \[options]**
 
 OPTIONS
 
-- --accept-hosts='EXPRESSION' #代理应接受的主机的正则表达式，每个匹配项以逗号分隔。默认为’localhost$,^127.0.0.1$,\[::1]$'
+- --accept-hosts='EXPRESSION' # 代理应接受的主机的正则表达式，每个匹配项以逗号分隔。默认为’localhost$,^127.0.0.1$,\[::1]$'
 - --accept-paths='^.\*': Regular expression for paths that the proxy should accept.
-- --address='IP' #代理监听的 IP，默认 127.0.0.1
+- --address='IP' # 代理监听的 IP，默认 127.0.0.1
 - --api-prefix='/': Prefix to serve the proxied API under.
 - --disable-filter=false: If true, disable request filtering in the proxy. This is dangerous, and can leave you vulnerable to XSRF attacks, when used with an accessible port.
 - --keepalive=0s: keepalive specifies the keep-alive period for an active network connection. Set to 0 to disable keepalive.
-- -p, --port=8001 #代理监听的端口， 设置为 0 则选择一个随机端口。默认 8001
+- -p, --port=8001 # 代理监听的端口， 设置为 0 则选择一个随机端口。默认 8001
 - --reject-methods='^$': Regular expression for HTTP methods that the proxy should reject (example
 - --reject-methods='POST,PUT,PATCH').
 - --reject-paths='/api/._/pods/._/exec,/api/._/pods/._/attach': Regular expression for paths that the proxy should reject. Paths specified here will be rejected even accepted by --accept-paths.
@@ -309,13 +311,13 @@ cp             Copy files and directories to and from containers.
 
 auth           Inspect authorization
 
-## Advanced Commands #高级命令
+## Advanced Commands # 高级命令
 
 ### diff # Diff live version against would-be applied version
 
 ### apply # 通过文件或标准输入将配置应用到资源
 
-详见《[对象的创建与修改命令](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubectl%20 命令行工具/对象的创建与修改命令.md 命令行工具/对象的创建与修改命令.md)》
+详见《[对象的创建与修改命令](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/Kubernetes%20管理/kubectl%20命令行工具/对象的创建与修改命令.md)》
 
 ### patch #   用 strategic merge、JSON merge、JSON，更新一个资源的字段
 
@@ -323,13 +325,13 @@ auth           Inspect authorization
 
 ### replace # 替换。使用文件或标准输入替换一个资源
 
-详见《[对象的创建与修改命令](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubectl%20 命令行工具/对象的创建与修改命令.md 命令行工具/对象的创建与修改命令.md)》
+详见《[对象的创建与修改命令](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/Kubernetes%20管理/kubectl%20命令行工具/对象的创建与修改命令.md)》
 
 ### wait # Experimental: Wait for one condition on one or many resources
 
 ### convert # Convert config files between different API versions
 
-## Settings Commands #设置命令
+## Settings Commands # 设置命令
 
 ### label # 更新对象上的标签
 
@@ -339,9 +341,9 @@ annotate       Update the annotations on a resource
 
 completion     Output shell completion code for the specified shell (bash or zsh)
 
-## Other Commands #其他命令
+## Other Commands # 其他命令
 
-### api-resources #显示所支持的所有 API 资源(即对象)。
+### api-resources # 显示所支持的所有 API 资源(即对象)。
 
 显示的信息包括：NAME(对象名),SHORTNAMES(短名称)，APIGROUP(API 组)，NAMESPACED，KIND(所属种类)，VERBS(动作，即该对象可以执行的命令)
 

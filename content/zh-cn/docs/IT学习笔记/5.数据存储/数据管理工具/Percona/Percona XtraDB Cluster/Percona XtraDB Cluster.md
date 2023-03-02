@@ -44,3 +44,13 @@ kubectl apply -f https://raw.githubusercontent.com/percona/percona-xtradb-cluste
 创建名称空间
 
 kubectl create namespace pxc
+
+kubectl apply -f crd.yaml
+
+kubectl apply -n pxc -f rbac.yaml
+
+kubectl apply -n pxc -f operator.yaml
+
+kubectl apply -n pxc -f secrets.yaml
+
+kubectl apply -n pxc -f cr.yaml

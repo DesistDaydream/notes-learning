@@ -28,7 +28,7 @@ title: Leader Election(领导人选举)
 
 ### 启动一个 leader-elector 的 Pod
 
-- **创建一个 **
+- **创建一个**
 
 ```bash
 $ kubectl run leader-elector \
