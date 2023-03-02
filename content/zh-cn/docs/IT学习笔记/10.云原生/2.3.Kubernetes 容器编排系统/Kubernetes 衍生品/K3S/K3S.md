@@ -37,3 +37,7 @@ k3s 二进制文件包含 kubelet、api-server、kube-controller-manager、kube-
 **/run/k3s** #
 **/run/flannel** #
 **/var/lib/kubelet** #
+
+# 查找容器的文件系统
+
+/run/k3s/containerd/io.containerd.runtime.v2.task/k8s.io/${ContainerID}/rootfs/

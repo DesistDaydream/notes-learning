@@ -169,15 +169,15 @@ done
 
 初始化第一个 Master 节点
 
-INSTALL_K3S_SKIP_DOWNLOAD=true K3S_TOKEN=SECRET INSTALL_K3S_EXEC='server --cluster-init' ./install-zh.sh
+INSTALL_K3S_SKIP_DOWNLOAD=true K3S_TOKEN=SECRET INSTALL_K3S_EXEC='server --cluster-init --service-node-port-range 10000-60000' ./install-zh.sh
 
 添加另外两个 Master 节点
 
-INSTALL_K3S_SKIP_DOWNLOAD=true K3S_TOKEN=SECRET INSTALL_K3S_EXEC='server --server https://172.38.180.216:6443' ./install-zh.sh
+INSTALL_K3S_SKIP_DOWNLOAD=true K3S_TOKEN=SECRET INSTALL_K3S_EXEC='server --server https://172.38.180.216:6443 --service-node-port-range 10000-60000' ./install-zh.sh
 
 添加 Node 节点
 
-INSTALL_K3S_SKIP_DOWNLOAD=true K3S_TOKEN=SECRET INSTALL_K3S_EXEC='agent --server https://172.38.180.216:6443' ./install-zh.sh
+INSTALL_K3S_SKIP_DOWNLOAD=true K3S_TOKEN=SECRET INSTALL_K3S_EXEC='agent --server https://172.38.180.216:6443 ' ./install-zh.sh
 
 
 # 清理 k3s

@@ -38,3 +38,16 @@ weight: 1
 > 参考：
 > - [Running Percona XtraDB Cluster in a Docker Container - Percona XtraDB Cluster](https://docs.percona.com/percona-xtradb-cluster/8.0/install/docker.html#docker)
 
+
+### 使用 PXC Operator 在 Kubernetes 中部署
+
+> 参考：
+> - [官方文档，快速开始指南-使用 kubectl 安装 PXC Operator](https://docs.percona.com/percona-operator-for-mysql/pxc/kubectl.html)
+
+部署 Operator
+
+kubectl apply -f https://raw.githubusercontent.com/percona/percona-xtradb-cluster-operator/v1.12.0/deploy/bundle.yaml
+
+部署 PXC
+
+kubectl apply -f https://raw.githubusercontent.com/percona/percona-xtradb-cluster-operator/v1.12.0/deploy/cr.yaml

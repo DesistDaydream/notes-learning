@@ -79,7 +79,7 @@ Note：
 
 - **-e trace=SYSCALL_SET** # 指定要追踪的系统调用。
   - 可用的 SYSCALL_SET 有如下这些
-    - **SYSCALL1\[,SYSCALL2,...] **# 直接指定系统调用的名称，多个名称以逗号分隔。
+    - **SYSCALL1\[,SYSCALL2,...]** # 直接指定系统调用的名称，多个名称以逗号分隔。
     - **/REGEX** # 前面加上 `/` ，后面可以使用正则表达式进行匹配，来匹配系统调用的名称。
     - **%SyscallSet** # 前面加上 `%`，就会追踪一类系统调用的集合。比如：
       - %clock    Trace all system calls that read or modify system clocks.
@@ -106,9 +106,9 @@ Note：
 ### Output format 输出格式选项
 
 - **-a COLUMN** # 设定列的间隔为 COLUMN，默认为 40。i.e. `=` 与前面的间隔
-- **-o, --output <FILE> **# 将追踪结果输出到文件中(默认标准错误)。
+- **-o, --output \<FILE> **# 将追踪结果输出到文件中(默认标准错误)。
   - 与 -ff 参数一起使用时，会把每个线程的追踪写到单独的文件中，以 FileName.PID 格式命名。
-- **-s, --string-limit <STRSIZE>** # 设定要输出的最大字符串长度为 STRSIZE。`默认值：32`。Note:文件名不作为字符串，并始终完整打印。
+- **-s, --string-limit \<STRSIZE>** # 设定要输出的最大字符串长度为 STRSIZE。`默认值：32`。Note:文件名不作为字符串，并始终完整打印。
   - 示例如下，在 sendto 和 read 系统调用中，参数只显示了 32 个字符。当指定 -s 选项后，可以输出更多字符。
 
 ```bash
@@ -163,7 +163,7 @@ strace: Process 22863 attached
 100.00    0.006242                   334        13 total
 ```
 
-- **-o FILE** #将追踪的输出写入 FILE。 如果提供了-ff 选项，则使用 filename.pid 格式。 如果参数以“ |”开头 或“！”，则将其余参数视为命令，并将所有输出通过管道传递给它。 这对于将调试输出管道传输到程序而不影响已执行程序的重定向非常方便。 后者当前与 -ff 选项不兼容。
+- **-o FILE** # 将追踪的输出写入 FILE。 如果提供了-ff 选项，则使用 filename.pid 格式。 如果参数以“ |”开头 或“！”，则将其余参数视为命令，并将所有输出通过管道传递给它。 这对于将调试输出管道传输到程序而不影响已执行程序的重定向非常方便。 后者当前与 -ff 选项不兼容。
 
 ### Tampering 干预选项
 

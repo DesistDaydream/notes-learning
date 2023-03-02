@@ -48,13 +48,16 @@ yum install -y kubectl
 
 ## 直接下载二进制文件
 
-    RELEASE="v1.20.14"
-    ARCH="amd64"
-    https://storage.googleapis.com/kubernetes-release/release/${RELEASE}/bin/linux/${ARCH}/kubectl
+```bash
+export RELEASE="v1.26.1"
+export ARCH="amd64"
+https://storage.googleapis.com/kubernetes-release/release/${RELEASE}/bin/linux/${ARCH}/kubectl
+curl -LO https://dl.k8s.io/release/${RELEASE}/bin/linux/${ARCH}/kubectl
+```
 
 # kubectl 配置
 
-**~/.kube/config **# kubeclt 使用的 kubeconfig 文件的默认路径。kubectl 工具运行时将会使用该文件作为连接 kubernetes 集群的信息
+**~/.kube/config** # kubeclt 使用的 kubeconfig 文件的默认路径。kubectl 工具运行时将会使用该文件作为连接 kubernetes 集群的信息
 kubeamd 部署的集群一般直接使用 /etc/kubernetes/admin.conf 文件拷贝到 ~/.kube/ 目录下并改名为 config
 
 环境变量
@@ -63,7 +66,8 @@ kubeamd 部署的集群一般直接使用 /etc/kubernetes/admin.conf 文件拷�
 
 # Syntax(语法)
 
-> 参考：官方文档：<https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands>
+> 参考：
+> - 官方文档：<https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands>
 
 **kubectl COMMAND \[TYPE] \[NAME] \[FLAGS]**
 
