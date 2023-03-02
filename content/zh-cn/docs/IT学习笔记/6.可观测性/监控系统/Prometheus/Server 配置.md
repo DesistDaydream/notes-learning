@@ -32,42 +32,42 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 - **--enable-feature=...** # 启动指定的功能特性，多个功能以逗号分割。可以开启的功能详见：[官方文档,已关闭的功能](https://prometheus.io/docs/prometheus/latest/disabled_features/)
 - **--web.listen-address="0.0.0.0:9090"** # Prometheus 监听地址。`默认值：0.0.0.0:9090`。该端口用于 Web UI、API 和 Telemetry(遥测)
 - **--web.config.file=/PATH/TO/FILE** # \[实验标志]用于开启 TLS 或 身份验证 配置文件路径。
-- \--web.read-timeout=5m\*\* \*\*# Maximum duration before timing out read of the request, and closing idle connections.
+- --web.read-timeout=5m\*\* \*\*# Maximum duration before timing out read of the request, and closing idle connections.
 - **--web.max-connections=INT** # 可以同时连接到 Prometheus Server 的最大数量。`默认值:512`
 - **--web.external-url=URL **# 可以从外部访问 Prometheus 的 URL。
   - 例如，如果 Prometheus 是通过反向代理提供的，用于生成返回 Prometheus 本身的相对和绝对链接。如果 URL 具有路径部分，它将被用作所有 HTTP 的前缀 Prometheus 服务的端点。 如果省略，则会自动派生相关的 URL 组件。
     - 注意：该标志在反向代理时似乎问题，详见：<https://github.com/prometheus/prometheus/issues/1583>
   - 例如，Prometheus 产生的的告警，推送到 AlertManager 时，会有一个 `generatorURL` 字段，该字段中所使用的 URL 中的 Endpoint，就是 web.external-url，这个 URL 可以让获取该告警的人，点击 URL 即可跳转到 Prometheus 的 Web 页面并使用对应的 PromQL 查询。
 - **--web.route-prefix=PATH** # Web 端内部路由的前缀。 默认为 --web.external-url 标志指定的路径。i.e.后端代码的路由入口路径。一般默认为 / 。
-- \--web.user-assets= # Path to stat storage.tsdb.max-block-durationic asset directory, available at /user.
+- --web.user-assets= # Path to stat storage.tsdb.max-block-durationic asset directory, available at /user.
 - **--web.enable-lifecycle** # 开启配置热更新，开启后，可使用 curl -X POST http://PrometheusServerIP:9090/-/reload 命令来重载配置以便让更改后的配置生效，而不用重启 prometheus 进程
 - **--web.enable-admin-api** # 开启管理操作 API 端点。通过 admin API，可以删除时序数据。
-- \--web.console.templates="consoles" # Path to the console template directory, available at /consoles.
-- \--web.console.libraries="console_libraries" # Path to the console library directory.
-- \--web.page-title="Prometheus Time Series Collection and Processing Server" #Document title of Prometheus instance.
-- \--web.cors.origin=".\*" #Regex for CORS origin. It is fully anchored. Example: 'https?://(domain1|domain2).com'
+- --web.console.templates="consoles" # Path to the console template directory, available at /consoles.
+- --web.console.libraries="console_libraries" # Path to the console library directory.
+- --web.page-title="Prometheus Time Series Collection and Processing Server" #Document title of Prometheus instance.
+- --web.cors.origin=".\*" #Regex for CORS origin. It is fully anchored. Example: 'https?://(domain1|domain2).com'
 - **--storage.tsdb.path="/PATH/DIR" **# prometheus 存储 metircs 数据的目录(使用绝对路径)
 - **--storage.tsdb.retention.time=TIME** # 数据的存储时间，如果既未设置此标志也未设置 storage.tsdb.retention.size 标志，`默认值：15d`。支持的单位：y，w，d，h，m，s，ms。
-- \--storage.tsdb.retention.size=STORAGE.TSDB.RETENTION.SIZE #\[EXPERIMENTAL] Maximum number of bytes that can be stored for blocks. Units supported: KB, MB, GB, TB, PB. This flag is experimental and can be changed in future releases.
-- \--storage.tsdb.no-lockfile # 不在数据目录创建锁文件。暂时不理解什么意思，待研究
-- \--storage.tsdb.allow-overlapping-blocks # \[EXPERIMENTAL] Allow overlapping blocks, which in turn enables vertical compaction and vertical query merge.
-- \--storage.tsdb.wal-compression #Compress the tsdb WAL.
-- \--storage.remote.flush-deadline= #How long to wait flushing sample on shutdown or config reload.
-- \--storage.remote.read-sample-limit=5e7 #Maximum overall number of samples to return via the remote read interface, in a single query. 0 means no limit. This limit is ignored for streamed response types.
-- \--storage.remote.read-concurrent-limit=10 #Maximum number of concurrent remote read calls. 0 means no limit.
-- \--storage.remote.read-max-bytes-in-frame=1048576 #Maximum number of bytes in a single frame for streaming remote read response types before marshalling. Note that client might have limit on frame size as well. 1MB as recommended by protobuf
+- --storage.tsdb.retention.size=STORAGE.TSDB.RETENTION.SIZE #\[EXPERIMENTAL] Maximum number of bytes that can be stored for blocks. Units supported: KB, MB, GB, TB, PB. This flag is experimental and can be changed in future releases.
+- --storage.tsdb.no-lockfile # 不在数据目录创建锁文件。暂时不理解什么意思，待研究
+- --storage.tsdb.allow-overlapping-blocks # \[EXPERIMENTAL] Allow overlapping blocks, which in turn enables vertical compaction and vertical query merge.
+- --storage.tsdb.wal-compression #Compress the tsdb WAL.
+- --storage.remote.flush-deadline= #How long to wait flushing sample on shutdown or config reload.
+- --storage.remote.read-sample-limit=5e7 #Maximum overall number of samples to return via the remote read interface, in a single query. 0 means no limit. This limit is ignored for streamed response types.
+- --storage.remote.read-concurrent-limit=10 #Maximum number of concurrent remote read calls. 0 means no limit.
+- --storage.remote.read-max-bytes-in-frame=1048576 #Maximum number of bytes in a single frame for streaming remote read response types before marshalling. Note that client might have limit on frame size as well. 1MB as recommended by protobuf
 - by default.
-- \--rules.alert.for-outage-tolerance=1h # Max time to tolerate prometheus outage for restoring "for" state of alert.
-- \--rules.alert.for-grace-period=10m # Minimum duration between alert and restored "for" state. This is maintained only for alerts with configured "for" time greater than grace period.
+- --rules.alert.for-outage-tolerance=1h # Max time to tolerate prometheus outage for restoring "for" state of alert.
+- --rules.alert.for-grace-period=10m # Minimum duration between alert and restored "for" state. This is maintained only for alerts with configured "for" time greater than grace period.
 - **--rules.alert.resend-delay=DURATION **# 向 Alertmanager 重新发送警报前的最少等待时间。`默认值：1m`。
   - 当告警处于 FIRING 状态时，每间隔 1m，就会再次发送一次。注意：重发送之前，还需要一个评估规则的等待期，评估完成后，再等待该值的时间，才会重新发送告警。
-- \--alertmanager.notification-queue-capacity=10000 # The capacity of the queue for pending Alertmanager notifications.
-- \--alertmanager.timeout=10s # Timeout for sending alerts to Alertmanager.
+- --alertmanager.notification-queue-capacity=10000 # The capacity of the queue for pending Alertmanager notifications.
+- --alertmanager.timeout=10s # Timeout for sending alerts to Alertmanager.
 - **--query.lookback-delta=DURATION ** # 评估 PromQL 表达式时最大的回溯时间。`默认值：5m`
   - 比如，当采集目标的间隔时间为 10m 时，由于该设置，最大只能查询当前时间的前 5m 的数据，这是，即时向量表达式返回的结果将会为空。
 - **--query.timeout=DURATION ** # 一次查询的超时时间。`默认值：2m`
-- \--query.max-concurrency=20 # Maximum number of queries executed concurrently.
-- \--query.max-samples=50000000 # Maximum number of samples a single query can load into memory. Note that queries will fail if they try to load more samples than this into memory, so this also limits the number of samples a query can return.
+- --query.max-concurrency=20 # Maximum number of queries executed concurrently.
+- --query.max-samples=50000000 # Maximum number of samples a single query can load into memory. Note that queries will fail if they try to load more samples than this into memory, so this also limits the number of samples a query can return.
 - **--log.level=STRING** # 设定 Prometheus Server 运行时输出的日志的级别。`默认值：info`。 可用的值有：debug, info, warn, error
 - **--log.format=logfmt** # 设定 Prometheus Server 运行时输出的日志的格式。`默认值：logfmt`。可用的值有：logfmt, json
 

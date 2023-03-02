@@ -20,7 +20,9 @@ Prometheus Operator 通过数个 CRD 资源来控制 Prometheus 监控套件的�
 
 ## CRD 介绍
 
-> 参考：[官方文档](https://prometheus-operator.dev/docs/operator/design)、<https://github.com/coreos/prometheus-operator/blob/master/Documentation/design.md>
+> 参考：
+> - [官方文档](https://prometheus-operator.dev/docs/operator/design)
+> - https://github.com/coreos/prometheus-operator/blob/master/Documentation/design.md
 
 Prometheus Operator 现阶段引入了如下几种自定义资源：
 

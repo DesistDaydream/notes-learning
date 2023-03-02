@@ -81,9 +81,9 @@ title: Harbor 云原生注册中心
 
 prepare 脚本支持如下参数：
 
-- \--with-notary
-- \--with-clair
-- \--with-chartmuseum # 为 docker-compose.yaml 文件中添加
+- --with-notary
+- --with-clair
+- --with-chartmuseum # 为 docker-compose.yaml 文件中添加
 
 Note:在 harobor 目录中，可以使用 ./prepare --with-notary --with-clair --with-chartmuseum 脚本来生成带有其他功能的 docker-compose.yaml 文件
 

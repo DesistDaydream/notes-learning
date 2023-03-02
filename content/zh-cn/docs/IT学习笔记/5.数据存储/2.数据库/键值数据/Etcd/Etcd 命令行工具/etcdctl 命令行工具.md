@@ -24,13 +24,13 @@ title: etcdctl 命令行工具
 - **--cert=/PATH/FILE **# 使用指定的 TLS 证书文件鉴定客户端是否安全。即 etcd 的 peer 证书，peer 证书对于 etcdctl 来说就是与它交互的服务端的证书
 - **--key=/PATH/FILE** # 使用指定的 TLS 证书的密钥文件鉴定客户端是否安全。即 etcd 的 peer 证书的私钥
 - **--endpoints=\[IP1:PORT1,IP2:PORT2,.....] **# 指定后端服务器的 IP 和 Port
-- \--command-timeout=5s # timeout for short running command (excluding dial timeout)
-- \--debug\[=false] # enable client-side debug logging
-- \--dial-timeout=2s # dial timeout for client connections
-- \--hex\[=false] # print byte strings as hex encoded strings
-- \--insecure-skip-tls-verify\[=false # skip server certificate verification
-- \--insecure-transport\[=true] # disable transport security for client connections
-- \--user="" # username\[:password] for authentication (prompt if password is not supplied)
+- --command-timeout=5s # timeout for short running command (excluding dial timeout)
+- --debug\[=false] # enable client-side debug logging
+- --dial-timeout=2s # dial timeout for client connections
+- --hex\[=false] # print byte strings as hex encoded strings
+- --insecure-skip-tls-verify\[=false # skip server certificate verification
+- --insecure-transport\[=true] # disable transport security for client connections
+- --user="" # username\[:password] for authentication (prompt if password is not supplied)
 - -w, --write-out="simple" # 指定输出内容的格式，格式可有有这么几个 (fields, json, protobuf, simple, table)(一般常用 json)
   - Note：输出的 json 格式只有一行，可以使用 jq 程序来对 json 进行格式化，可以把每个{}分行，以便人类阅读，下图为样例
 
@@ -45,15 +45,15 @@ title: etcdctl 命令行工具
 **etcdctl get \[OPTIONS] \[Range-End]**
 OPTIONS
 
-- \--consistency="l" Linearizable(l) or Serializable(s)
-- \--from-key\[=false] Get keys that are greater than or equal to the given key using byte compare
+- --consistency="l" Linearizable(l) or Serializable(s)
+- --from-key\[=false] Get keys that are greater than or equal to the given key using byte compare
 - **--keys-only\[=false] **# 仅获取键而不显示该键所对应的值
-- \--limit=0 #Maximum number of results
-- \--order="" #Order of results; ASCEND or DESCEND (ASCEND by default)
+- --limit=0 #Maximum number of results
+- --order="" #Order of results; ASCEND or DESCEND (ASCEND by default)
 - **--prefix\[=false]** # 获取 KEY 前缀匹配到的所有的键。前缀就是键名的从开头开始的的字符串。可以指定`''`匹配所有 KEY
-- \--print-value-only\[=false] Only write values when using the "simple" output format
-- \--rev=0 Specify the kv revision
-- \--sort-by="" Sort target; CREATE, KEY, MODIFY, VALUE, or VERSION
+- --print-value-only\[=false] Only write values when using the "simple" output format
+- --rev=0 Specify the kv revision
+- --sort-by="" Sort target; CREATE, KEY, MODIFY, VALUE, or VERSION
 
 EXAMPLE
 

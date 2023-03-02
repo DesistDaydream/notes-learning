@@ -8,23 +8,23 @@ title: firewalld 命令行工具
 
 OPTIONS
 
-- \--reload #重新加载防火墙规则并保留连接状态信息。注意：reload 会删除所有 runtime 模式的配置并应用 permanent 模式的配置。但是已经建立的连接不受影响(e.g.已经在对本机长 ping 的设备不会断开连接)
+- --reload #重新加载防火墙规则并保留连接状态信息。注意：reload 会删除所有 runtime 模式的配置并应用 permanent 模式的配置。但是已经建立的连接不受影响(e.g.已经在对本机长 ping 的设备不会断开连接)
 
-- \--complete-reload #重新加载防火墙规则并丢弃连接状态信息。注意：与 reload 不同，已经建立的连接会被丢弃(e.g.已经在对本机长 ping 的设备会断开连接)
+- --complete-reload #重新加载防火墙规则并丢弃连接状态信息。注意：与 reload 不同，已经建立的连接会被丢弃(e.g.已经在对本机长 ping 的设备会断开连接)
 
-- \--permanent #开启永久模式，在该模式的配置都会永久保留
+- --permanent #开启永久模式，在该模式的配置都会永久保留
 
-- \--add-source=<SOURCE> #绑定 SOURCE 到一个 ZONE。SOURCE 可以使 MASK、MAC、ipset
+- --add-source=<SOURCE> #绑定 SOURCE 到一个 ZONE。SOURCE 可以使 MASK、MAC、ipset
 
 - 查
 
-  - \--get-default-zone #打印出当前默认的 ZONE
+  - --get-default-zone #打印出当前默认的 ZONE
 
-  - \--list-services #列出一个 ZONE 中已经添加了的 service
+  - --list-services #列出一个 ZONE 中已经添加了的 service
 
-  - \--list-interfaces #列出一个 ZONE 中已经绑定的网络设备
+  - --list-interfaces #列出一个 ZONE 中已经绑定的网络设备
 
-  - \--list-rich-rules #列出一个 ZONE 中已经添加的丰富语言规则
+  - --list-rich-rules #列出一个 ZONE 中已经添加的丰富语言规则
 
 EXAMPLE
 

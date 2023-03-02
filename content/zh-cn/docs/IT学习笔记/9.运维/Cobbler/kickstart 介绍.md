@@ -44,15 +44,15 @@ MntPoint #可用的挂载点有如下几种。
 
 OPTIONS
 
-- \--size=NUM # 指定该分区的大小，单位为 MiB。Note：NUM 为一个正整数(不包含单位)
+- --size=NUM # 指定该分区的大小，单位为 MiB。Note：NUM 为一个正整数(不包含单位)
 
-- \--grow # 将该分区大小设置为所有剩余可用的空间。如果指定了 --maximum 选项，则将该分区设置为该选项值的大小。
+- --grow # 将该分区大小设置为所有剩余可用的空间。如果指定了 --maximum 选项，则将该分区设置为该选项值的大小。
 
-- \--asprimary # 指定该分区为主分区。Note：对于 GUID 分区表(GPT),该选项没有任何意义。
+- --asprimary # 指定该分区为主分区。Note：对于 GUID 分区表(GPT),该选项没有任何意义。
 
-- \--fstype=TYPE #指定该分区的文件系统类型。可用类型有 xfs、ext2、ext3、ext4、swap、vfat、efi、biosboot
+- --fstype=TYPE #指定该分区的文件系统类型。可用类型有 xfs、ext2、ext3、ext4、swap、vfat、efi、biosboot
 
-- \--ondisk= #指定要使用的磁盘名称
+- --ondisk= #指定要使用的磁盘名称
 
 volgroup Name PartName #创建名为 NAME 卷组，使用名为 PartName 分区
 

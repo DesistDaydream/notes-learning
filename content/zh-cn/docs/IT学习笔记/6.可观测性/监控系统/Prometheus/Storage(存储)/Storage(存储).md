@@ -82,15 +82,15 @@ Prometheus 存储在本地的时间序列数据，被抽象为一个一个的 **
 
 默认情况下，一个 Block(块) 最少包含 2 个小时的时序数据。可以通过下面这些参数设置每个 Block 所包含数据的时间周期。
 
-- \--storage.tsdb.min-block-duration # 一个存储 Block 的最小时间。默认 2 小时
-- \--storage.tsdb.max-block-duration # 一个存储 Block 的最大时间
+- --storage.tsdb.min-block-duration # 一个存储 Block 的最小时间。默认 2 小时
+- --storage.tsdb.max-block-duration # 一个存储 Block 的最大时间
   - 每隔一段时间，这些 2 小时的 Block 将会通过 Compaction 机制，压缩成时间周期更长的 Block，以节省存储空间。通常这个时间周期是 --storage.tsdb.retention 标志指定的时间的 10%，若是 10% 的结果小于 31 天，则默认最大时间为 31 天。
-- \--storage.tsdb.retention # 块的过期时间.
+- --storage.tsdb.retention # 块的过期时间.
 - **举个栗子**:
 - 假设有如下设置:
-  - \--storage.tsdb.max-block-duration=1h
-  - \--storage.tsdb.max-block-duration=15m
-  - \--storage.tsdb.retention=2h
+  - --storage.tsdb.max-block-duration=1h
+  - --storage.tsdb.max-block-duration=15m
+  - --storage.tsdb.retention=2h
 - 再假设你在今天的 16:00 搜索了数据,那么你最多可以搜索到今天 13:00(即 16-(2-1))的数据.而最少也可以搜索到 14:45(如果期间数据在产生)往后的数据。
 
 我们将存储层划分为一个一个的 Block(块)，每个块在一段时间内保存所有序列。每个块充当独立数据库。
@@ -128,9 +128,9 @@ cpu、内存、查询效率都比 1.x 版本得到了大幅度的提升
 
 对于本地存储，prometheus 提供了一些配置项，主要包括：
 
-- \--storage.tsdb.path: 存储数据的目录，默认为 data/，如果要挂外部存储，可以指定该目录
-- \--storage.tsdb.retention.time: 数据过期清理时间，默认保存 15 天
-- \--storage.tsdb.retention.size: 实验性质，声明数据块的最大值，不包括 wal 文件，如 512MB
+- --storage.tsdb.path: 存储数据的目录，默认为 data/，如果要挂外部存储，可以指定该目录
+- --storage.tsdb.retention.time: 数据过期清理时间，默认保存 15 天
+- --storage.tsdb.retention.size: 实验性质，声明数据块的最大值，不包括 wal 文件，如 512MB
 
 Prometheus 将所有当前使用的块保留在内存中。此外，它将最新使用的块保留在内存中，最大内存可以通过 storage.local.memory-chunks 标志配置。
 

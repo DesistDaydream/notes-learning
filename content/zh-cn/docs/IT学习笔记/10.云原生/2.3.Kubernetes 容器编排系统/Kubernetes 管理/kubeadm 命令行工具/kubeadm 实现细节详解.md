@@ -188,11 +188,11 @@ API 服务器的静态 Pod 清单受用户提供的以下参数影响：
 
 其他无条件设置的 API 服务器标志是：
 
-- \--insecure-port=0 避免与 api 服务器的连接不安全
-- \--enable-bootstrap-token-auth=true 启用 BootstrapTokenAuthenticator 身份验证模块。有关更多详细信息，请参见[TLS 引导](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/)
-- \--allow-privileged 到 true（例如，kube 代理要求）
-- \--requestheader-client-ca-file 至 front-proxy-ca.crt
-- \--enable-admission-plugins 至：
+- --insecure-port=0 避免与 api 服务器的连接不安全
+- --enable-bootstrap-token-auth=true 启用 BootstrapTokenAuthenticator 身份验证模块。有关更多详细信息，请参见[TLS 引导](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/)
+- --allow-privileged 到 true（例如，kube 代理要求）
+- --requestheader-client-ca-file 至 front-proxy-ca.crt
+- --enable-admission-plugins 至：
   - [NamespaceLifecycle](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#namespacelifecycle) 例如，避免删除系统保留的名称空间
   - [LimitRanger](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#limitranger)并[ResourceQuota](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#resourcequota)限制名称空间
   - [ServiceAccount](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#serviceaccount) 强制执行服务帐户自动化
@@ -200,41 +200,41 @@ API 服务器的静态 Pod 清单受用户提供的以下参数影响：
   - [DefaultStorageClass](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#defaultstorageclass)对 PersistentVolumeClaim 对象实施默认存储类
   - [DefaultTolerationSeconds](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#defaulttolerationseconds)
   - [NodeRestriction](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#noderestriction) 限制 kubelet 可以修改的内容（例如，仅此节点上的 pod）
-- \--kubelet-preferred-address-types 到 InternalIP,ExternalIP,Hostname;这使得 kubectl logs 在环境和其它 API 服务器 kubelet 沟通工作，其中节点的主机名不解析
+- --kubelet-preferred-address-types 到 InternalIP,ExternalIP,Hostname;这使得 kubectl logs 在环境和其它 API 服务器 kubelet 沟通工作，其中节点的主机名不解析
 - 使用先前步骤中生成的证书的标志：
-  - \--client-ca-file 至 ca.crt
-  - \--tls-cert-file 至 apiserver.crt
-  - \--tls-private-key-file 至 apiserver.key
-  - \--kubelet-client-certificate 至 apiserver-kubelet-client.crt
-  - \--kubelet-client-key 至 apiserver-kubelet-client.key
-  - \--service-account-key-file 至 sa.pub
-  - \--requestheader-client-ca-file 至 front-proxy-ca.crt
-  - \--proxy-client-cert-file 至 front-proxy-client.crt
-  - \--proxy-client-key-file 至 front-proxy-client.key
+  - --client-ca-file 至 ca.crt
+  - --tls-cert-file 至 apiserver.crt
+  - --tls-private-key-file 至 apiserver.key
+  - --kubelet-client-certificate 至 apiserver-kubelet-client.crt
+  - --kubelet-client-key 至 apiserver-kubelet-client.key
+  - --service-account-key-file 至 sa.pub
+  - --requestheader-client-ca-file 至 front-proxy-ca.crt
+  - --proxy-client-cert-file 至 front-proxy-client.crt
+  - --proxy-client-key-file 至 front-proxy-client.key
 - 用于保护前端代理（[API Aggregation](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/aggregated-api-servers.md)）通信的其他标志：
-  - \--requestheader-username-headers=X-Remote-User
-  - \--requestheader-group-headers=X-Remote-Group
-  - \--requestheader-extra-headers-prefix=X-Remote-Extra-
-  - \--requestheader-allowed-names=front-proxy-client
+  - --requestheader-username-headers=X-Remote-User
+  - --requestheader-group-headers=X-Remote-Group
+  - --requestheader-extra-headers-prefix=X-Remote-Extra-
+  - --requestheader-allowed-names=front-proxy-client
 
 ### Controller manager
 
 API 服务器的静态 Pod 清单受用户提供的以下参数影响：
 
 - 如果通过指定 a 调用 kubeadm --pod-network-cidr，则可以通过以下设置启用某些 CNI 网络插件所需的子网管理器功能：
-  - \--allocate-node-cidrs=true
-  - \--cluster-cidr 并--node-cidr-mask-size 根据给定的 CIDR 进行标记
+  - --allocate-node-cidrs=true
+  - --cluster-cidr 并--node-cidr-mask-size 根据给定的 CIDR 进行标记
 - 如果指定了云提供商，则将指定相应的云提供商，--cloud-provider 并指定--cloud-config 路径（如果存在此配置文件）（这是实验性的 Alpha，将在以后的版本中删除）
 
 其他无条件设置的标志是：
 
-- \--controllers 为 TLS 引导启用所有默认控制器 plus BootstrapSigner 和 TokenCleanercontrollers。有关更多详细信息，请参见[TLS 引导](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/)
-- \--use-service-account-credentials 至 true
+- --controllers 为 TLS 引导启用所有默认控制器 plus BootstrapSigner 和 TokenCleanercontrollers。有关更多详细信息，请参见[TLS 引导](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/)
+- --use-service-account-credentials 至 true
 - 使用先前步骤中生成的证书的标志：
-  - \--root-ca-file 至 ca.crt
-  - \--cluster-signing-cert-file 到 ca.crt，如果外部 CA 模式被禁用，否则""
-  - \--cluster-signing-key-file 到 ca.key，如果外部 CA 模式被禁用，否则""
-  - \--service-account-private-key-file 至 sa.key
+  - --root-ca-file 至 ca.crt
+  - --cluster-signing-cert-file 到 ca.crt，如果外部 CA 模式被禁用，否则""
+  - --cluster-signing-key-file 到 ca.key，如果外部 CA 模式被禁用，否则""
+  - --service-account-private-key-file 至 sa.key
 
 ### Scheduler
 

@@ -80,8 +80,8 @@ nerdctl run -d --name node-exporter --restart=always \
 
 如果想要让 node_exporter 采集或者不采集某些数据，可以在启动 node_exporter 程序时，向该程序传递参数。参数中的 NAME 为上面两个连接中，表格中的 name 列
 
-- \--collector.<NAME> #标志来启用收集器。
-- \--no-collector.<NAME> # 标志来禁用。
+- --collector.<NAME> #标志来启用收集器。
+- --no-collector.<NAME> # 标志来禁用。
 
 # Textfile Collector 文本文件采集器
 

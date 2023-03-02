@@ -41,9 +41,9 @@ Other Commands:
 
 FLAGS:
 
-- \--cache-artifacts=BOOL # 是否使用工件的缓存。`默认值：true`
-- \--no-prun=BOOL # 是否清理由 Skaffold 购机爱你的镜像和容器。`默认值：false`
-- \--render-only=BOOL # 仅打印渲染后的 manifests 文件，而不部署。
+- --cache-artifacts=BOOL # 是否使用工件的缓存。`默认值：true`
+- --no-prun=BOOL # 是否清理由 Skaffold 购机爱你的镜像和容器。`默认值：false`
+- --render-only=BOOL # 仅打印渲染后的 manifests 文件，而不部署。
 
 EXAMPLE
 

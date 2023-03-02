@@ -9,14 +9,14 @@ title: Etcd 部署
 
 etcd 可以通过多种方式部署。如果要启动 etcd 集群，则每种部署方式，都需要配置最基本标志为以下几个：
 
-- \--name # etcd 集群中的节点名，这里可以随意，可区分且不重复就行
-- \--listen-peer-urls # 监听的用于节点之间通信的 url，可监听多个，集群内部将通过这些 url 进行数据交互(如选举，数据同步等)
-- \--initial-advertise-peer-urls # 建议用于节点之间通信的 url，节点间将以该值进行通信。
-- \--listen-client-urls # 监听的用于客户端通信的 url，同样可以监听多个。
-- \--advertise-client-urls # 建议使用的客户端通信 url，该值用于 etcd 代理或 etcd 成员与 etcd 节点通信。
-- \--initial-cluster-token etcd-cluster-1 # 节点的 token 值，设置该值后集群将生成唯一 id，并为每个节点也生成唯一 id，当使用相同配置文件再启动一个集群时，只要该 token 值不一样，etcd 集群就不会相互影响。
-- \--initial-cluster # 也就是集群中所有的 initial-advertise-peer-urls 的合集。
-- \--initial-cluster-state new # 新建集群的标志
+- --name # etcd 集群中的节点名，这里可以随意，可区分且不重复就行
+- --listen-peer-urls # 监听的用于节点之间通信的 url，可监听多个，集群内部将通过这些 url 进行数据交互(如选举，数据同步等)
+- --initial-advertise-peer-urls # 建议用于节点之间通信的 url，节点间将以该值进行通信。
+- --listen-client-urls # 监听的用于客户端通信的 url，同样可以监听多个。
+- --advertise-client-urls # 建议使用的客户端通信 url，该值用于 etcd 代理或 etcd 成员与 etcd 节点通信。
+- --initial-cluster-token etcd-cluster-1 # 节点的 token 值，设置该值后集群将生成唯一 id，并为每个节点也生成唯一 id，当使用相同配置文件再启动一个集群时，只要该 token 值不一样，etcd 集群就不会相互影响。
+- --initial-cluster # 也就是集群中所有的 initial-advertise-peer-urls 的合集。
+- --initial-cluster-state new # 新建集群的标志
 
 如果是单节点部署，则直接启动即可。
 

@@ -104,7 +104,7 @@ openstack server SubCommand \[OPTIONS] \[ARGS] &#x20;
 
 - OPTIONS &#x20;
 
-- \--long #列出更多的关于虚拟机的信息
+- --long #列出更多的关于虚拟机的信息
 
 - EXAMPLE &#x20;
 

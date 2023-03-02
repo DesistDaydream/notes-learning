@@ -36,15 +36,15 @@ SUBCOMMAND 包括：
 
 OPTIONS
 
-- \--embed-certs={false|true} #将--certificate-authority 中指定的证书嵌入 kubeconfig 文件中。i.e.将证书内容使用 base64 编码后存入，默认为 false，即不读取内容进行编码，而是直接将路径写到 kubeconfig 文件中
+- --embed-certs={false|true} #将--certificate-authority 中指定的证书嵌入 kubeconfig 文件中。i.e.将证书内容使用 base64 编码后存入，默认为 false，即不读取内容进行编码，而是直接将路径写到 kubeconfig 文件中
 
 EXAMPLE
 
 - kubectl config set-cluster kubernetes \\
-- \--certificate-authority=/etc/kubernetes/pki/ca.crt \\
-- \--embed-certs=true \\
-- \--server=192.168.10.10:6443 \\
-- \--kubeconfig=./lch-config #为 lch-config 的 kubeconfig 文件设定集群信息，指定证书为/etc/kubernetes/pki/ca.crt，开启嵌入式认证，指定集群 api-server 的 ip 和 port。
+- --certificate-authority=/etc/kubernetes/pki/ca.crt \\
+- --embed-certs=true \\
+- --server=192.168.10.10:6443 \\
+- --kubeconfig=./lch-config #为 lch-config 的 kubeconfig 文件设定集群信息，指定证书为/etc/kubernetes/pki/ca.crt，开启嵌入式认证，指定集群 api-server 的 ip 和 port。
 
 ## set-context # 设定上下文，确立 user 与 cluster 的绑定关系与上下文的 name
 
@@ -62,7 +62,7 @@ EXAMPLE
 
 OPTIONS
 
-- \--embed-certs=ture|false #在 kubeconfig 中嵌入证书/私钥，即变成非明文的方式储存
+- --embed-certs=ture|false #在 kubeconfig 中嵌入证书/私钥，即变成非明文的方式储存
 
 EXAMPLE
 

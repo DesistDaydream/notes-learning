@@ -22,9 +22,9 @@ virt-manager 在图形化界面创建的虚拟机本质上就是调用的 virt-i
 
 有几个参数是在使用 libvirt 工具安装虚拟机时必须指定的：
 
-- \--name is required
-- \--memory amount in MiB is required
-- \--disk storage must be specified (override with --disk none)
+- --name is required
+- --memory amount in MiB is required
+- --disk storage must be specified (override with --disk none)
 
 安装方式(--location URL, --cdrom CD/ISO, --pxe, --import, --boot hd|cdrom|...)
 

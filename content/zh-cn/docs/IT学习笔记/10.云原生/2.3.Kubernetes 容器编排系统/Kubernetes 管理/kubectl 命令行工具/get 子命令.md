@@ -17,11 +17,11 @@ title: get 子命令
 Note：在 kubectl 命令中的 全局 flags 中还有很多有用的 flags 可以用于 get 子命令。比如 -v 指定 debug 等级，-n 指定要操作的 namespace，等等
 
 - **-A, --all-namespaces** # 列出在所有名称空间中的对象。
-- \--allow-missing-template-keys=true: If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.
-- \--chunk-size=500: Return large lists in chunks rather than all at once. Pass 0 to disable. This flag is beta and may change in the future.
+- --allow-missing-template-keys=true: If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.
+- --chunk-size=500: Return large lists in chunks rather than all at once. Pass 0 to disable. This flag is beta and may change in the future.
 - **--field-selector=''** # 根据一个或多个资源字段的值[筛选 Kubernetes 对象](https://kubernetes.io/zh/docs/concepts/overview/working-with-objects/kubernetes-objects)。支持 '=', '==', and '!='.(比如 --field-selector key1=value1,key2=value2)。注意，仅支持部分字段筛选
 - -f, --filename=\[]: Filename, directory, or URL to files identifying the resource to get from a server.
-- \--ignore-not-found=false: If the requested object does not exist the command will return exit code 0.
+- --ignore-not-found=false: If the requested object does not exist the command will return exit code 0.
 - **-k, --kustomize=<DIR>** # 处理指定的 Kustomize 目录。这个标志不能与 -f 或 -R 同时使用。
 - **-L, --label-columns=\[]** # 显示所有展示出的对象具有 KEY 这个键所对应的值(KEY=VAL，显示那个 VAL)Accepts a comma separated list of labels that are going to be presented as columns. Names are case-sensitive. You can also use multiple flag options like -L label1 -L label2...
 - **--no-headers** # 当使用 默认的 或者 custom-column 格式输出信息时，不显示标题(标题就是 NAME 那一行)。
@@ -35,18 +35,18 @@ Note：在 kubectl 命令中的 全局 flags 中还有很多有用的 flags 可�
   - golang template\[http://golang.org/pkg/text/template/#pkg-overview]
   - jsonpath template # 使用 json 格式里的路径来查看某个字段的状态，样例如下，`.`符号是字符分隔符。用法详见[官方文档](https://kubernetes.io/docs/reference/kubectl/jsonpath/)
     - e.g.-o jsonpath="{.status.phase}"
-- \--output-watch-events=false: Output watch event objects when --watch or --watch-only is used. Existing objects are output as initial ADDED events.
+- --output-watch-events=false: Output watch event objects when --watch or --watch-only is used. Existing objects are output as initial ADDED events.
 - **--raw <URL Path>** #从 API Server 请求原始 URI。显示指定 URL Path 路径下的原始 URI 信息，默认输出为 JSON 格式
 - -R, --recursive=false: Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.
 - **-l, --selector=KEY\[=VAL,KEY2=VAL2,...]** # 根据标签对输出进行过滤。可以只指定标签中的 key，或者指定多个 key，或者指定 key 不匹配的 value
 - e.g. #-l key1=value1,key2=value2,Note:k/v 中的 = 还可以使用 == 和 !=
-- \--server-print=true: If true, have the server return the appropriate table output. Supports extension APIs and CRDs.
-- \--show-kind=false # 列出所请求对象的资源类型。
+- --server-print=true: If true, have the server return the appropriate table output. Supports extension APIs and CRDs.
+- --show-kind=false # 列出所请求对象的资源类型。
 - **--show-labels** # 输出信息时，在最后一列显示该对象的 label。(默认不显示)
-- \--sort-by='': If non-empty, sort list types using this field specification. The field specification is expressed as a JSONPath expression (e.g. '{.metadata.name}'). The field in the API resource specified by this JSONPath expression must be an integer or a string.
-- \--template='': Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates \[http://golang.org/pkg/text/template/#pkg-overview].
+- --sort-by='': If non-empty, sort list types using this field specification. The field specification is expressed as a JSONPath expression (e.g. '{.metadata.name}'). The field in the API resource specified by this JSONPath expression must be an integer or a string.
+- --template='': Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates \[http://golang.org/pkg/text/template/#pkg-overview].
 - -w, --watch # 实时监控。类似于在命令前加 wathch。只有当资源状态变化时，才会显示
-- \--watch-only # Watch for changes to the requested object(s), without listing/getting first.
+- --watch-only # Watch for changes to the requested object(s), without listing/getting first.
 
 # EXAMPLE
 

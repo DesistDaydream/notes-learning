@@ -35,7 +35,7 @@ title: Alpine
 **apk \[Global OPTIONS] COMMAND \[COMMAND OPTIONS]**
 Global OPTIONS
 
-- \--no-cache # 不在 /var/cache/apk/ 目录下生成缓存，并且也不使用该目录下的缓存。
+- --no-cache # 不在 /var/cache/apk/ 目录下生成缓存，并且也不使用该目录下的缓存。
 
 COMMAND
 

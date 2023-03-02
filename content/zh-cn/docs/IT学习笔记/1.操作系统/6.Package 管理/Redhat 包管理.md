@@ -128,34 +128,34 @@ EOF
 - -d \[debug level], --debuglevel=\[debug level] # debugging output level
 - **--showduplicates** # 使用 info、list 和 search 命令中不限制包的最新版本(即显示包的所有版本，不仅仅是最新版本)
 - -e \[error level], --errorlevel=\[error level] # error output level
-- \--rpmverbosity=\[debug level name] # debugging output level for rpm
+- --rpmverbosity=\[debug level name] # debugging output level for rpm
 - -q, --quiet # quiet operation
 - **-v, --verbose** # 详细操作
 - -y, --assumeyes # answer yes for all questions
-- \--assumeno # answer no for all questions
-- \--installroot=\[path] # set install root
+- --assumeno # answer no for all questions
+- --installroot=\[path] # set install root
 - **--enablerepo=REPO **# 激活一个或多个仓库（支持通配符）
 - **--disablerepo=REPO **# 禁掉一个或多个仓库（支持通配符）
 - **-x \[package], --exclude=\[package] **# 在名称或 glob 不包含包。
 - **--disableexcludes=REPO **# 禁掉除了 REPO 这个之外的别的仓库
-- \--disableincludes=\[repo] # disable includepkgs for a repo or for everything
-- \--obsoletes # enable obsoletes processing during updates
-- \--noplugins # disable Yum plugins
+- --disableincludes=\[repo] # disable includepkgs for a repo or for everything
+- --obsoletes # enable obsoletes processing during updates
+- --noplugins # disable Yum plugins
 - **--nogpgcheck** # 关闭 gpg 签名检查
-- \--disableplugin=\[plugin] # disable plugins by name
-- \--enableplugin=\[plugin] # enable plugins by name
+- --disableplugin=\[plugin] # disable plugins by name
+- --enableplugin=\[plugin] # enable plugins by name
 - **--skip-broken** # 跳过需要解决问题的包。即.忽略错误，强制安装。
   - 如果安装多个包，其中一个包没有的话，就会停止，使用该选项则会继续安装其他包。
-- \--color=COLOR # control whether color is used
-- \--releasever=RELEASEVER # set value of $releasever in yum config and repo files
+- --color=COLOR # control whether color is used
+- --releasever=RELEASEVER # set value of $releasever in yum config and repo files
 - **--downloadonly **# 在 yum 一个包时，不安装到系统中，仅下载该包及其依赖到默认的 /var/cache/yum/x86_64/7/REPO/packages/ 目录中。
 - **--downloaddir=DLDIR** # 当使用 --downloadonly 参数时，可以使用该参数来指定要下载软件包的下载目录。
 - --setopt=SETOPTS # set arbitrary config and repo options
 - --bugfix # Include bugfix relevant packages, in updates
-- \--security # Include security relevant packages, in updates
-- \--advisory=ADVS, --advisories=ADVS # Include packages needed to fix the given advisory, in updates
-- \--bzs=BZS # Include packages needed to fix the given BZ, in updates
-- \--cves=CVES # Include packages needed to fix the given CVE, in updates
+- --security # Include security relevant packages, in updates
+- --advisory=ADVS, --advisories=ADVS # Include packages needed to fix the given advisory, in updates
+- --bzs=BZS # Include packages needed to fix the given BZ, in updates
+- --cves=CVES # Include packages needed to fix the given CVE, in updates
 - --sec-severity=SEVS, --secseverity=SEVS # Include security relevant packages matching the severity, in updates
 -
 ### COMMAND

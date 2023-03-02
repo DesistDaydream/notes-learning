@@ -118,7 +118,7 @@ OPTIONS：
 
 - -t \<NAME> # 自己定义一个创建完成后的镜像名 NAME
 - -f \<NAME> # 指定使用创建环境中哪个 NAME 文件作为 Dockerfile,默认使用文件名为 Dockerfile 的文件
-- \--no-cache # 创建镜像时不使用缓存
+- --no-cache # 创建镜像时不使用缓存
 
 EXAMPLE
 
@@ -217,12 +217,12 @@ EXAMPLE
 **docker logs \[OPTIONS] CONTAINER**
 OPTIONS
 
-- \--details # Show extra details provided to logs
+- --details # Show extra details provided to logs
 - **-f, --follow **# 跟踪日志的输出
-- \--since string Show logs since timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)
+- --since string Show logs since timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)
 - **-n, --tail STRING **# 从日志末尾开始显示日志的指定行数。`默认值：all`
 - **-t, --timestamps** # 在每行日志行首显示时间戳
-- \--until string # Show logs before a timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)
+- --until string # Show logs before a timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)
 
 ## pause # Pause all processes within a container #暂停一个 Container 中的所有进程
 

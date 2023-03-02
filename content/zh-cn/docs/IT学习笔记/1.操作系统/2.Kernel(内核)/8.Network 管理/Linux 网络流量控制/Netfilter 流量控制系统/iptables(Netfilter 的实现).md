@@ -161,7 +161,7 @@ MATCHES=\[-m] MatchName \[Per-Match-Options]
 - ACCEPT # 允许流量通过
 - REJECT # 拒绝流量通过
   - OPTIONS
-    - \--reject-with icmp-host-prohibited # 通过 icmp 协议显示给客户机一条消息:主机拒绝(icmp-host-prohibited)
+    - --reject-with icmp-host-prohibited # 通过 icmp 协议显示给客户机一条消息:主机拒绝(icmp-host-prohibited)
 - DROP # 丢弃，不响应，发送方无法判断是被拒绝
 - RETURN # 返回调用链
 - MARK # 做防火墙标记

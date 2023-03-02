@@ -78,37 +78,37 @@ kubeamd 部署的集群一般直接使用 /etc/kubernetes/admin.conf 文件拷�
 
 ## Global FLAGS(全局标志)
 
-- \--alsologtostderr=false: log to standard error as well as files
-- \--as='': Username to impersonate for the operation
-- \--as-group=\[]: Group to impersonate for the operation, this flag can be repeated to specify multiple groups.
-- \--cache-dir='/root/.kube/http-cache': Default HTTP cache directory
-- \--certificate-authority='': Path to a cert file for the certificate authority
-- \--client-certificate='': Path to a client certificate file for TLS
-- \--client-key='': Path to a client key file for TLS
-- \--cluster='': The name of the kubeconfig cluster to use
-- \--context='': The name of the kubeconfig context to use
-- \--insecure-skip-tls-verify=false: If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
-- \--kubeconfig=/PATH/TO/FILE    #指定 kubectl 所要使用的配置文件(需要使用绝对路径)
-- \--log-backtrace-at=:0: when logging hits line file:N, emit a stack trace
-- \--log-dir='': If non-empty, write log files in this directory
-- \--log-file='': If non-empty, use this log file
-- \--log-flush-frequency=5s: Maximum number of seconds between log flushes
-- \--logtostderr=true: log to standard error instead of files
-- \--match-server-version=false: Require server version to match client version
+- --alsologtostderr=false: log to standard error as well as files
+- --as='': Username to impersonate for the operation
+- --as-group=\[]: Group to impersonate for the operation, this flag can be repeated to specify multiple groups.
+- --cache-dir='/root/.kube/http-cache': Default HTTP cache directory
+- --certificate-authority='': Path to a cert file for the certificate authority
+- --client-certificate='': Path to a client certificate file for TLS
+- --client-key='': Path to a client key file for TLS
+- --cluster='': The name of the kubeconfig cluster to use
+- --context='': The name of the kubeconfig context to use
+- --insecure-skip-tls-verify=false: If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
+- --kubeconfig=/PATH/TO/FILE    # 指定 kubectl 所要使用的配置文件(需要使用绝对路径)
+- --log-backtrace-at=:0: when logging hits line file:N, emit a stack trace
+- --log-dir='': If non-empty, write log files in this directory
+- --log-file='': If non-empty, use this log file
+- --log-flush-frequency=5s: Maximum number of seconds between log flushes
+- --logtostderr=true: log to standard error instead of files
+- --match-server-version=false: Require server version to match client version
 - -n, --namespace='': If present, the namespace scope for this CLI request
-- \--password='': Password for basic authentication to the API server
-- \--profile='none': Name of profile to capture. One of (none|cpu|heap|goroutine|threadcreate|block|mutex)
-- \--profile-output='profile.pprof': Name of the file to write the profile to
-- \--request-timeout='0': The length of time to wait before giving up on a single server request. Non-zero values
+- --password='': Password for basic authentication to the API server
+- --profile='none': Name of profile to capture. One of (none|cpu|heap|goroutine|threadcreate|block|mutex)
+- --profile-output='profile.pprof': Name of the file to write the profile to
+- --request-timeout='0': The length of time to wait before giving up on a single server request. Non-zero values
 - should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
 - -s, --server='': The address and port of the Kubernetes API server
-- \--skip-headers=false: If true, avoid header prefixes in the log messages
-- \--stderrthreshold=2: logs at or above this threshold go to stderr
-- \--token='': Bearer token for authentication to the API server
-- \--user='': The name of the kubeconfig user to use
-- \--username='': Username for basic authentication to the API server
+- --skip-headers=false: If true, avoid header prefixes in the log messages
+- --stderrthreshold=2: logs at or above this threshold go to stderr
+- --token='': Bearer token for authentication to the API server
+- --user='': The name of the kubeconfig user to use
+- --username='': Username for basic authentication to the API server
 - **-v=NUM **# 指定 kubectl 命令执行的 debug 级别，默认为 0。如果使用高级别，可以看到 RESTful 风格请求 APIServer 时的请求头以及响应头信息。打开调试日志也可以看到每个 API 调用的格式。number for the log level verbosity
-- \--vmodule=: comma-separated list of pattern=N settings for file-filtered logging
+- --vmodule=: comma-separated list of pattern=N settings for file-filtered logging
 
 ## Basic Commands (Beginner)(基本命令(初学者))
 
@@ -270,7 +270,7 @@ EXAMPLE
 
 OPTIONS
 
-- \--address IP # 要监听的地址（逗号分隔），默认为 localhost。 仅接受 IP 或 localhost 为值。 提供 localhost 时，kubectl 将尝试同时绑定 127.0.0.1 和:: 1。
+- --address IP # 要监听的地址（逗号分隔），默认为 localhost。 仅接受 IP 或 localhost 为值。 提供 localhost 时，kubectl 将尝试同时绑定 127.0.0.1 和:: 1。
 
 EXAMPLE
 
@@ -285,16 +285,16 @@ EXAMPLE
 
 OPTIONS
 
-- \--accept-hosts='EXPRESSION' #代理应接受的主机的正则表达式，每个匹配项以逗号分隔。默认为’localhost$,^127.0.0.1$,\[::1]$'
-- \--accept-paths='^.\*': Regular expression for paths that the proxy should accept.
-- \--address='IP' #代理监听的 IP，默认 127.0.0.1
-- \--api-prefix='/': Prefix to serve the proxied API under.
-- \--disable-filter=false: If true, disable request filtering in the proxy. This is dangerous, and can leave you vulnerable to XSRF attacks, when used with an accessible port.
-- \--keepalive=0s: keepalive specifies the keep-alive period for an active network connection. Set to 0 to disable keepalive.
+- --accept-hosts='EXPRESSION' #代理应接受的主机的正则表达式，每个匹配项以逗号分隔。默认为’localhost$,^127.0.0.1$,\[::1]$'
+- --accept-paths='^.\*': Regular expression for paths that the proxy should accept.
+- --address='IP' #代理监听的 IP，默认 127.0.0.1
+- --api-prefix='/': Prefix to serve the proxied API under.
+- --disable-filter=false: If true, disable request filtering in the proxy. This is dangerous, and can leave you vulnerable to XSRF attacks, when used with an accessible port.
+- --keepalive=0s: keepalive specifies the keep-alive period for an active network connection. Set to 0 to disable keepalive.
 - -p, --port=8001 #代理监听的端口， 设置为 0 则选择一个随机端口。默认 8001
-- \--reject-methods='^$': Regular expression for HTTP methods that the proxy should reject (example
-- \--reject-methods='POST,PUT,PATCH').
-- \--reject-paths='/api/._/pods/._/exec,/api/._/pods/._/attach': Regular expression for paths that the proxy should reject. Paths specified here will be rejected even accepted by --accept-paths.
+- --reject-methods='^$': Regular expression for HTTP methods that the proxy should reject (example
+- --reject-methods='POST,PUT,PATCH').
+- --reject-paths='/api/._/pods/._/exec,/api/._/pods/._/attach': Regular expression for paths that the proxy should reject. Paths specified here will be rejected even accepted by --accept-paths.
 - -u, --unix-socket='': Unix socket on which to run the proxy.
 - -w, --www='': Also serve static files from the given directory under the specified prefix.
 - -P, --www-prefix='/static/': Prefix to serve static files under, if static file directory is specified.
@@ -348,7 +348,7 @@ completion     Output shell completion code for the specified shell (bash or z
 **kubectl api-resources \[OPTIONS]**
 OPTIONS
 
-- \--namespaced=true|false #显示所有<是 namesapce 的对象|不是 namespace 的对象>
+- --namespaced=true|false #显示所有<是 namesapce 的对象|不是 namespace 的对象>
 - -o wide|name #显示更多信息|只显示对象的名称
 
 EXAMPLE

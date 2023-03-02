@@ -91,9 +91,9 @@ MODE 格式如下 : `[ugoa][[+-=][rwxX]…][,…]`，其中
 - -c, --changes # like verbose but report only when a change is made
 - **-f, --silent, --quiet** # 静默模式
 - -**v, --verbose** # 诊断模式，显示完整的执行过程
-- \--no-preserve-root do not treat '/' specially (the default)
-- \--preserve-root # fail to operate recursively on '/'
-- \--reference=RFILE use RFILE's mode instead of MODE values
+- --no-preserve-root do not treat '/' specially (the default)
+- --preserve-root # fail to operate recursively on '/'
+- --reference=RFILE use RFILE's mode instead of MODE values
 - **-R, --recursive** # 递归方式设置，即修改指定目录及其所有子目录和其内文件的权限。
 
 ### EXAMPLE

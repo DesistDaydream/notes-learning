@@ -84,9 +84,9 @@ Example
 
 FLAGS
 
-- \--experimental-control-plane #在此节点上创建新的控制平面实例，等同于把该节点加入到 Cluster 后成为 master。
-- \--token #
-- \--discovery-token-ca-cert-hash #
+- --experimental-control-plane #在此节点上创建新的控制平面实例，等同于把该节点加入到 Cluster 后成为 master。
+- --token #
+- --discovery-token-ca-cert-hash #
 
 EXAPMLE
 

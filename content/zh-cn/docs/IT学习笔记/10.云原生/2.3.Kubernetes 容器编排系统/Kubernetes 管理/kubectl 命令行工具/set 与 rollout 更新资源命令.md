@@ -98,7 +98,7 @@ kubectl rollout undo (TYPE NAME | TYPE/NAME) \[flags] \[OPTIONS]
 
 OPTIONS
 
-- \--to-revision=NUM #指定要回滚到哪个修订版，默认为 0，最后的修正版。查看修订版的 NUM 可以使用 kubectl rollout history 命令，该命令显示出的 REVISION 下面的数字就是 NUM，注意：如果我从 V1 更新到 V2 再更新到 V3，然后回滚到 V1，那么此时我再回滚到上一版的时候，指的是回滚到 V3 版
+- --to-revision=NUM #指定要回滚到哪个修订版，默认为 0，最后的修正版。查看修订版的 NUM 可以使用 kubectl rollout history 命令，该命令显示出的 REVISION 下面的数字就是 NUM，注意：如果我从 V1 更新到 V2 再更新到 V3，然后回滚到 V1，那么此时我再回滚到上一版的时候，指的是回滚到 V3 版
 
 EXAMPLE
 

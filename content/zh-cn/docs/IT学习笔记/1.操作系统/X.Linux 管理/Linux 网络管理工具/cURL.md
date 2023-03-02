@@ -135,7 +135,7 @@ FORMAT 中可用字段：
 
 - 读取 data.txt 文件的内容，作为请求体向服务器发送。
   - curl -d '@data.txt' https://google.com/login
-- \--data-urlencode 参数等同于 -d，发送 POST 请求的数据体，区别在于会自动将发送的数据进行 URL 编码。下面代码中，发送的数据 hello world 之间有一个空格，需要进行 URL 编码。
+- --data-urlencode 参数等同于 -d，发送 POST 请求的数据体，区别在于会自动将发送的数据进行 URL 编码。下面代码中，发送的数据 hello world 之间有一个空格，需要进行 URL 编码。
   - curl --data-urlencode 'comment=hello world' https://google.com/login
 
 ## -w, --write-out 选项示例

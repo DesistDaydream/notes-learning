@@ -10,26 +10,26 @@ Flags 与 Options 一样，是标志、标记的意思，就是指该命令的�
 
 # **FLAGS：全局 Flags**
 
-- \--add-dir-header                   If true, adds the file directory to the header
-- \--alsologtostderr                  log to standard error as well as files
+- --add-dir-header                   If true, adds the file directory to the header
+- --alsologtostderr                  log to standard error as well as files
 - **--debug** # 开启详细的输出信息
 - -h, --help                             help for helm
-- \--kube-context string              name of the kubeconfig context to use
-- \--kubeconfig STRING # 指定 helm 运行所需的 kubeconfig 文件路径为 STRING。默认为 /root/.kube/config
-- \--log-backtrace-at traceLocation   when logging hits line file:N, emit a stack trace (default :0)
-- \--log-dir string                   If non-empty, write log files in this directory
-- \--log-file string                  If non-empty, use this log file
-- \--log-file-max-size uint           Defines the maximum size a log file can grow to. Unit is megabytes. If the value is 0, the maximum file size is unlimited. (default 1800)
-- \--logtostderr                      log to standard error instead of files (default true)
+- --kube-context string              name of the kubeconfig context to use
+- --kubeconfig STRING # 指定 helm 运行所需的 kubeconfig 文件路径为 STRING。默认为 /root/.kube/config
+- --log-backtrace-at traceLocation   when logging hits line file:N, emit a stack trace (default :0)
+- --log-dir string                   If non-empty, write log files in this directory
+- --log-file string                  If non-empty, use this log file
+- --log-file-max-size uint           Defines the maximum size a log file can grow to. Unit is megabytes. If the value is 0, the maximum file size is unlimited. (default 1800)
+- --logtostderr                      log to standard error instead of files (default true)
 - **-n, --namespace string** # 指定当前命令要在哪个 namespace 下执行
-- \--registry-config string           path to the registry config file (default "/root/.config/helm/registry.json")
-- \--repository-cache string          path to the file containing cached repository indexes (default "/root/.cache/helm/repository")
-- \--repository-config string         path to the file containing repository names and URLs (default "/root/.config/helm/repositories.yaml")
-- \--skip-headers                     If true, avoid header prefixes in the log messages
-- \--skip-log-headers                 If true, avoid headers when opening log files
-- \--stderrthreshold severity         logs at or above this threshold go to stderr (default 2)
+- --registry-config string           path to the registry config file (default "/root/.config/helm/registry.json")
+- --repository-cache string          path to the file containing cached repository indexes (default "/root/.cache/helm/repository")
+- --repository-config string         path to the file containing repository names and URLs (default "/root/.config/helm/repositories.yaml")
+- --skip-headers                     If true, avoid header prefixes in the log messages
+- --skip-log-headers                 If true, avoid headers when opening log files
+- --stderrthreshold severity         logs at or above this threshold go to stderr (default 2)
 - -v, --v Level                          number for the log level verbosity
-- \--vmodule moduleSpec               comma-separated list of pattern=N settings for file-filtered logging
+- --vmodule moduleSpec               comma-separated list of pattern=N settings for file-filtered logging
 
 # 可用的子命令如下：
 

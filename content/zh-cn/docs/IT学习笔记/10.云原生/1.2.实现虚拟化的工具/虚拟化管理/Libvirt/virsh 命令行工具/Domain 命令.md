@@ -167,11 +167,11 @@ Note：
 OPTIONS
 
 - \[--domain] <string> domain name, id or uuid
-- \--live #指定当前操作为，运行时状态
-- \--config #指定当前操作为，持久配置状态
-- \--current #指定当前操作为，当前状态
-- \--title \[STRING] #修改或显示 title。指定 STRING 时则会将 domain 的 title 修改为 STRING，不指定则显示 domain 的 title
-- \--edit #打开一个编辑器来修改 description 或 title
+- --live #指定当前操作为，运行时状态
+- --config #指定当前操作为，持久配置状态
+- --current #指定当前操作为，当前状态
+- --title \[STRING] #修改或显示 title。指定 STRING 时则会将 domain 的 title 修改为 STRING，不指定则显示 domain 的 title
+- --edit #打开一个编辑器来修改 description 或 title
 - \[--new-desc] <STRING> message
 
 EXAMPLE
@@ -195,8 +195,8 @@ domblkinfo domain block device size information
 **domblklist <DOMAIN> \[OPTIONS]**
 OPTIONS
 
-- \--inactive #
-- \--details # 列出的信息还包括类型和设备
+- --inactive #
+- --details # 列出的信息还包括类型和设备
 
 domblkstat get device block stats for a domain
 
@@ -493,14 +493,14 @@ ttyconsole tty console
 
 OPTIONS
 
-- \--managed-save remove domain managed state file
-- \--storage <string> remove associated storage volumes (comma separated list of targets or source paths) (see domblklist)
+- --managed-save remove domain managed state file
+- --storage <string> remove associated storage volumes (comma separated list of targets or source paths) (see domblklist)
 - **--remove-all-storage** # 移除所有与该 domain 关联的存储卷。(谨慎使用)
 - **--delete-snapshots** # 删除与卷关联的快照，需要--remove-all-storage（必须由存储驱动程序支持）
-- \--wipe-storage wipe data on the removed volumes
+- --wipe-storage wipe data on the removed volumes
 - **--snapshots-metadata** # 删除 domain 所有快照元数据（如果不活动）
-- \--nvram remove nvram file, if inactive
-- \--keep-nvram keep nvram file, if inactive
+- --nvram remove nvram file, if inactive
+- --keep-nvram keep nvram file, if inactive
 
 vcpucount domain vcpu counts
 vcpuinfo detailed domain vcpu information
