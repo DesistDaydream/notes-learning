@@ -60,7 +60,7 @@ Note：目录名中的 overlay2 指的是 docker 当前 Storage Driver 类型，
 
 **/var/lib/docker/\*** # docker 管理的 网络、镜像、容器 等信息的保存路径。该路径为默认路径，可以通过配置修改。
 
-- **./containers/\* **# 所有 container 的元数据保存路径(其中包括容器日志文件、容器运行配置等)。其内目录名为 **ContainerID**
+- **./containers/\*** # 所有 container 的元数据保存路径(其中包括容器日志文件、容器运行配置等)。其内目录名为 **ContainerID**
 - **./image/overlay2/\*** # docker images 以及 所有 layers 的元数据保存路径。
   - **./imagedb/\*** # images 的元数据保存路径
     - **./content/sha256/\*** # 所有 images 的 Image Configuration 文件保存路径。其内文件名为 **ImageID**。

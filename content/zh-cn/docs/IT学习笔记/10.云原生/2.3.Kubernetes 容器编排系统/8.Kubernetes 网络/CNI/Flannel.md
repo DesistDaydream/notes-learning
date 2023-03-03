@@ -5,7 +5,7 @@ title: Flannel
 # 概述
 
 > 参考：
-> - [GitHub 项目](https://github.com/flannel-io/flannel)
+> - [GitHub 项目，flannel-io/flannel](https://github.com/flannel-io/flannel)
 
 Flannel 是一种专为 Kubernetes 设计的，简单、易于配置的 3 层网络结构，并且为 Kubernetes 提供了 CNI 插件。
 
@@ -219,16 +219,18 @@ Note:在了解过 Calico 的工作方式之后，其实会有这么一个疑问�
 
 - Note:该文件会由将 Flannel 分配的子网信息都记录下来，并交给每个节点的 cni0 或者 flannel0 使用，如果想要修改 flannel 配置，则需要删除每个节点上的这个文件，该文件内容如下所示
 
-
-    [root@master-1 CNI]# cat /run/flannel/subnet.env
-    FLANNEL_NETWORK=10.252.0.0/16
-    FLANNEL_SUBNET=10.252.0.1/24
-    FLANNEL_MTU=1500
-    FLANNEL_IPMASQ=true
+```
+[root@master-1 CNI]# cat /run/flannel/subnet.env
+FLANNEL_NETWORK=10.252.0.0/16
+FLANNEL_SUBNET=10.252.0.1/24
+FLANNEL_MTU=1500
+FLANNEL_IPMASQ=true
+```
 
 # 配置详解
 
-> 参考：<https://github.com/flannel-io/flannel/blob/master/Documentation/configuration.md>
+> 参考：
+> https://github.com/flannel-io/flannel/blob/master/Documentation/configuration.md
 
 net-conf.json 配置文件：
 
@@ -264,9 +266,9 @@ net-conf.json 配置文件：
 - -etcd-username string # username for BasicAuth to etcd
 - -healthz-ip string # the IP address for healthz server to listen (default "0.0.0.0")
 - -healthz-port int # the port for healthz server to listen(0 to disable)
-- **-iface <STRING> **# 用于主机间通信的网络设备名称或者 IP。可以指定多个网络设备，Flannel 会按顺序检查，并使用找到的第一个网络设备
+- **-iface \<STRING>** # 用于主机间通信的网络设备名称或者 IP。可以指定多个网络设备，Flannel 会按顺序检查，并使用找到的第一个网络设备
   - 注意：这个参数指定的网络设备，就是 Flannel 建立静态路由条目时所使用的网络设备。
-- **-iface-regex <EXP> **# 用于主机间通信的网络设备的正则表达式
+- **-iface-regex \<EXP>** # 用于主机间通信的网络设备的正则表达式
   - 可以多次指定以按顺序检查每个正则表达式。返回找到的第一个匹配项。在检查 iface 选项指定的特定接口后，将检查正则表达式。
   - 比如 `^(eth0|bond1)$` 这种格式，可以让具有不通网络设备名称的设备被统一
 - -ip-masq # setup IP masquerade rule for traffic destined outside of overlay network

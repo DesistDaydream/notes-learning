@@ -22,7 +22,9 @@ title: Containerd Image
 ```
 
 初始情况，Containerd 会加载部分插件，对应了 content、snapshot、metadata、runtime 等等插件。通过 `ctr plugin ls` 命令可以发现，目录名称与插件名称是一致的。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/abf521b3-7aea-4cfc-a5b4-343877ff4ccb/1637717831444-46d3e321-18da-456c-a543-7df7415d3689.png)
+
 这是一个只有一个 lchdzh/k8s-debug:v1 镜像的 /var/lib/containerd 目录：
 
 ```bash
@@ -95,20 +97,20 @@ title: Containerd Image
 
 这些插件具有对应的目录：
 
-- **io.containerd.content.v1.content/\*** #
+- **io.containerd.content.v1.content/** #
   - **./blobs/sha256/\*** # OCI Image 的 blob 文件存放路径。其中 tar.gzip 类型的 blob 文件(即.镜像层的压缩文件)将会被解压到 io.containerd.snapshotter.v1.overlayfs/snapshots/ 目录中
   - **./ingest/\*** # 当 pull 一个镜像时，会在该目录形成缓存，并逐渐在 blobs 目录中生成 blob 文件，pull 完之后，该目录将会清空。
-- **io.containerd.grpc.v1.introspection/\*** #
-- **io.containerd.metadata.v1.bolt/\*** #
+- **io.containerd.grpc.v1.introspection/** #
+- **io.containerd.metadata.v1.bolt/** #
   - **./meta.db** # 这是一个 boltdb 的持久化文件。保存了 OCI Image 标准中 bolts 目录下的文件的组织信息。
-- **io.containerd.runtime.v2.task/\*** #
+- **io.containerd.runtime.v2.task/** #
   - .**/default/\*** # default 名称空间中运行的容器
   - **./moby/\*** # moby 名称空间中运行的容器
-- **io.containerd.snapshotter.v1.overlayfs/\*** #
+- **io.containerd.snapshotter.v1.overlayfs/** #
   - **./metadata.db** #
-  - .**/snapshots/INT/\*** # OCI Image 的 Layers 文件解压后的文件系统存放路径。每个镜像层都使用一个 INT 类型的数字作为目录名，目录中即是文件系统内容。
+  - .**/snapshots/INT/** # OCI Image 的 Layers 文件解压后的文件系统存放路径。每个镜像层都使用一个 INT 类型的数字作为目录名，目录中即是文件系统内容。
     - 当运行一个容器时，就是挂载的这些目录
-- **tmpmounts/\*** #
+- **tmpmounts/** #
 
 ## meta.db 文件解析
 

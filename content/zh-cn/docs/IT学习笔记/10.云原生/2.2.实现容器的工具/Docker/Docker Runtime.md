@@ -197,8 +197,8 @@ Note：这些目录在容器停止后，会自动删除
 
 通过 overlay 联合挂载技术，将多个 layer 挂载到该容器的 mount layer 的 merged 目录中
 
-1. lower(下层挂载) #用启动该容器的 image 的所有 layers 作为 lowerdir
-2. upperdir(上层挂在) #用容器 mount layer 的 diff 目录作为 upperdir
+1. lower(下层挂载) # 用启动该容器的 image 的所有 layers 作为 lowerdir
+2. upperdir(上层挂在) # 用容器 mount layer 的 diff 目录作为 upperdir
 
 所有在 merged 目录的变化，会同步到 diff 目录中，这样在容器停止，merged 目录消失后，所有变化依然得以保留在 diff 目录中，这样后续再启动容器的时候，上次的操作还能看到。
 

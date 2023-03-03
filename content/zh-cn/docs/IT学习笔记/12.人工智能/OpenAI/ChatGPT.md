@@ -84,6 +84,16 @@ ChatGPT对话中提示语可以极大影响对话质量。定义明确的提示�
 
 # 基于 ChatGPT 的项目
 
+## vscode-chatgpt
+
+> 参考：
+> - [GitHub 项目，gencay/vscode-chatgpt](https://github.com/gencay/vscode-chatgpt)
+
+vscode-chatgpt 是一个 VS Code 插件。
+
+
+## 其他
+
 Chrom 插件
 
 https://github.com/wong2/chat-gpt-google-extension
