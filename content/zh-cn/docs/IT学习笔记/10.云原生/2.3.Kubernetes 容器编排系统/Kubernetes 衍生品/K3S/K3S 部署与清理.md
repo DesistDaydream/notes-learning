@@ -9,45 +9,6 @@ title: K3S 部署与清理
 
 `curl -sfL https://get.k3s.io | sh -` 使用该脚本，可以自动创建用于运行 k3s 二进制文件的 service 文件，并通过 systemd 启动。
 
-## systemd 管理的 Unit 文件
-
-```shell
-cat > /etc/systemd/system/k3s.service <<EOF
-[Unit]
-Description=Lightweight Kubernetes
-Documentation=https://k3s.io
-Wants=network-online.target
-After=network-online.target
-
-[Install]
-WantedBy=multi-user.target
-
-[Service]
-Type=notify
-EnvironmentFile=/etc/systemd/system/k3s.service.env
-KillMode=process
-Delegate=yes
-# Having non-zero Limit*s causes performance problems due to accounting overhead
-# in the kernel. We recommend using cgroups to do container-local accounting.
-LimitNOFILE=1048576
-LimitNPROC=infinity
-LimitCORE=infinity
-TasksMax=infinity
-TimeoutStartSec=0
-Restart=always
-RestartSec=5s
-ExecStartPre=-/sbin/modprobe br_netfilter
-ExecStartPre=-/sbin/modprobe overlay
-ExecStart=/usr/local/bin/k3s \
-# 根据实际情况修改命令行标志
-EOF
-```
-
-`EnvironmentFile` 和 `ExecStart` 这两个字段就是用来控制 k3s 运行行为的，其他字段值一般不用修改。
-
-- `EnvironmentFile` 是 k3s 运行时读取的环境变量信息
-- `ExecStart` 是 k3s 二进制文件位置，以及运行时标志
-
 # 快速部署体验
 
 获取安装脚本
@@ -105,6 +66,7 @@ chmod +x /usr/local/bin/k3s
 
 ```bash
 curl -Lo install.sh https://get.k3s.io/
+chmod 755 install.sh
 ```
 
 ## 下载所需镜像
@@ -150,6 +112,45 @@ for cmd in kubectl crictl ctr; do
     ln -sf k3s /usr/local/bin/${cmd}
 done
 ```
+
+# Systemd 管理的 Unit 文件
+
+```shell
+cat > /etc/systemd/system/k3s.service <<EOF
+[Unit]
+Description=Lightweight Kubernetes
+Documentation=https://k3s.io
+Wants=network-online.target
+After=network-online.target
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=notify
+EnvironmentFile=/etc/systemd/system/k3s.service.env
+KillMode=process
+Delegate=yes
+# Having non-zero Limit*s causes performance problems due to accounting overhead
+# in the kernel. We recommend using cgroups to do container-local accounting.
+LimitNOFILE=1048576
+LimitNPROC=infinity
+LimitCORE=infinity
+TasksMax=infinity
+TimeoutStartSec=0
+Restart=always
+RestartSec=5s
+ExecStartPre=-/sbin/modprobe br_netfilter
+ExecStartPre=-/sbin/modprobe overlay
+ExecStart=/usr/local/bin/k3s \
+# 根据实际情况修改命令行标志
+EOF
+```
+
+`EnvironmentFile` 和 `ExecStart` 这两个字段就是用来控制 k3s 运行行为的，其他字段值一般不用修改。
+
+- `EnvironmentFile` 是 k3s 运行时读取的环境变量信息
+- `ExecStart` 是 k3s 二进制文件位置，以及运行时标志
 
 # 清理 K3S
 
