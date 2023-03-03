@@ -21,6 +21,7 @@ k3s 二进制文件包含 kubelet、api-server、kube-controller-manager、kube-
 **/etc/rancher/k3s/** #
 
 - **./k3s.yaml** # kubeconfig 文件
+- **./config.yaml** # 运行时配置文件，与环境变量和 CLI 等效。
 - **./registries.yaml** #
 
 **/run/k3s/** # K3S 所使用的容器 Runtime 的数据保存路径。

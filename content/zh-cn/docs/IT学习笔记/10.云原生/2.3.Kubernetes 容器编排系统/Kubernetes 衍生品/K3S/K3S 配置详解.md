@@ -5,8 +5,18 @@ title: K3S 配置详解
 # 概述
 
 > 参考：
-> - [参考，K3S Server 配置](https://docs.k3s.io/reference/server-config)
-> - [参考，K3S Agent 配置](https://docs.k3s.io/reference/agent-config)
+> - [官方文档，安装-配置选项](https://docs.k3s.io/zh/installation/configuration)
+> - [官方文档，参考-K3S Server 配置](https://docs.k3s.io/reference/server-config)
+> - [官方文档，参考-K3S Agent 配置](https://docs.k3s.io/reference/agent-config)
+
+k3s 可以通过如下如下几种方式配置运行时行为
+- 命令行标志
+- 环境变量
+- 配置文件
+
+k3s 运行时默认读取 `/etc/rancher/k3s/config.yaml` 文件中的值。
+
+## 其他说明
 
 /etc/rancher/k3s/registries.yaml
 
@@ -17,10 +27,6 @@ k3s 通过 containerd 来控制容器，在 pull 镜像时，会默认指定 doc
 mirrors: docker.io: endpoint: - "http://172.38.40.180"configs: "172.38.40.180": auth: username: admin password: Harbor12345
 
 可以将 docker.io 修改为自己设定的域名，只不过这样需要在 pull 的时候，选择镜像的时候加上这个域名。
-
-k3s 可以通过如下如下几种方式配置运行时行为
-- 命令行标志
-- 环境变量
 
 # k3s server 命令行参数详解
 
@@ -81,9 +87,14 @@ k3s 可以通过如下如下几种方式配置运行时行为
 
 **--cluster-cidr value** # 用于 pod IP 的 IPv4/IPv6 网络 CIDR。`默认值：10.42.0.0/16`
 
---service-cidr value                       (networking) Network CIDR to use for services IPs (default: "10.43.0.0/16")
+**--service-cidr value** # 用于 service IP 的 IPv4/IPv6 网络 CIDR。`默认值：10.43.0.0/16`
+
+**--service-node-port-range VALUE** # 为具有 NodePort 可见性的服务保留的端口范围
+
 --cluster-dns value                        (networking) Cluster IP for coredns service. Should be in your service-cidr range (default: 10.43.0.10)
+
 --cluster-domain value                     (networking) Cluster Domain (default: "cluster.local")
+
 --flannel-backend value                    (networking) One of 'none', 'vxlan', 'ipsec', or 'flannel' (default: "vxlan")
 
 ### 定制 Kubernetes 进程的标志
