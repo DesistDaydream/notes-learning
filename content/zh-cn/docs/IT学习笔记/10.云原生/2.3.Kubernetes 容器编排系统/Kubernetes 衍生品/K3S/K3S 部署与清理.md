@@ -87,71 +87,63 @@ INSTALL_K3S_EXEC='agent' \
 bash k3s-install.sh
 ```
 
-# 部署高可用集群
+# 离线部署高可用集群
+ 
+安装脚将会执行如下逻辑：
+- 生成用于 Systemd 的 Unit 文件
+- TODO: 待完善
 
 ## 下载 k3s 二进制文件
 
-```latex
-wget https://github.com/rancher/k3s/releases/download/v1.19.8+k3s1/k3s -O /usr/local/bin/k3s
+```bash
+export K3S_VERSION="v1.26.1"
+wget https://github.com/k3s-io/k3s/releases/download/${K3S_VERSION}%2Bk3s1/k3s -O /usr/local/bin/k3s
 chmod +x /usr/local/bin/k3s
 ```
 
-### 配置第一个 master 节点
+## 下载安装脚本
 
-Unit 文件修改为
-
-```shell
-ExecStart=/usr/local/bin/k3s \
-    server \
-        '--cluster-init' \
+```bash
+curl -Lo install.sh https://get.k3s.io/
 ```
 
-配置环境变量文件
+## 下载所需镜像
 
-```latex
-cat > /etc/systemd/system/k3s.service.env <<EOF
-K3S_TOKEN=secret
-EOF
+```bash
+export ARCH="amd64"
+wget https://github.com/k3s-io/k3s/releases/download/${K3S_VERSION}%2Bk3s1/k3s-airgap-images-${ARCH}.tar.gz
+mkdir -p /var/lib/rancher/k3s/agent/images/
+cp ./k3s-airgap-images-${ARCH}.tar /var/lib/rancher/k3s/agent/images/
 ```
 
-### 配置其他 master 节点
+## 配置第一个 master 节点
 
-Unit 文件修改为
-
-```shell
-ExecStart=/usr/local/bin/k3s \
-    server \
-        '--server' \
-        'https://172.19.42.207:6443' \
+```bash
+INSTALL_K3S_SKIP_DOWNLOAD=true \
+K3S_TOKEN=SECRET \
+INSTALL_K3S_EXEC='server --cluster-init --service-node-port-range 10000-60000' \
+./install-zh.sh
 ```
 
-配置环境变量文件
+## 配置其他 master 节点
 
-```latex
-cat > /etc/systemd/system/k3s.service.env <<EOF
-K3S_TOKEN=secret
-EOF
+```bash
+INSTALL_K3S_SKIP_DOWNLOAD=true \
+K3S_TOKEN=SECRET \
+INSTALL_K3S_EXEC='server --server https://172.38.180.216:6443 --service-node-port-range 10000-60000' \
+./install-zh.sh
 ```
 
-### 配置工作节点
+## 配置工作节点
 
-Unit 文件修改为
-
-```shell
-ExecStart=/usr/local/bin/k3s \
-    agent
+```bash
+INSTALL_K3S_SKIP_DOWNLOAD=true \
+K3S_TOKEN=SECRET \
+INSTALL_K3S_EXEC='agent --server https://172.38.180.216:6443 ' \
+./install-zh.sh
 ```
 
-配置环境变量文件
-
-```latex
-cat > /etc/systemd/system/k3s.service.env <<EOF
-K3S_TOKEN=secret
-K3S_URL=https://172.19.42.207:6443
-EOF
-```
-
-### 为所有节点配置通用信息
+## 为所有节点配置通用信息
 
 ```shell
 for cmd in kubectl crictl ctr; do
@@ -159,42 +151,23 @@ for cmd in kubectl crictl ctr; do
 done
 ```
 
-# 离线部署高可用节点
+# 清理 K3S
 
-下载 k3s 二进制文件到 `/usr/local/bin/` 目录下
+K3S 的清理脚本来自于“安装脚本”中。
 
-下载安装脚本
-
-下载所需镜像
-
-初始化第一个 Master 节点
-
-INSTALL_K3S_SKIP_DOWNLOAD=true K3S_TOKEN=SECRET INSTALL_K3S_EXEC='server --cluster-init --service-node-port-range 10000-60000' ./install-zh.sh
-
-添加另外两个 Master 节点
-
-INSTALL_K3S_SKIP_DOWNLOAD=true K3S_TOKEN=SECRET INSTALL_K3S_EXEC='server --server https://172.38.180.216:6443 --service-node-port-range 10000-60000' ./install-zh.sh
-
-添加 Node 节点
-
-INSTALL_K3S_SKIP_DOWNLOAD=true K3S_TOKEN=SECRET INSTALL_K3S_EXEC='agent --server https://172.38.180.216:6443 ' ./install-zh.sh
-
-
-# 清理 k3s
-
-```shell
+```bash
 #!/bin/sh
 set -x
 [ $(id -u) -eq 0 ] || exec sudo $0 $@
 
 /usr/local/bin/k3s-killall.sh
 
-if which systemctl; then
+if command -v systemctl; then
     systemctl disable k3s
     systemctl reset-failed k3s
     systemctl daemon-reload
 fi
-if which rc-update; then
+if command -v rc-update; then
     rc-update delete k3s default
 fi
 
@@ -228,6 +201,13 @@ rm -f /usr/local/bin/k3s-killall.sh
 if type yum >/dev/null 2>&1; then
     yum remove -y k3s-selinux
     rm -f /etc/yum.repos.d/rancher-k3s-common*.repo
+elif type zypper >/dev/null 2>&1; then
+    uninstall_cmd="zypper remove -y k3s-selinux"
+    if [ "${TRANSACTIONAL_UPDATE=false}" != "true" ] && [ -x /usr/sbin/transactional-update ]; then
+        uninstall_cmd="transactional-update --no-selfupdate -d run $uninstall_cmd"
+    fi
+    $uninstall_cmd
+    rm -f /etc/zypp/repos.d/rancher-k3s-common*.repo
 fi
 ```
 
