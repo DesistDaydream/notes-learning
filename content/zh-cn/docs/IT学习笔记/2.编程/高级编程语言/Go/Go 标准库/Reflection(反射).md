@@ -8,7 +8,7 @@ title: Reflection(反射)
 > - [Go 包，标准库-reflect](https://pkg.go.dev/reflect)
 > - [博客园-Stefno，深度解密 Go 语言之反射](https://www.cnblogs.com/qcrao-2018/p/10822655.html)
 
-反射是用程序检查其所拥有的结构，尤其是类型的一种能力。可以通过反射来分析一个结构体。反射可以在运行时检查类型和变量，例如它的大小、方法和动态的调用这些方法。
+**Reflection(反射)** 是用程序检查其所拥有的结构，尤其是类型的一种能力。可以通过反射来分析一个结构体。反射可以在运行时检查类型和变量，例如它的大小、方法和动态的调用这些方法。
 `reflect.TypeOf()`和`reflect.ValueOf()`两个函数返回被检查对象的类型和值。e.g.`var x float64 = 3.4`,那么 reflect.TypeOf(x)返回 float64，reflect.ValueOf(x)返回 x 的值
 忠告：反射是一个强大并富有表达力的工具，但是它应该被小心地使用，原因有三：
 

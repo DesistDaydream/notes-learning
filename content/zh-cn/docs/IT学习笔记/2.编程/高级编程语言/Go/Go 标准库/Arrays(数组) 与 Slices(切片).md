@@ -4,6 +4,8 @@ title: Arrays(数组) 与 Slices(切片)
 
 # 概述
 
+**Array(数组)** 与 **Slice(切片)**
+
 # Array(数组)
 
 > 参考：

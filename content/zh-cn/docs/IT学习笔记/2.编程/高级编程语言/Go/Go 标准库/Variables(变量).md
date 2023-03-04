@@ -8,6 +8,8 @@ title: Variables(变量)
 > - [Go 官方文档-参考-规范-变量](https://go.dev/ref/spec#Variables)
 > - [Go 官方文档-参考-规范-声明和范围](https://go.dev/ref/spec#Declarations_and_scope)
 
+**Variables(变量)**
+
 - How to Name a Variable(如何命名一个变量)
 - Scope(范围)
 - Constants(常量)

@@ -8,6 +8,8 @@ title: Template(模板)
 > - [骏马金龙，Go 标准库：Go template 用法详解](https://www.cnblogs.com/f-ck-need-u/p/10053124.html)
 > - [Go Package，标准库-text-template](https://pkg.go.dev/text/template)
 
+Go Template(模板)
+
 本文只介绍 template 的语法和用法，关于 template 包的函数、方法、template 的结构和原理，见：[深入剖析 Go template](https://www.cnblogs.com/f-ck-need-u/p/10035768.html)。
 
 ## 入门示例
