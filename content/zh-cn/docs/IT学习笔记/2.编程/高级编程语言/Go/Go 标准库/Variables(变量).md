@@ -19,7 +19,7 @@ title: Variables(变量)
 
 - VarID # 变量的标识符
 - TYPE # 详见 [TYPE 章节](https://www.yuque.com/desistdaydream/learning/hmvgmw)
-- EXP # 初始化时使用的表达式。i.e.即给该变量一个值。
+- EXP # 初始化时使用的表达式。i.e.给该变量一个值。
 
 其中 `TYPE` 或者 `= EXP` 这两个部分可以省略其中之一，如果省略 TYPE，那么将根据初始化 EXP 来自动推导变量的类型；如果初始化的 EXP
 

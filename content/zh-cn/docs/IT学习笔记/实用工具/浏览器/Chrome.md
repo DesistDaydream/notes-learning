@@ -1,6 +1,13 @@
 ---
-title: 浏览器
+title: "Chrome"
+linkTitle: "Chrome"
+weight: 20
 ---
+
+# 概述
+> 参考：
+> -
+
 
 # 如何避免打开谷歌自动跳转到香港 GOOGLE.COM.HK？
 
@@ -8,12 +15,12 @@ title: 浏览器
 
 > 自从 google 的服务器搬离中国大陆后，大陆地区用户用 google 服务时会自动跳转到香港的 [**http://google.com.hk**](https://link.jianshu.com?t=http://google.com.hk) ，有关键字过滤而且偶尔不是很稳定，这对我们的生活工作都造成了困扰。
 
-#### 一、可以通过以下的方法访问 [**http://google.com**](https://link.jianshu.com?t=http://google.com)
+#### 一、可以通过以下的方法访问 http://google.com
 
 - 直接用 [**http://www.google.com/ncr**](http://www.google.com/ncr) ，`ncr` 是 `no country redirection` ，是一个强制不跳转的命令；
 - 用 [**https://www.google.com/**](https://link.jianshu.com?t=https://www.google.com/) ，`https` 协议。
 
-#### 二、另外一个问题是 Chrome 浏览器的默认搜索也是设置为 **http://www.google.com.hk/** ，我们可以自行修改一下。
+#### 二、另外一个问题是 Chrome 浏览器的默认搜索也是设置为 http://www.google.com.hk/ ，我们可以自行修改一下。
 
 - Chrome – 设置 -搜索 - 管理搜索引擎 – 其他搜索引擎
 - 拉到最下，有一个“添加”
@@ -22,7 +29,6 @@ title: 浏览器
 - 最后一个空最重要，写入 Url ( [**http://www.google.com/search?hl=zh-CN\&q=%s**](https://link.jianshu.com?t=http://www.google.com/search?hl=zh-CN&q=%s)) 或者 ( [**http://www.google.com/search?q=%s**](https://link.jianshu.com?t=http://www.google.com/search?q=%s) ) `括号为填写部分`
 - 然后将之设置成默认搜索引擎，搞定！
 
-#### **_完！_**
 
 > **so easy！好好享受 google** 原汁原味的搜索吧！
 
@@ -64,3 +70,5 @@ chrome://flags/#smooth-scrolling # 将该参数改为 disabled
 # Chrome 打包插件
 
 C:\Users\DesistDaydream\AppData\Local\Google\Chrome\User Data\Profile 2\Extensions
+
+

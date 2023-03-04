@@ -14,11 +14,10 @@ title: Templates 模板(Jinja2)
 > - <https://www.junmajinlong.com/ansible/9_power_of_jinja2/>
 
 Jinja2 的内容较多，但对于学习 Ansible 来说，只需要学习其中和 template 相关的一部分 (其它的都和开发有关或 Ansible 中用不上) 以及 Ansible 对 Jinja2 的扩展功能即可。
-Jinja 语法详见 Python 编程语言章节
 
-[Jinja](/docs/IT学习笔记/2.编程/高级编程语言/Python/Jinja.md)
+详见 Python 编程语言部分的 《[Jinja](/docs/IT学习笔记/2.编程/高级编程语言/Python/Jinja.md)》章节
 
-尽管在编写 playbook 时可以不用在意是否要用 Jinja2，但 Ansible 的运行离不开 Jinja2，当 Ansible 开始执行 playbook 或任务时，总是会先使用 Jinja2 去解析所有指令的值，然后再执行任务。另一方面，在编写任务的过程中也会经常用到 Jinja2 来实现一些需求。所以，Jinja2 可以重要到成为 Ansible 的命脉。
+尽管在编写 Playbook 时可以不用在意是否要用 Jinja2，但 Ansible 的运行离不开 Jinja2，当 Ansible 开始执行 playbook 或任务时，总是会先使用 Jinja2 去解析所有指令的值，然后再执行任务。另一方面，在编写任务的过程中也会经常用到 Jinja2 来实现一些需求。所以，Jinja2 可以重要到成为 Ansible 的命脉。
 
 严格地说，playbook 中所有地方都使用了 Jinja2，包括几乎所有指令的值、template 模板文件、copy 模块的 content 指令的值、lookup 的 template 插件、等等。它们会先经过 Jinja2 渲染，然后再执行相关任务。
 
@@ -534,7 +533,7 @@ Jinja2 自身内置了一个 random 筛选器，Ansible 也有一个 random 筛�
 
 ### shuffle 打乱顺序
 
-### ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/lmdoi2/1638717920341-716b62fb-5d66-43db-a26d-9a14afaa42fa.png)
+ ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/lmdoi2/1638717920341-716b62fb-5d66-43db-a26d-9a14afaa42fa.png)
 
 ### json_query
 

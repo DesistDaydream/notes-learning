@@ -91,6 +91,13 @@ ChatGPT对话中提示语可以极大影响对话质量。定义明确的提示�
 
 vscode-chatgpt 是一个 VS Code 插件。
 
+## DocsGPT
+
+> 参考：
+> - [GitHub 项目，arc53/DocsGPT](https://github.com/arc53/DocsGPT)
+> - [公众号-云原生实验室，我让 ChatGPT 化身为全知全能的文档小助理](https://mp.weixin.qq.com/s/HJ1LHGCjPL0qjf8e7bMLjg)
+
+DocsGPT 是 GPT 驱动的聊天，用于文档搜索和帮助。
 
 ## 其他
 

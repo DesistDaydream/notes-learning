@@ -5,19 +5,20 @@ title: Jinja
 # 概述
 
 > 参考：
-> - [GitHub 项目](https://github.com/pallets/jinja)
+> - [GitHub 项目，pallets/jinja](https://github.com/pallets/jinja)
 > - [官网](https://jinja.palletsprojects.com/)
-> - [Wiki,Jinja](<https://en.wikipedia.org/wiki/Jinja_(template_engine)>)
-> - [国人翻译官网](http://docs.jinkan.org/docs/jinja2/)
-> - <https://www.junmajinlong.com/ansible/9_power_of_jinja2/>
+>   - [国人翻译官网](http://docs.jinkan.org/docs/jinja2/)
+> - [Wiki,Jinja](https://en.wikipedia.org/wiki/Jinja_(template_engine))
+> - [骏马金龙博客，9. 如虎添翼的力量：解锁强大的 Jinja2 模板](https://www.junmajinlong.com/ansible/9_power_of_jinja2/)
 
 Jinja 是一个用于 Python 变成语言中的 **Template Engine(模板引擎)**。Jinja 通常被用来作为 Python 的 Web 框架(e.g.Flask、Django)的数据渲染的底层调用。
-> Django 其实自带模板引擎(DTL)，只不过由于 Jinja 的流行，通常都让 Django 的模板引擎使用 Jinja2
 
+> Django 其实自带模板引擎(DTL)，只不过由于 Jinja 的流行，通常都让 Django 的模板引擎使用 Jinja2
 
 Jinja 模板引擎允许定制标签、过滤器、测试和全局变量。此外，与 Django 模板引擎不同，Jinja 允许模板设计器调用带有对象参数的函数。Jinja 是 Flask 的默认模板引擎，同时，也被 Ansible、Trac、Salt 使用。
 
 ## Jinja 是什么？模板是什么？
+
 何为模板？举个例子就知道了。
 
 假设要发送一个文件给一个或多个目标节点，要发送的文件内容如下：
@@ -43,13 +44,15 @@ Jinja 模板引擎提供了三种** Delimiters(分隔符) **来包围 **模板�
 模板更多用在 web 编程中来生成 HTML 页面，但绝不限于 web 编程，它可以用在很多方面，比如 Ansible 就使用 Jinja2 模板引擎来解析 YAML 中的字符串，也用在 template 模块渲染模板文件。每种编程语言都有模板，比如 Python 的模板语言称为 Jinja、而 go 的模板语言就成为 go 模板、等等，通常来说，这些变成语言的模板表达式的语法，都是 `{{ XX }}` 符号。
 
 ## 模板文件的扩展名
+
 任何文件都可以作为模板加载，无论扩展名是什么。但是使用 `.jinja` 作为扩展名，可以是某些 IDE 的插件更容易识别模板文件以提供 代码高亮、代码补全 等功能。
 
 另外一个识别模板的好方法，是将它们都放在 `templates` 目录中，而不用管扩展名是什么。这是一个项目最常见的用法。
-# Literal(字面量)
-Jinja 的 Literal(字面量) 是 最简单、最直接 的表达式形式。但是，这个其实没啥用~~~~毕竟是在文本文件中使用模板表达式，如果 Lieral 都是 字符串、数值、字典、等等 的话，直接在文本中写就好啦~~~~
-> 所谓的 Literal(字面量) 从中文角度看，就是所见即所得，比如我输入 "Hello World"，看到的就是这几个字母，这是一个字符串。Literal 更容易理解的词是 Data Type(数据类型)。
 
+# Literal(字面量)
+
+Jinja 的 Literal(字面量) 是最简单、最直接的表达式形式。但是，这个其实没啥用~~~~毕竟是在文本文件中使用模板表达式，如果 Lieral 都是 字符串、数值、字典、等等 的话，直接在文本中写就好啦~~~~
+> 所谓的 Literal(字面量) 从中文角度看，就是所见即所得，比如我输入 "Hello World"，看到的就是这几个字母，这是一个字符串。Literal 更容易理解的词是 Data Type(数据类型)。
 
 所以这里主要是定义一下解析表达式后可以返回的数据类型。Jinja 的基本数据类型有如下几种：
 
@@ -65,36 +68,60 @@ Jinja 的 Literal(字面量) 是 最简单、最直接 的表达式形式。但�
    - `{'dict': 'of', 'key': 'and', 'value': 'pairs'}` 
 - 布尔 # 不带引号的 true 与 false
    - `true` 和 `false`
+
 # Variable(变量) 和 作用域
+
 模板中的变量可以通过两种方式获得
 
 - 在模板中使用 `{% set VAR = VALUE %}` 表达式进行定义
 - 在编程语言中，由代码在调用模板引擎函数时，在参数中定义。
+
 ## 定义变量
+
 ```python
 {% set VAR = VALUE %}
 {% set VAR_1,VAR_2 = VALUE_1,VALUE_2 %}
 ```
+
 例如：
+
 ```python
 {% set mystr = "hello world" %}
 {% set mylist1,mylist2 = [1,2,3],[4,5,6] %}
 ```
+
 ## 引用变量
+
 Jinja 模板语言中，引用变量是最基本、最简单的一种表达式。可以直接使用 `{{ Variable }}` 引用一个变量。比如：
+
 ```python
 {% set NAME = "DesistDaydrem" %}
 {{ NAME }}
 ```
-Jinja 模板引擎允许使用点 `.` 来访问列表或字典类型的变量，比如 `mylist=["a","b","c"]` 列表，在 Jinja 中既可以使用 `mylist[1]` 来访问第二个元素，也可以使用`mylist.1`来访问它。
 
-在之前的文章中曾解释过这两种访问方式的区别，这里再重复一遍：
+另外，由于 Python 中变量是对象的引用，那么我们还可以直接引用对象的方法。比如：
 
-- **使用 **`**X.Y**`** 时，先搜索 Ptyhon 对象的属性名或方法名，搜索不到时再搜索 Jinja 变量**
-- **使用 **`**X["Y"]**`** 时，先搜索 Jinja 变量，搜索失败时，再搜索 Pythons 对象的属性名或方法名。**
+```python
+{{ NAME.upper()}}
+```
 
-所以，使用 `X.Y` 方式时需要小心一些，使用 `X["Y"]` 更保险。当然，使用哪种方式都无所谓，出错了也知道如何去调整。
+这里等于引用了字符串类型的对象的 upper() 方法(那个方法名后面的小括号可以胜率)，用以输出字符的所有大写字符。
+
+### 引用复杂变量
+
+Python 处理 YAML 数据时，实际上是将 YAML 格式数据转换为字典后进行处理的。所以 Jinja 模板引擎访问列表或字典类型的变量，有两种引用方式
+
+- 点引用
+  - **使用 `X.Y` 时，先搜索 Ptyhon 对象的属性名或方法名，搜索不到时再搜索 Jinja 变量**。
+- 括号引用
+  - **使用 `X["Y"]` 时，先搜索 Jinja 变量，搜索失败时，再搜索 Python 对象的属性名或方法名。**
+
+比如 `mylist=["a","b","c"]` 列表，在 Jinja 中既可以使用 `mylist[1]` 来访问第二个元素，也可以使用 `mylist.1` 来访问它。
+
+所以，使用 `X.Y` 方式时需要小心一些，**当我们引用字典时，一定要确定其中的属性名不要与 Python 中的方法名有冲突**。一般使用 `X["Y"]` 更保险。
+
 ## 变量的作用域
+
 如果是在 if、for 等语句块外进行的变量赋值，则可以在 if、for 等语句块内引用。例如：
 ```python
 {% set mylist = [1,2,3] %}
@@ -115,11 +142,11 @@ Jinja 模板引擎允许使用点 `.` 来访问列表或字典类型的变量，
 {{mystr}}
 ```
 最后一行渲染的结果是`hello`而不是`world`。
+
 # 运算符
 ## Math(算术) 运算
 
-- `**+**
-` # 将两个对象相加。通常对象是数字，但如果两者都是字符串或列表，您可以通过这种方式连接它们。然而，这不是连接字符串的首选方式！对于字符串连接，请查看 `~` 运算符。 `{{ 1 + 1 }}` 表达式的返回值为 2。
+- `+` # 将两个对象相加。通常对象是数字，但如果两者都是字符串或列表，您可以通过这种方式连接它们。然而，这不是连接字符串的首选方式！对于字符串连接，请查看 `~` 运算符。 `{{ 1 + 1 }}` 表达式的返回值为 2。
    - `+` 操作符也可用于字符串串联、列表相加，例如`"a"+"b"`得到”ab”，`[1,2]+[3,4]`得到`[1,2,3,4]`
 - `-` # 
 - `*` # 
@@ -150,12 +177,14 @@ Jinja 模板引擎允许使用点 `.` 来访问列表或字典类型的变量，
 - `and` #
 - `or` # 
 - `(expr)` # 
+
 ## 其他运算符
 
 - `in` # 成员测试，测试是否在容器内
 - `is` # 做 is 测试，参见后文
 - `|` # 过滤器，参见后文
 - `~` # 字符串串联
+
 ## 总结与说明
 
 - `in` 运算符可测试多种容器，常见的包括：
@@ -182,6 +211,7 @@ Jinja 模板引擎允许使用点 `.` 来访问列表或字典类型的变量，
 - Blocks(块)
 - Inclued(包含)
 - Import(导入)
+
 ## 条件判断
 Jinja 中可以使用 if...else... 语句进行条件判断，其语法为：
 ```
