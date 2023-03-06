@@ -360,17 +360,20 @@ docker:
 - **groups** # 默认值为 inbentory 下所有组及其组内的 host
 - **group_names** # 默认值为当前主机所属组的列表。
 - **inventory_hostname** # 默认值为 inventory 文件中配置的主机名称。即.ansible 的 hosts 文件的第一列内容
-- **inventory_dir**# 默认值为 ansible 保存 hosts 文件的目录的绝对路径。默认路径为/etc/ansible/
-- **play_hosts**# 默认值为当前 play 范围中可用的一组主机名
-- **role_path**# 默认值为当前 role 的目录的绝对路径
+- **inventory_dir** # 默认值为 ansible 保存 hosts 文件的目录的绝对路径。默认路径为/etc/ansible/
+- **play_hosts** # 默认值为当前 play 范围中可用的一组主机名
+- **role_path** # 默认值为当前 role 的目录的绝对路径
 
 应用实例：
+
 **groups\["{{ansible\_play\_name}}"]** # 获取当前 play 下的主机列表
 
 ## Fact Variables
 
-在 ansible 执行任务时，会默认执行名为 Gathering Facts 的任务，以获取目标主机的一些系统信息，如图所示。
+在 ansible 执行任务时，会默认执行名为 Gathering Facts 的任务，以获取目标主机的一些系统信息，如图所示
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/nsvz9y/1616125069706-0662e031-1bfe-478b-bb7d-09cb313f4fe0.jpeg)
+
 这些信息以变量的形式体现，每个变量都有其对应的值。可以通过命令 ansible all -m setup 获取这些信息。如下所示
 
 ansible_facts 字段下面的所有字段才是可以直接引用的变量

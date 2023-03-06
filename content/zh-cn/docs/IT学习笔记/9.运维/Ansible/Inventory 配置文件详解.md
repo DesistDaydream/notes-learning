@@ -228,16 +228,17 @@ ansible支持主机列表的正则匹配
 
 ansible all -m ping  # 所有默认inventory文件中的机器
 ansible "*" -m ping  # 同上
-ansible 121.28.13.* -m  ping  # 所有122.28.13.X机器
+ansible 121.28.13.X -m  ping  # 所有122.28.13.X机器
 ansible  web1:web2  -m  ping  # 所有属于组web1或属于web2的机器
 ansible  web1:!web2  -m  ping # 属于组web1，但不属于web2的机器
 ansible  web1&web2  -m  ping  # 属于组web1又属于web2的机器
 ansible webserver[0]  -m  ping    # 属于组webserver的第1台机器
 ansible webserver[0:5]  -m  ping  # 属于组webserver的第1到4台机器
-ansible "~(beta|web)\.example\.(com|org)"  -m ping
-[
-](https://blog.51cto.com/kusorz/1936708)
+ansible "~(beta|web).example.(com|org)"  -m ping
+
+[](https://blog.51cto.com/kusorz/1936708)
 # Inventory 参数详解
+
 > 参考：
 > - [官方文档,用户指南-传统目录-如何构建你的 Inventory-连接到主机:Inventory 参数](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#connecting-to-hosts-behavioral-inventory-parameters)
 
@@ -245,7 +246,7 @@ ansible "~(beta|web)\.example\.(com|org)"  -m ping
 
 ansible_connection	# 指定ansible与远程主机的connector(连接器)，默认为 ssh 的smart类型。'smart' 方式会根据是否支持 ControlPersist, 来判断'ssh' 方式是否可行.
 
-- smart、ssh、paramiko	# 这三种类型都是ssh连接器下的类型。默认为smart
+- smart、ssh、paramiko # 这三种类型都是ssh连接器下的类型。默认为smart
 - local
 - docker
 
@@ -258,10 +259,10 @@ General通用连接参数
 
 只适用于SSH连接所用参数
 
-- **ansible_sudo_pass **# sudo 密码(这种方式并不安全,我们强烈建议使用 --ask-sudo-pass)
+- **ansible_sudo_pass** # sudo 密码(这种方式并不安全,我们强烈建议使用 --ask-sudo-pass)
 - **ansible_sudo_exe** # sudo 命令路径(适用于1.8及以上版本)
-- **ansible_ssh_private_key_file **# ssh 使用的私钥文件.适用于有多个密钥,而你不想使用 SSH 代理的情况.
-- **ansible_shell_type	**#目标系统的shell类型.默认情况下,命令的执行使用 'sh' 语法,可设置为 'csh' 或 'fish'.
+- **ansible_ssh_private_key_file** # ssh 使用的私钥文件.适用于有多个密钥,而你不想使用 SSH 代理的情况.
+- **ansible_shell_type** # 目标系统的shell类型.默认情况下,命令的执行使用 'sh' 语法,可设置为 'csh' 或 'fish'.
 
 权限提升参数
 
@@ -271,7 +272,7 @@ General通用连接参数
 
 远程主机环境参数
 
-- **ansible_python_interprete **# 目标主机的 python 路径.适用于的情况: 系统中有多个 Python, 或者命令路径不是"/usr/bin/python",比如  \*BSD, 或者 /usr/bin/python
+- **ansible_python_interprete** # 目标主机的 python 路径.适用于的情况: 系统中有多个 Python, 或者命令路径不是"/usr/bin/python",比如  \*BSD, 或者 /usr/bin/python
    - 不是 2.X 版本的 Python.我们不使用 "/usr/bin/env" 机制,因为这要求远程用户的路径设置正确,且要求 "python" 可执行程序名不可为 python以外的名字(实际有可能名为python26). 与 ansible_python_interpreter 的工作方式相同,可设定如 ruby 或 perl 的路径....
 
 
@@ -284,7 +285,9 @@ ruby_module_host  ansible_ruby_interpreter=/usr/bin/ruby.1.9.3
 ```
 
 # 加密 Inventory 中的密码
+
 假如现在有如下主机清单
+
 ```
 [test]
 hw-cloud-xngy-jump-server-linux-2 ansible_host=192.168.0.249 ansible_port=10022
@@ -294,20 +297,26 @@ ansible_password={{ test_password }}
 ansible_become=yes
 ansible_become_password={{ test_become_password }}
 ```
+
 其中的密码，是通过变量引用的，而这些变量所在的文件是可以加密的，加密后，即可保证操作便捷的同时保证安全性
 我们可以在 Inventory 目录下创建一个 group_vars 目录，并在 group_vars 目录创建一个与 主机组名称同名的文件，效果如下：
+
 ```bash
 ../inventory/
 ├── group_vars
 │   └── test
 └── test
 ```
+
 在 group_vars/test 中，内容应该如下(其中的变量替换成自己的密码)：
+
 ```bash
 test_password: ${PASSWORD}
 test_become_password: ${PASSWORD}
 ```
+
 然后使用 `ansible-vault encrypt group_vars/test` 命令加密该文件，加密后的文件内容如下：
+
 ```bash
 $ANSIBLE_VAULT;1.1;AES256
 33393764306539363338646334396661323930396235303837663131366562303237666337643864
@@ -318,14 +327,18 @@ $ANSIBLE_VAULT;1.1;AES256
 33613239316237353839313632383530303638393966363133383834363662353135306563323635
 386564623764653966303265653136353165
 ```
+
 这时候，我们执行 Playbooks 时，如果不指定解密所需的密码，将会提示如下报错
+
 ```bash
 [lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible-playbook -i ../inventory/ variables.yaml 
 
 PLAY [test] *******************************************************************************************************************************************************************
 ERROR! Attempting to decrypt but no vault secrets found
 ```
+
 只需要添加 `--ask-vault-pass` 参数并输入密码，Ansible 即可在运行中解密文件，并获取其中的变量值
+
 ```bash
 [lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible-playbook -i ../inventory/ variables.yaml --ask-vault-pass 
 Vault password: 
