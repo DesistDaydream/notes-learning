@@ -62,7 +62,7 @@ Linux 和 Berkeley 软件发行版是实现 POSIX API 的操作系统的示例�
 
 Microsoft 已显示出对向后兼容 API 的坚定承诺，尤其是在其 Windows API（Win32）库中，因此较旧的应用程序可以使用称为“兼容模式”的可执行程序特定设置在新版 Windows 上运行。\[21]
 
-API 与应用程序二进制接口（ABI）的不同之处在于，API 是基于源代码的，而 ABI 是基于二进制的。例如，POSIX 提供 API，而 Linux Standard Base 提供 ABI。\[22] \[23]
+API 与应用程序二进制接口（ABI）的不同之处在于，API 是基于源代码的，而 ABI 是基于二进制的。例如，POSIX 提供 API，而 Linux Standard Base 提供 ABI。
 
 ### 远程 API
 
