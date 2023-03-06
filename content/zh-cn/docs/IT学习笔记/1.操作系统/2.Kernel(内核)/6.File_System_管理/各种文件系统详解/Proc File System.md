@@ -58,7 +58,7 @@ proc 文件系统不用于存储。其主要目的是为硬件，内存，运行
 - inode 字段表示对应 device 的 inode，0 表示内存映射区域没有关联的 inode，如未初始化的 BSS 数据段就是这种情况。
 - pathname 字段用于内存映射的文件，对于 ELF 格式的文件来说，可以通过命令 readelf -l 查看 ELF 程序头部的 Offset 字段，与 maps 文件的 offset 字段作对比。pathname 可能为空，表示匿名映射，这种情况下难以调试进程，如 gdb、strace 等命令。除了正常的文件路径之外，pathname 还可能是下面的值：
   - \[stack]     初始进程（主线程）的 stack
-  - \[stack:<tid>]     线程 ID 为 tid 的 stack.  对应于/proc/\[pid]/task/\[tid]/路径
+  - \[stack:\<tid>]     线程 ID 为 tid 的 stack.  对应于/proc/\[pid]/task/\[tid]/路径
   - \[vdso]    Virtual Dynamically linked Shared Object
   - \[heap]     进程的 heap
 
@@ -245,7 +245,7 @@ VmRSS # 也就是进程当前时刻占用的物理内存。与 statm 文件中�
 
 ## 进程间通信所用 Socket 信息
 
-**./tcp **# 所有的 TCP 连接信息。
+**./tcp** # 所有的 TCP 连接信息。
 **./tcp6** # 所有的基于 IPv6 的 TCP 连接信息。
 参考：[GitHub Linux 项目文档](https://github.com/torvalds/linux/blob/master/Documentation/networking/proc_net_tcp.rst)
 
@@ -282,9 +282,9 @@ root@lichenhao:~# cat /proc/net/tcp
 
 **当某一进程访问此软连接时，该软连接将指向该进程自己的 /proc/PID/ 目录。**
 
-# /proc/sys/\*
+# /proc/sys/
 
-**sys 目录是可写的，可以通过它来访问或修改内核的参数。详见 **[**Kernel 参数**](https://www.yuque.com/desistdaydream/learning/fsqn9p)** 文章**
+**sys 目录是可写的，可以通过它来访问或修改内核的参数。详见 [Kernel 参数](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/1.Linux%20Kernel/Kernel%20参数/Kernel%20参数.md) 文章**
 
 # /proc/stat
 

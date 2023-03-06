@@ -28,13 +28,13 @@ title: Kernel 参数
 # /proc/sys 目录的组成
 
 /proc/sys 目录下的每一个子目录，都表示一种内核参数的分类，大体可以分为如下几类：
-- **abi/** # execution domains & personalities
-- **debug/** # \<empty>
-- **dev/** # device specific information (eg dev/cdrom/info)
-- **fs/** # specific filesystems filehandle, inode, dentry and quota tuning binfmt_misc \<Kernel Support for miscellaneous Binary Formats (binfmt_misc)>
-- **kernel/** # global kernel info / tuning miscellaneous stuff
-- **net/** # networking stuff, for documentation look in: \<Documentation/networking/>
-- **proc/** # \<empty>
-- **sunrpc/** # SUN Remote Procedure Call (NFS)
-- **vm/** # memory management tuning buffer and cache management
-- **user/** # Per user per user namespace limits
+- **./abi/** # execution domains & personalities
+- **./debug/** # 空
+- **./dev/** # device specific information (eg dev/cdrom/info)
+- **./fs/** # specific filesystems filehandle, inode, dentry and quota tuning binfmt_misc \<Kernel Support for miscellaneous Binary Formats (binfmt_misc)>
+- **./kernel/** # global kernel info / tuning miscellaneous stuff
+- **./net/** # networking stuff, for documentation look in: \<Documentation/networking/>
+- **./proc/** # 空
+- **./sunrpc/** # SUN Remote Procedure Call (NFS)
+- **./vm/** # memory management tuning buffer and cache management
+- **./user/** # Per user per user namespace limits
