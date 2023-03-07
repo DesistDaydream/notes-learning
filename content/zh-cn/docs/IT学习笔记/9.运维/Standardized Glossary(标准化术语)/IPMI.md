@@ -4,7 +4,9 @@ title: IPMI
 
 # 概述
 
-> 参考：[Wiki，IPMI](https://en.wikipedia.org/wiki/Intelligent_Platform_Management_Interface)、[Wiki，BMC](https://en.wikipedia.org/wiki/Intelligent_Platform_Management_Interface#Baseboard_management_controller)
+> 参考：
+> [Wiki，IPMI](https://en.wikipedia.org/wiki/Intelligent_Platform_Management_Interface)
+> [Wiki，BMC](https://en.wikipedia.org/wiki/Intelligent_Platform_Management_Interface#Baseboard_management_controller)
 
 **IntelligentPlatformManagement Interface(智能平台管理接口，简称 IPMI) **是一组自动计算机子系统的计算机接口规范，可提供管理和监视功能，独立于主机系统的 CPU，固件（BIOS 或 UEFI）和操作系统。
 

@@ -62,5 +62,7 @@ TODO: Windows 中的变量好像不区分大小写？
 
 # 最佳实践
 
-设置代理
+## 设置代理
+
+PowerShell
 - `$env:HTTPS_PROXY="http://127.0.0.1:7890"`
