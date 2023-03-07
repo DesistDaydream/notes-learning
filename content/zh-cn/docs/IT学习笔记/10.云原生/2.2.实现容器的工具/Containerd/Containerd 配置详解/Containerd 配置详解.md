@@ -33,7 +33,7 @@ Containerd 是容器的守护者，一旦发生内存不足的情况，理想的
 
 # \[grpc] 配置表
 
-**address = <STRING>** # Containerd 监听的 GRPC 路径。`默认值：/run/containerd/containerd.sock`
+**address = \<STRING>** # Containerd 监听的 GRPC 路径。`默认值：/run/containerd/containerd.sock`
 
 # \[metrics] 配置
 
