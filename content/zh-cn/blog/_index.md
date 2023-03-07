@@ -1,6 +1,6 @@
 ---
-title: "Docsy Blog"
-linkTitle: "Blog"
+title: "博客"
+linkTitle: "博客"
 menu:
   main:
     weight: 30
@@ -11,4 +11,3 @@ blog 目录结构与 docs 目录结构一样，也可以通过目录实现页面
 This is the **blog** section. It has two categories: News and Releases.
 
 Files in these directories will be listed in reverse chronological order.
-
