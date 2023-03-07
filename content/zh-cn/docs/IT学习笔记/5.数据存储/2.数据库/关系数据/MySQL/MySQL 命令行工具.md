@@ -25,10 +25,10 @@ ERROR 1046 (3D000): No database selected
 
 **OPTIONS：**
 
-- **-h, --host <HostName> **# 指定要连接的 mysql 主机。如果链接本机 mysql，可以省略。
-- **-P, --port <PORT> **# 指定要连接的 mysql 的端口。默认值：`3306`
-- **-u, --user <UserName> **# 指定要登录 mysql 的用户名
-- **-p, --password <PASSWORD>** # 使用密码来登录。如果指定要登录 mysql 的用户密码为空，则该选项可省
+- **-h, --host \<HostName>** # 指定要连接的 mysql 主机。如果链接本机 mysql，可以省略。
+- **-P, --port \<PORT>** # 指定要连接的 mysql 的端口。默认值：`3306`
+- **-u, --user \<UserName>** # 指定要登录 mysql 的用户名
+- **-p, --password \<PASSWORD>** # 使用密码来登录。如果指定要登录 mysql 的用户密码为空，则该选项可省
 
 ## 命令行模式
 
@@ -43,7 +43,7 @@ ERROR 1046 (3D000): No database selected
 
 在 mysql 的交互模式中有一组 mysql 程序自带的命令，用以 控制输出格式、检查、获取数据信息 等等，这些命令以 `\` 开头，不过也有与之相对应的字符串命令
 
-- **\u, use <DBName> **# 选择想要操作的数据库。与 MySQL 的 SQL 中的 use 语句功能一致
+- **\u, use \<DBName>** # 选择想要操作的数据库。与 MySQL 的 SQL 中的 use 语句功能一致
 
 ### 基础示例
 
@@ -73,7 +73,7 @@ ERROR 1046 (3D000): No database selected
     | Select_priv           | enum('N','Y') | NO   |     | N       |       |
     .......
 
-- select Host,db from db; #显示 db 表中，Host 和 Db 列及其内容，效果如下
+- select Host,db from db; # 显示 db 表中，Host 和 Db 列及其内容，效果如下
 
 
     MariaDB [mysql]> SELECT Host,db from db;
@@ -89,4 +89,4 @@ ERROR 1046 (3D000): No database selected
 
 EXAMPLE
 
-- mysqladmin -u root -p password "my_password" #修改 root 密码，密码为：my_password。如果默认密码为空，则可以不加-p。
+- mysqladmin -u root -p password "my_password" # 修改 root 密码，密码为：my_password。如果默认密码为空，则可以不加-p。

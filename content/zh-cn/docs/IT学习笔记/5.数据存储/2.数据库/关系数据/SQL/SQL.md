@@ -250,16 +250,16 @@ primary key (`id`)
 
 EXAMPLE
 
-- truncate table inventory; #清空 emp 表，这个命令删除上万条记录特别快，因为他不记录日志
+- truncate table inventory; # 清空 emp 表，这个命令删除上万条记录特别快，因为他不记录日志
 
 ## alter # 修改数据库或者数据表
 
-**alter database NAME;** #修改数据库的信息
-**alter table NAME;** #修改数据表的信息
+**alter database NAME;** # 修改数据库的信息
+**alter table NAME;** # 修改数据表的信息
 EXAMPLE
 
-- alter table inventory add column `create_time` timestamp; #修改 inventory 表，添加名为 create_time 的列
-- alter table inventory drop column `create_time` #删除 inventory 表中名为 create_time 的列
+- alter table inventory add column `create_time` timestamp; # 修改 inventory 表，添加名为 create_time 的列
+- alter table inventory drop column `create_time` # 删除 inventory 表中名为 create_time 的列
 
 # 数据操作语句
 
