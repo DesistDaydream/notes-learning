@@ -230,7 +230,7 @@ s3fs my-ocs-img /home/partimag -o passwd_file=/root/.passwd-s3fs -o url="https:/
 
 # 还原Linux系统
 
-在选择执行操作前，所有步骤与[封装Linux系统](#封装Linux系统)前面的步骤一样
+在选择执行操作前，所有步骤与[封装Linux系统](#封装linux系统)前面的步骤一样
 
 ## 选择要执行的操作
 

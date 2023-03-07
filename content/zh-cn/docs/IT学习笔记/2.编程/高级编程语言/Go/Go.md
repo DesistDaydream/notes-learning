@@ -39,8 +39,7 @@ Go 是一种开源编程语言，可以轻松构建 **simple(简单)**、**relia
 
 - [B 站-幼麟实验室-Golang 合辑](https://www.bilibili.com/video/BV1hv411x7we?spm_id_from=333.999.0.0&vd_source=708696360de7266de8f3911eef0f7448)
 
-[
-](https://github.com/avelino/awesome-go)
+https://github.com/avelino/awesome-go
 
 # Hello World
 
@@ -81,27 +80,27 @@ Go 语言非常简单，只有 25 个`关键字(Keywords)`可以使用，记住�
 4. **const** # 语言基础里面的常量申明
 5. **continue** # 用在 for 控制结构中，用以忽略本次循环的后续所有逻辑，执行下一次循环
 6. **default** # 控制结构
-7. **defer **# 用于在函数退出之前执行某语句的功能
+7. **defer** # 用于在函数退出之前执行某语句的功能
 8. **fallthrough** # 控制结构
 9. **for** # 控制结构
-10. **func **#\*\* \*\*用于定义函数和方法
-11. **go **# 用于并发
+10. **func** # 用于定义函数和方法
+11. **go** # 用于并发
 12. **goto** 控制结构
-13. **if-else **#\*\* \*\*控制结构
+13. **if-else** # 控制结构
 14. **import** 用于定义该文件引用某个包
 15. **interface** # 用于定义接口
-16. **map **# 用于声明 map 类型数据
+16. **map** # 用于声明 map 类型数据
 17. **package** # 用于定义该文件所属的包
 18. **range** # 用于读取 slice、map、channel 数据
-19. **return **# 用于从函数返回。有时候也用来直接跳出当前函数，回到主程序继续执行
+19. **return** # 用于从函数返回。有时候也用来直接跳出当前函数，回到主程序继续执行
 20. **select** # 用于选择不同类型的通讯
-21. **struct **# 用于定义抽象数据类型
+21. **struct** # 用于定义抽象数据类型
 22. **switch** # 控制结构
-23. **type **# 用于 Type Declarations(类型声明)，有两种形式：
+23. **type** # 用于 Type Declarations(类型声明)，有两种形式：
 24. Definitions(定义) 自定义类型
 25. Declarations(声明) 一个类型的别名。
     1. 其实所谓的类型的别名，也可以当作一种自定义的类型。
-26. **var **# 用于 Declarations(声明) 变量
+26. **var** # 用于 Declarations(声明) 变量
 
 # Go 语言规范
 

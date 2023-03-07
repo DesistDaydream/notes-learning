@@ -6,7 +6,8 @@ weight: 20
 
 # 概述
 > 参考：
-> -
+> - [官网](https://commonmark.org/)
+> - [官方规范](https://spec.commonmark.org/)
 
 
 # Markdown 中的 LaTex 数学公式
