@@ -75,28 +75,25 @@ EXAMPLE
 COMMAND:
 
 - df # 显示 docker 系统的磁盘使用情况，效果如下：
-
-
-    [root@master-1 ~]# docker system df
-    TYPE                TOTAL               ACTIVE              SIZE                RECLAIMABLE
-    Images              11                  10                  1.043GB             96.12MB (9%)
-    Containers          34                  18                  4.588kB             2.294kB (50%)
-    Local Volumes       2                   2                   152.8MB             0B (0%)
-    Build Cache         0                   0                   0B                  0B
-
+```bash
+~]# docker system df
+TYPE                TOTAL               ACTIVE              SIZE                RECLAIMABLE
+Images              11                  10                  1.043GB             96.12MB (9%)
+Containers          34                  18                  4.588kB             2.294kB (50%)
+Local Volumes       2                   2                   152.8MB             0B (0%)
+Build Cache         0                   0                   0B                  0B
+```
 - events # Get real time events from the server
 - info # 等同于 docker info 命令
 - prune # 删除未使用的数据。删除内容如下
-
-
-    [root@lichenhao ~]# docker system prune
-    WARNING! This will remove:
-      - all stopped containers
-      - all networks not used by at least one container
-      - all dangling images
-      - all dangling build cache
-
-EXAMPLE
+```bash
+~]# docker system prune
+WARNING! This will remove:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all dangling images
+  - all dangling build cache
+```
 
 ## volume # 管理 docker 的卷
 
