@@ -9,7 +9,7 @@ title: strace 工具
 > - [GitHub 项目，strace/strace](https://github.com/strace/strace)
 > - [官网](https://strace.io/)
 
-**strace **是一个用来跟踪 **system calls(系统调用)** 和 **signals(信号)** 的工具。
+**strace** 是一个用来跟踪 **system calls(系统调用)** 和 **signals(信号)** 的工具。
 
 在最简单的情况下，strace 会运行指定的命令，直到退出为止。 它截获并记录 **由进程调用的系统调用** 和 **由进程接收的信号**。 每个系统调用的名称，其参数及其返回值都会在 标准错误 或使用 -o 选项指定的文件上显示。
 
@@ -20,7 +20,9 @@ strace 是有用的诊断，说明和调试工具。系统管理员，诊断人�
 ### 追踪到系统调用时输出的信息
 
 下面是一个最基本，最简单的追踪，strace 程序执行时，输出的每一行内容都是一个 syscall(系统调用)。基本格式如下：
-`**SyscallName(Parameter) = ReturnValue**`
+
+`SyscallName(Parameter) = ReturnValue`
+
 假如我追踪 cat /dev/null 命令，则输出中有这么一段：
 
 ```bash
@@ -37,7 +39,9 @@ openat(AT_FDCWD, "123", O_RDONLY)       = -1 ENOENT (No such file or directory)
 ### 追踪到信号时输出的信息
 
 如果追踪到信号，则输出内容的基本格式如下：
-`--- SignalName{si_signo=SignalName, si_code=SI_USER, si_pid=PID, ...} ---`
+
+`SignalName{si_signo=SignalName, si_code=SI_USER, si_pid=PID, ...}`
+
 假如我同时最总两个进程，并像其中一个进程发送了 SIGTERM 信号，则输出中有这么一段：
 
 ```bash
@@ -55,6 +59,7 @@ strace -c \[-df] \[-I n] \[-b execve] \[-e expr]... \[-O overhead] \[-S sortby] 
 ### General 通用选项
 
 **-e EXPR** # 用来指定要追踪的事件以及如何追踪。
+
 EXPR(表达式) 的格式为 `QUALIFIER=[!]VALUE[,VALUE...]`
 
 - **QUALIFIER(限定词)** # 可用的限定词有 trace、abbrev、verbose、raw、signal、read、write、fault、inject、status、quiet、decode-fds、kvm。`默认值：trace`。

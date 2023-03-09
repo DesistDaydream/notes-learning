@@ -8,7 +8,8 @@ title: dd 生成指定大小的文件
 
 > 参考：<https://blog.csdn.net/menogen/article/details/38059671>
 
-**dd \[OPTIONS\[=FLAGS]]**
+**dd [OPTIONS[=FLAGS]]**
+
 OPTIONS
 
 - bs=BYTES # 每次读取和写入的字节数
@@ -43,7 +44,7 @@ FLAGS
 # EXAMPLE
 
 - 测试当前磁盘 写入文件 的速度
-  - **dd if=/dev/zero of=testdd bs=1M count=1000 **
+  - **dd if=/dev/zero of=testdd bs=1M count=1000**
 - 测试当前磁盘 纯写入文件 的速度，即不使用缓存
   - **dd if=/dev/zero of=testdd bs=1M count=1024 oflag=sync,direct,nonblock**
 - 测试当前磁盘 纯读取文件 的速度，即不使用缓存

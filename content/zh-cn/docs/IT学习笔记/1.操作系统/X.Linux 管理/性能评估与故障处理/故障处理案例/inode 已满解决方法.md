@@ -109,26 +109,29 @@ Linux 的 inode 节点中，记录了文件的类型、大小、权限、所有�
 find / -xdev -printf '%h\n' | sort | uniq -c | sort -k 1 -n
 
 今天 login server 的一个网站，发现 login 后没有生成 session。根据以往经验，一般是空间已满导致 session 文件生成失败。
-
-    df -h
-    Filesystem                    Size  Used Avail Use% Mounted on
-    /dev/mapper/dev01-root         75G   58G   14G  82% /
-    udev                          2.0G  4.0K  2.0G   1% /dev
-    tmpfs                         396M  292K  396M   1% /run
-    none                          5.0M     0  5.0M   0% /run/lock
-    none                          2.0G  4.0K  2.0G   1% /run/shm
-    /dev/sda1                     228M  149M   68M  69% /boot
+```bash
+df -h
+Filesystem                    Size  Used Avail Use% Mounted on
+/dev/mapper/dev01-root         75G   58G   14G  82% /
+udev                          2.0G  4.0K  2.0G   1% /dev
+tmpfs                         396M  292K  396M   1% /run
+none                          5.0M     0  5.0M   0% /run/lock
+none                          2.0G  4.0K  2.0G   1% /run/shm
+/dev/sda1                     228M  149M   68M  69% /boot
+```
 
 空间剩余 14G，可以排除空间已满的情况。导致文件生成失败还有另一个原因，就是文件索引节点 inode 已满。
 
-    df -i
-    Filesystem                    Inodes   IUsed  IFree IUse% Mounted on
-    /dev/mapper/dev01-root       4964352 4964352      0  100% /
-    udev                          503779     440 503339    1% /dev
-    tmpfs                         506183     353 505830    1% /run
-    none                          506183       5 506178    1% /run/lock
-    none                          506183       2 506181    1% /run/shm
-    /dev/sda1                     124496     255 124241    1% /boot
+```bash
+df -i
+Filesystem                    Inodes   IUsed  IFree IUse% Mounted on
+/dev/mapper/dev01-root       4964352 4964352      0  100% /
+udev                          503779     440 503339    1% /dev
+tmpfs                         506183     353 505830    1% /run
+none                          506183       5 506178    1% /run/lock
+none                          506183       2 506181    1% /run/shm
+/dev/sda1                     124496     255 124241    1% /boot
+```
 
 inodes 占用 100%，果然是这个问题。
 
@@ -152,11 +155,13 @@ sudo find /home -type f -size 0 -exec rm {} ;
 
 删除后，inode 的使用量减少为 19%，可以正常使用了。
 
-    df -i
-    Filesystem                    Inodes  IUsed   IFree IUse% Mounted on
-    /dev/mapper/dev01-root       4964352 940835 4023517   19% /
-    udev                          503779    440  503339    1% /dev
-    tmpfs                         506183    353  505830    1% /run
-    none                          506183      5  506178    1% /run/lock
-    none                          506183      2  506181    1% /run/shm
-    /dev/sda1                     124496    255  124241    1% /boot
+```bash
+df -i
+Filesystem                    Inodes  IUsed   IFree IUse% Mounted on
+/dev/mapper/dev01-root       4964352 940835 4023517   19% /
+udev                          503779    440  503339    1% /dev
+tmpfs                         506183    353  505830    1% /run
+none                          506183      5  506178    1% /run/lock
+none                          506183      2  506181    1% /run/shm
+/dev/sda1                     124496    255  124241    1% /boot
+```

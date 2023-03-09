@@ -1,0 +1,30 @@
+{
+  "statusBarOrder": [],
+  "ribbonBarOrder": [],
+  "fileExplorerOrder": {
+    "/": [
+      "_index.html",
+      "about",
+      "blog",
+      "docs",
+      "obsidian模板",
+      "featured-background.jpg"
+    ],
+    "docs/IT学习笔记/1.操作系统/X.Linux 管理": [
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/_index.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux管理.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 内核管理工具",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 网络管理工具",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 文本处理",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/GNU C Library 管理工具.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 管理案例"
+    ]
+  },
+  "actionBarOrder": {},
+  "autoHide": false,
+  "autoHideDelay": 2000,
+  "dragDelay": 200
+}
