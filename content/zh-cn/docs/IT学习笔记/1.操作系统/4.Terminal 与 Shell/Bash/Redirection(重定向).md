@@ -8,14 +8,16 @@ title: Redirection(重定向)
 
 用一个简单的例子来理解一下什么是重定向
 
-    [root@ansible ~]# ls
-    anaconda-ks.cfg  playbook  scripts
-    [root@ansible ~]# ls > dirlist
-    [root@ansible ~]# cat dirlist
-    anaconda-ks.cfg
-    dirlist
-    playbook
-    scripts
+```bash
+~]# ls
+anaconda-ks.cfg  playbook  scripts
+~]# ls > dirlist
+~]# cat dirlist
+anaconda-ks.cfg
+dirlist
+playbook
+scripts
+```
 
 这个例子就是将 ls 命令的标准输出的内容，重定向到 dirlist 文件中。(默认一个命令执行时，输出内容会打印在屏幕上，但是重定向后，将内容写入文件中)
 
@@ -49,17 +51,19 @@ EXAMPLE
 
 EXAMPLE
 
-    # 将某个程序产生的标准输出和标注错误分别重定向到不同文件
-    [root@ansible te]# ls a.txt b.txt
-    ls: cannot access b.txt: No such file or directory
-    a.txt
-    [root@ansible te]# ls a.txt b.txt 1> stdout.log 2> errout.log
-    [root@ansible te]# ls
-    a.txt  errout.log  stdout.log
-    [root@ansible te]# cat errout.log
-    ls: cannot access b.txt: No such file or directory
-    [root@ansible te]# cat stdout.log
-    a.txt
+```bash
+# 将某个程序产生的标准输出和标注错误分别重定向到不同文件
+[root@ansible te]# ls a.txt b.txt
+ls: cannot access b.txt: No such file or directory
+a.txt
+[root@ansible te]# ls a.txt b.txt 1> stdout.log 2> errout.log
+[root@ansible te]# ls
+a.txt  errout.log  stdout.log
+[root@ansible te]# cat errout.log
+ls: cannot access b.txt: No such file or directory
+[root@ansible te]# cat stdout.log
+a.txt
+```
 
 ## Appending Redirected Output 重定向输出(追加方式)
 
@@ -71,7 +75,7 @@ EXAMPLE
 
 语法：
 
-COMMAND > WORD 2>&1 #标准错误的信息传递给标准输出通道。&1 表示 标注输出通道。同理 1>&2 反过来理解即可。
+COMMAND > WORD 2>&1 # 标准错误的信息传递给标准输出通道。&1 表示 标注输出通道。同理 1>&2 反过来理解即可。
 
 EXAMPLE
 
@@ -207,11 +211,15 @@ ubuntu$ ./test.sh >log.txt./test.sh: 行 7: whatthis: 未找到命令
 
 例如，对于前面的 test.sh 脚本，我们通过下面的步骤看到它至少打开了三个文件描述符：
 
-./test.sh #运行脚本 ps -ef|grep test.sh #重新打开命令串口，使用 ps 命令找到 test.sh 的 pidhyb 5270 4514 0 19:20 pts/7 00:00:00 /bin/bash ./test.shhyb 5315 5282 0 19:20 pts/11 00:00:00 grep --color=auto test.sh
+./test.sh # 运行脚本
+
+ps -ef|grep test.sh # 重新打开命令串口，使用 ps 命令找到 test.sh 的 pidhyb 5270 4514 0 19:20 pts/7 00:00:00 /bin/bash ./test.shhyb 5315 5282 0 19:20 pts/11 00:00:00 grep --color=auto test.sh
 
 可以看到 test.sh 的 pid 为 5270，进入到相关 fd 目录：
 
-cd /proc/5270/fd #进程 5270 所有打开的文件描述符信息都在此 ls -l #列出目录下的内容 0 -> /dev/pts/7 1 -> /dev/pts/7 2 -> /dev/pts/7 255 -> /home/hyb/workspaces/shell/test.sh
+cd /proc/5270/fd # 进程 5270 所有打开的文件描述符信息都在此
+
+ls -l # 列出目录下的内容 0 -> /dev/pts/7 1 -> /dev/pts/7 2 -> /dev/pts/7 255 -> /home/hyb/workspaces/shell/test.sh
 
 可以看到，test.sh 打开了 0，1，2 三个文件描述符。同样的，如果有兴趣，也可以查看其他运行进程的文件描述符打开情况，除非关闭了否则都会有这三个文件描述符。
 
@@ -311,4 +319,4 @@ EOF
 
 OPTIONS
 
-- **-a, --append **# 将读取到内容追加到文件中，而不是覆盖。等效于 `>>` 符号
+- **-a, --append** # 将读取到内容追加到文件中，而不是覆盖。等效于 `>>` 符号

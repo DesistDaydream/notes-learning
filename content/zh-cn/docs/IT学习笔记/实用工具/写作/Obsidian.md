@@ -5,6 +5,24 @@ title: Obsidian
 
 > 参考：
 
+## 自定义排序目录
+
+https://forum.obsidian.md/t/file-explorer-custom-sort/1602
+
+解决方案：
+
+https://forum.obsidian.md/t/file-explorer-custom-sort/1602/212
+
+-   Install BRAT from community plugin panel  
+    and then install Bartender beta plugin using BRAT  
+    [https://github.com/nothingislost/obsidian-bartender 2](https://github.com/nothingislost/obsidian-bartender)  
+    [https://github.com/TfTHacker/obsidian42-brat](https://github.com/TfTHacker/obsidian42-brat)
+-   then, step 1-2-3  
+    ![image](https://forum.obsidian.md/uploads/default/original/3X/9/1/9150dde8b90e4a93b6edc58cd4cc51c9f4f61abb.png)
+-   do not forget step 3  
+    ![image](https://forum.obsidian.md/uploads/default/original/3X/2/d/2d251736195adb913c336f7d309be7ab7c4f25ef.png)
+
+then you can drag as you like
 
 
 # 关联文件与配置

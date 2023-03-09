@@ -21,6 +21,91 @@
       "docs/IT学习笔记/1.操作系统/X.Linux 管理/GNU C Library 管理工具.md",
       "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理",
       "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 管理案例"
+    ],
+    "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具": [
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/_index.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/CPU 管理工具.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/Memory 管理工具.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/文件与文件系统管理工具",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/procps 工具集.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/psmisc 工具集.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/sysstat 工具集.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/strace 工具.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/perf 性能分析工具",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/BCC 工具集.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/bpftrace 工具.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit"
+    ],
+    "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具": [
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具/_index.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具/Cockpit.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具/Cockpit 介绍.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具": [
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/_index.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/磁盘与文件系统管理工具.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/文件系统管理工具.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/dd 生成指定大小的文件.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/pt-ioprofile.md"
+    ],
+    "docs/IT学习笔记/实用工具": [
+      "docs/IT学习笔记/实用工具/_index.md",
+      "docs/IT学习笔记/实用工具/安装操作系统",
+      "docs/IT学习笔记/实用工具/Windows实用工具",
+      "docs/IT学习笔记/实用工具/Terminal(终端)",
+      "docs/IT学习笔记/实用工具/IDE",
+      "docs/IT学习笔记/实用工具/远程管理",
+      "docs/IT学习笔记/实用工具/即时通信与延时通信.md",
+      "docs/IT学习笔记/实用工具/网站搭建",
+      "docs/IT学习笔记/实用工具/下载.md",
+      "docs/IT学习笔记/实用工具/写作",
+      "docs/IT学习笔记/实用工具/手机.md",
+      "docs/IT学习笔记/实用工具/云盘.md",
+      "docs/IT学习笔记/实用工具/浏览器",
+      "docs/IT学习笔记/实用工具/开源软件洞察.md"
+    ],
+    "docs/IT学习笔记/实用工具/Terminal(终端)": [
+      "docs/IT学习笔记/实用工具/Terminal(终端)/_index.md",
+      "docs/IT学习笔记/实用工具/Terminal(终端)/Terminal(终端).md",
+      "docs/IT学习笔记/实用工具/Terminal(终端)/X Manager.md",
+      "docs/IT学习笔记/实用工具/Terminal(终端)/X Manager"
+    ],
+    "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell": [
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/_index.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/4.Terminal 与 Shell.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash 变量.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/exec,xargs,管道符等组合命令.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash 操作历史记录.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash 快捷键.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash 命令.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Job(任务)控制.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Redirection(重定向).md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Windows_Shell"
+    ],
+    "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言": [
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/_index.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/Shell 编程语言.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/变量.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/控制结构",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/数组.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/函数.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/控制结构.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/set 命令.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/Shell 命令行参数处理.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash": [
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/_index.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/source，sh，bash 等执行命令的工具.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/Bash 变量.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/Bash 操作历史记录.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/Bash 快捷键.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/Bash 命令.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/exec,xargs,管道符等组合命令.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/Job(任务)控制.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/Redirection(重定向).md"
     ]
   },
   "actionBarOrder": {},

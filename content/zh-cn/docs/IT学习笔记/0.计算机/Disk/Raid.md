@@ -36,6 +36,15 @@ Raid 5 等的奇偶校验机制，是纠删码的最佳实践
 - 直写：在配置界面中一般有“Write Through”等选项。使用此策略后，RAID 卡向虚拟磁盘直接写入数据，不经过 Cache。当磁盘子系统接收到所有传输数据后，控制器将给主机返回数据传输完成信号。此种方式不要求 RAID 卡支持数据掉电保护功能，即使超级电容故障，也无影响。该写策略的缺点是写入速度较低。。
 - 与 BBU 相关的回写：在配置界面中一般有“Write Back with BBU”等选项。使用此策略后，当 RAID 卡 BBU 在位且状态正常时，RAID 卡到虚拟磁盘的写操作会经过 Cache 中转（即回写方式）；当 RAID 卡 BBU 不在位或 BBU 故障时，RAID 卡到虚拟磁盘的写操作会自动切换为不经过 Cache 的直接写入（即写通方式）。
 
-# H3C 阵列配置
+# 阵列卡
+
+## JBOD
+
+> 参考：
+> - [Wiki，Non-RAID_drive_architectures](https://en.wikipedia.org/wiki/Non-RAID_drive_architectures)
+
+**Just a Bunch Of Disks(只是一堆磁盘，简称 JBOD)** 是
+
+## H3C 阵列配置
 
 [H460&P460&P2404&P4408 系列](http://www.h3c.com/cn/d_202201/1526857_30005_0.htm#_Toc92721209) 阵列卡

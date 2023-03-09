@@ -56,18 +56,18 @@ Tracing process ID 1833
 
 - **--aggregate, -a** # 聚合结果的方式，可用的值有 sum 与 avg。`默认值：sum`
 - 如果求和，则每个单元格将包含其中的值的总和。如果 avg，则每个单元格将包含其中值的平均值。
-- **--cell, -c <STRING>** # 统计的数据。`默认值：times`
+- **--cell, -c \<STRING>** # 统计的数据。`默认值：times`
   - count  # I/O 次数
   - sizes  # I/O 大小
   - times  # I/O 时间
-- **--group-by, -g <STRING>** # 对输出结果进行分组 `默认值：filename`
+- **--group-by, -g \<STRING>** # 对输出结果进行分组 `默认值：filename`
   - all # 所有输出都在一行
   - filename # 每个文件名输出一行
   - pid # 每个进程 ID 输出一行
-- **--profile-pid <INT>** # 指定要分析的进程的 PID，该值会覆盖 --profile-process 选项。
-- **--profile-process <STRING>** # 指定要分析的进程名称。`默认值：mysqld`
-- **--run-time <INT>** # 程序运行时长，单位秒。`默认值：30`
-- **--save-samples <FILE>** # 将 strace 与 lsof 的输出结果保存到指定的 FILE 中。
+- **--profile-pid \<INT>** # 指定要分析的进程的 PID，该值会覆盖 --profile-process 选项。
+- **--profile-process \<STRING>** # 指定要分析的进程名称。`默认值：mysqld`
+- **--run-time \<INT>** # 程序运行时长，单位秒。`默认值：30`
+- **--save-samples \<FILE>** # 将 strace 与 lsof 的输出结果保存到指定的 FILE 中。
 
 **EXAMPLE**
 
@@ -75,9 +75,12 @@ Tracing process ID 1833
 
 ## 问题
 
-原文：<https://tusundong.top/post/centos7-pt-ioprofile.html>
+原文: https://tusundong.top/post/centos7-pt-ioprofile.html
+
 最近在排查 io wait 需要使用到 pt-ioprofile，结果发现在 CentOS7.8 下执行没有结果。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/zgyenr/1622780378714-e4fa5820-6042-4558-9cbd-51fc885b6dc0.png)
+
 最后在大神`@轻松的鱼`指导下，修改源码，编辑 /usr/bin/pt-ioprofile 文件，添加此行
 
     • /^strace: Process/ { mode = "strace"; }
