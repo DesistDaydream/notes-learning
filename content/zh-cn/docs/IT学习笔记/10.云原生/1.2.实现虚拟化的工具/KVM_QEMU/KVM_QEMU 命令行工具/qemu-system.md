@@ -1,14 +1,22 @@
 ---
-title: qemu-system-x86_64
+title: qemu-system
 ---
 
 # 概述
 
 > 参考：
 > - [官方 Manual(手册)，qemu-system-x86_64](https://www.qemu.org/docs/master/system/qemu-manpage.html)
-> - [官方文档，系统模拟-调用](https://www.qemu.org/docs/master/system/invocation.html)
+> - [官方文档，系统模拟-调用](https://www.qemu.org/docs/master/system/invocation.html)（这个其实也是 man 手册）
 
-注意：在 CentOS 系统中，该二进制文件的名字是 qemu-kvm，并且是一个在 /usr/local/bin/qemu-kvm 指向 /usr/libexec/qemu-kvm 的软链接
+qemu-system 的名称在不同的 CPU 架构上有不同的名称：
+
+- amd64 架构
+  - qemu-system-x64_64
+- arm64 架构
+  - qemu-system-aarch64
+  - qemu-system-arm
+
+注意：在 CentOS 系统中，该二进制文件的名字是 qemu-kvm，是一个在 /usr/local/bin/qemu-kvm 这个位置并指向 /usr/libexec/qemu-kvm 的软链接
 
 # Syntax(语法)
 

@@ -6,7 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
-> - [官网](https://www.linux-kvm.org/page/Main_Page)
+> - [KVM 官网](https://www.linux-kvm.org/page/Main_Page)
 > - [Ubuntu 官方文档，虚拟化-qemu](https://ubuntu.com/server/docs/virtualization-qemu)
 
 ## KVM 背景
@@ -20,6 +20,7 @@ weight: 1
 - 它是完全开源的。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/zuowkm/1616124035086-2c826a6e-2fd2-402b-babd-06bfe2380e3d.png)
+
 KVM 实际是 Linux 内核提供的虚拟化架构，可将内核直接充当 Hypervisor 来使用。KVM 需要宿主机的 CPU 本身支持虚拟化扩展，如 intel VT 和 AMD AMD-V 技术。KVM 自 2.6.20 版本后已合入主干并发行。除了支持 x86 的处理器，同时也支持 S/390,PowerPC,IA-61 以及 ARM 等平台。
 
 KVM 包含包含两个内核模块
@@ -27,20 +28,24 @@ KVM 包含包含两个内核模块
 1. kvm 用来实现核心虚拟化功能
 2. kvm-intel # 与处理器强相关的模块
 
-KVM 本身只提供了 CPU 和 Memory 的虚拟化，并暴露了一个\*\* **`**/dev/kvm**` 设备，以供宿主机上的用户空间的程序访问(比如 下文提到的 QEMU)。用户空间的程序通过 **/dev/kvm\*\* 接口可以实现多种功能：
+KVM 本身只提供了 CPU 和 Memory 的虚拟化，并暴露了一个 **`/dev/kvm`** 设备，以供宿主机上的用户空间的程序访问(比如 下文提到的 QEMU)。用户空间的程序通过 **/dev/kvm** 接口可以实现多种功能
 
 ## QEMU 背景
 
 > 参考：
-> - QEMU 官网：<https://www.qemu.org/>
+>
+> - [QEMU 官网](https://www.qemu.org/)
 
 QEMU 是一个通过软件实现的完全虚拟化程序，通过动态二进制转换来模拟 CPU，并模拟一系列的硬件，使虚拟机认为自己和硬件直接打交道，其实是同 QEMU 模拟出来的硬件打交道，QEMU 再将这些指令翻译给真正硬件进行操作。通过这种模式，虚拟机可以和主机上的硬盘，网卡，CPU，CD-ROM，音频设备和 USB 设备进行交互。但由于所有指令都需要经过 QEMU 来翻译，因而性能会比较差
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/zuowkm/1616124035102-78899618-45f3-4dcc-9de1-9c80ecd532cb.jpeg)
 
 ## KVM/QEMU 诞生
 
 ![图片来源：RedHat8 Virtualization Architecture 在 KVM/QEMU Storage Stack Performance Discussion 这篇文章中，作者还画了一个非常形象的图，可以作为参考，下面缩小的图就是](https://notes-learning.oss-cn-beijing.aliyuncs.com/zuowkm/1616124035098-45602829-f8bc-4f49-b65d-56b8dba6c466.png "图片来源：RedHat8 Virtualization Architecture 在 KVM/QEMU Storage Stack Performance Discussion 这篇文章中，作者还画了一个非常形象的图，可以作为参考，下面缩小的图就是")
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/zuowkm/1616124035057-cdeb1319-ee83-4674-99c3-70a16da96211.jpeg)
+
 从前面的背景介绍可知，KVM 实现了 CPU 和 Memory 的虚拟化，但 KVM 并不能模拟其他设备，所以需要其他东西来支持其他设备的模拟；而 QEMU 是通过纯软件实现的一套完整的虚拟化，但是性能非常低下。所以 KVM 与 QEMU 天然得相辅相成，KVM 的开发者选择了比较成熟的开源虚拟化软件 QEMU 来模拟 I/O 设备(网卡，磁盘等)，最后形成了 KVM/QEMU。
 
 在 KVM/QEMU 中，KVM 运行在内核空间，QEMU 运行在用户空间，实际模拟创建、管理各种虚拟硬件，QEMU 将 KVM 整合了进来，通过 ioctl() 系统调用来调用 /dev/kvm 设备，从而将 CPU 指令的部分交给内核模块来做，KVM 实现了 CPU 和 Memory 的虚拟化，QEMU 模拟 IO 设备(磁盘，网卡，显卡等)，KVM 加上 QEMU 后就是完整意义上的服务器虚拟化。
@@ -60,11 +65,13 @@ QEMU-KVM，是 QEMU 的一个特定于 KVM 加速模块的分支，里面包含�
 
 KVM/QEMU 主要通过以下组件来实现完整的虚拟化功能
 
-- **kvm.ko.xz **# kvm 内核模块。用来模拟 CPU 与 RAM。
+- **kvm.ko.xz** # kvm 内核模块。用来模拟 CPU 与 RAM。
 - **/dev/kvm** # 一个字符设备(也是一个接口)。供用户空间的程序使用 `ioctl()` 系统调用来访问 kvm 模块
-- **qemu-kvm** # 一个二进制文件。用来调用`/dev/kvm`设备，并为虚拟机模拟各种 I/O 设备。qemu-kvm 也是最基本的用于创建虚拟机的命令行工具。
+- **qemu-system** # 一个二进制文件。用来调用 `/dev/kvm` 设备，并为虚拟机模拟各种 I/O 设备。qemu-system 也是最基本的用于创建虚拟机的命令行工具。
 
-KVM/QEMU 通过 [qemu-kvm 命令行工具](https://www.yuque.com/go/doc/33175246)来创建 VM。qemu-kvm 程序使用 /dev/kvm 接口来调用 kvm 模块，以运行 VM。qemu-vm 也是创建 VM 的最基础工具。使用 /dev/kvm 接口的 qemu-kvm 程序可以提供如下能力：
+KVM/QEMU 通过 [qemu-img 命令行工具](docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU%20命令行工具/qemu-img.md)来创建 VM 文件。[qemu-system](docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU%20命令行工具/qemu-system.md) 程序使用 /dev/kvm 接口来调用 kvm 模块，以运行 VM。qemu-kvm 和 qemu-system 两个工具也是创建与运行 VM 的最基础工具。
+
+使用 /dev/kvm 接口的 qemu-system 程序可以提供如下能力：
 
 - 设置 VM 的地址空间。宿主机必须提供固件镜像(通常为模拟出来的 BIOS)以便让 VM 可以引导到 操作系统中
 - 为 VM 模拟 I/O 设备。
@@ -101,7 +108,7 @@ QEMU 初始化时调用 KVM 接口告知 KVM，虚拟机所需要的物理内存
 
 所有 **Virtio** 设备都**由两部分组成**：
 
-- **Host Device **# 宿主机设备(也称为后端设备)
+- **Host Device** # 宿主机设备(也称为后端设备)
 - **Guest Device** # 虚拟机设备(也称为前端设备)
 
 Paravirtualizd device driver(半虚拟化设备驱动) 可以让 VM 直接访问宿主机上的物理硬件设备。
@@ -127,25 +134,27 @@ qemu-kvm 使用 `-device` 选项指定的参数将这些模拟出来的硬件设
 
 比如下面的示例：
 
-    qemu-kvm -m 4096 -smp 2 -name test \
-    # 模拟块设备
-    # -drive 使新版选项，是 -blockdev 和 -device 两个参数的集合，可以模拟一个块设备
-    # Host Device 为 /var/lib/libvirt/images/test-2.bj-net.qcow2
-    # Guest Device 为 virtio-blk 设备
-    -drive file=/var/lib/libvirt/images/test-2.bj-net.qcow2,format=qcow2,if=virtio \
-    -vnc :3 \
-    # 模拟网卡
-    # -netdev 指定 Host Device(宿主机设备) 为 tap 类型的网络设备
-    # -device 指定 Guest Device(虚拟机设备) 为 virtio-net 设备
-    -netdev tap,id=n1 \
-    -device virtio-net,netdev=n1 \
-    # 模拟串口
-    # -chardev 指定 Host Device(宿主机设备)为 socket
-    # -device 指定 Guest Device(虚拟机设备)为 virtio-serial
-    # virtserialport 是 virtio-serial-port 的意思
-    -chardev socket,path=/tmp/qga.sock,server,nowait,id=qga0 \
-    -device virtio-serial \
-    -device virtserialport,chardev=qga0,name=org.qemu.guest_agent.0
+```bash
+qemu-system-x86_64 -m 4096 -smp 2 -name test \
+# 模拟块设备
+# -drive 使新版选项，是 -blockdev 和 -device 两个参数的集合，可以模拟一个块设备
+# Host Device 为 /var/lib/libvirt/images/test-2.bj-net.qcow2
+# Guest Device 为 virtio-blk 设备
+-drive file=/var/lib/libvirt/images/test-2.bj-net.qcow2,format=qcow2,if=virtio \
+-vnc :3 \
+# 模拟网卡
+# -netdev 指定 Host Device(宿主机设备) 为 tap 类型的网络设备
+# -device 指定 Guest Device(虚拟机设备) 为 virtio-net 设备
+-netdev tap,id=n1 \
+-device virtio-net,netdev=n1 \
+# 模拟串口
+# -chardev 指定 Host Device(宿主机设备)为 socket
+# -device 指定 Guest Device(虚拟机设备)为 virtio-serial
+# virtserialport 是 virtio-serial-port 的意思
+-chardev socket,path=/tmp/qga.sock,server,nowait,id=qga0 \
+-device virtio-serial \
+-device virtserialport,chardev=qga0,name=org.qemu.guest_agent.0
+```
 
 可以看到，所有通过 -device 选项在 VM 中模拟的硬件设备，都会根据 ID 关联到宿主机的某个文件或者设备上。
 
@@ -171,14 +180,14 @@ KVM/QEMU 虚拟化环境中，除了 CPU 与 Memory 是通过 KVM 虚拟化的�
 
 > 参考：
 > - <https://wiki.qemu.org/Documentation/Networking>
-> - <https://www.qemu.org/docs/master/system/net.html>
+> - https://www.qemu.org/docs/master/system/net.html
 > - <https://www.qemu.org/2018/05/31/nic-parameter/>，老版原理，将弃用
 
 QEMU 想要让虚拟机与外界互通，需要由两部分组成一个完整的网络功能：
 
 - **front-end(前端)** # VM 中的 NIC(Network Interface Controller，即人们常说的`网卡`)。
   - VM 中的 NIC 是由 QEMU 模拟出来的，在支持 PCI 卡的系统上，通常可以是 e1000 网卡、rtl8139 网卡、virtio-net 设备。
-- **back-end(后端) **# 宿主机中的与 VM 中模拟出来的 NIC 进行交互的设备。
+- **back-end(后端)** # 宿主机中的与 VM 中模拟出来的 NIC 进行交互的设备。
   - back-end 有多种类型可以使用，这些后端可以用于将 VM 连接到真实网络，或连接到另一个 VM
     - [TAP ](https://www.qemu.org/docs/master/system/net.html#using-tap-network-interfaces)# 将 VM 连接到真实网络的标准方法
     - [User mode network stack](https://www.qemu.org/docs/master/system/net.html#using-the-user-mode-network-stack)
@@ -195,49 +204,53 @@ QEMU 想要让虚拟机与外界互通，需要由两部分组成一个完整的
 
 完整的命令如下：
 
-    qemu-kvm -m 4096 -smp 2 -name test \
-    -drive file=/var/lib/libvirt/images/test-1.bj-net.qcow2,format=qcow2,if=virtio \
-    -netdev tap,id=n1 \
-    -device virtio-net-pci,netdev=n1 \
-    -vnc :3
+```bash
+qemu-kvm -m 4096 -smp 2 -name test \
+-drive file=/var/lib/libvirt/images/test-1.bj-net.qcow2,format=qcow2,if=virtio \
+-netdev tap,id=n1 \
+-device virtio-net-pci,netdev=n1 \
+-vnc :3
+```
 
 此时 qemu-kvm 发现 `后端设备的 id` 与 `前端设备的属性(netdev)的值` 一致，那么 qemu-kvm 就会将 两端设备关联。因此，在 VM 启动时，其打开了设备文件 /dev/net/tun 并获得了读写该文件的文件描述符 (FD)XX，同时向内核注册了一个 tap 类型虚拟网卡 tapX，tapX 与 FD XX 关联，虚拟机关闭时 tapX 设备会被内核释放。此虚拟网卡 tapX 一端连接用户空间程序 qemu-kvm，另一端连接主机链路层。
 
-    ## 通过进程，获取该进程所使用的网络设备
-    # 当先宿主机上有3个虚拟机，分别对应 82649、82747、144776 这三个进程
-    # 82649 与 82747 使用网卡多队列功能，启用了8个队列，144776 仅有一个网卡队列
-    # 所以，82649 与 82747 打开了8个 /dev/net/tun 设备，而 144776 打开了1个 /dev/net/tun 设备
-    [root@host-3 fdinfo]# lsof /dev/net/tun
-    COMMAND     PID USER   FD   TYPE DEVICE SIZE/OFF   NODE NAME
-    qemu-kvm  82649 qemu   27u   CHR 10,200      0t0 102414 /dev/net/tun
-    qemu-kvm  82649 qemu   29u   CHR 10,200      0t0 102414 /dev/net/tun
-    qemu-kvm  82649 qemu   31u   CHR 10,200      0t0 102414 /dev/net/tun
-    qemu-kvm  82649 qemu   32u   CHR 10,200      0t0 102414 /dev/net/tun
-    qemu-kvm  82649 qemu   33u   CHR 10,200      0t0 102414 /dev/net/tun
-    qemu-kvm  82649 qemu   34u   CHR 10,200      0t0 102414 /dev/net/tun
-    qemu-kvm  82649 qemu   35u   CHR 10,200      0t0 102414 /dev/net/tun
-    qemu-kvm  82649 qemu   36u   CHR 10,200      0t0 102414 /dev/net/tun
-    qemu-kvm  82747 qemu   28u   CHR 10,200      0t0 102414 /dev/net/tun
-    qemu-kvm  82747 qemu   31u   CHR 10,200      0t0 102414 /dev/net/tun
-    qemu-kvm  82747 qemu   32u   CHR 10,200      0t0 102414 /dev/net/tun
-    qemu-kvm  82747 qemu   33u   CHR 10,200      0t0 102414 /dev/net/tun
-    qemu-kvm  82747 qemu   34u   CHR 10,200      0t0 102414 /dev/net/tun
-    qemu-kvm  82747 qemu   35u   CHR 10,200      0t0 102414 /dev/net/tun
-    qemu-kvm  82747 qemu   36u   CHR 10,200      0t0 102414 /dev/net/tun
-    qemu-kvm  82747 qemu   37u   CHR 10,200      0t0 102414 /dev/net/tun
-    qemu-kvm 144776 qemu   31u   CHR 10,200      0t0 102414 /dev/net/tun
-    # 查看 144776 进程的 fdinfo 中的 31 号描述符文件，可以看到该进程关联的网络设备是 vnet2
-    [root@host-3 fdinfo]# cat /proc/144776/fdinfo/31
-    pos:	0
-    flags:	0104002
-    mnt_id:	20
-    iff:	vnet2
+```bash
+## 通过进程，获取该进程所使用的网络设备
+# 当先宿主机上有3个虚拟机，分别对应 82649、82747、144776 这三个进程
+# 82649 与 82747 使用网卡多队列功能，启用了8个队列，144776 仅有一个网卡队列
+# 所以，82649 与 82747 打开了8个 /dev/net/tun 设备，而 144776 打开了1个 /dev/net/tun 设备
+[root@host-3 fdinfo]# lsof /dev/net/tun
+COMMAND     PID USER   FD   TYPE DEVICE SIZE/OFF   NODE NAME
+qemu-kvm  82649 qemu   27u   CHR 10,200      0t0 102414 /dev/net/tun
+qemu-kvm  82649 qemu   29u   CHR 10,200      0t0 102414 /dev/net/tun
+qemu-kvm  82649 qemu   31u   CHR 10,200      0t0 102414 /dev/net/tun
+qemu-kvm  82649 qemu   32u   CHR 10,200      0t0 102414 /dev/net/tun
+qemu-kvm  82649 qemu   33u   CHR 10,200      0t0 102414 /dev/net/tun
+qemu-kvm  82649 qemu   34u   CHR 10,200      0t0 102414 /dev/net/tun
+qemu-kvm  82649 qemu   35u   CHR 10,200      0t0 102414 /dev/net/tun
+qemu-kvm  82649 qemu   36u   CHR 10,200      0t0 102414 /dev/net/tun
+qemu-kvm  82747 qemu   28u   CHR 10,200      0t0 102414 /dev/net/tun
+qemu-kvm  82747 qemu   31u   CHR 10,200      0t0 102414 /dev/net/tun
+qemu-kvm  82747 qemu   32u   CHR 10,200      0t0 102414 /dev/net/tun
+qemu-kvm  82747 qemu   33u   CHR 10,200      0t0 102414 /dev/net/tun
+qemu-kvm  82747 qemu   34u   CHR 10,200      0t0 102414 /dev/net/tun
+qemu-kvm  82747 qemu   35u   CHR 10,200      0t0 102414 /dev/net/tun
+qemu-kvm  82747 qemu   36u   CHR 10,200      0t0 102414 /dev/net/tun
+qemu-kvm  82747 qemu   37u   CHR 10,200      0t0 102414 /dev/net/tun
+qemu-kvm 144776 qemu   31u   CHR 10,200      0t0 102414 /dev/net/tun
+# 查看 144776 进程的 fdinfo 中的 31 号描述符文件，可以看到该进程关联的网络设备是 vnet2
+[root@host-3 fdinfo]# cat /proc/144776/fdinfo/31
+pos:	0
+flags:	0104002
+mnt_id:	20
+iff:	vnet2
 
-    ## 通过网络设备，获取使用该设备的进程
-    # 可以通过一条命令来直接获取使用指定 pid 设备的进程
-    # 下面的命令可以获取使用 vnet2 这个 tap 类型的网络设备的进程。
-    [root@host-3 fdinfo]# egrep -l iff:.*vnet2 /proc/*/fdinfo/* 2> /dev/null | cut -d/ -f3
-    144776
+## 通过网络设备，获取使用该设备的进程
+# 可以通过一条命令来直接获取使用指定 pid 设备的进程
+# 下面的命令可以获取使用 vnet2 这个 tap 类型的网络设备的进程。
+[root@host-3 fdinfo]# egrep -l iff:.*vnet2 /proc/*/fdinfo/* 2> /dev/null | cut -d/ -f3
+144776
+```
 
 所以 144776 这个进程下的虚拟机经过其内部网卡发送的数据包，都会发送到 /dev/net/tun 设备上，然后根据其文件描述符，找到对应的 tap 设备，将数据包转发过去。这样，虚拟机的数据就通过网络，发送到物理机上了。
 

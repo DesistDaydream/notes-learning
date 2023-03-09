@@ -9,13 +9,11 @@ title: qemu-img
 
 管理 VM image(虚拟机的镜像) 文件。qemu-img 工具可以创建、转换和修改 image 文件。所有 QEMU 支持的格式都可以处理
 
-> 注意：
->
-> - 不要使用 qemu-img 修改正在运行的虚拟机或者任何其他进程正在使用的 image 文件。
+> 注意：不要使用 qemu-img 修改正在运行的虚拟机或者任何其他进程正在使用的 image 文件。
 
 # Syntax(语法)
 
-**qemu-img \[Standard OPTIONS] COMMAND \[COMMAND OPTIONS]**
+**qemu-img [Standard OPTIONS] COMMAND [COMMAND OPTIONS]**
 
 ### Standard OPTIONS
 
@@ -146,7 +144,7 @@ EXAMPLE
 
 EXAMPLE
 
-- qemu-img resize cirros-0.3.6-x86_64-disk.img +40G #给 test.qcow2 镜像的磁盘量容量添加 40G
+- qemu-img resize cirros-0.3.6-x86_64-disk.img +40G # 给 test.qcow2 镜像的磁盘量容量添加 40G
 
 # snapshot # 为 VM 创建、删除、应用、列出快照
 
