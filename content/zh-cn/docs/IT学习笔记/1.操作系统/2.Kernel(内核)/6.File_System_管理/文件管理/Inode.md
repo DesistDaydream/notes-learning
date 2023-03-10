@@ -84,6 +84,7 @@ umode_t 是 16 位的 2 进制数，保存的就是文件类型及用户权限�
 - 第 13-15 位 -- 其他用户权限位
 
 1，文件类型位
+
 用来判断文件类型
 
 ```c
@@ -96,7 +97,9 @@ umode_t 是 16 位的 2 进制数，保存的就是文件类型及用户权限�
 ```
 
 S_IFMT 是文件类型掩码，其值是 0170000，转换成二进制就是 1111 0000 0000 0000，
+
 S_IFMT 就是用来取 mode 的 0--3 位
+
 所以判断文件还是目录的方法就出来了，如下。ceph 文件系统的用户态客户端中 struc Inode 结构体中 uint32_t mode 成员来判断是目录还是文件：is_dir()函数判断是否是目录
 
 ```c
@@ -105,8 +108,11 @@ S_IFMT 就是用来取 mode 的 0--3 位
 ```
 
 _2，SUID，SGID，sticky 位_
+
 SUID 是 Set User ID, SGID 是 Set Group ID 的意思。具体怎么用，暂时不研究
+
 _3，文件权限_
+
 文件权限分为属主权限、属主组权限和其他用户权限，即我们所知的 rwxrwxrwx（777）之类
 
 ## 目录项：ext4_dir_entry
@@ -149,24 +155,31 @@ lsof | grep deleted
 - 获取 home 对应的 inode 号：先找根目录'/'的 inode（不考虑缓存）：根目录的 inode 号可以从 super_block 中获取，ext4 文件系统的根目录 inode 号为 2（xfs 文件系统根目录 inode 号是 64，ceph 文件系统根目录 inode 号是 1），所以在索引区读取 inode 号为 2 存的 inode 内容。假如 inode 中存的 block 地址是\_1000\_，那么去数据区读取地址为\_1000\_的 block 存的内容，内容如下图所示。
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/xz4nq5/1627368677348-ef597c30-1973-4696-baae-ebe253a1bb64.png)
+
 地址为 1000 的 block 存的内容
+
 地址为 1000 的 block 里面存了 20 个目录项（struct ext4\*dir_entry）,可以找到\*\*\*目录 home 对应的 inode 号为 100\_\*\*。
 
 - 获取 bzw 对应的 inode 号：上一步获取到了目录 home 的 inode 号，在索引区读取 inode 号为\_100\_存的 inode 内容。假如 inode 中存的 block 地址为\_2000\_，那么去读地址为\_2000\_的 block 存的内容，内容如下图所示。
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/xz4nq5/1627368677456-031fdb40-9076-4165-a80e-ebf6d422b349.png)
+
 地址为 2000 的 block 存的内容
+
 地址为 2000 的 block 里面存了 3 个目录项（struct ext4\*dir_entry）,可以找到\*\*\*目录 bzw 对应的 inode 号为 200\_\*\*。
 
 - 获取 test 对应的 inode 号：上一步获取到了目录 bzw 的 inode 号，在索引区读取 inode 号为\_200\_存的 inode 内容。假如 inode 中存的 block 地址为\_3000\_，那么去读地址为\_3000\_的 block 存的内容，内容如下图所示。
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/xz4nq5/1627368677627-211f81db-d5cb-4eb7-95bc-b682d43bbc54.png)
+
 地址为 3000 的 block 存的内容
+
 地址为 3000 的 block 里面存了 2 个目录项（struct ext4\*dir_entry）,可以找到\*\*\*文件 test 对应的 inode 号为 300\_\*\*。
 
 - 获取 test 对应的内容：上一步获取到了文件 test 的 inode 号，在索引区读取 inode 号为\_300\_存的 inode 内容。假如 inode 中存的 block 地址为\_4000\_，那么去读地址为\_4000\_的 block 存的内容。这个时候就完成了操作。
 
 这里注意如果 test 内容很大，那么在 inode 里面存的 block 地址就不止一个了。
+
 可以以 ext4 中的 struct ext4_inode 为例
 
 ```c
@@ -205,5 +218,6 @@ struct ext4_inode {
 
 文件系统中的位于内存中的所有 inode 存放在一个名为 inode_hashtable 的全局哈希表中（如果 inode 还在磁盘，尚未读入内存中，则不会加入到全局哈希表中）。另一方面，所有的 inode 还存放在超级块中的 s_inode 链表中。
 
-**static** **struct** **hlist_head** **\***inode_hashtable \_\_read_mostly;
+`static struct hlist_head *inode_hashtable __read_mostly; `
+
 在上面进行文件索引时，并没有讲根目录 inode 号为 2 是怎么获取的，这将下一章中讲解。
