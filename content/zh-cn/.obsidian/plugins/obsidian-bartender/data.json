@@ -517,6 +517,20 @@
       "docs/IT学习笔记/12.人工智能/计算机视觉",
       "docs/IT学习笔记/12.人工智能/深度学习框架.md",
       "docs/IT学习笔记/12.人工智能/OpenAI"
+    ],
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/文件管理.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/Inode.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/File Descriptor(文件描述符).md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/Archive File(归档文件).md"
+    ],
+    "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具": [
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具/_index.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具/dmidecode.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具/Linux 硬件信息获取.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具/CPU 硬件管理工具.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具/Memory 硬件管理工具.md"
     ]
   },
   "actionBarOrder": {},
