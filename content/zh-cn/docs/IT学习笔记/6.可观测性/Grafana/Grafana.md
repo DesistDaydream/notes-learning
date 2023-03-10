@@ -1,0 +1,57 @@
+---
+title: Grafana
+weight: 1
+---
+
+# 概述
+
+> 参考：
+> - [官网](https://grafana.com/)
+> - [GitHub 项目，grafana/grafana](https://github.com/grafana/grafana)
+
+Grafana 是开源的可视化和分析软件。它使我们可以查询，可视化，警报和浏览指标，无论它们存储在哪里。用简单的英语，它为您提供了将时间序列数据库（TSDB）数据转换为精美的图形和可视化效果的工具。
+
+# Grafana 部署
+
+> 参考：
+> - [官方文档，安装-安装 Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/installation/)
+
+## docker 方式运行 grafana
+
+获取配置文件
+
+```shell
+mkdir -p /opt/monitoring/server/config/grafana
+mkdir -p /opt/monitoring/server/data/grafana
+chown -R 472 /opt/monitoring/server/data/grafana
+docker run -d --name grafana --rm grafana/grafana
+docker cp grafana:/etc/grafana /opt/monitoring/server/config
+docker stop grafana
+```
+
+运行 Grafana
+
+```shell
+docker run -d --name grafana \
+  --network host \
+  -v /opt/monitoring/server/config/grafana:/etc/grafana \
+  -v /opt/monitoring/server/data/grafana:/var/lib/grafana \
+  -v /etc/localtime:/etc/localtime \
+  grafana/grafana
+```
+
+# Grafana 关联文件
+
+**/etc/grafana/\* **# grafana 配置文件保存路径
+
+- **./grafana.ini** # grafana 运行所需配置文件
+- **./provisioning/\*** # Grafana 的 Provisioning 功能要读取的路径。该功能详见 [Provisioning 配置](https://www.yuque.com/go/doc/33145852)
+  - **./dashboards/\*.yaml** # Grafana 启动时，会根据该路径下配置文件内的 .providers.options.path 字段的路径配置，去对应路径加载 grafana 的 dashboard 的 json 文件。
+  - **./datasources/\*.yaml** # Grafana 启动时，会根据该路径下配置文件，自动加载数据源信息。
+  - **./notifiers/\*.yaml** # Grafana 启动时，加载的告警配置文件。
+  - **./plugins/\*.yaml** # Grafana 启动时，加载的插件的配置文件。用来管理 Grafana 插件
+
+**/var/lib/grafana/\*** # grafana 数据保存路径
+
+- **./grafana.db** # grafana 数据文件，包括 用户信息、dashboard、datasource 等等。这是一个 SQLite3 数据库文件。
+- **./plugins/\*** # grafana 安装的插件保存在该目录下

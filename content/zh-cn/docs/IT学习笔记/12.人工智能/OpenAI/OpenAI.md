@@ -1,7 +1,7 @@
 ---
 title: "OpenAI"
 linkTitle: "OpenAI"
-weight: 20
+weight: 1
 ---
 
 # 概述

@@ -211,6 +211,312 @@
       "docs/IT学习笔记/2.编程/无法分类的语言",
       "docs/IT学习笔记/2.编程/编程技术",
       "docs/IT学习笔记/2.编程/编程工具"
+    ],
+    "docs/IT学习笔记/2.编程/解谜计算机科学": [
+      "docs/IT学习笔记/2.编程/解谜计算机科学/_index.md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/解谜计算机科学.md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/编程.md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Function(函数)",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Object-oriented Programming(面向对象编程).md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言"
+    ],
+    "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言": [
+      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言/_index.md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言/假如你来发明编程语言.md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言/Coroutine(协程).md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言/互斥锁、自旋锁、读写锁、悲观锁、乐观锁的应用场景.md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言/如何掌握所有的程序语言.md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言/FIFO与FILO.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议": [
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/_index.md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/Secure Shell(SSH) 安全外壳协议.md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/配置文件详解.md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/OpenSSH 管理工具套件.md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/sshpass.md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/使用 ssh 内网穿透示例.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)": [
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)/_index.md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)/PAM(可插入式认证模块).md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)/PAM配置文件.md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)/PAM 模块详解",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)/已弃用模块.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Account Manager(账户管理)": [
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Account Manager(账户管理)/_index.md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Account Manager(账户管理)/Account Manager(账户管理).md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Account Manager(账户管理)/账户配置文件.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/1.Linux Kernel": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/1.Linux Kernel/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/1.Linux Kernel/1.Linux Kernel.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/1.Linux Kernel/Boot Configuration.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/1.Linux Kernel/Kernel 的安装与卸载.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/1.Linux Kernel/Kernel 参数",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/1.Linux Kernel/Module(模块).md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/1.Linux Kernel/硬核致敬Linux ！30岁生日快乐！.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/3.System Call": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/3.System Call/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/3.System Call/System Call.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/3.System Call/System Call 类别.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/3.System Call/常见 Syscalls.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/4.CPU 管理": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/4.CPU 管理/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/4.CPU 管理/CPU 管理.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/4.CPU 管理/调度算法.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/4.CPU 管理/读写数据的方式.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/4.CPU 管理/Context Switch(上下文切换).md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/4.CPU 管理/Interrupts(中断)",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/4.CPU 管理/10.1.CPU 执行程序的秘密，藏在了这 15 张图里.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/4.CPU 管理/10.2.知道硬盘很慢，但没想到比 CPU Cache 慢 10000000 倍.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/4.CPU 管理/10.3.如何写出让 CPU 跑得更快的代码？.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/4.CPU 管理/10.4.CPU 缓存一致性.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/4.CPU 管理/CPU 空闲时在干嘛？.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/4.CPU 管理/Load Average 平均负载简述.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/5.Memory 管理": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/5.Memory 管理/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/5.Memory 管理/5.Memory 管理.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/5.Memory 管理/Memory 的分配机制.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/5.Memory 管理/Memory 的缓存机制.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/5.Memory 管理/Memroy 的 Over Commit 与 OOM.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/5.Memory 管理/堆区 与 栈区.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/5.Memory 管理/分享Linux内存占用几个案例.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/5.Memory 管理/mmap可以让程序员解锁哪些骚操作？.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/6.File_System_管理.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/FHS(文件系统层次标准).md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/Mount(挂载).md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/各种文件系统详解",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/零拷贝.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/读取文件时，程序经历了什么？.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/I_O Multiplexing(输入_输出多路复用)"
+    ],
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/各种文件系统详解": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/各种文件系统详解/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/各种文件系统详解/Journaling File System.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/各种文件系统详解/XFS 文件系统.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/各种文件系统详解/Proc File System.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/各种文件系统详解/Sys File System.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/各种文件系统详解/Device File System.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/各种文件系统详解/tmpfs.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/各种文件系统详解/OverlayFS.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理/Process 管理.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理/进程、线程、线程池.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理/D-Bus.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理/判断Linux进程在哪个CPU核运行的4个方法 - 嵌入式Linux中文站.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)/Inter Process Communication(进程间通信).md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)/Socket(套接字)",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)/Signal(信号).md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)/RPC"
+    ],
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux DNS 管理",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/ftp 协议的实现工具，chroot说明.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Linux 网络栈管理.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Linux 网络包发送过程.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/数据包接收过程详解.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/数据包发送过程详解.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Linux 网络设备详解",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netlink",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/network-scripts.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/systemd-networkd.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netplan"
+    ],
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager/NetworkManager.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager/NetworkManager 配置详解.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager/Connection 配置详解.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager/nmcli 命令行工具.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager/nmcli connection 子命令.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netplan": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netplan/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netplan/Netplan.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netplan/Netplan 配置详解.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/BPF": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/BPF/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/BPF/BPF.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/BPF/eBPF.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/BPF/BPF 流量控制机制"
+    ],
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/BPF/BPF 流量控制机制": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/BPF/BPF 流量控制机制/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/BPF/BPF 流量控制机制/BPF 流量控制机制.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/BPF/BPF 流量控制机制/【BPF网络篇系列-2】容器网络延时之 ipvs 定时器篇 _ 深入浅出 eBPF.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/BPF/BPF 流量控制机制/10.2.深入理解 Cilium 的 eBPF 收发包路径.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/BPF/BPF 流量控制机制/BPF 相关文章.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/BPF/BPF 流量控制机制/BPF 在网络领域的实现.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/BPF/BPF 流量控制机制/XDP eBPF 与 TC eBPF.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/Kernel(内核).md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/1.Linux Kernel",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/3.System Call",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/4.CPU 管理",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/5.Memory 管理",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/微内核",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/BPF"
+    ],
+    "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制": [
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/_index.md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/5.登录 Linux 与 访问控制.md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Account Manager(账户管理)",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Access Control(访问控制)",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/SELinux",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/su 与  sudo",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/TCP Wrappers.md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/登录与登录信息工具"
+    ],
+    "docs/IT学习笔记/1.操作系统/6.Package 管理": [
+      "docs/IT学习笔记/1.操作系统/6.Package 管理/_index.md",
+      "docs/IT学习笔记/1.操作系统/6.Package 管理/Package 管理.md",
+      "docs/IT学习笔记/1.操作系统/6.Package 管理/Debian 包管理.md",
+      "docs/IT学习笔记/1.操作系统/6.Package 管理/Redhat 包管理.md",
+      "docs/IT学习笔记/1.操作系统/6.Package 管理/Snap.md",
+      "docs/IT学习笔记/1.操作系统/6.Package 管理/Windows包管理.md"
+    ],
+    "docs/IT学习笔记/4.数据通信": [
+      "docs/IT学习笔记/4.数据通信/_index.md",
+      "docs/IT学习笔记/4.数据通信/信息论.md",
+      "docs/IT学习笔记/4.数据通信/数据通信",
+      "docs/IT学习笔记/4.数据通信/通信协议",
+      "docs/IT学习笔记/4.数据通信/DNS",
+      "docs/IT学习笔记/4.数据通信/NAT",
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)",
+      "docs/IT学习笔记/4.数据通信/SDN(软件定义网路).md",
+      "docs/IT学习笔记/4.数据通信/WebDAV.md",
+      "docs/IT学习笔记/4.数据通信/数据包分析",
+      "docs/IT学习笔记/4.数据通信/中间人攻击与HTTPS抓包.md",
+      "docs/IT学习笔记/4.数据通信/交换机 与 路由器.md"
+    ],
+    "docs/IT学习笔记/6.可观测性": [
+      "docs/IT学习笔记/6.可观测性/_index.md",
+      "docs/IT学习笔记/6.可观测性/Observability(可观测性)",
+      "docs/IT学习笔记/6.可观测性/OpenTelemetry.md",
+      "docs/IT学习笔记/6.可观测性/日志系统",
+      "docs/IT学习笔记/6.可观测性/监控系统",
+      "docs/IT学习笔记/6.可观测性/追踪系统",
+      "docs/IT学习笔记/6.可观测性/混沌工程系统",
+      "docs/IT学习笔记/6.可观测性/Grafana",
+      "docs/IT学习笔记/6.可观测性/性能优化",
+      "docs/IT学习笔记/6.可观测性/搜索引擎"
+    ],
+    "docs/IT学习笔记/6.可观测性/监控系统": [
+      "docs/IT学习笔记/6.可观测性/监控系统/_index.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述",
+      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus",
+      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting",
+      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager",
+      "docs/IT学习笔记/6.可观测性/监控系统/dell硬件监控OMSA.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/监控系统/Prometheus": [
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/_index.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Server 配置.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Rules 配置.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Target(目标) 与 Relabeling(重新标记).md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Storage(存储)",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Alerting(告警).md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Federate(集群联邦).md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/HTTPS 和 Authentication(认证).md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/PromQL",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus API",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 管理",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 开发",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 衍生品"
+    ],
+    "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting": [
+      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/_index.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/Instrumenting.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/Push Gateway.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/Node Exporter.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/SNMP Exporter",
+      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/Blackbox Exporter.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/Other Exporter.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager": [
+      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager/_index.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager/Alertmanager.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager/Alertmanager 数据结构.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager/Alertmanager 配置.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager/告警模板详解.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager/Alertmanager 扩展.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/Grafana": [
+      "docs/IT学习笔记/6.可观测性/Grafana/_index.md",
+      "docs/IT学习笔记/6.可观测性/Grafana/Grafana.md",
+      "docs/IT学习笔记/6.可观测性/Grafana/Grafna 数据模型.md",
+      "docs/IT学习笔记/6.可观测性/Grafana/Grafana 配置详解",
+      "docs/IT学习笔记/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)",
+      "docs/IT学习笔记/6.可观测性/Grafana/Plugins(插件).md",
+      "docs/IT学习笔记/6.可观测性/Grafana/访问控制.md",
+      "docs/IT学习笔记/6.可观测性/Grafana/Grafana 8.0 告警使用.md",
+      "docs/IT学习笔记/6.可观测性/Grafana/Grafana 管理.md"
+    ],
+    "docs/IT学习笔记/7.信息安全": [
+      "docs/IT学习笔记/7.信息安全/_index.md",
+      "docs/IT学习笔记/7.信息安全/Standardized Glossary(标准化术语).md",
+      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)",
+      "docs/IT学习笔记/7.信息安全/Access Control(访问控制)",
+      "docs/IT学习笔记/7.信息安全/管理工具",
+      "docs/IT学习笔记/7.信息安全/Bastion Host(堡垒机).md",
+      "docs/IT学习笔记/7.信息安全/Hacking.md",
+      "docs/IT学习笔记/7.信息安全/什么鬼？.md"
+    ],
+    "docs/IT学习笔记/7.信息安全/Cryptography(密码学)": [
+      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/_index.md",
+      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/Cryptography(密码学).md",
+      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/对称密码加密.md",
+      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密",
+      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/RSA 加密算法"
+    ],
+    "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密": [
+      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密/_index.md",
+      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密/公开密钥加密.md",
+      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密/证书 与 PKI",
+      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密/密钥_证书 的编码.md"
+    ],
+    "docs/IT学习笔记/12.人工智能/OpenAI": [
+      "docs/IT学习笔记/12.人工智能/OpenAI/_index.md",
+      "docs/IT学习笔记/12.人工智能/OpenAI/OpenAI.md",
+      "docs/IT学习笔记/12.人工智能/OpenAI/ChatGPT.md"
+    ],
+    "docs/IT学习笔记/12.人工智能": [
+      "docs/IT学习笔记/12.人工智能/_index.md",
+      "docs/IT学习笔记/12.人工智能/计算机视觉",
+      "docs/IT学习笔记/12.人工智能/深度学习框架.md",
+      "docs/IT学习笔记/12.人工智能/OpenAI"
     ]
   },
   "actionBarOrder": {},

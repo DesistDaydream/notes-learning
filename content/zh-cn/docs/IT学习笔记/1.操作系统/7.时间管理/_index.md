@@ -13,7 +13,7 @@ weight: 7
 
 # 实现 NTP 协议的工具
 
-ntpd #在 centos8 中已不再支持，推荐使用新工具 chrony 来实现 ntp 协议
+ntpd # 在 centos8 中已不再支持，推荐使用新工具 chrony 来实现 ntp 协议
 chrony #
 
 # 其他管理系统时间工具
@@ -39,7 +39,7 @@ FORMAT:
 - `%H` 小时
 - `%M` 分钟
 - `%S` 秒
-- %s #从 1970-01-01 00:00:00 UTC 时间开始经过的秒。
+- %s # 从 1970-01-01 00:00:00 UTC 时间开始经过的秒。
 
 EXAMPLE
 
@@ -72,7 +72,7 @@ EXAMPLE
 
 **set-local-rtc \<true|false> # Control whether RTC is in local tim**e
 
-**set-ntp \<true|false> #控制是否启用 NTP。**
+**set-ntp \<true|false> # 控制是否启用 NTP。**
 
 ## hwclock \[-rw] # 查看硬件时间(BIOS 的)
 

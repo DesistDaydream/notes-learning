@@ -1,5 +1,6 @@
 ---
 title: Instrumenting
+weight: 1
 ---
 
 # 概述

@@ -92,5 +92,4 @@ xorg-x11-xaut 软件包安装完成后退出当前 shell 重新登录，即可�
 
 最后在使用 ssh 登录的时候加上-Y 选项，i.e. ssh -Y root@主机 B 的 IP，然后 x11 的转发效果就实现了。
 
-[
-](https://serverfault.com/a/425413)
+https://serverfault.com/a/425413

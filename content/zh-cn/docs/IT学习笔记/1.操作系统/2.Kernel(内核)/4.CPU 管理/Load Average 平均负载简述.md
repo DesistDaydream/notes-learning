@@ -2,7 +2,7 @@
 title: Load Average 平均负载简述
 ---
 
-#
+# 概述
 
 <https://blog.csdn.net/u011183653/article/details/19489603>
 

@@ -26,14 +26,14 @@ OPTIONS
 - **-J \<DEST\[,DEST2,...]>** # 首先与 DEST 建立 ssh 连接，并通过 DEST 跳转到最终目标主机。如果需要多次跳转。可以指定多个 DEST 并以逗号分割。
   - DEST 格式为：`[USER@]HOST[:PORT]`
 - **-o \<Key=Value>** # 以命令行的方式配置本应该在 /etc/ssh/ssh_config 文件中配置的内容。可用于以配置文件中使用的格式提供选项。Key 是 /etc/ssh/ssh_config 配置文件中的关键字。可用的 OPTIONS 详见 /etc/ssh/ssh_config 文件详解。
-- **-p <PORT>** # 指定 HostIP 所在远程服务器监听的端口
+- **-p \<PORT>** # 指定 HostIP 所在远程服务器监听的端口
 - **-T** # 不要分配一个伪终端
 - **-W** # 请求将客户端上的标准输入和输出通过安全通道转发到端口上的主机。 表示-N，-T，ExitOnForwardFailure 和 ClearAllForwardings，尽管可以在配置文件中或使用-o 命令行选项覆盖它们。
 - **-X** # 启用 X11 转发
-- **-Y **# 启用受信任的 X11 转发。 受信任的 X11 转发不受 X11 SECURITY 扩展控件的约束。
+- **-Y** # 启用受信任的 X11 转发。 受信任的 X11 转发不受 X11 SECURITY 扩展控件的约束。
 - **端口转发选项**
-  - **-D <\[Bind_Address]:PORT>** # Dynamic(动态) 转发。启用动态转发的 ssh 程序相当于一个代理服务，通过监听的端口，可以将流量送到指定的目标主机。
-  - **-L <XXX>** # Local(本地) 转发。发往本地的 TCP 端口 或 Unix Socket 上的流量转发到远端 TCP 端口 或 Unix Socket 上。
+  - **-D \<[Bind_Address]:PORT>** # Dynamic(动态) 转发。启用动态转发的 ssh 程序相当于一个代理服务，通过监听的端口，可以将流量送到指定的目标主机。
+  - **-L \<XXX>** # Local(本地) 转发。发往本地的 TCP 端口 或 Unix Socket 上的流量转发到远端 TCP 端口 或 Unix Socket 上。
     - XXX 有多种语法格式：
     - **-L \[Bind_Address:]LocalPort:RemoteHost:RemoteHostPort**
     - **-L \[Bind_Address:]LocalPort:RemoteSocket**
@@ -42,7 +42,7 @@ OPTIONS
     - 假如现在有 A、B、C 三台主机，A 与 C 不通，A 与 B 通，C 与 B 通；也就是说 B 是中转站(运行 sshd 程序)。如果想要通过 A 访问 C，则需要在 A 上执行 `ssh -L XXX B-IP` 命令
     - Local 表示 A 主机，Remote 表示 C 主机
     - 访问 A Port 就是访问 C Port
-  - **-R <XXX>** # Remote(远程) 转发。发往指定 `RemotePort` 或 `RemoteSocket` 上的流量转发到 `本地端口` 或 `Unix Socket` 上。远程转发其实更像将 Local 服务通过 ssh 程序以类似 nat 的方式暴露到 Remote 上。
+  - **-R \<XXX>** # Remote(远程) 转发。发往指定 `RemotePort` 或 `RemoteSocket` 上的流量转发到 `本地端口` 或 `Unix Socket` 上。远程转发其实更像将 Local 服务通过 ssh 程序以类似 nat 的方式暴露到 Remote 上。
     - XXX 有多种语法格式：
     - **-R \[bind_address:]RemotePort:LocalHost:LocalPort**
     - **-R \[bind_address:]RemotePort:LocalSocket**
@@ -53,14 +53,15 @@ OPTIONS
     - Local 表示 C 主机，Remote 表示 B 主机
     - 从 A 访问 B Port 就是访问 C Port
 - **端口转发常用附加选项**
-  - **-f **# 在后台运行 ssh 程序。常与 -N 连用。
+  - **-f** # 在后台运行 ssh 程序。常与 -N 连用。
     - 如果单独使用，则会报错：`Cannot fork into background without a command to execute.`
-  - **-g **# 表示 ssh 隧道对应的转发端口将监听在主机的所有 IP 中，不使用 -g 时，转发端口默认只监听在主机的本地回环地址中，-g 表示开启网关模式，远程端口转发中，无法开启网关功能。
+  - **-g** # 表示 ssh 隧道对应的转发端口将监听在主机的所有 IP 中，不使用 -g 时，转发端口默认只监听在主机的本地回环地址中，-g 表示开启网关模式，远程端口转发中，无法开启网关功能。
   - **-N** # 不要执行远程命令。这对于仅让 ssh 用来端口转发时非常有用。
 
-### 端口转发语法示例
+## 端口转发语法示例
 
 假如现在环境如下：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/mzs2hg/1639031352911-319c0d47-4ef2-4aa2-ae0f-b0e3f77615d0.jpeg)
 
 **A 与 C 直接互通**

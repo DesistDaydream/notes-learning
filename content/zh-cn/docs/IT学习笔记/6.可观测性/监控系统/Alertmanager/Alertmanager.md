@@ -1,5 +1,6 @@
 ---
 title: Alertmanager
+weight: 1
 ---
 
 # 概述

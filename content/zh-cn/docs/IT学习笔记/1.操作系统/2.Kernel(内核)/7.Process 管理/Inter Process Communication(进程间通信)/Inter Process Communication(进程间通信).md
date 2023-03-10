@@ -1,5 +1,6 @@
 ---
 title: Inter Process Communication(进程间通信)
+weight: 1
 ---
 
 # 概述
