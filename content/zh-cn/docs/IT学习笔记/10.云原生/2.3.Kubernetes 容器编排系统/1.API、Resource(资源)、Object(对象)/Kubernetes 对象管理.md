@@ -11,6 +11,7 @@ title: Kubernetes 对象管理
 >   - [原文：掘金](https://juejin.cn/post/7173328614644006942)
 
 使用 kubectl 等是传统的 **Client-Side Apply(简称 CSA)**，添加 --server-side 标志后，为 **Server-Side Apply(简称 SSA)。**
+
 如果你经常与 kubectl 打交道，那相信你一定见过 kubectl.kubernetes.io/last-applied-configuration annotation，以及那神烦的 managedFields，像这样：
 
 ```yaml
@@ -50,7 +51,9 @@ metadata:
 ## Client-Side Apply(客户端应用)
 
 CSA 是 `kubectl apply` 早期(v1.14 版本之前)唯一的对象管理手段。
+
 需要特别指出的是，`kubectl apply` 声明的仅仅是它关心的字段的状态，而不是整个对象的真实状态。apply 表达的意思是：“我”管理的字段应该和我 apply 的配置文件一致(但我不关心其他字段)。
+
 什么是“我”管理的字段，什么又是其他的字段呢？举个例子，当我们希望使用 HPA 管理应用副本数时，[Kubernetes 推荐的做法](https://link.juejin.cn?target=https%3A%2F%2Fkubernetes.io%2Fdocs%2Ftasks%2Frun-application%2Fhorizontal-pod-autoscale%2F%23migrating-deployments-and-statefulsets-to-horizontal-autoscaling)是在 apply 的配置文中不指定具体 replicas 副本数。首次部署时，K8S 会将 replicas 值设置为默认 1，随后由 HPA 控制器扩容到合适的副本数。
 
 ```yaml
