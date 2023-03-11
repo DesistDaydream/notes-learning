@@ -1,5 +1,6 @@
 ---
 title: Memory 管理工具
+weight: 2
 ---
 
 # 概述

@@ -22,21 +22,33 @@ title: Inode
 
 实际例子：我家里的内容有什么就是 block，我家的门牌号就是 inode，我家叫什么名字，比如叫“DesistDaydream 的家“这几个字就是文件名，通过文件名找到门牌号，找到了门牌号才能开门看到我家中的内容。（能不能开门就是权限决定的了）
 
+## Inode 的计算
+
+不同文件系统，有不同的计算方式，详情可以参考各类文件系统中的章节
+
+- [EXT FileSystem](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/EXT%20FileSystem.md#块、块组、Inode%20计算)
+- [XFS](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/XFS.md)
+
+总得来说，所以我们可以<font color="#ff0000">通过降低 BytesPerInode 的值以提高 Inode 数量</font>
+
 ## 索引区和数据区
 
-文件系统怎样从文件名索引到存放文件内容的block区？
+文件系统怎样从文件名索引到存放文件内容的 Block？
 
 解答这个问题，先了解下 inode。
 
-linux 文件系统在磁盘分区格式化后可以简单认为会划分**两个区域**，一个是**索引区**（inode 区），用来存放文件的 inode（inode 包含文件的各种属性，统称为元数据），索引区存放的 inode 个数是有上限的，在格式化的时候会分配好；另一个是**数据区**，存放文件数据，即文件里面的真实内容。
+linux 文件系统在磁盘分区格式化后可以简单认为会划分**两个区域**
+
+- 一个是**索引区**（inode 区），用来存放文件的 inode（inode 包含文件的各种属性，统称为元数据），索引区存放的 inode 个数是有上限的，在格式化的时候会分配好
+- 另一个是**数据区**，存放文件数据，即文件里面的真实内容。
 
 如果文件系统太大，将所有的 inode 与 block 放在一起很难管理，因此 Ext2 文件系统在格式化的时候基本上是区分为多个 **block group(块组)**，每个块组都有独立的 inode/block/super block 系统。
 
-inode 的大小和 block 的大小可以使用命令来看，inode 的大小一般为 256 字节，block 的大小一般为 4096 字节
+inode 的大小和 block 的大小可以使用命令来看，inode 的大小一般为 256 Bytes，block 的大小一般为 4096 Bytes。
 
 ```bash
 export DEVICE="/dev/vdb"
-dumpe2fs ${DEVICE} | egrep -i "block size|inode size"
+dumpe2fs ${DEVICE} | egrep -i "Block size|Inode size"
 ```
 
 inode 会有一个总量，如果 inode 数耗尽了（小文件很多），磁盘就使用不了了。inode 的总量和使用量可以用 `df -i` 命令查看
@@ -47,7 +59,7 @@ inode 会有一个总量，如果 inode 数耗尽了（小文件很多），磁�
 
 inode 总数有一个简单的计算公式，如下所示。假设 bytes-per-inode 为 1024，一个 1GB 的磁盘，inode 的总数可能有 1024 \* 1024 个，如果 inode 的大小为 256 字节，那么索引区的大小会达到 256M。
 
-`bytes-per-inode * inode_count ~= 磁盘大小`
+`inode_count = 磁盘大小 / bytes-per-inode`
 
 其中 bytes-per-inode 在格式化的时候可以指定，例如
 
