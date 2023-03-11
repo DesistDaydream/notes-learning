@@ -4,5 +4,11 @@
   "promptDelete": false,
   "newFileLocation": "current",
   "newLinkFormat": "absolute",
-  "useMarkdownLinks": true
+  "useMarkdownLinks": true,
+  "showIndentGuide": true,
+  "tabSize": 4,
+  "useTab": false,
+  "smartIndentList": true,
+  "showLineNumber": false,
+  "strictLineBreaks": false
 }

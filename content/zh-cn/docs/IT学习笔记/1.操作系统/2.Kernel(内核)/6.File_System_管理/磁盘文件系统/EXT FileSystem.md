@@ -9,12 +9,35 @@ weight: 1
 > 参考：
 > 
 > - [公众号，小林 coding-一口气搞懂「文件系统」，就靠这 25 张图了](https://mp.weixin.qq.com/s/qJdoXTv_XS_4ts9YuzMNIw)
+> - [骏马金龙，第4章 ext文件系统机制原理剖析](https://www.junmajinlong.com/linux/ext_filesystem/)
 
-不同的文件系统，有不同的计算方式。
+硬盘最底层的读写 IO 一次是一个扇区 512 字节，如果要读写大量文件，以扇区为单位肯定很慢很消耗性能，所以硬盘使用了一个称作逻辑块的概念。逻辑块是逻辑的，由磁盘驱动器负责维护和操作，它并非是像扇区一样物理划分的。一个逻辑块的大小可能包含一个或多个扇区，每个逻辑块都有唯一的地址，称为 LBA。有了逻辑块之后，磁盘控制器对数据的操作就以逻辑块为单位，一次读写一个逻辑块，磁盘控制器知道如何将逻辑块翻译成对应的扇区并读写数据。
 
-**Block(块)**，存放数据的最小单位，假如每个块为 4KiB，那大于 5KiB 的块就需要两个块，并且逻辑上占用了 8KiB 的空间。
+到了 Linux 操作系统层次，通过文件系统提供了一个也称为块的读写单元，文件系统数据块的大小一般为 1024bytes (1KiB) 或 2048bytes (2KiB) 或 4096bytes (4KiB)。文件系统数据块也是逻辑概念，是文件系统层次维护的，而磁盘上的逻辑数据块是由磁盘控制器维护的，文件系统的 IO 管理器知道如何将它的数据块翻译成磁盘维护的数据块地址 LBA。
 
-**Block Group(块组)**，多个 Block 的集合
+对于使用文件系统的 IO 操作来说，比如读写文件，这些 **IO 的基本单元**是**文件系统上的数据块**，一次读写一个文件系统数据块。比如需要读一个或多个块时，文件系统的 IO 管理器首先计算这些文件系统块对应在哪些磁盘数据块，也就是计算出 LBA，然后通知磁盘控制器要读取哪些块的数据，硬盘控制器将这些块翻译成扇区地址，然后从扇区中读取数据，再通过硬盘控制器将这些扇区数据重组写入到内存中去。
+
+**Block(逻辑块)** 简称 块，存放数据的最小单位，假如每个块为 4KiB，那大于 5KiB 的块就需要两个块，并且逻辑上占用了 8KiB 的空间。
+
+**Block Group(逻辑块组)** 简称块组，多个 Block 的集合
+
+Ext 预留了一些 Inode 做特殊特性使用，如下：某些可能并非总是准确，具体的 inode 号对应什么文件可以使用 `find /-inum NUM` 查看。
+```bash
+Ext4的特殊inode
+Inode号    用途
+0         不存在0号inode，可用于标识目录data block中已删除的文件
+1         虚拟文件系统，如/proc和/sys
+2         根目录         # 注意此行
+3         ACL索引
+4         ACL数据
+5         Boot loader
+6         未删除的目录
+7         预留的块组描述符inode
+8         日志inode
+11        第一个非预留的inode，通常是 lost+found 目录
+```
+
+所以在 ext4 文件系统的 dumpe2fs 信息中，能观察到 fisrt inode 号可能为 11 也可能为 12。
 
 ## 块、块组、Inode 计算
 
@@ -23,19 +46,22 @@ weight: 1
 
 这些计算的结果通常与下列设置有关
 
-- DiskSize # 磁盘空间
-- BlockSize # 通常为 4096（可使用 mke2fs -b 手动指定）
-- BlocksPerGroup # 通常为 32768（可使用 mke2fs -g 手动指定）。每个块组中块的数量。
-- BytesPerInode # 通常为 16384（可使用 mke2fs -i 手动指定）。创建文件系统时，为每块 BytesPerInode 大小的空间创建一个 Inode。
-- InodeSize # 通常为 256
+- **DiskSize** # 磁盘空间
+- **BlockSize** # 通常为 4096 Bytes
+    - 可使用 mke2fs -b 手动指定
+- **BlocksPerGroup** # 通常为 32768。每个块组中块的数量。	- 可使用 mke2fs -g 手动指定
+- **BytesPerInode** # 通常为 16384 Bytes。创建文件系统时，为每块 BytesPerInode 大小的空间创建一个 Inode。
+    - BytesPerInode 也称为 inode_ratio，即.Inode 比率，全称应该是 Inode 分配比率，即每多少空间分配一个 Inode。
+    - 可使用 mke2fs -i 手动指定 
+- **InodeSize** # 通常为 256 Bytes。大小是 128 的倍数，最小为 128 Bytes。 
 
 其中 BlocksPerGroup(每个块组中块的数量)、BytesPerInode(每个Inode负责的空间大小) 这种值是后续计算的基础。固定下来这些，就算分区空间自动扩容/缩容，也可以根据这种数据自动增加/删除块的数量和 Inode 的数量。
 
 将会计算出
-- BlockCount # 块总数
-- InodeCount # Inode 总数
-- InodePreGroup # 每个块组中包含的 Inode 数量
-- InodeUseage # 所有 Inode 占用的空间
+- **BlockCount** # 块总数
+- **InodeCount** # Inode 总数
+- **InodePreGroup** # 每个块组中包含的 Inode 数量
+- **InodeUseage** # 所有 Inode 占用的空间
 
 假如现在有一块 35GiB 的磁盘，需要先转为 Bytes。然后根据给定的 BlockSize(块大小) 和 BlocksPerGroup(块组中块的数量)，计算出需要创建创建的**块数量**和**块组数量**。
 
