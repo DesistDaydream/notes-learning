@@ -29,13 +29,13 @@ sed -i '/^kind: Deployment/{N;a\  namespace: redis
 kubectl apply -f all-redis-operator-resources.yaml
 ```
 
-### 配置 redis 密码认证&#xA;
+### 配置 redis 密码认证
 
     # “密码”修改为自己想设置的密码
     echo -n "密码" > password
     kubectl create -n redis secret generic redis-auth --from-file=password
 
-### 部署 redis&#xA;
+### 部署 redis
 
 ```bash
 cat > redis.yaml <<EOF
@@ -72,7 +72,7 @@ EOF
 kubectl apply -f redis.yaml
 ```
 
-### 暴露 sentinel&#xA;
+### 暴露 sentinel
 
 ```bash
 cat > sentinel-external-service.yaml <<EOF
@@ -102,7 +102,7 @@ EOF
 kubectl apply -f sentinel-external-service.yaml
 ```
 
-### 配置可观察性&#xA;
+### 配置可观察性
 
 部署 exporter 并配置 podmonitor，创建 redis svc 以供
 

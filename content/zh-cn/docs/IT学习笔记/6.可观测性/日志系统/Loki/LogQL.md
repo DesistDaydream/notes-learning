@@ -5,6 +5,7 @@ title: LogQL
 # 概述
 
 > 参考：
+>
 > - [官方文档，LogQL](https://grafana.com/docs/loki/latest/logql/)
 > - [公众号，Loki 查询语言 LogQL 使用](https://mp.weixin.qq.com/s/0dXT0fIreZk6_4ZL4S8lHg)
 
@@ -26,8 +27,8 @@ title: LogQL
 
 基本的日志查询由两部分组成：
 
-- **Log Stream Selector(日志流选择器) **#
-- **Log Pipeline(日志管道) **#
+- **Log Stream Selector(日志流选择器)**#
+- **Log Pipeline(日志管道)**#
 
 注意：由于 Loki 的设计原则，所有的 LogQL 查询必须包含 Log Stream Selector(日志流选择器)
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/xgx9x4/1621837564259-416660f0-81ef-4d14-9086-dbda268daf9f.png)
@@ -58,7 +59,7 @@ Log Stream Selector 中的键值对应包装在一对花括号中，比如：
 
 这种语法与 Prometheus 标签选择器 的语法一样。参考 PromQL,prometheus 查询语言 文章中 即时向量 章节中的匹配说明
 
-上面 LogQL 的执行效果如下： &#x20;
+上面 LogQL 的执行效果如下：
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/xgx9x4/1616129551117-ca616a54-c0f1-48e3-868b-9f43f2138f1a.jpeg)
 
 注意：如果想要获取所有日志，使用这种方式：
@@ -74,7 +75,7 @@ Log Pipeline 通常由一个或多个 **Expression(表达式)** 组成，多个�
 可用的 Log Pipeline 有如下几种
 
 - [**Line Filter Expression**](https://grafana.com/docs/loki/latest/logql/#line-filter-expression)**(行过滤表达式)** # 最基本的过滤方式，通过关键字匹配每一行的日志内容
-- [**Parser Expression**](https://grafana.com/docs/loki/latest/logql/#parser-expression)**(解析表达式) **# 以指定方式解析日志内容，并将解析结果提取为标签。
+- [**Parser Expression**](https://grafana.com/docs/loki/latest/logql/#parser-expression)**(解析表达式)**# 以指定方式解析日志内容，并将解析结果提取为标签。
 - [**Label Filter Expression**](https://grafana.com/docs/loki/latest/logql/#label-filter-expression)**(标签过滤表达式)** #
 - [**Line Format Expression**](https://grafana.com/docs/loki/latest/logql/#line-format-expression)**(行格式化表达式)** #
 - [**Labels Format Expression**](https://grafana.com/docs/loki/latest/logql/#labels-format-expression)**(标签格式化表达式)** #
@@ -101,7 +102,7 @@ Log Pipeline 通常由一个或多个 **Expression(表达式)** 组成，多个�
 1. **|=** # 匹配包含指定字符串的日志行
 2. **!=** # 匹配不包含指定字符串的日志行
 3. **|~** # 匹配包含正则表达式的日志行
-4. **!~ **# 匹配不包含正则表达式的日志行
+4. **!~**# 匹配不包含正则表达式的日志行
 
 ### Parser Expression(解析表达式)
 
@@ -132,7 +133,6 @@ json 解析器有两种模式运行。
 
 - 例如，使用 json 解析器从以下文件内容中提取标签。
 
-
     {
       "protocol": "HTTP/2.0",
       "servers": ["129.0.1.1", "10.2.1.3"],
@@ -155,7 +155,6 @@ json 解析器有两种模式运行。
 
 - 可以得到如下所示的标签列表：
 
-
     "protocol" => "HTTP/2.0"
     "request_time" => "6.032"
     "request_method" => "GET"
@@ -168,7 +167,6 @@ json 解析器有两种模式运行。
 - 2. 带有参数的。在你的管道中使用 `|json label="expression", another="expression"` 将只提取指定的 json 字段为标签，你可以用这种方式指定一个或多个表达式，与 `label_format` 相同，所有表达式必须加引号。
      当前仅支持字段访问（`my.field`, `my["field"]`）和数组访问（`list[0]`），以及任何级别嵌套中的这些组合（`my.list[0]["field"]`）。
      例如，`|json first_server="servers[0]", ua="request.headers[\"User-Agent\"]` 将从以下日志文件中提取标签：
-
 
     {
       "protocol": "HTTP/2.0",
@@ -192,12 +190,10 @@ json 解析器有两种模式运行。
 
 - 提取的标签列表为：
 
-
     "first_server" => "129.0.1.1"
     "ua" => "curl/7.68.0"
 
 - 如果表达式返回一个数组或对象，它将以 json 格式分配给标签。例如，`|json server_list="services", headers="request.headers` 将提取到如下标签：
-
 
     "server_list" => `["129.0.1.1","10.2.1.3"]`
     "headers" => `{"Accept": "*/*", "User-Agent": "curl/7.68.0"}`
@@ -349,8 +345,8 @@ LogQL 支持从查询输入中自动推断出的多种值类型：
 
 经过上面的查询过后可以得到如下所示的结果：
 
-    2020-10-23T20:32:18.094668233Z	650.22401ms	    traceID = 1980d41501b57b68	{cluster="ops-tools1", job="cortex-ops/query-frontend"} |= "query_range"
-    2020-10-23T20:32:18.068866235Z	624.008132ms	traceID = 1980d41501b57b68	{cluster="ops-tool
+    2020-10-23T20:32:18.094668233Z 650.22401ms     traceID = 1980d41501b57b68 {cluster="ops-tools1", job="cortex-ops/query-frontend"} |= "query_range"
+    2020-10-23T20:32:18.068866235Z 624.008132ms traceID = 1980d41501b57b68 {cluster="ops-tool
 
 # Metric Queries(指标查询)
 
@@ -511,12 +507,12 @@ Alternatively you can remove all error using a catch all matcher such as `__erro
 The filter should be placed after the stage that generated this error. This means if you need to remove errors from an unwrap expression it needs to be placed after the unwrap.在生成此错误的阶段后应放置过滤器。这意味着如果您需要从未包装中删除从未包装表达式中删除错误，则需要放置在未包装之后。
 
     quantile_over_time(
-    	0.99,
-    	{container="ingress-nginx",service="hosted-grafana"}
-    	| json
-    	| unwrap response_latency_seconds
-    	| __error__=""[1m]
-    	) by (cluster)
+     0.99,
+     {container="ingress-nginx",service="hosted-grafana"}
+     | json
+     | unwrap response_latency_seconds
+     | __error__=""[1m]
+     ) by (cluster)
 
 Logql
 

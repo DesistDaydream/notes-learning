@@ -6,12 +6,13 @@ weight: 1
 # 概述
 
 > 参考：
+>
 > - [原文连接](https://blog.csdn.net/ljianhui/article/details/46718835)，本文为 IBM RedBook 的 [Linux Performanceand Tuning Guidelines](http://users.polytech.unice.fr/~bilavarn/fichier/elec5_linux/linux_perf_and_tuning_IBM.pdf) 的 1.1 节的翻译
 > - [阿里技术，CPU 飙高，系统性能问题如何排查？](https://mp.weixin.qq.com/s/fzLcAkYwKhj-9hgoVkTzaw)
 
 进程管理是操作系统的最重要的功能之一。有效率的进程管理能保证一个程序平稳而高效地运行。它包括进程调度、中断处理、信号、进程优先级、上下文切换、进程状态、进度内存等。
 
-**Process(进程)** 实际是运行在 CPU 中的一个** Program(应用程序) 的实体**。在 Linux 系统中，能够同时运行多个进程，Linux 通过在短的时间间隔内轮流运行这些进程而实现“多任务”。这一短的时间间隔称为“时间片”，让进程轮流运行的方法称为“进程调度” ，完成调度的程序称为调度程序。
+**Process(进程)** 实际是运行在 CPU 中的一个**Program(应用程序) 的实体**。在 Linux 系统中，能够同时运行多个进程，Linux 通过在短的时间间隔内轮流运行这些进程而实现“多任务”。这一短的时间间隔称为“时间片”，让进程轮流运行的方法称为“进程调度” ，完成调度的程序称为调度程序。
 
 进程调度控制进程对 CPU 的访问。当需要选择下一个进程运行时，由调度程序选择最值得运行的进程。可运行进程实际上是仅等待 CPU 资源的进程，如果某个进程在等待其它资源，则该进程是不可运行进程。Linux 使用了比较简单的基于优先级的进程调度算法选择新的进程。
 
@@ -30,7 +31,7 @@ Program(程序) 和 Process(进程) 的区别是什么呢?
 
 ## 进程的生命周期
 
-每一个进程都有其生命周期，例如创建、运行、终止和消除。这些阶段会在系统启动和运行中重复无数次。因此，进程的生命周期对于其性能的分析是非常重要的。下图展示了经典的进程生命周期。 &#x20;
+每一个进程都有其生命周期，例如创建、运行、终止和消除。这些阶段会在系统启动和运行中重复无数次。因此，进程的生命周期对于其性能的分析是非常重要的。下图展示了经典的进程生命周期。
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ld23ik/1616167507353-2f676d82-88da-483c-a939-399f284d6425.jpeg)
 不会关闭的常驻进程可以称为 **Daemon Process(守护进程，简称 Daemon)**
 
@@ -98,23 +99,23 @@ v5.14 代码：[include/linux/sched.h](https://github.com/torvalds/linux/blob/v5
 ```c
 struct task_struct {
 #ifdef CONFIG_THREAD_INFO_IN_TASK
-	/*
-	 * For reasons of header soup (see current_thread_info()), this
-	 * must be the first element of task_struct.
-	 */
-	struct thread_info		thread_info;
+ /*
+  * For reasons of header soup (see current_thread_info()), this
+  * must be the first element of task_struct.
+  */
+ struct thread_info  thread_info;
 #endif
     ......
-	// 进程状态
-    unsigned int			__state;
+ // 进程状态
+    unsigned int   __state;
     // 进程唯一标识符
-	pid_t				pid;
-	pid_t				tgid;
-	// 进程名称，上限 16 字符
-    char				comm[TASK_COMM_LEN];
+ pid_t    pid;
+ pid_t    tgid;
+ // 进程名称，上限 16 字符
+    char    comm[TASK_COMM_LEN];
     // 打开的文件
-	struct files_struct		*files;
-	......
+ struct files_struct  *files;
+ ......
 }
 ```
 
@@ -134,7 +135,7 @@ Linux 支持从 19（最低优先级）到-20（最高优先级）的 nice 值�
 
 在进程运行过程中，进程的运行信息被保存于处理器的寄存器和它的缓存中。正在执行的进程加载到寄存器中的数据集被称为上下文。为了切换进程，运行中进程的上下文将会被保存，接下来的运行进程的上下文将被被恢复到寄存器中。进程描述和内核模式堆栈的区域将会用来保存上下文。这个切换被称为上下文切换。过多的上下文切换是不受欢迎的，因为处理器每次都必须清空刷新寄存器和缓存，为新的进程制造空间。它可能会引起性能问题。
 
-下图说明了上下文切换如何工作。 &#x20;
+下图说明了上下文切换如何工作。
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ld23ik/1616167507475-6f5a9385-f033-4c00-8344-2953197b973c.jpeg)
 
 # 中断处理
@@ -149,39 +150,39 @@ Linux 支持从 19（最低优先级）到-20（最高优先级）的 nice 值�
 
 每一个进程拥有自己的状态，状态表示了进程当前在发生什么。LINUX 2.6 以后的内核中，在进程的执行期间进程的状态会发生改变，进程一般存在 7 种基础状态：D-不可中断睡眠、R-可执行、S-可中断睡眠、T-暂停态、t-跟踪态、X-死亡态、Z-僵尸态，这几种状态在 ps 命令的 man 手册中有对应解释。
 
-- **D **＃不间断的睡眠（通常是 IO）
+- **D**＃不间断的睡眠（通常是 IO）
 - **R** ＃正在运行或可运行（在运行队列上）
 - **S** ＃可中断的睡眠（等待事件完成）
 - **T** ＃被作业控制信号停止
-- **t **＃在跟踪过程中被调试器停止
+- **t**＃在跟踪过程中被调试器停止
 - **X** ＃已死（永远都不会出现）
 - **Z** ＃已终止运行（“僵尸”）的进程，已终止但未由其父进程获得
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ld23ik/1616167507456-ca89ed8d-d8a1-4cd6-96ab-c78372840f4a.jpeg)
 
-## D (TASK_UNINTERRUPTIBLE)，不可中断睡眠态。
+## D (TASK_UNINTERRUPTIBLE)，不可中断睡眠态
 
 顾名思义，位于这种状态的进程处于睡眠中，并且不允许被其他进程或中断(异步信号)打断。因此这种状态的进程，是无法使用 kill -9 杀死的(kill 也是一种信号)，除非重启系统(没错，就是这么头硬)。不过这种状态一般由 I/O 等待(比如磁盘 I/O、网络 I/O、外设 I/O 等)引起，出现时间非常短暂，大多很难被 PS 或者 TOP 命令捕获(除非 I/O HANG 死)。SLEEP 态进程不会占用任何 CPU 资源。
 
-## R (TASK_RUNNING)，可执行态。
+## R (TASK_RUNNING)，可执行态
 
 这种状态的进程都位于 CPU 的可执行队列中，正在运行或者正在等待运行，即不是在上班就是在上班的路上。
 
 在此状态下，表示进程正在 CPU 中运行或在队列中等待运行（运行队列）。
 
-## S (TASK_INTERRUPTIBLE)，可中断睡眠态。
+## S (TASK_INTERRUPTIBLE)，可中断睡眠态
 
 不同于 D，这种状态的进程虽然也处于睡眠中，但是是允许被中断的。这种进程一般在等待某事件的发生（比如 socket 连接、信号量等），而被挂起。一旦这些时间完成，进程将被唤醒转为 R 态。如果不在高负载时期，系统中大部分进程都处于 S 态。SLEEP 态进程不会占用任何 CPU 资源。
 
 在此状态下，进程被暂停并等待一个某些条件状态的到达。如果一个进程处于 TASK_INTERRUPTIBLE 状态并接收到一个停止的信号，进程的状态将会被改变并中断操作。一个典型的 TASK_INTERRUPTIBLE 状态的进程的例子是一个进程等待键盘中断。
 
-## T & t (TASK_STOPPED & TASK_TRACED)，暂停 or 跟踪态。
+## T & t (TASK_STOPPED & TASK_TRACED)，暂停 or 跟踪态
 
 这种两种状态的进程都处于运行停止的状态。不同之处是暂停态一般由于收到 SIGSTOP、SIGTSTP、SIGTTIN、SIGTTOUT 四种信号被停止，而跟踪态是由于进程被另一个进程跟踪引起(比如 gdb 断点）。暂停态进程会释放所有占用资源。
 
 TASK_STOPPED 在此状态下的进程被某些信号（如 SIGINT，SIGSTOP）暂停。进程正在等待通过一个信号恢复运行，例如 SIGCONT。
 
-## Z (EXIT_ZOMBIE/TASK_ZOMBIE), 僵尸态。
+## Z (EXIT_ZOMBIE/TASK_ZOMBIE), 僵尸态
 
 这种状态的进程实际上已经结束了，但是父进程还没有回收它的资源（比如进程的描述符、PID 等）。僵尸态进程会释放除进程入口之外的所有资源。
 
@@ -193,7 +194,7 @@ TASK_STOPPED 在此状态下的进程被某些信号（如 SIGINT，SIGSTOP）�
 
 使用 kill 命令来关闭这样的一个进程是不可能的，因为该进程已经被认为已经死掉了。如果你不能清除僵尸进程，你可以结束其父进程，然后僵尸进程也随之消失。但是，如果父进程为 init 进程，你不能结束它。init 进程是一个非常重要的进程，因此可能需要重启系统来清除僵尸进程。
 
-## X (EXIT_DEAD), 死亡态。
+## X (EXIT_DEAD), 死亡态
 
 进程的真正结束态，这种状态一般在正常系统中捕获不到。
 
@@ -229,7 +230,7 @@ Stack 段
 
 # 进程的 exit code(退出码)
 
-在 Linux 系统中，程序可以在执行终止后传递值给其父进程，这个值被称为 **exit code(退出码)** 或 **exit status(退出状态)**或 **reture status(返回码)**。在 POSIX 系统中，惯例做法是当程序成功执行时 **exit code 为 0 **，当程序执行失败时 **exit code 非 0 **。
+在 Linux 系统中，程序可以在执行终止后传递值给其父进程，这个值被称为 **exit code(退出码)** 或 **exit status(退出状态)**或 **reture status(返回码)**。在 POSIX 系统中，惯例做法是当程序成功执行时 **exit code 为 0**，当程序执行失败时 **exit code 非 0**。
 
 传递状态码为何重要？如果你在命令行脚本上下文中查看状态码，答案显而易见。任何有用的脚本，它将不可避免地要么被其他脚本所使用，要么被 bash 单行脚本包裹所使用。特别是脚本被用来与自动化工具 SaltStack 或者监测工具 Nagios 配合使用。这些工具会执行脚本并检查它的状态，来确定脚本是否执行成功。
 

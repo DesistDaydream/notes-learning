@@ -5,6 +5,7 @@ title: Docker Image
 # 概述
 
 > 参考：
+>
 > - <https://segmentfault.com/a/1190000009309347>
 
 在虚拟化中，运行程序的地方是一个虚拟的操作系统。而容器技术中，运行程序的地方是一个容器 image(镜像)。
@@ -111,7 +112,7 @@ dockerd 和 registry 服务器之间的协议为 Registry HTTP API V2。
    1. diffID 一般在 configuration 文件的 .rootfs.diff_ids 字段中找到
 3. **chainID** # docker 内容寻址机制采用的索引 ID，其值根据当前层和所有父层的 diffID(或父层的 chainID) 计算获得
    1. chainID 计算完成后，一般可以在 ${DockerRootDir}/image/${StorageDriver}/layerdb/sha256/ 目录中找到 chainID 的同名目录
-4. **cacheID **# 下载 layer 时、创建容器后产生可写 layers 时，随机生成的 uuid，用于索引镜像层
+4. **cacheID**# 下载 layer 时、创建容器后产生可写 layers 时，随机生成的 uuid，用于索引镜像层
    1. 在 chainID 的目录中，可以找到 image 的 cache-id 文件，文件内容就是 cacheID。
    2. 然后在 ${DockerRootDir}/${StorageDriver}/ 目录中找到与 cacheID 同名的目录，这些目录中存储了镜像层的所有数据
    3. 至于创建容器后生成的可写 layers 的 cacheID 信息，一般是保存在容器相关的信息文件中的，比如容器的状态文件、容器的可写层的信息、系统的 mount 信息等等地方，都会有相关记录
@@ -261,7 +262,7 @@ drwx------ 2 root root 142 Jun 21 21:01 l
 # 怎样修改 docker 容器 hosts 文件的内容？
 
 这就要了解 docker 镜像的分层结构了，其中有一个叫 Init 的层，该层专门用来存储一些配置文件，比如：/etc/hosts、/etc/resolv.conf 等信息的，该层并不会跟随镜像一起提交，所以如果我们直接在 Dockerfile 中去覆盖 /etc/hosts 文件的话是不会生效的，要解决这个问题可以有几种方法：
-1\. 启动容器的时候(docker run)添加参数—add-host machine:ip 可以实现 hosts 修改，缺点就是如果很多个节点的话命令会很长&#x20;
+1\. 启动容器的时候(docker run)添加参数—add-host machine:ip 可以实现 hosts 修改，缺点就是如果很多个节点的话命令会很长
 2\. 修改容器 hosts de 查找目录，我们可以让容器启动的时候不去找 /etc/hosts 文件，而是去查找我们自己定义的 hosts 文件，下面是一个 Dockerfile 实例：
 
     FROM ubuntu:14.04
@@ -273,7 +274,6 @@ drwx------ 2 root root 142 Jun 21 21:01 l
     ...
 
 3. 在 dockerfile 中，使用脚本作为镜像入口，然后利用脚本运行修改 hosts 文件的命令以及真正的应用程序入口，下面是一个 Dockerfile 实例：
-
 
     FROM centos:6
     RUN mkdir /data

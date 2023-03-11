@@ -9,8 +9,8 @@ title: TCPDump Capture HTTP GET/POST requests
 TCPDUMP is a [swiss army knife](https://en.wikipedia.org/wiki/Swiss_Army_knife) for all the administrators and developers when it comes to troubleshooting. This post is written for the people who work in middleware technologies. Web servers such as Apache, NGINX, Oracle HTTP, IHS web servers and  application servers such as Weblogic, Websphere, Tomcat, Jboss
 Consider yourself in any of the following scenarios
 
-1. You want to monitor the** traffic inflow and outflow **of Apache httpd server on any specific port like port 80 or 443
-2. You have to** track the HTTP calls between web and application servers** (or) to make sure that proxy is working fine.
+1. You want to monitor the**traffic inflow and outflow**of Apache httpd server on any specific port like port 80 or 443
+2. You have to**track the HTTP calls between web and application servers** (or) to make sure that proxy is working fine.
 3. When you want to examine the presence and values of  specific headers like
 
 X-Forwarded-For
@@ -25,8 +25,8 @@ ETag
 2. when you want to review the data which is being posted to the server in the POST method like
 
 Content-type: multipart/form-data;  
-Content-Type: application/x-www-form-urlencoded 
-Content-Type: application/json 
+Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
 Content-Type: text/plain
 
 1. To track the incoming web service call, made using SOAP UI (or) any web service client.
@@ -59,7 +59,7 @@ Table of Contents
 
 ## So, How do you do that?
 
-**The answer is TCPDUMP. ** TCPDUMP is mostly misconceived as a network engineer’s subject and it displays some incomprehensible binary data that none of us could understand.
+**The answer is TCPDUMP.** TCPDUMP is mostly misconceived as a network engineer’s subject and it displays some incomprehensible binary data that none of us could understand.
 With proper tools and little knowledge about protocols, anyone can easily make use of it and feel the magic lies within.
 
 > Be informed that the industry standards have changed for good and the **HTTPS is becoming a basic requirement** for all webservices and websites. So it might make your troubleshooting little hard, since the packets are encrypted.  **There is a solution to decrypt HTTPS traffic**
@@ -72,8 +72,8 @@ We are going to discuss the following items , practically as much as possible.
 
 - How to monitor/track HTTP and HTTPS calls with tcpdump in weblogic,websphere,tomcat application servers and web servers like Apache **which runs on LINUX platform**
 - How to tamper and read the incoming and outgoing HTTP traffic to our applications deployed in weblogic
-- How to dig into the incoming (or) outgoing HTTP traffic and take a look at the concrete elements of HTTP protocol such as** headers, cookies, request body** as they gets transmitted.
-- How to intercept the HTTP traffic initiated from the browser (or) SOAP UI to application server and sneak a peek into the content like **Request Body** like** XML,JSON **and **Username** and **Password** etc.
+- How to dig into the incoming (or) outgoing HTTP traffic and take a look at the concrete elements of HTTP protocol such as**headers, cookies, request body** as they gets transmitted.
+- How to intercept the HTTP traffic initiated from the browser (or) SOAP UI to application server and sneak a peek into the content like **Request Body** like**XML,JSON**and **Username** and **Password** etc.
 - How to monitor the incoming SOAP web service request body (or) request XML
 - More practical examples on how to use TCPDUMP to analyze the HTTP traffic
 
@@ -219,9 +219,9 @@ Here additionally, we are using two more ASCII values to capture the outgoing HT
 
 **Trying with POST**
 [![](https://notes-learning.oss-cn-beijing.aliyuncs.com/racvu0/1626585328909-f810a2c8-b7b7-43be-a9f2-ffa39e4dd75d.png)](https://www.middlewareinventory.com/wp-content/uploads/2018/07/Screen-Shot-2018-07-26-at-1.37.45-PM.png)
-In the preceding illustrations,  you can see the output of tcpdump command (to the right) shows the **REQUEST and RESPONSE** data along with the** HTML code.** You can also find it aligning to the **CURL’s verbose output**
+In the preceding illustrations,  you can see the output of tcpdump command (to the right) shows the **REQUEST and RESPONSE** data along with the**HTML code.** You can also find it aligning to the **CURL’s verbose output**
 
-### How to monitor all the incoming HTTP Request URL’s (POST or GET)&#xA;
+### How to monitor all the incoming HTTP Request URL’s (POST or GET)
 
 tcpdump -i enp0s8 -s 0 -v -n -l | egrep -i "POST /|GET /|Host:"
 
@@ -229,7 +229,7 @@ tcpdump -i enp0s8 -s 0 -v -n -l | egrep -i "POST /|GET /|Host:"
 
 tcpdump -i enp0s8 -s 0 -A -n -l | egrep -i "POST /|pwd=|passwd=|password=|Host:"
 
-### How to capture the Cookies from Server and from Client ( Request & Response)&#xA;
+### How to capture the Cookies from Server and from Client ( Request & Response)
 
 tcpdump -i enp0s8 -nn -A -s0 -l | egrep -i 'Set-Cookie|Host:|Cookie:'
 
@@ -254,7 +254,7 @@ tcpdump -i any -s 0 -A 'tcp dst port 18001 and tcp\[((tcp\[12:1] & 0xf0) >> 2):4
 
 ## Application server Oriented examples
 
-**Setting the Context: **  We are using weblogic application server for this post but it does not limit the scope of this post only to weblogic.  As I already mentioned earlier.  All you have to change is the interface and the port.
+**Setting the Context:**  We are using weblogic application server for this post but it does not limit the scope of this post only to weblogic.  As I already mentioned earlier.  All you have to change is the interface and the port.
 Let me give some overview of the weblogic infrastructure been used for this post
 
 | **Application Server product** | Weblogic Server 12c                        |
@@ -272,7 +272,7 @@ All the examples we have given above can be used for weblogic with just a little
 Here we are going to make a call from the client with up `192.168.60.1` to our `TestWebService` Application using GET and POST methods and capture the HTTP traffic data at the server end
 tcpdump -i enp0s8 -s 0 -A 'tcp dst port 18001 and tcp\[((tcp\[12:1] & 0xf0) >> 2):4] = 0x47455420 or tcp\[((tcp\[12:1] & 0xf0) >> 2):4] = 0x504F5354 or tcp\[((tcp\[12:1] & 0xf0) >> 2):4] = 0x48545450 or tcp\[((tcp\[12:1] & 0xf0) >> 2):4] = 0x3C21444F and host 192.168.60.1'
 Sample Output
-**Request from **`192.168.60.1` **using **`curl -v`
+**Request from**`192.168.60.1` **using**`curl -v`
 aksarav@middlewareinventory:~$ curl -v "-H X-Forwarded-By: middlewareinventory" -X POST <http://192.168.60.4:18001/TestWebService/>
 
 - Trying 192.168.60.4...
@@ -283,7 +283,7 @@ aksarav@middlewareinventory:~$ curl -v "-H X-Forwarded-By: middlewareinventory" 
   \> User-Agent: curl/7.54.0
   \> Accept: _/_
   \> X-Forwarded-By: middlewareinventory
-  \> 
+  \>
   < HTTP/1.1 200 OK
   < Date: Sat, 28 Jul 2018 06:21:42 GMT
   < Accept-Ranges: bytes
@@ -318,14 +318,14 @@ Last-Modified: Sat, 28 Jul 2018 15:41:10 GMT
 E...-.@.@.....<...<.FQ....S.!N.......W.....
 .G~;....<!DOCTYPE html> <!--<br />To change this license header, choose License Headers in Project Properties.<br />To change this template file, choose Tools | Templates<br />and open the template in the editor.<br />--> <html> <head> <title>Sample WebService Application</title> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> </head> <body> <div>This is Sample WebService Application</div> </body> </html>
 
-### SOAP Webservice Capture&#xA;
+### SOAP Webservice Capture
 
 How to capture the Webservice Traffic between Webservice endpoint deployed at weblogic and web service Client ( For example SOAP UI) ?
 Here is our web service End Point
 <http://192.168.60.4:18001/TestWebService/WS>
 Here we have to two methods.
 
-- **Hello – **Just to say hello to the name being passed in the request
+- **Hello –**Just to say hello to the name being passed in the request
 - **GetSimilarWord** –  To Get the string from the user and search the internet for the matching word and return a  JSON array
 
 Let’s invoke the methods in **SOAP UI** and see what we see in tcpdump at the server end.

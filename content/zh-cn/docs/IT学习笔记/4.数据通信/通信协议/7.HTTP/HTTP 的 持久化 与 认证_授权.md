@@ -5,6 +5,7 @@ title: HTTP 的 持久化 与 认证/授权
 # 概述
 
 > 参考：
+>
 > - 原文链接：<https://juejin.cn/post/6844904034181070861>
 
 # 傻傻分不清之 Cookie、Session、Token、JWT
@@ -46,13 +47,13 @@ title: HTTP 的 持久化 与 认证/授权
 
 \- 如果值为 Unicode 字符，需要为字符编码。
 \- 如果值为二进制数据，则需要使用 BASE64 编码。
-&#x20;|
+|
 | **domain** | 指定 cookie 所属域名，默认是当前域名 |
 | **path** | **指定 cookie 在哪个路径（路由）下生效，默认是 '/'**。
 如果设置为 `/abc`，则只有 `/abc` 下的路由可以访问到该 cookie，如：`/abc/read`。 |
 | **maxAge** | cookie 失效的时间，单位秒。如果为整数，则该 cookie 在 maxAge 秒后失效。如果为负数，该 cookie 为临时 cookie ，关闭浏览器即失效，浏览器也不会以任何形式保存该 cookie 。如果为 0，表示删除该 cookie 。默认为 -1。
 \- **比 expires 好用**。
-&#x20;|
+|
 | **expires** | 过期时间，在设置的某个时间点后该 cookie 就会失效。
 一般浏览器的 cookie 都是默认储存的，当关闭浏览器结束这个会话的时候，这个 cookie 也就会被删除 |
 | **secure** | 该 cookie 是否仅被使用安全协议传输。安全协议有 HTTPS，SSL 等，在网络上传输数据之前先将数据加密。默认为 false。
@@ -147,7 +148,6 @@ title: HTTP 的 持久化 与 认证/授权
   - 客户端将 token 保存到本地（通常使用 localstorage，也可以使用 cookie）
   - 当用户希望访问一个受保护的路由或者资源的时候，需要请求头的 Authorization 字段中使用 Bearer 模式添加 JWT，其内容看起来是下面这样
 
-
     Authorization: Bearer <token>
     复制代码
 
@@ -163,7 +163,6 @@ title: HTTP 的 持久化 与 认证/授权
 #### 方式一
 
 - 当用户希望访问一个受保护的路由或者资源的时候，可以把它放在 Cookie 里面自动发送，但是这样不能跨域，所以更好的做法是放在 HTTP 请求头信息的 Authorization 字段里，使用 Bearer 模式添加 JWT。
-
 
     GET /calendar/v1/events
     Host: api.example.com
@@ -184,8 +183,7 @@ title: HTTP 的 持久化 与 认证/授权
 
 - 通过 URL 传输
 
-
-    http://www.example.com/user?token=xxx
+    <http://www.example.com/user?token=xxx>
     复制代码
 
 ### 项目中使用 JWT

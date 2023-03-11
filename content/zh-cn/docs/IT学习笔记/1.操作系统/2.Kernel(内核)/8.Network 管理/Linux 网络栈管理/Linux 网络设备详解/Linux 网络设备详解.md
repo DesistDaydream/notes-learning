@@ -9,6 +9,7 @@ title: Linux 网络设备详解
 # 虚拟网络设备
 
 > 参考：
+>
 > - <https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#>
 > - [本知识库虚拟化网络章节](/docs/IT学习笔记/10.云原生/1.1.虚拟化/Network%20Virtual(网络虚拟化).md Virtual(网络虚拟化).md)
 
@@ -58,7 +59,7 @@ The Linux bonding driver provides a method for aggregating multiple network inte
 [![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493495394-4aaea4bd-34d9-4987-9873-38af16247d1b.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/bond.png)
 Use a bonded interface when you want to increase your link speed or do a failover on your server.
 Here's how to create a bonded interface:
-ip link add bond1 type bond miimon 100 mode active-backup ip link set eth0 master bond1 ip link set eth1 master bond1&#x20;
+ip link add bond1 type bond miimon 100 mode active-backup ip link set eth0 master bond1 ip link set eth1 master bond1
 This creates a bonded interface named bond1 with mode active-backup. For other modes, please see the [kernel documentation](https://www.kernel.org/doc/Documentation/networking/bonding.txt).
 
 ## Team
@@ -69,7 +70,7 @@ The main thing to realize is that a team device is not trying to replicate or mi
 But there are also some functional differences between a bonded interface and a team. For example, a team supports LACP load-balancing, NS/NA (IPV6) link monitoring, D-Bus interface, etc., which are absent in bonding. For further details about the differences between bonding and team, see [Bonding vs. Team features](https://github.com/jpirko/libteam/wiki/Bonding-vs.-Team-features).
 Use a team when you want to use some features that bonding doesn't provide.
 Here's how to create a team:
-\# teamd -o -n -U -d -t team0 -c '{"runner": {"name": "activebackup"},"link_watch": {"name": "ethtool"}}' # ip link set eth0 down # ip link set eth1 down # teamdctl team0 port add eth0 # teamdctl team0 port add eth1&#x20;
+\# teamd -o -n -U -d -t team0 -c '{"runner": {"name": "activebackup"},"link_watch": {"name": "ethtool"}}' # ip link set eth0 down # ip link set eth1 down # teamdctl team0 port add eth0 # teamdctl team0 port add eth1
 This creates a team interface named team0 with mode active-backup, and it adds eth0 and eth1 as team0's sub-interfaces.
 A new driver called [net_failover](https://www.kernel.org/doc/html/latest/networking/net_failover.html) has been added to Linux recently. It's another failover master net device for virtualization and manages a primary ([passthru/VF \[Virtual Function\]](https://wiki.libvirt.org/page/Networking#PCI_Passthrough_of_host_network_devices) device) slave net device and a standby (the original paravirtual interface) slave net device.
 [![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493495395-cb9efff7-7595-4750-b0a0-18f0ef15f765.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/net_failover.png)
@@ -81,7 +82,7 @@ The VLAN header looks like:
 [![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493495406-ba20c202-7aec-4f2d-8e4a-718c8db481ad.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/vlan_01.png)
 Use a VLAN when you want to separate subnet in VMs, namespaces, or hosts.
 Here's how to create a VLAN:
-\# ip link add link eth0 name eth0.2 type vlan id 2 # ip link add link eth0 name eth0.3 type vlan id 3&#x20;
+\# ip link add link eth0 name eth0.2 type vlan id 2 # ip link add link eth0 name eth0.3 type vlan id 3
 This adds VLAN 2 with name eth0.2 and VLAN 3 with name eth0.3. The topology looks like this:
 [![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493496104-953046d4-0fac-4ca7-908d-45785c3a097d.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/vlan.png)
 **_Note_**: When configuring a VLAN, you need to make sure the switch connected to the host is able to handle VLAN tags, for example, by setting the switch port to trunk mode.
@@ -95,7 +96,7 @@ VXLAN encapsulates Layer 2 frames with a VXLAN header into a UDP-IP packet, whic
 VXLAN is typically deployed in data centers on virtualized hosts, which may be spread across multiple racks.
 [![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493496231-8fa6bbd6-045f-43f3-a2f9-58039a973086.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/vxlan.png)
 Here's how to use VXLAN:
-\# ip link add vx0 type vxlan id 100 local 1.1.1.1 remote 2.2.2.2 dev eth0 dstport 4789&#x20;
+\# ip link add vx0 type vxlan id 100 local 1.1.1.1 remote 2.2.2.2 dev eth0 dstport 4789
 For reference, you can read the [VXLAN kernel documentation](https://www.kernel.org/doc/Documentation/networking/vxlan.txt) or [this VXLAN introduction](https://vincent.bernat.ch/en/blog/2017-vxlan-linux).
 
 ## MACVLAN
@@ -118,7 +119,7 @@ There are five MACVLAN types:
 The type is chosen according to different needs. Bridge mode is the most commonly used.
 Use a MACVLAN when you want to connect directly to a physical network from containers.
 Here's how to set up a MACVLAN:
-\# ip link add macvlan1 link eth0 type macvlan mode bridge # ip link add macvlan2 link eth0 type macvlan mode bridge # ip netns add net1 # ip netns add net2 # ip link set macvlan1 netns net1 # ip link set macvlan2 netns net2&#x20;
+\# ip link add macvlan1 link eth0 type macvlan mode bridge # ip link add macvlan2 link eth0 type macvlan mode bridge # ip netns add net1 # ip netns add net2 # ip link set macvlan1 netns net1 # ip link set macvlan2 netns net2
 This creates two new MACVLAN devices in bridge mode and assigns these two devices to two different namespaces.
 
 ## IPVLAN
@@ -134,7 +135,7 @@ Regarding when to use an IPVLAN, the [IPVLAN kernel documentation](https://www.k
 (b) No of virtual devices created on a master exceed the mac capacity and puts the NIC in promiscuous mode and degraded performance is a concern.
 (c) If the slave device is to be put into the hostile / untrusted network namespace where L2 on the slave could be changed / misused."
 Here's how to set up an IPVLAN instance:
-\# ip netns add ns0 # ip link add name ipvl0 link eth0 type ipvlan mode l2 # ip link set dev ipvl0 netns ns0&#x20;
+\# ip netns add ns0 # ip link add name ipvl0 link eth0 type ipvlan mode l2 # ip link set dev ipvl0 netns ns0
 This creates an IPVLAN device named ipvl0 with mode L2, assigned to namespace ns0.
 
 ## MACVTAP/IPVTAP
@@ -153,7 +154,7 @@ MACsec (Media Access Control Security) is an IEEE standard for security in wired
 The main use case for MACsec is to secure all messages on a standard LAN including ARP, NS, and DHCP messages.
 [![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493498641-f72e7987-0e5b-438c-959d-6d0397b337d6.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/macsec.png)
 Here's how to set up a MACsec configuration:
-\# ip link add macsec0 link eth1 type macsec&#x20;
+\# ip link add macsec0 link eth1 type macsec
 **_Note_**: This only adds a MACsec device called macsec0 on interface eth1. For more detailed configurations, please see the "Configuration example" section in this [MACsec introduction by Sabrina Dubroca](https://developers.redhat.com/blog/2016/10/14/macsec-a-different-solution-to-encrypt-network-traffic/).
 
 ## VETH
@@ -163,7 +164,7 @@ Packets transmitted on one device in the pair are immediately received on the ot
 [![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493498671-cf9ff7ff-0ee0-469e-adff-620edf2a237a.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/veth.png)
 Use a VETH configuration when namespaces need to communicate to the main host namespace or between each other.
 Here's how to set up a VETH configuration:
-\# ip netns add net1 # ip netns add net2 # ip link add veth1 netns net1 type veth peer name veth2 netns net2&#x20;
+\# ip netns add net1 # ip netns add net2 # ip link add veth1 netns net1 type veth peer name veth2 netns net2
 This creates two namespaces, net1 and net2, and a pair of VETH devices, and it assigns veth1 to namespace net1 and veth2 to namespace net2. These two namespaces are connected with this VETH pair. Assign a pair of IP addresses, and you can ping and communicate between the two namespaces.
 
 ## VCAN
@@ -179,7 +180,7 @@ Here's how to create a VCAN:
 Similar to the VETH driver, a VXCAN (Virtual CAN tunnel) implements a local CAN traffic tunnel between two VCAN network devices. When you create a VXCAN instance, two VXCAN devices are created as a pair. When one end receives the packet, the packet appears on the device's pair and vice versa. VXCAN can be used for cross-namespace communication.
 Use a VXCAN configuration when you want to send CAN message across namespaces.
 Here's how to set up a VXCAN instance:
-\# ip netns add net1 # ip netns add net2 # ip link add vxcan1 netns net1 type vxcan peer name vxcan2 netns net2&#x20;
+\# ip netns add net1 # ip netns add net2 # ip link add vxcan1 netns net1 type vxcan peer name vxcan2 netns net2
 **_Note_**: VXCAN is not yet supported in Red Hat Enterprise Linux.
 
 ## IPOIB
@@ -196,7 +197,7 @@ Here's how to create an IPOIB device:
 NLMON is a Netlink monitor device.
 Use an NLMON device when you want to monitor system Netlink messages.
 Here's how to create an NLMON device:
-\# ip link add nlmon0 type nlmon # ip link set nlmon0 up # tcpdump -i nlmon0 -w nlmsg.pcap&#x20;
+\# ip link add nlmon0 type nlmon # ip link set nlmon0 up # tcpdump -i nlmon0 -w nlmsg.pcap
 This creates an NLMON device named nlmon0 and sets it up. Use a packet sniffer (for example, tcpdump) to capture Netlink messages. Recent versions of Wireshark feature decoding of Netlink messages.
 
 ## Dummy
@@ -218,7 +219,7 @@ ip link set dummy1 up
 The IFB (Intermediate Functional Block) driver supplies a device that allows the concentration of traffic from several sources and the shaping incoming traffic instead of dropping it.
 Use an IFB interface when you want to queue and shape incoming traffic.
 Here's how to create an IFB interface:
-\# ip link add ifb0 type ifb # ip link set ifb0 up # tc qdisc add dev ifb0 root sfq # tc qdisc add dev eth0 handle ffff: ingress # tc filter add dev eth0 parent ffff: u32 match u32 0 0 action mirred egress redirect dev ifb0&#x20;
+\# ip link add ifb0 type ifb # ip link set ifb0 up # tc qdisc add dev ifb0 root sfq # tc qdisc add dev eth0 handle ffff: ingress # tc filter add dev eth0 parent ffff: u32 match u32 0 0 action mirred egress redirect dev ifb0
 This creates an IFB device named ifb0 and replaces the root qdisc scheduler with SFQ (Stochastic Fairness Queueing), which is a classless queueing scheduler. Then it adds an ingress qdisc scheduler on eth0 and redirects all ingress traffic to ifb0.
 For more IFB qdisc use cases, please refer to this [Linux Foundation wiki on IFB](https://wiki.linuxfoundation.org/networking/ifb).
 
@@ -234,21 +235,22 @@ For more IFB qdisc use cases, please refer to this [Linux Foundation wiki on IFB
 netdevsim is a simulated networking device which is used for testing various networking APIs. At this time it is particularly focused on testing hardware
 offloading, tc/XDP BPF and SR-IOV.
 A netdevsim device can be created as follows
-\# ip link add dev sim0 type netdevsim # ip link set dev sim0 up&#x20;
+\# ip link add dev sim0 type netdevsim # ip link set dev sim0 up
 To enable tc offload:
-\# ethtool -K sim0 hw-tc-offload on&#x20;
+\# ethtool -K sim0 hw-tc-offload on
 To load XDP BPF or tc BPF programs:
-\# ip link set dev sim0 xdpoffload obj prog.o&#x20;
+\# ip link set dev sim0 xdpoffload obj prog.o
 To add VFs for SR-IOV testing:
-\# echo 3 > /sys/class/net/sim0/device/sriov*numvfs # ip link set sim0 vf 0 mac &#x20;
+\# echo 3 > /sys/class/net/sim0/device/sriov*numvfs # ip link set sim0 vf 0 mac
 To change the vf numbers, you need to disable them completely first:
-\# echo 0 > /sys/class/net/sim0/device/sriov_numvfs # echo 5 > /sys/class/net/sim0/device/sriov_numvfs&#x20;
+\# echo 0 > /sys/class/net/sim0/device/sriov_numvfs # echo 5 > /sys/class/net/sim0/device/sriov_numvfs
 Note: netdevsim is not compiled in RHEL by default
 \_Last updated: September 11, 2019*
 
 # 隧道网络设备
 
 > 参考：
+>
 > - <https://developers.redhat.com/blog/2019/05/17/an-introduction-to-linux-virtual-interfaces-tunnels#>
 
 Linux 支持多种隧道，但新用户可能会对它们的差异感到困惑，并不确定哪一种最适合给定的用例。在本文中，我将简要介绍 Linux 内核中常用的隧道接口。没有代码分析，只简单介绍了接口及其在 Linux 上的使用。任何有网络背景的人都可能对这些信息感兴趣。可以通过发出 iproute2 命令 ip link help 获得隧道接口列表以及特定隧道配置的帮助。
@@ -274,7 +276,7 @@ It's typically used to connect two internal IPv4 subnets through public IPv4 int
 IPIP tunnel supports both IP over IP and MPLS over IP.
 **Note**: When the ipip module is loaded, or an IPIP device is created for the first time, the Linux kernel will create a tunl0 default device in each namespace, with attributes local=any and remote=any. When receiving IPIP protocol packets, the kernel will forward them to tunl0 as a fallback device if it can't find another device whose local/remote attributes match their source or destination address more closely.
 Here is how to create an IPIP tunnel:
-On Server A: # ip link add name ipip0 type ipip local LOCAL_IPv4_ADDR remote REMOTE_IPv4_ADDR # ip link set ipip0 up # ip addr add INTERNAL_IPV4_ADDR/24 dev ipip0 Add a remote internal subnet route if the endpoints don't belong to the same subnet # ip route add REMOTE_INTERNAL_SUBNET/24 dev ipip0 On Server B: # ip link add name ipip0 type ipip local LOCAL_IPv4_ADDR remote REMOTE_IPv4_ADDR # ip link set ipip0 up # ip addr add INTERNAL_IPV4_ADDR/24 dev ipip0 # ip route add REMOTE_INTERNAL_SUBNET/24 dev ipip0&#x20;
+On Server A: # ip link add name ipip0 type ipip local LOCAL_IPv4_ADDR remote REMOTE_IPv4_ADDR # ip link set ipip0 up # ip addr add INTERNAL_IPV4_ADDR/24 dev ipip0 Add a remote internal subnet route if the endpoints don't belong to the same subnet # ip route add REMOTE_INTERNAL_SUBNET/24 dev ipip0 On Server B: # ip link add name ipip0 type ipip local LOCAL_IPv4_ADDR remote REMOTE_IPv4_ADDR # ip link set ipip0 up # ip addr add INTERNAL_IPV4_ADDR/24 dev ipip0 # ip route add REMOTE_INTERNAL_SUBNET/24 dev ipip0
 Note: Please replace LOCAL_IPv4_ADDR, REMOTE_IPv4_ADDR, INTERNAL_IPV4_ADDR, REMOTE_INTERNAL_SUBNET to the addresses based on your testing environment. The same with following example configs.
 
 ## SIT Tunnel
@@ -285,7 +287,7 @@ The SIT tunnel header looks like:
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493541941-c151c630-2925-4a09-aa89-845588e3e5b3.png)
 When the sit module is loaded, the Linux kernel will create a default device, named sit0.
 Here is how to create a SIT tunnel:
-On Server A: # ip link add name sit1 type sit local LOCAL_IPv4_ADDR remote REMOTE_IPv4_ADDR mode any # ip link set sit1 up # ip addr add INTERNAL_IPV4_ADDR/24 dev sit1&#x20;
+On Server A: # ip link add name sit1 type sit local LOCAL_IPv4_ADDR remote REMOTE_IPv4_ADDR mode any # ip link set sit1 up # ip addr add INTERNAL_IPV4_ADDR/24 dev sit1
 Then, perform the same steps on the remote side.
 
 ## ip6tnl Tunnel
@@ -304,7 +306,7 @@ This particular tunneling driver implements IP encapsulations, which can be used
 In general, VTI tunnels operate in almost the same way as ipip or sit tunnels, except that they add a fwmark and IPsec encapsulation/decapsulation.
 VTI6 is the IPv6 equivalent of VTI.
 Here is how to create a VTI tunnel:
-\# ip link add name vti1 type vti key VTI_KEY local LOCAL_IPv4_ADDR remote REMOTE_IPv4_ADDR # ip link set vti1 up # ip addr add LOCAL_VIRTUAL_ADDR/24 dev vti1 # ip xfrm state add src LOCAL_IPv4_ADDR dst REMOTE_IPv4_ADDR spi SPI PROTO ALGR mode tunnel # ip xfrm state add src REMOTE_IPv4_ADDR dst LOCAL_IPv4_ADDR spi SPI PROTO ALGR mode tunnel # ip xfrm policy add dir in tmpl src REMOTE_IPv4_ADDR dst LOCAL_IPv4_ADDR PROTO mode tunnel mark VTI_KEY # ip xfrm policy add dir out tmpl src LOCAL_IPv4_ADDR dst REMOTE_IPv4_ADDR PROTO mode tunnel mark VTI_KEY&#x20;
+\# ip link add name vti1 type vti key VTI_KEY local LOCAL_IPv4_ADDR remote REMOTE_IPv4_ADDR # ip link set vti1 up # ip addr add LOCAL_VIRTUAL_ADDR/24 dev vti1 # ip xfrm state add src LOCAL_IPv4_ADDR dst REMOTE_IPv4_ADDR spi SPI PROTO ALGR mode tunnel # ip xfrm state add src REMOTE_IPv4_ADDR dst LOCAL_IPv4_ADDR spi SPI PROTO ALGR mode tunnel # ip xfrm policy add dir in tmpl src REMOTE_IPv4_ADDR dst LOCAL_IPv4_ADDR PROTO mode tunnel mark VTI_KEY # ip xfrm policy add dir out tmpl src LOCAL_IPv4_ADDR dst REMOTE_IPv4_ADDR PROTO mode tunnel mark VTI_KEY
 You can also configure IPsec via [libreswan](https://libreswan.org/wiki/Route-based_VPN_using_VTI) or [strongSwan](https://wiki.strongswan.org/projects/strongswan/wiki/RouteBasedVPN).
 
 ## GRE and GRETAP
@@ -315,7 +317,7 @@ GRE tunneling adds an additional GRE header between the inside and outside IP he
 Note that you can transport multicast traffic and IPv6 through a GRE tunnel.
 When the gre module is loaded, the Linux kernel will create a default device, named gre0.
 Here is how to create a GRE tunnel:
-\# ip link add name gre1 type gre local LOCAL_IPv4_ADDR remote REMOTE_IPv4_ADDR \[seq] key KEY&#x20;
+\# ip link add name gre1 type gre local LOCAL_IPv4_ADDR remote REMOTE_IPv4_ADDR \[seq] key KEY
 While GRE tunnels operate at OSI Layer 3, GRETAP works at OSI Layer 2, which means there is an Ethernet header in the inner header.
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493541978-5b18c4ce-a484-4882-90a4-1341aab450fd.png)
 Here is how to create a GRETAP tunnel:
@@ -337,7 +339,7 @@ There are some advantages of using UDP tunneling as UDP works with existing HW i
 Currently, the FOU tunnel supports encapsulation protocol based on IPIP, SIT, GRE. An example FOU header looks like:
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493543253-f5dddca7-c7be-42cd-8f26-7f17a6b45499.png)
 Here is how to create a FOU tunnel:
-\# ip fou add port 5555 ipproto 4 # ip link add name tun1 type ipip remote 192.168.1.1 local 192.168.1.2 ttl 225 encap fou encap-sport auto encap-dport 5555&#x20;
+\# ip fou add port 5555 ipproto 4 # ip link add name tun1 type ipip remote 192.168.1.1 local 192.168.1.2 ttl 225 encap fou encap-sport auto encap-dport 5555
 The first command configured a FOU receive port for IPIP bound to 5555; for GRE, you need to set ipproto 47. The second command set up a new IPIP virtual interface (tun1) configured for FOU encapsulation, with dest port 5555.
 **NOTE**: FOU is not supported in Red Hat Enterprise Linux.
 
@@ -347,7 +349,7 @@ The first command configured a FOU receive port for IPIP bound to 5555; for GRE,
 Currently, GUE tunnel supports inner IPIP, SIT, GRE encapsulation. An example GUE header looks like:
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493543283-20ce12c4-edf1-4a2b-8888-42d3bdb4d08e.png)
 Here is how to create a GUE tunnel:
-\# ip fou add port 5555 gue # ip link add name tun1 type ipip remote 192.168.1.1 local 192.168.1.2 ttl 225 encap gue encap-sport auto encap-dport 5555&#x20;
+\# ip fou add port 5555 gue # ip link add name tun1 type ipip remote 192.168.1.1 local 192.168.1.2 ttl 225 encap gue encap-sport auto encap-dport 5555
 This will set up a GUE receive port for IPIP bound to 5555, and an IPIP tunnel configured for GUE encapsulation.
 **NOTE**: GUE is not supported in Red Hat Enterprise Linux.
 

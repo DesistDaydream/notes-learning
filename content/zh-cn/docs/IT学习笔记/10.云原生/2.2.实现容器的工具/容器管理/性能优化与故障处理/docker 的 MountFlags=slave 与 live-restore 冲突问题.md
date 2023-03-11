@@ -65,17 +65,17 @@ so，我们还是老老实实结合现场分析代码吧。
 
 随之而来的问题是，为什么 docker 没有正确卸载容器读写层？我们先展示下 `docker stop` 中卸载容器读写层挂载的相关部分代码：
 
-\`func (daemon _Daemon) Cleanup(container _container.Container) {
+\`func (daemon _Daemon) Cleanup(container_container.Container) {
    if err := daemon.conditionalUnmountOnCleanup(container); err != nil {
       if mountid, err := daemon.imageService.GetLayerMountID(container.ID, container.OS); err == nil {
          daemon.cleanupMountsByID(mountid)
       }
    }
 }
-func (daemon _Daemon) conditionalUnmountOnCleanup(container _container.Container) error {
+func (daemon _Daemon) conditionalUnmountOnCleanup(container_container.Container) error {
    return daemon.Unmount(container)
 }
-func (daemon _Daemon) Unmount(container _container.Container) error {
+func (daemon _Daemon) Unmount(container_container.Container) error {
    if container.RWLayer == nil {
       return errors.New("RWLayer of container" + container.ID + "is unexpectedly nil")
    }
@@ -89,7 +89,7 @@ return nil
 func (rl _referencedRWLayer) Unmount() error {
    return rl.layerStore.driver.Put(rl.mountedLayer.mountID)
 }
-func (d _Driver) Put(id string) error {
+func (d_Driver) Put(id string) error {
    d.locker.Lock(id)
    defer d.locker.Unlock(id)
    dir := d.dir(id)
@@ -119,9 +119,10 @@ func (d _Driver) Put(id string) error {
 `[stupig@hostname ~]$ ps -ef|grep -E "22283|22407|28454|28530" root      22283      1  0 10:48 ?        00:00:00 docker-containerd-shim -namespace moby root      22407      1  0 10:48 ?        00:00:00 docker-containerd-shim -namespace moby root      28454      1  0 10:49 ?        00:00:00 docker-containerd-shim -namespace moby root      28530      1  0 10:49 ?        00:00:00 docker-containerd-shim -namespace moby`
 
 容器读写层挂载信息没有出现在 dockerd 进程命名空间中，却出现在其他容器的托管服务 shim 进程的命名空间内，推断 dockerd 进程发生了重启，对比进程启动时间与命名空间详情可以进行验证：
+
 ```
 
-~]$ ps -eo pid,cmd,lstart|grep dockerd&#x20;
+~]$ ps -eo pid,cmd,lstart|grep dockerd
  34836 /usr/bin/dockerd --storage- Wed Oct 14 10:50:15 2020
 
 [stupig[@hostname ](https://notes-learning.oss-cn-beijing.aliyuncs.com/4d90f6bb-b649-46d3-870f-b087ab75cbf9/latex)(pidof dockerd)/ns
@@ -132,7 +133,7 @@ lrwxrwxrwx 1 root root 0 Oct 14 10:50 pid -> pid:\[4026531836]
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 user -> user:\[4026531837]
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 uts -> uts:\[4026531838]
 
-[stupig[@hostname ](/hostname) ~]$ ps -eo pid,cmd,lstart|grep -w containerd|grep -v shim&#x20;
+[stupig[@hostname ](/hostname) ~]$ ps -eo pid,cmd,lstart|grep -w containerd|grep -v shim
  34849 docker-containerd --config  Wed Oct 14 10:50:15 2020
 
 [stupig[@hostname ](https://notes-learning.oss-cn-beijing.aliyuncs.com/4d90f6bb-b649-46d3-870f-b087ab75cbf9/latex)(pidof docker-containerd)/ns
@@ -143,13 +144,13 @@ lrwxrwxrwx 1 root root 0 Oct 14 10:50 pid -> pid:\[4026531836]
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 user -> user:\[4026531837]
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 uts -> uts:\[4026531838]
 
-[stupig[@hostname ](/hostname) ~]$ ps -eo pid,cmd,lstart|grep -w containerd-shim&#x20;
+[stupig[@hostname ](/hostname) ~]$ ps -eo pid,cmd,lstart|grep -w containerd-shim
  22283 docker-containerd-shim -nam Wed Oct 14 10:48:50 2020
  22407 docker-containerd-shim -nam Wed Oct 14 10:48:55 2020
  28454 docker-containerd-shim -nam Wed Oct 14 10:49:53 2020
  28530 docker-containerd-shim -nam Wed Oct 14 10:49:53 2020
 
-[stupig[@hostname ](/hostname) ~]$ sudo ls -la /proc/28454/ns&#x20;
+[stupig[@hostname ](/hostname) ~]$ sudo ls -la /proc/28454/ns
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 ipc -> ipc:\[4026531839]
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 mnt -> mnt:\[4026533200]
 lrwxrwxrwx 1 root root 0 Oct 14 10:50 net -> net:\[4026531968]
@@ -200,7 +201,7 @@ dockerd 进程启动时，会自动拉起 containerd 进程；当用户创建并
 同样存在卸载问题的情况下，高低版本的 docker 却呈现出了不同的结果，这显然是 docker 的处理逻辑发生了变更，这里我们对比源码能够很快得出结论：
 
 \`\`// 1.13.1  版本处理逻辑
-func (daemon _Daemon) cleanupContainer(container _container.Container, forceRemove, removeVolume bool) (err error) {
+func (daemon _Daemon) cleanupContainer(container_container.Container, forceRemove, removeVolume bool) (err error) {
    // If force removal is required, delete container from various
    // indexes even if removal failed.
    defer func() {
@@ -235,7 +236,7 @@ return nil
 }
 
 // 18.06.3-ce  版本处理逻辑
-func (daemon _Daemon) cleanupContainer(container _container.Container, forceRemove, removeVolume bool) (err error) {
+func (daemon _Daemon) cleanupContainer(container_container.Container, forceRemove, removeVolume bool) (err error) {
    // When container creation fails and `RWLayer` has not been created yet, we
    // do not call `ReleaseRWLayer`
    if container.RWLayer != nil {

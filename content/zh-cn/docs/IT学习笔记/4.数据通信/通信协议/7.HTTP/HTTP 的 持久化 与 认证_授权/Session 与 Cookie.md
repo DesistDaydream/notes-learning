@@ -8,7 +8,7 @@ Cookie
 
 - HTTP 是无状态协议，服务器不能记录浏览器的访问状态，也就是说服务器不能区分两次请求是否由同一个客户端发出
 
-- **Cookie(小甜饼) **就是解决 HTTP 协议无状态的方案之一
+- **Cookie(小甜饼)**就是解决 HTTP 协议无状态的方案之一
 
 - Cookie 实际上就是服务器保存再浏览器上的一段信息。浏览器有了 Cookie 之后，每次向服务器发送请求时都会同时将该信息发送给服务器，服务器收到请求后，就可以根据该信息处理请求
 
@@ -38,13 +38,13 @@ Cookie 的用途
 
 - **name** # cookie 的名称
 
-- **value **# cookie 的值
+- **value**# cookie 的值
 
 - **domain** # 可以访问此 cookie 的域名
 
-- **path **# 可以访问此 cookie 的页面路径。比如 domain 是 desistdaydream.ltd，path 是 /cookie，那么只有访问 <http://desistdaydream.ltd/cookie> 路径下的页面时，才可以读取此 cookie
+- **path**# 可以访问此 cookie 的页面路径。比如 domain 是 desistdaydream.ltd，path 是 /cookie，那么只有访问 <http://desistdaydream.ltd/cookie> 路径下的页面时，才可以读取此 cookie
 
-- **MaxAge **或 **Expires** # 设置 cookie 持久化时的过期时长
+- **MaxAge**或 **Expires** # 设置 cookie 持久化时的过期时长
 
   - 注意：Expires 是老式的过期方法， 如果可以，应该使用 MaxAge 设置过期时间，但有些老版本的浏览器不支持 MaxAge。 如果要支持所有浏览器，要么使用 Expires，要么同时使用 MaxAge 和 Expires。
 
@@ -76,7 +76,7 @@ Cookie 虽然在一定程度上解决了 "保持状态" 的需求，但是由于
 
 但是这时，问题又来了，基于 HTTP 协议的无状态特征，服务器根本不知道访问者是谁。又如何保存呢？此时，Cookie 又来了，起到了一个桥接的作用。
 
-用户登录成功之后，我们在服务端为每个用户创建一个特定的 **SessionData **和 **SessionID**，他们一一对应。其中：
+用户登录成功之后，我们在服务端为每个用户创建一个特定的 **SessionData**和 **SessionID**，他们一一对应。其中：
 
 - SessionData 是在服务端保存的一个数据结构，用来跟踪用户的状态，这个数据可以保存在集群、数据库、文件中
 
@@ -140,7 +140,7 @@ Session 接口设计
 
 SessionMgr 接口设计
 
-- Init() # 初始化，加载 RAM 或 Redis&#x20;
+- Init() # 初始化，加载 RAM 或 Redis
 
 - CreateSession() # 创建一个新的 Session
 

@@ -5,6 +5,7 @@ title: HTTP Header
 # 概述
 
 > 参考：
+>
 > - [RFC 2616-Message Headers](https://tools.ietf.org/html/rfc2616#section-4.2)
 > - [RFC 7231,第五章-请求头字段](https://tools.ietf.org/html/rfc7231#section-5)
 > - [RFC 7231,第七章-响应头字段](https://datatracker.ietf.org/doc/html/rfc7231#section-7)
@@ -60,18 +61,18 @@ Controls 类型的请求头用来指定客户端如何处理本次 HTTP 请求�
 - Note：输入的什么网址，请求的就是什么，输入域名就是域名，输入 IP 就是 IP
 - Note：当服务器接到这个请求时，如果自身无法处理 ip 或者无法处理域名，则该请求就会丢弃(比如 k8s 的 ingress)。所以在测试的时候一般使用 curl 命令请求 IP 时加上 -H 参数以自己制定 URL 内容即可，否则如果服务器不处理 IP 的话，就会返回 404
 
-**Max-Forwards **# 最大传输逐跳数
-**Pragma** #&#x20;
+**Max-Forwards**# 最大传输逐跳数
+**Pragma** #
 **Range** # 实体的字节范围请求
-**TE **# 传输编码的优先级
+**TE**# 传输编码的优先级
 
 ## Conditionals(条件)
 
 **If-Match** # 比较实体标记(ETag)
 **If-None-Match** # 比较实体标记(与 If-Match 相反)
 **If-Modified-Since** # 比较资源的更新时间
-**If-Unmodified-Since **# 比较资源的更新时间(与 If-Modified-Since 相反)
-**If-Range **# 资源未更新时发送实体 Byte 的范围请求
+**If-Unmodified-Since**# 比较资源的更新时间(与 If-Modified-Since 相反)
+**If-Range**# 资源未更新时发送实体 Byte 的范围请求
 
 ## Content Negotiation(内容协商)
 
@@ -111,12 +112,12 @@ Response Header 中，将各种 Header 分为多个类别：
 
 控制服务端如何处理 HTTP 响应
 Age # 推算资源创建经过时间
-Cache-Control #&#x20;
-Expires #&#x20;
-Data #&#x20;
-Location #&#x20;
-Retry-After #&#x20;
-Vary #&#x20;
+Cache-Control #
+Expires #
+Data #
+Location #
+Retry-After #
+Vary #
 Warning #
 
 ## Validator Header Fields(验证器头字段)
@@ -132,8 +133,8 @@ Warning #
 ## Response Context
 
 **Accept-Ranges** # 是否接受字节范围请求
-**Allow** #&#x20;
-**Server **# HTTP 服务器的安装信息
+**Allow** #
+**Server**# HTTP 服务器的安装信息
 
 # **Extension Header(扩展头)**
 
@@ -154,12 +155,12 @@ Warning #
 - keepalive(长连接)：需要实时更新的网络资源，比如网络游戏，具体点就是网页上的游戏，需要实时连接，如果游戏中每一步操作都要进行 TCP 建连，然后各种请求和响应，那么用户体验会非常不好，也会极大得消耗网络带宽，所以需要使用类似 keepalive 这种长连接
 - close(短连接)：不需要实时更新的网络资源，当浏览静态网页资源的时候，当把整个网页发送给用户之后即可关闭连接，因为网页资源已经发送到 Client 本地，不需要实时更新了
 
-**Date **# 创建报文的日期时间
-**Pragma **# 报文指令
-**Trailer **# 报文末端的首部一览
-**Transfer-Encoding **# 指定报文主体的传输编码方式
-**Upgrade **# 升级为其他协议
-**Via **# 报文经过的中间节点。也就是代理服务器的相关信息。
+**Date**# 创建报文的日期时间
+**Pragma**# 报文指令
+**Trailer**# 报文末端的首部一览
+**Transfer-Encoding**# 指定报文主体的传输编码方式
+**Upgrade**# 升级为其他协议
+**Via**# 报文经过的中间节点。也就是代理服务器的相关信息。
 **Warning** # 错误通知
 
 ## Entity Header(实体头)
@@ -174,4 +175,4 @@ Content-
 2. Expires # 实体过期时间
 3. Last-Modified # 最后一次修改时间
 
-**Content-Length **# 实体主体的大小(单位 :字节)
+**Content-Length**# 实体主体的大小(单位 :字节)

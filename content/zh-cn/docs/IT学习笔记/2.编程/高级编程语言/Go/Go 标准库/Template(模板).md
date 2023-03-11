@@ -5,6 +5,7 @@ title: Template(模板)
 # 概述
 
 > 参考：
+>
 > - [骏马金龙，Go 标准库：Go template 用法详解](https://www.cnblogs.com/f-ck-need-u/p/10053124.html)
 > - [Go Package，标准库-text-template](https://pkg.go.dev/text/template)
 
@@ -34,22 +35,22 @@ Go Template(模板)
 ```go
 package main
 import (
-	"html/template"
-	"net/http"
+ "html/template"
+ "net/http"
 )
 func tmpl(w http.ResponseWriter, r *http.Request) {
-	t1, err := template.ParseFiles("test.html")
-	if err != nil {
-		panic(err)
-	}
-	t1.Execute(w, "hello world")
+ t1, err := template.ParseFiles("test.html")
+ if err != nil {
+  panic(err)
+ }
+ t1.Execute(w, "hello world")
 }
 func main() {
-	server := http.Server{
-		Addr: "127.0.0.1:8080",
-	}
-	http.HandleFunc("/tmpl", tmpl)
-	server.ListenAndServe()
+ server := http.Server{
+  Addr: "127.0.0.1:8080",
+ }
+ http.HandleFunc("/tmpl", tmpl)
+ server.ListenAndServe()
 }
 ```
 
@@ -83,22 +84,22 @@ func main(){
 ```go
 package main
 import (
-	"os"
-	"text/template"
+ "os"
+ "text/template"
 )
 type Friend struct {
-	Fname string
+ Fname string
 }
 type Person struct {
-	UserName string
-	Emails   []string
-	Friends  []*Friend
+ UserName string
+ Emails   []string
+ Friends  []*Friend
 }
 func main() {
-	f1 := Friend{Fname: "xiaofang"}
-	f2 := Friend{Fname: "wugui"}
-	t := template.New("test")
-	t = template.Must(t.Parse(
+ f1 := Friend{Fname: "xiaofang"}
+ f2 := Friend{Fname: "wugui"}
+ t := template.New("test")
+ t = template.Must(t.Parse(
 `hello {{.UserName}}!
 {{ range .Emails }}
 an email {{ . }}
@@ -108,10 +109,10 @@ an email {{ . }}
 my friend name is {{.Fname}}
 {{- end }}
 {{ end }}`))
-	p := Person{UserName: "longshuai",
-		Emails:  []string{"a1@qq.com", "a2@gmail.com"},
-		Friends: []*Friend{&f1, &f2}}
-	t.Execute(os.Stdout, p)
+ p := Person{UserName: "longshuai",
+  Emails:  []string{"a1@qq.com", "a2@gmail.com"},
+  Friends: []*Friend{&f1, &f2}}
+ t.Execute(os.Stdout, p)
 }
 ```
 
@@ -265,14 +266,14 @@ $var = pipeline
 
 ```go
 func main() {
-	t1 := template.New("test1")
-	tmpl, _ := t1.Parse(
+ t1 := template.New("test1")
+ tmpl, _ := t1.Parse(
 `
 {{- define "T1"}}ONE {{println .}}{{end}}
 {{- define "T2"}}{{template "T1" $}}{{end}}
 {{- template "T2" . -}}
 `)
-	_ = tmpl.Execute(os.Stdout, "hello world")
+ _ = tmpl.Execute(os.Stdout, "hello world")
 }
 ```
 
@@ -320,46 +321,46 @@ range 可以迭代 slice、数组、map 或 channel。迭代的时候，会设�
 下面是在 html 中使用 range 的一个示例。test.html 文件内容如下：
 
     <html>
-    	<head>
-    		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    		<title>Go Web</title>
-    	</head>
-    	<body>
-    		<ul>
-    			{{ range . }}
-    				<li>{{ . }}</li>
-    			{{ else }}
-    				<li> Nothing to show </li>
-    			{{ end}}
-    		</ul>
-    	</body>
+     <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <title>Go Web</title>
+     </head>
+     <body>
+      <ul>
+       {{ range . }}
+        <li>{{ . }}</li>
+       {{ else }}
+        <li> Nothing to show </li>
+       {{ end}}
+      </ul>
+     </body>
     </html>
 
 以下是 test.html 同目录下的 go 程序文件：
 
     package main
     import (
-    	"html/template"
-    	"net/http"
+     "html/template"
+     "net/http"
     )
     func main() {
-    	server := http.Server{
-    		Addr: "127.0.0.1:8080",
-    	}
-    	http.HandleFunc("/process", process)
-    	server.ListenAndServe()
+     server := http.Server{
+      Addr: "127.0.0.1:8080",
+     }
+     http.HandleFunc("/process", process)
+     server.ListenAndServe()
     }
     func process(w http.ResponseWriter, r *http.Request) {
-    	t1 := template.Must(template.ParseFiles("test.html"))
-    	s := []string{
-    		"星期一",
-    		"星期二",
-    		"星期三",
-    		"星期四",
-    		"星期五",
-    		"星期六",
-    		"星期日",}
-    	t1.Execute(w, s)
+     t1 := template.Must(template.ParseFiles("test.html"))
+     s := []string{
+      "星期一",
+      "星期二",
+      "星期三",
+      "星期四",
+      "星期五",
+      "星期六",
+      "星期日",}
+     t1.Execute(w, s)
     }
 
 ## with...end
@@ -381,28 +382,28 @@ range 可以迭代 slice、数组、map 或 channel。迭代的时候，会设�
 template 定义了一些内置函数，也支持自定义函数。关于如何自定义函数，见[深入剖析 Go template](https://www.cnblogs.com/f-ck-need-u/p/10035768.html)。
 以下是内置的函数列表：
 and
-&#x20; 返回第一个为空的参数或最后一个参数。可以有任意多个参数。
-&#x20; and x y 等价于 if x then y else x
+ 返回第一个为空的参数或最后一个参数。可以有任意多个参数。
+ and x y 等价于 if x then y else x
 not
-&#x20; 布尔取反。只能一个参数。
+ 布尔取反。只能一个参数。
 or
-&#x20; 返回第一个不为空的参数或最后一个参数。可以有任意多个参数。
-&#x20; "or x y"等价于"if x then x else y"。
+ 返回第一个不为空的参数或最后一个参数。可以有任意多个参数。
+ "or x y"等价于"if x then x else y"。
 print
 printf
 println
-&#x20; 分别等价于 fmt 包中的 Sprint、Sprintf、Sprintln
+ 分别等价于 fmt 包中的 Sprint、Sprintf、Sprintln
 len
-&#x20; 返回参数的 length。
+ 返回参数的 length。
 index
-&#x20; 对可索引对象进行索引取值。第一个参数是索引对象，后面的参数是索引位。
-&#x20; "index x 1 2 3"代表的是 x\[1]\[2]\[3]。
-&#x20; 可索引对象包括 map、slice、array。
+ 对可索引对象进行索引取值。第一个参数是索引对象，后面的参数是索引位。
+ "index x 1 2 3"代表的是 x\[1]\[2]\[3]。
+ 可索引对象包括 map、slice、array。
 call
-&#x20; 显式调用函数。第一个参数必须是函数类型，且不是 template 中的函数，而是外部函数。
-&#x20; 例如一个 struct 中的某个字段是 func 类型的。
-&#x20; "call .X.Y 1 2"表示调用 dot.X.Y(1, 2)，Y 必须是 func 类型，函数参数是 1 和 2。
-&#x20; 函数必须只能有一个或 2 个返回值，如果有第二个返回值，则必须为 error 类型。
+ 显式调用函数。第一个参数必须是函数类型，且不是 template 中的函数，而是外部函数。
+ 例如一个 struct 中的某个字段是 func 类型的。
+ "call .X.Y 1 2"表示调用 dot.X.Y(1, 2)，Y 必须是 func 类型，函数参数是 1 和 2。
+ 函数必须只能有一个或 2 个返回值，如果有第二个返回值，则必须为 error 类型。
 除此之外，还内置一些用于比较的函数：
 
     eq arg1 arg2：
@@ -451,14 +452,14 @@ template("name",pipeline)
 
 ```go
 func main() {
-	t1 := template.New("test1")
-	tmpl, _ := t1.Parse(
+ t1 := template.New("test1")
+ tmpl, _ := t1.Parse(
 `{{- define "T1"}}ONE {{println .}}{{end}}
 {{- define "T2"}}TWO {{println .}}{{end}}
 {{- define "T3"}}{{template "T1"}}{{template "T2" "haha"}}{{end}}
 {{- template "T3" -}}
 `)
-	_ = tmpl.Execute(os.Stdout, "hello world")
+ _ = tmpl.Execute(os.Stdout, "hello world")
 }
 ```
 
@@ -500,8 +501,8 @@ t1.html 文件内容如下：
     3
     4
     <div style="background-color: yellow;">
-    	This is t2.html<br/>
-    	This is the value of the dot in t2.html - [{{ . }}]
+     This is t2.html<br/>
+     This is the value of the dot in t2.html - [{{ . }}]
     </div>
 
 处理这两个文件的 handler 函数如下：
@@ -511,8 +512,8 @@ t1.html 文件内容如下：
     3
     4
     func process(w http.ResponseWriter, r *http.Request) {
-    	t, _ := template.ParseFiles("t1.html", "t2.html")
-    	t.Execute(w, "Hello World!")
+     t, _ := template.ParseFiles("t1.html", "t2.html")
+     t.Execute(w, "Hello World!")
     }
 
 上面也可以不额外定义 t2.html 文件，而是直接在 t1.html 文件中使用 define 定义一个模板。修改 t1.html 文件如下：
@@ -546,23 +547,23 @@ t1.html 文件内容如下：
     <!DOCTYPE html>
     <html lang="en">
     <head>
-    	<meta charset="utf-8">
-    	<meta http-equiv="X-UA-Compatible" content="IE=9">
-    	<title>Go Web Programming</title>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=9">
+     <title>Go Web Programming</title>
     </head>
     <body>
-    	<div> This is t1.html before</div>
-    	<div>This is the value of the dot in t1.html - [{{ . }}]</div>
-    	<hr />
-    	{{ template "t2.html" }}
-    	<hr />
-    	<div> This is t1.html after</div>
+     <div> This is t1.html before</div>
+     <div>This is the value of the dot in t1.html - [{{ . }}]</div>
+     <hr />
+     {{ template "t2.html" }}
+     <hr />
+     <div> This is t1.html after</div>
     </body>
     </html>
     {{define "t2.html"}}
     <div style="background-color: yellow;">
-    	This is t2.html<br/>
-    	This is the value of the dot in t2.html - [{{ . }}]
+     This is t2.html<br/>
+     This is the value of the dot in t2.html - [{{ . }}]
     </div>
     {{end}}
 
@@ -573,8 +574,8 @@ t1.html 文件内容如下：
     3
     4
     func process(w http.ResponseWriter, r *http.Request) {
-    	t, _ := template.ParseFiles("t1.html")
-    	t.Execute(w, "Hello World!")
+     t, _ := template.ParseFiles("t1.html")
+     t.Execute(w, "Hello World!")
     }
 
 ## block 块
@@ -587,12 +588,12 @@ t1.html 文件内容如下：
     6
     7
     {{block "name" pipeline}} T1 {{end}}
-    	A block is shorthand for defining a template
-    		{{define "name"}} T1 {{end}}
-    	and then executing it in place
-    		{{template "name" pipeline}}
-    	The typical use is to define a set of root templates that are
-    	then customized by redefining the block templates within.
+     A block is shorthand for defining a template
+      {{define "name"}} T1 {{end}}
+     and then executing it in place
+      {{template "name" pipeline}}
+     The typical use is to define a set of root templates that are
+     then customized by redefining the block templates within.
 
 根据官方文档的解释：block 等价于 define 定义一个名为 name 的模板，并在"有需要"的地方执行这个模板，执行时将"."设置为 pipeline 的值。
 但应该注意，**block 的第一个动作是执行名为 name 的模板，如果不存在，则在此处自动定义这个模板，并执行这个临时定义的模板。换句话说，block 可以认为是设置一个默认模板**。
@@ -614,13 +615,13 @@ home.html 文件内容如下：
     8
     9
     <html>
-    	<head>
-    		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    		<title>Go Web Programming</title>
-    	</head>
-    	<body>
-    		{{ template "content" }}
-    	</body>
+     <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <title>Go Web Programming</title>
+     </head>
+     <body>
+      {{ template "content" }}
+     </body>
     </html>
 
 在此文件中指定了要执行一个名为"content"的模板，但此文件中没有使用 define 定义该模板，所以需要在其它文件中定义名为 content 的模板。现在分别在两个文件中定义两个 content 模板：
@@ -630,7 +631,7 @@ red.html 文件内容如下：
     2
     3
     {{ define "content" }}
-    	<h1 style="color: red;">Hello World!</h1>
+     <h1 style="color: red;">Hello World!</h1>
     {{ end }}
 
 blue.html 文件内容如下：
@@ -639,7 +640,7 @@ blue.html 文件内容如下：
     2
     3
     {{ define "content" }}
-    	<h1 style="color: blue;">Hello World!</h1>
+     <h1 style="color: blue;">Hello World!</h1>
     {{ end }}
 
 在 handler 中，除了解析 home.html，还根据需要解析 red.html 或 blue.html：
@@ -655,14 +656,14 @@ blue.html 文件内容如下：
     9
     10
     func process(w http.ResponseWriter, r *http.Request) {
-    	rand.Seed(time.Now().Unix())
-    	t := template.New("test")
-    	if rand.Intn(10) > 5 {
-    		t, _ = template.ParseFiles("home.html", "red.html")
-    	} else {
-    		t, _ = template.ParseFiles("home.html", "blue.html")
-    	}
-    	t.Execute(w,"")
+     rand.Seed(time.Now().Unix())
+     t := template.New("test")
+     if rand.Intn(10) > 5 {
+      t, _ = template.ParseFiles("home.html", "red.html")
+     } else {
+      t, _ = template.ParseFiles("home.html", "blue.html")
+     }
+     t.Execute(w,"")
     }
 
 如果使用 block，那么可以设置默认的 content 模板。例如将原本定义在 blue.html 中的 content 设置为默认模板。
@@ -704,14 +705,14 @@ blue.html 文件内容如下：
     9
     10
     func process(w http.ResponseWriter, r *http.Request) {
-    	rand.Seed(time.Now().Unix())
-    	t := template.New("test")
-    	if rand.Intn(10) > 5 {
-    		t, _ = template.ParseFiles("home.html", "red.html")
-    	} else {
-    		t, _ = template.ParseFiles("home.html")
-    	}
-    	t.Execute(w,"")
+     rand.Seed(time.Now().Unix())
+     t := template.New("test")
+     if rand.Intn(10) > 5 {
+      t, _ = template.ParseFiles("home.html", "red.html")
+     } else {
+      t, _ = template.ParseFiles("home.html")
+     }
+     t.Execute(w,"")
     }
 
 当执行 else 语句块的时候，发现 home.html 中要执行名为 content 的模板，但在 ParseFiles()中并没有解析包含 content 模板的文件。于是执行 block 定义的 content 模板。而执行非 else 语句的时候，因为 red.html 中定义了 content，会直接执行 red.html 中的 content。
@@ -724,51 +725,51 @@ block 通常设置在顶级的根文件中，例如上面的 home.html 中。
 例如，一个 handler 函数的代码如下：
 
     func process(w http.ResponseWriter, r *http.Request) {
-    	t, _ := template.ParseFiles("test.html")
-    	content := `I asked: <i>"What's up?"</i>`
-    	t.Execute(w, content)
+     t, _ := template.ParseFiles("test.html")
+     content := `I asked: <i>"What's up?"</i>`
+     t.Execute(w, content)
     }
 
 上面 content 是 Execute 的第二个参数，它的内容是包含了特殊符号的字符串。
 下面是 test.html 文件的内容：
 
     <html>
-    	<head>
-    		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    		<title>Go Web Programming</title>
-    	</head>
-    	<body>
-    		<div>{{ . }}</div>
-    		<div><a href="/{{ . }}">Path</a></div>
-    		<div><a href="/?q={{ . }}">Query</a></div>
-    		<div><a onclick="f('{{ . }}')">Onclick</a></div>
-    	</body>
+     <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <title>Go Web Programming</title>
+     </head>
+     <body>
+      <div>{{ . }}</div>
+      <div><a href="/{{ . }}">Path</a></div>
+      <div><a href="/?q={{ . }}">Query</a></div>
+      <div><a onclick="f('{{ . }}')">Onclick</a></div>
+     </body>
     </html>
 
 上面 test.html 中有 4 个不同的环境，分别是 html 环境、url 的 path 环境、url 的 query 环境以及 js 环境。虽然对象都是`{{.}}`，但解析执行后的值是不一样的。如果使用 curl 获取源代码，结果将如下：
 
     <html>
     <head>
-    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    	<title>Go Web Programming</title>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+     <title>Go Web Programming</title>
     </head>
     <body>
-    	<div>I asked: &lt;i&gt;&#34;What&#39;s up?&#34;&lt;/i&gt;</div>
-    	<div>
-    		<a href="/I%20asked:%20%3ci%3e%22What%27s%20up?%22%3c/i%3e">
-    			Path
-    		</a>
-    	</div>
-    	<div>
-    		<a href="/?q=I%20asked%3a%20%3ci%3e%22What%27s%20up%3f%22%3c%2fi%3e">
-    			Query
-    		</a>
-    	</div>
-    	<div>
-    		<a onclick="f('I asked: \x3ci\x3e\x22What\x27s up?\x22\x3c\/i\x3e')">
-    			Onclick
-    		</a>
-    	</div>
+     <div>I asked: &lt;i&gt;</div>
+     <div>
+      <a href="/I%20asked:%20%3ci%3e%22What%27s%20up?%22%3c/i%3e">
+       Path
+      </a>
+     </div>
+     <div>
+      <a href="/?q=I%20asked%3a%20%3ci%3e%22What%27s%20up%3f%22%3c%2fi%3e">
+       Query
+      </a>
+     </div>
+     <div>
+      <a onclick="f('I asked: \x3ci\x3e\x22What\x27s up?\x22\x3c\/i\x3e')">
+       Onclick
+      </a>
+     </div>
     </body>
     </html>
 
@@ -794,8 +795,8 @@ block 通常设置在顶级的根文件中，例如上面的 home.html 中。
     3
     4
     func process(w http.ResponseWriter, r *http.Request) {
-    	t, _ := template.ParseFiles("tmpl.html")
-    	t.Execute(w, template.HTML(r.FormValue("comment")))
+     t, _ := template.ParseFiles("tmpl.html")
+     t.Execute(w, template.HTML(r.FormValue("comment")))
     }
 
 **转载请注明出处：**[**https://www.cnblogs.com/f-ck-need-u/p/10053124.html**](https://www.cnblogs.com/f-ck-need-u/p/10053124.html)

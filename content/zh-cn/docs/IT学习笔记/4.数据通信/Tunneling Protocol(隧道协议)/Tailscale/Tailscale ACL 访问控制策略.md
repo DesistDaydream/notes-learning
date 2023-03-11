@@ -5,6 +5,7 @@ title: Tailscale ACL 访问控制策略
 # 概述
 
 > 参考：
+>
 > - [公众号-云原生实验室，ailscale ACL 访问控制策略完全指南！](https://mp.weixin.qq.com/s/JIbKEWJBDzP3mjWzlZ1DIA)
 
 大家好，我是米开朗基杨。
@@ -61,7 +62,7 @@ Tailscale/Headscale 的默认访问规则是 `default deny`，也就是黑名单
 | Tailscale IP              | 100.101.102.103   | 拥有给定 Tailscale IP 的设备       |
 | Subnet CIDR (ref)\[4]     | 192.168.1.0/24    | CIDR 中的任意 IP                   |
 | Hosts (ref)\[5]           | my-host           | `hosts`                            |
-| &#x20;字段中定义的任意 IP |
+|字段中定义的任意 IP |
 | Tags (ref)\[6]            | tag:production    | 分配指定 tag 的所有设备            |
 | Tailnet members           | autogroup:members | Tailscale 网络中的任意成员（设备） |
 
@@ -93,7 +94,7 @@ dst 字段表示访问目标列表，列表中的每个元素都用 `hosts:ports
 | Group (ref)\[8]            | group:example      | Group 中的所有用户                                       |
 | Tailscale IP               | 100.101.102.103    | 拥有给定 Tailscale IP 的设备                             |
 | Hosts (ref)\[9]            | my-host            | `hosts`                                                  |
-| &#x20;字段中定义的任意 IP  |
+|字段中定义的任意 IP  |
 | Subnet CIDR (ref)\[10]     | 192.168.1.0/24     | CIDR 中的任意 IP                                         |
 | Tags (ref)\[11]            | tag:production     | 分配指定 tag 的所有设备                                  |
 | Internet access (ref)\[12] | autogroup:internet | 通过 Exit Node 访问互联网                                |

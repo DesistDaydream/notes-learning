@@ -19,7 +19,7 @@ EOF
 
 ## 馆长推荐的优化参数
 
-<https://github.com/moby/moby/issues/31208>&#x20;
+<https://github.com/moby/moby/issues/31208>
 \# ipvsadm -l --timout
 \# 修复 ipvs 模式下长连接 timeout 问题 小于 900 即可
 {% if proxy.mode is defined and proxy.mode == 'ipvs' %}

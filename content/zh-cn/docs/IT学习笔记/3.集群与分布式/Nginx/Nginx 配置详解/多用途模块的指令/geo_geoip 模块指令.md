@@ -5,6 +5,7 @@ title: geo/geoip 模块指令
 # 概述
 
 > 参考：
+>
 > - [http 模块下的 geo 模块](http://nginx.org/en/docs/http/ngx_http_geo_module.html)、[geoip 模块](http://nginx.org/en/docs/http/ngx_http_geoip_module.html)
 > - [stream 模块下的 geo 模块](http://nginx.org/en/docs/stream/ngx_stream_geo_module.html)、[geoip 模块](http://nginx.org/en/docs/stream/ngx_stream_geoip_module.html)
 
@@ -82,7 +83,7 @@ geoip 模块会从 Nginx 获取客户端的 IP 地址(一般都是 $remote_addr 
 
 这些变量是最常用的，用来描述 IP 地址关于城市相关的信息，比如客户端的 IP 地址为 111.33.112.94，那么这个 IP 就属于天津市，并且还会有关于该城市的相关信息。比如城市所属国家、所属大洲、所在经纬度、邮编、城市代码 等等信息。
 
-[**geoip_org FILE;**](http://nginx.org/en/docs/http/ngx_http_geoip_module.html#geoip_org) #&#x20;
+[**geoip_org FILE;**](http://nginx.org/en/docs/http/ngx_http_geoip_module.html#geoip_org) #
 该指令一般情况下，将会根据 MaxMind 中的 GeoLiteCity.dat 文件创建如下变量：
 
-- **$geoip_org **# 组织名称，比如 The University of Melbourne
+- **$geoip_org**# 组织名称，比如 The University of Melbourne

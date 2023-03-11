@@ -5,6 +5,7 @@ title: Loki 配置
 # 概述
 
 > 参考：
+>
 > - [官方文档，配置](https://grafana.com/docs/loki/latest/configuration/)
 > - [官方文档，告警规则和记录规则](https://grafana.com/docs/loki/latest/rules/)
 
@@ -88,7 +89,7 @@ runtime_config: <runtime_config>
 tracing: <tracing_config>
 ```
 
-## target: <STRING> # 指定二进制文件要运行的组件列表。
+## target: <STRING> # 指定二进制文件要运行的组件列表
 
 可用的值有：all、read、write、ingester、distributor、query-frontend、query-scheduler、querier、index-gateway、ruler、compactor。
 
@@ -129,20 +130,20 @@ How many times incoming data should be replicated to the ingester component.
 > 该字段可以代替 `storage_config` 字段。比如 ruler.storage.type 的值为 s3 的话，就会使用这里的 s3 字段的配置；若值为 local，则会使用这里的 filesystem 字段的配置
 
 Loki 不同组件共享使用的存储配置。该字段配置存储信息，用以告诉 Loki 如何使用各种类型的存储。
-**s3: <OBJECT> **# S3 类型存储的信息。包括 连接方式、数据要保存的桶 等信息
+**s3: <OBJECT>**# S3 类型存储的信息。包括 连接方式、数据要保存的桶 等信息
 
 - 详见下文通用配置字段 [s3: <OBJECT>](#J3m3x)
 
-**azure: \<Azure_Store_Config>** #&#x20;
-**gcs: <>** #&#x20;
-**swift: <>** #&#x20;
-**filesystem: **[**<OBJECT>**](https://grafana.com/docs/loki/next/configuration/#filesystem) # 将本地文件系统作为 Loki 组件存储数据的地方
+**azure: \<Azure_Store_Config>** #
+**gcs: <>** #
+**swift: <>** #
+**filesystem:**[**<OBJECT>**](https://grafana.com/docs/loki/next/configuration/#filesystem) # 将本地文件系统作为 Loki 组件存储数据的地方
 
-- **chunks_directory: <STRING> **# 存储 chunks 数据的目录
+- **chunks_directory: <STRING>**# 存储 chunks 数据的目录
 - **rules_directory: <STRING>** # 存储 Loki Rules 文件的目录
 
 **bos: <OBJECT>** # Baidu Object Storage(百度对象存储) 的信息。
-**hedging: **[**<OBJECT>**](https://grafana.com/docs/loki/next/configuration/#hedging) #
+**hedging:**[**<OBJECT>**](https://grafana.com/docs/loki/next/configuration/#hedging) #
 
 ### 配置示例
 
@@ -204,13 +205,13 @@ schema_config 下只有一个单独的 `configs` 字段，其实用 period_confi
 
 > 比如，在 schema_config.configs.store 中使用 aws，那么 storage_config 中就可以使用 aws 配置
 
-#### boltdb: <Object> # boltdb 存储类型的配置。
+#### boltdb: <Object> # boltdb 存储类型的配置
 
 仅当 schema_config.configs.store 为 boltdb 时，才配置该字段
 
 - **directory: <STRING>** # 存放 BoltDB 索引数据的绝对路径
 
-#### boltdb_shipper: <Ojbect> # boltdb_shipper 存储类型的配置。
+#### boltdb_shipper: <Ojbect> # boltdb_shipper 存储类型的配置
 
 仅当 schema_config.configs.store 为 boltdb_shipper 时，才配置该字段
 
@@ -220,7 +221,7 @@ schema_config 下只有一个单独的 `configs` 字段，其实用 period_confi
 - **shared_store: <STRING>** # 用于保存 BoltDB 文件的存储。
   - 在 2.4 版本之后，若 `common.storage` 定义了 s3，且 `schema_config.object_storage` 定义为 s3，则这个字段的值也为 s3。也就是说，Index 数据也会存到 S3。这个说法待验证。
 
-#### filesystem: <Object> # filesystem 存储类型的配置。
+#### filesystem: <Object> # filesystem 存储类型的配置
 
 仅当 schema_config.configs.object_store 为 filesystem 时，才配置该字段
 
@@ -252,16 +253,16 @@ Loki 的 distributor(分配器) 组件配置。
 Loki 的 Ingester(摄取器) 配置，以及配置采集器如何将自己注册到键值存储
 **lifecycler:** #
 
-- **address: 127.0.0.1 **#
+- **address: 127.0.0.1**#
 - **ring:** #
   - **kvstore:** #
     - **store: <STRING>** # 用于 ring 的后端存储类型。值为 consul, etcd,inmemory, memberlist
   - **replication_factor: 1** #
 - **final_sleep: 0s** #
 
-**chunk_idle_period: 5m** #&#x20;
-**chunk_retain_period: 30s** #&#x20;
-**max_transfer_retries: 0** #&#x20;
+**chunk_idle_period: 5m** #
+**chunk_retain_period: 30s** #
+**max_transfer_retries: 0** #
 **wal: <Object>** # Ingester 的 WAL 配置。
 
 - **enabled: <BOOLEAN>**
@@ -282,12 +283,12 @@ Loki 的 Ingester(摄取器) 配置，以及配置采集器如何将自己注册
 Ruler 组件配置。
 **storage: <Ojbect>** # 根据 type 的值，则会优先默认选择[通用存储](#SJMUR)。可用的值有：azure, gcs, s3, swift, local, bos。若没有通用存储，则使用 storage 字段下对应的字段。
 
-- **type: <STRING> **#
+- **type: <STRING>**#
 - **s3: <OBJECT>** # 配置用于存储规则文件的存储信息
   - 详见下文通用配置字段 [s3: <OBJECT>](#J3m3x)
 
-**rule_path: /loki/tmprules** #&#x20;
-**alertmanager_url: http://localhost** #&#x20;
+**rule_path: /loki/tmprules** #
+**alertmanager_url: <http://localhost>** #
 **ring:** #
 
 - **kvstore:** #
@@ -333,11 +334,11 @@ Table Manager(表管理器) 组件配置，以规定数据保留的行为。该�
 ## limits_config: <Object> # 配置各个组件处理数据的最大值
 
 **ingestrion_rate_mb: <FLOAT>** # 每秒可以摄取日志量的大小，单位 MB。`默认值：4`
-**enforce_metric_name: <BOOLEAN> **# 强制每个样本都有一个 metric 名称。`默认值：true`
+**enforce_metric_name: <BOOLEAN>**# 强制每个样本都有一个 metric 名称。`默认值：true`
 
 - 通常设为 false
 
-**reject_old_samples: <BOOLEAN> **# 旧样本是否会被拒绝。`默认值：true`
+**reject_old_samples: <BOOLEAN>**# 旧样本是否会被拒绝。`默认值：true`
 **reject_old_samples_max_age: <DURATION>** # 拒绝前可以接收的最大样本年龄。`默认值：168h`
 
 - 如果拒绝旧样本，那么旧样本不能早于 reject_old_samples_max_age 时间

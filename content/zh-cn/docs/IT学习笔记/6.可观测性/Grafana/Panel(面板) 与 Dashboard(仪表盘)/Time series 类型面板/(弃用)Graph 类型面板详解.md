@@ -44,7 +44,7 @@ Graph 是一个二维的，具有 x/y Axes(轴) 的面板。x 轴(横轴) 以时
 **Stacking and null value(叠加与空值)**
 用于在面板上叠加所有 series 的值
 
-**Hover tooltip(悬停提示) # **开启后，鼠标悬停在面板上，会出现一些关于 series 的信息&#x20;
+**Hover tooltip(悬停提示) #**开启后，鼠标悬停在面板上，会出现一些关于 series 的信息
 Mode # 模式。
 
 - All series # 鼠标悬停到面板时，显示所有 series 的信息

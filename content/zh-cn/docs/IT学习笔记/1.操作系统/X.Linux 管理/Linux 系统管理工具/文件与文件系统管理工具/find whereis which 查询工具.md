@@ -70,7 +70,7 @@ OPTIONS：
   - 例:find /home -user lisi # 查找/home 目录下，属主为 lisi 的文件
 - **-perm** # 根据文件权限查找
   - 例:find /boot -perm 644 # 查找/boot 文件加下，权限为 644 的文件
-- **-TIME {+|-}NUM **# 根据时间查找
+- **-TIME {+|-}NUM** # 根据时间查找
   - - 表示该时间之前，-表示该时间之内
   - TIME 分为两部分
     - 第一部分，# 表示 ctime，atime，mtime；time 天，min 分钟

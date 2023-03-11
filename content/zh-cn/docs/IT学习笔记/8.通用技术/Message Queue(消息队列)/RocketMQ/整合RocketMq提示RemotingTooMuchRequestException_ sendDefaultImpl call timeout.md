@@ -6,9 +6,9 @@ title: "整合RocketMq提示RemotingTooMuchRequestException: sendDefaultImpl cal
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/xuvc3b/1616130360509-382458c2-a13e-443d-b718-bdf91b083bb3.png)
 
-启动好 nameServer 和 Broker 之后, 启动生产者会报这样的错误&#x20;
+启动好 nameServer 和 Broker 之后, 启动生产者会报这样的错误
 
-    Exception in thread "main" org.apache.rocketmq.remoting.exception.RemotingTooMuchRequestException: sendDefaultImpl call timeout	at org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl.sendDefaultImpl(DefaultMQProducerImpl.java:588)	at org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl.send(DefaultMQProducerImpl.java:1223)	at org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl.send(DefaultMQProducerImpl.java:1173)	at org.apache.rocketmq.client.producer.DefaultMQProducer.send(DefaultMQProducer.java:214)	at com.baojian.mob.base.producer.SyncProducer.main(SyncProducer.java:41)15:22:31.455 [NettyClientSelector_1] INFO RocketmqRemoting - closeChannel: close the connection to remote address[] result: true15:22:32.049 [NettyClientSelector_1] INFO RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
+    Exception in thread "main" org.apache.rocketmq.remoting.exception.RemotingTooMuchRequestException: sendDefaultImpl call timeout at org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl.sendDefaultImpl(DefaultMQProducerImpl.java:588) at org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl.send(DefaultMQProducerImpl.java:1223) at org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl.send(DefaultMQProducerImpl.java:1173) at org.apache.rocketmq.client.producer.DefaultMQProducer.send(DefaultMQProducer.java:214) at com.baojian.mob.base.producer.SyncProducer.main(SyncProducer.java:41)15:22:31.455 [NettyClientSelector_1] INFO RocketmqRemoting - closeChannel: close the connection to remote address[] result: true15:22:32.049 [NettyClientSelector_1] INFO RocketmqRemoting - closeChannel: close the connection to remote address[] result: true
 
 1
 Plain Text

@@ -9,6 +9,7 @@ title: Mount(挂载)
 > - [Manual(手册),mount(8)](https://man7.org/linux/man-pages/man8/mount.8.html)
 
 注意：
+
 mount 命令无法列出 bind 类型的挂载(比如 Docker 和 Containerd 的 bind 类型挂载，不知道如何列出)。
 
 不过 findmnt 命令可以列出使用 `mount --bind XX XX` 挂载的目录，效果如下
@@ -21,7 +22,7 @@ TARGET                                SOURCE                                  FS
 └─/mnt/cdrom                          /dev/vda3[/root/downloads/webvirtcloud] ext4        rw,relatime
 ```
 
-# 挂载配置
+# 挂载关联文件与配置
 
 /etc/fstab # 包含各种 file systems 的描述性信息。系统启动时，根据该文件配置挂载分区到指定路径。
 
@@ -111,27 +112,27 @@ OPTIONS
 - [FileSystem-Independent Mount Options(适用于所有文件系统的选项)](https://man7.org/linux/man-pages/man8/mount.8.html#FILESYSTEM-INDEPENDENT_MOUNT_OPTIONS)
 - [FileSystem-Specific Mount Options(只适用于特定文件系统的选项)](https://man7.org/linux/man-pages/man8/mount.8.html#FILESYSTEM-SPECIFIC_MOUNT_OPTIONS)
 
-async # I/O 异步进行。
-auto # 在启动时或键入了 mount -a 命令时自动挂载。
-defaults # 使用文件系统的默认挂载参数，例如 ext4 的默认参数为:rw, suid, dev, exec, auto, nouser, async.
-dev - 解析文件系统上的块特殊设备。
-exec # 允许执行此分区的二进制文件。
-flush - vfat 的选项，更频繁的刷新数据，复制对话框或进度条在全部数据都写入后才消失。
-**noatime** # 不更新文件系统上 inode 访问记录。**可以提升性能**。
-noauto # 只在你的命令下被挂载。
-nodev - 不解析文件系统上的块特殊设备。
-nodiratime - 不更新文件系统上的目录 inode 访问记录，可以提升性能(参见 atime 参数)。
-noexec # 不允许执行此文件系统上的二进制文件。
-nosuid - 禁止 suid 操作和设定 sgid 位。
-nouser - 只能被 root 挂载。
-owner - 允许设备所有者挂载.
-**relatime** # 实时更新 inode access 记录。只有在记录中的访问时间早于当前访问才会被更新。（与 - noatime 相似，但不会打断如 mutt 或其它程序探测文件在上次访问后是否被修改的进程。），可以提升性能(参见 atime 参数)。
-**ro** # 以只读模式挂载文件系统
-**rw** # 以读写模式挂载文件系统
-suid - 允许 suid 操作和设定 sgid 位。这一参数通常用于一些特殊任务，使一般用户运行程序时临时提升权限。
-**sync** # I/O 同步进行。
-user - 允许任意用户挂载此文件系统，若无显示定义，隐含启用 noexec, nosuid, nodev 参数。
-users - 允许所有 users 组中的用户挂载文件系统.
+- async # I/O 异步进行。
+- auto # 在启动时或键入了 mount -a 命令时自动挂载。
+- defaults # 使用文件系统的默认挂载参数，例如 ext4 的默认参数为:rw, suid, dev, exec, auto, nouser, async.
+- dev - 解析文件系统上的块特殊设备。
+- exec # 允许执行此分区的二进制文件。
+- flush - vfat 的选项，更频繁的刷新数据，复制对话框或进度条在全部数据都写入后才消失。
+- **noatime** # 不更新文件系统上 inode 访问记录。**可以提升性能**。
+- noauto # 只在你的命令下被挂载。
+- nodev - 不解析文件系统上的块特殊设备。
+- nodiratime - 不更新文件系统上的目录 inode 访问记录，可以提升性能(参见 atime 参数)。
+- noexec # 不允许执行此文件系统上的二进制文件。
+- nosuid - 禁止 suid 操作和设定 sgid 位。
+- nouser - 只能被 root 挂载。
+- owner - 允许设备所有者挂载.
+- **relatime** # 实时更新 inode access 记录。只有在记录中的访问时间早于当前访问才会被更新。（与 - noatime 相似，但不会打断如 mutt 或其它程序探测文件在上次访问后是否被修改的进程。），可以提升性能(参见 atime 参数)。
+- **ro** # 以只读模式挂载文件系统
+- **rw** # 以读写模式挂载文件系统
+- suid - 允许 suid 操作和设定 sgid 位。这一参数通常用于一些特殊任务，使一般用户运行程序时临时提升权限。
+- **sync** # I/O 同步进行。
+- user - 允许任意用户挂载此文件系统，若无显示定义，隐含启用 noexec, nosuid, nodev 参数。
+- users - 允许所有 users 组中的用户挂载文件系统.
 
 ## EXAMPLE
 

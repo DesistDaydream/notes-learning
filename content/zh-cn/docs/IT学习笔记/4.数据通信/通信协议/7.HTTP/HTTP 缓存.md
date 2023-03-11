@@ -5,6 +5,7 @@ title: HTTP 缓存
 # 概述
 
 > 参考：
+>
 > - [公众号-小林 coding，硬核！30 张图解 HTTP 常见的面试题](https://mp.weixin.qq.com/s/bUy220-ect00N4gnO0697A)
 > - [公众号-小林 coding，告别 HTTP](https://mp.weixin.qq.com/s/fvvnQ3xI1nz-Ri3vBfG2lw)
 
@@ -74,4 +75,4 @@ Cache-control 选项更多一些，设置更加精细，所以建议使用 Cache
 - 如果不相等，则返回 200 状态码和返回资源，并在 Response 头部加上新的 ETag 唯一标识；
 - 如果浏览器收到 304 的请求响应状态码，则会从本地缓存中加载资源，否则更新资源。
 
-### [&#xA;&#xA;](https://mp.weixin.qq.com/s/bUy220-ect00N4gnO0697A)
+### [](https://mp.weixin.qq.com/s/bUy220-ect00N4gnO0697A)

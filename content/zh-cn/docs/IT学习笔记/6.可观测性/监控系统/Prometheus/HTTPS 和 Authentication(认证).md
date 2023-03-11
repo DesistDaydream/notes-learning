@@ -5,6 +5,7 @@ title: HTTPS 和 Authentication(认证)
 # 概述
 
 > 参考：
+>
 > - [官方文档,Prometheus-配置-HTTPS 和 认证](https://prometheus.io/docs/prometheus/latest/configuration/https/)
 > - [官方文档,指南-基础认证](https://prometheus.io/docs/guides/basic-auth/)
 > - [Ngxin Ingress Controller 官方文档,认证-基础认证](https://kubernetes.github.io/ingress-nginx/examples/auth/basic/)
@@ -19,7 +20,7 @@ title: HTTPS 和 Authentication(认证)
 
 在 kubernetes 中，可以通过 ingress 来实现。其他环境可以直接配置 ngxin 来实现。
 
-# 通过 ingress controller 配置认证，普通的 nginx 同理。
+# 通过 ingress controller 配置认证，普通的 nginx 同理
 
 首先需要安装 htpasswd 二进制文件，通过 htpasswd 命令行工具生成保存用户名密码的文件，然后通过该文件创建一个 secret 对象，并在 ingress 引用该 secret 对象
 
@@ -110,63 +111,63 @@ Prometheus 通过 `--web.config.file` 命令行标志来开启 **TLS** 或者 **
 
 如果没有任何配置，则不开启任何 TLS 或 认证，只要配置了某个字段，就默认开启相关功能。
 
-### tls_server_config: <Object> # 为 Prometheus 开启 TLS
+### tls_server_config: \<Object> # 为 Prometheus 开启 TLS
 
-- **cert_file: <FileName>** # TLS 所需的证书文件
-- **key_file: <FileName>** # TLS 所需的私钥文件
+- **cert_file: \<FileName>** # TLS 所需的证书文件
+- **key_file: \<FileName>** # TLS 所需的私钥文件
 
-  Server policy for client authentication. Maps to ClientAuth Policies.
-  &#x20; \# For more detail on clientAuth options:
-  &#x20; \# <https://golang.org/pkg/crypto/tls/#ClientAuthType>
-  &#x20; **client_auth_type: <STRING>** # `默认值：NoClientCert`
+Server policy for client authentication. Maps to ClientAuth Policies
+  \# For more detail on clientAuth options:
+  \# <https://golang.org/pkg/crypto/tls/#ClientAuthType>
+  **client_auth_type: \<STRING>** # `默认值：NoClientCert`
   ============================================================
 
-  CA certificate for client certificate authentication to the server.
-  &#x20; \[ client_ca_file: <filename> ]
+CA certificate for client certificate authentication to the server
+  \[ client_ca_file: \<filename> ]
   ========================================
 
-  Minimum TLS version that is acceptable.
-  &#x20; \[ min_version: <string> | default = "TLS12" ]
+Minimum TLS version that is acceptable
+  \[ min_version: \<string> | default = "TLS12" ]
   ======================================================
 
-  Maximum TLS version that is acceptable.
-  &#x20; \[ max_version: <string> | default = "TLS13" ]
+Maximum TLS version that is acceptable
+  \[ max_version: \<string> | default = "TLS13" ]
   ======================================================
 
-  List of supported cipher suites for TLS versions up to TLS 1.2. If empty,
-  &#x20; \# Go default cipher suites are used. Available cipher suites are documented
-  &#x20; \# in the go documentation:
-  &#x20; \# <https://golang.org/pkg/crypto/tls/#pkg-constants>
-  &#x20; \[ cipher_suites:
-  &#x20; \[ - <string> ] ]
+List of supported cipher suites for TLS versions up to TLS 1.2. If empty
+  \# Go default cipher suites are used. Available cipher suites are documented
+  \# in the go documentation:
+  \# <https://golang.org/pkg/crypto/tls/#pkg-constants>
+  \[ cipher_suites:
+  \[ - \<string> ] ]
   ==========================
 
-  prefer_server_cipher_suites controls whether the server selects the
-  &#x20; \# client's most preferred ciphersuite, or the server's most preferred
-  &#x20; \# ciphersuite. If true then the server's preference, as expressed in
-  &#x20; \# the order of elements in cipher_suites, is used.
-  &#x20; \[ prefer_server_cipher_suites: <bool> | default = true ]
+prefer_server_cipher_suites controls whether the server selects the
+  \# client's most preferred ciphersuite, or the server's most preferred
+  \# ciphersuite. If true then the server's preference, as expressed in
+  \# the order of elements in cipher_suites, is used.
+  \[ prefer_server_cipher_suites: \<bool> | default = true ]
   ===================================================================
 
-  Elliptic curves that will be used in an ECDHE handshake, in preference
-  &#x20; \# order. Available curves are documented in the go documentation:
-  &#x20; \# <https://golang.org/pkg/crypto/tls/#CurveID>
-  &#x20; \[ curve_preferences:
-  &#x20; \[ - <string> ] ]
+Elliptic curves that will be used in an ECDHE handshake, in preference
+  \# order. Available curves are documented in the go documentation:
+  \# \<https://golang.org/pkg/crypto/tls/#CurveID>
+  \[ curve_preferences:
+  \[ - \<string> ] ]
+
   ==========================
 
-### http_server_config: <Object> # 为 Prometheus 开启 HTTP/2。注意，HTTP/2 仅支持 TLS
+### http_server_config: \<Object> # 为 Prometheus 开启 HTTP/2。注意，HTTP/2 仅支持 TLS
 
-- **http2: <BOOLEAN>** # `默认值：true`
+- **http2: \<BOOLEAN>** # `默认值：true`
 
 Usernames and hashed passwords that have full access to the web
 \# server via basic authentication. If empty, no basic authentication is
 \# required. Passwords are hashed with bcrypt.
-==============================================
 
 ### basic_auth_users: \<map\[STRING]STRING> # 为 Prometheus Server 开启基本认证
 
-- **<KEY>: <VALUE>** # KEY 是用户名，VALUE 是密码
+- **\<KEY>: \<VALUE>** # KEY 是用户名，VALUE 是密码
   - 注意：密码必须是经过 hash 的字符串，可以通过[这个网站](https://bcrypt-generator.com/)在线获取 hash 过的字符串
 
 ## 配置示例

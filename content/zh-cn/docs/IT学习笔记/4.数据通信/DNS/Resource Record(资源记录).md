@@ -61,7 +61,7 @@ RR 定义的格式：NAME \[TTL] CLASS RR-TYPE VALUE（注意：格式中的域�
 
 EXAMPLE，在根域的 DNS 服务器中，记录了.com.域的资源记录，类似下面的方式，不是绝对的
 .com. IN NS ns1.com. 定义.com.域的域名服务器为 ns1.com.
-.com. IN NS ns2.com. &#x9;
+.com. IN NS ns2.com.
 ns1.com. IN A 2.2.2.1 定于.com.域中的域名服务器 ns1.com.的 IP 地址为 2.2.2.1
 ns2.com. IN A 2.2.2.2
 

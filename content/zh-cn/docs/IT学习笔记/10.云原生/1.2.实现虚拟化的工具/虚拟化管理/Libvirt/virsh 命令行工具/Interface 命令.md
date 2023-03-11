@@ -20,5 +20,5 @@ iface-mac convert an interface name to interface MAC address
 iface-name convert an interface MAC address to interface name
 iface-rollback rollback to previous saved configuration created via iface-begin
 iface-start start a physical host interface (enable it / "if-up")
-iface-unbridge undefine a bridge device after detaching its slave deviceiface-unbridge&#x20;
+iface-unbridge undefine a bridge device after detaching its slave deviceiface-unbridge
 iface-undefine undefine a physical host interface (remove it from configuration)

@@ -12,8 +12,8 @@ title: Thanos 配置详解
 
 **--grpc-addresss=<STRING>** # 暴露的 StoreAPI 端点。默认值：`0.0.0.0:10901`
 **--http-address=<STRING>** # 监听的 HTTP 端点。/metrics 端点暴露指标。默认值：`0.0.0.0:10902`
-**--objstore.config-file=<FILE> **# 对象存储的配置信息。Sidecar 根据该配置，将 Prometheus 自身保存的数据转存到配置的对象存储中。
-**--prometheus.url=<STRING> **# 与 Prometheus Server 交互的地址。默认值：`http://localhost:9090`
+**--objstore.config-file=<FILE>**# 对象存储的配置信息。Sidecar 根据该配置，将 Prometheus 自身保存的数据转存到配置的对象存储中。
+**--prometheus.url=<STRING>**# 与 Prometheus Server 交互的地址。默认值：`http://localhost:9090`
 **--tsdb.path=<PATH>** # Prometheus 存储时间序列数据的路径。默认值：`./data`
 **--shipper.upload-compacted** # 开启已压缩数据转存功能。该标志对迁移数据很有用。
 
@@ -26,10 +26,10 @@ title: Thanos 配置详解
 **--grpc-address=<STRING>** # 暴露的 StoreAPI 端点。`默认值：0.0.0.0:10901`
 **--http-address=<STRING>** # 监听的 HTTP 端点。/metrics 端点暴露指标。`默认值：0.0.0.0:10902`
 **--label=\<KEY="VALUE">** # 为所有序列创建的标签，多个标签指定多个 --label 标志。与 prometheus 配置 external_labels 字段效果一样
-**--objstore.config-file=<FILE> **# 对象存储的配置信息。Receiver 根据该配置，将时序数据转存到对象存储中。
-**--receive.hashrings-file=/etc/thanos/receiver-hashring.json** #&#x20;
-**--receive.local-endpoint=127.0.0.1:10901** #&#x20;
-**--receive.replication-factor=1** #&#x20;
+**--objstore.config-file=<FILE>**# 对象存储的配置信息。Receiver 根据该配置，将时序数据转存到对象存储中。
+**--receive.hashrings-file=/etc/thanos/receiver-hashring.json** #
+**--receive.local-endpoint=127.0.0.1:10901** #
+**--receive.replication-factor=1** #
 **--remote-write.address=<STRING>** # 处理 Prometheus 的 Remote Write 请求的地址和端口。`默认值：0.0.0.0:19291`
 **--tsdb.path=<PATH>** # Receiver 的 TSDB 存储数据的路径。`默认值：./data`
 **--tsdb.retention=<DURATION>** # Receiver 的 TSDB 中存储数据的时长。`默认值：15d`
@@ -54,7 +54,7 @@ title: Thanos 配置详解
 
 **--grpc-address=<STRING>** # 暴露的 StoreAPI 端点。`默认值：0.0.0.0:10901`
 **--http-address=<STRING>** # 监听的 HTTP 端点。/metrics 端点暴露指标。`默认值：0.0.0.0:10902`
-**--objstore.config-file=<FILE> **# 对象存储的配置信息。Store 收到 PromQL 查询请求后，将会根据该配置文件的内容，去相应的对象存储中查询数据。
+**--objstore.config-file=<FILE>**# 对象存储的配置信息。Store 收到 PromQL 查询请求后，将会根据该配置文件的内容，去相应的对象存储中查询数据。
 
 ## 配置文件
 

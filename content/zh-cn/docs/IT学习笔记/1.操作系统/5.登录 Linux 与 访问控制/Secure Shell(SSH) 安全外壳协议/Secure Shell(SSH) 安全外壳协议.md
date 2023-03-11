@@ -5,14 +5,16 @@ title: Secure Shell(SSH) 安全外壳协议
 # 概述
 
 > 参考：
+>
 > - [Wiki-SSH](https://en.wikipedia.org/wiki/Secure_Shell_Protocol)
 > - <https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-centos-8>
 
-**Secure Shell Protocol(安全外壳协议，简称 SSH) **是一种加密的[网络传输协议](https://zh.wikipedia.org/wiki/%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE)，可在不安全的网络中为网络服务提供安全的传输环境\[1]。SSH 通过在网络中创建安全隧道来实现 SSH 客户端与服务器之间的连接\[2]。虽然任何网络服务都可以通过 SSH 实现安全传输，SSH 最常见的用途是远程登录系统，人们通常利用 SSH 来传输命令行界面和远程执行命令。使用频率最高的场合类 Unix 系统，但是 Windows 操作系统也能有限度地使用 SSH。2015 年，微软宣布将在未来的操作系统中提供原生 SSH 协议支持\[3]，Windows 10 1809 版本已提供可手动安装的 OpenSSH 工具
+**Secure Shell Protocol(安全外壳协议，简称 SSH)**是一种加密的[网络传输协议](https://zh.wikipedia.org/wiki/%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE)，可在不安全的网络中为网络服务提供安全的传输环境\[1]。SSH 通过在网络中创建安全隧道来实现 SSH 客户端与服务器之间的连接\[2]。虽然任何网络服务都可以通过 SSH 实现安全传输，SSH 最常见的用途是远程登录系统，人们通常利用 SSH 来传输命令行界面和远程执行命令。使用频率最高的场合类 Unix 系统，但是 Windows 操作系统也能有限度地使用 SSH。2015 年，微软宣布将在未来的操作系统中提供原生 SSH 协议支持\[3]，Windows 10 1809 版本已提供可手动安装的 OpenSSH 工具
 
 # OpenSSH # SSH 协议的实现
 
 > 参考：
+>
 > - [官网](https://www.openssh.com/)
 > - [官方文件,Manual(手册)](https://www.openssh.com/manual.html)
 
@@ -39,7 +41,7 @@ Note：现在 OpenSSH 一般作为 Linux 发行版的标准远程登录工具默
   - 而互联网通过 https 访问，则是多个客户端对应一个服务端。
 
 **~/.ssh/config** # OpenSSH 的 client 端配置，该配置文件主要针对不同用户来使用，默认不存在，需要手动创建。
-&#x20;在客户端添加如下配置内容，就可以通过名字，而不是 IP 来 ssh 登录目标主机了，还不用改 hosts 文件，也不用配置域名解析
+在客户端添加如下配置内容，就可以通过名字，而不是 IP 来 ssh 登录目标主机了，还不用改 hosts 文件，也不用配置域名解析
 Host centos8 User root Hostname 10.10.100.249 # 效果如下
 
     [root@lichenhao ~]# ssh centos8
@@ -73,6 +75,7 @@ Host centos8 User root Hostname 10.10.100.249 # 效果如下
 ## 使用 Xshell 多次 ssh 跳转连接后 x11 无法转发
 
 > 参考：
+>
 > - <https://serverfault.com/a/425413>
 
 问题描述：
@@ -92,4 +95,4 @@ xorg-x11-xaut 软件包安装完成后退出当前 shell 重新登录，即可�
 
 最后在使用 ssh 登录的时候加上-Y 选项，i.e. ssh -Y root@主机 B 的 IP，然后 x11 的转发效果就实现了。
 
-https://serverfault.com/a/425413
+<https://serverfault.com/a/425413>

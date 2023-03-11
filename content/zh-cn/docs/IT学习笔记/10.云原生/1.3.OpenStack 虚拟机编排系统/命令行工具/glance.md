@@ -56,7 +56,7 @@ Command-line interface to the OpenStack Images API.
 
 Positional arguments:
 
-&#x20; explain Describe a specific model.
+ explain Describe a specific model.
 
     image-create        Create a new image.
 

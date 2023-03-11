@@ -44,7 +44,7 @@ title: k8s DNS 中的 search 和 ndots 起源
 
 但是这 8 次查询都失败了，因为并不存在这样的域名。
 
-### kubernetes 的容器域名解析&#xA;
+### kubernetes 的容器域名解析
 
 要想解释上面的现象，需要先从 kubernetes 的容器域名解析开始讲。
 
@@ -67,38 +67,38 @@ nameserver 即为 kubernetes 集群中，kube-dns 的 svc IP，集群中容器�
 为什么呢？先来看看代码。
 
     var (
-    	// The default dns opt strings.
-    	defaultDNSOptions = []string{"ndots:5"}
+     // The default dns opt strings.
+     defaultDNSOptions = []string{"ndots:5"}
     )
 
 
     func (c *Configurer) generateSearchesForDNSClusterFirst(hostSearch []string, pod *v1.Pod) []string {
-    	if c.ClusterDomain == "" {
-    		return hostSearch
-    	}
-    	nsSvcDomain := fmt.Sprintf("%s.svc.%s", pod.Namespace, c.ClusterDomain)
-    	svcDomain := fmt.Sprintf("svc.%s", c.ClusterDomain)
-    	clusterSearch := []string{nsSvcDomain, svcDomain, c.ClusterDomain}
-    	return omitDuplicates(append(clusterSearch, hostSearch...))
+     if c.ClusterDomain == "" {
+      return hostSearch
+     }
+     nsSvcDomain := fmt.Sprintf("%s.svc.%s", pod.Namespace, c.ClusterDomain)
+     svcDomain := fmt.Sprintf("svc.%s", c.ClusterDomain)
+     clusterSearch := []string{nsSvcDomain, svcDomain, c.ClusterDomain}
+     return omitDuplicates(append(clusterSearch, hostSearch...))
     }
 
 
     func (c *Configurer) GetPodDNS(pod *v1.Pod) (*runtimeapi.DNSConfig, error) {
-    	...
-    	case podDNSCluster:
-    		if len(c.clusterDNS) != 0 {
-    			dnsConfig.Servers = []string{}
-    			for _, ip := range c.clusterDNS {
-    				dnsConfig.Servers = append(dnsConfig.Servers, ip.String())
-    			}
-    			dnsConfig.Searches = c.generateSearchesForDNSClusterFirst(dnsConfig.Searches, pod)
-    			dnsConfig.Options = defaultDNSOptions
-    			break
-    		}
-    	...
-    	if utilfeature.DefaultFeatureGate.Enabled(features.CustomPodDNS) && pod.Spec.DNSConfig != nil {
-    		dnsConfig = appendDNSConfig(dnsConfig, pod.Spec.DNSConfig)
-    	}
+     ...
+     case podDNSCluster:
+      if len(c.clusterDNS) != 0 {
+       dnsConfig.Servers = []string{}
+       for _, ip := range c.clusterDNS {
+        dnsConfig.Servers = append(dnsConfig.Servers, ip.String())
+       }
+       dnsConfig.Searches = c.generateSearchesForDNSClusterFirst(dnsConfig.Searches, pod)
+       dnsConfig.Options = defaultDNSOptions
+       break
+      }
+     ...
+     if utilfeature.DefaultFeatureGate.Enabled(features.CustomPodDNS) && pod.Spec.DNSConfig != nil {
+      dnsConfig = appendDNSConfig(dnsConfig, pod.Spec.DNSConfig)
+     }
     }
 
 kubernetes 搜索域
@@ -115,7 +115,7 @@ ndots 默认值
 
 为什么是 5 呢？
 
-thockin 在[ issue 33554](https://github.com/kubernetes/kubernetes/issues/33554) 中做了解释，概况来说：
+thockin 在[issue 33554](https://github.com/kubernetes/kubernetes/issues/33554) 中做了解释，概况来说：
 
 1. kubernetes 需要支持同 namespace 下 service 快速访问，例如`name`，因此 ndots>=1，对应搜索域`$namespace.svc.$zone`
 
@@ -179,7 +179,7 @@ ndots 是可以被修改的，可以通过`pod.Spec.DNSConfig`改写。
 
 - python
 
-### 总结&#xA;
+### 总结
 
 本文从一个多余的 DNS 查询现象开始，介绍了 FQDN 和 DNS 的搜索域，回答了 kubernetes 为什么需要搜索域这个问题，并且提出了一个解决多余 DNS 查询的方案，以及介绍了不同语言对于 dns cache 的处理情况。
 

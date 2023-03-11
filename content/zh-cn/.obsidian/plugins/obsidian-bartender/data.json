@@ -293,21 +293,12 @@
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/6.File_System_管理.md",
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/FHS(文件系统层次标准).md",
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/Mount(挂载).md",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/各种文件系统详解",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/特殊目的文件系统",
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理",
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/零拷贝.md",
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/读取文件时，程序经历了什么？.md",
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/I_O Multiplexing(输入_输出多路复用)"
-    ],
-    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/各种文件系统详解": [
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/各种文件系统详解/_index.md",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/各种文件系统详解/Journaling File System.md",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/各种文件系统详解/XFS 文件系统.md",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/各种文件系统详解/Proc File System.md",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/各种文件系统详解/Sys File System.md",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/各种文件系统详解/Device File System.md",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/各种文件系统详解/tmpfs.md",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/各种文件系统详解/OverlayFS.md"
     ],
     "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理": [
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理/_index.md",
@@ -531,6 +522,27 @@
       "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具/Linux 硬件信息获取.md",
       "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具/CPU 硬件管理工具.md",
       "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具/Memory 硬件管理工具.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/Journaling File System.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/EXT FileSystem.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/XFS.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理": [
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理/_index.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估与故障处理.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理/CPU 性能优化",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理/网络性能优化",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理/故障处理",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理/故障处理案例"
+    ],
+    "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估": [
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/_index.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/性能评估.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/性能测试工具",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/Redhat 优化.md"
     ]
   },
   "actionBarOrder": {},

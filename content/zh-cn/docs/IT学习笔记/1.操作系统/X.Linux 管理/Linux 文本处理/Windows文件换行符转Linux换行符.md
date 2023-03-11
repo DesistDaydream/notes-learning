@@ -42,9 +42,9 @@ Windows 换行符转换为 Linux 格式
 
    1. dos2unix 123.txt
 
-3. 使用 sed 命令删除\r 字符:&#x20;
+3. 使用 sed 命令删除\r 字符:
 
-   1. sed -i 's/\r//g' gggggggg.txt&#x20;
+   1. sed -i 's/\r//g' gggggggg.txt
 
 4. 使用 windows 版 git 里提供的命令来进行替换，在 git 命令行中进入到要替换文件的目录，执行下面的命令。Node：一定要进入指定目录再执行命令
 
@@ -61,47 +61,47 @@ Windows 换行符转换为 Linux 格式
 #0 means not valid
 CheckInput()
 {
-	ret=1;
+ ret=1;
 
-	#Check the number of parameter
-	#And Check whether the argument is a folder
-	if [ $# -lt 1 ]
+ #Check the number of parameter
+ #And Check whether the argument is a folder
+ if [ $# -lt 1 ]
         then
-		echo "Please use the command like ./dos2u.sh [Folder]";
-		ret=0
-	elif [ ! -d $1 ]
-	then
-		echo "Please use an invalid Folder as the shell argument";
-		ret=0
-	fi
+  echo "Please use the command like ./dos2u.sh [Folder]";
+  ret=0
+ elif [ ! -d $1 ]
+ then
+  echo "Please use an invalid Folder as the shell argument";
+  ret=0
+ fi
 
-	return $ret;
+ return $ret;
 }
 
 #TraverseFolder
 #Traser all the files under the folder
 TraverseFolder()
 {
-	oldPath=`pwd`
-	cd $1;
-	for file in `ls`
-	do
-		if [ -d $file ]
-		then
-			TraverseFolder $file;
-		else
-			#echo $file;
-			#sed -i 's/\r//g' $file
-			dos2unix $file
-		fi
-	done
-	cd $oldPath;
+ oldPath=`pwd`
+ cd $1;
+ for file in `ls`
+ do
+  if [ -d $file ]
+  then
+   TraverseFolder $file;
+  else
+   #echo $file;
+   #sed -i 's/\r//g' $file
+   dos2unix $file
+  fi
+ done
+ cd $oldPath;
 }
 
 CheckInput $*
 if [ $ret -ne 1 ]
 then
-	exit -1
+ exit -1
 fi
 TraverseFolder $1
 ```

@@ -16,7 +16,7 @@ title: Linux 文本处理
 
 Note:如果标准输入的内容是一个文件，那么就把文件中的内容当作标准输入发送给 cat 命令，然后再输出到屏幕上
 
-执行完 cat 命令后，屏幕上会等待我输入内容，当我输入完成按回车后，会在屏幕上输出同样的内容，这就是 cat 最基本的作用，效果如下图，第一行是我主动输入的，按下回车后，自动输出内容 &#x20;
+执行完 cat 命令后，屏幕上会等待我输入内容，当我输入完成按回车后，会在屏幕上输出同样的内容，这就是 cat 最基本的作用，效果如下图，第一行是我主动输入的，按下回车后，自动输出内容
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gi5hfh/1616166386092-a6649d83-8e1d-4878-b609-cd9c6c5f90de.jpeg)
 
 ## Syntax(语法)
@@ -25,7 +25,7 @@ Note:如果标准输入的内容是一个文件，那么就把文件中的内容
 
 OPTIONS
 
-- **-A, --show-all **# 与 -vET 选项的效果相同
+- **-A, --show-all**# 与 -vET 选项的效果相同
 - -b, --number-nonblank # number nonempty output lines, overrides -n
 - **-e** # 与 -vE 选项的效果相同
 - **-E, --show-ends** # 在每行末尾显示 $。
@@ -42,7 +42,7 @@ EXAMPLE
 
 ```bash
 [root@centos8 ~]# cat tab
-123	123
+123 123
 [root@centos8 ~]# cat -T tab
 123^I123
 ```
@@ -96,11 +96,11 @@ OPTIONS
 
 ```bash
 ~]# docker ps --format {{.Image}}\\t{{.Names}}
-goharbor/harbor-jobservice:v1.9.3	harbor-jobservice
-goharbor/nginx-photon:v1.9.3	nginx
-goharbor/harbor-core:v1.9.3	harbor-core
-goharbor/harbor-registryctl:v1.9.3	registryctl
-goharbor/registry-photon:v2.7.1-patch-2819-2553-v1.9.3	registry
+goharbor/harbor-jobservice:v1.9.3 harbor-jobservice
+goharbor/nginx-photon:v1.9.3 nginx
+goharbor/harbor-core:v1.9.3 harbor-core
+goharbor/harbor-registryctl:v1.9.3 registryctl
+goharbor/registry-photon:v2.7.1-patch-2819-2553-v1.9.3 registry
 
 ~]# docker ps --format {{.Image}}\\t{{.Names}} | column -t
 goharbor/harbor-jobservice:v1.9.3                       harbor-jobservice
@@ -166,6 +166,7 @@ OPTIONS
 # sort # 按字符进行比较
 
 > 参考：
+>
 > - [Manual(手册),sort(1)](https://man7.org/linux/man-pages/man1/sort.1.html)
 
 ## Syntax(语法)
@@ -198,11 +199,11 @@ OPTIONS
 
 **OPTIONS**
 
-- **-a **# 指定输出文件名的后缀长度(默认为 2 个:aa,ab...)
+- **-a**# 指定输出文件名的后缀长度(默认为 2 个:aa,ab...)
 - **-d** # 指定输出文件名的后缀用数字代替
 - **-l** # 行数分割模式(指定每多少行切成一个小文件;默认行数是 1000 行)
 - **-b** # 二进制分割模式(支持单位:k/m)
-- **-C **# 文件大小分割模式(切割时尽量维持每行的完整性)
+- **-C**# 文件大小分割模式(切割时尽量维持每行的完整性)
 
 EXAMPLE
 

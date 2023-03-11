@@ -43,9 +43,9 @@ Time series 是一个二维的，具有 x/y Axes(轴) 的面板。x 轴(横轴) 
 - **Bars** # 柱状图样式。当 X 轴的模式变为 Series、Historgram 时，自动开启
 - **Lines** # 线条样式。
   - **Line width** # 线条宽度。
-  - **Fill opacity **# 填充不透明。默认 0。
+  - **Fill opacity**# 填充不透明。默认 0。
 - **Points** # 圆点样式。
-  - **Point size **# 每个圆点的大小
+  - **Point size**# 每个圆点的大小
 
 **Alert thresholds** # 在面板上显示报警阈值和区域
 
@@ -53,7 +53,7 @@ Time series 是一个二维的，具有 x/y Axes(轴) 的面板。x 轴(横轴) 
 **Stacking and null value(叠加与空值)**
 用于在面板上叠加所有 series 的值
 
-**Hover tooltip(悬停提示) # **开启后，鼠标悬停在面板上，会出现一些关于 series 的信息&#x20;
+**Hover tooltip(悬停提示) #**开启后，鼠标悬停在面板上，会出现一些关于 series 的信息
 Mode # 模式。
 
 - All series # 鼠标悬停到面板时，显示所有 series 的信息

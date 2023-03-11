@@ -5,6 +5,7 @@ title: Etcd 配置详解
 # 概述
 
 > 参考：
+>
 > - [官方文档](https://etcd.io/docs/current/op-guide/configuration/)
 
 Etcd 运行时的行为可以通过三种方式进行配置
@@ -59,11 +60,11 @@ Etcd 运行时的行为可以通过三种方式进行配置
 
 **--initial-advertise-peer-urls** # 用于节点间通信的 URL，节点间以该值进行通信。
 
-- 默认值： http://localhost:2380
+- 默认值： <http://localhost:2380>
 
 **--initial-cluster** # 用来引导初始集群的配置。一般是集群中所有 --initial-advertise-peer-urls 标志值的合集，每个值以逗号分隔
 
-- 默认值：default=http://localhost:2380
+- 默认值：default=<http://localhost:2380>
 - default 是每个节点的 etcd 的 --name 标志的值。--name 标志的默认值就是 default
 
 **--initial-cluster-state** # 初始群集状态(两种状态：new 或 existing)。
@@ -78,16 +79,16 @@ Etcd 运行时的行为可以通过三种方式进行配置
 
 **--advertise-client-urls** # 建议使用的客户端通信 url，该值用于 etcd 代理或 etcd 成员与 etcd 节点通信。
 
-- 默认值：http://localhost:2379
+- 默认值：<http://localhost:2379>
 
-\--discovery #&#x20;
-\--discovery-srv #&#x20;
-\--discovery-srv-name #&#x20;
-\--discovery-fallback #&#x20;
-\--discovery-proxy #&#x20;
-\--strict-reconfig-check #&#x20;
-\--auto-compaction-retention #&#x20;
-\--auto-compaction-mode #&#x20;
+\--discovery #
+\--discovery-srv #
+\--discovery-srv-name #
+\--discovery-fallback #
+\--discovery-proxy #
+\--strict-reconfig-check #
+\--auto-compaction-retention #
+\--auto-compaction-mode #
 \--enable-v2 #
 
 ## Proxy 代理相关标志

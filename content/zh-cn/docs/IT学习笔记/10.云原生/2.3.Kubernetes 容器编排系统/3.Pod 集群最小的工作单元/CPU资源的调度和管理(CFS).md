@@ -37,36 +37,36 @@ title: CPU资源的调度和管理(CFS)
 
 部署这样一个 yaml POD：
 
-1.  apiVersion: v1
+1. apiVersion: v1
 
-2.  kind: Pod
+2. kind: Pod
 
-3.  metadata:
+3. metadata:
 
-4.  name: busybox
+4. name: busybox
 
-5.  labels:
+5. labels:
 
-6.        app: busybox
-7.  spec:
+6. app: busybox
+7. spec:
 
-8.  containers:
+8. containers:
 
-9.  - image: busybox
+9. - image: busybox
 
-10.     resources:
-11.       requests:
-12.         memory: "64Mi"
-13.         cpu: "250m"
-14.       limits:
-15.         memory: "128Mi"
-16.         cpu: "500m"
-17.     command:
-18.       - "/bin/sh"
-19.       - "-c"
-20.       - "while true; do sleep 10; done"
-21.     imagePullPolicy: IfNotPresent
-22.     name: busybox
+10. resources:
+11. requests:
+12. memory: "64Mi"
+13. cpu: "250m"
+14. limits:
+15. memory: "128Mi"
+16. cpu: "500m"
+17. command:
+18. - "/bin/sh"
+19. - "-c"
+20. - "while true; do sleep 10; done"
+21. imagePullPolicy: IfNotPresent
+22. name: busybox
 23. restartPolicy: Always
 
 可以看到该容器内部的进程对应的 CPU 调度信息变化如下：
@@ -209,13 +209,13 @@ title: CPU资源的调度和管理(CFS)
 
 根据文章《Kubernetes 生产实践系列之三十：Kubernetes 基础技术之集群计算资源管理》的描述，Kubernetes 的资源定义：
 
-1.        resources:
-2.          requests:
-3.            memory: "64Mi"
-4.            cpu: "250m"
-5.          limits:
-6.            memory: "128Mi"
-7.            cpu: "500m"
+1. resources:
+2. requests:
+3. memory: "64Mi"
+4. cpu: "250m"
+5. limits:
+6. memory: "128Mi"
+7. cpu: "500m"
 
 比如里面的 CPU 需求，会被翻译成容器 runtime 的运行时参数，并最终变成 cgroups 和 CFS 的参数配置：
 
@@ -279,15 +279,15 @@ throttled_time 570069950532853
 根据 3.1 描述的原理，很容易理解本文开通的告警信息的出现，是由于在某些特定的 CFS 重分配周期内，kube-proxy 的 CPU 占用率超过了给它分配的 limits，而参看 kube-proxy daemonset 的配置，确实它的 limits 配置只有 200ms，这就意味着在默认的 100ms 的 CFS 重调度周期内，它只能占用 20ms，所以在特定繁忙场景会有问题：
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/qt8tld/1616119635719-1bd824ee-7535-423f-8316-293a4f5b4daf.png)
 
-1. cat cpu.shares&#x20;
+1. cat cpu.shares
 
 2. 204
 
-3. cat cpu.cfs_period_us&#x20;
+3. cat cpu.cfs_period_us
 
 4. 100000
 
-5. cat cpu.cfs_quota_us&#x20;
+5. cat cpu.cfs_quota_us
 
 6. 20000
 

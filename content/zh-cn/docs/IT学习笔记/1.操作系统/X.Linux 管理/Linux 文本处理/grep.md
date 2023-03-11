@@ -14,7 +14,7 @@ grep 是文本搜索工具，可以使用正则表达式在文件内查找符合
 
 grep 根据 PATTERNS(模式) 过滤给定的内容。其实就是使用正则表达式，过滤内容。
 
-## OPTIONS：
+## OPTIONS
 
 ### Pattern Syntaz(模式语法)
 
@@ -25,8 +25,8 @@ grep 根据 PATTERNS(模式) 过滤给定的内容。其实就是使用正则表
 
 ### Matching Control(配置控制)
 
-- **-i **# 忽略大小写
-- **-v, --invert-match **# 反向选择，选择没有要匹配的字符串的行
+- **-i**# 忽略大小写
+- **-v, --invert-match**# 反向选择，选择没有要匹配的字符串的行
 
 ### General Output Control(通用输出控制) 选项
 
@@ -72,7 +72,7 @@ grep 根据 PATTERNS(模式) 过滤给定的内容。其实就是使用正则表
     @{{D-DD}}
     {{E#@EEE}}
 
-### 筛选后文本&#xA;
+### 筛选后文本
 
 **cat content.txt | grep -oP "(?<={{)(\w|-|#|@)+(?=}})"**
 

@@ -6,6 +6,7 @@ weight: 2
 # 概述
 
 > 参考：
+>
 > - [GitHub 组织，OpenTelemetry](https://github.com/open-telemetry)
 > - [官网](https://opentelemetry.io/)
 > - [官方文档](https://opentelemetry.io/docs/)
@@ -33,13 +34,14 @@ OTEL 之于可观测性，类似 OCI 之于容器。
 
 # OpenTelemetry 实现
 
-[GitHub 项目，grafana/agent](https://github.com/grafana/agent) #&#x20;
+[GitHub 项目，grafana/agent](https://github.com/grafana/agent) #
 [GitHub 项目，flashcatcloud/categraf](https://github.com/flashcatcloud/categraf) # 通过配置文件，采集所有数据，然后 Push 给 Prom(Prom 需要使用 `--web.enable-remote-write-receiver` 为自身开启远程写功能)，暂时没有等待 pull 的功能(截止 2022.6.1 v0.1.0 版本)
 <https://www.guance.com/> 观测云。。。。这个产品。。怎么说呢。。上来就让人各种注册才能体验的感觉很不好。。而且在云原生社区可观测性 SIG 群里，这家人的表达方式和处理事情的态度给人的感觉也不好~工作内部矛盾放在群里说。。还揭露个人隐私。。。。o(╯□╰)o
 
 ## Grafana Agent
 
 > 参考：
+>
 > - [GitHub 项目，grafana/agent](https://github.com/grafana/agent)
 > - [官方文档](https://grafana.com/docs/agent/latest/)
 

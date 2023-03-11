@@ -5,6 +5,7 @@ title: Statefulset Manifest 详解
 # 概述
 
 > 参考：
+>
 > - [API 文档单页](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#statefulset-v1-apps)
 > - [官方文档，参考-KubernetesAPI-工作负载资源-StatefulSet](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/stateful-set-v1/)
 
@@ -12,7 +13,7 @@ title: Statefulset Manifest 详解
 
 # kind: StatefulSet
 
-# metadata:
+# metadata
 
 Statefulset 对象的元数据，该字段内容详见通用定义的 [ObjectMeta](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义).md Definitions(通用定义).md)
 
@@ -36,7 +37,7 @@ spec 用来描述一个 Statefulset 应该具有的属性。也就是用来定�
 
 - 该字段内容详见通用定义的[ LabelSelector](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md Definitions(通用定义)/LabelSelector 详解.md)。
 
-**serviceName: <STRING> # 必须的**。serviceName 是管理此 StatefulSet 的服务的名称。&#x20;
+**serviceName: <STRING> # 必须的**。serviceName 是管理此 StatefulSet 的服务的名称。
 该服务必须在 StatefulSet 之前存在，并且负责该集合的网络标识。 Pod 会遵循以下格式获取 DNS 或 hostname：pod-specific-string.serviceName.default.svc.cluster.local，其中"pod-specific-string"由 StatefulSet 控制器管理。
 说白了，就是该字段指定的 service 名称将会自动生成子域名(而只有 headless 类型的 svc 才具有子域名)，假如现在有如下 pod 和 svc
 
@@ -67,7 +68,7 @@ spec 用来描述一个 Statefulset 应该具有的属性。也就是用来定�
 
 ## Pod 属性
 
-### template: #必须的。定义 Pod 的模板,使用 Pod 类型的 metadata 和 spec 字段。
+### template: #必须的。定义 Pod 的模板,使用 Pod 类型的 metadata 和 spec 字段
 
 - **metadata:** #与 pod 资源定义的内容基本一致
   - ...

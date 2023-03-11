@@ -5,6 +5,7 @@ title: Unit File
 # 概述
 
 > 参考：
+>
 > - [manual(手册),systemd.unit(5)](<https://man.cx/systemd.unit(5)>) # Unit 的介绍
 > - [manual(手册),systemd.syntax(7)](<https://man.cx/systemd.syntax(7)>) # Unit 的配置语法
 > - [金步国 systemd.unit 中文手册](http://www.jinbuguo.com/systemd/systemd.unit.html#)
@@ -52,7 +53,7 @@ WantedBy=multi-user.target
 - .**/UnitName.wants/\*** # 与 include 功能类似，区别在于，该路径下的文件都是其他 Unit File 的软链接，这些 Unit File 的文件名将会作为主 Unit File 配置中 \[Unit] 部分中 Wants 指令的值。
 - .**/UnitName.requires/\*** # 与 include 功能类似，区别在于，该路径下的文件都是其他 Unit File 的软链接，这些 Unit File 的文件名将会作为主 Unit File 配置中 \[Unit] 部分中 Requires 指令的值。
 
-Systemd 会从最低优先级的目录 /usr/lib/_ 下开始加载配置，注意加载其中的文件，直到最高优先级的目录 /etc/systemd/_ 为止。
+Systemd 会从最低优先级的目录 /usr/lib/_下开始加载配置，注意加载其中的文件，直到最高优先级的目录 /etc/systemd/_ 为止。
 
 # Unit File 规范
 
@@ -62,7 +63,7 @@ Systemd 会从最低优先级的目录 /usr/lib/_ 下开始加载配置，注意
 
 - **NAME** # Unit 的名称。
 - **DOT** # `.` 符号。
-- **TYPE **# Unit 的类型。
+- **TYPE**# Unit 的类型。
   - TYPE 必须是 ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".slice", or ".scope" 中的一个。
 
 比如 `foo.server` 就是一个有效的 Unit File 名称。
@@ -126,12 +127,12 @@ WantedBy=multi-user.target
 
 ## drop-in(嵌入式) Unit File(就是 include 功能)
 
-**drop-in(嵌入式)** 单元文件就是一种类似配置文件的 **include **的功能(比如 Nginx 中的 include 指令)，可以让主配置文件包含其他子配置文件。**Systemd 设定了两种 include 的规范**
+**drop-in(嵌入式)** 单元文件就是一种类似配置文件的 **include**的功能(比如 Nginx 中的 include 指令)，可以让主配置文件包含其他子配置文件。**Systemd 设定了两种 include 的规范**
 
 假如现在有一个名为 `foo.service` 的 Unit File，那么，[Systemd 会从加载 Unit File 的目录](https://www.yuque.com/desistdaydream/learning/sa1uqi#o317e)中，加载与之相关联的一系列文件
 
-- **UnitFileName.wants/ 与 UnitFileName.requires/ # **比如 foo.service.wants/  与  foo.service.requires/。该目录中可以放置许多指向其他 Unit Files 的软连接。 软连接所指向的 Unit 将会被当做  `foo.service`  的 Unit 文件中  `Wants=`  与  `Requires=`  指令的值(
-  - 注意：即使文件中不存在 Wants 和 Requires 指令。只要存在对应的 _.wants/ 和 _.requires/ 目录，就相当于为 Unit File 中加上了这两个指令。
+- **UnitFileName.wants/ 与 UnitFileName.requires/ #**比如 foo.service.wants/  与  foo.service.requires/。该目录中可以放置许多指向其他 Unit Files 的软连接。 软连接所指向的 Unit 将会被当做  `foo.service`  的 Unit 文件中  `Wants=`  与  `Requires=`  指令的值(
+  - 注意：即使文件中不存在 Wants 和 Requires 指令。只要存在对应的 _.wants/ 和_.requires/ 目录，就相当于为 Unit File 中加上了这两个指令。
   - 这样就可以方便的为 Unit 添加依赖关系，而无需修改单元文件本身。 向  `*.wants/`  与  `*.requires/`  目录中添加软连接的首选方法是使用  [systemctl(1)](http://www.jinbuguo.com/systemd/systemctl.html#)  的  **enable**  命令， 它会读取 Unit File 的 \[Install] 部分。
 - **UnitFileName.d/** # 比如 foo.service.d/\*\* \*\*。这就是配置文件的 include 功能。当解析完主 Unit File 之后，该目录中所有以 `.conf` 结尾的文件，都会被依次附加到主 Unit File 的末尾。
   - 这样就可以方便的修改 Unit 的设置，或者为 Unit 添加额外的设置，而无需修改 Unit File 本身。
@@ -151,7 +152,7 @@ WantedBy=multi-user.target
 - /etc/systemd/system/vsftpd.service.wants/ # 此目录内的文件为链接文件,设置相依服务的链接。意思是启动了 vsftpd.service 之后,最好再加上这目录下面建议的服务。
 - /etc/systemd/system/vsftpd.service.requires/ # 此目录内的文件为链接文件,设置相依服务的链接。意思是在启动 vsftpd.service 之前,需要事先启动哪些服务的意思。
 
-配置文件分为 4 种状态，当启用(enable)该文件的时候，从配置文件目录建立一个软连接到 /etc/systemd/system/ 目录下，当禁用(disable)该文件的时候，会把该软连接删除。如果在/etc/systemd/system/目录下有 Unit 的配置文件，则开机则会自动加载并启动 Unit。可以使用命令 systemctl list-unit-files 命令查看所有的配置文件状态。结论：建立了连接则说明该 Unit 会开机启动，没建立连接则该 Unit 不会开机启动；还可以禁止该 Unit 建立连接，则说明该 Unit 永远不能开机启动。 &#x20;
+配置文件分为 4 种状态，当启用(enable)该文件的时候，从配置文件目录建立一个软连接到 /etc/systemd/system/ 目录下，当禁用(disable)该文件的时候，会把该软连接删除。如果在/etc/systemd/system/目录下有 Unit 的配置文件，则开机则会自动加载并启动 Unit。可以使用命令 systemctl list-unit-files 命令查看所有的配置文件状态。结论：建立了连接则说明该 Unit 会开机启动，没建立连接则该 Unit 不会开机启动；还可以禁止该 Unit 建立连接，则说明该 Unit 永远不能开机启动。
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gvdc29/1620129636770-82d464a7-f1ef-4e5c-9749-61b258d1b0e6.png)
 
 - enabled：启用(该文件已建立链接)

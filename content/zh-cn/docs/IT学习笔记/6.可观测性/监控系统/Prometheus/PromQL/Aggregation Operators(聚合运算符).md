@@ -5,6 +5,7 @@ title: Aggregation Operators(聚合运算符)
 # 概述
 
 > 参考：
+>
 > - [官方文档,Prometheus-查询-运算符-聚合运算符](https://prometheus.io/docs/prometheus/latest/querying/operators/#aggregation-operators)
 
 Prometheus 还提供了下列内置的聚合运算符，这些运算符仅作用于瞬时向量。可以将瞬时表达式返回的样本数据进行聚合，形成一个新的时间序列。
@@ -85,7 +86,7 @@ quantile 用于计算当前样本数据值的分布情况 quantile(φ, express)�
 
 # 效果示例图
 
-不进行聚合运算的数据&#x20;
+不进行聚合运算的数据
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fybu67/1616069162982-ceaed866-8e18-4a11-ba5b-a248b397ef1d.jpeg)
 不使用 by 或者 without，聚合运算所有数据，得出唯一一个值
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fybu67/1616069162971-82c3f7c8-4fd3-4e75-be31-b7c41e43b2d5.jpeg)

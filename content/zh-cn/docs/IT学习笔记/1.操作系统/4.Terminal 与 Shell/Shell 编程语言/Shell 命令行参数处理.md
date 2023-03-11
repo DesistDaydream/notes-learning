@@ -5,6 +5,7 @@ title: Shell 命令行参数处理
 # 概述
 
 > 参考：
+>
 > - <https://www.cnblogs.com/klb561/p/9211222.html>
 > - <https://blog.csdn.net/qq_22203741/article/details/77671379>
 
@@ -48,7 +49,7 @@ title: Shell 命令行参数处理
 
 - $@ ：参数本身的列表，也不包括命令本身，如上例为 -f config.conf -v --prefix=/home
 
-- $* ：和$@相同，但"$*" 和 "$@"(加引号)并不同，"$*"将所有的参数解释成一个字符串，而"$@"是一个参数数组。
+- $*：和$@相同，但"$*" 和 "$@"(加引号)并不同，"$*"将所有的参数解释成一个字符串，而"$@"是一个参数数组。
 
 例子：
 
@@ -138,7 +139,7 @@ done
 ```
 
 现在就可以使用：
-./test.sh -a arg -b -c&#x20;
+./test.sh -a arg -b -c
 或
 ./test.sh -a arg -bc
 来加载了。
@@ -149,9 +150,9 @@ done
 
 ## Syntax(语法)
 
-** getopt optstring parameters**
-** getopt \[OPTIONS] \[--] optstring parameters**
-** getopt \[OPTIONS] -o|--options optstring \[options] \[--] parameters**
+**getopt optstring parameters**
+**getopt \[OPTIONS] \[--] optstring parameters**
+**getopt \[OPTIONS] -o|--options optstring \[options] \[--] parameters**
 
 OPTIONS
 

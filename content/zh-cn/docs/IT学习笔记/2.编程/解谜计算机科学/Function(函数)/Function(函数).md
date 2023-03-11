@@ -5,6 +5,7 @@ title: Function(函数)
 # 概述
 
 > 参考：
+>
 > - [Wiki,Subroutine(子程序)](https://en.wikipedia.org/wiki/Subroutine)
 >   - [Wiki,Function](<https://en.wikipedia.org/wiki/Function_(computer_science)>) 概念被合并到 Subroutine 中
 > - [Wiki,Parameter(参数)](<https://en.wikipedia.org/wiki/Parameter_(computer_programming)>)
@@ -64,7 +65,7 @@ add(2, 3)
 , such as Algol 68, Pascal, Delphi, Simula, CPL, PL/M, Modula, Oberon, Ada, and many others. C++, Fortran, [PL/I](https://en.wikipedia.org/wiki/PL/I) |
 | Call by result | Parameter value is copied back to argument on return from the subroutine | Ada OUT parameters |
 | Call by value-result | Parameter value is copied back on entry to the subroutine and again on return | Algol, [Swift](<https://en.wikipedia.org/wiki/Swift_(programming_language)>)
-&#x20;in-out parameters |
+in-out parameters |
 | Call by name | Like a macro – replace the parameters with the unevaluated argument expressions | Algol, [Scala](<https://en.wikipedia.org/wiki/Scala_(programming_language)>) |
 | Call by constant value | Like call by value except that the parameter is treated as a constant | PL/I NONASSIGNABLE parameters, Ada IN parameters |
 

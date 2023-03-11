@@ -5,6 +5,7 @@ title: Service Account 详解
 # 概述
 
 > 参考：
+>
 > - [官方文档,任务-配置 Pod 和 容器-为 Pods 配置服务账户](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
 > - [官方文档,参考-API 访问控制-管理服务账户](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/)
 
@@ -86,7 +87,7 @@ Service Account 相关流程
           defaultMode: 420
           secretName: default-token-4w977
 
-### Token controller 令牌控制器&#xA;
+### Token controller 令牌控制器
 
 Token 控制器 是 controller-manager 的一部分。 以异步的形式工作：
 
@@ -104,7 +105,7 @@ Token 控制器 是 controller-manager 的一部分。 以异步的形式工作�
 
 控制器中有专门的循环来保证每个服务账户中都存在 API token 对应的 Secret。 当需要为服务账户创建额外的 API token 时，创建一个类型为 ServiceAccountToken 的 Secret，并在 annotation 中引用服务账户，控制器会生成 token 并更新 :
 
-### Service account controller 服务账户控制器&#xA;
+### Service account controller 服务账户控制器
 
 服务账户管理器管理各命名空间下的服务账户，并且保证每个活跃的命名空间下存在一个名为 "default" 的服务账户
 

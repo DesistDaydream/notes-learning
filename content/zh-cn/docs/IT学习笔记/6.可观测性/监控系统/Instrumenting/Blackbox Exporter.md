@@ -5,6 +5,7 @@ title: Blackbox Exporter
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，prometheus/blackbox_exporter](https://github.com/prometheus/blackbox_exporter)
 > - [官方文档](https://prometheus.io/docs/guides/multi-target-exporter/#configuring-modules)
 > - 个人文章参考：
@@ -50,6 +51,7 @@ scrape_configs:
 # 配置详解
 
 > 参考：
+>
 > - [GitHub,CONFIGURATION.md](https://github.com/prometheus/blackbox_exporter/blob/master/CONFIGURATION.md)
 
 Blackbox Exporter 的配置以模块区分，每个模块都有其独立的配置字段。一个模块就代表了一种探针类型及其探测行为。
@@ -78,15 +80,15 @@ modules:
 
 **method: <STRING>** # 探针探测是要使用的 HTTP Method。`默认值：GET`
 **headers: \<map\[STGRING]STRING>** # 设置探测时要使用的 Header，每行都是一个请求头的键值对。
-**compression: <STRING> **#&#x20;
-**follow_redirects: <BOOLEAN>** #&#x20;
+**compression: <STRING>**#
+**follow_redirects: <BOOLEAN>** #
 **fail_if_ssl: <BOOLEAN>** # 如果 SSL 存在，则探针失败。`默认值：false`
 **fail_if_not_ssl: <BOOLEAN>** # 如果 SSL 不存在，则探针失败。`默认值：false`
 **fail_if_body_matches_regexp:** # Probe fails if response body matches regex.
 \[ - <regex>, ... ]
-**fail_if_body_not_matches_regexp: **# Probe fails if response body does not match regex.
+**fail_if_body_not_matches_regexp:**# Probe fails if response body does not match regex.
 \[ - <regex>, ... ]
-**fail_if_header_matches: **# Probe fails if response header matches regex. For headers with multiple values, fails if _at least one_ matches.
+**fail_if_header_matches:**# Probe fails if response header matches regex. For headers with multiple values, fails if _at least one_ matches.
 \[ - \<http*header_match_spec>, ... ]
 **fail_if_header_not_matches:** # Probe fails if response header does not match regex. For headers with multiple values, fails if \_none* match.
 \[ - \<http_header_match_spec>, ... ]
@@ -103,7 +105,7 @@ modules:
 **oauth2: <Object>** # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
 **proxy_url: <STRING>** # HTTP proxy server to use to connect to the targets.
 **tls_config: <OBJECT>** # 发起 HTTP 请求时的 TLS 配置，即发起 HTTPS 请求。
-&#x20; 详见 [tls 配置段](#b9c06c74)
+ 详见 [tls 配置段](#b9c06c74)
 \######## Prometheus [共享库中的通用 HTTP 客户端配置](https://github.com/prometheus/common/blob/v0.30.0/config/http_config.go#L159)结束 ########
 
 **preferred_ip_protocol: <STRING>** # 探针首选的 IP 协议版本。`默认值：ip6`

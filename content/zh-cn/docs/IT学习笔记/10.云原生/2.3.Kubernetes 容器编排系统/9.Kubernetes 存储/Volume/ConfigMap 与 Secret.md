@@ -5,6 +5,7 @@ title: ConfigMap 与 Secret
 # 概述
 
 > 参考：
+>
 > - [官方文档,概念-存储-卷-configMap](https://kubernetes.io/zh/docs/concepts/storage/volumes/#configmap)
 > - [官方文档,任务-配置 Pods 和容器-使用 ConfigMap 配置 Pod](https://kubernetes.io/zh/docs/tasks/configure-pod-container/configure-pod-configmap/)
 
@@ -32,7 +33,7 @@ ConfigMap 的特性与用法：(是 kubernetes 集群中的一个资源，作为
 
 1. ConfigMap 作为 container 内变量使用。KEY 是 Pod 中定义 env 字段中 key 的值，VAL 是 Pod 定义后 container 显示出的 Pod 中的 env 定义的变量的 VAL。即引用时通过 KEY 名引用，然后显示 VAL。
 
-2. configmap 作为命令行的参数使用。注意：需要先把数据保存在变量中，再引用变量作为命令行参数&#x20;
+2. configmap 作为命令行的参数使用。注意：需要先把数据保存在变量中，再引用变量作为命令行参数
 
 3. configmap 作为 volume 挂载使用。KEY 是 container 中的文件名，VAL 是该文件的内容。Pod 中的 volumes 的类型设定为 configMap,选择引用的 configMap 的名称。当 configmap 的 data 中有多个 KEY/VAL PAIR 时，每个 KEY 都是一个文件名。
 

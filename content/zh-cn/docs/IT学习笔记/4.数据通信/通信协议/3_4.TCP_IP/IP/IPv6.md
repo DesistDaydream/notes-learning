@@ -5,6 +5,7 @@ title: IPv6
 # 概述
 
 > 参考：
+>
 > - [Wiki,IPv6](https://en.wikipedia.org/wiki/IPv6)
 > - [RFC,8200](https://datatracker.ietf.org/doc/html/rfc8200)
 > - [IANA,IPv6 地址空间分配情况](https://www.iana.org/assignments/ipv6-address-space/ipv6-address-space.xhtml)
@@ -110,7 +111,7 @@ IPv6 使用多播替代了广播，多播的特点是不会像广播那样完全
 9️⃣ IPv6 安全
 🔟 具体领域的 IPv6，例如移动 IPv6\[
 
-]\(https://www.bilibili.com/video/BV1J7411c7ae)
+]\(<https://www.bilibili.com/video/BV1J7411c7ae>)
 
 # IPv6 地址
 
@@ -139,7 +140,7 @@ IPv6 地址的这 128 bit 可以分为两部分：
 
 IEEE EUI-64 规范是将网络设备的 MAC 地址转换为 IPv6 接口标识的过程，如下图所示，MAC 地址的前 24 位（用 c 表示的部分）为公司标识，后 24 位（用 m 表示的部分）为扩展标识符。高 7 位是 0 表示了 MAC 地址本地唯一。转换的第一步将 FFFE 插入 MAC 地址的公司标识和扩展标识符之间， 第二步将高 7 位的 0 改为 1 表示此接口标识全球唯一。
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/mzn9uc/1631458464439-6142be5c-2a5e-4c08-8aa2-87abcc2ba854.png)
-例如：MAC 地址：`00-0E-0C-82-C4-D4`；转换后：`020E:0CFF:FE:82:C4D4`。&#x20;
+例如：MAC 地址：`00-0E-0C-82-C4-D4`；转换后：`020E:0CFF:FE:82:C4D4`。
 这种由 MAC 地址产生 IPv6 地址接口标识的方法可以减少配置的工作量，尤其是当采用无状态地址自动配置时，只需要获取一个 IPv6 前缀就可以与接口标识形成 IPv6 地址。但是使用这种方式最大的缺点是任何人都可以通过二层 MAC 地址推算出三层 IPv6 地址。
 
 ## IPv6 地址分类
@@ -149,7 +150,7 @@ IPv6 没有广播地址(以更丰富的组播地址代替)，分类如下
 
 - **Unicast Address(单播地址)** # 全局单播地址可以分配给任何一个想要接入互联网的设备。
   - **共有地址**
-    - **Global Unicast Address(全局单播地址) **# 前缀为 `2000::/3`
+    - **Global Unicast Address(全局单播地址)**# 前缀为 `2000::/3`
   - **私有地址** #
     - **Link-local Address(链路本地地址)** # 前缀为 `FE80::/10`。当两个支持 IPv6 特性的设备直连时，直连的接口会自动给自己分配一个链路本地地址，用来在没有管理员的配置下设备之间就能相互通信，并完成邻居发现等工作。这类地址的前 10 bit 是 `FE80`，后 54 bit 全是 0，最后 64 bit 是 EUI-64 地址，所以，上面例子中的链路本地地址是 `FE80::0000:09C0:876A:130B`。
       - IPv4 中的 169.254.0.0/8 就是链路本地地址。
@@ -215,6 +216,7 @@ IANA 组织当前划定的单播地址是 `2000::/3`，这个地址段占整个 
 # IPv6 地址的配置方式
 
 > 参考：
+>
 > - [GitHub 组织，radvd-project](https://github.com/radvd-project)
 > - [RFC 4862，IPv6 Stateless Address Autoconfiguration](https://datatracker.ietf.org/doc/html/rfc4862)
 
@@ -230,7 +232,7 @@ IANA 组织当前划定的单播地址是 `2000::/3`，这个地址段占整个 
 
 ## Stateless(无状态)
 
-**Stateless Address Autoconfiguration(无状态地址自动配置，简称 SLAAC) **是 IPv6 中用于自动生成 IPv6 地址的策略。
+**Stateless Address Autoconfiguration(无状态地址自动配置，简称 SLAAC)**是 IPv6 中用于自动生成 IPv6 地址的策略。
 
 在操作系统启动时，会自动在每个启用 IPv6 的接口上创建“链路本地地址”，当连接到网络时，会执行冲突解决。这个地址默认使用 `fe80::/64` 作为前缀。该行为使用 **Neighbor Discovery Protocol(邻居发现协议，简称 DNP)** 的一个组件，通过 SLAAC 独立进行
 
@@ -361,5 +363,3 @@ ISP 给我们分配 IPv6 时，会同时分配两个不同网段的 IPv6 地址
 当你的手机连接 WIFI 的时候，路由器就会按照这个前缀地址给你的手机向下分配剩余的地址，如：
 `2408:8210:3c36:c1c0:XXXX:XXXX:XXXX:XXXX`
 [](https://cloud.tencent.com/developer/article/1468099)
-
-

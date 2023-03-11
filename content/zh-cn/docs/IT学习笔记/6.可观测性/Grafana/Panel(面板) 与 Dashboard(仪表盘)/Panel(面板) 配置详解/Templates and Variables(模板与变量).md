@@ -5,6 +5,7 @@ title: Templates and Variables(模板与变量)
 # 概述
 
 > 参考：
+>
 > - [官方文档,模板与变量](https://grafana.com/docs/grafana/latest/variables/)
 > - [Prometheus 天降奇兵文章](https://yunlzheng.gitbook.io/prometheus-book/part-ii-prometheus-jin-jie/grafana/templating)
 
@@ -98,7 +99,7 @@ Label 属性用于指定界面中变量的显示名称，Hide 属性则用于指
     # 通过正则从返回结果中匹配出所需要的ip地址
     regex：/.*node="(.*?)".*/
 
-在 grafana 中配置如图：&#x20;
+在 grafana 中配置如图：
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kct3zl/1616067851071-4ddd8696-d110-474a-8014-49824a3f7119.png)
 
 # 使用变量动态创建 Panel 和 Row

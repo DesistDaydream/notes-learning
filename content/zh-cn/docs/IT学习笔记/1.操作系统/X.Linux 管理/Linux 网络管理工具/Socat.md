@@ -5,6 +5,7 @@ title: Socat
 # 概述
 
 > 参考：
+>
 > - 官网：<http://www.dest-unreach.org/socat/>
 > - 官方文档：<http://www.dest-unreach.org/socat/doc/socat.html>
 
@@ -53,7 +54,7 @@ ADDRESS 类似于一个文件描述符，socat 所做的工作就是在 2 个 AD
 
 格式为：`AddressTYPE[:ARGS][,OPTIONS]`
 
-### AddressTYPE：&#xA;
+### AddressTYPE
 
 - STDIN, STDOUT # 表示标准输入输出，可以使用 `-` 符号代替
 - /PATH/TO/FILE # 任意路径，也可以使用相对路径，打开一个文件作为数据流
@@ -63,7 +64,7 @@ ADDRESS 类似于一个文件描述符，socat 所做的工作就是在 2 个 AD
 - unix #
 -
 
-### AddressOPTIONS：
+### AddressOPTIONS
 
 # EXAMPLE
 

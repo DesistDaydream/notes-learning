@@ -17,12 +17,12 @@ title: 记一次 K8S 内部服务调用域名解析超时排坑经历
 ```go
 package main
 import (
-	"context"
-	"flag"
-	"fmt"
-	"net"
-	"sync/atomic"
-	"time"
+ "context"
+ "flag"
+ "fmt"
+ "net"
+ "sync/atomic"
+ "time"
 )
 var host string
 var connections int
@@ -30,59 +30,59 @@ var duration int64
 var limit int64
 var timeoutCount int64
 func main() {
-	// os.Args = append(os.Args, "-host", "www.baidu.com", "-c", "200", "-d", "30", "-l", "5000")
-	flag.StringVar(&host, "host", "", "Resolve host")
-	flag.IntVar(&connections, "c", 100, "Connections")
-	flag.Int64Var(&duration, "d", 0, "Duration(s)")
-	flag.Int64Var(&limit, "l", 0, "Limit(ms)")
-	flag.Parse()
-	var count int64 = 0
-	var errCount int64 = 0
-	pool := make(chan interface{}, connections)
-	exit := make(chan bool)
-	var (
-		min int64 = 0
-		max int64 = 0
-		sum int64 = 0
-	)
-	go func() {
-		time.Sleep(time.Second * time.Duration(duration))
-		exit <- true
-	}()
+ // os.Args = append(os.Args, "-host", "www.baidu.com", "-c", "200", "-d", "30", "-l", "5000")
+ flag.StringVar(&host, "host", "", "Resolve host")
+ flag.IntVar(&connections, "c", 100, "Connections")
+ flag.Int64Var(&duration, "d", 0, "Duration(s)")
+ flag.Int64Var(&limit, "l", 0, "Limit(ms)")
+ flag.Parse()
+ var count int64 = 0
+ var errCount int64 = 0
+ pool := make(chan interface{}, connections)
+ exit := make(chan bool)
+ var (
+  min int64 = 0
+  max int64 = 0
+  sum int64 = 0
+ )
+ go func() {
+  time.Sleep(time.Second * time.Duration(duration))
+  exit <- true
+ }()
 endD:
-	for {
-		select {
-		case pool <- nil:
-			go func() {
-				defer func() {
-					<-pool
-				}()
-				resolver := &net.Resolver{}
-				now := time.Now()
-				_, err := resolver.LookupIPAddr(context.Background(), host)
-				use := time.Since(now).Nanoseconds() / int64(time.Millisecond)
-				if min == 0 || use < min {
-					min = use
-				}
-				if use > max {
-					max = use
-				}
-				sum += use
-				if limit > 0 && use >= limit {
-					timeoutCount++
-				}
-				atomic.AddInt64(&count, 1)
-				if err != nil {
-					fmt.Println(err.Error())
-					atomic.AddInt64(&errCount, 1)
-				}
-			}()
-		case <-exit:
-			break endD
-		}
-	}
-	fmt.Printf("request count：%d\nerror count：%d\n", count, errCount)
-	fmt.Printf("request time：min(%dms) max(%dms) avg(%dms) timeout(%dn)\n", min, max, sum/count, timeoutCount)
+ for {
+  select {
+  case pool <- nil:
+   go func() {
+    defer func() {
+     <-pool
+    }()
+    resolver := &net.Resolver{}
+    now := time.Now()
+    _, err := resolver.LookupIPAddr(context.Background(), host)
+    use := time.Since(now).Nanoseconds() / int64(time.Millisecond)
+    if min == 0 || use < min {
+     min = use
+    }
+    if use > max {
+     max = use
+    }
+    sum += use
+    if limit > 0 && use >= limit {
+     timeoutCount++
+    }
+    atomic.AddInt64(&count, 1)
+    if err != nil {
+     fmt.Println(err.Error())
+     atomic.AddInt64(&errCount, 1)
+    }
+   }()
+  case <-exit:
+   break endD
+  }
+ }
+ fmt.Printf("request count：%d\nerror count：%d\n", count, errCount)
+ fmt.Printf("request time：min(%dms) max(%dms) avg(%dms) timeout(%dn)\n", min, max, sum/count, timeoutCount)
 }
 ```
 
@@ -139,7 +139,7 @@ linux 中 `glibc` 的 resolver 的缺省超时时间是 5s，而导致超时的�
 
 - 修改 `/etc/resolv.conf` 文件，在最后加入一行文本：options single-request-reopen
 
-- 进行压测：# 200 个并发,持续 30 秒,记录超过 5s 的请求个数./dns -host {service}.{namespace} -c 200 -d 30 -l 5000 复制代码结果如下： &#x20;
+- 进行压测：# 200 个并发,持续 30 秒,记录超过 5s 的请求个数./dns -host {service}.{namespace} -c 200 -d 30 -l 5000 复制代码结果如下：
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/vhcqem/1616118022005-4c81f4a7-7082-41e7-9132-bc9a994cbe04.jpeg)
 
@@ -161,7 +161,6 @@ linux 中 `glibc` 的 resolver 的缺省超时时间是 5s，而导致超时的�
 
 1. 通过修改 pod 的 postStart hook 来设置
 
-
     lifecycle:
       postStart:
         exec:
@@ -171,7 +170,6 @@ linux 中 `glibc` 的 resolver 的缺省超时时间是 5s，而导致超时的�
             - "/bin/echo 'options single-request-reopen' >> /etc/resolv.conf"
 
 1. 通过修改 pod 的 template.spec.dnsConfig 来设置
-
 
     template:
       spec:
@@ -195,13 +193,12 @@ linux 中 `glibc` 的 resolver 的缺省超时时间是 5s，而导致超时的�
 
 1. 获取当前`kube-dns service`的 clusterIP
 
+# kubectl -n kube-system get svc kube-dns -o jsonpath="{.spec.clusterIP}"
 
-    # kubectl -n kube-system get svc kube-dns -o jsonpath="{.spec.clusterIP}"
     10.96.0.10
     复制代码
 
 1. 下载官方提供的 yaml 模板进行关键字替换
-
 
     wget -O nodelocaldns.yaml "https://github.com/kubernetes/kubernetes/raw/master/cluster/addons/dns/nodelocaldns/nodelocaldns.yaml" && \
     sed -i 's/__PILLAR__DNS__SERVER__/10.96.0.10/g' nodelocaldns.yaml && \
@@ -212,22 +209,35 @@ linux 中 `glibc` 的 resolver 的缺省超时时间是 5s，而导致超时的�
 
 1. 最终 yaml 文件如下：
 
+# Copyright 2018 The Kubernetes Authors
 
-    # Copyright 2018 The Kubernetes Authors.
-    #
-    # Licensed under the Apache License, Version 2.0 (the "License");
-    # you may not use this file except in compliance with the License.
-    # You may obtain a copy of the License at
-    #
-    #     http://www.apache.org/licenses/LICENSE-2.0
-    #
-    # Unless required by applicable law or agreed to in writing, software
-    # distributed under the License is distributed on an "AS IS" BASIS,
-    # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    # See the License for the specific language governing permissions and
-    # limitations under the License.
-    #
-    apiVersion: v1
+#
+
+# Licensed under the Apache License, Version 2.0 (the "License")
+
+# you may not use this file except in compliance with the License
+
+# You may obtain a copy of the License at
+
+#
+
+#     <http://www.apache.org/licenses/LICENSE-2.0>
+
+#
+
+# Unless required by applicable law or agreed to in writing, software
+
+# distributed under the License is distributed on an "AS IS" BASIS
+
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied
+
+# See the License for the specific language governing permissions and
+
+# limitations under the License
+
+#
+
+apiVersion: v1
     kind: ServiceAccount
     metadata:
       name: node-local-dns
@@ -236,7 +246,8 @@ linux 中 `glibc` 的 resolver 的缺省超时时间是 5s，而导致超时的�
         kubernetes.io/cluster-service: "true"
         addonmanager.kubernetes.io/mode: Reconcile
     ---
-    apiVersion: v1
+
+apiVersion: v1
     kind: Service
     metadata:
       name: kube-dns-upstream
@@ -259,7 +270,8 @@ linux 中 `glibc` 的 resolver 的缺省超时时间是 5s，而导致超时的�
       selector:
         k8s-app: kube-dns
     ---
-    apiVersion: v1
+
+apiVersion: v1
     kind: ConfigMap
     metadata:
       name: node-local-dns
@@ -317,6 +329,7 @@ linux 中 `glibc` 的 resolver 的缺省超时时间是 5s，而导致超时的�
             prometheus :9253
             }
     ---
+
     apiVersion: apps/v1
     kind: DaemonSet
     metadata:
@@ -428,7 +441,6 @@ linux 中 `glibc` 的 resolver 的缺省超时时间是 5s，而导致超时的�
 
 - 方案（一）：通过修改 pod 的 template.spec.dnsConfig 来设置，并将`dnsPolicy`设置为`None`
 
-
     template:
       spec:
         dnsConfig:
@@ -444,7 +456,6 @@ linux 中 `glibc` 的 resolver 的缺省超时时间是 5s，而导致超时的�
         dnsPolicy: None
 
 - 方案（二）：修改默认的`cluster-dns`，在 node 节点上将`/etc/systemd/system/kubelet.service.d/10-kubeadm.conf`文件中的`--cluster-dns`参数值修改为`169.254.20.10`，然后重启`kubelet`
-
 
     systemctl restart kubelet
 

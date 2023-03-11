@@ -5,6 +5,7 @@ title: ip 命令行工具
 # 概述
 
 > 参考：
+>
 > - [Manual(手册),ip(8)](https://man7.org/linux/man-pages/man8/ip.8.html)
 
 ip 命令行工具可以控制各种 **Object(对象)**，这些对象包括：路由、网络设备、接口、隧道 等
@@ -15,7 +16,7 @@ ip 命令行工具可以控制各种 **Object(对象)**，这些对象包括：�
 
 ip 程序的语法有点复杂，对 Object 控制的命令中，有非常多的参数，不像普通命令一样，把参数称为 FLAGS 或 OPTIONS，且都是以 `-` 或者 `--` 符号开头的。
 
-这里我们使用 **大写字母 **来描述 **一个参数** 或 **一个具体的值**。参数中还可以包含一个或多个其他参数，每个参数的值，同样使用大写字母表示。
+这里我们使用 **大写字母**来描述 **一个参数** 或 **一个具体的值**。参数中还可以包含一个或多个其他参数，每个参数的值，同样使用大写字母表示。
 
 在后面的文章中，凡是这种复杂的参数，都使用这类格式表示：`参数 := 参数 | 值`，这就有点像编程中初始化**变量**一样。在这里就是等于是定义一个参数，并为参数赋值。比如 `ip link` 命令中，就有这种样子的写法：
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/us4bal/1638423450051-14c93955-fbe9-425a-9d96-eaf14b140241.png)
@@ -44,7 +45,7 @@ Command "-c" is unknown, try "ip route help".
   - **-B** # `-family bridge` 的简写
   - **-M** # `-family mpls` 的简写
   - **-0** # `-family link` 的简写
-- **-o, -oneline **# 在一行中输出每条记录，并用''字符替换换行符。在使用 wc(1) 对记录进行计数 或 对输出进行 grep(1) 时，这非常方便。
+- **-o, -oneline**# 在一行中输出每条记录，并用''字符替换换行符。在使用 wc(1) 对记录进行计数 或 对输出进行 grep(1) 时，这非常方便。
   - 注意，使用 -o 选项时，不会打印没有 IP 地址的网络设备
 - **-s, -stats** # 显示更详细的信息,主要显示该网络设备的接收、发送、错误、丢弃的数据包信息
 
@@ -88,7 +89,6 @@ Command "-c" is unknown, try "ip route help".
 - 简略显示网络设备信息
   - ip -4 -o a s
 
-
     root@lichenhao:~/projects/kubeappsops# ip -4 -o a s
     1: lo    inet 127.0.0.1/8 scope host lo\       valid_lft forever preferred_lft forever
     2: ens3    inet 172.19.42.248/24 brd 172.19.42.255 scope global ens3\       valid_lft forever preferred_lft forever
@@ -108,7 +108,7 @@ Note：在 ip address show 命令中列出的网络设备，可能包含这样�
 
 ## route # 路由条目管理
 
-详见：&#x20;
+详见：
 [rule 与 route](/docs/IT学习笔记/1.操作系统/X.Linux%20 管理/Linux%20 网络管理工具/Iproute%20 工具包/ip%20 命令行工具/rule%20 与%20route.md 命令行工具/rule 与 route.md)
 
 ## rule # 路由策略数据库管理
@@ -152,7 +152,7 @@ pids
 
 exec
 
-**ip netns exec NAME COMMAND.... **# 对 NAME 这个 namesapce 执行 COMMAND 命令
+**ip netns exec NAME COMMAND....**# 对 NAME 这个 namesapce 执行 COMMAND 命令
 
 EXAMPLE
 

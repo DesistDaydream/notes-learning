@@ -5,15 +5,16 @@ title: PromQL
 # 概述
 
 > 参考：
+>
 > - [官方文档，Prometheus-查询-基础](https://prometheus.io/docs/prometheus/latest/querying/basics/)
 
-**Prometheus Query Language(Prometheus 查询语言，简称 PromQL) **是一种提供了查询功能的编程语言，用来实时选择和汇总 [**TimeSeries(时间序列)**](https://www.yuque.com/go/doc/33147376) 数据。通过 PromQL 可以对监控数据进行筛选、过滤、组合等等操作。使用 PromQL 编写的语句也可以称为 **Expression(表达式)**，表达式的结果可以通过其他方式显示为图形。
+**Prometheus Query Language(Prometheus 查询语言，简称 PromQL)**是一种提供了查询功能的编程语言，用来实时选择和汇总 [**TimeSeries(时间序列)**](https://www.yuque.com/go/doc/33147376) 数据。通过 PromQL 可以对监控数据进行筛选、过滤、组合等等操作。使用 PromQL 编写的语句也可以称为 **Expression(表达式)**，表达式的结果可以通过其他方式显示为图形。
 
 ## PromQL 体验
 
 在 graph 页面，可以在红框位置输入表达式
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lfubxg/1616069073146-722bd1dd-2647-4bf9-84ed-4c2cbf694785.png)
-点击红框内的对话框 并输入关键字，系统会自动弹出可用的 metrics name &#x20;
+点击红框内的对话框 并输入关键字，系统会自动弹出可用的 metrics name
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lfubxg/1616069073181-bbf09f64-c80f-4e9f-9644-2916ce031358.jpeg)
 表达式直接使用 MetricsName，则展示此时此刻的以 node_cpu_seconds_total 为指标名的所有 TimeSeries(时间序列) 数据
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lfubxg/1616069073159-7b2a2e59-5866-478c-a87e-a9c6e42a65d5.png)
@@ -104,7 +105,6 @@ Note：
 
 - 这种查询方式只可以获取到值，并不能生成图表，因为图表中的一条向量是由很多个点组成的，每个点的位置由横轴是 time、纵轴是 value 互相确认得到的。但是这种查询结果会使每个点由多个 time 与多个 value 组成，一个点怎么可能由多个点合成一个呢？这在二维图标上是没法显示出来的。
 - 由于有多个值而且还没法展示，所以范围向量一般不会单独使用，而是与 irate()等函数一起使用。以便让多个值根据指定的函数规则聚合成唯一的一个值。
-
 
     promhttp_metric_handler_requests_total{code="200", instance="172.38.40.250:9090", job="prometheus"}=[
         223@1518096812.326

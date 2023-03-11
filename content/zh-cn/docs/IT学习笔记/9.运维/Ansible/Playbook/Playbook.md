@@ -5,6 +5,7 @@ title: Playbook
 # 概述
 
 > 参考：
+>
 > - [Ansible Galaxy](https://galaxy.ansible.com/)
 
 与通过命令行来执行 Ansbile 任务模式相比，Playbook 是 Ansible 执行任务的另一种方式，而且功能非常强大。
@@ -48,12 +49,13 @@ playbook 称为"剧本"。每个 playbook 都包含一个或多个 plays(戏剧)
 # Playbook 关键字
 
 > 参考：
+>
 > - [官方文档，参考与附录-Playbook 关键字](https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html)
 
 关键字是配置 Ansible 行为的几个来源之一。有关每个源的相对优先级的详细信息，请参阅控制 Ansible 的行为方式：优先级规则。
-hosts #&#x20;
+hosts #
 tasks # 要在 Play 中执行的主要任务列表，这些任务在 `roles 关键字定义的任务之后`，以及 `post_tasks 关键字定义的任务之前` 执行
-roles #&#x20;
+roles #
 name #
 
 # Playbook 语法详解

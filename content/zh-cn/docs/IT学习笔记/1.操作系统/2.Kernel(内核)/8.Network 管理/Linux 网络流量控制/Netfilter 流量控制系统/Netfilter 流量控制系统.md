@@ -6,6 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
+>
 > - [Netfilter 官网](https://www.netfilter.org/index.html)
 > - [Netfilter 官方文档](https://www.netfilter.org/documentation/index.html)
 > - [Wiki-Netfilter](https://en.wikipedia.org/wiki/Netfilter)
@@ -15,6 +16,7 @@ weight: 1
 >   - [\[译\] NAT - 网络地址转换（2016）](http://arthurchiao.art/blog/nat-zh/)
 
 ## Netfilter
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gral7u/1616165512374-db897dd5-0704-42f2-a1d8-441af05f247c.jpeg)
 
 Netfilter 是 Linux 操作系统核心层内部的一个数据包处理模块集合的统称。一种网络筛选系统，对数据包进入以及出去本机进行的一些控制与管理。该功能的所有模块可以通过下图所示的目录进行查找，其中还包括 ipvs 等。
@@ -55,9 +57,9 @@ Netfilter 所设置的规则是存放在内核内存中的，Iptables 是一个�
    1. 虚拟化或容器技术中，如果一台设备中有多个网段，一般都会打开转发功能，以实现不同网段路由互通的效果。
    2. 或者服务器作为 VPN 使用时，由于不同网络设备所属网段不同，也需要打开转发功能。
    3. 等等
-4. **OUTPUT 链 **# 出去，处理向外发送的数据。
-5. **POSTROUTING 链 **# 路由后，处理即将离开本机的数据包。它会转换数据包中的源 IP 地址（source ip address），通常用于 SNAT（source NAT）。(该路由是通过 Linux 中定义的 route 规则发送的，与内核的 ip_forward 无关)
-6. **自定义链 **# 用户自己定义的链，不会调用系统 Hook，而是由系统默认的 5 个链在 target 中定义引用
+4. **OUTPUT 链**# 出去，处理向外发送的数据。
+5. **POSTROUTING 链**# 路由后，处理即将离开本机的数据包。它会转换数据包中的源 IP 地址（source ip address），通常用于 SNAT（source NAT）。(该路由是通过 Linux 中定义的 route 规则发送的，与内核的 ip_forward 无关)
+6. **自定义链**# 用户自己定义的链，不会调用系统 Hook，而是由系统默认的 5 个链在 target 中定义引用
 
 ## 规则(Rule)匹配(Match)：(规则的匹配条件)匹配的用法详见：iptables 框架工具介绍
 
@@ -118,7 +120,7 @@ INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，�
 2. 自定义处理机制
 3. 注意：自定义的链不会有流量经过，而是在主要的 5 链中引用自定义链上的规则，来实现对流量的处理
 
-下图是从服务器外部进入网卡，再进入网络栈的数据流走向，如果直接是服务器内部服务生成的数据包进入网络栈，则不适用于该图 &#x20;
+下图是从服务器外部进入网卡，再进入网络栈的数据流走向，如果直接是服务器内部服务生成的数据包进入网络栈，则不适用于该图
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gral7u/1616165512341-aeeeff06-b602-4340-bc4f-cd582144f85f.jpeg)
 
 1. 当一个数据包进入网卡时，数据包首先进入 PREROUTING 链，在 PREROUTING 链中我们有机会修改数据包的 DestIP(目的 IP)，然后内核的"路由模块"根据"数据包目的 IP"以及"内核中的路由表"判断是否需要转送出去(注意，这个时候数据包的 DestIP 有可能已经被我们修改过了)
@@ -150,6 +152,6 @@ NAT 为了安全性而产生的，主要用来隐藏本地主机的 IP 地址
 
 比如在公司内网中提供一个 web 服务，但是由于是私网地址，来自互联网的任何请求无法送达这台 web 服务器，这时候我们可以对外宣称公司的 web 服务在一个公网的 IP 地址上，但是公网的 IP 地址所在服务器上又没有提供 web 服务，这时候，来自外网访问的请求，全部 DNAT 成私网 IP，即可对外提供请求。
 
-## 注意：
+## 注意
 
 由于 SNAT 与 DNAT 在描述的时候主要是都是针对请求报文而言的，那么当地址转换以后，响应报文响应的是转换后的地址，这时候就无法把响应请求送还给发起请求的设备了，这怎么办呢？这时候，同样需要一个地址转换，只不过通过 NAT 机制自行完成的，如何自动完成呢？这里面会有一个连接追踪机制，跟踪每一个数据连接（详见：[ConnTrack 连接跟踪机制](https://www.yuque.com/go/doc/33221811)），当响应报文到来的时候，根据连接追踪表中的信息记录的请求报文是怎么转换的相关信息，来对响应报文进行 NAT 转换。

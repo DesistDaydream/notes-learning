@@ -31,13 +31,13 @@ title: go-simplejson 库
     j.GetIndex(index int).Get(key string).GetIndex(index int).Int()
     // 获取数组
     // 当我们想以一种简洁的方式对数组值进行迭代时，这很有用:
-    //		for i, v := range j.Get("results").MustArray() {
-    //			fmt.Println(i, v)
-    //		}
+    //  for i, v := range j.Get("results").MustArray() {
+    //   fmt.Println(i, v)
+    //  }
     // 还可以通过 len(j.MustArray()) 获取数组长度
     j.MustArray()
 
-### 3. Json 获取类型值?&#xA;
+### 3. Json 获取类型值?
 
     j, err := simplejson.NewJson([]byte(jsonStr))
     // 获取json object对象值
@@ -59,7 +59,7 @@ title: go-simplejson 库
     // 获取json flat64浮点类型值
     v, err := j.Float64()
 
-### 4. Json 设置值?&#xA;
+### 4. Json 设置值?
 
     j, err := simplejson.NewJson([]byte(jsonStr))
     // 设置json字段值, 支持多级键, 支持多级键
@@ -68,7 +68,7 @@ title: go-simplejson 库
     j.MustSet(value interface{}, key1 string|index1 int, key2 string,index2 int, keyN string|indexN int)
     j.MustSet(value interface{}, key1 string|index1 int, key2 string,index2 int, keyN string|indexN int).MustSet(value interface{}, key1 string|index1 int, key2 string,index2 int, keyN string|indexN int)
 
-### 5. Json 删除值?&#xA;
+### 5. Json 删除值?
 
     j, err := simplejson.NewJson([]byte(jsonStr))
     // 删除json值, 支持多级键删除最后一个键, 支持连贯操作
@@ -80,7 +80,7 @@ title: go-simplejson 库
     j.MustDel(index int)
     j.MustDel(key1 string|index1 int, key2 string,index2 int, keyN string|indexN int).MustDel(key1 string|index1 int, key2 string,index2 int, keyN string|indexN int)
 
-### 6. json 类型对应 golang 类型?&#xA;
+### 6. json 类型对应 golang 类型?
 
     boolean >> bool
     number  >> float32,float64,int, int64, uint64
@@ -105,48 +105,48 @@ title: go-simplejson 库
     // 获取json 多级数组对象组合键索引值
     j.GetArrayIndex(index int).Get(key string).GetArrayIndex(index int).Int()
 
-### 示例&#xA;
+### 示例
 
 ```go
 package main
 
 import (
-	"fmt"
-	"github.com/qq1060656096/go-simplejson"
+ "fmt"
+ "github.com/qq1060656096/go-simplejson"
 )
 
 func main() {
-	jsonStr := `
+ jsonStr := `
 {
-	"uid": 1,
-	"name": "tester1",
-	"pass": "123456",
-	"profile": {
-		"age": 18,
-		"weight": "75kg",
-		"height": "1.71m",
-		"mobile": [
-			15400000001,
-			15400000002
-		]
-	}
+ "uid": 1,
+ "name": "tester1",
+ "pass": "123456",
+ "profile": {
+  "age": 18,
+  "weight": "75kg",
+  "height": "1.71m",
+  "mobile": [
+   15400000001,
+   15400000002
+  ]
+ }
 }
 `
-	// 字符串解析成json对象
-	j, err := simplejson.NewJson([]byte(jsonStr))
+ // 字符串解析成json对象
+ j, err := simplejson.NewJson([]byte(jsonStr))
 
-	// 简单获取值, 并转换成string类型
-	nameValue, err := j.Get("name").String()
-	fmt.Println(err)
-	fmt.Println(nameValue) // 输出: tester1
+ // 简单获取值, 并转换成string类型
+ nameValue, err := j.Get("name").String()
+ fmt.Println(err)
+ fmt.Println(nameValue) // 输出: tester1
 
-	// 连贯操作获取子级键的值, 并转换成int类型
-	ageValue, err := j.Get("profile").Get("age").Int()
-	fmt.Println(ageValue) // 输出: 18
+ // 连贯操作获取子级键的值, 并转换成int类型
+ ageValue, err := j.Get("profile").Get("age").Int()
+ fmt.Println(ageValue) // 输出: 18
 
-	// 连贯操作获取子级数组索引值, 并转换成int类型
-	mobileIndex2Value, err := j.Get("profile").Get("mobile").GetArrayIndex(1).Int()
-	fmt.Println(mobileIndex2Value) // 输出: 15400000002
+ // 连贯操作获取子级数组索引值, 并转换成int类型
+ mobileIndex2Value, err := j.Get("profile").Get("mobile").GetArrayIndex(1).Int()
+ fmt.Println(mobileIndex2Value) // 输出: 15400000002
 }
 ```
 
@@ -157,35 +157,35 @@ func main() {
     j.MustSet(value interface{}, index int)
     j.MustSet(value interface{}, key1 string|index1 index, key2 string,index2 index, keyN string|indexN index)
 
-### 示例&#xA;
+### 示例
 
 ```go
 package main
 
 import (
-	"fmt"
-	"github.com/qq1060656096/go-simplejson"
+ "fmt"
+ "github.com/qq1060656096/go-simplejson"
 )
 
 func main() {
-	jsonStr := `
+ jsonStr := `
 {
-	"mobile": [
-		15400000001,
-		15400120302
-	],
-	"uid": 1
+ "mobile": [
+  15400000001,
+  15400120302
+ ],
+ "uid": 1
 }
 `
-	j, err := simplejson.NewJson([]byte(jsonStr))
-	fmt.Println(err)
-	s0, err := j.EncodeJsonPretty()
-	fmt.Printf("%s\n", s0)
-	// 设置uid值
-	j.MustSet(2, "uid")// uid设置为2
-	s, err := j.EncodeJsonPretty()
-	fmt.Printf("%s\n", s)
-	/*
+ j, err := simplejson.NewJson([]byte(jsonStr))
+ fmt.Println(err)
+ s0, err := j.EncodeJsonPretty()
+ fmt.Printf("%s\n", s0)
+ // 设置uid值
+ j.MustSet(2, "uid")// uid设置为2
+ s, err := j.EncodeJsonPretty()
+ fmt.Printf("%s\n", s)
+ /*
 {
   "mobile": [
     15400000001,
@@ -194,11 +194,11 @@ func main() {
   "uid": 2
 }
 */
-	// 设置多层级键的值
-	j.MustSet(25400000002, "mobile", 1)// 设置mobile索引1的值为25400000002
-	s1, err := j.EncodeJsonPretty()
-	fmt.Printf("%s\n", s1)
-	/*
+ // 设置多层级键的值
+ j.MustSet(25400000002, "mobile", 1)// 设置mobile索引1的值为25400000002
+ s1, err := j.EncodeJsonPretty()
+ fmt.Printf("%s\n", s1)
+ /*
 {
   "mobile": [
     15400000001,

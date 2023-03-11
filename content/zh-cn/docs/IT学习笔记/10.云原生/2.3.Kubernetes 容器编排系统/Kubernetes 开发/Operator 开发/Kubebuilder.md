@@ -14,21 +14,21 @@ Kubebuilder 代码示例详见 [GitHub 上我的 kubernetesAPI 仓库](https://g
 
 - 初始化项目：
 
-  - kubebuilder init --domain example.com --license apache2 --owner "The Kubernetes authors"&#x20;
+  - kubebuilder init --domain example.com --license apache2 --owner "The Kubernetes authors"
 
 - 创建一个或多个新资源 API 并将代码添加到其中：
 
-  - kubebuilder create api --group <group> --version <version> --kind <Kind>&#x20;
+  - kubebuilder create api --group <group> --version <version> --kind <Kind>
 
 Create resource will prompt the user for if it should scaffold the Resource and / or Controller. To only scaffold a Controller for an existing Resource, select "n" for Resource. To only define the schema for a Resource without writing a Controller, select "n" for Controller.
 
 After the scaffold is written, api will run make on the project.
 
-**kubebuilder \[COMMAND] **
+**kubebuilder \[COMMAND]**
 
 Available Commands:
 
-## create Scaffold a Kubernetes API or webhook.
+## create Scaffold a Kubernetes API or webhook
 
 ## edit This command will edit the project configuration
 
@@ -78,4 +78,4 @@ Examples:
 
 - 使用 "The Kubernetes authors" 作为所有者的 apache2 许可证来搭建项目
 
-  - kubebuilder init --domain example.org --license apache2 --owner "The Kubernetes authors" &#x20;
+  - kubebuilder init --domain example.org --license apache2 --owner "The Kubernetes authors"

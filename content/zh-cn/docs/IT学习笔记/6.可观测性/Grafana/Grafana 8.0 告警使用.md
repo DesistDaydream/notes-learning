@@ -142,9 +142,9 @@ Please restart Grafana after installing plugins. Refer to Grafana docum
 \`☸ ➜ yum search wqy
 Loaded plugins: fastestmirror
 Loading mirror speeds from cached hostfile
- * base: mirrors.aliyun.com
+ *base: mirrors.aliyun.com
  * epel: mirrors.bfsu.edu.cn
- * extras: mirrors.aliyun.com
+ *extras: mirrors.aliyun.com
  * updates: mirrors.aliyun.com
 \================================================ N/S matched: wqy =================================================
 wqy-microhei-fonts.noarch : Compact Chinese fonts derived from Droid
@@ -175,7 +175,7 @@ provider = s3  # 使用 s3 模式
 
 \[external_image_storage.s3]
 endpoint = oss-cn-beijing.aliyuncs.com
-bucket =&#x20;
+bucket =
 region = oss-cn-beijing
 access_key =   # 使用阿里云后台的 ak 和 sk 进行配置
 secret_key =

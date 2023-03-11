@@ -5,6 +5,7 @@ title: Iproute 工具包
 # 概述
 
 > 参考：
+>
 > - 官方文档：<https://wiki.linuxfoundation.org/networking/iproute2>
 > - [Wiki,Iproute2](https://en.wikipedia.org/wiki/Iproute2)
 
@@ -50,10 +51,10 @@ iproute2 基于 Linux 的 [Netlink 接口](https://www.yuque.com/go/doc/44482585
 18. rtstat
 
 19. [ss](https://www.yuque.com/go/doc/33221911) # 转存 Socket 信息
-20. tipc #&#x20;
+20. tipc #
 
 21. tc # 实现 [TC 模块](https://www.yuque.com/go/doc/34380573)进行流量控制的程序
 
 # 配置
 
-**/etc/iproute2/\* **#
+**/etc/iproute2/\***#

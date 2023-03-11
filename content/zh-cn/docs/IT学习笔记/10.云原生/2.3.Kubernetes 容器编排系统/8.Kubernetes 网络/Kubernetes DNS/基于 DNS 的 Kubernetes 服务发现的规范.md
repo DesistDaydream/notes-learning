@@ -30,7 +30,7 @@ Resource Records 规范
 
 现在假定一个 Service 对象名为 `<service>`，在名为 `<ns>` 名称空间，该 Service 对象的 CLUSTER-IP 为 `<cluster-ip>`。则 DNS 实现程序必须具有下列几种类型的 Records(记录)。
 
-### A/AAAA Record&#xA;
+### A/AAAA Record
 
 如果 <service> 对象具有 <cluster-ip> 且为 IPv4 地址。
 
@@ -56,11 +56,11 @@ Resource Records 规范
 
   - kubernetes.default.svc.cluster.local. 4 IN AAAA 2001:db8::1
 
-### SRV Record&#xA;
+### SRV Record
 
 ### PTR Record
 
-### 总结&#xA;
+### 总结
 
 Service 域名与 Service 的 CLUSTER-IP 具有关联关系
 
@@ -69,7 +69,7 @@ Headless 类型的 Service 的 RR 格式
 参考：[官方文档](https://github.com/kubernetes/dns/blob/master/docs/specification.md#24---records-for-a-headless-service)
 现在假定一个 Headless 类型的 Service 对象名为 `<service>`，在名为 `<ns>` 名称空间，没有 CLUSTER-IP，Service 关联的每个 Pod 的主机名为 `<hostname>`，每个 Pod 的 IP 地址为 `<endpoint-ip>`。则 DNS 实现程序必须具有下列几种类型的 Records(记录)。
 
-### A/AAAA Record&#xA;
+### A/AAAA Record
 
 对于 Headless 类型的 Service，Service 对应的每个 endpoint 的 `<endpoint-ip>`(也就是 Pod 的 IP)，都必须有一个 A 记录。如果 endpoint 不存在，则 DNS-Rcode 应该是 NXDOMAIN。并且，<endpoint-ip> 会对应两种 A 记录
 
@@ -115,7 +115,7 @@ Headless 类型的 Service 的 RR 格式
 
 ### PTR Record
 
-### 总结&#xA;
+### 总结
 
 Service 域名 与 Service 关联的后端 Pod 的 IP 具有解析关系。
 
@@ -163,11 +163,11 @@ Service 域名 与 Service 关联的后端 Pod 的 IP 具有解析关系。
 
     ~ # nslookup log-bj-test-grafana.logging.svc.cluster.local
     ......
-    Name:	log-bj-test-grafana.logging.svc.cluster.local
+    Name: log-bj-test-grafana.logging.svc.cluster.local
     Address: 10.103.6.159
     ~ # nslookup log-bj-test-loki.logging.svc.cluster.local
     ......
-    Name:	log-bj-test-loki.logging.svc.cluster.local
+    Name: log-bj-test-loki.logging.svc.cluster.local
     Address: 10.102.159.19
 
 实验 Headless 类型的 Service
@@ -175,11 +175,11 @@ Service 域名 与 Service 关联的后端 Pod 的 IP 具有解析关系。
     # 解析 Service 名
     ~ # nslookup log-bj-test-grafana-headless.logging.svc.cluster.local
     ......
-    Name:	log-bj-test-grafana-headless.logging.svc.cluster.local
+    Name: log-bj-test-grafana-headless.logging.svc.cluster.local
     Address: 10.244.2.129
     ~ # nslookup log-bj-test-loki-headless.logging.svc.cluster.local
     ......
-    Name:	log-bj-test-loki-headless.logging.svc.cluster.local
+    Name: log-bj-test-loki-headless.logging.svc.cluster.local
     Address: 10.244.1.211
     # 解析主机名
     ~ # nslookup log-bj-test-grafana-7764f5b4d7-28ngk.log-bj-test-grafana-headless.logging.svc.cluster.local
@@ -188,12 +188,12 @@ Service 域名 与 Service 关联的后端 Pod 的 IP 具有解析关系。
     ** server can't find log-bj-test-grafana-7764f5b4d7-28ngk.log-bj-test-grafana-headless.logging.svc.cluster.local: NXDOMAIN
     ~ # nslookup log-bj-test-loki-0.log-bj-test-loki-headless.logging.svc.cluster.local
     ......
-    Name:	log-bj-test-loki-0.log-bj-test-loki-headless.logging.svc.cluster.local
+    Name: log-bj-test-loki-0.log-bj-test-loki-headless.logging.svc.cluster.local
     Address: 10.244.1.211
 
 SRV 记录
 
     ~ # nslookup _http-metrics._tcp.log-bj-test-loki-headless.logging.svc.cluster.local
     ......
-    Name:	_http-metrics._tcp.log-bj-test-loki-headless.logging.svc.cluster.local
+    Name: _http-metrics._tcp.log-bj-test-loki-headless.logging.svc.cluster.local
     Address: 10.244.1.211

@@ -96,7 +96,7 @@ kube-aggregator 是 apiserver 中的实现，有些 k8s 版本默认没开启，
 
 - Core metrics(核心指标)：从 Kubelet、cAdvisor 等获取度量数据，再由 metrics-server 提供给 Dashboard、HPA 控制器等使用。
 
-- Custom Metrics(自定义指标)：由 Prometheus Adapter 提供 API custom.metrics.k8s.io，由此可支持任意 Prometheus 采集到的指标。&#x20;
+- Custom Metrics(自定义指标)：由 Prometheus Adapter 提供 API custom.metrics.k8s.io，由此可支持任意 Prometheus 采集到的指标。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gqchw0/1616116843734-4b19256f-32e5-411c-ada2-176e4988c635.png)
 
@@ -138,7 +138,7 @@ cadvisor 拿到的数据结构示例：
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gqchw0/1616116843744-243be6f9-7c39-4e21-93fd-4ee4ddc49ea3.png)
 
-cadvisor 的指标解读：cgroup-v1(https://www.kernel.org/doc/Documentation/cgroup-v1/memory.txt)
+cadvisor 的指标解读：cgroup-v1(<https://www.kernel.org/doc/Documentation/cgroup-v1/memory.txt>)
 
 cadvisor 获取指标时实际调用的是 runc/libcontainer 库，而 libcontainer 是对 cgroup 文件 的封装，即 cadvsior 也只是个转发者，它的数据来自于 cgroup 文件。
 

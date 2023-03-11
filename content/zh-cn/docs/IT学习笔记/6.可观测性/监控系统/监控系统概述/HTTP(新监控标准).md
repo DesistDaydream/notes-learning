@@ -13,6 +13,7 @@ title: HTTP(新监控标准)
 # OpenMetrics
 
 > 参考：
+>
 > - [GitHub 项目，OpenObservability/OpenMetrics](https://github.com/OpenObservability/OpenMetrics)
 > - [官网](https://openmetrics.io/)
 > - [OpenMetrics 规范](https://github.com/OpenObservability/OpenMetrics/blob/main/specification/OpenMetrics.md)
@@ -214,7 +215,7 @@ http_requests_total{method="post",code="400"} 3 1395066363000
 
 TYPE 注释行必须出现在指标的第一个样本之前。如果没有明确的指标类型需要返回为 untyped。 除了# 开头的所有行都会被视为是监控样本数据。 每一行样本需要满足以下格式规范:
 metric_name \[
-&#x20; "{" label_name "=" `"` label_value `"` { "," label_name "=" `"` label_value `"` } \[ "," ] "}"
+ "{" label_name "=" `"` label_value `"` { "," label_name "=" `"` label_value `"` } \[ "," ] "}"
 ] value \[ timestamp ]
 
 其中 metric_name 和 label_name 必须遵循 PromQL 的格式规范要求。value 是一个 float 格式的数据，timestamp 的类型为 int64（从 1970-01-01 00:00:00 以来的毫秒数），timestamp 为可选默认为当前时间。具有相同 metric_name 的样本必须按照一个组的形式排列，并且每一行必须是唯一的指标名称和标签键值对组合。

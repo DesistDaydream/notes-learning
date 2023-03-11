@@ -5,6 +5,7 @@ title: Bond 与 Team
 # 概述
 
 > 参考：
+>
 > - [Wiki,Link Aggregation](https://en.wikipedia.org/wiki/Link_aggregation)
 > - [Wiki,MII](https://en.wikipedia.org/wiki/Media-independent_interface)
 > - [Linux 内核文档,Linux 网络文档-Linux 以太网 Bonding 驱动入门指南](https://www.kernel.org/doc/html/latest/networking/bonding.html)(这里可以看到所有 Bonding 参数)
@@ -16,7 +17,7 @@ title: Bond 与 Team
 
 ## Link Aggregation Control Protocol
 
-**Link Aggregation Control Protocol(链路汇聚控制协议，简称 LACP) **在 IEEE 以太网标准中，提供了一种方法，可以将多个物理链路捆绑在一起以形成单个逻辑链路。LACP 允许网络设备通过将 LACP 数据包发送到 **Peer(对等方)** 以 **negotiate(协商)** 链路状态，并实现自动捆绑。
+**Link Aggregation Control Protocol(链路汇聚控制协议，简称 LACP)** 在 IEEE 以太网标准中，提供了一种方法，可以将多个物理链路捆绑在一起以形成单个逻辑链路。LACP 允许网络设备通过将 LACP 数据包发送到 **Peer(对等方)** 以 **negotiate(协商)** 链路状态，并实现自动捆绑。
 
 > Peer(对等方) 指的是与本网络设备直连的可以实现 LACP 的对端网络设备
 > LACP 数据包通常称为 **Link Aggregation Control Protocol Data Unit(链路汇聚控制协议数据单元，简称 LACPDU)**
@@ -92,7 +93,7 @@ MII 监控参数与 ARP 监控参数不可同时使用
 - 通常设置为 100
 
 **use_carrier** # 指定 miimon 是否应使用 MII 或 ETHTOOL ioctls 与 netif_carrier_ok() 来确定链接状态。 默认值是 1，这使得可以使用 netif_carrier_ok（）。 这由 Linux on Z 上的 qeth 设备驱动程序支持。
-**downdelay **# 检测到网络设备故障后，持续 downdelay 毫秒后，关闭该设备。
+**downdelay**# 检测到网络设备故障后，持续 downdelay 毫秒后，关闭该设备。
 **updelay** # 检测到网络设备恢复后，持续 updelay 毫秒后，启用该设备
 
 ## Bond 模式参数
@@ -125,7 +126,7 @@ MII 监控参数与 ARP 监控参数不可同时使用
 
 ## 其他参数
 
-**lacp_rate** # 作用于 802.3ad 模式。向聚合链路的对端(通常来说都是交换机)传输** LACPDU** 包的速率。可用的值有如下几个：
+**lacp_rate** # 作用于 802.3ad 模式。向聚合链路的对端(通常来说都是交换机)传输**LACPDU** 包的速率。可用的值有如下几个：
 
 - slow # 每 30 秒传输一次 LACPDU，即每 30 秒协商一次
 - fast # 每秒传输一次 LACPDU，即每秒协商一次
@@ -226,7 +227,7 @@ Slave queue ID: 0
 
 - **Slave Interface** # 与 Bond 设备关联的 Slave 网络设备的名称
 - **MII Status** # 链路监控状态
-- **Speed **# 最大传输速度，即网卡的带宽
+- **Speed**# 最大传输速度，即网卡的带宽
 - **Duplex** # 双工模式
 - **Link Failure Count** # 失联总次数
 - **Permanent HW addr** # 关联的物理网卡的硬件地址，即网卡的 MAC 地址
@@ -273,7 +274,7 @@ Slave queue ID: 0
 > - <https://github.com/systemd/systemd/issues/15208>
 
 ```bash
-[root@yihualu-33 test_dir]# cat /proc/net/bonding/bond1
+~]# cat /proc/net/bonding/bond1
 Ethernet Channel Bonding Driver: v3.7.1 (April 27, 2011)
 
 Bonding Mode: IEEE 802.3ad Dynamic link aggregation
@@ -290,11 +291,11 @@ Aggregator selection policy (ad_select): stable
 System priority: 65535
 System MAC address: 32:1c:0d:e9:ca:e9
 Active Aggregator Info:
-	Aggregator ID: 1
-	Number of ports: 2
-	Actor Key: 15
-	Partner Key: 6
-	Partner Mac Address: 00:00:00:00:00:06
+    Aggregator ID: 1
+    Number of ports: 2
+    Actor Key: 15
+    Partner Key: 6
+    Partner Mac Address: 00:00:00:00:00:06
 
 Slave Interface: enp6s0f0
 MII Status: up
@@ -353,10 +354,10 @@ details partner lacp pdu:
 
 802.3ad 模式的 Bond 需要与交换机交互 LACP 信息，这里对 服务器 和 交换机 的称呼如下：
 
-- **Actor **# 指主机，即服务器
+- **Actor** # 指主机，即服务器
 - **Partner** # 指交换机
 
-**Aggregator ID** #&#x20;
+**Aggregator ID** #
 **Actor Churn State 与 Partner Churn State** # 务器与交换机的 Churn 状态
 
 - Churn State # Churn 状态共有三种，先是 monitoring，然后是 churned，最后 none 就正常了。
@@ -366,7 +367,7 @@ details partner lacp pdu:
     - One of the peer's LACP (etherchannel) interfaces is suspended or is otherwise no longer active as an LACP interface
   - none # 链路已同步
 
-**Actor Churned Count 与 Partner Churned Count** #&#x20;
+**Actor Churned Count 与 Partner Churned Count** #
 **details actor lacp pdu 与 details partner lacp pdu** # 服务器与交换机的 LACPDU 信息细节
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ggzysy/1644663197947-87aaf3c3-d762-4682-8747-059014f1a7bc.png)

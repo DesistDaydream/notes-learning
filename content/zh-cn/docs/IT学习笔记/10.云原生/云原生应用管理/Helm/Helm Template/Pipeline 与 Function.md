@@ -5,9 +5,10 @@ title: Pipeline 与 Function
 # 概述
 
 > 参考：
+>
 > - 官方文档：<https://helm.sh/docs/chart_template_guide/functions_and_pipelines/>
 
-将 .Values 对象中的字符串注入模板时，应引用这些字符串。我们可以通过在 **Template Directive(模板指令) **中调用 quota 函数来实现，比如下面这个示例，会将引入的指转换为字符串类型：
+将 .Values 对象中的字符串注入模板时，应引用这些字符串。我们可以通过在 **Template Directive(模板指令)**中调用 quota 函数来实现，比如下面这个示例，会将引入的指转换为字符串类型：
 
 ```yaml
 apiVersion: v1
@@ -28,9 +29,9 @@ Helm 拥有超过 60 种可用函数。其中一些是由  [**Go template langu
 
 # Pipeline 管道
 
-> 在 Helm 的 Template 中，**Pipeline(管道) **的概念与 Go Template 中 Pipeline 的概念不同，并不是指产生数据的操作。
+> 在 Helm 的 Template 中，**Pipeline(管道)**的概念与 Go Template 中 Pipeline 的概念不同，并不是指产生数据的操作。
 
-**Pipeline(管道)** 与 Linux 中管道的概念类似，用于连接多个 [**Template Directives(模板指令)**](https://www.teambition.com/project/5f90e312755d8a00446050eb/app/5eba5fba6a92214d420a3219/workspaces/5f90e312c800160016ea22fb/docs/5f9a633937398300016bed65?scroll-to-block=5f9a6348246f30f3eef35c3e)。换句话说，**Pipeline(管道) **是一种按顺序完成多项任务的有效方式。
+**Pipeline(管道)** 与 Linux 中管道的概念类似，用于连接多个 [**Template Directives(模板指令)**](https://www.teambition.com/project/5f90e312755d8a00446050eb/app/5eba5fba6a92214d420a3219/workspaces/5f90e312c800160016ea22fb/docs/5f9a633937398300016bed65?scroll-to-block=5f9a6348246f30f3eef35c3e)。换句话说，**Pipeline(管道)**是一种按顺序完成多项任务的有效方式。
 
 本篇文章开头的示例，如果使用 Pipeline 重写，则是这样的：
 
@@ -61,6 +62,7 @@ data:
 # Function 函数
 
 > 参考：
+>
 > - [官方文档，Chart 模板指南-模板函数列表](https://helm.sh/docs/chart_template_guide/function_list/)
 
 **Helm Template Function(Helm 模板函数)** 可以用来丰富模板功能，通过函数，可以对传入模板的数据进行更多操作，以便让这些数据更符合我们的预期。
@@ -191,7 +193,7 @@ eq ARG1 ARG2
 
 ## 字典类型数据处理函数
 
-### &#xA;[mergeOverwrite, mustMergeOverwrite](https://helm.sh/docs/chart_template_guide/function_list/#mergeoverwrite-mustmergeoverwrite)
+### [mergeOverwrite, mustMergeOverwrite](https://helm.sh/docs/chart_template_guide/function_list/#mergeoverwrite-mustmergeoverwrite)
 
 将两个或多个字典合并为一个，右侧的优先级最高
 

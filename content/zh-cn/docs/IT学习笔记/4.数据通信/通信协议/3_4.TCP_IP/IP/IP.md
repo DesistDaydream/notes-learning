@@ -5,6 +5,7 @@ title: IP
 # 概述
 
 > 参考：
+>
 > - [RFC,791](https://datatracker.ietf.org/doc/html/rfc791)(IP 规范)
 > - [Wiki,Internet Protocol](https://en.wikipedia.org/wiki/Internet_Protocol)
 > - [Wiki,IPv4](https://en.wikipedia.org/wiki/IPv4)
@@ -15,13 +16,13 @@ title: IP
 >     - [APNIC,帮助-FTP 数据库](https://ftp.apnic.net/stats/apnic/)(亚太地区所有分配的 IP 地址信息)
 > - [IANA,IPv4 特殊用途地址注册表](https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xhtml)
 
-**Internet Protocol(互联网协议，简称 IP) ** 是[互联网协议套件](https://en.wikipedia.org/wiki/Internet_protocol_suite)(其中包含 TCP/IP)中的主要通信协议，用于跨网络边界中继数据报。它的路由功能可实现互联网络，并实质上建立了 Internet。
+**Internet Protocol(互联网协议，简称 IP)** 是[互联网协议套件](https://en.wikipedia.org/wiki/Internet_protocol_suite)(其中包含 TCP/IP)中的主要通信协议，用于跨网络边界中继数据报。它的路由功能可实现互联网络，并实质上建立了 Internet。
 
 > **Internet protocol suite(互联网协议套件)** 是互联网和类似计算机网络中使用的概念模型和通信协议集。由于该套件中的基本协议是 **TCP(传输控制协议)** 和 **IP(互联网协议)**，因此通常被称为 **TCP/IP**。在其开发过程中，其版本被称为国防部（DoD）模型，因为联网方法的开发是由美国国防部通过 DARPA 资助的。它的实现是一个协议栈。
 
 IP 基于数据包的 Header 中的 IP 地址，将数据包从源主机发送到目标主机。基于此目的，IP 还定义了数据包的封装结构、以及一种寻址方法。寻址方法用来使用源和目标的信息标记数据报。
 
-从历史上看，IP 是在 1974 年由 Vint Cerf 和 Bob Kahn 引入的原始 **Transmission Control Program(传输控制程序) **中的[无连接](https://en.wikipedia.org/wiki/Connectionless_communication)数据报服务。该服务由一项面向连接的服务补充，成为 [**Transmission Control Protocol(传输控制协议，简称 TCP)**](docs/IT学习笔记/4.数据通信/通信协议/3_4.TCP_IP/TCP/TCP.md) 的基础。因此 IP 套件通常称为 TCP/IP。IP 的第一个版本是 IPv4，继任者是 IPv6
+从历史上看，IP 是在 1974 年由 Vint Cerf 和 Bob Kahn 引入的原始 **Transmission Control Program(传输控制程序)**中的[无连接](https://en.wikipedia.org/wiki/Connectionless_communication)数据报服务。该服务由一项面向连接的服务补充，成为 [**Transmission Control Protocol(传输控制协议，简称 TCP)**](docs/IT学习笔记/4.数据通信/通信协议/3_4.TCP_IP/TCP/TCP.md) 的基础。因此 IP 套件通常称为 TCP/IP。IP 的第一个版本是 IPv4，继任者是 IPv6
 
 # IPv4 地址
 
@@ -45,8 +46,8 @@ IPv4 地址的这 32 bit 可以分为两部分
 
 例如：一个 IP 地址为 10.2.45.1，子网掩码为 255.255.252.0，“与” 运算得到：10.2.44.0，则网络设备认为该 IP 地址的网络号与子网号为 10.2.44.0，属于 10.2.44.0/22 网络，其中/22 表示子网掩码长度为 22 位，即从前向后连续的 22 个 1。
 
-00001010.00000010.00101101.00000001&#x20;
-与运算&#x20;
+00001010.00000010.00101101.00000001
+与运算
 11111111.11111111.11111100.00000000
 结果为
 00001010.00000010.00101100.00000001 即 10.2.44.0
@@ -99,20 +100,20 @@ IPv4 数据报首部共 14 个字段，其中 13 个是必须的，第 14 个是
   - **Differentiated Services Code Point** # 最初定义为 Type Of Service(服务类型，简称 TOS)，
   - **Explicit Congestion Notification** # 该字段定义在 RFC3168 中，
 - **Total Length** # 定义了整个 IP 数据报的大小，最小为 20 字节(Payload 字段无内容)，最大为 65535 字节。
-- **Identification **# 主要用于唯一标识单个 IP 数据报的片段组。
+- **Identification**# 主要用于唯一标识单个 IP 数据报的片段组。
   - 一些实验工作建议将 ID 字段用于其他目的，例如添加数据包跟踪信息以帮助跟踪具有欺骗源地址的数据报，\[31] 但 RFC 6864 现在禁止任何此类使用。
-- **Flags **# 用来控制或识别 IP 分片之后的每个片段，这 3 个 bit 分别表示不同的含义，若字段值为 0 表示未设置，值为 1 表示设置，类似 TCP 首部中 Flags 字段的用法。
+- **Flags**# 用来控制或识别 IP 分片之后的每个片段，这 3 个 bit 分别表示不同的含义，若字段值为 0 表示未设置，值为 1 表示设置，类似 TCP 首部中 Flags 字段的用法。
   - 第一个 # Reserved，保留字段，必须为 0
   - 第二个 # Don't Fragment(DF)
   - 第三个 # More Fragment(MF)
 - **Fragment Offset(分片偏移)** # IP 分片之后的偏移量
 - **Time To Live(存活时间，简称 TTL)** # 其实用 Hop Limit 的描述更准确，封包每经过一个路由器，怎会将 TTL 字段的值减 1，减到 0 是，该包将会被丢弃。
-- **Protocol **# 封装 IP 数据报的上层协议，比如 6 表示 TCP、1 表示 ICMP
-  - 每种协议根据 [RFC 1700](https://datatracker.ietf.org/doc/html/rfc1700) 都分配了一个固定的编号，该 RFC 1700 最终被 RFC 3232 废弃，并将协议编号的维护工作，转到[ IANA 的在线数据库](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)中
+- **Protocol**# 封装 IP 数据报的上层协议，比如 6 表示 TCP、1 表示 ICMP
+  - 每种协议根据 [RFC 1700](https://datatracker.ietf.org/doc/html/rfc1700) 都分配了一个固定的编号，该 RFC 1700 最终被 RFC 3232 废弃，并将协议编号的维护工作，转到[IANA 的在线数据库](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)中
 - **Header Checksum** # 当数据包到达路由器时，路由器会计算标头的校验和，并将其与校验和字段进行比较。如果值不匹配，则路由器会丢弃该数据包。
 - **Source Address(源地址)** # 发送端 IP 地址。
 - **Destination Address(目标地址)** # 接收端 IP 地址。
-- **Options(选项) **# 可变长度，0-40 Bytes。
+- **Options(选项)**# 可变长度，0-40 Bytes。
 
 # IPv4 Fragment
 
@@ -121,6 +122,7 @@ IP Fragment(分片) 主要通过首部中的 Identification、Flags、Fragment O
 # IP 地址分配机制
 
 > 参考：
+>
 > - [IANA,号码资源](https://www.iana.org/numbers)
 > - [面包板，你知道中国大陆一共有多少 IPv4 地址吗？](https://www.eet-china.com/mp/a54338.html)
 > - [公众号，k8s 中文社区-居然还有 2 亿多 IPv4 地址未分配](https://mp.weixin.qq.com/s/GHYYgZwAuEV4qPCwdI8Bjg)

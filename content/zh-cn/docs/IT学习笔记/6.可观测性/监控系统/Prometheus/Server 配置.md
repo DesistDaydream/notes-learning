@@ -5,6 +5,7 @@ title: Server 配置
 # 概述
 
 > 参考：
+>
 > - [官方文档,配置-配置](https://prometheus.io/docs/prometheus/latest/configuration/configuration/)
 
 Prometheus Server 可通过两种方式来改变运行时行为
@@ -34,19 +35,19 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 - **--web.config.file=/PATH/TO/FILE** # \[实验标志]用于开启 TLS 或 身份验证 配置文件路径。
 - --web.read-timeout=5m\*\* \*\*# Maximum duration before timing out read of the request, and closing idle connections.
 - **--web.max-connections=INT** # 可以同时连接到 Prometheus Server 的最大数量。`默认值:512`
-- **--web.external-url=URL **# 可以从外部访问 Prometheus 的 URL。
+- **--web.external-url=URL**# 可以从外部访问 Prometheus 的 URL。
   - 例如，如果 Prometheus 是通过反向代理提供的，用于生成返回 Prometheus 本身的相对和绝对链接。如果 URL 具有路径部分，它将被用作所有 HTTP 的前缀 Prometheus 服务的端点。 如果省略，则会自动派生相关的 URL 组件。
     - 注意：该标志在反向代理时似乎问题，详见：<https://github.com/prometheus/prometheus/issues/1583>
   - 例如，Prometheus 产生的的告警，推送到 AlertManager 时，会有一个 `generatorURL` 字段，该字段中所使用的 URL 中的 Endpoint，就是 web.external-url，这个 URL 可以让获取该告警的人，点击 URL 即可跳转到 Prometheus 的 Web 页面并使用对应的 PromQL 查询。
 - **--web.route-prefix=PATH** # Web 端内部路由的前缀。 默认为 --web.external-url 标志指定的路径。i.e.后端代码的路由入口路径。一般默认为 / 。
 - --web.user-assets= # Path to stat storage.tsdb.max-block-durationic asset directory, available at /user.
-- **--web.enable-lifecycle** # 开启配置热更新，开启后，可使用 curl -X POST http://PrometheusServerIP:9090/-/reload 命令来重载配置以便让更改后的配置生效，而不用重启 prometheus 进程
+- **--web.enable-lifecycle** # 开启配置热更新，开启后，可使用 curl -X POST <http://PrometheusServerIP:9090/-/reload> 命令来重载配置以便让更改后的配置生效，而不用重启 prometheus 进程
 - **--web.enable-admin-api** # 开启管理操作 API 端点。通过 admin API，可以删除时序数据。
 - --web.console.templates="consoles" # Path to the console template directory, available at /consoles.
 - --web.console.libraries="console_libraries" # Path to the console library directory.
 - --web.page-title="Prometheus Time Series Collection and Processing Server" #Document title of Prometheus instance.
 - --web.cors.origin=".\*" #Regex for CORS origin. It is fully anchored. Example: 'https?://(domain1|domain2).com'
-- **--storage.tsdb.path="/PATH/DIR" **# prometheus 存储 metircs 数据的目录(使用绝对路径)
+- **--storage.tsdb.path="/PATH/DIR"**# prometheus 存储 metircs 数据的目录(使用绝对路径)
 - **--storage.tsdb.retention.time=TIME** # 数据的存储时间，如果既未设置此标志也未设置 storage.tsdb.retention.size 标志，`默认值：15d`。支持的单位：y，w，d，h，m，s，ms。
 - --storage.tsdb.retention.size=STORAGE.TSDB.RETENTION.SIZE #\[EXPERIMENTAL] Maximum number of bytes that can be stored for blocks. Units supported: KB, MB, GB, TB, PB. This flag is experimental and can be changed in future releases.
 - --storage.tsdb.no-lockfile # 不在数据目录创建锁文件。暂时不理解什么意思，待研究
@@ -59,13 +60,13 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 - by default.
 - --rules.alert.for-outage-tolerance=1h # Max time to tolerate prometheus outage for restoring "for" state of alert.
 - --rules.alert.for-grace-period=10m # Minimum duration between alert and restored "for" state. This is maintained only for alerts with configured "for" time greater than grace period.
-- **--rules.alert.resend-delay=DURATION **# 向 Alertmanager 重新发送警报前的最少等待时间。`默认值：1m`。
+- **--rules.alert.resend-delay=DURATION**# 向 Alertmanager 重新发送警报前的最少等待时间。`默认值：1m`。
   - 当告警处于 FIRING 状态时，每间隔 1m，就会再次发送一次。注意：重发送之前，还需要一个评估规则的等待期，评估完成后，再等待该值的时间，才会重新发送告警。
 - --alertmanager.notification-queue-capacity=10000 # The capacity of the queue for pending Alertmanager notifications.
 - --alertmanager.timeout=10s # Timeout for sending alerts to Alertmanager.
-- **--query.lookback-delta=DURATION ** # 评估 PromQL 表达式时最大的回溯时间。`默认值：5m`
+- **--query.lookback-delta=DURATION** # 评估 PromQL 表达式时最大的回溯时间。`默认值：5m`
   - 比如，当采集目标的间隔时间为 10m 时，由于该设置，最大只能查询当前时间的前 5m 的数据，这是，即时向量表达式返回的结果将会为空。
-- **--query.timeout=DURATION ** # 一次查询的超时时间。`默认值：2m`
+- **--query.timeout=DURATION** # 一次查询的超时时间。`默认值：2m`
 - --query.max-concurrency=20 # Maximum number of queries executed concurrently.
 - --query.max-samples=50000000 # Maximum number of samples a single query can load into memory. Note that queries will fail if they try to load more samples than this into memory, so this also limits the number of samples a query can return.
 - **--log.level=STRING** # 设定 Prometheus Server 运行时输出的日志的级别。`默认值：info`。 可用的值有：debug, info, warn, error
@@ -117,8 +118,8 @@ remote_read:
 全局配置，所有内容作用于所有配置环境中,若其余配置环境中不再指定同样的配置，则 global 中的配置作为默认配置
 
 **scrape_interval: <DURATION>** # 抓取 targets 的指标频率，`默认值：1m`。
-**scrape_timeout: <DURATION> **# 对 targets 发起抓取请求的超时时间。`默认值：10s`。
-**evaluation_interval: <DURATION> **# 评估规则的周期。`默认值：1m`。
+**scrape_timeout: <DURATION>**# 对 targets 发起抓取请求的超时时间。`默认值：10s`。
+**evaluation_interval: <DURATION>**# 评估规则的周期。`默认值：1m`。
 该字段主要用于向规则配置文件传递全局的配置。这个值会被规则配置文件中的 `.groups.interval` 覆盖，详见 interval 字段详解
 **external_labels: \<map\[STRING]STRING>** # 与外部系统(federation, remote storage, Alertmanager)通信时添加到任何时间序列或警报的标签。
 
@@ -148,7 +149,7 @@ scrape_configs 是 Prometheus 采集指标的最重要也是最基本的配置�
 
 - 名字 # 每个 scrape 工作都应该具有一个名字。称为 job_name，名字主要起到标识符的作用。
   - 该示例定义了一个抓取配置的 job，名字叫 prometheus
-- 目标 # 要抓取的 metrics 的目标。目标可以通过 **静态 **或者 **动态(i.e.各种服务发现) **这两种方式指定
+- 目标 # 要抓取的 metrics 的目标。目标可以通过 **静态**或者 **动态(i.e.各种服务发现)**这两种方式指定
   - 该示例通过静态配置定义这个 job 中要抓取的目标主机，目标主机由 IP:PORT 组成
 - 间隔 # 该 scrape 工作每次抓取 metrics 的时间间隔。就是每隔 X 秒抓一次
   - 该示例每次抓取 metrics 的时间间隔为 5 秒(i.e.每 5 秒获取一次 metrics)
@@ -156,7 +157,7 @@ scrape_configs 是 Prometheus 采集指标的最重要也是最基本的配置�
 
 ### 基本配置
 
-**job_name: <STRING>** # 指定抓取 Metrics 的 Job 名字&#x20;
+**job_name: <STRING>** # 指定抓取 Metrics 的 Job 名字
 **scrape_interval: <DURATION>** # 指定这个 job 中抓取 targets 的频率。默认使用 global 配置环境中同名参数的值
 **scrape_timeout: <DURATION>** # 指定这个 job 中抓取 targets 的超时时长。默认使用 global 配置环境中同名参数的值
 **metrics_path: PATH** # 从 targets 获取 metrics 时 http 请求的路径。默认为/metrics
@@ -183,26 +184,26 @@ Prometheus 抓取目标就是发起 HTTP 请求。
 ```go
 // HTTPClientConfig configures an HTTP client.
 type HTTPClientConfig struct {
-	// The HTTP basic authentication credentials for the targets.
-	BasicAuth *BasicAuth `yaml:"basic_auth,omitempty" json:"basic_auth,omitempty"`
-	// The HTTP authorization credentials for the targets.
-	Authorization *Authorization `yaml:"authorization,omitempty" json:"authorization,omitempty"`
-	// The OAuth2 client credentials used to fetch a token for the targets.
-	OAuth2 *OAuth2 `yaml:"oauth2,omitempty" json:"oauth2,omitempty"`
-	// The bearer token for the targets. Deprecated in favour of
-	// Authorization.Credentials.
-	BearerToken Secret `yaml:"bearer_token,omitempty" json:"bearer_token,omitempty"`
-	// The bearer token file for the targets. Deprecated in favour of
-	// Authorization.CredentialsFile.
-	BearerTokenFile string `yaml:"bearer_token_file,omitempty" json:"bearer_token_file,omitempty"`
-	// HTTP proxy server to use to connect to the targets.
-	ProxyURL URL `yaml:"proxy_url,omitempty" json:"proxy_url,omitempty"`
-	// TLSConfig to use to connect to the targets.
-	TLSConfig TLSConfig `yaml:"tls_config,omitempty" json:"tls_config,omitempty"`
-	// FollowRedirects specifies whether the client should follow HTTP 3xx redirects.
-	// The omitempty flag is not set, because it would be hidden from the
-	// marshalled configuration when set to false.
-	FollowRedirects bool `yaml:"follow_redirects" json:"follow_redirects"`
+ // The HTTP basic authentication credentials for the targets.
+ BasicAuth *BasicAuth `yaml:"basic_auth,omitempty" json:"basic_auth,omitempty"`
+ // The HTTP authorization credentials for the targets.
+ Authorization *Authorization `yaml:"authorization,omitempty" json:"authorization,omitempty"`
+ // The OAuth2 client credentials used to fetch a token for the targets.
+ OAuth2 *OAuth2 `yaml:"oauth2,omitempty" json:"oauth2,omitempty"`
+ // The bearer token for the targets. Deprecated in favour of
+ // Authorization.Credentials.
+ BearerToken Secret `yaml:"bearer_token,omitempty" json:"bearer_token,omitempty"`
+ // The bearer token file for the targets. Deprecated in favour of
+ // Authorization.CredentialsFile.
+ BearerTokenFile string `yaml:"bearer_token_file,omitempty" json:"bearer_token_file,omitempty"`
+ // HTTP proxy server to use to connect to the targets.
+ ProxyURL URL `yaml:"proxy_url,omitempty" json:"proxy_url,omitempty"`
+ // TLSConfig to use to connect to the targets.
+ TLSConfig TLSConfig `yaml:"tls_config,omitempty" json:"tls_config,omitempty"`
+ // FollowRedirects specifies whether the client should follow HTTP 3xx redirects.
+ // The omitempty flag is not set, because it would be hidden from the
+ // marshalled configuration when set to false.
+ FollowRedirects bool `yaml:"follow_redirects" json:"follow_redirects"`
 }
 ```
 
@@ -212,7 +213,7 @@ type HTTPClientConfig struct {
 
 - STRING: STRING
 
-**basic_auth: <Object> **# 配置 HTTP 的基础认证信息。
+**basic_auth: <Object>**# 配置 HTTP 的基础认证信息。
 
 - **username: <STRING>** #
 - **password: <SECRET>** #
@@ -231,11 +232,11 @@ type HTTPClientConfig struct {
 ### Scrape 目标配置
 
 Prometheus 将会根据这里的字段配置，以发现需要 Scrape 指标的目标，有两种方式来发现目标：静态 与 动态。
-**static_configs: **[**<\[\]Object>**](#tD00J) # 静态配置。直接指定需要抓去 Metrics 的 Targets。
+**static_configs:**[**<\[\]Object>**](#tD00J) # 静态配置。直接指定需要抓去 Metrics 的 Targets。
 
 - 具体配置详见下文[静态目标发现](#J021o)
 
-**XX_sd_configs: **[**<XXXX>**](#IWvg5) # 动态配置。动态需要抓去 Metrics 的 Targets。XXX_sd_configs 中的 sd 全称为 Service Discovery(服务发现)
+**XX_sd_configs:**[**<XXXX>**](#IWvg5) # 动态配置。动态需要抓去 Metrics 的 Targets。XXX_sd_configs 中的 sd 全称为 Service Discovery(服务发现)
 
 - 具体配置详见下文[动态目标发现](#IWvg5)
 - 不同的服务发现，有不同的配置方式。比如 `kubernetes_sd_configs`、`file_sd_configs` 等等。
@@ -245,11 +246,11 @@ Prometheus 将会根据这里的字段配置，以发现需要 Scrape 指标的�
 
 ### Relabel 配置
 
-**relabel_configs: **[**<\[\]Object>**](#PGKul) # 在发现目标后，重新配置 targets 的标签。
+**relabel_configs:**[**<\[\]Object>**](#PGKul) # 在发现目标后，重新配置 targets 的标签。
 
 - 具体配置详见下文 [重设标签](#uieNy)
 
-**metric_relabel_configs: **[**<\[\]Object>**](#PGKul) # 在抓取到指标后，重新配置 metrics 的标签
+**metric_relabel_configs:**[**<\[\]Object>**](#PGKul) # 在抓取到指标后，重新配置 metrics 的标签
 
 - 与 relabel_configs 字段配置内容相同
 
@@ -397,7 +398,7 @@ Note：使用该配置进行服务发现，请求都会经过 API Server，集�
 
 **api_server: <HOST>** # 指定 k8s 集群中 API Server 的地址。
 如果该字段为空，则默认 Prometheus 在 k8s 集群内部运行，将自动发现 apiserver，并使用 Pod 中 /var/run/secrets/kubernetes.io/serviceaccount/ 目录下的的 CA 证书 和 Token。
-**basic_auth: <Object> **# 如果 apiserver 使用基本认证启动，则使用 basic_auth 字段。`authorization` 字段互斥。password 和 password_file 是互斥的。
+**basic_auth: <Object>**# 如果 apiserver 使用基本认证启动，则使用 basic_auth 字段。`authorization` 字段互斥。password 和 password_file 是互斥的。
 
 - **username: <STRING>** #
 - **password: <SECRET>** #
@@ -487,6 +488,7 @@ relabel_configs:
 ### [relabel_configs: <Object>](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config) # 重设标签功能
 
 > 参考：
+>
 > - [官方文档](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config)
 > - [Label 与 Relabeling](/docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Target(目标)%20 与%20Relabeling(重新标记).md 与 Relabeling(重新标记).md)
 

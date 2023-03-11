@@ -5,14 +5,16 @@ weight: 20
 ---
 
 # 概述
+>
 > 参考：
+>
 > - [官网](https://commonmark.org/)
 > - [官方规范](https://spec.commonmark.org/)
-
 
 # Markdown 中的 LaTex 数学公式
 
 > 参考：
+>
 > - <https://blog.ypingcn.com/notes/Markdown/LaTex-math/>
 > - [简书，Markdown 数学公式语法](https://www.jianshu.com/p/e74eb43960a1)
 
@@ -37,8 +39,8 @@ Markdown 中 Latex 基本符号速查表
 | ≤                    | `\\le`             | ≥                  | `\\ge`             | ≡        | `\\equiv`              |
 | ≠                    | `\\ne`             |                    |                    |          |                        |
 | 文本底线对齐的省略号 | `\\ldots`          | 文本中对齐的省略号 | `\\cdots`          |          |                        |
-| 圆括号               | `()`               | 方括号             | `[]`               | 竖线     | `&#124;`               |
-| 花括号               | `\\{\\}`           | 双竖线             | `\\&#124;`         |          |                        |
+| 圆括号               | `()`               | 方括号             | `[]`               | 竖线     | ``               |
+| 花括号               | `\\{\\}`           | 双竖线             | `\\`         |          |                        |
 | 长圆括号             | `\\left( \\right)` | 长方括号           | `\\left[ \\right]` | 长花括号 | `\\left\\{ \\right\\}` |
 | 换行                 | `\\\\`             | 空格               | `\\space`          |          |                        |
 | ←                    | `\\leftarrow`      | →                  | `\\rightarrow`     | 文字     | `\\mbox{ }`            |

@@ -5,6 +5,7 @@ title: code-server
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，coder/code-server](https://github.com/coder/code-server)
 > - [官网](https://coder.com/)
 
@@ -58,7 +59,7 @@ codercom/code-server:latest \
 ```
 
 **~/.config/code-server/config.yaml** # 登录密码、监听端口 等基本信息
-**~/.vscode-remote/data/\*** #&#x20;
+**~/.vscode-remote/data/\*** #
 **~/.local/share/code-server/\*** # 默认的用户数据(即.持久化数据)路径。可以通过 `--user-data-dir` 命令行参数指定。
 
 > 默认的目录中有一些文件是不属于用户数据。比如 coder-logs、hearteat 等。

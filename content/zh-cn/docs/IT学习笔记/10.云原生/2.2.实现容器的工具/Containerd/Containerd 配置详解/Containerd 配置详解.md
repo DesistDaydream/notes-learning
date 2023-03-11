@@ -6,6 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
+>
 > - [Manual(手册),containerd-config.toml(5)](https://github.com/containerd/containerd/blob/main/docs/man/containerd-config.toml.5.md)
 > - [Debian Manual](https://manpages.debian.org/bullseye/containerd/containerd-config.toml.5.en.html)
 
@@ -20,7 +21,7 @@ containerd config default > /etc/containerd/config.toml
 
 # \[通用]配置
 
-**version = 2** #&#x20;
+**version = 2** #
 **root = \<STRING>** # Containerd 持久化数据路径。`默认值：/var/lib/containerd`。
 **state = \<STRING>** # Containerd 临时数据路径。`默认值：/run/containerd`。
 **oom_score = 0** # 设置 Containerd 的 OOM 权重。`默认值：0`。

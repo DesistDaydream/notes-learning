@@ -351,7 +351,7 @@ docker run 命令首先请求守护进程创建一个容器。此请求被路由
 
 containerd 这个术语有令人困惑的地方。它被认为是一个运行时（runtime），但是又不实现 OCI 运行时规范，因此它是一个和 runc 不一样的的运行时。containerd 是一个守护进程，它使用了符合 OCI 规格的运行时来监管容器的生命周期。正如 Michael Crosby 所描述的，containerd 是容器的监管者。
 ![2.jpg](https://notes-learning.oss-cn-beijing.aliyuncs.com/wf39dp/1616122241290-e69d939f-fadf-4db9-851d-8ac7148cbed0.jpeg)
-&#x20;(Source: Docker)
+(Source: Docker)
 
 containerd 被设计成监控容器的通用基础层，专注于速度和简单性。
 

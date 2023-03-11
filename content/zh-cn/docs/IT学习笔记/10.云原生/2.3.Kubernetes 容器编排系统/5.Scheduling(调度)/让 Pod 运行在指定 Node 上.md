@@ -5,6 +5,7 @@ title: 让 Pod 运行在指定 Node 上
 # 概述
 
 > 参考：
+>
 > - [官方文档,概念-调度、抢占、驱逐-让 Pod 运行在指定节点上](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 > - [官方文档,概念-调度、抢占、驱逐-污点与容忍度](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
 > - [Kubernetes 内置的 标签、注释、污点](https://kubernetes.io/docs/reference/labels-annotations-taints/)
@@ -93,7 +94,7 @@ spec:
 亲和性调度规则分为 Pod 和 Node 两类：
 
 - **Node Affinity(节点亲和性)** # 与 NodeSelector 类似，但是提供了更灵活的规则
-- **Pod Affinity(Pod 亲和性) **# 可以根据某个 Pod 与某个 Pod 的亲和关系来决定该 Pod 要运行在具有(或不具有)某个 Pod 的 Node 上。
+- **Pod Affinity(Pod 亲和性)**# 可以根据某个 Pod 与某个 Pod 的亲和关系来决定该 Pod 要运行在具有(或不具有)某个 Pod 的 Node 上。
   - Pod 亲和可以分为两部分：
     - **Inter-pod Affinity(Pod 之间亲和)**
     - **Inter-pod Anti-affinity(Pod 之间反亲和)**
@@ -267,7 +268,7 @@ Pod 亲和性与反亲和性的合法 `operator` 字段的值有 In，NotIn，Ex
 
 Pod 间亲和性与反亲和性在与更高级别的集合(例如 ReplicaSets、StatefulSets、 Deployments 等)一起使用时，它们更加有用。 可以轻松配置一组应位于相同定义拓扑（例如，节点）中的工作负载。
 
-#### &#xA;
+####
 
 在三节点集群中，一个 web 应用程序具有内存缓存(例如 redis)。 我们希望 web 服务器尽可能与缓存放置在同一位置，并且多个 Redis 不在同一个节点上。
 
@@ -394,7 +395,7 @@ web-server-1287567482-s330j    1/1       Running   0          7m        10.192.3
   - PreferNoschedule # 最好不调度，实在不行了还可以调度。
 - **key: <STRING> # 必须的。**
 - **value: <STRING>** #
-- **timeAdded: <STRING> **#
+- **timeAdded: <STRING>**#
 
 可以直接使用 kubectl 命令为节点添加一个污点，比如：
 
@@ -415,7 +416,7 @@ kubectl taint nodes NODE KEY[=VALUE]:EFFECT
 
 **tolerations: <\[]Object>** # 为 Pod 添加容忍规则
 
-- **effect: <STRING> **# 表明匹配的 taint 的 effect 字段，包括三个效果 NoSchedule, PreferNoSchedule and NoExecute，如果不指定该字段则匹配所有污点效果
+- **effect: <STRING>**# 表明匹配的 taint 的 effect 字段，包括三个效果 NoSchedule, PreferNoSchedule and NoExecute，如果不指定该字段则匹配所有污点效果
 - **key: <STRING>** # 指明要容忍的 taint 中的 key
 - **operator: <STRING>** # 定义容忍要满足的条件
   - Exists # 只要 Key 一样，则容忍

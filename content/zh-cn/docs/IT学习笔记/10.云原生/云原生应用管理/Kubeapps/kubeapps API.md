@@ -6,7 +6,7 @@ title: kubeapps API
 
 云原生应用管理
 API.json(118.2 KB)
-&#x20;\- 0%
+\- 0%
 
 ## Header
 
@@ -27,7 +27,7 @@ ${TOKEN} 通过如下命令获取,若已经创建 RBAC，则直接执行最后�
 
 # Release 相关
 
-通过 kubeops 获取 Release 信息。基础 URL：http://IP:PORT/v1
+通过 kubeops 获取 Release 信息。基础 URL：<http://IP:PORT/v1>
 
 ### GET /clusters/{cluster}/releases 列出所有 Releases
 
@@ -51,9 +51,9 @@ ${TOKEN} 通过如下命令获取,若已经创建 RBAC，则直接执行最后�
 
 # Repoistory 相关
 
-通过 kubeops 获取 Repoistory 信息。基础 URL：http://IP:PORT/backend/v1
+通过 kubeops 获取 Repoistory 信息。基础 URL：<http://IP:PORT/backend/v1>
 
-### POST /clusters/{cluster}/can-i 不知道干啥用的。。。。
+### POST /clusters/{cluster}/can-i 不知道干啥用的
 
 ### GET /clusters/{cluster}/namespaces 获取所有名称空间信息
 
@@ -77,7 +77,7 @@ ${TOKEN} 通过如下命令获取,若已经创建 RBAC，则直接执行最后�
 
 # Charts 相关
 
-通过 assetsvc 获取 charts 信息，基础 URL：http://IP:PORT/v1
+通过 assetsvc 获取 charts 信息，基础 URL：<http://IP:PORT/v1>
 
 > 必须指定 namespace，
 

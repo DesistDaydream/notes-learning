@@ -8,5 +8,6 @@
         "no-emphasis-as-header": false,
         "no-alt-text": false,
         // "hard_tab": false
+        "no-bare-urls": false,
     },
 }

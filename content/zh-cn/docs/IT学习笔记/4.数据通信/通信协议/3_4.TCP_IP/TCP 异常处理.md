@@ -5,6 +5,7 @@ title: TCP 异常处理
 # TCP RST
 
 > 参考：
+>
 > - [博客园-John_ABC，Linux-TCG 出现 RST 的几种情况](https://www.cnblogs.com/JohnABC/p/6323046.html)
 > - <https://segmentfault.com/a/1190000038463522>
 
@@ -14,7 +15,7 @@ TCP RST 引起的常见报错：
 - Connection reset by peer
 
 TCP 连接和释放时还有许多细节，比如半连接状态、半关闭状态等。详情请参考这方面的巨著《TCP/IP 详解》和《UNIX 网络编程》。
-前面说到出现“Connection reset”的原因是服务器关闭了 Connection\[调用了 Socket.close()方法]。大家可能有疑问了：服务器关闭了 Connection 为什么会返回“RST”而不是返回“FIN”标志。原因在于 Socket.close()方法的语义和 TCP 的“FIN”标志语义不一样：发送 TCP 的“FIN”标志表示我不再发送数据了，而 Socket.close()表示我不在发送也不接受数据了。问题就出在“我不接受数据” 上，如果此时客户端还往服务器发送数据，服务器内核接收到数据，但是发现此时 Socket 已经 close 了，则会返回“RST”标志给客户端。当然，此时客户端就会提示：“Connection reset”。详细说明可以参考 oracle 的有关文档：http://docs.oracle.com/javase/1.5.0/docs/guide/net/articles/connection\_release.html。
+前面说到出现“Connection reset”的原因是服务器关闭了 Connection\[调用了 Socket.close()方法]。大家可能有疑问了：服务器关闭了 Connection 为什么会返回“RST”而不是返回“FIN”标志。原因在于 Socket.close()方法的语义和 TCP 的“FIN”标志语义不一样：发送 TCP 的“FIN”标志表示我不再发送数据了，而 Socket.close()表示我不在发送也不接受数据了。问题就出在“我不接受数据” 上，如果此时客户端还往服务器发送数据，服务器内核接收到数据，但是发现此时 Socket 已经 close 了，则会返回“RST”标志给客户端。当然，此时客户端就会提示：“Connection reset”。详细说明可以参考 oracle 的有关文档：<http://docs.oracle.com/javase/1.5.0/docs/guide/net/articles/connection\_release.html。>
 另一个可能导致的“Connection reset”的原因是服务器设置了 Socket.setLinger (true, 0)。但我检查过线上的 tomcat 配置，是没有使用该设置的，而且线上的服务器都使用了 nginx 进行反向代理，所以并不是该原因导致的。关于该原因上面的 oracle 文档也谈到了并给出了解释。
 此外啰嗦一下，另外还有一种比较常见的错误“Connection reset by peer”，该错误和“Connection reset”是有区别的：
 服务器返回了“RST”时，如果此时客户端正在从 Socket 套接字的输出流中读数据则会提示 Connection reset”；
@@ -30,7 +31,7 @@ TCP 连接和释放时还有许多细节，比如半连接状态、半关闭状�
 使用长连接可以避免每次建立 TCP 连接的三次握手而节约一定的时间，但是我这边由于是内网，客户端和服务器的 3 次握手很快，大约只需 1ms。ping 一下大约 0.93ms（一次往返）；三次握手也是一次往返（第三次握手不用返回）。根据 80/20 原理，1ms 可以忽略不计；又考虑到长连接的扩展性不如短连接好、修改 nginx 和 tomcat 的配置代价很大（所有后台服务都需要修改）；所以这里并没有使用长连接。
 
 正常情况 tcp 四层握手关闭连接，rst 基本都是异常情况，整理如下： 0.使用 ping 可以看到丢包情况
-1\. GFW&#x20;
+1\. GFW
 2\. 对方端口未打开，发生在连接建立
 如果对方 sync_backlog 满了的话，sync 简单被丢弃，表现为超时，而不会 rst
 3\. close Socket 时 recv buffer 不为空
@@ -58,6 +59,7 @@ tw_recycle = 1 时，sync timestamps 比上次小时，会被 rst
 # 三次握手与四次挥手异常处理
 
 > 参考：
+>
 > - 原文链接：[公众号-小林 coding，TCP 才不傻！](https://mp.weixin.qq.com/s/CTqag_TxAHLuUwLvbrmlnw)
 
 大家好，我是小林。

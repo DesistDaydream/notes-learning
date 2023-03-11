@@ -5,6 +5,7 @@ title: Netplan 配置详解
 # 概述
 
 > 参考：
+>
 > - [官网，参考](https://netplan.io/reference)
 
 Netplan 的配置文件使用 YAML 格式。`/{lib,etc,run}/netplan/*.yaml` 都是 Netplan 程序读取配置文件的路径。
@@ -25,11 +26,9 @@ Netplan 的配置文件使用 YAML 格式。`/{lib,etc,run}/netplan/*.yaml` 都�
 
 桥设备的专用属性
 
-
-
 ## 所有设备的通用属性
 
-**addresses: <\[]OBJECT>** #&#x20;
+**addresses: <\[]OBJECT>** #
 **dtcp4: \<BOOL>** # 为 IPv4 启用 DHCP。`默认值：false`
 **dhcp6: \<BOOL>** # 为 IPv6 启用 DHCP。`默认值：false`
 **gateway4 | gateway6: \<STRING>** # **已弃用**。使用 `routes` 字段。
@@ -39,6 +38,7 @@ Netplan 的配置文件使用 YAML 格式。`/{lib,etc,run}/netplan/*.yaml` 都�
 # 配置示例
 
 > 参考：
+>
 > - [官网，示例](https://netplan.io/examples)
 
 ```yaml
@@ -51,7 +51,7 @@ network:
       dhcp4: no
       dhcp6: no
       optional: true
-  	  routes:
+     routes:
         - to: default
           via: 172.19.42.1
       nameservers:
@@ -81,7 +81,7 @@ DNS=8.8.8.8
 ## Bridge 配置示例
 
 ```yaml
-# cat /etc/netplan/br0.yaml 
+# cat /etc/netplan/br0.yaml
 network:
   version: 2
   ethernets:

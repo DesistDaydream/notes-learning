@@ -5,6 +5,7 @@ title: Promtail 配置详解
 # 概述
 
 > 参考：
+>
 > - [Loki 官方文档，客户端-Promtail-配置](https://grafana.com/docs/loki/latest/clients/promtail/configuration/)
 > - [GitHub 官方文档](https://github.com/grafana/loki/blob/master/docs/sources/clients/promtail/configuration.md)
 
@@ -43,30 +44,31 @@ target_config: <target_config>
 
 positions 文件用于记录 Promtail 发现的目标。该字段用于定义如何保存 postitions.yaml 文件。Promtail 发现的目标就是指日志文件。
 **filename: <STRING>** # 指定 positions 文件路径。`默认值：/var/log/positions.yaml`
-**sync_period: <DURATION> **# 更新 positions 文件的时间间隔。`默认值：10s`
+**sync_period: <DURATION>**# 更新 positions 文件的时间间隔。`默认值：10s`
 **ignore_invalid_yaml: <BOOLEAN>** # Whether to ignore & later overwrite positions files that are corrupted。`默认值：false`
 
 ## [scrape_configs: <\[\]OBJECT>](https://grafana.com/docs/loki/latest/clients/promtail/configuration/#scrape_configs)(占比最大的字段)
 
 > 参考：
+>
 > - [Scraping 功能官方文档](https://grafana.com/docs/loki/latest/clients/promtail/scraping)
 
 Promtail 根据 scrape_configs 字段的内容，使用指定的发现方法从一系列目标中抓取日志。
 
 ### 基本配置
 
-**job_name: <STRING>** # 指定抓取日志的 Job 名字&#x20;
+**job_name: <STRING>** # 指定抓取日志的 Job 名字
 **pipeline_stages: \<pipeline_stages>** # 定义从指定的目标抓取日志的行为。`默认值：docker{}`。详见：[Pipeline 概念](https://www.yuque.com/go/doc/33181065) 与 [Stages 详解](/docs/IT学习笔记/6.可观测性/日志系统/Log%20Clients/Promtail/Pipeline%20 概念/Stages(阶段)%20 详解.md 概念/Stages(阶段) 详解.md)
 **loki_push_api: \<loki_push_api_config>** # 定义日志推送的路径 (e.g. from other Promtails or the Docker Logging Driver)
 
 ### Scrape 目标配置
 
 Promtail 会根据这里的字段的配置，以发现需要 Scrape 日志的目标，有两种方式来发现目标：**静态** 与 **动态**
-**static_configs: **[**<\[\]Object>**](#tD00J) # 静态配置。直接指定需要抓去 Metrics 的 Targets。
+**static_configs:**[**<\[\]Object>**](#tD00J) # 静态配置。直接指定需要抓去 Metrics 的 Targets。
 
 - 具体配置详见下文[静态目标发现](#PZTDy)
 
-**XX_sd_configs: **[**<XXXX>**](#IWvg5) # 动态配置
+**XX_sd_configs:**[**<XXXX>**](#IWvg5) # 动态配置
 
 - 具体配置详见下文[动态目标发现](#FzYda)
 

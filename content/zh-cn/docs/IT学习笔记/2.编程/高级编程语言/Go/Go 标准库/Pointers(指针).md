@@ -5,6 +5,7 @@ title: Pointers(指针)
 # 概述
 
 > 参考：
+>
 > - [Go 官方文档，参考-指针类型](https://go.dev/ref/spec#Pointer_types)
 
 在 Go 语言中，**Pointers(指针)** 可以有两种含义：
@@ -12,7 +13,7 @@ title: Pointers(指针)
 - 通过 `&` 符号获取一个变量的内存地址，即**指针**。通常使用十六进制数表示。这种方式称为**指针引用**
 - 指针也可以表示一种**数据类型**。可以声明一个指针类型的变量，用以存储内存地址。
 
-一个**指针变量**可以指向任何一个**值的内存地址**。这个内存地址，在 32 位机器上占用 4 个字节，在 64 位机器上占用 8 个字节，并且与其所指向的值得的大小无关。 &#x20;
+一个**指针变量**可以指向任何一个**值的内存地址**。这个内存地址，在 32 位机器上占用 4 个字节，在 64 位机器上占用 8 个字节，并且与其所指向的值得的大小无关。
 在 Go 语言中，不能进行指针运算。
 
 ## 指针的引用
@@ -50,8 +51,8 @@ var VarID *TYPE
 ```go
 func main() {
     // 声明一个 `字符串指针` 类型的变量
-	var VarID *string
-	fmt.Println(VarID)
+ var VarID *string
+ fmt.Println(VarID)
     fmt.Println(&VarID)
 }
 ```
@@ -129,8 +130,8 @@ ptr := new(string)
 
 ```go
 func newStringValue(val string, p *string) *stringValue {
-	*p = val
-	return (*stringValue)(p)
+ *p = val
+ return (*stringValue)(p)
 }
 ```
 
@@ -138,21 +139,21 @@ func newStringValue(val string, p *string) *stringValue {
 
 ```go
 func main() {
-	normalVar := 5
-	// 通过 & 符号取得变量 a 的内存地址，即指向 a 的指针
-	fmt.Println("变量 a 的内存地址，即指针为：", &normalVar)
+ normalVar := 5
+ // 通过 & 符号取得变量 a 的内存地址，即指向 a 的指针
+ fmt.Println("变量 a 的内存地址，即指针为：", &normalVar)
 
-	// 声明一个指针类型的变量
-	var ptr *string // 这是一个字符串指针类型的变量
-	fmt.Println("刚刚声明的指针没有任何内存地址，默认值为 nil：", ptr)
+ // 声明一个指针类型的变量
+ var ptr *string // 这是一个字符串指针类型的变量
+ fmt.Println("刚刚声明的指针没有任何内存地址，默认值为 nil：", ptr)
 
-	// 指针赋值
-	// 错误示例：不可以使用 *int 类型给 *string 类型赋值，虽然都是内存地址，但是不可以这么做
-	// ptr = &normalVar
-	// 正确示例:
-	newPtr := strconv.Itoa(normalVar)
-	ptr = &newPtr
-	fmt.Println("为指针类型变量赋予一个内存地址后，获取该内存地址内保存的值：", *ptr)
+ // 指针赋值
+ // 错误示例：不可以使用 *int 类型给 *string 类型赋值，虽然都是内存地址，但是不可以这么做
+ // ptr = &normalVar
+ // 正确示例:
+ newPtr := strconv.Itoa(normalVar)
+ ptr = &newPtr
+ fmt.Println("为指针类型变量赋予一个内存地址后，获取该内存地址内保存的值：", *ptr)
 }
 ```
 
@@ -225,11 +226,11 @@ TODO：
 
 ```go
 func main() {
-	num := 1
-	numP := &num
+ num := 1
+ numP := &num
 
 
-	*numP = 2
+ *numP = 2
 }
 ```
 
@@ -237,18 +238,18 @@ func main() {
 
 ```go
 type Test struct {
-	Num int
+ Num int
 }
 
 
 func main() {
-	test := Test{Num: 1}
-	test.Num = 3
-	fmt.Println("v1", test)
+ test := Test{Num: 1}
+ test.Num = 3
+ fmt.Println("v1", test)
 
-	testP := &test
-	testP.Num = 4
-	fmt.Println("v2", test)
+ testP := &test
+ testP.Num = 4
+ fmt.Println("v2", test)
 }
 ```
 
@@ -262,15 +263,15 @@ func main() {
 
 ```bash
 func main() {
-	nums := []int{1, 2, 3}
-	fmt.Printf("%p\n", nums)     // 0xc0000160c0
-	fmt.Printf("%p\n", &nums[0]) // 0xc0000160c0
+ nums := []int{1, 2, 3}
+ fmt.Printf("%p\n", nums)     // 0xc0000160c0
+ fmt.Printf("%p\n", &nums[0]) // 0xc0000160c0
 
-	maps := map[string]string{"aa": "bb"}
-	fmt.Printf("%p\n", maps) // 0xc000076180
+ maps := map[string]string{"aa": "bb"}
+ fmt.Printf("%p\n", maps) // 0xc000076180
 
-	ch := make(chan int, 0)
-	fmt.Printf("%p\n", ch) // 0xc00006c060
+ ch := make(chan int, 0)
+ fmt.Printf("%p\n", ch) // 0xc00006c060
 }
 ```
 
@@ -282,21 +283,21 @@ func main() {
 
 
 func makeslice(et *_type, len, cap int) unsafe.Pointer {
-	mem, overflow := math.MulUintptr(et.size, uintptr(cap))
-	if overflow || mem > maxAlloc || len < 0 || len > cap {
+ mem, overflow := math.MulUintptr(et.size, uintptr(cap))
+ if overflow || mem > maxAlloc || len < 0 || len > cap {
 
 
 
 
 
-		mem, overflow := math.MulUintptr(et.size, uintptr(len))
-		if overflow || mem > maxAlloc || len < 0 {
-			panicmakeslicelen()
-		}
-		panicmakeslicecap()
-	}
+  mem, overflow := math.MulUintptr(et.size, uintptr(len))
+  if overflow || mem > maxAlloc || len < 0 {
+   panicmakeslicelen()
+  }
+  panicmakeslicecap()
+ }
 
-	return mallocgc(mem, et, true)
+ return mallocgc(mem, et, true)
 }
 ```
 
@@ -308,14 +309,14 @@ map 和 slice 其实也是类似的，在在 Golang 的运行时内部，创建 
 
 
 func makechan(t *chantype, size int) *hchan {
-	elem := t.elem
+ elem := t.elem
 
 
-	if elem.size >= 1<<16 {
-		throw("makechan: invalid channel element type")
-	}
-	...
-	return c
+ if elem.size >= 1<<16 {
+  throw("makechan: invalid channel element type")
+ }
+ ...
+ return c
 }
 ```
 
@@ -324,60 +325,60 @@ func makechan(t *chantype, size int) *hchan {
 ```go
 
 func Printf(format string, a ...interface{}) (n int, err error) {
-	return Fprintf(os.Stdout, format, a...)
+ return Fprintf(os.Stdout, format, a...)
 }
 
 
 func Fprintf(w io.Writer, format string, a ...interface{}) (n int, err error) {
-	p := newPrinter()
-	p.doPrintf(format, a)
-	n, err = w.Write(p.buf)
-	p.free()
-	return
+ p := newPrinter()
+ p.doPrintf(format, a)
+ n, err = w.Write(p.buf)
+ p.free()
+ return
 }
 
 
 func (p *pp) doPrintf(format string, a []interface{}) {
-	 ...
-	default:
+  ...
+ default:
 
 
-			if 'a' <= c && c <= 'z' && argNum < len(a) {
-				...
-				p.printArg(a[argNum], rune(c))
-				argNum++
-				i++
-				continue formatLoop
-			}
+   if 'a' <= c && c <= 'z' && argNum < len(a) {
+    ...
+    p.printArg(a[argNum], rune(c))
+    argNum++
+    i++
+    continue formatLoop
+   }
 
-			break simpleFormat
-		}
+   break simpleFormat
+  }
 
 }
 
 
 func (p *pp) printArg(arg interface{}, verb rune) {
-	p.arg = arg
-	p.value = reflect.Value{}
+ p.arg = arg
+ p.value = reflect.Value{}
   ...
-	case 'p':
-		p.fmtPointer(reflect.ValueOf(arg), 'p')
-		return
-	}
-	...
+ case 'p':
+  p.fmtPointer(reflect.ValueOf(arg), 'p')
+  return
+ }
+ ...
 }
 
 
 func (p *pp) fmtPointer(value reflect.Value, verb rune) {
-	var u uintptr
-	switch value.Kind() {
+ var u uintptr
+ switch value.Kind() {
 
-	case reflect.Chan, reflect.Func, reflect.Map, reflect.Ptr, reflect.Slice, reflect.UnsafePointer:
-		u = value.Pointer()
-	default:
-		p.badVerb(verb)
-		return
-	}
+ case reflect.Chan, reflect.Func, reflect.Map, reflect.Ptr, reflect.Slice, reflect.UnsafePointer:
+  u = value.Pointer()
+ default:
+  p.badVerb(verb)
+  return
+ }
   ...
 }
 ```
@@ -388,30 +389,30 @@ func (p *pp) fmtPointer(value reflect.Value, verb rune) {
 
 ```go
 type User struct {
-	Name string
-	Age  int
+ Name string
+ Age  int
 }
 
 
 func setNameV1(user *User) {
-	user.Name = "test_v1"
+ user.Name = "test_v1"
 }
 
 
 func setNameV2(user User) {
-	user.Name = "test_v2"
+ user.Name = "test_v2"
 }
 
 func main() {
-	u := User{Name: "init"}
-	fmt.Println("init", u)
+ u := User{Name: "init"}
+ fmt.Println("init", u)
 
-	up := &u
-	setNameV1(up)
-	fmt.Println("v1", u)
+ up := &u
+ setNameV1(up)
+ fmt.Println("v1", u)
 
-	setNameV2(u)
-	fmt.Println("v2", u)
+ setNameV2(u)
+ fmt.Println("v2", u)
 }
 ```
 
@@ -425,31 +426,31 @@ func main() {
 
 ```go
 type User struct {
-	Name string
-	Age  int
+ Name string
+ Age  int
 }
 
 
 
 func setNameV1(user *User) {
-	fmt.Printf("v1: %p\n", user)
-	fmt.Printf("v1_p: %p\n", &user)
-	user.Name = "test_v1"
+ fmt.Printf("v1: %p\n", user)
+ fmt.Printf("v1_p: %p\n", &user)
+ user.Name = "test_v1"
 }
 
 
 func setNameV2(user User) {
-	fmt.Printf("v2_p: %p\n", &user)
-	user.Name = "test_v2"
+ fmt.Printf("v2_p: %p\n", &user)
+ user.Name = "test_v2"
 }
 
 func main() {
-	u := User{Name: "init"}
+ u := User{Name: "init"}
 
-	up := &u
-	fmt.Printf("init: %p \n", up)
-	setNameV1(up)
-	setNameV2(u)
+ up := &u
+ fmt.Printf("init: %p \n", up)
+ setNameV1(up)
+ setNameV2(u)
 }
 ```
 
@@ -461,24 +462,24 @@ func main() {
 
 ```go
 type User struct {
-	Name string
-	Age  int
+ Name string
+ Age  int
 }
 
 func main() {
-	userList := []User {
-		User{Name: "aa", Age: 1},
-		User{Name: "bb", Age: 1},
-	}
+ userList := []User {
+  User{Name: "aa", Age: 1},
+  User{Name: "bb", Age: 1},
+ }
 
-	var newUser []*User
-	for _, u := range userList {
-		newUser = append(newUser, &u)
-	}
+ var newUser []*User
+ for _, u := range userList {
+  newUser = append(newUser, &u)
+ }
 
-	for _, nu := range newUser {
-		fmt.Printf("%+v", nu.Name)
-	}
+ for _, nu := range newUser {
+  fmt.Printf("%+v", nu.Name)
+ }
 }
 ```
 
@@ -488,17 +489,17 @@ func main() {
 
 ```go
 func main() {
-	userList := []User {
-		User{Name: "aa", Age: 1},
-		User{Name: "bb", Age: 1},
-	}
+ userList := []User {
+  User{Name: "aa", Age: 1},
+  User{Name: "bb", Age: 1},
+ }
 
-	var newUser []*User
-	for _, u := range userList {
-		fmt.Printf("point: %p\n", &u)
-		fmt.Printf("val: %s\n", u.Name)
-		newUser = append(newUser, &u)
-	}
+ var newUser []*User
+ for _, u := range userList {
+  fmt.Printf("point: %p\n", &u)
+  fmt.Printf("val: %s\n", u.Name)
+  newUser = append(newUser, &u)
+ }
 }
 
 
@@ -514,19 +515,19 @@ val: bb
 
 ```go
 func CorrectUsageOfForAndPointer() {
-	userList := []User{
-		{Name: "aa", Age: 1},
-		{Name: "bb", Age: 1},
-	}
+ userList := []User{
+  {Name: "aa", Age: 1},
+  {Name: "bb", Age: 1},
+ }
 
-	var newUser []*User
-	for i := 0; i < len(userList); i++ {
-		newUser = append(newUser, &userList[i])
-	}
+ var newUser []*User
+ for i := 0; i < len(userList); i++ {
+  newUser = append(newUser, &userList[i])
+ }
 
-	for _, nu := range newUser {
-		fmt.Printf("%+v\n", nu.Name)
-	}
+ for _, nu := range newUser {
+  fmt.Printf("%+v\n", nu.Name)
+ }
 }
 ```
 
@@ -534,31 +535,31 @@ func CorrectUsageOfForAndPointer() {
 
 ```go
 type Users struct {
-	Users []*User
+ Users []*User
 }
 
 type User struct {
-	Name string
-	Age  int
+ Name string
+ Age  int
 }
 
 // 正确用法一
 func CorrectUsageOfForrangeAndPointer() {
-	usersList := Users{
-		Users: []*User{
-			{Name: "aa", Age: 1},
-			{Name: "bb", Age: 1},
-		},
-	}
+ usersList := Users{
+  Users: []*User{
+   {Name: "aa", Age: 1},
+   {Name: "bb", Age: 1},
+  },
+ }
 
-	var newUser []*User
-	for _, u := range usersList.Users {
-		newUser = append(newUser, u)
-	}
+ var newUser []*User
+ for _, u := range usersList.Users {
+  newUser = append(newUser, u)
+ }
 
-	for _, nu := range newUser {
-		fmt.Printf("%+v\n", nu.Name)
-	}
+ for _, nu := range newUser {
+  fmt.Printf("%+v\n", nu.Name)
+ }
 }
 ```
 
@@ -567,12 +568,12 @@ func CorrectUsageOfForrangeAndPointer() {
 ```go
 
 func main() {
-	for i := 0; i < 10; i++ {
-		go func(idx *int) {
-			fmt.Println("go: ", *idx)
-		}(&i)
-	}
-	time.Sleep(5 * time.Second)
+ for i := 0; i < 10; i++ {
+  go func(idx *int) {
+   fmt.Println("go: ", *idx)
+  }(&i)
+ }
+ time.Sleep(5 * time.Second)
 }
 ```
 
@@ -584,32 +585,32 @@ func main() {
 
 ```go
 func incr1(x *int) func() {
-	return func() {
-		*x = *x + 1
-		fmt.Printf("incr point x = %d\n", *x)
-	}
+ return func() {
+  *x = *x + 1
+  fmt.Printf("incr point x = %d\n", *x)
+ }
 }
 func incr2(x int) func() {
-	return func() {
-		x = x + 1
-		fmt.Printf("incr normal x = %d\n", x)
-	}
+ return func() {
+  x = x + 1
+  fmt.Printf("incr normal x = %d\n", x)
+ }
 }
 
 func main() {
-	x := 1
-	i1 := incr1(&x)
-	i2 := incr2(x)
-	i1()
-	i2()
-	i1()
-	i2()
+ x := 1
+ i1 := incr1(&x)
+ i2 := incr2(x)
+ i1()
+ i2()
+ i1()
+ i2()
 
-	x = 100
-	i1()
-	i2()
-	i1()
-	i2()
+ x = 100
+ i1()
+ i2()
+ i1()
+ i2()
 }
 ```
 
@@ -623,18 +624,18 @@ func main() {
 
 ```go
 type Escape struct {
-	Num1  int
-	Str1  *string
-	Slice []int
+ Num1  int
+ Str1  *string
+ Slice []int
 }
 
 
 func NewEscape() *Escape {
-	return &Escape{}
+ return &Escape{}
 }
 
 func main() {
-	e := &Escape{Num1: 0}
+ e := &Escape{Num1: 0}
 }
 ```
 
@@ -642,12 +643,12 @@ func main() {
 
 ```go
 func main() {
-	e := NewEscape()
-	e.SetNum1(10)
+ e := NewEscape()
+ e.SetNum1(10)
 
-	name := "aa"
+ name := "aa"
 
-	e.Str1 = &name
+ e.Str1 = &name
 }
 ```
 
@@ -655,16 +656,16 @@ func main() {
 
 ```go
 func main() {
-	e := NewEscape()
-	e.SetNum1(10)
+ e := NewEscape()
+ e.SetNum1(10)
 
-	name := "aa"
-	e.Str1 = &name
+ name := "aa"
+ e.Str1 = &name
 
 
-	arr := make([]*int, 2)
-	n := 10
-	arr[0] = &n
+ arr := make([]*int, 2)
+ n := 10
+ arr[0] = &n
 }
 ```
 

@@ -9,6 +9,7 @@ title: su 与  sudo
 # su
 
 > 参考：
+>
 > - [Manual(手册),su(1)](https://man7.org/linux/man-pages/man1/su.1.html)
 
 ## 总结
@@ -22,14 +23,15 @@ title: su 与  sudo
 
 # su 配置
 
-/etc/pam.d/su #&#x20;
-/etc/pam.d/su-l #&#x20;
-/etc/default/su #&#x20;
+/etc/pam.d/su #
+/etc/pam.d/su-l #
+/etc/default/su #
 /etc/login.defs #
 
 # sudo
 
 > 参考：
+>
 > - [Manual(手册),sudo(8)](https://man7.org/linux/man-pages/man8/sudo.8.html)
 > - [Manual(手册),sudoers(5)](https://man7.org/linux/man-pages/man5/sudoers.5.html)
 > - [如何改变 sudo 日志文件](https://ostechnix.com/how-to-change-default-sudo-log-file-in-linux/)
@@ -43,10 +45,10 @@ sudo 通过各种插件实现功能。默认插件为 sudoers，用来确定用�
 
 # sudo 配置
 
-**/etc/sudo.conf **# sudo 程序的配置文件
+**/etc/sudo.conf**# sudo 程序的配置文件
 **/etc/sudoers** # suders 插件的配置文件，可以配置哪些用户可以拥有哪些权限。注意：该文件是只读的，只能通过 visudo 命令进行编辑
 
-- **/etc/sudoers.d/\* **# /etc/sudoers 的 include 配置的默认目录
+- **/etc/sudoers.d/\***# /etc/sudoers 的 include 配置的默认目录
 
 ## sudo 日志配置
 
@@ -73,7 +75,6 @@ EXAMPLE
 
 - sudo -u lichenhao whoami #使用用户 lichenhao 来执行 whoami 命令
 
-
     [root@master ~]# whoami
     root
     [root@master ~]# sudo -u lichenhao whoami
@@ -85,7 +86,7 @@ EXAMPLE
 
 OPTIONS：
 
-- **-c **# 检查 /etc/sudoers 文件的语法
+- **-c**# 检查 /etc/sudoers 文件的语法
 - **-f, --file=sudoers** # 指定 sudoers 文件的路径
 - **-q, --quiet** # less verbose (quiet) syntax error messages
 - **-s, --strict** # 严格的语法检查，在编辑 sudoers 文件并保存退出后，如果语法错误，则会弹出提示
