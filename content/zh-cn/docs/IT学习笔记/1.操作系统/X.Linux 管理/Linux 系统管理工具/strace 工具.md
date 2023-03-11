@@ -99,7 +99,7 @@ Note：
       - %network  Trace all the network related system calls.
       - %process  Trace all system calls which involve process management.
       - %pure     Trace syscalls that always succeed and have no arguments.
-      - **%signal **# 追踪所有与信号相关的系统调用。
+      - **%signal** # 追踪所有与信号相关的系统调用。
       - %stat     Trace stat syscall variants.
       - %statfs   Trace statfs, statfs64, statvfs, osf_statfs, and osf_statfs64 system calls.
       - %%stat    Trace syscalls used for requesting file status.
@@ -111,7 +111,7 @@ Note：
 ### Output format 输出格式选项
 
 - **-a COLUMN** # 设定列的间隔为 COLUMN，默认为 40。i.e. `=` 与前面的间隔
-- **-o, --output \<FILE> **# 将追踪结果输出到文件中(默认标准错误)。
+- **-o, --output \<FILE>** # 将追踪结果输出到文件中(默认标准错误)。
   - 与 -ff 参数一起使用时，会把每个线程的追踪写到单独的文件中，以 FileName.PID 格式命名。
 - **-s, --string-limit \<STRSIZE>** # 设定要输出的最大字符串长度为 STRSIZE。`默认值：32`。Note:文件名不作为字符串，并始终完整打印。
   - 示例如下，在 sendto 和 read 系统调用中，参数只显示了 32 个字符。当指定 -s 选项后，可以输出更多字符。
@@ -172,7 +172,7 @@ strace: Process 22863 attached
 
 ### Tampering 干预选项
 
-- **-e inject=SYSCALL_SET **#
+- **-e inject=SYSCALL_SET** #
 
 ### Miscellaneous 选项
 

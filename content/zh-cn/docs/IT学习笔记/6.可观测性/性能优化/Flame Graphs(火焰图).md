@@ -12,6 +12,9 @@ title: Flame Graphs(火焰图)
 <https://www.ruanyifeng.com/blog/2017/09/flame-graph.html>
 <https://zhuanlan.zhihu.com/p/73385693>
 
+可以生成火焰图的工具：
+- [perf 性能分析工具](/docs/IT学习笔记/1.操作系统/X.Linux%20管理/Linux%20系统管理工具/perf%20性能分析工具/perf%20性能分析工具.md)
+
 # 前言
 
 在没有读《性能之巅》这本书之前，就听说过火焰图。当时学习同事用 go 写的项目代码，发现里边有个文件夹叫火焰图，觉得名字很好玩，就百度了一下，惊叹还有这种操作。不过当时并没有听过 Brendan Gregg 的大名，因为懒也没有深入学习。这次找到了 Brendan Gregg 的 blog，也了解了一点动态追踪技术的知识，决心要好好学习一下。

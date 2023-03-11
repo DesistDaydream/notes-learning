@@ -17,11 +17,12 @@ weight: 1
 
 对于使用文件系统的 IO 操作来说，比如读写文件，这些 **IO 的基本单元**是**文件系统上的数据块**，一次读写一个文件系统数据块。比如需要读一个或多个块时，文件系统的 IO 管理器首先计算这些文件系统块对应在哪些磁盘数据块，也就是计算出 LBA，然后通知磁盘控制器要读取哪些块的数据，硬盘控制器将这些块翻译成扇区地址，然后从扇区中读取数据，再通过硬盘控制器将这些扇区数据重组写入到内存中去。
 
-**Block(逻辑块)** 简称 块，存放数据的最小单位，假如每个块为 4KiB，那大于 5KiB 的块就需要两个块，并且逻辑上占用了 8KiB 的空间。
+**Block(块)**，存放数据的最小单位，假如每个块为 4KiB，那大于 5KiB 的块就需要两个块，并且逻辑上占用了 8KiB 的空间。
 
-**Block Group(逻辑块组)** 简称块组，多个 Block 的集合
+**Block Group(块组)**，多个 Block 的集合
 
-Ext 预留了一些 Inode 做特殊特性使用，如下：某些可能并非总是准确，具体的 inode 号对应什么文件可以使用 `find /-inum NUM` 查看。
+Ext 预留了一些 Inode 做特殊特性使用，如下：某些可能并非总是准确，具体的 inode 号对应什么文件可以使用 `find /-inum NUM` 查看
+
 ```bash
 Ext4的特殊inode
 Inode号    用途
@@ -49,7 +50,8 @@ Inode号    用途
 - **DiskSize** # 磁盘空间
 - **BlockSize** # 通常为 4096 Bytes
     - 可使用 mke2fs -b 手动指定
-- **BlocksPerGroup** # 通常为 32768。每个块组中块的数量。	- 可使用 mke2fs -g 手动指定
+- **BlocksPerGroup** # 通常为 32768。每个块组中块的数量。
+    - 可使用 mke2fs -g 手动指定
 - **BytesPerInode** # 通常为 16384 Bytes。创建文件系统时，为每块 BytesPerInode 大小的空间创建一个 Inode。
     - BytesPerInode 也称为 inode_ratio，即.Inode 比率，全称应该是 Inode 分配比率，即每多少空间分配一个 Inode。
     - 可使用 mke2fs -i 手动指定 
@@ -57,8 +59,12 @@ Inode号    用途
 
 其中 BlocksPerGroup(每个块组中块的数量)、BytesPerInode(每个Inode负责的空间大小) 这种值是后续计算的基础。固定下来这些，就算分区空间自动扩容/缩容，也可以根据这种数据自动增加/删除块的数量和 Inode 的数量。
 
-将会计算出
+其中块大小为 4K，Inode 比率为 16K，也就是说，至少每 4 个块分配一个 Inode。当然分配的这些 inode 号只是预分配，并不真的代表会全部使用，毕竟每个文件才会分配一个 inode 号。
+
+这些数据将会计算出：
+
 - **BlockCount** # 块总数
+- **BlockGroup** # 块组总数
 - **InodeCount** # Inode 总数
 - **InodePreGroup** # 每个块组中包含的 Inode 数量
 - **InodeUseage** # 所有 Inode 占用的空间
@@ -74,9 +80,13 @@ Inode号    用途
 
 - InodeCount = DiskSize / BytesPerInode = 37580963840 / 16384 = 2293760
 
+> 由于之前已经知道了“每4个块分配一个Inode”，那么用“总块数/4”也是可以得到这个 Inode 总数的。
+
 计算出的 Inode 数量将会平均分配到每个块组中
 
 - InodePreGroup = InodeCount / BlockGroupCount = 2293760 / 280 = 8192
+
+> 由于之前已经知道了“每4个块分配一个Inode”，那么用“每个块组中块的数量/4”也是可以得到每个块组中 Inode 的数量。
 
 计算所有 Inode 需要占用的磁盘空间
 
@@ -85,9 +95,10 @@ Inode号    用途
 也就是说，一块 35 G 的硬盘，需要拿出来至少 560 MiB 的空间来存放 Inode 数据。
 
 **TODO:**
-- **Inode 还有一个最低数量？就算在 mke2fs 中使用 -i 指定了跟 DiskSize 相同的大小(或者  -N 1)，最后也不会只有一个 Inode，而是有 4480 个 Inode，这个数是怎么来的？**
+- **Inode 还有一个最低数量？就算执行 `mke2fs -N 1` 命令，最后也不会只有一个 Inode，而是有 4480 个 Inode，这个数是怎么来的？**
+- **试了下 `mke2fs -N 1000000` 最后生成的 Inode 数为 1003520，正好是 4480 的倍数。。。这个值到底咋来的。。。o(╯□╰)o**
 
-上述计算的结果可以通过 dumpe2fs 命令获得
+上述计算的结果可以通过 dumpe2fs 命令查看
 
 ```bash
 ~]# dumpe2fs -h ${DEVICE} | egrep -i "block|inode"
@@ -110,9 +121,24 @@ First inode:              11
 Inode size:	          256
 ```
 
-### 最低的 Inode
+### TODO: 最低的 Inode
 
-假如我们需要最少 1 个 Inode，那首先根据 BlockGroupCount 的数量决定至少应该需要 280 Inode，
+假如我们需要最少 1 个 Inode
+
+此时已知
+
+- BlockCount = 9175040
+- BlockGroupCount  = 280
+- BlockSize = 4096 Bytes
+- InodeSize = 256 Bytes
+- InodeRatio = 16384 Bytes
+
+每 4 个块给 1 个 Inode，但肯定不是这个思路，因为照着这种算法，那就是有 2293760 个。所以肯定不是每 4 个块给 1 个 Inode。
+
+真实场景：
+- 现在是每 2048 个块给 一个 Inode
+- 280 个块组
+- 
 
 ```bash
 ~]# mke2fs -N 1 /dev/vdb

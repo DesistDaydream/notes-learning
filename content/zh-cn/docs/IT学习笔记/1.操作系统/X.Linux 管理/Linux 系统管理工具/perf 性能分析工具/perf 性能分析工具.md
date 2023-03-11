@@ -32,13 +32,15 @@ yum install -y perf
 # perf 工具使用详解
 
 **perf \[OPTIONS] COMMAND \[ARGS]**
+
 perf 主要由多个子命令来提供常用功能
 
 ## record # 追踪指定的进程，并记录它的 profile 到 perf.data 文件中
 
-> 参考：[man 手册](https://man7.org/linux/man-pages/man1/perf-record.1.html)
+> 参考：
+> - [Manual(手册)，perf-record(1)](https://man7.org/linux/man-pages/man1/perf-record.1.html)
 
-record 子命令将会跟踪指定命令或进程，并采集运行期间的 profile，然后默认将这些数据写入到 perf.data 文件中。**profile **这个词在这个语境中，可以理解为 **性能分析**，详见 [火焰图章节](https://www.yuque.com/go/doc/44354412)
+record 子命令将会跟踪指定命令或进程，并采集运行期间的 profile，然后默认将这些数据写入到 perf.data 文件中。**profile** 这个词在这个语境中，可以理解为 **性能分析**，详见 [Flame Graphs(火焰图)](/docs/IT学习笔记/6.可观测性/性能优化/Flame%20Graphs(火焰图).md)
 
 **perf record \[OPTIONS] \[COMMAND]**
 **COMMAND** # 可以指定一个命令，以便采集指定命令运行时的性能数据。或者省略 COMMAND，则采集当前系统下的所有进程。
@@ -48,8 +50,8 @@ record 子命令将会跟踪指定命令或进程，并采集运行期间的 pro
 OPTIONS
 
 - **-a, --all-cpus** # 从所有 CPU 采集数据
-- **-g **# 启动调用关系分析
-- **-p, --pid <PID> **# 指定要采集数据的进程的 PID
+- **-g** # 启动调用关系分析
+- **-p, --pid \<PID>** # 指定要采集数据的进程的 PID
 
 EXAMPLE
 
@@ -89,7 +91,7 @@ Overhead  Shared Object            Symbol
 OPTIONS
 
 - **-g** # 开启调用关系分析
-- **-p <PID>** # 分析指定进程的事件，PID 可以是使用 逗号 分隔的多个 PID
+- **-p \<PID>** # 分析指定进程的事件，PID 可以是使用 逗号 分隔的多个 PID
 
 EXAMPLE
 
