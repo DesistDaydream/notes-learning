@@ -10,6 +10,60 @@ weight: 1
 > 
 > - [公众号，小林 coding-一口气搞懂「文件系统」，就靠这 25 张图了](https://mp.weixin.qq.com/s/qJdoXTv_XS_4ts9YuzMNIw)
 
+不同的文件系统，有不同的计算方式。
+
+## 块、块组、Inode 计算
+
+这些计算的结果通常与下列设置有关
+
+- DiskSize # 磁盘空间
+- BytesPerInode # 通常为 16384（可使用 mke2fs -i 手动指定）
+- BlockSize # 通常为 4096（可使用 mke2fs -b 手动指定）
+- BlocksPerGroup # 每个块组中块的数量。通常为 32768（可使用 mke2fs -g 手动指定）
+~~- InodeSize # 通常为 256~~
+
+假如现在有一块 35GiB 的磁盘，需要先转为 Bytes，然后计算
+
+**Block 与 BlockGroup 的计算**
+
+- BlockCount = DiskSize / BlockSize = 37580963840 / 4096 = 9175040
+- BlockGroupCount = BlockCount / BlocksPerGroup = 9175040 / 32768 = 280
+
+**Inode 的计算**
+
+- InodeCount = DiskSize / BytesPerInode = 37580963840 / 16384 = 2293760
+
+计算出的 Inode 数量将会平均分配到每个块组中
+
+- InodePreGroup = InodeCount / BlockGroupCount = 2293760 / 280 = 8192
+- TODO: mke2fs -N 时，应该是可以通过指定的块数量反着计算这些
+
+TODO: 
+- 如何计算全部 Inode 占用了多少磁盘空间？
+- Inode 还有一个最低数量？我就算在 mke2fs 中使用 -i 指定了跟 DiskSize 相同的大小(或者  -N 1)，最后也不会只有一个 Inode，而是有 4480 个 Inode
+
+上述计算的结构可以通过 dumpe2fs 命令获得
+
+```bash
+~]# dumpe2fs -h ${DEVICE} | egrep -i "block|inode"
+dumpe2fs 1.45.5 (07-Jan-2020)
+Filesystem features:      ext_attr resize_inode dir_index filetype sparse_super large_file
+Inode count:              2293760
+Block count:              9175040
+Reserved block count:     458752
+Free blocks:              9018814
+Free inodes:              2293749
+First block:              0
+Block size:               4096
+Reserved GDT blocks:      1021
+Blocks per group:         32768
+Inodes per group:         8192
+Inode blocks per group:   512
+Reserved blocks uid:      0 (user root)
+Reserved blocks gid:      0 (group root)
+First inode:              11
+Inode size:	          256
+```
 
 # 文件的存储
 
@@ -113,7 +167,7 @@ weight: 1
 
 那么，文件头（_Inode_）就需要包含 13 个指针：
 
-- 10 个指向数据块的指针；
+- 第 10 个指向数据块的指针；
 - 第 11 个指向索引块的指针；
 - 第 12 个指向二级索引块的指针；
 - 第 13 个指向三级索引块的指针；
@@ -191,5 +245,23 @@ weight: 1
 - 如果系统崩溃破坏了超级块或块组描述符，有关文件系统结构和内容的所有信息都会丢失。如果有冗余的副本，该信息是可能恢复的。
 - 通过使文件和管理数据尽可能接近，减少了磁头寻道和旋转，这可以提高文件系统的性能。
 
-不过，Ext2 的后续版本采用了稀疏技术。该做法是，超级块和块组描述符表不再存储到文件系统的每个块组中，而是只写入到块组 0、块组 1 和其他 ID 可以表示为 3、 5、7 的幂的块组中。
+不过，Ext2 的后续版本采用了**稀疏技术**。该做法是，超级块和块组描述符表不再存储到文件系统的每个块组中，而是只写入到块组 0、块组 1 和其他 ID 可以表示为 3、 5、7 的幂的块组中。
 
+在创建文件系统时，也可以看到 `Superblock backups stored on blocks` 这种描述，这记录了超级块的备份存在哪些块中
+
+```bash
+~]# mke2fs -N 10000000 /dev/vdb
+mke2fs 1.45.5 (07-Jan-2020)
+/dev/vdb contains a ext2 file system
+	created on Sat Mar 11 12:25:22 2023
+Proceed anyway? (y,N) y
+Creating filesystem with 9175040 4k blocks and 10002528 inodes
+Filesystem UUID: 8acc177c-5f26-4bb9-a0ee-01ceb61d4eaa
+Superblock backups stored on blocks: 
+	30072, 90216, 150360, 210504, 270648, 751800, 811944, 1473528, 2435832, 
+	3759000, 7307496
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Writing superblocks and filesystem accounting information: done
+```

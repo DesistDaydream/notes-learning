@@ -27,8 +27,10 @@ dm 通过将将数据从虚拟块设备传递到另一个块设备来工作。�
 
 dmsetup ls # 列出 dm 设备
 
-    [root@node-1 ~]# dmsetup ls
-    vg1-swap	(253:1)
-    vg1-root	(253:0)
+```bash
+~]# dmsetup ls
+vg1-swap	(253:1)
+vg1-root	(253:0)
+```
 
 其中 253 后面的数字，就是 dm-X 那个 X。所以 dm-0 对应 vg1-root 这个设备。使用 lsblk 命令可以看到 dm 与 块设备的关联关系。

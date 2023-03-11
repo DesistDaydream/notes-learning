@@ -291,10 +291,10 @@
     "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理": [
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/_index.md",
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/6.File_System_管理.md",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/FHS(文件系统层次标准).md",
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/Mount(挂载).md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/FHS(文件系统层次标准).md",
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/特殊目的文件系统",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/特殊文件系统",
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理",
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/零拷贝.md",
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/读取文件时，程序经历了什么？.md",

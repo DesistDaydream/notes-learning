@@ -35,7 +35,7 @@ linux 文件系统在磁盘分区格式化后可以简单认为会划分**两个
 inode 的大小和 block 的大小可以使用命令来看，inode 的大小一般为 256 字节，block 的大小一般为 4096 字节
 
 ```bash
-export DEVICE="/dev/vda1"
+export DEVICE="/dev/vdb"
 dumpe2fs ${DEVICE} | egrep -i "block size|inode size"
 ```
 
@@ -66,6 +66,8 @@ inode 里面存有文件数据 block 的地址，所以要想获取文件的数�
 创建 20480 个目录前后，blocks 已用的个数对比
 
 可以看到已用的 blocks 个数 82444/4 = 20611 个，这里面有 20480 个是存的是 20480 个目录的内容。
+
+# 源码解析
 
 ## inode 中判断是文件还是目录
 
