@@ -543,6 +543,51 @@
       "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/性能评估.md",
       "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/性能测试工具",
       "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/Redhat 优化.md"
+    ],
+    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理": [
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/_index.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/性能优化与故障处理.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/k8s CPU limit和throttling的迷思.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/故障处理案例",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/故障处理技巧",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/kubernetes优化"
+    ],
+    "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理": [
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/_index.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Hyper-V",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/克隆与批量创建虚拟机.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化调试和优化指南.md"
+    ],
+    "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt": [
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/_index.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt 对接 Hypervisor.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt 配置详解.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt 客户端库.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/问题实例.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/最佳实践.md"
+    ],
+    "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序": [
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序/_index.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序/使用 libvirt API 的其他应用程序.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序/virt-manager.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序/virt-install.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序/libguestfs.md"
+    ],
+    "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具": [
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/_index.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/virsh 命令行工具.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/通用命令.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/Domain 命令.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/Device 命令.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/Virtual Network 命令.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/Interface 命令.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/Snapshot 命令.md"
     ]
   },
   "actionBarOrder": {},

@@ -21,7 +21,6 @@ k8s 的一大好处就是资源隔离，通过设定负载的 request 和 limit�
 
 CPU 和内存不一样，它是量子化的，只有“使用中”和“空闲”两个状态。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/5dcde1bf-2f81-48b1-a6fe-43f89db28c9f/640)
 
 我和老婆聊了聊 CPU 和内存的不同，她帮我画了一张插图 图/我的妻子
 
@@ -41,19 +40,15 @@ k8s 使用 CFS（Completely Fair Scheduler，完全公平调度）限制负载�
 
 举个例子，假设一个 API 服务在响应请求时需要使用 A, B 两个线程（2 个核），分别使用 60ms 和 80ms，其中 B 线程晚触发 20ms，我们看到 API 服务在 100ms 后可给出响应：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/5dcde1bf-2f81-48b1-a6fe-43f89db28c9f/640)
-
 没有 CPU 限制的情况，响应时间为 100ms
 
 如果 CPU limit 被设为 1 核，即每 100ms 内最多使用 100ms CPU 时间，API 服务的线程 B 会受到一次限流（灰色部分），服务在 140ms 后响应：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/5dcde1bf-2f81-48b1-a6fe-43f89db28c9f/640)
 
 CPU limit = 1，响应时间为 140ms
 
 如果 CPU limit 被设为 0.6 核，即每 100ms 内最多使用 60ms CPU 时间，API 服务的线程 A 会受到一次限流（灰色部分），线程 B 受到两次限流，服务在 220ms 后响应：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/5dcde1bf-2f81-48b1-a6fe-43f89db28c9f/640)
 
 CPU limit = 0.6，响应时间为 220ms
 
@@ -63,7 +58,6 @@ CPU limit = 0.6，响应时间为 220ms
 
 下面这张图是我工作中一个 API 服务在 pod 级别的 CPU 使用率和 CPU 限流比率（CPU Throttling），我们看到，CPU 限流的情况在一天内的大部分时候都存在，限流比例在 10%上下浮动，这意味着服务的工作没能全速完成，在速度上打了 9 折。值得一提，这时 pod 所在节点仍然有富余的 CPU 资源，节点的整体 CPU 使用率没有超过 50%.
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/5dcde1bf-2f81-48b1-a6fe-43f89db28c9f/640)
 
 一个实际的降速限流的例子，服务的处理速度被 kubelet 降低了 10%
 
@@ -113,50 +107,3 @@ CFS 本身的机制比较复杂: [_https://en.wikipedia.org/wiki/Completely_Fair
 \[6]
 
 内核版本不够有 bug 的时候: [_https://medium.com/omio-engineering/cpu-limits-and-aggressive-throttling-in-kubernetes-c5b20bd8a718_](https://medium.com/omio-engineering/cpu-limits-and-aggressive-throttling-in-kubernetes-c5b20bd8a718)
-
-\[7]
-
-automaxprocs: [_https://github.com/uber-go/automaxprocs_](https://github.com/uber-go/automaxprocs)
-
-\[8]
-
-程序更不容易遇到 CPU 限流: [_https://github.com/uber-go/automaxprocs/issues/12#issuecomment-405976401_](https://github.com/uber-go/automaxprocs/issues/12#issuecomment-405976401)
-
-\[9]
-
-错而知新: *https://nanmu.me/zh-cn/categories/错而知新/*
-
-\[10]
-
-基于服务优先级的抢占式调度: [_https://cloud.tencent.com/developer/article/1876817_](https://cloud.tencent.com/developer/article/1876817)
-
-原文链接：[**https://nanmu.me/zh-cn/posts/2021/myth-of-k8s-cpu-limit-and-throttle/**](https://nanmu.me/zh-cn/posts/2021/myth-of-k8s-cpu-limit-and-throttle/)
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/5dcde1bf-2f81-48b1-a6fe-43f89db28c9f/640)
-
-**你可能还喜欢**
-
-点击下方图片即可阅读
-
-[
-](https://notes-learning.oss-cn-beijing.aliyuncs.com/5dcde1bf-2f81-48b1-a6fe-43f89db28c9f/640)
-
-SRE 到底是干什么的？？
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/5dcde1bf-2f81-48b1-a6fe-43f89db28c9f/640)
-
-**云原生是一种信仰  🤘**
-
-**关注公众号**
-
-**后台回复 ◉k8s◉ 获取史上最方便快捷的 Kubernetes 高可用部署工具，只需一条命令，连 ssh 都不需要！**
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/5dcde1bf-2f81-48b1-a6fe-43f89db28c9f/640)
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/5dcde1bf-2f81-48b1-a6fe-43f89db28c9f/640)
-
-点击  "阅读原文"  获取**更好的阅读体验！**
-
-**发现朋友圈变“安静”了吗？**
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/5dcde1bf-2f81-48b1-a6fe-43f89db28c9f/640)
