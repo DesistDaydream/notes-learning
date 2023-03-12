@@ -16,6 +16,7 @@ awk 以字段为单位进行处理
 # Syntax(语法)
 
 **awk \[OPTIONS] 'COMMAND' FILE**
+
 **awk \[OPTIONS] 'PATTERN1{ACTION1} PATTERN2{ACTION2}....' FILE**
 
 OPTIONS：
@@ -79,11 +80,11 @@ BEGIN {
 
 ```bash
 # 可以直接执行 BEGIN 模式中的动作
-root@lichenhao:~/test_dir# awk -f helloworld.awk
+~]# awk -f helloworld.awk
 Hello World
 ^C
 # 需要指定待处理文件，才可以执行匹配模式中的动作
-root@lichenhao:~/test_dir# awk -f helloworld.awk text
+~]# awk -f helloworld.awk text
 Hello World
 Hello World Text
 ```
@@ -100,35 +101,44 @@ Hello World Text
 - **OFS** # 当前输出内容 print 的时候使用的分隔符，默认为空白，print 中以逗号分隔每个字段
 - **RS** # 分隔符。`默认值：\n`，即换行符
 
-## 应用示例
+# 应用示例
 
-### 简单示例
+# 简单示例
 
-- 输出文本最后一行
+输出文本最后一行
+
   - awk 'END {print}'
-- 从 FILE 文件中，删除每行第一列，输出剩余的
+
+从 FILE 文件中，删除每行第一列，输出剩余的
   - awk '{ $1=""; print $0 }' FILE
-- 查找 hcs 的 access 实时日志的带 HIT 字符的行，取出第五段内容然后排序总结，该日志可以实时查看用户的命中情况以及访问的资源
+
+查找 hcs 的 access 实时日志的带 HIT 字符的行，取出第五段内容然后排序总结，该日志可以实时查看用户的命中情况以及访问的资源
   - cat accesslog | grep 'HIT' | awk '{print $5}' | sort | uniq -c
-- 在/etc/passwd 文件中，每行以:为分隔符，打印 username:这几个字符，后面跟以:分割的第一个字段内容，后面跟换行(\n)然后 uid:这几个字符，再跟第三个字段内容,效果如右图所示
+
+在/etc/passwd 文件中，每行以:为分隔符，打印 username:这几个字符，后面跟以:分割的第一个字段内容，后面跟换行(\n)然后 uid:这几个字符，再跟第三个字段内容,效果如右图所示
   - awk -F":" '{ print "username:" $1 "\nuid:" $3 }' /etc/passwd
-- 搜索模式以冒号为分隔符,找到第七个字段以 bash 结尾的所有行,输出每行的第一个和第三个字段(注意：这里面的~在 shell 环境中是用=~表示的)
+
+搜索模式以冒号为分隔符,找到第七个字段以 bash 结尾的所有行,输出每行的第一个和第三个字段(注意：这里面的~在 shell 环境中是用=~表示的)
   - cat /etc/passwd | awk -F : '$7~/bash$/{print $1,$3}'
     - 还可以写成判断模式，判断第七字段的字符是否等于/bin/bash，
     - cat /etc/passwd | awk -F : '$7=="/bin/bash"/{print $1,$3}'
-- 以冒号为分隔符的第三个字段数小于 10 的那些行，输出其中的第一和第三个字段
+
+以冒号为分隔符的第三个字段数小于 10 的那些行，输出其中的第一和第三个字段
   - cat /etc/passwd | awk -F : '$3<10{print $1,$3}'
 - - cat /etc/passwd | awk 'BEGIN{FS=":"}{print "UserName\n-----------"}$3<10{print $1,$3}'
-- 以=号为分隔符，不包含开头带#或者空白行的所有行，显示这些行的第一个字段,判断模式与搜索模式并用
-  - awk -F = '!/^#|^$/{print $1}' /etc/sysctl.conf
-    - awk -F = '/^\[^#]/{print $1}' /etc/sysctl.conf #不含#的行
-- 查看当前的普通用户个数
-  - cat /etc/passwd | awk -F : '$3>1000 && $7=="/bin/bash"{print $1,$3}'
+
+以=号为分隔符，不包含开头带#或者空白行的所有行，显示这些行的第一个字段,判断模式与搜索模式并用
+  - `awk -F = '!/^#|^$/{print $1}' /etc/sysctl.conf`
+    - `awk -F = '/^[^#]/{print $1}' /etc/sysctl.conf` # 不含 # 的行
+
+查看当前的普通用户个数
+  - `cat /etc/passwd | awk -F : '$3>1000 && $7=="/bin/bash"{print $1,$3}'`
 
 其他
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/aokdnm/1616166312890-e4478d40-8a1b-4f08-a348-81ee7c69c9e0.jpeg)
 
-### /proc/softirqs 文件处理示例
+## /proc/softirqs 文件处理示例
 
 由于 /proc/softirqs 文件中第一行与其他行，前面少了一些内容，所有第一行系列要多空出来一些字符
 
@@ -157,7 +167,7 @@ NR > 1{
 }
 ```
 
-### 聚合一个文件中指定字段的数字，求和
+## 聚合一个文件中指定字段的数字，求和
 
 - 文件中的内容如下
 

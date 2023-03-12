@@ -38,11 +38,12 @@ Dpkg 包含一系列的包管理工具：
 ### Syntax(语法)
 
 **dpkg \[OPTIONS] ACTION**
+
 **ACTION**
 
 - **-i, --install PACKAGE** # 安装指定的 PACKAGE。
 - **-r，--remove PACKAGE** # 删除指定的已安装的 PACKAGE。保留配置
-- **-p, --purge PACKAGE **# 删除指定的已安装的 PACKAGE。连配置也删除
+- **-p, --purge PACKAGE** # 删除指定的已安装的 PACKAGE。连配置也删除
 
 **OPTIONS**
 
@@ -58,6 +59,7 @@ dpki-query 是一个查询工具，可以从 dpkg 数据库中查询包的信息
 ### Syntax(语法)
 
 **dpkg-query \[OPTIONS] COMMAND # 安装包查询命令**
+
 **OPTIONS**
 
 - **COMMAND**
@@ -153,7 +155,7 @@ EOF
 
 **COMMAND**
 
-- **install **# 安装或升级软件包
+- **install** # 安装或升级软件包
 - **update** # 更新软件包的索引。更新 source.list 文件或长时间没更新时，需要先 update 再安装包。
 - **upgrade** # 升级所有软件包。
   - 注意：upgrade 之前必须要执行 `apt update`，以便让 ATP 知道有新版本的软件包可用。
@@ -162,7 +164,7 @@ EOF
 - **purge \<PKG>** # 删除指定得软件包及其配置文件
 - **clean** # 清除本地存储库内的已检索到的软件包文件。
   - 该命令会从 /var/cache/apt/archives/ 和 /var/cache/apt/archives/partial/ 目录中删除除了锁文件以外的所有文件。
-- **autoremove **# 自动清理所有不再使用的依赖
+- **autoremove** # 自动清理所有不再使用的依赖
 
 **OPTIONS**
 

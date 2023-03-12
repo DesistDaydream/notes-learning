@@ -41,15 +41,15 @@ libvirt 将使用以下逻辑来确定要使用的 URI。
 
 - **./libvirt.conf** # 用于配置用于与虚拟化程序连接的 URI 别名，以及默认 URI
 - .**/libvirtd.conf** # libvirtd 守护进程的配置文件
-- .**/qemu/\*** # xml 格式的配置文件存放路径，配置文件包括该 VM 的元数据(名字，uuid，内存，cpu 等)，设备配置(包括使用的硬盘文件的路径，网络类型等)，配置文件为 xml 格式。创建完一台 VM 后，会在该目录下生成对应 VM 名字的 xml 文件
-- **./network/\*** #
+- .**/qemu/** # xml 格式的配置文件存放路径，配置文件包括该 VM 的元数据(名字，uuid，内存，cpu 等)，设备配置(包括使用的硬盘文件的路径，网络类型等)，配置文件为 xml 格式。创建完一台 VM 后，会在该目录下生成对应 VM 名字的 xml 文件
+- **./network/** #
 
-**/etc/sysconfig/\*** #
+**/etc/sysconfig/** #
 
 - **./libvirtd** #
 
-**/var/lib/libvirt/\* **#
+**/var/lib/libvirt/** #
 
-- **./images/\* **# 所有通过 libvirt 创建的虚拟机所生成的 images 都保存在该目录下
-- **./qemu/snapshot/\* **# 创建快照 xml 文件都保存在该目录下
+- **./images/** # 所有通过 libvirt 创建的虚拟机所生成的 images 都保存在该目录下
+- **./qemu/snapshot/** # 创建快照 xml 文件都保存在该目录下
 

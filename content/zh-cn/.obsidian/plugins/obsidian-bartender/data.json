@@ -112,6 +112,7 @@
       "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU",
       "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/Vmware",
       "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/Xen",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/Hyper-V",
       "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理"
     ],
     "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU": [
@@ -556,9 +557,9 @@
       "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/_index.md",
       "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理.md",
       "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Hyper-V",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/克隆与批量创建虚拟机.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化调试和优化指南.md"
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/部署 KVM_QEMU 虚拟化环境.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/性能优化与故障处理"
     ],
     "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt": [
       "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/_index.md",
@@ -594,6 +595,82 @@
       "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理/KVM_QEMU 管理.md",
       "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理/多 KVM_QEMU 集中管理.md",
       "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理/在线热迁移.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 管理案例": [
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 管理案例/_index.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 管理案例/Linux 管理案例.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 管理案例/通过 Socket 文件找到 TCP 连接信息.md"
+    ],
+    "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph": [
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/_index.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/Ceph.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/Ceph 部署.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/Ceph 命令行工具.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/API.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/Ceph 故障排查笔记.md"
+    ],
+    "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)": [
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/_index.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Distributed Storage(分布式存储).md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/MinIO"
+    ],
+    "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/MinIO": [
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/MinIO/_index.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/MinIO/MinIO.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/MinIO/mc 工具.md"
+    ],
+    "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS": [
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/_index.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/GlusterFS.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/GlusterFS 的部署与使用.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/gluster命令.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/故障恢复测试.md"
+    ],
+    "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/1.Server Message Block": [
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/1.Server Message Block/_index.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/1.Server Message Block/1.Server Message Block.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/1.Server Message Block/Samba.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/1.Server Message Block/Samba 部署.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/1.Server Message Block/Samba 配置详解.md"
+    ],
+    "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker": [
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/_index.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker 介绍",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker 部署.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker 配置详解.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker Runtime.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker Image.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker 存储.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker 权限管理.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker 命令行工具",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker API.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker Compose",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/在Docker中使用GPU.md"
+    ],
+    "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker 介绍": [
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker 介绍/_index.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker 介绍/Docker 介绍.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker 介绍/Docker 架构的演变.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker 介绍/docker-shim 何去何从.md"
+    ],
+    "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd": [
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/_index.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/Containerd.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/Containerd 部署.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/Containerd 配置详解",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/Containerd Image.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/Containerd 命令行工具"
+    ],
+    "docs/IT学习笔记/10.云原生/2.2.实现容器的工具": [
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/_index.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/2.2.实现容器的工具.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/构建 OCI Image",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Podman",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/容器管理"
     ]
   },
   "actionBarOrder": {},

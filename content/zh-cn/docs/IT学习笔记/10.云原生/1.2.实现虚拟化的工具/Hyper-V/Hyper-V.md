@@ -5,6 +5,7 @@ weight: 20
 ---
 
 # 概述
+
 > 参考：
 > -
 
@@ -16,6 +17,7 @@ virtmgmt 命令行工具打开图形化的 Hyper-V 图形界面
 
 
 # 共享
+
 > 参考：
 > - [官方文档-虚拟化，与你的虚拟机共享设备](https://learn.microsoft.com/zh-cn/virtualization/hyper-v-on-windows/user-guide/enhanced-session-mode)
 
@@ -39,18 +41,21 @@ RDP/增强会话模式：
 
 
 # 使用 PowerShell 模块管理 Hyper-V
+
 > 参考：
 > - [官方文档-PowerShell，模块-hyper-v](https://learn.microsoft.com/en-us/powershell/module/hyper-v/index)
 > - https://learn.microsoft.com/zh-cn/virtualization/hyper-v-on-windows/quick-start/try-hyper-v-powershell
 
 
 ## New-VM
+
 > 参考：
 > - https://learn.microsoft.com/en-us/powershell/module/hyper-v/new-vm
 
 创建一个新的虚拟机
 
 ## Get-VM
+
 > 参考：
 > - https://learn.microsoft.com/en-us/powershell/module/hyper-v/get-vm
 
