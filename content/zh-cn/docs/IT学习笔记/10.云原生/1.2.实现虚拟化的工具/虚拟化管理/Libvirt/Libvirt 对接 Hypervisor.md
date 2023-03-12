@@ -5,7 +5,7 @@ title: Libvirt 对接 Hypervisor
 # 概述
 
 > 参考：
-> - 官方文档：[https://libvirt.org/uri.html](https://libvirt.org/uri.html)
+> - [官方文档，连接 URI](https://libvirt.org/uri.html)
 
 Libvirt 支持多不同类型的虚拟化（通常称为 **Drviers(驱动程序)** 或 **Hypervisors(虚拟机监视器)**），因此我们需要一种方法来连接到指定的 Hypervisors。另外，我们可能希望引用网络上远程的 Hypervisors。
 
@@ -15,9 +15,11 @@ Libvirt 支持多不同类型的虚拟化（通常称为 **Drviers(驱动程序)
 
 
 ## URI 格式
+
 ```
 Hypervisor[+Transport]://[UserName@][HostName][:PORT]/PATH[?Extraparameters]
 ```
+
 Hypervisor # 虚拟化类型，可用的值有：
 
 - qemu
@@ -38,6 +40,7 @@ Transport # 连接方式。默认为 unix
 
 
 ### 本地 URI 格式示例
+
 ```
 qemu:///system # 连接到系统模式守护程序。
 qemu:///session # 连接到会话模式守护程序。
@@ -46,6 +49,7 @@ qemu:///session # 连接到会话模式守护程序。
 
 
 ### 远程 URI 格式示例
+
 ```
 # 通过非标准Unix套接字连接到本地qemu实例（在这种情况下，显式提供了Unix套接字的完整路径）。
 qemu+unix:///system?socket=/opt/libvirt/run/libvirt/libvirt-sock
@@ -56,14 +60,17 @@ qemu+libssh2://user@host/system?known_hosts=/home/user/.ssh/known_hosts
 # 使用与libssh驱动程序的ssh连接连接到远程主机，并使用其他known_hosts文件。
 qemu+libssh://user@host/system?known_hosts=/home/user/.ssh/known_hosts
 ```
+
 ### 测试 URI 格式示例
+
 ```
 test:///default connects to a default set of host definitions built into the driver.
 test:///path/to/host/definitions connects to a set of host definitions held in the named file.
 ```
-## URI 中额外的参数详解
-可以将额外的参数作为查询字符串的一部分（后面的部分?）添加到远程URI中。远程URI了解下面显示的其他参数。任何其他内容都未经修改地传递到后端。请注意，参数值必须是 URI转义的。
 
+## URI 中额外的参数详解
+
+可以将额外的参数作为查询字符串的一部分（后面的部分?）添加到远程URI中。远程URI了解下面显示的其他参数。任何其他内容都未经修改地传递到后端。请注意，参数值必须是 URI转义的。
 
 | 名称 | 运输工具 | 含义 |  |
 | --- | --- | --- | --- |
@@ -100,9 +107,6 @@ TLS：如果设置为非零值，则将禁用客户端对服务器证书的检�
 |  |  |  | 例： known_hosts=/root/.ssh/known_hosts |
 | sshauth | libssh2，libssh | 用逗号分隔的身份验证方法列表。默认值（是“ agent，privkey，password，keyboard-interactive”。保留方法的顺序。某些方法可能需要其他参数。 |  |
 |  |  |  | 例： sshauth=privkey,agent |
-
-
-
 
 # 连接 Hypervisor 方式
 

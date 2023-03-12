@@ -13,7 +13,7 @@ virt-manager 是一个图形化的应用程序，通过 libvirt 管理虚拟机�
 
 virt-manager 提供了多个配套的工具
 
-- virt-manager #
+- virt-manager # GUI 模式的 VM 管理程序
 - virt-viewer # 是一个轻量级的 UI 界面，用于与虚拟客户操作系统的图形显示进行交互。它可以显示 VNC 或 SPICE，并使用 libvirt 查找图形连接详细信息。
 - virt-install # 是一个命令行工具，它提供了一种将操作系统配置到虚拟机中的简单方法。
 - virt-clone # 是一个用于克隆现有非活动客户的命令行工具。它复制磁盘映像，并使用指向复制磁盘的新名称、UUID 和 MAC 地址定义配置。
@@ -48,7 +48,7 @@ virt-manager、virt-viewer 属于图形化管理虚拟机的工具，通常都�
 
 # virt-install
 
-可以将 virt-install 理解为 CLI 的 virt-manager，可以放在脚本中创建虚拟机，内容非常多，详见 [《virt-install》](docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用%20libvirt%20API%20的其他应用程序/virt-install.md) 章节。
+可以将 virt-install 理解为 CLI 的 virt-manager，可以放在脚本中创建虚拟机，内容非常多，详见 [《virt-install》](/docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用%20libvirt%20API%20的其他应用程序/virt-install.md) 章节。
 
 # virt-clone
 

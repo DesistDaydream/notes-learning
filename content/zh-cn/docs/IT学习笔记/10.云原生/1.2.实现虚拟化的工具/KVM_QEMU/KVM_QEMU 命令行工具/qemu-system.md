@@ -36,9 +36,9 @@ https://www.qemu.org/docs/master/system/invocation.html#hxtool-0
 
 **-smp \[,cores=核心数]\[,threads=线程数]\[,sockets=有几个 CPU 插槽]\[,maxcpus=指定正在使用的 CPU 数]** # 设定 vCPU 数量
 
-**-M** # 指定要模拟的主机类型,可以使用`qemu-system-x86_64 -M ?` 命令查看所支持的所有可模拟的主机类型
+**-M** # 指定要模拟的主机类型,可以使用 `qemu-system-x86_64 -M ?` 命令查看所支持的所有可模拟的主机类型
 
-**-boot \[order=DRIVES]\[,once=DRIVES]\[,menu=on|off]** #定义启动设备的引导次序
+**-boot \[order=DRIVES]\[,once=DRIVES]\[,menu=on|off]** # 定义启动设备的引导次序
 
 **-device DRIVER\[,PROPERTY\[=VALUE]\[,....]]** # 为虚拟机添加指定设备的驱动程序，`PROPERTY=VALUE` 用于设置驱动程序的属性。
 
@@ -78,6 +78,7 @@ https://www.qemu.org/docs/master/system/qemu-manpage.html#hxtool-1
 https://www.qemu.org/docs/master/system/qemu-manpage.html#hxtool-3
 
 **-vnc DISPLAY\[,option\[,option\[,...]]]**
+
 该选项可以让 QEMU 监听一个端口，并通过 VNC 会话重定向 VGA 显示。
 
 > 在使用此选项时启用 usb tablet 设备是非常有用的。(使用 -device usb-tablet)。这样可以让鼠标移动更迅速，否则会出现两个鼠标的情况，就是虚拟机外面一个，虚拟机内部一个，外部移动到哪，内部移动到哪，而且非常慢。
@@ -92,6 +93,7 @@ https://www.qemu.org/docs/master/system/qemu-manpage.html#hxtool-5
 > -net 选项不再推荐使用，详见：<https://www.qemu.org/2018/05/31/nic-parameter/>
 
 **-netdev tap,id=ID\[,fd=H]\[,ifname=NAME]\[,script=FILE]\[,downscript=DFILE]\[,helper=HELPER]**
+
 在宿主机上自动创建一个 tap 类型的网络设备，并使用 ID 作为该 netdev 的标识符，用于与 -device 进行关联
 
 在 VM 启动时使用 script=FILE 指定的脚本(默认为 /etc/qemu-ifup)来配置当前网络设备，且在虚拟机停止时使用 downscript=DFILE 指定的脚本(默认为/etc/qemu-ifdown)来撤销网络设备配置。
@@ -107,9 +109,9 @@ https://www.qemu.org/docs/master/system/qemu-manpage.html#hxtool-5
 > 该选项是新版推荐的，用来代替 -netdev 和 -device 两个选项，以使操作更简便。
 > 并且 -nic 接受 -netdev 选项的所有选项。
 
-**-vnc \[IP]:PORT # **指定 VNC 暴露的端口，0 为 5900，1 为 5901，依此类推。
+**-vnc \[IP]:PORT** # 指定 VNC 暴露的端口，0 为 5900，1 为 5901，依此类推。
 
-**-nographic # **让虚拟机在前台运行，虚拟机的输出信息会在 宿主机直接显示，类似于 virsh console 命令
+**-nographic** # 让虚拟机在前台运行，虚拟机的输出信息会在 宿主机直接显示，类似于 virsh console 命令
 
 ## Character Device OPTIONS(字符设备选项)
 

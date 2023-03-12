@@ -9,7 +9,7 @@ weight: 1
 > - [GitHub 组织，libvirt](https://github.com/libvirt)
 > - [官网](https://libvirt.org/)
 
-Libvirt 是用于管理虚拟化平台的开源的 API，后台程序和管理工具。它可以用于管理 KVM、Xen、VMware ESX，QEMU 和其他虚拟化技术。
+Libvirt 是用于管理虚拟化平台的开源的 API，后台程序和管理工具。它可以用于管理 KVM、Xen、VMware ESX，QEMU 和其他虚拟化技术。Libvirt 将虚拟机统一称为 **Domain**。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gglb2f/1616123800173-58542239-2205-4586-bcc0-4edde6579a3f.png)
 
@@ -53,3 +53,8 @@ libvirt 将使用以下逻辑来确定要使用的 URI。
 - **./images/** # 所有通过 libvirt 创建的虚拟机所生成的 images 都保存在该目录下
 - **./qemu/snapshot/** # 创建快照 xml 文件都保存在该目录下
 
+# XML 文件
+
+Libvirt 管理的虚拟机都可以通过 XML 文件来描述其所应该模拟的硬件设备、状态等等。详见 [XML 文件详解](/docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML%20文件详解/XML%20文件详解.md)
+
+我们甚至可以通过直接编写 XML 文件，以便 Libvirt 相关工具直接读取 XML 并启动 VM。

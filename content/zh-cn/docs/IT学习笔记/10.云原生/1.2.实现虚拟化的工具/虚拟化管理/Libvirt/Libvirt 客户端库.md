@@ -22,7 +22,7 @@ Libvirt 直接支持 C 和 C++，并且具有可用于其他语言的绑定：
 
 - **D-Bus**：Pavel Hrdina 开发[D-Bus API](https://libvirt.org/dbus.html)。
 
-有关在**Windows 上使用 libvirt 的信息，** [请参阅 Windows 支持页面](https://libvirt.org/windows.html)。
+有关在 **Windows 上使用 libvirt 的信息，** [请参阅 Windows 支持页面](https://libvirt.org/windows.html)。
 
 # Go 库
 

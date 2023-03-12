@@ -61,7 +61,7 @@ ln -sv /usr/bin/kvm /usr/bin/
 - apt install libguestfs-tools -y
 - apt install virt-manager -y
 
-# 安转 VPN 与桌面(可选)
+# 安装 VPN 与桌面(可选)
 
 ## CentOS
 
