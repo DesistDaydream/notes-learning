@@ -116,6 +116,16 @@ virt-install 命令中很多参数都可以在 [XML 文件](/docs/IT学习笔记
 - **listen=STRING** # 指定 vnc 监听的地址(默认值通常为 127.0.0.1。i.e.仅限本地主机使用)，如果配置 0.0.0.0，则可以被非宿主机的设备通过宿主机的 IP 与 PORT 来进行 vnc 访问
 - **port=NUM** # 指定访问该 VM 的 vnc 所使用的端口
 
+### 其他选项
+
+**--autoconsole STRING** # 在使用 virt-install 创建虚拟机时，将要默认启用的交互式控制台。可用的值有 graphical、text、none。
+
+- 这个选项不是必须的，默认行为是自适应的，取决于 VM 的配置方式。
+
+**--noautoconsole** # 与 `--autoconsole none` 一样。
+
+推荐使用 --noautoconsole，这样执行 virt-install 命令创建虚拟机时不会自动打开 virt-viewer，x11 转发还是比较卡的。推荐使用 VNC 连接端口以访问虚拟机的图像界面。
+
 ## VIRTUALIZATION OPTIONS(虚拟化选项)
 
 ## DEVICE OPTIONS(设备选项)
@@ -149,10 +159,13 @@ virt-install --name centos7 \
 --disk /var/lib/libvirt/images/test/centos7.qcow2,size=10,bus=virtio \
 --network bridge=br0,model=virtio \
 --graphics vnc,listen=0.0.0.0,port=5911 \
+--noautoconsole \
 --cdrom /root/iso/CentOS-7-x86_64-DVD-2009.iso
 ```
 
 创建完成后，可以使用 virt-viewer 访问虚拟机，也可以使用 VNC 连接到 5911 以访问虚拟机，然后开始安装系统。
+
+> 这里使用了 --noautoconsole，所以不会自动打开 virt-viewer，x11 转发还是比较卡的，推荐使用 VNC 连接端口以访问虚拟机的图像界面
 
 这是最基本的创建方式，virt-install 会自动创建很多默认的虚拟设备以满足所需。我们只需要指定网络、连接显示的方式、系统版本、cpu、内存即可
 
