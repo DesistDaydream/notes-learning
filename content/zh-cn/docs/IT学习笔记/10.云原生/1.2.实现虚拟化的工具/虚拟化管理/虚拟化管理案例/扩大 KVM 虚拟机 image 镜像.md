@@ -1,7 +1,7 @@
 ---
 title: "扩大 KVM 虚拟机 image 镜像"
 linkTitle: "扩大 KVM 虚拟机 image 镜像"
-weight: 20
+weight: 2
 ---
 
 # 概述

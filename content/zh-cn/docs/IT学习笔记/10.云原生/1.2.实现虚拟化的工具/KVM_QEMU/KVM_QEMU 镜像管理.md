@@ -25,7 +25,7 @@ KVM/QEMU 通过 [qemu-img](/docs/IT学习笔记/10.云原生/1.2.实现虚拟化
 
 当使用 QCOW 时，不会对原始磁盘映像应用任何更改。所有更改都记录在其他的 QCOW 文件中。多个 QCOW 文件可以指向同一个镜像，而不会危及基本系统。QEMU/KVM 允许将 QCOW 文件的更改合并到原始图像中。
 
-# 修改 backingfile 后，导致依赖 backingfile 的虚拟机的文件系统
+# 修改 backingfile 后，导致依赖 backingfile 的虚拟机的文件系统崩溃
 
 https://www.cnblogs.com/fengrenzw/p/3383773.html
 
