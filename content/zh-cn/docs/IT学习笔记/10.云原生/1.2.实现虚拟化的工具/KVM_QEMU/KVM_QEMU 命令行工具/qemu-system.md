@@ -26,7 +26,7 @@ DISK_IMAGE 是 IDE 硬盘 0 的原始硬盘映像。有些目标不需要磁盘�
 
 ## Standard OPTIONS(标准选项)
 
-https://www.qemu.org/docs/master/system/qemu-manpage.html#hxtool-0
+https://www.qemu.org/docs/master/system/invocation.html#hxtool-0
 
 **-name** #
 
@@ -69,7 +69,7 @@ https://www.qemu.org/docs/master/system/qemu-manpage.html#hxtool-1
 - file=/PATH/FileName # 硬盘映像文件路径
 - if=INTERFACE # 指定硬盘设备所连接的接口类型，即控制器类型，如 ide、scsi、sd、mtd、floppy、pflash、virtio、none 等
 - media=disk|cdrom # 定义介质类型为硬盘(disk)还是光盘(cdrom)
-- snapshot=on|off #定义是否支持快照功能，on 开启，off 关闭
+- snapshot=on|off # 定义是否支持快照功能，on 开启，off 关闭
 - cache=CACHE # 定义如何使用物理机缓存来访问块数据，如 none、writeback、writethrough、unsafe
 - format=FORMAT # 指定映像文件的格式，具体格式参考 qemu-img
 
@@ -125,3 +125,18 @@ BACKEND 可以是以下设备之一：`null`, `socket`, `udp`, `msmouse`, `vc`, 
 - nowait # 指定 QEMU 不应该在等待客户端连接到监听 socket 时阻塞。
 - unix options: path=path\[,abstract=on|off]\[,tight=on|off] # 使用 unix socket 时的特定选项
 - path # 指定 unix socket 的路径，该选项时必须的。
+
+## TPM Device OPTIONS
+
+## Boot Image or Kernel OPTIONS
+
+## Debug/Expert OPTIONS
+
+## Generic Object OPTIONS(通用对象选项)
+
+-object
+
+# Deivce URL Syntax
+
+
+

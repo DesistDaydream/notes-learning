@@ -98,10 +98,10 @@ virt-install --import --name test \
 ## 使用 cdrom 安装系统
 
 ```bash
-virt-install --cdrom /root/iso/CentOS-7-x86_64-DVD-1908.iso --name centos7 \
+virt-install --cdrom /root/iso/CentOS-7-x86_64-DVD-2009.iso --name centos7 \
 --memory 4096 --vcpus 4 \
 --os-variant centos7.0 \
---disk /var/lib/libvirt/images/centos7.qcow2,size=100,bus=virtio \
+--disk /var/lib/libvirt/images/centos7.qcow2,size=10,bus=virtio \
 --network bridge=br0,model=virtio \
 --graphics vnc,listen=0.0.0.0,port=5911
 ```

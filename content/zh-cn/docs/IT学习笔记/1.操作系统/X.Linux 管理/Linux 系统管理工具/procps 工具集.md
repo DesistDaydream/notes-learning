@@ -11,7 +11,7 @@ procps 是一组命令行和全屏实用程序，它们从伪文件系统(/proc)
 
 Note：该工具集就算是最小化安装的 linux 发行版系统也是默认包含的~
 
-# free-显示系统中可用和已用的内存量
+# free - 显示系统中可用和已用的内存量
 
 # kill-向指定PID的进程发送信号
 
@@ -72,41 +72,42 @@ PATTERN(模式) 代指正则表达式的匹配模式。比如 pgrep 根据 PATTE
   - **pkill -kill -t pts/1**
   - 注意：想要获取一个用户所使用的终端，可以通过 [procps 包中的 w 工具](#hq2tD)即可
 
-# pmap-Report memory map of a process
+# pmap - Report memory map of a process
 
-# ps-报告进程的信息
+# ps - 报告进程的信息
 
 > 参考：
 > - [Manual(手册)，ps(1)](https://man7.org/linux/man-pages/man1/ps.1.html)
 
-ps 是 process status(进程状态) 的简称~
+ps 是 **process status(进程状态)** 的简称~
 
 Note：该命令显示出来的带 `[]` 的进程为内核线程，一般不用关注。出现这种情况一般是因为 ps 命令无法获取进程的命令参数，所以会将命令名称放入括号中。毕竟用户态的 ps 命令怎么可能会获得内核内部程序的参数呢~~~
 
 ps 命令输出的内容中部分字段的含义说明：
 
 - PID # Process ID(进程标识符)
+  - 
 - PPID # Parent Process ID(父进程标识符)，父进程是创建一个或多个子进程的进程。
 - VSZ # Virtual Memory Size(虚拟内存大小)，包括进程可以访问的所有内存，包括进入交换分区的内容，以及共享库占用的内存。有的地方也称为 total_vm、VIRT
 - RRS # Resident Set Size(实际内存用量)，不包括进入交换分区的内存。RSS 包括共享库占用的内存（只要共享库在内存中）。RSS 包括所有分配的栈内存和堆内存。
 - LWP # 线程 ID
 - NLWP # 线程数量
 - STAT # 进程的当前状态
-   - D # 不可中断的休眠。通常是 IO。
-   - R # 运行。正在运行或者在运行队列中等待。
-   - S # 休眠。在等待某个事件，信号。
-   - T # 停止。进程接收到信息 SIGSTOP，SIGSTP，SIGTIN，SIGTOU 信号。
-   - X # 死掉的进程，不应该出现。
-   - Z # 僵死进程。
-      - 通常还会跟随如下字母表示更详细的状态。
-         - < 高优先级
-         - N 低优先级
-         - L 有 pages 在内存中 locked。用于实时或者自定义 IO。
-         - s 进程领导者，其有子进程。
-         - l 多线程
-         - - 位于前台进程组。
+    - D # 不可中断的休眠。通常是 IO。
+    - R # 运行。正在运行或者在运行队列中等待。
+    - S # 休眠。在等待某个事件，信号。
+    - T # 停止。进程接收到信息 SIGSTOP，SIGSTP，SIGTIN，SIGTOU 信号。
+    - X # 死掉的进程，不应该出现。
+    - Z # 僵死进程。
+        - 通常还会跟随如下字母表示更详细的状态。
+             - < 高优先级
+             - N 低优先级
+             - L 有 pages 在内存中 locked。用于实时或者自定义 IO。
+             - s 进程领导者，其有子进程。
+             - l 多线程
+             - - 位于前台进程组。
 
-可以使用 **-o FORMAT **选项来自定义输出的格式(就是字段)。 FORMAT 是单个参数，格式为空格分隔或逗号分隔的列表，它提供了一种指定单个输出列的方法。 可以在 man 手册的 [STANDARD FORMAT SPECIFIERS(标准格式说明符)](https://man7.org/linux/man-pages/man1/ps.1.html#STANDARD_FORMAT_SPECIFIERS) 部分中找到所有可用的关键字。
+可以使用 **-o FORMAT** 选项来自定义输出的格式(就是字段)。 FORMAT 是单个参数，格式为空格分隔或逗号分隔的列表，它提供了一种指定单个输出列的方法。 可以在 man 手册的 [STANDARD FORMAT SPECIFIERS(标准格式说明符)](https://man7.org/linux/man-pages/man1/ps.1.html#STANDARD_FORMAT_SPECIFIERS) 部分中找到所有可用的关键字。
 
 ```bash
 # 标题可以根据需要重命名
@@ -149,6 +150,7 @@ root@lichenhao:~# ps -p 38095 -o etime,pid,cmd
 ## Syntax(语法)
 
 **ps \[OPTIONS]**
+
 默认操作显示该 shell 环境下的所有进程
 
 ### OPTIONS
@@ -165,7 +167,7 @@ https://man.cx/ps#heading5
   - **-p, --pid \<PIDList>** # 选择 PIDList 中列出来的进程。多个 PID 以逗号分隔
   - **--ppid \<PIDList>** # 选择 PIDList 中列出来的进程的子进程。多个 PID 以逗号分割
 - 通用选择
-  - **-N, --deselect ** # 取消选择。也可以理解为 反向选择。即，选择“通过 整体选择 与 按列表选择 中选择到的”进程以外的所有进程
+  - **-N, --deselect** # 取消选择。也可以理解为 反向选择。即，选择“通过 整体选择 与 按列表选择 中选择到的”进程以外的所有进程
 
 #### OUTPUT FORMAT CONTROL(输出格式控制)
 

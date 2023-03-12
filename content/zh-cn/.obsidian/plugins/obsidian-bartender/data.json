@@ -588,6 +588,12 @@
       "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/Virtual Network 命令.md",
       "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/Interface 命令.md",
       "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/Snapshot 命令.md"
+    ],
+    "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理": [
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理/_index.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理/KVM_QEMU 管理.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理/多 KVM_QEMU 集中管理.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理/在线热迁移.md"
     ]
   },
   "actionBarOrder": {},

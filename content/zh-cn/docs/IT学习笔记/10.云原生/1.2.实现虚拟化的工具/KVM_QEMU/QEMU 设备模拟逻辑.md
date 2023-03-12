@@ -1,7 +1,7 @@
 ---
 title: "QEMU 设备模拟逻辑"
 linkTitle: "QEMU 设备模拟逻辑"
-weight: 20
+weight: 2
 ---
 
 # 概述

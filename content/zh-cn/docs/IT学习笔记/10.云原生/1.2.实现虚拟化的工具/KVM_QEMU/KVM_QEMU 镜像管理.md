@@ -1,6 +1,6 @@
 ---
 title: KVM/QEMU 镜像管理
-weight: 3
+weight: 4
 ---
 
 # 概述
