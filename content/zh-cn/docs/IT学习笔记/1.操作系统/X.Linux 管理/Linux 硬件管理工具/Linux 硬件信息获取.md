@@ -298,7 +298,7 @@ $ lsusb -d a5c:21e6:112
 Bus 001 Device 003: ID 0a5c:21e6 Broadcom Corp. BCM20702 Bluetooth 4.0 [ThinkPad]
 ```
 
-## Graphic
+## Graphic(图形硬件)
 
 显卡信息在 `/sys/class/drm/` 下，里面还包含了显卡支持输出接口，但只有 `card+integer` 组成的目录才是显卡的，如本机的信息：
 
@@ -361,7 +361,7 @@ $ lspci -k -s 0000:00:02.0
         Kernel modules: i915
 ```
 
-#### Display Monitor
+### Display Monitor(显示器)
 
 显示器的信息目前是从 `edid` 中获取，先确定显示器连接的显卡端口，然后使用 `edid-decode` (需要安装)解析其的 `edid` 文件，就可得到详细信息。如本机是 `card0-LVDS-1` ：
 

@@ -7,8 +7,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
-> - <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_virtualization/index#enabling-virtualization-in-rhel8_virt-getting-started>
+> - [RedHat 官方文档，9-配置和管理虚拟化-开启虚拟化](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/configuring_and_managing_virtualization/assembly_enabling-virtualization-in-rhel-9_configuring-and-managing-virtualization)
 > - [Ubuntu 官方文档，虚拟化介绍](https://ubuntu.com/server/docs/virtualization-introduction)
 
 # 前期准备
@@ -71,6 +70,7 @@ ln -sv /usr/bin/kvm /usr/bin/
 # 其他
 
 yum -y install mesa-libGLES-devel.x86_64 mesa-dri-drivers
+
 若不安装这两个包，当使用 virt-mangaer 工具是，可能会出现如下报错：
 
 ```bash

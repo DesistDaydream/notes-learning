@@ -705,6 +705,18 @@
       "docs/IT学习笔记/10.云原生/2.1.容器/1.Namespaces",
       "docs/IT学习笔记/10.云原生/2.1.容器/2.CGroup",
       "docs/IT学习笔记/10.云原生/2.1.容器/容器开发.md"
+    ],
+    "docs/IT学习笔记/2.编程/API": [
+      "docs/IT学习笔记/2.编程/API/_index.md",
+      "docs/IT学习笔记/2.编程/API/API.md",
+      "docs/IT学习笔记/2.编程/API/Web API 与 REST.md",
+      "docs/IT学习笔记/2.编程/API/Swagger 介绍.md",
+      "docs/IT学习笔记/2.编程/API/Swagger 工具.md",
+      "docs/IT学习笔记/2.编程/API/OpenAPI 介绍.md",
+      "docs/IT学习笔记/2.编程/API/OpenAPI 格式.md",
+      "docs/IT学习笔记/2.编程/API/OpenAPI Tools.md",
+      "docs/IT学习笔记/2.编程/API/Mock API.md",
+      "docs/IT学习笔记/2.编程/API/API 相关工具"
     ]
   },
   "actionBarOrder": {},
