@@ -35,7 +35,7 @@ title: qemu-img
 
 # check - 检查 VM 镜像文件
 
-qemu-img check \[-q] \[-f fmt] \[--output=ofmt] \[-r \[leaks | all]] \[-T src_cache] filename
+**qemu-img check \[-q] \[-f fmt] \[--output=ofmt] \[-r \[leaks | all]] \[-T src_cache] filename**
 
 对 VM 的镜像文件进行检查，只有 qcow2、qed、vdi 格式支持一致性检查。如果正常的话，基本输出信息如下
 
@@ -85,7 +85,7 @@ OPTIONS
 
 ### Syntax(语法)
 
-qemu-img convert \[-c] \[-p] \[-q] \[-n] \[-f fmt] \[-t cache] \[-T src_cache] \[-O output_fmt] \[-o options] \[-s snapshot_name] \[-S sparse_size] filename \[filename2 \[...]] output_filename
+**qemu-img convert \[-c] \[-p] \[-q] \[-n] \[-f fmt] \[-t cache] \[-T src_cache] \[-O output_fmt] \[-o options] \[-s snapshot_name] \[-S sparse_size] filename \[filename2 \[...]] output_filename**
 
 ### EXAMPLE
 
@@ -107,7 +107,7 @@ Image end offset: 1085603840
 
 # info - 显示 VM 镜像文件的信息
 
-info \[-f fmt] \[--output=ofmt] \[--backing-chain] filename
+**info \[-f fmt] \[--output=ofmt] \[--backing-chain] filename**
 
 基本信息如下所示
 
@@ -138,14 +138,14 @@ EXAMPLE
 - 查看 test.qcow2 镜像的信息
   - **qemu-img info test.qcow2**
 
-# resize # 设置 VM 磁盘容量
+# resize - 设置 VM 磁盘容量
 
-**qemu-img resize \[-q] filename \[+ | -]size**
+**qemu-img resize [-q] filename [+ | -]size**
 
 EXAMPLE
 
 - qemu-img resize cirros-0.3.6-x86_64-disk.img +40G # 给 test.qcow2 镜像的磁盘量容量添加 40G
 
-# snapshot # 为 VM 创建、删除、应用、列出快照
+# snapshot - 为 VM 创建、删除、应用、列出快照
 
 **qemu-img snapshot \[-q] \[-l | -a snapshot | -c snapshot | -d snapshot] filename**

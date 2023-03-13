@@ -204,7 +204,7 @@
     ],
     "docs/IT学习笔记/2.编程": [
       "docs/IT学习笔记/2.编程/_index.md",
-      "docs/IT学习笔记/2.编程/2.编程.md",
+      "docs/IT学习笔记/2.编程/编程.md",
       "docs/IT学习笔记/2.编程/解谜计算机科学",
       "docs/IT学习笔记/2.编程/API",
       "docs/IT学习笔记/2.编程/低级编程语言",
@@ -729,6 +729,12 @@
       "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/抽象数据类型",
       "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/复合数据类型",
       "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/进制表示法.md"
+    ],
+    "docs/IT学习笔记/x_标准化术语/Internet(互联网)": [
+      "docs/IT学习笔记/x_标准化术语/Internet(互联网)/_index.md",
+      "docs/IT学习笔记/x_标准化术语/Internet(互联网)/Internet(互联网).md",
+      "docs/IT学习笔记/x_标准化术语/Internet(互联网)/IETF.md",
+      "docs/IT学习笔记/x_标准化术语/Internet(互联网)/W3C.md"
     ]
   },
   "actionBarOrder": {},

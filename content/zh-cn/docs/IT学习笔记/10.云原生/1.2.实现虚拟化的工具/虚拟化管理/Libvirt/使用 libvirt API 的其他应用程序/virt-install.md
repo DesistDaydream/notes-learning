@@ -156,7 +156,7 @@ virt-install --import --name test \
 virt-install --name centos7 \
 --memory 4096 --vcpus 2 \
 --os-variant centos7.0 \
---disk /var/lib/libvirt/images/test/centos7.qcow2,size=10,bus=virtio \
+--disk /var/lib/libvirt/images/test/centos7.qcow2,size=100,bus=virtio \
 --network bridge=br0,model=virtio \
 --graphics vnc,listen=0.0.0.0,port=5911 \
 --noautoconsole \
