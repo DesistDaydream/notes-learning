@@ -14,7 +14,7 @@ sysstat 包包含很多类 UNIX 的应用程序，用以监控系统性能和使
 
 # cifsiostat
 
-# iostat # 报告设备和分区的 I/O 统计数据
+# iostat - 报告设备和分区的 I/O 统计数据
 
 iostat 命令用于通过观察设备活动的时间及其平均传输速率来监视系统 I/O 设备的负载。 iostat 命令生成可用于更改系统配置的报告，以更好地平衡物理磁盘之间的输入/输出负载。
 
@@ -38,12 +38,12 @@ dm-1             0.00    0.00      0.00      0.00     0.00     0.00   0.00   0.0
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/bremrf/1616164910414-5cadf78b-954f-4409-8dfc-e7f9f5b950b3.png)
 
-# iostat # 显示 I/O 状态信息
+# iostat - 显示 I/O 状态信息
 
 **iostat \[OPTIONS] \[INTERVAL \[COUNT]]**
-INTERVAL # 间隔时间，单位是秒，指定 INTERVAL 时，mpstat 根据该时间每隔 INTERVAL 秒输出一次信息，并在最后输出平均值。
 
-- COUNT # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
+- INTERVAL # 间隔时间，单位是秒，指定 INTERVAL 时，mpstat 根据该时间每隔 INTERVAL 秒输出一次信息，并在最后输出平均值。
+    - COUNT # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
 
 OPTIONS
 
@@ -53,12 +53,12 @@ OPTIONS
 
 EXAMPLE
 
-# mpstat # 显示处理器相关的统计信息
+# mpstat - 显示处理器相关的统计信息
 
 **mpstat \[OPTIONS] \[INTERVAL \[COUNT]]**
-INTERVAL # 间隔时间，单位是秒。指定 INTERVAL 时，mpstat 根据该时间每隔 INTERVAL 秒输出一次信息，并在最后输出平均值。
 
-- COUNT # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
+- INTERVAL # 间隔时间，单位是秒。指定 INTERVAL 时，mpstat 根据该时间每隔 INTERVAL 秒输出一次信息，并在最后输出平均值。
+    - COUNT # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
 
 OPTIONS
 
@@ -72,10 +72,10 @@ EXAMPLE
 
 # nfsiostat-sysstat
 
-# pidstat # 显示 Linux 进程的统计信息
+# pidstat - 显示 Linux 进程的统计信息
 
 > 参考：
-> - [Manual(手册)](https://man.cx/pidstat)
+> - [Manual(手册)，pidstat(1)](https://man7.org/linux/man-pages/man1/pidstat.1.html)
 
 pidstat 是一个以 Task(任务) 为主体，显示 Task 相关系统使用情况的工具。
 
@@ -83,7 +83,7 @@ pidstat 是一个以 Task(任务) 为主体，显示 Task 相关系统使用情�
 
 根据命令的不同选项，显示进程的不同信息。
 
-## -d # 报告 I/O 统计信息
+## -d - 报告 I/O 统计信息
 
 ```bash
 ~]$ pidstat -d 1 --human
@@ -101,7 +101,7 @@ Average:      UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
 Average:     1000     16829      0.0B      1.3k      0.0B       0  bash
 ```
 
-## -u # 默认选项。报告进程的 CPU 利用率
+## -u - 默认选项。报告进程的 CPU 利用率
 
 ```bash
 ~]# pidstat
@@ -111,7 +111,7 @@ Linux 4.18.0-193.19.1.el8_2.x86_64 (ansible.tj-test) 	10/27/2020 	_x86_64_	(4 CP
 09:51:15 PM     0         2    0.00    0.00    0.00    0.00    0.00     0  kthreadd
 ```
 
-## -w # 报告进程的上下文切换情况
+## -w - 报告进程的上下文切换情况
 
 ```bash
 ~]# pidstat -w
@@ -121,10 +121,10 @@ Linux 4.18.0-193.19.1.el8_2.x86_64 (ansible.tj-test) 	10/27/2020 	_x86_64_	(4 CP
 10:00:14 PM     0         2      0.02      0.00  kthreadd
 ```
 
-- **cswch/s **# 每秒自愿上下文切换(voluntary context switches)的次数
+- **cswch/s** # 每秒自愿上下文切换(voluntary context switches)的次数
 - **nvcswch** # 每秒非自愿上下文切换(non voluntary context switches)的次数
 
-## -r # 报告进程的内存使用情况统计信息
+## -r - 报告进程的内存使用情况统计信息
 
 ```bash
 ~]# pidstat -r
@@ -134,12 +134,12 @@ Linux 4.18.0-193.28.1.el8_2.x86_64 (lichenhao.bj-net) 	11/18/2020 	_x86_64_	(2 C
 09:58:16 PM     0       664      0.43      0.00   91980    8980   0.23  systemd-journal
 ```
 
-- **minflt/s** #每秒任务执行的次要故障总数，即不需要从磁盘加载内存页面的次要故障总数。
+- **minflt/s** # 每秒任务执行的次要故障总数，即不需要从磁盘加载内存页面的次要故障总数。
 - **majflt/s** # 每秒任务执行的主要故障总数，即需要从磁盘加载内存页面的主要故障总数。
 - **VSZ** # Virtual Size(虚拟大小)。整个任务的虚拟内存使用量，以千字节为单位。
 - **RSS** # Resident Set Size(常驻集大小)。任务使用的未交换的物理内存，以千字节为单位。
 
-## -d # 报告进程的磁盘 I/O 统计信息
+## -d - 报告进程的磁盘 I/O 统计信息
 
 ```bash
 ~]# pidstat -d
@@ -152,9 +152,9 @@ Linux 4.18.0-193.28.1.el8_2.x86_64 (lichenhao.bj-net) 	11/18/2020 	_x86_64_	(2 C
 ## Syntax(语法)
 
 **pidstat \[OPTIONS] \[INTERVAL \[COUNT]]**
-INTERVAL 是间隔时间，单位是秒，指定 INTERVAL 时，mpstat 根据该时间每隔 INTERVAL 秒输出一次信息，并在最后输出平均值。
 
-- **COUNT** # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
+- **INTERVAL** # 间隔时间，单位是秒，指定 INTERVAL 时，mpstat 根据该时间每隔 INTERVAL 秒输出一次信息，并在最后输出平均值。
+    - **COUNT** # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
 
 OPTIONS
 
@@ -166,15 +166,15 @@ EXAMPLE
 
 - **pidstat -u 5 1**
 
-# sadf # 以多种格式显示 sar 工具收集到的数据
+# sadf - 以多种格式显示 sar 工具收集到的数据
 
-# sar # 系统活动报告
+# sar - 系统活动报告
 
 **system activity report(系统活动报告，简称 SAR)**。sar 是以系统为主体，报告系统相关信息的工具，包括 CPU 使用率、RAM 使用情况、磁盘 IO、网络活动状态等等。
 
 根据命令的不同选项，显示不同信息。
 
-## -b # 报告 I/O 和传输速率的统计信息。
+## -b - 报告 I/O 和传输速率的统计信息。
 
 ```bash
 ~]$ sar --human -b 1
@@ -198,11 +198,11 @@ Linux 5.4.0-88-generic (hw-cloud-xngy-jump-server-linux-2) 	10/03/2021 	_x86_64_
 - **bwrtn/s** # Black Written，每秒写入设备的数据总量(以块为单位)
 - **bdscd/s** # Black Discarded，每秒为设备丢弃的丢弃的数据总量(以块为单位)
 
-## -n KEYWORD # 报告网络统计信息
+## -n KEYWORD - 报告网络统计信息
 
 KEYWORD 可用的值有 DEV、EDEV、NFS、NFSD、SOCK、IP、EIP、ICMP、EICMP、TCP、ETCP、UDP、SOCK6、IP6、EIP6、ICMP6、EICMP6、UDP6。当然，也可以用使用 ALL 来报告所有的网络统计信息
 
-### DEV # 报告指定网络设备的统计信息
+### DEV - 报告指定网络设备的统计信息
 
 ```bash
 ~]# sar -n DEV 1
@@ -218,7 +218,7 @@ Linux 4.18.0-193.28.1.el8_2.x86_64 (lichenhao.bj-net) 	11/18/2020 	_x86_64_	(2 C
 - **rxcmp/s** 和 **txcmp/s**  分别表示每秒接收、发送的压缩数据包
 - **rxmcst/s** # 表示每秒接收的多播数据包
 
-### TCP # 报告 TCPv4 网络流量的统计信息。
+### TCP - 报告 TCPv4 网络流量的统计信息。
 
 ```bash
 ~]$ sar -n TCP 1
@@ -245,17 +245,17 @@ Average:         0.00      0.00      2.00      2.25
 ## Syntax(语法)
 
 **sar \[OPTIONS] \[INTERVAL \[COUNT]]**
-INTERVAL # 间隔时间，单位是秒。指定 INTERVAL 时，mpstat 根据该时间每隔 INTERVAL 秒输出一次信息，并在最后输出平均值。
 
-- COUNT # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
+- **INTERVAL** # 间隔时间，单位是秒。指定 INTERVAL 时，mpstat 根据该时间每隔 INTERVAL 秒输出一次信息，并在最后输出平均值。
+    - **COUNT** # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
 
 OPTIONS
 
-- **-p \<CPU\[,CPU2....]>** # 只显示指定的一个或多个 CPU 的信息，以需要表示，多个 CPU 以逗号分割。
+- **-p \<CPU[,CPU2....]>** # 只显示指定的一个或多个 CPU 的信息，以需要表示，多个 CPU 以逗号分割。
 
 EXAMPLE
 
 - 输出 1，3，5，7 这 4 个 CPU 中，idle 小于 10 的 CPU
    - **sar -P 1,3,5,7 1 | tail -n+3 | awk '$NF<10 {print $0}'**
 
-# **tapestat**
+# tapestat

@@ -11,7 +11,7 @@ psmisc 是一个小型的应用程序集合，与 procps-ng 工具集类似，�
 
 该工具集包含包含以下程序(每个标题都是一个)
 
-# fuser # 显示正在使用指定 文件 或 sockets 的进程
+# fuser - 显示正在使用指定 文件 或 sockets 的进程
 
 fuser 使用指定的文件或文件系统显示进程的 PID。 在默认的显示模式下，每个文件名后都有一个字母，表示访问类型：
 
@@ -28,7 +28,7 @@ OPTIONS
 
 - **-m** # 显示使用命名文件系统或块设备的所有进程
 
-# killall # 通过进程名称向指定进程发送信号
+# killall - 通过进程名称向指定进程发送信号
 
 与 kill 命令类似，但是不像 kill 只能指定进程的 PID，而是可以通过进程的名称来发送信号
 
@@ -36,9 +36,9 @@ EXAMPLE：
 
 - killall -0 nginx # 向名为 nginx 的进程发送 0 信号
 
-# peekfd # shows the data travelling over a file descriptor
+# peekfd - shows the data travelling over a file descriptor
 
-# prtstat # 输出一个进程的统计信息
+# prtstat - 输出一个进程的统计信息
 
 # pslog - prints log path(s) of a process
 

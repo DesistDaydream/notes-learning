@@ -14,7 +14,7 @@ perf trace \[OPTIONS]
 
 OPTIONS
 
-- **-e, --expr, --event <SYSCALL>** # 显示指定的系统调用
+- **-e, --expr, --event \<SYSCALL>** # 显示指定的系统调用
 - **-s** # 统计每一次系统调用的执行时间、次数、错误次数
 - **-F,--pf={all | min | maj}** #
--
+

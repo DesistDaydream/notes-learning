@@ -70,7 +70,7 @@ Note：
 - 由于 QUALIFIER 的默认值为 trace。所以 -e trace=sendto,read 也可以写成 -e sendto,read。
 - QUALIFIER 限定词根据功能不通，在 filtering、tampering、Output format 等选项中，有具体的使用说明。
 - 使用 `!` 会否定该组值。比如，-e trace=open 表示仅追踪 open 系统调用；而 -e trace='!open' 表示追踪除了 open 以外的所有系统调用
-  - 注意加单引号，否则无法识别，并报错提示：`-bash: !XXXX: event not found`
+    - 注意加单引号，否则无法识别，并报错提示：`-bash: !XXXX: event not found`
 
 ### Startup 启动选项
 

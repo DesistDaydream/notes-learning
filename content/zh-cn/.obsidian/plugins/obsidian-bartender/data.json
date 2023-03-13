@@ -697,6 +697,14 @@
       "docs/IT学习笔记/2.编程/无法分类的语言/TOML.md",
       "docs/IT学习笔记/2.编程/无法分类的语言/Protobuf.md",
       "docs/IT学习笔记/2.编程/无法分类的语言/按键精灵"
+    ],
+    "docs/IT学习笔记/10.云原生/2.1.容器": [
+      "docs/IT学习笔记/10.云原生/2.1.容器/_index.md",
+      "docs/IT学习笔记/10.云原生/2.1.容器/2.1.容器.md",
+      "docs/IT学习笔记/10.云原生/2.1.容器/Open Containers Initiative(开放容器倡议)",
+      "docs/IT学习笔记/10.云原生/2.1.容器/1.Namespaces",
+      "docs/IT学习笔记/10.云原生/2.1.容器/2.CGroup",
+      "docs/IT学习笔记/10.云原生/2.1.容器/容器开发.md"
     ]
   },
   "actionBarOrder": {},

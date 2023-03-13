@@ -68,7 +68,7 @@ systemctl enable nfs-server --now
 ### 检查一下本地的共享目录
 
 ```bash
-root@common-test:~# showmount -e localhost
+~]# showmount -e localhost
 Export list for localhost:
 /data 172.19.42.0/24
 ```
@@ -95,9 +95,11 @@ sudo apt install nfs-common
 
 先查服务端的共享目录
 
-    [root@node-1 ~]# showmount -e 172.19.42.215
-    Export list for 172.19.42.215:
-    /data 172.19.42.0/24
+```bash
+~]# showmount -e 172.19.42.215
+Export list for 172.19.42.215:
+/data 172.19.42.0/24
+```
 
 在客户端创建目录
 
