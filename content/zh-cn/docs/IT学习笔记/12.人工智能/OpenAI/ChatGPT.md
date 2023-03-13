@@ -105,9 +105,11 @@ DocsGPT 是 GPT 驱动的聊天，用于文档搜索和帮助。
 
 Chrom 插件
 
-https://github.com/wong2/chat-gpt-google-extension
+https://github.com/wong2/chat-gpt-google-extension # 增强搜索，在搜索时显示 ChatGPT 的回答
 
 https://github.com/gragland/chatgpt-chrome-extension
+
+https://chrome.google.com/webstore/detail/monica-%E2%80%94-your-chatgpt-cop/ofpnmcalabcbjgholdjcjblkibolbppb
 
 逆向
 

@@ -717,6 +717,18 @@
       "docs/IT学习笔记/2.编程/API/OpenAPI Tools.md",
       "docs/IT学习笔记/2.编程/API/Mock API.md",
       "docs/IT学习笔记/2.编程/API/API 相关工具"
+    ],
+    "docs/IT学习笔记/2.编程/解谜计算机科学/Function(函数)": [
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Function(函数)/_index.md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Function(函数)/Function(函数).md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Function(函数)/回调函数 callback.md"
+    ],
+    "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)": [
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/_index.md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/Data Type(数据类型) 与 Literal(字面量).md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/抽象数据类型",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/复合数据类型",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/进制表示法.md"
     ]
   },
   "actionBarOrder": {},

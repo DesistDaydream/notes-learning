@@ -1,5 +1,6 @@
 ---
 title: Function(函数)
+weight: 1
 ---
 
 # 概述
