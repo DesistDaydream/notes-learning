@@ -4,7 +4,9 @@ title: Samba 配置详解
 
 # 概述
 
-参考：[man 手册](https://www.systutorials.com/docs/linux/man/5-smb.conf/)
+> 参考：
+> [Manual(手册)](https://www.systutorials.com/docs/linux/man/5-smb.conf/)
+
 Samba 通过配置文件来配置运行时行为。
 
 ## 文件格式

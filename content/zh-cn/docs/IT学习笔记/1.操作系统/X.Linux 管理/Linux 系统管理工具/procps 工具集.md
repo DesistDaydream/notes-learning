@@ -55,7 +55,7 @@ PATTERN(模式) 代指正则表达式的匹配模式。比如 pgrep 根据 PATTE
 **OPTIONS：**
 `()` 表示该选项所适用的工具，若没有括号，则说明选项适用于所有三个工具
 
-- **-SIGNAL, --signal SIGNAL **# (pkill)指定要发送的信号。可以使用数字或信号名称。
+- **-SIGNAL, --signal SIGNAL** # (pkill)指定要发送的信号。可以使用数字或信号名称。
 - **-f, --full** # 这三个程序通常只会对进程名称进行匹配。加上 -f 之后，会对进程的完整命令行进行匹配。
   - 比如 `pgrep -f containerd` 将会出现 `3313 /usr/bin/dockerd --containerd=/run/containerd/containerd.sock` 这种结果。
 - **-l, --list-full** # (pgrep)显示出完整的命令行以及进程 ID
@@ -86,7 +86,6 @@ Note：该命令显示出来的带 `[]` 的进程为内核线程，一般不用�
 ps 命令输出的内容中部分字段的含义说明：
 
 - PID # Process ID(进程标识符)
-  - 
 - PPID # Parent Process ID(父进程标识符)，父进程是创建一个或多个子进程的进程。
 - VSZ # Virtual Memory Size(虚拟内存大小)，包括进程可以访问的所有内存，包括进入交换分区的内容，以及共享库占用的内存。有的地方也称为 total_vm、VIRT
 - RRS # Resident Set Size(实际内存用量)，不包括进入交换分区的内存。RSS 包括共享库占用的内存（只要共享库在内存中）。RSS 包括所有分配的栈内存和堆内存。
@@ -183,7 +182,7 @@ https://man.cx/ps#heading7
 https://man.cx/ps#heading8
 
 - **f,--forest** # 以树状结构显示输出结果。与显示线程的选项冲突
-- **-o \<FORMAT> **# 以自定义的格式 FORMAT 输出信息。FORMAT 是以逗号或空格分隔的参数列表，详见前文
+- **-o \<FORMAT>** # 以自定义的格式 FORMAT 输出信息。FORMAT 是以逗号或空格分隔的参数列表，详见前文
 
 #### THREAD DISPLAY(线程显示)
 

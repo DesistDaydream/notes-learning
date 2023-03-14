@@ -5,9 +5,9 @@ title: strace 工具
 # 概述
 
 > 参考：
-> - [Manual(手册),strace(1)](https://man7.org/linux/man-pages/man1/strace.1.html)
 > - [GitHub 项目，strace/strace](https://github.com/strace/strace)
 > - [官网](https://strace.io/)
+> - [Manual(手册),strace(1)](https://man7.org/linux/man-pages/man1/strace.1.html)
 
 **strace** 是一个用来跟踪 **system calls(系统调用)** 和 **signals(信号)** 的工具。
 
@@ -113,6 +113,8 @@ Note：
 - **-a COLUMN** # 设定列的间隔为 COLUMN，默认为 40。i.e. `=` 与前面的间隔
 - **-o, --output \<FILE>** # 将追踪结果输出到文件中(默认标准错误)。
   - 与 -ff 参数一起使用时，会把每个线程的追踪写到单独的文件中，以 FileName.PID 格式命名。
+- **-q, --quiet=STRING** # 抑制有关附加、分离、个性的消息。当 strace 的输出被重定向到文件中时，会自动添加该选项。
+    - 可用的值有：attach,personality,exit,all。这些可用的值只在 --quiet 选项时可用，我们还可以使用 -q、-qq、-qqq 以添加不同的抑制信息，q 越多，抑制的信息就越多。
 - **-s, --string-limit \<STRSIZE>** # 设定要输出的最大字符串长度为 STRSIZE。`默认值：32`。Note:文件名不作为字符串，并始终完整打印。
   - 示例如下，在 sendto 和 read 系统调用中，参数只显示了 32 个字符。当指定 -s 选项后，可以输出更多字符。
 
@@ -148,7 +150,7 @@ lrwx------ 1 root root 64 Jan 24 10:55 /proc/8675/fd/3 -> 'socket:[80219]'
 ### Statistics 统计选项
 
 - **-c** # 统计每一次系统调用的执行时间、次数、错误次数。输出效果如下：
-  - -c 参数常用来在排障之前，查看当前进程使用了哪些系统调用，然后在后续排障中单独追踪指定的系统调用
+    - -c 参数常用来在排障之前，查看当前进程使用了哪些系统调用，然后在后续排障中单独追踪指定的系统调用
 
 ```bash
 [root@dr-02 keepalived]# strace -p 22863 -c
@@ -178,6 +180,18 @@ strace: Process 22863 attached
 
 # 应用示例
 
+## 设置 strace 命令的运行时间
+
+`strace` 命令本身并不支持指定运行最大时间的选项。但是，你可以使用 `timeout` 命令来限制 `strace` 命令的运行时间。`timeout` 命令可以在指定的时间内运行一个命令，并在超时时终止该命令的执行。
+
+例如，如果你想在 `strace` 命令在 5 秒内运行，你可以使用以下命令：
+
+`timeout 5 strace -p 123456`
+
+这将运行 `<your command>` 命令并使用 `strace` 进行跟踪，但最多只运行 5 秒。如果命令在 5 秒内完成，则 `timeout` 命令将返回该命令的退出状态码。否则，`timeout` 命令将终止该命令并返回一个非零的退出状态码。
+
+## 其他
+
 - 追踪 ls 命令的系统调用情况。
   - **starce ls**
 - 统计 df 命令的系统调用信息。
@@ -194,7 +208,7 @@ strace: Process 22863 attached
 - 文件中的内容如下
 
 ```bash
-[root@dengrui test_dir]# cat strace.file
+~]# cat strace.file
 31090 pread64(227, ""..., 16384, 81920) = 16384 <0.000991>
 31090 pread64(227, ""..., 16384, 65536) = 16384 <0.001292>
 31090 pread64(227, ""..., 16384, 98304) = 16384 <0.000176>

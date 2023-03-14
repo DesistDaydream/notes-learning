@@ -11,7 +11,7 @@ weight: 2
 
 我们可以通过多种方式查看 Memory 信息。
 
-## /proc/memory 文件
+## /proc/meminfo 文件
 
 > 参考：
 > - [RedHat 官方给的解释](https://access.redhat.com/solutions/406773)
@@ -73,6 +73,38 @@ Slab UnReclaim。Slab 的一部分，不可以被 reclaimed(回收)。即使内�
 当前已经分配的内存总量。注意：不是正在使用的，而是已经分配的。
 
 当 overcommit_memory 参数的值为 2 时，该值不能超过 CommitLimit 的值。其余时候该值可以无限大。
+
+### VmallocTotal
+
+### VmallocUsed
+
+### VmallocChunk
+
+### Percpu
+
+### HardwareCorrupted
+
+### AnonHugePages
+
+### CmaTotal
+
+### CmaFree
+
+### HugePages_Total
+
+### HugePages_Free
+
+### HugePages_Rsvd
+
+### HugePages_Surp
+
+### Hugepagesize
+
+### DirectMap4k
+
+### DirectMap2M
+
+### DirectMap1G
 
 ## free 命令
 

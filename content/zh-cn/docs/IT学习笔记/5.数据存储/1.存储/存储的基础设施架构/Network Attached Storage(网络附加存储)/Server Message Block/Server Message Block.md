@@ -1,5 +1,5 @@
 ---
-title: 1.Server Message Block
+title: Server Message Block
 ---
 
 # 概述

@@ -49,10 +49,11 @@ Ceph 是一个开源的分布式存储系统，可以提供 对象存储、快�
 
 ## Ceph 数据写入流程
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/sakrws/1630834243384-b650e1e5-1c84-4846-bdc5-9180a361fb09.png)
 Ceph 集群从 Ceph 的客户端接收到的数据后，将会切分为一个或多个固定大小的 **RADOS Object(RADOS 对象)**。Ceph 使用 **Controlled Replication Under Scalable Hashing(简称 CRUSH)** 算法计算出 RADOS 对象应该放在哪个 **Placement Group(归置组，简称 PG)**，并进一步计算出，应该由哪个 ceph-osd 来处理这个 PG 并将 PG 存储到指定的 OSD 中。ceph-osd 会通过存储驱动器处理 RADOS 对象的 读、写 和 复制操作。
 
 > 注意：当创建完 Ceph 集群后，会有一个默认的 Pool，Pool 是用来对 PG 进行分组的，且 PG 必须属于一个组，不可独立存在。
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/sakrws/1630834243384-b650e1e5-1c84-4846-bdc5-9180a361fb09.png)
 
 RADOS 对象有如下几个部分组成
 
@@ -61,6 +62,7 @@ RADOS 对象有如下几个部分组成
 - **Metadata(元数据)** # 元数据的语义完全取决于 Ceph 客户端。例如，CephFS 使用元数据来存储文件属性，如文件所有者、创建日期、上次修改日期等。
 
 ceph-osd 将数据作为对象存储在平坦的命名空间中 (例如，没有目录层次结构)。对象具有标识符，二进制数据和由一组名称/值对组成的元数据。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/sakrws/1630808425695-75766062-7570-47f0-9ae4-916c7819d113.png)
 
 # RADOS
@@ -100,7 +102,6 @@ Dashboard 模块是一个内置的基于 Web 的 Ceph 管理和监控程序，�
 
 在 Dashboard 模块中，提供了一组用于管理集群的 RESTful 风格的 API 接口。这组 API 位于 `/api` 路径下。详见《[API](</docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed%20Storage(分布式存储)/Ceph/API.md>>)》章节
 
-###
 
 ## Prometheus 模块
 

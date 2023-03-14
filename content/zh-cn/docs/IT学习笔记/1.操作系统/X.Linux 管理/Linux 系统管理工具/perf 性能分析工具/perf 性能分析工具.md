@@ -107,7 +107,7 @@ cd FlameGraph
 
 将 perf record 抓到的记录转换成可读的采样记录
 
-`perf script -i /root/test_dir/perf.data`
+`perf script -i /root/tmp/perf.data`
 
 合并调用栈信息
 
@@ -120,5 +120,5 @@ cd FlameGraph
 上述命令合并一下：
 
 ```bash
-perf script -i /root/test_dir/perf.data | ./stackcollapse-perf.pl --all | ./flamegraph.pl > /root/test_dir/flame.svg
+perf script -i /root/tmp/perf.data | ./stackcollapse-perf.pl --all | ./flamegraph.pl > /root/tmp/flame.svg
 ```

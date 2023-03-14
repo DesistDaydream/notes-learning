@@ -90,7 +90,7 @@ fsck 工具读取该字段的值来决定需要检查的文件系统的检查顺
 - 1 # 根目录应当获得最高的优先权 1,
 - 2 # 其它所有需要被检查的设备设置为 2.
 
-# mount/umount 工具
+# mount 工具
 
 > 参考：
 >
@@ -158,6 +158,18 @@ mount \[-t ] # 查看当前系统下的挂载信息\[查看指定的类型]
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hla4gc/1616167790134-5f30f99c-3a70-44b7-b9c4-6c1cc3f9429f.jpeg)
 
 各段落含义与 fstab 文件相同
+
+# umount 工具
+
+> 参考：
+> - [Manual(手册)，umount(8)](https://man7.org/linux/man-pages/man8/umount.8.html)
+
+## Syntax(语法)
+
+**OPTIONS**
+
+- **-f, --force** # 强制卸载（在无法访问 NFS 系统的情况下）。
+- **-l, --lazy** # 延迟卸载。现在从文件层次结构中分离文件系统，并在它不再忙时立即清除对该文件系统的所有引用。
 
 # systemd 管理 mount
 

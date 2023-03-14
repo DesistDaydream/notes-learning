@@ -628,13 +628,6 @@
       "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/gluster命令.md",
       "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/故障恢复测试.md"
     ],
-    "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/1.Server Message Block": [
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/1.Server Message Block/_index.md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/1.Server Message Block/1.Server Message Block.md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/1.Server Message Block/Samba.md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/1.Server Message Block/Samba 部署.md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/1.Server Message Block/Samba 配置详解.md"
-    ],
     "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker": [
       "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/_index.md",
       "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker 介绍",
@@ -735,6 +728,13 @@
       "docs/IT学习笔记/x_标准化术语/Internet(互联网)/Internet(互联网).md",
       "docs/IT学习笔记/x_标准化术语/Internet(互联网)/IETF.md",
       "docs/IT学习笔记/x_标准化术语/Internet(互联网)/W3C.md"
+    ],
+    "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block": [
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/_index.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Server Message Block.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Samba.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Samba 部署.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Samba 配置详解.md"
     ]
   },
   "actionBarOrder": {},
