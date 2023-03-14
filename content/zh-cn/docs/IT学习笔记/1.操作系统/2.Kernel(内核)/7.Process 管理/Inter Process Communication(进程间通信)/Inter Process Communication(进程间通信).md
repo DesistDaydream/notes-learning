@@ -10,7 +10,7 @@ weight: 1
 > - [Wiki,LPC](https://en.wikipedia.org/wiki/Local_Inter-Process_Communication)
 > - [公众号,小林 Coding-进程间通信](https://mp.weixin.qq.com/s/MnIcTR0KKpgnSoA3xaPUSA)
 
-**Inter Process Communication(进程间通信，简称 IPC) **是一种允许多个进程共享数据的机制。IPC 的两个应用可以被分为客户端和服务端，客户端进程请求数据，服务端响应客户端的数据请求。有一些应用本身既是服务器又是客户端，这在分布式计算中，时常可以见到。这些进程可以运行在同一计算机上或网络连接的不同计算机上。
+**Inter Process Communication(进程间通信，简称 IPC)** 是一种允许多个进程共享数据的机制。IPC 的两个应用可以被分为客户端和服务端，客户端进程请求数据，服务端响应客户端的数据请求。有一些应用本身既是服务器又是客户端，这在分布式计算中，时常可以见到。这些进程可以运行在同一计算机上或网络连接的不同计算机上。
 
 IPC 对微内核和 nano 内核的设计过程非常重要。 微内核减少了内核提供的功能数量。 然后通过 IPC 与服务器通信获得这些功能，与普通的宏内核相比，IPC 的数量大幅增加。
 
@@ -22,9 +22,9 @@ IPC 可以分为如下两类：
 IPC 可以通过多种方式实现：
 
 - **file(文件)** # 多个进程可以通过磁盘上的文件共享数据。
-- **Signal(信号) **# 从一个进程发送到另一个进程的系统消息，通常不用于传输数据，而是用于远程命令伙伴进程。[详见此处](https://www.yuque.com/go/doc/33222681)
-- **pipe(管道) **# 使用标准输入和输出的单向数据通道。写入管道的写入端的数据由操作系统进行缓冲，直到从管道的读取端读取数据为止。通过使用相反“方向”上的两个管道可以实现过程之间的双向通信。详见[exec、xargs、管道等命令](/docs/IT学习笔记/1.操作系统/4.Terminal%20 与%20Shell/exec,xargs,管道符等组合命令.md 与 Shell/exec,xargs,管道符等组合命令.md)
-- **Socket(套接字)** # 计算机领域中数据通信的一种约定，或者说是一种方法，《[Socket(套接字)](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process%20 管理/Inter%20Process%20Communication(进程间通信)/Socket(套接字).md Process Communication(进程间通信)/Socket(套接字).md)》。Socket 又分为两种
+- **Signal(信号)**# 从一个进程发送到另一个进程的系统消息，通常不用于传输数据，而是用于远程命令伙伴进程。[详见此处](https://www.yuque.com/go/doc/33222681)
+- **pipe(管道)**# 使用标准输入和输出的单向数据通道。写入管道的写入端的数据由操作系统进行缓冲，直到从管道的读取端读取数据为止。通过使用相反“方向”上的两个管道可以实现过程之间的双向通信。详见 [exec、xargs、管道等命令](/docs/IT学习笔记/1.操作系统/4.Terminal%20与%20Shell/bash/exec,xargs,管道符等组合命令.md)
+- **Socket(套接字)** # 计算机领域中数据通信的一种约定，或者说是一种方法，《[Socket(套接字)](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process%20管理/Inter%20Process%20Communication(进程间通信)/Socket(套接字)/Socket(套接字).md)》。Socket 又分为两种
   - Unix Domain Socket
   - Network Socket
 - **Shared Memory(共享内存)** #

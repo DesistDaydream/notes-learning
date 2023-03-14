@@ -7,7 +7,7 @@ title: Free Software Foundation(自由软件基金会)
 > 参考：
 > - [Wiki](https://en.wikipedia.org/wiki/Free_Software_Foundation)
 
-**Free Software Foundation(自由软件基金会，简称 FSF) **是一个[符合 501（c）（3）](<https://en.wikipedia.org/wiki/501(c)#501(c)(3)>) [非营利组织](https://en.wikipedia.org/wiki/Non-profit_organization)所创立[理查德·斯托曼](https://en.wikipedia.org/wiki/Richard_Stallman)在 1985 年 10 月 4 日，支持[自由软件运动](https://en.wikipedia.org/wiki/Free_software_movement)，从而促进普遍自由的学习，分发，创建和修改[计算机软件](https://en.wikipedia.org/wiki/Computer_software)，[\[4\]](https://en.wikipedia.org/wiki/Free_Software_Foundation#cite_note-4)组织偏爱在[Copyleft](https://en.wikipedia.org/wiki/Copyleft)（“相同方式共享”）条款下分发的软件，[\[5\]](https://en.wikipedia.org/wiki/Free_Software_Foundation#cite_note-5)例如使用其自己的[GNU 通用公共许可证](https://en.wikipedia.org/wiki/GNU_General_Public_License)。[\[6\]](https://en.wikipedia.org/wiki/Free_Software_Foundation#cite_note-6)所述的 FSF 在波士顿并入，[\[7\]](https://en.wikipedia.org/wiki/Free_Software_Foundation#cite_note-7) [马萨诸塞](https://en.wikipedia.org/wiki/Massachusetts)，[美国](https://en.wikipedia.org/wiki/United_States)，它也基于。[\[8\]](https://en.wikipedia.org/wiki/Free_Software_Foundation#cite_note-FSF_MACorpRegistry-8)
+**Free Software Foundation(自由软件基金会，简称 FSF)** 是一个[符合 501（c）（3）](<https://en.wikipedia.org/wiki/501(c)#501(c)(3)>) [非营利组织](https://en.wikipedia.org/wiki/Non-profit_organization)所创立[理查德·斯托曼](https://en.wikipedia.org/wiki/Richard_Stallman)在 1985 年 10 月 4 日，支持[自由软件运动](https://en.wikipedia.org/wiki/Free_software_movement)，从而促进普遍自由的学习，分发，创建和修改[计算机软件](https://en.wikipedia.org/wiki/Computer_software)，组织偏爱在[Copyleft](https://en.wikipedia.org/wiki/Copyleft)（“相同方式共享”）条款下分发的软件，例如使用其自己的[GNU 通用公共许可证](https://en.wikipedia.org/wiki/GNU_General_Public_License)。所述的 FSF 在波士顿并入， [马萨诸塞](https://en.wikipedia.org/wiki/Massachusetts)，[美国](https://en.wikipedia.org/wiki/United_States)，它也基于。
 
 从成立到 1990 年代中期，FSF 的资金主要用于聘请软件开发人员为[GNU 项目](https://en.wikipedia.org/wiki/GNU_Project)编写[免费软件](https://en.wikipedia.org/wiki/Free_software)。自 1990 年代中期以来，FSF 的员工和志愿者主要致力于解决自由软件运动和自由软件社区的法律和结构问题。
 
@@ -19,37 +19,35 @@ title: Free Software Foundation(自由软件基金会)
 > - [Wiki,GNU](https://en.wikipedia.org/wiki/GNU)
 > - [官网](https://www.gnu.org/)
 
-**GNU** 是一个广泛的[自由软件](https://en.wikipedia.org/wiki/Free_software)集合，它可以作为一个操作系统使用，也可以与其他操作系统一起使用。[\[5\] ](https://en.wikipedia.org/wiki/GNU#cite_note-handbookonopensource-5)[\[6\] ](https://en.wikipedia.org/wiki/GNU#cite_note-6)[\[7\]](https://en.wikipedia.org/wiki/GNU#cite_note-7)使用完整的 GNU 工具导致了操作系统家族的诞生，即俗称的[Linux](https://en.wikipedia.org/wiki/Linux)。[\[8\]](https://en.wikipedia.org/wiki/GNU#cite_note-8)大部分 GNU 是根据[GNU 项目](https://en.wikipedia.org/wiki/GNU_Project)自己的通用公共许可证 ( [GPL](https://en.wikipedia.org/wiki/GNU_General_Public_License) ) 获得许可的。
+**GNU** 是一个广泛的[自由软件](https://en.wikipedia.org/wiki/Free_software)集合，它可以作为一个操作系统使用，也可以与其他操作系统一起使用。使用完整的 GNU 工具导致了操作系统家族的诞生，即俗称的[Linux](https://en.wikipedia.org/wiki/Linux)。大部分 GNU 是根据[GNU 项目](https://en.wikipedia.org/wiki/GNU_Project)自己的通用公共许可证 ( [GPL](https://en.wikipedia.org/wiki/GNU_General_Public_License) ) 获得许可的。
 
-## GNU/Linux 命名争议\[[编辑](https://zh.wikipedia.org/w/index.php?title=GNU/Linux%E5%91%BD%E5%90%8D%E7%88%AD%E8%AD%B0&action=edit&section=0&summary=/*%20top%20*/%20)]
+## GNU/Linux 命名争议
 
-维基百科，自由的百科全书
-[跳到导航](https://zh.wikipedia.org/wiki/GNU/Linux%E5%91%BD%E5%90%8D%E7%88%AD%E8%AD%B0#mw-head)[跳到搜索](https://zh.wikipedia.org/wiki/GNU/Linux%E5%91%BD%E5%90%8D%E7%88%AD%E8%AD%B0#searchInput)
 **GNU/Linux 命名争议**，是在自由及开放源代码软件社区成员内的，关于是应该把使用 GNU 软件与 Linux 内核组合之操作系统称为“GNU/Linux”还是“Linux”的争议。
-**GNU/Linux**这一名称是由[自由软件基金会](https://zh.wikipedia.org/wiki/%E8%87%AA%E7%94%B1%E8%BB%9F%E9%AB%94%E5%9F%BA%E9%87%91%E6%9C%83)的创立者与[GNU 计划](https://zh.wikipedia.org/wiki/GNU%E8%A8%88%E5%8A%83)的发起人[理查德·斯托曼](https://zh.wikipedia.org/wiki/%E7%90%86%E6%9F%A5%E5%BE%B7%C2%B7%E6%96%AF%E6%89%98%E6%9B%BC)所提出的。GNU 的开发者与其支持者，希望以该名称来作为此操作系统的正式名称。他们认为，此操作系统，包括了 GNU 系统软件包与[Linux 核心](https://zh.wikipedia.org/wiki/Linux%E6%A0%B8%E5%BF%83)，使用 GNU/Linux 这个名称，可以良好概括它的主要内容。况且，GNU 项目原本就是以发展一个自由的操作系统为远程项目，但迟迟没有完成。而[Linux 核心](https://zh.wikipedia.org/wiki/Linux%E6%A0%B8%E5%BF%83)的出现刚好可以补足这个缺口。
+
+**GNU/Linux**这一名称是由[自由软件基金会](https://zh.wikipedia.org/wiki/%E8%87%AA%E7%94%B1%E8%BB%9F%E9%AB%94%E5%9F%BA%E9%87%91%E6%9C%83)的创立者与[GNU 计划](https://zh.wikipedia.org/wiki/GNU%E8%A8%88%E5%8A%83)的发起人[理查德·斯托曼](https://zh.wikipedia.org/wiki/%E7%90%86%E6%9F%A5%E5%BE%B7%C2%B7%E6%96%AF%E6%89%98%E6%9B%BC)所提出的。GNU 的开发者与其支持者，希望以该名称来作为此操作系统的正式名称。他们认为，此操作系统，包括了 GNU 系统软件包与[Linux 核心](https://zh.wikipedia.org/wiki/Linux%E6%A0%B8%E5%BF%83)，使用 GNU/Linux 这个名称，可以良好概括它的主要内容。况且，GNU 项目原本就是以发展一个自由的操作系统为远程项目，但迟迟没有完成。而 [Linux 核心](https://zh.wikipedia.org/wiki/Linux%E6%A0%B8%E5%BF%83)的出现刚好可以补足这个缺口。
+
 Linux 内核本身并不是 GNU 计划的一部分，GNU/Linux 这个名称在 Linux 社区中并没有得到一致认同。一些发行版社区例如[Debian](https://zh.wikipedia.org/wiki/Debian)采用了 GNU/Linux 这一名称，但许多 Linux 社区中的成员认为使用 Linux 这一名称是更好的，为此提出了数项理由，主张 Linux 这个名称朗朗上口，且在公众与媒体中更为通用。Linux 内核项目的发起人[林纳斯·托瓦兹](https://zh.wikipedia.org/wiki/%E6%9E%97%E7%BA%B3%E6%96%AF%C2%B7%E6%89%98%E7%93%A6%E5%85%B9)偏好于使用 Linux，但对于 GNU/Linux 这个名字并不强烈反感。
 
-##
-
-### 发音\[[编辑](https://zh.wikipedia.org/w/index.php?title=GNU/Linux%E5%91%BD%E5%90%8D%E7%88%AD%E8%AD%B0&action=edit&section=1)]
+### 发音
 
 GNU 的吉祥物[角马](https://zh.wikipedia.org/wiki/%E8%A7%92%E9%A6%AC)，与 Linux 吉祥物[Tux](https://zh.wikipedia.org/wiki/Tux)合体，代表 GNU/Linux
 “GNU/Linux”[/ɡəˈnuː slæʃ ˈlɪnəks/](https://zh.wikipedia.org/wiki/Help:%E8%8B%B1%E8%AA%9E%E5%9C%8B%E9%9A%9B%E9%9F%B3%E6%A8%99)，在口语时，经常省略掉当中的斜线“/”，[理查德·斯托曼](https://zh.wikipedia.org/wiki/%E7%90%86%E6%9F%A5%E5%BE%B7%C2%B7%E6%96%AF%E6%89%98%E6%9B%BC)建议把斜线（slash）或加（plus）念出来，因为[Linux 核心](https://zh.wikipedia.org/wiki/Linux%E6%A0%B8%E5%BF%83)并不属于 GNU 项目软件[\[1\]](https://zh.wikipedia.org/wiki/GNU/Linux%E5%91%BD%E5%90%8D%E7%88%AD%E8%AD%B0#cite_note-1)。
 
-### 概论\[[编辑](https://zh.wikipedia.org/w/index.php?title=GNU/Linux%E5%91%BD%E5%90%8D%E7%88%AD%E8%AD%B0&action=edit&section=2)]
+### 概论
 
 GNU 计划始于 1984 年，它的最终的目标是完成一套完全自由的[操作系统](https://zh.wikipedia.org/wiki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F)。到 1991 年，Linux 内核的第一个版本公开发行时，GNU 计划已经完成了除操作系统内核之外的大部分软件，其中包括了[Shell](https://zh.wikipedia.org/wiki/Shell)程序（[Bash](https://zh.wikipedia.org/wiki/Bash)），[C 语言](https://zh.wikipedia.org/wiki/C%E8%AF%AD%E8%A8%80)程序库（[Glibc](https://zh.wikipedia.org/wiki/Glibc)）以及一个 C 语言[编译器](https://zh.wikipedia.org/wiki/%E7%BC%96%E8%AF%91%E5%99%A8)（[Gcc](https://zh.wikipedia.org/wiki/Gcc)）等等。[林纳斯·托瓦兹](https://zh.wikipedia.org/wiki/%E6%9E%97%E7%B4%8D%E6%96%AF%C2%B7%E6%89%98%E7%93%A6%E8%8C%B2)和其他早期的 Linux 开发人员使用了这些软件，而完成了[Linux](https://zh.wikipedia.org/wiki/Linux)操作系统。正是由于 Linux 使用了很多的 GNU 程序，理查德·斯托曼认为将该操作系统称为“GNU/Linux”比较恰当。
 Linux 内核是在[GNU 通用公共许可证](https://zh.wikipedia.org/wiki/GNU%E9%80%9A%E7%94%A8%E5%85%AC%E5%85%B1%E8%AE%B8%E5%8F%AF%E8%AF%81)下发行的。它并不是[GNU 计划](https://zh.wikipedia.org/wiki/GNU%E8%A8%88%E5%8A%83)的一部分。一些人拒绝使用“GNU/Linux”作为操作系统名称的人认为 Linux 朗朗上口，短而好记，而且斯托曼直到 1990 年代中期 Linux 开始流行后才要求更名。
 有部分[Linux 发行版](https://zh.wikipedia.org/wiki/Linux%E5%8F%91%E8%A1%8C%E7%89%88)，例如[Debian](https://zh.wikipedia.org/wiki/Debian)，采用了“GNU/Linux”的称呼。但大多数 Linux 发行版制作团队依然将操作系统称为 Linux。有些人认为“操作系统”一词指的只是系统的内核，而其他程序都只能算是[应用软件](https://zh.wikipedia.org/wiki/%E5%BA%94%E7%94%A8%E8%BD%AF%E4%BB%B6)，这么一来，该操作系统的内核应叫 Linux。
 在这两个主要名称之外，也有其他名称的提议。1992 年，Yggdrasil Linux 主张命名为 Linux/GNU/X，因为除了 GNU 计划软件之外，Linux 还采用了[X 视窗](https://zh.wikipedia.org/wiki/X%E8%A6%96%E7%AA%97)。
 
-### 历史\[[编辑](https://zh.wikipedia.org/w/index.php?title=GNU/Linux%E5%91%BD%E5%90%8D%E7%88%AD%E8%AD%B0&action=edit&section=3)]
+### 历史
 
 1992 年，Yggdrasil Linux 提出“GNU/Linux/X”这个名称。
 1992 年，在[Usenet](https://zh.wikipedia.org/wiki/Usenet)及邮件列表讨论中，首次有人使用“GNU/Linux”这个名称[\[2\]](https://zh.wikipedia.org/wiki/GNU/Linux%E5%91%BD%E5%90%8D%E7%88%AD%E8%AD%B0#cite_note-2)。“GNU+Linux”这个名称，则可以追溯到 1993 年[\[3\]](https://zh.wikipedia.org/wiki/GNU/Linux%E5%91%BD%E5%90%8D%E7%88%AD%E8%AD%B0#cite_note-3) 。
 1994 年，[Debian](https://zh.wikipedia.org/wiki/Debian)项目开始使用“GNU/Linux”来称呼它们自己[\[4\]](https://zh.wikipedia.org/wiki/GNU/Linux%E5%91%BD%E5%90%8D%E7%88%AD%E8%AD%B0#cite_note-4)[\[5\]](https://zh.wikipedia.org/wiki/GNU/Linux%E5%91%BD%E5%90%8D%E7%88%AD%E8%AD%B0#cite_note-5)。
 
-### GNU/Linux 支持者的观点\[[编辑](https://zh.wikipedia.org/w/index.php?title=GNU/Linux%E5%91%BD%E5%90%8D%E7%88%AD%E8%AD%B0&action=edit&section=4)]
+### GNU/Linux 支持者的观点
 
 [理查德·斯托曼](https://zh.wikipedia.org/wiki/%E7%90%86%E6%9F%A5%E5%BE%B7%C2%B7%E6%96%AF%E6%89%98%E6%9B%BC)认为：
 
@@ -68,7 +66,7 @@ Linux 内核是在[GNU 通用公共许可证](https://zh.wikipedia.org/wiki/GNU%
 
 [理查德·斯托曼](https://zh.wikipedia.org/wiki/%E7%90%86%E6%9F%A5%E5%BE%B7%C2%B7%E6%96%AF%E6%89%98%E6%9B%BC)认为：“GNU/Linux 这个名字，承认我们的理想，在创建我们社区上所扮演的角色，而且帮助大众认知到这些理想的实际上的重要性。”[\[9\]](https://zh.wikipedia.org/wiki/GNU/Linux%E5%91%BD%E5%90%8D%E7%88%AD%E8%AD%B0#cite_note-10)，这与 Linux 核心开发者，关心“技术优势”超过“自由”，可以形成对比[\[10\]](https://zh.wikipedia.org/wiki/GNU/Linux%E5%91%BD%E5%90%8D%E7%88%AD%E8%AD%B0#cite_note-11)[\[11\]](https://zh.wikipedia.org/wiki/GNU/Linux%E5%91%BD%E5%90%8D%E7%88%AD%E8%AD%B0#cite_note-12)。
 
-### Linux 支持者的观点\[[编辑](https://zh.wikipedia.org/w/index.php?title=GNU/Linux%E5%91%BD%E5%90%8D%E7%88%AD%E8%AD%B0&action=edit&section=5)]
+### Linux 支持者的观点
 
 [埃里克·雷蒙](https://zh.wikipedia.org/wiki/%E5%9F%83%E9%87%8C%E5%85%8B%C2%B7%E9%9B%B7%E8%92%99)曾说：
 

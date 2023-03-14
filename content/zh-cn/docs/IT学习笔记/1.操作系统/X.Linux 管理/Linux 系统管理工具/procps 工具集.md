@@ -7,7 +7,7 @@ title: procps 工具集
 > 参考：
 > - [GitLab 项目，procps-ng/procps](https://gitlab.com/procps-ng/procps)
 
-procps 是一组命令行和全屏实用程序，它们从伪文件系统(/proc)获取信心，该文件系统为内核数据结构提供了一个简单的接口。procps 程序通常集中在描述系统上运行的进程的结构上。包括以下程序(每个标题都是一个程序)
+procps 是一组命令行和全屏实用程序，它们主要从 [Proc 文件系统](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/特殊文件系统/Proc%20File%20System.md) 中获取信心，该文件系统为内核数据结构提供了一个简单的接口。procps 程序通常集中在描述系统上运行的进程的结构上。包括以下程序(每个标题都是一个程序)
 
 Note：该工具集就算是最小化安装的 linux 发行版系统也是默认包含的~
 
@@ -57,7 +57,7 @@ PATTERN(模式) 代指正则表达式的匹配模式。比如 pgrep 根据 PATTE
 
 - **-SIGNAL, --signal SIGNAL** # (pkill)指定要发送的信号。可以使用数字或信号名称。
 - **-f, --full** # 这三个程序通常只会对进程名称进行匹配。加上 -f 之后，会对进程的完整命令行进行匹配。
-  - 比如 `pgrep -f containerd` 将会出现 `3313 /usr/bin/dockerd --containerd=/run/containerd/containerd.sock` 这种结果。
+    - 比如 `pgrep -f containerd` 将会出现 `3313 /usr/bin/dockerd --containerd=/run/containerd/containerd.sock` 这种结果。
 - **-l, --list-full** # (pgrep)显示出完整的命令行以及进程 ID
 - **-t, --terminal \<TERM,...>** # 仅匹配使用指定终端的进程。终端名称不用使用绝对路径。
 - **-x, --exact** # 精确匹配。PATTERN 必须与 进程名称 或 进程命令行 完全对应上才会被匹配到。
@@ -72,7 +72,7 @@ PATTERN(模式) 代指正则表达式的匹配模式。比如 pgrep 根据 PATTE
   - **pkill -kill -t pts/1**
   - 注意：想要获取一个用户所使用的终端，可以通过 [procps 包中的 w 工具](#hq2tD)即可
 
-# pmap - Report memory map of a process
+# pmap - 报告进程的内存映射
 
 # ps - 报告进程的信息
 
@@ -268,21 +268,9 @@ root     17365 17325  0 09:23 pts/0    R+     0:00          \_ ps --deselect -p 
 
 # snice - Renice a process
 
-# sysctl # 在运行时读取或写入内核参数
+# sysctl - 在运行时读取或写入内核参数
 
-**sysctl \[OPTIONS] \[VARIABLE\[=VALUE]] \[...]**
-在运行环境中配置内核参数。VARIABLE 为内核的一个变量
-
-OPTIONS
-
-- **-a** #显示所有变量
-- **-p \[/PATH/TO/FILE]** #从文件中读取值,默认文件为/etc/sysctl.conf。可以指定从哪个文件来读取参数，可使用通配符。
-- **-w** # 允许写一个值到变量中
-
-## EXAMPLE
-
-- sysctl -w net.ipv4.ip_forward=1 #开启 IP 转发模式
-- sysctl -p /etc/sysctl.d/\* #从 sysctl.d 目录中读取所有文件的内容加载到内核中
+详见 [sysctl](/docs/IT学习笔记/1.操作系统/X.Linux%20管理/Linux%20内核管理工具/sysctl.md)
 
 # tload - Graphical representation of system load average
 
