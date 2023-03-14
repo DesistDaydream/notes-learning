@@ -74,11 +74,15 @@ Slab UnReclaim。Slab 的一部分，不可以被 reclaimed(回收)。即使内�
 
 当 overcommit_memory 参数的值为 2 时，该值不能超过 CommitLimit 的值。其余时候该值可以无限大。
 
-### VmallocTotal
+### VmallocXXX
 
-### VmallocUsed
+参考：<https://zhuanlan.zhihu.com/p/77827102>
 
-### VmallocChunk
+- VmallocTotal
+- VmallocUsed
+- VmallocChunk
+
+注意：**VmallocTotal 会非常大，这是正常的**
 
 ### Percpu
 
@@ -86,25 +90,24 @@ Slab UnReclaim。Slab 的一部分，不可以被 reclaimed(回收)。即使内�
 
 ### AnonHugePages
 
-### CmaTotal
+### CmaXXX
 
-### CmaFree
+- CmaTotal
+- CmaFree
 
-### HugePages_Total
+### HugePagesXXX
 
-### HugePages_Free
+- HugePages_Total
+- HugePages_Free
+- HugePages_Rsvd
+- HugePages_Surp
+- Hugepagesize
 
-### HugePages_Rsvd
+### DirectMapXXX
 
-### HugePages_Surp
-
-### Hugepagesize
-
-### DirectMap4k
-
-### DirectMap2M
-
-### DirectMap1G
+- DirectMap4k
+- DirectMap2M
+- DirectMap1G
 
 ## free 命令
 

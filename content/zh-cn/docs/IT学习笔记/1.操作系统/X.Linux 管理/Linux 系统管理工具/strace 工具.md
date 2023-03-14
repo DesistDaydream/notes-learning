@@ -119,10 +119,10 @@ Note：
   - 示例如下，在 sendto 和 read 系统调用中，参数只显示了 32 个字符。当指定 -s 选项后，可以输出更多字符。
 
 ```bash
-[root@dr-02 keepalived]# strace -p 22863 -e trace=sendto,read
+~]# strace -p 22863 -e trace=sendto,read
 sendto(6, "GET / HTTP/1.0\r\nUser-Agent: Keep"..., 71, 0, NULL, 0) = 71
 read(6, "HTTP/1.1 426 Upgrade Required\r\nd"..., 4096) = 129
-[root@dr-02 keepalived]# strace -p 22863 -s 1000 -e trace=sendto,read
+~]# strace -p 22863 -s 1000 -e trace=sendto,read
 strace: Process 22863 attached
 sendto(7, "GET / HTTP/1.0\r\nUser-Agent: KeepAliveClient\r\nHost: 10.0.9.213:50080\r\n\r\n", 71, 0, NULL, 0) = 71
 read(7, "HTTP/1.1 426 Upgrade Required\r\ndate: Fri, 24 Jul 2020 07:53:01 GMT\r\nserver: istio-envoy\r\nconnection: close\r\ncontent-length: 0\r\n\r\n", 4096) = 129
