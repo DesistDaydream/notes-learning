@@ -19,6 +19,7 @@ title: Docker Image
 ## [Container Image 的分层结构](http://www.cnblogs.com/CloudMan6/p/6806193.html)(联合文件系统)
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ma1cb7/1616121959962-5b74016a-126f-4a55-a37f-f93631fd335c.png)
+
 Container Image 采用分层结构，最底层为 bootfs，其它为 rootfs
 
 1. bootfs：用于系统引导的文件系统，包括 bootloader 和 kernel，Container 启动完成后会被卸载以节约内存资源
@@ -36,7 +37,9 @@ Container Image 采用分层结构，最底层为 bootfs，其它为 rootfs
 ## 可写(writable)的层(layers)
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ma1cb7/1616121959993-37ba6cb0-18ec-495b-84c0-72e941c5a240.png)
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ma1cb7/1616121960020-2c73e0a5-a7e5-4e71-9907-d098c5233d30.png)
+
 当容器启动时，一个新的“可读写”层被加载到镜像的顶部。这一层通常被称作“容器层”，“容器层”之下的都叫“镜像层”。位于下层的 image 称为父镜像(parent image)，最底层的称为基础镜像(base image)
 
 所有对容器的改动 - 无论添加、删除、还是修改文件都只会发生在容器层中。
@@ -60,20 +63,24 @@ Container Image 采用分层结构，最底层为 bootfs，其它为 rootfs
 
 比如当我获取一个镜像时，可以看到下面的信息
 
-    [root@master overlay2]# docker pull lchdzh/network-test:v2.0
-    v2.0: Pulling from lchdzh/network-test
-    f34b00c7da20: Pull complete # 镜像第一层
-    b248a5455a16: Pull complete # 镜像第二层
-    beaf4c6c50c6: Pull complete # 镜像第三层
-    Digest: sha256:b27d98887f62c0cf28bc8707ee2de39f8c753afbd047e910e6f1cf2670ae141b
-    Status: Downloaded newer image for lchdzh/network-test:v2.0
-    docker.io/lchdzh/network-test:v2.0
+```bash
+[root@master overlay2]# docker pull lchdzh/network-test:v2.0
+v2.0: Pulling from lchdzh/network-test
+f34b00c7da20: Pull complete # 镜像第一层
+b248a5455a16: Pull complete # 镜像第二层
+beaf4c6c50c6: Pull complete # 镜像第三层
+Digest: sha256:b27d98887f62c0cf28bc8707ee2de39f8c753afbd047e910e6f1cf2670ae141b
+Status: Downloaded newer image for lchdzh/network-test:v2.0
+docker.io/lchdzh/network-test:v2.0
+```
 
 在获取镜像时可以看到，一共有三个层的镜像需要下载。
 
 而当容器运行时，我们通过 mount 命令可以看到如下内容
 
-    overlay on /var/lib/docker/overlay2/XXXXXXX/merged type overlay (rw,relatime,lowerdir=/var/lib/docker/overlay2/l/XFVMRG3WBD4RLHJ73V5DQHSCZ5:/var/lib/docker/overlay2/l/PZG7BURXDF2DQ4FF54XUEGZE6A:/var/lib/docker/overlay2/l/L4GF2CGQ7LA6LAACXSSE5CMC4P:/var/lib/docker/overlay2/l/6XYKKSJHBNHYSTQMCETDRWL2AA,upperdir=/var/lib/docker/overlay2/7b64f08bef3ca5ab8a2aa0fa0b124b4e55f3f98f421d0cfe7dab271447cb77a2/diff,workdir=/var/lib/docker/overlay2/7b64f08bef3ca5ab8a2aa0fa0b124b4e55f3f98f421d0cfe7dab271447cb77a2/work)
+```bash
+overlay on /var/lib/docker/overlay2/XXXXXXX/merged type overlay (rw,relatime,lowerdir=/var/lib/docker/overlay2/l/XFVMRG3WBD4RLHJ73V5DQHSCZ5:/var/lib/docker/overlay2/l/PZG7BURXDF2DQ4FF54XUEGZE6A:/var/lib/docker/overlay2/l/L4GF2CGQ7LA6LAACXSSE5CMC4P:/var/lib/docker/overlay2/l/6XYKKSJHBNHYSTQMCETDRWL2AA,upperdir=/var/lib/docker/overlay2/7b64f08bef3ca5ab8a2aa0fa0b124b4e55f3f98f421d0cfe7dab271447cb77a2/diff,workdir=/var/lib/docker/overlay2/7b64f08bef3ca5ab8a2aa0fa0b124b4e55f3f98f421d0cfe7dab271447cb77a2/work)
+```
 
 这就是那个读写层，这就说明当一个容器运行的时候，会在 docker 的存储类型(这里是 overlay2)目录中，创建一个 XXX/merged 的目录，如果通过 docker exec 进入容器的话，会发现容器中的目录内容与该目录一模一样，并且如果在宿主机上的挂载目录修改文件，同样会影响到容器中。
 
@@ -106,15 +113,15 @@ dockerd 和 registry 服务器之间的协议为 Registry HTTP API V2。
 在上述四部分中，有多个 XXXID 来标识 docker image 的各种信息
 
 1. **imageID** # 镜像的唯一标志，根据镜像的元数据配置文件采用 sha256 算法计算获得
-   1. imageID 一般可以在 ${DockerRootDir}/image/${StorageDriver}/repositories.json 文件中找到
-   2. 镜像的 configuration 文件就是以 imageID 命名，一般保存在 ${DockerRootDir}/image/${StorageDriver}/imagedb/content/sha256/ 目录下
+   1. imageID 一般可以在 `${DockerRootDir}/image/${StorageDriver}/repositories.json` 文件中找到
+   2. 镜像的 configuration 文件就是以 imageID 命名，一般保存在 `${DockerRootDir}/image/${StorageDriver}/imagedb/content/sha256/` 目录下
 2. **diffID** # 镜像层的校验 ID，根据该镜像层的打包文件校验获得
    1. diffID 一般在 configuration 文件的 .rootfs.diff_ids 字段中找到
 3. **chainID** # docker 内容寻址机制采用的索引 ID，其值根据当前层和所有父层的 diffID(或父层的 chainID) 计算获得
-   1. chainID 计算完成后，一般可以在 ${DockerRootDir}/image/${StorageDriver}/layerdb/sha256/ 目录中找到 chainID 的同名目录
-4. **cacheID**# 下载 layer 时、创建容器后产生可写 layers 时，随机生成的 uuid，用于索引镜像层
+   1. chainID 计算完成后，一般可以在 `${DockerRootDir}/image/${StorageDriver}/layerdb/sha256/` 目录中找到 chainID 的同名目录
+4. **cacheID** # 下载 layer 时、创建容器后产生可写 layers 时，随机生成的 uuid，用于索引镜像层
    1. 在 chainID 的目录中，可以找到 image 的 cache-id 文件，文件内容就是 cacheID。
-   2. 然后在 ${DockerRootDir}/${StorageDriver}/ 目录中找到与 cacheID 同名的目录，这些目录中存储了镜像层的所有数据
+   2. 然后在 `${DockerRootDir}/${StorageDriver}/` 目录中找到与 cacheID 同名的目录，这些目录中存储了镜像层的所有数据
    3. 至于创建容器后生成的可写 layers 的 cacheID 信息，一般是保存在容器相关的信息文件中的，比如容器的状态文件、容器的可写层的信息、系统的 mount 信息等等地方，都会有相关记录
 5. **digest** # 对于某些 image 来说，可能在发布之后还会做一些更新，比如安全方面的，这时虽然镜像的内容变了，但镜像的名称和 tag 没有变，所以会造成前后两次通过同样的名称和 tag 从服务器得到不同的两个镜像的问题，于是 docker 引入了镜像的 digest 的概念，一个镜像的 digest 就是镜像的 manifes 文件的 sha256 码，当镜像的内容发生变化的时候，即镜像的 layer 发生变化，从而 layer 的 sha256 发生变化，而 manifest 里面包含了每一个 layer 的 sha256，所以 manifest 的 sha256 也会发生变化，即镜像的 digest 发生变化，这样就保证了 digest 能唯一的对应一个镜像
 

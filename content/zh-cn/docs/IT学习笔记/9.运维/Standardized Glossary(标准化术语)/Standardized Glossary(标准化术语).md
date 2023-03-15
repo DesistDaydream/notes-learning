@@ -155,7 +155,7 @@ e. 主机功能编号
 - pdu Power Distribution Unit
 - ups Uninterruptible Power Supply
 
-\##参考资料
+## 参考资料
 [1. 怎么制定一套合适的服务器命名方案](https://cloud.tencent.com/developer/article/1114482)
 \[2. Airline and Location Code Search]https://www.iata.org/en/publications/directories/code-search/?airport.search=shenzhen
 [3. 我如何标记自己的公有云服务器实例](https://www.jianshu.com/p/9cxmD4)

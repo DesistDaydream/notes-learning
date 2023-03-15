@@ -4,7 +4,7 @@ title: server 组
 
 #
 
-BGREWRITEAOF - #Asynchronously rewrite the append-only file
+BGREWRITEAOF - # Asynchronously rewrite the append-only file
 
 BGSAVE -
 
@@ -88,7 +88,7 @@ since: 2.8.13
 
 EXAMPLE
 
-- **config get \* **# 获取所有配置参数的值
+- **config get \***# 获取所有配置参数的值
 
 - **confige get maxmemory** # 获取 maxmemory 配置参数的值
 

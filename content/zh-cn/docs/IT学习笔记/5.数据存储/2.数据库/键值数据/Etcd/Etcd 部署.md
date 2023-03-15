@@ -5,6 +5,7 @@ title: Etcd 部署
 # 概述
 
 > 参考：
+>
 > - [官方文档](https://etcd.io/docs/latest/op-guide/container/)
 
 etcd 可以通过多种方式部署。如果要启动 etcd 集群，则每种部署方式，都需要配置最基本标志为以下几个：
@@ -138,7 +139,7 @@ make 自动生成：<https://github.com/etcd-io/etcd/tree/master/hack/tls-setup>
 
 \--cert-file=/etc/kubernetes/pki/etcd/server.crt # 用于与 etcd 的 SSL / TLS 连接的证书。设置此选项后，advertise-client-urls 可以使用 HTTPS 模式。
 
-\--key-file=/etc/kubernetes/pki/etcd/server.key #证书密钥。必须未加密。
+\--key-file=/etc/kubernetes/pki/etcd/server.key # 证书密钥。必须未加密。
 
 \--trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt #受信任的证书颁发机构。
 

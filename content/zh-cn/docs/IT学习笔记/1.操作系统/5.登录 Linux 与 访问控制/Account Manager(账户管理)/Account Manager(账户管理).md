@@ -94,12 +94,12 @@ OPTIONS：
 - -**d** # 指定该用户的家目录，默认为 /home 目录下的与用户名同名的文件夹
 - **-e** # 指定账号的失效日期，日期格式为 MM/DD/YY，例如 06/30/12。缺省表示永久有效。
 - -f # 指定在密码过期后多少天即关闭该账号。如果为 0 账号立即被停用；如果为-1 则账号一直可用。默认值为-1.
-- **-G, --groups <GROUPS>** # 指定用户所属的附加群组。
-- -l #不要把用户添加到 lastlog 和 failog 中, 这个用户的登录记录不需要记载
-- -M #不要自动建立用户的登入目录。
-- -n #取消建立以用户名称为名的群组。
+- **-G, --groups \<GROUPS>** # 指定用户所属的附加群组。
+- -l # 不要把用户添加到 lastlog 和 failog 中, 这个用户的登录记录不需要记载
+- -M # 不要自动建立用户的登入目录。
+- -n # 取消建立以用户名称为名的群组。
 - -p # PASSWORD 指定新用户的密码
-- -r #建立一个系统帐号
+- -r # 建立一个系统帐号
 - -s # 指定用户登入后所使用的 shell。默认值为/bin/bash。
 
 EXAMPLE：
@@ -141,7 +141,7 @@ EXAMPLE
 OPTIONS：
 
 - **-a, --append GROUP** # 将用户追加至上边 -G 中指定附加组中，并不从其它组中删除此用户
-- **-c, --comment <STRING>** # GECOS 字段的新值
+- **-c, --comment \<STRING>** # GECOS 字段的新值
 - **-d, --home \<HOME_DIR>** # 用户的新主目录
 - **-e, --expiredate \<EXPIRE_DATE>** # 设定帐户过期的日期为 EXPIRE_DATE
 - **-f, --inactive INACTIVE** # 过期 INACTIVE 天数后，设定密码为失效状态
@@ -210,8 +210,8 @@ OPTIONS
 
 EXAMPLE
 
-- whoami #要查看当前登录用户的用户名
-- who am i #表示打开当前伪终端的用户的用户名，可以简写为 who
+- whoami # 要查看当前登录用户的用户名
+- who am i # 表示打开当前伪终端的用户的用户名，可以简写为 who
 
 who
 
@@ -243,7 +243,7 @@ passwd 软件包将会记录用户上次更改密码的时间、应该间隔多�
 
 **OPTIONS**
 
-- **-d, --lastday <INT>** # 设置上次更改密码的日期。值是从 1970 年 1 月 1 日开始到某年某月某日的天数。
+- **-d, --lastday \<INT>** # 设置上次更改密码的日期。值是从 1970 年 1 月 1 日开始到某年某月某日的天数。
   - 若指定空值，则表示从没修改过密码，即 -l 选项查看的第一行的值为 never。
   - 若指定 0，则用户再次登录时，则会被强制要求立刻修改密码，否则无法登录
 - **-l, --list** # 显示账户的老化信息
@@ -259,11 +259,11 @@ Maximum number of days between password change  : 99999
 Number of days of warning before password expires : 7
 ```
 
-- **-m, --mindays <INT>** # 密码可以修改的最小间隔天数。如果 INT 为 0，则表示不用等待，任何时候都可以修改密码
+- **-m, --mindays \<INT>** # 密码可以修改的最小间隔天数。如果 INT 为 0，则表示不用等待，任何时候都可以修改密码
   - 对应 shadow 文件中的第 4 个字段 minimum password age
-- **-M, --maxdays <INT>** #
+- **-M, --maxdays \<INT>** #
   - 对应 shadow 文件中的第 5 个字段 maximum password age
-- **-W, --warndays <INT>** #
+- **-W, --warndays \<INT>** #
   - 对应 shadow 文件中的第 6 个字段 password warning period
 
 ## pwck

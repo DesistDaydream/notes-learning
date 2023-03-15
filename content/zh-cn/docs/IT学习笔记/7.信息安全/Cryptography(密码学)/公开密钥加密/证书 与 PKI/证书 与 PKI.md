@@ -6,6 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
+>
 > - [Wiki,Public Key Certificate](https://en.wikipedia.org/wiki/Public_key_certificate)
 > - [Wiki,PKI](https://en.wikipedia.org/wiki/Public_key_infrastructure)
 > - [Wiki,CSR](https://en.wikipedia.org/wiki/Certificate_signing_request)
@@ -163,7 +164,7 @@ CAB Forum Baseline Requirements 4.3.1 明确规定：一个 Web PKI CA 的 root 
 
 ## Certificate Signing Request(证书签名请求)
 
-在 PKI 系统中，**Certificate Signing Request(证书签名请求，简称 CSR) **是申请人发送到 PKI 的注册机构，用来申请**公钥证书**的一种消息。
+在 PKI 系统中，**Certificate Signing Request(证书签名请求，简称 CSR)**是申请人发送到 PKI 的注册机构，用来申请**公钥证书**的一种消息。
 
 CSR 最常见的格式是 [PKCS](https://en.wikipedia.org/wiki/PKCS)＃10 规范；另一个是某些[浏览器](https://en.wikipedia.org/wiki/Web_browser)生成的签名公钥和质询 [SPKAC](https://en.wikipedia.org/wiki/SPKAC) 格式。
 
@@ -354,7 +355,7 @@ OCSP stapling 是 OCSP 的一个变种，目的是解决以上提到的那些问
 
 attestation 包含在 subscriber 和 RP 的 TLS handshake (“stapled to” the certificate) 中。 这给 RP 提供了相对比较及时的撤销状态，而不用每次都去查询 OCSP responder。 subscriber 可以在 signed OCSP response 过期之前多次使用它。这减少了 OCSP 的负担，也解决了 OCSP 的隐私问题。
 
-但是，所有这些东西其实最终都像是一个 **鲁布·戈德堡装置（Rube Goldberg Device） **，
+但是，所有这些东西其实最终都像是一个 **鲁布·戈德堡装置（Rube Goldberg Device）**，
 
 > 鲁布·戈德堡机械（Rube Goldberg machine）是一种被设计得过度复杂的机械组合，以 迂回曲折的方法去完成一些其实是非常简单的工作，例如倒一杯茶，或打一只蛋等等。 设计者必须计算精确，令机械的每个部件都能够准确发挥功用，因为任何一个环节出错 ，都极有可能令原定的任务不能达成。
 > 解释来自 [知乎](https://www.zhihu.com/topic/20017497/intro)。
@@ -385,7 +386,7 @@ attestation 包含在 subscriber 和 RP 的 TLS handshake (“stapled to” the 
 
 证书文件格式：
 
-1. XXX.pem #证书相关文件标准格式
+1. XXX.pem # 证书相关文件标准格式
 2. XXX.key #明确指明这是一个密钥文件
 3. XXX.csr #Certificate signing request。证书签署请求文件
 4. XXX.crt #明确指明这是一个证书文件

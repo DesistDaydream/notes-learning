@@ -173,6 +173,6 @@ crontab -e
 
 12 Oct 17:25:01 ntpdate\[2784]: step time server 132.163.4.103 offset 1147751.472254 sec
 
-\##出现以上信息说明同步成功##
+\## 出现以上信息说明同步成功 ##
 
 注：如提示命令不存在，直接输入：yum install ntp -y 安装 ntp 软件包

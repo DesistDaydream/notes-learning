@@ -10,4 +10,4 @@ OPTIONS
 
 EXAMPLE
 
-2. wget -q -O - <http://www.baidu.com/> #不下载，将 URL 为<http://www.baidu.com/>的内容输出到标准输出上
+2. wget -q -O - <http://www.baidu.com/> # 不下载，将 URL 为<http://www.baidu.com/>的内容输出到标准输出上

@@ -117,7 +117,7 @@ cp /etc/xinetd.d/tftp{,.bak}
 ### 配置 ks.cfg
 
 1. cd /var/lib/cobbler/kickstarts/
-2. vim centos7.ks #（sample_end.ks（默认使用的 ks 文件））修改成以下内容
+2. vim centos7.ks # （sample_end.ks（默认使用的 ks 文件））修改成以下内容
 3. 注意：文件中不能有中文，即使注释掉也不行，否则会导致安装失败
 
     #platform=x86, AMD64, or Intel EM64T
@@ -201,7 +201,7 @@ cp /etc/xinetd.d/tftp{,.bak}
 
 # Allow anaconda to partition the system as needed该选项用于自动分区
 
-    #autopart
+    # autopart
 
 # Disk partitioning information磁盘分区信息
 
@@ -362,7 +362,7 @@ e.g./etc/cobbler/dhcp.template
 
     subnet 192.168.20.0 netmask 255.255.255.0 {
 
-#     option routers             192.168.20.254
+# option routers             192.168.20.254
 
          option domain-name-servers 114.114.114.114;
          option subnet-mask         255.255.255.0;

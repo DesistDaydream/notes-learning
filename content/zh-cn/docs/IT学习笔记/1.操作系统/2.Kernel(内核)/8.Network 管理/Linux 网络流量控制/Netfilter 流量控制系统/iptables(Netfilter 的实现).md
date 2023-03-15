@@ -90,8 +90,8 @@ INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，�
 - **-n** # 不显示域名，直接显示 IP
 - **--line-numbers** # 显示每个 chain 中的行号
 - **-v** # 显示更详细的信息，vv 更详细，vvv 再详细一些
-  - pkts #报文数
-  - bytes #字节数
+  - pkts # 报文数
+  - bytes # 字节数
   - target #
   - prot #
   - in/out # 显示要限制的具体网卡，\*为所有
@@ -110,7 +110,7 @@ INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，�
   - **-X \[CHAIN]** # 删除用户自定义的空的 chain
 - 改
   - **-P \<CHAIN> \<TARGET>** # 设置指定的规则链(CHAIN)的默认策略为指定目标(Targe)
-  - **-E \<OldChainName> \<NewChainName**># 重命名自定义 chain，引用计数不为 0 的自定义 chain，无法改名也无法删除
+  - **-E \<OldChainName> \<NewChainName>** # 重命名自定义 chain，引用计数不为 0 的自定义 chain，无法改名也无法删除
   - **-R** # 替换指定链上的指定规则
 - 查
   - **-L \[CHAIN \[RuleNum]]** # 列出防火墙所有 CHAIN 的配置，可以列出指定的 CHAIN 的配置

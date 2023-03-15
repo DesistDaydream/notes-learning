@@ -5,6 +5,7 @@ title: Storage(存储)
 # 概述
 
 > 参考：
+>
 > - [官方文档,存储](https://grafana.com/docs/loki/latest/storage/)
 > - [官方文档,运维-存储](https://grafana.com/docs/loki/latest/operations/storage/)
 > - [官方文档,运维-存储-BoltDB-Shipper](https://grafana.com/docs/loki/latest/operations/storage/boltdb-shipper/)
@@ -68,7 +69,7 @@ Loki 将 Index 数据根据 `schema_config.configs.index.period` 这个配置，
 如果将 `schema_config.configs.index.period` 设置为 24h，那么对于 BoltDB-Shipper，一个表就是一个目录，表由许多较小的 BoltDB 文件组成(也就是说目录中有很多 BoltDB 文件)，每个文件仅存储 15 分钟的索引值。每天创建的表名称由 **prefix + period-number-since-epoch** 组成。
 
 - **prefix** # 是 `schema_config.configs.index.period` 配置的值。
-- **period-number-since-epoch **# 是从 [Epoch 时间](https://en.wikipedia.org/wiki/Unix_time)以来，到开始存储数据时刻的天数。
+- **period-number-since-epoch**# 是从 [Epoch 时间](https://en.wikipedia.org/wiki/Unix_time)以来，到开始存储数据时刻的天数。
 
 假如 `schema_config.configs.index.period` 的值为 `loki_index_`，当前时间是 2021 年 5 月 19 日，此时 Loki 收到了日志数据，则 Ingester 会创建一个 名为 **loki_index_18766** 的目录，并且当收到日志流时，会在这个目录中创建以时间戳为名字的文件，这个文件中就是 Index 数据。
 
@@ -165,7 +166,7 @@ index 目录总就是 Index 数据
       -------------------------------------------------------------------
       |         block-n bytes         |          checksum (4b)          |
       -------------------------------------------------------------------
-      |                        #blocks (uvarint)                        |
+      |                        # blocks (uvarint)                        |
       -------------------------------------------------------------------
       | #entries(uvarint) | mint, maxt (varint) | offset, len (uvarint) |
       -------------------------------------------------------------------
@@ -175,9 +176,9 @@ index 目录总就是 Index 数据
       -------------------------------------------------------------------
       | #entries(uvarint) | mint, maxt (varint) | offset, len (uvarint) |
       -------------------------------------------------------------------
-      |                      checksum(from #blocks)                     |
+      |                      checksum(from # blocks)                     |
       -------------------------------------------------------------------
-      |           metasOffset - offset to the point with #blocks        |
+      |           metasOffset - offset to the point with # blocks        |
       -------------------------------------------------------------------
 
 `mint` 和 `maxt`分别描述了最小和最大的 Unix 纳秒时间戳。
@@ -202,6 +203,7 @@ index 目录总就是 Index 数据
 # Schema(模式) 概念
 
 > 参考：
+>
 > - [官方文档，运维-存储-存储模式](https://grafana.com/docs/loki/latest/operations/storage/schema/)
 
 Loki 旨在向后兼容，当 Loki 内部存储发生变化时，通过 **Schema(模式)** 功能，可以让 Loki 的数据迁移更加平滑。在 Schema 概念中，通过一种 **Period(期间)** 的概念，来区分多个 Schema 的配置。本质上，一个 Schema 是一个数组，数组中的每个元素都是一个 Period，表示在这个 Period(期间) 内所使用的存储模式是 XX。
@@ -292,6 +294,7 @@ Chunk 存储是 Loki 的长期数据存储，旨在支持交互式查询和持�
 # Table(表) 概念
 
 > 参考：
+>
 > - [官方文档，运维-存储-表管理器](https://grafana.com/docs/loki/latest/operations/storage/table-manager/)
 > - [开源中国博客，Loki|数据过期启动删除策略设计](https://my.oschina.net/u/1787735/blog/4429161)
 

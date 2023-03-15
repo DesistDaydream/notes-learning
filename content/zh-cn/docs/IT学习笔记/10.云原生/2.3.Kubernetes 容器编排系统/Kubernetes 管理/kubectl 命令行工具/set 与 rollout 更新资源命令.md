@@ -34,12 +34,12 @@ EXAMPLE
 **kubectl rollout COMMAND \[OPTIONS]**
 COMMAND
 
-- **history** #滚动更新视图
-- **pause** #标记提供的资源以暂停这个资源
+- **history** # 滚动更新视图
+- **pause** # 标记提供的资源以暂停这个资源
 - **restart**# 重启一个资源
-- **resume** #重新开始被暂停的资源
+- **resume** # 重新开始被暂停的资源
 - **status**#显示滚动更新的状态
-- **undo** #撤销以前的滚动更新
+- **undo** # 撤销以前的滚动更新
 
 ## history # 查看滚动更新的历史情况
 

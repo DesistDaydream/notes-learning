@@ -143,7 +143,7 @@ kickstart 配置文件样例
     # Clear the Master Boot Record清除主引导记录
     zerombr
     # Allow anaconda to partition the system as needed该选项用于自动分区
-    #autopart
+    # autopart
     # Disk partitioning information磁盘分区信息
     part /boot --fstype=xfs --asprimary --size=500
     part biosboot --fstype=biosboot --asprimary --size=2

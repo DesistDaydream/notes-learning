@@ -12,7 +12,7 @@ title: Server 与 Runner 部署
 
       1. Application name：Grone
 
-      2. Homepage URL：<http://10.10.100.150> #这个 URL 指的是将要运行 Drone 的 GitHub Server 端设备 IP。也可以使用域名来表示。
+      2. Homepage URL：<http://10.10.100.150> # 这个 URL 指的是将要运行 Drone 的 GitHub Server 端设备 IP。也可以使用域名来表示。
 
       3. Authorization callback URL：<http://10.10.100.150/login>
 

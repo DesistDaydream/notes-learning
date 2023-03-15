@@ -6,9 +6,9 @@ title: redis 命令行工具
 
 官方文档：[官方文档](https://redis.io/commands)、中文
 
-help #按 TAB 键遍历所有组以及对应的命令
+help # 按 TAB 键遍历所有组以及对应的命令
 
-help @ #获取在指定 group 中的命令列表
+help @ # 获取在指定 group 中的命令列表
 
 help # 获取指定 command 的帮助信息
 

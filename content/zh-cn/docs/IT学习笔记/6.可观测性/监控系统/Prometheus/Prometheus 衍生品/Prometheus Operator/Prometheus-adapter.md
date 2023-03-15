@@ -111,7 +111,7 @@ rules 大致可以分为四个部分，下面对四个部分的关键字进行�
 2. matches: <RegEx> # 通过正则表达式来匹配指标名，可以进行分组
 3. as: <STRING> # 默认值为$1。也就是第一个分组。 as 为空就是使用默认值的意思。
 
-四、Querying(查询) #adapter 在向 prometheus 查询数据时，根据该规则发送 PromQL 。
+四、Querying(查询) # adapter 在向 prometheus 查询数据时，根据该规则发送 PromQL 。
 
 1. metricsQuery: <GoTemplate> #模板中，adapter 处理 MetricsAPI 的请求转换后的三个部分，在模板中变为以下字段。(这就是 Prometheus 的查询语句了，前面的 seriesQuery 查询是获得 HPA 指标。当我们要查某个指标的值时就要通过它指定的查询语句进行了。可以看到查询语句使用了速率和分组，这就是解决上面提到的只增指标的问题。)
    1. <<.Series>> # PromQL 的指标名。根据 Discovery 和 Naming 配置部分结合获取

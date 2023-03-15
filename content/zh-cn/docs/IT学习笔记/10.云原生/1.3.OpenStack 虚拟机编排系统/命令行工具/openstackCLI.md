@@ -56,7 +56,7 @@ OpenStackClient(又名 OSC)是**openstack 的命令行客户端**，这个客户
 
 ### openstack.cli
 
-**command list \[--group <GroupKeyword>]** #按组列出 openstack 可以支持的所有 Command，可以在选项中指定要查看的具体组名，只查看该组的命令。GroupKeyword 可以使组名中的关键字，不用使用完整的组名
+**command list \[--group \<GroupKeyword>]** # 按组列出 openstack 可以支持的所有 Command，可以在选项中指定要查看的具体组名，只查看该组的命令。GroupKeyword 可以使组名中的关键字，不用使用完整的组名
 
 **module list \[--all]** # 显示 OSC 程序已经安装的 python 模块
 
@@ -94,7 +94,7 @@ ip
 
 keypair
 
-**server** #控制 openstack 上所开虚拟机的命令
+**server** # 控制 openstack 上所开虚拟机的命令
 
 openstack server SubCommand \[OPTIONS] \[ARGS]
 
@@ -122,7 +122,7 @@ consumer
 
 credential
 
-**domain** #domain 域，是用户、组、项目的集合，每个组合项目仅有一个域
+**domain** # domain 域，是用户、组、项目的集合，每个组合项目仅有一个域
 
 ec2
 

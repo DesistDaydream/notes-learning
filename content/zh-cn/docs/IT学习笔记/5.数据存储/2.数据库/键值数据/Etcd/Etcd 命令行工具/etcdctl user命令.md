@@ -8,8 +8,8 @@ SubCommand 包括
 
 - add # add a new user for the etcd cluster
 - get # get details for a user
-- list #list all current users
-- remove #remove a user for the etcd cluster
+- list # list all current users
+- remove # remove a user for the etcd cluster
 - grant # grant roles to an etcd user
 - revoke # revoke roles for an etcd user
 - passwd # change password for a user

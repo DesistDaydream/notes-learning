@@ -2,7 +2,7 @@
 title: 在CentOS7上安装RocketMQ 4.7.1解决fastjson低版本漏洞问题
 ---
 
-<a name="00BKF"></a>### 文章目录- 在 CentOS7 上安装 RocketMQ 4.7.1 解决 fastjson 低版本漏洞问题
+### 文章目录- 在 CentOS7 上安装 RocketMQ 4.7.1 解决 fastjson 低版本漏洞问题
 
 - 前言
 
@@ -44,7 +44,7 @@ title: 在CentOS7上安装RocketMQ 4.7.1解决fastjson低版本漏洞问题
 
 - 扩展阅读
 
-# 在 CentOS7 上安装 RocketMQ 4.7.1 解决 fastjson 低版本漏洞问题<a name="Nrrtn"></a>## 前言
+# 在 CentOS7 上安装 RocketMQ 4.7.1 解决 fastjson 低版本漏洞问题## 前言
 
 阿里的 fastjson 的低版本（<=1.2.68）被爆出有安全漏洞，而 RocketMQ 4.7.0 使用了 fastjson 1.2.62，因此需要将 RocketMQ 升级到 RocketMQ 4.7.1(fastjson 1.2.69)。本文描述了在 CentOS7 上安装 RocketMQ 4.7.1 的过程，仅作为开发测试环境使用：
 
@@ -53,9 +53,13 @@ title: 在CentOS7上安装RocketMQ 4.7.1解决fastjson低版本漏洞问题
 2. 调低了 RocketMQ 默认的 JVM 大小；
 
 3. 没有设置开机自启动和守护进程。
-   <a name="5EQec"></a>## 安装过程
+
+## 安装过程
+
    服务器上已经安装了 OpenJDK 8，并设置了 JAVA_HOME。
-   <a name="aHczz"></a>### 下载和解压 RocketMQ
+
+### 下载和解压 RocketMQ
+
    在 RocketMQ 官网上找到下载 RocketMQ 4.7.1 的链接，下载和解压 RocketMQ： # 下载
    wget http://ftp.cuhk.edu.hk/pub/packages/apache.org/rocketmq/4.7.1/rocketmq-all-4.7.1-bin-release.zip # 解压
    unzip rocketmq-all-4.7.1-bin-release.zip # 安装到/usr/local/rocketmq
@@ -89,7 +93,9 @@ title: 在CentOS7上安装RocketMQ 4.7.1解决fastjson低版本漏洞问题
    18
    19
    Plain Text
-   <a name="W3L6V"></a>### 调低 RocketMQ 的 JVM 大小
+
+### 调低 RocketMQ 的 JVM 大小
+
    RocketMQ 的默认 JVM 太大，不适合在开发测试环境中使用，需要调低 JVM 大小。在 RocketMQ 的安装目录（本例为`/usr/local/rocketmq`)，查找 sh 脚本中的 JVM 参数设置：
    find . -name '\*.sh' | xargs egrep 'Xms'1
    Plain Text 需要修改以下 sh 脚本的 JVM 参数：
@@ -113,22 +119,26 @@ Plain Textbin/tools.sh修改前：
   Plain Text 修改后：
   JAVA_OPT="${JAVA_OPT} -server -Xms256m -Xmx256m -Xmn128m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m"1
   Plain Text
-  <a name="Asxda"></a>### 启动 Name Server # 后台启动
+
+### 启动 Name Server # 后台启动
+
   nohup sh bin/mqnamesrv >/dev/null 2>&1 &1
   2
   Plain Text
-  > 可以将启动 Name Server 命令保存为脚本，以方便下次启动。<a name="ysGL0"></a>### 启动 Broker
+  > 可以将启动 Name Server 命令保存为脚本，以方便下次启动。### 启动 Broker
   > 启动 Broker 时需要指定要连接的 Name Server：
         # 后台启动
         nohup sh bin/mqbroker -n localhost:9876 >/dev/null 2>&1 &1
   2
   Plain Text
-  > 可以将启动 Broker 命令保存为脚本，以方便下次启动。<a name="ll44E"></a>### 查看 RocketMQ 进程 ps -ef | grep -v grep | grep rocketmq
+  > 可以将启动 Broker 命令保存为脚本，以方便下次启动。### 查看 RocketMQ 进程 ps -ef | grep -v grep | grep rocketmq
         11
   2
   3
   Plain Text
-  <a name="Zorz9"></a>## 测试 RocketMQ<a name="PwdiC"></a>### 测试发送消息和接收消息
+
+### 测试发送消息和接收消息
+
   使用 RocketMQ 自带的消息生产者和消费者示例来测试发送消息和接收消息：
   export NAMESRV_ADDR=localhost:9876
   sh bin/tools.sh org.apache.rocketmq.example.quickstart.Producer
@@ -143,17 +153,19 @@ Plain Textbin/tools.sh修改前：
   6
   7
   Plain Text
-  <a name="QF0UO"></a>## 关闭 RocketMQ<a name="VsByx"></a>### 关闭 Broker sh bin/mqshutdown broker
+
+### 关闭 Broker sh bin/mqshutdown broker
+
   11
   2
   3
   Plain Text
-  > 可以将关闭 Broker 命令保存为脚本，以方便下次关闭。<a name="xLID9"></a>### 关闭 Name Server sh bin/mqshutdown namesrv
+  > 可以将关闭 Broker 命令保存为脚本，以方便下次关闭。### 关闭 Name Server sh bin/mqshutdown namesrv
         11
   2
   3
   Plain Text
-  > 关闭 Name Server 前需要先关闭 Broker；可以将关闭 Name Server 命令保存为脚本，以方便下次关闭。<a name="RrGFF"></a>## 修改 Name Server 的端口
+  > 关闭 Name Server 前需要先关闭 Broker；可以将关闭 Name Server 命令保存为脚本，以方便下次关闭。## 修改 Name Server 的端口
   > RocketMQ Name Server 的默认端口为 9876，可以通过以下方法修改 Name Server 的端口：
 
 1. 新增一个 Name Server 配置文件 namesrv.conf，保存内容为：listenPort=100761
@@ -173,7 +185,9 @@ Plain Textbin/tools.sh修改前：
 8. 1
 
 9. 修改后 Broker 需要指定新的 Name Server 地址（端口）。
-   <a name="niuRc"></a>## 安装 RocketMQ 控制台 docker run -d --name console \
+
+## 安装 RocketMQ 控制台 docker run -d --name console \
+
     -e "JAVA_OPTS=-Drocketmq.namesrv.addr=172.38.40.247:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false" \
     -p 8080:8080 \
     -t styletang/rocketmq-console-ng1
@@ -193,7 +207,9 @@ Plain Textbin/tools.sh修改前：
 - <https://github.com/apache/rocketmq-externals>
 
 - <https://github.com/apache/rocketmq-externals/tree/master/rocketmq-console>
-  <a name="GVRRR"></a>## Troubleshooting
+
+## Troubleshooting
+
   问题 1: 启动 Name Server 和 Broker，或测试时报错`Please set the JAVA_HOME variable in your environment, We need java(x64)!` 但是系统已经安装了 OpenJDK8，并且已经设置了 JAVA_HOME。解决方法: 运行`which java`来查看 java 的路径，比如为`/usr/bin/java`。修改 bin/runserver.sh 和 bin/runbroker.sh 和 bin/tools.sh，注释掉校验 JAVA_HOME 语句，并明确指定 JAVA 路径： #[ ! -e "$JAVA_HOME/bin/java" ] && JAVA_HOME=$HOME/jdk/java
     #[ ! -e "$JAVA_HOME/bin/java" ] && JAVA_HOME=/usr/java #[ ! -e "$JAVA_HOME/bin/java" ] && error_exit "Please set the JAVA_HOME variable in your environment, We need java(x64)!"
   #export JAVA_HOME
@@ -204,10 +220,12 @@ Plain Textbin/tools.sh修改前：
   5
   6
   Plain Text
-  <a name="gH89p"></a>## 参考文档- RocketMQ 安装部署教程详解
+
+## 参考文档- RocketMQ 安装部署教程详解
 
 - RocketMQ 安装详细说明
-  <a name="arShv"></a>## 扩展阅读- 十分钟入门 RocketMQ
+
+## 扩展阅读- 十分钟入门 RocketMQ
 
 - RocketMQ 核心设计理念
 

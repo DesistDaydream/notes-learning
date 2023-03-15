@@ -134,7 +134,7 @@ LVS/DR(Direct Routing 直接路由) 实测可以调度 7、8 十台 RS
 - 8.RS 跟 Director 都得配置使用 VIP
 - 9.确保前端路由器将目标 IP 为 VIP 的请求报文发往 Director(上文的设置)
 
-lvs-dr(direct routing) #操纵新的 MAC 地址，直接路由，默认的 LVS 类型，通过请求报文的目标 MAC 地址进行转发，即需要 ARP 的 IP 与 MAC 映射表才能转发，由于调度器是基于二层 MAC 来调度的，所以调度器与 RS 必须要在同一个 VLAN 中
+lvs-dr(direct routing) # 操纵新的 MAC 地址，直接路由，默认的 LVS 类型，通过请求报文的目标 MAC 地址进行转发，即需要 ARP 的 IP 与 MAC 映射表才能转发，由于调度器是基于二层 MAC 来调度的，所以调度器与 RS 必须要在同一个 VLAN 中
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/zzd89g/1616132542782-786ee136-62a7-4fb6-8faf-2a43c660d620.jpeg)
 
 1. 如图所示，请求报文直接到调度器，然后调度器选择一台 RS，让这台 RS 来响应该请求，RS 与用户直接交互，不再经过调度器，只有请求报文经过调度器，响应报文是不经过调度器的(RS 的网关不能指定到 DIP)所以用户访问的业务 IP 都是该业务的调度器的浮动 IP，通过调度器来给用户选择一台提供服务的主机，这样调度器没有压力。

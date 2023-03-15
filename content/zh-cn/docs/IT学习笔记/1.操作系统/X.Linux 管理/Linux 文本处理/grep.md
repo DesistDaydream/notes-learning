@@ -55,13 +55,13 @@ grep 根据 PATTERNS(模式) 过滤给定的内容。其实就是使用正则表
 
 - 查看 accesslog 文件的实时更新，并筛选出不包含两个字符串的行
   - tailf accesslog | grep -vE '(miguvideo|mgtv)'
-- grep --color=auto -i R.\*h ./boot.log | grep -Evi "star|net" #不区分大小写搜索 boot.log 文件中包含 Rh 中间含有任意字符的，并且不包含 Star 或 net 的所有行，并以高亮颜色显示搜索的字符串，|表示或的关系，正则表达式扩展内容，选项必须有 E 才能生效。
-- grep -i '/bin/bash' /etc/passwd | sort -n -t: -k3 | tail -1|cut -d: -f1 #取出默认 shell 为 bash 且其 ID 号最大的用户
-- grep "^#\[\[:space:]]{1,}\[^\[:space:]]{1,}" /etc/X #取出/etc/x 文件中井号开头后最少一个空白字符后最少一个非空白字符的行
+- grep --color=auto -i R.\*h ./boot.log | grep -Evi "star|net" # 不区分大小写搜索 boot.log 文件中包含 Rh 中间含有任意字符的，并且不包含 Star 或 net 的所有行，并以高亮颜色显示搜索的字符串，|表示或的关系，正则表达式扩展内容，选项必须有 E 才能生效。
+- grep -i '/bin/bash' /etc/passwd | sort -n -t: -k3 | tail -1|cut -d: -f1 # 取出默认 shell 为 bash 且其 ID 号最大的用户
+- grep "^#\[\[:space:]]{1,}\[^\[:space:]]{1,}" /etc/X # 取出/etc/x 文件中井号开头后最少一个空白字符后最少一个非空白字符的行
 - ifconfig | egrep --color=auto -n '\[0-9]{1,3}.\[0-9]{1,3}.\[0-9]{1,3}.\[0-9]{1,3}'
-- egrep --color=auto -n '\[0-9]+.\[0-9]+.\[0-9]+.\[0-9]+' #匹配 ifconfig 中的所有 IP 地址，带匹配高亮，带行号（egrep 就是 grep -E）
-- egrep --color=auto -n '<\[0-9]{2}>.\[0-9]+.\[0-9]+.\[0-9]+' #可以搜索第一段是两位数的 IP，比如 10.0.0.0 网段
-- grep -i --color=auto '\[0-9]+.\[0-9]+.\[0-9]+.\[0-9]+' ./interfaces #不适用 egrep 的方法
+- egrep --color=auto -n '\[0-9]+.\[0-9]+.\[0-9]+.\[0-9]+' # 匹配 ifconfig 中的所有 IP 地址，带匹配高亮，带行号（egrep 就是 grep -E）
+- egrep --color=auto -n '<\[0-9]{2}>.\[0-9]+.\[0-9]+.\[0-9]+' # 可以搜索第一段是两位数的 IP，比如 10.0.0.0 网段
+- grep -i --color=auto '\[0-9]+.\[0-9]+.\[0-9]+.\[0-9]+' ./interfaces # 不适用 egrep 的方法
 
 应用示例
 

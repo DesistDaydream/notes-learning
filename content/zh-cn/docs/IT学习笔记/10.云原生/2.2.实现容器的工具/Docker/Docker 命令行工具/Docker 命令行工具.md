@@ -225,15 +225,15 @@ OPTIONS
 - **-t, --timestamps** # 在每行日志行首显示时间戳
 - --until string # Show logs before a timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)
 
-## pause # Pause all processes within a container #暂停一个 Container 中的所有进程
+## pause # Pause all processes within a container # 暂停一个 Container 中的所有进程
 
-## port # List port mappings or a specific mapping for the CONTAINER #查看映射端口对应的容器内部源端口
+## port # List port mappings or a specific mapping for the CONTAINER # 查看映射端口对应的容器内部源端口
 
 docker port CONTAINER \[PRIVATE_PORT\[/PROTO]]
 
 EXAMPLE
 
-1. docker port nginx1 #查看名为 nginx1 这个 Container 的端口映射情况
+1. docker port nginx1 # 查看名为 nginx1 这个 Container 的端口映射情况
 
 ## ps # List containers # 列出容器
 
@@ -241,23 +241,23 @@ EXAMPLE
 
 ## pull # 从 Registry 拉取指定镜像或者镜像仓库
 
-**docker pull \[REGISTRY]\[:Port]/\[NAMESPACE/]<NAME>:\[TAG]**
+**docker pull \[REGISTRY]\[:Port]/\[NAMESPACE/]\<NAME>:\[TAG]**
 如果不加 registry，则默认从 hub.docker.com 拉取 image；如果不设置 namespace，则默认从指定的 registry 中的顶层仓库拉取镜像，如果使用了 namespace，则从该用户仓库拉取镜像；如果不指定 TAG，则默认拉取 lastest 版的 image
 
 EXAMPLE
 
 - docker pull quay.io/coreos/flannel
 
-## push #推送指定镜像或者库镜像至 docker 源服务器
+## push # 推送指定镜像或者库镜像至 docker 源服务器
 
-## rename #重命名容器
+## rename # 重命名容器
 
 ## restart # 重启运行的容器
 
 ## rm # 移除一个或者多个容器
 
 1. EXAMPLE
-2. docker rm `docker ps -a | grep "Exited" | awk '{print $NF}'` #移除所以已经停止的容器
+2. docker rm `docker ps -a | grep "Exited" | awk '{print $NF}'` # 移除所以已经停止的容器
 
 ## rmi # 移除一个或多个镜像(无容器使用该镜像才可以删除，否则需要删除相关容器才可以继续或者-f 强制删除)
 
@@ -265,7 +265,7 @@ EXAMPLE
 
 docker run \[OPTIONS] IMAGE \[COMMAND] \[ARG...]
 
-具体用法见笔记：[docker run 运行容器](/docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker%20 命令行工具/run%20 运行容器.md 命令行工具/run 运行容器.md)
+具体用法见笔记：[docker run 运行容器](/docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker%20命令行工具/run%20运行容器.md)
 
 ## save # 保存一个或多个镜像为一个 tar 包(对应 load)
 
@@ -273,12 +273,12 @@ docker save \[OPTIONS] Image1 Image2 ... ImageN /PATH/FILE
 
 OPTIONS
 
-- -o #save 的时候写入文件，而不是 STDOUT
+- -o # save 的时候写入文件，而不是 STDOUT
 
 EXAMPLE
 
-- docker save k8s.gcr.io/kube-proxy:v1.12.1 -o kubernetes.tar #保存 k8s.gcr.io/kube-proxy:v1.12.1 这个 image 到 kubernetes.tar 这个文件中
-- docker save -o XXXX.tar $(docker images | awk '{print $1,$2}' OFS=":" | awk 'NR!=1{print}') #保存全部镜像到 XXX.tar 文件中
+- docker save k8s.gcr.io/kube-proxy:v1.12.1 -o kubernetes.tar # 保存 k8s.gcr.io/kube-proxy:v1.12.1 这个 image 到 kubernetes.tar 这个文件中
+- docker save -o XXXX.tar $(docker images | awk '{print $1,$2}' OFS=":" | awk 'NR!=1{print}') # 保存全部镜像到 XXX.tar 文件中
 
 ## search Search the Docker Hub for images # 在 dockerhub 中搜索镜像
 
@@ -286,7 +286,7 @@ docker search \[OPTIONS] TERM
 
 EXAMPLE
 
-1. docker search centos #搜索所有 centos 的 docker 镜像
+1. docker search centos # 搜索所有 centos 的 docker 镜像
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/urb4r9/1616121613281-5ce787a3-8986-43c9-926a-680de555c36e.png)
 
@@ -296,20 +296,20 @@ EXAMPLE
 
 命令用法详见：容器状态查看命令
 
-## stop #停止容器
+## stop # 停止容器
 
 ## tag # 在一个 repostiory 中标记一个 image
 
 docker tag SOURCE_IMAGE\[:TAG] TARGET_IMAGE\[:TAG]
 
-## top #查看容器中运行的进程信息
+## top # 查看容器中运行的进程信息
 
 EXAMPLE
 
 1. docker top prometheus # 查看 prometheus 这个 container 运行的程序，该信息的格式为 ps 命令所输出的内容
 
-## unpause Unpause all processes within a container #取消暂停容器
+## unpause Unpause all processes within a container # 取消暂停容器
 
-## version Show the Docker version information #展示 Docker 版本信息
+## version Show the Docker version information # 展示 Docker 版本信息
 
-## wait Block until a container stops, then print its exit code #截取容器停止时的退出状态值
+## wait Block until a container stops, then print its exit code # 截取容器停止时的退出状态值

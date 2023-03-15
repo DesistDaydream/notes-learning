@@ -64,7 +64,7 @@ CheckInput()
  ret=1;
 
  #Check the number of parameter
- #And Check whether the argument is a folder
+ # And Check whether the argument is a folder
  if [ $# -lt 1 ]
         then
   echo "Please use the command like ./dos2u.sh [Folder]";

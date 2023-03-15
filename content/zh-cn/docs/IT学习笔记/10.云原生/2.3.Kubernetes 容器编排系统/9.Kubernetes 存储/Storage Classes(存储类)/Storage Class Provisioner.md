@@ -5,6 +5,7 @@ title: Storage Class Provisioner
 # NFS Provisioner
 
 > 参考：
+>
 > - [GitHub](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner)
 > - [GitHubOld](https://github.com/kubernetes-retired/external-storage/tree/master/nfs-client)
 
@@ -118,7 +119,7 @@ spec:
       serviceAccountName: nfs-client-provisioner
       containers:
         - name: nfs-client-provisioner
-          imagePullPolicy: Never #不让每次部署都拉取镜像，直接使用本地镜像即可
+          imagePullPolicy: Never # 不让每次部署都拉取镜像，直接使用本地镜像即可
           image: quay.io/external_storage/nfs-client-provisioner:latest
           volumeMounts:
             - name: nfs-client-root
@@ -154,6 +155,7 @@ parameters:
 ## 概述
 
 > 参考：
+>
 > - [官网](https://openebs.io/)
 
 OpenEBS 建立在 Kubernetes 之上，使有状态应用程序能够轻松访问动态 **Local PV** 或 **Replicated PV**。通过使用容器附加存储模式，用户报告说他们的团队成本更低，管理更容易，控制力更强。

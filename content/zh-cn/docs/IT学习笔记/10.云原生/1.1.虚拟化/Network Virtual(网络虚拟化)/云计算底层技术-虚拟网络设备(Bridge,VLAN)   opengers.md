@@ -85,7 +85,7 @@ Bridge 的出现使 Linux 上设置防火墙变得复杂，因为此时从物理
 然后在 iptables 中使用`-m physdev`引入相应模块，以文中第一张图上的虚拟机 P2 为例，它的虚拟网卡`tap0`桥接在`br0`上。我们在主机上设置如下 iptables 规则：丢弃从网桥`br0`的`tap0`接口进入的数据包。
 
     #查看网桥
-    #brctl show
+    # brctl show
     bridge name     bridge id               STP enabled     interfaces
     br0             8000.f8bc1212c3a0       no              em1
                                                             tap
@@ -211,20 +211,20 @@ VLAN 又称虚拟网络，其基本原理是在二层协议里插入额外的 VL
 
     #添加br0网桥
     brctl addbr br0
-    #br0添加em2.100子设备 凡是桥接到br0上的数据包都会带上tag 100
+    # br0添加em2.100子设备 凡是桥接到br0上的数据包都会带上tag 100
     brctl addif br0 em2.100
 
     #可以继续添加多个网桥brX, brY, ...
-    #brctl addbr brX
+    # brctl addbr brX
     #凡是桥接到brX上的数据包都会带上tag X
-    #brctl addif brX em2.X
+    # brctl addif brX em2.X
 
-    #brctl addbr brY
-    #brctl addif brY em2.Y
+    # brctl addbr brY
+    # brctl addif brY em2.Y
 
     #...
 
-    #brctl show
+    # brctl show
     bridge name     bridge id               STP enabled     interfaces
     br0         8000.525400315e23       no                em2.100
                    tap0

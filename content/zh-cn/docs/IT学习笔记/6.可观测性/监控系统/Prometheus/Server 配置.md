@@ -496,7 +496,7 @@ relabel 用于将抓取到的样本中的原始 label 进行重新标记以生�
 **source_labels: \[ <LabelName>, ... ]** # 从现有的标签中选择将要获取值的标签作为 source_labels。source_labels 可以有多个。separator: <STRING> # 指定 source_labels 中所有值之间的分隔符。默认值： ;。
 **target_label: <LabelName>** # 通过 regex 字段匹配到的值写入的指定的 target_label 中
 **regex: <REGEX>** # 从 source_label 获取的值进行正则匹配，匹配到的值写入到 target_label 中。默认正则表达式为(.\*)。i.e.匹配所有值
-**modulus: <UINT64>** #去 source_labels 值的哈希值的模数
+**modulus: <UINT64>** # 去 source_labels 值的哈希值的模数
 **replacement: <STRING>** # 替换。指定要写入 target_label 的值，STRING 中可以引用 regex 字段的值，使用正则表达式方式引用。默认值：$1。与 action 字段的 replace 值配合使用。
 **action: \<Relabel_Action>** # 对匹配到的标签要执行的动作。默认值：replace。
 

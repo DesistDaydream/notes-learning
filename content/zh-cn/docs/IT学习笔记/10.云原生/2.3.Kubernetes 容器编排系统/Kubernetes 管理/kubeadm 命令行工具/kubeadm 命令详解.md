@@ -26,7 +26,7 @@ Command 包括：
 
 EXAMPLE
 
-1. kubeadm alpha certs renew all #更新集群中所有证书
+1. kubeadm alpha certs renew all # 更新集群中所有证书
 
 ## kubeadm token \[COMMAND]
 
@@ -41,7 +41,7 @@ kubeadm token create \[token]
 
 EXAMPLE
 
-- kubeadm token create --print-join-command #创建 node 节点加入 master 命令
+- kubeadm token create --print-join-command # 创建 node 节点加入 master 命令
 - kubeadm token list # 列出所有可以引导的令牌（i.e.join 时所用的 token）
   - 可以通过以下命令来获取 master 上 CA 证书的 hash 值(i.e.join 时所用的--discovery-token-ca-cert-hash 的值)，然后根据 list 列出的 token，与 ca 的 hash 值合在一起，就可以得到 join 时所用的相关参数
   - openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex

@@ -74,7 +74,7 @@ kubectl config current-context 命令就是获取该字段的值。
 
 - **name: <STRING>** # 指定用户名称
 - **user: \<map\[STRING]STRING>** # 用户信息
-  - **client-certificate-data: REDACTED** #证书，一般使用集群 ca 证书的 base64 格式的字符串。指明这个用户用来与集群 api 通信时所用客户端的证书
+  - **client-certificate-data: REDACTED** # 证书，一般使用集群 ca 证书的 base64 格式的字符串。指明这个用户用来与集群 api 通信时所用客户端的证书
   - **client-key-data: REDACTED** #密钥，一般使用集群 ca 证书的密钥的 base64 格式的字符串。指明这个用户用来与集群 api 通信时所用客户端的密钥
 
 ## preferences: <\[]Object>

@@ -4,32 +4,30 @@ title: cobbler命令说明
 
 ## distro
 
-1. cobbler distro report --name=CentOS7-1810 #查看安装镜像文件信息
+1. cobbler distro report --name=CentOS7-1810 # 查看安装镜像文件信息
 
 ## import
 
-<br />cobbler import [OPTIONS]
+cobbler import [OPTIONS]
 
 OPTIONS
 
-1. \--path # 指定制作部署系统时的镜像所用到的光盘镜像的路径
-
-2. \--name # 为安装源定义一个名字，指定部署系统所用的镜像名
-
-3. \--arch # 指定安装源是 32 位、64 位、ia64, 目前支持的选项有: x86│x86_64│ia64
+- --path # 指定制作部署系统时的镜像所用到的光盘镜像的路径
+- --name # 为安装源定义一个名字，指定部署系统所用的镜像名
+- --arch # 指定安装源是 32 位、64 位、ia64, 目前支持的选项有: x86│x86_64│ia64
 
 EXAMPLE
 
-1. cobbler import --path=/mnt/ --name=CentOS7-1810 --arch=x86_64 #
+- cobbler import --path=/mnt/ --name=CentOS7-1810 --arch=x86_64
 
 ## profile
 
-1. cobbler profile report --name=CentOS7-x86_64 #查看指定的 profile 设置
+- cobbler profile report --name=CentOS7-x86_64 # 查看指定的 profile 设置
 
 ## system
 
-1. cobbler system list # 列出
+- cobbler system list # 列出
 
 ## ksvalidator FILE
 
-<br />用于测试指定 FILE 的 kickstart 语法是否正确
+用于测试指定 FILE 的 kickstart 语法是否正确

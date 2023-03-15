@@ -179,7 +179,7 @@ getopt 工具基本使用示例
 # -n:出错时的信息
 # -- ：举一个例子比较好理解：
 #我们要创建一个名字为 "-f"的目录你会怎么办？
-# mkdir -f #不成功，因为-f会被mkdir当作选项来解析，这时就可以使用
+# mkdir -f # 不成功，因为-f会被mkdir当作选项来解析，这时就可以使用
 # mkdir -- -f 这样-f就不会被作为选项。
 # 我们需要使用 temp 作为`eval set-`来抵消getopt的返回值。
 temp=`getopt -o ab:c:: --long a-long,b-long:,c-long:: \

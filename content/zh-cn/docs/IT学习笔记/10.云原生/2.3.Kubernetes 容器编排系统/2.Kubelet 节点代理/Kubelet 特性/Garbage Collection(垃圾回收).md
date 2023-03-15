@@ -37,8 +37,8 @@ kubelet 将处理无法辨识的、已删除的以及超出前面提到的参数
 
 用户可以使用以下 kubelet 参数调整相关阈值来优化镜像垃圾回收：
 
-- image-gc-high-threshold #触发镜像垃圾回收的磁盘使用率百分比。默认值为 85%。
-- image-gc-low-threshold #镜像垃圾回收试图释放资源后达到的磁盘使用率百分比。默认值为 80%。
+- image-gc-high-threshold # 触发镜像垃圾回收的磁盘使用率百分比。默认值为 85%。
+- image-gc-low-threshold # 镜像垃圾回收试图释放资源后达到的磁盘使用率百分比。默认值为 80%。
 
 我们还允许用户通过以下 kubelet 参数自定义垃圾收集策略：
 

@@ -3,17 +3,17 @@ title: Nginx 优化
 ---
 
 1. 性能优化的相关配置
-   1. work_processes NUM; #常用，指定 work 线程个数，通常应该少于 cpu 物理核心数，设为 auto 为自动判断
-   2. work_cpu_affinity CpuMask; #常用，设定 cpu 掩码，用于绑定给 nginx 专用的 cpu 数
-   3. timer_resolution Num; #计时器解析度，降低此值，可提高性能
-   4. worker_priority NUM; #设定优先级，即 worker 线程的 nice 值
+   1. work_processes NUM; # 常用，指定 work 线程个数，通常应该少于 cpu 物理核心数，设为 auto 为自动判断
+   2. work_cpu_affinity CpuMask; # 常用，设定 cpu 掩码，用于绑定给 nginx 专用的 cpu 数
+   3. timer_resolution Num; # 计时器解析度，降低此值，可提高性能
+   4. worker_priority NUM; # 设定优先级，即 worker 线程的 nice 值
 2. 事件相关配置
-   1. worker_connections NUM; #常用，指定每个 worker 线程所能处理的最大并发连接数
-   2. accept_mutex on|off; #调度用户请求至 worker 线程时使用的负载均衡锁。on 是让多个 worker 轮流的，序列化地响应新请求
+   1. worker_connections NUM; # 常用，指定每个 worker 线程所能处理的最大并发连接数
+   2. accept_mutex on|off; # 调度用户请求至 worker 线程时使用的负载均衡锁。on 是让多个 worker 轮流的，序列化地响应新请求
    3. lock_file /PATH/FILE; # 指定 accept_mutex 开启后用到的锁文件路径
 3. 用于调试、定位问题的配置
-   1. daemon on|off； #是否以守护进程方式运行 nginx，调试时设置为 off
-   2. master_process on|off； #是否以 master/worker 模式来运行 ngins，调试时可以设置为 off
+   1. daemon on|off； # 是否以守护进程方式运行 nginx，调试时设置为 off
+   2. master_process on|off； # 是否以 master/worker 模式来运行 ngins，调试时可以设置为 off
 
 ###
 

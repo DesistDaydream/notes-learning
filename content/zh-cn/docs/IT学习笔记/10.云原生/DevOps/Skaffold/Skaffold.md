@@ -28,7 +28,7 @@ Skaffold 特性
 
 # Skaffold 配置
 
-skaffold.yaml #Skaffold 通过该文件定义来定义 Pipeline 任务。
+skaffold.yaml # Skaffold 通过该文件定义来定义 Pipeline 任务。
 
 /root/.skaffold/config # 一些
 
@@ -44,9 +44,9 @@ skaffold.yaml #Skaffold 通过该文件定义来定义 Pipeline 任务。
     [root@master-1 getting-started]# ls
     Dockerfile  k8s-pod.yaml  main.go  README.md  skaffold.yaml
 
-skaffold.yaml #skaffold 遵循该文件内容执行流水线过程
+skaffold.yaml # skaffold 遵循该文件内容执行流水线过程
 
-main.go #需要自动构建部署的代码文件
+main.go # 需要自动构建部署的代码文件
 
 Dockerfile # 用于构建 image
 

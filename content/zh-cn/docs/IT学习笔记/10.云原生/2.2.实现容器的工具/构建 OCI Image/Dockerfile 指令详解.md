@@ -44,11 +44,11 @@ Docker 还存在一个特殊的镜像，名为 scratch。这个镜像是虚拟�
 
 # ENV # 设置环境变量，环境变量可被后面的指令使用
 
-调用格式为：$VariableName或${VariableName}
-定义格式 #Key 是变量名，Value 是变量的值，这是一个键值对的格式
+调用格式为：`$VariableName` 或 `${VariableName}`
+定义格式 # Key 是变量名，Value 是变量的值，这是一个键值对的格式
 
-1. ENV Key Value #Key 之后的所有内容均被视为 Value 的一部分(包括各种特殊符号和空格等)，因此，一次只能定义一个变量
-2. ENV Key=Value Value ... # 一次给变量定义多个值，每个 Value 以空格分割，如果 Value 值中有空格，需要加\进行转义或者给 Value 加引号；另外反斜线也可用于续行
+- ENV Key Value # Key 之后的所有内容均被视为 Value 的一部分(包括各种特殊符号和空格等)，因此，一次只能定义一个变量
+- ENV Key=Value Value ... # 一次给变量定义多个值，每个 Value 以空格分割，如果 Value 值中有空格，需要加\进行转义或者给 Value 加引号；另外反斜线也可用于续行
 
 注意：在 run 的时候如果指定了变量变量的值，则会顶替调做 Image 时候用 ENV 指定的变量的值
 

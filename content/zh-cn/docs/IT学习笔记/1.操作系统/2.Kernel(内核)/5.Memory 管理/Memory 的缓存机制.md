@@ -64,9 +64,9 @@ Swap:          4.0G        8.7M        4.0G
 
 ```bash
 [root@lichenhao bonding]# time cat bigfile > /dev/null
-real	0m0.614s
-user	0m0.011s
-sys	0m0.412s
+real 0m0.614s
+user 0m0.011s
+sys 0m0.412s
 [root@lichenhao bonding]# free -h
               total        used        free      shared  buff/cache   available
 Mem:           3.7G        326M        2.1G         16M        1.3G        3.1G
@@ -76,20 +76,20 @@ Swap:          4.0G        8.7M        4.0G
 4.再次读入该文件，测试消耗的时间
 
     [root@lichenhao bonding]# time cat bigfile > /dev/null
-    real	0m0.217s
-    user	0m0.011s
-    sys	0m0.206s
+    real 0m0.217s
+    user 0m0.011s
+    sys 0m0.206s
 
 从上面看出，第一次读这个 1G 的文件大约耗时 0.6s，而第二次再次读的时候，只耗时 0.2s，提升了 3 倍。如果是 centos6 的话，会足足提升 60 倍！
 
 ## Swap：在物理磁盘上划分的一块空间，用于当做内存使用，称为 swap。一般情况用不到
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ppeusv/1616167931322-914bea33-9585-4f4e-9b36-9eddf41158a6.jpeg)
-total #（总量）
+total # （总量）
 
-used #（使用）
+used # （使用）
 
-free #（空闲）
+free # （空闲）
 
 Swap 分区（也称交换分区）是硬盘上的一个区域，被指定为操作系统可以临时存储数据的地方，这些数据不能再保存在 RAM 中。 基本上，这使您能够增加服务器在工作“内存”中保留的信息量，但有一些注意事项，主要是当 RAM 中没有足够的空间容纳正在使用的应用程序数据时，将使用硬盘驱动器上的交换空间。
 
