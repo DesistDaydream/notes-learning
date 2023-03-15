@@ -6,8 +6,8 @@ title: ftp 协议的实现工具，chroot说明
 
 ## vsftp 配置
 
-/etc/vsftpd.conf #vsftpd 程序的配置文件
-/etc/ftpusers #此文件包含*禁止*FTP 登录的用户名，通常有"root"，"uucp"，"news" 之类，因为这些用户权限太高，登录 FTP 误操作危险性大。
+/etc/vsftpd.conf # vsftpd 程序的配置文件
+/etc/ftpusers # 此文件包含*禁止*FTP 登录的用户名，通常有"root"，"uucp"，"news" 之类，因为这些用户权限太高，登录 FTP 误操作危险性大。
 
 1. User NAME
 2. User NAME
@@ -19,17 +19,17 @@ title: ftp 协议的实现工具，chroot说明
 
 最小基本配置
 
-1. write_enable=YES #对 ftp 服务器是否有写的权限
-2. local_enable=YES #是否允许本地用户登录(本地用户即 ftp 服务器自身的用户)
-3. anonymous_enable=NO #是否允许匿名登录
+1. write_enable=YES # 对 ftp 服务器是否有写的权限
+2. local_enable=YES # 是否允许本地用户登录(本地用户即 ftp 服务器自身的用户)
+3. anonymous_enable=NO # 是否允许匿名登录
 
 扩展配置
 
-1. chroot_local_user=YES #是否启动本地用户 chroot 规则，chroot 改变登录 ftp 的本地用户根的目录位置
-2. allow_writeable_chroot=YES #允许在限定目录有写权限
-3. chroot_list_enable=YES #是否启动不受 chroot 规则的用户名单
-4. chroot_list_file=/etc/vsftpd.chroot_list #定义不受限制的用户名单在哪个文件中
-5. pam_service_name=vsftpd 改为 pam_service_name=ftp #如果始终登录时候提示密码错误，则修改此项
+1. chroot_local_user=YES # 是否启动本地用户 chroot 规则，chroot 改变登录 ftp 的本地用户根的目录位置
+2. allow_writeable_chroot=YES # 允许在限定目录有写权限
+3. chroot_list_enable=YES # 是否启动不受 chroot 规则的用户名单
+4. chroot_list_file=/etc/vsftpd.chroot_list # 定义不受限制的用户名单在哪个文件中
+5. pam_service_name=vsftpd 改为 pam_service_name=ftp # 如果始终登录时候提示密码错误，则修改此项
 
 注：chroot 的意思是改变根路径的位置(linux 系统中以/为根目录位置，但是对于执行 chroot 的用户或者程序来说，是 chroot(PATH)后 PATH 的位置是新的根目录位置)，比如 Telnet，ssh，如果都定义了 chroot(PATH)规则，那么远程登录的用户将无法访问到该 linux 系统中除了定义的 PATH 外的其余目录
 

@@ -302,7 +302,7 @@ docker tag SOURCE_IMAGE\[:TAG] TARGET_IMAGE\[:TAG]
 
 EXAMPLE
 
-1. docker top prometheus #查看 prometheus 这个 container 运行的程序，该信息的格式为 ps 命令所输出的内容
+1. docker top prometheus # 查看 prometheus 这个 container 运行的程序，该信息的格式为 ps 命令所输出的内容
 
 ## unpause Unpause all processes within a container #取消暂停容器
 

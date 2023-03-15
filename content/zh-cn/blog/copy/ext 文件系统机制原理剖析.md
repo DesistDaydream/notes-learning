@@ -1,4 +1,12 @@
-原文链接：https://www.junmajinlong.com/linux/ext_filesystem/
+---
+title: "ext 文件系统机制原理剖析"
+linkTitle: "ext 文件系统机制原理剖析"
+date: 2020-10-25
+description: >
+  A short lead description about this content page. Text here can also be **bold** or _italic_ and can even be split over multiple paragraphs.
+---
+
+原文链接：<https://www.junmajinlong.com/linux/ext_filesystem/>
 
 * * *
 

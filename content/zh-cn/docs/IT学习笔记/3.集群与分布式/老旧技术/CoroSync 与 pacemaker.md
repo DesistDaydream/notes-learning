@@ -24,37 +24,37 @@ Cluster 中的各个 Node 通过相同的组播地址来组成集群，这些 No
 
 配置文件在/etc/corosync.conf，该文件定义 CoroSync 底层是如何让 Cluster 内的各个 Node 互相通信的
 
-1.  totem { #图腾，定义 Cluster 的 Messaging Infrastructure 层，各 Node 如何进行通信的
+1.  totem { # 图腾，定义 Cluster 的 Messaging Infrastructure 层，各 Node 如何进行通信的
 
-2.  version：NUM #totem 的版本号
+2.  version：NUM # totem 的版本号
 
-3.  cluster_name：NAME #定义集群名称
+3.  cluster_name：NAME # 定义集群名称
 
-4.  secauth：on|off #定义是否打开安全认证功能，如果打开了，那么就需要使用 corosync-keygen 命令生成密钥，其余节点需要都拥有该密钥文件
+4.  secauth：on|off # 定义是否打开安全认证功能，如果打开了，那么就需要使用 corosync-keygen 命令生成密钥，其余节点需要都拥有该密钥文件
 
-5.  threads：NUM #定义线程数，默认为 0
+5.  threads：NUM # 定义线程数，默认为 0
 
-6.  interface { #定义多个节点之间通过哪个接口，基于哪个多播地址，监听什么端口，完成多播通信的
+6.  interface { # 定义多个节点之间通过哪个接口，基于哪个多播地址，监听什么端口，完成多播通信的
 
-7.  ringnumber：0 #一般保持为 0 就行
+7.  ringnumber：0 # 一般保持为 0 就行
 
-8.  bindnetaddr:IP #指明把组播地址绑定在哪个网络地址上，注意：是网络地址
+8.  bindnetaddr:IP # 指明把组播地址绑定在哪个网络地址上，注意：是网络地址
 
-9.  mcastaddr:IP #指明使用的组播地址
+9.  mcastaddr:IP # 指明使用的组播地址
 
-10. mcastport: NUM #指明组播监听的端口号，默认是 5405
+10. mcastport: NUM # 指明组播监听的端口号，默认是 5405
 
-11. logging { #指定日志系统信息
+11. logging { # 指定日志系统信息
 
-12. to_logfile: yes|no #定义是否把信息写进日志
+12. to_logfile: yes|no # 定义是否把信息写进日志
 
-13. logfile: /PATH #定义日志文件路径，默认为/var/log/corosync/corosync.log
+13. logfile: /PATH # 定义日志文件路径，默认为/var/log/corosync/corosync.log
 
-14. logger_subsys { #定义 log 子系统
+14. logger_subsys { # 定义 log 子系统
 
-15. debug:on|off #定义 debug 是开还是关
+15. debug:on|off # 定义 debug 是开还是关
 
-16. service { #该方法定义 pacemaker 作为 CoroSync 的一个插件来运行
+16. service { # 该方法定义 pacemaker 作为 CoroSync 的一个插件来运行
 
         	ver:    0
 
@@ -64,15 +64,15 @@ Cluster 中的各个 Node 通过相同的组播地址来组成集群，这些 No
 
 }
 
-corosync-keygen #如果打开了 secauth，那么需要使用该命令生成一个 corosync 的密钥文件，该命令使用后需要从/dev/random 设备中读取 1024bits 字节数，可以用手输入，或者安装某些程序
+corosync-keygen # 如果打开了 secauth，那么需要使用该命令生成一个 corosync 的密钥文件，该命令使用后需要从/dev/random 设备中读取 1024bits 字节数，可以用手输入，或者安装某些程序
 
 /var/log/XXXXX/corosync.log 日志的使用方法
 
-1. grep -e "Corosync Cluster Engin" -e "configuration file" corosync.log #查看 CoroSync 引擎是否正常启动
+1. grep -e "Corosync Cluster Engin" -e "configuration file" corosync.log # 查看 CoroSync 引擎是否正常启动
 
-2. grep "TOTEM" corosync.log #查看初始化成员节点通知是否正常发出
+2. grep "TOTEM" corosync.log # 查看初始化成员节点通知是否正常发出
 
-3. grep "pcmk_startup" corosync.log #查看 pacemaker 是否正常启动了
+3. grep "pcmk_startup" corosync.log # 查看 pacemaker 是否正常启动了
 
 # CRMSH 说明
 
@@ -84,69 +84,69 @@ corosync-keygen #如果打开了 secauth，那么需要使用该命令生成一�
 
 3. COMMAN 与 SubCommand
 
-- status #显示当前 Cluster 的状态，如图所示
+- status # 显示当前 Cluster 的状态，如图所示
 
-- configure #对 cluster 进行配置
+- configure # 对 cluster 进行配置
 
-- show #显示配置信息
+- show # 显示配置信息
 
-- show xml #以 xml 方式显示配置信息
+- show xml # 以 xml 方式显示配置信息
 
-- verify #验证配置完但是还没 commit 的信息是否正确
+- verify # 验证配置完但是还没 commit 的信息是否正确
 
-- commit #提交被改变的配置到 CIB，把在内存中的配置信息写到磁盘中
+- commit # 提交被改变的配置到 CIB，把在内存中的配置信息写到磁盘中
 
-- primitive|group|clone #定义一个{主|组|克隆}资源，包括该资源代理的类型以及该类型的配置等等信息(注意：如果在定义资源的时候不进行 monitor 监控定义，那么在该资源出现异常无法提供服务的时候，这个资源不会从一个 node 自动切换到另一个 node)
+- primitive|group|clone # 定义一个{主|组|克隆}资源，包括该资源代理的类型以及该类型的配置等等信息(注意：如果在定义资源的时候不进行 monitor 监控定义，那么在该资源出现异常无法提供服务的时候，这个资源不会从一个 node 自动切换到另一个 node)
 
-- primitive webip ocf:heartbeat:IPaddr params ip=192.168.100.70 nic=enp0s3 cidr_netmask=16 op monitor interval=10s timeout=20s #定义一个叫 webip 的资源，资源 params(参数)为：ip 地址，网卡，掩码；monitor(监控)信息：间隔时间为 10 秒，超时时间为 20 秒
+- primitive webip ocf:heartbeat:IPaddr params ip=192.168.100.70 nic=enp0s3 cidr_netmask=16 op monitor interval=10s timeout=20s # 定义一个叫 webip 的资源，资源 params(参数)为：ip 地址，网卡，掩码；monitor(监控)信息：间隔时间为 10 秒，超时时间为 20 秒
 
 - 间隔时间:每隔多少秒检查一下该资源是否可用
 
 - 超时时间：当检测资源是否可用的时间超过多少秒时，则视为该资源失效，需要转移
 
-- primitive webserver lsb:apache2 op monitor interval=10s timeout=20s #定义主资源，资源名为：webserver；资源 params(参数)为：apache2 的进程；monitor(监控)信息：间隔时间为 10 秒，超时时间为 20 秒
+- primitive webserver lsb:apache2 op monitor interval=10s timeout=20s # 定义主资源，资源名为：webserver；资源 params(参数)为：apache2 的进程；monitor(监控)信息：间隔时间为 10 秒，超时时间为 20 秒
 
-- primitive webstore ocf:heartbeat:Filesystem params device="192.168.0.80:/web/htdocs" directory="/var/www/html" fstype="nfs" op monitor interval=20s timeout=40s op start timeout=60s op stop timeout=60s #定义一个叫 webstore 的资源，资源 params(参数)为：设备,目录,文件系统类型,monitor(监控)信息:间隔时间为 20 秒，超时时间为 40 秒，资源启动超时时间为 60s，资源停止超时时间为 60 秒
+- primitive webstore ocf:heartbeat:Filesystem params device="192.168.0.80:/web/htdocs" directory="/var/www/html" fstype="nfs" op monitor interval=20s timeout=40s op start timeout=60s op stop timeout=60s # 定义一个叫 webstore 的资源，资源 params(参数)为：设备,目录,文件系统类型,monitor(监控)信息:间隔时间为 20 秒，超时时间为 40 秒，资源启动超时时间为 60s，资源停止超时时间为 60 秒
 
-- group webservice webip webserver #定义一个叫 webservice 的组资源，把 webip 和 webserver 两个资源放到同一个资源组
+- group webservice webip webserver # 定义一个叫 webservice 的组资源，把 webip 和 webserver 两个资源放到同一个资源组
 
-- colocation|location|order #定义{排列约束|位置约束|顺序约束}
+- colocation|location|order # 定义{排列约束|位置约束|顺序约束}
 
-- colocation webserver_with_webip inf: webserver webip #定义 webserver 和 webip 排列约束名为 webserver_with_webip，规则为资源在同一个 node 上，约束值 inf 为无穷大(注意：当需要约束的资源同属一个组资源的时候，不用定义该约束)
+- colocation webserver_with_webip inf: webserver webip # 定义 webserver 和 webip 排列约束名为 webserver_with_webip，规则为资源在同一个 node 上，约束值 inf 为无穷大(注意：当需要约束的资源同属一个组资源的时候，不用定义该约束)
 
-- order webip_before_webserver Mandatory: webip webserver #定义 webserver 和 webip 顺序约束名为 webip_before_webserver,规则为 webip 第一个启动，webip 不启动，则 webserver 资源也无法启动
+- order webip_before_webserver Mandatory: webip webserver # 定义 webserver 和 webip 顺序约束名为 webip_before_webserver,规则为 webip 第一个启动，webip 不启动，则 webserver 资源也无法启动
 
-- location webip_on_node2 webip rule 50: #uname eq k8s-node2 #定义 webip 资源的位置约束名为 webip_on_node2，规则为 webip 资源倾向于在 node2 上运行，倾向性 50 分，默认分数为 0
+- location webip_on_node2 webip rule 50: # uname eq k8s-node2 # 定义 webip 资源的位置约束名为 webip_on_node2，规则为 webip 资源倾向于在 node2 上运行，倾向性 50 分，默认分数为 0
 
-- property #配置 Cluster 的全局属性，配置在 show 展示的信息中 property 中的内容，cib 启动程序选项
+- property # 配置 Cluster 的全局属性，配置在 show 展示的信息中 property 中的内容，cib 启动程序选项
 
-- property default-resource-stickiness=50 #定义资源默认对当前 node 的粘性，就算另一个 node 的位置约束数值更高，已经在当前节点的资源也不会转移走
+- property default-resource-stickiness=50 # 定义资源默认对当前 node 的粘性，就算另一个 node 的位置约束数值更高，已经在当前节点的资源也不会转移走
 
-- property stonith-enabled=false #定义是否启用 stonith 设备，默认为 true 启动，如果没有 stonith 设备的话，该项配置为 false，否则集群无法使用，两节点集群需要配置为 false
+- property stonith-enabled=false # 定义是否启用 stonith 设备，默认为 true 启动，如果没有 stonith 设备的话，该项配置为 false，否则集群无法使用，两节点集群需要配置为 false
 
-- property no-quorum-policy=ignore #定义在当前节点没有法定票数的时候策略是忽略，两节点集群需要配置为忽略
+- property no-quorum-policy=ignore # 定义在当前节点没有法定票数的时候策略是忽略，两节点集群需要配置为忽略
 
-- edit #修改一个 CIB objects(对象)，以文本形式修改 show 命令展示出的配置信息
+- edit # 修改一个 CIB objects(对象)，以文本形式修改 show 命令展示出的配置信息
 
-- delete #删除一个 CIB objects(对象)
+- delete # 删除一个 CIB objects(对象)
 
-- delete webip_before_webserver #删除一个名字为 webip_before_websrver 的已经被定义了的对象(对象就是各种定义的名字)
+- delete webip_before_webserver # 删除一个名字为 webip_before_websrver 的已经被定义了的对象(对象就是各种定义的名字)
 
-- node #对各 node 进行配置
+- node # 对各 node 进行配置
 
-- crm node online #在执行该命令的 node 上线
+- crm node online # 在执行该命令的 node 上线
 
-- crm node standby #在执行该命令的 node 下线变成备用
+- crm node standby # 在执行该命令的 node 下线变成备用
 
-- resource #对资源进行配置，启动，停止，重启，迁移等
+- resource # 对资源进行配置，启动，停止，重启，迁移等
 
-- \[un]migrate #迁移一个 resource 到其余 node\[迁移一个其余 node 的 resource 至当前 node]
+- \[un]migrate # 迁移一个 resource 到其余 node\[迁移一个其余 node 的 resource 至当前 node]
 
-- ra #对资源代理的查看和控制
+- ra # 对资源代理的查看和控制
 
-- classes #查看有哪些资源代理类别
+- classes # 查看有哪些资源代理类别
 
-- list #列出 classes 下可支持的所有资源代理
+- list # 列出 classes 下可支持的所有资源代理
 
 # 其他说明
 

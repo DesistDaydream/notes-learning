@@ -12,49 +12,37 @@ title: kickstart 介绍
 
 ## 磁盘配置
 
-bootloader \[OPTIONS] #引导程序(boot loader)的相关配置。
+bootloader \[OPTIONS] # 引导程序(boot loader)的相关配置。
 
-\--location=VALUE #指定引导程序的安装位置为 VALUE
+\--location=VALUE # 指定引导程序的安装位置为 VALUE
 
-1. mbr #默认值。取决于磁盘格式是 MBR 还是 GUID
-
-2. partition #将引导程序安装在包含内核的分区的第一个扇区中
-
-3. none #不安装引导程序
-
-4. boot #未知，待更新
+1. mbr # 默认值。取决于磁盘格式是 MBR 还是 GUID
+2. partition # 将引导程序安装在包含内核的分区的第一个扇区中
+3. none # 不安装引导程序
+4. boot # 未知，待更新
 
 磁盘分区相关配置
 
 part MntPoint \[OPTIONS] # 创建一个分区，挂载点为 MntPoint，
 
-MntPoint #可用的挂载点有如下几种。
+MntPoint # 可用的挂载点有如下几种。
 
 - /PATH # 指定挂载点到具体路径下
-
 - swap # 指定该分区为 swap
-
 - raid.ID
-
 - pv.ID # 指定该分区用于 lvm，即创建一个 pv(物理卷)
-
 - biosboot # 指定该分区用于 BIOS 引导,建议大小为 2MiB
-
 - /boot/efi # 指定该分区用于 UEFI 引导，建议大小为 200MiB.
 
 OPTIONS
 
 - --size=NUM # 指定该分区的大小，单位为 MiB。Note：NUM 为一个正整数(不包含单位)
-
 - --grow # 将该分区大小设置为所有剩余可用的空间。如果指定了 --maximum 选项，则将该分区设置为该选项值的大小。
-
 - --asprimary # 指定该分区为主分区。Note：对于 GUID 分区表(GPT),该选项没有任何意义。
+- --fstype=TYPE # 指定该分区的文件系统类型。可用类型有 xfs、ext2、ext3、ext4、swap、vfat、efi、biosboot
+- --ondisk= # 指定要使用的磁盘名称
 
-- --fstype=TYPE #指定该分区的文件系统类型。可用类型有 xfs、ext2、ext3、ext4、swap、vfat、efi、biosboot
-
-- --ondisk= #指定要使用的磁盘名称
-
-volgroup Name PartName #创建名为 NAME 卷组，使用名为 PartName 分区
+volgroup Name PartName # 创建名为 NAME 卷组，使用名为 PartName 分区
 
 logvol PATH --vgname=VGNAME --name=NAME \[OPTIONS] # 创建名为 NAME 逻辑卷，使用名为 VGNAME 的卷组
 

@@ -187,7 +187,7 @@ The redirection operator \[n]<>word causes the file whose name is the expansion 
 
 上面到底是什么意思呢？我们来看下面的例子，假如有脚本 test.sh：
 
-\#!/bin/bashdate #打印当前时间 while true #死循环 do #每隔 2 秒打印一次 sleep 2 whatthis #不存在的命令 echo -e "std output"done
+\#!/bin/bashdate # 打印当前时间while true # 死循环 do # 每隔 2 秒打印一次 sleep 2 whatthis # 不存在的命令 echo -e "std output"done
 
 脚本中先打印当前日期，然后每隔 2 秒执行 whatthis 并打印一段字符。由于系统中不存在 whatthis 命令，因此执行会报错。
 

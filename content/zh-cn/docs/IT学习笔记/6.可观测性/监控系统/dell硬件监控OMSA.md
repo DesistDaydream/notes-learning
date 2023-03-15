@@ -21,9 +21,9 @@ weight: 50
 
 Note：
 
-1. srvadmin-base #代理程序，可以生成 snmp 信息
-2. srvadmin-server-cli #命令行客户端，可以通过命令行查看硬件信息
-3. srvadmin-storage-cli #存储资源的命令行客户端，不安装这个则无法获取 raid 和硬盘的数据
+1. srvadmin-base # 代理程序，可以生成 snmp 信息
+2. srvadmin-server-cli # 命令行客户端，可以通过命令行查看硬件信息
+3. srvadmin-storage-cli # 存储资源的命令行客户端，不安装这个则无法获取 raid 和硬盘的数据
 
 下面是使用 yum 安装 OMSA 的 repo 文件
 
@@ -71,15 +71,15 @@ enabled=1
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gknv4x/1616067497704-782c72fb-2dcf-4422-9654-b71a7c89d1eb.jpeg)
 
-- /opt/dell/srvadmin/sbin/srvadmin-services.sh start #启动 openManger
+- /opt/dell/srvadmin/sbin/srvadmin-services.sh start # 启动 openManger
   - 该脚本会通过 systemd 启动三个服务
   - instsvcdrv #
   - dataeng #
-  - dsm_om_connsvc #web 控制台
-- /opt/dell/srvadmin/sbin/srvadmin-services.sh enable #设置开机自启 openManager
-- systemctl stop dsm_om_connsvc #关闭 openManager 的 web 服务
-- systemctl disable dsm_om_connsvc #将 openManager 的 web 服务开机自启关闭
-- systemctl restart snmpd #重启 snmp 服务。由于安装 openManager 会在 snmpd 的配置文件中写入内容，所以需要重启 snmpd 服务使得该配置生效
+  - dsm_om_connsvc # web 控制台
+- /opt/dell/srvadmin/sbin/srvadmin-services.sh enable # 设置开机自启 openManager
+- systemctl stop dsm_om_connsvc # 关闭 openManager 的 web 服务
+- systemctl disable dsm_om_connsvc # 将 openManager 的 web 服务开机自启关闭
+- systemctl restart snmpd # 重启 snmp 服务。由于安装 openManager 会在 snmpd 的配置文件中写入内容，所以需要重启 snmpd 服务使得该配置生效
 - 在 wiseman 上添加相关的 dell 硬件监控。效果如图，在主机的模板里添加 dell server 模板
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gknv4x/1616067497780-3afd659e-d460-4c2b-8d66-1f9a3c67890a.jpeg)

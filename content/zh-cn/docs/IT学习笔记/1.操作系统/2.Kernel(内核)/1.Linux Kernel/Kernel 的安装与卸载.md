@@ -14,15 +14,15 @@ title: Kernel 的安装与卸载
 
 ## 更换内核
 
-awk -F' '$1=="\tmenuentry " {print i++ " : " $2}' /boot/grub/grub.cfg
+`awk -F' '$1=="\tmenuentry " {print i++ " : " $2}' /boot/grub/grub.cfg`
 
 # CentOS
 
 > 参考：
 > - [ELRepo 安装文档](http://elrepo.org/tiki/tiki-index.php)
 > - elrepo 的内核 rpm 包不全，暂时也不知道去哪找，先把能找到的网址都记下来
->   - <https://buildlogs.centos.org/c7-kernels.x86_64/kernel/>
->   - <https://buildlogs.centos.org/c7-kernels.x86_64/kernel/20200330213326/4.19.113-300.el8.x86_64/?C=N;O=A>
+>     - <https://buildlogs.centos.org/c7-kernels.x86_64/kernel/>
+>     - <https://buildlogs.centos.org/c7-kernels.x86_64/kernel/20200330213326/4.19.113-300.el8.x86_64/?C=N;O=A>
 
 ## 安装 linux 内核的存储库
 
@@ -82,17 +82,10 @@ yum remove kernel-3.10.0-1127.19.1.el7.x86_64
 
 ### CentOS 8
 
-查看当前默认启动的内核
-
-```bash
-[root@tiny-server ~]# grubby --default-kernel
-/boot/vmlinuz-4.18.0-193.28.1.el8_2.x86_64
-```
-
 查看系统安装的全部内核：
 
 ```bash
-[root@tiny-server ~]# grubby --info=ALL
+~]# grubby --info=ALL
 index=0
 kernel="/boot/vmlinuz-5.9.1-1.el8.elrepo.x86_64"
 args="ro crashkernel=auto resume=/dev/mapper/cl-swap rd.lvm.lv=cl/root rd.lvm.lv=cl/swap net.ifnames=0 rhgb quiet intel_iommu=on $tuned_params"
@@ -113,15 +106,22 @@ id="12ab47b22fef4c02bcdc88b340d5f706-4.18.0-193.28.1.el8_2.x86_64"
 
 ```bash
 # 使用路径来指定内核，可以使用--set-default=Kernel_PATH
-[root@tiny-server ~]# grubby --set-default=/boot/vmlinuz-5.9.1-1.el8.elrepo.x86_64
+~]# grubby --set-default=/boot/vmlinuz-5.9.1-1.el8.elrepo.x86_64
 The default is /boot/loader/entries/12ab47b22fef4c02bcdc88b340d5f706-5.9.1-1.el8.elrepo.x86_64.conf with index 0 and kernel /boot/vmlinuz-5.9.1-1.el8.elrepo.x86_64
-[root@tiny-server ~]# grubby --default-kernel
+ ~]# grubby --default-kernel
 /boot/vmlinuz-5.9.1-1.el8.elrepo.x86_64
 
 # 使用index来指定内核，则使用--set-default-index=INDEX
-[root@tiny-server ~]# grubby --set-default-index=1
+~]# grubby --set-default-index=1
 The default is /boot/loader/entries/12ab47b22fef4c02bcdc88b340d5f706-4.18.0-193.28.1.el8_2.x86_64.conf with index 1 and kernel /boot/vmlinuz-4.18.0-193.28.1.el8_2.x86_64
-[root@tiny-server ~]# grubby --default-kernel
+~]# grubby --default-kernel
+/boot/vmlinuz-4.18.0-193.28.1.el8_2.x86_64
+```
+
+查看当前默认启动的内核
+
+```bash
+~]# grubby --default-kernel
 /boot/vmlinuz-4.18.0-193.28.1.el8_2.x86_64
 ```
 
@@ -129,20 +129,20 @@ The default is /boot/loader/entries/12ab47b22fef4c02bcdc88b340d5f706-4.18.0-193.
 
 ```bash
 # 对所有的内核都删除某个参数
-[root@tiny-server ~]# grubby --update-kernel=ALL --remove-args=intel_iommu=on
+~]# grubby --update-kernel=ALL --remove-args=intel_iommu=on
 
 # 对所有的内核都添加某个参数
-[root@tiny-server ~]# grubby --update-kernel=ALL --args=intel_iommu=on
+~]# grubby --update-kernel=ALL --args=intel_iommu=on
 
 # 对某个的内核添加启动参数
-[root@tiny-server ~]# grubby --update-kernel=/boot/vmlinuz-5.9.1-1.el8.elrepo.x86_64 --args=intel_iommu=on
+~]# grubby --update-kernel=/boot/vmlinuz-5.9.1-1.el8.elrepo.x86_64 --args=intel_iommu=on
 
 ```
 
 查看特定内核的具体信息：
 
 ```bash
-[root@tiny-server ~]# grubby --info=/boot/vmlinuz-5.9.1-1.el8.elrepo.x86_64
+~]# grubby --info=/boot/vmlinuz-5.9.1-1.el8.elrepo.x86_64
 index=0
 kernel="/boot/vmlinuz-5.9.1-1.el8.elrepo.x86_64"
 args="ro crashkernel=auto resume=/dev/mapper/cl-swap rd.lvm.lv=cl/root rd.lvm.lv=cl/swap net.ifnames=0 rhgb quiet intel_iommu=on $tuned_params"
