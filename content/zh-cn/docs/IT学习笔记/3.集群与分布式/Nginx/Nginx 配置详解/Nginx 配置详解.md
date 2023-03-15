@@ -11,7 +11,7 @@ weight: 1
 > - [org 官方文档,全部变量列表](http://nginx.org/en/docs/varindex.html)
 > - [官方文档,管理指南-基础功能-创建 NGINX 配置文件](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/#)
 
-Nginx 由 **Modules(模块)** 组成， Modules 由配置文件中的 **Directives(指令) **控制其运行行为。有的 Directives 可以控制多个模块，只不过在控制不同模块时，产生的效果也许会不尽相同。
+Nginx 由 **Modules(模块)** 组成， Modules 由配置文件中的 **Directives(指令)** 控制其运行行为。有的 Directives 可以控制多个模块，只不过在控制不同模块时，产生的效果也许会不尽相同。
 
 ## Directives(指令)
 
@@ -35,12 +35,12 @@ Directives(指令) 分为如下几种：
 
 将多个相关的 块指令 和 简单指令 组合在一起的指令。一共分为 4 类 Contexts：
 
-- [**events {}**](/docs/IT学习笔记/3.集群与分布式/Nginx/Nginx%20 配置详解/events%20 模块指令.md 配置详解/events 模块指令.md)\*\* \*\*# 用于配置如何处理常规连接。
-- [**http {}**](/docs/IT学习笔记/3.集群与分布式/Nginx/Nginx%20 配置详解/http%20 模块指令.md 配置详解/http 模块指令.md)\*\* \*\*# http 流量处理配置，通常用来配置 7 层代理。由 ngx_http_core_module 模块处理其中配置
-- **mail {} **# mail 流量处理配置。由 ngx_mail_core_module 模块处理其中配置
-- [**stream {}**](/docs/IT学习笔记/3.集群与分布式/Nginx/Nginx%20 配置详解/core%20 模块指令.md 配置详解/core 模块指令.md)\*\* \*\*# TCP 和 UDP 流量处理配置，通常用来配置 4 层代理。由 ngx_stream_core_module 模块处理其中配置
+- [**events {}**](/docs/IT学习笔记/3.集群与分布式/Nginx/Nginx%20配置详解/events%20模块指令.md) # 用于配置如何处理常规连接。
+- [**http {}**](/docs/IT学习笔记/3.集群与分布式/Nginx/Nginx%20配置详解/http%20模块指令.md) # http 流量处理配置，通常用来配置 7 层代理。由 ngx_http_core_module 模块处理其中配置
+- **mail {}** # mail 流量处理配置。由 ngx_mail_core_module 模块处理其中配置
+- [**stream {}**](/docs/IT学习笔记/3.集群与分布式/Nginx/Nginx%20配置详解/stream%20模块指令.md) # TCP 和 UDP 流量处理配置，通常用来配置 4 层代理。由 ngx_stream_core_module 模块处理其中配置
 
-[**main**](/docs/IT学习笔记/3.集群与分布式/Nginx/Nginx%20 配置详解/core%20 模块指令.md 配置详解/core 模块指令.md) # 如果某些指令在上述 4 类 Contexts 之外，则称之为 main Context。可以说，events{}、http{}、mail{}、stream{} 四个 Contexts，都属于 main 上下文中的指令。说白了，main 上下文就是 Nginx 的配置文件~~~其实，main 就是指最顶层的 core 模块指令
+[**main**](/docs/IT学习笔记/3.集群与分布式/Nginx/Nginx%20配置详解/core%20模块指令.md) # 如果某些指令在上述 4 类 Contexts 之外，则称之为 main Context。可以说，events{}、http{}、mail{}、stream{} 四个 Contexts，都属于 main 上下文中的指令。说白了，main 上下文就是 Nginx 的配置文件~其实，main 就是指最顶层的 core 模块指令
 
 每一个 Context 类型的指令都对应控制一个 NGX_CORE_MODULE 类型的模块
 

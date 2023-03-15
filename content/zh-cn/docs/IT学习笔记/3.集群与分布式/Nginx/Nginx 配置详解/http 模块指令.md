@@ -163,7 +163,7 @@ URL 有多种表示方法(下面的 Protocol 通常都是 http 或 https)
 
 **fastcgi_param SCRIPT_FILENAME /scripts$fastcgi_script_name;** #
 
-**fastcgi_cache_path path PATH ARGS...; **#
+**fastcgi_cache_path path PATH ARGS...;** #
 
 # 其他指令
 
@@ -191,7 +191,9 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_in_file_onl
 - 作用范围：http{}、server{}、location{}
 
 确定 Nginx 是否应该将整个客户端请求正文保存到文件中。可以在调试期间或使用 `$request_body_file` 变量或模块 ngx_http_perl_module 的$ r-> request_body_file 方法时使用此指令。
+
 设置为 on 时，请求处理后不会删除临时文件
+
 clean 值将导致请求处理后留下的临时文件被删除。
 
 ### client_header_timeout NUM;
@@ -255,7 +257,7 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#root
 
 https://nginx.org/en/docs/http/ngx_http_core_module.html#sendfile
 
-开启或关闭 sendfile() 功能，即 [零拷贝](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File%20System%20 管理/10.1.零拷贝.md System 管理/10.1.零拷贝.md) 功能。
+开启或关闭 sendfile() 功能，即[零拷贝](docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/零拷贝.md)功能。
 
 - 默认值：`sendfile off;`
 - 作用范围：http{}、server{}、location{}
@@ -324,7 +326,7 @@ log_format combined '$remote_addr - $remote_user [$time_local] '
                     '"$http_referer" "$http_user_agent"';
 ```
 
-更多日志格式设置方法，见 [log_format 指令详解](https://www.yuque.com/go/doc/33182060)。
+更多日志格式设置方法，见 [log_format 模块指令](/docs/IT学习笔记/3.集群与分布式/Nginx/Nginx%20配置详解/多用途模块的指令/log_format%20模块指令.md)
 
 ## ngx_http_proxy_module 模块指令
 
@@ -527,7 +529,7 @@ if ($remote_addr ~ "^(12.34|56.78)" && $http_user_agent ~* "spider") {
 }
 ```
 
-### return CODE [ TEXT | URL ];
+### return CODE [TEXT | URL];
 
 http://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return
 
@@ -587,5 +589,4 @@ http {
     }
   }
 }
-
 ```
