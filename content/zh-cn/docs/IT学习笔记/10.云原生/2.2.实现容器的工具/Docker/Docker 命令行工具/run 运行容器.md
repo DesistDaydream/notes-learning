@@ -5,6 +5,7 @@ title: run 运行容器
 # 概述
 
 > 参考：
+>
 > - [官方文档，参考-命令行参考-docker-Docker run 参考](https://docs.docker.com/engine/reference/run/)
 > - [官方文档，参考-命令行参考-docker-docker run](https://docs.docker.com/engine/reference/commandline/run/)
 
@@ -33,7 +34,7 @@ title: run 运行容器
 - --dns-option list Set DNS options
 - --dns-search list Set custom DNS search domains
 - --entrypoint string Overwrite the default ENTRYPOINT of the image
-- **-e, --env <LIST> **# 设定容器内的环境变量。LIST 格式为 `VAR=VALUE`，若要指定多个变量，则使用多次 --env 选项。
+- **-e, --env <LIST>**# 设定容器内的环境变量。LIST 格式为 `VAR=VALUE`，若要指定多个变量，则使用多次 --env 选项。
 - --env-file list Read in a file of environment variables
 - **--expose <LIST>** # 等效于 Dockerfile 中的 EXPOSE 指令，仅暴露容器端口，不在宿主机暴露。
 - --group-add list Add additional groups to join
@@ -42,7 +43,7 @@ title: run 运行容器
 - --health-retries int Consecutive failures needed to report unhealthy
 - --health-start-period duration Start period for the container to initialize before starting health-retries countdown (ms|s|m|h)(default 0s)
 - --health-timeout duration Maximum time to allow one check to run (ms|s|m|h) (default 0s)
-- -h, --hostname <STRING> #指定容器内的 hostname
+- -h, --hostname <STRING> # 指定容器内的 hostname
 - --init Run an init inside the container that forwards signals and reaps processes
 - **-i, --interactive** # 即使没有 attach 到容器，也保持 STDIN(标准输入)开启。通常与 -t 一起使用
 - --ip string IPv4 address (e.g., 172.30.100.104)
@@ -61,8 +62,8 @@ title: run 运行容器
 - **--name <STRING>** # 为容器分配一个名称。默认为随机字符串
 - **--network <STRING>** # 连接一个容器到一个容器网络(default "default")，可以是 docker network ls 列出的网络，也可以是其余 container 的网络。STRING 包括下面几种
   - none # 容器使用自己的网络（类似--net=bridge），但是不进行配置
-  - bridge #通过 veth 接口将容器连接到默认的 Docker 桥(默认为 docker0 的网桥).
-  - host #直接使用宿主机的网络而不是独立的 network namespace
+  - bridge # 通过 veth 接口将容器连接到默认的 Docker 桥(默认为 docker0 的网桥).
+  - host # 直接使用宿主机的网络而不是独立的 network namespace
   - ContainerName #连接到指定 container 的网络中
   - NetworkName #连接到 docker network ls 所列出的其中一个 docker 网络上
 - --network-alias list Add ne twork-scoped alias for the container
@@ -72,7 +73,7 @@ title: run 运行容器
 - --pid string PID namespace to use
 - --pids-limit int Tune container pids limit (set -1 for unlimited)
 - --privileged Give extended privileges to this container
-- **-p, --publish \[HostIP:]\[HostPort:]<ContainerPort> **# 指明 Container 要映射到 Host 上的 IP 和端口。若只指明 HostIP 和 ContainerPort 则中间俩个冒号不可省。若不指定 HostIP，则第一个冒号可不写。要暴露多个端口则多次使用 -p 即可。
+- **-p, --publish \[HostIP:]\[HostPort:]<ContainerPort>**# 指明 Container 要映射到 Host 上的 IP 和端口。若只指明 HostIP 和 ContainerPort 则中间俩个冒号不可省。若不指定 HostIP，则第一个冒号可不写。要暴露多个端口则多次使用 -p 即可。
 - **-P, --publish-all** # 将 Image 定义的 EXPOSE 要暴露的端口暴露给 host，随机分配 host 上的端口与之建立映射关系。一般从 10000 端口开始
 - **--read-only** # 将容器的根文件系统挂载为只读模式
 - **--rm** # 当容器退出时，删除它。包括创建的 volume 等一并删除
@@ -85,8 +86,8 @@ title: run 运行容器
 - --storage-opt list Storage driver options for the container
 - --sysctl map Sysctl options (default map\[])
 - --tmpfs list Mount a tmpfs directory
-- **-t, --tty **# 为此命令分配一个 pseudo-TTY(伪终端)，可以支持终端登录，通常与-i 一起使用。
-- **-u, --user <STRING> **# 为容器进程指定运行的用户名/UID
+- **-t, --tty**# 为此命令分配一个 pseudo-TTY(伪终端)，可以支持终端登录，通常与-i 一起使用。
+- **-u, --user <STRING>**# 为容器进程指定运行的用户名/UID
   - STRING 格式：`<NAME|UID>[:<GROUP|GID>])`
 - --userns string User namespace to use
 - --uts string UTS namespace to use
@@ -103,7 +104,7 @@ title: run 运行容器
 - --cpu-rt-period int Limit CPU real-time period in microseconds
 - --cpu-rt-runtime int Limit CPU real-time runtime in microseconds
 - -c, --cpu-shares int CPU shares (relative weight)
-- **--cpus <INT> **# 容器可使用的最大 CPU 资源
+- **--cpus <INT>**# 容器可使用的最大 CPU 资源
 - --cpuset-cpus string CPUs in which to allow execution (0-3, 0,1)
 - --cpuset-mems string MEMs in which to allow execution (0-3, 0,1)
 - **-m, --memory <BYTES>** # 内存限制。容器能使用的最大内存

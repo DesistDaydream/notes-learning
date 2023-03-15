@@ -22,7 +22,7 @@ spec:
   entryPoints:
     - web
   routes:
-  - match: Host(`your.example.com`) && PathPrefix(`/notls`) #Host可省略，这样就跟ingress的host字段省略、istio的VirtualService资源的hosts字段写*，是一个效果
+  - match: Host(`your.example.com`) && PathPrefix(`/notls`) # Host可省略，这样就跟ingress的host字段省略、istio的VirtualService资源的hosts字段写*，是一个效果
     kind: Rule
     services:
     - name: whoami

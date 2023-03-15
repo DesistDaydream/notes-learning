@@ -16,7 +16,7 @@ adaper 可以替换掉 metrics server 来实现其功能。adapter 要想实现 
 - 其中 kubectl top node 如果查询语句查询结果为空，则在执行命令查询时会报错：error: metrics not available yet
 - 其中 kubectl top pod 如果查询语句查询结果为空，则在执行命令查询时会报错：No resources found
 
-**二、adapter 可以根据 prometheus 提供的核心 metrics 数据(比如 CPU 使用率等)或者自定义 metrics 数据，来自动实现 **[**HPA**](4.Controller(控制器).md 容器编排系统/4.Controller(控制器).md)** 功能。**
+**二、adapter 可以根据 prometheus 提供的核心 metrics 数据(比如 CPU 使用率等)或者自定义 metrics 数据，来自动实现**[**HPA**](4.Controller(控制器).md 容器编排系统/4.Controller(控制器).md)**功能。**
 
 > HPA 的概念详见《Controller 控制器》章节中的 HPA 控制器介绍
 
@@ -61,8 +61,8 @@ Note：
 
 配置文件有两大部分
 
-1. rules 配置环境 #用于 Custom Metrics
-2. resourceRules 配置环境 #用于 Core Metrics
+1. rules 配置环境 # 用于 Custom Metrics
+2. resourceRules 配置环境 # 用于 Core Metrics
 
 ## rules 配置环境
 
@@ -99,16 +99,16 @@ rules 大致可以分为四个部分，下面对四个部分的关键字进行�
 
 二、Association(关联) #关联 metrics 的 label 与 k8s resource。adapter 向 prometheus 发起查询时，会将关联规则中指定的名字作为标签名。adapter 接收到 MetricsAPI 请求中的 k8s object 作为标签值，将两者填充到 PromQL 中
 
-1. resources #通过 seriesQuery 查询到的只是指标，如果需要查询某个 Pod 的指标，肯定要将它的名称和所在的命名空间作为指标的标签进行查询， resources 就是将指标的标签和 k8s 的资源类型关联起来，最常用的就是 pod 和 namespace。有两种添加标签的方式，一种是 overrides，另一种是 template。
+1. resources # 通过 seriesQuery 查询到的只是指标，如果需要查询某个 Pod 的指标，肯定要将它的名称和所在的命名空间作为指标的标签进行查询， resources 就是将指标的标签和 k8s 的资源类型关联起来，最常用的就是 pod 和 namespace。有两种添加标签的方式，一种是 overrides，另一种是 template。
 2. overrides #它会将指标中的标签和 k8s 资源关联起来。上面示例中就是将指标中的 pod 和 namespace 标签和 k8s 中的 pod 和 namespace 关联起来，因为 pod 和 namespace 都属于核心 api 组，所以不需要指定 api 组。当我们查询某个 pod 的指标时，它会自动将 pod 的名称和名称空间作为标签加入到查询条件中。比如 nginx:{group:"apps",resource:"deployment"} 这么写表示的就是将指标中 nginx 这个标签和 apps 这个 api 组中的 deployment 资源关联起来；
    1. LabelName: {\[group: Group,]resource: "RESOURCE"}
-3. template #通过 go 模板的形式。比如 template:"kube\_<<.Group>>\_<<.Resource>>" 这么写表示，假如 <<.Group>> 为 apps， <<.Resource>> 为 deployment，那么它就是将指标中 kube_apps_deployment 标签和 deployment 资源关联起来。
+3. template # 通过 go 模板的形式。比如 template:"kube\_<<.Group>>\_<<.Resource>>" 这么写表示，假如 <<.Group>> 为 apps， <<.Resource>> 为 deployment，那么它就是将指标中 kube_apps_deployment 标签和 deployment 资源关联起来。
 
 三、Naming(命名) #(如果不需要重命名配置可省略)根据表达式匹配规则，把发现配置中查找到的 metrics 重命名。
 比如某些以 total 结尾的指标，这些指标拿来做 HPA 是没有意义的，我们需要对这些指标进行速率计算，比如这种语句 sum(rate(http_requests_total{}\[2m])) by (pod,namespace) ，在进行计算后，使用 total 来命名没意义了，需要赋予一个新的名字来表示。
 
-1. name #用来给指标重命名的，之所以要给指标重命名是因为有些指标是只增的，比如以 total 结尾的指标。这些指标拿来做 HPA 是没有意义的，我们一般计算它的速率，以速率作为值，那么此时的名称就不能以 total 结尾了，所以要进行重命名。
-2. matches: <RegEx> #通过正则表达式来匹配指标名，可以进行分组
+1. name # 用来给指标重命名的，之所以要给指标重命名是因为有些指标是只增的，比如以 total 结尾的指标。这些指标拿来做 HPA 是没有意义的，我们一般计算它的速率，以速率作为值，那么此时的名称就不能以 total 结尾了，所以要进行重命名。
+2. matches: <RegEx> # 通过正则表达式来匹配指标名，可以进行分组
 3. as: <STRING> # 默认值为$1。也就是第一个分组。 as 为空就是使用默认值的意思。
 
 四、Querying(查询) #adapter 在向 prometheus 查询数据时，根据该规则发送 PromQL 。

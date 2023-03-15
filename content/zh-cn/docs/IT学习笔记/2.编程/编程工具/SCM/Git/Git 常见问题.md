@@ -40,7 +40,7 @@ windows 平台下使用 git add，git deploy 文件时经常出现“warning: LF
 
 许多 Windows 上的编辑器会悄悄把行尾的换行（LF）字符转换成回车（CR）和换行（LF），或在用户按下 Enter 键时，插入回车（CR）和换行（LF）两个字符。
 
-## 影响：
+## 影响
 
 - 一个直接后果是，Unix/Mac 系统下的文件在 Windows 里打开的话，所有文字会变成一行；
 
@@ -50,7 +50,7 @@ windows 平台下使用 git add，git deploy 文件时经常出现“warning: LF
 
 这些问题都可以通过一定方式进行转换统一，例如，在 linux 下，命令 unix2dos 是把 linux 文件格式转换成 windows 文件格式，命令 dos2unix 是把 windows 格式转换成 linux 文件格式。
 
-## 解决问题：
+## 解决问题
 
 Git 默认行为会在提交时自动地把 CRLF(回车换行) 转换成 LF(换行)，而在检出代码时把 LF(换行) 转换成 CRLF(回车换行) .
 
@@ -79,12 +79,13 @@ Git 默认行为会在提交时自动地把 CRLF(回车换行) 转换成 LF(换�
 
     #拒绝提交包含混合换行符的文件
     git config --global core.safecrlf true
-    #允许提交包含混合换行符的文件
+    # 允许提交包含混合换行符的文件
     git config --global core.safecrlf false
     #提交包含混合换行符的文件时给出警告
     git config --global core.safecrlf warn
 
 ## 通俗解释
+
 - git 的 Windows 客户端基本都会默认设置 core.autocrlf=true，设置 core.autocrlf=true, 只要保持工作区都是纯 CRLF 文件，编辑器用 CRLF 换行，就不会出现警告了；
 - Linux 最好不要设置 core.autocrlf，因为这个配置算是为 Windows 平台定制；
 - Windows 上设置 core.autocrlf=false，仓库里也没有配置 .gitattributes，很容易引入 CRLF 或者混合换行符（Mixed Line Endings，一个文件里既有 LF 又有 CRLF）到版本库，这样就可能产生各种奇怪的问题。

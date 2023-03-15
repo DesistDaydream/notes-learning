@@ -5,6 +5,7 @@ title: kubectl 命令行工具
 # 概述
 
 > 参考：
+>
 > - [官方文档](https://kubernetes.io/docs/reference/kubectl/overview/)
 > - [官方文档,任务-安装工具-kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 > - [官方推荐常用命令备忘录](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
@@ -66,6 +67,7 @@ kubeamd 部署的集群一般直接使用 /etc/kubernetes/admin.conf 文件拷�
 # Syntax(语法)
 
 > 参考：
+>
 > - 官方文档：<https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands>
 
 **kubectl COMMAND \[TYPE] \[NAME] \[FLAGS]**
@@ -158,7 +160,7 @@ EXAMPLE
 
 ### rollout # 管理资源的滚动更新，用法详见 set,rollout 更新资源命令.note
 
-scale #为 Deployment, ReplicaSet, Replication Controller, or Job 设置新的容量大小
+scale # 为 Deployment, ReplicaSet, Replication Controller, or Job 设置新的容量大小
 
 autoscale      Auto-scale a Deployment, ReplicaSet, or ReplicationController
 
@@ -184,12 +186,12 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
 SubCommand
 
-- dump #为调试和诊断倾倒大量相关信息
+- dump # 为调试和诊断倾倒大量相关信息
 
 EXAMPLE
 
-- kubectl cluster-info #显示集群信息，效果如图
-- kubectl cluster-info dump #显示集群的 dbug 信息
+- kubectl cluster-info # 显示集群信息，效果如图
+- kubectl cluster-info dump # 显示集群的 dbug 信息
 
 ### top # 显示硬件资源(CPU/内存/存储)的用量
 
@@ -197,8 +199,8 @@ EXAMPLE
 **kubectl top \[flags] \[options]**
 EXAMPLE
 
-- kubectl top node #显示所有 Node 的硬件资源使用量
-- kubectl top pod --all-namespaces #显示所有名称空间下的 Pod 对硬件资源的使用量
+- kubectl top node # 显示所有 Node 的硬件资源使用量
+- kubectl top pod --all-namespaces # 显示所有名称空间下的 Pod 对硬件资源的使用量
 
 ### cordon # 将指定节点标记为不可调度
 
@@ -239,7 +241,6 @@ EXAMPLE
 - kubectl describe node
 - kubectl describe pod kubernetes-dashboard-87f58dc9-j244f --namespace=kube-system
 
-
 ### logs # 打印出在一个 pod 中的一个 container 的日志
 
 kubectl logs \[-f] \[-p] (POD | TYPE/NAME) \[OPTIONS]
@@ -279,7 +280,7 @@ EXAMPLE
 - 将名为 traefik 的 service 的 8080 和 443 端口，进行端口转发暴露出来，监听的地址是本地 0.0.0.0
   - kubectl port-forward --address 0.0.0.0 service/traefik 8080:8080 443:4443
 
-### proxy # 运行一个到 kubernetes 的 API 服务器的代理程序。
+### proxy # 运行一个到 kubernetes 的 API 服务器的代理程序
 
 在服务器和 Kubernetes API Server 之间创建代理服务器或应用程序级网关。 它还允许在指定的 HTTP 路径上保留静态内容。 所有传入数据都通过一个端口进入，并转发到远程 kubernetes API 服务器端口，但与静态内容路径匹配的路径除外
 
@@ -343,19 +344,19 @@ completion     Output shell completion code for the specified shell (bash or z
 
 ## Other Commands # 其他命令
 
-### api-resources # 显示所支持的所有 API 资源(即对象)。
+### api-resources # 显示所支持的所有 API 资源(即对象)
 
 显示的信息包括：NAME(对象名),SHORTNAMES(短名称)，APIGROUP(API 组)，NAMESPACED，KIND(所属种类)，VERBS(动作，即该对象可以执行的命令)
 
 **kubectl api-resources \[OPTIONS]**
 OPTIONS
 
-- --namespaced=true|false #显示所有<是 namesapce 的对象|不是 namespace 的对象>
-- -o wide|name #显示更多信息|只显示对象的名称
+- --namespaced=true|false # 显示所有<是 namesapce 的对象|不是 namespace 的对象>
+- -o wide|name # 显示更多信息|只显示对象的名称
 
 EXAMPLE
 
-### api-versions # 以“组/版本”的方式在服务器上显示所支持的所有 API 版本。
+### api-versions # 以“组/版本”的方式在服务器上显示所支持的所有 API 版本
 
 在编写 yaml 文件中的“apiVersion”字段时，可以使用该命令显示出的组/版本
 

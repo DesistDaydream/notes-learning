@@ -22,7 +22,7 @@ title: iperf 网络性能测量和调整工具
 - **-i, --interval** # 指定每次带宽报告间隔的秒数。i.e.每隔几秒输出一次数据。默认每 1 秒报告一次
 - -F, --file name # xmit/recv the specified file
 - -A, --affinity n/n,m # set CPU affinity
-- -B, --bind <host> # bind to a specific interface
+- -B, --bind \<host> # bind to a specific interface
 - -V, --verbose # more detailed output
 - -J, --json # output in JSON format
 - --logfile f # send output to a log file
@@ -38,20 +38,20 @@ title: iperf 网络性能测量和调整工具
 
 **客户端的特定选项**
 
-- **-c, --client <HOST>** # 在客户端模式下运行 iperf3，并连接到指定的服务端主机 HOST
+- **-c, --client \<HOST>** # 在客户端模式下运行 iperf3，并连接到指定的服务端主机 HOST
 - **-u, --udp** # 使用 UPD 模式进行测试。默认为 TCP
-- **-b, --bandwidth <NUM>** # 指定目标带宽上限，单位是 bits/s（0 表示无限制）（UDP 默认为 1 Mbit / sec，TCP 无限制）
+- **-b, --bandwidth \<NUM>** # 指定目标带宽上限，单位是 bits/s（0 表示无限制）（UDP 默认为 1 Mbit / sec，TCP 无限制）
   - 该选项为每个线程的带宽上限，比如我如果 -P 选项为 2，-b 为 100M ，那么当前测试每个线程的带宽上限为 100M，总上限 200M
-- --fq-rate #\[KMG]enable fair-queuing based socket pacing in bits/sec (Linux only)
+- --fq-rate #\ [KMG]enable fair-queuing based socket pacing in bits/sec (Linux only)
 - **-t, --time** # 指定传输数据的总时间。(默认为 10 秒)
-- **-n, --bytes \[KMG]** # 要传输的字节数 (不可与 -t 选项同用)
+- **-n, --bytes [KMG]** # 要传输的字节数 (不可与 -t 选项同用)
 - -k, --blockcount \[KMG] # number of blocks (packets) to transmit (instead of -t or -n)
 - -l, --len \[KMG] # length of buffer to read or write (default 128 KB for TCP, dynamic or 1 for UDP)
-- --cport <port> # bind to a specific client port (TCP and UDP, default: ephemeral port)
-- **-P, --parallel <NUM>** # 并发数
+- --cport \<port> # bind to a specific client port (TCP and UDP, default: ephemeral port)
+- **-P, --parallel \<NUM>** # 并发数
 - -R, --reverse # run in reverse mode (server sends, client receives)
 - -w, --window \[KMG] # set window size / socket buffer size
-- -C, --congestion <algo> #set TCP congestion control algorithm (Linux and FreeBSD only)
+- -C, --congestion \<algo> # set TCP congestion control algorithm (Linux and FreeBSD only)
 - -M, --set-mss # set TCP/SCTP maximum segment size (MTU - 40 bytes)
 - -N, --no-delay # set TCP/SCTP no delay, disabling Nagle's Algorithm
 - -4, --version4 only use IPv4

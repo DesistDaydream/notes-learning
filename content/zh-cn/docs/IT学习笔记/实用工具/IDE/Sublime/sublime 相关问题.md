@@ -18,25 +18,25 @@ title: sublime 相关问题
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/frqwsc/1616161737893-78f8885e-c90f-4d58-8e7c-86e3c2ce4d6b.jpeg)
 
-# 解决办法：
+# 解决办法
 
 通过翻墙提前把该连接下的 channel_v3.json 文件下载下来保存在本地
 
 然后在 首选项—Package Settings—Package Control—Settings-User 的配置中添加如下内容
 
     {
-    	"bootstrapped": true,
-    	"channels":
-    	[
-    		"E:\\Tools\\channel_v3.json" #指定channel_v3.json文件的路径，让sublime去读取本地的仓库文件
-    	],
-    	"in_process_packages":
-    	[
-    	],
-    	"installed_packages":
-    	[
-    		"ChineseLocalizations",
-    		"ConvertToUTF8",
-    		"Package Control"
-    	]
+     "bootstrapped": true,
+     "channels":
+     [
+      "E:\\Tools\\channel_v3.json" # 指定channel_v3.json文件的路径，让sublime去读取本地的仓库文件
+     ],
+     "in_process_packages":
+     [
+     ],
+     "installed_packages":
+     [
+      "ChineseLocalizations",
+      "ConvertToUTF8",
+      "Package Control"
+     ]
     }

@@ -5,6 +5,7 @@ title: Volume
 # 概述
 
 > 参考：
+>
 > - [官方文档，概念-存储-卷](https://kubernetes.io/docs/concepts/storage/volumes/)
 
 Volume(卷) 的工作流程：可以把 volume 想象成一个中间人，数据流走向：Container—Volum—StorageResource
@@ -19,6 +20,7 @@ Volume(卷) 的工作流程：可以把 volume 想象成一个中间人，数据
 # Volume 的类型
 
 > 参考：
+>
 > - [官方文档，概念-存储-卷-卷类型](https://kubernetes.io/docs/concepts/storage/volumes/#types-of-volumes)(全部 Volume 类型的官方介绍)
 
 注意：大量的第三方 In-Tree 类型的第三方卷插件(i.e.非 ConfigMap、Secret 等内置资源的卷插件)将会逐步被弃用，详情参考 [Kubernetes 博客，Kubernetes 1.23: Kubernetes In-Tree to CSI Volume Migration Status Update](https://kubernetes.io/blog/2021/12/10/storage-in-tree-to-csi-migration-status-update/)
@@ -39,7 +41,7 @@ Volume(卷) 的工作流程：可以把 volume 想象成一个中间人，数据
 - [iscsi](https://kubernetes.io/zh/docs/concepts/storage/volumes/#iscsi)
 - [local](https://kubernetes.io/zh/docs/concepts/storage/volumes/#local) # 把宿主机上的目录作为 Volume
 - [nfs](https://kubernetes.io/zh/docs/concepts/storage/volumes/#nfs) # 将 NFS 服务提供的目录作为 Volume
-- [persistentVolumeClaim](https://kubernetes.io/zh/docs/concepts/storage/volumes/#persistentvolumeclaim) # 一种 Kubernetes 资源。详见[ Persistent Volume 持久卷](https://www.yuque.com/go/doc/33163956) 中关于 PVC 的说明
+- [persistentVolumeClaim](https://kubernetes.io/zh/docs/concepts/storage/volumes/#persistentvolumeclaim) # 一种 Kubernetes 资源。详见[Persistent Volume 持久卷](https://www.yuque.com/go/doc/33163956) 中关于 PVC 的说明
 - [portworxVolume](https://kubernetes.io/zh/docs/concepts/storage/volumes/#portworxvolume)
 - [projected](https://kubernetes.io/zh/docs/concepts/storage/volumes/#projected)
 - [quobyte](https://kubernetes.io/zh/docs/concepts/storage/volumes/#quobyte)
@@ -104,12 +106,12 @@ subPath 的行为根据 Volume 类型的不同而不同
 kubectl create configmap -n montiroing grafanaini --from-file=grafana.ini
 cat XXXX.yaml
 .......
-        - mountPath: /etc/grafana/grafana.ini #指定要挂载到容器的哪个路径下
-          name: grafana-ini #指定要使用的volumes名称
+        - mountPath: /etc/grafana/grafana.ini # 指定要挂载到容器的哪个路径下
+          name: grafana-ini # 指定要使用的volumes名称
           subPath: grafana.ini
       volumes:
       - name: grafana-ini
-        configMap: #指定要使用的configmap名称
+        configMap: # 指定要使用的configmap名称
           name: grafanaini
 .......
 ```

@@ -5,6 +5,7 @@ title: Nginx
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，nginx/nginx](https://github.com/nginx/nginx)
 >   - 原始代码：<https://hg.nginx.org/nginx/>
 > - [org 官方网站](http://nginx.org/)
@@ -114,7 +115,7 @@ docker run -d --name nginx --network host --restart=always \
 
 **/etc/nginx/\*** # nginx 运行所需配置所在目录
 
-- **./nginx.conf **# nginx 主程序运行所读取的默认配置文件。
+- **./nginx.conf**# nginx 主程序运行所读取的默认配置文件。
 
 配置文件官方介绍：<https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/>
 
@@ -156,7 +157,7 @@ http {
         listen       80 default_server;
         listen       [::]:80 default_server;
         server_name  _;
-        root         /usr/share/nginx/html; #指定nginx的工作的/目录。i.e.location中/目录的起始位置
+        root         /usr/share/nginx/html; # 指定nginx的工作的/目录。i.e.location中/目录的起始位置
 
         include /etc/nginx/default.d/*.conf;
 

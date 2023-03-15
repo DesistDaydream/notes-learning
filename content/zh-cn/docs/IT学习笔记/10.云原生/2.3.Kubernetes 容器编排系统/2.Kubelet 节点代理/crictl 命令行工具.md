@@ -5,6 +5,7 @@ title: crictl 命令行工具
 # 概述
 
 > 参考：
+>
 > - [项目地址](https://github.com/kubernetes-sigs/cri-tools)
 > - [使用 crictl 对 kubernetes 进行调试](https://kubernetes.io/docs/tasks/debug-application-cluster/crictl/)
 
@@ -53,7 +54,7 @@ COMMMAND
 - rmp Remove one or more pods
 - pods List pods
 - start Start one or more created containers
-- **info** #显示与 crictl 对接的 CRI 信息
+- **info** # 显示与 crictl 对接的 CRI 信息
 - stop Stop one or more running containers
 - stopp Stop one or more running pods
 - update Update one or more running containers
@@ -66,5 +67,5 @@ OPTIONS
 
 EXAMPLE
 
-- crictl info #显示与 crictl 对接的 CRI 信息
+- crictl info # 显示与 crictl 对接的 CRI 信息
 - crictl pull docker.io/lchdzh/pause:3.1 #拉取 dockerhub 上的 lchdzh 中的 pause 镜像

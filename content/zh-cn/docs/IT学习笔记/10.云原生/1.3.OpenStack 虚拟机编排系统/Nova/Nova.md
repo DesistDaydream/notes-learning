@@ -12,13 +12,13 @@ Nova 的子组件
 
 2. Compute Core
 
-   1. nova-scheduler #虚机调度服务，负责决定在哪个计算节点上运行虚机
+   1. nova-scheduler # 虚机调度服务，负责决定在哪个计算节点上运行虚机
 
-   2. nova-compute #管理虚机的核心服务，通过调用 Hypervisor API 实现虚机生命周期管理
+   2. nova-compute # 管理虚机的核心服务，通过调用 Hypervisor API 实现虚机生命周期管理
 
-   3. Hypervisor #计算节点上跑的虚拟化管理程序，虚机管理最底层的程序。 不同虚拟化技术提供自己的 Hypervisor。 常用的 Hypervisor 有 KVM，Xen， VMWare 等
+   3. Hypervisor # 计算节点上跑的虚拟化管理程序，虚机管理最底层的程序。 不同虚拟化技术提供自己的 Hypervisor。 常用的 Hypervisor 有 KVM，Xen， VMWare 等
 
-   4. nova-conductor #nova-compute 经常需要更新数据库，比如更新虚机的状态。 出于安全性和伸缩性的考虑，nova-compute 并不会直接访问数据库，而是将这个任务委托给 nova-conductor，这个我们后面详细讨论。
+   4. nova-conductor # nova-compute 经常需要更新数据库，比如更新虚机的状态。 出于安全性和伸缩性的考虑，nova-compute 并不会直接访问数据库，而是将这个任务委托给 nova-conductor，这个我们后面详细讨论。
 
 3. Console Interface
 

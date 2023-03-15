@@ -5,6 +5,7 @@ title: Drone
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，drone/drone](https://github.com/drone/drone)
 
 Drone 是一个比 Jenkins 更简单易用的现代化 CI/CD 平台。使用 Go 语言编写，基于 Docker 构建，使用简单的 yaml 配置文件来定义和执行 Docker 容器中定义的 Pipeline。
@@ -13,7 +14,7 @@ Drone 由两个部分组成：
 
 1. Server # 用于对接 SCM，负责身份认证，SCM 配置，用户、Secrets 以及 webhook 相关的配置。当 Server 收到 SCM 的 webhook 消息后，会通知 Runner 执行 Pipeline。
    1. 可以启动多个 Server 来对接不同的 SCM。
-2. Runners #用于接收任务和运行 Pipeline。如果没有 Runner，那么在触发 Webhook，Drone 在开始 Pipeline 后，会处于 pending 状态并卡住。并且在 Drone Server 的日志中会看到如下报错：
+2. Runners # 用于接收任务和运行 Pipeline。如果没有 Runner，那么在触发 Webhook，Drone 在开始 Pipeline 后，会处于 pending 状态并卡住。并且在 Drone Server 的日志中会看到如下报错：
    1. "error": "Cannot transition status via :enqueue from :pending (Reason(s): 状态 cannot transition via "enqueue")",
    2. "msg": "manager: cannot publish status",
 

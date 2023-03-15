@@ -22,10 +22,10 @@ from
   - **SelectExpr** # 要检索的列，可以使用 `*` 以检索所有列。
 - **from** # 关键字，指定要检索行的一个或多个表，多个表使用 , 分隔。
   - **TableReferences** # 表引用。除了基本的直接使用表名，还可以通过 join 和 union 子句使用表达式引用表，甚至可以引用通过 select 返回的表。
-- **where **# 从 from 中指定的表中所检索的行需要满足 where 定义的匹配条件。
+- **where** # 从 from 中指定的表中所检索的行需要满足 where 定义的匹配条件。
   - **WhereCondition** # 多个条件以 `and` 和 `or` 关键字连接。
-- **limit **# 为返回的记录数
-- **offset **# 可以指定 select 语句开始查询的数据偏移量。默认偏移量为 0
+- **limit** # 为返回的记录数
+- **offset** # 可以指定 select 语句开始查询的数据偏移量。默认偏移量为 0
 
 **Notes：**
 

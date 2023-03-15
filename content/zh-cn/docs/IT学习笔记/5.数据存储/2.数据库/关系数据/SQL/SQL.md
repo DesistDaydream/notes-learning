@@ -56,7 +56,7 @@ SQL 语言被细分为几个语言元素，包括：
 在 MySQL 中按照功能将各种语句进行了分类：
 
 - [Data Definition Statements](https://dev.mysql.com/doc/refman/8.0/en/sql-data-definition-statements.html)(数据定义语句)
-- [Data Manipulation Statements](docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/数据操作语句/数据操作语句.md)(数据操作语句)
+- [Data Manipulation Statements](/docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/数据操作语句/数据操作语句.md)(数据操作语句)
 - [Transactional and Locking Statements](https://dev.mysql.com/doc/refman/8.0/en/sql-transactional-statements.html)(事务和锁语句)
 - [Replication Statements](https://dev.mysql.com/doc/refman/8.0/en/sql-replication-statements.html)(复制语句)
 - [Prepared Statements](https://dev.mysql.com/doc/refman/8.0/en/sql-prepared-statements.html)(预处理语句)

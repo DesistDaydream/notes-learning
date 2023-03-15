@@ -154,18 +154,18 @@ calicoctl 命令行工具用于管理 Calico 网络和安全策略，查看和�
 
 配置文件路径：/etc/calico/calicoctl.cfg #该路径一般是对于使用二进制方式把 calicoctl 命令文件放在 linux 的$PATH 中来使用
 
-calicoctl \[OPTIONS] <COMMAND> \[<ARGS>...]
+calicoctl \[OPTIONS] <COMMAND> \[\<ARGS>...]
 
 OPTIONS
 
-1. -h --help #Show this screen.
-2. -l --log-level=<level> #Set the log level (one of panic, fatal, error,warn, info, debug) \[default: panic]
+1. -h --help # Show this screen.
+2. -l --log-level=\<level> # Set the log level (one of panic, fatal, error,warn, info, debug) \[default: panic]
 
 COMMAND
 
 create Create a resource by filename or stdin.
 
-calicoctl create --filename=<FILENAME> \[--skip-exists] \[--config=<CONFIG>] \[--namespace=<NS>]
+calicoctl create --filename=\<FILENAME> \[--skip-exists] \[--config=\<CONFIG>] \[--namespace=\<NS>]
 
 replace Replace a resource by filename or stdin.
 

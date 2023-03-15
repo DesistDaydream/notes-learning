@@ -6,6 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
+>
 > - [红帽官方文档,RedHat7-管理用户账户的基础知识](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-getting_started#sec-Managing_User_Accounts)
 > - [红帽官方文档,RedHat7-系统管理员指南-第四章-管理用户和组](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-managing_users_and_groups)
 > - [红帽官方文档,RedHat7-安全指南](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/index)
@@ -35,7 +36,7 @@ Linux 操作系统是一个多用户操作系统，所以除了 **Terminal(终�
 
 **Password(密码)** 是用来验证用户身份的最主要方法。当用户使用一个账户登录 Linux 操作系统时，密码是用来证明账户属于该用户的一种非常高效的方式。
 
-Linux 系统使用 **Secure Hash Algorithm 512(SHA512) **和 **shadow passwords**。默认情况下，账户信息保存在 /etc/passwd 文件中，对应的密码信息经过哈希后保存在 /etc/shadow 文件中。
+Linux 系统使用 **Secure Hash Algorithm 512(SHA512)**和 **shadow passwords**。默认情况下，账户信息保存在 /etc/passwd 文件中，对应的密码信息经过哈希后保存在 /etc/shadow 文件中。
 
 # 关联文件
 
@@ -75,6 +76,7 @@ Linux 系统的账户管理功能，通常由 **shadow-utils 包** 或 **passwd 
 ## useradd # 添加用户
 
 > 参考：
+>
 > - [Manual(手册),useradd(8)](https://man7.org/linux/man-pages/man8/useradd.8.html)
 
 useradd 程序在添加用户时，会读取 /etc/login.defs 文件中的 PASS_MAX_DAYS、PASS_MIN_DAYS、PASS_WARN_AGE 等参数，并将参数的值写入到 /etc/shadow 文件中的对应字段
@@ -87,18 +89,18 @@ OPTIONS：
 
 - **-m** # 自动建立用户的登入目录。
 - **-u** # 指定用户 ID 号。该值在系统中必须是唯一的。0~499 默认是保留给系统用户账号使用的，所以该值必须大于 499。
-- **-g GID** #指定该用户的基本组 ID
+- **-g GID** # 指定该用户的基本组 ID
 - **-c** # 加上备注文字，备注文字保存在 passwd 的备注栏中。
-- -**d** #指定该用户的家目录，默认为 /home 目录下的与用户名同名的文件夹
+- -**d** # 指定该用户的家目录，默认为 /home 目录下的与用户名同名的文件夹
 - **-e** # 指定账号的失效日期，日期格式为 MM/DD/YY，例如 06/30/12。缺省表示永久有效。
-- -f #指定在密码过期后多少天即关闭该账号。如果为 0 账号立即被停用；如果为-1 则账号一直可用。默认值为-1.
+- -f # 指定在密码过期后多少天即关闭该账号。如果为 0 账号立即被停用；如果为-1 则账号一直可用。默认值为-1.
 - **-G, --groups <GROUPS>** # 指定用户所属的附加群组。
 - -l #不要把用户添加到 lastlog 和 failog 中, 这个用户的登录记录不需要记载
 - -M #不要自动建立用户的登入目录。
 - -n #取消建立以用户名称为名的群组。
 - -p # PASSWORD 指定新用户的密码
 - -r #建立一个系统帐号
-- -s #指定用户登入后所使用的 shell。默认值为/bin/bash。
+- -s # 指定用户登入后所使用的 shell。默认值为/bin/bash。
 
 EXAMPLE：
 
@@ -166,7 +168,7 @@ EXAMPLE
 - -a 追加用户到新的用户组，保留原来的组
   - usermod -aG happy newname
 
-## groupadd、groupdel、groupmod、gpasswd #用户组管理相关命令
+## groupadd、groupdel、groupmod、gpasswd # 用户组管理相关命令
 
 OPTIONS：
 
@@ -218,6 +220,7 @@ who
 ## passwd # 改变用户的密码
 
 > 参考：
+>
 > - [Manual(手册),passwd(1)](https://man7.org/linux/man-pages/man1/passwd.1.html)
 
 ### Syntax(语法)
@@ -225,6 +228,7 @@ who
 ## chage # 控制用户的密码到期信息
 
 > 参考：
+>
 > - [Manual(手册),chage(1)](https://man7.org/linux/man-pages/man1/chage.1.html)
 
 passwd 软件包将会记录用户上次更改密码的时间、应该间隔多久更改一次密码 等等，chage 工具就可以对上述信息进行管理
@@ -246,13 +250,13 @@ passwd 软件包将会记录用户上次更改密码的时间、应该间隔多�
 
 ```bash
 [root@hw-cloud-xngy-jump-server-linux-2 ~]# chage -l root
-Last password change					: Oct 01, 2021 # 最后一次修改密码的时间
-Password expires					: never
-Password inactive					: never
-Account expires						: never
-Minimum number of days between password change		: 0
-Maximum number of days between password change		: 99999
-Number of days of warning before password expires	: 7
+Last password change     : Oct 01, 2021 # 最后一次修改密码的时间
+Password expires     : never
+Password inactive     : never
+Account expires      : never
+Minimum number of days between password change  : 0
+Maximum number of days between password change  : 99999
+Number of days of warning before password expires : 7
 ```
 
 - **-m, --mindays <INT>** # 密码可以修改的最小间隔天数。如果 INT 为 0，则表示不用等待，任何时候都可以修改密码

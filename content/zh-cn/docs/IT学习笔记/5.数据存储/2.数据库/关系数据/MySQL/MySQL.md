@@ -5,6 +5,7 @@ title: MySQL
 # 概述
 
 > 参考：
+>
 > - [官网](https://www.mysql.com/)
 
 MySQL 的社区版本 MariaDB ，使用安装 MySQL 的 时候，会自动安装 MariaDB 。同时安装 mariadb-server ，即可开始使用了
@@ -41,11 +42,12 @@ EOF
 ## Kubernetes 中部署 MySQL
 
 > 参考：
+>
 > - [阳明公众号](https://mp.weixin.qq.com/s/C0EYTBJ7sLw823-qE5TjTA)
 
 # MySQL 关联文件与配置
 
-**/etc/my.cnf **# MariaDB 基础配置文件
+**/etc/my.cnf**# MariaDB 基础配置文件
 **/var/lib/myql/\*** # 数据存储路径
 
 # MySQL 数据类型
@@ -125,6 +127,7 @@ BLOB 是一个二进制大对象，可以容纳可变数量的数据。有 4 种
 # mysql 命令行工具
 
 > 参考：
+>
 > - [官方文档，MySQL 程序-客户端程序-mysql](https://dev.mysql.com/doc/refman/8.0/en/mysql.html)
 
 mysql 是一个简单的 SQL Shell。 它支持交互和非交互使用。 交互使用时，查询结果以 ASCII 表格式显示。 非交互使用（例如，用作过滤器）时，结果以制表符分隔的格式显示。 可以使用命令选项更改输出格式。
@@ -132,7 +135,7 @@ mysql 是一个简单的 SQL Shell。 它支持交互和非交互使用。 交�
 ## Syntax(语法)
 
 **mysql \[OPTIONS] \[DATABASE]**
-**DATABASE **# 指定连接 mysql 后要操作的数据库。若不指定，则需要在交互模式下使用 `use` 指令选择数据库，否则对数据库的操作将会报 `No database selected` 错误：
+**DATABASE**# 指定连接 mysql 后要操作的数据库。若不指定，则需要在交互模式下使用 `use` 指令选择数据库，否则对数据库的操作将会报 `No database selected` 错误：
 
 ```bash
 mysql> show tables;
@@ -141,9 +144,9 @@ ERROR 1046 (3D000): No database selected
 
 **OPTIONS：**
 
-- **-h, --host <HostName> **# 指定要连接的 mysql 主机。如果链接本机 mysql，可以省略。
-- **-P, --port <PORT> **# 指定要连接的 mysql 的端口。默认值：`3306`
-- **-u, --user <UserName> **# 指定要登录 mysql 的用户名
+- **-h, --host <HostName>**# 指定要连接的 mysql 主机。如果链接本机 mysql，可以省略。
+- **-P, --port <PORT>**# 指定要连接的 mysql 的端口。默认值：`3306`
+- **-u, --user <UserName>**# 指定要登录 mysql 的用户名
 - **-p, --password <PASSWORD>** # 使用密码来登录。如果指定要登录 mysql 的用户密码为空，则该选项可省
 
 ## 命令行模式
@@ -156,7 +159,7 @@ ERROR 1046 (3D000): No database selected
 
 在 mysql 的交互模式中有一组 mysql 程序自带的命令，用以 控制输出格式、检查、获取数据信息 等等，这些命令以 `\` 开头，不过也有与之相对应的字符串命令
 
-- **\u, use <DBName> **# 选择想要操作的数据库
+- **\u, use <DBName>**# 选择想要操作的数据库
 
 ### 基础示例
 
@@ -175,7 +178,6 @@ ERROR 1046 (3D000): No database selected
   - Default # 该列插入空值时。默认插入什么值。
   - Extra # 该列额外的参数。
 
-
     MariaDB [mysql]> SHOW COLUMNS FROM db;
     +-----------------------+---------------+------+-----+---------+-------+
     | Field                 | Type          | Null | Key | Default | Extra |
@@ -186,8 +188,7 @@ ERROR 1046 (3D000): No database selected
     | Select_priv           | enum('N','Y') | NO   |     | N       |       |
     .......
 
-- select Host,db from db; #显示 db 表中，Host 和 Db 列及其内容，效果如下
-
+- select Host,db from db; # 显示 db 表中，Host 和 Db 列及其内容，效果如下
 
     MariaDB [mysql]> SELECT Host,db from db;
     +-----------+---------+
@@ -202,4 +203,4 @@ ERROR 1046 (3D000): No database selected
 
 EXAMPLE
 
-- mysqladmin -u root -p password "my_password" #修改 root 密码，密码为：my_password。如果默认密码为空，则可以不加-p。
+- mysqladmin -u root -p password "my_password" # 修改 root 密码，密码为：my_password。如果默认密码为空，则可以不加-p。

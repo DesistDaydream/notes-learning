@@ -6,6 +6,7 @@ weight: 4
 # 概述
 
 > 参考：
+>
 > - [Manual,systemd-journald.service(8)](https://man7.org/linux/man-pages/man8/systemd-journald.service.8.html)
 
 相关服务说明
@@ -47,6 +48,7 @@ weight: 4
 # journalctl 命令行工具
 
 > 参考：
+>
 > - [Manual(手册)，journalctl(1)](https://man7.org/linux/man-pages/man1/journalctl.1.html)
 
 Systemd 统一管理所有 Unit 的启动日志。带来的好处就是，可以只用 journalctl 一个命令，查看所有日志（内核日志和应用日志）。日志的配置文件是/etc/systemd/journald.conf。journalctl 功能强大，用法非常多。
@@ -61,7 +63,7 @@ Systemd 统一管理所有 Unit 的启动日志。带来的好处就是，可以
 - **-f, --follow** # 实时更新
 - **--file=FILE** # 查看指定文件中的日志信息，FILE 可以使用"?"与"\*"进行匹配。常用于查看从别的设备上拷贝过来的日志文件
 - **-p UNM** # 指定要显示的日志级别(NUM 为 0-7 级)
-- **-u UNIT** #显示指定的 unit 的日志信息
+- **-u UNIT** # 显示指定的 unit 的日志信息
 
 格式选项
 
@@ -73,7 +75,7 @@ Systemd 统一管理所有 Unit 的启动日志。带来的好处就是，可以
 
 - **--output-fields=FIELD** # 显示指定字段的日志，多个字段以 `,` 分割。
   - 字段筛选仅对 -o 选项指定的 verbose、export、json、json-pretty、json-sse、json-seq 这几个输出格式有效
-- **-S, --since TIME** 与** -U, --unitl TIME** # 设置输出日志信息的开始与结束时间
+- **-S, --since TIME** 与**-U, --unitl TIME** # 设置输出日志信息的开始与结束时间
 
 ## EXAMPLE
 

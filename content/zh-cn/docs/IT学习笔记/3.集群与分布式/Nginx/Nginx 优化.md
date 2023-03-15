@@ -10,7 +10,7 @@ title: Nginx 优化
 2. 事件相关配置
    1. worker_connections NUM; #常用，指定每个 worker 线程所能处理的最大并发连接数
    2. accept_mutex on|off; #调度用户请求至 worker 线程时使用的负载均衡锁。on 是让多个 worker 轮流的，序列化地响应新请求
-   3. lock_file /PATH/FILE; #指定 accept_mutex 开启后用到的锁文件路径
+   3. lock_file /PATH/FILE; # 指定 accept_mutex 开启后用到的锁文件路径
 3. 用于调试、定位问题的配置
    1. daemon on|off； #是否以守护进程方式运行 nginx，调试时设置为 off
    2. master_process on|off； #是否以 master/worker 模式来运行 ngins，调试时可以设置为 off

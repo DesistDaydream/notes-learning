@@ -5,6 +5,7 @@ title: API Server
 # 概述
 
 > 参考：
+>
 > - [官方文档，概念-概述-Kubernetes 组件-kube-apiserver](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)
 > - [官方文档，参考-通用组件-kube-apiserver](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/)
 
@@ -17,9 +18,10 @@ API Server 启动后，默认监听在 6443 端口(http 默认监听在 8080 上
 - 提供集群管理的 REST 风格 API 接口，包括认证授权、数据校验以及集群状态变更等
 - 提供其他模块之间的数据交互和通信的枢纽（其他模块通过 API Server 查询或修改数据，只有 API Server 才可以直接操作 etcd）
 
-# API Server 的访问方式：
+# API Server 的访问方式
 
 > 参考：
+>
 > - [官方文档，任务-管理集群-使用 Kubernetes API 访问集群](https://kubernetes.io/docs/tasks/administer-cluster/access-cluster-api/)
 
 注意：
@@ -104,9 +106,9 @@ curl -X GET $APISERVER/api --header "Authorization: Bearer $TOKEN" --insecure
    1. 通过 https 的方式访问 API
       1. curl --cacert ${CAPATH} -H "Authorization: Bearer ${TOKEN}"  https://${IP}:6443/
 3. kubeclt
-   1. kubectl get --raw / #让 kubectl 不再输出标准格式的数据，而是直接向 api server 请求原始数据
+   1. kubectl get --raw / # 让 kubectl 不再输出标准格式的数据，而是直接向 api server 请求原始数据
 4. kubectl proxy，一般监听在 6443 端口的 api server 使用该方式，监听在 8080 上的为 http，可直接访问
-   1. kubectl proxy --port=8080 --accept-hosts='^localhost$,^127.0.0.1$,^\[::1]$,10.10.100.151' --address='0.0.0.0' #在本地 8080 端口上启动 API Server 的一个代理网关，以便使用 curl 直接访问 api server 并使用命令 curl localhost:8080/获取数据
+   1. kubectl proxy --port=8080 --accept-hosts='^localhost$,^127.0.0.1$,^\[::1]$,10.10.100.151' --address='0.0.0.0' # 在本地 8080 端口上启动 API Server 的一个代理网关，以便使用 curl 直接访问 api server 并使用命令 curl localhost:8080/获取数据
       1. 直接访问本地 8080 端口，即可通过 API Server 获取集群所有数据
 
 ## 编程方式访问 API

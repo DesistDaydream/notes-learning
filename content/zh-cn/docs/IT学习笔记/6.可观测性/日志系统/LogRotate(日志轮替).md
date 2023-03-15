@@ -21,20 +21,20 @@ logrotate 只是一个命令行工具，不以守护进程的方式运行在后�
 
 ## logrotate.conf 配置文件详解
 
-- /PATH/TO/FILES {...} #指定想要轮替的日志文件，可以通过＊通配指定多个文件名
+- /PATH/TO/FILES {...} # 指定想要轮替的日志文件，可以通过＊通配指定多个文件名
   - **copytruncate** # 把正在输出的日志拷(copy)一份出来，再清空(trucate)原来的日志。
   - **compress** # 压缩日志文件的所有非当前版本
   - **dateext** # 切换后的日志文件会附加上一个短横线和 YYYYMMDD 格式的日期,
   - **daily** # 日志文件将每天轮替一次。其它可用值为 monthly(每月)，weekly(每周)、yearly(每年)
   - **delaycompress** # 在轮替任务完成后，已轮替的归档将使用 gzip 进行压缩
-  - **errors <EMAIL>** # 给指定邮箱发送错误通知
+  - **errors \<EMAIL>** # 给指定邮箱发送错误通知
   - **missingok** # 如果日志文件丢失，不要显示错误
   - **notifempty** # 如果日志文件为空，则不轮换日志文件
-  - **olddir <DIR>** # 指定日志文件的旧版本放在 “DIR”目录 中
+  - **olddir \<DIR>** # 指定日志文件的旧版本放在 “DIR”目录 中
   - **postrotate 和 endscript** # 在所有其它指令完成后，postrotate 和 endscript 里面指定的命令将被执行。在这种情况下，rsyslogd 进程将立即再次读取其配置并继续运行。
   - **rotate N** # 共存储 N 个轮替后日志。当产生第 N+1 个轮替后的日志，时间最久的日志将被删除
   - **sharedscripts** # 有多个日志需要轮替时，只执行一次脚本
-  - **size <LogSize>** # 在日志文件大小大于 LogSize（例如 100K，4M）时进行轮替
+  - **size \<LogSize>** # 在日志文件大小大于 LogSize（例如 100K，4M）时进行轮替
 
 配置样例
 
@@ -80,7 +80,7 @@ OPTIONS
 
 EXAMPLE
 
-- logrotate -f /etc/logrotate.d/keepalived #使用/etc/logrotate.d/keepalived 配置文件执行轮替
+- logrotate -f /etc/logrotate.d/keepalived # 使用/etc/logrotate.d/keepalived 配置文件执行轮替
 
 PS:
 

@@ -81,7 +81,7 @@ ansible系列博文直达链接：ansible轻松入门系列
       msg: "{{ testvar3 | shuffle }}"
   - debug:
       #将字符串转换成列表，每个字符作为一个元素，并且随机打乱顺序
-      #在随机打乱顺序时，将ansible_date_time.epoch的值设置为随机种子
+      # 在随机打乱顺序时，将ansible_date_time.epoch的值设置为随机种子
       #也可以使用其他值作为随机种子，ansible_date_time.epoch是facts信息
       msg: "{{ testvar3 | shuffle(seed=(ansible_date_time.epoch)) }}"
 ```
@@ -101,7 +101,7 @@ ansible系列博文直达链接：ansible轻松入门系列
       msg: "{{ 8+('8'  int) }}"
   - debug:
       #将对应的值转换成int类型,如果无法转换,默认返回0
-      #使用int(default=6)或者int(6)时，如果无法转换则返回指定值6
+      # 使用int(default=6)或者int(6)时，如果无法转换则返回指定值6
       msg: "{{ 'a'  int(default=6) }}"
   - debug:
       #将对应的值转换成浮点型，如果无法转换，默认返回'0.0'
@@ -207,7 +207,7 @@ ansible系列博文直达链接：ansible轻松入门系列
       msg: "{{ testvar9  shuffle }}"
   - debug:
       #随机打乱顺序列表中元素的顺序
-      #在随机打乱顺序时，将ansible_date_time.epoch的值设置为随机种子
+      # 在随机打乱顺序时，将ansible_date_time.epoch的值设置为随机种子
       #seed参数从ansible2.3版本开始可用
       msg: "{{ testvar9  shuffle(seed=(ansible_date_time.epoch)) }}"
   - debug:

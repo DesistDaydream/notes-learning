@@ -139,8 +139,33 @@ nl_groups：如果用户空间的进程希望加入某个多播组，则必须�
 ## 实验
 
 在文件里包含了 Netlink 协议簇已经定义好的一些预定义协议：
-\#define NETLINK*ROUTE 0 /* Routing/device hook */ #define NETLINK_UNUSED 1 /* Unused number */ #define NETLINK_USERSOCK 2 /* Reserved for user mode socket protocols */ #define NETLINK_FIREWALL 3 /* Firewalling hook */ #define NETLINK_INET_DIAG 4 /* INET socket monitoring */ #define NETLINK_NFLOG 5 /* netfilter/iptables ULOG */ #define NETLINK_XFRM 6 /* ipsec */ #define NETLINK_SELINUX 7 /* SELinux event notifications */ #define NETLINK_ISCSI 8 /* Open-iSCSI */ #define NETLINK_AUDIT 9 /* auditing */ #define NETLINK_FIB_LOOKUP 10 #define NETLINK_CONNECTOR 11 #define NETLINK_NETFILTER 12 /* netfilter subsystem */ #define NETLINK_IP6_FW 13 #define NETLINK_DNRTMSG 14 /* DECnet routing messages */ #define NETLINK_KOBJECT_UEVENT 15 /* Kernel messages to userspace */ #define NETLINK_GENERIC 16 /* leave room for NETLINK*DM (DM Events)*/ #define NETLINK*SCSITRANSPORT 18 /* SCSI Transports */ #define NETLINK_ECRYPTFS 19 #define NETLINK_TEST 20 /* 用户添加的自定义协议 \_/
+
+```C
+#define NETLINK_ROUTE        0    /* Routing/device hook                */
+#define NETLINK_UNUSED        1    /* Unused number                */
+#define NETLINK_USERSOCK    2    /* Reserved for user mode socket protocols     */
+#define NETLINK_FIREWALL    3    /* Firewalling hook                */
+#define NETLINK_INET_DIAG    4    /* INET socket monitoring            */
+#define NETLINK_NFLOG        5    /* netfilter/iptables ULOG */
+#define NETLINK_XFRM        6    /* ipsec */
+#define NETLINK_SELINUX        7    /* SELinux event notifications */
+#define NETLINK_ISCSI        8    /* Open-iSCSI */
+#define NETLINK_AUDIT        9    /* auditing */
+#define NETLINK_FIB_LOOKUP    10    
+#define NETLINK_CONNECTOR    11
+#define NETLINK_NETFILTER    12    /* netfilter subsystem */
+#define NETLINK_IP6_FW        13
+#define NETLINK_DNRTMSG        14    /* DECnet routing messages */
+#define NETLINK_KOBJECT_UEVENT    15    /* Kernel messages to userspace */
+#define NETLINK_GENERIC        16
+/* leave room for NETLINK_DM (DM Events) */
+#define NETLINK_SCSITRANSPORT    18    /* SCSI Transports */
+#define NETLINK_ECRYPTFS    19
+#define NETLINK_TEST    20 /* 用户添加的自定义协议 */
+```
+
 如果我们在 Netlink 协议簇里开发一个新的协议，只要在该文件中定义协议号即可， 例如我们定义一种基于 Netlink 协议簇的、协议号是 20 的自定义协议，如上所示。同时记得，将内核头文件目录中 的 netlink.h 也做对应的修改，在我的系统中它的路径是：/usr/src/linux-2.6.21/include/linux/netlink.h
+
 接下来我们在用户空间以及内核空间模块的开发过程中就可以使用这种协议了，一共分为三个阶段。
 
 ### 第一步

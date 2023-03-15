@@ -36,22 +36,22 @@ COMMAND
 
 - **history** #滚动更新视图
 - **pause** #标记提供的资源以暂停这个资源
-- **restart **# 重启一个资源
+- **restart**# 重启一个资源
 - **resume** #重新开始被暂停的资源
-- **status **#显示滚动更新的状态
+- **status**#显示滚动更新的状态
 - **undo** #撤销以前的滚动更新
 
 ## history # 查看滚动更新的历史情况
 
 kubectl rollout history (TYPE NAME | TYPE/NAME) \[flags] \[options]
 
-REVISION #指明更新的版本序号
+REVISION # 指明更新的版本序号
 
-CHANGE-CAUSE #指明该次更新执行的具体命令，只有在 apply 的时候使用--record 参数，该项才有内容
+CHANGE-CAUSE # 指明该次更新执行的具体命令，只有在 apply 的时候使用--record 参数，该项才有内容
 
 EXAMPLE
 
-- **kubectl rollout history deployment myapp-deploy **
+- **kubectl rollout history deployment myapp-deploy**
 
 ## pause # 暂停滚动更新的资源
 

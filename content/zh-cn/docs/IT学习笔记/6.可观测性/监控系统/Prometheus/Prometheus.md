@@ -6,6 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
+>
 > - [官方文档](https://prometheus.io/docs/introduction/overview/)
 > - [yunlzheng 写的电子书](https://yunlzheng.gitbook.io/prometheus-book/)
 > - [GitHub 项目，Tencent-Cloud-Native/tkedocs](https://github.com/Tencent-Cloud-Native/tkedocs)(我个人总结完绝大部分文档后发现的这个项目)
@@ -28,13 +29,13 @@ Prometheus 的基本原理是通过 HTTP 协议周期性抓取被监控组件的
 Prometheus 生态圈中包含了多个组件，其中许多组件是可选的，多数 Prometheus 组件是 Go 语言写的，使得这些组件很容易编译和部署：
 
 - **Prometheus Server** # 主要负责数据抓取和存储，提供 PromQL 查询语言的支持。用于收集和存储时间序列数据。
-  - 定期从配置好的 Jobs 中**拉取 **Exporters 采集的** Metrics(指标)** 数据；或者**接收**来自 **Pushgateway**(类似 zabbix 的 proxy) 发过来的 Metrics；或者从其他的 Prometheus Server 中拉取 Metrics。
+  - 定期从配置好的 Jobs 中**拉取**Exporters 采集的**Metrics(指标)** 数据；或者**接收**来自 **Pushgateway**(类似 zabbix 的 proxy) 发过来的 Metrics；或者从其他的 Prometheus Server 中拉取 Metrics。
   - Prometheus Server 在本地存储收集到的 Metrics，并通过一定 **RecordingRule(记录规则)** 进行清理和整理数据，并把得到的结果存储到新的时间序列中。还会运行已定义好的 **AlertingRule(告警规则)**，记录新的时间序列或者向 Alertmanager 推送警报。
   - 由于 Metrics 都是通过 HTTP 或者 HTTPS 协议提供的，所以 Prometheus Server 在抓取 Metrics 时，也就是发起一次 HTTP 或者 HTTPS 的 GET 请求
 - **Instrumenting** # 为 Prometheus 提供指标的工具或代码
-  - **Exporters **# 导出器。Exporter 是 Prometheus 的一类数据采集组件的总称。它负责从设备上搜集数据，并将其转化为 Prometheus 支持的格式(一般情况下 exporter 是安装在需要采集数据的设备上的程序，并监听某个 port。但是如果想要收集 snmp 信息的话，则有专门的 snmp-exporter 安装在某个地方；再收集指定设备的 snmp 信息，然后 prometheus 再找 snmp-exporter 去收集数据)。与传统的数据采集组件不同的是，它并不向中央服务器发送数据，而是等待中央服务器主动前来抓取。Prometheus 提供多种类型的 Exporter 用于采集各种不同服务的运行状态。目前支持的有数据库、硬件、消息中间件、存储系统、HTTP 服务器、JMX 等。
+  - **Exporters**# 导出器。Exporter 是 Prometheus 的一类数据采集组件的总称。它负责从设备上搜集数据，并将其转化为 Prometheus 支持的格式(一般情况下 exporter 是安装在需要采集数据的设备上的程序，并监听某个 port。但是如果想要收集 snmp 信息的话，则有专门的 snmp-exporter 安装在某个地方；再收集指定设备的 snmp 信息，然后 prometheus 再找 snmp-exporter 去收集数据)。与传统的数据采集组件不同的是，它并不向中央服务器发送数据，而是等待中央服务器主动前来抓取。Prometheus 提供多种类型的 Exporter 用于采集各种不同服务的运行状态。目前支持的有数据库、硬件、消息中间件、存储系统、HTTP 服务器、JMX 等。
   - **Client Library** # 客户端库(客户端 SDK)，官方提供的客户端类库有 go、java、scala、python、ruby，其他还有很多第三方开发的类库，支持 nodejs、php、erlang 等。为需要监控的服务生成相应的 Metrics 并暴露给 Prometheus server。当 Prometheus server 来 pull 时，直接返回实时状态的 Metrics。
-  - **Push Gateway **# 支持 Client 主动推送 Metrics 到 PushGateway，而 PrometheusServer 只是定时去 Gateway 上抓取数据。
+  - **Push Gateway**# 支持 Client 主动推送 Metrics 到 PushGateway，而 PrometheusServer 只是定时去 Gateway 上抓取数据。
 - **Alertmanager** # 警告管理器，用来进行报警。从 Prometheus server 端接收到 alerts 后，会进行去除重复数据，分组，并路由到对收的接受方式，发出报警。常见的接收方式有：电子邮件，pagerduty，OpsGenie, webhook 等。
 - **prometheus_cli** # 命令行工具。
 - **其他辅助性工具**
@@ -70,6 +71,7 @@ Prometheus 可以通过 3 种方式从目标上 Scrape(抓取) 指标：
 # Prometheus 部署
 
 > 参考：
+>
 > - [官方文档，Prometheus-安装](https://prometheus.io/docs/prometheus/latest/installation/)
 
 官方系统版本可在这里下载：<https://prometheus.io/download/>
@@ -148,7 +150,7 @@ docker run -d --name prometheus --restart=always \
 
 # Prometheus 关联文件与配置
 
-**/etc/prometheus/prometheus.yml **# Prometheus Server 运行时的配置文件。可通过 --config.file 标志指定其他文件。
+**/etc/prometheus/prometheus.yml**# Prometheus Server 运行时的配置文件。可通过 --config.file 标志指定其他文件。
 **/etc/prometheus/rule.yml** # Prometheus Rule 配置文件。该文件默认不存在，需手动创建。可以在 prometheus.yml 配置中指定其他文件。
 
 ## Prometheus 配置示例
@@ -212,9 +214,9 @@ scrape_configs:
   - job_name: "prometheus"
     static_configs:
       - targets: ["localhost:9090"]
-  - job_name: "linux" #指定job名称
+  - job_name: "linux" # 指定job名称
     static_configs: #设定静态配置
-      - targets: ["10.10.100.101:9100"] #指定node_exporter所安装设备的ip:port
+      - targets: ["10.10.100.101:9100"] # 指定node_exporter所安装设备的ip:port
         labels:
           instance: lchTest #给该target一个label来分类，常用于在查询语句中的筛选条件
 ```

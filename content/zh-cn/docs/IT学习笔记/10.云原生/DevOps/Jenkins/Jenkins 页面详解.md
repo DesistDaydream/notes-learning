@@ -18,9 +18,9 @@ Throttle builds #
 
 丢弃旧的构建 #
 
-参数化构建过程 #指定各种参数以便在脚本或者 pipeline 中使用。
+参数化构建过程 # 指定各种参数以便在脚本或者 pipeline 中使用。
 
-1. 字符参数 #指定变量，名称为变量名，默认值为变量值。可以直接在脚本中引用。
+1. 字符参数 # 指定变量，名称为变量名，默认值为变量值。可以直接在脚本中引用。
 
 关闭构建
 
@@ -38,13 +38,13 @@ Throttle builds #
 
 定义 # 指定 Jenkinsfile 的获取方式。
 
-1. Pipeline script #直接在网页编写 Jenkinsfile 内容。
+1. Pipeline script # 直接在网页编写 Jenkinsfile 内容。
 
 2. Pipeline script from SCM # 从项目根目录中查找 Jenkinsfile 文件
 
-   1. SCM #指定获取 Jenkinsfile 的 SCM 及其 URL、认证、分支。
+   1. SCM # 指定获取 Jenkinsfile 的 SCM 及其 URL、认证、分支。
 
-   2. 脚本路径 #指定 Jenkinsfile 所在位置的绝对路径
+   2. 脚本路径 # 指定 Jenkinsfile 所在位置的绝对路径
 
 自由风格的软件项目
 
@@ -58,9 +58,9 @@ Throttle builds #
 
 丢弃旧的构建 #
 
-参数化构建过程 #指定各种参数以便在脚本或者 pipeline 中使用。
+参数化构建过程 # 指定各种参数以便在脚本或者 pipeline 中使用。
 
-1. 字符参数 #指定变量，名称为变量名，默认值为变量值。可以直接在脚本中引用。
+1. 字符参数 # 指定变量，名称为变量名，默认值为变量值。可以直接在脚本中引用。
 
 关闭构建
 

@@ -5,6 +5,7 @@ title: ansible.builtin(内置模块)
 # 概述
 
 > 参考：
+>
 > - [官方文档,参考-所有模块和插件的索引-所有模块的索引-ansible.builtin](https://docs.ansible.com/ansible/latest/collections/index_module.html#ansible-builtin)
 
 - [ansible.builtin.add_host](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/add_host_module.html#ansible-collections-ansible-builtin-add-host-module) – Add a host (and alternatively a group) to the ansible-playbook in-memory inventory
@@ -316,7 +317,7 @@ user 模块使用示例：该示例同样适用于更改密码
 ```yaml
 - name: 创建k8s用户
   user:
-    name: developer #指定要创建的用户名
+    name: developer # 指定要创建的用户名
     password: "$6$mysecretsalt$QjSLl.VQoxPKJkBE9.oLX82C5P4tAMH8UfFRpkxgkqSg2GNob8Y39hj5/cl7o0gbpPXVBGaB9oLuCPfVhIhyA0" # 使用下面Note中的命令来获取加密后的密码
 - name: 同时更改多个用户的密码
     user:
@@ -401,6 +402,7 @@ Note：生成加密密码的方式
 ## import 与 include 模块 - 在主任务中导入其他任务或变量
 
 > 参考：
+>
 > - <https://www.cnblogs.com/mauricewei/p/10054041.html>
 > - https://docs.ansible.com/ansible/2.5/user_guide/playbooks_reuse.html#differences-between-static-and-dynamic
 > - https://docs.ansible.com/ansible/2.5/user_guide/playbooks_conditionals.html#applying-when-to-roles-imports-and-includes

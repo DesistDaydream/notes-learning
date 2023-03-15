@@ -126,7 +126,7 @@ libvirt 的`virsh nwfilter-*`系列命令提供了设置虚拟机防火墙的功
     ------------------------------------------------------------------
      69754f43-0325-453f-bd53-4a6e3ab5d456  centos6.3_filter
 
-    #在虚拟机xml文件中应用centos6.3_filter
+    # 在虚拟机xml文件中应用centos6.3_filter
         <interface type='bridge'>
           <mac address='f8:c9:79:ce:60:01'/>
           <source bridge='br0'/>
@@ -227,7 +227,7 @@ VLAN 又称虚拟网络，其基本原理是在二层协议里插入额外的 VL
     #brctl show
     bridge name     bridge id               STP enabled     interfaces
     br0         8000.525400315e23       no                em2.100
-    													  tap0
+                   tap0
 
 VLAN 设备的作用是建立一个个带不同 vlan tag 的子设备，它并不能建立多个可以交换转发数据的接口，因此需要借助于 Bridge，把 VLAN 建立的子设备例如 em2.100 桥接到网桥例如 br0 上，这样凡是桥接到 br0 上的设备就自动加入了 vlan 100 子网。对比一台带有两个 vlan 100，X 的物理交换机，这里 br0 网桥上所连接的接口相当于物理交换机上那些划分到 vlan 100 的端口，而 brX 所连接的接口相当于物理交换机上那些划分到 vlan X 的端口。因此 Bridge 加 VLAN 能在功能层面完整模拟现实世界里的 802.1.q 交换机。
 
@@ -258,16 +258,16 @@ openstack 中虚拟机网络使用 VLAN 模式的话，就会用到 VLAN 设备�
     mechanism_drivers = linuxbridge,openvswitch
 
     [ml2_type_flat]
-    #在命令行或控制台新建flat类型网络时需要指定的名称，此名称会配置映射到计算节点上某块网卡，下面会设置
+    # 在命令行或控制台新建flat类型网络时需要指定的名称，此名称会配置映射到计算节点上某块网卡，下面会设置
     flat_networks = proext
 
     [ml2_type_vlan]
-    #在命令行或控制台新建vlan类型网络时需要指定的名称，此名称会配置映射到计算节点上某块网卡，下面会设置
+    # 在命令行或控制台新建vlan类型网络时需要指定的名称，此名称会配置映射到计算节点上某块网卡，下面会设置
     network_vlan_ranges = provlan
 
     #重启neutron-server服务
 
-    #使用Bridge+vlan网络模式的nova-compute节点(计算节点)配置
+    # 使用Bridge+vlan网络模式的nova-compute节点(计算节点)配置
     #cat /etc/neutron/plugins/ml2/linuxbridge_agent.ini
     [linux_bridge]
     #provlan名称映射到此计算节点eth2网卡，因为使用vlan模式，eth2需要设置为trunk

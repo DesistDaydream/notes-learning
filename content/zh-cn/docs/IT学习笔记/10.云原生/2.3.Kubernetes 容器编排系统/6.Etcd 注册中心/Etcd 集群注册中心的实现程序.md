@@ -16,15 +16,10 @@ Note：etcd 只接收 apiserver 的请求
 想要正常运行 ETCD，需要注意以下几点：
 
 1. 配置 etcd 的证书，如果不使用证书，则不法分子有可能直接去修改 etcd 数据
-
-2. ca.crt(证书 CN：etcd-ca) #给 apiserver 发客户端证书，给 etcd 发服务端证书以及对等证书
-
-3. peer.crt(证书 CN：HostName) #etcd 集群各节点属于对等节点，使用 peer 类型证书(一般分为 server 证书和 client 证书，但是 etcd 集群之间不存在服务端和客户端的区别)
-
-4. apiserver-etcd-client.crt(证书 CN：kube-apiserver-etcd-client) #与 server.crt 证书对应。apiserver 作为 etcd 的客户端所用的证书
-
-5. server.crt(证书 CN：HostName) #与 apiserver-etcd-client.crt 证书对应。etcd 作为 apiserver 的服务端所用的证书
-
+2. ca.crt(证书 CN：etcd-ca) # 给 apiserver 发客户端证书，给 etcd 发服务端证书以及对等证书
+3. peer.crt(证书 CN：HostName) # etcd 集群各节点属于对等节点，使用 peer 类型证书(一般分为 server 证书和 client 证书，但是 etcd 集群之间不存在服务端和客户端的区别)
+4. apiserver-etcd-client.crt(证书 CN：kube-apiserver-etcd-client) # 与 server.crt 证书对应。apiserver 作为 etcd 的客户端所用的证书
+5. server.crt(证书 CN：HostName) # 与 apiserver-etcd-client.crt 证书对应。etcd 作为 apiserver 的服务端所用的证书
 6. 修改 etcd 的配置文件
 
 # Etcd Metrics

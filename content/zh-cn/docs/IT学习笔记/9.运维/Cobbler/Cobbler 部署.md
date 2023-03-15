@@ -19,12 +19,12 @@ title: Cobbler 部署
 ## 安装 Cobbler 以及相关功能配件
 
 - yum install cobbler cobbler-web pykickstart httpd dhcp tftp-server fence-agents -y
-  - cobbler #cobbler 程序包
-  - cobbler-web #cobbler 的 web 服务包
-  - pykickstart #cobbler 检查 kickstart 语法错误
-  - httpd #Apache web 服务
-  - dhcp #dhcp 服务
-  - tftp-server #tftp 服务
+  - cobbler # cobbler 程序包
+  - cobbler-web # cobbler 的 web 服务包
+  - pykickstart # cobbler 检查 kickstart 语法错误
+  - httpd # Apache web 服务
+  - dhcp # dhcp 服务
+  - tftp-server # tftp 服务
 - systemctl enable cobblerd httpd tftp rsyncd dhcpd && systemctl start cobblerd httpd tftp rsyncd dhcpd
 
 ## 检测 Cobbler
@@ -91,10 +91,10 @@ cp /etc/xinetd.d/tftp{,.bak}
 3. vim /etc/cobbler/dhcp.template
 4. 在文件末尾添加如下内容
    1. subnet 192.168.10.0 netmask 255.255.255.0 { #规划一段子网以便用于被安装系统的设备来获取这一段 IP
-   2. option domain-name-servers 114.114.114.114; #指定该子网的 DNS
-   3. option routers 192.168.10.2; #指定该段子网的网关
-   4. range dynamic-bootp 192.168.10.100 192.168.10.250; #指定给被安装系统的设备可用的 IP 段
-   5. option subnet-mask 255.255.255.0; #指定该子网的掩码
+   2. option domain-name-servers 114.114.114.114; # 指定该子网的 DNS
+   3. option routers 192.168.10.2; # 指定该段子网的网关
+   4. range dynamic-bootp 192.168.10.100 192.168.10.250; # 指定给被安装系统的设备可用的 IP 段
+   5. option subnet-mask 255.255.255.0; # 指定该子网的掩码
    6. next-server $next_server;
    7. default-lease-time 43200;
    8. max-lease-time 86400;
@@ -120,51 +120,91 @@ cp /etc/xinetd.d/tftp{,.bak}
 2. vim centos7.ks #（sample_end.ks（默认使用的 ks 文件））修改成以下内容
 3. 注意：文件中不能有中文，即使注释掉也不行，否则会导致安装失败
 
-
     #platform=x86, AMD64, or Intel EM64T
-    # System authorization information系统认证信息，使用加密，md5方式加密
+
+# System authorization information系统认证信息，使用加密，md5方式加密
+
     auth  --useshadow  --enablemd5
-    # System bootloader configuration系统引导配置
-    # --location指定创建引导的位置，在mbr中创建引导；--append指定内核参数，crashkernel为开启kdump
+
+# System bootloader configuration系统引导配置
+
+# --location指定创建引导的位置，在mbr中创建引导；--append指定内核参数，crashkernel为开启kdump
+
     bootloader --location=mbr --append="crashkernel=auto"
-    # Partition clearing information分区清除信息
-    # 清除所有分区，并初始化磁盘标签
+
+# Partition clearing information分区清除信息
+
+# 清除所有分区，并初始化磁盘标签
+
     clearpart --all --initlabel
-    # Use text mode install
+
+# Use text mode install
+
     text
-    # Firewall configuration关闭防火墙
+
+# Firewall configuration关闭防火墙
+
     firewall --disabled
-    # Run the Setup Agent on first boot
+
+# Run the Setup Agent on first boot
+
     firstboot --disable
-    # System keyboard系统键盘
+
+# System keyboard系统键盘
+
     keyboard us
-    # System language系统语言
+
+# System language系统语言
+
     lang en_US
-    # Use network installation指明安装系统的方式，这里使用网络方式安装，指明提供安装程序的服务器地址和路径
+
+# Use network installation指明安装系统的方式，这里使用网络方式安装，指明提供安装程序的服务器地址和路径
+
     url --url=$tree
-    # If any cobbler repo definitions were referenced in the kickstart profile, include them here.
+
+# If any cobbler repo definitions were referenced in the kickstart profile, include them here
+
     $yum_repo_stanza
-    # $SNIPPET变量括号内的值是目录/var/lib/cobbler/snippets下的文件，该文件中可以写入linux命令，当做脚本文件来说明
-    # Network information
+
+# $SNIPPET变量括号内的值是目录/var/lib/cobbler/snippets下的文件，该文件中可以写入linux命令，当做脚本文件来说明
+
+# Network information
+
     $SNIPPET('network_config')
-    # Reboot after installation安装完成后重启系统
+
+# Reboot after installation安装完成后重启系统
+
     reboot
 
     #Root password设定root的密码
     rootpw --iscrypted $default_password_crypted
-    # SELinux configuration关闭SELinux
+
+# SELinux configuration关闭SELinux
+
     selinux --disabled
-    # Do not configure the X Window System不要配置X window系统
+
+# Do not configure the X Window System不要配置X window系统
+
     skipx
-    # System timezone设定系统时区
+
+# System timezone设定系统时区
+
     timezone  Asia/Shanghai
-    # Install OS instead of upgrade重新安装操作系统，而不是升级
+
+# Install OS instead of upgrade重新安装操作系统，而不是升级
+
     install
-    # Clear the Master Boot Record清除主引导记录
+
+# Clear the Master Boot Record清除主引导记录
+
     zerombr
-    # Allow anaconda to partition the system as needed该选项用于自动分区
+
+# Allow anaconda to partition the system as needed该选项用于自动分区
+
     #autopart
-    # Disk partitioning information磁盘分区信息
+
+# Disk partitioning information磁盘分区信息
+
     part /boot --fstype=xfs --asprimary --size=500
     part biosboot --fstype=biosboot --asprimary --size=2
     part pv.01 --size=1 --grow
@@ -174,11 +214,15 @@ cp /etc/xinetd.d/tftp{,.bak}
     logvol /var --fstype xfs --size=1 --grow --name=var --vgname=vg0
 
     %pre
-    # %pre段落为安装前执行的任务
+
+# %pre段落为安装前执行的任务
+
     %end
 
     %packages
-    # %package段落中指定要安装的软件包
+
+# %package段落中指定要安装的软件包
+
     @^minimal
     @core
     kexec-tools
@@ -186,10 +230,15 @@ cp /etc/xinetd.d/tftp{,.bak}
 
     %post
     #`%post`段落为安装系统完成后执行的任务
-    # 自定义系统配置
-    # 安装工具，在/var/lib/cobbler/snippets目录下添加名为tools的文件，文件中可以写入想要执行的linux命令
+
+# 自定义系统配置
+
+# 安装工具，在/var/lib/cobbler/snippets目录下添加名为tools的文件，文件中可以写入想要执行的linux命令
+
     $SNIPPET('tools')
-    # End final steps
+
+# End final steps
+
     %end
 
 1. 在第一次导入系统镜像后，Cobbler 会给镜像指定一个默认的 kickstart 自动安装文件在/var/lib/cobbler/kickstarts 下的 sample_end.ks。
@@ -225,7 +274,6 @@ Note：
 
 - 此功能需要在 ks 文件中添加如下内容，否则在自动安装中，读取 ks 文件的时候会报错：unable to open input kickstart file:error opening file:No such file or directory: '/tmp/pre_install_network_config'
 
-
     ...
     %pre
     $SNIPPET('pre_install_network_config')
@@ -233,7 +281,6 @@ Note：
     ... # 后面是%packages的配置
 
 - 如果有多块网卡的话，只自定义第二块网卡为外网，第一块网卡不一起配置，就会还是出现上文。多网卡像这样指定 IP 和网卡
-
 
     [root@cobbler ~]# cobbler system add --name=test --mac=52:54:00:be:29:97  --profile=CentOS8-2004-x86_64 --ip-address=10.0.0.82 --subnet=255.255.255.0 --interface=eth0 --static=1
     [root@cobbler ~]# cobbler system edit --name=test --mac=52:54:00:04:89:ee  --profile=CentOS8-2004-x86_64 --ip-address=192.168.31.82 --subnet=255.255.255.0 --gateway=192.168.31.1 --interface=eth1 --static=1 --hostname=zabbix --name-servers="223.5.5.5"
@@ -303,7 +350,6 @@ e.g./etc/cobbler/dhcp.template
 
 1. 需要注释掉 cobbler 与 dhcp 设备所在网段的网关配置，否则部署不同网段会失败，原因未知，待验证
 
-
     ddns-update-style interim;
 
     allow booting;
@@ -315,7 +361,9 @@ e.g./etc/cobbler/dhcp.template
     option pxe-system-type code 93 = unsigned integer 16;
 
     subnet 192.168.20.0 netmask 255.255.255.0 {
-    #     option routers             192.168.20.254;
+
+#     option routers             192.168.20.254
+
          option domain-name-servers 114.114.114.114;
          option subnet-mask         255.255.255.0;
          range dynamic-bootp        192.168.20.100 192.168.20.254;
@@ -379,11 +427,11 @@ centos7 系列：
     #注意上面如果没有指定epel源的是无法装koan包的
     #执行这个命令：wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
     [root@zabbix ~]# yum install -y koan
-    #指定cobbler的服务器
+    # 指定cobbler的服务器
     [root@zabbix ~]# koan --server=192.168.31.73 --list=profiles
     - looking for Cobbler at http://192.168.31.73:80/cobbler_api
     CentOS-7.2-x86_64
-    #指定从哪个镜像进行安装
+    # 指定从哪个镜像进行安装
     [root@zabbix ~]# koan --replace-self --server=192.168.31.73 --profile=CentOS-7.2-x86_64
     - looking for Cobbler at http://192.168.31.73:80/cobbler_api
     - reading URL: http://192.168.31.73/cblr/svc/op/ks/profile/CentOS-7.2-x86_64
@@ -403,7 +451,7 @@ centos7 系列：
 2\)指定设定好的系统配置，让系统生成一个指定的 mac 地址绑定的 ip 和其他你指定的东西
 
     [root@zabbix ~]# yum install -y koan
-    #指定cobbler的服务器选择system模板
+    # 指定cobbler的服务器选择system模板
     [root@MiWiFi-R2D-srv ~]# koan --server=192.168.31.73 --list=system
     - looking for Cobbler at http://192.168.31.73:80/cobbler_api
     koan does not know how

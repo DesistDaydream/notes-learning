@@ -83,10 +83,10 @@ EXAMPLE
 OPTIONS
 
 - **-config <FILENAME>** #
-- **-new **#生成新证书请求
+- **-new**#生成新证书请求
 - **-x509** # 生成自签证书
-- **-key /PATH/FILE** #指明用于生成请求时用到的私钥文件
-- **-days NUM** #指明证书的有效期
+- **-key /PATH/FILE** # 指明用于生成请求时用到的私钥文件
+- **-days NUM** # 指明证书的有效期
 - **-text** # 以文本形式打印出证书
 - **-noout** #不输出证书的编码格式内容
 
@@ -104,7 +104,7 @@ EXAMPLE
       - Note：证书中的 CN 是很重要的标志，CN 可以使用主机名来表示，这样在使用证书来访问的时候，可以使用 CN 来验证域名是否可信。
       - 如果 CN 不使用主机名，则在签发证书的时候，需要 subjectAltName 字段来设定 DNS 别名，否则会报错提示证书对某些域名不可用。
       - 样例详见 harbor 使用私有证书部署：harbor 云原生注册中心.note
-    - Email Address \[]:373406000@qq.com #指明邮箱地址
+    - Email Address \[]:373406000@qq.com # 指明邮箱地址
 - 使用 httpd.key 这个密钥创建一个证书请求文件 httpd.csr
   - openssl req -new -key httpd.key -days 365 -out httpd.csr
   - 在输入完该命令后，同样需要输入几个身份信息以供 CA 进行验证。由于是私有 CA，所以所有信息应该保持跟 CA 的信息一样，具体信息详见上面那个命令，否则无法签署成功。后面还可以输入密码，当然密码也可以为空，密码主要是对改请求进行加密的。创建完请求后，把该请求文件 XXX.csr 发送给 CA 所在的服务器，然后由 CA 进行签署。
@@ -112,6 +112,7 @@ EXAMPLE
 ## openssl x509 # 证书显示或签名工具
 
 > 参考：
+>
 > - [Manual(手册),openssl-x509(1)](https://www.openssl.org/docs/manmaster/man1/openssl-x509.html)
 
 这是一个多用途的证书处理命令。
@@ -124,20 +125,20 @@ EXAMPLE
 
 ### Syntax(语法)
 
-**openssl x509 \[ OPTIONS ] \[ ARGUMENTS ] **
+**openssl x509 \[ OPTIONS ] \[ ARGUMENTS ]**
 
 #### Input, Output, and General Purpose OPTIONS(输入、输出、通用选项)
 
 - **-noout** # 禁止输出证书请求文件中的编码部分
-- **-pubkey **# 输出证书中的公钥
-- **-modulus **# 输出证书中公钥模块部分
+- **-pubkey**# 输出证书中的公钥
+- **-modulus**# 输出证书中公钥模块部分
 - **-serial** # 输出证书的序列号
-- **-subject **# 输出证书中的 subject
-- **-issuer **# 输出证书中的 issuer，即颁发者的 subject
+- **-subject**# 输出证书中的 subject
+- **-issuer**# 输出证书中的 issuer，即颁发者的 subject
 - **-subject_hash** # 输出证书中 subject 的 hash 码
 - **-issuer_hash** # 输出证书中 issuer(即颁发者的 subject)的 hash 码
 - **-hash** # 等价于"-subject_hash"，但此项是为了向后兼容才提供的选项
-- **-email **# 输出证书中的 email 地址，如果有 email 的话
+- **-email**# 输出证书中的 email 地址，如果有 email 的话
 - **-startdate** # 输出证书有效期的起始日期
 - **-enddate** # 输出证书有效期的终止日期
 - **-dates** # 输出证书有效期，等价于"startdate+enddate"

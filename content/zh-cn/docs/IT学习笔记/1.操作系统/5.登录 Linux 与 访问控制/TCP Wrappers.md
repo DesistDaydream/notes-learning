@@ -45,14 +45,14 @@ TCP Wrappers 是通过 /etc/hosts.allow 和 /etc/hosts.deny 这两个配置文�
 # TCP_Wrappers 关联文件
 
 帮助参考：man 5 hosts_access，man 5 hosts_options
-**/etc/hosts.allow** #允许访问规则
+**/etc/hosts.allow** # 允许访问规则
 **/etc/hosts.deny** # 拒绝访问规则
 
 注意：说明文档中表示此文件也可以实现拒绝的规则，本着见名知义和管理清晰化的指引，这种写法不是讨论的重点。
 
 **配置文件的写法: Daemon_List : Client_List \[:Shell_Command]**
 
-**Daemon_List **# 单个应用程序的二进制文件名，而不是服务名，如果有多个，用逗号或空格分隔。如 sshd,vsftpd 或 sshd vsftpd
+**Daemon_List**# 单个应用程序的二进制文件名，而不是服务名，如果有多个，用逗号或空格分隔。如 sshd,vsftpd 或 sshd vsftpd
 
 - 可以绑定服务地址,如，sshd@192.168.7.202:ALL(比如一台设备有俩网卡俩地址时)
 - 支持通配符

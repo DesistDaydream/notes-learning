@@ -24,23 +24,23 @@ Cluster 中的各个 Node 通过相同的组播地址来组成集群，这些 No
 
 配置文件在/etc/corosync.conf，该文件定义 CoroSync 底层是如何让 Cluster 内的各个 Node 互相通信的
 
-1.  totem { # 图腾，定义 Cluster 的 Messaging Infrastructure 层，各 Node 如何进行通信的
+1. totem { # 图腾，定义 Cluster 的 Messaging Infrastructure 层，各 Node 如何进行通信的
 
-2.  version：NUM # totem 的版本号
+2. version：NUM # totem 的版本号
 
-3.  cluster_name：NAME # 定义集群名称
+3. cluster_name：NAME # 定义集群名称
 
-4.  secauth：on|off # 定义是否打开安全认证功能，如果打开了，那么就需要使用 corosync-keygen 命令生成密钥，其余节点需要都拥有该密钥文件
+4. secauth：on|off # 定义是否打开安全认证功能，如果打开了，那么就需要使用 corosync-keygen 命令生成密钥，其余节点需要都拥有该密钥文件
 
-5.  threads：NUM # 定义线程数，默认为 0
+5. threads：NUM # 定义线程数，默认为 0
 
-6.  interface { # 定义多个节点之间通过哪个接口，基于哪个多播地址，监听什么端口，完成多播通信的
+6. interface { # 定义多个节点之间通过哪个接口，基于哪个多播地址，监听什么端口，完成多播通信的
 
-7.  ringnumber：0 # 一般保持为 0 就行
+7. ringnumber：0 # 一般保持为 0 就行
 
-8.  bindnetaddr:IP # 指明把组播地址绑定在哪个网络地址上，注意：是网络地址
+8. bindnetaddr:IP # 指明把组播地址绑定在哪个网络地址上，注意：是网络地址
 
-9.  mcastaddr:IP # 指明使用的组播地址
+9. mcastaddr:IP # 指明使用的组播地址
 
 10. mcastport: NUM # 指明组播监听的端口号，默认是 5405
 
@@ -56,11 +56,11 @@ Cluster 中的各个 Node 通过相同的组播地址来组成集群，这些 No
 
 16. service { # 该方法定义 pacemaker 作为 CoroSync 的一个插件来运行
 
-        	ver:    0
+         ver:    0
 
-         	name:   pacemaker
+          name:   pacemaker
 
-        	use_mgmtd:yes
+         use_mgmtd:yes
 
 }
 
@@ -195,13 +195,13 @@ HA 的逻辑架构：
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/yal1l0/1616132755522-d36e0eff-da9d-482a-b363-1b6fedee53e2.jpeg)
 
-- 消息层 #HA 的底层通讯模块，负责节点间的通信、心跳信息传递，集群事务消息传递。
+- 消息层 # HA 的底层通讯模块，负责节点间的通信、心跳信息传递，集群事务消息传递。
 
-- CRM 层 #HA 的资源调度模块，负责资源的配置、管理和调度。
+- CRM 层 # HA 的资源调度模块，负责资源的配置、管理和调度。
 
 - LRM #负责在每一个节点上执行 CRM 所发出的指令，类似于每个节点安装一个 LRM 然后接收控制节点上 CRM 发出的指令，也可以每个节点都安装 CRM，只不过 LRM 只能对自己所在的节点进行操作，而 CRM 可以给所有节点的 LRM 发送指令
 
-- agent #HA 的资源代理，通过接受 LRM 层的 CRM 指令完成对所在节点的指定类型资源的管理。一个代理对应一类资源(图中的 A,B...X 指的就是资源)
+- agent # HA 的资源代理，通过接受 LRM 层的 CRM 指令完成对所在节点的指定类型资源的管理。一个代理对应一类资源(图中的 A,B...X 指的就是资源)
 
 HA 各层的解决方案：
 
@@ -379,7 +379,7 @@ heartbeat v2+haresources 或者 crm
 
 8. message layer
 
-9. DC：designated coordinator #指派的协调员，在分配为 DC（designated coordinator）的机器上创建 ha.cf
+9. DC：designated coordinator # 指派的协调员，在分配为 DC（designated coordinator）的机器上创建 ha.cf
 
 10. CIB：Cluster Information Base
 

@@ -5,6 +5,7 @@ title: Skaffold
 # 概述
 
 > 参考：
+>
 > - [官方文档](https://skaffold.dev/docs/)
 
 Skaffold(脚手架) 是一个命令行工具，可以使得 kubernetes 原生应用的持续开发(CI/CD)变得更加简单。skaffold 可以处理构建(代码与 docker 镜像)、推送到仓库、部署到本地或者远程 kubernetes 集群中这一工作流程。使用一个简单的 yaml 配置文件来定义和执行 Pipeline。
@@ -29,7 +30,7 @@ Skaffold 特性
 
 skaffold.yaml #Skaffold 通过该文件定义来定义 Pipeline 任务。
 
-/root/.skaffold/config #一些
+/root/.skaffold/config # 一些
 
 # Skaffold 的基本使用示例
 
@@ -47,9 +48,9 @@ skaffold.yaml #skaffold 遵循该文件内容执行流水线过程
 
 main.go #需要自动构建部署的代码文件
 
-Dockerfile #用于构建 image
+Dockerfile # 用于构建 image
 
-k8s-pod.yaml #用于部署到 k8s 的 yaml 文件
+k8s-pod.yaml # 用于部署到 k8s 的 yaml 文件
 
 下面是这几个文件的内容
 
@@ -58,25 +59,25 @@ k8s-pod.yaml #用于部署到 k8s 的 yaml 文件
     kind: Config
     build:
       artifacts:
-      - image: lchdzh/skaffold-example #指定构建完成后要上传的image信息
+      - image: lchdzh/skaffold-example # 指定构建完成后要上传的image信息
     deploy:
       kubectl:
         manifests:
-          - k8s-*.yaml #指定上传完images后，通过哪些yaml文件来部署到kubernetes集群中
+          - k8s-*.yaml # 指定上传完images后，通过哪些yaml文件来部署到kubernetes集群中
     EOF
 
 
     cat > main.go <<EOF
     package main
     import (
-    	"fmt"
-    	"time"
+     "fmt"
+     "time"
     )
     func main() {
-    	for {
-    		fmt.Println("Hello world!")
-    		time.Sleep(time.Second * 1)
-    	}
+     for {
+      fmt.Println("Hello world!")
+      time.Sleep(time.Second * 1)
+     }
     }
     EOF
 

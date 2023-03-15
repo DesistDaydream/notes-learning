@@ -5,6 +5,7 @@ title: kubectl 扩展
 # 概述
 
 > 参考：
+>
 > - [官方文档](https://kubernetes.io/docs/tasks/extend-kubectl/kubectl-plugins/)
 
 kubectl 有一个称为 **Plugins(插件)** 机制，可以扩展 kubectl 工具的能力。通过插件，就相当于为 kubectl 添加了子命令。
@@ -20,6 +21,7 @@ Kubernetes SIG 研发了一款名为 **Krew** 的插件，这是一个可以管�
 # Krew
 
 > 参考：
+>
 > - [GitHub 项目](https://github.com/kubernetes-sigs/krew/)
 
 ## Krew 配置
@@ -35,7 +37,7 @@ Kubernetes SIG 研发了一款名为 **Krew** 的插件，这是一个可以管�
 
 kubectl 插件管理工具，项目地址：<https://github.com/kubernetes-sigs/krew-index/blob/master/plugins.md>
 
-- **neat** #让 kubectl get -o yaml 的输出更简洁
+- **neat** # 让 kubectl get -o yaml 的输出更简洁
   - 项目地址：<https://github.com/itaysk/kubectl-neat>
 - **node-shell** # 通过 kubectl 命令直接进入 node 的 shell 中
   - 项目地址：[GitHub 项目](https://github.com/kvaps/kubectl-node-shell)

@@ -5,6 +5,7 @@ title: Drone Pipelines 详解
 # 概述
 
 > 参考：
+>
 > - 官方文档：<https://docs.drone.io/pipeline/overview/>
 
 Drone 默认通过 yaml 格式的名为 .drone.yml 的文件来指定 Pipelines 的行为。yaml 语法易于阅读和表达，将 .drone.yml 提交到代码仓库的根目录后，如果代码仓库配置了 webhook 并指定 Drone Server，那么当代码更改并触发 webhook 后，Drone Server 首先就会 clone 该仓库，并根据其中的 .drone.yml 文件中的内容，来执行后续 pipeline 动作。
@@ -25,15 +26,15 @@ steps:
       - echo world
 ```
 
-1. kind #指定本次任务的种类，该示例任务为 pipeline 种类。还有 secret 与 signature 种类
-2. type #指定 pipeline 的类型，不同的类型调用不同的 Runner 来执行任务。如果不填 type，则默认为 docker 类型。该示例任务为 docker 类型(docker 类型意味着后续的所有步骤都会启动一个容器，然后再容器中执行步骤的内容)。
-3. name #The name attribute defines a name for your pipeline. You can define one or many pipelines for your project.
-4. steps #The steps section defines an array of pipeline steps that are executed serially. If any step in the pipeline fails, the pipeline exits immediately.
-5. name #The name attribute defines the name of the pipeline step.
+1. kind # 指定本次任务的种类，该示例任务为 pipeline 种类。还有 secret 与 signature 种类
+2. type # 指定 pipeline 的类型，不同的类型调用不同的 Runner 来执行任务。如果不填 type，则默认为 docker 类型。该示例任务为 docker 类型(docker 类型意味着后续的所有步骤都会启动一个容器，然后再容器中执行步骤的内容)。
+3. name # The name attribute defines a name for your pipeline. You can define one or many pipelines for your project.
+4. steps # The steps section defines an array of pipeline steps that are executed serially. If any step in the pipeline fails, the pipeline exits immediately.
+5. name # The name attribute defines the name of the pipeline step.
 6. image # 指定执行该步骤所使用的插件的镜像。
-7. commands #指定执行该步骤的具体内容，commands 表示在容器中执行 shell 命令。如果任何命令的退出码非 0，则 pipeline 将会失败。
+7. commands # 指定执行该步骤的具体内容，commands 表示在容器中执行 shell 命令。如果任何命令的退出码非 0，则 pipeline 将会失败。
 
-### 该 Pipelines 样例的流程详解：
+### 该 Pipelines 样例的流程详解
 
 1. 通过 drone/git 镜像启动容器，下载代码仓库中的代码
 2. 通过 alpine 镜像启动容器，执行 commands 字段下给定的两条命令。

@@ -5,6 +5,7 @@ title: Files 类模块
 # 概述
 
 > 参考：
+>
 > - [官方文档 2.9，用户指南-使用模块-模块索引-文件模块](https://docs.ansible.com/ansible/2.9/modules/list_of_files_modules.html)
 
 Files 类别模块用来处理文件、文本
@@ -40,7 +41,7 @@ blockinfile 模块使用示例：
 ```yaml
 - name:写入多行文本
     blockinfile:
-    path: /etc/hosts #指定要添加文本的文件
+    path: /etc/hosts # 指定要添加文本的文件
     block: | # 注意要使用 | 符号，否则将没有换行。
       10.0.13.77 iptv-k8s-master-1.tjiptv.net
       10.0.13.82 iptv-k8s-master-2.tjiptv.net
@@ -100,7 +101,7 @@ Note：
 
 官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html#file-module
 
-## 应用示例：
+## 应用示例
 
 ```yaml
 - name: 创建名为k8s的目录
@@ -108,7 +109,7 @@ Note：
     path: /etc/ssl/k8s # 指定要创建的路径
     owner: k8s #可省。默认所属用户为root
     group: k8s #可省。默认所属组为k8s
-    state: directory #指定要创建的类型为目录
+    state: directory # 指定要创建的类型为目录
 ```
 
 Note: state 还可以使用 link 用来创建软链接
@@ -244,7 +245,7 @@ template 模块使用 Jinja2 模板语言处理文件，并将渲染后的文件
 
 Jinja 行为控制
 
-- **lstrip_blocks **# 是否移除前导空白符和制表符。`默认值：no`
+- **lstrip_blocks**# 是否移除前导空白符和制表符。`默认值：no`
 - **trim_blocks** # 是否移除换行符。`默认值：yes`
 
 其他参数
@@ -306,7 +307,7 @@ ansible -m template -a 'src=/mytemplates/foo.j2 dest=/tmp/foo.conf lstrip_blocks
 
 更多 template 模块原理及应用，详见 [Playbook 章节中的 Templates](/docs/IT学习笔记/9.运维/Ansible/Playbook/Templates%20 模板(Jinja2).md 模板(Jinja2).md)
 
-# unarchive - 解压缩一个归档文件。就是 tar 命令。
+# unarchive - 解压缩一个归档文件。就是 tar 命令
 
 官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/unarchive_module.html
 

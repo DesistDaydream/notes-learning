@@ -15,7 +15,7 @@ title: RsysLog 配置详解
 
 # MODULES 模块配置
 
-**module(load="imuxsock") **# 加载 imuxsock 模块，以便让 Rsyslog 可以监听 /dev/log 这个 Unix Socket 以接收日志消息<br />配置 TCP 协议的 syslog 接收，用于在日志服务器的时候配置
+**module(load="imuxsock")**# 加载 imuxsock 模块，以便让 Rsyslog 可以监听 /dev/log 这个 Unix Socket 以接收日志消息<br />配置 TCP 协议的 syslog 接收，用于在日志服务器的时候配置
 
 - **$ModLoad imtcp** # 使用 tcp 进行传输
 - **$InputTCPServerRun 514** #监听在 514 端口上
@@ -60,9 +60,9 @@ template(NAME TYPE Descriptions)
 $template NAME,"PATH" #定义一个名为 NAME 的模板来作为 RULE 配置段中 Location 字段使用，在 Location 字段中通过?NAME 来引用该对应模板
 
 - PATH 的可用变量
-  - %HOSTNAME% #用来区分是哪台远程主机的。
-  - %PROGRAMNAME% #通过日志标准格式中的 ProgramName 字段来进行分类保存日志。i.e.每个程序名是单独的一个文件
-  - %$year%%$month%%$day% #用来以时间格式命名文件
+  - %HOSTNAME% # 用来区分是哪台远程主机的。
+  - %PROGRAMNAME% # 通过日志标准格式中的 ProgramName 字段来进行分类保存日志。i.e.每个程序名是单独的一个文件
+  - %$year%%$month%%$day% # 用来以时间格式命名文件
 
 # RULES 规则配置
 
@@ -74,7 +74,7 @@ Rules 配置段是 rsyslog 程序得以正常运行的最基础配置。规则�
 
 **Selector Action**
 
-- **Selector(选择器) **# 根据匹配规则，选择要处理的日志。选择器由 Facility 和 Priority 组成，以 `.` 分隔
+- **Selector(选择器)**# 根据匹配规则，选择要处理的日志。选择器由 Facility 和 Priority 组成，以 `.` 分隔
   - **Facility.Priority**
 - **Action(动作)** # 描述了如何处理选择器选择出来的日志信息
 
@@ -123,7 +123,7 @@ Rules 配置段是 rsyslog 程序得以正常运行的最基础配置。规则�
 authpriv.*                                              /var/log/secure
 # 同上，用于邮件相关日志。
 mail.*                                                  -/var/log/maillog
-	# 同上，用于定时任务相关日志
+ # 同上，用于定时任务相关日志
 cron.*                                                  /var/log/cron
 # 任何优先级为emerg的设施日志以wall广播的方式给所有在系统登录的账号
 *.emerg                                                 :omusrmsg:*
@@ -134,13 +134,13 @@ local7.*                                                /var/log/boot.log
 
 # 下面是对Rule的应用实例：
 # 除了sshd、keepalived、haproxy程序的日志以外，其余所有程序的所有等级的日志保存在/var/log/messages文件中
-*.*;sshd,keepalived,haproxy.none	/var/log/messages
+*.*;sshd,keepalived,haproxy.none /var/log/messages
 # 将local2设施的所有级别的日志写入名为RemoteLogs模板定义的文件中，Action字段引用模板RemoteLogs的路径
 local2.*   ?RemoteLogs
 # 以下符号用来告知 rsyslog 停止对日志消息的进一步处理，即只把日志写入指定的路径中，而不再重复写到默认的 /var/log/* 目录下
 & stop # 注意，该指令仅对其上面一行的规则起作用，想让哪一条的规则生效，则在哪一行下面加上该组符号
 # 把所有程序的所有级别的日志发送给192.168.10.10这台机器上，Action字段为远程主机
-*.*	@@192.168.10.10
+*.* @@192.168.10.10
 # 丢弃所有日志,Action字段为丢弃
 *.* stop
 # 来自于远程主机的日志，不包括本机的日志全部写入到RemoteLogs模板定义的路径中
@@ -149,7 +149,7 @@ local2.*   ?RemoteLogs
 
 # outputs # 输出
 
-# 配置实例：
+# 配置实例
 
 注意：所有
 
@@ -171,7 +171,7 @@ client 端：
 
 在日志规则的 Location 配置段使用远程主机配置
 
-    *.*	@@192.168.10.10	#把所有程序的所有级别的日志发送给192.168.10.10这台机器
+    *.* @@192.168.10.10 #把所有程序的所有级别的日志发送给192.168.10.10这台机器
     注意：如果使用UDP进行传输，则使用1个@
 
 ## 实例二：配置 keepalived 程序的日志到指定的目录

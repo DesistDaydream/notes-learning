@@ -3,7 +3,7 @@ title: dell硬件监控OMSA
 weight: 50
 ---
 
-# OMSA（全称 Openmanage Server Administrator),是戴尔公司自主研发的 IT 系统管理解决方案。
+# OMSA（全称 Openmanage Server Administrator),是戴尔公司自主研发的 IT 系统管理解决方案
 
 <http://linux.dell.com/>
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gknv4x/1616067497715-90aa8503-f2c3-4436-ac53-560ef9f66d5f.jpeg)
@@ -96,7 +96,7 @@ COMMAND
 3. preferences Report system preferences.
 4. system System component properties.
 5. chassis 机架组件的属性。i.e.基本硬件的信息。Chassis component properties.
-6. storage #显示存储组件的属性
+6. storage # 显示存储组件的属性
 
 ## omreport storage
 

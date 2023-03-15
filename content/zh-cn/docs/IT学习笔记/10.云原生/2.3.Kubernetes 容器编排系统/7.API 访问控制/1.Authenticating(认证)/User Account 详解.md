@@ -5,6 +5,7 @@ title: User Account 详解
 # 概述
 
 > 参考：
+>
 > - [官方文档,概念-配置-使用 kubeconfig 文件访问集群](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
 > - [官方文档,任务-访问集群中的应用程序-配置多集群访问](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)
 
@@ -34,6 +35,7 @@ KubeConfig 是对 UserAccount 的扩展，KubeConfig 会创建 UserAccount 并�
 # KubeConfig Manifests 详解
 
 > 参考：
+>
 > - 官方文档中还没有对这个配置文件的描述
 > - 代码：<https://github.com/kubernetes/client-go/blob/master/tools/clientcmd/api/types.go>
 
@@ -54,7 +56,7 @@ KubeConfig 是对 UserAccount 的扩展，KubeConfig 会创建 UserAccount 并�
   - **insecure-skip-tls-verify: <BOOLEAN>** # 是否跳过验证服务端证书有效性的行为。
 - **name: <STRING>** # 指定该集群的名称
 
-## contexts: <\[]Object> # 指名用户与集群的绑定关系。
+## contexts: <\[]Object> # 指名用户与集群的绑定关系
 
 比如有一台主机作为客户端(kubelet)，想控制多个 k8s 的集群，为了让一个 kubectl 控制多个集群且多个不同用户账号可以访问多个不同的集群。
 
@@ -62,7 +64,7 @@ KubeConfig 是对 UserAccount 的扩展，KubeConfig 会创建 UserAccount 并�
   - **cluster: <STRING>** # 指明与 user 关联的 cluster
   - **user: <STRING>** # 指明与 cluster 关联的 user
   - **namespace: <STRING>** #可省，指定该配置环境默认操作的 namespace，省略表示默认为 default 名称空间。
-- **name: <STRING>** #指明该上下文的名称。默认格式为"用户名@集群名"，表示这个用户被授权到这个集群中。其实可以使用任意字符串。
+- **name: <STRING>** # 指明该上下文的名称。默认格式为"用户名@集群名"，表示这个用户被授权到这个集群中。其实可以使用任意字符串。
 
 ## current-context: <STRING> # 当前所使用的上下文
 

@@ -56,7 +56,7 @@ tcp 层的负载均衡
 
 HAProxy 配置
 
-/etc/haproxy/haproxy.cfg #haproxy 程序运行所需基本配置
+/etc/haproxy/haproxy.cfg # haproxy 程序运行所需基本配置
 
 haproxy.cfg 文件中各个参数解释
 
@@ -74,39 +74,39 @@ haproxy.cfg 文件中各个参数解释
 
 frontend、backend、listen 三个配置段都可以有多个，e.g.根据 acl1 的规则匹配到 backend1，符合 acl2 的规则匹配到 backend2，以此类推
 
-### defaults \[DefaultsName] #为 frontend、backend、listen 三段提供默认配置
+### defaults \[DefaultsName] # 为 frontend、backend、listen 三段提供默认配置
 
 defaults 中的配置，也可以单独配置在 frontend、backend、listen 配置段中，该段中的配置主要是为了防止后面面的三段中有重复的配置，比如 option http-keep-alive 该选项是保持连接，需要在所有前端配置中配置，这时候，可以在 defaults 配置段段配置一次，即可在所有的 frontend、backend、listen 中生效。
 
-### frontend FrontendName \*:PORT #前端配置段
+### frontend FrontendName \*:PORT # 前端配置段
 
 用于让 haproxy 监听在某个 IP:PORT 上，用来接收客户端请求，然后根据匹配规则把改请求转发给指定 backend
 
-### backend BackendName #后端配置段
+### backend BackendName # 后端配置段
 
 负责接收前段配置段转发的请求，后端里可以包含多台服务器来均衡处理前端转发过来的请求。BackendName 与 frontend 中的 default_backend 或 use_backend 所关联。
 
-### listen ListenName #指定一个四层代理名称，该配置段无法配置详细的 7 层转发规则
+### listen ListenName # 指定一个四层代理名称，该配置段无法配置详细的 7 层转发规则
 
 ## 配置段的关键字(keywords)
 
 ### global 全局配置段 keywords
 
-1. maxconn NUM #设置最大连 z 接数
+1. maxconn NUM # 设置最大连 z 接数
 
-2. log \[Len ] \[Format ] \[ \[]] #让 haproxy 程序记录日志，并指定记录方式
+2. log \[Len ] \[Format ] \[ \[]] # 让 haproxy 程序记录日志，并指定记录方式
 
-   1. ADDRESS #指定要把日志发送到哪台设备上的哪个 PORT，默认 PORT 为 514
+   1. ADDRESS # 指定要把日志发送到哪台设备上的哪个 PORT，默认 PORT 为 514
 
-   2. FACILITY #指定要使用的日志设施，一般为 local0-7 其中一个
+   2. FACILITY # 指定要使用的日志设施，一般为 local0-7 其中一个
 
-   3. LEVEL #指定哪个级别的日志会被记录
+   3. LEVEL # 指定哪个级别的日志会被记录
 
-3. user USER #haproxy 以指定的 USER 用户运行
+3. user USER # haproxy 以指定的 USER 用户运行
 
-4. group GROUP #haproxy 以指定的 GROUP 组运行
+4. group GROUP # haproxy 以指定的 GROUP 组运行
 
-5. daemon #haproxy 以守护进程运行，不加该参数，则 haproxy 则会运行在前台
+5. daemon # haproxy 以守护进程运行，不加该参数，则 haproxy 则会运行在前台
 
 ### defaults、frontend、backend、listen 代理配置段 keywords
 
@@ -114,9 +114,9 @@ defaults、frontend、backend、listen 可用的关键字及其对应的值的�
 
 目前，有两种主流的代理模式：tcp 代理(即所谓的 4 层代理)和 http 代理(即所谓的 7 层代理)。在 4 层代理模式下，haproxy 简单的在两端进行双向转发。在 7 层代理模式下，haproxy 会对协议进行分析，可以根据协议来允许、阻塞、切换、增加、修改和移除 request 或 response 中的属性内容。
 
-1. log global #让代理的日志使用 global 中的日志配置
+1. log global # 让代理的日志使用 global 中的日志配置
 
-2. mode {tcp|http} #设置实例的运行模式或者协议,默认为 tcp
+2. mode {tcp|http} # 设置实例的运行模式或者协议,默认为 tcp
 
    1. 用于 defaults、frontend、listen、backend
 
@@ -124,27 +124,27 @@ defaults、frontend、backend、listen 可用的关键字及其对应的值的�
 
    3. http 模式：该实例将在 HTTP 模式下工作。 在连接到任何服务器之前，将对客户端请求进行深入分析。 任何不符合 RFC 的请求都将被拒绝。 可以进行第 7 层过滤，处理和切换。这种模式为 HAProxy 带来了最大的价值。
 
-3. acl CRITERION \[FLAG] \[OPERATOR] VALUE #定义一个名为 AclName 的规则，匹配规则为 MatchRule。匹配规则主要是针对访问的内容，i.e.用户访问哪一类 URL。e.g.用户访问某个路径下的资源，acl 匹配到后，把请求代理到 use_backend 字段中定义的 backend 上去.acl 官方使用文档：<http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#7.1>
+3. acl CRITERION \[FLAG] \[OPERATOR] VALUE # 定义一个名为 AclName 的规则，匹配规则为 MatchRule。匹配规则主要是针对访问的内容，i.e.用户访问哪一类 URL。e.g.用户访问某个路径下的资源，acl 匹配到后，把请求代理到 use_backend 字段中定义的 backend 上去.acl 官方使用文档：<http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#7.1>
 
    1. 用于 frontend、backend、listen。
 
    2. EXAMPLE
 
-      1. acl invalid_src src 0.0.0.0/7 #CERITERION(规范)为 src，VALUE(值)为 0.0.0.0/7。规则名为 invalid_src
+      1. acl invalid_src src 0.0.0.0/7 # CERITERION(规范)为 src，VALUE(值)为 0.0.0.0/7。规则名为 invalid_src
 
-4. bind IP:PORT #指定该前端会监听在哪个 IP:PORT 上
+4. bind IP:PORT # 指定该前端会监听在哪个 IP:PORT 上
 
    1. 用于 frontend、listen
 
-5. use_backend BackendName if ACLName #当满足 ACLName 策略的请求代理到 BackendName 这个后端上
+5. use_backend BackendName if ACLName # 当满足 ACLName 策略的请求代理到 BackendName 这个后端上
 
    1. 用于 frontend、listen。
 
-6. default_backend BackendName #定义默认把请求转发到 backend 所定义的一组以 NAME 命名的后端服务器上
+6. default_backend BackendName # 定义默认把请求转发到 backend 所定义的一组以 NAME 命名的后端服务器上
 
    1. 用于 defaults、frontend、listen。
 
-7. balance SCHEDULER #指明该组后端服务器接收请求的 SCHEDULER(scheduler 调度算法,也可以翻译为调度器)，调度算法可以使用以下的几种机型定义，有的 scheduler 还有子配置，定义在该 scheduler 之下
+7. balance SCHEDULER # 指明该组后端服务器接收请求的 SCHEDULER(scheduler 调度算法,也可以翻译为调度器)，调度算法可以使用以下的几种机型定义，有的 scheduler 还有子配置，定义在该 scheduler 之下
 
    1. 用于 defaults、listen、backend。
 
@@ -166,25 +166,25 @@ defaults、frontend、backend、listen 可用的关键字及其对应的值的�
 
       7. hdr(NAME):根据每个请求报文的 header 首部报文的(字段)进行调度
 
-      8. hash-type #动态调整权重，一致性哈希算法 | 静态，基础映射哈希
+      8. hash-type # 动态调整权重，一致性哈希算法 | 静态，基础映射哈希
 
-8. option httpchk HEAD /PATH/TO/FILE #用于配置健康检查所使用的文件，HEAD 是关键字
+8. option httpchk HEAD /PATH/TO/FILE # 用于配置健康检查所使用的文件，HEAD 是关键字
 
    1. 用于 defaults、listen、backend。
 
-9. option http-keep-alive #启用客户端和服务端与 haproxy 之间的长连接。haproxy 将处理所有请求和响应报文，请求完后 haproxy 两端的连接都处于空闲状态。
+9. option http-keep-alive # 启用客户端和服务端与 haproxy 之间的长连接。haproxy 将处理所有请求和响应报文，请求完后 haproxy 两端的连接都处于空闲状态。
 
    1. 用于 defaults、frontend、backend、listen
 
-10. option http-server-close #启用在 haproxy 处理完第一次响应之后关闭 haproxy 到服务端之间长连接的功能，但客户端的长连接还保持，后续的每次请求都重新建立和后端的连接，每次响应后都关闭和后端的连接。启用该选项时，haproxy 将会在发送给后端 server 的 request 数据包中添加一个"Connection:Close"标记，后端 Server 看到此标记就会在响应后关闭 tcp 连接。
+10. option http-server-close # 启用在 haproxy 处理完第一次响应之后关闭 haproxy 到服务端之间长连接的功能，但客户端的长连接还保持，后续的每次请求都重新建立和后端的连接，每次响应后都关闭和后端的连接。启用该选项时，haproxy 将会在发送给后端 server 的 request 数据包中添加一个"Connection:Close"标记，后端 Server 看到此标记就会在响应后关闭 tcp 连接。
 
 11. 用于 defaults、frontend、backend、listen
 
 12. 一般来说，后端是静态内容缓存服务器时，或者就是静态服务器时，首选使用 http-keep-alive 模式，后端是动态应用程序服务器时，首选使用 http-server-close 模式。
 
-13. option httpchk \[METHOD] URI \[VERSION] #开启 http 协议以检查 server 字段定义的各个服务器的健康状态
+13. option httpchk \[METHOD] URI \[VERSION] # 开启 http 协议以检查 server 字段定义的各个服务器的健康状态
 
-14. server ServerName IP:PORT check inter 5s rise 2 fall 2 weight 2 #指定被代理的服务器的 IP 与地址还有其余信息
+14. server ServerName IP:PORT check inter 5s rise 2 fall 2 weight 2 # 指定被代理的服务器的 IP 与地址还有其余信息
 
 15. 用于 backend 和 listen。
 
@@ -195,51 +195,51 @@ defaults、frontend、backend、listen 可用的关键字及其对应的值的�
            ####################全局配置信息########################
            #######参数是进程级的，通常和操作系统（OS）相关#########
     global
-           maxconn 20480                   #默认最大连接数
-           log 127.0.0.1 local3            #[err warning info debug]
-           chroot /var/haproxy             #chroot运行的路径
-           uid 99                          #所属运行的用户uid，也可以user后边接用户名
-           gid 99                          #所属运行的用户组 ，也可以改成group后边接组名
-           daemon                          #以后台形式运行haproxy
-           nbproc 1                        #进程数量(可以设置多个进程提高性能)
-           pidfile /var/run/haproxy.pid    #haproxy的pid存放路径,启动进程的用户必须有权限访问此文件
-           ulimit-n 65535                  #ulimit的数量限制
+           maxconn 20480                   # 默认最大连接数
+           log 127.0.0.1 local3            # [err warning info debug]
+           chroot /var/haproxy             # chroot运行的路径
+           uid 99                          # 所属运行的用户uid，也可以user后边接用户名
+           gid 99                          # 所属运行的用户组 ，也可以改成group后边接组名
+           daemon                          # 以后台形式运行haproxy
+           nbproc 1                        # 进程数量(可以设置多个进程提高性能)
+           pidfile /var/run/haproxy.pid    # haproxy的pid存放路径,启动进程的用户必须有权限访问此文件
+           ulimit-n 65535                  # ulimit的数量限制
 
 
            #####################默认的全局设置######################
            ##这些参数可以被利用配置到frontend，backend，listen组件##
     defaults
            log global
-           mode http                       #所处理的类别 (#7层 http;4层tcp  )
-           maxconn 20480                   #最大连接数
-           option httplog                  #日志类别http日志格式
-           option httpclose                #每次请求完毕后主动关闭http通道
-           option dontlognull              #不记录健康检查的日志信息
-           option forwardfor               #如果后端服务器需要获得客户端真实ip需要配置的参数，可以从Http Header中获得客户端ip
-           option redispatch               #serverId对应的服务器挂掉后,强制定向到其他健康的服务器
-           option abortonclose             #当服务器负载很高的时候，自动结束掉当前队列处理比较久的连接
-           stats refresh 30                #统计页面刷新间隔
-           retries 3                       #3次连接失败就认为服务不可用，也可以通过后面设置
-           balance roundrobin              #默认的负载均衡的方式,轮询方式
-          #balance source                  #默认的负载均衡的方式,类似nginx的ip_hash
-          #balance leastconn               #默认的负载均衡的方式,最小连接
-           contimeout 5000                 #连接超时
-           clitimeout 50000                #客户端超时
-           srvtimeout 50000                #服务器超时
-           timeout check 2000              #心跳检测超时
+           mode http                       # 所处理的类别 (#7层 http;4层tcp  )
+           maxconn 20480                   # 最大连接数
+           option httplog                  # 日志类别http日志格式
+           option httpclose                # 每次请求完毕后主动关闭http通道
+           option dontlognull              # 不记录健康检查的日志信息
+           option forwardfor               # 如果后端服务器需要获得客户端真实ip需要配置的参数，可以从Http Header中获得客户端ip
+           option redispatch               # serverId对应的服务器挂掉后,强制定向到其他健康的服务器
+           option abortonclose             # 当服务器负载很高的时候，自动结束掉当前队列处理比较久的连接
+           stats refresh 30                # 统计页面刷新间隔
+           retries 3                       # 3次连接失败就认为服务不可用，也可以通过后面设置
+           balance roundrobin              # 默认的负载均衡的方式,轮询方式
+          # balance source                  # 默认的负载均衡的方式,类似nginx的ip_hash
+          # balance leastconn               # 默认的负载均衡的方式,最小连接
+           contimeout 5000                 # 连接超时
+           clitimeout 50000                # 客户端超时
+           srvtimeout 50000                # 服务器超时
+           timeout check 2000              # 心跳检测超时
 
            ####################监控页面的设置#######################
-    listen admin_status                    #Frontend和Backend的组合体,监控组的名称，按需自定义名称
-            bind 0.0.0.0:65532             #监听端口
-            mode http                      #http的7层模式
-            log 127.0.0.1 local3 err       #错误日志记录
-            stats refresh 5s               #每隔5秒自动刷新监控页面
-            stats uri /admin?stats         #监控页面的url
-            stats realm itnihao\ itnihao   #监控页面的提示信息
-            stats auth admin:admin         #监控页面的用户和密码admin,可以设置多个用户名
-            stats auth admin1:admin1       #监控页面的用户和密码admin1
-            stats hide-version             #隐藏统计页面上的HAproxy版本信息
-            stats admin if TRUE            #手工启用/禁用,后端服务器(haproxy-1.4.9以后版本)
+    listen admin_status                    # Frontend和Backend的组合体,监控组的名称，按需自定义名称
+            bind 0.0.0.0:65532             # 监听端口
+            mode http                      # http的7层模式
+            log 127.0.0.1 local3 err       # 错误日志记录
+            stats refresh 5s               # 每隔5秒自动刷新监控页面
+            stats uri /admin?stats         # 监控页面的url
+            stats realm itnihao\ itnihao   # 监控页面的提示信息
+            stats auth admin:admin         # 监控页面的用户和密码admin,可以设置多个用户名
+            stats auth admin1:admin1       # 监控页面的用户和密码admin1
+            stats hide-version             # 隐藏统计页面上的HAproxy版本信息
+            stats admin if TRUE            # 手工启用/禁用,后端服务器(haproxy-1.4.9以后版本)
 
 
            errorfile 403 /etc/haproxy/errorfiles/403.http
@@ -259,61 +259,61 @@ defaults、frontend、backend、listen 可用的关键字及其对应的值的�
            #######################网站监测listen配置#####################
            ###########此用法主要是监控haproxy后端服务器的监控状态############
     listen site_status
-           bind 0.0.0.0:1081                    #监听端口
-           mode http                            #http的7层模式
-           log 127.0.0.1 local3 err             #[err warning info debug]
-           monitor-uri /site_status             #网站健康检测URL，用来检测HAProxy管理的网站是否可以用，正常返回200，不正常返回503
-           acl site_dead nbsrv(server_web) lt 2 #定义网站down时的策略当挂在负载均衡上的指定backend的中有效机器数小于1台时返回true
+           bind 0.0.0.0:1081                    # 监听端口
+           mode http                            # http的7层模式
+           log 127.0.0.1 local3 err             # [err warning info debug]
+           monitor-uri /site_status             # 网站健康检测URL，用来检测HAProxy管理的网站是否可以用，正常返回200，不正常返回503
+           acl site_dead nbsrv(server_web) lt 2 # 定义网站down时的策略当挂在负载均衡上的指定backend的中有效机器数小于1台时返回true
            acl site_dead nbsrv(server_blog) lt 2
            acl site_dead nbsrv(server_bbs)  lt 2
-           monitor fail if site_dead            #当满足策略的时候返回503，网上文档说的是500，实际测试为503
-           monitor-net 192.168.16.2/32          #来自192.168.16.2的日志信息不会被记录和转发
+           monitor fail if site_dead            # 当满足策略的时候返回503，网上文档说的是500，实际测试为503
+           monitor-net 192.168.16.2/32          # 来自192.168.16.2的日志信息不会被记录和转发
            monitor-net 192.168.16.3/32
 
            ########frontend配置############
            #####注意，frontend配置里面可以定义多个acl进行匹配操作########
     frontend http_80_in
-           bind 0.0.0.0:80      #监听端口，即haproxy提供web服务的端口，和lvs的vip端口类似
-           mode http            #http的7层模式
-           log global           #应用全局的日志配置
-           option httplog       #启用http的log
-           option httpclose     #每次请求完毕后主动关闭http通道，HA-Proxy不支持keep-alive模式
-           option forwardfor    #如果后端服务器需要获得客户端的真实IP需要配置次参数，将可以从Http Header中获得客户端IP
+           bind 0.0.0.0:80      # 监听端口，即haproxy提供web服务的端口，和lvs的vip端口类似
+           mode http            # http的7层模式
+           log global           # 应用全局的日志配置
+           option httplog       # 启用http的log
+           option httpclose     # 每次请求完毕后主动关闭http通道，HA-Proxy不支持keep-alive模式
+           option forwardfor    # 如果后端服务器需要获得客户端的真实IP需要配置次参数，将可以从Http Header中获得客户端IP
            ########acl策略配置#############
            acl itnihao_web hdr_reg(host) -i ^(www.itnihao.cn|ww1.itnihao.cn)$
-           #如果请求的域名满足正则表达式中的2个域名返回true -i是忽略大小写
+           # 如果请求的域名满足正则表达式中的2个域名返回true -i是忽略大小写
            acl itnihao_blog hdr_dom(host) -i blog.itnihao.cn
-           #如果请求的域名满足www.itnihao.cn返回true -i是忽略大小写
+           # 如果请求的域名满足www.itnihao.cn返回true -i是忽略大小写
            acl itnihao    hdr(host) -i itnihao.cn
-           #如果请求的域名满足itnihao.cn返回true -i是忽略大小写
+           # 如果请求的域名满足itnihao.cn返回true -i是忽略大小写
            acl file_req url_sub -i  killall=
-           #在请求url中包含killall=，则此控制策略返回true,否则为false
+           #  在请求url中包含killall=，则此控制策略返回true,否则为false
            acl dir_req url_dir -i allow
-           #在请求url中存在allow作为部分地址路径，则此控制策略返回true,否则返回false
+           #  在请求url中存在allow作为部分地址路径，则此控制策略返回true,否则返回false
            acl missing_cl hdr_cnt(Content-length) eq 0
-           #当请求的header中Content-length等于0时返回true
+           # 当请求的header中Content-length等于0时返回true
 
            ########acl策略匹配相应#############
            block if missing_cl
-           #当请求中header中Content-length等于0阻止请求返回403
+           # 当请求中header中Content-length等于0阻止请求返回403
            block if !file_req || dir_req
-           #block表示阻止请求，返回403错误，当前表示如果不满足策略file_req，或者满足策略dir_req，则阻止请求
+           # block表示阻止请求，返回403错误，当前表示如果不满足策略file_req，或者满足策略dir_req，则阻止请求
            use_backend  server_web  if itnihao_web
-           #当满足itnihao_web的策略时使用server_web的backend
+           # 当满足itnihao_web的策略时使用server_web的backend
            use_backend  server_blog if itnihao_blog
-           #当满足itnihao_blog的策略时使用server_blog的backend
+           # 当满足itnihao_blog的策略时使用server_blog的backend
            redirect prefix http://blog.itniaho.cn code 301 if itnihao
-           #当访问itnihao.cn的时候，用http的301挑转到http://192.168.16.3
+           # 当访问itnihao.cn的时候，用http的301挑转到http://192.168.16.3
            default_backend server_bbs
-           #以上都不满足的时候使用默认server_bbs的backend
+           # 以上都不满足的时候使用默认server_bbs的backend
 
            ##########backend的设置##############
-           #下面我将设置三组服务器 server_web，server_blog，server_bbs
+           # 下面我将设置三组服务器 server_web，server_blog，server_bbs
     ###########################backend server_web#############################
     backend server_web
-           mode http            #http的7层模式
+           mode http            # http的7层模式
            balance roundrobin   #负载均衡的方式，roundrobin平均方式
-           cookie SERVERID      #允许插入serverid到cookie中，serverid后面可以定义
+           cookie SERVERID      # 允许插入serverid到cookie中，serverid后面可以定义
            option httpchk GET /index.html #心跳检测的文件
            server web1 192.168.16.2:80 cookie web1 check inter 1500 rise 3 fall 3 weight 1
            #服务器定义，cookie 1表示serverid为web1，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用，
@@ -324,9 +324,9 @@ defaults、frontend、backend、listen 可用的关键字及其对应的值的�
 
     ###################################backend server_blog###############################################
     backend server_blog
-           mode http            #http的7层模式
+           mode http            # http的7层模式
            balance roundrobin   #负载均衡的方式，roundrobin平均方式
-           cookie SERVERID      #允许插入serverid到cookie中，serverid后面可以定义
+           cookie SERVERID      # 允许插入serverid到cookie中，serverid后面可以定义
            option httpchk GET /index.html #心跳检测的文件
            server blog1 192.168.16.2:80 cookie blog1 check inter 1500 rise 3 fall 3 weight 1
            #服务器定义，cookie 1表示serverid为web1，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用，fall 3是3次失败认为服务器不可用，weight代表权重
@@ -336,14 +336,14 @@ defaults、frontend、backend、listen 可用的关键字及其对应的值的�
     ###################################backend server_bbs###############################################
 
     backend server_bbs
-           mode http            #http的7层模式
+           mode http            # http的7层模式
            balance roundrobin   #负载均衡的方式，roundrobin平均方式
-           cookie SERVERID      #允许插入serverid到cookie中，serverid后面可以定义
+           cookie SERVERID      # 允许插入serverid到cookie中，serverid后面可以定义
            option httpchk GET /index.html #心跳检测的文件
            server bbs1 192.168.16.2:80 cookie bbs1 check inter 1500 rise 3 fall 3 weight 1
-           #服务器定义，cookie 1表示serverid为web1，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用，fall 3是3次失败认为服务器不可用，weight代表权重
+           # 服务器定义，cookie 1表示serverid为web1，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用，fall 3是3次失败认为服务器不可用，weight代表权重
            server bbs2 192.168.16.3:80 cookie bbs2 check inter 1500 rise 3 fall 3 weight 2
-            #服务器定义，cookie 1表示serverid为web2，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用，fall 3是3次失败认为服务器不可用，weight代表权重
+            # 服务器定义，cookie 1表示serverid为web2，check inter 1500是检测心跳频率rise 3是3次正确认为服务器可用，fall 3是3次失败认为服务器不可用，weight代表权重
 
 # haproxy 日志配置
 

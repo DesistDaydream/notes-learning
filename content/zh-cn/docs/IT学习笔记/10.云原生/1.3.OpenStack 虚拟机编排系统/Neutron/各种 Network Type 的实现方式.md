@@ -66,16 +66,16 @@ Neutron 会在 OVS 模式下会自动创建三种虚拟网络设备
 
 Open vSwitch 环境中，数据包从 instance 到物理网卡的路径
 
-1. tap interface #命名为 tapXXXX
-2. linux bridge #命名为 qbrXXXX。
-3. veth pair #命名为 qvbXXXX，qvoXXXX
-4. OVS integration bridge #命名为 br-int
-5. OVS patch ports #命名为 int-br-exX 和 phy-br-ethX(X 为 interface 序号)
-6. OVS provider bridge #命名为 br-exX(X 为 interface 序号)
-7. vlan interface #命名为 ethX.Y（X 为 interface 的序号，Y 为 vlan id）
-8. vxlan interface #命名为 vxlan-Z（z 是 VNI）
-9. 物理 interface #命名为 ethX（X 为 interface 的序号）
-10. OVS tunnel bridge #命名为 br-tun
+1. tap interface # 命名为 tapXXXX
+2. linux bridge # 命名为 qbrXXXX。
+3. veth pair # 命名为 qvbXXXX，qvoXXXX
+4. OVS integration bridge # 命名为 br-int
+5. OVS patch ports # 命名为 int-br-exX 和 phy-br-ethX(X 为 interface 序号)
+6. OVS provider bridge # 命名为 br-exX(X 为 interface 序号)
+7. vlan interface # 命名为 ethX.Y（X 为 interface 的序号，Y 为 vlan id）
+8. vxlan interface # 命名为 vxlan-Z（z 是 VNI）
+9. 物理 interface # 命名为 ethX（X 为 interface 的序号）
+10. OVS tunnel bridge # 命名为 br-tun
 
 OVS provider bridge 会在 flat 和 vlan 网络中使用；OVS tunnel bridge 则会在 vxlan 和 gre 网络中使用
 
@@ -106,16 +106,16 @@ instance—TAP—Linux Bridge—Veth Pair—OVS Bridge—其它
 
 通过几个命令可以看到在实际环境中的虚拟网络设备之间的关系
 
-1. ovs-vsctl show #在 OVS 中的网桥 br-int 上有一个 interface，名为 qvofc1c6ebb-71
+1. ovs-vsctl show # 在 OVS 中的网桥 br-int 上有一个 interface，名为 qvofc1c6ebb-71
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/oo0pgf/1616123235082-6c539d65-6dc4-49d1-8a79-168795c33eb7.jpeg)
 
-1. brctl show #在 LinuxBridge 这个网桥 qbrfc1c6ebb-71 上，有一个 interface，名为 qvbfc1c6ebb-71
+1. brctl show # 在 LinuxBridge 这个网桥 qbrfc1c6ebb-71 上，有一个 interface，名为 qvbfc1c6ebb-71
    1. 在这里还能看到实例网卡所关联的名为 tapfc1c6ebb-71 这个 TAP 设备也在 Linux Bridge 上
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/oo0pgf/1616123235113-3f709aac-0438-47ca-98f8-bd82eb31b287.jpeg)
 
-1.  ethtools -S qvofc1c6ebb-71 && ethtools qvbfc1c6ebb-71 #这是 一对 veth 设备 ，用来连接 Linux Bridge 与 OVS Bridge
+1. ethtools -S qvofc1c6ebb-71 && ethtools qvbfc1c6ebb-71 # 这是 一对 veth 设备 ，用来连接 Linux Bridge 与 OVS Bridge
 
                 root@devstack-controller:~# ethtool -S qvbfc1c6ebb-71NIC statistics:    peer_ifindex: 12root@devstack-controller:~# ethtool -S qvofc1c6ebb-71NIC statistics:    peer_ifindex: 13
 

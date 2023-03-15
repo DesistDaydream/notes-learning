@@ -5,6 +5,7 @@ title: BIND
 # 概述
 
 > 参考：
+>
 > - [ISC-BIND9 官方网站](https://www.isc.org/bind/)
 > - [Wiki,BIND](https://en.wikipedia.org/wiki/BIND)
 
@@ -25,7 +26,7 @@ rndc:remote name domain controller,默认与 bind 安装在同一主机，且只
 配置文件：
 
 - /etc/named.conf
-- /etc/named.rfc1912.zomes #该文件的引用，定义在 named.conf 的最后几行
+- /etc/named.rfc1912.zomes # 该文件的引用，定义在 named.conf 的最后几行
 - /etc/rndc.key
 
 解析库文件：/var/named/ZONE_NAME.ZONE,有以下注意事项
@@ -34,45 +35,45 @@ rndc:remote name domain controller,默认与 bind 安装在同一主机，且只
 - 必须要有根区域文件 named.ca
 - 应该有两个实现 localhost 和本地回环地址的解析库
 
-/etc/named.conf # 配置文件 keywords 说明
+/etc/named.conf #  配置文件 keywords 说明
 
-1. options{ #用于全局 BIND 配置，BIND 的工作目录在 /var/named
+1. options{ # 用于全局 BIND 配置，BIND 的工作目录在 /var/named
 
-- listen-on port NUM { IP1; IP2; }; #设置 DNS 服务监听的端口号 NUM 和监听该端口的 IP 地址
-- allow-query { any; }; #设置任何人都可以来这台服务器解析
-- forward { first|only }； #转发服务器配置，加了此项则定义先进行域名解析请求转发,转发不了再去迭代查询,可用 first 或者 only 模式
-- forwarders { IP； } #转发服务器配置，转发的 IP 地址
+- listen-on port NUM { IP1; IP2; }; # 设置 DNS 服务监听的端口号 NUM 和监听该端口的 IP 地址
+- allow-query { any; }; # 设置任何人都可以来这台服务器解析
+- forward { first|only }； # 转发服务器配置，加了此项则定义先进行域名解析请求转发,转发不了再去迭代查询,可用 first 或者 only 模式
+- forwarders { IP； } # 转发服务器配置，转发的 IP 地址
 - }；
 
-1. loggin{} #配置哪些需要记录，哪些需要忽略
-2. zone "ZONE_NAME" IN { #定义 DNS 区域。本机能够为哪些 zone(区域)进行解析，就要定义哪些 zone，比如域名 google.com，它包含子域名 mail.google.com 和 analytics.google.com 等。这几个域名都有一个由 zone 语句定义的区域，该定义可以直接写在.zone 的解析库文件里
+1. loggin{} # 配置哪些需要记录，哪些需要忽略
+2. zone "ZONE_NAME" IN { # 定义 DNS 区域。本机能够为哪些 zone(区域)进行解析，就要定义哪些 zone，比如域名 google.com，它包含子域名 mail.google.com 和 analytics.google.com 等。这几个域名都有一个由 zone 语句定义的区域，该定义可以直接写在.zone 的解析库文件里
 
-- type ; #定义该服务器是什么职责，包括主，辅助，根，转发这四种
-- file ”ZONE_NAME.zone“； #区域解析库文件，默认在该文件在/var/named 目录下，所以该位置直接写文件名即可
+- type ; # 定义该服务器是什么职责，包括主，辅助，根，转发这四种
+- file ”ZONE_NAME.zone“； # 区域解析库文件，默认在该文件在/var/named 目录下，所以该位置直接写文件名即可
 - };
 
-1. include #在 named.conf 中包含另一个文件。比如 named.rfc1912.zomes 该文件包含其余定义的 zone 信息
+1. include # 在 named.conf 中包含另一个文件。比如 named.rfc1912.zomes 该文件包含其余定义的 zone 信息
 
-/var/named/ZONE_NAME.zone #解析库文件说明
+/var/named/ZONE_NAME.zone # 解析库文件说明
 
 EXAMPLE
 
-- $TTL 86400 #该条目告诉 BIND 每个单独记录的 TTL 值（time to live，生存时间值）。它是以秒为单位的数值，比如 14,400 秒（4 个小时），因此 DNS 服务器最多缓存你的域文件 4 个小时，之后就会向你的 DNS 服务器重新查询。
-- $ORIGIN baidu.com. #定义该项后，资源格式里可以省略后面的根域名，顶级域名，所有写的域名自带该变量定义的域名
+- $TTL 86400 # 该条目告诉 BIND 每个单独记录的 TTL 值（time to live，生存时间值）。它是以秒为单位的数值，比如 14,400 秒（4 个小时），因此 DNS 服务器最多缓存你的域文件 4 个小时，之后就会向你的 DNS 服务器重新查询。
+- $ORIGIN baidu.com. # 定义该项后，资源格式里可以省略后面的根域名，顶级域名，所有写的域名自带该变量定义的域名
 - @ IN SOA ns1.baidu.com. admin.baidu.com (
 - 2015042201
 - 1H
 - 5M
 - 7D
 - 1D )
--       	IN		NS		ns1.baidu.com
--       	IN		NS		ns2.baidu.com
+-        IN  NS  ns1.baidu.com
+-        IN  NS  ns2.baidu.com
 - ns1 IN A 1.1.1.1
 - ns2 IN A 1.1.1.2
 - www IN A 1.1.1.3
--       IN		A		1.1.1.4
--       IN		MX	10	mx1.baidu.com
--       IN		MX	20	mx2.baidu.com
+- IN  A  1.1.1.4
+- IN  MX 10 mx1.baidu.com
+- IN  MX 20 mx2.baidu.com
 - 4.3.2.1in-addr.arpa. IN PTR www.baidu.com
 - web IN CNAME www.baidu.com
 

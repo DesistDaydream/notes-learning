@@ -43,11 +43,11 @@ ms-dns IP #配置 DNS
     # client        server  secret       IP addresses
     lichenhao       pptpd   lichenhao       *
 
-client #指定用户名
+client # 指定用户名
 
-server #指定该用户连接时所用的协议
+server # 指定该用户连接时所用的协议
 
-secret #指定该用户密码
+secret # 指定该用户密码
 
 IP addresses #所用的 ip,ip 可以用\*表示该用户可用所有 ip
 

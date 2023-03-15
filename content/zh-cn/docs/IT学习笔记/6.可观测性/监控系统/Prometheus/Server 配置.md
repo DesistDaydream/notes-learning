@@ -45,18 +45,18 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 - **--web.enable-admin-api** # 开启管理操作 API 端点。通过 admin API，可以删除时序数据。
 - --web.console.templates="consoles" # Path to the console template directory, available at /consoles.
 - --web.console.libraries="console_libraries" # Path to the console library directory.
-- --web.page-title="Prometheus Time Series Collection and Processing Server" #Document title of Prometheus instance.
-- --web.cors.origin=".\*" #Regex for CORS origin. It is fully anchored. Example: 'https?://(domain1|domain2).com'
+- --web.page-title="Prometheus Time Series Collection and Processing Server" # Document title of Prometheus instance.
+- --web.cors.origin=".\*" # Regex for CORS origin. It is fully anchored. Example: 'https?://(domain1|domain2).com'
 - **--storage.tsdb.path="/PATH/DIR"**# prometheus 存储 metircs 数据的目录(使用绝对路径)
 - **--storage.tsdb.retention.time=TIME** # 数据的存储时间，如果既未设置此标志也未设置 storage.tsdb.retention.size 标志，`默认值：15d`。支持的单位：y，w，d，h，m，s，ms。
-- --storage.tsdb.retention.size=STORAGE.TSDB.RETENTION.SIZE #\[EXPERIMENTAL] Maximum number of bytes that can be stored for blocks. Units supported: KB, MB, GB, TB, PB. This flag is experimental and can be changed in future releases.
+- --storage.tsdb.retention.size=STORAGE.TSDB.RETENTION.SIZE # [EXPERIMENTAL] Maximum number of bytes that can be stored for blocks. Units supported: KB, MB, GB, TB, PB. This flag is experimental and can be changed in future releases.
 - --storage.tsdb.no-lockfile # 不在数据目录创建锁文件。暂时不理解什么意思，待研究
 - --storage.tsdb.allow-overlapping-blocks # \[EXPERIMENTAL] Allow overlapping blocks, which in turn enables vertical compaction and vertical query merge.
-- --storage.tsdb.wal-compression #Compress the tsdb WAL.
-- --storage.remote.flush-deadline= #How long to wait flushing sample on shutdown or config reload.
-- --storage.remote.read-sample-limit=5e7 #Maximum overall number of samples to return via the remote read interface, in a single query. 0 means no limit. This limit is ignored for streamed response types.
-- --storage.remote.read-concurrent-limit=10 #Maximum number of concurrent remote read calls. 0 means no limit.
-- --storage.remote.read-max-bytes-in-frame=1048576 #Maximum number of bytes in a single frame for streaming remote read response types before marshalling. Note that client might have limit on frame size as well. 1MB as recommended by protobuf
+- --storage.tsdb.wal-compression # Compress the tsdb WAL.
+- --storage.remote.flush-deadline= # How long to wait flushing sample on shutdown or config reload.
+- --storage.remote.read-sample-limit=5e7 # Maximum overall number of samples to return via the remote read interface, in a single query. 0 means no limit. This limit is ignored for streamed response types.
+- --storage.remote.read-concurrent-limit=10 # Maximum number of concurrent remote read calls. 0 means no limit.
+- --storage.remote.read-max-bytes-in-frame=1048576 # Maximum number of bytes in a single frame for streaming remote read response types before marshalling. Note that client might have limit on frame size as well. 1MB as recommended by protobuf
 - by default.
 - --rules.alert.for-outage-tolerance=1h # Max time to tolerate prometheus outage for restoring "for" state of alert.
 - --rules.alert.for-grace-period=10m # Minimum duration between alert and restored "for" state. This is maintained only for alerts with configured "for" time greater than grace period.
@@ -76,18 +76,18 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 
 下文用到的占位符说明
 
-- <BOOLEAN> # 可以采用 true 或 false 值的布尔值
-- <DURATION> # 持续时间。可以使用正则表达式
+- \<BOOLEAN> # 可以采用 true 或 false 值的布尔值
+- \<DURATION> # 持续时间。可以使用正则表达式
   - (((\[0-9]+)y)?((\[0-9]+)w)?((\[0-9]+)d)?((\[0-9]+)h)?(((\[0-9]+)m)?(((\[0-9]+)s)?(((\[0-9]+)ms)?|0)，例如：1d、1h30m、5m、10s。
-- <FILENAME> # 当前工作目录中的有效路径
-- <HOST> # 由主机名或 IP 后跟可选端口号组成的有效字符串。
-- <INT> # 一个整数值
-- <LABELNAME> # 与正则表达式\[a-zA-Z \_] \[a-zA-Z0-9 \_] \*匹配的字符串
-- <LABELVALUE> # 一串 unicode 字符
-- <PATH> # 有效的 URL 路径
-- <SCHEME> # 一个字符串，可以使用值 http 或 https
-- <SECRET> # 作为机密的常规字符串，例如密码
-- <STRING> # 常规字符串
+- \<FILENAME> # 当前工作目录中的有效路径
+- \<HOST> # 由主机名或 IP 后跟可选端口号组成的有效字符串。
+- \<INT> # 一个整数值
+- \<LABELNAME> # 与正则表达式\[a-zA-Z \_] \[a-zA-Z0-9 \_] \*匹配的字符串
+- \<LABELVALUE> # 一串 unicode 字符
+- \<PATH> # 有效的 URL 路径
+- \<SCHEME> # 一个字符串，可以使用值 http 或 https
+- \<SECRET> # 作为机密的常规字符串，例如密码
+- \<STRING> # 常规字符串
 - \<TMPL_STRING> # 使用前已模板扩展的字符串
 
 下面是一个配置文件的基本结构：
@@ -113,17 +113,17 @@ remote_read:
   -
 ```
 
-## global: <Object>
+## global: \<Object>
 
 全局配置，所有内容作用于所有配置环境中,若其余配置环境中不再指定同样的配置，则 global 中的配置作为默认配置
 
-**scrape_interval: <DURATION>** # 抓取 targets 的指标频率，`默认值：1m`。
-**scrape_timeout: <DURATION>**# 对 targets 发起抓取请求的超时时间。`默认值：10s`。
-**evaluation_interval: <DURATION>**# 评估规则的周期。`默认值：1m`。
+**scrape_interval: \<DURATION>** # 抓取 targets 的指标频率，`默认值：1m`。
+**scrape_timeout: \<DURATION>**# 对 targets 发起抓取请求的超时时间。`默认值：10s`。
+**evaluation_interval: \<DURATION>**# 评估规则的周期。`默认值：1m`。
 该字段主要用于向规则配置文件传递全局的配置。这个值会被规则配置文件中的 `.groups.interval` 覆盖，详见 interval 字段详解
 **external_labels: \<map\[STRING]STRING>** # 与外部系统(federation, remote storage, Alertmanager)通信时添加到任何时间序列或警报的标签。
 
-- **KEY: VAL** #比如该键值可以是 run: httpd，标签名是 run，run 的值是 httpd，KEY 与 VAL 使用字母，数字，\_，-，.这几个字符且以字母或数字开头；val 可以为空。
+- **KEY: VAL** # 比如该键值可以是 run: httpd，标签名是 run，run 的值是 httpd，KEY 与 VAL 使用字母，数字，\_，-，.这几个字符且以字母或数字开头；val 可以为空。
 - ......
 
 ## rule_files: <\[]Object>
@@ -157,23 +157,23 @@ scrape_configs 是 Prometheus 采集指标的最重要也是最基本的配置�
 
 ### 基本配置
 
-**job_name: <STRING>** # 指定抓取 Metrics 的 Job 名字
-**scrape_interval: <DURATION>** # 指定这个 job 中抓取 targets 的频率。默认使用 global 配置环境中同名参数的值
-**scrape_timeout: <DURATION>** # 指定这个 job 中抓取 targets 的超时时长。默认使用 global 配置环境中同名参数的值
+**job_name: \<STRING>** # 指定抓取 Metrics 的 Job 名字
+**scrape_interval: \<DURATION>** # 指定这个 job 中抓取 targets 的频率。默认使用 global 配置环境中同名参数的值
+**scrape_timeout: \<DURATION>** # 指定这个 job 中抓取 targets 的超时时长。默认使用 global 配置环境中同名参数的值
 **metrics_path: PATH** # 从 targets 获取 metrics 时 http 请求的路径。默认为/metrics
-**honor_labels: <BOOLEAN>** # 控制 Prometheus 如何处理标间之间的冲突。`默认值：false`
+**honor_labels: \<BOOLEAN>** # 控制 Prometheus 如何处理标间之间的冲突。`默认值：false`
 
 - 获取 targets 的 metrics 时(e.g.snmp_exporter|Federate|pushgateway 等)，其中的标签有可能会与本身的标签存在冲突
   - 该参数的值为 true 时，则以抓取数据中的标签为准
   - 值为 false 时，就会重新命名表桥为 exported 形式，然后添加配置文件中的标签。
 
-**honor_timestamps: <BOOLEAN>** # 控制 Prometheus 是否尊重抓去到的数据中的时间戳 `默认值：true`
+**honor_timestamps: \<BOOLEAN>** # 控制 Prometheus 是否尊重抓去到的数据中的时间戳 `默认值：true`
 
 - 比如从 federate、pushgateway 等地方获取指标时，指标中都是带着时间戳的，
   - 若设置为 false，则会忽略这些采集到的时间戳，在入库时加上采集时的时间戳。
   - 若设置为 true，则是在入库时使用抓到到的指标中的时间戳。
 
-**sample_limit: <INT>** # 每次抓取 metrics 的数量限制。`默认值：0`。0 表示不限制
+**sample_limit: \<INT>** # 每次抓取 metrics 的数量限制。`默认值：0`。0 表示不限制
 
 ### HTTP 配置
 
@@ -207,7 +207,7 @@ type HTTPClientConfig struct {
 }
 ```
 
-**scheme: <STRING>** # 指定用于抓取 Metrics 时使用的协议。`默认值：http`
+**scheme: \<STRING>** # 指定用于抓取 Metrics 时使用的协议。`默认值：http`
 **params: <>** # 发起 http 请求时，URL 里的参数(以键值对的方式表示)。
 常用于 snmp_exporter，比如 <http://10.10.100.12:9116/snmp?module=if_mib&target=10.10.100.254>，问号后面就是参数的 key 与 value)
 
@@ -332,7 +332,7 @@ Prometheus 根据这部分配置来推送需要
 
 **labels: \<map\[STRING]STRING>** # 指定该 targets 的标签，可以随意添加任意多个
 
-- **KEY: VAL** #比如该键值可以是 run: httpd，标签名是 run，run 的值是 httpd，key 与 val 使用字母，数字，\_，-，.这几个字符且以字母或数字开头；val 可以为空。
+- **KEY: VAL** # 比如该键值可以是 run: httpd，标签名是 run，run 的值是 httpd，key 与 val 使用字母，数字，\_，-，.这几个字符且以字母或数字开头；val 可以为空。
 - ......
 
 ## 动态目标发现

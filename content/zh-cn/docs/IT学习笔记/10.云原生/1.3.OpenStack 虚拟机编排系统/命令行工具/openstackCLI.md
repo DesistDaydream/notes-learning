@@ -58,7 +58,7 @@ OpenStackClient(又名 OSC)是**openstack 的命令行客户端**，这个客户
 
 **command list \[--group <GroupKeyword>]** #按组列出 openstack 可以支持的所有 Command，可以在选项中指定要查看的具体组名，只查看该组的命令。GroupKeyword 可以使组名中的关键字，不用使用完整的组名
 
-**module list \[--all]** #显示 OSC 程序已经安装的 python 模块
+**module list \[--all]** # 显示 OSC 程序已经安装的 python 模块
 
 ### openstack.common
 
@@ -100,11 +100,11 @@ openstack server SubCommand \[OPTIONS] \[ARGS]
 
 - SubCommand
 
-- list #列出 openstack 上所开的虚拟机
+- list # 列出 openstack 上所开的虚拟机
 
 - OPTIONS
 
-- --long #列出更多的关于虚拟机的信息
+- --long # 列出更多的关于虚拟机的信息
 
 - EXAMPLE
 

@@ -32,7 +32,6 @@ title: Server 与 Runner 部署
 
 3. 使用 docker 镜像运行 Drone 的 GitHub Server 端
 
-
     docker run \
       --volume=/var/lib/drone:/data \
       --env=DRONE_GITHUB_CLIENT_ID=df6dd0a1d49a4a26a151 \
@@ -91,7 +90,6 @@ GitLab Server 的部署方式与 GitHub 基本一致
 
 3. 使用 docker 镜像运行 Drone 的 GitLab Server 端
 
-
     docker run \
       --volume=/var/lib/drone:/data \
       --env=DRONE_GITLAB_SERVER=http://10.10.100.151/ \
@@ -121,7 +119,7 @@ Note：
 
 官方文档：<https://docs.drone.io/runner/docker/overview/>
 
-DRONE_RPC_HOST #指定 Drone Server 的地址和端口
+DRONE_RPC_HOST # 指定 Drone Server 的地址和端口
 
 DRONE_RPC_SECRET # 指定 Runner 与 Server 交互的认证信息。需要与 Server 端的该参数的值保持一致。
 

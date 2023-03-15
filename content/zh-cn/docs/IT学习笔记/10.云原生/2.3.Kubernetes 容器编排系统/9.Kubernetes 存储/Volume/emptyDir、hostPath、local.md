@@ -2,7 +2,7 @@
 title: emptyDir、hostPath、local
 ---
 
-# emptyDir # 在 Pod 的生命周期中的空目录。
+# emptyDir # 在 Pod 的生命周期中的空目录
 
 该类型的 Volume 会随着 Pod 的摧毁重建而自动还原成初始状态。Pod 会创建一个逻辑上的 volume，把该 volum 挂载到一个 Pod 中每个 container 所定义的目录，所有 container 对自己挂载 volume 的目录进行的操作都会在其余 container 挂载该 volume 的目录中看到(每个 container 用于挂载的目录可以不一样，但是用到的 volume 都是同一个)。
 
@@ -66,11 +66,11 @@ spec:
     - image: k8s.gcr.io/test-webserver
       name: test-container
       volumeMounts:
-        - mountPath: /test-pd #指定要改volume要挂载到容器的哪个目录下
-          name: test-volume #指定要使用的volume，该字段的值为.volumes.name中的值
+        - mountPath: /test-pd # 指定要改volume要挂载到容器的哪个目录下
+          name: test-volume # 指定要使用的volume，该字段的值为.volumes.name中的值
   volumes:
-    - name: test-volume #指定volume的名字，用于pod挂载volume时所用
-      hostPath: #指定volume的类型，该字段下面的字段为该类型的参数，不同的类型有不通的参数
+    - name: test-volume # 指定volume的名字，用于pod挂载volume时所用
+      hostPath: # 指定volume的类型，该字段下面的字段为该类型的参数，不同的类型有不通的参数
         path: /data
         type: Directory
 ```

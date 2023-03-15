@@ -5,6 +5,7 @@ title: Templates 模板(Jinja2)
 # 概述
 
 > 参考：
+>
 > - [官方文档,用户指南-传统目录-使用剧本-模板(Jinja2)](https://docs.ansible.com/ansible/latest/user_guide/playbooks_templating.html)
 > - 朱双印博客,jinja2 模板
 >   - <https://www.zsythink.net/archives/2999>
@@ -384,20 +385,19 @@ Ansible 提供了集合理论类的求值操作：
 - difference：差集，即返回只在第一个集合中，不在第二个集合中的元素
 - symmetric_difference：对称差集，即返回两个集合中不重复的元素
 
-
-    - name: return [1,2,3]
+  - name: return [1,2,3]
       debug:
         msg: "{{ [1,2,3,2,1] | unique }}"
-    - name: return [1,2,3,4]
+  - name: return [1,2,3,4]
       debug:
         msg: "{{ [1,2,3] | union([2,3,4]) }}"
-    - name: return [2,3]
+  - name: return [2,3]
       debug:
         msg: "{{ [1,2,3] | intersect([2,3,4]) }}"
-    - name: return [1]
+  - name: return [1]
       debug:
         msg: "{{ [1,2,3] | difference([2,3,4]) }}"
-    - name: return [1,4]
+  - name: return [1,4]
       debug:
         msg: "{{ [1,2,3] | symmetric_difference([2,3,4]) }}"
 
@@ -542,7 +542,7 @@ Jinja2 自身内置了一个 random 筛选器，Ansible 也有一个 random 筛�
 Ansible 的`json_query`基于 jmespath，所以需要先安装 jmespath：
 
 ```shell
-$ pip3 install jmespath
+pip3 install jmespath
 ```
 
 jmespath 的查询语法相关示例可参见其官方手册：
@@ -638,7 +638,7 @@ jmespath 的查询语法相关示例可参见其官方手册：
       }
     ]
 
-注意上面使用了反引号` `而不是单双引号，因为单双引号都被使用过了，再使用就不方便，可读性也差。
+注意上面使用了反引号``而不是单双引号，因为单双引号都被使用过了，再使用就不方便，可读性也差。
 
 ### ip 地址筛选
 
@@ -647,7 +647,7 @@ Ansible 提供了非常丰富的功能来完成 IP 地址的筛选，用法非�
 使用它需要先安装 python 的 netaddr 包：
 
 ```shell
-$ pip3 install netaddr
+pip3 install netaddr
 ```
 
 完整用法参考官方手册：<https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters_ipaddr.html#playbooks-filters-ipaddr>。
@@ -986,8 +986,8 @@ d 中同名 key 会覆盖 c，c 会覆盖 b，b 会覆盖 a。
 ```yaml
 - name: 将foo.j2文件输出到指定主机的/etc/file.con
   template:
-    src: /mytemplates/foo.j2 #指定源文件，是一个用jinja2语言写的文件
-    dest: /etc/file.conf #指定要生成的目的文件
+    src: /mytemplates/foo.j2 # 指定源文件，是一个用jinja2语言写的文件
+    dest: /etc/file.conf # 指定要生成的目的文件
     mode: 0744 #必须添加一个前导零，以便Ansible的YAML解析器知道它是一个八进制数（例如0644或01777）或将其引号（例如'644'或'1777'），以便Ansible接收字符串并可以从字符串进行自己的转换成数字。
 ```
 

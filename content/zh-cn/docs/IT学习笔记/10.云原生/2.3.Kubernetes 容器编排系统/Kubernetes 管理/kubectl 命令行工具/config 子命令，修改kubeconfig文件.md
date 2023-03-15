@@ -4,7 +4,7 @@ title: config 子命令，修改kubeconfig文件
 
 # Syntax(语法)
 
-**kubectl config SUBCOMMAND \[options] #使用子命令修改 kubeconfig 文件**
+**kubectl config SUBCOMMAND \[options] # 使用子命令修改 kubeconfig 文件**
 
 Note：该命令的功能详见 [认证与授权章节中的 KubeConfig 文件详解](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/7.API%20 访问控制/1.Authenticating(认证)/User%20Account%20 详解.md 访问控制/1.Authenticating(认证)/User Account 详解.md)
 
@@ -15,18 +15,18 @@ SUBCOMMAND 包括：
 - **delete-context** # 从 kubeconfig 文件中删除指定的上下文
 - **get-clusters** # 显示在 kubeconfig 中已经定义的 cluster 信息。Display clusters defined in the kubeconfig
 - **get-contexts** # 显示在 kubeconfig 中的上下文列表。每行的信息表示包括以\*表示当前使用的 context，context 名称，cluster 与 authinfo(认证信息即用户名)，名称空间
-- **rename-context **# Renames a context from the kubeconfig file.
+- **rename-context**# Renames a context from the kubeconfig file.
 - **set** # 在 KubeConfig 文件中设置一个单独的值。Sets an individual value in a kubeconfig file
 - **set-cluster** # 在 kubeconfig 中设定集群条目。
-- **set-context **# 在 kubeconfig 中设定上下文条目。Sets a context entry in kubeconfig
+- **set-context**# 在 kubeconfig 中设定上下文条目。Sets a context entry in kubeconfig
 - **set-credentials** # 在 kubeconfig 中设定用户凭证。
-- **unset **# 取消在 KubeConfig 文件中设置的一个单独的值。Unsets an individual value in a kubeconfig file
-- **use-context **# 在 kubeconfig 中设定当前上下文(即使用哪个用户操作客户端)。
-- **view **# 显示已经合并的 KubeConifg 文件或一个指定的 KubeConfig 文件。Display merged kubeconfig settings or a specified kubeconfig file。
+- **unset**# 取消在 KubeConfig 文件中设置的一个单独的值。Unsets an individual value in a kubeconfig file
+- **use-context**# 在 kubeconfig 中设定当前上下文(即使用哪个用户操作客户端)。
+- **view**# 显示已经合并的 KubeConifg 文件或一个指定的 KubeConfig 文件。Display merged kubeconfig settings or a specified kubeconfig file。
 
 ## OPTIONS
 
-1. \--kubeconfig=/PATH/FILE #指明要操作的 KubeConfig 文件
+1. \--kubeconfig=/PATH/FILE # 指明要操作的 KubeConfig 文件
 
 # SubCommand(子命令)
 
@@ -44,7 +44,7 @@ EXAMPLE
 - --certificate-authority=/etc/kubernetes/pki/ca.crt \\
 - --embed-certs=true \\
 - --server=192.168.10.10:6443 \\
-- --kubeconfig=./lch-config #为 lch-config 的 kubeconfig 文件设定集群信息，指定证书为/etc/kubernetes/pki/ca.crt，开启嵌入式认证，指定集群 api-server 的 ip 和 port。
+- --kubeconfig=./lch-config # 为 lch-config 的 kubeconfig 文件设定集群信息，指定证书为/etc/kubernetes/pki/ca.crt，开启嵌入式认证，指定集群 api-server 的 ip 和 port。
 
 ## set-context # 设定上下文，确立 user 与 cluster 的绑定关系与上下文的 name
 
@@ -62,12 +62,12 @@ EXAMPLE
 
 OPTIONS
 
-- --embed-certs=ture|false #在 kubeconfig 中嵌入证书/私钥，即变成非明文的方式储存
+- --embed-certs=ture|false # 在 kubeconfig 中嵌入证书/私钥，即变成非明文的方式储存
 
 EXAMPLE
 
-- kubectl config set-credentials lch --client-certificate=./lch.crt --client-key=./lch.key --embed-certs #通过使用证书与私钥的方式设定名为 lch 的用户
-- kubectl config set-credentials dashboard-admin --token=$DASH\_TOCKEN --kubeconfig=/root/dashbord-admin.conf	#使用$DASH_TOCKEN 中的 token 来作为 user 的凭证
+- kubectl config set-credentials lch --client-certificate=./lch.crt --client-key=./lch.key --embed-certs # 通过使用证书与私钥的方式设定名为 lch 的用户
+- kubectl config set-credentials dashboard-admin --token=$DASH\_TOCKEN --kubeconfig=/root/dashbord-admin.conf # 使用$DASH_TOCKEN 中的 token 来作为 user 的凭证
 
 ## use-context # 设置当前 current-context 字段(当前所用的使用的上下文)
 
@@ -76,7 +76,7 @@ EXAMPLE
 
 - kubectl config use-context dashboard-admin@kubernetes --kubeconfig=/root/dashbord-admin.conf #
 
-## view # 显示一个 kubeconfig 文件的信息。
+## view # 显示一个 kubeconfig 文件的信息
 
 **kubectl config view \[FLAGS] \[OPTIONS]**
 

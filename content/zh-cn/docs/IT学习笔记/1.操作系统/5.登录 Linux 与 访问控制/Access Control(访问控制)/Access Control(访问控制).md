@@ -181,10 +181,10 @@ one takes effect.
 - 改变文件的用户（用 ls -l 可以快速查看原用户和组），后接新的所有者的用户名，再接文件名：
   - chown newname file.txt
 - chown 命令也可以改变文件的群组，如下：
-  - chown newname:friends file.txt #将 file.txt 文件的用户改为 newname，所属用户组修改为 friends
-  - chown root /u #将 /u 的属主更改为"root"
-  - chown root:staff /u #和上面类似，但同时也将其属组更改为"staff"
-  - chown -hR root /u #将 /u 及其子目录下所有文件的属主更改为"root"
+  - chown newname:friends file.txt # 将 file.txt 文件的用户改为 newname，所属用户组修改为 friends
+  - chown root /u # 将 /u 的属主更改为"root"
+  - chown root:staff /u # 和上面类似，但同时也将其属组更改为"staff"
+  - chown -hR root /u # 将 /u 及其子目录下所有文件的属主更改为"root"
 
 ## chattr 与 lsattr
 

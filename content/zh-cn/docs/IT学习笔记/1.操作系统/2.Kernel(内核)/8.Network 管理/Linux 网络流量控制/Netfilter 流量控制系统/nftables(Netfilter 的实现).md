@@ -5,6 +5,7 @@ title: nftables(Netfilter 的实现)
 # 概述
 
 > 参考：
+>
 > - 官方 wiki：<https://wiki.nftables.org/wiki-nftables/index.php/Main_Page>
 
 nftables 是一个 netfilter 项目，旨在替换现有的 {ip,ip6,arp,eb}tables 框架，为 {ip,ip6}tables 提供一个新的包过滤框架、一个新的用户空间实用程序（nft）和一个兼容层。它使用现有的钩子、链接跟踪系统、用户空间排队组件和 netfilter 日志子系统。
@@ -36,17 +37,17 @@ Note：
 
 nftables 中一同以下几种 family：
 
-1. ip #IPv4 地址簇。对应 iptables 中 iptables 命令行工具所实现的效果。默认簇，nft 命令的所有操作如果不指定具体的 family，则默认对 ip 簇进行操作
+1. ip # IPv4 地址簇。对应 iptables 中 iptables 命令行工具所实现的效果。默认簇，nft 命令的所有操作如果不指定具体的 family，则默认对 ip 簇进行操作
    1. 可处理流量的 Hook：与 inet 簇相同
-2. ip6 #IPv6 地址簇。对应 iptables 中 ip6tables 命令行工具所实现的效果
+2. ip6 # IPv6 地址簇。对应 iptables 中 ip6tables 命令行工具所实现的效果
    1. 可处理流量的 Hook：与 inet 簇相同
-3. inet #Internet (IPv4/IPv6)地址簇。对应 iptables 中 iptables 和 ip6tables 命令行工具所实现的效果
+3. inet # Internet (IPv4/IPv6)地址簇。对应 iptables 中 iptables 和 ip6tables 命令行工具所实现的效果
    1. 可处理流量的的 Hook：prerouting、input、forward、output、postrouting。ip 与 ip6 簇与 inet 簇所包含的 Hook 相同
-4. arp #ARP 地址簇，处理 IPv4 ARP 包。对应 iptables 中 arptables 命令行工具所实现的效果
+4. arp # ARP 地址簇，处理 IPv4 ARP 包。对应 iptables 中 arptables 命令行工具所实现的效果
    1. 可处理流量的 Hook：input、output。
-5. bridge #桥地址簇。处理通过桥设备的数据包对应 iptables 中 ebtables 命令行工具所实现的效果
+5. bridge # 桥地址簇。处理通过桥设备的数据包对应 iptables 中 ebtables 命令行工具所实现的效果
    1. 可处理流量的 Hook：与 inet 簇相同
-6. netdev #Netdev address family, handling packets from ingress.
+6. netdev # Netdev address family, handling packets from ingress.
    1. 可处理流量的 Hook：ingress
 
 基本效果示例如下：
@@ -68,10 +69,10 @@ table inet test {
 
 在 nftables 中，链是用来保存规则的。链在逻辑上被分为下述三种类型：
 
-1. filter 类型的链 #用于过滤数据包所用
+1. filter 类型的链 # 用于过滤数据包所用
    1. 允许定义在哪些 family 下：all family
    2. 链中的规则会处理这些 Hook 点的数据包：all Hook
-2. nat 类型的链 #用于进行地址转换
+2. nat 类型的链 # 用于进行地址转换
    1. 允许定义在哪些 family 下：ip、ip6
    2. 链中的规则会处理这些 Hook 点的数据包：prerouting、input、output、postrouting
 3. route 类型的链
@@ -88,42 +89,42 @@ table inet test {
 
 nftables 中的规则标识符有两种，一种 index，一种 handle
 
-**index #规则的索引。每条规则在其链中，从 0 开始计数(每条链中的规则，第一条规则的 index 为 0，第二条规则的 indext 为 2，依次类推)。**
+**index # 规则的索引。每条规则在其链中，从 0 开始计数(每条链中的规则，第一条规则的 index 为 0，第二条规则的 indext 为 2，依次类推)。**
 
 ```bash
-	chain DOCKER {
-		tcp dport tcpmux accept # 规则index为0
-		tcp dport 5 accept #规则index为1
-		tcp dport 6 accept #后续依次类推
-		tcp dport 2 accept
-		tcp dport 3 accept
-		tcp dport afs3-fileserver accept
-	}
+ chain DOCKER {
+  tcp dport tcpmux accept # 规则index为0
+  tcp dport 5 accept # 规则index为1
+  tcp dport 6 accept # 后续依次类推
+  tcp dport 2 accept
+  tcp dport 3 accept
+  tcp dport afs3-fileserver accept
+ }
 ```
 
 **handle #规则的句柄。句柄对于整个 nftalbes 而言，不管添加在哪个链中，第一条规则的句柄为 1，第二条规则句柄为 2。如果规则句柄为 33 号被删除，则新添加的规则的句柄为 34**
 
 ```bash
-	chain DOCKER { # handle 4
-		tcp dport tcpmux accept # handle 28
-		tcp dport 5 accept # handle 32
-		tcp dport 6 accept # handle 33
-		tcp dport 2 accept # handle 29
-		tcp dport 3 accept # handle 30
-		tcp dport afs3-fileserver accept # handle 31
-	}
+ chain DOCKER { # handle 4
+  tcp dport tcpmux accept # handle 28
+  tcp dport 5 accept # handle 32
+  tcp dport 6 accept # handle 33
+  tcp dport 2 accept # handle 29
+  tcp dport 3 accept # handle 30
+  tcp dport afs3-fileserver accept # handle 31
+ }
 ```
 
 Note：对于每条规则而言，其 index 可以随时改变，当在多个规则中间插入新规则时，新插入规则下面的规则 index 则会改变。而 handle 则不会改变，除非删除后重新添加
 
-## 总结：
+## 总结
 
 nftables 的结构为：表包含链，链包含规则，这个逻辑是非常清晰明了的。而 iptable 呢，则需要先指定什么类型的表，再添加规则，规则与链则互相存在，让人摸不清关系；其实也可以说，iptables 的表类型，就是 nftables 中的链的类型。
 
 # Nftable 配置
 
-/etc/sysconfig/nftables.conf #CentOS 8 中，nftables.service 的规则被存储在此目录中，其中 include 一些其他的示例规则
-/etc/sysconfig/nftables/\* #nftables.conf 文件中 include 的文件，都在该目录下
+/etc/sysconfig/nftables.conf # CentOS 8 中，nftables.service 的规则被存储在此目录中，其中 include 一些其他的示例规则
+/etc/sysconfig/nftables/\* # nftables.conf 文件中 include 的文件，都在该目录下
 
 备份规则：
 $ nft list ruleset > /root/nftables.conf
@@ -155,9 +156,9 @@ iptables 可以借助 ipset 来使用集合，而 nftables 中的命名集合就
 
 命名集合中包括以下几种属性，其中 type 为必须指定的属性，其余属性可选。
 
-1. type #集合中所有元素的类型，包括 ipv4_addr(ipv4 地址), ipv6_addr(ipv6 地址), ether_addr(以太网地址), inet_proto(网络协议), inet_service(网络服务), mark(标记类型) 这几类
-2. flags #集合的标志。包括 constant、interval、timeout 。
-   1. interval #让集合支持区间模式。默认集合中无法使用这种方式 nft add element inet my_table my_set { 10.20.20.0-10.20.20.255 } 来添加集合 。当给集合添加类型 flag 时，就可以在给集合添加元素时，使用‘区间’的表示方法。因为内核必须提前确认该集合存储的数据类型，以便采用适当的数据结构。
+1. type # 集合中所有元素的类型，包括 ipv4_addr(ipv4 地址), ipv6_addr(ipv6 地址), ether_addr(以太网地址), inet_proto(网络协议), inet_service(网络服务), mark(标记类型) 这几类
+2. flags # 集合的标志。包括 constant、interval、timeout 。
+   1. interval # 让集合支持区间模式。默认集合中无法使用这种方式 nft add element inet my_table my_set { 10.20.20.0-10.20.20.255 } 来添加集合 。当给集合添加类型 flag 时，就可以在给集合添加元素时，使用‘区间’的表示方法。因为内核必须提前确认该集合存储的数据类型，以便采用适当的数据结构。
 3. timeout #
 4. gc-interval #
 5. elements #
@@ -209,54 +210,54 @@ nftables 级联类型的集合类似于 ipset 的聚合类型，例如 hash:ip,p
 
 COMMANDS 包括：
 
-1. ruleset #规则集管理命令
-2. table #表管理命令
-3. chain #链管理命令
-4. rule #规则管理命令
-5. set #集合管理命令
-6. map #字典管理命令
+1. ruleset # 规则集管理命令
+2. table # 表管理命令
+3. chain # 链管理命令
+4. rule # 规则管理命令
+5. set # 集合管理命令
+6. map # 字典管理命令
 7. NOTE：
    1. 该 COMMANDS 与后面子命令中的 COMMAND 不同，前者是 nft 命令下的子命令，后者是 nft 命令下子命令的子命令
    2. nft 子命令默认对 ip 簇进行操作，当指定具体的 FAMILY 时，则对指定的簇进行操作
 
 OPTIONS
 
-1. -a,--handle #在使用命令获得输出时，显示每个对象的句柄
+1. -a,--handle # 在使用命令获得输出时，显示每个对象的句柄
    1. Note：handle(句柄)在 nftables 中，相当于标识符，nftables 中的每一行内容都有一个 handle。
-2. -e,--echo #回显已添加、插入或替换的内容
-3. -f,--file FILE #从指定的文件 FILE 中读取 netfilter 配置加载到内核中
+2. -e,--echo # 回显已添加、插入或替换的内容
+3. -f,--file FILE # 从指定的文件 FILE 中读取 netfilter 配置加载到内核中
 
 EXAMPLE：
 
-1. nft -f /root/nftables.conf #从 nftables.conf 文件中，将配置规则加载到系统中
+1. nft -f /root/nftables.conf # 从 nftables.conf 文件中，将配置规则加载到系统中
 
 Note：下面子命令中的 FAMILY 如果不指定，则所有命令默认都是对 ip 簇进行操作。
 
 ## 表管理命令
 
-nft COMMAND table \[FAMILY] TABLE #FAMILY 指定簇名，TABLE 为表的名称
+nft COMMAND table \[FAMILY] TABLE # FAMILY 指定簇名，TABLE 为表的名称
 
-nft list tables #列出所有的表，不包含表中的链和规则
+nft list tables # 列出所有的表，不包含表中的链和规则
 
 COMMAND
 
-1. add #添加指定簇下的表。
-2. create #与 add 命令类似，但是如果表已经存在，则返回错误信息。
-3. delete #删除指定的表。不管表中是否有内容都一并删除
-4. flush #清空指定的表下的所有规则，保留链
-5. list #列出指定的表的所有链，及其链中的规则
+1. add # 添加指定簇下的表。
+2. create # 与 add 命令类似，但是如果表已经存在，则返回错误信息。
+3. delete # 删除指定的表。不管表中是否有内容都一并删除
+4. flush # 清空指定的表下的所有规则，保留链
+5. list # 列出指定的表的所有链，及其链中的规则
 
 EXAMPLE
 
-1. nft add table my_table #创建一个 ip 簇的，名为 my_table 的表
-2. nft add table inet my_table #创建一个 inet 簇的，名为 my_table 的表
-3. nft list table inet my_table #列出 inet 簇的名为 my_table 的表及其链和规则
+1. nft add table my_table # 创建一个 ip 簇的，名为 my_table 的表
+2. nft add table inet my_table # 创建一个 inet 簇的，名为 my_table 的表
+3. nft list table inet my_table # 列出 inet 簇的名为 my_table 的表及其链和规则
 
 ## 链管理命令
 
-nft COMMAND chain \[FAMILY] TABLE CHAIN \[{ type TYPE hook HOOK \[device DEVICE] priority PRIORITY; \[policy POLICY;] }] #FAMILY 指定簇名，TABLE 指定表名，CHAIN 指定链名，TYPE 指定该链的类型，HOOK 指定该链作用在哪个 hook 上，DEVICE 指定该链作用在哪个网络设备上，PRIORITY 指定该链的优先级，POLICY 指定该链的策略(i.e.该链的默认策略，accept、drop 等等。)
+nft COMMAND chain \[FAMILY] TABLE CHAIN \[{ type TYPE hook HOOK \[device DEVICE] priority PRIORITY; \[policy POLICY;] }] # FAMILY 指定簇名，TABLE 指定表名，CHAIN 指定链名，TYPE 指定该链的类型，HOOK 指定该链作用在哪个 hook 上，DEVICE 指定该链作用在哪个网络设备上，PRIORITY 指定该链的优先级，POLICY 指定该链的策略(i.e.该链的默认策略，accept、drop 等等。)
 
-nft list chains #列出所有的链
+nft list chains # 列出所有的链
 
 Note:
 
@@ -265,46 +266,46 @@ Note:
 
 COMMAND
 
-1. add #在指定的表中添加一条链
-2. create #与 add 命令类似，但是如果链已经存在，则返回错误信息。
-3. delete #删除指定的链。该链不能包含任何规则，或者被其它规则作为跳转目标，否则删除失败。
+1. add # 在指定的表中添加一条链
+2. create # 与 add 命令类似，但是如果链已经存在，则返回错误信息。
+3. delete # 删除指定的链。该链不能包含任何规则，或者被其它规则作为跳转目标，否则删除失败。
 4. flush #
-5. list #列出指定表下指定的链，及其链中的规则
+5. list # 列出指定表下指定的链，及其链中的规则
 6. rename #
 
 EXAMPLE
 
-1. nft add chain inet my_table my_utility_chain #在 inet 簇的 my_table 表上创建一个名为 my_utility_chain 的常规链，没有任何参数
-2. nft add chain inet my_table my_filter_chain{type filter hook input priority 0;} #在 inet 簇的 my_table 表上创建一个名为 my_filter_chain 的链，链的类型为 filter，作用在 input 这个 hook 上，优先级为 0
-3. nft list chain inet my_table my_filter_chain #列出 inet 簇的 my_table 表下的 my_filter_chain 链的信息，包括其所属的表和其包含的规则
+1. nft add chain inet my_table my_utility_chain # 在 inet 簇的 my_table 表上创建一个名为 my_utility_chain 的常规链，没有任何参数
+2. nft add chain inet my_table my_filter_chain{type filter hook input priority 0;} # 在 inet 簇的 my_table 表上创建一个名为 my_filter_chain 的链，链的类型为 filter，作用在 input 这个 hook 上，优先级为 0
+3. nft list chain inet my_table my_filter_chain # 列出 inet 簇的 my_table 表下的 my_filter_chain 链的信息，包括其所属的表和其包含的规则
 
 ## 规则管理命令
 
-nft COMMAND rule \[FAMILY] TABLE CHAIN \[handle HANDLE|index INDEX] STATEMENT... #FAMILY 指定簇名，HANDLE 和 INDEX 指定规则的句柄值或索引值，STATEMENT 指明该规则的语句
+nft COMMAND rule \[FAMILY] TABLE CHAIN \[handle HANDLE|index INDEX] STATEMENT... # FAMILY 指定簇名，HANDLE 和 INDEX 指定规则的句柄值或索引值，STATEMENT 指明该规则的语句
 
-nft list ruleset \[FAMILY] #列出所有规则，包括规则所在的链，链所在的表。i.e.列出 nftables 中的所有信息。可以指定 FAMILY 来列出指定簇的规则信息
+nft list ruleset \[FAMILY] # 列出所有规则，包括规则所在的链，链所在的表。i.e.列出 nftables 中的所有信息。可以指定 FAMILY 来列出指定簇的规则信息
 
-\[FAMILY] #清除所有规则，包括表。i.e.清空 nftables 中所有信息。可以指定 FAMILY 来清空指定簇的规则信息
+\[FAMILY] # 清除所有规则，包括表。i.e.清空 nftables 中所有信息。可以指定 FAMILY 来清空指定簇的规则信息
 
 COMMAND
 
-1. add #将规则添加到链的末尾，或者指定规则的 handle 或 index 之后
-2. insert #将规则添加到链的开头，或者指定规则的 handle 或 index 之前
-3. delete #删除指定的规则。Note:只能通过 handle 删除
-4. replace #替换指定规则为新规则
+1. add # 将规则添加到链的末尾，或者指定规则的 handle 或 index 之后
+2. insert # 将规则添加到链的开头，或者指定规则的 handle 或 index 之前
+3. delete # 删除指定的规则。Note:只能通过 handle 删除
+4. replace # 替换指定规则为新规则
 
 EXAMPLE
 
-1. nft add rule inet my_table my_filter_chain tcp dport ssh accept #在 inet 簇的 my_table 表中的 my_filter_chain 链中添加一条规则，目标端口是 ssh 服务的数据都接受
-2. nft add rule inet my_table my_filter_chain ip saddr @my_set drop #创建规则时引用 my_set 集合
+1. nft add rule inet my_table my_filter_chain tcp dport ssh accept # 在 inet 簇的 my_table 表中的 my_filter_chain 链中添加一条规则，目标端口是 ssh 服务的数据都接受
+2. nft add rule inet my_table my_filter_chain ip saddr @my_set drop # 创建规则时引用 my_set 集合
 
 ## 集合管理命令
 
 COMMAND set \[FAMILY] table set { type TYPE; \[flags FLAGS;] \[timeout TIMEOUT ;] \[gc-interval GC-INTERVAL ;] \[elements = { ELEMENT\[,...] } ;] \[size SIZE;] \[policy POLICY;] \[auto-merge AUTO-MERGE ;] } #各字段解释详见上文 nftables 的 set 与 map 特性介绍
 
-list sets #列出所有结合
+list sets # 列出所有结合
 
-{add | delete} element \[family] table set { element\[,...] } #在指定集合中添加或删除元素
+{add | delete} element \[family] table set { element\[,...] } # 在指定集合中添加或删除元素
 
 Note:
 
@@ -313,15 +314,15 @@ Note:
 COMMAND
 
 1. add
-2. delete #通过 handle 删除指定的集合
+2. delete # 通过 handle 删除指定的集合
 3. flush #
 4. list #
 
 EXAMPLE
 
-1. nft add set inet my_table my_set {type ipv4_addr; } #在 inet 簇的 my_table 表中创建一个名为 my_set 的集合，集合的类型为 ipv4_addr
-2. nft add set my_table my_set {type ipv4_addr; flags interval;} #在默认 ip 簇的 my_table 表中创建一个名为 my_set 的集合，集合类型为 ipv4_addr ，标签为 interval。让该集合支持区间
-3. nft add element inet my_table my_set { 10.10.10.22, 10.10.10.33 } #向 my_set 集合中添加元素，一共添加了两个元素，是两个 ipv4 的地址
+1. nft add set inet my_table my_set {type ipv4_addr; } # 在 inet 簇的 my_table 表中创建一个名为 my_set 的集合，集合的类型为 ipv4_addr
+2. nft add set my_table my_set {type ipv4_addr; flags interval;} # 在默认 ip 簇的 my_table 表中创建一个名为 my_set 的集合，集合类型为 ipv4_addr ，标签为 interval。让该集合支持区间
+3. nft add element inet my_table my_set { 10.10.10.22, 10.10.10.33 } # 向 my_set 集合中添加元素，一共添加了两个元素，是两个 ipv4 的地址
 
 ## 字典管理命令
 

@@ -61,11 +61,11 @@ name #
 # Playbook 语法详解
 
 ```yaml
-- hosts: STRING #指定该playbook要操作的主机
+- hosts: STRING # 指定该playbook要操作的主机
   tasks:
     - name: STRING #(可省略)指定该任务名称
-      MODULES: #指定该任务所要使用的模块名称
-        PARAMETER: #指定该模块参数
+      MODULES: # 指定该任务所要使用的模块名称
+        PARAMETER: # 指定该模块参数
 ```
 
 或

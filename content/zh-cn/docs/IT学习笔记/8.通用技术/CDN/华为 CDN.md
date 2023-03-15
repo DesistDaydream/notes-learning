@@ -126,4 +126,4 @@ BMS 相关问题
 
 测试规则库是否可以正常的方法
 
-1. tailf /home/icache/hcs/hcs/log/accesslog #使用该命令查看日志内容是否会产生 TCP_HIT 200 GET 这样的状态信息日志，如果全是 MISS 则不正常
+1. tailf /home/icache/hcs/hcs/log/accesslog # 使用该命令查看日志内容是否会产生 TCP_HIT 200 GET 这样的状态信息日志，如果全是 MISS 则不正常

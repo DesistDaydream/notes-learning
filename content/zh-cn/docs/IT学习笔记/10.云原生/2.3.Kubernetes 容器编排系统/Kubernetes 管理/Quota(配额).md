@@ -5,6 +5,7 @@ title: Quota(配额)
 # 概述
 
 > 参考：
+>
 > - [官方文档,概念-策略-LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/)
 > - [官方文档,概念-策略-ResourceQuotas](https://kubernetes.io/docs/concepts/policy/resource-quotas/)
 
@@ -40,7 +41,7 @@ title: Quota(配额)
 - 用法：
   - <https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/quota-memory-cpu-namespace/>
   - <https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/quota-pod-namespace/>
-  - <https://kubernetes.io/docs/tasks/administer-cluster/quota-api-object/> #为指定的 API 对象设置 resourceQuota
+  - <https://kubernetes.io/docs/tasks/administer-cluster/quota-api-object/> # 为指定的 API 对象设置 resourceQuota
 
 资源配额分为三种类型：
 

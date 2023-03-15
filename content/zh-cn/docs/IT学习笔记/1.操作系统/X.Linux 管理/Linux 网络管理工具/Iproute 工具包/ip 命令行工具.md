@@ -144,7 +144,7 @@ add、delete、set、list 增删改查通用命令
 EXAMPLE
 
 - ip netns add r1 #创建名字为 r1 的 namespace
-- ip netns list #列出 net namespace，显示名称
+- ip netns list # 列出 net namespace，显示名称
 
 identify
 
@@ -157,7 +157,7 @@ exec
 EXAMPLE
 
 - ip netns exec r1 bash #进入 r1 这个 namesapce 的空间中，相当于启动了一个单独的关于该 namespace 的 shell，可以使用 exit 退出
-- ip netns exec r1 ip a s #显示 r1 这个 namespace 的网路信息
+- ip netns exec r1 ip a s # 显示 r1 这个 namespace 的网路信息
 - ip netns exec r1 ip link set veth1.1 name eth0 #设定 r1 这个 namespace 中的 veth1.1 网卡的名字为 eth0
 
 monitor

@@ -772,6 +772,14 @@
       "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/多用途模块的指令",
       "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/Nginx 作为web服务器配置示例.md",
       "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/Nginx 作为代理服务器配置示例.md"
+    ],
+    "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL": [
+      "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/_index.md",
+      "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/SQL.md",
+      "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/数据操作语句",
+      "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/SQL Functions(函数).md",
+      "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/SQL Operators(运算符).md",
+      "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/最佳实践.md"
     ]
   },
   "actionBarOrder": {},

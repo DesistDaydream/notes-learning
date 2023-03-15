@@ -5,13 +5,14 @@ title: Docker 命令行工具
 # 概述
 
 > 参考：
+>
 > - 官方文档：<https://docs.docker.com/engine/reference/commandline/docker/>
 
 # Syntax(语法)
 
 **docker \[OPTIONS] COMMAND \[ARG...]**
 
-## OPTIONS:
+## OPTIONS
 
 - --config=~/.docker # Location of client config files # 客户端配置文件的位置
 - -D, --debug=false # Enable debug mode # 启用 Debug 调试模式
@@ -75,6 +76,7 @@ EXAMPLE
 COMMAND:
 
 - df # 显示 docker 系统的磁盘使用情况，效果如下：
+
 ```bash
 ~]# docker system df
 TYPE                TOTAL               ACTIVE              SIZE                RECLAIMABLE
@@ -83,9 +85,11 @@ Containers          34                  18                  4.588kB             
 Local Volumes       2                   2                   152.8MB             0B (0%)
 Build Cache         0                   0                   0B                  0B
 ```
+
 - events # Get real time events from the server
 - info # 等同于 docker info 命令
 - prune # 删除未使用的数据。删除内容如下
+
 ```bash
 ~]# docker system prune
 WARNING! This will remove:
@@ -189,7 +193,7 @@ EXAMPLE
   - **docker inspect snmp_exporter | jq .\[0].GraphDriver.Data.MergedDir | tr -d """**
   - **docker inspect snmp_exporter --format='{{.GraphDriver.Data.MergedDir}}'**
 - 获取容器的 PID
-	- docker inspect mysql-pxc1-1 --format='{{.State.Pid}}'
+  - docker inspect mysql-pxc1-1 --format='{{.State.Pid}}'
 
 ## kill - kill 一个运行中的容器
 
@@ -215,9 +219,9 @@ EXAMPLE
 OPTIONS
 
 - --details # Show extra details provided to logs
-- **-f, --follow **# 跟踪日志的输出
+- **-f, --follow**# 跟踪日志的输出
 - --since string Show logs since timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)
-- **-n, --tail STRING **# 从日志末尾开始显示日志的指定行数。`默认值：all`
+- **-n, --tail STRING**# 从日志末尾开始显示日志的指定行数。`默认值：all`
 - **-t, --timestamps** # 在每行日志行首显示时间戳
 - --until string # Show logs before a timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)
 
@@ -231,7 +235,7 @@ EXAMPLE
 
 1. docker port nginx1 #查看名为 nginx1 这个 Container 的端口映射情况
 
-## ps # List containers #列出容器。
+## ps # List containers # 列出容器
 
 详见：docker ps 命令，可以查看很多容器信息
 
@@ -294,7 +298,7 @@ EXAMPLE
 
 ## stop #停止容器
 
-## tag #在一个 repostiory 中标记一个 image
+## tag # 在一个 repostiory 中标记一个 image
 
 docker tag SOURCE_IMAGE\[:TAG] TARGET_IMAGE\[:TAG]
 

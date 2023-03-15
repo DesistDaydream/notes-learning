@@ -16,7 +16,6 @@ title: CoreDNS 应用实例
 
 - 定义 host
 
-
     .:53 {
         hosts {
             1.1.1.1 test.cloudxiaobai.com
@@ -27,8 +26,8 @@ title: CoreDNS 应用实例
 
 - 加载 hosts 文件
 
+# 直接从/etc/hosts加载host信息
 
-    #直接从/etc/hosts加载host信息
     . {
         hosts {
             fallthrough

@@ -16,7 +16,7 @@ mysql 是一个简单的 SQL Shell。 它支持交互和非交互使用。 交�
 ## Syntax(语法)
 
 **mysql \[OPTIONS] \[DATABASE]**
-**DATABASE **# 指定连接 mysql 后要操作的数据库。若不指定，则需要在交互模式下使用 `use` 指令选择数据库，否则对数据库的操作将会报 `No database selected` 错误：
+**DATABASE** # 指定连接 mysql 后要操作的数据库。若不指定，则需要在交互模式下使用 `use` 指令选择数据库，否则对数据库的操作将会报 `No database selected` 错误：
 
 ```bash
 mysql> show tables;
@@ -62,28 +62,30 @@ ERROR 1046 (3D000): No database selected
   - Default # 该列插入空值时。默认插入什么值。
   - Extra # 该列额外的参数。
 
-
-    MariaDB [mysql]> SHOW COLUMNS FROM db;
-    +-----------------------+---------------+------+-----+---------+-------+
-    | Field                 | Type          | Null | Key | Default | Extra |
-    +-----------------------+---------------+------+-----+---------+-------+
-    | Host                  | char(60)      | NO   | PRI |         |       |
-    | Db                    | char(64)      | NO   | PRI |         |       |
-    | User                  | char(16)      | NO   | PRI |         |       |
-    | Select_priv           | enum('N','Y') | NO   |     | N       |       |
-    .......
+```sql
+MariaDB [mysql]> SHOW COLUMNS FROM db;
++-----------------------+---------------+------+-----+---------+-------+
+| Field                 | Type          | Null | Key | Default | Extra |
++-----------------------+---------------+------+-----+---------+-------+
+| Host                  | char(60)      | NO   | PRI |         |       |
+| Db                    | char(64)      | NO   | PRI |         |       |
+| User                  | char(16)      | NO   | PRI |         |       |
+| Select_priv           | enum('N','Y') | NO   |     | N       |       |
+.......
+```
 
 - select Host,db from db; # 显示 db 表中，Host 和 Db 列及其内容，效果如下
 
-
-    MariaDB [mysql]> SELECT Host,db from db;
-    +-----------+---------+
-    | Host      | db      |
-    +-----------+---------+
-    | %         | test    |
-    | %         | test\_% |
-    | localhost | mysql   |
-    +-----------+---------+
+```sql
+MariaDB [mysql]> SELECT Host,db from db;
++-----------+---------+
+| Host      | db      |
++-----------+---------+
+| %         | test    |
+| %         | test\_% |
+| localhost | mysql   |
++-----------+---------+
+```
 
 # mysqladmin
 

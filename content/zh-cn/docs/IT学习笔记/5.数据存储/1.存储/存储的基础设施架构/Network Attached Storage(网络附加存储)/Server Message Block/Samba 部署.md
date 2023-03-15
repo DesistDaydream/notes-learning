@@ -259,7 +259,7 @@ title: Samba 部署
     lmhosts  ops.smb.conf  smb.conf  smb.conf.bak  smbusers  chanpinfengkong.smb.conf
     [root@samba samba]# diff smb.conf smb.conf.bak
     103d102
-    <         config file = /etc/samba/%U.smb.conf     #使用config file时，当用户访问Samba服务器，只能看到自己，其他在smb.conf中定义的共享资源都无法看到。
+    <         config file = /etc/samba/%U.smb.conf     # 使用config file时，当用户访问Samba服务器，只能看到自己，其他在smb.conf中定义的共享资源都无法看到。
      
     [root@samba samba]# cat ops.smb.conf
     [信息科技部-运维小窝]                                                 

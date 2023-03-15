@@ -14,9 +14,9 @@ printf, fprintf, sprintf, snprintf, vprintf, vfprintf, vsprintf, vsnprintf - 格
 
 主要用于按照 FORMAT 定义的格式来输出 ARGUMENT...给出的内容
 
-### FORMAT 包括：格式替代符，自定义内容，格式控制符，这 3 个在使用的时候没有先后顺序。
+### FORMAT 包括：格式替代符，自定义内容，格式控制符，这 3 个在使用的时候没有先后顺序
 
-格式替代符 #用于控制输出的每个 Argument 的类型。一个“格式替代符”对应后面一个 Argument，如果想要输出的类型与 Argument 给定的类型不符，则进行类型转换后输出 e.g.Argument 给了一个整数 100，而格式替代符使用的是%X,则会输出 64；若 Argument 不够 FORMAT 的个数，则以空白补充。一般情况格式替代符使用双引号引起来
+格式替代符 # 用于控制输出的每个 Argument 的类型。一个“格式替代符”对应后面一个 Argument，如果想要输出的类型与 Argument 给定的类型不符，则进行类型转换后输出 e.g.Argument 给了一个整数 100，而格式替代符使用的是%X,则会输出 64；若 Argument 不够 FORMAT 的个数，则以空白补充。一般情况格式替代符使用双引号引起来
 
 1. %b #相对应的参数被视为含有要被处理的转义序列之字符串。
 
@@ -46,9 +46,9 @@ printf, fprintf, sprintf, snprintf, vprintf, vfprintf, vsprintf, vsnprintf - 格
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/nfqmgm/1616166371962-7d50c11b-356a-4098-acab-15272005b08a.jpeg)
 
-自定义内容 #在输出内容的格式中，可以自己添加任务字符串
+自定义内容 # 在输出内容的格式中，可以自己添加任务字符串
 
-格式控制符 #用于控制输出内容整体的格式。i.e.每个参数有之间有多少空白符，在哪里换行等等
+格式控制符 # 用于控制输出内容整体的格式。i.e.每个参数有之间有多少空白符，在哪里换行等等
 
 1. \a #警告字符，通常为 ASCII 的 BEL 字符
 
@@ -66,7 +66,7 @@ printf, fprintf, sprintf, snprintf, vprintf, vfprintf, vsprintf, vsnprintf - 格
 
 8. \v #垂直制表符
 
-9. \ #一个字面上的反斜杠字符
+9. \ # 一个字面上的反斜杠字符
 
 10. \ddd #表示 1 到 3 位数八进制值的字符。仅在格式字符串中有效
 

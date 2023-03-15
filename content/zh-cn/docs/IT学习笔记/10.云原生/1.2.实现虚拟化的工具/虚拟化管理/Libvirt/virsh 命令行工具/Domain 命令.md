@@ -139,7 +139,7 @@ console 用于把虚拟机屏幕上的信息投射到宿主机上，可以直接
 
 默认显示所有 CPU 的统计信息和总数。仅使用 --total 获取总统计信息，仅使用 start 获取从 --start 开始的 CPU 的 per-cpu 统计信息，仅使用 --count CPU 的统计信息。
 
-# create # 从一个 XML 文件里创建一个 domain。
+# create # 从一个 XML 文件里创建一个 domain
 
 通过 XML 直接启动一台 VM，VM 关闭后，virsh list 列表中该 VM 会消失。
 
@@ -167,10 +167,10 @@ Note：
 OPTIONS
 
 - \[--domain] <string> domain name, id or uuid
-- --live #指定当前操作为，运行时状态
-- --config #指定当前操作为，持久配置状态
-- --current #指定当前操作为，当前状态
-- --title \[STRING] #修改或显示 title。指定 STRING 时则会将 domain 的 title 修改为 STRING，不指定则显示 domain 的 title
+- --live # 指定当前操作为，运行时状态
+- --config # 指定当前操作为，持久配置状态
+- --current # 指定当前操作为，当前状态
+- --title \[STRING] # 修改或显示 title。指定 STRING 时则会将 domain 的 title 修改为 STRING，不指定则显示 domain 的 title
 - --edit #打开一个编辑器来修改 description 或 title
 - \[--new-desc] <STRING> message
 
@@ -210,7 +210,7 @@ domifaddr <domain> \[--interface <string>] \[--full] \[--source <string>]
 
 该信息包括：Name MAC address Protocol Address
 
-# domiflist # 列出 domain 所有的虚拟接口。
+# domiflist # 列出 domain 所有的虚拟接口
 
 domiflist <domain> \[--inactive]
 
@@ -313,9 +313,8 @@ OPTIONS
 
 EXAMPLE
 
-1. **virsh domxml-to-native qemu-argv --domain lichenhao.bj-net **# 根据 lichenhao.bj-net 虚拟机的 xml 文件，生成 qemu-kvm 命令行
+1. **virsh domxml-to-native qemu-argv --domain lichenhao.bj-net**# 根据 lichenhao.bj-net 虚拟机的 xml 文件，生成 qemu-kvm 命令行
 2. lichenhao.bj-net.xml 该文件会转换成如下内容
-
 
     LC_ALL=C PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
     QEMU_AUDIO_DRV=none
@@ -385,7 +384,7 @@ EXAMPLE
 
 dump dump the core of a domain to a file for analysis
 
-# dumpxml # 显示 domain 的 XML 格式的信息。
+# dumpxml # 显示 domain 的 XML 格式的信息
 
 EXAMLPE
 

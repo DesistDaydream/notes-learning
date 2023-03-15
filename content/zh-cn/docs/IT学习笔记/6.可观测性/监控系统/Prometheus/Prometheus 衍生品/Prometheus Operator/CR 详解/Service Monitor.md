@@ -37,7 +37,7 @@ ServiceMonitor 关联好 service 后，选取 service 对应的 endpoints 作为
     # 选择endpoints中指定的端口获取metrics
       endpoints:
       - port: http-metrics
-        path: "/snmp" #指定从该endpoints的哪个路径获取metrics，默认路径为/metrics
+        path: "/snmp" # 指定从该endpoints的哪个路径获取metrics，默认路径为/metrics
 
 声明完成后，还需要修改 prometheus 的 yaml 文件，以便让其可以匹配指定的 ServiceMonitor，否则默认 prometheus 资源是不匹配任何 ServiceMonitor 的，在 spec 键下添加字段如下：
 

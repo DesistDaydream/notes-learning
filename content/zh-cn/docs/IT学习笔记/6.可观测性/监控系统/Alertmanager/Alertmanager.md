@@ -6,6 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
+>
 > - [官方文档](https://prometheus.io/docs/alerting/latest/alertmanager/)
 
 Prometheus Alert 介绍详见 Prometheus Server Alert 说明
@@ -125,8 +126,8 @@ docker run -d --name alertmanager \
 
 alertmanager 程序在启动时，可以使用一些标志来对程序进行一些基本设定，比如数据存储路径、存储时间等等
 
-- **--config.file="/PATH/TO/FILE" **# 指定 alertmanager 基本配置文件。 默认 /etc/alertmanager/alertmanager.yml
-- **--storage.path="/PATH" **# 指定存储数据的基础路径。该路径包括告警信息、已经 silences 的告警等信息。
+- **--config.file="/PATH/TO/FILE"**# 指定 alertmanager 基本配置文件。 默认 /etc/alertmanager/alertmanager.yml
+- **--storage.path="/PATH"**# 指定存储数据的基础路径。该路径包括告警信息、已经 silences 的告警等信息。
 - **--data.retention=120h** # 数据保存时长。
 - --alerts.gc-interval=30m # Interval between alert GC.
 - --web.external-url=WEB.EXTERNAL-URL zThe URL under which Alertmanager is externally reachable (for example, if Alertmanager is served via a reverse proxy). Used for generating relative and absolute links back to Alertmanagerzitself. If the URL has a path portion, it will be used to prefix all HTTP endpoints served by Alertmanager. If omitted, relevant URL components will be derived automatically.
@@ -176,18 +177,18 @@ route:
   repeat_interval: TIME # 重复发送报警的设置(报警未消除的重复报警)。一个组里的报警一直没有变化的话，等待'repeat_interval'时间来重新发送他们。默认4小时。
   receiver: STRING # 指定默认的receiver名，如果一个报警没有任何一个routes匹配，则发送给默认的receiver
   routes: # 上面所有的配置参数都由所有子路由继承，并且可以在每个子路由上进行覆盖。
-    - receiver: STRING #指定该子路由要使用的receiver
+    - receiver: STRING # 指定该子路由要使用的receiver
       group_wait: TIME
-      match: #指定标签名和值，凡是具有该标签名和值的告警由将路由到指定的receiver上
+      match: # 指定标签名和值，凡是具有该标签名和值的告警由将路由到指定的receiver上
         # 也可以使用 match_re 关键字，来进行正则表达式匹配。LabelValue 可以使用正则来表示
         LabelName: LabelValue
 
 # 接收者配置环境。用于定义分配好路由的告警信息将由谁来接收。
 receivers:
   - name: "default" # 指定receiver的名字
-    email_configs: #指定该receiver使用哪种配置
+    email_configs: # 指定该receiver使用哪种配置
       - to: "lichenhao@wisetv.com.cn"
-        send_resolved: true #指定是否发送告警已解决的信息。默认为false,i.e.不发送
+        send_resolved: true # 指定是否发送告警已解决的信息。默认为false,i.e.不发送
 ```
 
 ## 配置样例
@@ -258,4 +259,5 @@ receivers:
 # Alertmanager API
 
 > 参考：
+>
 > - [GitHub 项目文件，prometheus/alertmanager/api/v2/openapi.yaml](https://github.com/prometheus/alertmanager/blob/main/api/v2/openapi.yaml)

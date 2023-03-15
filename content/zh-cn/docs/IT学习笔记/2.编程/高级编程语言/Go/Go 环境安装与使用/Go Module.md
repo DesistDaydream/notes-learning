@@ -6,6 +6,7 @@ weight: 2
 # 概述
 
 > 参考：
+>
 > - [官方文档，参考-Go Modules 参考](https://go.dev/ref/mod)
 > - [公众号，Go Modules 终极入门](https://mp.weixin.qq.com/s/6gJkSyGAFR0v6kow2uVklA)
 > - <https://blog.csdn.net/benben_2015/article/details/82227338>
@@ -111,7 +112,7 @@ Go1 在 2012 年 03 月 28 日发布，而 Go1.11 是在 2018 年 08 月 25 日�
 ## Go Module 相关环境变量
 
     $ go env
-    GO111MODULE="auto" #使用module功能必须要让该变量变为on
+    GO111MODULE="auto" # 使用module功能必须要让该变量变为on
     GOPROXY="https://proxy.golang.org,direct"
     GONOPROXY=""
     GOSUMDB="sum.golang.org"
@@ -141,7 +142,7 @@ GO111MODULE 的小历史
 
 GOPROXY 的默认值是：<https://proxy.golang.org,direct>，这有一个很严重的问题，就是 proxy.golang.org 在国内是无法访问的，因此这会直接卡住你的第一步，所以你必须在开启 Go modules 的时，同时设置国内的 Go 模块代理，执行如下命令：
 
-                $ go env -w GOPROXY=https://goproxy.cn,direct
+                go env -w GOPROXY=https://goproxy.cn,direct
 
 GOPROXY 的值是一个以英文逗号 “,” 分割的 Go 模块代理列表，允许设置多个模块代理，假设你不想使用，也可以将其设置为 “off” ，这将会禁止 Go 在后续操作中使用任何 Go 模块代理。
 
@@ -176,13 +177,13 @@ GOSUMDB 的默认值为：sum.golang.org，在国内也是无法访问的，但�
 
 并且它们的值都是一个以英文逗号 “,” 分割的模块路径前缀，也就是可以设置多个，例如：
 
-                $ go env -w GOPRIVATE="git.example.com,github.com/eddycjy/mquote"
+                go env -w GOPRIVATE="git.example.com,github.com/eddycjy/mquote"
 
 设置后，前缀为 git.xxx.com 和 github.com/eddycjy/mquote 的模块都会被认为是私有模块。
 
 如果不想每次都重新设置，我们也可以利用通配符，例如：
 
-                $ go env -w GOPRIVATE="*.example.com"
+                go env -w GOPRIVATE="*.example.com"
 
 这样子设置的话，所有模块路径为 example.com 的子域名（例如：git.example.com）都将不经过 Go module proxy 和 Go checksum database，需要注意的是不包括 example.com 本身。
 
@@ -214,7 +215,7 @@ module github.com/eddycjy/module-repo
 go 1.13
 
 require (
-	github.com/eddycjy/mquote v0.0.0-20200220041913-e066a990ce6f
+ github.com/eddycjy/mquote v0.0.0-20200220041913-e066a990ce6f
 )
 ```
 
@@ -224,10 +225,10 @@ go.mod 文件用 // 注释，而不用 /\*\*/。文件的每行都有一条指�
 
 ```go
 module my/thing
-require other/thing 	v1.0.2
-require new/thing 		v2.3.4
-exclude old/thing 		v1.2.3
-replace bad/thing 		v1.4.5 	=> good/thing v1.4.5
+require other/thing  v1.0.2
+require new/thing   v2.3.4
+exclude old/thing   v1.2.3
+replace bad/thing   v1.4.5  => good/thing v1.4.5
 ```
 
 上面三个动词 require、exclude、replace 分别表示：项目需要的依赖包及版本、排除某些包的特别版本、取代当前项目中的某些依赖包。
@@ -290,7 +291,7 @@ COMMAND：
 - **init** # 在当前目录下初始化新的模块
 - **tidy** # 添加缺失的模块以及移除无用的模块
 - **vendor** #导出项目所有的依赖到 vendor 目录
-- **verify **#验证依赖项是否达到预期的目的
+- **verify**#验证依赖项是否达到预期的目的
 - **why** #查看为什么需要包或模块
 
 ## go mod download

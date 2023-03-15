@@ -5,6 +5,7 @@ title: iptables(Netfilter 的实现)
 # 概述
 
 > 参考：
+>
 > - [Manual(手册),iptables(8)](https://man7.org/linux/man-pages/man8/iptables.8.html)
 > - [Netfilter 官方文档，iptables 教程](https://www.frozentux.net/iptables-tutorial/iptables-tutorial.html)
 
@@ -39,7 +40,7 @@ iptables 中有默认的内置 4 个表，每个表的名称就是其 chain 类�
 
 - 该类型的链可作用在以下几个 Hook 点上：PREROUTING、INPUT、FORWARD、OUTPUT、POSTROUTING
 
-### raw(原始) # 用于跳过 nat 表以及连接追踪机制(ip_conntrack)的处理，详见 [连接跟踪系统](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network%20 管理/Linux%20 网络流量控制/Connnection%20Tracking(连接跟踪).md Tracking(连接跟踪).md)。
+### raw(原始) # 用于跳过 nat 表以及连接追踪机制(ip_conntrack)的处理，详见 [连接跟踪系统](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network%20 管理/Linux%20 网络流量控制/Connnection%20Tracking(连接跟踪).md Tracking(连接跟踪).md)
 
 - 该类型的链可作用在以下几个 Hook 点上：PREROUTING、OUTPUT
 
@@ -93,23 +94,23 @@ INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，�
   - bytes #字节数
   - target #
   - prot #
-  - in/out #显示要限制的具体网卡，\*为所有
+  - in/out # 显示要限制的具体网卡，\*为所有
   - source/destination #
 - **-S** # 以人类方便阅读的方式打印出来 iptables 规则
 
 ### SubCOMMAND
 
 - 增
-  - **-I <CHAIN> \[RuleNum] <RuleSpecification>** # 在规则链开头加入规则详情，也可以指定添加到指定的规则号
-  - **-A <CHAIN> <RuleSpecification>** # 在规则连末尾加入规则详情
+  - **-I \<CHAIN> \[RuleNum] \<RuleSpecification>** # 在规则链开头加入规则详情，也可以指定添加到指定的规则号
+  - **-A \<CHAIN> \<RuleSpecification>** # 在规则连末尾加入规则详情
   - **-N ChainName** # 创建名为 ChainName 的自定义规则链
 - 删
   - **-F \[CHAIN \[RuleNum]]** # 删除所有 chain 下的所有规则，也可删除指定 chain 下的指定的规则
-  - **-D <CHAIN> <RULE>** # 删除一个 chain 中规则，RULE 可以是该 chain 中的行号，也可以是规则具体配置
+  - **-D \<CHAIN> \<RULE>** # 删除一个 chain 中规则，RULE 可以是该 chain 中的行号，也可以是规则具体配置
   - **-X \[CHAIN]** # 删除用户自定义的空的 chain
 - 改
-  - **-P <CHAIN> <TARGET>** # 设置指定的规则链(CHAIN)的默认策略为指定目标(Targe)
-  - **-E <OldChainName> \<NewChainName**># 重命名自定义 chain，引用计数不为 0 的自定义 chain，无法改名也无法删除
+  - **-P \<CHAIN> \<TARGET>** # 设置指定的规则链(CHAIN)的默认策略为指定目标(Targe)
+  - **-E \<OldChainName> \<NewChainName**># 重命名自定义 chain，引用计数不为 0 的自定义 chain，无法改名也无法删除
   - **-R** # 替换指定链上的指定规则
 - 查
   - **-L \[CHAIN \[RuleNum]]** # 列出防火墙所有 CHAIN 的配置，可以列出指定的 CHAIN 的配置
@@ -136,7 +137,7 @@ MATCHES=\[-m] MatchName \[Per-Match-Options]
 
 - **-m conntrack --ctstate CTState1\[,CTState2...]** # 匹配指定的名为 CTState 的[连接追踪](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network%20 管理/Linux%20 网络流量控制/Netfilter%20 流量控制系统/Connection%20Tracking(连接跟踪)机制.md Tracking(连接跟踪)机制.md)状态。CTState 为 conntrack State，可用的状态有{INVALID|ESTABLISHED|NEW|RELATED|UNTRACKED|SNAT|DNAT}
   - -m state --state STATE1\[,STATE2,....] # conntrack 的老式用法，慢慢会被淘汰
-- **-m set --match-set SetName {src|dst}..**. #匹配指定的{源|目标}IP 是名为 SetName 的 ipset 集合
+- **-m set --match-set SetName {src|dst}..**. # 匹配指定的{源|目标}IP 是名为 SetName 的 ipset 集合
   - 其中 FLAG 是逗号分隔的 src 和 dst 规范列表，其中不能超过六个。
 - -**m iprange {--src-range|--dst-range} IP1-IP2** # 匹配的指定的{源|目标}IP 范围
 - **-m sting --MatchRule** # 指明要匹配的字符串，用于检查报文中出现的字符串(e.g.某个网页出现某个字符串则拒绝)
@@ -168,10 +169,10 @@ MATCHES=\[-m] MatchName \[Per-Match-Options]
 - 用于 nat 表的 target
   - DNAT|SNAT # {目的|源}地址转换
   - REDIRECT # 端口重定向
-  - MASQUERADE #地址伪装类似于 SNAT，但是不用指明要转换的地址，而是自动选择要转换的地址，用于外部地址不固定的情况
+  - MASQUERADE # 地址伪装类似于 SNAT，但是不用指明要转换的地址，而是自动选择要转换的地址，用于外部地址不固定的情况
 - 用于 raw 表的 target
   - NOTRACK # raw 表专用的 target，用于对匹配规则进行 notrack(不跟踪)处理
-- LOG #记录日志信息
+- LOG # 记录日志信息
 - 引用自定义链 # 直接使用“-j|-g 自定义链的名称”即可，让基本 5 个 Chain 上匹配成功的数据包继续执行自定义链上的规则。
 
 ## EXAMPLE
@@ -246,10 +247,10 @@ MATCHES=\[-m] MatchName \[Per-Match-Options]
 
 实现我可以 ping 别人，别人不能 ping 我的方法：
 
-- iptables -A INPUT -p icmp --icmp-type 8 -s 0/0 -j DROP #默认 INPUT 链的策略为 ACCEPT 的时候用
-- iptables -A INPUT -p icmp --icmp-type 0 -s 0/0 -j ACCEPT #默认 INPUT 链的策略为 DROP 的时候用
-- iptables -A OUTPUT -p icmp --icmp-type 0 -s LOCALIP -j DROP #默认 OUTPUT 链的策略为 ACCEPT 的时候用，注意把 Localip 改为本机 IP
-- iptables -A OUTPUT -p icmp --icmp-type 8 -s LOCALIP -j ACCEPT #默认 OUTPUT 链的策略为 DROP 的时候用，注意把 Localip 改为本机 IP
+- iptables -A INPUT -p icmp --icmp-type 8 -s 0/0 -j DROP # 默认 INPUT 链的策略为 ACCEPT 的时候用
+- iptables -A INPUT -p icmp --icmp-type 0 -s 0/0 -j ACCEPT # 默认 INPUT 链的策略为 DROP 的时候用
+- iptables -A OUTPUT -p icmp --icmp-type 0 -s LOCALIP -j DROP # 默认 OUTPUT 链的策略为 ACCEPT 的时候用，注意把 Localip 改为本机 IP
+- iptables -A OUTPUT -p icmp --icmp-type 8 -s LOCALIP -j ACCEPT # 默认 OUTPUT 链的策略为 DROP 的时候用，注意把 Localip 改为本机 IP
 
 ### NAT 表的配置
 
@@ -265,7 +266,7 @@ MATCHES=\[-m] MatchName \[Per-Match-Options]
 - 所有来自 10.0.9.0/24 网段的数据包，都不跟踪。
   - iptables -t raw -A PREROUTING -s 10.0.9.0/24 -j NOTRACK
 
-## iptables-save # 将 iptables 规则转储到标准输出
+## iptables-save - 将 iptables 规则转储到标准输出
 
 该命令输出的内容更容易被人类阅读，可以用重定向把内容保存到文件中
 
@@ -278,13 +279,13 @@ iptables-save \[-M,--modprobe modprobe] \[-c] \[-t table]
 
 1. iptables-save > /etc/sysconfig/iptables.rules
 
-## iptables-restore #从标准输入恢复 iptables 规则，可以视同重定向通过文件来读取到标准输入
+## iptables-restore - 从标准输入恢复 iptables 规则，可以视同重定向通过文件来读取到标准输入
 
 **EXAMPLE**
 
 1. iptables-restore < /etc/sysconfig/iptables.rules
 
-# ipset # IP 集合的管理工具
+# ipset - IP 集合的管理工具
 
 ipset 是 iptables 的一个协助工具。可以通过 ipset 设置一组 IP 并对这一组 IP 统一命名，然后在 iptables 里的匹配规则里通过名字直接引用该组 IP，并对这组 IP 进行流量控制。注意：由于是 iptables 规则引用，所以我直接修改 ipset 集合里的 IP，并不用重启 iptables 服务，就可以直接生效。这类似于域名解析，我的机器指定访问 baidu.com，至于百度公司他们怎么更改 IP 与域名绑定的关系，作为用户都不用更更改 baidu.com 这个域名。
 
@@ -292,7 +293,7 @@ ipset 是 iptables 的一个协助工具。可以通过 ipset 设置一组 IP �
 
 COMMANDS：Note：ENTRY 指的就是 ip 地址
 
-1. create SETNAME TYPENAME \[type-specific-options] #创建一个新的集合。Create a new set
+1. create SETNAME TYPENAME \[type-specific-options] # 创建一个新的集合。Create a new set
 2. add SETNAME ENTRY # 向指定集合中添加条目。i.e.添加 ip。Add entry to the named set
 3. del SETNAME ENTRY # 从指定集合中删除条目 Delete entry from the named set
 4. test SETNAME ENTRY # 测试指定集合中是否包含该条目 Test entry in the named set
@@ -313,11 +314,11 @@ OPTIONS
 
 EXAMPLE
 
-1. ipset list #列出 ipset 所设置的所有 IP 集合
-2. ipset create lichenhao hash:net #创建一个 hash:net 类型的名为 lichenhao 的 ipset
-3. ipset add lichenhao 1.1.1.0/24 #将 1.1.1.0/24 网段添加到名为 lichenhao 的 ipset 中
-4. ipset flush #清空所有 ipset 下的 ip
-5. ipset restore -f /etc/sysconfig/ipset #从/etc/sysconfig/ipset 还原 ipset 的集合和条目信息
+1. ipset list # 列出 ipset 所设置的所有 IP 集合
+2. ipset create lichenhao hash:net # 创建一个 hash:net 类型的名为 lichenhao 的 ipset
+3. ipset add lichenhao 1.1.1.0/24 # 将 1.1.1.0/24 网段添加到名为 lichenhao 的 ipset 中
+4. ipset flush # 清空所有 ipset 下的 ip
+5. ipset restore -f /etc/sysconfig/ipset # 从/etc/sysconfig/ipset 还原 ipset 的集合和条目信息
 
 9、屏蔽 HTTP 服务 Flood×××
 

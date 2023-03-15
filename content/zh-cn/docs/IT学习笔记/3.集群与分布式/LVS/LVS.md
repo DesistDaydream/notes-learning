@@ -6,6 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
+>
 > - [Wiki,LVS](https://en.wikipedia.org/wiki/Linux_Virtual_Server)
 > - [Wiki,IPVS](https://en.wikipedia.org/wiki/IP_Virtual_Server)
 > - [官网](http://www.linuxvirtualserver.org/)
@@ -61,7 +62,7 @@ LVS 项目在 1998 年 5 月由[章文嵩](https://baike.baidu.com/item/%E7%AB%A
 通常情况下，一个 LVS 集群由两类节点组成：
 
 - **Director(指挥器)** # 前端接收客户端请求的节点，并将请求转发给后端 Real Server。Director 通过 IPVS 与 ipvsadm 来实现。
-- **Real Server(真实服务器) **# 处理客户端请求的节点。
+- **Real Server(真实服务器)**# 处理客户端请求的节点。
 
 这些服务器一起组成了一个虚拟服务器，对于访问他们的客户端来说，它表现为一台机器。
 
@@ -148,7 +149,7 @@ lvs-dr(direct routing) #操纵新的 MAC 地址，直接路由，默认的 LVS �
       4. 参数 3：不回应该网络界面的 arp 请求，而只对设置的唯一和连接地址做出回应
       5. 参数 4-7：保留未使用
       6. 参数 8：不回应所有（本地地址）的 arp 查询
-   3. **arp_announce **# arp 宣告，通告 arp 给别人时的动作；以及是否接收 arp 通告，并记录；由该项参数决定
+   3. **arp_announce**# arp 宣告，通告 arp 给别人时的动作；以及是否接收 arp 通告，并记录；由该项参数决定
       1. 参数 0：默认参数，把本机所有网卡上的所有地址通告给网络中（不管任何情况，使用发送或者转发的数据包的源 IP 作为发送 ARP 请求的 Sender IP）(与参数 1 的区别：不管目的 IP 与本地接口的 IP 在不在同一个网段，都是用发送源 IP 作为 Sender IP）
       2. 参数 1：尽量避免从本网络的外部接口向非本网络中的网络,通告非本网络中的接口的地址（只有当数据包的目的 IP 与本地某个接口的网段相同时，才使用发送或者转发的数据包的源 IP 作为发送 ARP 请求的 Sender IP，不属于则按参数 2 处理）
          1. 本网络的意思就是：比如 192.168.0.0/24 是一个网络，192.168.1.0/24 是另一个网络，0.0 网络中的地址尽量不通告给 1.0 网络中的地址，但是当需要发送数据的时候，还是需要进行通告
@@ -194,13 +195,13 @@ LVS TUN 类型特性
 3. 请求和响应报文都经由 Dirctor
 4. 支持端口映射.
 
-lvs-tun(ip tunneling) #在原请求 IP 报文之外新加一个 IP 首部，IP 隧道技术
+lvs-tun(ip tunneling) # 在原请求 IP 报文之外新加一个 IP 首部，IP 隧道技术
 
 1. 不修改请求报文的 IP 首部，通过在原有的 IP 首部之外，再封装一个 IP 首部(比如为了运送一袋米，我扛着米运相当于 IP 首部，我骑着驴送，驴相当于新封装的 IP 首部)
 2. 调度器收到请求报文时，再封装一层 IP 首部，把源 IP 至目标 IP 中的的 CIP 至 VIP 放在 DIP 至 RIP 的报文里面，DIP 至 RIP 相当于路由，所以可以不在同一网段,并且 RS 必须支持隧道技术，在解封装的时候，必须明白为什么在拆开 IP 首部之后还有一层 IP 首部
 3. 不支持端口映射，且 RS 的网关不能指向 DIP。
 
-lvs-fullnat #修改请求报文的源和目标 IP
+lvs-fullnat # 修改请求报文的源和目标 IP
 
 1. 调度器同时修改请求报文的目标地址和源地址进行转发。把源 IP 和目标 IP 从 CIP—VIP 改成 DIP—RIP
 2. VIP 是公网地址，RIP 和 DIP 是私网地址，二者无须在同一网络中

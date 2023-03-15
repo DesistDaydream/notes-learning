@@ -12,11 +12,11 @@ title: cobbler命令说明
 
 OPTIONS
 
-1. \--path #指定制作部署系统时的镜像所用到的光盘镜像的路径
+1. \--path # 指定制作部署系统时的镜像所用到的光盘镜像的路径
 
-2. \--name #为安装源定义一个名字，指定部署系统所用的镜像名
+2. \--name # 为安装源定义一个名字，指定部署系统所用的镜像名
 
-3. \--arch #指定安装源是 32 位、64 位、ia64, 目前支持的选项有: x86│x86_64│ia64
+3. \--arch # 指定安装源是 32 位、64 位、ia64, 目前支持的选项有: x86│x86_64│ia64
 
 EXAMPLE
 
@@ -28,7 +28,7 @@ EXAMPLE
 
 ## system
 
-1. cobbler system list #列出
+1. cobbler system list # 列出
 
 ## ksvalidator FILE
 

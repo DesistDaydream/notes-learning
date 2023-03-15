@@ -181,7 +181,7 @@ veth 也是 Linux 实现的虚拟网络设备，veth 设备总是成对出现，
     ip netns exec qdhcp-ba48a3fc-e9e8-4ce0-8691-3d35b6cca80a ip addr add 10.0.0.2/32 dev veth-b
     ip netns exec qdhcp-ba48a3fc-e9e8-4ce0-8691-3d35b6cca80a ip link set dev veth-b up
 
-    #在nstest命名空间中起一个dnsmasq服务器
+    # 在nstest命名空间中起一个dnsmasq服务器
     ip netns exec qdhcp-ba48a3fc-e9e8-4ce0-8691-3d35b6cca80a /usr/sbin/dnsmasq --no-hosts --no-resolv --except-interface=lo  --bind-interfaces --interface=veth-b ...
 
     #查看此命令空间中服务监听端口

@@ -5,6 +5,7 @@ title: SNMP Exporter
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目](https://github.com/prometheus/snmp_exporter)
 
 Snmp Exporter 通过 snmp 采集监控数据，并转换成[ OpenMetrics 格式](</docs/IT学习笔记/6.可观测性/监控系统/监控系统概述/HTTP(新监控标准).md>>)的指标。
@@ -25,34 +26,34 @@ snmp exporter 源码简单解析
 ```go
 // 这个结构体实现了 prometheus.Collector 接口
 type collector struct {
-	// ......略
+ // ......略
 }
 // 采集 Metrics 的主要逻辑在这里，这里省略了很多不相关的代码
 func (c collector) Collect(ch chan<- prometheus.Metric) {
-	// 这里使用了 gosnmp/gosnmp 这个库，通过这个库来执行类似 snmpwalk 这样的命令获取 snmp 数据
-	pdus, err := ScrapeTarget(c.ctx, c.target, c.module, c.logger)
-	oidToPdu := make(map[string]gosnmp.SnmpPDU, len(pdus))
+ // 这里使用了 gosnmp/gosnmp 这个库，通过这个库来执行类似 snmpwalk 这样的命令获取 snmp 数据
+ pdus, err := ScrapeTarget(c.ctx, c.target, c.module, c.logger)
+ oidToPdu := make(map[string]gosnmp.SnmpPDU, len(pdus))
 PduLoop:
-	// 为每个 pdu 查找匹配到的 Metrics
-	for oid, pdu := range oidToPdu {
-		head := metricTree
-		oidList := oidToList(oid)
-		for i, o := range oidList {
-			var ok bool
-			head, ok = head.children[o]
-			if !ok {
-				continue PduLoop
-			}
-			if head.metric != nil {
-				// 在这里获取 snmp 数据并转换为 Metrics 格式的数据
-				samples := pduToSamples(oidList[i+1:], &pdu, head.metric, oidToPdu, c.logger)
-				for _, sample := range samples {
-					ch <- sample
-				}
-				break
-			}
-		}
-	}
+ // 为每个 pdu 查找匹配到的 Metrics
+ for oid, pdu := range oidToPdu {
+  head := metricTree
+  oidList := oidToList(oid)
+  for i, o := range oidList {
+   var ok bool
+   head, ok = head.children[o]
+   if !ok {
+    continue PduLoop
+   }
+   if head.metric != nil {
+    // 在这里获取 snmp 数据并转换为 Metrics 格式的数据
+    samples := pduToSamples(oidList[i+1:], &pdu, head.metric, oidToPdu, c.logger)
+    for _, sample := range samples {
+     ch <- sample
+    }
+    break
+   }
+  }
+ }
 }
 ```
 
@@ -72,7 +73,7 @@ PduLoop:
 
 Generator 使用 MIB 中的哪些信息、转换后是否需要设置标签、是否忽略某些 OID 等等这种行为，是由 generator.yml 文件进行控制的
 
-**总结：Generator(生成器) 通过 **`**MIB库文件**`** 以及 **`**generator.yml文件**`** 这两种东西，来生成 snmp.yml 文件**
+**总结：Generator(生成器) 通过**`**MIB库文件**`**以及**`**generator.yml文件**`**这两种东西，来生成 snmp.yml 文件**
 
 > MIB 库文件一般是放在 generator 程序运行时所在目录的 mibs 目录下的，generator.yml 文件一般是放在 generator 程序运行时所在目录下。
 > 如果运行 generator 时无法在 MIB 库文件中找到 generator.yml 文件中配置的 OID，则 generator 程序运行将会报错，提示无法找到对应的 Object。此时就需要将必要的 MIB 库文件，拷贝到 mibs/ 目录下即可。
@@ -120,14 +121,14 @@ modules:
 
 ## Exporter 配置
 
-**snmp.yml **# snmp_exporter 程序运行时根据该文件，将 OID 转换为 Metircs。通过 generator 程序自动生成。
+**snmp.yml**# snmp_exporter 程序运行时根据该文件，将 OID 转换为 Metircs。通过 generator 程序自动生成。
 
 > snmp_exporter 默认使用 snmp v2 来获取 snmp 格式的数据，如果想要修改配置 snmp_exporter 的配置文件，比如使用 snmp v3 的方式获取 snmp 格式的数据，则需要使用 generator 来生成配置文件
 
 ## Generator 配置
 
-**mibs/\* **# 用来存放 MIB 文件。
-**generator.yml** #用来配置生成 snmp.yml 的行为。
+**mibs/\***# 用来存放 MIB 文件。
+**generator.yml** # 用来配置生成 snmp.yml 的行为。
 
 # Prometheus 中的 scrape_configs 配置示例
 

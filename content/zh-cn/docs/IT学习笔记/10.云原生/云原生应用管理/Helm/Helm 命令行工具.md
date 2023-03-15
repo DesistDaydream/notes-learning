@@ -152,9 +152,11 @@ FLAGS
 
 helm uninstall \[FLAGS] RELEASE_NAME \[...]
 
-1. FLAGS
-   1. \--purge #从 store 移除 release 以便让 release 的名字空出来为以后使用。
-2. EXAMPLE
+FLAGS
+
+   - --purge # 从 store 移除 release 以便让 release 的名字空出来为以后使用。
+
+EXAMPLE
 
 ## upgrade # 升级一个 release
 

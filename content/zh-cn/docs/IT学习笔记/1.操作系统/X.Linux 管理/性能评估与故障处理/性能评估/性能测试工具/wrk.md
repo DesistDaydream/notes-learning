@@ -5,6 +5,7 @@ title: "wrk"
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目,wrk](https://github.com/wg/wrk)
 
 wrk 是一种现代 HTTP 基准测试小型工具，当在单个多核 CPU 上运行时，能够产生大量负载。它结合了多线程设计和可扩展的事件通知系统，例如 epoll 和 kqueue。
@@ -44,7 +45,7 @@ OPTIONS
 
 EXAMPLE
 
-1. wrk -t 12 -c 400 -d 30s http://127.0.0.1:8080/index.html #使用 12 个线程运行 30 秒，模拟 400 个并发请求本地 8080 端口的 index.html
+1. wrk -t 12 -c 400 -d 30s http://127.0.0.1:8080/index.html # 使用 12 个线程运行 30 秒，模拟 400 个并发请求本地 8080 端口的 index.html
 2. wrk -t 80 -d 60s -c 16000 -T 3s --latency http://10.10.9.60:80/ #
 
 # WRK 结果解读
@@ -55,18 +56,18 @@ EXAMPLE
 Running 1m test @ http://10.10.100.107:30000/
   12 threads and 10000 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
-    线程信息		平均值	  标准差	   最大值   正负一个标准差所占比例
-    Latency     1.28s   509.20ms   2.00s    76.80%	# 延时、执行时间
-    Req/Sec    70.18     74.26   717.00     88.88%	# 每个线程每秒钟执行的连接数
-  Latency Distribution	#延迟分布。如果使用--latency参数，则会出现该字段信息
+    线程信息  平均值   标准差    最大值   正负一个标准差所占比例
+    Latency     1.28s   509.20ms   2.00s    76.80% # 延时、执行时间
+    Req/Sec    70.18     74.26   717.00     88.88% # 每个线程每秒钟执行的连接数
+  Latency Distribution #延迟分布。如果使用--latency参数，则会出现该字段信息
      50%    1.40s
      75%    1.60s
      90%    1.79s
      99%    1.99s
   31631 requests in 1.00m, 8.87MB read
   Socket errors: connect 0, read 2745465, write 0, timeout 17902
-Requests/sec:    526.31	#平均每秒处理完成请求的个数。每秒请求数(QPS)，等于总请求数/测试总耗时
-Transfer/sec:    151.11KB	#平均每秒读取数据的值
+Requests/sec:    526.31 #平均每秒处理完成请求的个数。每秒请求数(QPS)，等于总请求数/测试总耗时
+Transfer/sec:    151.11KB #平均每秒读取数据的值
 ```
 
 # 并发测试案例

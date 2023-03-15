@@ -5,6 +5,7 @@ title: Push Gateway
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目](https://github.com/prometheus/pushgateway)
 > - [官方文档,最佳实践-合时使用 Pushgateway](https://prometheus.io/docs/practices/pushing/#when-to-use-the-pushgateway)
 
@@ -47,13 +48,13 @@ METRICS #想要推送给 PushGateway 的 metrics 信息。可以通过 curl 来�
 
 IP:PORT #PushGateway 程序所在设备的 IP，及 PushGateway 监听的端口
 
-JobName #指定本次推送 metrics 的 job 名称。
+JobName # 指定本次推送 metrics 的 job 名称。
 
 TableXXX #JobName 后面的内容可以作为标签，附加在每个指标上
 
 每当使用该命令给 PushGateway 推送信息后，Prometheus 就会从 PushGateway 中获取该数据并存储在本地。
 
-# 推送数据示例：
+# 推送数据示例
 
 curl <http://10.10.100.205:9137/metrics> | curl --data-binary @- <http://10.10.100.110:9091/metrics/job/get_vs_state/vs_info/dev_phone_vs>
 

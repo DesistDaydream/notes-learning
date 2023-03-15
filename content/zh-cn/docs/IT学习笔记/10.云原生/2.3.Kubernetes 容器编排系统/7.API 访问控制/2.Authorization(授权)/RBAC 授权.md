@@ -5,6 +5,7 @@ title: RBAC 授权
 概述
 
 > 参考：
+>
 > - [官方文档,参考-API 访问控制-使用 RBAC 授权](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 > - RBAC 概念：<https://www.yuque.com/go/doc/33177747>
 
@@ -12,11 +13,11 @@ title: RBAC 授权
 
 在 Kubernetes 的 RBAC 机制中有如下标准化术语：
 
-1. **Role(角色) **# 是一组规则的集合，这些规则定义了对 Kubernetes 集群(即 APIserver)的操作权限
+1. **Role(角色)**# 是一组规则的集合，这些规则定义了对 Kubernetes 集群(即 APIserver)的操作权限
 
    1. 权限包括：get、list、watch、create、update、patch、delete
 
-2. **Subject(主体) **# 即把 Role 的规则作用于 Subject 上。Subject 就是本文开头讲的 Accounts
+2. **Subject(主体)**# 即把 Role 的规则作用于 Subject 上。Subject 就是本文开头讲的 Accounts
 
    1. Subject 类型(kind)包括：User、Group、ServiceAccount
 
@@ -27,11 +28,11 @@ title: RBAC 授权
 
 3. **RoleBinding**：定义了 Role 与 Subject 的绑定关系
 
-   1. **rules **# 规则，i.e.当前 role 所拥有的权限，其中有 3 个关键字。
+   1. **rules**# 规则，i.e.当前 role 所拥有的权限，其中有 3 个关键字。
 
-   2. **apiGroups # **指定该 role 可以操作那些 api 组。使用 '\*' 表示对所有组具有操作权限
+   2. **apiGroups #**指定该 role 可以操作那些 api 组。使用 '\*' 表示对所有组具有操作权限
 
-   3. **resources **# 指定该 role 可以操作的资源。使用 '\*' 表示对指定组下的所有资源具有操作权限
+   3. **resources**# 指定该 role 可以操作的资源。使用 '\*' 表示对指定组下的所有资源具有操作权限
 
    4. **verbs** # 指定该 role 可以对组内的资源执行什么操作。e.g. get、watch、list 等。使用 '\*' 表示对指定资源具有所有的操作权限
 
@@ -65,7 +66,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   namespace: default #定义该Role作用于哪个namespace
-  name: pod-reader #指定该Role的名字
+  name: pod-reader # 指定该Role的名字
 rules: #定义该role的权限规则，即允许Subject对该文件定义的namespace下的pods资源进行GET、WATCH、LIST操作
   # 双引号表示核心组 API，也就是说，改 Role 定义了可以在核心组 API 下可以操作的资源
   # 若想对所有 API 组授权，则使用 * 符号
@@ -109,13 +110,13 @@ kind: RoleBinding
 metadata:
   name: read-pods
   namespace: default
-subjects: #指定“被作用者”的相关信息
+subjects: # 指定“被作用者”的相关信息
   - kind: User # 指定Subject的类型，有 User、ServiceAccount、Group
-    name: lichenhao #指定Subject类型的名字是什么
-    apiGroup: rbac.authorization.k8s.io #指定
+    name: lichenhao # 指定Subject类型的名字是什么
+    apiGroup: rbac.authorization.k8s.io # 指定
 roleRef: #定义角色引用，即绑定Role与Subject，让Subject具有Role中定义的规则权限
   kind: Role #定义要绑定的是Role还是ClusterRole
-  name: pod-reader #指定要绑定的Role或ClusterRole的的名字
+  name: pod-reader # 指定要绑定的Role或ClusterRole的的名字
   apiGroup: rbac.authorization.k8s.io
 ```
 
@@ -179,6 +180,7 @@ rules:
 # 默认角色
 
 > 参考：
+>
 > 1. [官方文档](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings)，该文档包含一些默认自带的角色的作用详解
 
 API Server 会创建一组默认的 Role、ClusterRole、RoleBinding、ClusterRoleBinding 对象。这些对象的名称大多都是以 `system:` 为前缀，用以标识该资源是直接呦集群控制平面的组件管理的。所有默认的 RBAC 对象都具有 `kubernetes.io/bootstrapping=rbac-defaults` 标签
@@ -220,14 +222,14 @@ API Server 每次启动时，会进行 **Auto-reconciliation(自动协商)** 行
 
 还有一些默认的 ClusterRole 不以 `system:` 为前缀。这些是面向用户的角色，我们可以直接使用这些 ClusterRole 绑定到需要的 Subjects 上，从而直接为其赋权，省去了自己创建 ClusterRole 的烦恼。
 
-1. **cluster-admin **# 具有最高权限的 clusterrole，与此集群角色绑定的 Subject(主体) 具有对集群操作的最高权限
+1. **cluster-admin**# 具有最高权限的 clusterrole，与此集群角色绑定的 Subject(主体) 具有对集群操作的最高权限
 
    1. 默认情况下，与 ClusterRole 同名的 ClusterRoleBinding，将该 ClusterRole 绑定到了 `system:masters` 组上，所有隶属于此组的用户都将具有集群的超级管理权限，比如 /etc/kubernets/pki/ 目录下的相关 \*.conf 文件里的证书通过 base64 解码并查看证书时，其中 subject 的信息有一条 `O=system:masters`. ，在进行认证的时候，CN 的值可作为用户名使用，O 的值将作为用户所属组名使用，因此所有使用这类证书的事物在访问集群时，都具有最高权限
    2. kubectl 命令所用的 kubeconfig 文件中的客户端证书的 subject 字段就有 O，并且值为 `system:masters`
 
-2. **admin **# 允许管理员访问权限，旨在使用  **RoleBinding**  在名字空间内执行授权。 如果在  **RoleBinding**  中使用，则可授予对名字空间中的大多数资源的读/写权限， 包括创建角色和角色绑定的能力。 但是它不允许对资源配额或者名字空间本身进行写操作。
-3. **edit **# 允许对名字空间的大多数对象进行读/写操作。 它不允许查看或者修改角色或者角色绑定。 不过，此角色可以访问 Secret，以名字空间中任何 ServiceAccount 的身份运行 Pods， 所以可以用来了解名字空间内所有服务账户的 API 访问级别。
-4. **view **#允许对名字空间的大多数对象有只读权限。 它不允许查看角色或角色绑定。此角色不允许查看 Secrets，因为读取 Secret 的内容意味着可以访问名字空间中 ServiceAccount 的凭据信息，进而允许利用名字空间中任何 ServiceAccount 的 身份访问 API（这是一种特权提升）。
+2. **admin**# 允许管理员访问权限，旨在使用  **RoleBinding**  在名字空间内执行授权。 如果在  **RoleBinding**  中使用，则可授予对名字空间中的大多数资源的读/写权限， 包括创建角色和角色绑定的能力。 但是它不允许对资源配额或者名字空间本身进行写操作。
+3. **edit**# 允许对名字空间的大多数对象进行读/写操作。 它不允许查看或者修改角色或者角色绑定。 不过，此角色可以访问 Secret，以名字空间中任何 ServiceAccount 的身份运行 Pods， 所以可以用来了解名字空间内所有服务账户的 API 访问级别。
+4. **view**#允许对名字空间的大多数对象有只读权限。 它不允许查看角色或角色绑定。此角色不允许查看 Secrets，因为读取 Secret 的内容意味着可以访问名字空间中 ServiceAccount 的凭据信息，进而允许利用名字空间中任何 ServiceAccount 的 身份访问 API（这是一种特权提升）。
 
 核心组件的角色
 
