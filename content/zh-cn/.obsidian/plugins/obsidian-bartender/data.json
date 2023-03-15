@@ -735,6 +735,31 @@
       "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Samba.md",
       "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Samba 部署.md",
       "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Samba 配置详解.md"
+    ],
+    "docs/IT学习笔记/0.计算机": [
+      "docs/IT学习笔记/0.计算机/_index.md",
+      "docs/IT学习笔记/0.计算机/计算机工作的原理.md",
+      "docs/IT学习笔记/0.计算机/Motherboard",
+      "docs/IT学习笔记/0.计算机/CPU",
+      "docs/IT学习笔记/0.计算机/Memory",
+      "docs/IT学习笔记/0.计算机/Disk"
+    ],
+    "docs/IT学习笔记/0.计算机/CPU": [
+      "docs/IT学习笔记/0.计算机/CPU/_index.md",
+      "docs/IT学习笔记/0.计算机/CPU/CPU.md",
+      "docs/IT学习笔记/0.计算机/CPU/CPU 精简指令集.md"
+    ],
+    "docs/IT学习笔记/0.计算机/Disk": [
+      "docs/IT学习笔记/0.计算机/Disk/_index.md",
+      "docs/IT学习笔记/0.计算机/Disk/Disk.md",
+      "docs/IT学习笔记/0.计算机/Disk/Raid.md",
+      "docs/IT学习笔记/0.计算机/Disk/关于外存你需要了解的.md"
+    ],
+    "docs/IT学习笔记/0.计算机/Motherboard": [
+      "docs/IT学习笔记/0.计算机/Motherboard/_index.md",
+      "docs/IT学习笔记/0.计算机/Motherboard/Motherboard.md",
+      "docs/IT学习笔记/0.计算机/Motherboard/BIOS.md",
+      "docs/IT学习笔记/0.计算机/Motherboard/IPMI.md"
     ]
   },
   "actionBarOrder": {},
