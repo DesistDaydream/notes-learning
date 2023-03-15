@@ -1,5 +1,6 @@
 ---
 title: events 模块指令
+weight: 3
 ---
 
 # 概述

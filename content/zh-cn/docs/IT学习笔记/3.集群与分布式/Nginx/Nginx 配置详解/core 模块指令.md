@@ -1,5 +1,6 @@
 ---
 title: core 模块指令
+weight: 2
 ---
 
 # 概述

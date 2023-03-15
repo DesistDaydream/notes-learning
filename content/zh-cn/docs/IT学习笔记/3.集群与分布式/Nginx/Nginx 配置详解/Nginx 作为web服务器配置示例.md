@@ -46,6 +46,7 @@ server {
 ### 匹配 URI 目录
 
 在 location 里面设置 root 就是设置匹配 URI 的根目录。
+
 下面的例子里如果访问 [http://localhost/icon/abc.png](https://link.zhihu.com/?target=http%3A//localhost/icon/abc.png) 网址，映射到的服务器路径是 /tongfu.net/web/icons**/icon/abc.png**。
 
 ```javascript
@@ -57,6 +58,7 @@ location /icon/ {
 ## alias
 
 Nginx 里面的 root 参数用来指定映射目录，末尾需要加“/”。
+
 下面的例子里如果访问 [http://localhost/icon/abc.png](https://link.zhihu.com/?target=http%3A//localhost/icon/abc.png) 网址，映射到的服务器路径是 /tongfu.net/web/icons/**abc.png**。
 
 ```javascript

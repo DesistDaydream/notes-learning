@@ -4,7 +4,7 @@ title: geoip2 模块
 
 # 概述
 
-> 参考：yqu
+> 参考：
 >
 > - [GitHub 项目，leev/ngx_http_geoip2_module](https://github.com/leev/ngx_http_geoip2_module)
 
@@ -190,6 +190,7 @@ stream {
 # 部署并启用模块
 
 首先按照其[README.md 文件](https://github.com/maxmind/libmaxminddb/blob/master/README.md#installing-from-a-tarball)中的[说明](https://github.com/maxmind/libmaxminddb/blob/master/README.md#installing-from-a-tarball)安装[libmaxminddb](https://github.com/maxmind/libmaxminddb)。
+
 **下载 nginx 源**
 
     wget http://nginx.org/download/nginx-VERSION.tar.gz
@@ -217,20 +218,22 @@ load_module modules/ngx_http_geoip2_module.so;
 
 该指令类似于 geo 模块的 geo 指令，可以自己定义变量名称
 
-### $VariableName \[default=STRING] \[source=IP] PATH # 定义名为 `$VariableName` 的变量
+###  $VariableName \[default=STRING] \[source=IP] PATH
+
+定义名为 `$VariableName` 的变量
 
 - **PATH** # MaxMind 数据库中的数据路径，将该路径下的值，赋值给变量 `$VariableName`
   - 注意：MaxMind 的 GeoIP2 数据库是 JSON 结构，所以 PATH 就是由以空格分割的字段名称组成。可以通过 [mmdblookup 工具](https://maxmind.github.io/libmaxminddb/mmdblookup.html)查找所需数据的路径
-- **default=<STRING>** # 若变量无法获取到值时，应该具有的默认值。
-- **source=<IP>** # 指定要从数据库获取信息的 IP 地址。默认值来自 `$remote_addr` 变量的值
+- **default=\<STRING>** # 若变量无法获取到值时，应该具有的默认值。
+- **source=\<IP>** # 指定要从数据库获取信息的 IP 地址。默认值来自 `$remote_addr` 变量的值
 
 #### EXAMPLE
 
 - 创建 `$geoip2_data_country_code` 变量，根据 `$remote_addr` 变量中的 IP 地址，查找数据库，将 IP 对应的 `.country.iso_code` 字段的值赋值给 ` $``geoip2_data_country_code ` 变量，若 `.country.iso_code` 字段为空，则变量的值为 US。
-  - **$geoip2\_data\_country\_code default=US source=$remote_addr country iso_code;**
+  - **`$geoip2\_data\_country\_code default=US source=$remote_addr country iso_code;`**
   - 其实就是获取两个字母的国家代码
 - 创建 `$geoip2_city_country_name` 变量，根据 `$remote_addr` 变量中的 IP 地址，查找数据库，将 IP 对应的 `.country.name.zh-CN` 字段的值赋值给 `$geoip2_city_country_name` 变量
-  - **$geoip2\_city\_country\_name source=$remote_addr country names zh-CN;**
+  - **`$geoip2\_city\_country\_name source=$remote_addr country names zh-CN;`**
   - 其实就是中文显示的国家名称
 
 # 配置示例

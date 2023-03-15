@@ -760,6 +760,18 @@
       "docs/IT学习笔记/0.计算机/Motherboard/Motherboard.md",
       "docs/IT学习笔记/0.计算机/Motherboard/BIOS.md",
       "docs/IT学习笔记/0.计算机/Motherboard/IPMI.md"
+    ],
+    "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解": [
+      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/_index.md",
+      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/Nginx 配置详解.md",
+      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/core 模块指令.md",
+      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/events 模块指令.md",
+      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/http 模块指令.md",
+      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/stream 模块指令.md",
+      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/其他属于 NGX_CORE_MODULE 类型的模块.md",
+      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/多用途模块的指令",
+      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/Nginx 作为web服务器配置示例.md",
+      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/Nginx 作为代理服务器配置示例.md"
     ]
   },
   "actionBarOrder": {},

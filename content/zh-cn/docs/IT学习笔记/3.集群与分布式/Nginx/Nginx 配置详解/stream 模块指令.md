@@ -1,5 +1,6 @@
 ---
 title: stream 模块指令
+weight: 5
 ---
 
 # 概述

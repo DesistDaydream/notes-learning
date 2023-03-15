@@ -40,7 +40,7 @@ server {
 # 服务器组指令
 
 服务器组相关的指令，一般是定义在 `upstream{} 指令块` 中。
-[**upstream NAME {}**](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream)\*\* \*\*# 定义一组服务器。当请求代理到该 upstream 时，可以负载均衡到定义的各个 server 上。
+[**upstream NAME {}**](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) # 定义一组服务器。当请求代理到该 upstream 时，可以负载均衡到定义的各个 server 上。
 
 - 作用范围：http{}、stram{}
 
@@ -59,12 +59,12 @@ upstream NAME {
 **ADDRESS** # 可以指定为具有可选端口的域名或 IP 地址，或者使用 `unix:` 前缀指定 UNIX 域套接字路径。如果未指定端口，则默认 80。解析为多个 IP 地址的域名一次定义多个服务器。
 **PARAMETERS** # 可以指定一个 server 的调度参数、健康检查时间间隔 等等。
 
-- **backup **# 将 server 标记为备份服务器。
-- **fail_timeout=<TIME>** # 与 server 连接的超时时间。`默认值：10s`。
+- **backup** # 将 server 标记为备份服务器。
+- **fail_timeout=\<TIME>** # 与 server 连接的超时时间。`默认值：10s`。
   - fail_timeout 与 max_fails 两个参数配合，就是指，当一个服务器持续 fail_timeout 时间不可用，并尝试了 max_fails 次之后依然不可用，则将该服务器从本组中提出，不再将请求调度到这个服务器上。
-- **max_fails=<INT>** # 与 server 连接超时的次数。`默认值：1`。
-- **max_conns=<INT>** # 限制到 server 的最大同时活动连接数，也就是限制 server 的并发数。`默认值：0`。默认 0 即表示不限制。
-- **weight=<INT> **# server 的权重。`默认值：1`。权重越高，就会有更多的请求调度到这个 server 上。
+- **max_fails=\<INT>** # 与 server 连接超时的次数。`默认值：1`。
+- **max_conns=\<INT>** # 限制到 server 的最大同时活动连接数，也就是限制 server 的并发数。`默认值：0`。默认 0 即表示不限制。
+- **weight=\<INT>** # server 的权重。`默认值：1`。权重越高，就会有更多的请求调度到这个 server 上。
 
 ## EXAMPLE
 

@@ -1,5 +1,6 @@
 ---
-title: Nginx 配置详解
+title: "Nginx 配置详解"
+weight: 1
 ---
 
 # 概述
