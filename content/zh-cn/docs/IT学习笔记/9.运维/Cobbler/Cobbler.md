@@ -2,9 +2,7 @@
 title: Cobbler
 ---
 
-# 概述
-
-前言：
+# 前言
 
 网络安装服务器套件 Cobbler(补鞋匠) 出现以前，我们一直在做装机民工这份很有前途的职业。自打若干年前 Red Hat 推出了 Kickstart，此后我们顿觉身价倍增。不再需要刻了光盘一台一台地安装 Linux，只要搞定 PXE、DHCP、 TFTP，还有那满屏眼花缭乱不知所云的 Kickstart 脚本，我们就可以像哈里波特一样，轻点魔棒，瞬间安装上百台服务器。这一堆花里胡哨的东西可不是一般人都能整明白的，没有大专以上学历，通不过英语四级， 根本别想玩转。
 
@@ -14,9 +12,10 @@ title: Cobbler
 
 对于我们这些在装机领域浸淫多年，经验丰富，老骥伏枥，志在千里的民工兄弟们来说，不啻为一个晴天霹雳。
 
-# Cobbler 介绍
+# 概述
 
-参考：[Cobbler 官网](http://cobbler.github.io/)
+> 参考：
+> - [Cobbler 官网](http://cobbler.github.io/)
 
 Cobbler 是一个 Linux 服务器快速网络安装的服务，而且在经过调整也可以支持网络安装 windows。
 
@@ -30,7 +29,7 @@ Cobbler 内置了一个轻量级配置管理系统，但它也支持和其它配
 
 Cobbler 客户端 Koan 支持虚拟机安装和操作系统重新安装，使重装系统更便捷。
 
-1\)Cobbler 可以干啥
+## Cobbler 可以干啥
 
 使用 Cobbler，您无需进行人工干预即可安装机器。Cobbler 设置一个 PXE 引导环境（它还可以使用 yaboot 支持 PowerPC），并 控制与安装相关的所有方面，比如网络引导服务（DHCP 和 TFTP）与存储库镜像。当希望安装一台新机器时，Cobbler 可以：
 
@@ -46,19 +45,19 @@ Cobbler 客户端 Koan 支持虚拟机安装和操作系统重新安装，使重
 
 6）重新启动机器以开始安装（如果电源管理已启动）
 
-2\)Cobbler 支持的系统和功能
+## Cobbler 支持的系统和功能
 
 Cobbler 支持众多的发行版：RedHat、Fedora、CentOS、Debian、Ubuntu 和 SUSE。当添加一个操作系统（通常通过使用 ISO 文件）时，Cobbler 知道如何解压缩合适的文件并调整网络服务，以正确引导机器。
 
-Cobbler 可以使用 kickstart 模板。基于 Red Hat 或 Fedora 的系统使用 kickstart 文件来自动化安装流程。通过使用模板，就会拥有基本的 kickstart 模板，然后定义如何针对一种配置文件或 机器配置而替换其中的变量。例如，一个模板可能包含两个变量$domain和$machine_name.在 Cobbler 配置中，一个配置文件指定 domain=mydomain.com，并且每台使用该配置文件的机器在 machine_name 变量中指定其名称。该配置文件的所有机器都使用相同的 kickstart 安装且针对 domain=mydomain.com 进行配置，但每台机器拥有其自己的机器名称。您仍然可以使用 kickstart 模板 在不同的域中安装其他机器并使用不同的机器名称。
+Cobbler 可以使用 kickstart 模板。基于 Red Hat 或 Fedora 的系统使用 kickstart 文件来自动化安装流程。通过使用模板，就会拥有基本的 kickstart 模板，然后定义如何针对一种配置文件或 机器配置而替换其中的变量。例如，一个模板可能包含两个变量 `$domain` 和 `$machine_name` 在 Cobbler 配置中，一个配置文件指定 domain=mydomain.com，并且每台使用该配置文件的机器在 machine_name 变量中指定其名称。该配置文件的所有机器都使用相同的 kickstart 安装且针对 domain=mydomain.com 进行配置，但每台机器拥有其自己的机器名称。您仍然可以使用 kickstart 模板 在不同的域中安装其他机器并使用不同的机器名称。
 
 为了协助管理系统，Cobbler 可通过 fence scripts 连接到各个电源管理环境。Cobbler 支持 apc_snmp、bladecenter、bullpap、drac、 ether_wake、ilo、integrity、ipmilan、ipmitool、lpar、rsa、virsh 和 wti。要重新安装一台机器，可 运行 reboot system foo 命令，而且 Cobbler 会使用必要的 和信息来为您运行恰当的 fence scripts（比如机器插槽数）。
 
-除了这些特性，还可以使用一个配置管理系统（CMS）。你有两种选择：该工具内的一个内部系统，或者现成的外部 CMS，比如 Chef 或 Puppet。借助内部系统，你可以指定文件模板，这些模板会依据配置参数进行处理（与 kickstart 模板的处理方式一样），然后复制到你指定的位 置。如果必须自动将配置文件部署到特定机器，那么此功能很有用
+除了这些特性，还可以使用一个配置管理系统（CMS）。你有两种选择：该工具内的一个内部系统，或者现成的外部 CMS，比如 Chef 或 Puppet。借助内部系统，你可以指定文件模板，这些模板会依据配置参数进行处理（与 kickstart 模板的处理方式一样），然后复制到你指定的位 置。如果必须自动将配置文件部署到特定机器，那么此功能很有用。
 
 使用 koan 客户端，Cobbler 可从客户端配置虚拟机并重新安装系统。
 
-## Cobbler 各个组件之间关系：
+## Cobbler 各个组件之间关系
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/tegfcw/1616125382993-9ef824a6-a456-4fc4-9eeb-8ca756ca7705.jpeg)
 

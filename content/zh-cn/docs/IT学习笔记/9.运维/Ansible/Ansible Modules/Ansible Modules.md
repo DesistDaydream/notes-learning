@@ -1,5 +1,5 @@
 ---
-title: Modules
+title: "Ansible Modules"
 weight: 1
 ---
 

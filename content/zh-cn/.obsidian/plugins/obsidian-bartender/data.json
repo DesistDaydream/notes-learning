@@ -788,6 +788,60 @@
       "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/服务资源",
       "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/集群资源.md",
       "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)"
+    ],
+    "docs/IT学习笔记/9.运维/Cobbler": [
+      "docs/IT学习笔记/9.运维/Cobbler/_index.md",
+      "docs/IT学习笔记/9.运维/Cobbler/Cobbler.md",
+      "docs/IT学习笔记/9.运维/Cobbler/Cobbler 部署.md",
+      "docs/IT学习笔记/9.运维/Cobbler/cobbler命令说明.md",
+      "docs/IT学习笔记/9.运维/Cobbler/kickstart 介绍.md"
+    ],
+    "docs/IT学习笔记/9.运维/Ansible": [
+      "docs/IT学习笔记/9.运维/Ansible/_index.md",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible.md",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible 配置详解.md",
+      "docs/IT学习笔记/9.运维/Ansible/Inventory 配置文件详解.md",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible Collection.md",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible Plugins",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible Modules",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible Variables(变量).md",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible 命令行工具.md",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible 管理",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible 扩展",
+      "docs/IT学习笔记/9.运维/Ansible/Playbook"
+    ],
+    "docs/IT学习笔记/9.运维/Ansible/Modules": [
+      "docs/IT学习笔记/9.运维/Ansible/Modules/_index.md",
+      "docs/IT学习笔记/9.运维/Ansible/Modules/Modules.md",
+      "docs/IT学习笔记/9.运维/Ansible/Modules/ansible.builtin(内置模块)",
+      "docs/IT学习笔记/9.运维/Ansible/Modules/ansible.posix(POSIX 标准模块).md"
+    ],
+    "docs/IT学习笔记/9.运维/Ansible/Ansible Modules": [
+      "docs/IT学习笔记/9.运维/Ansible/Ansible Modules/_index.md",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible Modules/Ansible Modules.md",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible Modules/ansible.builtin(内置模块)",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible Modules/ansible.posix(POSIX 标准模块).md"
+    ],
+    "docs/IT学习笔记/9.运维/Ansible/Playbook": [
+      "docs/IT学习笔记/9.运维/Ansible/Playbook/_index.md",
+      "docs/IT学习笔记/9.运维/Ansible/Playbook/Playbook.md",
+      "docs/IT学习笔记/9.运维/Ansible/Playbook/Playbook Role(角色).md",
+      "docs/IT学习笔记/9.运维/Ansible/Playbook/Variables(变量).md",
+      "docs/IT学习笔记/9.运维/Ansible/Playbook/Templates 模板(Jinja2).md",
+      "docs/IT学习笔记/9.运维/Ansible/Playbook/Conditionals(条件判断).md",
+      "docs/IT学习笔记/9.运维/Ansible/Playbook/loop(循环).md",
+      "docs/IT学习笔记/9.运维/Ansible/Playbook/错误处理.md",
+      "docs/IT学习笔记/9.运维/Ansible/Playbook/Debugger.md",
+      "docs/IT学习笔记/9.运维/Ansible/Playbook/Playbook 命令行工具.md"
+    ],
+    "docs/IT学习笔记/9.运维": [
+      "docs/IT学习笔记/9.运维/_index.md",
+      "docs/IT学习笔记/9.运维/Standardized Glossary(标准化术语)",
+      "docs/IT学习笔记/9.运维/自动化运维.md",
+      "docs/IT学习笔记/9.运维/Ansible",
+      "docs/IT学习笔记/9.运维/Cobbler",
+      "docs/IT学习笔记/9.运维/PXE 简介.md",
+      "docs/IT学习笔记/9.运维/应用发布.md"
     ]
   },
   "actionBarOrder": {},

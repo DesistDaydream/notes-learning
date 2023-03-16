@@ -13,27 +13,31 @@ title: Variables(变量)
 
 基础的定义方式是在一个 play 中使用 vars 关键字定义变量，示例如下
 
-    - host: webservers
-      vars:
-        http_port: 80 # 定义一个名为http_port的变量，值为80
-      tasks:
-      - debug
+```yaml
+- host: webservers
+  vars:
+    http_port: 80 # 定义一个名为http_port的变量，值为80
+  tasks:
+  - debug
+```
 
 Note: vars 关键字可以用在 host 环境中，也可以用在 tasks 环境中，用在 tasks 环境时，则变量仅对当前任务生效
 
 下面是一个在角色中定义字典类型变量的样例：
 
-    ~]# cat roles/test/defaults/main.yml
-    docker:
-      version: 18.06.2
-      dataDir: /var/lib/docker
-      registryMirrors:
-      - https://ac1rmo5p.mirror.aliyuncs.com
-      execOpts:
-      - 'native.cgroupdriver=systemd'
-      insecureRegistries:
-      - 100.64.2.52:9999
-      - 100.64.1.31:9999
+```yaml
+~]# cat roles/test/defaults/main.yml
+docker:
+  version: 18.06.2
+  dataDir: /var/lib/docker
+  registryMirrors:
+  - https://ac1rmo5p.mirror.aliyuncs.com
+  execOpts:
+  - 'native.cgroupdriver=systemd'
+  insecureRegistries:
+  - 100.64.2.52:9999
+  - 100.64.1.31:9999
+```
 
 ### 变量的引用方式
 
@@ -41,9 +45,9 @@ Note: vars 关键字可以用在 host 环境中，也可以用在 tasks 环境�
 
 变量可以通过两种方式引用字典内特定字段的变量
 
-1. 使用方括号 \[] 进行引用
-   1. docker\['registryMirrors'] 变量的值为<https://ac1rmo5p.mirror.aliyuncs.com>
-2. 使用点号 . 进行引用
-   1. docker.registryMirrors 变量的值为<https://ac1rmo5p.mirror.aliyuncs.com>
+- 使用方括号 \[] 进行引用
+   - docker\['registryMirrors'] 变量的值为<https://ac1rmo5p.mirror.aliyuncs.com>
+- 使用点号 . 进行引用
+   - docker.registryMirrors 变量的值为<https://ac1rmo5p.mirror.aliyuncs.com>
 
 Note：如果使用 点号 引用变量可能会引起问题，因为会与 python 字典的属性和方法冲突。所以，尽量使用方括号来引用变量

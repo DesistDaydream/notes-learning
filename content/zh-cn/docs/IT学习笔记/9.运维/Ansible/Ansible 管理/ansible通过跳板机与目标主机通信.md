@@ -8,15 +8,17 @@ title: ansible通过跳板机与目标主机通信
 
 大致的过程如下面的图示：
 
-    +-------------+       +----------+      +--------------+
-    | 开发环境机器A  | <---> |   跳板机B  | <--> | 生产环境机器B   |
-    +-------------+       +----------+      +--------------+
+```bash
++-------------+       +----------+      +--------------+
+| 开发环境机器A  | <---> |   跳板机B  | <--> | 生产环境机器B   |
++-------------+       +----------+      +--------------+
+```
 
 我们可以通过 ssh 命令的 ProxyCommand 选项来解决以上问题。
 
 通过 ProxyCommand 选项，机器 A 能够灵活使用任意代理机制与机器 C 上的 SSH Server 端口建立连接，接着机器 A 上的 SSH Client 再与该连接进行数据交互，从而机器 A 上的 SSH Client 与机器 C 上的 SSH Server 之间建立了与一般直接 SSH 连接不太一样的间接 SSH 连接。
 
-不过由于间接 SSH 连接的透明性，逻辑上可认为机器 A 上的 SSH Client 与机器 C 上的 SSH Server 建立了直接 SSH 连接。
+不过由于间接 SSH 连接的透明性，逻辑上可认为机器 A 上的 SSH Client 与机器 C 上的 SSH Server 建立了直接 SSH 连接。`1``
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/wawlgb/1616124930604-fefb5961-13b2-48ca-ad59-0e623b3bdc35.jpeg)
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/wawlgb/1616124930609-2ca4dea8-3c64-4b8f-9e78-b37dd522fdba.jpeg)
@@ -41,11 +43,13 @@ C-目标机：192.22.4.46
 A–>B：root 用户的互信
 C：root 的登录信息
 
-    # ansible all -m ping --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q root@10.0.13.251"'
-    192.22.4.46 | SUCCESS => {
-        "changed": false,
-        "ping": "pong"
-    }
+```bash
+# ansible all -m ping --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q root@10.0.13.251"'
+192.22.4.46 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+```
 
 可以成功穿过跳板机。
 
@@ -55,30 +59,34 @@ A–>B：一般用户（luke）的互信
 
 C：root 的登录信息
 
-    # ansible all -m ping --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q lichenhao@10.0.13.251"'
-    192.22.4.46 | SUCCESS => {
-        "changed": false,
-        "ping": "pong"
-    }
+```bash
+# ansible all -m ping --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q lichenhao@10.0.13.251"'
+192.22.4.46 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+```
 
 跳板机普通用户，访问目标机器的 root 目录
 
-    # ansible all --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q lichenhao@10.0.13.251"' -m command -a 'ls /root/'
-    192.22.4.46 | CHANGED | rc=0 >>
-    1115.txt
-    anaconda-ks.cfg
-    deploytelegraf
-    deploytelegraf.tar.gz
-    epic-brook.18.11.20.01.tar.gz
-    epic-josh-threshold.0.1.26.tar.gz
-    images.tar.gz
-    metric.tar.gz
-    python-httplib2-0.9.2-1.el7.noarch.rpm
-    restates
-    sensu-1.6.1-1.el7.x86_64.rpm
-    sshpass-1.06-2.el7.x86_64.rpm
-    test1115.txt
-    tl.txt
+```bash
+# ansible all --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q lichenhao@10.0.13.251"' -m command -a 'ls /root/'
+192.22.4.46 | CHANGED | rc=0 >>
+1115.txt
+anaconda-ks.cfg
+deploytelegraf
+deploytelegraf.tar.gz
+epic-brook.18.11.20.01.tar.gz
+epic-josh-threshold.0.1.26.tar.gz
+images.tar.gz
+metric.tar.gz
+python-httplib2-0.9.2-1.el7.noarch.rpm
+restates
+sensu-1.6.1-1.el7.x86_64.rpm
+sshpass-1.06-2.el7.x86_64.rpm
+test1115.txt
+tl.txt
+```
 
 结论
 
@@ -90,22 +98,27 @@ A–>B：一般用户（luke）的互信
 
 C：一般用户（luke）的登录信息
 
-    # ansible all -m ping --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q lichenhao@10.0.13.251"'
-    192.22.4.46 | SUCCESS => {
-        "changed": false,
-        "ping": "pong"
-    }
+```bash
+# ansible all -m ping --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q lichenhao@10.0.13.251"'
+192.22.4.46 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+```
 
-
-    # ansible all --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q lichenhao@10.0.13.251"' -m command -a 'pwd'
-    192.22.4.46 | CHANGED | rc=0 >>
-    /home/lichenhao
+```bash
+# ansible all --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q lichenhao@10.0.13.251"' -m command -a 'pwd'
+192.22.4.46 | CHANGED | rc=0 >>
+/home/lichenhao
+```
 
 跳板机普通用户，目标机普通用户，无法访问 root
 
-    # ansible all --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q lichenhao@10.0.13.251"' -m command -a 'ls /root/'
-    192.22.4.46 | FAILED | rc=2 >>
-    ls: cannot open directory /root/: Permission deniednon-zero return code
+```bash
+# ansible all --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q lichenhao@10.0.13.251"' -m command -a 'ls /root/'
+192.22.4.46 | FAILED | rc=2 >>
+ls: cannot open directory /root/: Permission deniednon-zero return code
+```
 
 目标机器的普通用户无法访问 root 权限的路径。
 
@@ -114,9 +127,11 @@ C：一般用户（luke）的登录信息
 A–>B：root 用户的互信
 C：luke 的登录信息
 
-    # ansible all --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q lichenhao@10.0.13.251"' -m command -a 'pwd'
-    192.22.4.46 | CHANGED | rc=0 >>
-    /home/luke
+```bash
+# ansible all --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q lichenhao@10.0.13.251"' -m command -a 'pwd'
+192.22.4.46 | CHANGED | rc=0 >>
+/home/luke
+```
 
 # 总结
 

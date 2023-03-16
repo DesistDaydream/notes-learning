@@ -1,6 +1,6 @@
 ---
-title: "Plugins"
-linkTitle: "Plugins"
+title: "AnsiblePlugins"
+linkTitle: "AnsiblePlugins"
 weight: 1
 ---
 
@@ -19,7 +19,7 @@ weight: 1
 - [Cache Plugins](https://docs.ansible.com/ansible/latest/plugins/cache.html)
 - [Callback Plugins](https://docs.ansible.com/ansible/latest/plugins/callback.html)
 - [Cliconf Plugins](https://docs.ansible.com/ansible/latest/plugins/cliconf.html)
-- [Connection 插件](/docs/IT学习笔记/9.运维/Ansible/Plugins/Connection%20插件.md)
+- [Connection 插件](docs/IT学习笔记/9.运维/Ansible/Ansible%20Plugins/Connection%20插件.md)
 - [Httpapi Plugins](https://docs.ansible.com/ansible/latest/plugins/httpapi.html)
 - [Inventory Plugins](https://docs.ansible.com/ansible/latest/plugins/inventory.html)
 - [Lookup Plugins](https://docs.ansible.com/ansible/latest/plugins/lookup.html)

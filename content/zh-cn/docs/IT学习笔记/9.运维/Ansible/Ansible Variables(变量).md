@@ -20,7 +20,7 @@ Ansible 的变量就跟编程语言中的变量概念一样，同样可以定义
 下面的示例就是在命令行中使用 debug 模块，查看了一下 inventory_hostname 这个默认变量的值
 
 ```bash
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all -m debug -a 'msg={{inventory_hostname}}'
+~]$ ansible -i ../inventory/ all -m debug -a 'msg={{inventory_hostname}}'
 hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
     "msg": "hw-cloud-xngy-jump-server-linux-2"
 }
@@ -231,7 +231,7 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 
 ### 在 Inventory 中定义变量
 
-详见 [Inventory 配置文件详解](/docs/IT学习笔记/9.运维/Ansible/Inventory%20 配置文件详解.md 配置文件详解.md)
+详见 [Inventory 配置文件详解](/docs/IT学习笔记/9.运维/Ansible/Inventory%20配置文件详解.md)
 
 ### 在 Playbooks 中定义变量
 
