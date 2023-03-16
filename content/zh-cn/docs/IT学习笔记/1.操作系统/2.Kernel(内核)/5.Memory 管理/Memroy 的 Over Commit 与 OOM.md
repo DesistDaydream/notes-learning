@@ -187,7 +187,7 @@ Nov 24 19:52:40 dr-2 kernel: __ratelimit: 8552 callbacks suppressed
 进程所占资源列表相关信息
 
 1. **pid** # 进程 ID 号
-2. **uid** #该进程用户的 UserID
+2. **uid** # 该进程用户的 UserID
 3. **tgid** #
 4. **total_vm** # 该进程所占用的虚拟内存页,1page=4k 内存，所以实际占用需要用该值乘以 4
 5. **rss** # 该进程所占用的实际内存页,1page=4k 内存，所以实际占用需要用该值乘以 4

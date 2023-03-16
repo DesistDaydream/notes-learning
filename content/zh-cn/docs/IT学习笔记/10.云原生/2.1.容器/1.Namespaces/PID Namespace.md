@@ -46,17 +46,17 @@ $ sudo unshare --pid --mount-proc --fork /bin/bash
 
 在前面的演示中我们为 unshare 命令添加了 --fork /bin/bash 参数：
 
-    $ sudo unshare --pid --mount-proc --fork /bin/bash
+    sudo unshare --pid --mount-proc --fork /bin/bash
 
 1
 Plain Text
 
-\--fork 是为了让 unshare 进程 fork 一个新的进程出来，然后再用 /bin/bash 替换掉新的进程中执行的命令。需要这么做是由于 PID namespace 本身的特点导致的。进程所属的 PID namespace 在它创建的时候就确定了，不能更改，所以调用 unshare 和 nsenter 等命令后，原进程还是属于老的 PID namespace，新 fork 出来的进程才属于新的 PID namespace。
+--fork 是为了让 unshare 进程 fork 一个新的进程出来，然后再用 /bin/bash 替换掉新的进程中执行的命令。需要这么做是由于 PID namespace 本身的特点导致的。进程所属的 PID namespace 在它创建的时候就确定了，不能更改，所以调用 unshare 和 nsenter 等命令后，原进程还是属于老的 PID namespace，新 fork 出来的进程才属于新的 PID namespace。
 
 我们在一个 shell 中执行下面的命令：
 
-    $ echo $$
-    $ sudo unshare --pid --mount-proc --fork /bin/bash
+    echo $$
+    sudo unshare --pid --mount-proc --fork /bin/bash
 
 1
 2
@@ -174,8 +174,8 @@ $ kill 51
 
 首先，利用 unshare、nohup 和 sleep 命令组合，创建出父子进程。下面的命令 fork 出一个子进程并在后台 sleep 一小时：
 
-    $ unshare --fork nohup sleep 3600&
-    $ pstree -p
+    unshare --fork nohup sleep 3600&
+    pstree -p
 
 1
 2
@@ -185,8 +185,8 @@ Shell
 
 然后我们 kill 掉进程 unshare(34)：
 
-    $ kill 34
-    $ pstree -p
+    kill 34
+    pstree -p
 
 1
 2
@@ -219,8 +219,8 @@ Shell
 
 我们先 kill 掉 sleep 进程的父进程 unshare(105)：
 
-    $ kill 105
-    $ pstree -p
+    kill 105
+    pstree -p
 
 1
 2
@@ -232,8 +232,8 @@ Shell
 
 接下来 kill 掉第二个 PID namespace 中的 init 进程，即这里的 bash(14)：
 
-    $ kill -SIGKILL 14
-    $ pstree -p
+    kill -SIGKILL 14
+    pstree -p
 
 1
 2

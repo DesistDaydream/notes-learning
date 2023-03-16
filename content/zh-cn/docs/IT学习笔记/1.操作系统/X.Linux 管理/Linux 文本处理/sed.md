@@ -89,7 +89,7 @@ EXAMPLE：
 
 - sed -n 10p passwd # 输出 passwd 文件中的第 10 行
 - sed -n $p passwd # 输出 passwd 文件中最后一行
-- sed -n 1~5p passwd #输出 passwd 文件中第一行、第六行、第十一行....以此类推
+- sed -n 1~5p passwd # 输出 passwd 文件中第一行、第六行、第十一行....以此类推
 
 二、使用 RegExp(正则表达式) 定位行
 Note：通过正则表达式来匹配指定的行，正则表达式两边需要添加定界符

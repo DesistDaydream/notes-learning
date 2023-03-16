@@ -135,20 +135,20 @@ make 自动生成：<https://github.com/etcd-io/etcd/tree/master/hack/tls-setup>
 
 客户端到服务端通信认证所需配置
 
-\--client-cert-auth=true #设置此选项后，etcd 将检查所有传入的 HTTPS 请求以查找由受信任的 CA 签名的客户端证书，未提供有效客户端证书的请求将失败。如果启用了[身份验证](https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/authentication.md)，则证书将为“公用名”字段提供的用户名提供凭据。
+--client-cert-auth=true # 设置此选项后，etcd 将检查所有传入的 HTTPS 请求以查找由受信任的 CA 签名的客户端证书，未提供有效客户端证书的请求将失败。如果启用了[身份验证](https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/authentication.md)，则证书将为“公用名”字段提供的用户名提供凭据。
 
-\--cert-file=/etc/kubernetes/pki/etcd/server.crt # 用于与 etcd 的 SSL / TLS 连接的证书。设置此选项后，advertise-client-urls 可以使用 HTTPS 模式。
+--cert-file=/etc/kubernetes/pki/etcd/server.crt # 用于与 etcd 的 SSL / TLS 连接的证书。设置此选项后，advertise-client-urls 可以使用 HTTPS 模式。
 
-\--key-file=/etc/kubernetes/pki/etcd/server.key # 证书密钥。必须未加密。
+--key-file=/etc/kubernetes/pki/etcd/server.key # 证书密钥。必须未加密。
 
-\--trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt #受信任的证书颁发机构。
+--trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt # 受信任的证书颁发机构。
 
 服务端到服务端通信认证所需配置
 
-\--peer-client-cert-auth=true # 设置后，etcd 将检查来自集群的所有传入对等请求，以查找由提供的 CA 签名的有效客户端证书。
+--peer-client-cert-auth=true # 设置后，etcd 将检查来自集群的所有传入对等请求，以查找由提供的 CA 签名的有效客户端证书。
 
-\--peer-cert-file=/etc/kubernetes/pki/etcd/peer.crt # 对等体之间用于 SSL / TLS 连接的证书。这将用于侦听对等方地址以及向其他对等方发送请求。
+--peer-cert-file=/etc/kubernetes/pki/etcd/peer.crt # 对等体之间用于 SSL / TLS 连接的证书。这将用于侦听对等方地址以及向其他对等方发送请求。
 
-\--peer-key-file=/etc/kubernetes/pki/etcd/peer.key # 证书密钥。必须未加密。
+--peer-key-file=/etc/kubernetes/pki/etcd/peer.key # 证书密钥。必须未加密。
 
-\--peer-trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt # 受信任的证书颁发机构。
+--peer-trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt # 受信任的证书颁发机构。

@@ -18,7 +18,7 @@ title: RsysLog 配置详解
 **module(load="imuxsock")**# 加载 imuxsock 模块，以便让 Rsyslog 可以监听 /dev/log 这个 Unix Socket 以接收日志消息<br />配置 TCP 协议的 syslog 接收，用于在日志服务器的时候配置
 
 - **$ModLoad imtcp** # 使用 tcp 进行传输
-- **$InputTCPServerRun 514** #监听在 514 端口上
+- **$InputTCPServerRun 514** # 监听在 514 端口上
 
 # GLOBAL DIRECTIVES 全局指令配置
 
@@ -53,16 +53,16 @@ template(NAME TYPE Descriptions)
    4. plugin
 2. EXAMPLE
    1. template (name="RemoteLogs" type="string" string="/var/log/%HOSTNAME%/%PROGRAMNAME%.log")
-   2. :programname, regex, "Keepalived.\*" -/var/log/keepalived/keepalived.log #根据程序名字，使用正则表达式，开头是 Keepalived 的日志，写入到/var/log/keepalived/keepalived.log 文件中
+   2. :programname, regex, "Keepalived.\*" -/var/log/keepalived/keepalived.log # 根据程序名字，使用正则表达式，开头是 Keepalived 的日志，写入到/var/log/keepalived/keepalived.log 文件中
 
 可用的属性详见：<https://www.rsyslog.com/doc/v8-stable/configuration/properties.html>
 
-$template NAME,"PATH" #定义一个名为 NAME 的模板来作为 RULE 配置段中 Location 字段使用，在 Location 字段中通过?NAME 来引用该对应模板
+$template NAME,"PATH" # 定义一个名为 NAME 的模板来作为 RULE 配置段中 Location 字段使用，在 Location 字段中通过?NAME 来引用该对应模板
 
 - PATH 的可用变量
-  - %HOSTNAME% # 用来区分是哪台远程主机的。
-  - %PROGRAMNAME% # 通过日志标准格式中的 ProgramName 字段来进行分类保存日志。i.e.每个程序名是单独的一个文件
-  - %$year%%$month%%$day% # 用来以时间格式命名文件
+  - `%HOSTNAME%` # 用来区分是哪台远程主机的。
+  - `%PROGRAMNAME%` # 通过日志标准格式中的 ProgramName 字段来进行分类保存日志。i.e.每个程序名是单独的一个文件
+  - `%$year%%$month%%$day%` # 用来以时间格式命名文件
 
 # RULES 规则配置
 

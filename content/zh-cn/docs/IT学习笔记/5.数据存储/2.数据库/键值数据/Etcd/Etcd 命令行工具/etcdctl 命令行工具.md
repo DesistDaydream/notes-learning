@@ -86,7 +86,7 @@ compaction Compacts the event history in etcd
 
 OPTIONS
 
-1. \--load # 性能检查的工作负载模型。可接受的工作负载：s(small 小)，m(medium 中)，l(large 大)，xl(x 大)
+1. --load # 性能检查的工作负载模型。可接受的工作负载：s(small 小)，m(medium 中)，l(large 大)，xl(x 大)
 
 # defrag # 对指定 endpoints 的 etcd 成员的存储空间进行碎片整理
 

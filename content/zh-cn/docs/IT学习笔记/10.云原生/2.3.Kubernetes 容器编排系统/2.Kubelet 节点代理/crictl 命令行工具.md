@@ -68,4 +68,4 @@ OPTIONS
 EXAMPLE
 
 - crictl info # 显示与 crictl 对接的 CRI 信息
-- crictl pull docker.io/lchdzh/pause:3.1 #拉取 dockerhub 上的 lchdzh 中的 pause 镜像
+- crictl pull docker.io/lchdzh/pause:3.1 # 拉取 dockerhub 上的 lchdzh 中的 pause 镜像

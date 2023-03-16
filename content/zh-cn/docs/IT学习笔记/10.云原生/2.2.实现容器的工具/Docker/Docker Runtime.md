@@ -233,7 +233,7 @@ rootfs 准备好之后，dockerd 接着会准备一些容器里面需要用的�
 
 容器启动后多了几个文件，这几个文件时 docker 动态生成的
 
-- 28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10-json.log #容器的日志文件，后续容器的 stdout 和 stderr 都会输出到这个目录。当然如果配置了其它的日志插件的话，日志就会写到别的地方。
+- 28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10-json.log # 容器的日志文件，后续容器的 stdout 和 stderr 都会输出到这个目录。当然如果配置了其它的日志插件的话，日志就会写到别的地方。
 - hostname：里面是容器的主机名，来自于 config.v2.json，由 docker create 命令的-h 参数指定，如果没指定的话，就是容器 ID 的前 12 位，这里即为 28f5bed704dc
 - resolv.conf：里面包含了 DNS 服务器的 IP，来自于 hostconfig.json，由 docker create 命令的--dns 参数指定，没有指定的话，docker 会根据容器的网络类型生成一个默认的，一般是主机配置的 DNS 服务器或者是 docker bridge 的 IP。
 - resolv.conf.hash：resolv.conf 文件的校验码

@@ -134,7 +134,7 @@ Note：在使用 -v 方式应用 Storage，并且指定 SRC 为宿主机上的�
 
 挂载一个单独文件的方法
 
-docker run -v /HOST/PATH/FILE:/CONTAINER/PATH/FILE #这样就把 host 上的 FILE 挂载到 container 指定路径下的 FILE 上去了。FILE 可以不同名
+docker run -v /HOST/PATH/FILE:/CONTAINER/PATH/FILE # 这样就把 host 上的 FILE 挂载到 container 指定路径下的 FILE 上去了。FILE 可以不同名
 
 # 修改 docker -v 挂载的文件时遇到的问题
 

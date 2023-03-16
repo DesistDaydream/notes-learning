@@ -82,8 +82,8 @@ EXAMPLE
 **openssl req \[ OPTIONS ] \[ ARGUMENTS ]**
 OPTIONS
 
-- **-config <FILENAME>** #
-- **-new**#生成新证书请求
+- **-config \<FILENAME>** #
+- **-new** # 生成新证书请求
 - **-x509** # 生成自签证书
 - **-key /PATH/FILE** # 指明用于生成请求时用到的私钥文件
 - **-days NUM** # 指明证书的有效期

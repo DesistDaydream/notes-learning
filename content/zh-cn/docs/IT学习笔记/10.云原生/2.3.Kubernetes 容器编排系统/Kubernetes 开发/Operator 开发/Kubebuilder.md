@@ -60,19 +60,19 @@ Writes the following files:
 
 FLAGS
 
-1. \--domain STRING # domain for groups (default "my.domain")
+1. --domain STRING # domain for groups (default "my.domain")
 
-2. \--fetch-deps # 确保下载依赖项。(default true)
+2. --fetch-deps # 确保下载依赖项。(default true)
 
-3. \--license STRING # license to use to boilerplate, may be one of 'apache2', 'none' (default "apache2")
+3. --license STRING # license to use to boilerplate, may be one of 'apache2', 'none' (default "apache2")
 
-4. \--owner STRING # 在每个代码文件的开头添加 Cpoyright
+4. --owner STRING # 在每个代码文件的开头添加 Cpoyright
 
-5. \--project-version STRING # project version (default "2")
+5. --project-version STRING # project version (default "2")
 
-6. \--repo STRING # 用于 go 模块的名称(例如 github.com/user/repo)，默认为当前工作目录的 go 包名。
+6. --repo STRING # 用于 go 模块的名称(例如 github.com/user/repo)，默认为当前工作目录的 go 包名。
 
-7. \--skip-go-version-check # 如果指定，请跳过检查 Go 版本
+7. --skip-go-version-check # 如果指定，请跳过检查 Go 版本
 
 Examples:
 

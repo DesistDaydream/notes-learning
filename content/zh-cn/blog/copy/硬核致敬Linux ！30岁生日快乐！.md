@@ -9,7 +9,7 @@ date: 2021-08-26
 ![](https://mmbiz.qpic.cn/mmbiz_png/Pn4Sm0RsAuhH4SOtTAkhF5RQnT4PAWdG2NT9Smu9eqEV5PAwKq3PbC6iagpqsfWz47RFLIZibibcIDAn3IyVS0ahw/640?wx_fmt=png)
 
 1991年8月25日，21岁的Linus Torvalds（以下简称Linus）做了一个免费的操作系统“Linux”，并在这一天向外界公布这个由“业余爱好”主导的个人项目；如今，全球超级计算机500强和超过70%的智能手机都在运行Linux，因此，8月25日也被许多Linux的爱好者视为Linux真正的诞生日期。
-#你好
+# 你好
 ![](https://mmbiz.qpic.cn/mmbiz_png/cYSwmJQric6nhH4RQfgaJfjrfmLsALibgH5rcBjAWV0lF8QBtlXSJgRrJqBP90P2rfTd8WpVRAtyzqxhbXd6QnNg/640?wx_fmt=png)
 
 30 年前，Linus Torvalds 首次发布 Linux 内核时还是赫尔辛基大学的一名 21 岁学生。他的声明是这样开始的，“我正在做一个（免费的）操作系统（只是一个爱好，不会很大和专业......）”。三十年后，排名前 500 的超级计算机都在运行 Linux，所有智能手机的 70% 以上都是如此。Linux 显然既庞大又专业。

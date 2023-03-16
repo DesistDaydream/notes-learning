@@ -104,7 +104,7 @@ VOLUME MountPoint
 
 默认情况使用 root，如果想指定特殊用户，则在/etc/passwd 文件中有该用户才可以
 
-# HEALTHCHECK #健康检查
+# HEALTHCHECK # 健康检查
 
 # EXPOSE # 指定容器中的进程会监听某个端口，Docker 可以将该端口暴露出来
 

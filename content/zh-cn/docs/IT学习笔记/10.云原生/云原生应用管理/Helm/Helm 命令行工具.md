@@ -31,7 +31,7 @@ Flags 与 Options 一样，是标志、标记的意思，就是指该命令的�
 - -v, --v Level                          number for the log level verbosity
 - --vmodule moduleSpec               comma-separated list of pattern=N settings for file-filtered logging
 
-# 可用的子命令如下：
+# 可用的子命令如下
 
 ## completion # 为指定的 shell（bash 或 zsh）生成命令自动补全脚本
 
@@ -70,7 +70,7 @@ helm list \[FLAGS] \[FILTER]
 2. EXAMPLE
    1. helm list -A # 列出所有名称空间下已经部署的或者失败的所有 release
 
-## package # 打包一个 chart 到定好版本的 chart archive 文件中。
+## package # 打包一个 chart 到定好版本的 chart archive 文件中
 
 该命令会查找指定路径下的 Chart.yaml 文件，然后打包该目录，如果目录中没有 Chart.yaml 文件则无法打包
 
@@ -91,7 +91,7 @@ helm repo \[SubCommand]
 SubCommand
 
 1. add # 添加一个 charts 仓库
-   1. helm repo add \[FLAGS] NAME URL #添加一个名为 Name,url 为 URL 的仓库
+   1. helm repo add \[FLAGS] NAME URL # 添加一个名为 Name,url 为 URL 的仓库
    2. EXAMPLE
       1. helm repo add lichenhao https://www.lichenhao.com
 2. index       generate an index file given a directory containing packaged charts
@@ -111,8 +111,8 @@ SubCommand
 
 FLAGS
 
-1. \--endpoint string      monocular instance to query for charts (default "https://hub.helm.sh")
-2. \--max-col-width uint   maximum column width for output table (default 50)
+1. --endpoint string      monocular instance to query for charts (default "https://hub.helm.sh")
+2. --max-col-width uint   maximum column width for output table (default 50)
 3. -o, --output format        prints the output in the specified format. Allowed values: table, json, yaml (default table)
 
 ### repo # 在已添加的所有 repoistories 中搜索 charts
@@ -121,11 +121,11 @@ FLAGS
 
 FLAGS
 
-1. \--devel # 搜索结果包含开发版等效于 --version 标志的值'>0.0.0-0'。如果设置了 --version 标志，则忽略该标志。
-2. \--max-col-width UINT # 输出表的每列的最大宽度为 UINT。(默认为 50)
+1. --devel # 搜索结果包含开发版等效于 --version 标志的值'>0.0.0-0'。如果设置了 --version 标志，则忽略该标志。
+2. --max-col-width UINT # 输出表的每列的最大宽度为 UINT。(默认为 50)
 3. -o, --output FORMAT # 以指定的格式打印输出。 允许的值：table，json，yaml（默认表）
 4. -r, --regexp               use regular expressions for searching repositories you have added
-5. \--version string       search using semantic versioning constraints on repositories you have added
+5. --version string       search using semantic versioning constraints on repositories you have added
 6. -l, --versions             show the long listing, with each version of each chart on its own line, for repositories you have added
 
 EXAMPLE
@@ -140,7 +140,7 @@ FLAGS
 
 1. -o, --output FORMAT # 以指定的格式输出内容。`默认值：table`。可用的值有 table、json、yaml
    1. 注意：yaml 格式可以显示该 release 的所有资源
-2. \--revision INT # 显示指定历史版本的信息
+2. --revision INT # 显示指定历史版本的信息
 
 ## template # 在本地渲染 chart 模板，并展示输出
 
@@ -154,7 +154,7 @@ helm uninstall \[FLAGS] RELEASE_NAME \[...]
 
 FLAGS
 
-   - --purge # 从 store 移除 release 以便让 release 的名字空出来为以后使用。
+- --purge # 从 store 移除 release 以便让 release 的名字空出来为以后使用。
 
 EXAMPLE
 

@@ -246,13 +246,13 @@ Positional arguments:
 
 Optional arguments:
 
-\--version show program's version number and exit
+--version show program's version number and exit
 
 -d, --debug Defaults to env\[GLANCECLIENT_DEBUG].
 
 -v, --verbose Print more verbose output.
 
-\--get-schema Ignores cached copy and forces retrieval of schema
+--get-schema Ignores cached copy and forces retrieval of schema
 
                         that generates portions of the help text. Ignored with
 
@@ -262,7 +262,7 @@ Optional arguments:
 
                         confirmation.
 
-\--os-image-url OS_IMAGE_URL
+--os-image-url OS_IMAGE_URL
 
                         Defaults to env[OS_IMAGE_URL]. If the provided image
 
@@ -272,11 +272,11 @@ Optional arguments:
 
                         picked as the image api version to use.
 
-\--os-image-api-version OS_IMAGE_API_VERSION
+--os-image-api-version OS_IMAGE_API_VERSION
 
                         Defaults to env[OS_IMAGE_API_VERSION] or 2.
 
-\--profile HMAC_KEY HMAC key to use for encrypting context data for
+--profile HMAC_KEY HMAC key to use for encrypting context data for
 
                         performance profiling of operation. This key should be
 
@@ -292,29 +292,29 @@ Optional arguments:
 
                         enabled on server side. Defaults to env[OS_PROFILE].
 
-\--key-file OS_KEY DEPRECATED! Use --os-key.
+--key-file OS_KEY DEPRECATED! Use --os-key.
 
-\--ca-file OS_CACERT DEPRECATED! Use --os-cacert.
+--ca-file OS_CACERT DEPRECATED! Use --os-cacert.
 
-\--cert-file OS_CERT DEPRECATED! Use --os-cert.
+--cert-file OS_CERT DEPRECATED! Use --os-cert.
 
-\--os-region-name OS_REGION_NAME
+--os-region-name OS_REGION_NAME
 
                         Defaults to env[OS_REGION_NAME].
 
-\--os-auth-token OS_AUTH_TOKEN
+--os-auth-token OS_AUTH_TOKEN
 
                         Defaults to env[OS_AUTH_TOKEN].
 
-\--os-service-type OS_SERVICE_TYPE
+--os-service-type OS_SERVICE_TYPE
 
                         Defaults to env[OS_SERVICE_TYPE].
 
-\--os-endpoint-type OS_ENDPOINT_TYPE
+--os-endpoint-type OS_ENDPOINT_TYPE
 
                         Defaults to env[OS_ENDPOINT_TYPE].
 
-\--os-auth-type , --os-auth-plugin
+--os-auth-type , --os-auth-plugin
 
                         Authentication type to use
 
@@ -322,7 +322,7 @@ API Connection Options:
 
 Options controlling the HTTP API Connections
 
-\--insecure Explicitly allow client to perform "insecure" TLS
+--insecure Explicitly allow client to perform "insecure" TLS
 
                         (https) requests. The server's certificate will not be
 
@@ -330,7 +330,7 @@ Options controlling the HTTP API Connections
 
                         option should be used with caution.
 
-\--os-cacert
+--os-cacert
 
                         Specify a CA bundle file to use in verifying a TLS
 
@@ -338,55 +338,55 @@ Options controlling the HTTP API Connections
 
                         env[OS_CACERT].
 
-\--os-cert
+--os-cert
 
                         Defaults to env[OS_CERT].
 
-\--os-key Defaults to env\[OS_KEY].
+--os-key Defaults to env\[OS_KEY].
 
-\--timeout Set request timeout (in seconds).
+--timeout Set request timeout (in seconds).
 
 Authentication Options:
 
 Options specific to the password plugin.
 
-\--os-auth-url OS_AUTH_URL
+--os-auth-url OS_AUTH_URL
 
                         Authentication URL
 
-\--os-system-scope OS_SYSTEM_SCOPE
+--os-system-scope OS_SYSTEM_SCOPE
 
                         Scope for system operations
 
-\--os-domain-id OS_DOMAIN_ID
+--os-domain-id OS_DOMAIN_ID
 
                         Domain ID to scope to
 
-\--os-domain-name OS_DOMAIN_NAME
+--os-domain-name OS_DOMAIN_NAME
 
                         Domain name to scope to
 
-\--os-project-id OS_PROJECT_ID, --os-tenant-id OS_PROJECT_ID
+--os-project-id OS_PROJECT_ID, --os-tenant-id OS_PROJECT_ID
 
                         Project ID to scope to
 
-\--os-project-name OS_PROJECT_NAME, --os-tenant-name OS_PROJECT_NAME
+--os-project-name OS_PROJECT_NAME, --os-tenant-name OS_PROJECT_NAME
 
                         Project name to scope to
 
-\--os-project-domain-id OS_PROJECT_DOMAIN_ID
+--os-project-domain-id OS_PROJECT_DOMAIN_ID
 
                         Domain ID containing project
 
-\--os-project-domain-name OS_PROJECT_DOMAIN_NAME
+--os-project-domain-name OS_PROJECT_DOMAIN_NAME
 
                         Domain name containing project
 
-\--os-trust-id OS_TRUST_ID
+--os-trust-id OS_TRUST_ID
 
                         Trust ID
 
-\--os-default-domain-id OS_DEFAULT_DOMAIN_ID
+--os-default-domain-id OS_DEFAULT_DOMAIN_ID
 
                         Optional domain ID to use with v3 and v2 parameters.
 
@@ -394,7 +394,7 @@ Options specific to the password plugin.
 
                         in v3 and ignored in v2 authentication.
 
-\--os-default-domain-name OS_DEFAULT_DOMAIN_NAME
+--os-default-domain-name OS_DEFAULT_DOMAIN_NAME
 
                         Optional domain name to use with v3 API and v2
 
@@ -402,23 +402,23 @@ Options specific to the password plugin.
 
                         project domain in v3 and ignored in v2 authentication.
 
-\--os-user-id OS_USER_ID
+--os-user-id OS_USER_ID
 
                         User id
 
-\--os-username OS_USERNAME, --os-user-name OS_USERNAME
+--os-username OS_USERNAME, --os-user-name OS_USERNAME
 
                         Username
 
-\--os-user-domain-id OS_USER_DOMAIN_ID
+--os-user-domain-id OS_USER_DOMAIN_ID
 
                         User's domain id
 
-\--os-user-domain-name OS_USER_DOMAIN_NAME
+--os-user-domain-name OS_USER_DOMAIN_NAME
 
                         User's domain name
 
-\--os-password OS_PASSWORD
+--os-password OS_PASSWORD
 
                         User's password
 

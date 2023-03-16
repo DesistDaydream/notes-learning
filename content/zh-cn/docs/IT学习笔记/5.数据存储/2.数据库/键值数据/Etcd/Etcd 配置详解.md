@@ -24,37 +24,37 @@ Etcd 运行时的行为可以通过三种方式进行配置
 
 ## Member 成员相关标志
 
-\--name # member 的名称。`默认值：default`
-\--data-dir # etcd 数据存储路径。`默认值：${name}.etcd`。一般大家都修改到 /var/lib/etcd 下。
-\--wal-dir
-\--snapshot-count
-\--heartbeat-interval # 心跳检测的间隔时间，时间单位是 milliseconds(毫秒)。`默认值：100`
+--name # member 的名称。`默认值：default`
+--data-dir # etcd 数据存储路径。`默认值：${name}.etcd`。一般大家都修改到 /var/lib/etcd 下。
+--wal-dir
+--snapshot-count
+--heartbeat-interval # 心跳检测的间隔时间，时间单位是 milliseconds(毫秒)。`默认值：100`
 
 - 注意：修改心跳值的同时要修改 election-timeout 标志。因为 选举超时 时间至少需要是 心跳检测间隔的 5 倍，如果达不到 5 倍，则 etcd 启动失败
 
-\--election-timeout # 选举超时时间，时间单位是 milliseconds(毫秒)。`默认值：1000`
-\--listen-peer-urls # 监听的用于节点之间通信的 url，可监听多个，集群内部将通过这些 url 进行数据交互(如选举，数据同步等)
-\--listen-client-urls # 监听的用于客户端通信的 url，同样可以监听多个。
-\--max-snapshots
-\--max-wals
-\--cors
-\--quota-backend-bytes # etcd 可储存的数据配额上限。`默认值：0`。
+--election-timeout # 选举超时时间，时间单位是 milliseconds(毫秒)。`默认值：1000`
+--listen-peer-urls # 监听的用于节点之间通信的 url，可监听多个，集群内部将通过这些 url 进行数据交互(如选举，数据同步等)
+--listen-client-urls # 监听的用于客户端通信的 url，同样可以监听多个。
+--max-snapshots
+--max-wals
+--cors
+--quota-backend-bytes # etcd 可储存的数据配额上限。`默认值：0`。
 
 > 默认值 0 表示最低配额。在 3.4 版本时，最低配额是 2G，也就是说 etcd 最多可以保存 2G 的数据。
 
-\--backend-batch-limit
-\--backend-bbolt-freelist-type
-\--backend-batch-interval
-\--max-txn-ops
-\--max-request-bytes
-\--grpc-keepalive-min-time
-\--grpc-keepalive-interval
-\--grpc-keepalive-timeout
+--backend-batch-limit
+--backend-bbolt-freelist-type
+--backend-batch-interval
+--max-txn-ops
+--max-request-bytes
+--grpc-keepalive-min-time
+--grpc-keepalive-interval
+--grpc-keepalive-timeout
 
 ## Clustering 集群相关标志
 
 > 注意：
-> \--initial-advertise-peer-urls，-initial-cluster，-initial-cluster-state 和 --initial-cluster-token 这 4 个标志是比较特殊的存在。只在 etcd 第一次启动并加入集群之前生效。
+> --initial-advertise-peer-urls，-initial-cluster，-initial-cluster-state 和 --initial-cluster-token 这 4 个标志是比较特殊的存在。只在 etcd 第一次启动并加入集群之前生效。
 > 上面这 4 个标志用于引导（静态引导，服务发现引导 or 运行时配置）新成员，并且已经在集群中的成员重新启动时，将忽略这些标志。
 > 使用发现服务时，需要设置 --discovery 前缀标志。
 
@@ -81,110 +81,110 @@ Etcd 运行时的行为可以通过三种方式进行配置
 
 - 默认值：<http://localhost:2379>
 
-\--discovery #
-\--discovery-srv #
-\--discovery-srv-name #
-\--discovery-fallback #
-\--discovery-proxy #
-\--strict-reconfig-check #
-\--auto-compaction-retention #
-\--auto-compaction-mode #
-\--enable-v2 #
+--discovery #
+--discovery-srv #
+--discovery-srv-name #
+--discovery-fallback #
+--discovery-proxy #
+--strict-reconfig-check #
+--auto-compaction-retention #
+--auto-compaction-mode #
+--enable-v2 #
 
 ## Proxy 代理相关标志
 
-\--proxy
+--proxy
 
-\--proxy-failure-wait
+--proxy-failure-wait
 
-\--proxy-refresh-interval
+--proxy-refresh-interval
 
-\--proxy-dial-timeout
+--proxy-dial-timeout
 
-\--proxy-write-timeout
+--proxy-write-timeout
 
-\--proxy-read-timeout
+--proxy-read-timeout
 
 ## Security 安全相关标志
 
 安全相关的标志用来帮助[建立一个安全的 etcd 集群](https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/security.md)
 
-\--ca-file
+--ca-file
 
-\--cert-file
+--cert-file
 
-\--key-file
+--key-file
 
-\--client-cert-auth
+--client-cert-auth
 
-\--client-crl-file
+--client-crl-file
 
-\--client-cert-allowed-hostname
+--client-cert-allowed-hostname
 
-\--trusted-ca-file
+--trusted-ca-file
 
-\--auto-tls
+--auto-tls
 
-\--peer-ca-file
+--peer-ca-file
 
-\--peer-cert-file
+--peer-cert-file
 
-\--peer-key-file
+--peer-key-file
 
-\--peer-client-cert-auth
+--peer-client-cert-auth
 
-\--peer-crl-file
+--peer-crl-file
 
-\--peer-trusted-ca-file
+--peer-trusted-ca-file
 
-\--peer-auto-tls
+--peer-auto-tls
 
-\--peer-cert-allowed-cn
+--peer-cert-allowed-cn
 
-\--peer-cert-allowed-hostname
+--peer-cert-allowed-hostname
 
-\--cipher-suites
+--cipher-suites
 
 ## Logging flags
 
-\--logger
+--logger
 
-\--log-outputs
+--log-outputs
 
-\--log-level
+--log-level
 
-\--debug
+--debug
 
-\--log-package-levels
+--log-package-levels
 
 ## Unsafe flags
 
-\--force-new-cluster
+--force-new-cluster
 
 ## Miscellaneous flags
 
-\--version
+--version
 
-\--config-file
+--config-file
 
 ## Profiling flags
 
-\--enable-pprof
+--enable-pprof
 
-\--metrics
+--metrics
 
-\--listen-metrics-urls
+--listen-metrics-urls
 
 ## Auth flags
 
-\--auth-token
+--auth-token
 
-\--bcrypt-cost
+--bcrypt-cost
 
 ## Experimental flags
 
 -experimental-corrupt-check-time
 
-\--experimental-compaction-batch-limit
+--experimental-compaction-batch-limit
 
-\--experimental-peer-skip-client-san-verification
+--experimental-peer-skip-client-san-verification

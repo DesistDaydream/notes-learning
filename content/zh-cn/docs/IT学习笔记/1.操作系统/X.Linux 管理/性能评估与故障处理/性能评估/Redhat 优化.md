@@ -3,6 +3,7 @@ title: Redhat 优化
 ---
 
 # 概述
+
 Redhat 官方文档：<https://access.redhat.com/documentation/zh-CN/Red_Hat_Enterprise_Linux/7/html/Performance_Tuning_Guide/>
 
 参考文章：<https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/index>
@@ -25,7 +26,7 @@ Tuned 是一项服务，可监视您的系统并在某些工作负载下优化�
 
 ## 配置文件
 
-/usr/lib/tuned/_ # 特定于发行版的概要文件存储在目录中。每个配置文件都有其自己的目录。该配置文件由名为 tuned.conf 的主要配置文件以及其他文件（例如帮助程序脚本）组成。
+/usr/lib/tuned/_# 特定于发行版的概要文件存储在目录中。每个配置文件都有其自己的目录。该配置文件由名为 tuned.conf 的主要配置文件以及其他文件（例如帮助程序脚本）组成。
 /etc/tuned/_ # 如果需要定制概要文件，请将概要文件目录复制到用于定制概要文件的目录中。如果有两个同名的配置文件，则使用 /etc/tuned/ 中的自定义配置文件。
 
 tuned-adm 命令行工具
@@ -64,12 +65,12 @@ optional arguments:
 
 1. -h, --help show this help message and exit
 
-2. \--version, -v show program's version number and exit
+2. --version, -v show program's version number and exit
 
-3. \--debug, -d show debug messages
+3. --debug, -d show debug messages
 
-4. \--async, -a with dbus do not wait on commands completion and return immediately
+4. --async, -a with dbus do not wait on commands completion and return immediately
 
-5. \--timeout TIMEOUT, -t TIMEOUT with sync operation use specific timeout instead of the default 600 second(s)
+5. --timeout TIMEOUT, -t TIMEOUT with sync operation use specific timeout instead of the default 600 second(s)
 
-6. \--loglevel LOGLEVEL, -l LOGLEVEL level of log messages to capture (one of debug, info,warn, error, console, none). Default: console
+6. --loglevel LOGLEVEL, -l LOGLEVEL level of log messages to capture (one of debug, info,warn, error, console, none). Default: console

@@ -51,30 +51,30 @@ KubeConfig 是对 UserAccount 的扩展，KubeConfig 会创建 UserAccount 并�
 ## clusters: <\[]Object> # 定义访问指定集群所用的证书、访问入口、名称，可指定多个集群
 
 - **cluster: \<map\[STRING]STRING>** # 集群列表
-  - **certificate-authority-data: <STRING>** # 集群的认证信息。一般为集群 ca 证书的 base64 格式的字符串
-  - **server: <STRING>** # 集群的入口，一般为 API Server 的 `https://IP:PORT`
-  - **insecure-skip-tls-verify: <BOOLEAN>** # 是否跳过验证服务端证书有效性的行为。
-- **name: <STRING>** # 指定该集群的名称
+  - **certificate-authority-data: \<STRING>** # 集群的认证信息。一般为集群 ca 证书的 base64 格式的字符串
+  - **server: \<STRING>** # 集群的入口，一般为 API Server 的 `https://IP:PORT`
+  - **insecure-skip-tls-verify: \<BOOLEAN>** # 是否跳过验证服务端证书有效性的行为。
+- **name: \<STRING>** # 指定该集群的名称
 
 ## contexts: <\[]Object> # 指名用户与集群的绑定关系
 
 比如有一台主机作为客户端(kubelet)，想控制多个 k8s 的集群，为了让一个 kubectl 控制多个集群且多个不同用户账号可以访问多个不同的集群。
 
 - **context: \<map\[STRING]STRING>** # 上下文列表
-  - **cluster: <STRING>** # 指明与 user 关联的 cluster
-  - **user: <STRING>** # 指明与 cluster 关联的 user
-  - **namespace: <STRING>** #可省，指定该配置环境默认操作的 namespace，省略表示默认为 default 名称空间。
-- **name: <STRING>** # 指明该上下文的名称。默认格式为"用户名@集群名"，表示这个用户被授权到这个集群中。其实可以使用任意字符串。
+  - **cluster: \<STRING>** # 指明与 user 关联的 cluster
+  - **user: \<STRING>** # 指明与 cluster 关联的 user
+  - **namespace: \<STRING>** # 可省，指定该配置环境默认操作的 namespace，省略表示默认为 default 名称空间。
+- **name: \<STRING>** # 指明该上下文的名称。默认格式为"用户名@集群名"，表示这个用户被授权到这个集群中。其实可以使用任意字符串。
 
-## current-context: <STRING> # 当前所使用的上下文
+## current-context: \<STRING> # 当前所使用的上下文
 
 kubectl config current-context 命令就是获取该字段的值。
 
 ## users: <\[]Object> # 定义用户信息
 
-- **name: <STRING>** # 指定用户名称
+- **name: \<STRING>** # 指定用户名称
 - **user: \<map\[STRING]STRING>** # 用户信息
   - **client-certificate-data: REDACTED** # 证书，一般使用集群 ca 证书的 base64 格式的字符串。指明这个用户用来与集群 api 通信时所用客户端的证书
-  - **client-key-data: REDACTED** #密钥，一般使用集群 ca 证书的密钥的 base64 格式的字符串。指明这个用户用来与集群 api 通信时所用客户端的密钥
+  - **client-key-data: REDACTED** # 密钥，一般使用集群 ca 证书的密钥的 base64 格式的字符串。指明这个用户用来与集群 api 通信时所用客户端的密钥
 
 ## preferences: <\[]Object>

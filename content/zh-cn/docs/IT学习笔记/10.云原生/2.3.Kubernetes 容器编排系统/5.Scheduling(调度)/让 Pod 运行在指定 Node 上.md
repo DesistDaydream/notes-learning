@@ -22,7 +22,7 @@ title: 让 Pod 运行在指定 Node 上
   - 这种行为定义 Pod 更倾向于在特定节点上运行。
 - **Taint(污点) 与 Toleration(容忍度)** # 根据节点上的污点，以及 pod 是否可以容忍该污点来决定 pod 是否可以运行在哪些节点上
 
-其中 nodeSelector 和 Affinity 与 Anti-Affinity 是通过 [**Label Selectors(标签选择器)**](Label%20and%20Selector(标签和选择器).md and Selector(标签和选择器).md) 来实现的。而 Taint 与 Toleration 是另一套类似于标签选择器的机制。
+其中 nodeSelector 和 Affinity 与 Anti-Affinity 是通过 [Label Selectors(标签选择器)](Label%20and%20Selector(标签和选择器).md) 来实现的。而 Taint 与 Toleration 是另一套类似于标签选择器的机制。
 
 # nodeName(节点名称)
 

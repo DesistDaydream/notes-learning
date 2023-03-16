@@ -111,8 +111,8 @@ http_request_total{status="200", method="POST"}=1434417561287 => 4785
 
     {__name__=<Metrics Name>, <Label Name>=<Label Value>, ...}
 
-1. **Metrics Name(指标的名称)** #可以反映被监控数据的含义（比如，http_request_total - 表示当前系统接收到的 HTTP 请求总量）。指标名称只能由 ASCII 字符、数字、下划线以及冒号组成并必须符合正则表达式\[a-zA-Z\_:]\[a-zA-Z0-9\_:]\*。
-2. **LabelSet(标签集)** #反映了当前样本的特征维度，通过这些维度 Prometheus 可以对样本数据进行过滤，聚合等。标签的名称只能由 ASCII 字符、数字以及下划线组成并满足正则表达式\[a-zA-Z\_]\[a-zA-Z0-9\_]\*。
+1. **Metrics Name(指标的名称)** # 可以反映被监控数据的含义（比如，http_request_total - 表示当前系统接收到的 HTTP 请求总量）。指标名称只能由 ASCII 字符、数字、下划线以及冒号组成并必须符合正则表达式\[a-zA-Z\_:]\[a-zA-Z0-9\_:]\*。
+2. **LabelSet(标签集)** # 反映了当前样本的特征维度，通过这些维度 Prometheus 可以对样本数据进行过滤，聚合等。标签的名称只能由 ASCII 字符、数字以及下划线组成并满足正则表达式\[a-zA-Z\_]\[a-zA-Z0-9\_]\*。
 3. 其中以\_\_作为前缀的标签(两个\_)，是获取到 metrics 后自动生成的原始标签。标签的值则可以包含任何 Unicode 编码的字符。在 Prometheus 的底层实现中指标名称实际上是以\_\_name\_\_=的形式保存在数据库中的，详见文章最后的图例
 
 因此以下两种方式均表示的同一条 time-series ：

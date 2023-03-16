@@ -50,7 +50,7 @@ Scheduler 调度的时候，通过以下步骤来完成调度
 优选函数部分说明：
 
 1. LeastRequested：最少被请求的，得分越低，优先级越高
-   1. （cpu((capacity-sum(requested))*10/capacity)+（memory((capacity-sum(requested))*10/capacity))/2 #CPU 与内存分别计算（总容量-已被请求的）总容量\*10，并求和，再除以 2,即为该 Node 资源得分
+   1. （cpu((capacity-sum(requested))*10/capacity)+（memory((capacity-sum(requested))*10/capacity))/2 # CPU 与内存分别计算（总容量-已被请求的）总容量\*10，并求和，再除以 2,即为该 Node 资源得分
 2. MostRequested：得分越多，优先级越高，
 3. BalancedResourceAllocation：均衡资源分配
    1. CPU 和内存资源被占用率相近的胜出

@@ -212,7 +212,7 @@ Plain Textbin/tools.sh修改前：
 
   问题 1: 启动 Name Server 和 Broker，或测试时报错`Please set the JAVA_HOME variable in your environment, We need java(x64)!` 但是系统已经安装了 OpenJDK8，并且已经设置了 JAVA_HOME。解决方法: 运行`which java`来查看 java 的路径，比如为`/usr/bin/java`。修改 bin/runserver.sh 和 bin/runbroker.sh 和 bin/tools.sh，注释掉校验 JAVA_HOME 语句，并明确指定 JAVA 路径： #[ ! -e "$JAVA_HOME/bin/java" ] && JAVA_HOME=$HOME/jdk/java
     #[ ! -e "$JAVA_HOME/bin/java" ] && JAVA_HOME=/usr/java #[ ! -e "$JAVA_HOME/bin/java" ] && error_exit "Please set the JAVA_HOME variable in your environment, We need java(x64)!"
-  #export JAVA_HOME
+  # export JAVA_HOME
   export JAVA="/usr/bin/java"1
   2
   3

@@ -102,7 +102,7 @@ nftables 中的规则标识符有两种，一种 index，一种 handle
  }
 ```
 
-**handle #规则的句柄。句柄对于整个 nftalbes 而言，不管添加在哪个链中，第一条规则的句柄为 1，第二条规则句柄为 2。如果规则句柄为 33 号被删除，则新添加的规则的句柄为 34**
+**handle # 规则的句柄。句柄对于整个 nftalbes 而言，不管添加在哪个链中，第一条规则的句柄为 1，第二条规则句柄为 2。如果规则句柄为 33 号被删除，则新添加的规则的句柄为 34**
 
 ```bash
  chain DOCKER { # handle 4
@@ -301,7 +301,7 @@ EXAMPLE
 
 ## 集合管理命令
 
-COMMAND set \[FAMILY] table set { type TYPE; \[flags FLAGS;] \[timeout TIMEOUT ;] \[gc-interval GC-INTERVAL ;] \[elements = { ELEMENT\[,...] } ;] \[size SIZE;] \[policy POLICY;] \[auto-merge AUTO-MERGE ;] } #各字段解释详见上文 nftables 的 set 与 map 特性介绍
+COMMAND set \[FAMILY] table set { type TYPE; \[flags FLAGS;] \[timeout TIMEOUT ;] \[gc-interval GC-INTERVAL ;] \[elements = { ELEMENT\[,...] } ;] \[size SIZE;] \[policy POLICY;] \[auto-merge AUTO-MERGE ;] } # 各字段解释详见上文 nftables 的 set 与 map 特性介绍
 
 list sets # 列出所有结合
 

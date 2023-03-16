@@ -53,10 +53,10 @@ BOOTPROTO=none
 
 配置文件说明：
 
-- PEER_OUTER_IPADDR=100.0.2.100 #隧道外部对端地址。i.e.能让两台服务器互相访问的对端地址
-- PEER_INNER_IPADDR=172.16.0.2/30 #隧道内部对端地址。i.e.对端服务器的 tun 设备的 IP
-- MY_OUTER_IPADDR=100.0.1.100 #隧道外部本地地址。i.e.能让两台服务器互相访问的本地地址
-- MY_INNER_IPADDR=172.16.0.1 #隧道内部本地地址。i.e.本服务器的 tun 设备的 ip
+- PEER_OUTER_IPADDR=100.0.2.100 # 隧道外部对端地址。i.e.能让两台服务器互相访问的对端地址
+- PEER_INNER_IPADDR=172.16.0.2/30 # 隧道内部对端地址。i.e.对端服务器的 tun 设备的 IP
+- MY_OUTER_IPADDR=100.0.1.100 # 隧道外部本地地址。i.e.能让两台服务器互相访问的本地地址
+- MY_INNER_IPADDR=172.16.0.1 # 隧道内部本地地址。i.e.本服务器的 tun 设备的 ip
 
 从命令行来体现的话，PEER 就是命令行中的 remote 和 peer。MY 就是 local
 

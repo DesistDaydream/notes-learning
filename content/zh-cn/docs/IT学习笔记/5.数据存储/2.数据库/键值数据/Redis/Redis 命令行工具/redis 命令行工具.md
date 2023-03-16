@@ -64,7 +64,7 @@ PUNSUBSCRIBE \[pattern \[pattern ...]] # 与 UNSUBSCRIBE 命令类似，只不�
 
 修改配置文件`requirepass PASSWORD`设置密码
 
-ECHO message #Echo the given string
+ECHO message # Echo the given string
 
 PING \[message] # Ping the server
 

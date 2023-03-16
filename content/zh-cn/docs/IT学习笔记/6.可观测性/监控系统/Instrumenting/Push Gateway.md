@@ -44,13 +44,13 @@ METRICS | curl --data-binary @- http://IP:PORT/metrics/job/JobName/TableName1/Ta
 
 通过该命令来将 METRICS 中的内容推送到 PushGateway 中，其中 IP:PORT 就是 PushGateway 所在设备的 IP 及其监听的端口
 
-METRICS #想要推送给 PushGateway 的 metrics 信息。可以通过 curl 来获取指定对象的 metrics，也可以从文件中读取 metcis 格式的内容，等等。
+METRICS # 想要推送给 PushGateway 的 metrics 信息。可以通过 curl 来获取指定对象的 metrics，也可以从文件中读取 metcis 格式的内容，等等。
 
-IP:PORT #PushGateway 程序所在设备的 IP，及 PushGateway 监听的端口
+IP:PORT # PushGateway 程序所在设备的 IP，及 PushGateway 监听的端口
 
 JobName # 指定本次推送 metrics 的 job 名称。
 
-TableXXX #JobName 后面的内容可以作为标签，附加在每个指标上
+TableXXX # JobName 后面的内容可以作为标签，附加在每个指标上
 
 每当使用该命令给 PushGateway 推送信息后，Prometheus 就会从 PushGateway 中获取该数据并存储在本地。
 

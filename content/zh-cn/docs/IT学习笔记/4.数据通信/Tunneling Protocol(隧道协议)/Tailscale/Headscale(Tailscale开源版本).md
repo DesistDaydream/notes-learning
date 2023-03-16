@@ -5,6 +5,7 @@ title: Headscale(Tailscale开源版本)
 # 概述
 
 > 参考：
+>
 > - [公众号，云原声实验室-Tailscal 开源版本让你的 WireGuard 直接起飞](https://mp.weixin.qq.com/s/Y3z5RzuapZc8jS0UuHLhBw)
 > - [GitHub 项目，juanfont/headscale](https://github.com/juanfont/headscale)
 
@@ -223,7 +224,7 @@ ID | Name      | Created
 # Headscale 关联文件与配置
 
 **/etc/headscale/config.yaml** # Headscale 运行时配置文件
-**/var/lib/headscale/\* **# Headscale 运行时数据目录。包括 数据库文件、证书 等
+**/var/lib/headscale/\***# Headscale 运行时数据目录。包括 数据库文件、证书 等
 
 - **./db.sqlite** # Headscale 使用 sqlite 作为数据库
 
@@ -310,7 +311,7 @@ See https://tailscale.com/kb/1104/enable-ip-forwarding/
 
 To authenticate, visit:
 
-	http://X.X.X.X:8080/register?key=30e9c9c952e2d66680b9904eb861e24a595e80c0839e3541142edb56c0d43e16
+ http://X.X.X.X:8080/register?key=30e9c9c952e2d66680b9904eb861e24a595e80c0839e3541142edb56c0d43e16
 
 Success.
 ```
@@ -365,7 +366,7 @@ PING 10.1.0.1 (10.1.0.1): 56 data bytes
 64 bytes from 10.1.0.1: icmp_seq=0 ttl=64 time=37.025 ms
 64 bytes from 10.1.0.1: icmp_seq=1 ttl=64 time=38.181 ms
 
-\--- 10.1.0.1 ping statistics ---
+--- 10.1.0.1 ping statistics ---
 2 packets transmitted, 2 packets received, 0.0% packet loss
 round-trip min/avg/max/stddev = 37.025/37.603/38.181/0.578 ms
 
@@ -503,13 +504,13 @@ ID | Name                 | NodeKey | Namespace | IP addresses                  
 
 ```shell
 ~]# ip rule show
-0:	from all lookup local
-5210:	from all fwmark 0x80000 lookup main
-5230:	from all fwmark 0x80000 lookup default
-5250:	from all fwmark 0x80000 unreachable
-5270:	from all lookup 52
-32766:	from all lookup main
-32767:	from all lookup default
+0: from all lookup local
+5210: from all fwmark 0x80000 lookup main
+5230: from all fwmark 0x80000 lookup default
+5250: from all fwmark 0x80000 unreachable
+5270: from all lookup 52
+32766: from all lookup main
+32767: from all lookup default
 ~]# ip route show table 52
 100.64.0.2 dev tailscale0 # 这就是那个 Windows 节点
 100.100.100.100 dev tailscale0
@@ -620,44 +621,44 @@ Route           | Enabled
 
 \[2]
 
-Netmaker: [_https://fuckcloudnative.io/posts/configure-a-mesh-network-with-netmaker/_](https://fuckcloudnative.io/posts/configure-a-mesh-network-with-netmaker/)
+Netmaker: [*https://fuckcloudnative.io/posts/configure-a-mesh-network-with-netmaker/*](https://fuckcloudnative.io/posts/configure-a-mesh-network-with-netmaker/)
 
 \[3]
 
-GitHub 仓库: [_https://github.com/tailscale/_](https://github.com/tailscale/)
+GitHub 仓库: [*https://github.com/tailscale/*](https://github.com/tailscale/)
 
 \[4]
 
-Headscale: [_https://github.com/juanfont/headscale_](https://github.com/juanfont/headscale)
+Headscale: [*https://github.com/juanfont/headscale*](https://github.com/juanfont/headscale)
 
 \[6]
 
-Windows 客户端文档: [_https://github.com/juanfont/headscale/blob/main/docs/windows-client.md_](https://github.com/juanfont/headscale/blob/main/docs/windows-client.md)
+Windows 客户端文档: [*https://github.com/juanfont/headscale/blob/main/docs/windows-client.md*](https://github.com/juanfont/headscale/blob/main/docs/windows-client.md)
 
 \[7]
 
-需要自己编译客户端: [_https://github.com/juanfont/headscale/issues/58#issuecomment-950386833_](https://github.com/juanfont/headscale/issues/58#issuecomment-950386833)
+需要自己编译客户端: [*https://github.com/juanfont/headscale/issues/58#issuecomment-950386833*](https://github.com/juanfont/headscale/issues/58#issuecomment-950386833)
 
 \[9]
 
-这个 issue: [_https://github.com/juanfont/headscale/issues/58#issuecomment-950386833_](https://github.com/juanfont/headscale/issues/58#issuecomment-950386833)
+这个 issue: [*https://github.com/juanfont/headscale/issues/58#issuecomment-950386833*](https://github.com/juanfont/headscale/issues/58#issuecomment-950386833)
 
 \[10]
 
-tailscale-android: [_https://github.com/yangchuansheng/tailscale-android_](https://github.com/yangchuansheng/tailscale-android)
+tailscale-android: [*https://github.com/yangchuansheng/tailscale-android*](https://github.com/yangchuansheng/tailscale-android)
 
 \[11]
 
-Pull: [_https://github.com/apps/pull_](https://github.com/apps/pull)
+Pull: [*https://github.com/apps/pull*](https://github.com/apps/pull)
 
 \[12]
 
-Pull App: [_https://github.com/apps/pull_](https://github.com/apps/pull)
+Pull App: [*https://github.com/apps/pull*](https://github.com/apps/pull)
 
 \[13]
 
-NAT 穿透的原理: [_https://tailscale.com/blog/how-nat-traversal-works/_](https://tailscale.com/blog/how-nat-traversal-works/)
+NAT 穿透的原理: [*https://tailscale.com/blog/how-nat-traversal-works/*](https://tailscale.com/blog/how-nat-traversal-works/)
 
 \[14]
 
-中文版: [_https://arthurchiao.art/blog/how-nat-traversal-works-zh/_](https://arthurchiao.art/blog/how-nat-traversal-works-zh/)
+中文版: [*https://arthurchiao.art/blog/how-nat-traversal-works-zh/*](https://arthurchiao.art/blog/how-nat-traversal-works-zh/)

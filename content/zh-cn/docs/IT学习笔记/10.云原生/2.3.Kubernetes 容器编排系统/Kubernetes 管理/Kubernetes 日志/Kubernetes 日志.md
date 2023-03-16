@@ -29,11 +29,11 @@ Kubernetes Pod 的日志管理是基于 Docker 引擎的，Kubernetes 并不管�
 
 /var/log/containers/kong-kong-d889cf995-2ntwz_kong_kong-432e47df36d0992a3a8d20ef6912112615ffeb30e6a95c484d15614302f8db03.log
 
-\------->
+------->
 
 /var/log/pods/kong_kong-kong-d889cf995-2ntwz_a6377053-9ca3-48f9-9f73-49856908b94a/kong/0.log
 
-\------->
+------->
 
 /var/lib/docker/containers/432e47df36d0992a3a8d20ef6912112615ffeb30e6a95c484d15614302f8db03/432e47df36d0992a3a8d20ef6912112615ffeb30e6a95c484d15614302f8db03-json.log
 

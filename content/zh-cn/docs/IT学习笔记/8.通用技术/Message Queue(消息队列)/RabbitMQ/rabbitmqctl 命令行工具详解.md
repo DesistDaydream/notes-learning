@@ -128,10 +128,10 @@ delete_user # Removes a user from the internal database. Has no effect on users 
 
     rabbitmq@hello-world-rabbitmq-server-0:/$ rabbitmqctl list_users
     Listing users ...
-    user	tags
-    8E3s22eVBbIy3EINPFo0f8hBQ0FClORp	[administrator]
-    admin	[administrator]
-    test	[monitoring]
+    user tags
+    8E3s22eVBbIy3EINPFo0f8hBQ0FClORp [administrator]
+    admin [administrator]
+    test [monitoring]
 
 set_user_tags # 设置指定用户的标签
 
@@ -233,12 +233,11 @@ EXAMPLE
 
 1. rabbitmqctl list_queues # 列出 / vhost 下的队列名及其消息数量，效果如下
 
-
     rabbitmq@hello-world-rabbitmq-server-0:/$ rabbitmqctl list_queues
     Timeout: 60.0 seconds ...
     Listing queues for vhost / ...
-    name	messages
-    test	2
+    name messages
+    test 2
 
 list_unresponsive_queues # Tests queues to respond within timeout. Lists those which did not respond
 
@@ -324,9 +323,9 @@ Operations
 
 OPTIONS
 
-1. \--if-empty,-e # 如果队列为空，则删除。(没有准备好传递的消息)
+1. --if-empty,-e # 如果队列为空，则删除。(没有准备好传递的消息)
 
-2. \--if-unused,-u # 仅当队列没有消费者时才删除。
+2. --if-unused,-u # 仅当队列没有消费者时才删除。
 
 ## purge_queue # 清洗一个队列(删除队列中所有的消息)
 

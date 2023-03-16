@@ -14,7 +14,7 @@ title: kickstart 介绍
 
 bootloader \[OPTIONS] # 引导程序(boot loader)的相关配置。
 
-\--location=VALUE # 指定引导程序的安装位置为 VALUE
+--location=VALUE # 指定引导程序的安装位置为 VALUE
 
 1. mbr # 默认值。取决于磁盘格式是 MBR 还是 GUID
 2. partition # 将引导程序安装在包含内核的分区的第一个扇区中

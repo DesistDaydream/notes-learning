@@ -63,11 +63,11 @@ title: 创建高可用 Kubernetes 集群
     }
 
 - 在该部分中 vrrp_instance VI_1，根据自身情况更改：
-  - STATE #改为是 MASTER（第一主节点上）或 BACKUP（另一主节点）。
-  - INTERFACE #改为将虚拟 IP 绑定到的现有公共接口的名称（通常是主接口）。
-  - PRIORITY #对于第一主节点应该更高，例如 101，对于其他主节点应该更低，例如 100、99。
-  - PASS #改为任何随机字符串
-  - VIRTUAL-IP #改为虚拟 IP。
+  - STATE # 改为是 MASTER（第一主节点上）或 BACKUP（另一主节点）。
+  - INTERFACE # 改为将虚拟 IP 绑定到的现有公共接口的名称（通常是主接口）。
+  - PRIORITY # 对于第一主节点应该更高，例如 101，对于其他主节点应该更低，例如 100、99。
+  - PASS # 改为任何随机字符串
+  - VIRTUAL-IP # 改为虚拟 IP。
 - 下面是配套的健康检查脚本的配置
 
 ```bash
@@ -86,7 +86,7 @@ chmod +x check_apiserver.sh
 ```
 
 - 替换其中的内容
-  - ${VIP} #您选择的虚拟 IP。
+  - ${VIP} # 您选择的虚拟 IP。
 - 安装 keepalived(e.g.下面配置文件中 10.15 为 VIP)，并指定 RS 为 3 台 master 的 IP:PORT
   - 这样，在 Node 节点上报的自身状态给 api-server 时，可以直接使用 3 台 master 的 VIP 作为通信 IP
 

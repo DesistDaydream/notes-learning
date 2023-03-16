@@ -26,9 +26,9 @@ title: link
 **ip link add \[link DEVICE] \[ name ] NAME \[ARGS] type TYPE \[ ARGS ]**
 添加虚拟链路
 **DEVICE** # 要操作的物理设备
-**NAME **# 要操作的设备的名称
-**ARGS **# 这个参数可以设定设备的 IP 地址、网络地址、MTU 等
-**TYPE # **设备类型
+**NAME** # 要操作的设备的名称
+**ARGS** # 这个参数可以设定设备的 IP 地址、网络地址、MTU 等
+**TYPE** # 设备类型
 
 - **bridge** # 以太网网桥设备
 - **bond** # Bonding(绑定)设备

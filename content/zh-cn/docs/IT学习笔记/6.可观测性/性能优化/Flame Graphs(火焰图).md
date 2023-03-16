@@ -239,6 +239,6 @@ bla bla bla...bla bla bla...
 从最开始的小心翼翼，逐句翻译生怕表达错了含义，结果觉得翻译结果**啰哩啰嗦**。到后来试图用自己的理解描述，又害怕因为理解错误，词不达意。到最后逐渐佛系，降低心里期望。现在终于明白了译者的辛苦。
 在这里正好提一下这个 github 地址：[TranslateProject](https://link.zhihu.com/?target=https%3A//github.com/LCTT/TranslateProject)，之前网上查到的好多帖子都是 LCTT 汉化的，一直都没有注意，这次查资料才发现。后续我也试一试按照他们的规范把这篇文章提个 push 申请啥的。
 读完这篇论文，才知道网上很多对火焰图的理解都比较片面。特别是后边 Other Targets 部分，很多内容很有意思，网上查找“火焰图”关键词搜到的文章都没有提及。通过这次经历，也终于理解了之前一位前辈说**要多看 paper**，不要老是在网上看几篇帖子就以为自己理解了。果然还是一手的信息靠谱。
-整片文章我最感兴趣的，就是**Challenge**里边提到的，作者在给 java 生成火焰图的时候，遇到的两个问题。当时读的时候，一直不理解帧指针寄存器（frame pointer register）是个啥东西。还好这段有 References [java-in-flames](https://link.zhihu.com/?target=http%3A//techblog.netflix.com/2015/07/java-in-flames.html.)。根据指导我详细学习了一下如何使用本文提到的技术，生成 java 的火焰图。后续会整理一个“《性能之巅》学习笔记之火焰图 其之二”介绍一下。总之也是挺有趣的。_当然，bcc 是什么鬼？我不知道啊，听都没听过\[#doge#]～～_
+整片文章我最感兴趣的，就是**Challenge**里边提到的，作者在给 java 生成火焰图的时候，遇到的两个问题。当时读的时候，一直不理解帧指针寄存器（frame pointer register）是个啥东西。还好这段有 References [java-in-flames](https://link.zhihu.com/?target=http%3A//techblog.netflix.com/2015/07/java-in-flames.html.)。根据指导我详细学习了一下如何使用本文提到的技术，生成 java 的火焰图。后续会整理一个“《性能之巅》学习笔记之火焰图 其之二”介绍一下。总之也是挺有趣的。_当然，bcc 是什么鬼？我不知道啊，听都没听过
 之前一直很奇怪，为什么论文必须要有 References，现在有点理解了。
 这个技能点到底有没有点上，其实心里还是没什么底，希望能够坚持下去，虽然阅读英文的资料耗费心力，但是收获真的很大。就像长跑者思维：因为今天下雨了，所以才要去跑步。因为很困难，所以干就完了！

@@ -387,6 +387,6 @@ attestation 包含在 subscriber 和 RP 的 TLS handshake (“stapled to” the 
 证书文件格式：
 
 1. XXX.pem # 证书相关文件标准格式
-2. XXX.key #明确指明这是一个密钥文件
-3. XXX.csr #Certificate signing request。证书签署请求文件
-4. XXX.crt #明确指明这是一个证书文件
+2. XXX.key # 明确指明这是一个密钥文件
+3. XXX.csr # Certificate signing request。证书签署请求文件
+4. XXX.crt # 明确指明这是一个证书文件

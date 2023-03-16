@@ -128,7 +128,7 @@ set # 配置应用程序资源，用法详见单独章节
 
 ### explain # 解释。列出资源所支持的字段
 
-kubectl explain RESOURCE\[.FIELD1.FELD2...FIELDn] \[options] #每个 FIELD(字段)都可以用.后面跟字段名来查询这个字段下的描述信息，以及该字段下还可以声明什么字段
+kubectl explain RESOURCE\[.FIELD1.FELD2...FIELDn] \[options] # 每个 FIELD(字段)都可以用.后面跟字段名来查询这个字段下的描述信息，以及该字段下还可以声明什么字段
 
 - EXAMPLE
   - kubectl explain pods.spec.containers

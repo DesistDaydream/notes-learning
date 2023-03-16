@@ -26,7 +26,7 @@ SUBCOMMAND 包括：
 
 ## OPTIONS
 
-1. \--kubeconfig=/PATH/FILE # 指明要操作的 KubeConfig 文件
+1. --kubeconfig=/PATH/FILE # 指明要操作的 KubeConfig 文件
 
 # SubCommand(子命令)
 
@@ -36,7 +36,7 @@ SUBCOMMAND 包括：
 
 OPTIONS
 
-- --embed-certs={false|true} #将--certificate-authority 中指定的证书嵌入 kubeconfig 文件中。i.e.将证书内容使用 base64 编码后存入，默认为 false，即不读取内容进行编码，而是直接将路径写到 kubeconfig 文件中
+- --embed-certs={false|true} # 将--certificate-authority 中指定的证书嵌入 kubeconfig 文件中。i.e.将证书内容使用 base64 编码后存入，默认为 false，即不读取内容进行编码，而是直接将路径写到 kubeconfig 文件中
 
 EXAMPLE
 

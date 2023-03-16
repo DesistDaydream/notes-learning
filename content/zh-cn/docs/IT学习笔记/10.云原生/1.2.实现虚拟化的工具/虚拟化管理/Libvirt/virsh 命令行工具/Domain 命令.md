@@ -149,14 +149,14 @@ console 用于把虚拟机屏幕上的信息投射到宿主机上，可以直接
 
 ## Syntax(语法)
 
-**define <file> \[--validate]**
+**define \<file> \[--validate]**
 EXAMPLE
 
 - virsh define cirros.xml # 通过 cirros.xml 来定义一个 VM 的属性，如果 VM 不存在则创建
 
 # desc # 显示或者设置一个 domain 的 description 或 title
 
-desc <domain> \[--live] \[--config] \[--current] \[--title] \[--edit] \[\[--new-desc] <STRING>]...
+desc \<domain> \[--live] \[--config] \[--current] \[--title] \[--edit] \[\[--new-desc] \<STRING>]...
 
 Note：
 
@@ -166,13 +166,13 @@ Note：
 
 OPTIONS
 
-- \[--domain] <string> domain name, id or uuid
+- [--domain] \<string> domain name, id or uuid
 - --live # 指定当前操作为，运行时状态
 - --config # 指定当前操作为，持久配置状态
 - --current # 指定当前操作为，当前状态
 - --title \[STRING] # 修改或显示 title。指定 STRING 时则会将 domain 的 title 修改为 STRING，不指定则显示 domain 的 title
-- --edit #打开一个编辑器来修改 description 或 title
-- \[--new-desc] <STRING> message
+- --edit # 打开一个编辑器来修改 description 或 title
+- [--new-desc] \<STRING> message
 
 EXAMPLE
 
@@ -192,7 +192,7 @@ domblkinfo domain block device size information
 
 ## Syntax(语法)
 
-**domblklist <DOMAIN> \[OPTIONS]**
+**domblklist \<DOMAIN> [OPTIONS]**
 OPTIONS
 
 - --inactive #
@@ -206,13 +206,13 @@ domif-getlink get link state of a virtual interface
 
 # domifaddr # 从正在运行的 domain 中获取网络接口的 IP 地址
 
-domifaddr <domain> \[--interface <string>] \[--full] \[--source <string>]
+domifaddr \<domain> \[--interface \<string>] \[--full] \[--source \<string>]
 
 该信息包括：Name MAC address Protocol Address
 
 # domiflist # 列出 domain 所有的虚拟接口
 
-domiflist <domain> \[--inactive]
+domiflist \<domain> \[--inactive]
 
 该信息包括：Interface Type Source Model MAC
 
@@ -222,7 +222,7 @@ EXAMPLE
 
 # domifstat # 获取指定的 domain 的网络接口状态信息
 
-domifstat <domain> <interface>
+domifstat \<domain> \<interface>
 
 EXAMPLE
 
@@ -300,87 +300,89 @@ domxml-from-native Convert native config to domain XML
 
 # domxml-to-native # 根据 domain 的 XML 描述文件，转换成 qemu-kvm 创建虚拟机的命令
 
-**domxml-to-native <FORMAT> \[OPTIONS]**
+**domxml-to-native \<FORMAT> \[OPTIONS]**
 
 FORMAT
 
-1. qemu-argv # QEMU/KVM 类型虚拟化，必须使用此格式
+- qemu-argv # QEMU/KVM 类型虚拟化，必须使用此格式
 
 OPTIONS
 
-1. \--domain <STRING> domain name, id or uuid
-2. \--xml <STRING> xml data file to export from
+- --domain \<STRING> domain name, id or uuid
+- --xml \<STRING> xml data file to export from
 
 EXAMPLE
 
-1. **virsh domxml-to-native qemu-argv --domain lichenhao.bj-net**# 根据 lichenhao.bj-net 虚拟机的 xml 文件，生成 qemu-kvm 命令行
-2. lichenhao.bj-net.xml 该文件会转换成如下内容
+- **virsh domxml-to-native qemu-argv --domain lichenhao.bj-net**# 根据 lichenhao.bj-net 虚拟机的 xml 文件，生成 qemu-kvm 命令行
+- lichenhao.bj-net.xml 该文件会转换成如下内容
 
-    LC_ALL=C PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
-    QEMU_AUDIO_DRV=none
-    /usr/libexec/qemu-kvm -name lichenhao.bj-net \
-    -machine pc-i440fx-rhel7.0.0,accel=kvm,usb=off,dump-guest-core=off \
-    -cpu Skylake-Server-IBRS,-ds,-acpi,+ss,-ht,-tm,-pbe,-dtes64,-monitor,-ds_cpl,-vmx,-smx,-est,-tm2,-xtpr,-pdcm,-dca,-osxsave,-tsc_adjust,+clflushopt,-intel-pt,+pku,-ospke,+avx512vnni,+md-clear,+stibp,+ssbd,+hypervisor,-arat \
-    -m 4096 \
-    -realtime mlock=off
-    \
-    -smp 2,sockets=2,cores=1,threads=1 \
-    -uuid 51b47472-5564-424e-90b5-19e9eecfd671 \
-    -no-user-config -nodefaults \
+```bash
+LC_ALL=C PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+QEMU_AUDIO_DRV=none
+/usr/libexec/qemu-kvm -name lichenhao.bj-net \
+-machine pc-i440fx-rhel7.0.0,accel=kvm,usb=off,dump-guest-core=off \
+-cpu Skylake-Server-IBRS,-ds,-acpi,+ss,-ht,-tm,-pbe,-dtes64,-monitor,-ds_cpl,-vmx,-smx,-est,-tm2,-xtpr,-pdcm,-dca,-osxsave,-tsc_adjust,+clflushopt,-intel-pt,+pku,-ospke,+avx512vnni,+md-clear,+stibp,+ssbd,+hypervisor,-arat \
+-m 4096 \
+-realtime mlock=off
+\
+-smp 2,sockets=2,cores=1,threads=1 \
+-uuid 51b47472-5564-424e-90b5-19e9eecfd671 \
+-no-user-config -nodefaults \
 
-    -chardev socket,id=charmonitor,path=/var/lib/libvirt/qemu/domain--1-lichenhao.bj-net/monitor.sock,server,nowait \
-    -mon chardev=charmonitor,id=monitor,mode=control \
+-chardev socket,id=charmonitor,path=/var/lib/libvirt/qemu/domain--1-lichenhao.bj-net/monitor.sock,server,nowait \
+-mon chardev=charmonitor,id=monitor,mode=control \
 
-    -rtc base=utc,driftfix=slew \
-    -global kvm-pit.lost_tick_policy=delay \
-    -no-hpet -no-shutdown \
-    -global PIIX4_PM.disable_s3=1 \
-    -global PIIX4_PM.disable_s4=1 \
-    -boot strict=on \
-    -device ich9-usb-ehci1,id=usb,bus=pci.0,addr=0x4.0x7 \
-    -device ich9-usb-uhci1,masterbus=usb.0,firstport=0,bus=pci.0,multifunction=on,addr=0x4 \
-    -device ich9-usb-uhci2,masterbus=usb.0,firstport=2,bus=pci.0,addr=0x4.0x1 \
-    -device ich9-usb-uhci3,masterbus=usb.0,firstport=4,bus=pci.0,addr=0x4.0x2 \
-    -device virtio-serial-pci,id=virtio-serial0,bus=pci.0,addr=0x5 \
+-rtc base=utc,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet -no-shutdown \
+-global PIIX4_PM.disable_s3=1 \
+-global PIIX4_PM.disable_s4=1 \
+-boot strict=on \
+-device ich9-usb-ehci1,id=usb,bus=pci.0,addr=0x4.0x7 \
+-device ich9-usb-uhci1,masterbus=usb.0,firstport=0,bus=pci.0,multifunction=on,addr=0x4 \
+-device ich9-usb-uhci2,masterbus=usb.0,firstport=2,bus=pci.0,addr=0x4.0x1 \
+-device ich9-usb-uhci3,masterbus=usb.0,firstport=4,bus=pci.0,addr=0x4.0x2 \
+-device virtio-serial-pci,id=virtio-serial0,bus=pci.0,addr=0x5 \
 
-    -drive file=/var/lib/libvirt/images/lichenhao.bj-net.qcow2,format=qcow2,if=none,id=drive-virtio-disk0 \
-    -device virtio-blk-pci,scsi=off,bus=pci.0,addr=0x6,drive=drive-virtio-disk0,id=virtio-disk0,bootindex=1 \
+-drive file=/var/lib/libvirt/images/lichenhao.bj-net.qcow2,format=qcow2,if=none,id=drive-virtio-disk0 \
+-device virtio-blk-pci,scsi=off,bus=pci.0,addr=0x6,drive=drive-virtio-disk0,id=virtio-disk0,bootindex=1 \
 
-    -drive if=none,id=drive-ide0-0-0,readonly=on \
-    -device ide-cd,bus=ide.0,unit=0,drive=drive-ide0-0-0,id=ide0-0-0 \
+-drive if=none,id=drive-ide0-0-0,readonly=on \
+-device ide-cd,bus=ide.0,unit=0,drive=drive-ide0-0-0,id=ide0-0-0 \
 
-    -netdev tap,fd=28,id=hostnet0 \
-    -device virtio-net-pci,netdev=hostnet0,id=net0,mac=52:54:00:6d:fa:f0,bus=pci.0,addr=0x3 \
+-netdev tap,fd=28,id=hostnet0 \
+-device virtio-net-pci,netdev=hostnet0,id=net0,mac=52:54:00:6d:fa:f0,bus=pci.0,addr=0x3 \
 
-    -chardev pty,id=charserial0 \
-    -device isa-serial,chardev=charserial0,id=serial0 \
+-chardev pty,id=charserial0 \
+-device isa-serial,chardev=charserial0,id=serial0 \
 
-    -chardev socket,id=charchannel0,path=/var/lib/libvirt/qemu/channel/target/domain--1-lichenhao.bj-net/org.qemu.guest_agent.0,server,nowait \
-    -device virtserialport,bus=virtio-serial0.0,nr=1,chardev=charchannel0,id=channel0,name=org.qemu.guest_agent.0 \
+-chardev socket,id=charchannel0,path=/var/lib/libvirt/qemu/channel/target/domain--1-lichenhao.bj-net/org.qemu.guest_agent.0,server,nowait \
+-device virtserialport,bus=virtio-serial0.0,nr=1,chardev=charchannel0,id=channel0,name=org.qemu.guest_agent.0 \
 
-    -chardev spicevmc,id=charchannel1,name=vdagent \
-    -device virtserialport,bus=virtio-serial0.0,nr=2,chardev=charchannel1,id=channel1,name=com.redhat.spice.0 \
+-chardev spicevmc,id=charchannel1,name=vdagent \
+-device virtserialport,bus=virtio-serial0.0,nr=2,chardev=charchannel1,id=channel1,name=com.redhat.spice.0 \
 
-    -device usb-tablet,id=input0,bus=usb.0,port=1 \
-    -vnc 127.0.0.1:0 \
-    -vga qxl \
-    -global qxl-vga.ram_size=67108864 \
-    -global qxl-vga.vram_size=67108864 \
-    -global qxl-vga.vgamem_mb=16 \
-    -global qxl-vga.max_outputs=1 \
+-device usb-tablet,id=input0,bus=usb.0,port=1 \
+-vnc 127.0.0.1:0 \
+-vga qxl \
+-global qxl-vga.ram_size=67108864 \
+-global qxl-vga.vram_size=67108864 \
+-global qxl-vga.vgamem_mb=16 \
+-global qxl-vga.max_outputs=1 \
 
-    -chardev spicevmc,id=charredir0,name=usbredir \
-    -device usb-redir,chardev=charredir0,id=redir0,bus=usb.0,port=2 \
+-chardev spicevmc,id=charredir0,name=usbredir \
+-device usb-redir,chardev=charredir0,id=redir0,bus=usb.0,port=2 \
 
-    -chardev spicevmc,id=charredir1,name=usbredir \
-    -device usb-redir,chardev=charredir1,id=redir1,bus=usb.0,port=3 \
+-chardev spicevmc,id=charredir1,name=usbredir \
+-device usb-redir,chardev=charredir1,id=redir1,bus=usb.0,port=3 \
 
-    -device virtio-balloon-pci,id=balloon0,bus=pci.0,addr=0x7 \
+-device virtio-balloon-pci,id=balloon0,bus=pci.0,addr=0x7 \
 
-    -object rng-random,id=objrng0,filename=/dev/urandom \
-    -device virtio-rng-pci,rng=objrng0,id=rng0,bus=pci.0,addr=0x8 \
+-object rng-random,id=objrng0,filename=/dev/urandom \
+-device virtio-rng-pci,rng=objrng0,id=rng0,bus=pci.0,addr=0x8 \
 
-    -msg timestamp=on
+-msg timestamp=on
+```
 
 dump dump the core of a domain to a file for analysis
 
@@ -438,7 +440,7 @@ qemu-monitor-event QEMU Monitor Events
 
 # qemu-agent-command # 向 domain 中执行 QEMU Guest Agent 命令
 
-可用的 QGA 命令详见：[QEMU Monitor Protocol 命令参考](https://www.yuque.com/go/doc/33175114)
+可用的 QGA 命令详见：[QMP 命令参考](/docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/QEMU%20Guest%20Agent/QMP%20命令参考.md)
 
 ## Syntax(语法)
 

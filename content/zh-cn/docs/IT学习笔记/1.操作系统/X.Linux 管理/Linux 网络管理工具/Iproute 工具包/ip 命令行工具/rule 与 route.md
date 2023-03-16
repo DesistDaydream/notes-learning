@@ -20,15 +20,10 @@ default via 172.19.42.1 dev ens3 proto static
 
 > 注意：如果默认网关已由 DHCP 分配，并且配置文件中指定了具有相同度量的同一网关，则在启动或启动接口时将发生错误。可能会显示以下错误消息：`RTNETLINK answers:File exists`。可以忽略此错误。
 
-| 目的地址 | via
-下一跳 | dev
-网络设备 | proto
-生成路由条目的方式 | scope
-覆盖范围 | src
-源地址 |
+| 目的地址 | via<br>下一跳 | dev<br>网络设备 | proto<br>生成路由条目的方式 | scope<br>覆盖范围 | 源地址 | 
 | --- | --- | --- | --- | --- | --- |
-| default | 172.19.42.1 | ens3 | static | | |
-| 172.19.42.0/24 | | ens3 | kernel | link | 172.19.42.248 |
+| default | 172.19.42.1 | ens3 | static |  |
+| 172.19.42.0/24 |  | ens3 | kernel | link | 172.19.42.248 |
 
 **Route Type(路由类型)**
 
@@ -49,15 +44,18 @@ Linux-2.x 版本内核以后，可以根据 **SELECTOR(选择器)** 将数据包
 ## Syntax(语法)
 
 **ip \[Global OPTIONS] route \[COMMAND]**
+
 **ip \[Global OPTIONS] route { show | flush } \[to] SELECTOR**
+
 **ip \[Global OPTIONS] route get ROUTE_GET_FLAGS ADDRESS \[ from ADDRESS iif STRING ] \[ oif STRING ] \[ mark MARK ] \[ tos TOS ] \[ vrf NAME ] \[ ipproto PROTOCOL ] \[ sport NUMBER ] \[ dport NUMBER ]**
+
 **ip \[Global OPTIONS] route {add|del|change|append|replace} ROUTE**
 
 ### ARGUMENTS
 
 **SELECTOR = \[ root PREFIX ] \[ match PREFIX ] \[ exact PREFIX ] \[ table TABLE_ID ] \[ vrf NAME ] \[ proto RTPROTO ] \[ type TYPE ] \[ scope SCOPE ]**
 
-- **table \<TABLE_ID> **# 指定路由表的标识符
+- **table \<TABLE_ID>** # 指定路由表的标识符
 
 **ROUTE = NODE_SPEC \[ INFO_SPEC ]**
 
@@ -92,8 +90,8 @@ Linux-2.x 版本内核以后，可以根据 **SELECTOR(选择器)** 将数据包
 
 显示路由表的内容或按某些标准选择的路由。
 
-- **to <SELECTOR>** #
-- **protocol <RTPROTO>** # 显示指定协议标识符的路由条目
+- **to \<SELECTOR>** #
+- **protocol \<RTPROTO>** # 显示指定协议标识符的路由条目
 
 ## EXAMPLE
 
@@ -108,16 +106,16 @@ Linux-2.x 版本内核以后，可以根据 **SELECTOR(选择器)** 将数据包
 
 # rule # 路由策略数据库管理
 
-rule 可以操作路由策略数据库中的规则，控制路由选择算法。说白了就是可以**控制路由表，**而 ip route 则是控制**路由表的条目。**
+rule 可以操作路由策略数据库中的规则，控制路由选择算法。说白了就是可以**控制路由表**，而 ip route 则是**控制路由表的条目**。
 
 在互联网上，传统的路由算法仅基于数据包的目标地址做出路由选择。但是在某些情况下，我们希望路由数据包的策略，而不仅仅取决于目标地址，还可以通过源地址、IP 协议、传输协议、端口、甚至数据包的 payload 等等信息来对数据包的路由进行选择。这种方式，称为 **Policy Routing(策略路由)**。
 
-为了解决上面的问题，传统的基于目的地址的 **Routing table(路由表)** 被替换为 **Routing policy database(路由策略数据库，简称 RPDB)**。RPDB 通过执行一些 **Rule(规则) **来选择路由表。
+为了解决上面的问题，传统的基于目的地址的 **Routing table(路由表)** 被替换为 **Routing policy database(路由策略数据库，简称 RPDB)**。RPDB 通过执行一些 **Rule(规则)** 来选择路由表。
 
 每个路由策略规则由以下两部分组成：
 
 - **Selector(选择器)** # 通过一些规则，对数据包进行匹配，匹配到的数据包，将会执行 Action 定义的动作。
-- **Action(动作) **# 匹配到的数据包将要执行的动作。
+- **Action(动作)** # 匹配到的数据包将要执行的动作。
   - 比如有一个动作叫 lookup，用来指定要查找路由条目的路由表 ID。意思就是指，根据指定路由表中的路由条目，来决定 Selector 匹配到的数据包应该被路由到哪里
 
 RPDB 按照优先级递减的顺序注意扫描这些规则(数字越小，优先级越高)。
@@ -132,7 +130,7 @@ root@lichenhao:~# ip rule
 ```
 
 - 0: from all lookup local
-  - **local 路由表(ID 255) # **是包含用于本地和广播地址的高优先级控制路由的特殊路由表。
+  - **local 路由表(ID 255)** # 是包含用于本地和广播地址的高优先级控制路由的特殊路由表。
   - Priority(优先级) # 0
   - Selector(选择器) # 匹配所有
   - Action(动作) # 查找名为 local 的路由表。
@@ -152,13 +150,15 @@ root@lichenhao:~# ip rule
 ## Syntax(语法)
 
 **ip \[OPTIONS] rule { COMMAND | help }**
+
 **ip \[OPTIONS] rule \[ list \[ SELECTOR ]]**
+
 **ip \[OPTIONS] rule { add | del } SELECTOR ACTION**
 
 **SELECTOR**
 
 - **from PREFIX** # 选择要匹配的源地址。`默认值：all`
-- **to PREFIX **# 选择要匹配的目的地址。`默认值：all`
+- **to PREFIX** # 选择要匹配的目的地址。`默认值：all`
 - **priority NUM** # 策略规则的优先级。`默认值:当前数字最大的优先级逐一减 1`
 - **ACTION**
 

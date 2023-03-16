@@ -780,6 +780,14 @@
       "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/SQL Functions(函数).md",
       "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/SQL Operators(运算符).md",
       "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/最佳实践.md"
+    ],
+    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考": [
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/_index.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/API 参考.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/工作负载资源",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/服务资源",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/集群资源.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)"
     ]
   },
   "actionBarOrder": {},

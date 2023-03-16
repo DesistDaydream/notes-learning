@@ -110,7 +110,7 @@ goharbor/harbor-registryctl:v1.9.3                      registryctl
 goharbor/registry-photon:v2.7.1-patch-2819-2553-v1.9.3  registry
 ```
 
-# wc #行数统计
+# wc # 行数统计
 
 **wc\[OPTIONS] FILE**
 OPTIONS

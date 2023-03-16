@@ -213,7 +213,7 @@ PING 10.8.0.2 \[局域网  IP] (10.8.0.2 \[局域网  IP]): 56 data byt
 
 64 bytes from 10.8.0.2 \[局域网  IP]: icmp_seq=1 ttl=64 time=44.065 ms
 
-\--- 10.8.0.2 \[局域网  IP] ping statistics ---
+--- 10.8.0.2 \[局域网  IP] ping statistics ---
 
 2 packets transmitted, 2 packets received, 0.0% packet loss
 

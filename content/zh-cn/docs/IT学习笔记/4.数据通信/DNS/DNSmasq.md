@@ -5,6 +5,7 @@ title: DNSmasq
 # 概述
 
 > 参考：
+>
 > - [Manual(手册)](https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html)
 
 DNSmasq 是一个轻量的 DHCP 和 DNS 缓存 服务。
@@ -13,7 +14,7 @@ DNSmasq 是一个轻量的 DHCP 和 DNS 缓存 服务。
 
 最近遇到一个问题，需要在服务器上对域名进行泛解析，比如访问百度的域名统统解析到 6.6.6.6，然而发现 hosts 文件根本就不支持类似 \*.baidu.com 的这种写法。
 
-于是乎就在网上找了下资料，发现可以通过 Dnsmasq 来解决这个问题，原理其实就是本机的 DNS 指向 Dnsmasq 服务器，然后 Dnsmasq 通过类似通配符 (_) 的方式进行匹配，凡是匹配到 _.baidu.com 的都解析到 6.6.6.6。 **利用 Dnsmasq 实现 hosts 泛解析**
+于是乎就在网上找了下资料，发现可以通过 Dnsmasq 来解决这个问题，原理其实就是本机的 DNS 指向 Dnsmasq 服务器，然后 Dnsmasq 通过类似通配符 (_) 的方式进行匹配，凡是匹配到_.baidu.com 的都解析到 6.6.6.6。 **利用 Dnsmasq 实现 hosts 泛解析**
 
 **环境介绍**
 
@@ -28,12 +29,12 @@ DNSmasq 是一个轻量的 DHCP 和 DNS 缓存 服务。
 
 安装非常简单，通过 yum 即可。
 
-    $ yum install dnsmasq \-y
+    yum install dnsmasq \-y
 
 **配置 Dnsmasq**
 先把配置文件备份一份
 
-    $ cp /etc/dnsmasq.conf /etc/dnsmasq.conf\_bak
+    cp /etc/dnsmasq.conf /etc/dnsmasq.conf\_bak
 
 Dnsmasq 的配置在配置文件中都有详细的说明，你可以通过阅读配置文件的注释更改自己想要的配置，我只是想做泛解析，所以我的配置如下：
 
@@ -88,19 +89,19 @@ nameserver 1.1.1.1
     $ ping baidu.com
     PING baidu.com (6.6.6.6) 56(84) bytes of data.
     ^C
-    \--\- baidu.com ping statistics \--\-
+    --\- baidu.com ping statistics --\-
     2 packets transmitted, 0 received, 100% packet loss, time 1000ms
 
     $ ping www.baidu.com
     PING www.baidu.com (6.6.6.6) 56(84) bytes of data.
     ^C
-    \--\- www.baidu.com ping statistics \--\-
+    --\- www.baidu.com ping statistics --\-
     2 packets transmitted, 0 received, 100% packet loss, time 999ms
 
     $ ping pan.baidu.com
     PING pan.baidu.com (6.6.6.6) 56(84) bytes of data.
     ^C
-    \--\- pan.baidu.com ping statistics \--\-
+    --\- pan.baidu.com ping statistics --\-
     2 packets transmitted, 0 received, 100% packet loss, time 999ms
 
 由上可以看到，几乎访问任何 baidu.com 的域名都会被解析到 6.6.6.6，基本上就达到了我们最初的目的。
@@ -112,7 +113,7 @@ Dnsmasq 还有一项非常有用的功能就是可以对已经解析过的域名
 - 安装 dig 工具
 
 ```bash
-$ yum install bind-utils -y
+yum install bind-utils -y
 ```
 
 演示效果

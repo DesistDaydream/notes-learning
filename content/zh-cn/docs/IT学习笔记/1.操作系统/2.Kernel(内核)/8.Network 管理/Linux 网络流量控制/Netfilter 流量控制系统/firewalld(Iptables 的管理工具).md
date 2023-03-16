@@ -21,14 +21,14 @@ FirewallD 使用两个配置模式：“runtime 运行时”和“permanent 持�
 
 ## zone 的种类与说明
 
-1. public（公共） #默认的 zone。在公共区域内使用，不能相信网络内的其他计算机不会对您的计算机造成危害，只能接收经过选取的连接。
-2. block（限制） #任何接收的网络连接都被 IPv4 的 icmp-host-prohibited 信息和 IPv6 的 icmp6-adm-prohibited 信息所拒绝。
+1. public（公共） # 默认的 zone。在公共区域内使用，不能相信网络内的其他计算机不会对您的计算机造成危害，只能接收经过选取的连接。
+2. block（限制） # 任何接收的网络连接都被 IPv4 的 icmp-host-prohibited 信息和 IPv6 的 icmp6-adm-prohibited 信息所拒绝。
 3. dmz（非军事区） # 用于您的非军事区内的电脑，此区域内可公开访问，可以有限地进入您的内部网络，仅仅接收经过选择的连接。
-4. drop（丢弃） #任何接收的网络数据包都被丢弃，没有任何回复。仅能有发送出去的网络连接。
-5. external（外部） #特别是为路由器启用了伪装功能的外部网。您不能信任来自网络的其他计算，不能相信它们不会对您的计算机造成危害，只能接收经过选择的连接。
+4. drop（丢弃） # 任何接收的网络数据包都被丢弃，没有任何回复。仅能有发送出去的网络连接。
+5. external（外部） # 特别是为路由器启用了伪装功能的外部网。您不能信任来自网络的其他计算，不能相信它们不会对您的计算机造成危害，只能接收经过选择的连接。
 6. home（家庭） # 用于家庭网络。您可以基本信任网络内的其他计算机不会危害您的计算机。仅仅接收经过选择的连接。
 7. internal（内部） # 用于内部网络。您可以基本上信任网络内的其他计算机不会威胁您的计算机。仅仅接受经过选择的连接。
-8. trusted（信任） #可接受所有的网络连接。
+8. trusted（信任） # 可接受所有的网络连接。
 9. work（工作） # 用于工作区。您可以基本相信网络内的其他电脑不会危害您的电脑。仅仅接收经过选择的连接。
 
 用实际举例：将设备某个网卡放在区域中，则流经该网卡的流量都会遵循该区域中所定义的规则。
@@ -80,7 +80,7 @@ FirewallD 使用两个配置模式：“runtime 运行时”和“permanent 持�
 - -A INPUT -i lo -j ACCEPT
 - -A INPUT -j INPUT_direct
 - -A INPUT -j INPUT_ZONES_SOURCE
-- -A INPUT -j INPUT_ZONES #流量转给 INPUT 的 ZONES
+- -A INPUT -j INPUT_ZONES # 流量转给 INPUT 的 ZONES
 - -A INPUT -m conntrack --ctstate INVALID -j DROP
 - -A INPUT -j REJECT --reject-with icmp-host-prohibited # 在 INPUT 链上拒绝所有流量，并通过 icmp 协议提示客户端 prohibited
 
@@ -127,7 +127,7 @@ FirewallD 使用两个配置模式：“runtime 运行时”和“permanent 持�
 - -A INPUT_ZONES -i bond0 -g IN_public
 - -A INPUT_ZONES -i eth2 -g IN_public
 - -A INPUT_ZONES -i eth1 -g IN_public
-- -A INPUT_ZONES -i eth0 -g IN_public #将 eth0 的流量放到 public 区域中继续进行匹配
+- -A INPUT_ZONES -i eth0 -g IN_public # 将 eth0 的流量放到 public 区域中继续进行匹配
 - -A INPUT_ZONES -g IN_public
 
 - # INPUT 链上的 public 区域的规则

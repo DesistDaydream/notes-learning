@@ -152,7 +152,7 @@ calicoctl 命令行工具用于管理 Calico 网络和安全策略，查看和�
 2. alias calicoctl="kubectl exec -i -n kube-system calicoctl /calicoctl -- "
 3. 然后可以直接使用别名来使用该命令，calico 对应的 etcd 后端 ip 以及 etcd 证书已经在 calicoctl 的 pod 中定义完成
 
-配置文件路径：/etc/calico/calicoctl.cfg #该路径一般是对于使用二进制方式把 calicoctl 命令文件放在 linux 的$PATH 中来使用
+配置文件路径：/etc/calico/calicoctl.cfg # 该路径一般是对于使用二进制方式把 calicoctl 命令文件放在 linux 的$PATH 中来使用
 
 calicoctl \[OPTIONS] <COMMAND> \[\<ARGS>...]
 

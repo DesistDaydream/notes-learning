@@ -53,7 +53,7 @@ Settings for em1:
 
 ### 查询选项
 
-- **-l, --show-channels **#显示指定网络设备的通道数。通道是一个 IRQ，是可以触发该 IRQ 的队列集。
+- **-l, --show-channels** # 显示指定网络设备的通道数。通道是一个 IRQ，是可以触发该 IRQ 的队列集。
 
 ```bash
 ~]# ethtool -l ens4f0

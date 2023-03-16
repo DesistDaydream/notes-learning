@@ -584,7 +584,7 @@ Redis 的主从复制功能本身只是做数据同步，并不提供监控和�
 
 -
 
-    sentinel monitor mymaster 127.0.0.1 6379 2  # Master实例的IP、端口，以及选举需要的赞成票数sentinel down-after-milliseconds mymaster 60000  #多长时间没有响应视为Master失效sentinel failover-timeout mymaster 180000  #两次failover尝试间的间隔时长sentinel parallel-syncs mymaster 1  #如果有多个Slave，可以通过此配置指定同时从新Master进行数据同步的Slave数，避免所有Slave同时进行数据同步导致查询服务也不可用
+    sentinel monitor mymaster 127.0.0.1 6379 2  # Master实例的IP、端口，以及选举需要的赞成票数sentinel down-after-milliseconds mymaster 60000  # 多长时间没有响应视为Master失效sentinel failover-timeout mymaster 180000  # 两次failover尝试间的间隔时长sentinel parallel-syncs mymaster 1  # 如果有多个Slave，可以通过此配置指定同时从新Master进行数据同步的Slave数，避免所有Slave同时进行数据同步导致查询服务也不可用
 
 另外需要注意的是，Redis Sentinel 实现的自动 failover 不是在同一个 IP 和端口上完成的，也就是说自动 failover 产生的新 Master 提供服务的 IP 和端口与之前的 Master 是不一样的，所以要实现 HA，还要求客户端必须支持 Sentinel，能够与 Sentinel 交互获得新 Master 的信息才行。
 

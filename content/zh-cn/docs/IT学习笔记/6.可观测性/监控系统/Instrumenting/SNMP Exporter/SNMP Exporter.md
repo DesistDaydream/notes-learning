@@ -19,7 +19,7 @@ Snmp Exporter 通过 snmp 采集监控数据，并转换成[ OpenMetrics 格式]
 
 snmp_exporter 启动后默认监听在 9116 端口上。**snmp_exporter 会根据 snmp.yml 配置文件中的配置规则抓取 snmp 数据并转换成 Metrics 格式的数据。**
 
-Prometheus Server 抓取 metircs 的 http 请求样例： `http://IP:PORT/snmp?module=if_mib&target=TargetIP` #获取 TargetIP 上的 snmp 信息，并转换成 metrics 格式，其中 `module=if_mib&` 是可省的，若不指定 module，则抓取所有 module。
+Prometheus Server 抓取 metircs 的 http 请求样例： `http://IP:PORT/snmp?module=if_mib&target=TargetIP` # 获取 TargetIP 上的 snmp 信息，并转换成 metrics 格式，其中 `module=if_mib&` 是可省的，若不指定 module，则抓取所有 module。
 
 snmp exporter 源码简单解析
 

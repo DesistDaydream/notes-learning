@@ -7,7 +7,7 @@ title: LabelSelector 详解
 > 参考：
 > - [官方文档，参考-KubernetesAPI-通用定义-LabelSelector](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/label-selector/)
 
-LabelSelector 用来实现[标签和选择器](Label%20and%20Selector(标签和选择器).md and Selector(标签和选择器).md)功能。通过 LabelSelector，我们可以根据标签匹配到想要的对象
+LabelSelector 用来实现[标签和选择器](Label%20and%20Selector(标签和选择器).md)功能。通过 LabelSelector，我们可以根据标签匹配到想要的对象
 
 LabelSelector 通常是其他资源对象的内嵌字段，包含 matchLabels 和 matchExpressions 两个字段，这两个字段的匹配逻辑为 AND。假如现在有如下匹配规则：
 
@@ -22,11 +22,11 @@ selector:
 
 ## matchExpressions: <\[]OBJECT> # 基于给定的表达式匹配对象
 
-- **key: <STRING> # 必须的**。指定要匹配的标签的键。
-- **operator: <STRING> # 必须的。**key 与 values 两个字段之间的关系。可以有 In、NotIn、Exists、DoesNotExist 四种关系
+- **key: \<STRING>** # 必须的。指定要匹配的标签的键。
+- **operator: \<STRING>** # 必须的。key 与 values 两个字段之间的关系。可以有 In、NotIn、Exists、DoesNotExist 四种关系
   - **In，NotIn** # 匹配 key 中是否包含指定的 values。`values` 字段的值必须为**非空**列表
-  - **Exists，DoesNotExist **# 匹配 key 是否存在。`values` 字段的值必须为**空**列表
-- **values: <\[]STRING> **# 指定要匹配的标签的值。如果 operator 字段为 In 或 NotIn，则必须指定 values 字段。如果 operator 字段为 Exists 或 NotExists，则必须不指定 values 字段。
+  - **Exists，DoesNotExist** # 匹配 key 是否存在。`values` 字段的值必须为**空**列表
+- **values: <\[]STRING>** # 指定要匹配的标签的值。如果 operator 字段为 In 或 NotIn，则必须指定 values 字段。如果 operator 字段为 Exists 或 NotExists，则必须不指定 values 字段。
 
 ## matchLabels: \<map\[STRING]STRING> # 基于给定的标签匹配对象。
 

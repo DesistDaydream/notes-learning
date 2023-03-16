@@ -128,7 +128,7 @@ sudo sed -i.bak 's/KillDisconnected=false/KillDisconnected=true/' /etc/xrdp/sesm
 
 ## 其他未知问题
 
-sudo sed -i.bak "4 a #Improved Look n Feel Method\ncat <<EOF > ~/.xsessionrc\nexport GNOME_SHELL_SESSION_MODE=ubuntu\nexport XDG_CURRENT_DESKTOP=ubuntu:GNOME\nexport XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg\nEOF\n" /etc/xrdp/startwm.sh
+sudo sed -i.bak "4 a # Improved Look n Feel Method\ncat <<EOF > ~/.xsessionrc\nexport GNOME_SHELL_SESSION_MODE=ubuntu\nexport XDG_CURRENT_DESKTOP=ubuntu:GNOME\nexport XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg\nEOF\n" /etc/xrdp/startwm.sh
 
 sudo sed -i 's/allowed_users=console/allowed_users=anybody/' /etc/X11/Xwrapper.config\[
 

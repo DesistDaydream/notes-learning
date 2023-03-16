@@ -128,7 +128,7 @@ k8s 的 Go client 框架支持为指定的 API 对象在其生命周期事件中
 
 Using kubeconfig:  /Users/vladimir/.kube/config
 
-\--- PVCs ----
+--- PVCs ----
 
 NAME                            STATUS  CAPACITY
 
@@ -142,7 +142,7 @@ Total capacity claimed: 150Gi
 
 ---
 
-\--- PVC Watch (max claims 200Gi) ----
+--- PVC Watch (max claims 200Gi) ----
 
 2018/02/13 21:55:03 PVC my-redis2-redis added, claim size 100Gi
 

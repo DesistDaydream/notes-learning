@@ -56,7 +56,7 @@ list-sockets \[PATTERN] List loaded sockets ordered by address
 
 list-timers \[PATTERN] List loaded timers ordered by next elapse
 
-{start | stop | restart} UnitName #立刻启动或者关闭或者重启某个 Unit
+{start | stop | restart} UnitName # 立刻启动或者关闭或者重启某个 Unit
 
 ## reload NAME
 

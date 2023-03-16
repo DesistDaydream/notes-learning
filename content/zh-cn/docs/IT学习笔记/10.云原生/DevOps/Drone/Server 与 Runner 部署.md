@@ -72,7 +72,7 @@ GitLab Server 的部署方式与 GitHub 基本一致
 
       1. Name：Grone
 
-      2. Redirect URL：<http://10.10.100.150/login> #这个 URL 指的是将要运行 Drone 的 GitLab Server 端设备 IP。也可以使用域名来表示。
+      2. Redirect URL：<http://10.10.100.150/login> # 这个 URL 指的是将要运行 Drone 的 GitLab Server 端设备 IP。也可以使用域名来表示。
 
    2. 创建完成后，会生成两个信息 Application ID 与 Secret。下面是这两个信息的例子
 

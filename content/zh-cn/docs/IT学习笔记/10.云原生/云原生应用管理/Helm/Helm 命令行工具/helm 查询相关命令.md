@@ -2,7 +2,7 @@
 title: helm 查询相关命令
 ---
 
-# helm get # 获取指定 release 的信息。
+# helm get # 获取指定 release 的信息
 
 该命令由多个子命令组成，这些子命令可用于获取有关 release 的扩展信息，包括：
 
@@ -27,7 +27,7 @@ title: helm 查询相关命令
 
 FLAGS
 
-1. \--revision INT # 指定一个 release 的版本
+1. --revision INT # 指定一个 release 的版本
 
 EXAMPLE
 

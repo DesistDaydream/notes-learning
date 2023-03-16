@@ -130,7 +130,7 @@ OPTIONS：
 
 EXAMPLE
 
-- userdel -r user #删除名为 user 的用户，同时删除该用户的家目录和邮件池文件
+- userdel -r user # 删除名为 user 的用户，同时删除该用户的家目录和邮件池文件
 
 ## usermod # 修改用户
 

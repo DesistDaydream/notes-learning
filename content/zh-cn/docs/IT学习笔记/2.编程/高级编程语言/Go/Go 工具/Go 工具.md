@@ -23,7 +23,7 @@ go 是一个工具，用来管理 Go 语言编写的代码。该工具由多个�
 默认编译当前路径下的代码包及其依赖，生成一个可执行文件
 OPTIONS
 
-- **-o <NAME>** # 指定构建完成后生成的文件名为 NAME
+- **-o \<NAME>** # 指定构建完成后生成的文件名为 NAME
 - **-x** # 输出 Go 程序编译、链接、打包的全过程。包括都使用了哪些库、执行了什么命令、等等
 
 EXAMPLE
@@ -47,12 +47,12 @@ fmt gofmt (reformat) package sources
 
 generate generate Go files by processing source
 
-## get #下载并安装 package 及其依赖
+## get # 下载并安装 package 及其依赖
 
 OPTIONS
 
-- -u #更新现有依赖，强制更新它所依赖的其他全部模块，不包括自身
-- -t #更新所有直接依赖和间接依赖的模块版本，包括单元测试中用到的。
+- -u # 更新现有依赖，强制更新它所依赖的其他全部模块，不包括自身
+- -t # 更新所有直接依赖和间接依赖的模块版本，包括单元测试中用到的。
 
 install compile and install packages and dependencies
 
@@ -60,13 +60,13 @@ list list packages or modules
 
 ## mod # go 模块维护与管理命令
 
-详见《[Go Module](/docs/IT学习笔记/2.编程/高级编程语言/Go/Go%20 环境安装与使用/Go%20Module.md 环境安装与使用/Go Module.md)》章节
+详见《[Go Module](/docs/IT学习笔记/2.编程/高级编程语言/Go/Go%20环境安装与使用/Go%20Module.md)》章节
 
 ## run # 编译并运行 Go 程序
 
 ## test # test packages
 
-详见 《[Go 单元测试](/docs/IT学习笔记/2.编程/高级编程语言/Go/Go%20 单元测试.md 单元测试.md)》 章节
+详见 《[Go 单元测试](/docs/IT学习笔记/2.编程/高级编程语言/Go/Go%20单元测试.md)》 章节
 
 ## tool # run specified go tool
 

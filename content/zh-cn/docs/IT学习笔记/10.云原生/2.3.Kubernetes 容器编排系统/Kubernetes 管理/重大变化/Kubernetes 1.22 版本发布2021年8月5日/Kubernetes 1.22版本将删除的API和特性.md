@@ -123,7 +123,7 @@ kubectl convert -f ./legacy-ingress.yaml --output-version networking.k8s.io/v1
 
 如果你管理集群的 API 服务器组件，那么你可以在升级到 Kubernetes v1.22 之前尝试删除这些 API。
 为此，将以下内容添加到 kube-apiserver 命令行参数中：
-\--runtime-config=admissionregistration.k8s.io/v1beta1=false,apiextensions.k8s.io/v1beta1=false,apiregistration.k8s.io/v1beta1=false,authentication.k8s.io/v1beta1=false,authorization.k9s.io/v1=false,certificates.k8s.io/v1beta=false,coordination.k8s.io/v1beta1=false,extensions/v1beta1/ingresses=false,networking.k8s.io/v1beta1=false
+--runtime-config=admissionregistration.k8s.io/v1beta1=false,apiextensions.k8s.io/v1beta1=false,apiregistration.k8s.io/v1beta1=false,authentication.k8s.io/v1beta1=false,authorization.k9s.io/v1=false,certificates.k8s.io/v1beta=false,coordination.k8s.io/v1beta1=false,extensions/v1beta1/ingresses=false,networking.k8s.io/v1beta1=false
 （作为一个副作用，这也关闭了 EndpointSlice 的 v1beta1——在测试时要注意。）
 一旦你将集群中的所有 kube-apiserver 切换为使用该设置，这些 beta API 就会被删除。你可以测试 API 客户端（kubectl，部署工具，自定义控制器等）是否仍然按照你期望的方式工作，如果你需要，你可以恢复，而不必计划一个更具破坏性的降级。
 
@@ -148,7 +148,7 @@ alpha 后面是 beta。这些特性通常是默认启用的；如果测试成功
 - 到达 GA，弃用测试版，或者
 - 拥有一个新的测试版（并弃用之前的测试版）。
 
-_在写那篇文章的时候，Kubernetes 发布三次大约相当于 9 个日历月。同月晚些时候，Kubernetes 采用了新的发布节奏，即每日历年发布 3 个版本，所以现在的倒计时时间大约是 12 个日历月。_
+*在写那篇文章的时候，Kubernetes 发布三次大约相当于 9 个日历月。同月晚些时候，Kubernetes 采用了新的发布节奏，即每日历年发布 3 个版本，所以现在的倒计时时间大约是 12 个日历月。*
 不管 API 的删除是因为测试版特性已经趋于稳定，还是因为该 API 没有被证明是成功的，Kubernetes 将继续通过遵循其弃用策略并确保迁移选项被记录下来来删除 API。
 
 ### 展望未来
@@ -173,7 +173,7 @@ Kubernetes 发布说明中宣布了弃用的内容。你可以在**1.19\[10]**�
 \[1]\[2]\[3]\[4]\[5]\[6]\[7]\[8]\[9]\[10]\[11]\[12]\[13]
 Kubernetes API removals: *https://kubernetes.io/blog/2021/07/14/upcoming-changes-in-kubernetes-1-22/#kubernetes-api-removals*
 Kubernetes 1.22 发布信息: *https://www.kubernetes.dev/resources/release/*
-1.22 版本中删除的 API: _这些_
+1.22 版本中删除的 API: *这些*
 Ingress 先决条件: *https://kubernetes.io/docs/concepts/services-networking/ingress/#prerequisites*
 Download Kubernetes: *https://kubernetes.io/releases/download/*
 弃用策略: *https://kubernetes.io/docs/reference/using-api/deprecation-policy/*

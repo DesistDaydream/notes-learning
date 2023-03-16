@@ -5,6 +5,7 @@ title: Node 资源预留与 Pod 驱逐
 # 概述
 
 > 参考：
+>
 > - 原文：[SegmentFault(思否)，k8s 节点资源预留与 pod 驱逐](https://segmentfault.com/a/1190000021402192)
 
 # 节点资源管理
@@ -343,7 +344,7 @@ Allocatable = Capacity - Reserved - Eviction Threshold
 
 ### 驱逐配置
 
-    \--eviction-hard=memory.available<5%,nodefs.available<10%,imagefs.available<10%
+    --eviction-hard=memory.available<5%,nodefs.available<10%,imagefs.available<10%
 
     --eviction-soft\=memory.available<10%,nodefs.available<15%,imagefs.available<15%
 

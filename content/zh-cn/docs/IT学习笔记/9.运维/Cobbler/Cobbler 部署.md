@@ -90,7 +90,7 @@ cp /etc/xinetd.d/tftp{,.bak}
 2. cp /etc/cobbler/dhcp.template{,.bak}
 3. vim /etc/cobbler/dhcp.template
 4. 在文件末尾添加如下内容
-   1. subnet 192.168.10.0 netmask 255.255.255.0 { #规划一段子网以便用于被安装系统的设备来获取这一段 IP
+   1. subnet 192.168.10.0 netmask 255.255.255.0 { # 规划一段子网以便用于被安装系统的设备来获取这一段 IP
    2. option domain-name-servers 114.114.114.114; # 指定该子网的 DNS
    3. option routers 192.168.10.2; # 指定该段子网的网关
    4. range dynamic-bootp 192.168.10.100 192.168.10.250; # 指定给被安装系统的设备可用的 IP 段
@@ -120,126 +120,78 @@ cp /etc/xinetd.d/tftp{,.bak}
 2. vim centos7.ks # （sample_end.ks（默认使用的 ks 文件））修改成以下内容
 3. 注意：文件中不能有中文，即使注释掉也不行，否则会导致安装失败
 
-    #platform=x86, AMD64, or Intel EM64T
-
+```
+#platform=x86, AMD64, or Intel EM64T
 # System authorization information系统认证信息，使用加密，md5方式加密
-
-    auth  --useshadow  --enablemd5
-
+auth  --useshadow  --enablemd5
 # System bootloader configuration系统引导配置
-
 # --location指定创建引导的位置，在mbr中创建引导；--append指定内核参数，crashkernel为开启kdump
-
-    bootloader --location=mbr --append="crashkernel=auto"
-
+bootloader --location=mbr --append="crashkernel=auto"
 # Partition clearing information分区清除信息
-
 # 清除所有分区，并初始化磁盘标签
-
-    clearpart --all --initlabel
-
+clearpart --all --initlabel
 # Use text mode install
-
-    text
-
+text
 # Firewall configuration关闭防火墙
-
-    firewall --disabled
-
+firewall --disabled
 # Run the Setup Agent on first boot
-
-    firstboot --disable
-
+firstboot --disable
 # System keyboard系统键盘
-
-    keyboard us
-
+keyboard us
 # System language系统语言
-
-    lang en_US
-
+lang en_US
 # Use network installation指明安装系统的方式，这里使用网络方式安装，指明提供安装程序的服务器地址和路径
-
-    url --url=$tree
-
-# If any cobbler repo definitions were referenced in the kickstart profile, include them here
-
-    $yum_repo_stanza
-
+url --url=$tree
+# If any cobbler repo definitions were referenced in the kickstart profile, include them here.
+$yum_repo_stanza
 # $SNIPPET变量括号内的值是目录/var/lib/cobbler/snippets下的文件，该文件中可以写入linux命令，当做脚本文件来说明
-
 # Network information
-
-    $SNIPPET('network_config')
-
+$SNIPPET('network_config')
 # Reboot after installation安装完成后重启系统
+reboot
 
-    reboot
-
-    #Root password设定root的密码
-    rootpw --iscrypted $default_password_crypted
-
+#Root password设定root的密码
+rootpw --iscrypted $default_password_crypted
 # SELinux configuration关闭SELinux
-
-    selinux --disabled
-
+selinux --disabled
 # Do not configure the X Window System不要配置X window系统
-
-    skipx
-
+skipx
 # System timezone设定系统时区
-
-    timezone  Asia/Shanghai
-
+timezone  Asia/Shanghai
 # Install OS instead of upgrade重新安装操作系统，而不是升级
-
-    install
-
+install
 # Clear the Master Boot Record清除主引导记录
-
-    zerombr
-
+zerombr
 # Allow anaconda to partition the system as needed该选项用于自动分区
-
-    # autopart
-
+#autopart
 # Disk partitioning information磁盘分区信息
-
-    part /boot --fstype=xfs --asprimary --size=500
-    part biosboot --fstype=biosboot --asprimary --size=2
-    part pv.01 --size=1 --grow
-    volgroup vg0 pv.01
-    logvol / --fstype xfs --size=10240 --name=root --vgname=vg0
-    logvol swap --fstype swap --size=1024 --name=swap --vgname=vg0
-    logvol /var --fstype xfs --size=1 --grow --name=var --vgname=vg0
-
-    %pre
-
+part /boot --fstype=xfs --asprimary --size=500
+part biosboot --fstype=biosboot --asprimary --size=2
+part pv.01 --size=1 --grow
+volgroup vg0 pv.01
+logvol / --fstype xfs --size=10240 --name=root --vgname=vg0
+logvol swap --fstype swap --size=1024 --name=swap --vgname=vg0
+logvol /var --fstype xfs --size=1 --grow --name=var --vgname=vg0
+ 
+%pre
 # %pre段落为安装前执行的任务
+%end
 
-    %end
-
-    %packages
-
+%packages
 # %package段落中指定要安装的软件包
+@^minimal
+@core
+kexec-tools
+%end
 
-    @^minimal
-    @core
-    kexec-tools
-    %end
-
-    %post
-    #`%post`段落为安装系统完成后执行的任务
-
+%post
+#`%post`段落为安装系统完成后执行的任务
 # 自定义系统配置
-
 # 安装工具，在/var/lib/cobbler/snippets目录下添加名为tools的文件，文件中可以写入想要执行的linux命令
-
-    $SNIPPET('tools')
-
+$SNIPPET('tools')
 # End final steps
-
-    %end
+%end
+```
 
 1. 在第一次导入系统镜像后，Cobbler 会给镜像指定一个默认的 kickstart 自动安装文件在/var/lib/cobbler/kickstarts 下的 sample_end.ks。
 2. cobbler list
@@ -291,16 +243,16 @@ Note：
 
 /etc/cobbler/\* # 基础配置文件路径
 
-1. ,/setting #cobbler 服务的配置文件
+1. ,/setting # cobbler 服务的配置文件
 
 /var/lib/cobbler/\* # cobbler 数据保存路径
 
 1. ./kickstarts/\* # 从该路径下读取 kickstarts 文件。
-2. ./snippets/\* #kickstart 文件中$SNIPPET 变量内所用到的文件
+2. ./snippets/\* # kickstart 文件中$SNIPPET 变量内所用到的文件
 
 /var/www/cobbler/\* # cobble 数据保存路径
 
-1. ,/ks_mirror/\* #镜像存放目录，cobbler 会将镜像中的所有安装文件拷贝到本地一份，放在该目录下，该目录下的目录名是以 import 时指定的 name 来命名的。因此/var/www/cobbler 目录必须具有足够容纳安装文件的空间
+1. ,/ks_mirror/\* # 镜像存放目录，cobbler 会将镜像中的所有安装文件拷贝到本地一份，放在该目录下，该目录下的目录名是以 import 时指定的 name 来命名的。因此/var/www/cobbler 目录必须具有足够容纳安装文件的空间
 
 # Cobbler 的 Web 管理界面的安装与配置
 

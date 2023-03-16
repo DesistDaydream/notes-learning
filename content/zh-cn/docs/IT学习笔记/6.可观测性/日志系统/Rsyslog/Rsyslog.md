@@ -144,12 +144,12 @@ RsysLog 使用 **Facility(设施)** 来对各个程序产生的日志进行分�
 - **daemon(3)** # 系统服务产生的信息，比如 systemd 管理的服务的信息。
 - **authpriv(4)** # 认证相关的日志，比如 login、ssh、su 等需要账号密码的。
 - **syslog(5)** # 由 syslog 相关协议产生的信息，就是 rsyslog 程序本身的日志信息。
-- **lpr(6)** #打印相关的日志。
+- **lpr(6)** # 打印相关的日志。
 - **news(7)** # 新闻组服务器有关的日志。
 - **uucp(8)**：
 - **cron(9)** # 定时任务产生的日志。
 - **authpriv(10)** # 与 auth 类似，更多的是记录账号私人的日志，包括 pam 模块运作的日志。
-- **ftp(11) **# 与 ftp 相关的信息。
+- **ftp(11)** # 与 ftp 相关的信息。
 - **16 到 23.local0 到 local7** # 保留给本机用户自定义设施。比如可以把某些设施设置成 local0，然后供 RsysLog 收集日志
 
 日志的级别：
@@ -189,11 +189,11 @@ Linux 相关的日志格式一般为：
 
 # Rsyslog 关联文件
 
-**/etc/rsyslog.conf **# rsyslog 程序的基础配置文件
+**/etc/rsyslog.conf** # rsyslog 程序的基础配置文件
 
-- **/etc/rsyslog.d/\*.conf **# rsyslog.conf 可以包含该目录下的配置文件。常用于定义单独程序的日志配置，以便日后方便管理
+- **/etc/rsyslog.d/\*.conf** # rsyslog.conf 可以包含该目录下的配置文件。常用于定义单独程序的日志配置，以便日后方便管理
 
-**/etc/sysconfig/rsyslog **# rsyslogd 运行时参数配置
+**/etc/sysconfig/rsyslog** # rsyslogd 运行时参数配置
 **/dev/log** # 一个 Unix Domain Socket，rsyslogd 从这个 Socket 中读取日志消息。这是传统的日志服务 Socket。在 CentOS 8 及以后的版本中，该文件是一个指向 /run/systemd/journal/syslog 文件的软链接
 
 - **/run/systemd/journal/syslog** # rsyslogd 会持续监听该 Socket，当有数据传入时，使用 recvmsg() 调用获取日志数据。

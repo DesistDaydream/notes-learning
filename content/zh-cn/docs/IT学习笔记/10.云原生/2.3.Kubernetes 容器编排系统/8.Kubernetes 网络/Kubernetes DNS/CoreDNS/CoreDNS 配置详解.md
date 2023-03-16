@@ -23,9 +23,9 @@ ZONE[:PORT] {
 }
 ```
 
-- **ZONE **# 定义 Server 的 zone。`默认值： .`
-- **PORT **# 定义 Server 监听的端口。`默认值：53`。即 -dns.port 标志的值。
-- **PLUGIN **#定义 Server 要加载的[插件](https://coredns.io/plugins/)。这是可选的，但是如果不加载任何插件，那么 coredns 将为所有查询返回 SERVFAIL 。
+- **ZONE**# 定义 Server 的 zone。`默认值： .`
+- **PORT**# 定义 Server 监听的端口。`默认值：53`。即 -dns.port 标志的值。
+- **PLUGIN**# 定义 Server 要加载的[插件](https://coredns.io/plugins/)。这是可选的，但是如果不加载任何插件，那么 coredns 将为所有查询返回 SERVFAIL 。
   - 并且，不同的 Plugins 还可以定义不同的参数以改变其运行行为。
 
 比如：

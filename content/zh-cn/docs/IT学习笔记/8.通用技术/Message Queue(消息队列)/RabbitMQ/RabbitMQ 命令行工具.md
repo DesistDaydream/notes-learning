@@ -77,29 +77,29 @@ rabbitmqadmin \[OPTIONS] COMMAND
 
 OPTIONS
 
-1. \--config=CONFIG, -c CONFIG # 指定 rabbitmqadmin 的配置文件，默认为: ~/.rabbitmqadmin.conf
-2. \--node=NODE, -N NODE # 指定配置文件中节点(即配置中间中 \[] 内的值就是节点名) \[default:'default' only if configuration file is specified]
-3. \--host=HOST, -H HOST # connect to host HOST \[default: localhost]
-4. \--port=PORT, -P PORT # connect to port PORT \[default: 15672]
-5. \--path-prefix=PATH_PREFIX # use specific URI path prefix for the RabbitMQ HTTP API. /api and operation path will be appended to it.(default: blank string) \[default: ]
-6. \--vhost=VHOST, -V VHOST # 指定要连接的 VHost \[default: all vhosts for list,'/' for declare]
-7. \--username=USERNAME, -u USERNAME # 指定连接时所使用的用户名，默认为 guest
-8. \--password=PASSWORD, -p PASSWORD # 指定连接时所使用的密码，默认为 guest
-9. \--base-uri=URI, -U URI # connect using a base HTTP API URI. /api and operation path will be appended to it. Path will be ignored.--vhost has to be provided separately.
-10. \--quiet, -q # suppress status messages \[default: True]
-11. \--ssl, -s # connect with ssl \[default: False]
-12. \--ssl-key-file=SSL_KEY_FILE # PEM format key file for SSL
-13. \--ssl-cert-file=SSL_CERT_FILE # PEM format certificate file for SSL
-14. \--ssl-ca-cert-file=SSL_CA_CERT_FILE # PEM format CA certificate file for SSL
-15. \--ssl-disable-hostname-verification # Disables peer hostname verification
-16. \--ssl-insecure, -k # Disables all SSL validations like curl's '-k' argument
-17. \--request-timeout=REQUEST_TIMEOUT, -t REQUEST_TIMEOUT # HTTP request timeout in seconds \[default: 120]
-18. \--format=FORMAT, -f FORMAT # format for listing commands - one of \[raw_json,pretty_json, tsv, long, table, kvp, bash] \[default:table]
-19. \--sort=SORT, -S SORT # sort key for listing queries
-20. \--sort-reverse, -R # reverse the sort order
-21. \--depth=DEPTH, -d DEPTH # maximum depth to recurse for listing tables \[default:1]
-22. \--bash-completion # Print bash completion script \[default: False]
-23. \--version # Display version and exit
+1. --config=CONFIG, -c CONFIG # 指定 rabbitmqadmin 的配置文件，默认为: ~/.rabbitmqadmin.conf
+2. --node=NODE, -N NODE # 指定配置文件中节点(即配置中间中 \[] 内的值就是节点名) \[default:'default' only if configuration file is specified]
+3. --host=HOST, -H HOST # connect to host HOST \[default: localhost]
+4. --port=PORT, -P PORT # connect to port PORT \[default: 15672]
+5. --path-prefix=PATH_PREFIX # use specific URI path prefix for the RabbitMQ HTTP API. /api and operation path will be appended to it.(default: blank string) \[default: ]
+6. --vhost=VHOST, -V VHOST # 指定要连接的 VHost \[default: all vhosts for list,'/' for declare]
+7. --username=USERNAME, -u USERNAME # 指定连接时所使用的用户名，默认为 guest
+8. --password=PASSWORD, -p PASSWORD # 指定连接时所使用的密码，默认为 guest
+9. --base-uri=URI, -U URI # connect using a base HTTP API URI. /api and operation path will be appended to it. Path will be ignored.--vhost has to be provided separately.
+10. --quiet, -q # suppress status messages \[default: True]
+11. --ssl, -s # connect with ssl \[default: False]
+12. --ssl-key-file=SSL_KEY_FILE # PEM format key file for SSL
+13. --ssl-cert-file=SSL_CERT_FILE # PEM format certificate file for SSL
+14. --ssl-ca-cert-file=SSL_CA_CERT_FILE # PEM format CA certificate file for SSL
+15. --ssl-disable-hostname-verification # Disables peer hostname verification
+16. --ssl-insecure, -k # Disables all SSL validations like curl's '-k' argument
+17. --request-timeout=REQUEST_TIMEOUT, -t REQUEST_TIMEOUT # HTTP request timeout in seconds \[default: 120]
+18. --format=FORMAT, -f FORMAT # format for listing commands - one of \[raw_json,pretty_json, tsv, long, table, kvp, bash] \[default:table]
+19. --sort=SORT, -S SORT # sort key for listing queries
+20. --sort-reverse, -R # reverse the sort order
+21. --depth=DEPTH, -d DEPTH # maximum depth to recurse for listing tables \[default:1]
+22. --bash-completion # Print bash completion script \[default: False]
+23. --version # Display version and exit
 
 ## 显示信息 COMMAND
 
