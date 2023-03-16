@@ -12,7 +12,7 @@ title: Redhat 包管理
 
 ## Syntax(语法)
 
-**rpm -i \[OPTIONS] PACKAGE ** # 安装软件包
+**rpm -i \[OPTIONS] PACKAGE** # 安装软件包
 
 OPTIONS
 - **-v** # 显示安装过程
@@ -22,14 +22,14 @@ EXAMPLE
 - **rpm -ivh X.rpm** # 安装 X.rpm 软件包
 - **rpm -Uvh X.rpm** # 升级 X.rpm 软件包
 
-**rpm -q \[OPTIONS] PACKAGE ** # 查询软件包
+**rpm -q \[OPTIONS] PACKAGE** # 查询软件包
 
 OPTIONS
 - **-a** # 列出所有已经安装在系统上的所有软件包的完整名称
 - **-i \<PACKAGE>** # 列出 PACKAGE 这个包的详细信息，安装时间，版本，开发商，描述等等
 - **-l \<PACKAGE>** # 列出 PACKAGE 这个包的所有文件与目录所在完整文件名(list)
 - **-R \<PACKAGE>** # 列出 PACKAGE 这个包所依赖的文件
-- **-f \<FILE> ** # 列出该 FILE 属于哪个 PACKAGE 中的文件
+- **-f \<FILE>** # 列出该 FILE 属于哪个 PACKAGE 中的文件
 
 EXAMPLE
 - rpm -q PACKAGE_NAME

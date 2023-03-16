@@ -37,9 +37,9 @@ Audit 是实现的 Linux 系统审计的软件包，其中包含两个部分：
 - **./audit.rules** # 由 `rules.d/` 目录下的规则文件生成
 - **./rules.d/** # Audit 规则文件
 
-**/usr/share/doc/audit-${VERSION}/rules/\*** # Audit 软件包安装后根据各种认证标准提供一组预配置的规则文件
+**/usr/share/doc/audit-${VERSION}/rules/* # Audit 软件包安装后根据各种认证标准提供一组预配置的规则文件
 
-**/var/log/audit/\*** # auditd 记录日志的默认位置。
+**/var/log/audit/* # auditd 记录日志的默认位置。
 
 # 规则语法
 
