@@ -14,7 +14,7 @@ weight: 1
 
 DeleteOptions may be provided when deleting an API object.
 
-##### [LabelSelector](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+##### [LabelSelector](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
 
 A label selector is a label query over a set of resources.
 
@@ -34,7 +34,7 @@ A node selector requirement is a selector that contains values, a key, and an op
 
 ObjectFieldSelector selects an APIVersioned field of an object.
 
-##### [ObjectMeta](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/ObjectMeta.md)
+##### [ObjectMeta](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/ObjectMeta.md)
 
 ObjectMeta 是所有资源持久化成对象后必须要具有的元数据，其中包括对象的 名称、所在名称空间 等等。对应的 yaml 字段为 `.metadata`
 
@@ -54,7 +54,7 @@ Quantity is a fixed-point representation of a number.
 
 ResourceFieldSelector represents container resources (cpu, memory) and their output format.
 
-##### [Status](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/Status.md)
+##### [Status](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/Status.md)
 
 Status 字段是不返回其他对象的调用的返回值。
 

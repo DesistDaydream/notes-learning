@@ -1,5 +1,6 @@
 ---
 title: API Server
+weight: 1
 ---
 
 # 概述
@@ -9,9 +10,9 @@ title: API Server
 > - [官方文档，概念-概述-Kubernetes 组件-kube-apiserver](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)
 > - [官方文档，参考-通用组件-kube-apiserver](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/)
 
-**API Server 是实现 kubernetes API 的应用程序，它是 Kubernetes 控制平面的一个组件，用以对外暴露 Kubernetes API。**Kubernetes API Server 验证和配置 API 对象的数据，包括 pod、service、replicationcontroller 等。 API Server 为 REST 操作提供服务，并为集群的共享状态提供前端，所有其他组件通过该前端进行交互。
+**API Server 是实现 kubernetes API 的应用程序，它是 Kubernetes 控制平面的一个组件，用以对外暴露 Kubernetes API**。Kubernetes API Server 验证和配置 API 对象的数据，包括 pod、service、replicationcontroller 等。 API Server 为 REST 操作提供服务，并为集群的共享状态提供前端，所有其他组件通过该前端进行交互。
 
-如果是通过 kubeadm 安装的 k8s 集群，那么 API Server 的表现形式就是一个名为 **kube-apiserver 的静态 pod。**kube-apiserver 可以水平扩展，i.e.部署多个 kube-apiserver 以实现高可用，应对高并发请求，到达 kube-apiserver 的流量可以在这些实例之间平衡。
+如果是通过 kubeadm 安装的 k8s 集群，那么 API Server 的表现形式就是一个名为 **kube-apiserver 的静态 pod**。kube-apiserver 可以水平扩展，i.e.部署多个 kube-apiserver 以实现高可用，应对高并发请求，到达 kube-apiserver 的流量可以在这些实例之间平衡。
 
 API Server 启动后，默认监听在 6443 端口(http 默认监听在 8080 上)。API Server 是 Kubernetes 集群的前端接口 ，各种客户端工具（CLI 或 UI）以及 Kubernetes 其他组件可以通过它管理集群的各种资源。kubectl 就是 API Server 的客户端程序，实现对 k8s 各种资源的增删改查的功能。各个 node 节点的 kubelet 也通过 master 节点的 API Server 来上报本节点的 Pod 状态。
 

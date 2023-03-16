@@ -1,5 +1,6 @@
 ---
-title: Kubernetes 对象管理
+title: "Object 管理"
+weight: 1
 ---
 
 # 概述
@@ -117,14 +118,24 @@ CSA 的工作工作机制大致如下：当 apply 一个对象，如果该对象
 
 # 管理对象的方式
 
-## [使用配置文件对 Kubernetes 对象进行声明式管理](https://kubernetes.io/zh-cn/docs/tasks/manage-kubernetes-objects/declarative-config/)
+## 使用配置文件对 Kubernetes 对象进行声明式管理
 
-## [使用 Kustomize 对 Kubernetes 对象进行声明式管理](https://kubernetes.io/zh-cn/docs/tasks/manage-kubernetes-objects/kustomization/)
+https://kubernetes.io/zh-cn/docs/tasks/manage-kubernetes-objects/declarative-config/
 
-## [使用指令式命令管理 Kubernetes 对象](https://kubernetes.io/zh-cn/docs/tasks/manage-kubernetes-objects/imperative-command/)
+## 使用 Kustomize 对 Kubernetes 对象进行声明式管理
 
-## [使用配置文件对 Kubernetes 对象进行命令式管理](https://kubernetes.io/zh-cn/docs/tasks/manage-kubernetes-objects/imperative-config/)
+https://kubernetes.io/zh-cn/docs/tasks/manage-kubernetes-objects/kustomization/
 
-## [使用 kubectl patch 更新 API 对象](https://kubernetes.io/zh-cn/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/)
+## 使用指令式命令管理 Kubernetes 对象
+
+https://kubernetes.io/zh-cn/docs/tasks/manage-kubernetes-objects/imperative-command/
+
+## 使用配置文件对 Kubernetes 对象进行命令式管理
+
+https://kubernetes.io/zh-cn/docs/tasks/manage-kubernetes-objects/imperative-config/
+
+## 使用 kubectl patch 更新 API 对象
+
+https://kubernetes.io/zh-cn/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/
 
 使用 kubectl patch 更新 Kubernetes API 对象。做一个策略性的合并 patch 或 JSON 合并 patch。

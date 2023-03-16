@@ -1,5 +1,6 @@
 ---
-title: Kubernets Object(对象)
+title: "Object"
+weight: 2
 ---
 
 # 概述
@@ -9,9 +10,9 @@ title: Kubernets Object(对象)
 
 从某些角度看来，Kubernetes 里的一切介 **Object(对象)**。就像 Linux 里，一切介文件的角度一样。
 
-**API Resource(资源) **用于表示** Objectk(对象) **的集合。例如 pod 资源可以用于描述所有 pod 资源类型的对象，比如我创建一个 pod 资源，生成了一个名为 test1 的 pod 类型的对象，如果创建了多个 pod 对象，那么每个对象都是 pod 类型的资源。
+**API Resource(资源)** 用于表示 **Objectk(对象)** 的集合。例如 pod 资源可以用于描述所有 pod 资源类型的对象，比如我创建一个 pod 资源，生成了一个名为 test1 的 pod 类型的对象，如果创建了多个 pod 对象，那么每个对象都是 pod 类型的资源。
 
-Kubernetes **Objectk(对象) **是 Kubernetes 系统中，**Resource(资源)**的持久化实体。Kubernetes 使用这些实体来表示集群的状态。具体来说，他们可以描述：
+Kubernetes **Objectk(对象)** 是 Kubernetes 系统中，**Resource(资源)** 的持久化实体。Kubernetes 使用这些实体来表示集群的状态。具体来说，他们可以描述：
 
 - 哪些容器化应用程序正在运行（以及在哪些节点上）
 - 这些应用可用的资源
@@ -27,7 +28,7 @@ Kubernetes 对象是“record of intent(目标性记录)”：即,一旦创建�
 
 在 Kubernetes 中创建对象时，必须提供描述其所需状态的 **spec(规范)** 以及有关该对象的 **基本信息**(例如名称)。当我们使用 KubernetesAPI 创建对象（直接向 API 发请求 或者 通过 kubectl 向 API 发请求）时，这个 API 请求必须在 body 中包含 JSON 格式的信息。通常，我们会在 .yaml 文件中将信息提供给 kubectl， kubectl 发出 API 请求时将信息转换为 JSON 格式。一个 YAML 文件中定义了一个我要如何运行一个对象。这个 yaml 文件其实就相当于该对象的配置文件。
 
-**通常，我们把描述一个对象的 .yaml 或 .json 格式的文件，称为 **[**Manifest(清单)**](https://kubernetes.io/docs/reference/glossary/?all=true#term-manifest)。Manifest 指定了在应用该 Manifest 时，Kubrenetes 将维护的对象的期望状态。
+**通常，我们把描述一个对象的 .yaml 或 .json 格式的文件，称为** [**Manifest(清单)**](https://kubernetes.io/docs/reference/glossary/?all=true#term-manifest)。Manifest 指定了在应用该 Manifest 时，Kubrenetes 将维护的对象的期望状态。
 
 > 比如，交流时经常这么说 manifest of resource(资源的清单)，就是指创建该资源对象时的 yaml 文件
 

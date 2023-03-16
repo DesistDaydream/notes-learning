@@ -18,8 +18,8 @@ Note：在 kubectl 命令中的 全局 flags 中还有很多有用的 flags 可�
 
 - **-A, --all-namespaces** # 列出在所有名称空间中的对象。
 - --allow-missing-template-keys=true: If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.
-- --chunk-size=500: Return large lists in chunks rather than all at once. Pass 0 to disable. This flag is beta and may change in the future.
-- **--field-selector=''** # 根据一个或多个资源字段的值[筛选 Kubernetes 对象](https://kubernetes.io/zh/docs/concepts/overview/working-with-objects/kubernetes-objects)。支持 `=`, `==`, and `!=`(比如 `--field-selector key1=value1,key2=value2`)。注意，仅支持部分字段筛选
+- **--field-selector=STRING** # 使用[字段选择器](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/Object%20管理/字段选择器.md)根据一个或多个资源字段的值筛选 Kubernetes 对象。支持 `=`, `==`, and `!=`(比如 `--field-selector key1=value1,key2=value2`)。
+    - **注意，仅支持部分字段筛选**
 - -f, --filename=\[]: Filename, directory, or URL to files identifying the resource to get from a server.
 - --ignore-not-found=false: If the requested object does not exist the command will return exit code 0.
 - **-k, --kustomize=\<DIR>** # 处理指定的 Kustomize 目录。这个标志不能与 -f 或 -R 同时使用。
@@ -34,7 +34,7 @@ Note：在 kubectl 命令中的 全局 flags 中还有很多有用的 flags 可�
     - custom-columns=\<HEADER>:\<JSON-PATH-EXPR> # 自定义以一列一列的形式显示列表。参考：\[http://kubernetes.io/docs/user-guide/kubectl-overview/#custom-columns]
     - golang template\[http://golang.org/pkg/text/template/#pkg-overview]
     - jsonpath template # 使用 json 格式里的路径来查看某个字段的状态，样例如下，`.`符号是字符分隔符。用法详见[官方文档](https://kubernetes.io/docs/reference/kubectl/jsonpath/)
-        - e.g.-o jsonpath="{.status.phase}"
+        - e.g.`-o jsonpath="{.status.phase}"`
 - --output-watch-events=false: Output watch event objects when --watch or --watch-only is used. Existing objects are output as initial ADDED events.
 - **--raw \<URL Path>** # 从 API Server 请求原始 URI。显示指定 URL Path 路径下的原始 URI 信息，默认输出为 JSON 格式
 - -R, --recursive=false: Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.
@@ -45,7 +45,7 @@ Note：在 kubectl 命令中的 全局 flags 中还有很多有用的 flags 可�
 - **--show-labels** # 输出信息时，在最后一列显示该对象的 label。(默认不显示)
 - --sort-by='': If non-empty, sort list types using this field specification. The field specification is expressed as a JSONPath expression (e.g. '{.metadata.name}'). The field in the API resource specified by this JSONPath expression must be an integer or a string.
 - --template='': Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates \[http://golang.org/pkg/text/template/#pkg-overview].
-- -w, --watch # 实时监控。类似于在命令前加 wathch。只有当资源状态变化时，才会显示
+- **-w, --watch** # 实时监控。类似于在命令前加 wathch。只有当资源状态变化时，才会显示
 - --watch-only # Watch for changes to the requested object(s), without listing/getting first.
 
 # EXAMPLE
@@ -118,15 +118,19 @@ kubectl get secrets -n kubernetes-dashboard -o jsonpath="{.items\[?(@.metadata.a
 
 - kubectl get pods -A --field-selector status.phase=Running
 - kubectl get pod -A --field-selector status.phase=Succeeded
-- kubectl get pod -A --field-selector status.reason=Evicted
+
+获取 Evicted 状态的 Pod
+
+- `kubectl get pods -A -o json | jq '.items[] | select(.status.reason == "Evicted") | {name: .metadata.name, reason: .status.reason}'`
+- `kubectl get pods | grep Evicted | awk '{print $1}' | xargs kubectl delete pod`
 
 获取 test 名称空间下所有资源
 
-- kubectl api-resources -o name --verbs=list --namespaced | xargs -n 1 kubectl get --show-kind --ignore-not-found -n test
+- `kubectl api-resources -o name --verbs=list --namespaced | xargs -n 1 kubectl get --show-kind --ignore-not-found -n test`
 
 获取正在使用 pvc 的 pod
 
-- kubectl get pods --all-namespaces -o=json | jq -c '.items\[] | {name: .metadata.name, namespace: .metadata.namespace, claimName:.spec.volumes\[] | select( has ("persistentVolumeClaim") ).persistentVolumeClaim.claimName }'
+- `kubectl get pods --all-namespaces -o=json | jq -c '.items\[] | {name: .metadata.name, namespace: .metadata.namespace, claimName:.spec.volumes\[] | select( has ("persistentVolumeClaim") ).persistentVolumeClaim.claimName }'`
 
 ### 获取 Pod 在 Node 上的分布数量
 

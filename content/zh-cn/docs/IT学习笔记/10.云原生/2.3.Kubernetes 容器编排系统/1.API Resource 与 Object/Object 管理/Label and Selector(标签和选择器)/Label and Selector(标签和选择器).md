@@ -1,5 +1,6 @@
 ---
 title: Label and Selector(标签和选择器)
+weight: 1
 ---
 
 # 概述
@@ -11,13 +12,13 @@ title: Label and Selector(标签和选择器)
 > - [官方文档,参考-Kubernets API-通用定义-标签选择器](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/label-selector/)
 > - [官方文档,参考-Kubernets API-通用定义-节点选择器请求](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/node-selector-requirement/)
 
-**Label(标签)** 是 `键/值对` 的集合，在 Kubernetes 中，每一个对象都可以具有一个或多个** Label(标签)**。Label 主要用来让用户定义对象的属性，以便为所有对象进行分类，并且还可以组织和选择对象的子集。标签可以在创建对象的同时添加，也可以随时修改对象上的标签。
+**Label(标签)** 是 `键/值对` 的集合，在 Kubernetes 中，每一个对象都可以具有一个或多个 **Label(标签)**。Label 主要用来让用户定义对象的属性，以便为所有对象进行分类，并且还可以组织和选择对象的子集。标签可以在创建对象的同时添加，也可以随时修改对象上的标签。
 
 Kubernetes 中的 Label 功能与 时间序列数据 中标签功能有异曲同工之妙，说白了，就是用来描述一个东西的。而且通过 Label，我们可以以松耦合的方式将我们自己想要的组织方式组织集群中的 Pod，而并不需要自己维护这些。
 
 **Kubernetes 中标签概念的重要性不亚于 API 资源和对象的概念。Pod 要运行在哪个 Node 上、下文将会提到的标签选择器，以及 Kubernetes 的调度系统等等等等，想要实现这些功能，都要依赖于标签。**
 
-_标签_ 是键值对。有效的标签键有两个段：可选的前缀和名称，用斜杠（`/`）分隔。 名称段是必需的，必须小于等于 63 个字符，以字母数字字符（`[a-z0-9A-Z]`）开头和结尾， 带有破折号（`-`），下划线（`_`），点（ `.`）和之间的字母数字。 前缀是可选的。如果指定，前缀必须是 DNS 子域：由点（`.`）分隔的一系列 DNS 标签，总共不超过 253 个字符， 后跟斜杠（`/`）。
+_标签_ 是键值对。有效的标签键有两个段：可选的前缀和名称，用斜杠 `/` 分隔。 名称段是必需的，必须小于等于 63 个字符，以字母数字字符（`[a-z0-9A-Z]`）开头和结尾， 带有破折号 `-`，下划线 `_`，点  `.` 和之间的字母数字。 前缀是可选的。如果指定，前缀必须是 DNS 子域：由点 `.` 分隔的一系列 DNS 标签，总共不超过 253 个字符， 后跟斜杠 `/`。
 
 如果省略前缀，则假定标签键对用户是私有的。 向最终用户对象添加标签的自动系统组件（例如 `kube-scheduler`、`kube-controller-manager`、 `kube-apiserver`、`kubectl` 或其他第三方自动化工具）必须指定前缀。
 
@@ -25,11 +26,12 @@ _标签_ 是键值对。有效的标签键有两个段：可选的前缀和名�
 
 - 必须为 63 个字符或更少（可以为空）
 - 除非标签值为空，必须以字母数字字符（`[a-z0-9A-Z]`）开头和结尾
-- 包含破折号（`-`）、下划线（`_`）、点（`.`）和字母或数字。
+- 包含破折号 `-`、下划线 `_`、点 `.` 和字母或数字。
 
 ## 集群中特殊的标签
 
 `kubernetes.io/`  和 `k8s.io/` 前缀是为 Kubernetes 核心组件保留的。
+
 在每个 master 上都会有这么一个标签 node-role.kubernetes.io/XXXXX=，在使用 kubeclt get nodes 命令时， ROLES 列的值，就是根据该标签的 key 来决定的，key 中 XXXX 的值，会填写到 ROLES 列中。
 
 ## 一个对象中标签示例
@@ -71,7 +73,7 @@ spec:
 
 ## Selector Manifest
 
-选择器的 Manifest 字段及其写法详见 [API 参考-LabelSelector](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 参考/Common Definitions(通用定义)/LabelSelector 详解.md)
+选择器的 Manifest 字段及其写法详见 [API 参考-LabelSelector](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
 
 # Label 的使用方式
 

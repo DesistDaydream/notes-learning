@@ -90,47 +90,49 @@ spec:
 
 # Probe 的 yaml 样例
 
-    apiVersion: v1
-    kind: Pod
-    metadata:
-      labels:
-        app: nginx
-      name: nginx
-    spec:
-        containers:
-        - image: nginx
-          imagePullPolicy: Always
-          name: http
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 80
-              httpHeaders:
-              - name: X-Custom-Header
-                value: Awesome
-            initialDelaySeconds: 15
-            timeoutSeconds: 1
-          readinessProbe:
-            exec:
-              command:
-              - cat
-              - /usr/share/nginx/html/index.html
-            initialDelaySeconds: 5
-            timeoutSeconds: 1
-        - name: goproxy
-          image: gcr.io/google_containers/goproxy:0.1
-          ports:
-          - containerPort: 8080
-          readinessProbe:
-            tcpSocket:
-              port: 8080
-            initialDelaySeconds: 5
-            periodSeconds: 10
-          livenessProbe:
-            tcpSocket:
-              port: 8080
-            initialDelaySeconds: 15
-            periodSeconds: 20
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: nginx
+  name: nginx
+spec:
+    containers:
+    - image: nginx
+      imagePullPolicy: Always
+      name: http
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 80
+          httpHeaders:
+          - name: X-Custom-Header
+            value: Awesome
+        initialDelaySeconds: 15
+        timeoutSeconds: 1
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - /usr/share/nginx/html/index.html
+        initialDelaySeconds: 5
+        timeoutSeconds: 1
+    - name: goproxy
+      image: gcr.io/google_containers/goproxy:0.1
+      ports:
+      - containerPort: 8080
+      readinessProbe:
+        tcpSocket:
+          port: 8080
+        initialDelaySeconds: 5
+        periodSeconds: 10
+      livenessProbe:
+        tcpSocket:
+          port: 8080
+        initialDelaySeconds: 15
+        periodSeconds: 20
+```
 
 # Pod 创建流程
 

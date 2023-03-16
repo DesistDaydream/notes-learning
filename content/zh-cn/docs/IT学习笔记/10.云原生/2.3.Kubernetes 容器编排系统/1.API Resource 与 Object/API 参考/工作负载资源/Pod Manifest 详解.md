@@ -21,7 +21,7 @@ Pod 是可以在主机上运行的容器的集合。此资源由客户端创建�
 
 # PodMetaData
 
-metadata 用来描述一个 Pod 的元数据信息。该字段内容详见通用定义的 [ObjectMeta](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/ObjectMeta.md)
+metadata 用来描述一个 Pod 的元数据信息。该字段内容详见通用定义的 [ObjectMeta](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/ObjectMeta.md)
 
 - **annotations: \<STRING>**# Pod 注释，不同于 label，仅用于为资源提供元数据
 - **labels: \<map\[STRING]STRING>** # Pod 的标签，通过“键值对”的方式定义，可以添加多个标签
@@ -135,24 +135,24 @@ Pod 生命周期功能详见[《Pod 的生命周期》](/docs/IT学习笔记/10.
 - **nodeAffinity: \<OBJECT>**# 为 Pod 定义节点亲和性的调度规则
   - **preferredDuringSchedulingIgnoredDuringExecution: <\[]Object>** # 调度程序将倾向于将 Pod 调度到满足此字段指定的反亲和行要求的节点，但是也可能会选择违反一个或多个该字段指定的调度规则。
     - **preference: \<OBJECT> # 必须的**。
-      - **matchExpressions: <\[]OBJECT>** # 该字段下的内容就是 [通用的节点标签选择器字段](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
-      - **matchFields: <\[OBJECT]>** # 该字段下的内容就是[通用的节点标签选择器字段](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+      - **matchExpressions: <\[]OBJECT>** # 该字段下的内容就是 [通用的节点标签选择器字段](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+      - **matchFields: <\[OBJECT]>** # 该字段下的内容就是[通用的节点标签选择器字段](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
     - **weight: \<INTEGER> # 必须的**。
   - **requiredDuringSchedulingIgnoredDuringExecution: \<Object>** # 如果在调度时未满足该字段指定的反亲和性要求，则不会将 pod 调度到该节点上。
     - **nodeSelectorTerms: <\[]OBJECT> # 必须的**。节点选择器列表。列表中元素之间是“或”的关系
-      - **matchExpressions: <\[]OBJECT>** # 该字段下的内容就是[通用的节点标签选择器字段](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
-      - **matchFields: <\[OBJECT]>** # 该字段下的内容就是[通用的节点标签选择器字段](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+      - **matchExpressions: <\[]OBJECT>** # 该字段下的内容就是[通用的节点标签选择器字段](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+      - **matchFields: <\[OBJECT]>** # 该字段下的内容就是[通用的节点标签选择器字段](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
 - **podAffinity** ([PodAffinity](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#PodAffinity))# 描述 pod 亲和性的调度规则(e.g.将此 Pod 与其他一些 Pod 共同定位在同一节点、区域等中)。
   - ......
 - **podAntiAffinity: \<OBJECT>** ([PodAntiAffinity](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#PodAntiAffinity))描述 pod 反亲和性的调度规则(e.g. 避免将此 Pod 放在与其他某些 Pod 相同的节点、区域等中)
   - **preferredDuringSchedulingIgnoredDuringExecution: <\[]Object>** # 调度程序将倾向于将 Pod 调度到满足此字段指定的反亲和行要求的节点，但是也可能会选择违反一个或多个该字段指定的调度规则。
     - **preference: \<OBJECT> # 必须的**。
-      - **matchExpressions: <\[]OBJECT>** # 该字段下的内容就是[通用的节点标签选择器字段](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
-      - **matchFields: <\[OBJECT]>** # 该字段下的内容就是[通用的节点标签选择器字段](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+      - **matchExpressions: <\[]OBJECT>** # 该字段下的内容就是[通用的节点标签选择器字段](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+      - **matchFields: <\[OBJECT]>** # 该字段下的内容就是[通用的节点标签选择器字段](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
     - **weight: \<INTEGER> # 必须的**。
   - **requiredDuringSchedulingIgnoredDuringExecution: <\[]Object>** # 如果在调度时未满足该字段指定的反亲和性要求，则不会将 pod 调度到该节点上。
-    - **labelSelector: \<OBJECT>** # 该字段下的内容就是[通用的节点标签选择器字段](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
-    - **namespaceSelector: \<OBJECT>** # 该字段下的内容就是[通用的节点标签选择器字段](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+    - **labelSelector: \<OBJECT>** # 该字段下的内容就是[通用的节点标签选择器字段](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+    - **namespaceSelector: \<OBJECT>** # 该字段下的内容就是[通用的节点标签选择器字段](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
     - **namespaces: <\[]STING>** # 名称空间。`默认值：该 Pod 所在的名称空间`
     - **topologyKey: \<STRING>** # **必须的**。想要匹配的 Node 标签的键
 

@@ -7,10 +7,10 @@ title: kubectl 命令行工具
 > 参考：
 >
 > - [官方文档，参考-kubectl](https://kubernetes.io/docs/reference/kubectl/)
-> - [官方文档,任务-安装工具-kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+> - [官方文档，任务-安装工具-kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 > - [官方推荐常用命令备忘录](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 
-kubectl 所用的 kubeconfig 文件，默认在 ~/.kube/confg，该文件用于定位 Kubernetes 集群以及与 API Server 交互时进行认证，如果没有认证文件则 API Server 无法处理 kubectl 发出的任何指令并返回错误信息。
+kubectl 所用的 kubeconfig 文件，默认在 `~/.kube/confg`，该文件用于定位 Kubernetes 集群以及与 API Server 交互时进行认证，如果没有认证文件则 API Server 无法处理 kubectl 发出的任何指令并返回错误信息。
 
 如果该文件不存在或配置不全(比如没有指定 current-context 字段)，kubectl 则会向 localhost:8080 发起请求(该端口是 API Server 默认监听的不安全端口，该端口不需要认证即可对集群执行所有操作)。
 
