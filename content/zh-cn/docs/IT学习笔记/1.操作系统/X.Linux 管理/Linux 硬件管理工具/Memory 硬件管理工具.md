@@ -12,34 +12,9 @@ title: Memory 硬件管理工具
 
 查看服务器型号、序列号：
 
-```bash
-~]# dmidecode|grep "System Information" -A9|egrep  "Manufacturer|Product|Serial"
-Manufacturer: VMware, Inc.
-Product Name: VMware Virtual Platform
-Serial Number: VMware-42 18 c8 32 77 c6 ec 16-3f 31 94 e9 d0 34 a6 ac
-```
 
-Linux 查看内存的插槽数,已经使用多少插槽.每条内存多大：
 
-~]# dmidecode|grep -A5 "Memory Device"|grep Size|grep -v Range
-Size: 4096 MB
-Size: 2048 MB
-Size: No Module Installed
-Size: No Module Installed
-
-Linux 查看内存的频率：
-
-    [root@localhost htdocs]# dmidecode|grep -A16 "Memory Device"|grep 'Speed'
-            Speed: 667 MHz (1.5 ns)
-            Speed: 667 MHz (1.5 ns)
-            Speed: 667 MHz (1.5 ns)
-            Speed: 667 MHz (1.5 ns)
-            Speed: Unknown
-
-在 linux 查看内存型号的命令：
-
-    dmidecode -t memory
-
+Linux 
 查看主板型号：
 
     dmidecode |grep -A16 "System Information$"

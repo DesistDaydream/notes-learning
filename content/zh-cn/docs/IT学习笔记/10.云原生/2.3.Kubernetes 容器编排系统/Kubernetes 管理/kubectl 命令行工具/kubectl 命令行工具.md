@@ -6,7 +6,7 @@ title: kubectl 命令行工具
 
 > 参考：
 >
-> - [官方文档](https://kubernetes.io/docs/reference/kubectl/overview/)
+> - [官方文档，参考-kubectl](https://kubernetes.io/docs/reference/kubectl/)
 > - [官方文档,任务-安装工具-kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 > - [官方推荐常用命令备忘录](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 
@@ -68,7 +68,7 @@ kubeamd 部署的集群一般直接使用 /etc/kubernetes/admin.conf 文件拷�
 
 > 参考：
 >
-> - 官方文档：<https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands>
+> - [官方文档，参考-kubectl 命令](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands)
 
 **kubectl COMMAND \[TYPE] \[NAME] \[FLAGS]**
 
@@ -89,7 +89,7 @@ kubeamd 部署的集群一般直接使用 /etc/kubernetes/admin.conf 文件拷�
 - --cluster='': The name of the kubeconfig cluster to use
 - --context='': The name of the kubeconfig context to use
 - --insecure-skip-tls-verify=false: If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
-- --kubeconfig=/PATH/TO/FILE    # 指定 kubectl 所要使用的配置文件(需要使用绝对路径)
+- **--kubeconfig=/PATH/TO/FILE** # 指定 kubectl 所要使用的配置文件(需要使用绝对路径)
 - --log-backtrace-at=:0: when logging hits line file:N, emit a stack trace
 - --log-dir='': If non-empty, write log files in this directory
 - --log-file='': If non-empty, use this log file
@@ -146,7 +146,7 @@ kubectl explain RESOURCE\[.FIELD1.FELD2...FIELDn] \[options] # 每个 FIELD(字�
 
 ### edit # 编辑服务器上的资源
 
-详见《[对象的创建与修改命令](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubectl%20 命令行工具/对象的创建与修改命令.md 命令行工具/对象的创建与修改命令.md)》
+详见《[对象的创建与修改命令](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/Kubernetes%20管理/kubectl%20命令行工具/对象的创建与修改命令.md)》
 
 ### delete # 通过文件名、标准输入、资源名或者资源表删除资源
 
@@ -230,7 +230,7 @@ EXAMPLE
 
 ### debug # 创建调试 Pod 以便对工作负载或节点进行故障排除
 
-详见：[故障处理技巧章节](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/性能优化%20 与%20 故障处理/故障处理技巧.md 与 故障处理/故障处理技巧.md)
+详见：[故障处理技巧章节](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/Kubernetes%20管理/性能优化与故障处理/故障处理技巧/故障处理技巧.md)
 
 ### describe # 显示特定资源或资源组的详细信息
 
@@ -360,7 +360,7 @@ EXAMPLE
 
 在编写 yaml 文件中的“apiVersion”字段时，可以使用该命令显示出的组/版本
 
-### config # 使用子命令修改 kubeconfig 文件，用法详见 [config 子命令](https://www.yuque.com/go/doc/33163778)
+### config # 使用子命令修改 kubeconfig 文件，用法详见 [config 子命令，修改kubeconfig文件](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/Kubernetes%20管理/kubectl%20命令行工具/config%20子命令，修改kubeconfig文件.md)
 
 plugin         Runs a command-line plugin
 

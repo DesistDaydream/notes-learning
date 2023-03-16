@@ -1,5 +1,5 @@
 ---
-title: LabelSelector 详解
+title: LabelSelector
 ---
 
 # 概述

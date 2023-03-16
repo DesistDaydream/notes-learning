@@ -2,44 +2,16 @@
 title: 从文件中获取 Linux 硬件信息获取
 ---
 
-# lshw
-
-> 参考：
-> - 
-
-TODO: 这命令哪来的？看的信息还挺全乎
-
-# lspci
-
-> 参考：
-> - [Manual(手册)，lspci(8)](https://man7.org/linux/man-pages/man8/lspci.8.html)
-
-列出所有 PCI 设备
-
-## Syntax(语法)
-
-**lspci [OPTIONS]**
-
-### OPTIONS
-
-展示内容相关选项
-
-- **-k** # 显示处理每个设备的内核驱动程序以及能够处理它的内核模块。在正常输出模式下给出 -v 时默认打开。 （目前仅适用于内核为 2.6 或更新版本的 Linux。）
-
-选择指定设备选项
-
-- **-s \[\[\[[\<DOMAIN>]:]\<BUS>]:][\<DEVICE>]\[.[\<FUNC>]]** # 仅显示指定域中的设备（如果您的机器有多个主机桥，它们可以共享一个公共总线编号空间，或者它们中的每一个都可以寻址自己的 PCI 域；域编号从 0 到 ffff），bus ( 0 到 ff）、设备（0 到 1f）和功能（0 到 7）。设备地址的每个组成部分都可以省略或设置为“*”，均表示“任意值”。所有数字都是十六进制的。例如，“0：”表示总线 0 上的所有设备，“0”表示任何总线上设备 0 的所有功能，“0.3”选择所有总线上设备 0 的第三个功能，“.4”仅显示每个总线上的第四个功能设备。
-    - 注意：-s 的值可以通过 uevent 文件中的 PCI_SLOT_NAME 字段的值获取
 
 
-# 从文件中获取 Linux 硬件信息获取
+# 概述
 
 > 参考：
 > - [jouyouyun 博客， Linux 硬件信息获取](https://jouyouyun.github.io/post/linux_hardware_info/)
 
-在 `linux` 上可以通过 `dmidecode` 或是 `lshw` 来获取硬件信息，能够方便的查看系统配置。但它们的输出信息过多，解析起来有些麻烦，另外 `lshw` 对 `usb` 接口的网卡支持不好，显示的信息不够，所以在此整理下通过读文件或是一些简单命令来获取硬件信息的方法。
+在 `linux` 上可以通过 [`dmidecode`](/docs/IT学习笔记/1.操作系统/X.Linux%20管理/Linux%20硬件管理工具/dmidecode.md) 或是 `lshw` 来获取硬件信息，能够方便的查看系统配置。但它们的输出信息过多，解析起来有些麻烦，另外 `lshw` 对 `usb` 接口的网卡支持不好，显示的信息不够，所以在此整理下通过读文件或是一些简单命令来获取硬件信息的方法。
 
-## DMI
+# DMI
 
 一般情况下内核默认加载了 `dmi sysfs` ，路径是 `/sys/class/dmi` 。里面包含了 `bios` ， `board` ， `product` 等信息。
 
@@ -87,24 +59,97 @@ TODO: 这命令哪来的？看的信息还挺全乎
 
 其中 `product_uuid` 可作为机器的唯一 `ID` 。
 
-## CPU(处理器)
+# CPU(处理器)
 
-通过读取文件 `/proc/cpuinfo` 可获取 `cpu` 的信息，一般 `model name` 字段为 `cpu` 名称，如：
+在 [Proc File System](docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/特殊文件系统/Proc%20File%20System.md) 的 `/proc/stst` 和 `/proc/cpuinfo` 文件中可以查看 CPU 相关的信息
+
+通过 cat /proc/cpuinfo 命令，可以查看 CPU 相关的信息：
 
 ```bash
-~]# cat /proc/cpuinfo|grep 'model name'
-model name	: Intel(R) Xeon(R) Gold 5218 CPU @ 2.30GHz
-model name	: Intel(R) Xeon(R) Gold 5218 CPU @ 2.30GHz
-model name	: Intel(R) Xeon(R) Gold 5218 CPU @ 2.30GHz
-model name	: Intel(R) Xeon(R) Gold 5218 CPU @ 2.30GHz
-model name	: Intel(R) Xeon(R) Gold 5218 CPU @ 2.30GHz
-model name	: Intel(R) Xeon(R) Gold 5218 CPU @ 2.30GHz
+~]# cat /proc/cpuinfo
+processor : 0
+vendor_id : GenuineIntel
+cpu family : 6
+model : 44
+model name : Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz
+stepping : 2
+cpu MHz : 1596.000
+cache size : 12288 KB
+physical id : 0
+siblings : 8
+core id : 0
+cpu cores : 4
+apicid : 0
+initial apicid : 0
+fpu : yes
+fpu_exception : yes
+cpuid level : 11
+wp : yes
+flags : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 popcnt aes lahf_lm arat epb dts tpr_shadow vnmi flexpriority ept vpid
+bogomips : 4800.15
+clflush size : 64
+cache_alignment : 64
+address sizes : 40 bits physical, 48 bits virtual
+power management:
 ......
 ```
 
-**但在龙芯，申威上可能不是这个字段，需要根据文件内容确定。**
+## CPU 核心数相关信息
 
-## Memory(内存)
+在查看到的相关信息中，通常有些信息比较让人迷惑，这里列出一些解释：
+
+- **physical id** # 指的是物理封装的处理器的 id。
+- **cpu cores** # 位于相同物理封装的处理器中的内核数量。
+- **core id** # 每个内核的 id (不一定是按顺序排列的数字) 。
+- **siblings** # 位于相同物理封装的处理器中的逻辑处理器的数量。
+- **processor** # 逻辑处理器的 id。
+
+我们通常可以用下面这些命令获得这些参数的信息：
+
+```bash
+~]# cat /proc/cpuinfo | grep "physical id" | sort|uniq
+physical id     : 0
+physical id     : 1
+~]# cat /proc/cpuinfo | grep "cpu cores" | sort|uniq
+cpu cores     : 4
+~]# cat /proc/cpuinfo | grep "core id" | sort|uniq
+core id          : 0
+core id          : 1
+core id          : 10
+core id          : 9
+~]# cat /proc/cpuinfo | grep "siblings" | sort|uniq
+siblings     : 8
+~]# cat /proc/cpuinfo | grep "processor" | sort -n -k 2 -t: | uniq
+processor	: 0
+processor	: 1
+processor	: 2
+processor	: 3
+processor	: 4
+processor	: 5
+processor	: 6
+processor	: 7
+processor	: 8
+processor	: 9
+processor	: 10
+processor	: 11
+processor	: 12
+processor	: 13
+processor	: 14
+processor	: 15
+```
+
+通过上面的结果，可以看出这台机器：
+
+1. physical id # 有 2 个物理处理器(i.e.装在主板上的 CPU)（有 2 个）
+2. cpu cores # 每个物理处理器有 4 个内核（为 4）
+3. siblings # 每个物理处理器有 8 个逻辑处理器（为 8）
+    1. 可见台机器的处理器开启了**超线程技术**，每个内核（core）被划分为了 2 个逻辑处理器（processor）
+4. processor # 总共有 16 个逻辑处理器（有 16 个）
+
+**超线程技术**：超线程技术就是利用特殊的硬件指令，把两个逻辑处理器模拟成两个物理芯片，让单个处理器都能使用线程级并行计算，进而兼容多线程操作系统和软件，减少了 CPU 的闲置时间，提高的 CPU 的运行效率。
+
+
+# Memory(内存)
 
 通过读取文件 `/proc/meminfo` 可获取内存总大小，字段是 `MemTotal` ，如：
 
@@ -115,7 +160,7 @@ MemTotal:       263570816 kB
 
 **对于内存厂商等信息还未找到获取方法，待以后补全。**
 
-## Disk(硬盘)
+# Disk(硬盘)
 
 硬盘信息这里使用 `lsblk` 来获取，通过指定它的参数来获取，如：
 
@@ -149,7 +194,7 @@ $ lsblk -J -bno NAME,SERIAL,TYPE,SIZE,VENDOR,MODEL,MOUNTPOINT,UUID
 [0:2:1:0]    disk    AVAGO    MR9361-8i        4.68  /dev/sdb
 ```
 
-## Network(网卡)
+# Network(网卡)
 
 简单直接：
 
@@ -259,7 +304,7 @@ Bus 001 Device 007: ID 0cf3:9271 Atheros Communications, Inc. AR9271 802.11n
 
 其中 `Subsystem` 之后的即是 `model` 信息。
 
-## Bluetooth
+# Bluetooth
 
 在 `/sys/class/bluetooth/` 下是蓝牙设备，与 **网卡** 一样，根据 `/sys/class/bluetooth/<hciX>/device/uevent` 的内容使用 `lspci` 或 `lsusb` 来获取 `model` 信息。
 如：
@@ -281,7 +326,7 @@ $ lsusb -d a5c:21e6:112
 Bus 001 Device 003: ID 0a5c:21e6 Broadcom Corp. BCM20702 Bluetooth 4.0 [ThinkPad]
 ```
 
-## Graphic(图形硬件)
+# Graphic(图形硬件)
 
 显卡信息在 `/sys/class/drm/` 下，里面还包含了显卡支持输出接口，但只有 `card+integer` 组成的目录才是显卡的，如本机的信息：
 
@@ -344,7 +389,7 @@ $ lspci -k -s 0000:00:02.0
         Kernel modules: i915
 ```
 
-### Display Monitor(显示器)
+## Display Monitor(显示器)
 
 显示器的信息目前是从 `edid` 中获取，先确定显示器连接的显卡端口，然后使用 `edid-decode` (需要安装)解析其的 `edid` 文件，就可得到详细信息。如本机是 `card0-LVDS-1` ：
 
@@ -390,7 +435,7 @@ EDID block does NOT conform to EDID 1.3!
         Detailed block string not properly terminated
 ```
 
-## Sound
+# Sound
 
 声卡设备在 `/sys/class/sound` 目录下，目录名一般是 `card+integer` 组成，如本机的信息：
 
@@ -416,7 +461,7 @@ $ lspci -k -s 0000:00:1b.0
         Kernel modules: snd_hda_intel
 ```
 
-## Input/Output Device
+# Input/Output Device
 
 输入设备的信息可以从 `/proc/bus/input/devices` 文件中获取，如：
 
@@ -475,7 +520,7 @@ $ xinput
 
 使用 `xinput list-prop <device id>` 可以查看设备的属性。
 
-## Battery
+# Battery
 
 电池信息可以从 `/sys/class/power_supply/<name>/uevent` 文件中获取，电池的名称一般以 `BAT` 开头。如本机的信息：
 
@@ -499,7 +544,7 @@ POWER_SUPPLY_MANUFACTURER=SANYO
 POWER_SUPPLY_SERIAL_NUMBER=15921
 ```
 
-## Backlight
+# Backlight
 
 `/sys/class/backlight/` 目录下的是背光设备，如显示屏，背光键盘等，可以更改文件内容来调节这些设备的亮度。如：
 
@@ -513,7 +558,7 @@ actual_brightness  bl_power  brightness  device@  max_brightness  power/  subsys
 
 另外背光设备 `device` 可能只想真实的显卡设备，一般是子目录中包含 `video` 的。
 
-## Camera
+# Camera
 
 `/sys/class/video4linux/` 下是摄像头设备，不同子目录中的设备可能是同一个，也是读取 `device/uevent` 文件来选择 `lspci` 或 `lsusb` 获取设备信息，如：
 
@@ -529,11 +574,11 @@ $ lsusb -d 5986:2d2:11
 Bus 001 Device 004: ID 5986:02d2 Acer, Inc
 ```
 
-## Printer
+# Printer
 
 打印机应该是在 `/sys/class/printer` 下，信息获取方法应该与上文一致，本人手中没有打印机就不给出示例了。
 
-## Fingerprint
+# Fingerprint
 
 指纹的功能目前是由 `libfprint` 项目提供，调用其提供的接口来获取。
 如使用 `qdbus` 来获取：

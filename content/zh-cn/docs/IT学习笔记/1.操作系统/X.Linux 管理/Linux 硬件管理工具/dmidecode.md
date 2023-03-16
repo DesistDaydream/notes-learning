@@ -109,3 +109,52 @@ SMBIOS规范定义了以下DMI类型:
 **OPTIONS**
 
 - **-t, --type STRING** # 只显示指定类型的条目。可用的值可以使 DMI 类型编号、以逗号分隔的类型编号列表、关键字(详见 [DMI 类型](#DMI%20类型))
+
+# EXAMPLE
+
+# 服务器信息
+
+```bash
+~]# dmidecode | grep "System Information" -A9|egrep  "Manufacturer|Product|Serial"
+Manufacturer: VMware, Inc.
+Product Name: VMware Virtual Platform
+Serial Number: VMware-42 18 c8 32 77 c6 ec 16-3f 31 94 e9 d0 34 a6 ac
+```
+
+## CPU 信息
+
+
+
+
+## 内存信息
+
+查看内存信息
+
+```bash
+dmidecode -t memory
+```
+
+查看内存的插槽数,已经使用多少插槽.每条内存多大：
+
+```bash
+~]# dmidecode -t memory | grep Size | grep -v Range
+Size: 4096 MB
+Size: 2048 MB
+Size: No Module Installed
+Size: No Module Installed
+```
+
+Linux 查看内存的频率：
+
+```bash
+~]# dmidecode|grep -A16 "Memory Device"|grep 'Speed'
+        Speed: 667 MHz (1.5 ns)
+        Speed: 667 MHz (1.5 ns)
+        Speed: 667 MHz (1.5 ns)
+        Speed: 667 MHz (1.5 ns)
+        Speed: Unknown
+```
+
+在 linux 查看内存型号的命令：
+
+

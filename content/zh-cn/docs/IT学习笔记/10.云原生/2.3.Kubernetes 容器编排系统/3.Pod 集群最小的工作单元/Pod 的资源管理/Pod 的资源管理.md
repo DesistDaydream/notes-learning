@@ -1,24 +1,27 @@
 ---
-title: 为Pod分配物理资源与限制物理资源的使用
+title: "Pod 的资源管理"
+linkTitle: "Pod 的资源管理"
+weight: 20
 ---
+
+# 概述
+
+> 参考：
+> 
+> - [官方文档，概念-配置-Pod 和容器的资源管理](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 
 # Pod 中 Container 的资源需求与资源限制
 
-官方文档：<https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/>
-
 可以在 Pod 的 yaml 中定义该 Pod 中各个 Container 对内存与 CPU 的最低需求量和最大使用量
 
-1. requests：资源需求，最低保障，资源最少需要多少
-
-2. limits：限制，硬限制，限额，资源最大不能超过多少
+- requests：资源需求，最低保障，资源最少需要多少
+- limits：限制，硬限制，限额，资源最大不能超过多少
 
 当对 Container 进行资源制定后，会出现 QoS(服务质量)的属性，下列 3 个属性从上往下优先级下降；当节点资源不够时，优先级越高，越会保证其正常运行，其余不够提供资源的 Container 则不再运行
 
-1. Guarateed：有保证的，Pod 中每个 Container 同时设置 CPU 和内存的 requests 和 limits，且 request 和 limits 的值相同
-
-2. Burstable：超频，Pod 中至少有一个 Container 设置了 CPU 或内存资源的 requests 属性
-
-3. BestEffort：尽力努力(尽力而为)没有任何一个 Container 设置了 requests 和 limits 属性
+- Guarateed：有保证的，Pod 中每个 Container 同时设置 CPU 和内存的 requests 和 limits，且 request 和 limits 的值相同
+- Burstable：超频，Pod 中至少有一个 Container 设置了 CPU 或内存资源的 requests 属性
+- BestEffort：尽力努力(尽力而为)没有任何一个 Container 设置了 requests 和 limits 属性
 
 ![image.jpeg](https://notes-learning.oss-cn-beijing.aliyuncs.com/xu9mbw/1617283210163-cdf33748-8346-40d3-96b1-c3da2cf90df5.jpeg)
 
@@ -74,3 +77,4 @@ spec:
         - -cpus
         - "2"
 ```
+

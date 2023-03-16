@@ -1,5 +1,5 @@
 ---
-title: 从外部访问pod的方式
+title: 访问 Pod
 ---
 
 # 概述
@@ -23,23 +23,29 @@ title: 从外部访问pod的方式
 
 如果在 Pod 中使用 hostNetwork:true 配置的话，在这种 pod 中运行的应用程序可以直接看到 pod 启动的主机的网络接口。在主机的所有网络接口上都可以访问到该应用程序。以下是使用主机网络的 pod 的示例定义：
 
-    apiVersion: v1
-    kind: Pod
-    metadata:
-      name: influxdb
-    spec:
-      hostNetwork: true
-      containers:
-        -name: influxdb
-          image: influxdb
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: influxdb
+spec:
+  hostNetwork: true
+  containers:
+    - name: influxdb
+      image: influxdb
+```
 
 部署该 Pod：
 
-    $ kubectl create -f influxdb-hostnetwork.yml
+```
+$ kubectl create -f influxdb-hostnetwork.yml
+```
 
 访问该 pod 所在主机的 8086 端口：
 
-    curl -v http://$POD_IP:8086/ping
+```
+curl -v http://$POD_IP:8086/ping
+```
 
 将看到 204 No Content 的 204 返回码，说明可以正常访问。
 

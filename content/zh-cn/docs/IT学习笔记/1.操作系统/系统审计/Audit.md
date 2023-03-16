@@ -32,10 +32,10 @@ Audit 是实现的 Linux 系统审计的软件包，其中包含两个部分：
 
 # Audit 关联文件与配置
 
-**/etc/audit/\*** #
+**/etc/audit/** #
 - **./auditd.conf** # auditd 进程运行时配置
 - **./audit.rules** # 由 `rules.d/` 目录下的规则文件生成
-- **./rules.d/\*** # Audit 规则文件
+- **./rules.d/** # Audit 规则文件
 
 **/usr/share/doc/audit-${VERSION}/rules/\*** # Audit 软件包安装后根据各种认证标准提供一组预配置的规则文件
 
@@ -57,7 +57,7 @@ Audit 是实现的 Linux 系统审计的软件包，其中包含两个部分：
 ## 定义系统调用规则
 
 **-a action,filter -S system_call -F field=value -k key_name**
-- **action 和 filter **# 指定记录特定事件的时间。操作 可以是 always 或 never。filter 指定将哪个内核规则匹配过滤器应用到事件。rule-matching 过滤器可以是以下之一： task、exit、user 和 exclude。有关这些过滤器的更多信息，请参阅 [第  7.1  节 “Audit 系统架构”](https://access.redhat.com/documentation/zh-cn/red_hat_enterprise_linux/7/html/security_guide/chap-system_auditing#sec-audit_system_architecture) 的开头。
+- **action 和 filter** # 指定记录特定事件的时间。操作可以是 always 或 never。filter 指定将哪个内核规则匹配过滤器应用到事件。rule-matching 过滤器可以是以下之一： task、exit、user 和 exclude。有关这些过滤器的更多信息，请参阅 [第  7.1  节 “Audit 系统架构”](https://access.redhat.com/documentation/zh-cn/red_hat_enterprise_linux/7/html/security_guide/chap-system_auditing#sec-audit_system_architecture) 的开头。
 - **system_call** # 指定系统调用的名称。可以在 /usr/include/asm/unistd_64.h 文件中找到所有系统调用的列表。可将多个系统调用分组成一个规则，各自在其自己的 -S 选项后指定。
 - **Field=value** # 指定进一步修改规则以根据指定的体系结构、组 ID、进程 ID 和其他选项匹配的额外选项。有关所有可用字段类型及其值的完整列表，请查看 auditctl(8) man page。
 - **key_name** # 是一个可选字符串，可帮助您识别生成了特定日志条目的规则或一组规则。

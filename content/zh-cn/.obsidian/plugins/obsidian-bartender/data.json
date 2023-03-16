@@ -519,10 +519,10 @@
     ],
     "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具": [
       "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具/_index.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具/Linux 硬件管理工具.md",
       "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具/dmidecode.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具/Linux 硬件信息获取.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具/CPU 硬件管理工具.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具/Memory 硬件管理工具.md"
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具/Memory 硬件管理工具.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具/从文件中获取 Linux 硬件信息获取.md"
     ],
     "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统": [
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/_index.md",
@@ -842,6 +842,56 @@
       "docs/IT学习笔记/9.运维/Cobbler",
       "docs/IT学习笔记/9.运维/PXE 简介.md",
       "docs/IT学习笔记/9.运维/应用发布.md"
+    ],
+    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具": [
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/_index.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/kubectl 命令行工具.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/config 子命令，修改kubeconfig文件.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/对象的创建与修改命令.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/get 子命令.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/set 与 rollout 更新资源命令.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/logs # 打印 pod 中的 container 的日志.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/kubectl 扩展.md"
+    ],
+    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/工作负载资源": [
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/工作负载资源/_index.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/工作负载资源/工作负载资源.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/工作负载资源/Pod Manifest 详解.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/工作负载资源/Deployment Manifest 详解.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/工作负载资源/Statefulset Manifest 详解.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/工作负载资源/CronJab Manifests 详解.md"
+    ],
+    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)": [
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/_index.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/Common Definitions(通用定义).md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/LabelSelector.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/ObjectMeta.md"
+    ],
+    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元": [
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元/_index.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元/3.Pod 集群最小的工作单元.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元/Pod 生命周期",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元/Pod 的资源管理",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元/Pod 管理"
+    ],
+    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制": [
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/_index.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/7.API 访问控制.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/1.Authenticating(认证)",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/2.Authorization(授权)",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/3.Admission Controllers 准入控制器.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/Kubernetes 证书管理",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/最佳实践.md"
+    ],
+    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/Label and Selector(标签和选择器)": [
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/Label and Selector(标签和选择器)/_index.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/Label and Selector(标签和选择器)/Label and Selector(标签和选择器).md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/Label and Selector(标签和选择器)/官方推荐标签用法.md"
+    ],
+    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API Server": [
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API Server/_index.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API Server/API Server.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API、Resource(资源)、Object(对象)/API Server/API Server 配置详解.md"
     ]
   },
   "actionBarOrder": {},

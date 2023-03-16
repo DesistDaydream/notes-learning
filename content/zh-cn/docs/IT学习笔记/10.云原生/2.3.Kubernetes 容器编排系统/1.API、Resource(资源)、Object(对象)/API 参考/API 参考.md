@@ -27,7 +27,7 @@ args:
   - --name
 ```
 
-**map\[STRING]STRING** # 表示多个键/值对。键 和 值 的数据类型都是 STRING。
+**map[STRING]STRING** # 表示多个键/值对。键 和 值 的数据类型都是 STRING。
 
 ```yaml
 labels:
@@ -35,7 +35,7 @@ labels:
   key2: value2
 ```
 
-**OBJECT **# 表示复合结构的 map。
+**OBJECT** # 表示复合结构的 map。
 
 ```yaml
 resources:
@@ -47,7 +47,7 @@ resources:
     memory: 400Mi
 ```
 
-**\[]OBJECT **# 表示该字段由数组组成，并且数组中的元素都是一个 OBJECT，比如格式应该像下面这样
+**[]OBJECT** # 表示该字段由数组组成，并且数组中的元素都是一个 OBJECT，比如格式应该像下面这样
 
 ```yaml
 containers:

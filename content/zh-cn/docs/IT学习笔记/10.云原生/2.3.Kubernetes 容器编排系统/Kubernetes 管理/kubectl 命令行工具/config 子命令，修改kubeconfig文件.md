@@ -26,7 +26,7 @@ SUBCOMMAND 包括：
 
 ## OPTIONS
 
-1. --kubeconfig=/PATH/FILE # 指明要操作的 KubeConfig 文件
+- --kubeconfig=/PATH/FILE # 指明要操作的 KubeConfig 文件
 
 # SubCommand(子命令)
 
@@ -52,22 +52,26 @@ EXAMPLE
 
 EXAMPLE
 
-1. kubectl config set-context lch@kubernetes --cluster=kubernetes --user=lch
-2. kubectl config set-context dashboard-admin@kubernetes --cluster=kubernetes --user=dashboard-admin --kubeconfig=/root/dashbord-admin.conf #
+- kubectl config set-context lch@kubernetes --cluster=kubernetes --user=lch
+- kubectl config set-context dashboard-admin@kubernetes --cluster=kubernetes --user=dashboard-admin --kubeconfig=/root/dashbord-admin.conf #
 
 ## set-credentials # 在 kubeconfig 中设置凭证，即设置用户的认证，以便让 kubernetes 集群认识到该用户。i.e.创建 User Account
 
 **kubectl config set-credentials NAME \[--client-certificate=Path/to/certfile] \[--client-key=Path/to/keyfile] \[--token=bearer_token] \[--username=BasicUser] \[--password=BasicPassword] \[--auth-provider=provider_name] \[--auth-provider-arg=key=value] \[OPTIONS]**
+
 通过证书、token、用户密码或者认证提供者键值对来设定一个用户凭证。credential 的意思就是“一个人的背景的资格，成就，个人品质或方面，通常用于表明他们适合某事”。在这里就是这个 user 的证书或者 token 等以便在与集群交互时进行验证
 
 OPTIONS
 
-- --embed-certs=ture|false # 在 kubeconfig 中嵌入证书/私钥，即变成非明文的方式储存
+- **--embed-certs=ture|false** # 在 kubeconfig 中嵌入证书/私钥，即变成非明文的方式储存
 
 EXAMPLE
 
-- kubectl config set-credentials lch --client-certificate=./lch.crt --client-key=./lch.key --embed-certs # 通过使用证书与私钥的方式设定名为 lch 的用户
-- kubectl config set-credentials dashboard-admin --token=$DASH\_TOCKEN --kubeconfig=/root/dashbord-admin.conf # 使用$DASH_TOCKEN 中的 token 来作为 user 的凭证
+通过使用证书与私钥的方式设定名为 lch 的用户
+- `kubectl config set-credentials lch --client-certificate=./lch.crt --client-key=./lch.key --embed-certs`
+
+使用 ${DASH_TOKEN} 中的 token 来作为 user 的凭证
+- `kubectl config set-credentials dashboard-admin --token=$DASH_TOKEN --kubeconfig=/root/dashbord-admin.conf`
 
 ## use-context # 设置当前 current-context 字段(当前所用的使用的上下文)
 
@@ -81,7 +85,7 @@ EXAMPLE
 **kubectl config view \[FLAGS] \[OPTIONS]**
 
 ```yaml
-[root@master-1 ~]# kubectl config view
+~]# kubectl config view
 apiVersion: v1
 clusters:
 - cluster:
@@ -114,6 +118,6 @@ EXAMPLE
   - **kubectl config view -o jsonpath='{.users\[?(@.name == "user-2c2f24ck5f")].user.client-certificate-data}' --raw**
 
 ```bash
-root@lichenhao:~# kubectl config view -o jsonpath='{.users[?(@.name == "user-2c2f24ck5f")].user.client-certificate-data}' --raw
+~]# kubectl config view -o jsonpath='{.users[?(@.name == "user-2c2f24ck5f")].user.client-certificate-data}' --raw
 LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURGVENDQWYyZ0F3SUJBZ0lJSlpaanZuVXlhd1l3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWdGdzB5TVRBeU1qTXhNakl3TWpaYUdBOHlNVEl4TURFek1ERXlNakF5TjFvdwpOREVYTUJVR0ExVUVDaE1PYzNsemRHVnRPbTFoYzNSbGNuTXhHVEFYQmdOVkJBTVRFR3QxWW1WeWJtVjBaWE10CllXUnRhVzR3Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLQW9JQkFRRDdXK1lRVlZ1SVFmd2gKcnNRNWhTQ3B2em1NdkRMc0x4SG9CeDNOWXEwNWhIMXlmR1lLWXpmMlRQM01TaS9HUUVJZkZicEFLSjdQODB0Qgp3UnVNS2s4TEdWcVI3d2paT0p0QjJRUnFhWG56NzJzS0NyanI5TFJWazBKWE9ZT3hCVzBmYnV3azdxQkFzdkJhCmdhVG1sQnJpZEJEQUwvYmRnbUwyd3EzdGF5RXJOY1g3WmZoNVo0UEFTUjJDQXJiVUdVZU9UN0xHNTEwWGd3K1kKa2NUYU00WS9oS0hOYnlyL2JmdzhjNU5KYjc0emQrMGhYWVpHK004bFRCRTRxNTlaWERvTkY4d2hEOUZkRmZCbwowYXk0ZStWOTBGK0lDaXk4bmlrOERKQTQ4cGJLSmNBaUUySkxKOXdkbC9jMnIrTU55eTIxeENoRmt3YktvVk5iCnRQYXBlZ2t0QWdNQkFBR2pTREJHTUE0R0ExVWREd0VCL3dRRUF3SUZvREFUQmdOVkhTVUVEREFLQmdnckJnRUYKQlFjREFqQWZCZ05WSFNNRUdEQVdnQlRXVVpJYjNBOERJMTV2T3lKSGgrVEZuYi8yRlRBTkJna3Foa2lHOXcwQgpBUXNGQUFPQ0FRRUFoRTZuL3JFTDVJRnd6QWE4ZkRza2p6ZXdpeVZCRDBRdlVrcGFkcmI1STNNVnBhcGJDVklyCm04dWIrMU53L2hMZ1g0VExDWHUyRk1zeUphY3p1YWMwaHpOS2ozOHdESlROc0VER09rZVhrRnRIMkkvZFhPODkKaE44K0NaSVZ1MklEaXljODA5dXNwVEZpOHRzYnBnVkxmUTBuNjBsaEdhN2V3TWp1MkVNY3R6U29KcWJGTFBVNgoxTSszeHZQdHJPRFV6djlYdjd6QWVwaUVLRUdtNmhkUndJMFl0dGtqY2N0TW0yZHY1VEFFSi9PSjBIajVtLzZoCldZWWRzdlREWDluMmFUZktQNnZIblZBcmJSZ1I2aU5POEhuYkE2dlNVWXg1em1WMjM2cFByNUtKUm1yaUFha0UKTUtnd0hmYmRVSDhLRGpCSFpKak42bVBZUjFNQmxyektzUT09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
 ```

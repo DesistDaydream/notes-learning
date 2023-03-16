@@ -9,15 +9,17 @@ title: Pod Manifest 详解
 > - [API 文档，单页](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#pod-v1-core)
 > - [官方文档,参考-Kubernetes API-工作负载资源-Pod](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/)
 
+Pod 是可以在主机上运行的容器的集合。此资源由客户端创建并调度到主机上。
+
 ## YAML 中的顶层节点
 
 - apiVersion: v1
 - kind: Pod
-- [metadata: \<Object>](#1iNnm)
-- [spec: \<Object>](#X4bVa)
-- [status: \<Object>](#Sbe0x)
+- [metadata](#PodMetaData): \<Object>
+- [spec](#PodSpec): \<Object>
+- [status](#PodStatus): \<Object>
 
-# metadata: \<Object>
+# PodMetaData
 
 metadata 用来描述一个 Pod 的元数据信息。该字段内容详见通用定义的 [ObjectMeta](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/ObjectMeta.md)
 
@@ -27,7 +29,7 @@ metadata 用来描述一个 Pod 的元数据信息。该字段内容详见通用
 - **name: \<STRING>** # Pod 对象名称。必须名称空间唯一。
 - **ownerReferences: <\[]Object>** # 该对象所依赖的对象列表，一般由控制器自动生成。也可以手动指定。
 
-# spec: \<Object>
+# PodSpec
 
 spec 用来描述一个 Pod 应该具有的属性。Pod 中的 spec 字段大体分为如下几类
 
@@ -42,8 +44,7 @@ spec 用来描述一个 Pod 应该具有的属性。Pod 中的 spec 字段大体
 
 ## Containers(容器) 相关字段
 
-**containers: <\[]Object>** # 署于该 pod 的 containers 列表
-[containers](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#container-v1-core) 字段**只会在 Pod 环境**中创建
+**containers: <\[]Object>** # 署于该 pod 的 containers 列表。[containers](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#container-v1-core) 字段**只会在 Pod 环境**中创建
 
 - **args: <\[]STRING>** # 定义容器运行的命令和参数。用于替换容器镜像中 CMD 指令。详见[为容器定义命令和参数章节](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)
 
@@ -74,42 +75,45 @@ flag provided but not defined: '--ns default'
 - **imagePullPolicy: \<STRING>**# 指明镜像拉取策略，公有三种 Always、IfNotPresent、Never。`默认值：IfNotPresent`
 - **name: \<STRING>**# 容器的名称
 - **ports: <\[]Object>**# 容器对外暴露的端口，主要作为参考信息，就算不指定，通过 Service 也可以关联到容器中的指定端口，并通过 Service 访问容器内部。
-  - **containerPort: \<INTEGER>**# 容器内端口号
-  - **name: \<STRING>** # 端口号的名称，必须在 pod 中唯一。service 可以通过 name 引用端口。
+    - **containerPort: \<INTEGER>**# 容器内端口号
+    - **name: \<STRING>** # 端口号的名称，必须在 pod 中唯一。service 可以通过 name 引用端口。
 - **resources: \<OJBECT>**# 容器所需的资源。即.所需的 CPU、Memory 等等
-  - **limits: \<map\[STRING]STRING>** # 容器可以使用的最大资源
-    - **cpu: \<STRING>** # 定义容器的 CPU 限额
-    - **memory: \<STRING>** # 定义容器的 Memory 限额
-    - ...... 其他资源限额
-  - **requests: \<map\[STRING]STRING>** # 容器所需的最小资源。如果 Requests 省略，则默认与 limits 下定义的值保持一直。
-    - **cpu: \<STRING>** # 定义容器的 CPU 需求
-    - **memory: \<STRING>** # 定义容器的 Memory 需求
-    - ...... 其他资源需求
+    - **limits: \<map\[STRING]STRING>** # 容器可以使用的最大资源
+        - **cpu: \<STRING>** # 定义容器的 CPU 限额
+        - **memory: \<STRING>** # 定义容器的 Memory 限额
+        - ...... 其他资源限额
+    - **requests: \<map\[STRING]STRING>** # 容器所需的最小资源。如果 Requests 省略，则默认与 limits 下定义的值保持一直。
+        - **cpu: \<STRING>** # 定义容器的 CPU 需求
+        - **memory: \<STRING>** # 定义容器的 Memory 需求
+        - ...... 其他资源需求
 - **volumeMounts: <\[]Object>** # 给 Container 挂载在 Pod 中创建的 Volume。Volume 通过下文的 [Volumes 字段](#HUz4k)指定
-  - **mountPath: \<STRING> # 必须的**。把 Volume 挂载到容器中的目录上
-  - **name: \<STRING> # 必须的。**要挂载的 Volume 的名称。必须与 `spec.volumes.TYPE.volumeName` 字段的值相同，才可以引用到卷。
+    - **mountPath: \<STRING>** # **必须的**。把 Volume 挂载到容器中的目录上
+    - **name: \<STRING>** # **必须的**。要挂载的 Volume 的名称。必须与 `spec.volumes.TYPE.volumeName` 字段的值相同，才可以引用到卷。
 
 **initContainers: <\[]Object>** # 属于该 Pod 的初始化容器的列表
+
 该字段中所定义的容器都会比普通 containers 字段定义的容器先启动，并且 initContainer 会按顺序逐一启动，直到它们都启动并且退出之后，普通容器才会启动
 
 - **......** # 与 containers 字段下的字段相同
 
 **imagePullSecrets: <\[]Object>** # 拉取镜像时使用的私有仓库的信息。
+
 拉取镜像时，如果是私有仓库，则使用该字段指定的 secret 中的信息。实际上就是代替 docker login 命令。 更多信息见官网：[Specifying imagePullSecrets on a Pod()章节](https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod)
 
 ### Lifecycle(生命周期)
 
-Pod 生命周期功能详见[《Pod 的生命周期》](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/3.Pod%20 集群最小的工作单元/Pod%20 的生命周期，Probe(探针)，Hook(钩子).md 集群最小的工作单元/Pod 的生命周期，Probe(探针)，Hook(钩子).md)章节
-**livenessProbe: \<Object>**# 存活性探针，定期检测容器是否存活，容器**正常启动后**开始检查。若探针失败则容器将会重启
+Pod 生命周期功能详见[《Pod 的生命周期》](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/3.Pod%20集群最小的工作单元/Pod%20生命周期/Pod%20生命周期与探针.md)章节
+
+**livenessProbe: \<Object>** # 存活性探针，定期检测容器是否存活，容器**正常启动后**开始检查。若探针失败则容器将会重启
 
 - 注意：如果 liveness 探测失败，kubelet 会杀死容器，并且容器会受到其重启策略的约束。如果不提供活性探测，则默认状态为成功。
-- **exec: \<Object> #**通过在容器中执行命令作为探针检测方法
+- **exec: \<Object>** # 通过在容器中执行命令作为探针检测方法
   - **exec.command: <\[]STRING>**
 - **httpGET: \<Object>** # 使用 HTTP 的 GET 的请求作为探针检测方法。
 - **tcpSocket: \<Object>** # 通过检测 TCP 的端口作为探针检测方法。
 - **grpc: \<Object>** #
 
-**readinessProbe: \<Object>**# 就绪状态探针，定期检测容器服务的准备状态，容器**正常启动前**开始检查。若探针失败则容器不会变为 Running 状态。
+**readinessProbe: \<Object>** # 就绪状态探针，定期检测容器服务的准备状态，容器**正常启动前**开始检查。若探针失败则容器不会变为 Running 状态。
 
 - 注意：如果就绪探测失败，端点控制器会从与 Pod 匹配的所有服务的端点中删除 Pod 的 IP 地址。初始延迟之前的默认就绪状态为失败。如果不提供就绪探测，则默认状态为成功。
 - **...... # 略，与 livenessProbe 下的字段一样。**
@@ -131,28 +135,28 @@ Pod 生命周期功能详见[《Pod 的生命周期》](/docs/IT学习笔记/10.
 - **nodeAffinity: \<OBJECT>**# 为 Pod 定义节点亲和性的调度规则
   - **preferredDuringSchedulingIgnoredDuringExecution: <\[]Object>** # 调度程序将倾向于将 Pod 调度到满足此字段指定的反亲和行要求的节点，但是也可能会选择违反一个或多个该字段指定的调度规则。
     - **preference: \<OBJECT> # 必须的**。
-      - **matchExpressions: <\[]OBJECT>** # 该字段下的内容就是 [通用的节点标签选择器字段](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector%20详解.md)
-      - **matchFields: <\[OBJECT]>** # 该字段下的内容就是[通用的节点标签选择器字段](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector%20详解.md)
+      - **matchExpressions: <\[]OBJECT>** # 该字段下的内容就是 [通用的节点标签选择器字段](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+      - **matchFields: <\[OBJECT]>** # 该字段下的内容就是[通用的节点标签选择器字段](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
     - **weight: \<INTEGER> # 必须的**。
-  - **requiredDuringSchedulingIgnoredDuringExecution: \<Object> #**如果在调度时未满足该字段指定的反亲和性要求，则不会将 pod 调度到该节点上。
+  - **requiredDuringSchedulingIgnoredDuringExecution: \<Object>** # 如果在调度时未满足该字段指定的反亲和性要求，则不会将 pod 调度到该节点上。
     - **nodeSelectorTerms: <\[]OBJECT> # 必须的**。节点选择器列表。列表中元素之间是“或”的关系
-      - **matchExpressions: <\[]OBJECT>** # 该字段下的内容就是[通用的节点标签选择器字段](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector%20详解.md)
-      - **matchFields: <\[OBJECT]>** # 该字段下的内容就是[通用的节点标签选择器字段](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector%20详解.md)
+      - **matchExpressions: <\[]OBJECT>** # 该字段下的内容就是[通用的节点标签选择器字段](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+      - **matchFields: <\[OBJECT]>** # 该字段下的内容就是[通用的节点标签选择器字段](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
 - **podAffinity** ([PodAffinity](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#PodAffinity))# 描述 pod 亲和性的调度规则(e.g.将此 Pod 与其他一些 Pod 共同定位在同一节点、区域等中)。
   - ......
 - **podAntiAffinity: \<OBJECT>** ([PodAntiAffinity](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#PodAntiAffinity))描述 pod 反亲和性的调度规则(e.g. 避免将此 Pod 放在与其他某些 Pod 相同的节点、区域等中)
-  - **preferredDuringSchedulingIgnoredDuringExecution: <\[]Object> #**调度程序将倾向于将 Pod 调度到满足此字段指定的反亲和行要求的节点，但是也可能会选择违反一个或多个该字段指定的调度规则。
+  - **preferredDuringSchedulingIgnoredDuringExecution: <\[]Object>** # 调度程序将倾向于将 Pod 调度到满足此字段指定的反亲和行要求的节点，但是也可能会选择违反一个或多个该字段指定的调度规则。
     - **preference: \<OBJECT> # 必须的**。
-      - **matchExpressions: <\[]OBJECT>** # 该字段下的内容就是[通用的节点标签选择器字段](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector%20详解.md)
-      - **matchFields: <\[OBJECT]>** # 该字段下的内容就是[通用的节点标签选择器字段](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector%20详解.md)
+      - **matchExpressions: <\[]OBJECT>** # 该字段下的内容就是[通用的节点标签选择器字段](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+      - **matchFields: <\[OBJECT]>** # 该字段下的内容就是[通用的节点标签选择器字段](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
     - **weight: \<INTEGER> # 必须的**。
-  - **requiredDuringSchedulingIgnoredDuringExecution: <\[]Object> #**如果在调度时未满足该字段指定的反亲和性要求，则不会将 pod 调度到该节点上。
-    - **labelSelector: \<OBJECT>** # 该字段下的内容就是[通用的节点标签选择器字段](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector%20详解.md)
-    - **namespaceSelector: \<OBJECT>** # 该字段下的内容就是[通用的节点标签选择器字段](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector%20详解.md)
-    - **namespaces: <\[]STING>** # 。`默认值：该 Pod 所在的名称空间`
-    - **topologyKey: \<STRING> # 必须的**。想要匹配的 Node 标签的键
+  - **requiredDuringSchedulingIgnoredDuringExecution: <\[]Object>** # 如果在调度时未满足该字段指定的反亲和性要求，则不会将 pod 调度到该节点上。
+    - **labelSelector: \<OBJECT>** # 该字段下的内容就是[通用的节点标签选择器字段](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+    - **namespaceSelector: \<OBJECT>** # 该字段下的内容就是[通用的节点标签选择器字段](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/1.API、Resource(资源)、Object(对象)/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+    - **namespaces: <\[]STING>** # 名称空间。`默认值：该 Pod 所在的名称空间`
+    - **topologyKey: \<STRING>** # **必须的**。想要匹配的 Node 标签的键
 
-**tolerations: <\[]Object>** # 定义 Pod 容忍污点的容忍度。用法详见[调度器章节](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/5.Scheduling(调度)/让%20Pod%20 运行在指定%20Node%20 上.md Pod 运行在指定 Node 上.md)
+**tolerations: <\[]Object>** # 定义 Pod 容忍污点的容忍度。用法详见[调度器章节](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/5.Scheduling(调度)/让%20Pod%20运行在指定%20Node%20上.md)
 
 - ......
 
@@ -183,7 +187,9 @@ STRING 可用的值有：Always、OnFailure、Never
 ## Security context(容器安全环境) 相关字段
 
 **securityContext: \<Object> 和 .spec.container.securityContext: \<Object>**
-`securityContext` 字段用于配置如何安全得运行 Pod，比如以 非特权用户运行容器、SELinux 等等。Pod 安全配置内容，在 [Security Context(安全环境) 文章](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/3.Pod%20 集群最小的工作单元/Security%20Context(安全环境).md 集群最小的工作单元/Security Context(安全环境).md)中有更详细的描述。
+
+`securityContext` 字段用于配置如何安全得运行 Pod，比如以 非特权用户运行容器、SELinux 等等。Pod 安全配置内容，在 [Security Context(安全环境) 文章](docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/3.Pod%20集群最小的工作单元/Pod%20管理/Security%20Context(安全环境).md)中有更详细的描述。
+
 注意：`.spec.securityContext` 字段属于 Pod 级别的安全配置，在 `.spec.containers` 字段下，还有一个 securityContext 字段，`.spec.containers.securityContext` 字段属于 Container 级别的安全配置，该字段的优先级要高于 `.spec.securityContext`。
 
 - **fsGroup: \<INTEGER>**# 功能待确认。
@@ -193,7 +199,11 @@ STRING 可用的值有：Always、OnFailure、Never
 
 ## 其他类别的字段
 
-# status: \<Object>
+# PodStatus
+
+PodStatus 表示 Pod 的状态信息。状态可能会落后于系统的实际状态，尤其是当承载 Pod 的节点无法联系控制平面时。
+
+**phase: STRING** # phase(阶段) 字段是对 Pod 在其生命周期中所处位置的简单、高级的总结。条件数组、原因和消息字段以及各个容器状态数组包含有关 pod 状态的更多详细信息。有五个可能的相位值：
 
 # Pod Manifest 样例
 
