@@ -134,7 +134,7 @@ Monolithic 模式非常适合于本地开发、小规模等场景，Monolithic �
 
 - 每个组件都产生一个 gRPC 监听(默认 9095 端口)和一个 HTTP 监听(默认 3100 端口)。
   - 通常情况下，gRPC 端口用于组件间通信；HTTP 端口用于暴露一些管理 API(比如 指标、运行状态、就绪性)
-- 各个组件可以暴露的 HTTP API 详见 [Loki API 章节](/docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki%20API.md API.md)。通过 API，我们可以更清晰得了解到，每个组件可以实现的具体功能
+- 各个组件可以暴露的 HTTP API 详见 [Loki API 章节](/docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki%20API.md)。通过 API，我们可以更清晰得了解到，每个组件可以实现的具体功能
 - 各个组件通过 memberlist 统一到一个哈希环上，以互相发现。当我们部署在 K8S 中时，将会配置 `memberlist.join_members` 字段，并且需要创建对应的 service 资源，service 的 endpoint 将会关联到所有 Distributor、Ingester、Querier 组件。
 
 ### Gateway(网关)

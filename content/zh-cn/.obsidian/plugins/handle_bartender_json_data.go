@@ -18,7 +18,7 @@ type Config struct {
 
 func main() {
 	srcFile := "/mnt/d/Projects/DesistDaydream/notes-learning/content/zh-cn/.obsidian/plugins/obsidian-bartender/data.json"
-	dstFile := "/mnt/d/Projects/DesistDaydream/notes-learning/content/zh-cn/.obsidian/plugins/obsidian-bartender/data_new.json"
+	// dstFile := "/mnt/d/Projects/DesistDaydream/notes-learning/content/zh-cn/.obsidian/plugins/obsidian-bartender/data_new.json"
 
 	fileByte, err := ioutil.ReadFile(srcFile)
 	if err != nil {
@@ -48,7 +48,7 @@ func main() {
 		panic(err)
 	}
 
-	err = ioutil.WriteFile(dstFile, newData, 0666)
+	err = ioutil.WriteFile(srcFile, newData, 0666)
 	if err != nil {
 		panic(err)
 	}

@@ -174,7 +174,7 @@ common:
 
 ### schema_config: <Object>
 
-配置存储 chunk 与 index 两类数据的 schema(模式)。该字段用途详见 [Loki 存储](/docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储).md)
+配置存储 chunk 与 index 两类数据的 schema(模式)。该字段用途详见 [Loki 存储](docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储)/Storage(存储).md)
 schema_config 下只有一个单独的 `configs` 字段，其实用 period_config 更准确~~~`configs` 字段下这是一个数组，每个数组都可以用来定义"某一时间段 loki 存储所使用的 schema"。所以，`configs` 字段用来定义从 哪个时间段开始使用哪种模式将 index 与 chunk 类型的数据存储到哪里去。
 
 #### configs: <\[]Object>
@@ -317,7 +317,7 @@ ruler:
 
 ### table_manager: <Object>
 
-Table Manager(表管理器) 组件配置，以规定数据保留的行为。该配置环境用途详见《[Loki 存储](/docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储).md)》
+Table Manager(表管理器) 组件配置，以规定数据保留的行为。该配置环境用途详见《[Loki 存储](docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储)/Storage(存储).md)》
 
 > 注意：
 >
@@ -347,7 +347,7 @@ Table Manager(表管理器) 组件配置，以规定数据保留的行为。该�
 
 ### chunk_store_config: <Object>
 
-配置 Loki 如何将数据存放在指定存储中。该配置环境用途详见《[Loki 存储](/docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储).md)》
+配置 Loki 如何将数据存放在指定存储中。该配置环境用途详见《[Loki 存储](docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储)/Storage(存储).md)》
 **max_look_back_period: <DURATION>** # 限制可以查询多长时间的数据。`默认值：0s`，即不做限制。DURATION 必须小于或等于 table_manager.retention_period 字段的值
 
 # loki.yaml 配置文件中的通用字段

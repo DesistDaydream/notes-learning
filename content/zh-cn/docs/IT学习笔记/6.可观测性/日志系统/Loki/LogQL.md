@@ -79,7 +79,7 @@ Log Pipeline 通常由一个或多个 **Expression(表达式)** 组成，多个�
 - [**Label Filter Expression**](https://grafana.com/docs/loki/latest/logql/#label-filter-expression)**(标签过滤表达式)** #
 - [**Line Format Expression**](https://grafana.com/docs/loki/latest/logql/#line-format-expression)**(行格式化表达式)** #
 - [**Labels Format Expression**](https://grafana.com/docs/loki/latest/logql/#labels-format-expression)**(标签格式化表达式)** #
-- [**Unwrap Expression**](https://grafana.com/docs/loki/latest/logql/#unwrapped-range-aggregations)\*\* \*\*#
+- [**Unwrap Expression**](https://grafana.com/docs/loki/latest/logql/#unwrapped-range-aggregations)#
   - 这是一个特殊的表达式，只能在指标查询中使用。
 
 其中一些表达式可以改变日志内容和相应的标签，然后可用于进一步 过滤和处理表达式 或 指标查询。

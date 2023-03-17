@@ -34,7 +34,7 @@ Loki 在不同的 Log Stream(日志流) 中接收日志，其中每个 Stream �
 
 ### On-disk Layout(磁盘上的布局)
 
-与 [Prometheus 的存储概念](</docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Storage(存储).md>>)类似，Loki 也是将日志流数据抽象为一个一个的 Block(块)，只不过，在 Loki 这里，称之为 [**Table(表)**](</docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储).md>>)。由于 Loki 需要存储 Index 与 Chunks 两种数据，所以，数据在磁盘上的布局，与 Prometheus 也就不太一样了。
+与 [Prometheus 的存储概念](/docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Storage(存储)/Storage(存储).md)类似，Loki 也是将日志流数据抽象为一个一个的 Block(块)，只不过，在 Loki 这里，称之为 [Table(表)](#Table(表)%20概念)。由于 Loki 需要存储 Index 与 Chunks 两种数据，所以，数据在磁盘上的布局，与 Prometheus 也就不太一样了。
 
 ### Index
 

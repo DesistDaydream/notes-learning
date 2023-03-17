@@ -634,8 +634,8 @@
     "docs/IT学习笔记/2.编程/解谜计算机科学": [
       "docs/IT学习笔记/2.编程/解谜计算机科学/_index.md",
       "docs/IT学习笔记/2.编程/解谜计算机科学/解谜计算机科学.md",
-      "docs/IT学习笔记/2.编程/解谜计算机科学/编程.md",
       "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Operator(运算符).md",
       "docs/IT学习笔记/2.编程/解谜计算机科学/Function(函数)",
       "docs/IT学习笔记/2.编程/解谜计算机科学/Object-oriented Programming(面向对象编程).md",
       "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言"
@@ -884,6 +884,51 @@
       "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 开发",
       "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 衍生品"
     ],
+    "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/PromQL": [
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/PromQL/_index.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/PromQL/PromQL.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/PromQL/PromQL Operators(运算符).md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/PromQL/Binary Operators(二元运算符).md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/PromQL/Aggregation Operators(聚合运算符).md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/PromQL/PromQL Functions(函数).md"
+    ],
+    "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus API": [
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus API/_index.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus API/Prometheus API.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus API/Querying API.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus API/TSDB Admin APIs.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus API/Management API.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 开发": [
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 开发/_index.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 开发/Prometheus 开发.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 开发/PromQL 查询逻辑.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 开发/Instrumenting 原理解析",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 开发/Exporter 开发问题.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 开发/使用 Go 开发 Prometheus Exporter.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 管理": [
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 管理/_index.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 管理/Prometheus 管理.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 管理/PromQL 常见查询语句.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 管理/常见问题 及 最佳实践.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 管理/故障处理"
+    ],
+    "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 衍生品": [
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/_index.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Prometheus 衍生品.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Prometheus 配置自动管理.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Prometheus Operator",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/VictoriaMetrics.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Mimir.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Storage(存储)": [
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Storage(存储)/_index.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Storage(存储)/Storage(存储).md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Storage(存储)/Data Model(数据模型).md"
+    ],
     "docs/IT学习笔记/7.信息安全": [
       "docs/IT学习笔记/7.信息安全/_index.md",
       "docs/IT学习笔记/7.信息安全/Standardized Glossary(标准化术语).md",
@@ -988,6 +1033,78 @@
       "docs/IT学习笔记/实用工具/Terminal(终端)/Terminal(终端).md",
       "docs/IT学习笔记/实用工具/Terminal(终端)/X Manager.md",
       "docs/IT学习笔记/实用工具/Terminal(终端)/X Manager"
+    ],
+    "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP": [
+      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP/_index.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP/Net-SNMP.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP/Net-SNMP 配置详解.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP/net-snmp-utils.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP/SNMP 采集第三方 MIB 文件定义的设备信息.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP/问题实例.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述": [
+      "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述/_index.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述/监控系统概述.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述/SNMP(传统监控标准).md",
+      "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述/HTTP(新监控标准).md",
+      "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述/常用告警级别.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/日志系统": [
+      "docs/IT学习笔记/6.可观测性/日志系统/_index.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/日志系统.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Rsyslog",
+      "docs/IT学习笔记/6.可观测性/日志系统/LogRotate(日志轮替).md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Journal.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/ELK _ EFK",
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki"
+    ],
+    "docs/IT学习笔记/6.可观测性/日志系统/Rsyslog": [
+      "docs/IT学习笔记/6.可观测性/日志系统/Rsyslog/_index.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Rsyslog/Rsyslog.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Rsyslog/RsysLog 配置详解.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/日志系统/Log Clients": [
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/_index.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail",
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail": [
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/_index.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/Promtail.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/Promtail 部署.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/Promtail 配置详解.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/Label 与 Relabeling.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/Pipeline 概念",
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/Pipeline 概念.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/日志系统/Loki": [
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/_index.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 部署.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 配置.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki Rules 配置.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/组件详解.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储)",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Authentication(认证).md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/LogQL.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki API.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 开发",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 衍生品",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Grafana 面板示例.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理": [
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理/_index.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理/Loki 管理.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理/logcli 命令行工具.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理/性能优化.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理/故障处理.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储)": [
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储)/_index.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储)/Storage(存储).md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储)/Data Model(数据模型).md"
     ]
   },
   "actionBarOrder": {},

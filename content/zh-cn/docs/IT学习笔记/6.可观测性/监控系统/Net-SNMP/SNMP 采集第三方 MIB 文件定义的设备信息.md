@@ -14,12 +14,12 @@ title: SNMP 采集第三方 MIB 文件定义的设备信息
 
 准备一下 snmp 相关的命令行工具，要在 CentOS 装上下面几个软件包：
 
-| rpm              | command                                              |
-| ---------------- | ---------------------------------------------------- |
-| `net-snmp`       | `snmpd` 服务                                         |
-| `net-snmp-libs`  | 系统常用的 MIBS 文件库                               |
+|       rpm        |                       command                        |
+|:----------------:|:----------------------------------------------------:|
+|    `net-snmp`    |                     `snmpd` 服务                     |
+| `net-snmp-libs`  |                系统常用的 MIBS 文件库                |
 | `net-snmp-utils` | 提供 `snmpget / snmpwalk / snmptranslate` 等采集工具 |
-| `net-snmp-devel` | 提供 `net-snmp-config` 命令行工具                    |
+| `net-snmp-devel` |          提供 `net-snmp-config` 命令行工具           |
 
 ## 修改 MIB 文件路径 [Permalink](https://lvii.github.io/server/2013-07-05-net-snmp-get-info-from-third-custumed-mib-file/#%E4%BF%AE%E6%94%B9-mib-%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84)
 
