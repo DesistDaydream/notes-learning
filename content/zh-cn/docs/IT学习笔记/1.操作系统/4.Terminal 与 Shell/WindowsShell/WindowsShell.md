@@ -1,7 +1,7 @@
 ---
-title: "Windows Shell"
-linkTitle: "Windows Shell"
-weight: 20
+title: "WindowsShell"
+linkTitle: "WindowsShell"
+weight: 1
 ---
 
 # 概述
@@ -19,5 +19,4 @@ Windows 有一个 GUI 的 Shell：Windows Shell，这个名词除了表示所有
 # Windows Terminal
 > 参考：
 > - [官方文档-windows，终端](https://learn.microsoft.com/en-us/windows/terminal/)
-
 

@@ -37,4 +37,5 @@ Get-Command
 ## EXAMPLE
 
 设置策略为 RemoteSigned
+
 - Set-ExecutionPolicy RemoteSigned

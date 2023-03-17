@@ -18,6 +18,7 @@ PowerShell 的独特之处在于，它接受并返回 .NET 对象，而非纯文
 ## PowerShell 命令
 
 PowerShell 中可以执行的命令分两类
+
 - 系统上的可执行命令。
 - cmdlet
 
@@ -26,6 +27,7 @@ PowerShell 内置了一组 **cmdlet(全称 command-lets)**，cmdlet 并不是一
 cmdlet 中每个命令的名称都是由 **Verb-Noun(动词-名词)** 组成，比如 Get-Command 命令用于获取在 CLI 中注册的所有 cmdlet。
 
 我们可以通过如下几个命令来搜索可用的 cmdlet
+
 - `Get-Verb` # 获取所有可用的动词
 - `Get-Command` # 此命令会检索计算机上安装的所有命令的列表。
 - `Get-Member` # 基于其他命令运行，可以获取 cmdlet 返回的对象信息，包括对象中的**属性、方法、等等**
@@ -34,6 +36,7 @@ cmdlet 中每个命令的名称都是由 **Verb-Noun(动词-名词)** 组成，�
 从本笔记的 [Windows 管理工具](/docs/IT学习笔记/1.操作系统/Y.Windows%20管理/Windows管理工具/_index.md) 目录查找所有可用的命令，以及查看命令的用法
 
 我们可以通过 `$psversiontable` 和 `$host` 变量查看 PowerShell 版本信息
+
 ```powershell
 PS C:\> $psversiontable
 
@@ -78,4 +81,5 @@ PowerShell 中会抽象出一个 **Item(项)** 的概念，Item 可以一个 **A
 我们常用的 `ls` 命令，在 PowerShell 中其实就是调用了 `Get-ChildItem` 命令
 
 # Porviders(提供器) 和 Drives(驱动器)
+
 在 PowerShell 中，Providers 和 Drives 是提供对不同数据源（如文件系统、注册表、Certificate 等）的访问的特定接口。Drives 则是实际代表特定数据源的容器，比如本地磁盘驱动器、注册表驱动器等。使用 PowerShell 可以对这些数据源进行管理和操作。

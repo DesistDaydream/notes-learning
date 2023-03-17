@@ -1,5 +1,5 @@
-gcs_engine_id = "266a10c3a77bd4f80"
-# offlineSearch = true
+# gcs_engine_id = "266a10c3a77bd4f80"
+offlineSearch = true
 
 # 页面显示内容配置
 [ui]

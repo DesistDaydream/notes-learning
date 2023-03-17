@@ -211,6 +211,13 @@
       "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/set 命令.md",
       "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/Shell 命令行参数处理.md"
     ],
+    "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/WindowsShell": [
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/WindowsShell/_index.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/WindowsShell/WindowsShell.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/WindowsShell/WindowsShell 变量.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/WindowsShell/WindowsShell 命令.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell.md"
+    ],
     "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制": [
       "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/_index.md",
       "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/5.登录 Linux 与 访问控制.md",
