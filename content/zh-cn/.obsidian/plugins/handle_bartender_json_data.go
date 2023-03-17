@@ -17,7 +17,8 @@ type Config struct {
 }
 
 func main() {
-	srcFile := "/mnt/d/Projects/DesistDaydream/notes-learning/content/zh-cn/.obsidian/plugins/obsidian-bartender/data.json"
+	srcFile := "D:\\Projects\\DesistDaydream\\notes-learning\\content\\zh-cn\\.obsidian\\plugins\\obsidian-bartender\\data.json"
+	// srcFile := "/mnt/d/Projects/DesistDaydream/notes-learning/content/zh-cn/.obsidian/plugins/obsidian-bartender/data.json"
 	// dstFile := "/mnt/d/Projects/DesistDaydream/notes-learning/content/zh-cn/.obsidian/plugins/obsidian-bartender/data_new.json"
 
 	fileByte, err := ioutil.ReadFile(srcFile)

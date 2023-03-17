@@ -317,6 +317,12 @@
       "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/性能测试工具",
       "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/Redhat 优化.md"
     ],
+    "docs/IT学习笔记/1.操作系统/系统审计": [
+      "docs/IT学习笔记/1.操作系统/系统审计/_index.md",
+      "docs/IT学习笔记/1.操作系统/系统审计/系统审计.md",
+      "docs/IT学习笔记/1.操作系统/系统审计/Audit.md",
+      "docs/IT学习笔记/1.操作系统/系统审计/Audit 日志文件详解.md"
+    ],
     "docs/IT学习笔记/10.云原生": [
       "docs/IT学习笔记/10.云原生/_index.md",
       "docs/IT学习笔记/10.云原生/云原生",
@@ -660,6 +666,43 @@
       "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言/如何掌握所有的程序语言.md",
       "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言/FIFO与FILO.md"
     ],
+    "docs/IT学习笔记/2.编程/高级编程语言": [
+      "docs/IT学习笔记/2.编程/高级编程语言/_index.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/高级编程语言.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/C",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go",
+      "docs/IT学习笔记/2.编程/高级编程语言/Python",
+      "docs/IT学习笔记/2.编程/高级编程语言/Rust",
+      "docs/IT学习笔记/2.编程/高级编程语言/Java",
+      "docs/IT学习笔记/2.编程/高级编程语言/HTML与CSS",
+      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript",
+      "docs/IT学习笔记/2.编程/高级编程语言/Perl.md"
+    ],
+    "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript": [
+      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/_index.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/ECMAScript.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/ECMAScript 环境安装与使用",
+      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/JavaScript 标准库",
+      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/TypeScript 标准库",
+      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/ECMAScript 第三方库",
+      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/ECMAScript 工具",
+      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/Vue",
+      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/常用编程技巧.md"
+    ],
+    "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/JavaScript 标准库": [
+      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/_index.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/JavaScript 标准库.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/数据类型.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/各种类型的 object(对象) 的常见方法.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/DOM(文档对象模型).md",
+      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/Event(事件).md",
+      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/回调函数与异步编程.md"
+    ],
+    "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/TypeScript 标准库": [
+      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/TypeScript 标准库/_index.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/TypeScript 标准库/TypeScript 标准库.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/TypeScript 标准库/Data Type(数据类型).md"
+    ],
     "docs/IT学习笔记/2.编程/高级编程语言/Go": [
       "docs/IT学习笔记/2.编程/高级编程语言/Go/_index.md",
       "docs/IT学习笔记/2.编程/高级编程语言/Go/Go.md",
@@ -701,6 +744,13 @@
       "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库/嵌入静态文件.md",
       "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库/Unit test(单元测试).md"
     ],
+    "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库/Method(方法)、Interface(接口)": [
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库/Method(方法)、Interface(接口)/_index.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库/Method(方法)、Interface(接口)/Method(方法)、Interface(接口).md",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库/Method(方法)、Interface(接口)/Go 接口设计原则.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库/Method(方法)、Interface(接口)/接口设计示例 二.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库/Method(方法)、Interface(接口)/接收设计示例 三.md"
+    ],
     "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 环境安装与使用": [
       "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 环境安装与使用/_index.md",
       "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 环境安装与使用/Go 环境安装与使用.md",
@@ -723,6 +773,15 @@
       "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 HTTP",
       "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 网络编程/Middleware",
       "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 网络编程/Gin.md"
+    ],
+    "docs/IT学习笔记/2.编程/高级编程语言/Python": [
+      "docs/IT学习笔记/2.编程/高级编程语言/Python/_index.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/Python/Python.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/Python/Python 环境安装与使用",
+      "docs/IT学习笔记/2.编程/高级编程语言/Python/Python 标准库",
+      "docs/IT学习笔记/2.编程/高级编程语言/Python/Python 第三方库",
+      "docs/IT学习笔记/2.编程/高级编程语言/Python/Python工具",
+      "docs/IT学习笔记/2.编程/高级编程语言/Python/Jinja.md"
     ],
     "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解": [
       "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/_index.md",
@@ -842,6 +901,63 @@
       "docs/IT学习笔记/6.可观测性/Grafana/Grafana 8.0 告警使用.md",
       "docs/IT学习笔记/6.可观测性/Grafana/Grafana 管理.md"
     ],
+    "docs/IT学习笔记/6.可观测性/日志系统": [
+      "docs/IT学习笔记/6.可观测性/日志系统/_index.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/日志系统.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Rsyslog",
+      "docs/IT学习笔记/6.可观测性/日志系统/LogRotate(日志轮替).md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Journal.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/ELK _ EFK",
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki"
+    ],
+    "docs/IT学习笔记/6.可观测性/日志系统/Log Clients": [
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/_index.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail",
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail": [
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/_index.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/Promtail.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/Promtail 部署.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/Promtail 配置详解.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/Label 与 Relabeling.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/Pipeline 概念",
+      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/Pipeline 概念.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/日志系统/Loki": [
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/_index.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 部署.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 配置.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki Rules 配置.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/组件详解.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储)",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Authentication(认证).md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/LogQL.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki API.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 开发",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 衍生品",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Grafana 面板示例.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理": [
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理/_index.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理/Loki 管理.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理/logcli 命令行工具.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理/性能优化.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理/故障处理.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储)": [
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储)/_index.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储)/Storage(存储).md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储)/Data Model(数据模型).md"
+    ],
+    "docs/IT学习笔记/6.可观测性/日志系统/Rsyslog": [
+      "docs/IT学习笔记/6.可观测性/日志系统/Rsyslog/_index.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Rsyslog/Rsyslog.md",
+      "docs/IT学习笔记/6.可观测性/日志系统/Rsyslog/RsysLog 配置详解.md"
+    ],
     "docs/IT学习笔记/6.可观测性/监控系统": [
       "docs/IT学习笔记/6.可观测性/监控系统/_index.md",
       "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述",
@@ -867,6 +983,14 @@
       "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/SNMP Exporter",
       "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/Blackbox Exporter.md",
       "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/Other Exporter.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP": [
+      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP/_index.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP/Net-SNMP.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP/Net-SNMP 配置详解.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP/net-snmp-utils.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP/SNMP 采集第三方 MIB 文件定义的设备信息.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP/问题实例.md"
     ],
     "docs/IT学习笔记/6.可观测性/监控系统/Prometheus": [
       "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/_index.md",
@@ -928,6 +1052,13 @@
       "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Storage(存储)/_index.md",
       "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Storage(存储)/Storage(存储).md",
       "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Storage(存储)/Data Model(数据模型).md"
+    ],
+    "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述": [
+      "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述/_index.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述/监控系统概述.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述/SNMP(传统监控标准).md",
+      "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述/HTTP(新监控标准).md",
+      "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述/常用告警级别.md"
     ],
     "docs/IT学习笔记/7.信息安全": [
       "docs/IT学习笔记/7.信息安全/_index.md",
@@ -1034,136 +1165,13 @@
       "docs/IT学习笔记/实用工具/Terminal(终端)/X Manager.md",
       "docs/IT学习笔记/实用工具/Terminal(终端)/X Manager"
     ],
-    "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP": [
-      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP/_index.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP/Net-SNMP.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP/Net-SNMP 配置详解.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP/net-snmp-utils.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP/SNMP 采集第三方 MIB 文件定义的设备信息.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP/问题实例.md"
-    ],
-    "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述": [
-      "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述/_index.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述/监控系统概述.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述/SNMP(传统监控标准).md",
-      "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述/HTTP(新监控标准).md",
-      "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述/常用告警级别.md"
-    ],
-    "docs/IT学习笔记/6.可观测性/日志系统": [
-      "docs/IT学习笔记/6.可观测性/日志系统/_index.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/日志系统.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Rsyslog",
-      "docs/IT学习笔记/6.可观测性/日志系统/LogRotate(日志轮替).md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Journal.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/ELK _ EFK",
-      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients",
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki"
-    ],
-    "docs/IT学习笔记/6.可观测性/日志系统/Rsyslog": [
-      "docs/IT学习笔记/6.可观测性/日志系统/Rsyslog/_index.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Rsyslog/Rsyslog.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Rsyslog/RsysLog 配置详解.md"
-    ],
-    "docs/IT学习笔记/6.可观测性/日志系统/Log Clients": [
-      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/_index.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail",
-      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail.md"
-    ],
-    "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail": [
-      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/_index.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/Promtail.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/Promtail 部署.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/Promtail 配置详解.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/Label 与 Relabeling.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/Pipeline 概念",
-      "docs/IT学习笔记/6.可观测性/日志系统/Log Clients/Promtail/Pipeline 概念.md"
-    ],
-    "docs/IT学习笔记/6.可观测性/日志系统/Loki": [
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/_index.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 部署.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 配置.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki Rules 配置.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/组件详解.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储)",
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Authentication(认证).md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/LogQL.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki API.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理",
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 开发",
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 衍生品",
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Grafana 面板示例.md"
-    ],
-    "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理": [
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理/_index.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理/Loki 管理.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理/logcli 命令行工具.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理/性能优化.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki 管理/故障处理.md"
-    ],
-    "docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储)": [
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储)/_index.md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储)/Storage(存储).md",
-      "docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储)/Data Model(数据模型).md"
-    ],
-    "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库/Method(方法)、Interface(接口)": [
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库/Method(方法)、Interface(接口)/_index.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库/Method(方法)、Interface(接口)/Method(方法)、Interface(接口).md",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库/Method(方法)、Interface(接口)/Go 接口设计原则.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库/Method(方法)、Interface(接口)/接口设计示例 二.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库/Method(方法)、Interface(接口)/接收设计示例 三.md"
-    ],
-    "docs/IT学习笔记/2.编程/高级编程语言": [
-      "docs/IT学习笔记/2.编程/高级编程语言/_index.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/高级编程语言.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/C",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go",
-      "docs/IT学习笔记/2.编程/高级编程语言/Python",
-      "docs/IT学习笔记/2.编程/高级编程语言/Rust",
-      "docs/IT学习笔记/2.编程/高级编程语言/Java",
-      "docs/IT学习笔记/2.编程/高级编程语言/HTML与CSS",
-      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript",
-      "docs/IT学习笔记/2.编程/高级编程语言/Perl.md"
-    ],
-    "docs/IT学习笔记/2.编程/高级编程语言/Python": [
-      "docs/IT学习笔记/2.编程/高级编程语言/Python/_index.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/Python/Python.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/Python/Python 环境安装与使用",
-      "docs/IT学习笔记/2.编程/高级编程语言/Python/Python 标准库",
-      "docs/IT学习笔记/2.编程/高级编程语言/Python/Python 第三方库",
-      "docs/IT学习笔记/2.编程/高级编程语言/Python/Python工具",
-      "docs/IT学习笔记/2.编程/高级编程语言/Python/Jinja.md"
-    ],
-    "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript": [
-      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/_index.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/ECMAScript.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/ECMAScript 环境安装与使用",
-      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/JavaScript 标准库",
-      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/TypeScript 标准库",
-      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/ECMAScript 第三方库",
-      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/ECMAScript 工具",
-      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/Vue",
-      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/常用编程技巧.md"
-    ],
-    "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/JavaScript 标准库": [
-      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/_index.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/JavaScript 标准库.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/数据类型.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/各种类型的 object(对象) 的常见方法.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/DOM(文档对象模型).md",
-      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/Event(事件).md",
-      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/回调函数与异步编程.md"
-    ],
-    "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/TypeScript 标准库": [
-      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/TypeScript 标准库/_index.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/TypeScript 标准库/TypeScript 标准库.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/TypeScript 标准库/Data Type(数据类型).md"
-    ],
-    "docs/IT学习笔记/1.操作系统/系统审计": [
-      "docs/IT学习笔记/1.操作系统/系统审计/_index.md",
-      "docs/IT学习笔记/1.操作系统/系统审计/系统审计.md",
-      "docs/IT学习笔记/1.操作系统/系统审计/Audit.md",
-      "docs/IT学习笔记/1.操作系统/系统审计/Audit 日志文件详解.md"
+    "docs/IT学习笔记/实用工具/网站搭建/Hugo": [
+      "docs/IT学习笔记/实用工具/网站搭建/Hugo/_index.md",
+      "docs/IT学习笔记/实用工具/网站搭建/Hugo/Hugo.md",
+      "docs/IT学习笔记/实用工具/网站搭建/Hugo/配置文件详解.md",
+      "docs/IT学习笔记/实用工具/网站搭建/Hugo/内容管理",
+      "docs/IT学习笔记/实用工具/网站搭建/Hugo/命令行工具.md",
+      "docs/IT学习笔记/实用工具/网站搭建/Hugo/主题"
     ]
   },
   "actionBarOrder": {},

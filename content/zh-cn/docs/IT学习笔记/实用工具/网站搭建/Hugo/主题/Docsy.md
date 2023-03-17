@@ -68,8 +68,6 @@ https://lucumt.info/post/hugo/using-github-action-to-auto-build-deploy/
 
 https://tomial.github.io/posts/hugo%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%88%B0github-pages/
 
-https://www.bloghome.com.cn/post/git-zi-mo-kuai-yi-ge-cang-ku-bao-han-ling-yi-ge-cang-ku.html
-
 使用 Hugo 搭建 GitHub Pages https://zz2summer.github.io/github-pages-hugo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#%E4%B8%83%E6%97%A5%E5%B8%B8%E6%93%8D%E4%BD%9C
 
 ## 常见问题
