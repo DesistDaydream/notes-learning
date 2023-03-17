@@ -218,6 +218,13 @@
       "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/WindowsShell/WindowsShell 命令.md",
       "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell.md"
     ],
+    "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Windows_Shell": [
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Windows_Shell/_index.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Windows_Shell/Windows Shell.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Windows_Shell/PowerShell.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Windows_Shell/Windows_Shell_变量.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Windows_Shell/Windows_Shell_命令.md"
+    ],
     "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制": [
       "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/_index.md",
       "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/5.登录 Linux 与 访问控制.md",
@@ -1172,13 +1179,19 @@
       "docs/IT学习笔记/实用工具/Terminal(终端)/X Manager.md",
       "docs/IT学习笔记/实用工具/Terminal(终端)/X Manager"
     ],
+    "docs/IT学习笔记/实用工具/网站搭建": [
+      "docs/IT学习笔记/实用工具/网站搭建/_index.md",
+      "docs/IT学习笔记/实用工具/网站搭建/Hugo",
+      "docs/IT学习笔记/实用工具/网站搭建/站点管理.md"
+    ],
     "docs/IT学习笔记/实用工具/网站搭建/Hugo": [
       "docs/IT学习笔记/实用工具/网站搭建/Hugo/_index.md",
       "docs/IT学习笔记/实用工具/网站搭建/Hugo/Hugo.md",
       "docs/IT学习笔记/实用工具/网站搭建/Hugo/配置文件详解.md",
       "docs/IT学习笔记/实用工具/网站搭建/Hugo/内容管理",
       "docs/IT学习笔记/实用工具/网站搭建/Hugo/命令行工具.md",
-      "docs/IT学习笔记/实用工具/网站搭建/Hugo/主题"
+      "docs/IT学习笔记/实用工具/网站搭建/Hugo/主题",
+      "docs/IT学习笔记/实用工具/网站搭建/Hugo/站点管理.md"
     ]
   },
   "actionBarOrder": {},

@@ -17,7 +17,7 @@ weight: 20
 
 #### 一、可以通过以下的方法访问 http://google.com
 
-- 直接用 [**http://www.google.com/ncr**](http://www.google.com/ncr) ，`ncr` 是 `no country redirection` ，是一个强制不跳转的命令；
+- 直接用 http://www.google.com/ncr ，`ncr` 是 `no country redirection` ，是一个强制不跳转的命令；
 - 用 [**https://www.google.com/**](https://link.jianshu.com?t=https://www.google.com/) ，`https` 协议。
 
 #### 二、另外一个问题是 Chrome 浏览器的默认搜索也是设置为 http://www.google.com.hk/ ，我们可以自行修改一下。
