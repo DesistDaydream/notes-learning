@@ -1,8 +1,6 @@
 {
-  "actionBarOrder": {},
-  "autoHide": false,
-  "autoHideDelay": 2000,
-  "dragDelay": 200,
+  "statusBarOrder": [],
+  "ribbonBarOrder": [],
   "fileExplorerOrder": {
     "/": [
       "_index.html",
@@ -992,6 +990,8 @@
       "docs/IT学习笔记/实用工具/Terminal(终端)/X Manager"
     ]
   },
-  "ribbonBarOrder": [],
-  "statusBarOrder": []
+  "actionBarOrder": {},
+  "autoHide": true,
+  "autoHideDelay": 2000,
+  "dragDelay": 200
 }

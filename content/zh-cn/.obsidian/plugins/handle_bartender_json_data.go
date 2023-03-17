@@ -2,62 +2,54 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
-	"os"
 	"sort"
 )
 
+type Config struct {
+	StatusBarOrder   []interface{}       `json:"statusBarOrder"`
+	RibbonBarOrder   []interface{}       `json:"ribbonBarOrder"`
+	FileExplorerData map[string][]string `json:"fileExplorerOrder"`
+	ActionBarOrder   struct{}            `json:"actionBarOrder"`
+	AutoHide         bool                `json:"autoHide"`
+	AutoHideDelay    int                 `json:"autoHideDelay"`
+	DragDelay        int                 `json:"dragDelay"`
+}
+
 func main() {
-	// 读取文件内容
-	file, err := os.Open("/mnt/d/Projects/DesistDaydream/notes-learning/content/zh-cn/.obsidian/plugins/obsidian-bartender/data.json")
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
+	srcFile := "/mnt/d/Projects/DesistDaydream/notes-learning/content/zh-cn/.obsidian/plugins/obsidian-bartender/data.json"
+	dstFile := "/mnt/d/Projects/DesistDaydream/notes-learning/content/zh-cn/.obsidian/plugins/obsidian-bartender/data_new.json"
 
-	data, err := ioutil.ReadAll(file)
+	fileByte, err := ioutil.ReadFile(srcFile)
 	if err != nil {
 		panic(err)
 	}
 
-	// 解析 JSON 数据
-	var jsonMap map[string]interface{}
-	err = json.Unmarshal(data, &jsonMap)
+	var config Config
+	err = json.Unmarshal(fileByte, &config)
 	if err != nil {
 		panic(err)
 	}
 
-	// 对 "fileExplorerOrder" 排序
-	fileExplorerOrder := jsonMap["fileExplorerOrder"].(map[string]interface{})
-	sortedKeys := make([]string, 0, len(fileExplorerOrder))
-	for key := range fileExplorerOrder {
+	sortedKeys := make([]string, 0, len(config.FileExplorerData))
+	for key := range config.FileExplorerData {
 		sortedKeys = append(sortedKeys, key)
 	}
 	sort.Strings(sortedKeys)
 
-	sortedFileExplorerOrder := make(map[string]interface{}, len(fileExplorerOrder))
+	sortedFileExplorerData := make(map[string][]string, len(config.FileExplorerData))
 	for _, key := range sortedKeys {
-		sortedFileExplorerOrder[key] = fileExplorerOrder[key]
+		sortedFileExplorerData[key] = config.FileExplorerData[key]
 	}
-	jsonMap["fileExplorerOrder"] = sortedFileExplorerOrder
+	config.FileExplorerData = sortedFileExplorerData
 
-	// 将处理后的数据输出到文件
-	newData, err := json.MarshalIndent(jsonMap, "", "  ")
+	newData, err := json.MarshalIndent(config, "", "  ")
 	if err != nil {
 		panic(err)
 	}
 
-	file, err = os.Create("/mnt/d/Projects/DesistDaydream/notes-learning/content/zh-cn/.obsidian/plugins/obsidian-bartender/data_new.json")
+	err = ioutil.WriteFile(dstFile, newData, 0666)
 	if err != nil {
 		panic(err)
 	}
-	defer file.Close()
-
-	_, err = file.Write(newData)
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println("JSON 文件处理完成，处理结果输出到 json_file_new.json")
 }
