@@ -10,6 +10,8 @@ title: Audit
 >   - [GitHub 项目，audit-userspace](https://github.com/linux-audit/audit-userspace)
 > - [红帽产品文档，RedHat7-安全指南-系统审计](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/chap-system_auditing)
 > - [红帽产品文档，RedHat9-安全强化-系统审计](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/security_hardening/auditing-the-system_security-hardening)
+> - [公众号-kernsec，Linux Audit 子系统解读](https://mp.weixin.qq.com/s/G6kE52o7OZaGYPqnuUwggQ)
+> - [linux audit审计（8）--开启audit对系统性能的影响](https://www.cnblogs.com/xingmuxin/p/8875783.html)
 
 Audit 是实现的 Linux 系统审计的软件包，其中包含两个部分：
 - 用户空间应用程序和实用程序
@@ -20,6 +22,7 @@ Audit 是实现的 Linux 系统审计的软件包，其中包含两个部分：
 系统调用通过 exclude 过滤器后，它将通过上述其中一个过滤器发送，这些过滤器根据 Audit 规则配置将其发送到 Audit 守护进程，以进行进一步处理。
 
 用户空间审计守护进程从内核收集信息，并在日志文件中创建条目。其他 Audit 用户空间实用程序与 Audit 守护进程、内核审计组件或 Audit 日志文件交互：
+
 - audisp - Audit 分配程序守护进程与 Audit 守护进程交互，并将事件发送到其他应用以进行进一步处理。此守护进程的目的是提供一种插件机制，让实时分析程序能够与审计事件交互。
 - auditctl - Audit 控制实用程序与内核审计组件交互，以管理规则并控制事件生成进程的许多设置和参数。
 - 剩余的 Audit 实用程序将 Audit 日志文件的内容作为输入，并根据用户的要求生成输出。例如，aureport 实用程序生成所有记录事件的报告。
@@ -37,9 +40,9 @@ Audit 是实现的 Linux 系统审计的软件包，其中包含两个部分：
 - **./audit.rules** # 由 `rules.d/` 目录下的规则文件生成
 - **./rules.d/** # Audit 规则文件
 
-**/usr/share/doc/audit-${VERSION}/rules/* # Audit 软件包安装后根据各种认证标准提供一组预配置的规则文件
+**/usr/share/doc/audit-${VERSION}/rules/** # Audit 软件包安装后根据各种认证标准提供一组预配置的规则文件
 
-**/var/log/audit/* # auditd 记录日志的默认位置。
+**/var/log/audit/** # auditd 记录日志的默认位置。
 
 # 规则语法
 
@@ -48,10 +51,10 @@ Audit 是实现的 Linux 系统审计的软件包，其中包含两个部分：
 **-w FILE -p PERMISSIONS -k KEY**
 - **FILE** # 是被审计的文件或目录
 - **PERMISSIONS** # 记录的权限
-  - r - 对文件或目录的读取访问权限.
-  - w - 对文件或目录的写入访问权限.
-  - x - 执行对文件或目录的访问权限。
-  - a - 更改文件或目录的属性.
+    - r - 对文件或目录的读取访问权限.
+    - w - 对文件或目录的写入访问权限.
+    - x - 执行对文件或目录的访问权限。
+    - a - 更改文件或目录的属性.
 - **KEY** # 是一个可选字符串，可帮助您识别生成了特定日志条目的规则或一组规则。
 
 ## 定义系统调用规则
@@ -64,4 +67,13 @@ Audit 是实现的 Linux 系统审计的软件包，其中包含两个部分：
 
 # auditctl 命令行工具
 
+auditctl 命令允许您控制 Audit 系统的基本功能，并定义决定记录哪些审计事件的规则。
+
 # aureport 命令行工具
+
+aureport 实用程序允许您针对 Audit 日志文件中记录的事件生成摘要和列ar 报告
+
+# ausearch 命令行工具
+
+ausearch 实用程序允许您搜索 Audit 日志文件特定事件。默认情况下，ausearch 搜索 `/var/log/audit/audit.log` 文件。
+["Linux libc 库"](docs/IT学习笔记/1.操作系统/Linux 源码解析/Linux libc 库.md)
