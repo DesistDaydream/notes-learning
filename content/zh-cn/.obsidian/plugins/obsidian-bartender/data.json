@@ -1,6 +1,8 @@
 {
-  "statusBarOrder": [],
-  "ribbonBarOrder": [],
+  "actionBarOrder": {},
+  "autoHide": false,
+  "autoHideDelay": 2000,
+  "dragDelay": 200,
   "fileExplorerOrder": {
     "/": [
       "_index.html",
@@ -10,235 +12,43 @@
       "obsidian模板",
       "featured-background.jpg"
     ],
-    "docs/IT学习笔记/1.操作系统/X.Linux 管理": [
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/_index.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux管理.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 内核管理工具",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 网络管理工具",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 文本处理",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/GNU C Library 管理工具.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 管理案例"
+    "docs/IT学习笔记/0.计算机": [
+      "docs/IT学习笔记/0.计算机/_index.md",
+      "docs/IT学习笔记/0.计算机/计算机工作的原理.md",
+      "docs/IT学习笔记/0.计算机/Motherboard",
+      "docs/IT学习笔记/0.计算机/CPU",
+      "docs/IT学习笔记/0.计算机/Memory",
+      "docs/IT学习笔记/0.计算机/Disk"
     ],
-    "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具": [
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/_index.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/CPU 管理工具.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/Memory 管理工具.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/文件与文件系统管理工具",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/procps 工具集.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/psmisc 工具集.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/sysstat 工具集.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/strace 工具.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/perf 性能分析工具",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/BCC 工具集.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/bpftrace 工具.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit"
+    "docs/IT学习笔记/0.计算机/CPU": [
+      "docs/IT学习笔记/0.计算机/CPU/_index.md",
+      "docs/IT学习笔记/0.计算机/CPU/CPU.md",
+      "docs/IT学习笔记/0.计算机/CPU/CPU 精简指令集.md"
     ],
-    "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具": [
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具/_index.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具/Cockpit.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具/Cockpit 介绍.md"
+    "docs/IT学习笔记/0.计算机/Disk": [
+      "docs/IT学习笔记/0.计算机/Disk/_index.md",
+      "docs/IT学习笔记/0.计算机/Disk/Disk.md",
+      "docs/IT学习笔记/0.计算机/Disk/Raid.md",
+      "docs/IT学习笔记/0.计算机/Disk/关于外存你需要了解的.md"
     ],
-    "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具": [
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/_index.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/磁盘与文件系统管理工具.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/文件系统管理工具.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/dd 生成指定大小的文件.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/pt-ioprofile.md"
+    "docs/IT学习笔记/0.计算机/Motherboard": [
+      "docs/IT学习笔记/0.计算机/Motherboard/_index.md",
+      "docs/IT学习笔记/0.计算机/Motherboard/Motherboard.md",
+      "docs/IT学习笔记/0.计算机/Motherboard/BIOS.md",
+      "docs/IT学习笔记/0.计算机/Motherboard/IPMI.md"
     ],
-    "docs/IT学习笔记/实用工具": [
-      "docs/IT学习笔记/实用工具/_index.md",
-      "docs/IT学习笔记/实用工具/安装操作系统",
-      "docs/IT学习笔记/实用工具/Windows实用工具",
-      "docs/IT学习笔记/实用工具/Terminal(终端)",
-      "docs/IT学习笔记/实用工具/IDE",
-      "docs/IT学习笔记/实用工具/远程管理",
-      "docs/IT学习笔记/实用工具/即时通信与延时通信.md",
-      "docs/IT学习笔记/实用工具/网站搭建",
-      "docs/IT学习笔记/实用工具/下载.md",
-      "docs/IT学习笔记/实用工具/写作",
-      "docs/IT学习笔记/实用工具/手机.md",
-      "docs/IT学习笔记/实用工具/云盘.md",
-      "docs/IT学习笔记/实用工具/浏览器",
-      "docs/IT学习笔记/实用工具/开源软件洞察.md"
-    ],
-    "docs/IT学习笔记/实用工具/Terminal(终端)": [
-      "docs/IT学习笔记/实用工具/Terminal(终端)/_index.md",
-      "docs/IT学习笔记/实用工具/Terminal(终端)/Terminal(终端).md",
-      "docs/IT学习笔记/实用工具/Terminal(终端)/X Manager.md",
-      "docs/IT学习笔记/实用工具/Terminal(终端)/X Manager"
-    ],
-    "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell": [
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/_index.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/4.Terminal 与 Shell.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash 变量.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/exec,xargs,管道符等组合命令.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash 操作历史记录.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash 快捷键.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash 命令.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Job(任务)控制.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Redirection(重定向).md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Windows_Shell"
-    ],
-    "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言": [
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/_index.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/Shell 编程语言.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/变量.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/控制结构",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/数组.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/函数.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/控制结构.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/set 命令.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/Shell 命令行参数处理.md"
-    ],
-    "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash": [
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/_index.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/source，sh，bash 等执行命令的工具.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/Bash 变量.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/Bash 操作历史记录.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/Bash 快捷键.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/Bash 命令.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/exec,xargs,管道符等组合命令.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/Job(任务)控制.md",
-      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/Redirection(重定向).md"
-    ],
-    "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具": [
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/_index.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/Vmware",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/Xen",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/Hyper-V",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理"
-    ],
-    "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU": [
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/_index.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/QEMU 设备模拟逻辑.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 部署.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 镜像管理.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 运行时管理.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/访问虚拟机",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/QEMU Guest Agent",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 命令行工具",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/最佳实践.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理"
-    ],
-    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统": [
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/_index.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 部署与清理",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API Resource 与 Object",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/2.Kubelet 节点代理",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/4.Controller(控制器)",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/5.Scheduling(调度)",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/6.Etcd 注册中心",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 其他特性",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 扩展",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 开发",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品"
-    ],
-    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍": [
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/_index.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/Kuberntes 介绍.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/Standardized Glossary(标准化术语).md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/Kubernetes Runtime.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/灵魂拷问，上 Kubernetes 有什么业务价值？.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/如何构建以应用为中心的“Kubernetes”_（内含 QA 整理）.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/如何玩转 Kubernetes 开源社区？这篇文章一定要看！.md"
-    ],
-    "docs/IT学习笔记/10.云原生": [
-      "docs/IT学习笔记/10.云原生/_index.md",
-      "docs/IT学习笔记/10.云原生/云原生",
-      "docs/IT学习笔记/10.云原生/1.1.虚拟化",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具",
-      "docs/IT学习笔记/10.云原生/1.3.OpenStack 虚拟机编排系统",
-      "docs/IT学习笔记/10.云原生/2.1.容器",
-      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统",
-      "docs/IT学习笔记/10.云原生/DevOps",
-      "docs/IT学习笔记/10.云原生/云原生应用管理",
-      "docs/IT学习笔记/10.云原生/云原生的周边.md",
-      "docs/IT学习笔记/10.云原生/云厂商.md"
-    ],
-    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理": [
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/_index.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 管理.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/重大变化",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubeadm 命令行工具",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 日志",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 监控",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/HPA(Horizontal Pod Autoscaler).md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Quota(配额).md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/好用的镜像-有特殊功能.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化 与 故障处理",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 管理案例"
-    ],
-    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 管理案例": [
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 管理案例/_index.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 管理案例/Kubernetes 管理案例.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 管理案例/更新 APIServer 证书.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 管理案例/华为云 CCE 动态扩容有状态应用的 EVS.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 管理案例/将单 master 升级为多 master 集群.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 管理案例/Etcd 备份与恢复.md"
-    ],
-    "docs/IT学习笔记/2.编程": [
-      "docs/IT学习笔记/2.编程/_index.md",
-      "docs/IT学习笔记/2.编程/编程.md",
-      "docs/IT学习笔记/2.编程/解谜计算机科学",
-      "docs/IT学习笔记/2.编程/API",
-      "docs/IT学习笔记/2.编程/低级编程语言",
-      "docs/IT学习笔记/2.编程/高级编程语言",
-      "docs/IT学习笔记/2.编程/无法分类的语言",
-      "docs/IT学习笔记/2.编程/编程技术",
-      "docs/IT学习笔记/2.编程/编程工具"
-    ],
-    "docs/IT学习笔记/2.编程/解谜计算机科学": [
-      "docs/IT学习笔记/2.编程/解谜计算机科学/_index.md",
-      "docs/IT学习笔记/2.编程/解谜计算机科学/解谜计算机科学.md",
-      "docs/IT学习笔记/2.编程/解谜计算机科学/编程.md",
-      "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)",
-      "docs/IT学习笔记/2.编程/解谜计算机科学/Function(函数)",
-      "docs/IT学习笔记/2.编程/解谜计算机科学/Object-oriented Programming(面向对象编程).md",
-      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言"
-    ],
-    "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言": [
-      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言/_index.md",
-      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言/假如你来发明编程语言.md",
-      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言/Coroutine(协程).md",
-      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言/互斥锁、自旋锁、读写锁、悲观锁、乐观锁的应用场景.md",
-      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言/如何掌握所有的程序语言.md",
-      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言/FIFO与FILO.md"
-    ],
-    "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议": [
-      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/_index.md",
-      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/Secure Shell(SSH) 安全外壳协议.md",
-      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/配置文件详解.md",
-      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/OpenSSH 管理工具套件.md",
-      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/sshpass.md",
-      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/使用 ssh 内网穿透示例.md"
-    ],
-    "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)": [
-      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)/_index.md",
-      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)/PAM(可插入式认证模块).md",
-      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)/PAM配置文件.md",
-      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)/PAM 模块详解",
-      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)/已弃用模块.md"
-    ],
-    "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Account Manager(账户管理)": [
-      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Account Manager(账户管理)/_index.md",
-      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Account Manager(账户管理)/Account Manager(账户管理).md",
-      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Account Manager(账户管理)/账户配置文件.md"
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/Kernel(内核).md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/1.Linux Kernel",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/3.System Call",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/4.CPU 管理",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/5.Memory 管理",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/微内核",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/BPF"
     ],
     "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/1.Linux Kernel": [
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/1.Linux Kernel/_index.md",
@@ -291,6 +101,19 @@
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/读取文件时，程序经历了什么？.md",
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/I_O Multiplexing(输入_输出多路复用)"
     ],
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/文件管理.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/Inode.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/File Descriptor(文件描述符).md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/Archive File(归档文件).md"
+    ],
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/Journaling File System.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/EXT FileSystem.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/XFS.md"
+    ],
     "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理": [
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理/_index.md",
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理/Process 管理.md",
@@ -326,6 +149,11 @@
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager",
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netplan"
     ],
+    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netplan": [
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netplan/_index.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netplan/Netplan.md",
+      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netplan/Netplan 配置详解.md"
+    ],
     "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager": [
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager/_index.md",
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager/NetworkManager.md",
@@ -333,11 +161,6 @@
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager/Connection 配置详解.md",
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager/nmcli 命令行工具.md",
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager/nmcli connection 子命令.md"
-    ],
-    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netplan": [
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netplan/_index.md",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netplan/Netplan.md",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netplan/Netplan 配置详解.md"
     ],
     "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/BPF": [
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/BPF/_index.md",
@@ -354,18 +177,41 @@
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/BPF/BPF 流量控制机制/BPF 在网络领域的实现.md",
       "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/BPF/BPF 流量控制机制/XDP eBPF 与 TC eBPF.md"
     ],
-    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)": [
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/_index.md",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/Kernel(内核).md",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/1.Linux Kernel",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/3.System Call",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/4.CPU 管理",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/5.Memory 管理",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process 管理",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network 管理",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/微内核",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/BPF"
+    "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell": [
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/_index.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/4.Terminal 与 Shell.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash 变量.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/exec,xargs,管道符等组合命令.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash 操作历史记录.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash 快捷键.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash 命令.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Job(任务)控制.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Redirection(重定向).md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Windows_Shell"
+    ],
+    "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash": [
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/_index.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/source，sh，bash 等执行命令的工具.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/Bash 变量.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/Bash 操作历史记录.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/Bash 快捷键.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/Bash 命令.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/exec,xargs,管道符等组合命令.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/Job(任务)控制.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Bash/Redirection(重定向).md"
+    ],
+    "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言": [
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/_index.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/Shell 编程语言.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/变量.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/控制结构",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/数组.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/函数.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/控制结构.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/set 命令.md",
+      "docs/IT学习笔记/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/Shell 命令行参数处理.md"
     ],
     "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制": [
       "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/_index.md",
@@ -379,6 +225,26 @@
       "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/TCP Wrappers.md",
       "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/登录与登录信息工具"
     ],
+    "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Account Manager(账户管理)": [
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Account Manager(账户管理)/_index.md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Account Manager(账户管理)/Account Manager(账户管理).md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Account Manager(账户管理)/账户配置文件.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)": [
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)/_index.md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)/PAM(可插入式认证模块).md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)/PAM配置文件.md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)/PAM 模块详解",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)/已弃用模块.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议": [
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/_index.md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/Secure Shell(SSH) 安全外壳协议.md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/配置文件详解.md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/OpenSSH 管理工具套件.md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/sshpass.md",
+      "docs/IT学习笔记/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/使用 ssh 内网穿透示例.md"
+    ],
     "docs/IT学习笔记/1.操作系统/6.Package 管理": [
       "docs/IT学习笔记/1.操作系统/6.Package 管理/_index.md",
       "docs/IT学习笔记/1.操作系统/6.Package 管理/Package 管理.md",
@@ -387,125 +253,17 @@
       "docs/IT学习笔记/1.操作系统/6.Package 管理/Snap.md",
       "docs/IT学习笔记/1.操作系统/6.Package 管理/Windows包管理.md"
     ],
-    "docs/IT学习笔记/4.数据通信": [
-      "docs/IT学习笔记/4.数据通信/_index.md",
-      "docs/IT学习笔记/4.数据通信/信息论.md",
-      "docs/IT学习笔记/4.数据通信/数据通信",
-      "docs/IT学习笔记/4.数据通信/通信协议",
-      "docs/IT学习笔记/4.数据通信/DNS",
-      "docs/IT学习笔记/4.数据通信/NAT",
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)",
-      "docs/IT学习笔记/4.数据通信/SDN(软件定义网路).md",
-      "docs/IT学习笔记/4.数据通信/WebDAV.md",
-      "docs/IT学习笔记/4.数据通信/数据包分析",
-      "docs/IT学习笔记/4.数据通信/中间人攻击与HTTPS抓包.md",
-      "docs/IT学习笔记/4.数据通信/交换机 与 路由器.md"
-    ],
-    "docs/IT学习笔记/6.可观测性": [
-      "docs/IT学习笔记/6.可观测性/_index.md",
-      "docs/IT学习笔记/6.可观测性/Observability(可观测性)",
-      "docs/IT学习笔记/6.可观测性/OpenTelemetry.md",
-      "docs/IT学习笔记/6.可观测性/日志系统",
-      "docs/IT学习笔记/6.可观测性/监控系统",
-      "docs/IT学习笔记/6.可观测性/追踪系统",
-      "docs/IT学习笔记/6.可观测性/混沌工程系统",
-      "docs/IT学习笔记/6.可观测性/Grafana",
-      "docs/IT学习笔记/6.可观测性/性能优化",
-      "docs/IT学习笔记/6.可观测性/搜索引擎"
-    ],
-    "docs/IT学习笔记/6.可观测性/监控系统": [
-      "docs/IT学习笔记/6.可观测性/监控系统/_index.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述",
-      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP",
-      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus",
-      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting",
-      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager",
-      "docs/IT学习笔记/6.可观测性/监控系统/dell硬件监控OMSA.md"
-    ],
-    "docs/IT学习笔记/6.可观测性/监控系统/Prometheus": [
-      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/_index.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Server 配置.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Rules 配置.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Target(目标) 与 Relabeling(重新标记).md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Storage(存储)",
-      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Alerting(告警).md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Federate(集群联邦).md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/HTTPS 和 Authentication(认证).md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/PromQL",
-      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus API",
-      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 管理",
-      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 开发",
-      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 衍生品"
-    ],
-    "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting": [
-      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/_index.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/Instrumenting.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/Push Gateway.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/Node Exporter.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/SNMP Exporter",
-      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/Blackbox Exporter.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/Other Exporter.md"
-    ],
-    "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager": [
-      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager/_index.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager/Alertmanager.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager/Alertmanager 数据结构.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager/Alertmanager 配置.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager/告警模板详解.md",
-      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager/Alertmanager 扩展.md"
-    ],
-    "docs/IT学习笔记/6.可观测性/Grafana": [
-      "docs/IT学习笔记/6.可观测性/Grafana/_index.md",
-      "docs/IT学习笔记/6.可观测性/Grafana/Grafana.md",
-      "docs/IT学习笔记/6.可观测性/Grafana/Grafna 数据模型.md",
-      "docs/IT学习笔记/6.可观测性/Grafana/Grafana 配置详解",
-      "docs/IT学习笔记/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)",
-      "docs/IT学习笔记/6.可观测性/Grafana/Plugins(插件).md",
-      "docs/IT学习笔记/6.可观测性/Grafana/访问控制.md",
-      "docs/IT学习笔记/6.可观测性/Grafana/Grafana 8.0 告警使用.md",
-      "docs/IT学习笔记/6.可观测性/Grafana/Grafana 管理.md"
-    ],
-    "docs/IT学习笔记/7.信息安全": [
-      "docs/IT学习笔记/7.信息安全/_index.md",
-      "docs/IT学习笔记/7.信息安全/Standardized Glossary(标准化术语).md",
-      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)",
-      "docs/IT学习笔记/7.信息安全/Access Control(访问控制)",
-      "docs/IT学习笔记/7.信息安全/管理工具",
-      "docs/IT学习笔记/7.信息安全/Bastion Host(堡垒机).md",
-      "docs/IT学习笔记/7.信息安全/Hacking.md",
-      "docs/IT学习笔记/7.信息安全/什么鬼？.md"
-    ],
-    "docs/IT学习笔记/7.信息安全/Cryptography(密码学)": [
-      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/_index.md",
-      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/Cryptography(密码学).md",
-      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/对称密码加密.md",
-      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密",
-      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/RSA 加密算法"
-    ],
-    "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密": [
-      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密/_index.md",
-      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密/公开密钥加密.md",
-      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密/证书 与 PKI",
-      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密/密钥_证书 的编码.md"
-    ],
-    "docs/IT学习笔记/12.人工智能/OpenAI": [
-      "docs/IT学习笔记/12.人工智能/OpenAI/_index.md",
-      "docs/IT学习笔记/12.人工智能/OpenAI/OpenAI.md",
-      "docs/IT学习笔记/12.人工智能/OpenAI/ChatGPT.md"
-    ],
-    "docs/IT学习笔记/12.人工智能": [
-      "docs/IT学习笔记/12.人工智能/_index.md",
-      "docs/IT学习笔记/12.人工智能/计算机视觉",
-      "docs/IT学习笔记/12.人工智能/深度学习框架.md",
-      "docs/IT学习笔记/12.人工智能/OpenAI"
-    ],
-    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理": [
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/_index.md",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/文件管理.md",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/Inode.md",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/File Descriptor(文件描述符).md",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/Archive File(归档文件).md"
+    "docs/IT学习笔记/1.操作系统/X.Linux 管理": [
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/_index.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux管理.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 内核管理工具",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 网络管理工具",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 文本处理",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/GNU C Library 管理工具.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 管理案例"
     ],
     "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具": [
       "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具/_index.md",
@@ -514,11 +272,37 @@
       "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具/Memory 硬件管理工具.md",
       "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 硬件管理工具/从文件中获取 Linux 硬件信息获取.md"
     ],
-    "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统": [
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/_index.md",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/Journaling File System.md",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/EXT FileSystem.md",
-      "docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/XFS.md"
+    "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 管理案例": [
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 管理案例/_index.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 管理案例/Linux 管理案例.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 管理案例/通过 Socket 文件找到 TCP 连接信息.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具": [
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/_index.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/CPU 管理工具.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/Memory 管理工具.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/文件与文件系统管理工具",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/procps 工具集.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/psmisc 工具集.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/sysstat 工具集.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/strace 工具.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/perf 性能分析工具",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/BCC 工具集.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/bpftrace 工具.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit"
+    ],
+    "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具": [
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具/_index.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具/Cockpit.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具/Cockpit 介绍.md"
+    ],
+    "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具": [
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/_index.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/磁盘与文件系统管理工具.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/文件系统管理工具.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/dd 生成指定大小的文件.md",
+      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/pt-ioprofile.md"
     ],
     "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理": [
       "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理/_index.md",
@@ -535,13 +319,46 @@
       "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/性能测试工具",
       "docs/IT学习笔记/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/Redhat 优化.md"
     ],
-    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理": [
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/_index.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/性能优化与故障处理.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/k8s CPU limit和throttling的迷思.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/故障处理案例",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/故障处理技巧",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/kubernetes优化"
+    "docs/IT学习笔记/10.云原生": [
+      "docs/IT学习笔记/10.云原生/_index.md",
+      "docs/IT学习笔记/10.云原生/云原生",
+      "docs/IT学习笔记/10.云原生/1.1.虚拟化",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具",
+      "docs/IT学习笔记/10.云原生/1.3.OpenStack 虚拟机编排系统",
+      "docs/IT学习笔记/10.云原生/2.1.容器",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统",
+      "docs/IT学习笔记/10.云原生/DevOps",
+      "docs/IT学习笔记/10.云原生/云原生应用管理",
+      "docs/IT学习笔记/10.云原生/云原生的周边.md",
+      "docs/IT学习笔记/10.云原生/云厂商.md"
+    ],
+    "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具": [
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/_index.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/Vmware",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/Xen",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/Hyper-V",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理"
+    ],
+    "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU": [
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/_index.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/QEMU 设备模拟逻辑.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 部署.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 镜像管理.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 运行时管理.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/访问虚拟机",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/QEMU Guest Agent",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 命令行工具",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/最佳实践.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理"
+    ],
+    "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理": [
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理/_index.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理/KVM_QEMU 管理.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理/多 KVM_QEMU 集中管理.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理/在线热迁移.md"
     ],
     "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理": [
       "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/_index.md",
@@ -563,12 +380,10 @@
       "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/问题实例.md",
       "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/最佳实践.md"
     ],
-    "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序": [
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序/_index.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序/使用 libvirt API 的其他应用程序.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序/virt-manager.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序/virt-install.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序/libguestfs.md"
+    "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解": [
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解/_index.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解/XML 文件详解.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解/Domains.md"
     ],
     "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具": [
       "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/_index.md",
@@ -580,43 +395,46 @@
       "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/Interface 命令.md",
       "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/Snapshot 命令.md"
     ],
-    "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理": [
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理/_index.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理/KVM_QEMU 管理.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理/多 KVM_QEMU 集中管理.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理/在线热迁移.md"
+    "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序": [
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序/_index.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序/使用 libvirt API 的其他应用程序.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序/virt-manager.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序/virt-install.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序/libguestfs.md"
     ],
-    "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 管理案例": [
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 管理案例/_index.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 管理案例/Linux 管理案例.md",
-      "docs/IT学习笔记/1.操作系统/X.Linux 管理/Linux 管理案例/通过 Socket 文件找到 TCP 连接信息.md"
+    "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例": [
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/_index.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/创建虚拟机及创建后常见操作.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/克隆与批量创建虚拟机.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/扩大 KVM 虚拟机 image 镜像.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/通过 veth 设备查找对应的虚拟机.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/在线热迁移.md",
+      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/多宿主机集中管理.md"
     ],
-    "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph": [
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/_index.md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/Ceph.md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/Ceph 部署.md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/Ceph 命令行工具.md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/API.md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/Ceph 故障排查笔记.md"
+    "docs/IT学习笔记/10.云原生/2.1.容器": [
+      "docs/IT学习笔记/10.云原生/2.1.容器/_index.md",
+      "docs/IT学习笔记/10.云原生/2.1.容器/2.1.容器.md",
+      "docs/IT学习笔记/10.云原生/2.1.容器/Open Containers Initiative(开放容器倡议)",
+      "docs/IT学习笔记/10.云原生/2.1.容器/1.Namespaces",
+      "docs/IT学习笔记/10.云原生/2.1.容器/2.CGroup",
+      "docs/IT学习笔记/10.云原生/2.1.容器/容器开发.md"
     ],
-    "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)": [
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/_index.md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Distributed Storage(分布式存储).md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/MinIO"
+    "docs/IT学习笔记/10.云原生/2.2.实现容器的工具": [
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/_index.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/2.2.实现容器的工具.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/构建 OCI Image",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Podman",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/容器管理"
     ],
-    "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/MinIO": [
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/MinIO/_index.md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/MinIO/MinIO.md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/MinIO/mc 工具.md"
-    ],
-    "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS": [
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/_index.md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/GlusterFS.md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/GlusterFS 的部署与使用.md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/gluster命令.md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/故障恢复测试.md"
+    "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd": [
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/_index.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/Containerd.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/Containerd 部署.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/Containerd 配置详解",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/Containerd Image.md",
+      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/Containerd 命令行工具"
     ],
     "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker": [
       "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/_index.md",
@@ -638,245 +456,24 @@
       "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker 介绍/Docker 架构的演变.md",
       "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker 介绍/docker-shim 何去何从.md"
     ],
-    "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd": [
-      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/_index.md",
-      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/Containerd.md",
-      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/Containerd 部署.md",
-      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/Containerd 配置详解",
-      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/Containerd Image.md",
-      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/Containerd 命令行工具"
-    ],
-    "docs/IT学习笔记/10.云原生/2.2.实现容器的工具": [
-      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/_index.md",
-      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/2.2.实现容器的工具.md",
-      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/构建 OCI Image",
-      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd",
-      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker",
-      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Podman",
-      "docs/IT学习笔记/10.云原生/2.2.实现容器的工具/容器管理"
-    ],
-    "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例": [
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/_index.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/创建虚拟机及创建后常见操作.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/克隆与批量创建虚拟机.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/扩大 KVM 虚拟机 image 镜像.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/通过 veth 设备查找对应的虚拟机.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/在线热迁移.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/多宿主机集中管理.md"
-    ],
-    "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解": [
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解/_index.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解/XML 文件详解.md",
-      "docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解/Domains.md"
-    ],
-    "docs/IT学习笔记/2.编程/无法分类的语言": [
-      "docs/IT学习笔记/2.编程/无法分类的语言/_index.md",
-      "docs/IT学习笔记/2.编程/无法分类的语言/ASN.1.md",
-      "docs/IT学习笔记/2.编程/无法分类的语言/EBNF.md",
-      "docs/IT学习笔记/2.编程/无法分类的语言/INI.md",
-      "docs/IT学习笔记/2.编程/无法分类的语言/XML.md",
-      "docs/IT学习笔记/2.编程/无法分类的语言/JSON.md",
-      "docs/IT学习笔记/2.编程/无法分类的语言/YAML.md",
-      "docs/IT学习笔记/2.编程/无法分类的语言/TOML.md",
-      "docs/IT学习笔记/2.编程/无法分类的语言/Protobuf.md",
-      "docs/IT学习笔记/2.编程/无法分类的语言/按键精灵"
-    ],
-    "docs/IT学习笔记/10.云原生/2.1.容器": [
-      "docs/IT学习笔记/10.云原生/2.1.容器/_index.md",
-      "docs/IT学习笔记/10.云原生/2.1.容器/2.1.容器.md",
-      "docs/IT学习笔记/10.云原生/2.1.容器/Open Containers Initiative(开放容器倡议)",
-      "docs/IT学习笔记/10.云原生/2.1.容器/1.Namespaces",
-      "docs/IT学习笔记/10.云原生/2.1.容器/2.CGroup",
-      "docs/IT学习笔记/10.云原生/2.1.容器/容器开发.md"
-    ],
-    "docs/IT学习笔记/2.编程/API": [
-      "docs/IT学习笔记/2.编程/API/_index.md",
-      "docs/IT学习笔记/2.编程/API/API.md",
-      "docs/IT学习笔记/2.编程/API/Web API 与 REST.md",
-      "docs/IT学习笔记/2.编程/API/Swagger 介绍.md",
-      "docs/IT学习笔记/2.编程/API/Swagger 工具.md",
-      "docs/IT学习笔记/2.编程/API/OpenAPI 介绍.md",
-      "docs/IT学习笔记/2.编程/API/OpenAPI 格式.md",
-      "docs/IT学习笔记/2.编程/API/OpenAPI Tools.md",
-      "docs/IT学习笔记/2.编程/API/Mock API.md",
-      "docs/IT学习笔记/2.编程/API/API 相关工具"
-    ],
-    "docs/IT学习笔记/2.编程/解谜计算机科学/Function(函数)": [
-      "docs/IT学习笔记/2.编程/解谜计算机科学/Function(函数)/_index.md",
-      "docs/IT学习笔记/2.编程/解谜计算机科学/Function(函数)/Function(函数).md",
-      "docs/IT学习笔记/2.编程/解谜计算机科学/Function(函数)/回调函数 callback.md"
-    ],
-    "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)": [
-      "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/_index.md",
-      "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/Data Type(数据类型) 与 Literal(字面量).md",
-      "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/抽象数据类型",
-      "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/复合数据类型",
-      "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/进制表示法.md"
-    ],
-    "docs/IT学习笔记/x_标准化术语/Internet(互联网)": [
-      "docs/IT学习笔记/x_标准化术语/Internet(互联网)/_index.md",
-      "docs/IT学习笔记/x_标准化术语/Internet(互联网)/Internet(互联网).md",
-      "docs/IT学习笔记/x_标准化术语/Internet(互联网)/IETF.md",
-      "docs/IT学习笔记/x_标准化术语/Internet(互联网)/W3C.md"
-    ],
-    "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block": [
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/_index.md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Server Message Block.md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Samba.md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Samba 部署.md",
-      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Samba 配置详解.md"
-    ],
-    "docs/IT学习笔记/0.计算机": [
-      "docs/IT学习笔记/0.计算机/_index.md",
-      "docs/IT学习笔记/0.计算机/计算机工作的原理.md",
-      "docs/IT学习笔记/0.计算机/Motherboard",
-      "docs/IT学习笔记/0.计算机/CPU",
-      "docs/IT学习笔记/0.计算机/Memory",
-      "docs/IT学习笔记/0.计算机/Disk"
-    ],
-    "docs/IT学习笔记/0.计算机/CPU": [
-      "docs/IT学习笔记/0.计算机/CPU/_index.md",
-      "docs/IT学习笔记/0.计算机/CPU/CPU.md",
-      "docs/IT学习笔记/0.计算机/CPU/CPU 精简指令集.md"
-    ],
-    "docs/IT学习笔记/0.计算机/Disk": [
-      "docs/IT学习笔记/0.计算机/Disk/_index.md",
-      "docs/IT学习笔记/0.计算机/Disk/Disk.md",
-      "docs/IT学习笔记/0.计算机/Disk/Raid.md",
-      "docs/IT学习笔记/0.计算机/Disk/关于外存你需要了解的.md"
-    ],
-    "docs/IT学习笔记/0.计算机/Motherboard": [
-      "docs/IT学习笔记/0.计算机/Motherboard/_index.md",
-      "docs/IT学习笔记/0.计算机/Motherboard/Motherboard.md",
-      "docs/IT学习笔记/0.计算机/Motherboard/BIOS.md",
-      "docs/IT学习笔记/0.计算机/Motherboard/IPMI.md"
-    ],
-    "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解": [
-      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/_index.md",
-      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/Nginx 配置详解.md",
-      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/core 模块指令.md",
-      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/events 模块指令.md",
-      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/http 模块指令.md",
-      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/stream 模块指令.md",
-      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/其他属于 NGX_CORE_MODULE 类型的模块.md",
-      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/多用途模块的指令",
-      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/Nginx 作为web服务器配置示例.md",
-      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/Nginx 作为代理服务器配置示例.md"
-    ],
-    "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL": [
-      "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/_index.md",
-      "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/SQL.md",
-      "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/数据操作语句",
-      "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/SQL Functions(函数).md",
-      "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/SQL Operators(运算符).md",
-      "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/最佳实践.md"
-    ],
-    "docs/IT学习笔记/9.运维/Cobbler": [
-      "docs/IT学习笔记/9.运维/Cobbler/_index.md",
-      "docs/IT学习笔记/9.运维/Cobbler/Cobbler.md",
-      "docs/IT学习笔记/9.运维/Cobbler/Cobbler 部署.md",
-      "docs/IT学习笔记/9.运维/Cobbler/cobbler命令说明.md",
-      "docs/IT学习笔记/9.运维/Cobbler/kickstart 介绍.md"
-    ],
-    "docs/IT学习笔记/9.运维/Ansible": [
-      "docs/IT学习笔记/9.运维/Ansible/_index.md",
-      "docs/IT学习笔记/9.运维/Ansible/Ansible.md",
-      "docs/IT学习笔记/9.运维/Ansible/Ansible 配置详解.md",
-      "docs/IT学习笔记/9.运维/Ansible/Inventory 配置文件详解.md",
-      "docs/IT学习笔记/9.运维/Ansible/Ansible Collection.md",
-      "docs/IT学习笔记/9.运维/Ansible/Ansible Plugins",
-      "docs/IT学习笔记/9.运维/Ansible/Ansible Modules",
-      "docs/IT学习笔记/9.运维/Ansible/Ansible Variables(变量).md",
-      "docs/IT学习笔记/9.运维/Ansible/Ansible 命令行工具.md",
-      "docs/IT学习笔记/9.运维/Ansible/Ansible 管理",
-      "docs/IT学习笔记/9.运维/Ansible/Ansible 扩展",
-      "docs/IT学习笔记/9.运维/Ansible/Playbook"
-    ],
-    "docs/IT学习笔记/9.运维/Ansible/Modules": [
-      "docs/IT学习笔记/9.运维/Ansible/Modules/_index.md",
-      "docs/IT学习笔记/9.运维/Ansible/Modules/Modules.md",
-      "docs/IT学习笔记/9.运维/Ansible/Modules/ansible.builtin(内置模块)",
-      "docs/IT学习笔记/9.运维/Ansible/Modules/ansible.posix(POSIX 标准模块).md"
-    ],
-    "docs/IT学习笔记/9.运维/Ansible/Ansible Modules": [
-      "docs/IT学习笔记/9.运维/Ansible/Ansible Modules/_index.md",
-      "docs/IT学习笔记/9.运维/Ansible/Ansible Modules/Ansible Modules.md",
-      "docs/IT学习笔记/9.运维/Ansible/Ansible Modules/ansible.builtin(内置模块)",
-      "docs/IT学习笔记/9.运维/Ansible/Ansible Modules/ansible.posix(POSIX 标准模块).md"
-    ],
-    "docs/IT学习笔记/9.运维/Ansible/Playbook": [
-      "docs/IT学习笔记/9.运维/Ansible/Playbook/_index.md",
-      "docs/IT学习笔记/9.运维/Ansible/Playbook/Playbook.md",
-      "docs/IT学习笔记/9.运维/Ansible/Playbook/Playbook Role(角色).md",
-      "docs/IT学习笔记/9.运维/Ansible/Playbook/Variables(变量).md",
-      "docs/IT学习笔记/9.运维/Ansible/Playbook/Templates 模板(Jinja2).md",
-      "docs/IT学习笔记/9.运维/Ansible/Playbook/Conditionals(条件判断).md",
-      "docs/IT学习笔记/9.运维/Ansible/Playbook/loop(循环).md",
-      "docs/IT学习笔记/9.运维/Ansible/Playbook/错误处理.md",
-      "docs/IT学习笔记/9.运维/Ansible/Playbook/Debugger.md",
-      "docs/IT学习笔记/9.运维/Ansible/Playbook/Playbook 命令行工具.md"
-    ],
-    "docs/IT学习笔记/9.运维": [
-      "docs/IT学习笔记/9.运维/_index.md",
-      "docs/IT学习笔记/9.运维/Standardized Glossary(标准化术语)",
-      "docs/IT学习笔记/9.运维/自动化运维.md",
-      "docs/IT学习笔记/9.运维/Ansible",
-      "docs/IT学习笔记/9.运维/Cobbler",
-      "docs/IT学习笔记/9.运维/PXE 简介.md",
-      "docs/IT学习笔记/9.运维/应用发布.md"
-    ],
-    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具": [
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/_index.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/kubectl 命令行工具.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/config 子命令，修改kubeconfig文件.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/对象的创建与修改命令.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/get 子命令.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/set 与 rollout 更新资源命令.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/logs # 打印 pod 中的 container 的日志.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/kubectl 扩展.md"
-    ],
-    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元": [
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元/_index.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元/3.Pod 集群最小的工作单元.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元/Pod 生命周期",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元/Pod 的资源管理",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元/Pod 管理"
-    ],
-    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制": [
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/_index.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/7.API 访问控制.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/1.Authenticating(认证)",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/2.Authorization(授权)",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/3.Admission Controllers 准入控制器.md",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/Kubernetes 证书管理",
-      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/最佳实践.md"
-    ],
-    "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard": [
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard/_index.md",
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard/WireGuard.md",
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard/WireGuard 部署.md",
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard/配置详解.md",
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard/应用示例",
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard/Wireguard 全互联模式（full mesh）权威指南",
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard/流量伪装.md"
-    ],
-    "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)": [
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/_index.md",
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/Tunneling Protocol(隧道协议).md",
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/pptp(VPN)协议及其实现.md",
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/GRE.md",
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/V2Ray.md",
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard",
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/Tailscale",
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/支持各种隧道协议的客户端.md",
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/为什么集群需要 Overlay 网络.md"
-    ],
-    "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/Tailscale": [
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/Tailscale/_index.md",
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/Tailscale/Tailscale.md",
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/Tailscale/Tailscale ACL 访问控制策略.md",
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/Tailscale/Headscale(Tailscale开源版本).md",
-      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/Tailscale/自建 DERP 中继服务器，从此 Tailscale 畅通无阻.md"
+    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统": [
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/_index.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 部署与清理",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API Resource 与 Object",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/2.Kubelet 节点代理",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/4.Controller(控制器)",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/5.Scheduling(调度)",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/6.Etcd 注册中心",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 其他特性",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 扩展",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 开发",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品"
     ],
     "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API Resource 与 Object": [
       "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API Resource 与 Object/_index.md",
@@ -925,6 +522,165 @@
       "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API Resource 与 Object/Object 管理/Label and Selector(标签和选择器)/Label and Selector(标签和选择器).md",
       "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/1.API Resource 与 Object/Object 管理/Label and Selector(标签和选择器)/官方推荐标签用法.md"
     ],
+    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元": [
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元/_index.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元/3.Pod 集群最小的工作单元.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元/Pod 生命周期",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元/Pod 的资源管理",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元/Pod 管理"
+    ],
+    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制": [
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/_index.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/7.API 访问控制.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/1.Authenticating(认证)",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/2.Authorization(授权)",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/3.Admission Controllers 准入控制器.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/Kubernetes 证书管理",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/最佳实践.md"
+    ],
+    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理": [
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/_index.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 管理.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/重大变化",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubeadm 命令行工具",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 日志",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 监控",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/HPA(Horizontal Pod Autoscaler).md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Quota(配额).md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/好用的镜像-有特殊功能.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化 与 故障处理",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 管理案例"
+    ],
+    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 管理案例": [
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 管理案例/_index.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 管理案例/Kubernetes 管理案例.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 管理案例/更新 APIServer 证书.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 管理案例/华为云 CCE 动态扩容有状态应用的 EVS.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 管理案例/将单 master 升级为多 master 集群.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 管理案例/Etcd 备份与恢复.md"
+    ],
+    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具": [
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/_index.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/kubectl 命令行工具.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/config 子命令，修改kubeconfig文件.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/对象的创建与修改命令.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/get 子命令.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/set 与 rollout 更新资源命令.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/logs # 打印 pod 中的 container 的日志.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/kubectl 扩展.md"
+    ],
+    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理": [
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/_index.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/性能优化与故障处理.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/k8s CPU limit和throttling的迷思.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/故障处理案例",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/故障处理技巧",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/kubernetes优化"
+    ],
+    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍": [
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/_index.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/Kuberntes 介绍.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/Standardized Glossary(标准化术语).md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/Kubernetes Runtime.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/灵魂拷问，上 Kubernetes 有什么业务价值？.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/如何构建以应用为中心的“Kubernetes”_（内含 QA 整理）.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/如何玩转 Kubernetes 开源社区？这篇文章一定要看！.md"
+    ],
+    "docs/IT学习笔记/12.人工智能": [
+      "docs/IT学习笔记/12.人工智能/_index.md",
+      "docs/IT学习笔记/12.人工智能/计算机视觉",
+      "docs/IT学习笔记/12.人工智能/深度学习框架.md",
+      "docs/IT学习笔记/12.人工智能/OpenAI"
+    ],
+    "docs/IT学习笔记/12.人工智能/OpenAI": [
+      "docs/IT学习笔记/12.人工智能/OpenAI/_index.md",
+      "docs/IT学习笔记/12.人工智能/OpenAI/OpenAI.md",
+      "docs/IT学习笔记/12.人工智能/OpenAI/ChatGPT.md"
+    ],
+    "docs/IT学习笔记/2.编程": [
+      "docs/IT学习笔记/2.编程/_index.md",
+      "docs/IT学习笔记/2.编程/编程.md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学",
+      "docs/IT学习笔记/2.编程/API",
+      "docs/IT学习笔记/2.编程/低级编程语言",
+      "docs/IT学习笔记/2.编程/高级编程语言",
+      "docs/IT学习笔记/2.编程/无法分类的语言",
+      "docs/IT学习笔记/2.编程/编程技术",
+      "docs/IT学习笔记/2.编程/编程工具"
+    ],
+    "docs/IT学习笔记/2.编程/API": [
+      "docs/IT学习笔记/2.编程/API/_index.md",
+      "docs/IT学习笔记/2.编程/API/API.md",
+      "docs/IT学习笔记/2.编程/API/Web API 与 REST.md",
+      "docs/IT学习笔记/2.编程/API/Swagger 介绍.md",
+      "docs/IT学习笔记/2.编程/API/Swagger 工具.md",
+      "docs/IT学习笔记/2.编程/API/OpenAPI 介绍.md",
+      "docs/IT学习笔记/2.编程/API/OpenAPI 格式.md",
+      "docs/IT学习笔记/2.编程/API/OpenAPI Tools.md",
+      "docs/IT学习笔记/2.编程/API/Mock API.md",
+      "docs/IT学习笔记/2.编程/API/API 相关工具"
+    ],
+    "docs/IT学习笔记/2.编程/无法分类的语言": [
+      "docs/IT学习笔记/2.编程/无法分类的语言/_index.md",
+      "docs/IT学习笔记/2.编程/无法分类的语言/ASN.1.md",
+      "docs/IT学习笔记/2.编程/无法分类的语言/EBNF.md",
+      "docs/IT学习笔记/2.编程/无法分类的语言/INI.md",
+      "docs/IT学习笔记/2.编程/无法分类的语言/XML.md",
+      "docs/IT学习笔记/2.编程/无法分类的语言/JSON.md",
+      "docs/IT学习笔记/2.编程/无法分类的语言/YAML.md",
+      "docs/IT学习笔记/2.编程/无法分类的语言/TOML.md",
+      "docs/IT学习笔记/2.编程/无法分类的语言/Protobuf.md",
+      "docs/IT学习笔记/2.编程/无法分类的语言/按键精灵"
+    ],
+    "docs/IT学习笔记/2.编程/解谜计算机科学": [
+      "docs/IT学习笔记/2.编程/解谜计算机科学/_index.md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/解谜计算机科学.md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/编程.md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Function(函数)",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Object-oriented Programming(面向对象编程).md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言"
+    ],
+    "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)": [
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/_index.md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/Data Type(数据类型) 与 Literal(字面量).md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/抽象数据类型",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/复合数据类型",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/进制表示法.md"
+    ],
+    "docs/IT学习笔记/2.编程/解谜计算机科学/Function(函数)": [
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Function(函数)/_index.md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Function(函数)/Function(函数).md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/Function(函数)/回调函数 callback.md"
+    ],
+    "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言": [
+      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言/_index.md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言/假如你来发明编程语言.md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言/Coroutine(协程).md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言/互斥锁、自旋锁、读写锁、悲观锁、乐观锁的应用场景.md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言/如何掌握所有的程序语言.md",
+      "docs/IT学习笔记/2.编程/解谜计算机科学/假如你来发明编程语言/FIFO与FILO.md"
+    ],
+    "docs/IT学习笔记/2.编程/高级编程语言/Go": [
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/_index.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 环境安装与使用",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 网络编程",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 第三方库",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 工具",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 单元测试.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 常见问题",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 扩展",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 源码解析.md"
+    ],
+    "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 扩展": [
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 扩展/_index.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 扩展/Go 扩展.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 扩展/Go OpenAPI.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 扩展/Go 语言现状.md"
+    ],
     "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库": [
       "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库/_index.md",
       "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库/Go 标准库.md",
@@ -947,32 +703,11 @@
       "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库/嵌入静态文件.md",
       "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库/Unit test(单元测试).md"
     ],
-    "docs/IT学习笔记/2.编程/高级编程语言/Go": [
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/_index.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 环境安装与使用",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 标准库",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 网络编程",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 第三方库",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 工具",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 单元测试.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 常见问题",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 扩展",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 源码解析.md"
-    ],
     "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 环境安装与使用": [
       "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 环境安装与使用/_index.md",
       "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 环境安装与使用/Go 环境安装与使用.md",
       "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 环境安装与使用/Go Module.md",
       "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 环境安装与使用/重大变化.md"
-    ],
-    "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 网络编程": [
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 网络编程/_index.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 网络编程/Go 网络编程.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 TCP.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 HTTP",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 网络编程/Middleware",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 网络编程/Gin.md"
     ],
     "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 第三方库": [
       "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 第三方库/_index.md",
@@ -983,15 +718,280 @@
       "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 第三方库/数据库.md",
       "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制"
     ],
-    "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 扩展": [
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 扩展/_index.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 扩展/Go 扩展.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 扩展/Go OpenAPI.md",
-      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 扩展/Go 语言现状.md"
+    "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 网络编程": [
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 网络编程/_index.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 网络编程/Go 网络编程.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 TCP.md",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 HTTP",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 网络编程/Middleware",
+      "docs/IT学习笔记/2.编程/高级编程语言/Go/Go 网络编程/Gin.md"
+    ],
+    "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解": [
+      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/_index.md",
+      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/Nginx 配置详解.md",
+      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/core 模块指令.md",
+      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/events 模块指令.md",
+      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/http 模块指令.md",
+      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/stream 模块指令.md",
+      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/其他属于 NGX_CORE_MODULE 类型的模块.md",
+      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/多用途模块的指令",
+      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/Nginx 作为web服务器配置示例.md",
+      "docs/IT学习笔记/3.集群与分布式/Nginx/Nginx 配置详解/Nginx 作为代理服务器配置示例.md"
+    ],
+    "docs/IT学习笔记/4.数据通信": [
+      "docs/IT学习笔记/4.数据通信/_index.md",
+      "docs/IT学习笔记/4.数据通信/信息论.md",
+      "docs/IT学习笔记/4.数据通信/数据通信",
+      "docs/IT学习笔记/4.数据通信/通信协议",
+      "docs/IT学习笔记/4.数据通信/DNS",
+      "docs/IT学习笔记/4.数据通信/NAT",
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)",
+      "docs/IT学习笔记/4.数据通信/SDN(软件定义网路).md",
+      "docs/IT学习笔记/4.数据通信/WebDAV.md",
+      "docs/IT学习笔记/4.数据通信/数据包分析",
+      "docs/IT学习笔记/4.数据通信/中间人攻击与HTTPS抓包.md",
+      "docs/IT学习笔记/4.数据通信/交换机 与 路由器.md"
+    ],
+    "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)": [
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/_index.md",
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/Tunneling Protocol(隧道协议).md",
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/pptp(VPN)协议及其实现.md",
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/GRE.md",
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/V2Ray.md",
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard",
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/Tailscale",
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/支持各种隧道协议的客户端.md",
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/为什么集群需要 Overlay 网络.md"
+    ],
+    "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/Tailscale": [
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/Tailscale/_index.md",
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/Tailscale/Tailscale.md",
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/Tailscale/Tailscale ACL 访问控制策略.md",
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/Tailscale/Headscale(Tailscale开源版本).md",
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/Tailscale/自建 DERP 中继服务器，从此 Tailscale 畅通无阻.md"
+    ],
+    "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard": [
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard/_index.md",
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard/WireGuard.md",
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard/WireGuard 部署.md",
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard/配置详解.md",
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard/应用示例",
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard/Wireguard 全互联模式（full mesh）权威指南",
+      "docs/IT学习笔记/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard/流量伪装.md"
+    ],
+    "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)": [
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/_index.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Distributed Storage(分布式存储).md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/MinIO"
+    ],
+    "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph": [
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/_index.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/Ceph.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/Ceph 部署.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/Ceph 命令行工具.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/API.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/Ceph 故障排查笔记.md"
+    ],
+    "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS": [
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/_index.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/GlusterFS.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/GlusterFS 的部署与使用.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/gluster命令.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/故障恢复测试.md"
+    ],
+    "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/MinIO": [
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/MinIO/_index.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/MinIO/MinIO.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/MinIO/mc 工具.md"
+    ],
+    "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block": [
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/_index.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Server Message Block.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Samba.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Samba 部署.md",
+      "docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Samba 配置详解.md"
+    ],
+    "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL": [
+      "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/_index.md",
+      "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/SQL.md",
+      "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/数据操作语句",
+      "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/SQL Functions(函数).md",
+      "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/SQL Operators(运算符).md",
+      "docs/IT学习笔记/5.数据存储/2.数据库/关系数据/SQL/最佳实践.md"
+    ],
+    "docs/IT学习笔记/6.可观测性": [
+      "docs/IT学习笔记/6.可观测性/_index.md",
+      "docs/IT学习笔记/6.可观测性/Observability(可观测性)",
+      "docs/IT学习笔记/6.可观测性/OpenTelemetry.md",
+      "docs/IT学习笔记/6.可观测性/日志系统",
+      "docs/IT学习笔记/6.可观测性/监控系统",
+      "docs/IT学习笔记/6.可观测性/追踪系统",
+      "docs/IT学习笔记/6.可观测性/混沌工程系统",
+      "docs/IT学习笔记/6.可观测性/Grafana",
+      "docs/IT学习笔记/6.可观测性/性能优化",
+      "docs/IT学习笔记/6.可观测性/搜索引擎"
+    ],
+    "docs/IT学习笔记/6.可观测性/Grafana": [
+      "docs/IT学习笔记/6.可观测性/Grafana/_index.md",
+      "docs/IT学习笔记/6.可观测性/Grafana/Grafana.md",
+      "docs/IT学习笔记/6.可观测性/Grafana/Grafna 数据模型.md",
+      "docs/IT学习笔记/6.可观测性/Grafana/Grafana 配置详解",
+      "docs/IT学习笔记/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)",
+      "docs/IT学习笔记/6.可观测性/Grafana/Plugins(插件).md",
+      "docs/IT学习笔记/6.可观测性/Grafana/访问控制.md",
+      "docs/IT学习笔记/6.可观测性/Grafana/Grafana 8.0 告警使用.md",
+      "docs/IT学习笔记/6.可观测性/Grafana/Grafana 管理.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/监控系统": [
+      "docs/IT学习笔记/6.可观测性/监控系统/_index.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/监控系统概述",
+      "docs/IT学习笔记/6.可观测性/监控系统/Net-SNMP",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus",
+      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting",
+      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager",
+      "docs/IT学习笔记/6.可观测性/监控系统/dell硬件监控OMSA.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager": [
+      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager/_index.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager/Alertmanager.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager/Alertmanager 数据结构.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager/Alertmanager 配置.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager/告警模板详解.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Alertmanager/Alertmanager 扩展.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting": [
+      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/_index.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/Instrumenting.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/Push Gateway.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/Node Exporter.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/SNMP Exporter",
+      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/Blackbox Exporter.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/Other Exporter.md"
+    ],
+    "docs/IT学习笔记/6.可观测性/监控系统/Prometheus": [
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/_index.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Server 配置.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Rules 配置.md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Target(目标) 与 Relabeling(重新标记).md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Storage(存储)",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Alerting(告警).md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Federate(集群联邦).md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/HTTPS 和 Authentication(认证).md",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/PromQL",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus API",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 管理",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 开发",
+      "docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus 衍生品"
+    ],
+    "docs/IT学习笔记/7.信息安全": [
+      "docs/IT学习笔记/7.信息安全/_index.md",
+      "docs/IT学习笔记/7.信息安全/Standardized Glossary(标准化术语).md",
+      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)",
+      "docs/IT学习笔记/7.信息安全/Access Control(访问控制)",
+      "docs/IT学习笔记/7.信息安全/管理工具",
+      "docs/IT学习笔记/7.信息安全/Bastion Host(堡垒机).md",
+      "docs/IT学习笔记/7.信息安全/Hacking.md",
+      "docs/IT学习笔记/7.信息安全/什么鬼？.md"
+    ],
+    "docs/IT学习笔记/7.信息安全/Cryptography(密码学)": [
+      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/_index.md",
+      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/Cryptography(密码学).md",
+      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/对称密码加密.md",
+      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密",
+      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/RSA 加密算法"
+    ],
+    "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密": [
+      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密/_index.md",
+      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密/公开密钥加密.md",
+      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密/证书 与 PKI",
+      "docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密/密钥_证书 的编码.md"
+    ],
+    "docs/IT学习笔记/9.运维": [
+      "docs/IT学习笔记/9.运维/_index.md",
+      "docs/IT学习笔记/9.运维/Standardized Glossary(标准化术语)",
+      "docs/IT学习笔记/9.运维/自动化运维.md",
+      "docs/IT学习笔记/9.运维/Ansible",
+      "docs/IT学习笔记/9.运维/Cobbler",
+      "docs/IT学习笔记/9.运维/PXE 简介.md",
+      "docs/IT学习笔记/9.运维/应用发布.md"
+    ],
+    "docs/IT学习笔记/9.运维/Ansible": [
+      "docs/IT学习笔记/9.运维/Ansible/_index.md",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible.md",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible 配置详解.md",
+      "docs/IT学习笔记/9.运维/Ansible/Inventory 配置文件详解.md",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible Collection.md",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible Plugins",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible Modules",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible Variables(变量).md",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible 命令行工具.md",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible 管理",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible 扩展",
+      "docs/IT学习笔记/9.运维/Ansible/Playbook"
+    ],
+    "docs/IT学习笔记/9.运维/Ansible/Ansible Modules": [
+      "docs/IT学习笔记/9.运维/Ansible/Ansible Modules/_index.md",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible Modules/Ansible Modules.md",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible Modules/ansible.builtin(内置模块)",
+      "docs/IT学习笔记/9.运维/Ansible/Ansible Modules/ansible.posix(POSIX 标准模块).md"
+    ],
+    "docs/IT学习笔记/9.运维/Ansible/Modules": [
+      "docs/IT学习笔记/9.运维/Ansible/Modules/_index.md",
+      "docs/IT学习笔记/9.运维/Ansible/Modules/Modules.md",
+      "docs/IT学习笔记/9.运维/Ansible/Modules/ansible.builtin(内置模块)",
+      "docs/IT学习笔记/9.运维/Ansible/Modules/ansible.posix(POSIX 标准模块).md"
+    ],
+    "docs/IT学习笔记/9.运维/Ansible/Playbook": [
+      "docs/IT学习笔记/9.运维/Ansible/Playbook/_index.md",
+      "docs/IT学习笔记/9.运维/Ansible/Playbook/Playbook.md",
+      "docs/IT学习笔记/9.运维/Ansible/Playbook/Playbook Role(角色).md",
+      "docs/IT学习笔记/9.运维/Ansible/Playbook/Variables(变量).md",
+      "docs/IT学习笔记/9.运维/Ansible/Playbook/Templates 模板(Jinja2).md",
+      "docs/IT学习笔记/9.运维/Ansible/Playbook/Conditionals(条件判断).md",
+      "docs/IT学习笔记/9.运维/Ansible/Playbook/loop(循环).md",
+      "docs/IT学习笔记/9.运维/Ansible/Playbook/错误处理.md",
+      "docs/IT学习笔记/9.运维/Ansible/Playbook/Debugger.md",
+      "docs/IT学习笔记/9.运维/Ansible/Playbook/Playbook 命令行工具.md"
+    ],
+    "docs/IT学习笔记/9.运维/Cobbler": [
+      "docs/IT学习笔记/9.运维/Cobbler/_index.md",
+      "docs/IT学习笔记/9.运维/Cobbler/Cobbler.md",
+      "docs/IT学习笔记/9.运维/Cobbler/Cobbler 部署.md",
+      "docs/IT学习笔记/9.运维/Cobbler/cobbler命令说明.md",
+      "docs/IT学习笔记/9.运维/Cobbler/kickstart 介绍.md"
+    ],
+    "docs/IT学习笔记/x_标准化术语/Internet(互联网)": [
+      "docs/IT学习笔记/x_标准化术语/Internet(互联网)/_index.md",
+      "docs/IT学习笔记/x_标准化术语/Internet(互联网)/Internet(互联网).md",
+      "docs/IT学习笔记/x_标准化术语/Internet(互联网)/IETF.md",
+      "docs/IT学习笔记/x_标准化术语/Internet(互联网)/W3C.md"
+    ],
+    "docs/IT学习笔记/实用工具": [
+      "docs/IT学习笔记/实用工具/_index.md",
+      "docs/IT学习笔记/实用工具/安装操作系统",
+      "docs/IT学习笔记/实用工具/Windows实用工具",
+      "docs/IT学习笔记/实用工具/Terminal(终端)",
+      "docs/IT学习笔记/实用工具/IDE",
+      "docs/IT学习笔记/实用工具/远程管理",
+      "docs/IT学习笔记/实用工具/即时通信与延时通信.md",
+      "docs/IT学习笔记/实用工具/网站搭建",
+      "docs/IT学习笔记/实用工具/下载.md",
+      "docs/IT学习笔记/实用工具/写作",
+      "docs/IT学习笔记/实用工具/手机.md",
+      "docs/IT学习笔记/实用工具/云盘.md",
+      "docs/IT学习笔记/实用工具/浏览器",
+      "docs/IT学习笔记/实用工具/开源软件洞察.md"
+    ],
+    "docs/IT学习笔记/实用工具/Terminal(终端)": [
+      "docs/IT学习笔记/实用工具/Terminal(终端)/_index.md",
+      "docs/IT学习笔记/实用工具/Terminal(终端)/Terminal(终端).md",
+      "docs/IT学习笔记/实用工具/Terminal(终端)/X Manager.md",
+      "docs/IT学习笔记/实用工具/Terminal(终端)/X Manager"
     ]
   },
-  "actionBarOrder": {},
-  "autoHide": false,
-  "autoHideDelay": 2000,
-  "dragDelay": 200
+  "ribbonBarOrder": [],
+  "statusBarOrder": []
 }
