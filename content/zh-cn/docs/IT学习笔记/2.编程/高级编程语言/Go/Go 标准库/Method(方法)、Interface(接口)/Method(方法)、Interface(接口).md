@@ -6,8 +6,8 @@ title: Method(方法)、Interface(接口)
 
 > 参考：
 > - [公众号-新亮笔记，回答连个被频繁问道的代码写法问题](https://mp.weixin.qq.com/s/gpMzEoRofGE9LmayeYw1qw)
->   - 1.强制检查类型是否实现接口
->   - 2.强制接口中所有方法只能在本包中实现
+>     - 1.强制检查类型是否实现接口
+>     - 2.强制接口中所有方法只能在本包中实现
 
 Method 与 Interface 是 Go 语言是想面向对象变成的一种解决方式，但是更轻量。
 
