@@ -1,5 +1,6 @@
 ---
 title: Audit
+weight: 2
 ---
 
 # 概述
@@ -17,7 +18,23 @@ Audit 是实现的 Linux 系统审计的软件包，其中包含两个部分：
 - 用户空间应用程序和实用程序
 - 内核端系统调用处理。
 
-内核组件从用户空间应用程序接收系统调用，并通过以下过滤器之一对其进行过滤：user, task, fstype, or exit.
+当我们安装 Audit 后，会在系统中看到两个进程，一个是内核态的，一个是用户态的。
+
+```bash
+~]# ps -p $(pgrep audit)
+  PID TTY      STAT   TIME COMMAND
+  100 ?        S      0:02 [kauditd]
+15016 ?        S<sl   0:14 /sbin/auditd
+```
+
+并且，不能随意停止 auditd 服务器，内核进程无法通过用户空间的操作终止，使用 `systemctl stop auditd.service` 将会报错：
+
+```
+Failed to stop auditd.service: Operation refused, unit auditd.service may be requested by dependency only (it is configured to refuse manual start/stop).
+See system logs and 'systemctl status auditd.service' for details.
+```
+
+内核组件从用户空间应用程序接收系统调用，并通过以下过滤器之一对其进行过滤：user, task, fstype, exit
 
 系统调用通过 exclude 过滤器后，它将通过上述其中一个过滤器发送，这些过滤器根据 Audit 规则配置将其发送到 Audit 守护进程，以进行进一步处理。
 
@@ -26,6 +43,8 @@ Audit 是实现的 Linux 系统审计的软件包，其中包含两个部分：
 - audisp - Audit 分配程序守护进程与 Audit 守护进程交互，并将事件发送到其他应用以进行进一步处理。此守护进程的目的是提供一种插件机制，让实时分析程序能够与审计事件交互。
 - auditctl - Audit 控制实用程序与内核审计组件交互，以管理规则并控制事件生成进程的许多设置和参数。
 - 剩余的 Audit 实用程序将 Audit 日志文件的内容作为输入，并根据用户的要求生成输出。例如，aureport 实用程序生成所有记录事件的报告。
+
+**注意：由于 Audit 会运行一个内核态的进程，并且监听系统调用，所以像 nfs 这种涉及内核的文件系统工具，可能会跟 Audit 产生冲突。**
 
 # 安装 Audit
 
