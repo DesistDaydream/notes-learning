@@ -240,7 +240,7 @@ Hugo 模块是一个类似 Go 模块一样的存在。模块可以是我们的�
 
 # 关联文件与配置
 
-**config.toml | config.yaml | config.json** # 站点的配置文件，通常在站点的根目录
+**hugo.toml | hugo.yaml | hugo.json** # 站点的配置文件，通常在站点的根目录。在 0.110.0 版本之前，默认的文件名是 config.toml 之类的。
 
 **${Site_Root_dir}/config** # 可以将站点根目录下的 config.toml | config.yaml | config.json 拆分后保存到该目录。
 

@@ -5,7 +5,7 @@ title: TOML
 # 概述
 
 > 参考：
-> - [GitHub 项目](https://github.com/toml-lang/toml)
+> - [GitHub 项目，toml-lang/toml](https://github.com/toml-lang/toml)
 > - [官方文档](https://toml.io/en/latest)
 > - [Wiki,TOML](https://en.wikipedia.org/wiki/TOML)
 > - [知乎](https://zhuanlan.zhihu.com/p/50412485)
@@ -113,16 +113,18 @@ hosts = [
 
 INI（`.ini`）文件是一种非常原始的基础形式，但各家有各家的用法，而且它最多只能解决一层嵌套。只适合非常非常简单的配置文件，一旦需要两层嵌套，或需要数组，就力不从心了。
 
-    ; 最简单的结构
-    a = a;
-    b = b; 这些等号后面的值是字符串（句末分号不是必须的；它后面的都是注释）
-    ; 稍微复杂一点的单层嵌套结构
-    [c]
-    x = c.x
-    y = c.y
-    [d]
-    x = d.x
-    y = d.y
+```ini
+; 最简单的结构
+a = a;
+b = b; 这些等号后面的值是字符串（句末分号不是必须的；它后面的都是注释）
+; 稍微复杂一点的单层嵌套结构
+[c]
+x = c.x
+y = c.y
+[d]
+x = d.x
+y = d.y
+```
 
 ---
 
