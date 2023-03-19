@@ -7,10 +7,10 @@ weight: 20
 # 概述
 
 > 参考：
+>
 > - https://zblogs.top/how-to-register-openai-chatgpt-in-china
-> 	- 注册 ChatGPT 教程
+>   - 注册 ChatGPT 教程
 > - 使用虚拟号码接收短信验证码：https://sms-activate.org/
-
 
 上下文联系功能说明
 
@@ -19,6 +19,7 @@ weight: 20
 # ChatGPT 用法
 
 > 参考：
+>
 > - [GitHub 项目，f/awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts)
 > - [公众号-云原生小白，你应该知道的ChatGPT提示语](https://mp.weixin.qq.com/s/BcJWxvhpTRFTE20rB55Sow)
 
@@ -28,12 +29,11 @@ ChatGPT对话中提示语可以极大影响对话质量。定义明确的提示�
 
 那么，什么是好的 ChatGPT 提示语，以及我们如何制作有效的提示语？有几个关键原则需要记住。
 
-*   明确性。清晰简洁的提示将有助于确保 ChatGPT 理解当前的对话主题。避免使用过于复杂或模棱两可的语言。
-    
-*   重点。一个明确的提示语应该有明确的目的和重点，避免使用过于宽泛或开放式的提示，这可能会导致对话不连贯或方向失控。
-    
-*   相关性。确保你的提示语与当前对话相关。避免引入不相关的话题或切入点分散ChatGPT 的焦点
-    
+- 明确性。清晰简洁的提示将有助于确保 ChatGPT 理解当前的对话主题。避免使用过于复杂或模棱两可的语言。
+
+- 重点。一个明确的提示语应该有明确的目的和重点，避免使用过于宽泛或开放式的提示，这可能会导致对话不连贯或方向失控。
+
+- 相关性。确保你的提示语与当前对话相关。避免引入不相关的话题或切入点分散ChatGPT 的焦点
 
 遵循这些原则，我们就可以制作有效的 ChatGPT 提示语。并以此推动产生一个富有吸引力和质量上层的对话体验。
 
@@ -63,8 +63,7 @@ ChatGPT对话中提示语可以极大影响对话质量。定义明确的提示�
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/2p7vicUPeDYGsqlYAueASBpIv5Dz05OYVtWdtbCsuqK80libjwWdj0HqraZfKhZ5abh7nChvU0Gwm3aSwxJraCGA/640?wx_fmt=png)
 
-总结
---
+### 总结
 
 上述几个案例聪明的你应该也看出来了，在与 ChatGPT 进行对话时，编写清晰、简洁的提示语非常重要。通过制定有针对性的具体提示语，可以引导 ChatGPT 朝着我们期望的方向进行对话，并确保输出的内容是相关和有用的。
 
@@ -80,19 +79,43 @@ ChatGPT对话中提示语可以极大影响对话质量。定义明确的提示�
 
 我想让你充当 gojs 语言的编写者和改进者。我将用任何语言与你交谈，我希望你不用重复我的问题。明白之后，只需要回复我”明白了“即可。
 
-
 # 基于 ChatGPT 的项目
 
-## vscode-chatgpt
+## Chrom 插件
+
+https://github.com/gragland/chatgpt-chrome-extension
+
+https://chrome.google.com/webstore/detail/monica-%E2%80%94-your-chatgpt-cop/ofpnmcalabcbjgholdjcjblkibolbppb
+
+### ChatGPT Box
 
 > 参考：
+>
+> - [GitHub 项目，josStorer/chatGPTBox](https://github.com/josStorer/chatGPTBox/)
+> - https://www.bilibili.com/video/BV1524y1x7io
+
+### ChatGPT for Google
+
+https://github.com/wong2/chat-gpt-google-extension
+
+## IDE 增强
+
+### vscode-chatgpt
+
+> 参考：
+>
 > - [GitHub 项目，gencay/vscode-chatgpt](https://github.com/gencay/vscode-chatgpt)
 
 vscode-chatgpt 是一个 VS Code 插件。
 
+凸(艹皿艹 )，居然停用了。<https://github.com/gencay/vscode-chatgpt/issues/239>
+
+3月19日，有人 fork 后并构建了一个新的插件：https://github.com/Christopher-Hayes/vscode-chatgpt-reborn
+
 ## DocsGPT
 
 > 参考：
+>
 > - [GitHub 项目，arc53/DocsGPT](https://github.com/arc53/DocsGPT)
 > - [公众号-云原生实验室，我让 ChatGPT 化身为全知全能的文档小助理](https://mp.weixin.qq.com/s/HJ1LHGCjPL0qjf8e7bMLjg)
 
@@ -100,13 +123,9 @@ DocsGPT 是 GPT 驱动的聊天，用于文档搜索和帮助。
 
 ## 其他
 
-Chrom 插件
+https://github.com/lencx/nofwl # 桌面版
 
-https://github.com/wong2/chat-gpt-google-extension # 增强搜索，在搜索时显示 ChatGPT 的回答
-
-https://github.com/gragland/chatgpt-chrome-extension
-
-https://chrome.google.com/webstore/detail/monica-%E2%80%94-your-chatgpt-cop/ofpnmcalabcbjgholdjcjblkibolbppb
+https://github.com/lencx/ChatGPT # 桌面版
 
 逆向
 
@@ -115,6 +134,7 @@ https://github.com/acheong08/ChatGPT
 微信接入
 
 https://github.com/fuergaosi233/wechat-chatgpt
+
 - 用法：https://mp.weixin.qq.com/s/dLzemMUcIfjvWd_AF_yDJw
 
 https://github.com/AutumnWhj/ChatGPT-wechat-bot
@@ -128,4 +148,5 @@ https://github.com/wangrongding/wechat-bot
 简单的 web 页面
 
 https://github.com/sbaliyun/chatgpt-html
+
 - 用法：https://zblogs.top/deploy-chatgpt-on-your-server

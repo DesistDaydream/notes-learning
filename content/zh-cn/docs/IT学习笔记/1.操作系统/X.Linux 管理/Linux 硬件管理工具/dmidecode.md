@@ -112,7 +112,7 @@ SMBIOS规范定义了以下DMI类型:
 
 # EXAMPLE
 
-# 服务器信息
+## 服务器信息
 
 ```bash
 ~]# dmidecode | grep "System Information" -A9|egrep  "Manufacturer|Product|Serial"
@@ -121,9 +121,13 @@ Product Name: VMware Virtual Platform
 Serial Number: VMware-42 18 c8 32 77 c6 ec 16-3f 31 94 e9 d0 34 a6 ac
 ```
 
+## 主板信息
+
+```bash
+dmidecode |grep -A16 "System Information$"
+```
+
 ## CPU 信息
-
-
 
 
 ## 内存信息
@@ -157,4 +161,98 @@ Linux 查看内存的频率：
 
 在 linux 查看内存型号的命令：
 
+内存槽及内存条：
 
+```bash
+dmidecode |grep -A16 "Memory Device$"
+```
+
+```bash
+dmidecode|grep -P 'Maximum\s+Capacity'    //最大支持几G内存
+dmidecode|grep -P -A5 "Memory\s+Device"|grep Size|grep -v Range       //总共几个插槽，已使用几个插槽
+Size: 1024 MB       //此插槽有1根1G内存
+Size: 1024 MB       //此插槽有1根1G内存
+Size: 1024 MB       //此插槽有1根1G内存
+Size: 1024 MB       //此插槽有1根1G内存
+Size: No Module Installed       //此插槽未使用
+Size: No Module Installed       //此插槽未使用
+```
+
+
+```bash
+  # dmidecode -t 17        //数字17是dmidecode的参数，本文最后有其他数字参数
+    # dmidecode 2.7
+    SMBIOS 2.4 present.
+    Handle 0x0015, DMI type 17, 27 bytes.
+    Memory Device
+      Array Handle: 0x0013
+      Error Information Handle: Not Provided
+      Total Width: 72 bits
+      Data Width: 64 bits
+      Size: 2048 MB 【插槽1有1条2GB内存】
+      Form Factor: DIMM
+      Set: None
+      Locator: DIMM00
+      Bank Locator: BANK
+      Type: Other
+      Type Detail: Other
+      Speed: 667 MHz (1.5 ns)
+      Manufacturer:
+      Serial Number: BZACSKZ001
+      Asset Tag: RAM82
+      Part Number: MT9HTF6472FY-53EA2
+    Handle 0x0017, DMI type 17, 27 bytes.
+    Memory Device
+      Array Handle: 0x0013
+      Error Information Handle: Not Provided
+      Total Width: 72 bits
+      Data Width: 64 bits
+      Size: 2048 MB 【插槽2有1条2GB内存】
+      Form Factor: DIMM
+      Set: None
+      Locator: DIMM10
+      Bank Locator: BANK
+      Type: Other
+      Type Detail: Other
+      Speed: 667 MHz (1.5 ns)
+      Manufacturer:
+      Serial Number: BZACSKZ001
+      Asset Tag: RAM83
+      Part Number: MT9HTF6472FY-53EA2
+    Handle 0x0019, DMI type 17, 27 bytes.
+    Memory Device
+      Array Handle: 0x0013
+      Error Information Handle: Not Provided
+      Total Width: 72 bits
+      Data Width: 64 bits
+      Size: 2048 MB 【插槽3有1条2GB内存】
+      Form Factor: DIMM
+      Set: None
+      Locator: DIMM20
+      Bank Locator: BANK
+      Type: Other
+      Type Detail: Other
+      Speed: 667 MHz (1.5 ns)
+      Manufacturer:
+      Serial Number: BZACSKZ001
+      Asset Tag: RAM84
+      Part Number: MT9HTF6472FY-53EA2
+    Handle 0x001B, DMI type 17, 27 bytes.
+    Memory Device
+      Array Handle: 0x0013
+      Error Information Handle: Not Provided
+      Total Width: 72 bits
+      Data Width: 64 bits
+      Size: 2048 MB 【插槽4有1条2GB内存】
+      Form Factor: DIMM
+      Set: None
+      Locator: DIMM30
+      Bank Locator: BANK
+      Type: Other
+      Type Detail: Other
+      Speed: 667 MHz (1.5 ns)
+      Manufacturer:
+      Serial Number: BZACSKZ001
+      Asset Tag: RAM85
+      Part Number: MT9HTF6472FY-53EA2
+```
