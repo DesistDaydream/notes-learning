@@ -164,10 +164,14 @@ https://github.com/wangrongding/wechat-bot
 
 <https://mp.weixin.qq.com/s/y_ppQdKVXWZPNyP9BxGWpg>
 
-简单的 web 页面
+## 简单的 web 页面
 
 https://github.com/sbaliyun/chatgpt-html
 
 - 用法：https://zblogs.top/deploy-chatgpt-on-your-server
 
 https://github.com/Chanzhaoyu/chatgpt-web
+
+https://github.com/ourongxing/chatgpt-vercel
+
+- https://github.com/CODEisArrrt/chatgpt-dark
