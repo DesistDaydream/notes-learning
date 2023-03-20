@@ -80,4 +80,10 @@ smartctl -a /dev/sda
 
 ### lsusb Syntax(语法)
 
-列出 USB 设备
+列出系统上的USB总线和USB设备的详细信息。在输出中，您将看到USB控制器的制造商、型号和当前的状态。
+
+- `sudo lshw -class bus -class usb`
+
+只查看有关USB设备的更详细信息
+
+- `lshw -class usb`

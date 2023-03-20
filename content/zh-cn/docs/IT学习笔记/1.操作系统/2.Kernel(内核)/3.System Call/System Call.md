@@ -12,7 +12,7 @@ weight: 1
 
 **System Call(系统调用，简称 syscall)** 是 Application(应用程序) 和 Linux Kernel(内核) 之间的基本接口。是操作内核的唯一入口。其实，所谓 syscall 就是各种编程语言中的 **Function(函数)** 概念。一个 syscall 也有名称、参数、返回值。syscall 即可以是名词，用来描述一个具体的 syscall；也可以是动词，用来表示某物调用了某个 syscall。当用户进程需要发生系统调用时，CPU 通过软中断切换到内核态开始执行内核系统调用函数。
 
-> syscall 还有另一种意思，是一种编程方式，比如我们常说的 API，就是 syscall 的一种实现。
+> syscall 还有另一种意思，是一种编程方式，比如我们常说的 API，就是 syscall 的一种实现。但是通常意义的 API 不包含权限的转变，而普通程序进行系统调用时，会涉及到权限的转变。
 
 在 [syscalls(2) 手册中的 System call list 章节](https://man7.org/linux/man-pages/man2/syscalls.2.html#DESCRIPTION)可以看到 Linux 可用的完整的 syscall 列表。也就是说所有 Kernel 暴露出来的可供用户调用的 Function。
 
@@ -148,3 +148,9 @@ return 0;
 如果 eax 寄存器存放的返回值（存放在变量 rc 中）在 -1~-132 之间，就必须要解释为出错码（在/usr/include/asm-generic/errno.h 文件中定义的最大出错码为 132），这时，将错误码写入 errno 中，置系统调用返回值为 -1；否则返回的是 eax 中的值。
 
 上面程序在 32 位 Linux 下以普通用户权限编译运行结果与前面两个相同！
+
+# 系统调用与 API 和函数调用之间的区别
+
+> 参考：
+> - [公众号，系统调用与函数调用有什么区别？](https://mp.weixin.qq.com/s/2rzzQTuZKSW0O4zM1DlAWQ)
+> - [公众号，系统调用和API有什么区别？](https://mp.weixin.qq.com/s/q7CDAlwUB7bFstYZ1nOVvA)

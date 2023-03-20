@@ -10,8 +10,11 @@ title: Inventory 配置文件详解
 Ansible 可同时操作属于一个组的多台主机,组和主机之间的关系通过 Inventory 文件配置。默认的文件路径为 /etc/ansible/hosts，也可以在 `ansible`、`ansible-playbook` 命令中使用 -i 选项指定其他的 Inventory 文件。
 
 除默认文件外,你还可以同时使用多个 inventory 文件(后面会讲到),也可以从动态源,或云上拉取 inventory 配置信息.详见 动态 Inventory.
+
 ## Inventory文件格式
+
 最常见的格式是 INI 和 YAML 格式，下面这是一个 INI 格式的 Inventory 示例
+
 ```ini
 # 例1:定义一个单独的主机。未分组的机器。Note:需要在“例2”中中括号定义组之前指定
 green.example.com
@@ -35,6 +38,7 @@ www.desistdaydream.com ansible_host=10.10.100.200 ansible_user="root" ansible_pa
 webservers
 dbservers
 ```
+
 Note：该文件的第一列为一般推荐使用主机名来表示，如果需要指定该主机的ip地址，则使用 ansbile_ssh_host 或者 ansible_host 参数来指定ip。
 
 因为，Ansible 默认变量 inventory_hostname 的值为 inventory 文件中第一列的内容，还有另一个变量是 inventory_hostname_short ，这个变量的值是主机名的短格式
@@ -42,6 +46,7 @@ Note：该文件的第一列为一般推荐使用主机名来表示，如果需�
 所以，在 Ansbile 里，自动就会将第一列认定为主机名，如果使用 ip 作为第一列的表示形式，那么与 Ansible 理念不符(至于为什么还可以用 ip 表示，可能是为了大家方便，所以第一列才可以使用 ip 的吧~~~)
 
 对应的 YAML 格式 Inventory 文件示例：
+
 ```yaml
 # 定义一个名为 all_host 的组，通过 children 字段把其他组引入
 all_host:
@@ -73,9 +78,11 @@ ungrouped:
     green.example.com:
 
 ```
+
 ## 主机与组
 
 /etc/ansible/hosts 文件使用 INI 语法书写:
+
 ```ini
 mail.example.com
 
@@ -88,6 +95,7 @@ one.example.com
 two.example.com
 three.example.com
 ```
+
 这里的 `[]` 中的字符是组名，用于对系统进行分类,便于对不同系统进行个别的管理。
 
 一个系统可以属于不同的组,比如一台服务器可以同时属于 webserver组 和 dbserver组.这时属于两个组的变量都可以为这台主机所用,至于变量的优先级关系将于以后的章节中讨论.
@@ -105,22 +113,28 @@ jumper ansible_ssh_port=5555 ansible_ssh_host=192.168.1.50
 在这个例子中,通过 “jumper” 别名,会连接 192.168.1.50:5555.记住,这是通过 inventory 文件的特性功能设置的变量. 一般而言,这不是设置变量(描述你的系统策略的变量)的最好方式.后面会说到这个问题.
 
 一组相似的 hostname , 可简写如下:
+
 ```
 [webservers]
 www[01:50].example.com
 ```
+
 数字的简写模式中,01:50 也可写为 1:50,意义相同.你还可以定义字母范围的简写模式:
+
 ```
 [databases]
 db-[a:f].example.com
 ```
+
 对于每一个 host,你还可以选择连接类型和连接用户名:
+
 ```
 [targets]
 localhost ansible_connection=local
 other1.example.com ansible_connection=ssh ansible_ssh_user=mpdehaan
 other2.example.com ansible_connection=ssh ansible_ssh_user=mdehaan
 ```
+
 所有以上讨论的对于 inventory 文件的设置是一种速记法,后面我们会讨论如何将这些设置保存为 ‘host_vars’ 目录中的独立的文件.
 
 ### 默认组
@@ -133,14 +147,19 @@ Inventory 文件中有两个默认的组，名称为：`all` 和 `ungrouped`(这
 - all 和 某组
 
 ## 主机变量
+
 前面已经提到过,分配变量给主机很容易做到,这些变量定义后可在 playbooks 中使用:
+
 ```
 [atlanta]
 host1 http_port=80 maxRequestsPerChild=808
 host2 http_port=303 maxRequestsPerChild=909
 ```
+
 ## 组变量
+
 也可以定义属于整个组的变量:
+
 ```
 [atlanta]
 host1
@@ -148,9 +167,11 @@ host2
 [atlanta:vars]
 ntp_server=ntp.atlanta.example.com
 ```
+
 把一个组作为另一个组的子成员
 
 可以把一个组作为另一个组的子成员,以及分配变量给整个组使用. 这些变量可以给 /usr/bin/ansible-playbook 使用,但不能给 /usr/bin/ansible 使用:
+
 ```
 [atlanta]
 host1
@@ -173,7 +194,9 @@ southwest
 northwest
 ```
 如果我们需要存储一个列表或 hash 值，或者更喜欢把 host 和 group 的变量分开配置，请看下一节的说明.
+
 # 组织 host_vars(主机变量) 和 group_vars(组变量)
+
 在 Inventory 主文件中保存所有的变量并不是最佳的方式。我们通常在**独立的文件**中定义这些变量，这些独立文件与 inventory 文件保持关联. 不同于 inventory 文件(INI 格式)，这些独立文件的格式为 YAML。
 
 假设有一个主机名为 ‘foosball’, 主机同时属于两个组
@@ -194,18 +217,22 @@ northwest
 
 
 举例来说,假设你有一些主机,属于不同的数据中心,并依次进行划分.每一个数据中心使用一些不同的服务器.比如 ntp 服务器, database 服务器等等. 那么 ‘raleigh’ 这个组的组变量定义在文件 ‘/etc/ansible/group_vars/raleigh’ 之中,可能类似这样:
+
 ```
 ---
 ntp_server: acme.example.org
 database_server: storage.example.org
 ```
+
 这些定义变量的文件不是一定要存在,因为这是可选的特性.
 
 还有更进一步的运用,你可以为一个主机,或一个组,创建一个目录,目录名就是主机名或组名.目录中的可以创建多个文件, 文件中的变量都会被读取为主机或组的变量.如下 ‘raleigh’ 组对应于 /etc/ansible/group_vars/raleigh/ 目录,其下有两个文件 db_settings 和 cluster_settings, 其中分别设置不同的变量:
+
 ```
 /etc/ansible/group_vars/raleigh/db_settings
 /etc/ansible/group_vars/raleigh/cluster_settings
 ```
+
 ‘raleigh’ 组下的所有主机,都可以使用 ‘raleigh’ 组的变量.当变量变得太多时,分文件定义变量更方便我们进行管理和组织. 还有一个方式也可参考,详见 Ansible Vault 关于组变量的部分. 注意,分文件定义变量的方式只适用于 Ansible 1.4 及以上版本.
 
 我们可以将 `group_vars/` 和 `host_vars/` 目录添加到 playbook 目录下. 如果两个目录下都存在,那么 playbook 目录下的配置会覆盖 inventory 目录的配置.
@@ -213,11 +240,14 @@ database_server: storage.example.org
 把我们的 Inventory 文件 和 变量 放入 git repo 中,以便跟踪他们的更新,这是一种非常推荐的方式.
 
 # 主机匹配模式
+
 > 参考：
 > - [官方文档，用户指南-传统目录-模式：针对主机和组](https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html)
 
 主机列表的正则匹配
+
 ansible支持主机列表的正则匹配
+
 
 - 全量: `all/*`
 - 逻辑或: `:`
@@ -226,17 +256,16 @@ ansible支持主机列表的正则匹配
 - 切片： `[]`
 - 正则匹配： 以 `~` 开头
 
-ansible all -m ping  # 所有默认inventory文件中的机器
-ansible "*" -m ping  # 同上
-ansible 121.28.13.X -m  ping  # 所有122.28.13.X机器
-ansible  web1:web2  -m  ping  # 所有属于组web1或属于web2的机器
-ansible  web1:!web2  -m  ping # 属于组web1，但不属于web2的机器
-ansible  web1&web2  -m  ping  # 属于组web1又属于web2的机器
-ansible webserver[0]  -m  ping    # 属于组webserver的第1台机器
-ansible webserver[0:5]  -m  ping  # 属于组webserver的第1到4台机器
-ansible "~(beta|web).example.(com|org)"  -m ping
+- ansible all -m ping  # 所有默认inventory文件中的机器
+- ansible "*" -m ping  # 同上
+- ansible 121.28.13.X -m  ping  # 所有122.28.13.X机器
+- ansible  web1:web2  -m  ping  # 所有属于组web1或属于web2的机器
+- ansible  web1:!web2  -m  ping # 属于组web1，但不属于web2的机器
+- ansible  web1&web2  -m  ping  # 属于组web1又属于web2的机器
+- ansible webserver[0]  -m  ping    # 属于组webserver的第1台机器
+- ansible webserver[0:5]  -m  ping  # 属于组webserver的第1到4台机器
+- ansible "~(beta|web).example.(com|org)"  -m ping
 
-[](https://blog.51cto.com/kusorz/1936708)
 # Inventory 参数详解
 
 > 参考：

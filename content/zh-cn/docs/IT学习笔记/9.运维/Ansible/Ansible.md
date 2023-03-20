@@ -65,6 +65,7 @@ Playbooks 是 Ansible 的精髓，如果把 Ansible 当做一门语言，那么�
 # Ansible 关联文件与配置
 
 **/etc/ansible/ansible.cfg** # ansible 使用时调用的配置文件
+
 **/etc/ansible/hosts** # Inventory 的默认配置文件。该文件可以定义被管理主机的 IP，port 等，都可以定义在该文件中，具体格式如下
 
 - 单独 host，任何未分组的主机，需要在定义主机组之前定义各单独的 host，可以是 IP 地址或者主机名

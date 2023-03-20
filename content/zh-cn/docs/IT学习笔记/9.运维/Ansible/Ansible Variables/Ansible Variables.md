@@ -1,5 +1,5 @@
 ---
-title: Ansible Variables(变量)
+title: Ansible Variables
 ---
 
 # group_vars 概述
@@ -334,7 +334,8 @@ docker:
 
 # Special Variables(特殊的变量)
 
-> 官方文档：<https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html>
+> 参考：
+> - [官方文档，特殊变量](https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html)
 
 无论是否定义任何变量，都可以使用 Ansible 提供的特殊变量访问有关主机的信息，一共有如下几种变量类型：
 
@@ -370,71 +371,9 @@ docker:
 
 ## Fact Variables
 
-在 ansible 执行任务时，会默认执行名为 Gathering Facts 的任务，以获取目标主机的一些系统信息，如图所示
+Ansible 在执行任务之前，会收集被控制节点的系统及应用程序的 facts(可以理解为：事实信息)。并将这些信息存储到 `${ansible_facts}` 变量中以供后续使用。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/nsvz9y/1616125069706-0662e031-1bfe-478b-bb7d-09cb313f4fe0.jpeg)
-
-这些信息以变量的形式体现，每个变量都有其对应的值。可以通过命令 ansible all -m setup 获取这些信息。如下所示
-
-ansible_facts 字段下面的所有字段才是可以直接引用的变量
-
-```json
-[root@lichenhao ~]# ansible all -m setup
-10.10.100.249 | SUCCESS => {
-    "ansible_facts": {
-        "ansible_all_ipv4_addresses": [
-            "10.10.100.249"
-        ],
-        "ansible_all_ipv6_addresses": [
-            "fe80::47e1:ea44:cfc8:cad0"
-        ],
-        "ansible_devices": {
-            "fd0": {
-                "holders": [],
-                "host": "",
-                "model": null,
-                "partitions": {},
-                "removable": "1",
-                "rotational": "1",
-                "scheduler_mode": "deadline",
-                "sectors": "0",
-                "sectorsize": "512",
-                "size": "0.00 Bytes",
-                "support_discard": "0",
-                "vendor": null
-            },
-            "sda": {
-                "holders": [],
-                "host": "SCSI storage controller: LSI Logic / Symbios Logic 53c1030 PCI-X Fusion-MPT Dual Ultra320 SCSI (rev 01)",
-                "model": "VMware Virtual S",
-                "partitions": {
-                    "sda1": {
-                        "sectors": "39843840",
-                        "sectorsize": 512,
-                        "size": "19.00 GB",
-                        "start": "2048"
-                    }
-                },
-                "removable": "0",
-                "rotational": "1",
-                "scheduler_mode": "deadline",
-                "sectors": "41943040",
-                "sectorsize": "512",
-                "size": "20.00 GB",
-                "support_discard": "0",
-                "vendor": "VMware,"
-            },
-......后续数据省略
-```
-
-可以在 Playbook 中以 `{{ ansible_devices.sda.model }}` 这种方式引用 ansible_devices 下面的 sda 下的 model 变量的值
-
-Note：当进行大规模设备使用 ansible 时，如果每台设备都要获取 fact 信息，ansible 的压力会非常大，这时候推荐关闭 fact 功能，可以在 playbook.yaml 文件中使用 gather_facts 字段即可。如下所示
-
-```yaml
-- hosts: WHAT EVER
-  gather_facts: no
-```
+详见 《[Fact Variables](/docs/IT学习笔记/9.运维/Ansible/Ansible%20Variables/Fact%20Variables.md)》
 
 ## Connection Variables
 
@@ -450,7 +389,7 @@ Note：当进行大规模设备使用 ansible 时，如果每台设备都要获�
 获取 test 组中主机的总数量
 
 ```bash
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all -m debug -a "msg={{ groups['test'] | length }}"
+~]$ ansible -i ../inventory/ all -m debug -a "msg={{ groups['test'] | length }}"
 hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
     "msg": "1"
 }

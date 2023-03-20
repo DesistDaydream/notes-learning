@@ -8,6 +8,7 @@ weight: 1
 > 参考：
 >
 > - [Ansible Galaxy](https://galaxy.ansible.com/)
+> - [公众号，任务中心之Ansible进阶篇](https://mp.weixin.qq.com/s/HA0vKnuKwKOaB5kdcYX9rg)
 
 与通过命令行来执行 Ansbile 任务模式相比，Playbook 是 Ansible 执行任务的另一种方式，而且功能非常强大。
 

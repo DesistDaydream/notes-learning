@@ -16,14 +16,13 @@ weight: 20
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/0-picgo/20230204001925.png)
 
-# ChatGPT 用法
+# ChatGPT 提示语
 
 > 参考：
 >
 > - [GitHub 项目，f/awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts)
+> - [GitHub 项目，PlexPt/awesome-chatgpt-prompts-zh](https://github.com/PlexPt/awesome-chatgpt-prompts-zh)
 > - [公众号-云原生小白，你应该知道的ChatGPT提示语](https://mp.weixin.qq.com/s/BcJWxvhpTRFTE20rB55Sow)
-
-## 提示语
 
 ChatGPT对话中提示语可以极大影响对话质量。定义明确的提示语可以帮助确保我们的对话保持在正确的方向上。并涵盖用户感兴趣的上下文信息，从而带来较好的用户体验。
 
@@ -43,7 +42,7 @@ ChatGPT对话中提示语可以极大影响对话质量。定义明确的提示�
 
 ### 英语翻译和改进者
 
-我想让你充当中文翻译、拼写纠正者和改进者。我将用任何语言与你交谈，你将检测语言，翻译它，并在我的文本的更正和改进版本中用中文回答。我希望你用更漂亮、更优雅、更高级的中文单词和句子来取代我的简单词汇和句子。保持意思不变，并且不要翻译任何缩写以及专业名词。我希望你只回答更正，改进，而不是其他，不要写解释。明白之后，只需要回答“明白了”这三个字，不要说其他的。
+下面我让你来充当翻译家，你的目标是把任何语言翻译成中文，请翻译时不要带翻译腔，而是要翻译得自然、流畅和地道，使用优美和高雅的表达方式。请翻译下面这句话：“how are you ?”
 
 ### 担任面试官
 
@@ -56,6 +55,26 @@ ChatGPT对话中提示语可以极大影响对话质量。定义明确的提示�
 > 我想让你充当一个旅游向导。我将给你写下我的位置，你将为我的位置附近的一个地方提供旅游建议。在某些情况下，我也会告诉你我要访问的地方的类型。你也会向我推荐与我的第一个地点相近的类似类型的地方。我的第一 个建议请求是"我在成都，我只想看大熊猫"
 
 在这个例子中，ChatGPT 被用作旅游指南，根据具体地点和地方类型提供参观建议。该提示语也是具有有针对性的，清楚地概述了对当前对话的期望。
+
+### 作为专业DBA
+
+贡献者：[墨娘](https://github.com/moniang)
+
+> 我要你扮演一个专业DBA。我将提供给你数据表结构以及我的需求，你的目标是告知我性能最优的可执行的SQL语句，并尽可能的向我解释这段SQL语句，如果有更好的优化建议也可以提出来。
+> 
+> 我的数据表结构为:
+> 
+> CREATE TABLE `user` (
+> `id` int NOT NULL AUTO_INCREMENT,
+> `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '名字',
+> PRIMARY KEY (`id`)
+> ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户表';
+> 
+> 我的需求为:根据用户的名字查询用户的id
+
+### IT 行业专用
+
+我希望你充当正则表达式生成器。您的角色是生成匹配文本中特定模式的正则表达式。您应该以一种可以轻松复制并粘贴到支持正则表达式的文本编辑器或编程语言中的格式提供正则表达式。不要写正则表达式如何工作的解释或例子；只需提供正则表达式本身。我的第一个提示是生成一个匹配电子邮件地址的正则表达式。
 
 ### 更多
 
@@ -150,3 +169,5 @@ https://github.com/wangrongding/wechat-bot
 https://github.com/sbaliyun/chatgpt-html
 
 - 用法：https://zblogs.top/deploy-chatgpt-on-your-server
+
+https://github.com/Chanzhaoyu/chatgpt-web

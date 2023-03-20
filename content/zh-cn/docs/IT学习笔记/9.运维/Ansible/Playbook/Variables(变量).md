@@ -51,3 +51,13 @@ docker:
    - docker.registryMirrors 变量的值为<https://ac1rmo5p.mirror.aliyuncs.com>
 
 Note：如果使用 点号 引用变量可能会引起问题，因为会与 python 字典的属性和方法冲突。所以，尽量使用方括号来引用变量
+
+# 特殊变量
+
+## fact 变量
+
+关闭 fact 变量
+
+```yaml
+gather_facts: no
+```
