@@ -86,6 +86,7 @@ ARP 监控参数与 MII 监控参数不可同时使用
 ## MII 监控参数
 
 **Media Independent Interface(介质无关接口，简称 MII)**，通过该接口可以检测聚合链路的状态，当某个网络设备故障时，bonding 驱动会将这个故障设备标记为关闭。虽然不会将设备踢出聚合组，但是数据不在通过故障设备传输
+
 MII 监控参数与 ARP 监控参数不可同时使用
 
 **miimon** # MII 监控模式的监控频率，单位 毫秒。这决定了每个备链路状态的故障检查频率。`默认值：0`。0 值表示禁用 MII 链路监控
@@ -93,7 +94,9 @@ MII 监控参数与 ARP 监控参数不可同时使用
 - 通常设置为 100
 
 **use_carrier** # 指定 miimon 是否应使用 MII 或 ETHTOOL ioctls 与 netif_carrier_ok() 来确定链接状态。 默认值是 1，这使得可以使用 netif_carrier_ok（）。 这由 Linux on Z 上的 qeth 设备驱动程序支持。
+
 **downdelay**# 检测到网络设备故障后，持续 downdelay 毫秒后，关闭该设备。
+
 **updelay** # 检测到网络设备恢复后，持续 updelay 毫秒后，启用该设备
 
 ## Bond 模式参数
@@ -102,13 +105,13 @@ MII 监控参数与 ARP 监控参数不可同时使用
 
 - **balance-rr(0)** # 表示负载分担 round-robin，和交换机的聚合强制不协商的方式配合。
 - **active-backup(1)** # 表示主备模式，只有一块网卡是 active,另外一块是备的 standby，这时如果交换机配的是捆绑，将不能正常工作，因为交换机往两块网卡发包，有一半包是丢弃的。
-  - 注意：vmwork 的虚拟机中只能做 mode=1 的实验，其它的工作模式得用真机来实践，并且需要添加额外参数(fail_over_mac=1)才能实现主备模式
+    - 注意：vmwork 的虚拟机中只能做 mode=1 的实验，其它的工作模式得用真机来实践，并且需要添加额外参数(fail_over_mac=1)才能实现主备模式
 - **balance-xor(2)** # 表示 XOR Hash 负载分担，和交换机的聚合强制不协商方式配合(需要 xmit_hash_policy)
-  - 推荐 bond 参数：mode=balance-xor,miimon=100,xmit_hash_policy=layer3+4
+    - 推荐 bond 参数：mode=balance-xor,miimon=100,xmit_hash_policy=layer3+4
 - **broadcast(3)** # 表示所有包从所有 interface 发出，这个不均衡，只有冗余机制...和交换机的聚合强制不协商方式配合。
 - **802.3ad(4)** # 表示支持 802.3ad 协议，动态链路聚合，需要和交换机的聚合 LACP 方式配合(需要 xmit_hash_policy)
-  - 推荐 bond 参数：mode=802.3ad,miimon=100,lacp_rate=1,xmit_hash_policy=layer3+4
-  - 802.3ad 模式的 Bond 网络设备的最大带宽是所有 Slave 设备最大带宽之和
+    - 推荐 bond 参数：mode=802.3ad,miimon=100,lacp_rate=1,xmit_hash_policy=layer3+4
+    - 802.3ad 模式的 Bond 网络设备的最大带宽是所有 Slave 设备最大带宽之和
 - **balance-tlb(5)** # 是根据每个 slave 的负载情况选择 slave 进行发送，接收时使用当前轮到的 slave
 - **balance-alb(6)** # 在 5 的 tlb 基础上增加了 rlb。Adaptive Load Balancing(简称 ALB) 协议，可以根据网络状态和物理网卡的带宽来动态地将数据包分配到每个物理网卡上。
 
@@ -138,26 +141,25 @@ MII 监控参数与 ARP 监控参数不可同时使用
 - layer2+3 # 该策略支持 802.3ad。使用 XOR 或硬件 MAC 地址与 IP 地址一起生成 hash。
 - layer3+4 # 该策略不完全支持 802.3ad
 - 说明：
-  - 这里面的 2，3，4 其实就是指的 ISO 模型里的层，2 层就是用 MAC 进行计算，2+3 就是用 MAC 加 IP 进行计算，3+4 就是用 IP 加 PORT 进行计算。
-  - 只使用 2 层的 MAC 进行计算时，会导致同一个网关的数据流将完全从一个端口发送，但是如果使用 2+3 或 3+4，虽然负载更均衡了，但是由于使用了上层协议进行计算，则增加了 hash 的开销。
-  - 计算越负责，负载均衡效果越好，但是资源开销越大。
+    - 这里面的 2，3，4 其实就是指的 ISO 模型里的层，2 层就是用 MAC 进行计算，2+3 就是用 MAC 加 IP 进行计算，3+4 就是用 IP 加 PORT 进行计算。
+    - 只使用 2 层的 MAC 进行计算时，会导致同一个网关的数据流将完全从一个端口发送，但是如果使用 2+3 或 3+4，虽然负载更均衡了，但是由于使用了上层协议进行计算，则增加了 hash 的开销。
+    - 计算越负责，负载均衡效果越好，但是资源开销越大。
 
-# Bond 配置
+# Bond 关联文件与配置
 
-/sys/class/net/bonding_masters # 当前系统下已经启用的 Bond 名称
-/sys/class/net/BondName/\* # Bond 类型网络设备的运行时信息，这里面某些信息是可以被修改的。
+**/sys/class/net/BondName/** # Bond 类型网络设备的运行时信息，这里面某些信息是可以被修改的。
 
-- ./statistics/\* # 网络设备的状态信息，比如 发送/接受 了多少数据包、多少数据量 等等，`ip -s` 参数可以从这里获取到信息
-- ./bonding/\* # Bond 参数
+- **./statistics/** # 网络设备的状态信息，比如 发送/接受 了多少数据包、多少数据量 等等，`ip -s` 参数可以从这里获取到信息
+- **./bonding/** # Bond 参数
 
-/proc/net/bonding/\* # bond 运行时状态信息。其内文件名为 Bond 的名称。查看文件内容解析详见[《Bonding 在内核中的信息解析》](#cvrU1)部分
+**/proc/net/bonding/** # bond 运行时状态信息保存路径。其内文件名为 Bond 的名称。查看文件内容解析详见[《Bond 在内核中的信息解析》](#Bond%20在内核中的信息解析)部分
 
 ## Bond 基本配置文件详解
 
 首先是配置一个 bond 网络设备，IP 等相关信息配置在 bond 网络设备上。
 
 ```bash
-[root@lichenhao network-scripts]# cat /etc/sysconfig/network-scripts/ifcfg-bond0
+~]# cat /etc/sysconfig/network-scripts/ifcfg-bond0
 BONDING_OPTS="mode=balance-rr"
 TYPE=Bond
 BONDING_MASTER=yes
@@ -171,7 +173,7 @@ ONBOOT=yes
 其次配置让一个物理网络设备绑定到该 bond 设备上
 
 ```bash
-[root@lichenhao network-scripts]# cat /etc/sysconfig/network-scripts/ifcfg-bond-slave-em1
+~]# cat /etc/sysconfig/network-scripts/ifcfg-bond-slave-em1
 TYPE=Ethernet
 NAME=bond-slave-em1
 DEVICE=em1
@@ -182,7 +184,7 @@ SLAVE=yes
 
 # Bond 在内核中的信息解析
 
-/proc/net/bonding/BondNAME 文件中保存了当前系统中已启动的 Bond 类型的网络设备的信息
+**/proc/net/bonding/BondNAME** # 文件中保存了当前系统中已启动的 Bond 类型的网络设备的信息
 这些信息分为多个部分
 
 - Bond 类型的网络设备通用信息
@@ -236,7 +238,7 @@ Slave queue ID: 0
 ## balance-xor
 
 ```bash
-[root@vs-7 bonding]# cat /proc/net/bonding/bond0
+~]# cat /proc/net/bonding/bond0
 Ethernet Channel Bonding Driver: v3.7.1 (April 27, 2011)
 
 Bonding Mode: load balancing (xor) # 此 bond 的模式
@@ -267,11 +269,11 @@ Slave queue ID: 0
 ## 802.3ad
 
 > - [StackOverflow,bonding LACP 模式下 Churn 的含义](https://stackoverflow.com/questions/62173444/churn-state-meaning-in-lacp-bonding)
-> - <https://mlog.club/article/2693580>
->   - <https://bugzilla.redhat.com/show_bug.cgi?id=1295423>
->   - <https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/commit/?id=ea53abfab960909d622ca37bcfb8e1c5378d21cc>
->   - <https://access.redhat.com/solutions/4122011>
-> - <https://github.com/systemd/systemd/issues/15208>
+> - https://mlog.club/article/2693580
+> - https://bugzilla.redhat.com/show_bug.cgi?id=1295423
+> - https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/commit/?id=ea53abfab960909d622ca37bcfb8e1c5378d21cc
+> - https://access.redhat.com/solutions/4122011
+> - https://github.com/systemd/systemd/issues/15208
 
 ```bash
 ~]# cat /proc/net/bonding/bond1

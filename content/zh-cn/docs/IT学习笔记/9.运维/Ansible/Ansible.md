@@ -13,7 +13,9 @@ weith: 1
 > - <https://www.zsythink.net/archives/tag/ansible/>
 
 Ansible is a radically simple IT automation platform that makes your applications and systems easier to deploy and maintain. Automate everything from code deployment to network configuration to cloud management, in a language that approaches plain English, using SSH, with no agents to install on remote systems
+
 Ansible 是一个非常简单的 IT 自动化系统。它处理配置管理、应用程序部署、云供应、临时任务执行、网络自动化和多节点编排。Ansible 可以轻松得批量进行复杂的更改，例如使用负载均衡器进行零停机滚动更新。而这一过程使用 SSH 实现，无需在远程系统上安装代理程序。
+
 Ansible 的主要目标是简单易用。它还非常注重安全性和可靠性，具有最少的移动部件，使用 OpenSSH 进行传输（使用其他传输和拉模式作为替代），以及一种围绕人类可审计性设计的语言 - 即使是那些不熟悉的人该程序。
 
 ## 概念
