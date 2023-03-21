@@ -1,5 +1,5 @@
 ---
-title: Redhat 包管理
+title: "Redhat 包管理"
 ---
 
 # 概述
@@ -7,8 +7,6 @@ title: Redhat 包管理
 # rpm 工具
 > 参考：
 > - [Manual(手册),rpm(8)](https://man7.org/linux/man-pages/man8/rpm.8.html)
-
-
 
 ## Syntax(语法)
 
@@ -53,7 +51,7 @@ EXAMPLE
 - rpm -e –nodeps PACKAGE_NAME # 不考虑依赖包
 - rpm -e –allmatches PACKAGE_NAME # 删除所有跟 PACKAGE_NAME 匹配的所有版本的包
 
-**rpm -V \[OPTIONS] PACKAGE ** # 验证软件包
+**rpm -V \[OPTIONS] PACKAGE** # 验证软件包
 
 OPTIONS
 - **-a** # 列出系统上所有可能被更改过的文件
@@ -66,7 +64,7 @@ dnf 是 yum 的替代品，是 RedHat 系列系统下一代的包管理器。dnf
 
 在 CentOS 7 及之前的版本，yum 官方仓库一直都是 Base 库、Extras 库、Updates 库、centosplus 库等。其中 Base 库是安装 CentOS 时必须提供的仓库，它提供 CentOS 安装(比如可以选择安装桌面环境、开发工具等)、运行以及一些常用用户空间程序。
 
-在 CentOS 8 中发生了变化，原来的 base 库被拆分成两部分：**「AppStream」**和 Base 库。安装 CentOS 8 时必须提供这两个库。
+在 CentOS 8 中发生了变化，原来的 base 库被拆分成两部分：**AppStream** 和 **Base** 库。安装 CentOS 8 时必须提供这两个库。
 
 - CentOS 8 的 Base 库提供安装和运行 CentOS 8 时必须的包，即 CentOS 核心包。这个仓库中全都是 rpm 包。
 - CentOS 8 的 AppStream 库提供常用用户空间程序，它们并不一定是安装和运行 CentOS 8 所必须的，比如 Python 包、Perl 包等语言包都在 AppStream。AppStream 中包含 rpm 包和 dnf 的模块。
@@ -84,7 +82,7 @@ AppStream 库中的包一般是用户空间程序包，这些程序的更新速�
 
 ## yum 关联文件与配置
 
-**/etc/yum.repos.d/\*** # 该目录下是所有源的配置文件，repos 为 repository(仓库)的简称，即 yum 仓库的意思
+**/etc/yum.repos.d/* # 该目录下是所有源的配置文件，repos 为 repository(仓库)的简称，即 yum 仓库的意思
 
 配置本地 yum 源：cat local.repo（需要将系统 ISO 镜像挂载到/mnt/cdrom 上）
 
@@ -134,10 +132,10 @@ EOF
 - -y, --assumeyes # answer yes for all questions
 - --assumeno # answer no for all questions
 - --installroot=\[path] # set install root
-- **--enablerepo=REPO **# 激活一个或多个仓库（支持通配符）
-- **--disablerepo=REPO **# 禁掉一个或多个仓库（支持通配符）
-- **-x \[package], --exclude=\[package] **# 在名称或 glob 不包含包。
-- **--disableexcludes=REPO **# 禁掉除了 REPO 这个之外的别的仓库
+- **--enablerepo=REPO** # 激活一个或多个仓库（支持通配符）
+- **--disablerepo=REPO** # 禁掉一个或多个仓库（支持通配符）
+- **-x \[package], --exclude=\[package]** # 在名称或 glob 不包含包。
+- **--disableexcludes=REPO** # 禁掉除了 REPO 这个之外的别的仓库
 - --disableincludes=\[repo] # disable includepkgs for a repo or for everything
 - --obsoletes # enable obsoletes processing during updates
 - --noplugins # disable Yum plugins
@@ -148,7 +146,7 @@ EOF
   - 如果安装多个包，其中一个包没有的话，就会停止，使用该选项则会继续安装其他包。
 - --color=COLOR # control whether color is used
 - --releasever=RELEASEVER # set value of $releasever in yum config and repo files
-- **--downloadonly **# 在 yum 一个包时，不安装到系统中，仅下载该包及其依赖到默认的 /var/cache/yum/x86_64/7/REPO/packages/ 目录中。
+- **--downloadonly** # 在 yum 一个包时，不安装到系统中，仅下载该包及其依赖到默认的 /var/cache/yum/x86_64/7/REPO/packages/ 目录中。
 - **--downloaddir=DLDIR** # 当使用 --downloadonly 参数时，可以使用该参数来指定要下载软件包的下载目录。
 - --setopt=SETOPTS # set arbitrary config and repo options
 - --bugfix # Include bugfix relevant packages, in updates
@@ -157,7 +155,7 @@ EOF
 - --bzs=BZS # Include packages needed to fix the given BZ, in updates
 - --cves=CVES # Include packages needed to fix the given CVE, in updates
 - --sec-severity=SEVS, --secseverity=SEVS # Include security relevant packages matching the severity, in updates
--
+
 ### COMMAND
 
 - **autoremove** # 移除已经没有被依赖的软件包
@@ -190,10 +188,10 @@ EOF
   - `yum --showduplicates list docker-ce`
 - 列出 libcurl 这个包的依赖关系
   - `yum deplist libcurl`
-- `yum --disablerepo="\*" --enablerepo="elrepo-kernel" list available` #
+- `yum --disablerepo="*" --enablerepo="elrepo-kernel" list available` #
 - 下载 kubectl 的 rpm 包，及其依赖(所依赖的文件取决于当前系统环境，i.e.已经安装的依赖不在其下载的依赖范围内)
   - `yum install --downloadonly --downloaddir=./ kubectl`
 - 查看 kubernetes 源下的所有可用的包
-  - `yum --disablerepo="\*" --enablerepo="kubernetes" --showduplicates list available`
+  - `yum --disablerepo="*" --enablerepo="kubernetes" --showduplicates list available`
 - 禁用 docker-ce-stable 与 kubernetes 仓库并执行升级操作
   - `yum --disablerepo="docker-ce-stable,kubernetes" upgrade`

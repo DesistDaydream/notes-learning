@@ -24,6 +24,8 @@ title: GUI
 
 Fyne 是一个易于学习、免费、开源的工具包，用于构建适用于桌面、移动设备及其他设备的图形应用程序。
 
+注意：使用 Fyne 需要安装 [MinGW-w64](https://sourceforge.net/projects/mingw-w64/)
+
 ## Hello World
 
 ```go
