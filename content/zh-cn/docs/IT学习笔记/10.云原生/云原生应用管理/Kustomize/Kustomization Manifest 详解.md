@@ -21,13 +21,13 @@ title: Kustomization Manifest 详解
 
 # crds: <\[]STRING> # 列表中每个条目都赢能够解析为 Kubernetes 类别的 OpenAPI 定义文件
 
-# namesapce: <STRING> # 为所有资源添加名称空间
+# namesapce: \<STRING> # 为所有资源添加名称空间
 
-# namePrefix: <STRING> # 为所有对象的名称添加前缀
+# namePrefix: \<STRING> # 为所有对象的名称添加前缀
 
-# nameSuffix: <STRING> # 为所有对象的名称添加后缀
+# nameSuffix: \<STRING> # 为所有对象的名称添加后缀
 
-# resources: <\[]STRING> # 列表中的每个条目都代表一个 Manifests 文件
+# resources: \<[]STRING> # 列表中的每个条目都代表一个 Manifests 文件
 
 # patchesStrategicMerge: <\[]STRING> # 列表中每个条目都能解析为某 Kubernetes 对象的策略性合并补丁
 
@@ -39,22 +39,22 @@ title: Kustomization Manifest 详解
 
 ## configMapGenerator: <\[]Object> # 要生成的 ConfigMap 资源的列表
 
-**name: <STRING>** # ConfigMap 对象的名称
+**name: \<STRING>** # ConfigMap 对象的名称
 **files: <\[]STRING>** # 通过文件生成 ConfigMap。文件名就是 ConfigMap 资源中 data 字段下的键，文件内容就是键对应的值。
 
 ## secretGenerator: <\[]SecretArgs> # 可以基于文件或者键值偶对来生成 Secret。
 
 <https://github.com/kubernetes-sigs/kustomize/blob/master/api/types/secretargs.go>
-**name: <STRING>** # Secret 对象的名称
+**name: \<STRING>** # Secret 对象的名称
 **files: <\[]STRING>** # 通过文件生成 Secret。文件名就是 Secret 资源中 data 字段下的键，文件内容就是键对应的值，值是文件内容进行 base64 编码后的结果。
-**type: <STRING>** # Secret 的类型。`默认值：Opaque`
+**type: \<STRING>** # Secret 的类型。`默认值：Opaque`
 
 - 可用的类型有：
   - **kubernetes.io/tls** # 注意，如果是 tls 类型，则文件名必须是 tls.key 和 tls.crt
 
 ## generatorOptions:
 
-**disableNameSuffixHash: <BOOLEAN>** # 禁用将随机字符串添加到 ConfigMap 和 Secret 对象名称的后缀。`默认值：false`
+**disableNameSuffixHash: \<BOOLEAN>** # 禁用将随机字符串添加到 ConfigMap 和 Secret 对象名称的后缀。`默认值：false`
 **labels: \<map\[STRING]STRING>** # 为 ConfigMap 和 Secret 对象添加标签
 **annotations: \<map\[STRING]STRING> **# 为 ConfigMap 和 Secret 对象添加注释
 

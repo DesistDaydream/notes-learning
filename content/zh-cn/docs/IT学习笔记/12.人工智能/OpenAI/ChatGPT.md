@@ -146,6 +146,8 @@ https://github.com/lencx/nofwl # 桌面版
 
 https://github.com/lencx/ChatGPT # 桌面版
 
+https://github.com/didiplus/ChatGPT_web # 像微信聊天一样跟 ChatGPT 聊天
+
 逆向
 
 https://github.com/acheong08/ChatGPT

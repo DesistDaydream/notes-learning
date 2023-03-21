@@ -69,4 +69,4 @@ ansible-playbook 用来运行运行 Ansible playbook，以便在目标主机上�
 
 提前检查渲染的模板。通过 --connectoin=local 以在本地运行，使用 --diff 展示渲染后差异。
 
-- ansible-playbook -i inventory/all.yaml  deploy-mysql.yaml --tag config-mysql --check --diff --connection=local --limit tj-test-spst-node-2
+- ansible-playbook -i inventory/all.yaml  deploy-mysql.yaml --connection=local --limit tj-test-spst-node-2 --tag config-mysql--check --diff

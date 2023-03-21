@@ -15,7 +15,7 @@ Kustomize 是一个通过 Kustomization 文件来管理 Manifests 的应用程�
 
 - kustomize 子命令
 - -k,--kustomize 标志来代替 kubectl apply 命令中的 -f 标志。
-  - 比如 kubectl apply -k <KustomizationDIR>
+  - 比如 kubectl apply -k \<KustomizationDIR>
 
 Kustomize 与 Helm 非常类似，都可以用来渲染声明 Kubernetes 资源的 Manifests 文件，并部署到集群中，只不过，Kustomize 更轻便，更易用，但是，不像 Helm，并不能包装成 Chart 并统一上传到仓库中。
 
@@ -31,7 +31,7 @@ Kustomize 就是通过 Kustomization 实现其功能的。Kustomization 有多�
 
 Kustomization 目录的概念，与 Helm 的 Chart 概念类似，是一组用于描述一个应用的 Manifests 文件的集合，并且包含一个 kustomization.yaml 文件来定义如何组织这些 Manifests 文件。而 kustomization.yaml 文件，就是一个 YAML 格式的文件，Kustomize 也继承了 Kubernetes 的哲学，一切介资源，只不过，现阶段 Kustomize 只有一个资源，就是 `kustomize.config.k8s.io/v1beta1` 下的 **Kustomization 资源**。应用一个 Kustomization 资源，实际上就是声明了一个应用。
 
-除了下面的[基本使用示例](/docs/IT学习笔记/10.云原生/云原生应用管理/Kustomize/Kustomize.md)以外，Kustomize 还可以通过配置文件来自动生成 configMap、secret 等资源，通过层次结构来基于某个应用模板定义个性化的内容，为每个资源添加统一的标签或者注释，等等等一系列非常好用的应用管理功能。
+除了下面的[基本使用示例](#基本示例)以外，Kustomize 还可以通过配置文件来自动生成 configMap、secret 等资源，通过层次结构来基于某个应用模板定义个性化的内容，为每个资源添加统一的标签或者注释，等等等一系列非常好用的应用管理功能。
 
 ## 基本示例
 

@@ -1192,6 +1192,11 @@
       "docs/IT学习笔记/实用工具/网站搭建/Hugo/命令行工具.md",
       "docs/IT学习笔记/实用工具/网站搭建/Hugo/主题",
       "docs/IT学习笔记/实用工具/网站搭建/Hugo/站点管理.md"
+    ],
+    "docs/IT学习笔记/10.云原生/云原生应用管理/Kustomize": [
+      "docs/IT学习笔记/10.云原生/云原生应用管理/Kustomize/_index.md",
+      "docs/IT学习笔记/10.云原生/云原生应用管理/Kustomize/Kustomize.md",
+      "docs/IT学习笔记/10.云原生/云原生应用管理/Kustomize/Kustomization Manifest 详解.md"
     ]
   },
   "actionBarOrder": {},
