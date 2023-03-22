@@ -145,7 +145,7 @@ ConfigMap 和 Secret 包含其他 Kubernetes 对象（如 Pod）所需要的配�
 
 ## 组织和定制各种资源
 
-# Bases and Overlays() 功能
+# Bases and Overlays 功能
 
 Kustomize 和 Docker 比较类似，有很多层组成，每个层都是修改以前的层，正因为有这个理念存在，所以我们可以不断在其他人之上写东西，而不会增加配置的复杂性，构建的最终结果由基础部分和你在上面配置的其他层组成。
 

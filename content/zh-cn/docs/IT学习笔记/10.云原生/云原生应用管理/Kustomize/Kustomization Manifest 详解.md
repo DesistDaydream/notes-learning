@@ -11,42 +11,81 @@ title: Kustomization Manifest 详解
 
 # kind: Kustomization
 
-# bases: <\[]STRING> # 此列表中的每个条目都应该是一个包含 kustomization.yaml 文件的目录
+# bases: <\[]STRING>
 
-# commonLabels: \<map\[STRING]STRING> # 为所有对象和选择器添加的标签
+此列表中的每个条目都应该是一个包含 kustomization.yaml 文件的目录
 
-# commonAnnotations: \<map\[STRING]STRING> # 为所有对象添加的注释
+# commonLabels: \<map\[STRING]STRING>
 
-# configurations: <\[]STRING> # 列表中每个条目都应能解析为一个包含 Kustomize 转换器配置 的文件
+为所有对象和选择器添加的标签
 
-# crds: <\[]STRING> # 列表中每个条目都赢能够解析为 Kubernetes 类别的 OpenAPI 定义文件
+# commonAnnotations: \<map\[STRING]STRING>
 
-# namesapce: \<STRING> # 为所有资源添加名称空间
+为所有对象添加的注释
 
-# namePrefix: \<STRING> # 为所有对象的名称添加前缀
+# configurations: <\[]STRING>
 
-# nameSuffix: \<STRING> # 为所有对象的名称添加后缀
+列表中每个条目都应能解析为一个包含 Kustomize 转换器配置 的文件
 
-# resources: \<[]STRING> # 列表中的每个条目都代表一个 Manifests 文件
+# images: <[]Image>
 
-# patchesStrategicMerge: <\[]STRING> # 列表中每个条目都能解析为某 Kubernetes 对象的策略性合并补丁
+**name: \<STRING>** # 需要修改的 image 字段的名称。需要通过这个找到可供修改的字段。
 
-# patchesJson6902: <\[]Patch> # 列表中每个条目都能解析为一个 Kubernetes 对象和一个 JSON 补丁
+**newName: \<STRING>** # 用于替换原始镜像名称的值。
 
-# vars # 每个条目用来从某资源的字段来析取文字 images 每个条目都用来更改镜像的名称、标记与/或摘要，不必生成补丁
+**newTag: \<STRING>** # 用于替换原始镜像 Tag 的值。
+
+# crds: <\[]STRING>
+
+列表中每个条目都赢能够解析为 Kubernetes 类别的 OpenAPI 定义文件
+
+# namesapce: \<STRING>
+
+为所有资源添加名称空间
+
+# namePrefix: \<STRING>
+
+为所有对象的名称添加前缀
+
+# nameSuffix: \<STRING>
+
+为所有对象的名称添加后缀
+
+# resources: \<[]STRING>
+
+列表中的每个条目都代表一个 Manifests 文件
+
+# patchesStrategicMerge: <\[]STRING>
+
+列表中每个条目都能解析为某 Kubernetes 对象的策略性合并补丁
+
+# patchesJson6902: <\[]Patch>
+
+列表中每个条目都能解析为一个 Kubernetes 对象和一个 JSON 补丁
+
+# vars
+
+每个条目用来从某资源的字段来析取文字 images 每个条目都用来更改镜像的名称、标记与/或摘要，不必生成补丁
 
 # 生成 configmap 与 secret 对象的相关字段
 
-## configMapGenerator: <\[]Object> # 要生成的 ConfigMap 资源的列表
+## configMapGenerator: <\[]Object>
+
+要生成的 ConfigMap 资源的列表
 
 **name: \<STRING>** # ConfigMap 对象的名称
+
 **files: <\[]STRING>** # 通过文件生成 ConfigMap。文件名就是 ConfigMap 资源中 data 字段下的键，文件内容就是键对应的值。
 
-## secretGenerator: <\[]SecretArgs> # 可以基于文件或者键值偶对来生成 Secret。
+## secretGenerator: <\[]SecretArgs>
+
+可以基于文件或者键值偶对来生成 Secret。
 
 <https://github.com/kubernetes-sigs/kustomize/blob/master/api/types/secretargs.go>
 **name: \<STRING>** # Secret 对象的名称
+
 **files: <\[]STRING>** # 通过文件生成 Secret。文件名就是 Secret 资源中 data 字段下的键，文件内容就是键对应的值，值是文件内容进行 base64 编码后的结果。
+
 **type: \<STRING>** # Secret 的类型。`默认值：Opaque`
 
 - 可用的类型有：
@@ -55,8 +94,10 @@ title: Kustomization Manifest 详解
 ## generatorOptions:
 
 **disableNameSuffixHash: \<BOOLEAN>** # 禁用将随机字符串添加到 ConfigMap 和 Secret 对象名称的后缀。`默认值：false`
+
 **labels: \<map\[STRING]STRING>** # 为 ConfigMap 和 Secret 对象添加标签
-**annotations: \<map\[STRING]STRING> **# 为 ConfigMap 和 Secret 对象添加注释
+
+**annotations: \<map\[STRING]STRING>** # 为 ConfigMap 和 Secret 对象添加注释
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/iz1z8l/1620571780869-d0a706d9-f782-4309-8d63-a19c6dbfae0e.png)
 
