@@ -1,5 +1,6 @@
 ---
 title: Memory 管理工具
+slug: memory-utils
 weight: 2
 ---
 
@@ -14,6 +15,7 @@ weight: 2
 ## /proc/meminfo 文件
 
 > 参考：
+>
 > - [RedHat 官方给的解释](https://access.redhat.com/solutions/406773)
 
 该文件报告有关系统上内存使用情况的统计信息。 free 命令使用该文件来报告系统上的可用内存和已使用内存（物理内存和交换内存）以及内核使用的共享内存和缓冲区的数量。该文件是以 `:` 符号分割的 **Key/Value pair(键/值对)** 格式。可用参数及其详解如下：
@@ -128,7 +130,7 @@ Mem：设备上的真实内存
 - cache # 缓存。从硬盘中读出的数据存放到内存中，以便再次读取相同数据时速度更快。
 - availabel # 可用的。free+buff/cache 合起来就是可用的。
 
-## free 命令 与 /proc/meminfo 文件中信息的对应关系。
+## free 命令 与 /proc/meminfo 文件中信息的对应关系
 
 | free 命令输出     | `/proc/meminfo`文件的字段                              |
 | ----------------- | ------------------------------------------------------ |

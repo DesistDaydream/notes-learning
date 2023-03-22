@@ -1,10 +1,12 @@
 ---
 title: bpftrace 工具
+slug: bpftrace
 ---
 
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，iovisor/bpftrace](https://github.com/iovisor/bpftrace)
 
 bpftrace 是用于 Linux 增强型 eBPF 的高级跟踪语言，可在最近的 Linux 内核 (4.x) 中使用。 bpftrace 使用 LLVM 作为后端，将脚本编译为 BPF 字节码，并利用 BCC 与 Linux BPF 系统交互，以及现有的 Linux 跟踪功能：内核动态跟踪（kprobes）、用户级动态跟踪（uprobes）、和跟踪点。 bpftrace 语言的灵感来自 awk 和 C，以及 DTrace 和 SystemTap 等前身跟踪器。 bpftrace 是由 Alastair Robertson 创建的。、

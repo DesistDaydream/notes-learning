@@ -1,10 +1,12 @@
 ---
 title: strace 工具
+slug: strace
 ---
 
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，strace/strace](https://github.com/strace/strace)
 > - [官网](https://strace.io/)
 > - [Manual(手册),strace(1)](https://man7.org/linux/man-pages/man1/strace.1.html)
@@ -70,7 +72,7 @@ Note：
 - 由于 QUALIFIER 的默认值为 trace。所以 -e trace=sendto,read 也可以写成 -e sendto,read。
 - QUALIFIER 限定词根据功能不通，在 filtering、tampering、Output format 等选项中，有具体的使用说明。
 - 使用 `!` 会否定该组值。比如，-e trace=open 表示仅追踪 open 系统调用；而 -e trace='!open' 表示追踪除了 open 以外的所有系统调用
-    - 注意加单引号，否则无法识别，并报错提示：`-bash: !XXXX: event not found`
+  - 注意加单引号，否则无法识别，并报错提示：`-bash: !XXXX: event not found`
 
 ### Startup 启动选项
 
@@ -114,7 +116,7 @@ Note：
 - **-o, --output \<FILE>** # 将追踪结果输出到文件中(默认标准错误)。
   - 与 -ff 参数一起使用时，会把每个线程的追踪写到单独的文件中，以 FileName.PID 格式命名。
 - **-q, --quiet=STRING** # 抑制有关附加、分离、个性的消息。当 strace 的输出被重定向到文件中时，会自动添加该选项。
-    - 可用的值有：attach,personality,exit,all。这些可用的值只在 --quiet 选项时可用，我们还可以使用 -q、-qq、-qqq 以添加不同的抑制信息，q 越多，抑制的信息就越多。
+  - 可用的值有：attach,personality,exit,all。这些可用的值只在 --quiet 选项时可用，我们还可以使用 -q、-qq、-qqq 以添加不同的抑制信息，q 越多，抑制的信息就越多。
 - **-s, --string-limit \<STRSIZE>** # 设定要输出的最大字符串长度为 STRSIZE。`默认值：32`。Note:文件名不作为字符串，并始终完整打印。
   - 示例如下，在 sendto 和 read 系统调用中，参数只显示了 32 个字符。当指定 -s 选项后，可以输出更多字符。
 
@@ -150,7 +152,7 @@ lrwx------ 1 root root 64 Jan 24 10:55 /proc/8675/fd/3 -> 'socket:[80219]'
 ### Statistics 统计选项
 
 - **-c** # 统计每一次系统调用的执行时间、次数、错误次数。输出效果如下：
-    - -c 参数常用来在排障之前，查看当前进程使用了哪些系统调用，然后在后续排障中单独追踪指定的系统调用
+  - -c 参数常用来在排障之前，查看当前进程使用了哪些系统调用，然后在后续排障中单独追踪指定的系统调用
 
 ```bash
 [root@dr-02 keepalived]# strace -p 22863 -c

@@ -1,10 +1,12 @@
 ---
 title: sysstat 工具集
+slug: "systat"
 ---
 
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目](https://github.com/sysstat/sysstat)
 > - [官网](http://sebastien.godard.pagesperso-orange.fr/)
 > - [Manual(手册),pidstat(1)](https://man7.org/linux/man-pages/man1/pidstat.1.html)
@@ -26,7 +28,7 @@ Device 利用率报告
 
 ```bash
 ~]# iostat -xd
-Linux 4.18.0-193.19.1.el8_2.x86_64 (ansible.tj-test) 	11/24/2020 	_x86_64_	(4 CPU)
+Linux 4.18.0-193.19.1.el8_2.x86_64 (ansible.tj-test)  11/24/2020  _x86_64_ (4 CPU)
 Device            r/s     w/s     rkB/s     wkB/s   rrqm/s   wrqm/s  %rrqm  %wrqm r_await w_await aqu-sz rareq-sz wareq-sz  svctm  %util
 sda              0.04    0.17      1.56     11.25     0.00     0.26   0.19  60.08   10.57   54.93   0.01    40.14    65.48   0.97   0.02
 scd0             0.00    0.00      0.00      0.00     0.00     0.00   0.00   0.00    6.41    0.00   0.00    38.52     0.00   1.00   0.00
@@ -43,7 +45,7 @@ dm-1             0.00    0.00      0.00      0.00     0.00     0.00   0.00   0.0
 **iostat \[OPTIONS] \[INTERVAL \[COUNT]]**
 
 - INTERVAL # 间隔时间，单位是秒，指定 INTERVAL 时，mpstat 根据该时间每隔 INTERVAL 秒输出一次信息，并在最后输出平均值。
-    - COUNT # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
+  - COUNT # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
 
 OPTIONS
 
@@ -58,7 +60,7 @@ EXAMPLE
 **mpstat \[OPTIONS] \[INTERVAL \[COUNT]]**
 
 - INTERVAL # 间隔时间，单位是秒。指定 INTERVAL 时，mpstat 根据该时间每隔 INTERVAL 秒输出一次信息，并在最后输出平均值。
-    - COUNT # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
+  - COUNT # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
 
 OPTIONS
 
@@ -75,6 +77,7 @@ EXAMPLE
 # pidstat - 显示 Linux 进程的统计信息
 
 > 参考：
+>
 > - [Manual(手册)，pidstat(1)](https://man7.org/linux/man-pages/man1/pidstat.1.html)
 
 pidstat 是一个以 Task(任务) 为主体，显示 Task 相关系统使用情况的工具。
@@ -87,7 +90,7 @@ pidstat 是一个以 Task(任务) 为主体，显示 Task 相关系统使用情�
 
 ```bash
 ~]$ pidstat -d 1 --human
-Linux 5.4.0-88-generic (hw-cloud-xngy-jump-server-linux-2) 	10/03/2021 	_x86_64_	(2 CPU)
+Linux 5.4.0-88-generic (hw-cloud-xngy-jump-server-linux-2)  10/03/2021  _x86_64_ (2 CPU)
 
 10:27:48 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
 
@@ -105,7 +108,7 @@ Average:     1000     16829      0.0B      1.3k      0.0B       0  bash
 
 ```bash
 ~]# pidstat
-Linux 4.18.0-193.19.1.el8_2.x86_64 (ansible.tj-test) 	10/27/2020 	_x86_64_	(4 CPU)
+Linux 4.18.0-193.19.1.el8_2.x86_64 (ansible.tj-test)  10/27/2020  _x86_64_ (4 CPU)
 09:51:15 PM   UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command
 09:51:15 PM     0         1    0.00    0.01    0.00    0.00    0.02     1  systemd
 09:51:15 PM     0         2    0.00    0.00    0.00    0.00    0.00     0  kthreadd
@@ -115,7 +118,7 @@ Linux 4.18.0-193.19.1.el8_2.x86_64 (ansible.tj-test) 	10/27/2020 	_x86_64_	(4 CP
 
 ```bash
 ~]# pidstat -w
-Linux 4.18.0-193.19.1.el8_2.x86_64 (ansible.tj-test) 	10/27/2020 	_x86_64_	(4 CPU)
+Linux 4.18.0-193.19.1.el8_2.x86_64 (ansible.tj-test)  10/27/2020  _x86_64_ (4 CPU)
 10:00:14 PM   UID       PID   cswch/s nvcswch/s  Command
 10:00:14 PM     0         1      0.11      0.03  systemd
 10:00:14 PM     0         2      0.02      0.00  kthreadd
@@ -128,7 +131,7 @@ Linux 4.18.0-193.19.1.el8_2.x86_64 (ansible.tj-test) 	10/27/2020 	_x86_64_	(4 CP
 
 ```bash
 ~]# pidstat -r
-Linux 4.18.0-193.28.1.el8_2.x86_64 (lichenhao.bj-net) 	11/18/2020 	_x86_64_	(2 CPU)
+Linux 4.18.0-193.28.1.el8_2.x86_64 (lichenhao.bj-net)  11/18/2020  _x86_64_ (2 CPU)
 09:58:16 PM   UID       PID  minflt/s  majflt/s     VSZ     RSS   %MEM  Command
 09:58:16 PM     0         1      5.57      0.05  176812   10844   0.28  systemd
 09:58:16 PM     0       664      0.43      0.00   91980    8980   0.23  systemd-journal
@@ -143,7 +146,7 @@ Linux 4.18.0-193.28.1.el8_2.x86_64 (lichenhao.bj-net) 	11/18/2020 	_x86_64_	(2 C
 
 ```bash
 ~]# pidstat -d
-Linux 4.18.0-193.28.1.el8_2.x86_64 (lichenhao.bj-net) 	11/18/2020 	_x86_64_	(2 CPU)
+Linux 4.18.0-193.28.1.el8_2.x86_64 (lichenhao.bj-net)  11/18/2020  _x86_64_ (2 CPU)
 09:58:37 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
 09:58:37 PM     0         1     56.46      0.18      0.01      33  systemd
 09:58:37 PM     0         7      0.18      0.00      0.00       0  kworker/u4:0-events_unbound
@@ -154,7 +157,7 @@ Linux 4.18.0-193.28.1.el8_2.x86_64 (lichenhao.bj-net) 	11/18/2020 	_x86_64_	(2 C
 **pidstat \[OPTIONS] \[INTERVAL \[COUNT]]**
 
 - **INTERVAL** # 间隔时间，单位是秒，指定 INTERVAL 时，mpstat 根据该时间每隔 INTERVAL 秒输出一次信息，并在最后输出平均值。
-    - **COUNT** # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
+  - **COUNT** # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
 
 OPTIONS
 
@@ -174,11 +177,11 @@ EXAMPLE
 
 根据命令的不同选项，显示不同信息。
 
-## -b - 报告 I/O 和传输速率的统计信息。
+## -b - 报告 I/O 和传输速率的统计信息
 
 ```bash
 ~]$ sar --human -b 1
-Linux 5.4.0-88-generic (hw-cloud-xngy-jump-server-linux-2) 	10/03/2021 	_x86_64_	(2 CPU)
+Linux 5.4.0-88-generic (hw-cloud-xngy-jump-server-linux-2)  10/03/2021  _x86_64_ (2 CPU)
 
 10:07:46 PM       tps      rtps      wtps      dtps   bread/s   bwrtn/s   bdscd/s
 10:07:47 PM      0.00      0.00      0.00      0.00      0.00      0.00      0.00
@@ -206,7 +209,7 @@ KEYWORD 可用的值有 DEV、EDEV、NFS、NFSD、SOCK、IP、EIP、ICMP、EICMP
 
 ```bash
 ~]# sar -n DEV 1
-Linux 4.18.0-193.28.1.el8_2.x86_64 (lichenhao.bj-net) 	11/18/2020 	_x86_64_	(2 CPU)
+Linux 4.18.0-193.28.1.el8_2.x86_64 (lichenhao.bj-net)  11/18/2020  _x86_64_ (2 CPU)
 10:18:38 PM     IFACE   rxpck/s   txpck/s    rxkB/s    txkB/s   rxcmp/s   txcmp/s  rxmcst/s   %ifutil
 10:18:39 PM   docker0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
 10:18:39 PM      ens3      4.00      1.00      0.23      0.10      0.00      0.00      0.00      0.00
@@ -218,11 +221,11 @@ Linux 4.18.0-193.28.1.el8_2.x86_64 (lichenhao.bj-net) 	11/18/2020 	_x86_64_	(2 C
 - **rxcmp/s** 和 **txcmp/s**  分别表示每秒接收、发送的压缩数据包
 - **rxmcst/s** # 表示每秒接收的多播数据包
 
-### TCP - 报告 TCPv4 网络流量的统计信息。
+### TCP - 报告 TCPv4 网络流量的统计信息
 
 ```bash
 ~]$ sar -n TCP 1
-Linux 5.4.0-88-generic (hw-cloud-xngy-jump-server-linux-2) 	10/03/2021 	_x86_64_	(2 CPU)
+Linux 5.4.0-88-generic (hw-cloud-xngy-jump-server-linux-2)  10/03/2021  _x86_64_ (2 CPU)
 
 09:46:03 PM  active/s passive/s    iseg/s    oseg/s
 09:46:04 PM      0.00      0.00      2.00      2.00
@@ -247,7 +250,7 @@ Average:         0.00      0.00      2.00      2.25
 **sar \[OPTIONS] \[INTERVAL \[COUNT]]**
 
 - **INTERVAL** # 间隔时间，单位是秒。指定 INTERVAL 时，mpstat 根据该时间每隔 INTERVAL 秒输出一次信息，并在最后输出平均值。
-    - **COUNT** # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
+  - **COUNT** # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
 
 OPTIONS
 
@@ -256,6 +259,6 @@ OPTIONS
 EXAMPLE
 
 - 输出 1，3，5，7 这 4 个 CPU 中，idle 小于 10 的 CPU
-   - **sar -P 1,3,5,7 1 | tail -n+3 | awk '$NF<10 {print $0}'**
+  - **sar -P 1,3,5,7 1 | tail -n+3 | awk '$NF<10 {print $0}'**
 
 # tapestat

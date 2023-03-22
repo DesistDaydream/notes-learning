@@ -1,10 +1,12 @@
 ---
 title: psmisc 工具集
+slug: psmisc
 ---
 
 # 概述
 
 > 参考：
+>
 > - 项目地址：<https://gitlab.com/psmisc/psmisc>
 
 psmisc 是一个小型的应用程序集合，与 procps-ng 工具集类似，都是使用伪文件系统(/proc)内的信息来展示系统信息
@@ -69,15 +71,15 @@ EXAPMLE:
 ```bash
 $ pstree
 systemd─┬─VBoxService───7*[{VBoxService}]
-		├─accounts-daemon───2*[{accounts-daemon}]
-		├─2*[agetty]
-		├─atd
-		├─cron
-		├─dbus-daemon
-		├─irqbalance───{irqbalance}
-		├─2*[iscsid]
-		├─lvmetad
-		├─lxcfs───2*[{lxcfs}]
-		├─networkd-dispat───{networkd-dispat}
-		├─nginx───2*[nginx]
+  ├─accounts-daemon───2*[{accounts-daemon}]
+  ├─2*[agetty]
+  ├─atd
+  ├─cron
+  ├─dbus-daemon
+  ├─irqbalance───{irqbalance}
+  ├─2*[iscsid]
+  ├─lvmetad
+  ├─lxcfs───2*[{lxcfs}]
+  ├─networkd-dispat───{networkd-dispat}
+  ├─nginx───2*[nginx]
 ```

@@ -1,10 +1,12 @@
 ---
 title: procps 工具集
+slug: procps
 ---
 
 # 概述
 
 > 参考：
+>
 > - [GitLab 项目，procps-ng/procps](https://gitlab.com/procps-ng/procps)
 
 procps 是一组命令行和全屏实用程序，它们主要从 [Proc 文件系统](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/6.File_System_管理/特殊文件系统/Proc%20File%20System.md) 中获取信心，该文件系统为内核数据结构提供了一个简单的接口。procps 程序通常集中在描述系统上运行的进程的结构上。包括以下程序(每个标题都是一个程序)
@@ -32,6 +34,7 @@ kill 命令将指定的信号发送到指定的进程或进程组。 如果未�
 # pgrep，pkill，pidwait-根据名字或其他属性列出进程、发送信号、暂停进程
 
 > 参考：
+>
 > - [Manual(手册)，pgrep(1)](https://man7.org/linux/man-pages/man1/pgrep.1.html)
 
 pgrep 查看当前正在运行的进程，并列出所有符合匹配模式的进程 ID。比如：`pgrep -u root sshd` 命令将会列出由 root 用户运行的进程命令中包含 `sshd` 字符串的进程 ID。效果如下：
@@ -57,7 +60,7 @@ PATTERN(模式) 代指正则表达式的匹配模式。比如 pgrep 根据 PATTE
 
 - **-SIGNAL, --signal SIGNAL** # (pkill)指定要发送的信号。可以使用数字或信号名称。
 - **-f, --full** # 这三个程序通常只会对进程名称进行匹配。加上 -f 之后，会对进程的完整命令行进行匹配。
-    - 比如 `pgrep -f containerd` 将会出现 `3313 /usr/bin/dockerd --containerd=/run/containerd/containerd.sock` 这种结果。
+  - 比如 `pgrep -f containerd` 将会出现 `3313 /usr/bin/dockerd --containerd=/run/containerd/containerd.sock` 这种结果。
 - **-l, --list-full** # (pgrep)显示出完整的命令行以及进程 ID
 - **-t, --terminal \<TERM,...>** # 仅匹配使用指定终端的进程。终端名称不用使用绝对路径。
 - **-x, --exact** # 精确匹配。PATTERN 必须与 进程名称 或 进程命令行 完全对应上才会被匹配到。
@@ -77,6 +80,7 @@ PATTERN(模式) 代指正则表达式的匹配模式。比如 pgrep 根据 PATTE
 # ps - 报告进程的信息
 
 > 参考：
+>
 > - [Manual(手册)，ps(1)](https://man7.org/linux/man-pages/man1/ps.1.html)
 
 ps 是 **process status(进程状态)** 的简称~
@@ -92,19 +96,19 @@ ps 命令输出的内容中部分字段的含义说明：
 - LWP # 线程 ID
 - NLWP # 线程数量
 - STAT # 进程的当前状态
-    - D # 不可中断的休眠。通常是 IO。
-    - R # 运行。正在运行或者在运行队列中等待。
-    - S # 休眠。在等待某个事件，信号。
-    - T # 停止。进程接收到信息 SIGSTOP，SIGSTP，SIGTIN，SIGTOU 信号。
-    - X # 死掉的进程，不应该出现。
-    - Z # 僵死进程。
-        - 通常还会跟随如下字母表示更详细的状态。
-             - < 高优先级
-             - N 低优先级
-             - L 有 pages 在内存中 locked。用于实时或者自定义 IO。
-             - s 进程领导者，其有子进程。
-             - l 多线程
-             - - 位于前台进程组。
+  - D # 不可中断的休眠。通常是 IO。
+  - R # 运行。正在运行或者在运行队列中等待。
+  - S # 休眠。在等待某个事件，信号。
+  - T # 停止。进程接收到信息 SIGSTOP，SIGSTP，SIGTIN，SIGTOU 信号。
+  - X # 死掉的进程，不应该出现。
+  - Z # 僵死进程。
+    - 通常还会跟随如下字母表示更详细的状态。
+      - < 高优先级
+      - N 低优先级
+      - L 有 pages 在内存中 locked。用于实时或者自定义 IO。
+      - s 进程领导者，其有子进程。
+      - l 多线程
+        - - 位于前台进程组。
 
 可以使用 **-o FORMAT** 选项来自定义输出的格式(就是字段)。 FORMAT 是单个参数，格式为空格分隔或逗号分隔的列表，它提供了一种指定单个输出列的方法。 可以在 man 手册的 [STANDARD FORMAT SPECIFIERS(标准格式说明符)](https://man7.org/linux/man-pages/man1/ps.1.html#STANDARD_FORMAT_SPECIFIERS) 部分中找到所有可用的关键字。
 
@@ -195,6 +199,7 @@ https://man.cx/ps#heading9
 ## EXAMPLE
 
 简单使用
+
 ```bash
 ~]# ps -elf
 F S UID         PID   PPID  C PRI  NI ADDR SZ WCHAN  STIME TTY          TIME CMD
@@ -210,11 +215,13 @@ root          2  0.0  0.0      0     0 ?        S    15:16   
 ```
 
 显示 ps 的完整内容，不受 COMMAND 命令有字符限制影响。说白了就是，让过长的内容可以换行显示，而不是截断
+
 ```bash
 ~]# ps -efww
 ```
 
 以树状形式显示，且带中括号的内核进程将会放在最上面，与下面的系统进程分开，显示较为直观，效果如下
+
 ```bash
 ~]# ps -ef f
 root         1     0  0 Dec24 ?        Ss     0:04 /usr/lib/systemd/systemd --switched-root --system --deserialize 22
@@ -226,7 +233,9 @@ root      6720  6402  0 10:52 pts/0    R+     0:00          \_ ps -ef f
 ```
 
 不显示内核进程，以树状格式显示
-  - ps -N -p 2 --ppid 2 -f f
+
+- ps -N -p 2 --ppid 2 -f f
+
 ```bash
 ~]# ps --deselect -p 2 --ppid 2 -f f
 UID        PID  PPID  C STIME TTY      STAT   TIME CMD
@@ -254,9 +263,10 @@ root     17365 17325  0 09:23 pts/0    R+     0:00          \_ ps --deselect -p 
 ```
 
 这是(⊙o⊙)啥？~~
+
 ```bash
 ~]# ps -eo rss,pid,user,command | sort -rn | head -10 | awk '{ hr\[1024**2]="GB"; hr\[1024]="MB";for (x=1024**3; x>=1024; x/=1024) { if ($1>=x) { printf ("%-6.2f %s ", $1/x, hr\[x]); break }} } { printf ("%-6s %-10s ", $2, $3) }{ for ( x=4 ; x<=NF ; x++ ) { printf ("%s ",$x) } print ("\n") }'
-15.94  MB 627    root       /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers 
+15.94  MB 627    root       /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
 15.18  MB 683    root       /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
 ```
 

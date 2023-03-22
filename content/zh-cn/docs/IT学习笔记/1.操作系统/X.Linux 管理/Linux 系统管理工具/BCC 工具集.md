@@ -1,10 +1,12 @@
 ---
 title: BCC 工具集
+slug: bcc
 ---
 
 # 概述
 
 > 参考：
+>
 > - [官网](https://iovisor.github.io/bcc/)
 > - [GitHub 项目,iovisor/bcc](https://github.com/iovisor/bcc)
 
@@ -44,5 +46,3 @@ XXXsnoop 这类工具的名字通常用来追踪指定对象，snoop 有窥探�
 **syscount** # 追踪系统调用，并统计次数
 **tcpconnect** # 追踪活动的 TCP 连接，即 `connect()` 系统调用。
 **tcptracer** # 追踪
-
-###

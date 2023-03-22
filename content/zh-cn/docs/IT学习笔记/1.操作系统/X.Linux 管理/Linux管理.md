@@ -1,11 +1,14 @@
 ---
 title: "Linux 管理"
 linkTitle: "Linux 管理"
+slug: "managing-linux"
 weight: 1
 ---
 
 # 概述
+>
 > 参考：
+>
 > - [GNU Manual(手册)](https://www.gnu.org/manual/) — Linux 中很多核心程序，都是 GNU 组织下的软件。
 
 系统管理员可以通过 一系列用户空间的二进制应用程序来管理 Linux 操作系统。Linux 内核自带了一个名为 coreutils 包，包含了很多最基本的管理工具。
@@ -15,6 +18,7 @@ weight: 1
 # Coreutils
 
 > 参考：
+>
 > - [Wiki,GNU Core Utilies](https://en.wikipedia.org/wiki/GNU_Core_Utilities)
 > - [官方文档](https://www.gnu.org/software/coreutils/manual/)
 
@@ -71,6 +75,7 @@ arch base64 basename cat chcon chgrp chmod chown chroot cksum comm cp  csplit cu
 # Util-linux
 
 > 参考：
+>
 > - [GitHub 项目，util-linux/util-linux](https://github.com/util-linux/util-linux)
 > - [Wiki,Util-linux](https://en.wikipedia.org/wiki/Util-linux)
 
@@ -198,7 +203,7 @@ Util-linux 包中通常包含如下程序：
 - [write](<https://en.wikipedia.org/wiki/Write_(Unix)>)
 - zramctl
 
-### Removed
+## Removed
 
 Utilities formerly included, but removed as of 1 July 2015:
 
@@ -220,4 +225,3 @@ Utilities formerly included, but removed as of 1 July 2015:
 - simpleinit[\[19\]](https://en.wikipedia.org/wiki/Util-linux#cite_note-simpleinit-19)
 - tailf[\[21\]](https://en.wikipedia.org/wiki/Util-linux#cite_note-tailf-21)
 - vidmode (formerly a symlink to rdev)[\[20\]](https://en.wikipedia.org/wiki/Util-linux#cite_note-rdev-20)
-
