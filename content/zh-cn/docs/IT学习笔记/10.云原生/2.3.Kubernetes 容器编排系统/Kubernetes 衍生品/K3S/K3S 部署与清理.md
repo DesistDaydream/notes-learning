@@ -60,7 +60,7 @@ bash k3s-install.sh
 ## 下载 k3s 二进制文件
 
 ```bash
-export K3S_VERSION="v1.26.1"
+export K3S_VERSION="v1.26.2"
 wget https://github.com/k3s-io/k3s/releases/download/${K3S_VERSION}%2Bk3s1/k3s -O /usr/local/bin/k3s
 chmod +x /usr/local/bin/k3s
 ```
