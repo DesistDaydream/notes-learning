@@ -4,3 +4,52 @@ offlineSearch = true
 # 页面显示内容配置
 [ui]
 sidebar_menu_foldable = true # 侧边栏菜单是否可折叠
+
+[ui.feedback]
+enable = true
+yes = 'Glad to hear it! Please <a href="https://github.com/DesistDaydream/notes-learning/issues/new">tell us how we can improve</a>.'
+no = 'Sorry to hear that. Please <a href="https://github.com/DesistDaydream/notes-learning/issues/new">tell us how we can improve</a>.'
+
+[ui.readingtime]
+enable = false
+
+[links]
+[[links.user]]
+  name = "User mailing list"
+  url = "https://example.org/mail"
+  icon = "fa fa-envelope"
+  desc = "Discussion and help from your fellow users"
+[[links.user]]
+  name ="Twitter"
+  url = "https://example.org/twitter"
+  icon = "fab fa-twitter"
+  desc = "Follow us on Twitter to get the latest news!"
+[[links.user]]
+  name = "Stack Overflow"
+  url = "https://example.org/stack"
+  icon = "fab fa-stack-overflow"
+  desc = "Practical questions and curated answers"
+[[links.developer]]
+  name = "GitHub"
+  url = "https://github.com/DesistDaydream"
+  icon = "fab fa-github"
+  desc = "Development takes place here!"
+[[links.developer]]
+  name = "Slack"
+  url = "https://example.org/slack"
+  icon = "fab fa-slack"
+  desc = "Chat with other project developers"
+[[links.developer]]
+  name = "Developer mailing list"
+  url = "https://example.org/mail"
+  icon = "fa fa-envelope"
+  desc = "Discuss development issues around the project"
+
+[taxonomy]
+taxonomyCloud = ["tags", "categories"]
+taxonomyCloudTitle = ["Tag Cloud", "Categories"]
+taxonomyPageHeader = ["tags", "categories"]
+pygmentsCodeFences = true
+pygmentsUseClasses = false
+pygmentsUseClassic = false
+pygmentsStyle = "tango"

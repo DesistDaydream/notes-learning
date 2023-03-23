@@ -1,5 +1,6 @@
 ---
 title: WireGuard
+weight: 1
 ---
 
 # 概述
