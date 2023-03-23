@@ -1,6 +1,5 @@
 ---
 title: BCC 工具集
-slug: bcc
 ---
 
 # 概述

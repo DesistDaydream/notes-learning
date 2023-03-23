@@ -1,7 +1,6 @@
 ---
 title: "Linux 管理"
 linkTitle: "Linux 管理"
-slug: "managing-linux"
 weight: 1
 ---
 

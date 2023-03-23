@@ -1,6 +1,5 @@
 ---
 title: bpftrace 工具
-slug: bpftrace
 ---
 
 # 概述

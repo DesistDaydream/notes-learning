@@ -1,16 +1,17 @@
 {{ define "main"}}
-    <main id="main">
-      <div>
-       <h1 id="title">Not found</h1>
-       <p>Oops! This page doesn't exist. Try going back to our <a href="{{ "/" | relURL }}">home page</a>.</p>
+<main id="main">
+  <div>
+    <h1 id="title">Not found</h1>
+    <p>哎呀！此页面不存在。请返回我们的<a href="{{ " /" | relURL }}">首页</a>。</p>
 
-       <p>You can learn how to make a 404 page like this in <a href="https://gohugo.io/templates/404/">Custom 404 Pages</a>.</p>
-      </div>
-    </main>
-    <script>
-      var currenturl = location.href.toLocaleLowerCase().replace("%20", "-");
-      if (currenturl != location.href) {
-        location.href = currenturl;
-      }
-    </script>
+    <p>你可以在 <a href="https://gohugo.io/templates/404/">自定义 404 页面</a> 文档中学习如何创建类似此页面的 404 页面。</p>
+  </div>
+</main>
+{{/* markdown 中空格是 %20，hugo 生成 url 时会将 %20 都转为 -。另外，markdown 中的连接末尾带个 .md 后缀，但是 hugo 生成 URL 时会去掉后缀 */}}
+<script>
+  var currenturl = location.href.toLocaleLowerCase().replace("%20", "-").replace(".md", "");
+  if (currenturl != location.href) {
+    location.href = currenturl;
+  }
+</script>
 {{ end }}

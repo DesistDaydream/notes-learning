@@ -1,6 +1,5 @@
 ---
 title: strace 工具
-slug: strace
 ---
 
 # 概述

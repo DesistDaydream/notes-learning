@@ -1,6 +1,5 @@
 ---
 title: K3S
-slug: "k3s"
 ---
 
 # 概述

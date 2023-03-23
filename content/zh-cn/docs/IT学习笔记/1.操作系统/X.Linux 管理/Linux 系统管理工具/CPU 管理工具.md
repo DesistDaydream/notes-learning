@@ -1,6 +1,5 @@
 ---
 title: CPU 管理工具
-slug: cpu-utils
 weight: 1
 ---
 

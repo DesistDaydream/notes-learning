@@ -1,6 +1,5 @@
 ---
 title: psmisc 工具集
-slug: psmisc
 ---
 
 # 概述

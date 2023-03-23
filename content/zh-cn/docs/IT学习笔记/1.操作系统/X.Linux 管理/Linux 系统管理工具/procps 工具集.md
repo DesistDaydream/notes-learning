@@ -1,6 +1,5 @@
 ---
 title: procps 工具集
-slug: procps
 ---
 
 # 概述

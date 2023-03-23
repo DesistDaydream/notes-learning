@@ -1,6 +1,5 @@
 ---
 title: Memory 管理工具
-slug: memory-utils
 weight: 2
 ---
 

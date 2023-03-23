@@ -1,7 +1,6 @@
 ---
 title: "Panel(面板) 配置详解"
 linkTitle: "Panel(面板) 配置详解"
-slug: "panel"
 weight: 1
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: sysstat 工具集
-slug: "systat"
 ---
 
 # 概述
