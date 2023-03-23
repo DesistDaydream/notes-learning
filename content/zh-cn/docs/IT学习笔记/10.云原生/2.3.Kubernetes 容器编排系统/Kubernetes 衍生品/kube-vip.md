@@ -5,6 +5,7 @@ title: kube-vip
 # 概述
 
 > 参考：
+> 
 > - [官网](https://kube-vip.io/)
 > - [官方文档,使用静态 Pod 部署 kube-vip](https://kube-vip.io/hybrid/static/)
 
@@ -18,12 +19,16 @@ Kube-VIP 通过命令行标志变更运行时行为
 
 # 部署
 
-## 使用静态 Pod 部署 kube-vip
+## 作为静态 Pod 运行
 
 生成 Manifests
 
 ```bash
-docker run --rm --net host docker.io/plndr/kube-vip:v0.3.5 \
+export VIP=172.38.180.213
+export INTERFACE=eth0
+export KVVERSION=$(curl -sL https://api.github.com/repos/kube-vip/kube-vip/releases | jq -r ".[0].name")
+
+docker run --rm --net host docker.io/plndr/kube-vip:${KVVERSION} \
 /kube-vip manifest pod \
 --interface ${INTERFACE} \
 --vip ${VIP} \
@@ -34,3 +39,9 @@ docker run --rm --net host docker.io/plndr/kube-vip:v0.3.5 \
 ```
 
 等待 kubelet 将 pod 启动后，就会自动生成 VIP
+
+## 作为 DaemonSet 运行
+
+```bash
+kubectl apply -f https://kube-vip.io/manifests/rbac.yaml
+```

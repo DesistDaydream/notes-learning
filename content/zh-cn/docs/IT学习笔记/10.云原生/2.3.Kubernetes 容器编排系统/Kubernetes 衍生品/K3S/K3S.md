@@ -29,13 +29,13 @@ k3s 二进制文件包含 kubelet、api-server、kube-controller-manager、kube-
 
 - **./containerd/** # 与 [Containerd](</docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/Containerd.md#Containerd 关联文件与配置>) 中的 /run/containerd/ 目录功能一致。
 
-**/run/flannel/** # 与 [Flannel](</docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/CNI/Flannel.md#Flannel 关联文件与配置>) 中 /run/flannel/ 目录功能一致。
+**/run/flannel/** # 与 [Flannel](</docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/CNI/Flannel#Flannel 关联文件与配置>) 中 /run/flannel/ 目录功能一致。
 
 **/var/lib/rancher/k3s/** # k3s 运行时数据存储保存路径
 
 - **./agent/** # 作为 k8s 的 node 节点所需要的信息保存路径
   - 包括证书、containerd 数据目录、cni，containerd 的配置文件 等等都在此处
-    - **./containerd/** # 与 [Containerd](</docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/Containerd.md#Containerd 关联文件与配置>) 中的 /var/lib/containerd/ 目录功能一致。
+    - **./containerd/** # 与 [Containerd](</docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/Containerd#Containerd 关联文件与配置>) 中的 /var/lib/containerd/ 目录功能一致。
 - **./data/** #
 - **./server/** # 作为 k8s 的 master 节点所需要的信息保存路径
   - 包括证书、kube-system 名称空间中的 manifests 文件、etcd 数据 等等都在此处

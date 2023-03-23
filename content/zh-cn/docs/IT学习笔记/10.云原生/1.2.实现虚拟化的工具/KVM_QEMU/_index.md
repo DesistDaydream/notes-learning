@@ -1,3 +1,4 @@
 ---
-title: KVM_QEMU
+title: "KVM/QEMU"
+linkTitle: "KVM/QEMU"
 ---

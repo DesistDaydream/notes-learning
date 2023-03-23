@@ -20,6 +20,7 @@ Flannel 在每台主机上运行一个名为 flanneld 的小型二进制程序�
 ## 子网获取逻辑
 
 代码：`./main.go —— WriteSubnetFile()`
+
 Flannel 启动时，在 `./main.go` 中调用 [WriteSubnetFile()](https://github.com/flannel-io/flannel/blob/v0.15.1/main.go#L746) 函数，用来生成 subnet 配置文件(默认在 /run/flannel/subnet.env)。
 
 ```go
@@ -108,16 +109,16 @@ Flannel 进行 UDP 封装（Encapsulation）和解封装（Decapsulation）的�
 Pod 间通信的情况：
 
 - pod1 与 pod2 不在同一台主机
-  - pod1(10.0.14.15)向 pod2(10.0.5.150)发送 ping，查找 pod1 路由表，把数据包发送到 cni0(10.0.14.1)
-  - cni0 查找 host1 路由，把数据包转发到 flannel.1
-  - flannel.1 虚拟网卡再把数据包转发到它的驱动程序 flannel
-  - flannel 程序使用 VXLAN 协议封装这个数据包，向 api-server 查询目的 IP 所在的主机 IP,称为 host2(不清楚什么时候查询)
-  - flannel 向查找到的 host2 IP 的 UDP 端口 8472 传输数据包
-  - host2 的 flannel 收到数据包后，解包，然后转发给 flannel.1 虚拟网卡
-  - flannel.1 虚拟网卡查找 host2 路由表，把数据包转发给 cni0 网桥，cni0 网桥再把数据包转发给 pod2
-  - pod2 响应给 pod1 的数据包与 1-7 步类似
+    - pod1(10.0.14.15)向 pod2(10.0.5.150)发送 ping，查找 pod1 路由表，把数据包发送到 cni0(10.0.14.1)
+    - cni0 查找 host1 路由，把数据包转发到 flannel.1
+    - flannel.1 虚拟网卡再把数据包转发到它的驱动程序 flannel
+    - flannel 程序使用 VXLAN 协议封装这个数据包，向 api-server 查询目的 IP 所在的主机 IP,称为 host2(不清楚什么时候查询)
+    - flannel 向查找到的 host2 IP 的 UDP 端口 8472 传输数据包
+    - host2 的 flannel 收到数据包后，解包，然后转发给 flannel.1 虚拟网卡
+    - flannel.1 虚拟网卡查找 host2 路由表，把数据包转发给 cni0 网桥，cni0 网桥再把数据包转发给 pod2
+    - pod2 响应给 pod1 的数据包与 1-7 步类似
 - pod1 与 pod2 在同一台主机
-  - pod1 和 pod2 在同一台主机的话，由 cni0 网桥直接转发请求到 pod2，不需要经过 flannel。
+    - pod1 和 pod2 在同一台主机的话，由 cni0 网桥直接转发请求到 pod2，不需要经过 flannel。
 
 ## VxLan 型后端
 
@@ -128,7 +129,9 @@ VXLAN 的设计思想是：在现有的三层网络之上，覆盖一层虚拟�
 为了能在二层网络上打通隧道，VXLAN 会在 Host 上设置一个特殊的网络设备作为隧道的两端，这个设备叫做 VTEP(VXLAN Tunnel End Point 虚拟隧道端点)。VTEP 设备的作用，与 UDP 类型的 flanneld 进程非常相似，只不过 VTEP 进行封装和解封装的对象是二层数据帧，而且这个过程是在内核里完成(因为 VXLAN 本身就是 Linux 内核中的一个模块)。而 VTEP 设备之间的交互，就是二层交互(不同网段可以理解为不同 VLAN 的交互)，想让他们互通，则是 VXLAN 模块来实现的。
 
 下图是基于 VTEP 设备进行隧道通信的流程，每台宿主机上的 flannel.1 的设备就是 VTEP 设备，既有 IP，也有 MAC
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/lmmp31/1616118613885-1f230a8b-ecaa-4ffb-a094-d331200fa1e3.png)
+
 flannel 会维护这么几个数据：
 
 - 宿主机到对端 VTEP 设备的路由信息。记录要访问的其他宿主机上的容器的网段，下一跳是对端宿主机的 VTEP 设备的 IP，要通过 flannel.1 设备
@@ -142,12 +145,12 @@ flannel 会维护这么几个数据：
 pod1 与 pod2 不在同一台主机
 
 - Container-1 发出请求后，目的地址是 10.244.1.3，经过 cni0，然后被路由到 flannel.1(VTEP) 设备进行处理。flannel 会根据所规定的子网，自动生成路由，让所有符合其子网的目的地址，都会经过 flannel.1 设备。可以把 container-1 发出的数据包称为“原始 IP 包”。这个“原始 IP 包”到达 flannel.1 设备，也就是来到了隧道的入口。此时开始了 VXLAN 的封装工作
-  - 添加 Inner Ethernet Header。为了能够将“原始 IP 包”封装并发送到正确的宿主机上，VXLAN 就需要找到这条隧道的出口(i.e.目的宿主机的 VTEP 设备)，这个设备的信息，就是由每台宿主机的 flanneld 进程维护的。当 node2 启动并加入 flannel 网络后，node1 上会添加一条路由：10.144.1.0/24 via 10.244.1.0 dev flannel.1。这个 10.244.1.0 就是 node2 上的 VTEP 设备的 IP 地址。（可以把 node1 的 VTEP 设备成为“源 VTEP 设备”，node2 的 VTEP 设备成为“目的 VTEP 设备”）。这些 VTEP 设备之间，就需要想办法组成一个虚拟的二层网络。flanneld 进程在 node2 节点启动时，还会在 node1 上添加 arp 记录，记录“目的 VTEP 设备”的 IP 与 MAC(假设为 5e:f8:4f:00:e3:37，可以通过 ip neigh show dev flannel.1 命令查看)。有了这个“目的 VTEP 设备”的 MAC 地址，VXLAN 就可以在内核开始二层封包工作了，VXLAN 模块会在“原始 IP 包”外添上一个“目的 VTEP 设备”的 MAC 地址(Inner Ethernet Header)。但是只有一个 MAC 地址，对于宿主机网络来说没有实际意义，并不能在宿主机的网络里传输，所以需要进一步封装，让其成为宿主机网络里一个普通的数据包，以便通过 eth0 网卡。
-  - 添加 VXLAN Header。为了让数据包可以变成宿主机网络里的普通数据包，VXLAN 模块会再给数据包加上一个特殊的 VXLAN 头(VXLAN Header)，用来表示这个数据包实际上是一个 VXLAN 要使用的包。而这个 VXLAN 头里有一个重要的标志，叫做 VNI，它是 VTEP 设备识别某个数据帧是不是应该归自己处理的标志。而在 flannel 中，VNI 的默认值为 1，所以宿主机上的 VTEP 设备都叫做 flannel.1 的原因，这里面的 1，就是 VNI 的值。(其实，添加这个 VXLAN 头，就是为了让宿主机在看到这个数据包是由 VXLAN 程序来发出的，而不是由 container 发出的，因为宿主机无法才开 VXLAN 的头部信息，所以也就读不了 VXLAN 下面的真实目的 IP 和 MAC)(说白了，可以把实现 VXLAN 功能的 flannel 当做一个运行在 linux 上的程序，数据包是由这个 flannel 发出来的。其余 VXLAN 的机制也是同理)
-  - 添加 Outer UDP Header。然后 Linux 内核会把这个数据帧封装进一个 UDP 包，跟 UDP 模型一样，在宿主机看来，会认为自己的 flannel.1 设备只是在向外另外一台宿主机的 flannel.1 设备，发起了一次普通的 UDP 链接，并不会知道这个 UDP 包里，还有一个完成的二层数据帧（从宿主机看，就是 vxlan 这个模块或者说 flannel.1 设备，发送了一份数据，数据内容是什么，Linux 内核不关心）。不过，flannel.1 设备知道另一端设备的 MAC 地址，但是却不知道对应的宿主机地址是什么，那么这个 UDP 包应该发给哪台宿主机呢？
-  - 添加 Outer IP Header。在这种情况下，flannel.1 实际上扮演了一个网桥的角色，网桥设备进行转发的依据，来自于一个 FDB(Forwarding Database)的转发数据库，这个 FDB 的信息也是由 flanneld 进程维护的，当 node2 加入 flannel 网络后，会在 node1 的 FDB 记录对端 VTEP 的信息 5e:f8:4f:00:e3:37 dev flannel.1 dst 10.168.0.3 self permanent(可以通过 bridge fdb show flannel.1 | grep 5e:f8:4f:00:e3:37 命令查到,意思是：MAC 地址为“目的 VTEP”设备的数据包，会经过 flannel.1 设备，发送到目的地是 10.168.0.3 的主机上)。所以接下来的流程就是一个正产的宿主机网络上的封包工作，flannel.1 设备会把 FDB 的信息告诉 Linux 内核要发送个谁，Linux 内核的网络栈就会进行后续封装，把对端 VTEP 设备的 MAC 地址所在的 IP 封装到数据包的头部。
-  - 添加 Outer Ethernet Header。Linux 内核在这个数据包前面加上 Node2 的 MAC 地址，这个 MAC 是本身设备网络栈 ARP 表要学习到的，无需 flannel 维护。
-  - 这时候，封包工作完成了。实际上就是 flannel.1 设备发送了一个数据给宿主机，至于数据中的内容，则是宿主机不关心的。当对端宿主机把最外层的封装解开后，发现 VXLAN 的标记，自然会交由本机可以处理 VXLAN 的网络设备来进行处理。
+    - 添加 Inner Ethernet Header。为了能够将“原始 IP 包”封装并发送到正确的宿主机上，VXLAN 就需要找到这条隧道的出口(i.e.目的宿主机的 VTEP 设备)，这个设备的信息，就是由每台宿主机的 flanneld 进程维护的。当 node2 启动并加入 flannel 网络后，node1 上会添加一条路由：10.144.1.0/24 via 10.244.1.0 dev flannel.1。这个 10.244.1.0 就是 node2 上的 VTEP 设备的 IP 地址。（可以把 node1 的 VTEP 设备成为“源 VTEP 设备”，node2 的 VTEP 设备成为“目的 VTEP 设备”）。这些 VTEP 设备之间，就需要想办法组成一个虚拟的二层网络。flanneld 进程在 node2 节点启动时，还会在 node1 上添加 arp 记录，记录“目的 VTEP 设备”的 IP 与 MAC(假设为 5e:f8:4f:00:e3:37，可以通过 ip neigh show dev flannel.1 命令查看)。有了这个“目的 VTEP 设备”的 MAC 地址，VXLAN 就可以在内核开始二层封包工作了，VXLAN 模块会在“原始 IP 包”外添上一个“目的 VTEP 设备”的 MAC 地址(Inner Ethernet Header)。但是只有一个 MAC 地址，对于宿主机网络来说没有实际意义，并不能在宿主机的网络里传输，所以需要进一步封装，让其成为宿主机网络里一个普通的数据包，以便通过 eth0 网卡。
+    - 添加 VXLAN Header。为了让数据包可以变成宿主机网络里的普通数据包，VXLAN 模块会再给数据包加上一个特殊的 VXLAN 头(VXLAN Header)，用来表示这个数据包实际上是一个 VXLAN 要使用的包。而这个 VXLAN 头里有一个重要的标志，叫做 VNI，它是 VTEP 设备识别某个数据帧是不是应该归自己处理的标志。而在 flannel 中，VNI 的默认值为 1，所以宿主机上的 VTEP 设备都叫做 flannel.1 的原因，这里面的 1，就是 VNI 的值。(其实，添加这个 VXLAN 头，就是为了让宿主机在看到这个数据包是由 VXLAN 程序来发出的，而不是由 container 发出的，因为宿主机无法才开 VXLAN 的头部信息，所以也就读不了 VXLAN 下面的真实目的 IP 和 MAC)(说白了，可以把实现 VXLAN 功能的 flannel 当做一个运行在 linux 上的程序，数据包是由这个 flannel 发出来的。其余 VXLAN 的机制也是同理)
+    - 添加 Outer UDP Header。然后 Linux 内核会把这个数据帧封装进一个 UDP 包，跟 UDP 模型一样，在宿主机看来，会认为自己的 flannel.1 设备只是在向外另外一台宿主机的 flannel.1 设备，发起了一次普通的 UDP 链接，并不会知道这个 UDP 包里，还有一个完成的二层数据帧（从宿主机看，就是 vxlan 这个模块或者说 flannel.1 设备，发送了一份数据，数据内容是什么，Linux 内核不关心）。不过，flannel.1 设备知道另一端设备的 MAC 地址，但是却不知道对应的宿主机地址是什么，那么这个 UDP 包应该发给哪台宿主机呢？
+    - 添加 Outer IP Header。在这种情况下，flannel.1 实际上扮演了一个网桥的角色，网桥设备进行转发的依据，来自于一个 FDB(Forwarding Database)的转发数据库，这个 FDB 的信息也是由 flanneld 进程维护的，当 node2 加入 flannel 网络后，会在 node1 的 FDB 记录对端 VTEP 的信息 5e:f8:4f:00:e3:37 dev flannel.1 dst 10.168.0.3 self permanent(可以通过 bridge fdb show flannel.1 | grep 5e:f8:4f:00:e3:37 命令查到,意思是：MAC 地址为“目的 VTEP”设备的数据包，会经过 flannel.1 设备，发送到目的地是 10.168.0.3 的主机上)。所以接下来的流程就是一个正产的宿主机网络上的封包工作，flannel.1 设备会把 FDB 的信息告诉 Linux 内核要发送个谁，Linux 内核的网络栈就会进行后续封装，把对端 VTEP 设备的 MAC 地址所在的 IP 封装到数据包的头部。
+    - 添加 Outer Ethernet Header。Linux 内核在这个数据包前面加上 Node2 的 MAC 地址，这个 MAC 是本身设备网络栈 ARP 表要学习到的，无需 flannel 维护。
+    - 这时候，封包工作完成了。实际上就是 flannel.1 设备发送了一个数据给宿主机，至于数据中的内容，则是宿主机不关心的。当对端宿主机把最外层的封装解开后，发现 VXLAN 的标记，自然会交由本机可以处理 VXLAN 的网络设备来进行处理。
 - Node1 上的 flannel.1 设备把封装好后的数据帧从 node1 的 eth0 网卡发出去
 - node2 收到数据帧后，拆开发现 VXLAN 头，根据 VNI 值交给本地的 flannel.1 设备，flannel.1 设备进一步拆包获取“原始 IP 包”，并把该包送入对应的 Container-2 中。
 - Container-2 的响应，与前面的描述一样，只不过是从 node2 开始封装，到 node1 后解封装
@@ -182,9 +185,11 @@ pod 到外网
 
 Node 1 为例：
 
-    $ ip route
-    ...
-    10.244.1.0/24 via 10.168.0.3 dev eth0
+```bash
+$ ip route
+...
+10.244.1.0/24 via 10.168.0.3 dev eth0
+```
 
 这条路由规则的含义是：目的 IP 地址属于 10.244.1.0/24 网段的 IP 包，应该经过本机的 eth0 设备发出去（即：dev eth0）；并且，它下一跳地址（next-hop）是 10.168.0.3（即：via 10.168.0.3）。
 
@@ -220,7 +225,7 @@ Note:在了解过 Calico 的工作方式之后，其实会有这么一个疑问�
 - Note:该文件会由将 Flannel 分配的子网信息都记录下来，并交给每个节点的 cni0 或者 flannel0 使用，如果想要修改 flannel 配置，则需要删除每个节点上的这个文件，该文件内容如下所示
 
 ```
-[root@master-1 CNI]# cat /run/flannel/subnet.env
+~]# cat /run/flannel/subnet.env
 FLANNEL_NETWORK=10.252.0.0/16
 FLANNEL_SUBNET=10.252.0.1/24
 FLANNEL_MTU=1500
@@ -314,15 +319,15 @@ rm -f /etc/cni/net.d/*
 
 ```bash
 # 创建cni0设备，指定类型为网桥
-# ip link add cni0 type bridge
-# ip link set dev cni0 up
-// 为cni0设置ip地址，这个地址是pod的网关地址，需要和flannel.1对应网段
-# ifconfig cni0 172.28.0.1/25
-// 为cni0设置mtu为1450
-# ifconfig cni0 mtu 1450 up
+~]# ip link add cni0 type bridge
+~]# ip link set dev cni0 up
+# 为cni0设置ip地址，这个地址是pod的网关地址，需要和flannel.1对应网段
+~]# ifconfig cni0 172.28.0.1/25
+# 为cni0设置mtu为1450
+~]# ifconfig cni0 mtu 1450 up
 
-// 查看创建情况
-# ifconfig cni0
+# 查看创建情况
+~]# ifconfig cni0
 cni0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1450
         inet 172.28.0.1  netmask 255.255.255.128  broadcast 172.28.0.127
         ether 0e:5e:b9:62:0d:60  txqueuelen 1000  (Ethernet)
@@ -330,8 +335,8 @@ cni0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1450
         RX errors 0  dropped 0  overruns 0  frame 0
         TX packets 629306  bytes 925100055 (925.1 MB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-// 此时查看路由表，也已经有了去往本机pod网段的cni0信息
-# route -n | grep cni0
+# 此时查看路由表，也已经有了去往本机pod网段的cni0信息
+~]# route -n | grep cni0
 172.28.0.0      0.0.0.0         255.255.255.128 U     0      0        0 cni0
 ```
 
