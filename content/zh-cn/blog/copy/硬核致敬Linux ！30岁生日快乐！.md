@@ -1,6 +1,7 @@
 ---
 title: "硬核致敬Linux ！30岁生日快乐！"
 linkTitle: "硬核致敬Linux ！30岁生日快乐！"
+slug: "cE4x63tYxoqrDinifeWqeg"
 date: 2021-08-26
 ---
 
