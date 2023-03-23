@@ -246,7 +246,38 @@ Hugo 模块是一个类似 Go 模块一样的存在。模块可以是我们的�
 
 Hugo 运行时所需的缓存目录。包括需要使用的模块等：
 - Windows:
-	- **%TMP%/hugo_cache/\***
+	- **%TMP%/hugo_cache/**
 - Linux:
-	- **${TMP}/hugo_cache/\***
+	- **${TMP}/hugo_cache/**
+
+# Hugo 与 Obsidian
+
+
+## URL 与 markdown 链接问题
+
+> 参考：
+> - https://cloud.tencent.com/developer/article/1688894
+
+Obsidian 内部链接是这种格式 `[B cd](/A/b/B%20cd.md)`
+
+Hugo 生成的内容资源的 URL 是 https://demo.org/a/b/b-cd
+
+此时，如果我们从页面点击 B cd，将会跳转到 https://demo.org/A/b/B-cd 页面，此时将会看到 404。。。。
+
+解决方式：
+
+在 hugo.config 中添加 `disablePathToLower = true` 配置，以关闭转换为小写的功能。
+
+在 layouts/404.html 中添加如下脚本：
+
+```js
+<script>
+  var currenturl = location.href.toLocaleLowerCase().replace("%20", "-").replace(".md", "");
+  if (currenturl != location.href) {
+    location.href = currenturl;
+  }
+</script>
+```
+
+此时跳转到 404 时，将会去掉 `.md` 后缀，以及将 `%20` 替换成 `-`
 
