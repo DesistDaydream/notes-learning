@@ -4,7 +4,8 @@ title: Kubernetes 衍生品
 
 # ClusterAPI 概述
 
-参考：[官方文档](https://cluster-api.sigs.k8s.io/)
+> 参考：
+> - [官方文档](https://cluster-api.sigs.k8s.io/)
 
 ## 为什么要建立集群 API？
 
@@ -20,19 +21,26 @@ SIG 集群生命周期开始了 ClusterAPI 项目，以此作为通过构建声�
 
 # CNCF 的 Software conformance(软件一致性)
 
-参考：[官方文档](https://www.cncf.io/certification/software-conformance/)
+> 参考：
+> - [官方文档](https://www.cncf.io/certification/software-conformance/)
+
 Certified Kubernetes(经过认证的 Kubernetes)
+
 对于使用 Kubernetes 的组织，一致性可以实现从一个 Kubernetes 安装到下一个 Kubernetes 安装的互操作性。它使他们可以灵活地在供应商之间进行选择。
 
 CNCF 运行 Kubernetes 认证合格计划。大多数全球领先的企业软件供应商和云计算提供商都拥有 [经过认证的 Kubernetes](https://www.cncf.io/certification/software-conformance/#logos) 产品。
 
-**有超过 90 种经过认证的 Kubernetes 产品。**邀请所有供应商提交一致性测试结果，以供 CNCF 审核和认证。如果您的公司提供基于 Kubernetes 的软件，我们建议您立即获得认证。
+**有超过 90 种经过认证的 Kubernetes 产品**。邀请所有供应商提交一致性测试结果，以供 CNCF 审核和认证。如果您的公司提供基于 Kubernetes 的软件，我们建议您立即获得认证。
 
 # Kubernetes 管理工具
 
-[Rancher](https://www.yuque.com/go/doc/33161032)
+[Rancher](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/Kubernetes%20衍生品/Rancher/Rancher.md)
+
+[Kubesphere](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/Kubernetes%20衍生品/Kubesphere/Kubesphere.md)
+
 [Kuboard](https://github.com/eip-work/kuboard-press)
+
 
 # Kubernetes 发行版
 
-K3S
+[K3S](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20容器编排系统/Kubernetes%20衍生品/K3S/K3S.md)

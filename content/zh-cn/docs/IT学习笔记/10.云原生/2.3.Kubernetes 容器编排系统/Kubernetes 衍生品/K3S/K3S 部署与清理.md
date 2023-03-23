@@ -1,5 +1,6 @@
 ---
 title: K3S 部署与清理
+slug: "k3s-deploy"
 ---
 
 # 概述

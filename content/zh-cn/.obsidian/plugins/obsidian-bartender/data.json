@@ -907,7 +907,7 @@
     "docs/IT学习笔记/6.可观测性/Grafana": [
       "docs/IT学习笔记/6.可观测性/Grafana/_index.md",
       "docs/IT学习笔记/6.可观测性/Grafana/Grafana.md",
-      "docs/IT学习笔记/6.可观测性/Grafana/Grafna 数据模型.md",
+      "docs/IT学习笔记/6.可观测性/Grafana/Grafana 数据模型.md",
       "docs/IT学习笔记/6.可观测性/Grafana/Grafana 配置详解",
       "docs/IT学习笔记/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)",
       "docs/IT学习笔记/6.可观测性/Grafana/Plugins(插件).md",
@@ -1197,6 +1197,26 @@
       "docs/IT学习笔记/10.云原生/云原生应用管理/Kustomize/_index.md",
       "docs/IT学习笔记/10.云原生/云原生应用管理/Kustomize/Kustomize.md",
       "docs/IT学习笔记/10.云原生/云原生应用管理/Kustomize/Kustomization Manifest 详解.md"
+    ],
+    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/K3S": [
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/K3S/_index.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/K3S/K3S.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/K3S/K3S 部署与清理.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/K3S/K3S 配置详解.md"
+    ],
+    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品": [
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/_index.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/Kubernetes 衍生品.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/kube-vip.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/K3S",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/Kubesphere",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/Rancher",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/SealOS"
+    ],
+    "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/Kubesphere": [
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/Kubesphere/_index.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/Kubesphere/Kubesphere.md",
+      "docs/IT学习笔记/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/Kubesphere/Kubesphere 部署与清理.md"
     ]
   },
   "actionBarOrder": {},

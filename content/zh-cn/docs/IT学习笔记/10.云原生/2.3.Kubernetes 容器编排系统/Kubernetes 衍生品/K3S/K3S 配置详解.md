@@ -1,5 +1,6 @@
 ---
 title: K3S 配置详解
+slug: "k3s-config"
 ---
 
 # 概述

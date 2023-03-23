@@ -1,5 +1,5 @@
 ---
-title: Grafna 数据模型
+title: Grafana数据模型
 ---
 
 # 概述
