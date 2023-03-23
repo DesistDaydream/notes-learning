@@ -9,7 +9,7 @@
 </main>
 {{/* markdown 中空格是 %20，hugo 生成 url 时会将 %20 都转为 -。另外，markdown 中的连接末尾带个 .md 后缀，但是 hugo 生成 URL 时会去掉后缀 */}}
 <script>
-  var currenturl = location.href.replace("%20", "-").replace(".md", "");
+  var currenturl = location.href.replace(/%20/g, "-").replace(".md", "");
   if (currenturl != location.href) {
     location.href = currenturl;
   }

@@ -272,12 +272,12 @@ Hugo 生成的内容资源的 URL 是 https://demo.org/a/b/b-cd
 
 ```js
 <script>
-  var currenturl = location.href.toLocaleLowerCase().replace("%20", "-").replace(".md", "");
+  var currenturl = location.href.replace(/%20/g, "-").replace(".md", "");
   if (currenturl != location.href) {
     location.href = currenturl;
   }
 </script>
 ```
 
-此时跳转到 404 时，将会去掉 `.md` 后缀，以及将 `%20` 替换成 `-`
+此时跳转到 404 时，将会去掉 `.md` 后缀，以及将所有的 `%20` 替换成 `-`
 
