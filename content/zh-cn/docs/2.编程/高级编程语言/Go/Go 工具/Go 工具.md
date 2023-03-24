@@ -20,11 +20,18 @@ go 是一个工具，用来管理 Go 语言编写的代码。该工具由多个�
 
 ## bug # start a bug report
 
-## [build](https://pkg.go.dev/cmd/go#hdr-Compile_packages_and_dependencies) # 编译 package 及其依赖
+## build # 编译 package 及其依赖
+
+https://pkg.go.dev/cmd/go#hdr-Compile_packages_and_dependencies
 
 默认编译当前路径下的代码包及其依赖，生成一个可执行文件
+
 OPTIONS
 
+- **-ldflags \<[PATTERN=]ARG>** # 向链接器传递一些参数。这些参数可用于指定编译时需要使用的一些信息，例如项目版本号、Git 提交 ID、构建时间、构建平台和架构等元数据信息
+    - 比如：
+        - -ldflags "-X main.version=1.0.0 -X 'main.buildTime=`date`'"
+        - -ldflags "-s -w" # 告诉链接器在生成可执行文件时忽略调试信息和符号表，从而使得你的二进制文件更加紧凑而且不再可读。
 - **-o \<NAME>** # 指定构建完成后生成的文件名为 NAME
 - **-x** # 输出 Go 程序编译、链接、打包的全过程。包括都使用了哪些库、执行了什么命令、等等
 

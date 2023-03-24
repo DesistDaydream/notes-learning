@@ -1250,6 +1250,28 @@
       "docs/9.运维/Standardized Glossary(标准化术语)/_index.md",
       "docs/9.运维/Standardized Glossary(标准化术语)/Standardized Glossary(标准化术语).md",
       "docs/9.运维/Standardized Glossary(标准化术语)/SRE 到底是干什么的？？.md"
+    ],
+    "docs/1.操作系统/Y.Windows 管理/Windows管理工具": [
+      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/_index.md",
+      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/PowerShell内置管理工具",
+      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/其他.md"
+    ],
+    "docs/1.操作系统/X.Linux 管理/Linux 文本处理": [
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/_index.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Linux 文本处理.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/sed.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/awk.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/grep.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/jq 命令行工具.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/printf 与 echo 文本输出命令.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Windows文件换行符转Linux换行符.md"
+    ],
+    "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim": [
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim/_index.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim/Vim.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim/Vim 黄色阴影处理.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim/Vim中复制粘贴缩进错乱问题的解决方案.md"
     ]
   },
   "actionBarOrder": {},

@@ -386,9 +386,9 @@ WireGuard 也可以跑在容器中，最简单的方式是使用 `--privileged` 
     AllowedIPs = 192.0.2.1/24,0.0.0.0/0
     PersistentKeepalive = 21
 
-# WireGuard 关联文件
+# WireGuard 关联文件与配置
 
-**/etc/wireguard/\*** # WireGuard 运行时配置文件的存放路径。
+**/etc/wireguard/** # WireGuard 运行时配置文件的存放路径。
 
 # 命令行工具
 

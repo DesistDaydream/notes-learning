@@ -18,6 +18,7 @@ weight: 20
 
 ### Syntax(语法)
 **OPTIONS**
+
 - **-Path \<STRING>** # 指定一个或多个位置的路径，可以使用通配符。`默认值：.`
 
 ### EXAMPLE

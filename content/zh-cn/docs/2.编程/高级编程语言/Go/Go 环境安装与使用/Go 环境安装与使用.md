@@ -33,7 +33,7 @@ sudo tee /etc/profile.d/go.sh > /dev/null <<-"EOF"
 # export PATH=$PATH:\$GOPATH/bin:/usr/local/go/bin
 export PATH=$PATH:/usr/local/go/bin
 export GO111MODULE=on
-export GOPROXY=https://goproxy.cn,https://goproxy.io,https://mirrors.aliyun.com/goproxy/,direct
+export GOPROXY=https://goproxy.cn,https://goproxy.io,direct
 export CGO_ENABLED=0
 EOF
 

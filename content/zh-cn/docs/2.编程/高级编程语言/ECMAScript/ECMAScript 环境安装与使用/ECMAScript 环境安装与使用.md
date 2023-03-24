@@ -85,7 +85,7 @@ Browser 和 Node.js 都是 ECMAScript 的运行时环境，但是这两者可以
 从[官网](https://nodejs.org/zh-cn/download/)下载 Linux 版的 `.tar.xg` 包，并解压
 
 ```bash
-export NodejsVersion="v16.15.0"
+export NodejsVersion="v18.15.0"
 wget https://nodejs.org/dist/${NodejsVersion}/node-${NodejsVersion}-linux-x64.tar.xz
 tar -xvf node-${NodejsVersion}-linux-x64.tar.xz -C /usr/local/
 

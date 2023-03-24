@@ -187,10 +187,10 @@ mysql> select * from pet;
 
 - null | not null # 指定该列是否可以插入 null 值。默认为 yes，可以插入。一般情况使用设置为 not null,原因见下面说明。
 - default \[VALUE] # 指定该列在插入数据为空时的默认值。默认插入 NULL。
-  - Note:如果当前列不设定 default 的 VALUE ，在插入数据时，如果不指定列的值。则会根据列的 null 或者 not null 来插入值
-  - 当 null 为 yes 时，默认插入 null
-  - 当 null 为 no 时，默认根据当前列的类型插入值,对于数值类型插入 0，字符串类型插入空字符串，时间戳类型插入当前日期和时间，ENUM 类型插入枚举组的第一条。
-  - e.g.当设置列为 not null、default 不指定 VALUE 时。在插入一个空值时，会报错。因为插入空值，会根据 default 的规则插入 null，但是又不能插入 null，所以插入失败
+    - Note:如果当前列不设定 default 的 VALUE ，在插入数据时，如果不指定列的值。则会根据列的 null 或者 not null 来插入值
+    - 当 null 为 yes 时，默认插入 null
+    - 当 null 为 no 时，默认根据当前列的类型插入值,对于数值类型插入 0，字符串类型插入空字符串，时间戳类型插入当前日期和时间，ENUM 类型插入枚举组的第一条。
+    - e.g.当设置列为 not null、default 不指定 VALUE 时。在插入一个空值时，会报错。因为插入空值，会根据 default 的规则插入 null，但是又不能插入 null，所以插入失败
 - comment # 指定该列的注释
 - key | primary key | unique key | foreign key <(Column_Name)> # 指定 Column_Name 为该表的索引
 - primary key # 关键字用于定义列为主键。 您可以使用多列来定义主键，列间以逗号分隔。
@@ -221,7 +221,7 @@ primary key (`id`)
 )engine=innodb default charset=utf8;
 ```
 
-- \#创建一个名为 size 的表。
+- 创建一个名为 size 的表。
 
 ```sql
 create table `size` (
