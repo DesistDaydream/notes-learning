@@ -19,7 +19,9 @@ virsh 有两种使用方式
 # Syntax(语法)
 
 **virsh \[OPTION]... \[COMMAND_STRING]**
+
 **virsh \[OPTION]... COMMAND \[ARG]...**
+
 注意：
 
 - DOMAIN 的说明：libvirt 使用 domain 代指 VM，所有关于 domain 的描述都可以理解为 VM 或者 instance

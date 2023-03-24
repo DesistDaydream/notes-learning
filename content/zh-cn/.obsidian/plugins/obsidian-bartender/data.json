@@ -653,6 +653,7 @@
     ],
     "docs/12.人工智能": [
       "docs/12.人工智能/_index.md",
+      "docs/12.人工智能/12.人工智能.md",
       "docs/12.人工智能/计算机视觉",
       "docs/12.人工智能/深度学习框架.md",
       "docs/12.人工智能/OpenAI"
@@ -1146,7 +1147,7 @@
     "docs/9.运维": [
       "docs/9.运维/_index.md",
       "docs/9.运维/Standardized Glossary(标准化术语)",
-      "docs/9.运维/自动化运维.md",
+      "docs/9.运维/运维.md",
       "docs/9.运维/Ansible",
       "docs/9.运维/Cobbler",
       "docs/9.运维/PXE 简介.md",
@@ -1238,6 +1239,17 @@
       "docs/实用工具/网站搭建/Hugo/命令行工具.md",
       "docs/实用工具/网站搭建/Hugo/主题",
       "docs/实用工具/网站搭建/Hugo/站点管理.md"
+    ],
+    "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP": [
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP/_index.md",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP/TCP.md",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP/常见 TCP 端口号.md",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP/其他.md"
+    ],
+    "docs/9.运维/Standardized Glossary(标准化术语)": [
+      "docs/9.运维/Standardized Glossary(标准化术语)/_index.md",
+      "docs/9.运维/Standardized Glossary(标准化术语)/Standardized Glossary(标准化术语).md",
+      "docs/9.运维/Standardized Glossary(标准化术语)/SRE 到底是干什么的？？.md"
     ]
   },
   "actionBarOrder": {},
