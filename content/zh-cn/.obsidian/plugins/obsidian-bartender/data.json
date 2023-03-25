@@ -1272,6 +1272,13 @@
       "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim/Vim.md",
       "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim/Vim 黄色阴影处理.md",
       "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim/Vim中复制粘贴缩进错乱问题的解决方案.md"
+    ],
+    "docs/2.编程/高级编程语言/ECMAScript/Vue": [
+      "docs/2.编程/高级编程语言/ECMAScript/Vue/_index.md",
+      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue.md",
+      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 环境安装与使用.md",
+      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 响应式.md",
+      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 组件.md"
     ]
   },
   "actionBarOrder": {},

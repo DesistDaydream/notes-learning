@@ -39,10 +39,10 @@ npm 有一个自带的配置 PREFIX，PREFIX 用来定位目录前缀，以决�
 当我们使用包管理命令安装各种第三方库(依赖包)及其衍生物通常会保存在名为 `node_modules/` 目录下，通常会有两个地方有 node_modules 目录：
 
 - **Locally(本地)** # 这是默认的行为，安装的东西放在当前目录的 `./node_modules/` 目录中
-  - 当我们想要在代码中使用 require() 或 import 导入模块时，通常安装在本地
+    - 当我们想要在代码中使用 require() 或 import 导入模块时，通常安装在本地
 - **Globally(全局)** # 使用 `-g` 选项，将安装的东西放在 `${PREFIX}/lib/node_modules/` 目录中
-  - 若安装的东西中具有可以在 CLI 执行的工具，则同时会在 `${PREFIX}/bin/` 目录下生成指向原始文件的软链接，`${PREFIX}/bin/` 目录通常都会加入到 `${PATH}` 变量中。
-  - 当我们安装的包可以在命令行执行时，通常安装在全局
+    - 若安装的东西中具有可以在 CLI 执行的工具，则同时会在 `${PREFIX}/bin/` 目录下生成指向原始文件的软链接，`${PREFIX}/bin/` 目录通常都会加入到 `${PATH}` 变量中。
+    - 当我们安装的包可以在命令行执行时，通常安装在全局
 
 > 注意：Windows 的全局 node_modules 目录与 Linux 不太一样，全局路径是 ${PREFIX}/node_modeuls。也就是说生成的链接文件就在 ${PREFIX} 下。
 
@@ -206,6 +206,23 @@ install 可以简写为 i。
 ## npm list
 
 列出所有已经安装的包。默认列出当前项目中已安装的包，通常检查如下目录：`node_modules/`
+
+## npm outdated
+
+此命令将检查注册表，查看是否有任何（或指定的）已安装包目前已过时。
+
+默认情况下，只显示根项目的直接依赖项和已配置的工作区的直接依赖项。使用--all查找所有过时的元依赖项。
+
+在输出中:
+- wanted # 是满足package.json中指定的semver范围的软件包的最大版本。如果没有可用的semver范围（即您在运行npm outdated --global或包未包含在package.json中），则wanted显示当前安装的版本。
+- latest # 是注册表中标记为当前版本的软件包的版本。在没有特殊配置的情况下运行npm publish将使用最新的dist-tag发布该软件包。这可能是软件包的最大版本，也可能是软件包的最近发布版本，这取决于包开发人员如何管理最新npm help dist-tag。
+- location 是软件包在物理树中的位置。
+- depended by # 显示依赖于显示依赖项的软件包
+- package type # （使用--long / -l时）告诉您此软件包是依赖项还是开发/同行/可选依赖项。始终标记未包含在package.json中的软件包的依赖项。
+- homepage # （使用--long / -l时）是包的packument中包含的主页值
+- 红色表示存在符合您的 semver 要求的更新版本，因此您应立即更新。
+- 黄色表示有一个新的版本超出了您的 semver 要求（通常是新主要版本或新的0.x次要版本），因此请小心进行。
+
 
 ## npm update
 

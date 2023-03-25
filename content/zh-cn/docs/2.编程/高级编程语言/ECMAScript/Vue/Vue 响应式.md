@@ -12,7 +12,9 @@ ref 与 reactive 是响应式的基础
 
 # 响应式: 核心
 
-## [ref()](https://cn.vuejs.org/api/reactivity-core.html#ref)
+## ref()
+
+https://cn.vuejs.org/api/reactivity-core.html#ref
 
 `ref()` 函数返回一个 `Ref<T = any>` 接口类型的对象，该接口中只有一个名为 `value` 的属性，用以指向该对象的值。
 `Ref<T>` 接口对象是 **响应式**、**可更改** 的。
@@ -26,9 +28,13 @@ Ref 对象是可更改的，也就是说你可以为 .value 赋予新的值。�
 如果将一个对象赋值给 ref，那么这个对象将通过 [reactive()](https://cn.vuejs.org/api/reactivity-core.html#reactive) 转为具有深层次响应式的对象。这也意味着如果对象中包含了嵌套的 ref，它们将被深层地解包。
 若要避免这种深层次的转换，使用 [shallowRef()](https://cn.vuejs.org/api/reactivity-advanced.html#shallowref) 来替代。
 
-## [computed ()](https://cn.vuejs.org/api/reactivity-core.html#computed)
+## computed ()
 
-## [reactive()](https://cn.vuejs.org/api/reactivity-core.html#reactive)
+https://cn.vuejs.org/api/reactivity-core.html#computed
+
+## reactive()
+
+https://cn.vuejs.org/api/reactivity-core.html#reactive
 
 - [readonly()](https://cn.vuejs.org/api/reactivity-core.html#readonly)
 - [watchEffect()](https://cn.vuejs.org/api/reactivity-core.html#watcheffect)

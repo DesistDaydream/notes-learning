@@ -20,6 +20,7 @@ yarn global add @vue/cli
 # 创建 Vue 项目
 
 > 参考：
+> 
 > - [官方文档，快速上手-创建一个 Vue 应用](https://cn.vuejs.org/guide/quick-start.html#creating-a-vue-application)
 > - [GitHub 项目，vitejs/awesome-vite](https://github.com/vitejs/awesome-vite)（一些使用 vite 创建的应用模板，可以直接拿来用）
 >   - [Vue Naive](https://github.com/zclzone/vue-naive-admin) - 管理模板，基于 Vue 3 + Pinia + Naive UI。

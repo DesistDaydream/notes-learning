@@ -13,7 +13,7 @@ title: Vue 组件
 - 变量，通过 Props。
   - 关键字：v-bind
 - 模板，通过 Slots
-  - 关键字：<template>、v-slot
+  - 关键字：\<template>、v-slot
 - 事件，通过 Event
   - 关键字：v-model、v-on、emit
 
