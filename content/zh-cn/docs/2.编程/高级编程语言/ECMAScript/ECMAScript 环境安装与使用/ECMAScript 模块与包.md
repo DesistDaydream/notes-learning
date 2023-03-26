@@ -10,7 +10,7 @@ weight: 2
 > - [网道，ES6 教程-Module 的语法](https://wangdoc.com/es6/module.html)
 > - <https://www.zhangxinxu.com/wordpress/2018/08/browser-native-es6-export-import-module/>
 
-历史上，JavaScript 一直没有 Module(模块) 体系，无法将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。其他语言都有这项功能，比如 Ruby 的 require、Python 的 import，甚至就连 CSS 都有@import，但是 JavaScript 任何这方面的支持都没有，这对开发大型的、复杂的项目形成了巨大障碍。
+历史上，JavaScript 一直没有 **Module(模块)** 体系，无法将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。其他语言都有这项功能，比如 Ruby 的 require、Python 的 import，甚至就连 CSS 都有@import，但是 JavaScript 任何这方面的支持都没有，这对开发大型的、复杂的项目形成了巨大障碍。
 
 在 ES6 之前，社区制定了一些模块加载方案，最主要的有 2009 年 1 月发起的 CommonJS 和 AMD 两种，前者用于服务器，后者用于浏览器。
 
@@ -94,7 +94,9 @@ import { stat, exists, readFile } from "fs"
 ## 浏览器中使用 ESM 的常见问题
 
 使用 `import * as Vue from 'vue'` 将会产生如下报错：
+
 `Failed to resolve module specifier "vue". Relative references must start with either "/", "./", or "../".`
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/mm0ymr/1651724399014-d2052b6f-cd7c-4ec0-b6fc-b748bd5a11ed.png)
 接着修改为 `import * as Vue from '../node_modules/vue'` 将会产生如下报错：
 `Failed to load module script: The server responded with a non-JavaScript MIME type of "text/html". Strict MIME type checking is enforced for module scripts per HTML spec.`
@@ -102,7 +104,9 @@ import { stat, exists, readFile } from "fs"
 > ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/mm0ymr/1651724430503-b62b86bd-4cc7-48b8-ac73-69fa62564ed5.png "firefox")
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/mm0ymr/1651724407422-526db251-775f-40d5-a25e-402791aa38cc.png "chrome")
+
 问题原因：
+
 这个情况的原因是浏览器在处理 import 逻辑时导致的。浏览器在发现 import 语句时，将会请求 from 后面的静态文件，当 from 指定的是模块名称而不是模块文件的路径时时，浏览器无法发起请求，因为浏览器不知道如何获取到模块文件。
 
 解决方式：

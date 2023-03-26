@@ -4,18 +4,19 @@ title: Vue 组件
 
 # 概述
 
->
+> 参考：
+> - [官方文档，基础-组件基础](https://cn.vuejs.org/guide/essentials/component-basics.html)
 
 # 组件间数据传递
 
 在 Vue 中，组件之间可以传递多种类型的数据
 
 - 变量，通过 Props。
-  - 关键字：v-bind
+    - 关键字：v-bind
 - 模板，通过 Slots
-  - 关键字：\<template>、v-slot
+    - 关键字：\<template>、v-slot
 - 事件，通过 Event
-  - 关键字：v-model、v-on、emit
+    - 关键字：v-model、v-on、emit
 
 ## Props
 

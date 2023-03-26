@@ -193,13 +193,15 @@ install 可以简写为 i。
 
 ## npm init
 
-创建一个 package.json 文件。用来初始化一个项目
+> 别名：create、innit
+
+创建一个 package.json 文件。用来初始化一个项目。
+
+可以指定一个 **Initializer(初始化程序)** 并执行其 bin/ 下的 js/ts 文件以运行其他与初始化相关的操作。
 
 ### Syntax(语法)
 
-**npm init [--force|-f|--yes|-y|--scope]**
-**npm init <@scope> (same as `npx <@scope>/create`)**
-**npm init [<@scope>]\<name> (same as `npx [<@scope>/]create-<name>`)**
+npm init [INITIALIZER]
 
 **OPTIONS**
 
@@ -227,6 +229,21 @@ install 可以简写为 i。
 ## npm update
 
 更新已安装的包
+
+## 最佳实践
+
+一个全局模块的声明周期
+
+```bash
+# 安装
+npm install -g vite
+# 列出
+npm list -g
+# 更新
+npm update -g vite
+# 卸载
+npm uninstall -g vite
+```
 
 # Yarn
 

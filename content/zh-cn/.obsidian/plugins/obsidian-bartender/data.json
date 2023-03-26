@@ -1279,6 +1279,12 @@
       "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 环境安装与使用.md",
       "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 响应式.md",
       "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 组件.md"
+    ],
+    "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具": [
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/_index.md",
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/ECMAScript 工具.md",
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/代码格式化.md",
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/Vite.md"
     ]
   },
   "actionBarOrder": {},

@@ -126,10 +126,15 @@ export default {
 ## 可以学习的项目
 
 <https://github.com/HalseySpicy/Geeker-Admin> # Geeker Admin，基于 Vue3.2、TypeScript、Vite2、Pinia、Element-Plus 开源的一套后台管理框架。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/cye267/1667712440759-38351016-d3de-4246-96ce-f139fb24099c.png)
+
 <https://github.com/flipped-aurora/gin-vue-admin> # 基于 vite+vue3+gin 搭建的开发基础平台（支持 TS,JS 混用），集成 jwt 鉴权，权限管理，动态路由，显隐可控组件，分页封装，多点登录拦截，资源权限，上传下载，代码生成器，表单生成器等开发必备功能。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/cye267/1667712396903-5c478114-4b5d-42c8-9caf-e301ac58f2fc.png)
+
 <https://github.com/go-admin-team/go-admin> # 基于 Gin + Vue + Element UI 的前后端分离权限管理系统脚手架（包含了：多租户的支持，基础用户管理功能，jwt 鉴权，代码生成器，RBAC 资源控制，表单构建，定时任务等）3 分钟构建自己的中后台项目；
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/cye267/1667712379792-273c7485-92f4-46ed-9a98-65e745b1c8df.png)
 
 # Vue 指令
