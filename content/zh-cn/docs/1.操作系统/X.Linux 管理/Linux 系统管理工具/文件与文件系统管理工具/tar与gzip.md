@@ -6,9 +6,9 @@ title: tar与gzip
 
 > 参考：
 >
-> - [Manual(手册),tar(1)](https://man7.org/linux/man-pages/man1/tar.1.html)
+> - [Manual(手册)，tar(1)](https://man7.org/linux/man-pages/man1/tar.1.html)
 
-tar 是一个归档工具
+tar 是一个归档工具，用以实现 [Archive File(归档文件)](/docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/Archive%20File(归档文件).md)
 
 ## Syntax(语法)
 
@@ -52,6 +52,7 @@ gzip 是在 Linux 系统中经常使用的一个对文件进行压缩和解压�
 - -<压缩效率>：压缩效率是一个介于 1~9 的数值，默认值为 6，指定越大的数值，压缩效率就会越高
 
 **EXAMPLE**
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/xft64c/1616166289989-3b7ed972-966f-410f-a3e8-78d2e6836881.jpeg)
 
 - gzip -r .backup # 递归压缩.backup 目录下的所有文件以及子目录的文件，效果如右图所示，压缩只能对单个文件压缩，注意与 tar 打包命令的区别
@@ -113,6 +114,7 @@ drwxr-xr-x sk/users 0 2018-07-02 19:30 ostechnix/
 ## 使用 rar 命令
 
 要查看一个 rar 文件的内容，只需要执行：
+
 $ rar v ostechnix.rar
 RAR 5.60 Copyright (c) 1993-2018 Alexander Roshal 24 Jun 2018
 Trial version Type 'rar -?' for help
@@ -129,6 +131,7 @@ rw-r--r-- 53632 52166 97% 2018-06-29 15:57 70260AC4 ostechnix/image.jpg
 ## 使用 unrar 命令
 
 你也可以使用带有 l 选项的 unrar 来做到与上面相同的事情，展示如下：
+
 $ unrar l ostechnix.rar
 UNRAR 5.60 freeware Copyright (c) 1993-2018 Alexander Roshal
 Archive: ostechnix.rar
