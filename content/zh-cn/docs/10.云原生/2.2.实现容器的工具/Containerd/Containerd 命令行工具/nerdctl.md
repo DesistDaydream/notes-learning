@@ -6,7 +6,7 @@ title: nerdctl
 
 > 参考：
 >
-> - [GitHub 项目](https://github.com/containerd/nerdctl)
+> - [GitHub 项目，containerd/nerdctl](https://github.com/containerd/nerdctl)
 > - [官方文档,命令参考](https://github.com/containerd/nerdctl#command-reference)
 
 ## Network
@@ -83,17 +83,23 @@ NETWORK ID    NAME              FILE
 ## 现存问题
 
 v0.12.1 版本
+
 通过 build 构建完镜像后，会产生一个相同 ID 无名的空镜像
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ws1t24/1631632584319-b6131f0b-6269-422d-a203-045ab0b2538f.png)
+
 执行 nerdctl rmi 命令时，tab 无法补全，但是 `nerctl image rm` 可以补全，但是无法删除那两个空镜像
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ws1t24/1631632732271-b95cef43-e60b-4fd2-842a-1f0a80cb5dac.png)
 
 # nerdctl 关联文件与配置
 
 **/var/lib/nerdctl/\*** # nerdctl 的默认 DataRoot，即 nerdctl 运行容器时所产生的文件保存路径。
+
 **/etc/nerdctl/nerdctl.toml** # nerdctl 的配置文件，配置文件中的内容通常与命令行标志可以对应。该文件可以通过 `${NERDCTL_TOML}` 改变位置。该配置文件与 /etc/containerd/config.toml 文件无关。
 
 - **~/.config/nerdctl/nerdctl.toml** # Rootless 运行时的配置文件
+- 参考：<https://github.com/containerd/nerdctl/blob/main/docs/config.md>
 
 # Syntax(语法)
 
@@ -104,16 +110,16 @@ v0.12.1 版本
 nerdctl 除了可以通过全局选项改变运行行为，还可以通过环境变量改变。凡是可以通过环境变量指定的全局选项，都会有特殊说明
 
 - **--aaddress, -a, --host, -H \<PATH>** # 指定容器地址。`默认值：/run/containerd/containerd.sock`。可以使用 `unix://` 前缀。
-  - 环境变量：$CONTAINERD_ADDRESS
+    - 环境变量：$CONTAINERD_ADDRESS
 - **-n, --namespace \<STRING>** # 指定容器名称空间。`默认值：default`。通过 docker 运行的在 moby 名称空间中，通过 Kubernetes 运行的容器在 k8s.io 名称空间中。
-  - 环境变量：$CONTAINERD_NAMESPACE
+    - 环境变量：$CONTAINERD_NAMESPACE
 - **--cni-path \<PATH>** # 指定 CNI 插件所需的二进制文件所在目录。`默认值：/opt/cni/bin`
-  - 环境变量：$CNI_PATH
+    - 环境变量：$CNI_PATH
 - **--cni-netconfpath \<PATH>** # 指定 CNI 配置文件所在目录。`默认值：/etc/cni/net.d`
-  - 环境变量：$NETCONFPATH
+    - 环境变量：$NETCONFPATH
 - **--data-root \<PATH>** # nerdctl 持久化数据所在目录。`默认值：/var/lib/nerdctl`。该目录由 nerdctl 管理，而不是 containerd。
 - **--cgroup-manager \<STRING>** # 指定 nerdctl 要使用的 Cgroup 管理器。`默认值：cgroupfs`
-  - 可用的值有： cgroupfs、systemd
+    - 可用的值有： cgroupfs、systemd
 - **--insecure-registry \<BOOLEAN>** # 是否跳过 HTTPS 证书的验证行为，并允许回退到纯 HTTP。`默认值：false`
 
 # Management Commands (管理命令)
