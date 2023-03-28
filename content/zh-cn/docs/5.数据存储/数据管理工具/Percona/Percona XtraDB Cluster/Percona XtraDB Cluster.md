@@ -17,13 +17,13 @@ weight: 1
 > - [官方文档，安装 PXC 集群](https://docs.percona.com/percona-xtradb-cluster/latest/install/index.html)
 
 
-### 使用 Docker 部署
+## 使用 Docker 部署
 
 > 参考：
 > - [Running Percona XtraDB Cluster in a Docker Container - Percona XtraDB Cluster](https://docs.percona.com/percona-xtradb-cluster/8.0/install/docker.html#docker)
 
 
-### 使用 PXC Operator 在 Kubernetes 中部署
+## 使用 PXC Operator 在 Kubernetes 中部署
 
 > 参考：
 > - [官方文档，快速开始指南-使用 kubectl 安装 PXC Operator](https://docs.percona.com/percona-operator-for-mysql/pxc/kubectl.html)
@@ -54,3 +54,10 @@ kubectl apply -n pxc -f operator.yaml
 kubectl apply -n pxc -f secrets.yaml
 
 kubectl apply -n pxc -f cr.yaml
+
+### manifests 配置详解
+
+> 参考：
+> - [官方文档，参考-CR选项](https://docs.percona.com/percona-operator-for-mysql/pxc/operator.html)
+
+#### HAProxy 部分配置

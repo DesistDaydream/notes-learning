@@ -1285,6 +1285,19 @@
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/ECMAScript 工具.md",
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/代码格式化.md",
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/Vite.md"
+    ],
+    "docs/5.数据存储/数据管理工具/Percona": [
+      "docs/5.数据存储/数据管理工具/Percona/_index.md",
+      "docs/5.数据存储/数据管理工具/Percona/Percona.md",
+      "docs/5.数据存储/数据管理工具/Percona/Percona XtraDB Cluster",
+      "docs/5.数据存储/数据管理工具/Percona/Percona Monitoring and Management.md"
+    ],
+    "docs/5.数据存储/2.数据库/关系数据/MySQL": [
+      "docs/5.数据存储/2.数据库/关系数据/MySQL/_index.md",
+      "docs/5.数据存储/2.数据库/关系数据/MySQL/MySQL.md",
+      "docs/5.数据存储/2.数据库/关系数据/MySQL/MySQL 配置文件详解.md",
+      "docs/5.数据存储/2.数据库/关系数据/MySQL/MySQL 命令行工具.md",
+      "docs/5.数据存储/2.数据库/关系数据/MySQL/MySQL 批量SQL插入性能优化.md"
     ]
   },
   "actionBarOrder": {},
