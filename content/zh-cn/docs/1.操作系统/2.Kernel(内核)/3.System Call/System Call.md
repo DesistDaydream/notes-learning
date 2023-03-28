@@ -72,11 +72,11 @@ int main()
 
 在普通用户下编译运用，输出结果为：
 
-    chmod failed, errno = 1
+`chmod failed, errno = 1`
 
 上面系统调用返回的值为-1，说明系统调用失败，错误码为 1，在 /usr/include/asm-generic/errno-base.h 文件中有如下错误代码说明：
 
-    #define EPERM       1                /* Operation not permitted */
+`#define EPERM       1                /* Operation not permitted */`
 
 即无权限进行该操作，我们以普通用户权限是无法修改 /etc/passwd 文件的属性的，结果正确。
 
@@ -94,20 +94,22 @@ long int syscall (long int sysno, ...)
 
 还以上面修改 /etc/passwd 文件的属性为例，这次使用 syscall 直接调用：
 
-    #include <stdio.h>
-    #include <unistd.h>
-    #include <sys/syscall.h>
-    #include <errno.h>
-    int main()
-    {
-    int rc;
-            rc = syscall(SYS_chmod, "/etc/passwd", 0444);
-    if (rc == -1)
-    fprintf(stderr, "chmod failed, errno = %d\n", errno);
-    else
-    printf("chmod succeess!\n");
-    return 0;
-    }
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/syscall.h>
+#include <errno.h>
+int main()
+{
+int rc;
+        rc = syscall(SYS_chmod, "/etc/passwd", 0444);
+if (rc == -1)
+fprintf(stderr, "chmod failed, errno = %d\n", errno);
+else
+printf("chmod succeess!\n");
+return 0;
+}
+```
 
 在普通用户下编译执行，输出的结果与上例相同。
 
