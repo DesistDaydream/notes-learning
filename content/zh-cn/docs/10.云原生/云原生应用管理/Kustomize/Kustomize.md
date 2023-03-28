@@ -5,6 +5,7 @@ title: Kustomize
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，kubernetes-sigs/kustomize](https://github.com/kubernetes-sigs/kustomize)
 > - [官网](https://kustomize.io/)
 > - [官方文档,任务-管理 K8S 对象-使用 Kustomize 对 Kubernetes 对象进行声明式管理](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/)
@@ -137,9 +138,9 @@ ConfigMap 和 Secret 包含其他 Kubernetes 对象（如 Pod）所需要的配�
 
 详见 Kustomization Manifest 详解中的各个字段：
 
-- [configMapGenerator](/docs/IT学习笔记/10.云原生/云原生应用管理/Kustomize/Kustomization%20Manifest%20 详解.md Manifest 详解.md)
-- [secretGenerator](/docs/IT学习笔记/10.云原生/云原生应用管理/Kustomize/Kustomization%20Manifest%20 详解.md Manifest 详解.md)
-- [generatorOptions](/docs/IT学习笔记/10.云原生/云原生应用管理/Kustomize/Kustomization%20Manifest%20 详解.md Manifest 详解.md)
+- [configMapGenerator](/docs/10.云原生/云原生应用管理/Kustomize/Kustomization%20Manifest%20 详解.md Manifest 详解.md)
+- [secretGenerator](/docs/10.云原生/云原生应用管理/Kustomize/Kustomization%20Manifest%20 详解.md Manifest 详解.md)
+- [generatorOptions](/docs/10.云原生/云原生应用管理/Kustomize/Kustomization%20Manifest%20 详解.md Manifest 详解.md)
 
 ## 设置贯穿性字段
 
@@ -371,8 +372,8 @@ spec:
 我们常常会通过命令行来添加一个 secret 对象，kustomize 有一个 edit 的子命令可以用来编辑 kustomization.yaml 文件然后创建一个 secret 对象，比如我们这里添加一个如下所示的 secret 对象：
 
 ```json
-$ cd k8s/overlays/prod
-$ kustomize edit add secret sl-demo-app --from-literal=db-password=12345
+cd k8s/overlays/prod
+kustomize edit add secret sl-demo-app --from-literal=db-password=12345
 ```
 
 上面的命令会修改 kustomization.yaml 文件添加一个 SecretGenerator 字段在里面。
@@ -569,9 +570,9 @@ spec:
 比如我们这里来修改下镜像的 tag：
 
 ```json
-$ cd k8s/overlays/prod
-$ TAG_VERSION=3.4.5
-$ kustomize edit set image foo/bar=foo/bar:$TAG_VERSION
+cd k8s/overlays/prod
+TAG_VERSION=3.4.5
+kustomize edit set image foo/bar=foo/bar:$TAG_VERSION
 ```
 
 一般情况下 TAG_VERSION 常常被定义在 CI/CD 系统中。
@@ -686,7 +687,7 @@ $ tree .
 要安装到集群中也很简单：
 
 ```json
-$ kustomize build k8s/overlays/prod | kubectl apply -f -
+kustomize build k8s/overlays/prod | kubectl apply -f -
 ```
 
 # 总结

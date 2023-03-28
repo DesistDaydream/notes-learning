@@ -19,7 +19,7 @@ title: Deployment Manifest 详解
 
 # metadata: \<Object>
 
-Deployment 对象的元数据，该字段内容详见通用定义的 [ObjectMeta](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/ObjectMeta.md Definitions(通用定义)/ObjectMeta.md)
+Deployment 对象的元数据，该字段内容详见通用定义的 [ObjectMeta](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/ObjectMeta.md Definitions(通用定义)/ObjectMeta.md)
 
 # spec: \<Object>
 
@@ -37,7 +37,7 @@ spec 用来描述一个 Deployment 应该具有的属性。也就是用来定义
 **revisionHistoryLimit: \<INT>**# 可以保留的允许回滚的旧 ReplicaSet 对象的数量。`默认值：10`。控制器的历史可以通过 `kubectl rollout` 命令控制
 **selector: \<Object> # 必须的。**Pod 的标签选择器，根据标签匹配要控制的 Pod。必须与 `template.metadata.labels` 的内容匹配。
 
-- 该字段内容详见通用定义的[ LabelSelector](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md Definitions(通用定义)/LabelSelector 详解.md)。
+- 该字段内容详见通用定义的[ LabelSelector](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md Definitions(通用定义)/LabelSelector 详解.md)。
 
 **strategy: \<Ojbect>** # 定义用一个新的 pod 代替现有 pod 的部署策略(更新 pod 的策略)
 

@@ -6,6 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
+>
 > - [官网](https://ceph.io/)
 > - [官方文档](https://docs.ceph.com/en/latest/)
 > - [Wiki,Ceph](<https://en.wikipedia.org/wiki/Ceph_(software)>)
@@ -32,6 +33,7 @@ Ceph 是一个开源的分布式存储系统，可以提供 对象存储、快�
 ## 架构
 
 > 参考：
+>
 > - [官方文档，架构](https://docs.ceph.com/en/latest/architecture/)
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/sakrws/1630769971104-82bcc0c6-1dbd-4c47-b986-3e5b8321aac0.png)
@@ -90,6 +92,7 @@ RADOS Gateway 简称 radosgw，Ceph 通过 radosgw 程序，可以对外提供�
 # Ceph Manager
 
 > 参考：
+>
 > - [官方文档,Ceph 管理器](https://docs.ceph.com/en/latest/mgr/)
 
 Ceph Manager 是通过一个名为 ceph-mgr 的二进制程序以守护进程运行的管理器。ceph-mgr 可以向外部监控和管理系统提供额外的监控和接口。
@@ -100,8 +103,7 @@ ceph-mgr 曾经是 ceph-mon 的一部分，自 luinous(12.x) 版本依赖，ceph
 
 Dashboard 模块是一个内置的基于 Web 的 Ceph 管理和监控程序，通过它可以检查和管理 Ceph 集群中的各个方面和资源。默认监听 `8443` 端口
 
-在 Dashboard 模块中，提供了一组用于管理集群的 RESTful 风格的 API 接口。这组 API 位于 `/api` 路径下。详见《[API](</docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed%20Storage(分布式存储)/Ceph/API.md>>)》章节
-
+在 Dashboard 模块中，提供了一组用于管理集群的 RESTful 风格的 API 接口。这组 API 位于 `/api` 路径下。详见《[API](</docs/5.数据存储/1.存储/存储的基础设施架构/Distributed%20Storage(分布式存储)/Ceph/API.md>>)》章节
 
 ## Prometheus 模块
 

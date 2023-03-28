@@ -5,6 +5,7 @@ title: Storage(存储)
 # 概述
 
 > 参考：
+>
 > - [官方文档,存储](https://prometheus.io/docs/prometheus/latest/storage/)
 > - [GitHub,TSDB](https://github.com/prometheus/prometheus/tree/main/tsdb)
 > - [GitHub 文档,TSDB format](https://github.com/prometheus/prometheus/blob/main/tsdb/docs/format/README.md)
@@ -20,7 +21,7 @@ Prometheus 自身就包含一个 **Time Series Database(时间序列数据库)**
 
 **注意：** Prometheus 的本地存储不支持不兼容 POSIX 的文件系统，因为可能会发生不可恢复的损坏。不支持 NFS 文件系统（包括 AWS 的 EFS）。NFS 可能符合 POSIX，但大多数实现均不符合。强烈建议使用本地文件系统以提高可靠性。Prometheus 启动时会有如下 warn：
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/lh6032/1623820971678-3d263b32-2760-4e77-9a22-b2c438bc62d5.png)
-并且，经过实践，在数据量足够多时，当 Prometheus 压缩数据时，有不小的概率会丢失某个 Block 中的 meta.json 文件。进而导致压缩失败，并频繁产生告警，详见故障：[compaction failed](/docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Prometheus%20 管理/故障处理/compaction%20failed.md 管理/故障处理/compaction failed.md)
+并且，经过实践，在数据量足够多时，当 Prometheus 压缩数据时，有不小的概率会丢失某个 Block 中的 meta.json 文件。进而导致压缩失败，并频繁产生告警，详见故障：[compaction failed](/docs/6.可观测性/监控系统/Prometheus/Prometheus%20管理/故障处理/compaction%20failed.md)
 
 Prometheus 的本地时间序列数据库将数据以自定义的高效格式存储在本地存储上。也就是说，Prometheus 采集到的指标数据，以文件的形式直接保存在操作系统的文件系统中。On-disk Layout 章节将会详细介绍这些数据在本地存储中布局。
 
@@ -115,7 +116,7 @@ Prometheus 存储在本地的时间序列数据，被抽象为一个一个的 **
 
 这个和 leveldb、rocksdb 等 LSM 树的思路一致。这些设计和 Gorilla 的设计高度相似，所以 Prometheus 几乎就是等于一个缓存 TSDB。它本地存储的特点决定了它不能用于 long-term 数据存储，只能用于短期窗口的 timeseries 数据保存和查询，并且不具有高可用性（宕机会导致历史数据无法读取）。
 
-所以，Prometheus 实现了下文的 [Remote Storage 功能](</docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Storage(存储).md>>)，可以通过该功能，将数据通过网络转存到其他存储中。但是，需要仔细评估它们，性能和效率方面会产生很大的变化。
+所以，Prometheus 实现了下文的 [Remote Storage 功能](/docs/6.可观测性/监控系统/Prometheus/Storage(存储).md)，可以通过该功能，将数据通过网络转存到其他存储中。但是，需要仔细评估它们，性能和效率方面会产生很大的变化。
 
 现有存储层的样本压缩功能在 Prometheus 的早期版本中发挥了重要作用。单个原始数据点占用 16 个字节的存储空间。但当普罗米修斯每秒收集数十万个数据点时，可以快速填满硬盘。但，同一系列中的样本往往非常相似，我们可以利用这一类样品（同样 label）进行有效的压缩。批量压缩一系列的许多样本的块，在内存中，将每个数据点压缩到平均 1.37 字节的存储。这种压缩方案运行良好，也保留在新版本 2 存储层的设计中。具体压缩算法可以参考：[Facebook 的“Gorilla”论文中](http://www.vldb.org/pvldb/vol8/p1816-teller.pdf)
 
@@ -146,7 +147,7 @@ Prometheus 将所有当前使用的块保留在内存中。此外，它将最新
 
     磁盘大小 = 保留时间 * 每秒获取样本数 * 样本大小
 
-**保留时间(retention_time_seconds) **和 **样本大小(bytes_per_sample)** 不变的情况下，如果想减少本地磁盘的容量需求，只能通过减少每秒获取样本数(ingested_samples_per_second)的方式。
+**保留时间(retention_time_seconds)**和 **样本大小(bytes_per_sample)** 不变的情况下，如果想减少本地磁盘的容量需求，只能通过减少每秒获取样本数(ingested_samples_per_second)的方式。
 
 因此有两种手段，一是减少时间序列的数量，二是增加采集样本的时间间隔。
 
@@ -200,7 +201,7 @@ Prometheus 通过下面几种方式与远程存储系统集成：
 
 其他的集成在 Adapter 要么可以自己实现，要么就继承在第三方存储中，在 [官方文档,集成方式-远程端点和存储](https://prometheus.io/docs/operating/integrations/#remote-endpoints-and-storage) 章节中可以看到现阶段所有可以实现 Remote Write API 的 Adapter 以及 第三方存储。
 
-有关在 Prometheus 中配置远程存储集成的详细信息，请参阅 Prometheus 配置文档的 [远程写入](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_write) 和[ 远程读取](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_read) 部分。
+有关在 Prometheus 中配置远程存储集成的详细信息，请参阅 Prometheus 配置文档的 [远程写入](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_write) 和[远程读取](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_read) 部分。
 
 有关请求和响应消息的详细信息，请参阅[远程存储协议缓冲区定义](https://github.com/prometheus/prometheus/blob/master/prompb/remote.proto)。
 

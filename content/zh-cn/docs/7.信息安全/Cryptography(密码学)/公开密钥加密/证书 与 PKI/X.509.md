@@ -5,6 +5,7 @@ title: X.509
 # 概述
 
 > 参考：
+>
 > - [Wiki,X.509](https://en.wikipedia.org/wiki/X.509)
 > - [RFC,5280](https://datatracker.ietf.org/doc/html/rfc5280)
 > - [Arthurchiao 博客,\[译\] 写给工程师：关于证书（certificate）和公钥基础设施（PKI）的一切（SmallStep, 2018）](https://arthurchiao.art/blog/everything-about-pki-zh/)
@@ -27,28 +28,28 @@ X.509 在 1988 年作为 ITU(国际电信联盟) X.500 项目的一部分首次�
 # X.509 证书的格式
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/puor14/1635931450920-fd8cad72-9ee7-476a-96ef-5e6ed60cc52b.png)
-**Certificate: <OBJECT>**
+**Certificate: \<OBJECT>**
 
-- **Data: <OBJECT> **# 证书的数据
+- **Data: \<OBJECT>**# 证书的数据
   - **Version: STRING** # 版本号
-  - **Serial Number: STRING **# 序列号
+  - **Serial Number: STRING**# 序列号
   - **Signature Algorithm: STRING** # 签名算法
   - **Issuer: STRING** # 发行人名称，也就是这个证书的签发者。
-  - **Validity: <OBJECT> **# 有效期
-    - **Not Before: STRING **# 不能早于该日期。即证书从本日期开始生效
-    - **Not After: STRING **# 不能晚于该日期。即证书到本日期为止失效
-  - **Subject: STRING **# 主体信息。如何 X.509 规范的 Distinguished Name。
+  - **Validity: \<OBJECT>**# 有效期
+    - **Not Before: STRING**# 不能早于该日期。即证书从本日期开始生效
+    - **Not After: STRING**# 不能晚于该日期。即证书到本日期为止失效
+  - **Subject: STRING**# 主体信息。如何 X.509 规范的 Distinguished Name。
     - 对于 CA 证书来说， Subject 与 Issuer 的值相同。
-  - **Subject Public Key Info: **# 主体的公钥信息
-    - **Public Key Algorithm: STRING **# 公钥算法
+  - **Subject Public Key Info:**# 主体的公钥信息
+    - **Public Key Algorithm: STRING**# 公钥算法
     - **主体的公钥**
   - **Issuer Unique Identifier:** # 颁发者唯一身份信息（可选项）
   - **Subject Unique Identifier:** # 主体唯一身份信息（可选项）
-  - **Extensions: <OBJECT>** # 扩展信息（可选项）
+  - **Extensions: \<OBJECT>** # 扩展信息（可选项）
     - ......
     - **X509v3 Subject Alternative Name:** # SAN 信息。常用来作为该证书的名称。
     - ......
-- **Signature Algorithm: STRING **# 证书签名算法
+- **Signature Algorithm: STRING**# 证书签名算法
 - 证书签名
 
 证书的 Issuer 和证书的 Subject 用 X.509 DN 表示，DN 是由 RDN 构成的序列。RDN 用“属性类型=属性值”的形式表示。常用的属性类型名称以及简写如下：
@@ -130,11 +131,11 @@ X.509 有多种常用的扩展名。不过其中的一些还用于其它用途�
 - .pfx – PFX，PKCS#12 之前的格式（通常用 PKCS#12 格式，比如那些由 IIS 产生的 PFX 文件）
 
 更多的编码信息见：
-[密钥/证书 的编码](/docs/IT学习笔记/7.信息安全/Cryptography(密码学)/公开密钥加密/密钥\_证书%20 的编码.md 的编码.md)
+[密钥/证书 的编码](/docs/7.信息安全/Cryptography(密码学)/公开密钥加密/密钥_证书%20的编码.md)
 
 # 证书示例
 
-### 终端实体证书
+## 终端实体证书
 
 这是 wikipedia.org 和其他几个维基百科网站使用的解码 X.509 证书的示例。它由 [GlobalSign](https://en.wikipedia.org/wiki/GlobalSign) 颁发，如 `Issuer` 字段中所述。它的 `Subject` 字段将维基百科描述为一个组织，它的 `Subject Alternative Name` 字段描述了可以使用它的域名。主题公钥信息字段包含一个[ECDSA](https://en.wikipedia.org/wiki/ECDSA)公钥，而底部的签名是由 GlobalSign 的[RSA](<https://en.wikipedia.org/wiki/RSA_(cryptosystem)>)私钥生成的。
 
@@ -200,7 +201,7 @@ Certificate:
          ...
 ```
 
-### 中级证书
+## 中级证书
 
 ```bash
 Certificate:
@@ -248,7 +249,7 @@ Certificate:
          ...
 ```
 
-### 根证书
+## 根证书
 
 ```bash
 Certificate:

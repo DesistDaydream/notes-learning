@@ -5,11 +5,12 @@ title: Conditionals(条件判断)
 # 概述
 
 > 参考：
+>
 > - [官方文档,用户指南-传统目录-条件](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html)
 
 通常，play 的结果可能取决于 variable，fact（有关远程系统的知识）或先前的任务结果。在某些情况下，变量的值可能取决于其他变量。可以基于主机是否符合其他条件来创建其他组来管理主机。
 
-Ansible 在条件中使用 Jinja 的 [测试](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html) 和 [过滤器 ](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html)来实现条件判断。详见 [Ansible Template 文章中《Ansible 扩展测试函数》章节](/docs/IT学习笔记/9.运维/Ansible/Playbook/Templates%20 模板(Jinja2).md 模板(Jinja2).md)
+Ansible 在条件中使用 Jinja 的 [测试](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html) 和 [过滤器](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html)来实现条件判断。详见 [Ansible Template 文章中《Ansible 扩展测试函数》章节](/docs/9.运维/Ansible/Playbook/Templates%20模板(Jinja2).md)
 
 ## 条件判断的简单样例
 

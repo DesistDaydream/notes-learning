@@ -17,7 +17,7 @@ Etcd 是 CoreOS 基于[Raft 共识算法](/docs/3.集群与分布式/集群与�
 - 监听机制
 - key 的过期及续约机制，用于监控和服务发现
 - 原子 CAS 和 CAD，用于分布式锁和 leader 选举
-  - 选举机制详见：[Etcd 基于 RAFT 的一致性](/docs/IT学习笔记/5.数据存储/2.数据库/键值数据/Etcd/Etcd%20 基于%20RAFT%20 的一致性.md 基于 RAFT 的一致性.md)
+  - 选举机制详见：[Etcd 基于 RAFT 的一致性](/docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd%20 基于%20RAFT%20 的一致性.md 基于 RAFT 的一致性.md)
 
 # Glossary(术语)
 

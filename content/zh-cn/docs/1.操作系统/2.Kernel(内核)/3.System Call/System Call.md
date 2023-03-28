@@ -6,6 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
+>
 > - [Manual(手册)，syscalls(2)](https://man7.org/linux/man-pages/man2/syscalls.2.html)
 > - [Wiki,System_call](https://en.wikipedia.org/wiki/System_call)
 > - <http://arthurchiao.art/blog/system-call-definitive-guide-zh/>
@@ -38,7 +39,7 @@ weight: 1
 
 # Interrupts(中断)
 
-详见：[Interrupts(中断) 概念详解](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/4.CPU%20 管理/Interrupts(中断).md 管理/Interrupts(中断).md)
+详见：[Interrupts(中断) 概念详解](/docs/1.操作系统/2.Kernel(内核)/4.CPU%20 管理/Interrupts(中断).md 管理/Interrupts(中断).md)
 
 # syscall 的方式
 
@@ -60,11 +61,11 @@ glibc 是 Linux 下使用的开源的标准 C 库，它是 GNU 发布的 libc �
 int main()
 {
     int rc;
-    	rc = chmod("/etc/passwd", 0444);
+     rc = chmod("/etc/passwd", 0444);
     if (rc == -1)
-    	fprintf(stderr, "chmod failed, errno = %d\n", errno);
+     fprintf(stderr, "chmod failed, errno = %d\n", errno);
     else
-    	printf("chmod success!\n");
+     printf("chmod success!\n");
     return 0;
 }
 ```
@@ -152,5 +153,6 @@ return 0;
 # 系统调用与 API 和函数调用之间的区别
 
 > 参考：
+>
 > - [公众号，系统调用与函数调用有什么区别？](https://mp.weixin.qq.com/s/2rzzQTuZKSW0O4zM1DlAWQ)
 > - [公众号，系统调用和API有什么区别？](https://mp.weixin.qq.com/s/q7CDAlwUB7bFstYZ1nOVvA)

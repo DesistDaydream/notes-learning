@@ -6,6 +6,7 @@ weight: 2
 # 概述
 
 > 参考：
+>
 > - [官方文档，用户指南-Roles](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html)
 > - [Ansible 中文权威指南，Playbooks-Playbook 角色和 Incluede 语句](https://ansible-tran.readthedocs.io/en/latest/docs/playbooks_roles.html)
 
@@ -81,6 +82,7 @@ Note：
 # roles 目录结构的最佳示例
 
 > 参考：
+>
 > - [官方文档，用户指南-配置样例](https://docs.ansible.com/ansible/latest/user_guide/sample_setup.html)
 
 ```bash
@@ -90,7 +92,7 @@ staging                   # 适用于 staging 的 Inventory 文件
 group_vars/               # 在这里定义组的变量
    group1.yml             # 文件名以组名命名，group1.yml 是适用于 group1 组的变量
    group2.yml
-host_vars/								# 在这里定义主机变量
+host_vars/        # 在这里定义主机变量
    hostname1.yml          # 文件名以主机名命名，hostname1.yml 是适用于 hostname1 主机的变量
    hostname2.yml
 
@@ -137,7 +139,7 @@ roles/
 组变量与主机变量的文件除了可以放在 Palybook 的根目录，还可以放在存放 Inventory 文件的目录中，比如：
 
 ```bash
-inventories/							# 这里存放 Inventory 目录，通过在命令行中使用 -i 选项以指定 Inventory 文件
+inventories/       # 这里存放 Inventory 目录，通过在命令行中使用 -i 选项以指定 Inventory 文件
    production/
       hosts               # inventory file for production servers
       group_vars/
@@ -171,4 +173,4 @@ roles/
     fooapp/
 ```
 
-至于 group_vars 与 host_vars 在不同目录的优先级可以参考 [Ansible 变量-优先级](/docs/IT学习笔记/9.运维/Ansible/Ansible%20Variables(变量).md Variables(变量).md) 部分
+至于 group_vars 与 host_vars 在不同目录的优先级可以参考 [Ansible 变量-优先级](/docs/9.运维/Ansible/Ansible%20Variables(变量).md Variables(变量).md) 部分

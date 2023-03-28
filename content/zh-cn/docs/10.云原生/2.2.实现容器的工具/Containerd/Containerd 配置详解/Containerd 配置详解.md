@@ -40,7 +40,7 @@ Containerd 是容器的守护者，一旦发生内存不足的情况，理想的
 
 # \[plugins] 配置
 
-详见 [《Plugin 配置》](/docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Containerd/Containerd%20 配置详解/Plugin%20 配置.md 配置详解/Plugin 配置.md) 章节
+详见 [《Plugin 配置》](/docs/10.云原生/2.2.实现容器的工具/Containerd/Containerd%20 配置详解/Plugin%20 配置.md 配置详解/Plugin 配置.md) 章节
 
 # \[timeouts] 配置
 

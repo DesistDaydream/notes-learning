@@ -5,6 +5,7 @@ title: Kubelet 源码
 # 概述
 
 > 参考：
+>
 > - [田飞雨博客，源码阅读笔记-kubernetes-kubelet](https://blog.tianfeiyu.com/source-code-reading-notes/kubernetes/kubelet-modules.html)
 > - [公众号，CNCF-Kubernetes 源码分析之 kubelet(一)](https://mp.weixin.qq.com/s/j8CzMm3JeNnTgkaZxAjIdw)
 >   - <https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&__biz=Mzk0NTE4OTU0Ng==&scene=1&album_id=1632443286688677893&count=3#wechat_redirect>
@@ -150,7 +151,7 @@ Kubelet 整体由多个模块组成，这些模块通过多个途径来初始化
     - 注意：这里的模块不能依赖于未在此处初始化的模块
   - `kubelet.initialieRuntimeDependentModules()` # 初始化需要容器运行时的内部模块
 
-在 《[Kubelet 启动流程](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 开发/源码解析/Kubelet%20 源码/Kubelet%20 启动流程.md 源码/Kubelet 启动流程.md)》章节中包含了初始化模块的执行逻辑
+在 《[Kubelet 启动流程](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 开发/源码解析/Kubelet%20 源码/Kubelet%20 启动流程.md 源码/Kubelet 启动流程.md)》章节中包含了初始化模块的执行逻辑
 
 在 Kubelet 代码中，每个模块通常都放在 `pkg/kubelet/` 目录下的某个单独的目录中。所有的模块通常都被包含在两个结构体中：
 
@@ -167,15 +168,15 @@ Kubelet 整体由多个模块组成，这些模块通过多个途径来初始化
 
 ```go
 func (kl *Kubelet) syncLoopIteration(configCh <-chan kubetypes.PodUpdate, handler SyncHandler,
-	select {
-	case u, open := <-configCh:
-	case e := <-plegCh:
-	case <-syncCh:
-	case update := <-kl.livenessManager.Updates():
-	case update := <-kl.readinessManager.Updates():
-	case update := <-kl.startupManager.Updates():
-	case <-housekeepingCh:
-	}
+ select {
+ case u, open := <-configCh:
+ case e := <-plegCh:
+ case <-syncCh:
+ case update := <-kl.livenessManager.Updates():
+ case update := <-kl.readinessManager.Updates():
+ case update := <-kl.startupManager.Updates():
+ case <-housekeepingCh:
+ }
 }
 ```
 
@@ -192,12 +193,12 @@ func (kl *Kubelet) syncLoopIteration(configCh <-chan kubetypes.PodUpdate, handle
 
 ```go
 type SyncHandler interface {
-	HandlePodAdditions(pods []*v1.Pod)
-	HandlePodUpdates(pods []*v1.Pod)
-	HandlePodRemoves(pods []*v1.Pod)
-	HandlePodReconcile(pods []*v1.Pod)
-	HandlePodSyncs(pods []*v1.Pod)
-	HandlePodCleanups() error
+ HandlePodAdditions(pods []*v1.Pod)
+ HandlePodUpdates(pods []*v1.Pod)
+ HandlePodRemoves(pods []*v1.Pod)
+ HandlePodReconcile(pods []*v1.Pod)
+ HandlePodSyncs(pods []*v1.Pod)
+ HandlePodCleanups() error
 }
 ```
 
@@ -272,8 +273,8 @@ tokenManager
 
 ```go
 type KubeletServer struct {
-	KubeletFlags
-	kubeletconfig.KubeletConfiguration
+ KubeletFlags
+ kubeletconfig.KubeletConfiguration
 }
 ```
 
@@ -538,7 +539,7 @@ type Kubelet struct {
 
 `podWorkers struct{}` 实现了如下接口
 
-- `[PodWorkers interface{}](#Kg8vN)`，该接口被包含在 `kubelet struct{} `中
+- `[PodWorkers interface{}](#Kg8vN)`，该接口被包含在 `kubelet struct{}`中
 
 源码：`pkg/kubelet/pod_workers.go`
 
@@ -563,7 +564,7 @@ osInterface kubecontainer.OSInterface
 // machineInfo contains the machine information.
 machineInfo *cadvisorapi.MachineInfo
 // Container GC manager
-containerGC *containerGC
+containerGC*containerGC
 // Keyring for pulling images
 keyring credentialprovider.DockerKeyring
 // Runner of lifecycle events.
@@ -591,7 +592,7 @@ internalLifecycle cm.InternalContainerLifecycle
 // Manage container logs.
 logManager logs.ContainerLogManager
 // Manage RuntimeClass resources.
-runtimeClassManager *runtimeclass.Manager
+runtimeClassManager*runtimeclass.Manager
 // Cache last per-container error message to reduce log spam
 logReduction \*logreduction.LogReduction
 // PodState provider instance
@@ -615,14 +616,14 @@ Bootstrap 接口中包含了在引导 kubelet 启动并运行时所需要的各�
 
 ```go
 type Bootstrap interface {
-	GetConfiguration() kubeletconfiginternal.KubeletConfiguration
-	BirthCry()
-	StartGarbageCollection()
-	ListenAndServe(kubeCfg *kubeletconfiginternal.KubeletConfiguration, tlsOptions *server.TLSOptions, auth server.AuthInterface)
-	ListenAndServeReadOnly(address net.IP, port uint)
-	ListenAndServePodResources()
-	Run(-chan kubetypes.PodUpdate)
-	RunOnce(-chan kubetypes.PodUpdate) ([]RunPodResult, error)
+ GetConfiguration() kubeletconfiginternal.KubeletConfiguration
+ BirthCry()
+ StartGarbageCollection()
+ ListenAndServe(kubeCfg *kubeletconfiginternal.KubeletConfiguration, tlsOptions *server.TLSOptions, auth server.AuthInterface)
+ ListenAndServeReadOnly(address net.IP, port uint)
+ ListenAndServePodResources()
+ Run(-chan kubetypes.PodUpdate)
+ RunOnce(-chan kubetypes.PodUpdate) ([]RunPodResult, error)
 }
 ```
 
@@ -634,18 +635,18 @@ SyncHandler 接口中包含了可以对 Pod 的各种处理，已被 kubelet 结
 
 ```go
 type SyncHandler interface {
-	HandlePodAdditions(pods []*v1.Pod)
-	HandlePodUpdates(pods []*v1.Pod)
-	HandlePodRemoves(pods []*v1.Pod)
-	HandlePodReconcile(pods []*v1.Pod)
-	HandlePodSyncs(pods []*v1.Pod)
-	HandlePodCleanups() error
+ HandlePodAdditions(pods []*v1.Pod)
+ HandlePodUpdates(pods []*v1.Pod)
+ HandlePodRemoves(pods []*v1.Pod)
+ HandlePodReconcile(pods []*v1.Pod)
+ HandlePodSyncs(pods []*v1.Pod)
+ HandlePodCleanups() error
 }
 ```
 
 ## PodWorkers 接口
 
-详见《[PodWorker 模块](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 开发/源码解析/Kubelet%20 源码/PodWorker%20 模块.md 源码/PodWorker 模块.md)》，PodWorkders 用于处理 Pod
+详见《[PodWorker 模块](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 开发/源码解析/Kubelet%20 源码/PodWorker%20 模块.md 源码/PodWorker 模块.md)》，PodWorkders 用于处理 Pod
 
 ## Runtime 接口
 
@@ -685,13 +686,13 @@ GetPods(all bool) (\[]*Pod, error)
 // TODO: Revisit this method and make it cleaner.
 GarbageCollect(gcPolicy GCPolicy, allSourcesReady bool, evictNonDeletedPods bool) error
 // SyncPod syncs the running pod into the desired pod.
-SyncPod(pod *v1.Pod, podStatus *PodStatus, pullSecrets \[]v1.Secret, backOff *flowcontrol.Backoff) PodSyncResult
+SyncPod(pod *v1.Pod, podStatus*PodStatus, pullSecrets \[]v1.Secret, backOff *flowcontrol.Backoff) PodSyncResult
 // KillPod kills all the containers of a pod. Pod may be nil, running pod must not be.
 // TODO(random-liu): Return PodSyncResult in KillPod.
 // gracePeriodOverride if specified allows the caller to override the pod default grace period.
 // only hard kill paths are allowed to specify a gracePeriodOverride in the kubelet in order to not corrupt user data.
 // it is useful when doing SIGKILL for hard eviction scenarios, or max grace period during soft eviction scenarios.
-KillPod(pod *v1.Pod, runningPod Pod, gracePeriodOverride *int64) error
+KillPod(pod*v1.Pod, runningPod Pod, gracePeriodOverride *int64) error
 // GetPodStatus retrieves the status of the pod, including the
 // information of all containers in the pod that are visible in Runtime.
 GetPodStatus(uid types.UID, name, namespace string) (*PodStatus, error)
@@ -700,7 +701,7 @@ GetPodStatus(uid types.UID, name, namespace string) (*PodStatus, error)
 // default, it returns a snapshot of the container log. Set 'follow' to true to
 // stream the log. Set 'follow' to false and specify the number of lines (e.g.
 // "100" or "all") to tail the log.
-GetContainerLogs(ctx context.Context, pod *v1.Pod, containerID ContainerID, logOptions *v1.PodLogOptions, stdout, stderr io.Writer) (err error)
+GetContainerLogs(ctx context.Context, pod *v1.Pod, containerID ContainerID, logOptions*v1.PodLogOptions, stdout, stderr io.Writer) (err error)
 // DeleteContainer deletes a container. If the container is still running, an error is returned.
 DeleteContainer(containerID ContainerID) error
 // ImageService provides methods to image-related methods.

@@ -5,10 +5,11 @@ title: Storage Classes(存储类)
 # 概述
 
 > 参考：
+>
 > - [官方文档,概念-存储-存储类](https://kubernetes.io/docs/concepts/storage/storage-classes/)
 > - [官方文档,任务-管理集群-改变默认 StorageClass](https://kubernetes.io/docs/tasks/administer-cluster/change-default-storage-class/)
 
-在介绍的 [PV](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/9.Kubernetes%20 存储/Persistent%20Volume(持久卷).md Volume(持久卷).md) 时有个问题就是管理员需要先创建 pv 固定好容量，再让用户或者开发创建的 PVC 从中挑选，有时候 PVC 申请的时候未必会有满足容量要求的 PV 可以提供，甚至管理员维护大量的 PV 的工作也是非常繁重的。为了实现在创建完 PVC 后，K8S 可以自动创建 PV 的功能，则可以使用 **Storage Class(存储类)** 这个资源对象来满足这类需求。
+在介绍的 [PV](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/9.Kubernetes%20 存储/Persistent%20Volume(持久卷).md Volume(持久卷).md) 时有个问题就是管理员需要先创建 pv 固定好容量，再让用户或者开发创建的 PVC 从中挑选，有时候 PVC 申请的时候未必会有满足容量要求的 PV 可以提供，甚至管理员维护大量的 PV 的工作也是非常繁重的。为了实现在创建完 PVC 后，K8S 可以自动创建 PV 的功能，则可以使用 **Storage Class(存储类)** 这个资源对象来满足这类需求。
 
 **Storage Class(存储类)**，就像这个名字一样，Storage Class 是一个抽象的概念，用来抽象存储资源。一般情况都是把同类型的存储归为一类，比如 ssd 类型、hdd 类型等等，也可以按照功能划分，给订单组用的存储，给数据组用的存储等等。说白了，Storage Class 就是一块存储空间。
 
@@ -106,7 +107,7 @@ PV 与 StorageClass 是集群管理员使用的，PVC 是用户或者开发者�
 
 # 默认 Storage Class
 
-默认的 Storage Class 用于为 [不指定 StorageClassName 的 PVC ](https://www.teambition.com/project/5f90e312755d8a00446050eb/app/5eba5fba6a92214d420a3219/workspaces/5f90e312c800160016ea22fb/docs/5f9a47bc12d5ba00014970c7?scroll-to-block=5fc83d08eebc9352f7e0f5c7)动态提供 PV。
+默认的 Storage Class 用于为 [不指定 StorageClassName 的 PVC](https://www.teambition.com/project/5f90e312755d8a00446050eb/app/5eba5fba6a92214d420a3219/workspaces/5f90e312c800160016ea22fb/docs/5f9a47bc12d5ba00014970c7?scroll-to-block=5fc83d08eebc9352f7e0f5c7)动态提供 PV。
 
 列出你的集群中的 StorageClasses：
 

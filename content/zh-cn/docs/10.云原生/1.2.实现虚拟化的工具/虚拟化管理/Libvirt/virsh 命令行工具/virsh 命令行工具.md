@@ -48,7 +48,7 @@ Note：其中各种命令用法，详见 virsh 命令行工具目录下每个子
 
 通用命令与 domain 无关
 
-## [Domain commands](/docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh%20 命令行工具/Domain%20命令.md)(虚拟机命令)
+## [Domain commands](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh%20 命令行工具/Domain%20命令.md)(虚拟机命令)
 
 The following commands manipulate domains directly, as stated previously most commands take domain as the first parameter. The domain can be specified as a short integer, a name or a full UUID.
 
@@ -64,7 +64,7 @@ The following commands manipulate networks. Libvirt has the capability to define
 
 ## NETWORK PORT COMMANDS
 
-## [Interface commands](/docs/IT学习笔记/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh%20 命令行工具/Interface%20命令.md)(接口命令)
+## [Interface commands](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh%20 命令行工具/Interface%20命令.md)(接口命令)
 
 The following commands manipulate host interfaces. Often, these host interfaces can then be used by name within domain \<interface> elements (such as a system-created bridge interface), but there is no requirement that host interfaces be tied to any particular guest configuration XML at all.
 Many of the commands for host interfaces are similar to the ones used for domains, and the way to name an interface is either by its name or its MAC address. However, using a MAC address for an _iface_ argument only works when that address is unique (if an interface and a bridge share the same MAC address, which is often the case, then using that MAC address results in an error due to ambiguity, and you must resort to a name instead).

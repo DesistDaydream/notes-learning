@@ -51,7 +51,7 @@ http-server 来源于 [GitHub 项目，http-party/http-server](https://github.co
 
 ## 使用 Vite 运行 ECMAScript 代码
 
-npm、yarn 的打包后运行代码的速度非常缓慢，才是推荐使用 Vite 工具启动 HTTP 服务并运行 JS/TS 代码，详见：[《Vite》](/docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/ECMAScript%20 工具/Vite.md 工具/Vite.md) 章节
+npm、yarn 的打包后运行代码的速度非常缓慢，才是推荐使用 Vite 工具启动 HTTP 服务并运行 JS/TS 代码，详见：[《Vite》](/docs/2.编程/高级编程语言/ECMAScript/ECMAScript%20 工具/Vite.md 工具/Vite.md) 章节
 
 ## 运行 TypeSript
 
@@ -202,10 +202,10 @@ npm 等包管理工具下载完框架后，会自动生成项目目录，这些�
 - **.prettierc.json** # Prettier 插件的配置
 - **env.d.ts** #
 - **index.html** # 程序入口
-- [**package.json**](/docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/ECMAScript%20 环境安装与使用/package.json.md 环境安装与使用/package.json.md) # 包管理器配置文件，比如 npm、pnpm 等
+- [**package.json**](/docs/2.编程/高级编程语言/ECMAScript/ECMAScript%20 环境安装与使用/package.json.md 环境安装与使用/package.json.md) # 包管理器配置文件，比如 npm、pnpm 等
 - **vite.config.ts** # Vite 程序给项目打包时使用的配置
 - **tsconfig.json** #
-- **tsconfig.config.json** # [TSConfig](/docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/ECMAScript%20 环境安装与使用/TSConfig.md 环境安装与使用/TSConfig.md) 文件
+- **tsconfig.config.json** # [TSConfig](/docs/2.编程/高级编程语言/ECMAScript/ECMAScript%20 环境安装与使用/TSConfig.md 环境安装与使用/TSConfig.md) 文件
 
 ## JavaScript 项目初始化
 
@@ -215,7 +215,7 @@ npm 等包管理工具下载完框架后，会自动生成项目目录，这些�
 
 使用 `npm install -g typescript` 安装 tsc 命令。
 
-使用 `tsc init` 命令将会生成 [TSConfig](/docs/IT学习笔记/2.编程/高级编程语言/ECMAScript/ECMAScript%20 环境安装与使用/TSConfig.md 环境安装与使用/TSConfig.md) 文件。
+使用 `tsc init` 命令将会生成 [TSConfig](/docs/2.编程/高级编程语言/ECMAScript/ECMAScript%20 环境安装与使用/TSConfig.md 环境安装与使用/TSConfig.md) 文件。
 
 # 编译与打包
 

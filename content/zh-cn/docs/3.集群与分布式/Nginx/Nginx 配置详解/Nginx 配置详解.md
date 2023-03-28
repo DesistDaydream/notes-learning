@@ -153,16 +153,16 @@ Virtual Server 的概念，通过 **`server{}`**指令来实现。在每个流�
 
 # 指令详解
 
-## [main 模块指令](/docs/IT学习笔记/3.集群与分布式/Nginx/Nginx%20 配置详解/core%20 模块指令.md 配置详解/core 模块指令.md)\*\*
+## [main 模块指令](/docs/3.集群与分布式/Nginx/Nginx%20 配置详解/core%20 模块指令.md 配置详解/core 模块指令.md)\*\*
 
-## [events 模块指令](/docs/IT学习笔记/3.集群与分布式/Nginx/Nginx%20 配置详解/events%20 模块指令.md 配置详解/events 模块指令.md)
+## [events 模块指令](/docs/3.集群与分布式/Nginx/Nginx%20 配置详解/events%20 模块指令.md 配置详解/events 模块指令.md)
 
-[http 模块指令](/docs/IT学习笔记/3.集群与分布式/Nginx/Nginx%20 配置详解/http%20 模块指令.md 配置详解/http 模块指令.md)
+[http 模块指令](/docs/3.集群与分布式/Nginx/Nginx%20 配置详解/http%20 模块指令.md 配置详解/http 模块指令.md)
 
 常用来配置七层代理、web 应用
 
 ## mail 模块指令
 
-[stream 模块指令](/docs/IT学习笔记/3.集群与分布式/Nginx/Nginx%20 配置详解/stream%20 模块指令.md 配置详解/stream 模块指令.md)
+[stream 模块指令](/docs/3.集群与分布式/Nginx/Nginx%20 配置详解/stream%20 模块指令.md 配置详解/stream 模块指令.md)
 
 常用来配置四层代理

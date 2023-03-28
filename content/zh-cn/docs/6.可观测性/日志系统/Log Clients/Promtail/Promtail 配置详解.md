@@ -50,6 +50,7 @@ positions 文件用于记录 Promtail 发现的目标。该字段用于定义如
 ## scrape_configs: <\[\]OBJECT>(占比最大的字段)
 
 > 参考：
+>
 > - https://grafana.com/docs/loki/latest/clients/promtail/configuration/#scrape_configs
 > - [Scraping 功能官方文档](https://grafana.com/docs/loki/latest/clients/promtail/scraping)
 
@@ -58,7 +59,7 @@ Promtail 根据 scrape_configs 字段的内容，使用指定的发现方法从�
 ### 基本配置
 
 **job_name: \<STRING>** # 指定抓取日志的 Job 名字
-**pipeline_stages: \<pipeline_stages>** # 定义从指定的目标抓取日志的行为。`默认值：docker{}`。详见：[Pipeline 概念](https://www.yuque.com/go/doc/33181065) 与 [Stages 详解](/docs/IT学习笔记/6.可观测性/日志系统/Log%20Clients/Promtail/Pipeline%20 概念/Stages(阶段)%20 详解.md 概念/Stages(阶段) 详解.md)
+**pipeline_stages: \<pipeline_stages>** # 定义从指定的目标抓取日志的行为。`默认值：docker{}`。详见：[Pipeline 概念](https://www.yuque.com/go/doc/33181065) 与 [Stages 详解](/docs/6.可观测性/日志系统/Log%20Clients/Promtail/Pipeline%20 概念/Stages(阶段)%20 详解.md 概念/Stages(阶段) 详解.md)
 **loki_push_api: \<loki_push_api_config>** # 定义日志推送的路径 (e.g. from other Promtails or the Docker Logging Driver)
 
 ### Scrape 目标配置
@@ -217,7 +218,7 @@ docker run \
 ### [kubernetes_sd_configs: <\[\]Object>](https://grafana.com/docs/loki/latest/clients/promtail/configuration/#kubernetes_sd_config)
 
 与 Prometheus 中的 kubernetes 的服务发现机制基本一致。与 Prometheus 配置的不同点在于，Promtail 的 kubernetes 服务发现配置一般都会使用 Relabeling 机制弄出来一个 `__path__` 标签
-具体字段内容详见《[Prometheus Server 配置](/docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Server%20 配置.md 配置.md)》文章中 [kubernetes_sd_configs](/docs/IT学习笔记/6.可观测性/监控系统/Prometheus/Server%20 配置.md 配置.md) 章节
+具体字段内容详见《[Prometheus Server 配置](/docs/6.可观测性/监控系统/Prometheus/Server%20 配置.md 配置.md)》文章中 [kubernetes_sd_configs](/docs/6.可观测性/监控系统/Prometheus/Server%20 配置.md 配置.md) 章节
 
 #### 配置示例
 

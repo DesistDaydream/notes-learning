@@ -5,6 +5,7 @@ title: Rsyslog
 # 概述
 
 > 参考：
+>
 > - [官网](https://www.rsyslog.com/)
 > - [官方文档,配置-模块](https://www.rsyslog.com/doc/v8-stable/configuration/modules/index.html)
 > - [GitHub 项目](https://github.com/rsyslog/rsyslog)
@@ -13,7 +14,7 @@ title: Rsyslog
 > - [Manual(手册),rsyslogd(8)](https://man7.org/linux/man-pages/man8/rsyslogd.8.html)
 > - [Arch 文档,Systemd-Journal-配合 syslog 使用](<https://wiki.archlinux.org/title/Systemd_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)/Journal_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)>)
 
-**Rocket-fast system for log processing(像火箭一样快的日志处理系统，简称 rsyslog) **是一款开源应用程序，用于 UNIX 和 类 Unix 操作系统，可以在 IP 网络中转发日志消息。Rsyslog 实现了基本的 Syslog 协议，并扩展了丰富的功能，比如基于内容的过滤、排队处理离线输出、支持模块、灵活的配置、使用 TCP 传输 等等.
+**Rocket-fast system for log processing(像火箭一样快的日志处理系统，简称 rsyslog)**是一款开源应用程序，用于 UNIX 和 类 Unix 操作系统，可以在 IP 网络中转发日志消息。Rsyslog 实现了基本的 Syslog 协议，并扩展了丰富的功能，比如基于内容的过滤、排队处理离线输出、支持模块、灵活的配置、使用 TCP 传输 等等.
 
 RsysLog 是一个日志统一管理的程序。通过 rsyslogd 这个守护进程提供服务，rsyslogd 程序是对 syslogd 的扩展，提供了更多的功能和可靠性。
 
@@ -123,7 +124,7 @@ ffff99c534a7d800: 00000002 00000000 00000000 0002 01 15881 /run/systemd/journal/
 srw-rw-rw- 1 root root 0 Oct 19 21:16 /run/systemd/journal/syslog=
 ```
 
-这是一个 socket 文件，从 lsof 命令中可以看到是是一个用于实现 本地数据报通信的 [DGRAM 类型的 Unix Socket](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/7.Process%20 管理/Inter%20Process%20Communication(进程间通信).md 管理/Inter Process Communication(进程间通信).md)。
+这是一个 socket 文件，从 lsof 命令中可以看到是是一个用于实现 本地数据报通信的 [DGRAM 类型的 Unix Socket](/docs/1.操作系统/2.Kernel(内核)/7.Process%20 管理/Inter%20Process%20Communication(进程间通信).md 管理/Inter Process Communication(进程间通信).md)。
 
 这个文件替代了传统的 /dev/log 文件，/dev/log 变成了指向 /run/systemd/journal/dev-log 的软链接
 

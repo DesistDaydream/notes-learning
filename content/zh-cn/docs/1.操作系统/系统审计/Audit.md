@@ -100,4 +100,4 @@ aureport 实用程序允许您针对 Audit 日志文件中记录的事件生成
 # ausearch 命令行工具
 
 ausearch 实用程序允许您搜索 Audit 日志文件特定事件。默认情况下，ausearch 搜索 `/var/log/audit/audit.log` 文件。
-["Linux libc 库"](/docs/IT学习笔记/1.操作系统/Linux 源码解析/Linux libc 库.md)
+["Linux libc 库"](/docs/1.操作系统/Linux 源码解析/Linux libc 库.md)

@@ -26,7 +26,7 @@ curl 'http://10.244.1.26:19115/probe?module=http_2xx&target=www.baidu.com'
 
 ## Prometheus 使用 Blackbox Exporter 的配置示例
 
-与一般 Exporter 配置不同， Blackbox Exporter 的配置方式与 [SNMP Exporter](/docs/IT学习笔记/6.可观测性/监控系统/Instrumenting/SNMP%20Exporter.md Exporter.md) 更像，每一个待探测的目标将会作为 Blackbox Exporter 程序的参数。可以通过 Relabel 机制，设置目标的 instance 标签。
+与一般 Exporter 配置不同， Blackbox Exporter 的配置方式与 [SNMP Exporter](/docs/6.可观测性/监控系统/Instrumenting/SNMP%20Exporter.md Exporter.md) 更像，每一个待探测的目标将会作为 Blackbox Exporter 程序的参数。可以通过 Relabel 机制，设置目标的 instance 标签。
 
 ```yaml
 scrape_configs:

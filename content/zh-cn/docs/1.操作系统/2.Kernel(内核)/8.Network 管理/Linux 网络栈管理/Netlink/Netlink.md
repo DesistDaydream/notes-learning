@@ -5,6 +5,7 @@ title: Netlink
 # 概述
 
 > 参考：
+>
 > - [Manual(手册),netlink](https://man7.org/linux/man-pages/man7/netlink.7.html)
 > - [Manual(手册),rtnetlink](https://man7.org/linux/man-pages/man7/rtnetlink.7.html)
 > - [Wiki,Netlink](https://en.wikipedia.org/wiki/Netlink)
@@ -12,7 +13,7 @@ title: Netlink
 
 **Netlink** 是一个 Linux 内核接口，用于在 内核 与 用户空间进程 之间传输信息。还可以用作两个用户空间进程之间、甚至内核子系统之间的数据通信。说白了，就是一个通过 Socket 实现 IPC 的方式。
 
-[Iproute2](/docs/IT学习笔记/1.操作系统/X.Linux%20 管理/Linux%20 网络管理工具/Iproute%20 工具包.md 管理/Linux 网络管理工具/Iproute 工具包.md)、keepalived、ethtool 等等 应用程序，很多功能都是基于 Netlink 开发的。
+[Iproute2](/docs/1.操作系统/X.Linux%20 管理/Linux%20 网络管理工具/Iproute%20 工具包.md 管理/Linux 网络管理工具/Iproute 工具包.md)、keepalived、ethtool 等等 应用程序，很多功能都是基于 Netlink 开发的。
 
 Netlink 由两部分组成：
 

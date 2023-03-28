@@ -207,7 +207,7 @@ Distributor 通过 gRPC 与 Ingester 通信，它们都是无状态的，可以�
 ## Ingester(摄取器)
 
 Ingester 服务负责将日志数据写入长期存储后端（DynamoDB、S3、Cassandra 等）。此外 Ingester 会验证摄取的日志行是按照时间戳递增的顺序接收的（即每条日志的时间戳都比前面的日志晚一些），当 Ingester 收到不符合这个顺序的日志时，该日志行会被拒绝并返回一个错误。
-注意：虽然 Ingester 支持 BoltDB 写入本地文件系统，但是这仅适用于[单进程模式](/docs/IT学习笔记/6.可观测性/日志系统/Loki/Loki%20 部署.md 部署.md)，因为 Querier 也需要访问相同的存储，而 BoltDB 仅允许一个进程在同一时间锁定数据库。
+注意：虽然 Ingester 支持 BoltDB 写入本地文件系统，但是这仅适用于[单进程模式](/docs/6.可观测性/日志系统/Loki/Loki%20 部署.md 部署.md)，因为 Querier 也需要访问相同的存储，而 BoltDB 仅允许一个进程在同一时间锁定数据库。
 
 ## Querier(查询器)
 

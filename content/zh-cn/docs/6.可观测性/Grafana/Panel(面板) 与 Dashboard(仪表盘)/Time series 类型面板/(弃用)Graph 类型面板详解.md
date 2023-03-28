@@ -94,7 +94,7 @@ Sort order # 排序。有三种排序方式：None(不排序)、Increasing(由�
 当 X 轴 变为 series 模式 时，由于没有时间这种维度，所以一般都使用 当前值。
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/qzbd5e/1616067957169-8ff35969-aa1d-4259-8144-1a88bb33a486.png)
 
-## Legend # 用于配置面板内的 [Legend](/docs/IT学习笔记/6.可观测性/Grafana/Panel(面板)%20 与%20Dashboard(仪表盘)/Panel(面板)%20 配置详解.md 配置详解.md)
+## Legend # 用于配置面板内的 [Legend](/docs/6.可观测性/Grafana/Panel(面板)%20 与%20Dashboard(仪表盘)/Panel(面板)%20 配置详解.md 配置详解.md)
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/qzbd5e/1616067957204-998bd4db-f185-4f42-9138-9edb69081d84.png)
 
@@ -106,4 +106,4 @@ Sort order # 排序。有三种排序方式：None(不排序)、Increasing(由�
 
 # Overrides # 字段替换配置，Graph 类型面板不常用
 
-详见：[Overrides](/docs/IT学习笔记/6.可观测性/Grafana/Panel(面板)%20 与%20Dashboard(仪表盘)/Panel(面板)%20 配置详解.md 配置详解.md)
+详见：[Overrides](/docs/6.可观测性/Grafana/Panel(面板)%20 与%20Dashboard(仪表盘)/Panel(面板)%20 配置详解.md 配置详解.md)

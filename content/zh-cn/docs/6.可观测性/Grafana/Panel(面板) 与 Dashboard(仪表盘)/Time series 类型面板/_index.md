@@ -25,7 +25,7 @@ Time series 是一个二维的，具有 x/y Axes(轴) 的面板。x 轴(横轴) 
 当鼠标移动到面板上是显示的提示，效果如下
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ab3yvw/1636271783435-a71881e0-65d5-42db-9781-160ea4831e5d.png)
 
-## Legend # 用于配置面板内的 [Legend](/docs/IT学习笔记/6.可观测性/Grafana/Panel(面板)%20 与%20Dashboard(仪表盘)/Panel(面板)%20 配置详解.md 配置详解.md)
+## Legend # 用于配置面板内的 [Legend](/docs/6.可观测性/Grafana/Panel(面板)%20 与%20Dashboard(仪表盘)/Panel(面板)%20 配置详解.md 配置详解.md)
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ab3yvw/1636271644358-b63f3b84-973e-4c51-8bdf-d1940a33860e.png)
 
@@ -107,4 +107,4 @@ Sort order # 排序。有三种排序方式：None(不排序)、Increasing(由�
 
 # Overrides # 字段替换配置，Time series 类型面板不常用
 
-详见：[Overrides](/docs/IT学习笔记/6.可观测性/Grafana/Panel(面板)%20 与%20Dashboard(仪表盘)/Panel(面板)%20 配置详解.md 配置详解.md)
+详见：[Overrides](/docs/6.可观测性/Grafana/Panel(面板)%20 与%20Dashboard(仪表盘)/Panel(面板)%20 配置详解.md 配置详解.md)

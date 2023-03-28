@@ -5,6 +5,7 @@ title: Node Exporter
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目](https://github.com/prometheus/node_exporter)
 
 node_exporter 用于收集服务器的 metrics，比如内存、cpu、磁盘、I/O、电源等
@@ -86,6 +87,7 @@ nerdctl run -d --name node-exporter --restart=always \
 # Textfile Collector 文本文件采集器
 
 > 参考：
+>
 > - 官方文档：<https://github.com/prometheus/node_exporter#textfile-collector>
 > - 脚本样例：<https://github.com/prometheus-community/node-exporter-textfile-collector-scripts>
 > - [公众号,k8s 技术圈-使用 Node Exporter 自定义监控指标](https://mp.weixin.qq.com/s/X73XRrhU_lYMvkJvF1z2uw)
@@ -109,5 +111,5 @@ Note：
 注意：该功能为实验性的，笔记时间：2021 年 8 月 4 日
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ck9bpv/1628068010926-2ae85ce6-13be-4dd3-8ed1-74538c5cf3da.png)
 与 Prometheus 添加认证的方式一样，详见：
-[Authentication(认证)](/docs/IT学习笔记/6.可观测性/监控系统/Prometheus/HTTPS%20 和%20Authentication(认证).md 和 Authentication(认证).md)
+[Authentication(认证)](/docs/6.可观测性/监控系统/Prometheus/HTTPS%20 和%20Authentication(认证).md 和 Authentication(认证).md)
 node-exporter 程序使用 `--web.config` 命令行标志来指定 web-config 文件，读取其中内容并开启 TLS 或 认证功能。

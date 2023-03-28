@@ -29,9 +29,9 @@ https://pkg.go.dev/cmd/go#hdr-Compile_packages_and_dependencies
 OPTIONS
 
 - **-ldflags \<[PATTERN=]ARG>** # 向链接器传递一些参数。这些参数可用于指定编译时需要使用的一些信息，例如项目版本号、Git 提交 ID、构建时间、构建平台和架构等元数据信息
-    - 比如：
-        - -ldflags "-X main.version=1.0.0 -X 'main.buildTime=`date`'"
-        - -ldflags "-s -w" # 告诉链接器在生成可执行文件时忽略调试信息和符号表，从而使得你的二进制文件更加紧凑而且不再可读。
+  - 比如：
+    - -ldflags "-X main.version=1.0.0 -X 'main.buildTime=`date`'"
+    - -ldflags "-s -w" # 告诉链接器在生成可执行文件时忽略调试信息和符号表，从而使得你的二进制文件更加紧凑而且不再可读。
 - **-o \<NAME>** # 指定构建完成后生成的文件名为 NAME
 - **-x** # 输出 Go 程序编译、链接、打包的全过程。包括都使用了哪些库、执行了什么命令、等等
 
@@ -190,7 +190,7 @@ Delve 是 Go 编程语言的调试器。该项目的目标是为 Go 提供一个
 >
 > - [GitHub 项目，josharian/impl](https://github.com/josharian/impl)
 
-impl 用于生成实现接口的 [Method stub](</docs/IT学习笔记/2.编程/Programming(编程)/Programming(编程).md>>)
+impl 用于生成实现接口的 [Method stub](</docs/2.编程/Programming(编程)/Programming(编程).md>>)
 
 ### 简单示例
 

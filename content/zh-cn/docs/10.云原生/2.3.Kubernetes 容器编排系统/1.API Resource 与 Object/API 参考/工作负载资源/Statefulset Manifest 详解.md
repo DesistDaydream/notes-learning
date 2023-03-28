@@ -15,7 +15,7 @@ title: Statefulset Manifest 详解
 
 # metadata
 
-Statefulset 对象的元数据，该字段内容详见通用定义的 [ObjectMeta](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义).md Definitions(通用定义).md)
+Statefulset 对象的元数据，该字段内容详见通用定义的 [ObjectMeta](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义).md Definitions(通用定义).md)
 
 # sepc: # 指明该 StatefulSet 的规格
 
@@ -35,7 +35,7 @@ spec 用来描述一个 Statefulset 应该具有的属性。也就是用来定�
 **replicas: \<INT>** # 该控制器运行的 Pod 数量，`默认值：1`。
 **selector: \<Object> # 必须的**。Pod 的选择器，根据标签匹配要控制的 Pod。必须与 `template.metadata.labels` 的内容匹配。
 
-- 该字段内容详见通用定义的[ LabelSelector](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md Definitions(通用定义)/LabelSelector 详解.md)。
+- 该字段内容详见通用定义的[ LabelSelector](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md Definitions(通用定义)/LabelSelector 详解.md)。
 
 **serviceName: \<STRING> # 必须的**。serviceName 是管理此 StatefulSet 的服务的名称。
 该服务必须在 StatefulSet 之前存在，并且负责该集合的网络标识。 Pod 会遵循以下格式获取 DNS 或 hostname：pod-specific-string.serviceName.default.svc.cluster.local，其中"pod-specific-string"由 StatefulSet 控制器管理。

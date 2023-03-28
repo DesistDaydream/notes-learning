@@ -10,7 +10,7 @@ title: Storage(存储)
 > - [官方文档,运维-存储](https://grafana.com/docs/loki/latest/operations/storage/)
 > - [官方文档,运维-存储-BoltDB-Shipper](https://grafana.com/docs/loki/latest/operations/storage/boltdb-shipper/)
 
-与其他日志记录系统不同，Loki 是基于仅索引日志的元数据的想法而构建的。从 [Loki 的数据模型](/docs/IT学习笔记/6.可观测性/日志系统/Loki/Storage(存储)/Data%20Model(数据模型).md Model(数据模型).md)可知，日志是根据标签进行定位的。 日志数据本身会被压缩成 Chunks，并存储在本地的文件系统中；并且 Loki 还提供了一个 Index 数据，用来根据索引定位日志数据。小索引和高度压缩的 Chunks 简化了操作，并显着降低了 Loki 的成本。
+与其他日志记录系统不同，Loki 是基于仅索引日志的元数据的想法而构建的。从 [Loki 的数据模型](/docs/6.可观测性/日志系统/Loki/Storage(存储)/Data%20Model(数据模型).md Model(数据模型).md)可知，日志是根据标签进行定位的。 日志数据本身会被压缩成 Chunks，并存储在本地的文件系统中；并且 Loki 还提供了一个 Index 数据，用来根据索引定位日志数据。小索引和高度压缩的 Chunks 简化了操作，并显着降低了 Loki 的成本。
 
 所以 Loki 需要存储两种不同类型的数据，当 Loki 收到 Log Stream 时，会存储两类数据：
 
@@ -119,7 +119,7 @@ Chunks 数据的目录结构就很简单了
 
 - Chunks 支持以下远程存储
   - **Cassandra**
-  - **S3** # 任何实现 S3 接口的服务都可以用来存储 Chunks 数据，比如开源的 [MinIO](/docs/IT学习笔记/5.数据存储/1.存储/存储的基础设施架构/Distributed%20Storage(分布式存储)/MinIO.md Storage(分布式存储)/MinIO.md)。
+  - **S3** # 任何实现 S3 接口的服务都可以用来存储 Chunks 数据，比如开源的 [MinIO](/docs/5.数据存储/1.存储/存储的基础设施架构/Distributed%20Storage(分布式存储)/MinIO.md Storage(分布式存储)/MinIO.md)。
   - ......等等，详见官方文档
 - Index 支持以下远程存储
   - **Cassandra**

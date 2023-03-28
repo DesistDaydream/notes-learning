@@ -6,7 +6,7 @@ title: Docker 权限管理
 
 # Docker Capabilities
 
-Capabilities 详见 [Linux Capabilities 权限管理章节](/docs/IT学习笔记/1.操作系统/5.登录%20Linux%20 与%20 访问控制/Access%20Control(访问控制)/Capabilities(能力)%20 管理.md Linux 与 访问控制/Access Control(访问控制)/Capabilities(能力) 管理.md)
+Capabilities 详见 [Linux Capabilities 权限管理章节](/docs/1.操作系统/5.登录%20Linux%20 与%20 访问控制/Access%20Control(访问控制)/Capabilities(能力)%20 管理.md Linux 与 访问控制/Access Control(访问控制)/Capabilities(能力) 管理.md)
 
 我们说 Docker 容器本质上就是一个进程，所以理论上容器就会和进程一样会有一些默认的开放权限，默认情况下 Docker 会删除必须的 `capabilities` 之外的所有 `capabilities`，因为在容器中我们经常会以 root 用户来运行，使用 `capabilities` 现在后，容器中的使用的 root 用户权限就比我们平时在宿主机上使用的 root 用户权限要少很多了，这样即使出现了安全漏洞，也很难破坏或者获取宿主机的 root 权限，所以 Docker 支持 `Capabilities` 对于容器的安全性来说是非常有必要的。
 不过我们在运行容器的时候可以通过指定 `--privileded` 参数来开启容器的超级权限，这个参数一定要慎用，因为他会获取系统 root 用户所有能力赋值给容器，并且会扫描宿主机的所有设备文件挂载到容器内部，所以是非常危险的操作。

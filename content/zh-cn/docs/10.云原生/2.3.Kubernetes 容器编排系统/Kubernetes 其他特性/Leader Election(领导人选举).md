@@ -5,6 +5,7 @@ title: Leader Election(领导人选举)
 # 概述
 
 > 参考：
+>
 > - [官方博客,Kubernetes 的简单领导人选举](https://kubernetes.io/blog/2016/01/simple-leader-election-with-kubernetes/)
 > - [zhengyinyong](https://zhengyinyong.com/post/kubernetes-pod-leader-election/)
 > - 用法：
@@ -54,7 +55,7 @@ $ kubectl get po
 可以逐个查看 Pod 的日志：
 
 ```bash
-$ kubectl logs -f ${pod_name}
+kubectl logs -f ${pod_name}
 ```
 
 如果是 Leader 的话，将会有如下的日志：
@@ -72,12 +73,12 @@ leader-elector-68dcb58d55-g5zp8 is the leader
 更通用的方式是查看资源锁的身份标识信息：
 
 ```bash
-$ kubectl get ep example -o yaml
+kubectl get ep example -o yaml
 ```
 
 通过查看 annotations 中的 `control-plane.alpha.kubernetes.io/leader` 字段来获得 Leader 的信息；
 
-- **使用 **；
+- **使用**；
   `leader-elector` 实现了一个简单的 HTTP 接口（`:4040`）来查看当前 Leader：
 
 ```bash
@@ -99,11 +100,11 @@ Leader Election 库在 <https://github.com/kubernetes/client-go/tree/master/tool
 
 # Leader Election 的实现
 
-Leader Election 的过程本质上就是一个**竞争分布式锁**的过程。在 Kubernetes 中，这个分布式锁是通过下面几个 **Resource(资源) **实现的：
+Leader Election 的过程本质上就是一个**竞争分布式锁**的过程。在 Kubernetes 中，这个分布式锁是通过下面几个 **Resource(资源)**实现的：
 
 - **Endpoints** #
 - **ConfigMaps** #
-- **Leases** # 详见 [集群资源-Lease](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/集群资源.md 参考/集群资源.md)
+- **Leases** # 详见 [集群资源-Lease](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/集群资源.md 参考/集群资源.md)
 
 **谁先创建了某种资源，谁就获得锁**。通常情况下，kube-scheduler 和 kube-controller-manager 使用 leases 资源来实现领导者选举。
 
@@ -140,19 +141,19 @@ resourcelock 是以 interface 的形式对外暴露，在创建过程（`New()`�
 ```go
 // leaderelection/resourcelock/interface.go
 type Interface interface {
-	// Get returns the LeaderElectionRecord
-	Get() (*LeaderElectionRecord, error)
-	// Create attempts to create a LeaderElectionRecord
-	Create(ler LeaderElectionRecord) error
-	// Update will update and existing LeaderElectionRecord
-	Update(ler LeaderElectionRecord) error
-	// RecordEvent is used to record events
-	RecordEvent(string)
-	// Identity will return the locks Identity
-	Identity() string
-	// Describe is used to convert details on current resource lock
-	// into a string
-	Describe() string
+ // Get returns the LeaderElectionRecord
+ Get() (*LeaderElectionRecord, error)
+ // Create attempts to create a LeaderElectionRecord
+ Create(ler LeaderElectionRecord) error
+ // Update will update and existing LeaderElectionRecord
+ Update(ler LeaderElectionRecord) error
+ // RecordEvent is used to record events
+ RecordEvent(string)
+ // Identity will return the locks Identity
+ Identity() string
+ // Describe is used to convert details on current resource lock
+ // into a string
+ Describe() string
 }
 ```
 
@@ -160,16 +161,16 @@ type Interface interface {
 
 ```go
 type LeaderElectionRecord struct {
-	// 标示当前资源锁的所有权的信息
-	HolderIdentity string `json:"holderIdentity"`
-	// 资源锁租约时间是多长
-	LeaseDurationSeconds int `json:"leaseDurationSeconds"`
-	// 锁获得的时间
-	AcquireTime metav1.Time `json:"acquireTime"`
-	// 续租的时间
-	RenewTime metav1.Time `json:"renewTime"`
-	// Leader 进行切换的次数
-	LeaderTransitions int `json:"leaderTransitions"`
+ // 标示当前资源锁的所有权的信息
+ HolderIdentity string `json:"holderIdentity"`
+ // 资源锁租约时间是多长
+ LeaseDurationSeconds int `json:"leaseDurationSeconds"`
+ // 锁获得的时间
+ AcquireTime metav1.Time `json:"acquireTime"`
+ // 续租的时间
+ RenewTime metav1.Time `json:"renewTime"`
+ // Leader 进行切换的次数
+ LeaderTransitions int `json:"leaderTransitions"`
 }
 ```
 
@@ -181,7 +182,7 @@ type LeaderElectionRecord struct {
 完整的 Leader Election 过程在 `leaderelection/leaderelection.go` 中。
 整个过程可以简单描述为：
 
-1. **每个 Pod 在启动的时候都会创建 **；
+1. **每个 Pod 在启动的时候都会创建**；
 2. **在循环中，Pod 会定期（**；
 3. **在循环周期中，Leader 会不断 Update 资源锁的对应时间信息，从节点则会不断检查资源锁是否过期，如果过期则尝试更新资源，标记资源所有权。这样一来，一旦 Leader 不可用，则对应的资源锁将得不到更新，过期之后其他从节点会再次创建新的资源锁成为 Leader**；
 

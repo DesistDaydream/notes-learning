@@ -6,7 +6,7 @@ title: config 子命令，修改kubeconfig文件
 
 **kubectl config SUBCOMMAND \[options] # 使用子命令修改 kubeconfig 文件**
 
-Note：该命令的功能详见 [认证与授权章节中的 KubeConfig 文件详解](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/7.API%20 访问控制/1.Authenticating(认证)/User%20Account%20 详解.md 访问控制/1.Authenticating(认证)/User Account 详解.md)
+Note：该命令的功能详见 [认证与授权章节中的 KubeConfig 文件详解](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/7.API%20 访问控制/1.Authenticating(认证)/User%20Account%20 详解.md 访问控制/1.Authenticating(认证)/User Account 详解.md)
 
 SUBCOMMAND 包括：
 
@@ -68,9 +68,11 @@ OPTIONS
 EXAMPLE
 
 通过使用证书与私钥的方式设定名为 lch 的用户
+
 - `kubectl config set-credentials lch --client-certificate=./lch.crt --client-key=./lch.key --embed-certs`
 
 使用 ${DASH_TOKEN} 中的 token 来作为 user 的凭证
+
 - `kubectl config set-credentials dashboard-admin --token=$DASH_TOKEN --kubeconfig=/root/dashbord-admin.conf`
 
 ## use-context # 设置当前 current-context 字段(当前所用的使用的上下文)

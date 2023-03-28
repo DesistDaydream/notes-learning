@@ -5,6 +5,7 @@ title: OpenSSL
 # 概述
 
 > 参考：
+>
 > - [官网](https://www.openssl.org/)
 > - [GitHub 项目,openssl/openssl](https://github.com/openssl/openssl)
 
@@ -31,6 +32,7 @@ OpenSSL 主要包含两组东西：
 # openssl 命令行工具
 
 > 参考：
+>
 > - [Manual(手册),openssl](https://www.openssl.org/docs/manmaster/man1/openssl.html)
 
 openssl 程序提供了丰富的子命令，以实现 TLS/SSL 网络协议以及它们所需要的相关加密标准。
@@ -55,7 +57,7 @@ openssl 程序提供了丰富的子命令，以实现 TLS/SSL 网络协议以及
 
 ## Standard commands # 标准命令
 
-[Standard commands(标准命令)](/docs/IT学习笔记/7.信息安全/管理工具/OpenSSL/Standard%20commands(标准命令).md commands(标准命令).md)
+[Standard commands(标准命令)](/docs/7.信息安全/管理工具/OpenSSL/Standard%20commands(标准命令).md)
 
 ## Message Digest commands # 消息摘要命令
 
@@ -80,7 +82,7 @@ EXAMPLE
 - openssl enc -e -des3 -a -salt -in fstab -out fstab.ciphertext # 加密 fstab 文件为 fstab.ciphertext，算法为 des3，基于文本进行编码，加入一些 salt
 - openssl enc -d -des3 -a -salt -in fstab.ciphertext -out fstab # 解密 fstab.ciphertext 为 fstab 文件
 
-# 应用实例：
+# 应用实例
 
 ## 创建自签 ca 证书
 

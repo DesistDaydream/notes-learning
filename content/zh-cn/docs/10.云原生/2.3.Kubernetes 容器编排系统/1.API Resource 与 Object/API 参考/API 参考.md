@@ -6,6 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
+>
 > - [官方文档，参考-API 概述-API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23)(这里是通过单一页面显示 API 资源各字段详解)
 >   - 链接里是 1.23 的，想查看其他版本 API，改变 URL 中的版本即可。
 > - [官方文档，参考-KubernetesAPI](https://kubernetes.io/docs/reference/kubernetes-api/)(这里是通过多级页面显示 API 资源各字段详解)
@@ -19,6 +20,7 @@ weight: 1
 **Kubernetes API 参考中将会描述每种资源的 Manifests 中每个字段(即.YAML 中的节点)的含义。**
 
 下面是文档中占位符说明：
+
 **\[]TYPE** # 表示该字段由数组组成，数组元素类型为 TYPE，比如 \[]STRING 格式应该就是下面这样
 
 ```yaml
@@ -61,7 +63,7 @@ containers:
     image: YYY
 ```
 
-**在每种资源的 Manifests 中，会有一些共用的部分称为**[**通用定义**](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义).md 参考/Common Definitions(通用定义).md)**（也可以说是功能定义），比如常见的 **[**LabelSelector**](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 参考/Common Definitions(通用定义)/LabelSelector 详解.md)**，这属于资源的 Manifests 的一部分。很多组件在解析 Manifests 中的通用定义时，都会遵循相同的规则。除了通用定义以外的，都属于 K8S 的资源定义，比如定义 **[**Pod**](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/工作负载资源/Pod%20Manifest%20 详解.md 参考/工作负载资源/Pod Manifest 详解.md)** 的 API 参考、定义 **[**Service**](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/服务资源/Service%20Manifests%20 详解.md 参考/服务资源/Service Manifests 详解.md)** 的 API 参考等等。**
+**在每种资源的 Manifests 中，会有一些共用的部分称为 [Common Definitions(通用定义)](docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/Common%20Definitions(通用定义).md)（也可以说是功能定义），比如常见的 [LabelSelector](docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)，这属于资源的 Manifests 的一部分。很多组件在解析 Manifests 中的通用定义时，都会遵循相同的规则。除了通用定义以外的，都属于 K8S 的资源定义，比如定义 [Pod](docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/工作负载资源/Pod%20Manifest%20详解.md) 的 API 参考、定义 [Service](docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/服务资源/Service%20Manifests%20详解.md) 的 API 参考等等。**
 
 这是单一页面的样子。左侧是根据对资源的分类而形成的目录，右侧是完整的页面
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/dkxdpv/1616120193938-a171af16-575d-4de6-951a-99cdca271a50.png)
@@ -71,6 +73,7 @@ containers:
 ## Kubernetes API 删除和弃用流程
 
 > 参考：
+>
 > - [官方文档，参考-API 概述-Kubernetes 弃用策略](https://kubernetes.io/docs/reference/using-api/deprecation-policy/)
 
 Kubernetes 项目有一个记录良好的特性弃用策略\[1]。该策略规定，只有当同一 API 的更新的、稳定的版本可用时，才可以弃用稳定的 API，并且 API 对于每个稳定性级别都有一个最短的生存期。给弃用的 API，是在未来的 Kubernetes 版本中被标记为删除的 API；它将继续运行，直到给删除（从弃用至少一年），但使用将导致显示警告。删除的 API 在当前版本中不再可用，此时你必须迁移到使用替换的 API。
@@ -83,7 +86,7 @@ Kubernetes 项目有一个记录良好的特性弃用策略\[1]。该策略规�
 
 # API 分类
 
-- [Workloads Resources](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/工作负载资源.md 参考/工作负载资源.md)(工作负载资源)
+- [Workloads Resources](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/工作负载资源.md 参考/工作负载资源.md)(工作负载资源)
 - [Services Resources](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/)(服务资源)
 - [Config and Storage Resources](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/)(配置与存储资源)
 - [Authentication Resources](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/)(认证资源)
@@ -140,7 +143,7 @@ CSIStorageCapacity stores the result of one CSI GetCapacity call.
 
 ##### [ServiceAccount](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/service-account-v1/)
 
-ServiceAccount binds together: _ a name, understood by users, and perhaps by peripheral systems, for an identity _ a principal that can be authenticated and authorized \* a set of secrets.
+ServiceAccount binds together: _a name, understood by users, and perhaps by peripheral systems, for an identity_ a principal that can be authenticated and authorized \* a set of secrets.
 
 ##### [TokenRequest](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/)
 

@@ -7,31 +7,43 @@ title: Service Manifests 详解
 > 参考：
 >
 > - [API 文档单页](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#service-v1-core)
-> - [API 参考-Service](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/)
-> - [API 参考-Endpoint](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoints-v1/)
+> - [官方文档，参考-Kubernetes API-服务资源-Service](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/)
+> - [官方文档，参考-Kubernetes API-服务资源-Endpoint](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoints-v1/)
 
 # Service Manifests 详解
 
-## apiVersion: v1 # API 版本，基础字段必须要有
+## Manifest 中的顶层字段
 
-## kind: Service # 指明要创建的资源类型为 Service，基础字段必须要有
+- apiVersion: v1 # API 版本，基础字段必须要有
+- kind: Service # 指明要创建的资源类型为 Service，基础字段必须要有
+- [metadata: \<Object>](#metadata)
+- [spec: \<Object>](#spec)
+- [status: \<Object>](#status)
 
-## metadata: # 指明该 Service 资源的元数据，其中 name 是必须要写明的元数据项
+## metadata
 
-name: NAME # 指定该资源的名字
+**metadata** 字段描述该 Service 资源的元数据，其中 name 是必须要写明的元数据项。该字段内容详见通用定义的 [ObjectMeta](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/ObjectMeta.md)
 
-## sepc:  # 指明该 Service 的规格(specification)
+**name: STRING** # 指定该资源的名字
 
-clusterIP: XXX.XXX.XXX.XXX # 手动给该 Service 分配 IP，该 IP 在服务创建后无法手动修改，可以设置为 None，变成无头 service，这时候请求不由 service 处理，直接通过 service 名称转发到后端的 Pod
- ports:
+## spec
+
+**spec** 字段描述该 Service 的规格(specification)
+
+**clusterIP: STRING** # 手动给该 Service 分配 IP，该 IP 在服务创建后无法手动修改，可以设置为 None，变成无头 service，这时候请求不由 service 处理，直接通过 service 名称转发到后端的 Pod
+
+**ports: <\[]OBJECT>**
+
  - protocol: TCP # 将 service 的端口映射到 pod 的端口，使用 TCP 协议
    nodePort: NUM # 指明 Service 通过 k8s 集群中的那个端口对外提供服务，默认随机从 30000-32767 中随机分配(注：该字段只有 type 为 NodePort 的时候才有作用)
    port: NUM # 指明该 service 所使用的端口
    targetPort: XXX # 指明后端 Pod 的端口
- selector: # 标签选择器 label selector 简称 selector，选择哪些 Pod 是该 Service 的后端
-   run: httpd # 指明挑选那些 label 为 run:httpd 的 pod 作为该 service 的后端
- sessionAffinity: \<ClientIP|None> # 设置会话亲和度，当为 None 的时候为同一个客户端的访问都会指向同一个 Pod，ClientIP 为进行负载调度
- type: TYPE
+
+**selector: <map\[STRING]\[STRING]>** # 通过[Label and Selector(标签和选择器)](docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/Object%20管理/Label%20and%20Selector(标签和选择器)/Label%20and%20Selector(标签和选择器).md) 选择哪些 Pod 是该 Service 的后端。
+
+**sessionAffinity: \<ClientIP|None>** # 设置会话亲和度，当为 None 的时候为同一个客户端的访问都会指向同一个 Pod，ClientIP 为进行负载调度
+
+**type: STRING** # 
 
 # Endpoints Manifests 详解
 

@@ -16,7 +16,7 @@ Linux 操作系统是一个多用户操作系统，所以除了 **Terminal(终�
 > User 与 Account 傻傻分不清楚，在 Linux 操作系统中，通常都会将 Account 称为 User，但是，这个称呼实际上并不准确。因为一个 User，比如 root，可以被多个现实世界中多个人使用，那么 root 这个 User 就会对应多个真实的 User~这种描述是非常矛盾的~~~~
 > 只不过，随着时间的推移，人们慢慢叫习惯了，各种文档和源码也都一直使用 UID 这种名称，也就不再特别区分 Account 和 User 了。只需要知道，UID 更准确的描述应该是 AID。
 
-同时，一个 Linux Account 也可以不代表一个真实的 User，这样的 Account 只被应用程序使用，一个应用程序使用某个 Account 运行，以便让系统更方便得对程序进行精细化控制。这种控制方式称为 **Access Control(访问控制)**，所以，从这种角度看，Account 也可以称为 **Role(角色)**，详见 [访问控制](/docs/IT学习笔记/1.操作系统/5.登录%20Linux%20 与%20 访问控制/Access%20Control(访问控制).md Control(访问控制).md) 章节。
+同时，一个 Linux Account 也可以不代表一个真实的 User，这样的 Account 只被应用程序使用，一个应用程序使用某个 Account 运行，以便让系统更方便得对程序进行精细化控制。这种控制方式称为 **Access Control(访问控制)**，所以，从这种角度看，Account 也可以称为 **Role(角色)**，详见 [访问控制](/docs/1.操作系统/5.登录%20Linux%20 与%20 访问控制/Access%20Control(访问控制).md Control(访问控制).md) 章节。
 
 为了方便得对多个 Account 管理，可以将多个 Account 组合起来，称为 **Group(组)**，一个 Group 就是一个或多个 Account 的集合。
 

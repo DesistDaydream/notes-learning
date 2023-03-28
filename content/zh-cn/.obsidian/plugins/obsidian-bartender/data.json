@@ -1298,6 +1298,17 @@
       "docs/5.数据存储/2.数据库/关系数据/MySQL/MySQL 配置文件详解.md",
       "docs/5.数据存储/2.数据库/关系数据/MySQL/MySQL 命令行工具.md",
       "docs/5.数据存储/2.数据库/关系数据/MySQL/MySQL 批量SQL插入性能优化.md"
+    ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/8.Kubernetes 网络.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Service(服务).md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Kubernetes DNS",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/kube-proxy(实现 Service 功能的组件)",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/CNI",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Gateway API.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/NetworkPolicy 网络策略.md"
     ]
   },
   "actionBarOrder": {},

@@ -131,13 +131,13 @@ spec:
 注意：
 
 - 亲和性只在 Pod 调度期间有效。比如修改或删除了 pod 所在节点的标签，Pod 不会被删除。 也就是说，当 Pod 已经运行时，亲和性是不起作用的。
-- Affinity 的 Manifests 各字段详见 [Pod Manifest 详解](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/工作负载资源/Pod%20Manifest%20 详解.md 参考/工作负载资源/Pod Manifest 详解.md)
+- Affinity 的 Manifests 各字段详见 [Pod Manifest 详解](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/工作负载资源/Pod%20Manifest%20 详解.md 参考/工作负载资源/Pod Manifest 详解.md)
 
 ## Node Affinity
 
 Node Affinity 概念上类似于 NodeSelector，属于 Pod 与 Node 之前的亲和性关系。可以根据节点上的标签来约束 Pod 可以调度到哪些节点上。
 
-Affinity 的 Manifests 各字段详见 [Pod Manifest 详解](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/工作负载资源/Pod%20Manifest%20 详解.md 参考/工作负载资源/Pod Manifest 详解.md)
+Affinity 的 Manifests 各字段详见 [Pod Manifest 详解](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/工作负载资源/Pod%20Manifest%20 详解.md 参考/工作负载资源/Pod Manifest 详解.md)
 
 ### 应用示例
 
@@ -267,8 +267,6 @@ Pod 亲和性与反亲和性的合法 `operator` 字段的值有 In，NotIn，Ex
 ### 更实际的用例
 
 Pod 间亲和性与反亲和性在与更高级别的集合(例如 ReplicaSets、StatefulSets、 Deployments 等)一起使用时，它们更加有用。 可以轻松配置一组应位于相同定义拓扑（例如，节点）中的工作负载。
-
-####
 
 在三节点集群中，一个 web 应用程序具有内存缓存(例如 redis)。 我们希望 web 服务器尽可能与缓存放置在同一位置，并且多个 Redis 不在同一个节点上。
 

@@ -5,6 +5,7 @@ title: OCI Image 规范
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目,opencontainers/image-spec/spec.md](https://github.com/opencontainers/image-spec/blob/main/spec.md)
 > - [思否大佬](https://segmentfault.com/a/1190000009309347)
 > - <https://mp.weixin.qq.com/s/8wAv87DkJjE6fVEEmoQ60Q>
@@ -72,7 +73,7 @@ OCI Image 中的每个组件都会打包成一个文件。做过 web 开发的�
 
 下面是 [v1.0 版本的镜像布局示例](https://github.com/opencontainers/image-spec/blob/v1.0/image-layout.md#example-layout)：
 
-> 这里以通过 `nerdctl image save lchdzh/k8s-debug:v1 -o k8s-debug.tar` 命令将 lchdzh/k8s-debug 镜像打包，打包后再通过 `tar` 命令解包获取 OCI 格式的镜像文件。该镜像的构建详见[ kubernetes 的故障处理技巧](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/性能优化%20 与%20 故障处理/故障处理技巧.md 容器编排系统/Kubernetes 管理/性能优化 与 故障处理/故障处理技巧.md)
+> 这里以通过 `nerdctl image save lchdzh/k8s-debug:v1 -o k8s-debug.tar` 命令将 lchdzh/k8s-debug 镜像打包，打包后再通过 `tar` 命令解包获取 OCI 格式的镜像文件。该镜像的构建详见[ kubernetes 的故障处理技巧](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/性能优化%20 与%20 故障处理/故障处理技巧.md 容器编排系统/Kubernetes 管理/性能优化 与 故障处理/故障处理技巧.md)
 
 ```bash
 ~]# tree
@@ -327,7 +328,7 @@ COPY --from=grpcurl  /go/bin/grpcurl /usr/bin/grpcurl
 
 #### 通过镜像层文件启动容器
 
-在 OCI Runtime 规范中的 [Filesystem Bundle 示例](/docs/IT学习笔记/10.云原生/2.1.容器/Open%20Containers%20Initiative(开放容器倡议)/OCI%20Runtime%20 规范.md Runtime 规范.md)中，我们可以直接通过 Layers 文件以及 runc 工具，直接启动一个标准的符合 OCI 规范的简单容器。
+在 OCI Runtime 规范中的 [Filesystem Bundle 示例](/docs/10.云原生/2.1.容器/Open%20Containers%20Initiative(开放容器倡议)/OCI%20Runtime%20 规范.md Runtime 规范.md)中，我们可以直接通过 Layers 文件以及 runc 工具，直接启动一个标准的符合 OCI 规范的简单容器。
 
 ## oci-layout 文件
 
@@ -503,12 +504,12 @@ image config 就是一个 json 文件，它的 media type 是 application/vnd.oc
 
 有多个 XXXID 来标识 OCI Image 的各种信息
 
-- **ImageID **# 镜像的唯一标志，值为 Image Configuration 文件通过 sha256 计算的结果
+- **ImageID**# 镜像的唯一标志，值为 Image Configuration 文件通过 sha256 计算的结果
   - imageID 对于 Docker 来说一般可以在 ${DockerRootDir}/image/${StorageDriver}/repositories.json 文件中找到
   - 镜像的 configuration 文件就是以 imageID 命名，对于 Docker 来说 一般保存在 ${DockerRootDir}/image/${StorageDriver}/imagedb/content/sha256/ 目录下
-- **Layer DiffID **# 镜像层的校验 ID，根据该镜像层的打包文件校验获得
+- **Layer DiffID**# 镜像层的校验 ID，根据该镜像层的打包文件校验获得
   - diffID 一般在 configuration 文件的 `.rootfs.diff_ids` 字段中找到
-- **Layer ChainID **# docker 内容寻址机制采用的索引 ID，其值根据当前层和所有父层的 diffID(或父层的 chainID) 计算获得
+- **Layer ChainID**# docker 内容寻址机制采用的索引 ID，其值根据当前层和所有父层的 diffID(或父层的 chainID) 计算获得
   - chainID 计算完成后，对于 Docker 来说一般可以在 ${DockerRootDir}/image/${StorageDriver}/layerdb/sha256/ 目录中找到 chainID 的同名目录
 - **digest** # 对于某些 image 来说，可能在发布之后还会做一些更新，比如安全方面的，这时虽然镜像的内容变了，但镜像的名称和 tag 没有变，所以会造成前后两次通过同样的名称和 tag 从服务器得到不同的两个镜像的问题，于是 docker 引入了镜像的 digest 的概念，一个镜像的 digest 就是镜像的 manifes 文件的 sha256 码，当镜像的内容发生变化的时候，即镜像的 layer 发生变化，从而 layer 的 sha256 发生变化，而 manifest 里面包含了每一个 layer 的 sha256，所以 manifest 的 sha256 也会发生变化，即镜像的 digest 发生变化，这样就保证了 digest 能唯一的对应一个镜像
 
@@ -598,7 +599,7 @@ OCI 中预定义了一些常用注释以用于镜像索引或识别镜像作者
 - **org.opencontainers.image.ref.name** Name of the reference for a target (string).
   - SHOULD only be considered valid when on descriptors on index.json within [image layout](https://github.com/opencontainers/image-spec/blob/main/image-layout.md).
   - Character set of the value SHOULD conform to alphanum of A-Za-z0-9 and separator set of -.\_:@/+
-  - The reference must match the following [grammar](https://github.com/opencontainers/image-spec/blob/main/considerations.md#ebnf):ref ::= component ("/" component)_ component ::= alphanum (separator alphanum)_ alphanum ::= \[A-Za-z0-9]+ separator ::= \[-.\_:@+] | "--"
+  - The reference must match the following [grammar](https://github.com/opencontainers/image-spec/blob/main/considerations.md#ebnf):ref ::= component ("/" component)_component ::= alphanum (separator alphanum)_ alphanum ::= \[A-Za-z0-9]+ separator ::= \[-.\_:@+] | "--"
 - **org.opencontainers.image.title** Human-readable title of the image (string)
 - **org.opencontainers.image.description** Human-readable description of the software packaged in the image (string)
 - **org.opencontainers.image.base.digest** [Digest](https://github.com/opencontainers/image-spec/blob/main/descriptor.md#digests) of the image this image is based on (string)

@@ -61,3 +61,5 @@ kubectl apply -n pxc -f cr.yaml
 > - [官方文档，参考-CR选项](https://docs.percona.com/percona-operator-for-mysql/pxc/operator.html)
 
 #### HAProxy 部分配置
+
+haproxy.readinessProbes

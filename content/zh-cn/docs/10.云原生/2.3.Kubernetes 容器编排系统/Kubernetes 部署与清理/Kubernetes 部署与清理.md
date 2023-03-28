@@ -5,6 +5,7 @@ title: Kubernetes 部署与清理
 # 概述
 
 > 参考：
+>
 > - [官方文档，快速开始](https://kubernetes.io/docs/setup/)
 > - [GitHub 项目，easzlab/kubeasz](https://github.com/easzlab/kubeasz)(ansible 部署项目)
 > - [官方文档，入门-生产环境-使用部署工具安装 Kubernetes-使用 kubeadm 引导集群-使用 kubeadm 支持 IPv4 与 IPv6 双栈](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/dual-stack-support/)
@@ -23,7 +24,7 @@ title: Kubernetes 部署与清理
 **/var/lib/kubelet/\*** # Kubelet 运行时配置及数据持久化目录
 CNI 目录
 
-- **/etc/cni/net.d/\* **# 默认配置文件保存目录
+- **/etc/cni/net.d/\***# 默认配置文件保存目录
 - **/opt/cni/bin/\*** # 默认 CNI 插件保存目录
 - **/var/lib/cni/\*** # 默认 CNI 运行时产生的数据目录
 
@@ -145,6 +146,7 @@ sysctl -p /etc/sysctl.d/*
 ## 安装 kubeadm、kubectl、kubelet
 
 > 参考：
+>
 > - [官方文档，入门-生产环境-使用部署工具安装 Kubernetes-使用 kubeadm 引导集群-安装 kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-kubeadm-kubelet-and-kubectl)
 
 安装 k8s 基本组件 kubelet，kubeadm，kubectl([软件源以及安装方法详见阿里源的 kubernetes 帮助](https://developer.aliyun.com/mirror/kubernetes?spm=a2c6h.13651102.0.0.3e221b11aiKpn2))
@@ -221,6 +223,7 @@ curl -sSL "https://raw.githubusercontent.com/kubernetes/release/${RELEASE_VERSIO
 ## 使用 kubeadm 初始化 k8s 的 master 节点
 
 > 参考：
+>
 > - [官方文档](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
 
 - 准备初始化所需镜像
@@ -229,11 +232,9 @@ curl -sSL "https://raw.githubusercontent.com/kubernetes/release/${RELEASE_VERSIO
 - 初始化集群的 master 节点
   - 使用该命令进行初始化并对初始化的内容进行一些设定，如果可以没法翻墙，那么就会卡在 pull 的位置，从 google 拉不到 images(注意 IP 位置需要自己改成自己所需的 IP)
 
-
     kubeadm init --kubernetes-version=v1.18.8 --pod-network-cidr=10.244.0.0/16 --image-repository="registry.aliyuncs.com/k8sxio"
 
-- kubeadm 也可通过配置文件加载配置，以定制更丰富的部署选项，kubeadm-config.yaml 文件配置详见 《[kubeadm 命令行工具](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubeadm%20 命令行工具.md 管理/kubeadm 命令行工具.md)》
-
+- kubeadm 也可通过配置文件加载配置，以定制更丰富的部署选项，kubeadm-config.yaml 文件配置详见 《[kubeadm 命令行工具](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubeadm%20 命令行工具.md 管理/kubeadm 命令行工具.md)》
 
     kubeadm init --config kubeadm-config.yaml
 
@@ -290,7 +291,7 @@ kubeadm join 10.10.100.104:6443 --token 5b5a14.11sdexxuycp4rocs \
 
 - 执行前面的 1,2,3 步配置环境，安装 docker 以及 k8s 相关组件。
   - kubeadm join 10.10.100.104:6443 --token 5b5a14.11sdexxuycp4rocs \\
-  -     --discovery-token-ca-cert-hash sha256:52431bdd96837cf25621123e90d3f97619715f08fec18f1f658ec4bacf8cd7ef
+  - --discovery-token-ca-cert-hash sha256:52431bdd96837cf25621123e90d3f97619715f08fec18f1f658ec4bacf8cd7ef
 
 Note：
 若是手动安装 node，则需要在 master 上查看 csr kubectl get csr
@@ -367,6 +368,7 @@ rm -rf /opt/cni
 # Dual-stack(双栈)
 
 > 参考：
+>
 > - [官方文档，快速开始-生产环境-使用部署工具安装 Kubernetes-使用 kubeadm 引导集群-使用 kubeadm 支持双栈](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/dual-stack-support/)
 > - [官方文档，任务-网络-验证 IPv4/IPv6 双栈](https://kubernetes.io/docs/tasks/network/validate-dual-stack)
 

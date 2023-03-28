@@ -5,6 +5,7 @@ title: Alertmanager 扩展
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，prymitive/karma](https://github.com/prymitive/karma)
 > - [公众号-k8s 技术圈，超漂亮的 Alertmanager 可视化面板 - karma](https://mp.weixin.qq.com/s/uHSlzuVBb51-qgX92pEnLQ)
 > - [GitHub 项目，feiyu563/PrometheusAlert](https://github.com/feiyu563/PrometheusAlert)
@@ -18,6 +19,7 @@ feiyu563/PrometheusAlert 可以提供更多的通知功能，将告警发送到�
 # notification-manager
 
 > 参考：
+>
 > - [GitHub 项目，kubesphere/notification-manager](https://github.com/kubesphere/notification-manager)
 
 功能测试
@@ -34,9 +36,9 @@ curl -XPOST http://localhost:19093/api/v2/alerts -d @./alerts.json
 **receivers: <OBJECT>** #
 
 - **globalReceiverSelector: <OBJECT>** #
-  - 该字段内容详见[ LabelSelector](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/LabelSelector 详解.md)。
+  - 该字段内容详见[ LabelSelector](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/LabelSelector 详解.md)。
 - **tenantReceiverSelector: <OBJECT>** #
-  - 该字段内容详见[ LabelSelector](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/LabelSelector 详解.md)。
+  - 该字段内容详见[ LabelSelector](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/LabelSelector 详解.md)。
 - **tenantKey: <STRING>** #
 
 示例:
@@ -77,7 +79,7 @@ receivers:
 
 **alertSelector: <OBJECT>** # 告警标签选择器。与 K8S 的 LabelSelector 的功能完全一样
 
-- 该字段内容详见[ LabelSelector](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/LabelSelector 详解.md)。注意一点：多个匹配条件之间的关键是 AND。如果想要使用 OR 的逻辑，以根据多个条件匹配多条告警，需要使用多个 Router，详见 [Issue #153](https://github.com/kubesphere/notification-manager/issues/153)
+- 该字段内容详见[ LabelSelector](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/LabelSelector 详解.md)。注意一点：多个匹配条件之间的关键是 AND。如果想要使用 OR 的逻辑，以根据多个条件匹配多条告警，需要使用多个 Router，详见 [Issue #153](https://github.com/kubesphere/notification-manager/issues/153)
 
 ## Receiver CRD
 
@@ -100,29 +102,29 @@ Cache 默认为 Memory，在内存中存储各个地方推送过来的告警
 
 ```go
 var (
-	storeType = kingpin.Flag(
-		"store.type",
-		"Type of store which used to cache the alerts",
-	).Default("memory").String()
+ storeType = kingpin.Flag(
+  "store.type",
+  "Type of store which used to cache the alerts",
+ ).Default("memory").String()
 )
 func Main() int {
     // 实例化告警存储器，默认内存
     alerts := store.NewAlertStore(*storeType)
 
     // 带着存储器实例化一个 Webhook，并启动监听程序，默认监听在 19093
-	webhook := wh.New(
-		alerts,
+ webhook := wh.New(
+  alerts,
     )
-	srvCh := make(chan error, 1)
-	go func() {
-		srvCh <- webhook.Run(ctxHttp)
-	}()
+ srvCh := make(chan error, 1)
+ go func() {
+  srvCh <- webhook.Run(ctxHttp)
+ }()
 
     // 带着告警存储器实例化一个 Dispatcher，用以从告警存储器中 pull 下来告警后发送出去
     disp := dispatcher.New(logger, ctl, alerts, *webhookTimeout, *wkrTimeout, *wkrQueue)
-	go func() {
-		dispCh <- disp.Run()
-	}()
+ go func() {
+  dispCh <- disp.Run()
+ }()
 }
 ```
 
@@ -131,9 +133,9 @@ func Main() int {
 
 ```go
 type Provider interface {
-	Push(alert *template.Alert) error
-	Pull(batchSize int, batchWait time.Duration) ([]*template.Alert, error)
-	Close() error
+ Push(alert *template.Alert) error
+ Pull(batchSize int, batchWait time.Duration) ([]*template.Alert, error)
+ Close() error
 }
 ```
 
@@ -144,12 +146,12 @@ type Provider interface {
 
 ```go
 func New(logger log.Logger, notifierCtl *controller.Controller, alerts *store.AlertStore, o *Options) *Webhook {
-	h := &Webhook{
-		Options: o,
-		logger:  logger,
-	}
+ h := &Webhook{
+  Options: o,
+  logger:  logger,
+ }
 
-	h.router.Post("/api/v2/alerts", h.handler.Alert)
+ h.router.Post("/api/v2/alerts", h.handler.Alert)
 }
 ```
 
@@ -158,19 +160,19 @@ func New(logger log.Logger, notifierCtl *controller.Controller, alerts *store.Al
 
 ```go
 func (h *HttpHandler) Alert(w http.ResponseWriter, r *http.Request) {
-	data := template.Data{}
+ data := template.Data{}
 
-	if err := utils.JsonDecode(r.Body, &data); err != nil {
-	}
+ if err := utils.JsonDecode(r.Body, &data); err != nil {
+ }
 
-	for _, alert := range data.Alerts {
+ for _, alert := range data.Alerts {
         // 推送告警
-		if err := h.alerts.Push(alert); err != nil {
-			_ = level.Error(h.logger).Log("msg", "push alert error", "error", err.Error())
-		}
-	}
+  if err := h.alerts.Push(alert); err != nil {
+   _ = level.Error(h.logger).Log("msg", "push alert error", "error", err.Error())
+  }
+ }
 
-	h.handle(w, &response{http.StatusOK, "Notification request accepted"})
+ h.handle(w, &response{http.StatusOK, "Notification request accepted"})
 }
 
 ```
@@ -183,18 +185,18 @@ Dispatcher 中通过 Pull() 方法从存储中获取告警，并通过 Dispatche
 ```go
 func (d *Dispatcher) Run() error {
 
-	for {
-		// err is not nil means the store had closed, dispatcher should process remaining alerts, then exit.
+ for {
+  // err is not nil means the store had closed, dispatcher should process remaining alerts, then exit.
         // BatchMaxSize 定义了每次从缓存中可以获取的最大告警条数
         // BatchMaxWait 定义了每次执行 Pull() 的间隔时间
         // 默认情况下，每隔 1 分钟会 PUll 100 条告警以进一步处理
-		if alerts, err := d.alerts.Pull(d.notifierCtl.GetBatchMaxSize(), d.notifierCtl.GetBatchMaxWait()); err == nil {
-			go d.processAlerts(alerts)
-		} else {
-			d.processAlerts(alerts)
-			return nil
-		}
-	}
+  if alerts, err := d.alerts.Pull(d.notifierCtl.GetBatchMaxSize(), d.notifierCtl.GetBatchMaxWait()); err == nil {
+   go d.processAlerts(alerts)
+  } else {
+   d.processAlerts(alerts)
+   return nil
+  }
+ }
 }
 ```
 
@@ -207,24 +209,24 @@ Dispatcher.processAlerts() -> Dispatcher.worker() 将会执行[告警处理阶�
 ```go
 func (d *Dispatcher) worker(ctx context.Context, data interface{}, stopCh chan struct{}) {
 
-	pipeline := stage.MultiStage{}
-	// Global silence stage
-	pipeline = append(pipeline, silence.NewStage(d.notifierCtl))
-	// Route stage
-	pipeline = append(pipeline, route.NewStage(d.notifierCtl))
-	// Tenant silence stage
-	pipeline = append(pipeline, filter.NewStage(d.notifierCtl))
-	// Aggregation stage
-	pipeline = append(pipeline, aggregation.NewStage(d.notifierCtl))
-	// Notify stage
-	pipeline = append(pipeline, notify.NewStage(d.notifierCtl))
-	// History stage
-	pipeline = append(pipeline, history.NewStage(d.notifierCtl))
+ pipeline := stage.MultiStage{}
+ // Global silence stage
+ pipeline = append(pipeline, silence.NewStage(d.notifierCtl))
+ // Route stage
+ pipeline = append(pipeline, route.NewStage(d.notifierCtl))
+ // Tenant silence stage
+ pipeline = append(pipeline, filter.NewStage(d.notifierCtl))
+ // Aggregation stage
+ pipeline = append(pipeline, aggregation.NewStage(d.notifierCtl))
+ // Notify stage
+ pipeline = append(pipeline, notify.NewStage(d.notifierCtl))
+ // History stage
+ pipeline = append(pipeline, history.NewStage(d.notifierCtl))
 
-	if _, _, err := pipeline.Exec(ctx, d.l, data); err != nil {
-	}
+ if _, _, err := pipeline.Exec(ctx, d.l, data); err != nil {
+ }
 
-	stopCh <- struct{}{}
+ stopCh <- struct{}{}
 }
 ```
 
@@ -232,7 +234,7 @@ func (d *Dispatcher) worker(ctx context.Context, data interface{}, stopCh chan s
 
 ```go
 type Stage interface {
-	Exec(ctx context.Context, l log.Logger, data interface{}) (context.Context, interface{}, error)
+ Exec(ctx context.Context, l log.Logger, data interface{}) (context.Context, interface{}, error)
 }
 ```
 
@@ -241,27 +243,27 @@ type Stage interface {
 ```go
 // 告警静音 pkg/silence/silence.go
 type silenceStage struct {
-	notifierCtl *controller.Controller
+ notifierCtl *controller.Controller
 }
 // 告警路由 pkg/route/router.go
 type routeStage struct {
-	notifierCtl *controller.Controller
+ notifierCtl *controller.Controller
 }
 // 告警过滤 pkg/filter/filter.go
 type filterStage struct {
-	notifierCtl *controller.Controller
+ notifierCtl *controller.Controller
 }
 // 告警聚合 pkg/aggregation/aggregation.go
 type aggregationStage struct {
-	notifierCtl *controller.Controller
+ notifierCtl *controller.Controller
 }
 // 告警通知 pkg/notify/notify.go
 type notifyStage struct {
-	notifierCtl *controller.Controller
+ notifierCtl *controller.Controller
 }
 // 告警历史 pkg/history/history.go
 type historyStage struct {
-	notifierCtl *controller.Controller
+ notifierCtl *controller.Controller
 }
 ```
 
@@ -274,36 +276,36 @@ type historyStage struct {
 ```go
 func (s *notifyStage) Exec(ctx context.Context, l log.Logger, data interface{}) (context.Context, interface{}, error) {
 
-	if reflect2.IsNil(data) {
-		return ctx, nil, nil
-	}
+ if reflect2.IsNil(data) {
+  return ctx, nil, nil
+ }
 
-	_ = level.Debug(l).Log("msg", "Start notify stage", "seq", ctx.Value("seq"))
+ _ = level.Debug(l).Log("msg", "Start notify stage", "seq", ctx.Value("seq"))
 
-	group := async.NewGroup(ctx)
+ group := async.NewGroup(ctx)
 
     // Receiver 是告警的接受者，即推送目标
     // []*template.Data 是需要推送的告警列表
-	alertMap := data.(map[internal.Receiver][]*template.Data)
+ alertMap := data.(map[internal.Receiver][]*template.Data)
 
-	for k, v := range alertMap {
-		receiver := k
-		ds := v
+ for k, v := range alertMap {
+  receiver := k
+  ds := v
         // 获取推送目标，比如 钉钉、微信 等
-		nf, err := factories[receiver.GetType()](l, receiver, s.notifierCtl)
+  nf, err := factories[receiver.GetType()](l, receiver, s.notifierCtl)
 
         //
-		for _, d := range ds {
-			alert := d
-			group.Add(func(stopCh chan interface{}) {
+  for _, d := range ds {
+   alert := d
+   group.Add(func(stopCh chan interface{}) {
                 // 使用对应的 Receiver 的 Notify() 方法发送通知
-				stopCh <- nf.Notify(ctx, alert)
-			})
-		}
+    stopCh <- nf.Notify(ctx, alert)
+   })
+  }
 
-	}
+ }
 
-	return ctx, data, group.Wait()
+ return ctx, data, group.Wait()
 }
 ```
 
@@ -312,7 +314,7 @@ func (s *notifyStage) Exec(ctx context.Context, l log.Logger, data interface{}) 
 
 ```go
 type Notifier interface {
-	Notify(ctx context.Context, data *template.Data) error
+ Notify(ctx context.Context, data *template.Data) error
 }
 ```
 
@@ -324,19 +326,19 @@ type Notifier interface {
 ```go
 func (n *Notifier) Notify(ctx context.Context, data *template.Data) error {
 
-	group := async.NewGroup(ctx)
-	if n.receiver.ChatBot != nil {
-		group.Add(func(stopCh chan interface{}) {
-			stopCh <- n.sendToChatBot(ctx, data)
-		})
-	}
+ group := async.NewGroup(ctx)
+ if n.receiver.ChatBot != nil {
+  group.Add(func(stopCh chan interface{}) {
+   stopCh <- n.sendToChatBot(ctx, data)
+  })
+ }
 
-	if len(n.receiver.ChatIDs) > 0 {
-		group.Add(func(stopCh chan interface{}) {
-			stopCh <- n.sendToConversation(ctx, data)
-		})
-	}
+ if len(n.receiver.ChatIDs) > 0 {
+  group.Add(func(stopCh chan interface{}) {
+   stopCh <- n.sendToConversation(ctx, data)
+  })
+ }
 
-	return group.Wait()
+ return group.Wait()
 }
 ```

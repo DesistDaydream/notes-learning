@@ -40,7 +40,7 @@ iptables 中有默认的内置 4 个表，每个表的名称就是其 chain 类�
 
 - 该类型的链可作用在以下几个 Hook 点上：PREROUTING、INPUT、FORWARD、OUTPUT、POSTROUTING
 
-### raw(原始) # 用于跳过 nat 表以及连接追踪机制(ip_conntrack)的处理，详见 [连接跟踪系统](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network%20 管理/Linux%20 网络流量控制/Connnection%20Tracking(连接跟踪).md Tracking(连接跟踪).md)
+### raw(原始) # 用于跳过 nat 表以及连接追踪机制(ip_conntrack)的处理，详见 [连接跟踪系统](/docs/1.操作系统/2.Kernel(内核)/8.Network%20 管理/Linux%20 网络流量控制/Connnection%20Tracking(连接跟踪).md Tracking(连接跟踪).md)
 
 - 该类型的链可作用在以下几个 Hook 点上：PREROUTING、OUTPUT
 
@@ -135,7 +135,7 @@ MATCHES=\[-m] MatchName \[Per-Match-Options]
 
 通用的扩展匹配，指定具体的扩展匹配名以及该扩展匹配的匹配规则
 
-- **-m conntrack --ctstate CTState1\[,CTState2...]** # 匹配指定的名为 CTState 的[连接追踪](/docs/IT学习笔记/1.操作系统/2.Kernel(内核)/8.Network%20 管理/Linux%20 网络流量控制/Netfilter%20 流量控制系统/Connection%20Tracking(连接跟踪)机制.md Tracking(连接跟踪)机制.md)状态。CTState 为 conntrack State，可用的状态有{INVALID|ESTABLISHED|NEW|RELATED|UNTRACKED|SNAT|DNAT}
+- **-m conntrack --ctstate CTState1\[,CTState2...]** # 匹配指定的名为 CTState 的[连接追踪](/docs/1.操作系统/2.Kernel(内核)/8.Network%20 管理/Linux%20 网络流量控制/Netfilter%20 流量控制系统/Connection%20Tracking(连接跟踪)机制.md Tracking(连接跟踪)机制.md)状态。CTState 为 conntrack State，可用的状态有{INVALID|ESTABLISHED|NEW|RELATED|UNTRACKED|SNAT|DNAT}
   - -m state --state STATE1\[,STATE2,....] # conntrack 的老式用法，慢慢会被淘汰
 - **-m set --match-set SetName {src|dst}..**. # 匹配指定的{源|目标}IP 是名为 SetName 的 ipset 集合
   - 其中 FLAG 是逗号分隔的 src 和 dst 规范列表，其中不能超过六个。

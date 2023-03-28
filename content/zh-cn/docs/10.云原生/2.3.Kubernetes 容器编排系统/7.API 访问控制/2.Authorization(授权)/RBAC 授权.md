@@ -239,4 +239,4 @@ API Server 每次启动时，会进行 **Auto-reconciliation(自动协商)** 行
 
 # 通过 kubectl 创建 RBAC
 
-详见：[kubectl 命令行工具的 create 子命令](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubectl%20 命令行工具/对象的创建与修改命令.md 管理/kubectl 命令行工具/对象的创建与修改命令.md)
+详见：[kubectl 命令行工具的 create 子命令](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubectl%20 命令行工具/对象的创建与修改命令.md 管理/kubectl 命令行工具/对象的创建与修改命令.md)

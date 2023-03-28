@@ -33,7 +33,7 @@ _标签_ 是键值对。有效的标签键有两个段：可选的前缀和名�
 
 `kubernetes.io/`  和 `k8s.io/` 前缀是为 Kubernetes 核心组件保留的。
 
-在每个 master 上都会有这么一个标签 node-role.kubernetes.io/XXXXX=，在使用 kubeclt get nodes 命令时， ROLES 列的值，就是根据该标签的 key 来决定的，key 中 XXXX 的值，会填写到 ROLES 列中。
+在每个 master 上都会有这么一个标签 `node-role.kubernetes.io/XXXXX=`，在使用 `kubeclt get nodes` 命令时， ROLES 列的值，就是根据该标签的 key 来决定的，key 中 XXXX 的值，会填写到 ROLES 列中。
 
 ## 一个对象中标签示例
 
@@ -44,13 +44,11 @@ metadata:
   name: label-demo
   labels:
     environment: production
-    app: nginx
+    app.kubernetes.io/name: nginx
 spec:
   containers:
     - name: nginx
       image: nginx:1.14.2
-      ports:
-        - containerPort: 80
 ```
 
 # Label Selector(标签选择器，简称 Selector)
@@ -64,12 +62,12 @@ spec:
 标签选择器可以用在下面这些资源的字段中：
 
 - 各种控制器
-  - .spec.selector
+    - .spec.selector
 - pod
-  - .spec.affinity.所有亲和类型.软/硬规则.nodeSelectorTerms
-  - .spec.nodeSelector
+    - .spec.affinity.所有亲和类型.软/硬规则.nodeSelectorTerms
+    - .spec.nodeSelector
 - service
-  - .spec.selector
+    - .spec.selector
 - 等等
 
 ## Selector Manifest

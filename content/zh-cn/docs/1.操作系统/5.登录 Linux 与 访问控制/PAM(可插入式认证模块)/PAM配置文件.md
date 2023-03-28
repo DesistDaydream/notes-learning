@@ -122,7 +122,7 @@ pam_deny.so    pam_extrausers.so  pam_fprintd.so    pam_group.so          pam_li
 
 ## Module-Arguments
 
-详见 《[PAM 模块详解](/docs/IT学习笔记/1.操作系统/5.登录%20Linux%20 与%20 访问控制/PAM(可插入式认证模块)/PAM%20 模块详解.md 模块详解.md)》
+详见 《[PAM 模块详解](/docs/1.操作系统/5.登录%20Linux%20 与%20 访问控制/PAM(可插入式认证模块)/PAM%20 模块详解.md 模块详解.md)》
 
 # /etc/pam.d/password-auth 与 /etc/pam.d/system-auth
 

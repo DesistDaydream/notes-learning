@@ -5,6 +5,7 @@ title: Provisioning 配置
 # 概述
 
 > 参考：
+>
 > - [官方文档，管理-Provisioning](https://grafana.com/docs/grafana/latest/administration/provisioning/)
 
 Grafana 在一开始，只能通过 Web 页面(也就是 API)来配置 DataSources(数据源) 和 Dashboard(仪表盘)。这样做有一个缺点，就是无法提前加载数据源和仪表盘。
@@ -41,6 +42,7 @@ datasources:
 # Plugins
 
 > 参考：
+>
 > - [插件配置文件样例](https://grafana.com/docs/grafana/latest/administration/provisioning/#example-plugin-configuration-file)
 
 注意：该功能只是可以配置插件的配置，而不是配置插件本身。使用此配置的前提是插件已经被安装在 Grafana 中。
@@ -65,7 +67,7 @@ datasources:
 - **allowUiUpdates: <bool>** # 是否允许通过 Web UI 更新目录下仪表盘
 - **options: <Object>**
   - **path: <string>** # 必须的。要加载仪表盘的目录。该目录下的所有 .json 文件都会被 Grafana 加载为仪表盘
-  - **foldersFromFilesStructure: <bool>** # 使用文件系统中的文件夹名称作为 Grafana Web UI 中的文件夹名。`默认值：false`。具体用法详见《[文件系统结构映射到 WebUI 中的文件夹](/docs/IT学习笔记/6.可观测性/Grafana/Grafana%20 配置详解/Provisioning%20 配置.md 配置.md)》
+  - **foldersFromFilesStructure: <bool>** # 使用文件系统中的文件夹名称作为 Grafana Web UI 中的文件夹名。`默认值：false`。具体用法详见《[文件系统结构映射到 WebUI 中的文件夹](/docs/6.可观测性/Grafana/Grafana%20 配置详解/Provisioning%20 配置.md 配置.md)》
     - 注意：该字段与 `folder` 和 `folderUid` 冲突。
 
 ## 配置文件示例

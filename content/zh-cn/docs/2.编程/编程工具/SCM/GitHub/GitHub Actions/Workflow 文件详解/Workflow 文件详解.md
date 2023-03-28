@@ -128,7 +128,7 @@ steps:
 ```
 
 **uses: \<STRING>** # 当前步骤要使用的 Action。
-在这里可以指定其他 Action 作为工作流的一部分来运行，本质上，Action 是可重用的代码。其实就类似于在代码中调用函数一样，`uses` 字段可以理解为调用某个函数，这个函数就是指其他的 Action。在[这篇文章](/docs/IT学习笔记/2.编程/SCM/GitHub/GitHub%20Actions/好用的%20Action.md Action.md)中，介绍了很多比较好用的 Action。
+在这里可以指定其他 Action 作为工作流的一部分来运行，本质上，Action 是可重用的代码。其实就类似于在代码中调用函数一样，`uses` 字段可以理解为调用某个函数，这个函数就是指其他的 Action。在[这篇文章](/docs/2.编程/SCM/GitHub/GitHub%20Actions/好用的%20Action.md Action.md)中，介绍了很多比较好用的 Action。
 
 通过使用其他 Action，可以大大简化自身工作流的配置文件。比如 Git Action 官方提供的 [actions/checkout](https://github.com/actions/checkout) 这个 Action，可以用来将仓库中的代码，拷贝到运行 Action 的容器中，然后进行后续操作，如果不使用这个 Action，那么我们就要写很多命令来 pull 代码了~
 

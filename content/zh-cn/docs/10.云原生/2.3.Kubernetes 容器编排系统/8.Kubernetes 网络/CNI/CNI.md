@@ -5,10 +5,11 @@ title: CNI
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目](https://github.com/containernetworking/cni)
 > - [GitHub,containernetworking-cni-规范](https://github.com/containernetworking/cni/blob/master/SPEC.md)
 
-CNI 与 [OCI](/docs/IT学习笔记/10.云原生/2.1.容器/Open%20Containers%20Initiative(开放容器倡议).md Containers Initiative(开放容器倡议).md) 是类似的东西，都是一种规范。
+CNI 与 [OCI](/docs/10.云原生/2.1.容器/Open%20Containers%20Initiative(开放容器倡议).md Containers Initiative(开放容器倡议).md) 是类似的东西，都是一种规范。
 
 **Container Network Interface(容器网络接口，简称 CNI)** 是一个 CNCF 项目，用于编写为 Linux 容器配置网络接口的插件。CNI 由两部分组成：
 
@@ -31,41 +32,41 @@ CNI 插件负责将网络接口插入容器网络名称空间(例如 veth 对的
 
 > 官方文档：<https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/#installation>
 
-CNI 规范与编程语言无关，并且 CNI 自身仅仅维护标准配置文件和基础插件，想要使用 CNI 来实现容器网络，只需根据标准，调用 CNI 库，即可在程序中实现(比如 nerdctl、kubelet 等)。这些通过 CNI 库实现了容器网络的程序，通过 **CNI 插件 **为其所启动的容器，创建关联网络。
+CNI 规范与编程语言无关，并且 CNI 自身仅仅维护标准配置文件和基础插件，想要使用 CNI 来实现容器网络，只需根据标准，调用 CNI 库，即可在程序中实现(比如 nerdctl、kubelet 等)。这些通过 CNI 库实现了容器网络的程序，通过 **CNI 插件**为其所启动的容器，创建关联网络。
 
 就拿 kubelet 举例,<https://github.com/kubernetes/kubernetes/blob/release-1.22/cmd/kubelet/app/options/container_runtime.go>
 
 ```go
 const (
-	// When these values are updated, also update test/utils/image/manifest.go
-	defaultPodSandboxImageName    = "k8s.gcr.io/pause"
-	defaultPodSandboxImageVersion = "3.5"
+ // When these values are updated, also update test/utils/image/manifest.go
+ defaultPodSandboxImageName    = "k8s.gcr.io/pause"
+ defaultPodSandboxImageVersion = "3.5"
 )
 
 var (
-	defaultPodSandboxImage = defaultPodSandboxImageName +
-		":" + defaultPodSandboxImageVersion
+ defaultPodSandboxImage = defaultPodSandboxImageName +
+  ":" + defaultPodSandboxImageVersion
 )
 
 // NewContainerRuntimeOptions will create a new ContainerRuntimeOptions with
 // default values.
 func NewContainerRuntimeOptions() *config.ContainerRuntimeOptions {
-	dockerEndpoint := ""
-	if runtime.GOOS != "windows" {
-		dockerEndpoint = "unix:///var/run/docker.sock"
-	}
+ dockerEndpoint := ""
+ if runtime.GOOS != "windows" {
+  dockerEndpoint = "unix:///var/run/docker.sock"
+ }
 
-	return &config.ContainerRuntimeOptions{
-		ContainerRuntime:          kubetypes.DockerContainerRuntime,
-		DockerEndpoint:            dockerEndpoint,
-		DockershimRootDirectory:   "/var/lib/dockershim",
-		PodSandboxImage:           defaultPodSandboxImage,
-		ImagePullProgressDeadline: metav1.Duration{Duration: 1 * time.Minute},
+ return &config.ContainerRuntimeOptions{
+  ContainerRuntime:          kubetypes.DockerContainerRuntime,
+  DockerEndpoint:            dockerEndpoint,
+  DockershimRootDirectory:   "/var/lib/dockershim",
+  PodSandboxImage:           defaultPodSandboxImage,
+  ImagePullProgressDeadline: metav1.Duration{Duration: 1 * time.Minute},
 
-		CNIBinDir:   "/opt/cni/bin",
-		CNIConfDir:  "/etc/cni/net.d",
-		CNICacheDir: "/var/lib/cni/cache",
-	}
+  CNIBinDir:   "/opt/cni/bin",
+  CNIConfDir:  "/etc/cni/net.d",
+  CNICacheDir: "/var/lib/cni/cache",
+ }
 }
 ```
 
@@ -73,7 +74,7 @@ func NewContainerRuntimeOptions() *config.ContainerRuntimeOptions {
 
 在部署 Kubernetes 的 CNI 插件时，有一个步骤是安装 kubernetes-cni 包，其目的就是在宿主机上安装 CNI 插件所需的基础二进制文件。这些文件一般保存在 /opt/cni/bin/ 目录中。
 
-kubelet 配置 pod 网络时，首先会读取下 /etc/cni/net.d/_ 目录下的配置，查看当前所使用的 CNI 插件及插件参数，比如现在是 flannel ，那么 flannel 会将 /run/flannel/subnet.env 文件的配置信息传递给 kubelet ，然后 kubelet 使用 /opt/cni/bin/_ 目录中的二进制文件，来处理处理 pod 的网络信息。
+kubelet 配置 pod 网络时，首先会读取下 /etc/cni/net.d/_目录下的配置，查看当前所使用的 CNI 插件及插件参数，比如现在是 flannel ，那么 flannel 会将 /run/flannel/subnet.env 文件的配置信息传递给 kubelet ，然后 kubelet 使用 /opt/cni/bin/_ 目录中的二进制文件，来处理处理 pod 的网络信息。
 
 注意：各种 CNI 的 cidr 配置由 controller-manager 维护，`--cluster-cidr=10.244.0.0/16` 与 `--node-cidr-mask-size=24` 这俩参数用来指定 cidr 的范围。
 
@@ -124,7 +125,7 @@ kubelet 配置 pod 网络时，首先会读取下 /etc/cni/net.d/_ 目录下的�
 下面是一些常用的第三方 CNI 简介
 
 - **calico** # 三层隧道网络，基于 BGP 协议，即支持网络配置也支持网络策略
-- **Cilium - BPF & XDP for containers **# 基于 eBPF 实现的，性能很好
+- **Cilium - BPF & XDP for containers**# 基于 eBPF 实现的，性能很好
 - 等
 
 ## 各种 CNI 的对比
@@ -133,6 +134,6 @@ kubelet 配置 pod 网络时，首先会读取下 /etc/cni/net.d/_ 目录下的�
 
 # CNI 关联文件
 
-**/etc/cni/net.d/\* **# 默认配置文件保存目录
+**/etc/cni/net.d/\***# 默认配置文件保存目录
 **/opt/cni/bin/\*** # 默认 CNI 插件保存目录
 **/var/lib/cni/\*** # 默认 CNI 运行时产生的数据目录

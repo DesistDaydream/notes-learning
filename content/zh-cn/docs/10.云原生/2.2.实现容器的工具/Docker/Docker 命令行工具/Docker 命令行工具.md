@@ -101,7 +101,7 @@ WARNING! This will remove:
 
 ## volume # 管理 docker 的卷
 
-详见 《[Docker 存储](/docs/IT学习笔记/10.云原生/2.2.实现容器的工具/Docker/Docker%20 存储.md 存储.md)》
+详见 《[Docker 存储](/docs/10.云原生/2.2.实现容器的工具/Docker/Docker%20 存储.md 存储.md)》
 
 # COMMANDS
 

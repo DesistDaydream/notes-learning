@@ -112,20 +112,20 @@ kubeadm 是基于 cobra 框架的命令行工具，入口是 `cmd/kubeadm/kubead
 
 ```go
 func newCmdInit(out io.Writer, initOptions *initOptions) *cobra.Command {
-	// 通过阶段执行 Kubernetes 集群初始化
-	initRunner.AppendPhase(phases.NewPreflightPhase())
-	initRunner.AppendPhase(phases.NewCertsPhase())
-	initRunner.AppendPhase(phases.NewKubeConfigPhase())
-	initRunner.AppendPhase(phases.NewKubeletStartPhase())
-	initRunner.AppendPhase(phases.NewControlPlanePhase())
-	initRunner.AppendPhase(phases.NewEtcdPhase())
-	initRunner.AppendPhase(phases.NewWaitControlPlanePhase())
-	initRunner.AppendPhase(phases.NewUploadConfigPhase())
-	initRunner.AppendPhase(phases.NewUploadCertsPhase())
-	initRunner.AppendPhase(phases.NewMarkControlPlanePhase())
-	initRunner.AppendPhase(phases.NewBootstrapTokenPhase())
-	initRunner.AppendPhase(phases.NewKubeletFinalizePhase())
-	initRunner.AppendPhase(phases.NewAddonPhase())
+ // 通过阶段执行 Kubernetes 集群初始化
+ initRunner.AppendPhase(phases.NewPreflightPhase())
+ initRunner.AppendPhase(phases.NewCertsPhase())
+ initRunner.AppendPhase(phases.NewKubeConfigPhase())
+ initRunner.AppendPhase(phases.NewKubeletStartPhase())
+ initRunner.AppendPhase(phases.NewControlPlanePhase())
+ initRunner.AppendPhase(phases.NewEtcdPhase())
+ initRunner.AppendPhase(phases.NewWaitControlPlanePhase())
+ initRunner.AppendPhase(phases.NewUploadConfigPhase())
+ initRunner.AppendPhase(phases.NewUploadCertsPhase())
+ initRunner.AppendPhase(phases.NewMarkControlPlanePhase())
+ initRunner.AppendPhase(phases.NewBootstrapTokenPhase())
+ initRunner.AppendPhase(phases.NewKubeletFinalizePhase())
+ initRunner.AppendPhase(phases.NewAddonPhase())
 }
 ```
 
@@ -139,14 +139,14 @@ certs 阶段入口：
 ```go
 func NewCertsPhase() workflow.Phase {
     // 执行工作流
-	return workflow.Phase{
-		Name:   "certs",
-		Short:  "Certificate generation",
+ return workflow.Phase{
+  Name:   "certs",
+  Short:  "Certificate generation",
         // 执行创建新证书子阶段
-		Phases: newCertSubPhases(),
-		Run:    runCerts,
-		Long:   cmdutil.MacroCommandLongDescription,
-	}
+  Phases: newCertSubPhases(),
+  Run:    runCerts,
+  Long:   cmdutil.MacroCommandLongDescription,
+ }
 }
 ```
 
@@ -154,18 +154,18 @@ func NewCertsPhase() workflow.Phase {
 func newCertSubPhases() []workflow.Phase {
     // 从 certsphase.GetDefaultCertList() 中获取需要创建证书的列表
     // 并循环这个列表，注意创建 Kubernetes 集群所需证书
-	for _, cert := range certsphase.GetDefaultCertList() {
-		var phase workflow.Phase
+ for _, cert := range certsphase.GetDefaultCertList() {
+  var phase workflow.Phase
         // 若没有 CA 则创建 CA
-		if cert.CAName == "" {
-			phase = newCertSubPhase(cert, runCAPhase(cert))
-			lastCACert = cert
+  if cert.CAName == "" {
+   phase = newCertSubPhase(cert, runCAPhase(cert))
+   lastCACert = cert
         // 使用 CA 创建 Kubernetes 组件所需的所有证书
-		} else {
-			phase = newCertSubPhase(cert, runCertPhase(cert, lastCACert))
-		}
-		subPhases = append(subPhases, phase)
-	}
+  } else {
+   phase = newCertSubPhase(cert, runCertPhase(cert, lastCACert))
+  }
+  subPhases = append(subPhases, phase)
+ }
 }
 ```
 
@@ -173,10 +173,10 @@ func newCertSubPhases() []workflow.Phase {
 
 ```go
 func runCAPhase(ca *certsphase.KubeadmCert) func(c workflow.RunData) error {
-	return func(c workflow.RunData) error {
-		// create the new certificate authority (or use existing)
-		return certsphase.CreateCACertAndKeyFiles(ca, cfg)
-	}
+ return func(c workflow.RunData) error {
+  // create the new certificate authority (or use existing)
+  return certsphase.CreateCACertAndKeyFiles(ca, cfg)
+ }
 }
 ```
 
@@ -184,10 +184,10 @@ func runCAPhase(ca *certsphase.KubeadmCert) func(c workflow.RunData) error {
 
 ```go
 func runCertPhase(cert *certsphase.KubeadmCert, caCert *certsphase.KubeadmCert) func(c workflow.RunData) error {
-	return func(c workflow.RunData) error {
-		// 使用 CA 创建 Kubernetes 组件所需的所有证书
-		return certsphase.CreateCertAndKeyFilesWithCA(cert, caCert, cfg)
-	}
+ return func(c workflow.RunData) error {
+  // 使用 CA 创建 Kubernetes 组件所需的所有证书
+  return certsphase.CreateCertAndKeyFilesWithCA(cert, caCert, cfg)
+ }
 }
 ```
 
@@ -197,15 +197,15 @@ func runCertPhase(cert *certsphase.KubeadmCert, caCert *certsphase.KubeadmCert) 
 
 ```go
 type InitConfiguration struct {
-	metav1.TypeMeta
-	// ClusterConfiguration holds the cluster-wide information, and embeds that struct (which can be (un)marshalled separately as well)
-	// When InitConfiguration is marshalled to bytes in the external version, this information IS NOT preserved (which can be seen from
-	// the `json:"-"` tag in the external variant of these API types.
-	ClusterConfiguration `json:"-"`
-	BootstrapTokens []BootstrapToken
-	NodeRegistration NodeRegistrationOptions
-	LocalAPIEndpoint APIEndpoint
-	CertificateKey string
+ metav1.TypeMeta
+ // ClusterConfiguration holds the cluster-wide information, and embeds that struct (which can be (un)marshalled separately as well)
+ // When InitConfiguration is marshalled to bytes in the external version, this information IS NOT preserved (which can be seen from
+ // the `json:"-"` tag in the external variant of these API types.
+ ClusterConfiguration `json:"-"`
+ BootstrapTokens []BootstrapToken
+ NodeRegistration NodeRegistrationOptions
+ LocalAPIEndpoint APIEndpoint
+ CertificateKey string
 }
 ```
 
@@ -218,20 +218,20 @@ type InitConfiguration struct {
 
 ```go
 func GetDefaultCertList() Certificates {
-	return Certificates{
-		KubeadmCertRootCA(),
-		KubeadmCertAPIServer(),
-		KubeadmCertKubeletClient(),
-		// Front Proxy certs
-		KubeadmCertFrontProxyCA(),
-		KubeadmCertFrontProxyClient(),
-		// etcd certs
-		KubeadmCertEtcdCA(),
-		KubeadmCertEtcdServer(),
-		KubeadmCertEtcdPeer(),
-		KubeadmCertEtcdHealthcheck(),
-		KubeadmCertEtcdAPIClient(),
-	}
+ return Certificates{
+  KubeadmCertRootCA(),
+  KubeadmCertAPIServer(),
+  KubeadmCertKubeletClient(),
+  // Front Proxy certs
+  KubeadmCertFrontProxyCA(),
+  KubeadmCertFrontProxyClient(),
+  // etcd certs
+  KubeadmCertEtcdCA(),
+  KubeadmCertEtcdServer(),
+  KubeadmCertEtcdPeer(),
+  KubeadmCertEtcdHealthcheck(),
+  KubeadmCertEtcdAPIClient(),
+ }
 }
 ```
 
@@ -243,18 +243,18 @@ func GetDefaultCertList() Certificates {
 ```go
 func CreateCACertAndKeyFiles(certSpec *KubeadmCert, cfg *kubeadmapi.InitConfiguration) error {
     // 将 kubeadm-config.yaml 文件中 InitConfiguration 的配置传递进去，生成 CA 证书
-	caCert, caKey, err := pkiutil.NewCertificateAuthority(certConfig)
-	if err != nil {
-		return err
-	}
+ caCert, caKey, err := pkiutil.NewCertificateAuthority(certConfig)
+ if err != nil {
+  return err
+ }
 
     // 将证书写入指定目录中
-	return writeCertificateAuthorityFilesIfNotExist(
-		cfg.CertificatesDir,
-		certSpec.BaseName,
-		caCert,
-		caKey,
-	)
+ return writeCertificateAuthorityFilesIfNotExist(
+  cfg.CertificatesDir,
+  certSpec.BaseName,
+  caCert,
+  caKey,
+ )
 }
 ```
 
@@ -263,10 +263,10 @@ func CreateCACertAndKeyFiles(certSpec *KubeadmCert, cfg *kubeadmapi.InitConfigur
 ```go
 func NewCertificateAuthority(config *CertConfig) (*x509.Certificate, crypto.Signer, error) {
     // NewPrivateKey() 直接使用 rsa.GenerateKey() 生成密钥对
-	key, err := NewPrivateKey(config.PublicKeyAlgorithm)
+ key, err := NewPrivateKey(config.PublicKeyAlgorithm)
     // NewSelfSignedCACert 是 client-go 中的函数，根据配置和密钥生成 CA 证书
-	cert, err := certutil.NewSelfSignedCACert(config.Config, key)
-	return cert, key, nil
+ cert, err := certutil.NewSelfSignedCACert(config.Config, key)
+ return cert, key, nil
 }
 ```
 
@@ -275,30 +275,30 @@ func NewCertificateAuthority(config *CertConfig) (*x509.Certificate, crypto.Sign
 
 ```go
 func NewSelfSignedCACert(cfg Config, key crypto.Signer) (*x509.Certificate, error) {
-	now := time.Now()
-	tmpl := x509.Certificate{
-		SerialNumber: new(big.Int).SetInt64(0),
-		Subject: pkix.Name{
-			CommonName:   cfg.CommonName,
-			Organization: cfg.Organization,
-		},
-		DNSNames:              []string{cfg.CommonName},
-		NotBefore:             now.UTC(),
-		NotAfter:              now.Add(duration365d * 10).UTC(),
-		KeyUsage:              x509.KeyUsageKeyEncipherment | x509.KeyUsageDigitalSignature | x509.KeyUsageCertSign,
-		BasicConstraintsValid: true,
-		IsCA:                  true,
-	}
+ now := time.Now()
+ tmpl := x509.Certificate{
+  SerialNumber: new(big.Int).SetInt64(0),
+  Subject: pkix.Name{
+   CommonName:   cfg.CommonName,
+   Organization: cfg.Organization,
+  },
+  DNSNames:              []string{cfg.CommonName},
+  NotBefore:             now.UTC(),
+  NotAfter:              now.Add(duration365d * 10).UTC(),
+  KeyUsage:              x509.KeyUsageKeyEncipherment | x509.KeyUsageDigitalSignature | x509.KeyUsageCertSign,
+  BasicConstraintsValid: true,
+  IsCA:                  true,
+ }
 
-	certDERBytes, err := x509.CreateCertificate(cryptorand.Reader, &tmpl, &tmpl, key.Public(), key)
-	if err != nil {
-		return nil, err
-	}
-	return x509.ParseCertificate(certDERBytes)
+ certDERBytes, err := x509.CreateCertificate(cryptorand.Reader, &tmpl, &tmpl, key.Public(), key)
+ if err != nil {
+  return nil, err
+ }
+ return x509.ParseCertificate(certDERBytes)
 }
 ```
 
-所以，我们在 [编译 kubeadm 修改证书过期时间](/docs/IT学习笔记/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubeadm%20 命令行工具/编译%20kubeadm%20 修改证书过期时间.md 管理/kubeadm 命令行工具/编译 kubeadm 修改证书过期时间.md) 中会修改 client-go 中的源码，也就是常量 `duration365d` 的值
+所以，我们在 [编译 kubeadm 修改证书过期时间](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubeadm%20 命令行工具/编译%20kubeadm%20 修改证书过期时间.md 管理/kubeadm 命令行工具/编译 kubeadm 修改证书过期时间.md) 中会修改 client-go 中的源码，也就是常量 `duration365d` 的值
 
 ### 使用 CA 签其他证书
 
@@ -308,27 +308,27 @@ func NewSelfSignedCACert(cfg Config, key crypto.Signer) (*x509.Certificate, erro
 ```go
 func CreateCertAndKeyFilesWithCA(certSpec *KubeadmCert, caCertSpec *KubeadmCert, cfg *kubeadmapi.InitConfiguration) error {
     // 从磁盘中加载 CA 证书
-	caCert, caKey, err := LoadCertificateAuthority(cfg.CertificatesDir, caCertSpec.BaseName)
-	// 将 kubeadm-config.yaml 文件中 InitConfiguration 的配置传递进去，并使用加载的 CA 证书和密钥创建其他证书
-	return certSpec.CreateFromCA(cfg, caCert, caKey)
+ caCert, caKey, err := LoadCertificateAuthority(cfg.CertificatesDir, caCertSpec.BaseName)
+ // 将 kubeadm-config.yaml 文件中 InitConfiguration 的配置传递进去，并使用加载的 CA 证书和密钥创建其他证书
+ return certSpec.CreateFromCA(cfg, caCert, caKey)
 }
 ```
 
 ```go
 // CreateFromCA makes and writes a certificate using the given CA cert and key.
 func (k *KubeadmCert) CreateFromCA(ic *kubeadmapi.InitConfiguration, caCert *x509.Certificate, caKey crypto.Signer) error {
-	// 加载 kubeadm-config.yaml 配置
+ // 加载 kubeadm-config.yaml 配置
     cfg, err := k.GetConfig(ic)
-	// 使用 kubeadm-config.yaml 配置 和 CA 证书与密钥 创建证书
-	cert, key, err := pkiutil.NewCertAndKey(caCert, caKey, cfg)
-	// 将创建的证书写入默认的 /etc/kubernetes/pki/ 目录中
-	err = writeCertificateFilesIfNotExist(
-		ic.CertificatesDir,
-		k.BaseName,
-		caCert,
-		cert,
-		key,
-		cfg,
-	)
+ // 使用 kubeadm-config.yaml 配置 和 CA 证书与密钥 创建证书
+ cert, key, err := pkiutil.NewCertAndKey(caCert, caKey, cfg)
+ // 将创建的证书写入默认的 /etc/kubernetes/pki/ 目录中
+ err = writeCertificateFilesIfNotExist(
+  ic.CertificatesDir,
+  k.BaseName,
+  caCert,
+  cert,
+  key,
+  cfg,
+ )
 }
 ```
