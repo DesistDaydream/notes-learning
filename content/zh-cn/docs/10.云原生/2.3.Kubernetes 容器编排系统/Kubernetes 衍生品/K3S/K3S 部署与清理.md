@@ -218,3 +218,20 @@ fi
 # 部署 k3s 并修改参数
 
 参考：[基杨文章](https://mp.weixin.qq.com/s/xpqZyoZltRkXcMQBcHos0Q)
+
+# Ansible 部署 K3S
+
+> 参考： 
+> - [GitHub 项目，techno-tim/k3s-ansible](https://github.com/techno-tim/k3s-ansible)
+>     - 起源于：
+>         - https://github.com/k3s-io/k3s-ansible
+>         - https://github.com/geerlingguy/turing-pi-cluster
+>         - https://github.com/212850a/k3s-ansible
+
+ansible-playbook site.yml -i inventory/my-cluster/hosts.ini
+
+# 常见问题
+
+kube-proxy 的 ipvs 模式到底能不能用？有时候用 ipvs 模式启动的集群，通信好像会受到影响
+
+旧版 iptables 不兼容问题，从 1.25.7 和 1.26.2 开始 https://github.com/k3s-io/k3s/issues/7096

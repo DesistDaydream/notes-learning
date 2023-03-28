@@ -47,23 +47,27 @@ title: Service Manifests 详解
 
 # Endpoints Manifests 详解
 
-## apiVersion: v1
+## Manifest 中的顶层字段
 
-## kind: Endpoints
+- apiVersion: v1
+- kind: Endpoints
+- [metadata: OBJECT](#metadata)
+- [subsets: []OBJECT](#subsets)
+- status: OBJECT
 
 ## metadata
 
 name: NAME # 与 Endpoints 所关联的 Service 的 name 想同
 
-## subsets: # 指定子集
+## subsets
 
-- addresses:
-  - ip: 10.10.100.101 # 指定其中一个 endpoint 的 IP
-    hostname: lch-test1 # 指定该 endpoint 所在的主机的主机名
-  - ip: 10.10.100.102 # 指定第二个 endpoint 的 IP
-    hostname: lch-test2
-  ports:
-  - port: 9100 # 指定 IP 所使用的 PORT
+subsets 描述子集
+
+- **addresses: []OBJECT**
+    - **ip: STRING** # 
+    - **hostname: STRING** # 
+- **ports: []OBJECT** #
+    - **port: INT32** # Endpoint 的端口
 
 # Manifests 样例
 
@@ -100,7 +104,6 @@ metadata:
 spec:
   ports:
   - port: 9100
-
 ---
 apiVersion: v1
 kind: Endpoints

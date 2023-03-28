@@ -16,6 +16,31 @@ k3s 可以通过如下如下几种方式配置运行时行为
 
 k3s 运行时默认读取 `/etc/rancher/k3s/config.yaml` 文件中的值。
 
+## 配置文件与命令行标志之间的对应关系
+
+直接使用 `k3s server` 命令并配置如下配置文件：
+
+```yaml
+write-kubeconfig-mode: "0644"  
+tls-san:  
+- "foo.local"  
+node-label:  
+- "foo=bar"  
+- "something=amazing"  
+cluster-init: true
+```
+
+等效于：
+
+```bash
+k3s server \  
+--write-kubeconfig-mode "0644" \  
+--tls-san "foo.local" \  
+--node-label "foo=bar" \  
+--node-label "something=amazing" \  
+--cluster-init
+```
+
 ## 其他说明
 
 /etc/rancher/k3s/registries.yaml
