@@ -27,15 +27,15 @@ k3s 二进制文件包含 kubelet、api-server、kube-controller-manager、kube-
 
 **/run/k3s/** # K3S 所使用的容器 Runtime 的数据保存路径。
 
-- **./containerd/** # 与 [Containerd](/docs/10.云原生/2.2.实现容器的工具/Containerd/Containerd.md#Containerd%20关联文件与配置 关联文件与配置>) 中的 /run/containerd/ 目录功能一致。
+- **./containerd/** # 与 [Containerd](</docs/10.云原生/2.2.实现容器的工具/Containerd/Containerd.md#Containerd 关联文件与配置>) 中的 /run/containerd/ 目录功能一致。
 
-**/run/flannel/** # 与 [Flannel](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/8.Kubernetes%20网络/CNI/Flannel.md#Flannel%20关联文件与配置 容器编排系统/8.Kubernetes 网络/CNI/Flannel#Flannel 关联文件与配置>) 中 /run/flannel/ 目录功能一致。
+**/run/flannel/** # 与 [Flannel](</docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/CNI/Flannel.md#Flannel 关联文件与配置 容器编排系统/8.Kubernetes 网络/CNI/Flannel#Flannel 关联文件与配置>) 中 /run/flannel/ 目录功能一致。
 
 **/var/lib/rancher/k3s/** # k3s 运行时数据存储保存路径
 
 - **./agent/** # 作为 k8s 的 node 节点所需要的信息保存路径
   - 包括证书、containerd 数据目录、cni，containerd 的配置文件 等等都在此处
-    - **./containerd/** # 与 [Containerd](/docs/10.云原生/2.2.实现容器的工具/Containerd/Containerd.md#Containerd%20关联文件与配置 关联文件与配置>) 中的 /var/lib/containerd/ 目录功能一致。
+    - **./containerd/** # 与 [Containerd](</docs/10.云原生/2.2.实现容器的工具/Containerd/Containerd.md#Containerd 关联文件与配置>) 中的 /var/lib/containerd/ 目录功能一致。
 - **./data/** #
 - **./server/** # 作为 k8s 的 master 节点所需要的信息保存路径
   - 包括证书、kube-system 名称空间中的 manifests 文件、etcd 数据 等等都在此处
@@ -45,7 +45,7 @@ k3s 二进制文件包含 kubelet、api-server、kube-controller-manager、kube-
 
 **/var/lib/kubelet/** #
 
-K3S 所有可能使用的目录可以参考 [清理 K3S](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/Kubernetes%20衍生品/K3S/K3S%20部署与清理.md#清理%20K3S 容器编排系统/Kubernetes 衍生品/K3S/K3S 部署与清理.md#清理 K3S>)
+K3S 所有可能使用的目录可以参考 [清理 K3S](</docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/K3S/K3S 部署与清理.md#清理 K3S>)
 
 # 进入容器的文件系统
 
