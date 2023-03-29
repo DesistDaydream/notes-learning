@@ -10,6 +10,7 @@ title: K3S 部署与清理
 `curl -sfL https://get.k3s.io | sh -` 使用该脚本，可以自动创建用于运行 k3s 二进制文件的 service 文件，并通过 systemd 启动。
 
 注意：
+
 - k3s 会自动部署 servicelb 服务，该服务与 kube-proxy 的 ipvs 模式冲突。
 
 # 快速部署体验

@@ -6,7 +6,9 @@ weight: 1
 # 概述
 
 > 参考：
->
+> 
+> - [官方文档，Playbook指南-Playbook 介绍](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html)
+> - [官方文档，Playbook 指南-使用 Playbook](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks.html)
 > - [Ansible Galaxy](https://galaxy.ansible.com/) 类似于 playbook 仓库的地方
 > - [公众号，任务中心之Ansible进阶篇](https://mp.weixin.qq.com/s/HA0vKnuKwKOaB5kdcYX9rg)
 
@@ -55,10 +57,11 @@ playbook 称为"剧本"。每个 playbook 都包含一个或多个 plays(戏剧)
 > - [官方文档，参考与附录-Playbook 关键字](https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html)
 
 关键字是配置 Ansible 行为的几个来源之一。有关每个源的相对优先级的详细信息，请参阅控制 Ansible 的行为方式：优先级规则。
-hosts #
-tasks # 要在 Play 中执行的主要任务列表，这些任务在 `roles 关键字定义的任务之后`，以及 `post_tasks 关键字定义的任务之前` 执行
-roles #
-name #
+
+- hosts #
+- tasks # 要在 Play 中执行的主要任务列表，这些任务在 `roles 关键字定义的任务之后`，以及 `post_tasks 关键字定义的任务之前` 执行
+- roles #
+- name #
 
 # Playbook 语法详解
 
@@ -116,6 +119,8 @@ tasks:
 
 ansible 执行的每一个 task 都会报告该任务是否改变了目标，即 changed=true 或 changed=false。当 ansible 捕捉到 changed 为 true 的时候，则会触发一个 notify(通知)组件，该组件的作用就是用来调用指定的 handler。
 
+> 注意：通过 notify 调用的 handler 任务，只有在所有任务全部完成后，才会执行。
+
 handlers 示例：在 task 下定义 notify 来指定要调用的 handlers，需要与后面定义的 handlers 的 name 相同
 
 ```yaml
@@ -153,3 +158,27 @@ Note：notify 是在执行完一个 play 中所有 task 后被触发的，在一
   command: /bin/false
   ignore_errors: yes # 使用ignore_errors来忽略该任务失败后终止ansbile的效果
 ```
+
+# 复用 Ansible 工件
+
+> 参考：
+> - [官方文档，Playbook 指南-复用 Ansible 工件](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse.html)
+
+我们可以在一个非常大的文件中编写简单的playbook，大多数用户首先学习单个文件的方法。然而，将自动化工作分解为较小的文件是组织复杂任务集并重复使用它们的绝佳方法。更小，更分散的 Artifacts 让您在多个playbook中多次使用相同的变量、任务和操作以解决不同的用例。您可以在多个父playbook中使用分布式 Artifacts，甚至可以在一个playbook中多次使用。例如，您可能希望在几个不同的playbook中更新客户数据库。如果您将与更新数据库相关的所有任务放在一个任务文件或角色中，您可以在许多playbook中重复使用它们，同时只需在一个地方维护它们。
+
+Ansible 提供四种可分发、可重复使用的 Artifacts：
+
+- Variables files
+- Task files
+- palybooks
+- roles
+
+## include 与 import 的区别
+
+https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse.html#comparing-includes-and-imports-dynamic-and-static-re-use
+
+重用分布式 Ansible 工件的每种方法都有优点和局限性。您可以为某些剧本选择动态重用，为其他剧本选择静态重用。尽管您可以在单个剧本中同时使用动态和静态重用，但最好为每个剧本选择一种方法。混合静态和动态重用可能会在您的剧本中引入难以诊断的错误。此表总结了主要差异，因此您可以为您创建的每个剧本选择最佳方法。
+
+|     | Include | Import |
+| --- | ------- | ------ |
+|     |         |        |
