@@ -1309,6 +1309,27 @@
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Gateway API.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/NetworkPolicy 网络策略.md"
+    ],
+    "docs/8.通用技术/Message Queue(消息队列)": [
+      "docs/8.通用技术/Message Queue(消息队列)/_index.md",
+      "docs/8.通用技术/Message Queue(消息队列)/Message Queue(消息队列).md",
+      "docs/8.通用技术/Message Queue(消息队列)/RocketMQ",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ",
+      "docs/8.通用技术/Message Queue(消息队列)/Kafka原理详解.md",
+      "docs/8.通用技术/Message Queue(消息队列)/NSQ 消息队列.md"
+    ],
+    "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ": [
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/_index.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/问题实例.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ 部署.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ 配置详解.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ 集群.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ 命令行工具.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ 性能与优化.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ Operator.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/go rabbitmq 库.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/rabbitmqctl 命令行工具详解.md"
     ]
   },
   "actionBarOrder": {},

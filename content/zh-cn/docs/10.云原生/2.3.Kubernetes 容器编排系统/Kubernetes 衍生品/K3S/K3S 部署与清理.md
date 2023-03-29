@@ -230,8 +230,6 @@ fi
 
 ansible-playbook site.yml -i inventory/my-cluster/hosts.ini
 
-# 常见问题
+.1.# 常见问题
 
-kube-proxy 的 ipvs 模式到底能不能用？有时候用 ipvs 模式启动的集群，通信好像会受到影响
-
-旧版 iptables 不兼容问题，从 1.25.7 和 1.26.2 开始 https://github.com/k3s-io/k3s/issues/7096
+1.25.7 和 1.26.2 版本的 K3S 使用的 v0.21.1 版本的 Flannel 与旧版 iptables（v1.4.21，比如 centos7~凸(艹皿艹 )） 不兼容  ，需要使用 v0.21.4 Flannel，可以升级到 1.26.3 版本解决。[issue#7096](https://github.com/k3s-io/k3s/issues/7096)

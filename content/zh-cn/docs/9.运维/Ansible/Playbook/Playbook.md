@@ -7,7 +7,7 @@ weight: 1
 
 > 参考：
 >
-> - [Ansible Galaxy](https://galaxy.ansible.com/)
+> - [Ansible Galaxy](https://galaxy.ansible.com/) 类似于 playbook 仓库的地方
 > - [公众号，任务中心之Ansible进阶篇](https://mp.weixin.qq.com/s/HA0vKnuKwKOaB5kdcYX9rg)
 
 与通过命令行来执行 Ansbile 任务模式相比，Playbook 是 Ansible 执行任务的另一种方式，而且功能非常强大。
@@ -111,7 +111,8 @@ tasks:
 
 ## handler 任务处理器，用于在执行任务时附加额外的任务
 
-官方文档：<https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html?highlight=handlers#handlers-running-operations-on-change>
+> 参考：
+> - [官方文档，使用 Ansible playbooks-Handlers: 任务 change 时运行操作](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_handlers.html)
 
 ansible 执行的每一个 task 都会报告该任务是否改变了目标，即 changed=true 或 changed=false。当 ansible 捕捉到 changed 为 true 的时候，则会触发一个 notify(通知)组件，该组件的作用就是用来调用指定的 handler。
 
