@@ -1,6 +1,7 @@
 ---
 title: Ansible
-weith: 1
+linkTitle: "Ansible"
+weight: 1
 ---
 
 # 概述

@@ -1,5 +1,6 @@
 ---
 title: Ansible 命令行工具
+weight: 7
 ---
 
 # 概述

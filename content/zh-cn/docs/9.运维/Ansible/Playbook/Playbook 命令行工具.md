@@ -1,5 +1,6 @@
 ---
 title: Playbook 命令行工具
+weight: 9
 ---
 
 # 概述

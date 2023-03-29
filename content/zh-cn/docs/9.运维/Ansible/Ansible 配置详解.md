@@ -1,5 +1,6 @@
 ---
 title: Ansible 配置详解
+weight: 2
 ---
 
 # 概述

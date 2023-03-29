@@ -1,7 +1,7 @@
 ---
 title: "Ansible Collection"
 linkTitle: "Ansible Collection"
-weight: 20
+weight: 4
 ---
 
 # 概述

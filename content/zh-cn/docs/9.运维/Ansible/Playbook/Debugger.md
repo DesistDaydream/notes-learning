@@ -1,5 +1,6 @@
 ---
 title: Debugger
+weight: 8
 ---
 
 # 概述

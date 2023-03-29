@@ -1,5 +1,6 @@
 ---
 title: Inventory 配置文件详解
+weight: 3
 ---
 
 
