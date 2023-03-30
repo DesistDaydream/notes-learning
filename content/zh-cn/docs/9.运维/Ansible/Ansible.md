@@ -9,7 +9,7 @@ weight: 1
 > 参考：
 >
 > - [官网](https://www.ansible.com/)
-> - [GitHub 项目](https://github.com/ansible/ansible)
+> - [GitHub 项目，ansible/ansible](https://github.com/ansible/ansible)
 > - [官方文档](https://docs.ansible.com/ansible/latest/index.html)
 > - [公众号,程序员面试吧-快速入门 Ansible 自动化运维工具](https://mp.weixin.qq.com/s/qu0vPgyNBbRlTtf1pMtq7Q)
 > - <https://www.zsythink.net/archives/tag/ansible/>

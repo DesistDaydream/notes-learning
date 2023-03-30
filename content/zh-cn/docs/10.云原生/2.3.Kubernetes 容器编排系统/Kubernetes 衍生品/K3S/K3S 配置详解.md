@@ -10,6 +10,7 @@ title: K3S 配置详解
 > - [官方文档，参考-K3S Agent 配置](https://docs.k3s.io/reference/agent-config)
 
 k3s 可以通过如下如下几种方式配置运行时行为
+
 - 命令行标志
 - 环境变量
 - 配置文件

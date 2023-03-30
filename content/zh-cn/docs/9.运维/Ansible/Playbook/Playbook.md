@@ -119,7 +119,7 @@ tasks:
 
 ansible 执行的每一个 task 都会报告该任务是否改变了目标，即 changed=true 或 changed=false。当 ansible 捕捉到 changed 为 true 的时候，则会触发一个 notify(通知)组件，该组件的作用就是用来调用指定的 handler。
 
-> 注意：通过 notify 调用的 handler 任务，只有在所有任务全部完成后，才会执行。
+> 注意：通过 notify 调用的 handler 任务，只有**在所有任务全部完成后，才会执行**。
 
 handlers 示例：在 task 下定义 notify 来指定要调用的 handlers，需要与后面定义的 handlers 的 name 相同
 
@@ -159,7 +159,11 @@ Note：notify 是在执行完一个 play 中所有 task 后被触发的，在一
   ignore_errors: yes # 使用ignore_errors来忽略该任务失败后终止ansbile的效果
 ```
 
-# 复用 Ansible 工件
+# Ansible Artifacts
+
+在 Ansible Playbook 中，可以将 task、playbook、role、var、各种文件 等等统一抽象为 **Artifacts(工件)**
+
+## 复用 Ansible 工件
 
 > 参考：
 > - [官方文档，Playbook 指南-复用 Ansible 工件](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse.html)
@@ -173,12 +177,23 @@ Ansible 提供四种可分发、可重复使用的 Artifacts：
 - palybooks
 - roles
 
-## include 与 import 的区别
+### include 与 import 的区别
 
 https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse.html#comparing-includes-and-imports-dynamic-and-static-re-use
 
 重用分布式 Ansible 工件的每种方法都有优点和局限性。您可以为某些剧本选择动态重用，为其他剧本选择静态重用。尽管您可以在单个剧本中同时使用动态和静态重用，但最好为每个剧本选择一种方法。混合静态和动态重用可能会在您的剧本中引入难以诊断的错误。此表总结了主要差异，因此您可以为您创建的每个剧本选择最佳方法。
 
-|     | Include | Import |
-| --- | ------- | ------ |
-|     |         |        |
+|                           | Include_*                               | Import_*                                 |
+| ------------------------- | --------------------------------------- | ---------------------------------------- |
+| Type of re-use            | Dynamic                                 | Static                                   |
+| When processed            | At runtime, when encountered            | Pre-processed during playbook parsing    |
+| Task or play              | All includes are tasks                  | `import_playbook` cannot be a task       |
+| Task options              | Apply only to include task itself       | Apply to all child tasks in import       |
+| Calling from loops        | Executed once for each loop item        | Cannot be used in a loop                 |
+| Using `--list-tags`       | Tags within includes not listed         | All tags appear with `--list-tags`       |
+| Using `--list-tasks`      | Tasks within includes not listed        | All tasks appear with `--list-tasks`     |
+| Notifying handlers        | Cannot trigger handlers within includes | Can trigger individual imported handlers |
+| Using --start-at-task     | Cannot start at tasks within includes   | Can start at imported tasks              |
+| Using inventory variables | Can `include_*: {{ inventory_var }}`    | Cannot `import_*: {{ inventory_var }}`   |
+| With playbooks            | No `include_playbook`                   | Can import full playbooks                |
+| With variables files      | Can include variables files             | Use `vars_files:` to import variables    |

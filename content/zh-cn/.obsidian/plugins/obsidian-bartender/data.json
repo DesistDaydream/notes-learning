@@ -298,6 +298,23 @@
       "docs/1.操作系统/X.Linux 管理/性能评估与故障处理",
       "docs/1.操作系统/X.Linux 管理/Linux 管理案例"
     ],
+    "docs/1.操作系统/X.Linux 管理/Linux 文本处理": [
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/_index.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Linux 文本处理.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/sed.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/awk.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/grep.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/jq 命令行工具.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/printf 与 echo 文本输出命令.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Windows文件换行符转Linux换行符.md"
+    ],
+    "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim": [
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim/_index.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim/Vim.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim/Vim 黄色阴影处理.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim/Vim中复制粘贴缩进错乱问题的解决方案.md"
+    ],
     "docs/1.操作系统/X.Linux 管理/Linux 硬件管理工具": [
       "docs/1.操作系统/X.Linux 管理/Linux 硬件管理工具/_index.md",
       "docs/1.操作系统/X.Linux 管理/Linux 硬件管理工具/Linux 硬件管理工具.md",
@@ -351,6 +368,11 @@
       "docs/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/性能评估.md",
       "docs/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/性能测试工具",
       "docs/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/Redhat 优化.md"
+    ],
+    "docs/1.操作系统/Y.Windows 管理/Windows管理工具": [
+      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/_index.md",
+      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/PowerShell内置管理工具",
+      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/其他.md"
     ],
     "docs/1.操作系统/系统审计": [
       "docs/1.操作系统/系统审计/_index.md",
@@ -577,6 +599,23 @@
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/Kubernetes 证书管理",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/最佳实践.md"
     ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/1.Authenticating(认证)": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/1.Authenticating(认证)/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/1.Authenticating(认证)/1.Authenticating(认证).md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/1.Authenticating(认证)/User Account 详解.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/7.API 访问控制/1.Authenticating(认证)/Service Account 详解.md"
+    ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/8.Kubernetes 网络.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Service(服务).md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Kubernetes DNS",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/kube-proxy(实现 Service 功能的组件)",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/CNI",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Gateway API.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/NetworkPolicy 网络策略.md"
+    ],
     "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理": [
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/_index.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/Kubernetes 管理.md",
@@ -602,7 +641,7 @@
     "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具": [
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/_index.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/kubectl 命令行工具.md",
-      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/config 子命令，修改kubeconfig文件.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/config 子命令.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/对象的创建与修改命令.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/get 子命令.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/set 与 rollout 更新资源命令.md",
@@ -750,6 +789,12 @@
       "docs/2.编程/高级编程语言/ECMAScript/Vue",
       "docs/2.编程/高级编程语言/ECMAScript/常用编程技巧.md"
     ],
+    "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具": [
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/_index.md",
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/ECMAScript 工具.md",
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/代码格式化.md",
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/Vite.md"
+    ],
     "docs/2.编程/高级编程语言/ECMAScript/JavaScript 标准库": [
       "docs/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/_index.md",
       "docs/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/JavaScript 标准库.md",
@@ -763,6 +808,13 @@
       "docs/2.编程/高级编程语言/ECMAScript/TypeScript 标准库/_index.md",
       "docs/2.编程/高级编程语言/ECMAScript/TypeScript 标准库/TypeScript 标准库.md",
       "docs/2.编程/高级编程语言/ECMAScript/TypeScript 标准库/Data Type(数据类型).md"
+    ],
+    "docs/2.编程/高级编程语言/ECMAScript/Vue": [
+      "docs/2.编程/高级编程语言/ECMAScript/Vue/_index.md",
+      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue.md",
+      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 环境安装与使用.md",
+      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 响应式.md",
+      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 组件.md"
     ],
     "docs/2.编程/高级编程语言/Go": [
       "docs/2.编程/高级编程语言/Go/_index.md",
@@ -897,6 +949,12 @@
       "docs/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard/Wireguard 全互联模式（full mesh）权威指南",
       "docs/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard/流量伪装.md"
     ],
+    "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP": [
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP/_index.md",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP/TCP.md",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP/常见 TCP 端口号.md",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP/其他.md"
+    ],
     "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)": [
       "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/_index.md",
       "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Distributed Storage(分布式存储).md",
@@ -931,6 +989,13 @@
       "docs/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Samba 部署.md",
       "docs/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Samba 配置详解.md"
     ],
+    "docs/5.数据存储/2.数据库/关系数据/MySQL": [
+      "docs/5.数据存储/2.数据库/关系数据/MySQL/_index.md",
+      "docs/5.数据存储/2.数据库/关系数据/MySQL/MySQL.md",
+      "docs/5.数据存储/2.数据库/关系数据/MySQL/MySQL 配置文件详解.md",
+      "docs/5.数据存储/2.数据库/关系数据/MySQL/MySQL 命令行工具.md",
+      "docs/5.数据存储/2.数据库/关系数据/MySQL/MySQL 批量SQL插入性能优化.md"
+    ],
     "docs/5.数据存储/2.数据库/关系数据/SQL": [
       "docs/5.数据存储/2.数据库/关系数据/SQL/_index.md",
       "docs/5.数据存储/2.数据库/关系数据/SQL/SQL.md",
@@ -938,6 +1003,12 @@
       "docs/5.数据存储/2.数据库/关系数据/SQL/SQL Functions(函数).md",
       "docs/5.数据存储/2.数据库/关系数据/SQL/SQL Operators(运算符).md",
       "docs/5.数据存储/2.数据库/关系数据/SQL/最佳实践.md"
+    ],
+    "docs/5.数据存储/数据管理工具/Percona": [
+      "docs/5.数据存储/数据管理工具/Percona/_index.md",
+      "docs/5.数据存储/数据管理工具/Percona/Percona.md",
+      "docs/5.数据存储/数据管理工具/Percona/Percona XtraDB Cluster",
+      "docs/5.数据存储/数据管理工具/Percona/Percona Monitoring and Management.md"
     ],
     "docs/6.可观测性": [
       "docs/6.可观测性/_index.md",
@@ -1144,6 +1215,27 @@
       "docs/7.信息安全/Cryptography(密码学)/公开密钥加密/证书 与 PKI",
       "docs/7.信息安全/Cryptography(密码学)/公开密钥加密/密钥_证书 的编码.md"
     ],
+    "docs/8.通用技术/Message Queue(消息队列)": [
+      "docs/8.通用技术/Message Queue(消息队列)/_index.md",
+      "docs/8.通用技术/Message Queue(消息队列)/Message Queue(消息队列).md",
+      "docs/8.通用技术/Message Queue(消息队列)/RocketMQ",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ",
+      "docs/8.通用技术/Message Queue(消息队列)/Kafka原理详解.md",
+      "docs/8.通用技术/Message Queue(消息队列)/NSQ 消息队列.md"
+    ],
+    "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ": [
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/_index.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/问题实例.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ 部署.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ 配置详解.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ 集群.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ 命令行工具.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ 性能与优化.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ Operator.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/go rabbitmq 库.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/rabbitmqctl 命令行工具详解.md"
+    ],
     "docs/9.运维": [
       "docs/9.运维/_index.md",
       "docs/9.运维/Standardized Glossary(标准化术语)",
@@ -1198,6 +1290,11 @@
       "docs/9.运维/Cobbler/cobbler命令说明.md",
       "docs/9.运维/Cobbler/kickstart 介绍.md"
     ],
+    "docs/9.运维/Standardized Glossary(标准化术语)": [
+      "docs/9.运维/Standardized Glossary(标准化术语)/_index.md",
+      "docs/9.运维/Standardized Glossary(标准化术语)/Standardized Glossary(标准化术语).md",
+      "docs/9.运维/Standardized Glossary(标准化术语)/SRE 到底是干什么的？？.md"
+    ],
     "docs/x_标准化术语/Internet(互联网)": [
       "docs/x_标准化术语/Internet(互联网)/_index.md",
       "docs/x_标准化术语/Internet(互联网)/Internet(互联网).md",
@@ -1239,97 +1336,6 @@
       "docs/实用工具/网站搭建/Hugo/命令行工具.md",
       "docs/实用工具/网站搭建/Hugo/主题",
       "docs/实用工具/网站搭建/Hugo/站点管理.md"
-    ],
-    "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP": [
-      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP/_index.md",
-      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP/TCP.md",
-      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP/常见 TCP 端口号.md",
-      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP/其他.md"
-    ],
-    "docs/9.运维/Standardized Glossary(标准化术语)": [
-      "docs/9.运维/Standardized Glossary(标准化术语)/_index.md",
-      "docs/9.运维/Standardized Glossary(标准化术语)/Standardized Glossary(标准化术语).md",
-      "docs/9.运维/Standardized Glossary(标准化术语)/SRE 到底是干什么的？？.md"
-    ],
-    "docs/1.操作系统/Y.Windows 管理/Windows管理工具": [
-      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/_index.md",
-      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/PowerShell内置管理工具",
-      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/其他.md"
-    ],
-    "docs/1.操作系统/X.Linux 管理/Linux 文本处理": [
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/_index.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Linux 文本处理.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/sed.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/awk.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/grep.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/jq 命令行工具.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/printf 与 echo 文本输出命令.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Windows文件换行符转Linux换行符.md"
-    ],
-    "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim": [
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim/_index.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim/Vim.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim/Vim 黄色阴影处理.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim/Vim中复制粘贴缩进错乱问题的解决方案.md"
-    ],
-    "docs/2.编程/高级编程语言/ECMAScript/Vue": [
-      "docs/2.编程/高级编程语言/ECMAScript/Vue/_index.md",
-      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue.md",
-      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 环境安装与使用.md",
-      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 响应式.md",
-      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 组件.md"
-    ],
-    "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具": [
-      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/_index.md",
-      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/ECMAScript 工具.md",
-      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/代码格式化.md",
-      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/Vite.md"
-    ],
-    "docs/5.数据存储/数据管理工具/Percona": [
-      "docs/5.数据存储/数据管理工具/Percona/_index.md",
-      "docs/5.数据存储/数据管理工具/Percona/Percona.md",
-      "docs/5.数据存储/数据管理工具/Percona/Percona XtraDB Cluster",
-      "docs/5.数据存储/数据管理工具/Percona/Percona Monitoring and Management.md"
-    ],
-    "docs/5.数据存储/2.数据库/关系数据/MySQL": [
-      "docs/5.数据存储/2.数据库/关系数据/MySQL/_index.md",
-      "docs/5.数据存储/2.数据库/关系数据/MySQL/MySQL.md",
-      "docs/5.数据存储/2.数据库/关系数据/MySQL/MySQL 配置文件详解.md",
-      "docs/5.数据存储/2.数据库/关系数据/MySQL/MySQL 命令行工具.md",
-      "docs/5.数据存储/2.数据库/关系数据/MySQL/MySQL 批量SQL插入性能优化.md"
-    ],
-    "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络": [
-      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/_index.md",
-      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/8.Kubernetes 网络.md",
-      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Service(服务).md",
-      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Kubernetes DNS",
-      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/kube-proxy(实现 Service 功能的组件)",
-      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/CNI",
-      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress",
-      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Gateway API.md",
-      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/NetworkPolicy 网络策略.md"
-    ],
-    "docs/8.通用技术/Message Queue(消息队列)": [
-      "docs/8.通用技术/Message Queue(消息队列)/_index.md",
-      "docs/8.通用技术/Message Queue(消息队列)/Message Queue(消息队列).md",
-      "docs/8.通用技术/Message Queue(消息队列)/RocketMQ",
-      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ",
-      "docs/8.通用技术/Message Queue(消息队列)/Kafka原理详解.md",
-      "docs/8.通用技术/Message Queue(消息队列)/NSQ 消息队列.md"
-    ],
-    "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ": [
-      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/_index.md",
-      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/问题实例.md",
-      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ.md",
-      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ 部署.md",
-      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ 配置详解.md",
-      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ 集群.md",
-      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ 命令行工具.md",
-      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ 性能与优化.md",
-      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ Operator.md",
-      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/go rabbitmq 库.md",
-      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/rabbitmqctl 命令行工具详解.md"
     ]
   },
   "actionBarOrder": {},

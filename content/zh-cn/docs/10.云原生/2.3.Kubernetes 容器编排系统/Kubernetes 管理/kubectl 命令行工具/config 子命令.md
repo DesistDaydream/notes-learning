@@ -1,12 +1,14 @@
 ---
-title: config 子命令，修改kubeconfig文件
+title: config 子命令
 ---
+
+# 概述
+
+config 子命令用于控制 [User Account](docs/10.云原生/2.3.Kubernetes%20容器编排系统/7.API%20访问控制/1.Authenticating(认证)/User%20Account%20详解.md) 的 KubeConfig 文件
 
 # Syntax(语法)
 
-**kubectl config SUBCOMMAND \[options] # 使用子命令修改 kubeconfig 文件**
-
-Note：该命令的功能详见 [认证与授权章节中的 KubeConfig 文件详解](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/7.API%20 访问控制/1.Authenticating(认证)/User%20Account%20 详解.md 访问控制/1.Authenticating(认证)/User Account 详解.md)
+**kubectl config SUBCOMMAND \[options]
 
 SUBCOMMAND 包括：
 
@@ -36,15 +38,17 @@ SUBCOMMAND 包括：
 
 OPTIONS
 
-- --embed-certs={false|true} # 将--certificate-authority 中指定的证书嵌入 kubeconfig 文件中。i.e.将证书内容使用 base64 编码后存入，默认为 false，即不读取内容进行编码，而是直接将路径写到 kubeconfig 文件中
+- **--embed-certs={false|true}** # 将--certificate-authority 中指定的证书嵌入 kubeconfig 文件中。i.e.将证书内容使用 base64 编码后存入，默认为 false，即不读取内容进行编码，而是直接将路径写到 kubeconfig 文件中
 
 EXAMPLE
 
-- kubectl config set-cluster kubernetes \\
-- --certificate-authority=/etc/kubernetes/pki/ca.crt \\
-- --embed-certs=true \\
-- --server=192.168.10.10:6443 \\
-- --kubeconfig=./lch-config # 为 lch-config 的 kubeconfig 文件设定集群信息，指定证书为/etc/kubernetes/pki/ca.crt，开启嵌入式认证，指定集群 api-server 的 ip 和 port。
+```bash
+kubectl config set-cluster kubernetes \
+--certificate-authority=/etc/kubernetes/pki/ca.crt \
+--embed-certs=true \
+--server=192.168.10.10:6443 \
+--kubeconfig=./lch-config # 为 lch-config 的 kubeconfig 文件设定集群信息，指定证书为/etc/kubernetes/pki/ca.crt，开启嵌入式认证，指定集群 api-server 的 ip 和 port。
+```
 
 ## set-context # 设定上下文，确立 user 与 cluster 的绑定关系与上下文的 name
 

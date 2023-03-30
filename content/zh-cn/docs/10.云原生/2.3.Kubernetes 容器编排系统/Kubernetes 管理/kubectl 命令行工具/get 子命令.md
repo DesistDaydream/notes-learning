@@ -114,6 +114,23 @@ kubectl get secrets -n kubernetes-dashboard -o jsonpath="{.items\[?(@.metadata.a
 
 - kubectl get replicasets.apps -n bluestore-console -ojsonpath='{range .items\[\*]}{.metadata.annotations.deployment.kubernetes.io/revision}{"\t"}{.metadata.name}{"\n"}{end}'
 
+## 获取全部所需镜像
+
+```bash
+~]# kubectl get pods -A -o jsonpath="{.items[*].spec.containers[*].image}" |tr -s '[[:space:]]' '\n' |sort |uniq -c
+      3 ghcr.io/kube-vip/kube-vip:v0.5.10
+      1 percona:8.0
+      3 percona/percona-xtradb-cluster:8.0.29-21.1
+      1 percona/percona-xtradb-cluster-operator:1.12.0
+      6 percona/percona-xtradb-cluster-operator:1.12.0-haproxy
+      6 percona/percona-xtradb-cluster-operator:1.12.0-logcollector
+      1 percona/percona-xtradb-cluster-operator:1.12.0-pxc8.0-backup
+      1 rancher/local-path-provisioner:v0.0.23
+      1 rancher/mirrored-coredns-coredns:1.9.4
+      1 rancher/mirrored-metrics-server:v0.6.2
+      1 registry.ehualu.com/common/redis:4.0
+```
+
 ## 过滤 Pod
 
 获取 kube-system 名称空间下，标签 k8s-app 的值为 kube-dns 的所有 pod。

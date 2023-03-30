@@ -10,6 +10,11 @@ weight: 1
 > - [GitHub 项目，percona/percona-xtradb-cluster](https://github.com/percona/percona-xtradb-cluster)
 > - [官网](https://www.percona.com/software/mysql-database/percona-xtradb-cluster)
 
+# PXC Operator
+
+> 参考：
+> - [GitHub 项目，percona/percona-xtradb-cluster-operator](https://github.com/percona/percona-xtradb-cluster-operator)
+
 
 # 部署 PXC
 

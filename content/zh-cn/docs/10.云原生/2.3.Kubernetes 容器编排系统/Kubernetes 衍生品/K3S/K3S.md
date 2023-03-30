@@ -1,5 +1,6 @@
 ---
 title: K3S
+weight: 1
 ---
 
 # 概述
