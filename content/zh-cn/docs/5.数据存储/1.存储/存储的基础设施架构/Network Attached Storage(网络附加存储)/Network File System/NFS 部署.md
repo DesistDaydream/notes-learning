@@ -39,8 +39,9 @@ chmod 755 /data
 为 NFS 配置共享目录
 
 ```bash
+export NETWORK="172.38.180.218/24"
 cat > /etc/exports <<EOF
-/data/     172.19.42.0/24(rw,sync,no_root_squash,no_all_squash)
+/data/     ${NETWORK}(rw,sync,no_root_squash,no_all_squash)
 EOF
 ```
 

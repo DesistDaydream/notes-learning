@@ -9,9 +9,20 @@ title: Device 命令
 
 # attach-device # attach device from an XML file
 
-# [attach-disk](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#attach-disk) # 将一个新的磁盘设备添加到 domian 中
+# attach-disk # 将一个新的磁盘设备添加到 domian 中
+
+https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#attach-disk
 
 ## Syntax(语法)
+
+**OPTIONS**
+
+- **--driver DRIVER** # 可用的值有：qemu
+- **--subdriver STRING** # `默认值：raw`。可用的值有：对于 QEMU 来说可以是 raw、qcow2；对于 Xen 来说可以是 aio
+- **--target STING** # 指定暴露给操作系统的的总线或设备。如果是硬盘的话，通常的值是 vdb、vdc、vdd 这种。
+- **--targetbus STRING** # 指定要模拟的设备类型。`默认值：从设备名称的样式中推断出总线类型`
+    - 可用的值：virtio
+- **--cache STRING** # 可用的值：none
 
 # attach-interface # 附加网络接口(i.e.给 VM 添加一个网卡)
 

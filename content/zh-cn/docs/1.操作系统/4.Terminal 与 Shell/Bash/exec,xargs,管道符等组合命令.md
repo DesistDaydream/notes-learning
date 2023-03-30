@@ -27,7 +27,7 @@ xargs 可以把从 `|` 前面获得的输入内容，当成 xargs 后面的命�
 
 ## Syntax(语法)
 
-xargs \[OPTIONS] COMMAND # 不指定 COMMAND 则默认输出到屏幕上
+**xargs [OPTIONS] COMMAND** # 不指定 COMMAND 则默认输出到屏幕上
 
 OPTIONS：
 
