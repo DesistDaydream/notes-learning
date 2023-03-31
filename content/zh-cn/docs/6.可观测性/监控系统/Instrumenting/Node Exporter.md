@@ -77,6 +77,7 @@ nerdctl run -d --name node-exporter --restart=always \
 # node_exporter 可采集的数据种类
 
 [该链接](https://github.com/prometheus/node_exporter#enabled-by-default)有 node_exporter 默认采集的数据，name 就是要采集的数据名称
+
 [该链接](https://github.com/prometheus/node_exporter#disabled-by-default)有 node_exporter 默认不采集的数据
 
 如果想要让 node_exporter 采集或者不采集某些数据，可以在启动 node_exporter 程序时，向该程序传递参数。参数中的 NAME 为上面两个连接中，表格中的 name 列

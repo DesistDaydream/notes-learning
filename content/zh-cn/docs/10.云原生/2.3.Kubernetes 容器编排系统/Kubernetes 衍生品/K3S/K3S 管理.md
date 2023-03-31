@@ -17,3 +17,9 @@ sudo etcdctl version \
   --cacert=/var/lib/rancher/k3s/server/tls/etcd/server-ca.crt \
   --cert=/var/lib/rancher/k3s/server/tls/etcd/client.crt \
   --key=/var/lib/rancher/k3s/server/tls/etcd/client.key
+
+# 其他推荐
+
+## 关于旧版 iptables
+
+## 建议关闭 firewalld
