@@ -1,5 +1,5 @@
 ---
-title: etcdctl user命令
+title: etcdctl user 命令
 ---
 
 # etcdctl user COMMAND \[OPTIONS] \[Arguments...] # 用户添加，授予和撤消子命令

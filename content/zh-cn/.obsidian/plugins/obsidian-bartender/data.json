@@ -212,7 +212,7 @@
     ],
     "docs/1.操作系统/4.Terminal 与 Shell/Bash": [
       "docs/1.操作系统/4.Terminal 与 Shell/Bash/_index.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/source，sh，bash 等执行命令的工具.md",
+      "docs/1.操作系统/4.Terminal 与 Shell/Bash/Bash.md",
       "docs/1.操作系统/4.Terminal 与 Shell/Bash/Bash 变量.md",
       "docs/1.操作系统/4.Terminal 与 Shell/Bash/Bash 操作历史记录.md",
       "docs/1.操作系统/4.Terminal 与 Shell/Bash/Bash 快捷键.md",
@@ -1336,6 +1336,32 @@
       "docs/实用工具/网站搭建/Hugo/命令行工具.md",
       "docs/实用工具/网站搭建/Hugo/主题",
       "docs/实用工具/网站搭建/Hugo/站点管理.md"
+    ],
+    "docs/5.数据存储/2.数据库/键值数据/Etcd": [
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/_index.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 部署.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 配置详解.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 数据模型.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 高可用.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 基于 RAFT 的一致性.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/revision概念.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 命令行工具",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd API 文档.md"
+    ],
+    "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理": [
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理/_index.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理/Etcd 管理.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理/Etcd 调优.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理/Etcd 性能测试.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理/Etcd 维护.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理/etcd 问题处理案例"
+    ],
+    "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 命令行工具": [
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 命令行工具/_index.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 命令行工具/etcdctl.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 命令行工具/etcdctl user 命令.md"
     ]
   },
   "actionBarOrder": {},

@@ -1,5 +1,6 @@
 ---
-title: etcdctl 命令行工具
+title: etcdctl
+weight: 1
 ---
 
 # 概述
@@ -9,15 +10,18 @@ title: etcdctl 命令行工具
 > - 官方文档：<https://github.com/etcd-io/etcd/tree/master/etcdctl>
 > - [etcd 可用的库和客户端](https://etcd.io/docs/latest/integrations/)
 
-# etcdctl \[GlobalOptions] COMMAND \[CommandOptions] \[Arguments...]
+
+# Syntax(语法)
+
+**etcdctl \[GlobalOptions] COMMAND \[CommandOptions] \[Arguments...]**
 
 使用说明：
 
-1. export ETCDCTL_API=3 使用该命令使得 etcdctl 通过 v3 版本来进行操作
-2. 如果在 etcd 的配置文件中的 Security 段落，开启了验证证书，则在使用命令时，需要使用--cert、--key、--cacert 选项来指定验证所需证书，否则无法操纵服务器
-   1. v2 版本中使用如下方式 etcdctl --key-file=/etc/kubernetes/pki/etcd/peer.key --cert-file=/etc/kubernetes/pki/etcd/peer.crt --ca-file=/etc/kubernetes/pki/etcd/ca.crt --endpoints="https://IP:PORT" COMMAND
-   2. v3 版本中使用如下方式 etcdctl --key=/etc/kubernetes/pki/etcd/peer.key --cert=/etc/kubernetes/pki/etcd/peer.crt --cacert=/etc/kubernetes/pki/etcd/ca.crt --endpoints="https://IP:PORT" COMMAND
-   3. 在下面的 EXAMPLE 则不再输入认证相关参数，以便查阅方便。但是实际使用中需要使用，否则无法连接 etcd 服务端
+- export ETCDCTL_API=3 使用该命令使得 etcdctl 通过 v3 版本来进行操作
+- 如果在 etcd 的配置文件中的 Security 段落，开启了验证证书，则在使用命令时，需要使用--cert、--key、--cacert 选项来指定验证所需证书，否则无法操纵服务器
+    - v2 版本中使用如下方式 etcdctl --key-file=/etc/kubernetes/pki/etcd/peer.key --cert-file=/etc/kubernetes/pki/etcd/peer.crt --ca-file=/etc/kubernetes/pki/etcd/ca.crt --endpoints="https://IP:PORT" COMMAND
+    - v3 版本中使用如下方式 etcdctl --key=/etc/kubernetes/pki/etcd/peer.key --cert=/etc/kubernetes/pki/etcd/peer.crt --cacert=/etc/kubernetes/pki/etcd/ca.crt --endpoints="https://IP:PORT" COMMAND
+    - 在下面的 EXAMPLE 则不再输入认证相关参数，以便查阅方便。但是实际使用中需要使用，否则无法连接 etcd 服务端
 
 ## GLOBAL OPTIONS
 
@@ -37,13 +41,12 @@ title: etcdctl 命令行工具
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/miobxe/1616136392283-c0b50823-df6d-49d3-8d85-2aed1c7de3e0.jpeg)
 
-# 子命令详解
+# 基本命令
 
-# Base 基本
-
-## get # 获取键或者键的范围。Gets the key or a range of keys
+## get - 获取键或者键的范围。Gets the key or a range of keys
 
 **etcdctl get \[OPTIONS] \[Range-End]**
+
 OPTIONS
 
 - --consistency="l" Linearizable(l) or Serializable(s)
@@ -70,27 +73,59 @@ txn Txn processes all the requests in one transaction
 
 compaction Compacts the event history in etcd
 
-# alarm # etcd 中告警相关命令
+# alarm - 告警相关命令
 
-## alerm disarm # 解除所有告警
+## alerm disarm - 解除所有告警
 
-## alarm list # 列出 etcd 中所有的告警
+## alarm list - 列出 etcd 中所有的告警
 
-# check # 检查 etcd 的性能
+# check - 检查 etcd 的性能
 
-## check datascale # Check the memory usage of holding data for different workloads on a given server endpoint
+## check datascale
 
-## check perf # 检查 etcd 的性能
+检查在给定的 endpoint 上为不同工作负载保持数据时的内存使用情况。
+
+## check perf - 检查 etcd 的性能
 
 检查 60 秒的 etcd 群集性能。经常运行检查性能可以创建一个较大的键空间历史记录，可以使用--auto-compact 和--auto-defrag 选项（如下所述）对其进行自动压缩和碎片整理。
 
+**注意：性能检查会产生碎片，推荐性能测试后，执行 `etcdctl defrag` 命令清理碎片**
+
 OPTIONS
 
-1. --load # 性能检查的工作负载模型。可接受的工作负载：s(small 小)，m(medium 中)，l(large 大)，xl(x 大)
+- **--load** # 性能检查的工作负载模型。可接受的工作负载：s(small 小)，m(medium 中)，l(large 大)，xl(x 大)
 
-# defrag # 对指定 endpoints 的 etcd 成员的存储空间进行碎片整理
+# defrag
 
-# endpoint # 用于查询 etcd 中各个端点的信息
+defrag 命令可以对 etcd 成员的存储空间进行碎片整理，etcd 成员目标可以是正在运行，也可以是未运行的，当处理未运行的数据库碎片时，指定存储路径即可。
+
+
+## EXAMPLE
+
+在 Etcd 当前节点成员运行碎片整理操作
+
+```sh
+$ etcdctl defrag
+Finished defragmenting etcd member[127.0.0.1:2379]
+```
+
+在集群中的所有成员运行碎片整理操作：
+
+```bash
+$ etcdctl defrag --cluster
+Finished defragmenting etcd member[http://127.0.0.1:2379]
+Finished defragmenting etcd member[http://127.0.0.1:22379]
+Finished defragmenting etcd member[http://127.0.0.1:32379]
+```
+
+在 Etcd 未运行时，对数据存储目录执行碎片整理操作：
+
+```sh
+$ etcdctl defrag --data-dir <PathToEtcdDataDir>
+```
+
+
+# endpoint - 用于查询 etcd 中各个端点的信息
 
 endpoint health # Checks the healthiness of endpoints specified in `--endpoints` flag
 
@@ -98,7 +133,7 @@ endpoint status # 打印出 --endpoints 标志中指定的 endpoints 状态
 
 endpoint hashkv # Prints the KV history hash for each endpoint in --endpoints
 
-# lease 相关命令
+# lease - 相关命令
 
 lease grant Creates leases
 
@@ -108,7 +143,7 @@ lease timetolive Get lease information
 
 lease keep-alive Keeps leases alive (renew)
 
-# member # 用于管理 etcd 集群中的成员
+# member - 管理 etcd 集群中的成员
 
 member add # 将新成员作为新对等方引入 etcd 集群中。
 
@@ -120,10 +155,12 @@ member list # 列出集群中的所有成员
 
 EXAMPLE
 
-1. etcdctl member list # 列出 etcd 集群中的成员
-2. etcdctl member list --write-out=json | jq . # 通过 json 可以看到 etcd 集群中，哪个是节点是 leader
+- etcdctl member list # 列出 etcd 集群中的成员
+- etcdctl member list --write-out=json | jq . # 通过 json 可以看到 etcd 集群中，哪个是节点是 leader
 
-# snapshot 快照相关命令。用来让用户对 etcd 的数据进行备份与恢复
+# snapshot - 快照相关命令。
+
+snapshot 相关的命令可以让将 etcd 的数据进行备份与恢复
 
 **etcdctl snapshot save** # 存储一个 etcd 节点后端快照到指定文件。Stores an etcd node backend snapshot to a given file
 EXAMPLE
@@ -160,7 +197,7 @@ auth disable Disables authentication
 
 ## user # etcd 用户相关的命令
 
-详见：[etcdctl user 命令](https://www.yuque.com/go/doc/33190532)
+详见：[etcdctl user 命令](/docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd%20命令行工具/etcdctl%20user%20命令.md)
 
 ## role # etcd 的 role 相关的命令
 

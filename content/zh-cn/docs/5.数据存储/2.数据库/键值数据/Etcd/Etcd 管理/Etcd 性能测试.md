@@ -9,10 +9,12 @@ title: Etcd 性能测试
 
 安装 etcd 压测工具 benchmark：
 
-    $ go get go.etcd.io/etcd/tools/benchmark
-    # GOPATH should be set
-    $ ls $GOPATH/bin
-    benchmark
+```bash
+$ go get go.etcd.io/etcd/tools/benchmark
+# GOPATH should be set
+$ ls $GOPATH/bin
+benchmark
+```
 
 # 官方推荐的 etcd 性能数据
 
@@ -53,12 +55,14 @@ Linearizable(线性化) 读请求经过集群仲裁达成共识以获取最新�
 
 直接使用 etcdctl 命令行工具的子命令，即可进行简单的测试
 
-    root@lichenhao:~# etcdctl check perf
-    60 / 60 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00% 1m0s
-    PASS: Throughput is 150 writes/s
-    PASS: Slowest request took 0.101178s
-    PASS: Stddev is 0.002695s
-    PASS
+```bash
+~# etcdctl check perf
+60 / 60 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00% 1m0s
+PASS: Throughput is 150 writes/s
+PASS: Slowest request took 0.101178s
+PASS: Stddev is 0.002695s
+PASS
+```
 
 # benchmarks 官方测试工具
 
@@ -129,14 +133,16 @@ fio --rw=write --ioengine=sync --fdatasync=1 --directory=/var/lib/etcd --size=22
 
 然后，您要做的就是查看输出并检查 fdatasync 持续时间的第 99 个百分位数 是否小于 10ms。如果真是这样，则您的存储空间足够快。这是示例输出：
 
-    fsync/fdatasync/sync_file_range:
-      sync (usec): min=534, max=15766, avg=1273.08, stdev=1084.70
-      sync percentiles (usec):
-       | 1.00th=[ 553], 5.00th=[ 578], 10.00th=[ 594], 20.00th=[ 627],
-       | 30.00th=[ 709], 40.00th=[ 750], 50.00th=[ 783], 60.00th=[ 1549],
-       | 70.00th=[ 1729], 80.00th=[ 1991], 90.00th=[ 2180], 95.00th=[ 2278],
-       | 99.00th=[ 2376], 99.50th=[ 9634], 99.90th=[15795], 99.95th=[15795],
-       | 99.99th=[15795]
+```bash
+fsync/fdatasync/sync_file_range:
+  sync (usec): min=534, max=15766, avg=1273.08, stdev=1084.70
+  sync percentiles (usec):
+   | 1.00th=[ 553], 5.00th=[ 578], 10.00th=[ 594], 20.00th=[ 627],
+   | 30.00th=[ 709], 40.00th=[ 750], 50.00th=[ 783], 60.00th=[ 1549],
+   | 70.00th=[ 1729], 80.00th=[ 1991], 90.00th=[ 2180], 95.00th=[ 2278],
+   | 99.00th=[ 2376], 99.50th=[ 9634], 99.90th=[15795], 99.95th=[15795],
+   | 99.99th=[15795]
+```
 
 一些注意事项：
 
@@ -145,21 +151,22 @@ fio --rw=write --ioengine=sync --fdatasync=1 --directory=/var/lib/etcd --size=22
 - 您需要的 Fio 版本至少应为 3.5， 因为较旧的版本不会报告 fdatasync 持续时间百分位数。
 - 上面的输出只是来自的整个输出的一小部分摘录 fio。
 
-
-    fio --randrepeat=1 \
-      --ioengine=libaio \
-      --direct=1 \
-       --gtod_reduce=1 \
-       --name=etcd-disk-io-test \
-       --filename=etcd_read_write.io \
-       --bs=4k --iodepth=64 --size=4G \
-       --readwrite=randrw --rwmixread=75
+```bash
+fio --randrepeat=1 \
+  --ioengine=libaio \
+  --direct=1 \
+   --gtod_reduce=1 \
+   --name=etcd-disk-io-test \
+   --filename=etcd_read_write.io \
+   --bs=4k --iodepth=64 --size=4G \
+   --readwrite=randrw --rwmixread=75
+```
 
 # etcd 官方推荐的硬件配置
 
 官方文档：<https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/hardware.md>
 
-    etcd通常在开发或测试的时候用很少的资源就可以了，比如说使用普通的笔记本或者是廉价的云主机就可以，但是在生产环境上，还是需要按推荐的硬件配置进行部署，虽然这不是必须的，但是这样做可以增加集群的健壮性。一如既往，在上生产环境之前，需要先进行负载模拟测试。
+etcd通常在开发或测试的时候用很少的资源就可以了，比如说使用普通的笔记本或者是廉价的云主机就可以，但是在生产环境上，还是需要按推荐的硬件配置进行部署，虽然这不是必须的，但是这样做可以增加集群的健壮性。一如既往，在上生产环境之前，需要先进行负载模拟测试。
 
 CPUs
 

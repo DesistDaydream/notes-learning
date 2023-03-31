@@ -6,8 +6,8 @@ title: K3S 配置详解
 
 > 参考：
 > - [官方文档，安装-配置选项](https://docs.k3s.io/zh/installation/configuration)
-> - [官方文档，参考-K3S Server 配置](https://docs.k3s.io/reference/server-config)
-> - [官方文档，参考-K3S Agent 配置](https://docs.k3s.io/reference/agent-config)
+> - [官方文档，CLI 工具-server](https://docs.k3s.io/zh/cli/server)
+> - [官方文档，CLI 工具-agent](https://docs.k3s.io/zh/cli/agent)
 
 k3s 可以通过如下如下几种方式配置运行时行为
 
@@ -146,3 +146,75 @@ mirrors: docker.io: endpoint: - "http://172.38.40.180"configs: "172.38.40.180": 
 ## 实验选项
 
 **--docker** # 指定 k3s 的 CRI 为 docker。默认为 containerd。
+
+# 最佳实践
+
+## 为 Prometheus 提供 K8S 组件的监控指标
+
+参考：<https://github.com/k3s-io/k3s/issues/3619#issuecomment-973188304>
+
+以 kube-prometheus-stack 部署的 Prometheus 套件为例，修改 Helm 的 Value 文件
+
+```yaml
+kubeApiServer:
+  enabled: true
+kubeControllerManager:
+  enabled: true
+  endpoints:
+  - 192.168.42.10
+  - 192.168.42.11
+  - 192.168.42.12
+kubeScheduler:
+  enabled: true
+  endpoints:
+  - 192.168.42.10
+  - 192.168.42.11
+  - 192.168.42.12
+kubeProxy:
+  enabled: true
+  endpoints:
+  - 192.168.42.10
+  - 192.168.42.11
+  - 192.168.42.12
+kubeEtcd:
+  enabled: true
+  endpoints:
+  - 192.168.42.10
+  - 192.168.42.11
+  - 192.168.42.12
+  service:
+    enabled: true
+    port: 2381
+    targetPort: 2381
+```
+
+在 K3S 的配置文件中添加如下内容：
+
+```yaml
+kube-controller-manager-arg:
+- "bind-address=0.0.0.0"
+kube-scheduler-arg:
+- "bind-address=0.0.0.0"
+kube-proxy-arg:
+- "metrics-bind-address=0.0.0.0"
+etcd-expose-metrics: true
+```
+
+## 个人推荐配置
+
+```yaml
+service-node-port-range: "30000-40000"
+disable-cloud-controller: true
+disable:
+  - servicelb
+  - traefik
+kube-controller-manager-arg:
+  - bind-address=0.0.0.0
+kube-scheduler-arg:
+  - bind-address=0.0.0.0
+kube-proxy-arg:
+  - proxy-mode=ipvs
+  - masquerade-all=true
+  - metrics-bind-address=0.0.0.0
+etcd-expose-metrics: true
+```

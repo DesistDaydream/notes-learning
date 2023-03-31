@@ -11,13 +11,13 @@ title: Alertmanager 配置
 
 下文用到的占位符说明：
 
-- <DURATION> # 与正则表达式匹配的持续时间  \[0-9]+(ms|\[smhdwy])
-- <LabelName> # 与正则表达式匹配的字符串  \[a-zA-Z\_]\[a-zA-Z0-9\_]\*
-- <LabelValue> # 一串 unicode 字符
-- <FilePath> # 当前工作目录中的有效路径
-- <BOOLEAN> # 可以接受值的布尔值，true 或 false
-- <STRING> # 一个普通的字符串
-- <SECRET> # 是秘密的常规字符串，例如密码
+- \<DURATION> # 与正则表达式匹配的持续时间  \[0-9]+(ms|\[smhdwy])
+- \<LabelName> # 与正则表达式匹配的字符串  \[a-zA-Z\_]\[a-zA-Z0-9\_]\*
+- \<LabelValue> # 一串 unicode 字符
+- \<FilePath> # 当前工作目录中的有效路径
+- \<BOOLEAN> # 可以接受值的布尔值，true 或 false
+- \<STRING> # 一个普通的字符串
+- \<SECRET> # 是秘密的常规字符串，例如密码
 - \<tmpl_string> # a string which is template-expanded before usage
 - \<tmpl_secret> # a string which is template-expanded before usage that is a secret
 
@@ -84,7 +84,7 @@ inhibit_rules:
   [ - <inhibit_rule> ... ]
 ```
 
-## global: <OBJECT>
+## global: \<OBJECT>
 
 全局配置，其内的内容作用于所有配置环境中,若其余配置环境中不再指定同样的配置，则 global 中的配置作为默认配置。在这里可以定义告警发送者的信息，比如通过邮件发送告警，那么可以定义全局的 SMTP 配置。
 
@@ -98,15 +98,15 @@ inhibit_rules:
 templates: [- <filepath> ...]
 ```
 
-## route: <OBJECT>
+## route: \<OBJECT>
 
 该字段中，可以配置多个相同接收者的子路由。在一个路由树中，将每个被路由的目标称为 **Node(节点)。**
 **group_by: <\[]STRING>** # 告警分组策略，凡是具有 \[]STRING 指定的标签名的告警都分为同一个组。
 
 - 可以使用 `group_by: ['...']` 配置禁用聚合功能。
 
-**group_interval: <DURATION>** # 发送告警的间隔时间。`默认值：5m`。
-**group_wait: <DURATION>** # 发送告警前，需要等待分组行为的时间。`默认值：30s`
+**group_interval: \<DURATION>** # 发送告警的间隔时间。`默认值：5m`。
+**group_wait: \<DURATION>** # 发送告警前，需要等待分组行为的时间。`默认值：30s`
 
 - 新收到的告警会进行分组聚合，并以组的形式发送，为了方式大量告警频繁触发告警发送，所以有一个等待期，等到多个告警聚合在一个组时，统一发送
 
@@ -117,8 +117,8 @@ templates: [- <filepath> ...]
 > - 如果多个 Label 是“或”的关系，那就只能配置多个相同接收者的路由，每个路由的 matchers 不同。
 > - `matchers` 字段代替了在 0.22.0 版本开始被弃用的 `match` 与 `match_re` 字段
 
-**recevier: <STRING>** # 当前路由匹配到的告警的接收者。如果 recevier 是整个路由树的根，则就是默认接收者
-**routes: **[**<\[\]OBJECT>**](#L0o2z) # 子路由配置。`routes` 字段的中的每个元素其实就是 `route: <OBJECT>`。
+**recevier: \<STRING>** # 当前路由匹配到的告警的接收者。如果 recevier 是整个路由树的根，则就是默认接收者
+**routes: []OBJECT** # 子路由配置。`routes` 字段的中的每个元素其实就是 `route: <OBJECT>`。
 
 - 也就是说，`routes: <[]OBJECT>` 下每个元素的字段，与 `route: <OBJECT>` 下的字段相同，这是一个嵌套循环~~
 
@@ -154,10 +154,10 @@ route:
 **receivers(接收者)** 是一个抽象的概念，可以是一个邮箱，也可以是微信、Slack、Webhook 等等。receivers 与 route 配置，根据路由规则将告警发送给指定的接收人。
 
     # 指定接收者的名称，用于在 route 配置环境中根据路由规则指定具体的接收者。
-    name: <STRING>
+    name: \<STRING>
     # 不同的接收者有不同的配置环境。
     XXXXX_configs:
-    - <详见下文对应配置环境>, ...
+    - \<详见下文对应配置环境>, ...
 
 现阶段 alertmanager 支持的 XXXX_configs 有 email_configs、pagerduty_configs、pushover_configs、slack_configs、opsgenie_configs、webhook_configs、victorops_configs、wechat_configs。
 

@@ -5,7 +5,8 @@ title: Etcd
 # 概述
 
 > 参考：
->
+> - [GitHub 项目，etcd-io/etcd](https://github.com/etcd-io/etcd)
+> - [GitHub 项目，etcd-io/website](https://github.com/etcd-io/website)
 > - [官网](https://etcd.io/)
 > - [官方文档](https://etcd.io/docs/)
 > - [掘金 etcd 万字长文](https://juejin.cn/post/6844904031186321416)
@@ -29,7 +30,7 @@ Etcd 是 CoreOS 基于[Raft 共识算法](/docs/3.集群与分布式/集群与�
 - **Endpoint(端点)**# 指向 etcd 服务或资源的 URL 。比如 <http://172.38.40.212:2379> 就是 etcd 中的一个 endpoint ，这个 endpoint 指向了 172.38.40.212 设备的 2379 端口上的 etcd
 - **Node** # 一个 Raft 状态机实例。
 - **Member(成员)** # 一个 etcd 实例。它管理着一个 Node，并且可以为客户端请求提供服务。
-  - Member 是组成 etcd cluster 的一部分。一个逻辑概念，是集群中提供服务的 etcd 服务器。可以为一个 member 单独定义一个名字和描述等信息。
+    - Member 是组成 etcd cluster 的一部分。一个逻辑概念，是集群中提供服务的 etcd 服务器。可以为一个 member 单独定义一个名字和描述等信息。
 - **Cluster(集群)** # 由多个 Member 构成可以协同工作的 etcd 集群。
 - **Peer** # 对同一个 etcd 集群中另外一个 Member 的称呼。
 - **Client** # 向 etcd 集群发送 HTTP 请求的客户端。
@@ -94,54 +95,56 @@ etcd_disk_backend_commit_duration_seconds_bucket{le="0.016"} 406464
 
 # Etcd 关联文件与配置
 
-/var/lib/etcd/\* # Etcd 数据存储目录。该目录为默认目录，可以在配置文件的 ETCD_DATA_DIR 字段中修改路径
-/etc/etcd/etcd.conf # 基本配置文件
-/etc/etcd/etcd.conf.yaml # 与基本配置文件类似，可以已 yaml 的形式写配置文件。
+**/var/lib/etcd/** # Etcd 数据存储目录。该目录为默认目录，可以在配置文件的 ETCD_DATA_DIR 字段中修改路径
+**/etc/etcd/etcd.conf** # 基本配置文件
+**/etc/etcd/etcd.conf.yaml** # 与基本配置文件类似，可以已 yaml 的形式写配置文件。
 
 下面是基本配置文件的示例
 
-    #[Member]
-    ETCD_DATA_DIR="/PATH" #etcd中的数据是基于内存的Key/Val存储，持久化之后，需要保存的目录即在此配置中定义
-    ETCD_LISTEN_PEER_URLS="Protocol://IP:PORT,...." #指定etcd集群内互相通信时所监听的端口，默认2380
-    ETCD_LISTEN_CLIENT_URLS="Protocol://IP:PORT,..." #指定etcd与其客户端(apiserver)通信时所监听的端口，默认2379
-    ETCD_NAME="HostName" #指定etcd所在节点的主机名
-    ETCD_SNAPSHOT_COUNT="NUM" #指定可以快照多少次，默认100000,
-    #[Clustering]
-    ETCD_INITAL_ADVERTISE_PEER_URLS="Protocol://{IP|HostName}:PORT,...." #一个声明，指定对外广告的etcd集群内互相通信时所监听的端口
-    ETCD_ADVERTISE_CLIENT_URLS="Protocol://{IP|HostName}:PORT,...." #一个声明，指定对外广告的etcd与其客户端(apiserver)通信时所监听的端口
-    ETCD_INITIAL_CLUSTER="HostName1=Protocol://HostName1:PORT,HostName2=Protocol://HostName2:PORT,......." #指定etcd集群初始成员信息，集群中有几个etcd就用写几个
-    #[Proxy]
-    #ETCD_PROXY="off"
-    #ETCD_PROXY_FAILURE_WAIT="5000" #
-    #ETCD_PROXY_REFRESH_INTERVAL="30000" #
-    #ETCD_PROXY_DIAL_TIMEOUT="1000" #
-    #ETCD_PROXY_WRITE_TIMEOUT="5000" #
-    #ETCD_PROXY_READ_TIMEOUT="0" #
-    #[Security]
-    ETCD_CERT_FILE="/PATH/FILE" #指定集群与客户端通信时所用的服务端证书
-    ETCD_KEY_FILE="/PATH/FILE" #指定集群与客户端通信时所用的服务端证书的私钥
-    ETCD_CLIENT_CERT_AUTH="false|ture" #指明是否验证客户端证书
-    ETCD_TRUSTED_CA_FILE="/PATH/FILE" ##指定签署服务端证书的CA证书
-    ETCD_AUTO_TLS="false|ture" #是否让etcd自动生成服务端证书
-    ETCD_PEER_CERT_FILE="/PATH/FILE" #指定集群间通信时所用的证书
-    ETCD_PEER_KEY_FILE="/PATH/FILE" #指定集群间通信时所用的证书的私钥
-    ETCD_PEER_CLIENT_CERT_AUTH="false|ture" #指明是否验证客户端(即apiserver)的证书(peer模式中各节点互为服务端和客户端)
-    ETCD_PEER_TRUSTED_CA_FILE="/PATH/FILE" #指定签署peer证书的CA证书
-    ETCD_PEER_AUTO_TLS="false|ture" #是否让etcd自动生成peer证书
-    #[Logging]
-    #ETCD_DEBUG="false" #
-    #ETCD_LOG_PACKAGE_LEVELS="" #
-    #ETCD_LOG_OUTPUT="default" #
-    #[Unsafe]
-    #ETCD_FORCE_NEW_CLUSTER="false" #
-    #[Version]
-    #ETCD_VERSION="false" #
-    #ETCD_AUTO_COMPACTION_RETENTION="0" #
-    #[Profiling]
-    #ETCD_ENABLE_PPROF="false" #
-    #ETCD_METRICS="basic" #
-    #[Auth]
-    #ETCD_AUTH_TOKEN="simple" #
+```ini
+#[Member]
+ETCD_DATA_DIR="/PATH" #etcd中的数据是基于内存的Key/Val存储，持久化之后，需要保存的目录即在此配置中定义
+ETCD_LISTEN_PEER_URLS="Protocol://IP:PORT,...." #指定etcd集群内互相通信时所监听的端口，默认2380
+ETCD_LISTEN_CLIENT_URLS="Protocol://IP:PORT,..." #指定etcd与其客户端(apiserver)通信时所监听的端口，默认2379
+ETCD_NAME="HostName" #指定etcd所在节点的主机名
+ETCD_SNAPSHOT_COUNT="NUM" #指定可以快照多少次，默认100000,
+#[Clustering]
+ETCD_INITAL_ADVERTISE_PEER_URLS="Protocol://{IP|HostName}:PORT,...." #一个声明，指定对外广告的etcd集群内互相通信时所监听的端口
+ETCD_ADVERTISE_CLIENT_URLS="Protocol://{IP|HostName}:PORT,...." #一个声明，指定对外广告的etcd与其客户端(apiserver)通信时所监听的端口
+ETCD_INITIAL_CLUSTER="HostName1=Protocol://HostName1:PORT,HostName2=Protocol://HostName2:PORT,......." #指定etcd集群初始成员信息，集群中有几个etcd就用写几个
+#[Proxy]
+#ETCD_PROXY="off"
+#ETCD_PROXY_FAILURE_WAIT="5000" #
+#ETCD_PROXY_REFRESH_INTERVAL="30000" #
+#ETCD_PROXY_DIAL_TIMEOUT="1000" #
+#ETCD_PROXY_WRITE_TIMEOUT="5000" #
+#ETCD_PROXY_READ_TIMEOUT="0" #
+#[Security]
+ETCD_CERT_FILE="/PATH/FILE" #指定集群与客户端通信时所用的服务端证书
+ETCD_KEY_FILE="/PATH/FILE" #指定集群与客户端通信时所用的服务端证书的私钥
+ETCD_CLIENT_CERT_AUTH="false|ture" #指明是否验证客户端证书
+ETCD_TRUSTED_CA_FILE="/PATH/FILE" ##指定签署服务端证书的CA证书
+ETCD_AUTO_TLS="false|ture" #是否让etcd自动生成服务端证书
+ETCD_PEER_CERT_FILE="/PATH/FILE" #指定集群间通信时所用的证书
+ETCD_PEER_KEY_FILE="/PATH/FILE" #指定集群间通信时所用的证书的私钥
+ETCD_PEER_CLIENT_CERT_AUTH="false|ture" #指明是否验证客户端(即apiserver)的证书(peer模式中各节点互为服务端和客户端)
+ETCD_PEER_TRUSTED_CA_FILE="/PATH/FILE" #指定签署peer证书的CA证书
+ETCD_PEER_AUTO_TLS="false|ture" #是否让etcd自动生成peer证书
+#[Logging]
+#ETCD_DEBUG="false" #
+#ETCD_LOG_PACKAGE_LEVELS="" #
+#ETCD_LOG_OUTPUT="default" #
+#[Unsafe]
+#ETCD_FORCE_NEW_CLUSTER="false" #
+#[Version]
+#ETCD_VERSION="false" #
+#ETCD_AUTO_COMPACTION_RETENTION="0" #
+#[Profiling]
+#ETCD_ENABLE_PPROF="false" #
+#ETCD_METRICS="basic" #
+#[Auth]
+#ETCD_AUTH_TOKEN="simple" #
+```
 
 # Etcd 架构
 

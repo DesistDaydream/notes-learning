@@ -99,28 +99,16 @@ export default {
 
 # 学习资料
 
-[GitHub 项目，vuejs/awesome-vue](https://github.com/vuejs/awesome-vue) # 一些常用的第三方库
 [Swiperjs-Vue](https://swiperjs.com/vue)
 
-## Vue 第三方库
-
-[element plus](https://github.com/element-plus/element-plus) # Element 团队制作的 Vue.js 3 UI 库
-
-- [nmxiaowei/avue ](https://github.com/nmxiaowei/avue)# 基于现有的 element-ui 库进行的二次封装，简化一些繁琐的操作
-
-[vue3-easy-data-table](https://github.com/HC200ok/vue3-easy-data-table/) # 数据表组件
-[x-extends/vxe-table](https://github.com/x-extends/vxe-table) # vue 表格解决方案
-[mirari/v-viewer](https://github.com/mirari/v-viewer) # vue 的图片查看器组件，支持旋转、缩放、缩放等
-
-### 小组件
-
-[yanmiao99/vue3-go-crud-project](https://github.com/yanmiao99/vue3-go-crud-project)
-
-### 待学习
+## 待学习
 
 [B 站，Vue3.2 + Vite + Element-Plus 实现最基础的 CRUD](https://www.bilibili.com/video/BV1yV4y177jC)
+
 [B 站，Vue3 项目实战、Vue3+Element-plus 项目实战系列课程（数据管理平台）](https://www.bilibili.com/video/BV1sP4y127Re)
+
 [B 站，Vue3.2 后台管理系统](https://www.bilibili.com/video/BV1pq4y1c7oy)
+
 [B 站，一天之内快速搭建 vue 后台管理系统-代码写到起飞,接单接到手软](https://www.bilibili.com/video/BV1md4y1C7wS)
 
 ## 可以学习的项目
@@ -136,6 +124,7 @@ export default {
 <https://github.com/go-admin-team/go-admin> # 基于 Gin + Vue + Element UI 的前后端分离权限管理系统脚手架（包含了：多租户的支持，基础用户管理功能，jwt 鉴权，代码生成器，RBAC 资源控制，表单构建，定时任务等）3 分钟构建自己的中后台项目；
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/cye267/1667712379792-273c7485-92f4-46ed-9a98-65e745b1c8df.png)
+
 
 # Vue 指令
 
