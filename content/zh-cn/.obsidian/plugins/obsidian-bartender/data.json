@@ -1362,6 +1362,19 @@
       "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 命令行工具/_index.md",
       "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 命令行工具/etcdctl.md",
       "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 命令行工具/etcdctl user 命令.md"
+    ],
+    "docs/2.编程/高级编程语言/Python/Python 标准库": [
+      "docs/2.编程/高级编程语言/Python/Python 标准库/_index.md",
+      "docs/2.编程/高级编程语言/Python/Python 标准库/Python 标准库.md",
+      "docs/2.编程/高级编程语言/Python/Python 标准库/数据类型.md",
+      "docs/2.编程/高级编程语言/Python/Python 标准库/Python 类.md"
+    ],
+    "docs/2.编程/高级编程语言/Python/Python 第三方库": [
+      "docs/2.编程/高级编程语言/Python/Python 第三方库/_index.md",
+      "docs/2.编程/高级编程语言/Python/Python 第三方库/Python 第三方库.md",
+      "docs/2.编程/高级编程语言/Python/Python 第三方库/爬虫.md",
+      "docs/2.编程/高级编程语言/Python/Python 第三方库/图像处理.md",
+      "docs/2.编程/高级编程语言/Python/Python 第三方库/GUI.md"
     ]
   },
   "actionBarOrder": {},

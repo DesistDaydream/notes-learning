@@ -14,11 +14,38 @@ title: Python 环境安装与使用
 
 各 Linux 发行版通常都会自带 Python
 
+### 自定义 Python
+
+由于 [Python 模块与包](docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20模块与包.md) 的管理非常混乱，我们有没有办法像 Go 一样，依靠一个 GOPATH 即可统一管理呢？可以，当我们**了解了模块搜索路径的底层原理之后**，即可开始着手将 Python 的依赖都移动到指定的目录
+
+对于 root 用户来说，GOPATH 默认在 /root/go，那我们就将 PYTHONHOME 设为 /root/python，开始吧(注意这里要用绝对路径，不要使用 `~`)
+
+```bash
+export PYTHON_VERSION="3.10"
+mkdir -p /root/python/lib
+cp /usr/bin/python${PYTHON_VERSION} ~/python
+cp -ax -r /usr/lib/python${PYTHON_VERSION} /root/python/lib
+```
+
+准备工作完成了，此时我们只需要修改 `${PYTHONHOME}` 或者将 `/root/python` 加入 `${PATH}` 变量中即可
+
+```bash
+export PATH=/root/python:$PATH
+~]# python${PYTHON_VERSION}
+Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0] on linux
+>>> import sys
+>>> sys.prefix
+'/root/python'
+>>> sys.exec_prefix
+'/root/python'
+```
+
 ## Windows
 
 从官网下载 Windows 版的 exe 安装包，勾选 `Add Python ${版本号} to PATH`。安装包中包括 IDLE、pip、Python 文档。
 
 安装完成后会提示关闭 Path 变量值的长度限制
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gzv1ih/1659885506889-188054a3-8a67-4039-ab87-16f8ff3a3e38.png)
 
 ### 安装完成后自动设置的内容
@@ -41,7 +68,7 @@ title: Python 环境安装与使用
 ## 安装多个版本的 Python
 
 # 编译 Python
->
+
 > 参考：
 >
 > - [GitHub 项目，pyinstaller/pyinstaller](https://github.com/pyinstaller/pyinstaller)

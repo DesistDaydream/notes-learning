@@ -42,3 +42,7 @@ title: Python 标准库
 - [xmlrpc.client--- XML-RPC 客户端访问](https://docs.python.org/zh-cn/3/library/xmlrpc.client.html)
 - [xmlrpc.server--- 基本 XML-RPC 服务器](https://docs.python.org/zh-cn/3/library/xmlrpc.server.html)
 - [ipaddress--- IPv4/IPv6 操作库](https://docs.python.org/zh-cn/3/library/ipaddress.html)
+
+# 内嵌模块
+
+[`sys`](https://docs.python.org/3/library/sys.html) # System-specific parameters and functions

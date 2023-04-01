@@ -20,9 +20,9 @@ weight: 1
 从[官网](https://golang.org/dl/)下载 linux 版的 `.tar.gz` 包
 
 ```bash
-export GoVersion=1.18.5
+export GoVersion=1.20.2
 wget https://go.dev/dl/go${GoVersion}.linux-amd64.tar.gz
-tar -C /usr/local -xvzf go${GoVersion}.linux-amd64.tar.gz
+sudo tar -C /usr/local -xvzf go${GoVersion}.linux-amd64.tar.gz
 ```
 
 配置环境变量，以便让 shell 可以执行 go 命令并立刻生效

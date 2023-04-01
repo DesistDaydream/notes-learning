@@ -67,8 +67,8 @@ dpki-query 是一个查询工具，可以从 dpkg 数据库中查询包的信息
 - **-L, --listfiles \<PACKAGE>** # 列出系统中 PACKAGE 的安装路径，所有关联的安装文件都会列出
 - **-l, --list \[PACKAGE]** # 列出所有包，或指定的 PACKAGE，PACKAGE 可以使用通配符。
 - **-S, --search \<FILE>** # 搜索 FILE 属于哪个 Package。FILE 可以使用通配符。
-  - 注意：当我们搜索二进制的命令文件属于哪个 Package 时，经常会搜不到，这是因为 which 命令查到的命令路径是 **/usr/bin**，但是 Debian 包安装的程序，通常都是在 **/bin** 目录下，虽然这俩是具有软链接的关系。
-  - 所以，当我们搜不到时，可以尝试使用 /bin 目录作为二进制文件的路径前缀。
+    - 注意：当我们搜索二进制的命令文件属于哪个 Package 时，经常会搜不到，这是因为 which 命令查到的命令路径是 **/usr/bin**，但是 Debian 包安装的程序，通常都是在 **/bin** 目录下，虽然这俩是具有软链接的关系。
+    - 所以，当我们搜不到时，可以尝试使用 /bin 目录作为二进制文件的路径前缀。
 - **-s, --status \<PackageName>** # 报告所输入的(PackageName)这个软件包的状态
 
 ## dpkg 相关程序示例

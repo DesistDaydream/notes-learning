@@ -87,9 +87,9 @@ Browser 和 Node.js 都是 ECMAScript 的运行时环境，但是这两者可以
 ```bash
 export NodejsVersion="v18.15.0"
 wget https://nodejs.org/dist/${NodejsVersion}/node-${NodejsVersion}-linux-x64.tar.xz
-tar -xvf node-${NodejsVersion}-linux-x64.tar.xz -C /usr/local/
+sudo tar -xvf node-${NodejsVersion}-linux-x64.tar.xz -C /usr/local/
 
-mv /usr/local/node-${NodejsVersion}-linux-x64 /usr/local/nodejs
+sudo mv /usr/local/node-${NodejsVersion}-linux-x64 /usr/local/nodejs
 ```
 
 配置环境变量
@@ -98,6 +98,7 @@ mv /usr/local/node-${NodejsVersion}-linux-x64 /usr/local/nodejs
 sudo tee /etc/profile.d/nodejs.sh > /dev/null <<-"EOF"
 export PATH=$PATH:/usr/local/nodejs/bin
 EOF
+source /etc/profile.d/nodejs.sh
 ```
 
 ### Windows

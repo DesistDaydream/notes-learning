@@ -114,7 +114,7 @@ ChatGPT 对话中提示语可以极大影响对话质量。定义明确的提示
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/openai/example-20230322085706.png)
 
 
-# 基于 ChatGPT 的项目
+# 扩展 ChatGPT 的项目
 
 ## Chrom 插件
 
@@ -147,28 +147,23 @@ vscode-chatgpt 是一个 VS Code 插件。
 
 3月19日，有人 fork 后并构建了一个新的插件：https://github.com/Christopher-Hayes/vscode-chatgpt-reborn
 
-## DocsGPT
+## 文档增强
+
+### DocsGPT
 
 > 参考：
 >
 > - [GitHub 项目，arc53/DocsGPT](https://github.com/arc53/DocsGPT)
 > - [公众号-云原生实验室，我让 ChatGPT 化身为全知全能的文档小助理](https://mp.weixin.qq.com/s/HJ1LHGCjPL0qjf8e7bMLjg)
+>     - https://github.com/yangchuansheng/DocsGPT
 
 DocsGPT 是 GPT 驱动的聊天，用于文档搜索和帮助。
 
-## 其他
+### ChatDoc
 
-https://github.com/lencx/nofwl # 桌面版
+官网：https://chatdoc.com/
 
-https://github.com/lencx/ChatGPT # 桌面版
-
-https://github.com/didiplus/ChatGPT_web # 像微信聊天一样跟 ChatGPT 聊天
-
-逆向
-
-https://github.com/acheong08/ChatGPT
-
-微信接入
+## 微信接入
 
 https://github.com/fuergaosi233/wechat-chatgpt
 
@@ -178,9 +173,9 @@ https://github.com/AutumnWhj/ChatGPT-wechat-bot
 
 https://github.com/wangrongding/wechat-bot
 
-接入 GitLab
+## 逆向
 
-<https://mp.weixin.qq.com/s/y_ppQdKVXWZPNyP9BxGWpg>
+https://github.com/acheong08/ChatGPT
 
 ## 简单的 web 页面
 
@@ -193,3 +188,11 @@ https://github.com/Chanzhaoyu/chatgpt-web
 https://github.com/ourongxing/chatgpt-vercel
 
 - https://github.com/CODEisArrrt/chatgpt-dark
+
+## 其他
+
+https://github.com/lencx/nofwl # 桌面版
+
+https://github.com/lencx/ChatGPT # 桌面版
+
+https://github.com/didiplus/ChatGPT_web # 像微信聊天一样跟 ChatGPT 聊天

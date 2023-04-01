@@ -63,3 +63,18 @@ export ALL_PROXY="sock5://${hostip}:7890"
 # WSL 关联文件与配置
 
 
+# wsl 命令行工具
+
+## Syntax(语法)
+
+**wsl [OPTOINS]**
+
+**OPTONS**
+
+- **-d STRING** # 指定要运行的发行版
+- **-u, --user STRING** # 使用指定的用户运行发行版。可以直接以 root 用户运行。常用来在忘记密码时候使用。
+
+管理选项
+
+- **--set-default-version** # 
+- **-s, --set-default DISTRO** # 将指定的发行版设为默认
