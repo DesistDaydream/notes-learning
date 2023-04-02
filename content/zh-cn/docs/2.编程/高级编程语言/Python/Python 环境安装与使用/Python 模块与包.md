@@ -10,7 +10,7 @@ title: Python 模块与包
 
 在计算机程序的开发过程中，随着程序代码越写越多，在一个文件里代码就会越来越长，越来越不容易维护。
 
-为了编写可维护的代码，我们把很多函数分组，分别放到不同的文件里，这样，每个文件包含的代码就相对较少，很多编程语言都采用这种组织代码的方式。在 Python 中，**一个 **`.py`** 文件**就**称之为一个**Module(模块)**。
+为了编写可维护的代码，我们把很多函数分组，分别放到不同的文件里，这样，每个文件包含的代码就相对较少，很多编程语言都采用这种组织代码的方式。在 Python 中，**一个 `.py` 文件**就**称之为一个**Module(模块)**。
 
 使用模块有什么好处？
 
@@ -213,124 +213,128 @@ def greeting(name):
 # Python 模块管理
 
 > 参考：
-> - <https://frostming.com/2019/03-13/where-do-your-packages-go/>
 > - [官方文档，Python 教程-6.模块-模块搜索路径](https://docs.python.org/3/tutorial/modules.html#the-module-search-path)
 > - [官方文档，Python 的安装和使用-命令行工具和环境](https://docs.python.org/3/using/cmdline.html)
 >     - [PYTHONPATH](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH)
 >     - [PYTHONHOME](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHOME)
+> - https://stackoverflow.com/questions/59104100/what-is-the-idea-behind-the-installation-dependent-default-directory-layout
+> - https://stackoverflow.com/questions/897792/where-is-pythons-sys-path-initialized-from
 
-我们通过 **Python 模块的搜索路径**来管理 Python 模块，或者称为管理 Python 包。Python 模块的搜索路径在 **Python 解释器(i.e.python 可执行文件)启动时初始化**，并将路径字符串保存在 **`sys.path`** 这个数组类型的变量中(类似于 Go 包的保存路径在 GOPATH 变量中)。
+我们通过 **Python 模块的搜索路径**来管理 Python 模块，或者称为管理 Python 包。Python 模块的搜索路径在 **Python 解释器(i.e.python 可执行文件)启动时初始化**，并将路径字符串保存在 **`${sys.path}`** 这个数组类型的变量中
 
-当导入一个名为 spam 的模块时，Python 解释器首先搜索具有该名称的 **Built-in module(内置模块)**(内置模块可以用过 `sys.builtin_module_names` 获取)，若没找到，则会在 sys 内置模块中的 `${path}` 数组变量下的目录列表中搜索名为 `spam.py` 的文件。
+当导入一个名为 spam 的模块时，Python 解释器首先搜索具有该名称的 **Built-in module(内置模块)**(内置模块可以用过 `sys.builtin_module_names` 获取)，若没找到，则会在 **sys 内置模块中的 `${path}` 数组变量**下的目录列表中搜索名为 `spam.py` 的文件（从第一个元素开始逐一搜索，找到后就不再找了）。
 
-这里面说的**内置模块**，属于[Python 标准库](/docs/2.编程/高级编程语言/Python/Python%20标准库/Python%20标准库.md) 的一部分。这些部分内置模块内嵌到解释器里面（也就是说无法在文件系统中找到与模块名相同的同名文件），它们给一些虽并非语言核心但却内嵌的操作提供接口，要么是为了效率，要么是给操作系统基础操作例如系统调入提供接口。 这些模块集是一个配置选项， 并且还依赖于底层的操作系统。 例如，[`winreg`](https://docs.python.org/zh-cn/3/library/winreg.html#module-winreg "winreg: Routines and objects for manipulating the Windows registry. (Windows)") 模块只在 Windows 系统上提供。一个特别值得注意的模块 [`sys`](https://docs.python.org/zh-cn/3/library/sys.html#module-sys "sys: Access system-specific parameters and functions.")，它被内嵌到每一个 Python 编译器中。
+> 这里面说的**内置模块**，属于[Python 标准库](/docs/2.编程/高级编程语言/Python/Python%20标准库/Python%20标准库.md) 的一部分。这部分内置模块内嵌到解释器里面（也就是说无法在文件系统中找到与模块名相同的同名文件），它们给一些虽并非语言核心但却内嵌的操作提供接口，要么是为了效率，要么是给操作系统基础操作例如系统调入提供接口。 这些模块集是一个配置选项， 并且还依赖于底层的操作系统。 例如，[`winreg`](https://docs.python.org/zh-cn/3/library/winreg.html#module-winreg "winreg: Routines and objects for manipulating the Windows registry. (Windows)") 模块只在 Windows 系统上提供。一个特别值得注意的模块 [`sys`](https://docs.python.org/zh-cn/3/library/sys.html#module-sys "sys: Access system-specific parameters and functions.")，它被内嵌到每一个 Python 编译器中，**sys 模块是 CPython 非常重要的内置模块，也是很多功能的基础模块**。
 
-**`${sys.path}` 变量是我们使用 Python 模块的最重要一环**。通常来说，`${sys.path}` 变量的值来源于以下位置：
+**`${sys.path}` 变量是我们使用 Python 模块的最重要一环**。通常来说，该变量的值来源于以下位置：
 
 - **执行 Python 代码文件所在的绝对路径**
 - **${PYTHONPATH} 环境变量指定的路径**
-    - 这是一个目录列表，类似于类 Unix 中的 `$PATH` 变量，可以通过 `os.path` 获取其值。
+    - 这是一个手动指定的目录列表，类似于类 Unix 中的 `$PATH` 变量，可以通过 `os.path` 获取其值。
     - 可以使用 `os.path.append()` 为 `$PYTHONPATH` 变量添加新的目录条目以便导入想要的模块。也可以直接设置 Linux 系统中的 `$PYTHONPATH` 变量。当项目大，需要对文件进行分类时，非常有用。
-- **site-packages 路径**
-    - 添加保存 Python 标准库和第三方库的路径
+- **安装 Python 时的默认值路径**
+    - 官方文档的这个说法挺模糊的，详见下面 sys.path 列表生成逻辑中的详解吧。这些路径主要取决于 prefix 的设置。
     - 按照惯例，通常包含：
         - 与平台相关的 Python 基本库保存路径。
         - 由[站点模块](https://docs.python.org/3/library/site.html#module-site)处理的 site-packages 目录。使用各种方式安装(比如 pip)的第三方库通常来说会存在 site-packages 目录中。
 
-上述三种路径在 Python 启动时被初始化。我们可以通过 Python 中的 `sys.path` 数组变量查看这些路径。
+上述三种路径在 Python 启动时被初始化。我们可以通过 Python 中的 `${sys.path}` 数组变量查看这些路径。
+
+Python 的模块管理非常混乱和复杂，不像 Go 只需要指定 GOPATH 变量之后，所有安装的依赖库都会存放到 GOPATH 目录下。上述三种路径如果说最像 GOPATH 的，那应该是安装 Python 是默认值中的 PYTHONPATH 或者 prefix 变量了。
 
 ## sys.path 列表生成逻辑
 
 > 参考：
+> 
 > - [官方文档，Python 标准库-导入模块-sys.path 模块搜索路径初始化](https://docs.python.org/3/library/sys_path_init.html)
 > - [官方文档，Python 标准库-Python 运行时服务-site—特定于 site 的配置](https://docs.python.org/3/library/site.html)
+> - [源码，Moduels/getpath.py](https://github.com/python/cpython/blob/3.11/Modules/getpath.py)
 
-**如果说 `${sys.path}` 是我们使用 Python 模块最重要的东西，那 `${sys.prefix}` 变量就是我们得以生成 `${sys.path}` 的最重要的东西了**。
+**如果说 `${sys.path}` 是我们使用 Python 模块最重要的东西，那 prefix 就是我们得以生成 `${sys.path}` 最重要的东西了**。prefix 通常表示 `${sys.prefix}` 与 `${sysexec_prefix}` 这两个变量。**prefix** 的值来源于 **Python 解释器自身**。
 
-**`${sys.prefix}`** 变量则是**Python 解释器自己生成出来**的。启动 Python 交互环境或者用解释器运行脚本时，将为如下几个变量生成值
+我们可以在 CPyhon 源码 [Modules/getpath.py](https://github.com/python/cpython/blob/3.11/Modules/getpath.py) 查看在 Python 解释器启后生成 sys.path 的整体逻辑。这段代码会利用 [configure](https://github.com/python/cpython/blob/3.11/configure#L571) 与 [Include/cpython/initconfig.h](https://github.com/python/cpython/blob/3.11/Include/cpython/initconfig.h#L188)。会经过如下几个步骤：
 
+- PLATFORM CONSTANTS
+- HELPER FUNCTIONS (note that we prefer C functions for performance)
+- READ VARIABLES FROM config
+- CALCULATE program_name
+- **CALCULATE executable** # 计算 executable 变量的值
+- CALCULATE (default) home
+- **READ pyvenv.cfg** # 读取 pyvenv.cfg 文件，若读取到则说明这是一个 Python 虚拟化环境
+- CALCULATE base_executable, real_executable AND executable_dir
+- DETECT _pth FILE
+- CHECK FOR BUILD DIRECTORY
+- **CALCULATE prefix AND exec_prefix** # 计算 prefix 和 exec_prefix 变量的值。
+- **UPDATE pythonpath (sys.path)** # 
+- **POSIX prefix/exec_prefix QUIRKS** # 
+- **SET pythonpath FROM _PTH FILE** # 
+- **UPDATE config FROM CALCULATED VALUES** # 将计算后的值赋值给相关变量
+
+最终，Python 解释器启动后，将为如下几个变量赋值
+
+- **`sys.executable`** # Python 解释器的路径。
 - **`sys.prefix`** # Python 标准模块(标准库)目录前缀。默认通过运行的 python 解释器生成出来。可以用过 `${PYTHONHOME}` 变量覆盖初始值
 - **`sys.exec_prefix`** # Python 扩展模块目录前缀。可以用过 `${PYTHONHOME}` 变量覆盖初始值
-- **`sys.executable`** # Python 解释器的路径。
+- 等等......
 
-### 1. 确认并生成 sys.prefix 与 sys.exec_prefix 变量
+下面我笔记中关于 sys.path 的生成逻辑中，只做简单描述，详细生成逻辑就像[这里](https://stackoverflow.com/questions/897792/where-is-pythons-sys-path-initialized-from)说的，跟论文一样，而且每个平台编译出来的 Python 解释器的设置也不一样，所以最后路径也不一样，由于 Python 复杂的自推导逻辑导致也不好总结普适性，所以，可以直接参考下文[sys.path 总结](#sys.path%20总结)中的各平台示例
 
-这两个变量可以通过如下方式生成
+### 1. 确认并生成路径的 prefix
 
-- 使用 **`${PYTHONHOME}`** 环境变量设置这俩变量的值。
-- 若不设置环境变量，则使用在构建 Python 解释器时设定的默认值。
-    - Python 的解释器会将自身作为起点，然后获取几个 **landmark(地标)** 文件或目录的元数据以便确定这俩变量的值。若找不到其中的 os.py 文件，Python 解释器将无法启动。
+> 这个行为准确描述应该是确认 prefix 的值之后，生成 `${sys.prefix}` 和 `${sys.exec_prefix}` 变量的值
 
-当我们手动设置里了 `${PYTHONHOME}` 变量后，并且在其中找不到这些文件时，会自动去默认的 `${prefix}` 路径再找一遍。
+在我们运行 Python 解释器时，prefix 的值可以通过如下两种方式被设置：
 
-> 当我们基于源码构建 Python 解释器之前，会执行 `./config --prefix=/usr/local/python3 --enable-shared` 命令，其中 --prefix 就是指定 Python 的安装位置，这其实就相当于设置了 sys.prefix 的默认值。这里所谓的通过 landmark 确定，其实就是验证一下这几个文件在不在，os.py 不在的话启动不了，.zip 文件存在的话可以加载其中的模块。
-> 
-> 官方文档的描述非常不清晰明了，会让人误以为这俩变量是后来推导出来的，其实每个平台安装的 Python 都是基于各平台自己构建 Python 源码时指定的 sys.prefix 和 sys.exec_preifx，所以才会显得文档这么乱。而且也没法像 Go 一样，直接将一个压缩包解压到 /usr/local/go/ 下就万事大吉了，Python 的模块搜索列表是非常非常非常混乱且不统一的。
-> 
-> 各种 Linux 发行版 Python 的 prefix 的混乱根源也在这，都在生成自己的路径而不使用 Python 官方默认的 `/usr/local/` 路径。官方文档也说了默认路径是 `/usr/local`，但是各个发行版都不一样，这时文档和实际就对不上，给初学者造成很大困扰。。o(╯□╰)o
-> 
-> 比如 Ubuntu，初学者就会困扰，命名说的是解释器的路径，但是解释器是在 /usr/bin/ 下，怎么回去 /usr/lib/ 下确认呢？其实是 Ubuntu 虽然构建 Python 时，指定了 prefix 在 /usr/，但是还自己创建了一个二进制文件放在 /usr/bin/ 下来处理，这从[Python 环境安装与使用](docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20环境安装与使用.md) 中的自定义 python 部分可以看到测试情况。
-> 
-> 注意，在真实 Python 解释器运行时，生成这俩变量的值其实是在 [2. 生成基本路径](#2.%20生成基本路径) 时进行的。
-> 
-> 从某种角度看 PYTHONHOME、sys.prefix、prefix 都是等价的，只不过 PYTHONHOME 的优先级最高，会覆盖其他的配置。
+- **一、若 `${PYTHONHOME}` 环境变量不为空，则使用该变量的值**
+- **二、若 `${PYTHONHOME}` 环境变量为空，则使用在构建 Python 解释器时设定的默认值。**
 
-Python 按照顺序，获取如下几个 landmark 的元数据：（下面  `${}` 中的 X 和 Y 分别是 Python 的大版本号和小版本号，比如 Python3.10、Python310）
+**！！！重点来了！！！** 设置好 prefix 之后，需要通过 **Landmark(地标)** 文件确认 prefix 的值是否可用。Python 在 prefix 下找到某些 landmark，才说明 prefix 是可用的。因为这些 Landmark 所在的目录中包含了正常运行 Python 所需的条件（比如标准库等）。如果没找到这些，那么 Python 不应该正常启动，否则就算运行起来也会因为缺少各种依赖库导致无法使用。
 
-- os.py 文件，不同系统，该文件所在路径不同
-    - Windows 中，默认在 `安装路径/Lib/os.py`
-    - Linux 中，默认在 `/usr/lib/python${X.Y}/os.py`
-- lib-dynload/ 目录
-    - Windows 中，没找到该目录
-    - Ubuntu 中，默认在 `/usr/lib/python${X.Y}/lib-dynload/`
-- python${XY}.zip 文件 # 比如 python310.zip
-    - Windows 中，默认在`安装路径`
-    - Ubunut 中，默认在 `/usr/lib/python${XY}.zip`
+下面将会对 prefix 的确认进行简单的分布概述。参考 Python 解释器运行后的路径生成[源码](https://github.com/python/cpython/blob/3.11/Modules/getpath.py#L176)
 
-注意：在执行 python 命令后并不是在全局搜索上述 landmark 文件，而是使用 `newfstatat()` 系统调用很明确得逐一获取 landmark 的元信息。也就说，python 二进制文件的代码中，指定了这些文件的路径，这样进一步说明了，prefix 的默认路径是在编译 Python 解释器时就已经指定了。
+第一步，声明下列几个 landmark 的：（下面  `{VERSION_MAJOR}`  和 `{VERSION_MINOR}` 分别是 Python 的大版本号和小版本号，比如 Python3.11、Python311）
 
-```c
-newfstatat(AT_FDCWD, "/usr/local/sbin/python3", 0x7ffd7900e7d0, 0) = -1 ENOENT (No such file or directory)
-newfstatat(AT_FDCWD, "/usr/local/bin/python3", 0x7ffd7900e7d0, 0) = -1 ENOENT (No such file or directory)
-newfstatat(AT_FDCWD, "/usr/sbin/python3", 0x7ffd7900e7d0, 0) = -1 ENOENT (No such file or directory)
-newfstatat(AT_FDCWD, "/usr/bin/python3", {st_mode=S_IFREG|0755, st_size=5921160, ...}, 0) = 0
-newfstatat(AT_FDCWD, "/usr/bin/Modules/Setup.local", 0x7ffd7900a5b0, 0) = -1 ENOENT (No such file or directory)
-newfstatat(AT_FDCWD, "/usr/bin/lib/python3.10/os.py", 0x7ffd7900a4b0, 0) = -1 ENOENT (No such file or directory)
-newfstatat(AT_FDCWD, "/usr/bin/lib/python3.10/os.pyc", 0x7ffd7900a4b0, 0) = -1 ENOENT (No such file or directory)
-newfstatat(AT_FDCWD, "/usr/lib/python3.10/os.py", {st_mode=S_IFREG|0644, st_size=39514, ...}, 0) = 0
-newfstatat(AT_FDCWD, "/usr/bin/lib/python3.10/lib-dynload", 0x7ffd79009630, 0) = -1 ENOENT (No such file or directory)
-newfstatat(AT_FDCWD, "/usr/lib/python3.10/lib-dynload", {st_mode=S_IFDIR|0755, st_size=4096, ...}, 0) = 0
-......
-newfstatat(AT_FDCWD, "/usr/lib/python310.zip", 0x7ffd7900ce80, 0) = -1 ENOENT (No such file or directory)
-newfstatat(AT_FDCWD, "/usr/lib", {st_mode=S_IFDIR|0755, st_size=4096, ...}, 0) = 0
-newfstatat(AT_FDCWD, "/usr/lib/python310.zip", 0x7ffd7900cbf0, 0) = -1 ENOENT (No such file or directory)
+```python
+if os_name == 'posix' or os_name == 'darwin':
+    BUILD_LANDMARK = 'Modules/Setup.local'
+    STDLIB_LANDMARKS = [f'{STDLIB_SUBDIR}/os.py', f'{STDLIB_SUBDIR}/os.pyc']
+    PLATSTDLIB_LANDMARK = f'{platlibdir}/python{VERSION_MAJOR}.{VERSION_MINOR}/lib-dynload'
+    BUILDSTDLIB_LANDMARKS = ['Lib/os.py']
+    VENV_LANDMARK = 'pyvenv.cfg'
+    ZIP_LANDMARK = f'{platlibdir}/python{VERSION_MAJOR}{VERSION_MINOR}.zip'
+
+elif os_name == 'nt':
+    BUILD_LANDMARK = f'{VPATH}\\Modules\\Setup.local'
+    STDLIB_LANDMARKS = [f'{STDLIB_SUBDIR}\\os.py', f'{STDLIB_SUBDIR}\\os.pyc']
+    PLATSTDLIB_LANDMARK = f'{platlibdir}'
+    BUILDSTDLIB_LANDMARKS = ['Lib\\os.py']
+    VENV_LANDMARK = 'pyvenv.cfg'
+    ZIP_LANDMARK = f'python{VERSION_MAJOR}{VERSION_MINOR}{PYDEBUGEXT or ""}.zip'
 ```
 
-只有获取到的情况下，才可以证明 Python 解释器是可用的，假如我们将 os.py 文件移动走，或者设置一个没有 os.py 存在的 `${PYTHONHOME}`，那么 Python 解释器都是启动不起来的，假如现在设置 `export PYTHONHOME="/error_python_home"`：
+第二步，将 prefix 与声明的 landmark 的路径拼接得出 landmark 的绝对路径。
+
+- **os.py 文件** # 标准库 landmark，os.py 文件所在目录就是标准库目录。
+    - Windows 中，默认在 `${prefix}/Lib/os.py`
+    - Linux 中，默认在 `${prefix}/lib/python${VERSION_MAJOR}.${VERSION_MINOR}/os.py`
+- **lib-dynload/ 目录** # 未知
+    - Windows 中，没找到该目录
+    - Ubuntu 中，默认在 `${prefix}/lib/python${VERSION_MAJOR}.${VERSION_MINOR}/lib-dynload/`
+- **python${XY}.zip 文件** # ZIP landmark，zip 文件所在目录就是 prefix 目录
+    - Windows 中，默认在`${prefix}/python${VERSION_MAJOR}${VERSION_MINOR}.zip`
+    - Ubunut 中，默认在 `${prefix}/python${VERSION_MAJOR}${VERSION_MINOR}.zip`
+
+第三步，Python 解释器将会逐一检查这些 landmark 的绝对路径。
+
+- 这里有点要注意：若设置了 PYTHONHOME 的话，则先寻找由 PYTHONHOME 拼接的 landmark 绝对路径，若找不到 landmark 文件的话，还会去编译 Python 解释时设定的 prefix 默认值中再寻找一遍 landmark 文件。
+- 若某些必须的 landmark 未找到的话，Python 解释器将会启动失败并报错。
+- 假如我们将 os.py 文件移动走，或者设置一个没有 os.py 存在的 `${PYTHONHOME}`，那么 Python 解释器都是启动不起来的，假如现在设置 `export PYTHONHOME="/error_python_home"`，Python 将会报错：
 
 ```bash
 ~]# export PYTHONHOME="/error_python_home"
 ~]# python3
 Python path configuration:
-  PYTHONHOME = '/error_python_home'
-  PYTHONPATH = (not set)
-  program name = 'python3'
-  isolated = 0
-  environment = 1
-  user site = 1
-  import site = 1
-  sys._base_executable = '/usr/bin/python3'
-  sys.base_prefix = '/error_python_home'
-  sys.base_exec_prefix = '/error_python_home'
-  sys.platlibdir = 'lib'
-  sys.executable = '/usr/bin/python3'
-  sys.prefix = '/error_python_home'
-  sys.exec_prefix = '/error_python_home'
-  sys.path = [
-    '/error_python_home/lib/python310.zip',
-    '/error_python_home/lib/python3.10',
-    '/error_python_home/lib/python3.10/lib-dynload',
-  ]
+    ......
 Fatal Python error: init_fs_encoding: failed to get the Python codec of the filesystem encoding
 Python runtime state: core initialized
 ModuleNotFoundError: No module named 'encodings'
@@ -339,7 +343,19 @@ Current thread 0x00007fe5a7de31c0 (most recent call first):
   <no Python frame>
 ```
 
-从 3.9 版本开始，还出了一个 `${sys.platlibdir}` 的变量，用以表示特定于平台的专用库目录。参见：<https://docs.python.org/zh-cn/3/library/sys.html#sys.platlibdir>
+第四步，这些 landmark 定位后，prefix 即表示可用，此时 sys.prefix 和 sys.exec_prefix 两个变量的值可用。
+
+> 到这里就有很大的疑惑，为什么 Ubuntu、CentOS 的 Python 的可执行文件，即.Python 解释器在 /usr/bin/ 目录下，但是生成的 prefix 却是 /usr 呢？
+> 
+> 在使用源码构建 Python 解释器之前，会执行 `./configure --prefix=/usr 命令，其中 --prefix 就是设置 prefix 的默认值。其实 CPython 官方在 configure 文件中为 prefix 设置了 /usr/local 这个默认值。。。但是。。。
+> 
+> 各种 Linux 发行版的 Python 都在生成自己的路径，所以 Python 的 prefix 混乱根源也在这。这时 Python 的官方文档和各个发行版实际就对不上，给初学者造成很大困扰。。o(╯□╰)o。。
+> 
+> 所以，就算 Python 解释器在 /usr/bin 目录下，只要 prefix 为 /usr，那么根据 prefix 拼接出的各种 sys.path 路径，也会在 /usr/lib/PythonX.Y 目录下，这从[Python 环境安装与使用](docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20环境安装与使用.md) 中的自定义 python 部分可以看到实际改变情况。
+> 
+> 也许是出于复用 /usr/lib 目录的目的把，毕竟 python 属于系统级别依赖的程序，并且 Python 的模块大多是 ${prefxi}/lib/ 目录的，把 /usr 当做 prefix 的话，可以统一管理所有 lib。
+> 
+> 而 Windows 中，Python 并不是系统自带的，可以手动安装，并且安装时可以指定安装目录，这时，这个安装目录就是 prefix。
 
 #### prefix 结果示例
 
@@ -352,12 +368,12 @@ Ubuntu 生成的值为：
 
 ```python
 >>> import sys
+>>> sys.executable
+'/usr/bin/python3'
 >>> sys.prefix
 '/usr'
 >>> sys.exec_prefix
 '/usr'
->>> sys.executable
-'/usr/bin/python3'
 >>> sys.platlibdir
 'lib'
 ```
@@ -366,33 +382,38 @@ Windows 生成的值为：
 
 ```python
 >>> import sys
+>>> sys.executable
+'D:\\Tools\\Python\\Python311\\python.exe'
 >>> sys.prefix
 'D:\\Tools\\Python\\Python311'
 >>> sys.exec_prefix
 'D:\\Tools\\Python\\Python311'
->>> sys.executable
-'D:\\Tools\\Python\\Python311\\python.exe'
 >>> sys.platlibdir
 'DLLs'
 ```
 
-### 2. 生成基本路径
+### 2. 添加基本路径
 
 第一、添加运行 Python 代码文件所在的绝对路径，若直接运行的 Python 解释器，则 `$sys.path` 的第一个元素为空
 
 - 在下面的 [Ubuntu 示例](#Ubuntu%20示例)中，`sys.path` 的第一个元素（`/root/scripts`）是 module-path-demo.py  文件所在路径，即执行的 Python 代码文件所在路径，如果不是运行的 Python 代码文件，则第一个元素为空。每当运行一个 Python 文件时，就相当于默认执行了 `sys.path.append("文件所在绝对路径")` 代码。
 
-第二、添加 ${PYTHONPATH} 变量中的值
+第二、添加 `${PYTHONPATH}` 变量中的值
 
-第三、添加包含 Python 标准模块以及这些模块所依赖的任何扩展模块的文件和目录。在这个步骤将会生成 sys.prefix 和 sys.exec_prefix 变量。**这个路径是很重要的，这里面有 Python 解释器自身启动成功所必须依赖的模块**。
+### 3. 添加 Python 标准模块路径
 
-- 这里的扩展模块是指用 C 或 C++ 编写的模块，使用 Python 的 C API 与核心和用户代码交互。并不是指 Python 的第三方模块
-    - Windows 上的扩展模块是后缀名为 `.pyd` 的文件
-    - Linux 上的扩展模块是后缀名为 `.so` 的文件
-- 这些文件和目录是在生成 sys.prefix 和 sys.exec_prefix 变量时定位到并添加 sys.path 中的。通常包含如下文件和目录：
-    - `python${XY}.zip`。# Python 库文件的归档文件，其中包含了许多 Python 标准库和已安装的第三方库的模块。注意：即使该文件不存在，通常也会添加默认值。该文件的大小版本号之间没有点。
-    - `python${X.Y}/` # 标准库保存路径 
-    - `lib-dynload/` # 使用 C 语言编写的模块的存放路径。
+添加 Python 标准模块路径基于 prefix。
+
+添加包含 Python 标准模块以及这些模块所依赖的任何扩展模块的文件和目录，**这些路径是很重要的，包含了 Python 解释器启动成功所依赖的模块**。通常包含如下文件和目录：
+
+- `${sys.prefix}/lib/python${VERSION_MAJOR}${VERSION_MINOR}.zip` # Python 库文件的归档文件，其中包含了许多 Python 标准库和已安装的第三方库的模块。注意：即使该文件不存在，通常也会添加默认值。该文件的大小版本号之间没有点。
+- `${sys.prefix}/lib/python${VERSION_MAJOR}.${VERSION_MINOR}/` # 标准库保存路径 
+- `${sys.prefix}/lib/python${VERSION_MAJOR}.${VERSION_MINOR}/lib-dynload/` # 使用 C 语言编写的模块的存放路径。
+
+这里的扩展模块是指用 C 或 C++ 编写的模块，使用 Python 的 C API 与核心和用户代码交互。并不是指 Python 的第三方模块
+
+- Windows 上的扩展模块是后缀名为 `.pyd` 的文件
+- Linux 上的扩展模块是后缀名为 `.so` 的文件
 
 此时通过 `python -S` 命令在运行解释器时不自动加载 site 模块，则会看到如下路径：
 
@@ -405,7 +426,11 @@ Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0] on linux
 ['', '/pythonpath-demo', '/usr/lib/python310.zip', '/usr/lib/python3.10', '/usr/lib/python3.10/lib-dynload']
 ```
 
-### 3. 生成 site-packages 目录路径
+其中前两个元素是基本路径，后面三个元素是 prefix 相关的路径。
+
+### 4. 添加 site-packages 目录路径
+
+添加 site-packages 目录路径基于 prefix。
 
 **第一、调用 site 模块的 `main()` 函数将 `${sys.prefix}/lib/site-package/` 目录添加到 `sys.path` 变量中**。`site.main()` 函数从 Python3.3 版本开始被自动调用，除非运行 Python 解释器时添加 -S 标志。
 
@@ -470,18 +495,18 @@ USER_SITE: '/root/.local/lib/python3.10/site-packages' (exists)
 ENABLE_USER_SITE: True
 ```
 
-### 总结
+## sys.path 总结
 
-总的来说，模块搜索路径通常由 Python 中的 `${sys.prefix}` 变量的值作为前缀，并在 Python 启动后生成出 `${sys.path}` 的完整列表
+总的来说，与 prefix 相关的路径还是有一定规律的，通常都是在 `${prefix}/lib/` 目录下，官方文档通常都会省略 prefix，直接用 lib/、Lib/ 等作为开头来描述特定文件的位置。
 
-> 注意：下面  `${}` 中的 X 和 Y 分别是 Python 的大版本号和小版本号，比如 Python3.10、Python310
+> 注意：下面  `{VERSION_MAJOR}`  和 `{VERSION_MINOR}` 分别是 Python 的大版本号和小版本号，比如 Python3.10、Python310
 
 - **`${PWD}`** # 当前工作目录
 - ${PYTHONPATH} # 手动添加的目录。
-- **`${sys.prefix}/lib/python${XY}.zip`** # landmark 文件。Python 库文件的归档文件，其中包含了许多 Python 标准库和已安装的第三方库的模块。
-- **`${sys.prefix}/lib/python${X.Y}/`** # 标准库保存路径。没有这个的话 Python 解释器无法正常运行
-- **`${sys.prefix}/lib/python${X.Y}/lib-dynload/`** # landmark 目录。使用 C 语言编写的模块的存放路径。
-- **`${sys.prefix}/lib/python${X.Y}/sist-packages/`** # 第三方库保存路径。该目录在 Ubuntu 系统中名称为 dist-packages
+- **`${sys.prefix}/lib/python${VERSION_MAJOR}${VERSION_MINOR}.zip`** # Python 库文件的归档文件，其中包含了许多 Python 标准库和已安装的第三方库的模块。
+- **`${sys.prefix}/lib/python${VERSION_MAJOR}.${VERSION_MINOR}/`** # 标准库保存路径。没有这个的话 Python 解释器无法正常运行
+- **`${sys.prefix}/lib/python${VERSION_MAJOR}.${VERSION_MINOR}/lib-dynload/`** # 使用 C 语言编写的模块的存放路径。
+- **`${sys.prefix}/lib/python${VERSION_MAJOR}.${VERSION_MINOR}/sist-packages/`** # 第三方库保存路径。该目录在 Ubuntu 系统中名称为 dist-packages
 - **`${site.USER_SITE}`** # 启动用户 site 后，保存第三方库的路径。
 
 > 注意：从这里可以看到，不同 Python 版本的三方库路径不同，如果把 Python 从 3.8 升级到 3.9 那么之前装的三方库都没法用了。当然可以整个文件夹都拷贝过去，大部分情况不会出问题。
@@ -501,8 +526,6 @@ ENABLE_USER_SITE: True
 ```bash
 ModuleNotFoundError: No module named 'XXXXX'
 ```
-
-## sys.path 列表示例
 
 ### Ubuntu 示例
 

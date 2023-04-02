@@ -8,6 +8,9 @@ title: Python
 > - [官网](https://www.python.org/)
 > - [GitHub 组织，Python](https://github.com/python)
 > - [GitHub 项目，python/cpython](https://github.com/python/cpython)
+> - [CPython 源码解析](https://realpython.com/cpython-source-code-guide)
+
+Python 编程语言最早由 C 语言实现，称为 CPython
 
 # Python 标识符与关键字
 

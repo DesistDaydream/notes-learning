@@ -16,8 +16,6 @@ go 源代码首先要通过 go build 编译为可执行文件，在 linux 平台
 - 2、汇编器：通过 go 汇编器将编译器生成的 _.s 汇编语言转换为机器代码，并写出最终的目标程序 _.o 文件，src/cmd/internal/obj 包实现了 go 汇编器；
 - 3、链接器：汇编器生成的一个个 \*.o 目标文件通过链接处理得到最终的可执行程序，src/cmd/link/internal/ld 包实现了链接器；
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/64702256-7b44-4118-a751-c1856ee08205/640)
-
 #### 二、运行
 
 go 源码通过上述几个步骤生成可执行文件后，二进制文件在被操作系统加载起来运行时会经过如下几个阶段：
@@ -73,8 +71,6 @@ go 源码通过上述几个步骤生成可执行文件后，二进制文件在�
     TEXT runtime·rt0_go(SB),NOSPLIT|TOPFRAME,$0    // 处理命令行参数的代码    MOVQ    DI, AX      // AX = argc    MOVQ    SI, BX      // BX = argv    // 将栈扩大39字节，此处为什么扩大39字节暂时还没有搞清楚    SUBQ    $(4*8+7), SP    ANDQ    $~15, SP    // 调整为 16 字节对齐    MOVQ    AX, 16(SP)  //argc放在SP + 16字节处    MOVQ    BX, 24(SP)  //argv放在SP + 24字节处    // 开始初始化 g0，runtime·g0 是一个全局变量，变量在 src/runtime/proc.go 中定义，全局变量会保存在进程内存空间的数据区，下文会介绍查看 elf 二进制文件中的代码数据和全局变量的方法    // g0 的栈是从进程栈内存区进行分配的，g0 占用了大约 64k 大小。    MOVQ    $runtime·g0(SB), DI    // g0 的地址放入 DI 寄存器    LEAQ    (-64*1024+104)(SP), BX // BX = SP - 64*1024 + 104    // 开始初始化 g0 对象的 stackguard0,stackguard1,stack 这三个字段    MOVQ    BX, g_stackguard0(DI) // g0.stackguard0 = SP - 64*1024 + 104    MOVQ    BX, g_stackguard1(DI) // g0.stackguard1 = SP - 64*1024 + 104    MOVQ    BX, (g_stack+stack_lo)(DI) // g0.stack.lo = SP - 64*1024 + 104    MOVQ    SP, (g_stack+stack_hi)(DI) // g0.stack.hi = SP
 
 执行完以上指令后，进程内存空间布局如下所示：
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/64702256-7b44-4118-a751-c1856ee08205/640)
 
 然后开始执行获取 cpu 信息的指令以及与 cgo 初始化相关的，此段代码暂时可以不用关注。
 
