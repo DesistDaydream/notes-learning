@@ -224,7 +224,7 @@ def greeting(name):
 
 当导入一个名为 spam 的模块时，Python 解释器首先搜索具有该名称的 **Built-in module(内置模块)**(内置模块可以用过 `sys.builtin_module_names` 获取)，若没找到，则会在 **sys 内置模块中的 `${path}` 数组变量**下的目录列表中搜索名为 `spam.py` 的文件（从第一个元素开始逐一搜索，找到后就不再找了）。
 
-> 这里面说的**内置模块**，属于[Python 标准库](/docs/2.编程/高级编程语言/Python/Python%20标准库/Python%20标准库.md) 的一部分。这部分内置模块内嵌到解释器里面（也就是说无法在文件系统中找到与模块名相同的同名文件），它们给一些虽并非语言核心但却内嵌的操作提供接口，要么是为了效率，要么是给操作系统基础操作例如系统调入提供接口。 这些模块集是一个配置选项， 并且还依赖于底层的操作系统。 例如，[`winreg`](https://docs.python.org/zh-cn/3/library/winreg.html#module-winreg "winreg: Routines and objects for manipulating the Windows registry. (Windows)") 模块只在 Windows 系统上提供。一个特别值得注意的模块 [`sys`](https://docs.python.org/zh-cn/3/library/sys.html#module-sys "sys: Access system-specific parameters and functions.")，它被内嵌到每一个 Python 编译器中，**sys 模块是 CPython 非常重要的内置模块，也是很多功能的基础模块**。
+> 这里面说的内置模块，属于[Python 标准库](/docs/2.编程/高级编程语言/Python/Python%20标准库/Python%20标准库.md) 的一部分。这部分内置模块内嵌到解释器里面（也就是说无法在文件系统中找到与模块名相同的同名文件），它们给一些虽并非语言核心但却内嵌的操作提供接口，要么是为了效率，要么是给操作系统基础操作例如系统调入提供接口。 这些模块集是一个配置选项， 并且还依赖于底层的操作系统。 例如，[`winreg`](https://docs.python.org/zh-cn/3/library/winreg.html#module-winreg "winreg: Routines and objects for manipulating the Windows registry. (Windows)") 模块只在 Windows 系统上提供。一个特别值得注意的模块 [`sys`](https://docs.python.org/zh-cn/3/library/sys.html#module-sys "sys: Access system-specific parameters and functions.")，它被内嵌到每一个 Python 编译器中，**sys 模块是 CPython 非常重要的内置模块，也是很多功能的基础模块**。
 
 **`${sys.path}` 变量是我们使用 Python 模块的最重要一环**。通常来说，该变量的值来源于以下位置：
 
@@ -232,7 +232,7 @@ def greeting(name):
 - **${PYTHONPATH} 环境变量指定的路径**
     - 这是一个手动指定的目录列表，类似于类 Unix 中的 `$PATH` 变量，可以通过 `os.path` 获取其值。
     - 可以使用 `os.path.append()` 为 `$PYTHONPATH` 变量添加新的目录条目以便导入想要的模块。也可以直接设置 Linux 系统中的 `$PYTHONPATH` 变量。当项目大，需要对文件进行分类时，非常有用。
-- **安装 Python 时的默认值路径**
+- **编译、安装 Python 时设置的默认路径**
     - 官方文档的这个说法挺模糊的，详见下面 sys.path 列表生成逻辑中的详解吧。这些路径主要取决于 prefix 的设置。
     - 按照惯例，通常包含：
         - 与平台相关的 Python 基本库保存路径。
@@ -250,9 +250,9 @@ Python 的模块管理非常混乱和复杂，不像 Go 只需要指定 GOPATH �
 > - [官方文档，Python 标准库-Python 运行时服务-site—特定于 site 的配置](https://docs.python.org/3/library/site.html)
 > - [源码，Moduels/getpath.py](https://github.com/python/cpython/blob/3.11/Modules/getpath.py)
 
-**如果说 `${sys.path}` 是我们使用 Python 模块最重要的东西，那 prefix 就是我们得以生成 `${sys.path}` 最重要的东西了**。prefix 通常表示 `${sys.prefix}` 与 `${sysexec_prefix}` 这两个变量。**prefix** 的值来源于 **Python 解释器自身**。
+如果说 `${sys.path}` 是我们使用 Python 模块最重要的东西，那 **prefix(路径的前缀)** 就是 `${sys.path}` 这个变量最重要的东西。prefix 通常表示 `${sys.prefix}` 与 `${sys.exec_prefix}` 这两个变量。**prefix** 的值来源于 **Python 解释器自身**。
 
-我们可以在 CPyhon 源码 [Modules/getpath.py](https://github.com/python/cpython/blob/3.11/Modules/getpath.py) 查看在 Python 解释器启后生成 sys.path 的整体逻辑。这段代码会利用 [configure](https://github.com/python/cpython/blob/3.11/configure#L571) 与 [Include/cpython/initconfig.h](https://github.com/python/cpython/blob/3.11/Include/cpython/initconfig.h#L188)。会经过如下几个步骤：
+我们可以在 CPyhon 源码 [Modules/getpath.py](https://github.com/python/cpython/blob/3.11/Modules/getpath.py) 查看在 Python 解释器启后生成 sys.path 的整体逻辑。这段代码会利用 [configure](https://github.com/python/cpython/blob/3.11/configure#L571) 与 [Include/cpython/initconfig.h](https://github.com/python/cpython/blob/3.11/Include/cpython/initconfig.h#L188)。经过如下几个步骤：
 
 - PLATFORM CONSTANTS
 - HELPER FUNCTIONS (note that we prefer C functions for performance)
@@ -276,10 +276,11 @@ Python 的模块管理非常混乱和复杂，不像 Go 只需要指定 GOPATH �
 - **`sys.prefix`** # Python 标准模块(标准库)目录前缀。默认通过运行的 python 解释器生成出来。可以用过 `${PYTHONHOME}` 变量覆盖初始值
 - **`sys.exec_prefix`** # Python 扩展模块目录前缀。可以用过 `${PYTHONHOME}` 变量覆盖初始值
 - 等等......
+- **`sys.path`**
 
 下面我笔记中关于 sys.path 的生成逻辑中，只做简单描述，详细生成逻辑就像[这里](https://stackoverflow.com/questions/897792/where-is-pythons-sys-path-initialized-from)说的，跟论文一样，而且每个平台编译出来的 Python 解释器的设置也不一样，所以最后路径也不一样，由于 Python 复杂的自推导逻辑导致也不好总结普适性，所以，可以直接参考下文[sys.path 总结](#sys.path%20总结)中的各平台示例
 
-### 1. 确认并生成路径的 prefix
+### 1. 确认 prefix 是否可用并生成路径相关变量
 
 > 这个行为准确描述应该是确认 prefix 的值之后，生成 `${sys.prefix}` 和 `${sys.exec_prefix}` 变量的值
 
@@ -323,10 +324,11 @@ elif os_name == 'nt':
 - **python${XY}.zip 文件** # ZIP landmark，zip 文件所在目录就是 prefix 目录
     - Windows 中，默认在`${prefix}/python${VERSION_MAJOR}${VERSION_MINOR}.zip`
     - Ubunut 中，默认在 `${prefix}/python${VERSION_MAJOR}${VERSION_MINOR}.zip`
+- 等等......
 
 第三步，Python 解释器将会逐一检查这些 landmark 的绝对路径。
 
-- 这里有点要注意：若设置了 PYTHONHOME 的话，则先寻找由 PYTHONHOME 拼接的 landmark 绝对路径，若找不到 landmark 文件的话，还会去编译 Python 解释时设定的 prefix 默认值中再寻找一遍 landmark 文件。
+- 这里有点要注意：若设置了 PYTHONHOME 的话，则先寻找由 PYTHONHOME 拼接的 landmark 绝对路径，若找不到 landmark 文件的话，还会去安装 Python 时设定的 prefix 默认值中再寻找一遍 landmark 文件。
 - 若某些必须的 landmark 未找到的话，Python 解释器将会启动失败并报错。
 - 假如我们将 os.py 文件移动走，或者设置一个没有 os.py 存在的 `${PYTHONHOME}`，那么 Python 解释器都是启动不起来的，假如现在设置 `export PYTHONHOME="/error_python_home"`，Python 将会报错：
 
@@ -343,7 +345,7 @@ Current thread 0x00007fe5a7de31c0 (most recent call first):
   <no Python frame>
 ```
 
-第四步，这些 landmark 定位后，prefix 即表示可用，此时 sys.prefix 和 sys.exec_prefix 两个变量的值可用。
+第四步，这些 landmark 定位后，prefix 即表示可用，此时为 sys.prefix 和 sys.exec_prefix 两个变量赋值。
 
 > 到这里就有很大的疑惑，为什么 Ubuntu、CentOS 的 Python 的可执行文件，即.Python 解释器在 /usr/bin/ 目录下，但是生成的 prefix 却是 /usr 呢？
 > 
@@ -367,7 +369,6 @@ Current thread 0x00007fe5a7de31c0 (most recent call first):
 Ubuntu 生成的值为：
 
 ```python
->>> import sys
 >>> sys.executable
 '/usr/bin/python3'
 >>> sys.prefix
@@ -381,7 +382,6 @@ Ubuntu 生成的值为：
 Windows 生成的值为：
 
 ```python
->>> import sys
 >>> sys.executable
 'D:\\Tools\\Python\\Python311\\python.exe'
 >>> sys.prefix
@@ -535,7 +535,7 @@ ModuleNotFoundError: No module named 'XXXXX'
 ~]# cat module-path-demo.py 
 import sys
 print(sys.path)
-print(sys.prefix)
+print(sys.prefix) 
 print(sys.exec_prefix)
 print(sys.executable)
 ~]# python3 module-path-demo.py

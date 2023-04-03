@@ -1375,6 +1375,30 @@
       "docs/2.编程/高级编程语言/Python/Python 第三方库/爬虫.md",
       "docs/2.编程/高级编程语言/Python/Python 第三方库/图像处理.md",
       "docs/2.编程/高级编程语言/Python/Python 第三方库/GUI.md"
+    ],
+    "docs/10.云原生/DevOps": [
+      "docs/10.云原生/DevOps/_index.md",
+      "docs/10.云原生/DevOps/DevOps.md",
+      "docs/10.云原生/DevOps/ArgoCD",
+      "docs/10.云原生/DevOps/Drone",
+      "docs/10.云原生/DevOps/Jenkins",
+      "docs/10.云原生/DevOps/JenkinsX",
+      "docs/10.云原生/DevOps/Skaffold",
+      "docs/10.云原生/DevOps/Jenkins 与 skaffold 示例.md"
+    ],
+    "docs/10.云原生/DevOps/Drone": [
+      "docs/10.云原生/DevOps/Drone/_index.md",
+      "docs/10.云原生/DevOps/Drone/Drone.md",
+      "docs/10.云原生/DevOps/Drone/Server 与 Runner 部署.md",
+      "docs/10.云原生/DevOps/Drone/Drone Pipelines 详解.md",
+      "docs/10.云原生/DevOps/Drone/drone 命令行工具.md",
+      "docs/10.云原生/DevOps/Drone/Drone 任务示例.md"
+    ],
+    "docs/6.可观测性/追踪系统": [
+      "docs/6.可观测性/追踪系统/_index.md",
+      "docs/6.可观测性/追踪系统/追踪系统.md",
+      "docs/6.可观测性/追踪系统/动态追踪.md",
+      "docs/6.可观测性/追踪系统/Tempo - 分布式Loki链路追踪利器.md"
     ]
   },
   "actionBarOrder": {},

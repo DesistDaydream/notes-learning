@@ -16,6 +16,10 @@ weight: 20
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/0-picgo/20230204001925.png)
 
+# 教程
+
+https://www.bilibili.com/video/BV1Bs4y1b7GM
+
 # ChatGPT 提示语
 
 > 参考：
