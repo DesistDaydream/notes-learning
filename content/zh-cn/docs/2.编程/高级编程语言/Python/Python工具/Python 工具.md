@@ -1,5 +1,6 @@
 ---
 title: Python 工具
+weight: 1
 ---
 
 # 概述

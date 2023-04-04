@@ -1,5 +1,6 @@
 ---
 title: Python 环境安装与使用
+weight: 1
 ---
 
 # 概述
@@ -23,7 +24,7 @@ title: Python 环境安装与使用
 ```bash
 export PYTHON_VERSION="3.10"
 mkdir -p /root/python/lib
-cp /usr/bin/python${PYTHON_VERSION} ~/python
+cp /usr/bin/python${PYTHON_VERSION} /root/python
 cp -ax -r /usr/lib/python${PYTHON_VERSION} /root/python/lib
 ```
 
@@ -67,6 +68,7 @@ Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0] on linux
 
 ## 安装多个版本的 Python
 
+# Python 虚拟化环境
 
 
 # 编译 Python
