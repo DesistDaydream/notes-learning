@@ -1399,6 +1399,11 @@
       "docs/6.可观测性/追踪系统/追踪系统.md",
       "docs/6.可观测性/追踪系统/动态追踪.md",
       "docs/6.可观测性/追踪系统/Tempo - 分布式Loki链路追踪利器.md"
+    ],
+    "docs/2.编程/高级编程语言/Python/Python工具": [
+      "docs/2.编程/高级编程语言/Python/Python工具/_index.md",
+      "docs/2.编程/高级编程语言/Python/Python工具/Python 工具.md",
+      "docs/2.编程/高级编程语言/Python/Python工具/PIP.md"
     ]
   },
   "actionBarOrder": {},

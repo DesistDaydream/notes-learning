@@ -240,7 +240,7 @@ def greeting(name):
 
 上述三种路径在 Python 启动时被初始化。我们可以通过 Python 中的 `${sys.path}` 数组变量查看这些路径。
 
-Python 的模块管理非常混乱和复杂，不像 Go 只需要指定 GOPATH 变量之后，所有安装的依赖库都会存放到 GOPATH 目录下。上述三种路径如果说最像 GOPATH 的，那应该是安装 Python 是默认值中的 PYTHONPATH 或者 prefix 变量了。
+**注意：各个平台生成的 sys.path 的列表并不统一**，具体原因详见 [模块管理混乱说明](#模块管理混乱说明)
 
 ## sys.path 列表生成逻辑
 
@@ -447,13 +447,7 @@ Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0] on linux
 ['/root', '/usr/lib/python310.zip', '/usr/lib/python3.10', '/usr/lib/python3.10/lib-dynload', '/usr/local/lib/python3.10/dist-packages', '/usr/lib/python3/dist-packages']
 ```
 
-> 在这个示例中，我们可以看到 site-packages 目录跟官方的说明并不一样是吧？~
-> 
-> site 模块添加的路径也是非常混乱的部分。不同的发行版，生成的路径也千奇百怪。而且不一定只生成一个 site-packages 目录
-> 
-> - 上面的例子中，Ubuntu 的 dist-packages 应该是 site-packages 才对，为啥这么改搞不懂为啥。。。o(╯□╰)o
-> - 对于 CentOS，则除了 lib，还会有一个 lib64，也是搞不懂为啥。。。o(╯□╰)o
-> - 真 TM 乱
+在这个示例中，我们可以看到 site-packages 目录跟官方文档的说明并不一样是吧？在 [模块管理混乱说明](#模块管理混乱说明) 中详细说明
 
 **第二、site 模块还会尝试导入 usercustomize 模块，以添加与用户相关的模块搜索路径**。如果 site 模块中的 [ENABLE_USER_SITE](https://docs.python.org/3/library/site.html#site.ENABLE_USER_SITE) 变量为真，且 USER_SITE 定义的文件存在，则会将 USER_SITE 添加到 sys.path 中。对于 usercustomize 模块，`sys.prefix` 不再使用，取而代之的是 `site.USER_BASE`，`site.USER_BASE` 的值通常为 `~/.local/`，生成的 `site.USER_SITE` 的值通常是 `site.USER_BASE/lib/python${X.Y}/site-packages`
 
@@ -468,7 +462,6 @@ Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0] on linux
 ~]# python3 -m site
 sys.path = [
     '/root',
-    '/pythonpath-demo',
     '/usr/lib/python310.zip',
     '/usr/lib/python3.10',
     '/usr/lib/python3.10/lib-dynload',
@@ -482,7 +475,6 @@ ENABLE_USER_SITE: True
 ~]# python3 -m site
 sys.path = [
     '/root',
-    '/pythonpath-demo',
     '/usr/lib/python310.zip',
     '/usr/lib/python3.10',
     '/usr/lib/python3.10/lib-dynload',
@@ -509,7 +501,7 @@ ENABLE_USER_SITE: True
 - **`${sys.prefix}/lib/python${VERSION_MAJOR}.${VERSION_MINOR}/sist-packages/`** # 第三方库保存路径。该目录在 Ubuntu 系统中名称为 dist-packages
 - **`${site.USER_SITE}`** # 启动用户 site 后，保存第三方库的路径。
 
-> 注意：从这里可以看到，不同 Python 版本的三方库路径不同，如果把 Python 从 3.8 升级到 3.9 那么之前装的三方库都没法用了。当然可以整个文件夹都拷贝过去，大部分情况不会出问题。
+> 注意：从这里可以看到，不同 Python 版本的三方库路径不同，如果把 Python 从 3.8 升级到 3.9，那么之前装的三方库都没法用了。当然可以整个文件夹都拷贝过去，或者添加统一的 PYTHONPATH 路径大部分情况不会出问题。
 
 最后生成的 `sys.path` 具有类似如下的值：
 
@@ -519,7 +511,7 @@ ENABLE_USER_SITE: True
 ['', '/usr/lib/python310.zip', '/usr/lib/python3.10', '/usr/lib/python3.10/lib-dynload', '/usr/local/lib/python3.10/dist-packages', '/usr/lib/python3/dist-packages']
 ```
 
-到这里可以发现，**关于包路径搜索最重要的就是这个 `${sys.prefix}` 路径前缀**，而这个值又是从使用的 Python 解释器路径生成出来的。所以要找到包的路径，只需要知道解释器的路径就可以了，如果遇到改变包的路径，只需要通过正确的 PATH 设置，指定你想要的 Python 解释器即可。
+到这里可以发现，**关于包路径搜索最重要的就是这个 `${sys.prefix}` 路径前缀**，而这个值是由 Python 解释器生成出来的。
 
 若 `sys.path` 中的所有目录都无法找到想要导入的模块，将会出现如下报错：
 
@@ -548,6 +540,18 @@ print(sys.executable)
 ### CentOS 示例
 
 TODO
+
+## 模块关联的可执行文件
+
+部分模块具有可执行文件，可以当做命令使用，在不同平台上，会在不同位置生成可执行文件
+
+Windows
+
+- **${sys.prefix}/Scripts/** 
+
+Ubuntu
+
+- **/usr/local/bin/**
 
 ## requirements.txt 文件
 
@@ -601,6 +605,86 @@ entrypoints==0.3
 
 `pipreqs ./ --encoding utf8`
 
+# 模块管理混乱说明
+
+Python 的模块管理非常混乱和复杂，不像 Go 只需要指定 GOPATH 变量之后，所有安装的依赖库都会存放到 GOPATH 目录下。上述三种路径如果说最像 GOPATH 的，那应该是安装 Python 是默认值中的 PYTHONPATH 或者 prefix 变量了。
+
+并且，**各个发行版会修改 Python 的代码，这就导致编译后的很多默认值并不统一**，下面我举几个例子来说明
+
+## 内置模块的差异
+
+site 模块向 sys.path 添加的路径是非常混乱。不同的发行版，生成的路径也千奇百怪。而且不一定只生成一个 site-packages 目录
+
+主要差异可以在 site.py 文件中关于 `def getsitepackages(prefixes=None)` 函数看到
+
+3.10 版本 CPython 的原始 [site.py](https://github.com/python/cpython/blob/3.10/Lib/site.py)
+
+```python
+        if os.sep == '/':
+            for libdir in libdirs:
+                path = os.path.join(prefix, libdir,
+                                    "python%d.%d" % sys.version_info[:2],
+                                    "site-packages")
+                sitepackages.append(path)
+        else:
+            sitepackages.append(prefix)
+
+            for libdir in libdirs:
+                path = os.path.join(prefix, libdir, "site-packages")
+                sitepackages.append(path)
+```
+
+Ubuntu 中的 site.py
+
+```python
+        if os.sep == '/':
+            if is_virtual_environment:
+                sitepackages.append(os.path.join(prefix, "lib",
+                                                 "python%d.%d" % sys.version_info[:2],
+                                                 "site-packages"))
+            sitepackages.append(os.path.join(prefix, "local/lib",
+                                             "python%d.%d" % sys.version_info[:2],
+                                             "dist-packages"))
+            sitepackages.append(os.path.join(prefix, "lib",
+                                             "python3",
+                                             "dist-packages"))
+            # this one is deprecated for Debian
+            for libdir in libdirs:
+                path = os.path.join(prefix, libdir,
+                                    "python%d.%d" % sys.version_info[:2],
+                                    "dist-packages")
+                sitepackages.append(path)
+        else:
+            sitepackages.append(prefix)
+
+            for libdir in libdirs:
+                path = os.path.join(prefix, libdir, "site-packages")
+                sitepackages.append(path)
+
+```
+
+Rocky 的 site.py
+
+```python
+        if os.sep == '/':
+            sitepackages.append(os.path.join(prefix, "lib64",
+                                        "python" + sys.version[:3],
+                                        "site-packages"))
+            sitepackages.append(os.path.join(prefix, "lib",
+                                        "python%d.%d" % sys.version_info[:2],
+                                        "site-packages"))
+        else:
+            sitepackages.append(prefix)
+            sitepackages.append(os.path.join(prefix, "lib64", "site-packages"))
+            sitepackages.append(os.path.join(prefix, "lib", "site-packages"))
+```
+
+Windows 的 site.py
+
+与 CPython 的原始 [site.py](https://github.com/python/cpython/blob/3.10/Lib/site.py) 代码保持一致
+
+上面的例子中，Ubuntu 的 dist-packages 应该是 site-packages 才对，为啥这么改搞不懂为啥。。。o(╯□╰)o。。。对于 CentOS，则除了 lib，还会有一个 lib64，也是搞不懂为啥。。。o(╯□╰)o。。。
+
 # 安装 Python 模块
 
 > 参考：
@@ -609,7 +693,7 @@ entrypoints==0.3
 
 管理 Python 的模块和包所在路径非常乱，不知道是何原因。
 
-[pip](#pip) 是首选的安装程序。从 Python 3.4 开始，它默认包含在 Python 二进制安装程序中。就算你是用 pipenv，poetry，底层依然是 pip，一律适用。
+[pip](/docs/2.编程/高级编程语言/Python/Python工具/PIP.md) 是首选的安装程序。从 Python 3.4 开始，它默认包含在 Python 二进制安装程序中。就算你是用 pipenv，poetry，底层依然是 pip，一律适用。
 
 运行 pip 有两种方式：
 
@@ -621,99 +705,3 @@ entrypoints==0.3
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/loffuc/1669286382022-472bf4de-24cf-4652-bc94-3d52d01f7df1.png)
 
 那么，不加任何自定义配置时，使用 pip 安装包就会自动安装到 `$path_prefix/lib/pythonX.Y/site-packages` 下（$path_prefix 是从上一段里得到的），可执行程序安装到 $path_prefix/bin 下，如果需要在命令行直接使用 my_cmd 运行，记得加到 PATH。
-
-# PIP
-
-> 参考：
-> 
-> - [GitHub 项目，pypa/pip](https://github.com/pypa/pip)
-> - [官网](https://pip.pypa.io/)
-
-**Package Installer for Python(Python 的包安装器，简称 PIP)** 是 Python 的包管理程序。可以使用它来安装来自 Python 包索引和其他索引的包。从 Python 3.4 开始，它默认包含在 Python 二进制安装程序中。
-
-## 安装 PIP
-
-## 关联文件与配置
-
-配置文件
-
-- **~/.pip/pip.conf** # Linux 配置文件
-- **%USERPROFILE%/pip/pip.ini** # Windows 配置文件
-
-pip 安装的模块我们可以从如下目录中找到，该目录下的目录名或文件名通常来说即是包名
-
-- Windows
-  - **%USERPROFILE%\AppData\Local\Programs\Python\Python${版本号}\Lib\site-packages\***
-- Linux
-  - root 用户：**/usr/local/lib/python${VERSION}/dist-packages/\***
-  - 普通 用户：**~/.local/lib/python${PythonVersion}/site-packages/\***
-
-有些包会生成一些可以执行程序，这些二进制文件则默认保存在如下目录
-
-- Windows
-  - **%USERPROFILE%\AppData\Local\Programs\Python\Python310\Scripts\***
-- Linux
-  - root 用户：**/usr/local/bin/\***
-  - 普通 用户：**~/.local/bin/\***
-
-## Syntax(语法)
-
-**pip \<command> \[OPTIONS] COMMAND**
-
-Commands:
-  install                     Install packages.
-  download                    Download packages.
-  uninstall                   Uninstall packages.
-  freeze                      Output installed packages in requirements format.
-  inspect                     Inspect the python environment.
-  list                        List installed packages.
-  show                        Show information about installed packages.
-  check                       Verify installed packages have compatible dependencies.
-  config                      Manage local and global configuration.
-  search                      Search PyPI for packages.
-  cache                       Inspect and manage pip's wheel cache.
-  index                       Inspect information available from package indexes.
-  wheel                       Build wheels from your requirements.
-  hash                        Compute hashes of package archives.
-  completion                  A helper command used for command completion.
-  debug                       Show information useful for debugging.
-  help                        Show help for commands.
-
-
-### 应用示例
-
-更新 pip：`pip install --upgrade pip`
-
-对于 Python 开发用户来讲，PIP 安装软件包是家常便饭。但国外的源下载速度实在太慢，浪费时间。而且经常出现下载后安装出错问题。所以把 PIP 安装源替换成国内镜像，可以大幅提升下载速度，还可以提高安装成功率。
-
-国内源：
-新版 ubuntu 要求使用 https 源，要注意。
-
-- 清华：<https://pypi.tuna.tsinghua.edu.cn/simple>
-- 阿里云：<http://mirrors.aliyun.com/pypi/simple/>
-- 中国科技大学 <https://pypi.mirrors.ustc.edu.cn/simple/>
-- 华中理工大学：<http://pypi.hustunique.com/>
-- 山东理工大学：<http://pypi.sdutlinux.org/>
-- 豆瓣：<http://pypi.douban.com/simple/>
-
-临时使用：
-
-可以在使用 pip 的时候加参数 `-i https://pypi.tuna.tsinghua.edu.cn/simple`
-
-例如：`pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pyspider`，这样就会从清华这边的镜像去安装 pyspider 库。
-
-永久修改，一劳永逸：
-
-Linux 下，修改 ~/.pip/pip.conf (没有就创建一个文件夹及文件。文件夹要加“.”，表示是隐藏文件夹)，内容如下：
-
-```properties
-mkdir -p ~/.pip
-tee ~/.pip/pip.conf <<EOF
-[global]
-index-url = https://pypi.tuna.tsinghua.edu.cn/simple
-[install]
-trusted-host=mirrors.aliyun.com
-EOF
-```
-
-windows 下，直接在 user 目录中创建一个 pip 目录，如：C:/Users/xx/pip，新建文件 pip.ini。内容同上。

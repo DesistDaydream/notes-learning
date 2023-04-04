@@ -9,9 +9,9 @@ weight: 20
 > 参考：
 > - [公众号-差评，我从三百条留言中，筛选出了差友们推荐的好用软件](https://mp.weixin.qq.com/s/FER8XiGizhNOwAXf7cQbRQ)
 
-360 文件夹 # 包含类似 Everything 的功能，完美代替 windows 自带的资源管理器。
+~~360 文件夹 # 包含类似 Everything 的功能，完美代替 windows 自带的资源管理器。Win11 有相同的功能，不需要了~~
 
-- https://bbs.360.cn/thread-16040300-1-1.html
+- ~~https://bbs.360.cn/thread-16040300-1-1.html~~
 
 
 ## 卸载工具

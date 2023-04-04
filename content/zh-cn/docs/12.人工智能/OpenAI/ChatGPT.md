@@ -183,9 +183,7 @@ https://github.com/acheong08/ChatGPT
 
 ## 简单的 web 页面
 
-https://github.com/sbaliyun/chatgpt-html
-
-- 用法：https://zblogs.top/deploy-chatgpt-on-your-server
+https://github.com/GaiZhenbiao/ChuanhuChatGPT
 
 https://github.com/Chanzhaoyu/chatgpt-web
 
