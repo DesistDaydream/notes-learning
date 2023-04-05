@@ -35,6 +35,11 @@ WARNING: Target directory /root/pythonpath/bin already exists. Specify --upgrade
 
 通常来说，安装 Python 时，会自动安装 PIP
 
+pip 包通常包含两个目录
+
+- pip
+- pip-${VERSION}.dist-info
+
 # 关联文件与配置
 
 ## Windows
@@ -139,6 +144,7 @@ https://pip.pypa.io/en/stable/cli/pip_install/
 - **-r, --requirement \<FILE>** # 安装指定 requirement 文件中的 Python 包。
 - **-t, --target \<DIR>** # 将 Python 包安装到 DIR 目录中。可以添加 --upgrade 选项将现有包替换为 DIR 目录中的新版本。
 - **-U, --upgrade** # 将指定的所有 Python 包升级到最新的可用版本。
+- **--user** # 将包安装到 user 的 site-packages 目录下。
 
 # 最佳实践
 
@@ -190,35 +196,6 @@ Add-Content $env:APPDATA\pip\pip.ini "index-url = https://mirrors.aliyun.com/pyp
 
 ## 配置默认安装路径
 
-> 注意：默认安装路径修改后，pip 安装的包如果有 CLI 命令，则会将这个可执行文件放到 `PATH/bin/` 目录下，并不会放在初始保存可执行文件的位置了。(比如 windows 的 ${prefix}/Scripts/)
+TODO: --target 没效果，修改 user 的 site-packages 没效果。。。。o(╯□╰)o
 
-TODO: 改默认安装路径后，有个问题还没解决。每次添加 --upgrade 安装的包，比如 pipreqs 和 black，凡是需要在 bin/ 目录下存放可执行文件的包，这个目录下只会保留一个包的可执行文件，装了 pipreqs 那 black 的可执行文件就被删了。不知道这是为什么。
-
-由于 Python 自身还会使用一些第三方模块作为自己的核心功能，比如 pip。为了方式我们项目依赖的模块与这些模块在同一个目录导致不好管理。
-
-我个人推荐将 pip 安装的模块默认改到 PYTHONPATH 目录中，前提是设置 PYTHONPATH 环境变量。
-
-这里面的设置方式还需要验证在 Linux 中有没有其他的影响，不过应该没啥问题，毕竟 Linux 中没有自带 pip，咱只是修改了 pip 默认安装的，不管 linux 中使用 apt、yum 安装的包如何依赖 python 的包，由于不会涉及到 pip，应该是没有影响的。
-
-Linux
-
-```bash
-tee /etc/profile.d/python.sh > /dev/null <<EOF
-export PYTHONPATH="/root/pythonpath"
-EOF
-
-echo "target = /root/pythonpath" >> ~/.pip/pip.conf
-```
-
-Windows
-
-```powershell
-[Environment]::SetEnvironmentVariable("PYTHONPATH", "D:\Tools\Python\pythonpath", "User")
-
-Add-Content $env:APPDATA\pip\pip.ini "target = D:\Tools\Python\pythonpath"
-```
-
-注意：修改默认安装路径后，安装某些带 CLI 命令的包的时候，需要添加 --upgrade 参数以便在 pythonpath/bin/ 目录下创建可执行文件。有可能会出现类似如下的警告：
-
-`Target directory D:\Tools\Python\pythonpath\bin already exists. Specify --upgrade to force replacement.`
-
+先用 [Python 虚拟环境](docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20模块与包.md#Python%20虚拟环境)吧

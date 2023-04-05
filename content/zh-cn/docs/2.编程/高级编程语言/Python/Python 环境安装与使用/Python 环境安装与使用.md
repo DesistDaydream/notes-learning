@@ -51,14 +51,14 @@ Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0] on linux
 
 ### 安装完成后自动设置的内容
 
-默认安装到 `%USERPROFILE%\AppData\Local\Programs\Python\Python${版本号}` 目录下
+修改安装路劲到 `D:\Tools\Python\Python${版本号}` 目录下
 
-- 比如我安装 Python 3.10 版本，则会安装到 `%USERPROFILE%\AppData\Local\Programs\Python\Python310` 目录下
+- 比如我安装 Python 3.10 版本，则会安装到 `D:\Tools\Python\Python310` 目录下
 
 同时将会在用户变量中的 Path 环境变量中添加如下值：
 
-- %USERPROFILE%/AppData/Local/Programs/Python/Python310/Scripts/
-- %USERPROFILE%/AppData/Local/Programs/Python/Python310/
+- `D:\Tools\Python\Python310\Scripts\`
+- `D:\Tools\Python\Python310`
 
 在 `%USERPROFILE%\AppData\Local\Programs\Python\Python310\Scripts\` 目录中将会添加 pip 二进制命令。
 

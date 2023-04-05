@@ -322,7 +322,7 @@ def greeting(name):
 
 下面将会对 prefix 的确认进行简单的分布概述。参考 Python 解释器运行后的路径生成[源码](https://github.com/python/cpython/blob/3.11/Modules/getpath.py#L176)
 
-第一步，声明下列几个 landmark 的：（下面  `{VERSION_MAJOR}`  和 `{VERSION_MINOR}` 分别是 Python 的大版本号和小版本号，比如 Python3.11、Python311）
+第一步，声明下列几个 landmark 的：（下面  `{VERSION_MAJOR}`  和 `{VERSION_MINOR}` 分别是 Python 的大版本号和小版本号，比如 Python3.10、Python310）
 
 ```python
 if os_name == 'posix' or os_name == 'darwin':
@@ -393,7 +393,7 @@ Current thread 0x00007fe5a7de31c0 (most recent call first):
 假如 Python 解释器的路径
 
 - 在 Ubuntu 中是 `/usr/bin/python3`
-- 在 Windows 中是 `D:\Tools\Python\Python311\python.exe`
+- 在 Windows 中是 `D:\Tools\Python\Python310\python.exe`
 
 Ubuntu 生成的值为：
 
@@ -412,11 +412,11 @@ Windows 生成的值为：
 
 ```python
 >>> sys.executable
-'D:\\Tools\\Python\\Python311\\python.exe'
+'D:\\Tools\\Python\\Python310\\python.exe'
 >>> sys.prefix
-'D:\\Tools\\Python\\Python311'
+'D:\\Tools\\Python\\Python310'
 >>> sys.exec_prefix
-'D:\\Tools\\Python\\Python311'
+'D:\\Tools\\Python\\Python310'
 >>> sys.platlibdir
 'DLLs'
 ```
