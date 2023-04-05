@@ -11,7 +11,7 @@ weight: 2
 
 在计算机程序的开发过程中，随着程序代码越写越多，在一个文件里代码就会越来越长，越来越不容易维护。
 
-为了编写可维护的代码，我们把很多函数分组，分别放到不同的文件里，这样，每个文件包含的代码就相对较少，很多编程语言都采用这种组织代码的方式。在 Python 中，**一个 `.py` 文件**就**称之为一个**Module(模块)**。
+为了编写可维护的代码，我们把很多函数分组，分别放到不同的文件里，这样，每个文件包含的代码就相对较少，很多编程语言都采用这种组织代码的方式。在 Python 中，**一个 `.py` 文件**就称之为一个 **Module(模块)**。
 
 使用模块有什么好处？
 
@@ -21,7 +21,7 @@ weight: 2
 
 你也许还想到，如果不同的人编写的模块名相同怎么办？为了避免模块名冲突，Python 又引入了按目录来组织模块的方法，称为 **Package(包)**。
 
-举个例子，一个`abc.py`的文件就是一个名字叫`abc`的模块，一个`xyz.py`的文件就是一个名字叫`xyz`的模块。
+举个例子，一个 `abc.py` 的文件就是一个名字叫 `abc` 的模块，一个 `xyz.py` 的文件就是一个名字叫`xyz`的模块。
 
 现在，假设我们的`abc`和`xyz`这两个模块名字与其他模块冲突了，于是我们可以通过包来组织模块，避免冲突。方法是选择一个顶层包名，比如`mycompany`，按照如下目录存放：
 
@@ -57,11 +57,37 @@ mycompany
 
 ## Package(包)
 
-包是一种通过使用“带点的模块名称”来构建 Python 模块命名空间的方式。例如，模块名称 AB 指定了一个名为 A 的包中的一个名为 B 的子模块。就像使用模块使不同模块的作者不必担心彼此的全局变量名称一样，使用点分模块名称可以节省作者多模块包，如 NumPy 或 Pillow，不必担心彼此的模块名称。
+包是一种通过使用“带点的模块名称”来构建 Python 模块命名空间的方式。例如，模块名称 `A.B` 指定了一个名为 `A` 的包中的一个名为 `B` 的子模块。就像使用模块使不同模块的作者不必担心彼此的全局变量名称一样，使用点分模块名称可以节省作者多模块包，如 NumPy 或 Pillow 包，不必担心彼此的模块名称相同会影响到对方。
 
-假设您要设计一组模块（“包”）来统一处理声音文件和声音数据。有许多不同的声音文件格式（通常通过它们的扩展名识别，例如：.wav、.aiff、.au），因此您可能需要创建和维护不断增长的模块集合，以便在各种文件格式之间进行转换。您可能还想对声音数据执行许多不同的操作（例如混合、添加回声、应用均衡器功能、创建人工立体声效果），因此您将编写一个永无止境的模块流来执行这些操作。这是您的包的可能结构（以分层文件系统表示）：
+假设您要设计一组模块集（“包”）来统一处理声音文件和声音数据。有许多不同的声音文件格式（通常通过它们的扩展名识别，例如：.wav、.aiff、.au），因此您可能需要创建和维护不断增长的模块集合，以便在各种文件格式之间进行转换。您可能还想对声音数据执行许多不同的操作（例如混合、添加回声、应用均衡器功能、创建人工立体声效果），因此您将编写一个永无止境的模块流来执行这些操作。这是您的包的可能结构（以分层文件系统表示）：
 
-导入包时，Python 会在 sys.path 上的目录中搜索包子目录。
+```bash
+sound/                          顶级包
+      __init__.py               初始化名为 sound 的包，有这个文件的存在，Python 才可以将 sound/ 目录识别为包
+      formats/                  用于格式转换的 Subpackage(子包，子包也可以称为 Module(模块))
+              __init__.py
+              wavread.py
+              wavwrite.py
+              aiffread.py
+              aiffwrite.py
+              auread.py
+              auwrite.py
+              ...
+      effects/                  用于声音效果的 Subpackage(子包)
+              __init__.py
+              echo.py
+              surround.py
+              reverse.py
+              ...
+      filters/                  用于过滤的 Subpackage
+              __init__.py
+              equalizer.py
+              vocoder.py
+              karaoke.py
+              ...
+```
+
+导入包时，Python 会在 `${sys.path}` 上的目录中搜索包子目录。
 
 需要 `__init__.py` 文件才能使 Python 将包含该文件的目录视为包。这可以防止具有通用名称（例如字符串）的目录无意中隐藏了稍后出现在模块搜索路径上的有效模块。在最简单的情况下，`__init__.py` 可以只是一个空文件，但它也可以执行包的初始化代码或设置 `__all__` 变量，稍后将介绍。
 
@@ -79,6 +105,8 @@ mycompany
 
 - 模块名要遵循 Python 变量命名规范，不要使用中文、特殊字符；
 - 模块名不要和系统模块名冲突，最好先查看系统是否已存在该模块，检查方法是在 Python 交互环境执行`import abc`，若成功则说明系统存在此模块。
+
+不管是 Package 还是 Module，都可以统一称为我们常说的 **Library(库)**，毕竟在下面的模块管理章节，也能看到 Python 保存**包和模块的目录通常都是 `lib/` 目录**。并且，Python 官方也有一个专门的页面列出了所有的[标准库](https://docs.python.org/3/library/index.html)
 
 # Python 模块使用
 
@@ -229,15 +257,15 @@ def greeting(name):
 
 **`${sys.path}` 变量是我们使用 Python 模块的最重要一环**。通常来说，该变量的值来源于以下位置：
 
-- **执行 Python 代码文件所在的绝对路径**
+- **运行 Python 代码文件所在的绝对路径**
 - **${PYTHONPATH} 环境变量指定的路径**
     - 这是一个手动指定的目录列表，类似于类 Unix 中的 `$PATH` 变量，可以通过 `os.path` 获取其值。
     - 可以使用 `os.path.append()` 为 `$PYTHONPATH` 变量添加新的目录条目以便导入想要的模块。也可以直接设置 Linux 系统中的 `$PYTHONPATH` 变量。当项目大，需要对文件进行分类时，非常有用。
 - **编译、安装 Python 时设置的默认路径**
     - 官方文档的这个说法挺模糊的，详见下面 sys.path 列表生成逻辑中的详解吧。这些路径主要取决于 prefix 的设置。
     - 按照惯例，通常包含：
-        - 与平台相关的 Python 基本库保存路径。
-        - 由[站点模块](https://docs.python.org/3/library/site.html#module-site)处理的 site-packages 目录。使用各种方式安装(比如 pip)的第三方库通常来说会存在 site-packages 目录中。
+        - Python 标准库保存路径。
+        - [site 模块](https://docs.python.org/3/library/site.html#module-site)处理的第三方库保存路径。使用各种方式安装(比如 pip)的第三方库通常来说会存在 site-packages 目录中。
 
 上述三种路径在 Python 启动时被初始化。我们可以通过 Python 中的 `${sys.path}` 数组变量查看这些路径。
 
@@ -281,9 +309,9 @@ def greeting(name):
 
 下面我笔记中关于 sys.path 的生成逻辑中，只做简单描述，详细生成逻辑就像[这里](https://stackoverflow.com/questions/897792/where-is-pythons-sys-path-initialized-from)说的，跟论文一样，而且每个平台编译出来的 Python 解释器的设置也不一样，所以最后路径也不一样，由于 Python 复杂的自推导逻辑导致也不好总结普适性，所以，可以直接参考下文[sys.path 总结](#sys.path%20总结)中的各平台示例
 
-### 1. 确认 prefix 是否可用并生成路径相关变量
+### 1. 确认并生成 prefix
 
-> 这个行为准确描述应该是确认 prefix 的值之后，生成 `${sys.prefix}` 和 `${sys.exec_prefix}` 变量的值
+> 这个行为准确描述应该是确认 prefix 的值之后，生成 `${sys.prefix}` 和 `${sys.exec_prefix}` 变量的值，这两个变量，通常用在标准库和第三方库的保存路径中，作为路径的前缀。
 
 在我们运行 Python 解释器时，prefix 的值可以通过如下两种方式被设置：
 
@@ -393,17 +421,17 @@ Windows 生成的值为：
 'DLLs'
 ```
 
-### 2. 添加基本路径
+### 2. 添加要运行的 Python 文件所在的路径
 
-第一、添加运行 Python 代码文件所在的绝对路径，若直接运行的 Python 解释器，则 `$sys.path` 的第一个元素为空
+添加运行 Python 代码文件所在的绝对路径，若直接运行的 Python 解释器，则 `$sys.path` 的第一个元素为空
 
 - 在下面的 [Ubuntu 示例](#Ubuntu%20示例)中，`sys.path` 的第一个元素（`/root/scripts`）是 module-path-demo.py  文件所在路径，即执行的 Python 代码文件所在路径，如果不是运行的 Python 代码文件，则第一个元素为空。每当运行一个 Python 文件时，就相当于默认执行了 `sys.path.append("文件所在绝对路径")` 代码。
 
-第二、添加 `${PYTHONPATH}` 变量中的值
+### 3. 添加 PYTHONPATH 环境变量设置的路径
 
-### 3. 添加 Python 标准模块路径
+添加 `${PYTHONPATH}` 变量中的值
 
-添加 Python 标准模块路径基于 prefix。
+### 4. 添加标准库的存放路径
 
 添加包含 Python 标准模块以及这些模块所依赖的任何扩展模块的文件和目录，**这些路径是很重要的，包含了 Python 解释器启动成功所依赖的模块**。通常包含如下文件和目录：
 
@@ -429,9 +457,9 @@ Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0] on linux
 
 其中前两个元素是基本路径，后面三个元素是 prefix 相关的路径。
 
-### 4. 添加 site-packages 目录路径
+### 5. 添加第三方库的存放路径
 
-添加 site-packages 目录路径基于 prefix。
+Python 的第三方模块通常保存在由 site 模块生成的目录中，该目录名称通常为 site-packages。但是有的系统，比如 Ubuntu，会将 site-packages 目录的名称改为 dist-packages。site 模块在 Python 解释器启动时自动调用，并将生成目录添加到 sys.path 列表中。
 
 **第一、调用 site 模块的 `main()` 函数将 `${sys.prefix}/lib/site-package/` 目录添加到 `sys.path` 变量中**。`site.main()` 函数从 Python3.3 版本开始被自动调用，除非运行 Python 解释器时添加 -S 标志。
 
@@ -450,7 +478,7 @@ Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0] on linux
 
 在这个示例中，我们可以看到 site-packages 目录跟官方文档的说明并不一样是吧？在 [模块管理混乱说明](#模块管理混乱说明) 中详细说明
 
-**第二、site 模块还会尝试导入 usercustomize 模块，以添加与用户相关的模块搜索路径**。如果 site 模块中的 [ENABLE_USER_SITE](https://docs.python.org/3/library/site.html#site.ENABLE_USER_SITE) 变量为真，且 USER_SITE 定义的文件存在，则会将 USER_SITE 添加到 sys.path 中。对于 usercustomize 模块，`sys.prefix` 不再使用，取而代之的是 `site.USER_BASE`，`site.USER_BASE` 的值通常为 `~/.local/`，生成的 `site.USER_SITE` 的值通常是 `site.USER_BASE/lib/python${X.Y}/site-packages`
+**第二、site 模块在将全局的 site 目录添加前，会先添加用户 site 相关的模块搜索路径**。如果 site 模块中的 [ENABLE_USER_SITE](https://docs.python.org/3/library/site.html#site.ENABLE_USER_SITE) 变量为真，且 USER_SITE 定义的文件存在，则会将 USER_SITE 添加到 sys.path 中，用户 site 不再依赖 prefix，取而代之的是 `site.USER_BASE`，`site.USER_BASE` 的值通常为 `~/.local/`，生成的 `site.USER_SITE` 的值通常是 `site.USER_BASE/lib/python${X.Y}/site-packages`
 
 ```python
 >>> site.USER_SITE
@@ -487,6 +515,8 @@ USER_BASE: '/root/.local' (exists)
 USER_SITE: '/root/.local/lib/python3.10/site-packages' (exists)
 ENABLE_USER_SITE: True
 ```
+
+**最后，尝试导入名为 usercustomize 与 sitecustomize 模块**。该模块由用户自行编写代码实现，以添加自己的路径。
 
 ## sys.path 总结
 
@@ -752,3 +782,7 @@ ENABLE_USER_SITE: False
 ```
 
 在任意位置执行 `deactivate` 命令将会退出当前虚拟环境。
+
+## 虚拟环境关联文件与配置
+
+**pyvenv.cfg** # 

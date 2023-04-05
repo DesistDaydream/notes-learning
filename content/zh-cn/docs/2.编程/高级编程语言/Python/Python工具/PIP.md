@@ -13,6 +13,24 @@ weight: 20
 
 **Package Installer for Python(Python 的包安装器，简称 PIP)** 是 Python 的包管理程序。可以使用它来安装来自 Python 包索引和其他索引的包。从 Python 3.4 开始，它默认包含在 Python 二进制安装程序中。
 
+# pip 安装包逻辑
+
+先下载到 /tmp/pip-unpack-随机数/包名-XXX.whl，然后默认情况下，将这些文件安装到 site-packages 目录。
+
+## 有关 --taget 选项的说明
+
+当我们使用 `--target TARGET_DIR` 选项指定包的安装路径时，则会将随包带的可执行文件安装到 `TARGET_DIR/bin/` 目录下，若两个具有可执行文件的包被同事安装到同一个 TARGET_DIR 中，则后安装的包的二进制文件将不会成功，并且有警告信息：
+
+```
+WARNING: Target directory /root/pythonpath/bin already exists. Specify --upgrade to force replacement.
+```
+
+假如现在想要安装 black 和 pipreqs 两个包，先安装 black，那么 pipreqs 可执行文件将不会安装成功，除非使用 --upgrade 选项，此时，bin/ 目录下的 black 可执行文件将被删除，并替换为 pipreqs 可执行文件。
+
+综上所述：--target 选项不适合指定为 PYTHONPATH，而是为每个包指定一个独立的目录，并且每个目录下的 bin 目录都要添加到 $PATH 才可以，这是一个很鸡肋的选项。
+
+详见 [pip issue 8063](https://github.com/pypa/pip/issues/8063)
+
 # 安装 PIP
 
 通常来说，安装 Python 时，会自动安装 PIP
@@ -172,6 +190,10 @@ Add-Content $env:APPDATA\pip\pip.ini "index-url = https://mirrors.aliyun.com/pyp
 
 ## 配置默认安装路径
 
+> 注意：默认安装路径修改后，pip 安装的包如果有 CLI 命令，则会将这个可执行文件放到 `PATH/bin/` 目录下，并不会放在初始保存可执行文件的位置了。(比如 windows 的 ${prefix}/Scripts/)
+
+TODO: 改默认安装路径后，有个问题还没解决。每次添加 --upgrade 安装的包，比如 pipreqs 和 black，凡是需要在 bin/ 目录下存放可执行文件的包，这个目录下只会保留一个包的可执行文件，装了 pipreqs 那 black 的可执行文件就被删了。不知道这是为什么。
+
 由于 Python 自身还会使用一些第三方模块作为自己的核心功能，比如 pip。为了方式我们项目依赖的模块与这些模块在同一个目录导致不好管理。
 
 我个人推荐将 pip 安装的模块默认改到 PYTHONPATH 目录中，前提是设置 PYTHONPATH 环境变量。
@@ -193,5 +215,10 @@ Windows
 ```powershell
 [Environment]::SetEnvironmentVariable("PYTHONPATH", "D:\Tools\Python\pythonpath", "User")
 
-Add-Content $env:APPDATA\pip\pip.ini "target=D:\Tools\Python\pythonpath"
+Add-Content $env:APPDATA\pip\pip.ini "target = D:\Tools\Python\pythonpath"
 ```
+
+注意：修改默认安装路径后，安装某些带 CLI 命令的包的时候，需要添加 --upgrade 参数以便在 pythonpath/bin/ 目录下创建可执行文件。有可能会出现类似如下的警告：
+
+`Target directory D:\Tools\Python\pythonpath\bin already exists. Specify --upgrade to force replacement.`
+

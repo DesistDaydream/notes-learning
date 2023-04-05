@@ -55,27 +55,33 @@ Go Module 出现后，GOPATH 路径变为纯粹的第三方依赖库的保存路
 
 ```
 
-bin 下是安装的某些第三方依赖库后生成的二进制文件
+bin/ 下是安装的某些第三方依赖库后生成的可执行文件
+
+pkg/ 下是安装的第三方库
 
 ## 早期 GOPATH 模式痛点
 
 我们先看看第一个问题，GOPATH 是什么，我们可以输入如下命令查看：
 
-    $ go env
-    GOPATH="/root/go"
-    ...
+```bash
+$ go env
+GOPATH="/root/go"
+...
+```
 
 我们输入 go env 命令行后可以查看到 GOPATH 变量的结果，我们进入到该目录下进行查看，如下：
 
-    go
-    ├── bin
-    ├── pkg
-    └── src
-        ├── github.com
-        ├── golang.org
-        ├── google.golang.org
-        ├── gopkg.in
-    ....
+```bash
+go
+├── bin
+├── pkg
+└── src
+    ├── github.com
+    ├── golang.org
+    ├── google.golang.org
+    ├── gopkg.in
+....
+```
 
 GOPATH 目录下一共包含了三个子目录，分别是：
 
@@ -90,9 +96,9 @@ GOPATH 目录下一共包含了三个子目录，分别是：
 在 GOPATH 的 $GOPATH/src 下进行 .go 文件或源代码的存储，我们可以称其为 GOPATH 的模式，这个模式，看起来好像没有什么问题，那么为什么我们要弃用呢，参见如下原因：
 
 - GOPATH 模式下没有版本控制的概念，具有致命的缺陷，至少会造成以下问题：
-  - 在执行 go get 的时候，你无法传达任何的版本信息的期望，也就是说你也无法知道自己当前更新的是哪一个版本，也无法通过指定来拉取自己所期望的具体版本。
-  - 在运行 Go 应用程序的时候，你无法保证其它人与你所期望依赖的第三方库是相同的版本，也就是说在项目依赖库的管理上，你无法保证所有人的依赖版本都一致。
-  - 你没办法处理 v1、v2、v3 等等不同版本的引用问题，因为 GOPATH 模式下的导入路径都是一样的，都是 github.com/foo/bar。
+    - 在执行 go get 的时候，你无法传达任何的版本信息的期望，也就是说你也无法知道自己当前更新的是哪一个版本，也无法通过指定来拉取自己所期望的具体版本。
+    - 在运行 Go 应用程序的时候，你无法保证其它人与你所期望依赖的第三方库是相同的版本，也就是说在项目依赖库的管理上，你无法保证所有人的依赖版本都一致。
+    - 你没办法处理 v1、v2、v3 等等不同版本的引用问题，因为 GOPATH 模式下的导入路径都是一样的，都是 github.com/foo/bar。
 - Go 语言官方从 Go1.11 起开始推进 Go modules（前身 vgo），Go1.13 起不再推荐使用 GOPATH 的使用模式，Go modules 也渐趋稳定，因此新项目也没有必要继续使用 GOPATH 模式。
 
 在 GOPATH 模式下的产物
@@ -111,14 +117,16 @@ Go1 在 2012 年 03 月 28 日发布，而 Go1.11 是在 2018 年 08 月 25 日�
 
 ## Go Module 相关环境变量
 
-    $ go env
-    GO111MODULE="auto" # 使用module功能必须要让该变量变为on
-    GOPROXY="https://proxy.golang.org,direct"
-    GONOPROXY=""
-    GOSUMDB="sum.golang.org"
-    GONOSUMDB=""
-    GOPRIVATE=""
-    ...
+```bash
+$ go env
+GO111MODULE="auto" # 使用module功能必须要让该变量变为on
+GOPROXY="https://proxy.golang.org,direct"
+GONOPROXY=""
+GOSUMDB="sum.golang.org"
+GONOSUMDB=""
+GOPRIVATE=""
+...
+```
 
 ### GO111MODULE
 

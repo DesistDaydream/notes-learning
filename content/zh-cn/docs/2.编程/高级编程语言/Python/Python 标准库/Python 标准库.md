@@ -10,9 +10,9 @@ weight: 1
 > - [官方文档-3，标准库参考-内置函数](https://docs.python.org/3/library/functions.html)
 > - [官方文档-3，标准库参考-内置常量](https://docs.python.org/3/library/constants.html)
 
-**Python Standard Library(Python 标准库)** 也可以称为 **Package(包)**，每个 package 都可以实现一类功能。
+**Python Standard Library(Python 标准库)** 是所有 Python 内置 **Package(包)** 或 **Module(模块)** 的集合，每个 package 都可以实现一类功能。
 
-[pypi.org](https://pypi.org/) 是 Python 的配套网站，可以查找所有可以通过 pip 命令下载的 Package 以及 Python 库
+[pypi.org](https://pypi.org/) 是 Python 的配套网站，可以查找所有可以通过 pip 命令安装内置的或第三方的的 Package
 
 # 内置函数
 

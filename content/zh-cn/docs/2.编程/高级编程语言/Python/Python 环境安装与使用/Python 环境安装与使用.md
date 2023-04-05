@@ -68,9 +68,6 @@ Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0] on linux
 
 ## 安装多个版本的 Python
 
-# Python 虚拟化环境
-
-
 # 编译 Python
 
 > 参考：
