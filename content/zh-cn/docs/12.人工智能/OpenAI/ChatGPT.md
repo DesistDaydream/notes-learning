@@ -183,6 +183,8 @@ https://github.com/acheong08/ChatGPT
 
 ## 简单的 web 页面
 
+https://huggingface.co/spaces/yuntian-deng/ChatGPT 好像是不用 OpenAI key 就能调用 GPT-3.5 的 ChatGPT。
+
 https://github.com/GaiZhenbiao/ChuanhuChatGPT
 
 https://github.com/Chanzhaoyu/chatgpt-web
