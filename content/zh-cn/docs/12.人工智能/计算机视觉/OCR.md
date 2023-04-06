@@ -19,6 +19,14 @@ PaddleOCR 是百度开源的 OCR 工具。
 
 有 Python 库。
 
+## 模型说明
+
+
+
+## 关联文件与配置
+
+**~/.paddleocr** # 模型保存路径
+
 # Umi-OCR
 
 > 参考：
