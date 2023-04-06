@@ -133,6 +133,10 @@ pip config edit --editor code # 使用 vscode 打开 pip 配置文件
 - **-d, --dest \<DIR>** # 将 Python 包下载到 DIR 目录中。
 - **-r, --requirement \<FILE>** # 从指定的 requirement 文件中下载 Python 包。
 
+## pip freeeze
+
+以 requirements 格式输出安装的软件包列表。软件包以不区分大小写的排序方式列出。
+
 ## pip install
 
 https://pip.pypa.io/en/stable/cli/pip_install/

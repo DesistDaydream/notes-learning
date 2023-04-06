@@ -13,9 +13,11 @@ title: OCR
 
 > 参考：
 > - [GitHub 项目，PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
->   - <https://www.bilibili.com/video/BV1iY4y1s7fx>
+>     - <https://www.bilibili.com/video/BV1iY4y1s7fx>
 
 PaddleOCR 是百度开源的 OCR 工具。
+
+有 Python 库。
 
 # Umi-OCR
 

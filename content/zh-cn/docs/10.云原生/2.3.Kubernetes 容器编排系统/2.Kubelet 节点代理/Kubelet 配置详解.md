@@ -10,7 +10,7 @@ title: Kubelet 配置详解
 
 可以通过两种方式配置 kubelet 运行时行为
 
-1. **config.yaml 配置文件** # config.yaml 文件默认路径为 /var/lib/kubelet/config.yaml ，可以通过 --config <FILE> 来指定其他的文件。
+1. **config.yaml 配置文件** # config.yaml 文件默认路径为 /var/lib/kubelet/config.yaml ，可以通过 --config \<FILE> 来指定其他的文件。
    1. [这里](https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/)是官方文档对于配置文件的概述。在[章节中间部分](https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/kubelet/config/v1beta1/types.go)，可以直接看到配置文件对应的代码中结构体，也就是配置文件详细内容
    2. [这里](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)是配置文件中每个字段的详解，与代码中的结构体互相对应，只不过是整理后，可以直接在网页上查看，更清晰。
 2. **kubelet 命令行标志**
@@ -34,21 +34,21 @@ title: Kubelet 配置详解
 > 参考：
 > - [官方文档,参考-组件工具-kubelet](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/)
 
-**--cni-conf-dir <STRING>** # Warning：Alpha 功能。指定 STRING 目录中搜索 CNI 配置文件。 `默认值：/etc/cni/net.d`
+**--cni-conf-dir \<STRING>** # Warning：Alpha 功能。指定 STRING 目录中搜索 CNI 配置文件。 `默认值：/etc/cni/net.d`
 仅当 CRI 为 docker 时此标志才有效
 
-**--config=<STRING>** # 加载配置文件的路径。kubelet 将从该标志指定的文件中加载其初始配置。
+**--config=\<STRING>** # 加载配置文件的路径。kubelet 将从该标志指定的文件中加载其初始配置。
 
-**--pod-infra-container-image <STRINIG>** # 指定在每个 pod 中将会使用的 network/ipc 名称空间的基础容器。`默认值：k8s.gcr.io/pause:3.1`
+**--pod-infra-container-image \<STRINIG>** # 指定在每个 pod 中将会使用的 network/ipc 名称空间的基础容器。`默认值：k8s.gcr.io/pause:3.1`
 这个就是用来指定 infra 基础设施容器。
 
-**--container-runtime <STRING>** # kubelet 要使用的容器运行时，也就是要对接的 CRI。`默认值：docker`。
+**--container-runtime \<STRING>** # kubelet 要使用的容器运行时，也就是要对接的 CRI。`默认值：docker`。
 remote # 表示使用其他运行时。需要配合 `--container-runtime-endpoint` 标志一起使用。
 
-**--container-runtime-endpoint <STRING>** # kubelet 要使用的运行时的路径。`默认值：unix:///var/run/dockershim.sock`
+**--container-runtime-endpoint \<STRING>** # kubelet 要使用的运行时的路径。`默认值：unix:///var/run/dockershim.sock`
 STRING 是 socket 路径，现阶段只支持 UNIX sock，后面还可以支持远程，比如通过 http 来连接运行时。
 
-**--image-service-endpoint <STRING> **# kubelet 处理镜像所用的后端路径。若未指定，则于 `--container-runtime-endpoint` 标志的值相同
+**--image-service-endpoint \<STRING> **# kubelet 处理镜像所用的后端路径。若未指定，则于 `--container-runtime-endpoint` 标志的值相同
 
 # 配置文件详解
 
@@ -59,12 +59,12 @@ STRING 是 socket 路径，现阶段只支持 UNIX sock，后面还可以支持�
 
 **apiVersion: **kubelet.config.k8s.io/v1beta1
 **kind: **KubeletConfiguration
-**address: <STRING> **# kubelet 服务的 IP。默认为 0.0.0.0
+**address: \<STRING> **# kubelet 服务的 IP。默认为 0.0.0.0
 **cgroupDriver: \<cgroupfs|systemd> **# kubelet 用于操纵主机上 cgroup 的驱动程序。`默认值：cgroupfs`
-**imageMinimumGCAge: <DURATION> **# 未使用的 image 进行垃圾回收之前的最小期限。`默认值：2m`
-**nodeStatusReportFrequency: <DURATION>** # 节点状态报告频率。`默认值：10s`
-**nodeStatusUpdateFrequency: <DURATION>** # 节点状态更新频率。`默认值：5m`
-**resolvConf: <STRING>** # kubelet 启动的容器所使用的解析器的配置文件。`默认值：/etc/resolv.conf`
+**imageMinimumGCAge: \<DURATION> **# 未使用的 image 进行垃圾回收之前的最小期限。`默认值：2m`
+**nodeStatusReportFrequency: \<DURATION>** # 节点状态报告频率。`默认值：10s`
+**nodeStatusUpdateFrequency: \<DURATION>** # 节点状态更新频率。`默认值：5m`
+**resolvConf: \<STRING>** # kubelet 启动的容器所使用的解析器的配置文件。`默认值：/etc/resolv.conf`
 
 - Ubuntu 中，配置则会被改为 `/run/systemd/resolve/resolv.conf`
 

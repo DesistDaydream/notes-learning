@@ -62,6 +62,22 @@ Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0] on linux
 
 在 `%USERPROFILE%\AppData\Local\Programs\Python\Python310\Scripts\` 目录中将会添加 pip 二进制命令。
 
+### 安装完成后基本目录结构
+
+Python 自动安装 pip 和 setuptools 两个包，这两个包在 site-packages 目录中生成如下目录
+
+- pip 包包含目录
+    - pip
+    - pip-22.3.1.dist-info
+    - 另外还会在 Scripts 目录生成 3 个可执行文件。
+- setuptools 包包含目录
+    - _distutils_hack
+    - distutils-precedence.pth
+    - pkg_resources
+    - setuptools-65.5.0.dist-info
+    - setuptools
+
+
 ## Windows 可嵌入的包
 
 嵌入式分发是一个包含最小 Python 环境的 ZIP 文件。它旨在充当另一个应用程序的一部分，而不是由最终用户直接访问。
