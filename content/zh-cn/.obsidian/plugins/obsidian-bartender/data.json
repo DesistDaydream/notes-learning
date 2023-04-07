@@ -24,7 +24,7 @@
       "docs/8.通用技术",
       "docs/9.运维",
       "docs/10.云原生",
-      "docs/11_多媒体",
+      "docs/11.多媒体",
       "docs/12.人工智能",
       "docs/区块链",
       "docs/实用工具",
@@ -685,10 +685,35 @@
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/如何构建以应用为中心的“Kubernetes”_（内含 QA 整理）.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/如何玩转 Kubernetes 开源社区？这篇文章一定要看！.md"
     ],
+    "docs/10.云原生/DevOps": [
+      "docs/10.云原生/DevOps/_index.md",
+      "docs/10.云原生/DevOps/DevOps.md",
+      "docs/10.云原生/DevOps/ArgoCD",
+      "docs/10.云原生/DevOps/Drone",
+      "docs/10.云原生/DevOps/Jenkins",
+      "docs/10.云原生/DevOps/JenkinsX",
+      "docs/10.云原生/DevOps/Skaffold",
+      "docs/10.云原生/DevOps/Jenkins 与 skaffold 示例.md"
+    ],
+    "docs/10.云原生/DevOps/Drone": [
+      "docs/10.云原生/DevOps/Drone/_index.md",
+      "docs/10.云原生/DevOps/Drone/Drone.md",
+      "docs/10.云原生/DevOps/Drone/Server 与 Runner 部署.md",
+      "docs/10.云原生/DevOps/Drone/Drone Pipelines 详解.md",
+      "docs/10.云原生/DevOps/Drone/drone 命令行工具.md",
+      "docs/10.云原生/DevOps/Drone/Drone 任务示例.md"
+    ],
     "docs/10.云原生/云原生应用管理/Kustomize": [
       "docs/10.云原生/云原生应用管理/Kustomize/_index.md",
       "docs/10.云原生/云原生应用管理/Kustomize/Kustomize.md",
       "docs/10.云原生/云原生应用管理/Kustomize/Kustomization Manifest 详解.md"
+    ],
+    "docs/11.多媒体": [
+      "docs/11.多媒体/_index.md",
+      "docs/11.多媒体/11.多媒体.md",
+      "docs/11.多媒体/图形处理",
+      "docs/11.多媒体/音频处理",
+      "docs/11.多媒体/多媒体处理工具"
     ],
     "docs/12.人工智能": [
       "docs/12.人工智能/_index.md",
@@ -703,6 +728,12 @@
       "docs/12.人工智能/OpenAI/_index.md",
       "docs/12.人工智能/OpenAI/OpenAI.md",
       "docs/12.人工智能/OpenAI/ChatGPT.md"
+    ],
+    "docs/12.人工智能/计算机视觉": [
+      "docs/12.人工智能/计算机视觉/_index.md",
+      "docs/12.人工智能/计算机视觉/计算机视觉.md",
+      "docs/12.人工智能/计算机视觉/OpenCV.md",
+      "docs/12.人工智能/计算机视觉/OCR.md"
     ],
     "docs/2.编程": [
       "docs/2.编程/_index.md",
@@ -898,6 +929,24 @@
       "docs/2.编程/高级编程语言/Python/Python工具",
       "docs/2.编程/高级编程语言/Python/Jinja.md"
     ],
+    "docs/2.编程/高级编程语言/Python/Python 标准库": [
+      "docs/2.编程/高级编程语言/Python/Python 标准库/_index.md",
+      "docs/2.编程/高级编程语言/Python/Python 标准库/Python 标准库.md",
+      "docs/2.编程/高级编程语言/Python/Python 标准库/数据类型.md",
+      "docs/2.编程/高级编程语言/Python/Python 标准库/Python 类.md"
+    ],
+    "docs/2.编程/高级编程语言/Python/Python 第三方库": [
+      "docs/2.编程/高级编程语言/Python/Python 第三方库/_index.md",
+      "docs/2.编程/高级编程语言/Python/Python 第三方库/Python 第三方库.md",
+      "docs/2.编程/高级编程语言/Python/Python 第三方库/爬虫.md",
+      "docs/2.编程/高级编程语言/Python/Python 第三方库/图像处理.md",
+      "docs/2.编程/高级编程语言/Python/Python 第三方库/GUI.md"
+    ],
+    "docs/2.编程/高级编程语言/Python/Python工具": [
+      "docs/2.编程/高级编程语言/Python/Python工具/_index.md",
+      "docs/2.编程/高级编程语言/Python/Python工具/Python 工具.md",
+      "docs/2.编程/高级编程语言/Python/Python工具/PIP.md"
+    ],
     "docs/3.集群与分布式/Nginx/Nginx 配置详解": [
       "docs/3.集群与分布式/Nginx/Nginx 配置详解/_index.md",
       "docs/3.集群与分布式/Nginx/Nginx 配置详解/Nginx 配置详解.md",
@@ -1005,6 +1054,32 @@
       "docs/5.数据存储/2.数据库/关系数据/SQL/SQL Functions(函数).md",
       "docs/5.数据存储/2.数据库/关系数据/SQL/SQL Operators(运算符).md",
       "docs/5.数据存储/2.数据库/关系数据/SQL/最佳实践.md"
+    ],
+    "docs/5.数据存储/2.数据库/键值数据/Etcd": [
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/_index.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 部署.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 配置详解.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 数据模型.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 高可用.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 基于 RAFT 的一致性.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/revision概念.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 命令行工具",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd API 文档.md"
+    ],
+    "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 命令行工具": [
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 命令行工具/_index.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 命令行工具/etcdctl.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 命令行工具/etcdctl user 命令.md"
+    ],
+    "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理": [
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理/_index.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理/Etcd 管理.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理/Etcd 调优.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理/Etcd 性能测试.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理/Etcd 维护.md",
+      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理/etcd 问题处理案例"
     ],
     "docs/5.数据存储/数据管理工具/Percona": [
       "docs/5.数据存储/数据管理工具/Percona/_index.md",
@@ -1194,6 +1269,12 @@
       "docs/6.可观测性/监控系统/监控系统概述/HTTP(新监控标准).md",
       "docs/6.可观测性/监控系统/监控系统概述/常用告警级别.md"
     ],
+    "docs/6.可观测性/追踪系统": [
+      "docs/6.可观测性/追踪系统/_index.md",
+      "docs/6.可观测性/追踪系统/追踪系统.md",
+      "docs/6.可观测性/追踪系统/动态追踪.md",
+      "docs/6.可观测性/追踪系统/Tempo - 分布式Loki链路追踪利器.md"
+    ],
     "docs/7.信息安全": [
       "docs/7.信息安全/_index.md",
       "docs/7.信息安全/Standardized Glossary(标准化术语).md",
@@ -1338,74 +1419,6 @@
       "docs/实用工具/网站搭建/Hugo/命令行工具.md",
       "docs/实用工具/网站搭建/Hugo/主题",
       "docs/实用工具/网站搭建/Hugo/站点管理.md"
-    ],
-    "docs/5.数据存储/2.数据库/键值数据/Etcd": [
-      "docs/5.数据存储/2.数据库/键值数据/Etcd/_index.md",
-      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd.md",
-      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 部署.md",
-      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 配置详解.md",
-      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 数据模型.md",
-      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 高可用.md",
-      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 基于 RAFT 的一致性.md",
-      "docs/5.数据存储/2.数据库/键值数据/Etcd/revision概念.md",
-      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 命令行工具",
-      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理",
-      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd API 文档.md"
-    ],
-    "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理": [
-      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理/_index.md",
-      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理/Etcd 管理.md",
-      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理/Etcd 调优.md",
-      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理/Etcd 性能测试.md",
-      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理/Etcd 维护.md",
-      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理/etcd 问题处理案例"
-    ],
-    "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 命令行工具": [
-      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 命令行工具/_index.md",
-      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 命令行工具/etcdctl.md",
-      "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 命令行工具/etcdctl user 命令.md"
-    ],
-    "docs/2.编程/高级编程语言/Python/Python 标准库": [
-      "docs/2.编程/高级编程语言/Python/Python 标准库/_index.md",
-      "docs/2.编程/高级编程语言/Python/Python 标准库/Python 标准库.md",
-      "docs/2.编程/高级编程语言/Python/Python 标准库/数据类型.md",
-      "docs/2.编程/高级编程语言/Python/Python 标准库/Python 类.md"
-    ],
-    "docs/2.编程/高级编程语言/Python/Python 第三方库": [
-      "docs/2.编程/高级编程语言/Python/Python 第三方库/_index.md",
-      "docs/2.编程/高级编程语言/Python/Python 第三方库/Python 第三方库.md",
-      "docs/2.编程/高级编程语言/Python/Python 第三方库/爬虫.md",
-      "docs/2.编程/高级编程语言/Python/Python 第三方库/图像处理.md",
-      "docs/2.编程/高级编程语言/Python/Python 第三方库/GUI.md"
-    ],
-    "docs/10.云原生/DevOps": [
-      "docs/10.云原生/DevOps/_index.md",
-      "docs/10.云原生/DevOps/DevOps.md",
-      "docs/10.云原生/DevOps/ArgoCD",
-      "docs/10.云原生/DevOps/Drone",
-      "docs/10.云原生/DevOps/Jenkins",
-      "docs/10.云原生/DevOps/JenkinsX",
-      "docs/10.云原生/DevOps/Skaffold",
-      "docs/10.云原生/DevOps/Jenkins 与 skaffold 示例.md"
-    ],
-    "docs/10.云原生/DevOps/Drone": [
-      "docs/10.云原生/DevOps/Drone/_index.md",
-      "docs/10.云原生/DevOps/Drone/Drone.md",
-      "docs/10.云原生/DevOps/Drone/Server 与 Runner 部署.md",
-      "docs/10.云原生/DevOps/Drone/Drone Pipelines 详解.md",
-      "docs/10.云原生/DevOps/Drone/drone 命令行工具.md",
-      "docs/10.云原生/DevOps/Drone/Drone 任务示例.md"
-    ],
-    "docs/6.可观测性/追踪系统": [
-      "docs/6.可观测性/追踪系统/_index.md",
-      "docs/6.可观测性/追踪系统/追踪系统.md",
-      "docs/6.可观测性/追踪系统/动态追踪.md",
-      "docs/6.可观测性/追踪系统/Tempo - 分布式Loki链路追踪利器.md"
-    ],
-    "docs/2.编程/高级编程语言/Python/Python工具": [
-      "docs/2.编程/高级编程语言/Python/Python工具/_index.md",
-      "docs/2.编程/高级编程语言/Python/Python工具/Python 工具.md",
-      "docs/2.编程/高级编程语言/Python/Python工具/PIP.md"
     ]
   },
   "actionBarOrder": {},
