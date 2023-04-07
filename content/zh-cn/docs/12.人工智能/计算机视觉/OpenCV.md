@@ -25,11 +25,14 @@ go https://github.com/hybridgroup/gocv
 
 > 参考：
 > - [4.x 官网文档，主页](https://docs.opencv.org/4.x/index.html)
+> - [4.x 官方文档，介绍]()
 > - [4.x 官方文档，模块](https://docs.opencv.org/4.x/modules.html)
 >     - [4.x 官方文档，Class 列表](https://docs.opencv.org/4.x/annotated.html)
 > - https://zhuanlan.zhihu.com/p/19988205
 
 OpenCV 具有模块化的结构，整个 OpenCV 的功能由一个个模块提供，每个模块具有自己的类、函数、方法，并且可以多个模块共享使用。这种模块化的结构可以让 OpenCV 像一门编程语言一样，具有自己的标准库和第三方库，标准库中的标准模块可以实现自身的核心功能，第三方库的模块可以基于核心功能扩展其他功能。就像 <https://pkg.go.dev/> 中的各种包，可以看到类型、方法、函数等等的描述。
+
+所有 OpenCV 的类和函数都放在 cv Namespace 中(Namespace 是 C++ 编程语言的基本概念)，如果我们要使用 C++ 代码调用 OpenCV 的模块，需要使用 `cv::` 或在头部添加 `using namespace cv;` 指令。
 
 模块分为两类：
 
@@ -38,12 +41,18 @@ OpenCV 具有模块化的结构，整个 OpenCV 的功能由一个个模块提�
 
 ## Main Modules(主模块)
 
--   core. [Core functionality](https://docs.opencv.org/4.x/d0/de1/group__core.html) # 核心功能模块，定义了基本的数据结构，包括最重要的 Mat 类、XML 读写、opengl三维渲染等。
--   imgproc. [Image Processing](https://docs.opencv.org/4.x/d7/dbd/group__imgproc.html) # 全称为 image processing，即图像处理。包括图像滤波、集合图像变换、直方图计算、形状描述子等。图像处理是计算机视觉的重要工具。
--   imgcodecs. [Image file reading and writing](https://docs.opencv.org/4.x/d4/da8/group__imgcodecs.html)
--   videoio. [Video I/O](https://docs.opencv.org/4.x/dd/de7/group__videoio.html) # 视频分析模块。包括背景提取、光流跟踪、卡尔曼滤波等，做视频监控的读者会经常使用这个模块。
--   highgui. [High-level GUI](https://docs.opencv.org/4.x/d7/dfc/group__highgui.html)
--   video. [Video Analysis](https://docs.opencv.org/4.x/d7/de9/group__video.html)
+-   **core** # 核心功能模块，定义了基本的数据结构，包括最重要的 Mat 类、XML 读写、opengl三维渲染等。
+    - [Core functionality](https://docs.opencv.org/4.x/d0/de1/group__core.html) 
+-   **imgproc** # 全称为 image processing，即图像处理。包括图像滤波、集合图像变换、直方图计算、形状描述子等。图像处理是计算机视觉的重要工具。
+    - [Image Processing](https://docs.opencv.org/4.x/d7/dbd/group__imgproc.html)
+-   **imgcodecs** # 图像文件读写
+    - [Image file reading and writing](https://docs.opencv.org/4.x/d4/da8/group__imgcodecs.html)
+-   **videoio** # 负责视频文件的读写，也包括摄像头、Kinect 等的输入。
+    - [Video I/O](https://docs.opencv.org/4.x/dd/de7/group__videoio.html)
+-   highgui # 高级图形界面及与 QT 框架的整合。
+    - [High-level GUI](https://docs.opencv.org/4.x/d7/dfc/group__highgui.html)
+-   **video** # 视频分析模块。包括背景提取、光流跟踪、卡尔曼滤波等，做视频监控的读者会经常使用这个模块。
+    - [Video Analysis](https://docs.opencv.org/4.x/d7/de9/group__video.html)
 -   calib3d. [Camera Calibration and 3D Reconstruction](https://docs.opencv.org/4.x/d9/d0c/group__calib3d.html)
 -   features2d. [2D Features Framework](https://docs.opencv.org/4.x/da/d9b/group__features2d.html)
 -   objdetect. [Object Detection](https://docs.opencv.org/4.x/d5/d54/group__objdetect.html)
@@ -121,3 +130,33 @@ OpenCV 具有模块化的结构，整个 OpenCV 的功能由一个个模块提�
 当我们使用 OpenCV 打开一张图片时，就是实例化了一个 Mat 类，这个类的本质是一个 **N-dimensional dense array class(N维密集数组类)**。说白了就是将图像转为由纯数字表示的形式。任何对图像的处理，其实就是数学计算。
 
 Mat 类可存储实数或复值向量和矩阵、灰度或彩色图像、体素体积、向量场、点云、张量、直方图（不过，非常高维的直方图可能更好地存储在 SparseMat 中）。
+
+**对于图像处理来说，实例化一个 Mat 对象，是一切的基础。**
+
+# 图像文件读写模块
+
+## imread() 函数
+
+从文件中读取图像，返回一个 Mat 实例
+
+## imwrite() 函数
+
+保存图像到指定的文件中。
+
+# Video I/O 模块
+
+使用 OpenCV 读写视频或图像序列。
+
+## VideoCapture 类
+
+用于从视频文件、图像序列或摄像头中捕获视频的类。当我们打开一个视频或一个捕获设备时，就是实例化一个 VideoCapture。
+
+get() # 获取指定的 VideoCapture 属性
+set() # 设置指定的  VideoCapture 属性
+
+read() # 抓取、解码并返回下一个视频帧。
+release() # 关闭视频文件或捕获设备(比如摄像头)
+
+## VideoWriter 类
+
+视频写入器的类
