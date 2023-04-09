@@ -12,6 +12,16 @@ weight: 1
 - **Python 语言参考**描述了 Python 语言的具体语法和语义
 - **Python 标准库则**是与 Python 语言一起发行的一些可选功能，以便人们可以从一开始就轻松得使用 Python 进行编程。
 
+## 内置模块
+
+内置模块属于[Python 规范与标准库](#概述)的一部分。这部分内置模块内嵌到解释器里面（也就是说无法在文件系统中找到与模块名相同的同名文件），它们给一些虽并非语言核心但却内嵌的操作提供接口，要么是为了效率，要么是给操作系统基础操作例如系统调入提供接口。 这些模块集是一个配置选项， 并且还依赖于底层的操作系统。 例如，[`winreg`](https://docs.python.org/zh-cn/3/library/winreg.html#module-winreg "winreg: Routines and objects for manipulating the Windows registry. (Windows)") 模块只在 Windows 系统上提供。一个特别值得注意的模块 [`sys`](https://docs.python.org/zh-cn/3/library/sys.html#module-sys "sys: Access system-specific parameters and functions.")，它被内嵌到每一个 Python 编译器中，**sys 模块是 CPython 非常重要的内置模块，也是很多功能的基础模块**。
+
+```python
+>>> import sys
+>>> sys.builtin_module_names
+('_abc', '_ast', '_bisect', '_blake2', '_codecs', '_codecs_cn', '_codecs_hk', '_codecs_iso2022', '_codecs_jp', '_codecs_kr', '_codecs_tw', '_collections', '_contextvars', '_csv', '_datetime', '_functools', '_heapq', '_imp', '_io', '_json', '_locale', '_lsprof', '_md5', '_multibytecodec', '_opcode', '_operator', '_pickle', '_random', '_sha1', '_sha256', '_sha3', '_sha512', '_signal', '_sre', '_stat', '_statistics', '_string', '_struct', '_symtable', '_thread', '_tracemalloc', '_warnings', '_weakref', '_winapi', '_xxsubinterpreters', 'array', 'atexit', 'audioop', 'binascii', 'builtins', 'cmath', 'errno', 'faulthandler', 'gc', 'itertools', 'marshal', 'math', 'mmap', 'msvcrt', 'nt', 'sys', 'time', 'winreg', 'xxsubtype', 'zlib')
+```
+
 # Python 标识符与关键字
 
 > 参考：
@@ -73,9 +83,15 @@ yield
 
 Python 标准库非常庞大，所提供的组件涉及范围十分广泛，正如以下内容目录所显示的。这个库包含了多个内置模块 (以 C 编写)，Python 程序员必须依靠它们来实现系统级功能，例如文件 I/O，此外还有大量以 Python 编写的模块，提供了日常编程中许多问题的标准解决方案。其中有些模块经过专门设计，通过将特定平台功能抽象化为平台中立的 API 来鼓励和加强 Python 程序的可移植性。
 
-## 内置函数
+## 互联网数据处理
 
-## 内置常量
+-   [`email` --- 电子邮件与 MIME 处理包](https://docs.python.org/zh-cn/3/library/email.html)
+-   [`json` --- JSON 编码和解码器](https://docs.python.org/zh-cn/3/library/json.html)
+-   [`mailbox` --- 操作多种格式的邮箱](https://docs.python.org/zh-cn/3/library/mailbox.html)
+-   [`mimetypes` --- 映射文件名到 MIME 类型](https://docs.python.org/zh-cn/3/library/mimetypes.html)
+-   [`base64` --- Base16, Base32, Base64, Base85 数据编码](https://docs.python.org/zh-cn/3/library/base64.html)
+-   [`binascii` --- 二进制和 ASCII 码互转](https://docs.python.org/zh-cn/3/library/binascii.html)
+-   [`quopri` --- 编码与解码经过 MIME 转码的可打印数据](https://docs.python.org/zh-cn/3/library/quopri.html)
 
 ## 互联网协议和支持
 
@@ -103,10 +119,19 @@ Python 标准库非常庞大，所提供的组件涉及范围十分广泛，正�
 - [xmlrpc.server--- 基本 XML-RPC 服务器](https://docs.python.org/zh-cn/3/library/xmlrpc.server.html)
 - [ipaddress--- IPv4/IPv6 操作库](https://docs.python.org/zh-cn/3/library/ipaddress.html)
 
-## 内嵌模块
 
-### Python 运行时服务
 
-Python 运行时服务
+## Python 运行时服务
+
+> 参考：
+> 
+> - [官方文档-3，Python 标准库-Python 运行时服务](https://docs.python.org/3/library/python.html)
+
+Python 运行时服务类型的模块提供了 Python 解释器及其环境交互有关的各种服务。
+
+- [`dataclasses` --- 数据类](https://docs.python.org/zh-cn/3/library/dataclasses.html)
+- [`site` —— 定义存放第三方包的路径](https://docs.python.org/zh-cn/3/library/site.html)
+
+### 内嵌模块
 
 [`sys`](https://docs.python.org/3/library/sys.html) # System-specific parameters and functions

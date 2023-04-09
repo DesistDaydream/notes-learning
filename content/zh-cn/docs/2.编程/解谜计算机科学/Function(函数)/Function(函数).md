@@ -53,22 +53,14 @@ add(2, 3)
 
 ## Evaluation strategy(评估策略)
 
-| Convention | Description | Common use |
-| ---------- | ----------- | ---------- |
-
-| Call by value(值调用)
-值传递 | 将参数的值的副本传递给子程序。
-(子程序内修改它们不会影响原始参数) | Default in most Algol-like languages after [Algol 60](https://en.wikipedia.org/wiki/Algol_60)
-, such as Pascal, Delphi, Simula, CPL, PL/M, Modula, Oberon, Ada, and many others. C, C++, Java (References to objects and arrays are also passed by value) |
-| Call by reference(引用调用)
-引用传递 | 将参数的引用地址传递给子程序
-(子程序内修改它们会影响原始参数) | Selectable in most Algol-like languages after [Algol 60](https://en.wikipedia.org/wiki/Algol_60)
-, such as Algol 68, Pascal, Delphi, Simula, CPL, PL/M, Modula, Oberon, Ada, and many others. C++, Fortran, [PL/I](https://en.wikipedia.org/wiki/PL/I) |
-| Call by result | Parameter value is copied back to argument on return from the subroutine | Ada OUT parameters |
-| Call by value-result | Parameter value is copied back on entry to the subroutine and again on return | Algol, [Swift](<https://en.wikipedia.org/wiki/Swift_(programming_language)>)
-in-out parameters |
-| Call by name | Like a macro – replace the parameters with the unevaluated argument expressions | Algol, [Scala](<https://en.wikipedia.org/wiki/Scala_(programming_language)>) |
-| Call by constant value | Like call by value except that the parameter is treated as a constant | PL/I NONASSIGNABLE parameters, Ada IN parameters |
+| Convention                          | Description                                                                     | Common use                                                                                                                                                                                                                                               |
+| ----------------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Call by value(值调用)值传递         | 将参数的值的副本传递给子程序。(子程序内修改它们不会影响原始参数)                | Default in most Algol-like languages after [Algol 60](https://en.wikipedia.org/wiki/Algol_60), such as Pascal, Delphi, Simula, CPL, PL/M, Modula, Oberon, Ada, and many others. C, C++, Java (References to objects and arrays are also passed by value) |
+| Call by reference(引用调用)引用传递 | 将参数的引用地址传递给子程序(子程序内修改它们会影响原始参数)                    | Selectable in most Algol-like languages after [Algol 60](https://en.wikipedia.org/wiki/Algol_60), such as Algol 68, Pascal, Delphi, Simula, CPL, PL/M, Modula, Oberon, Ada, and many others. C++, Fortran, [PL/I](https://en.wikipedia.org/wiki/PL/I)    |
+| Call by result                      | Parameter value is copied back to argument on return from the subroutine        | Ada OUT parameters                                                                                                                                                                                                                                       |
+| Call by value-result                | Parameter value is copied back on entry to the subroutine and again on return   | Algol, [Swift](<https://en.wikipedia.org/wiki/Swift_(programming_language)>)in-out parameters                                                                                                                                                            |
+| Call by name                        | Like a macro – replace the parameters with the unevaluated argument expressions | Algol, [Scala](<https://en.wikipedia.org/wiki/Scala_(programming_language)>)                                                                                                                                                                             |
+| Call by constant value              | Like call by value except that the parameter is treated as a constant           | PL/I NONASSIGNABLE parameters, Ada IN parameters                                                                                                                                                                                                         |
 
 ### Call by Reference(通过引用调用) 与 Call by Value(通过值调用)
 
