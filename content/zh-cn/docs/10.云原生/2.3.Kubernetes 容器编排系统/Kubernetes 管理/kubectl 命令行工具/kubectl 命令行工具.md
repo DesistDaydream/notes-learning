@@ -362,7 +362,7 @@ EXAMPLE
 
 ### config # 使用子命令修改 kubeconfig 文件
 
-用法详见 [config 子命令](docs/10.云原生/2.3.Kubernetes%20容器编排系统/Kubernetes%20管理/kubectl%20命令行工具/config%20子命令.md)
+用法详见 [config 子命令](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/Kubernetes%20管理/kubectl%20命令行工具/config%20子命令.md)
 
 plugin         Runs a command-line plugin
 

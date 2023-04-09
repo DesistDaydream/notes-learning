@@ -1,5 +1,6 @@
 ---
 title: Python
+weight: 1
 ---
 
 # 概述
@@ -17,50 +18,9 @@ Python 编程语言最早由 C 语言实现，称为 CPython
 # Hello World
 
 
-# Python 标识符与关键字
+# Python 范儿
 
-> 参考：
-> - [官方文档，语言参考-2.3.标识符和关键字](https://docs.python.org/3/reference/lexical_analysis.html#identifiers)
-
-and
-as
-assert
-async
-await
-break
-class
-continue
-def
-del
-elif
-else
-except
-False
-finally
-for
-from
-global
-if
-import
-in
-is
-lambda
-None
-nonlocal
-not
-or
-pass
-raise
-return
-True
-try
-while
-with
-yield
-
-# Python 语言规范
-
-# Python
+Pythonic(Python 范儿)
 
 ## 项目结构
 
@@ -81,3 +41,11 @@ yield
 ## 构建方式
 
 # 版本变化
+
+# Python 增强建议
+
+> 参考：
+> 
+> - [官网](https://peps.python.org/)
+
+**Python Enhancement Proposals(Python 增强建议，简称 PEP)** 

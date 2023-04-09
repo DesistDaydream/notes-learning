@@ -4,7 +4,7 @@ title: config 子命令
 
 # 概述
 
-config 子命令用于控制 [User Account](docs/10.云原生/2.3.Kubernetes%20容器编排系统/7.API%20访问控制/1.Authenticating(认证)/User%20Account%20详解.md) 的 KubeConfig 文件
+config 子命令用于控制 [User Account](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/7.API%20访问控制/1.Authenticating(认证)/User%20Account%20详解.md) 的 KubeConfig 文件
 
 # Syntax(语法)
 

@@ -39,11 +39,11 @@ title: Service Manifests 详解
    port: NUM # 指明该 service 所使用的端口
    targetPort: XXX # 指明后端 Pod 的端口
 
-**selector: <map\[STRING]\[STRING]>** # 通过[Label and Selector(标签和选择器)](docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/Object%20管理/Label%20and%20Selector(标签和选择器)/Label%20and%20Selector(标签和选择器).md) 选择哪些 Pod 是该 Service 的后端。
+**selector: <map\[STRING]\[STRING]>** # 通过[Label and Selector(标签和选择器)](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/Object%20管理/Label%20and%20Selector(标签和选择器)/Label%20and%20Selector(标签和选择器).md) 选择哪些 Pod 是该 Service 的后端。
 
 **sessionAffinity: \<ClientIP|None>** # 设置会话亲和度，当为 None 的时候为同一个客户端的访问都会指向同一个 Pod，ClientIP 为进行负载调度
 
-**type: STRING** # 
+**type: STRING** #
 
 # Endpoints Manifests 详解
 
@@ -64,8 +64,8 @@ name: NAME # 与 Endpoints 所关联的 Service 的 name 想同
 subsets 描述子集
 
 - **addresses: []OBJECT**
-    - **ip: STRING** # 
-    - **hostname: STRING** # 
+    - **ip: STRING** #
+    - **hostname: STRING** #
 - **ports: []OBJECT** #
     - **port: INT32** # Endpoint 的端口
 

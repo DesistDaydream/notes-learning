@@ -1,5 +1,6 @@
 ---
 title: Go
+weight: 1
 ---
 
 # 概述
@@ -66,61 +67,17 @@ func main() {
 Hello World
 ```
 
-# Go 语言关键字
+# Go 范儿
 
 > 参考：
-> - [官方文档,参考-规范-关键字](https://go.dev/ref/spec#Keywords)
-
-Go 语言非常简单，只有 25 个`关键字(Keywords)`可以使用，记住这 25 个关键字，就掌握了最基本的 Go 语言用法。这些关键字是 go 语言保留的，不能用作标识符
-
-`关键字`在编程语言中是指该语言的一个功能，比如下文面的 `var`，就是指声明一个变量，`func` 就是定义一个函数等等。
-
-> Note: if-else 算两个关键字所以在这里一共只写了 24 个。
-
-1. **break** # 控制结构
-2. **case** # 控制结构
-3. **chan** # 用于 channel 通讯
-4. **const** # 语言基础里面的常量申明
-5. **continue** # 用在 for 控制结构中，用以忽略本次循环的后续所有逻辑，执行下一次循环
-6. **default** # 控制结构
-7. **defer** # 用于在函数退出之前执行某语句的功能
-8. **fallthrough** # 控制结构
-9. **for** # 控制结构
-10. **func** # 用于定义函数和方法
-11. **go** # 用于并发
-12. **goto** 控制结构
-13. **if-else** # 控制结构
-14. **import** 用于定义该文件引用某个包
-15. **interface** # 用于定义接口
-16. **map** # 用于声明 map 类型数据
-17. **package** # 用于定义该文件所属的包
-18. **range** # 用于读取 slice、map、channel 数据
-19. **return** # 用于从函数返回。有时候也用来直接跳出当前函数，回到主程序继续执行
-20. **select** # 用于选择不同类型的通讯
-21. **struct** # 用于定义抽象数据类型
-22. **switch** # 控制结构
-23. **type** # 用于 Type Declarations(类型声明)，有两种形式：
-24. Definitions(定义) 自定义类型
-25. Declarations(声明) 一个类型的别名。
-    1. 其实所谓的类型的别名，也可以当作一种自定义的类型。
-26. **var** # 用于 Declarations(声明) 变量
-
-# Go 语言规范
-
-> 参考：
+> 
 > - [GitHub 项目 Wiki，golang/go-Wiki-Go 代码审查](https://github.com/golang/go/wiki/CodeReviewComments)
-> - [官方文档,参考-规范](https://go.dev/ref/spec)
->     - [官方文档,参考-规范 的翻译](https://github.com/bekcpear/mypelicanconfandarticles/blob/master/content/Tech/gospec.rst)
 > - [官方文档，有效的 Go-名称](https://go.dev/doc/effective_go#names)
 >     - [MakeOptim 博客，Effective Go 中文](https://makeoptim.com/golang/effective-go)(官方文档的中文翻译)
 > - [Go 博客，Package names](https://go.dev/blog/package-names)
 > - [博客园，不一样的 go 语言-gopher](https://www.cnblogs.com/laud/p/gopher.html)
 
 gopher 原意地鼠，在 go 语言的世界里解释为地道的 go 程序员。在其他语言的世界里也有 PHPer，Pythonic 的说法，反而 Java 是个例外。虽然也有 Javaer 之类的说法，但似乎并不被认可。而地道或者说道地，说的是 gopher 写的代码无不透露出 go 的独特气息，比如项目结构、命名方式、代码格式、编码风格、构建方式等等。用 gopher 的话说，用 go 编写代码就像是在画一幅中国山水画，成品美不胜收，心旷神怡。
-
-## Notation(表示法)
-
-Go 语言的语法遵从 [EBNF](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) 表示法
 
 ## 环境变量
 

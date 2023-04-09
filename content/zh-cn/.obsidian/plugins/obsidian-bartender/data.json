@@ -776,7 +776,7 @@
       "docs/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)",
       "docs/2.编程/解谜计算机科学/Operator(运算符).md",
       "docs/2.编程/解谜计算机科学/Function(函数)",
-      "docs/2.编程/解谜计算机科学/Object-oriented Programming(面向对象编程).md",
+      "docs/2.编程/解谜计算机科学/面向对象编程",
       "docs/2.编程/解谜计算机科学/假如你来发明编程语言"
     ],
     "docs/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)": [
@@ -815,8 +815,8 @@
       "docs/2.编程/高级编程语言/ECMAScript/_index.md",
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript.md",
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 环境安装与使用",
-      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 标准库",
-      "docs/2.编程/高级编程语言/ECMAScript/TypeScript 标准库",
+      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库",
+      "docs/2.编程/高级编程语言/ECMAScript/TypeScript 规范与标准库",
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 第三方库",
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具",
       "docs/2.编程/高级编程语言/ECMAScript/Vue",
@@ -828,19 +828,19 @@
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/代码格式化.md",
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/Vite.md"
     ],
-    "docs/2.编程/高级编程语言/ECMAScript/JavaScript 标准库": [
-      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/_index.md",
-      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/JavaScript 标准库.md",
-      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/数据类型.md",
-      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/各种类型的 object(对象) 的常见方法.md",
-      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/DOM(文档对象模型).md",
-      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/Event(事件).md",
-      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 标准库/回调函数与异步编程.md"
+    "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库": [
+      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库/_index.md",
+      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库/JavaScript 规范与标准库.md",
+      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库/数据类型.md",
+      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库/各种类型的 object(对象) 的常见方法.md",
+      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库/DOM(文档对象模型).md",
+      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库/Event(事件).md",
+      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库/回调函数与异步编程.md"
     ],
-    "docs/2.编程/高级编程语言/ECMAScript/TypeScript 标准库": [
-      "docs/2.编程/高级编程语言/ECMAScript/TypeScript 标准库/_index.md",
-      "docs/2.编程/高级编程语言/ECMAScript/TypeScript 标准库/TypeScript 标准库.md",
-      "docs/2.编程/高级编程语言/ECMAScript/TypeScript 标准库/Data Type(数据类型).md"
+    "docs/2.编程/高级编程语言/ECMAScript/TypeScript 规范与标准库": [
+      "docs/2.编程/高级编程语言/ECMAScript/TypeScript 规范与标准库/_index.md",
+      "docs/2.编程/高级编程语言/ECMAScript/TypeScript 规范与标准库/TypeScript 规范与标准库.md",
+      "docs/2.编程/高级编程语言/ECMAScript/TypeScript 规范与标准库/Data Type(数据类型).md"
     ],
     "docs/2.编程/高级编程语言/ECMAScript/Vue": [
       "docs/2.编程/高级编程语言/ECMAScript/Vue/_index.md",
@@ -853,7 +853,7 @@
       "docs/2.编程/高级编程语言/Go/_index.md",
       "docs/2.编程/高级编程语言/Go/Go.md",
       "docs/2.编程/高级编程语言/Go/Go 环境安装与使用",
-      "docs/2.编程/高级编程语言/Go/Go 标准库",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库",
       "docs/2.编程/高级编程语言/Go/Go 网络编程",
       "docs/2.编程/高级编程语言/Go/Go 第三方库",
       "docs/2.编程/高级编程语言/Go/Go 工具",
@@ -868,34 +868,34 @@
       "docs/2.编程/高级编程语言/Go/Go 扩展/Go OpenAPI.md",
       "docs/2.编程/高级编程语言/Go/Go 扩展/Go 语言现状.md"
     ],
-    "docs/2.编程/高级编程语言/Go/Go 标准库": [
-      "docs/2.编程/高级编程语言/Go/Go 标准库/_index.md",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/Go 标准库.md",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/数据类型.md",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/Variables(变量).md",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/Control Structures(控制结构).md",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/Arrays(数组) 与 Slices(切片).md",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/Function(函数).md",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/Pointers(指针).md",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/Maps(映射) 与 Struct(结构体).md",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/Method(方法)、Interface(接口)",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/Reflection(反射).md",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/Goroutines 与 Channels",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/Generic(泛型).md",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/I_O",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/文本处理",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/时间处理",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/Template(模板).md",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/加密与解密",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/嵌入静态文件.md",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/Unit test(单元测试).md"
+    "docs/2.编程/高级编程语言/Go/Go 规范与标准库": [
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Go 规范与标准库.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/数据类型.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Variables(变量).md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Control Structures(控制结构).md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Arrays(数组) 与 Slices(切片).md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Function(函数).md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Pointers(指针).md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Maps(映射) 与 Struct(结构体).md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method(方法)、Interface(接口)",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Reflection(反射).md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Goroutines 与 Channels",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Generic(泛型).md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/I_O",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/时间处理",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Template(模板).md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/嵌入静态文件.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Unit test(单元测试).md"
     ],
-    "docs/2.编程/高级编程语言/Go/Go 标准库/Method(方法)、Interface(接口)": [
-      "docs/2.编程/高级编程语言/Go/Go 标准库/Method(方法)、Interface(接口)/_index.md",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/Method(方法)、Interface(接口)/Method(方法)、Interface(接口).md",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/Method(方法)、Interface(接口)/Go 接口设计原则.md",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/Method(方法)、Interface(接口)/接口设计示例 二.md",
-      "docs/2.编程/高级编程语言/Go/Go 标准库/Method(方法)、Interface(接口)/接收设计示例 三.md"
+    "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method(方法)、Interface(接口)": [
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method(方法)、Interface(接口)/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method(方法)、Interface(接口)/Method(方法)、Interface(接口).md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method(方法)、Interface(接口)/Go 接口设计原则.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method(方法)、Interface(接口)/接口设计示例 二.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method(方法)、Interface(接口)/接收设计示例 三.md"
     ],
     "docs/2.编程/高级编程语言/Go/Go 环境安装与使用": [
       "docs/2.编程/高级编程语言/Go/Go 环境安装与使用/_index.md",
@@ -924,17 +924,17 @@
       "docs/2.编程/高级编程语言/Python/_index.md",
       "docs/2.编程/高级编程语言/Python/Python.md",
       "docs/2.编程/高级编程语言/Python/Python 环境安装与使用",
-      "docs/2.编程/高级编程语言/Python/Python 标准库",
+      "docs/2.编程/高级编程语言/Python/Python 规范与标准库",
       "docs/2.编程/高级编程语言/Python/Python 网络编程",
       "docs/2.编程/高级编程语言/Python/Python 第三方库",
       "docs/2.编程/高级编程语言/Python/Python工具",
       "docs/2.编程/高级编程语言/Python/Jinja.md"
     ],
-    "docs/2.编程/高级编程语言/Python/Python 标准库": [
-      "docs/2.编程/高级编程语言/Python/Python 标准库/_index.md",
-      "docs/2.编程/高级编程语言/Python/Python 标准库/Python 标准库.md",
-      "docs/2.编程/高级编程语言/Python/Python 标准库/数据类型.md",
-      "docs/2.编程/高级编程语言/Python/Python 标准库/Python 类.md"
+    "docs/2.编程/高级编程语言/Python/Python 规范与标准库": [
+      "docs/2.编程/高级编程语言/Python/Python 规范与标准库/_index.md",
+      "docs/2.编程/高级编程语言/Python/Python 规范与标准库/Python 规范与标准库.md",
+      "docs/2.编程/高级编程语言/Python/Python 规范与标准库/数据类型.md",
+      "docs/2.编程/高级编程语言/Python/Python 规范与标准库/Python 类.md"
     ],
     "docs/2.编程/高级编程语言/Python/Python 第三方库": [
       "docs/2.编程/高级编程语言/Python/Python 第三方库/_index.md",

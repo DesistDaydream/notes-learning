@@ -9,6 +9,7 @@ title: Arrays(数组) 与 Slices(切片)
 # Array(数组)
 
 > 参考：
+> 
 > - [Go 语言之旅，Arrays](https://go.dev/tour/moretypes/6)
 
 **Array(数组)** 是具有相同的唯一类型的一组 **已编号**、且**长度固定** 的数据项序列。每个数据项称为 **element(元素)**、长度指的是**元素的个数**、编号指每个元素的 **index(索引)，**索引号从 0 开始。

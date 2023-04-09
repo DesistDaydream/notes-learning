@@ -17,7 +17,7 @@ weight: 1
 
 ### 自定义 Python
 
-由于 [Python 模块与包](docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20模块与包.md) 的管理非常混乱，我们有没有办法像 Go 一样，依靠一个 GOPATH 即可统一管理呢？可以，当我们**了解了模块搜索路径的底层原理之后**，即可开始着手将 Python 的依赖都移动到指定的目录
+由于 [Python 模块与包](/docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20模块与包.md) 的管理非常混乱，我们有没有办法像 Go 一样，依靠一个 GOPATH 即可统一管理呢？可以，当我们**了解了模块搜索路径的底层原理之后**，即可开始着手将 Python 的依赖都移动到指定的目录
 
 对于 root 用户来说，GOPATH 默认在 /root/go，那我们就将 PYTHONHOME 设为 /root/python，开始吧(注意这里要用绝对路径，不要使用 `~`)
 

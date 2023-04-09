@@ -253,7 +253,7 @@ def greeting(name):
 
 当导入一个名为 spam 的模块时，Python 解释器首先搜索具有该名称的 **Built-in module(内置模块)**(内置模块可以用过 `sys.builtin_module_names` 获取)，若没找到，则会在 **sys 内置模块中的 `${path}` 数组变量**下的目录列表中搜索名为 `spam.py` 的文件（从第一个元素开始逐一搜索，找到后就不再找了）。
 
-> 这里面说的内置模块，属于[Python 标准库](/docs/2.编程/高级编程语言/Python/Python%20标准库/Python%20标准库.md) 的一部分。这部分内置模块内嵌到解释器里面（也就是说无法在文件系统中找到与模块名相同的同名文件），它们给一些虽并非语言核心但却内嵌的操作提供接口，要么是为了效率，要么是给操作系统基础操作例如系统调入提供接口。 这些模块集是一个配置选项， 并且还依赖于底层的操作系统。 例如，[`winreg`](https://docs.python.org/zh-cn/3/library/winreg.html#module-winreg "winreg: Routines and objects for manipulating the Windows registry. (Windows)") 模块只在 Windows 系统上提供。一个特别值得注意的模块 [`sys`](https://docs.python.org/zh-cn/3/library/sys.html#module-sys "sys: Access system-specific parameters and functions.")，它被内嵌到每一个 Python 编译器中，**sys 模块是 CPython 非常重要的内置模块，也是很多功能的基础模块**。
+> 这里面说的内置模块，属于[Python 规范与标准库](/docs/2.编程/高级编程语言/Python/Python%20规范与标准库/Python%20规范与标准库.md) 的一部分。这部分内置模块内嵌到解释器里面（也就是说无法在文件系统中找到与模块名相同的同名文件），它们给一些虽并非语言核心但却内嵌的操作提供接口，要么是为了效率，要么是给操作系统基础操作例如系统调入提供接口。 这些模块集是一个配置选项， 并且还依赖于底层的操作系统。 例如，[`winreg`](https://docs.python.org/zh-cn/3/library/winreg.html#module-winreg "winreg: Routines and objects for manipulating the Windows registry. (Windows)") 模块只在 Windows 系统上提供。一个特别值得注意的模块 [`sys`](https://docs.python.org/zh-cn/3/library/sys.html#module-sys "sys: Access system-specific parameters and functions.")，它被内嵌到每一个 Python 编译器中，**sys 模块是 CPython 非常重要的内置模块，也是很多功能的基础模块**。
 
 **`${sys.path}` 变量是我们使用 Python 模块的最重要一环**。通常来说，该变量的值来源于以下位置：
 
@@ -274,7 +274,7 @@ def greeting(name):
 ## sys.path 列表生成逻辑
 
 > 参考：
-> 
+>
 > - [官方文档，Python 标准库-导入模块-sys.path 模块搜索路径初始化](https://docs.python.org/3/library/sys_path_init.html)
 > - [官方文档，Python 标准库-Python 运行时服务-site—特定于 site 的配置](https://docs.python.org/3/library/site.html)
 > - [源码，Moduels/getpath.py](https://github.com/python/cpython/blob/3.11/Modules/getpath.py)
@@ -294,9 +294,9 @@ def greeting(name):
 - DETECT _pth FILE
 - CHECK FOR BUILD DIRECTORY
 - **CALCULATE prefix AND exec_prefix** # 计算 prefix 和 exec_prefix 变量的值。
-- **UPDATE pythonpath (sys.path)** # 
-- **POSIX prefix/exec_prefix QUIRKS** # 
-- **SET pythonpath FROM _PTH FILE** # 
+- **UPDATE pythonpath (sys.path)** #
+- **POSIX prefix/exec_prefix QUIRKS** #
+- **SET pythonpath FROM _PTH FILE** #
 - **UPDATE config FROM CALCULATED VALUES** # 将计算后的值赋值给相关变量
 
 最终，Python 解释器启动后，将为如下几个变量赋值
@@ -377,15 +377,15 @@ Current thread 0x00007fe5a7de31c0 (most recent call first):
 第四步，这些 landmark 定位后，prefix 即表示可用，此时为 sys.prefix 和 sys.exec_prefix 两个变量赋值。
 
 > 到这里就有很大的疑惑，为什么 Ubuntu、CentOS 的 Python 的可执行文件，即.Python 解释器在 /usr/bin/ 目录下，但是生成的 prefix 却是 /usr 呢？
-> 
+>
 > 在使用源码构建 Python 解释器之前，会执行 `./configure --prefix=/usr 命令，其中 --prefix 就是设置 prefix 的默认值。其实 CPython 官方在 configure 文件中为 prefix 设置了 /usr/local 这个默认值。。。但是。。。
-> 
+>
 > 各种 Linux 发行版的 Python 都在生成自己的路径，所以 Python 的 prefix 混乱根源也在这。这时 Python 的官方文档和各个发行版实际就对不上，给初学者造成很大困扰。。o(╯□╰)o。。
-> 
-> 所以，就算 Python 解释器在 /usr/bin 目录下，只要 prefix 为 /usr，那么根据 prefix 拼接出的各种 sys.path 路径，也会在 /usr/lib/PythonX.Y 目录下，这从[Python 环境安装与使用](docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20环境安装与使用.md) 中的自定义 python 部分可以看到实际改变情况。
-> 
+>
+> 所以，就算 Python 解释器在 /usr/bin 目录下，只要 prefix 为 /usr，那么根据 prefix 拼接出的各种 sys.path 路径，也会在 /usr/lib/PythonX.Y 目录下，这从[Python 环境安装与使用](/docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20环境安装与使用.md) 中的自定义 python 部分可以看到实际改变情况。
+>
 > 也许是出于复用 /usr/lib 目录的目的把，毕竟 python 属于系统级别依赖的程序，并且 Python 的模块大多是 ${prefxi}/lib/ 目录的，把 /usr 当做 prefix 的话，可以统一管理所有 lib。
-> 
+>
 > 而 Windows 中，Python 并不是系统自带的，可以手动安装，并且安装时可以指定安装目录，这时，这个安装目录就是 prefix。
 
 #### prefix 结果示例
@@ -436,7 +436,7 @@ Windows 生成的值为：
 添加包含 Python 标准模块以及这些模块所依赖的任何扩展模块的文件和目录，**这些路径是很重要的，包含了 Python 解释器启动成功所依赖的模块**。通常包含如下文件和目录：
 
 - `${sys.prefix}/lib/python${VERSION_MAJOR}${VERSION_MINOR}.zip` # Python 库文件的归档文件，其中包含了许多 Python 标准库和已安装的第三方库的模块。注意：即使该文件不存在，通常也会添加默认值。该文件的大小版本号之间没有点。
-- `${sys.prefix}/lib/python${VERSION_MAJOR}.${VERSION_MINOR}/` # 标准库保存路径 
+- `${sys.prefix}/lib/python${VERSION_MAJOR}.${VERSION_MINOR}/` # 标准库保存路径
 - `${sys.prefix}/lib/python${VERSION_MAJOR}.${VERSION_MINOR}/lib-dynload/` # 使用 C 语言编写的模块的存放路径。
 
 这里的扩展模块是指用 C 或 C++ 编写的模块，使用 Python 的 C API 与核心和用户代码交互。并不是指 Python 的第三方模块
@@ -555,10 +555,10 @@ ModuleNotFoundError: No module named 'XXXXX'
 `${sys.prefix}/lib/python${X.Y}/site-packages/`
 
 ```bash
-~]# cat module-path-demo.py 
+~]# cat module-path-demo.py
 import sys
 print(sys.path)
-print(sys.prefix) 
+print(sys.prefix)
 print(sys.exec_prefix)
 print(sys.executable)
 ~]# python3 module-path-demo.py
@@ -578,7 +578,7 @@ TODO
 
 Windows
 
-- **${sys.prefix}/Scripts/** 
+- **${sys.prefix}/Scripts/**
 
 Ubuntu
 
@@ -740,7 +740,7 @@ Windows 的 site.py
 # Python 虚拟环境
 
 > 参考：
-> 
+>
 > - [官方文档，Python 教程-虚拟环境和包](https://docs.python.org/3/tutorial/venv.html)
 
 Python 没有 go.mod 与 go.sum 这种文件来管理第三方依赖模块的版本。假如现在只有一个 3.10 版本的 Python，那么所有项目的依赖模块都会被安装到 site-packages 目录中，若项目 A 需要  模块 C 的 1.0 版本，项目 B 需要 模块C 的 2.0 的版本，这时候就会产生冲突，若同时运行这两个项目，将有其中一个无法正常运行。
@@ -785,4 +785,4 @@ ENABLE_USER_SITE: False
 
 ## 虚拟环境关联文件与配置
 
-**pyvenv.cfg** # 
+**pyvenv.cfg** #

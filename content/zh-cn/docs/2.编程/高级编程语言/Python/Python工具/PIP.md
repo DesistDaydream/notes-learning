@@ -7,7 +7,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，pypa/pip](https://github.com/pypa/pip)
 > - [官网](https://pip.pypa.io/)
 
@@ -94,7 +94,7 @@ pip 安装的模块我们可以从如下目录中找到，该目录下的目录�
 # Syntax(语法)
 
 > 参考：
-> 
+>
 > - [官方文档，cli-pip](https://pip.pypa.io/en/stable/cli/pip/)
 
 **pip COMMAND \[OPTIONS] COMMAND**
@@ -202,4 +202,4 @@ Add-Content $env:APPDATA\pip\pip.ini "index-url = https://mirrors.aliyun.com/pyp
 
 TODO: --target 没效果，修改 user 的 site-packages 没效果。。。。o(╯□╰)o
 
-先用 [Python 虚拟环境](docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20模块与包.md#Python%20虚拟环境)吧
+先用 [Python 虚拟环境](/docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20模块与包.md#Python%20虚拟环境)吧

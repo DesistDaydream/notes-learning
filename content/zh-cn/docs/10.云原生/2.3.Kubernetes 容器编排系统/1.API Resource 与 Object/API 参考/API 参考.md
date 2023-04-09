@@ -63,7 +63,7 @@ containers:
     image: YYY
 ```
 
-**在每种资源的 Manifests 中，会有一些共用的部分称为 [Common Definitions(通用定义)](docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/Common%20Definitions(通用定义).md)（也可以说是功能定义），比如常见的 [LabelSelector](docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)，这属于资源的 Manifests 的一部分。很多组件在解析 Manifests 中的通用定义时，都会遵循相同的规则。除了通用定义以外的，都属于 K8S 的资源定义，比如定义 [Pod](docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/工作负载资源/Pod%20Manifest%20详解.md) 的 API 参考、定义 [Service](docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/服务资源/Service%20Manifests%20详解.md) 的 API 参考等等。**
+**在每种资源的 Manifests 中，会有一些共用的部分称为 [Common Definitions(通用定义)](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/Common%20Definitions(通用定义).md)（也可以说是功能定义），比如常见的 [LabelSelector](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)，这属于资源的 Manifests 的一部分。很多组件在解析 Manifests 中的通用定义时，都会遵循相同的规则。除了通用定义以外的，都属于 K8S 的资源定义，比如定义 [Pod](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/工作负载资源/Pod%20Manifest%20详解.md) 的 API 参考、定义 [Service](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/服务资源/Service%20Manifests%20详解.md) 的 API 参考等等。**
 
 这是单一页面的样子。左侧是根据对资源的分类而形成的目录，右侧是完整的页面
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/dkxdpv/1616120193938-a171af16-575d-4de6-951a-99cdca271a50.png)
