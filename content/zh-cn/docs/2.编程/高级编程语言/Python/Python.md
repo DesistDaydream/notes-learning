@@ -12,6 +12,11 @@ title: Python
 
 Python 编程语言最早由 C 语言实现，称为 CPython
 
+## 学习资料
+
+# Hello World
+
+
 # Python 标识符与关键字
 
 > 参考：

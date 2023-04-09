@@ -1,5 +1,5 @@
 ---
-title: GO中间件(Middleware ) - SegmentFault 思否
+title: GO中间件(Middleware )
 ---
 
 原文链接：[GO 中间件 (Middleware) - SegmentFault 思否](https://segmentfault.com/a/1190000018819804)

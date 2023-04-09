@@ -8,13 +8,11 @@ title: Go 网络编程
 > - [Go 包，标准库-net](https://pkg.go.dev/net)
 > - [公众号，开发内功修炼-在 golang 中是如何对 epoll 进行封装的？](https://mp.weixin.qq.com/s/hjWhh_zHfxmH1yZFfvu_zA)(关于 go 实现 net 的底层逻辑分析)
 > - [Go 包，net/url](https://pkg.go.dev/net/url)(URL 解析与转译)
->   - [公众号-马哥 Linux 运维，go 标准库 net/url 学习笔记](https://mp.weixin.qq.com/s/p4F3lv_DBmWEwbj9v8273Q)
+>     - [公众号-马哥 Linux 运维，go 标准库 net/url 学习笔记](https://mp.weixin.qq.com/s/p4F3lv_DBmWEwbj9v8273Q)
 
 在协程没有流行以前，传统的网络编程中，同步阻塞是性能低下的代名词，一次切换就得是 [3 us](https://mp.weixin.qq.com/s?__biz=MjM5Njg5NDgwNA==&mid=2247483804&idx=1&sn=f2d64fc244d381157bb0c16ff26a33bd&scene=21#wechat_redirect)  左右的 CPU 开销。各种基于 epoll 的异步非阻塞的模型虽然提高了性能，但是基于回调函数的编程方式却非常不符合人的的直线思维模式。开发出来的代码的也不那么容易被人理解。
 
 Golang 的出现，可以说是将协程编程模式推向了一个高潮。这种新的编程方式既兼顾了同步编程方式的简单易用，也在底层通过协程和 epoll 的配合避免了线程切换的性能高损耗。换句话说就是既简单易用，性能又还不挺错。
-
-飞哥当年也是相中的 golang 的这个特点，开始带领团队转型 golang 开发的。那么今天我们来深刻地和大家分享一下 golang 官方提供的 net 包，来看看它是如何达成上面所说的这样的效果的。
 
 ## net 包
 

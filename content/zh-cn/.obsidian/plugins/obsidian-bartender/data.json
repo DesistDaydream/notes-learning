@@ -925,6 +925,7 @@
       "docs/2.编程/高级编程语言/Python/Python.md",
       "docs/2.编程/高级编程语言/Python/Python 环境安装与使用",
       "docs/2.编程/高级编程语言/Python/Python 标准库",
+      "docs/2.编程/高级编程语言/Python/Python 网络编程",
       "docs/2.编程/高级编程语言/Python/Python 第三方库",
       "docs/2.编程/高级编程语言/Python/Python工具",
       "docs/2.编程/高级编程语言/Python/Jinja.md"
@@ -1419,6 +1420,16 @@
       "docs/实用工具/网站搭建/Hugo/命令行工具.md",
       "docs/实用工具/网站搭建/Hugo/主题",
       "docs/实用工具/网站搭建/Hugo/站点管理.md"
+    ],
+    "docs/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 HTTP": [
+      "docs/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 HTTP/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 HTTP/net 包中的 HTTP.md",
+      "docs/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 HTTP/HTTP 重试.md"
+    ],
+    "docs/2.编程/高级编程语言/Go/Go 网络编程/Middleware": [
+      "docs/2.编程/高级编程语言/Go/Go 网络编程/Middleware/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 网络编程/Middleware/Middleware.md",
+      "docs/2.编程/高级编程语言/Go/Go 网络编程/Middleware/GO中间件(Middleware ).md"
     ]
   },
   "actionBarOrder": {},

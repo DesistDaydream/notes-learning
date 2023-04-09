@@ -10,7 +10,10 @@ title: OCR
 
 **Optical character recognition(光学字符识别，简称 OCR)** 是将图像以电子或机械方式转换为机器编码文本，无论是来自扫描文档、文档照片、场景照片、叠加在图像上的字母文字等。目前是文字识别的统称，已不限于文档或书本文字识别，更包括识别自然场景下的文字，又可以称为 **Scene Text Recognition(场景文字识别，简称 STR)**。
 
-OCR文字识别一般包括两个部分，文本检测和文本识别；文本检测首先利用检测算法检测到图像中的文本行；然后检测到的文本行用识别算法去识别到具体文字。
+OCR 文字识别一般包括两个部分，**文本检测**和**文本识别**
+
+- 文本检测首先利用检测算法检测到图像中的文本块
+- 然后文本识别利用识别算法去识别文本块中的具体文字
 
 ## Detection Model(检测模型)
 
@@ -24,10 +27,14 @@ OCR文字识别一般包括两个部分，文本检测和文本识别；文本�
 
 ## Recognition Model(识别模型)
 
-OCR识别算法的输入数据一般是文本行，背景信息不多，文字占据主要部分，识别算法目前可以分为两类算法：
+OCR 识别算法的输入数据一般是文本行，背景信息不多，文字占据主要部分，识别算法目前可以分为两类算法：
 
-1.  基于CTC的方法；即识别算法的文字预测模块是基于CTC的，常用的算法组合为CNN+RNN+CTC。目前也有一些算法尝试在网络中加入transformer模块等等。
-2.  基于Attention的方法；即识别算法的文字预测模块是基于Attention的，常用算法组合是CNN+RNN+Attention
+1.  基于 CTC 的方法；即识别算法的文字预测模块是基于 CTC 的，常用的算法组合为 CNN+RNN+CTC。目前也有一些算法尝试在网络中加入 transformer 模块等等。
+2.  基于 Attention 的方法；即识别算法的文字预测模块是基于 Attention 的，常用算法组合是 CNN+RNN+Attention
+
+## 总结
+
+用稍微简单一些的话说，检测模型用来检查一个图片中，哪些地方可以被识别模型识别，然后交给识别模型。若将图片直接交给识别模型，那么是无法获得任何结果的
 
 # PaddleOCR
 
@@ -35,9 +42,7 @@ OCR识别算法的输入数据一般是文本行，背景信息不多，文字�
 > - [GitHub 项目，PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
 >     - <https://www.bilibili.com/video/BV1iY4y1s7fx>
 
-PaddleOCR 是百度开源的 OCR 工具。
-
-有 Python 库。
+PaddleOCR 是百度开源的 OCR 工具。旨在打造一套丰富、领先、且实用的OCR工具库，助力开发者训练出更好的模型，并应用落地。
 
 ## 模型说明
 
@@ -53,6 +58,10 @@ PaddleOCR 中集成了很多OCR算法，文本检测算法有DB、EAST、SAST等
 - **./cls/** # Direction Classification 方向分类器
 - **./det/** # Detection 检测模型
 - **./rec/** # Recognition 识别模型
+
+## Python 库
+
+详见：Python 第三方库 [paddleocr](/docs/2.编程/高级编程语言/Python/Python%20第三方库/图像处理/paddleocr.md) 包 
 
 # Umi-OCR
 

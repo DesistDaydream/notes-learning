@@ -5,9 +5,11 @@ title: net 包中的 TCP
 # 概述
 
 > 参考：
+> 
 > - [知乎,TCP 漫谈之 keepalive 和 time_wait](https://zhuanlan.zhihu.com/p/126688315)
 
 TCP 是一个有状态通讯协议，所谓的有状态是指通信过程中通信的双方各自维护连接的状态。
+
 **一、TCP keepalive**
 
 先简单回顾一下 TCP 连接建立和断开的整个过程。（这里主要考虑主流程，关于丢包、拥塞、窗口、失败重试等情况后面详细讨论。）
@@ -46,11 +48,11 @@ if tc, ok := c.(*TCPConn); ok && d.KeepAlive >= 0 {
 >
 > - 默认 http.Client 中的 Transport 的默认值：<https://github.com/golang/go/blob/release-branch.go1.16/src/net/http/transport.go#L42>
 > - 在 do() 方法中会调用 send() 函数，send() 函数中调用 transport() 方法来返回 Transport 的值。
->   - do() 方法：<https://github.com/golang/go/blob/release-branch.go1.16/src/net/http/client.go#L590>
->     - 调用 send() 函数：<https://github.com/golang/go/blob/release-branch.go1.16/src/net/http/client.go#L717>
->   - send() 函数：<https://github.com/golang/go/blob/release-branch.go1.16/src/net/http/client.go#L169>
->     - 调用 transport() 方法：<https://github.com/golang/go/blob/release-branch.go1.16/src/net/http/client.go#L175>
->   - transport() 方法：<https://github.com/golang/go/blob/release-branch.go1.16/src/net/http/client.go#L194>
+>     - do() 方法：<https://github.com/golang/go/blob/release-branch.go1.16/src/net/http/client.go#L590>
+>         - 调用 send() 函数：<https://github.com/golang/go/blob/release-branch.go1.16/src/net/http/client.go#L717>
+>     - send() 函数：<https://github.com/golang/go/blob/release-branch.go1.16/src/net/http/client.go#L169>
+>         - 调用 transport() 方法：<https://github.com/golang/go/blob/release-branch.go1.16/src/net/http/client.go#L175>
+>     - transport() 方法：<https://github.com/golang/go/blob/release-branch.go1.16/src/net/http/client.go#L194>
 
 ```go
 var DefaultTransport RoundTripper = &Transport{
@@ -129,20 +131,31 @@ func main() {
 ```
 
 执行程序后，可以查看连接。初始设置 keepalive 为 30s。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hmo2md/1626270211294-fb52b3fb-7b5b-416c-91b8-6b5b2869d3f7.png)
+
 然后不断递减，至 0 后，又会重新获取 30s。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hmo2md/1626270211298-e367c78a-af97-4fb6-92a0-42f7417c59e6.png)
+
 整个过程可以通过 tcpdump 抓包获取。
 
-    # tcpdump -i bond0 port 35832 -nvv -A
+```
+# tcpdump -i bond0 port 35832 -nvv -A
+```
 
 其实很多应用并非是通过 TCP 的 keepalive 机制探活的，因为默认的两个多小时检查时间对于很多实时系统是完全没法满足的，通常的做法是通过应用层的定时监测，如 PING-PONG 机制（就像打乒乓球，一来一回），应用层每隔一段时间发送心跳包，如 websocket 的 ping-pong。
+
 **二、TCP time_wait**
 
 第二个希望和大家分享的话题是 TCP 的 Time_wait 状态。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hmo2md/1626270211222-e48fb524-94c3-465f-9117-36709a4e9cc3.png)
+
 为啥需要 time_wait 状态呢？为啥不直接进入 closed 状态呢？直接进入 closed 状态能更快地释放资源给新的连接使用了，而不是还需要等待 2MSL（Linux 默认）时间。有两个原因：一是为了防止“迷路的数据包”。如下图所示，如果在第一个连接里第三个数据包由于底层网络故障延迟送达。等待新的连接建立后，这个迟到的数据包才到达，那么将会导致接收数据紊乱。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hmo2md/1626270211341-c2c59e69-f95c-451d-8116-e01caed05c40.jpg)
+
 第二个原因则更加简单，如果因为最后一个 ack 丢失，那么对方将一直处于 last ack 状态，如果此时重新发起新的连接，对方将返回 RST 包拒绝请求，将会导致无法建立新连接。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hmo2md/1626270211264-46a07efe-aa21-4c7b-a743-12c3eb9d563a.jpg)
@@ -152,4 +165,4 @@ func main() {
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hmo2md/1626270211233-8114fc51-79a6-4719-a8fd-19fe2b64a7f4.png)
 
 时间戳开启后，针对第一个迷路数据包的问题，由于晚到数据包的时间戳过早会被直接丢弃，不会导致新连接数据包紊乱；针对第二个问题，开启 reuse 后，当对方处于 last-ack 状态时，发送 syn 包会返回 FIN,ACK 包，然后客户端发送 RST 让服务端关闭请求，从而客户端可以再次发送 syn 建立新的连接。最后还需要提醒读者的是，Linux 4.1 内核版本之前除了 tcp_tw_reuse 以外，还有一个参数 tcp_tw_recycle，这个参数就是强制回收 time_wait 状态的连接，它会导致 NAT 环境丢包，所以不建议开启。
-作者：陈晓宇陈晓宇著作《云计算那些事儿：从 IaaS 到 PaaS 进阶》
+
