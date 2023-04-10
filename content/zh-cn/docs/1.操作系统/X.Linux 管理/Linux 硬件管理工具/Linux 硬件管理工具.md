@@ -17,7 +17,29 @@ weight: 1
 > - [GitHub 项目，lyonel/lshw](https://github.com/lyonel/lshw)
 > - [官网](http://lshw.ezix.org/)
 
-TODO: 这命令哪来的？看的信息还挺全乎
+lshw 是一个提供机器硬件配置详细信息的小工具。
+
+lshw 输出的内容详解见：<https://ezix.org/project/wiki/HardwareLiSter#Howtointerpretlshwsoutput>
+
+## Syntax(语法)
+
+**lshw [FORMAT] [OPTIONS]**
+
+FORMAT
+
+- **-X** # 启用 GUI（如果可用的话）
+- **-html** # to activate HTML mode  
+- **-xml** # to activate XML mode  
+- **-short** # to print hardware paths  
+- **-businfo** # to print bus information
+
+OPTIONS
+
+- `-enable` TEST to enable a test  
+- `-disable` TEST to disable a test  
+- **-C, -class CLASS** # 只输出指定 CLASS 的信息。
+    - 所有可用的 CLASS 列表见：<https://ezix.org/project/wiki/HardwareLiSter#Deviceclasses>
+
 
 # lspci
 

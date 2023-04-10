@@ -43,7 +43,9 @@ Raid 5 等的奇偶校验机制，是纠删码的最佳实践
 > 参考：
 > - [Wiki，Non-RAID_drive_architectures](https://en.wikipedia.org/wiki/Non-RAID_drive_architectures)
 
-**Just a Bunch Of Disks(只是一堆磁盘，简称 JBOD)** 是
+**Just a Bunch Of Disks(只是一堆磁盘，简称 JBOD)** 是阵列卡可以提供的一种透传模式，让硬盘可以直接透过阵列卡对系统直接提供本身的存储能力。还可以将多个物理硬盘组成单个逻辑磁盘，但是**这并不是一种 RAID**，也不提供数据冗余，仅仅是将这些硬盘从头到尾串联起来而已。
+
+JBOD 在很多厂家对外的口语描述中，称为**直通模式**。意味着硬盘直通到系统，中间不做任何处理。
 
 ## H3C 阵列配置
 
