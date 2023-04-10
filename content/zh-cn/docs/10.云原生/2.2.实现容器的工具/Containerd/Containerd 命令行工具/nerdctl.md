@@ -101,6 +101,16 @@ v0.12.1 版本
 - **~/.config/nerdctl/nerdctl.toml** # Rootless 运行时的配置文件
 - 参考：<https://github.com/containerd/nerdctl/blob/main/docs/config.md>
 
+常见基本配置
+
+```
+mkdir -p /etc/nerdctl
+tee /etc/nerdctl/nerdctl.toml > /dev/null <<EOF
+address        = "unix:///run/k3s/containerd/containerd.sock"
+namespace      = "k8s.io"
+EOF
+```
+
 # Syntax(语法)
 
 **nerdctl \[Global OPTIONS] COMMAND \[COMMAND OPTIONS] \[ARGUMENTS......]**
