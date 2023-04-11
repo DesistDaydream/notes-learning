@@ -5,8 +5,8 @@ title: 类 Unix 操作系统
 # 概述
 
 > 参考：
-> - [Wiki,Unix](https://en.wikipedia.org/wiki/Unix)
-> - [Manual(手册),os-release](https://man7.org/linux/man-pages/man5/os-release.5.html)
+> - [Wiki，Unix](https://en.wikipedia.org/wiki/Unix)
+> - [Manual(手册)，os-release](https://man7.org/linux/man-pages/man5/os-release.5.html)
 > - [DistroWatch](https://distrowatch.com/)(类 UNIX 系统的资讯网站)
 
 Unix 是一系列多任务、多用户计算机操作系统的统称。

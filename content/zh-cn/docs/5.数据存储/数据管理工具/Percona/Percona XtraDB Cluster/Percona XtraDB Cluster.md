@@ -68,3 +68,10 @@ kubectl apply -n pxc -f cr.yaml
 #### HAProxy 部分配置
 
 haproxy.readinessProbes
+
+# PXC 监控
+
+> 参考：
+> - [官方文档，管理-使用 PMM 进行监控](https://docs.percona.com/percona-operator-for-mysql/pxc/monitoring.html)
+> - [GitHub 项目，percona/grafana-dashboards](https://github.com/percona/grafana-dashboards)
+

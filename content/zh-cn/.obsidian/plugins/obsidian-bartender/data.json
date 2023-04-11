@@ -1448,6 +1448,13 @@
       "docs/4.数据通信/通信协议/7.NTP.md",
       "docs/4.数据通信/通信协议/7.WebSocket",
       "docs/4.数据通信/通信协议/TCP 与 HTTP"
+    ],
+    "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)": [
+      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/_index.md",
+      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/Panel(面板) 与 Dashboard(仪表盘).md",
+      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/Time series 类型面板",
+      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/Panel(面板) 配置详解",
+      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/Table 类型面板.md"
     ]
   },
   "actionBarOrder": {},
