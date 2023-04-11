@@ -3,6 +3,7 @@ title: Kubernetes 网络疑难杂症排查分享
 ---
 
 原文链接：<https://zhuanlan.zhihu.com/p/77808615>
+
 大家好，我是 roc，来自腾讯云容器服务(TKE)团队，经常帮助用户解决各种 K8S 的疑难杂症，积累了比较丰富的经验，本文分享几个比较复杂的网络方面的问题排查和解决思路，深入分析并展开相关知识，信息量巨大，相关经验不足的同学可能需要细细品味才能消化，我建议收藏本文反复研读，当完全看懂后我相信你的功底会更加扎实，解决问题的能力会大大提升。
 本文发现的问题是在使用 TKE 时遇到的，不同厂商的网络环境可能不一样，文中会对不同的问题的网络环境进行说明
 
@@ -58,13 +59,21 @@ conntrack -S 看到 insert_failed 数量在不断增加，也就是 conntrack �
 ## DNS 解析偶尔 5S 延时
 
 网上一搜，是已知问题，仔细分析，实际跟之前黑石 TKE 压测 LB CPS 低的根因是同一个，都是因为 netfilter conntrack 模块的设计问题，只不过之前发生在 SNAT，这个发生在 DNAT，这里用我的语言来总结下原因:
+
 DNS client (glibc 或 musl libc) 会并发请求 A 和 AAAA 记录，跟 DNS Server 通信自然会先 connect (建立 fd)，后面请求报文使用这个 fd 来发送，由于 UDP 是无状态协议， connect 时并不会创建 conntrack 表项, 而并发请求的 A 和 AAAA 记录默认使用同一个 fd 发包，这时它们源 Port 相同，当并发发包时，两个包都还没有被插入 conntrack 表项，所以 netfilter 会为它们分别创建 conntrack 表项，而集群内请求 kube-dns 或 coredns 都是访问的 CLUSTER-IP，报文最终会被 DNAT 成一个 endpoint 的 POD IP，当两个包被 DNAT 成同一个 IP，最终它们的五元组就相同了，在最终插入的时候后面那个包就会被丢掉，如果 dns 的 pod 副本只有一个实例的情况就很容易发生，现象就是 dns 请求超时，client 默认策略是等待 5s 自动重试，如果重试成功，我们看到的现象就是 dns 请求有 5s 的延时。
+
 参考 weave works 工程师总结的文章: [Racy conntrack and DNS lookup timeouts](https://link.zhihu.com/?target=https%3A//www.weave.works/blog/racy-conntrack-and-dns-lookup-timeouts)
+
 解决方案一: 使用 TCP 发送 DNS 请求
+
 如果使用 TCP 发 DNS 请求，connect 时就会插入 conntrack 表项，而并发的 A 和 AAAA 请求使用同一个 fd，所以只会有一次 connect，也就只会尝试创建一个 conntrack 表项，也就避免插入时冲突。
+
 resolv.conf 可以加 options use-vc 强制 glibc 使用 TCP 协议发送 DNS query。下面是这个 man resolv.conf 中关于这个选项的说明:
+
 use-vc **(**since glibc 2.14**)** Sets RES_USEVC in \_res.options. This option forces the use of TCP **for** DNS resolutions.
+
 解决方案二: 避免相同五元组 DNS 请求的并发
+
 resolv.conf 还有另外两个相关的参数：
 
 - single-request-reopen (since glibc 2.9): A 和 AAAA 请求使用不同的 socket 来发送，这样它们的源 Port 就不同，五元组也就不同，避免了使用同一个 conntrack 表项。
@@ -120,7 +129,9 @@ lifecycle:
 - 使用 [MutatingAdmissionWebhook](https://link.zhihu.com/?target=https%3A//kubernetes.io/docs/reference/access-authn-authz/admission-controllers/%23mutatingadmissionwebhook-beta-in-1-9)，这是 1.9 引入的 Controller，用于对一个指定的资源的操作之前，对这个资源进行变更。 istio 的自动 sidecar 注入就是用这个功能来实现的，我们也可以通过 MutatingAdmissionWebhook 来自动给所有 Pod 注入 resolv.conf 文件，不过需要一定的开发量。
 
 解决方案三: 使用本地 DNS 缓存
+
 仔细观察可以看到前面两种方案是 glibc 支持的，而基于 alpine 的镜像底层库是 musl libc 不是 glibc，所以即使加了这些 options 也没用，这种情况可以考虑使用本地 DNS 缓存来解决，容器的 DNS 请求都发往本地的 DNS 缓存服务(dnsmasq, nscd 等)，不需要走 DNAT，也不会发生 conntrack 冲突。另外还有个好处，就是避免 DNS 服务成为性能瓶颈。
+
 使用本地 DNS 缓存有两种方式：
 
 - 每个容器自带一个 DNS 缓存服务
@@ -141,17 +152,25 @@ lifecycle:
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/incvdy/1626321044470-414c4a58-f758-4a7e-839d-589a7f95b4bf.png)
 
 进入 pod netns 抓包: 执行 kubectl 时确实有 dns 解析，并且发生延时的时候 dns 请求没有响应然后做了重试。
+
 看起来延时应该就是之前已知 conntrack 丢包导致 dns 5s 超时重试导致的。但是为什么会去解析域名? 明明配了 hosts 啊，正常情况应该是优先查找 hosts，没找到才去请求 dns 呀，有什么配置可以控制查找顺序?
+
 搜了一下发现: /etc/nsswitch.conf 可以控制，但看有问题的 pod 里没有这个文件。然后观察到有问题的 pod 用的 alpine 镜像，试试其它镜像后发现只有基于 alpine 的镜像才会有这个问题。
+
 再一搜发现: musl libc 并不会使用 /etc/nsswitch.conf ，也就是说 alpine 镜像并没有实现用这个文件控制域名查找优先顺序，瞥了一眼 musl libc 的 gethostbyname 和 getaddrinfo 的实现，看起来也没有读这个文件来控制查找顺序，写死了先查 hosts，没找到再查 dns。
+
 这么说，那还是该先查 hosts 再查 dns 呀，为什么这里抓包看到是先查的 dns? (如果是先查 hosts 就能命中查询，不会再发起 dns 请求)
+
 访问 apiserver 的 client 是 kubectl，用 go 写的，会不会是 go 程序解析域名时压根没调底层 c 库的 gethostbyname 或 getaddrinfo?
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/incvdy/1626321044460-39624243-9c14-4afa-b67b-e1e5f6f16d9e.png)
 
 搜一下发现果然是这样: go runtime 用 go 实现了 glibc 的 getaddrinfo 的行为来解析域名，减少了 c 库调用 (应该是考虑到减少 cgo 调用带来的的性能损耗)
+
 issue: [net: replicate DNS resolution behaviour of getaddrinfo(glibc) in the go dns resolver](https://link.zhihu.com/?target=https%3A//github.com/golang/go/issues/18518)
+
 翻源码验证下:
+
 Unix 系的 OS 下，除了 openbsd， go runtime 会读取 /etc/nsswitch.conf (net/conf.go):
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/incvdy/1626321044701-c2416183-d8fb-491e-a107-a29d9807f817.png)

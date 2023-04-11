@@ -27,7 +27,7 @@ kubelet 执行逻辑：<https://github.com/kubernetes/kubernetes/blob/release-1.
 
 **将在 1.20 版本解决**
 
-## Scope libcontainer-21733-systemd-test-default-dependencies.scope has no PIDs. Refusing.
+## Scope libcontainer-21733-systemd-test-default-dependencies.scope has no PIDs. Refusing
 
 问题跟踪：<https://github.com/kubernetes/kubernetes/issues/71887>
 
@@ -41,7 +41,7 @@ kubelet 执行逻辑：<https://github.com/kubernetes/kubernetes/blob/release-1.
 
 <https://github.com/kubernetes/kubernetes/issues/76531#issuecomment-548230839>
 
-## Setting volume ownership for XXX and fsGroup set. If the volume has a lot of files then setting volume ownership could be slow,
+## Setting volume ownership for XXX and fsGroup set. If the volume has a lot of files then setting volume ownership could be slow
 
     Apr 20 11:03:37 lxkubenode01 kubelet[9103]: W0420 11:03:37.275020    9103 volume_linux.go:49] Setting volume ownership for /var/lib/kubelet/pods/63c4a49f-bf23-4b87-989e-102f5fcdb315/volumes/kubernetes.io~secret/seq-token-whpfk and fsGroup set. If the volume has a lot of files then setting volume ownership could be slow, see https://github.com/kubernetes/kubernetes/issues/69699
     Apr 20 11:03:46 lxkubenode01 kubelet[9103]: W0420 11:03:46.198559    9103 volume_linux.go:49] Setting volume ownership for /var/lib/kubelet/pods/cdb79fa0-4942-4211-9261-a4928f872bd6/volumes/kubernetes.io~secret/prometheus-operator-prometheus-node-exporter-token-snbtf and fsGroup set. If the volume has a lot of files then setting volume ownership could be slow, see https://github.com/kubernetes/kubernetes/issues/69699

@@ -21,7 +21,7 @@ Unix 系统的特点是[模块化设计](https://en.wikipedia.org/wiki/Modular_d
 
 1983 年，[Richard Stallman](https://en.wikipedia.org/wiki/Richard_Stallman)宣布了[GNU](https://en.wikipedia.org/wiki/GNU)（“GNU's Not Unix”的缩写）项目，这是一项雄心勃勃的努力，旨在创建一个[类似 Unix](https://en.wikipedia.org/wiki/Unix-like)的[自由软件](https://en.wikipedia.org/wiki/Free_software) 系统；“免费”是指每个收到副本的人都可以免费使用、研究、修改和重新分发它。GNU 项目自己的内核开发项目[GNU Hurd](https://en.wikipedia.org/wiki/GNU_Hurd)尚未生产出可运行的内核，但在 1991 年，[Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds)在[GNU 通用公共许可证](https://en.wikipedia.org/wiki/GNU_General_Public_License)下发布了内核[Linux](https://en.wikipedia.org/wiki/Linux_kernel)作为自由软件。除了在[GNU](https://en.wikipedia.org/wiki/GNU)操作系统中使用之外，许多 GNU 软件包——例如[GNU Compiler Collection](https://en.wikipedia.org/wiki/GNU_Compiler_Collection)（以及其余的[GNU 工具链](https://en.wikipedia.org/wiki/GNU_toolchain)）、[GNU C 库](https://en.wikipedia.org/wiki/Glibc)和[GNU 核心实用程序](https://en.wikipedia.org/wiki/Coreutils) ——也继续在其他自由 Unix 系统中发挥核心作用。
 
-由 Linux 内核和大量兼容软件组成的[Linux 发行](https://en.wikipedia.org/wiki/Linux_distribution)版在个人用户和企业中都很受欢迎。流行的发行版包括[Red Hat Enterprise Linux](https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux)、[Fedora](<https://en.wikipedia.org/wiki/Fedora_(operating_system)>)、[SUSE Linux Enterprise](https://en.wikipedia.org/wiki/SUSE_Linux)、[openSUSE](https://en.wikipedia.org/wiki/OpenSUSE)、[Debian GNU/Linux](https://en.wikipedia.org/wiki/Debian)、[Ubuntu](<https://en.wikipedia.org/wiki/Ubuntu_(operating_system)>)、[Linux Mint](https://en.wikipedia.org/wiki/Linux_Mint)、[Mandriva Linux](https://en.wikipedia.org/wiki/Mandriva_Linux)、[Slackware Linux](https://en.wikipedia.org/wiki/Slackware_Linux)、[Arch Linux](https://en.wikipedia.org/wiki/Arch_Linux)和[Gentoo](https://en.wikipedia.org/wiki/Gentoo_Linux)。[\[26\]](https://en.wikipedia.org/wiki/Unix#cite_note-26)
+由 Linux 内核和大量兼容软件组成的[Linux 发行版](https://en.wikipedia.org/wiki/Linux_distribution)在个人用户和企业中都很受欢迎。流行的发行版包括 [Red Hat Enterprise Linux](https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux)、[Fedora](<https://en.wikipedia.org/wiki/Fedora_(operating_system)>)、[SUSE Linux Enterprise](https://en.wikipedia.org/wiki/SUSE_Linux)、[openSUSE](https://en.wikipedia.org/wiki/OpenSUSE)、[Debian GNU/Linux](https://en.wikipedia.org/wiki/Debian)、[Ubuntu](<https://en.wikipedia.org/wiki/Ubuntu_(operating_system)>)、[Linux Mint](https://en.wikipedia.org/wiki/Linux_Mint)、[Mandriva Linux](https://en.wikipedia.org/wiki/Mandriva_Linux)、[Slackware Linux](https://en.wikipedia.org/wiki/Slackware_Linux)、[Arch Linux](https://en.wikipedia.org/wiki/Arch_Linux)和[Gentoo](https://en.wikipedia.org/wiki/Gentoo_Linux)。
 
 [BSD](https://en.wikipedia.org/wiki/BSD) Unix 的免费衍生产品[386BSD](https://en.wikipedia.org/wiki/386BSD)于 1992 年发布，引发了[NetBSD](https://en.wikipedia.org/wiki/NetBSD)和[FreeBSD](https://en.wikipedia.org/wiki/FreeBSD)项目。1994 年，[Unix 系统实验室](https://en.wikipedia.org/wiki/Unix_System_Laboratories)对加州大学和伯克利软件设计公司（[_USL 诉 BSDi_](https://en.wikipedia.org/wiki/USL_v._BSDi)）提起的诉讼达成和解，澄清了伯克利有权免费分发 BSD Unix，如果它愿意的话。从那时起，BSD Unix 已经在几个不同的产品分支中开发，包括[OpenBSD](https://en.wikipedia.org/wiki/OpenBSD)和[DragonFly BSD](https://en.wikipedia.org/wiki/DragonFly_BSD)。
 
@@ -37,7 +37,7 @@ Linux 和 BSD 越来越多地满足传统上由专有 Unix 操作系统提供服
 
 # 关联文件
 
-**/etc/os-release **# 操作系统标识。该文件是 /usr/lib/os-release 文件的软链接
+**/etc/os-release** # 操作系统标识。该文件是 /usr/lib/os-release 文件的软链接
 
 注意：
 
@@ -45,7 +45,7 @@ Linux 和 BSD 越来越多地满足传统上由专有 Unix 操作系统提供服
 
 ## os-release 详解
 
-/etc/os-release 是本身是 [systemd](https://www.yuque.com/desistdaydream/learning/sa1uqi) 的一部分，包含了操作系统的识别数据。在[这篇文章](http://0pointer.de/blog/projects/os-release)里，详解描述了为什么需要这个文件。该文件通常是操作系统供应商定义的，不应该手动修改。
+/etc/os-release 是本身是 [Systemd 系统守护程序](/docs/1.操作系统/3.Systemd%20系统守护程序/3.Systemd%20系统守护程序.md) 的一部分，包含了操作系统的识别数据。在[这篇文章](http://0pointer.de/blog/projects/os-release)里，详解描述了为什么需要这个文件。该文件通常是操作系统供应商定义的，不应该手动修改。
 
 os-release 是一个以换行符分隔的类似环境的 shell 兼容变量赋值列表。示例如下：
 
