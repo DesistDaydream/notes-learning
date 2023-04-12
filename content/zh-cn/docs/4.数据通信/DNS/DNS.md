@@ -306,9 +306,9 @@ DNS-Rcode 作为 DNS 应答报文中有效的字段，主要用来说明 DNS 应
 我的域名：
 
 - Name.com
-  - 102205.xyz
+    - 102205.xyz
 - 阿里
-  - desistdaydream.ltd
+    - desistdaydream.ltd
 - eu.org #
 
 ## eu.org 注册方式
@@ -319,24 +319,43 @@ DNS-Rcode 作为 DNS 应答报文中有效的字段，主要用来说明 DNS 应
 > - <https://www.bilibili.com/video/BV1JB4y1m7e9>
 
 eu.org 免费域名从 1996 年就有了，由此可见是非常非常早，计划是专门给无力承担费用的一些组织使用的，现在我们来申请一个。
+
 注册地址：<https://nic.eu.org/arf/en/login/?next=/arf/en/>
+
 点击：Register
+
 填表挺简单的，可以参考我的视频教程。
+
 B 站：<https://www.bilibili.com/video/BV1JB4y1m7e9/>
+
 Youtube：<https://www.youtube.com/watch?v=xWgeCUpM81I>
+
 然后成功后到邮箱（垃圾箱）找到邮件、激活，然后登录。
+
 点击登录，然后点击：New domain
+
 填写理想的完整域名例如：abcde.eu.org 同意协议；
+
 域名服务器建议填写下面两个 dnspod，否则无法转到 cloudflare。
+
 edmund.dnspod.net
+
 dempsey.dnspod.net
+
 这里先只选择 server names，然后 Submit，注意看检查页面，如果出现 No error,Done.说明成功了~
+
 如果有错误，请返回修改！
+
 域名审核 1 天——30 天都有可能，所以慢慢等吧，经过我的测试，一个账号内最多可以申请 4 个免费域名。
+
 域名投资参考：<https://iweec.com/144.html>
+
 eu.org 域名通过后是有邮件通知的，但是都在垃圾箱。若是想转到 cloudflare 出现问题，请参考视频：
+
 Bilibili：<https://www.bilibili.com/video/BV1ST4y1z7Ra/>
+
 Youtube：<https://www.youtube.com/watch?v=EOsBJxtiOho>
+
 
 注意：
 
@@ -349,9 +368,13 @@ DNSPod
 # 国内域名备案说明
 
 在国内的域名注册机构是必须要备案的，备案时需要关联自己的服务器或者通过公司进行备案。如果不备案，那么域名只有解析 IP 的功能，无法在公网被访问，效果如下：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/msw4yv/1654614073447-ad968e6f-5cda-4fa1-a31a-84c148d8e6a8.png)
+
 若访问的是 https，则会提示
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/msw4yv/1656167438257-cf4f1287-4ce6-4ca1-b7b7-3814937ebe74.png)
+
 这个是由于在国内的服务器，都会收到服务器所在 IDC 的限制，这些 IDC 会在最外层部署一套检测服务，用以检查每个标准端口(80 和 443)的请求域名是否已经备案，若没有备案，该请求 IDC 则不会放行到服务器上。
 
 DNS 污染、GFW、阻断，这是三座大山
