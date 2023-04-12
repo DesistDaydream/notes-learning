@@ -68,24 +68,11 @@ Note：在 kubectl 命令中的 全局 flags 中还有很多有用的 flags 可�
 - kubectl get nodes -o custom-columns=NAME:.metadata.name,LABELS:.metadata.labels
 
 ```bash
-[root@master-test-1 .kube]# kubectl get nodes -o custom-columns=NAME:.metadata.name,LABELS:.metadata.labels
+]# kubectl get nodes -o custom-columns=NAME:.metadata.name,LABELS:.metadata.labels
 NAME            LABELS
 master-test-1   map[beta.kubernetes.io/arch:amd64 beta.kubernetes.io/os:linux kubernetes.io/arch:amd64 kubernetes.io/hostname:master-test-1 kubernetes.io/os:linux node-role.kubernetes.io/controlplane:true node-role.kubernetes.io/etcd:true]
 node-test-1     map[beta.kubernetes.io/arch:amd64 beta.kubernetes.io/os:linux kubernetes.io/arch:amd64 kubernetes.io/hostname:node-test-1 kubernetes.io/os:linux node-role.kubernetes.io/worker:true]
 node-test-2     map[beta.kubernetes.io/arch:amd64 beta.kubernetes.io/os:linux kubernetes.io/arch:amd64 kubernetes.io/hostname:node-test-2 kubernetes.io/os:linux node-role.kubernetes.io/worker:true]
-```
-
-显示 pod 的名字及其启动时间。
-
-- kubectl get pods -o=jsonpath='{range .items\[\*]}{.metadata.name}{"\t"}{.status.startTime}{"\n"}{end}'
-
-```bash
-[root@master-test-1 .kube]# kubectl get pods -A -o=jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.status.startTime}{"\n"}{end}'
-myapp-pod 2020-08-21T15:57:35Z
-default-http-backend-598b7d7dbd-xrp6s 2020-08-17T05:04:41Z
-nginx-ingress-controller-7b9mp 2020-08-17T05:04:40Z
-nginx-ingress-controller-lhbgl 2020-08-22T08:17:10Z
-coredns-849545576b-7xt9p 2020-08-17T07:27:43Z
 ```
 
 获取所有节点的污点
@@ -114,10 +101,17 @@ kubectl get secrets -n kubernetes-dashboard -o jsonpath="{.items\[?(@.metadata.a
 
 - kubectl get replicasets.apps -n bluestore-console -ojsonpath='{range .items\[\*]}{.metadata.annotations.deployment.kubernetes.io/revision}{"\t"}{.metadata.name}{"\n"}{end}'
 
-## 获取全部所需镜像
+## 列出集群中所有运行容器的镜像
+
+> 参考：<https://kubernetes.io/zh-cn/docs/tasks/access-application-cluster/list-all-running-container-images/>
+
+列出所有名称空间下的所有容器镜像
 
 ```bash
-~]# kubectl get pods -A -o jsonpath="{.items[*].spec.containers[*].image}" |tr -s '[[:space:]]' '\n' |sort |uniq -c
+~]# kubectl get pods -A -o jsonpath="{.items[*].spec.containers[*].image}" |\
+tr -s '[[:space:]]' '\n' |\
+sort |\
+uniq -c
       3 ghcr.io/kube-vip/kube-vip:v0.5.10
       1 percona:8.0
       3 percona/percona-xtradb-cluster:8.0.29-21.1
@@ -129,6 +123,27 @@ kubectl get secrets -n kubernetes-dashboard -o jsonpath="{.items\[?(@.metadata.a
       1 rancher/mirrored-coredns-coredns:1.9.4
       1 rancher/mirrored-metrics-server:v0.6.2
       1 registry.ehualu.com/common/redis:4.0
+```
+
+## 查询 Pod 中的信息
+
+显示 pod 的名字及其启动时间。
+
+```bash
+~]# kubectl get pods -A -o=jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.status.startTime}{"\n"}{end}'
+myapp-pod 2020-08-21T15:57:35Z
+default-http-backend-598b7d7dbd-xrp6s 2020-08-17T05:04:41Z
+nginx-ingress-controller-7b9mp 2020-08-17T05:04:40Z
+nginx-ingress-controller-lhbgl 2020-08-22T08:17:10Z
+coredns-849545576b-7xt9p 2020-08-17T07:27:43Z
+```
+
+列出 Pod 中的所有容器名称
+
+```
+export NAMESPACE="mysql"
+export POD="mysql"
+kubectl get pods -n ${NAMESPACE} ${POD} -o=jsonpath='{.spec.containers[*].name}' | tr -s '[[:space:]]' '\n' |  sort
 ```
 
 ## 过滤 Pod

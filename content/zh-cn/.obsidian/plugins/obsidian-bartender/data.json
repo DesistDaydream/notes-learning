@@ -1045,6 +1045,7 @@
     "docs/5.数据存储/2.数据库/关系数据/MySQL": [
       "docs/5.数据存储/2.数据库/关系数据/MySQL/_index.md",
       "docs/5.数据存储/2.数据库/关系数据/MySQL/MySQL.md",
+      "docs/5.数据存储/2.数据库/关系数据/MySQL/MySQL 部署.md",
       "docs/5.数据存储/2.数据库/关系数据/MySQL/MySQL 配置文件详解.md",
       "docs/5.数据存储/2.数据库/关系数据/MySQL/MySQL 命令行工具.md",
       "docs/5.数据存储/2.数据库/关系数据/MySQL/MySQL 批量SQL插入性能优化.md"
@@ -1455,6 +1456,20 @@
       "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/Time series 类型面板",
       "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/Panel(面板) 配置详解",
       "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/Table 类型面板.md"
+    ],
+    "docs/10.云原生/云原生应用管理/Helm": [
+      "docs/10.云原生/云原生应用管理/Helm/_index.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm.md",
+      "docs/10.云原生/云原生应用管理/Helm/Charts",
+      "docs/10.云原生/云原生应用管理/Helm/Helm Template",
+      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具"
+    ],
+    "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具": [
+      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/_index.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/Helm 命令行工具.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/install、upgrade 子命令.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/helm 查询相关命令.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/helm template 模板相关命令.md"
     ]
   },
   "actionBarOrder": {},

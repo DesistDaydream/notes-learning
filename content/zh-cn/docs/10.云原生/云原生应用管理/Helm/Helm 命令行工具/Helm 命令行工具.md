@@ -39,7 +39,10 @@ helm completion SHELL \[FLAGS]
 
 EXAMPLE
 
-1. echo 'source <(helm completion bash)' >> ~/.bashrc # 为 bash shell 生成命令补全脚本，并添加到 /root/.bashrc 文件中
+为 bash shell 生成命令补全脚本，有多种方式，任选其一即可
+
+- echo 'source <(helm completion bash)' >> ~/.bashrc
+- helm completion bash | sudo tee /etc/bash_completion.d/helm > /dev/null
 
 ## create # 用给定的名字创建一个新的 chart
 
@@ -51,13 +54,13 @@ env # Helm client environment information
 
 ## get # 获取指定 release 的扩展信息
 
-详见：[**helm 查询相关命令**](https://www.yuque.com/go/doc/33978659)
+详见：[helm 查询相关命令](/docs/10.云原生/云原生应用管理/Helm/Helm%20命令行工具/helm%20查询相关命令.md)
 
 ## history # 获取 release 的历史版本
 
 ## install # 安装一个 chart archive(可以创建出来一个 release)
 
-详见：[**helm install**](https://www.yuque.com/go/doc/33978637)
+详见：[install、upgrade 子命令](/docs/10.云原生/云原生应用管理/Helm/Helm%20命令行工具/install、upgrade%20子命令.md)
 
 ## lint # 检查一个 chart，看看可能出现的问题。examines a chart for possible issues
 
@@ -65,10 +68,13 @@ env # Helm client environment information
 
 helm list \[FLAGS] \[FILTER]
 
-1. FLAGS
-   1. -a # 列出所有状态的的 release
-2. EXAMPLE
-   1. helm list -A # 列出所有名称空间下已经部署的或者失败的所有 release
+FLAGS
+
+- **-a** # 列出所有状态的的 release
+
+EXAMPLE
+
+- helm list -A # 列出所有名称空间下已经部署的或者失败的所有 release
 
 ## package # 打包一个 chart 到定好版本的 chart archive 文件中
 
@@ -78,7 +84,7 @@ helm package \[CHART_PATH] \[...] \[FALGS]
 
 EXAMPLE
 
-1. helm package myapp/ # 将 myapp 目录下的内容打包成一个 charts archive
+- helm package myapp/ # 将 myapp 目录下的内容打包成一个 charts archive
 
 ## plugin # 安装、显示、卸载 helm 的插件
 
@@ -90,16 +96,16 @@ helm repo \[SubCommand]
 
 SubCommand
 
-1. add # 添加一个 charts 仓库
-   1. helm repo add \[FLAGS] NAME URL # 添加一个名为 Name,url 为 URL 的仓库
-   2. EXAMPLE
-      1. helm repo add lichenhao https://www.lichenhao.com
-2. index       generate an index file given a directory containing packaged charts
-3. list        list chart repositories
-   1. EXAMPLE
-      1. helm repo list
-4. remove      remove a chart repository
-5. update      update information of available charts locally from chart repositories
+- add # 添加一个 charts 仓库
+    - helm repo add \[FLAGS] NAME URL # 添加一个名为 Name,url 为 URL 的仓库
+    - EXAMPLE
+        - helm repo add lichenhao https://www.lichenhao.com
+- index       generate an index file given a directory containing packaged charts
+- list        list chart repositories
+    - EXAMPLE
+        - helm repo list
+- remove      remove a chart repository
+- update      update information of available charts locally from chart repositories
 
 ## rollback # 回滚一个 release 到以前的版本
 
@@ -111,9 +117,9 @@ SubCommand
 
 FLAGS
 
-1. --endpoint string      monocular instance to query for charts (default "https://hub.helm.sh")
-2. --max-col-width uint   maximum column width for output table (default 50)
-3. -o, --output format        prints the output in the specified format. Allowed values: table, json, yaml (default table)
+- --endpoint string      monocular instance to query for charts (default "https://hub.helm.sh")
+- --max-col-width uint   maximum column width for output table (default 50)
+- -o, --output format        prints the output in the specified format. Allowed values: table, json, yaml (default table)
 
 ### repo # 在已添加的所有 repoistories 中搜索 charts
 
@@ -121,12 +127,12 @@ FLAGS
 
 FLAGS
 
-1. --devel # 搜索结果包含开发版等效于 --version 标志的值'>0.0.0-0'。如果设置了 --version 标志，则忽略该标志。
-2. --max-col-width UINT # 输出表的每列的最大宽度为 UINT。(默认为 50)
-3. -o, --output FORMAT # 以指定的格式打印输出。 允许的值：table，json，yaml（默认表）
-4. -r, --regexp               use regular expressions for searching repositories you have added
-5. --version string       search using semantic versioning constraints on repositories you have added
-6. -l, --versions             show the long listing, with each version of each chart on its own line, for repositories you have added
+- **--devel** # 搜索结果包含开发版等效于 --version 标志的值'>0.0.0-0'。如果设置了 --version 标志，则忽略该标志。
+- **--max-col-width UINT** # 输出表的每列的最大宽度为 UINT。(默认为 50)
+- **-o, --output FORMAT** # 以指定的格式打印输出。 允许的值：table，json，yaml（默认表）
+- -r, --regexp               use regular expressions for searching repositories you have added
+- --version string       search using semantic versioning constraints on repositories you have added
+- -l, --versions             show the long listing, with each version of each chart on its own line, for repositories you have added
 
 EXAMPLE
 
@@ -138,13 +144,13 @@ EXAMPLE
 
 FLAGS
 
-1. -o, --output FORMAT # 以指定的格式输出内容。`默认值：table`。可用的值有 table、json、yaml
-   1. 注意：yaml 格式可以显示该 release 的所有资源
-2. --revision INT # 显示指定历史版本的信息
+- -o, --output FORMAT # 以指定的格式输出内容。`默认值：table`。可用的值有 table、json、yaml
+    - 注意：yaml 格式可以显示该 release 的所有资源
+- --revision INT # 显示指定历史版本的信息
 
 ## template # 在本地渲染 chart 模板，并展示输出
 
-详见：[helm template 模板相关命令](https://www.yuque.com/go/doc/33978645)
+详见：[helm template 模板相关命令](/docs/10.云原生/云原生应用管理/Helm/Helm%20命令行工具/helm%20template%20模板相关命令.md)
 
 ## test # test a release
 

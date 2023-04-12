@@ -328,7 +328,34 @@ auth           Inspect authorization
 
 详见《[对象的创建与修改命令](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/Kubernetes%20管理/kubectl%20命令行工具/对象的创建与修改命令.md)》
 
-### wait # Experimental: Wait for one condition on one or many resources
+### wait # 在一个或多个资源上等待指定的条件达成
+
+#### EXAMPLE
+
+Wait for the pod "busybox1" to contain the status condition of type "Ready"
+
+```
+kubectl wait --for=condition=Ready pod/busybox1
+```
+
+The default value of status condition is true; you can wait for other targets after an equal delimiter (compared after Unicode simple case folding, which is a more general form of case-insensitivity):
+
+```
+kubectl wait --for=condition=Ready=false pod/busybox1
+```
+
+Wait for the pod "busybox1" to contain the status phase to be "Running".
+
+```
+kubectl wait --for=jsonpath='{.status.phase}'=Running pod/busybox1
+```
+
+Wait for the pod "busybox1" to be deleted, with a timeout of 60s, after having issued the "delete" command
+
+```
+kubectl delete pod/busybox1
+kubectl wait --for=delete pod/busybox1 --timeout=60s
+```
 
 ### convert # Convert config files between different API versions
 

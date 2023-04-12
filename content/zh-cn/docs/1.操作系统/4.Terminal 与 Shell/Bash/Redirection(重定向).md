@@ -89,15 +89,17 @@ EXAMPLE
     ls: cannot access b.txt: No such file or directory
     a.txt
 
-## Here Document（<\<TAG 的重定向模式
+## Here Document(<<TAG 的重定向模式)
 
 **Here Document(简称 Heredoc)** 是 shell 中的一种特殊重定向方式，用来将输入重定向到一个交互式的 shell 脚本或程序。
 
 语法：
 
-    COMMAND [n] << TAG
-        Document
-    TAG
+```text
+COMMAND [n] << TAG
+    Document
+TAG
+```
 
 它的作用是将两个 TAG 之间的内容（docuemnt）作为输入传递给 n。
 
@@ -110,20 +112,24 @@ EXAMPLE
 实例：
 在命令行中通过 wc -l 命令计算 Here Document 的行数
 
-    wc -l << EOF
-    学习使用shell 编程
-    www.xuhaoblog.com
-    EOF
+```
+wc -l << EOF
+学习使用shell 编程
+www.xuhaoblog.com
+EOF
+```
 
 输出的结果为 2。
 
 我们也可以将 Here Document 用在脚本中，例如：
 
-    #!/bin/bash
-    cat << EOF
-    学习使用shell脚本编程
-    www.xuhaoblog.com
-    EOF
+```
+#!/bin/bash
+cat << EOF
+学习使用shell脚本编程
+www.xuhaoblog.com
+EOF
+```
 
 注意！！！：
 
@@ -131,16 +137,18 @@ EXAMPLE
 
 效果如下
 
-    [root@lichenhao ~]# cat > 123 << EOF
-    > $123
-    > EOF
-    [root@lichenhao ~]# cat 123
-    23
-    [root@lichenhao ~]# cat > 123 << \EOF
-    > $123
-    > EOF
-    [root@lichenhao ~]# cat 123
-    $123
+```
+~]# cat > 123 << EOF
+> $123
+> EOF
+~]# cat 123
+23
+~]# cat > 123 << \EOF
+> $123
+> EOF
+~]# cat 123
+$123
+```
 
 ## Here Strings
 
@@ -171,77 +179,114 @@ The redirection operator \[n]<>word causes the file whose name is the expansion 
 
 # 如何理解 Linux shell 中重定向
 
-前言
+原文：https://www.cnblogs.com/even160941/p/15630065.html
+
+#### 前言
 
 有时候我们常看到类似这样的脚本调用：
 
-./test.sh > log.txt 2>&1
+```bash
+./test.sh  > log.txt 2>&1
+```
 
-这里的 2>&1 是什么意思？该如何理解？
+这里的2>&1是什么意思？该如何理解？  
+先说结论：上面的调用表明将 `./test.sh`的输出重定向到 `log.txt`文件中，同时将标准错误也重定向到 `log.txt`文件中。
 
-先说结论：上面的调用表明将./test.sh 的输出重定向到 log.txt 文件中，同时将标准错误也重定向到 log.txt 文件中。
+#### 有何妙用
 
-有何妙用
+（如果已经明白是什么作用，可跳过此小节）  
+上面到底是什么意思呢？我们来看下面的例子，假如有脚本 `test.sh`：
 
-（如果已经明白是什么作用，可跳过此小节）
+```bash
+#!/bin/bash
+date         #打印当前时间
+while true   #死循环
+do
+    #每隔2秒打印一次
+    sleep 2
+    whatthis    #不存在的命令
+    echo -e "std output"
+done
+```
 
-上面到底是什么意思呢？我们来看下面的例子，假如有脚本 test.sh：
+脚本中先打印当前日期，然后每隔2秒执行 `whatthis`并打印一段字符。由于系统中不存在 `whatthis`命令，因此执行会报错。  
+假如我们想保存该脚本的打印结果，只需将 `test.sh`的结果重定向到 `log.txt`中即可：
 
-\#!/bin/bashdate # 打印当前时间while true # 死循环 do # 每隔 2 秒打印一次 sleep 2 whatthis # 不存在的命令 echo -e "std output"done
-
-脚本中先打印当前日期，然后每隔 2 秒执行 whatthis 并打印一段字符。由于系统中不存在 whatthis 命令，因此执行会报错。
-
-假如我们想保存该脚本的打印结果，只需将 test.sh 的结果重定向到 log.txt 中即可：
-
+```bash
 ./test.sh > log.txt
+```
 
 执行结果如下：
 
-ubuntu$ ./test.sh >log.txt./test.sh: 行 7: whatthis: 未找到命令
+```bash
+./test.sh >log.txt
+./test.sh: 行 7: whatthis: 未找到命令
+```
 
-我们明明将打印内容重定向到 log.txt 中了，但是这条错误信息却没有重定向到 log.txt 中。如果你是使用程序调用该脚本，当查看脚本日志的时候，将会完全看不到这条错误信息。而使用下面的方式则会将出错信息也重定向到 log.txt 中：
+我们明明将打印内容重定向到 `log.txt`中了，但是这条错误信息却没有重定向到 `log.txt`中。如果你是使用程序调用该脚本，当查看脚本日志的时候，将会完全看不到这条错误信息。而使用下面的方式则会将出错信息也重定向到 `log.txt`中：
 
-./test.sh > log.txt 2>&1
+```bash
+./test.sh  > log.txt 2>&1
+```
 
-以这样的方式调用脚本，可以很好的将错误信息保存，帮助我们定位问题。
+以这样的方式调用脚本，可以很好地将错误信息保存，帮助我们定位问题。
 
-如何理解
+#### 如何理解
 
-每个程序在运行后，都会至少打开三个文件描述符，分别是 0：标准输入；1：标准输出；2：标准错误。
+每个程序在运行后，都会至少打开三个文件描述符，分别是  
+0：标准输入 => stdin；  
+1：标准输出 => stdout；  
+2：标准错误 => stderr。  
+例如，对于前面的test.sh脚本，我们通过下面的步骤看到它至少打开了三个文件描述符：
 
-例如，对于前面的 test.sh 脚本，我们通过下面的步骤看到它至少打开了三个文件描述符：
+```cmake
+./test.sh    #运行脚本
+ps -ef|grep test.sh  #重新打开命令串口，使用ps命令找到test.sh的pid
+root      96126  88139  0 10:44 pts/2    00:00:00 sh test.sh
+root      96177  56236  0 10:45 pts/1    00:00:00 grep --color=auto test.sh
+```
 
-./test.sh # 运行脚本
+可以看到 `test.sh`的pid为96126，进入到相关fd目录：
 
-ps -ef|grep test.sh # 重新打开命令串口，使用 ps 命令找到 test.sh 的 pidhyb 5270 4514 0 19:20 pts/7 00:00:00 /bin/bash ./test.shhyb 5315 5282 0 19:20 pts/11 00:00:00 grep --color=auto test.sh
+```bash
+cd /proc/96126/fd   #进程96126所有打开的文件描述符信息都在此
+ls -l              #列出目录下的内容
+0 -> /dev/pts/2
+1 -> /dev/pts/2
+2 -> /dev/pts/2
+255 -> /root/shell/test.sh
+```
 
-可以看到 test.sh 的 pid 为 5270，进入到相关 fd 目录：
+可以看到，`test.sh`打开了0，1，2三个文件描述符。同样的，如果有兴趣，也可以查看其他运行进程的文件描述符打开情况，除非关闭了否则都会有这三个文件描述符。
 
-cd /proc/5270/fd # 进程 5270 所有打开的文件描述符信息都在此
+那么现在就容易理解前面的疑问了，2>&1表明将文件描述2（标准错误输出）的内容重定向到文件描述符1（标准输出）的文件（/dev/stdout）中，为什么1前面需要&？当没有&时，1会被认为是一个普通的文件，有&表示重定向的目标不是一个文件，而是一个文件描述符。在前面我们知道，`sh test.sh >log.txt`又将文件描述符1的内容重定向到了文件 `log.txt`，那么最终标准错误也会重定向到 `log.txt`。我们同样通过前面的方法 `sh test.sh > log.txt 2>&1`，可以看到 `test.sh`进程的文件描述符情况如下：
 
-ls -l # 列出目录下的内容 0 -> /dev/pts/7 1 -> /dev/pts/7 2 -> /dev/pts/7 255 -> /home/hyb/workspaces/shell/test.sh
+```basic
+0 -> /dev/pts/2
+1 -> /root/shell/log.txt
+2 -> /root/shell/log.txt
+255 -> /root/shell/test.sh
+```
 
-可以看到，test.sh 打开了 0，1，2 三个文件描述符。同样的，如果有兴趣，也可以查看其他运行进程的文件描述符打开情况，除非关闭了否则都会有这三个文件描述符。
-
-那么现在就容易理解前面的疑问了，2>&1 表明将文件描述 2（标准错误输出）的内容重定向到文件描述符 1（标准输出），为什么 1 前面需要&？当没有&时，1 会被认为是一个普通的文件，有&表示重定向的目标不是一个文件，而是一个文件描述符。在前面我们知道，test.sh >log.txt 又将文件描述符 1 的内容重定向到了文件 log.txt，那么最终标准错误也会重定向到 log.txt。我们同样通过前面的方法，可以看到 test.sh 进程的文件描述符情况如下：
-
-0 -> /dev/pts/7 1 -> /home/hyb/workspaces/shell/log.txt 2 -> /home/hyb/workspaces/shell/log.txt 255 -> /home/hyb/workspaces/shell/test.sh
-
-我们可以很明显地看到，文件描述符 1 和 2 都指向了 log.txt 文件，也就得到了我们最终想要的效果：将标准错误输出重定向到文件中。
-
+我们可以很明显地看到，文件描述符1和2都指向了 `log.txt`文件，也就得到了我们最终想要的效果：将标准错误输出重定向到文件中。  
 它们还有两种等价写法：
 
-./test.sh >& log.txt./test.sh &> log.txt
+```mipsasm
+sh test.sh  >& log.txt
+sh test.sh  &> log.txt
+```
 
-总结
+此处 `>&` 或者 `&>` 视作整体，分开没有单独的意义。
+
+#### 总结
 
 我们总结一下前面的内容：
 
-- 程序运行后会打开三个文件描述符，分别是标准输入，标准输出和标准错误输出。
-- 在调用脚本时，可使用 2>&1 来将标准错误输出重定向。
-- 只需要查看脚本的错误时，可将标准输出重定向到文件，而标准错误会打印在控制台，便于查看。
-- > > log.txt 会将重定向内容追加到 log.txt 文件末尾。
-- 通过查看/proc/进程 id/fd 下的内容，可了解进程打开的文件描述符信息。
+-   1.程序运行后会打开三个文件描述符，分别是标准输入，标准输出和标准错误输出。
+-   2.在调用脚本时，可使用2>&1来将标准错误输出重定向。
+-   3.只需要查看脚本的错误时，可将标准输出重定向到文件，而标准错误会打印在控制台，便于查看。
+-   4.`>>log.txt`会将重定向内容追加到`log.txt`文件末尾。
+-   5.通过查看`/proc/进程id/fd`下的内容，可了解进程打开的文件描述符信息。
 
 # 重定向应用示例
 
@@ -292,10 +337,14 @@ grep da _ > greplog3 2>&1 //grep da _ 2> greplog4 1>&2 结果一样
 # tee 命令
 
 在非 root 用户时，重定向总是会提示权限不够，这时候，可以使用 tee 命令来代替重定向符号
+
 比如
-`containerd config default | sudo tee /etc/containerd/config.toml`
+
+`containerd config default | sudo tee /etc/containerd/config.toml > /dev/null`
+
 等效于
-`containerd config default > /etc/containerd/config.toml`
+
+`sudo sh -c "containerd config default > /etc/containerd/config.toml"`
 
 还可以这么用
 

@@ -19,31 +19,45 @@ title: Other Exporter
 
 端口默认 9113，Grafana 面板 ID：[GitHub](https://raw.githubusercontent.com/nginxinc/nginx-prometheus-exporter/master/grafana/dashboard.json)
 
-    docker run -d --name nginx-exporter\
-      --network host \
-      nginx/nginx-prometheus-exporter:0.8.0 \
-      -nginx.scrape-uri http://localhost:9123/metrics
+```bash
+docker run -d --name nginx-exporter\
+  --network host \
+  nginx/nginx-prometheus-exporter:0.8.0 \
+  -nginx.scrape-uri http://localhost:9123/metrics
+```
 
 # MySQL Exporter
 
-参考：[GitHub 项目](https://github.com/prometheus/mysqld_exporter)
-端口默认 9104，Grafana 面板 ID：7362
+> 参考：
+> - [GitHub 项目](https://github.com/prometheus/mysqld_exporter)
 
-    docker run -d --name mysql-exporter \
-      --network host  \
-      -e DATA_SOURCE_NAME="root:oc@2020@(localhost:3306)/" \
-      prom/mysqld-exporter
+端口默认 9104
+
+Grafana 面板：
+
+- 7362
+- 官方提供了一个面板在[这里](https://github.com/prometheus/mysqld_exporter/blob/main/mysqld-mixin/dashboards/mysql-overview.json)
+
+```bash
+docker run -d --name mysql-exporter \
+  --network host  \
+  -e DATA_SOURCE_NAME="root:oc@2020@(localhost:3306)/" \
+  prom/mysqld-exporter
+```
 
 # Redis Exporter
 
 参考：[GitHub 项目](https://github.com/oliver006/redis_exporter)
+
 端口默认 9121，Grafana 面板 ID：11835
 
-    docker run -d --name redis-exporter \
-      --network host \
-      oliver006/redis_exporter \
-      --redis.password='DesistDaydream' \
-      --redis.addr='redis://127.0.0.1:6379'
+```bash
+docker run -d --name redis-exporter \
+  --network host \
+  oliver006/redis_exporter \
+  --redis.password='DesistDaydream' \
+  --redis.addr='redis://127.0.0.1:6379'
+```
 
 # DELL OMSA 的 Exporter
 
