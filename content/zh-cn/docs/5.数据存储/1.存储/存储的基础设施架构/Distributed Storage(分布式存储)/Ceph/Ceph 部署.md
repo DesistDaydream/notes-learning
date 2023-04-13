@@ -79,11 +79,13 @@ ceph orch apply osd --all-available-devices
 ## 基本部署完成
 
 组成了一个三节点的 Ceph 集群效果如下：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/sx1zt0/1630850693982-c0ecf1f3-1f37-4f61-8b7c-84c1447ac04f.png)
+
 Ceph 集群中，除了监控套件以外，有 3 个 ceph-mon、2 个 ceph-mgr、3 个 ceph-crash、6 个 ceph-osd。从服务角度看，当前有三个服务：mon、mgr、osd，使用 `ceph -s` 命令查看：
 
 ```bash
-root@hw-cloud-xngy-ecs-test-0001:~# ceph -s
+~]# ceph -s
   cluster:
     id:     24750534-0e45-11ec-9849-7bf16e3e2cb9
     health: HEALTH_OK
@@ -116,7 +118,7 @@ ceph orch apply rgw foo '--placement=label:rgw count-per-host:2' --port=8000
 此时，节点 1 和节点 2 上，每个节点都有运行有两个 ceph-rgw 实例，可以对外提供服务
 
 ```bash
-root@hw-cloud-xngy-ecs-test-0001:~# docker ps -a | grep rgw
+~]# docker ps -a | grep rgw
 9ad5fe363abd   ceph/ceph                    "/usr/bin/radosgw -n…"   24 seconds ago   Up 24 seconds             ceph-24750534-0e45-11ec-9849-7bf16e3e2cb9-rgw.foo.hw-cloud-xngy-ecs-test-0001.rqcvxl
 519d6a07f001   ceph/ceph                    "/usr/bin/radosgw -n…"   26 seconds ago   Up 26 seconds             ceph-24750534-0e45-11ec-9849-7bf16e3e2cb9-rgw.foo.hw-cloud-xngy-ecs-test-0001.hsjpqq
 root@hw-cloud-xngy-ecs-test-0001:~# ss -ntlp | grep gw
@@ -172,7 +174,9 @@ ceph dashboard set-rgw-api-secret-key -i sk
 ```
 
 此时从 Ceph 的 Web 页面中，可以从 Object Gateway 标签中看到内容了：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/sx1zt0/1630856235488-d2d2e334-a0a9-4d41-aa17-06522f30d11a.png)
+
 使用 192.168.1.202:8000 作为 Endpoint，以及 lichenhao 用户的 ak、sk，可以通过 S3 Brower 访问 Ceph 提供的对象存储。注意：由于此时没有开启 SSL，所以 S3 Brower 也要关闭 SSL。
 
 ## 添加监控服务(可选)
