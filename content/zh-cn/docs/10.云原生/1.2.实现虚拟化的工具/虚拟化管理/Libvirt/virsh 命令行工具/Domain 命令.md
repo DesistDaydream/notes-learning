@@ -4,131 +4,14 @@ title: Domain 命令
 
 # 概述
 
-[autostart](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#autostart)
-[blkdeviotune](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#blkdeviotune)
-[blkiotune](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#blkiotune)
-[blockcommit](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#blockcommit)
-[blockcopy](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#blockcopy)
-[blockjob](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#blockjob)
-[blockpull](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#blockpull)
-[blockresize](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#blockresize)
-[console](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#console)
-[cpu-stats](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#cpu-stats)
-[create](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#create)
-[define](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#define)
-[desc](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#desc)
-[destroy](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#destroy)
-[domblkerror](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domblkerror)
-[domblkinfo](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domblkinfo)
-[domblklist](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domblklist)
-[domblkstat](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domblkstat)
-[domblkthreshold](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domblkthreshold)
-[domcontrol](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domcontrol)
-[domdirtyrate-calc](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domdirtyrate-calc)
-[domdisplay](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domdisplay)
-[domfsfreeze](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domfsfreeze)
-[domfsinfo](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domfsinfo)
-[domfsthaw](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domfsthaw)
-[domfstrim](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domfstrim)
-[domhostname](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domhostname)
-[domid](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domid)
-[domif-getlink](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domif-getlink)
-[domif-setlink](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domif-setlink)
-[domifaddr](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domifaddr)
-[backup-begin](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#backup-begin)
-[backup-dumpxml](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#backup-dumpxml)
-[domiflist](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domiflist)
-[domifstat](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domifstat)
-[domiftune](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domiftune)
-[dominfo](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#dominfo)
-[domjobabort](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domjobabort)
-[domjobinfo](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domjobinfo)
-[domlaunchsecinfo](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domlaunchsecinfo)
-[domsetlaunchsecstate](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domsetlaunchsecstate)
-[dommemstat](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#dommemstat)
-[domname](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domname)
-[dompmsuspend](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#dompmsuspend)
-[dompmwakeup](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#dompmwakeup)
-[domrename](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domrename)
-[domstate](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domstate)
-[domstats](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domstats)
-[domtime](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domtime)
-[domuuid](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domuuid)
-[domxml-from-native](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domxml-from-native)
-[domxml-to-native](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domxml-to-native)
-[dump](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#dump)
-[dumpxml](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#dumpxml)
-[edit](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#edit)
-[emulatorpin](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#emulatorpin)
-[event](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#event)
-[get-user-sshkeys](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#get-user-sshkeys)
-[guest-agent-timeout](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#guest-agent-timeout)
-[guestinfo](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#guestinfo)
-[guestvcpus](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#guestvcpus)
-[iothreadadd](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#iothreadadd)
-[iothreaddel](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#iothreaddel)
-[iothreadinfo](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#iothreadinfo)
-[iothreadpin](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#iothreadpin)
-[iothreadset](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#iothreadset)
-[managedsave](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#managedsave)
-[managedsave-define](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#managedsave-define)
-[managedsave-dumpxml](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#managedsave-dumpxml)
-[managedsave-edit](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#managedsave-edit)
-[managedsave-remove](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#managedsave-remove)
-[maxvcpus](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#maxvcpus)
-[memtune](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#memtune)
-[metadata](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#metadata)
-[migrate](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#migrate)
-[migrate-compcache](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#migrate-compcache)
-[migrate-getmaxdowntime](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#migrate-getmaxdowntime)
-[migrate-getspeed](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#migrate-getspeed)
-[migrate-postcopy](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#migrate-postcopy)
-[migrate-setmaxdowntime](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#migrate-setmaxdowntime)
-[migrate-setspeed](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#migrate-setspeed)
-[numatune](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#numatune)
-[perf](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#perf)
-[reboot](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#reboot)
-[reset](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#reset)
-[restore](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#restore)
-[resume](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#resume)
-[save](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#save)
-[save-image-define](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#save-image-define)
-[save-image-dumpxml](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#save-image-dumpxml)
-[save-image-edit](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#save-image-edit)
-[schedinfo](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#schedinfo)
-[screenshot](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#screenshot)
-[send-key](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#send-key)
-[send-process-signal](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#send-process-signal)
-[set-lifecycle-action](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#set-lifecycle-action)
-[set-user-password](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#set-user-password)
-[set-user-sshkeys](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#set-user-sshkeys)
-[setmaxmem](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#setmaxmem)
-[setmem](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#setmem)
-[setvcpus](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#setvcpus)
-[setvcpu](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#setvcpu)
-[shutdown](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#shutdown)
-[start](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#start)
-[suspend](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#suspend)
-[ttyconsole](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#ttyconsole)
-[undefine](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#undefine)
-[vcpucount](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#vcpucount)
-[vcpuinfo](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#vcpuinfo)
-[vcpupin](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#vcpupin)
-[vncdisplay](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#vncdisplay)
+> 参考：
+> - https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#domain-commands
 
-blkdeviotune Set or query a block device I/O tuning parameters.
+可以为虚拟机重命名、查看虚拟机信息，状态、等等
 
-blkiotune Get or set blkio parameters
+## 简单的子命令
 
-blockcommit Start a block commit operation.
-
-blockcopy Start a block copy operation.
-
-blockjob Manage active block operations
-
-blockpull Populate a disk from its backing image.
-
-blockresize Resize block device of domain.
+**autostart** # 指定 Domain 是否在开机后自启动，可以使用 --disable 选项关闭 Domain 的开机自启功能。
 
 # console # 连接到 VM 的终端
 
@@ -150,13 +33,14 @@ console 用于把虚拟机屏幕上的信息投射到宿主机上，可以直接
 ## Syntax(语法)
 
 **define \<file> \[--validate]**
+
 EXAMPLE
 
 - virsh define cirros.xml # 通过 cirros.xml 来定义一个 VM 的属性，如果 VM 不存在则创建
 
 # desc # 显示或者设置一个 domain 的 description 或 title
 
-desc \<domain> \[--live] \[--config] \[--current] \[--title] \[--edit] \[\[--new-desc] \<STRING>]...
+**desc \<domain> \[--live] \[--config] \[--current] \[--title] \[--edit] \[\[--new-desc] \<STRING>]...**
 
 Note：
 
@@ -182,10 +66,6 @@ EXAMPLE
 
 # destroy # 摧毁一个 domain，类似于直接拔掉电源
 
-domblkerror Show errors on block devices
-
-domblkinfo domain block device size information
-
 # domblklist # 列出 domain 的所有 blocks(块设备)
 
 列出 Domain 的所有 blocks(块设备)。i.e.指定 domain 所使用的磁盘文件
@@ -198,21 +78,15 @@ OPTIONS
 - --inactive #
 - --details # 列出的信息还包括类型和设备
 
-domblkstat get device block stats for a domain
-
-domcontrol domain control interface state
-
-domif-getlink get link state of a virtual interface
-
 # domifaddr # 从正在运行的 domain 中获取网络接口的 IP 地址
 
-domifaddr \<domain> \[--interface \<string>] \[--full] \[--source \<string>]
+**domifaddr \<domain> \[--interface \<string>] \[--full] \[--source \<string>]**
 
 该信息包括：Name MAC address Protocol Address
 
 # domiflist # 列出 domain 所有的虚拟接口
 
-domiflist \<domain> \[--inactive]
+**domiflist \<domain> \[--inactive]**
 
 该信息包括：Interface Type Source Model MAC
 
@@ -228,7 +102,9 @@ EXAMPLE
 
 # dominfo # 返回指定 domain 的基本信息，包括该 domain 的 name、uuid、mem、cpu 等
 
-# [dommemstat](https://libvirt.org/manpages/virsh.html#dommemstat) # 获取指定 domain 的内存状态信息
+# dommemstat # 获取指定 domain 的内存状态信息
+
+https://libvirt.org/manpages/virsh.html#dommemstat
 
 dommemstat 会获取正在运行的 domain 的内存统计信息。可以获取到如下信息：
 
@@ -252,25 +128,9 @@ dommemstat 会获取正在运行的 domain 的内存统计信息。可以获取�
 
 **dommemstat domain \[--period seconds] \[\[--config] \[--live] | \[--current]]**
 
-domstate domain state
+# domstate
 
-domstats get statistics about one or multiple domains
-
-domtime domain time
-
-domdisplay domain display connection URI
-
-domfsfreeze Freeze domain's mounted filesystems.
-
-domfsthaw Thaw domain's mounted filesystems.
-
-domfsinfo Get information of domain's mounted filesystems.
-
-domfstrim Invoke fstrim on domain's mounted filesystems.
-
-domhostname print the domain's hostname
-
-domid convert a domain name or UUID to domain id 将域名或 UUID 转换为域 ID
+返回有关 Domain 的状态。 --reason 选项告诉 virsh 还需要打印状态的原因。
 
 # domif-setlink # 设定 domain 网卡的状态
 
@@ -278,25 +138,11 @@ domid convert a domain name or UUID to domain id 将域名或 UUID 转换为域 
 
 EXAMPLE
 
-1. virsh domif-setlink lichenhao--interface 52:54:00:6a:86:89 --state down # 关闭 lichenhao 这台虚拟机的指定网卡
+- virsh domif-setlink lichenhao--interface 52:54:00:6a:86:89 --state down # 关闭 lichenhao 这台虚拟机的指定网卡
 
-domiftune get/set parameters of a virtual interface
+# domrename # 重命名一个 Domain
 
-domjobabort abort active domain job
-
-domjobinfo domain job information
-
-domname convert a domain id or UUID to domain name 将域 id 或 UUID 转换为域名
-
-# domrename # 重命名一个 domain
-
-dompmsuspend suspend a domain gracefully using power management functions
-
-dompmwakeup wakeup a domain from pmsuspended state
-
-domuuid # UUID 将 domain 名称 或 id 转换为 domain 的 UUID
-
-domxml-from-native Convert native config to domain XML
+重命名一个**未激活状态**的 Domain。`virsh domrename <DOMAIN> <NewName>`
 
 # domxml-to-native # 根据 domain 的 XML 描述文件，转换成 qemu-kvm 创建虚拟机的命令
 
@@ -384,8 +230,6 @@ QEMU_AUDIO_DRV=none
 -msg timestamp=on
 ```
 
-dump dump the core of a domain to a file for analysis
-
 # dumpxml # 显示 domain 的 XML 格式的信息
 
 EXAMLPE
@@ -393,50 +237,6 @@ EXAMLPE
 - virsh dumpxml lchTest # 显示 lchTest 这个虚拟机的 xml 信息
 
 # edit # 编辑一个 domain 的 XML 配置
-
-event Domain Events
-
-inject-nmi Inject NMI to the guest
-
-iothreadinfo view domain IOThreads
-
-iothreadpin control domain IOThread affinity
-
-iothreadadd add an IOThread to the guest domain
-
-iothreaddel delete an IOThread from the guest domain
-
-send-key Send keycodes to the guest
-
-send-process-signal Send signals to processes
-
-lxc-enter-namespace LXC Guest Enter Namespace
-
-managedsave managed save of a domain state
-
-managedsave-remove Remove managed save of a domain
-
-memtune Get or set memory parameters
-
-metadata show or set domain's custom XML metadata
-
-migrate migrate domain to another host
-
-migrate-setmaxdowntime set maximum tolerable downtime
-
-migrate-compcache get/set compression cache size
-
-migrate-setspeed Set the maximum migration bandwidth
-
-migrate-getspeed Get the maximum migration bandwidth
-
-numatune Get or set numa parameters
-
-qemu-attach QEMU Attach
-
-qemu-monitor-command QEMU Monitor Command
-
-qemu-monitor-event QEMU Monitor Events
 
 # qemu-agent-command # 向 domain 中执行 QEMU Guest Agent 命令
 
@@ -450,39 +250,9 @@ qemu-monitor-event QEMU Monitor Events
 
 # reboot # 重新启动一个 domainre
 
-reset reset a domain
-
-restore restore a domain from a saved state in a file
-
-resume resume a domain
-
-save save a domain state to a file
-
-save-image-define redefine the XML for a domain's saved state file
-
-save-image-dumpxml saved state domain information in XML
-
-save-image-edit edit XML for a domain's saved state file
-
-schedinfo show/set scheduler parameters
-
-screenshot take a screenshot of a current domain console and store it into a file
-
-set-user-password set the user password inside the domain
-
-setmaxmem change maximum memory limit
-
-setmem change memory allocation
-
-setvcpus change number of virtual CPUs
-
 # shutdown # 优雅得关闭 domain
 
 # start # 启动一个 domain
-
-suspend suspend a domain
-
-ttyconsole tty console
 
 # undefine # 取消定义一个 domain。i.e.删除一台虚拟机
 
@@ -503,10 +273,4 @@ OPTIONS
 - --nvram remove nvram file, if inactive
 - --keep-nvram keep nvram file, if inactive
 
-vcpucount domain vcpu counts
-vcpuinfo detailed domain vcpu information
-vcpupin control or query domain vcpu affinity
-
-emulatorpin control or query domain emulator affinity
-
-vncdisplay vnc display
+# vncdisplay # 输出 Domain 的 VNC 显示的 IP 和端口

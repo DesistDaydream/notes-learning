@@ -46,15 +46,15 @@ Note：其中各种命令用法，详见 virsh 命令行工具目录下每个子
 
 ## [Generic commands](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh%20命令行工具/通用命令.md)(通用命令)
 
-通用命令与 domain 无关
+通用命令与 Domain 无关
 
-## [Domain commands](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh%20 命令行工具/Domain%20命令.md)(虚拟机命令)
+## [Domain commands](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh%20命令行工具/Domain%20命令.md)(虚拟机命令)
 
-The following commands manipulate domains directly, as stated previously most commands take domain as the first parameter. The domain can be specified as a short integer, a name or a full UUID.
+这部分命令直接操作 Domain，正如先前所述，大多数命令将 Domain 作为第一个参数。Domain 可以指定为短整数、名称或完整的 UUID。
 
 ## [Device commands](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh%20命令行工具/Device%20命令.md)(设备命令)
 
-Device 命令用以控制与 domains 关联的设备。The domain can be specified as a short integer, a name or a full UUID. To better understand the values allowed as options for the command reading the documentation at <https://libvirt.org/formatdomain.html> on the format of the device sections to get the most accurate set of accepted values.
+Device 命令用以控制与 Domains 关联的设备。The domain can be specified as a short integer, a name or a full UUID. To better understand the values allowed as options for the command reading the documentation at <https://libvirt.org/formatdomain.html> on the format of the device sections to get the most accurate set of accepted values.
 
 ## [NodeDev commands](https://libvirt.org/manpages/virsh.html#nodedev-commands)()
 
@@ -64,21 +64,21 @@ The following commands manipulate networks. Libvirt has the capability to define
 
 ## NETWORK PORT COMMANDS
 
-## [Interface commands](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh%20 命令行工具/Interface%20命令.md)(接口命令)
+## [Interface commands](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh%20命令行工具/Interface%20命令.md)(接口命令)
 
 The following commands manipulate host interfaces. Often, these host interfaces can then be used by name within domain \<interface> elements (such as a system-created bridge interface), but there is no requirement that host interfaces be tied to any particular guest configuration XML at all.
 Many of the commands for host interfaces are similar to the ones used for domains, and the way to name an interface is either by its name or its MAC address. However, using a MAC address for an _iface_ argument only works when that address is unique (if an interface and a bridge share the same MAC address, which is often the case, then using that MAC address results in an error due to ambiguity, and you must resort to a name instead).
 
 ## STORAGE POOL COMMANDS
 
-1. 一个 storage pool 包括很多 storage volume，storage volume 有单独的一组命令进行管理
-2. storage pool 就是存放 s torage volume 的地方，是一个目录，详见 1.5.Storage Virtualization.note 中的 kvm 的存储虚拟化
-3. 存储池默认目录为/var/lib/libvirt/images/，这个目录会存放所有 VM 的文件，通过 libvirt 创建完虚拟机后生成的 image 都会放在 default 目录下
+- 一个 storage pool 包括很多 storage volume，storage volume 有单独的一组命令进行管理
+- storage pool 就是存放 s torage volume 的地方，是一个目录，详见 1.5.Storage Virtualization.note 中的 kvm 的存储虚拟化
+- 存储池默认目录为/var/lib/libvirt/images/，这个目录会存放所有 VM 的文件，通过 libvirt 创建完虚拟机后生成的 image 都会放在 default 目录下
 
 ## VOLUME COMMANDS
 
-1. 存储卷就是 VM 上的一块物理硬盘，一个物理硬盘是通过一个文件的形式表现的，修改这个文件，就可以修改这个硬盘的内容。详见 1.5.Storage Virtualization.note 中的 kvm 的存储虚拟化
-2. storage volume 管理命令可以调整硬盘大小、类型等，还能增删改查指定的硬盘
+- 存储卷就是 VM 上的一块物理硬盘，一个物理硬盘是通过一个文件的形式表现的，修改这个文件，就可以修改这个硬盘的内容。详见 1.5.Storage Virtualization.note 中的 kvm 的存储虚拟化
+- storage volume 管理命令可以调整硬盘大小、类型等，还能增删改查指定的硬盘
 
 ## SECRET COMMANDS
 
