@@ -1470,6 +1470,22 @@
       "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/install、upgrade 子命令.md",
       "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/helm 查询相关命令.md",
       "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/helm template 模板相关命令.md"
+    ],
+    "docs/1.操作系统/Y.Windows 管理/Windows管理工具/PowerShell内置管理工具": [
+      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/PowerShell内置管理工具/_index.md",
+      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/PowerShell内置管理工具/PowerShell内置管理工具.md",
+      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/PowerShell内置管理工具/Core.md",
+      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/PowerShell内置管理工具/Management.md",
+      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/PowerShell内置管理工具/Security.md"
+    ],
+    "docs/实用工具/IDE/Visual Studio Code": [
+      "docs/实用工具/IDE/Visual Studio Code/_index.md",
+      "docs/实用工具/IDE/Visual Studio Code/Visual Studio Code.md",
+      "docs/实用工具/IDE/Visual Studio Code/VS Code 快捷键.md",
+      "docs/实用工具/IDE/Visual Studio Code/VS Code 配置详解.md",
+      "docs/实用工具/IDE/Visual Studio Code/VS Code 中的 WSL.md",
+      "docs/实用工具/IDE/Visual Studio Code/Plugins(插件)",
+      "docs/实用工具/IDE/Visual Studio Code/code-server.md"
     ]
   },
   "actionBarOrder": {},

@@ -112,7 +112,7 @@ enum {
 166:          4          0          0          0  IR-PCI-MSI-edge      ioat-msix
 ......
 NMI:        710        280        658        235   Non-maskable interrupts
-LOC:    4230314    2640664    2427443    1337890   Local timer interrupts
+LOC:    4230314    2640664    2427443    1338890   Local timer interrupts
 SPU:          0          0          0          0   Spurious interrupts
 PMI:        710        280        658        235   Performance monitoring interrupts
 IWI:          0          0          0          0   IRQ work interrupts

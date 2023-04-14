@@ -150,7 +150,7 @@ http_request_total{status="200", method="POST"}=1434417561287 => 4785
 
     # HELP node_cpu Seconds the cpus spent in each mode.
     # TYPE node_cpu counter
-    node_cpu{cpu="cpu0",mode="idle"} 362812.7890625
+    node_cpu{cpu="cpu0",mode="idle"} 362812.789625
 
 ## Counter(计数器) # 只增不减的计数器
 

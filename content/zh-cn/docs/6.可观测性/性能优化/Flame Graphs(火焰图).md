@@ -50,14 +50,18 @@ CPU 分析的一种常用技术是，使用像 Linux perf_events 和 DTrace 之�
 综合考虑采样成本、输出大小、应用环境，CPU profile 有可能是这样收集：对所有的 cpu，对 stack traces 以每秒 99 次的速度，连续采样 30 秒（使用 99 而不是 100，是为了防止采样周期与某些系统周期事件重合，影响采样结果）。对于一个 16 核的机器来说，输出结果可能会有 47520 个堆栈采样。可能会输出成千上万行文本。（ps:原文是 not 100, to avoid lock-step sampling 理解不了，所以按照书中的描述写的）
 有些 profile 可以压缩输出，比如 DTrace，可以把相同的 stack traces 汇总到一起，只输出次数。这个优化还是蛮有用的，比如长时间的 for 循环，或者系统 idle 状态的 stack traces，都会被简化成一个。
 Linux perf_events 还可以进一步压缩输出，通过合并相同的 substack，使用树形结构汇总输出。对于树的每个分枝，都可以统计 count 或百分比。如图一所示：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hxnw7s/1619535684402-a78901d6-3770-4ff9-90d9-3089acd9510c.jpeg)
+
 实际上，perf_events 和 DTrace 的输出，在很多情况下，足够分析问题使用了。但是也有时候，面对超长的输出，就像面对一堵写满字的高墙，分析其中某个堆栈就好比盲人摸象、管中窥豹。
 
 ### The Problem
 
 为了分析“the Joyent public cloud”的性能问题，我们发明了火焰图。问题简单描述就是:某台服务器上部署了一个 mysql 服务，该服务的 cpu 使用率比预期的情况高了 40%。
 我们使用 DTrace，以 997 Hz 的频率连续采样 stack traces 60 秒，尽管 DTrace 对输出进行了压缩，输出还是有 591622 行，包括 27053 个 stack traces，图二展示了输出结果，屏幕最下方显示的是调用最频繁的方法，说不定是问题的关键。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hxnw7s/1619535684447-cc99cf85-c6e5-415f-995c-56ed19002211.jpeg)
+
 最频繁的方法是`calc_sum_of_all_status()`,这个方法在执行 mysql 命令`show status`时被调用。也许有个客户端在疯狂执行这个命令做监控？
 为了证明这个结论，用该方法采样的次数 5530，除以总的采样次数 348427。算出来这个方法只占用了 1.6%,远远不到 40%。看来得继续分析 profile。
 如果继续按照调用频度，一个一个分析 stack traces，完全是一项体力劳动。看下图三就知道这是一项多么庞大的工作量。缩放以后，整个 DTrace 输出就像一个毫无特征的灰色图片。
