@@ -721,7 +721,7 @@
       "docs/12.人工智能/12.人工智能.md",
       "docs/12.人工智能/自然语言处理",
       "docs/12.人工智能/计算机视觉",
-      "docs/12.人工智能/深度学习框架.md",
+      "docs/12.人工智能/AI 训练",
       "docs/12.人工智能/OpenAI",
       "docs/12.人工智能/Anthropic",
       "docs/12.人工智能/Hugging Face.md"
@@ -1530,6 +1530,11 @@
       "docs/4.数据通信/DNS/BIND/_index.md",
       "docs/4.数据通信/DNS/BIND/BIND.md",
       "docs/4.数据通信/DNS/BIND/命令行工具.md"
+    ],
+    "docs/12.人工智能/AI 训练": [
+      "docs/12.人工智能/AI 训练/_index.md",
+      "docs/12.人工智能/AI 训练/AI 训练.md",
+      "docs/12.人工智能/AI 训练/深度学习框架.md"
     ]
   },
   "actionBarOrder": {},
