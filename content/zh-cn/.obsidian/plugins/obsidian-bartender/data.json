@@ -723,6 +723,7 @@
       "docs/12.人工智能/计算机视觉",
       "docs/12.人工智能/深度学习框架.md",
       "docs/12.人工智能/OpenAI",
+      "docs/12.人工智能/Anthropic",
       "docs/12.人工智能/Hugging Face.md"
     ],
     "docs/12.人工智能/OpenAI": [
@@ -1389,19 +1390,19 @@
     ],
     "docs/实用工具": [
       "docs/实用工具/_index.md",
-      "docs/实用工具/安装操作系统",
-      "docs/实用工具/Windows实用工具",
+      "docs/实用工具/实用工具.md",
       "docs/实用工具/Terminal(终端)",
       "docs/实用工具/IDE",
       "docs/实用工具/远程管理",
-      "docs/实用工具/即时通信与延时通信.md",
       "docs/实用工具/网站搭建",
       "docs/实用工具/下载.md",
       "docs/实用工具/写作",
       "docs/实用工具/手机.md",
       "docs/实用工具/云盘.md",
       "docs/实用工具/浏览器",
-      "docs/实用工具/开源软件洞察.md"
+      "docs/实用工具/开源软件洞察.md",
+      "docs/实用工具/即时通信",
+      "docs/实用工具/计算机外设.md"
     ],
     "docs/实用工具/Terminal(终端)": [
       "docs/实用工具/Terminal(终端)/_index.md",
@@ -1486,6 +1487,49 @@
       "docs/实用工具/IDE/Visual Studio Code/VS Code 中的 WSL.md",
       "docs/实用工具/IDE/Visual Studio Code/Plugins(插件)",
       "docs/实用工具/IDE/Visual Studio Code/code-server.md"
+    ],
+    "docs/实用工具/消息传递": [
+      "docs/实用工具/消息传递/_index.md",
+      "docs/实用工具/消息传递/消息传递.md",
+      "docs/实用工具/消息传递/即时消息.md",
+      "docs/实用工具/消息传递/Slack.md"
+    ],
+    "docs/实用工具/即时通信": [
+      "docs/实用工具/即时通信/_index.md",
+      "docs/实用工具/即时通信/即时通信.md",
+      "docs/实用工具/即时通信/Slack.md"
+    ],
+    "docs/1.操作系统": [
+      "docs/1.操作系统/_index.md",
+      "docs/1.操作系统/0.操作系统",
+      "docs/1.操作系统/1.Bootloader",
+      "docs/1.操作系统/2.Kernel(内核)",
+      "docs/1.操作系统/3.Systemd 系统守护程序",
+      "docs/1.操作系统/4.Terminal 与 Shell",
+      "docs/1.操作系统/5.登录 Linux 与 访问控制",
+      "docs/1.操作系统/6.Package 管理",
+      "docs/1.操作系统/7.时间管理",
+      "docs/1.操作系统/公众号,码农的荒岛求生-操作系统话题系列文章",
+      "docs/1.操作系统/系统审计",
+      "docs/1.操作系统/Linux 源码解析",
+      "docs/1.操作系统/X.Linux 管理",
+      "docs/1.操作系统/Y.Windows 管理",
+      "docs/1.操作系统/安装操作系统"
+    ],
+    "docs/4.数据通信/DNS": [
+      "docs/4.数据通信/DNS/_index.md",
+      "docs/4.数据通信/DNS/DNS.md",
+      "docs/4.数据通信/DNS/Resource Record(资源记录).md",
+      "docs/4.数据通信/DNS/Zone 与 Domain.md",
+      "docs/4.数据通信/DNS/DNSmasq.md",
+      "docs/4.数据通信/DNS/BIND",
+      "docs/4.数据通信/DNS/反向解析原理.md",
+      "docs/4.数据通信/DNS/DDNS.md"
+    ],
+    "docs/4.数据通信/DNS/BIND": [
+      "docs/4.数据通信/DNS/BIND/_index.md",
+      "docs/4.数据通信/DNS/BIND/BIND.md",
+      "docs/4.数据通信/DNS/BIND/命令行工具.md"
     ]
   },
   "actionBarOrder": {},

@@ -63,7 +63,7 @@ Linux 操作系统中的流量控制器 TC(Traffic Control) 用于 Linux 内核�
 
 Linux 流量控制的基本原理如下图所示。
 
-![](https://notes-picgo.oss-cn-beijing.aliyuncs.com/20230119084348.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/tc-module/20230119084348.png)
 
 接收包从输入接口（Input Interface）进来后，经过流量限制（Ingress Policing）丢弃不符合规定的数据包，由输入多路分配器（Input  De-Multiplexing）进行判断选择。如果接收包的目的地是本主机，那么将该包送给上层处理，否则需要进行转发，将接收包交到转发块（ForwardingBlock）处理。转发块同时也接收本主机上层（TCP、UDP 等）产生的包。转发块通过查看路由表，决定所处理包的下一跳。然后，对包进行排列以便将它们传送到输出接口（Output Interface）。
 

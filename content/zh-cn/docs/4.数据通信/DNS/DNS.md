@@ -10,7 +10,7 @@ title: DNS
 > - [Wiki,Name Server](https://en.wikipedia.org/wiki/Name_server)
 > - 《DNS 与 BIND》(第 5 版)
 
-**Domain Name System(域名系统，简称 DNS)**是一个分层的和去中心化的命名系统，以便人们可以更方便得访问互联网。DNS 主要用来将更容易让人类记忆的 `域名` 与 `IP地址` 互相映射，以便可以通过域名定位和访问互联网上的服务。自 1985 年以来，域名系统通过提供全球性、分布式的域名服务，已成为 Internet 功能的重要组成部分。
+**Domain Name System(域名系统，简称 DNS)** 是一个分层的和去中心化的命名系统，以便人们可以更方便得访问互联网。DNS 主要用来将更容易让人类记忆的 `域名` 与 `IP地址` 互相映射，以便可以通过域名定位和访问互联网上的服务。自 1985 年以来，域名系统通过提供全球性、分布式的域名服务，已成为 Internet 功能的重要组成部分。
 
 从另一个方面说，DNS(域名系统) 其实是一个**分布式的数据库**。这种结构允许对整体数据库的各个部分进行本地控制，并且在各个部分中的数据通过 C/S 模式变得对整个网络都可用。通过复制和缓存等机制，DNS 将会拥有健壮性和充足的性能。
 
@@ -42,7 +42,7 @@ IANA 的所有任务可以大致分为三个类型：
 
 可以实现上述的程序有很多，凡是可以实现 DNS 功能的程序，我们一般成为 **NameServer(名称服务器)：**
 
-- **Bind** # 最常用 NameServer，Bind 的具体介绍详见 《[Bind](https://www.yuque.com/go/doc/33218857)》章节。
+- **Bind** # 最常用 NameServer，Bind 的具体介绍详见 《[BIND](/docs/4.数据通信/DNS/BIND/BIND.md)》章节。
 - **DNSmasq** # 轻量的 NameServer，用于提供 DNS 缓存功能。
 - ...... 等等
 
@@ -51,7 +51,7 @@ IANA 的所有任务可以大致分为三个类型：
 - 比如 Linux 中 curl、ping 等等命令就会调用 Resolver，毕竟这些命令如何请求一个域名，就需要要知道对应的 IP 才可以。
 - 解析器一般是被内嵌在系统中，当在系统中运行任何需要域名解析的程序时，都会调用这个解析器。
 
-**用白话说，Name Server 通常是一个默认监听在 53/UDP 与 53/TCP 上的服务，用来处理客户端发来的域名解析请求(根据自身数据库中**[**RR**](#lcTmS)**解析域名)，或者向上级 Name Server 发起域名查询请求。比如 8.8.8.8、114.114.114.114 等等，都属于 NameServer。**
+**用白话说，Name Server 通常是一个默认监听在 53/UDP 与 53/TCP 上的服务，用来处理客户端发来的域名解析请求(根据自身数据库中 [RR](#Resource%20Record(资源记录)) 解析域名)，或者向上级 Name Server 发起域名查询请求。比如 8.8.8.8、114.114.114.114 等等，都属于 NameServer**
 
 **NameServer 是实现 DNS 的具体实现**
 
@@ -147,29 +147,29 @@ RR 定义的格式：NAME \[TTL] CLASS RR-TYPE VALUE（注意：格式中的域�
 - NAME 和 VALUE # 不同的 RR-TYPE 有不同的格式
 - CLASS：IN
 - TYPE 资源记录类型：A，AAAA，PTR，SOA，NS，CNAME，MX 等：
-  - SRV：域名系统中用于指定服务器提供服务的位置（如主机名和端口）
-    - name # \_服务.\_协议.名称.
-    - value # 优先级 权重 端口 主机.
-  - SOA：Start Of Authority：起始授权记录，一个区域解析库有且只能有一个 SOA 记录，而且必须为解析库第一条记录
-    - name # 域名，例如”baidu.com.“
-    - value # (属性)
-      - 当前区域的主 DNS 服务器的 FQDN，也可以使用当前区域的名字
-      - 当前区域管理员的邮箱地址，但是地址中不能用@符号，@符号用.替换
-      - （主从服务协调属性的定义以及否定结果的统一的 TTL）
-  - NS：Name Server：专用于标明当前区域的 DNS 服务器
-    - name # 域名
-    - value # 当前区域的某 DNS 服务器的名字，例如 ns.baidu.com.;(一个区域可以有多个 NS 记录)
-  - MX：Mail eXchanger：邮件交换器
-    - TTL 可以从全局继承
-  - A/AAAA：Address，A 格式用于实现将 FQDN 解析为 IPv4(AAAA 格式用于将 FQDN 解析为 IPv6)
-    - name # 域名
-    - value # 域名对应的 IP 地址
-  - PTR：PoinTeR，用于将 IP 解析为 FQDN
-    - name # IP，特殊格式，反写 IP，比如 1.2.3.4 要写成 4.3.2.1，跟后缀 in-addr.arpa.
-    - value # FQDN
-  - CNAME：Canonical Name，别名记录
-    - name # 别名的 FQDN
-    - value # 正式名字的 FQDN
+    - SRV：域名系统中用于指定服务器提供服务的位置（如主机名和端口）
+        - name # \_服务.\_协议.名称.
+        - value # 优先级 权重 端口 主机.
+    - SOA：Start Of Authority：起始授权记录，一个区域解析库有且只能有一个 SOA 记录，而且必须为解析库第一条记录
+        - name # 域名，例如”baidu.com.“
+        - value # (属性)
+            - 当前区域的主 DNS 服务器的 FQDN，也可以使用当前区域的名字
+            - 当前区域管理员的邮箱地址，但是地址中不能用@符号，@符号用.替换
+            - （主从服务协调属性的定义以及否定结果的统一的 TTL）
+    - NS：Name Server：专用于标明当前区域的 DNS 服务器
+        - name # 域名
+        - value # 当前区域的某 DNS 服务器的名字，例如 ns.baidu.com.;(一个区域可以有多个 NS 记录)
+    - MX：Mail eXchanger：邮件交换器
+        - TTL 可以从全局继承
+    - A/AAAA：Address，A 格式用于实现将 FQDN 解析为 IPv4(AAAA 格式用于将 FQDN 解析为 IPv6)
+        - name # 域名
+        - value # 域名对应的 IP 地址
+    - PTR：PoinTeR，用于将 IP 解析为 FQDN
+        - name # IP，特殊格式，反写 IP，比如 1.2.3.4 要写成 4.3.2.1，跟后缀 in-addr.arpa.
+        - value # FQDN
+    - CNAME：Canonical Name，别名记录
+        - name # 别名的 FQDN
+        - value # 正式名字的 FQDN
 - 注意：
   - @可用于引用当前区域的名字
   - 相邻的两个资源记录的 name 相同时，后续的可省略
@@ -198,10 +198,11 @@ web.baidu.com.         IN            CNAME  www.baidu.com.
 子域授权：每个域的 DNS 服务器，都是通过在其上级 DNS 服务器中的解析库添加该域的 DNS 服务器信息进行授权
 
 EXAMPLE，在根域的 DNS 服务器中，记录了.com.域的资源记录，类似下面的方式，不是绝对的
-.com. IN NS ns1.com. 定义.com.域的域名服务器为 ns1.com.
-.com. IN NS ns2.com.
-ns1.com. IN A 2.2.2.1 定于.com.域中的域名服务器 ns1.com.的 IP 地址为 2.2.2.1
-ns2.com. IN A 2.2.2.2
+
+- .com. IN NS ns1.com. 定义.com.域的域名服务器为 ns1.com.
+- .com. IN NS ns2.com.
+- ns1.com. IN A 2.2.2.1 定于.com.域中的域名服务器 ns1.com.的 IP 地址为 2.2.2.1
+- ns2.com. IN A 2.2.2.2
 
 当www.baidu.com.的DNS请求到根的DNS服务器的时候，根的DNS服务器查找自己解析库中.com的域中的DNS服务器资源，然后看到该DNS服务器所对应的IP，然后把该请求转发到.com域中的DNS服务器进行下一步解析，然后.com域的DNS服务器在从解析库中找到baidu的资源再转发到baidu的DNS服务器上(或者直接返回baidu的IP地址)
 
@@ -218,15 +219,15 @@ EXAMPLE：172.16.100. 写成 100.16.172.in-addr-arpa.
 DNS 查询过程：主机发送请求到根域名解析服务器，然后重定向到二级域名解析服务器，再重定向到三级域名解析服务器，以此类推
 
 - 在本机上查询 DNS 的配置文件(比如/etc/hosts)，有没有 IP 地址与 Domain Name 的对应关系
-  - EXAMPLE：如果把本机 IP 的对应域名改 baidu.com.，那么在访问百度的时候，就只会访问本机了
+    - EXAMPLE：如果把本机 IP 的对应域名改 baidu.com.，那么在访问百度的时候，就只会访问本机了
 - 如果在本机无法查询到 Domain Name 与 IP 的对应关系，那么需要通过 DNS 代理来进行查询，总共分为两种查询类型
-  - 递归查询：主机只发送一次 DNS 解析请求，就获得最后的结果。
-    - 在本机配置一个运行 DNS 服务的 Server 的 IP 地址，把请求直接发送给该 server，
-    - 由该 server 去找.根域名服务器进行查询，然后.根域名服务器再根据该请求中的顶级域名把该请求重定向到顶级域名服务器上
-    - 如果该请求还有二级域名，那么顶级域名 server 会 再把该请求重定向二级域名 server 上
-    - 直到查询到最终结果后，把该结果返回给 DNS Server，然后 DNS Server 把结果直接告诉发送请求的主机
-  - 迭代查询：主机发送一次 DNS 解析请求后，被重定向到另一台 DNS 服务器继续发送请求，直到获得最后结果。
-    - 该查询主机直接发送请求到.根域名 server，然后进行递归查询中的 2,3,4 步骤
+    - 递归查询：主机只发送一次 DNS 解析请求，就获得最后的结果。
+        - 在本机配置一个运行 DNS 服务的 Server 的 IP 地址，把请求直接发送给该 server，
+        - 由该 server 去找.根域名服务器进行查询，然后.根域名服务器再根据该请求中的顶级域名把该请求重定向到顶级域名服务器上
+        - 如果该请求还有二级域名，那么顶级域名 server 会 再把该请求重定向二级域名 server 上
+        - 直到查询到最终结果后，把该结果返回给 DNS Server，然后 DNS Server 把结果直接告诉发送请求的主机
+    - 迭代查询：主机发送一次 DNS 解析请求后，被重定向到另一台 DNS 服务器继续发送请求，直到获得最后结果。
+        - 该查询主机直接发送请求到.根域名 server，然后进行递归查询中的 2,3,4 步骤
 
 一次完整的查询请求经过的流程
 
@@ -302,14 +303,6 @@ DNS-Rcode 作为 DNS 应答报文中有效的字段，主要用来说明 DNS 应
 - godaddy
 - Name.com
 - freenom
-
-我的域名：
-
-- Name.com
-    - 102205.xyz
-- 阿里
-    - desistdaydream.ltd
-- eu.org #
 
 ## eu.org 注册方式
 

@@ -100,10 +100,11 @@ Hugo 从 `content/` 目录中渲染内容到页面，我们使用 `hugo new post
 
 此时我们直接访问 `http://localhost:1313/posts/my-first-post/` 即可看到我们刚才添加的 markdown 的内容。只不过没有任何样式，光秃秃的~
 
-![image.png](https://notes-picgo.oss-cn-beijing.aliyuncs.com/20230122175219.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hugo/20230122175219.png)
 
 
 ## 使用主题
+
 我们自己编写 HTML 是非常复杂的，咱是要内容管理。。又不是写前端页面\~\~~o(╯□╰)o
 
 Hugo 贴心得提供了主题功能，可以让我们专注于内容的产出，在 Hugo 官方的主题页面中，我们可以挑选我们喜欢的主题并放在 themes/ 目录下，以便使用时供 Hugo 加载
@@ -121,7 +122,7 @@ echo "theme = 'ananke'" >> config.toml
 
 此时再打开 1313 端口，我们就可以看到我们的站点了，第一篇文章以标题和概要的形式被展现在首页中。
 
-![image.png](https://notes-picgo.oss-cn-beijing.aliyuncs.com/20230122164828.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hugo/20230122164828.png)
 
 ### 通过 Hugo 模块使用主题
 

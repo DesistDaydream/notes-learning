@@ -9,8 +9,8 @@ weight: 20
 > 参考：
 >
 > - https://zblogs.top/how-to-register-openai-chatgpt-in-china
->   - 注册 ChatGPT 教程
-> - 使用虚拟号码接收短信验证码：https://sms-activate.org/
+>     - 注册 ChatGPT 教程
+> - 使用虚拟号码接收短信验证码：<https://sms-activate.org/>
 
 上下文联系功能说明
 
@@ -217,3 +217,6 @@ https://github.com/lencx/nofwl # 桌面版
 https://github.com/lencx/ChatGPT # 桌面版
 
 https://github.com/didiplus/ChatGPT_web # 像微信聊天一样跟 ChatGPT 聊天
+
+https://github.com/microsoft/visual-chatgpt # 微软官方可以生成和上传图片
+
