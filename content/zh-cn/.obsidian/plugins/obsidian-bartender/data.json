@@ -1535,6 +1535,25 @@
       "docs/12.人工智能/AI 训练/_index.md",
       "docs/12.人工智能/AI 训练/AI 训练.md",
       "docs/12.人工智能/AI 训练/深度学习框架.md"
+    ],
+    "docs/5.数据存储/2.数据库/键值数据/Redis": [
+      "docs/5.数据存储/2.数据库/键值数据/Redis/_index.md",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis.md",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 配置详解.md",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Pub_Sub(发布_订阅).md",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 高可用",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 管理",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis Operator.md"
+    ],
+    "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具": [
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/_index.md",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/Redis 命令行工具.md",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/cluster 命令.md",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/generic 组.md",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/Sentinel 命令.md",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/server 组.md",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/string 组.md"
     ]
   },
   "actionBarOrder": {},

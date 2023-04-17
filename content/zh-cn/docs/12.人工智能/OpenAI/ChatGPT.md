@@ -133,9 +133,12 @@ Auto-GPT 是一个实验性开源应用程序，展示了 GPT-4 语言模型的�
 
 这里是一个类似 Auto GPT 的项目，但是可以通过 web 控制：<https://github.com/reworkd/AgentGPT>
 
-GOOGLE_API_KEY=XXXXXX # 来源: https://console.cloud.google.com/apis/credentials?project=manifest-pulsar-287701
-CUSTOM_SEARCH_ENGINE_ID=YYYY # 来源: https://console.cloud.google.com/apis/api/customsearch.googleapis.com/metrics?project=manifest-pulsar-287701
-- https://programmablesearchengine.google.com/controlpanel/all 添加搜索引擎并获取 ID
+- OPENAI_API_KEY # 来源: <https://platform.openai.com/account/api-keys>
+- GOOGLE_API_KEY=XXXXXX # 来源: https://console.cloud.google.com/apis/credentials?project=manifest-pulsar-287701
+    - CUSTOM_SEARCH_ENGINE_ID=YYYY # 来源: https://console.cloud.google.com/apis/api/customsearch.googleapis.com/metrics?project=manifest-pulsar-287701
+    - https://programmablesearchengine.google.com/controlpanel/all 添加搜索引擎并获取 ID
+- PINECONE_API_KEY # 来源: <https://app.pinecone.io/>
+- HUGGINGFACE_API_TOKEN # 来源: <https://huggingface.co/settings/tokens>
 
 ## Chrom 插件
 

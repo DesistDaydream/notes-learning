@@ -1,14 +1,20 @@
 ---
-title: 1.1.Redis 高可用概述
+title: Redis 高可用
+weight: 1
 ---
 
-参考：[原文](http://blog.jboost.cn/redis-cluster.html)、[知乎](https://zhuanlan.zhihu.com/p/129640817)、[微信公众号](https://mp.weixin.qq.com/s?__biz=MzI3MTI2NzkxMA==&mid=2247492218&idx=1&sn=8e233cf3c3abd0e6821262d1c78b03d1&chksm=eac6c353ddb14a4535ae92f911ae846592066bf9250b9aca4d91287015de8b23347cb56838ce&mpshare=1&scene=1&srcid=1123S90JeR1nwKagOdJBlQTz&sharer_sharetime=1606090661231&sharer_shareid=09464b4a0389b967659ba78076a1ef58&key=48765414c6ece973eab40bd813ac84f36f02f86a2b622e5efcf4fb98864fdb95a49286689ce7513bf3642cc2a2b6d4bd4235c0de418caee7320bf928f76e57b65a7c762b34b8e80ed88a847524e64e1d6e08271ee31db62eb4ff0bce50cdc03f2b4161ba26993d58b1f19972154a004ce4cadfca3a79f41936616473cacfeff7&ascene=1&uin=MTI5NTMzMzA0MQ%3D%3D&devicetype=Windows+10+x64&version=6300002f&lang=zh_CN&exportkey=AanBDsftQoVwZuEgK1A5lo8%3D&pass_ticket=S1%2BMQ7vYsbZSNuJMJOqmLPRlt4Y3dQwyWaD%2FAmp3sq1Yd7omWT6hEhxkL9s%2BaMxR&wx_header=0)
+# 概述
+
+> 参考：
+> - [原文](http://blog.jboost.cn/redis-cluster.html)
+> - [知乎](https://zhuanlan.zhihu.com/p/129640817)
+> - [微信公众号](https://mp.weixin.qq.com/s?__biz=MzI3MTI2NzkxMA==&mid=2247492218&idx=1&sn=8e233cf3c3abd0e6821262d1c78b03d1&chksm=eac6c353ddb14a4535ae92f911ae846592066bf9250b9aca4d91287015de8b23347cb56838ce&mpshare=1&scene=1&srcid=1123S90JeR1nwKagOdJBlQTz&sharer_sharetime=1606090661231&sharer_shareid=09464b4a0389b967659ba78076a1ef58&key=48765414c6ece973eab40bd813ac84f36f02f86a2b622e5efcf4fb98864fdb95a49286689ce7513bf3642cc2a2b6d4bd4235c0de418caee7320bf928f76e57b65a7c762b34b8e80ed88a847524e64e1d6e08271ee31db62eb4ff0bce50cdc03f2b4161ba26993d58b1f19972154a004ce4cadfca3a79f41936616473cacfeff7&ascene=1&uin=MTI5NTMzMzA0MQ%3D%3D&devicetype=Windows+10+x64&version=6300002f&lang=zh_CN&exportkey=AanBDsftQoVwZuEgK1A5lo8%3D&pass_ticket=S1%2BMQ7vYsbZSNuJMJOqmLPRlt4Y3dQwyWaD%2FAmp3sq1Yd7omWT6hEhxkL9s%2BaMxR&wx_header=0)
 
 **Redis 支持三种高可用方案**
 
-- [Replication(复制) 模式](https://www.yuque.com/go/doc/33187771)。
-  - 实际上，该模式并不是绝对的高可用，仅仅保证了数据的不丢失
-- [Sentinel(哨兵) 模式](https://www.yuque.com/go/doc/33187731)
+- [Replication(复制) 模式](docs/5.数据存储/2.数据库/键值数据/Redis/Redis%20高可用/Replication(复制)%20模式.md)
+    - 实际上，该模式并不是绝对的高可用，仅仅保证了数据的不丢失
+- [Sentinel(哨兵) 模式](docs/5.数据存储/2.数据库/键值数据/Redis/Redis%20高可用/Sentinel(哨兵)%20模式.md)
 - Cluster(集群) 模式
 
 # Cluster(集群)

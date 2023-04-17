@@ -1,5 +1,5 @@
 ---
-title: 2.1.Redis 高可用部署
+title: Redis 高可用部署
 ---
 
 # Docker 部署 Redis 高可用

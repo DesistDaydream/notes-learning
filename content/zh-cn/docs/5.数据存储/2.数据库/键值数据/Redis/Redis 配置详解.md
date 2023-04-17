@@ -1,10 +1,11 @@
 ---
-title: 2.Redis 配置详解
+title: Redis 配置详解
 ---
 
 # 概述
 
-> 参考：[官方文档](https://redis.io/topics/config)
+> 参考：
+> - [官方文档](https://redis.io/topics/config)
 
 Redis 可以在不使用配置文件的情况下使用内置的默认配置启动。但是一般情况，都会使用一个 Redis 的配置文件(文件名通常是 redis.conf)来启动 Redis。Redis 启动后，会将 redis.conf 文件的内容加载到内存中，通过 Redis 客户端的 **config get \*** 命令，即可获取当前已经加载到内存中的配置。
 
@@ -87,7 +88,7 @@ Redis 支持在线热更新配置，可以通过 config set ARGUMENT 命令来�
 
 ## Includes 配置环境
 
-- **include /PATH/TO/FILE **# Redis 启动时，除了加载 redis.conf 文件外，还会加载 include 指令指定的文件。
+- **include /PATH/TO/FILE** # Redis 启动时，除了加载 redis.conf 文件外，还会加载 include 指令指定的文件。
 
 ## Network 配置环境
 
@@ -113,12 +114,12 @@ Redis 支持在线热更新配置，可以通过 config set ARGUMENT 命令来�
 
 ## Replication 配置环境
 
-- **replicof 192.168.1.2 6379 **# 启动主从模式，并设定自己为从服务器，主服务器 IP 为 192.168.1.2，主服务器端口为 6379
+- **replicof 192.168.1.2 6379** # 启动主从模式，并设定自己为从服务器，主服务器 IP 为 192.168.1.2，主服务器端口为 6379
 - **slave-read-only no** # 作为从服务器是否只读，默认不只读
 
 ## Security 配置环境
 
-- **requirepass PASSWORD **# 配置认证密码为 PASSWORD
+- **requirepass PASSWORD** # 配置认证密码为 PASSWORD
 
 ## Limits 配置环境
 

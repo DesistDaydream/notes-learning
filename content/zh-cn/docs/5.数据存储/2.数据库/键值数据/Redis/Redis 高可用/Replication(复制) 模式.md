@@ -1,8 +1,12 @@
 ---
-title: 3.1.Replication(复制) 模式详解
+title: Replication(复制) 模式
 ---
 
-参考：[官方文档](https://redis.io/topics/replication)
+# 概述
+
+> 参考：
+> 
+> - [官方文档](https://redis.io/topics/replication)
 
 1. 基本原理
 

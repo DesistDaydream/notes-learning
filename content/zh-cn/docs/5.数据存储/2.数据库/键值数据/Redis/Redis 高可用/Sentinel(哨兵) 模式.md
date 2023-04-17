@@ -1,8 +1,15 @@
 ---
-title: 4.1.Sentinel(哨兵) 模式详解
+title: Sentinel(哨兵) 模式
 ---
 
-参考：[官方文档](https://redis.io/topics/sentinel)、[中文文档](http://www.redis.cn/topics/sentinel.html)、[博客园大佬](https://www.cnblogs.com/kevingrace/p/9004460.html)、[博客园大佬 2](https://www.cnblogs.com/biglittleant/p/7770960.html)
+# 概述
+
+> 参考：
+> 
+> - [官方文档](https://redis.io/topics/sentinel)
+> - [中文文档](http://www.redis.cn/topics/sentinel.html)
+> - [博客园大佬](https://www.cnblogs.com/kevingrace/p/9004460.html)
+> - [博客园大佬 2](https://www.cnblogs.com/biglittleant/p/7770960.html)
 
 **Redis Sentinel(哨兵) 基于 Redis 的 Replication(复制) 模式，增加了一个名为 Sentinel 的管理程序**，用来保存 Redis Replication 模式的架构信息，以及对外提供该信息。同时 sentinel 程序监控多台 Redis 状态，当 Redis 不可用时，Sentinel 将自动下线该 Redis。
 
