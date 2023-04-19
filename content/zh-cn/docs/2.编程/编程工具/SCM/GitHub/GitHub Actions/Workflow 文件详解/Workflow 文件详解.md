@@ -105,9 +105,10 @@ jobs:
 
 通常包含如下字段
 
-- **JOB_ID.steps**[][steps](#steps)) # Job 的运行步骤
+- **JOB_ID.needs**(\[][needs](#needs) | [needs](#needs)) # 此 Job 必须在指定的 JOB_ID 成功后才可以执行
+- **JOB_ID.steps**(\[][steps](#steps)) # Job 的运行步骤
 
-## JOB_ID.needs([]JOB_ID | JOB_ID) # 此 Job 必须在指定的 JOB_ID 成功后才可以执行
+## needs
 
 ```yaml
 jobs:
