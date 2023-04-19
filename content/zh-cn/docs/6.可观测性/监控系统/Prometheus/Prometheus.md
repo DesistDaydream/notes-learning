@@ -222,17 +222,19 @@ scrape_configs:
 ```
 
 访问 Prometheus Web，在 Status->Targets 页面下，我们可以看到我们配置的两个 Target，它们的 State 为 UP
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/usvgfl/1616041189541-1dfdddd7-ee74-4f32-8df6-8821cf415a14.jpeg)
 
 # Prometheus 的基本使用方式
 
 Prometheus 运行后默认会监听在 9090 端口，可以通过访问 9090 端口来打开 Prometheus 的 web 界面
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/usvgfl/1616041189523-861a164c-3f79-42af-bd88-44c4baf2e349.jpeg)
+
 Prometheus 本身也是自带 exporter 的,我们通过请求 http://ip:9090/metrics 可以查看从 exporter 中能具体抓到哪些 metrics。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/usvgfl/1616041189563-4125f137-160f-48dd-b4f6-dfd6af94aed0.jpeg)
 
 这里以 Prometheus 本身数据为例，简单演示下在 Web 中查询指定表达式及图形化显示查询结果。
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/usvgfl/1616041189526-ee545ef0-965e-499c-b80f-b6cdaf05c974.jpeg)
-[
 
-# ](Instrumenting.md)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/usvgfl/1616041189526-ee545ef0-965e-499c-b80f-b6cdaf05c974.jpeg)

@@ -15,19 +15,19 @@ Pod 是可以在主机上运行的容器的集合。此资源由客户端创建�
 
 - apiVersion: v1
 - kind: Pod
-- [metadata: \<Object>](#metadata)
-- [spec: \<Object>](#spec)
-- [status: \<Object>](#status)
+- [metadata: \<OBJECT>](#metadata)
+- [spec: \<OBJECT>](#spec)
+- [status: \<OBJECT>](#status)
 
 # metadata
 
 **metadata** 字段用来描述一个 Pod 的元数据信息。该字段内容详见通用定义的 [ObjectMeta](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/ObjectMeta.md)
 
-- **annotations: \<STRING>**# Pod 注释，不同于 label，仅用于为资源提供元数据
-- **labels: \<map\[STRING]STRING>** # Pod 的标签，通过“键值对”的方式定义，可以添加多个标签
+- **annotations**(STRING) # Pod 注释，不同于 label，仅用于为资源提供元数据
+- **labels**(map[STRING]STRING) # Pod 的标签，通过“键值对”的方式定义，可以添加多个标签
   - KEY: VAL # 比如该键值可以是 run: httpd，标签名是 run，run 的值是 httpd，key 与 val 使用字母，数字，\_，-，.这几个字符且以字母或数字开头；val 可以为空。
-- **name: \<STRING>** # Pod 对象名称。必须名称空间唯一。
-- **ownerReferences: <\[]Object>** # 该对象所依赖的对象列表，一般由控制器自动生成。也可以手动指定。
+- **name**(STRING) # Pod 对象名称。必须名称空间唯一。
+- **ownerReferences**([]Object) # 该对象所依赖的对象列表，一般由控制器自动生成。也可以手动指定。
 
 # spec
 
@@ -71,11 +71,11 @@ flag provided but not defined: '--ns default'
 
 - **command: <\[]STRING>** # 定义容器运行的命令和参数。用于替换容器镜像中的 ENTRYPOINT 指令。详见为[容器定义命令和参数章节](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)
 - **env: <\[]Object>** # 要在容器中设置的环境变量列表。详见[为容器定义命令和参数章节](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)
-- **image: \<STRING>**# 容器使用的镜像
-- **imagePullPolicy: \<STRING>**# 指明镜像拉取策略，公有三种 Always、IfNotPresent、Never。`默认值：IfNotPresent`
+- **image: \<STRING>** # 容器使用的镜像
+- **imagePullPolicy: \<STRING>** # 指明镜像拉取策略，公有三种 Always、IfNotPresent、Never。`默认值：IfNotPresent`
 - **name: \<STRING>**# 容器的名称
 - **ports: <\[]Object>**# 容器对外暴露的端口，主要作为参考信息，就算不指定，通过 Service 也可以关联到容器中的指定端口，并通过 Service 访问容器内部。
-  - **containerPort: \<INTEGER>**# 容器内端口号
+  - **containerPort: \<INTEGER>** # 容器内端口号
   - **name: \<STRING>** # 端口号的名称，必须在 pod 中唯一。service 可以通过 name 引用端口。
 - **resources: \<OJBECT>**# 容器所需的资源。即.所需的 CPU、Memory 等等
   - **limits: \<map\[STRING]STRING>** # 容器可以使用的最大资源
@@ -102,7 +102,7 @@ flag provided but not defined: '--ns default'
 
 ### Lifecycle(生命周期)
 
-Pod 生命周期功能详见[《Pod 的生命周期》](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/3.Pod%20集群最小的工作单元/Pod%20生命周期/Pod%20生命周期与探针.md)章节
+Pod 中容器的生命周期功能详见[《Pod 的生命周期》](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/3.Pod%20集群最小的工作单元/Pod%20生命周期/Pod%20生命周期与探针.md)章节
 
 **livenessProbe: \<Object>** # 存活性探针，定期检测容器是否存活，容器**正常启动后**开始检查。若探针失败则容器将会重启
 
@@ -129,7 +129,9 @@ Pod 生命周期功能详见[《Pod 的生命周期》](/docs/10.云原生/2.3.K
 ## Scheduling(调度) 相关字段
 
 **nodeSelector: \<map\[string]string>** # 指明 Node 标签选择器，该 Pod 会运行在具有相同标签的 Node 上
+
 **nodeName: \<STRING>** # Pod 运行在指定 Node 上
+
 **affinity: \<Object>** # Pod 亲和性调度规则。用法详见[调度器章节](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/5.Scheduling(调度)/让%20Pod%20运行在指定%20Node%20上.md)
 
 - **nodeAffinity: \<OBJECT>**# 为 Pod 定义节点亲和性的调度规则

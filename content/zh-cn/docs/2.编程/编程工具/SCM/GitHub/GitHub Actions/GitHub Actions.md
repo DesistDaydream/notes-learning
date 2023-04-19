@@ -1,10 +1,12 @@
 ---
 title: GitHub Actions
+weight: 1
 ---
 
 # 概述
 
 > 参考：
+> 
 > - [官方文档](https://docs.github.com/cn/actions)
 > - [官方文档,学习 GitHub Actions-GitHub Actions 简介](https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions)
 > - GitHub Actions 官方市场：[Actions Marketplace](https://github.com/marketplace?type=actions)
@@ -26,7 +28,9 @@ GitHub Actions 是一个 `CI/CD（持续集成/持续部署）`工具，持续�
 Actions 是 GitHub Actions 的核心，简单来说，它其实就是一段可以执行的代码，可以用来做很多事情。
 
 > 比如，你在 python 3.7 环境下写了一个 python 项目放到了 GitHub 上，但是考虑到其他用户的生产环境各异，可能在不同的环境中运行结果都不一样，甚至无法安装，这时你总不能在自己电脑上把所有的 python 环境都测试一遍吧
+> 
 > 但是如果有了 GitHub Actions，你可以在 runner 服务器上部署一段 actions 代码来自动完成这项任务。你不仅可以指定它的操作系统（支持 Windows Server 2019、Ubuntu 18.04、Ubuntu 16.04 和 macOS Catalina 10.15），还可以指定触发时机、指定 python 版本、安装其他库等等
+> 
 > 此外，它还可以用来做很多有趣的事，比如当有人向仓库里提交 issue 时，给你的微信发一条消息；爬取课程表，每天早上准时发到你的邮箱；当向 master 分支提交代码时，自动构建 Docker 镜像并打上标签发布到 Docker Hub 上 ……
 
 慢慢的，你会发现很多操作在不同项目里面是类似的，完全可以共享。GitHub 也注意到了这一点，于是它允许开发者把每个操作写成独立的脚本文件，存放到代码仓库，使得其他开发者可以引用。如果我们需要某个 action，不必自己写复杂的脚本，直接引用他人写好的 action 即可，整个 CI/CD 过程，就变成了一个个 action 的组合。这就是 GitHub Actions 最特别的地方。
@@ -46,7 +50,7 @@ GitHub 做了一个官方市场(暂且称为 Actions Hub)，在这里可以搜�
 - **Workflow(工作流程)** # 持续集成一次运行的过程，就是一个 workflow。
   - **Job(任务)** # 一个 Workflow 由一个或多个 Jobs 构成，含义是一次持续集成的运行，可以完成多个任务。
     - **Step(步骤)** # 每个 job 由多个 Step 构成，一步步完成。
-      - **Action(动作) **# 每个 step 可以依次执行一个或多个命令（action）。
+      - **Action(动作)** # 每个 step 可以依次执行一个或多个命令（action）。
     - **runner(运行器)** # 运行 Workflow 中 JOB 的环境。通常由 Workflow 文件中的 `.jobs.JOB_ID.runs-on` 字段指定。
 - **Event(事件)** # 触发 Workflow 的特定活动。比如，推送新的提交到仓库或者创建 PR，甚至可以配置 cron 定时触发 Workflow
 
@@ -64,8 +68,8 @@ Workflow 文件是 YAML 格式，后缀名必须统一为 `.yml`。一个代码�
 
 # 简单示例
 
-1. 从 GitHub 上的仓库，在 .github/workflows 目录中创建一个名为 github-actions-demo.yml 的新文件。 更多信息请参阅“[创建新文件](https://docs.github.com/cn/github/managing-files-in-a-repository/creating-new-files)”。
-2. 将以下 YAML 内容复制到 github-actions-demo.yml 文件中：
+- 从 GitHub 上的仓库，在 .github/workflows 目录中创建一个名为 github-actions-demo.yml 的新文件。 更多信息请参阅“[创建新文件](https://docs.github.com/cn/github/managing-files-in-a-repository/creating-new-files)”。
+- 将以下 YAML 内容复制到 github-actions-demo.yml 文件中：
 
 ```yaml
 name: GitHub Actions Demo
@@ -97,16 +101,22 @@ jobs:
 
 ## 查看工作流程结果
 
-1. 在 GitHub 上，导航到仓库的主页面。
-2. 在仓库名称下，单击 Actions（操作）。![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hd4aro/1627537717252-5a465a80-ace7-4a19-b689-c8a145ed90ee.png)
-3. 在左侧边栏中，单击您想要查看的工作流程。![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hd4aro/1627537717301-b7808d18-7c4f-40cc-85d4-83ef97121511.png)
-4. 从工作流程运行列表中，单击要查看的运行的名称。![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hd4aro/1627537717306-2e079ccf-8130-47fd-9642-f989e7b5fa74.png)
-5. 在 Jobs（作业）下，单击 Explore-GitHub-Actions 作业。![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hd4aro/1627537717287-fecb853f-8ee7-4868-81e3-7c843f665bcd.png)
-6. 日志显示每个步骤的处理方式。 展开任何步骤以查看其细节。![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hd4aro/1627537718475-e6315bfa-71e1-48e5-9514-16a822265b81.png)
+- 在 GitHub 上，导航到仓库的主页面。
+- 在仓库名称下，单击 Actions（操作）。
+- ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hd4aro/1627537717252-5a465a80-ace7-4a19-b689-c8a145ed90ee.png)
+- 在左侧边栏中，单击您想要查看的工作流程。
+- ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hd4aro/1627537717301-b7808d18-7c4f-40cc-85d4-83ef97121511.png)
+- 从工作流程运行列表中，单击要查看的运行的名称。
+- ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hd4aro/1627537717306-2e079ccf-8130-47fd-9642-f989e7b5fa74.png)
+- 在 Jobs（作业）下，单击 Explore-GitHub-Actions 作业。
+- ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hd4aro/1627537717287-fecb853f-8ee7-4868-81e3-7c843f665bcd.png)
+- 日志显示每个步骤的处理方式。 展开任何步骤以查看其细节。
+- ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hd4aro/1627537718475-e6315bfa-71e1-48e5-9514-16a822265b81.png)
 
 ## 更多工作流程模板
 
 GitHub 提供预配置的工作流程模板，您可以自定义以创建自己的持续集成工作流程。 GitHub 分析代码并显示可能适用于您的仓库的 CI 模板。 例如，如果仓库包含 Node.js 代码，您就会看到 Node.js 项目的建议。 您可以使用工作流程模板作为基础来构建自定义工作流程，或按原样使用模板。
+
 您可以在 [actions/starter-workflows](https://github.com/actions/starter-workflows) 仓库中浏览工作流程模板的完整列表。
 
 ## 后续步骤

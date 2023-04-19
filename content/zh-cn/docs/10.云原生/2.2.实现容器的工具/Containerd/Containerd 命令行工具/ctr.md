@@ -7,7 +7,9 @@ title: ctr
 > 参考：
 > - 官方文档
 
-# ctr \[GLOBAL OPTIONS] COMMAND \[OPTIONS] \[ARGs...]
+# Syntax(语法)
+
+**ctr \[GLOBAL OPTIONS] COMMAND \[OPTIONS] \[ARGs...]**
 
 GLOBAL OPTIONS:
 
@@ -26,7 +28,7 @@ COMMANDS:
 - **snapshots, snapshot** # manage snapshots
 - **tasks, t, task** # manage tasks
 - **install** # install a new package
-- **oci **# OCI tools
+- **oci** # OCI tools
 - **shim** # interact with a shim directly
 
 ## tasks # 任务管理
@@ -65,6 +67,7 @@ COMMANDS:
     ?  → ctr task resume nginx
 
 **ctr 没有 stop 容器的功能，只能暂停或者杀死容器。**
+
 杀死容器：
 
     ?  → ctr task kill nginx
@@ -115,7 +118,7 @@ COMMANDS:
 
 ctr 目前很多功能做的还没有 docker 那么完善，但基本功能已经具备了。下面将围绕**镜像**和**容器**这两个方面来介绍其使用方法。
 
-### **镜像**
+### 镜像
 
 **镜像下载：**
 
@@ -209,7 +212,7 @@ ctr 目前很多功能做的还没有 docker 那么完善，但基本功能已�
     sha256:fdd7fff110870339d34cf071ee90fbbe12bdbf3d1d9a14156995dfbdeccd7923 740B 7 days  containerd.io/gc.ref.content.2=sha256:4e537e26e21bf61836f827e773e6e6c3006e3c01c6d59f4b058b09c2753bb929,containerd.io/gc.ref.content.1=sha256:188c0c94c7c576fff0792aca7ec73d67a2f7f4cb3a6e53a84559337260b36964,containerd.io/gc.ref.content.0=sha256:b7199797448c613354489644be1f60aa2d8e9c2278989100c72ede3001334f7b,containerd.io/distribution.source.ghcr.fuckcloudnative.io=yangchuansheng/grafana-backup-tool
     ?  → ctr content edit --editor vim sha256:fdd7fff110870339d34cf071ee90fbbe12bdbf3d1d9a14156995dfbdeccd7923
 
-### **容器**
+### 容器
 
 创建容器：
 
@@ -241,7 +244,7 @@ ctr 目前很多功能做的还没有 docker 那么完善，但基本功能已�
     OPTIONS:
        --help, -h  show help
 
-### **命名空间**
+### 命名空间
 
 除了 k8s 有命名空间以外，Containerd 也支持命名空间。
 
@@ -251,7 +254,7 @@ ctr 目前很多功能做的还没有 docker 那么完善，但基本功能已�
 
 如果不指定，`ctr` 默认是 `default` 空间。目前 Containerd 的定位还是解决运行时，所以目前他还不能完全替代 `dockerd`，例如使用 `Dockerfile` 来构建镜像。其实这不是什么大问题，我再给大家介绍一个大招：**Containerd 和 Docker 一起用！**
 
-### **Containerd + Docker**
+### Containerd + Docker
 
 事实上，Docker 和 Containerd 是可以同时使用的，只不过 Docker 默认使用的 Containerd 的命名空间不是 default，而是 `moby`。下面就是见证奇迹的时刻。
 
@@ -259,17 +262,9 @@ ctr 目前很多功能做的还没有 docker 那么完善，但基本功能已�
 
     ?  → dockerd --containerd /run/containerd/containerd.sock --cri-containerd
 
-1
-2
-Plain Text
-
 接着用 Docker 运行一个容器：
 
     ?  → docker run -d --name nginx nginx:alpine
-
-1
-2
-Plain Text
 
 现在再回过头来查看 Containerd 的命名空间：
 
@@ -278,23 +273,10 @@ Plain Text
     default
     moby
 
-1
-2
-3
-4
-5
-Plain Text
-
 查看该命名空间下是否有容器：
 
     ?  → ctr -n moby c ls
     CONTAINER                                                           IMAGE    RUNTIME
     b7093d7aaf8e1ae161c8c8ffd4499c14ba635d8e174cd03711f4f8c27818e89a    -        io.containerd.runtime.v1.linux
-
-1
-2
-3
-4
-Plain Text
 
 我艹，还可以酱紫？看来以后用 Containerd 不耽误我 `docker build` 了~~最后提醒一句：Kubernetes 用户不用惊慌，Kubernetes 默认使用的是 Containerd 的 `k8s.io` 命名空间，所以 `ctr -n k8s.io` 就能看到 Kubernetes 创建的所有容器啦，也不用担心 `crictl` 不支持 load 镜像了，因为 `ctr -n k8s.io` 可以 load 镜像啊，嘻嘻?

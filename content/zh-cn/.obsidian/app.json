@@ -6,7 +6,7 @@
   "newLinkFormat": "absolute",
   "useMarkdownLinks": true,
   "showIndentGuide": true,
-  "tabSize": 4,
+  "tabSize": 2,
   "useTab": false,
   "smartIndentList": true,
   "showLineNumber": false,

@@ -74,7 +74,7 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 
 # prometheus.yaml 配置文件详解
 
-下文用到的占位符说明
+下文用到的字段值的占位符说明
 
 - \<BOOLEAN> # 可以采用 true 或 false 值的布尔值
 - \<DURATION> # 持续时间。可以使用正则表达式
@@ -90,50 +90,46 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 - \<STRING> # 常规字符串
 - \<TMPL_STRING> # 使用前已模板扩展的字符串
 
-下面是一个配置文件的基本结构：
+每个字段下
 
-```yaml
-# 全局配置，所有内容作用于所有配置环境中,若其余配置环境中不再指定同样的配置，则global中的配置作为默认配置
-global: <global>
-rule_files:
-  - <rule_files>
-# 抓取target的metrics时的配置
-scrape_configs:
-  - <scrape_configs>
-# 与 alertmanager 相关的配置
-alerting:
-  alert_relabel_configs:
-    - <relabel_config>...
-  alertmanagers:
-# 与远程写入相关功能的配置
-remote_write:
-  -
-# 与远程读取相关功能的配置
-remote_read:
-  -
-```
+## 顶层字段
 
-## global: \<Object>
+- **global**([global](#global)) # 全局配置，所有内容作用于所有配置环境中,若其余配置环境中不再指定同样的配置，则global中的配置作为默认配置
+- **rule_files**([rule_files](#rule_files)) # 
+- **scrape_configs**(\[][scrape_configs](#scrape_configs(占比最大的字段))) # 抓取target的metrics时的配置
+- **alerting**([alerting](#alerting)) # 与 alertmanager 相关的配置
+  - alert_relabel_configs([relabel_configs](#relabel_configs))
+  - alertmanagers:
+- **remote_write**(\[][remote_write](#remote_write)) # 与远程写入相关功能的配置
+- **remote_read**(\[][remote_read](#remote_read)) # 与远程读取相关功能的配置
+
+## global
 
 全局配置，所有内容作用于所有配置环境中,若其余配置环境中不再指定同样的配置，则 global 中的配置作为默认配置
 
 **scrape_interval: \<DURATION>** # 抓取 targets 的指标频率，`默认值：1m`。
-**scrape_timeout: \<DURATION>**# 对 targets 发起抓取请求的超时时间。`默认值：10s`。
-**evaluation_interval: \<DURATION>**# 评估规则的周期。`默认值：1m`。
-该字段主要用于向规则配置文件传递全局的配置。这个值会被规则配置文件中的 `.groups.interval` 覆盖，详见 interval 字段详解
-**external_labels: \<map\[STRING]STRING>** # 与外部系统(federation, remote storage, Alertmanager)通信时添加到任何时间序列或警报的标签。
 
+**scrape_timeout: \<DURATION>**# 对 targets 发起抓取请求的超时时间。`默认值：10s`。
+
+**evaluation_interval: \<DURATION>**# 评估规则的周期。`默认值：1m`。
+
+该字段主要用于向规则配置文件传递全局的配置。这个值会被规则配置文件中的 `.groups.interval` 覆盖，详见 interval 字段详解
+
+**external_labels: \<map\[STRING]STRING>** # 与外部系统(federation, remote storage, Alertmanager)通信时添加到任何时间序列或警报的标签。
+ 
 - **KEY: VAL** # 比如该键值可以是 run: httpd，标签名是 run，run 的值是 httpd，KEY 与 VAL 使用字母，数字，\_，-，.这几个字符且以字母或数字开头；val 可以为空。
 - ......
 
-## rule_files: <\[]Object>
+## rule_files
 
-[规则文件配置](https://www.yuque.com/go/doc/33147385)列表，从所有匹配到的文件中读取配置内容。可以使用正则表达式匹配多个符合的文件。Prometheus 支持两种规则
+[规则文件配置](/docs/6.可观测性/监控系统/Prometheus/Rules%20配置.md)列表，从所有匹配到的文件中读取配置内容。可以使用正则表达式匹配多个符合的文件。Prometheus 支持两种规则
 
 - recording rules(记录规则)
 - alerting rules(告警规则)
 
-## [scrape_configs: <\[\]Object>](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config)(占比最大的字段)
+## scrape_configs(占比最大的字段)
+
+https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config
 
 在 [Prometheus](https://www.yuque.com/go/doc/33112724) 一文中，粗略介绍了基本的 scrape_configs 配置段的内容，下面是最基本的配置：
 
@@ -178,7 +174,9 @@ scrape_configs 是 Prometheus 采集指标的最重要也是最基本的配置�
 ### HTTP 配置
 
 Prometheus 抓取目标就是发起 HTTP 请求。
+
 除了 scheme、params 字段以外的其他字段是 Prometheus 共享库中的通用 HTTP 客户端配置，即下面的 `HTTPClientConfig` 结构体中的内容。
+
 代码：[common/config/http_config.go](https://github.com/prometheus/common/blob/v0.30.0/config/http_config.go#L159)
 
 ```go
@@ -208,6 +206,7 @@ type HTTPClientConfig struct {
 ```
 
 **scheme: \<STRING>** # 指定用于抓取 Metrics 时使用的协议。`默认值：http`
+
 **params: <>** # 发起 http 请求时，URL 里的参数(以键值对的方式表示)。
 常用于 snmp_exporter，比如 <http://10.10.100.12:9116/snmp?module=if_mib&target=10.10.100.254>，问号后面就是参数的 key 与 value)
 
@@ -226,17 +225,20 @@ type HTTPClientConfig struct {
 - **credentials_file: \<FileName>** # 从文件中读取用于身份验证的信息。与 credentials 字段互斥
 
 **oauth2: \<Object>** # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
+
 **proxy_url: \<STRING>** # 指定代理的 URL
-**tls_config: \<Object>** # 指定抓取 metrics 请求时的 TLS 设定，详见下文 [tls_config](#d6pFO) 字段配置
+
+**tls_config**([tls_config](#tls_config)) # 指定抓取 metrics 请求时的 TLS 设定
 
 ### Scrape 目标配置
 
 Prometheus 将会根据这里的字段配置，以发现需要 Scrape 指标的目标，有两种方式来发现目标：静态 与 动态。
-**static_configs:[<\[\]Object>](#tD00J)** # 静态配置。直接指定需要抓去 Metrics 的 Targets。
+
+**static_configs**([static_configs](#static_configs)) # 静态配置。直接指定需要抓去 Metrics 的 Targets。
 
 - 具体配置详见下文[静态目标发现](#J021o)
 
-**XX_sd_configs:[<XXXX>](#IWvg5)** # 动态配置。动态需要抓去 Metrics 的 Targets。XXX_sd_configs 中的 sd 全称为 Service Discovery(服务发现)
+**XX_sd_configs**(\[]OBJECT) # 动态配置。动态需要抓去 Metrics 的 Targets。XXX_sd_configs 中的 sd 全称为 Service Discovery(服务发现)
 
 - 具体配置详见下文[动态目标发现](#IWvg5)
 - 不同的服务发现，有不同的配置方式。比如 `kubernetes_sd_configs`、`file_sd_configs` 等等。
@@ -246,28 +248,34 @@ Prometheus 将会根据这里的字段配置，以发现需要 Scrape 指标的�
 
 ### Relabel 配置
 
-**relabel_configs:[<\[\]Object>](#PGKul)** # 在发现目标后，重新配置 targets 的标签。
+**relabel_configs**([relabel_configs](#relabel_configs)) # 在发现目标后，重新配置 targets 的标签。
 
-- 具体配置详见下文 [重设标签](#uieNy)
+- 具体配置详见下文 [重设标签](#重设标签)
 
 **metric_relabel_configs:[<\[\]Object>](#PGKul)** # 在抓取到指标后，重新配置 metrics 的标签
 
 - 与 relabel_configs 字段配置内容相同
 
-## alerting: \<Object>
+## alerting
 
-### alert_relabel_configs: [<\[\]Object>](#PGKul)
+**alert_relabel_configs**([RELABEL_CONFIGS](#relabel_configs))
 
 适用于推送告警时的 Relabel 功能，配置与 [relabel_configs](#PGKul) 相同
 
-### [alertmanager: <\[\]Object>](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#alertmanager_config)
+**alertmanager**(\[]OBJECT)
+
+https://prometheus.io/docs/prometheus/latest/configuration/configuration/#alertmanager_config
 
 > 该字段配置方式与 scrape_config 字段的配置非常相似，只不过不是配置抓取目标，而是配置推送告警的目标
 
 alertmanager 字段指定了 Prometheus Server 发送警报的目标 Alertmanager，还提供了参数来配置如何与这些 Alertmanager 通信。此外，relabel_configs 允许从已发现的实体中选择 Alertmanagers，并对使用的 API 路径进行高级修改，该路径通过 **alerts_path** 标签暴露。
-\# Per-target Alertmanager timeout when pushing alerts.timeout: \<DURATION> # 推送警报时，每个目标 Alertmanager 超时。默认 10 秒。
+
+**alerts.timeout: \<DURATION>** # 推送警报时，每个目标 Alertmanager 超时，单位：秒。`默认值: 10`。
+
 **timeout: \<DURATION>** # 推送告警时的超时时间。
+
 **api_version: \<STRING>** # 推送告警时，应该使用哪个版本的 Alertmanager 路径。`默认值：v2`。
+
 **path_prefix: \<PATH>** # 推送告警时的，目标路径前缀。`默认值：/`。
 
 - 注意：就算指定了其他路径，也会默认在末尾添加 `/api/v2/alerts`
@@ -275,7 +283,9 @@ alertmanager 字段指定了 Prometheus Server 发送警报的目标 Alertmanage
 #### HTTP 配置
 
 **scheme: \<SCHEME>** # 推送告警时，所使用的协议。`默认值：HTTP`
+
 下面的部分是 HTTP 的认证，是用来配置将告警推送到目标时所需要的认证信息。比如目标是 HTTPS 时，就需要这些配置。发起的 POST 推送请求时，Prometheus 使用 username 和 passwrod 字段的值为这个 HTTP 请求设置 Authorization 请求头。说白了就是发起 HTTP 请求时带着用户名和密码。
+
 **basic_auth: \<Object>**
 
 - **username: \<STRING>** #
@@ -289,30 +299,33 @@ alertmanager 字段指定了 Prometheus Server 发送警报的目标 Alertmanage
 - **credentials_file: \<filename>** # 从文件中读取用于身份验证的信息。与 credentials 字段互斥
 
 **oauth2: \<Object>** # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
+
 **tls_config: \<Object>** # 指定推送告警时的 TLS 设定
 
 #### Alerts 推送目标的配置
 
 Prometheus 根据这部分配置来推送需要
-**static_configs: <[\[\]Object](#EQlBs)>** # 静态配置。指定推送告警时的目标。
 
-- 具体配置详见下文 [静态目标发现](#J021o)
+**static_configs**([STATIC_CONFIGS](#static_configs)) # 静态配置。指定推送告警时的目标。
 
-[**XXX_sd_configs: <xxxx>**](#IWvg5) # 动态配置。动态发现可供推送告警的 alertmanager- XXXX # 不同的服务发现，有不同的配置方式。与 scrape_configs 字段中的 XXX_sd_configs 配置类似。
+- 具体配置详见下文 [静态目标发现](#静态目标发现)
+
+**XXX_sd_configs**(OBJECT) # 动态配置。动态发现可供推送告警的 alertmanager- XXXX # 不同的服务发现，有不同的配置方式。与 scrape_configs 字段中的 XXX_sd_configs 配置类似。
 
 - 具体配置详见下文 [动态目标发现](#IWvg5)
 
 #### Relabel 配置
 
 **relabel_configs: <\[]Object>** # 在发现目标后，重新配置 targets 的标签
-详见下文 [重设标签](#uieNy)
 
-## remote_write: <\[]Object>
+详见下文 [重设标签](#重设标签)
+
+## remote_write
 
 与远程写相关的配置，详见 [Prometheus 存储章节](/docs/6.可观测性/监控系统/Prometheus/Storage(存储).md)
 **url: \<STRING>** # 指定要发送时间序列数据到远程存储的端点的 URL
 
-## remote_read: <\[]Object>
+## remote_read
 
 与远程读相关的配置，详见 [Prometheus 存储章节](/docs/6.可观测性/监控系统/Prometheus/Storage(存储).md)
 **url: \<STRING>** # 指定发起查询请求的远程数据库的端点的 URL
@@ -323,9 +336,12 @@ Prometheus 根据这部分配置来推送需要
 
 这些通用字段会被配置文件中的某些字段共同使用
 
-### [static_configs: <\[\]Object>](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#static_config)
+### static_configs
+
+https://prometheus.io/docs/prometheus/latest/configuration/configuration/#static_config
 
 静态配置。指定用户抓取 metrics 的 targets。静态配置与动态配置就好比主机获取 IP 时是 DHCP 还是 STATIC。动态配置可以动态获取要抓取的 targets、静态就是指定哪个 target 就去哪个 target 抓取 metrics
+
 **targets: <\[]STRING>** # 指定要抓取 metrics 的 targets 的 IP:PORT
 
 - **HOST**
@@ -337,7 +353,9 @@ Prometheus 根据这部分配置来推送需要
 
 ## 动态目标发现
 
-### [file_sd_configs: <\[\]Object>](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#file_sd_config)
+### file_sd_configs
+
+https://prometheus.io/docs/prometheus/latest/configuration/configuration/#file_sd_config
 
 基于文件的服务发现提供了一种配置静态目标的更通用的方法，并用作插入自定义服务发现机制的接口。
 
@@ -346,6 +364,7 @@ Prometheus 根据这部分配置来推送需要
 用户可以通过 JSON 或者 YAML 格式的文件，定义所有的监控目标。同时还可以通过为这些实例添加一些额外的标签信息，这样从这些实例中采集到的样本信息将包含这些标签信息，从而可以为后续按照环境进行监控数据的聚合。
 
 **files: \<map\[STRING]STRING>** # Prometheus 将要读取的文件路径，将会从该文件发现待采集的 Target。支持正则表达式
+
 **refresh_interval: \<DURATION>** # 重新读取文件的间隔时间。`默认值：5m`
 
 通过这种方式，Prometheus 会自动的周期性读取文件中的内容。当文件中定义的内容发生变化时，不需要对 Prometheus Server 进行任何的重启操作。
@@ -386,7 +405,9 @@ scrape_configs:
 
 这种通用的方式可以衍生了很多不同的玩法，比如与自动化配置管理工具(Ansible)结合、与 Cron Job 结合等等。 对于一些 Prometheus 还不支持的云环境，比如国内的阿里云、腾讯云等也可以使用这种方式通过一些自定义程序与平台进行交互自动生成监控 Target 文件，从而实现对这些云环境中基础设施的自动化监控支持。
 
-### [kubernetes_sd_configs: <\[\]Object>](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#kubernetes_sd_config)
+### kubernetes_sd_configs
+
+https://prometheus.io/docs/prometheus/latest/configuration/configuration/#kubernetes_sd_config
 
 kubernetes_sd_configs 字段的配置可以让 Prometheus 从 Kubernetes 的 API Server 中自动发现需要抓取目标，并始终与集群状态保持同步。可以抓取的目标有 node、service、pod、endpoints、ingress。
 
@@ -396,7 +417,7 @@ Note：使用该配置进行服务发现，请求都会经过 API Server，集�
 
 #### API Server 配置
 
-**api_server: <HOST>** # 指定 k8s 集群中 API Server 的地址。
+**api_server: \<HOST>** # 指定 k8s 集群中 API Server 的地址。
 如果该字段为空，则默认 Prometheus 在 k8s 集群内部运行，将自动发现 apiserver，并使用 Pod 中 /var/run/secrets/kubernetes.io/serviceaccount/ 目录下的的 CA 证书 和 Token。
 **basic_auth: \<Object>**# 如果 apiserver 使用基本认证启动，则使用 basic_auth 字段。`authorization` 字段互斥。password 和 password_file 是互斥的。
 
@@ -408,7 +429,7 @@ Note：使用该配置进行服务发现，请求都会经过 API Server，集�
 
 - **type: \<STRING>** # 发起抓取请求时的身份验证类型。`默认值：Bearer`
 - **credentials: \<SECRET>** # 用于身份验证的信息。与 credentials_file 字段互斥。如果是 type 字段是 Bearer，那么这里的值就用 Token 即可。该字段就是老版本的 bearer_token 字段
-- **credentials_file: <filename>** # 从文件中读取用于身份验证的信息。与 credentials 字段互斥.该字段就是老版本的 bearer_token_file 字段
+- **credentials_file: \<filename>** # 从文件中读取用于身份验证的信息。与 credentials 字段互斥.该字段就是老版本的 bearer_token_file 字段
 
 **oauth2: \<Object>** # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
 **tls_config: \<Object>** # 指定抓取 metrics 请求时的 TLS 设定
@@ -426,7 +447,7 @@ Note：使用该配置进行服务发现，请求都会经过 API Server，集�
 
 **selectors: <\[]Object>** # 可以根据 selectors 中指定地 label 或者 field 来过滤动态发现的 Target 。如果省略，则不进行任何过滤。
 
-- **role: <ROLE>** #
+- **role: \<ROLE>** #
 - **label: \<STRING>** # STRING 使用 key=value 的格式。
 - **field: \<STRING>** #
 
@@ -485,28 +506,43 @@ relabel_configs:
 
 ## 重设标签
 
-### [relabel_configs: \<Object>](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config) # 重设标签功能
+### relabel_configs
 
 > 参考：
 >
-> - [官方文档](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config)
+> - [官方文档，配置-配置-relabel_config](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config)
 > - [Label 与 Relabeling](/docs/6.可观测性/监控系统/Prometheus/Target(目标)%20与%20Relabeling(重新标记).md)
 
-relabel 用于将抓取到的样本中的原始 label 进行重新标记以生成新的 label。
-**source_labels: [\<LabelName>, ... ]** # 从现有的标签中选择将要获取值的标签作为 source_labels。source_labels 可以有多个。separator:\ <STRING> # 指定 source_labels 中所有值之间的分隔符。默认值： ;。
+relabel 重设标签功能，用于将抓取到的样本中的原始 label 进行重新标记以生成新的 label。
+
+**source_labels: [\<LabelName>, ... ]** # 从现有的标签中选择将要获取值的标签作为 source_labels。source_labels 可以有多个。
+
+**separator: \<STRING>** # 指定 source_labels 中所有值之间的分隔符。`默认值: ;`。
+
 **target_label: \<LabelName>** # 通过 regex 字段匹配到的值写入的指定的 target_label 中
-**regex: \<REGEX>** # 从 source_label 获取的值进行正则匹配，匹配到的值写入到 target_label 中。默认正则表达式为(.\*)。i.e.匹配所有值
+
+**regex: \<REGEX>** # 从 source_label 获取的值进行正则匹配，匹配到的值写入到 target_label 中。`默认正则表达式为(.*)`。i.e.匹配所有值
+
 **modulus: \<UINT64>** # 去 source_labels 值的哈希值的模数
-**replacement: \<STRING>** # 替换。指定要写入 target_label 的值，STRING 中可以引用 regex 字段的值，使用正则表达式方式引用。默认值：$1。与 action 字段的 replace 值配合使用。
-**action: \<Relabel_Action>** # 对匹配到的标签要执行的动作。默认值：replace。
+
+**replacement: \<STRING>** # 替换。指定要写入 target_label 的值，STRING 中可以引用 regex 字段的值，使用正则表达式方式引用。`默认值：$1`。与 action 字段的 replace 值配合使用。
+
+**action: \<Relabel_Action>** # 对匹配到的标签要执行的动作。`默认值: replace`。
 
 ## 其他
 
-### [tls_config: \<Object>](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#tls_config)
+### tls_config
+
+https://prometheus.io/docs/prometheus/latest/configuration/configuration/#tls_config
 
 tls_config 字段用来配置 TLS 连接信息。下面描述客户端就是 Prometheus Server，服务端就是要抓取 Metrics 的目标。
+
 **ca_file: \<FileName>** # CA 证书，用于验证服务端证书
+
 **cert_file: \<FileName>** # 证书文件，用于客户端对服务器的证书认证。
+
 **key_file: \<FileName>** # 密钥文件，用于客户端对服务器的证书认证。
+
 **server_name: \<STRING>** # ServerName 扩展名，用于指示服务器的名称。ServerName extension to indicate the name of the server. ServerName 概念参考：<https://tools.ietf.org/html/rfc4366#section-3.1>
+
 **insecure_skip_verify: \<BOOLEAN>** # 禁用服务端对证书的验证。类似于 curl 的 -k 选项

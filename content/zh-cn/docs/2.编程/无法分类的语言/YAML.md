@@ -7,7 +7,7 @@ title: YAML
 > 参考：
 >
 > - [官方文档，规范 v1.2.2](https://yaml.org/spec/1.2.2/)
-> - [Wiki,YAML](https://en.wikipedia.org/wiki/YAML)
+> - [Wiki，YAML](https://en.wikipedia.org/wiki/YAML)
 
 编程免不了要写配置文件，怎么写配置也是一门学问。
 
@@ -29,27 +29,24 @@ JSON 和 YAML 都旨在成为人类可读的数据交换格式。但是，JSON �
 
 - 大小写敏感
 - 使用缩进表示层级关系
-    - 缩进时不允许使用 Tab 键，只允许使用空格。
-    - 缩进的空格数目不重要，只要相同层级的元素左侧对齐即可
+  - 缩进时不允许使用 Tab 键，只允许使用空格。
+  - 缩进的空格数目不重要，只要相同层级的元素左侧对齐即可
 - `#` 表示注释，从这个字符一直到行尾，都会被解析器忽略
 
 # Data Structures(数据结构)
 
 YAML 由多个 **Node(节点)** 组成，每个 Node 都可以是三种 **Native Data Structures(原生数据结构)** 其中之一：
 
-- **scalars(标量)**# 单个的、不可再分的值，又称为 Strings(字符串)、Numbers(数字)
-- **mappings(映射)** # 键值对的集合，又称为哈希(hashes)、字典(dictionarys)。转为 json 后使用`{ }`符号包围。
-  - 使用冒号和空格`:`分隔每个键值对
-  - 映射使用键值的方式表示一个数据(比如“名字: 李辰昊”，“名字”是一个数据名，“李辰昊”是该数据的值)
-  - 映射的一组键值对使用冒号结构表示，并且冒号后面需要跟一个空格，否则该行代码无效
-- **sequences(序列)** # 一组按次序排列的值，又称为数组(arrays)、列表(lists)。转为 json 后使用`[ ]`符号包围。对于序列，人们更多得使用数组来称呼这种原语
-  - 使用 `-`(波折号和空格) 来表示数组中的每个元素。
-  - 如果一个对象要定义多个，那么该对象的子对象的第一个前面要加-，比如：如果要定义多个 container 字段，这个 container 包括 name，image，ports 等子字段，那么就需要在 container 对象下一行添加一个-，这样，每个-至下一个-中间的内容表示一个 container 的各种规格，第二个-至第三个-中间表示第二个 container 的各种规则
+- **Scalars(标量)** # 单个的、不可再分的值，又称为 Strings(字符串)、Numbers(数字)
+- **Mappings(映射)** # 键值对的集合，又称为 Object(对象)、哈希(hashes)、字典(dictionarys)。转为 json 后使用 `{}` 符号包围。
+  - **很多使用 YAML 作为配置的产品的官方文档中，都用 Object(对象) 来表示 Mappings**
+- **Sequences(序列)** # 一组按次序排列的值，又称为 arrays(数组)、lists(列表)。转为 json 后使用 `[]` 符号包围。对于序列，人们更多得使用数组来称呼这种原语
 
 上述三种类型的 Node 又可以互相组合并形成复合结构：
 
-- **Object(对象)**。# 由 mappings 组合成的一种复杂结构，官方文档描述为 **Mapping of Mappings**(意味在一个 mapping 中有多个 Maapings)。
-  - 在某些说明文档中，会看到 `[]Object` 符号，这表示，这个字段下的子字段，是序列和映射的组合体，不是单一的数据结构。\[]Object 分开看，就是 \[] 与 Object，而 Object 是用 {} 表示。
+- 由 mappings 组合成的一种复杂结构，官方文档描述为 **Mapping of Mappings**(意味在一个 Mapping 中有多个 Maapings)。
+- 由 Scalars 和 Object 组成的一种复杂结构，会看到 `[]Object` 符号，这表示，这个字段下的子字段，是序列和映射的组合体，不是单一的数据结构。`[]Object` 分开看，就是 `[]` 与 Object，而 Object 是用 `{}` 表示。
+- 等等
 
 这些概念，与各种编程语言中的数组、映射概念相同。
 
@@ -67,48 +64,70 @@ YAML 由多个 **Node(节点)** 组成，每个 Node 都可以是三种 **Native
 
 YAML 中标量通常不能独自存在，一般都会在 Mapping 或 Sequence 中作为其中的一部分。
 
-### Mapping(映射)
+### Mapping(映射) 或 Object(对象)
 
-**map\[STRING]STRING** # Mapping(映射) 标识符。表示多个键/值对。键 和 值 的数据类型都是 STRING。
+Mapping(映射) 表示一个或一组无序的**键/值对**。这里面的 **值** 即表示节点
+
+  - 使用 `: `(冒号和空格) 分隔每个键值对
+  - 映射使用键值的方式表示一个数据(比如“名字: DesistDaydream”，“名字” 是一个数据名，“DesistDaydream” 是该数据的值)
+  - 映射的一组键值对使用冒号结构表示，并且冒号后面需要跟一个空格，否则该行代码就属于 Scalar 类型的节点
+
+这是一个最基本的 Mapping，每个 Key 的值是 Scalar 类型的节点
 
 ```yaml
 key1: value1
 key2: value2
 ```
 
+一个 Mapping 的值可以是另一个 Mapping 类型的节点
+
+```yaml
+key:
+  child-key1: value
+  child-key2: value
+```
+
+一个 Mapping 的值可以是一个 Sequence 类型的节点
+
+```yaml
+key:
+  - element
+  - element
+```
+
 ### Sequence(序列)
 
-**\[]TYPE** # Sequences(序列) 标识符。表示该字段由数组组成，数组元素类型为 TYPE，比如 `[]STRING` 格式应该就是下面这样
+**Sequences(序列)** 类型的节点是具有零个或多个元素的数组，数组中的每个元素都是一个节点
+
+  - 使用 `- `(波折号和空格) 来表示数组中的每个元素。
+  - 相同缩进的 `-` 表示同一个数组中的元素。
+  - 如果一个对象要定义多个，那么该对象的子对象的第一个前面要加-，比如：如果要定义多个 container 字段，这个 container 包括 name，image，ports 等子字段，那么就需要在 container 对象下一行添加一个-，这样，每个-至下一个-中间的内容表示一个 container 的各种规格，第二个-至第三个-中间表示第二个 container 的各种规则
+
+这是一个没有元素的 Sequences 类型的节点
 
 ```yaml
-- deletecr
-- --ns
-- --name
+-
 ```
 
-TYPE 也可以是有多种类型，比如 sequence of scalars and mappings(序列中包含标量和映射)
+这是一个简单的 Sequence，有两个元素，这俩元素是 Scalar 类型的节点
 
 ```yaml
-- "10.0.0.15/24":
-    lifetime: 0
-    label: "maas"
+- element
+- element
 ```
+
+Sequence 甚至可以包含 Sequence，也就是说元素是一个 Sequence 类型的节点
+
+```yaml
+-
+  - element
+  - element
+- element
+```
+
+Sequence 中的元素还可以是 Mapping
 
 ### 复合 Node
-
-- **OBJECT**# Object(对象) 标识符。表示复合结构的 map。
-
-```yaml
-resources:
-  limits:
-    cpu: "2"
-    memory: 2Gi
-  requests:
-    cpu: 500m
-    memory: 400Mi
-```
-
-- **\[]OBJECT**# 表示该字段由数组组成，并且数组中的元素都是一个 OBJECT，比如格式应该像下面这样
 
 ```yaml
 containers:
@@ -183,9 +202,24 @@ Stack:
       foo = bar
 ```
 
+# 各种产品官方文档中对 YAML 格式的配置文件的描述
+
+在各种产品的官方文档中，常见如下这种写法
+
+- **global**([global](#global))
+- **rule_files**([rule_files](#rule_files))
+- **scrape_configs**(\[][scrape_configs](#scrape_configs(占比最大的字段)))
+- **alerting**([alerting](#alerting))
+- **remote_write**(\[][remote_write](#remote_write))
+- **remote_read**(\[][remote_read](#remote_read))
+
+这里括号中表示这个字段的类型，如果是非 Scalar 类型(STRING、INT 等)，一般都是表示对象或者由序列与对象组合而成的节点。
+
+括号里的内容一般都是一个跳转链接，这些类型的节点都在一个独立的章节描述。
+
 # YAML 与 JSON 数据格式对比
 
-yaml 有两种格式
+YAML 有两种格式
 
 - Document 格式 yaml 数据。也称为 格式化之后的数据、人类可读类数据 等等
   - 一般作为书面人类可读的格式使用，通过缩进、- 符号来规范格式。一般有多行

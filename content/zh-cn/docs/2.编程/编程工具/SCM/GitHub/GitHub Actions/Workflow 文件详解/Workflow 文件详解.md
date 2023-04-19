@@ -10,23 +10,38 @@ title: Workflow 文件详解
 > - [官方文档，使用工作流-触发工作流的事件](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows)
 > - [官方文档，使用工作流-Workflow 语法](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
 
-GitHub 的 Actions 通过 YAML 格式的文件来定义运行方式
+GitHub 的 Actions 通过 [YAML](docs/2.编程/无法分类的语言/YAML.md) 格式的文件来定义运行方式。工作流文件必须保存在项目根目录下的 `.github/workflows/` 目录下
 
-# name: \<STRING> # Workflow 的名称
+## 顶层字段
 
-默认值：当前 Workflow 的文件名。
+- **name:**(STRING) # Workflow 的名称。`默认值：当前 Workflow 的文件名`。
+- **run-name** # 
+- **on**[(on)](#on) # 指定触发 Workflow 的条件
+- **permissions**
+- **env**
+- **defaults**
+- **concurrency**
+- **jobs**[(jobs)](#jobs) #  Workflow 文件的主体，用于定义要执行的一项或多项任务
 
-# [on: \<OBJECT>](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#on) # 指定触发 Workflow 的条件
+# on
 
-这个字段用来定义触发工作流的事件，在这里可以看到 GitHub 支持的所有事件
+https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#on
 
-## push: # 当上传代码时，触发 Workflow
+这个字段用来定义触发工作流的事件，在这里可以看到 GitHub 支持的所有事件，通常包含如下字段
 
-### branches: <\[]STRING> # 指定出发条件，当上传代码到该字段指定的分支时，触发 Workflow
+- **push**([push](#push)) # 当上传代码时，触发 Workflow
+- **pull_request**([pull_request](#pull_request)) # 当发生 PR 时，触发 orkflow
+- **schedule**(\[][schedule](#schedule)) # 定时触发 Worlkflow
+- **workflow_dispatch**([workflow_dispatch](#workflow_dispatch)) # 手动触发 Workflow
+- ......
 
-## pull_request: # 当发生 PR 时，触发 orkflow
+## push
 
-## schedule: <\[]OBJECT> # 定时触发 Worlkflow
+**branches: <[]STRING>** # 指定出发条件，当上传代码到该字段指定的分支时，触发 Workflow
+
+## pull_request
+
+## schedule
 
 使用 POSIX cron 语法让 Worlkflow 在指定时间运行
 
@@ -37,7 +52,7 @@ on:
     - cron: "30 5,17 * * *"
 ```
 
-## workflow_dispatch: \<OBJECT> # 手动触发 Workflow
+## workflow_dispatch
 
 ```yaml
 on:
@@ -60,7 +75,7 @@ jobs:
 下面对话框中填写的值将传入 Action 中，作为 `file` 变量的值
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/sytu80/1643186313475-dfed2719-28b6-4680-8a28-b6a6772763c8.png)
 
-### inputs: \<OBJECT> # 触发 Workflow 时，传入的信息
+**inputs: \<OBJECT>** # 触发 Workflow 时，传入的信息
 
 更多 GitHub 可用的传入信息，详见 [Contexts](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context)
 **NAME: \<OBJECT>** # 定义变量。这里的 NAME 可以任意字符串，然后在 workflow 文件中使用`${{ github.event.inputs.NAME }}`的方式调用
@@ -70,9 +85,13 @@ jobs:
 - **required: \<BOLLEAN>** #
 - **options: <\[]TYPE>** # 为 choice 类型提供可用选择的列表
 
-# [jobs: \<OBJECT>](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobs) # workflow 文件的主体，用于定义要执行的一项或多项任务
+# jobs
 
-使用 **jobs.\<JOB_ID>** 为我们的工作提供唯一标识符，JOB*ID 是一个字符串，必须以字母或 `*` 开头，并且仅能包含字母、数字、下划线、中横线。一个最简单的不用执行任何具体行为的 jobs 配置如下：
+https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobs
+
+jobs 字段是 Workflow 文件的主体，用于定义要执行的一项或多项任务
+
+使用 **`jobs.<JOB_ID>`** 为我们的工作提供唯一标识符，JOB_ID 是一个字符串，必须以字母或 `*` 开头，并且仅能包含字母、数字、下划线、中横线。一个最简单的不用执行任何具体行为的 jobs 配置如下：
 
 ```yaml
 jobs:
@@ -84,7 +103,11 @@ jobs:
 
 示例中 `my_first_job` 就是 JOB_ID
 
-## JOB_ID.needs: <\[]JOB_ID | JOB_ID> # 此 Job 必须在指定的 JOB_ID 成功后才可以执行
+通常包含如下字段
+
+- **JOB_ID.steps**[][steps](#steps)) # Job 的运行步骤
+
+## JOB_ID.needs([]JOB_ID | JOB_ID) # 此 Job 必须在指定的 JOB_ID 成功后才可以执行
 
 ```yaml
 jobs:
@@ -97,11 +120,11 @@ jobs:
 
 上面这个示例表示 job2 等待 job1 成功后开始执行；job3 等待 job1 和 job2 都成功后开始执行。
 
-## JOB_ID.runs-on: \<STRING> # 必须的。运行 JOB_ID 的运行器
+## JOB_ID.runs-on(STRING) # 必须的。运行 JOB_ID 的运行器
 
 GitHub 自带的运行器有：ubuntu-latest、windows-latest、macos-latest 等等
 
-## JOB_ID.steps: <\[]OBJECT> # Job 的运行步骤
+## steps
 
 **env: \<map\[STRING]STRING>** # 设定前 Job 中可用的环境变量。
 **name: \<STRING>** # 当前 Job 的名称。
@@ -132,7 +155,7 @@ steps:
 
 通过使用其他 Action，可以大大简化自身工作流的配置文件。比如 Git Action 官方提供的 [actions/checkout](https://github.com/actions/checkout) 这个 Action，可以用来将仓库中的代码，拷贝到运行 Action 的容器中，然后进行后续操作，如果不使用这个 Action，那么我们就要写很多命令来 pull 代码了~
 
-## JOB_ID.outputs: \<map\[STRING]STRING>
+## JOB_ID.outputs(map[STRING]STRING)
 
 通过 outputs 行为可以为本 job 创建一个输出映射，本 job 的输出可以用于其他依赖本 job 的所有下游 job。job 之间的依赖关系通过 JOB_ID.needs 行为确定。
 

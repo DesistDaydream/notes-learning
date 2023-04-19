@@ -13,15 +13,15 @@ title: Deployment Manifest 详解
 
 - apiVersion: apps/v1
 - kind: Deployment
-- [metadata: \<Object>](#d12d7d74)
-- [spec: \<Object>](#5xtmr)
-- [status: \<Object>](#Sbe0x)
+- [metadata: \<Object>](#metadata)
+- [spec: \<Object>](#spec)
+- [status: \<Object>](#status)
 
-# metadata: \<Object>
+# metadata
 
 Deployment 对象的元数据，该字段内容详见通用定义的 [ObjectMeta](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/ObjectMeta.md Definitions(通用定义)/ObjectMeta.md)
 
-# spec: \<Object>
+# spec
 
 spec 用来描述一个 Deployment 应该具有的属性。也就是用来定义 Deployment 的行为规范。一共分为如下几类
 
@@ -56,7 +56,7 @@ spec 用来描述一个 Deployment 应该具有的属性。也就是用来定义
 - **spec:** # 与 pod 资源定义的内容基本一致
   - ...
 
-# status: \<Object>
+# status
 
 # Manifests 样例
 

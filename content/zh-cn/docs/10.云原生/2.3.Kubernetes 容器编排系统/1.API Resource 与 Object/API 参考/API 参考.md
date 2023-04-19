@@ -13,15 +13,34 @@ weight: 1
 >   - 这些连接的内容，其实是 `kubectl explain` 命令的内容显示在浏览器中了。
 > - [OpeaAPI 格式文档](https://github.com/kubernetes/kubernetes/blob/master/api/openapi-spec/swagger.json)
 
-在 [Kubernetes API](https://www.yuque.com/go/doc/33168662) 章节，已经可以看到单一页面的详解中对 API 的分类，在本笔记后面的部分对各资源 Manifest 详解中，其实已经描述了 API 中各个字段的含义。所以本篇文章不会详解每个 API，而是记录一下如何通过 Kubernetes 官网来查找 API 详解，以及如何使用官方文档查看 API 详解。
+在本部分笔记后面的章节，各资源 Manifest 详解，其实已经描述了 API 中各个字段的含义。所以本篇文章不会详解每个 API，而是记录一下如何通过 Kubernetes 官网来查找 API 详解，以及如何使用官方文档查看 API 详解。
 
 如果笔记中记录得不够详细，`kubectl explain` 命令也看着不方便，那么通过这篇文章中介绍的官方文档中的 API 详解来查看，将会更加直观。
 
 **Kubernetes API 参考中将会描述每种资源的 Manifests 中每个字段(即.YAML 中的节点)的含义。**
 
-下面是文档中占位符说明：
+这是单一页面的样子。左侧是根据对资源的分类而形成的目录，右侧是完整的页面
 
-**\[]TYPE** # 表示该字段由数组组成，数组元素类型为 TYPE，比如 \[]STRING 格式应该就是下面这样
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/dkxdpv/1616120193938-a171af16-575d-4de6-951a-99cdca271a50.png)
+
+这是多级页面的样子，该 API 详解是内含在官方文档中的，并且对 API 进行了细致的分类
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/dkxdpv/1616120193972-2c538ed5-7a6f-4aca-bf11-732240aa84d6.png)
+
+
+## 字段的类型占位符
+
+官方文档中，将每个字段可以接受的类型，放在字段名称后面的 `()` 中，效果如图：
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/kubernetes/api/20230419102123.png)
+
+> 示例图中红框中表示的类型是基本的 OBJECT 类型，只是为具有某些字段的 OBJECT 起了一个名字而已，类似于在编程中可以复用的函数，这一部分 OBJECT 所包含的字段，可以被很多地方使 用
+
+**在每种资源的 Manifests 中，会有一些共用的部分称为 [Common Definitions(通用定义)](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/Common%20Definitions(通用定义).md)（也可以说是功能定义），比如常见的 [LabelSelector](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)，这属于资源的 Manifests 的一部分。很多组件在解析 Manifests 中的通用定义时，都会遵循相同的规则。除了通用定义以外的，都属于 K8S 的资源定义，比如定义 [Pod](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/工作负载资源/Pod%20Manifest%20详解.md) 的 API 参考、定义 [Service](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/服务资源/Service%20Manifests%20详解.md) 的 API 参考等等。**
+
+下面是几种基本的类型介绍：
+
+**[]TYPE** # 表示该字段由数组组成，数组元素类型为 TYPE，比如 `[]STRING` 格式应该就是下面这样
 
 ```yaml
 args:
@@ -30,7 +49,7 @@ args:
   - --name
 ```
 
-**map[STRING]STRING** # 表示多个键/值对。键 和 值 的数据类型都是 STRING。
+**map[STRING]STRING** # 表示多个键/值对。键 和 值 的数据类型都是 STRING
 
 ```yaml
 labels:
@@ -38,7 +57,7 @@ labels:
   key2: value2
 ```
 
-**OBJECT** # 表示复合结构的 map。
+**OBJECT** # 表示复合结构的 map
 
 ```yaml
 resources:
@@ -50,7 +69,7 @@ resources:
     memory: 400Mi
 ```
 
-**[]OBJECT** # 表示该字段由数组组成，并且数组中的元素都是一个 OBJECT，比如格式应该像下面这样
+**[]OBJECT** # 表示该字段由数组组成，并且数组中的每个元素都是一个 OBJECT，比如格式应该像下面这样
 
 ```yaml
 containers:
@@ -63,30 +82,9 @@ containers:
     image: YYY
 ```
 
-**在每种资源的 Manifests 中，会有一些共用的部分称为 [Common Definitions(通用定义)](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/Common%20Definitions(通用定义).md)（也可以说是功能定义），比如常见的 [LabelSelector](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)，这属于资源的 Manifests 的一部分。很多组件在解析 Manifests 中的通用定义时，都会遵循相同的规则。除了通用定义以外的，都属于 K8S 的资源定义，比如定义 [Pod](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/工作负载资源/Pod%20Manifest%20详解.md) 的 API 参考、定义 [Service](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/服务资源/Service%20Manifests%20详解.md) 的 API 参考等等。**
-
-这是单一页面的样子。左侧是根据对资源的分类而形成的目录，右侧是完整的页面
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/dkxdpv/1616120193938-a171af16-575d-4de6-951a-99cdca271a50.png)
-这是多级页面的样子，该 API 详解是内含在官方文档中的，并且对 API 进行了细致的分类
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/dkxdpv/1616120193972-2c538ed5-7a6f-4aca-bf11-732240aa84d6.png)
-
-## Kubernetes API 删除和弃用流程
-
-> 参考：
->
-> - [官方文档，参考-API 概述-Kubernetes 弃用策略](https://kubernetes.io/docs/reference/using-api/deprecation-policy/)
-
-Kubernetes 项目有一个记录良好的特性弃用策略\[1]。该策略规定，只有当同一 API 的更新的、稳定的版本可用时，才可以弃用稳定的 API，并且 API 对于每个稳定性级别都有一个最短的生存期。给弃用的 API，是在未来的 Kubernetes 版本中被标记为删除的 API；它将继续运行，直到给删除（从弃用至少一年），但使用将导致显示警告。删除的 API 在当前版本中不再可用，此时你必须迁移到使用替换的 API。
-
-- GA（Generally available，普遍可用）或稳定的 API 版本可能会被标记为弃用，但不得在 Kubernetes 的主要版本中删除。
-- 测试版或预发布 API 版本弃用后，必须支持 3 个版本。
-- Alpha 或实验 API 版本可能会在任何版本中被删除，恕不另行通知。
-
-无论某个 API 是因为某个功能从测试版升级到稳定版而被删除，还是因为该 API 没有成功，所有的删除都遵循这个弃用策略。每当删除一个 API 时，迁移选项都会在文档中提供说明。
-
 # API 分类
 
-- [Workloads Resources](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/工作负载资源.md 参考/工作负载资源.md)(工作负载资源)
+- [Workloads Resources](docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/工作负载资源/工作负载资源.md)(工作负载资源)
 - [Services Resources](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/)(服务资源)
 - [Config and Storage Resources](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/)(配置与存储资源)
 - [Authentication Resources](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/)(认证资源)
@@ -94,7 +92,7 @@ Kubernetes 项目有一个记录良好的特性弃用策略\[1]。该策略规�
 - [Policies Resources](https://kubernetes.io/docs/reference/kubernetes-api/policies-resources/)(策略资源)
 - [Extend Resources](https://kubernetes.io/docs/reference/kubernetes-api/extend-resources/)(扩展资源)
 - [Cluster Resources](https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/)(集群资源)
-- [Common Definitions](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/)(通用定义) # 在多种资源 API 中，可以使用的 API。比如 节点选择器、meta 字段 等等
+- [Common Definitions](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/)(通用定义) # 在多种资源 API 中，嵌入的 API。比如 节点选择器、meta 字段 等等
 - [Common Parameters](https://kubernetes.io/docs/reference/kubernetes-api/common-parameters/common-parameters/)
 
 ## Config and Storage Resources
@@ -268,3 +266,17 @@ Binding ties one object to another; for example, a pod is bound to a node by a s
 ##### [ComponentStatus](https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/component-status-v1/)
 
 ComponentStatus (and ComponentStatusList) holds the cluster validation info.
+
+# Kubernetes API 删除和弃用流程
+
+> 参考：
+>
+> - [官方文档，参考-API 概述-Kubernetes 弃用策略](https://kubernetes.io/docs/reference/using-api/deprecation-policy/)
+
+Kubernetes 项目有一个记录良好的特性弃用策略\[1]。该策略规定，只有当同一 API 的更新的、稳定的版本可用时，才可以弃用稳定的 API，并且 API 对于每个稳定性级别都有一个最短的生存期。给弃用的 API，是在未来的 Kubernetes 版本中被标记为删除的 API；它将继续运行，直到给删除（从弃用至少一年），但使用将导致显示警告。删除的 API 在当前版本中不再可用，此时你必须迁移到使用替换的 API。
+
+- GA（Generally available，普遍可用）或稳定的 API 版本可能会被标记为弃用，但不得在 Kubernetes 的主要版本中删除。
+- 测试版或预发布 API 版本弃用后，必须支持 3 个版本。
+- Alpha 或实验 API 版本可能会在任何版本中被删除，恕不另行通知。
+
+无论某个 API 是因为某个功能从测试版升级到稳定版而被删除，还是因为该 API 没有成功，所有的删除都遵循这个弃用策略。每当删除一个 API 时，迁移选项都会在文档中提供说明。

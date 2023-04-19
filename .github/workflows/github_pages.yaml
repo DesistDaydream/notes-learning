@@ -2,10 +2,8 @@ name: github pages # 名字自取
 
 on:
   workflow_dispatch: {}
-  # push:
-  #   branches:
-  #     - main
-  #     - github-actions # 这里的意思是当 main 分支发生 push 的时候，运行下面的 jobs，这里先改为 github-actions
+  schedule:
+    - cron: "0 0 1 * *"
 
 jobs:
   deploy: # 任务名自取
