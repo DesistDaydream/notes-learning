@@ -34,13 +34,11 @@ weight: 1
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/kubernetes/api/20230419102123.png)
 
-> 示例图中红框中表示的类型是基本的 OBJECT 类型，只是为具有某些字段的 OBJECT 起了一个名字而已，类似于在编程中可以复用的函数，这一部分 OBJECT 所包含的字段，可以被很多地方使 用
-
-**在每种资源的 Manifests 中，会有一些共用的部分称为 [Common Definitions(通用定义)](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/Common%20Definitions(通用定义).md)（也可以说是功能定义），比如常见的 [LabelSelector](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)，这属于资源的 Manifests 的一部分。很多组件在解析 Manifests 中的通用定义时，都会遵循相同的规则。除了通用定义以外的，都属于 K8S 的资源定义，比如定义 [Pod](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/工作负载资源/Pod%20Manifest%20详解.md) 的 API 参考、定义 [Service](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/服务资源/Service%20Manifests%20详解.md) 的 API 参考等等。**
+详见：[YAML](docs/2.编程/无法分类的语言/YAML.md#各种产品官方文档中对%20YAML%20格式的配置文件的描述) 中关于对各种文档的使用说明示例。
 
 下面是几种基本的类型介绍：
 
-**[]TYPE** # 表示该字段由数组组成，数组元素类型为 TYPE，比如 `[]STRING` 格式应该就是下面这样
+**[]TYPE** # 基本数组组成，数组元素类型为 TYPE，比如 `[]STRING` 格式应该就是下面这样
 
 ```yaml
 args:
@@ -49,15 +47,7 @@ args:
   - --name
 ```
 
-**map[STRING]STRING** # 表示多个键/值对。键 和 值 的数据类型都是 STRING
-
-```yaml
-labels:
-  key1: value1
-  key2: value2
-```
-
-**OBJECT** # 表示复合结构的 map
+**OBJECT** # 基本对象类型，也称为 Mapping 类型。
 
 ```yaml
 resources:
@@ -69,7 +59,7 @@ resources:
     memory: 400Mi
 ```
 
-**[]OBJECT** # 表示该字段由数组组成，并且数组中的每个元素都是一个 OBJECT，比如格式应该像下面这样
+**[]OBJECT** # 数组中的元素是对象的特殊类型
 
 ```yaml
 containers:
@@ -80,6 +70,14 @@ containers:
     image: XXX
   - name: YYY
     image: YYY
+```
+
+**map[STRING]STRING** # 特殊的对象类型。键 和 值 的数据类型都是 STRING
+
+```yaml
+labels:
+  key1: value1
+  key2: value2
 ```
 
 # API 分类
@@ -94,6 +92,8 @@ containers:
 - [Cluster Resources](https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/)(集群资源)
 - [Common Definitions](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/)(通用定义) # 在多种资源 API 中，嵌入的 API。比如 节点选择器、meta 字段 等等
 - [Common Parameters](https://kubernetes.io/docs/reference/kubernetes-api/common-parameters/common-parameters/)
+
+**在每种资源的 Manifests 中，会有一些共用的部分称为 [Common Definitions(通用定义)](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/Common%20Definitions(通用定义).md)（也可以说是功能定义），比如常见的 [LabelSelector](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)，这属于资源的 Manifests 的一部分。很多组件在解析 Manifests 中的通用定义时，都会遵循相同的规则。除了通用定义以外的，都属于 K8S 的资源定义，比如定义 [Pod](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/工作负载资源/Pod%20Manifest%20详解.md) 的 API 参考、定义 [Service](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/服务资源/Service%20Manifests%20详解.md) 的 API 参考等等。**
 
 ## Config and Storage Resources
 

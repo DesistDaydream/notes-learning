@@ -38,14 +38,14 @@ JSON 和 YAML 都旨在成为人类可读的数据交换格式。但是，JSON �
 YAML 由多个 **Node(节点)** 组成，每个 Node 都可以是三种 **Native Data Structures(原生数据结构)** 其中之一：
 
 - **Scalars(标量)** # 单个的、不可再分的值，又称为 Strings(字符串)、Numbers(数字)
-- **Mappings(映射)** # 键值对的集合，又称为 Object(对象)、哈希(hashes)、字典(dictionarys)。转为 json 后使用 `{}` 符号包围。
+- **Mappings(映射)** # 键值对的集合，又称为 Object(对象)、哈希(Hashes)、字典(Dictionarys)。转为 json 后使用 `{}` 符号包围。
   - **很多使用 YAML 作为配置的产品的官方文档中，都用 Object(对象) 来表示 Mappings**
 - **Sequences(序列)** # 一组按次序排列的值，又称为 arrays(数组)、lists(列表)。转为 json 后使用 `[]` 符号包围。对于序列，人们更多得使用数组来称呼这种原语
 
-上述三种类型的 Node 又可以互相组合并形成复合结构：
+上述三种类型的 Node 又可以互相组合形成复合结构：
 
 - 由 mappings 组合成的一种复杂结构，官方文档描述为 **Mapping of Mappings**(意味在一个 Mapping 中有多个 Maapings)。
-- 由 Scalars 和 Object 组成的一种复杂结构，会看到 `[]Object` 符号，这表示，这个字段下的子字段，是序列和映射的组合体，不是单一的数据结构。`[]Object` 分开看，就是 `[]` 与 Object，而 Object 是用 `{}` 表示。
+- 由 Scalars 和 Object 组成的一种复杂结构，很多产品的文档中会看到 `[]Object` 符号，这表示，这个字段下的子字段，是序列和映射的组合体，不是单一的数据结构。`[]Object` 分开看，就是 `[]` 与 Object，而 Object 是用 `{}` 表示。
 - 等等
 
 这些概念，与各种编程语言中的数组、映射概念相同。
@@ -66,38 +66,38 @@ YAML 中标量通常不能独自存在，一般都会在 Mapping 或 Sequence �
 
 ### Mapping(映射) 或 Object(对象)
 
-Mapping(映射) 表示一个或一组无序的**键/值对**。这里面的 **值** 即表示节点
+**Mapping(映射) 或 Object(对象)** 表示一个或多个无序的**键/值对**。这里面的 **值** 即可以是**任意类型的节点**
 
   - 使用 `: `(冒号和空格) 分隔每个键值对
   - 映射使用键值的方式表示一个数据(比如“名字: DesistDaydream”，“名字” 是一个数据名，“DesistDaydream” 是该数据的值)
   - 映射的一组键值对使用冒号结构表示，并且冒号后面需要跟一个空格，否则该行代码就属于 Scalar 类型的节点
 
-这是一个最基本的 Mapping，每个 Key 的值是 Scalar 类型的节点
+这是一个最基本的 Mapping，Key 的值是 Scalar 类型的节点
 
 ```yaml
 key1: value1
 key2: value2
 ```
 
-一个 Mapping 的值可以是另一个 Mapping 类型的节点
+Key 的值可以是一个 Mapping 类型的节点
 
 ```yaml
-key:
+key1:
   child-key1: value
   child-key2: value
 ```
 
-一个 Mapping 的值可以是一个 Sequence 类型的节点
+Key 的值可以是一个 Sequence 类型的节点
 
 ```yaml
-key:
-  - element
-  - element
+key1:
+  - element1
+  - element2
 ```
 
 ### Sequence(序列)
 
-**Sequences(序列)** 类型的节点是具有零个或多个元素的数组，数组中的每个元素都是一个节点
+**Sequences(序列)** 类型的节点是具有零个或多个元素的数组，数组中的**每个元素可以是任意类型的节点**
 
   - 使用 `- `(波折号和空格) 来表示数组中的每个元素。
   - 相同缩进的 `-` 表示同一个数组中的元素。
@@ -213,9 +213,12 @@ Stack:
 - **remote_write**(\[][remote_write](#remote_write))
 - **remote_read**(\[][remote_read](#remote_read))
 
-这里括号中表示这个字段的类型，如果是非 Scalar 类型(STRING、INT 等)，一般都是表示对象或者由序列与对象组合而成的节点。
+这里面描述其实都是 Object 类型的节点
 
-括号里的内容一般都是一个跳转链接，这些类型的节点都在一个独立的章节描述。
+- 加粗的是 Key
+- 括号中是 Value，Value 一般是非 Scalar 类型的节点。
+  - 由于 Object 类型的节点中，Value 也可以是一个节点，那么 Value 就有可能是由一个或多个内容组成，为了可以方便得复用这些内容，所以给它们起了一个名字。这就好像编程中的使用函数一样。
+  - 为了文档的整洁性，让相同层级的字段在一起，可以一眼看到同级内容，让 Value 与 Key 分开，将 Value 所包含的具体内容放在单独连接中
 
 # YAML 与 JSON 数据格式对比
 
