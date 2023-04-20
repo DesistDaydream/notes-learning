@@ -14,11 +14,11 @@ title: Service Manifests 详解
 
 ## Manifest 中的顶层字段
 
-- apiVersion: v1 # API 版本，基础字段必须要有
-- kind: Service # 指明要创建的资源类型为 Service，基础字段必须要有
-- [metadata: \<Object>](#metadata)
-- [spec: \<Object>](#spec)
-- [status: \<Object>](#status)
+- **apiVersion**: v1 # API 版本，基础字段必须要有
+- **kind**: Service # 指明要创建的资源类型为 Service，基础字段必须要有
+- **metadata**([metadata](#metadata))
+- **spec**([spec](#spec))
+- **status**([status](#status))
 
 ## metadata
 
@@ -51,11 +51,14 @@ title: Service Manifests 详解
 
 - apiVersion: v1
 - kind: Endpoints
+- **metadata**([metadata](#ep_metadata))
+- **spec**([spec](#spec))
+- **status**([status](#status))
 - [metadata: OBJECT](#metadata)
 - [subsets: []OBJECT](#subsets)
 - status: OBJECT
 
-## metadata
+## ep_metadata
 
 name: NAME # 与 Endpoints 所关联的 Service 的 name 想同
 

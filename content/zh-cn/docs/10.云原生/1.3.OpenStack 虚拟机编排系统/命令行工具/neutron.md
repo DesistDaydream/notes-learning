@@ -1,5 +1,5 @@
 ---
-title: 2.neutron
+title: neutron
 ---
 
 #

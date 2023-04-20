@@ -1,5 +1,6 @@
 ---
 title: Opensatck 介绍
+weight: 1
 ---
 
 # 概述
@@ -8,53 +9,46 @@ title: Opensatck 介绍
 >
 > - [GitHub 项目，openstack/openstack](https://github.com/openstack/openstack)
 > - [官网](https://www.openstack.org/)
+> - 原文：[OpenStack 关键技术系列: 最全 OpenStack 知识科普](https://cloud.tencent.com/developer/article/1395617)
 
-Ubuntu 成为 OpenStack 部署排名第一的操作系统\[
+Ubuntu 成为 OpenStack 部署排名第一的操作系统
+
 https://cn.ubuntu.com/blog/ubuntu-becomes-number-one-os-for-openstack-deployment-post-1
-
-]\(https://cn.ubuntu.com/blog/ubuntu-becomes-number-one-os-for-openstack-deployment-post-1)
-
-#
 
 # OpenStack 关键技术系列: 最全 OpenStack 知识科普
 
 最近几年，OpenStack 这个词大家早都熟的不能再熟，越来越多人开始关注。
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/orsf4g/1616123375037-297d81e3-ef11-4b09-8347-2243b3d05cad.jpeg)
 
-     对于大部分人来说，这还是一个很陌生的词，不知道它到底是什么，从哪里来，有什么用，和自己的工作有什么关系。
-
-
-     有人可能知道，它和现在非常火的云计算有很大的关系。伴随它一起出现的，还有很多新词，例如NFV、Nova、Neutron、Horizon等，更加让人云里雾里。
+对于大部分人来说，这还是一个很陌生的词，不知道它到底是什么，从哪里来，有什么用，和自己的工作有什么关系。
 
 
-    为了消除大家的疑惑，今天我们就来一个“大揭秘”——通过这篇通俗易懂的科普文，帮助大家轻松入门OpenStack。
+有人可能知道，它和现在非常火的云计算有很大的关系。伴随它一起出现的，还有很多新词，例如NFV、Nova、Neutron、Horizon等，更加让人云里雾里。
+
+
+为了消除大家的疑惑，今天我们就来一个“大揭秘”——通过这篇通俗易懂的科普文，帮助大家轻松入门OpenStack。
 
 OpenStack 的起源
 
 这玩意到底是从哪冒出来的？
 
-      我们先来说说OpenStack的起源吧。
+我们先来说说OpenStack的起源吧。
 
-      2002年，美国著名的电商公司亚马逊（Amazon）干了一件“不务正业”的事。他们向客户推出了一项全新的业务——包括存储空间、计算能力等资源服务的Web Service。这就是大名鼎鼎的AWS（Amazon Web Service）。
+2002年，美国著名的电商公司亚马逊（Amazon）干了一件“不务正业”的事。他们向客户推出了一项全新的业务——包括存储空间、计算能力等资源服务的Web Service。这就是大名鼎鼎的 AWS（Amazon Web Service）。
 
-      说白了，这个Web Service服务，就是为大家提供“远程电脑”。你可以远程控制它，有硬盘，有CPU，有内存啥的。你在上面配置你的各种服务，然后给你的用户使用，例如网站、FTP等。这个就是云计算的一种早期形式。
+说白了，这个Web Service服务，就是为大家提供“远程电脑”。你可以远程控制它，有硬盘，有CPU，有内存啥的。你在上面配置你的各种服务，然后给你的用户使用，例如网站、FTP等。这个就是云计算的一种早期形式。
 
 
-      后来，到了2006年，亚马逊又推出了弹性计算云（Elastic Compute Cloud），也称 EC2 。EC2配置界面更简单，使用起来更方便，关键一点，它开始有了“弹性”！
+后来，到了2006年，亚马逊又推出了弹性计算云（Elastic Compute Cloud），也称 EC2 。EC2配置界面更简单，使用起来更方便，关键一点，它开始有了“弹性”！
 
 什么是“弹性”？别急哈，等会我们再解释。
 
 同样是 2006 年，8 月 9 日，Google 首席执行官埃里克·施密特在搜索引擎大会上首次提出“云计算”（Cloud Computing）的概念。从此，云计算进入了高速发展阶段。
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/orsf4g/1616123375022-8210d5dd-46f2-420e-9103-86bd74eeb3b9.jpeg)
 
 云计算
 
 到了 2010 年，当时有一家名叫 Rackspace 的公司，他们一直在做和亚马逊一样的云主机和云储存服务，但是始终都干不过亚马逊，排名第二。他们一气之下，干脆就把它们的云储存服务给开源了。
 
 啥叫开源（Open Source）？开源就是开放源代码，把程序的代码公开了，给所有人免费查看和使用。和他们一起开放源代码的，还有一个家伙，就是——NASA。
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/orsf4g/1616123375009-147a7495-0d2b-4790-974a-c0b51ac0edcc.jpeg)
 
 好吧，又是一个“不务正业”的家伙。
 
@@ -72,9 +66,7 @@ OpenStack 的版本
 
 开源项目的玩法，和企业内部研发是完全不一样的。开源项目中，地球上所有人都可以为这个项目贡献自己的力量，也可以使用这个项目的开发成果。也就是说，“人人为我，我为人人”。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/orsf4g/1616123375020-6ca92ee1-510e-4e3b-b25e-a85c2d91fbf7.jpeg)
-
-开源(Open Source)
+## 开源(Open Source)
 
 但是，为了保证项目能规范、有序地推进下去，还是需要有人“牵头”和“打杂”的。OpenStack 作为一个开源项目，它是由开源社区来负责推进和维护的。这个社区也并不是一盘散沙，它有自己的组织形态。
 
@@ -88,15 +80,13 @@ OpenStack 的版本
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/orsf4g/1616123374992-d2cd2b2d-554f-4427-a861-f6992500f61c.jpeg)
 
-      最后是金牌会员。同样由公司组成，他们赞助的资金与资源比铂金会员稍微少一些。目前，OpenStack基金会拥有 21 位金牌会员。
+最后是金牌会员。同样由公司组成，他们赞助的资金与资源比铂金会员稍微少一些。目前，OpenStack基金会拥有 21 位金牌会员。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/orsf4g/1616123375063-adb07ccb-a240-40bb-9de3-4ffcb67c5d10.jpeg)
 
-      从2010年项目诞生之日起，OpenStack开源社区每年都会开两次设计峰会（Design Summit），发布两个正式版本。迄今为止，一共已经出了17个版本。
+从2010年项目诞生之日起，OpenStack开源社区每年都会开两次设计峰会（Design Summit），发布两个正式版本。迄今为止，一共已经出了17个版本。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/orsf4g/1616123375074-d02f3b41-9e44-43da-be08-deda1fe629f0.jpeg)
-
-OpenStack 设计峰会
+## OpenStack 设计峰会
 
 这里我要开启“吐槽”模式了。开源社区这帮搞技术的宅男腐女，不管年龄大小，内心仍然是一群孩子。他们平时在公司上班比较“木鸡”，在社区这种自由环境里是一个比一个“皮”。
 
@@ -106,13 +96,11 @@ OpenStack 设计峰会
 
 不知道大家看出来没有，这些名字都是有“玄机”的！首先，版本号的第一个字母，从 A 开始，然后 B、C、D… 其次，每个名字都是从当次设计峰会所在城市中选一个地名，作为该版本的名字。
 
-例如，第一个版本 Austin，就是根据 Rackspace 公司所在地（也是第一次峰会所在地）——美国德克萨斯州的首府“奥斯丁”确定的。还有第 9 个版本，当时峰会是在香港举办的，用的“雪厂街”这个名字。
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/orsf4g/1616123375077-68f3c47f-3a81-46d8-ac46-c66d817fda81.jpeg)
+例如，第一个版本 Austin，就是根据 Rackspace 公司所在地（也是第一次峰会所在地）——美国德克萨斯州的首府“奥斯丁”确定的。还有第 9 个版本，当时峰会是在香港举办的，用的“Ice House Street(雪厂街)”这个名字。
 
 这么做的直接后果就是，记忆和分辨起来真的很困难，容易看晕。
 
-OpenStack 的架构
+## OpenStack 的架构
 
 它由哪些部分组成？是如何进行工作的？
 
@@ -154,19 +142,19 @@ OpenStack 系统架构逻辑关系图
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/orsf4g/1616123375093-69331370-989f-4eb8-aa0d-81a432cf3ae3.jpeg)
 
-OpenStack 关键组件及作用
+## OpenStack 关键组件及作用
 
 这些组件里，我挑几个再介绍一下(看不懂也没关系，可以跳过):
 
-- Nova
+**Nova**
 
 Nova 是整个 Openstack 里面最核心的组件。当初 Rackspace 和 NASA 贡献代码时，NASA 贡献的那部分就是 Nova 最早的代码（Rackspace 贡献的代码是 Swift）。OpenStack 云实例生命期所需的各种动作都将由 Nova 进行处理和支撑，它负责管理整个云的计算资源、网络、授权及测度。
 
-- Keystone
+**Keystone**
 
 Keystone 为所有的 OpenStack 组件提供认证和访问策略服务，主要对(但不限于)Swift、Glance、Nova 等进行认证与授权。
 
-- Horizon
+**Horizon**
 
 Horizon 是一个用以管理、控制 OpenStack 服务的 Web 控制面板。用户可以通过这个界面对 OpenStack 状态进行查看和管理。
 
@@ -184,7 +172,7 @@ Open 为开放之意，Stack 则是堆砌
 
 关于技术细节，就先说这么多吧，再说下去估计人都跑光啦。
 
-OpenStack 的发展
+## OpenStack 的发展
 
 现在的它，是一个什么规模和状态？
 
@@ -216,9 +204,7 @@ OpenStack 之所以这么受欢迎，主要原因有三个方面:
 
 总而言之，Openstack 拥有非常大的发展潜力，目前处于高速发展的上升期。在未来很长一段时间内，这种趋势都不会改变。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/orsf4g/1616123375108-c5e44ae5-d8ea-4bbf-9fcd-07115fa82036.jpeg)
-
-OpenStack 的学习
+## OpenStack 的学习
 
 到底该如何对它进行学习呢？
 

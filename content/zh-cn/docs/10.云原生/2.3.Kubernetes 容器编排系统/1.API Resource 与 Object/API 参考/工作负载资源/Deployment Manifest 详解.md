@@ -9,13 +9,13 @@ title: Deployment Manifest 详解
 > - [API 文档，单页](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#deployment-v1-apps)
 > - [官方文档,参考-Kubernetes API-工作负载资源-Deployment](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/deployment-v1/)
 
-## YAML 中的顶层节点
+# Manifest 中的顶层字段
 
-- apiVersion: apps/v1
-- kind: Deployment
-- [metadata: \<Object>](#metadata)
-- [spec: \<Object>](#spec)
-- [status: \<Object>](#status)
+- **apiVersion**: apps/v1
+- **kind**: Deployment
+- **metadata**([metadata](#metadata))
+- **spec**:([spec](#spec))
+- **status**([status](#status))
 
 # metadata
 
@@ -31,13 +31,16 @@ spec 用来描述一个 Deployment 应该具有的属性。也就是用来定义
 ## 控制器行为
 
 **minReadySeconds: \<INT>** # 新创建的 Pod 在启动后，经过 minReadySeconds 秒后一直没有崩溃，之后，将该 Pod 视为可用。`默认值：0`。
-默认值 0 表示 Pod 准备就绪后即被视为可用。
-**progressDeadlineSeconds: \<INT>** # 本 Deployment 对象被视为失败之前的等待时间，单位 秒。`默认值：600`
-**replicas: \<INT>** # 该控制器运行的 Pod 数量，`默认值：1`。
-**revisionHistoryLimit: \<INT>**# 可以保留的允许回滚的旧 ReplicaSet 对象的数量。`默认值：10`。控制器的历史可以通过 `kubectl rollout` 命令控制
-**selector: \<Object> # 必须的。**Pod 的标签选择器，根据标签匹配要控制的 Pod。必须与 `template.metadata.labels` 的内容匹配。
 
-- 该字段内容详见通用定义的[ LabelSelector](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md Definitions(通用定义)/LabelSelector 详解.md)。
+- 默认值 0 表示 Pod 准备就绪后即被视为可用。
+
+**progressDeadlineSeconds: \<INT>** # 本 Deployment 对象被视为失败之前的等待时间，单位 秒。`默认值：600`
+
+**replicas: \<INT>** # 该控制器运行的 Pod 数量，`默认值：1`。
+
+**revisionHistoryLimit: \<INT>**# 可以保留的允许回滚的旧 ReplicaSet 对象的数量。`默认值：10`。控制器的历史可以通过 `kubectl rollout` 命令控制
+
+**selector([LabelSelector](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md Definitions(通用定义)/LabelSelector 详解.md)) # 必须的**。Pod 的标签选择器，根据标签匹配要控制的 Pod。必须与 `template.metadata.labels` 的内容匹配。
 
 **strategy: \<Ojbect>** # 定义用一个新的 pod 代替现有 pod 的部署策略(更新 pod 的策略)
 
@@ -51,10 +54,8 @@ spec 用来描述一个 Deployment 应该具有的属性。也就是用来定义
 
 **template: \<Ojbect> # 必须的**。定义 Pod 的模板,使用 Pod 类型的 metadata 和 spec 字段。
 
-- **metadata:** # 与 pod 资源定义的内容基本一致
-  - ...
-- **spec:** # 与 pod 资源定义的内容基本一致
-  - ...
+- **metadata**([PodMetadata](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/工作负载资源/Pod%20Manifest%20详解.md#metadata)) # 与 pod 资源定义的内容基本一致
+- **spec**([PodSpec](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/工作负载资源/Pod%20Manifest%20详解.md#spec)) # 与 pod 资源定义的内容基本一致
 
 # status
 

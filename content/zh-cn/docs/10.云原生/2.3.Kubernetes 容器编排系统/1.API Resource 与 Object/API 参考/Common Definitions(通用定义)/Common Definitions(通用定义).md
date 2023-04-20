@@ -9,7 +9,7 @@ weight: 1
 >
 > - [官方文档，参考-KubernetesAPI-通用定义](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/)
 
-# Common Definitions
+Common Definitions(通用定义)
 
 ## [DeleteOptions](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/delete-options/)
 

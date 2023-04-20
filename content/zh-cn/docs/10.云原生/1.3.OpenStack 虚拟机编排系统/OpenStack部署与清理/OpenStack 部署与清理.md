@@ -1,6 +1,6 @@
 ---
 title: OpenStack 部署与清理
-weight: 2
+weight: 1
 ---
 
 # 概述

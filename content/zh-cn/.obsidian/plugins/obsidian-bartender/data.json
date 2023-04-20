@@ -1576,6 +1576,36 @@
       "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Workflow 文件详解/_index.md",
       "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Workflow 文件详解/Workflow 文件详解.md",
       "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Workflow 文件详解/Workflow 命令.md"
+    ],
+    "docs/10.云原生/1.3.OpenStack 虚拟机编排系统": [
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/_index.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Opensatck 介绍",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/OpenStack部署与清理",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/配置详解.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Nova",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Keystone",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron"
+    ],
+    "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Opensatck 介绍": [
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Opensatck 介绍/_index.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Opensatck 介绍/Opensatck 介绍.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Opensatck 介绍/主要组件.md"
+    ],
+    "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具": [
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/_index.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/openstack Command Line基础.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/openstackCLI.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/nova.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/glance.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/neutron.md"
+    ],
+    "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron": [
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron/_index.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron/OpenStack Networking 介绍.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron/Neutron 架构.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron/各种 Network Type 的实现方式.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron/neutron工作原理.md"
     ]
   },
   "actionBarOrder": {},

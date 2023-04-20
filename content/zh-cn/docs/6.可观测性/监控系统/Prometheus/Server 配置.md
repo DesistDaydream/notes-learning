@@ -96,10 +96,10 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 
 - **global**([global](#global)) # 全局配置，所有内容作用于所有配置环境中,若其余配置环境中不再指定同样的配置，则global中的配置作为默认配置
 - **rule_files**([rule_files](#rule_files)) # 
-- **scrape_configs**(\[][scrape_configs](#scrape_configs(占比最大的字段))) # 抓取target的metrics时的配置
-- **alerting**([alerting](#alerting)) # 与 alertmanager 相关的配置
+- **scrape_configs**(\[][scrape_configs](#scrape_configs(占比最大的字段))) # 抓取 Target 的 metrics 时的配置
+- **alerting**([alerting](#alerting)) # 与 Alertmanager 相关的配置
   - alert_relabel_configs([relabel_configs](#relabel_configs))
-  - alertmanagers:
+  - alertmanagers
 - **remote_write**(\[][remote_write](#remote_write)) # 与远程写入相关功能的配置
 - **remote_read**(\[][remote_read](#remote_read)) # 与远程读取相关功能的配置
 
@@ -143,13 +143,13 @@ scrape_configs:
 
 scrape_configs 是 Prometheus 采集指标的最重要也是最基本的配置信息，scrape_configs 字段是一个数组，所以可以配置多个 Scrape 配置，不同的 Scrape 配置，所以该段配置至少需要包含以下几个方面：
 
-- 名字 # 每个 scrape 工作都应该具有一个名字。称为 job_name，名字主要起到标识符的作用。
+- **名字** # 每个 scrape 工作都应该具有一个名字。称为 job_name，名字主要起到标识符的作用。
   - 该示例定义了一个抓取配置的 job，名字叫 prometheus
-- 目标 # 要抓取的 metrics 的目标。目标可以通过 **静态**或者 **动态(i.e.各种服务发现)**这两种方式指定
+- **目标** # 要抓取的 metrics 的目标。目标可以通过 **静态**或者 **动态(i.e.各种服务发现)**这两种方式指定
   - 该示例通过静态配置定义这个 job 中要抓取的目标主机，目标主机由 IP:PORT 组成
-- 间隔 # 该 scrape 工作每次抓取 metrics 的时间间隔。就是每隔 X 秒抓一次
+- **间隔** # 该 scrape 工作每次抓取 metrics 的时间间隔。就是每隔 X 秒抓一次
   - 该示例每次抓取 metrics 的时间间隔为 5 秒(i.e.每 5 秒获取一次 metrics)
-- 其他 # 除了名字、目标、间隔 以外，还可以配置一些额外的抓取配置，比如发起 HTTP 请求时需要携带的 Header 与 Body、抓取策略 等等
+- **其他** # 除了名字、目标、间隔 以外，还可以配置一些额外的抓取配置，比如发起 HTTP 请求时需要携带的 Header 与 Body、抓取策略 等等
 
 ### 基本配置
 
@@ -252,13 +252,13 @@ Prometheus 将会根据这里的字段配置，以发现需要 Scrape 指标的�
 
 - 具体配置详见下文 [重设标签](#重设标签)
 
-**metric_relabel_configs:[<\[\]Object>](#PGKul)** # 在抓取到指标后，重新配置 metrics 的标签
+**metric_relabel_configs**([relabel_configs](#relabel_configs)) # 在抓取到指标后，重新配置 metrics 的标签
 
 - 与 relabel_configs 字段配置内容相同
 
 ## alerting
 
-**alert_relabel_configs**([RELABEL_CONFIGS](#relabel_configs))
+**alert_relabel_configs**([relabel_configs](#relabel_configs))
 
 适用于推送告警时的 Relabel 功能，配置与 [relabel_configs](#PGKul) 相同
 
@@ -306,28 +306,30 @@ alertmanager 字段指定了 Prometheus Server 发送警报的目标 Alertmanage
 
 Prometheus 根据这部分配置来推送需要
 
-**static_configs**([STATIC_CONFIGS](#static_configs)) # 静态配置。指定推送告警时的目标。
+**static_configs**([static_configs](#static_configs)) # 静态配置。指定推送告警时的目标。
 
 - 具体配置详见下文 [静态目标发现](#静态目标发现)
 
-**XXX_sd_configs**(OBJECT) # 动态配置。动态发现可供推送告警的 alertmanager- XXXX # 不同的服务发现，有不同的配置方式。与 scrape_configs 字段中的 XXX_sd_configs 配置类似。
+**XXX_sd_configs**([]OBJECT) # 动态配置。动态发现可供推送告警的 alertmanager- XXXX # 不同的服务发现，有不同的配置方式。与 scrape_configs 字段中的 XXX_sd_configs 配置类似。
 
 - 具体配置详见下文 [动态目标发现](#IWvg5)
 
 #### Relabel 配置
 
-**relabel_configs: <\[]Object>** # 在发现目标后，重新配置 targets 的标签
+**relabel_configs**([relabel_configs](#relabel_configs)) # 在发现目标后，重新配置 targets 的标签
 
 详见下文 [重设标签](#重设标签)
 
 ## remote_write
 
 与远程写相关的配置，详见 [Prometheus 存储章节](/docs/6.可观测性/监控系统/Prometheus/Storage(存储).md)
+
 **url: \<STRING>** # 指定要发送时间序列数据到远程存储的端点的 URL
 
 ## remote_read
 
 与远程读相关的配置，详见 [Prometheus 存储章节](/docs/6.可观测性/监控系统/Prometheus/Storage(存储).md)
+
 **url: \<STRING>** # 指定发起查询请求的远程数据库的端点的 URL
 
 # 配置文件中的通用配置字段
@@ -453,7 +455,9 @@ Note：使用该配置进行服务发现，请求都会经过 API Server，集�
 
 #### 配置样例
 
-> 参考：[官方推荐的样例](https://github.com/prometheus/prometheus/blob/main/documentation/examples/prometheus-kubernetes.yml)
+> 参考：
+> 
+> - [官方推荐的样例](https://github.com/prometheus/prometheus/blob/main/documentation/examples/prometheus-kubernetes.yml)
 
 下面的例子是这样的：动态发现 kube-system 名称空间下的所有 pod 作为 target，并且进行过滤，只选择其中标签为 k8s-app=kube-dns 的 pod 作为 target
 
@@ -502,6 +506,7 @@ relabel_configs:
 ```
 
 此时，我们删除了 `__meta_kubernetes_pod_container_port_number` 这个标签的值为 53 的所有指标。这样我们就可以看到，只剩下 9153 端口的指标了
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hzhbid/1616049623219-a5447656-6c61-40f1-acfe-df6218904b3a.png)
 
 ## 重设标签

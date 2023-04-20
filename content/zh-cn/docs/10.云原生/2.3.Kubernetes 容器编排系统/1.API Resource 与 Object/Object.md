@@ -6,6 +6,7 @@ weight: 2
 # 概述
 
 > 参考：
+> 
 > - [官方文档,概念-使用 Kubernetes 对象](https://kubernetes.io/docs/concepts/overview/working-with-objects/)
 
 从某些角度看来，Kubernetes 里的一切介 **Object(对象)**。就像 Linux 里，一切介文件的角度一样。

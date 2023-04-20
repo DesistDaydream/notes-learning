@@ -21,15 +21,25 @@ selector:
 
 这个表示，匹配具有 `app.kubernetes.io/instance: monitor-hw-cloud` 和 `app.kubernetes.io/name: grafana` 这两个标签的对象。
 
-## matchExpressions: <\[]OBJECT> # 基于给定的表达式匹配对象
+# 顶层字段
 
-- **key: \<STRING>** # 必须的。指定要匹配的标签的键。
-- **operator: \<STRING>** # 必须的。key 与 values 两个字段之间的关系。可以有 In、NotIn、Exists、DoesNotExist 四种关系
-  - **In，NotIn** # 匹配 key 中是否包含指定的 values。`values` 字段的值必须为**非空**列表
-  - **Exists，DoesNotExist** # 匹配 key 是否存在。`values` 字段的值必须为**空**列表
-- **values: <\[]STRING>** # 指定要匹配的标签的值。如果 operator 字段为 In 或 NotIn，则必须指定 values 字段。如果 operator 字段为 Exists 或 NotExists，则必须不指定 values 字段。
+- **matchExpressions**(\[][matchExpressions](#matchExpressions)) # 基于给定的表达式匹配对象
+- **matchLabels**([matchLabels](#matchLabels)) # 基于给定的标签匹配对象
 
-## matchLabels: \<map\[STRING]STRING> # 基于给定的标签匹配对象
+## matchExpressions
+
+**key: \<STRING>** # 必须的。指定要匹配的标签的键。
+
+**operator: \<STRING>** # 必须的。key 与 values 两个字段之间的关系。可以有 In、NotIn、Exists、DoesNotExist 四种关系
+
+- **In，NotIn** # 匹配 key 中是否包含指定的 values。`values` 字段的值必须为**非空**列表
+- **Exists，DoesNotExist** # 匹配 key 是否存在。`values` 字段的值必须为**空**列表
+
+**values: <\[]STRING>** # 指定要匹配的标签的值。如果 operator 字段为 In 或 NotIn，则必须指定 values 字段。如果 operator 字段为 Exists 或 NotExists，则必须不指定 values 字段。
+
+## matchLabels
+
+这是一个 `map[STRING]STRING` 类型的字段
 
 每一个标签的键/值对相当于 `matchExpressions` 字段中，指定了 key 字段，operator 字段为 In，values 字段只有一个元素。
 

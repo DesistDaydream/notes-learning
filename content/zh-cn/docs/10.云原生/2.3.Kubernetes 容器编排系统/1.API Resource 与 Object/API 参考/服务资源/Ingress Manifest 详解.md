@@ -9,13 +9,17 @@ title: Ingress Manifest 详解
 > - [API 文档,单页](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#ingress-v1-networking-k8s-io)
 > - [官方文档,参考-Kubernetes API-服务资源-Ingress](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/ingress-v1/)
 
-# apiVersion: networking/v1
+# Manifest 中的顶层字段
 
-# kind: Ingress
+- **apiVersion**: networking/v1
+- **kind**: Ingress
+- **metadata**([metadata](#metadata))
+- **spec**([spec](#spec))
+- **status**([status](#status))
 
 # metadata
 
-- **name:**STRING # Ingress 对象名称。必须名称空间唯一。
+- **name: STRING** # Ingress 对象名称。必须名称空间唯一。
 - **annotations:** # Ingress 的控制器将会根据 annotations，以自定义其行为。这些注释下的 kev/value 对 可以通过 ingress 传递给 controller ，然后 controller 根据这些信息进行更详细的配置，比如 url rewrite、代理超时时间等等。
   - 注意：不同的 controller 对 annotaions 中定义的内容有不同的处理。
     - [nginx ingress controller 社区版的 annotaions 说明](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/)

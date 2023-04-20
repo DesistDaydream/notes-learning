@@ -113,33 +113,33 @@ ps 命令输出的内容中部分字段的含义说明：
 
 ```bash
 # 标题可以根据需要重命名
-[root@lichenhao ~]# ps -o pid,ruser=RealUser -o comm=Command
+~]# ps -o pid,ruser=RealUser -o comm=Command
     PID RealUser Command
    4652 root     bash
    4774 root     ps
 # 可以不输出标题行。
-[root@lichenhao ~]# ps -o pid= -o comm=
+~]# ps -o pid= -o comm=
    4652 bash
    4787 ps
 
 # 列宽将根据宽标题增加； 这可以用来加宽WCHAN等列
-[root@lichenhao ~]# ps -o pid,wchan=WIDE-WCHAN-COLUMN -o comm
+~]# ps -o pid,wchan=WIDE-WCHAN-COLUMN -o comm
     PID WIDE-WCHAN-COLUMN COMMAND
    4652 -                 bash
    4789 -                 ps
 # 可以也提供显式宽度控制
-[root@lichenhao ~]# ps opid,wchan:42,cmd
+~]# ps opid,wchan:42,cmd
     PID WCHAN                                      CMD
     881 core_sys_select                            /sbin/agetty -o -p -- \u --noclear tty1 linux
    4652 -                                          -bash
    4790 -                                          ps opid,wchan:42,cmd
 # 行为因人格而异； 输出可能是名为“ X，comm = Y”的一列或名为“ X”和“ Y”的两列。如有疑问，请使用多个-o选项。
-[root@lichenhao ~]# ps -o pid=X,comm=Y
+~]# ps -o pid=X,comm=Y
       X Y
    4652 bash
    4791 ps
 # 仅输出 启动总时长、PID、进程命令 这三列
-root@lichenhao:~# ps -p 38095 -o etime,pid,cmd
+~]# ps -p 38095 -o etime,pid,cmd
     ELAPSED     PID CMD
 10-03:22:51   38095 /bin/prometheus --web.console.templates=/etc/prometheus/consoles --web.console.libraries=/etc/prometheus/console_libraries --config.file=/etc/prometheus/config_out/prometheus.yml
 ```

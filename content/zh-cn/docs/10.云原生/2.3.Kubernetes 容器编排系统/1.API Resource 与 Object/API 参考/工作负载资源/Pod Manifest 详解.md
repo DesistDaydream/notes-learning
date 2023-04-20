@@ -11,7 +11,7 @@ title: Pod Manifest 详解
 
 Pod 是可以在主机上运行的容器的集合。此资源由客户端创建并调度到主机上。
 
-## Manifest 中的顶层字段
+# Manifest 中的顶层字段
 
 - **apiVersion**: v1
 - **kind**: Pod

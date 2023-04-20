@@ -1,5 +1,6 @@
 ---
 title: Nova
+weight: 1
 ---
 
 # Nova 的子组件以及工作流程
