@@ -78,19 +78,8 @@ NETWORK ID    NAME              FILE
 ```
 
 然后运行容器时，使用 `--net=containerd-net` 参数指定该网络，所有运行的容器，即可关联到指定的 containerd-net 网桥上。
+
 注意：nerdctl 默认的网络是无法修改的
-
-## 现存问题
-
-v0.12.1 版本
-
-通过 build 构建完镜像后，会产生一个相同 ID 无名的空镜像
-
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ws1t24/1631632584319-b6131f0b-6269-422d-a203-045ab0b2538f.png)
-
-执行 nerdctl rmi 命令时，tab 无法补全，但是 `nerctl image rm` 可以补全，但是无法删除那两个空镜像
-
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ws1t24/1631632732271-b95cef43-e60b-4fd2-842a-1f0a80cb5dac.png)
 
 # nerdctl 关联文件与配置
 
@@ -150,3 +139,22 @@ management command 在使用的时候，当后面还需要跟其子命令的时�
 
 - **--mode=\<STRING>** # 显示模式。`默认值：dockercompat`。可用的值有：dockercompat、native。
   - native # 显示更多信息
+
+# 现存问题
+
+## build 构建完镜像后，会产生一个相同 ID 无名的空镜像
+
+v0.12.1 版本
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ws1t24/1631632584319-b6131f0b-6269-422d-a203-045ab0b2538f.png)
+
+执行 nerdctl rmi 命令时，tab 无法补全，但是 `nerctl image rm` 可以补全，但是无法删除那两个空镜像
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ws1t24/1631632732271-b95cef43-e60b-4fd2-842a-1f0a80cb5dac.png)
+
+## 创建容器后无法替换 nerdctl 二进制文件
+
+```bash
+~]# cp nerdctl /usr/local/bin/nerdctl 
+cp: cannot create regular file '/usr/local/bin/nerdctl': Text file busy
+```
