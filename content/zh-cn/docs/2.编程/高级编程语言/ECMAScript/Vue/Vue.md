@@ -16,7 +16,9 @@ Vue 是一套用于构建用户界面的渐进式 ECMAScript 框架。Vue3 于 2
 ## 组件化
 
 Vue 是“组件化”模式，一个页面的各个部分，可以拆分成一个一个的组件：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/cye267/1651220067462-1822075c-2b85-4cf4-abd8-eebfa658e531.png)
+
 **Single-File Component(单文件组件，简称 SFC)**。顾名思义，Vue 的单文件组件会将一个组件的逻辑 (JavaScript)，模板 (HTML) 和样式 (CSS) 封装在同一个文件里。
 
 **同时，多个组件可以自由组合拼接，形成一个完整的页面。**
@@ -39,6 +41,7 @@ App (root component)
 ```
 
 就像下面这样：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/cye267/1666837624381-ce56eb28-5092-4e8a-a1c8-de01ed1e1f7f.png)
 
 ## 声明式
@@ -49,7 +52,7 @@ App (root component)
 
 ## API 风格
 
-**选项式 API** 与 **组合式 API。**推荐组合式。
+**选项式 API** 与 **组合式 API**。推荐组合式。
 
 > 参考：
 > - <https://www.bilibili.com/video/BV1mK411f7Kt/?p=51>
@@ -94,8 +97,51 @@ export default {
 ```
 
 选项式 API 将需要处理的数据放在 `data()` 中 ，关于处理数据的逻辑写在 `methods:`、`computed:`、`watch:` 等等地方，如果数据很多，那么处理数据的逻辑在编辑器中将会非常跳跃，就像下图左侧一样，同样颜色的逻辑，不够集中，那么将会形成非常乱的代码结构。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/cye267/1667871595181-70833fc5-41d3-48f1-954f-16c912da8749.png)
 所以说，组合式，主要组合的是对于数据处理的逻辑，将处理同一个数据的逻辑组合在一起，以便编写出更易读的代码。
+
+# Vue 指令
+
+指令是带有 `v-` 前缀的特殊 attribute。Vue 提供了许多[内置指令](https://cn.vuejs.org/api/built-in-directives.html)。
+
+# Vue 规范
+
+## 项目结构
+
+使用 Vite 创建的 Vue 项目
+
+```bash
+.
+├── README.md
+├── index.html
+├── node_modules
+├── package.json
+├── pnpm-lock.yaml
+├── public
+│   └── favicon.ico
+├── src
+│   ├── App.vue
+│   ├── assets/
+│   ├── components/
+│   └── main.js
+└── vite.config.js
+```
+
+- public/ 目录存放公共资源
+- 所有代码都在 src/ 目录下
+  - index.html 指向 main.js，main.js 中创建应用的根组件
+  - 根组件的代码在 App.vue 文件中
+  - 所有根组件下的组件的代码都放在 components/ 目录下
+  - assets 存放静态资源，图片、css 样式 等等
+- **.eslintrc.cjs** # ESLint 程序配置
+- **.prettierc.json** # Prettier 插件的配置
+- **env.d.ts** #
+- **index.html** # 程序入口
+- **package.json** # 包管理器配置文件，比如 npm、pnpm 等
+- **vite.config.ts** # Vite 程序给项目打包时使用的配置
+- **tsconfig.json** #
+- **tsconfig.config.json** #
 
 # 学习资料
 
@@ -125,47 +171,3 @@ export default {
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/cye267/1667712379792-273c7485-92f4-46ed-9a98-65e745b1c8df.png)
 
-
-# Vue 指令
-
-指令是带有 `v-` 前缀的特殊 attribute。Vue 提供了许多[内置指令](https://cn.vuejs.org/api/built-in-directives.html)。
-
-# Vue 规范
-
-## 项目结构
-
-使用 Vite 创建的 Vue 项目
-
-```bash
-.
-├── README.md
-├── index.html
-├── node_modules
-├── package.json
-├── pnpm-lock.yaml
-├── public
-│   └── favicon.ico
-├── src
-│   ├── App.vue
-│   ├── assets/
-│   ├── components/
-│   └── main.js
-└── vite.config.js
-```
-
--
-
-- public/ 目录存放公共资源
-- 所有代码都在 src/ 目录下
-  - index.html 指向 main.js，main.js 中创建应用的根组件
-  - 根组件的代码在 App.vue 文件中
-  - 所有根组件下的组件的代码都放在 components/ 目录下
-  - assets 存放静态资源，图片、css 样式 等等
-- **.eslintrc.cjs** # ESLint 程序配置
-- **.prettierc.json** # Prettier 插件的配置
-- **env.d.ts** #
-- **index.html** # 程序入口
-- **package.json** # 包管理器配置文件，比如 npm、pnpm 等
-- **vite.config.ts** # Vite 程序给项目打包时使用的配置
-- **tsconfig.json** #
-- **tsconfig.config.json** #
