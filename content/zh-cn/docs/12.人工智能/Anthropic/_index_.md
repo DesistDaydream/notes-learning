@@ -1,6 +1,6 @@
 ---
-title: "anthropic"
-linkTitle: "anthropic"
+title: "Anthropic"
+linkTitle: "Anthropic"
 weight: 20
 ---
 

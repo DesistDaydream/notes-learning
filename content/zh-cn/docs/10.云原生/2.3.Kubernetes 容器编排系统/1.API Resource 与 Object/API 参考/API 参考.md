@@ -34,7 +34,7 @@ weight: 1
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/kubernetes/api/20230419102123.png)
 
-详见：[YAML](docs/2.编程/无法分类的语言/YAML.md#各种产品官方文档中对%20YAML%20格式的配置文件的描述) 中关于对各种文档的使用说明示例。
+详见：[YAML](/docs/2.编程/无法分类的语言/YAML.md#各种产品官方文档中对%20YAML%20格式的配置文件的描述) 中关于对各种文档的使用说明示例。
 
 下面是几种基本的类型介绍：
 
@@ -82,7 +82,7 @@ labels:
 
 # API 分类
 
-- [Workloads Resources](docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/工作负载资源/工作负载资源.md)(工作负载资源)
+- [Workloads Resources](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/工作负载资源/工作负载资源.md)(工作负载资源)
 - [Services Resources](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/)(服务资源)
 - [Config and Storage Resources](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/)(配置与存储资源)
 - [Authentication Resources](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/)(认证资源)

@@ -12,9 +12,9 @@ weight: 1
 
 **Redis 支持三种高可用方案**
 
-- [Replication(复制) 模式](docs/5.数据存储/2.数据库/键值数据/Redis/Redis%20高可用/Replication(复制)%20模式.md)
+- [Replication(复制) 模式](/docs/5.数据存储/2.数据库/键值数据/Redis/Redis%20高可用/Replication(复制)%20模式.md)
     - 实际上，该模式并不是绝对的高可用，仅仅保证了数据的不丢失
-- [Sentinel(哨兵) 模式](docs/5.数据存储/2.数据库/键值数据/Redis/Redis%20高可用/Sentinel(哨兵)%20模式.md)
+- [Sentinel(哨兵) 模式](/docs/5.数据存储/2.数据库/键值数据/Redis/Redis%20高可用/Sentinel(哨兵)%20模式.md)
 - Cluster(集群) 模式
 
 # Cluster(集群)

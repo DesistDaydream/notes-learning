@@ -12,7 +12,7 @@ weight: 20
 > - [Wiki，Transformer_(machine_learning_model)](https://en.wikipedia.org/wiki/Transformer_(machine_learning_model))
 > - [Hugging Face 创始人亲述：一个 GitHub 史上增长最快的 AI 项目](https://my.oschina.net/oneflow/blog/5525728)
 
-**Transformer** 是 [Hugging Face](docs/12.人工智能/Hugging%20Face.md) 开源的是一种[深度学习](docs/12.人工智能/机器学习/深度学习.md)模型，它采用自注意力机制，对输入数据的每一部分的重要性进行差异加权。它主要用于 [自然语言处理(NLP)](/docs/12.人工智能/自然语言处理/自然语言处理.md) 和 [计算机视觉(CV)](/docs/12.人工智能/计算机视觉/计算机视觉.md) 领域。
+**Transformer** 是 [Hugging Face](/docs/12.人工智能/Hugging%20Face.md) 开源的是一种[深度学习](/docs/12.人工智能/机器学习/深度学习.md)模型，它采用自注意力机制，对输入数据的每一部分的重要性进行差异加权。它主要用于 [自然语言处理(NLP)](/docs/12.人工智能/自然语言处理/自然语言处理.md) 和 [计算机视觉(CV)](/docs/12.人工智能/计算机视觉/计算机视觉.md) 领域。
 
 🤗 Transformers 提供了数以千计的预训练模型，支持 100 多种语言的文本分类、信息抽取、问答、摘要、翻译、文本生成。它的宗旨是让最先进的 NLP 技术人人易用。
 

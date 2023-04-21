@@ -10,12 +10,12 @@ title: Workflow 文件详解
 > - [官方文档，使用工作流-触发工作流的事件](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows)
 > - [官方文档，使用工作流-Workflow 语法](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
 
-GitHub 的 Actions 通过 [YAML](docs/2.编程/无法分类的语言/YAML.md) 格式的文件来定义运行方式。工作流文件必须保存在项目根目录下的 `.github/workflows/` 目录下
+GitHub 的 Actions 通过 [YAML](/docs/2.编程/无法分类的语言/YAML.md) 格式的文件来定义运行方式。工作流文件必须保存在项目根目录下的 `.github/workflows/` 目录下
 
 # 顶层字段
 
 - **name**(STRING) # Workflow 的名称。`默认值：当前 Workflow 的文件名`。
-- **run-name** # 
+- **run-name** #
 - **on**[(on)](#on) # 指定触发 Workflow 的条件
 - **permissions**
 - **env**

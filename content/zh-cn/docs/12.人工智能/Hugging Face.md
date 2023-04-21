@@ -11,6 +11,6 @@ weight: 20
 > - [GitHub 组织，huggingface](https://github.com/huggingface)
 > - [官网](https://huggingface.co/)
 
-Hugging Face 创建了非常著名的 [Transformers](docs/12.人工智能/机器学习/Transformers.md)
+Hugging Face 创建了非常著名的 [Transformers](/docs/12.人工智能/机器学习/Transformers.md)
 
 
