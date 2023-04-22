@@ -1,10 +1,8 @@
 ---
-title: 图像处理
+title: "OpenCV-Python"
 ---
 
 # 概述
-
-# OpenCV-Python
 
 > 参考：
 > - [GitHub 项目，opencv/opencv-python](https://github.com/opencv/opencv-python)
