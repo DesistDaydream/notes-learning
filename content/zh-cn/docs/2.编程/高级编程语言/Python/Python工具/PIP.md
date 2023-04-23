@@ -15,6 +15,8 @@ weight: 20
 
 # pip 安装包逻辑
 
+pip 默认从 [PyPI](https://pypi.org/) 搜索包。
+
 先下载到 /tmp/pip-unpack-随机数/包名-XXX.whl，然后默认情况下，将这些文件安装到 site-packages 目录。
 
 ## 有关 --taget 选项的说明

@@ -719,6 +719,7 @@
     "docs/12.人工智能": [
       "docs/12.人工智能/_index.md",
       "docs/12.人工智能/12.人工智能.md",
+      "docs/12.人工智能/科学计算",
       "docs/12.人工智能/机器学习",
       "docs/12.人工智能/自然语言处理",
       "docs/12.人工智能/计算机视觉",
@@ -1601,6 +1602,11 @@
       "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron/Neutron 架构.md",
       "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron/各种 Network Type 的实现方式.md",
       "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron/neutron工作原理.md"
+    ],
+    "docs/2.编程/高级编程语言/C": [
+      "docs/2.编程/高级编程语言/C/_index.md",
+      "docs/2.编程/高级编程语言/C/C.md",
+      "docs/2.编程/高级编程语言/C/C Library(C库).md"
     ]
   },
   "actionBarOrder": {},

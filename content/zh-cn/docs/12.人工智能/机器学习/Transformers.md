@@ -23,9 +23,17 @@ weight: 20
 
 # 安装 Transformers
 
-安装 Transformers 就是安装 Python 的 Transformers 包，一般会随同安装 [PyTorch](/docs/2.编程/高级编程语言/Python/Python%20第三方库/PyTorch.md)
+安装 Transformers 本质就是安装 Transformers 的模型，并且还需要一些可以调用模型的代码(通常都是 Python 包)。
+
+同时，Transformers 模型依赖于
+
+依赖于就是安装 Python 的 Transformers 包，同时会安装依赖，会随同安装 [PyTorch](/docs/12.人工智能/机器学习/PyTorch.md)
 
 注意：安装 PyTorch 时，注意安装 GPU 版的。如果我们想要使用 GPU 但是却安装的 CPU 版的 PyTorch，将会报错：`Torch not compiled with CUDA enabled`。说白了就是下载的 PyTorch 不是在 CUDA 环境下编译的，无法处理 CUDA 的请求。
+
+```bash
+pip install transformers
+```
 
 # 关联文件与配置
 

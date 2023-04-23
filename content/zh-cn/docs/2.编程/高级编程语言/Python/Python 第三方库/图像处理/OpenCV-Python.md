@@ -10,7 +10,7 @@ title: "OpenCV-Python"
 
 OpenCV-Python 是一个旨在解决计算机视觉问题的 Python 库。
 
-OpenCV-Python 利用高度优化的 Numpy 库进行数值操作，其语法类似于 MATLAB。所有的 OpenCV 数组结构都会被转换为 Numpy 数组。这也使得集成其他使用 Numpy 的库，如 SciPy 和 Matplotlib 更容易。
+OpenCV-Python 利用高度优化的 [NumPy](/docs/12.人工智能/科学计算/NumPy.md) 库进行数值操作，其语法类似于 MATLAB。所有的 OpenCV 数组结构都会被转换为 Numpy 数组。这也使得集成其他使用 Numpy 的库，如 SciPy 和 Matplotlib 更容易。
 
 # 安装
 

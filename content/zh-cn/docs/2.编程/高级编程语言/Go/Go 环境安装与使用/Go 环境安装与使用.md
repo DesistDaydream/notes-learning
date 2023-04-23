@@ -72,7 +72,7 @@ source /etc/profile.d/go.sh
 
 # 初始化项目
 
-Go 的项目通常由 [Go Module](https://www.typescriptlang.org/) 管理，项目目录中通常必须包含如下几个文件：
+Go 的项目通常由 [Go Module](/docs/2.编程/高级编程语言/Go/Go%20环境安装与使用/Go%20Module.md) 管理，项目目录中通常必须包含如下几个文件：
 
 - go.mod
 - go.sum
@@ -83,11 +83,11 @@ go 相关工具通过 `go.mod` 与 `go.sum` 两个文件管理项目及其依赖
 
 # 编译 Go
 
-若想在 Windows 中编译依赖 gcc 的项目，则需要安装 gcc 编译器（i.e.[MinGW-w64](https://sourceforge.net/projects/mingw-w64/)）在 file 标签中，下载 [x86_64-win32-seh](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-win32/seh/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z) 这个版本并安装即可。这是一个 tar 包，解压完成后，需要在 Windows 的 ${PATH} 环境变量中，添加解压出来的 bin 目录，通常都在 `PATH\TO\x86_64-8.1.0-release-win32-seh-rt_v6-rev0\mingw64\bin` 这里
+若想在 Windows 中编译依赖 gcc 的项目，则需要安装适用于 Windows 的 [GCC](/docs/2.编程/高级编程语言/C/C%20环境安装与使用/GCC.md) 编译器 [MinGW-w64](https://www.mingw-w64.org/)
 
 ## 交叉编译
 
-Linux 下编译出 Windows 的程序。需要安装 Windows 版的 gcc 工具（i.e.[MinGW-w64](https://www.mingw-w64.org/)）(有的环境还需要安装 gcc-multilib 包)
+Linux 下编译出 Windows 的程序。需要安装 Windows 版的 gcc 工具 [MinGW-w64](https://www.mingw-w64.org/)(有的环境还需要安装 gcc-multilib 包)
 
 ```bash
 sudo apt-get install gcc-mingw-w64
@@ -157,10 +157,10 @@ GOMODCACHE="/root/go/pkg/mod"
 GONOPROXY=""
 GONOSUMDB=""
 GOOS="linux"
-**GOPATH=<STRING>** # 设置 gopath 所在路径。默认值：`~/go`
+**GOPATH=\<STRING>** # 设置 gopath 所在路径。默认值：`~/go`
 GOPRIVATE=""
-**GOPROXY=<STRING> **# 设置 go get、go install 命令时，所使用的代理服务器。可以加快获取第三方库的速度。
-**GOROOT=<STRING>** # Go 的安装路径。默认值：Go 的安装路径，Linux 中通常为 /usr/local/go
+**GOPROXY=\<STRING>** # 设置 go get、go install 命令时，所使用的代理服务器。可以加快获取第三方库的速度。
+**GOROOT=\<STRING>** # Go 的安装路径。默认值：Go 的安装路径，Linux 中通常为 /usr/local/go
 GOSUMDB="sum.golang.org"
 GOTMPDIR=""
 GOTOOLDIR="/usr/local/go/pkg/tool/linux_amd64"
@@ -183,10 +183,15 @@ GOGCCFLAGS="-fPIC -m64 -fmessage-length=0 -fdebug-prefix-map=/tmp/go-build177539
 ## goproxy 说明
 
 我把老哥的 Issue 转移到这里来了哈，这个项目才是 [goproxy.cn](https://goproxy.cn/) 的源代码。[Goproxy](https://github.com/goproxy/goproxy) 是这个项目所基于的底层 Go module proxy 实现，它针对的不只是国内的开发者，所以既不建议用中文也不适合讨论 [goproxy.cn](https://goproxy.cn/)。这里讨论老哥你的问题才更为合适。
+
 我先说一下 [goproxy.cn](https://goproxy.cn/) 和 [goproxy.io](https://goproxy.io/) 的背景。io 是由坤哥（[@oiooj](https://github.com/oiooj)）开发出来的，要早于 cn 出现几个月，目前由他跑在他所任职的公司腾讯云的香港区服务器上。cn 是由我发起的，现在完全属于七牛云，也备案在他们名下，自然所有的 CDN 资源和服务器资源都是由他们提供的，我目前跟 cn 的关系是属于它的维护者，并不是拥有者。
+
 再说一下为什么会有两个这么相似的域名且功能类似的项目存在。我注册 cn 是去年二月底，当时是直接查询的 cn 后缀，因为我想的是这种项目肯定也就咱们中国是刚需要单独再来一套，所以并没有查询别的后缀，因为我认为 cn 实在是太合适了。并且由于当时我还在忙我的本科毕设和其他的一下事情，二月份我并没有开始开发 cn，等开发完了跟七牛云的 CEO 许叔（[@xushiwei](https://github.com/xushiwei)）谈交给他们运营时候，我才第一次听同学说到了 io。但当时我点进 io 的 GitHub 仓库一看发现并没有任何地方提到中国并且全是英文就下意识以为它是个国外项目，就没做过多研究，并且的 io 服务器当时也在美国我访问速度有些慢，就也没在意了。
+
 最后再说一下为什么两个项目没有合并了一起发展。这个我和坤哥是有讨论过的，因为有人找上了我跟坤哥。并且坤哥也同意了最后我的提议合并了两个项目，将 cn 留作国内的公共代理，将 io 的代理类流量重定向到 cn 并后续将 io 用作一款搭代理的开源软件来面向全球提供给大家替换掉 JFrog 的一款商业产品，目前只有这一种解决方案才能保持两个功能独立且都能继续存活下去。坤哥之所以能同意我的这个提议一方面是坤哥所任职的公司加班过于严重，还有一方面是他自身没有精力维护了。然后之所以选择留 cn 做公共代理一方面是这两个域名里面只有 cn 能做备案能挂上 CDN 服务，因为这种类型的项目 CDN 服务是刚需，还有一方面是 io 这个域名后缀做全球化项目比 cn 更为合适，所以留 io 作国内代理把 cn 用作面向全球的搭代理的软件就显得很别扭了。
+
 为什么两个项目现在没有合并呢？这个就不是因为我们两个作者了，因为我们两个作者已经达成了一致可以合并。这里面还有第三方地插足（为保其名誉我暂时不提具体是谁），其认为公共代理必须交由其所掌控的“社区”来运营，cn 已经过户给了一家商业公司无法再过户给其所掌控的“社区”，所以 cn 在其眼里就变成了一个其所描述的邪恶公司所拥有的商业产品，于是其要求我和七牛商谈放弃 cn 并全力投入为其做别的开发，于是被我拒绝。最后坤哥在中间处境比较尴尬，所以合并的事儿也就暂时搁置了。
+
 最后，简单来总结一下就是，[goproxy.cn](https://goproxy.cn/) 和 [goproxy.io](https://goproxy.io/) 目前并无直接关系。或许之后没有了第三方地插足它们两个会合并变得有关系，但在那之前它们唯一能联系在一起的是它们都可以用作为 Go module proxy。至于哪个快、哪个稳、哪个香、用哪个，这个需要老哥你自己做判断了，我跟坤哥的关系并不差，所以我现在不会妄加评论。更何况现在 `GOPROXY` 不是支持逗号列表嘛。❤️
 
 ## GOPATH

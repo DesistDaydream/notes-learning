@@ -33,7 +33,7 @@ cp -ax -r /usr/lib/python${PYTHON_VERSION} /root/python/lib
 ```bash
 export PATH=/root/python:$PATH
 ~]# python${PYTHON_VERSION}
-Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0] on linux
+Python 3.10.6 (main, Nov 14 2022, 16:10:14)
 >>> import sys
 >>> sys.prefix
 '/root/python'

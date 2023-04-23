@@ -108,6 +108,8 @@ sound/                          顶级包
 
 不管是 Package 还是 Module，都可以统一称为我们常说的 **Library(库)**，毕竟在下面的模块管理章节，也能看到 Python 保存**包和模块的目录通常都是 `lib/` 目录**。并且，Python 官方也有一个专门的页面列出了所有的[标准库](https://docs.python.org/3/library/index.html)
 
+**Python Package Index(简称 PyPI)** 是 Python 编程语言官方的的软件存储库。<https://pypi.org/>
+
 # Python 模块使用
 
 Python 本身就内置了很多非常有用的模块，只要安装完毕，这些模块就可以立刻使用。
@@ -183,9 +185,7 @@ Hello, Michael!
 
 ```python
 $ python3
-Python 3.4.3 (v3.4.3:9b73f1c3e601, Feb 23 2015, 02:52:03)
-[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
-Type "help", "copyright", "credits" or "license" for more information.
+Python 3.10.6 (main, Nov 14 2022, 16:10:14)
 >>> import hello
 >>>
 ```
@@ -449,7 +449,7 @@ Windows 生成的值为：
 ```python
 export PYTHONPATH="/pythonpath-demo"
 ~]# python3 -S
-Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0] on linux
+Python 3.10.6 (main, Nov 14 2022, 16:10:14)
 >>> import sys
 >>> sys.path
 ['', '/pythonpath-demo', '/usr/lib/python310.zip', '/usr/lib/python3.10', '/usr/lib/python3.10/lib-dynload']
@@ -467,7 +467,7 @@ Ubuntu 效果如下：
 
 ```python
 ~]# python3 -S
-Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0] on linux
+Python 3.10.6 (main, Nov 14 2022, 16:10:14)
 >>> import sys,site
 >>> sys.path
 ['', '/usr/lib/python310.zip', '/usr/lib/python3.10', '/usr/lib/python3.10/lib-dynload']
