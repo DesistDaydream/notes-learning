@@ -224,7 +224,7 @@ Id    名称                         状态
 
 ## 配置URI别名 
 
-为了简化管理员的工作，可以在libvirt客户端配置文件中设置URI别名。该配置文件/etc/libvirt/libvirt.conf 适用于root用户或$XDG_CONFIG_HOME/libvirt/libvirt.conf任何非特权用户。在此文件中，以下语法可用于设置别名
+为了简化管理员的工作，可以在libvirt客户端配置文件中设置URI别名。该配置文件/etc/libvirt/libvirt.conf 适用于root用户或 `${XDG_CONFIG_HOME}/libvirt/libvirt.conf` 任何非特权用户。在此文件中，以下语法可用于设置别名
 
 uri_aliases = [  “ hail = qemu + ssh：//root@hail.cloud.example.com/system”，  “ sleet = qemu + ssh：//root@sleet.cloud.example.com/system”，]
 

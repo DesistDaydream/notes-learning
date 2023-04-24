@@ -40,7 +40,7 @@ Updated by: NUM # 是当前文档的早期版本。可以描述为：当前文�
 Obsoletes: NUM # 对于当前版本，NUM 是过时的
 Updates: NUM # 对于当前版本，NUM 是最新的
 
-## **如何阅读 RFC**
+## 如何阅读 RFC
 
 来源： [How to read RFC?](https://link.zhihu.com/?target=https%3A//www.mnot.net/blog/standards/)
 无论好坏，请求注释文档（RFC）包含了我们在 Internet 上遇到的许多协议。这些 RFC 文档被开发人员视为圣经，他们会试着去发现隐藏的含义，即使无法理解也无关紧要。虽然这通常会导致挫败感 - 但更重要的是 - RFC 其中的操作性和安全性思考。
@@ -58,14 +58,14 @@ Updates: NUM # 对于当前版本，NUM 是最新的
 - [考虑安全因素](https://link.zhihu.com/?target=https%3A//www.mnot.net/blog/2018/07/31/read_rfc%23security-considerations)
 - [更多](https://link.zhihu.com/?target=https%3A//www.mnot.net/blog/2018/07/31/read_rfc%23finding-out-more)
 
-## **1.从哪儿开始阅读？**
+## 1.从哪儿开始阅读？
 
 查找 RFC 的规范位置是 [RFC Editor 网站](https://www.rfc-editor.org/)。但是，正如我们将在下面看到的那样，RFC 编辑器缺少一些关键信息，因此大多数人都使用 [tools.ietf.org](https://link.zhihu.com/?target=https%3A//tools.ietf.org/)。
 即使找到合适的 RFC 也很困难，因为有这么多的 RFC（目前，将近 9,000 份）。显然，您可以使用通用 Web 搜索引擎找到它们，并且 RFC 编辑器在其站点上具有出色的搜索功能。
 另一个方式是[EveryRFC](https://link.zhihu.com/?target=https%3A//everyrfc.org/)，我将它放在一起，以便按标题和关键字搜索 RFC，并按标签进行探索。
 毫无疑问，纯文本 RFC 难以阅读，这种情况可以通过一些方式改变; RFC 编辑器正在包含一种[新的 RFC 格式](https://link.zhihu.com/?target=https%3A//www.rfc-editor.org/rse/format-faq/)，具有更令人满意的演示和自定义选项。与此同时，如果您想要更多可用的 RFC，您可以将第三方存储库用于选定的存储库; 例如，[greenbytes](https://link.zhihu.com/?target=https%3A//greenbytes.de/tech/webdav/)保留与 WebDAV 相关的 RFC 列表，[HTTP 工作组](https://link.zhihu.com/?target=https%3A//httpwg.org/specs/)维护与 HTTP 相关的 RFC。
 
-## **2.它是什么类型的 RFC？**
+## 2.它是什么类型的 RFC？
 
 所有 RFC 在顶部都有一个横幅，看起来像这样：
 
@@ -83,9 +83,9 @@ Updates: NUM # 对于当前版本，NUM 是最新的
 RFC 的**类别**是“标准跟踪”，“信息”，“实验”或“最佳实践”之一。这些之间的区别有时是模糊的，但如果它是由 IETF（互联网工程组）产生的，那么它就有了合理的审查。但请注意，即使 IETF 已达成共识，**信息**和**实验**也不是标准。
 最后，RFC 文档的**作者**会在标题的右侧著名。与学术界不同，这不是一份全面的文件清单; 通常，这是在“致谢”部分的底部附近完成的。在 RFC 中，这实际上是“谁编写了文档。”通常，您会看到附加的“Ed。”，这表明它们充当编辑人员，这是因为 RFC 或者草案是预先存在的（就像 RFC 修订时一样））。
 
-## **3.RFC 是最新的吗？**
+## 3.RFC 是最新的吗？
 
-“RFC 是一系列档案文件; 他们不能改变，即使是一个字符也不能改变”（参见[RFC7158 和 RFC7159 之间](https://link.zhihu.com/?target=https%3A//tools.ietf.org/rfcdiff%3Furl1%3Drfc7158%26url2%3Drfc7159)的[差异](https://link.zhihu.com/?target=https%3A//tools.ietf.org/rfcdiff%3Furl1%3Drfc7158%26url2%3Drfc7159)这样做是极端的;）。
+“RFC 是一系列档案文件; 他们不能改变，即使是一个字符也不能改变”（参见[RFC7158 和 RFC7159 之间](https://author-tools.ietf.org/iddiff?url1=rfc7158&url2=rfc7159)的[差异](https://author-tools.ietf.org/iddiff?url1=rfc7158&url2=rfc7159)这样做是极端的;）。
 因此，知道您正在查看正确的文档非常重要。标题包含几个元数据，可以帮助明白这是关于什么内容的 RFC：
 
 - **Obsoletes**列出了完全被取代的 RFC 文档（取代文档会比旧文档大）; 即，你应该使用这个文件，而不是那个。请注意，旧版本的协议不一定会在较新版本的协议出现时废弃; 例如，HTTP / 2 不会废弃 HTTP / 1.1，因为实现旧协议仍然是合法的（也是必要的）。但是，RFC7230 确实废弃了 RFC2616，RFC2616 是该协议的参考。
@@ -109,7 +109,7 @@ RFC 的**类别**是“标准跟踪”，“信息”，“实验”或“最佳
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/zwxdg5/1618283937883-ea04793f-1070-497d-85db-9870a38e9d99.jpeg)
 
-## **4.理解 RFC 背景**
+## 4.理解 RFC 背景
 
 对于开发人员来说，查看 RFC 中的语句，实现他们看到的内容，但实际会与作者的意图相反，这种情况比想象中更为常见。
 这是因为在选择性地阅读规范时，以一种不能被误解的方式编写规范是极其困难的（任何仿佛圣经一样的文档都会出现类似情况）。
@@ -117,7 +117,7 @@ RFC 的**类别**是“标准跟踪”，“信息”，“实验”或“最佳
 例如，HTTP 消息头被[定义](https://link.zhihu.com/?target=https%3A//httpwg.org/specs/rfc7230.html%23http.message)为由 CRLF（回车\r 换行\n）分隔，但是如果你在[这里](https://link.zhihu.com/?target=https%3A//httpwg.org/specs/rfc7230.html%23message.robustness)跳过，你会看到“收件人可以将单个 LF（换行\n）识别为行终止符并忽略任何前面的 CR（回车\n）。”
 同样重要的是要记住，许多协议都设立了[IANA 注册](https://link.zhihu.com/?target=https%3A//www.iana.org/protocols)管理[机构](https://link.zhihu.com/?target=https%3A//www.iana.org/protocols)来管理其扩展点; 这些注册管理机构不是规范，是事实的来源。例如，HTTP 方法的规范列表在[此注册表中](https://link.zhihu.com/?target=https%3A//www.iana.org/assignments/http-methods/http-methods.xhtml)，而不是任何 HTTP 规范。
 
-## **5.RFC 语法要求**
+## 5.RFC 语法要求
 
 几乎所有的 RFC 都有类似于顶部的样板：
 
@@ -179,7 +179,7 @@ SHOULD 并不意味着服务器可以自由地忽略一个要求，这看起来�
 
 注意“除非 unless” - 它指定了应该允许的“特殊情况”。可以说这可以指定为 SHOULD，因为 Unless 部分仍然适用，但这种规范风格有点普遍。
 
-## **6.RFC 阅读实例**
+## 6.RFC 阅读实例
 
 另一个非常常见的缺陷是浏览示例的规范，并实现它们的功能。
 不幸的是，示例通常得到作者最少的关注，因为它们需要随协议的每次更改而更新。
@@ -187,7 +187,7 @@ SHOULD 并不意味着服务器可以自由地忽略一个要求，这看起来�
 此外，即使是一个完美的例子也可能无法说明是关于你正在寻找的协议的相关; 为简洁起见，它们经常被截断，或者在解码发生后显示。
 尽管需要更多时间，但最好还是阅读实际文本; 示例 Examples 不是 RFC 规范。
 
-## **7.ABNF**
+## 7.ABNF
 
 [增强型 BNF](https://link.zhihu.com/?target=https%3A//tools.ietf.org/html/rfc5234)通常用于定义伪协议。例如：
 
@@ -202,7 +202,7 @@ SHOULD 并不意味着服务器可以自由地忽略一个要求，这看起来�
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/zwxdg5/1618283937918-0dd17044-0b0b-4764-ac24-263f9f14447e.jpeg)
 
-## **8.考虑安全因素**
+## 8.考虑安全因素
 
 自[RFC3552](https://link.zhihu.com/?target=https%3A//tools.ietf.org/html/rfc3552)以来，RFC 样式包含了“安全注意事项”部分。
 因此，如果没有关于安全性的实质性部分，很少发布 RFC; 审核流程不允许草案只是说“此协议没有考虑安全因素”。
@@ -211,7 +211,7 @@ SHOULD 并不意味着服务器可以自由地忽略一个要求，这看起来�
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/zwxdg5/1618283938062-7651f582-76f3-42a2-9c97-024799c28338.jpeg)
 
-## **9.发现更多**
+## 9.发现更多
 
 如果 RFC 没有回答您的问题，或者您不确定其文本的意图，最好的办法是找到最相关的[工作组](https://link.zhihu.com/?target=https%3A//datatracker.ietf.org/wg/)并在他们的邮件列表中提出问题。如果没有涉及相关主题的活动工作组，请尝试相应[区域](https://link.zhihu.com/?target=https%3A//ietf.org/topics/areas/)的邮件列表。
 提交勘误通常不是您应该采取的第一步 - 第一步一般是：与某人交谈。
@@ -221,7 +221,7 @@ SHOULD 并不意味着服务器可以自由地忽略一个要求，这看起来�
 许多工作组现在正在使用 Github 来管理他们的规范; 如果您对有效规范有疑问，请继续提交问题。如果它已经是 RFC，通常最好使用邮件列表，除非您找到截然不同的指示。
 我确信还有更多关于如何阅读 RFC 的文章，有些人会质疑我在这里写的内容，但这就是我对它们的看法。我希望它很有用。
 
-## **附加**
+## 附加
 
 [https://www.rfc-editor.org/rfc-index-100a.html](https://link.zhihu.com/?target=https%3A//www.rfc-editor.org/rfc-index-100a.html)
 [https://tools.ietf.org/rfc/index](https://link.zhihu.com/?target=https%3A//tools.ietf.org/rfc/index)

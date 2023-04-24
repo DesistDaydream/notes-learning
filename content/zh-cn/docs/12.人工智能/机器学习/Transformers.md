@@ -37,11 +37,13 @@ Transformers 模型可以对接多种热门的深度学习库：
 pip install transformers
 ```
 
-安装完 Transformers 包后，可以感觉需要安装 PyTorch、TensorFlow 等深度学习的的包。
+安装完 Transformers 包后，可以根据需要安装 PyTorch、TensorFlow 等深度学习的的包。
 
 # 关联文件与配置
 
-**~/.cache/huggingface/** # 
+**~/.cache/huggingface/** # HuggingFace 缓存路径，保存 模型、调用模型的代码 等。可以通过 `${HF_HOME}` 更改路径位置；也可以通过 `${XDG_CACHE_HOME}` 更改路径位置，但是需要注意，`${XDG_CACHE_HOME}` 针对的 `~/.cache/` 这部分。
 
 - **./hub/** # 预训练模型在本地缓存的保存路径。可以通过 `${HUGGINGFACE_HUB_CACHE}` 环境变量变更路径位置。
 - **./modules/** # 
+
+> 为了防止下载很多模型撑爆 C 盘，个人习惯设置 `${HF_HOME}` 变量为 `D:\Projects\.huggingface`

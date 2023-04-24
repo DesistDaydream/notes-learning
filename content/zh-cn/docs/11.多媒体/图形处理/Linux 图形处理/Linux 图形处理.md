@@ -7,6 +7,7 @@ title: Linux 图形处理
 # Xorg, X11, Wayland? Linux Display Servers And Protocols Explained
 
 原文链接：<https://linuxiac.com/xorg-x11-wayland-linux-display-servers-and-protocols-explained/>
+
 **Have you ever wondered what exactly X server, Xorg, X11, Wayland and stuff like that does? Wayland vs Xorg, what is better? This guide is for you.**
 You always stumble upon those terms, and know they have something to do regarding the graphics, but you’d like to know more.
 
