@@ -69,10 +69,13 @@ title: iperf 网络性能测量和调整工具
 ## 基础用法
 
 服务端命令：iperf3 -s
+
 客户端命令：iperf3 -c 10.10.100.250
 
 这时候服务端的 iperf3 程序会监听在 5201 端口上，客户端会访问服务端(这里 ip 是 10.10.100.250)的 2501 端口进行网络测试，测试效果如图
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fdemaq/1616164267994-3d8e4e2d-0c26-4b52-8054-12aeac917398.png)
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fdemaq/1616164268013-f44eee21-25f2-48a5-acad-07b32cf7af7a.png)
 客户端每秒会往服务端发送一次数据，Interval 表示时间间隔，Transfer 表示传输的数据量，Bandwidth 表示带宽的大小，Retr 表示重传次数
 

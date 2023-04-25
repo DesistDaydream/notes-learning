@@ -120,6 +120,8 @@ ChatGPT 对话中提示语可以极大影响对话质量。定义明确的提示
 
 # 扩展 ChatGPT 的项目
 
+https://github.com/xcanwin/KeepChatGPT # 让我们在使用 ChatGPT 的时候更顺畅，不会老断，不会老报错
+
 ## Auto GPT
 
 > 参考：
