@@ -27,6 +27,7 @@ Prometheus Server 可以在运行时重新加载其配置文件(也就俗称的�
 # Prometheus Server 命令行标志详解
 
 可以通过 prometheus -h 命令查看所有的可以用标志
+
 prometheus 程序在启动时，可以使用一些标志来对程序进行一些基本设定，比如数据存储路径、存储时间等等
 
 - **--config.file=/PATH/TO/FILE** # prometheus 主配置文件，默认为当前路径的 prometheus.yml
