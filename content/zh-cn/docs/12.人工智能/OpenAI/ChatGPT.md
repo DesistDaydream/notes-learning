@@ -9,12 +9,9 @@ weight: 20
 > 参考：
 >
 > - https://zblogs.top/how-to-register-openai-chatgpt-in-china
->     - 注册 ChatGPT 教程
+>   - 注册 ChatGPT 教程
 > - 使用虚拟号码接收短信验证码：<https://sms-activate.org/>
 
-上下文联系功能说明
-
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/0-picgo/20230204001925.png)
 
 # 教程
 
@@ -120,6 +117,8 @@ ChatGPT 对话中提示语可以极大影响对话质量。定义明确的提示
 
 # 扩展 ChatGPT 的项目
 
+## Web 增强
+
 https://github.com/xcanwin/KeepChatGPT # 让我们在使用 ChatGPT 的时候更顺畅，不会老断，不会老报错
 
 ## Auto GPT
@@ -150,14 +149,9 @@ https://chrome.google.com/webstore/detail/monica-%E2%80%94-your-chatgpt-cop/ofpn
 
 ### ChatGPT Box
 
-> 参考：
->
-> - [GitHub 项目，josStorer/chatGPTBox](https://github.com/josStorer/chatGPTBox/)
-> - https://www.bilibili.com/video/BV1524y1x7io
+[GitHub 项目，josStorer/chatGPTBox](https://github.com/josStorer/chatGPTBox/)
 
-### ChatGPT for Google
-
-https://github.com/wong2/chat-gpt-google-extension
+https://www.bilibili.com/video/BV1524y1x7io
 
 ## IDE 增强
 
@@ -171,9 +165,9 @@ vscode-chatgpt 是一个 VS Code 插件。
 
 凸(艹皿艹 )，居然停用了。<https://github.com/gencay/vscode-chatgpt/issues/239>
 
-3月19日，有人 fork 后并构建了一个新的插件：https://github.com/Christopher-Hayes/vscode-chatgpt-reborn
+3月19日，有人 fork 后并构建了一个新的插件：<https://github.com/Christopher-Hayes/vscode-chatgpt-reborn>
 
-## 文档增强
+## 结合私有知识库
 
 ### DocsGPT
 
@@ -188,6 +182,10 @@ DocsGPT 是 GPT 驱动的聊天，用于文档搜索和帮助。
 ### ChatDoc
 
 官网：https://chatdoc.com/
+
+## ChatPDF
+
+https://www.chatpdf.com/
 
 ## 微信接入
 

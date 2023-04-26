@@ -1,5 +1,5 @@
 ---
 title: "机器学习"
 linkTitle: "机器学习"
-weight: 20
+weight: 2
 ---
