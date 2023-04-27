@@ -1,8 +1,8 @@
 ---
-title: PXE 简介
+title: PXE
 ---
 
-#
+# 概述
 
 **Preboot eXecution Environment(预启动执行环境，简称 PXE)** 提供了一种使用网络接口（Network Interface）启动计算机的机制。这种机制让计算机的启动可以不依赖本地数据存储设备（如硬盘）或本地已安装的操作系统。
 

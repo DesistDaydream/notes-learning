@@ -4,7 +4,12 @@ title: Web API 与 REST
 
 # 概述
 
-> 参考：[Wiki，WebAPI](https://en.wikipedia.org/wiki/Web_API)、[Wiki，REST](https://en.wikipedia.org/wiki/Representational_state_transfer)、[阮一峰](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)、[思否](https://segmentfault.com/a/1190000004311893)
+> 参考：
+> 
+> - [Wiki，WebAPI](https://en.wikipedia.org/wiki/Web_API)
+> - [Wiki，REST](https://en.wikipedia.org/wiki/Representational_state_transfer)
+> - [阮一峰](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)
+> - [思否](https://segmentfault.com/a/1190000004311893)
 
 WebAPI 是用于 Web 服务器或 Web 浏览器的应用程序变成接口。这是一个 Web 开发概念，
 

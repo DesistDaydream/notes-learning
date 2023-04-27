@@ -1607,6 +1607,24 @@
       "docs/2.编程/高级编程语言/C/_index.md",
       "docs/2.编程/高级编程语言/C/C.md",
       "docs/2.编程/高级编程语言/C/C Library(C库).md"
+    ],
+    "docs/12.人工智能/机器学习": [
+      "docs/12.人工智能/机器学习/_index.md",
+      "docs/12.人工智能/机器学习/机器学习.md",
+      "docs/12.人工智能/机器学习/深度学习.md",
+      "docs/12.人工智能/机器学习/模型.md",
+      "docs/12.人工智能/机器学习/PyTorch.md",
+      "docs/12.人工智能/机器学习/Transformers.md"
+    ],
+    "docs/4.数据通信/通信协议/3_4.TCP_IP": [
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/_index.md",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/3_4.TCP_IP.md",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/IP",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP 异常处理.md",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP_IP 管理工具.md",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP 重置.md",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/UDP.md"
     ]
   },
   "actionBarOrder": {},
