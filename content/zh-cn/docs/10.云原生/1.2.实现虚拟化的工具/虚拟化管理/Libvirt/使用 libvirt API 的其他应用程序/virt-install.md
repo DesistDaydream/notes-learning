@@ -74,7 +74,7 @@ virt-install 命令中很多参数都可以在 [XML 文件](/docs/10.云原生/1
 
 ## NETWORKING OPTIONS(网络选项)
 
-设置 VM 要使用的网络以便连接到宿主机上。说白了，就是告诉 qemu-system 要模拟什么样的网卡，以及要连接到宿主机的哪个网络设备上。可以在 [Domain XML](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML%20文件详解/Domain%20XML.md#Network%20interfaces) 中找到更多关于网络的 XML 配置。
+设置 VM 要使用的网络以便连接到宿主机上。说白了，就是告诉 qemu-system 要模拟什么样的网卡，以及要连接到宿主机的哪个网络设备上。可以在 [Domain](docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML%20文件详解/Domain.md#Network%20interfaces) 中找到更多关于网络的 XML 配置。
 
 如果省略 --network，则将在来 VM 中创建单个NIC(网卡)。如果主机中有一个连接了物理接口的桥接设备，则该设备将用于连接。否则，将使用称为 default 的虚拟网络。可以多次指定此选项以设置多个NIC。
 
@@ -96,7 +96,7 @@ virt-install 命令中很多参数都可以在 [XML 文件](/docs/10.云原生/1
 
 ## GRAPHICS OPTIONS(图形选项)
 
-这个选项并不是为 VM 设置任何与显示有关的虚拟硬件，而是指**我们如何访问 VM 的图形界面**。可以在[Domain XML](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML%20文件详解/Domain%20XML.md#Graphical%20framebuffers) 中找到更多关于连接 VM 图形界面的 XML 配置。
+这个选项并不是为 VM 设置任何与显示有关的虚拟硬件，而是指**我们如何访问 VM 的图形界面**。可以在[Domain](docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML%20文件详解/Domain.md#Graphical%20framebuffers) 中找到更多关于连接 VM 图形界面的 XML 配置。
 
 > 注意，如果想要使用图形界面安装系统，则必须要配置图形选项，否则无法连接到为 VM 虚拟显卡。
 

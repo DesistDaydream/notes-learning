@@ -46,7 +46,7 @@ weight: 20
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/tcp/20230427165528.png)
 
-所以，要伪造一个有用的 RST 报文**，关键是要拿到对方下一次期望收到的序列号**。
+所以，要伪造一个有用的 RST 报文，**关键是要拿到对方下一次期望收到的序列号**。
 
 这里介绍两个关闭一个 TCP 连接的工具：**tcpkill** 和 **killcx**。
 

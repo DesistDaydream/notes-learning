@@ -1,7 +1,7 @@
 ---
-title: "Domains"
-linkTitle: "Domains"
-weight: 1
+title: "Domain"
+linkTitle: "Domain"
+weight: 2
 ---
 
 # 概述
@@ -22,11 +22,6 @@ Domain 元素中有如下属性：
 - [devices](#devices)
 - ......
 
-
-# Graphical framebuffers
-
-https://libvirt.org/formatdomain.html#graphical-framebuffers
-
 # Devices
 
 https://libvirt.org/formatdomain.html#devices
@@ -34,4 +29,14 @@ https://libvirt.org/formatdomain.html#devices
 ## Network interfaces
 
 https://libvirt.org/formatdomain.html#network-interfaces
+
+### Quality of service(QOS)
+
+**bandwidth**
+
+- bandwidth 元素可以为虚拟机中的每张网卡设置 QOS(服务质量)，可以为流量的出与入分别设置。QOS 下可用的元素详见 [Network XML](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML%20文件详解/Network.md) 的 [bandwidth 元素](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML%20文件详解/Network.md#bandwidth)。
+
+# Graphical framebuffers
+
+https://libvirt.org/formatdomain.html#graphical-framebuffers
 

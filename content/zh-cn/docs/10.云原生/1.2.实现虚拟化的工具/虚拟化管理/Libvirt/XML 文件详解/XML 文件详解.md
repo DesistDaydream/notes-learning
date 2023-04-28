@@ -10,14 +10,16 @@ weight: 1
 >
 > - [官方文档，XML 格式](https://libvirt.org/format.html)
 
-Libvirt API 中的**对象**使用 **XML 格式**的文档进行配置，以便在未来的版本中轻松扩展。每个 XML 文档都有一个关联的 Relax-NG 模式，可用于在使用前验证文档。
+Libvirt API 中的**对象**使用 [**XML 格式**](/docs/2.编程/无法分类的语言/XML.md) 的文档进行配置，以便在未来的版本中轻松扩展。每个 XML 文档都有一个关联的 Relax-NG 模式，可用于在使用前验证文档。
 
 这里面的 Libvirt API 对象指的就是 Domain(虚拟机)、存储、快照、网络 等等。对于 Libvirt，所有 VM 相关的资源都会抽象为对象，这样也利于代码编写。
 
+> Kubernetes 的 API 对象跟这个有点像，只不过 Kubernetes 中，使用 YAML 格式而不是 XML 格式来声明对象而不是配置对象。
+
 下面是**根元素**的名称，每个根元素都对应一个 **Libvirt 对象**。
 
-- [Domain](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML%20文件详解/Domain%20XML.md) # 虚拟机相关的 XML 配置，可以直接使用 Domains XML 创建、启动、管理虚拟机。
-- [Network](https://libvirt.org/formatnetwork.html)
+- [Domain](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML%20文件详解/Domain.md) # 虚拟机相关的 XML 配置，可以直接使用 Domains XML 创建、启动、管理虚拟机。
+- [Network](docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML%20文件详解/Network.md) # 虚拟网络相关的 XML 配置。
 - [Network filtering](https://libvirt.org/formatnwfilter.html)
 - [Network ports](https://libvirt.org/formatnetworkport.html)
 - [Storage](https://libvirt.org/formatstorage.html)

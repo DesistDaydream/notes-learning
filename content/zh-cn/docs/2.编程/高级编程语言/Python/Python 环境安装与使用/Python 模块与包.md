@@ -6,6 +6,7 @@ weight: 2
 # 概述
 
 > 参考：
+> 
 > - [官方文档，教程-6.模块](https://docs.python.org/3/tutorial/modules.html)
 > - [廖雪峰 Python 教程，模块](https://www.liaoxuefeng.com/wiki/1016959663602400/1017454145014176)
 
@@ -637,6 +638,8 @@ entrypoints==0.3
 `pipreqs ./ --encoding utf8`
 
 # 模块管理混乱说明
+
+在 [公众号-OSC开源社区，Flask之父凭一己之力击败各种GPT，称Python包管理比LLM更火热](https://mp.weixin.qq.com/s/i5fWKWs-D9ZphDqhtYoj9Q) 这篇文件中描述了 Flask 框架作者 Armin 画了一张图来描述他对 Python 包管理现状的感受，意思就是由于缺乏统一的标准，因此诞生了满足不同需求和场景的许多不同工具——不过每个抱着“统一”初心的标准最后都是适得其反。
 
 Python 的模块管理非常混乱和复杂，不像 Go 只需要指定 GOPATH 变量之后，所有安装的依赖库都会存放到 GOPATH 目录下。上述三种路径如果说最像 GOPATH 的，那应该是安装 Python 是默认值中的 PYTHONPATH 或者 prefix 变量了。
 

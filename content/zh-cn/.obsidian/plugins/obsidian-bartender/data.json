@@ -445,7 +445,8 @@
     "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解": [
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解/_index.md",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解/XML 文件详解.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解/Domains.md"
+      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解/Domain.md",
+      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解/Network.md"
     ],
     "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具": [
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/_index.md",
