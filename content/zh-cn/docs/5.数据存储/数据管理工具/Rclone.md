@@ -5,6 +5,7 @@ title: Rclone
 # 概述
 
 > 参考：
+> 
 > - [GitHub 项目，rclone/rclone](https://github.com/rclone/rclone)
 > - [官网](https://rclone.org/)
 
@@ -14,16 +15,18 @@ Rclone 还可以将这些 remote 作为磁盘挂载在 Windows、macOS、Linux �
 
 ## Rclone 关联文件与配置
 
-\~/.config/rclone/rclone.conf # 保存各种 Remotes 信息的配置文件
+**~/.config/rclone/rclone.conf** # 保存各种 Remotes 信息的配置文件
 
 ## Syntax(语法)
 
 > 参考：
+> 
 > - [官方文档，命令](https://rclone.org/commands/)
 
 ### 全局标志
 
 > 参考：
+> 
 > - [官方文档，全局标志](https://rclone.org/flags/)
 
 **-n, --dry-run** # 试运行，不会真的执行
@@ -49,6 +52,8 @@ Rclone 还可以将这些 remote 作为磁盘挂载在 Windows、macOS、Linux �
 
 copyto 可以在上传单个文件到目标目录下时，改变文件的原名。其他情况与 copy 的功能相同。
 
+## Syntax(语法)
+
 # rclone mount
 
 将 Remote 作为文件系统挂载到操作系统中
@@ -70,3 +75,11 @@ copyto 可以在上传单个文件到目标目录下时，改变文件的原名�
 ## webdav 挂载为电脑本地硬盘(非网络硬盘)
 
 > 原文链接：[B 站-捕梦小达人](https://www.bilibili.com/read/cv13661426)
+
+注意：需要安装 winfsp
+
+使用 Alist 的 阿里云网盘时，注意添加 `--header`，参考 [alist discussions 630](https://github.com/alist-org/alist/discussions/630)
+
+```
+rclone mount --config rclone.conf alist:/ Z: --cache-dir D:\app_data\rclone --vfs-cache-mode full --header "Referer:"
+```

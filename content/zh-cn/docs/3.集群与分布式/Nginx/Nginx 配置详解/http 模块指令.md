@@ -258,7 +258,7 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#root
 
 https://nginx.org/en/docs/http/ngx_http_core_module.html#sendfile
 
-开启或关闭 sendfile() 功能，即[零拷贝](/docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/零拷贝.md)功能。
+开启或关闭 sendfile() 功能，即[零拷贝](docs/1.操作系统/2.Kernel(内核)/6.File%20System%20管理/零拷贝.md)功能。
 
 - 默认值：`sendfile off;`
 - 作用范围：http{}、server{}、location{}

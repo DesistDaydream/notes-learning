@@ -5,7 +5,9 @@ weight: 1
 ---
 
 # 概述
+
 > 参考：
+> 
 > - [官方文档-Windowns Server，Windows 命令](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands)
 > - [官方文档，Windows Shell](https://learn.microsoft.com/en-us/windows/win32/shell/shell-entry)
 > - [官方文档，PowerShell](https://learn.microsoft.com/en-us/powershell/)
@@ -17,6 +19,8 @@ Windows 有一个 GUI 的 Shell：Windows Shell，这个名词除了表示所有
 
 
 # Windows Terminal
+
 > 参考：
+> 
 > - [官方文档-windows，终端](https://learn.microsoft.com/en-us/windows/terminal/)
 

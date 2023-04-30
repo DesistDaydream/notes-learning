@@ -5,7 +5,9 @@ weight: 20
 ---
 
 # 概述
+
 > 参考：
+> 
 > - [官方文档-PowerShell，脚本-基本概念-环境变量](https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-03?view=powershell-7.3#312-environment-variables)
 > - https://sysin.org/blog/windows-env/
 > - https://ss64.com/nt/syntax-variables.html

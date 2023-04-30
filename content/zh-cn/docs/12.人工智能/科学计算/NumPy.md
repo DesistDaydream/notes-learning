@@ -13,3 +13,9 @@ weight: 20
 > - [Wiki，NumPy](https://en.wikipedia.org/wiki/NumPy)
 
 **NumPy** 是使用 Python 进行科学计算的基础包。
+
+# 安装
+
+```bash
+pip install numpy
+```

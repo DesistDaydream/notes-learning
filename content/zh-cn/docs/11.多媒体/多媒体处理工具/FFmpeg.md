@@ -14,12 +14,18 @@ FFmpeg 是一个库和工具的集合，用于处理多媒体内容，比如 音
 
 # FFmpeg 视频处理入门教程
 
+原文：<https://www.ruanyifeng.com/blog/2020/01/ffmpeg.html>
+
 作者： [阮一峰](https://www.ruanyifeng.com/)
+
 日期： [2020 年 1 月 14 日](https://www.ruanyifeng.com/blog/2020/01/)
+
 [FFmpeg](https://www.ffmpeg.org/) 是视频处理最常用的开源软件。
+
 它功能强大，用途广泛，大量用于视频网站和商业软件（比如 Youtube 和 iTunes），也是许多音频和视频格式的标准编码/解码实现。
 
 FFmpeg 本身是一个庞大的项目，包含许多组件和库文件，最常用的是它的命令行工具。本文介绍 FFmpeg 命令行如何处理视频，比桌面视频处理软件更简洁高效。
+
 如果你还没安装，可以根据[官方文档](https://www.ffmpeg.org/download.html) 先完成安装。
 
 ## 一、概念

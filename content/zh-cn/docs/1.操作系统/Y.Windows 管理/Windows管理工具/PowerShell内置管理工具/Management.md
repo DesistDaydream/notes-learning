@@ -5,18 +5,43 @@ weight: 20
 ---
 
 # 概述
+
 > 参考：
+> 
 > - [官方文档-PowerShell，模块-Management](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management)
 
-管理模块可以让我们在 PowerShell 中管理系统中的进程、服务等。
+管理模块可以让我们在 PowerShell 中管理系统中的 进程、服务、Item 等。
 
 # Item 管理工具
 
+## Invoke-Item
+
+对指定的 Item 执行默认操作，默认操作取决于 Item 的类型。比如 目录类型的 Item，则使用默认的资源管理器打开、.docs 文件类型的 Item，则使用 .docs 默认的程序打开、等等
+
+`ii` 是 `Invoke-Item` 的别名，我们可以直接使用 `ii .` 命令使用资源管理器打开当前目录。
+
 ## Get-ChildItem
+
 > 参考：
+> 
 > - [官方文档-PowerShell，模块-管理-Get-ChildItem](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-childitem)
 
+ls 命令是 Get-ChildItem 的别名。
+
+`Get-ChildItem` 获取一个或多个指定位置中的所有 Item。
+
+默认情况下 `Get-ChildItem` ，列出 mode(模式) 、 LastWriteTime(最后编辑时间)、Length(长度，即.文件大小) 、Name(即. Item 的名称 。 **Mode** 属性中的字母可以解释如下：
+
+- `l` # 链接
+- `d` # 目录
+- `a` # 存档
+- `r` # 只读
+- `h` # 隐藏
+- `s` # 系统
+- `-` # 普通文件
+
 ### Syntax(语法)
+
 **OPTIONS**
 
 - **-Path \<STRING>** # 指定一个或多个位置的路径，可以使用通配符。`默认值：.`
@@ -31,6 +56,7 @@ weight: 20
 # 服务管理工具
 
 > 参考：
+> 
 > - [官方文档，PowerShell-脚本示例-管理进程和服务-管理服务](https://learn.microsoft.com/en-us/powershell/scripting/samples/managing-services)
 > - [官方文档，.Net-开发 Windows 服务应用](https://learn.microsoft.com/zh-cn/dotnet/framework/windows-services/)
 
@@ -63,7 +89,7 @@ Get-Service \[OPTIONS] [-Name] \<PATTERN>
 
 PATTERN 支持通配符，前面的 -Name 可以省略，该命令默认通过**服务名称**进行匹配，将会列出所有匹配到的服务。
 
-OPTIONS
+**OPTIONS**
 
 - **-DependentServices** # 列出指定服务**被哪些服务依赖**。
 - **-RequiredServices** # 列出指定服务**依赖于哪些服务**。即.若想该服务正常运行则必须要提前运行的其他服务
@@ -91,11 +117,55 @@ OPTIONS
 
 # 进程管理工具
 
-
-[Get-Process](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-process?view=powershell-7.3)
-[Start-Process](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/start-process?view=powershell-7.3)
+[Get-Process](#Get-Process)
+[Start-Process](#Start-Process)
 [Stop-Process](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/stop-process?view=powershell-7.3)
-[Wait-Process](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/wait-process?view=powershell-7.3)
+[Wait-Process](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/wait-process?view=powershell-7.3) # 等待一个或多个正在运行的进程停止，然后再接受输入。
 
 [Debug-Process](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/debug-process?view=powershell-7.3)
+
+## Start-Process
+
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/start-process?view=powershell-7.3
+
+在本地计算机上启动一个或多个进程。
+
+Start-Process 在本地计算机上启动一个或多个进程。默认情况下，Start-Process 创建一个新进程，该进程继承当前进程中定义的所有环境变量。
+
+若要指定进程中运行的程序，请输入可执行文件或脚本文件，或者可以使用计算机上的程序打开的文件。 如果指定非可执行文件， `Start-Process` 则启动与该文件关联的程序，类似于 `Invoke-Item` cmdlet。
+
+可以使用 的参数 `Start-Process` 指定选项，例如加载用户配置文件、在新窗口中启动进程或使用备用凭据。
+
+### Syntax(语法)
+
+**OPTIONS**
+
+- **-ArgumentList** # 
+- **-WindowStyle** # 指定新进程的窗口样式。`默认值：Normal`
+  - Hideen # 隐藏窗口
+  - Minimized # 最小化窗口
+  - Maximized # 最大化窗口
+- **-RedirectStandardOutput** # 将进程产生的输出发送到指定的文件中。默认输出到控制台。
+- **-RedirectStandardError** # 将进程产生的所有错误发送到指定的文件中。默认输出到控制台。
+
+### EXAMPLE
+
+```powershell
+Start-Process "alist.exe" -ArgumentList "server --data D:\app_data\alist" -WindowStyle Hidden -RedirectStandardOutput "D:\Tools\Scripts\log\alist.log" -RedirectStandardError "D:\Tools\Scripts\log\alist-err.log"
+Start-Process "rclone.exe" -ArgumentList "mount alist:/ Z: --cache-dir D:\app_data\rclone --vfs-cache-mode full --header Referer:" -WindowStyle Hidden -RedirectStandardOutput "D:\Tools\Scripts\log\rclone.log" -RedirectStandardError "D:\Tools\Scripts\log\rclone-err.log"
+```
+
+## Get-Process
+
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-process?view=powershell-7.3
+
+获取本地计算机上正在运行的进程信息。如果没有参数，此 cmdlet 将获取本地计算机上的所有进程。 还可以按进程名称或进程 ID (PID) 指定特定进程，或通过管道将进程对象传递到此 cmdlet。
+
+默认情况下，此 cmdlet 返回一个进程对象，该对象包含有关进程的详细信息，并支持可用于启动和停止进程的方法。 还可以使用 cmdlet 的参数 `Get-Process` 获取进程中运行的程序的文件版本信息，并获取进程加载的模块。
+
+### Syntax(语法)
+
+**OPTIONS**
+
+- **-Id** # 
 

@@ -13,6 +13,7 @@ weight: 1
 PowerShell 是一种跨平台的任务自动化解决方案，由命令行 shell、脚本语言和配置管理框架组成。 PowerShell 在 Windows、Linux 和 macOS 上运行。
 
 PowerShell 的独特之处在于，它接受并返回 .NET 对象，而非纯文本。这个特点让 PowerShell 可以更轻松地在一个管道中串联不通的命令。
+
 > 这里面所说的对象，就是面向对象编程中常说的“对象”，就像 Go 语言中的 Struct 类似的东西，只不过是 .NET 语言中的对象。
 
 这些对象在被接收后，再交给格式化函数处理，以人类可读的方式，输出出来。
@@ -75,7 +76,7 @@ Runspace         : System.Management.Automation.Runspaces.LocalRunspace
 `powershell` 和 `pwsh` 这几个命令一般都是用来打开 PowerShell 的，同时也是执行 PowerShell 脚本的前置命令。就像执行 Bash 脚本前加个 `bash` 命令一样
 
 # ITEM
->
+
 > 参考：
 >
 > - [官方文档-PowerShell，脚本-基本概念-Items](https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-03#33-items)

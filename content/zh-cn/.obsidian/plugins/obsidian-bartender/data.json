@@ -63,7 +63,7 @@
       "docs/1.操作系统/2.Kernel(内核)/3.System Call",
       "docs/1.操作系统/2.Kernel(内核)/4.CPU 管理",
       "docs/1.操作系统/2.Kernel(内核)/5.Memory 管理",
-      "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理",
+      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理",
       "docs/1.操作系统/2.Kernel(内核)/7.Process 管理",
       "docs/1.操作系统/2.Kernel(内核)/8.Network 管理",
       "docs/1.操作系统/2.Kernel(内核)/微内核",
@@ -108,30 +108,30 @@
       "docs/1.操作系统/2.Kernel(内核)/5.Memory 管理/分享Linux内存占用几个案例.md",
       "docs/1.操作系统/2.Kernel(内核)/5.Memory 管理/mmap可以让程序员解锁哪些骚操作？.md"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理": [
-      "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/6.File_System_管理.md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/Mount(挂载).md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/FHS(文件系统层次标准).md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统",
-      "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/特殊文件系统",
-      "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理",
-      "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/零拷贝.md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/读取文件时，程序经历了什么？.md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/I_O Multiplexing(输入_输出多路复用)"
+    "docs/1.操作系统/2.Kernel(内核)/6.File System 管理": [
+      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/_index.md",
+      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/6.File System 管理.md",
+      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/Mount(挂载).md",
+      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/FHS(文件系统层次标准).md",
+      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/磁盘文件系统",
+      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/特殊文件系统",
+      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/文件管理",
+      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/零拷贝.md",
+      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/读取文件时，程序经历了什么？.md",
+      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/I_O Multiplexing(输入_输出多路复用)"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理": [
-      "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/文件管理.md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/Inode.md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/File Descriptor(文件描述符).md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/Archive File(归档文件).md"
+    "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/文件管理": [
+      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/文件管理/_index.md",
+      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/文件管理/文件管理.md",
+      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/文件管理/Inode.md",
+      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/文件管理/File Descriptor(文件描述符).md",
+      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/文件管理/Archive File(归档文件).md"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统": [
-      "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/Journaling File System.md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/EXT FileSystem.md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/XFS.md"
+    "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/磁盘文件系统": [
+      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/磁盘文件系统/_index.md",
+      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/磁盘文件系统/Journaling File System.md",
+      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/磁盘文件系统/EXT FileSystem.md",
+      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/磁盘文件系统/XFS.md"
     ],
     "docs/1.操作系统/2.Kernel(内核)/7.Process 管理": [
       "docs/1.操作系统/2.Kernel(内核)/7.Process 管理/_index.md",

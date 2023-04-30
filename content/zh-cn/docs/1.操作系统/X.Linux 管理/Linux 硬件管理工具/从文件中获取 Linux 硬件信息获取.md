@@ -62,7 +62,7 @@ title: 从文件中获取 Linux 硬件信息获取
 
 # CPU(处理器)
 
-在 [Proc File System](/docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/特殊文件系统/Proc%20File%20System.md) 的 `/proc/stst` 和 `/proc/cpuinfo` 文件中可以查看 CPU 相关的信息
+在 [Proc File System](docs/1.操作系统/2.Kernel(内核)/6.File%20System%20管理/特殊文件系统/Proc%20File%20System.md) 的 `/proc/stst` 和 `/proc/cpuinfo` 文件中可以查看 CPU 相关的信息
 
 通过 cat /proc/cpuinfo 命令，可以查看 CPU 相关的信息：
 

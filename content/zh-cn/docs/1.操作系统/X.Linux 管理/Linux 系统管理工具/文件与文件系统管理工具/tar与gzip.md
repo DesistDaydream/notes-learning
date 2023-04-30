@@ -8,7 +8,7 @@ title: tar与gzip
 >
 > - [Manual(手册)，tar(1)](https://man7.org/linux/man-pages/man1/tar.1.html)
 
-tar 是一个归档工具，用以实现 [Archive File(归档文件)](/docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/文件管理/Archive%20File(归档文件).md)
+tar 是一个归档工具，用以实现 [Archive File(归档文件)](docs/1.操作系统/2.Kernel(内核)/6.File%20System%20管理/文件管理/Archive%20File(归档文件).md)
 
 ## Syntax(语法)
 

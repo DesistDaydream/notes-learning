@@ -27,8 +27,8 @@ title: Inode
 
 不同文件系统，有不同的计算方式，详情可以参考各类文件系统中的章节
 
-- [EXT FileSystem](/docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/EXT%20FileSystem.md#块、块组、Inode%20计算)
-- [XFS](/docs/1.操作系统/2.Kernel(内核)/6.File_System_管理/磁盘文件系统/XFS.md)
+- [EXT FileSystem](docs/1.操作系统/2.Kernel(内核)/6.File%20System%20管理/磁盘文件系统/EXT%20FileSystem.md#块、块组、Inode%20计算)
+- [XFS](docs/1.操作系统/2.Kernel(内核)/6.File%20System%20管理/磁盘文件系统/XFS.md)
 
 总得来说，所以我们可以<font color="#ff0000">通过降低 BytesPerInode 的值以提高 Inode 数量</font>
 
