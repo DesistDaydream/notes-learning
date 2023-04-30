@@ -12,7 +12,7 @@ weight: 1
 
 
 
-**%USERPROFILE%/AppData/\*** #
+**$USERPROFILE/AppData/** #
 - **./Local/** #
 - **./LocalLow/** #
 - **./Roaming/** #

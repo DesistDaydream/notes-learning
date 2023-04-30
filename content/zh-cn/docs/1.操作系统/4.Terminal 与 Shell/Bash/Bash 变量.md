@@ -5,18 +5,26 @@ title: Bash 变量
 # 概述
 
 > 参考：
+> 
 > - [Manual(手册),bash(1)-形参](https://www.man7.org/linux/man-pages/man1/bash.1.html#PARAMETERS)-Shell 变量
 
 环境变量是对当前环境起作用的变量，在日常操作中，我们最常用的就是 bash 这个 shell。
 
+# 关联文件与配置
+
+**/etc/environment** # 系统的环境变量
+
 # Bash 自带的变量
 
 > 参考：
+> 
 > - [Manual(手册),bash(1)，形参-](https://www.man7.org/linux/man-pages/man1/bash.1.html#PARAMETERS)Shell 变量
 
 **EDITOR=STRING** # 当 Bash 需要调用编辑器时，使用该变量指定的编辑器。
+
 **IFS=STRING** # (Internal Field Separator)输入字段分隔符。`默认值：IFS 包含空格、制表符和回车`。
-Bash 会根据 IFS 中定义的字符来进行字符串拆分。效果如下：
+
+- Bash 会根据 IFS 中定义的字符来进行字符串拆分。效果如下：
 
 ```bash
 ~]# map=(a,b c)
@@ -47,8 +55,11 @@ a b
 ## 历史记录相关变量
 
 **HISTTIMEFORMAT=STRING** # 历史记录的格式
+
 **HISTSIZE=INT** # 历史记录可以保留的最大命令数
+
 **HISTFILESIZE=INT** # 历史记录可以保留的最大行数
+
 **HISTCONTROL=STRING** #
 
 ## 提示符相关变量
@@ -66,24 +77,30 @@ ramesh@dev-db /etc/mail>
 \[注: 提示符修改为 "username@hostname current-dir>的形式]
 
 本例中 PS1 使用的一些代码如下：
-**\u** # 用户名
-**\h** # 主机名 建议在\h 值之后有一个空格。从个人角度来讲，使用这个空格可以增加一定的可读性。
-**\w** # 当前目录的完整路径。请注意当你在主目录下的时候，如上面所示只会显示～
 
-EXAMPLE
+- **`\u`** # 用户名
+- **`\h`** # 主机名 建议在\h 值之后有一个空格。从个人角度来讲，使用这个空格可以增加一定的可读性。
+- **`\w`** # 当前目录的完整路径。请注意当你在主目录下的时候，如上面所示只会显示～
 
-- **export PS1="\[\[\e\[34;1m]\u@\[\e\[0m]\[\e\[32;1m]\H\[\e\[0m] \[\e\[31;1m]\w\[\e\[0m]]\\$ "** # 好看的提示符样式
-  - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ic2gz0/1628044442278-702aab5e-f50e-40f9-924a-e00528d1dbff.png)
+**EXAMPLE**
+
+好看的提示符样式
+
+`export PS1="[\[\e[34;1m\]\u@\[\e[0m\]\[\e[32;1m\]\H\[\e[0m\] \[\e[31;1m\]\w\[\e[0m\]]\\$ "`
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ic2gz0/1628044442278-702aab5e-f50e-40f9-924a-e00528d1dbff.png)
 
 ### PS2——再谈提示符
 
 一个非常长的命令可以通过在末尾加“\”使其分行显示。多行命令的默认提示符是“>”。 我们可以通过修改 PS2 ，将提示符修改为"ABC" 。
 
-    [root@lichenhao ~]# ls \
-    > ^C
-    [root@lichenhao ~]# PS2="ABC"
-    [root@lichenhao ~]# ls \
-    ABC^C
+```text
+[root@lichenhao ~]# ls \
+> ^C
+[root@lichenhao ~]# PS2="ABC"
+[root@lichenhao ~]# ls \
+ABC^C
+```
 
 当用“\”使长命令分行显示，我发现非常易读。当然我也见过有的人不喜欢分行显示命令
 

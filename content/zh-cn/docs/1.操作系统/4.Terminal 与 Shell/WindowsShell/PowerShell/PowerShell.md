@@ -5,10 +5,11 @@ weight: 1
 ---
 
 # 概述
->
+
 > 参考：
 >
 > - [官方文档，PowerShell](https://learn.microsoft.com/en-us/powershell)
+> - [官方文档，PowerShell-关于](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about?view=powershell-7.3)
 
 PowerShell 是一种跨平台的任务自动化解决方案，由命令行 shell、脚本语言和配置管理框架组成。 PowerShell 在 Windows、Linux 和 macOS 上运行。
 
@@ -18,7 +19,21 @@ PowerShell 的独特之处在于，它接受并返回 .NET 对象，而非纯文
 
 这些对象在被接收后，再交给格式化函数处理，以人类可读的方式，输出出来。
 
+我们可以在 [PowerShell 官方文档的参考-关于](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about)部分找到对 PowerShell 的基本概念的描述。
+
+## PowerShell 变量
+
+详见 [PowerShell 变量](docs/1.操作系统/4.Terminal%20与%20Shell/WindowsShell/PowerShell/PowerShell%20变量.md) 章节
+
 ## PowerShell 命令
+
+> 参考：
+> 
+> - [about_Command_Precedence](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_command_precedence) 介绍 PowerShell 如何确定要运行的命令。
+> - [about_Command_Syntax](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_command_syntax) 介绍 PowerShell 中使用的语法关系图
+> - [about_Core_Commands](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_core_commands) 列出设计用于 PowerShell 提供程序的 cmdlet
+
+介绍 PowerShell 如何确定要运行的命令。
 
 PowerShell 中可以执行的命令分两类
 

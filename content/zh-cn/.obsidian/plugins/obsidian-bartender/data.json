@@ -1626,6 +1626,11 @@
       "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP_IP 管理工具.md",
       "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP 重置.md",
       "docs/4.数据通信/通信协议/3_4.TCP_IP/UDP.md"
+    ],
+    "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell": [
+      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell/_index_.md",
+      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell/PowerShell.md",
+      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell/PowerShell 变量.md"
     ]
   },
   "actionBarOrder": {},

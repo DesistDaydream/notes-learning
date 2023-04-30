@@ -1,5 +1,6 @@
 ---
 title: Shell 编程语言
+weight: 1
 ---
 
 # 概述
