@@ -56,6 +56,23 @@
       "docs/0.计算机/Motherboard/BIOS.md",
       "docs/0.计算机/Motherboard/IPMI.md"
     ],
+    "docs/1.操作系统": [
+      "docs/1.操作系统/_index.md",
+      "docs/1.操作系统/0.操作系统",
+      "docs/1.操作系统/1.Bootloader",
+      "docs/1.操作系统/2.Kernel(内核)",
+      "docs/1.操作系统/3.Systemd 系统守护程序",
+      "docs/1.操作系统/4.Terminal 与 Shell",
+      "docs/1.操作系统/5.登录 Linux 与 访问控制",
+      "docs/1.操作系统/6.Package 管理",
+      "docs/1.操作系统/7.时间管理",
+      "docs/1.操作系统/公众号,码农的荒岛求生-操作系统话题系列文章",
+      "docs/1.操作系统/系统审计",
+      "docs/1.操作系统/Linux 源码解析",
+      "docs/1.操作系统/X.Linux 管理",
+      "docs/1.操作系统/Y.Windows 管理",
+      "docs/1.操作系统/安装操作系统"
+    ],
     "docs/1.操作系统/2.Kernel(内核)": [
       "docs/1.操作系统/2.Kernel(内核)/_index.md",
       "docs/1.操作系统/2.Kernel(内核)/Kernel(内核).md",
@@ -239,6 +256,11 @@
       "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/WindowsShell 命令.md",
       "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell.md"
     ],
+    "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell": [
+      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell/_index_.md",
+      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell/PowerShell.md",
+      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell/PowerShell 变量.md"
+    ],
     "docs/1.操作系统/4.Terminal 与 Shell/Windows_Shell": [
       "docs/1.操作系统/4.Terminal 与 Shell/Windows_Shell/_index.md",
       "docs/1.操作系统/4.Terminal 与 Shell/Windows_Shell/Windows Shell.md",
@@ -370,10 +392,17 @@
       "docs/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/性能测试工具",
       "docs/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/Redhat 优化.md"
     ],
-    "docs/1.操作系统/Y.Windows 管理/Windows管理工具": [
-      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/_index.md",
-      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/PowerShell内置管理工具",
-      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/其他.md"
+    "docs/1.操作系统/Y.Windows 管理/Windows 管理工具": [
+      "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/_index.md",
+      "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/PowerShell 内置管理工具",
+      "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/其他.md"
+    ],
+    "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/PowerShell 内置管理工具": [
+      "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/PowerShell 内置管理工具/_index.md",
+      "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/PowerShell 内置管理工具/PowerShell 内置管理工具.md",
+      "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/PowerShell 内置管理工具/Core.md",
+      "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/PowerShell 内置管理工具/Management.md",
+      "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/PowerShell 内置管理工具/Security.md"
     ],
     "docs/1.操作系统/系统审计": [
       "docs/1.操作系统/系统审计/_index.md",
@@ -473,6 +502,36 @@
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/通过 veth 设备查找对应的虚拟机.md",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/在线热迁移.md",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/多宿主机集中管理.md"
+    ],
+    "docs/10.云原生/1.3.OpenStack 虚拟机编排系统": [
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/_index.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Opensatck 介绍",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/OpenStack部署与清理",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/配置详解.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Nova",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Keystone",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron"
+    ],
+    "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron": [
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron/_index.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron/OpenStack Networking 介绍.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron/Neutron 架构.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron/各种 Network Type 的实现方式.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron/neutron工作原理.md"
+    ],
+    "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Opensatck 介绍": [
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Opensatck 介绍/_index.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Opensatck 介绍/Opensatck 介绍.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Opensatck 介绍/主要组件.md"
+    ],
+    "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具": [
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/_index.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/openstack Command Line基础.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/openstackCLI.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/nova.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/glance.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/neutron.md"
     ],
     "docs/10.云原生/2.1.容器": [
       "docs/10.云原生/2.1.容器/_index.md",
@@ -705,6 +764,20 @@
       "docs/10.云原生/DevOps/Drone/drone 命令行工具.md",
       "docs/10.云原生/DevOps/Drone/Drone 任务示例.md"
     ],
+    "docs/10.云原生/云原生应用管理/Helm": [
+      "docs/10.云原生/云原生应用管理/Helm/_index.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm.md",
+      "docs/10.云原生/云原生应用管理/Helm/Charts",
+      "docs/10.云原生/云原生应用管理/Helm/Helm Template",
+      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具"
+    ],
+    "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具": [
+      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/_index.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/Helm 命令行工具.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/install、upgrade 子命令.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/helm 查询相关命令.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/helm template 模板相关命令.md"
+    ],
     "docs/10.云原生/云原生应用管理/Kustomize": [
       "docs/10.云原生/云原生应用管理/Kustomize/_index.md",
       "docs/10.云原生/云原生应用管理/Kustomize/Kustomize.md",
@@ -732,6 +805,14 @@
       "docs/12.人工智能/OpenAI/_index.md",
       "docs/12.人工智能/OpenAI/OpenAI.md",
       "docs/12.人工智能/OpenAI/ChatGPT.md"
+    ],
+    "docs/12.人工智能/机器学习": [
+      "docs/12.人工智能/机器学习/_index.md",
+      "docs/12.人工智能/机器学习/机器学习.md",
+      "docs/12.人工智能/机器学习/深度学习.md",
+      "docs/12.人工智能/机器学习/模型.md",
+      "docs/12.人工智能/机器学习/PyTorch.md",
+      "docs/12.人工智能/机器学习/Transformers.md"
     ],
     "docs/12.人工智能/计算机视觉": [
       "docs/12.人工智能/计算机视觉/_index.md",
@@ -774,6 +855,28 @@
       "docs/2.编程/无法分类的语言/Protobuf.md",
       "docs/2.编程/无法分类的语言/按键精灵"
     ],
+    "docs/2.编程/编程工具/SCM/GitHub": [
+      "docs/2.编程/编程工具/SCM/GitHub/_index.md",
+      "docs/2.编程/编程工具/SCM/GitHub/GitHub.md",
+      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions",
+      "docs/2.编程/编程工具/SCM/GitHub/我在 GitHub 上的互动.md",
+      "docs/2.编程/编程工具/SCM/GitHub/git clone克隆或下载一个仓库单个文件夹.md",
+      "docs/2.编程/编程工具/SCM/GitHub/GitHub 技巧.md",
+      "docs/2.编程/编程工具/SCM/GitHub/github上fork了别人的项目后，再同步更新别人的提交.github上fork了别人的项目后，再同步更新别人的提交.md"
+    ],
+    "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions": [
+      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/_index.md",
+      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/GitHub Actions.md",
+      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Contexts 与 Variables.md",
+      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Workflow 文件详解",
+      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/好用的 Action.md",
+      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Actions 样例.md"
+    ],
+    "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Workflow 文件详解": [
+      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Workflow 文件详解/_index.md",
+      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Workflow 文件详解/Workflow 文件详解.md",
+      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Workflow 文件详解/Workflow 命令.md"
+    ],
     "docs/2.编程/解谜计算机科学": [
       "docs/2.编程/解谜计算机科学/_index.md",
       "docs/2.编程/解谜计算机科学/解谜计算机科学.md",
@@ -814,6 +917,11 @@
       "docs/2.编程/高级编程语言/HTML与CSS",
       "docs/2.编程/高级编程语言/ECMAScript",
       "docs/2.编程/高级编程语言/Perl.md"
+    ],
+    "docs/2.编程/高级编程语言/C": [
+      "docs/2.编程/高级编程语言/C/_index.md",
+      "docs/2.编程/高级编程语言/C/C.md",
+      "docs/2.编程/高级编程语言/C/C Library(C库).md"
     ],
     "docs/2.编程/高级编程语言/ECMAScript": [
       "docs/2.编程/高级编程语言/ECMAScript/_index.md",
@@ -872,6 +980,39 @@
       "docs/2.编程/高级编程语言/Go/Go 扩展/Go OpenAPI.md",
       "docs/2.编程/高级编程语言/Go/Go 扩展/Go 语言现状.md"
     ],
+    "docs/2.编程/高级编程语言/Go/Go 环境安装与使用": [
+      "docs/2.编程/高级编程语言/Go/Go 环境安装与使用/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 环境安装与使用/Go 环境安装与使用.md",
+      "docs/2.编程/高级编程语言/Go/Go 环境安装与使用/Go Module.md",
+      "docs/2.编程/高级编程语言/Go/Go 环境安装与使用/重大变化.md"
+    ],
+    "docs/2.编程/高级编程语言/Go/Go 第三方库": [
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/Go 第三方库.md",
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/配置文件解析库_管理工具.md",
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/GUI.md",
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/CLI",
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/数据库.md",
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制"
+    ],
+    "docs/2.编程/高级编程语言/Go/Go 网络编程": [
+      "docs/2.编程/高级编程语言/Go/Go 网络编程/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 网络编程/Go 网络编程.md",
+      "docs/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 TCP.md",
+      "docs/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 HTTP",
+      "docs/2.编程/高级编程语言/Go/Go 网络编程/Middleware",
+      "docs/2.编程/高级编程语言/Go/Go 网络编程/Gin.md"
+    ],
+    "docs/2.编程/高级编程语言/Go/Go 网络编程/Middleware": [
+      "docs/2.编程/高级编程语言/Go/Go 网络编程/Middleware/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 网络编程/Middleware/Middleware.md",
+      "docs/2.编程/高级编程语言/Go/Go 网络编程/Middleware/GO中间件(Middleware ).md"
+    ],
+    "docs/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 HTTP": [
+      "docs/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 HTTP/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 HTTP/net 包中的 HTTP.md",
+      "docs/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 HTTP/HTTP 重试.md"
+    ],
     "docs/2.编程/高级编程语言/Go/Go 规范与标准库": [
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/_index.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Go 规范与标准库.md",
@@ -901,29 +1042,6 @@
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method(方法)、Interface(接口)/接口设计示例 二.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method(方法)、Interface(接口)/接收设计示例 三.md"
     ],
-    "docs/2.编程/高级编程语言/Go/Go 环境安装与使用": [
-      "docs/2.编程/高级编程语言/Go/Go 环境安装与使用/_index.md",
-      "docs/2.编程/高级编程语言/Go/Go 环境安装与使用/Go 环境安装与使用.md",
-      "docs/2.编程/高级编程语言/Go/Go 环境安装与使用/Go Module.md",
-      "docs/2.编程/高级编程语言/Go/Go 环境安装与使用/重大变化.md"
-    ],
-    "docs/2.编程/高级编程语言/Go/Go 第三方库": [
-      "docs/2.编程/高级编程语言/Go/Go 第三方库/_index.md",
-      "docs/2.编程/高级编程语言/Go/Go 第三方库/Go 第三方库.md",
-      "docs/2.编程/高级编程语言/Go/Go 第三方库/配置文件解析库_管理工具.md",
-      "docs/2.编程/高级编程语言/Go/Go 第三方库/GUI.md",
-      "docs/2.编程/高级编程语言/Go/Go 第三方库/CLI",
-      "docs/2.编程/高级编程语言/Go/Go 第三方库/数据库.md",
-      "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制"
-    ],
-    "docs/2.编程/高级编程语言/Go/Go 网络编程": [
-      "docs/2.编程/高级编程语言/Go/Go 网络编程/_index.md",
-      "docs/2.编程/高级编程语言/Go/Go 网络编程/Go 网络编程.md",
-      "docs/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 TCP.md",
-      "docs/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 HTTP",
-      "docs/2.编程/高级编程语言/Go/Go 网络编程/Middleware",
-      "docs/2.编程/高级编程语言/Go/Go 网络编程/Gin.md"
-    ],
     "docs/2.编程/高级编程语言/Python": [
       "docs/2.编程/高级编程语言/Python/_index.md",
       "docs/2.编程/高级编程语言/Python/Python.md",
@@ -934,18 +1052,18 @@
       "docs/2.编程/高级编程语言/Python/Python工具",
       "docs/2.编程/高级编程语言/Python/Jinja.md"
     ],
-    "docs/2.编程/高级编程语言/Python/Python 规范与标准库": [
-      "docs/2.编程/高级编程语言/Python/Python 规范与标准库/_index.md",
-      "docs/2.编程/高级编程语言/Python/Python 规范与标准库/Python 规范与标准库.md",
-      "docs/2.编程/高级编程语言/Python/Python 规范与标准库/数据类型.md",
-      "docs/2.编程/高级编程语言/Python/Python 规范与标准库/Python 类.md"
-    ],
     "docs/2.编程/高级编程语言/Python/Python 第三方库": [
       "docs/2.编程/高级编程语言/Python/Python 第三方库/_index.md",
       "docs/2.编程/高级编程语言/Python/Python 第三方库/Python 第三方库.md",
       "docs/2.编程/高级编程语言/Python/Python 第三方库/爬虫.md",
       "docs/2.编程/高级编程语言/Python/Python 第三方库/图像处理.md",
       "docs/2.编程/高级编程语言/Python/Python 第三方库/GUI.md"
+    ],
+    "docs/2.编程/高级编程语言/Python/Python 规范与标准库": [
+      "docs/2.编程/高级编程语言/Python/Python 规范与标准库/_index.md",
+      "docs/2.编程/高级编程语言/Python/Python 规范与标准库/Python 规范与标准库.md",
+      "docs/2.编程/高级编程语言/Python/Python 规范与标准库/数据类型.md",
+      "docs/2.编程/高级编程语言/Python/Python 规范与标准库/Python 类.md"
     ],
     "docs/2.编程/高级编程语言/Python/Python工具": [
       "docs/2.编程/高级编程语言/Python/Python工具/_index.md",
@@ -978,6 +1096,21 @@
       "docs/4.数据通信/中间人攻击与HTTPS抓包.md",
       "docs/4.数据通信/交换机 与 路由器.md"
     ],
+    "docs/4.数据通信/DNS": [
+      "docs/4.数据通信/DNS/_index.md",
+      "docs/4.数据通信/DNS/DNS.md",
+      "docs/4.数据通信/DNS/Resource Record(资源记录).md",
+      "docs/4.数据通信/DNS/Zone 与 Domain.md",
+      "docs/4.数据通信/DNS/DNSmasq.md",
+      "docs/4.数据通信/DNS/BIND",
+      "docs/4.数据通信/DNS/反向解析原理.md",
+      "docs/4.数据通信/DNS/DDNS.md"
+    ],
+    "docs/4.数据通信/DNS/BIND": [
+      "docs/4.数据通信/DNS/BIND/_index.md",
+      "docs/4.数据通信/DNS/BIND/BIND.md",
+      "docs/4.数据通信/DNS/BIND/命令行工具.md"
+    ],
     "docs/4.数据通信/Tunneling Protocol(隧道协议)": [
       "docs/4.数据通信/Tunneling Protocol(隧道协议)/_index.md",
       "docs/4.数据通信/Tunneling Protocol(隧道协议)/Tunneling Protocol(隧道协议).md",
@@ -1004,6 +1137,33 @@
       "docs/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard/应用示例",
       "docs/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard/Wireguard 全互联模式（full mesh）权威指南",
       "docs/4.数据通信/Tunneling Protocol(隧道协议)/WireGuard/流量伪装.md"
+    ],
+    "docs/4.数据通信/通信协议": [
+      "docs/4.数据通信/通信协议/_index.md",
+      "docs/4.数据通信/通信协议/通信协议.md",
+      "docs/4.数据通信/通信协议/通信协议通用概念.md",
+      "docs/4.数据通信/通信协议/2.ARP 与 NDP.md",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP",
+      "docs/4.数据通信/通信协议/3.BGP.md",
+      "docs/4.数据通信/通信协议/3.ICMP.md",
+      "docs/4.数据通信/通信协议/3.VRRP.md",
+      "docs/4.数据通信/通信协议/5.SSL 与 TLS.md",
+      "docs/4.数据通信/通信协议/7.DHCP.md",
+      "docs/4.数据通信/通信协议/7.FTP.md",
+      "docs/4.数据通信/通信协议/7.HTTP",
+      "docs/4.数据通信/通信协议/7.NTP.md",
+      "docs/4.数据通信/通信协议/7.WebSocket",
+      "docs/4.数据通信/通信协议/TCP 与 HTTP"
+    ],
+    "docs/4.数据通信/通信协议/3_4.TCP_IP": [
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/_index.md",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/3_4.TCP_IP.md",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/IP",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP 异常处理.md",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP_IP 管理工具.md",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP 重置.md",
+      "docs/4.数据通信/通信协议/3_4.TCP_IP/UDP.md"
     ],
     "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP": [
       "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP/_index.md",
@@ -1087,6 +1247,25 @@
       "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理/Etcd 维护.md",
       "docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd 管理/etcd 问题处理案例"
     ],
+    "docs/5.数据存储/2.数据库/键值数据/Redis": [
+      "docs/5.数据存储/2.数据库/键值数据/Redis/_index.md",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis.md",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 配置详解.md",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Pub_Sub(发布_订阅).md",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 高可用",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 管理",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis Operator.md"
+    ],
+    "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具": [
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/_index.md",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/Redis 命令行工具.md",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/cluster 命令.md",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/generic 组.md",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/Sentinel 命令.md",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/server 组.md",
+      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/string 组.md"
+    ],
     "docs/5.数据存储/数据管理工具/Percona": [
       "docs/5.数据存储/数据管理工具/Percona/_index.md",
       "docs/5.数据存储/数据管理工具/Percona/Percona.md",
@@ -1115,6 +1294,13 @@
       "docs/6.可观测性/Grafana/访问控制.md",
       "docs/6.可观测性/Grafana/Grafana 8.0 告警使用.md",
       "docs/6.可观测性/Grafana/Grafana 管理.md"
+    ],
+    "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)": [
+      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/_index.md",
+      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/Panel(面板) 与 Dashboard(仪表盘).md",
+      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/Time series 类型面板",
+      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/Panel(面板) 配置详解",
+      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/Table 类型面板.md"
     ],
     "docs/6.可观测性/日志系统": [
       "docs/6.可观测性/日志系统/_index.md",
@@ -1406,11 +1592,31 @@
       "docs/实用工具/即时通信",
       "docs/实用工具/计算机外设.md"
     ],
+    "docs/实用工具/IDE/Visual Studio Code": [
+      "docs/实用工具/IDE/Visual Studio Code/_index.md",
+      "docs/实用工具/IDE/Visual Studio Code/Visual Studio Code.md",
+      "docs/实用工具/IDE/Visual Studio Code/VS Code 快捷键.md",
+      "docs/实用工具/IDE/Visual Studio Code/VS Code 配置详解.md",
+      "docs/实用工具/IDE/Visual Studio Code/VS Code 中的 WSL.md",
+      "docs/实用工具/IDE/Visual Studio Code/Plugins(插件)",
+      "docs/实用工具/IDE/Visual Studio Code/code-server.md"
+    ],
     "docs/实用工具/Terminal(终端)": [
       "docs/实用工具/Terminal(终端)/_index.md",
       "docs/实用工具/Terminal(终端)/Terminal(终端).md",
       "docs/实用工具/Terminal(终端)/X Manager.md",
       "docs/实用工具/Terminal(终端)/X Manager"
+    ],
+    "docs/实用工具/即时通信": [
+      "docs/实用工具/即时通信/_index.md",
+      "docs/实用工具/即时通信/即时通信.md",
+      "docs/实用工具/即时通信/Slack.md"
+    ],
+    "docs/实用工具/消息传递": [
+      "docs/实用工具/消息传递/_index.md",
+      "docs/实用工具/消息传递/消息传递.md",
+      "docs/实用工具/消息传递/即时消息.md",
+      "docs/实用工具/消息传递/Slack.md"
     ],
     "docs/实用工具/网站搭建": [
       "docs/实用工具/网站搭建/_index.md",
@@ -1425,212 +1631,6 @@
       "docs/实用工具/网站搭建/Hugo/命令行工具.md",
       "docs/实用工具/网站搭建/Hugo/主题",
       "docs/实用工具/网站搭建/Hugo/站点管理.md"
-    ],
-    "docs/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 HTTP": [
-      "docs/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 HTTP/_index.md",
-      "docs/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 HTTP/net 包中的 HTTP.md",
-      "docs/2.编程/高级编程语言/Go/Go 网络编程/net 包中的 HTTP/HTTP 重试.md"
-    ],
-    "docs/2.编程/高级编程语言/Go/Go 网络编程/Middleware": [
-      "docs/2.编程/高级编程语言/Go/Go 网络编程/Middleware/_index.md",
-      "docs/2.编程/高级编程语言/Go/Go 网络编程/Middleware/Middleware.md",
-      "docs/2.编程/高级编程语言/Go/Go 网络编程/Middleware/GO中间件(Middleware ).md"
-    ],
-    "docs/4.数据通信/通信协议": [
-      "docs/4.数据通信/通信协议/_index.md",
-      "docs/4.数据通信/通信协议/通信协议.md",
-      "docs/4.数据通信/通信协议/通信协议通用概念.md",
-      "docs/4.数据通信/通信协议/2.ARP 与 NDP.md",
-      "docs/4.数据通信/通信协议/3_4.TCP_IP",
-      "docs/4.数据通信/通信协议/3.BGP.md",
-      "docs/4.数据通信/通信协议/3.ICMP.md",
-      "docs/4.数据通信/通信协议/3.VRRP.md",
-      "docs/4.数据通信/通信协议/5.SSL 与 TLS.md",
-      "docs/4.数据通信/通信协议/7.DHCP.md",
-      "docs/4.数据通信/通信协议/7.FTP.md",
-      "docs/4.数据通信/通信协议/7.HTTP",
-      "docs/4.数据通信/通信协议/7.NTP.md",
-      "docs/4.数据通信/通信协议/7.WebSocket",
-      "docs/4.数据通信/通信协议/TCP 与 HTTP"
-    ],
-    "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)": [
-      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/_index.md",
-      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/Panel(面板) 与 Dashboard(仪表盘).md",
-      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/Time series 类型面板",
-      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/Panel(面板) 配置详解",
-      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/Table 类型面板.md"
-    ],
-    "docs/10.云原生/云原生应用管理/Helm": [
-      "docs/10.云原生/云原生应用管理/Helm/_index.md",
-      "docs/10.云原生/云原生应用管理/Helm/Helm.md",
-      "docs/10.云原生/云原生应用管理/Helm/Charts",
-      "docs/10.云原生/云原生应用管理/Helm/Helm Template",
-      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具"
-    ],
-    "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具": [
-      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/_index.md",
-      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/Helm 命令行工具.md",
-      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/install、upgrade 子命令.md",
-      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/helm 查询相关命令.md",
-      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/helm template 模板相关命令.md"
-    ],
-    "docs/1.操作系统/Y.Windows 管理/Windows管理工具/PowerShell内置管理工具": [
-      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/PowerShell内置管理工具/_index.md",
-      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/PowerShell内置管理工具/PowerShell内置管理工具.md",
-      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/PowerShell内置管理工具/Core.md",
-      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/PowerShell内置管理工具/Management.md",
-      "docs/1.操作系统/Y.Windows 管理/Windows管理工具/PowerShell内置管理工具/Security.md"
-    ],
-    "docs/实用工具/IDE/Visual Studio Code": [
-      "docs/实用工具/IDE/Visual Studio Code/_index.md",
-      "docs/实用工具/IDE/Visual Studio Code/Visual Studio Code.md",
-      "docs/实用工具/IDE/Visual Studio Code/VS Code 快捷键.md",
-      "docs/实用工具/IDE/Visual Studio Code/VS Code 配置详解.md",
-      "docs/实用工具/IDE/Visual Studio Code/VS Code 中的 WSL.md",
-      "docs/实用工具/IDE/Visual Studio Code/Plugins(插件)",
-      "docs/实用工具/IDE/Visual Studio Code/code-server.md"
-    ],
-    "docs/实用工具/消息传递": [
-      "docs/实用工具/消息传递/_index.md",
-      "docs/实用工具/消息传递/消息传递.md",
-      "docs/实用工具/消息传递/即时消息.md",
-      "docs/实用工具/消息传递/Slack.md"
-    ],
-    "docs/实用工具/即时通信": [
-      "docs/实用工具/即时通信/_index.md",
-      "docs/实用工具/即时通信/即时通信.md",
-      "docs/实用工具/即时通信/Slack.md"
-    ],
-    "docs/1.操作系统": [
-      "docs/1.操作系统/_index.md",
-      "docs/1.操作系统/0.操作系统",
-      "docs/1.操作系统/1.Bootloader",
-      "docs/1.操作系统/2.Kernel(内核)",
-      "docs/1.操作系统/3.Systemd 系统守护程序",
-      "docs/1.操作系统/4.Terminal 与 Shell",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制",
-      "docs/1.操作系统/6.Package 管理",
-      "docs/1.操作系统/7.时间管理",
-      "docs/1.操作系统/公众号,码农的荒岛求生-操作系统话题系列文章",
-      "docs/1.操作系统/系统审计",
-      "docs/1.操作系统/Linux 源码解析",
-      "docs/1.操作系统/X.Linux 管理",
-      "docs/1.操作系统/Y.Windows 管理",
-      "docs/1.操作系统/安装操作系统"
-    ],
-    "docs/4.数据通信/DNS": [
-      "docs/4.数据通信/DNS/_index.md",
-      "docs/4.数据通信/DNS/DNS.md",
-      "docs/4.数据通信/DNS/Resource Record(资源记录).md",
-      "docs/4.数据通信/DNS/Zone 与 Domain.md",
-      "docs/4.数据通信/DNS/DNSmasq.md",
-      "docs/4.数据通信/DNS/BIND",
-      "docs/4.数据通信/DNS/反向解析原理.md",
-      "docs/4.数据通信/DNS/DDNS.md"
-    ],
-    "docs/4.数据通信/DNS/BIND": [
-      "docs/4.数据通信/DNS/BIND/_index.md",
-      "docs/4.数据通信/DNS/BIND/BIND.md",
-      "docs/4.数据通信/DNS/BIND/命令行工具.md"
-    ],
-    "docs/5.数据存储/2.数据库/键值数据/Redis": [
-      "docs/5.数据存储/2.数据库/键值数据/Redis/_index.md",
-      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis.md",
-      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 配置详解.md",
-      "docs/5.数据存储/2.数据库/键值数据/Redis/Pub_Sub(发布_订阅).md",
-      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 高可用",
-      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 管理",
-      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具",
-      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis Operator.md"
-    ],
-    "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具": [
-      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/_index.md",
-      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/Redis 命令行工具.md",
-      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/cluster 命令.md",
-      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/generic 组.md",
-      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/Sentinel 命令.md",
-      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/server 组.md",
-      "docs/5.数据存储/2.数据库/键值数据/Redis/Redis 命令行工具/string 组.md"
-    ],
-    "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions": [
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/_index.md",
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/GitHub Actions.md",
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Contexts 与 Variables.md",
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Workflow 文件详解",
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/好用的 Action.md",
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Actions 样例.md"
-    ],
-    "docs/2.编程/编程工具/SCM/GitHub": [
-      "docs/2.编程/编程工具/SCM/GitHub/_index.md",
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub.md",
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions",
-      "docs/2.编程/编程工具/SCM/GitHub/我在 GitHub 上的互动.md",
-      "docs/2.编程/编程工具/SCM/GitHub/git clone克隆或下载一个仓库单个文件夹.md",
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub 技巧.md",
-      "docs/2.编程/编程工具/SCM/GitHub/github上fork了别人的项目后，再同步更新别人的提交.github上fork了别人的项目后，再同步更新别人的提交.md"
-    ],
-    "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Workflow 文件详解": [
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Workflow 文件详解/_index.md",
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Workflow 文件详解/Workflow 文件详解.md",
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Workflow 文件详解/Workflow 命令.md"
-    ],
-    "docs/10.云原生/1.3.OpenStack 虚拟机编排系统": [
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/_index.md",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Opensatck 介绍",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/OpenStack部署与清理",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/配置详解.md",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Nova",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Keystone",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron"
-    ],
-    "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Opensatck 介绍": [
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Opensatck 介绍/_index.md",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Opensatck 介绍/Opensatck 介绍.md",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Opensatck 介绍/主要组件.md"
-    ],
-    "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具": [
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/_index.md",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/openstack Command Line基础.md",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/openstackCLI.md",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/nova.md",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/glance.md",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/neutron.md"
-    ],
-    "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron": [
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron/_index.md",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron/OpenStack Networking 介绍.md",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron/Neutron 架构.md",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron/各种 Network Type 的实现方式.md",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron/neutron工作原理.md"
-    ],
-    "docs/2.编程/高级编程语言/C": [
-      "docs/2.编程/高级编程语言/C/_index.md",
-      "docs/2.编程/高级编程语言/C/C.md",
-      "docs/2.编程/高级编程语言/C/C Library(C库).md"
-    ],
-    "docs/12.人工智能/机器学习": [
-      "docs/12.人工智能/机器学习/_index.md",
-      "docs/12.人工智能/机器学习/机器学习.md",
-      "docs/12.人工智能/机器学习/深度学习.md",
-      "docs/12.人工智能/机器学习/模型.md",
-      "docs/12.人工智能/机器学习/PyTorch.md",
-      "docs/12.人工智能/机器学习/Transformers.md"
-    ],
-    "docs/4.数据通信/通信协议/3_4.TCP_IP": [
-      "docs/4.数据通信/通信协议/3_4.TCP_IP/_index.md",
-      "docs/4.数据通信/通信协议/3_4.TCP_IP/3_4.TCP_IP.md",
-      "docs/4.数据通信/通信协议/3_4.TCP_IP/IP",
-      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP",
-      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP 异常处理.md",
-      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP_IP 管理工具.md",
-      "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP 重置.md",
-      "docs/4.数据通信/通信协议/3_4.TCP_IP/UDP.md"
-    ],
-    "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell": [
-      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell/_index_.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell/PowerShell.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell/PowerShell 变量.md"
     ]
   },
   "actionBarOrder": {},

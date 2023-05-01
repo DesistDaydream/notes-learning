@@ -51,7 +51,7 @@ cmdlet 中每个命令的名称都是由 **Verb-Noun(动词-名词)** 组成，�
 - `Get-Member` # 基于其他命令运行，可以获取 cmdlet 返回的对象信息，包括对象中的**属性、方法、等等**
 - `Get-Help` # 以命令名称为参数调用此命令，将显示一个帮助页面，其中说明了命令的各个部分。
 
-从本笔记的 [Windows 管理工具](/docs/1.操作系统/Y.Windows%20管理/Windows管理工具/_index.md) 目录查找所有可用的命令，以及查看命令的用法
+从本笔记的 [Windows 管理工具](docs/1.操作系统/Y.Windows%20管理/Windows%20管理工具/_index.md) 目录查找所有可用的命令，以及查看命令的用法
 
 我们可以通过 `$psversiontable` 和 `$host` 变量查看 PowerShell 版本信息
 
