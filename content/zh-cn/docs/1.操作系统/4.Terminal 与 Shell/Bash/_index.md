@@ -1,5 +1,4 @@
 ---
-title: "Bash"
-linkTitle: "Bash"
-weight: 20
+title: Bash
+weight: 3
 ---

@@ -1,5 +1,5 @@
 ---
-title: Shell 命令行参数处理
+title: Bash 命令行参数处理
 ---
 
 # 概述
@@ -19,15 +19,15 @@ title: Shell 命令行参数处理
 
 ./test.sh -f config.conf -v --prefix=/home
 
-1. -f 为选项，它需要一个参数，即 config.conf
-2. -v 也是一个选项，但它不需要参数。
-3. --prefix 我们称之为一个长选项，即选项本身多于一个字符，它也需要一个参数，用等号连接，当然等号不是必须的，/home 可以直接写在--prefix 后面，即--prefix/home,更多的限制后面具体会讲到。
+- -f 为选项，它需要一个参数，即 config.conf
+- -v 也是一个选项，但它不需要参数。
+- --prefix 我们称之为一个长选项，即选项本身多于一个字符，它也需要一个参数，用等号连接，当然等号不是必须的，/home 可以直接写在--prefix 后面，即--prefix/home,更多的限制后面具体会讲到。
 
 在 bash 中，可以用以下三种方式来处理命令行参数，每种方式都有自己的应用场景。
 
-1. 通过位置变量手工处理参数 # 参考变量与环境变量 文章中的位置变量
-2. getopts # 简单工具
-3. getopt # 复杂工具
+- 通过位置变量手工处理参数 # 参考变量与环境变量 文章中的位置变量
+- getopts # 简单工具
+- getopt # 复杂工具
 
 依次讨论这三种处理方式。
 
@@ -38,18 +38,12 @@ title: Shell 命令行参数处理
 代码如下:
 
 - $0 ： ./test.sh,即命令本身，相当于 c/c++中的 argv\[0]
-
 - $1 ： -f,第一个参数.
-
 - $2 ： config.conf
-
 - $3, $4 ... ：类推。
-
 - `$#`  参数的个数，不包括命令本身，上例中 `$#` 为 4.
-
-- $@ ：参数本身的列表，也不包括命令本身，如上例为 -f config.conf -v --prefix=/home
-
-- $*：和$@相同，但"$*" 和 "$@"(加引号)并不同，"$*"将所有的参数解释成一个字符串，而"$@"是一个参数数组。
+- `$@` # 参数本身的列表，也不包括命令本身，如上例为 -f config.conf -v --prefix=/home
+- `$*` # 和 `$@` 相同，但 `"$*"` 和 `"$@"`(加引号)并不同，`"$*"` 将所有的参数解释成一个字符串，而 `"$@"` 是一个参数数组。
 
 例子：
 
@@ -67,11 +61,13 @@ done
 
 执行./test.sh -f config.conf -n 10 会打印：
 
-    -f config.conf -n 10    #这是"$*"的输出
-    -f   #以下为$@的输出
-    config.conf
-    -n
-    10
+```bash
+-f config.conf -n 10    #这是"$*"的输出
+-f   #以下为$@的输出
+config.conf
+-n
+10
+```
 
 所以，手工处理的方式即对这些变量的处理。因为手工处理高度依赖于你在命令行上所传参数的位置，所以一般都只用来处理较简单的参数。
 
@@ -81,18 +77,20 @@ done
 
 而很少使用./test -n 10 这种带选项的方式。 典型用法为：
 
-    #!/bin/bash
-    if [ x$1 != x ]
-    then
-        #...有参数
-    else
-    then
-        #...没有参数
-    fi
+```bash
+#!/bin/bash
+if [ x$1 != x ]
+then
+    #...有参数
+else
+then
+    #...没有参数
+fi
+```
 
-为什么要使用 x$1 != x 这种方式来比较呢？想像一下这种方式比较：
+为什么要使用 `x$1 != x` 这种方式来比较呢？想像一下这种方式比较：
 
-if \[ -n $1 ] #$1 不为空
+`if [ -n $1 ]` #$1 不为空
 
 但如果用户不传参数的时候，$1 为空，这时 就会变成 \[ -n ] ,所以需要加一个辅助字符串来进行比较。
 
@@ -109,11 +107,8 @@ getopts 和 getopt 功能相似但又不完全相同，其中 getopt 是独立�
 先来看看参数传递的典型用法:
 
     * ./test.sh -a -b -c  ： 短选项，各选项不需参数
-
     * ./test.sh -abc   ： 短选项，和上一种方法的效果一样，只是将所有的选项写在一起。
-
     * ./test.sh -a args -b -c ：短选项，其中-a需要参数，而-b -c不需参数。
-
     * ./test.sh --a-long=args --b-long ：长选项
 
 先来看 getopts,它不支持长选项。
@@ -139,10 +134,14 @@ done
 ```
 
 现在就可以使用：
+
 ./test.sh -a arg -b -c
+
 或
+
 ./test.sh -a arg -bc
-来加载了。
+
+来加载了
 
 应该说绝大多数脚本使用该函数就可以了，如果需要支持长选项以及可选参数，那么就需要使用 getopt.
 
@@ -158,12 +157,12 @@ OPTIONS
 
 - -a, --alternative Allow long options starting with single -
 - -h, --help This small usage guide
-- -l, --longoptions <LongOPTS> # 要被识别的长选项
-- -n, --name <progname> The name under which errors are reported
-- -o, --options <OPTString> # 要被识别的短选项
+- -l, --longoptions \<LongOPTS> # 要被识别的长选项
+- -n, --name \<progname> The name under which errors are reported
+- -o, --options \<OPTString> # 要被识别的短选项
 - -q, --quiet Disable error reporting by getopt(3)
 - -Q, --quiet-output No normal output
-- -s, --shell <shell> Set shell quoting conventions
+- -s, --shell \<shell> Set shell quoting conventions
 - -T, --test Test for getopt(1) version
 - -u, --unquoted Do not quote the output
 - -V, --version Output version information
@@ -213,15 +212,17 @@ done
 
 执行效果如下：
 
-    ./parse.bash -a par1 'another arg' --c-long 'wow!*\?' -cmore -b " very long "
-    option a
-    option c, no argument
-    option c, argument `more'
-    option b, argument ` very long '
-    remaining arguments:
-    --> `par1'
-    --> `another arg'
-    --> `wow!*\?'
+```bash
+./parse.bash -a par1 'another arg' --c-long 'wow!*\?' -cmore -b " very long "
+option a
+option c, no argument
+option c, argument `more'
+option b, argument ` very long '
+remaining arguments:
+--> `par1'
+--> `another arg'
+--> `wow!*\?'
+```
 
 比如使用
 

@@ -9,12 +9,17 @@ weight: 1
 > - [GNU 官网](https://www.gnu.org/software/bash/)
 > - [Wiki，Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
 > - [Manual(手册)，bash(1)-Shell 内置命令](https://www.man7.org/linux/man-pages/man1/bash.1.html#SHELL_BUILTIN_COMMANDS)
+> - [网道，Bash 脚本教程](https://wangdoc.com/bash/index.html)
 
 **Bourne Again Shell(简称 Bash)** 是 Brian Fox 为 GNU 项目编写的 Unix Shell 和编程语言，作为 **Bourne shell(简称 sh)** 的免费软件替代品，于 1989 年首次发布，已被用作绝大多数 Linux 发行版的默认登录 Shell。Bash 是 Linus Torvalds 在移植 GCC 到 Linux 时最先移植的程序之一。
 
+Bash 是一种 Shell，学习 Bash，其实也算是学习一种脚本式的编程语言，Bash 本身就是一种类似编译器似的存在。
+
 # Bash 关联文件与配置
 
-详见 [4.Terminal 与 Shell](docs/1.操作系统/4.Terminal%20与%20Shell/4.Terminal%20与%20Shell.md)
+除了 [4.Terminal 与 Shell](/docs/1.操作系统/4.Terminal%20与%20Shell/4.Terminal%20与%20Shell.md) 中描述的配置文件以外，还有其他不区分登录类型的配置文件
+
+**/etc/environment** # 系统的环境变量，所有登录方式都会加载的文件。
 
 # 在 Bash 中执行命令
 
@@ -59,7 +64,7 @@ OPTIONS
 - -n # 对指定文件进行语法检查
 - -x # 打印出执行脚本的过程
 
-## ./ 的命令用法
+## ./ 语法
 
 作用:
 
@@ -75,7 +80,7 @@ OPTIONS
 
 > 参考：
 > 
-> - [Wiki,CommandLineCompletion](https://en.wikipedia.org/wiki/Command-line_completion)
+> - [Wiki，CommandLineCompletion](https://en.wikipedia.org/wiki/Command-line_completion)
 
 **Command Line Completion(命令行补全)** 也称为 **tab completion**，是命令行解释器的常见功能，在命令行中的程序，可以自动填充部分需要手动输入的命令。
 

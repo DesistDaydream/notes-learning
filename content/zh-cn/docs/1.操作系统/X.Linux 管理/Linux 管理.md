@@ -5,7 +5,7 @@ weight: 1
 ---
 
 # 概述
->
+
 > 参考：
 >
 > - [GNU Manual(手册)](https://www.gnu.org/manual/) — Linux 中很多核心程序，都是 GNU 组织下的软件。

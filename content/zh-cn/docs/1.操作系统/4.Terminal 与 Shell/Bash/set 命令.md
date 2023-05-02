@@ -5,6 +5,7 @@ title: set 命令
 # 概述
 
 > 参考：
+> 
 > - [GNU 文档，Bash 参考手册-Shell 内置命令-修改 Shell 行为-Set 内置命令](https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html)
 > - <https://morven.life/posts/how-to-write-robust-shell-script/>
 

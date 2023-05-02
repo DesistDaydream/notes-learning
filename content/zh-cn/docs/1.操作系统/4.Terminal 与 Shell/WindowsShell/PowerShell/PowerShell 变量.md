@@ -15,7 +15,7 @@ weight: 20
 
 PowerShell 变量名称不区分大小写，可以包含空格和特殊字符。但是官方推荐尽量避免使用空格和特殊字符，使用起来很麻烦，详见[包含特殊字符的变量名称](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_variables#variable-names-that-include-special-characters)
 
-PowerShell 中的**环境变量**与**普通变量**在声明方式和引用方式上有**明显不同**，这与 Linux Shell 的 [变量](/docs/1.操作系统/4.Terminal%20与%20Shell/Shell%20编程语言/变量.md) 不太一样。举一个非常简单的例子：
+PowerShell 中的**环境变量**与**局部变量**在声明方式和引用方式上有**明显不同**，这与 [Bash 变量](/docs/1.操作系统/4.Terminal%20与%20Shell/Bash/Bash%20变量.md) 不太一样。举一个非常简单的例子：
 
 ```powershell
 PS C:\Users\DesistDaydream> $test_var="这是一个普通变量"
@@ -29,7 +29,7 @@ PS C:\Users\DesistDaydream> $env:test_env_var
 这是一个环境变量
 ```
 
-## 普通变量
+## 局部变量
 
 PowerShell 中有几种不同类型的变量：
 
@@ -59,28 +59,17 @@ PowerShell 中有几种不同类型的变量：
 > 
 > - [官方文档-PowerShell，关于-关于环境变量](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_environment_variables)
 
-环境变量存储操作系统和其他应用程序使用的数据。
+环境变量存储操作系统和其他应用程序使用的数据。在 PowerShell 中，我们可以引用 [WindowsShell 变量](docs/1.操作系统/4.Terminal%20与%20Shell/WindowsShell/WindowsShell%20变量.md) 中的环境变量。
 
-在 Windows 中，可以在 3 个作用域中定义环境变量
+在 PowerShell 中，环境变量分为 3 个作用域
 
-- 系统
-- 用户
-- 进程
+- 系统范围
+- 用户范围
+- 进程范围
 
-我们在 PowerShell 声明的环境变量通常都是进程作用范围的，对于系统和用户作用范围，通常就是指永久声明环境变量。
+我们在 PowerShell 声明的环境变量通常都是进程范围的，对于系统和用户作用范围，通常就是指永久声明环境变量。
 
-当我们想要在系统和用户作用域中永久声明环境变量时，可以使用 `Machine` 表示系统作用域，使用 `User` 表示用户作用域；也可以在 GUI 上找到`控制面板-系统-高级系统设置-高级-环境变量` 处修改。
-
-在 PowerShell 中，我们可以引用 [WindowsShell 变量](docs/1.操作系统/4.Terminal%20与%20Shell/WindowsShell/WindowsShell%20变量.md) 中的环境变量。
-
-### PowerShell 使用的其他环境变量
-
-- **PATH** # 包含操作系统搜索可执行文件的文件夹位置的列表。
-- **PATHEXT** # 包含 Windows 视为可执行文件的文件扩展名列表。
-- **XDG** # XDG [基本目录规范定义的 XDG](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) 环境变量
-  - XDG_CONFIG_HOME
-  - XDG_DATA_HOME
-  - XDG_CACHE_HOME
+当我们想要在系统和用户作用域中永久声明环境变量时，可以使用 `Machine` 表示系统作用域，使用 `User` 表示用户作用域；也可以在 GUI 上找到 `控制面板-系统-高级系统设置-高级-环境变量` 处修改。
 
 # 声明变量
 
@@ -107,6 +96,17 @@ PowerShell 中有几种不同类型的变量：
 -   [Get-Variable](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-variable?view=powershell-7.3): Gets information about one or more variables
 -   [Clear-Variable](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/clear-variable?view=powershell-7.3): Deletes the value of one or more variables
 -   [Remove-Variable](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/remove-variable?view=powershell-7.3): Deletes one or more variables
+
+# PowerShell 自带的变量
+
+这些环境变量通常都是 WindowsShell 变量
+
+- **PATH** # 包含操作系统搜索可执行文件的文件夹位置的列表。
+- **PATHEXT** # 包含 Windows 视为可执行文件的文件扩展名列表。
+- **XDG** # XDG [基本目录规范定义的 XDG](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) 环境变量
+  - XDG_CONFIG_HOME
+  - XDG_DATA_HOME
+  - XDG_CACHE_HOME
 
 # 最佳实践
 

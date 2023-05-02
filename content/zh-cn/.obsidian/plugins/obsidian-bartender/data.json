@@ -216,38 +216,26 @@
     "docs/1.操作系统/4.Terminal 与 Shell": [
       "docs/1.操作系统/4.Terminal 与 Shell/_index.md",
       "docs/1.操作系统/4.Terminal 与 Shell/4.Terminal 与 Shell.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Shell 编程语言",
+      "docs/1.操作系统/4.Terminal 与 Shell/Shell 编程语言.md",
       "docs/1.操作系统/4.Terminal 与 Shell/Bash",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash 变量.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/exec,xargs,管道符等组合命令.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash 操作历史记录.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash 快捷键.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash 命令.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Job(任务)控制.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Redirection(重定向).md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Windows_Shell"
+      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell"
     ],
     "docs/1.操作系统/4.Terminal 与 Shell/Bash": [
       "docs/1.操作系统/4.Terminal 与 Shell/Bash/_index.md",
       "docs/1.操作系统/4.Terminal 与 Shell/Bash/Bash.md",
+      "docs/1.操作系统/4.Terminal 与 Shell/Bash/特殊符号.md",
+      "docs/1.操作系统/4.Terminal 与 Shell/Bash/数据类型.md",
       "docs/1.操作系统/4.Terminal 与 Shell/Bash/Bash 变量.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/Bash 操作历史记录.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/Bash 快捷键.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/Bash 命令.md",
+      "docs/1.操作系统/4.Terminal 与 Shell/Bash/控制结构",
+      "docs/1.操作系统/4.Terminal 与 Shell/Bash/数组.md",
+      "docs/1.操作系统/4.Terminal 与 Shell/Bash/函数.md",
+      "docs/1.操作系统/4.Terminal 与 Shell/Bash/重定向.md",
       "docs/1.操作系统/4.Terminal 与 Shell/Bash/exec,xargs,管道符等组合命令.md",
+      "docs/1.操作系统/4.Terminal 与 Shell/Bash/set 命令.md",
+      "docs/1.操作系统/4.Terminal 与 Shell/Bash/Bash 命令行参数处理.md",
+      "docs/1.操作系统/4.Terminal 与 Shell/Bash/Bash 操作历史记录.md",
       "docs/1.操作系统/4.Terminal 与 Shell/Bash/Job(任务)控制.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/Redirection(重定向).md"
-    ],
-    "docs/1.操作系统/4.Terminal 与 Shell/Shell 编程语言": [
-      "docs/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/_index.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/Shell 编程语言.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/变量.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/控制结构",
-      "docs/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/数组.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/函数.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/控制结构.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/set 命令.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Shell 编程语言/Shell 命令行参数处理.md"
+      "docs/1.操作系统/4.Terminal 与 Shell/Bash/Bash 快捷键.md"
     ],
     "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell": [
       "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/_index.md",
@@ -311,7 +299,7 @@
     ],
     "docs/1.操作系统/X.Linux 管理": [
       "docs/1.操作系统/X.Linux 管理/_index.md",
-      "docs/1.操作系统/X.Linux 管理/Linux管理.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 管理.md",
       "docs/1.操作系统/X.Linux 管理/Linux 硬件管理工具",
       "docs/1.操作系统/X.Linux 管理/Linux 内核管理工具",
       "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具",
@@ -1631,6 +1619,18 @@
       "docs/实用工具/网站搭建/Hugo/命令行工具.md",
       "docs/实用工具/网站搭建/Hugo/主题",
       "docs/实用工具/网站搭建/Hugo/站点管理.md"
+    ],
+    "docs/1.操作系统/0.操作系统": [
+      "docs/1.操作系统/0.操作系统/_index.md",
+      "docs/1.操作系统/0.操作系统/分时系统 与 实时系统.md",
+      "docs/1.操作系统/0.操作系统/POSIX.md",
+      "docs/1.操作系统/0.操作系统/类 Unix 操作系统",
+      "docs/1.操作系统/0.操作系统/Microsoft 操作系统"
+    ],
+    "docs/1.操作系统/4.Terminal 与 Shell/Bash/控制结构": [
+      "docs/1.操作系统/4.Terminal 与 Shell/Bash/控制结构/控制结构.md",
+      "docs/1.操作系统/4.Terminal 与 Shell/Bash/控制结构/_index.md",
+      "docs/1.操作系统/4.Terminal 与 Shell/Bash/控制结构/条件语句与运算.md"
     ]
   },
   "actionBarOrder": {},
