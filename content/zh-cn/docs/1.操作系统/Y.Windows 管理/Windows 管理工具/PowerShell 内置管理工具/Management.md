@@ -14,6 +14,36 @@ weight: 20
 
 # Item 管理工具
 
+-   [Clear-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/clear-item?view=powershell-7.3)
+-   [Copy-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/copy-item?view=powershell-7.3)
+-   [Get-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/get-item?view=powershell-7.3)
+-   [Invoke-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/invoke-item?view=powershell-7.3)
+-   [Move-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/move-item?view=powershell-7.3)
+-   [New-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/new-item?view=powershell-7.3)
+-   [Remove-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/remove-item?view=powershell-7.3)
+-   [Rename-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/rename-item?view=powershell-7.3)
+-   [Set-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/set-item?view=powershell-7.3)
+
+## New-Item
+
+https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/new-item
+
+创建一个新的 Item 并设置它的值。可以创建的 Item 类型取决于当前所使用的 ProwerShell 提供程序。例如，在文件系统中，创建文件、目录、符号链接、等等；在注册表中，创建注册表条目
+
+### Syntax(语法)
+
+**OPTIONS**
+
+- **-ItemType STRING** # 指定新 Item 类型，可用的类型取决于 PowerShell 的[提供程序](/docs/1.操作系统/4.Terminal%20与%20Shell/WindowsShell/PowerShell/提供程序.md)
+  - 由于不同提供可用的类型非常多，笔记里就不写了，具体还是看 Net-Item 官方文档吧
+
+### EXAMPLE
+
+创建符号链接(软连接)
+
+- 创建一个 C:/Users/DesistDaydream/AppData/Roaming/yuzu 符号链接文件，指向 E:/emulator/yuzu_data/user
+  - `New-Item -ItemType SymbolicLink -Path "C:/Users/DesistDaydream/AppData/Roaming/yuzu" -Target "E:/emulator/yuzu_data/user"`
+
 ## Invoke-Item
 
 对指定的 Item 执行默认操作，默认操作取决于 Item 的类型。比如 目录类型的 Item，则使用默认的资源管理器打开、.docs 文件类型的 Item，则使用 .docs 默认的程序打开、等等

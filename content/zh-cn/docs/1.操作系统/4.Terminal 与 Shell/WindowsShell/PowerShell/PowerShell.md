@@ -8,8 +8,8 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档，PowerShell](https://learn.microsoft.com/en-us/powershell)
-> - [官方文档，PowerShell-关于](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about?view=powershell-7.3)
+> - [官方文档](https://learn.microsoft.com/en-us/powershell)
+> - [官方文档，关于](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about?view=powershell-7.3)
 
 PowerShell 是一种跨平台的任务自动化解决方案，由命令行 shell、脚本语言和配置管理框架组成。 PowerShell 在 Windows、Linux 和 macOS 上运行。
 
@@ -94,12 +94,14 @@ Runspace         : System.Management.Automation.Runspaces.LocalRunspace
 
 > 参考：
 >
-> - [官方文档-PowerShell，脚本-基本概念-Items](https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-03#33-items)
+> - [官方文档，脚本-基本概念-Items](https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-03#33-items)
 
 PowerShell 中会抽象出一个 **Item(项)** 的概念，Item 可以一个 **Alias(别名)**、**Variable(变量)**、**Function(函数)**、**EnvironmentVariable(环境变量)**、甚至可以是文件系统中的 **File(文件)** 或者 **Directory(目录)**。
 
 我们常用的 `ls` 命令，在 PowerShell 中其实就是调用了 `Get-ChildItem` 命令
 
-# Porviders(提供器) 和 Drives(驱动器)
+# Providers(提供程序) 和 Drives(驱动器)
 
-在 PowerShell 中，Providers 和 Drives 是提供对不同数据源（如文件系统、注册表、Certificate 等）的访问的特定接口。Drives 则是实际代表特定数据源的容器，比如本地磁盘驱动器、注册表驱动器等。使用 PowerShell 可以对这些数据源进行管理和操作。
+在 PowerShell 中，**Providers** 和 **Drives** 是提供对不同数据源（如文件系统、注册表、Certificate 等）的访问的特定接口。Drives 则是实际代表特定数据源的容器，比如本地磁盘驱动器、注册表驱动器等。使用 PowerShell 可以对这些数据源进行管理和操作。
+
+详见：[提供程序](/docs/1.操作系统/4.Terminal%20与%20Shell/WindowsShell/PowerShell/提供程序.md)
