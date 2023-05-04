@@ -10,7 +10,9 @@ title: Rclone
 > - [官网](https://rclone.org/)
 
 Rclone 是一个命令行工具，用来管理云存储上的文件。Rclone 也可以看作 rsync for cloud storage(用于云存储的 rsync)。Rclone 支持各种存储类型，包括 商业文件存储服务、标准传输协议(比如 WebDAV、S3 等)、等等。从[这里](https://rclone.org/#providers)我们可以查看到所有受支持的存储提供者
-Rclone 将存储提供者抽象为 Remote，在我们配置时，经常会看到 remote 这个词，创建、删除、等行为一个 remote，就是在配置文件中配置 remote~~
+
+Rclone 将存储提供者抽象为 Remote，在我们配置时，经常会看到 Remote 这个词，创建、删除、等行为一个 Remote，就是在配置文件中配置 Remote
+
 Rclone 还可以将这些 remote 作为磁盘挂载在 Windows、macOS、Linux 上，并通过 SFTP、HTTP、WebDAV、FTP、DLNA 对外提供存储能力。
 
 ## Rclone 关联文件与配置
@@ -35,7 +37,8 @@ Rclone 还可以将这些 remote 作为磁盘挂载在 Windows、macOS、Linux �
 
 # rclone config
 
-进入交互式会话，用以修改配置文件(默认为 ~/.config/rclone/rclone.conf)。进入交互式配置会话中，我们可以设置新的 Remotes 并管理现有 Remotes。还可以设置或删除密码以保护我们的配置。
+进入交互式会话，用以修改配置文件(默认为 `~/.config/rclone/rclone.conf`)。进入交互式配置会话中，我们可以设置新的 Remotes 并管理现有 Remotes。还可以设置或删除密码以保护我们的配置。
+
 除了基础的交互式，我们还可以使用各种子命令来直接修改配置文件
 
 ## Syntax(语法)
@@ -81,5 +84,5 @@ copyto 可以在上传单个文件到目标目录下时，改变文件的原名�
 使用 Alist 的 阿里云网盘时，注意添加 `--header`，参考 [alist discussions 630](https://github.com/alist-org/alist/discussions/630)
 
 ```
-rclone mount --config rclone.conf alist:/ Z: --cache-dir D:\app_data\rclone --vfs-cache-mode full --header "Referer:"
+rclone mount --config rclone.conf alist:/ Z: --cache-dir D:\appdata\rclone --vfs-cache-mode full --header "Referer:"
 ```

@@ -17,6 +17,7 @@ weight: 20
 
 
 # 关联文件与配置
+
 - C:/ProgramData/kingsoft/ # 安装程序运行时下载的文件保存路径
 - C:/rogram Files (x86)/Kingsoft/ # 不知道干啥用的
 - C:/Users/DesistDaydream/AppData/Local/kingsoft/ # 不知道干啥用的
