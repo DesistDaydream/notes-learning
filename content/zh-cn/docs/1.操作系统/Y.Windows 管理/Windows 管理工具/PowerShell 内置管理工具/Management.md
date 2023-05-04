@@ -181,8 +181,8 @@ Start-Process 在本地计算机上启动一个或多个进程。默认情况下
 ### EXAMPLE
 
 ```powershell
-Start-Process "alist.exe" -ArgumentList "server --data D:\app_data\alist" -WindowStyle Hidden -RedirectStandardOutput "D:\Tools\Scripts\log\alist.log" -RedirectStandardError "D:\Tools\Scripts\log\alist-err.log"
-Start-Process "rclone.exe" -ArgumentList "mount alist:/ Z: --cache-dir D:\app_data\rclone --vfs-cache-mode full --header Referer:" -WindowStyle Hidden -RedirectStandardOutput "D:\Tools\Scripts\log\rclone.log" -RedirectStandardError "D:\Tools\Scripts\log\rclone-err.log"
+Start-Process "alist.exe" -ArgumentList "server --data D:\appdata\alist" -WindowStyle Hidden -RedirectStandardOutput "D:\Tools\Scripts\log\alist.log" -RedirectStandardError "D:\Tools\Scripts\log\alist-err.log"
+Start-Process "rclone.exe" -ArgumentList "mount alist:/ Z: --cache-dir D:\appdata\rclone --vfs-cache-mode full --header Referer:" -WindowStyle Hidden -RedirectStandardOutput "D:\Tools\Scripts\log\rclone.log" -RedirectStandardError "D:\Tools\Scripts\log\rclone-err.log"
 ```
 
 ## Get-Process
