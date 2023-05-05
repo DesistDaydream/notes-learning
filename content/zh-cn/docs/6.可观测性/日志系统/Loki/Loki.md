@@ -219,21 +219,29 @@ Query Frontend(查询前端) 是一个可选的组件。当 Loki 以微服务架
 
 # Loki 关联文件与配置
 
-/etc/loki/local-config.yaml # loki 程序运行时默认配置文件
-/StorageConfig/PATH/TO/index # loki 的 BoltDB 中存储索引数据保存路径，无默认值，根据配置文件中 `.strorage_confg.boltdb.directory` 字段指定。
-/StorageConfig/PATH/TO/chunks # loki 的 chunks(块) 存储数据保存路径，无默认值，根据配置文件中 `.strorage_confg.filesystem.directory` 字段指定。
+**/etc/loki/local-config.yaml** # loki 程序运行时默认配置文件
+**/StorageConfig/PATH/TO/index** # loki 的 BoltDB 中存储索引数据保存路径，无默认值，根据配置文件中 `.strorage_confg.boltdb.directory` 字段指定。
+**/StorageConfig/PATH/TO/chunks** # loki 的 chunks(块) 存储数据保存路径，无默认值，根据配置文件中 `.strorage_confg.filesystem.directory` 字段指定。
 
 # Loki 与其他日志系统相比
 
 官方文档：<https://grafana.com/docs/loki/latest/fundamentals/overview/comparisons/>
 Loki / Promtail / Grafana vs EFK
+
 EFK（Elasticsearch，Fluentd，Kibana）堆栈用于从各种来源提取，可视化和查询日志。
+
 Elasticsearch 中的数据作为非结构化 JSON 对象存储在磁盘上。每个对象的键和每个键的内容都被索引。然后可以使用 JSON 对象或定义为 Lucene 的查询语言来查询数据以定义查询（称为查询 DSL）。
+
 相比之下，Loki 在单二进制模式下可以将数据存储在磁盘上，但是在水平可伸缩模式下，数据存储在诸如 S3，GCS 或 Cassandra 之类的云存储系统中。日志以纯文本格式存储，并带有一组标签名称和值，其中仅对标签对进行索引。这种折衷使得它比全索引更便宜，并且允许开发人员从其应用程序积极地进行日志记录。使用 LogQL 查询 Loki 中的日志。但是，由于这种设计上的折衷，基于内容（即日志行中的文本）进行过滤的 LogQL 查询需要加载搜索窗口中与查询中定义的标签匹配的所有块。
+
 Fluentd 通常用于收集日志并将其转发到 Elasticsearch。Fluentd 被称为数据收集器，它可以从许多来源提取日志，对其进行处理，然后将其转发到一个或多个目标。
+
 相比之下，Promtail 的用例专门针对 Loki 量身定制。它的主要操作模式是发现存储在磁盘上的日志文件，并将与一组标签关联的日志文件转发给 Loki。Promtail 可以为与 Promtail 在同一节点上运行的 Kubernetes Pod 进行服务发现，充当容器边车或 Docker 日志记录驱动程序，从指定的文件夹中读取日志并尾随系统日志。
+
 Loki 用一组标签对表示日志的方式类似于 Prometheus 表示度量的方式。当与 Prometheus 一起部署在环境中时，由于使用相同的服务发现机制，Promtail 的日志通常具有与应用程序指标相同的标签。具有相同级别的日志和指标使用户可以在指标和日志之间无缝地进行上下文切换，从而有助于根本原因分析。
+
 Kibana 用于可视化和搜索 Elasticsearch 数据，并且在对该数据进行分析时非常强大。Kibana 提供了许多可视化工具来进行数据分析，例如位置图，用于异常检测的机器学习以及用于发现数据关系的图形。可以将警报配置为在发生意外情况时通知用户。
+
 相比之下，Grafana 专门针对来自 Prometheus 和 Loki 等来源的时间序列数据量身定制。可以设置仪表板以可视化指标（即将提供日志支持），并且可以使用浏览视图对数据进行临时查询。与 Kibana 一样，Grafana 支持根据您的指标进行警报。
 
 - kibana 启动速度比 grafana 慢了 10 倍

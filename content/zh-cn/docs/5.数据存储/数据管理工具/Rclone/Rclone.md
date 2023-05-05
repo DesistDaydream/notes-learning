@@ -1,5 +1,7 @@
 ---
-title: Rclone
+title: "Rclone"
+linkTitle: "Rclone"
+weight: 1
 ---
 
 # 概述
@@ -9,23 +11,32 @@ title: Rclone
 > - [GitHub 项目，rclone/rclone](https://github.com/rclone/rclone)
 > - [官网](https://rclone.org/)
 
-Rclone 是一个命令行工具，用来管理云存储上的文件。Rclone 也可以看作 rsync for cloud storage(用于云存储的 rsync)。Rclone 支持各种存储类型，包括 商业文件存储服务、标准传输协议(比如 WebDAV、S3 等)、等等。从[这里](https://rclone.org/#providers)我们可以查看到所有受支持的存储提供者
+**Rclone** 是一个命令行工具，用来管理云存储上的文件。Rclone 也可以看作 **rsync for cloud storage(用于云存储的 rsync)**。Rclone 支持各种存储类型，包括 商业文件存储服务、标准传输协议(比如 WebDAV、S3 等)、等等。从[这里](https://rclone.org/#providers)我们可以查看到所有受支持的存储提供者
 
-Rclone 将存储提供者抽象为 Remote，在我们配置时，经常会看到 Remote 这个词，创建、删除、等行为一个 Remote，就是在配置文件中配置 Remote
+Rclone 将存储提供者抽象为 **Remote**，在我们配置 Rclone 时，经常会看到 Remote 这个词，创建、删除 Remote 这种行为，就是在 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的配置文件中配置 Remote。这些 Remote 由指定类型的 **Backend** 提供支持。
 
-Rclone 还可以将这些 remote 作为磁盘挂载在 Windows、macOS、Linux 上，并通过 SFTP、HTTP、WebDAV、FTP、DLNA 对外提供存储能力。
+> 比如，我们可以这样描述，我创建了一个名为 alist 的 Remote，使用的是 WebDav 类型的 Backend。
 
-## Rclone 关联文件与配置
+Rclone 还可以将这些 Remote 作为磁盘挂载在 Windows、macOS、Linux 上，并通过 SFTP、HTTP、WebDAV、FTP、DLNA 对外提供存储能力。
 
-**~/.config/rclone/rclone.conf** # 保存各种 Remotes 信息的配置文件
+# Rclone 关联文件与配置
 
-## Syntax(语法)
+**rclone.conf** # 各种 Remotes 信息。
+
+- 如果在某些已定义的位置都没有找到 rclone.conf 文件，则会在以下位置创建一个新的配置文件：
+  - Windows 上
+    - 在 **$APPDATA/rclone/rclone.conf**
+  - 类 Unix 上
+    - 如果定义了 `$XDG_CONFIG_HOME`，则在 **$XDG_CONFIG_HOME/rclone/rclone.conf**
+    - 如果未定义 `$XDG_CONFIG_HOME`，则在 **~/.config/rclone/rclone.conf**
+
+# Syntax(语法)
 
 > 参考：
 > 
 > - [官方文档，命令](https://rclone.org/commands/)
 
-### 全局标志
+## 全局标志
 
 > 参考：
 > 
@@ -44,6 +55,11 @@ Rclone 还可以将这些 remote 作为磁盘挂载在 Windows、macOS、Linux �
 ## Syntax(语法)
 
 **rclone config \[FLAGS] \[COMMAND]**
+
+**COMMAND**
+
+- **file** # 显示正在使用的配置文件的j路径
+- **show** # 打印 (解密) 配置文件，或单个 Remote 的配置。
 
 # rclone copy
 
@@ -64,6 +80,12 @@ copyto 可以在上传单个文件到目标目录下时，改变文件的原名�
 ## Syntax(语法)
 
 **rclone mount REMOTE:PATH /PATH/TO/MountPoint \[FLAGS]**
+
+## EXAMPLE
+
+挂载 alist webdav 到本地磁盘
+
+- `rclone mount alist:/ Z: --cache-dir D:\appdata\rclone-cache --vfs-cache-mode full --header Referer:`
 
 # rclone sync
 

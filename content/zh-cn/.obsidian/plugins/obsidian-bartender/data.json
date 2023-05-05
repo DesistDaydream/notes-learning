@@ -1,6 +1,14 @@
 {
   "statusBarOrder": [],
-  "ribbonBarOrder": [],
+  "ribbonBarOrder": [
+    "1793428018954240118491700",
+    "11725045969715201425721155",
+    "1284452919541761577023889",
+    "455954587136819279060976",
+    "57596756979875842891520337",
+    "62086243344711681235738650",
+    "77979640974540801041624814"
+  ],
   "fileExplorerOrder": {
     "/": [
       "_index.html",
@@ -1631,6 +1639,18 @@
       "docs/1.操作系统/4.Terminal 与 Shell/Bash/控制结构/控制结构.md",
       "docs/1.操作系统/4.Terminal 与 Shell/Bash/控制结构/_index.md",
       "docs/1.操作系统/4.Terminal 与 Shell/Bash/控制结构/条件语句与运算.md"
+    ],
+    "docs/5.数据存储/数据管理工具": [
+      "docs/5.数据存储/数据管理工具/_index.md",
+      "docs/5.数据存储/数据管理工具/数据库管理工具.md",
+      "docs/5.数据存储/数据管理工具/Percona",
+      "docs/5.数据存储/数据管理工具/Rsync.md",
+      "docs/5.数据存储/数据管理工具/Rclone"
+    ],
+    "docs/5.数据存储/数据管理工具/Rclone": [
+      "docs/5.数据存储/数据管理工具/Rclone/_index_.md",
+      "docs/5.数据存储/数据管理工具/Rclone/Rclone.md",
+      "docs/5.数据存储/数据管理工具/Rclone/Rclone 配置.md"
     ]
   },
   "actionBarOrder": {},
