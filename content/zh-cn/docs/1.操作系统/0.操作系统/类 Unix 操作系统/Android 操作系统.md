@@ -7,6 +7,7 @@ title: Android 操作系统
 > 参考：
 
 旧版本微信、QQ 接收文件存储路径为存储根目录的 Tencent 目录下，而新版微信接收文件路径切换到了 `Android/data/com.tencent.mm/MicroMsg/Download` 目录下
+
 QQ 接收的文件也切换到了 `Android/data/com.tencent.mobileqq/Tencent/QQfile_recv` 目录下
 
 # 目录结构

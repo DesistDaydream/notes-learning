@@ -502,7 +502,7 @@
     "docs/10.云原生/1.3.OpenStack 虚拟机编排系统": [
       "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/_index.md",
       "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Opensatck 介绍",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/OpenStack部署与清理",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/OpenStack 部署与清理",
       "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具",
       "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/配置详解.md",
       "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Nova",
@@ -1651,6 +1651,21 @@
       "docs/5.数据存储/数据管理工具/Rclone/_index_.md",
       "docs/5.数据存储/数据管理工具/Rclone/Rclone.md",
       "docs/5.数据存储/数据管理工具/Rclone/Rclone 配置.md"
+    ],
+    "docs/1.操作系统/0.操作系统/类 Unix 操作系统": [
+      "docs/1.操作系统/0.操作系统/类 Unix 操作系统/_index.md",
+      "docs/1.操作系统/0.操作系统/类 Unix 操作系统/类 Unix 操作系统.md",
+      "docs/1.操作系统/0.操作系统/类 Unix 操作系统/Alpine.md",
+      "docs/1.操作系统/0.操作系统/类 Unix 操作系统/Debian 与 Ubuntu.md",
+      "docs/1.操作系统/0.操作系统/类 Unix 操作系统/EulerOS 与 OpenEuler.md",
+      "docs/1.操作系统/0.操作系统/类 Unix 操作系统/RedHat 与 CentOS.md",
+      "docs/1.操作系统/0.操作系统/类 Unix 操作系统/Android 操作系统.md",
+      "docs/1.操作系统/0.操作系统/类 Unix 操作系统/系统启动流程.md"
+    ],
+    "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/OpenStack 部署与清理": [
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/OpenStack 部署与清理/_index_.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/OpenStack 部署与清理/OpenStack 部署与清理.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/OpenStack 部署与清理/MicroStack.md"
     ]
   },
   "actionBarOrder": {},

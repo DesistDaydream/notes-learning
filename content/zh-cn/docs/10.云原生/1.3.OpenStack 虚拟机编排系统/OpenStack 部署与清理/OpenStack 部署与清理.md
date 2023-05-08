@@ -7,8 +7,6 @@ weight: 1
 
 > 参考：
 
-<https://thoughts.teambition.com/workspaces/603b04c9f83f2a00428f7321/folders/5fa948644cc5830001751d72>
-
 部署 OpenStack 有多种方式
 
 - 手动部署 OpenStack 中的每一个组件
@@ -21,11 +19,18 @@ weight: 1
     - 非常简单高效得部署一个用来 生产、开发、测试 的 OpenStack。支持 all-in-one 和 multinode 两种模式(即所有组件都在一个节点或分散在多个节点)
   - 其他
 
+**原始的 OpenStack 不管是什么部署方式，通常都需要至少两张网卡。**
+
+对于小规模部署，还可以使用其他 OpenStack 的发行版：
+
+- [MicroStack](docs/10.云原生/1.3.OpenStack%20虚拟机编排系统/OpenStack%20衍生品/MicroStack.md)
+
 ## 支持的操作系统
 
 Kolla Ansible 支持以下主机操作系统 (OS)：
 
 > 从 Ussuri 版本开始，OpenStack 不再支持 CentOS 7 作为主机操作系统。Train 版本同时支持 CentOS 7 和 8，并提供了迁移路径。有关迁移到 CentOS 8 的信息，请参阅 [Kolla Ansible Train 文档](https://docs.openstack.org/kolla-ansible/train/user/centos8.html)。
+> 
 > 不再支持 CentOS Linux 8（相对于 CentOS Stream 8）作为主机操作系统。Victoria 版本将来会同时支持 CentOS Linux 8 和 CentOS Stream 8，并提供迁移途径。
 
 - CentOS Stream 8

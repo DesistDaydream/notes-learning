@@ -5,6 +5,7 @@ title: Debian 与 Ubuntu
 # 概述
 
 > 参考：
+> 
 > - [Debian 官方 Manual(手册)](https://manpages.debian.org/)
 
 ```bash
@@ -30,4 +31,4 @@ fi
 
 # Ubuntu 发行版
 
-Ubuntu Server 安装完成后，通常需要关闭自动更新~~
+Ubuntu Server 安装完成后，通常需要关闭自动更新，详见 [Debian 包管理](docs/1.操作系统/6.Package%20管理/Debian%20包管理.md#包的自动更新)

@@ -80,8 +80,9 @@ DNS=8.8.8.8
 
 ## Bridge 配置示例
 
+/etc/netplan/br0.yaml
+
 ```yaml
-# cat /etc/netplan/br0.yaml
 network:
   version: 2
   ethernets:
@@ -107,4 +108,5 @@ network:
 ```
 
 应用配置
+
 **netplan apply**

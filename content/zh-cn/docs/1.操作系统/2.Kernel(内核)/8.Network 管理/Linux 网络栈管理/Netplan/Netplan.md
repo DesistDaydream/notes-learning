@@ -17,7 +17,7 @@ weight: 1
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/vv96im/1616165548496-6a738611-4db5-4f06-9cfe-ce0c82d9cf01.png)
 
-Netplan 从 /etc/netplan/\*.yaml 文件中读取配置信息。Netplan 启动初期，在 /run 目录中生成特定于后端的配置文件，以便让这些后端的网络守护程序根据这些配置文件管理网络设备。在 Netplan 中，这些特定的 **后端 **被称为 **Renderers(渲染器)**。
+Netplan 从 /etc/netplan/\*.yaml 文件中读取配置信息。Netplan 启动初期，在 /run 目录中生成特定于后端的配置文件，以便让这些后端的网络守护程序根据这些配置文件管理网络设备。在 Netplan 中，这些特定的 **后端**被称为 **Renderers(渲染器)**。
 
 Netplan 当前支持如下 Renderers(渲染器)：
 
