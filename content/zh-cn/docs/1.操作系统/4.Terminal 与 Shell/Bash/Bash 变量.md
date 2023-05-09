@@ -228,6 +228,8 @@ ramesh@dev-db /etc/mail>
 
 `export PS1="[\[\e[34;1m\]\u@\[\e[0m\]\[\e[32;1m\]\H\[\e[0m\] \[\e[31;1m\]\w\[\e[0m\]]\\$ "`
 
+> 这个配置可以直接修改 `~/.bashrc` 文件中的 `$PS1` 变量即可
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ic2gz0/1628044442278-702aab5e-f50e-40f9-924a-e00528d1dbff.png)
 
 ### PS2——再谈提示符

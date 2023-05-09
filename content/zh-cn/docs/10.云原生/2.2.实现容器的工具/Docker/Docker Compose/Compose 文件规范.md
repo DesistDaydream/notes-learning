@@ -74,6 +74,7 @@ cgroup_parent: m-executor-abcd
 ```
 
 ## command
+
 覆盖容器启动的默认命令。
 ```yaml
 command: ["bundle", "exec", "thin", "-p", "3000"]

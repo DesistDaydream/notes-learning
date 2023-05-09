@@ -1666,6 +1666,12 @@
       "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/OpenStack 部署与清理/_index_.md",
       "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/OpenStack 部署与清理/OpenStack 部署与清理.md",
       "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/OpenStack 部署与清理/MicroStack.md"
+    ],
+    "docs/10.云原生/2.2.实现容器的工具/Docker/Docker Compose": [
+      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker Compose/_index.md",
+      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker Compose/Docker Compose.md",
+      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker Compose/Compose 文件规范.md",
+      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker Compose/docker-compose 命令行工具.md"
     ]
   },
   "actionBarOrder": {},

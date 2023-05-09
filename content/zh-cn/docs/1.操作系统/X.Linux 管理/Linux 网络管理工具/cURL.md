@@ -37,13 +37,13 @@ Warning: curl to output it to your terminal anyway, or consider "--output
 Warning: <FILE>" to save to a file.
 ```
 
-- **-d,--data DATA>** # (HTTP MQTT)使用 POST 请求将指定数据作为请求体。
+- **-d,--data DATA** # (HTTP MQTT)使用 POST 请求将指定数据作为请求体。
   - 与 `Content-Type: application/x-www-form-urlencoded` 头信息配合，发送的 DATA 是 x-www-form-urlencoded 类型的请求体数据。
-- **--data-urlencode DATA>** # (HTTP)与 -d 选项类似，发起 POST 请求，但是它执行 URL 编码。(urlencode 就是 URL Encode)
+- **--data-urlencode DATA** # (HTTP)与 -d 选项类似，发起 POST 请求，但是它执行 URL 编码。(urlencode 就是 URL Encode)
 - **-f,--fail** # (HTTP)连接失败时不显示 HTTP 错误信息
 - **-g, --globoff** # 关闭 `URL Globbing Parser(URL全局解析器)`。设置此选项，则 URL 中可以包含 `{}` 和 `[]` 符号，这些符号将被当做字符。
   - 该选项常用来配合 IPv6 使用
-- **-H,--header STRING>**# (HTTP)使用指定的 STRING 作为请求 header 发送给服务器
+- **-H,--header \<STRING>**# (HTTP)使用指定的 STRING 作为请求 header 发送给服务器
   - STRING 可以使用 @FILE 格式来通过文件传递请求头信息。
 - **-I,--head**# (HTTP FTP FILE)只显示本次请求的 Header 信息。当用于 FTP 或 FILE 时，则只显示文件大小和最后修改时间。
 - **-k,--insecure** # (TLS)此选项表示此次 curl 请求允许"不安全"的 SSL 连接和传输。也就是说对于 https 请求，可以允许私有证书。如果使用 curl 进行 https 请求的时候，不使用该参数的话，服务端使用的私有证书或自建 CA 的证书，则有可能产生如下报错
@@ -51,20 +51,20 @@ Warning: <FILE>" to save to a file.
   - curl: (60) Peer's Certificate issuer is not recognized.
 - **-L, --location** # (HTTP)如果服务器报告所请求的页面已移动到其他位置（用 Location：标题和 3XX 响应代码表示），则此选项将使 curl 重做新位置的请求。
   - Note:如果下载文件出错之后，发现文件大小异常，则说明该文件被移动到其他链接下了，需要使用-L 与-O 配合使用才能正确下载
-- **--limit-rate NUM>** # 限制现在时的速率，NMU 为每秒下载速度，单位可以使 K、M、G
-- **-m, --max-time TIME>**# 指定 curl 不管访问成功还是失败，最大消耗时间为 TIME。TIME 时间后服务端未响应，则视为无法连接。
+- **--limit-rate NUM** # 限制现在时的速率，NMU 为每秒下载速度，单位可以使 K、M、G
+- **-m, --max-time TIME**# 指定 curl 不管访问成功还是失败，最大消耗时间为 TIME。TIME 时间后服务端未响应，则视为无法连接。
 - **-O, --remote-name**# 将输入写入的一个文件中，默认的文件名与请求的资源的名称一样。i.e.下载文件
   - curl -O <https://www.example.com/foo/bar.html> # 将服务器回应保存成文件，文件名为 bar.html。
   - 可以在一条命令中多次使用 -O 来下载多个文件
-- **-o, --output FileName>** # 与 -O 一样，下载文件，只不过可以自己制定下载到本地后的文件名。可以重定向到 /dev/null，以便隐藏输出。
+- **-o, --output FileName** # 与 -O 一样，下载文件，只不过可以自己制定下载到本地后的文件名。可以重定向到 /dev/null，以便隐藏输出。
 - **--resolve DN:PORT:IP,IP...** # 指定将 DN(域名)解析成哪个 IP。DN 可以使用通配符
 - **-s, --silent** # 静默模式。将不输出错误和进度信息,但是会正常显示运行结果。
 - **--trace**# 与-v 类似也可以用于调试，还会输出原始的二进制数据。
 - **-u, --user <USER:[PASSWORD]>** # 指定发起请求时，所使用的基本认证信息。若省略 PASSWORD，则会以交互方式，在执行命令之后输入。
 - **--unix-socket PATH>** # (HTTP)通过 Unix 套接字连接，而不使用网络。
 - **-v, --verbose** # 输出通信的整个过程，用于调试。
-- **-w, --write-out FORMAT>** # 指定在 curl 完成后，输出的信息，详细介绍可以参考[样例](/docs/1.操作系统/X.Linux%20管理/Linux%20网络管理工具/cURL.md)
-- **-X, --request METHOD>** # (HTTP)指定 HTTP 请求的方法。
+- **-w, --write-out FORMAT** # 指定在 curl 完成后，输出的信息，详细介绍可以参考[样例](/docs/1.操作系统/X.Linux%20管理/Linux%20网络管理工具/cURL.md)
+- **-X, --request METHOD** # (HTTP)指定 HTTP 请求的方法。
 
 ### -w, --write-out 选项详解
 
@@ -87,7 +87,7 @@ TCP建立时间:0.551090
 
 FORMAT 中可用字段：
 
-- time_namelookup # DNS 解析域名\[www.taobao.com]的时间
+- time_namelookup # DNS 解析域名的时间
 - time_commect # client 和 server 端建立 TCP 连接的时间
 - time_starttransfer # 从 client 发出请求；到 web 的 server 响应第一个字节的时间
 - time_total # client 发出请求；到 web 的 server 发送会所有的相应数据的时间
