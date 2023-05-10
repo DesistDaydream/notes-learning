@@ -16,7 +16,7 @@ title: Job(任务)控制
 - nohup COMMAND # 让命令触发的进程不随 shell 关闭而停止
 - COMMAND & # 让命令触发的进程直接在后台运行
 
-**jobs \[OPTIONS] **# 查看 jobs
+**jobs \[OPTIONS]** # 查看 jobs
 OPTIONS：
 
 - -l # 查看 jobs 的详细信息

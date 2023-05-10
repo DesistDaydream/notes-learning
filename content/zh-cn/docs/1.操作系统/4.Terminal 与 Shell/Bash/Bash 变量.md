@@ -10,8 +10,8 @@ title: Bash 变量
 
 Bash 可以从逻辑上分为如下几种变量
 
-- **局部变量** # 局部变量在脚本或命令中定义，仅在当前shell实例中有效，其他shell启动的程序不能访问局部变量。
-- **环境变量** # 继承自操作系统的环境变量。所有的程序，包括 Shell 启动的程序，都能访问环境变量，有些程序需要环境变量来保证其正常运行。必要的时候 Shell 脚本也可以定义环境变量。
+- **局部变量** # 不以被子进程继承的变量。通常在脚本或命令中定义，仅在当前shell实例中有效，其他shell启动的程序不能访问局部变量。
+- **环境变量** # 可以被子进程继承的变量。通常继承自操作系统的环境变量。所有的程序，包括 Shell 启动的程序，都能访问环境变量，有些程序需要环境变量来保证其正常运行。必要的时候 Shell 脚本也可以定义环境变量。
 
 局部变量与环境变量的区别主要在于是否可以被子进程继承
 
@@ -54,11 +54,17 @@ This is Enviroment Var
 
 可以看到，一个不存在的变量依然可以正常输出，只不过值为空。
 
+## 赋值语句
+
+**VarName=VALUE**
+
+如果未给出值，则为变量分配空字符串。
+
+赋值语句也可以作为 **alias**, **declare**, **typeset**, **export**, **readonly**, **local** 内置命令（声明命令）的参数出现
+
 ## 局部变量
 
-直接使用 `变量名=变量值` 的方式即可声明一个变量并为该变量赋值。
-
-VarName=VALUE
+直接使用[赋值语句](#赋值语句)的方式即可声明一个变量并为该变量赋值。
 
 **给变量赋予默认值**
 
@@ -66,59 +72,20 @@ VarName=VALUE
 
 ## 环境变量
 
-**export \[OPTIONS] \[VarName\[=VALUE] ...]** # 设置或显示环境变量(export 的效力仅作用于该次登陆操作)。
+使用 [export](/docs/1.操作系统/4.Terminal%20与%20Shell/Bash/Bash%20内置命令/变量管理工具.md#export) 或 [declare](/docs/1.操作系统/4.Terminal%20与%20Shell/Bash/Bash%20内置命令/变量管理工具.md#declare) 命令可以声明环境变量。
 
-用户创建的变量仅可用于当前 Shell，子 Shell 默认读取不到父 Shell 定义的变量。为了把变量传递给子 Shell，需要使用 export 命令。这样输出的变量，对于子 Shell 来说就是环境变量。
+## 注意事项
 
-OPTIONS
-
-- **-f** # 代表\[NAME]中为函数名称
-- **-n** # 删除指定的变量。变量实际上并未删除，只是不会输出到后续指令的执行环境中
-- **-p** # 列出所有的 shell 赋予程序的环境变量。
-
-EXAMPLE
-
-- export VarName="Value" #
-- export VarName #
-
-**\[set] VarName="Value"**
-
-EXAMLE
-
-- test="test.test" # 设定一个名为 test 的变量的值为 test.test
-
-**unset VarName**
-
-EXAMPLE
-
-- unset TestVar # 取消变量名为 TestVar 的值
-
-注意：如果想要给 `$PATH` 变量增加内容，则需要用命令 `PATH=$PATH:/NAME/NAME`，如果前面不加 `$PATH`，那么这个变量就等于被改写成 `/NAME/NAME`，这点在修改变量时候尤为重要，必须要在定义 PATH 的引入本身已经定义好的 `$PATH`
-
-**declare # 声明 shell 变量**
-
-declare 为 shell 命令，在第一种语法中可用来声明变量并设置变量的属性，在第二种语法中可用来显示 shell 函数。若不加上任何参数，则会显示全部的 shell 变量与函数(与执行 set 指令的效果相同)。
-
-语法格式：
-
-declare \[+/-]\[OPTIONS] VarName
-
-OPTIONS
-
-- **-** # 给变量添加类型属性
-- **+** # 取消变量的类型属性
-- **-a** # 将变量声明为数组型
-- **-i** # 将变量声明为整型
-- **-x** # 将变量声明为环境变量
-- **-r** # 将变量声明为只读变量
-- **-p** # 查看变量的被声明的类型
-- **-f** #
+注意：如果想要给 `$PATH` 变量增加内容，则需要用命令 `PATH=$PATH:/NAM E/NAME`，如果前面不加 `$PATH`，那么这个变量就等于被改写成 `/NAME/NAME`，这点在修改变量时候尤为重要，必须要在定义 PATH 的引入本身已经定义好的 `$PATH`
 
 # 引用变量
 
-Linux 中，普通变量与环境变量的引用方式相同。
+Linux 中，普通变量与环境变量的引用方式相同。引用变量有两种写法
 
-引用变量有两种写法 `$VAR_NAME` 或者 `${VAR_NAME}` ，推荐使用第二种方法，两种方法的差别如下
+- `$VAR_NAME` 
+- `${VAR_NAME}` 
+
+推荐使用第二种方法，两种方法的差别如下：
 
 ```bash
 ~]# name='hello DesistDaydream!'; name="$nameceshi"; echo $name

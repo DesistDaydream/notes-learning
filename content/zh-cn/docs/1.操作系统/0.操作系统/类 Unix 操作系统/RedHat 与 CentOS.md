@@ -5,6 +5,7 @@ title: RedHat 与 CentOS
 # 概述
 
 > 参考：
+> 
 > - [RedHat 官方文档](https://access.redhat.com/products/red-hat-enterprise-linux/#knowledge)(在这里点击 Product Documentation)
 > - [RedHat7 生产环境文档](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7)
 > - [RedHat8 生产环境文档](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8)
