@@ -7,18 +7,31 @@ weight: 1
 # 概述
 
 > 参考：
+> 
+> - https://ithelp.ithome.com.tw/articles/10269737
+> - https://ithelp.ithome.com.tw/articles/10270784
+> - https://ithelp.ithome.com.tw/articles/10271345
 
-部署 OpenStack 有多种方式
+## 部署方式
 
-- 手动部署 OpenStack 中的每一个组件
-  - <https://docs.openstack.org/xena/install/>
-- 使用自动化部署工具，部署工具有多种类型可供选择
-  - <https://docs.openstack.org/xena/deploy/>
-  - [OpenStack Charms](https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/) # 使用 MAAS 和 Juju 部署。
-    - 一种完善的部署方式，基于 Ubuntu 开发 MAAS。
-  - [OpenStack Kolla](https://docs.openstack.org/project-deploy-guide/kolla-ansible/latest/) # 在容器中使用 Ansible 部署
-    - 非常简单高效得部署一个用来 生产、开发、测试 的 OpenStack。支持 all-in-one 和 multinode 两种模式(即所有组件都在一个节点或分散在多个节点)
-  - 其他
+### 手动部署 OpenStack 中的每一个组件
+
+https://docs.openstack.org/xena/install/
+
+### 使用自动化部署工具，部署工具有多种类型可供选择
+
+由大型公司维护的部署工具
+
+- **TripleO** # 由 RedHat 公司维护。是 RedHat OpenStack Platform(RHOSP) 的上游版本。
+- **OpenStack Charms** # 由 Canonical 公司维护(Ubuntu 发行版公司)。使用 MAAS 和 Juju 部署。
+
+由社区驱动的部署工具
+
+- **OpenStack Kolla** # 通过 Ansible 部署，并将大部分组件以容器的方式启动
+  - 非常简单高效得部署一个用来 生产、开发、测试 的 OpenStack。支持 all-in-one 和 multinode 两种模式(即所有组件都在一个节点或分散在多个节点)
+- **OpenStack Ansible** # 通过 Ansible 部署。
+
+其他
 
 **原始的 OpenStack 不管是什么部署方式，通常都需要至少两张网卡。**
 
@@ -51,13 +64,34 @@ Kolla Ansible 支持以下主机操作系统 (OS)：
 
 有关哪些发行版支持哪些图像的详细信息，请参阅 [Kolla 支持矩阵](https://docs.openstack.org/kolla/latest/support_matrix)。
 
+# 逐一安装每个组件
+
+想要一个正常可用的 OpenSatck 集群，我们至少需要按照顺序安装下列服务：
+
+-   Identity service – [keystone installation for Yoga](https://docs.openstack.org/keystone/yoga/install/)
+-   Image service – [glance installation for Yoga](https://docs.openstack.org/glance/yoga/install/)
+-   Placement service – [placement installation for Yoga](https://docs.openstack.org/placement/yoga/install/)
+-   Compute service – [nova installation for Yoga](https://docs.openstack.org/nova/yoga/install/)
+-   Networking service – [neutron installation for Yoga](https://docs.openstack.org/neutron/yoga/install/)
+
+还可以安装一些补充服务，比如 Web 页面等：
+
+-   Dashboard – [horizon installation for Yoga](https://docs.openstack.org/horizon/yoga/install/)
+-   Block Storage service – [cinder installation for Yoga](https://docs.openstack.org/cinder/yoga/install/)
+
 # Kolla-ansible
 
-注意：
+> 参考：
+> 
+> - [GitHub 项目，openstack/kolla](https://github.com/openstack/kolla)
 
-- 宿主机至少需要两个可用的网卡，在 `/etc/kolla/globals.yml` 文件中，被描述为如下两个关键字
+使用 Kolla-ansible 部署 OpenStack 的服务器必须满足如下要求：
+
+- **至少需要两个可用的网卡**，在 `/etc/kolla/globals.yml` 文件中，被描述为如下两个关键字
   - **network_interface** # 管理网络、API 网络的网卡
-  - **neutron_external_interface** # Neutron 外部接口就是指内网环境。该网络设备将会桥接到 `ovs-switch` 这个桥设备上。虚拟机是通过这块网卡访问外网。
+  - **neutron_external_interface** # Neutron 外部接口就是虚拟机对外访问的出口。该网络设备将会桥接到 `ovs-switch` 这个桥设备上。虚拟机是通过这块网卡访问外网。
+- **至少 8G 内存**
+- **至少 40G 硬盘**
 
 ## 安装依赖并使用虚拟环境
 
@@ -66,7 +100,7 @@ sudo apt update
 sudo apt install python3-dev libffi-dev gcc libssl-dev
 ```
 
-创建一个虚拟环境以安装部署工具
+创建一个 Python 虚拟环境以安装部署工具
 
 ```bash
 export KOLLA_DIR=/root/kolla
@@ -141,7 +175,7 @@ kolla-genpwd
 kolla_base_distro: "ubuntu"
 kolla_install_type: "source"
 network_interface: "eno3"
-# neutron 外部接口就是指内网环境。该网络设备将会桥街道 ovs-switch 这个桥设备上。
+# Neutron 外部接口就是虚拟机对外访问的出口。该网络设备将会桥街道 ovs-switch 这个桥设备上。
 neutron_external_interface: "eno4"
 kolla_internal_vip_address: "192.168.88.236"
 enable_cinder: "yes"
