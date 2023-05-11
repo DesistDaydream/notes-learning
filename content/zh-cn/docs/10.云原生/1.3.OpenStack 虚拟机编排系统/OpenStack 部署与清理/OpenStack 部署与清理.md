@@ -41,8 +41,6 @@ https://docs.openstack.org/xena/install/
 
 ## 支持的操作系统
 
-Kolla Ansible 支持以下主机操作系统 (OS)：
-
 > 从 Ussuri 版本开始，OpenStack 不再支持 CentOS 7 作为主机操作系统。Train 版本同时支持 CentOS 7 和 8，并提供了迁移路径。有关迁移到 CentOS 8 的信息，请参阅 [Kolla Ansible Train 文档](https://docs.openstack.org/kolla-ansible/train/user/centos8.html)。
 > 
 > 不再支持 CentOS Linux 8（相对于 CentOS Stream 8）作为主机操作系统。Victoria 版本将来会同时支持 CentOS Linux 8 和 CentOS Stream 8，并提供迁移途径。

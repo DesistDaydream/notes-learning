@@ -55,11 +55,12 @@ IPv4 地址的这 32 bit 可以分为两部分
 ## IPv4 地址分类
 
 - **单播地址**
-  | 类 | 开头的 bit | 网络位 bit 数 | 主机位 bit 数 | 子网数量 | 每个子网的地址数 | 总地址数 | 起始地址 | 结束地址 | 默认子网掩码 | [CIDR](https://en.wikipedia.org/wiki/CIDR_notation) |
-  | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-  | Class A | 0 | 8 | 24 | 128 (27) | 16,777,216 (224) | 2,147,483,648 (231) | 0.0.0.0 | 127.255.255.255[\[a\]](https://en.wikipedia.org/wiki/Classful_network#cite_note-5) | 255.0.0.0 | /8 |
-  | Class B | 10 | 16 | 16 | 16,384 (214) | 65,536 (216) | 1,073,741,824 (230) | 128.0.0.0 | 191.255.255.255 | 255.255.0.0 | /16 |
-  | Class C | 110 | 24 | 8 | 2,097,152 (221) | 256 (28) | 536,870,912 (229) | 192.0.0.0 | 223.255.255.255 | 255.255.255.0 | /24 |
+
+| 类 | 开头的 bit | 网络位 bit 数 | 主机位 bit 数 | 子网数量 | 每个子网的地址数 | 总地址数 | 起始地址 | 结束地址 | 默认子网掩码 | [CIDR](https://en.wikipedia.org/wiki/CIDR_notation) |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Class A | 0 | 8 | 24 | 128 (27) | 16,777,216 (224) | 2,147,483,648 (231) | 0.0.0.0 | 127.255.255.255[\[a\]](https://en.wikipedia.org/wiki/Classful_network#cite_note-5) | 255.0.0.0 | /8 |
+| Class B | 10 | 16 | 16 | 16,384 (214) | 65,536 (216) | 1,073,741,824 (230) | 128.0.0.0 | 191.255.255.255 | 255.255.0.0 | /16 |
+| Class C | 110 | 24 | 8 | 2,097,152 (221) | 256 (28) | 536,870,912 (229) | 192.0.0.0 | 223.255.255.255 | 255.255.255.0 | /24 |
 
 - **组播地址**
 
@@ -76,19 +77,23 @@ IPv4 地址的这 32 bit 可以分为两部分
   - **Link Local(链路本地地址)** # 169.254.0.0 ~ 169.254.255.255。用于[链路本地地址](https://en.wikipedia.org/wiki/Link-local_address)[\[9\]](https://en.wikipedia.org/wiki/IPv4#cite_note-rfc3927-9)两台主机之间的单个链路上时，否则指定 IP 地址，如将有通常被从检索到的[DHCP](https://en.wikipedia.org/wiki/DHCP)服务器。
 
 - **Private Network(私人网络地址)**
-  | 名称 | [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) | 地址范围 | 地址数量 | 描述 |
-  | --- | --- | --- | --- | --- |
-  | 24-bit block | 10.0.0.0/8 | 10.0.0.0 – 10.255.255.255 | 16777216 | 一个完整的 A 类地址 Single Class A. |
-  | 20-bit block | 172.16.0.0/12 | 172.16.0.0 – 172.31.255.255 | 1048576 | Contiguous range of 16 Class B blocks. |
-  | 16-bit block | 192.168.0.0/16 | 192.168.0.0 – 192.168.255.255 | 65536 | Contiguous range of 256 Class C blocks. |
+
+| 名称 | [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) | 地址范围 | 地址数量 | 描述 |
+| --- | --- | --- | --- | --- |
+| 24-bit block | 10.0.0.0/8 | 10.0.0.0 – 10.255.255.255 | 16777216 | 一个完整的 A 类地址 Single Class A. |
+| 20-bit block | 172.16.0.0/12 | 172.16.0.0 – 172.31.255.255 | 1048576 | Contiguous range of 16 Class B blocks. |
+| 16-bit block | 192.168.0.0/16 | 192.168.0.0 – 192.168.255.255 | 65536 | Contiguous range of 256 Class C blocks. |
 
 # IPv4 Datagram 结构
 
 IPv4 数据报被封装在链路层的 Frame 中
 
 IPv4 数据报首部共 14 个字段，其中 13 个是必须的，第 14 个是可选的。前 13 个字段长度固定为 20 Bytes，即 160 bit；第 14 个字段长度在 0 ~ 40 Bytes 之间。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/nahgxm/1633533991076-2a9cb606-463a-4dd4-89c8-c3aae590c113.jpeg)
+
 对照 WireShark 中展示的内容看，排除 `[]` 中的内容，每一行就是首部中的一个字段
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/nahgxm/1633532862295-9b420f37-7a97-43b9-85c8-1e973ea1aa59.png)
 
 - **Version(版本)** # IP 协议的版本号。IPv4 其版本号为 4，因此在这个字段上的值为“6”。
@@ -142,18 +147,25 @@ IPv4 和 IPv6 地址通常以分层方式分配。**ISP(互联网服务提供商
 [对 IP 地址的主要作用是根据全球政策](http://www.icann.org/en/general/global-addressing-policies.html)所述的需求将未分配地址池分配给 RIR，并记录 [IETF](http://www.ietf.org/) 所做的协议分配。当 RIR 需要在其区域内分配或分配更多 IP 地址时，我们会向 RIR 进行额外分配。我们不会直接向 ISP 或最终用户进行分配，除非在特定情况下，例如分配多播地址或其他协议特定需求。
 
 APNIC 是全球 5 个地区级的 Internet 注册机构（RIR）之一，负责亚太地区的以下事务：
-1、分配 IPv4 和 IPv6 地址空间，AS 号；
-2、为亚太地区维护 Whois 数据库；
-3、反向 DNS 指派；
-4、在全球范围内作为亚太地区的 Internet 社区的代表。
+
+1. 分配 IPv4 和 IPv6 地址空间，AS 号；
+2. 为亚太地区维护 Whois 数据库；
+3. 反向 DNS 指派；
+4. 在全球范围内作为亚太地区的 Internet 社区的代表。
+
 所以，中国大陆境内的地址都会登记在 APNIC 的地址库内。地址库获取方式：<http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest>
 例如在 Linux 系统中，使用 wget 命令可以拉取文件。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/nahgxm/1646295854669-69e90c43-6765-415a-be08-ba15cdf1f6c3.png)
+
 文件内容条目参考如下：
+
 apnic|JP|asn|173|1|20020801|allocated
 apnic|ID|ipv4|43.240.228.0|1024|20140818|allocated
 apnic|HK|ipv6|2001:df5:b800::|48|20140514|assigned
+
 条目格式如下：
+
 注册机构|国家代码|类型|起始位|长度|分配日期|状态
 
 - **注册机构**：亚太地区一般为 apnic
@@ -165,28 +177,40 @@ apnic|HK|ipv6|2001:df5:b800::|48|20140514|assigned
 - **状态**：allocated 和 assigned，都是已分配
 
 所以，需要将 delegated-apnic-latest 文件中所有国家为 CN、且类型为 ipv4 的条目导出，并转换为静态路由格式。
+
 例如使用命令将符合条件的条目导入到 china 文件中。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/nahgxm/1646295854726-90496001-56ba-4bbb-9e7c-48568a601999.png)
+
 可以查看文件行数，代表有多少条明细条目。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/nahgxm/1646295854636-89ef24bb-cb5c-4832-a3af-bcc97cffc042.png)
+
 然后根据起始位和长度，转换出静态路由所需的目的地址和掩码即可。在 excel 中通过对长度进行函数运算，可以得到掩码长度，如：=32-LOG(E2,2)，代入 2048 的话，可得到掩码长度为 21。操作后得到类似下图的表格：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/nahgxm/1646295854710-c698ce59-e5fb-4e59-97cc-77a1a81bfc81.png)
+
 先将表格内容复制到记事本中，再从记事本粘贴到 Word 中，即可得到带有内容字段、tab 制表符和段落标记的内容。如下：
-1.0.1.0 CN 24 apnic
-1.0.2.0 CN 23 apnic
-1.0.8.0 CN 21 apnic
+
+- 1.0.1.0 CN 24 apnic
+- 1.0.2.0 CN 23 apnic
+- 1.0.8.0 CN 21 apnic
+
 这就简单了，使用 Word 的替换功能，对对应字段进行替换就可以得到形如下文的配置：
-int loop 1
-ip add 1.12.0.1 14
-int loop 2
-ip add 1.24.0.1 13
-int loop 3
-ip add 1.48.0.1 15
-int loop 4
-ip add 1.56.0.1 13
-int loop 5
-ip add 1.68.0.1 14
+
+- int loop 1
+- ip add 1.12.0.1 14
+- int loop 2
+- ip add 1.24.0.1 13
+- int loop 3
+- ip add 1.48.0.1 15
+- int loop 4
+- ip add 1.56.0.1 13
+- int loop 5
+- ip add 1.68.0.1 14
+
 再把配置分别刷入到 11 台设备当中，配置好 OSPF 和 BGP 就可以了。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/nahgxm/1646295854663-30f55fe1-a908-42e8-8b91-e95b33552417.png)
 
 ## IP 应用场景
