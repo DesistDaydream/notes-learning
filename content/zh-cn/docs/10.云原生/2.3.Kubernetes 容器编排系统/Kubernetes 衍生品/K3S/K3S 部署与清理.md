@@ -56,6 +56,7 @@ bash k3s-install.sh
 # 离线部署高可用集群
  
 安装脚将会执行如下逻辑：
+
 - 生成用于 Systemd 的 Unit 文件
 - TODO: 待完善
 
@@ -83,25 +84,54 @@ mkdir -p /var/lib/rancher/k3s/agent/images/
 cp ./k3s-airgap-images-${ARCH}.tar /var/lib/rancher/k3s/agent/images/
 ```
 
-## 配置第一个 master 节点
+## mater 节点
+
+### 为所有 mater 节点生成配置文件
+
+```bash
+mkdir -p /etc/rancher/k3s
+
+tee /etc/rancher/k3s/config.yaml > /dev/null <<EOF
+service-node-port-range: "30000-40000"
+disable-cloud-controller: true
+disable:
+  - servicelb
+  - traefik
+kube-controller-manager-arg:
+  - bind-address=0.0.0.0
+kube-scheduler-arg:
+  - bind-address=0.0.0.0
+kube-proxy-arg:
+  - proxy-mode=ipvs
+  - masquerade-all=true
+  - metrics-bind-address=0.0.0.0
+etcd-expose-metrics: true
+EOF
+```
+
+### 初始化第一个 master 节点
 
 ```bash
 INSTALL_K3S_SKIP_DOWNLOAD=true \
 K3S_TOKEN=SECRET \
-INSTALL_K3S_EXEC='server --cluster-init --service-node-port-range 10000-60000' \
+INSTALL_K3S_EXEC='server --cluster-init' \
 ./install-zh.sh
 ```
 
-## 配置其他 master 节点
+### 加入其他 master 节点
 
 ```bash
 INSTALL_K3S_SKIP_DOWNLOAD=true \
 K3S_TOKEN=SECRET \
-INSTALL_K3S_EXEC='server --server https://172.38.180.216:6443 --service-node-port-range 10000-60000' \
+INSTALL_K3S_EXEC='server --server https://172.38.180.216:6443' \
 ./install-zh.sh
 ```
 
-## 配置工作节点
+## work 节点
+
+### 为所有 work 节点生成配置文件
+
+### 加入 work 节点
 
 ```bash
 INSTALL_K3S_SKIP_DOWNLOAD=true \
@@ -116,6 +146,17 @@ INSTALL_K3S_EXEC='agent --server https://172.38.180.216:6443 ' \
 for cmd in kubectl crictl ctr; do
     ln -sf k3s /usr/local/bin/${cmd}
 done
+```
+
+## 配置 nerdctl
+
+重点是指定 containerd 信息
+
+```bash
+tee /etc/nerdctl/nerdctl.toml > /dev/null <<EOF
+address        = "unix:///run/k3s/containerd/containerd.sock"
+namespace      = "k8s.io"
+EOF
 ```
 
 # Systemd 管理的 Unit 文件
