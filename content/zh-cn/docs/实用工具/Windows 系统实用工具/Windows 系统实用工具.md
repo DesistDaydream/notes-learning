@@ -27,15 +27,22 @@ Geek Uninstaller #
 
 ## 磁盘空间管理工具
 
-SpaceSniffer
+**SpaceSniffer**
 
 官网：<http://www.uderzo.it/main_products/space_sniffer/>
 
-Dism++
+**Dism++**
 
 <https://github.com/Chuyu-Team/Dism-Multi-language>
 
 还可以控制系统软件、系统服务，不过好像很久不更新了，最后一次 release 还是 2021 年。。。( ╯□╰ )
+
+## 内存管理
+
+**MemReduct**
+
+- https://github.com/henrypp/memreduct
+- 轻量级实时内存管理应用程序，用于监视和清理计算机上的系统内存。
 
 ## Everything
 
