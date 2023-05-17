@@ -1167,39 +1167,39 @@
       "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP/常见 TCP 端口号.md",
       "docs/4.数据通信/通信协议/3_4.TCP_IP/TCP/其他.md"
     ],
-    "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)": [
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/_index.md",
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Distributed Storage(分布式存储).md",
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS",
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph",
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/MinIO"
+    "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储": [
+      "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/_index.md",
+      "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/分布式存储.md",
+      "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/GlusterFS",
+      "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/Ceph",
+      "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/MinIO"
     ],
-    "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph": [
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/_index.md",
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/Ceph.md",
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/Ceph 部署.md",
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/Ceph 命令行工具.md",
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/API.md",
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/Ceph/Ceph 故障排查笔记.md"
+    "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/Ceph": [
+      "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/Ceph/_index.md",
+      "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/Ceph/Ceph.md",
+      "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/Ceph/Ceph 部署.md",
+      "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/Ceph/Ceph 命令行工具.md",
+      "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/Ceph/API.md",
+      "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/Ceph/Ceph 故障排查笔记.md"
     ],
-    "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS": [
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/_index.md",
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/GlusterFS.md",
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/GlusterFS 的部署与使用.md",
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/gluster命令.md",
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/GlusterFS/故障恢复测试.md"
+    "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/GlusterFS": [
+      "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/GlusterFS/_index.md",
+      "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/GlusterFS/GlusterFS.md",
+      "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/GlusterFS/GlusterFS 的部署与使用.md",
+      "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/GlusterFS/gluster命令.md",
+      "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/GlusterFS/故障恢复测试.md"
     ],
-    "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/MinIO": [
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/MinIO/_index.md",
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/MinIO/MinIO.md",
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Distributed Storage(分布式存储)/MinIO/mc 工具.md"
+    "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/MinIO": [
+      "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/MinIO/_index.md",
+      "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/MinIO/MinIO.md",
+      "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/MinIO/mc 工具.md"
     ],
-    "docs/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block": [
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/_index.md",
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Server Message Block.md",
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Samba.md",
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Samba 部署.md",
-      "docs/5.数据存储/1.存储/存储的基础设施架构/Network Attached Storage(网络附加存储)/Server Message Block/Samba 配置详解.md"
+    "docs/5.数据存储/1.存储/存储的基础设施架构/网络附加存储/Server Message Block": [
+      "docs/5.数据存储/1.存储/存储的基础设施架构/网络附加存储/Server Message Block/_index.md",
+      "docs/5.数据存储/1.存储/存储的基础设施架构/网络附加存储/Server Message Block/Server Message Block.md",
+      "docs/5.数据存储/1.存储/存储的基础设施架构/网络附加存储/Server Message Block/Samba.md",
+      "docs/5.数据存储/1.存储/存储的基础设施架构/网络附加存储/Server Message Block/Samba 部署.md",
+      "docs/5.数据存储/1.存储/存储的基础设施架构/网络附加存储/Server Message Block/Samba 配置详解.md"
     ],
     "docs/5.数据存储/2.数据库/关系数据/MySQL": [
       "docs/5.数据存储/2.数据库/关系数据/MySQL/_index.md",
