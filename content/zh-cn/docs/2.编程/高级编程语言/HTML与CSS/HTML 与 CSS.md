@@ -36,12 +36,15 @@ HTML **Element(元素)** 通过 **Tag(标签)** 将文本从文档中引出，�
 > - [MDN Web 开发技术，HTML-参考-HTML 元素](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element)
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/uw7agz/1666090441255-222a4602-e9ed-43f6-979c-944836075c4f.png)
+
 HTML 的关键字又称为 **Tag(标签)**，有时候又称为 **Element(元素)**。
 
-- Tag 是由尖括号 `<KeyWord>` 包围的关键字，比如 `<html>`；Tag 总是成对出现，比如 `<html></html>`，称为 **OpeningTag**(**起始标签) **和 **ClosingTag**(**结束标签)**(有时候也成为开放标签和闭合标签)
+- Tag 是由尖括号 `<KeyWord>` 包围的关键字，比如 `<html>`；Tag 总是成对出现，比如 `<html></html>`，称为 **OpeningTag**(**起始标签)** 和 **ClosingTag**(**结束标签)**(有时候也成为开放标签和闭合标签)
 
-起始标签 与 结束标签 中包含的就是 **Content(内容)，**也可以称为元素的内容。**起始标签**、**结束标签**以及**内容** 组合在一起，称之为 **Element(元素)。**Element 严格来讲不能称为关键字，但是有时候人们会经常把两个词混用。
+起始标签 与 结束标签 中包含的就是 **Content(内容)**，也可以称为元素的内容。**起始标签**、**结束标签**以及**内容** 组合在一起，称之为 **Element(元素)**。Element 严格来讲不能称为关键字，但是有时候人们会经常把两个词混用。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/uw7agz/1666090500626-571d651a-a81a-404d-963c-2a414eb6466b.png)
+
 可以在**起始标签**中定义 **Attribute(属性)** 以改变元素的表现形式和行为
 
 - 在属性与元素名称（或上一个属性，如果有超过一个属性的话）之间的空格符。

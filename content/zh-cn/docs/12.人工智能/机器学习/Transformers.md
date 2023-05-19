@@ -41,9 +41,46 @@ pip install transformers
 
 # 关联文件与配置
 
-**~/.cache/huggingface/** # HuggingFace 缓存路径，保存 模型、调用模型的代码 等。可以通过 `${HF_HOME}` 更改路径位置；也可以通过 `${XDG_CACHE_HOME}` 更改路径位置，但是需要注意，`${XDG_CACHE_HOME}` 针对的 `~/.cache/` 这部分。
+**~/.cache/huggingface/** # HuggingFace 缓存路径，保存模型、调用模型的代码 等。可以通过 `${HF_HOME}` 更改路径位置；也可以通过 `${XDG_CACHE_HOME}` 更改路径位置，但是需要注意，`${XDG_CACHE_HOME}` 针对的 `~/.cache/` 这部分。
 
 - **./hub/** # 预训练模型在本地缓存的保存路径。可以通过 `${HUGGINGFACE_HUB_CACHE}` 环境变量变更路径位置。
 - **./modules/** # 
 
 > 为了防止下载很多模型撑爆 C 盘，个人习惯设置 `${HF_HOME}` 变量为 `D:\Projects\.huggingface`
+
+# 快速体验
+
+只需要几行代码，就可以在给定任务中下载和使用任何预训练模型，这里官方使用了一个情绪分析模型，用以分析指定文本的情绪是正向的还是负向的：
+
+```python
+>>> from transformers import pipeline
+
+# 下载并缓存 pipline 使用的预训练模型
+>>> classifier = pipeline('sentiment-analysis')
+# 评估给定的文本
+>>> classifier('We are very happy to introduce pipeline to the transformers repository.')
+[{'label': 'POSITIVE', 'score': 0.9996980428695679}]
+```
+
+transformers 库会自动从 Hugging Face 中下载名为 sentiment-analysis 到默认的缓存路径中。
+
+## 高级体验
+
+有时我们使用的模型可能会产生某些问题，此时我们可以手动下载模型，比如我们用清华开源的 chatglm-6b 模型举例，只需要先在本地目录下载模型 `git clone https://huggingface.co/THUDM/chatglm-6b-int`，然后运行如下代码即可使用 CPU 体验。其中注意要安装 chatglm-6b 项目中的 Python 依赖。
+
+```python
+from transformers import AutoTokenizer, AutoModel
+tokenizer = AutoTokenizer.from_pretrained("D:\Projects\DesistDaydream\python-transformers\chatglm-6b-int4", trust_remote_code=True)
+model = AutoModel.from_pretrained("D:\Projects\DesistDaydream\python-transformers\chatglm-6b-int4",trust_remote_code=True).float()
+model = model.eval()
+response, history = model.chat(tokenizer, "你好", history=[])
+print(response)
+```
+
+代码运行后，获得回复：
+
+```bash
+~]# python demo.py
+你好👋！我是人工智能助手 ChatGLM-6B，很高兴见到你，欢迎问我任何问题。
+```
+
