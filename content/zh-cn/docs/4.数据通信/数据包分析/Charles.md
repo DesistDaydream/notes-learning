@@ -18,6 +18,7 @@ title: Charles
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/arzv8v/1671955755610-395fe14a-f08d-42a7-877c-7296c96e473f.png)
 
 在手机、pad 上配置 WLAN 代理，访问 `chls.pro/ssl` 下载证书。
+
 打开手机设置，搜索：加密与凭据 => 安装证书 => 证书
 
 # 安卓安装 Charles 证书无效
@@ -34,9 +35,6 @@ title: Charles
 HttpCanary根证书安装(MIUI13 Android 12可用) https://czyx007.cn/archives/httpcanary
 
 - 还是没法抓集换社的包，微信小程序的包也抓不到
-- 
-
-
 
 # 微信小程序抓包
 

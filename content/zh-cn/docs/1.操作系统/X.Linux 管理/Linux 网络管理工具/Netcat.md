@@ -47,31 +47,35 @@ Ncat 与 Nmap 集成，可在 Nmap 下载页面提供的标准 Nmap 下载包（
 ## Ubuntu
 
 Ubuntu 使用 OpenBSD 的 Netcat 作为 Netcat 的替代品
+
 安装 netcat-openbsd 包即可，安装完成后，nc 命令本质上是 nc.openbsd 命令的软链接
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/nnt66u/1626359398275-d7639c00-614d-4ff7-8b10-3e49b50eb576.png)
 
 ## CentOS
 
 CentOS 使用 Nmap 的 Ncat 作为 Netcat 的替代品
+
 安装 nmap-ncat 包即可，安装完成后，nc 命令本质上是 ncat 命令的软链接
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/nnt66u/1626359200164-165e5748-0a31-433b-bd62-0dcd3c157cf3.png)
 
 # Syntax(语法)
 
-**nc \[ <OPTIONS> ...] \[ <hostname> ] \[ <port> ]**
+**nc \[\<OPTIONS> ...] \[ \<hostname> ] \[ \<port> ]**
 
 ## OPTIONS
 
-- **-k, --keep-open **# 通常与 -l 选项配合使用。在监听模式下接受多个连接。若不使用 -k 选项，则第一个连接断开后，监听也就结束了。
-- **-l, --listen <PORT>** # 让程序监听指定的端口
-- **-u, --udp **# 使用 UDP，而不是默认的 TCP
+- **-k, --keep-open** # 通常与 -l 选项配合使用。在监听模式下接受多个连接。若不使用 -k 选项，则第一个连接断开后，监听也就结束了。
+- **-l, --listen \<PORT>** # 让程序监听指定的端口
+- **-u, --udp** # 使用 UDP，而不是默认的 TCP
 
 Ncat 与 OpenBSD-nc 这两个程序的选项有不同的地方
 
 ### Ncat OPTIONS
 
 - **--proxy <ADDRESS:[PORT]>** # 连接目的地时所使用代理 IP 和 PORT。
-- **--proxy-type <STRING>** # 连接目的地时所使用的代理类型(也就是代理协议)。可用的值有：
+- **--proxy-type \<STRING>** # 连接目的地时所使用的代理类型(也就是代理协议)。可用的值有：
   - socks4 # 表示 SOCKS v.4
   - socks5 # 表示 SOCKS v.5。默认值
   - http # 表示 HTTP
@@ -79,7 +83,7 @@ Ncat 与 OpenBSD-nc 这两个程序的选项有不同的地方
 ### OpenBSD-nc OPTIONS
 
 - **-x \<ADDRESS\[:PORT]>** # 连接目的地时所使用代理 IP 和 PORT。代理不能与 -LsuU 这些选项一起使用。
-- **-X <PROTOCOL>** # 连接目的地时所使用的代理协议。可用的值有：
+- **-X \<PROTOCOL>** # 连接目的地时所使用的代理协议。可用的值有：
   - 4 # 表示 SOCKS v.4
   - 5 # 表示 SOCKS v.5。默认值
   - connect # 表示 HTTP
@@ -94,10 +98,10 @@ Ncat 与 OpenBSD-nc 这两个程序的选项有不同的地方
 执行效果如下：
 
 ```bash
-root@lichenhao:~# nc -vz localhost 22
+~]# nc -vz localhost 22
 Connection to localhost 22 port [tcp/ssh] succeeded!
 
-root@lichenhao:~# nc -uvz localhost 323
+~]# nc -uvz localhost 323
 Connection to localhost 323 port [udp/*] succeeded!
 ```
 
@@ -112,7 +116,9 @@ Connection to localhost 323 port [udp/*] succeeded!
 # 常见问题
 
 在 Windows 使用 ncat 通过代理连接 ssh，报错 `ssh_exchange_identification: Connection closed by remote host`
+
 问题 issue：<https://github.com/nmap/nmap/issues/2149>
+
 解决：下载 7.80 版本即可，将下载连接的版本号改为 7.80 即可下载。
 
 # Nmap
