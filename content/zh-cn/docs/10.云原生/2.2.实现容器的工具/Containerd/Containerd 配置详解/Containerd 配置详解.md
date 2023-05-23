@@ -19,7 +19,7 @@ containerd config default > /etc/containerd/config.toml
 
 # 配置文件详解
 
-# \[通用]配置
+# \[通用] 配置
 
 **version = 2** #
 **root = \<STRING>** # Containerd 持久化数据路径。`默认值：/var/lib/containerd`。
