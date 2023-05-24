@@ -1,10 +1,8 @@
 # gcs_engine_id = "266a10c3a77bd4f80"
 offlineSearch = true
 
-# 存储库配置（在每个页面中打开问题和建议更改的链接的 URL 前缀）
+# 存储库配置
 github_repo = "https://github.com/DesistDaydream/notes-learning"
-# 指向相关项目仓库的可选链接。例如，您的产品代码所在的同级存储库。
-# An optional link to a related project repo. For example, the sibling repository where your product code lives.
 github_project_repo = "https://github.com/DesistDaydream/desistdaydream.github.io"
 github_subdir = ""
 github_branch= "main"
@@ -23,35 +21,35 @@ enable = false
 
 [links]
 [[links.user]]
-  name = "User mailing list"
-  url = "https://example.org/mail"
-  icon = "fa fa-envelope"
-  desc = "Discussion and help from your fellow users"
+name = "User mailing list"
+url = "https://example.org/mail"
+icon = "fa fa-envelope"
+desc = "Discussion and help from your fellow users"
 [[links.user]]
-  name ="Twitter"
-  url = "https://example.org/twitter"
-  icon = "fab fa-twitter"
-  desc = "Follow us on Twitter to get the latest news!"
+name ="Twitter"
+url = "https://example.org/twitter"
+icon = "fab fa-twitter"
+desc = "Follow us on Twitter to get the latest news!"
 [[links.user]]
-  name = "Stack Overflow"
-  url = "https://example.org/stack"
-  icon = "fab fa-stack-overflow"
-  desc = "Practical questions and curated answers"
+name = "Stack Overflow"
+url = "https://example.org/stack"
+icon = "fab fa-stack-overflow"
+desc = "Practical questions and curated answers"
 [[links.developer]]
-  name = "GitHub"
-  url = "https://github.com/DesistDaydream"
-  icon = "fab fa-github"
-  desc = "Development takes place here!"
+name = "GitHub"
+url = "https://github.com/DesistDaydream"
+icon = "fab fa-github"
+desc = "Development takes place here!"
 [[links.developer]]
-  name = "Slack"
-  url = "https://example.org/slack"
-  icon = "fab fa-slack"
-  desc = "Chat with other project developers"
+name = "Slack"
+url = "https://example.org/slack"
+icon = "fab fa-slack"
+desc = "Chat with other project developers"
 [[links.developer]]
-  name = "Developer mailing list"
-  url = "https://example.org/mail"
-  icon = "fa fa-envelope"
-  desc = "Discuss development issues around the project"
+name = "Developer mailing list"
+url = "https://example.org/mail"
+icon = "fa fa-envelope"
+desc = "Discuss development issues around the project"
 
 [taxonomy]
 taxonomyCloud = ["tags", "categories"]

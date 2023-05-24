@@ -1672,6 +1672,13 @@
       "docs/10.云原生/2.2.实现容器的工具/Docker/Docker Compose/Docker Compose.md",
       "docs/10.云原生/2.2.实现容器的工具/Docker/Docker Compose/Compose 文件规范.md",
       "docs/10.云原生/2.2.实现容器的工具/Docker/Docker Compose/docker-compose 命令行工具.md"
+    ],
+    "docs/2.编程/编程工具/SCM/Git": [
+      "docs/2.编程/编程工具/SCM/Git/_index.md",
+      "docs/2.编程/编程工具/SCM/Git/Git.md",
+      "docs/2.编程/编程工具/SCM/Git/Git 配置详解.md",
+      "docs/2.编程/编程工具/SCM/Git/Git 常见问题.md",
+      "docs/2.编程/编程工具/SCM/Git/Git 命令行工具.md"
     ]
   },
   "actionBarOrder": {},

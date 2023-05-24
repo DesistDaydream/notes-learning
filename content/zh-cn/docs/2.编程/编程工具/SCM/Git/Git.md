@@ -5,8 +5,9 @@ title: Git
 # 概述
 
 > 参考：
+> 
 > - [官网](https://git-scm.com/)
-> - [公众号,Git 各指令的本质](https://mp.weixin.qq.com/s/YBRdyyxkv3lpNDyqrBiLCA)
+> - [公众号，Git 各指令的本质](https://mp.weixin.qq.com/s/YBRdyyxkv3lpNDyqrBiLCA)
 
 Git 是一个免费的开源分布式版本控制系统，旨在快速高效地处理从小型到大型项目的所有内容。
 
