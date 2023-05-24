@@ -9,6 +9,10 @@ jobs:
   deploy: # 任务名自取
     runs-on: ubuntu-20.04 # 在什么环境运行任务
     steps:
+      # 解决 https://github.com/peaceiris/actions-hugo/issues/496 问题，文件无法使用
+      - name: disable quotePath
+        run: git config --global core.quotePath false
+
       - uses: actions/checkout@v3 # 引用 actions/checkout 这个 action，与所在的 github 仓库同名
         with:
           submodules: true # Fetch Hugo themes (true OR recursive) 获取submodule主题
