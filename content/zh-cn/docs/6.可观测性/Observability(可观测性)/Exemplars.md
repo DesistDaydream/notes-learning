@@ -14,6 +14,7 @@ title: Exemplars
 ### Trace ID 实际应用
 
 我们讨论了在多个信号之间相互跳转的方法，但是它真的是有用的吗？让我们简单的看两个基本案例:
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/vx3gmg/1656494100400-266391e7-2b19-4845-a69a-2112f8128bbc.jpeg)
 
 - 我们收到了一个关于超出 SLO (service level objectives) 的意外高错误率的告警。告警来源于错误的计数器值，我们看到请求暴增导致 501 errors。我们使用\_exemplar\_ 跳转到事例的 logs 以了解准确的可供人类阅读的错误消息中。错误似乎来自于依赖深层次的内部微服务系统，由于存在与 trace ID 匹配的 request ID，所以可以跳转到 traces。多亏了这一点，我们确切的了解到哪个 service/process 导致了这个问题，并进一步挖掘更多的信息。

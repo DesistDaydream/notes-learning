@@ -40,7 +40,7 @@ hello_world/
 进入到这个目录之后，执行 `hugo server` 将会启动一个 HTTP 服务端
 
 ```bash
-~]# hugo server --buildDrafts
+~]# hugo server
 Start building sites … 
 hugo v0.109.0-47b12b83e636224e5e601813ff3e6790c191e371+extended windows/amd64 BuildDate=2022-12-23T10:38:11Z VendorInfo=gohugoio
 WARN 2023/01/22 16:15:45 found no layout file for "HTML" for kind "home": You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
@@ -72,9 +72,17 @@ Press Ctrl+C to stop
 
 Hugo 从 `content/` 目录中渲染内容到页面，我们使用 `hugo new posts/my-first-post.md` 命令将会创建 `content/posts/my-first-post.md` 文件，我们可以自行在该文件中添加 markdown 格式的内容。
 
-但是我们依然无法看到任何东西，因为 Hugo 提供了非常大的自由度，并不会限制 HTML 的样式，所以我们需要先自己创建一个 HTML 页面(就像写前端一样)。
+> 注意删掉文件中的 `draft: true` 指令。因为 Hugo 默认不会构建被标记为 [draft(草稿)、future(未来)、expired(过期)](https://gohugo.io/getting-started/usage/#draft-future-and-expired-content) 的内容。
 
-在 layouts/ 目录下新建 \_default 目录，并创建一个名为 single.html 文件，写下如下内容：
+创建文件后后台会提示：
+
+```
+WARN 2023/05/25 14:45:44 found no layout file for "HTML" for kind "page": You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
+```
+
+此时我们直接访问 `http://localhost:1313/posts/my-first-post/` 页面依然会显示 `Page Not Found`，因为 Hugo 提供了非常大的自由度，并不会限制 HTML 的样式，所以我们需要先自己创建一个 HTML 页面(就像写前端一样)以便可以承载我们刚刚创建的 md 文件。
+
+在 `layouts/` 目录下新建 `_default/` 目录，并创建一个名为 single.html 文件，写下如下内容：
 
 ```html
 <!DOCTYPE html>
@@ -102,23 +110,28 @@ Hugo 从 `content/` 目录中渲染内容到页面，我们使用 `hugo new post
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hugo/20230122175219.png)
 
+## 模板渲染
+
+从上面的示例可以看到，在没有编写 HTML 时，无法正常渲染出页面，我们可以在 layouts/ 目录下编写各种 HTML 文件，这在 Huog 中称为[模板](docs/实用工具/网站搭建/Hugo/模板/模板.md)，Hugo 有一组[查找规则](https://gohugo.io/templates/lookup-order)，以便渲染各种不同位置的页面时，寻找指定的模板。
+
+上面只是展示了渲染每个 Content 时使用的 HTML 模板，想要让主页也显示出页面，需要
 
 ## 使用主题
 
 我们自己编写 HTML 是非常复杂的，咱是要内容管理。。又不是写前端页面\~\~~o(╯□╰)o
 
-Hugo 贴心得提供了主题功能，可以让我们专注于内容的产出，在 Hugo 官方的主题页面中，我们可以挑选我们喜欢的主题并放在 themes/ 目录下，以便使用时供 Hugo 加载
+Hugo 贴心得提供了主题功能，可以让我们专注于内容的产出，在 Hugo 官方的主题页面中，我们可以挑选我们喜欢的主题并放在 `themes/` 目录下，以便使用时供 Hugo 加载
 
-> 除了将主题放在 themes/ 目录下，还可以使用 Hugo 模块功能，将主题当做 Go 模块一样的东西，统一管理。这样在我们创建多个 Hugo 站点并使用同一个主题时，不用重复下载了。
+> 除了将主题放在 `themes/` 目录下，还可以使用 Hugo 模块功能，将主题当做 Go 模块一样的东西，统一管理。这样在我们创建多个 Hugo 站点并使用同一个主题时，不用重复下载了。
 
-我们使用官方示例中的基本主题：
+我们使用官方示例中的基本主题。
 
 ```bash
 git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke themes/ananke
-echo "theme = 'ananke'" >> config.toml
+echo "theme = 'ananke'" >> hugo.toml
 ```
 
-主题将会被下载到 thems/ 目录中，并且我们在 config.toml 文件中指定要使用的主题名称。
+主题将会被下载到 `thems/` 目录中，并且我们在 hugo.toml 文件中指定要使用的主题名称。
 
 此时再打开 1313 端口，我们就可以看到我们的站点了，第一篇文章以标题和概要的形式被展现在首页中。
 
@@ -142,12 +155,18 @@ hugo mod get github.com/theNewDynamic/gohugo-theme-ananke
 theme = ["github.com/theNewDynamic/gohugo-theme-ananke"]
 ```
 
+使用 Hugo 的模块时，也要像 Go 一样配置 Proxy，在 hugo.toml 文件中添加如下内容：：
+
+```toml
+[module]
+proxy = 'https://goproxy.cn,https://goproxy.io,direct'
+```
 
 ## 发布我们的网站
 
 在基本示例中，我们只是在本地调试，如果想要将网站运行在服务器上，那么肯定需要像前端代码一样，将这些文件打包才可以。
 
-Hugo 打包非常简单，执行 `hugo` 命令即可在 public/ 目录中生成我们网站的静态页面，将这个目录下的所有文件，统统放到 Nginx 中响应页面的目录，就可以访问我们自己的网站了~
+Hugo 打包非常简单，执行 `hugo` 命令即可在 `public/` 目录中生成我们网站的静态页面，将这个目录下的所有文件，统统放到 Nginx 中响应页面的目录，就可以访问我们自己的网站了~
 
 ### 最佳实践
 
@@ -159,6 +178,30 @@ Hugo 打包非常简单，执行 `hugo` 命令即可在 public/ 目录中生成�
 > - [官方文档，入门-目录结构](https://gohugo.io/getting-started/directory-structure/)
 
 ### archetypes
+
+**archetypes** 译为**原型**，是创建新 Content 时使用的模板。我们在使用 `hugo new` 命令创建新的 Content 时，会使用该目录下的 default.md 文件作为原型创建新的文件。
+
+比如快速开始中，我们创建了一个名为 my-first-post.md 的文件，其内容为：
+
+```md
+---
+title: "My First Post"
+date: 2023-05-25T01:40:23+08:00
+draft: true
+---
+```
+
+这是因为使用了 archetypes/default.md 文件作为原型：
+
+```md
+---
+title: "{{ replace .Name "-" " " | title }}"
+date: {{ .Date }}
+draft: true
+---
+```
+
+[官方文档，内容管理-原型](https://gohugo.io/content-management/archetypes/)
 
 ### assets
 
@@ -194,9 +237,9 @@ Hugo 使用 section 的名称作为默认的 [content types(内容类型)](https
 
 ### layouts/
 
-以 `.html` 文件的形式存储模板，这些文件指定如何将您的内容视图呈现到静态网站中。模板包括 [list pages](https://gohugo.io/templates/list/), your [homepage](https://gohugo.io/templates/homepage/), [taxonomy templates](https://gohugo.io/templates/taxonomy-templates/), [partials](https://gohugo.io/templates/partials/), [single page templates](https://gohugo.io/templates/single-page-templates/),等
+以 `.html` 文件的形式存储模板，这些文件指定如何将您的内容视图呈现到静态网站中。模板包括 [list pages](https://gohugo.io/templates/list/), your [homepage](https://gohugo.io/templates/homepage/), [taxonomy templates](https://gohugo.io/templates/taxonomy-templates/), [partials](https://gohugo.io/templates/partials/), [single page templates](https://gohugo.io/templates/single-page-templates/) 等等，不同名称的模板对应渲染不同的页面。可以在[这里](https://gohugo.io/templates/lookup-order/#hugo-layouts-lookup-rules-with-theme)找到 Hugo 在渲染不同页面时需要使用 layouts/ 目录下的哪些文件。
 
-如果我们不使用主题，则 Hugo 会从 `layouts` 目录中读取前端代码并渲染页面。
+如果我们不使用主题，我们则需要在 `layouts/` 目录中自己编写 HTML 文件以供 Hugo 渲染前端页面。
 
 ### public/
 
@@ -212,10 +255,11 @@ Hugo 使用 section 的名称作为默认的 [content types(内容类型)](https
 
 Hugo 主题可以安装到该目录，使用 `hugo server --themes` 指定使用的主题时，将会从该目录出寻找。
 
-### config.toml
+### hugo.toml
+
 Hugo 运行站点时所使用的配置文件。
 
-推荐使用 config/ 目录，以便拆分 config.toml 文件。可以将 config.tom 文件移动到在 config/\_default/config.toml 处作为默认配置。
+推荐使用 `config/` 目录，以便拆分 hugo.toml 文件。可以将 hugo.tom 文件移动到在 `config/_default/hugo.toml` 处作为默认配置。
 
 # Hugo Modules(模块)
 

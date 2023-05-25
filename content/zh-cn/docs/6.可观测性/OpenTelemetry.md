@@ -13,7 +13,7 @@ weight: 2
 > - [公众号-OpenTelemetry，OpenTelemetry 核心原理篇 ：怎么理解分布式链路追踪技术？](https://mp.weixin.qq.com/s/bcziZg8RhCrMGYgFeN76cw)
 > - [公众号-OpenTelemetry，在生产环境如何选择靠谱的 APM 系统](https://mp.weixin.qq.com/s/3dD0hIuqpXdepLVC6V7aoA)
 
-**OpenTelemetry(开放式遥测技术，简称 OTel)** 于 2019 年 5 月由 [OpenTracing](https://opentracing.io/) 与 OpenCensus 合并而成([Google Open Source](https://opensource.googleblog.com/2019/05/opentelemetry-merger-of-opencensus-and.html))，是一组 **API、SDK、工具、更是一种遥测标准**，旨在创建和管理 **Telemetry Data(遥测数据)。**通过 OpenTelemetry 标准创建的程序，可以采集 OpenTelemetry 标准的遥测数据，并发送到我们指定的后端中。OpenTelemetry 支持各种流行的开源后端项目，比如 Prometheus、Jaeger 等。
+**OpenTelemetry(开放式遥测技术，简称 OTel)** 于 2019 年 5 月由 [OpenTracing](https://opentracing.io/) 与 OpenCensus 合并而成([Google Open Source](https://opensource.googleblog.com/2019/05/opentelemetry-merger-of-opencensus-and.html))，是一组 **API、SDK、工具、更是一种遥测标准**，旨在创建和管理 **Telemetry Data(遥测数据)**。通过 OpenTelemetry 标准创建的程序，可以采集 OpenTelemetry 标准的遥测数据，并发送到我们指定的后端中。OpenTelemetry 支持各种流行的开源后端项目，比如 Prometheus、Jaeger 等。
 
 > 遥测数据包括：Traces(链路追踪数据)、Metrics(指标数据)、logs(日志数据)
 

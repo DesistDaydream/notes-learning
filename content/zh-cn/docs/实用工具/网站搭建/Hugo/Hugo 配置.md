@@ -1,6 +1,6 @@
 ---
-title: "配置文件详解"
-linkTitle: "配置文件详解"
+title: "Hugo 配置"
+linkTitle: "Hugo 配置"
 weight: 20
 data: 2023-01-18
 ---
@@ -30,9 +30,9 @@ foo = 'bar'
 
 除了 Hugo 本身会用到配置文件，有些主题也会使用，并具有各自可以识别的配置指令。比如 Docsy 主题。
 
-在[这里](https://gohugo.io/getting-started/configuration/#all-configuration-settings)我们可以找到 Hugo 自带的所有配置指令
+在[官方文档，配置-所有配置设置](https://gohugo.io/getting-started/configuration/#all-configuration-settings)我们可以找到 Hugo 的所有配置指令
 
-# config 目录结构
+## config 目录结构
 
 ```bash
 ├── config
@@ -50,7 +50,7 @@ foo = 'bar'
 │       └── params.toml
 ```
 
-\_default/ 目录是站点的默认配置，可以直接保存单个 config 文件。
+`_default/` 目录是站点的默认配置，可以直接保存单个 config 文件。
 
 production 与 staging 文件夹用来区分运行时配置，比如使用 `hugo --environment staging` 命令时，Hugo 将会使用 `config/_default/` 和 `config/staging` 这两个下的所有文件，将所有文件合并后生成一个单独的临时 config 文件，作为站点运行时的配置文件。
 
@@ -60,9 +60,9 @@ production 与 staging 文件夹用来区分运行时配置，比如使用 `hugo
 
 # 基础
 
-**baseURL = 'https://desistdaydream.github.io/'**
+**baseURL**(STRING) # 我们发布的网站的绝对 URL（协议，主机，路径和斜杠），比如 https://www.example.org/docs/
 
-**title = \<STRING>** #
+**title**(STRING) #
 
 **contentDir = "content/zh-cn"** # **必须的**。Hugo 从该配置指定的目录中读取内容文件。可以为各个语言单独配置。`默认值：content`
 
@@ -74,9 +74,13 @@ production 与 staging 文件夹用来区分运行时配置，比如使用 `hugo
 
 - 注意：[issue 3071](https://github.com/gohugoio/hugo/issues/3071)，如果文件名、目录名是中文的话，将会无法获取到 Git 信息。也就无法让文档下面显示最后编辑时间。需要修改 git 的配置 core.quotePath 的值为 false。
 
+**markup**([markup](#markup%20部分))
+
 ## URL 生成逻辑控制
 
-**disablePathToLower = BOOLEAN** # 是否关闭 URL 转换为小写字母的逻辑
+**disablePathToLower**(BOOLEAN) # 是否关闭 URL 转换为小写字母的逻辑
+
+**uglyURLs**(BOOLEAN) # URL 路径中是否要带 .html 后缀
 
 # markup 部分
 
@@ -90,11 +94,11 @@ Goldmark 部分用于配置适用于 Go 的 Markdown 解析库，Hugo 从 0.60 �
 
 tableOfContents 部分配置目录相关指令。这些设定只适用于 Goldmark 渲染器。
 
-**startLevel = \<NUM>** # 目录中显示的标题级别。从该指令的级别开始显示
+**startLevel**(INT) # 目录中显示的标题级别。从该指令的级别开始显示
 
-**endLevel = \<NUM>** # 目录中显示的标题级别。到该指令的级别结束显示
+**endLevel**(INT) # 目录中显示的标题级别。到该指令的级别结束显示
 
-**ordered = \<BOOLEAN>** # 是否生成有序列表而不是无序列表。
+**ordered**(BOOLEAN) # 是否生成有序列表而不是无序列表。
 
 # module 部分
 
