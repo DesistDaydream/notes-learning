@@ -68,11 +68,16 @@ Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
 Press Ctrl+C to stop
 ```
 
-我们可以通过浏览器，访问默认的 1313 端口浏览我们的网站，但是此时我们只能看到一个 Hugo 默认的 `Page Not Found`，因为我们还没有为网站设置、添加任何内容。
+我们可以通过浏览器，访问默认的 1313 端口浏览我们的网站，但是此时我们只能看到一个 Hugo 默认的 `Page Not Found`，因为我们还没有为网站添加任何内容。
 
-Hugo 从 `content/` 目录中渲染内容到页面，我们使用 `hugo new posts/my-first-post.md` 命令将会创建 `content/posts/my-first-post.md` 文件，我们可以自行在该文件中添加 markdown 格式的内容。
+Hugo 默认从 `content/` 目录中渲染内容到页面，需要在 `content/` 目录创建包含页面内容的文件。
 
-> 注意删掉文件中的 `draft: true` 指令。因为 Hugo 默认不会构建被标记为 [draft(草稿)、future(未来)、expired(过期)](https://gohugo.io/getting-started/usage/#draft-future-and-expired-content) 的内容。
+```bash
+~]# hugo new posts/my-first-post.md
+Content "D:\\Projects\\DesistDaydream\\hugo-learning\\hello_world\\content\\posts\\my-first-post.md" created
+```
+
+我们可以自行在该文件中添加 markdown 格式的内容。注意删掉文件中的 `draft: true` 指令。因为 Hugo 默认不会构建被标记为 [draft(草稿)、future(未来)、expired(过期)](https://gohugo.io/getting-started/usage/#draft-future-and-expired-content) 的内容。
 
 创建文件后后台会提示：
 
@@ -80,7 +85,9 @@ Hugo 从 `content/` 目录中渲染内容到页面，我们使用 `hugo new post
 WARN 2023/05/25 14:45:44 found no layout file for "HTML" for kind "page": You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
 ```
 
-此时我们直接访问 `http://localhost:1313/posts/my-first-post/` 页面依然会显示 `Page Not Found`，因为 Hugo 提供了非常大的自由度，并不会限制 HTML 的样式，所以我们需要先自己创建一个 HTML 页面(就像写前端一样)以便可以承载我们刚刚创建的 md 文件。
+此时我们直接访问 `http://localhost:1313/posts/my-first-post/` 页面依然会显示 `Page Not Found`，这是因为还缺少 [Hugo 模板](/docs/实用工具/网站搭建/Hugo/模板/模板.md)，Hugo 需要将 .md 文件与模板一起渲染出来一个完善的 HTML 页面。
+
+> 这就是使用 Go 模板渲染 HTML 页面的逻辑一样。
 
 在 `layouts/` 目录下新建 `_default/` 目录，并创建一个名为 single.html 文件，写下如下内容：
 
@@ -112,7 +119,7 @@ WARN 2023/05/25 14:45:44 found no layout file for "HTML" for kind "page": You sh
 
 ## 模板渲染
 
-从上面的示例可以看到，在没有编写 HTML 时，无法正常渲染出页面，我们可以在 layouts/ 目录下编写各种 HTML 文件，这在 Huog 中称为[模板](docs/实用工具/网站搭建/Hugo/模板/模板.md)，Hugo 有一组[查找规则](https://gohugo.io/templates/lookup-order)，以便渲染各种不同位置的页面时，寻找指定的模板。
+从上面的示例可以看到，在没有编写 HTML 时，无法正常渲染出页面，我们可以在 layouts/ 目录下编写各种 HTML 文件，这在 Huog 中称为[模板](docs/实用工具/网站搭建/Hugo/模板/模板.md)，Hugo 有一组[查找规则](https://gohugo.io/templates/lookup-order)，以便渲染各种不同位置的 Content 时，寻找指定的模板。
 
 上面只是展示了渲染每个 Content 时使用的 HTML 模板，想要让主页也显示出页面，需要
 
@@ -151,6 +158,7 @@ hugo mod get github.com/theNewDynamic/gohugo-theme-ananke
 此时主题将会被下载到 `%TMP%/hugo_cache/modules/filecache/modules/pkg/mod/github.com` 目录下，然后我们可以删掉项目目录中 themes/ 目录下的主题文件了~o(∩_∩)o
 
 修改 config.toml 文件
+
 ```toml
 theme = ["github.com/theNewDynamic/gohugo-theme-ananke"]
 ```
@@ -290,6 +298,7 @@ Hugo 模块是一个类似 Go 模块一样的存在。模块可以是我们的�
 **${Site_Root_dir}/config** # 可以将站点根目录下的 config.toml | config.yaml | config.json 拆分后保存到该目录。
 
 Hugo 运行时所需的缓存目录。包括需要使用的模块等：
+
 - Windows:
 	- **%TMP%/hugo_cache/**
 - Linux:
@@ -301,6 +310,7 @@ Hugo 运行时所需的缓存目录。包括需要使用的模块等：
 ## URL 与 markdown 链接问题
 
 > 参考：
+> 
 > - https://cloud.tencent.com/developer/article/1688894
 
 Obsidian 内部链接是这种格式 `[B cd](/A/b/B%20cd.md)`

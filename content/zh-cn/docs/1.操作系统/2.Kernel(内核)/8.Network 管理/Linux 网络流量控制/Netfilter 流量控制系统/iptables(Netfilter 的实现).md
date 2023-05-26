@@ -271,8 +271,11 @@ MATCHES=\[-m] MatchName \[Per-Match-Options]
 该命令输出的内容更容易被人类阅读，可以用重定向把内容保存到文件中
 
 该命令显示出的信息说明
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fadrg5/1616165483878-a0be9032-9c98-4971-922e-592c61529d86.jpeg)
+
 **Syntax(语法)**
+
 iptables-save \[-M,--modprobe modprobe] \[-c] \[-t table]
 
 **EXAMPLE**
@@ -283,7 +286,7 @@ iptables-save \[-M,--modprobe modprobe] \[-c] \[-t table]
 
 **EXAMPLE**
 
-1. iptables-restore < /etc/sysconfig/iptables.rules
+- iptables-restore < /etc/sysconfig/iptables.rules
 
 # ipset - IP 集合的管理工具
 
@@ -293,32 +296,32 @@ ipset 是 iptables 的一个协助工具。可以通过 ipset 设置一组 IP �
 
 COMMANDS：Note：ENTRY 指的就是 ip 地址
 
-1. create SETNAME TYPENAME \[type-specific-options] # 创建一个新的集合。Create a new set
-2. add SETNAME ENTRY # 向指定集合中添加条目。i.e.添加 ip。Add entry to the named set
-3. del SETNAME ENTRY # 从指定集合中删除条目 Delete entry from the named set
-4. test SETNAME ENTRY # 测试指定集合中是否包含该条目 Test entry in the named set
-5. destroy \[SETNAME] # 摧毁全部或者指定的集合 Destroy a named set or all sets
-6. list \[SETNAME] # 列出全部或者指定集合中的条目 List the entries of a named set or all sets
-7. save \[SETNAME] # 将指定的集合或者所有集合保存到标准输出
-8. restore # 还原保存的 ipset 信息
-9. flush \[SETNAME] # 删除全部或者指定集合中的所有条目 Flush a named set or all sets
-10. rename FROM-SETNAME TO-SETNAME # Rename two sets
-11. swap FROM-SETNAME TO-SETNAME # 交换两个集合中的内容 Swap the contect of two existing sets
+- create SETNAME TYPENAME \[type-specific-options] # 创建一个新的集合。Create a new set
+- add SETNAME ENTRY # 向指定集合中添加条目。i.e.添加 ip。Add entry to the named set
+- del SETNAME ENTRY # 从指定集合中删除条目 Delete entry from the named set
+- test SETNAME ENTRY # 测试指定集合中是否包含该条目 Test entry in the named set
+- destroy \[SETNAME] # 摧毁全部或者指定的集合 Destroy a named set or all sets
+- list \[SETNAME] # 列出全部或者指定集合中的条目 List the entries of a named set or all sets
+- save \[SETNAME] # 将指定的集合或者所有集合保存到标准输出
+- restore # 还原保存的 ipset 信息
+- flush \[SETNAME] # 删除全部或者指定集合中的所有条目 Flush a named set or all sets
+- rename FROM-SETNAME TO-SETNAME # Rename two sets
+- swap FROM-SETNAME TO-SETNAME # 交换两个集合中的内容 Swap the contect of two existing sets
 
 OPTIONS
 
-1. **-exist** # 在 create 已经存在的 ipset、add 已经存在的 entry、del 不存在的 entry 时忽略错误。
-2. **-f** # 在使用 save 或者 restore 命令时，可以指定文件，而不是从标准输出来保存或者还原 ipset 信息
+- **-exist** # 在 create 已经存在的 ipset、add 已经存在的 entry、del 不存在的 entry 时忽略错误。
+- **-f** # 在使用 save 或者 restore 命令时，可以指定文件，而不是从标准输出来保存或者还原 ipset 信息
 
 { -exist | -output { plain | save | xml } | -quiet | -resolve | -sorted | -name | -terse | -file filename }
 
 EXAMPLE
 
-1. ipset list # 列出 ipset 所设置的所有 IP 集合
-2. ipset create lichenhao hash:net # 创建一个 hash:net 类型的名为 lichenhao 的 ipset
-3. ipset add lichenhao 1.1.1.0/24 # 将 1.1.1.0/24 网段添加到名为 lichenhao 的 ipset 中
-4. ipset flush # 清空所有 ipset 下的 ip
-5. ipset restore -f /etc/sysconfig/ipset # 从/etc/sysconfig/ipset 还原 ipset 的集合和条目信息
+- **ipset list** # 列出 ipset 所设置的所有 IP 集合
+- **ipset create lichenhao hash:net** # 创建一个 hash:net 类型的名为 lichenhao 的 ipset
+- **ipset add lichenhao 1.1.1.0/24** # 将 1.1.1.0/24 网段添加到名为 lichenhao 的 ipset 中
+- **ipset flush** # 清空所有 ipset 下的 ip
+- **ipset restore -f /etc/sysconfig/ipset** # 从/etc/sysconfig/ipset 还原 ipset 的集合和条目信息
 
 9、屏蔽 HTTP 服务 Flood×××
 

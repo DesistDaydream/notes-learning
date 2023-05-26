@@ -40,7 +40,7 @@ title: qemu-img
 对 VM 的镜像文件进行检查，只有 qcow2、qed、vdi 格式支持一致性检查。如果正常的话，基本输出信息如下
 
 ```bash
-[root@vs-5 images]# qemu-img check centos8-1911.qcow2
+~]# qemu-img check centos8-1911.qcow2
 No errors were found on the image.
 34666/8192000 = 0.42% allocated, 70.85% fragmented, 66.63% compressed clusters
 Image end offset: 2148270080
