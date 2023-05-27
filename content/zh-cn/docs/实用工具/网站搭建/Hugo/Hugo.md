@@ -15,6 +15,15 @@ weight: 1
 
 Hugo 是用 Go 语言编写的静态站点生成器。Steve Francia 最初于 2013 年将 Hugo 创建为开源项目。
 
+Hugo 创建的站点主要分两部分，**Content(内容)** 与 **Layout(布局)**
+
+- **Content(内容)** 表示数据。存在 `content/` 目录下。
+  - 该目录下的每个文件都会抽象为一个 **Page(页面)**。其实我们在浏览到的页面就是 Hugo 中的 Page 的概念，而 `content/` 目录就是存放这些 Page 的地方。
+- **Layout(布局)** 表示页面。存在 `layouts/` 目录下。
+  - 该目录下的没问你件都会抽象为一个 **Template(模板)**
+
+通过多种渠道获取到 Content 后，就是将数据引入到 Layout 中，也就是渲染模板的过程。
+
 # Hugo 的基本使用
 
 > 参考：
@@ -283,9 +292,11 @@ Hugo 模块是一个类似 Go 模块一样的存在。模块可以是我们的�
 - **i18n**
 - **archetypes**
 
-在 config.toml 文件中的 module 字段添加配置，即可为站点设置引用的模块，我们可以将主题当做一个模块。
+在 hugo.toml 文件中的 module 字段添加配置，即可为站点设置引用的模块，我们可以将主题当做一个模块。
 
 **注意：Hugo 模块与 Go 模块一样，也需要一个代理服务器，我们只需要在 module 部分配置 proxy 指令，值与 go proxy 一样即可**
+
+详见 [模块](docs/实用工具/网站搭建/Hugo/模块/模块.md)
 
 # 安装 Hugo
 
