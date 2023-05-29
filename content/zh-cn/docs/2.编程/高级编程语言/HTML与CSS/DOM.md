@@ -1,15 +1,17 @@
 ---
-title: DOM(文档对象模型)
+title: DOM
 ---
 
 # 概述
 
 > 参考：
-> - [MDN 官方文档，参考-WebAPIs-DOM-DOM 简介](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction)
+> 
+> - [MDN 官方文档，参考-WebAPIs-DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
 
 **Document Ojbect Model(文档对象模型，简称 DOM)** 是 Web 文档(HTML 和 XML)的编程接口(通常描述为 WebAPI 中的 DOM 接口)。应用程序可以通过该接口更改 Web 文档的 结构、样式、内容 等。DOM 将 Web 文档抽象为 **Node(节点)** 和 **Ojbect(对象，包含属性和方法的对象) **组成的结构集合。
 
 一个 Web 页面即是一个文档，这个文档可以在浏览器中作为 HTML 源码展示出来。DOM 则可以将文档表示为另一种形式，以便 JavaScript 等编程语言可以对其进行修改。
+
 比如：
 
 ```javascript

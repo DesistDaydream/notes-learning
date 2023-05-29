@@ -9,6 +9,7 @@ title: GUI
 # Go OpenCV
 
 > 参考：
+> 
 > - <http://www.codebaoku.com/it-go/it-go-146781.html>
 
 <https://github.com/go-opencv/go-opencv>
@@ -52,3 +53,8 @@ func main() {
 	w.ShowAndRun()
 }
 ```
+
+# 应用案例
+
+[公众号-Go语言中文网，使用 Go GUI 库 fyne 编写一个计算器程序](https://mp.weixin.qq.com/s/VrTFMhpYvzr78ULqsQ15Sw)
+

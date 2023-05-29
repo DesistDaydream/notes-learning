@@ -15,20 +15,24 @@ weight: 1
 
 Hugo 是用 Go 语言编写的静态站点生成器。Steve Francia 最初于 2013 年将 Hugo 创建为开源项目。
 
-Hugo 创建的站点主要分两部分，**Content(内容)** 与 **Layout(布局)**
+Hugo 创建站点时主要依赖两部分，**Content(内容)** 与 **Layout(布局)**
 
 - **Content(内容)** 表示数据。存在 `content/` 目录下。
   - 该目录下的每个文件都会抽象为一个 **Page(页面)**。其实我们在浏览到的页面就是 Hugo 中的 Page 的概念，而 `content/` 目录就是存放这些 Page 的地方。
 - **Layout(布局)** 表示页面。存在 `layouts/` 目录下。
-  - 该目录下的没问你件都会抽象为一个 **Template(模板)**
+  - 该目录下的每个文件都会抽象为一个 **Template(模板)**
 
-通过多种渠道获取到 Content 后，就是将数据引入到 Layout 中，也就是渲染模板的过程，渲染完成后，可供浏览的页面称之为 **View(视图)**。
+通过多种渠道获取到数据(i.e. Content)后，需要在页面(i.e. Layout)中填充数据，这就是模板渲染的过程，渲染完成后，可供浏览的页面称之为 **View(视图)**。
+
+Hugo 的这种渲染行为与 Go 的模板渲染机制一致，并提供了更丰富的功能。
 
 # Hugo 的基本使用
 
 > 参考：
 > 
-> - [自定义hugo主题--从内容开始](https://hugo.aiaide.com/post/%E8%87%AA%E5%AE%9A%E4%B9%89hugo%E4%B8%BB%E9%A2%98-%E4%BB%8E%E5%86%85%E5%AE%B9%E9%A1%B5%E5%BC%80%E5%A7%8B/)
+> - [官方文档，入门-快速开始](https://gohugo.io/getting-started/quick-start/)
+
+这里的示例并没有安全按照官方文档走，而是在我学习之后改编的，官方文档的示例其实会让新手对于渲染逻辑和顺序产生迷惑。
 
 `hugo new site hello_world` 命令将会创建一个包含以下元素的目录结构，这些目录的作用可以在[下文](#目录结构)找到：
 
@@ -79,64 +83,60 @@ Press Ctrl+C to stop
 
 我们可以通过浏览器，访问默认的 1313 端口浏览我们的网站，但是此时我们只能看到一个 Hugo 默认的 `Page Not Found`，因为我们还没有为网站添加任何内容。
 
-Hugo 默认从 `content/` 目录中渲染内容到页面，需要在 `content/` 目录创建包含页面内容的文件。
+Hugo 默认将 `content/` 目录的文件作为内容数据渲染与布局结构一起渲染成页面，所以需要在 layouts/ 目录和 content/ 目录下创建文件。
 
-```bash
-~]# hugo new posts/my-first-post.md
-Content "D:\\Projects\\DesistDaydream\\hugo-learning\\hello_world\\content\\posts\\my-first-post.md" created
-```
+> 若只在 content/ 目录下创建文件，后台将会有警告提示：`WARN 2023/05/25 14:45:44 found no layout file for "HTML" for kind "page": You should create a template file which matches Hugo Layouts Lookup Rules for this combination.`。并且页面也没有任何东西，这是因为没有布局将这些内容渲染成页面展示出来。
 
-我们可以自行在该文件中添加 markdown 格式的内容。注意删掉文件中的 `draft: true` 指令。因为 Hugo 默认不会构建被标记为 [draft(草稿)、future(未来)、expired(过期)](https://gohugo.io/getting-started/usage/#draft-future-and-expired-content) 的内容。
-
-创建文件后后台会提示：
-
-```
-WARN 2023/05/25 14:45:44 found no layout file for "HTML" for kind "page": You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
-```
-
-此时我们直接访问 `http://localhost:1313/posts/my-first-post/` 页面依然会显示 `Page Not Found`，这是因为还缺少 [Hugo 模板](/docs/实用工具/网站搭建/Hugo/模板/模板.md)，Hugo 需要将 .md 文件与模板一起渲染出来一个完善的 HTML 页面。
-
-> 这就是使用 Go 模板渲染 HTML 页面的逻辑一样。
-
-在 `layouts/` 目录下新建 `_default/` 目录，并创建一个名为 single.html 文件，写下如下内容：
+首先在 `layouts/` 目录下新建 `index.html` 文件，并写入如下内容：
 
 ```html
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{.Title}}</title>
-</head>
-<body>
-    <div id="post" class="post">
-        <article>
-            <header>
-                <h1 class="post-title">{{ .Title }}</h1>
-            </header>
-            {{.Content}}
-        </article>
-    </div>
-</body>
-</html>
+Hello Hugo!
+
+{{ .Content }}
 ```
 
-此时我们直接访问 `http://localhost:1313/posts/my-first-post/` 即可看到我们刚才添加的 markdown 的内容。只不过没有任何样式，光秃秃的~
+此时刷新页面，将会看到如下页面
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hugo/20230122175219.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hugo/20230529112224.png)
 
-## 模板渲染
+其中 `{{ .Content }}` 这部分并没有被渲染内容是因为在 content/ 目录还是空的。
 
-从上面的示例可以看到，在没有编写 HTML 时，无法正常渲染出页面，我们可以在 layouts/ 目录下编写各种 HTML 文件，这在 Huog 中称为[模板](docs/实用工具/网站搭建/Hugo/模板/模板.md)，Hugo 有一组[查找规则](https://gohugo.io/templates/lookup-order)，以便渲染各种不同位置的 Content 时，寻找指定的模板。
+我们可以使用命令 `hugo new _index.md` 创建内容文件，也可以手动在 `content/` 目录下创建 `_index.md` 文件。推荐自己手动创建，
 
-上面只是展示了渲染每个 Content 时使用的 HTML 模板，想要让主页也显示出页面，需要
+> 使用命令创建的优势有一个前提，是前提是在 `archetypes/` 目录下放一些原型，这并不属于基本使用的内容，以后再介绍；并且自动创建的文件带有 `draft: true` 指令。Hugo 默认不会构建被标记为 [draft(草稿)、future(未来)、expired(过期)](https://gohugo.io/getting-started/usage/#draft-future-and-expired-content) 的内容，我们还要手动删掉，比较麻烦。
+
+我们创建完文件后，写入如下内容：
+
+```md
+---
+title: "主页"
+date: 2023-05-29T11:14:20+08:00
+---
+
+这些字符是在 content/_index.md 文件中的。
+
+## 概述
+
+这是 **bold(粗体)** 文本text, 这是 *斜体* 文本.
+
+访问 [Hugo](https://gohugo.io) 网站!
+```
+
+刷新页面后，将会看到如下内容：
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hugo/20230529113139.png)
+
+可以看到，在布局文件中的 `{{ .Content }}` 部分被替换成内容了，这就是 Hugo 的模板渲染能力。
 
 ## 使用主题
 
-我们自己编写 HTML 是非常复杂的，咱是要内容管理。。又不是写前端页面\~\~~o(╯□╰)o
+我们自己编写 HTML 是非常复杂的，咱是要内容管理。。又不是写前端页面 o(╯□╰)o
 
-Hugo 贴心得提供了主题功能，可以让我们专注于内容的产出，在 Hugo 官方的主题页面中，我们可以挑选我们喜欢的主题并放在 `themes/` 目录下，以便使用时供 Hugo 加载
+Hugo 贴心得提供了主题功能，可以让我们专注于内容的产出，说白了，就是不用再关心 `layouts/` 目录，而是只在 `content/` 目录下创建我们的内容就可以了。
+
+注意：由于前文我们创建了 `layouts/index.html` 文件，这回覆盖主题的注意布局，所以需要删掉该文件，再进行后面的测试。
+
+在 Hugo 官方的主题页面中，我们可以挑选我们喜欢的主题并放在 `themes/` 目录下，以便使用时供 Hugo 加载
 
 > 除了将主题放在 `themes/` 目录下，还可以使用 Hugo 模块功能，将主题当做 Go 模块一样的东西，统一管理。这样在我们创建多个 Hugo 站点并使用同一个主题时，不用重复下载了。
 
@@ -149,9 +149,9 @@ echo "theme = 'ananke'" >> hugo.toml
 
 主题将会被下载到 `thems/` 目录中，并且我们在 hugo.toml 文件中指定要使用的主题名称。
 
-此时再打开 1313 端口，我们就可以看到我们的站点了，第一篇文章以标题和概要的形式被展现在首页中。
+此时再打开 1313 端口，我们就可以看到我们的站点带上了样式
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hugo/20230122164828.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hugo/20230529113945.png)
 
 ### 通过 Hugo 模块使用主题
 
