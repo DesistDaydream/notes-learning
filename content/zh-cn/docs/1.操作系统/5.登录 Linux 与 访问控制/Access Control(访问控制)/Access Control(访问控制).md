@@ -65,8 +65,9 @@ drwxr-xr-x.  82 root root 8.0K Jun 21 19:42 etc
 # 权限管理工具
 
 > 参考：
-> - [Manual(手册),chmod](https://man7.org/linux/man-pages/man1/chmod.1.html)
-> - [Manual(手册),chown](https://man7.org/linux/man-pages/man1/chown.1.html)
+> 
+> - [Manual(手册)，chmod](https://man7.org/linux/man-pages/man1/chmod.1.html)
+> - [Manual(手册)，chown](https://man7.org/linux/man-pages/man1/chown.1.html)
 
 Linux 所说的权限，就是用户和组的权限。这是最基本的权限。后面的文章中还会介绍高级权限。
 

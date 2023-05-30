@@ -1,9 +1,9 @@
 [
   "obsidian-image-auto-upload-plugin",
   "obsidian42-brat",
-  "obsidian-bartender",
   "editing-toolbar",
   "table-editor-obsidian",
   "obsidian-excel-to-markdown-table",
-  "obsidian-enhancing-export"
+  "obsidian-enhancing-export",
+  "obsidian-bartender"
 ]

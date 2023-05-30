@@ -15,6 +15,10 @@ https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#attach-di
 
 ## Syntax(语法)
 
+**virsh attach-disk DOMAIN SOURCE TARGET [OPTIONS]**
+
+DOMAIN 可以使用 --domain 选项指定，SOURCE 可以使用 --source 选项指定，TARGET 可以使用 --target 选项指定
+
 **OPTIONS**
 
 - **--driver DRIVER** # 可用的值有：qemu
@@ -23,6 +27,14 @@ https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#attach-di
 - **--targetbus STRING** # 指定要模拟的设备类型。`默认值：从设备名称的样式中推断出总线类型`
     - 可用的值：virtio
 - **--cache STRING** # 可用的值：none
+
+## EXAMPLE
+
+先创建一个 qcow2 文件，然后使用这个文件进行测试
+
+- qemu-img create -f qcow2 -o size=1G test-data.qcow2
+
+TODO: virsh attach-disk tj-test-spst-common-ubuntu2204 /var/lib/libvirt/images/test-data.qcow2 vdb 这种命令添加的设备没有容量显示有问题
 
 # attach-interface # 附加网络接口(i.e.给 VM 添加一个网卡)
 

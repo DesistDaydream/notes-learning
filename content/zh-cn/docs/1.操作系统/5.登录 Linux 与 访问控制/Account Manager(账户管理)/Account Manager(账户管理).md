@@ -41,9 +41,13 @@ Linux 系统使用 **Secure Hash Algorithm 512(SHA512)**和 **shadow passwords**
 # 关联文件
 
 **/etc/group** # 账户组信息
+
 **/etc/passwd** # 账户信息
+
 **/etc/shadow** # 安全账户信息
+
 **/etc/login.defs** # login 工具包中的配置文件，部分账户管理工具会读取该文件中的参数
+
 **/etc/pam.d/** #
 
 - ./chfn
@@ -53,8 +57,11 @@ Linux 系统使用 **Secure Hash Algorithm 512(SHA512)**和 **shadow passwords**
 - ./passwd
 
 **/etc/skel/** # 该目录为账户目录模板。该目录下包含多个隐藏的文件，当创建用户时，会拷贝该目录下的所有文件到所创建用户的家目录中
+
 **/home/AccountName/** # UserName 为该账户同名的家目录
+
 **/var/spool/mail/AccountName**# 该文件为该账户的邮件池
+
 注意：
 
 - 若 /etc/shadow 被 selinux 所管理，有的时候密码修改将会失败，报错 `passwd: Authentication token manipulation error`
@@ -249,7 +256,7 @@ passwd 软件包将会记录用户上次更改密码的时间、应该间隔多�
 - **-l, --list** # 显示账户的老化信息
 
 ```bash
-[root@hw-cloud-xngy-jump-server-linux-2 ~]# chage -l root
+~]# chage -l root
 Last password change     : Oct 01, 2021 # 最后一次修改密码的时间
 Password expires     : never
 Password inactive     : never
