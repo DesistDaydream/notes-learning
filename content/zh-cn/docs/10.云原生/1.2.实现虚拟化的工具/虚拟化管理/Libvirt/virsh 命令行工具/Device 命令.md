@@ -36,6 +36,10 @@ DOMAIN 可以使用 --domain 选项指定，SOURCE 可以使用 --source 选项�
 
 TODO: virsh attach-disk tj-test-spst-common-ubuntu2204 /var/lib/libvirt/images/test-data.qcow2 vdb 这种命令添加的设备没有容量显示有问题
 
+待验证命令：
+
+- virsh attach-disk tj-test-spst-common-ubuntu2204 /var/lib/libvirt/images/test-data.qcow2 vdb --cache none --driver qemu --su
+
 # attach-interface # 附加网络接口(i.e.给 VM 添加一个网卡)
 
 # detach-device # detach device from an XML file

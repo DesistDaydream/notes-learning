@@ -81,10 +81,12 @@ gitconfig 配置内容与 git config --global 命令一一对应
 
 比如：
 
-    # 执行如下命令
-    git config --global user.name "DesistDaydream"
-    # gitconfig 文件中生成如下内容
-    [user]
-    name = DesistDaydream
+```bash
+# 执行如下命令
+git config --global user.name "DesistDaydream"
+# gitconfig 文件中生成如下内容
+[user]
+name = DesistDaydream
+```
 
 其中 user 配置环境标识，name 为该配置环境中的关键字。
