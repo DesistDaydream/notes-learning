@@ -1,33 +1,40 @@
 ---
 title: WSL
+
 ---
 
 # 概述
 
 > 参考：
-> - [官方文档,windows-wsl](https://docs.microsoft.com/zh-cn/windows/wsl/)
+> 
+> - [官方文档，windows-wsl](https://docs.microsoft.com/zh-cn/windows/wsl/)
 
 
 # 安装 WSL
 
 现在默认使用 WSL2，也推荐安装和使用 WSL2。
 
-打开 “启用或关闭Windows功能”，开启 “适用于 Linux 的 Windows 子系统”
+打开 “启用或关闭Windows功能”，开启 “适用于 Linux 的 Windows 子系统” 和 “虚拟机平台”。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/0-picgo/20230126182502.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wsl/20230601094318.png)
+
+若不开启“虚拟机平台”，在安装后启动时，将可能会出现下图错误
+
+![wsl-error.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wsl/wsl-error.png)
 
 ## 安装 Linux 发行版
 
 在 PowerShell 执行指令
 
-安装
+安装 Ubuntu 发行版的 WSL
 
 ```
-wsl --install
+wsl --install -d Ubunt
 ```
 
 ## 常见问题
-若安装后 linux 无法启动，报错：WslRegisterDistribution failed with error: 0x800701bc，可以参考[官方文档，疑难解答](https://learn.microsoft.com/zh-cn/windows/wsl/troubleshooting)
+
+若安装后 linux 无法启动，报错：`WslRegisterDistribution failed with error: 0x800701bc`
 
 （可选）设置 wsl 版本
 
@@ -40,6 +47,8 @@ wsl --set-default-version 2
 ```shell
 wsl.exe --user root
 ```
+
+更多常见问题，可以参考[官方文档，疑难解答](https://learn.microsoft.com/zh-cn/windows/wsl/troubleshooting)
 
 # 为 WSL2 设置代理
 
@@ -65,16 +74,28 @@ export ALL_PROXY="sock5://${hostip}:7890"
 
 # wsl 命令行工具
 
+> 参考：
+> 
+> - [官方文档-WSL，概述-基本 WSL 命令](https://learn.microsoft.com/zh-cn/windows/wsl/basic-commands)
+
 ## Syntax(语法)
 
 **wsl [OPTOINS]**
 
 **OPTONS**
 
-- **-d STRING** # 指定要运行的发行版
+- **-d, --distribution STRING** # 指定要运行的发行版
 - **-u, --user STRING** # 使用指定的用户运行发行版。可以直接以 root 用户运行。常用来在忘记密码时候使用。
 
-管理选项
+WSL 子系统管理选项
 
+- **--status** # 显示适用于 Linux 的 Windows 子系统的状态。
+- **--update** # 更新适用于 Linux 的 Windows 子系统程序包。
+
+发行版管理选项
+
+- **-l, --list [OPTIONS]** # 列出发行版，可以根据子参数指定需要列出哪些发行版。
+  - **--all** # 列出所有
+  - **-o, --online** # 列出所有可以安装的发行版。
 - **--set-default-version** # 
 - **-s, --set-default DISTRO** # 将指定的发行版设为默认

@@ -19,7 +19,7 @@ weight: 20
 -   [Get-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/get-item?view=powershell-7.3)
 -   [Invoke-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/invoke-item?view=powershell-7.3)
 -   [Move-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/move-item?view=powershell-7.3)
--   [New-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/new-item?view=powershell-7.3)
+-   [New-Item](#New-Item)
 -   [Remove-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/remove-item?view=powershell-7.3)
 -   [Rename-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/rename-item?view=powershell-7.3)
 -   [Set-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/set-item?view=powershell-7.3)
@@ -81,7 +81,6 @@ ls 命令是 Get-ChildItem 的别名。
 实现类似 tree 命令的效果
 
 - Get-ChildItem -Path D:/Tools -Recurse -Depth 2 | Select-Object FullName
-
 
 # 服务管理工具
 

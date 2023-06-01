@@ -19,7 +19,7 @@ weight: 20
 Revo Uninstaller # 
 - https://www.revouninstaller.com/
 - https://www.bilibili.com/video/BV13x4y1G7Qc
-	- 30天过后请按照我的教程走一遍就好了哈
+  - 30天过后请按照我的教程走一遍就好了哈
 
 Geek Uninstaller # 
 - https://geekuninstaller.com/
