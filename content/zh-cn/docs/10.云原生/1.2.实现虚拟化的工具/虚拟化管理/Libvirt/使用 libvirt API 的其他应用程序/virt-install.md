@@ -11,7 +11,7 @@ weight: 20
 > - [GitHub 项目，virt-manager/virt-manager 中的 Manual(手册)](https://github.com/virt-manager/virt-manager/blob/main/man/virt-install.rst)
 > - [Manual(手册),virt-install(1)](https://man.cx/virt-install)（另一个网站的 Manual）
 
-virt-install 是一个命令行工具，用于使用 Libvirt 管理程序管理库创建新的 KVM、Xen 或 Linux 容器。请参阅本文档末尾的[示例部分](https://github.com/virt-manager/virt-manager/blob/main/man/virt-install.rst#examples)以快速入门。
+virt-install 是一个命令行工具，用于通过 Libvirt 管理程序管理库创建新的 KVM、Xen 或 Linux 容器。请参阅本文档末尾的[示例部分](https://github.com/virt-manager/virt-manager/blob/main/man/virt-install.rst#examples)以快速入门。
 
 virt-manager 在图形化界面创建的虚拟机本质上就是调用的 virt-install 命令在系统中执行的。virt-manager 创建的虚拟机生成的 xml 文件可以推导出 virt-install 创建同样虚拟机所需要使用到的参数。
 
@@ -146,7 +146,7 @@ virt-install 命令中很多参数都可以在 [XML 文件](/docs/10.云原生/1
 virt-install --import --name test \
 --memory 2048 --vcpus 2 \
 --os-variant centos7.0 \
---disk /var/lib/libvirt/images/test.qcow2,size=20 \
+--disk /var/lib/libvirt/images/test/test.qcow2,size=100 \
 --network bridge=br0,model=virtio \
 --graphics vnc,listen=0.0.0.0,port=5910
 ```
@@ -161,7 +161,7 @@ virt-install --name centos7 \
 --network bridge=br0,model=virtio \
 --graphics vnc,listen=0.0.0.0,port=5911 \
 --noautoconsole \
---cdrom /root/iso/CentOS-7-x86_64-DVD-2009.iso
+--cdrom /var/lib/libvirt/iso/CentOS-7-x86_64-DVD-2009.iso
 ```
 
 创建完成后，可以使用 virt-viewer 访问虚拟机，也可以使用 VNC 连接到 5911 以访问虚拟机，然后开始安装系统。
