@@ -12,7 +12,7 @@ weight: 20
 
 安装时修改路径后提示没有权限，然后点继续就直接安装到 C 盘了，点取消才能安装到其他路径。
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/0-picgo/wps_fuck_1.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wps/wps_fuck_1.png)
 
 
 # 关联文件与配置

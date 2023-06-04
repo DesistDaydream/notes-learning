@@ -61,7 +61,9 @@ eBPF 无需将数据从内核空间复制到用户空间，你可以直接在内
 eBPF 有一个黑科技，它会使用 **eBPF Map(eBPF 映射)** 来允许用户空间和内核空间之间进行双向数据交换。在 Linux 中，映射（Map）是一种通用的存储类型，用于在用户空间和内核空间之间共享数据，它们是驻留在内核中的键值存储。
 
 对于可观测性这种应用场景，eBPF 程序会直接在内核空间进行计算，并将结果写入用户空间应用程序可以读取/写入的 eBPF 映射中。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kqvmni/1656471724028-9a437fff-c998-434e-a75d-808c9e309295.jpeg)
+
 eBPF 的高效主要还是 **eBPF 提供了一种直接在内核空间运行自定义程序，并且避免了在内核空间和用户空间之间复制无关数据的方法。**
 
 # eBPF 原理与架构简述
@@ -70,7 +72,9 @@ eBPF 的高效主要还是 **eBPF 提供了一种直接在内核空间运行自�
 众所周知，Linux 内核是一个事件驱动的系统设计，这意味着所有的操作都是基于事件来描述和执行的。比如打开文件是一种事件、CPU 执行指令是一种事件、接收网络数据包是一种事件等等。eBPF 作为内核中的一个子系统，可以检查这些基于事件的信息源，并且允许开发者编写并运行在内核触发任何事件时安全执行的 BPF 程序。
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kqvmni/1619101127228-9138d591-82c8-4ce2-9f45-c431a34d3189.png)
 下图简要描述了 eBPF 的架构及基本的工作流程。
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/0-picgo/20230206115723.png)
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/bpf/20230206115723.png)
+
 首先，开发者可以使用 C 语言（或者 Python 等其他高级程序语言）编写自己的 eBPF 程序，然后通过 LLVM 或者 GNU、Clang 等编译器，将其编译成 eBPF 字节码。Linux 提供了一个 bpf() 系统调用，通过 bpf() 系统调用，将这段编译之后的字节码传入内核空间。
 
 传入内核空间之后的 BPF 程序，并不是直接就在其指定的内核跟踪点上开始执行，而是先通过 Verifier 这个组件，来保证我们传入的这个 BPF 程序可以在内核中安全的运行。经过安全检测之后，Linux 内核 还为 eBPF 字节码提供了一个实时的编译器（Just-In-Time，JIT），JIT 将确认后的 eBPF 字节码编译为对应的机器码。这样就可以在 eBPF 指定的跟踪点上执行我们的操作逻辑了。

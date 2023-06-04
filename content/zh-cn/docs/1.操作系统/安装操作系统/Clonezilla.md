@@ -108,7 +108,7 @@ Clonezilla 源码实际上是运行程序本身，因为它们使用脚本(bash 
 
 为 Clonezilla 确定使用镜像文件的方式，比如本机分区(硬盘、U盘等)、远程主机目录等。这些方式任选其一即可
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/0-picgo/clonezilla_store_path.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/clonezilla/clonezilla_store_path.png)
 
 ### local_dev
 
@@ -175,8 +175,7 @@ s3fs my-ocs-img /home/partimag -o passwd_file=/root/.passwd-s3fs -o url="https:/
 
 选择“初学模式”，进入 CloneZilla 功能界面
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/0-picgo/clonezilla_config_args_1.png)
-
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/clonezilla/clonezilla_config_args_1.png)
 
 ## 选择要执行的操作
 

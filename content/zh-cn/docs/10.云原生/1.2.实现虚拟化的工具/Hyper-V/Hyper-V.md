@@ -37,7 +37,7 @@ RDP/增强会话模式：
 
 想要共享宿主机的磁盘，最好的方法是使用 RDP 的 tsclient 功能，效果如下图：
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/0-picgo/20230209155050.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hyper-v/20230209155050.png)
 
 
 # 使用 PowerShell 模块管理 Hyper-V
