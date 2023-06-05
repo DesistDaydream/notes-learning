@@ -19,3 +19,7 @@ weight: 20
 ```bash
 pip install numpy
 ```
+
+# 分类
+
+#人工智能 #Python #科学计算

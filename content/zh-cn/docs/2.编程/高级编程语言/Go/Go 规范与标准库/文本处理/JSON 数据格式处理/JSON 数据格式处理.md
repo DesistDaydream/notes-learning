@@ -2,7 +2,7 @@
 title: "JSON 数据格式处理"
 linkTitle: "JSON 数据格式处理"
 date: "2023-06-05T16:13"
-weight: 20
+weight: 1
 ---
 
 # 概述
@@ -14,7 +14,11 @@ weight: 20
 > - [骏马金龙](https://www.cnblogs.com/f-ck-need-u/p/10080793.html)
 > - [在线 JSON 转 Go Struct](https://transform.tools/json-to-go)
 
-**JavaScript Object Notation(简称 JSON)** 是一种简单的数据交换格式。从句法上讲，它类似于 JavaScript 的对象和列表。它最常用于Web后端与浏览器中运行的JavaScript程序之间的通信，但它也用于许多其他地方。它的主页json.org提供了一个清晰，简洁的标准定义。
+Go 语言内置了 encoding 标准库，并使用其中的 json 包来实现 [JSON](docs/2.编程/无法分类的语言/JSON.md) 的 **Encoding(编码)** 和 **Decoding(解码)** 逻辑，这里面的 JSON 符合 [RFC 7159](https://rfc-editor.org/rfc/rfc7159.html) 标准。
+
+这里面说的编码则是指将 Go 自身可以识别的数据类型编码为 JSON 格式的数据；解码主要是指解码后数据编程 Go 可以理解的数据格式，比如 struct、slice、map 等。
+
+> 说白了，Go 编完的码，是编成人类可读的，自己不认识；解码才是将数据解成 Go 自己认识的。
 
 **JSON类型 与 Go类型 对应关系**
 
@@ -33,10 +37,11 @@ object  >> map[string]interface{}
 
 **Encoding(编码)** 与 **Decoding(解码)** 是 JSON 数据处理的基本操作
 
-在 json 包中，使用`Marshal()`和 `Unmarshal()` 函数来执行最基本的 Encoding 与 Decoding 行为。
+在 json 包中，使用 `Marshal()` 和 `Unmarshal()` 函数来执行最基本的 Encoding 与 Decoding 行为。
 
-Marshal:直译为“编排、整理、排列、序列”，表示整理指定的内容，将内容整理成 json 数据。所以有时候也称此行为叫 **serializable(序列化)。**这种称呼是相对的。在计算机中特指将数据按某种描述格式编排出来，通常来说一般是从非文本格式到文本格式的数据转化。unmarshal 自然是指 marshal 的逆过程。
-> 比如在 WebService 中，我们需要把 go 的 struct 以 JSON 方式表示并在网络间传输，把 go struct 转化成 JSON 的过程就是marshal.
+Marshal: 直译为“编排、整理、排列、序列”，表示整理指定的内容，将内容整理成 json 数据。所以有时候也称此行为叫 **serializable(序列化)**。这种称呼是相对的。在计算机中特指将数据按某种描述格式编排出来。unMarshal 自然是指 Marshal 的逆过程。
+
+> 比如在 Web 服务中，我们需要把 go 的 struct 以 JSON 方式表示并在网络间传输，把 go struct 转化成 JSON 的过程就是marshal。
 
 用白话说：
 
@@ -81,8 +86,8 @@ type Post struct {
  Author    Author        `json:"author"`
  Published bool          `json:"published"`
  Label     []string      `json:"label"`
- NextPost  *Post         `json:"nextPost"`
- Comments  []*Comment    `json:"comments"`
+ NextPost  Post         `json:"nextPost"`
+ Comments  []Comment    `json:"comments"`
 }
 
 type Author struct {
@@ -122,7 +127,7 @@ func Marshal(v interface{}) ([]byte, error)
 
 ### 简单示例
 
-假如现在有一个名为`Message`的 struct(结构体)，这个结构体表示一条消息中应该具有的属性。比如发送者、消息内容、发送时间，等等。
+假如现在有一个名为 `Message` 的 Struct，这个结构体表示一条消息中应该具有的属性。比如发送者、消息内容、发送时间，等等。
 
 ```go
 type Message struct {
@@ -132,7 +137,7 @@ type Message struct {
 }
 ```
 
-要想将这个 struct 中的数据转换为 JSON 格式，只需要使用 `Marshal()` 函数即可
+要想将这个 Struct 中的数据转换为 JSON 格式，只需要使用 `Marshal()` 函数即可
 
 和一个实例 `Message`
 
@@ -156,6 +161,7 @@ fmt.Println(string(b))
 ```
 
 注意：
+
 由于转换规范的原因导致 json 格式数据的 key 的首字母都是大写的，如果想要小写的，只需要给 struct 属性添加注释可，比如：
 
 ```go
@@ -194,10 +200,10 @@ fmt.Println(string(c))
 
 ## Decoding(解码)
 
-要解码JSON数据，我们使用`Unmarshal()`函数。
+要解码 JSON 数据，我们使用`Unmarshal()`函数。
 
-> Marshal 有整理、排列、序列的含义，表示整理指定的内容，将内容整理成 json 数据。那么 Unmarshal 就是 打散 这种含义。有时候也称为 **反序列化。**
-> 比如可以这么描述：将 json 数据反序列化成指定的数据
+> Marshal 有整理、排列、序列的含义，表示整理指定的内容，将内容整理成 JSON 数据。那么 Unmarshal 就是 打散 这种含义。有时候也称为 **反序列化。**
+> 比如可以这么描述：将 JSON 数据反序列化成指定的数据
 
 ```go
 func Unmarshal(data []byte, v interface{}) error
@@ -382,9 +388,9 @@ type IncomingMessage struct {
 
 发送方可以根据他们想要传达的消息类型来填充顶级JSON对象的`Cmd`字段和/或`Msg`字段。 `Unmarshal`，当将JSON解码为`IncomingMessage`结构时，只会分配JSON数据中存在的数据结构。要知道这消息的过程中，程序员需要简单地测试，要么`Cmd`或`Msg`不是`nil`。
 
-# 流编码器和解码器
+# 流编码器和流解码器
 
-json 包提供了 `Decoder` 和 `Encoder` 类型，以支持读写 JSON 数据流的通用操作。的 `NewDecoder` 和 `NewEncoder` 功能包裹 [io.Reader](https://golang.org/pkg/io/#Reader) 和 [io.Writer](https://golang.org/pkg/io/#Writer)接口类型。
+json 包提供了 `Decoder` 和 `Encoder` 类型，以支持读写 JSON 数据流的通用操作。`NewDecoder()` 和 `NewEncoder()` 函数包装了 [io.Reader](https://golang.org/pkg/io/#Reader) 和 [io.Writer](https://golang.org/pkg/io/#Writer)接口类型。
 
 ```go
 func NewDecoder(r io.Reader) *Decoder
@@ -427,60 +433,97 @@ func main() {
 
 有关更多信息，请参阅 [json包文档](https://golang.org/pkg/encoding/json/)。有关json的用法示例，请参阅 [jsonrpc包](https://golang.org/pkg/net/rpc/jsonrpc/) 的源文件。
 
+## go 中的 Decoder 和 Encoder 有什么用？为什么有了 Marshal 和 Unmarshal 还要有流式编码和解码的逻辑？
+
+下面回答来自 NewBing：
+
+你好，这是必应。我会尽力用中文回答你的问题。😊
+
+go 中的 Decoder 和 Encoder 是用来实现流式编码和解码的接口，它们可以将数据从一个 io.Reader 或 io.Writer 转换成 go 的数据类型，或者反过来。<sup>1</sup> <sup>4</sup> <sup>5</sup>
+
+Marshal 和 Unmarshal 是一些方便的函数，它们可以将数据从一个字符串或字节切片转换成 go 的数据类型，或者反过来。<sup>1</sup> <sup>4</sup> <sup>5</sup>
+
+有了 Marshal 和 Unmarshal，为什么还要有流式编码和解码的逻辑呢？主要有以下几个原因：
+
+- 流式编码和解码可以节省内存，因为它们不需要一次性加载整个数据到内存中，而是可以逐渐处理数据。<sup>1</sup> <sup>4</sup>
+- 流式编码和解码可以提高性能，因为它们可以在读写数据的同时进行转换，而不需要等待数据完全读写完毕。<sup>1</sup> <sup>4</sup>
+- 流式编码和解码可以支持更多的数据格式，比如 XML，CSV，YAML 等，因为它们可以自定义如何读写数据。<sup>6</sup>
+
+下面是一个简单的例子，演示了如何使用 Encoder 和 Decoder 来编码和解码一个结构体：
+
+```go
+package main
+
+import (
+	"bytes"
+	"encoding/gob"
+	"fmt"
+)
+
+type Person struct {
+	Name string
+	Age  int
+}
+
+func main() {
+	// 创建一个缓冲区，用来存储编码后的数据
+	var buf bytes.Buffer
+	// 创建一个 Encoder，用来将 Person 结构体编码到缓冲区
+	enc := gob.NewEncoder(&buf)
+	// 创建一个 Person 实例
+	p := Person{Name: "Alice", Age: 25}
+	// 调用 Encode 方法，将 p 编码到缓冲区
+	err := enc.Encode(p)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	// 打印缓冲区的内容（二进制格式）
+	fmt.Println(buf.Bytes())
+
+	// 创建一个 Decoder，用来将缓冲区的数据解码成 Person 结构体
+	dec := gob.NewDecoder(&buf)
+	// 创建一个空的 Person 实例
+	var q Person
+	// 调用 Decode 方法，将缓冲区的数据解码到 q 中
+	err = dec.Decode(&q)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	// 打印 q 的内容（结构体格式）
+	fmt.Println(q)
+}
+```
+
+\-
+\[1]: [go - json.Marshal vs Encoder.Encode - Stack Overflow](https://stackoverflow.com/questions/62379309/json-marshal-vs-encoder-encode)
+\[2]: [go - in Golang, what is the difference between json encoding and ...](https://stackoverflow.com/questions/33061117/in-golang-what-is-the-difference-between-json-encoding-and-marshalling)
+\[3]: [Golang JSON Marshal(encode) and Unmarshal(decode/parse) with examples](https://www.jsonformatter.io/golang-json-parse-marshal-unmarshal-encode-decode/)
+\[4]: [encoding package - encoding - Go Packages](https://pkg.go.dev/encoding)
+\[5]: [go - Wrapping gob decoder - Stack Overflow](https://stackoverflow.com/questions/70555069/wrapping-gob-decoder)
+\[6]: [go - How to marshal array to binary and unmarshal binary to array in ...](https://stackoverflow.com/questions/44290639/how-to-marshal-array-to-binary-and-unmarshal-binary-to-array-in-golang)
+
 # 流式与非流式的区别
 
 来自 Claude 的回答
 
 json.Unmarshal() 和 json.Decode() 的区别主要有:
-1. Unmarshal() 接收 []byte 类型,Decode() 接收 io.Reader 接口类型,比如 strings.NewReader。
-2. Unmarshal() 会把整个 JSON 字符串解析成 Go 结构体,Decode() 采用流式解析,逐行解析 JSON 字符串。
-3. 如果 JSON 字符串很大,Unmarshal() 会把整个字符串加载到内存中,然后解析,可能导致 OOM。而 Decode() 采用流式解析,不会出现 OOM 的问题。
-4. Unmarshal() 解析失败会返回错误,Decode() 解析失败可以从 err 中获取错误信息,并继续解析其他 JSON 数据。
+
+- Unmarshal() 接收 []byte 类型,Decode() 接收 io.Reader 接口类型,比如 strings.NewReader。
+- Unmarshal() 会把整个 JSON 字符串解析成 Go 结构体,Decode() 采用流式解析,逐行解析 JSON 字符串。
+- 如果 JSON 字符串很大,Unmarshal() 会把整个字符串加载到内存中,然后解析,可能导致 OOM。而 Decode() 采用流式解析,不会出现 OOM 的问题。
+- Unmarshal() 解析失败会返回错误,Decode() 解析失败可以从 err 中获取错误信息,并继续解析其他 JSON 数据。
+
 所以总的来说:
+
 - 如果 JSON 数据量不大,使用 Unmarshal() 更方便。
 - 如果 JSON 数据量很大,要防止 OOM,用 Decode() 流式解析。
 - 如果 JSON 字符串包含多条 JSON 数据,用 Decode() 可以逐条解析,Unmarshal() 只能解析第一条数据。
+
 根据你的代码示例,两个方法的输出结果是一样的,因为 JSON 字符串数据量很小,所以两种方法都可以使用。但如果数据量很大,Unmarshal() 可能会导致 OOM,这时 Decode() 是更好的选择。 
 
-来自 NewBind 的回答
-
-根据搜索结果1 2 3，json.Unmarshal 和 json.NewDecoder 的区别主要是：
-
-- json.Unmarshal 用于解析一个单独的 JSON 文档，而 json.NewDecoder 用于解析一个流式的 JSON 文档，例如从网络或文件中读取的数据。
-- json.Unmarshal 需要先将 JSON 数据读取到内存中，然后再进行解析，而 json.NewDecoder 可以直接从 io.Reader 中读取并解析数据，不需要额外的内存分配。
-- json.Unmarshal 只能解析一次，而 json.NewDecoder 可以解析多个连续的 JSON 文档。
-
-所以，一般来说，如果您的数据是从一个 io.Reader 流中获取的，或者您需要解析多个 JSON 文档，那么您应该使用 json.NewDecoder。如果您已经有了 JSON 数据在内存中，那么您可以使用 json.Unmarshal。
-
-# 相关文章
-
-- [用于协议缓冲区的新Go API](https://blog.golang.org/protobuf-apiv2)
-- [在Go 1.13中处理错误](https://blog.golang.org/go1.13-errors)
-- [调试在Go 1.12中部署的内容](https://blog.golang.org/debug-opt)
-- [HTTP / 2服务器推送](https://blog.golang.org/h2push)
-- [介绍HTTP跟踪](https://blog.golang.org/http-tracing)
-- [产生程式码](https://blog.golang.org/generate)
-- [隆重推出Go Race Detector](https://blog.golang.org/race-detector)
-- [行动地图](https://blog.golang.org/maps)
-- [去你的代码](https://blog.golang.org/gofmt)
-- [组织Go代码](https://blog.golang.org/organizing-go-code)
-- [使用GNU调试器调试Go程序](https://blog.golang.org/debug-gdb)
-- [Go图片/绘图包](https://blog.golang.org/image-draw)
-- [Go图像包](https://blog.golang.org/image)
-- [反射定律](https://blog.golang.org/laws-of-reflection)
-- [错误处理和执行](https://blog.golang.org/error-handling-and-go)
-- [Go中的一流函数](https://blog.golang.org/functions-codewalk)
-- [分析Go程序](https://blog.golang.org/pprof)
-- [GIF解码器：Go接口中的练习](https://blog.golang.org/gif-decoder)
-- [介绍Gofix](https://blog.golang.org/introducing-gofix)
-- [Godoc：记录Go代码](https://blog.golang.org/godoc)
-- [数据块](https://blog.golang.org/gob)
-- [C？走？go！](https://blog.golang.org/cgo)
-- [切成薄片：用法和内部原理](https://blog.golang.org/slices-intro)
-- [Go并发模式：超时，继续前进](https://blog.golang.org/concurrency-timeouts)
-- [推迟，恐慌和恢复](https://blog.golang.org/defer-panic-and-recover)
-- [通过通信共享内存](https://blog.golang.org/codelab-share)
-- [JSON-RPC：接口的故事](https://blog.golang.org/json-rpc)
+**总得来说，如果是从 HTTP 的响应体中读取 JSON 数据的情况，建议使用流式的 json.NewDecoder().Decode() 来处理 JSON 数据转换为 Go 结构体的逻辑。**
 
 # 其他文章
 
