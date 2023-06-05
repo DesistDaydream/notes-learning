@@ -425,7 +425,32 @@ func main() {
 
 ## 参考
 
-有关更多信息，请参阅[json包文档](https://golang.org/pkg/encoding/json/)。有关json的用法示例，请参阅[jsonrpc包](https://golang.org/pkg/net/rpc/jsonrpc/)的源文件。
+有关更多信息，请参阅 [json包文档](https://golang.org/pkg/encoding/json/)。有关json的用法示例，请参阅 [jsonrpc包](https://golang.org/pkg/net/rpc/jsonrpc/) 的源文件。
+
+# 流式与非流式的区别
+
+来自 Claude 的回答
+
+json.Unmarshal() 和 json.Decode() 的区别主要有:
+1. Unmarshal() 接收 []byte 类型,Decode() 接收 io.Reader 接口类型,比如 strings.NewReader。
+2. Unmarshal() 会把整个 JSON 字符串解析成 Go 结构体,Decode() 采用流式解析,逐行解析 JSON 字符串。
+3. 如果 JSON 字符串很大,Unmarshal() 会把整个字符串加载到内存中,然后解析,可能导致 OOM。而 Decode() 采用流式解析,不会出现 OOM 的问题。
+4. Unmarshal() 解析失败会返回错误,Decode() 解析失败可以从 err 中获取错误信息,并继续解析其他 JSON 数据。
+所以总的来说:
+- 如果 JSON 数据量不大,使用 Unmarshal() 更方便。
+- 如果 JSON 数据量很大,要防止 OOM,用 Decode() 流式解析。
+- 如果 JSON 字符串包含多条 JSON 数据,用 Decode() 可以逐条解析,Unmarshal() 只能解析第一条数据。
+根据你的代码示例,两个方法的输出结果是一样的,因为 JSON 字符串数据量很小,所以两种方法都可以使用。但如果数据量很大,Unmarshal() 可能会导致 OOM,这时 Decode() 是更好的选择。 
+
+来自 NewBind 的回答
+
+根据搜索结果1 2 3，json.Unmarshal 和 json.NewDecoder 的区别主要是：
+
+- json.Unmarshal 用于解析一个单独的 JSON 文档，而 json.NewDecoder 用于解析一个流式的 JSON 文档，例如从网络或文件中读取的数据。
+- json.Unmarshal 需要先将 JSON 数据读取到内存中，然后再进行解析，而 json.NewDecoder 可以直接从 io.Reader 中读取并解析数据，不需要额外的内存分配。
+- json.Unmarshal 只能解析一次，而 json.NewDecoder 可以解析多个连续的 JSON 文档。
+
+所以，一般来说，如果您的数据是从一个 io.Reader 流中获取的，或者您需要解析多个 JSON 文档，那么您应该使用 json.NewDecoder。如果您已经有了 JSON 数据在内存中，那么您可以使用 json.Unmarshal。
 
 # 相关文章
 
