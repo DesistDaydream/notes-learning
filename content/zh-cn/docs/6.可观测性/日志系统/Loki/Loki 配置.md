@@ -180,10 +180,15 @@ schema_config 下只有一个单独的 `configs` 字段，其实用 period_confi
 #### configs([]Object)
 
 **from: 2018-04-15** # 该模式的起始时间
+
 注意：store 与 object_store 字段的配置将会决定 Loki 使用 storage_config 中的哪个字段作为存储数据的地方
+
 **schema(STRING)** # 模式的版本，当前推荐为 v11。
+
 **store(STRING)** # 存放 Index 数据的存储类型。可用的值有：aws, aws-dynamo, gcp, bigtable, bigtable-hashed,cassandra, boltdb-shipper
+
 **object_store(STRING)** # 存放 Chunks 数据的存储类型。可用的值有：s3、aws、azure、gcp、bigtable、gcs、cassandra、swift、filesystem。`默认值：与 store 字段的值相同`。
+
 **index(Object)** # 指定储存 Index 数据的行为。
 
 - **prefix(STRING)** # 表的前缀，也就是 index 文件的前缀。
@@ -194,7 +199,7 @@ schema_config 下只有一个单独的 `configs` 字段，其实用 period_confi
 - **prefix(STRING)** #
 - **period(DURATION)** #
 
-\~~注意~~~~：~~`~~store~~`~~ 与 ~~`~~object_store~~`~~ 字段的值，将会影响 ~~`~~storage_config~~`~~ 字段下可以使用的字段。比如 store 为 boltdb-shipper，则 storage_config 中只有 boltdb-shipper 字段可以配置，其他无法配置，配置了就会报错。~~Loki 2.4 版本之后，推荐使用 `common.storage` 字段。
+注意: `store` 与 `object_store` 字段的值，将会影响 `storage_config` 字段下可以使用的字段。比如 store 为 boltdb-shipper，则 storage_config 中只有 boltdb-shipper 字段可以配置，其他无法配置，配置了就会报错。Loki 2.4 版本之后，推荐使用 `common.storage` 字段。
 
 ### storage_config(Objcet)
 
@@ -251,7 +256,8 @@ Loki 的 distributor(分配器) 组件配置。
 ### ingester(Object)
 
 Loki 的 Ingester(摄取器) 配置，以及配置采集器如何将自己注册到键值存储
-**lifecycler:** #
+
+**lifecycler** #
 
 - **address: 127.0.0.1**#
 - **ring:** #

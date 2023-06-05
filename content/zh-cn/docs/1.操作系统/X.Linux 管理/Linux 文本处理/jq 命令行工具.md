@@ -5,6 +5,7 @@ title: jq 命令行工具
 # 概述
 
 > 参考：
+> 
 > - 官方文档：<https://stedolan.github.io/jq/>
 
 jq 是轻量级且灵活的处理 JSON 数据的 shell 命令行工具
@@ -60,14 +61,14 @@ jq 程序是一个`过滤器`，接收一个输入，并产生一个输出。
 }
 ```
 
-## 点`.`符号
+## `.` 符号
 
 点`.`符号与 go 模板中的点作用一样，表示**当前作用域**的**对象**。对于 jq 来说，所有给 jq 输入的内容，都是当前作用域的对象。比如
 
 ```json
-[root@host-3 ~]# cat demo.json
+~]# cat demo.json
 {"favorite":{"drink":"water","food":"sushi","game":"WOW & PAL"},"sushiKinds":["sashimi",{"name":"hot"},{"name":"handRoll","rice":"more"},{"name":null}],"arrayBrowser":[{"name":"360","url":"http://www.so.com"},{"name":"bing","url":"http://www.bing.com"}]}
-[root@host-3 ~]# cat demo.json | jq .
+~]# cat demo.json | jq .
 {
   "favorite": {
     "drink": "water",
@@ -104,13 +105,15 @@ jq 程序是一个`过滤器`，接收一个输入，并产生一个输出。
 
 给定 map 的名称，获取其值。`.foo.bar`与`.foo|.bar`作用相同。如果 map 名称中包含特殊字符或以数字开头，则需要适用双引号将其括起来，例如
 
-    [root@host-3 ~]# cat demo.json | jq '.favorite.food'
-    "sushi"
+```bash
+~]# cat demo.json | jq '.favorite.food'
+"sushi"
+```
 
 ## 获取 array 的值
 
 ```json
-[root@host-3 ~]# cat demo.json | jq .arrayBrowser
+~]# cat demo.json | jq .arrayBrowser
 [
   {
     "name": "360",
@@ -121,7 +124,7 @@ jq 程序是一个`过滤器`，接收一个输入，并产生一个输出。
     "url": "http://www.bing.com"
   }
 ]
-[root@host-3 ~]# cat demo.json | jq .arrayBrowser[]
+~]# cat demo.json | jq .arrayBrowser[]
 {
   "name": "360",
   "url": "http://www.so.com"
@@ -130,10 +133,10 @@ jq 程序是一个`过滤器`，接收一个输入，并产生一个输出。
   "name": "bing",
   "url": "http://www.bing.com"
 }
-[root@host-3 ~]# cat demo.json | jq .arrayBrowser[].name
+~]# cat demo.json | jq .arrayBrowser[].name
 "360"
 "bing"
-[root@host-3 ~]# cat demo.json | jq .arrayBrowser[1]
+~]# cat demo.json | jq .arrayBrowser[1]
 {
   "name": "bing",
   "url": "http://www.bing.com"
