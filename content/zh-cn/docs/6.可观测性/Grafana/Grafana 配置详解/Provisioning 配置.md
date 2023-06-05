@@ -53,21 +53,21 @@ datasources:
 
 > 注意：目录下的 .json 文件就是在 Web 页面导出的 Dashboard。
 
-**apiVersion: \<INT>** # `默认值：1`
-**providers: <\[]Object>** #
+**apiVersion(INT)** # `默认值：1`
+**providers([]Object)** #
 
 - **name: <\STRING>** # an unique provider name. Required
 - **orgId: 1** # Org 的 ID 号，`默认值：1`。通常 Grafana 启动后会自动创建一个名为 Main Org. 的 Org，该 Org 的 ID 为 1
-- **folder: \<STRING>** # 从目录读取到的所有仪表盘应该存放的文件夹。文件夹指的是 Grafana Web UI 上用于存放仪表盘的地方。若该值为空，则加载到的仪表盘存放在 General 文件夹中。
+- **folder(STRING)** # 从目录读取到的所有仪表盘应该存放的文件夹。文件夹指的是 Grafana Web UI 上用于存放仪表盘的地方。若该值为空，则加载到的仪表盘存放在 General 文件夹中。
   - 注意：文件夹的名称与仪表盘的名称不能相同，否则将会报错并且无法自动生成仪表盘
-- **folderUid: \<STRING>** # 上面 folder 文件夹的 UID folder UID. will be automatically generated if not specified
-- **type: \<string>** # 提供者类型。默认值：file
-- **disableDeletion: \<bool>** # 是否允许通过 Web UI 删除目录下的仪表盘
+- **folderUid(STRING)** # 上面 folder 文件夹的 UID folder UID. will be automatically generated if not specified
+- **type(string)** # 提供者类型。默认值：file
+- **disableDeletion(bool)** # 是否允许通过 Web UI 删除目录下的仪表盘
 - **updateIntervalSeconds: 10** # \<int> Grafana 检查该目录下仪表盘是否有更新的间隔时间(单位：秒)。
-- **allowUiUpdates: \<bool>** # 是否允许通过 Web UI 更新目录下仪表盘
-- **options: \<Object>**
-  - **path: \<string>** # 必须的。要加载仪表盘的目录。该目录下的所有 .json 文件都会被 Grafana 加载为仪表盘
-  - **foldersFromFilesStructure: \<bool>** # 使用文件系统中的文件夹名称作为 Grafana Web UI 中的文件夹名。`默认值：false`。具体用法详见《[文件系统结构映射到 WebUI 中的文件夹](/docs/6.可观测性/Grafana/Grafana%20 配置详解/Provisioning%20 配置.md 配置.md)》
+- **allowUiUpdates(bool)** # 是否允许通过 Web UI 更新目录下仪表盘
+- **options(Object)**
+  - **path(string)** # 必须的。要加载仪表盘的目录。该目录下的所有 .json 文件都会被 Grafana 加载为仪表盘
+  - **foldersFromFilesStructure(bool)** # 使用文件系统中的文件夹名称作为 Grafana Web UI 中的文件夹名。`默认值：false`。具体用法详见《[文件系统结构映射到 WebUI 中的文件夹](/docs/6.可观测性/Grafana/Grafana%20 配置详解/Provisioning%20 配置.md 配置.md)》
     - 注意：该字段与 `folder` 和 `folderUid` 冲突。
 
 ## 配置文件示例

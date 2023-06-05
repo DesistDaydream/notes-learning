@@ -59,12 +59,12 @@ STRING 是 socket 路径，现阶段只支持 UNIX sock，后面还可以支持�
 
 **apiVersion: **kubelet.config.k8s.io/v1beta1
 **kind: **KubeletConfiguration
-**address: \<STRING> **# kubelet 服务的 IP。默认为 0.0.0.0
-**cgroupDriver: \<cgroupfs|systemd> **# kubelet 用于操纵主机上 cgroup 的驱动程序。`默认值：cgroupfs`
-**imageMinimumGCAge: \<DURATION> **# 未使用的 image 进行垃圾回收之前的最小期限。`默认值：2m`
-**nodeStatusReportFrequency: \<DURATION>** # 节点状态报告频率。`默认值：10s`
-**nodeStatusUpdateFrequency: \<DURATION>** # 节点状态更新频率。`默认值：5m`
-**resolvConf: \<STRING>** # kubelet 启动的容器所使用的解析器的配置文件。`默认值：/etc/resolv.conf`
+**address(STRING) **# kubelet 服务的 IP。默认为 0.0.0.0
+**cgroupDriver(cgroupfs|systemd) **# kubelet 用于操纵主机上 cgroup 的驱动程序。`默认值：cgroupfs`
+**imageMinimumGCAge(DURATION) **# 未使用的 image 进行垃圾回收之前的最小期限。`默认值：2m`
+**nodeStatusReportFrequency(DURATION)** # 节点状态报告频率。`默认值：10s`
+**nodeStatusUpdateFrequency(DURATION)** # 节点状态更新频率。`默认值：5m`
+**resolvConf(STRING)** # kubelet 启动的容器所使用的解析器的配置文件。`默认值：/etc/resolv.conf`
 
 - Ubuntu 中，配置则会被改为 `/run/systemd/resolve/resolv.conf`
 

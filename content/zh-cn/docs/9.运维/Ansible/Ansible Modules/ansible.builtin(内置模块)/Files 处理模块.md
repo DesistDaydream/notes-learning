@@ -72,9 +72,9 @@ Note：
 ## 参数
 
 - 必选参数
-  - **src: \<PATH>** # 待拷贝的源文件路径。默认从 Ansible 控制节点搜索路径，搜索逻辑可以被 remote_src 参数修改
+  - **src(PATH)** # 待拷贝的源文件路径。默认从 Ansible 控制节点搜索路径，搜索逻辑可以被 remote_src 参数修改
 - 可选参数
-  - **remote_src: \<BOOLEAN>** # 若开启 remote_src 参数，则 src 参数将会从被管理节点搜索待拷贝的源文件。`默认值:false`
+  - **remote_src(BOOLEAN)** # 若开启 remote_src 参数，则 src 参数将会从被管理节点搜索待拷贝的源文件。`默认值:false`
 
 ## 应用示例
 
@@ -250,7 +250,7 @@ Jinja 行为控制
 
 其他参数
 
-- **backup: \<BOOLEAN>** # 是否创建一个包含时间戳信息的备份文件。`默认值：no`
+- **backup(BOOLEAN)** # 是否创建一个包含时间戳信息的备份文件。`默认值：no`
 
 ## 返回值
 

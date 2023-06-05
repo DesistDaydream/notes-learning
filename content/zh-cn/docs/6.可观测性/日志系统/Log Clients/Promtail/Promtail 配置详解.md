@@ -36,16 +36,16 @@ scrape_configs:
 target_config: <target_config>
 ```
 
-## server: \<OBJECT>
+## server(OBJECT)
 
-## clients: \<OBJECT>
+## clients(OBJECT)
 
-## positions: \<OBJECT>
+## positions(OBJECT)
 
 positions 文件用于记录 Promtail 发现的目标。该字段用于定义如何保存 postitions.yaml 文件。Promtail 发现的目标就是指日志文件。
-**filename: \<STRING>** # 指定 positions 文件路径。`默认值：/var/log/positions.yaml`
-**sync_period: \<DURATION>**# 更新 positions 文件的时间间隔。`默认值：10s`
-**ignore_invalid_yaml: \<BOOLEAN>** # Whether to ignore & later overwrite positions files that are corrupted。`默认值：false`
+**filename(STRING)** # 指定 positions 文件路径。`默认值：/var/log/positions.yaml`
+**sync_period(DURATION)**# 更新 positions 文件的时间间隔。`默认值：10s`
+**ignore_invalid_yaml(BOOLEAN)** # Whether to ignore & later overwrite positions files that are corrupted。`默认值：false`
 
 ## scrape_configs: <\[\]OBJECT>(占比最大的字段)
 
@@ -58,9 +58,9 @@ Promtail 根据 scrape_configs 字段的内容，使用指定的发现方法从�
 
 ### 基本配置
 
-**job_name: \<STRING>** # 指定抓取日志的 Job 名字
-**pipeline_stages: \<pipeline_stages>** # 定义从指定的目标抓取日志的行为。`默认值：docker{}`。详见：[Pipeline 概念](https://www.yuque.com/go/doc/33181065) 与 [Stages 详解](/docs/6.可观测性/日志系统/Log%20Clients/Promtail/Pipeline%20 概念/Stages(阶段)%20 详解.md 概念/Stages(阶段) 详解.md)
-**loki_push_api: \<loki_push_api_config>** # 定义日志推送的路径 (e.g. from other Promtails or the Docker Logging Driver)
+**job_name(STRING)** # 指定抓取日志的 Job 名字
+**pipeline_stages(pipeline_stages)** # 定义从指定的目标抓取日志的行为。`默认值：docker{}`。详见：[Pipeline 概念](https://www.yuque.com/go/doc/33181065) 与 [Stages 详解](/docs/6.可观测性/日志系统/Log%20Clients/Promtail/Pipeline%20 概念/Stages(阶段)%20 详解.md 概念/Stages(阶段) 详解.md)
+**loki_push_api(loki_push_api_config)** # 定义日志推送的路径 (e.g. from other Promtails or the Docker Logging Driver)
 
 ### Scrape 目标配置
 
@@ -73,17 +73,17 @@ Promtail 会根据这里的字段的配置，以发现需要 Scrape 日志的目
 
 - 具体配置详见下文[动态目标发现](#FzYda)
 
-**jounal: \<OBJECT>** # 动态配置
+**jounal(OBJECT)** # 动态配置
 
 - 具体配置详见下文[动态目标发现](#FzYda)
 
-**syslog: \<OBJECT>** # 动态配置
+**syslog(OBJECT)** # 动态配置
 
 - 具体配置详见下文[动态目标发现](#FzYda)
 
 ### Relabel 配置
 
-**relabel_configs: <\[]OBJECT>** # 为本 Job 下抓取日志的过程定义 Relabeling 行为。与 Prometheus 的 Relabeling 行为一致
+**relabel_configs([]OBJECT)** # 为本 Job 下抓取日志的过程定义 Relabeling 行为。与 Prometheus 的 Relabeling 行为一致
 
 - 具体配置详见下文[重设标签](#EnT3h)
 
@@ -91,13 +91,13 @@ Promtail 会根据这里的字段的配置，以发现需要 Scrape 日志的目
 
 ## 静态目标发现
 
-### static_configs: \<[]Object>
+### static_configs([]Object)
 
-**targets: <\[]STRING>** # 指定要抓取 metrics 的 targets 的 IP:PORT
+**targets([]STRING)** # 指定要抓取 metrics 的 targets 的 IP:PORT
 
 - **HOST**
 
-**labels: \<map\[STRING]STRING>** # 指定该 targets 的标签，可以随意添加任意多个。
+**labels(map\[STRING]STRING)** # 指定该 targets 的标签，可以随意添加任意多个。
 这个字段与 Prometheus 的配置有一点区别。Promtail 中必须要添加 `__path__` 这个键，以指定要抓去日志的文件路径。
 
 - **KEY: VAL** # 比如该键值可以是 run: httpd，标签名是 run，run 的值是 httpd，key 与 val 使用字母，数字，\_，-，.这几个字符且以字母或数字开头；val 可以为空。
@@ -120,7 +120,7 @@ Promtail 会根据这里的字段的配置，以发现需要 Scrape 日志的目
 
 我们可以从 grafana/loki 项目代码 `[clients/pkg/promtail/scrapeconfig/scrapeconfig.go](https://github.com/grafana/loki/blob/v2.6.1/clients/pkg/promtail/scrapeconfig/scrapeconfig.go#L53)` 中找到所有可以动态发现目标的配置。
 
-### journal: \<OBJECT>
+### journal(OBJECT)
 
 在具有 systemd 的 Linux 系统上，Loki 可以通过 journal 程序获取日志。
 
@@ -251,16 +251,16 @@ docker run \
 
 ### [docker_sd_configs: <\[\]Object>](https://grafana.com/docs/loki/latest/clients/promtail/configuration/#docker_sd_config)
 
-**host: \<STRING>** # Docker 守护进程的地址。通常设置为：`unix:///var/run/docker.sock`
-**filters: <\[]Object>** # 过滤器，用于过滤发现的容器。只有满足条件的容器的日志，才会被 Promtail 采集并上报。
+**host(STRING)** # Docker 守护进程的地址。通常设置为：`unix:///var/run/docker.sock`
+**filters([]Object)** # 过滤器，用于过滤发现的容器。只有满足条件的容器的日志，才会被 Promtail 采集并上报。
 
 > 可用的过滤器取决于上游 Docker 的 API：<https://docs.docker.com/engine/api/v1.41/#operation/ContainerList>，在这个链接中，可以从 Available filters 部分看到，等号左边就是 name 字段，等号右边就是 values 字段。
 > 这个 name 与 values 的用法就像 `docker ps` 命令中的 `--filter` 标志，这个标志所使用的过滤器，也是符合 Docker API 中的 ContainerList。
 
-- **name: \<STRING>** #
-- **values: <\[]STRING>** #
+- **name(STRING)** #
+- **values([]STRING)** #
 
-**refresh_interval: \<DURATION>** # 刷新间隔。每隔 refresh_interval 时间，从 Docker 的守护进程发现一次可以采集日志的容器。
+**refresh_interval(DURATION)** # 刷新间隔。每隔 refresh_interval 时间，从 Docker 的守护进程发现一次可以采集日志的容器。
 
 #### 配置示例
 
@@ -277,7 +277,7 @@ docker run \
 
 ## 重设标签
 
-### relabel_configs: \<Object>
+### relabel_configs(Object)
 
 详见 [Promtail 的 Relabeling 行为](https://www.yuque.com/go/doc/33181091)
 

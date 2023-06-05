@@ -54,7 +54,7 @@ skaffold.yaml 文件由下面几个主要字段组成：
 
 Skaffold 支持使用本地 Docker 守护程序，Google Cloud Build，Kaniko 或 Bazel 来构建工件。
 
-artifacts: <\[]Object> # 工件的信息
+artifacts([]Object) # 工件的信息
 
 - image: STRING # 要构建的工件的镜像名
 - docker

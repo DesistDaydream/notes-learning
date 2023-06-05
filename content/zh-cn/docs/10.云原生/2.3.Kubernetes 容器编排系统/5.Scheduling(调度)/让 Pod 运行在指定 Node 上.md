@@ -384,7 +384,7 @@ web-server-1287567482-s330j    1/1       Running   0          7m        10.192.3
 
 ## Taint
 
-**taints: <\[]Object>** # 定义 Node 污点。凡是具有污点的节点，都对不容忍污点的 Pod 具有某些 effect(效果)。
+**taints([]Object)** # 定义 Node 污点。凡是具有污点的节点，都对不容忍污点的 Pod 具有某些 effect(效果)。
 
 - **effect <STRING> # 必须的。**定义当 Pod 不能容忍 Node 的污点的时候，Node 对 Pod 的排斥效果（效果即使要采取的行为是什么)。
   - NoSchedule # 仅影响调度过程(仅影响调度过程，对于已经调度到该 Node 上的 Pod 则没效果，即调度完成后再给 Node 上加的污点就算 Pod 不容忍也没影响)；
@@ -412,7 +412,7 @@ kubectl taint nodes NODE KEY[=VALUE]:EFFECT
 
 ## Toleration
 
-**tolerations: <\[]Object>** # 为 Pod 添加容忍规则
+**tolerations([]Object)** # 为 Pod 添加容忍规则
 
 - **effect: <STRING>**# 表明匹配的 taint 的 effect 字段，包括三个效果 NoSchedule, PreferNoSchedule and NoExecute，如果不指定该字段则匹配所有污点效果
 - **key: <STRING>** # 指明要容忍的 taint 中的 key

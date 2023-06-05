@@ -96,7 +96,7 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 ## 顶层字段
 
 - **global**([global](#global)) # 全局配置，所有内容作用于所有配置环境中,若其余配置环境中不再指定同样的配置，则global中的配置作为默认配置
-- **rule_files**([rule_files](#rule_files)) # 
+- **rule_files**([rule_files](#rule_files)) #
 - **scrape_configs**(\[][scrape_configs](#scrape_configs(占比最大的字段))) # 抓取 Target 的 metrics 时的配置
 - **alerting**([alerting](#alerting)) # 与 Alertmanager 相关的配置
   - alert_relabel_configs([relabel_configs](#relabel_configs))
@@ -108,16 +108,16 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 
 全局配置，所有内容作用于所有配置环境中,若其余配置环境中不再指定同样的配置，则 global 中的配置作为默认配置
 
-**scrape_interval: \<DURATION>** # 抓取 targets 的指标频率，`默认值：1m`。
+**scrape_interval(DURATION)** # 抓取 targets 的指标频率，`默认值：1m`。
 
-**scrape_timeout: \<DURATION>**# 对 targets 发起抓取请求的超时时间。`默认值：10s`。
+**scrape_timeout(DURATION)**# 对 targets 发起抓取请求的超时时间。`默认值：10s`。
 
-**evaluation_interval: \<DURATION>**# 评估规则的周期。`默认值：1m`。
+**evaluation_interval(DURATION)**# 评估规则的周期。`默认值：1m`。
 
 该字段主要用于向规则配置文件传递全局的配置。这个值会被规则配置文件中的 `.groups.interval` 覆盖，详见 interval 字段详解
 
-**external_labels: \<map\[STRING]STRING>** # 与外部系统(federation, remote storage, Alertmanager)通信时添加到任何时间序列或警报的标签。
- 
+**external_labels(map\[STRING]STRING)** # 与外部系统(federation, remote storage, Alertmanager)通信时添加到任何时间序列或警报的标签。
+
 - **KEY: VAL** # 比如该键值可以是 run: httpd，标签名是 run，run 的值是 httpd，KEY 与 VAL 使用字母，数字，\_，-，.这几个字符且以字母或数字开头；val 可以为空。
 - ......
 
@@ -154,23 +154,23 @@ scrape_configs 是 Prometheus 采集指标的最重要也是最基本的配置�
 
 ### 基本配置
 
-**job_name: \<STRING>** # 指定抓取 Metrics 的 Job 名字
-**scrape_interval: \<DURATION>** # 指定这个 job 中抓取 targets 的频率。默认使用 global 配置环境中同名参数的值
-**scrape_timeout: \<DURATION>** # 指定这个 job 中抓取 targets 的超时时长。默认使用 global 配置环境中同名参数的值
+**job_name(STRING)** # 指定抓取 Metrics 的 Job 名字
+**scrape_interval(DURATION)** # 指定这个 job 中抓取 targets 的频率。默认使用 global 配置环境中同名参数的值
+**scrape_timeout(DURATION)** # 指定这个 job 中抓取 targets 的超时时长。默认使用 global 配置环境中同名参数的值
 **metrics_path: PATH** # 从 targets 获取 metrics 时 http 请求的路径。默认为/metrics
-**honor_labels: \<BOOLEAN>** # 控制 Prometheus 如何处理标间之间的冲突。`默认值：false`
+**honor_labels(BOOLEAN)** # 控制 Prometheus 如何处理标间之间的冲突。`默认值：false`
 
 - 获取 targets 的 metrics 时(e.g.snmp_exporter|Federate|pushgateway 等)，其中的标签有可能会与本身的标签存在冲突
   - 该参数的值为 true 时，则以抓取数据中的标签为准
   - 值为 false 时，就会重新命名表桥为 exported 形式，然后添加配置文件中的标签。
 
-**honor_timestamps: \<BOOLEAN>** # 控制 Prometheus 是否尊重抓去到的数据中的时间戳 `默认值：true`
+**honor_timestamps(BOOLEAN)** # 控制 Prometheus 是否尊重抓去到的数据中的时间戳 `默认值：true`
 
 - 比如从 federate、pushgateway 等地方获取指标时，指标中都是带着时间戳的，
   - 若设置为 false，则会忽略这些采集到的时间戳，在入库时加上采集时的时间戳。
   - 若设置为 true，则是在入库时使用抓到到的指标中的时间戳。
 
-**sample_limit: \<INT>** # 每次抓取 metrics 的数量限制。`默认值：0`。0 表示不限制
+**sample_limit(INT)** # 每次抓取 metrics 的数量限制。`默认值：0`。0 表示不限制
 
 ### HTTP 配置
 
@@ -206,28 +206,28 @@ type HTTPClientConfig struct {
 }
 ```
 
-**scheme: \<STRING>** # 指定用于抓取 Metrics 时使用的协议。`默认值：http`
+**scheme(STRING)** # 指定用于抓取 Metrics 时使用的协议。`默认值：http`
 
 **params: <>** # 发起 http 请求时，URL 里的参数(以键值对的方式表示)。
 常用于 snmp_exporter，比如 <http://10.10.100.12:9116/snmp?module=if_mib&target=10.10.100.254>，问号后面就是参数的 key 与 value)
 
 - STRING: STRING
 
-**basic_auth: \<Object>**# 配置 HTTP 的基础认证信息。
+**basic_auth(Object)**# 配置 HTTP 的基础认证信息。
 
-- **username: \<STRING>** #
-- **password: \<SECRET>** #
-- **password_file: \<STRING>** #
+- **username(STRING)** #
+- **password(SECRET)** #
+- **password_file(STRING)** #
 
-**authorization: \<Object>** #
+**authorization(Object)** #
 
-- **type: \<STRING>** # 发起抓取请求时的身份验证类型。`默认值：Bearer`
-- **credentials: \<SECRET>** # 用于身份验证的信息。与 credentials_file 字段互斥。如果是 type 字段是 Bearer，那么这里的值就用 Token 即可。
-- **credentials_file: \<FileName>** # 从文件中读取用于身份验证的信息。与 credentials 字段互斥
+- **type(STRING)** # 发起抓取请求时的身份验证类型。`默认值：Bearer`
+- **credentials(SECRET)** # 用于身份验证的信息。与 credentials_file 字段互斥。如果是 type 字段是 Bearer，那么这里的值就用 Token 即可。
+- **credentials_file(FileName)** # 从文件中读取用于身份验证的信息。与 credentials 字段互斥
 
-**oauth2: \<Object>** # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
+**oauth2(Object)** # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
 
-**proxy_url: \<STRING>** # 指定代理的 URL
+**proxy_url(STRING)** # 指定代理的 URL
 
 **tls_config**([tls_config](#tls_config)) # 指定抓取 metrics 请求时的 TLS 设定
 
@@ -271,37 +271,37 @@ https://prometheus.io/docs/prometheus/latest/configuration/configuration/#alertm
 
 alertmanager 字段指定了 Prometheus Server 发送警报的目标 Alertmanager，还提供了参数来配置如何与这些 Alertmanager 通信。此外，relabel_configs 允许从已发现的实体中选择 Alertmanagers，并对使用的 API 路径进行高级修改，该路径通过 **alerts_path** 标签暴露。
 
-**alerts.timeout: \<DURATION>** # 推送警报时，每个目标 Alertmanager 超时，单位：秒。`默认值: 10`。
+**alerts.timeout(DURATION)** # 推送警报时，每个目标 Alertmanager 超时，单位：秒。`默认值: 10`。
 
-**timeout: \<DURATION>** # 推送告警时的超时时间。
+**timeout(DURATION)** # 推送告警时的超时时间。
 
-**api_version: \<STRING>** # 推送告警时，应该使用哪个版本的 Alertmanager 路径。`默认值：v2`。
+**api_version(STRING)** # 推送告警时，应该使用哪个版本的 Alertmanager 路径。`默认值：v2`。
 
-**path_prefix: \<PATH>** # 推送告警时的，目标路径前缀。`默认值：/`。
+**path_prefix(PATH)** # 推送告警时的，目标路径前缀。`默认值：/`。
 
 - 注意：就算指定了其他路径，也会默认在末尾添加 `/api/v2/alerts`
 
 #### HTTP 配置
 
-**scheme: \<SCHEME>** # 推送告警时，所使用的协议。`默认值：HTTP`
+**scheme(SCHEME)** # 推送告警时，所使用的协议。`默认值：HTTP`
 
 下面的部分是 HTTP 的认证，是用来配置将告警推送到目标时所需要的认证信息。比如目标是 HTTPS 时，就需要这些配置。发起的 POST 推送请求时，Prometheus 使用 username 和 passwrod 字段的值为这个 HTTP 请求设置 Authorization 请求头。说白了就是发起 HTTP 请求时带着用户名和密码。
 
-**basic_auth: \<Object>**
+**basic_auth(Object)**
 
-- **username: \<STRING>** #
-- **password: \<SECRET>** # password 和 password_files 字段是互斥的
-- **password_file: \<STRING>** #
+- **username(STRING)** #
+- **password(SECRET)** # password 和 password_files 字段是互斥的
+- **password_file(STRING)** #
 
-**authorization: \<Object>** #
+**authorization(Object)** #
 
-- **type: \<STRING>** # 推送告警时的身份验证类型。`默认值：Bearer`
-- **credentials: \<secret>** # 用于身份验证的信息。与 credentials_file 字段互斥。如果是 type 字段是 Bearer，那么这里的值就用 Token 即可。
-- **credentials_file: \<filename>** # 从文件中读取用于身份验证的信息。与 credentials 字段互斥
+- **type(STRING)** # 推送告警时的身份验证类型。`默认值：Bearer`
+- **credentials(secret)** # 用于身份验证的信息。与 credentials_file 字段互斥。如果是 type 字段是 Bearer，那么这里的值就用 Token 即可。
+- **credentials_file(filename)** # 从文件中读取用于身份验证的信息。与 credentials 字段互斥
 
-**oauth2: \<Object>** # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
+**oauth2(Object)** # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
 
-**tls_config: \<Object>** # 指定推送告警时的 TLS 设定
+**tls_config(Object)** # 指定推送告警时的 TLS 设定
 
 #### Alerts 推送目标的配置
 
@@ -325,13 +325,13 @@ Prometheus 根据这部分配置来推送需要
 
 与远程写相关的配置，详见 [Prometheus 存储章节](/docs/6.可观测性/监控系统/Prometheus/Storage(存储).md)
 
-**url: \<STRING>** # 指定要发送时间序列数据到远程存储的端点的 URL
+**url(STRING)** # 指定要发送时间序列数据到远程存储的端点的 URL
 
 ## remote_read
 
 与远程读相关的配置，详见 [Prometheus 存储章节](/docs/6.可观测性/监控系统/Prometheus/Storage(存储).md)
 
-**url: \<STRING>** # 指定发起查询请求的远程数据库的端点的 URL
+**url(STRING)** # 指定发起查询请求的远程数据库的端点的 URL
 
 # 配置文件中的通用配置字段
 
@@ -345,11 +345,11 @@ https://prometheus.io/docs/prometheus/latest/configuration/configuration/#static
 
 静态配置。指定用户抓取 metrics 的 targets。静态配置与动态配置就好比主机获取 IP 时是 DHCP 还是 STATIC。动态配置可以动态获取要抓取的 targets、静态就是指定哪个 target 就去哪个 target 抓取 metrics
 
-**targets: <\[]STRING>** # 指定要抓取 metrics 的 targets 的 IP:PORT
+**targets([]STRING)** # 指定要抓取 metrics 的 targets 的 IP:PORT
 
 - **HOST**
 
-**labels: \<map\[STRING]STRING>** # 指定该 targets 的标签，可以随意添加任意多个
+**labels(map\[STRING]STRING)** # 指定该 targets 的标签，可以随意添加任意多个
 
 - **KEY: VAL** # 比如该键值可以是 run: httpd，标签名是 run，run 的值是 httpd，key 与 val 使用字母，数字，\_，-，.这几个字符且以字母或数字开头；val 可以为空。
 - ......
@@ -366,9 +366,9 @@ https://prometheus.io/docs/prometheus/latest/configuration/configuration/#file_s
 
 用户可以通过 JSON 或者 YAML 格式的文件，定义所有的监控目标。同时还可以通过为这些实例添加一些额外的标签信息，这样从这些实例中采集到的样本信息将包含这些标签信息，从而可以为后续按照环境进行监控数据的聚合。
 
-**files: \<map\[STRING]STRING>** # Prometheus 将要读取的文件路径，将会从该文件发现待采集的 Target。支持正则表达式
+**files(map\[STRING]STRING)** # Prometheus 将要读取的文件路径，将会从该文件发现待采集的 Target。支持正则表达式
 
-**refresh_interval: \<DURATION>** # 重新读取文件的间隔时间。`默认值：5m`
+**refresh_interval(DURATION)** # 重新读取文件的间隔时间。`默认值：5m`
 
 通过这种方式，Prometheus 会自动的周期性读取文件中的内容。当文件中定义的内容发生变化时，不需要对 Prometheus Server 进行任何的重启操作。
 
@@ -420,44 +420,44 @@ Note：使用该配置进行服务发现，请求都会经过 API Server，集�
 
 #### API Server 配置
 
-**api_server: \<HOST>** # 指定 k8s 集群中 API Server 的地址。
+**api_server(HOST)** # 指定 k8s 集群中 API Server 的地址。
 如果该字段为空，则默认 Prometheus 在 k8s 集群内部运行，将自动发现 apiserver，并使用 Pod 中 /var/run/secrets/kubernetes.io/serviceaccount/ 目录下的的 CA 证书 和 Token。
-**basic_auth: \<Object>**# 如果 apiserver 使用基本认证启动，则使用 basic_auth 字段。`authorization` 字段互斥。password 和 password_file 是互斥的。
+**basic_auth(Object)**# 如果 apiserver 使用基本认证启动，则使用 basic_auth 字段。`authorization` 字段互斥。password 和 password_file 是互斥的。
 
-- **username: \<STRING>** #
-- **password: \<SECRET>** #
-- **password_file: \<STRING>** #
+- **username(STRING)** #
+- **password(SECRET)** #
+- **password_file(STRING)** #
 
-**authorization: \<Object>** # 如果 apiserver 使用证书启动，则使用 authorization 字段。与 `basic_auth` 字段互斥。
+**authorization(Object)** # 如果 apiserver 使用证书启动，则使用 authorization 字段。与 `basic_auth` 字段互斥。
 
-- **type: \<STRING>** # 发起抓取请求时的身份验证类型。`默认值：Bearer`
-- **credentials: \<SECRET>** # 用于身份验证的信息。与 credentials_file 字段互斥。如果是 type 字段是 Bearer，那么这里的值就用 Token 即可。该字段就是老版本的 bearer_token 字段
-- **credentials_file: \<filename>** # 从文件中读取用于身份验证的信息。与 credentials 字段互斥.该字段就是老版本的 bearer_token_file 字段
+- **type(STRING)** # 发起抓取请求时的身份验证类型。`默认值：Bearer`
+- **credentials(SECRET)** # 用于身份验证的信息。与 credentials_file 字段互斥。如果是 type 字段是 Bearer，那么这里的值就用 Token 即可。该字段就是老版本的 bearer_token 字段
+- **credentials_file(filename)** # 从文件中读取用于身份验证的信息。与 credentials 字段互斥.该字段就是老版本的 bearer_token_file 字段
 
-**oauth2: \<Object>** # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
-**tls_config: \<Object>** # 指定抓取 metrics 请求时的 TLS 设定
-**proxy_url: \<STRING>** # Optional proxy URL
+**oauth2(Object)** # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
+**tls_config(Object)** # 指定抓取 metrics 请求时的 TLS 设定
+**proxy_url(STRING)** # Optional proxy URL
 
 #### 目标发现的规则配置
 
-**role: \<STRING>** # 根据 STRING 动态发现地 Target。可用的 STRING 为 endpoints, service, pod, node,ingress。
+**role(STRING)** # 根据 STRING 动态发现地 Target。可用的 STRING 为 endpoints, service, pod, node,ingress。
 
 - 比如，Prometheus 可以自动发现 ep、svc 等等对象作为 scrape 地 target
 
-**namespaces: \<Object>** # 指定动态发现哪个 namesapce 下的 Target ，如果省略，则 Target 将从所有 namespaces 中动态发现
+**namespaces(Object)** # 指定动态发现哪个 namesapce 下的 Target ，如果省略，则 Target 将从所有 namespaces 中动态发现
 
-- **names: <\[]STRING>**
+- **names([]STRING)**
 
-**selectors: <\[]Object>** # 可以根据 selectors 中指定地 label 或者 field 来过滤动态发现的 Target 。如果省略，则不进行任何过滤。
+**selectors([]Object)** # 可以根据 selectors 中指定地 label 或者 field 来过滤动态发现的 Target 。如果省略，则不进行任何过滤。
 
-- **role: \<ROLE>** #
-- **label: \<STRING>** # STRING 使用 key=value 的格式。
-- **field: \<STRING>** #
+- **role(ROLE)** #
+- **label(STRING)** # STRING 使用 key=value 的格式。
+- **field(STRING)** #
 
 #### 配置样例
 
 > 参考：
-> 
+>
 > - [官方推荐的样例](https://github.com/prometheus/prometheus/blob/main/documentation/examples/prometheus-kubernetes.yml)
 
 下面的例子是这样的：动态发现 kube-system 名称空间下的所有 pod 作为 target，并且进行过滤，只选择其中标签为 k8s-app=kube-dns 的 pod 作为 target
@@ -523,17 +523,17 @@ relabel 重设标签功能，用于将抓取到的样本中的原始 label 进�
 
 **source_labels: [\<LabelName>, ... ]** # 从现有的标签中选择将要获取值的标签作为 source_labels。source_labels 可以有多个。
 
-**separator: \<STRING>** # 指定 source_labels 中所有值之间的分隔符。`默认值: ;`。
+**separator(STRING)** # 指定 source_labels 中所有值之间的分隔符。`默认值: ;`。
 
-**target_label: \<LabelName>** # 通过 regex 字段匹配到的值写入的指定的 target_label 中
+**target_label(LabelName)** # 通过 regex 字段匹配到的值写入的指定的 target_label 中
 
-**regex: \<REGEX>** # 从 source_label 获取的值进行正则匹配，匹配到的值写入到 target_label 中。`默认正则表达式为(.*)`。i.e.匹配所有值
+**regex(REGEX)** # 从 source_label 获取的值进行正则匹配，匹配到的值写入到 target_label 中。`默认正则表达式为(.*)`。i.e.匹配所有值
 
-**modulus: \<UINT64>** # 去 source_labels 值的哈希值的模数
+**modulus(UINT64)** # 去 source_labels 值的哈希值的模数
 
-**replacement: \<STRING>** # 替换。指定要写入 target_label 的值，STRING 中可以引用 regex 字段的值，使用正则表达式方式引用。`默认值：$1`。与 action 字段的 replace 值配合使用。
+**replacement(STRING)** # 替换。指定要写入 target_label 的值，STRING 中可以引用 regex 字段的值，使用正则表达式方式引用。`默认值：$1`。与 action 字段的 replace 值配合使用。
 
-**action: \<Relabel_Action>** # 对匹配到的标签要执行的动作。`默认值: replace`。
+**action(Relabel_Action)** # 对匹配到的标签要执行的动作。`默认值: replace`。
 
 ## 其他
 
@@ -543,12 +543,12 @@ https://prometheus.io/docs/prometheus/latest/configuration/configuration/#tls_co
 
 tls_config 字段用来配置 TLS 连接信息。下面描述客户端就是 Prometheus Server，服务端就是要抓取 Metrics 的目标。
 
-**ca_file: \<FileName>** # CA 证书，用于验证服务端证书
+**ca_file(FileName)** # CA 证书，用于验证服务端证书
 
-**cert_file: \<FileName>** # 证书文件，用于客户端对服务器的证书认证。
+**cert_file(FileName)** # 证书文件，用于客户端对服务器的证书认证。
 
-**key_file: \<FileName>** # 密钥文件，用于客户端对服务器的证书认证。
+**key_file(FileName)** # 密钥文件，用于客户端对服务器的证书认证。
 
-**server_name: \<STRING>** # ServerName 扩展名，用于指示服务器的名称。ServerName extension to indicate the name of the server. ServerName 概念参考：<https://tools.ietf.org/html/rfc4366#section-3.1>
+**server_name(STRING>** # ServerName 扩展名，用于指示服务器的名称。ServerName extension to indicate the name of the server. ServerName 概念参考：<https://tools.ietf.org/html/rfc4366#section-3.1)
 
-**insecure_skip_verify: \<BOOLEAN>** # 禁用服务端对证书的验证。类似于 curl 的 -k 选项
+**insecure_skip_verify(BOOLEAN)** # 禁用服务端对证书的验证。类似于 curl 的 -k 选项

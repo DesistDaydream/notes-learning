@@ -28,14 +28,14 @@ X.509 在 1988 年作为 ITU(国际电信联盟) X.500 项目的一部分首次�
 # X.509 证书的格式
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/puor14/1635931450920-fd8cad72-9ee7-476a-96ef-5e6ed60cc52b.png)
-**Certificate: \<OBJECT>**
+**Certificate(OBJECT)**
 
-- **Data: \<OBJECT>**# 证书的数据
+- **Data(OBJECT)**# 证书的数据
   - **Version: STRING** # 版本号
   - **Serial Number: STRING**# 序列号
   - **Signature Algorithm: STRING** # 签名算法
   - **Issuer: STRING** # 发行人名称，也就是这个证书的签发者。
-  - **Validity: \<OBJECT>**# 有效期
+  - **Validity(OBJECT)**# 有效期
     - **Not Before: STRING**# 不能早于该日期。即证书从本日期开始生效
     - **Not After: STRING**# 不能晚于该日期。即证书到本日期为止失效
   - **Subject: STRING**# 主体信息。如何 X.509 规范的 Distinguished Name。
@@ -45,7 +45,7 @@ X.509 在 1988 年作为 ITU(国际电信联盟) X.500 项目的一部分首次�
     - **主体的公钥**
   - **Issuer Unique Identifier:** # 颁发者唯一身份信息（可选项）
   - **Subject Unique Identifier:** # 主体唯一身份信息（可选项）
-  - **Extensions: \<OBJECT>** # 扩展信息（可选项）
+  - **Extensions(OBJECT)** # 扩展信息（可选项）
     - ......
     - **X509v3 Subject Alternative Name:** # SAN 信息。常用来作为该证书的名称。
     - ......

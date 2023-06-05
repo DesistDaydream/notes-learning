@@ -70,7 +70,7 @@ modules:
 
 ## http 协议探针
 
-**valid_status_codes: <\[]INT>** # 此探针可以接受的响应状态码。`默认值：2xx`。注:2xx 表示所有 2xx 状态码，这个字段的值如果要手动指定，必须是 int 类型。
+**valid_status_codes([]INT)** # 此探针可以接受的响应状态码。`默认值：2xx`。注:2xx 表示所有 2xx 状态码，这个字段的值如果要手动指定，必须是 int 类型。
 
 - 若响应码不在该字段指定的范围内，则探测失败
 
@@ -79,7 +79,7 @@ modules:
 - 若 HTTP 版本不在字段指定的范围内，则探测失败
 
 **method: <STRING>** # 探针探测是要使用的 HTTP Method。`默认值：GET`
-**headers: \<map\[STGRING]STRING>** # 设置探测时要使用的 Header，每行都是一个请求头的键值对。
+**headers(map\[STGRING]STRING)** # 设置探测时要使用的 Header，每行都是一个请求头的键值对。
 **compression: <STRING>**#
 **follow_redirects: <BOOLEAN>** #
 **fail_if_ssl: <BOOLEAN>** # 如果 SSL 存在，则探针失败。`默认值：false`

@@ -76,15 +76,15 @@ jobs:
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/sytu80/1643186313475-dfed2719-28b6-4680-8a28-b6a6772763c8.png)
 
-**inputs: \<OBJECT>** # 触发 Workflow 时，传入的信息
+**inputs(OBJECT)** # 触发 Workflow 时，传入的信息
 
 更多 GitHub 可用的传入信息，详见 [Contexts](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context)
-**NAME: \<OBJECT>** # 定义变量。这里的 NAME 可以任意字符串，然后在 workflow 文件中使用`${{ github.event.inputs.NAME }}`的方式调用
+**NAME(OBJECT)** # 定义变量。这里的 NAME 可以任意字符串，然后在 workflow 文件中使用`${{ github.event.inputs.NAME }}`的方式调用
 
-- **description: \<STRING>** # 对 NAME 的描述
-- **type: \<STRING>** # 可用的类型有 string、number、boolean、choice、environment
-- **required: \<BOLLEAN>** #
-- **options: <\[]TYPE>** # 为 choice 类型提供可用选择的列表
+- **description(STRING)** # 对 NAME 的描述
+- **type(STRING)** # 可用的类型有 string、number、boolean、choice、environment
+- **required(BOLLEAN)** #
+- **options([]TYPE)** # 为 choice 类型提供可用选择的列表
 
 # jobs
 
@@ -126,9 +126,9 @@ jobs:
 
 ## steps
 
-**env: \<map\[STRING]STRING>** # 设定前 Job 中可用的环境变量。
-**name: \<STRING>** # 当前 Job 的名称。
-**run: \<STRING>** # 运行命令。使用 runs-on 中指定的操作系统的 shell 运行。
+**env(map\[STRING]STRING)** # 设定前 Job 中可用的环境变量。
+**name(STRING)** # 当前 Job 的名称。
+**run(STRING)** # 运行命令。使用 runs-on 中指定的操作系统的 shell 运行。
 
 ```yaml
 # 单行命令
@@ -150,7 +150,7 @@ steps:
     shell: bash
 ```
 
-**uses: \<STRING>** # 当前步骤要使用的 Action。
+**uses(STRING)** # 当前步骤要使用的 Action。
 在这里可以指定其他 Action 作为工作流的一部分来运行，本质上，Action 是可重用的代码。其实就类似于在代码中调用函数一样，`uses` 字段可以理解为调用某个函数，这个函数就是指其他的 Action。在[这篇文章](/docs/2.编程/SCM/GitHub/GitHub%20Actions/好用的%20Action.md Action.md)中，介绍了很多比较好用的 Action。
 
 通过使用其他 Action，可以大大简化自身工作流的配置文件。比如 Git Action 官方提供的 [actions/checkout](https://github.com/actions/checkout) 这个 Action，可以用来将仓库中的代码，拷贝到运行 Action 的容器中，然后进行后续操作，如果不使用这个 Action，那么我们就要写很多命令来 pull 代码了~

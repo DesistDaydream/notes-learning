@@ -94,13 +94,13 @@ setup 模块在 Ansible 执行时自动运行，收集到的信息会以 [Fact �
 
 ## 参数
 
-- **name: \<STRING>** # Unit 的名称
-- **state: \<STRING>** # 设置 Unit 的状态。可用的值有
+- **name(STRING)** # Unit 的名称
+- **state(STRING)** # 设置 Unit 的状态。可用的值有
   - reloaded
   - restarted
   - started
   - stopped
-- **enabled: \<BOOLEAN>** # 设置 Unit 是否应该自启动
+- **enabled(BOOLEAN)** # 设置 Unit 是否应该自启动
 
 ### 使用示例
 

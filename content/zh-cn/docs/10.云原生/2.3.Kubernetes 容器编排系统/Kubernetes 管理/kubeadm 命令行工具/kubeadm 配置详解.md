@@ -97,19 +97,19 @@ ClusterConfiguration 类型应用于配置群集范围的设置，包括以下�
 
 ## apiServer: <Object> # 配置 apiserver 程序
 
-**certSANs: <\[]STRING>** # 为 API Server 的证书中的 Subject Alternative Name 字段设置额外的名称。
+**certSANs([]STRING)** # 为 API Server 的证书中的 Subject Alternative Name 字段设置额外的名称。
 **extraArgs: <Object>** # 设定 apiserver 程序的命令行标志
-**extravolumes: <\[]Object>** # 设定 apiserver 程序的卷，以及挂载卷
+**extravolumes([]Object)** # 设定 apiserver 程序的卷，以及挂载卷
 
 ## controllerManager: <Object> # 配置 controller-manager 程序
 
 **extraArgs: <Object>** # 设定 controller-manager 程序的命令行标志
-**extravolumes: <\[]Object>** # 设定 controller-manager 程序的卷，以及挂载卷
+**extravolumes([]Object)** # 设定 controller-manager 程序的卷，以及挂载卷
 
 ## scheduler: <Object> # 配置 scheduler 程序
 
 **extraArgs: <Object>** # 设定 scheduler 程序的命令行标志
-**extravolumes: <\[]Object>** # 设定 scheduler 程序的卷，以及挂载卷
+**extravolumes([]Object)** # 设定 scheduler 程序的卷，以及挂载卷
 
 ## dns: <Object> # 配置 DNS 插件
 

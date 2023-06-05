@@ -136,7 +136,7 @@ Target Labels 中的所有标签都是 Relabeling 之后的标签。Target Label
 
 ## relabel_configs 字段详解
 
-### action: \<Relabel_Action> # 指定本次 Relabeling 的具体行为。`默认值：replace`。
+### action(Relabel_Action) # 指定本次 Relabeling 的具体行为。`默认值：replace`。
 
 Relabeling 的行为主要是围绕着 **Extracted Value(提取的值)** 进行的。Relabeling 行为将会对已提取的值进行正则匹配以获取匹配结果，再根据匹配结果生成新的标签。
 这些提取出来的待匹配的值，其实本质上就分为两类：**标签名称** 与 **标签值**。而正则匹配中，正则表达式的内容，则是由 **regex 字段**指定的。

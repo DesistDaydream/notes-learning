@@ -111,27 +111,27 @@ Prometheus 通过 `--web.config.file` 命令行标志来开启 **TLS** 或者 **
 
 如果没有任何配置，则不开启任何 TLS 或 认证，只要配置了某个字段，就默认开启相关功能。
 
-### tls_server_config: \<Object> # 为 Prometheus 开启 TLS
+### tls_server_config(Object) # 为 Prometheus 开启 TLS
 
-- **cert_file: \<FileName>** # TLS 所需的证书文件
-- **key_file: \<FileName>** # TLS 所需的私钥文件
+- **cert_file(FileName)** # TLS 所需的证书文件
+- **key_file(FileName)** # TLS 所需的私钥文件
 
 Server policy for client authentication. Maps to ClientAuth Policies
   \# For more detail on clientAuth options:
   \# <https://golang.org/pkg/crypto/tls/#ClientAuthType>
-  **client_auth_type: \<STRING>** # `默认值：NoClientCert`
+  **client_auth_type(STRING)** # `默认值：NoClientCert`
   ============================================================
 
 CA certificate for client certificate authentication to the server
-  \[ client_ca_file: \<filename> ]
+  \[ client_ca_file(filename) ]
   ========================================
 
 Minimum TLS version that is acceptable
-  \[ min_version: \<string> | default = "TLS12" ]
+  \[ min_version(string) | default = "TLS12" ]
   ======================================================
 
 Maximum TLS version that is acceptable
-  \[ max_version: \<string> | default = "TLS13" ]
+  \[ max_version(string) | default = "TLS13" ]
   ======================================================
 
 List of supported cipher suites for TLS versions up to TLS 1.2. If empty
@@ -146,7 +146,7 @@ prefer_server_cipher_suites controls whether the server selects the
   \# client's most preferred ciphersuite, or the server's most preferred
   \# ciphersuite. If true then the server's preference, as expressed in
   \# the order of elements in cipher_suites, is used.
-  \[ prefer_server_cipher_suites: \<bool> | default = true ]
+  \[ prefer_server_cipher_suites(bool) | default = true ]
   ===================================================================
 
 Elliptic curves that will be used in an ECDHE handshake, in preference
@@ -157,17 +157,17 @@ Elliptic curves that will be used in an ECDHE handshake, in preference
 
   ==========================
 
-### http_server_config: \<Object> # 为 Prometheus 开启 HTTP/2。注意，HTTP/2 仅支持 TLS
+### http_server_config(Object) # 为 Prometheus 开启 HTTP/2。注意，HTTP/2 仅支持 TLS
 
-- **http2: \<BOOLEAN>** # `默认值：true`
+- **http2(BOOLEAN)** # `默认值：true`
 
 Usernames and hashed passwords that have full access to the web
 \# server via basic authentication. If empty, no basic authentication is
 \# required. Passwords are hashed with bcrypt.
 
-### basic_auth_users: \<map\[STRING]STRING> # 为 Prometheus Server 开启基本认证
+### basic_auth_users(map\[STRING]STRING) # 为 Prometheus Server 开启基本认证
 
-- **\<KEY>: \<VALUE>** # KEY 是用户名，VALUE 是密码
+- **\<KEY>(VALUE)** # KEY 是用户名，VALUE 是密码
   - 注意：密码必须是经过 hash 的字符串，可以通过[这个网站](https://bcrypt-generator.com/)在线获取 hash 过的字符串
 
 ## 配置示例

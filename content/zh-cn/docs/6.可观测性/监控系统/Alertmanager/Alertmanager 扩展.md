@@ -33,13 +33,13 @@ curl -XPOST http://localhost:19093/api/v2/alerts -d @./alerts.json
 
 ### 接收器与配置相关字段
 
-**receivers: \<OBJECT>** #
+**receivers(OBJECT)** #
 
-- **globalReceiverSelector: \<OBJECT>** #
+- **globalReceiverSelector(OBJECT)** #
   - 该字段内容详见[ LabelSelector](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/LabelSelector 详解.md)。
-- **tenantReceiverSelector: \<OBJECT>** #
+- **tenantReceiverSelector(OBJECT)** #
   - 该字段内容详见[ LabelSelector](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/LabelSelector 详解.md)。
-- **tenantKey: \<STRING>** #
+- **tenantKey(STRING)** #
 
 示例:
 
@@ -59,13 +59,13 @@ receivers:
 
 ### 通知管理器的 Webhook 与 Dispatcher 相关字段
 
-**args: <\[]TYPE>** # 设定 NotificationManager Webhook 的启动参数。
-**batchMaxSize: \<INT>** # 从缓存中获取数据时最大的告警数量。`默认值：100`
-**batchMaxWait: \<DURATION>** # 从缓存中获取数据的等待时间。`默认值：1m`。即每隔一分钟获取一次数据
+**args([]TYPE)** # 设定 NotificationManager Webhook 的启动参数。
+**batchMaxSize(INT)** # 从缓存中获取数据时最大的告警数量。`默认值：100`
+**batchMaxWait(DURATION)** # 从缓存中获取数据的等待时间。`默认值：1m`。即每隔一分钟获取一次数据
 
 > batchMaxSize 与 batchMaxWait 说明：Notification-Manager 接收到的告警数据首先会被推送到缓存中，再从缓存中批量取出数据并行处理。所以可以通过 `batchMaxSize` 与 `batchMaxWait` 两个字段来配置每次从缓存中取出多少数据与时间间隔。详见 从[缓存中获取告警](#moaPC)的代码。所以我们会发现，每次 Notification-Manager 收到告警后，将会等待 1 分钟之后才会开始处理这些告警。
 
-**routePolicy: \<STRING>** # 路由策略，定义将收到的告警信息路由给哪个 Receiver。`默认值：All`。
+**routePolicy(STRING)** # 路由策略，定义将收到的告警信息路由给哪个 Receiver。`默认值：All`。
 
 - All # 通知信息将会被路由到所有通过 Router 匹配到的 Receiver 上，并且同时路由到到默认的全局 Receiver
 - RouterFirst # 通知信息在被路由到 Router 匹配到的 Receiver 上之后，不在路由给默认的全局 Receiver
@@ -77,7 +77,7 @@ receivers:
 
 ## Router CRD
 
-**alertSelector: \<OBJECT>** # 告警标签选择器。与 K8S 的 LabelSelector 的功能完全一样
+**alertSelector(OBJECT)** # 告警标签选择器。与 K8S 的 LabelSelector 的功能完全一样
 
 - 该字段内容详见[ LabelSelector](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/LabelSelector 详解.md)。注意一点：多个匹配条件之间的关键是 AND。如果想要使用 OR 的逻辑，以根据多个条件匹配多条告警，需要使用多个 Router，详见 [Issue #153](https://github.com/kubesphere/notification-manager/issues/153)
 

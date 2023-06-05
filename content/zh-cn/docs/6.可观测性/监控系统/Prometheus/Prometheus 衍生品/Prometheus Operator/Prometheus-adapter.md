@@ -92,10 +92,10 @@ rules 大致可以分为四个部分，下面对四个部分的关键字进行�
 
 一、Discovery(发现) # 根据 rules 中定义的 Prometheus QL 查找 metircs 。
 
-1. seriesQuery: \<PromQL> # 查询 Prometheus 的语句，通过这个查询语句查询到的所有指标都可以用于 HPA
+1. seriesQuery(PromQL) # 查询 Prometheus 的语句，通过这个查询语句查询到的所有指标都可以用于 HPA
 2. seriesFilters \[] # 查询到的指标可能会存在不需要的，可以通过它过滤掉。
-3. is: \<RegEx> #
-4. isNot: \<RegEx> #
+3. is(RegEx) #
+4. isNot(RegEx) #
 
 二、Association(关联) # 关联 metrics 的 label 与 k8s resource。adapter 向 prometheus 发起查询时，会将关联规则中指定的名字作为标签名。adapter 接收到 MetricsAPI 请求中的 k8s object 作为标签值，将两者填充到 PromQL 中
 
@@ -108,12 +108,12 @@ rules 大致可以分为四个部分，下面对四个部分的关键字进行�
 比如某些以 total 结尾的指标，这些指标拿来做 HPA 是没有意义的，我们需要对这些指标进行速率计算，比如这种语句 sum(rate(http_requests_total{}\[2m])) by (pod,namespace) ，在进行计算后，使用 total 来命名没意义了，需要赋予一个新的名字来表示。
 
 1. name # 用来给指标重命名的，之所以要给指标重命名是因为有些指标是只增的，比如以 total 结尾的指标。这些指标拿来做 HPA 是没有意义的，我们一般计算它的速率，以速率作为值，那么此时的名称就不能以 total 结尾了，所以要进行重命名。
-2. matches: \<RegEx> # 通过正则表达式来匹配指标名，可以进行分组
-3. as: \<STRING> # 默认值为$1。也就是第一个分组。 as 为空就是使用默认值的意思。
+2. matches(RegEx) # 通过正则表达式来匹配指标名，可以进行分组
+3. as(STRING) # 默认值为$1。也就是第一个分组。 as 为空就是使用默认值的意思。
 
 四、Querying(查询) # adapter 在向 prometheus 查询数据时，根据该规则发送 PromQL 。
 
-1. metricsQuery: \<GoTemplate> # 模板中，adapter 处理 MetricsAPI 的请求转换后的三个部分，在模板中变为以下字段。(这就是 Prometheus 的查询语句了，前面的 seriesQuery 查询是获得 HPA 指标。当我们要查某个指标的值时就要通过它指定的查询语句进行了。可以看到查询语句使用了速率和分组，这就是解决上面提到的只增指标的问题。)
+1. metricsQuery(GoTemplate) # 模板中，adapter 处理 MetricsAPI 的请求转换后的三个部分，在模板中变为以下字段。(这就是 Prometheus 的查询语句了，前面的 seriesQuery 查询是获得 HPA 指标。当我们要查某个指标的值时就要通过它指定的查询语句进行了。可以看到查询语句使用了速率和分组，这就是解决上面提到的只增指标的问题。)
    1. <<.Series>> # PromQL 的指标名。根据 Discovery 和 Naming 配置部分结合获取
    2. <<.LabelMatchers>> # PromQL 的标签集合。根据 Association 配置部分获取。Name 与 Value 的对应关系是根据 Association 配置部分的规则实现的。Name 为 Association 配置段中的 LabelName；Value 为 Resource 的 Object。
    3. <<.GroupBy>> # 以逗号分隔的标签名的集合，该值是 .LabelMatchers 中的标签名集合

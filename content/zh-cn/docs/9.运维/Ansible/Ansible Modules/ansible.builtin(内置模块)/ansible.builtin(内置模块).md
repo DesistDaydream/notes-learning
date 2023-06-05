@@ -179,8 +179,8 @@ title: ansible.builtin(内置模块)
 
 ### 参数
 
-- **name: \<STRING>** # 包的名称
-- **state: \<STRING>** # 指定要执行的操作，是安装还是移除包。可用的值有如下几个：
+- **name(STRING)** # 包的名称
+- **state(STRING)** # 指定要执行的操作，是安装还是移除包。可用的值有如下几个：
   - absent 与 removed # 移除指定的包
   - installed 与 present # 简单得确保安装了指定的包
   - latest # 安装最新版本的包，若当前包不是最新版本，则更新它。

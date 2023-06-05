@@ -19,7 +19,7 @@ Loki 可以通过两种方式配置 Loki 的运行时行为
 ```yaml
 # HTTP server listen host
 # CLI flag: -server.http-listen-address
-[http_listen_address: \<string>]
+[http_listen_address(string)]
 ```
 
 凡是注释中，有 `CLI flag` 的字段，都可以通过命令行标签设置其值。
@@ -39,14 +39,14 @@ Loki 可以通过两种方式配置 Loki 的运行时行为
 
 ```yaml
 # 指定 loki 二进制文件要运行的组件列表。默认值：all，即运行所有组件
-target: \<STRING>
+target(STRING)
 # 通过 X-Scope-OrgID 标头启用身份验证，如果为 true，则必须存在。 如果为 false，则 OrgID 将始终设置为“ fake”。默认值：true
-auth_enabled: \<BOOLEAN>
+auth_enabled(BOOLEAN)
 # 用于配置 loki 提供 http 和 gRPC 这两种服务的行为
-server: \<OBJECT>
+server(OBJECT)
 # 通用配置。用于配置一些其他配置部分可以共享的配置，比如存储。优先级低，若其他部分指定了相同的配置，则该配置在对应的其他部分的配置将被忽略。
 # 从 2.4 版本开始，common 字段将会逐步代替其他描述不清晰的字段，比如 common.storage 将会代替 storage_cofig 字段
-common: \<OBJECT>
+common(OBJECT)
 
 ######## 存储架构配置 ########
 # 配置储存 Chunk 与 Index 类型数据的模式，以及指定储存这些数据所用的存储类型。
@@ -64,7 +64,7 @@ querier: <querier_config>
 # Ingester(摄取器) 组件的配置。还可以配置摄取器如何将自己注册到哈希环上
 ingester: <ingester_config>
 # 配置 distributor 如何连接到 ingesters
-ingester_client: \<OBJECT>
+ingester_client(OBJECT)
 # Query Frontend(查询前端) 组件的配置
 frontend: <query_frontend_config>
 # Ruler(规则器) 组件的配置
@@ -72,7 +72,7 @@ ruler: <ruler_config>
 # Compactor(压缩器) 组件的配置
 compactor: <compactor_config>
 # Table Manager(表管理器) 组件的配置，以规定数据保留的行为
-table_manager: \<OBJECT>
+table_manager(OBJECT)
 
 ######## 其他配置 ########
 # The queryrange_config configures the query splitting and caching in the Loki query-frontend.
@@ -89,60 +89,60 @@ runtime_config: <runtime_config>
 tracing: <tracing_config>
 ```
 
-## target: \<STRING> # 指定二进制文件要运行的组件列表
+## target(STRING) # 指定二进制文件要运行的组件列表
 
 可用的值有：all、read、write、ingester、distributor、query-frontend、query-scheduler、querier、index-gateway、ruler、compactor。
 
-## auth_enabled: \<BOOLEAN>
+## auth_enabled(BOOLEAN)
 
-## server: \<Object>
+## server(Object)
 
 用于配置 loki 提供 http 和 gRPC 这两种服务的行为
 
 ```yaml
 server:
-  http_listen_address: \<STRING> # 指定 http 服务监听的端口
+  http_listen_address(STRING) # 指定 http 服务监听的端口
 ```
 
-## [common: \<OBJECT>](https://grafana.com/docs/loki/next/configuration/#common)
+## [common(OBJECT)](https://grafana.com/docs/loki/next/configuration/#common)
 
 > 2.4 版本之前并没有这个字段，早期 Loki 的配置文件解读起来非常混乱。但是 2.4 版本之后，可以通过 common 字段统一定义一些之前带有歧义的字段，`common.storage` 可以代替 `storage_config` 用以配置后端存储的信息。
 
 通用配置。**在配置 Loki 组件所使用的 哈希环、存储、等等 时，可以不在每个组件单独配置，而是直接使用这里定义的通用配置。**
 
-### path_prefix: \<string>
+### path_prefix(string)
 
 When defined, the given prefix will be present in front of the endpoint paths.
 
-### replication_factor: \<int> | default = 3
+### replication_factor(int) | default = 3
 
 How many times incoming data should be replicated to the ingester component.
 
-### ring: \<OBJECT>
+### ring(OBJECT)
 
 所有使用哈希环的组件的通用哈希环配置。. If a common ring is given, its values are used to define any undefined ring values. For instance, you can expect the `heartbeat_period` defined in the common section to be used by the distributor's ring, but only if the distributor's ring itself # doesn't have a `heartbeat_period` set.
-**kvstore: \<OBJECT>** #
+**kvstore(OBJECT)** #
 
-- **store: \<STRING>** # 用于保存哈希环的存储。`默认值：memberlist`
+- **store(STRING)** # 用于保存哈希环的存储。`默认值：memberlist`
 
-### storage: \<OBJECT>
+### storage(OBJECT)
 
 > 该字段可以代替 `storage_config` 字段。比如 ruler.storage.type 的值为 s3 的话，就会使用这里的 s3 字段的配置；若值为 local，则会使用这里的 filesystem 字段的配置
 
 Loki 不同组件共享使用的存储配置。该字段配置存储信息，用以告诉 Loki 如何使用各种类型的存储。
-**s3: \<OBJECT>**# S3 类型存储的信息。包括 连接方式、数据要保存的桶 等信息
+**s3(OBJECT)**# S3 类型存储的信息。包括 连接方式、数据要保存的桶 等信息
 
-- 详见下文通用配置字段 [s3: \<OBJECT>](#J3m3x)
+- 详见下文通用配置字段 [s3(OBJECT)](#J3m3x)
 
-**azure: \<Azure_Store_Config>** #
+**azure(Azure_Store_Config)** #
 **gcs: <>** #
 **swift: <>** #
 **filesystem:**[**\<OBJECT>**](https://grafana.com/docs/loki/next/configuration/#filesystem) # 将本地文件系统作为 Loki 组件存储数据的地方
 
-- **chunks_directory: \<STRING>**# 存储 chunks 数据的目录
-- **rules_directory: \<STRING>** # 存储 Loki Rules 文件的目录
+- **chunks_directory(STRING)**# 存储 chunks 数据的目录
+- **rules_directory(STRING)** # 存储 Loki Rules 文件的目录
 
-**bos: \<OBJECT>** # Baidu Object Storage(百度对象存储) 的信息。
+**bos(OBJECT)** # Baidu Object Storage(百度对象存储) 的信息。
 **hedging:**[**\<OBJECT>**](https://grafana.com/docs/loki/next/configuration/#hedging) #
 
 ### 配置示例
@@ -181,18 +181,18 @@ schema_config 下只有一个单独的 `configs` 字段，其实用 period_confi
 
 **from: 2018-04-15** # 该模式的起始时间
 注意：store 与 object_store 字段的配置将会决定 Loki 使用 storage_config 中的哪个字段作为存储数据的地方
-**schema: \<STRING>** # 模式的版本，当前推荐为 v11。
-**store: \<STRING>** # 存放 Index 数据的存储类型。可用的值有：aws, aws-dynamo, gcp, bigtable, bigtable-hashed,cassandra, boltdb-shipper
-**object_store: \<STRING>** # 存放 Chunks 数据的存储类型。可用的值有：s3、aws、azure、gcp、bigtable、gcs、cassandra、swift、filesystem。`默认值：与 store 字段的值相同`。
-**index: \<Object>** # 指定储存 Index 数据的行为。
+**schema(STRING)** # 模式的版本，当前推荐为 v11。
+**store(STRING)** # 存放 Index 数据的存储类型。可用的值有：aws, aws-dynamo, gcp, bigtable, bigtable-hashed,cassandra, boltdb-shipper
+**object_store(STRING)** # 存放 Chunks 数据的存储类型。可用的值有：s3、aws、azure、gcp、bigtable、gcs、cassandra、swift、filesystem。`默认值：与 store 字段的值相同`。
+**index(Object)** # 指定储存 Index 数据的行为。
 
-- **prefix: \<STRING>** # 表的前缀，也就是 index 文件的前缀。
-- **period: \<DURATION>** # 表的周期(在当前期间中，每隔 DURATION 的时间创建一张表)。该值必须为 24h 的倍数。`默认值：168h`
+- **prefix(STRING)** # 表的前缀，也就是 index 文件的前缀。
+- **period(DURATION)** # 表的周期(在当前期间中，每隔 DURATION 的时间创建一张表)。该值必须为 24h 的倍数。`默认值：168h`
 
-**chunks: \<Ojbect>** # 指定储存 Chunks 数据的行为。`默认值：复制 index 字段的配置`。其内字段含义与 index 字段下的子字段功能一样。
+**chunks(Ojbect)** # 指定储存 Chunks 数据的行为。`默认值：复制 index 字段的配置`。其内字段含义与 index 字段下的子字段功能一样。
 
-- **prefix: \<STRING>** #
-- **period: \<DURATION>** #
+- **prefix(STRING)** #
+- **period(DURATION)** #
 
 \~~注意~~~~：~~`~~store~~`~~ 与 ~~`~~object_store~~`~~ 字段的值，将会影响 ~~`~~storage_config~~`~~ 字段下可以使用的字段。比如 store 为 boltdb-shipper，则 storage_config 中只有 boltdb-shipper 字段可以配置，其他无法配置，配置了就会报错。~~Loki 2.4 版本之后，推荐使用 `common.storage` 字段。
 
@@ -205,33 +205,33 @@ schema_config 下只有一个单独的 `configs` 字段，其实用 period_confi
 
 > 比如，在 schema_config.configs.store 中使用 aws，那么 storage_config 中就可以使用 aws 配置
 
-#### boltdb: \<Object> # boltdb 存储类型的配置
+#### boltdb(Object) # boltdb 存储类型的配置
 
 仅当 schema_config.configs.store 为 boltdb 时，才配置该字段
 
-- **directory: \<STRING>** # 存放 BoltDB 索引数据的绝对路径
+- **directory(STRING)** # 存放 BoltDB 索引数据的绝对路径
 
-#### boltdb_shipper: \<Ojbect> # boltdb_shipper 存储类型的配置
+#### boltdb_shipper(Ojbect) # boltdb_shipper 存储类型的配置
 
 仅当 schema_config.configs.store 为 boltdb_shipper 时，才配置该字段
 
-- **active_index_directory: \<STRING>** #
-- **cache_location: \<STRING>** #
-- **cache_ttl: \<DURATION>** # `默认值：24h`
-- **shared_store: \<STRING>** # 用于保存 BoltDB 文件的存储。
+- **active_index_directory(STRING)** #
+- **cache_location(STRING)** #
+- **cache_ttl(DURATION)** # `默认值：24h`
+- **shared_store(STRING)** # 用于保存 BoltDB 文件的存储。
   - 在 2.4 版本之后，若 `common.storage` 定义了 s3，且 `schema_config.object_storage` 定义为 s3，则这个字段的值也为 s3。也就是说，Index 数据也会存到 S3。这个说法待验证。
 
-#### filesystem: \<Object> # filesystem 存储类型的配置
+#### filesystem(Object) # filesystem 存储类型的配置
 
 仅当 schema_config.configs.object_store 为 filesystem 时，才配置该字段
 
-- **directory: \<STRING>** # 存放 chunks 数据的绝对路径
+- **directory(STRING)** # 存放 chunks 数据的绝对路径
 
-#### aws: \<Object> # S3 配置
+#### aws(Object) # S3 配置
 
 仅当 schema_config.configs.object_store 为 aws 时，才配置该字段。该字段配置与通用存储配置中的 `[s3](#zJRSQ)` 字段相同
 
-- **bucketnames: \<STRING>** #
+- **bucketnames(STRING)** #
 - **endpoint: localhost:9000** #
 - **access_key_id: minioadmin** #
 - **secret_access_key: minioadmin** #
@@ -240,15 +240,15 @@ schema_config 下只有一个单独的 `configs` 字段，其实用 period_confi
 
 ## Distributor 组件配置
 
-### distributor: \<Object>
+### distributor(Object)
 
 Loki 的 distributor(分配器) 组件配置。
 
 ## Ingester 组件配置
 
-### ingester_client: \<Object>
+### ingester_client(Object)
 
-### ingester: \<Object>
+### ingester(Object)
 
 Loki 的 Ingester(摄取器) 配置，以及配置采集器如何将自己注册到键值存储
 **lifecycler:** #
@@ -256,17 +256,17 @@ Loki 的 Ingester(摄取器) 配置，以及配置采集器如何将自己注册
 - **address: 127.0.0.1**#
 - **ring:** #
   - **kvstore:** #
-    - **store: \<STRING>** # 用于 ring 的后端存储类型。值为 consul, etcd,inmemory, memberlist
+    - **store(STRING)** # 用于 ring 的后端存储类型。值为 consul, etcd,inmemory, memberlist
   - **replication_factor: 1** #
 - **final_sleep: 0s** #
 
 **chunk_idle_period: 5m** #
 **chunk_retain_period: 30s** #
 **max_transfer_retries: 0** #
-**wal: \<Object>** # Ingester 的 WAL 配置。
+**wal(Object)** # Ingester 的 WAL 配置。
 
-- **enabled: \<BOOLEAN>**
-- **dir: \</PATH/TO/DIR>** # WAL 存放目录。`默认值: wal`，即默认数据存储目录下的 /wal 目录。
+- **enabled(BOOLEAN)**
+- **dir(/PATH/TO/DIR)** # WAL 存放目录。`默认值: wal`，即默认数据存储目录下的 /wal 目录。
 
 ## Querier 组件配置
 
@@ -278,14 +278,14 @@ Loki 的 Ingester(摄取器) 配置，以及配置采集器如何将自己注册
 
 ## Ruler 组件配置
 
-### ruler: \<Object>
+### ruler(Object)
 
 Ruler 组件配置。
-**storage: \<Ojbect>** # 根据 type 的值，则会优先默认选择[通用存储](#SJMUR)。可用的值有：azure, gcs, s3, swift, local, bos。若没有通用存储，则使用 storage 字段下对应的字段。
+**storage(Ojbect)** # 根据 type 的值，则会优先默认选择[通用存储](#SJMUR)。可用的值有：azure, gcs, s3, swift, local, bos。若没有通用存储，则使用 storage 字段下对应的字段。
 
-- **type: \<STRING>**#
-- **s3: \<OBJECT>** # 配置用于存储规则文件的存储信息
-  - 详见下文通用配置字段 [s3: \<OBJECT>](#J3m3x)
+- **type(STRING)**#
+- **s3(OBJECT)** # 配置用于存储规则文件的存储信息
+  - 详见下文通用配置字段 [s3(OBJECT)](#J3m3x)
 
 **rule_path: /loki/tmprules** #
 **alertmanager_url: <http://localhost>** #
@@ -315,7 +315,7 @@ ruler:
 
 ## Table manager 组件配置
 
-### table_manager: \<Object>
+### table_manager(Object)
 
 Table Manager(表管理器) 组件配置，以规定数据保留的行为。该配置环境用途详见《[Loki 存储](/docs/6.可观测性/日志系统/Loki/Storage(存储)/Storage(存储).md)》
 
@@ -323,32 +323,32 @@ Table Manager(表管理器) 组件配置，以规定数据保留的行为。该�
 >
 > - Table Manager 无法管理存放在对象存储(比如 S3)中的数据，如果要使用对象存储来储存 Index 与 Chunks 数据，则应该自行设置 Bucket 的策略，以删除旧数据。
 
-**retention_deletes_enabled: \<BOOLEAN>** # 是否开启删除保留数据的行为。`默认值：false`。
-**retention_period: \<DURATION>** # 指定要保留多长时间的表。
+**retention_deletes_enabled(BOOLEAN)** # 是否开启删除保留数据的行为。`默认值：false`。
+**retention_period(DURATION)** # 指定要保留多长时间的表。
 
 - DURATION 的值必须是 schema_config.configs.index(或 chunks).period 字段值的倍数。`默认值：0s`，即保留所有时间的表，不删除
 - 注意，为了避免查询超出保留期限的数据，`chunk_store_config.max_look_back_period` 字段的值必须小于或等于 retention_period 的值
 
-**creation_grace_period: \<DURATION>** # 提前 DURATION 时间创建新表。`默认值：10m`
+**creation_grace_period(DURATION)** # 提前 DURATION 时间创建新表。`默认值：10m`
 
-## limits_config: \<Object> # 配置各个组件处理数据的最大值
+## limits_config(Object) # 配置各个组件处理数据的最大值
 
-**ingestrion_rate_mb: \<FLOAT>** # 每秒可以摄取日志量的大小，单位 MB。`默认值：4`
-**enforce_metric_name: \<BOOLEAN>**# 强制每个样本都有一个 metric 名称。`默认值：true`
+**ingestrion_rate_mb(FLOAT)** # 每秒可以摄取日志量的大小，单位 MB。`默认值：4`
+**enforce_metric_name(BOOLEAN)**# 强制每个样本都有一个 metric 名称。`默认值：true`
 
 - 通常设为 false
 
-**reject_old_samples: \<BOOLEAN>**# 旧样本是否会被拒绝。`默认值：true`
-**reject_old_samples_max_age: \<DURATION>** # 拒绝前可以接收的最大样本年龄。`默认值：168h`
+**reject_old_samples(BOOLEAN)**# 旧样本是否会被拒绝。`默认值：true`
+**reject_old_samples_max_age(DURATION)** # 拒绝前可以接收的最大样本年龄。`默认值：168h`
 
 - 如果拒绝旧样本，那么旧样本不能早于 reject_old_samples_max_age 时间
 
 ## 其他
 
-### chunk_store_config: \<Object>
+### chunk_store_config(Object)
 
 配置 Loki 如何将数据存放在指定存储中。该配置环境用途详见《[Loki 存储](/docs/6.可观测性/日志系统/Loki/Storage(存储)/Storage(存储).md)》
-**max_look_back_period: \<DURATION>** # 限制可以查询多长时间的数据。`默认值：0s`，即不做限制。DURATION 必须小于或等于 table_manager.retention_period 字段的值
+**max_look_back_period(DURATION)** # 限制可以查询多长时间的数据。`默认值：0s`，即不做限制。DURATION 必须小于或等于 table_manager.retention_period 字段的值
 
 # loki.yaml 配置文件中的通用字段
 
@@ -358,17 +358,17 @@ Table Manager(表管理器) 组件配置，以规定数据保留的行为。该�
 
 用来定义 如何连接存储、数据在存储中的路径 等等
 
-### [s3: \<OBJECT>](https://grafana.com/docs/loki/next/configuration/#s3_storage_config) # S3 存储配置
+### [s3(OBJECT)](https://grafana.com/docs/loki/next/configuration/#s3_storage_config) # S3 存储配置
 
-**endpoint: \<STRING>** # 连接 S3 的 endpoint。`默认值：空`
-**access_key_id: \<STRING>** # 连接 S3 的 AK。`默认值：空`
-**secret_access_key: \<STRING>** # 连接 S3 的 SK。`默认值：空`
-**bucketnames: \<STRING>** # 以逗号分割的桶名称列表。`默认值：空`。多个桶可以均匀得分布 chunks
-**insecure: \<BOOLEAN>** # 是否使用不安全的连接去连接 S3，i.e.是否使用 HTTP 连接 S3。`默认值：false`
-**s3forcepathstyle: \<BOOLEAN>** #
-**http_config: \<OBJECT>**
+**endpoint(STRING)** # 连接 S3 的 endpoint。`默认值：空`
+**access_key_id(STRING)** # 连接 S3 的 AK。`默认值：空`
+**secret_access_key(STRING)** # 连接 S3 的 SK。`默认值：空`
+**bucketnames(STRING)** # 以逗号分割的桶名称列表。`默认值：空`。多个桶可以均匀得分布 chunks
+**insecure(BOOLEAN)** # 是否使用不安全的连接去连接 S3，i.e.是否使用 HTTP 连接 S3。`默认值：false`
+**s3forcepathstyle(BOOLEAN)** #
+**http_config(OBJECT)**
 
-- **insecure_skip_verify: \<BOOLEAN>** # 是否跳过证书验证。`默认值：false`
+- **insecure_skip_verify(BOOLEAN)** # 是否跳过证书验证。`默认值：false`
 
 # 配置文件示例
 
