@@ -1,10 +1,17 @@
 ---
-title: go-simplejson 库
+title: "go-simplejson 库"
+linkTitle: "go-simplejson 库"
+date: "2023-06-05T16:06"
+weight: 20
 ---
 
-参考：[go-simplejson 库](https://pkg.go.dev/github.com/bitly/go-simplejson#Json.Array)、[笔记文档](https://github.com/qq1060656096/go-simplejson)
+# 概述
 
-> simplejson 是一个 golang 包， 提供快速和简单的方法来从 JSON 文件中获取值、设置值、删除值。
+> 参考：
+> [go-simplejson 库](https://pkg.go.dev/github.com/bitly/go-simplejson#Json.Array)
+> [笔记文档](https://github.com/qq1060656096/go-simplejson)
+
+simplejson 是一个 golang 包， 提供快速和简单的方法来从 JSON 文件中获取值、设置值、删除值。
 
 ### 1. Json 解码编码?
 

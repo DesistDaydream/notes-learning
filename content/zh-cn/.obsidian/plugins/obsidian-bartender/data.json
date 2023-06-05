@@ -1465,13 +1465,13 @@
     ],
     "docs/7.信息安全": [
       "docs/7.信息安全/_index.md",
+      "docs/7.信息安全/信息安全.md",
       "docs/7.信息安全/Standardized Glossary(标准化术语).md",
       "docs/7.信息安全/Cryptography(密码学)",
       "docs/7.信息安全/Access Control(访问控制)",
       "docs/7.信息安全/管理工具",
       "docs/7.信息安全/Bastion Host(堡垒机).md",
-      "docs/7.信息安全/Hacking.md",
-      "docs/7.信息安全/什么鬼？.md"
+      "docs/7.信息安全/Hacking.md"
     ],
     "docs/7.信息安全/Cryptography(密码学)": [
       "docs/7.信息安全/Cryptography(密码学)/_index.md",
@@ -1697,6 +1697,19 @@
       "docs/2.编程/高级编程语言/HTML与CSS/CSS.md",
       "docs/2.编程/高级编程语言/HTML与CSS/HTML 与 CSS.md",
       "docs/2.编程/高级编程语言/HTML与CSS/DOM.md"
+    ],
+    "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理": [
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/文本处理.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/正则处理.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON 数据格式处理",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON 数据格式处理.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/YAML 数据处理.md"
+    ],
+    "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON 数据格式处理": [
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON 数据格式处理/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON 数据格式处理/JSON 数据格式处理.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON 数据格式处理/go-simplejson 库.md"
     ]
   },
   "actionBarOrder": {},

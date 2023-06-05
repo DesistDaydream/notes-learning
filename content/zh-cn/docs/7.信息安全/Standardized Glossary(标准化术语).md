@@ -5,6 +5,7 @@ title: Standardized Glossary(标准化术语)
 # 概述
 
 > 参考：
+> 
 > - [RFC 4949(互联网安全术语)](https://datatracker.ietf.org/doc/html/rfc4949)
 
 **Entity(实体)** # 是任何存在的东西（anything that exists） —— 即使 只在逻辑或概念上存在（even if only exists logically or conceptually）。 例如，
