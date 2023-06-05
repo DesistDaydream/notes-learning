@@ -172,12 +172,12 @@ common:
 - schema_config 用来定义使用什么储存数据
 - strage_config 用来定义如何连接存储以及存储储存数据的路径。
 
-### schema_config: \<Object>
+### schema_config(Object)
 
 配置存储 chunk 与 index 两类数据的 schema(模式)。该字段用途详见 [Loki 存储](/docs/6.可观测性/日志系统/Loki/Storage(存储)/Storage(存储).md)
 schema_config 下只有一个单独的 `configs` 字段，其实用 period_config 更准确~~~`configs` 字段下这是一个数组，每个数组都可以用来定义"某一时间段 loki 存储所使用的 schema"。所以，`configs` 字段用来定义从 哪个时间段开始使用哪种模式将 index 与 chunk 类型的数据存储到哪里去。
 
-#### configs: <\[]Object>
+#### configs([]Object)
 
 **from: 2018-04-15** # 该模式的起始时间
 注意：store 与 object_store 字段的配置将会决定 Loki 使用 storage_config 中的哪个字段作为存储数据的地方
@@ -196,7 +196,7 @@ schema_config 下只有一个单独的 `configs` 字段，其实用 period_confi
 
 \~~注意~~~~：~~`~~store~~`~~ 与 ~~`~~object_store~~`~~ 字段的值，将会影响 ~~`~~storage_config~~`~~ 字段下可以使用的字段。比如 store 为 boltdb-shipper，则 storage_config 中只有 boltdb-shipper 字段可以配置，其他无法配置，配置了就会报错。~~Loki 2.4 版本之后，推荐使用 `common.storage` 字段。
 
-### storage_config: <Objcet>
+### storage_config(Objcet)
 
 > Loki 2.4 版本之后，推荐使用 `common.storage` 字段。
 

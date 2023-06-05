@@ -1,5 +1,5 @@
 ---
 title: "Motherboard"
 linkTitle: "Motherboard"
-weight: 1
+weight: 2
 ---

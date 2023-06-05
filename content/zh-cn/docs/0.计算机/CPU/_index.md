@@ -1,4 +1,4 @@
 ---
 title: CPU
-weight: 2
+weight: 3
 ---
