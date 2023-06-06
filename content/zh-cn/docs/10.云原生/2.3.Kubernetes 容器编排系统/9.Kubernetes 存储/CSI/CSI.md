@@ -1,10 +1,12 @@
 ---
 title: CSI
+weight: 1
 ---
 
 # 概述
 
 > 参考：
+> 
 > - [公众号,一文读懂容器存储接口 CSI](https://mp.weixin.qq.com/s/A9xWKMmrxPyOEiCs_sicYQ)
 
 **导读：** 在[《一文读懂 K8s 持久化存储流程》](https://mp.weixin.qq.com/s?__biz=MzUzNzYxNjAzMg==&mid=2247490043&idx=1&sn=c09ad4a9bc790f4b742abd8ca1301ffb&scene=21#wechat_redirect)一文我们重点介绍了 K8s 内部的存储流程，以及 PV、PVC、StorageClass、Kubelet 等之间的调用关系。接下来本文将将重点放在 CSI（Container Storage Interface）容器存储接口上，探究什么是 CSI 及其内部工作原理。

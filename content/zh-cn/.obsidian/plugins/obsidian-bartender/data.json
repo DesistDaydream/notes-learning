@@ -1710,6 +1710,12 @@
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON 数据格式处理/_index.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON 数据格式处理/JSON 数据格式处理.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON 数据格式处理/go-simplejson 库.md"
+    ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/CSI": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/CSI/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/CSI/CSI.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/CSI/Rook",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/CSI/longhorn.md"
     ]
   },
   "actionBarOrder": {},

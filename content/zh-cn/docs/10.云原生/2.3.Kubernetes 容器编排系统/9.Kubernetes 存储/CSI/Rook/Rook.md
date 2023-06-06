@@ -1,10 +1,13 @@
 ---
 title: Rook
+weight: 1
 ---
 
-# Rook 简介
+# 概述
 
-官方文档：<https://rook.github.io/docs/rook/master/>
+> 参考：
+> 
+> - 官方文档：<https://rook.github.io/docs/rook/master/>
 
 Rook 是一个开源的 cloud-native storage orchestrator(云原生存储协调器), 提供平台和框架；为各种存储解决方案提供平台、框架和支持，以便与云原生环境本地集成。Rook 作为云原生存储的编排系统，可以直接帮助维护人员管理有状态的存储程序。可以说是一个 SAAS，Storage as a service。
 
