@@ -82,7 +82,7 @@ AppStream 库中的包一般是用户空间程序包，这些程序的更新速�
 
 ## yum 关联文件与配置
 
-**/etc/yum.repos.d/* # 该目录下是所有源的配置文件，repos 为 repository(仓库)的简称，即 yum 仓库的意思
+**/etc/yum.repos.d/** # 该目录下是所有源的配置文件，repos 为 repository(仓库)的简称，即 yum 仓库的意思
 
 配置本地 yum 源：cat local.repo（需要将系统 ISO 镜像挂载到/mnt/cdrom 上）
 
@@ -98,6 +98,7 @@ EOF
 ```
 
 配置远程 yum 源：
+
 在 ISO 挂载目录，启动 80 端口，然后想要使用该源的，配置文件中 baseurl 改为 IP:///PATH 即可
 
 ```bash

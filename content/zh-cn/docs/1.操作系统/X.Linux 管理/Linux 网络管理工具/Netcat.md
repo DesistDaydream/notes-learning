@@ -133,7 +133,7 @@ Connection to localhost 323 port [udp/*] succeeded!
 **nmap \[Scan Type...] \[OPTIONS] {TARGET}**
 
 - **Scan Type(扫描类型)** #
-- **TARGET **# 扫描目标
+- **TARGET** # 扫描目标
 
 直接使用 `nmap IP` 即可开始一个简单的扫描任务
 
