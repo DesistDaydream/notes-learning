@@ -23,16 +23,17 @@ Prometheus Server 抓取 metrics 的位置 http://IP:9100/metrics # 获取 node_
 - 下载 node_exporter，过程基本与使用 prometheus 程序一样。[下载页面在此](https://github.com/prometheus/node_exporter/releases)
 
 ```bash
-wget https://github.com/prometheus/node_exporter/releases/download/v1.1.2/node_exporter-1.1.2.linux-amd64.tar.gz
+export VERSION="1.6.0"
+wget https://github.com/prometheus/node_exporter/releases/download/v${VERSION}/node_exporter-${VERSION}.linux-amd64.tar.gz
 # 解压
 mkdir -p /usr/local/prometheus/node_exporter
-tar -zxvf node_exporter-1.1.2.linux-amd64.tar.gz -C /usr/local/prometheus/node_exporter --strip-components=1
+tar -zxvf node_exporter-${VERSION}.linux-amd64.tar.gz -C /usr/local/prometheus/node_exporter --strip-components=1
 ```
 
 - 创建 node_exporter 的 systemd 服务
 
 ```bash
-cat > /usr/lib/systemd/system/node-exporter.service << EOF
+tee /usr/lib/systemd/system/node-exporter.service > /dev/null << EOF
 [Unit]
 Description=node_exporter
 After=network.target

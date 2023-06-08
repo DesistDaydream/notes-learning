@@ -110,61 +110,62 @@ ServiceMonitor 关联好 service 后，选取 service 对应的 endpoints 作为
 
 ## snmp_exporter 样例
 
-    apiVersion: monitoring.coreos.com/v1
-    kind: ServiceMonitor
-    metadata:
-      name: snmp-metrics
-      namespace: monitoring
-      labels:
-        prometheus: snmp-metrics
-    spec:
-      jobLabel: snmp
-      selector:
-        matchLabels:
-          prometheus: snmp-metrics
-      endpoints:
-      - interval: 30s
-        scrapeTimeout: 120s
-        port: snmp
-        params:
-          module:
-          - if_mib
-          target:
-          - 10.10.100.254
-        targetPort: 9116
-        path: "/snmp"
-        relabelings:
-        - action: replace
-          sourceLabels:
-          - __param_target
-          targetLabel: instance
-
-    ---
-    kind: Service
-    apiVersion: v1
-    metadata:
-      name: snmp-metrics
-      namespace: monitoring
-      labels:
-        prometheus: snmp-metrics
-    spec:
-      ports:
-      - port: 9116
-        nodePort: 30006
-        name: snmp
-      type: NodePort
-    ---
-    apiVersion: v1
-    kind: Endpoints
-    metadata:
-      name: snmp-metrics
-      namespace: monitoring
-      labels:
-        prometheus: snmp-metrics
-    subsets:
-    - addresses:
-      - ip: 10.10.100.12
-        hostname: storage-1
-      ports:
-      - port: 9116
-        name: snmp
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: snmp-metrics
+  namespace: monitoring
+  labels:
+    prometheus: snmp-metrics
+spec:
+  jobLabel: snmp
+  selector:
+    matchLabels:
+      prometheus: snmp-metrics
+  endpoints:
+  - interval: 30s
+    scrapeTimeout: 120s
+    port: snmp
+    params:
+      module:
+      - if_mib
+      target:
+      - 10.10.100.254
+    targetPort: 9116
+    path: "/snmp"
+    relabelings:
+    - action: replace
+      sourceLabels:
+      - __param_target
+      targetLabel: instance
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: snmp-metrics
+  namespace: monitoring
+  labels:
+    prometheus: snmp-metrics
+spec:
+  ports:
+  - port: 9116
+    nodePort: 30006
+    name: snmp
+  type: NodePort
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: snmp-metrics
+  namespace: monitoring
+  labels:
+    prometheus: snmp-metrics
+subsets:
+- addresses:
+  - ip: 10.10.100.12
+    hostname: storage-1
+  ports:
+  - port: 9116
+    name: snmp
+```

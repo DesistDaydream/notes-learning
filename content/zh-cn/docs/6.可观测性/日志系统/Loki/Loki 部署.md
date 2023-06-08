@@ -5,13 +5,13 @@ title: Loki 部署
 # 概述
 
 > 参考：
+> 
 > - [官方文档，安装](https://grafana.com/docs/loki/latest/installation/)
 > - [官方文档，基础知识-架构-部署模式](https://grafana.com/docs/loki/latest/fundamentals/architecture/deployment-modes)
 
 # 使用 docker 运行 Loki
 
 ```bash
-
 docker run -d --rm --name loki \
   --network host \
   -v /opt/loki/config:/etc/loki \
