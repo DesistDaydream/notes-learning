@@ -1,4 +1,4 @@
 ---
 title: 安装操作系统
-weight: 1
+weight: 20
 ---
