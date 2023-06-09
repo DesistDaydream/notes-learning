@@ -111,13 +111,13 @@ CSI 容器存储接口标准的出现解决了上述问题，将三方存储代�
 
 - Delete：调用**外部 CSI 插件**的 **DeleteVolume 函数**以删除卷；一旦卷成功删除，**Provisioner** 会删除集群中对应 PV 对象。
 
-- Retain：**Provisione****r** 不执行卷删除操作。
+- Retain：**Provisione** 不执行卷删除操作。
 
 # CSI Sidecar 组件介绍
 
 为使 K8s 适配 CSI 标准，社区将与 K8s 相关的存储流程逻辑放在了 CSI Sidecar 组件中。
 
-### **1. Node Driver Registrar**
+## 1. Node Driver Registrar
 
 ### **1）功能**
 
@@ -137,7 +137,7 @@ CSI 容器存储接口标准的出现解决了上述问题，将三方存储代�
 
 - **Kubelet** 更新 CSINode 资源（没有则创建）：将 \[driverName\]、\[nodeID\]、\[maxAttachLimit\]、\[AccessibleTopology\] 更新到 Spec 中（拓扑仅保留 Key 值）。
 
-### **2. External Provisioner**
+## 2. External Provisioner
 
 ### **1）功能**
 
@@ -175,7 +175,7 @@ CSI 容器存储接口标准的出现解决了上述问题，将三方存储代�
 
 - 删除集群中的 PV 资源。
 
-### **3. External Attacher**
+## 3. External Attacher
 
 ### **1）功能**
 
@@ -197,7 +197,7 @@ CSI 容器存储接口标准的出现解决了上述问题，将三方存储代�
 
 - 当 PV 处于删除状态时（DeletionTimestamp 非空），删除 Finalizer：external-attacher/\[driver 名称\]。
 
-### **4. External Resizer**
+## 4. External Resizer
 
 ### **1）功能**
 
@@ -221,7 +221,7 @@ CSI 容器存储接口标准的出现解决了上述问题，将三方存储代�
 
 **Volume Manager（Kubelet 组件）**观察到存储卷需在线扩容，于是通过特定的 Unix Domain Socket 调用**外部 CSI 插件**的 **NodeExpandVolume 接口**实现文件系统扩容。
 
-### **5. livenessprobe**
+## 5. livenessprobe
 
 ### **1）功能**
 
@@ -235,7 +235,7 @@ CSI 容器存储接口标准的出现解决了上述问题，将三方存储代�
 
 三方存储厂商需实现 CSI 插件的三大接口：**IdentityServer、ControllerServer、NodeServer**。
 
-### **1. IdentityServer**
+## 1. IdentityServer
 
 IdentityServer 主要用于认证 CSI 插件的身份信息。
 
@@ -251,7 +251,7 @@ type IdentityServer interface {
 }
 ```
 
-### **2. ControllerServer**
+## 2. ControllerServer
 
 ControllerServer 主要负责存储卷及快照的创建/删除以及挂接/摘除操作。
 
@@ -285,7 +285,7 @@ type ControllerServer interface {
 }
 ```
 
-### **3. NodeServer**
+## 3. NodeServer
 
 NodeServer 主要负责存储卷挂载/卸载操作。
 
@@ -321,7 +321,7 @@ K8s 为支持 CSI 标准，包含如下 API 对象：
 
 - VolumeAttachment
 
-### **1. CSINode**
+## 1. CSINode
 
 ```properties
 apiVersion: storage.k8s.io/v1beta1
@@ -348,7 +348,7 @@ spec:
 
 3. 显示卷拓扑信息。CSINode 中 topologyKeys 用来表示存储节点的拓扑信息，卷拓扑信息会使得 **Scheduler** 在 Pod 调度时选择合适的存储节点。
 
-### **2. CSIDriver**
+## 2. CSIDriver
 
 ```properties
 apiVersion: storage.k8s.io/v1beta1
@@ -371,7 +371,7 @@ spec:
 
 2. 自定 义Kubernetes 行为，如一些外部 CSI 插件不需要执行卷挂接（VolumeAttach）操作，则可以设置 .spec.attachRequired 为 false。
 
-### **3. VolumeAttachment**
+## 3. VolumeAttachment
 
 ```properties
 apiVersion: storage.k8s.io/v1
@@ -395,7 +395,7 @@ status:
 
 # 支持特性
 
-### **1. 拓扑支持**
+## 1. 拓扑支持
 
 在 StorageClass 中有 AllowedTopologies 字段：
 
@@ -428,7 +428,7 @@ allowedTopologies:
 
 - 将 StorageClass 的 AllowedTopologies 的值填进来，若 StorageClass 没有设置 AllowedTopologies 则将所有包含 TopologyKeys 键的节点 Value 添进来。
 
-### **Scheduler 如何处理使用存储卷调度**
+## Scheduler 如何处理使用存储卷调度
 
 > 基于社区 1.18 版本调度器
 
@@ -504,11 +504,11 @@ BindPodVolumes：
 
 _https://kubernetes.io/docs/concepts/storage/persistent-volumes/#recovering-from-failure-when-expanding-volumes_
 
-### **3. 单节点卷数量限制**
+## 3. 单节点卷数量限制
 
 卷数量限制在 Node Driver Registrar 部分已提到，故不再赘述。
 
-### **4. 存储卷监控**
+## 4. 存储卷监控
 
 存储商需实现 CSI 插件的 NodeGetVolumeStats 接口，Kubelet 会调用该函数，并反映在其 metrics上：
 
@@ -524,7 +524,7 @@ _https://kubernetes.io/docs/concepts/storage/persistent-volumes/#recovering-from
 
 - kubelet\_volume\_stats\_inodes\_free：存储卷 inode 剩余量
 
-### **5. Secret**
+## 5. Secret
 
 CSI 存储卷支持传入 Secret 来处理不同流程中所需要的私密数据，目前 StorageClass 支持如下 Parameter：
 
@@ -550,7 +550,7 @@ CSI 存储卷支持传入 Secret 来处理不同流程中所需要的私密数�
 
 Secret 会包含在对应 CSI 接口的参数中，如对于 CreateVolume 接口而言则包含在 CreateVolumeRequest.Secrets 中。
 
-### **6. 块设备**
+## 6. 块设备
 
 ```properties
 apiVersion: apps/v1
@@ -588,10 +588,10 @@ spec:
 
 三方存储厂商需实现 NodePublishVolume 接口。Kubernetes 提供了针对块设备的工具包（"k8s.io/kubernetes/pkg/util/mount"），在 NodePublishVolume 阶段可调用该工具的 EnsureBlock 和 MountBlock 函数。
 
-### **7. 卷快照/卷克隆能力**
+## 7. 卷快照/卷克隆能力
 
 鉴于本文篇幅，此处不做过多原理性介绍。读者感兴趣见官方介绍：卷快照、卷克隆。
 
-**总结**
+# 总结
 
-本文首先对 CSI 核心流程进行了大体介绍，并结合 CSI Sidecar 组件、CSI 接口、API 对象对 CSI 标准进行了深度解析。在 K8s 上，使用任何一种 CSI 存储卷都离不开上面的流程，环境上的容器存储问题也一定是其中某个环节出现了问题。本文对其流程进行梳理，以便于广大程序猿（媛）排查环境问题。
+本文首先对 CSI 核心流程进行了大体介绍，并结合 CSI Sidecar 组件、CSI 接口、API 对象对 CSI 标准进行了深度解析。在 K8s 上，使用任何一种 CSI 存储卷都离不开上面的流程，环境上的容器存储问题也一定是其中某个环节出现了问题。

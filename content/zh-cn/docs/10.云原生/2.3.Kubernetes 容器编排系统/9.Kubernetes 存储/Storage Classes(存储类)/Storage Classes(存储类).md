@@ -1,5 +1,6 @@
 ---
 title: Storage Classes(存储类)
+weight: 1
 ---
 
 # 概述

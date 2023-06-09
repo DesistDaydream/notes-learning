@@ -25,7 +25,7 @@ title: Leader Election(领导人选举)
 
 ## 一个简单的 Leader Election 的例子
 
-**备注**：该例子取自项目[文档](https://github.com/kubernetes/contrib/tree/master/election)。
+**备注**：该例子取自项目[文档](https://github.com/kubernetes/contrib/tree/master/election)
 
 ### 启动一个 leader-elector 的 Pod
 
@@ -85,8 +85,6 @@ kubectl get ep example -o yaml
 curl http://localhost:8001/api/v1/namespaces/default/pods/leader-elector-5d77ccc44d-gwsgg:4040/proxy/
 {"name":"leader-elector-5d77ccc44d-7tmgm"}
 ```
-
-###
 
 # 如何使用 leader-elector
 

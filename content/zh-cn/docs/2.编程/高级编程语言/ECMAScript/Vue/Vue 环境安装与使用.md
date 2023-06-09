@@ -5,6 +5,7 @@ title: Vue 环境安装与使用
 # 概述
 
 > 参考：
+> 
 > - [官方文档，应用规模化-工具链](https://cn.vuejs.org/guide/scaling-up/tooling.html)
 
 Vue3 早期使用 [Vue CLI](https://cli.vuejs.org/)，创建 Vue 项目，后来 Vue 作者尤雨溪开了一个新的工具 Vite，Vite 通过 [vuejs/create-vue](https://github.com/vuejs/create-vue) 项目，基于 Vite 创建 Vue 项目。
@@ -12,6 +13,7 @@ Vue3 早期使用 [Vue CLI](https://cli.vuejs.org/)，创建 Vue 项目，后来
 # Vite
 
 > 参考：
+> 
 > - [GitHub 项目，vitejs/vite](https://github.com/vitejs/vite)
 > - [官网](https://vitejs.dev/)
 

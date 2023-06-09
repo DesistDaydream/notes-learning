@@ -1,10 +1,12 @@
 ---
 title: Vue
+weight: 1
 ---
 
 # 概述
 
 > 参考：
+> 
 > - [GitHub 组织，vuejs](https://github.com/vuejs/)
 > - [官网](https://vuejs.org/)
 > - [官网-中文](https://staging-cn.vuejs.org/)
@@ -48,6 +50,7 @@ App (root component)
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/cye267/1651220139947-ac46307c-fa52-4370-b7ed-16e2ad92629a.png)
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/cye267/1666836325564-89bbb0d6-be23-45ea-aa56-bc7183a2eb46.png)
+
 有了 VUE 就不用手动操作 DOM 了？
 
 ## API 风格

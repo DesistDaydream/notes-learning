@@ -1,5 +1,6 @@
 ---
 title: Persistent Volume(持久卷)
+weight: 1
 ---
 
 # PersistentVolume(持久卷)

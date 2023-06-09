@@ -5,6 +5,7 @@ title: Vite
 # 概述
 
 > 参考：
+> 
 > - [GitHub 组织，vite](https://github.com/vitejs)
 > - [GitHub 项目，vitejs/vite](https://github.com/vitejs/vite)
 
@@ -21,6 +22,7 @@ Vue 作者主导的打包与编译工具，启动项目开发模式速度非常�
 ### Vite 配置详解
 
 > 参考：
+> 
 > - [官方文档，配置](https://cn.vitejs.dev/config/)
 
 # 常见问题

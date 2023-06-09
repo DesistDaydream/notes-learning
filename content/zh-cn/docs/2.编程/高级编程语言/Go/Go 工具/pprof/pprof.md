@@ -271,7 +271,7 @@ Serving web UI on http://localhost:8080
 
 ## 实验准备
 
-这里假设你有基本的 golang 开发功底，拥有 golang 开发环境并配置了 $GOPATH，能熟练阅读简单的代码或进行简单的修改，且知道如何编译运行 golang 程序。此外，需要你大致知道 pprof 是干什么的，有一个基本印象即可，你可以花几分钟时间读一下[《Golang 大杀器之性能剖析 PProf》](https://links.jianshu.com/go?to=https%3A%2F%2Fblog.wolfogre.com%2Fredirect%2Fv3%2FA3jsjsv0r3pCsn4x_qmqFKwSAwM8Cv46xcU7LxImWv3F_wdFRERZQ0pZxVoWBjvFWhYGWsWtTRvFOwaJVMX_BDIwMTjM_wIwOcz_AjE1zP5HBolU_1AlMjAlRTUlQTQlQTclRTYlOUQlODAlRTUlOTklQTglRTQlQjklOEIlRTYlODAlQTclRTglODMlQkQlRTUlODklOTYlRTYlOUUlOTAlMjBQUHMsbi0YMRIDAzwK_jrFxVoWBjtuQQYW3Dsh_cU8Bk0KxTsGzDw8Bcw8ghxKiMU)的开头部分，这不会耽误太久。
+这里假设你有基本的 golang 开发功底，拥有 golang 开发环境并配置了 $GOPATH，能熟练阅读简单的代码或进行简单的修改，且知道如何编译运行 golang 程序。此外，需要你大致知道 pprof 是干什么的，有一个基本印象即可，你可以花几分钟时间读一下[《Golang 大杀器之性能剖析 PProf》](https://blog.wolfogre.com/posts/go-ppof-practice/)的开头部分，这不会耽误太久。
 
 此外由于你需要运行一个“炸弹”程序，请务必确保你用于做实验的机器有充足的资源，你的机器至少需要：
 
@@ -295,8 +295,10 @@ Serving web UI on http://localhost:8080
 
 炸弹程序的代码我已经放到了 [GitHub](https://links.jianshu.com/go?to=https%3A%2F%2Fblog.wolfogre.com%2Fredirect%2Fv3%2FA_4-v86v-9Btg9a9FuRKCcgSAwM8Cv46xcU7LxImWv3FQQYW3DshxTsGzDw8cyzMPIIcSogxEgMDPAr-OsXFWhYGO25BBhbcOyH9xTwGTQrFOwbMPDwFzDyCHEqIxQ) 上，你只需要在终端里运行 `go get` 便可获取，注意加上 `-d` 参数，避免下载后自动安装：
 
-    go get -d github.com/wolfogre/go-pprof-practice
-    cd $GOPATH/src/github.com/wolfogre/go-pprof-practice
+```bash
+go get -d github.com/wolfogre/go-pprof-practice
+cd $GOPATH/src/github.com/wolfogre/go-pprof-practice
+```
 
 我们可以简单看一下 `main.go` 文件，里面有几个帮助排除性能调问题的关键的的点，我加上了些注释方便你理解，如下：
 

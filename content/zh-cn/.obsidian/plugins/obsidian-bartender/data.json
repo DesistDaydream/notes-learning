@@ -1728,6 +1728,18 @@
       "docs/2.编程/高级编程语言/Go/Go 工具/pprof/pprof.md",
       "docs/2.编程/高级编程语言/Go/Go 工具/pprof/通过pprof监控docker.md",
       "docs/2.编程/高级编程语言/Go/Go 工具/pprof/Go Profiling 详解.md"
+    ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/Volume": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/Volume/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/Volume/Volume.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/Volume/ConfigMap 与 Secret.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/Volume/emptyDir、hostPath、local.md"
+    ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/Storage Classes(存储类)": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/Storage Classes(存储类)/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/Storage Classes(存储类)/Storage Classes(存储类).md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/Storage Classes(存储类)/Storage Class Provisioner.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/Storage Classes(存储类)/StorageClass Manifest 详解.md"
     ]
   },
   "actionBarOrder": {},
