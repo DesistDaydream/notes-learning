@@ -1,5 +1,6 @@
 ---
 title: Go 工具
+weight: 1
 ---
 
 # 概述
@@ -109,8 +110,11 @@ gopls 是一个用以实现 [LSP](https://en.wikipedia.org/wiki/Language_Server_
 > - [GitHub 项目，cweill/gotests](https://github.com/cweill/gotests)
 
 gotests 工具可以让我们更容易得编写 Go 单元测试。该工具可以根据目标源文件的 函数 和 方法 自动生成测试用例。测试文件中的任何新依赖项都会自动导入。
+
 gotests 可以作为 IDE 的插件提供更方便的使用，下面是一个 Sublime Text3 插件的示例
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gy06h4/1654843875110-6dbf3a8d-1512-4022-bb7d-210084311509.gif)
+
 在 [Emacs](https://github.com/damienlevin/GoTests-Emacs), also [Emacs](https://github.com/s-kostyaev/go-gen-test), [Vim](https://github.com/buoto/gotests-vim), [Atom Editor](https://atom.io/packages/gotests), [Visual Studio Code](https://github.com/Microsoft/vscode-go), and [IntelliJ Goland](https://www.jetbrains.com/help/go/run-debug-configuration-for-go-test.html) 等 IDE 中也有这个插件。当然，如果不想在 IDE 中使用，也可以在命令行直接使用 gotests。、、、、、、
 
 ### 简单示例

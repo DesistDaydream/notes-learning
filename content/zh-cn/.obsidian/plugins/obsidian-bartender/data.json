@@ -1722,6 +1722,12 @@
       "docs/6.可观测性/监控系统/Instrumenting/SNMP Exporter/SNMP Exporter.md",
       "docs/6.可观测性/监控系统/Instrumenting/SNMP Exporter/配置详解.md",
       "docs/6.可观测性/监控系统/Instrumenting/SNMP Exporter/应用实例.md"
+    ],
+    "docs/2.编程/高级编程语言/Go/Go 工具/pprof": [
+      "docs/2.编程/高级编程语言/Go/Go 工具/pprof/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 工具/pprof/pprof.md",
+      "docs/2.编程/高级编程语言/Go/Go 工具/pprof/通过pprof监控docker.md",
+      "docs/2.编程/高级编程语言/Go/Go 工具/pprof/Go Profiling 详解.md"
     ]
   },
   "actionBarOrder": {},

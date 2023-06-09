@@ -1,20 +1,21 @@
 ---
-title: pprof(go程序的性能分析器)
+title: pprof
+weight: 1
 ---
-
-#
 
 # 概述
 
 > 参考：
+> 
 > - [Go 官方文档，诊断](https://go.dev/doc/diagnostics)
 > - [GitHub 项目，google/pprof](https://github.com/google/pprof)
 > - [GitHub 项目-文档，google/pprof/doc](https://github.com/google/pprof/tree/master/doc)
 > - [Go 包，net/http/pprof](https://pkg.go.dev/net/http/pprof)
 > - [Go 博客，分析 Go 程序](https://go.dev/blog/pprof)
 > - [思否，Golang 大杀器之性能剖析 PProf](https://segmentfault.com/a/1190000016412013)
+> - [公众号-云原生实验室，忙碌的开发人员的 Go Profiling、跟踪和可观察性指南](https://mp.weixin.qq.com/s/SveQPLr7abKXccLpYKkNKA)
 
-pprof 是一个可视化和分析 Profiling 数据的工具。pprof 可以从目标获取运行数据并生成 profile.proto 格式的 Profiles 文件，还可以读取 profile.proto 格式的 Profiling 样本集合，并生成报告。
+pprof 是 **go 程序的性能分析器**，一个可视化和分析 Profiling 数据的工具。pprof 可以从目标获取运行数据并生成 profile.proto 格式的 Profiles 文件，还可以读取 profile.proto 格式的 Profiling 样本集合，并生成报告。
 
 profile.proto 是一个协议缓冲区，描述了一组调用堆栈和符号化信息。详见 <https://developers.google.com/protocol-buffers>
 
@@ -65,7 +66,9 @@ func main() {
 ```
 
 此时我们可以在 pprof 启动的 HTTP 服务端的 `/debug/pprof` 端点查看本程序 profile 信息：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gz5a6m/1652319650333-cea6d5e1-0f15-4981-93f9-86d5833ecf57.png)
+
 pprof 库会暴露多个端点
 
 - **/debug/pprof/allocs** #
@@ -135,8 +138,9 @@ pprof 工具运行时，会在 ${HOME}/pprof/ 目录下生成临时的 `*.pb.gz`
 
 ## Syntax(语法)
 
-**pprof \[FORMAT] \[OPTIONS] \[BINARY] <SOURCE> ... **
-从 SOURCE 出获取性能信息数据，并在当前目录下生成 FORMAT 格式的 Profile 文件，文件名默认为 `profileXXX.pb.gz`。若省略 FORMAT，则将会进入交互式 CLI。
+**pprof \[FORMAT] \[OPTIONS] \[BINARY] \<SOURCE> ...**
+
+从 SOURCE 处获取性能信息数据，并在当前目录下生成 FORMAT 格式的 Profile 文件，文件名默认为 `profileXXX.pb.gz`。若省略 FORMAT，则将会进入交互式 CLI。
 
 在省略 FORMAT 时，提供 `-http` 参数，pprof 会启动 HTTP 服务，可以通过浏览器浏览 Profile 信息。
 
@@ -146,7 +150,7 @@ pprof 工具运行时，会在 ${HOME}/pprof/ 目录下生成临时的 `*.pb.gz`
 
 **SOURCE OPTIONS**
 
-- **-seconds=<INT>** # 采集 SOURCE 的持续时间，单位：秒
+- **-seconds=\<INT>** # 采集 SOURCE 的持续时间，单位：秒
 
 ## 交互式 CLI
 
@@ -158,7 +162,7 @@ pprof 工具运行时，会在 ${HOME}/pprof/ 目录下生成临时的 `*.pb.gz`
 
 ## 生成 Profile 文件
 
-首先，我们需要先使用 pprof 工具从 `**/debug/pprof/profile**`**端点**获取性能数据。默认情况会采集 30 秒程序运行数据，并缓存 potol 格式的 Profile 文件到 `${HOME}/pprof/` 目录中，同时在当前目录生成指定格式的 Profile 文件
+首先，我们需要先使用 pprof 工具从 `/debug/pprof/profile` **端点**获取性能数据。默认情况会采集 30 秒程序运行数据，并缓存 potol 格式的 Profile 文件到 `${HOME}/pprof/` 目录中，同时在当前目录生成指定格式的 Profile 文件
 
 ```bash
 ~]# go tool pprof -proto http://localhost:18080/debug/pprof/profile
@@ -208,6 +212,7 @@ Serving web UI on http://localhost:8080
 在 Web 中可以将 profile 数据解析成火焰图、以图形和线条方式展示调用链、等等等
 
 效果如下：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gz5a6m/1652326690785-770c9f40-8461-4904-9958-aefc3a88ee9f.png)
 
 ## 最简单的排查 CPU 使用率问题
@@ -215,9 +220,9 @@ Serving web UI on http://localhost:8080
 在 `pkg/webhook/webhook.go` 中添加 `h.router.Mount("/debug", middleware.Profiler())` 代码以引入 pprof
 
 ```go
-	h.router.Use(middleware.Timeout(2 * h.WebhookTimeout))
-	h.router.Mount("/debug", middleware.Profiler())
-	h.router.Get("/receivers", h.handler.ListReceivers)
+h.router.Use(middleware.Timeout(2 * h.WebhookTimeout))
+h.router.Mount("/debug", middleware.Profiler())
+h.router.Get("/receivers", h.handler.ListReceivers)
 ```
 
 程序启动后开始获取 CPU 信息的 Profile 文件
@@ -239,10 +244,15 @@ Serving web UI on http://localhost:8080
 ```
 
 首先可以看到调用逻辑关系
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gz5a6m/1652341730532-08dc5241-a436-4288-bb7e-76e7e5f168ef.png)
+
 这里可以查看每个函数调用所占用的 CPU 时间
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gz5a6m/1652341794711-3758bcfe-b3e6-4611-8c7b-0c02338a97fe.png)
+
 这里可以查看火焰图
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gz5a6m/1652341761629-901f7396-c816-4d99-bedf-0a51ecda903c.png)
 
 # pprof 实战
@@ -290,38 +300,34 @@ Serving web UI on http://localhost:8080
 
 我们可以简单看一下 `main.go` 文件，里面有几个帮助排除性能调问题的关键的的点，我加上了些注释方便你理解，如下：
 
-    package main
+```go
+package main
 
-    import (
+import (
+    _ "net/http/pprof"
+)
 
-        _ "net/http/pprof"
-
-    )
-
-    func main() {
-
-
-        runtime.GOMAXPROCS(1)
-        runtime.SetMutexProfileFraction(1)
-        runtime.SetBlockProfileRate(1)
-
-        go func() {
-
-            if err := http.ListenAndServe(":6060", nil); err != nil {
-                log.Fatal(err)
-            }
-            os.Exit(0)
-        }()
-
-
-    }
+func main() {
+    runtime.GOMAXPROCS(1)
+    runtime.SetMutexProfileFraction(1)
+    runtime.SetBlockProfileRate(1)
+    go func() {
+        if err := http.ListenAndServe(":6060", nil); err != nil {
+            log.Fatal(err)
+        }
+        os.Exit(0)
+    }()
+}
+```
 
 除此之外的其他代码你一律不用看，那些都是我为了模拟一个“逻辑复杂”的程序而编造的，其中大多数的问题很容易通过肉眼发现，但我们需要做的是通过 pprof 来定位代码的问题，所以为了保证实验的趣味性请不要提前阅读代码，可以实验完成后再看。
 
 接着我们需要编译一下这个程序并运行，你不用担心依赖问题，这个程序没有任何外部依赖。
 
-    go build
-    ./go-pprof-practice
+```bash
+go build
+./go-pprof-practice
+```
 
 运行后注意查看一下资源是否吃紧，机器是否还能扛得住，坚持一分钟，如果确认没问题，咱们再进行下一步。
 
@@ -335,9 +341,6 @@ Serving web UI on http://localhost:8080
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gz5a6m/1652342670421-8ffb9b61-ff9a-4b0b-bf6e-57df41394c08.png)
 
-image
-
-页面上展示了可用的程序运行采样数据，分别有：
 页面上展示了可用的程序运行采样数据，分别有：
 
 | 类型         | 描述                       | 备注                                                              |
@@ -365,9 +368,12 @@ image
 我们首先通过活动监视器（或任务管理器、top 命令，取决于你的操作系统和你的喜好），查看一下炸弹程序的 CPU 占用：
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gz5a6m/1652342670264-907c836e-e6a7-4962-8809-1be829ae7078.png)
+
 可以看到 CPU 占用相当高，这显然是有问题的，我们使用 `go tool pprof` 来排场一下：
 
-    go tool pprof http://localhost:6060/debug/pprof/profile
+```bash
+go tool pprof http://localhost:6060/debug/pprof/profile
+```
 
 等待一会儿后，进入一个交互式终端：
 
@@ -389,9 +395,11 @@ image
 
 接下来有一个扩展操作：图形化显示调用栈信息，这很酷，但是需要你事先在机器上安装 `graphviz`，大多数系统上可以轻松安装它：
 
-    brew install graphviz # for macos
-    apt install graphviz # for ubuntu
-    yum install graphviz # for centos
+```bash
+brew install graphviz # for macos
+apt install graphviz # for ubuntu
+yum install graphviz # for centos
+```
 
 或者你也可以访问 [graphviz 官网](https://links.jianshu.com/go?to=https%3A%2F%2Fblog.wolfogre.com%2Fredirect%2Fv3%2FA421Yoc_xEV4GG_UO8tV1nMSAwM8Cv46xcU7gjwSbQjbbjsviVpukMUYBkEJFgboxTESAwM8Cv46xcVaFgY7bkEGFtw7If3FPAZNCsU7Bsw8PAXMPIIcSojF)寻找适合自己操作系统的安装方法。
 
@@ -407,13 +415,11 @@ image
 
 为了方便进行后面的实验，我们修复一下这个问题，不用太麻烦，注释掉相关代码即可：
 
-    func (t *Tiger) Eat() {
-        log.Println(t.Name(), "eat")
-
-
-
-
-    }
+```go
+func (t *Tiger) Eat() {
+    log.Println(t.Name(), "eat")
+}
+```
 
 之后修复问题的的方法都是注释掉相关的代码，不再赘述。你可能觉得这很粗暴，但要知道，这个实验的重点是如何使用 pprof 定位问题，我们不需要花太多时间在改代码上。
 
@@ -423,11 +429,11 @@ image
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gz5a6m/1652342673383-82d8e798-d1b6-42fc-ab58-7f70d1c2d0d4.png)
 
-image
-
 我们再次运行使用 pprof 命令，注意这次使用的 URL 的结尾是 heap：
 
-    go tool pprof http://localhost:6060/debug/pprof/heap
+```bash
+go tool pprof http://localhost:6060/debug/pprof/heap
+```
 
 再一次使用 `top`、`list` 来定问问题代码：
 
@@ -435,13 +441,15 @@ image
 
 可以看到这次出问题的地方在 `github.com/wolfogre/go-pprof-practice/animal/muridae/mouse.(*Mouse).Steal`，函数内容如下：
 
-    func (m *Mouse) Steal() {
-        log.Println(m.Name(), "steal")
-        max := constant.Gi
-        for len(m.buffer) * constant.Mi < max {
-            m.buffer = append(m.buffer, [constant.Mi]byte{})
-        }
+```go
+func (m *Mouse) Steal() {
+    log.Println(m.Name(), "steal")
+    max := constant.Gi
+    for len(m.buffer) * constant.Mi < max {
+        m.buffer = append(m.buffer, [constant.Mi]byte{})
     }
+}
+```
 
 可以看到，这里有个循环会一直向 m.buffer 里追加长度为 1 MiB 的数组，直到总容量到达 1 GiB 为止，且一直不释放这些内存，这就难怪会有这么高的内存占用了。
 
@@ -465,7 +473,9 @@ image
 
 为了获取程序运行过程中 GC 日志，我们需要先退出炸弹程序，再在重新启动前赋予一个环境变量，同时为了避免其他日志的干扰，使用 grep 筛选出 GC 日志查看：
 
-    GODEBUG=gctrace=1 ./go-pprof-practice | grep gc
+```bash
+GODEBUG=gctrace=1 ./go-pprof-practice | grep gc
+```
 
 日志输出如下：
 
@@ -479,7 +489,9 @@ image
 
 由于内存的申请与释放频度是需要一段时间来统计的，所有我们保证炸弹程序已经运行了几分钟之后，再运行命令：
 
-    go tool pprof http://localhost:6060/debug/pprof/allocs
+```bash
+go tool pprof http://localhost:6060/debug/pprof/allocs
+```
 
 同样使用 top、list、web 大法：
 
@@ -489,10 +501,12 @@ image
 
 可以看到 `github.com/wolfogre/go-pprof-practice/animal/canidae/dog.(*Dog).Run` 会进行无意义的内存申请，而这个函数又会被频繁调用，这才导致程序不停地进行 GC:
 
-    func (d *Dog) Run() {
-        log.Println(d.Name(), "run")
-        _ = make([]byte, 16 * constant.Mi)
-    }
+```go
+func (d *Dog) Run() {
+    log.Println(d.Name(), "run")
+    _ = make([]byte, 16 * constant.Mi)
+}
+```
 
 这里有个小插曲，你可尝试一下将 `16 * constant.Mi` 修改成一个较小的值，重新编译运行，会发现并不会引起频繁 GC，原因是在 golang 里，对象是使用堆内存还是栈内存，由编译器进行逃逸分析并决定，如果对象不会逃逸，便可在使用栈内存，但总有意外，就是对象的尺寸过大时，便不得不使用堆内存。所以这里设置申请 16 MiB 的内存就是为了避免编译器直接在栈上分配，如果那样得话就不会涉及到 GC 了。
 
@@ -508,26 +522,32 @@ image
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gz5a6m/1652342920133-d94f6be1-3553-4e5b-9969-d90ee3e8eaee.png)
 虽然 106 条并不算多，但对于这样一个小程序来说，似乎还是不正常的。为求安心，我们再次是用 pprof 来排查一下：
 
-    go tool pprof http://localhost:6060/debug/pprof/goroutine
+```bash
+go tool pprof http://localhost:6060/debug/pprof/goroutine
+```
 
 同样是 top、list、web 大法：
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gz5a6m/1652342931465-9bce9a37-20cb-4a3f-832a-ea349f816a14.png)
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gz5a6m/1652342954617-7ec317ec-6c0b-444e-9107-591e4b80fa1f.png)
+
 可能这次问题藏得比较隐晦，但仔细观察还是不难发现，问题在于 `github.com/wolfogre/go-pprof-practice/animal/canidae/wolf.(*Wolf).Drink` 在不停地创建没有实际作用的协程：
 
-    func (w *Wolf) Drink() {
-        log.Println(w.Name(), "drink")
-        for i := 0; i < 10; i++ {
-            go func() {
-                time.Sleep(30 * time.Second)
-            }()
-        }
+```go
+func (w *Wolf) Drink() {
+    log.Println(w.Name(), "drink")
+    for i := 0; i < 10; i++ {
+        go func() {
+            time.Sleep(30 * time.Second)
+        }()
     }
+}
+```
 
 可以看到，Drink 函数每次回释放 10 个协程出去，每个协程会睡眠 30 秒再退出，而 Drink 函数又会被反复调用，这才导致大量协程泄露，试想一下，如果释放出的协程会永久阻塞，那么泄露的协程数便会持续增加，内存的占用也会持续增加，那迟早是会被操作系统杀死的。
 
 我们注释掉问题代码，重新编译运行可以看到，协程数已经降到 4 条了：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gz5a6m/1652343010037-df499f46-85e0-4835-887e-e6c36439ac23.png)
 
 ## 排查锁的争用
@@ -538,24 +558,30 @@ image
 
 相信到这里，你已经触类旁通了，无需多言，开整。
 
-    go tool pprof http://localhost:6060/debug/pprof/mutex
+```bash
+go tool pprof http://localhost:6060/debug/pprof/mutex
+```
 
 同样是 top、list、web 大法：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gz5a6m/1652343071279-b6754799-45a6-4769-9f73-7d474636fe36.png)
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gz5a6m/1652343075415-a3376489-a540-447c-b144-7fef8fe838b5.png)
+
 可以看出来这问题出在 `github.com/wolfogre/go-pprof-practice/animal/canidae/wolf.(*Wolf).Howl`。但要知道，在代码中使用锁是无可非议的，并不是所有的锁都会被标记有问题，我们看看这个有问题的锁那儿触雷了。
 
-    func (w *Wolf) Howl() {
-        log.Println(w.Name(), "howl")
-
-        m := &sync.Mutex{}
-        m.Lock()
-        go func() {
-            time.Sleep(time.Second)
-            m.Unlock()
-        }()
-        m.Lock()
-    }
+```go
+func (w *Wolf) Howl() {
+    log.Println(w.Name(), "howl")
+    m := &sync.Mutex{}
+    m.Lock()
+    go func() {
+        time.Sleep(time.Second)
+        m.Unlock()
+    }()
+    m.Lock()
+}
+```
 
 可以看到，这个锁由主协程 Lock，并启动子协程去 Unlock，主协程会阻塞在第二次 Lock 这儿等待子协程完成任务，但由于子协程足足睡眠了一秒，导致主协程等待这个锁释放足足等了一秒钟。虽然这可能是实际的业务需要，逻辑上说得通，并不一定真的是性能瓶颈，但既然它出现在我写的“炸弹”里，就肯定不是什么“业务需要”啦。
 
@@ -566,21 +592,29 @@ image
 好了，我们开始排查最后一个问题。
 
 在程序中，除了锁的争用会导致阻塞之外，很多逻辑都会导致阻塞。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gz5a6m/1652343092686-180c61a0-e682-4666-84ba-528f17fd346d.png)
+
 可以看到，这里仍有 2 个阻塞操作，虽然不一定是有问题的，但我们保证程序性能，我们还是要老老实实排查确认一下才对。
 
-    go tool pprof http://localhost:6060/debug/pprof/block
+```bash
+go tool pprof http://localhost:6060/debug/pprof/block
+```
 
 top、list、web，你懂得。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gz5a6m/1652343109220-a11fcfbf-b808-4da2-b253-3d4339319bd9.png)
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gz5a6m/1652343120730-030aaaa4-47fa-41be-873b-ee97e32c730f.png)
+
 可以看到，阻塞操作位于 `github.com/wolfogre/go-pprof-practice/animal/felidae/cat.(*Cat).Pee`：
 
-    func (c *Cat) Pee() {
-        log.Println(c.Name(), "pee")
-
-        <-time.After(time.Second)
-    }
+```go
+func (c *Cat) Pee() {
+    log.Println(c.Name(), "pee")
+    <-time.After(time.Second)
+}
+```
 
 你应该可以看懂，不同于睡眠一秒，这里是从一个 channel 里读数据时，发生了阻塞，直到这个 channel 在一秒后才有数据读出，这就导致程序阻塞了一秒而非睡眠了一秒。
 
@@ -605,8 +639,3 @@ top、list、web，你懂得。
 
 与君共勉。
 
----
-
-写得非常棒，向原作者致敬！
-
-作者：狼\* 链接：[https://blog.wolfogre.com/posts/go-ppof-practice](https://links.jianshu.com/go?to=https%3A%2F%2Fblog.wolfogre.com%2Fposts%2Fgo-ppof-practice)
