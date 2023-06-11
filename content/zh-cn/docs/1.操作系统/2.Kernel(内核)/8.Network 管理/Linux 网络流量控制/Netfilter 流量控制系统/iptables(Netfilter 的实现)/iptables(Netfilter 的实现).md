@@ -10,7 +10,7 @@ weight: 1
 > - [Manual(手册)，iptables(8)](https://man7.org/linux/man-pages/man8/iptables.8.html)
 > - [Netfilter 官方文档，iptables 教程](https://www.frozentux.net/iptables-tutorial/iptables-tutorial.html)
 
-iptables 是一组工具合集的统称，其中包括 iptables、ip6tables、arptables、ebtables 等，用于与 netfilter 模块进行交互的 CLI 工具
+iptables 是 Netfilter 团队开发的一组用于与 netfilter 模块进行交互的 CLI 工具，其中包括 iptables、ip6tables、arptables、ebtables 等。
 
 iptables 和 ip6tables 用于建立、维护和检查 Linux 内核中的 IPv4 和 IPv6 包过滤规则表。可以定义几个不同的表中的各种规则，也可以定义用户定义的链。并把已经定义的规则发送给 netfilter 模块。
 
@@ -77,60 +77,65 @@ INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，�
 
 # iptables 关联文件与配置
 
-**/etc/sysconfig/iptables** # 该文件存放用户定义的规则信息，每次重启 iptabels 后，都会读取该配置文件信息并应用到系统中
+**/etc/sysconfig/iptables** # 存放用户定义的规则信息，每次重启 iptabels.service 服务后，都会读取该配置文件信息并应用到系统中
 
-**/etc/sysconfig/iptables-conf** # 该文件存放 iptables 工具的具体配置信息
+**/etc/sysconfig/iptables-conf** # 存放 iptables 工具的具体配置信息
 
 **/run/xtables.lock** # 该文件在 iptables 程序启动时被使用，以获取排他锁
 
 - 可以通过 `XTABLES_LOCKFILE` 环境变量修改 iptables 需要使用 xtalbes.lock 文件的路径
 
-# iptables 命令行工具详解
+# iptables 命令行工具
 
 ## Syntax(语法)
 
-**iptables \[-t TABLE] \[OPTIONS] SubCOMMAND CHAIN \[RuleSpecifitcation]**
+**iptables \[OPTIONS] COMMAND \[CHAIN] \[RuleSpecifitcation]**
 
-- **subCommand** # 指对命令进行什么操作，CHAIN 指定要执行操作的链
-- **RuleSpecifitcation=MATCHES TARGET** # 由两部分组成 \[MATCHES...] 和 \[TARGET]
-  - matches 由一个多个参数组成。
+- **Command** # 指定要执行的具体操作。比如 *增删改查规则/链* 等等。
+- **CHAIN** # 指定要执行操作的链。在不指定的时候，默认对所有链进行操作。
+  - CHAIN 其实不应该放在这，一般都是 COMMAND 中的组成部分。
+- **RuleSpecifitcation = MATCHES TARGET** # 通常用在增加规则时，指定规则的具体规范。由两部分组成：\[MATCHES...] 和 \[TARGET]
+  - **MATCHES = \[-m] MatchName \[Per-Match-Options]** # 一个或多个 parameters(参数) 构成 MATCHES
+  - **TARGET = -j TargetName \[Per-Target-Options]** # 指定规则中的目标(target)是什么。
 
 ### OPTIONS
 
-- **-t, --table TALBLE** # 指定 iptables 命令要对 TABLE 这个表进行操作。`默认值: filter`
-- **-n, --numeric** # 不显示域名，直接显示 IP
+- **-t, --table TALBLE** # 指定 iptables 命令要对 TABLE 这个表进行操作。`默认值: filter`。省略该选项时，表示默认对 filter 表进行操作。
+- **-n, --numeric** # 所有输出以数字的形式展示。IP 地址、端口号等都以数字输出。默认情况下一般是显示主机名、网络名称、服务。
 - **--line-numbers** # 显示每个 chain 中的行号
 - **-v** # 显示更详细的信息，vv 更详细，vvv 再详细一些
   - pkts # 报文数
   - bytes # 字节数
   - target #
   - prot #
-  - in/out # 显示要限制的具体网卡，\*为所有
+  - in/out # 显示要限制的具体网卡，`*` 为所有
   - source/destination #
-- **-S** # 以人类方便阅读的方式打印出来 iptables 规则
 
-### SubCOMMAND
+### COMMAND
 
 - 增
-  - **-I \<CHAIN> \[RuleNum] \<RuleSpecification>** # 在规则链开头加入规则详情，也可以指定添加到指定的规则号
-  - **-A \<CHAIN> \<RuleSpecification>** # 在规则连末尾加入规则详情
-  - **-N ChainName** # 创建名为 ChainName 的自定义规则链
+  - **-A, --append \<CHAIN> \<RuleSpecification>** # 在规则连末尾添加规则
+  - **-I, --insert \<CHAIN> \[RuleNum] \<RuleSpecification>** # 在规则链开头添加规则，也可以指定添加到指定的规则号
+  - **-N, --new-chain CHAIN** # 创建名为 CHAIN 的自定义规则链
 - 删
-  - **-F \[CHAIN \[RuleNum]]** # 删除所有 chain 下的所有规则，也可删除指定 chain 下的指定的规则
-  - **-D \<CHAIN> \<RULE>** # 删除一个 chain 中规则，RULE 可以是该 chain 中的行号，也可以是规则具体配置
-  - **-X \[CHAIN]** # 删除用户自定义的空的 chain
+  - **-F, --flush \[CHAIN \[RuleNum]]** # 删除所有 chain 下的所有规则，也可删除指定 chain 下的指定的规则
+  - **-D, --delete \<CHAIN> \<RULE>** # 删除一个 chain 中规则，RULE 可以是该 chain 中的行号，也可以是规则具体配置
+  - **-X, --delete-chain \[CHAIN]** # 删除用户自定义的空的 chain
 - 改
-  - **-P \<CHAIN> \<TARGET>** # 设置指定的规则链(CHAIN)的默认策略为指定目标(Targe)
-  - **-E \<OldChainName> \<NewChainName>** # 重命名自定义 chain，引用计数不为 0 的自定义 chain，无法改名也无法删除
-  - **-R** # 替换指定链上的指定规则
+  - **-P, --policy \<CHAIN> \<TARGET>** # 设置指定的规则链(CHAIN)的默认策略为指定目标(Targe)
+  - **-E, --rename-chain \<OldChainName> \<NewChainName>** # 重命名自定义 chain，引用计数不为 0 的自定义 chain，无法改名也无法删除
+  - **-R, --replace CHAIN \[RuleNum] \<RuleSpecification>** # 替换指定链上的指定规则
 - 查
-  - **-L \[CHAIN \[RuleNum]]** # 列出防火墙所有 CHAIN 的配置，可以列出指定的 CHAIN 的配置
+  - **-L, --list \[CHAIN \[RuleNum]]** # 列出指定 CHAIN 的规则。`默认值: 不指定。i.e.列出所有 CHAIN 的规则`
+  - **-S, --list-rules \[CHAIN]** # 以 iptables-save 命令的方式列出指定 CHAIN 的规则。`默认值: 不指定。i.e.列出所有 CHAIN 的规则`
+- 其他
+  - **-Z, --zero \[CHAIN \[RULE_NUM]]** # 将所有链中的数据包和字节计数器归零，或者仅将给定链归零，或者仅将给定规则归零。
 
 ### MATCHES
 
-一个或多个 parameters(参数) 构成 MATCHES # i.e.Match(匹配)相关的 OPTIONS。在每个 parameters 之前添加!，即可将该匹配取反(比如：不加叹号是匹配某个 IP 地址，加了叹号表示除了这个地址外都匹配)
+**MATCHES = \[-m] MatchName \[Per-Match-Options]**
 
-MATCHES=\[-m] MatchName \[Per-Match-Options]
+一个或多个 parameters(参数) 构成 MATCHES。i.e.Match(匹配) 相关的 OPTIONS。在每个 parameters 之前添加!，即可将该匹配取反(比如：不加叹号是匹配某个 IP 地址，加了叹号表示除了这个地址外都匹配)
 
 基本匹配规则
 
@@ -171,7 +176,9 @@ MATCHES=\[-m] MatchName \[Per-Match-Options]
 
 ### TARGET
 
-**TARGET =-j|g TARGET \[Per-Target-Options]** # 指定规则中的目标(target)是什么。即“如果数据包匹配上规则之后应该做什么”。如果目标是自定义链，则指明具体的自定义 Chain 的名称。TARGET 都有哪些详见 Netfilter 流量控制系统。下面是各种 TARGET 的类型：
+**TARGET = -j TargetName \[Per-Target-Options]**
+
+指定规则中的目标(target)是什么。即“如果数据包匹配上规则之后应该做什么”。如果目标是自定义链，则指明具体的自定义 Chain 的名称。TARGET 都有哪些详见 Netfilter 流量控制系统。下面是各种 TARGET 的类型：
 
 - ACCEPT # 允许流量通过
 - REJECT # 拒绝流量通过
@@ -338,3 +345,6 @@ EXAMPLE
 - **ipset flush** # 清空所有 ipset 下的 ip
 - **ipset restore -f /etc/sysconfig/ipset** # 从/etc/sysconfig/ipset 还原 ipset 的集合和条目信息
 
+# 分类
+
+#操作系统技术 #网络

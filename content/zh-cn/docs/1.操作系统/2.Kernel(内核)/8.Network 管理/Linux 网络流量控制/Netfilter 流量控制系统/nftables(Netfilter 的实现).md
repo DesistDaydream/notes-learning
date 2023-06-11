@@ -123,10 +123,11 @@ nftables 的结构为：表包含链，链包含规则，这个逻辑是非常�
 
 # Nftable 配置
 
-/etc/sysconfig/nftables.conf # CentOS 8 中，nftables.service 的规则被存储在此目录中，其中 include 一些其他的示例规则
-/etc/sysconfig/nftables/\* # nftables.conf 文件中 include 的文件，都在该目录下
+**/etc/sysconfig/nftables.conf** # CentOS 8 中，nftables.service 的规则被存储在此目录中，其中 include 一些其他的示例规则
+**/etc/sysconfig/nftables/** # nftables.conf 文件中 include 的文件，都在该目录下
 
 备份规则：
+
 $ nft list ruleset > /root/nftables.conf
 
 # nftable 的 set(集合)与 map(字典) 特性介绍

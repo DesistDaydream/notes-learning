@@ -9,7 +9,7 @@ weight: 1
 >
 > - [Netfilter 官网](https://www.netfilter.org/index.html)
 > - [Netfilter 官方文档](https://www.netfilter.org/documentation/index.html)
-> - [Wiki-Netfilter](https://en.wikipedia.org/wiki/Netfilter)
+> - [Wiki，Netfilter](https://en.wikipedia.org/wiki/Netfilter)
 > - [arthurchiao.art 的文章](http://arthurchiao.art/index.html)：
 >   - [\[译\] 深入理解 iptables 和 netfilter 架构](http://arthurchiao.art/blog/deep-dive-into-iptables-and-netfilter-arch-zh/)
 >   - [连接跟踪（conntrack）：原理、应用及 Linux 内核实现](http://arthurchiao.art/blog/conntrack-design-and-implementation-zh/)
