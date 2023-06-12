@@ -1,5 +1,6 @@
 ---
 title: Loki 部署
+weight: 2
 ---
 
 # 概述
@@ -108,3 +109,11 @@ spec:
           args:
             - msg-receiver-api
 ```
+
+# 其他
+
+> 参考；
+> 
+> - [GitHub 项目，grafana/loki，production 目录](https://github.com/grafana/loki/tree/main/production)
+> - [公众号，Loki 生产环境集群方案](https://mp.weixin.qq.com/s/qnt7JUzHLUU6Qs_tv5V0Hw)
+

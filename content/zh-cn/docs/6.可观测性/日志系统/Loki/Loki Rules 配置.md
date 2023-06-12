@@ -1,5 +1,6 @@
 ---
 title: Loki Rules 配置
+weight: 3
 ---
 
 # 概述
