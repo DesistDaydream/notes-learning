@@ -35,115 +35,100 @@ Loki 可以通过两种方式配置 Loki 的运行时行为
 # loki.yaml 配置文件详解
 
 文档中包含配置文件关键字与命令行 flag 的对应值，配置文件中的很多配置，都可以通过命令行 flag 来实现。
-配置文件的基本结构：
 
-```yaml
-# 指定 loki 二进制文件要运行的组件列表。默认值：all，即运行所有组件
-target(STRING)
-# 通过 X-Scope-OrgID 标头启用身份验证，如果为 true，则必须存在。 如果为 false，则 OrgID 将始终设置为“ fake”。默认值：true
-auth_enabled(BOOLEAN)
-# 用于配置 loki 提供 http 和 gRPC 这两种服务的行为
-server(OBJECT)
-# 通用配置。用于配置一些其他配置部分可以共享的配置，比如存储。优先级低，若其他部分指定了相同的配置，则该配置在对应的其他部分的配置将被忽略。
-# 从 2.4 版本开始，common 字段将会逐步代替其他描述不清晰的字段，比如 common.storage 将会代替 storage_cofig 字段
-common(OBJECT)
+## 配置文件中的顶层字段
 
-######## 存储架构配置 ########
-# 配置储存 Chunk 与 Index 类型数据的模式，以及指定储存这些数据所用的存储类型。
-schema_config: <schema_config>
-# 为 schema_config 字段指定的存储类型配置详细信息。比如 数据存储位置、连接存储的方式 等等。
-# 注意：该字段的配置会根据 schema_config 字段中指定的信息来选择可用的字段。
-# 未来将会逐步被 common.storage 字段代替
-storage_config: <storage_config>
+**target**(STRING) # 指定 loki 二进制文件要运行的组件列表。`默认值：all`，即运行所有组件
 
-######## 组件配置 ########
-# Distributor(分配器) 组件的配置
-distributor: <distributor_config>
-# Querier(查询器) 组件的配置.
-querier: <querier_config>
-# Ingester(摄取器) 组件的配置。还可以配置摄取器如何将自己注册到哈希环上
-ingester: <ingester_config>
-# 配置 distributor 如何连接到 ingesters
-ingester_client(OBJECT)
-# Query Frontend(查询前端) 组件的配置
-frontend: <query_frontend_config>
-# Ruler(规则器) 组件的配置
-ruler: <ruler_config>
-# Compactor(压缩器) 组件的配置
-compactor: <compactor_config>
-# Table Manager(表管理器) 组件的配置，以规定数据保留的行为
-table_manager(OBJECT)
+- 可用的值有：all、read、write、ingester、distributor、query-frontend、query-scheduler、querier、index-gateway、ruler、compactor。
 
-######## 其他配置 ########
-# The queryrange_config configures the query splitting and caching in the Loki query-frontend.
-query_range: <queryrange_config>
-chunk_store_config: <chunk_store_config> # 配置 Loki 如何将数据存放在指定的存储中
-# 配置每个租户的限制或全局的限制
-limits_config: <limits_config>
-# The frontend_worker_config configures the worker - running within the Loki
-# querier - picking up and executing queries enqueued by the query-frontend.
-frontend_worker: <frontend_worker_config>
-# Configuration for "runtime config" module, responsible for reloading runtime configuration file.
-runtime_config: <runtime_config>
-# Configuration for tracing
-tracing: <tracing_config>
-```
+**auth_enabled**(BOOLEAN) # 通过 X-Scope-OrgID 标头启用身份验证，如果为 true，则必须存在。 如果为 false，则 OrgID 将始终设置为“ fake”。默认值：true
 
-## target(STRING) # 指定二进制文件要运行的组件列表
+**server**([server](#server)) # 用于配置 loki 提供 http 和 gRPC 这两种服务的行为
 
-可用的值有：all、read、write、ingester、distributor、query-frontend、query-scheduler、querier、index-gateway、ruler、compactor。
+**common**([common](#common)) # 通用配置。用于配置一些其他配置部分可以共享的配置，比如存储。优先级低，若其他部分指定了相同的配置，则该配置在对应的其他部分的配置将被忽略。
 
-## auth_enabled(BOOLEAN)
+- 从 2.4 版本开始，common 字段将会逐步代替其他描述不清晰的字段，比如 common.storage 将会代替 storage_cofig 字段
 
-## server(Object)
+**######## 存储架构配置 ########**
+
+**schema_config**([schema_config](#schema_config)) # 配置储存 Chunk 与 Index 类型数据的模式，以及指定储存这些数据所用的存储类型。
+
+**storage_config**([storage_config](#storage_config)) # 为 schema_config 字段指定的存储类型配置详细信息。比如 数据存储位置、连接存储的方式 等等。
+
+-  注意：该字段的配置会根据 schema_config 字段中指定的信息来选择可用的字段。
+- 未来将会逐步被 common.storage 字段代替
+
+**######## 组件配置 ########**
+
+**distributor**([distributor](#distributor)) # Distributor(分配器) 组件的配置
+
+**querier**([querier](#querier)) # Querier(查询器) 组件的配置.
+
+**ingester_client**([ingester_client](#ingester_client)) # 配置 distributor 如何连接到 ingesters
+
+**ingester**([ingester](#ingester)) # Ingester(摄取器) 组件的配置。还可以配置摄取器如何将自己注册到哈希环上
+
+**frontend**([frontend](#frontend)) # Query Frontend(查询前端) 组件的配置
+
+**ruler**([ruler](#ruler)) # Ruler(规则器) 组件的配置
+
+**compactor**(OBJECT) # Compactor(压缩器) 组件的配置
+
+**table_manager**([table_manager](#table_manager)) # Table Manager(表管理器) 组件的配置，以规定数据保留的行为
+
+**######## 其他配置 ########**
+
+**query_range**: <queryrange_config> # The queryrange_config configures the query splitting and caching in the Loki query-frontend.
+
+**chunk_store_config**([chunk_store_config](#chunk_store_config)) # 配置 Loki 如何将数据存放在指定的存储中
+
+**limits_config**(OBJECT) # 配置每个租户的限制或全局的限制
+
+**frontend_worker**: <frontend_worker_config> # The frontend_worker_config configures the worker - running within the Loki querier - picking up and executing queries enqueued by the query-frontend.
+
+**runtime_config**: <runtime_config> # Configuration for "runtime config" module, responsible for reloading runtime configuration file.
+
+**tracing**: <tracing_config> # Configuration for tracing
+
+## server
 
 用于配置 loki 提供 http 和 gRPC 这两种服务的行为
 
-```yaml
-server:
-  http_listen_address(STRING) # 指定 http 服务监听的端口
-```
+**http_listen_address**(STRING) # 指定 http 服务监听的端口
 
-## [common(OBJECT)](https://grafana.com/docs/loki/next/configuration/#common)
+## common
 
-> 2.4 版本之前并没有这个字段，早期 Loki 的配置文件解读起来非常混乱。但是 2.4 版本之后，可以通过 common 字段统一定义一些之前带有歧义的字段，`common.storage` 可以代替 `storage_config` 用以配置后端存储的信息。
+> 2.4 版本之前并没有这个字段，早期 Loki 的配置文件解读起来非常混乱。但是 2.4 版本之后，可以通过 common 字段统一定义一些之前带有歧义的字段，`common.storage` 可以代替 `storage_config` 以配置后端存储的信息。
+
+https://grafana.com/docs/loki/next/configuration/#common
 
 通用配置。**在配置 Loki 组件所使用的 哈希环、存储、等等 时，可以不在每个组件单独配置，而是直接使用这里定义的通用配置。**
 
-### path_prefix(string)
+**path_prefix**(STRING) # When defined, the given prefix will be present in front of the endpoint paths.
 
-When defined, the given prefix will be present in front of the endpoint paths.
+**replication_factor**(INT) # How many times incoming data should be replicated to the ingester component。`默认值: 3`
 
-### replication_factor(int) | default = 3
+**ring**(OBJECT) # 所有使用哈希环的组件的通用哈希环配置。. If a common ring is given, its values are used to define any undefined ring values. For instance, you can expect the `heartbeat_period` defined in the common section to be used by the distributor's ring, but only if the distributor's ring itself # doesn't have a `heartbeat_period` set.
 
-How many times incoming data should be replicated to the ingester component.
+- **kvstore(OBJECT)** #
+  - **store(STRING)** # 用于保存哈希环的存储。`默认值：memberlist`
 
-### ring(OBJECT)
-
-所有使用哈希环的组件的通用哈希环配置。. If a common ring is given, its values are used to define any undefined ring values. For instance, you can expect the `heartbeat_period` defined in the common section to be used by the distributor's ring, but only if the distributor's ring itself # doesn't have a `heartbeat_period` set.
-**kvstore(OBJECT)** #
-
-- **store(STRING)** # 用于保存哈希环的存储。`默认值：memberlist`
-
-### storage(OBJECT)
-
-> 该字段可以代替 `storage_config` 字段。比如 ruler.storage.type 的值为 s3 的话，就会使用这里的 s3 字段的配置；若值为 local，则会使用这里的 filesystem 字段的配置
+### 存储配置相关字段
 
 Loki 不同组件共享使用的存储配置。该字段配置存储信息，用以告诉 Loki 如何使用各种类型的存储。
-**s3(OBJECT)**# S3 类型存储的信息。包括 连接方式、数据要保存的桶 等信息
 
-- 详见下文通用配置字段 [s3(OBJECT)](#J3m3x)
+**storage**(OBJECT) # 该字段可以代替 `storage_config` 字段。比如 ruler.storage.type 的值为 s3 的话，就会使用这里的 s3 字段的配置；若值为 local，则会使用这里的 filesystem 字段的配置
 
-**azure(Azure_Store_Config)** #
-**gcs: <>** #
-**swift: <>** #
-**filesystem:**[**\<OBJECT>**](https://grafana.com/docs/loki/next/configuration/#filesystem) # 将本地文件系统作为 Loki 组件存储数据的地方
-
-- **chunks_directory(STRING)**# 存储 chunks 数据的目录
-- **rules_directory(STRING)** # 存储 Loki Rules 文件的目录
-
-**bos(OBJECT)** # Baidu Object Storage(百度对象存储) 的信息。
-**hedging:**[**\<OBJECT>**](https://grafana.com/docs/loki/next/configuration/#hedging) #
+- **s3([S3 存储配置](#S3%20存储配置))**# S3 类型存储的信息。包括 连接方式、数据要保存的桶 等信息
+- **azure**(Azure_Store_Config)
+- **gcs**(GCS_Store_Config)
+- **swift**(Swift_Store_config)
+- **filesystem**([OBJECT](https://grafana.com/docs/loki/next/configuration/#filesystem)) # 将本地文件系统作为 Loki 组件存储数据的地方
+  - **chunks_directory**(STRING) # 存储 chunks 数据的目录
+  - **rules_directory**(STRING) # 存储 Loki Rules 文件的目录
+- **bos**(BOS_Storage_config) # Baidu Object Storage(百度对象存储) 的信息。
+- **hedging**([OBJECT](https://grafana.com/docs/loki/next/configuration/#hedging)) #
 
 ### 配置示例
 
@@ -166,18 +151,21 @@ common:
 
 ## 配置如何存储 chunk 与 index 数据
 
-影响 chunk 与 index 两类数据如何存储的最重要配置只有两个字段：`schema_config` 和 `storage_config`。其他字段都是对存储方式的补充。不过随着版本的更迭，从 2.4 版本开始，`storage_config` 字段会逐渐被 `common.storage` 字段顶替。
-简单描述的话：
+影响 chunk 与 index 两类数据如何存储的最重要配置只有两个字段：`schema_config` 和 `storage_config`。其他字段都是对存储方式的补充。
 
-- schema_config 用来定义使用什么储存数据
-- strage_config 用来定义如何连接存储以及存储储存数据的路径。
+**schema_config**([schema_config](#schema_config)) # 用来定义使用什么储存数据
 
-### schema_config(Object)
+**storage_config**([storage_config](#storage_config)) # 用来定义如何连接存储以及存储储存数据的路径。
+
+> 不过随着版本的更迭，从 2.4 版本开始，`storage_config` 字段会逐渐被 `common.storage` 字段顶替。
+
+### schema_config
 
 配置存储 chunk 与 index 两类数据的 schema(模式)。该字段用途详见 [Loki 存储](/docs/6.可观测性/日志系统/Loki/Storage(存储)/Storage(存储).md)
-schema_config 下只有一个单独的 `configs` 字段，其实用 period_config 更准确~~~`configs` 字段下这是一个数组，每个数组都可以用来定义"某一时间段 loki 存储所使用的 schema"。所以，`configs` 字段用来定义从 哪个时间段开始使用哪种模式将 index 与 chunk 类型的数据存储到哪里去。
 
-#### configs([]Object)
+**configs**(\[][configs](#configs)) # schema_config 下只有一个单独的 `configs` 字段，其实用 period_config 更准确。。。`configs` 字段下这是一个数组，每个数组都可以用来定义"某一时间段 loki 存储所使用的 schema"。所以，`configs` 字段用来定义从 哪个时间段开始使用哪种模式将 index 与 chunk 类型的数据存储到哪里去。
+
+#### configs
 
 **from: 2018-04-15** # 该模式的起始时间
 
@@ -201,7 +189,7 @@ schema_config 下只有一个单独的 `configs` 字段，其实用 period_confi
 
 注意: `store` 与 `object_store` 字段的值，将会影响 `storage_config` 字段下可以使用的字段。比如 store 为 boltdb-shipper，则 storage_config 中只有 boltdb-shipper 字段可以配置，其他无法配置，配置了就会报错。Loki 2.4 版本之后，推荐使用 `common.storage` 字段。
 
-### storage_config(Objcet)
+### storage_config
 
 > Loki 2.4 版本之后，推荐使用 `common.storage` 字段。
 
@@ -234,7 +222,7 @@ schema_config 下只有一个单独的 `configs` 字段，其实用 period_confi
 
 #### aws(Object) # S3 配置
 
-仅当 schema_config.configs.object_store 为 aws 时，才配置该字段。该字段配置与通用存储配置中的 `[s3](#zJRSQ)` 字段相同
+仅当 schema_config.configs.object_store 为 aws 时，才配置该字段。该字段配置与通用存储配置中的 [s3](#S3%20存储配置) 字段相同
 
 - **bucketnames(STRING)** #
 - **endpoint: localhost:9000** #
@@ -245,15 +233,15 @@ schema_config 下只有一个单独的 `configs` 字段，其实用 period_confi
 
 ## Distributor 组件配置
 
-### distributor(Object)
+### distributor
 
 Loki 的 distributor(分配器) 组件配置。
 
 ## Ingester 组件配置
 
-### ingester_client(Object)
+### ingester_client
 
-### ingester(Object)
+### ingester
 
 Loki 的 Ingester(摄取器) 配置，以及配置采集器如何将自己注册到键值存储
 
@@ -267,8 +255,11 @@ Loki 的 Ingester(摄取器) 配置，以及配置采集器如何将自己注册
 - **final_sleep: 0s** #
 
 **chunk_idle_period: 5m** #
+
 **chunk_retain_period: 30s** #
+
 **max_transfer_retries: 0** #
+
 **wal(Object)** # Ingester 的 WAL 配置。
 
 - **enabled(BOOLEAN)**
@@ -276,15 +267,19 @@ Loki 的 Ingester(摄取器) 配置，以及配置采集器如何将自己注册
 
 ## Querier 组件配置
 
-### querier: <[OBJECT](https://grafana.com/docs/loki/latest/configuration/#querier)>
+### querier
+
+https://grafana.com/docs/loki/latest/configuration/#querier
 
 ## Query frontend 组件配置
 
-### frontend: <[OBJECT](https://grafana.com/docs/loki/latest/configuration/#frontend)>
+### frontend
+
+https://grafana.com/docs/loki/latest/configuration/#frontend
 
 ## Ruler 组件配置
 
-### ruler(Object)
+### ruler
 
 Ruler 组件配置。
 **storage(Ojbect)** # 根据 type 的值，则会优先默认选择[通用存储](#SJMUR)。可用的值有：azure, gcs, s3, swift, local, bos。若没有通用存储，则使用 storage 字段下对应的字段。
@@ -321,7 +316,7 @@ ruler:
 
 ## Table manager 组件配置
 
-### table_manager(Object)
+### table_manager
 
 Table Manager(表管理器) 组件配置，以规定数据保留的行为。该配置环境用途详见《[Loki 存储](/docs/6.可观测性/日志系统/Loki/Storage(存储)/Storage(存储).md)》
 
@@ -356,7 +351,7 @@ Table Manager(表管理器) 组件配置，以规定数据保留的行为。该�
 配置 Loki 如何将数据存放在指定存储中。该配置环境用途详见《[Loki 存储](/docs/6.可观测性/日志系统/Loki/Storage(存储)/Storage(存储).md)》
 **max_look_back_period(DURATION)** # 限制可以查询多长时间的数据。`默认值：0s`，即不做限制。DURATION 必须小于或等于 table_manager.retention_period 字段的值
 
-# loki.yaml 配置文件中的通用字段
+# 通用字段
 
 这里面说明的通用字段会被配置文件中的某些字段共同使用。与 common 字段不同，这里指的字段是需要在配置文件中真实书写的；而 common 中定义的配置类似于默认值。
 
@@ -364,14 +359,22 @@ Table Manager(表管理器) 组件配置，以规定数据保留的行为。该�
 
 用来定义 如何连接存储、数据在存储中的路径 等等
 
-### [s3(OBJECT)](https://grafana.com/docs/loki/next/configuration/#s3_storage_config) # S3 存储配置
+### S3 存储配置
+
+https://grafana.com/docs/loki/next/configuration/#s3_storage_config
 
 **endpoint(STRING)** # 连接 S3 的 endpoint。`默认值：空`
+
 **access_key_id(STRING)** # 连接 S3 的 AK。`默认值：空`
+
 **secret_access_key(STRING)** # 连接 S3 的 SK。`默认值：空`
+
 **bucketnames(STRING)** # 以逗号分割的桶名称列表。`默认值：空`。多个桶可以均匀得分布 chunks
+
 **insecure(BOOLEAN)** # 是否使用不安全的连接去连接 S3，i.e.是否使用 HTTP 连接 S3。`默认值：false`
+
 **s3forcepathstyle(BOOLEAN)** #
+
 **http_config(OBJECT)**
 
 - **insecure_skip_verify(BOOLEAN)** # 是否跳过证书验证。`默认值：false`

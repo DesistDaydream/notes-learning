@@ -323,13 +323,13 @@ Prometheus 根据这部分配置来推送需要
 
 ## remote_write
 
-与远程写相关的配置，详见 [Prometheus 存储章节](/docs/6.可观测性/监控系统/Prometheus/Storage(存储).md)
+与远程写相关的配置，详见 [Prometheus 存储章节](/docs/6.可观测性/监控系统/Prometheus/Storage(存储)/Storage(存储).md)
 
 **url(STRING)** # 指定要发送时间序列数据到远程存储的端点的 URL
 
 ## remote_read
 
-与远程读相关的配置，详见 [Prometheus 存储章节](/docs/6.可观测性/监控系统/Prometheus/Storage(存储).md)
+与远程读相关的配置，详见 [Prometheus 存储章节](/docs/6.可观测性/监控系统/Prometheus/Storage(存储)/Storage(存储).md)
 
 **url(STRING)** # 指定发起查询请求的远程数据库的端点的 URL
 
@@ -420,8 +420,10 @@ Note：使用该配置进行服务发现，请求都会经过 API Server，集�
 
 #### API Server 配置
 
-**api_server(HOST)** # 指定 k8s 集群中 API Server 的地址。
-如果该字段为空，则默认 Prometheus 在 k8s 集群内部运行，将自动发现 apiserver，并使用 Pod 中 /var/run/secrets/kubernetes.io/serviceaccount/ 目录下的的 CA 证书 和 Token。
+**api_server(STRING)** # 指定 k8s 集群中 API Server 的地址。
+
+- 如果该字段为空，则默认 Prometheus 在 k8s 集群内部运行，将自动发现 apiserver，并使用 Pod 中 /var/run/secrets/kubernetes.io/serviceaccount/ 目录下的的 CA 证书 和 Token。
+
 **basic_auth(Object)**# 如果 apiserver 使用基本认证启动，则使用 basic_auth 字段。`authorization` 字段互斥。password 和 password_file 是互斥的。
 
 - **username(STRING)** #
@@ -435,7 +437,9 @@ Note：使用该配置进行服务发现，请求都会经过 API Server，集�
 - **credentials_file(filename)** # 从文件中读取用于身份验证的信息。与 credentials 字段互斥.该字段就是老版本的 bearer_token_file 字段
 
 **oauth2(Object)** # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
+
 **tls_config(Object)** # 指定抓取 metrics 请求时的 TLS 设定
+
 **proxy_url(STRING)** # Optional proxy URL
 
 #### 目标发现的规则配置

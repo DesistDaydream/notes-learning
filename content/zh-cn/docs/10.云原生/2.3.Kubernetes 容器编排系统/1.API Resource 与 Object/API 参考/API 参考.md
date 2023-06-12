@@ -30,7 +30,7 @@ weight: 1
 
 ## 字段的类型占位符
 
-官方文档中，将每个字段可以接受的类型，放在字段名称后面的 `()` 中，效果如图：
+官方文档中，将每个字段的类型，放在字段名称后面的 `()` 中，效果如图：
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/kubernetes/api/20230419102123.png)
 

@@ -207,18 +207,25 @@ Stack:
 在各种产品的官方文档中，常见如下这种写法
 
 - **global**([global](#global))
-- **rule_files**([rule_files](#rule_files))
+- **target**(STRING)
 - **scrape_configs**(\[][scrape_configs](#scrape_configs(占比最大的字段)))
 - **alerting**([alerting](#alerting))
 - **remote_write**(\[][remote_write](#remote_write))
 - **remote_read**(\[][remote_read](#remote_read))
 
-这里面描述其实都是 Object 类型的节点
+其中带有链接的描述都是 Object 类型的节点
 
 - 加粗的是 Key
 - 括号中是 Value，Value 一般是非 Scalar 类型的节点。
-  - 由于 Object 类型的节点中，Value 也可以是一个节点，那么 Value 就有可能是由一个或多个内容组成，为了可以方便得复用这些内容，所以给它们起了一个名字。这就好像编程中的使用函数一样。
+  - 由于 Object 类型的节点中，Value 也可以是一个节点，那么 **Value 就有可能是由一个或多个内容**组成，为了可以方便得复用这些内容，所以给**它们起了一个名字**。这就**好像编程中的使用函数**一样。
   - 为了文档的整洁性，让相同层级的字段在一起，可以一眼看到同级内容，让 Value 与 Key 分开，将 Value 所包含的具体内容放在单独连接中
+
+在我的笔记中，我也会沿用这种写法。一般情况，在笔记中，若 OBJECT 类型的字段下的字段非常多，我会在单独的标题中记录，[Pod Manifest 详解](docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20参考/工作负载资源/Pod%20Manifest%20详解.md)是典型的例子。不但在单独的标题记录，而且还为这些字段进行了分组。在我们理解时，只有带有 `(XXX)` 这种写法的，才是 YAML 中真正的字段，而标题，通常不作为真正的字段，只是作为该字段的一个指示物，用以记录该字段下还有哪些字段。
+
+当然，如果一个字段虽然只是字符串类型，但是其含义很复杂，也会将该字段作为标题展示。
+
+每一个带有链接的都是 OBJECT 类型，若暂时没有什么可以记录的，那么笔记中就直接用 `OBJCET` 这几个字符表示。
+
 
 # YAML 与 JSON 数据格式对比
 
