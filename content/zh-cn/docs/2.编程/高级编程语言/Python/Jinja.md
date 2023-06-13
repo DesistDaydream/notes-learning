@@ -198,6 +198,7 @@ Python 处理 YAML 数据时，实际上是将 YAML 格式数据转换为字典�
    - `not ("h" in "hey")` 和 `"h" not in "hey"` 两者是等价的
    - `not (3 is number())` 和 `3 is not number()` 两者是等价的
 # Control Structures(控制结构)
+
 > 官方文档：[https://jinja.palletsprojects.com/en/latest/templates/](https://jinja.palletsprojects.com/en/latest/templates/)
 
 - For(循环)
@@ -213,7 +214,9 @@ Python 处理 YAML 数据时，实际上是将 YAML 格式数据转换为字典�
 - Import(导入)
 
 ## 条件判断
+
 Jinja 中可以使用 if...else... 语句进行条件判断，其语法为：
+
 ```
 {% if CONDITION_1 %}
   string_or_expression1
@@ -225,9 +228,11 @@ Jinja 中可以使用 if...else... 语句进行条件判断，其语法为：
   string_or_expression4
 {% endif %}
 ```
+
 其中 elif 和 else 分支都是可省略的。CONDITION 部分是条件表达式，关于 Jinja 支持的条件表达式，后面会介绍。
 
 例如，模板文件 a.txt.j2 内容如下：
+
 ```
 今天星期几：
 {% if whatday == "0" %}
@@ -248,9 +253,11 @@ Jinja 中可以使用 if...else... 语句进行条件判断，其语法为：
   错误数值
 {% endif %}
 ```
+
 上面判断变量 whatday 的值，然后输出对应的星期几。因为 whatday 变量的值是字符串，所以让它和字符串形式的数值进行等值比较。当然，也可以使用筛选器将字符串转换为数值后进行数值比较：`whatday|int == 0`。
 
 playbook 内容如下：
+
 ```
 ---
 - hosts: localhost
@@ -265,21 +272,26 @@ playbook 内容如下：
         src: a.txt.j2
         dest: /tmp/a.txt
 ```
+
 如果 if 语句的分支比较简单 (没有 elif 逻辑)，那么可以使用行内 if 表达式。
 
 其语法格式为：
+
 ```
 string_or_expr1 if CONDITION else string_or_expr2
 ```
+
 因为行内 if 是表达式而不是语句块，所以不使用 `{%%}` 符号，而使用 `{{}}`。
 
 例如：
+
 ```yaml
 - debug:
     msg: "{{'周末' if whatday|int > 5 else '工作日'}}"
 ```
 
 ### is 运算符
+
 jinja 使用 `is` 关键字，对表达式的渲染结果进行测试，测试结果有两种 true 和 false。常用在 `{% if %}` 表达式中。
 
 比如 `name is defined` 则表示对 name 这个表达式进行测试这个表达式，会根据名为 name 的变量是否被定义，返回 true 或 false。
