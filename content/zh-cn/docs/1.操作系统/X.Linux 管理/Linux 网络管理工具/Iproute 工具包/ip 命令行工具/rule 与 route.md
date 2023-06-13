@@ -5,8 +5,9 @@ title: rule 与 route
 # 概述
 
 > 参考：
-> - [Manual(手册),ip-route(8)](https://man7.org/linux/man-pages/man8/ip-route.8.html)
-> - [Manual(手册),ip-rule(8)](https://man7.org/linux/man-pages/man8/ip-rule.8.html)
+> 
+> - [Manual(手册)，ip-route(8)](https://man7.org/linux/man-pages/man8/ip-route.8.html)
+> - [Manual(手册)，ip-rule(8)](https://man7.org/linux/man-pages/man8/ip-rule.8.html)
 
 # route # 路由条目管理
 

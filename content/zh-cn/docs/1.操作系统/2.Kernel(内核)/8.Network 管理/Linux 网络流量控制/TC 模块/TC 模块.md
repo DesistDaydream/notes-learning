@@ -1,5 +1,6 @@
 ---
 title: TC 模块
+weight: 1
 ---
 
 # 概述

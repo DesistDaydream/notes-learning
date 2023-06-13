@@ -50,18 +50,6 @@ wsl.exe --user root
 
 更多常见问题，可以参考[官方文档，疑难解答](https://learn.microsoft.com/zh-cn/windows/wsl/troubleshooting)
 
-# 为 WSL2 设置代理
-
-```bash
-#!/bin/bash
-#
-export hostip=$(cat /etc/resolv.conf |grep -oP '(?<=nameserver\ ).*')
-export http_proxy="http://${hostip}:7890"
-export https_proxy="http://${hostip}:7890"
-export all_proxy="sock5://${hostip}:7890"
-export ALL_PROXY="sock5://${hostip}:7890"
-```
-
 # 访问 WSL 文件系统
 
 在 Windows 资源管理器中，访问 `\\wsl$` 即可访问 WSL 文件系统
