@@ -12,7 +12,7 @@ title: Etcd
 > - [掘金 etcd 万字长文](https://juejin.cn/post/6844904031186321416)
 > - [腾讯云社区上的 etcd 万字长文](https://cloud.tencent.com/developer/article/1754878)
 
-Etcd 是 CoreOS 基于[Raft 共识算法](/docs/3.集群与分布式/集群与分布式/分布式算法/共识算法.md) 开发的分布式 key-value 存储，可用于服务发现、共享配置以及一致性保障(如数据库选主、分布式锁等)。
+Etcd 是 CoreOS 基于[Raft 共识算法](docs/3.集群与分布式/分布式算法/共识算法.md) 开发的分布式 key-value 存储，可用于服务发现、共享配置以及一致性保障(如数据库选主、分布式锁等)。
 
 - 基本的 key-value 存储，后端存储采用的是 BBolt 存储引擎，其前身是 BoltDB ，这是一款 golang 实现的嵌入式 KV 存储引擎，参考的是 LMDB，支持事务、ACID、MVCC、ZeroCopy、BTree 等特性。
 - 监听机制

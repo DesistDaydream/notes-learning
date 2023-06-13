@@ -4,21 +4,40 @@ title: 为什么集群需要 Overlay 网络
 
 原文链接：<https://mp.weixin.qq.com/s/a1omUj17yNVUuymh6DYpRQ>
 
-对计算机网络或者 Kubernetes 网络稍有了解的工程师都应该听说过延展网络（Overlay Network），Overlay 网络其实并不是一门新技术，它是指构建在另一个网络上的计算机网络\[^1]，这是一种网络虚拟化技术的形式，近年来云计算虚拟化技术的演进促进了网络虚拟化技术的应用\[^2]。
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lcrm4c/1624243869971-71eafc04-3ced-425e-9226-32b69b133817.webp)overlay-network
+对计算机网络或者 Kubernetes 网络稍有了解的工程师都应该听说过延展网络（Overlay Network），Overlay 网络其实并不是一门新技术，它是指构建在另一个网络上的计算机网络\[^1]，这是一种网络虚拟化技术的形式，近年来云计算虚拟化技术的演进促进了网络虚拟化技术的应用。
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lcrm4c/1624243869971-71eafc04-3ced-425e-9226-32b69b133817.webp)
+
+overlay-network
+
 **图 1 - 延展网络**
+
 因为 Overlay 网络是建立在另一个计算机网络之上的虚拟网络，所以它不能独立出现，Overlay 底层依赖的网络就是 Underlay 网络，这两个概念也经常成对出现。
+
 Underlay 网络是专门用来承载用户 IP 流量的基础架构层，它与 Overlay 网络之间的关系有点类似物理机和虚拟机。Underlay 网络和物理机都是真正存在的实体，它们分别对应着真实存在的网络设备和计算设备，而 Overlay 网络和虚拟机都是依托在下层实体使用软件虚拟出来的层级。
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lcrm4c/1624243869927-88673791-c226-48bf-9ee6-32410fa3988f.webp)network-and-compute
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lcrm4c/1624243869927-88673791-c226-48bf-9ee6-32410fa3988f.webp)
+
+network-and-compute
+
 **图 2 - 网络与计算**
+
 在分析 Overlay 网络的作用之前，我们需要对它的常见实现有大概的了解，在实践中我们一般会使用虚拟局域网扩展技术（Virtual Extensible LAN，VxLAN）组建 Overlay 网络。在下图中，两个物理机可以通过三层的 IP 网络互相访问：
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lcrm4c/1624243869969-8cc90217-72b1-4195-bc6c-2e176ebb3182.webp)VxLAN-overlay-network
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lcrm4c/1624243869969-8cc90217-72b1-4195-bc6c-2e176ebb3182.webp)
+
+VxLAN-overlay-network
+
 **图 3 - VxLAN 组成的 Overlay 网络**
 
 > VxLAN 使用虚拟隧道端点（Virtual Tunnel End Point、VTEP）设备对服务器发出和收到的数据包进行二次封装和解封。
 
 上图中两个 VTEP 会相互连接并获得网络中的 MAC 地址、IP 地址等信息，例如，服务器 1 中的 VTEP 需要知道想要访问绿色网络中的 10.0.0.2 虚拟机需要先访问 IP 地址为 204.79.197.200 的服务器 2。这些配置可以被网络管理员手动配置、自动学习、也可以通过上层的管理器设置。当绿色的 10.0.0.1 虚拟机想要向绿色的 10.0.0.2 发送数据时，会经过以下几个步骤：
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lcrm4c/1624243870013-9b420580-675c-42e9-8609-260ab4f0604f.webp)overlay-network-packet
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lcrm4c/1624243870013-9b420580-675c-42e9-8609-260ab4f0604f.webp)
+
+overlay-network-packet
+
 **图 4 - Overlay 网络中的数据包**
 
 1. 绿色的 10.0.0.1 会将 IP 数据包发送给 VTEP；

@@ -36,12 +36,12 @@ Directives(指令) 分为如下几种：
 
 将多个相关的 块指令 和 简单指令 组合在一起的指令。一共分为 4 类 Contexts：
 
-- [**events {}**](/docs/3.集群与分布式/Nginx/Nginx%20配置详解/events%20模块指令.md) # 用于配置如何处理常规连接。
-- [**http {}**](/docs/3.集群与分布式/Nginx/Nginx%20配置详解/http%20模块指令.md) # http 流量处理配置，通常用来配置 7 层代理。由 ngx_http_core_module 模块处理其中配置
+- [**events {}**](docs/Web/Nginx/Nginx%20配置详解/events%20模块指令.md) # 用于配置如何处理常规连接。
+- [**http {}**](docs/Web/Nginx/Nginx%20配置详解/http%20模块指令.md) # http 流量处理配置，通常用来配置 7 层代理。由 ngx_http_core_module 模块处理其中配置
 - **mail {}** # mail 流量处理配置。由 ngx_mail_core_module 模块处理其中配置
-- [**stream {}**](/docs/3.集群与分布式/Nginx/Nginx%20配置详解/stream%20模块指令.md) # TCP 和 UDP 流量处理配置，通常用来配置 4 层代理。由 ngx_stream_core_module 模块处理其中配置
+- [**stream {}**](docs/Web/Nginx/Nginx%20配置详解/stream%20模块指令.md) # TCP 和 UDP 流量处理配置，通常用来配置 4 层代理。由 ngx_stream_core_module 模块处理其中配置
 
-[**main**](/docs/3.集群与分布式/Nginx/Nginx%20配置详解/core%20模块指令.md) # 如果某些指令在上述 4 类 Contexts 之外，则称之为 main Context。可以说，events{}、http{}、mail{}、stream{} 四个 Contexts，都属于 main 上下文中的指令。说白了，main 上下文就是 Nginx 的配置文件~其实，main 就是指最顶层的 core 模块指令
+[**main**](docs/Web/Nginx/Nginx%20配置详解/core%20模块指令.md) # 如果某些指令在上述 4 类 Contexts 之外，则称之为 main Context。可以说，events{}、http{}、mail{}、stream{} 四个 Contexts，都属于 main 上下文中的指令。说白了，main 上下文就是 Nginx 的配置文件~其实，main 就是指最顶层的 core 模块指令
 
 每一个 Context 类型的指令都对应控制一个 NGX_CORE_MODULE 类型的模块
 

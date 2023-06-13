@@ -1,5 +1,6 @@
 ---
 title: Nginx
+weight: 1
 ---
 
 # 概述
@@ -12,7 +13,7 @@ title: Nginx
 > - [官方网站](https://www.nginx.com/)
 > - [官方网站,动态模块列表](https://www.nginx.com/products/nginx/modules/)
 
-Nginx 称为 Engine X，可以做为代理服务器、web 服务器、缓存服务器等来使用。
+Nginx 称为 Engine X，可以做为 [Web](/docs/Web/Web.md) 服务器、代理服务器、缓存服务器、负载均衡器 等来使用。
 
 传统上基于进程或线程模型架构的 web 服务通过每进程或每线程处理并发连接请求，这势必会在网络和 I/O 操作时产生阻塞，其另一个必然结果则是对内存或 CPU 的利用率低下。生成一个新的进程/线程需要事先备好其运行时环境，这包括为其分配堆内存和栈内存，以及为其创建新的执行上下文等。这些操作都需要占用 CPU，而且过多的进程/线程还会带来线程抖动或频繁的上下文切换，系统性能也会由此进一步下降。
 
@@ -52,7 +53,7 @@ Nginx 特性：
 
 ## Nginx 架构
 
-详见 [Nginx 源码解析](/docs/3.集群与分布式/Nginx/Nginx%20源码解析.md)
+详见 [Nginx 源码解析](docs/Web/Nginx/Nginx%20源码解析.md)
 
 ## 总结
 
@@ -113,9 +114,9 @@ docker run -d --name nginx --network host --restart=always \
 
 # Nginx 关联文件
 
-**/etc/nginx/\*** # nginx 运行所需配置所在目录
+**/etc/nginx/** # nginx 运行所需配置所在目录
 
-- **./nginx.conf**# nginx 主程序运行所读取的默认配置文件。
+- **./nginx.conf** # nginx 主程序运行所读取的默认配置文件。
 
 配置文件官方介绍：<https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/>
 
@@ -174,3 +175,7 @@ http {
     }
 }
 ```
+
+# 类别
+
+#代理 #网络 

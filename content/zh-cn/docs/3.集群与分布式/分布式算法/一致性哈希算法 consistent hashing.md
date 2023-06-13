@@ -156,19 +156,11 @@ hash（图片名称） % 2^32
 
 但是，理想很丰满，现实很骨感，我们想象的与实际情况往往不一样。
 
-
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hgulx6/1616132202623-28068a4f-a82e-4dcf-833b-50a5b63b446d.jpeg)
-
 在实际的映射中，服务器可能会被映射成如下模样。
-
-
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hgulx6/1616132202670-68b20340-9bdd-4ef1-955a-4bfa4a413343.jpeg)
 
 聪明如你一定想到了，如果服务器被映射成上图中的模样，那么被缓存的对象很有可能大部分集中缓存在某一台服务器上，如下图所示。
-
-
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hgulx6/1616132202641-e7413fb2-fab4-46fa-9bf7-ca879555b484.jpeg)
 

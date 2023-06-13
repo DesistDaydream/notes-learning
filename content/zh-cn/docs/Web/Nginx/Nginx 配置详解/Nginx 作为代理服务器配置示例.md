@@ -42,8 +42,6 @@ http {
     listen       80;
     server_name  grafana.desistdaydream.ltd;
     server_name  prometheus.desistdaydream.ltd;
-    server_name  alertmanager.desistdaydream.ltd;
-    server_name  nacos.desistdaydream.ltd;
     server_name  desistdaydream.ltd;
     server_name  www.desistdaydream.ltd;
 
@@ -121,8 +119,6 @@ server {
        listen       80;
        server_name  grafana.desistdaydream.ltd;
        server_name  prometheus.desistdaydream.ltd;
-       server_name  alertmanager.desistdaydream.ltd;
-       server_name  nacos.desistdaydream.ltd;
        server_name  desistdaydream.ltd;
        server_name  www.desistdaydream.ltd;
 

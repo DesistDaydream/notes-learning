@@ -1,5 +1,6 @@
 ---
 title: TCPDump
+weight: 1
 ---
 
 # 概述
@@ -16,7 +17,7 @@ TCPDump 是一个在命令行界面下的 Packet Analyzer(数据包分析程序)
 
 tcpdump 最初由[Van Jacobson](https://en.wikipedia.org/wiki/Van_Jacobson)、[Sally Floyd](https://en.wikipedia.org/wiki/Sally_Floyd)、[Vern Paxson](https://en.wikipedia.org/wiki/Vern_Paxson)和[Steven McCanne](https://en.wikipedia.org/w/index.php?title=Steven_McCanne&action=edit&redlink=1)于 1988 年编写，他们当时在[劳伦斯伯克利实验室](https://en.wikipedia.org/wiki/Lawrence_Berkeley_Laboratory)网络研究小组工作。到 1990 年代后期，有许多版本的 tcpdump 作为各种操作系统的一部分分发，以及许多没有很好协调的补丁。 [Michael Richardson (mcr)](<https://en.wikipedia.org/w/index.php?title=Michael_Richardson_(mcr)&action=edit&redlink=1>)和[Bill Fenner](https://en.wikipedia.org/w/index.php?title=Bill_Fenner&action=edit&redlink=1)于 1999 年创建了[www.tcpdump.org](https://www.tcpdump.org/)。
 
-说明：Dump 有 **转出，倾卸；转储；内容全部打印 **的含义，在官方文档中，通过 TCPDump 程序输出的数据包，通常称为 dump line，转储的行。说白了就是程序抓到的包，每个包都是一行~~~~~
+说明：Dump 有 **转出，倾卸；转储；内容全部打印** 的含义，在官方文档中，通过 TCPDump 程序输出的数据包，通常称为 dump line，转储的行。说白了就是程序抓到的包，每个包都是一行~~~~~
 
 # Syntax(语法)
 
@@ -24,20 +25,20 @@ tcpdump 最初由[Van Jacobson](https://en.wikipedia.org/wiki/Van_Jacobson)、[S
 
 ## OPTIONS
 
-- **-c <INT>** # 指定程序将会捕获的数据包数量。
+- **-c \<INT>** # 指定程序将会捕获的数据包数量。
 - **-D, --list-interfaces** # 列出可用于抓包的接口。将会列出接口的数值编号和接口名，它们都可以用于"-i"后
 - **-e** # 在每条 dump 出来的行上显示二层头信息。这个选项可以输出 以太网 和 IEEE802.11 等协议的 MAC 层信息。
   - 通常用来抓取 VLAN 的 Tag。
-- **-F <FEIL>** # 指定一个包含 Filter-Expression 语法的文件。程序将会使用该文件的内容作为过滤表达式，并忽略命令行给出的过滤表达式。
-- **-i, --interface <DEV>** # 抓取指定网卡 DEV 的包，`默认值：any`，即抓取所有设备
+- **-F \<FEIL>** # 指定一个包含 Filter-Expression 语法的文件。程序将会使用该文件的内容作为过滤表达式，并忽略命令行给出的过滤表达式。
+- **-i, --interface \<DEV>** # 抓取指定网卡 DEV 的包，`默认值：any`，即抓取所有设备
   - 注意：在有 Bond 的服务器上，不要抓所有设备的包，否则使用 Wireshark 读取抓包文件时，会显示出很多乱序和重传，这是因为 Bond 设备和 Bond Salve 设备的包是相同的，但是咱都抓了。相同的包，时间不同，Wireshark 就识别成乱序了。
 - -l # 使用标准输出列的缓冲区；
 - **-n** # 不把主机的网络地址转换成 IP
 - -O # 不将数据包编码最佳化
 - -p # 不让网络界面进入混杂模式
 - -q # 快速输出，仅列出少数的传输协议信息
-- **-r <FILE>** # 从 FILE 读取数据包。FILE 是通过 -w 选项保存的文件，或者任何使用 pcap API 的应用程序生成的文件。
-- -s <数据包大小> # 设置每个数据包的大小；
+- **-r \<FILE>** # 从 FILE 读取数据包。FILE 是通过 -w 选项保存的文件，或者任何使用 pcap API 的应用程序生成的文件。
+- **-s <数据包大小>** # 设置每个数据包的大小；
 - **-S, --absolute-tcp-sequence-numbers** # 输出 TCP sequence 号的绝对值，而不是相对值
 - **-tt** # 显示每个抓到的包的时间戳(自 1970 年 1 月 1 日 00:00:00 以来)
 - **-tttt** # 显示每个抓到的包的绝对时间
@@ -57,10 +58,10 @@ tcpdump 最初由[Van Jacobson](https://en.wikipedia.org/wiki/Van_Jacobson)、[S
 一共有三种类型的限定词：
 
 - **TYPE** # 类型限定词。指定 ID 的类型。默认值：`host`
-  - **host **# 匹配主机名称或 IP 地址
-  - **net **# 匹配网段，CIDR 模式。比如：1.2.3.0/24
-  - **port **# 匹配端口号
-  - **portrange **# 匹配端口号的范围。两个端口号中间以 `-` 连接
+  - **host** # 匹配主机名称或 IP 地址
+  - **net** # 匹配网段，CIDR 模式。比如：1.2.3.0/24
+  - **port** # 匹配端口号
+  - **portrange** # 匹配端口号的范围。两个端口号中间以 `-` 连接
 - **DIR** # direction(方向) 限定词。指定 ID 的传输方向。默认值：`src or dst`
   - **src**
   - **dst**
@@ -87,7 +88,7 @@ tcpdump 最初由[Van Jacobson](https://en.wikipedia.org/wiki/Van_Jacobson)、[S
 - ip host 1.1.1.1 and ! 2.2.2.2 # 匹配 1.1.1.1 主机，但不包括 2.2.2.2 主机之间的通信
 - src and dst port 1111 # 匹配 源端口 和 目的端口 都是 1111 的数据包
 - tcp src or dst portrange 1111-2222 # 匹配 源 或者 目的 任意一个方向的端口范围在 1111-2222 之间的 TCP 协议的数据包
-- 注意：为了节省输入，可以**省略相同的限定符，**下面两个表达式的作用完全相同：
+- 注意：为了节省输入，可以**省略相同的限定符**，下面两个表达式的作用完全相同：
   - tcp dst port 21 or 22 or 23
   - tcp dst port 21 or tcp dst port 22 or tcp dst port 33
 - icmp or tcp dst port 23 and host 1.1.1.1 # 匹配 icmp 或 tcp，目的端口为 23 且主机为 1.1.1.1 的数据包
