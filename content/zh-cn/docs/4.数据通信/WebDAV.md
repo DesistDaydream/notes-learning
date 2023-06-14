@@ -19,3 +19,5 @@ title: WebDAV
 通过 WebDAV，可以将互联网上的网盘提供商，将自身的网盘，挂载到操作系统上，作为一个盘符
 
 HTTP 协议定义了几种请求: GET, POST,PUT 等用来下载文件上传数据。WebDAV 在标准的 HTTP 协议上扩展了特有的请求方式: PROPFIND, MOVE, COPY 等。 然后用这些请求，操作 web 服务器上的磁盘(像不像一个网盘！！！)
+
+**注意: 在 Nginx 等代理后面的 WebDAV 无法执行那些扩展的请求方式，比如 MOVE 等，实际情况是重命名时将会报错 `Dir.Rename error: DirMove MOVE call failed: Bad Gateway: 502 Bad Gateway`，可能是因为 Nginx 不支持，具体应该如何配置解决这个问题的方法还没找到。**
