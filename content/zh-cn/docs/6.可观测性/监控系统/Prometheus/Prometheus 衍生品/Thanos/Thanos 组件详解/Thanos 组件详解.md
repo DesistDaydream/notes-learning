@@ -1,26 +1,31 @@
 ---
 title: Thanos 组件详解
+weight: 1
 ---
 
 # 概述
 
 > 参考：
+> 
 > - [官方文档，组件](https://thanos.io/tip/components/)
 > - <https://zhuanlan.zhihu.com/p/137248127>
 
 # Compactor(压缩器)
 
 **注意：Compactor 在持久运行状态，会对对象存储发起大量的 GET 请求。最好间隔一段时间，运行一次，压缩一次数据即可，不必持久运行**
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ilh4m6/1636990514133-53c917f1-6f57-4bb5-a59d-0776a5fef235.png)
 
 # Receiver(接收器)
 
 > 参考：
+> 
 > - [官方文档,组件-接收器](https://thanos.io/tip/components/receive.md)
 
 # Querier(查询器)
 
 > 参考：
+> 
 > - [官方文档,组件-查询器](https://thanos.io/tip/components/query.md)
 
 Querier 组件分为两部分
@@ -88,10 +93,12 @@ thanos query \
 # Query Frontend(查询前端)
 
 > 参考：
+> 
 > - [官方文档，组件-查询前端](https://thanos.io/tip/components/query-frontend.md/)
 > - [公众号-k8s 技术圈，使用 Thanos 查询前端优化查询性能](https://mp.weixin.qq.com/s/W9diP0OKt_-ajAXM_wgogg)
 
 # Sidecar(边车)
 
 > 参考：
+> 
 > - [官方文档，组件-边车](https://thanos.io/tip/components/sidecar.md/)

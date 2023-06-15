@@ -1,10 +1,12 @@
 ---
 title: Thanos
+weight: 1
 ---
 
 # 概述
 
 > 参考：
+> 
 > - [GitHub 项目，thanos-io/thanos](https://github.com/thanos-io/thanos)
 > - [官网](https://thanos.io/)
 > - [K8S 训练营，Kubernetes 监控-Thanos](https://www.qikqiak.com/k8strain/monitor/thanos/#thanos)
@@ -36,20 +38,20 @@ Thanos 遵循 [KISS ](https://en.wikipedia.org/wiki/KISS_principle)和 Unix 哲�
 
 - Prometheus 本地数据处理
   - **Sidecar** # 暴露 StoreAPI。连接 Prometheus，读取其数据以便进行下一步处理。将已压缩数据上传到对象存储，或读取其数据以进行查询和/或将其上传到云存储中。还可以动态重载 Prometheus 配置文件。
-  - **Receiver **# 暴露 StoreAPI。实现了 Prometheus 的 Remote Write API。接收 Prometheus 发送过来的 WAL 数据存储到 Receiver 本地的 TSDB 中，也就是说，Receiver 本身就是一个 TSDB。同时，也可以将这些数据上传到对象存储中。
+  - **Receiver** # 暴露 StoreAPI。实现了 Prometheus 的 Remote Write API。接收 Prometheus 发送过来的 WAL 数据存储到 Receiver 本地的 TSDB 中，也就是说，Receiver 本身就是一个 TSDB。同时，也可以将这些数据上传到对象存储中。
 - PromQL 查询处理。分为两个部分，一个前端一个后端。
   - **Querier** # 实现 Prometheus 的 API、以及一个类似 Prometheus 的 Web 页面。Querier 从 StoreAPI 查询数据并返回结果。
-  - **Query Frontend **# 实现 Prometheus 的 API、以及一个类似 Prometheus 的 Web 页面。可以将请求负载均衡到指定的多个 Querier 上，同时可以缓存响应数据、也可以按查询日拆分。有点像 Redis 的效果。
+  - **Query Frontend** # 实现 Prometheus 的 API、以及一个类似 Prometheus 的 Web 页面。可以将请求负载均衡到指定的多个 Querier 上，同时可以缓存响应数据、也可以按查询日拆分。有点像 Redis 的效果。
 - 对象存储中的数据处理
-  - **Store Gateway **# 暴露 StoreAPI。将对象存储中的数据暴露出来，供 Querier 组件通过 PromQL 查询
-  - **Compactor **# 压缩数据，对保存在对象存储中的数据进行降采样。
+  - **Store Gateway** # 暴露 StoreAPI。将对象存储中的数据暴露出来，供 Querier 组件通过 PromQL 查询
+  - **Compactor** # 压缩数据，对保存在对象存储中的数据进行降采样。
 - 其他
-  - **Ruler **# 针对 Thanos 中的数据评估记录和警报规则以进行展示/上传。
+  - **Ruler** # 针对 Thanos 中的数据评估记录和警报规则以进行展示/上传。
 
 通过 thanos 程序的子命令可以运行指定的组件
 
 ```bash
-root@lichenhao:/mnt# docker run --rm quay.io/thanos/thanos:v0.20.0 --help
+~]# docker run --rm quay.io/thanos/thanos:v0.20.0 --help
 usage: thanos [<flags>] <command> [<args> ...]
 
 A block storage based long-term storage for Prometheus.
@@ -91,18 +93,18 @@ Commands:
 可以看到：
 
 - **Sidecar** # 由 **thanos sidecar** 子命令实现。
-- **Receiver **# 由 **thanos receive** 子命令实现。
-- **Store Gateway **# 由 **thanos store** 子命令实现。
+- **Receiver** # 由 **thanos receive** 子命令实现。
+- **Store Gateway** # 由 **thanos store** 子命令实现。
 - **Querier** # 由 **thanos query** 子命令实现。
 - **Query Frontend** # 由 **thanos query-frontend** 子命令实现
-- **Compactor **# 由 **thanos compact** 子命令实现。
-- **Ruler **# 由 **thanos rule** 子命令实现。
+- **Compactor** # 由 **thanos compact** 子命令实现。
+- **Ruler** # 由 **thanos rule** 子命令实现。
 
 thanos 二进制文件的设计方式与 loki 非常类似，都是在单一二进制文件中，可以运行指定的一个或多个组件。
 
 ## StoreAPI
 
-**StoreAPI **并不算一个组件，而是 Thanos 的一个核心概念。Sidecar、Store、Receiver 组件可以暴露 StoreAPI 端点。而 Query 可以使用其他组件爆出来的 StoreAPI 端点。
+**StoreAPI** 并不算一个组件，而是 Thanos 的一个核心概念。Sidecar、Store、Receiver 组件可以暴露 StoreAPI 端点。而 Query 可以使用其他组件暴露出来的 StoreAPI 端点。
 
 Query 向 StoreAPI 发送 PromQL 查询请求，Sidecar、Store、Receiver 在 StoreAPI 上收到 PromQL 请求后，从各自关联的后端数据库中查询数据，并返回给 Query。
 
@@ -169,8 +171,8 @@ Receiver
 Sidecar 可以连接 Prometheus Server，读取其数据以便进行下一步处理。Sidecar 可以提供下列功能：
 
 - **实时配置更新** # 实时监控 Prometheus Server 配置文件，当文件变化时让 Prometheus Server 重载配置。或者通过配置文件模板，生成配置文件。
-- **转存数据 **# 将 Prometheus Server 的数据转存到其他地方。比如 对象存储、公有云存储、本地文件系统 等等
-- **暴露 StoreAPI **# Querier 组件可以通过 Sidecar 的 StoreAPI 向 Prometheus Server 发起 PromQL 请求，以获查询数据。
+- **转存数据** # 将 Prometheus Server 的数据转存到其他地方。比如 对象存储、公有云存储、本地文件系统 等等
+- **暴露 StoreAPI** # Querier 组件可以通过 Sidecar 的 StoreAPI 向 Prometheus Server 发起 PromQL 请求，以获查询数据。
 
 注意：
 
@@ -184,8 +186,8 @@ Sidecar 可以连接 Prometheus Server，读取其数据以便进行下一步处
 Receiver 是一个实现了 Prometheus 的 Remote Write API 的 TSDB，具有如下功能。
 
 - **Remote Write API** # Receiver 接收 Prometheus Remote Write 传输过来的 WAL 数据，并存储在本地 TSDB 中。
-- **转存数据 **# Receiver 还可以将这些数据转存到对象存储中。
-- **暴露 StoreAPI **# Queriver 组件可以直接向 Receiver 的 StoreAPI 发起 PromQL 请求。
+- **转存数据** # Receiver 还可以将这些数据转存到对象存储中。
+- **暴露 StoreAPI** # Queriver 组件可以直接向 Receiver 的 StoreAPI 发起 PromQL 请求。
   - 注意：由于 Receiver 自身就是 TSDB，所以这个 PromQL 可以直接从 Receiver 中查询数据而不用像 Sidecar 似的，还得把查询请求转发给 Prometheus。
 
 # Thanos 其他组件概述
@@ -194,8 +196,8 @@ Receiver 是一个实现了 Prometheus 的 Remote Write API 的 TSDB，具有如
 
 **Query 组件分为两部分**
 
-- **Querier(查询器) **# **实现了 Prometheus API**，可以通过 Querier 发起 PromQL 查询请求，以获取数据；甚至可以从 Prometheus Server 的时序数据库中删除数据。每个从 Querier 发起的 PromQL 查询请求都会发送到可以暴露 StoreAPI 的组件上，并获取查询结果。
-- **Query Fronted(查询前端) **#** 实现 Prometheus API**，可以将请求负载均衡到指定的多个 Querier 上，同时可以缓存响应数据、也可以按查询日拆分。有点像 Redis 之于 Mysql 的效果
+- **Querier(查询器)** # **实现了 Prometheus API**，可以通过 Querier 发起 PromQL 查询请求，以获取数据；甚至可以从 Prometheus Server 的时序数据库中删除数据。每个从 Querier 发起的 PromQL 查询请求都会发送到可以暴露 StoreAPI 的组件上，并获取查询结果。
+- **Query Fronted(查询前端)** # **实现 Prometheus API**，可以将请求负载均衡到指定的多个 Querier 上，同时可以缓存响应数据、也可以按查询日拆分。有点像 Redis 之于 Mysql 的效果
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gq2u99/1620707578416-24269f9e-5260-465a-ab5b-083980a3a016.png)
 

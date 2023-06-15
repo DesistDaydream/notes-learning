@@ -1842,6 +1842,20 @@
       "docs/1.操作系统/2.Kernel(内核)/1.Linux Kernel/Kernel 参数/net(网络相关参数)",
       "docs/1.操作系统/2.Kernel(内核)/1.Linux Kernel/Kernel 参数/vm(内存相关参数).md",
       "docs/1.操作系统/2.Kernel(内核)/1.Linux Kernel/Kernel 参数/应用实例.md"
+    ],
+    "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos": [
+      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/_index.md",
+      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos.md",
+      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 部署.md",
+      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 配置详解.md",
+      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解",
+      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解.md",
+      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 管理.md"
+    ],
+    "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解": [
+      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解/_index.md",
+      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解/Thanos 组件详解.md",
+      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解/使用 Thanos 查询前端优化查询性能.md"
     ]
   },
   "actionBarOrder": {},
