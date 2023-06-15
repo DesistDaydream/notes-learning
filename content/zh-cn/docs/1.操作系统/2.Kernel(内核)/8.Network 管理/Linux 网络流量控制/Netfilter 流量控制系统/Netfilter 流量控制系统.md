@@ -63,7 +63,9 @@ Netfilter 所设置的规则是存放在内核内存中的，Iptables 是一个�
 5. **POSTROUTING 链** # **路由后**，处理即将离开本机的数据包。它会转换数据包中的源 IP 地址（source ip address），通常用于 SNAT（source NAT）。(该路由是通过 Linux 中定义的 route 规则发送的，与内核的 ip_forward 无关)
 6. **自定义链** # 用户自己定义的链，不会调用系统 Hook，而是由系统默认的 5 个链在 target 中定义引用
 
-## 规则(Rule)匹配(Match)：(规则的匹配条件)匹配的用法详见：iptables 框架工具介绍
+## 规则(Rule)匹配(Match)
+
+(规则的匹配条件)匹配的用法详见：[iptables(Netfilter 的实现)](docs/1.操作系统/2.Kernel(内核)/8.Network%20管理/Linux%20网络流量控制/Netfilter%20流量控制系统/iptables(Netfilter%20的实现)/iptables(Netfilter%20的实现).md)
 
 规则，需要有具体的内容才能称为规则，所以 Match 就是规则中的具体内容。
 
@@ -145,13 +147,13 @@ INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，�
 
 NAT 为了安全性而产生的，主要用来隐藏本地主机的 IP 地址
 
-## SNAT：Source 源地址转换，针对请求报文的源地址而言
+## SNAT - Source 源地址转换，针对请求报文的源地址而言
 
 当想访问外网的时候，把源地址转换，作用于 POSTROUTING 链
 
 常用于内网私网地址转换成公网地址，比如家用路由器
 
-## DNAT：Destination 目的地址转换，针对请求报文的目标地址而言
+## DNAT - Destination 目的地址转换，针对请求报文的目标地址而言
 
 当从外部访问某 IP 时，把目的 IP 转换，作用于 PREROUTING、FORWARD 链
 

@@ -5,15 +5,17 @@ title: Kernel 参数
 # 概述
 
 > 参考：
+> 
 > - [官方文档，Linux 内核用户和管理员指南-/proc/sys 文档](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/index.html)
 
-内核参数是以 key/value 的方式储存的。key 就是 **/proc/sys/\*** 目录下的某个文件，value 就是该文件的内容。
+内核参数是以 key/value 的方式储存的。key 就是 **/proc/sys/** 目录下的某个文件，value 就是该文件的内容。
 
-比如 net.ipv4.ip_forward 这个 key，就在 /proc/sys/net/ipv4/ 目录下。以`.`分隔的就是字符就是目录名，最后一个字段就是某某目录下的文件名。
+比如 net.ipv4.ip_forward 这个 key，就在 **/proc/sys/net/ipv4/** 目录下。以`.`分隔的就是字符就是目录名，最后一个字段就是某某目录下的文件名。
 
-可以通过修改/proc/sys/\*目录下的文件中的值来修改内核的参数。每个文件就是内核的一种功能，文件中的内容就是该内核功能的参数。
+可以通过修改 **/proc/sys/** 目录下的文件中的值来修改内核的参数。每个文件就是内核的一种功能，文件中的内容就是该内核功能的参数。
 
 注意事项：
+
 - 一般情况下，内核参数的 0 和 1 这两个值表示如下含义：
   - **0** 表示 **否**，即错误、拒绝、关闭等等
   - **1** 表示 **是**，即正确、允许、开启等等
@@ -27,14 +29,23 @@ title: Kernel 参数
 
 # /proc/sys 目录的组成
 
-/proc/sys 目录下的每一个子目录，都表示一种内核参数的分类，大体可以分为如下几类：
+**/proc/sys/** 目录下的每一个子目录，都表示一种内核参数的分类，大体可以分为如下几类：
+
 - **./abi/** # execution domains & personalities
 - **./debug/** # 空
 - **./dev/** # device specific information (eg dev/cdrom/info)
 - **./fs/** # specific filesystems filehandle, inode, dentry and quota tuning binfmt_misc \<Kernel Support for miscellaneous Binary Formats (binfmt_misc)>
 - **./kernel/** # global kernel info / tuning miscellaneous stuff
-- **./net/** # networking stuff, for documentation look in: \<Documentation/networking/>
+- **./net/** # 网络相关的内核参数，详见 [net(网络相关参数)](docs/1.操作系统/2.Kernel(内核)/1.Linux%20Kernel/Kernel%20参数/net(网络相关参数)/net(网络相关参数).md)
 - **./proc/** # 空
 - **./sunrpc/** # SUN Remote Procedure Call (NFS)
 - **./vm/** # memory management tuning buffer and cache management
 - **./user/** # Per user per user namespace limits
+
+- [Documentation for /proc/sys/abi/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/abi.html)
+- [Documentation for /proc/sys/fs/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/fs.html)
+- [Documentation for /proc/sys/kernel/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/kernel.html)
+- [Documentation for /proc/sys/net/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/net.html)
+- [Documentation for /proc/sys/sunrpc/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/sunrpc.html)
+- [Documentation for /proc/sys/user/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/user.html)
+- [Documentation for /proc/sys/vm/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/vm.html)

@@ -1,50 +1,59 @@
 ---
 title: net(网络相关参数)
+weight: 1
 ---
 
 # 概述
 
 > 参考：
+> 
 > - [Manual(手册)，/proc/sys 部分](https://man7.org/linux/man-pages/man5/proc.5.html#DESCRIPTION)
 > - [官方文档，Linux 内核用户和管理员指南-/proc/sys 文档-/proc/sys/net 文档](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/net.html)
-> - [官方文档，Linux 网络文档-IP Sysctl(ipv4、ipv6、bridge 等相关参数)](https://www.kernel.org/doc/html/latest/networking/ip-sysctl.html)
+> - [官方文档，内核子系统文档-Networking-IP Sysctl](https://www.kernel.org/doc/html/latest/networking/ip-sysctl.html)
+>   - 这里包含 net 下的 ipv4、ipv6、bridge 等相关参数，但是没有 netfilter 等的相关参数
 
-/proc/sys/net 目录下通常包含下面的一个或多个子目录
+**/proc/sys/net/** 目录下通常包含下面的一个或多个子目录
 
-| Directory | Content             | Directory | Content            |
-| --------- | ------------------- | --------- | ------------------ |
-| core      | General parameter   | appletalk | Appletalk protocol |
-| unix      | Unix domain sockets | netrom    | NET/ROM            |
-| 802       | E802 protocol       | ax25      | AX25               |
-| ethernet  | Ethernet protocol   | rose      | X.25 PLP layer     |
-| ipv4      | IP version 4        | x25       | X.25 protocol      |
-| bridge    | Bridging            | decnet    | DEC net            |
-| ipv6      | IP version 6        | tipc      | TIPC               |
+| 目录名    | 用处               |     | 目录名    | 用处                | 
+| --------- | ------------------ | --- | --------- | ------------------- |
+| 802       | E802 protocol      |     | mptcp     | Multipath TCP       |
+| appletalk | Appletalk protocol |     | netfilter | Network Filter      |
+| ax25      | AX25               |     | netrom    | NET/ROM             |
+| bridge    | Bridging           |     | rose      | X.25 PLP layer      |
+| core      | General parameter  |     | tipc      | TIPC                |
+| ethernet  | Ethernet protocol  |     | unix      | Unix domain sockets |
+| ipv4      | IP version 4       |     | x25       | X.25 protocol       |
+| ipv6      | IP version 6       |     |           |                     |
 
 # ipv4 参数
 
 > 参考：
-> - [官方文档，网络-IP Sysctl-/proc/sys/net/ipv4/* 变量](https://www.kernel.org/doc/html/latest/networking/ip-sysctl.html#proc-sys-net-ipv4-variables)
+> 
+> - [官方文档，内核子系统文档-Networking-IP Sysctl-/proc/sys/net/ipv4/* 变量](https://www.kernel.org/doc/html/latest/networking/ip-sysctl.html#proc-sys-net-ipv4-variables)
 
-## net.ipv4.ip_forward = <0 | 非 0>
+## net.ipv4.ip_forward(0 | 非 0)
 
 在多个网络设备间是否允许转发数据包。`默认值：0`
 
 这个变量很特殊，它的改变会将所有配置参数重置为默认状态([RFC1122](https://www.rfc-editor.org/rfc/rfc1122.html) 用于主机，[RFC1812](https://www.rfc-editor.org/rfc/rfc1812.html) 用于路由器)
 
-## TCP 相关参数:
+## TCP 相关参数
 
-### net.core.somaxconn = 65535
+### net.core.somaxconn(INTEGER)
 
 服务端所能 accept 即处理数据的最大客户端数量，即完成连接上限，`默认值：128`。
 
-### net.ipv4.tcp_fin_timeout = 5
+推荐 65535
+
+### net.ipv4.tcp_fin_timeout(INTEGER)
 
 表示如果 socket 由本端要求关闭，值为整数，单位为秒。这个参数决定了它保持在 FIN-WAIT-2 状态的时间。
 
 此参数确定孤立(未引用)连接在本地端终止之前等待的时间长度。当发生在远程对等端上的事件阻止或过度延迟响应时，此参数尤其有用。由于用于连接的每个套接字大约消耗 1.5K 字节的内存，内核必须主动中止和清除死的或陈旧的资源。
 
-### net.ipv4.tcp_max_syn_backlog = INTEGER
+推荐 5
+
+### net.ipv4.tcp_max_syn_backlog(INTEGER)
 
 所能接受 SYN 报文段的最大客户端数量，即 SYN_REVD 状态(人们常说的半连接)的连接数。`默认值：128`。
 
@@ -57,6 +66,7 @@ title: net(网络相关参数)
 而 backlog，和另一个参数 /proc/sys/net/core/somaxconn 一起，决定了队列的容量，算法为：min(/proc/sys/net/core/somaxconn, backlog) 。
 
 **打个简单的比方：**
+
 某某发布公告要邀请四海之内若干客人到场参加酒席。客人参加酒席分为两个步骤：
 
 1. 到大厅；
@@ -92,7 +102,7 @@ somaxconn 用于指定有多少个座位。
 
 ### ~~net.ipv4.tcp_tw_recycle = 1~~(高内核版本已移除该参数)
 
-\~~是否快速回收 TCP 连接中 TIME-WAIT sockets ，~~`~~默认值：0~~`
+~~是否快速回收 TCP 连接中 TIME-WAIT sockets ，~~`默认值：0`
 
 ### net.ipv4.tcp_tw_reuse = 1
 
@@ -127,16 +137,21 @@ TCP 连接在 keepalive 状态下的探测间隔。`默认值：75`。单位秒
 > 而且，7200 计时器是从连接建立时就开始计算的，不管有没有数据包，这个时间都会持续减小。
 
 比如，我通过 ssh 与 sshd 建立了连接，就会发现有一个 120min 的计时器，这就是 7200 秒
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/qwuk68/1626272435911-652ae22c-fd68-4d2f-b12c-38e57f111971.png)
+
 当我将 `net.ipv4.tcp_keepalive_time` 参数的值改为 60 时，再次登录就会发现只有 60 秒的计时器
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/qwuk68/1626272377586-25617789-baf8-4c2f-a992-d34eccc2f074.png)
 
 **为什么需要 TCP keepalive？**
+
 设想有一种场景：A 和 B 两边通过三次握手建立好 TCP 连接，然后突然间 B 就宕机了，之后时间内 B 再也没有起来。如果 B 宕机后 A 和 B 一直没有数据通信的需求，A 就永远都发现不了 B 已经挂了，那么 A 的内核里还维护着一份关于 A\&B 之间 TCP 连接的信息，浪费系统资源。于是在 TCP 层面引入了 keepalive 的机制，A 会定期给 B 发空的数据包，通俗讲就是心跳包，一旦发现到 B 的网络不通就关闭连接。这一点在 LVS 内尤为明显，因为 LVS 维护着两边大量的连接状态信息，一旦超时就需要释放连接。
 
 ## VS 相关参数
 
 > 参考：
+> 
 > - [官方文档，网络-IPvs Sysctl](https://www.kernel.org/doc/html/latest/networking/ipvs-sysctl.html)
 
 ### net.ipv4.vs.conn_reuse_mode = 1
@@ -152,7 +167,7 @@ TCP 连接在 keepalive 状态下的探测间隔。`默认值：75`。单位秒
 # bridge 参数
 
 > 参考：
-> - [官方文档，网络-IP Sysctl-/proc/sys/net/bridge/\* 变量](https://www.kernel.org/doc/html/latest/networking/ip-sysctl.html#proc-sys-net-bridge-variables)
+> - [官方文档，内核子系统文档-Networking-IP Sysctl-/proc/sys/net/bridge/* 变量](https://www.kernel.org/doc/html/latest/networking/ip-sysctl.html#proc-sys-net-bridge-variables)
 
 ### net.bridge.bridge-nf-call-iptables = 1
 
