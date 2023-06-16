@@ -49,8 +49,6 @@ weight: 20
 - sudo apt install -y cpu-checker
 - kvm-ok
 
-ln -sv /usr/bin/kvm /usr/bin/
-
 安装虚拟化环境
 
 - sudo apt install -y qemu-kvm libvirt-daemon-system libvirt-daemon libvirt-clients

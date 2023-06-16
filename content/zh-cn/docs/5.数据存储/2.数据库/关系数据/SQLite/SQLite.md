@@ -5,9 +5,10 @@ title: SQLite
 # 概述
 
 > 参考：
+> 
 > - [GitHub 项目，sqlite/sqlite](https://github.com/sqlite/sqlite)
 > - [官网](https://www.sqlite.org/index.html)
-> - [Wiki,SQLite](https://en.wikipedia.org/wiki/SQLite)
+> - [Wiki，SQLite](https://en.wikipedia.org/wiki/SQLite)
 
 SQLite 是一种 C 语言库，实现小型，快速，自有，高可靠性，全功能，SQL 数据库引擎。 SQLite 是世界上最常用的数据库引擎。 SQLite 内置于所有移动电话和大多数计算机中，并捆绑在人们每天使用的无数其他应用程序内。更多信息...
 
@@ -28,7 +29,8 @@ table       memos       memos       2           CREATE TABLE memos(text, priorit
 # sqlite 命令行工具
 
 > 参考：
-> - [Ubuntu Manual,sqlite3(1)](https://manpages.ubuntu.com/manpages/jammy/en/man1/sqlite3.1.html)
+> 
+> - [Ubuntu Manual，sqlite3(1)](https://manpages.ubuntu.com/manpages/jammy/en/man1/sqlite3.1.html)
 
 现阶段通常使用 sqlite3 工具，这个工具可以对接 SQLite 版本 3 的接口。sqlite3 有“交互模式”或“命令行模式”两种模式。
 
@@ -87,9 +89,9 @@ lunch with Christine         100
 
 所有可用的元命令可以通过 `.help` 这个元命令查看
 
-- **.databases **# 列出已连接的数据库的名称和文件的绝对路径
+- **.databases** # 列出已连接的数据库的名称和文件的绝对路径
 - **.header \<on|off>** # 输出查询结果时，是否显示标头
-- **.separator <STRING>** # 设置分隔符
+- **.separator \<STRING>** # 设置分隔符
 - **.show** # 显示所有配置的当前值
 - **.tables \[TABLE]** # 列出所有表或指定的表
 - **.width \<NUM1 NUM2 ...>** # 为 column 模式设置列宽
