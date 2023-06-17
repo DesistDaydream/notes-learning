@@ -34,9 +34,10 @@
       "docs/10.云原生",
       "docs/11.多媒体",
       "docs/12.人工智能",
-      "docs/区块链",
+      "docs/Web",
       "docs/实用工具",
-      "docs/test.sh",
+      "docs/移动设备",
+      "docs/区块链",
       "docs/x_标准化术语"
     ],
     "docs/0.计算机": [
@@ -1856,6 +1857,10 @@
       "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解/_index.md",
       "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解/Thanos 组件详解.md",
       "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解/使用 Thanos 查询前端优化查询性能.md"
+    ],
+    "docs/移动设备": [
+      "docs/移动设备/Android.md",
+      "docs/移动设备/Android 开发.md"
     ]
   },
   "actionBarOrder": {},

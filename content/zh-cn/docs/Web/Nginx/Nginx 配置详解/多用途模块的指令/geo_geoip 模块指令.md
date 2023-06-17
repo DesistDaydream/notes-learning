@@ -22,7 +22,7 @@ geo 与 geoip 模块会根据 客户端的 IP 地址 来创建新的变量。这
 
 # http 模块下的 geo 模块指令
 
-[**geo \[ADDRESS\] $VARIABLE {}**](http://nginx.org/en/docs/http/ngx_http_geo_module.html#geo)\*\* \*\*# 根据 ADDRESS 定义新的变量
+[geo \[ADDRESS\] $VARIABLE {}](http://nginx.org/en/docs/http/ngx_http_geo_module.html#geo) # 根据 ADDRESS 定义新的变量
 ADDRESS 用来指定要设置变量的 IP 地址。默认来自于 `$remote_addr` 变量，也可以自定义为另一个变量。
 
 假如现在有这么一个配置：
@@ -56,7 +56,8 @@ geoip 模块并不需要手动设定想要创建的变量，由于 geoip 模块�
 
 geoip 模块会从 Nginx 获取客户端的 IP 地址(一般都是 $remote_addr 变量中的值)，然后根据 IP 地址从 MaxMind 数据库查找对应的 IP，并将与该 IP 关联的信息写入到新的变量中。
 
-[**geoip_country FILE; **](http://nginx.org/en/docs/http/ngx_http_geoip_module.html#geoip_country)# 围绕国家创建相关变量
+[geoip_country FILE; ](http://nginx.org/en/docs/http/ngx_http_geoip_module.html#geoip_country) # 围绕国家创建相关变量
+
 该指令一般情况下，将会根据 MaxMind 中的 GeoIP.dat 文件，为每个 IP 地址创建如下变量：
 
 - **$geoip_country_code** # 两个字母的国家代码，比如 CN、US
@@ -64,6 +65,7 @@ geoip 模块会从 Nginx 获取客户端的 IP 地址(一般都是 $remote_addr 
 - **$geoip_country_name** # 国家名称，比如 China、United States
 
 [**geoip_city FILE;**](http://nginx.org/en/docs/http/ngx_http_geoip_module.html#geoip_city) # 围绕城市创建相关变量。最常用指令
+
 该指令一般情况下，将会根据 MaxMind 中的 GeoLiteCity.dat 文件，为每个 IP 地址创建如下变量：
 
 - **$geoip_area_code** # 电话区号(仅限 US 有用).

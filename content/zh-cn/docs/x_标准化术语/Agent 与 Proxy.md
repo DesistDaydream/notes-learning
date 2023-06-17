@@ -5,9 +5,11 @@ title: Agent 与 Proxy
 今天，在阅读 Jolokia 文档的时候，看到其支持两种架构模式： Agent Mode 与 Proxy Mode。从字面上理解，agent 与 proxy 都有代理的意思，那么它们在内涵上到底有什么不同的，值得思考。
 
 Agent Mode
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gu5xfp/1621662188213-22f409de-8912-4cb1-8722-b96d628694b6.png)
 
 Proxy Mode
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gu5xfp/1621662192171-21f74acf-2333-4edd-859d-cc8aba728428.png)
 从上面两张图可以看出，Proxy 与 Agent 所处的位置和目的有所不同，Agent 处在被代理对象的内部，而 Proxy 与被代理对象之间处于一种相对独立的状态。
 

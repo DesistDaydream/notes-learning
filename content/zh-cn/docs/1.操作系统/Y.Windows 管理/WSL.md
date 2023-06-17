@@ -59,6 +59,13 @@ wsl.exe --user root
 
 # WSL 关联文件与配置
 
+Windows 下的关联文件
+
+- `%UserProfile%/.wslconfig` # - 用于在作为 WSL 2 版本运行的所有已安装 Linux 发行版中全局配置设置。
+
+LInux 发行版下的关联文件
+
+- **/etc/wsl.conf** # 
 
 # wsl 命令行工具
 
@@ -87,3 +94,55 @@ WSL 子系统管理选项
   - **-o, --online** # 列出所有可以安装的发行版。
 - **--set-default-version** # 
 - **-s, --set-default DISTRO** # 将指定的发行版设为默认
+
+# WSL 配置网络
+
+## 配置桥接网络和静态 IP
+
+> 参考：
+> - [博客园，WSL2使用桥接网络，并指定IP](https://www.cnblogs.com/lic0914/p/17003251.html)
+>   - 该文章参考的原文: https://github.com/luxzg/WSL2-fixes/blob/master/networkingMode%3Dbridged.md
+
+**TODO: 这种做法会导致 WSL 无法和 Windows 主机通信，原理暂时未知。**
+
+使用 Hyper-V 创建一个桥接类型的网络，假如命名为 **br0**
+
+在 `%UserProfile%/.wslconfig` 文件中添加如下内容：
+
+```ini
+[wsl2]
+networkingMode=bridged
+vmSwitch=br0
+dhcp=false
+ipv6=true
+```
+
+然后再启动 WSL，即可使用桥接模式的网络。
+
+此时，还需要为 WSL 启用 Systemd，否则系统中没有可以配置 IP 的程序
+
+```
+sudo tee /etc/wsl.conf <<EOF
+[boot]
+systemd=true
+EOF
+```
+
+然后需要通过 systemd-network 服务配置 IP，那么还需要进行一些配置：
+
+```bash
+sudo tee /lib/systemd/network/wsl_external.network <<EOF
+[Match]
+Name=eth0
+[Network]
+Description=bridge
+DHCP=false
+Address=192.168.254.254/24 # 自行修改
+Gateway=192.168.254.1 # 自行修改
+EOF
+
+sudo systemctl enable systemd-networkd --now
+```
+
+然后重启 wsl 即可。
+

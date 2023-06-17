@@ -4,7 +4,10 @@ title: B/S 和 C/S 架构
 
 # Service Side 与 Client Side
 
-> 参考：[Wiki，Server Side](https://en.wikipedia.org/wiki/Server-side)、[Wiki，Client Side](https://en.wikipedia.org/wiki/Client-side)
+> 参考：
+> 
+> - [Wiki，Server Side](https://en.wikipedia.org/wiki/Server-side)
+> - [Wiki，Client Side](https://en.wikipedia.org/wiki/Client-side)
 
 Client/Server 结构(C/S 结构) 是大家熟知的 **Client Side(客户端) 与 Server Side(服务端)** 结构。它是软件系统体系结构，通过它可以充分利用两端硬件环境的优势，将任务合理分配到 Client Side 和 Server Side 来实现，降低了系统的通讯开销。目前大多数应用软件系统都是 Client/Server 形式的两层结构，由于现在的软件应用系统正在向分布式的 Web 应用发展，Web 和 Client/Server 应用都可以进行同样的业务处理，应用不同的模块共享逻辑组件；因此，内部的和外部的用户都可以访问新的和现有的应用系统，通过现有应用系统中的逻辑可以扩展出新的应用系统。这也就是目前应用系统的发展方向。
 
