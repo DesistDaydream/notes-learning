@@ -24,7 +24,7 @@ k3s 二进制文件包含 kubelet、api-server、kube-controller-manager、kube-
 
 - **./k3s.yaml** # kubeconfig 文件
 - **./config.yaml** # 运行时配置文件，与环境变量和 CLI 等效。
-- **./registries.yaml** # 镜像仓库配置，可以配置加速、私有仓库
+- **./registries.yaml** # 镜像仓库配置，可以配置加速、私有仓库。配置方式详见[官方文档-安装-私有镜像仓库配置](https://docs.k3s.io/zh/installation/private-registry)
 
 **/run/k3s/** # K3S 所使用的容器 Runtime 的数据保存路径。
 
