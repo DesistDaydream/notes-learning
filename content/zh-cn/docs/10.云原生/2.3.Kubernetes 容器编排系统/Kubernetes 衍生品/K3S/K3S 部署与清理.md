@@ -6,6 +6,7 @@ weight: 2
 # 概述
 
 > 参考：
+> 
 > - [官方文档，快速开始指南](https://docs.k3s.io/quick-start)
 
 `curl -sfL https://get.k3s.io | sh -` 使用该脚本，可以自动创建用于运行 k3s 二进制文件的 service 文件，并通过 systemd 启动。

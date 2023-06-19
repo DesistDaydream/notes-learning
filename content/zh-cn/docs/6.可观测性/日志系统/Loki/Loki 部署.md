@@ -44,6 +44,7 @@ docker run -d --rm --name loki \
 - helm upgrade --install loki --namespace=loki . # 使用默认配置在 loki 名称空间中部署 loki 栈 。该方式会部署 loki 与 promtail
 
 在 grafana 中添加 loki 数据源，如图所示
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/vg0v2e/1616129749320-bb4bc4c9-2acb-460f-a655-5ff76766eb24.jpeg)
 
 ## Helm 部署 Simple scalable 架构 Loki

@@ -30,7 +30,7 @@ mkdir -p /usr/local/prometheus/node_exporter
 tar -zxvf node_exporter-${VERSION}.linux-amd64.tar.gz -C /usr/local/prometheus/node_exporter --strip-components=1
 ```
 
-- 创建 node_exporter 的 systemd 服务
+- 创建 node_exporter 的 systemd 服务，在[这里](https://github.com/prometheus/node_exporter/tree/master/examples/systemd)可以看到官方提供的 systemd 样例
 
 ```bash
 tee /usr/lib/systemd/system/node-exporter.service > /dev/null << EOF

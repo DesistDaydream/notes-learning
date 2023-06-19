@@ -67,7 +67,7 @@ Note：
 
 # copy - 用于将文件拷贝到被管理设备上的某个位置
 
-官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
+官方文档: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
 
 ## 参数
 

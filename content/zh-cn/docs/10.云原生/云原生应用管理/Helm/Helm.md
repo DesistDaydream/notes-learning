@@ -62,15 +62,13 @@ Artifact Hub 中，除了包含 Helm Charts Hub 中的各种资源外，还有�
   - helm plugin install https://github.com/chartmuseum/helm-push.git
 - 当创建一个 Release 的时候，会先把 Chart 的数据存档(.tgz 格式)文件下载到 Helm 配置目录的 archive 目录下，然后再安装
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/henxmt/311ze074e9a719d120b4c409baf70e517c00)
-
 # Helm 关联文件与配置
 
-**~/.cache/helm/\*** # helm 缓存路径
+**~/.cache/helm/** # helm 缓存路径
 
-- **./plugin/\*** # helm 插件安装路径
+- **./plugin/** # helm 插件安装路径
 
-**/root/.local/share/helm/plugins/\*** #
+**/root/.local/share/helm/plugins/** #
 
 # Helm 安装资源的顺序
 

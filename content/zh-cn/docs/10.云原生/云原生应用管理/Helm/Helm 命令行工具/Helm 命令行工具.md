@@ -1,5 +1,6 @@
 ---
 title: Helm 命令行工具
+weight: 1
 ---
 
 # helm 命令行工具详解
