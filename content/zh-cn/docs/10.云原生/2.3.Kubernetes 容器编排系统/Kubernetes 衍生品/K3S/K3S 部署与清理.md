@@ -87,6 +87,12 @@ cp ./k3s-airgap-images-${ARCH}.tar /var/lib/rancher/k3s/agent/images/
 
 ## mater 节点
 
+### (可选)使用 kube-vip 提供 VIP
+
+> 参考：
+> 
+> - [kube-vip 官方文档，K3S](https://kube-vip.io/docs/usage/k3s/)
+
 ### 为所有 mater 节点生成配置文件
 
 ```bash

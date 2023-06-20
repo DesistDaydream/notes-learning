@@ -58,6 +58,7 @@ curl -LO https://dl.k8s.io/release/${RELEASE}/bin/linux/${ARCH}/kubectl
 # kubectl 配置
 
 **~/.kube/config** # kubeclt 使用的 kubeconfig 文件的默认路径。kubectl 工具运行时将会使用该文件作为连接 kubernetes 集群的信息
+
 kubeamd 部署的集群一般直接使用 /etc/kubernetes/admin.conf 文件拷贝到 ~/.kube/ 目录下并改名为 config
 
 环境变量

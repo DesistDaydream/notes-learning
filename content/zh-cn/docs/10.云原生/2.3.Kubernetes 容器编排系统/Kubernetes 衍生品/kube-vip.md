@@ -6,8 +6,9 @@ title: kube-vip
 
 > 参考：
 > 
+> - [GitHub 项目，kube-vip/kube-vip](https://github.com/kube-vip/kube-vip)
 > - [官网](https://kube-vip.io/)
-> - [官方文档,使用静态 Pod 部署 kube-vip](https://kube-vip.io/hybrid/static/)
+> - [官方文档，使用静态 Pod 部署 kube-vip](https://kube-vip.io/hybrid/static/)
 
 kube-vip 是一个用于 Kubernetes 控制平面的 VIP 和 负载均衡器。他可以实现 Keepalived + HAProxy 的功能。
 

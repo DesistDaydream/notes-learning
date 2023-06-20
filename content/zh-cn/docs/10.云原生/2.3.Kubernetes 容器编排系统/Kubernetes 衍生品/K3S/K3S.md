@@ -53,4 +53,4 @@ K3S 所有可能使用的目录可以参考 [清理 K3S](</docs/10.云原生/2.3
 
 详见 [进入容器文件系统](/docs/10.云原生/2.2.实现容器的工具/容器管理/容器运行时管理/进入容器文件系统.md)。在 k3s 中，如果是 containerd 的话，则是在 /run/k3s/containerd/ 目录代替 /run/containerd/ 目录
 
-/run/k3s/containerd/io.containerd.runtime.v2.task/k8s.io/${ContainerID}/rootfs/
+`/run/k3s/containerd/io.containerd.runtime.v2.task/k8s.io/${ContainerID}/rootfs/``
