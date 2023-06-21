@@ -10,7 +10,7 @@ title: Unit File
 > - [manual(手册),systemd.syntax(7)](<https://man.cx/systemd.syntax(7)>) # Unit 的配置语法
 > - [金步国 systemd.unit 中文手册](http://www.jinbuguo.com/systemd/systemd.unit.html#)
 
-**Unit File**，是 [ini 格式](/docs/2.编程/无法分类的语言/INI.md)的纯文本文件。在这个文件中，由 **Directives(指令)** 和 **Sections(部分)** 组成，这里的 Directve 就是 INI 格式中的 `键/值对`。
+**Unit File**，是 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的纯文本文件。在这个文件中，由 **Directives(指令)** 和 **Sections(部分)** 组成，这里的 Directve 就是 INI 格式中的 `键/值对`。
 
 - **Directives(指令)** # 指令由 名称 与 值 组成，以 `=` 分割
 - **Sections(部分)** # 与 INI 中的 Sections 概念一样。是一组 Directives 的集合

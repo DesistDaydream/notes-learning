@@ -1,5 +1,5 @@
 ---
-title: 配置详解
+title: Wireguard配置详解
 ---
 
 # 概述
@@ -46,7 +46,6 @@ Interface 部分定义本地 VPN 配置。例如：
 
 - 本地节点是客户端，只路由自身的流量，只暴露一个 IP。
 
-
 ```ini
 [Interface]
 # Name = phone.example-vpn.dev
@@ -55,7 +54,6 @@ PrivateKey = <private key for phone.example-vpn.dev>
 ```
 
 - 本地节点是中继服务器，它可以将流量转发到其他对等节点（peer），并公开整个 VPN 子网的路由。
-
 
 ```ini
 [Interface]
@@ -119,31 +117,25 @@ DNS = 1.1.1.1
 
 - 从文件或某个命令的输出中读取配置值：
 
-
     PostUp = wg set %i private-key /etc/wireguard/wg0.key <(some command here)
 
 - 添加一行日志到文件中：
-
 
     PostUp = echo "$(date +%s) WireGuard Started" >> /var/log/wireguard.log
 
 - 调用 WebHook：
 
-
     PostUp = curl https://events.example.dev/wireguard/started/?key=abcdefg
 
 - 添加路由：
-
 
     PostUp = ip rule add ipproto tcp dport 22 table 1234
 
 - 添加 iptables 规则，启用数据包转发：
 
-
     PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 - 强制 WireGuard 重新解析对端域名的 IP 地址：
-
 
     PostUp = resolvectl domain %i "~."; resolvectl dns %i 192.0.2.1; resolvectl dnssec %i yes
 
@@ -154,11 +146,9 @@ DNS = 1.1.1.1
 
 - 添加一行日志到文件中：
 
-
     PreDown = echo "$(date +%s) WireGuard Going Down" >> /var/log/wireguard.log
 
 - 调用 WebHook：
-
 
     PreDown = curl https://events.example.dev/wireguard/stopping/?key=abcdefg
 
@@ -169,23 +159,22 @@ DNS = 1.1.1.1
 
 - 添加一行日志到文件中：
 
-
     PostDown = echo "$(date +%s) WireGuard Going Down" >> /var/log/wireguard.log
 
 - 调用 WebHook：
 
-
     PostDown = curl https://events.example.dev/wireguard/stopping/?key=abcdefg
 
 - 删除 iptables 规则，关闭数据包转发：
-
 
     PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
 
 # \[Peer]
 
 定义能够为一个或多个地址路由流量的 Peer 的 VPN 设置。Peer 可以是将流量转发到其他 Peer 的中继服务器，也可以是通过公网或内网直连的客户端。
+
 中继服务器必须将所有的客户端定义为对等节点（peer），除了中继服务器之外，其他客户端都不能将位于 NAT 后面的节点定义为对等节点（peer），因为路由不可达。对于那些只为自己路由流量的客户端，只需将中继服务器作为对等节点（peer），以及其他需要直接访问的节点。
+
 举个例子，在下面的配置中，`public-server1` 作为中继服务器，其他的客户端有的是直连，有的位于 NAT 后面：
 
 - `public-server1`（中继服务器）
@@ -313,7 +302,8 @@ Peer 的公钥，所有节点（包括中继服务器）都必须设置。可与
 
 ## PersistentKeepalive
 
-如果连接是从一个位于 NAT 后面的对等节点（peer）到一个公网可达的对等节点（peer），那么 NAT 后面的对等节点（peer）必须定期发送一个出站 ping 包来检查连通性，如果 IP 有变化，就会自动更新`Endpoint`。
+如果连接是从一个位于 NAT 后面的对等节点（peer）到一个公网可达的对等节点（peer），那么 NAT 后面的对等节点（peer）必须定期发送一个出站 ping 包来检查连通性，如果 IP 有变化，就会自动更新 `Endpoint`。
+
 例如：
 
 - 本地节点与对等节点（peer）可直连：该字段不需要指定，因为不需要连接检查。

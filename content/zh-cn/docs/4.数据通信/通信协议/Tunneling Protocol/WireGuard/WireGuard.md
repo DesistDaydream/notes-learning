@@ -23,7 +23,9 @@ WireGuard 没有传统的 Server 端、Client 端的概念，在 WireGuard 构�
 # 待整理文章内容
 
 WireGuard 与其他 VPN 协议的性能测试对比：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kpbis3/1616160904902-4ab1975e-fa98-4b9e-b63b-775e63fa1828.jpeg)
+
 可以看到 WireGuard 直接碾压其他 VPN 协议。再来说说 OpenVPN，大约有 10 万行代码，而 WireGuard 只有大概 4000 行代码，代码库相当精简，简直就是件艺术品啊。你再看看 OpenVPN 的性能，算了不说了。
 
 WireGuard 优点：
@@ -124,24 +126,28 @@ Wireguard 如何路由流量
 WireGuard 报文格式
 
 WireGuard 使用加密的 UDP 报文来封装所有的数据，UDP 不保证数据包一定能送达，也不保证按顺序到达，但隧道内的 TCP 连接可以保证数据有效交付。WireGuard 的报文格式如下图所示：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kpbis3/1616160904918-24e86676-6f0a-4804-8669-45d68a22e23d.jpeg)
+
 关于 WireGuard 报文的更多信息可以参考下面几篇文档：
 
-- wireshark.org/docs/dfref/w/wg.html\[1]
+- wireshark.org/docs/dfref/w/wg.html
 - Lekensteyn/wireguard-dissector\[2]
-- nbsoftsolutions.com/blog/viewing-wireguard-traffic-with-tcpdump\[3]
+- nbsoftsolutions.com/blog/viewing-wireguard-traffic-with-tcpdump
 
 WireGuard 的性能
 
 WireGuard 声称其性能比大多数 VPN 协议更好，但这个事情有很多争议，比如某些加密方式支持硬件层面的加速。
 
 WireGuard 直接在内核层面处理路由，直接使用系统内核的加密模块来加密数据，和 Linux 原本内置的密码子系统共存，原有的子系统能通过 API 使用 WireGuard 的 Zinc 密码库。WireGuard 使用 UDP 协议传输数据，在不使用的情况下默认不会传输任何 UDP 数据包，所以比常规 VPN 省电很多，可以像 55 一样一直挂着使用，速度相比其他 VPN 也是压倒性优势。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kpbis3/1616160904933-319867cc-3391-4d97-bf43-e8c40786c553.jpeg)
+
 关于性能比较的更多信息可以参考下面几篇文档：
 
-- wireguard.com/performance\[4]
-- reddit.com/r/linux/comments/9bnowo/wireguard_benchmark_between_two_servers_with_10\[5]
-- restoreprivacy.com/openvpn-ipsec-wireguard-l2tp-ikev2-protocols\[6]
+- wireguard.com/performance
+- reddit.com/r/linux/comments/9bnowo/wireguard_benchmark_between_two_servers_with_10
+- restoreprivacy.com/openvpn-ipsec-wireguard-l2tp-ikev2-protocols
 
 WireGuard 安全模型
 WireGuard 使用以下加密技术来保障数据的安全：
@@ -155,25 +161,26 @@ WireGuard 的加密技术本质上是 Trevor Perrin 的 Noise 框架的实例化
 
 关于 WireGuard 加密的更多资料请参考下方链接：
 
-- wireguard.com/papers/wireguard.pdf\[7]
-- eprint.iacr.org/2018/080.pdf\[8]
-- courses.csail.mit.edu/6.857/2018/project/He-Xu-Xu-WireGuard.pdf\[9]
-- wireguard.com/talks/blackhat2018-slides.pdf\[10]
-- arstechnica.com/gadgets/2018/08/wireguard-vpn-review-fast-connections-amaze-but-windows-support-needs-to-happen\[11]
+- wireguard.com/papers/wireguard.pdf
+- eprint.iacr.org/2018/080.pdf
+- courses.csail.mit.edu/6.857/2018/project/He-Xu-Xu-WireGuard.pdf
+- wireguard.com/talks/blackhat2018-slides.pdf
+- arstechnica.com/gadgets/2018/08/wireguard-vpn-review-fast-connections-amaze-but-windows-support-needs-to-happen
 
 WireGuard 密钥管理
+
 WireGuard 通过为每个对等节点提供简单的公钥和私钥来实现双向认证，每个对等节点在设置阶段生成密钥，且只在对等节点之间共享密钥。每个节点除了公钥和私钥，不再需要其他证书或预共享密钥。
 
 在更大规模的部署中，可以使用 Ansible 或 Kubernetes Secrets 等单独的服务来处理密钥的生成、分发和销毁。
 
 下面是一些有助于密钥分发和部署的服务：
 
-- pypi.org/project/wireguard-p2p\[12]
-- trailofbits/algo\[13]
-- StreisandEffect/streisand\[14]
-- its0x08/wg-install\[15]
-- brittson/wireguard_config_maker\[16]
-- wireguardconfig.com\[17]
+- pypi.org/project/wireguard-p2p
+- trailofbits/algo
+- StreisandEffect/streisand
+- its0x08/wg-install
+- brittson/wireguard_config_maker
+- wireguardconfig.com
 
 如果你不想在 wg0.conf 配置文件中直接硬编码，可以从文件或命令中读取密钥，这使得通过第三方服务管理密钥变得更加容易：
 
@@ -193,34 +200,42 @@ PostUp = wg set %i private-key /etc/wireguard/wg0.key <(cat /some/path/%i/privke
 
 前面的例子主要使用 `IPv4`，WireGuard 也支持 `IPv6`。例如：
 
-    [Interface]
-    AllowedIps = 192.0.2.3/24, 2001:DB8::/64
-    [Peer]
-    ...
-    AllowedIPs = 0.0.0.0/0, ::/0
+```ini
+[Interface]
+AllowedIps = 192.0.2.3/24, 2001:DB8::/64
+[Peer]
+...
+AllowedIPs = 0.0.0.0/0, ::/0
+```
 
 ### 转发所有流量
 
 如果你想通过 VPN 转发所有的流量，包括 VPN 子网和公网流量，需要在 `[Peer]` 的 `AllowedIPs` 中添加 `0.0.0.0/0, ::/0`。
-即便只转发 `IPv4` 流量，也要指定一个 `IPv6` 网段，以避免将 `IPv6` 数据包泄露到 VPN 之外。详情参考：**reddit.com/r/WireGuard/comments/b0m5g2/ipv6_leaks_psa_for_anyone_here_using_wireguard_to**\[5]
+
+即便只转发 `IPv4` 流量，也要指定一个 `IPv6` 网段，以避免将 `IPv6` 数据包泄露到 VPN 之外。详情参考：**reddit.com/r/WireGuard/comments/b0m5g2/ipv6_leaks_psa_for_anyone_here_using_wireguard_to**
+
 例如：
 
-    [Interface]
-    # Name = phone.example-vpn.dev
-    Address = 192.0.2.3/32
-    PrivateKey = <private key for phone.example-vpn.dev>
-    [Peer]
-    # Name = public-server1.example-vpn.dev
-    PublicKey = <public key for public-server1.example-vpn.dev>
-    Endpoint = public-server1.example-vpn.dev:51820
-    AllowedIPs = 0.0.0.0/0, ::/0
+```ini
+[Interface]
+# Name = phone.example-vpn.dev
+Address = 192.0.2.3/32
+PrivateKey = <private key for phone.example-vpn.dev>
+[Peer]
+# Name = public-server1.example-vpn.dev
+PublicKey = <public key for public-server1.example-vpn.dev>
+Endpoint = public-server1.example-vpn.dev:51820
+AllowedIPs = 0.0.0.0/0, ::/0
+```
 
 一般只有把 VPN 当做武当纵云梯来用时，才会需要转发所有流量，不多说，点到为止。
 
 ### NAT-to-NAT 连接
 
 如果两个对等节点（peer）都位于 NAT 后面，想不通过中继服务器直接连接，需要保证至少有一个对等节点（peer）具有稳定的公网出口，使用静态公网 IP 或者通过 `DDNS` 动态更新 `FQDN` 都可以。
+
 `WebRTC` 协议可以动态配置两个 NAT 之间的连接，它可以通过信令服务器来检测每个主机的 `IP:Port` 组合。而 WireGuard 没有这个功能，它没有没有信令服务器来动态搜索其他主机，只能硬编码 `Endpoint+ListenPort`，并通过 `PersistentKeepalive` 来维持连接。
+
 总结一下 NAT-to-NAT 连接的前提条件：
 
 - 至少有一个对等节点（peer）有固定的公网 IP，如果都没有固定的公网 IP，也可以使用 `DDNS` 来维护一个稳定的域名。
@@ -228,22 +243,29 @@ PostUp = wg set %i private-key /etc/wireguard/wg0.key <(cat /some/path/%i/privke
 - 所有的对等节点（peer）必须在 `[Peer]` 配置中启用其他对等节点（peer）的 `PersistentKeepalive`，这样就可以维持连接的持久性。
 
 对于通信双方来说，只要**服务端**所在的 NAT 路由器没有指定到 NAT 后面的对等节点（peer）的转发规则，就需要进行 UDP 打洞。
+
 UDP 打洞的原理：
 
-1. `Peer1` 向 `Peer2` 发送一个 UDP 数据包，不过 `Peer2` 的 NAT 路由器不知道该将这个包发给谁，直接丢弃了，不过没关系，这一步的目的是让 `Peer1` 的 NAT 路由器能够接收 UDP 响应并转发到后面的 `Peer1`。
-2. `Peer2` 向 `Peer1` 发送一个 UDP 数据包，由于上一步的作用，`Peer1` 的 NAT 路由器已经建立临时转发规则，可以接收 UDP 响应，所以可以接收到该数据包，并转发到 `Peer1`。
-3. `Peer1` 向 `Peer2` 发送一个 UDP 响应，由于上一步的作用，由于上一步的作用，`Peer2` 的 NAT 路由器已经可以接收 UDP 响应，所以可以接收到该数据包，并转发到 `Peer2`。
+- `Peer1` 向 `Peer2` 发送一个 UDP 数据包，不过 `Peer2` 的 NAT 路由器不知道该将这个包发给谁，直接丢弃了，不过没关系，这一步的目的是让 `Peer1` 的 NAT 路由器能够接收 UDP 响应并转发到后面的 `Peer1`。
+- `Peer2` 向 `Peer1` 发送一个 UDP 数据包，由于上一步的作用，`Peer1` 的 NAT 路由器已经建立临时转发规则，可以接收 UDP 响应，所以可以接收到该数据包，并转发到 `Peer1`。
+- `Peer1` 向 `Peer2` 发送一个 UDP 响应，由于上一步的作用，由于上一步的作用，`Peer2` 的 NAT 路由器已经可以接收 UDP 响应，所以可以接收到该数据包，并转发到 `Peer2`。
 
 **这种发送一个初始的数据包被拒绝，然后利用路由器已建立的转发规则来接收响应的过程被称为 『UDP 打洞』。**
+
 当你发送一个 UDP 数据包出去时，路由器通常会创建一个临时规则来映射源地址/端口和目的地址/端口，反之亦然。从目的地址和端口返回的 UDP 数据包会被转发到原来的源地址和端口，这就是大多数 UDP 应用在 NAT 后面的运作方式（如 BitTorrent、Skype 等）。这个临时规则会在一段时间后失效，所以 NAT 后面的客户端必须通过 `PersistentKeepalive` 定期发送数据包来维持连接的持久性。
+
 当两个对等节点（peer）都位于 NAT 后面时，要想让 UDP 打洞生效，需要两个节点在差不多的时间向对方发送数据包，这就意味着双方需要提前知道对方的公网地址和端口号，可以在 `wg0.conf` 中指定。
 
 #### UDP 打洞的局限性
 
 从 2019 年开始，很多以前用过的老式打洞方法都不再有效了。以前很著名的就是 **pwnat**\[6] 开创的一种新的打洞方法，它能够在不需要代理、第三方服务器、upnp、DMZ、sproofing、dns 转换的情况下实现 NAT 中的 P2P 通信。它的原理也很简单：
+
 通过让客户端假装成为一个互联网上任意的 `ICMP` 跳跃点（ a random hop on the Internet）来解决这个问题，从而让服务端能够获取到客户端的 IP 地址。`traceroute` 命令也是使用这项技术来检测 Internet 上的跳跃点。
+
 具体来说，当服务器启动时，它开始向固定地址 `3.3.3.3` 发送固定的 **ICMP 回应请求包**（ICMP echo request packets）。显然，我们无法从 `3.3.3.3` 收到返回的 **ICMP 回应数据包**（ICMP echo packets）。然而，`3.3.3.3` 并不是我们可以访问的主机，我们也不是想伪装成它来发 ICMP 回应数据包。相反，pwnat 技术的实现原理在于，当我们的客户端想要连接服务端时，客户端（知道服务器 IP 地址）会向服务端送 **ICMP 超时数据包**（ICMP Time Exceeded packet）。这个 ICMP 数据包里面包含了服务端发送到 `3.3.3.3` 的原始固定 **ICMP 回应请求包**。
+
 为什么要这样做呢？好吧，我们假装是互联网上的一个 ICMP 跳越点，礼貌地告诉服务器它原来的 **ICMP 回应请求包**无法传递到 `3.3.3.3`。而你的 NAT 是一个聪明的设备，它会注意到 **ICMP 超时数据包**内的数据包与服务器发出 **ICMP 回应请求包**相匹配。然后它将 **ICMP 超时数据包**转发回 NAT 后面的服务器，包括来自客户端的完整 IP 数据包头，从而让服务端知道客户端 IP 地址是什么！
+
 现在这种类似的 UDP 打洞方法受到了很多的限制，详情可以参考[上篇文章](http://mp.weixin.qq.com/s?__biz=MzU1MzY4NzQ1OA==&mid=2247485991&idx=1&sn=b1a79b565e82ca034ae2c2b2bd9e3bcb&chksm=fbee4aeacc99c3fc0cf45c8ae9a84beb44874383cf337e284083cc81abaf23cbcf65ab58ea39&scene=21#wechat_redirect)，这里不过多阐述。除了 UDP 打洞之外，我们仍然可以使用硬编码的方式指定两个对等节点（peer）的公网地址和端口号，这个方法对大多数 NAT 网络都有效。
 
 #### 源端口随机化
@@ -254,8 +276,8 @@ UDP 打洞的原理：
 
 上节提到了，如果所有的对等节点（peer）都在具有严格的 UDP 源端口随机化的 NAT 后面，就无法直接实现 `NAT-to-NAT` 连接，但通过第三方的信令服务器是可以实现的。信令服务器相当于一个中转站，它会告诉通信双方关于对方的 `IP:Port` 信息。这里有几个项目可以参考：
 
-- **takutakahashi/wg-connect**\[7]
-- **git.zx2c4.com/wireguard-tools/tree/contrib/nat-hole-punching**\[8]
+- **takutakahashi/wg-connect**
+- **git.zx2c4.com/wireguard-tools/tree/contrib/nat-hole-punching**
 
 #### 动态 IP 地址
 
@@ -264,23 +286,27 @@ WireGuard 只会在启动时解析域名，如果你使用 `DDNS` 来动态更�
 NAT-to-NAT 配置示例：
 Peer1：
 
-    [Interface]
-    ...
-    ListenPort = 12000
-    [Peer]
-    ...
-    Endpoint = peer2.example-vpn.dev:12000
-    PersistentKeepalive = 25
+```ini
+[Interface]
+...
+ListenPort = 12000
+[Peer]
+...
+Endpoint = peer2.example-vpn.dev:12000
+PersistentKeepalive = 25
+```
 
 Peer2：
 
-    [Interface]
-    ...
-    ListenPort = 12000
-    [Peer]
-    ...
-    Endpoint = peer1.example-vpn.dev:12000
-    PersistentKeepalive = 25
+```ini
+[Interface]
+...
+ListenPort = 12000
+[Peer]
+...
+Endpoint = peer1.example-vpn.dev:12000
+PersistentKeepalive = 25
+```
 
 更多资料：
 
@@ -296,12 +322,16 @@ Peer2：
 ### 动态分配子网 IP
 
 这里指的是对等节点（peer）的 VPN 子网 IP 的动态分配，类似于 DHCP，不是指 `Endpoint`。
-WireGuard 官方已经在开发动态分配子网 IP 的功能，具体的实现可以看这里：**WireGuard/wg-dynamic**\[17]
+
+WireGuard 官方已经在开发动态分配子网 IP 的功能，具体的实现可以看这里：**WireGuard/wg-dynamic**
+
 当然，你也可以使用 `PostUp` 在运行时从文件中读取 IP 值来实现一个动态分配 IP 的系统，类似于 Kubernetes 的 CNI 插件。例如：
 
-    [Interface]
-    ...
-    PostUp = wg set %i allowed-ips /etc/wireguard/wg0.key <(some command)
+```ini
+[Interface]
+...
+PostUp = wg set %i allowed-ips /etc/wireguard/wg0.key <(some command)
+```
 
 ### 奇技淫巧
 
@@ -326,65 +356,73 @@ WireGuard 也可以跑在容器中，最简单的方式是使用 `--privileged` 
 下面给出一个具体的示例，本示例中的 `vpn_test` 容器通过 WireGuard 中继服务器来路由所有流量。本示例中给出的容器配置是 `docker-compose` 的配置文件格式。
 中继服务器容器配置：
 
-    version: '3'
-    services:
-      wireguard:
-        image: linuxserver/wireguard
-        ports:
-          - 51820:51820/udp
-        cap_add:
-          - NET_ADMIN
-          - SYS_MODULE
-        volumes:
-          - /lib/modules:/lib/modules
-          - ./wg0.conf:/config/wg0.conf:ro
+```yaml
+version: '3'
+services:
+  wireguard:
+    image: linuxserver/wireguard
+    ports:
+      - 51820:51820/udp
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    volumes:
+      - /lib/modules:/lib/modules
+      - ./wg0.conf:/config/wg0.conf:ro
+```
 
 中继服务器 WireGuard 配置 `wg0.conf`：
 
-    [Interface]
-    # Name = relay1.wg.example.com
-    Address = 192.0.2.1/24
-    ListenPort = 51820
-    PrivateKey = oJpRt2Oq27vIB5/UVb7BRqCwad2YMReQgH5tlxz8YmI=
-    DNS = 1.1.1.1,8.8.8.8
-    PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE; ip6tables -A FORWARD -i wg0  -j ACCEPT; ip6tables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-    PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE; ip6tables -D FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
-    [Peer]
-    # Name = peer1.wg.example.com
-    PublicKey = I+hXRAJOG/UE2IQvIHsou2zTgkUyPve2pzvHTnd/2Gg=
-    AllowedIPs = 192.0.2.2/32
+```ini
+[Interface]
+# Name = relay1.wg.example.com
+Address = 192.0.2.1/24
+ListenPort = 51820
+PrivateKey = oJpRt2Oq27vIB5/UVb7BRqCwad2YMReQgH5tlxz8YmI=
+DNS = 1.1.1.1,8.8.8.8
+PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE; ip6tables -A FORWARD -i wg0  -j ACCEPT; ip6tables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE; ip6tables -D FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+[Peer]
+# Name = peer1.wg.example.com
+PublicKey = I+hXRAJOG/UE2IQvIHsou2zTgkUyPve2pzvHTnd/2Gg=
+AllowedIPs = 192.0.2.2/32
+```
 
 客户端容器配置：
 
-    version: '3'
-    services:
-      wireguard:
-        image: linuxserver/wireguard
-        cap_add:
-          - NET_ADMIN
-          - SYS_MODULE
-        volumes:
-          - /lib/modules:/lib/modules
-          - ./wg0.conf:/config/wg0.conf:ro
+```yaml
+version: '3'
+services:
+  wireguard:
+    image: linuxserver/wireguard
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    volumes:
+      - /lib/modules:/lib/modules
+      - ./wg0.conf:/config/wg0.conf:ro
 
-      vpn_test:
-        image: curlimages/curl
-        entrypoint: curl -s http://whatismyip.akamai.com/
-        network_mode: 'service:wireguard'
+  vpn_test:
+    image: curlimages/curl
+    entrypoint: curl -s http://whatismyip.akamai.com/
+    network_mode: 'service:wireguard'
+```
 
 客户端 WireGuard 配置 `wg0.conf`：
 
-    [Interface]
-    # Name = peer1.wg.example.com
-    Address = 192.0.2.2/32
-    PrivateKey = YCW76edD4W7nZrPbWZxPZhcs32CsBLIi1sEhsV/sgk8=
-    DNS = 1.1.1.1,8.8.8.8
-    [Peer]
-    # Name = relay1.wg.example.com
-    Endpoint = relay1.wg.example.com:51820
-    PublicKey = zJNKewtL3gcHdG62V3GaBkErFtapJWsAx+2um0c0B1s=
-    AllowedIPs = 192.0.2.1/24,0.0.0.0/0
-    PersistentKeepalive = 21
+```ini
+[Interface]
+# Name = peer1.wg.example.com
+Address = 192.0.2.2/32
+PrivateKey = YCW76edD4W7nZrPbWZxPZhcs32CsBLIi1sEhsV/sgk8=
+DNS = 1.1.1.1,8.8.8.8
+[Peer]
+# Name = relay1.wg.example.com
+Endpoint = relay1.wg.example.com:51820
+PublicKey = zJNKewtL3gcHdG62V3GaBkErFtapJWsAx+2um0c0B1s=
+AllowedIPs = 192.0.2.1/24,0.0.0.0/0
+PersistentKeepalive = 21
+```
 
 # WireGuard 关联文件与配置
 
@@ -395,6 +433,7 @@ WireGuard 也可以跑在容器中，最简单的方式是使用 `--privileged` 
 ## wg-quick
 
 > 参考：
+> 
 > - [Manual(手册)，wg-quick(8)](https://man7.org/linux/man-pages/man8/wg-quick.8.html)
 
 ### Syntax(语法)

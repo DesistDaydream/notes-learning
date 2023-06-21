@@ -7,9 +7,10 @@ weight: 1
 # 概述
 
 > 参考：
-> - [官方文档，管理-配置](https://grafana.com/docs/grafana/latest/administration/configuration/)
+> 
+> - [官方文档，Setup-配置 Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/)
 
-Grafna 可以通过 ini 格式的配置文件、命令行标志、环境变量来配置运行时行为。
+Grafna 可以通过 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的配置文件、命令行标志、环境变量来配置运行时行为。
 
 环境变量 与 配置文件 中的配置具有一一对应的关系。环境变量可以覆盖配置文件中的配置(即.环境变量的优先级更高，如果有相通配置，以环境变量的配置为主)。
 
@@ -61,7 +62,7 @@ Grafana 容器镜像会默认配置一些环境变量，以指定一些基本的
 ## [server]
 
 **http_port = \<INT>** # Grafana 监听的端口。`默认值：3000`。
-**root_url = \<STRING> **# 通过 Web 浏览器访问 Grafana 的完整 URL。`默认值：%(protocol)://%(domain)s:%(http_port)s/`
+**root_url = \<STRING>** # 通过 Web 浏览器访问 Grafana 的完整 URL。`默认值：%(protocol)://%(domain)s:%(http_port)s/`
 
 - %(protocol)、%(domain)、%(http_port) 对应配置文件中 \[server] 部分的 protocol、domain、http_port 字段
 - root_url 常用于重定向和发送电子邮件时填写 URL
@@ -77,7 +78,7 @@ Grafana 容器镜像会默认配置一些环境变量，以指定一些基本的
 
 匿名访问的配置，配置匿名访问，可以使无需任何登录操作即可访问 Grafana
 **enabled = \<BOOL>** # 是否开启匿名访问，开启后，可以匿名访问指定的 Organization(组织) 的仪表盘。`默认值：false`。
-**org_name = \<STRING> **# 匿名用户可以访问的组织名称。`默认值：Main Org.`。
+**org_name = \<STRING>** # 匿名用户可以访问的组织名称。`默认值：Main Org.`。
 **org_role = \<STRING>** # 通过匿名访问的组织应该具有的权限。`默认值：Viewer`。
 
 - 可用的值有 Editor 和 Admin。
@@ -85,7 +86,9 @@ Grafana 容器镜像会默认配置一些环境变量，以指定一些基本的
 ## [log]
 
 Grafana 日志配置
+
 **mode = \<console | file | syslog>** # Grafana 记录日志的模式，多种模式以空格分隔。`默认值： console file`
+
 **level = \<debug | info | warn | error | critical>** # 日志级别。`默认值：info`
 
 ## [smtp]
@@ -112,7 +115,7 @@ smtp:
   from_name: Grafana
 ```
 
-```nginx
+```ini
 [smtp]
 enabled = true
 from_address = lich_wb@ehualu.com

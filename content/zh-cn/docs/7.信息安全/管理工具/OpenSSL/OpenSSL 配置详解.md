@@ -86,8 +86,8 @@ OpenSSL 配置文件为 INI 格式的配置扩展了很多功能，并规定了�
 
 # \[req]
 
-**distinguished_name = <SectionName>** # 生成证书或 CSR 时，如何配置 DN(专有名称)。
-**req_extensions = <SectionName>** # 要添加到 CSR 的扩展信息。
+**distinguished_name = \<SectionName>** # 生成证书或 CSR 时，如何配置 DN(专有名称)。
+**req_extensions = \<SectionName>** # 要添加到 CSR 的扩展信息。
 
 ## \[Distinguished_Name]
 
@@ -98,7 +98,7 @@ OpenSSL 配置文件为 INI 格式的配置扩展了很多功能，并规定了�
 **basicConstraints = CA:FALSE** #
 **keyUsage = nonRepudiation, digitalSignature, keyEncipherment** #
 **extendedKeyUsage = clientAuth, serverAuth** #
-**subjectAltName = <SectionName>**#
+**subjectAltName = \<SectionName>**#
 
 ### \[SubjectAltName]
 
@@ -115,10 +115,11 @@ IP.1 = 1.1.1.1
 
 ## ca Section
 
-\[ ca ]
+```
+[ ca ]
 default*ca = CA_default /\_The default ca section*/
 \####################################################################
-\[ CA*default ]
+[ CA*default ]
 dir = /etc/pki/CA /* Where everything is kept _/
  /_ #### 这是第一个 openssl 目录结构中的目录 _/
 certs = $dir/certs /_ Where the issued certs are kept(已颁发的证书路径，即 CA 或自签的) _/
@@ -154,7 +155,7 @@ preserve = no /_ keep passed DN ordering(Distinguished Name 顺序，一般设�
 policy = policy_match /_ 证书匹配策略,此处表示引用\[ policy*match ]的策略*/
 /*证书匹配策略定义了证书请求的 DN 字段(field)被 CA 签署时和 CA 证书的匹配规则*/
 /*对于 CA 证书请求，这些匹配规则必须要和父 CA 完全相同*/
-\[ policy*match ]
+[ policy*match ]
 countryName = match /* match 表示请求中填写的该字段信息要和 CA 证书中的匹配 _/
 stateOrProvinceName = match
 organizationName = match
@@ -164,7 +165,7 @@ emailAddress = optional
 /_ For the 'anything' policy*/
 /* At this point in time, you must list all acceptable 'object' types. _/
 /_ 以下是没被引用的策略扩展，只要是没被引用的都是被忽略的 _/
-\[ policy_anything ]
+[ policy_anything ]
 countryName = optional
 stateOrProvinceName = optional
 localityName = optional
@@ -173,18 +174,21 @@ organizationalUnitName = optional
 commonName = supplied
 emailAddress = optional
 /_ 以下是添加的扩展项 usr*cert 的内容*/
-\[ usr*cert ]
+[ usr*cert ]
 basicConstraints=CA:FALSE /* 基本约束，CA:FALSE 表示该证书不能作为 CA 证书，即不能给其他人颁发证书*/
 /* keyUsage = critical,keyCertSign,cRLSign # 指定证书的目的，也就是限制证书的用法*/
 /* 除了上面两个扩展项可能会修改下，其余的扩展项别管了，如下面的 \_/
 nsComment = "OpenSSL Generated Certificate"
 subjectKeyIdentifier=hash
 authorityKeyIdentifier=keyid,issuer
+```
 
 ## req Section
 
 为 `openssl req` 命令提供运行时参数
-\[ req ]
+
+```
+[ req ]
 default*bits = 2048 /* 生成证书请求时用到的私钥的密钥长度 _/
 default_md = sha1 /_ 证书请求签名时的单向加密算法 _/
 default_keyfile = privkey.pem /_ 默认新创建的私钥存放位置， _/
@@ -226,7 +230,7 @@ commonName = Common Name (eg, your name or your server's hostname) /*主机名(C
 commonName*max = 64
 emailAddress = Email Address /* Email 地址，很多时候不需要该项的 _/
 emailAddress_max = 64
-\[ req_attributes ] /_ 该段是为了某些特定软件的运行需要而设定的， _/
+[ req_attributes ] /_ 该段是为了某些特定软件的运行需要而设定的， _/
  /_ 现在一般都不需要提供 challengepassword _/
  /_ 所以该段几乎用不上 _/
  /_ 所以不用管这段 _/
@@ -234,11 +238,11 @@ challengePassword = A challenge password
 challengePassword_min = 4
 challengePassword_max = 20
 unstructuredName = An optional company name
-\[ v3_req ]
+[ v3_req ]
 /_ Extensions to add to a certificate request _/
 basicConstraints = CA:FALSE
 keyUsage = nonRepudiation, digitalSignature, keyEncipherment
-\[ v3_ca ]
+[ v3_ca ]
 /_ Extensions for a typical CA _/
 subjectKeyIdentifier=hash
 authorityKeyIdentifier=keyid:always,issuer
@@ -247,17 +251,18 @@ basicConstraints = CA:true
 /*如果真的需要申请为 CA/*么该设置可以如此配置 \*/
 
 可以自定义 DN(Distinguished Name)段中的字段信息，注意 ca 段中的 policy 指定的匹配规则中如果指定了 match 或这 supplied 的则 DN 中必须定义。例如下面的示例：由于只有 countryName、organizationName 和 commonName 被设定为 match 和 supplied，其余的都是 optional，所以在 DN 中可以只定义这 3 个字段，而且在 DN 中定义了自定义的名称。
-\[policy_to_match]
+[policy_to_match]
 countryName = match
 stateOrProvinceName = optional
 organizationName = match
 organizationalUnitName = optional
 commonName = supplied
 emailAddress = optional
-\[DN]
+[DN]
 countryName = "C"
 organizationName = "O"
 commonName = "Root CA"
+```
 
 ## tas Section
 
