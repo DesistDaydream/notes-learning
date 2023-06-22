@@ -7,6 +7,7 @@ weight: 20
 # 概述
 
 > 参考：
+> 
 > - [GitHub 项目，WayneD/rsync](https://github.com/WayneD/rsync)
 > - [官网](https://rsync.samba.org/)
 > - [rsync+inotify 数据实时同步介绍与 K8s 实战应用](https://mp.weixin.qq.com/s/VxnDEQ8e3yQOLJi0JwtyjA)

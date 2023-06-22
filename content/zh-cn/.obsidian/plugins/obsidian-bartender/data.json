@@ -1321,8 +1321,8 @@
     "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard": [
       "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard/_index.md",
       "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard/WireGuard.md",
-      "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard/Wireguard 配置详解.md",
       "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard/WireGuard 部署.md",
+      "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard/Wireguard 配置详解.md",
       "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard/应用示例",
       "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard/Wireguard 全互联模式（full mesh）权威指南",
       "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard/流量伪装.md"
@@ -1436,7 +1436,7 @@
       "docs/5.数据存储/数据管理工具/Percona/Percona Monitoring and Management.md"
     ],
     "docs/5.数据存储/数据管理工具/Rclone": [
-      "docs/5.数据存储/数据管理工具/Rclone/_index_.md",
+      "docs/5.数据存储/数据管理工具/Rclone/_index.md",
       "docs/5.数据存储/数据管理工具/Rclone/Rclone.md",
       "docs/5.数据存储/数据管理工具/Rclone/Rclone 配置.md"
     ],

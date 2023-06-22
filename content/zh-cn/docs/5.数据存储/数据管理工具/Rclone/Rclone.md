@@ -75,11 +75,26 @@ copyto 可以在上传单个文件到目标目录下时，改变文件的原名�
 
 # rclone mount
 
+https://rclone.org/commands/rclone_mount/
+
 将 Remote 作为文件系统挂载到操作系统中
 
 ## Syntax(语法)
 
 **rclone mount REMOTE:PATH /PATH/TO/MountPoint \[FLAGS]**
+
+**FLAGS**
+
+VFS 文件缓存相关标志
+
+- **--cache-dir STRING** # 指定用于保存缓存文件的目录。`默认值: %LOCALAPPDATA%\rclone\`
+  - `Linux 默认值: ~/.cache/rclone`
+- **--vfs-cache-mode STRING** # 缓存模式，可用的值有: off|minimal|writes|full。`默认值: off`
+- **--vfs-cache-max-age DURATION** # 缓存中的对象保存的最大时间，超时的将被删除。`默认值: 1h` 
+- --vfs-cache-max-size SizeSuffix      Max total size of objects in the cache (default off)
+- --vfs-cache-poll-interval duration   Interval to poll the cache for stale objects (default 1m0s)
+- --vfs-write-back duration            Time to writeback files after last use when using cache (default 5s)
+
 
 ## EXAMPLE
 
@@ -108,3 +123,16 @@ copyto 可以在上传单个文件到目标目录下时，改变文件的原名�
 ```
 rclone mount --config rclone.conf alist:/ Z: --cache-dir D:\appdata\rclone --vfs-cache-mode full --header "Referer:"
 ```
+
+可以参考 PowerShell 的 [Management](docs/1.操作系统/Y.Windows%20管理/Windows%20管理工具/PowerShell%20内置管理工具/Management.md) 模块下的 Start-Process 命令的，以便在后台运行，效果如下：
+
+```powershell
+Start-Process "alist.exe" -ArgumentList "server --data D:\appdata\alist" -WindowStyle Hidden -RedirectStandardOutput "D:\Tools\Scripts\log\alist.log" -RedirectStandardError "D:\Tools\Scripts\log\alist-err.log"
+
+Start-Process "rclone.exe" `
+-ArgumentList "mount alist-net:/ Z: --cache-dir D:\appdata\rclone-cache --vfs-cache-mode full --vfs-cache-max-age 24h --header Referer:" `
+-WindowStyle Hidden `
+-RedirectStandardOutput "D:\Tools\Scripts\log\rclone.log" -RedirectStandardError "D:\Tools\Scripts\log\rclone-err.log"
+```
+
+然后可以参考 Windows 管理中的 [设置开机自启动](docs/1.操作系统/Y.Windows%20管理/设置开机自启动.md) 以便开机时自动挂载。
