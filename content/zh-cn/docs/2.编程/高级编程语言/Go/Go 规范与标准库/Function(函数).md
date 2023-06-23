@@ -6,6 +6,8 @@ title: Function(函数)
 
 > 参考：
 
+Function(函数)
+
 DRY 原则：Don't Repeart Yourself(不要重复你自己)
 
 Golang 有 3 种类型的函数：

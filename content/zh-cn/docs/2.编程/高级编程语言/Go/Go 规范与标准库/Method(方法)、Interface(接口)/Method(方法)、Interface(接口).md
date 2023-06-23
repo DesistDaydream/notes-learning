@@ -5,6 +5,7 @@ title: Method(方法)、Interface(接口)
 # 概述
 
 > 参考：
+> 
 > - [公众号-新亮笔记，回答连个被频繁问道的代码写法问题](https://mp.weixin.qq.com/s/gpMzEoRofGE9LmayeYw1qw)
 >     - 1.强制检查类型是否实现接口
 >     - 2.强制接口中所有方法只能在本包中实现

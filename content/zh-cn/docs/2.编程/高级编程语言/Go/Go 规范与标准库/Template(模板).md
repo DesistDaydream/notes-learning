@@ -5,9 +5,10 @@ title: Template(模板)
 # 概述
 
 > 参考：
->
+> 
+> - [Go 标准库，text/template](https://pkg.go.dev/text/template)
+> - [Go 标准库，html/template](https://pkg.go.dev/html/template)
 > - [骏马金龙，Go 标准库：Go template 用法详解](https://www.cnblogs.com/f-ck-need-u/p/10053124.html)
-> - [Go Package，标准库-text-template](https://pkg.go.dev/text/template)
 
 Go Template(模板)
 
