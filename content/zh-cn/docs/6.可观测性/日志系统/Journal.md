@@ -68,7 +68,7 @@ Systemd 统一管理所有 Unit 的启动日志。带来的好处就是，可以
 格式选项
 
 - **--no-pager** # 在单一页面显示信息，不分页。默认情况下，若日志过长，需要使用 → 方向键翻页才能查看后面的日志内容。
-- **-o, --output=<STRING>** # 指定输出格式。`默认值：short`
+- **-o, --output=\<STRING>** # 指定输出格式。`默认值：short`
   - 可用的格式有：json、json-pretty、verbose、export、with-unit 等等
 
 过滤选项

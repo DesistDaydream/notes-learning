@@ -36,12 +36,12 @@ Directives(指令) 分为如下几种：
 
 将多个相关的 块指令 和 简单指令 组合在一起的指令。一共分为 4 类 Contexts：
 
-- [**events {}**](docs/Web/Nginx/Nginx%20配置详解/events%20模块指令.md) # 用于配置如何处理常规连接。
-- [**http {}**](docs/Web/Nginx/Nginx%20配置详解/http%20模块指令.md) # http 流量处理配置，通常用来配置 7 层代理。由 ngx_http_core_module 模块处理其中配置
+- [**events {}**](/docs/Web/Nginx/Nginx%20配置详解/events%20模块指令.md) # 用于配置如何处理常规连接。
+- [**http {}**](/docs/Web/Nginx/Nginx%20配置详解/http%20模块指令.md) # http 流量处理配置，通常用来配置 7 层代理。由 ngx_http_core_module 模块处理其中配置
 - **mail {}** # mail 流量处理配置。由 ngx_mail_core_module 模块处理其中配置
-- [**stream {}**](docs/Web/Nginx/Nginx%20配置详解/stream%20模块指令.md) # TCP 和 UDP 流量处理配置，通常用来配置 4 层代理。由 ngx_stream_core_module 模块处理其中配置
+- [**stream {}**](/docs/Web/Nginx/Nginx%20配置详解/stream%20模块指令.md) # TCP 和 UDP 流量处理配置，通常用来配置 4 层代理。由 ngx_stream_core_module 模块处理其中配置
 
-[**main**](docs/Web/Nginx/Nginx%20配置详解/core%20模块指令.md) # 如果某些指令在上述 4 类 Contexts 之外，则称之为 main Context。可以说，events{}、http{}、mail{}、stream{} 四个 Contexts，都属于 main 上下文中的指令。说白了，main 上下文就是 Nginx 的配置文件~其实，main 就是指最顶层的 core 模块指令
+[**main**](/docs/Web/Nginx/Nginx%20配置详解/core%20模块指令.md) # 如果某些指令在上述 4 类 Contexts 之外，则称之为 main Context。可以说，events{}、http{}、mail{}、stream{} 四个 Contexts，都属于 main 上下文中的指令。说白了，main 上下文就是 Nginx 的配置文件~其实，main 就是指最顶层的 core 模块指令
 
 每一个 Context 类型的指令都对应控制一个 NGX_CORE_MODULE 类型的模块
 
@@ -126,7 +126,7 @@ Note：
 
 ## Virtual Servers(虚拟主机) 抽象概念
 
-**Virtual Servers(虚拟主机)**是 Nginx 的抽象概念，Virtual Servers 用来定义 **流量入口**和 **流量处理**。而这两块功能也是 Nginx 正常工作的最基本功能。
+**Virtual Servers(虚拟主机)** 是 Nginx 的抽象概念，Virtual Servers 用来定义 **流量入口**和 **流量处理**。而这两块功能也是 Nginx 正常工作的最基本功能。
 
 ### 流量入口
 
@@ -142,7 +142,7 @@ Note：
 
 ## 总结
 
-Virtual Server 的概念，通过 **`server{}`**指令来实现。在每个流量处理的配置环境中，都应该包含一个或多个 server{} 指令。server{} 指令是 nginx 正常运行的基础配置。虚拟主机，顾名思义，对于用户来说，访问的就是一台一台服务器，但是对于 nginx 来说，是虚拟出来的。
+Virtual Server 的概念，通过 **`server{}`** 指令来实现。在每个流量处理的配置环境中，都应该包含一个或多个 server{} 指令。server{} 指令是 nginx 正常运行的基础配置。虚拟主机，顾名思义，对于用户来说，访问的就是一台一台服务器，但是对于 nginx 来说，是虚拟出来的。
 
 1. **对于 http 流量(http 配置环境)** # 每个 `server{} 指令块` 控制访问特定域名或者 ip 地址上对资源请求的处理。server 指令块中的一个或多个 location 指令块定义了根据 URI 来处理流量的规则
    1. 比如用户访问 map.baidu.com 和 baike.baidu.com。看上去是访问了两台服务器，但是实际上，这是经过作为代理设备的 ngxin 来进行选择后的虚拟服务器。一般情况下，baike.baidu.com 与 map.baidu.com 这俩域名所解析出来的 ip 应该是同一个公网 ip(比如 123.123.123.123)(baidu 有钱用很多公网 IP 除外)。所以可以想到，用户在浏览器输入任何一个域名，访问请求都会来到 123.123.123.123，然后根据请求报文中的 Request-URL 字段中的域名与 server_name 进行配对，用户输入的 URL 中域名与哪个 server_name 相同，则该请求就会通过这个 server 来进行处理，然后根据该 server 中 location 的关键字来决定把改请求转发给哪里。
@@ -153,16 +153,24 @@ Virtual Server 的概念，通过 **`server{}`**指令来实现。在每个流�
 
 # 指令详解
 
-## [main 模块指令](/docs/3.集群与分布式/Nginx/Nginx%20 配置详解/core%20 模块指令.md 配置详解/core 模块指令.md)\*\*
+## main 模块指令
 
-## [events 模块指令](/docs/3.集群与分布式/Nginx/Nginx%20 配置详解/events%20 模块指令.md 配置详解/events 模块指令.md)
+详见 [core 模块指令](/docs/Web/Nginx/Nginx%20配置详解/core%20模块指令.md)
 
-[http 模块指令](/docs/3.集群与分布式/Nginx/Nginx%20 配置详解/http%20 模块指令.md 配置详解/http 模块指令.md)
+## events 模块指令
+
+详见 [events 模块指令](/docs/Web/Nginx/Nginx%20配置详解/events%20模块指令.md)
+
+## http 模块指令
+
+详见 [http 模块指令](/docs/Web/Nginx/Nginx%20配置详解/http%20模块指令.md)
 
 常用来配置七层代理、web 应用
 
 ## mail 模块指令
 
-[stream 模块指令](/docs/3.集群与分布式/Nginx/Nginx%20 配置详解/stream%20 模块指令.md 配置详解/stream 模块指令.md)
+## stream 模块指令
+
+详见 [stream 模块指令](/docs/Web/Nginx/Nginx%20配置详解/stream%20模块指令.md)
 
 常用来配置四层代理

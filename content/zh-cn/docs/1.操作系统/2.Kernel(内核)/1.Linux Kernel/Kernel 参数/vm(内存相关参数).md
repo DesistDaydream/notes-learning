@@ -11,7 +11,7 @@ title: vm(内存相关参数)
 
 ### vm.drop_caches = NUM
 
-写入该文件可以清理内存中的缓存。详见《[Memory 的缓存机制](Memory%20 的缓存机制.md 管理/Memory 的缓存机制.md)》章节中“缓存清理”部分
+写入该文件可以清理内存中的缓存。详见《[Memory 的缓存机制](Memory%20 的缓存机制.md%20管理/Memory%20的缓存机制.md)》章节中“缓存清理”部分
 
 ### vm.swappiness = 10
 

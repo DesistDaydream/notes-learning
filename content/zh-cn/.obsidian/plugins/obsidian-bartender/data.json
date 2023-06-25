@@ -1861,6 +1861,20 @@
     "docs/移动设备": [
       "docs/移动设备/Android.md",
       "docs/移动设备/Android 开发.md"
+    ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress/Ingress.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress/Ingress Controller"
+    ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress/Ingress Controller/Nginx": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress/Ingress Controller/Nginx/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress/Ingress Controller/Nginx/Nginx.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress/Ingress Controller/Nginx/ConfigMap 配置详解.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress/Ingress Controller/Nginx/Annotations 配置详解.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress/Ingress Controller/Nginx/命令行标志.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress/Ingress Controller/Nginx/实现应用灰度发布.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress/Ingress Controller/Nginx/优化.md"
     ]
   },
   "actionBarOrder": {},

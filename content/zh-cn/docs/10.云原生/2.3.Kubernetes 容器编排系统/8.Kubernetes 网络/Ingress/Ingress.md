@@ -1,11 +1,13 @@
 ---
 title: Ingress
+weight: 1
 ---
 
 # 概述
 
 > 参考：
-> - [官方文档,概念-服务，负载均衡和网络-Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+> 
+> - [官方文档，概念-服务，负载均衡和网络-Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 > - 参考：<https://zhangguanzhang.github.io/2018/10/06/IngressController/>
 
 Ingress 可以简单理解为是 Service 的 Service，是 Kubernetes 对“反向代理”概念的抽象。是一个专门给 kubernetes 用的 haproxy
@@ -27,7 +29,9 @@ Service 都是工作在 4 层模型上的，如果在 k8s 上的应用基于 htt
 Ingress Controller 就是 Ingress 资源的控制器，用来让 Ingress 可以按照设定的状态来运行。同时可以当做具有类似 ngxin、haproxy 等的反向代理程序。
 
 可以实现 IngressController 功能的工具有 HAProxy，Nginx，Traefik，Envoy 等等；HAProxy 是最不好用的，Nginx 还可以，Traefik 适应性很好，Envoy 为微服务而生
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/yq5gfx/1616117925361-31b9eb01-ac78-46e0-b300-1c179dfa9300.png)
+
 工作模式：
 
 1. IngressController 以 Pod 方式运行于 Kubernetes 集群之上，并时刻监听 Ingress 对象的状态

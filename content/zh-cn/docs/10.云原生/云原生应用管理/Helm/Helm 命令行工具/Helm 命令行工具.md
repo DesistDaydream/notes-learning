@@ -3,13 +3,17 @@ title: Helm 命令行工具
 weight: 1
 ---
 
-# helm 命令行工具详解
+# 概述
 
-# **helm COMMANDS \[FLAGS]**
+# Syntax(语法)
+
+**helm COMMANDS \[FLAGS]**
 
 Flags 与 Options 一样，是标志、标记的意思，就是指该命令的各个选项
 
-# **FLAGS：全局 Flags**
+## FLAGS
+
+全局 Flags
 
 - --add-dir-header                   If true, adds the file directory to the header
 - --alsologtostderr                  log to standard error as well as files
@@ -32,9 +36,9 @@ Flags 与 Options 一样，是标志、标记的意思，就是指该命令的�
 - -v, --v Level                          number for the log level verbosity
 - --vmodule moduleSpec               comma-separated list of pattern=N settings for file-filtered logging
 
-# 可用的子命令如下
+# 子命令
 
-## completion # 为指定的 shell（bash 或 zsh）生成命令自动补全脚本
+## completion - 为指定的 shell（bash 或 zsh）生成命令自动补全脚本
 
 helm completion SHELL \[FLAGS]
 
@@ -45,27 +49,27 @@ EXAMPLE
 - echo 'source <(helm completion bash)' >> ~/.bashrc
 - helm completion bash | sudo tee /etc/bash_completion.d/helm > /dev/null
 
-## create # 用给定的名字创建一个新的 chart
+## create - 用给定的名字创建一个新的 chart
 
 创建完成后会创建一个 chart 目录，该目录包含基本的可用文件，然后自己可以自定义其中内容
 
-## dependency # 管理一个 chart 的依赖性
+## dependency - 管理一个 chart 的依赖性
 
 env # Helm client environment information
 
-## get # 获取指定 release 的扩展信息
+## get - 获取指定 release 的扩展信息
 
 详见：[helm 查询相关命令](/docs/10.云原生/云原生应用管理/Helm/Helm%20命令行工具/helm%20查询相关命令.md)
 
-## history # 获取 release 的历史版本
+## history - 获取 release 的历史版本
 
-## install # 安装一个 chart archive(可以创建出来一个 release)
+## install - 安装一个 chart archive(可以创建出来一个 release)
 
 详见：[install、upgrade 子命令](/docs/10.云原生/云原生应用管理/Helm/Helm%20命令行工具/install、upgrade%20子命令.md)
 
-## lint # 检查一个 chart，看看可能出现的问题。examines a chart for possible issues
+## lint - 检查一个 chart，看看可能出现的问题。examines a chart for possible issues
 
-## list # 列出所有 release
+## list - 列出所有 release
 
 helm list \[FLAGS] \[FILTER]
 
@@ -77,7 +81,7 @@ EXAMPLE
 
 - helm list -A # 列出所有名称空间下已经部署的或者失败的所有 release
 
-## package # 打包一个 chart 到定好版本的 chart archive 文件中
+## package - 打包一个 chart 到定好版本的 chart archive 文件中
 
 该命令会查找指定路径下的 Chart.yaml 文件，然后打包该目录，如果目录中没有 Chart.yaml 文件则无法打包
 
@@ -87,24 +91,24 @@ EXAMPLE
 
 - helm package myapp/ # 将 myapp 目录下的内容打包成一个 charts archive
 
-## plugin # 安装、显示、卸载 helm 的插件
+## plugin - 安装、显示、卸载 helm 的插件
 
-## pull # 从 repository 中下载指定的 chart。Note：下载的是压缩包，可以解压修改其中内容
+## pull - 从 repository 中下载指定的 chart。Note：下载的是压缩包，可以解压修改其中内容
 
-## repo # 创建、列出、移除、更新、索引 chart 的所有仓库
+## repo - 创建、列出、移除、更新、索引 chart 的所有仓库
 
-helm repo \[SubCommand]
+helm repo [SubCommand]
 
 SubCommand
 
 - add # 添加一个 charts 仓库
-    - helm repo add \[FLAGS] NAME URL # 添加一个名为 Name,url 为 URL 的仓库
-    - EXAMPLE
-        - helm repo add lichenhao https://www.lichenhao.com
+  - helm repo add [FLAGS] NAME URL # 添加一个名为 Name,url 为 URL 的仓库
+  - EXAMPLE
+    - helm repo add lichenhao https://www.lichenhao.com
 - index       generate an index file given a directory containing packaged charts
 - list        list chart repositories
-    - EXAMPLE
-        - helm repo list
+  - EXAMPLE
+    - helm repo list
 - remove      remove a chart repository
 - update      update information of available charts locally from chart repositories
 
@@ -112,7 +116,7 @@ SubCommand
 
 ## search # 在可以存储 Helm 图表的各种地方进行搜索，以显示可用的 helm charts
 
-**helm search \[COMMAND]**
+**helm search [COMMAND]**
 
 ### hub # 在 helm hub 或 Monocular 实例中搜索 charts
 
@@ -126,27 +130,27 @@ FLAGS
 
 **helm search repo \[KEYWORD] \[FLAGS]**
 
+KEYWORD 可以指定 `仓库名/图表名` 以搜索指定 仓库或 Chart
+
 FLAGS
 
 - **--devel** # 搜索结果包含开发版等效于 --version 标志的值'>0.0.0-0'。如果设置了 --version 标志，则忽略该标志。
 - **--max-col-width UINT** # 输出表的每列的最大宽度为 UINT。(默认为 50)
 - **-o, --output FORMAT** # 以指定的格式打印输出。 允许的值：table，json，yaml（默认表）
 - -r, --regexp               use regular expressions for searching repositories you have added
-- --version string       search using semantic versioning constraints on repositories you have added
-- -l, --versions             show the long listing, with each version of each chart on its own line, for repositories you have added
-
-EXAMPLE
+- **--version STRING** #        search using semantic versioning constraints on repositories you have added
+- **-l, --versions** # 显示 Chart 的所有版本，而不仅仅显示最后一个版本。
 
 ## show # 显示一个 chart 的信息多种信息，可以使用子命令来控制要输出的 chart 信息
 
 ## status # 显示指定名字的 release 状态信息
 
-**helm status ReleaseName \[FLAGS]**
+**helm status ReleaseName [FLAGS]**
 
 FLAGS
 
 - -o, --output FORMAT # 以指定的格式输出内容。`默认值：table`。可用的值有 table、json、yaml
-    - 注意：yaml 格式可以显示该 release 的所有资源
+  - 注意：yaml 格式可以显示该 release 的所有资源
 - --revision INT # 显示指定历史版本的信息
 
 ## template # 在本地渲染 chart 模板，并展示输出

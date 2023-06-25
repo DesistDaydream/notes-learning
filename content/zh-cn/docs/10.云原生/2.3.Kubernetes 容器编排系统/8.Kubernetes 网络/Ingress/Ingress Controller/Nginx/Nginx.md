@@ -11,6 +11,8 @@ title: Nginx
 
 # 部署
 
+版本支持矩阵: https://github.com/kubernetes/ingress-nginx#supported-versions-table
+
 ## k8s 社区版部署方式
 
 > 参考：
@@ -74,6 +76,8 @@ title: Nginx
 
 ## 12559
 
-<https://grafana.com/grafana/dashboards/12559>
+https://grafana.com/grafana/dashboards/12559
+
 该面板曾经名称为：Loki v2 Web Analytics Dashboard，在 Grafana 官方面板首页最顶部推荐了很久；现在更名为：
+
 Grafana Loki Dashboard for NGINX Service Mesh
