@@ -51,9 +51,12 @@ source /etc/profile.d/go.sh
 
 配置环境变量，执行命令
 
-- go env -w GOPATH=D:\Tools\GoPath
-- go env -w GOPROXY=https://goproxy.cn,https://goproxy.io,direct
-- go env -w GO111MODULE=on
+```powershell
+go env -w GOPATH=D:\Tools\GoPath
+go env -w GOPROXY=https://goproxy.cn,https://goproxy.io,direct
+go env -w GO111MODULE=on
+go env -w CGO_ENABLED=1
+```
 
 ## 安装多个版本的 Go
 
@@ -83,11 +86,11 @@ go 相关工具通过 `go.mod` 与 `go.sum` 两个文件管理项目及其依赖
 
 # 编译 Go
 
-若想在 Windows 中编译依赖 gcc 的项目，则需要安装适用于 Windows 的 [GCC](/docs/2.编程/高级编程语言/C/C%20环境安装与使用/GCC.md) 编译器 [MinGW-w64](https://www.mingw-w64.org/)
+若想在 Windows 中编译依赖 gcc 的项目，则需要安装适用于 Windows 的 [GCC](/docs/2.编程/高级编程语言/C/C%20环境安装与使用/GCC.md) 编译器 [MinGW-w64](/docs/2.编程/高级编程语言/C/C%20环境安装与使用/GCC.md#MinGW-w64)
 
 ## 交叉编译
 
-Linux 下编译出 Windows 的程序。需要安装 Windows 版的 gcc 工具 [MinGW-w64](https://www.mingw-w64.org/)(有的环境还需要安装 gcc-multilib 包)
+Linux 下编译出 Windows 的程序。需要安装 Windows 版的 gcc 工具 [MinGW-w64](/docs/2.编程/高级编程语言/C/C%20环境安装与使用/GCC.md#MinGW-w64)(有的环境还需要安装 gcc-multilib 包)
 
 ```bash
 sudo apt-get install gcc-mingw-w64

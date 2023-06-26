@@ -19,13 +19,14 @@ Linux 内核本身就是 C 写的，所以一般都自带 GCC，我们安装的�
 ## MinGW-w64
 
 > 参考：
+> 
 > - [SourceForge 项目，mingw-w64](https://sourceforge.net/projects/mingw-w64/)
 > - [GitHub 项目，mingw-w64/mingw-w64](https://github.com/mingw-w64/mingw-w64)
 > - [官网](https://www.mingw-w64.org/)
 
 mingw-w64 项目是完整的运行时环境，支持 gcc 编译生成本地运行于 Windows 64 位和 32 位操作系统的二进制文件。
 
-打开 sourceforge 中的 [MinGW-w64](https://sourceforge.net/projects/mingw-w64/) 页面，在 file 标签中，下载 [x86_64-win32-seh](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-win32/seh/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z) 这个版本并安装即可。这是一个 tar 包，解压完成后，需要在 Windows 的 ${PATH} 环境变量中，添加解压出来的 bin 目录，通常都在 `PATH\TO\x86_64-8.1.0-release-win32-seh-rt_v6-rev0\mingw64\bin` 这里
+打开 sourceforge 中的 [MinGW-w64](https://sourceforge.net/projects/mingw-w64/) 页面，在 [file 标签页](https://sourceforge.net/projects/mingw-w64/files/)中，下载 [x86_64-win32-seh](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-win32/seh/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z) 这个版本并安装即可。这是一个 tar 包，解压完成后，需要在 Windows 的 ${PATH} 环境变量中，添加解压出来的 bin 目录，通常都在 `PATH\TO\x86_64-8.1.0-release-win32-seh-rt_v6-rev0\mingw64\bin` 这里
 
 ### 其他 GCC 整合
 
