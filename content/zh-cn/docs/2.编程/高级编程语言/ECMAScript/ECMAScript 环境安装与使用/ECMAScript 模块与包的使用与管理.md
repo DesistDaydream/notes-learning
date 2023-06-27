@@ -65,11 +65,11 @@ npm 从 命令行、环境变量、npmrc 文件 这些地方获取其配置信�
 - **环境变量**
 - **npmrc 文件** # npm 从以下几个地方依次读取 npmrc 文件
   - **/PATH/TO/NPM/npmrc** # npm 内置的配置文件。这内置的文件是不是不可见的？o(╯□╰)o
-  - **${PREFIX}/etc/npmrc** # 全局配置文件，可以通过 `--globalconfig` 命令行选项或 `${NPM_CONFIG_GLOBALCONFIG}` 环境变量改变其值
+  - **`${PREFIX}/etc/npmrc`** # 全局配置文件，可以通过 `--globalconfig` 命令行选项或 `${NPM_CONFIG_GLOBALCONFIG}` 环境变量改变其值
   - **~/.npmrc** # 用户配置文件，可以通过 `--userconfig` 命令行选项或 `${NPM_CONFIG_USERCONFIG}` 环境变量改变其值
   - **/PATH/TO/MY/PROJECT/.npmrc** # 每个项目自己的配置
 
-**${PREFIX}/bin/*** # npm 安装的各种依赖包中若包含命令行工具，则会在此目录创建软链接。该目录通常都会加入到 `${PATH}` 变量中。
+**`${PREFIX}/bin/`** # npm 安装的各种依赖包中若包含命令行工具，则会在此目录创建软链接。该目录通常都会加入到 `${PATH}` 变量中。
 
 ## 配置文件详解
 
@@ -120,7 +120,9 @@ corepack prepare pnpm@7.14.1 --activate
 
 ## pnpm 关联文件与配置
 
-**/PATH/TO/.pnpm-store/** # 存放各项目依赖的目录。默认为根目录下的 .pnpm-store/ 目录。可以通过 `pnpm config -g set store-dir <DIR>` 修改
+TODO: pnpm 的配置文件在哪？没找到呢。。。。
+
+**/PATH/TO/.pnpm-store/** # 存放各项目依赖的目录。默认为根目录下的 `.pnpm-store/` 目录。可以通过 `pnpm config -g set store-dir <DIR>` 修改
 
 # npm 与 pnpm 语法
 

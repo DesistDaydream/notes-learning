@@ -28,6 +28,10 @@ Fyne 是一个易于学习、免费、开源的工具包，用于构建适用于
 
 注意：使用 Fyne 需要安装 [MinGW-w64](https://sourceforge.net/projects/mingw-w64/)
 
+Fyne 用起来有点像写前端代码。使用时先创建一个 APP，就相当于创建了一个 HTML 页面，然后围绕这个 APP 编写代码。我们可以向这个 APP 中添加各种符合某种 **Layout(布局)** 的 **Widget(小组件)**，Widget 有点类似于 HTML 中的各种元素（比如表 单、输入框、按钮、等等），Layout 就是类似 CSS 一样的样式了。
+
+这其中的 APP 概念，又有点像 Vue 的 APP 概念。不会单指一个 HTML 页面。
+
 ## Hello World
 
 ```go
@@ -40,20 +44,44 @@ import (
 )
 
 func main() {
+	// 实例化一个应用
 	a := app.New()
+	// 为应用创建一个窗口
 	w := a.NewWindow("Hello")
 
-	hello := widget.NewLabel("Hello Fyne!")
-	w.SetContent(container.NewVBox(
-		hello,
-		widget.NewButton("Hi!", func() {
-			hello.SetText("Welcome :)")
-		}),
-	))
+	// ######## 创建一些应该在窗口中显示的内容，以及设计窗口中的布局 ########
+	// 创建一个 Label 小部件
+	labelWidget := widget.NewLabel("Hello Fyne!")
+	// 创建一个按钮小部件
+	buttonWidget := widget.NewButton("Hi!", func() {
+		labelWidget.SetText("Welcome :)")
+	})
 
+	// 创建布局并将指定的对象（小部件、等等）放到这个布局中。
+	// NewVBox 中会使用 fyne 中自带的 VBox 布局，这种布局会将对象从上到下堆叠。
+	layout := container.NewVBox(
+		labelWidget,
+		buttonWidget,
+	)
+	// #################################################################
+
+	// 为 w 窗口设置应该在其中的内容
+	w.SetContent(layout)
+
+	// 显示窗口并运行程序。必须要在 main() 函数的末尾，因为该方法将会阻塞。
 	w.ShowAndRun()
 }
 ```
+
+除了 Hello World 示例，官方还提供了一个演示程序，我们可以直接执行：
+
+```bash
+go run fyne.io/fyne/v2/cmd/fyne_demo@latest
+```
+
+在这个窗口中，我们可以看到 Fyne 的所有功能，就像下面这样：
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/go/202306271643980.png)
 
 # 应用案例
 
