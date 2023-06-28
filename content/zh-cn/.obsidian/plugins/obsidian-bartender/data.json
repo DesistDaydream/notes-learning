@@ -1103,10 +1103,11 @@
       "docs/2.编程/高级编程语言/Go/Go 第三方库/_index.md",
       "docs/2.编程/高级编程语言/Go/Go 第三方库/Go 第三方库.md",
       "docs/2.编程/高级编程语言/Go/Go 第三方库/配置文件解析库_管理工具.md",
-      "docs/2.编程/高级编程语言/Go/Go 第三方库/GUI.md",
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/GUI",
       "docs/2.编程/高级编程语言/Go/Go 第三方库/CLI",
       "docs/2.编程/高级编程语言/Go/Go 第三方库/数据库.md",
-      "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制"
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制",
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/前端管理.md"
     ],
     "docs/2.编程/高级编程语言/Go/Go 网络编程": [
       "docs/2.编程/高级编程语言/Go/Go 网络编程/_index.md",
@@ -1875,6 +1876,11 @@
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress/Ingress Controller/Nginx/命令行标志.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress/Ingress Controller/Nginx/实现应用灰度发布.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress/Ingress Controller/Nginx/优化.md"
+    ],
+    "docs/2.编程/高级编程语言/Go/Go 第三方库/GUI": [
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/GUI/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/GUI/GUI.md",
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/GUI/Fyne.md"
     ]
   },
   "actionBarOrder": {},
