@@ -6,7 +6,12 @@ weight: 2
 # 概述
 
 > 参考：
+> 
 > - [GitHub 文档，containerd/containerd/docs/getting-started.md](https://github.com/containerd/containerd/blob/main/docs/getting-started.md)
+
+我们可以在官方 README 中的 [Runtime Requirements](https://github.com/containerd/containerd#runtime-requirements) 处找到当前 Containerd 版本所依赖的各种组件所需的版本，比如 runc 的版本等。
+
+- 依赖的 runc 版本通常记录在 [containerd/script/setup/runc-version](https://github.com/containerd/containerd/blob/main/script/setup/runc-version) 文件中
 
 # 安装 Containerd
 
@@ -49,6 +54,7 @@ sudo apt-get -y install containerd.io
 ### 安装 Containerd
 
 在 [release](https://github.com/containerd/containerd/releases) 页面下载二进制程序压缩包，解压并将二进制程序放到 $PATH 中
+
 ```bash
 export ARCH="amd64"
 export CONTAINER_VERSION="1.6.16"

@@ -145,43 +145,63 @@ Go 程序的很多关联文件都可以通过 Go 环境变量进行配置，所�
 
 ## Go 环境变量
 
-Go 通过环境变量来配置其运行行为，通过 go env 命令可以看到当前使用的环境变量：
-**GO111MODULE="on|off"** # 设置是否使用 go mod，该环境变量将于 1.17 版本删除，并从此开始仅支持 go mod
-GOARCH="amd64"
-GOBIN=""
-GOCACHE="/root/.cache/go-build"
-GOENV="/root/.config/go/env"
-GOEXE=""
-GOFLAGS=""
-GOHOSTARCH="amd64"
-GOHOSTOS="linux"
-GOINSECURE=""
-GOMODCACHE="/root/go/pkg/mod"
-GONOPROXY=""
-GONOSUMDB=""
-GOOS="linux"
-**GOPATH=\<STRING>** # 设置 gopath 所在路径。默认值：`~/go`
-GOPRIVATE=""
-**GOPROXY=\<STRING>** # 设置 go get、go install 命令时，所使用的代理服务器。可以加快获取第三方库的速度。
-**GOROOT=\<STRING>** # Go 的安装路径。默认值：Go 的安装路径，Linux 中通常为 /usr/local/go
-GOSUMDB="sum.golang.org"
-GOTMPDIR=""
-GOTOOLDIR="/usr/local/go/pkg/tool/linux_amd64"
-GOVCS=""
-GOVERSION="go1.16.4"
-GCCGO="gccgo"
-AR="ar"
-CC="gcc"
-CXX="g++"
-**CGO_ENABLED="0"** # CGO_ENABLED 开启后 Go 代码最终编译的可执行文件都是要有外部依赖的。不过我们依然可以通过 disable CGO_ENABLED 来编译出纯静态的 Go 程序，常用于交叉编译。CGO_ENABLED 关闭即可编译出纯静态的 Go 程序，可以用于 alpine 镜像中。
-GOMOD="/dev/null"
-CGO_CFLAGS="-g -O2"
-CGO_CPPFLAGS=""
-CGO_CXXFLAGS="-g -O2"
-CGO_FFLAGS="-g -O2"
-CGO_LDFLAGS="-g -O2"
-PKG_CONFIG="pkg-config"
-GOGCCFLAGS="-fPIC -m64 -fmessage-length=0 -fdebug-prefix-map=/tmp/go-build1775394647=/tmp/go-build -gno-record-gcc-switches"
+Go 通过环境变量来配置其运行行为，通过 `go env` 命令可以看到当前使用的环境变量，使用 `'go help environment` 命令可以查看 Go 环境变量的说明
+
+
+通用环境变量
+
+- **GOARCH=STRING** # 为其编译代码的体系结构或处理器。例如amd64、386、arm、ppc64。
+- Go 使用的本地文件系统相关的环境变量
+  - **GOROOT=STRING** # Go 的安装路径。默认值：Go 的安装路径，Linux 中通常为 /usr/local/go
+  - **GOPATH=STRING** # 设置 gopath 所在路径。默认值：`~/go`
+  - GOCACHE="/root/.cache/go-build"
+  - **GOENV=STRING** # 环境变量配置文件，Go 会使用该文件设置环境变量。`默认值: ~/.config/go/env 或 %APPDATA%/go/env`
+    - 可以使用 off 值让 Go 不再使用本地的环境变量配置文件
+    - 使用 `go env -w XXX=XXX` 命令的时候，会自动创建该文件，并将指定的配置写入。但是改命令无法设置 GOENV 的值。
+  - GOTOOLDIR="/usr/local/go/pkg/tool/linux_amd64"
+  - GOTMPDIR=""
+  - GOMODCACHE="/root/go/pkg/mod"
+- 代理相关
+  - **GOPROXY=\<STRING>** # 设置 go get、go install 命令时，所使用的代理服务器。可以加快获取第三方库的速度。
+  - GONOPROXY=""
+  - **GOPRIVATE=STRING** #  go 命令会从公共镜像 http://goproxy.io 上下载依赖包，并且会对下载的软件包和代码库进行安全校验，当你的代码库是公开的时候，这些功能都没什么问题。但是如果你的仓库是私有的怎么办呢？使用 GOPRIVATE 环境变量可以设置不经过代理的私有仓库
+    - 其中，direct 关键字的作用是：特殊指示符，用于指示 Go 回源到模块版本的源地址去抓取
+- 其他
+  - GOBIN=""
+  - GOEXE=""
+  - GOFLAGS=""
+  - GOHOSTARCH="amd64"
+  - GOHOSTOS="linux"
+  - GOINSECURE=""
+  - GOOS="linux"
+  - GOVCS=""
+  - GOVERSION="go1.16.4"
+  - GCCGO="gccgo"
+  - GOMOD="/dev/null"
+  - GOGCCFLAGS="-fPIC -m64 -fmessage-length=0 -fdebug-prefix-map=/tmp/go-build1775394647=/tmp/go-build -gno-record-gcc-switches"
+
+GO 模块相关
+
+- **GO111MODULE=on|off** # 设置是否使用 go mod，该环境变量将于 1.17 版本删除，并从此开始仅支持 go mod
+- **GOSUMDB=STRING** # Go 官方为了 go modules 安全考虑，设定的 module 校验数据库，`默认值: sum.golang.org`
+- **GONOSUMDB=STRING** # 如果代码仓库或者模块是私有的，那么它的校验值不应该出现在互联网的公有数据库里面，但是我们本地编译的时候默认所有的依赖下载都会去尝试做校验，这样不仅会校验失败，更会泄漏一些私有仓库的路径等信息，我们可以使用 `GONOSUMDB` 这个环境变量来设置不做校验的代码仓库
+
+与 cgo 一起使用的环境变量
+
+- **CGO_ENABLED="0|1"** # CGO_ENABLED 开启后 Go 代码最终编译的可执行文件都是要有外部依赖的。不过我们依然可以通过 disable CGO_ENABLED 来编译出纯静态的 Go 程序，常用于交叉编译。CGO_ENABLED 关闭即可编译出纯静态的 Go 程序，可以用于 alpine 镜像中。
+- AR="ar"
+- CC="gcc"
+- CGO_CFLAGS="-g -O2"
+- CGO_CPPFLAGS=""
+- CGO_CXXFLAGS="-g -O2"
+- CGO_FFLAGS="-g -O2"
+- CGO_LDFLAGS="-g -O2"
+- PKG_CONFIG="pkg-config"
+- CXX="g++"
+- 等等
+
+特定于架构的环境变量
+
 
 ## goproxy 说明
 
