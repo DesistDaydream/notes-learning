@@ -16,7 +16,9 @@ title: RedHat 与 CentOS
 [CentOS 8 退役倒计时，开发者们又吵起来了](https://mp.weixin.qq.com/s/FMvNx-kzz7DZZqGGpxjbuw)
 
 CentOS 居然还用 python2
+
 装 Python3 很费劲
+
 装 python-libvirt 很费劲
 
 ![41212703dee962f84b5c4a49a80707d.jpg](https://notes-learning.oss-cn-beijing.aliyuncs.com/wlni0v/1654840849145-f536a3be-b969-40b8-813d-959985b4f429.jpeg)
@@ -24,6 +26,7 @@ CentOS 居然还用 python2
 # 安装 CentOS
 
 > 参考：
+> 
 > - [GitHub 项目，rhinstaller/anaconda](https://github.com/rhinstaller/anaconda)(RedHat 相关发行版的操作系统安装器)
 
 RedHat 系列的 .iso 安装文件中包含了 Anaconda 安装器。
@@ -39,7 +42,7 @@ RedHat 系列的 .iso 安装文件中包含了 Anaconda 安装器。
 
 # 关联文件
 
-**/etc/sysconfig/\*** # Red Hat Linux 发行版的各种系统配置文件
+**/etc/sysconfig/** # Red Hat Linux 发行版的各种系统配置文件
 
 # CentOS 法律
 

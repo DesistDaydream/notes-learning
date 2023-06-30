@@ -1881,6 +1881,12 @@
       "docs/2.编程/高级编程语言/Go/Go 第三方库/GUI/_index.md",
       "docs/2.编程/高级编程语言/Go/Go 第三方库/GUI/GUI.md",
       "docs/2.编程/高级编程语言/Go/Go 第三方库/GUI/Fyne.md"
+    ],
+    "docs/10.云原生/2.1.容器/Open Containers Initiative(开放容器倡议)": [
+      "docs/10.云原生/2.1.容器/Open Containers Initiative(开放容器倡议)/_index.md",
+      "docs/10.云原生/2.1.容器/Open Containers Initiative(开放容器倡议)/Open Containers Initiative(开放容器倡议).md",
+      "docs/10.云原生/2.1.容器/Open Containers Initiative(开放容器倡议)/OCI Image 规范.md",
+      "docs/10.云原生/2.1.容器/Open Containers Initiative(开放容器倡议)/OCI Runtime 规范.md"
     ]
   },
   "actionBarOrder": {},

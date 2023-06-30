@@ -5,10 +5,11 @@ title: Docker 部署
 # 概述
 
 > 参考：
-> - [官方文档](https://docs.docker.com/engine/install/)
-> - [Centos 安装](https://docs.docker.com/engine/install/centos/)
-> - [Ubuntu 安装](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
-> - [二进制安装](https://docs.docker.com/engine/install/binaries/)
+> 
+> - [官方文档，安装-概述](https://docs.docker.com/engine/install/)
+>   - [Centos 安装](https://docs.docker.com/engine/install/centos/)
+>   - [Ubuntu 安装](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
+>   - [二进制安装](https://docs.docker.com/engine/install/binaries/)
 
 # 安装 Docker 套件
 
@@ -31,6 +32,7 @@ sudo apt-get -y install docker-ce
 ```
 
 > 若 centos8 提示无法安装 contained.io ,则执行如下指令安装
+> 
 > yum install -y <https://mirrors.aliyun.com/docker-ce/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.13-3.2.el7.x86_64.rpm>
 
 ### 配置 Unit 文件

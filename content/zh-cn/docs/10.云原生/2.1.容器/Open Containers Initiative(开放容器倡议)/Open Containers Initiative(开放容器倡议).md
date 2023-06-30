@@ -5,16 +5,17 @@ title: Open Containers Initiative(开放容器倡议)
 # 概述
 
 > 参考：
+> 
 > - [OCI 官网](https://opencontainers.org/)
 > - [GitHub 账户,OpenContainers](https://github.com/opencontainers)
 > - [segmentfault,《走进 docker》系列文章](https://segmentfault.com/u/public0821/articles)
 
-**Open Containers Initiative(开放容器倡议，简称 OCI)。**是一个轻量级的，开放的治理结构（项目），由 Linux Foundation 主持成立，其明确目的是围绕 Container 镜像格式和运行时创建 开放的行业标准。OCI 由 Docker，CoreOS 和其他容器行业领导者于 2015 年 6 月 22 日启动。
+**Open Containers Initiative(开放容器倡议，简称 OCI)** 是一个轻量级的，开放的治理结构（项目），由 Linux Foundation 主持成立，其明确目的是围绕 Container 镜像格式和运行时创建 开放的行业标准。OCI 由 Docker，CoreOS 和其他容器行业领导者于 2015 年 6 月 22 日启动。
 
 OCI 公有如下几个个规范：
 一开始有两个
 
-- **Image-spec(镜像规范) **# 容器镜像所包含的内容以及格式都遵循统一的格式标准，由 OCI 负责维护，官方详解地址为：image-spec
+- **Image-spec(镜像规范)** # 容器镜像所包含的内容以及格式都遵循统一的格式标准，由 OCI 负责维护，官方详解地址为：image-spec
 - **Runtime-spec(运行时规范)** # 容器运行时的内容以及格式都遵循统一的格式标准，由 OCI 负责维护，官方详解地址为：runtime-spec
 
 后来新加的一个

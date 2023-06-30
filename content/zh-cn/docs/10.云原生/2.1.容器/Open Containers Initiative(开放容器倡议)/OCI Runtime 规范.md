@@ -14,7 +14,7 @@ OCI Runtime 规范用来指定一个 Container 的配置、执行环境和生命
 
 容器的配置被指定为 config.json ，并详细说明了可以创建容器的字段。指定执行环境是为了确保容器内运行的应用程序在运行时之间具有一致的环境，以及为容器的生命周期定义的常见操作。
 
-由于容器运行起来，需要一个运行环境，比如是运行在 linux 上、还是 windows 上~~所以，OCI Runtime 标准，会根据不同的平台，制定不同的规范。现阶段有 4 中平台规范。这点是根 OCI Image 规范不太一样的地方。
+由于容器运行起来，需要一个运行环境，比如是运行在 linux 上、还是 windows 上；所以，OCI Runtime 标准，会根据不同的平台，制定不同的规范。现阶段有 4 中平台规范。这点是根 OCI Image 规范不太一样的地方。
 
 - linux：[runtime.md](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md)，[config.md](https://github.com/opencontainers/runtime-spec/blob/master/config.md)，[config-linux.md](https://github.com/opencontainers/runtime-spec/blob/master/config-linux.md)和[runtime-linux.md](https://github.com/opencontainers/runtime-spec/blob/master/runtime-linux.md)。
 - solaris：[runtime.md](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md)，[config.md](https://github.com/opencontainers/runtime-spec/blob/master/config.md)和[config-solaris.md](https://github.com/opencontainers/runtime-spec/blob/master/config-solaris.md)。
