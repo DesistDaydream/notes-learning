@@ -1896,6 +1896,38 @@
       "docs/1.操作系统/3.Systemd 系统守护程序/Unit File/service Unit.md",
       "docs/1.操作系统/3.Systemd 系统守护程序/Unit File/timer Unit.md",
       "docs/1.操作系统/3.Systemd 系统守护程序/Unit File/应用示例.md"
+    ],
+    "docs/4.数据通信/通信协议/7.HTTP": [
+      "docs/4.数据通信/通信协议/7.HTTP/_index.md",
+      "docs/4.数据通信/通信协议/7.HTTP/7.HTTP.md",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP 相关的协议或规范.md",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP Header.md",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP Status Codes.md",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP 缓存",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP 的 持久化 与 认证_授权",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP2.md",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP3.md",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP 的实现.md",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTPS",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP 管理"
+    ],
+    "docs/4.数据通信/通信协议/7.HTTP/HTTP 管理": [
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP 管理/_index.md",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP 管理/HTTP 管理.md",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP 管理/CORS跨域(一)：深入理解跨域请求概念及其根因.md",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP 管理/跨域.md",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP 管理/HTTP 优化.md"
+    ],
+    "docs/4.数据通信/通信协议/7.HTTP/HTTPS": [
+      "docs/4.数据通信/通信协议/7.HTTP/HTTPS/_index.md",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTPS/HTTPS.md",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTPS/HTTPS 交互流程(RSA 算法).md",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTPS/HTTPS 交互流程(ECDHE 算法).md"
+    ],
+    "docs/4.数据通信/通信协议/7.HTTP/HTTP 缓存": [
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP 缓存/_index.md",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP 缓存/HTTP 缓存.md",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP 缓存/告别 HTTP.md"
     ]
   },
   "actionBarOrder": {},

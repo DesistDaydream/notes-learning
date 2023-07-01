@@ -16,11 +16,11 @@ Libvirt 是用于管理虚拟化平台的开源的 API，后台程序和管理�
 
 Libvirt 提供了管理虚拟机和其它虚拟化功能（如：存储和网络接口等）的便利途径。这些软件包括：一个长期稳定的 C 语言 API、一个守护进程（libvirtd）和一个命令行工具（virsh）。Libvirt 的主要目标是提供一个单一途径以管理不同类型的虚拟化环境(也称为 drivers 或者 hypervisors )，包括：KVM/QEMU，Xen，VMware， VirtualBox hypervisors，LXC，OpenVZ
 
-Libvirt 包含 3 个东西：libvirtd、API、virsh
+Libvirt 包含 3 个东西：
 
-- libvirtd # 是守护进程，服务程序，接收和处理 API 请求
-- API # 库使得其他人可以开发基于 Libvirt 的高级工具，比如 virt-manager、virt-install、virt-viewer 等。
-- virsh # 是我们经常要用的命令行工具
+- **libvirtd** # 是守护进程，服务程序，接收和处理 API 请求
+- **API** # 库使得其他人可以开发基于 Libvirt 的高级工具，比如 virt-manager、virt-install、virt-viewer 等。
+- **virsh** # 是我们经常要用的命令行工具
 
 Note：其实 libvirtd 在绝大部分情况下是与 qemu/kvm 相搭配来使用，都是开源的，并且 redhat 官方推荐的也是使用 libvirt 管理 kvm 虚拟机
 
@@ -38,18 +38,14 @@ libvirt 将使用以下逻辑来确定要使用的 URI。
 
 # Libvirt 关联文件与配置
 
-**/etc/libvirt/\*** #
+**/etc/libvirt/** # 配置保存路径
 
 - **./libvirt.conf** # 用于配置用于与虚拟化程序连接的 URI 别名，以及默认 URI
 - .**/libvirtd.conf** # libvirtd 守护进程的配置文件
 - .**/qemu/** # xml 格式的配置文件存放路径，配置文件包括该 VM 的元数据(名字，uuid，内存，cpu 等)，设备配置(包括使用的硬盘文件的路径，网络类型等)，配置文件为 xml 格式。创建完一台 VM 后，会在该目录下生成对应 VM 名字的 xml 文件
 - **./network/** #
 
-**/etc/sysconfig/** #
-
-- **./libvirtd** #
-
-**/var/lib/libvirt/** #
+**/var/lib/libvirt/** # 数据保存路径
 
 - **./images/** # 所有通过 libvirt 创建的虚拟机所生成的 images 都保存在该目录下
 - **./qemu/snapshot/** # 创建快照 xml 文件都保存在该目录下

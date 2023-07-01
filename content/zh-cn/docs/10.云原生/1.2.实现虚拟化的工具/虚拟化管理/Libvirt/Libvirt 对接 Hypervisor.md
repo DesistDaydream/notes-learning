@@ -6,11 +6,12 @@ title: Libvirt 对接 Hypervisor
 
 > 参考：
 > 
+> - [官方文档，手册-libvirtd](https://libvirt.org/manpages/libvirtd.html)
 > - [官方文档，连接 URI](https://libvirt.org/uri.html)
 
 Libvirt 支持多不同类型的虚拟化（通常称为 **Drviers(驱动程序)** 或 **Hypervisors(虚拟机监视器)**），因此我们需要一种方法来连接到指定的 Hypervisors。另外，我们可能希望引用网络上远程的 Hypervisors。
 
-为此，**Libvirt 使用的 RFC 2396中 定义的 URI 来实现此功能**
+为此，**Libvirt 使用的 RFC 2396 中 定义的 URI 来实现此功能**
 
 注意：由于常用 QEMU-KVM 类型虚拟化，所以后文介绍的都以 KVM 虚拟化为主，Xen 类型会单独注明。
 
@@ -125,9 +126,9 @@ Libvirt 的 KVM/QEMU 驱动程序~~将会~~探测 /usr/bin 目录是否存在`qe
 
 这里以 virsh 命令行工具作为示例，其他基于 Libvirt API 的第三方工具，都是同样的道理
 
-1. 使用 -c 或者 --connect 选项。比如：
-   1. virsh -c test:///default list
-2. 在客户端配置文件(/etc/libvirt/libvirt.conf)中，设定`uri_default`关键字的值
+- 使用 -c 或者 --connect 选项。比如：
+   - virsh -c test:///default list
+- 在客户端配置文件(/etc/libvirt/libvirt.conf)中，设定`uri_default`关键字的值
 
 
 ## 以代码方式通过 Libvirt API 连接 Hypervisor
