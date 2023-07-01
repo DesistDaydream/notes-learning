@@ -24,38 +24,46 @@ title: Alpine
 **/etc/apk/repositories** # 包仓库的配置文件
 
 - 阿里仓库
-  - sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+  - sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 - 中科大仓库
   - sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
 
-**/var/cache/apk/\*** # APK 程序运行时产生的缓存文件保存路径
+**/var/cache/apk/** # APK 程序运行时产生的缓存文件保存路径
 
 ## apk 命令行工具
 
 ### Syntax(语法)
 
 **apk \[Global OPTIONS] COMMAND \[COMMAND OPTIONS]**
+
 Global OPTIONS
 
 - --no-cache # 不在 /var/cache/apk/ 目录下生成缓存，并且也不使用该目录下的缓存。
 
 COMMAND
 
-- 安装和移除包命令
+安装和移除包命令
+
   - **add** # 为正在运行的系统添加新包或升级包
   - **del** # 从正在运行的系统中删除包
-- 系统维护命令(管理包的元数据)
+
+系统维护命令(管理包的元数据)
+
   - cache Maintenance operations for locally cached package repository
   - **fix** # 尝试修复或升级已安装的包
   - update Update the index of available packages
   - upgrade Upgrade the currently installed packages
-- 查询包的信息
+
+查询包的信息
+
   - dot Create a graphviz graph description for a given package
   - info # Prints information about installed or available packages
   - list # List packages by PATTERN and other criteria
   - policy Display the repository that updates a given package, plus repositories that also offer the package
   - search Search for packages or descriptions with wildcard patterns
-- 仓库管理命令(管理包源)
+
+仓库管理命令(管理包源)
+
   - **fetch**# 下载包，但是不安装它。
   - index create a repository index from a list of packages
   - verify Verify a package signature
@@ -106,13 +114,17 @@ golang 在 alpine 镜像下 hosts 定义的域名不生效
 
 解决方案
 
-    echo "hosts: files dns" > /etc/nsswitch.conf
+```
+echo "hosts: files dns" > /etc/nsswitch.conf
+```
 
 > 参考：<https://github.com/golang/go/issues/22846>
 
 以下为调整后的 Dockerfile
 
-    FROM alpine
-    RUN apk update #解决 apk下载失败问题 ERROR: unsatisfiable constraints
-    RUN apk add --no-cache ca-certificates # 在go程序中无法访问https链接，解决x509certificates
-    RUN echo "hosts: files dns" > /etc/nsswitch.conf #go程序在alpine下不解析hosts文件
+```dockerfile
+FROM alpine
+RUN apk update #解决 apk下载失败问题 ERROR: unsatisfiable constraints
+RUN apk add --no-cache ca-certificates # 在go程序中无法访问https链接，解决x509certificates
+RUN echo "hosts: files dns" > /etc/nsswitch.conf #go程序在alpine下不解析hosts文件
+```

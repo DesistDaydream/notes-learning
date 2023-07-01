@@ -5,6 +5,7 @@ title: Libvirt 对接 Hypervisor
 # 概述
 
 > 参考：
+> 
 > - [官方文档，连接 URI](https://libvirt.org/uri.html)
 
 Libvirt 支持多不同类型的虚拟化（通常称为 **Drviers(驱动程序)** 或 **Hypervisors(虚拟机监视器)**），因此我们需要一种方法来连接到指定的 Hypervisors。另外，我们可能希望引用网络上远程的 Hypervisors。
@@ -45,7 +46,8 @@ Transport # 连接方式。默认为 unix
 qemu:///system # 连接到系统模式守护程序。
 qemu:///session # 连接到会话模式守护程序。
 ```
-（如果这样做libvirtd ~~-~~-help，守护程序将打印出以各种不同方式监听的Unix域套接字的路径）。
+
+如果这样做 libvirtd -help，守护程序将打印出以各种不同方式监听的 Unix 域套接字的路径。
 
 
 ### 远程 URI 格式示例
@@ -157,7 +159,7 @@ node4 作为远程libvirt的服务器，上面有已经创建的虚拟机，现�
 1. 通过qemu+ssh方式
 2. 通过qemu+tcp方式
 
-node5上安装libvirt及相关工具包，我这里安装了这些，
+node5上安装 libvirt 及相关工具包，我这里安装了这些，
 
 ```
 yum groupinstall "Virtualization"
@@ -175,7 +177,7 @@ virsh -c qemu+ssh://root@192.168.1.166/system
 如果2个节点设置了互信，免密钥登录，可直接执行virsh相关命令，
 
 ```
-[root@node5 ~]# virsh -c qemu+ssh://root@192.168.1.166/system list
+~]# virsh -c qemu+ssh://root@192.168.1.166/system list
  Id    名称                         状态
  ---------------------------------------------------- 
 3     vm01                           running
@@ -188,7 +190,7 @@ node4上
 修改/etc/sysconfig/libvirtd,开启以下2个配置项：
 
 ```
-[root@node4 ~]# egrep -v "^#|^$" /etc/sysconfig/libvirtd
+~]# egrep -v "^#|^$" /etc/sysconfig/libvirtd
 LIBVIRTD_CONFIG=/etc/libvirt/libvirtd.conf
 LIBVIRTD_ARGS="--listen
 ```

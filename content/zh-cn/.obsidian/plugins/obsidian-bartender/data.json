@@ -1887,6 +1887,15 @@
       "docs/10.云原生/2.1.容器/Open Containers Initiative(开放容器倡议)/Open Containers Initiative(开放容器倡议).md",
       "docs/10.云原生/2.1.容器/Open Containers Initiative(开放容器倡议)/OCI Image 规范.md",
       "docs/10.云原生/2.1.容器/Open Containers Initiative(开放容器倡议)/OCI Runtime 规范.md"
+    ],
+    "docs/1.操作系统/3.Systemd 系统守护程序/Unit File": [
+      "docs/1.操作系统/3.Systemd 系统守护程序/Unit File/_index.md",
+      "docs/1.操作系统/3.Systemd 系统守护程序/Unit File/Unit File.md",
+      "docs/1.操作系统/3.Systemd 系统守护程序/Unit File/Unit File 指令.md",
+      "docs/1.操作系统/3.Systemd 系统守护程序/Unit File/mount Unit.md",
+      "docs/1.操作系统/3.Systemd 系统守护程序/Unit File/service Unit.md",
+      "docs/1.操作系统/3.Systemd 系统守护程序/Unit File/timer Unit.md",
+      "docs/1.操作系统/3.Systemd 系统守护程序/Unit File/应用示例.md"
     ]
   },
   "actionBarOrder": {},
