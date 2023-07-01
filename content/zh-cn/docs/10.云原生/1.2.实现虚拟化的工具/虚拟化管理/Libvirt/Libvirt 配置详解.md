@@ -18,22 +18,8 @@ uri_aliases = [
 virsh -c vs-1 list
 ```
 
-# 最佳实践
 
-## 开启 libvirtd 的 TCP 监听
 
-> 参考：
-> 
-> - [StackOverflow，could-not-add-the-parameter-listen-to-open-tcp-socket](https://stackoverflow.com/questions/65663825/could-not-add-the-parameter-listen-to-open-tcp-socket)
-> - [libvirtd 官方手册](https://libvirt.org/manpages/libvirtd.html#system-socket-activation)
-
-`systemctl stop libvirtd.service`
-
-在 `/etc/libvirt/libvirtd.conf` 文件中添加 `auth_tcp="none"`
-
-`systemctl enable libvirtd-tcp.socket --now`
-
-`systemctl start libvirtd.service`
 
 
 

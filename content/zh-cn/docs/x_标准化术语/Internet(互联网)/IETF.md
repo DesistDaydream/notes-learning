@@ -5,9 +5,10 @@ title: IETF
 # 概述
 
 > 参考：
-> - [WIki-IETF](https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force)
+> 
+> - [WIki，IETF](https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force)
 > - [官网](https://www.ietf.org/)
-> - [IETF 存储哭搜索页](https://datatracker.ietf.org/)
+> - [IETF 存储库搜索页](https://datatracker.ietf.org/)
 
 **Internet Engineering Task Force(互联网工程工作组，简称 IETF) **是一个开放标准组织，其开发和促进自愿互联网标准，特别是包括互联网协议套件(TCP/IP)的标准。它没有正式的会员名单或会员要求。所有参与者和经理都是志愿者，尽管他们的工作通常由雇主或赞助商资助。
 

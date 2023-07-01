@@ -20,6 +20,7 @@ HTTP 无法单独存在，要想让它生效，必须依赖其他的协议或者
 > - https://www.ruanyifeng.com/blog/2010/02/url_encoding.html
 
 既然 HTTP 的本质是是在两点之间传输超文本，那么这个超文本又该如何表示呢？我们应该如何正确得找到这个超文本呢？所以，人们将超文本描述为 **Resource(资源)**，互联网上如此之多得资源，就需要一个唯一标识符来标识每一个资源。URI 就是这么一个用来标识资源的规范。
+
 **Uniform Resource Identifier(统一资源标识符，简称 URI)** 是 Web 技术使用的唯一标识符。URI 可以用于标识任何东西，包括现实世界中的对象，例如人和地方，概念或信息资源，例如网页和书籍。某些 URI 提供了一种在网络上(在 Internet 上或在另一个专用网络上，例如在计算机文件系统或 Intranet 上)定位和检索信息资源的方法，它们是 **Uniform Resource Locator(统一资源定位符，简称 URL)**。而其他 URI 仅提供一个唯一名称，而没有找到或检索该资源的信息，这类 URI 被称为 **Uniform Resource Name(统一资源名称，简称 URN)**。
 
 > 尽管 URI 仍然是常用术语，但定义 URI 的规范已经被 Internationalized Resource Identifiers(国际化资源标识符，简称 IRI) 的规范所取代。IRI 扩展了 URI 的定义，以便 IRI 可以处理诸如 Kanji(汉字) 之类的字符集，而不是仅限于 ASCII。
@@ -31,7 +32,7 @@ HTTP 无法单独存在，要想让它生效，必须依赖其他的协议或者
 
 URL 主要由四个部分组成：协议、主机、端口、路径
 
-**`Scheme:\[//Authority]/Path\[?query]\[#fragment]`**
+**`**Scheme:[//Authority]/Path[?query][#fragment]**`**
 
 - **Scheme://** # URL 方案，即访问协议,指定低层使用的协议(例如：http, https, ftp)
 - **Authority** # 分为三个部分 `[UserInfo@]Host[:Port]`

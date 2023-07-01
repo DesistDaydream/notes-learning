@@ -30,15 +30,15 @@ virsh 有两种使用方式
 
 ## OPTIONS
 
-- -c, --connect=URI hypervisor connection URI
-- -d, --debug=NUM debug level \[0-4]
-- -e, --escape \<char> set escape sequence for console
+- **-c, --connect=URI** # 通过 URI 连接远程 Hypervisor
+- -d, --debug=NUM # debug level \[0-4]
+- -e, --escape \<char> # set escape sequence for console
 - -k, --keepalive-interval=NUM # keepalive interval in seconds, 0 for disable
 - -K, --keepalive-count=NUM # number of possible missed keepalive messages
 - -l, --log=FILE output logging to file
-- -q, --quiet quiet mode
-- -r, --readonly connect readonly
-- -t, --timing print timing information
+- **-q, --quiet** # 安静模式。输出时没有标题
+- -r, --readonly # connect readonly
+- -t, --timing # print timing information
 
 # COMMAND
 
