@@ -32,7 +32,7 @@ Libvirt 的 KVM/QEMU 驱动程序将会探测 /usr/bin 目录是否存在 `qemu-
 
 这里以 virsh 命令行工具作为示例，其他基于 Libvirt API 的第三方工具，都是同样的道理。
 
-virsh 可以使用 -c 或者 --connect 选项已连接到指定的 libvirtd。比如：`virsh  -c qemu+tcp://172.38.180.96/system list`
+virsh 可以使用 -c 或者 --connect 选项已连接到指定的 libvirtd。比如：`virsh -c qemu+tcp://172.38.180.96/system`
 
 我们可以在客户端配置文件(/etc/libvirt/libvirt.conf)中，设定 `uri_default` 关键字的值以改变 virsh 默认链接到 libvirtd，通常默认值为：`qemu:///system`，即连接本地的 libvirtd 并管理 QEMU 虚拟机。
 
@@ -50,7 +50,7 @@ conn = libvirt.open("qemu+tcp://172.38.180.95/system")
 > 
 > - [官方文档，连接 URI](https://libvirt.org/uri.html)
 
-这种 URI 格式通常只会由 Libvirt 相关应用程序才可以识别，比如 [virsh 命令行工具](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh%20命令行工具/virsh%20命令行工具.md)、[Libvirt 客户端库](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt%20客户端库.md)、libvirtd 程序等等。共分为两种 URI
+这种 URI 格式通常只会由 Libvirt 相关应用程序才可以识别，比如 [virsh 命令行工具](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh%20命令行工具/virsh%20命令行工具.md)、[Libvirt 客户端库](docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt%20API/Libvirt%20客户端库.md)、libvirtd 程序等等。共分为两种 URI
 
 - 本地 URI
 - 远程 URI
@@ -79,9 +79,11 @@ Transport # 连接方式。默认为 unix
 - ext
 - tls
 
+## 本地 URI
+
 其中本地 URI 通常都会省略所有 `[]` 部分，这样就会看到 3 个连续的 `/` 符号，就像 `qemu:///system`，这里的 Transport 就是默认的 unix，这就是本地 URI 了。
 
-## 本地 URI
+URI 示例
 
 连接到系统模式守护程序
 
@@ -117,7 +119,7 @@ URI 示例
 
 - `qemu+ssh://root@172.38.180.96/system`
 
-通过 tcp 连接。默认连接到 16509 端口，前提参考 [TCP 连接](#TCP%20连接) 部分的内容为 libvirtd 开启 TCP 监听。
+通过 tcp 连接。默认连接到 16509 端口，前提参考 [通过 TCP 连接](#通过%20TCP%20连接) 部分的内容为 libvirtd 开启 TCP 监听。
 
 `qemu+tcp://172.38.180.95/system`
 

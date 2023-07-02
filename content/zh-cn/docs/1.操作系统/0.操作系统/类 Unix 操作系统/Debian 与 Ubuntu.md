@@ -5,7 +5,7 @@ title: Debian 与 Ubuntu
 # 概述
 
 > 参考：
-> 
+>
 > - [Debian 官方 Manual(手册)](https://manpages.debian.org/)
 
 ```bash
@@ -32,10 +32,10 @@ fi
 # Ubuntu
 
 > 参考：
-> 
+>
 > - [官网](https://ubuntu.com/)
 > - [Wiki，Ubuntu](https://en.wikipedia.org/wiki/Ubuntu)
-> 
+>
 
 Ubuntu 是一个基于 Debian 的 Linux 发行版，主要由 [FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software) 组成。
 
@@ -43,5 +43,5 @@ Ubuntu 由英国公司 [Canonical](https://en.wikipedia.org/wiki/Canonical_(comp
 
 ## 其他
 
-Ubuntu Server 安装完成后，通常需要关闭自动更新，详见 [Debian 包管理](docs/1.操作系统/6.Package%20管理/Debian%20包管理.md#包的自动更新)
+Ubuntu Server 安装完成后，通常需要关闭自动更新，详见 [Debian 包管理](/docs/1.操作系统/6.Package%20管理/Debian%20包管理.md#包的自动更新)
 

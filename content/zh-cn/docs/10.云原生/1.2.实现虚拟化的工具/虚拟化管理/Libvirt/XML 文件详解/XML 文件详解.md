@@ -19,7 +19,7 @@ Libvirt API 中的**对象**使用 [**XML 格式**](/docs/2.编程/无法分类�
 下面是**根元素**的名称，每个根元素都对应一个 **Libvirt 对象**。
 
 - [Domain](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML%20文件详解/Domain.md) # 虚拟机相关的 XML 配置，可以直接使用 Domains XML 创建、启动、管理虚拟机。
-- [Network](docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML%20文件详解/Network.md) # 虚拟网络相关的 XML 配置。
+- [Network](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML%20文件详解/Network.md) # 虚拟网络相关的 XML 配置。
 - [Network filtering](https://libvirt.org/formatnwfilter.html)
 - [Network ports](https://libvirt.org/formatnetworkport.html)
 - [Storage](https://libvirt.org/formatstorage.html)

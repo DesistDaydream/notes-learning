@@ -27,7 +27,15 @@ Libvirt 直接支持 C 和 C++，并且具有可用于其他语言的绑定：
 # Go 库
 
 > 参考：
+> 
 > - [GitHub 项目，libvirt/libvirt-go-module](https://github.com/libvirt/libvirt-go-module)
+> - [官方文档，go-libvirt](https://libvirt.org/go/libvirt.html)
+
+Go 语言的 `libvirt.org/go/libvrit` 包可以提供来自 OS 原生的 Libvirt API 的 CGO 绑定。该软件包替换了过时的 libvirt.org/libvirt-go 软件包，以便切换到使用 semver 和 Go 模块。除了更改的导入路径和版本控制方案之外，该 API 与旧包完全兼容。
+
+一般来说，Go 表示是从本机 API 概念到 Go 的直接 1-1 映射，因此本机 API 文档应该作为大多数行为的参考。
+
+有关 Go 特定行为的详细信息，请参阅 [Go Pagkage 中的文档](https://pkg.go.dev/libvirt.org/go/libvirt)。
 
 # Python 库
 

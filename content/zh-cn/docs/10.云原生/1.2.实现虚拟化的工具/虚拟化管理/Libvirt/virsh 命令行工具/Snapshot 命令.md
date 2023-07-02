@@ -9,7 +9,7 @@ title: Snapshot 命令
 
 # [snapshot-create](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#snapshot-create) # 从 XML 文件中创建一个 domain 的快照
 
-这个命令可以在[虚拟机迁移](docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/虚拟机迁移.md)时为虚拟机还原快照的元数据。
+这个命令可以在[虚拟机迁移](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/虚拟机迁移.md)时为虚拟机还原快照的元数据。
 
 使用
 

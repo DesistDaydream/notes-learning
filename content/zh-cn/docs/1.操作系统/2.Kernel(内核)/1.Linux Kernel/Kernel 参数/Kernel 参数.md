@@ -5,7 +5,7 @@ title: Kernel 参数
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，Linux 内核用户和管理员指南-/proc/sys 文档](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/index.html)
 
 内核参数是以 key/value 的方式储存的。key 就是 **/proc/sys/** 目录下的某个文件，value 就是该文件的内容。
@@ -36,7 +36,7 @@ title: Kernel 参数
 - **./dev/** # device specific information (eg dev/cdrom/info)
 - **./fs/** # specific filesystems filehandle, inode, dentry and quota tuning binfmt_misc \<Kernel Support for miscellaneous Binary Formats (binfmt_misc)>
 - **./kernel/** # global kernel info / tuning miscellaneous stuff
-- **./net/** # 网络相关的内核参数，详见 [net(网络相关参数)](docs/1.操作系统/2.Kernel(内核)/1.Linux%20Kernel/Kernel%20参数/net(网络相关参数)/net(网络相关参数).md)
+- **./net/** # 网络相关的内核参数，详见 [net(网络相关参数)](/docs/1.操作系统/2.Kernel(内核)/1.Linux%20Kernel/Kernel%20参数/net(网络相关参数)/net(网络相关参数).md)
 - **./proc/** # 空
 - **./sunrpc/** # SUN Remote Procedure Call (NFS)
 - **./vm/** # memory management tuning buffer and cache management

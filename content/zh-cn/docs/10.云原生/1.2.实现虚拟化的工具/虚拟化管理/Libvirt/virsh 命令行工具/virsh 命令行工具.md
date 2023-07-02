@@ -10,7 +10,8 @@ weight: 1
 > - [官方文档，手册-virsh](https://libvirt.org/manpages/virsh.html)
 >   - [GitHub 位置，libvirt/libvirt/docs/manpages/virsh.rst](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst)
 
-virsh 是 libvirt 核心发行版的一部分，通过 libvirt 的 API 管理虚拟机的命令行工具。
+virsh 是 libvirt 核心发行版的一部分，通过 [Libvirt API](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt%20API/Libvirt%20API.md) 管理虚拟机的命令行工具。
+
 virsh 有两种使用方式
 
 - virsh + 子命令

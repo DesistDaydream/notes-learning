@@ -7,6 +7,7 @@ title: GUI
 # PySimpleGUI
 
 > 参考：
+> 
 > - [GitHub 项目，PySimpleGUI/PySimpleGUI](https://github.com/PySimpleGUI/PySimpleGUI)
 > - [官网](https://www.pysimplegui.org/)
 

@@ -27,7 +27,7 @@ weight: 20
 
 Transformers 模型可以对接多种热门的深度学习库：
 
-- [PyTorch](docs/12.人工智能/机器学习/PyTorch.md)
+- [PyTorch](/docs/12.人工智能/机器学习/PyTorch.md)
   - 注意：安装 PyTorch 时，安装 GPU 版的。如果我们想要使用 GPU 但是却安装的 CPU 版的 PyTorch，将会报错：`Torch not compiled with CUDA enabled`。说白了就是下载的 PyTorch 不是在 CUDA 环境下编译的，无法处理 CUDA 的请求。
 - TensorFlow
 
@@ -44,7 +44,7 @@ pip install transformers
 **~/.cache/huggingface/** # HuggingFace 缓存路径，保存模型、调用模型的代码 等。可以通过 `${HF_HOME}` 更改路径位置；也可以通过 `${XDG_CACHE_HOME}` 更改路径位置，但是需要注意，`${XDG_CACHE_HOME}` 针对的 `~/.cache/` 这部分。
 
 - **./hub/** # 预训练模型在本地缓存的保存路径。可以通过 `${HUGGINGFACE_HUB_CACHE}` 环境变量变更路径位置。
-- **./modules/** # 
+- **./modules/** #
 
 > 为了防止下载很多模型撑爆 C 盘，个人习惯设置 `${HF_HOME}` 变量为 `D:\Projects\.huggingface`
 

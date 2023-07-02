@@ -10,7 +10,7 @@ title: ConfigMap 配置详解
 
 可以通过 ConfigMap 资源来控制 Nginx Ingress Controller 的运行时行为。Nginx Ingress Controller 将会读取指定 ConfigMap 对象中的 `.data` 字段下的内容，并解析其中的内容，转换为传统 Nginx 的配置。
 
-`.data` 字段下的内容由无数的 **Key/Value Pairs(键/值对)** 组成。绝大部分 **Key** 都会对应一个 Nginx 的 [**Directives(指令)**](docs/Web/Nginx/Nginx%20配置详解/Nginx%20配置详解.md#Directives(指令))。Key 的 Value 就是指令的参数。假如现在有如下 ConfigMap 配置：
+`.data` 字段下的内容由无数的 **Key/Value Pairs(键/值对)** 组成。绝大部分 **Key** 都会对应一个 Nginx 的 [**Directives(指令)**](/docs/Web/Nginx/Nginx%20配置详解/Nginx%20配置详解.md#Directives(指令))。Key 的 Value 就是指令的参数。假如现在有如下 ConfigMap 配置：
 
 ```yaml
 data:

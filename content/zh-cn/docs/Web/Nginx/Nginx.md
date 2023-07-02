@@ -53,7 +53,7 @@ Nginx 特性：
 
 ## Nginx 架构
 
-详见 [Nginx 源码解析](docs/Web/Nginx/Nginx%20源码解析.md)
+详见 [Nginx 源码解析](/docs/Web/Nginx/Nginx%20源码解析.md)
 
 ## 总结
 

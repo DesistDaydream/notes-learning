@@ -7,7 +7,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档-PowerShell，关于-关于变量](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variables)
 > - [官方文档-PowerShell，关于-关于自动变量](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_variables)
 > - [官方文档-PowerShell，关于-关于首选项变量](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_preference_variables)
@@ -56,10 +56,10 @@ PowerShell 中有几种不同类型的变量：
 ## 环境变量
 
 > 参考：
-> 
+>
 > - [官方文档-PowerShell，关于-关于环境变量](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_environment_variables)
 
-环境变量存储操作系统和其他应用程序使用的数据。在 PowerShell 中，我们可以引用 [WindowsShell 变量](docs/1.操作系统/4.Terminal%20与%20Shell/WindowsShell/WindowsShell%20变量.md) 中的环境变量。
+环境变量存储操作系统和其他应用程序使用的数据。在 PowerShell 中，我们可以引用 [WindowsShell 变量](/docs/1.操作系统/4.Terminal%20与%20Shell/WindowsShell/WindowsShell%20变量.md) 中的环境变量。
 
 在 PowerShell 中，环境变量分为 3 个作用域
 

@@ -8,7 +8,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [安卓开发者资源](https://developer.android.com/)
 
 # Android Studio
@@ -18,13 +18,13 @@ weight: 20
 # SDK 工具
 
 > 参考：
-> 
+>
 > - [官方文档，SDK 工具](https://developer.android.com/tools)
 
 ## ADB
 
 > 参考：
-> 
+>
 > - [官方文档，SDK 工具-adb](https://developer.android.com/tools/adb)
 >   - [官方文档-中文](https://developer.android.com/studio/command-line/adb?hl=zh-cn)
 > - [Wiki，Android_Debug_Bridge](https://en.wikipedia.org/wiki/Android_Debug_Bridge)
@@ -57,7 +57,7 @@ https://blog.51cto.com/u_15549234/5139197
 
 ### ADB 使用
 
-adb 服务端连接到设备之后，就可以使用 adb 客户端向设备发送命令了。最简单直接的方式是使用 `adb shell` 命令打开一个 Shell，这就像使用 [OpenSSH](docs/1.操作系统/5.登录%20Linux%20与%20访问控制/Secure%20Shell(SSH)%20安全外壳协议/OpenSSH.md) 类似，可以通过一个 Shell 访问 Android 系统。
+adb 服务端连接到设备之后，就可以使用 adb 客户端向设备发送命令了。最简单直接的方式是使用 `adb shell` 命令打开一个 Shell，这就像使用 [OpenSSH](/docs/1.操作系统/5.登录%20Linux%20与%20访问控制/Secure%20Shell(SSH)%20安全外壳协议/OpenSSH.md) 类似，可以通过一个 Shell 访问 Android 系统。
 
 ### Syntax(语法)
 
@@ -65,7 +65,7 @@ adb 服务端连接到设备之后，就可以使用 adb 客户端向设备发�
 
 **OPTIONS**
 
-- **-a** # 
+- **-a** #
 
 **COMMAND**
 
@@ -79,7 +79,7 @@ adb 服务端连接到设备之后，就可以使用 adb 客户端向设备发�
 
 Shell 命令
 
-- **shell** # 
+- **shell** #
 
 应用安装命令
 

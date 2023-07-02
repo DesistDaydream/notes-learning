@@ -14,7 +14,7 @@ weight: 1
 > - [骏马金龙](https://www.cnblogs.com/f-ck-need-u/p/10080793.html)
 > - [在线 JSON 转 Go Struct](https://transform.tools/json-to-go)
 
-Go 语言内置了 encoding 标准库，并使用其中的 json 包来实现 [JSON](docs/2.编程/无法分类的语言/JSON.md) 的 **Encoding(编码)** 和 **Decoding(解码)** 逻辑，这里面的 JSON 符合 [RFC 7159](https://rfc-editor.org/rfc/rfc7159.html) 标准。
+Go 语言内置了 encoding 标准库，并使用其中的 json 包来实现 [JSON](/docs/2.编程/无法分类的语言/JSON.md) 的 **Encoding(编码)** 和 **Decoding(解码)** 逻辑，这里面的 JSON 符合 [RFC 7159](https://rfc-editor.org/rfc/rfc7159.html) 标准。
 
 这里面说的编码则是指将 Go 自身可以识别的数据类型编码为 JSON 格式的数据；解码主要是指解码后数据编程 Go 可以理解的数据格式，比如 struct、slice、map 等。
 
@@ -521,7 +521,7 @@ json.Unmarshal() 和 json.Decode() 的区别主要有:
 - 如果 JSON 数据量很大,要防止 OOM,用 Decode() 流式解析。
 - 如果 JSON 字符串包含多条 JSON 数据,用 Decode() 可以逐条解析,Unmarshal() 只能解析第一条数据。
 
-根据你的代码示例,两个方法的输出结果是一样的,因为 JSON 字符串数据量很小,所以两种方法都可以使用。但如果数据量很大,Unmarshal() 可能会导致 OOM,这时 Decode() 是更好的选择。 
+根据你的代码示例,两个方法的输出结果是一样的,因为 JSON 字符串数据量很小,所以两种方法都可以使用。但如果数据量很大,Unmarshal() 可能会导致 OOM,这时 Decode() 是更好的选择。
 
 **总得来说，如果是从 HTTP 的响应体中读取 JSON 数据的情况，建议使用流式的 json.NewDecoder().Decode() 来处理 JSON 数据转换为 Go 结构体的逻辑。**
 

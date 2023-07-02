@@ -6,14 +6,14 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [Wiki，Shell_script](https://en.wikipedia.org/wiki/Shell_script)
 
 **Shell Programming Language(shell 编程语言)** 不是编译型的语言，而是一种脚本语言，通常称为 **Shell script**。
 
 在类 Unix 系统中，我们最常使用的就是 Bash，通常 Shell 编程语言狭义上直接指的是 Bash 编程语言。
 
-而在 Microsoft 系统中，早期是一种 **Batch file(批处理)** 文件，然后发展出 CMD，到近代可以使用 [PowerShell](docs/1.操作系统/4.Terminal%20与%20Shell/WindowsShell/PowerShell/PowerShell.md) 脚本语言。
+而在 Microsoft 系统中，早期是一种 **Batch file(批处理)** 文件，然后发展出 CMD，到近代可以使用 [PowerShell](/docs/1.操作系统/4.Terminal%20与%20Shell/WindowsShell/PowerShell/PowerShell.md) 脚本语言。
 
 # Shell 的基本结构与要素
 

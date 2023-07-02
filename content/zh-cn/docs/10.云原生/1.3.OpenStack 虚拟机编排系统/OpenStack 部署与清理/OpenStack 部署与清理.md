@@ -7,7 +7,7 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - https://ithelp.ithome.com.tw/articles/10269737
 > - https://ithelp.ithome.com.tw/articles/10270784
 > - https://ithelp.ithome.com.tw/articles/10271345
@@ -37,12 +37,12 @@ https://docs.openstack.org/xena/install/
 
 对于小规模部署，还可以使用其他 OpenStack 的发行版：
 
-- [MicroStack](docs/10.云原生/1.3.OpenStack%20虚拟机编排系统/OpenStack%20衍生品/MicroStack.md)
+- [MicroStack](/docs/10.云原生/1.3.OpenStack%20虚拟机编排系统/OpenStack%20衍生品/MicroStack.md)
 
 ## 支持的操作系统
 
 > 从 Ussuri 版本开始，OpenStack 不再支持 CentOS 7 作为主机操作系统。Train 版本同时支持 CentOS 7 和 8，并提供了迁移路径。有关迁移到 CentOS 8 的信息，请参阅 [Kolla Ansible Train 文档](https://docs.openstack.org/kolla-ansible/train/user/centos8.html)。
-> 
+>
 > 不再支持 CentOS Linux 8（相对于 CentOS Stream 8）作为主机操作系统。Victoria 版本将来会同时支持 CentOS Linux 8 和 CentOS Stream 8，并提供迁移途径。
 
 - CentOS Stream 8
@@ -80,7 +80,7 @@ https://docs.openstack.org/xena/install/
 # Kolla-ansible
 
 > 参考：
-> 
+>
 > - [GitHub 项目，openstack/kolla](https://github.com/openstack/kolla)
 
 使用 Kolla-ansible 部署 OpenStack 的服务器必须满足如下要求：

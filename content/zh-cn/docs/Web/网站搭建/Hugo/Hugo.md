@@ -7,7 +7,7 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，gohugoio/hugo](https://github.com/gohugoio/hugo)
 >   - [GitHub 项目，coderzh/gohugo.org](https://github.com/coderzh/gohugo.org)（一个从19年停更的 Hugo 中文网）
 > - [官网](https://gohugo.io/)
@@ -29,7 +29,7 @@ Hugo 的这种渲染行为与 Go 的模板渲染机制一致，并提供了更�
 # Hugo 的基本使用
 
 > 参考：
-> 
+>
 > - [官方文档，入门-快速开始](https://gohugo.io/getting-started/quick-start/)
 
 这里的示例并没有安全按照官方文档走，而是在我学习之后改编的，官方文档的示例其实会让新手对于渲染逻辑和顺序产生迷惑。
@@ -54,7 +54,7 @@ hello_world/
 
 ```bash
 ~]# hugo server
-Start building sites … 
+Start building sites …
 hugo v0.109.0-47b12b83e636224e5e601813ff3e6790c191e371+extended windows/amd64 BuildDate=2022-12-23T10:38:11Z VendorInfo=gohugoio
 WARN 2023/01/22 16:15:45 found no layout file for "HTML" for kind "home": You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
 WARN 2023/01/22 16:15:45 found no layout file for "HTML" for kind "taxonomy": You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
@@ -192,7 +192,7 @@ Hugo 打包非常简单，执行 `hugo` 命令即可在 `public/` 目录中生�
 ## 目录结构
 
 > 参考：
-> 
+>
 > - [官方文档，入门-目录结构](https://gohugo.io/getting-started/directory-structure/)
 
 ### archetypes
@@ -296,7 +296,7 @@ Hugo 模块是一个类似 Go 模块一样的存在。模块可以是我们的�
 
 **注意：Hugo 模块与 Go 模块一样，也需要一个代理服务器，我们只需要在 module 部分配置 proxy 指令，值与 go proxy 一样即可**
 
-详见 [模块](docs/Web/网站搭建/Hugo/模块/模块.md)
+详见 [模块](/docs/Web/网站搭建/Hugo/模块/模块.md)
 
 # 安装 Hugo
 
@@ -323,7 +323,7 @@ Hugo 运行时所需的缓存目录。包括需要使用的模块等：
 ## URL 与 markdown 链接问题
 
 > 参考：
-> 
+>
 > - https://cloud.tencent.com/developer/article/1688894
 
 Obsidian 内部链接是这种格式 `[B cd](/A/b/B%20cd.md)`

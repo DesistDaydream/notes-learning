@@ -14,13 +14,17 @@ weight: 2
 
 为了编写可维护的代码，我们把很多函数分组，分别放到不同的文件里，这样，每个文件包含的代码就相对较少，很多编程语言都采用这种组织代码的方式。在 Python 中，**一个 `.py` 文件**就称之为一个 **Module(模块)**。
 
-使用模块有什么好处？
+假如现在有 a.py 和 b.py，b.py 中有定义了名为 bFun 的函数，现在想要在 a.py 中使用 bFun 函数，则只需要在开始使用 `from b import bFun` 即可。
+
+**使用模块有什么好处？**
 
 最大的好处是大大提高了代码的可维护性。其次，编写代码不必从零开始。当一个模块编写完毕，就可以被其他地方引用。我们在编写程序的时候，也经常引用其他模块，包括 Python 内置的模块和来自第三方的模块。
 
 使用模块还可以避免函数名和变量名冲突。相同名字的函数和变量完全可以分别存在不同的模块中，因此，我们自己在编写模块时，不必考虑名字会与其他模块冲突。但是也要注意，尽量不要与内置函数名字冲突。[这里](http://docs.python.org/3/library/functions.html)可以查看 Python 的所有内置函数。
 
-你也许还想到，如果不同的人编写的模块名相同怎么办？为了避免模块名冲突，Python 又引入了按目录来组织模块的方法，称为 **Package(包)**。
+**如果不同的人编写的模块名相同怎么办？**
+
+为了避免模块名冲突，Python 又引入了按目录来组织模块的方法，称为 **Package(包)**。
 
 举个例子，一个 `abc.py` 的文件就是一个名字叫 `abc` 的模块，一个 `xyz.py` 的文件就是一个名字叫`xyz`的模块。
 
@@ -50,11 +54,11 @@ mycompany
  └─ utils.py
 ```
 
-文件`www.py`的模块名就是`mycompany.web.www`，两个文件`utils.py`的模块名分别是`mycompany.utils`和`mycompany.web.utils`。
+文件 `www.py` 的模块名就是 `mycompany.web.www`，两个文件 `utils.py` 的模块名分别是 `mycompany.utils` 和 `mycompany.web.utils`。
 
 自己创建模块时要注意命名，不能和 Python 自带的模块名称冲突。例如，系统自带了 sys 模块，自己的模块就不可命名为 sys.py，否则将无法导入系统自带的 sys 模块。
 
-`mycompany.web`也是一个模块，该模块对应的 .py 文件是 **init**.py。
+`mycompany.web`也是一个模块，该模块对应的 .py 文件是 `__init__.py`。
 
 ## Package(包)
 
@@ -718,6 +722,34 @@ Windows 的 site.py
 与 CPython 的原始 [site.py](https://github.com/python/cpython/blob/3.10/Lib/site.py) 代码保持一致
 
 上面的例子中，Ubuntu 的 dist-packages 应该是 site-packages 才对，为啥这么改搞不懂为啥。。。o(╯□╰)o。。。对于 CentOS，则除了 lib，还会有一个 lib64，也是搞不懂为啥。。。o(╯□╰)o。。。
+
+## 关于 Python 包的在线浏览网站
+
+Python 好像没有像 [Go Package](https://pkg.go.dev/) 类似的网站，PIP 网站只是提供了包的简介、版本、网站连接等信息，内容少的可怜。问了问 NewBing 之后， [Read the Docs](https://readthedocs.org/search/?q=python+package) 这个网站可能还有点好内容，下面是完整的回答：
+
+您好，这是必应。😊
+
+Python 有很多不同的网站可以查看各种包的信息，比如：
+
+- [PyPI](https://pypi.org/)：Python 包索引，可以搜索、安装和发布 Python 软件包。
+- [Python Package Index](https://packaging.python.org/en/latest/tutorials/packaging-projects/)：Python 打包用户指南，可以教您如何打包和分发 Python 项目。
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/python)：一个编程问答网站，可以找到关于 Python 包的问题和答案。
+- [GitHub](https://github.com/search?q=python+package)：一个代码托管平台，可以浏览和下载 Python 包的源代码。
+
+如果您想要像 go package 网站那样，可以直接在网页上看到 Python 包的类型、函数等文档，您可以试试以下几个网站：
+
+- [Read the Docs](https://readthedocs.org/search/?q=python+package)：一个文档托管平台，可以查看很多 Python 包的在线文档。
+- [Python Module of the Week](https://pymotw.com/3/)：一个网站，可以学习 Python 标准库中的模块的用法和示例。
+- [Awesome Python](https://awesome-python.com/)：一个网站，可以发现一些优秀的 Python 包和资源。
+
+希望这些信息对您有帮助。如果您还有其他问题，请随时提问。😊
+\-
+\[1]: [How do I find the location of my Python site-packages directory?](https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory/)
+\[2]: [What is python's site-packages directory? - Stack Overflow](https://stackoverflow.com/questions/31384639/what-is-pythons-site-packages-directory)
+\[3]: [go-python/gopy - GitHub](https://github.com/go-python/gopy)
+\[4]: [PyPI · The Python Package Index](https://pypi.org/)
+\[5]: [Packaging Python Projects — Python Packaging User Guide](https://packaging.python.org/en/latest/tutorials/packaging-projects/)
+\[6]: [How To Package And Distribute Python Applications](https://www.digitalocean.com/community/tutorials/how-to-package-and-distribute-python-applications)
 
 # 安装 Python 模块
 

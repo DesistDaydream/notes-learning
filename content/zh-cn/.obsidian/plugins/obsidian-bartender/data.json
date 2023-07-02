@@ -537,7 +537,7 @@
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt 配置详解.md",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序",
+      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt 客户端库.md",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/最佳实践.md",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/问题实例.md"
@@ -558,12 +558,12 @@
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/Interface 命令.md",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/Snapshot 命令.md"
     ],
-    "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序": [
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序/_index.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序/使用 libvirt API 的其他应用程序.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序/virt-manager.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序/virt-install.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/使用 libvirt API 的其他应用程序/libguestfs.md"
+    "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API": [
+      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API/_index.md",
+      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API/Libvirt API.md",
+      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API/virt-manager.md",
+      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API/virt-install.md",
+      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API/libguestfs.md"
     ],
     "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例": [
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/_index.md",

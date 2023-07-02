@@ -10,7 +10,7 @@ title: Annotations 配置详解
 
 与 ConfigMap 实现配置 Nginx Ingress Controller 运行时行为类似，只不过，Annotations 的方式，是通过在 Ingress 对象的 `.metadata.annotations` 字段下的内容实现的。
 
-同样，`.metadata.annotations` 字段下的内容也是由无数的 **Key/Value Pairs(键/值对)** 组成。很多 **Key** 都会对应一个 Nginx 的 [**Directives(指令)**](docs/Web/Nginx/Nginx%20配置详解/Nginx%20配置详解.md#Directives(指令))
+同样，`.metadata.annotations` 字段下的内容也是由无数的 **Key/Value Pairs(键/值对)** 组成。很多 **Key** 都会对应一个 Nginx 的 [**Directives(指令)**](/docs/Web/Nginx/Nginx%20配置详解/Nginx%20配置详解.md#Directives(指令))
 
 # Key 详解
 

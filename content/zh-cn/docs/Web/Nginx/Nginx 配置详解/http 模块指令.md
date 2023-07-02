@@ -144,7 +144,7 @@ https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass
 代替用户把对 location 定义的请求下的 URL 交给指定的 UPSTREAM 来处理请求。该指令属于 ngx_http_proxy_modeule 模块
 URL 有多种表示方法(下面的 Protocol 通常都是 http 或 https)
 
-- **Protocol://ServerGroup/URI;** # 将流量代理到 [一组服务器](docs/Web/Nginx/Nginx%20配置详解/多用途模块的指令/upstream%20模块指令.md) 上。每个流量都会根据负载均衡的规则交给 upstream{} 指令块中定义的服务器。
+- **Protocol://ServerGroup/URI;** # 将流量代理到 [一组服务器](/docs/Web/Nginx/Nginx%20配置详解/多用途模块的指令/upstream%20模块指令.md) 上。每个流量都会根据负载均衡的规则交给 upstream{} 指令块中定义的服务器。
   - 新版中，也可以省略 Protocol://，直接使用 ServerGroup 的名称即可。
 - **Protocol://IP:PORT/URI;** # 将流量代理到指定的服务器上。当只有一台可用的后端服务器时可以使用这种方式，这样就不用再使用 upstream 指令块定义了
 - **Protocol:unix:/PATH/TO/FILE:/URI;** # 将流量代理到本地的 UNIX-domain Socket 上。socket 的路径需要使用 `:` 包裹起来。
@@ -258,7 +258,7 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#root
 
 https://nginx.org/en/docs/http/ngx_http_core_module.html#sendfile
 
-开启或关闭 sendfile() 功能，即[零拷贝](docs/1.操作系统/2.Kernel(内核)/6.File%20System%20管理/零拷贝.md)功能。
+开启或关闭 sendfile() 功能，即[零拷贝](/docs/1.操作系统/2.Kernel(内核)/6.File%20System%20管理/零拷贝.md)功能。
 
 - 默认值：`sendfile off;`
 - 作用范围：http{}、server{}、location{}
@@ -327,7 +327,7 @@ log_format combined '$remote_addr - $remote_user [$time_local] '
                     '"$http_referer" "$http_user_agent"';
 ```
 
-更多日志格式设置方法，见 [log_format 模块指令](docs/Web/Nginx/Nginx%20配置详解/多用途模块的指令/log_format%20模块指令.md)
+更多日志格式设置方法，见 [log_format 模块指令](/docs/Web/Nginx/Nginx%20配置详解/多用途模块的指令/log_format%20模块指令.md)
 
 ## ngx_http_proxy_module 模块指令
 
