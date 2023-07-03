@@ -7,8 +7,11 @@ title: Error on ingesting out-of-order result from rule evaluation
 Error on ingesting out-of-order result from rule evaluation
 
 该问题通常是由于记录规则的处理结果中，包含 NaN 而产生的告警，所有 NaN 的时间序列都会被丢弃，并不会保存到数据库中。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/bprr89/1633938701153-3857ea39-4849-4d33-89e3-ad34ac5313e0.png)
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/bprr89/1633938707935-150d51c1-9dec-41a9-9346-f2e62bf74a53.png)
+
 下面是报错的具体内容，可以看到 numDropped 是记录规则查询后生成的新时间序列中，被丢弃的时间序列。
 
 ```bash

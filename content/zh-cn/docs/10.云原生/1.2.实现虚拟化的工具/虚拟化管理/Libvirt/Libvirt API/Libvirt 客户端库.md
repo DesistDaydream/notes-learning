@@ -5,6 +5,7 @@ title: Libvirt 客户端库
 # 概述
 
 > 参考：
+> 
 > - [官方文档，binding](https://libvirt.org/bindings.html)
 
 Libvirt 直接支持 C 和 C++，并且具有可用于其他语言的绑定：
@@ -23,6 +24,12 @@ Libvirt 直接支持 C 和 C++，并且具有可用于其他语言的绑定：
 - **D-Bus**：Pavel Hrdina 开发[D-Bus API](https://libvirt.org/dbus.html)。
 
 有关在 **Windows 上使用 libvirt 的信息，** [请参阅 Windows 支持页面](https://libvirt.org/windows.html)。
+
+注意：想要使用 Libvirt API，需要安装 libvirt-dev 和 pkg-config
+
+```bash
+sudo apt install libvirt-dev pkg-config
+```
 
 # Go 库
 

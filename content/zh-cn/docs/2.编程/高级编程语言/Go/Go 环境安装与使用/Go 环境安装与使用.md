@@ -86,11 +86,17 @@ go 相关工具通过 `go.mod` 与 `go.sum` 两个文件管理项目及其依赖
 
 # 编译 Go
 
-若想在 Windows 中编译依赖 gcc 的项目，则需要安装适用于 Windows 的 [GCC](/docs/2.编程/高级编程语言/C/C%20环境安装与使用/GCC.md) 编译器 [MinGW-w64](/docs/2.编程/高级编程语言/C/C%20环境安装与使用/GCC.md#MinGW-w64)
+有些代码依赖 gcc，需要安装 gcc 包
+
+```bash
+sudo apt install gcc
+```
 
 ## 交叉编译
 
-Linux 下编译出 Windows 的程序。需要安装 Windows 版的 gcc 工具 [MinGW-w64](/docs/2.编程/高级编程语言/C/C%20环境安装与使用/GCC.md#MinGW-w64)(有的环境还需要安装 gcc-multilib 包)
+想在 Windows 中编译依赖 gcc 的项目，则需要安装适用于 Windows 的 [GCC](/docs/2.编程/高级编程语言/C/C%20环境安装与使用/GCC.md) 编译器 [MinGW-w64](/docs/2.编程/高级编程语言/C/C%20环境安装与使用/GCC.md#MinGW-w64)
+
+想在 Linux 中编译出 Windows 的程序。需要安装 Windows 版的 gcc 工具 [MinGW-w64](/docs/2.编程/高级编程语言/C/C%20环境安装与使用/GCC.md#MinGW-w64)(有的环境还需要安装 gcc-multilib 包)
 
 ```bash
 sudo apt-get install gcc-mingw-w64

@@ -20,7 +20,7 @@ title: Thanos 部署
 
 > 参考：
 > 
-> - [GitHub,examples(Manifests)](https://github.com/thanos-io/kube-thanos/tree/main/examples)
+> - [GitHub，thanos-io/kube-thanos-examples(Manifests)](https://github.com/thanos-io/kube-thanos/tree/main/examples)
 > - [通过 kubectl 插件 kube-thanos 部署 Store 与 Query 的 Manifests](https://github.com/thanos-io/kube-thanos/tree/main/manifests)
 
 ## Sidecar 或 Receiver
