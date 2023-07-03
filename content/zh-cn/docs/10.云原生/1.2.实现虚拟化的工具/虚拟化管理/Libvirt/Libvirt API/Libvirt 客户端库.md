@@ -36,6 +36,8 @@ sudo apt install libvirt-dev pkg-config
 > 参考：
 > 
 > - [GitHub 项目，libvirt/libvirt-go-module](https://github.com/libvirt/libvirt-go-module)
+>   - [GitLab 项目，libvirt/libvirt-go-module](https://gitlab.com/libvirt/libvirt-go-module)
+>   - 导入时，也可以使用 `import libvirt.org/go/libvrit`
 > - [官方文档，go-libvirt](https://libvirt.org/go/libvirt.html)
 
 Go 语言的 `libvirt.org/go/libvrit` 包可以提供来自 OS 原生的 Libvirt API 的 CGO 绑定。该软件包替换了过时的 libvirt.org/libvirt-go 软件包，以便切换到使用 semver 和 Go 模块。除了更改的导入路径和版本控制方案之外，该 API 与旧包完全兼容。

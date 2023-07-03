@@ -561,6 +561,7 @@
     "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API": [
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API/_index.md",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API/Libvirt API.md",
+      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API/Libvirt 客户端库.md",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API/virt-manager.md",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API/virt-install.md",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API/libguestfs.md"
