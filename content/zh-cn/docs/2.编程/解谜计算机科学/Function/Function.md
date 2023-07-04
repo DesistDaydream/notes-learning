@@ -1,5 +1,5 @@
 ---
-title: Function(函数)
+title: Function
 weight: 1
 ---
 
@@ -13,7 +13,7 @@ weight: 1
 > - [Wiki,Evaluation strategy(评估策略)](https://en.wikipedia.org/wiki/Evaluation_strategy)
 > - [公众号，码农的荒岛求生-函数调用时底层发生了什么？](https://mp.weixin.qq.com/s/33__rGbvEHUB7nXWPSvz8Q)
 
-在计算机编程中，**Subroutine(子程序)** 是执行特定任务的程序指令序列，打包为一个单元。然后，该单元可用于应执行特定任务的程序中。
+在计算机编程中，比 **Function(函数)** 更官方的称呼应该是 **Subroutine(子程序)** 是执行特定任务的程序指令序列，打包为一个单元。然后，该单元可用于应执行特定任务的程序中。
 
 子程序可以在程序中定义，也可以在可以被许多程序使用的库中单独定义。在不同的编程语言中，子例程可以称为 **Routine(例程)**、**Subprogram(子程序)**、**Function(函数)**、**Method(方法)** 或 **Procedure(过程)**。从技术上讲，这些术语都有不同的定义。有时会使用通用的总称 **Callable Unit(可调用单元)**。
 
