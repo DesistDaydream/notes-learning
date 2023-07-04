@@ -1,5 +1,5 @@
 ---
-title: Goroutines 与 Channels
+title: Goroutine 与 Channel
 ---
 
 # 概述

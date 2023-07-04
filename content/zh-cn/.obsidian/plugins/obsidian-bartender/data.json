@@ -989,7 +989,7 @@
       "docs/2.编程/解谜计算机科学/_index.md",
       "docs/2.编程/解谜计算机科学/解谜计算机科学.md",
       "docs/2.编程/解谜计算机科学/Data Type AND Literal",
-      "docs/2.编程/解谜计算机科学/Operator(运算符).md",
+      "docs/2.编程/解谜计算机科学/Operator.md",
       "docs/2.编程/解谜计算机科学/Control structure.md",
       "docs/2.编程/解谜计算机科学/Function",
       "docs/2.编程/解谜计算机科学/面向对象编程",
@@ -1142,7 +1142,7 @@
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Map AND Struct.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method AND Interface",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Reflection.md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Goroutines 与 Channels",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Goroutine AND Channel",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Generic.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/I_O",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理",
@@ -1936,6 +1936,13 @@
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/I_O/_index.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/I_O/I_O.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/I_O/读取文件时显示进度.md"
+    ],
+    "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Goroutine AND Channel": [
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Goroutine AND Channel/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Goroutine AND Channel/Goroutine AND Channel.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Goroutine AND Channel/并发控制.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Goroutine AND Channel/并发问题.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Goroutine AND Channel/panic_ send on closed channel 解法.md"
     ]
   },
   "actionBarOrder": {},
