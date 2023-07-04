@@ -1,5 +1,6 @@
 ---
 title: Go 源码解析
+weight: 10
 ---
 
 原文链接：<https://mp.weixin.qq.com/s/5GabUkkgIyz7nJ33OjfBkw>
@@ -34,13 +35,65 @@ go 源码通过上述几个步骤生成可执行文件后，二进制文件在�
 
 `main.go`
 
-    package mainimport "fmt"func main() {    fmt.Println("hello world")}
+```
+package main  
+  
+import "fmt"  
+  
+func main() {  
+    fmt.Println("hello world")  
+}
+```
 
 编译该程序并使用 gdb 进行调试。使用 gdb 调试时首先在程序入口处设置一个断点，然后进行单步调试即可看到该程序启动过程中的代码执行流程。
 
-    $ go build -gcflags "-N -l" -o main main.go$ gdb ./main(gdb) info filesSymbols from "/home/gosoon/main".Local exec file:    `/home/gosoon/main', file type elf64-x86-64.    Entry point: 0x465860    0x0000000000401000 - 0x0000000000497893 is .text    0x0000000000498000 - 0x00000000004dbb65 is .rodata    0x00000000004dbd00 - 0x00000000004dc42c is .typelink    0x00000000004dc440 - 0x00000000004dc490 is .itablink    0x00000000004dc490 - 0x00000000004dc490 is .gosymtab    0x00000000004dc4a0 - 0x0000000000534b90 is .gopclntab    0x0000000000535000 - 0x0000000000535020 is .go.buildinfo    0x0000000000535020 - 0x00000000005432e4 is .noptrdata    0x0000000000543300 - 0x000000000054aa70 is .data    0x000000000054aa80 - 0x00000000005781f0 is .bss    0x0000000000578200 - 0x000000000057d510 is .noptrbss    0x0000000000400f9c - 0x0000000000401000 is .note.go.buildid(gdb) b *0x465860Breakpoint 1 at 0x465860: file /home/gosoon/golang/go/src/runtime/rt0_linux_amd64.s, line 8.(gdb) rStarting program: /home/gaofeilei/./mainBreakpoint 1, _rt0_amd64_linux () at /home/gaofeilei/golang/go/src/runtime/rt0_linux_amd64.s:88        JMP _rt0_amd64(SB)(gdb) n_rt0_amd64 () at /home/gaofeilei/golang/go/src/runtime/asm_amd64.s:1515        MOVQ    0(SP), DI   // argc(gdb) n16        LEAQ    8(SP), SI   // argv(gdb) n17        JMP runtime·rt0_go(SB)(gdb) nruntime.rt0_go () at /home/gaofeilei/golang/go/src/runtime/asm_amd64.s:9191        MOVQ    DI, AX      // argc......231        CALL    runtime·mstart(SB)(gdb) nhello world[Inferior 1 (process 39563) exited normally]
+```
+$ go build -gcflags "-N -l" -o main main.go  
+  
+$ gdb ./main  
+  
+(gdb) info files  
+Symbols from "/home/gosoon/main".  
+Local exec file:  
+    `/home/gosoon/main', file type elf64-x86-64.  
+    Entry point: 0x465860  
+    0x0000000000401000 - 0x0000000000497893 is .text  
+    0x0000000000498000 - 0x00000000004dbb65 is .rodata  
+    0x00000000004dbd00 - 0x00000000004dc42c is .typelink  
+    0x00000000004dc440 - 0x00000000004dc490 is .itablink  
+    0x00000000004dc490 - 0x00000000004dc490 is .gosymtab  
+    0x00000000004dc4a0 - 0x0000000000534b90 is .gopclntab  
+    0x0000000000535000 - 0x0000000000535020 is .go.buildinfo  
+    0x0000000000535020 - 0x00000000005432e4 is .noptrdata  
+    0x0000000000543300 - 0x000000000054aa70 is .data  
+    0x000000000054aa80 - 0x00000000005781f0 is .bss  
+    0x0000000000578200 - 0x000000000057d510 is .noptrbss  
+    0x0000000000400f9c - 0x0000000000401000 is .note.go.buildid  
+(gdb) b *0x465860  
+Breakpoint 1 at 0x465860: file /home/gosoon/golang/go/src/runtime/rt0_linux_amd64.s, line 8.  
+(gdb) r  
+Starting program: /home/gaofeilei/./main  
+  
+Breakpoint 1, _rt0_amd64_linux () at /home/gaofeilei/golang/go/src/runtime/rt0_linux_amd64.s:8  
+8        JMP _rt0_amd64(SB)  
+(gdb) n  
+_rt0_amd64 () at /home/gaofeilei/golang/go/src/runtime/asm_amd64.s:15  
+15        MOVQ    0(SP), DI   // argc  
+(gdb) n  
+16        LEAQ    8(SP), SI   // argv  
+(gdb) n  
+17        JMP runtime·rt0_go(SB)  
+(gdb) n  
+runtime.rt0_go () at /home/gaofeilei/golang/go/src/runtime/asm_amd64.s:91  
+91        MOVQ    DI, AX      // argc  
+......  
+231        CALL    runtime·mstart(SB)  
+(gdb) n  
+hello world  
+[Inferior 1 (process 39563) exited normally]
+```
 
-通过单步调试可以看到程序入口函数在 `runtime/rt0_linux_amd64.s` 文件中的第 8 行，最终会执行 `CALL runtime·mstart(SB)` 指令后输出 “hello world” 然后程序就退出了。
+通过单步调试可以看到程序入口函数在 `runtime/rt0_linux_amd64.s` 文件中的第 8 行，最终会执行 `CALL runtime·mstart(SB)` 指令后输出 “hello world” 然后程序就退出了。
 
 启动流程流程中的函数调用如下所示：
 

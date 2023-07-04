@@ -1,12 +1,12 @@
 ---
-title: Function(函数)
+title: Function
 ---
 
 # 概述
 
 > 参考：
 
-Function(函数)
+**Function(函数)**
 
 DRY 原则：Don't Repeart Yourself(不要重复你自己)
 

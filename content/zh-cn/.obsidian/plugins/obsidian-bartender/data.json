@@ -988,23 +988,25 @@
     "docs/2.编程/解谜计算机科学": [
       "docs/2.编程/解谜计算机科学/_index.md",
       "docs/2.编程/解谜计算机科学/解谜计算机科学.md",
-      "docs/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)",
+      "docs/2.编程/解谜计算机科学/Data Type AND Literal",
       "docs/2.编程/解谜计算机科学/Operator(运算符).md",
-      "docs/2.编程/解谜计算机科学/Function(函数)",
+      "docs/2.编程/解谜计算机科学/Control structure.md",
+      "docs/2.编程/解谜计算机科学/Function",
       "docs/2.编程/解谜计算机科学/面向对象编程",
-      "docs/2.编程/解谜计算机科学/假如你来发明编程语言"
+      "docs/2.编程/解谜计算机科学/假如你来发明编程语言",
+      "docs/2.编程/解谜计算机科学/变量.md"
     ],
-    "docs/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)": [
-      "docs/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/_index.md",
-      "docs/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/Data Type(数据类型) 与 Literal(字面量).md",
-      "docs/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/抽象数据类型",
-      "docs/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/复合数据类型",
-      "docs/2.编程/解谜计算机科学/Data Type(数据类型) 与 Literal(字面量)/进制表示法.md"
+    "docs/2.编程/解谜计算机科学/Data Type AND Literal": [
+      "docs/2.编程/解谜计算机科学/Data Type AND Literal/_index.md",
+      "docs/2.编程/解谜计算机科学/Data Type AND Literal/Data type AND Literal.md",
+      "docs/2.编程/解谜计算机科学/Data Type AND Literal/抽象数据类型",
+      "docs/2.编程/解谜计算机科学/Data Type AND Literal/复合数据类型",
+      "docs/2.编程/解谜计算机科学/Data Type AND Literal/进制表示法.md"
     ],
-    "docs/2.编程/解谜计算机科学/Function(函数)": [
-      "docs/2.编程/解谜计算机科学/Function(函数)/_index.md",
-      "docs/2.编程/解谜计算机科学/Function(函数)/Function(函数).md",
-      "docs/2.编程/解谜计算机科学/Function(函数)/回调函数 callback.md"
+    "docs/2.编程/解谜计算机科学/Function": [
+      "docs/2.编程/解谜计算机科学/Function/_index.md",
+      "docs/2.编程/解谜计算机科学/Function/Function.md",
+      "docs/2.编程/解谜计算机科学/Function/回调函数 callback.md"
     ],
     "docs/2.编程/解谜计算机科学/假如你来发明编程语言": [
       "docs/2.编程/解谜计算机科学/假如你来发明编程语言/_index.md",
@@ -1131,31 +1133,31 @@
     "docs/2.编程/高级编程语言/Go/Go 规范与标准库": [
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/_index.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Go 规范与标准库.md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/数据类型.md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Variables(变量).md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Control Structures(控制结构).md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Arrays(数组) 与 Slices(切片).md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Function(函数).md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Pointers(指针).md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Maps(映射) 与 Struct(结构体).md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method(方法)、Interface(接口)",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Reflection(反射).md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Data type.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Variable.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Control structure.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Arrays AND Slices.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Function.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Pointer.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Maps AND Struct.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method AND Interface",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Reflection.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Goroutines 与 Channels",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Generic(泛型).md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Generic.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/I_O",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Template(模板).md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Template.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/时间处理",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/嵌入静态文件.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Unit test(单元测试).md"
     ],
-    "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method(方法)、Interface(接口)": [
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method(方法)、Interface(接口)/_index.md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method(方法)、Interface(接口)/Method(方法)、Interface(接口).md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method(方法)、Interface(接口)/Go 接口设计原则.md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method(方法)、Interface(接口)/接口设计示例 二.md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method(方法)、Interface(接口)/接收设计示例 三.md"
+    "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method AND Interface": [
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method AND Interface/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method AND Interface/Method AND Interface.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method AND Interface/Go 接口设计原则.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method AND Interface/接口设计示例 二.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method AND Interface/接收设计示例 三.md"
     ],
     "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理": [
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/_index.md",
@@ -1929,6 +1931,11 @@
       "docs/4.数据通信/通信协议/7.HTTP/HTTP 缓存/_index.md",
       "docs/4.数据通信/通信协议/7.HTTP/HTTP 缓存/HTTP 缓存.md",
       "docs/4.数据通信/通信协议/7.HTTP/HTTP 缓存/告别 HTTP.md"
+    ],
+    "docs/2.编程/高级编程语言/Go/Go 规范与标准库/I_O": [
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/I_O/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/I_O/I_O.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/I_O/读取文件时显示进度.md"
     ]
   },
   "actionBarOrder": {},

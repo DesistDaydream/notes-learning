@@ -1,12 +1,10 @@
 ---
-title: Control Structures(控制结构)
+title: Control structure
 ---
 
 # 概述
 
-当我们需要只在满足一些特定情况时才执行某些代码的时候，也就是说在代码里进行条件判断。针对这个需求，Go 语言提供了 4 中条件结构和分支结构。
-
-在结构中，可以使用`break`和`continue`这样的关键字来中途改变结构的状态。还可以使用`return`来结束某个函数的执行，或使用`goto`和标签来调整程序的执行位置
+Go 语言提供了 4 中条件结构和分支结构用作 [Control structure(控制结构)](/docs/2.编程/解谜计算机科学/Control%20structure.md)。在结构中，可以使用 `break` 和 `continue` 这样的关键字来中途改变结构的状态。还可以使用 `return` 来结束某个函数的执行，或使用 `goto` 和标签来调整程序的执行位置
 
 # For 循环
 

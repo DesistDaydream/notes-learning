@@ -1,5 +1,5 @@
 ---
-title: Template(模板)
+title: Template
 ---
 
 # 概述

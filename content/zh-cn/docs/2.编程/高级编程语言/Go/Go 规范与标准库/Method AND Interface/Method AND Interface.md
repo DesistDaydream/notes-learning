@@ -1,5 +1,5 @@
 ---
-title: Method(方法)、Interface(接口)
+title: Method AND Interface
 ---
 
 # 概述

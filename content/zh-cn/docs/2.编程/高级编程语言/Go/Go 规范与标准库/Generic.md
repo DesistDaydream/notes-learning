@@ -1,5 +1,5 @@
 ---
-title: Generic(泛型)
+title: Generic
 ---
 
 # 概述

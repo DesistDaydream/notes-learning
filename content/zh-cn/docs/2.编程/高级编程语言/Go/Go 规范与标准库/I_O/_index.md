@@ -1,3 +1,3 @@
 ---
-title: I_O
+title: I/O
 ---

@@ -1,6 +1,6 @@
 ---
 title: Go 环境安装与使用
-weight: 2
+weight: 1
 ---
 
 # 概述

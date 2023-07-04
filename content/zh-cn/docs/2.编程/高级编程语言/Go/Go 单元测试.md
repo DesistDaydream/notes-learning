@@ -1,5 +1,6 @@
 ---
 title: Go 单元测试
+weight: 7
 ---
 
 # 概述
