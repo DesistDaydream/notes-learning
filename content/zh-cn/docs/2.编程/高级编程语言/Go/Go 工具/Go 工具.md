@@ -29,11 +29,11 @@ https://pkg.go.dev/cmd/go#hdr-Compile_packages_and_dependencies
 
 OPTIONS
 
-- **-ldflags \<[PATTERN=]ARG>** # 向链接器传递一些参数。这些参数可用于指定编译时需要使用的一些信息，例如项目版本号、Git 提交 ID、构建时间、构建平台和架构等元数据信息
+- **-ldflags [PATTERN=]ARG** # 向链接器传递一些参数。这些参数可用于指定编译时需要使用的一些信息，例如项目版本号、Git 提交 ID、构建时间、构建平台和架构等元数据信息
   - 比如：
     - -ldflags "-X main.version=1.0.0 -X 'main.buildTime=`date`'"
     - -ldflags "-s -w" # 告诉链接器在生成可执行文件时忽略调试信息和符号表，从而使得你的二进制文件更加紧凑而且不再可读。
-- **-o \<NAME>** # 指定构建完成后生成的文件名为 NAME
+- **-o NAME** # 指定构建完成后生成的文件名为 NAME
 - **-x** # 输出 Go 程序编译、链接、打包的全过程。包括都使用了哪些库、执行了什么命令、等等
 
 EXAMPLE
@@ -61,8 +61,8 @@ generate generate Go files by processing source
 
 OPTIONS
 
-- -u # 更新现有依赖，强制更新它所依赖的其他全部模块，不包括自身
-- -t # 更新所有直接依赖和间接依赖的模块版本，包括单元测试中用到的。
+- **-u** # 更新现有依赖，强制更新它所依赖的其他全部模块，不包括自身
+- **-t** # 更新所有直接依赖和间接依赖的模块版本，包括单元测试中用到的。
 
 install compile and install packages and dependencies
 
@@ -85,8 +85,11 @@ list list packages or modules
 # 其他工具
 
 很多 Go 语言生态的工具为我们编写代码提供了强大的支持，这些工具通常会作为 IDE 的插件被安装
+
 比如 VSCode 中，当我们安装完 Go 的所有工具后，右键点击代码会出现如下提示：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gy06h4/1654832963071-167da116-2e44-4818-a22c-37dc041ebafc.png)
+
 通过这些工具，我们可以
 
 - 检查代码问题
@@ -174,6 +177,7 @@ func TestUnitTests(t *testing.T) {
 ```
 
 执行测试后效果如下：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gy06h4/1654845554292-4eb67713-5aac-400a-894f-55242b3fe799.png)
 
 ### Syntax(语法)
@@ -199,8 +203,11 @@ impl 用于生成实现接口的 [Method stub](</docs/2.编程/Programming(编�
 ### 简单示例
 
 通过 Go: Generate Interface Stubs 可以快速生成某个接口下的方法
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gy06h4/1642038271876-e8806fd8-1531-4c24-b1f4-a7f4d9ae306a.png)
+
 语法：`VAR *STRUCT INTERFACE`
+
 比如，我想让 `File` 结构体实现 `io.Closer` 接口，则输入:`f *File io.Closer`，将会生成如下方法：
 
 ```go
@@ -212,6 +219,7 @@ func (f *File) Close() error {
 > 也可以通过命令行，使用 `impl 'f *File' io.Closer` 命令生成方法。
 
 若提示 `Cannot stub interface: unrecognized interface: handler.YuqeData`导致无法生成方法，则对接口使用一下 `Find All Implementations`
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gy06h4/1642045391841-a1d01b46-deda-4561-b9b6-de714d8ee672.png)
 
 ## gomodifytags

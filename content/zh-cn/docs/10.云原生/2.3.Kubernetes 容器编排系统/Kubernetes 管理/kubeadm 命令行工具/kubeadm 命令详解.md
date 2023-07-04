@@ -9,16 +9,16 @@ title: kubeadm 命令详解
 **kubeadm \[command]**
 Command 包括：
 
-1. alpha Kubeadm experimental sub-commands
-2. completion Output shell completion code for the specified shell (bash or zsh).
-3. config Manage configuration for a kubeadm cluster persisted in a ConfigMap in the cluster.
-4. help Help about any command
-5. init Run this command in order to set up the Kubernetes master.
-6. join Run this on any machine you wish to join an existing cluster
-7. reset Run this to revert any changes made to this host by 'kubeadm init' or 'kubeadm join'.
-8. token Manage bootstrap tokens.
-9. upgrade Upgrade your cluster smoothly to a newer version with this command.
-10. version Print the version of kubeadm
+- alpha Kubeadm experimental sub-commands
+- completion Output shell completion code for the specified shell (bash or zsh).
+- config Manage configuration for a kubeadm cluster persisted in a ConfigMap in the cluster.
+- help Help about any command
+- init Run this command in order to set up the Kubernetes master.
+- join Run this on any machine you wish to join an existing cluster
+- reset Run this to revert any changes made to this host by 'kubeadm init' or 'kubeadm join'.
+- token Manage bootstrap tokens.
+- upgrade Upgrade your cluster smoothly to a newer version with this command.
+- version Print the version of kubeadm
 
 ## kubeadm alpha
 
@@ -26,16 +26,16 @@ Command 包括：
 
 EXAMPLE
 
-1. kubeadm alpha certs renew all # 更新集群中所有证书
+- kubeadm alpha certs renew all # 更新集群中所有证书
 
 ## kubeadm token \[COMMAND]
 
 COMMAND 包括
 
-1. create Create bootstrap tokens on the server.
-2. delete Delete bootstrap tokens on the server.
-3. generate Generate and print a bootstrap token, but do not create it on the server.
-4. list List bootstrap tokens on the server.
+- create Create bootstrap tokens on the server.
+- delete Delete bootstrap tokens on the server.
+- generate Generate and print a bootstrap token, but do not create it on the server.
+- list List bootstrap tokens on the server.
 
 kubeadm token create \[token]
 
@@ -60,13 +60,13 @@ kubeadm config images \[list | pull] \[flags]
 
 EXAMPLE
 
-1. kubeadm config images list --kubernetes-version=1.12.1 # 列出 k8s 的 1.12.1 版本所需的所有 images 以及版本号
+- kubeadm config images list --kubernetes-version=1.12.1 # 列出 k8s 的 1.12.1 版本所需的所有 images 以及版本号
 
 ## kubeadm init \[Command] \[Flags]
 
 Available Commands
 
-1. phase # 使用该子命令来执行 kubeadm 初始化流程的单个阶段
+- phase # 使用该子命令来执行 kubeadm 初始化流程的单个阶段
 
 Flags
 

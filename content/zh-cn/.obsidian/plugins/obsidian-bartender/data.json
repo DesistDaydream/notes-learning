@@ -1943,6 +1943,15 @@
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Goroutine AND Channel/并发控制.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Goroutine AND Channel/并发问题.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Goroutine AND Channel/panic_ send on closed channel 解法.md"
+    ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubeadm 命令行工具": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubeadm 命令行工具/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubeadm 命令行工具/kubeadm 命令行工具.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubeadm 命令行工具/kubeadm 命令详解.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubeadm 命令行工具/kubeadm 配置详解.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubeadm 命令行工具/kubeadm 实现细节详解.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubeadm 命令行工具/最佳实践.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubeadm 命令行工具/编译 kubeadm 修改证书过期时间.md"
     ]
   },
   "actionBarOrder": {},
