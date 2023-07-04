@@ -9,7 +9,7 @@ title: Maps AND Struct
 > - [官方文档，参考-规范-Map 类型](https://go.dev/ref/spec#Map_types)
 > - [官方文档，参考-规范-Struct 类型](https://go.dev/ref/spec#Struct_types)
 
-# Maps(映射)
+# Map(映射)
 
 map 是 **key-value pairs(键值对)** 的无序集合。这种结构也称 **关联数组**(associative array)、**字典**(dictionary)、**散列表/哈希表**(hash table)。这是一种快速寻找值的理想结构：给定 Key，对应的 Value 可以迅速定位。
 
