@@ -18,9 +18,9 @@ Libvirt 提供了管理虚拟机和其它虚拟化功能（如：存储和网络
 
 Libvirt 包含 3 个东西：
 
-- **libvirtd** # 是守护进程，服务程序，接收和处理 API 请求
 - **API** # API 库使得其他人可以开发基于 Libvirt 的高级工具，比如 virt-manager、virt-install、virt-viewer 等。
-- **virsh** # 是我们经常要用的命令行工具
+- **libvirtd** # 是守护进程，暴露了 Libvirt API，可以接收和处理客户端发送的请求
+- **virsh** # 使用 Libvirt API 编写的客户端程序，是我们经常要用的命令行工具
 
 Note：其实 libvirtd 在绝大部分情况下是与 qemu/kvm 相搭配来使用，都是开源的，并且 redhat 官方推荐的也是使用 libvirt 管理 kvm 虚拟机
 
