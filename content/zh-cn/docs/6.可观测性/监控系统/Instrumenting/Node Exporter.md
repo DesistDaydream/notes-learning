@@ -111,7 +111,11 @@ Note：
 # 为 Node Exporter 添加认证
 
 注意：该功能为实验性的，笔记时间：2021 年 8 月 4 日
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ck9bpv/1628068010926-2ae85ce6-13be-4dd3-8ed1-74538c5cf3da.png)
+
 与 Prometheus 添加认证的方式一样，详见：
-[Authentication(认证)](/docs/6.可观测性/监控系统/Prometheus/HTTPS%20 和%20Authentication(认证).md 和 Authentication(认证).md)
+
+[Authentication(认证)](/docs/6.可观测性/监控系统/Prometheus/HTTPS%20和%20Authentication(认证).md)
+
 node-exporter 程序使用 `--web.config` 命令行标志来指定 web-config 文件，读取其中内容并开启 TLS 或 认证功能。

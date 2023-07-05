@@ -18,7 +18,7 @@ Libvirt 支持多不同类型的虚拟化（通常称为 **Drviers(驱动程序)
 
 ## 连接 Hypervisor 方式
 
-Libvirt 的 KVM/QEMU 驱动程序将会探测 /usr/bin 目录是否存在 `qemu`, `qemu-system-x86_64`, `qemu-system-microblaze`, `qemu-system-microblazeel`, `qemu-system-mips`,`qemu-system-mipsel`, `qemu-system-sparc`,`qemu-system-ppc`。来决定如何连接 QEMU emulator。
+Libvirt 的 KVM/QEMU 驱动程序将会探测 `/usr/bin/` 目录是否存在 `qemu`, `qemu-system-x86_64`, `qemu-system-microblaze`, `qemu-system-microblazeel`, `qemu-system-mips`,`qemu-system-mipsel`, `qemu-system-sparc`,`qemu-system-ppc`。来决定如何连接 QEMU emulator。
 
 Libvirt 的 KVM/QEMU 驱动程序将会探测 /usr/bin 目录是否存在 `qemu-kvm`，以及 /dev/kvm 驱动是否存在。来决定如何连接 KVM hypervisor。
 

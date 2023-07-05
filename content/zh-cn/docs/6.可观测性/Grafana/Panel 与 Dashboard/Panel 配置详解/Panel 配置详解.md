@@ -1,6 +1,6 @@
 ---
-title: "Panel(面板) 配置详解"
-linkTitle: "Panel(面板) 配置详解"
+title: "Panel 配置详解"
+linkTitle: "Panel 配置详解"
 weight: 1
 ---
 
@@ -95,7 +95,7 @@ Transformations process the result set of a query before it’s passed on for vi
 
 Transformations sometimes result in data that cannot be graphed. When that happens, Grafana displays a suggestion on the visualization that you can click to switch to table visualization. This often helps you better understand what the transformation is doing to your data
 
-Transform 的用法详见：[Transformations(转换)](/docs/6.可观测性/Grafana/Panel(面板)%20与%20Dashboard(仪表盘)/Panel(面板)%20配置详解/Transformations(转换).md)
+Transform 的用法详见：[Transformations(转换)](docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Panel%20配置详解/Transformations(转换).md)
 
 ## Alert(告警)
 

@@ -1461,18 +1461,18 @@
       "docs/6.可观测性/Grafana/Grafana.md",
       "docs/6.可观测性/Grafana/Grafana 数据模型.md",
       "docs/6.可观测性/Grafana/Grafana 配置详解",
-      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)",
+      "docs/6.可观测性/Grafana/Panel 与 Dashboard",
       "docs/6.可观测性/Grafana/Plugins(插件).md",
       "docs/6.可观测性/Grafana/访问控制.md",
       "docs/6.可观测性/Grafana/Grafana 8.0 告警使用.md",
       "docs/6.可观测性/Grafana/Grafana 管理.md"
     ],
-    "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)": [
-      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/_index.md",
-      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/Panel(面板) 与 Dashboard(仪表盘).md",
-      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/Time series 类型面板",
-      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/Panel(面板) 配置详解",
-      "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)/Table 类型面板.md"
+    "docs/6.可观测性/Grafana/Panel 与 Dashboard": [
+      "docs/6.可观测性/Grafana/Panel 与 Dashboard/_index.md",
+      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Panel 与 Dashboard.md",
+      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Panel 配置详解",
+      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Time series 类型面板",
+      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Table 类型面板.md"
     ],
     "docs/6.可观测性/Observability(可观测性)": [
       "docs/6.可观测性/Observability(可观测性)/_index.md",
@@ -1952,6 +1952,11 @@
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubeadm 命令行工具/kubeadm 实现细节详解.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubeadm 命令行工具/最佳实践.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubeadm 命令行工具/编译 kubeadm 修改证书过期时间.md"
+    ],
+    "docs/6.可观测性/Grafana/Panel 与 Dashboard/Time series 类型面板": [
+      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Time series 类型面板/_index.md",
+      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Time series 类型面板/Time series 类型面板.md",
+      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Time series 类型面板/(弃用)Graph 类型面板详解.md"
     ]
   },
   "actionBarOrder": {},

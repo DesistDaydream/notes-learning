@@ -5,6 +5,7 @@ title: Ceph 部署
 # 概述
 
 > 参考：
+> 
 > - [官方文档, Cephadm](https://docs.ceph.com/en/latest/cephadm/)
 
 # 以 pacific 版本为例
@@ -211,6 +212,10 @@ blemmenes/radosgw_usage_exporter:latest \
 ```
 
 异常
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/sx1zt0/1630750629528-40ac128e-4c7c-4ccf-9aa4-d64741aae089.png)
+
 正常
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/sx1zt0/1630835261055-137daaea-90de-4045-a62f-5a0e28077860.png)
+

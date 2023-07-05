@@ -16,7 +16,9 @@ title: 从文件中获取 Linux 硬件信息获取
 
 一般情况下内核默认加载了 `dmi sysfs` ，路径是 `/sys/class/dmi` 。里面包含了 `bios` ， `board` ， `product` 等信息。
 
-## Bios
+## bios
+
+BISO 信息
 
 通过命令 `ls -l /sys/class/dmi/id/bios_*` 可以看到支持的 `bios` 字段，如下：
 
@@ -29,7 +31,9 @@ title: 从文件中获取 Linux 硬件信息获取
 
 直接读文件即可获取对应值。
 
-## Board
+## board
+
+主板信息
 
 通过命令 `ls -l /sys/class/dmi/id/board_*` 可以看到支持的 `board` 字段，如下：
 
@@ -44,7 +48,13 @@ title: 从文件中获取 Linux 硬件信息获取
 
 直接读文件即可获取对应值，但有些文件需要 `root` 权限。
 
-## Product
+## chassis
+
+机架信息
+
+## product
+
+产品信息
 
 通过命令 `ls -l /sys/class/dmi/id/product_*` 可以看到支持的 `product` 字段，如下：
 
