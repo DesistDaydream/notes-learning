@@ -18,9 +18,11 @@ Libvirt 提供了管理虚拟机和其它虚拟化功能（如：存储和网络
 
 Libvirt 包含 3 个东西：
 
-- **API** # API 库使得其他人可以开发基于 Libvirt 的高级工具，比如 virt-manager、virt-install、virt-viewer 等。
-- **libvirtd** # 是守护进程，暴露了 Libvirt API，可以接收和处理客户端发送的请求
-- **virsh** # 使用 Libvirt API 编写的客户端程序，是我们经常要用的命令行工具
+- **Libvirt API** # API 库使得其他人可以开发基于 Libvirt 的高级工具，比如 virt-manager、virt-install、virt-viewer 等。
+- **Driver** # 虚拟化平台的驱动程序，暴露了 Libvirt API。由驱动程序对接各种不同的虚拟化平台的 Hypervisor 以管理虚拟化环境。
+  - **libvirtd** # libvirtd 是一个集合了多种驱动程序守护进程，暴露了 Libvirt API，可以接收和处理客户端发送的请求
+- **Client APP** # 客户端应用程序，典型的代表是 virsh
+  - **virsh** # 使用 Libvirt API 编写的客户端程序，用来连接 Driver 后发送命令以控制虚拟化环境。
 
 Note：其实 libvirtd 在绝大部分情况下是与 qemu/kvm 相搭配来使用，都是开源的，并且 redhat 官方推荐的也是使用 libvirt 管理 kvm 虚拟机
 
@@ -40,7 +42,7 @@ libvirt 使用 URI 来与各种类型的虚拟化程序连接。[Libvirt 对接 
 
 请注意，当将发行版中提供的软件版本视为支持目标时，libvirt 仅考虑版本号，并假设该发行版中的功能与具有相同版本的上游版本相匹配。换句话说，如果发行版向后移植额外的功能到其发行版中的软件，libvirt 上游代码将不会添加对这些向后移植的显式支持，除非该功能可以以也适用于上游版本的方式自动检测。
 
-Repology站点是一个有用的资源，可用于识别各种操作系统中当前发布的软件版本，但它并不涵盖下面列出的所有发行版[。](https://repology.org/)
+[Repology](https://repology.org/) 站点是一个有用的资源，可用于识别各种操作系统中当前发布的软件版本，但它并不涵盖下面列出的所有发行版
 
 - [libvirt 上的 Repology](https://repology.org/metapackage/libvirt/versions)
 - [qemu 上 Repology](https://repology.org/metapackage/qemu/versions)

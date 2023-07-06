@@ -533,12 +533,12 @@
     "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt": [
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/_index.md",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt.md",
+      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Driver",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt 对接 Hypervisor.md",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt 配置详解.md",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt 客户端库.md",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/最佳实践.md",
       "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/问题实例.md"
     ],
