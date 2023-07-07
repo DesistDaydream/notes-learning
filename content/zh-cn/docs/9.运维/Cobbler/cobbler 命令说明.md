@@ -1,10 +1,10 @@
 ---
-title: cobbler命令说明
+title: cobbler 命令说明
 ---
 
 ## distro
 
-1. cobbler distro report --name=CentOS7-1810 # 查看安装镜像文件信息
+- cobbler distro report --name=CentOS7-1810 # 查看安装镜像文件信息
 
 ## import
 

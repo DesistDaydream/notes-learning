@@ -42,9 +42,7 @@ Rclone 还可以将这些 Remote 作为磁盘挂载在 Windows、macOS、Linux �
 >
 > - [官方文档，全局标志](https://rclone.org/flags/)
 
-**-n, --dry-run** # 试运行，不会真的执行
-**-i, --interactive** # 开启交互模式
-**-p, --progress** # 显示传输进度、传输速度
+详见 [Rclone 配置](docs/5.数据存储/数据管理工具/Rclone/Rclone%20配置.md)，命令行标志通常也是 Rclone 的配置，分为两种，与后端无关的和与后端相关的。绝大部分情况，在使用命令行时，我们一般使用与后端无关的的标志。在这个文章中，主要看 [Backend 无关配置详解](docs/5.数据存储/数据管理工具/Rclone/Rclone%20配置.md#Backend%20无关配置详解) 部分即可
 
 # rclone config
 
@@ -62,6 +60,8 @@ Rclone 还可以将这些 Remote 作为磁盘挂载在 Windows、macOS、Linux �
 - **show** # 打印 (解密) 配置文件，或单个 Remote 的配置。
 
 # rclone copy
+
+将源 Remote 的文件复制到目标 Remote 中，跳过相同的文件。不会删除目标中的比源中多的文件。
 
 ## Syntax(语法)
 
@@ -104,13 +104,33 @@ VFS 文件缓存相关标志
 
 # rclone sync
 
-注意：由于 sync 命令会导致目标数据丢失，最好使用 --dry-run 或 -i, --interactive 标志进行测试：`rclone sync -i SOURCE remote:DESTINATION`
+让目标 Remote 与源 Remote 保持相同，仅修改目标 Remote 中的数据。
+
+https://rclone.org/commands/rclone_sync/
+
+注意：由于 sync 命令会导致目标数据丢失，最好使用 --dry-run 或 -i, --interactive 标志进行测试
 
 ## Syntax(语法)
 
 **rclone sync SOURCE:PATH DEST:PATH \[FLAGS]**
 
+# 列出 Remote 中的数据相关命令
+
+ls
+
+lsl
+
+lsd
+
+lsf
+
+lsjson
+
 # 应用示例
+
+## 两个对象存储同步数据
+
+**rclone sync** 命令会在源和目标之间同步文件。 它会删除目标目录中源目录没有的文件，并且会更新目标目录中的文件。 **rclone copy** 命令只会在源和目标之间复制文件。 它不会删除目标目录中的文件，也不会更新文件。
 
 ## webdav 挂载为电脑本地硬盘(非网络硬盘)
 

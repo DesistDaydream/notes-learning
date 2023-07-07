@@ -1,5 +1,6 @@
 ---
 title: Cobbler
+weight: 1
 ---
 
 # 前言
@@ -15,7 +16,9 @@ title: Cobbler
 # 概述
 
 > 参考：
-> - [Cobbler 官网](http://cobbler.github.io/)
+> 
+> - [GitHub 项目，cobbler/cobbler](https://github.com/cobbler/cobbler)
+> - [官网](http://cobbler.github.io/)
 
 Cobbler 是一个 Linux 服务器快速网络安装的服务，而且在经过调整也可以支持网络安装 windows。
 
@@ -65,10 +68,10 @@ Cobbler 可以使用 kickstart 模板。基于 Red Hat 或 Fedora 的系统使�
 
 Cobbler 的配置结构基于一组注册的对象。每个对象表示一个与另一个实体相关联的实体（该对象指向另一个对象，或者另一个对象指向该对象）。当一个对象指向另一个对象时，它就继承了被指向对象的数据，并可覆盖或添加更多特定信息。以下对象类型的定义
 
-1. Distros（发行版）：表示一个操作系统，它承载了内核和 initrd 的信息，以及内核参数等其他数据。使用 cobbler import 命令后即可生成该对象
-2. Profile（配置文件）：包含一个 Distros、一个 kickstart 文件以及可能的存储库，还包含更多特定的内核参数等其他数据。使用 cobbler import 命令后，会默认使用名为/var/lib/cobbler/kickstarts/sample_end.ks 的 kickstart 文件。
-3. Systems（系统）：表示将要安装的新机器。它包含一个配置文件或一个镜像，还包含该机器的 IP 和 MAC 地址、电源管理（地址、凭据、类型）、（网卡绑定、设置 valn 等）
-4. Repository（镜像）：保存一个 yum 或 rsync 存储库的镜像信息
-5. Image（存储库）：可替换一个包含不属于此类比的额文件的发行版对象（例如，无法分为内核和 initrd 的对象）。
+- Distros（发行版）：表示一个操作系统，它承载了内核和 initrd 的信息，以及内核参数等其他数据。使用 cobbler import 命令后即可生成该对象
+- Profile（配置文件）：包含一个 Distros、一个 kickstart 文件以及可能的存储库，还包含更多特定的内核参数等其他数据。使用 cobbler import 命令后，会默认使用名为/var/lib/cobbler/kickstarts/sample_end.ks 的 kickstart 文件。
+- Systems（系统）：表示将要安装的新机器。它包含一个配置文件或一个镜像，还包含该机器的 IP 和 MAC 地址、电源管理（地址、凭据、类型）、（网卡绑定、设置 valn 等）
+- Repository（镜像）：保存一个 yum 或 rsync 存储库的镜像信息
+- Image（存储库）：可替换一个包含不属于此类比的额文件的发行版对象（例如，无法分为内核和 initrd 的对象）。
 
 基于注册的对象以及各个对象之间的关联，Cobbler 知道如何更改文件系统以反应具体配置。因为系统配置的内部是抽象的，所以可以仅关注想要执行的操作。

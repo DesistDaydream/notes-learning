@@ -254,7 +254,10 @@ $SNIPPET('tools')
    - cobbler profile edit --name=CentOS7-2003-x86_64 --kopts='net.ifnames=0 biosdevname=0'
 
 可以看到下面 Kickstart 那里的配置 cfg 文件地址被改变了
-\[root@cobbler kickstarts]# cobbler profile report --name=CentOS7-2003-x86_64 Name : CentOS7-2003-x86_64 TFTP Boot Files : {}Comment : DHCP Tag : defaultDistribution : CentOS7-2003-x86_64 Enable gPXE? : 0Enable PXE Menu? : 1Fetchable Files : {}Kernel Options : {}Kernel Options (Post Install) : {}Kickstart : /var/lib/cobbler/kickstarts/CentOS7-2003-x86_64.cfgKickstart Metadata : {}Management Classes : \[]Management Parameters : <>Name Servers : \[]Name Servers Search Path : \[]Owners : \['admin']Parent Profile : Internal proxy : Red Hat Management Key : <>Red Hat Management Server : <>Repos : \[]Server Override : <>Template Files : {}Virt Auto Boot : 1Virt Bridge : xenbr0Virt CPUs : 1Virt Disk Driver Type : rawVirt File Size(GB) : 5Virt Path : Virt RAM (MB) : 512Virt Type : kvm#同步下 cobbler 数据，每次修改完都要镜像同步
+
+```
+[root@cobbler kickstarts]# cobbler profile report --name=CentOS7-2003-x86_64 Name : CentOS7-2003-x86_64 TFTP Boot Files : {}Comment : DHCP Tag : defaultDistribution : CentOS7-2003-x86_64 Enable gPXE? : 0Enable PXE Menu? : 1Fetchable Files : {}Kernel Options : {}Kernel Options (Post Install) : {}Kickstart : /var/lib/cobbler/kickstarts/CentOS7-2003-x86_64.cfgKickstart Metadata : {}Management Classes : \[]Management Parameters : <>Name Servers : \[]Name Servers Search Path : \[]Owners : \['admin']Parent Profile : Internal proxy : Red Hat Management Key : <>Red Hat Management Server : <>Repos : \[]Server Override : <>Template Files : {}Virt Auto Boot : 1Virt Bridge : xenbr0Virt CPUs : 1Virt Disk Driver Type : rawVirt File Size(GB) : 5Virt Path : Virt RAM (MB) : 512Virt Type : kvm#同步下 cobbler 数据，每次修改完都要镜像同步
+```
 
 ## 开始批量安装系统
 

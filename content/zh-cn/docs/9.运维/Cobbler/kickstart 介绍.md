@@ -5,11 +5,13 @@ title: kickstart 介绍
 # 概述
 
 > 参考：
-> - 官方文档：<https://docs.centos.org/en-US/centos/install-guide/Kickstart2>
+> 
+> - [官方文档](https://docs.centos.org/en-US/centos/install-guide/Kickstart2)
 
 # Kickstart 语法参考
 
 > 参考：
+> 
 > - 官方文档：<https://docs.centos.org/en-US/centos/install-guide/Kickstart2/#sect-kickstart-syntax>
 
 ## 磁盘配置

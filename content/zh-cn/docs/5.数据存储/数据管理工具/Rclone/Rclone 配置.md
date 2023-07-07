@@ -9,18 +9,24 @@ weight: 20
 > 参考：
 >
 > - [官方文档，用法](https://rclone.org/docs/)
+> - [官方文档，全局命令行标志](https://rclone.org/flags/)
 
 Rclone 的配置有点混乱，不过大体分为两部分，**Backend(与后端相关)** 和 **Non Backend(与后端无关)** 两种配置。
 
-- **Backend** # 针对各种 Remote 所使用的 Backend 的配置。
-- **Non Backend** # 通常是指 Rclone 自身的运行时方式。
+- **Non Backend** # 通常是指 Rclone 自身的运行时方式。比如使用 sync、copy 等命令时设置并发数、等等。
   - 这部分配置无法通过 rclone.conf 文件设置。
+- **Backend** # 针对各种 Remote 所使用的 Backend 的配置。
+
+这两类配置，可以使用**一种或多种**方式进行配置，可用的配置方式有：
+- 命令行标志
+- 环境变量
+- 配置文件
 
 ## Backend 无关配置
 
 Rclone 可以通过如下几种方式配置，优先级从上至下由高到低：
 
-- 命令行选项
+- 命令行标志
 - 环境变量
 
 rclone 命令的每个选项都可以通过环境变量设置其默认值。选项与环境变量的对应关系规则如下：
@@ -107,17 +113,22 @@ rclone 运行后，根据如下顺序从上到下依次查找 rclone.conf 文件
   - 如果定义了 `$XDG_CONFIG_HOME`，则在 **$XDG_CONFIG_HOME/rclone/rclone.conf**
   - 如果未定义 `$XDG_CONFIG_HOME`，则在 **~/.config/rclone/rclone.conf**
 
-# Backend 无关配置
+# Backend 无关配置详解
 
 > 参考：
 >
 > - [官方文档，命令行标志，与后端无关的标志](https://rclone.org/flags/#non-backend-flags)
 
-这部分配置无法通过 rclone.conf 文件配置。只能使用环境变量和命令行选项。除了在这里记录的通用配置意外，各个 Rclone 功能(比如 mount 等命令)还有自身的配置用以配置运行时行为。
+这部分配置无法通过 rclone.conf 文件配置。只能使用环境变量和命令行选项。除了在这里记录的通用配置意外，各个 Rclone 功能(比如 mount、sync、copy 等命令)还有自身的配置用以配置运行时行为。
 
-**--cache-dir** # 用于缓存的目录。`默认值：~/.cache/rclone`
+- **--cache-dir** # 用于缓存的目录。`默认值：~/.cache/rclone`
+- **-n, --dry-run** # 试运行，不会真的执行
+- **-i, --interactive** # 开启交互模式
+- **-p, --progress** # 显示传输进度、传输速度
+- **--transfers INT** # 并行运行的文件传输数。`默认值: 4`
+- **-v** # 输出更多的内容，重复只用该选项会增加输出的内容，比如 -vv、-vvv。比如 -vv 就会输出 Debug 信息。
 
-# Backend 相关配置
+# Backend 相关配置详解
 
 > 参考：
 >
@@ -132,3 +143,6 @@ https://rclone.org/s3/
 ## WebDav
 
 https://rclone.org/webdav
+
+# 配置示例
+
