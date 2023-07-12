@@ -7,10 +7,10 @@ weight: 1
 
 > 参考：
 >
-> - [org 官方文档,初学者指南-配置文件结构](http://nginx.org/en/docs/beginners_guide.html#conf_structure)
-> - [org 官方文档,全部指令列表](http://nginx.org/en/docs/dirindex.html)
-> - [org 官方文档,全部变量列表](http://nginx.org/en/docs/varindex.html)
-> - [官方文档,管理指南-基础功能-创建 NGINX 配置文件](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/#)
+> - [org 官方文档，初学者指南-配置文件结构](http://nginx.org/en/docs/beginners_guide.html#conf_structure)
+> - [org 官方文档，全部指令列表](http://nginx.org/en/docs/dirindex.html)
+> - [org 官方文档，全部变量列表](http://nginx.org/en/docs/varindex.html)
+> - [官方文档，管理指南-基础功能-创建 NGINX 配置文件](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/#)
 
 Nginx 由 **Modules(模块)** 组成， Modules 由配置文件中的 **Directives(指令)** 控制其运行行为。有的 Directives 可以控制多个模块，只不过在控制不同模块时，产生的效果也许会不尽相同。
 
@@ -32,9 +32,9 @@ Directives(指令) 分为如下几种：
 
 将多个相关的简单指令组合在一起的容器，并将它们用 `{}` 符号包围起来。
 
-### Top Level Directives(顶级指令) # 也称为 Contexts(配置环境 | 上下文)
+### Top Level Directives(顶级指令) - 也称为 Contexts(配置环境 | 上下文)
 
-将多个相关的 块指令 和 简单指令 组合在一起的指令。一共分为 4 类 Contexts：
+将多个相关的 块指令 和 简单指令 组合在一起的指令，也是使用 `{}` 符号将这些指令包围起来。一共分为 4 类 Contexts：
 
 - [**events {}**](/docs/Web/Nginx/Nginx%20配置详解/events%20模块指令.md) # 用于配置如何处理常规连接。
 - [**http {}**](/docs/Web/Nginx/Nginx%20配置详解/http%20模块指令.md) # http 流量处理配置，通常用来配置 7 层代理。由 ngx_http_core_module 模块处理其中配置
@@ -52,7 +52,9 @@ Directives(指令) 分为如下几种：
 - stream {} 指令 —> 控制 stream 模块
 
 所以，配置文件的格式实际上也是一个树状结构：
+
 ![树形结构.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/tt8mpd/1619841196176-fa5e09e5-44b9-49e2-bdc3-bccc385d0218.png)
+
 最顶层的 main 指令，包含 简单指令 和 4 个 Contexts，每个 Context 又包含 简单指令/块指令。
 
 ## Inheritance(继承)
@@ -111,8 +113,8 @@ stream {
 
 Note：
 
-1. 通常 `{}` 中的指令只对大括号内部内容生效；不在 `{}` 中且在文件开头的，则对全局生效；配置指令要以分号结尾
-2. 配置技巧：为了使配置更易于维护，还可以将大段的配置拆分为一组一组存储在 /etc/nginx/conf.d/ 目录下的文件，并在 nginx.conf 这个主配置文件中使用 `include` 指令来引用这些文件。
+- 通常 `{}` 中的指令只对大括号内部内容生效；不在 `{}` 中且在文件开头的，则对全局生效；配置指令要以分号结尾
+- 配置技巧：为了使配置更易于维护，还可以将大段的配置拆分为一组一组存储在 /etc/nginx/conf.d/ 目录下的文件，并在 nginx.conf 这个主配置文件中使用 `include` 指令来引用这些文件。
 
 ## 总结
 
@@ -144,10 +146,10 @@ Note：
 
 Virtual Server 的概念，通过 **`server{}`** 指令来实现。在每个流量处理的配置环境中，都应该包含一个或多个 server{} 指令。server{} 指令是 nginx 正常运行的基础配置。虚拟主机，顾名思义，对于用户来说，访问的就是一台一台服务器，但是对于 nginx 来说，是虚拟出来的。
 
-1. **对于 http 流量(http 配置环境)** # 每个 `server{} 指令块` 控制访问特定域名或者 ip 地址上对资源请求的处理。server 指令块中的一个或多个 location 指令块定义了根据 URI 来处理流量的规则
-   1. 比如用户访问 map.baidu.com 和 baike.baidu.com。看上去是访问了两台服务器，但是实际上，这是经过作为代理设备的 ngxin 来进行选择后的虚拟服务器。一般情况下，baike.baidu.com 与 map.baidu.com 这俩域名所解析出来的 ip 应该是同一个公网 ip(比如 123.123.123.123)(baidu 有钱用很多公网 IP 除外)。所以可以想到，用户在浏览器输入任何一个域名，访问请求都会来到 123.123.123.123，然后根据请求报文中的 Request-URL 字段中的域名与 server_name 进行配对，用户输入的 URL 中域名与哪个 server_name 相同，则该请求就会通过这个 server 来进行处理，然后根据该 server 中 location 的关键字来决定把改请求转发给哪里。
-2. **mail 和 TCP/UDP 流量(mail 和 stream 配置环境)** # 每个 `server{} 指令块` 控制处理到达指定 TCP port 或 UNIX socket 的流量。
-   1. 比如用户访问 30000 端口，则可以根据其中的规则，将 对 30000 端口发起的请求，代理到其他设备的某些端口上。
+- **对于 http 流量(http 配置环境)** # 每个 `server{} 指令块` 控制访问特定域名或者 ip 地址上对资源请求的处理。server 指令块中的一个或多个 location 指令块定义了根据 URI 来处理流量的规则
+   - 比如用户访问 map.baidu.com 和 baike.baidu.com。看上去是访问了两台服务器，但是实际上，这是经过作为代理设备的 ngxin 来进行选择后的虚拟服务器。一般情况下，baike.baidu.com 与 map.baidu.com 这俩域名所解析出来的 ip 应该是同一个公网 ip(比如 123.123.123.123)(baidu 有钱用很多公网 IP 除外)。所以可以想到，用户在浏览器输入任何一个域名，访问请求都会来到 123.123.123.123，然后根据请求报文中的 Request-URL 字段中的域名与 server_name 进行配对，用户输入的 URL 中域名与哪个 server_name 相同，则该请求就会通过这个 server 来进行处理，然后根据该 server 中 location 的关键字来决定把改请求转发给哪里。
+- **mail 和 TCP/UDP 流量(mail 和 stream 配置环境)** # 每个 `server{} 指令块` 控制处理到达指定 TCP port 或 UNIX socket 的流量。
+   - 比如用户访问 30000 端口，则可以根据其中的规则，将 对 30000 端口发起的请求，代理到其他设备的某些端口上。
 
 其实说白了，每个 Virtual Server 都相当于一个独立运行的服务，用来处理客户端的请求。具体如何处理，则在每个 server{} 指令块中定义。可以这么说，Nginx 中所有指令，其实都是为 Virtual Servers 服务的。
 

@@ -5,7 +5,8 @@ title: ConfigMap 配置详解
 # 概述
 
 > 参考：
-> - [官方文档,用户指南-ConfigMap](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/)
+> 
+> - [官方文档，用户指南-ConfigMap](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/)
 > - [GitHub 代码中的可用的配置，及其默认值](https://github.com/kubernetes/ingress-nginx/blob/master/internal/ingress/controller/config/config.go)
 
 可以通过 ConfigMap 资源来控制 Nginx Ingress Controller 的运行时行为。Nginx Ingress Controller 将会读取指定 ConfigMap 对象中的 `.data` 字段下的内容，并解析其中的内容，转换为传统 Nginx 的配置。
@@ -33,22 +34,22 @@ http {
 
 下面每个 Key 的详解中，若没写对应指令，则表示这个 Key 没有对应的老式 Nginx 指令。
 
-**enable-undersores-in-headers: <BOOLEAN>** # 是否接收 key 中带有下划线的请求头。
+**enable-undersores-in-headers(BOOLEAN)** # 是否接收 key 中带有下划线的请求头。
 
 - 默认值：`"true"`
 - 对应指令：[underscores_in_headers](http://nginx.org/en/docs/http/ngx_http_core_module.html#underscores_in_headers)
 
-**log-format-escape-json: <BOOL> **# 是否为 log_format 指令开启 escape(转义) 参数
+**log-format-escape-json(BOOL)** # 是否为 log_format 指令开启 escape(转义) 参数
 
 - 默认值：`"false"`
 - 对应指令：[log_format 指令](http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format)中的 escape 参数
 
-**log-format-upstream: <STRING>** # 设定 Nginx 的日志格式
+**log-format-upstream(STRING)** # 设定 Nginx 的日志格式
 
 - 默认值：`'$remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $request_length $request_time [$proxy_upstream_name] [$proxy_alternative_upstream_name] $upstream_addr $upstream_response_length $upstream_response_time $upstream_status $req_id'`
 - 对应指令：[log_format](http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format)
 
-**use-geoip2: <BOOL> **# 是否启用 geoip2 模块。
+**use-geoip2(BOOL)** # 是否启用 geoip2 模块。
 
 - 默认值：`"false"`
 - 对应指令：无
@@ -57,7 +58,7 @@ http {
 
 启用 geoip2 模块后，会自动添加相关 geoip2 指令到 http{} 配置环境，详见 [nginx.tmpl 模板文件](https://github.com/kubernetes/ingress-nginx/blob/master/rootfs/etc/nginx/template/nginx.tmpl#L195)。
 
-**use-forwarded-headers: <BOOL> **# 是否使用 `X-Forwarded-*` 请求头
+**use-forwarded-headers(BOOL)** # 是否使用 `X-Forwarded-*` 请求头
 
 - 默认值：`"false"`
 

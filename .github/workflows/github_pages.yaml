@@ -3,7 +3,7 @@ name: github pages # 名字自取
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: "0 0 1 * *"
+    - cron: "0 0 1,15 * *"
 
 jobs:
   deploy: # 任务名自取

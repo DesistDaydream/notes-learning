@@ -55,9 +55,13 @@ stream {
 
 注意：流量入口的指令通常都定义在 `server{} 块指令` 中。
 
-### [server {...}](http://nginx.org/en/docs/http/ngx_http_core_module.html#server)
+### server
+
+http://nginx.org/en/docs/http/ngx_http_core_module.html#server
 
 定义 Virtual Server
+
+- 语法：server {...}
 
 ```nginx
 stream {
@@ -74,7 +78,11 @@ stream {
 }
 ```
 
-### [listen TARGET \[PARAMETER\];](http://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen)
+### listen
+
+http://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen
+
+- 语法：listen TARGET [PARAMETER]
 
 指定 Virtual Server 监听的端口，也可加上 IP:PORT。每个 Virtual Server 的 listen 指令都会让 Nginx 监听一个 TARGET
 
@@ -88,21 +96,24 @@ stream {
 
 `stream{}` 配置环境中的流量处理指令直接配置在 `server{} 指令块`中即可。与 `http{}` 配置环境不太一样，并没有 `location{}` 块指令。
 
-### [proxy_pass ADDRESS;](http://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_pass)
+### proxy_pass
 
-将流量入口进来的流量代理到指定的 ADDRESS 上。该指令是 ngx_stream_proxy_module 模块的核心指令
+http://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_pass
 
+- 语法：proxy_pass ADDRESS
 - 默认值：`无`
 - 作用范围：server{}
 
+将流量入口进来的流量代理到指定的 ADDRESS 上。该指令是 ngx_stream_proxy_module 模块的核心指令
+
 ADDRESS 有多种表示方法
 
-- **ServerGroup** # 将流量代理到[一组服务器](https://www.yuque.com/go/doc/34075747)上。每个流量都会根据负载均衡的规则交给 upstream{} 指令块中定义的服务器。
+- **ServerGroup** # 将流量代理到 [一组服务器](docs/Web/Nginx/Nginx%20配置详解/多用途模块的指令/upstream%20模块指令.md)上。每个流量都会根据负载均衡的规则交给 upstream{} 指令块中定义的服务器。
   - 新版中，也可以省略 Protocol://，直接使用 ServerGroup 的名称即可。
-- **IP:PORT** # ，当只有一台可用的后端服务器时可以使用这种方式，这样就不用再使用 upstream 指令块定义了
+- **IP:PORT** # 当只有一台可用的后端服务器时可以使用这种方式，这样就不用再使用 upstream 指令块定义了
 - **unix:/PATH/TO/FILE;** # 将流量代理到本地的 UNIX-domain Socket 上
 
-在[其他指令](/docs/3.集群与分布式/Nginx/Nginx%20 配置详解/stream%20 模块指令.md 模块指令.md)中，以 `proxy_` 开头的简单指令，都可以作为 `proxy_pass` 指令的扩充，以定义更加丰富多样的流量处理功能。
+在[其他指令](#其他指令)中，以 `proxy_` 开头的简单指令，都可以作为 `proxy_pass` 指令的扩充，以定义更加丰富多样的流量处理功能。
 
 # 其他指令
 
@@ -114,10 +125,13 @@ ADDRESS 有多种表示方法
 
 ### 超时相关指令
 
-#### [proxy_connect_timeout DURATION;](http://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_connect_timeout)
+#### proxy_connect_timeout
+
+http://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_connect_timeout
 
 与被代理服务器建立连接的超时时间
 
+- 语法：proxy_connect_timeout DURATION
 - 默认值：`proxy_connect_timeout 60s;`
 - 作用范围：stream{}、server{}
 

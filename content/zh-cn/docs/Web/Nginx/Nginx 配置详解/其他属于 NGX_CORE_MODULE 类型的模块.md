@@ -5,7 +5,13 @@ weight: 6
 
 # NGX_CONF_MODULE
 
-[**include /PATH/FILE**](http://nginx.org/en/docs/ngx_core_module.html#include) # 在该配置中包含一个网站-可用的配置文件，即把定义的文件内容引入到这里，(也可以写入多个 include，引入多个配置文件以便管理，包括但不限于 server 配置，还可以是 nginx 的配置文件，mail 的配置文件等)
+## inclue
+
+- 语法：**include /PATH/FILE**
+
+http://nginx.org/en/docs/ngx_core_module.html#include
+
+在该配置中包含一个网站-可用的配置文件，即把定义的文件内容引入到这里，(也可以写入多个 include，引入多个配置文件以便管理，包括但不限于 server 配置，还可以是 nginx 的配置文件，mail 的配置文件等)
 
 - 作用范围：可以作用在任意 Contexts 中
 
