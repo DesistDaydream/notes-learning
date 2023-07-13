@@ -39,7 +39,7 @@ k3s 二进制文件包含 kubelet、api-server、kube-controller-manager、kube-
     - **./db/** # 内嵌 Etcd 数据保存路径
     - **./manifests/** # k3s 集群启动后，kube-system 名称空间中 pod 的 manifests 文件
     - **./tls/** # Kubernetes 主要组件运行所需证书保存路径
-- **./agent/** # 作为 k8s 的 node 节点所需要的信息保存路径。
+- **./agent/** # 作为 k8s 的 node 节点所需要的信息保存路径。对于 K3S 来说，master 节点也属于 node 节点，所以 master 节点在该目录也会保存数据。
     - 包括证书、containerd 数据目录、cni，containerd 的配置文件 等等都在此处
     - **./etc/** # 各种组件的配置文件保存路径。比如 CNI、Containerd、Flannel 等等，相当于各个组件自己所使用的 etc 目录。
     - **./containerd/** # 与 [Containerd](</docs/10.云原生/2.2.实现容器的工具/Containerd/Containerd.md#Containerd 关联文件与配置>) 中的 /var/lib/containerd/ 目录功能一致。

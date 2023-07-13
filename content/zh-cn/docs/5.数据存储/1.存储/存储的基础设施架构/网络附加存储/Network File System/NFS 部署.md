@@ -89,7 +89,7 @@ yum install -y nfs-utils
 **Ubuntu**
 
 ```bash
-sudo apt install nfs-common
+sudo apt install nfs-common -y
 ```
 
 ## 客户端连接 NFS 测试

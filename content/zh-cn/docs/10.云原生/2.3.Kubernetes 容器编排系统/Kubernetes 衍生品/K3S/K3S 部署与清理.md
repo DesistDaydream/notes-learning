@@ -19,13 +19,13 @@ weight: 2
 
 获取安装脚本
 
-```latex
+```bash
 curl -LO http://rancher-mirror.cnrancher.com/k3s/k3s-install.sh
 ```
 
 第一个 master 执行
 
-```latex
+```bash
 K3S_TOKEN=SECRET \
 INSTALL_K3S_MIRROR=cn \
 INSTALL_K3S_VERSION='v1.20.4+k3s1' \
@@ -35,7 +35,7 @@ bash k3s-install.sh
 
 其余 master 执行
 
-```latex
+```bash
 K3S_TOKEN=SECRET \
 INSTALL_K3S_MIRROR=cn \
 INSTALL_K3S_VERSION='v1.20.4+k3s1' \
@@ -45,7 +45,7 @@ bash k3s-install.sh
 
 其余 node 执行
 
-```latex
+```bash
 K3S_TOKEN=SECRET \
 INSTALL_K3S_MIRROR=cn \
 INSTALL_K3S_VERSION='v1.20.4+k3s1' \
@@ -272,6 +272,7 @@ fi
 # Ansible 部署 K3S
 
 > 参考： 
+> 
 > - [GitHub 项目，techno-tim/k3s-ansible](https://github.com/techno-tim/k3s-ansible)
 >     - 起源于：
 >         - https://github.com/k3s-io/k3s-ansible
