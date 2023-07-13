@@ -44,7 +44,7 @@ k3s server \
 
 ## 其他配置文件说明
 
-/etc/rancher/k3s/registries.yaml
+**一、/etc/rancher/k3s/registries.yaml 文件**
 
 k3s 通过 containerd 来控制容器，在 pull 镜像时，会默认指定 docker.io 为 registry 且不可改。
 
