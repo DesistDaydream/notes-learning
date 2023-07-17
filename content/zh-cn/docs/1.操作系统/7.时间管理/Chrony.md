@@ -58,20 +58,22 @@ chrony.conf 配置文件与 nginx 的配置文件类似，由指令和指令的�
 
 - iburst # 使用此选项，发送到服务器的前四个请求之间的间隔将为 2 秒或更短，而不是 minpoll 选项指定的间隔，这使 chronyd 在启动后不久即可进行第一次时钟更新
 
-**allow <IPRANGE>** # 该指令用于指定允许哪些 NTP 客户端来连接该服务器来校准时间。
+**allow \<IPRANGE>** # 该指令用于指定允许哪些 NTP 客户端来连接该服务器来校准时间。
 使用 allow 指令，即表明该服务器作为 NTP 服务端，来为其他 NTP 客户端来提供时钟服务。
 
 > 可以使用 all 参数来允许所有服务器
 
-**local <ARGS>** # 该指令标名 chrony 启动本地引用模式。
+**local \<ARGS>** # 该指令标名 chrony 启动本地引用模式。
 本地引用模式允许 chronyd 作为一个 NTP 服务器运行，即使它从来没有同步过，或者时钟的最后一次更新发生在很久以前，它也能实时同步(从客户轮询的角度来看)。
 
 # chronyc 命令行工具
 
 > 参考：
+> 
 > - [官方文档,Manual(手册)](https://chrony.tuxfamily.org/doc/4.1/chronyc.html)
 
 **chronyc \[OPTIONS] \[COMMAND]**
+
 chronyc 通过子命令来实现各种功能
 
 **OPTIONS**
@@ -98,7 +100,9 @@ Leap status     : Normal
 ```
 
 **makestep**
+
 **maxupdateskew**
+
 **waitsync**
 
 ## Time Sources COMMAND
@@ -142,7 +146,9 @@ Name/IP Address            NP  NR  Span  Frequency  Freq Skew  Offset  Std Dev
 ```
 
 **selectdata**
+
 **reselect**
+
 **reselectdist**
 
 ## NTP Sources COMMAND
@@ -164,9 +170,13 @@ Name/IP Address            NP  NR  Span  Frequency  Freq Skew  Offset  Std Dev
 ### ntpdata \[ADDRESS] # 显示 NTP 源的信息
 
 **add peer**
+
 **add pool**
+
 **add server**
-**delete ADDRESS**
+
+**delete ADDRESS
+**
 **burst**
 
 ## Manual Time Input COMMAND

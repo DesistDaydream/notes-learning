@@ -167,6 +167,7 @@ virt-install --name centos7 \
 创建完成后，可以使用 virt-viewer 访问虚拟机，也可以使用 VNC 连接到 5911 以访问虚拟机，然后开始安装系统。
 
 > 这里使用了 --noautoconsole，所以不会自动打开 virt-viewer，x11 转发还是比较卡的，推荐使用 VNC 连接端口以访问虚拟机的图像界面
+> --os-variant 可用的值可以用过 `virt-install --osinfo list` 命令列出
 
 这是最基本的创建方式，virt-install 会自动创建很多默认的虚拟设备以满足所需。我们只需要指定网络、连接显示的方式、系统版本、cpu、内存即可
 

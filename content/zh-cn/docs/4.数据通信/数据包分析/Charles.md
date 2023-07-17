@@ -8,7 +8,7 @@ title: Charles
 > - 官网：<https://www.charlesproxy.com/>
 > - 小米手机安装 Charles 证书：<https://blog.csdn.net/yang450712123/article/details/112908643>
 >   - 安卓用不了 2022.9.19
-> - ISO 安装 Charles 证书：<https://www.jianshu.com/p/08f602eabb54>
+> - IOS 安装 Charles 证书：<https://www.jianshu.com/p/08f602eabb54>
 >   - 苹果的能用 2022.9.19
 > - <https://www.charles.ren/> 生成注册码
 >   - 生成码之后直接使用即可
@@ -21,7 +21,17 @@ title: Charles
 
 打开手机设置，搜索：加密与凭据 => 安装证书 => 证书
 
-# 安卓安装 Charles 证书无效
+# IOS 安装证书
+
+为无线连接配置手动代理
+
+IOS 访问 chls.pro/ssl 下载证书并安装
+
+设置 —— 通用 —— 关于本机 —— 证书信任设置，开启信任证书
+
+# 安卓安装证书
+
+## 安卓安装 Charles 证书无效
 
 证书安装成功，但是抓到的包都是 unknow，可能的原因：
 
