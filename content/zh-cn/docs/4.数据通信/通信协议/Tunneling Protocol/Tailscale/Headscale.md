@@ -1,5 +1,5 @@
 ---
-title: Headscale(Tailscale开源版本)
+title: Headscale
 ---
 
 # 概述
@@ -8,43 +8,6 @@ title: Headscale(Tailscale开源版本)
 >
 > - [公众号，云原声实验室-Tailscal 开源版本让你的 WireGuard 直接起飞](https://mp.weixin.qq.com/s/Y3z5RzuapZc8jS0UuHLhBw)
 > - [GitHub 项目，juanfont/headscale](https://github.com/juanfont/headscale)
-
-目前国家工信部在大力推动三大运营商发展 IPv6，对家用宽带而言，可以使用的 IPv4 公网 IP 会越来越少。有部分地区即使拿到了公网 IPv4 地址，也是个大内网地址，根本不是真正的公网 IP，访问家庭内网的资源将会变得越来越困难。
-
-部分小伙伴可能会选择使用 frp 等针对特定协议和端口的内网穿透方案，但这种方案还是不够酸爽，无法访问家庭内网任意设备的任意端口。更佳的选择还是通过 VPN 来组建大内网。至于该选择哪种 VPN，毫无疑问肯定是 WireGuard，WireGuard 就是 VPN 的未来。
-
-WireGuard 相比于传统 VPN 的核心优势是没有 VPN 网关，所有节点之间都可以点对点（P2P）连接，也就是我之前提到的全互联模式（full mesh），效率更高，速度更快，成本更低。
-
-WireGuard 目前最大的痛点就是上层应用的功能不够健全，因为 WireGuard 推崇的是 Unix 的哲学，WireGuard 本身只是一个内核级别的模块，只是一个数据平面，至于上层的更高级的功能（比如秘钥交换机制，UDP 打洞，ACL 等），需要通过用户空间的应用来实现。
-
-所以为了基于 WireGuard 实现更完美的 VPN 工具，现在已经涌现出了很多项目在互相厮杀。笔者前段时间一直在推崇 Netmaker，它通过可视化界面来配置 WireGuard 的全互联模式，它支持 UDP 打洞、多租户等各种高端功能，几乎适配所有平台，非常强大。然而现实世界是复杂的，无法保证所有的 NAT 都能打洞成功，且 Netmaker 目前还没有 fallback 机制，如果打洞失败，无法 fallback 改成走中继节点。Tailscale 在这一点上比 Netmaker 高明许多，它支持 fallback 机制，可以尽最大努力实现全互联模式，部分节点即使打洞不成功，也能通过中继节点在这个虚拟网络中畅通无阻。
-
-## Tailscale 是什么
-
-Tailscale 是一种基于 WireGuard 的虚拟组网工具，和 Netmaker 类似，**最大的区别在于 Tailscale 是在用户态实现了 WireGuard 协议，而 Netmaker 直接使用了内核态的 WireGuard**。所以 Tailscale 相比于内核态 WireGuard 性能会有所损失，但与 OpenVPN 之流相比还是能甩好几十条街的，Tailscale 虽然在性能上做了些许取舍，但在功能和易用性上绝对是完爆其他工具：
-
-- 开箱即用
-  - 无需配置防火墙
-  - 没有额外的配置
-- 高安全性/私密性
-  - 自动密钥轮换
-  - 点对点连接
-  - 支持用户审查端到端的访问记录
-- 在原有的 ICE、STUN 等 UDP 协议外，实现了 DERP TCP 协议来实现 NAT 穿透
-- 基于公网的控制服务器下发 ACL 和配置，实现节点动态更新
-- 通过第三方（如 Google） SSO 服务生成用户和私钥，实现身份认证
-
-简而言之，我们可以将 Tailscale 看成是更为易用、功能更完善的 WireGuard。
-
-光有这些还不够，作为一个白嫖党，咱更关心的是**免费**与**开源**。
-
-Tailscale 是一款商业产品，但个人用户是可以白嫖的，个人用户在接入设备不超过 20 台的情况下是可以免费使用的（虽然有一些限制，比如子网网段无法自定义，且无法设置多个子网）。除 Windows 和 macOS 的图形应用程序外，其他 Tailscale 客户端的组件（包含 Android 客户端）是在 BSD 许可下以开源项目的形式开发的，你可以在他们的 GitHub 仓库\[3]找到各个操作系统的客户端源码。
-
-对于大部份用户来说，白嫖 Tailscale 已经足够了，如果你有更高的需求，比如自定义网段，可以选择付费。
-
-**我就不想付费行不行？行，不过得往下看。**
-
-## Headscale 是什么
 
 Tailscale 的控制服务器是不开源的，而且对免费用户有诸多限制，这是人家的摇钱树，可以理解。好在目前有一款开源的实现叫 Headscale，这也是唯一的一款，希望能发展壮大。
 
@@ -224,6 +187,7 @@ ID | Name      | Created
 # Headscale 关联文件与配置
 
 **/etc/headscale/config.yaml** # Headscale 运行时配置文件
+
 **/var/lib/headscale/\***# Headscale 运行时数据目录。包括 数据库文件、证书 等
 
 - **./db.sqlite** # Headscale 使用 sqlite 作为数据库
@@ -236,15 +200,15 @@ Headscale 只是实现了 Tailscale 的控制台，想要接入，依然需要�
 
 目前除了 iOS 客户端，其他平台的客户端都有办法自定义 Tailscale 的控制服务器。
 
-| OS      | 是否支持 Headscale              |
-| ------- | ------------------------------- |
-| Linux   | Yes                             |
-| OpenBSD | Yes                             |
-| FreeBSD | Yes                             |
-| macOS   | Yes                             |
-| Windows | Yes 参考 Windows 客户端文档\[6] |
-| Android | 需要自己编译客户端\[7]          |
-| iOS     | 暂不支持                        |
+| OS      | 是否支持 Headscale          |
+| ------- | --------------------------- |
+| Linux   | Yes                         |
+| OpenBSD | Yes                         |
+| FreeBSD | Yes                         |
+| macOS   | Yes                         |
+| Windows | Yes 参考 Windows 客户端文档 |
+| Android | 需要自己编译客户端          | 
+| iOS     | 暂不支持                    |
 
 想要让 Tailscale 客户端接入 Headscale，大体分为两个部分
 
@@ -317,147 +281,22 @@ Success.
 ```
 
 在浏览器中打开该链接，就会出现如下的界面：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/1648097896734-2252f545-7f43-46fb-ad3a-1e1c85ce3d08.png)
+
 最后，根据 [在 Headscale 中添加节点](#LWIp8) 部分的文档，将节点接入到 Headscale 中。
-
-### macOS
-
-macOS 客户端的安装相对来说就简单多了，只需要在应用商店安装 APP 即可，前提是你**需要一个美区 ID**。。。
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/640)
-
-安装完成后还需要做一些骚操作，才能让 Tailscale 使用 Headscale 作为控制服务器。当然，Headscale 已经给我们提供了详细的操作步骤，你只需要在浏览器中打开 URL：`http://<HEADSCALE_PUB_IP>:8080/apple`，便会出现如下的界面：
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/640)
-
-你只需要按照图中所述的步骤操作即可，本文就不再赘述了。
-
-修改完成后重启 Tailscale 客户端，在 macOS 顶部状态栏中找到 Tailscale 并点击，然后再点击 `Log in`。
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/640)
-
-然后立马就会跳转到浏览器并打开一个页面。
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/640)
-
-接下来与之前 Linux 客户端相同，回到 Headscale 所在的机器执行浏览器中的命令即可，注册成功：
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/640)
-
-回到 Headscale 所在主机，查看注册的节点：
-
-\`$ headscale nodes list
-
-ID | Name | NodeKey | Namespace | IP addresses | Ephemeral | Last seen | Onlin
-
-e | Expired
-
-1 | coredns | \[Ew3RB] | default | 10.1.0.1 | false | 2022-03-20 09:08:58 | onlin
-
-e | no
-2 | carsondemacbook-pro | \[k7bzX] | default   | 10.1.0.2     | false     | 2022-03-20 09:48:30 | online  | no
-
-\`
-
-回到 macOS，测试是否能 ping 通对端节点：
-
-\`$ ping -c 2 10.1.0.1
-PING 10.1.0.1 (10.1.0.1): 56 data bytes
-64 bytes from 10.1.0.1: icmp_seq=0 ttl=64 time=37.025 ms
-64 bytes from 10.1.0.1: icmp_seq=1 ttl=64 time=38.181 ms
-
---- 10.1.0.1 ping statistics ---
-2 packets transmitted, 2 packets received, 0.0% packet loss
-round-trip min/avg/max/stddev = 37.025/37.603/38.181/0.578 ms
-
-\`
-
-也可以使用 Tailscale CLI 来测试：
-
-`$ /Applications/Tailscale.app/Contents/MacOS/Tailscale ping 10.1.0.1 pong from coredns (10.1.0.1) via xxxx:41641 in 36ms`
-
----
-
-如果你没有美区 ID，无法安装 App，可以直接使用命令行版本，通过 Homebrew 安装即可：
-
-`$ brew install tailscale`
-
-### Android
-
-Android 客户端就比较麻烦了，需要自己修改源代码编译 App，具体可参考这个 issue\[9]。编译过程还是比较麻烦的，需要先修改源码，然后构建一个包含编译环境的 Docker 镜像，最后再通过该镜像启动容器编译 apk。
-
-我知道很多人一看麻烦就不想搞了，这个问题不大，我送佛送到西，提供了一条龙服务，你只需 fork 我的 GitHub 仓库 tailscale-android\[10]：
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/640)
-
-然后在你的仓库中点击 **Settings** 标签，找到 **Secrets** 下拉框中的 Actions 选项：
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/640)
-
-选择 **New repository secret** 添加一个 secret 叫 `HEADSCALE_URL`，将你的 Headscale 服务公网地址填入其中：
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/640)
-
-**添加在这里的配置，将只对你可见，不用担心会泄露给他人。**
-
-然后点击 **Actions** 标签，选择 **Release** Workflow。
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/640)
-
-你会看到一个 **Run workflow** 按钮，点击它，然后在下拉框中点击 **Run workflow**。
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/640)
-
-流水线就会开始执行，执行成功后就会在 Release 页面看到编译好的 apk。
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/640)
-
-接下来的事情就简单了，下载这个 apk 到你的 Android 手机上安装就好了。安装完成后打开 Tailscale App，选择 **Sign in with other**。
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/1648104924984-783c04d7-d504-43dd-b1ad-98dcf7231783.png)
-
-然后就会跳出这个页面：
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/1648103496461-34386c19-5d46-4ddf-88f3-198d0e463d8a.png)
-
-将其中的命令粘贴到 Headscale 所在主机的终端，将 **NAMESPACE** 替换为之前创建的 namespace，然后执行命令即可。注册成功后可将该页面关闭，回到 App 主页，效果如图：
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/640)
-
----
-
-回到之前的 GitHub 仓库，刚才我们是通过手动触发 Workflow 来编译 apk 的，有没有办法自动编译呢？**只要 Tailscale 官方仓库有更新，就立即触发 Workflow 开始编译。**
-
-那当然是可以实现的，而且我已经实现了，仔细看 GitHub Actions 的编排文件：
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/640)
-
-红框圈出来的部分表示只要仓库的 `main` 分支有更新，便会触发 Workflow。**现在的问题是如何让 main 分支和上游官方仓库一致，一直保持在最新状态。**
-
-这个问题使用第三方 Github App 就可以解决，这个 App 名字简单粗暴，就叫 Pull\[11]，它的作用非也很简单粗暴：保持你的 Fork 在最新状态。
-
-Pull 的使用方法很简单：
-
-1. 打开 Pull App\[12] 页面
-2. 点击右上角绿色的 install 按钮
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/640)
-
-3. 在选项页面，使用默认的 **All repositories** 即可（你也可以选择指定的仓库，比如 tailscale-android），然后点击绿色的 **install** 按钮：
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/640)
-
-简单三步，Pull App 就安装好了。接下来 Pull App 会每天定时帮你更新代码库，使你 fork 的代码始终是最新版的。
 
 ### Windows
 
 Windows Tailscale 客户端想要使用 Headscale 作为控制服务器，只需在浏览器中打开 `http://${HeadscaleIP}>:8080/windows`，便会出现如下的界面：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/1648103689211-3b019793-7262-4a6c-a668-127c0f01c284.png)
 
 - 下载页面中的 `Windows registry file`，这是一个注册表文件，用来配置 Tailscale 客户端中控制服务器的地址，让其指向自己部署的 Headscale
 - 下载完成后运行 `tailscale.reg` 文件以编辑注册表信息。
 - 在[这里](https://tailscale.com/download/windows)下载 Windows 版的 Tailscale 客户端并安装
 - 右键点击任务栏中的 Tailscale 图标，再点击 `Log in` 获取接入 Headscale 的命令
-
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/1648104111282-99d562e1-d7d9-4ea5-9943-f16861efe87e.png)
+- ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/1648104111282-99d562e1-d7d9-4ea5-9943-f16861efe87e.png)
 
 - 此时会自动在浏览器中出现接入 Headscale 的页面
 
@@ -470,10 +309,6 @@ Windows Tailscale 客户端想要使用 Headscale 作为控制服务器，只需
 - OpenWrt：<https://github.com/adyanth/openwrt-tailscale-enabler>
 - 群晖：<https://github.com/tailscale/tailscale-synology>
 - 威联通：<https://github.com/ivokub/tailscale-qpkg>
-
-### iOS
-
-Tailscale iOS 客户端源代码没有开源，目前还无法破解使其使用第三方控制服务器，遗憾~~
 
 ## Headscale 中添加节点
 
@@ -598,67 +433,9 @@ Route           | Enabled
 ```
 
 其他非 Headscale 节点查看路由结果：
+
 `$ ip route show table 52|grep "172.38.40.0/24" 172.38.40.0/24 dev tailscale0`
 
 # 总结
 
-目前从稳定性来看，Tailscale 比 Netmaker 略胜一筹，基本上不会像 Netmaker 一样时不时出现 ping 不通的情况，这取决于 Tailscale 在用户态对 NAT 穿透所做的种种优化，他们还专门写了一篇文章介绍 NAT 穿透的原理\[13]，中文版\[14]由国内的 eBPF 大佬赵亚楠翻译，墙裂推荐大家阅读。放一张图给大家感受一下：
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/640)
-
-本文给大家介绍了 Tailscale 和 Headscale，包括 Headscale 的安装部署和各个平台客户端的接入，以及如何打通各个节点所在的局域网。下篇文章将会给大家介绍如何让 Tailscale 使用自定义的 DERP Servers（也就是中继服务器），See you~~
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/640)
-
-随着云原生对 IT   产业的重新洗牌，很多传统的技术在云原生的场景下已经不再适用，譬如备份和容灾。传统的备份容灾还停留在数据搬运的层次上，备份机制比较固化，以存储为核心，无法适应容器化的弹性、池化部署场景；而云原生的核心是服务本身，不再以存储为核心，用户需要更贴合容器场景的备份容灾能力，利用云原生的编排能力，实现备份容灾的高度自动化，同时灵活运用云原生的弹性能力按需付费，降低成本。
-
-为了适应云原生场景，众多 Kubernetes 备份容灾产品开始涌现，比如 Veeam 推出的 Kasten K10 以及 VMware 推出的 Velero。青云科技也推出了 Kubernetes 备份容灾即服务产品，基于原生的 Kubernetes API，提供了可视化界面，能够覆盖云原生数据保护的绝大多数重要场景，而且能够跨集群、跨云服务商、跨存储区域，轻松实现基础设施间多地、按需的备份恢复。目前该服务已正式上线，提供了 1TB 的免费托管仓库，感兴趣的可以前往试用 👇‍
-
-# 引用链接
-
-\[1]
-
-全互联模式（full mesh）: *https://fuckcloudnative.io/posts/wireguard-full-mesh/#1-全互联模式架构与配置*
-
-\[2]
-
-Netmaker: [*https://fuckcloudnative.io/posts/configure-a-mesh-network-with-netmaker/*](https://fuckcloudnative.io/posts/configure-a-mesh-network-with-netmaker/)
-
-\[3]
-
-GitHub 仓库: [*https://github.com/tailscale/*](https://github.com/tailscale/)
-
-\[4]
-
-Headscale: [*https://github.com/juanfont/headscale*](https://github.com/juanfont/headscale)
-
-\[6]
-
-Windows 客户端文档: [*https://github.com/juanfont/headscale/blob/main/docs/windows-client.md*](https://github.com/juanfont/headscale/blob/main/docs/windows-client.md)
-
-\[7]
-
-需要自己编译客户端: [*https://github.com/juanfont/headscale/issues/58#issuecomment-950386833*](https://github.com/juanfont/headscale/issues/58#issuecomment-950386833)
-
-\[9]
-
-这个 issue: [*https://github.com/juanfont/headscale/issues/58#issuecomment-950386833*](https://github.com/juanfont/headscale/issues/58#issuecomment-950386833)
-
-\[10]
-
-tailscale-android: [*https://github.com/yangchuansheng/tailscale-android*](https://github.com/yangchuansheng/tailscale-android)
-
-\[11]
-
-Pull: [*https://github.com/apps/pull*](https://github.com/apps/pull)
-
-\[12]
-
-Pull App: [*https://github.com/apps/pull*](https://github.com/apps/pull)
-
-\[13]
-
-NAT 穿透的原理: [*https://tailscale.com/blog/how-nat-traversal-works/*](https://tailscale.com/blog/how-nat-traversal-works/)
-
-\[14]
-
-中文版: [*https://arthurchiao.art/blog/how-nat-traversal-works-zh/*](https://arthurchiao.art/blog/how-nat-traversal-works-zh/)
+目前从稳定性来看，Tailscale 比 Netmaker 略胜一筹，基本上不会像 Netmaker 一样时不时出现 ping 不通的情况，这取决于 Tailscale 在用户态对 NAT 穿透所做的种种优化，他们还专门写了一篇文章介绍 NAT 穿透的原理，中文版由国内的 eBPF 大佬赵亚楠翻译：[NAT 穿透是如何工作的：技术原理及企业级实践](docs/4.数据通信/NAT/NAT%20穿透是如何工作的：技术原理及企业级实践.md)

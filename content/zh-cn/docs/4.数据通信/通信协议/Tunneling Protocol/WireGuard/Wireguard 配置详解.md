@@ -439,3 +439,7 @@ WantedBy=multi-user.target
 ```
 
 我们可以通过 Unit 来配置 WireGuard 的开机自启，将 WireGuard 的维护工作交给 Systemd。
+
+# 分类
+
+#网络 #隧道协议 #Wireguard

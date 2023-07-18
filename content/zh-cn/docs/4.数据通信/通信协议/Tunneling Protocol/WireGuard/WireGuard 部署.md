@@ -225,3 +225,7 @@ systemctl enable wg-quick@company --now
     $ ip route show table local
     # 获取到特定 IP 的路由
     $ ip route get 192.0.2.3
+
+# 分类
+
+#网络 #隧道协议 #Wireguard

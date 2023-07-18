@@ -1307,7 +1307,8 @@
     "docs/4.数据通信/通信协议/Tunneling Protocol": [
       "docs/4.数据通信/通信协议/Tunneling Protocol/_index.md",
       "docs/4.数据通信/通信协议/Tunneling Protocol/Tunneling Protocol.md",
-      "docs/4.数据通信/通信协议/Tunneling Protocol/pptp(VPN)协议及其实现.md",
+      "docs/4.数据通信/通信协议/Tunneling Protocol/PPTP.md",
+      "docs/4.数据通信/通信协议/Tunneling Protocol/IPsec and L2TP.md",
       "docs/4.数据通信/通信协议/Tunneling Protocol/GRE.md",
       "docs/4.数据通信/通信协议/Tunneling Protocol/V2Ray.md",
       "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard",
@@ -1318,8 +1319,8 @@
     "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale": [
       "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/_index.md",
       "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/Tailscale.md",
+      "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/Headscale.md",
       "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/Tailscale ACL 访问控制策略.md",
-      "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/Headscale(Tailscale开源版本).md",
       "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/自建 DERP 中继服务器，从此 Tailscale 畅通无阻.md"
     ],
     "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard": [
