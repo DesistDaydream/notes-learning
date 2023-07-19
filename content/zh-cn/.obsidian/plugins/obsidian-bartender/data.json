@@ -1963,6 +1963,15 @@
       "docs/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)/RPC/_index.md",
       "docs/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)/RPC/RPC.md",
       "docs/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)/RPC/gRPC.md"
+    ],
+    "docs/10.云原生/云原生应用管理/Helm/Helm Template": [
+      "docs/10.云原生/云原生应用管理/Helm/Helm Template/_index.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm Template/Helm Template.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm Template/控制结构与变量.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm Template/Pipeline 与 Function.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm Template/Subcharts 与 Global Values.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm Template/Named Templates(命名模板).md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm Template/关于 Template 的其他说明.md"
     ]
   },
   "actionBarOrder": {},

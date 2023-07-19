@@ -1,12 +1,15 @@
 ---
-title: "SyncLoop 模块 # Kubelet 同步循环"
+title: "SyncLoop 模块"
 ---
 
 # 概述
 
 > 参考：
 
+SyncLoop 模块，Kubelet 同步循环
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/paseql/1645680266069-2cc34f9d-ed55-45dd-8df4-ac0ed0c8c388.png)
+
 kubelet 的工作核心就是在围绕着不同的生产者生产出来的不同的有关 pod 的消息来调用相应的消费者（不同的子模块）完成不同的行为(创建和删除 pod 等)，即图中的控制循环（SyncLoop），通过不同的事件驱动这个控制循环运行。
 
 本文仅分析新建 pod 的流程，当一个 pod 完成调度，与一个 node 绑定起来之后，这个 pod 就会触发 kubelet 在循环控制里注册的 handler，上图中的 HandlePods 部分。此时，通过检查 pod 在 kubelet 内存中的状态，kubelet 就能判断出这是一个新调度过来的 pod，从而触发 Handler 里的 ADD 事件对应的逻辑处理。然后 kubelet 会为这个 pod 生成对应的 podStatus，接着检查 pod 所声明的 volume 是不是准备好了，然后调用下层的容器运行时。如果是 update 事件的话，kubelet 就会根据 pod 对象具体的变更情况，调用下层的容器运行时进行容器的重建。

@@ -9,7 +9,8 @@ title: Cobra
 > - [官网](https://cobra.dev/)
 > - <https://zhangguanzhang.github.io/2019/06/02/cobra/>
 
-Cobra 是一个 golang 的库，其提供简单的接口来创建强大现代的 CLI 接口，类似于 git 或者 go 工具。同时，它也是一个应用，用来生成个人应用框架，从而开发以 Cobra 为基础的应用。热门的 docker 和 k8s 源码中都使用了 Cobra
+Cobra 是一个 [Go](docs/2.编程/高级编程语言/Go/Go.md)  语言的库，其提供简单的接口来创建强大现代的 CLI 接口，类似于 git 或者 go 工具。同时，它也是一个应用，用来生成个人应用框架，从而开发以 Cobra 为基础的应用。热门的 docker 和 k8s 源码中都使用了 Cobra
+
 Cobra 结构由三部分组成：
 
 - **Command(命令)** #

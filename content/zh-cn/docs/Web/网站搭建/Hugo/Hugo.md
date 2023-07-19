@@ -18,7 +18,7 @@ Hugo 是用 Go 语言编写的静态站点生成器。Steve Francia 最初于 20
 Hugo 创建站点时主要依赖两部分，**Content(内容)** 与 **Layout(布局)**
 
 - **Content(内容)** 表示数据。存在 `content/` 目录下。
-  - 该目录下的每个文件都会抽象为一个 **Page(页面)**。其实我们在浏览到的页面就是 Hugo 中的 Page 的概念，而 `content/` 目录就是存放这些 Page 的地方。
+  - 该目录下的每个文件都会抽象为一个 **Page(页面)**。其实我们在浏览到的页面就是 Hugo 中的 Page 的概念，而 `content/` 目录就是存放这些 Page 的地方。内容的管理详见[内容管理](docs/Web/网站搭建/Hugo/内容管理/内容管理.md)章节
 - **Layout(布局)** 表示页面。存在 `layouts/` 目录下。
   - 该目录下的每个文件都会抽象为一个 **Template(模板)**
 

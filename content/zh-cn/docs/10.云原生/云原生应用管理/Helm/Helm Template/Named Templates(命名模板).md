@@ -1,14 +1,21 @@
 ---
-title: Named Templates(命名模板)
+title: "Named Templates(命名模板)"
+linkTitle: "Named Templates(命名模板)"
+date: "2023-07-19T22:30"
+weight: 20
 ---
 
-官方文档：<https://helm.sh/docs/chart_template_guide/named_templates/>
+# 概述
 
-**Named Templates(命名模板，**有时称为 **partial(部分)** 或 **subtemplate(子模板)**) 是限定在一个文件内部的模板，并起一个名称。Named Templates 可以在一个文件中定义，并在其他地方使用它们。
+> 参考：
+> 
+> - 官方文档：<https://helm.sh/docs/chart_template_guide/named_templates/>
+
+**Named Templates(命名模板，有时称为 partial(部分) 或 subtemplate(子模板))** 是限定在一个文件内部的模板，并起一个名称。Named Templates 可以在一个文件中定义，并在其他地方使用它们。
 
 我们有两种创建方法，以及几种不同的使用方法。
 
-在  [**控制结构与变量**](https://www.teambition.com/project/5f90e312755d8a00446050eb/app/5eba5fba6a92214d420a3219/workspaces/5f90e312c800160016ea22fb/docs/5f9a623d4cc5830001a8edc8) 章节中，我们介绍了声明和管理模板三个动作：define，template，和 block。在本节中，我们将介绍这三个动作，并介绍一个 include 函数，与 template 类似功能。
+在  [控制结构与变量](docs/10.云原生/云原生应用管理/Helm/Helm%20Template/控制结构与变量.md) 章节中，我们介绍了声明和管理模板三个动作：define，template，和 block。在本节中，我们将介绍这三个动作，并介绍一个 include 函数，与 template 类似功能。
 
 在命名模板时要注意一个重要的细节：模板名称是全局的。如果声明两个具有相同名称的模板，则最后加载一个模板是起作用的模板。由于子 chart 中的模板与顶级模板一起编译，因此注意小心地使用特定 chart 的名称来命名模板。
 
@@ -273,7 +280,7 @@ data:
 
 ## **注意：在 Helm 模板中使用 include 比 template 会更好，可以更好地为 YAML 处理输出格式。**
 
-有时我们想要导入内容，但不是作为模板。也就是说，我们要逐字输入文件。我们下一节中描述可以通过[**使用.Files 的对象来读取文件**](https://www.teambition.com/project/5f90e312755d8a00446050eb/app/5eba5fba6a92214d420a3219/workspaces/5f90e312c800160016ea22fb/docs/5f9a61ae37398300016bd678?scroll-to-block=5fc1ac01c9e7383184abe2e2)。
+有时我们想要导入内容，但不是作为模板。也就是说，我们要逐字输入文件。我们下一节中描述可以通过使用 `.Files` 的对象来读取文件。
 
 # 在 Templates(模板中) 访问文件
 
