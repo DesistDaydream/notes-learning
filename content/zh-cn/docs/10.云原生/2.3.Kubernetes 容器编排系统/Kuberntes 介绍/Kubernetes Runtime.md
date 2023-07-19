@@ -5,6 +5,7 @@ title: Kubernetes Runtime
 # 概述
 
 > 参考：
+> 
 > - 原文链接：[白话 Kubernetes Runtime](https://aleiwu.com/post/cncf-runtime-landscape/)
 
 回想最开始接触 k8s 的时候, 经常搞不懂 CRI 和 OCI 的联系和区别, 也不知道为啥要垫那么多的 “shim”(尤其是 containerd-shim 和 dockershim 这两个完全没啥关联的东西还恰好都叫 shim). 所以嘛, 这篇就写一写 k8s 的 runtime 部分, 争取一篇文章把下面这张 Landscape 里的核心项目给白话明白。

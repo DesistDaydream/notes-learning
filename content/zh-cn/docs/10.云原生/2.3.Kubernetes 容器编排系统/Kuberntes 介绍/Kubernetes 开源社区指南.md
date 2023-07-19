@@ -1,6 +1,13 @@
 ---
-title: 如何玩转 Kubernetes 开源社区？这篇文章一定要看！
+title: "Kubernetes 开源社区指南"
+linkTitle: "Kubernetes 开源社区指南"
+date: "2023-07-19T17:07"
+weight: 20
 ---
+
+# 概述
+
+> 参考：
 
 [如何玩转 Kubernetes 开源社区？这篇文章一定要看！](https://mp.weixin.qq.com/s/aZGBkBpFZOEyoa1xj-16kQ)
 

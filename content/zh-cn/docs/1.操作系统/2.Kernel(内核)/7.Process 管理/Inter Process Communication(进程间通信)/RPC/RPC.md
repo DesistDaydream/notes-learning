@@ -6,8 +6,8 @@ title: RPC
 
 > 参考：
 >
-> - [Wiki,RPC](https://en.wikipedia.org/wiki/Remote_procedure_call)
-> - [Wiki,gRPC](https://en.wikipedia.org/wiki/GRPC)
+> - [Wiki，RPC](https://en.wikipedia.org/wiki/Remote_procedure_call)
+> - [Wiki，gRPC](https://en.wikipedia.org/wiki/GRPC)
 > - [gRPC 官网](https://grpc.io/)
 
 在[分布式计算](https://en.wikipedia.org/wiki/Distributed_computing)中，**Remote Procedure Call(远程过程调用，简称 RPC)** 是计算机程序使 [Subroutine](docs/2.编程/解谜计算机科学/Function/Function.md) 在不同的地址空间（通常在共享网络上的另一台计算机上）执行时，被编码为 **Local Procedure Call(本地过程调用)**，而无需程序员为远程交互显式编写细节。也就是说，程序员可以为程序编写相同的代码，而不用关心自己编写的程序将会被本地调用还是远程调用。
