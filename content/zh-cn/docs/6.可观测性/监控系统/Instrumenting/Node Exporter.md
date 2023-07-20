@@ -63,11 +63,13 @@ systemctl enable node-exporter --now
 <https://github.com/prometheus/node_exporter#using-docker>
 
 ```bash
+export VERSION="1.6.0"
+
 docker run -d --name node-exporter --restart=always \
   --net="host" \
   --pid="host" \
   -v "/:/host:ro,rslave" \
-  prom/node-exporter \
+  prom/node-exporter:v${VERSION} \
   --web.listen-address=":9100" \
   --path.rootfs=/host \
   --no-collector.hwmon \
