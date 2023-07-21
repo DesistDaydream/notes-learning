@@ -12,7 +12,9 @@ weight: 20
 > - [Manual(手册)，iptables(8)](https://man7.org/linux/man-pages/man8/iptables.8.html)
 > - [Manual(手册)，iptables-extensions(8)](https://man7.org/linux/man-pages/man8/iptables-extensions.8.html)
 
-Man 手册中，将 iptables 分为两部分，基本的 iptables 和用于描述扩展规则的 iptables-extensions，当使用扩展规则时，需要通过 `-m, --match ModuleName` 选型以指定要使用的扩展模块的名称
+Man 手册中，将 iptables 分为两部分，基本的 iptables 和用于描述扩展规则的 iptables-extensions，当使用扩展规则时，需要通过 `-m, --match ModuleName` 选项指定要使用的扩展模块的名称。
+
+另外，所谓的扩展规则，其实是对原始 iptables 的扩展，并不仅仅扩展了匹配数据包的规则，还有很多其他的功能。
 
 # Syntax(语法)
 
@@ -23,7 +25,7 @@ Man 手册中，将 iptables 分为两部分，基本的 iptables 和用于描�
   - CHAIN 其实不应该放在这，一般都是 COMMAND 中的组成部分。
 - **RuleSpecifitcation = MATCHES TARGET** # 通常用在增加规则时，指定规则的具体规范。由两部分组成：\[MATCHES...] 和 \[TARGET]
   - **MATCHES = \[基本匹配规则] \[扩展匹配规则]** # 匹配条件，可以指定多个。用以筛选出要执行 TARGET 的数据包的条件
-  - **TARGET = -j TargetName \[Per-Target-Options]** # 指定规则中的目标(target)是什么。
+  - **TARGET = -j TargetName \[Per-Target-Options]** # 指定匹配到规则的数据包的 Target(目标) 是什么。
 
 ## OPTIONS
 
@@ -60,18 +62,22 @@ Man 手册中，将 iptables 分为两部分，基本的 iptables 和用于描�
 
 ## MATCHES
 
-**MATCHES =  \[基本匹配规则] \[扩展匹配规则]**
+iptabes 语法中的 MATCHES 部分是整个语法中非常重要且复杂的。该部分用于指定要匹配的数据包条件，只有符合条件的数据包，才会被 Netfilter 框架处理。
 
-官方文档的描述有点问题，-m 后面应该是指的模块名称
+MATCHES 规则可以分为两类：
 
-- ModuleName # 扩展匹配时使用的模块
-- Per-Match-Options # 使用扩展模块时使用的模块选项
+- 基本匹配规则
+- 扩展匹配规则
 
-一个或多个 parameters(参数) 构成 MATCHES。i.e.Match(匹配) 相关的 OPTIONS。在每个 parameters 之前添加 `!` 符号，即可将该匹配取反（比如：不加叹号是匹配某个 IP 地址，加了叹号表示除了这个地址外都匹配）
+我们可以指定一个或多个匹配规则，很多匹配规则前可以添加 `!` 符号，即可将该匹配取反（比如：不加叹号是匹配某个 IP 地址，加了叹号表示除了这个地址外都匹配）
+
+MATCHES 的语法是一种类似命令行参数的写法
 
 ### 基本匹配规则
 
-> 在 Man 手册中，这部分属于 PARAMETERS 类型的 OPTOINS
+> 在 Man 手册中，这部分的介绍在 OPTIONS 下的 PARAMETERS 章节。
+
+基本匹配规则语法
 
 - **-s, --source IP/MASK** # 指定规则中要匹配的来源地址的 IP/MASK
 - **-d, --destination IP/MASK** # 指定规则中要匹配的目标地址的 IP/MASK
@@ -79,12 +85,12 @@ Man 手册中，将 iptables 分为两部分，基本的 iptables 和用于描�
 - **-o, --out-interface 网卡名称** # 指定数据流出规则中要匹配的网卡，仅用于 FORWARD、OUTPUT、POSTROUTING 链
 - **-p, --protocol PROTOCOL** # 指定规则中要匹配的协议，即 ip 首部中的 protocols 所标识的协议
   - 可用的协议有 tcp、udp、icmp、等等
+- **-m, --match MATCH** # 使用[扩展匹配语法](#扩展匹配语法)指定扩展匹配规则
+- **-j, --jump TARGET** # 指定 [TARGET](#TARGET)
 
 ### 扩展匹配规则
 
-扩展匹配语法：`-m ModuleName Per-Match-Options`
-
-**iptables \[OPTIONS] COMMAND \[CHAIN] \[基本匹配规则] -m ModuleName Per-Match-Options TARGET**
+扩展匹配语法：`-m ModuleName Per-Match-Options`，即指定要使用的扩展模块以及该模块可用的选项。
 
 详见下文 [扩展匹配语法](#扩展匹配语法)
 
@@ -96,17 +102,16 @@ Man 手册中，将 iptables 分为两部分，基本的 iptables 和用于描�
 
 - **ACCEPT** # 允许流量通过
 - **REJECT** # 拒绝流量通过
-  - OPTIONS
-    - --reject-with icmp-host-prohibited # 通过 icmp 协议显示给客户机一条消息:主机拒绝(icmp-host-prohibited)
+  - --reject-with icmp-host-prohibited # 通过 icmp 协议显示给客户机一条消息:主机拒绝(icmp-host-prohibited)
 - **DROP** # 丢弃，不响应，发送方无法判断是被拒绝
 - **RETURN** # 返回调用链
 - **MARK** # 做防火墙标记
-- 用于 nat 表的 target
-  - DNAT|SNAT # {目的|源}地址转换
-  - REDIRECT # 端口重定向
-  - MASQUERADE # 地址伪装类似于 SNAT，但是不用指明要转换的地址，而是自动选择要转换的地址，用于外部地址不固定的情况
-- 用于 raw 表的 target
-  - NOTRACK # raw 表专用的 target，用于对匹配规则进行 notrack(不跟踪)处理
+  - 用于 nat 表的 target
+    - DNAT|SNAT # {目的|源}地址转换
+    - REDIRECT # 端口重定向
+    - MASQUERADE # 地址伪装类似于 SNAT，但是不用指明要转换的地址，而是自动选择要转换的地址，用于外部地址不固定的情况
+  - 用于 raw 表的 target
+    - NOTRACK # raw 表专用的 target，用于对匹配规则进行 notrack(不跟踪)处理
 - **LOG** # 记录日志信息
 - **引用自定义链** # 直接使用“-j|-g 自定义链的名称”即可，让基本 5 个 Chain 上匹配成功的数据包继续执行自定义链上的规则。
 
@@ -116,12 +121,14 @@ Man 手册中，将 iptables 分为两部分，基本的 iptables 和用于描�
 > 
 > - [Manual(手册)，iptables-extensions(8)](https://man7.org/linux/man-pages/man8/iptables-extensions.8.html)
 
-**iptables \[OPTIONS] COMMAND \[CHAIN] \[基本匹配规则] -m ExtendedModuleName --MatchRule**
+**iptables \[OPTIONS] COMMAND \[CHAIN] \[基本匹配规则] -m ExtendedModuleName --ExtendedModuleArgs -j TARGET**
+
+官方文档的描述有点问题，-m 后面应该是指扩展模块名称
 
 - ExtendedModuleName # 扩展模块名称
-- Match # 适用于模块的匹配规则选项
+- ExtendedModuleArgs # 扩展模块对应的参数
 
-**注意，所有的扩展匹配语法必须使用 `-m ExtendedMatchName` 选项指定要使用的扩展模块**，下文的描述也是直接对扩展模块名称进行记录。
+**注意，所有的扩展匹配语法必须使用 `-m` 选项指定要使用的扩展模块**，下文的描述也是直接对扩展模块名称进行记录。
 
 iptables 可以使用带有 -m 或 --match 选项的扩展的数据包匹配模块，这些模块可以提供更加强大的匹配数据包的能力，而不仅仅只是源目IP。之后，根据特定模块的不同，可以使用各种额外的命令行选项。我们可以在一行中指定多个扩展匹配模块。扩展匹配模块按照规则中指定的顺序进行评估。
 
@@ -144,9 +151,13 @@ iptables 可以使用带有 -m 或 --match 选项的扩展的数据包匹配模�
 
 **conntrack 模块**
 
-- **--ctstate CTState1\[,CTState2...]** # 匹配指定的名为 CTState 的[连接追踪](/docs/1.操作系统/2.Kernel(内核)/8.Network%20管理/Linux%20网络流量控制/Netfilter%20流量控制系统/Connection%20Tracking(连接跟踪)机制.md)状态。CTState 为 conntrack State，可用的状态有{INVALID|ESTABLISHED|NEW|RELATED|UNTRACKED|SNAT|DNAT}
+- **--ctstate CTState1\[,CTState2...]** # 匹配指定的名为 CTState(conntrack State) 的[连接追踪](/docs/1.操作系统/2.Kernel(内核)/8.Network%20管理/Linux%20网络流量控制/Netfilter%20流量控制系统/Connection%20Tracking(连接跟踪)机制.md)状态。可用的状态有{INVALID|ESTABLISHED|NEW|RELATED|UNTRACKED|SNAT|DNAT}
 
 > -m state --state STATE1\[,STATE2,....] # conntrack 的老式用法，慢慢会被淘汰
+
+**comment 模块**
+
+- **--comment STRING** # 向规则添加注释，最多 256 个字符。比如：`iptables -A INPUT -i eth1 -m comment --comment "my local LAN"`
 
 **set 模块**
 
@@ -159,9 +170,8 @@ iptables 可以使用带有 -m 或 --match 选项的扩展的数据包匹配模�
 
 **sting 模块**
 
-- **--MatchRule** # 指明要匹配的字符串，用于检查报文中出现的字符串(e.g.某个网页出现某个字符串则拒绝)
-  - OPTIONS
-    - **--algo {bm|kmp}** # 指明使用哪个搜索算法
+- **--algo {bm|kmp}** # 指明使用哪个搜索算法
+- **--string PATTERN** # 指明要匹配的字符串，用于检查报文中出现的字符串(e.g.某个网页出现某个字符串则拒绝)
 
 ## 协议相关的扩展模块
 
