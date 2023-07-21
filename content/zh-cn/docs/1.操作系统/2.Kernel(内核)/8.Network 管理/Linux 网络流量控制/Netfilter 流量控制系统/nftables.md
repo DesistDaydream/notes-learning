@@ -1,5 +1,5 @@
 ---
-title: nftables(Netfilter 的实现)
+title: nftables
 ---
 
 # 概述

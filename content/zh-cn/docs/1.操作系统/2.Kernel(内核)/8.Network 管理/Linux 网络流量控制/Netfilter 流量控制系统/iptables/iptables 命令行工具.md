@@ -1,93 +1,20 @@
 ---
-title: iptables(Netfilter 的实现)
-weight: 1
+title: "iptables 命令行工具"
+linkTitle: "iptables 命令行工具"
+date: "2023-07-21T12:40"
+weight: 20
 ---
 
 # 概述
 
 > 参考：
->
+> 
 > - [Manual(手册)，iptables(8)](https://man7.org/linux/man-pages/man8/iptables.8.html)
-> - [Netfilter 官方文档，iptables 教程](https://www.frozentux.net/iptables-tutorial/iptables-tutorial.html)
+> - [Manual(手册)，iptables-extensions(8)](https://man7.org/linux/man-pages/man8/iptables-extensions.8.html)
 
-iptables 是 Netfilter 团队开发的一组用于与 netfilter 模块进行交互的 CLI 工具，其中包括 iptables、ip6tables、arptables、ebtables 等。
+Man 手册中，将 iptables 分为两部分，基本的 iptables 和用于描述扩展规则的 iptables-extensions，当使用扩展规则时，需要通过 `-m, --match ModuleName` 选型以指定要使用的扩展模块的名称
 
-iptables 和 ip6tables 用于建立、维护和检查 Linux 内核中的 IPv4 和 IPv6 包过滤规则表。可以定义几个不同的表中的各种规则，也可以定义用户定义的链。并把已经定义的规则发送给 netfilter 模块。
-
-## 四表(Table)
-
-**注意：四表是 iptables 框架中的概念，不是 Netfilter 中的**
-
-iptables 框架将流量抽象分为 4 类：过滤类、网络地址转换类、拆解报文类、原始类。每种类型的链作用在 Netfilter 系统中的 Hook 各不不相同，每种类型具有不同的功能。每一类都称为一张表。比如 fileter 表用来在指定链上检查流量是否可以通过，nat 表用来在指定链上检查流量是否可以进行地址转换，等等。Note：不是所有表都可以在所有链上具有规则，下表是 4 个表在 5 个 Hook 上的可用关系。
-
-| 表名\链名 | PREROUTING | INPUT | FORWARD | OUTPUT | POSTROUTING |
-| --------- | ---------- | ----- | ------- | ------ | ----------- |
-| filter    |            | 可用  | 可用    | 可用   |             |
-| nat       | 可用       | 可用  |         | 可用   | 可用        |
-| mangle    | 可用       | 可用  | 可用    | 可用   | 可用        |
-| raw       | 可用       |       |         | 可用   |             |
-
-iptables 中有默认的内置 4 个表，每个表的名称就是其 chain 类型的名称
-
-### filter - 过滤器
-
-- 该类型的链可作用在以下几个 Hook 点上：INPUT、FORWARD、OUTPUT
-
-### nat - 网络地址转换
-
-- 该类型的链可作用在以下几个 Hook 点上：PREROUTING(DNAT)、INPUT、OUTPUT、POSTROUTING(SNAT)
-  - 其中 PREROUTING 与 POSTROUTING 是流量经过物理网卡设备时做 nat 的地方
-  - 其中 INPUT 与 OUTPUT 则是主机内部从网络栈直接下来的流量做 nat 的地方。e.g.从主机一个服务发送数据到同一个主机另一个服务的流量
-
-### mangle - 拆解报文，做出修改，封装报文
-
-- 该类型的链可作用在以下几个 Hook 点上：PREROUTING、INPUT、FORWARD、OUTPUT、POSTROUTING
-
-### raw- 原始
-
-用于跳过 nat 表以及连接追踪机制(ip_conntrack)的处理，详见 [连接跟踪系统](/docs/1.操作系统/2.Kernel(内核)/8.Network%20 管理/Linux%20 网络流量控制/Connnection%20Tracking(连接跟踪).md Tracking(连接跟踪).md)
-
-- 该类型的链可作用在以下几个 Hook 点上：PREROUTING、OUTPUT
-
-整个表只有这一个作用，且仅有一个 target 就是 NOTRACK。具有最高优先级，所有流量先在两个 Hook 的 raw 功能上进行检查。一旦在 raw 上配置了规则，则 raw 表处理完成后，跳过 nat 表和 ip_conntrack 处理，i.e.不再做地址转换和数据包的链接跟踪处理，不把匹配到的数据包保存在“链接跟踪表”中。常用于那些不需要做 nat 的情况下以提高性能。e.g.大量访问的 web 服务器，可以让 80 端口不再让 iptables 做数据包的链接跟踪处理 ，以提高用户的访问速度。不过该功能不影响其余表的连接追踪追踪功能的正常使用，依然会有记录写到连接追踪文件中去
-
-- 该功能的起源：iptables 表有大小的上限，如果每个数据包进来都要进行检查，会非常影响性能，可以对那些不用进行 nat 功能的数据进行放弃后面的检查，i.e.可以在 raw 配置然后直接让这些数据包跳过后面的表对该数据包的处理
-
-Note：四表的优先级从高到低依次为：raw-mangle-nat-filter，i.e.数据到达某个 Hook 上，则会优先使用优先级最高类型的链来处理数据包。其实，iptables 表的作用更像是用来划分优先级的。
-
-## iptables 处理链上规则的顺序以及规范
-
-注意：每个数据包在 CHAIN 中匹配到适用于自己的规则之后，则直接进入下一个 CHAIN，而不会遍历 CHAIN 中每条规则去挨个匹配适用于自己的规则。比如下面两种情况
-
-INPUT 链默认 DROP，匹配第一条：目的端口是 9090 的数据 DROP，然后不再检查下一项，那么 9090 无法访问
-
-```bash
--P INPUT DROP
--A INPUT -p tcp -m tcp --dport 9090 -j DROP
--A INPUT -p tcp -m tcp --dport 9090 -j ACCEPT
-```
-
-INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，然后不再检查下一条规则，则 9090 可以访问
-
-```bash
--P INPUT DROP
--A INPUT -p tcp -m tcp --dport 9090 -j ACCEPT
--A INPUT -p tcp -m tcp --dport 9090 -j DROP
-```
-
-# iptables 关联文件与配置
-
-**/etc/sysconfig/iptables** # 存放用户定义的规则信息，每次重启 iptabels.service 服务后，都会读取该配置文件信息并应用到系统中
-
-**/etc/sysconfig/iptables-conf** # 存放 iptables 工具的具体配置信息
-
-**/run/xtables.lock** # 该文件在 iptables 程序启动时被使用，以获取排他锁
-
-- 可以通过 `XTABLES_LOCKFILE` 环境变量修改 iptables 需要使用 xtalbes.lock 文件的路径
-
-# iptables 命令行工具
-
-## Syntax(语法)
+# Syntax(语法)
 
 **iptables \[OPTIONS] COMMAND \[CHAIN] \[RuleSpecifitcation]**
 
@@ -95,10 +22,10 @@ INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，�
 - **CHAIN** # 指定要执行操作的链。在不指定的时候，默认对所有链进行操作。
   - CHAIN 其实不应该放在这，一般都是 COMMAND 中的组成部分。
 - **RuleSpecifitcation = MATCHES TARGET** # 通常用在增加规则时，指定规则的具体规范。由两部分组成：\[MATCHES...] 和 \[TARGET]
-  - **MATCHES = \[-m] MatchName \[Per-Match-Options]** # 一个或多个 parameters(参数) 构成 MATCHES
+  - **MATCHES = \[基本匹配规则] \[扩展匹配规则]** # 匹配条件，可以指定多个。用以筛选出要执行 TARGET 的数据包的条件
   - **TARGET = -j TargetName \[Per-Target-Options]** # 指定规则中的目标(target)是什么。
 
-### OPTIONS
+## OPTIONS
 
 - **-t, --table TALBLE** # 指定 iptables 命令要对 TABLE 这个表进行操作。`默认值: filter`。省略该选项时，表示默认对 filter 表进行操作。
 - **-n, --numeric** # 所有输出以数字的形式展示。IP 地址、端口号等都以数字输出。默认情况下一般是显示主机名、网络名称、服务。
@@ -111,7 +38,7 @@ INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，�
   - in/out # 显示要限制的具体网卡，`*` 为所有
   - source/destination #
 
-### COMMAND
+## COMMAND
 
 - 增
   - **-A, --append \<CHAIN> \<RuleSpecification>** # 在规则连末尾添加规则
@@ -131,13 +58,18 @@ INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，�
 - 其他
   - **-Z, --zero \[CHAIN \[RULE_NUM]]** # 将所有链中的数据包和字节计数器归零，或者仅将给定链归零，或者仅将给定规则归零。
 
-### MATCHES
+## MATCHES
 
-**MATCHES = \[-m] MatchName \[Per-Match-Options]**
+**MATCHES =  \[基本匹配规则] \[扩展匹配规则]**
 
-一个或多个 parameters(参数) 构成 MATCHES。i.e.Match(匹配) 相关的 OPTIONS。在每个 parameters 之前添加!，即可将该匹配取反(比如：不加叹号是匹配某个 IP 地址，加了叹号表示除了这个地址外都匹配)
+官方文档的描述有点问题，-m 后面应该是指的模块名称
 
-基本匹配规则
+- ModuleName # 扩展匹配时使用的模块
+- Per-Match-Options # 使用扩展模块时使用的模块选项
+
+一个或多个 parameters(参数) 构成 MATCHES。i.e.Match(匹配) 相关的 OPTIONS。在每个 parameters 之前添加 `!` 符号，即可将该匹配取反（比如：不加叹号是匹配某个 IP 地址，加了叹号表示除了这个地址外都匹配）
+
+### 基本匹配规则
 
 > 在 Man 手册中，这部分属于 PARAMETERS 类型的 OPTOINS
 
@@ -148,61 +80,117 @@ INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，�
 - **-p, --protocol PROTOCOL** # 指定规则中要匹配的协议，即 ip 首部中的 protocols 所标识的协议
   - 可用的协议有 tcp、udp、icmp、等等
 
-扩展匹配规则(ExtendedMatch)
+### 扩展匹配规则
 
-使用格式：`-m ExtendedMatchName --MatchRule`
+扩展匹配语法：`-m ModuleName Per-Match-Options`
 
-通用的扩展匹配，指定具体的扩展匹配名以及该扩展匹配的匹配规则
+**iptables \[OPTIONS] COMMAND \[CHAIN] \[基本匹配规则] -m ModuleName Per-Match-Options TARGET**
 
-- **-m conntrack --ctstate CTState1\[,CTState2...]** # 匹配指定的名为 CTState 的[连接追踪](/docs/1.操作系统/2.Kernel(内核)/8.Network%20 管理/Linux%20 网络流量控制/Netfilter%20 流量控制系统/Connection%20Tracking(连接跟踪)机制.md Tracking(连接跟踪)机制.md)状态。CTState 为 conntrack State，可用的状态有{INVALID|ESTABLISHED|NEW|RELATED|UNTRACKED|SNAT|DNAT}
-  - -m state --state STATE1\[,STATE2,....] # conntrack 的老式用法，慢慢会被淘汰
-- **-m set --match-set SetName {src|dst}..**. # 匹配指定的{源|目标}IP 是名为 SetName 的 ipset 集合
-  - 其中 FLAG 是逗号分隔的 src 和 dst 规范列表，其中不能超过六个。
-- -**m iprange {--src-range|--dst-range} IP1-IP2** # 匹配的指定的{源|目标}IP 范围
-- **-m sting --MatchRule** # 指明要匹配的字符串，用于检查报文中出现的字符串(e.g.某个网页出现某个字符串则拒绝)
-  - OPTIONS
-    - **--algo {bm|kmp}** # 指明使用哪个搜索算法
+详见下文 [扩展匹配语法](#扩展匹配语法)
 
-基于基本匹配的扩展匹配
-
-- -p tcp 的扩展匹配
-  - **-m \[tcp] --dport NUM** # 指定规则中要匹配的目标端口号
-  - **-m \[tcp] --sport NUM** # 指定规则中要匹配的来源端口号
-  - **-m multiport {--dport|--sport} NUM** # 让 tcp 匹配多个端口，可以是目标端口(dport)或者源端口(sport)
-  - **-m \[tcp] --tcp-flags LIST1 LIST2** # 检查 LIST1 所指明的所有标志位，且这其中 LIST2 所表示出的所有标志位必须为 1，而余下的必须为 0,；没有 LIST1 中指明的，不做检查(e.g.--tcp-flags SYN,ACK,FIN,RST SYN)。LIST 包括“SYN ACK FIN RST URG PSH ALL NONE”
-- -p udp 的扩展匹配：--dport、--sport 与 tcp 的扩展匹配用法一样
-- -p icmp 的扩展匹配
-  - **-m \[icmp] --icmp-type TYPE** # 指定 icmp 的类型，具体类型可以搜 icmp type 获得，可以是数字
-
-### TARGET
+## TARGET
 
 **TARGET = -j TargetName \[Per-Target-Options]**
 
-指定规则中的目标(target)是什么。即“如果数据包匹配上规则之后应该做什么”。如果目标是自定义链，则指明具体的自定义 Chain 的名称。TARGET 都有哪些详见 Netfilter 流量控制系统。下面是各种 TARGET 的类型：
+指定规则中的 target(目标)是什么。即“如果数据包匹配上规则之后应该做什么”。如果目标是自定义链，则指明具体的自定义 Chain 的名称。TARGET 都有哪些详见 Netfilter 流量控制系统。下面是各种 TARGET 的类型：
 
-- ACCEPT # 允许流量通过
-- REJECT # 拒绝流量通过
+- **ACCEPT** # 允许流量通过
+- **REJECT** # 拒绝流量通过
   - OPTIONS
     - --reject-with icmp-host-prohibited # 通过 icmp 协议显示给客户机一条消息:主机拒绝(icmp-host-prohibited)
-- DROP # 丢弃，不响应，发送方无法判断是被拒绝
-- RETURN # 返回调用链
-- MARK # 做防火墙标记
+- **DROP** # 丢弃，不响应，发送方无法判断是被拒绝
+- **RETURN** # 返回调用链
+- **MARK** # 做防火墙标记
 - 用于 nat 表的 target
   - DNAT|SNAT # {目的|源}地址转换
   - REDIRECT # 端口重定向
   - MASQUERADE # 地址伪装类似于 SNAT，但是不用指明要转换的地址，而是自动选择要转换的地址，用于外部地址不固定的情况
 - 用于 raw 表的 target
   - NOTRACK # raw 表专用的 target，用于对匹配规则进行 notrack(不跟踪)处理
-- LOG # 记录日志信息
-- 引用自定义链 # 直接使用“-j|-g 自定义链的名称”即可，让基本 5 个 Chain 上匹配成功的数据包继续执行自定义链上的规则。
+- **LOG** # 记录日志信息
+- **引用自定义链** # 直接使用“-j|-g 自定义链的名称”即可，让基本 5 个 Chain 上匹配成功的数据包继续执行自定义链上的规则。
 
-## EXAMPLE
+# 扩展匹配语法
+
+> 参考：
+> 
+> - [Manual(手册)，iptables-extensions(8)](https://man7.org/linux/man-pages/man8/iptables-extensions.8.html)
+
+**iptables \[OPTIONS] COMMAND \[CHAIN] \[基本匹配规则] -m ExtendedModuleName --MatchRule**
+
+- ExtendedModuleName # 扩展模块名称
+- Match # 适用于模块的匹配规则选项
+
+**注意，所有的扩展匹配语法必须使用 `-m ExtendedMatchName` 选项指定要使用的扩展模块**，下文的描述也是直接对扩展模块名称进行记录。
+
+iptables 可以使用带有 -m 或 --match 选项的扩展的数据包匹配模块，这些模块可以提供更加强大的匹配数据包的能力，而不仅仅只是源目IP。之后，根据特定模块的不同，可以使用各种额外的命令行选项。我们可以在一行中指定多个扩展匹配模块。扩展匹配模块按照规则中指定的顺序进行评估。
+
+- 比如使用 `-p tcp`，即可在语句后面添加 `-m tcp` 以调用 tcp 扩展模块。
+- 然后还可以使用 tcp 模块的专属参数，比如 --dport、--sport 等等。
+
+我们可以在指定模块后使用 -h 或 --help 选项以获取特定模块的帮助信息，比如 `iptables -m tcp --help` 将会列出 tcp 模块所支持的所有选项。
+
+> 备注：使用 -p, --protocol 选项时， iptables 将尝试加载与协议同名的模块，以使用该模块的扩展匹配选项。比如 `-p tcp -m tcp --dport 22` 可以简写为 `-p --dport 22`，因为默认加载同名的扩展模块
+
+扩展模块分为如下几类：
+
+- 通用扩展模块
+- 协议相关的模块
+- 其他模块
+
+## 通用扩展模块
+
+指定具体的扩展匹配名以及该扩展匹配的匹配规则
+
+**conntrack 模块**
+
+- **--ctstate CTState1\[,CTState2...]** # 匹配指定的名为 CTState 的[连接追踪](/docs/1.操作系统/2.Kernel(内核)/8.Network%20管理/Linux%20网络流量控制/Netfilter%20流量控制系统/Connection%20Tracking(连接跟踪)机制.md)状态。CTState 为 conntrack State，可用的状态有{INVALID|ESTABLISHED|NEW|RELATED|UNTRACKED|SNAT|DNAT}
+
+> -m state --state STATE1\[,STATE2,....] # conntrack 的老式用法，慢慢会被淘汰
+
+**set 模块**
+
+**--match-set SetName {src|dst}..**. # 匹配指定的{源|目标}IP 是名为 SetName 的 ipset 集合
+  - 其中 FLAG 是逗号分隔的 src 和 dst 规范列表，其中不能超过六个。
+
+**iprange 模块**
+
+- **{--src-range|--dst-range} IP1-IP2** # 匹配的指定的{源|目标}IP 范围
+
+**sting 模块**
+
+- **--MatchRule** # 指明要匹配的字符串，用于检查报文中出现的字符串(e.g.某个网页出现某个字符串则拒绝)
+  - OPTIONS
+    - **--algo {bm|kmp}** # 指明使用哪个搜索算法
+
+## 协议相关的扩展模块
+
+**multiport** # 仅可使在 **tcp**, **udp**, **udplite**, **dccp**, **sctp** 这几个协议中使用
+
+- **{--dports|--sports} NUM** # 让 tcp 匹配多个端口，可以是目标端口(dport)或者源端口(sport)
+
+**tcp 模块**
+
+  - **--sport, --source-port NUM** # 指定规则中要匹配的来源端口号
+  - **--dport, --destination-port NUM** # 指定规则中要匹配的目标端口号
+  - **--tcp-flags LIST1 LIST2** # 检查 LIST1 所指明的所有标志位，且这其中 LIST2 所表示出的所有标志位必须为 1，而余下的必须为 0,；没有 LIST1 中指明的，不做检查(e.g.--tcp-flags SYN,ACK,FIN,RST SYN)。LIST 包括“SYN ACK FIN RST URG PSH ALL NONE”
+
+**udp 模块**
+
+  - **--dport NUM** # 指定规则中要匹配的目标端口号
+  - **--sport NUM** # 指定规则中要匹配的来源端口号
+
+**icmp 模块**
+
+  - **-m \[icmp] --icmp-type TYPE** # 指定 icmp 的类型，具体类型可以搜 icmp type 获得，可以是数字
+
+# EXAMPLE
 
 注意：在使用 iptables 命令的时候，为了防止配置问题导致网络不通，可以先设置一个定时任务来修改 iptables 规则或者 iptables XX && sleep 5 && iptables -P INPUT ACCEPT && iptables -P OUTPUT ACCEPT
 
-### Fileter 表的配置
+## Fileter 表的配置
 
-#### INPUT 默认为 DROP 情况下
+### INPUT 默认为 DROP 情况下
 
 - iptables -P INPUT DROP
 
@@ -234,7 +222,7 @@ INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，�
 
 - iptables -A INPUT -m set --match-set cdn1 src -j ACCEPT
 
-#### INPUT 默认为 ACCEPT 情况下
+### INPUT 默认为 ACCEPT 情况下
 
 - iptables -P INPUT DROP
 
@@ -249,14 +237,13 @@ INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，�
 -A INPUT -s 116.63.160.74/32 -p tcp -m tcp --dport 22 -j ACCEPT
 -A INPUT -s 122.9.154.106/32 -p tcp -m tcp --dport 22 -j ACCEPT
 -A INPUT -p tcp -m tcp --dport 22 -j DROP
-
 ```
 
 所有 ping 本机的数据包全部丢弃，禁 ping。给 INPUT 链添加一条禁止 icmp 协议的规则
 
 - iptables -I INPUT -p icmp -j DROP
 
-#### 其他
+### 其他
 
 显示 INPUT 链中的所有规则，并显示规则行号
 
@@ -266,7 +253,7 @@ INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，�
 
 - iptables -D INPUT 11
 
-### NAT 表的配置
+## NAT 表的配置
 
 凡是基于 tcp 协议访问本机 80 端口，且目的地址是 110.119.120.1 的数据包。全部把目的地址转变为 192.168.20.2，且目的端口转换为 8080
 
@@ -280,11 +267,13 @@ INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，�
 
   - iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 25 -j REDIRECT --to-port 2525
 
-### RAW 表配置
+## RAW 表配置
 
 所有来自 10.0.9.0/24 网段的数据包，都不跟踪
 
   - iptables -t raw -A PREROUTING -s 10.0.9.0/24 -j NOTRACK
+
+# 其他关联命令行工具
 
 ## iptables-save - 将 iptables 规则转储到标准输出
 
@@ -314,7 +303,7 @@ ipset 是 iptables 的一个协助工具。可以通过 ipset 设置一组 IP �
 
 ## Syntax(语法)
 
-**ipset [OPTIONS] COMMAND [COMMAND-OPTIONS]**
+**ipset \[OPTIONS] COMMAND \[COMMAND-OPTIONS]**
 
 COMMANDS：Note：ENTRY 指的就是 ip 地址
 
@@ -344,7 +333,3 @@ EXAMPLE
 - **ipset add lichenhao 1.1.1.0/24** # 将 1.1.1.0/24 网段添加到名为 lichenhao 的 ipset 中
 - **ipset flush** # 清空所有 ipset 下的 ip
 - **ipset restore -f /etc/sysconfig/ipset** # 从/etc/sysconfig/ipset 还原 ipset 的集合和条目信息
-
-# 分类
-
-#操作系统技术 #网络
