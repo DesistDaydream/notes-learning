@@ -5,6 +5,7 @@ title: Token 与 JWT
 # 概述
 
 > 参考：
+> 
 > - [JWT 官网](https://jwt.io/)
 > - [rfc7519](https://datatracker.ietf.org/doc/html/rfc7519)
 > - [阮一峰,JSON Web Token 入门教程](http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html)
@@ -37,26 +38,32 @@ title: Token 与 JWT
 
 JWT 的原理是，服务器认证以后，生成一个 JSON 对象，发回给用户，就像下面这样。
 
-    {
-      "姓名": "张三",
-      "角色": "管理员",
-      "到期时间": "2018年7月1日0点0分"
-    }
+```json
+{
+  "姓名": "张三",
+  "角色": "管理员",
+  "到期时间": "2018年7月1日0点0分"
+}
+```
 
 以后，用户与服务端通信的时候，都要发回这个 JSON 对象。服务器完全只靠这个对象认定用户身份。为了防止用户篡改数据，服务器在生成这个对象的时候，会加上签名（详见后文）。
 
 服务器就不保存任何 session 数据了，也就是说，服务器变成无状态了，从而比较容易实现扩展。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/sn00y2/1623744463253-b71ac60f-9871-4aef-8c37-8166947d5b58.webp)
 
 ## JWT 的数据结构
 
 实际的 JWT 大概就像下面这样。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/sn00y2/1623651349414-4518a10e-dbd4-4461-a4e2-a039518e8355.jpeg)
+
 它是一个很长的字符串，中间用点（.）分隔成三个部分。注意，JWT 内部是没有换行的，这里只是为了便于展示，将它写成了几行。
+
 JWT 的三个部分依次如下。
 
 - **Header(头部)** #
-- **Payload(负载) **#
+- **Payload(负载)** #
 - **Signature(签名)** #
 
 写成一行，就是下面的样子。
@@ -97,9 +104,9 @@ Payload 部分也是一个 JSON 对象，用来存放实际需要传递的数据
   - **nbf(Not Before)** # 生效时间。定义在什么时间之前该 JWT 是不可用的。类似 X.509 中的 `Not Before` 字段。
   - **iat(Issued At)** # 签发时间。
   - **jti(JWT ID)** # JWT 的 ID，主要用来作为一次性 Token，从而回避重放攻击
-- **Public Claims(公共要求)，**使用 JWT 时的自定义 Claims。
+- **Public Claims(公共要求)**，使用 JWT 时的自定义 Claims。
   - 但是给 Public Claims 命名时，要注意不要与 [IANA JSON Web Token Registry](https://www.iana.org/assignments/jwt/jwt.xhtml) 中定义的名称相冲突。
-- **Private Claims(私有要求)，**也是一种自定义的 Claims，通常用来共享信息。JWT 的生产者和消费者可以同意使用 Private Claims，而不是其他两种类型的 Claims。
+- **Private Claims(私有要求)**，也是一种自定义的 Claims，通常用来共享信息。JWT 的生产者和消费者可以同意使用 Private Claims，而不是其他两种类型的 Claims。
 
 下面就是一个有效的 Payload 的示例：
 
@@ -112,12 +119,13 @@ Payload 部分也是一个 JSON 对象，用来存放实际需要传递的数据
 ```
 
 注意，JWT 默认是不加密的，任何人都可以读到，所以不要把敏感信息放在 JWT 中。
-\*\*
+
 这个 JSON 对象也要使用 Base64URL 算法转成字符串。
 
 ### Signature
 
 **Signature(签名)** 是对前 Header 与 Payload 的签名，防止数据篡改。
+
 首先，需要指定一个 secret(密钥)。这个密钥只有服务器才知道，不能泄露给用户。然后，使用 Header 里面指定的签名算法（默认是 HMAC SHA256），按照下面的公式产生签名。
 
     HMACSHA256(
@@ -132,15 +140,18 @@ Payload 部分也是一个 JSON 对象，用来存放实际需要传递的数据
 算出 Signature 以后，把 Header、Payload、Signature 三个部分拼成一个字符串，每个部分之间用"点"（.）分隔，这就组成了一个字符串类型的 JWT。
 
 **Base64URL**
+
 前面提到，Header 和 Payload 串型化的算法是 Base64URL。这个算法跟 Base64 算法基本类似，但有一些小的不同。
+
 JWT 作为一个令牌（token），有些场合可能会放到 URL（比如 api.example.com/?token=xxx）。Base64 有三个字符+、/和=，在 URL 里面有特殊含义，所以要被替换掉：=被省略、+替换成-，/替换成\_ 。这就是 Base64URL 算法。
 
 ## JWT 的使用方式
 
 客户端收到服务器返回的 JWT，可以储存在 Cookie 里面，也可以储存在 localStorage。
+
 此后，客户端每次与服务器通信，都要带上这个 JWT。你可以把它放在 Cookie 里面自动发送，但是这样不能跨域，所以更好的做法是放在 HTTP 请求的头信息 Authorization 字段里面。
 
-    Authorization: Bearer <TOKEN>
+`Authorization: Bearer <TOKEN>`
 
 另一种做法是，跨域的时候，JWT 就放在 POST 请求的数据体里面。
 
