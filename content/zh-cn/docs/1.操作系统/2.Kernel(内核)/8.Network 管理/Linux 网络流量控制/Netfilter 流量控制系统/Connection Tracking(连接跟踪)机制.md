@@ -16,13 +16,13 @@ weight: 2
 
 可跟踪的连接状态有以下几个
 
-1. NEW：新发出的请求。在连接跟踪文件中(nf_conntrack)不存在此连接。
-2. ESTABLISHED：已建立的。NEW 状态之后，在 nf_conntrack 文件中为其建立的条目失效之前所进行的通信的状态
-3. RELATED：有关联的。某个已经建立的连接所建立的新连接；e.g.FTP 的数据传输连接就是控制连接所 RELATED 出来的连接。–icmp-type 8(ping 请求)就是–icmp-type 0(ping 应答) 所 RELATED 出来的。
-4. INVALIED：无法识别的连接。
-5. UNTRACKED：不跟踪的链接状态，仅在使用 raw 表的时候该状态才有用，即 raw 不进行链接跟踪的时候，则连接跟踪表中没有记录的数据包就是此状态
+1. **NEW** # 新发出的请求。在连接跟踪文件中(nf_conntrack)不存在此连接。
+2. **ESTABLISHED** # 已建立的。NEW 状态之后，在 nf_conntrack 文件中为其建立的条目失效之前所进行的通信的状态
+3. **RELATED** # 有关联的。某个已经建立的连接所建立的新连接；e.g.FTP 的数据传输连接就是控制连接所 RELATED 出来的连接。–icmp-type 8(ping 请求)就是–icmp-type 0(ping 应答) 所 RELATED 出来的。
+4. **INVALIED** # 无法识别的连接。
+5. **UNTRACKED** # 不跟踪的链接状态，仅在使用 raw 表的时候该状态才有用，即 raw 不进行链接跟踪的时候，则连接跟踪表中没有记录的数据包就是此状态
 6. 其他：
-   1. NEW 与 ESTABLISHED 的定义：只要第一次请求就算 NEW(e.g.本机往外第一次发送，外部第一次发往本机的请求)，哪怕对第一个 NEW 请求再回应的都算 ESTABLISHED。注意在 INPUT 和 OUTPUT 链上定义 NEW 的情况，INPUT 是对外部访问本机来说第一次是 NEW；OUTPUT 是对本机访问外部来说第一次是 NEW。
+   1. NEW 与 ESTABLISHED 的定义：只要第一次请求就算 NEW(e.g.本机往外第一次发送 和 外部第一次发往本机的请求)，哪怕对第一个 NEW 请求再回应的都算 ESTABLISHED。注意在 INPUT 和 OUTPUT 链上定义 NEW 的情况，INPUT 是外部第一次访问本机算 NEW；OUTPUT 是本机第一次访问外部算 NEW。
 
 注意：ConnTrack 中所定义的状态与 TCP 等协议所定义的状态不一样，这里面定义的状态只是为了可以通过一种新的方式来处理每一个数据包，并进行过滤，这是 Netfilter 中所定义的状态
 

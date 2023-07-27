@@ -153,7 +153,11 @@ iptables 可以使用带有 -m 或 --match 选项的扩展的数据包匹配模�
 
 - **--ctstate CTState1\[,CTState2...]** # 匹配指定的名为 CTState(conntrack State) 的[连接追踪](/docs/1.操作系统/2.Kernel(内核)/8.Network%20管理/Linux%20网络流量控制/Netfilter%20流量控制系统/Connection%20Tracking(连接跟踪)机制.md)状态。可用的状态有{INVALID|ESTABLISHED|NEW|RELATED|UNTRACKED|SNAT|DNAT}
 
-> -m state --state STATE1\[,STATE2,....] # conntrack 的老式用法，慢慢会被淘汰
+**state 模块**
+
+state 模块是 conntrack 模块的子集，属于老式用法，慢慢会被淘汰。
+
+- **--state STATE1\[,STATE2,....]** # 
 
 **comment 模块**
 
@@ -175,7 +179,7 @@ iptables 可以使用带有 -m 或 --match 选项的扩展的数据包匹配模�
 
 ## 协议相关的扩展模块
 
-**multiport** # 仅可使在 **tcp**, **udp**, **udplite**, **dccp**, **sctp** 这几个协议中使用
+**multiport 模块** # 仅可使在 **tcp**, **udp**, **udplite**, **dccp**, **sctp** 这几个协议中使用
 
 - **{--dports|--sports} NUM** # 让 tcp 匹配多个端口，可以是目标端口(dport)或者源端口(sport)
 
@@ -231,6 +235,10 @@ iptables 可以使用带有 -m 或 --match 选项的扩展的数据包匹配模�
 允许源地址是 ipset(名为 cdn1) 中的所有 IP 通过
 
 - iptables -A INPUT -m set --match-set cdn1 src -j ACCEPT
+
+允许响应 ping 但不允许主动 ping 别人
+
+- iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
 
 ### INPUT 默认为 ACCEPT 情况下
 

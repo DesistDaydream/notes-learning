@@ -6,6 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
+> 
 > - [Wiki，ECMAScript](https://en.wikipedia.org/wiki/ECMAScript)
 > - [JavaScript 官网](https://www.javascript.com/)
 > - [TypeScript 官网](https://www.typescriptlang.org/)

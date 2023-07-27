@@ -9,16 +9,18 @@ title: HTTP Header
 > - [RFC 2616-Message Headers](https://tools.ietf.org/html/rfc2616#section-4.2)
 > - [RFC 7231,第五章-请求头字段](https://tools.ietf.org/html/rfc7231#section-5)
 > - [RFC 7231,第七章-响应头字段](https://datatracker.ietf.org/doc/html/rfc7231#section-7)
+> - [Mozilla 官方 HTTP 开发文档，HTTP 头](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)
 > - [Wiki,List of HTTP header fields](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields)
-> - [Mozilla 官方文档](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)
 
 一般情况下，在浏览器按 F12 后查看到的首部大部分都是请求和响应首部,这俩首部的信息通常包含了通用首部中的信息
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/rzfx0t/1616161207830-cf569808-255f-4e34-9f02-d7da892c9170.jpeg)
+
 HTTP 请求和响应报文的 Header(头) 基本都是 Key/Value Pair(键/值对) 格式的 **Field(字段)**，每个字段都是以冒号分割的 **键/值对**。此外，除了标准的 Header 字段之外，还可以添加自定义 Header，这就给 HTTP 带来了无限的扩展可能。注意，**Key 不区分大小写**。
 
 自定义 Header 历来以 `X-` 开头，但是该约定在 2012 年 6 月被弃用，因为它在非标准字段成为标准字段时会造成不必要的麻烦，详见 [RFC 6648](https://datatracker.ietf.org/doc/html/rfc6648)。IANA 维护了一个通用的 [**HTTP Header 列表**](https://www.iana.org/assignments/message-headers/message-headers.xhtml)，其中包括 RFC 中定义的标准头以及不在 RFC 中定义的扩展头；并且在同一个页面还有新的提议增加的 HTTP Header 列表。
 
-HTTP (RFC 2616 版本)规定了非常多的 Header 字段，可以实现各种各样的功能，但基本上可以分为以下四类
+HTTP(RFC 2616 版本) 规定了非常多的 Header 字段，可以实现各种各样的功能，但基本上可以分为以下几类
 
 1. **General Header(通用头)** # 在请求头和响应头里都可以出现；
 2. **Request Header(请求头)** # 仅能出现在请求头里，进一步说明请求信息或者额外的附加条件；
@@ -54,24 +56,34 @@ Request Header 中，将各种 Header 分为多个类别
 ## Controls(控制)
 
 Controls 类型的请求头用来指定客户端如何处理本次 HTTP 请求。
+
 **Cache-Control** # 缓存控制
+
 **Expect** # 期待服务器的特定行为
+
 **Host** # 请求资源所在服务器。客户端指定自己想访问的服务器的 `域名` 或者 `IP:PORT`。例如：`Host：www.baidu.com`
 
 - Note：输入的什么网址，请求的就是什么，输入域名就是域名，输入 IP 就是 IP
 - Note：当服务器接到这个请求时，如果自身无法处理 ip 或者无法处理域名，则该请求就会丢弃(比如 k8s 的 ingress)。所以在测试的时候一般使用 curl 命令请求 IP 时加上 -H 参数以自己制定 URL 内容即可，否则如果服务器不处理 IP 的话，就会返回 404
 
 **Max-Forwards**# 最大传输逐跳数
+
 **Pragma** #
+
 **Range** # 实体的字节范围请求
+
 **TE**# 传输编码的优先级
 
 ## Conditionals(条件)
 
 **If-Match** # 比较实体标记(ETag)
+
 **If-None-Match** # 比较实体标记(与 If-Match 相反)
+
 **If-Modified-Since** # 比较资源的更新时间
+
 **If-Unmodified-Since**# 比较资源的更新时间(与 If-Modified-Since 相反)
+
 **If-Range**# 资源未更新时发送实体 Byte 的范围请求
 
 ## Content Negotiation(内容协商)
@@ -111,29 +123,34 @@ Response Header 中，将各种 Header 分为多个类别：
 ## Control Data(控制数据)
 
 控制服务端如何处理 HTTP 响应
-Age # 推算资源创建经过时间
-Cache-Control #
-Expires #
-Data #
-Location #
-Retry-After #
-Vary #
-Warning #
+
+- Age # 推算资源创建经过时间
+- Cache-Control #
+- Expires #
+- Data #
+- Location #
+- Retry-After #
+- Vary #
+- Warning #
 
 ## Validator Header Fields(验证器头字段)
 
 **ETag** # 资源的匹配信息
+
 **Last-Modified** # 最后一次修改时间
 
 ## Authentication Challenges
 
 **WWW-Authenticate** # 服务器对客户端的认证信息
+
 **Proxy-Authorization** # 代理服务器要求客户端的认证信息
 
 ## Response Context
 
 **Accept-Ranges** # 是否接受字节范围请求
+
 **Allow** #
+
 **Server**# HTTP 服务器的安装信息
 
 # **Extension Header(扩展头)**
@@ -145,6 +162,7 @@ Warning #
 ## General Header(通用头)
 
 同时适用于请求和响应消息，但与最终消息主体中传输的数据无关的消息头。
+
 **Cache-Control** # 控制缓存的行为
 
 - no-cache：不缓存
@@ -156,23 +174,33 @@ Warning #
 - close(短连接)：不需要实时更新的网络资源，当浏览静态网页资源的时候，当把整个网页发送给用户之后即可关闭连接，因为网页资源已经发送到 Client 本地，不需要实时更新了
 
 **Date**# 创建报文的日期时间
+
 **Pragma**# 报文指令
+
 **Trailer**# 报文末端的首部一览
+
 **Transfer-Encoding**# 指定报文主体的传输编码方式
+
 **Upgrade**# 升级为其他协议
+
 **Via**# 报文经过的中间节点。也就是代理服务器的相关信息。
+
 **Warning** # 错误通知
 
 ## Entity Header(实体头)
 
 包含有关实体主体的更多信息，比如主体长(Content-Length)度或其 MIME 类型。
+
 Allow：列出对此实体可使用的请求方法
+
 Location：告诉 client 真正的实体位于何处
+
 Content-
+
 缓存相关
 
-1. ETag # 实体扩展标签
-2. Expires # 实体过期时间
-3. Last-Modified # 最后一次修改时间
+- ETag # 实体扩展标签
+- Expires # 实体过期时间
+- Last-Modified # 最后一次修改时间
 
 **Content-Length**# 实体主体的大小(单位 :字节)
