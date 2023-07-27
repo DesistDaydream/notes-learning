@@ -6,11 +6,13 @@ weight: 2
 # 概述
 
 > 参考：
+> 
 > - [官方文档，安装指南-配置 Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_configuration.html)
 > - [官方文档，Ansible 配置设置](https://docs.ansible.com/ansible/latest/reference_appendices/config.html)
 
 Ansible 可以通过多种方式来配置其运行时行为
-- 配置文件，一般是名为 ansible.cfg 的 INI 格式的配置文件
+
+- 配置文件，一般是在 /etc/ansible/ 目录下名为 ansible.cfg 的 [INI](docs/2.编程/无法分类的语言/INI.md) 格式的配置文件
 - 环境变量
 - 命令行选项
 - playbook 中的关键字和变量
