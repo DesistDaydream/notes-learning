@@ -1,0 +1,178 @@
+{
+  "workspaces": {
+    "my": {
+      "main": {
+        "id": "c081bbe88202cc6a",
+        "type": "split",
+        "children": [
+          {
+            "id": "538e805e77032173",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "2767636158c623e3",
+                "type": "leaf",
+                "state": {
+                  "type": "empty",
+                  "state": {}
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical"
+      },
+      "left": {
+        "id": "065e7a6aa375db91",
+        "type": "split",
+        "children": [
+          {
+            "id": "d84f5bd32e090454",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "c6a5bda77fe6f352",
+                "type": "leaf",
+                "state": {
+                  "type": "file-explorer",
+                  "state": {
+                    "sortOrder": "custom"
+                  }
+                }
+              },
+              {
+                "id": "58f7322930810fb7",
+                "type": "leaf",
+                "state": {
+                  "type": "search",
+                  "state": {
+                    "query": "file: ansible",
+                    "matchingCase": false,
+                    "explainSearch": false,
+                    "collapseAll": true,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical"
+                  }
+                }
+              },
+              {
+                "id": "eec08001f797e7c0",
+                "type": "leaf",
+                "state": {
+                  "type": "starred",
+                  "state": {}
+                }
+              },
+              {
+                "id": "5ec2c5fcbc5775a0",
+                "type": "leaf",
+                "state": {
+                  "type": "bookmarks",
+                  "state": {}
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal",
+        "width": 371.5
+      },
+      "right": {
+        "id": "56aa32667be419e1",
+        "type": "split",
+        "children": [
+          {
+            "id": "fc2771ca60a9aaef",
+            "type": "tabs",
+            "dimension": 61.24031007751938,
+            "children": [
+              {
+                "id": "f2e64e6af3f167b3",
+                "type": "leaf",
+                "state": {
+                  "type": "outline",
+                  "state": {}
+                }
+              }
+            ]
+          },
+          {
+            "id": "4161634ca491dcf2",
+            "type": "tabs",
+            "dimension": 19.379844961240316,
+            "children": [
+              {
+                "id": "1fe5e6eecb21cc0f",
+                "type": "leaf",
+                "state": {
+                  "type": "advanced-tables-toolbar",
+                  "state": {}
+                }
+              }
+            ]
+          },
+          {
+            "id": "348349f7681ccd61",
+            "type": "tabs",
+            "dimension": 19.379844961240316,
+            "children": [
+              {
+                "id": "bf3f76515c5f1c6e",
+                "type": "leaf",
+                "state": {
+                  "type": "backlink",
+                  "state": {
+                    "collapseAll": true,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical",
+                    "showSearch": false,
+                    "searchQuery": "",
+                    "backlinkCollapsed": false,
+                    "unlinkedCollapsed": true
+                  }
+                }
+              },
+              {
+                "id": "7a1f5903011fb582",
+                "type": "leaf",
+                "state": {
+                  "type": "outgoing-link",
+                  "state": {
+                    "linksCollapsed": true,
+                    "unlinkedCollapsed": false
+                  }
+                }
+              },
+              {
+                "id": "e80537c28bf456b4",
+                "type": "leaf",
+                "state": {
+                  "type": "tag",
+                  "state": {
+                    "sortOrder": "frequency",
+                    "useHierarchy": true
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal",
+        "width": 300
+      },
+      "left-ribbon": {
+        "hiddenItems": {
+          "canvas:新建白板": false,
+          "switcher:打开快速切换": false,
+          "graph:查看关系图谱": false,
+          "templates:插入模板": false,
+          "command-palette:打开命令面板": false,
+          "obsidian42-brat:BRAT": false,
+          "workspaces:管理工作区布局": false
+        }
+      },
+      "active": "2767636158c623e3"
+    }
+  },
+  "active": "my"
+}
