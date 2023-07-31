@@ -13,7 +13,7 @@ weight: 4
 >   - <https://www.zsythink.net/archives/3021>
 >   - <https://www.zsythink.net/archives/3037>
 >   - <https://www.zsythink.net/archives/3051>
-> - <https://www.junmajinlong.com/ansible/9_power_of_jinja2/>
+> - [骏马金龙，9. 如虎添翼的力量：解锁强大的 Jinja2 模板](https://www.junmajinlong.com/ansible/9_power_of_jinja2/)
 
 Jinja2 的内容较多，但对于学习 Ansible 来说，只需要学习其中和 template 相关的一部分 (其它的都和开发有关或 Ansible 中用不上) 以及 Ansible 对 Jinja2 的扩展功能即可。
 

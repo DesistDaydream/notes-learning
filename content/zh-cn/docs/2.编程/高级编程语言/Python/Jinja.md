@@ -5,6 +5,7 @@ title: Jinja
 # 概述
 
 > 参考：
+> 
 > - [GitHub 项目，pallets/jinja](https://github.com/pallets/jinja)
 > - [官网](https://jinja.palletsprojects.com/)
 >   - [国人翻译官网](http://docs.jinkan.org/docs/jinja2/)
@@ -51,7 +52,8 @@ Jinja 模板引擎提供了三种** Delimiters(分隔符) **来包围 **模板�
 
 # Literal(字面量)
 
-Jinja 的 Literal(字面量) 是最简单、最直接的表达式形式。但是，这个其实没啥用~~~~毕竟是在文本文件中使用模板表达式，如果 Lieral 都是 字符串、数值、字典、等等 的话，直接在文本中写就好啦~~~~
+Jinja 的 Literal(字面量) 是最简单、最直接的表达式形式。但是，这个其实没啥用。。。毕竟是在文本文件中使用模板表达式，如果 Lieral 都是 字符串、数值、字典、等等 的话，直接在文本中写就好啦~~
+
 > 所谓的 Literal(字面量) 从中文角度看，就是所见即所得，比如我输入 "Hello World"，看到的就是这几个字母，这是一个字符串。Literal 更容易理解的词是 Data Type(数据类型)。
 
 所以这里主要是定义一下解析表达式后可以返回的数据类型。Jinja 的基本数据类型有如下几种：
@@ -123,15 +125,18 @@ Python 处理 YAML 数据时，实际上是将 YAML 格式数据转换为字典�
 ## 变量的作用域
 
 如果是在 if、for 等语句块外进行的变量赋值，则可以在 if、for 等语句块内引用。例如：
+
 ```python
 {% set mylist = [1,2,3] %}
 {% for item in mylist %}
   {{item}}
 {% endfor %}
 ```
+
 但是除 if 语句块外，其它类型的语句块都有自己的作用域。比如 for 语句块内部赋值的变量在 for 退出后就消失。
 
 例如：
+
 ```python
 {% set mylist = [1,2,3] %}
 {% set mystr = "hello" %}
@@ -141,9 +146,11 @@ Python 处理 YAML 数据时，实际上是将 YAML 格式数据转换为字典�
 {% endfor %}
 {{mystr}}
 ```
+
 最后一行渲染的结果是`hello`而不是`world`。
 
 # 运算符
+
 ## Math(算术) 运算
 
 - `+` # 将两个对象相加。通常对象是数字，但如果两者都是字符串或列表，您可以通过这种方式连接它们。然而，这不是连接字符串的首选方式！对于字符串连接，请查看 `~` 运算符。 `{{ 1 + 1 }}` 表达式的返回值为 2。
@@ -197,9 +204,10 @@ Python 处理 YAML 数据时，实际上是将 YAML 格式数据转换为字典�
 - `not` 运算符和 `is`、`in` 结合时，可以放在两个位置。例如：
    - `not ("h" in "hey")` 和 `"h" not in "hey"` 两者是等价的
    - `not (3 is number())` 和 `3 is not number()` 两者是等价的
+
 # Control Structures(控制结构)
 
-> 官方文档：[https://jinja.palletsprojects.com/en/latest/templates/](https://jinja.palletsprojects.com/en/latest/templates/)
+> 官方文档: https://jinja.palletsprojects.com/en/latest/templates/#list-of-control-structures
 
 - For(循环)
 - If(条件判断)
@@ -345,12 +353,15 @@ HELLOWORLD
 - `sequence()` # 测试是否是一个序列结构，在 Ansible 中一般是 list、dict、字符串 (注：字符串、dict 在 python 中不是序列，但是在 Jinja2 测试中，属于序列)
 
 纵观上面的内置测试函数，似乎并没有提供直接测试是否是一个列表类型的功能，但在 Ansible 中却会经常需要去判断所定义的变量是否是一个列表。所以这是一个常见的需求，可参考如下间接测试是否是列表的代码片段：
+
 ```
 (VAR is sequence) and (VAR is not string) and (VAR is not mapping)
 ```
+
 如果大家以后深入到 Ansible 的开发方面，可以自定义 Ansible 的模块和插件，那么就可以自己写一个更完善的 Filter 插件来测试是否是 list。下面我简单演示下基本步骤，大家能依葫芦画瓢更好，不理解也没任何关系。
 
 首先创建 filter_plugins 目录并在其内创建一个 py 文件，例如 collection.py，内容如下：
+
 ```python
 def islist(collection):
   '''
@@ -367,7 +378,9 @@ class FilterModule(object):
       'islist': islist
     }
 ```
+
 然后在 playbook 中便可使用 islist() 这个筛选器来判断是否是列表类型。例如：
+
 ```
 - debug: 
     msg: "a list"
@@ -378,20 +391,27 @@ class FilterModule(object):
       - p2
 ```
 ## Filters(过滤器)
+
 通常，模板语言都会带有过滤器，JinJa 也不例外，每个过滤器函数都是一个功能，作用就类似于函数，而且它也可以接参数。变量可以通过 **Filters(过滤器)** 修改。Jinja 中有两种使用 Filters 的方式：
 
-- `**|**`** 符号** # 过滤器 与 变量 之间使用 `|` 符号分割，并且可以使用 `()` 符号传递参数。多个过滤器可以链式调用，前一个过滤器的返回值会作为有一个过滤器的输入。
-- `**filter**`** 关键字** # 
+- **`|` 符号** # 过滤器 与 变量 之间使用 `|` 符号分割，并且可以使用 `()` 符号传递参数。多个过滤器可以链式调用，前一个过滤器的返回值会作为有一个过滤器的输入。
+- **`filter` 关键字** # 
 
 ### `|` 符号
+
 例如，Jinja 有一个内置 `lower()` 过滤器函数，可以将字符串全部转化成大写字母。
+
 ```yaml
 - debug:
     msg: "{{'hello world'|upper()}}"
 ```
+
 如果过滤器函数没有给定参数，则括号可以省略，例如 `"HELLO"|upper`。
+
 ### `filter` 关键字
+
 我们还可以使用 filter 关键字，在语句表达式中使用过滤器，以对模板中的 一块数据(而不是一行或一个变量) 进行筛选操作，比如：
+
 ```python
 {% filter upper %}
     这部分文本内容中，小写字母将会变成大写的
@@ -400,12 +420,15 @@ class FilterModule(object):
 ```
 
 有些筛选器函数需要给定参数，例如 replace() 筛选器，可以将字符串中的一部分替换掉。例如，将字符串中的”no” 替换成”yes”。
+
 ```yaml
 {% if result %}
 {{result|replace('no', 'yes')}}
 {%endif%}
 ```
+
 ### Jinja 内置过滤器
+
 JinJa 内置了多个过滤器函数，Ansible 自身也扩展了一些方便的筛选器函数，所以数量非常多。如下：
 
 | abs() | float() | lower() | round() | tojson() |
@@ -516,25 +539,31 @@ p|selectattr('age','gt',22)|list
    - 例如`[1,2,3,3,1,2]|unique`得到结果`[1,2,3]`。
 
 (22).`join(d="")`
+
 将序列中的元素使用 d 参数指定的符号串联成字符串，默认连接符为空字符串。
 
 例如`[1,2,3]|join("-")`得到`1-2-3`，`[1,2,3]|join`得到 123。
 
 (23).`length()`和`count()`
+
 返回序列中元素的数量或字符串的字符个数。length 和 count 是别名等价的关系。
 
 (24).`wordcount`
+
 计算字符串中的单词个数。
 
 (25).`reverse()`
+
 颠倒序列元素。
 
 例如`"hello"|reverse`得到`olleh`，`[1,2,3]|reverse|list`得到`[3,2,1]`。
 
 (26).`filesizeformat(binary=False)`
+
 将数值大小转换为 kB、MB、GB 单位。默认按照 1000 为单位进行换算，如果指定 binary 参数为 True，则按 1024 进行换算。
 
 (27).`slice(N, fill_with=None)`
+
 将序列均分为 N 个列表，可指定`fill_with`参数来填充均分时不足的列表。
 
 例如：
@@ -974,7 +1003,10 @@ gzip 'css' 'js' 'html'
 
 关于 Macro，还有些内容可以继续深入 (一些变量和 call 调用的方式)，但应该很少很少用到，所以我这就不再展开了，如果大家有意愿，可以去官方手册学习或网上搜索相关资料，有编程基础的人应该很容易理解，没有编程基础的，就别凑这个热闹了。
 
-## Block(块) 与 Extends(继承)
+## 模版继承
+
+### Extends 与 Block
+
 有些服务程序的配置文件可以使用 include 指令来包含额外的配置文件，这样可以按不同功能来分类管理配置文件中的配置项。在解析配置文件的时候，会将 include 指令所指定的文件内容加载并合并到主配置文件中。
 
 Jinja2 的 block 功能有点类似于 include 指令的功能，block 的用法是这样的：先在一个类似于主配置文件的文件中定义 block，称为 base block 或父 block，然后在其它文件中继承 base block，称为子 block。在模板解析的时候，会将子 block 中的内容填充或覆盖到父 block 中。
@@ -1029,9 +1061,10 @@ location = /50x.html {
   {% endblock php_pages %}
 ```
 
-子 block 文件中第一行需要使用 jinja2 的`extends`标签来指定父 block 文件。这个子 block 文件中，没有定义名为`root_page`的 block，所以会使用父 block 文件中同名 block 的默认内容，`err_50x`和`php_pages`则直接覆盖父 block。
+子 block 文件中第一行需要使用 jinja2 的 `extends` 标签来指定父 block 文件。这个子 block 文件中，没有定义名为`root_page`的 block，所以会使用父 block 文件中同名 block 的默认内容，`err_50x` 和 `php_pages` 则直接覆盖父 block。
 
 在 template 模块渲染文件时，需要指定子 block 作为其源文件。例如：
+
 ```yaml
 - hosts: localhost
   gather_facts: no
@@ -1040,7 +1073,9 @@ location = /50x.html {
         src: child.conf.j2
         dest: /tmp/nginx.conf
 ```
+
 渲染得到的结果:
+
 ```nginx
 server {
   listen       80;
@@ -1064,11 +1099,114 @@ location = /50x.html {
   
 }
 ```
+
 jinja2 的 block 是很出色的一个功能，但在 Ansible 中应该不太可能用到 (或机会极少)，所以多的就不介绍了，有兴趣的可自行找资料了解。
+
+## 模版导入
+
+https://jinja.palletsprojects.com/en/3.1.x/templates/#import-context-behavior
+
+### Include
+
+https://jinja.palletsprojects.com/en/latest/templates/#include
+
+include 关键字可以让模版包含另一个模版，就像很多配置文件中的 include 指令一样(在一个文件中包含其他的一个或多个文件)。
+
+```jinja
+{% include 'header.html' %}
+Body goes here.
+{% include 'footer.html' %}
+```
+
+上面的语法会在 Body 上面渲染出 header.html 文件中的内容，并在 Body 下面渲染出 footer.html 文件中的内容。
+
+若 Include 的文件不存在将会报错，可以添加 `ignore missing` 以忽略不存在的文件，比如 `{% include "sidebar.html" ignore missing %}`
+
+还可以指定多个 Include 的模版文件 `{% include ['page_detailed.html', 'page.html'] %}`
+
+### import
+
+import 关键字可以将某个模版文件导入为一个变量，用法与 Python 中的 import 语句很类似。
+
+## 导入与继承的区别
+
+你好，这是Bing。我可以用中文回答你的问题。😊
+
+jinja2 include 和 extends 的区别是：
+
+- include 是将另一个模板整个加载到当前模板中，并直接渲染。它的作用是复用一些固定的HTML代码，避免模板看起来拥挤。<sup>1</sup> <sup>5</sup>
+- extends 是让当前模板继承另一个模板的结构和内容，但可以在一些预留的区域（block）中添加或覆盖自己的内容。它的作用是实现模板的公共部分，避免重复的代码。<sup>1</sup> <sup>2</sup>
+
+举个例子，假设有一个base.html模板，定义了网页的头部、导航栏、内容区域和尾部：
+
+```html
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div id="header">
+        <h1>My Website</h1>
+    </div>
+    <div id="nav">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </div>
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div id="footer">
+        {% include 'footer.html' %}
+    </div>
+</body>
+</html>
+```
+
+可以看到，在title和content两个地方，使用了block标签来预留区域，让子模板可以自定义这些部分。在footer处，使用了include标签来导入一个footer.html文件，这个文件包含了一些版权信息等固定内容。
+
+然后，我们可以创建一个index.html模板，继承base.html，并在block中添加自己的内容：
+
+```html
+{% extends 'base.html' %}
+
+{% block title %}
+Index Page
+{% endblock %}
+
+{% block content %}
+<h2>Welcome to my website!</h2>
+<p>This is the index page.</p>
+{% endblock %}
+```
+
+这样，当我们渲染index.html时，它会自动继承base.html的结构和内容，并替换掉block中的部分。同时，它也会包含footer.html的内容。
+
+如果你想了解更多关于jinja2 include 和 extends 的用法和示例，你可以参考以下链接：
+
+<sup>1</sup>: https://blog.csdn.net/pipi_peng/article/details/109274782
+<sup>2</sup>: https://deepinout.com/flask/flask-questions/464_flask_jinja2_include_extends_not_working_as_expected.html
+<sup>3</sup>: https://blog.csdn.net/tolcf/article/details/46135645
+<sup>4</sup>: https://stackoverflow.com/questions/3017623/import-include-assigned-variables-in-jinja2
+<sup>5</sup>: https://blog.csdn.net/weixin_44415561/article/details/106591909
+
+希望这能帮助你。如果你还有其他问题，请随时提问。😊
+\-
+\[1]: [【Jinja2】宏、继承、包含_jinjia2 include_小皮皮鹏的博客-CSDN博客](https://blog.csdn.net/pipi_peng/article/details/109274782)
+\[2]: [Flask jinja2模板 include 标签_捡猫的博客-CSDN博客](https://blog.csdn.net/weixin_44415561/article/details/106591909)
+\[3]: [Flask Jinja2 include和extends无法按预期工作|极客笔记](https://deepinout.com/flask/flask-questions/464_flask_jinja2_include_extends_not_working_as_expected.html)
+\[4]: [extends和implements区别_implements和extends的区别_漂浮的鱼~的博客-CSDN博客](https://blog.csdn.net/tolcf/article/details/46135645)
+\[5]: [Import / include assigned variables in Jinja2 - Stack Overflow](https://stackoverflow.com/questions/3017623/import-include-assigned-variables-in-jinja2)
+
 # Jinja 的空白处理
+
 通常在模板文件中，会将模板代码片段按照编程语言的代码一样进行换行、缩进，但因为它们是嵌套在普通字符串中的，模板引擎并不知道那是一个普通字符串中的空白还是代码格式规范化的空白，而有时候这会带来问题。
 
 比如，模板文件 a.txt.j2 文件中的内容如下：
+
 ```
 line start
 line left {% if true %}
@@ -1076,7 +1214,9 @@ line left {% if true %}
 {% endif %} line right
 line end
 ```
+
 这个模板文件中的代码部分看上去非常规范，有换行有缩进。一般来说，这段模板文件想要渲染得到的文本内容应该是：
+
 ```
 line start
 line left
@@ -1084,19 +1224,24 @@ line left
 line right
 line end
 ```
+
 或者是：
+
 ```
 line start
 line left <line1> line right
 line end
 ```
+
 但实际渲染得到的结果：
+
 ```
 line start
 line left   <line1>
  line right
 line end
 ```
+
 渲染的结果中格式很不规范，主要原因就是 Jinja2 语句块前后以及语句块自身的换行符处理、空白符号处理导致的问题。
 
 Jinja2 提供了两个配置项：`lstrip_blocks`和`trim_blocks`，它们的意义分别是：
@@ -1194,6 +1339,7 @@ line5
 这也为 Ansible 提供了非常有用的功能。但是有些人可能没学过 Python，所以也不知道有哪些方法可用，也不理解有些代码是什么作用。这一点我也没有办法帮助各位，但大家也不用太过在意，几个方法而已，细节罢了。事实上也就字符串对象的方法比较多。
 
 ### Python 字符串处理
+
 在 Jinja2 中，经常会使用到字符串。如何使用字符串对象的方法？
 
 例如，Python 字符串对象有一个 upper 方法，可以将字符串改变为大写字母，直接使用`"abc".upper()`，注意不要省略小括号，这一点和 Jinja2 和 Shell 函数都是不一样的。

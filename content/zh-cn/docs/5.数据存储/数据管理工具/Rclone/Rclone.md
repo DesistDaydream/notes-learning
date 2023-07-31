@@ -132,6 +132,10 @@ lsjson
 
 **rclone sync** 命令会在源和目标之间同步文件。 它会删除目标目录中源目录没有的文件，并且会更新目标目录中的文件。 **rclone copy** 命令只会在源和目标之间复制文件。 它不会删除目标目录中的文件，也不会更新文件。
 
+同步两个云盘中的数据（待验证）
+
+- `nohup rclone sync alist-local:/aliyun alist-local:/baiduyun -vv >> /root/rclone.log 2>&1 &`
+
 ## webdav 挂载为电脑本地硬盘(非网络硬盘)
 
 > 原文链接：[B 站-捕梦小达人](https://www.bilibili.com/read/cv13661426)

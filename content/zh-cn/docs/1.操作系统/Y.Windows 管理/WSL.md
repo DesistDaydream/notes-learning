@@ -61,11 +61,11 @@ wsl.exe --user root
 
 Windows 下的关联文件
 
-- `%UserProfile%/.wslconfig` # - 用于在作为 WSL 2 版本运行的所有已安装 Linux 发行版中全局配置设置。
+- **`%UserProfile%/.wslconfig`** # - 用于在作为 WSL 2 版本运行的所有已安装 Linux 发行版中全局配置设置。
 
 LInux 发行版下的关联文件
 
-- **/etc/wsl.conf** # 
+- **/etc/wsl.conf** # 作为 Unix 文件存储，用于为每个发行版配置各自独立的设置。
 
 # wsl 命令行工具
 
@@ -100,6 +100,7 @@ WSL 子系统管理选项
 ## 配置桥接网络和静态 IP
 
 > 参考：
+> 
 > - [博客园，WSL2使用桥接网络，并指定IP](https://www.cnblogs.com/lic0914/p/17003251.html)
 >   - 该文章参考的原文: https://github.com/luxzg/WSL2-fixes/blob/master/networkingMode%3Dbridged.md
 

@@ -6,6 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
+> 
 > - [官方文档，使用 Ansible 模块和插件-模块介绍](https://docs.ansible.com/ansible/latest/module_plugin_guide/modules_intro.html)
 >   - [2.10 版本](https://docs.ansible.com/ansible/2.10/user_guide/modules.html)
 
@@ -108,6 +109,7 @@ hw-cloud-xngy-jump-server-linux-2 : ok=2    changed=1    unreachable=0    failed
 # 模块分类
 
 > 参考：
+> 
 > - [官方文档 2.9，用户指南-使用模块-模块索引](https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html)
 > - [官方文档 2.10+，所有模块和插件的索引-所有模块的索引](https://docs.ansible.com/ansible/latest/collections/index_module.html)
 
