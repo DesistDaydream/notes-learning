@@ -10,7 +10,7 @@ title: Systemd 运行流程
 
 这里以 CentOS 7 版本为例
 
-### 确认系统运行级别
+## 确认系统运行级别
 
 systemd 执行的第一个目标是 /etc/systemd/system/default.target，是一个软链接，该文件决定了老版本称为 “运行级别” 的一种行为
 
@@ -21,7 +21,7 @@ lrwxrwxrwx. 1 root root 37 Oct 10  2020 /etc/systemd/system/default.target -> /l
 
 如果想要更改系统启动级别，可以使用 systemctl set-defult XXXXX 命令来修改默认启动级别
 
-### 启动 multi-user.taget
+## 启动 multi-user.taget
 
 multi-user.target 文件内容如下：
 
@@ -48,7 +48,7 @@ dbus.service  getty.target  plymouth-quit.service  plymouth-quit-wait.service  s
 auditd.service  chronyd.service  crond.service  firewalld.service  irqbalance.service  kdump.service  NetworkManager.service  remote-fs.target  rhel-configure.service  rsyslog.service  sshd.service  sysstat.service  tuned.service
 ```
 
-### 启动 basic.target
+## 启动 basic.target
 
 basic.target 文件内容如下：
 
@@ -77,7 +77,7 @@ microcode.service  rhel-dmesg.service
 selinux-policy-migrate-local-changes@targeted.service
 ```
 
-### 启动 sysinit.target
+## 启动 sysinit.target
 
 sysinit.target 文件内容如下：
 
@@ -110,7 +110,7 @@ dev-mqueue.mount           proc-sys-fs-binfmt_misc.automount  systemd-ask-passwo
 kmod-static-nodes.service  sys-fs-fuse-connections.mount      systemd-binfmt.service             systemd-journald.service                systemd-random-seed.service        systemd-udevd.service               systemd-vconsole-setup.service
 ```
 
-### 启动 local-fs.target 与 swap.target 关联服务
+## 启动 local-fs.target 与 swap.target 关联服务
 
 local-fs.target 文件内容如下：
 
@@ -139,7 +139,7 @@ Description=Swap
 Documentation=man:systemd.special(7)
 ```
 
-## 总结
+# 总结
 
 虽然 systemd 的引用 target 的顺序如上，但是真正的启动顺序为从下到上，所以可以通过设置 default.target 文件来确定开机后默认的登录级别。其中管理单元可以并行启动，从而使效率大大提高。同时 Systemd 是向下兼容 System V 的。
 
@@ -168,7 +168,7 @@ Documentation=man:systemd.special(7)
     - 相容 systemV 的 rc-loacl.service，开机自动执行的命令
     - 提供 tty(终端)界面与登录的服务
 
-### 查看启动顺序的时间
+## 查看启动顺序的时间
 
 - 要查看具体的启动顺序可以通过如下命令输入到文件，然后通过浏览器打开查看。
     - systemd-analyze plot > boot.html

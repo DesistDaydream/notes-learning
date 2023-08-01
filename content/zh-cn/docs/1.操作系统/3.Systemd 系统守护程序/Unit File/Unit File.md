@@ -6,8 +6,8 @@ title: Unit File
 
 > 参考：
 >
-> - [manual(手册),systemd.unit(5)](<https://man.cx/systemd.unit(5)>) # Unit 的介绍
-> - [manual(手册),systemd.syntax(7)](<https://man.cx/systemd.syntax(7)>) # Unit 的配置语法
+> - [Manual(手册)，systemd.unit(5)](https://man7.org/linux/man-pages/man5/systemd.unit.5.html) # Unit 的介绍
+> - [Manual(手册)，systemd.syntax(7)](https://man7.org/linux/man-pages/man7/systemd.syntax.7.html) # Unit 的配置语法
 > - [金步国 systemd.unit 中文手册](http://www.jinbuguo.com/systemd/systemd.unit.html#)
 
 **Unit File**，是 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的纯文本文件。在这个文件中，由 **Directives(指令)** 和 **Sections(部分)** 组成，这里的 Directve 就是 INI 格式中的 `键/值对`。
@@ -33,27 +33,29 @@ ExecStart=/usr/sbin/foo-daemon
 WantedBy=multi-user.target
 ```
 
-# Unit File 配置
+# Unit File 关联文件与配置
 
-**/etc/systemd/system/\*** # Unit File 的存放路径，具有最高优先级
+systemd 处理 Unit 时，默认从 3 个路径注意查找要读取的 Unit File。
 
-- **./UnitName.d/\*.conf** # Unit File 的 include 功能，该路径下的的以 .conf 结尾的文件，将会附加到主 Unit File 中
-- .**/UnitName.wants/\*** # 与 include 功能类似，区别在于，该路径下的文件都是其他 Unit File 的软链接，这些 Unit File 的文件名将会作为主 Unit File 配置中 \[Unit] 部分中 Wants 指令的值。
-- .**/UnitName.requires/\*** # 与 include 功能类似，区别在于，该路径下的文件都是其他 Unit File 的软链接，这些 Unit File 的文件名将会作为主 Unit File 配置中 \[Unit] 部分中 Requires 指令的值。
-
-**/run/systemd/system/\*** # Unit File 的存放路径，具有中等优先级
+**/etc/systemd/system/** # Unit File 的存放路径，具有最高优先级
 
 - **./UnitName.d/\*.conf** # Unit File 的 include 功能，该路径下的的以 .conf 结尾的文件，将会附加到主 Unit File 中
-- .**/UnitName.wants/\*** # 与 include 功能类似，区别在于，该路径下的文件都是其他 Unit File 的软链接，这些 Unit File 的文件名将会作为主 Unit File 配置中 \[Unit] 部分中 Wants 指令的值。
-- .**/UnitName.requires/\*** # 与 include 功能类似，区别在于，该路径下的文件都是其他 Unit File 的软链接，这些 Unit File 的文件名将会作为主 Unit File 配置中 \[Unit] 部分中 Requires 指令的值。
+- .**/UnitName.wants/** # 与 include 功能类似，区别在于，该路径下的文件都是其他 Unit File 的软链接，这些 Unit File 的文件名将会作为主 Unit File 配置中 \[Unit] 部分中 Wants 指令的值。
+- .**/UnitName.requires/** # 与 include 功能类似，区别在于，该路径下的文件都是其他 Unit File 的软链接，这些 Unit File 的文件名将会作为主 Unit File 配置中 \[Unit] 部分中 Requires 指令的值。
 
-**/usr/lib/systemd/system/\*** # Unit File 的存放路径，具有最低优先级
+**/run/systemd/system/** # Unit File 的存放路径，具有中等优先级
 
 - **./UnitName.d/\*.conf** # Unit File 的 include 功能，该路径下的的以 .conf 结尾的文件，将会附加到主 Unit File 中
-- .**/UnitName.wants/\*** # 与 include 功能类似，区别在于，该路径下的文件都是其他 Unit File 的软链接，这些 Unit File 的文件名将会作为主 Unit File 配置中 \[Unit] 部分中 Wants 指令的值。
-- .**/UnitName.requires/\*** # 与 include 功能类似，区别在于，该路径下的文件都是其他 Unit File 的软链接，这些 Unit File 的文件名将会作为主 Unit File 配置中 \[Unit] 部分中 Requires 指令的值。
+- .**/UnitName.wants/** # 与 include 功能类似，区别在于，该路径下的文件都是其他 Unit File 的软链接，这些 Unit File 的文件名将会作为主 Unit File 配置中 \[Unit] 部分中 Wants 指令的值。
+- .**/UnitName.requires/** # 与 include 功能类似，区别在于，该路径下的文件都是其他 Unit File 的软链接，这些 Unit File 的文件名将会作为主 Unit File 配置中 \[Unit] 部分中 Requires 指令的值。
 
-Systemd 会从最低优先级的目录 /usr/lib/_下开始加载配置，注意加载其中的文件，直到最高优先级的目录 /etc/systemd/_ 为止。
+**/usr/lib/systemd/system/** # Unit File 的存放路径，具有最低优先级
+
+- **./UnitName.d/\*.conf** # Unit File 的 include 功能，该路径下的的以 .conf 结尾的文件，将会附加到主 Unit File 中
+- .**/UnitName.wants/** # 与 include 功能类似，区别在于，该路径下的文件都是其他 Unit File 的软链接，这些 Unit File 的文件名将会作为主 Unit File 配置中 \[Unit] 部分中 Wants 指令的值。
+- .**/UnitName.requires/** # 与 include 功能类似，区别在于，该路径下的文件都是其他 Unit File 的软链接，这些 Unit File 的文件名将会作为主 Unit File 配置中 \[Unit] 部分中 Requires 指令的值。
+
+Systemd 会从最低优先级的目录 `/usr/lib/`下开始加载配置，注意加载其中的文件，直到最高优先级的目录 /etc/systemd/_ 为止。
 
 # Unit File 规范
 
@@ -79,7 +81,7 @@ Unit File 可以通过 `@` 符号声明一个**模板文件**，通过在 `@` �
 就拿 Wireguard 的 Unit File 为例
 
 ```bash
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~]$ systemctl cat wg-quick@.service
+~]$ systemctl cat wg-quick@.service
 # /lib/systemd/system/wg-quick@.service
 [Unit]
 Description=WireGuard via wg-quick(8) for %I
@@ -131,10 +133,10 @@ WantedBy=multi-user.target
 
 假如现在有一个名为 `foo.service` 的 Unit File，那么，[Systemd 会从加载 Unit File 的目录](https://www.yuque.com/desistdaydream/learning/sa1uqi#o317e)中，加载与之相关联的一系列文件
 
-- **UnitFileName.wants/ 与 UnitFileName.requires/ #**比如 foo.service.wants/  与  foo.service.requires/。该目录中可以放置许多指向其他 Unit Files 的软连接。 软连接所指向的 Unit 将会被当做  `foo.service`  的 Unit 文件中  `Wants=`  与  `Requires=`  指令的值(
+- **UnitFileName.wants/ 与 UnitFileName.requires/** # 比如 foo.service.wants/  与  foo.service.requires/。该目录中可以放置许多指向其他 Unit Files 的软连接。 软连接所指向的 Unit 将会被当做  `foo.service`  的 Unit 文件中  `Wants=`  与  `Requires=`  指令的值
   - 注意：即使文件中不存在 Wants 和 Requires 指令。只要存在对应的 _.wants/ 和_.requires/ 目录，就相当于为 Unit File 中加上了这两个指令。
   - 这样就可以方便的为 Unit 添加依赖关系，而无需修改单元文件本身。 向  `*.wants/`  与  `*.requires/`  目录中添加软连接的首选方法是使用  [systemctl(1)](http://www.jinbuguo.com/systemd/systemctl.html#)  的  **enable**  命令， 它会读取 Unit File 的 \[Install] 部分。
-- **UnitFileName.d/** # 比如 foo.service.d/\*\* \*\*。这就是配置文件的 include 功能。当解析完主 Unit File 之后，该目录中所有以 `.conf` 结尾的文件，都会被依次附加到主 Unit File 的末尾。
+- **UnitFileName.d/** # 比如 foo.service.d/。这就是配置文件的 include 功能。当解析完主 Unit File 之后，该目录中所有以 `.conf` 结尾的文件，都会被依次附加到主 Unit File 的末尾。
   - 这样就可以方便的修改 Unit 的设置，或者为 Unit 添加额外的设置，而无需修改 Unit File 本身。
   - 注意，include 功能中的文件遵守如下规则：
     - 必须包含明确的 Sections (例如 `[Service]` 之类)。
@@ -153,6 +155,7 @@ WantedBy=multi-user.target
 - /etc/systemd/system/vsftpd.service.requires/ # 此目录内的文件为链接文件,设置相依服务的链接。意思是在启动 vsftpd.service 之前,需要事先启动哪些服务的意思。
 
 配置文件分为 4 种状态，当启用(enable)该文件的时候，从配置文件目录建立一个软连接到 /etc/systemd/system/ 目录下，当禁用(disable)该文件的时候，会把该软连接删除。如果在/etc/systemd/system/目录下有 Unit 的配置文件，则开机则会自动加载并启动 Unit。可以使用命令 systemctl list-unit-files 命令查看所有的配置文件状态。结论：建立了连接则说明该 Unit 会开机启动，没建立连接则该 Unit 不会开机启动；还可以禁止该 Unit 建立连接，则说明该 Unit 永远不能开机启动。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gvdc29/1620129636770-82d464a7-f1ef-4e5c-9749-61b258d1b0e6.png)
 
 - enabled：启用(该文件已建立链接)
@@ -173,16 +176,20 @@ WantedBy=multi-user.target
 ## Target Unit
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gvdc29/1616167393736-e7bb0f5d-83be-4d38-856d-a22c56e9fab1.jpeg)
+
 启动计算机的时候，需要启动大量的 Unit。如果每一次启动，都要一一写明本次启动需要哪些 Unit，显然非常不方便。Systemd 的解决方案就是 Target。
 
 简单说，Target 就是一个 Unit 组，包含许多相关的 Unit 。启动某个 Target 的时候，Systemd 就会启动里面所有的 Unit。从这个意义上说，Target 这个概念类似于"状态点"，启动某个 Target 就好比启动到某种状态。
 
 注意
 
-1. 在启动系统的时候，也是首先通过查询 target 中的内容，以便启动相应的 Unit
-2. 传统的 init 启动模式里面，有 RunLevel 的概念，Target 就能起到同样的效果。不同的是，RunLevel 是互斥的，不可能多个 RunLevel 同时启动，但是多个 Target 可以同时启动，并且更加灵活，可以自己定义每个 Target 可以包含的 Unit。比如启动 graphical.target 则里面就包含运行图形界面的 Unit 和 multi-user.target 中的所有 Unit。
-3. 我们可以通过 systemctl set-default UNIT 命令来设定系统启动时，默认启动的一组 Unit
-
+- 在启动系统的时候，也是首先通过查询 target 中的内容，以便启动相应的 Unit
+- 传统的 init 启动模式里面，有 RunLevel 的概念，Target 就能起到同样的效果。不同的是，RunLevel 是互斥的，不可能多个 RunLevel 同时启动，但是多个 Target 可以同时启动，并且更加灵活，可以自己定义每个 Target 可以包含的 Unit。比如启动 graphical.target 则里面就包含运行图形界面的 Unit 和 multi-user.target 中的所有 Unit。
+- 我们可以通过 systemctl set-default UNIT 命令来设定系统启动时，默认启动的一组 Unit
 # Unit File 加载示例
 
 可以通过 [系统启动流程](/docs/1.操作系统/0.操作系统/类%20Unix%20操作系统/系统启动流程.md) 看出来 Systemd 是如何加载 Unit File 的
+
+# 分类
+
+#systemd #unit-file

@@ -1,6 +1,6 @@
 ---
-title: "🕸Web"
-linkTitle: "🕸Web"
+title: "Web"
+linkTitle: "Web"
 date: "2023-06-13T14:56"
 weight: 1
 ---

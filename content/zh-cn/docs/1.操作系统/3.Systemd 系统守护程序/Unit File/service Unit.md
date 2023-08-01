@@ -6,7 +6,8 @@ title: service Unit
 
 > 参考：
 > 
-> - [Manual(手册),systemd.service(5)](https://man7.org/linux/man-pages/man5/systemd.service.5.html)
+> - [Manual(手册)，systemd.service(5)](https://man7.org/linux/man-pages/man5/systemd.service.5.html)
+> - [金步国 systemd.unit 中文手册，systemd.service 中文手册](https://jinbuguo.com/systemd/systemd.service.html)
 
 所有名称以 `.service` 结尾的 Unit 都是由 Systemd 控制和监督的进程。说白了，就是一个一个的“服务”，这些“服务”就是一个一个的进程。
 
@@ -14,7 +15,7 @@ service Unit 是 systemd 使用数量最多，使用频率最高的单元。
 
 # service 指令
 
-**ExecStart=STRING** # 启动 Unit 所使用的命令
+**ExecStart=STRING** # 启动 Unit 所使用的命令。可以使用 `${VarName}` 引用环境变量
 
 **ExecStartPre=STRING** # 启动 Unit 之前执行的命令
 
@@ -36,13 +37,13 @@ service Unit 是 systemd 使用数量最多，使用频率最高的单元。
 
 下表描述了当由于何种原因退出时，将会执行重启操作的配置。表中有 X 的表示第一行 Restart 的值在第一列列出的退出原因时，将会重启
 
-| 退出原因(↓)      | Restart= (→) | `no` | `always` | `on-success` | `on-failure` | `on-abnormal` | `on-abort` | `on-watchdog` |
-| ---------------- | ------------ | ---- | -------- | ------------ | ------------ | ------------- | ---------- | ------------- |
-| 正常退出         |              | X    | X        |              |              |               |            |
-| 退出码不为"0"    |              | X    |          | X            |              |               |            |
-| 进程被强制杀死   |              | X    |          | X            | X            | X             |            |
-| systemd 操作超时 |              | X    |          | X            | X            |               |            |
-| 看门狗超时       |              | X    |          | X            | X            |               | X          |
+| 退出原因(↓) \| Restart= (→) | `no` | `always` | `on-success` | `on-failure` | `on-abnormal` | `on-abort` | `on-watchdog` |
+| --------------------------- | ---- | -------- | ------------ | ------------ | ------------- | ---------- | ------------- |
+| 正常退出                    | X    | X        |              |              |               |            |               |
+| 退出码不为"0"               | X    |          | X            |              |               |            |               |
+| 进程被强制杀死              | X    |          | X            | X            | X             |            |               |
+| systemd 操作超时            | X    |          | X            | X            |               |            |               |
+| 看门狗超时                  | X    |          | X            | X            |               | X          |               |
 
 **TimeoutSec=STRING** # 定义 Systemd 停止当前服务之前等待的秒数
 
@@ -56,3 +57,7 @@ service Unit 是 systemd 使用数量最多，使用频率最高的单元。
 - **dbus** # 当前服务通过 D-Bus 启动
 - **notify** # 当前服务启动完毕，会通知 Systemd，再继续往下执行
 - **idle** # 若有其他任务执行完毕，当前服务才会运行
+
+# 分类
+
+#systemd #unit-file #service

@@ -13,6 +13,7 @@ systemctl 命令用来对整个“systemd”的系统和服务进行管理
 # Syntax(语法)
 
 **systemctl \[OPTIONS] COMMAND \[UNIT...]**
+
 UNIT 为 Unit 名称，如果指定了 UNIT 则只对这个 Unit 执行 COMMAND，如果不指定则对全局 Unit 进行操作
 
 ## OPTIONS

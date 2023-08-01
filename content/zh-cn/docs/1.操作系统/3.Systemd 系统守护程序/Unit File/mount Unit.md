@@ -5,7 +5,8 @@ title: mount Unit
 # 概述
 
 > 参考：
-> - [Manual(手册),systemd-mount(5)](https://man7.org/linux/man-pages/man5/systemd.mount.5.html)
+> 
+> - [Manual(手册)，systemd-mount(5)](https://man7.org/linux/man-pages/man5/systemd.mount.5.html)
 > - [张馆长博客,fstab 与 systemd.mount 自动挂载的一点研究和见解](https://zhangguanzhang.github.io/2019/01/30/fstab/)
 
 所有以 `.mount` 结尾的 Unit 都是由 Systemd 控制和监督的文件系统挂载功能。该功能可以代替传统的 /etc/fstab 文件。
@@ -18,56 +19,62 @@ x-systemd.automount 属于 systemd.mount，systemd 造了好多轮子，什么 c
 
 其实现在很多发行版都开始慢慢抛弃 fstab 了，先看一个 centos6 在 init 下的 fstab
 
-    [root@APP-SRV-001 ~]# cat /etc/fstab
-    #
-    # /etc/fstab
-    # Created by anaconda on Mon Nov 26 22:13:02 2018
-    #
-    # Accessible filesystems, by reference, are maintained under '/dev/disk'
-    # See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
-    #
-    UUID=19698973-561a-4b5b-aded-f6092bd1f341 /                       ext4    defaults        1 1
-    UUID=1f808272-972d-416a-af7f-d3c88b16f434 /boot                   ext4    defaults        1 2
-    UUID=C6D4-B036          /boot/efi               vfat    umask=0077,shortname=winnt 0 0
-    UUID=7877eff3-a174-4cb5-9024-43be4fab35b2 swap                    swap    defaults        0 0
-    tmpfs                   /dev/shm                tmpfs   defaults        0 0
-    devpts                  /dev/pts                devpts  gid=5,mode=620  0 0
-    sysfs                   /sys                    sysfs   defaults        0 0
-    proc                    /proc                   proc    defaults        0 0
+```bash
+[root@APP-SRV-001 ~]# cat /etc/fstab
+#
+# /etc/fstab
+# Created by anaconda on Mon Nov 26 22:13:02 2018
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk'
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+#
+UUID=19698973-561a-4b5b-aded-f6092bd1f341 /                       ext4    defaults        1 1
+UUID=1f808272-972d-416a-af7f-d3c88b16f434 /boot                   ext4    defaults        1 2
+UUID=C6D4-B036          /boot/efi               vfat    umask=0077,shortname=winnt 0 0
+UUID=7877eff3-a174-4cb5-9024-43be4fab35b2 swap                    swap    defaults        0 0
+tmpfs                   /dev/shm                tmpfs   defaults        0 0
+devpts                  /dev/pts                devpts  gid=5,mode=620  0 0
+sysfs                   /sys                    sysfs   defaults        0 0
+proc                    /proc                   proc    defaults        0 0
+```
 
 下面是 centos7 在 systemd 下的 fstab
 
-    [root@CentOS76 ~]# cat /etc/fstab
-    #
-    # /etc/fstab
-    # Created by anaconda on Mon Dec 17 01:38:08 2018
-    #
-    # Accessible filesystems, by reference, are maintained under '/dev/disk'
-    # See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
-    #
-    /dev/mapper/centos-root /                       xfs     defaults        0 0
-    UUID=cec0b2aa-7695-4d24-a641-5b3ae111500a /boot                   xfs     defaults        0 0
-    #/dev/mapper/centos-swap swap                    swap    defaults        0 0
+```bash
+[root@CentOS76 ~]# cat /etc/fstab
+#
+# /etc/fstab
+# Created by anaconda on Mon Dec 17 01:38:08 2018
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk'
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+#
+/dev/mapper/centos-root /                       xfs     defaults        0 0
+UUID=cec0b2aa-7695-4d24-a641-5b3ae111500a /boot                   xfs     defaults        0 0
+#/dev/mapper/centos-swap swap                    swap    defaults        0 0
+```
 
 我们发现很多东西在 fstab 里消失了，但是 centos7 上 mount 看实际上还是挂载了
 
-    [root@CentOS76 ~]# mount
-    sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
-    proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
-    devtmpfs on /dev type devtmpfs (rw,nosuid,size=995764k,nr_inodes=248941,mode=755)
-    securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
-    tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev)
-    devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)
-    tmpfs on /run type tmpfs (rw,nosuid,nodev,mode=755)
-    tmpfs on /sys/fs/cgroup type tmpfs (ro,nosuid,nodev,noexec,mode=755)
-    configfs on /sys/kernel/config type configfs (rw,relatime)
-    /dev/mapper/centos-root on / type xfs (rw,relatime,attr2,inode64,noquota)
-    systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=22,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=21472)
-    hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,pagesize=2M)
-    debugfs on /sys/kernel/debug type debugfs (rw,relatime)
-    mqueue on /dev/mqueue type mqueue (rw,relatime)
-    /dev/sda1 on /boot type xfs (rw,relatime,attr2,inode64,noquota)
-    tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,size=201784k,mode=700)
+```bash
+[root@CentOS76 ~]# mount
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
+proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+devtmpfs on /dev type devtmpfs (rw,nosuid,size=995764k,nr_inodes=248941,mode=755)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,mode=755)
+tmpfs on /sys/fs/cgroup type tmpfs (ro,nosuid,nodev,noexec,mode=755)
+configfs on /sys/kernel/config type configfs (rw,relatime)
+/dev/mapper/centos-root on / type xfs (rw,relatime,attr2,inode64,noquota)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=22,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=21472)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,pagesize=2M)
+debugfs on /sys/kernel/debug type debugfs (rw,relatime)
+mqueue on /dev/mqueue type mqueue (rw,relatime)
+/dev/sda1 on /boot type xfs (rw,relatime,attr2,inode64,noquota)
+tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,size=201784k,mode=700)
+```
 
 其实是已经被 systemd 挂载了，我们可以查看 systemd 的挂载单元 tmp
 
@@ -172,10 +179,10 @@ mount 单元既可以通过单元文件进行配置， 也可以通过 /etc/fsta
 
 每个 mount 单元文件都必须包含一个 \[Mount] 小节， 用于包含该单元封装的挂载点信息。 可在 \[Mount] 小节中使用的选项， 有许多是与其他单元共享的，详见 systemd.exec(5) 与 systemd.kill(5) 手册。 这里只列出仅能用于 \[Mount] 小节的选项(亦称”指令”或”属性”)：
 
-- What=绝对路径形式表示的被挂载对象：设备节点、LOOP 文件、其他资源(例如网络资源)。 详见 mount(8) 手册。 如果是一个设备节点，那么将会自动添加对此设备节点单元的依赖(参见 systemd.device(5) 手册)。 这是一个必需的设置。注意，因为可以在此选项中使用 “%” 系列替换标记， 所以百分号(%)应该使用 “%%” 表示。
+- What=绝对路径形式表示的被挂载对象：设备节点、LOOP 文件、其他资源(例如网络资源)。 详见 mount(8) 手册。 如果是一个设备节点，那么将会自动添加对此设备节点单元的依赖(参见 systemd.device(5) 手册)。 这是一个必需的设置。注意，因为可以在此选项中使用 “%” 系列替换标记， 所以百分号(%)应该使用 `%%` 表示。
 - Where=绝对路径形式表示的挂载点目录。 注意，不可设为一个软连接(即使它实际指向了一个目录)。 如果挂载时此目录不存在，那么将尝试创建它。 注意，这里设置的绝对路径必须与单元文件的名称相对应(见上文)。 这是一个必需的设置。
 - Type=字符串形式表示的文件系统类型。详见 mount(8) 手册。这是一个可选的设置。
-- Options=一组逗号分隔的挂载选项。详见 mount(8) 手册。 这是一个可选的设置。注意，因为可以在此选项中使用 “%” 系列替换标记， 所以百分号(%)应该使用 “%%” 表示。
+- Options=一组逗号分隔的挂载选项。详见 mount(8) 手册。 这是一个可选的设置。注意，因为可以在此选项中使用 “%” 系列替换标记， 所以百分号(%)应该使用 `%%` 表示。
 - SloppyOptions=设为 yes 表示允许在 Options= 中使用文件系统不支持的挂载选项， 且不会导致挂载失败(相当于使用了 mount(8) 的 -s 命令行选项)。 默认值 no 表示禁止在 Options= 中使用文件系统不支持的挂载选项(会导致挂载失败)。
 - LazyUnmount=设置是否使用延迟卸载。 设为 yes 表示立即将文件系统从当前的挂载点分离， 但是一直等待到设备不再忙碌的时候， 才会清理所有对此文件系统的引用(也就是真正完成卸载)。 这相当于使用 umount(8) 的 -l 选项进行卸载。 默认值为 no
 - ForceUnmount=设置是否使用强制卸载。 设为 yes 表示使用强制卸载(仅建议用于 NFS 文件系统)。 这相当于使用 umount(8) 的 -f 选项进行卸载。 默认值为 no
@@ -246,3 +253,7 @@ mount 单元既可以通过单元文件进行配置， 也可以通过 /etc/fsta
 <http://www.jinbuguo.com/systemd/systemd.automount.html#>
 <https://blog.csdn.net/richerg85/article/details/17917129>
 [https://wiki.archlinux.org/index.php/Fstab\_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)](<https://wiki.archlinux.org/index.php/Fstab_(%25E7%25AE%2580%25E4%25BD%2593%25E4%25B8%25AD%25E6%2596%2587)>)
+
+# 分类
+
+#systemd #unit-file

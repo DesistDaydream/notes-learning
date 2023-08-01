@@ -211,3 +211,7 @@ Service 单元只是定义了如何执行任务，要定时执行这个 Service�
 - [Understanding Systemd Units and Unit Files](https://www.digitalocean.com/community/tutorials/understanding-systemd-units-and-unit-files), by Justin Ellingwood
 
 （完）
+
+# 分类
+
+#systemd #unit-file
