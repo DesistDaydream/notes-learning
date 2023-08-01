@@ -1,18 +1,31 @@
 ---
-title: GitHub 技巧
+title: "GitHub 搜索"
+linkTitle: "GitHub 搜索"
+date: "2023-08-01T09:19"
+weight: 20
 ---
 
-# 管理所有通知
+# 概述
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/cplu4a/1662610871922-964b6726-be46-4fc9-b450-f3705aed8174.png)
+> 参考：
+> 
+> - [官方文档，在 GitHub 上搜索](https://docs.github.com/search-github)
 
-# 管理所有已经订阅的 issue
+GitHub 的集成搜索涵盖了 GitHub 上的许多存储库、用户和代码行。
 
-<https://github.com/notifications/subscriptions>
+# 搜索 Issue 和 PR
 
-# 搜索用户评论过的内容
+## 纯粹与用户相关的搜索
 
-commenter:USERNAME
+**involves:USERNAME** # 搜索所有涉及 USERNAME 的内容。可以用户的东西包括: author(作者)、assignee(分配)、mentions(提及)、commenter(评论者)
+
+**author:USERNAME** # 搜索由 USERNAME 创建的 ISSUE 和 PR
+
+**commenter:USERNAME** # 搜索 USERNAME 用户评论过的内容
+
+**mentions:USERNAME** # 搜索提及 USERNAME 的内容。i.e. `@` 某人就称为 mentions(提及)
+
+**assignee:USERNAME** # 搜索分配给 USERNAME 的 ISSUE 和 PR。
 
 # 明确搜索仓库标题、仓库描述、README
 
