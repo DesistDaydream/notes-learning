@@ -361,7 +361,7 @@ docker:
 - **ansible_play_name** # 当前执行 paly 的名称。i.e.playbook 中 hosts 这个键的值，也就是当前的主机组名称
 - **groups** # 默认值为 inbentory 下所有组及其组内的 host
 - **group_names** # 默认值为当前主机所属组的列表。
-- **inventory_hostname** # 默认值为 inventory 文件中配置的主机名称。即.ansible 的 hosts 文件的第一列内容
+- **inventory_hostname** # 默认值为 inventory 文件中配置的主机名称。i.e. ansible 的 hosts 文件的第一列内容
 - **inventory_dir** # 默认值为 ansible 保存 hosts 文件的目录的绝对路径。默认路径为/etc/ansible/
 - **play_hosts** # 默认值为当前 play 范围中可用的一组主机名
 - **role_path** # 默认值为当前 role 的目录的绝对路径

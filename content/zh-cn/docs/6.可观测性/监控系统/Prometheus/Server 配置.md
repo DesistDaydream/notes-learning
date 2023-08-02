@@ -525,11 +525,11 @@ relabel_configs:
 
 relabel 重设标签功能，用于将抓取到的样本中的原始 label 进行重新标记以生成新的 label。
 
-**source_labels: [\<LabelName>, ... ]** # 从现有的标签中选择将要获取值的标签作为 source_labels。source_labels 可以有多个。
+**source_labels(LabelName, ... )** # 从现有的标签中选择将要获取值的标签作为 source_labels。source_labels 可以有多个。
 
 **separator(STRING)** # 指定 source_labels 中所有值之间的分隔符。`默认值: ;`。
 
-**target_label(LabelName)** # 通过 regex 字段匹配到的值写入的指定的 target_label 中
+**target_label(STRING)** # 通过 regex 字段匹配到的值写入的指定的 target_label 中
 
 **regex(REGEX)** # 从 source_label 获取的值进行正则匹配，匹配到的值写入到 target_label 中。`默认正则表达式为(.*)`。i.e.匹配所有值
 

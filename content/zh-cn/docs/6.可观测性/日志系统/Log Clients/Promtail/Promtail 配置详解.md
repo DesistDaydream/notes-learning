@@ -12,6 +12,7 @@ title: Promtail 配置详解
 # promtail.yaml 配置文件详解
 
 Promtail 在 YAML 文件（通常称为 config.yaml）中进行配置，该文件包含 Promtail 运行时信息，抓取到的日志存储位置，以及抓取日志的行为
+
 下面是一个配置文件的基本结构：
 
 ```yaml
@@ -43,11 +44,14 @@ target_config: <target_config>
 ## positions(OBJECT)
 
 positions 文件用于记录 Promtail 发现的目标。该字段用于定义如何保存 postitions.yaml 文件。Promtail 发现的目标就是指日志文件。
+
 **filename(STRING)** # 指定 positions 文件路径。`默认值：/var/log/positions.yaml`
+
 **sync_period(DURATION)**# 更新 positions 文件的时间间隔。`默认值：10s`
+
 **ignore_invalid_yaml(BOOLEAN)** # Whether to ignore & later overwrite positions files that are corrupted。`默认值：false`
 
-## scrape_configs: <\[\]OBJECT>(占比最大的字段)
+## scrape_configs(\[]OBJECT)(占比最大的字段)
 
 > 参考：
 >
@@ -59,33 +63,36 @@ Promtail 根据 scrape_configs 字段的内容，使用指定的发现方法从�
 ### 基本配置
 
 **job_name(STRING)** # 指定抓取日志的 Job 名字
-**pipeline_stages(pipeline_stages)** # 定义从指定的目标抓取日志的行为。`默认值：docker{}`。详见：[Pipeline 概念](https://www.yuque.com/go/doc/33181065) 与 [Stages 详解](/docs/6.可观测性/日志系统/Log%20Clients/Promtail/Pipeline%20 概念/Stages(阶段)%20 详解.md 概念/Stages(阶段) 详解.md)
+
+**pipeline_stages(pipeline_stages)** # 定义从指定的目标抓取日志的行为。`默认值：docker{}`。详见：[Pipeline 概念](docs/6.可观测性/日志系统/Log%20Clients/Promtail/Pipeline%20概念/Pipeline%20概念.md) 与 [Stages(阶段) 详解](docs/6.可观测性/日志系统/Log%20Clients/Promtail/Pipeline%20概念/Stages(阶段)%20详解.md)
+
 **loki_push_api(loki_push_api_config)** # 定义日志推送的路径 (e.g. from other Promtails or the Docker Logging Driver)
 
 ### Scrape 目标配置
 
 Promtail 会根据这里的字段的配置，以发现需要 Scrape 日志的目标，有两种方式来发现目标：**静态** 与 **动态**
-**static_configs:**[**<\[\]Object>**](#tD00J) # 静态配置。直接指定需要抓去 Metrics 的 Targets。
 
-- 具体配置详见下文[静态目标发现](#PZTDy)
+**static_configs(\[]Object)** # 静态配置。直接指定需要抓去 Metrics 的 Targets。
+
+- 具体配置详见下文[静态目标发现](#静态目标发现)
 
 **XX_sd_configs:**[\<XXXX>](#IWvg5) # 动态配置
 
-- 具体配置详见下文[动态目标发现](#FzYda)
+- 具体配置详见下文[动态目标发现](#动态目标发现)
 
 **jounal(OBJECT)** # 动态配置
 
-- 具体配置详见下文[动态目标发现](#FzYda)
+- 具体配置详见下文[动态目标发现](#动态目标发现)
 
 **syslog(OBJECT)** # 动态配置
 
-- 具体配置详见下文[动态目标发现](#FzYda)
+- 具体配置详见下文[动态目标发现](#动态目标发现)
 
 ### Relabel 配置
 
 **relabel_configs([]OBJECT)** # 为本 Job 下抓取日志的过程定义 Relabeling 行为。与 Prometheus 的 Relabeling 行为一致
 
-- 具体配置详见下文[重设标签](#EnT3h)
+- 具体配置详见下文[重设标签](#重设标签)
 
 # 配置文件中的通用配置字段
 
@@ -98,6 +105,7 @@ Promtail 会根据这里的字段的配置，以发现需要 Scrape 日志的目
 - **HOST**
 
 **labels(map\[STRING]STRING)** # 指定该 targets 的标签，可以随意添加任意多个。
+
 这个字段与 Prometheus 的配置有一点区别。Promtail 中必须要添加 `__path__` 这个键，以指定要抓去日志的文件路径。
 
 - **KEY: VAL** # 比如该键值可以是 run: httpd，标签名是 run，run 的值是 httpd，key 与 val 使用字母，数字，\_，-，.这几个字符且以字母或数字开头；val 可以为空。
@@ -215,10 +223,13 @@ docker run \
       regex: session-.*scope
 ```
 
-### [kubernetes_sd_configs: <\[\]Object>](https://grafana.com/docs/loki/latest/clients/promtail/configuration/#kubernetes_sd_config)
+### kubernetes_sd_configs(\[]Object)
+
+https://grafana.com/docs/loki/latest/clients/promtail/configuration/#kubernetes_sd_config
 
 与 Prometheus 中的 kubernetes 的服务发现机制基本一致。与 Prometheus 配置的不同点在于，Promtail 的 kubernetes 服务发现配置一般都会使用 Relabeling 机制弄出来一个 `__path__` 标签
-具体字段内容详见《[Prometheus Server 配置](/docs/6.可观测性/监控系统/Prometheus/Server%20 配置.md 配置.md)》文章中 [kubernetes_sd_configs](/docs/6.可观测性/监控系统/Prometheus/Server%20 配置.md 配置.md) 章节
+
+具体字段内容详见《[Prometheus Server 配置](/docs/6.可观测性/监控系统/Prometheus/Server%20配置.md)》文章中 [kubernetes_sd_configs](/docs/6.可观测性/监控系统/Prometheus/Server%20配置.md#kubernetes_sd_configs) 章节
 
 #### 配置示例
 
@@ -249,12 +260,16 @@ docker run \
 
 这里有一个注意事项，最后的一段，则是比 Prometheus 多出来的部分，因为 Promtail 必须需要一个 **path** 字段来获取采集日志的路径。
 
-### [docker_sd_configs: <\[\]Object>](https://grafana.com/docs/loki/latest/clients/promtail/configuration/#docker_sd_config)
+### docker_sd_configs(\[]Object)
+
+https://grafana.com/docs/loki/latest/clients/promtail/configuration/#docker_sd_config
 
 **host(STRING)** # Docker 守护进程的地址。通常设置为：`unix:///var/run/docker.sock`
+
 **filters([]Object)** # 过滤器，用于过滤发现的容器。只有满足条件的容器的日志，才会被 Promtail 采集并上报。
 
 > 可用的过滤器取决于上游 Docker 的 API：<https://docs.docker.com/engine/api/v1.41/#operation/ContainerList>，在这个链接中，可以从 Available filters 部分看到，等号左边就是 name 字段，等号右边就是 values 字段。
+> 
 > 这个 name 与 values 的用法就像 `docker ps` 命令中的 `--filter` 标志，这个标志所使用的过滤器，也是符合 Docker API 中的 ContainerList。
 
 - **name(STRING)** #
@@ -279,7 +294,7 @@ docker run \
 
 ### relabel_configs(Object)
 
-详见 [Promtail 的 Relabeling 行为](https://www.yuque.com/go/doc/33181091)
+详见 [Label 与 Relabeling](docs/6.可观测性/日志系统/Log%20Clients/Promtail/Label%20与%20Relabeling.md)
 
 # 配置文件示例
 

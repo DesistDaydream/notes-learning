@@ -5,6 +5,7 @@ title: Stages(阶段) 详解
 # 概述
 
 > 参考：
+> 
 > - [官方文档,客户端-Promtail-阶段](https://grafana.com/docs/loki/latest/clients/promtail/stages/)
 > - [官方文档,客户端-Promtail-配置-pipelinie_stages](https://grafana.com/docs/loki/latest/clients/promtail/configuration/#pipeline_stages)
 
@@ -35,17 +36,13 @@ scrape_configs:
 来自 docker 的每行日志，都是以 JSON 格式编写，该 JSON 格式中有下列几个 key：
 
 1. log # 日志行的具体内容
-
 2. stream # 该 key 的值为 stdout 或 stderr，用来指明该日志行是标准输出还是标准错误
-
 3. time # 日志行的时间戳
 
 docker stage 会根据上述三种 key 来解析日志并提取其中数据，通过取出来的数据将创建出具有 3 个元素的 map。这些数据将会被其他 stages 所使用，并组合成 loki 可用的一行日志。
 
 1. **output** # 与 log 对应。output stage 把该 key 的值变为发送到 loki 的一行日志。
-
 2. **stream** # 与 stream 对应。labels stage 将该数据作为该行日志的 label。
-
 3. **timestamp** # 与 time 对应。timestamp stage 将该数据作为 loki 记录的时间戳，并转换时间格式为 RFC3339Nano
 
 上述 map 中的三个元素的键值对的值，就是老 key 的值
@@ -69,6 +66,7 @@ timestamp: 2020-09-20T14:02:41.8443515
 ```
 
 当该日志进入 loki 后，从 grafana 查看该数据，效果如下
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/wzw6g5/1616129604931-8bc3cbd7-6057-4f9e-bdd3-6b33192313f4.jpeg)
 
 本质上，docker 阶段的行为是 json、labels、timestamp、output 四个阶段的集合。各阶段行为如下：
@@ -87,7 +85,7 @@ timestamp: 2020-09-20T14:02:41.8443515
     source: output
 ```
 
-## cri # 使用标准的 CRI 日志格式来解析每行日志，并提取数据
+## cri - 使用标准的 CRI 日志格式来解析每行日志，并提取数据
 
 本质上，cri 阶段的行为是 json、labels、timestamp、output 四个阶段的集合。各阶段行为如下：
 
@@ -103,7 +101,7 @@ timestamp: 2020-09-20T14:02:41.8443515
   source: content
 ```
 
-## regex # 使用正则表达式从每行日志提取数据
+## regex - 使用正则表达式从每行日志提取数据
 
 使用正则表达式提取数据，在 regex 中命名的捕获组支持将数据添加到提取的 Map 映射中。配置格式如下所示：
 
@@ -163,7 +161,7 @@ timestamp: 2020-09-20T14:02:41.8443515
 
 - `year`: `2019`
 
-## json # 根据 JSON 的格式解析一行日志，并提取数据
+## json - 根据 JSON 的格式解析一行日志，并提取数据
 
 通过将日志行解析为 JSON 来提取数据，也可以接受 `JMESPath` 表达式来提取数据，配置格式如下所示：
 
@@ -258,13 +256,13 @@ timestamp: 2020-09-20T14:02:41.8443515
 
 需要注意的是在引用 `grpc.stream` 时，如果没有用单引号包裹的双引号，将无法正常工作。
 
-## replace # 使用正则表达式替换数据
+## replace - 使用正则表达式替换数据
 
 # Transform stages(转换阶段)
 
 转换阶段用于对之前阶段提取的数据进行转换。
 
-## multiline # 将多行日志进行合并，然后再将其传递到 pipeline 的下一个阶段。
+## multiline - 将多行日志进行合并，然后再将其传递到 pipeline 的下一个阶段。
 
 多行阶段将多行日志进行合并，然后再将其传递到 pipeline 的下一个阶段。
 一个新的日志块由**第一行正则表达式**来识别，任何与表达式不匹配的行都被认为是前一个匹配块的一部分。配置格式如下所示：
@@ -355,7 +353,7 @@ timestamp: 2020-09-20T14:02:41.8443515
       firstline: '^\x{200B}\['
       max_wait_time: 3s
 
-## template # 使用 Go 模板来修改提取出来数据
+## template - 使用 Go 模板来修改提取出来数据
 
 `template` 阶段可以使用 Go 模板语法来操作提取的数据。模板阶段主要用于在将数据设置为标签之前对其他阶段的数据进行操作，例如用下划线替换空格，或者将大写的字符串转换为小写的字符串。模板也可以用来构建具有多个键的信息。模板阶段也可以在提取的数据中创建新的键。
 配置格式如下所示：
@@ -425,7 +423,7 @@ timestamp: 2020-09-20T14:02:41.8443515
 
 用于从以前阶段中提取数据并对其进行处理。
 
-## timestamp # 为日志条目设置时间戳的值
+## timestamp - 为日志条目设置时间戳的值
 
 该阶段可以在将日志发送到 Loki 之前更改其时间戳。如果 timestamp 阶段不存在，则日志的时间戳默认为抓取日志条目的时间。
 
@@ -466,8 +464,11 @@ timestamp: 2020-09-20T14:02:41.8443515
 - `UnixNs`: 1562708916000000123
 
 自定义格式是直接传递给  GO 的 `time.Parse` 函数中的 layout 参数，如果自定义格式没有指定 year，Promtail 会认为应该使用系统时钟的当前年份。
+
 自定义格式使用的语法是使用时间戳的每个组件的特定值来定义日期和时间（例如 Mon Jan 2 15:04:05 -0700 MST 2006），下表显示了应在自定义格式中支持的参考值。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/wzw6g5/1621834787456-e2597523-491b-482b-bf40-9b76610cd36e.png)
+
 `action_on_failure` 设置定义了在提取的数据中不存在 `source` 字段或时间戳解析失败的情况下，应该如何处理，支持的动作有：
 
 - `fudge（默认）`：将时间戳更改为最近的已知时间戳，总计 1 纳秒（以保证日志顺序）
@@ -481,7 +482,7 @@ timestamp: 2020-09-20T14:02:41.8443515
 
 经过上面的 timestamp 阶段在提取的数据中查找一个 time 字段，并以 `RFC3339Nano` 格式化其值（例如，2006-01-02T15:04:05.9999999-07:00），所得的时间值将作为时间戳与日志行一起发送给 Loki。
 
-## output # 设置一行日志的文本。
+## output - 设置一行日志的文本。
 
 也就是根据该配置，将解析出来的数据中的某些内容，作为发送给 loki 的一行日志的具体内容。也就是 loki 所记录的日志内容。
 
@@ -512,7 +513,7 @@ timestamp: 2020-09-20T14:02:41.8443515
 
 然后第二个 label 阶段将把 `user=alexis` 添加到输出的日志标签集中，最后的 output 阶段将把日志数据从原来的 JSON 更改为 message 的值 `hello, world!` 输出。
 
-## labels # 更新日志条目的标签集(默认行为)
+## labels - 更新日志条目的标签集(默认行为)
 
 更新日志的标签集，并一起发送给 Loki。配置格式如下所示：
 
@@ -540,7 +541,7 @@ timestamp: 2020-09-20T14:02:41.8443515
 
 第一个 json 阶段将提取 `stream` 到 Map 数据中，其值为 `stderr`。然后在第二个 labels 阶段将把这个键值对变成一个标签，在发送到 Loki 的日志行中将包括标签 `stream`，值为 `stderr`。
 
-## metrics # 根据提取出来的数据计算指标
+## metrics - 根据提取出来的数据计算指标
 
 根据提取的数据计算指标。需要注意的是，创建的 metrics 指标不会被推送到 Loki，而是通过 Promtail 的 `/metrics` 端点暴露出去，Prometheus 应该被配置为可以抓取 Promtail 的指标，以便能够检索这个阶段所配置的指标数据。
 配置格式如下所示：
@@ -610,7 +611,7 @@ timestamp: 2020-09-20T14:02:41.8443515
 
 上面这个 pipeline 首先会尝试在日志中找到格式为 `order_status=<value>` 的文本，将 `<value>` 提取到 `order_status` 中。该指标阶段创建了 `successful_orders_total` 和 `failed_orders_total` 指标，只有当提取数据中的 `order_status` 的值分别为 `success` 或 `fail` 时才会增加。
 
-## tenant # 设置要用于日志条目的租户 ID 值。
+## tenant - 设置要用于日志条目的租户 ID 值。
 
 设置日志要使用的租户 ID 值，从提取数据中的一个字段获取，如果该字段缺失，将使用默认的 Promtail 客户端租户 ID。配置格式如下所示：
 
@@ -676,7 +677,7 @@ timestamp: 2020-09-20T14:02:41.8443515
 
 # Filtering stages(过滤阶段)
 
-## [match](https://grafana.com/docs/loki/latest/clients/promtail/stages/match/) # 依据指定的标签，过滤日志行，只有匹配到的日志行才会继续执行其他阶段
+## [match](https://grafana.com/docs/loki/latest/clients/promtail/stages/match/) - 依据指定的标签，过滤日志行，只有匹配到的日志行才会继续执行其他阶段
 
 match 阶段是一个过滤阶段，当日志条目与可配置的 LogQL 流选择器和过滤器表达式匹配时，有条件地应用一组阶段或丢弃条目。
 
@@ -751,7 +752,7 @@ scrape_configs:
 然后执行的第五个 match 阶段，将会删掉任何具有 `app="promtail"` 标签并包括 `noisy error` 文本的日志数据，并且还将增加 `logentry_drop_lines_total` 指标，标签为 `reason="promtail_noisy_error"`。
 最后的 output 输出阶段将日志行的内容改为提取数据中的 msg 的值。我们这里的示例最后输出为 `app1 log line`。
 
-## drop # Conditionally drop log lines based on several options.
+## drop - Conditionally drop log lines based on several options.
 
 drop 阶段可以让我们根据配置来删除日志。需要注意的是，如果你提供多个选项配置，它们将被视为 `AND` 子句，其中每个选项必须为真才能删除日志。如果你想用一个 `OR`子句来删除，那么就指定多个删除阶段。配置语法格式如下所示：
 
