@@ -5,6 +5,7 @@ title: Vue 组件
 # 概述
 
 > 参考：
+> 
 > - [官方文档，基础-组件基础](https://cn.vuejs.org/guide/essentials/component-basics.html)
 
 # 组件间数据传递

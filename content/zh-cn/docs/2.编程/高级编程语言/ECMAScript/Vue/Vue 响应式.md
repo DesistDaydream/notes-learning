@@ -5,6 +5,7 @@ title: Vue 响应式
 # 概述
 
 > 参考：
+> 
 > - [官方文档，API 参考](https://cn.vuejs.org/api/)
 > - [官方文档，API 参考-组合式 API-响应式：核心](https://cn.vuejs.org/api/reactivity-core.html)
 

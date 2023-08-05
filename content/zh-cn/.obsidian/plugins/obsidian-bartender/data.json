@@ -1129,7 +1129,9 @@
       "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue.md",
       "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 环境安装与使用.md",
       "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 响应式.md",
-      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 组件.md"
+      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 组件.md",
+      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 指令.md",
+      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 第三方库.md"
     ],
     "docs/2.编程/高级编程语言/Go": [
       "docs/2.编程/高级编程语言/Go/_index.md",
