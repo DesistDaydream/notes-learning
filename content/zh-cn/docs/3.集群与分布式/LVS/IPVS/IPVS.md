@@ -10,7 +10,7 @@ weight: 1
 > - [Wiki,IPVS](https://en.wikipedia.org/wiki/IP_Virtual_Server)
 > - [官方文档](http://www.linuxvirtualserver.org/software/ipvs.html)
 
-**IP Virtual Service(IP 虚拟服务，简称 IPVS)** 是基于 [Netfilter](/docs/1.操作系统/2.Kernel/8.Network%20管理/Linux%20网络流量控制/Netfilter%20流量控制系统/Netfilter%20流量控制系统.md) 的 Linux 内核模块，用来实现 [LVS](/docs/3.集群与分布式/LVS/LVS.md) 集群中的 **Scheduler(调度器)** 功能。启动这个模块的 Linux 服务器就变成了 LVS 系统中的 **Director**，此时，这个服务器可以看作是一种高效的 Layer-4(四层) 交换机。在 Director 上运行 IPVS 代码是 LVS 的基本要素。
+**IP Virtual Service(IP 虚拟服务，简称 IPVS)** 是基于 [Netfilter](docs/1.操作系统/2.Kernel/8.Network/Linux%20网络流量控制/Netfilter%20流量控制系统/Netfilter%20流量控制系统.md) 的 Linux 内核模块，用来实现 [LVS](/docs/3.集群与分布式/LVS/LVS.md) 集群中的 **Scheduler(调度器)** 功能。启动这个模块的 Linux 服务器就变成了 LVS 系统中的 **Director**，此时，这个服务器可以看作是一种高效的 Layer-4(四层) 交换机。在 Director 上运行 IPVS 代码是 LVS 的基本要素。
 
 IPVS 在服务器上运行，并充当 RS 集群前面的负载均衡器。IPVS 可以将基于 TCP 和 UDP 的服务请求定向到真实服务器，并使真实服务器的服务在单个 IP 地址上表现为虚拟服务。当一个 TCP 连接的初始 SYN 报文到达时，IPVS 就选择一台服务器，将报文转发给它。此后通过查发报文的 IP 和 TCP 报文头地址，保证此连接的后继报文被转发到相同的服务器。这样，IPVS 无法检查到请求的内容再选择服务器，这就要求后端的服务器组是提供相同的服务，不管请求被送到哪一台服务器，返回结果都应该是一样的。但是在有一些应用中后端的服务器可能功能不一，有的是提供 HTML 文档的 Web 服务器，有的是提供图片的 Web 服务器，有的是提供 CGI 的 Web 服务器。这时，就需要基于内容请求分发 (Content-Based Request Distribution)，同时基于内容请求分发可以提高后端服务器上访问的局部性。
 
