@@ -1554,6 +1554,7 @@
     "docs/5.数据存储/数据管理工具/Rclone": [
       "docs/5.数据存储/数据管理工具/Rclone/_index.md",
       "docs/5.数据存储/数据管理工具/Rclone/Rclone.md",
+      "docs/5.数据存储/数据管理工具/Rclone/Rclone mount.md",
       "docs/5.数据存储/数据管理工具/Rclone/Rclone 配置.md"
     ],
     "docs/6.可观测性": [

@@ -75,32 +75,7 @@ copyto 可以在上传单个文件到目标目录下时，改变文件的原名�
 
 # rclone mount
 
-https://rclone.org/commands/rclone_mount/
-
-将 Remote 作为文件系统挂载到操作系统中
-
-## Syntax(语法)
-
-**rclone mount REMOTE:PATH /PATH/TO/MountPoint \[FLAGS]**
-
-**FLAGS**
-
-VFS 文件缓存相关标志
-
-- **--cache-dir STRING** # 指定用于保存缓存文件的目录。`默认值: %LOCALAPPDATA%\rclone\`
-  - `Linux 默认值: ~/.cache/rclone`
-- **--vfs-cache-mode STRING** # 缓存模式，可用的值有: off|minimal|writes|full。`默认值: off`
-- **--vfs-cache-max-age DURATION** # 缓存中的对象保存的最大时间，超时的将被删除。`默认值: 1h`
-- --vfs-cache-max-size SizeSuffix      Max total size of objects in the cache (default off)
-- --vfs-cache-poll-interval duration   Interval to poll the cache for stale objects (default 1m0s)
-- --vfs-write-back duration            Time to writeback files after last use when using cache (default 5s)
-
-
-## EXAMPLE
-
-挂载 alist webdav 到本地磁盘
-
-- `rclone mount alist:/ Z: --cache-dir D:\appdata\rclone-cache --vfs-cache-mode full --header Referer:`
+详见 [Rclone mount](docs/5.数据存储/数据管理工具/Rclone/Rclone%20mount.md)
 
 # rclone sync
 
