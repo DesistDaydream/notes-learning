@@ -48,7 +48,7 @@ virt-manager、virt-viewer 属于图形化管理虚拟机的工具，通常都�
 
 # virt-install
 
-可以将 virt-install 理解为 CLI 的 virt-manager，可以放在脚本中创建虚拟机，内容非常多，详见 [《virt-install》](docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt%20API/virt-install.md) 章节。
+可以将 virt-install 理解为 CLI 的 virt-manager，可以放在脚本中创建虚拟机，内容非常多，详见 [《virt-install》](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt%20API/virt-install.md) 章节。
 
 # virt-clone
 

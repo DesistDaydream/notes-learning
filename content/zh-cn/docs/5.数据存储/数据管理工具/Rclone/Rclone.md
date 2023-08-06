@@ -42,7 +42,7 @@ Rclone 还可以将这些 Remote 作为磁盘挂载在 Windows、macOS、Linux �
 >
 > - [官方文档，全局标志](https://rclone.org/flags/)
 
-详见 [Rclone 配置](docs/5.数据存储/数据管理工具/Rclone/Rclone%20配置.md)，命令行标志通常也是 Rclone 的配置，分为两种，与后端无关的和与后端相关的。绝大部分情况，在使用命令行时，我们一般使用与后端无关的的标志。在这个文章中，主要看 [Backend 无关配置详解](docs/5.数据存储/数据管理工具/Rclone/Rclone%20配置.md#Backend%20无关配置详解) 部分即可
+详见 [Rclone 配置](/docs/5.数据存储/数据管理工具/Rclone/Rclone%20配置.md)，命令行标志通常也是 Rclone 的配置，分为两种，与后端无关的和与后端相关的。绝大部分情况，在使用命令行时，我们一般使用与后端无关的的标志。在这个文章中，主要看 [Backend 无关配置详解](/docs/5.数据存储/数据管理工具/Rclone/Rclone%20配置.md#Backend%20无关配置详解) 部分即可
 
 # rclone config
 

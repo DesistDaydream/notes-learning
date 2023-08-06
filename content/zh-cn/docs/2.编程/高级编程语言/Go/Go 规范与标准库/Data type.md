@@ -156,7 +156,7 @@ golang 没有 '%u' 点位符，若整数为无符号类型，默认就会被打�
 
 # 类型检测
 
-详见 [Reflection](docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Reflection.md) 特性
+详见 [Reflection](/docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Reflection.md) 特性
 
 # 类型转换
 

@@ -8,12 +8,12 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，驱动程序](https://libvirt.org/drivers.html)
 
-市面上有多种虚拟化平台，比如 [KVM/QEMU](/docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU.md)、[Hyper-V](docs/10.云原生/1.2.实现虚拟化的工具/Hyper-V/Hyper-V.md)、等等，Libvirt 想要调用这些虚拟化平台的能力，需要对应平台的 **Driver(驱动程序)**，这个 Driver 可以对接虚拟化平台的的 **Hypervisor(虚拟机监视器)** 以控制整个虚拟化环境。这就好比 Windows 系统想要使用显卡的能力，就需要对应的显卡驱动程序一样。
+市面上有多种虚拟化平台，比如 [KVM/QEMU](/docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU.md)、[Hyper-V](/docs/10.云原生/1.2.实现虚拟化的工具/Hyper-V/Hyper-V.md)、等等，Libvirt 想要调用这些虚拟化平台的能力，需要对应平台的 **Driver(驱动程序)**，这个 Driver 可以对接虚拟化平台的的 **Hypervisor(虚拟机监视器)** 以控制整个虚拟化环境。这就好比 Windows 系统想要使用显卡的能力，就需要对应的显卡驱动程序一样。
 
-想要连接到 Driver，我们需要使用 Libvirt API 开发的客户端应用程序（e.g. [virsh](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh%20命令行工具/virsh%20命令行工具.md)、[virt-manager](docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt%20API/virt-manager.md)、等等）。Drivers 通常作为服务端都暴露了 [Libvirt API](docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt%20API/Libvirt%20API.md)，这些客户端通过 [**URI**](#URI) 找到并连接到 Driver，这就好像 mysql 客户端连接 mysql 也需要 IP 端口、etcdctl 连接 etcd 同理，很多客户端都是同样的逻辑。
+想要连接到 Driver，我们需要使用 Libvirt API 开发的客户端应用程序（e.g. [virsh](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh%20命令行工具/virsh%20命令行工具.md)、[virt-manager](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt%20API/virt-manager.md)、等等）。Drivers 通常作为服务端都暴露了 [Libvirt API](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt%20API/Libvirt%20API.md)，这些客户端通过 [**URI**](#URI) 找到并连接到 Driver，这就好像 mysql 客户端连接 mysql 也需要 IP 端口、etcdctl 连接 etcd 同理，很多客户端都是同样的逻辑。
 
 Libvirt 有如下几类 Drivers
 
@@ -31,7 +31,7 @@ Libvirt 有如下几类 Drivers
 # URI
 
 > 参考：
-> 
+>
 > - [官方文档，连接 URI](https://libvirt.org/uri.html)
 
 Libvirt 的客户端程序（e.g. virsh、virt-manager、等等）**通过 [URI](https://datatracker.ietf.org/doc/html/rfc2396) 连接 Driver**。这就好像 mysql 客户端连接 MySQL 需要一个 URL、redis 客户端连接 Redis 需要、etcdctl 连接 ETCD 也需要、等等。其实就是 `virsh -c URI` 这种，类似 `mysql -h X.X.X.X`、`etcdctl --endpoint X.X.X.X` 之类的。只不过 Libvirt 的应用程序还可以使用 `qemu:///system` 这种方式连接本地 Socket，而不止是常见的 TCP/IP。
@@ -138,13 +138,13 @@ Hypervisor Driver 有几种表现形式
 
 - 内嵌在 Libvirt API 客户端应用程序中
 - 内置到 libvirt.so 库
-- [Libvirt 守护进程](docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Driver/Libvirt%20守护进程.md)，比如 libvirtd
+- [Libvirt 守护进程](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Driver/Libvirt%20守护进程.md)，比如 libvirtd
 - 等等
 
 ## QEMU/KVM 驱动
 
 > 参考：
-> 
+>
 > - [官方文档，QEMU/KVM/HVF hypervisor 驱动程序](https://libvirt.org/drvqemu.html)
 
 Libvirt 的 KVM/QEMU 驱动程序将会探测 `/usr/bin/` 目录是否存在 `qemu`, `qemu-system-x86_64`, `qemu-system-microblaze`, `qemu-system-microblazeel`, `qemu-system-mips`,`qemu-system-mipsel`, `qemu-system-sparc`,`qemu-system-ppc`。来决定如何连接 QEMU emulator。

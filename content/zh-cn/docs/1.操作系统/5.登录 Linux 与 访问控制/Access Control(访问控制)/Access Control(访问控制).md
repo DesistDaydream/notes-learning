@@ -5,7 +5,8 @@ title: Access Control(访问控制)
 # 概述
 
 > 参考：
-> - [Wiki,DAC](https://en.wikipedia.org/wiki/Discretionary_access_control)
+> 
+> - [Wiki，DAC](https://en.wikipedia.org/wiki/Discretionary_access_control)
 
 Linux 使用 **Discretionary Access Control(自主访问控制，简称 DAC)** 概念控制所有文件的基本权限。
 

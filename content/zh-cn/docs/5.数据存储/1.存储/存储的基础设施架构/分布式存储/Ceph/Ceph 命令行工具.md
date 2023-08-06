@@ -21,11 +21,11 @@ Orchestrator(编排器，简称 orch)
 
 COMMAND
 
-- **host **# 对集群中的节点进行管理
-  - **add <HOSTNAME> \[ADDR] \[LABELs...] \[--maintenance]** # 向集群中添加一个节点
-  - **label add <HOSTNAME> <LABEL>** # 为节点添加一个标签
+- **host** # 对集群中的节点进行管理
+  - **add \<HOSTNAME> \[ADDR] \[LABELs...] \[--maintenance]** # 向集群中添加一个节点
+  - **label add \<HOSTNAME> \<LABEL>** # 为节点添加一个标签
 - **ls** # 列出 Orch 已知的服务
-- **rm <ServiceName> **# 移除一个服务
+- **rm \<ServiceName> **# 移除一个服务
 
 EXAMPLE
 
@@ -41,17 +41,17 @@ radosgw-admin 是一个 RADOS 网关用户的管理工具。可以增删改查�
 
 COMMAND
 
-- **user create --display-name=<STRING> --uid=<STRING>** # 创建一个新用户
-- **user info \[--uid=<STRING> | --access-key=<STRING>]** # 显示一个用户的信息，包括其子用户和密钥。通过 uid 或 ak 指定要显示的用户。
+- **user create --display-name=\<STRING> --uid=\<STRING>** # 创建一个新用户
+- **user info \[--uid=\<STRING> | --access-key=\<STRING>]** # 显示一个用户的信息，包括其子用户和密钥。通过 uid 或 ak 指定要显示的用户。
 - **user list** # 列出所有用户
-- **user modify --uid=<STRING>** # 修改指定的用户
+- **user modify --uid=\<STRING>** # 修改指定的用户
 
 OPTIONS
 
 - **--admin** # 为指定用户设定 admin 标志
-- **--display-name=<STRING>** # 为指定用户设定对外显示的名称
-- **--email=<STRING>** # 为用户设定邮箱
-- **--uid=<STRING>** # 指定用户的 ID。在执行绝大部分与用户相关的命令时，都需要指定该选项，以确定操作的用户。比如 查看用户信息、查看属于指定用户的桶的信息 等等等等
+- **--display-name=STRING** # 为指定用户设定对外显示的名称
+- **--email=STRING** # 为用户设定邮箱
+- **--uid=STRING** # 指定用户的 ID。在执行绝大部分与用户相关的命令时，都需要指定该选项，以确定操作的用户。比如 查看用户信息、查看属于指定用户的桶的信息 等等等等
 - **--system** # 为指定用户设定 system 标志
 
 ### EXAPMEL
@@ -68,9 +68,9 @@ OPTIONS
 
 COMMAND
 
-- **bucket stats \[OPTIONS] **# 显示桶的统计信息。可以通过选项指定用户下的桶或指定的桶。
+- **bucket stats \[OPTIONS]** # 显示桶的统计信息。可以通过选项指定用户下的桶或指定的桶。
 
 OPTIONS
 
-- **--bucket=<STRING>** # 指定桶的名称。可以被 quota 子命令使用。
-- **--uid=<STRING>** # 指定用户的 ID。查看桶信息时，将会显示该用户下所有桶的信息。
+- **--bucket=STRING** # 指定桶的名称。可以被 quota 子命令使用。
+- **--uid=STRING** # 指定用户的 ID。查看桶信息时，将会显示该用户下所有桶的信息。

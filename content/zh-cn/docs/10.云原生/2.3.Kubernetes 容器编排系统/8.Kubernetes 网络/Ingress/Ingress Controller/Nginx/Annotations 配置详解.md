@@ -15,9 +15,9 @@ title: Annotations 配置详解
 Nginx controoler 程序默认读取 Ingress 对象中 `metadata.annotations` 字段下前缀为 `nginx.ingress.kubernetes.io` 的字段，作为运行程序时的配置信息。
 
 > 注意：
-> 
+>
 > - 所有 Key 都是以 `nginx.ingress.kubernetes.io` 作为前缀，比如配置认证相关，那么 Key 就是 `nginx.ingress.kubernetes.io/auth-realm`
-> - 可以为 nginx-ingress-controller 程序添加 `--annotations-prefix` [命令行标志](docs/10.云原生/2.3.Kubernetes%20容器编排系统/8.Kubernetes%20网络/Ingress/Ingress%20Controller/Nginx/命令行标志.md)以改变前缀
+> - 可以为 nginx-ingress-controller 程序添加 `--annotations-prefix` [命令行标志](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/8.Kubernetes%20网络/Ingress/Ingress%20Controller/Nginx/命令行标志.md)以改变前缀
 
 # Key 详解
 
@@ -37,7 +37,7 @@ https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annota
 
 https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#backend-protocol
 
-使用后端协议注释可以指示 NGINX 应如何与后端服务通信。 
+使用后端协议注释可以指示 NGINX 应如何与后端服务通信。
 
 **nginx.ingress.kubernetes.io/backend-protocol**(STRING) # 指示 NGINX 应如何与后端服务通信。`默认值: HTTP`。可用的值：HTTP、HTTPS、GRPC、GRPCS 和 FCGI
 

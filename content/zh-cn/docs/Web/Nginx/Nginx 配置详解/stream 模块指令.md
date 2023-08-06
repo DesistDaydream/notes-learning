@@ -108,7 +108,7 @@ http://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_pass
 
 ADDRESS 有多种表示方法
 
-- **ServerGroup** # 将流量代理到 [一组服务器](docs/Web/Nginx/Nginx%20配置详解/多用途模块的指令/upstream%20模块指令.md)上。每个流量都会根据负载均衡的规则交给 upstream{} 指令块中定义的服务器。
+- **ServerGroup** # 将流量代理到 [一组服务器](/docs/Web/Nginx/Nginx%20配置详解/多用途模块的指令/upstream%20模块指令.md)上。每个流量都会根据负载均衡的规则交给 upstream{} 指令块中定义的服务器。
   - 新版中，也可以省略 Protocol://，直接使用 ServerGroup 的名称即可。
 - **IP:PORT** # 当只有一台可用的后端服务器时可以使用这种方式，这样就不用再使用 upstream 指令块定义了
 - **unix:/PATH/TO/FILE;** # 将流量代理到本地的 UNIX-domain Socket 上

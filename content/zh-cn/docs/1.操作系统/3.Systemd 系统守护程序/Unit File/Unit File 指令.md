@@ -5,7 +5,7 @@ title: Unit File 指令
 # 概述
 
 > 参考：
-> 
+>
 > - [Manual(手册)，systemd.unit(5)](https://man7.org/linux/man-pages/man5/systemd.unit.5.html) # Unit 的介绍
 > - [Manual(手册)，systemd.directives(7)](https://man7.org/linux/man-pages/man7/systemd.directives.7.html) # Unit File 中全部的指令列表
 
@@ -66,7 +66,7 @@ Install 部分包含 Unit 的启动信息。通常是配置文件的最后一个
 
 ### systemd.exec 类指令
 
-详见 [systemd.exec 类指令](docs/1.操作系统/3.Systemd%20系统守护程序/Unit%20File/systemd.exec%20类指令.md)
+详见 [systemd.exec 类指令](/docs/1.操作系统/3.Systemd%20系统守护程序/Unit%20File/systemd.exec%20类指令.md)
 ### systemd.kill 类指令
 
 https://man7.org/linux/man-pages/man5/systemd.kill.5.html

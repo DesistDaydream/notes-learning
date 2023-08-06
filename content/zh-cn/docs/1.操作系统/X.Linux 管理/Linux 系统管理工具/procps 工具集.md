@@ -8,7 +8,7 @@ title: procps 工具集
 >
 > - [GitLab 项目，procps-ng/procps](https://gitlab.com/procps-ng/procps)
 
-procps 是一组命令行和全屏实用程序，它们主要从 [Proc 文件系统](/docs/1.操作系统/2.Kernel(内核)/6.File%20System%20管理/特殊文件系统/Proc%20File%20System.md) 中获取信心，该文件系统为内核数据结构提供了一个简单的接口。procps 程序通常集中在描述系统上运行的进程的结构上。包括以下程序(每个标题都是一个程序)
+procps 是一组命令行和全屏实用程序，它们主要从 [Proc 文件系统](/docs/1.操作系统/2.Kernel/6.File%20System%20管理/特殊文件系统/Proc%20File%20System.md) 中获取信心，该文件系统为内核数据结构提供了一个简单的接口。procps 程序通常集中在描述系统上运行的进程的结构上。包括以下程序(每个标题都是一个程序)
 
 Note：该工具集就算是最小化安装的 linux 发行版系统也是默认包含的~
 
@@ -16,7 +16,7 @@ Note：该工具集就算是最小化安装的 linux 发行版系统也是默认
 
 # kill-向指定PID的进程发送信号
 
-可用的信号详见 [Signal(信号)](/docs/1.操作系统/2.Kernel(内核)/7.Process%20管理/Inter%20Process%20Communication(进程间通信)/Signal(信号).md)
+可用的信号详见 [Signal(信号)](/docs/1.操作系统/2.Kernel/7.Process%20管理/Inter%20Process%20Communication(进程间通信)/Signal(信号).md)
 
 kill 命令将指定的信号发送到指定的进程或进程组。 如果未指定信号，则发送 TERM 信号。 TERM 信号将杀死不捕获该信号的进程。对于其他过程，由于无法捕获该信号，可能需要使用 KILL（9）信号。
 

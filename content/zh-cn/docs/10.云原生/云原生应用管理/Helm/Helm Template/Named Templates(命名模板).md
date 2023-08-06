@@ -8,14 +8,14 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - 官方文档：<https://helm.sh/docs/chart_template_guide/named_templates/>
 
 **Named Templates(命名模板，有时称为 partial(部分) 或 subtemplate(子模板))** 是限定在一个文件内部的模板，并起一个名称。Named Templates 可以在一个文件中定义，并在其他地方使用它们。
 
 我们有两种创建方法，以及几种不同的使用方法。
 
-在  [控制结构与变量](docs/10.云原生/云原生应用管理/Helm/Helm%20Template/控制结构与变量.md) 章节中，我们介绍了声明和管理模板三个动作：define，template，和 block。在本节中，我们将介绍这三个动作，并介绍一个 include 函数，与 template 类似功能。
+在  [控制结构与变量](/docs/10.云原生/云原生应用管理/Helm/Helm%20Template/控制结构与变量.md) 章节中，我们介绍了声明和管理模板三个动作：define，template，和 block。在本节中，我们将介绍这三个动作，并介绍一个 include 函数，与 template 类似功能。
 
 在命名模板时要注意一个重要的细节：模板名称是全局的。如果声明两个具有相同名称的模板，则最后加载一个模板是起作用的模板。由于子 chart 中的模板与顶级模板一起编译，因此注意小心地使用特定 chart 的名称来命名模板。
 

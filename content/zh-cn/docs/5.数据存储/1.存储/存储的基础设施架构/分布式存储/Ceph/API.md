@@ -7,6 +7,7 @@ title: API
 # Ceph RESTful API
 
 > 参考：
+> 
 > - [官方文档，Ceph 管理器守护进程-Ceph RESTful API](https://docs.ceph.com/en/latest/mgr/ceph_api/)
 > - [GitHub，ceph/ceph/src/pybind/mgr/dashboard/openapi.yaml](https://github.com/ceph/ceph/blob/master/src/pybind/mgr/dashboard/openapi.yaml)(该 API 的 openapi 文件)
 

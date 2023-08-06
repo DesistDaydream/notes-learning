@@ -9,7 +9,7 @@ title: Cobra
 > - [官网](https://cobra.dev/)
 > - <https://zhangguanzhang.github.io/2019/06/02/cobra/>
 
-Cobra 是一个 [Go](docs/2.编程/高级编程语言/Go/Go.md)  语言的库，其提供简单的接口来创建强大现代的 CLI 接口，类似于 git 或者 go 工具。同时，它也是一个应用，用来生成个人应用框架，从而开发以 Cobra 为基础的应用。热门的 docker 和 k8s 源码中都使用了 Cobra
+Cobra 是一个 [Go](/docs/2.编程/高级编程语言/Go/Go.md)  语言的库，其提供简单的接口来创建强大现代的 CLI 接口，类似于 git 或者 go 工具。同时，它也是一个应用，用来生成个人应用框架，从而开发以 Cobra 为基础的应用。热门的 docker 和 k8s 源码中都使用了 Cobra
 
 Cobra 结构由三部分组成：
 
@@ -369,16 +369,16 @@ func rootRun(cmd *cobra.Command, args []string) {
 现在我们想添加一个别名
 
 ```
-cli  
-|----app  
+cli
+|----app
 |----remove|rm
 ```
 
 我们修改下初始化值即可
 
 ```go
-var removeCmd = &cobra.Command{  
-	Use:   "remove",  
+var removeCmd = &cobra.Command{
+	Use:   "remove",
     Aliases: []string{"rm"},
 ```
 
@@ -387,77 +387,77 @@ var removeCmd = &cobra.Command{
 我们修改下 remove 的 Run 为下面
 
 ```go
-Run: func(cmd *cobra.Command, args []string) {  
-           if len(args) == 0 {  
-              cmd.Help()  
-              return  
-           }  
+Run: func(cmd *cobra.Command, args []string) {
+           if len(args) == 0 {
+              cmd.Help()
+              return
+           }
 },
 ```
 
 运行输出里 example 是空的
 
 ```go
-[root@k8s-m1 cli]# go run main.go app remove   
-A longer description that spans multiple lines and likely contains examples  
-and usage of using your command. For example:  
-  
-Cobra is a CLI library for Go that empowers applications.  
-This application is a tool to generate the needed files  
-to quickly create a Cobra application.  
-  
-Usage:  
-  cli app remove [flags]  
-  
-Aliases:  
-  remove, rm  
-  
-Flags:  
-  -h, --help          help for remove  
-  -n, --name string   The application to be executed  
-  
-Global Flags:  
+[root@k8s-m1 cli]# go run main.go app remove
+A longer description that spans multiple lines and likely contains examples
+and usage of using your command. For example:
+
+Cobra is a CLI library for Go that empowers applications.
+This application is a tool to generate the needed files
+to quickly create a Cobra application.
+
+Usage:
+  cli app remove [flags]
+
+Aliases:
+  remove, rm
+
+Flags:
+  -h, --help          help for remove
+  -n, --name string   The application to be executed
+
+Global Flags:
       --config string   config file (default is $HOME/.cli.yaml)
 ```
 
 添加 example
 
 ```go
-var removeCmd = &cobra.Command{  
-	Use:   "remove",  
-        Aliases: []string{"rm"},  
-        Example: `  
-cli remove -n test  
-cli remove --name test  
+var removeCmd = &cobra.Command{
+	Use:   "remove",
+        Aliases: []string{"rm"},
+        Example: `
+cli remove -n test
+cli remove --name test
 `,
 ```
 
 ```go
-go run main.go app remove   
-A longer description that spans multiple lines and likely contains examples  
-and usage of using your command. For example:  
-  
-Cobra is a CLI library for Go that empowers applications.  
-This application is a tool to generate the needed files  
-to quickly create a Cobra application.  
-  
-Usage:  
-  cli app remove [flags]  
-  
-Aliases:  
-  remove, rm  
-  
-Examples:  
-  
-cli remove -n test  
-cli remove --name test  
-  
-  
-Flags:  
-  -h, --help          help for remove  
-  -n, --name string   The application to be executed  
-  
-Global Flags:  
+go run main.go app remove
+A longer description that spans multiple lines and likely contains examples
+and usage of using your command. For example:
+
+Cobra is a CLI library for Go that empowers applications.
+This application is a tool to generate the needed files
+to quickly create a Cobra application.
+
+Usage:
+  cli app remove [flags]
+
+Aliases:
+  remove, rm
+
+Examples:
+
+cli remove -n test
+cli remove --name test
+
+
+Flags:
+  -h, --help          help for remove
+  -n, --name string   The application to be executed
+
+Global Flags:
       --config string   config file (default is $HOME/.cli.yaml)
 ```
 
@@ -476,14 +476,14 @@ Global Flags:
 - 自己写的话传入符合类型定义的函数即可
 
 ```go
-  Args: func(cmd *cobra.Command, args []string) error {  
-  if len(args) < 1 {  
-    return errors.New("requires at least one arg")  
-  }  
-  if myapp.IsValidColor(args[0]) {  
-    return nil  
-  }  
-  return fmt.Errorf("invalid color specified: %s", args[0])  
+  Args: func(cmd *cobra.Command, args []string) error {
+  if len(args) < 1 {
+    return errors.New("requires at least one arg")
+  }
+  if myapp.IsValidColor(args[0]) {
+    return nil
+  }
+  return fmt.Errorf("invalid color specified: %s", args[0])
 },
 ```
 

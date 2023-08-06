@@ -5,7 +5,8 @@ title: Target(目标) 与 Relabeling(重新标记)
 # 概述
 
 > 参考：
-> - [官方文档,配置-配置](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config)
+> 
+> - [官方文档，配置-配置](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config)
 > - [简书大佬](https://www.jianshu.com/p/c21d399c140a)
 
 **Targets(目标)** 是 Prometheus 核心概念的其中之一，Targets 是**一组 Label(标签) 的集合。**
@@ -27,7 +28,7 @@ title: Target(目标) 与 Relabeling(重新标记)
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iyi5xg/1616045780732-4d75ae11-3fe5-4eb3-9866-ec9e55506a49.png)
 
-从 Prometheus [Data Model(数据模型)](docs/6.可观测性/监控系统/Prometheus/Storage(存储)/Data%20Model(数据模型).md) 中，可以知道 Label 的作用就是用来标识一条唯一的时间序列。那么 Prometheus 为什么会分为 Discovered Labels 和 Target Labels 呢？
+从 Prometheus [Data Model(数据模型)](/docs/6.可观测性/监控系统/Prometheus/Storage(存储)/Data%20Model(数据模型).md) 中，可以知道 Label 的作用就是用来标识一条唯一的时间序列。那么 Prometheus 为什么会分为 Discovered Labels 和 Target Labels 呢？
 
 - 因为，如果只有一套 Labels，那么 Prometheus 在采集目标时所使用的 Labels 就需要完完整整全部附加到已采集的指标上。当我们不想将所有标签都写入数据库，或者想改变某些标签的时候，这一套标签就已经不够用了。
 - 既然出现了两套标签，也就需要一个两套标签之间的转换功能，而这就是 **Relabeling(重新标记)** 机制。
@@ -99,7 +100,7 @@ title: Target(目标) 与 Relabeling(重新标记)
 Discovered Labels 中的 **系统标签**会告诉 Prometheus Server 如何从 Target 中获取时间序列数据(e.g.使用什么协议、从哪个 IP 上的主机哪个路径获取、等等类似的信息)。比如 `__address__`、`__metrics_path__`、`__scheme__` 这三个标签就表明，Prometheus 采集目标为 http://localhost:9090/metrics。相当于执行了 curl -XGET http://localhost:9090/metrics 这个命令。如果还有 __param_XX 标签，则该标签的值，就是这次请求 URL 中的参数部分
 
 > 默认情况下，Prometheus 会将 `__address__` 标签重新标记为 instance 标签，job 标签原封不同。如果想要其他的 Target Labels，则需要使用配置文件中的 relabel 以及 labels 字段来定义了。
-> 
+>
 > 如果重新标记步骤仅需要临时存储标签值（作为后续重新标记步骤的输入），请使用\_\_tmp 标签名称前缀。保证该前缀不会被 Prometheus 自己使用。
 
 <font color="#ff0000">注意，被发现的所有标签中，标签名中的 `-`、`.`、`/` 等等特殊符号，都会转换成 `_` 符号。</font>
@@ -112,7 +113,7 @@ Discovered Labels 中的 **系统标签**会告诉 Prometheus Server 如何从 T
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iyi5xg/1616049623207-f0fb653e-75ef-4e86-8c15-21bcb2292f02.png)
 
 > 像 static_configs 这种直接指定抓取目标的配置，只会发现最基本的 **address**、**schem** 等标签。
-> 
+>
 > 这些各种服务发现配置发现标签就是用来描述目标属性的，然后可以通过 Relabeling 机制，将这些发现的标签保留下来，以便使用 PromQL 查询时，可以有更多的过滤选项。
 
 ## Target Labels(目标标签)
@@ -126,11 +127,11 @@ Target Labels 中的所有标签都是 Relabeling 之后的标签。Target Label
 
 # Relabeling 配置
 
-在 [Prometheus Server 配置](docs/6.可观测性/监控系统/Prometheus/Server%20配置.md)中，Relabeling 行为的配置通常写在在 **relabel_configs** 和 **metrics_relabel_configs** 字段下。在很多地方都可以编写 **relabel_configs** 字段下的内容，以便为各种数据实现 relabel 功能
+在 [Prometheus Server 配置](/docs/6.可观测性/监控系统/Prometheus/Server%20配置.md)中，Relabeling 行为的配置通常写在在 **relabel_configs** 和 **metrics_relabel_configs** 字段下。在很多地方都可以编写 **relabel_configs** 字段下的内容，以便为各种数据实现 relabel 功能
 
 - `scrape_config.relabel_configs` 字段中 # Prometheus Relabeling 功能体现最主要的地方
 - `alert_relabel_configs` 字段中 # 用于为告警内容实现 Relabeling 功能
-- 等等等等，有很多地方都可以配置 Relabeling，还包括 Loki 日志套件中 [Promtail](docs/6.可观测性/日志系统/Log%20Clients/Promtail/Promtail.md) 程序，也可以对日志流执行同样效果的 Relabeling 功能。因为 Relabeling 功能是 Prometheus 设计哲学 “**标签即一切**” 的必备功能
+- 等等等等，有很多地方都可以配置 Relabeling，还包括 Loki 日志套件中 [Promtail](/docs/6.可观测性/日志系统/Log%20Clients/Promtail/Promtail.md) 程序，也可以对日志流执行同样效果的 Relabeling 功能。因为 Relabeling 功能是 Prometheus 设计哲学 “**标签即一切**” 的必备功能
 
 注意：
 

@@ -30,12 +30,12 @@ Note：其实 libvirtd 在绝大部分情况下是与 qemu/kvm 相搭配来使�
 
 libvirt 支持不同的虚拟化类型，所以需要一种方法来指定所要连接的虚拟化驱动。
 
-libvirt 使用 URI 来与各种类型的虚拟化程序连接。[Libvirt 对接 Hypervisor](docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt%20对接%20Hypervisor.md)
+libvirt 使用 URI 来与各种类型的虚拟化程序连接。[Libvirt 对接 Hypervisor](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt%20对接%20Hypervisor.md)
 
 ## Libvirt 支持的虚拟化平台版本
 
 > 参考：
-> 
+>
 > - [官方文档，支持的主机平台](https://libvirt.org/platforms.html)
 
 这些平台用作决定 libvirt 所依赖的第 3 方软件所需的最低版本的基础。如果此处未列出平台，并不意味着 libvirt 无法工作。如果未列出的平台具有与已列出的平台相当的软件版本，则完全可以期望它能够正常工作。对于在未列出的平台上遇到的问题，欢迎报告错误，除非它们明显比此处描述的版本更旧。
@@ -61,7 +61,7 @@ libvirt 使用 URI 来与各种类型的虚拟化程序连接。[Libvirt 对接 
 - **./images/** # 所有通过 libvirt 创建的虚拟机所生成的 images 都保存在该目录下
 - **./qemu/snapshot/** # 创建快照 xml 文件都保存在该目录下
 
-**/run/libvirt/** # 
+**/run/libvirt/** #
 
 # XML 文件
 

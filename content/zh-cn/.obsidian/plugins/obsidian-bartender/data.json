@@ -69,18 +69,18 @@
       "docs/1.操作系统/_index.md",
       "docs/1.操作系统/0.操作系统",
       "docs/1.操作系统/1.Bootloader",
-      "docs/1.操作系统/2.Kernel(内核)",
+      "docs/1.操作系统/2.Kernel",
       "docs/1.操作系统/3.Systemd 系统守护程序",
       "docs/1.操作系统/4.Terminal 与 Shell",
       "docs/1.操作系统/5.登录 Linux 与 访问控制",
       "docs/1.操作系统/6.Package 管理",
       "docs/1.操作系统/7.时间管理",
-      "docs/1.操作系统/公众号,码农的荒岛求生-操作系统话题系列文章",
       "docs/1.操作系统/系统审计",
       "docs/1.操作系统/Linux 源码解析",
       "docs/1.操作系统/X.Linux 管理",
       "docs/1.操作系统/Y.Windows 管理",
-      "docs/1.操作系统/安装操作系统"
+      "docs/1.操作系统/安装操作系统",
+      "docs/1.操作系统/图形管理"
     ],
     "docs/1.操作系统/0.操作系统": [
       "docs/1.操作系统/0.操作系统/_index.md",
@@ -99,191 +99,191 @@
       "docs/1.操作系统/0.操作系统/类 Unix 操作系统/Android 操作系统.md",
       "docs/1.操作系统/0.操作系统/类 Unix 操作系统/系统启动流程.md"
     ],
-    "docs/1.操作系统/2.Kernel(内核)": [
-      "docs/1.操作系统/2.Kernel(内核)/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/Kernel(内核).md",
-      "docs/1.操作系统/2.Kernel(内核)/1.Linux Kernel",
-      "docs/1.操作系统/2.Kernel(内核)/3.System Call",
-      "docs/1.操作系统/2.Kernel(内核)/4.CPU 管理",
-      "docs/1.操作系统/2.Kernel(内核)/5.Memory 管理",
-      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理",
-      "docs/1.操作系统/2.Kernel(内核)/7.Process 管理",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理",
-      "docs/1.操作系统/2.Kernel(内核)/微内核",
-      "docs/1.操作系统/2.Kernel(内核)/BPF"
+    "docs/1.操作系统/2.Kernel": [
+      "docs/1.操作系统/2.Kernel/_index.md",
+      "docs/1.操作系统/2.Kernel/Kernel.md",
+      "docs/1.操作系统/2.Kernel/1.Linux Kernel",
+      "docs/1.操作系统/2.Kernel/3.System Call",
+      "docs/1.操作系统/2.Kernel/4.CPU 管理",
+      "docs/1.操作系统/2.Kernel/5.Memory 管理",
+      "docs/1.操作系统/2.Kernel/6.File System 管理",
+      "docs/1.操作系统/2.Kernel/7.Process 管理",
+      "docs/1.操作系统/2.Kernel/8.Network 管理",
+      "docs/1.操作系统/2.Kernel/微内核",
+      "docs/1.操作系统/2.Kernel/BPF"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/1.Linux Kernel": [
-      "docs/1.操作系统/2.Kernel(内核)/1.Linux Kernel/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/1.Linux Kernel/1.Linux Kernel.md",
-      "docs/1.操作系统/2.Kernel(内核)/1.Linux Kernel/Boot Configuration.md",
-      "docs/1.操作系统/2.Kernel(内核)/1.Linux Kernel/Kernel 的安装与卸载.md",
-      "docs/1.操作系统/2.Kernel(内核)/1.Linux Kernel/Kernel 参数",
-      "docs/1.操作系统/2.Kernel(内核)/1.Linux Kernel/Module(模块).md",
-      "docs/1.操作系统/2.Kernel(内核)/1.Linux Kernel/硬核致敬Linux ！30岁生日快乐！.md"
+    "docs/1.操作系统/2.Kernel/1.Linux Kernel": [
+      "docs/1.操作系统/2.Kernel/1.Linux Kernel/_index.md",
+      "docs/1.操作系统/2.Kernel/1.Linux Kernel/1.Linux Kernel.md",
+      "docs/1.操作系统/2.Kernel/1.Linux Kernel/Boot Configuration.md",
+      "docs/1.操作系统/2.Kernel/1.Linux Kernel/Kernel 的安装与卸载.md",
+      "docs/1.操作系统/2.Kernel/1.Linux Kernel/Kernel 参数",
+      "docs/1.操作系统/2.Kernel/1.Linux Kernel/Module(模块).md",
+      "docs/1.操作系统/2.Kernel/1.Linux Kernel/硬核致敬Linux ！30岁生日快乐！.md"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/1.Linux Kernel/Kernel 参数": [
-      "docs/1.操作系统/2.Kernel(内核)/1.Linux Kernel/Kernel 参数/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/1.Linux Kernel/Kernel 参数/Kernel 参数.md",
-      "docs/1.操作系统/2.Kernel(内核)/1.Linux Kernel/Kernel 参数/fs(文件系统相关参数).md",
-      "docs/1.操作系统/2.Kernel(内核)/1.Linux Kernel/Kernel 参数/net(网络相关参数)",
-      "docs/1.操作系统/2.Kernel(内核)/1.Linux Kernel/Kernel 参数/vm(内存相关参数).md",
-      "docs/1.操作系统/2.Kernel(内核)/1.Linux Kernel/Kernel 参数/应用实例.md"
+    "docs/1.操作系统/2.Kernel/1.Linux Kernel/Kernel 参数": [
+      "docs/1.操作系统/2.Kernel/1.Linux Kernel/Kernel 参数/_index.md",
+      "docs/1.操作系统/2.Kernel/1.Linux Kernel/Kernel 参数/Kernel 参数.md",
+      "docs/1.操作系统/2.Kernel/1.Linux Kernel/Kernel 参数/fs(文件系统相关参数).md",
+      "docs/1.操作系统/2.Kernel/1.Linux Kernel/Kernel 参数/net(网络相关参数)",
+      "docs/1.操作系统/2.Kernel/1.Linux Kernel/Kernel 参数/vm(内存相关参数).md",
+      "docs/1.操作系统/2.Kernel/1.Linux Kernel/Kernel 参数/应用实例.md"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/3.System Call": [
-      "docs/1.操作系统/2.Kernel(内核)/3.System Call/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/3.System Call/System Call.md",
-      "docs/1.操作系统/2.Kernel(内核)/3.System Call/System Call 类别.md",
-      "docs/1.操作系统/2.Kernel(内核)/3.System Call/常见 Syscalls.md"
+    "docs/1.操作系统/2.Kernel/3.System Call": [
+      "docs/1.操作系统/2.Kernel/3.System Call/_index.md",
+      "docs/1.操作系统/2.Kernel/3.System Call/System Call.md",
+      "docs/1.操作系统/2.Kernel/3.System Call/System Call 类别.md",
+      "docs/1.操作系统/2.Kernel/3.System Call/常见 Syscalls.md"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/4.CPU 管理": [
-      "docs/1.操作系统/2.Kernel(内核)/4.CPU 管理/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/4.CPU 管理/CPU 管理.md",
-      "docs/1.操作系统/2.Kernel(内核)/4.CPU 管理/调度算法.md",
-      "docs/1.操作系统/2.Kernel(内核)/4.CPU 管理/读写数据的方式.md",
-      "docs/1.操作系统/2.Kernel(内核)/4.CPU 管理/Context Switch(上下文切换).md",
-      "docs/1.操作系统/2.Kernel(内核)/4.CPU 管理/Interrupts(中断)",
-      "docs/1.操作系统/2.Kernel(内核)/4.CPU 管理/10.1.CPU 执行程序的秘密，藏在了这 15 张图里.md",
-      "docs/1.操作系统/2.Kernel(内核)/4.CPU 管理/10.2.知道硬盘很慢，但没想到比 CPU Cache 慢 10000000 倍.md",
-      "docs/1.操作系统/2.Kernel(内核)/4.CPU 管理/10.3.如何写出让 CPU 跑得更快的代码？.md",
-      "docs/1.操作系统/2.Kernel(内核)/4.CPU 管理/10.4.CPU 缓存一致性.md",
-      "docs/1.操作系统/2.Kernel(内核)/4.CPU 管理/CPU 空闲时在干嘛？.md",
-      "docs/1.操作系统/2.Kernel(内核)/4.CPU 管理/Load Average 平均负载简述.md"
+    "docs/1.操作系统/2.Kernel/4.CPU 管理": [
+      "docs/1.操作系统/2.Kernel/4.CPU 管理/_index.md",
+      "docs/1.操作系统/2.Kernel/4.CPU 管理/CPU 管理.md",
+      "docs/1.操作系统/2.Kernel/4.CPU 管理/调度算法.md",
+      "docs/1.操作系统/2.Kernel/4.CPU 管理/读写数据的方式.md",
+      "docs/1.操作系统/2.Kernel/4.CPU 管理/Context Switch(上下文切换).md",
+      "docs/1.操作系统/2.Kernel/4.CPU 管理/Interrupts(中断)",
+      "docs/1.操作系统/2.Kernel/4.CPU 管理/10.1.CPU 执行程序的秘密，藏在了这 15 张图里.md",
+      "docs/1.操作系统/2.Kernel/4.CPU 管理/10.2.知道硬盘很慢，但没想到比 CPU Cache 慢 10000000 倍.md",
+      "docs/1.操作系统/2.Kernel/4.CPU 管理/10.3.如何写出让 CPU 跑得更快的代码？.md",
+      "docs/1.操作系统/2.Kernel/4.CPU 管理/10.4.CPU 缓存一致性.md",
+      "docs/1.操作系统/2.Kernel/4.CPU 管理/CPU 空闲时在干嘛？.md",
+      "docs/1.操作系统/2.Kernel/4.CPU 管理/Load Average 平均负载简述.md"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/5.Memory 管理": [
-      "docs/1.操作系统/2.Kernel(内核)/5.Memory 管理/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/5.Memory 管理/5.Memory 管理.md",
-      "docs/1.操作系统/2.Kernel(内核)/5.Memory 管理/Memory 的分配机制.md",
-      "docs/1.操作系统/2.Kernel(内核)/5.Memory 管理/Memory 的缓存机制.md",
-      "docs/1.操作系统/2.Kernel(内核)/5.Memory 管理/Memroy 的 Over Commit 与 OOM.md",
-      "docs/1.操作系统/2.Kernel(内核)/5.Memory 管理/堆区 与 栈区.md",
-      "docs/1.操作系统/2.Kernel(内核)/5.Memory 管理/分享Linux内存占用几个案例.md",
-      "docs/1.操作系统/2.Kernel(内核)/5.Memory 管理/mmap可以让程序员解锁哪些骚操作？.md"
+    "docs/1.操作系统/2.Kernel/5.Memory 管理": [
+      "docs/1.操作系统/2.Kernel/5.Memory 管理/_index.md",
+      "docs/1.操作系统/2.Kernel/5.Memory 管理/5.Memory 管理.md",
+      "docs/1.操作系统/2.Kernel/5.Memory 管理/Memory 的分配机制.md",
+      "docs/1.操作系统/2.Kernel/5.Memory 管理/Memory 的缓存机制.md",
+      "docs/1.操作系统/2.Kernel/5.Memory 管理/Memroy 的 Over Commit 与 OOM.md",
+      "docs/1.操作系统/2.Kernel/5.Memory 管理/堆区 与 栈区.md",
+      "docs/1.操作系统/2.Kernel/5.Memory 管理/分享Linux内存占用几个案例.md",
+      "docs/1.操作系统/2.Kernel/5.Memory 管理/mmap可以让程序员解锁哪些骚操作？.md"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/6.File System 管理": [
-      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/6.File System 管理.md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/Mount(挂载).md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/FHS(文件系统层次标准).md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/磁盘文件系统",
-      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/特殊文件系统",
-      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/文件管理",
-      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/零拷贝.md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/读取文件时，程序经历了什么？.md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/I_O Multiplexing(输入_输出多路复用)"
+    "docs/1.操作系统/2.Kernel/6.File System 管理": [
+      "docs/1.操作系统/2.Kernel/6.File System 管理/_index.md",
+      "docs/1.操作系统/2.Kernel/6.File System 管理/6.File System 管理.md",
+      "docs/1.操作系统/2.Kernel/6.File System 管理/Mount(挂载).md",
+      "docs/1.操作系统/2.Kernel/6.File System 管理/FHS(文件系统层次标准).md",
+      "docs/1.操作系统/2.Kernel/6.File System 管理/磁盘文件系统",
+      "docs/1.操作系统/2.Kernel/6.File System 管理/特殊文件系统",
+      "docs/1.操作系统/2.Kernel/6.File System 管理/文件管理",
+      "docs/1.操作系统/2.Kernel/6.File System 管理/零拷贝.md",
+      "docs/1.操作系统/2.Kernel/6.File System 管理/读取文件时，程序经历了什么？.md",
+      "docs/1.操作系统/2.Kernel/6.File System 管理/I_O Multiplexing(输入_输出多路复用)"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/文件管理": [
-      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/文件管理/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/文件管理/文件管理.md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/文件管理/Inode.md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/文件管理/File Descriptor(文件描述符).md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/文件管理/Archive File(归档文件).md"
+    "docs/1.操作系统/2.Kernel/6.File System 管理/文件管理": [
+      "docs/1.操作系统/2.Kernel/6.File System 管理/文件管理/_index.md",
+      "docs/1.操作系统/2.Kernel/6.File System 管理/文件管理/文件管理.md",
+      "docs/1.操作系统/2.Kernel/6.File System 管理/文件管理/Inode.md",
+      "docs/1.操作系统/2.Kernel/6.File System 管理/文件管理/File Descriptor(文件描述符).md",
+      "docs/1.操作系统/2.Kernel/6.File System 管理/文件管理/Archive File(归档文件).md"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/磁盘文件系统": [
-      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/磁盘文件系统/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/磁盘文件系统/Journaling File System.md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/磁盘文件系统/EXT FileSystem.md",
-      "docs/1.操作系统/2.Kernel(内核)/6.File System 管理/磁盘文件系统/XFS.md"
+    "docs/1.操作系统/2.Kernel/6.File System 管理/磁盘文件系统": [
+      "docs/1.操作系统/2.Kernel/6.File System 管理/磁盘文件系统/_index.md",
+      "docs/1.操作系统/2.Kernel/6.File System 管理/磁盘文件系统/Journaling File System.md",
+      "docs/1.操作系统/2.Kernel/6.File System 管理/磁盘文件系统/EXT FileSystem.md",
+      "docs/1.操作系统/2.Kernel/6.File System 管理/磁盘文件系统/XFS.md"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/7.Process 管理": [
-      "docs/1.操作系统/2.Kernel(内核)/7.Process 管理/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/7.Process 管理/Process 管理.md",
-      "docs/1.操作系统/2.Kernel(内核)/7.Process 管理/进程、线程、线程池.md",
-      "docs/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)",
-      "docs/1.操作系统/2.Kernel(内核)/7.Process 管理/D-Bus.md",
-      "docs/1.操作系统/2.Kernel(内核)/7.Process 管理/判断Linux进程在哪个CPU核运行的4个方法 - 嵌入式Linux中文站.md"
+    "docs/1.操作系统/2.Kernel/7.Process 管理": [
+      "docs/1.操作系统/2.Kernel/7.Process 管理/_index.md",
+      "docs/1.操作系统/2.Kernel/7.Process 管理/Process 管理.md",
+      "docs/1.操作系统/2.Kernel/7.Process 管理/进程、线程、线程池.md",
+      "docs/1.操作系统/2.Kernel/7.Process 管理/Inter Process Communication(进程间通信)",
+      "docs/1.操作系统/2.Kernel/7.Process 管理/D-Bus.md",
+      "docs/1.操作系统/2.Kernel/7.Process 管理/判断Linux进程在哪个CPU核运行的4个方法 - 嵌入式Linux中文站.md"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)": [
-      "docs/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)/Inter Process Communication(进程间通信).md",
-      "docs/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)/Socket(套接字)",
-      "docs/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)/Signal(信号).md",
-      "docs/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)/RPC"
+    "docs/1.操作系统/2.Kernel/7.Process 管理/Inter Process Communication(进程间通信)": [
+      "docs/1.操作系统/2.Kernel/7.Process 管理/Inter Process Communication(进程间通信)/_index.md",
+      "docs/1.操作系统/2.Kernel/7.Process 管理/Inter Process Communication(进程间通信)/Inter Process Communication(进程间通信).md",
+      "docs/1.操作系统/2.Kernel/7.Process 管理/Inter Process Communication(进程间通信)/Socket(套接字)",
+      "docs/1.操作系统/2.Kernel/7.Process 管理/Inter Process Communication(进程间通信)/Signal(信号).md",
+      "docs/1.操作系统/2.Kernel/7.Process 管理/Inter Process Communication(进程间通信)/RPC"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)/RPC": [
-      "docs/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)/RPC/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)/RPC/RPC.md",
-      "docs/1.操作系统/2.Kernel(内核)/7.Process 管理/Inter Process Communication(进程间通信)/RPC/gRPC.md"
+    "docs/1.操作系统/2.Kernel/7.Process 管理/Inter Process Communication(进程间通信)/RPC": [
+      "docs/1.操作系统/2.Kernel/7.Process 管理/Inter Process Communication(进程间通信)/RPC/_index.md",
+      "docs/1.操作系统/2.Kernel/7.Process 管理/Inter Process Communication(进程间通信)/RPC/RPC.md",
+      "docs/1.操作系统/2.Kernel/7.Process 管理/Inter Process Communication(进程间通信)/RPC/gRPC.md"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/8.Network 管理": [
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux DNS 管理",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/ftp 协议的实现工具，chroot说明.md"
+    "docs/1.操作系统/2.Kernel/8.Network 管理": [
+      "docs/1.操作系统/2.Kernel/8.Network 管理/_index.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux DNS 管理",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/ftp 协议的实现工具，chroot说明.md"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理": [
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Linux 网络栈管理.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Linux 网络包发送过程.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/数据包接收过程详解.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/数据包发送过程详解.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Linux 网络设备详解",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netlink",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/network-scripts.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/systemd-networkd.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netplan"
+    "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理": [
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/_index.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/Linux 网络栈管理.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/Linux 网络包发送过程.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/数据包接收过程详解.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/数据包发送过程详解.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/Linux 网络设备详解",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/Netlink",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/network-scripts.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/systemd-networkd.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/NetworkManager",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/Netplan"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netplan": [
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netplan/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netplan/Netplan.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/Netplan/Netplan 配置详解.md"
+    "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/Netplan": [
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/Netplan/_index.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/Netplan/Netplan.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/Netplan/Netplan 配置详解.md"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager": [
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager/NetworkManager.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager/NetworkManager 配置详解.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager/Connection 配置详解.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager/nmcli 命令行工具.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络栈管理/NetworkManager/nmcli connection 子命令.md"
+    "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/NetworkManager": [
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/NetworkManager/_index.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/NetworkManager/NetworkManager.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/NetworkManager/NetworkManager 配置详解.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/NetworkManager/Connection 配置详解.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/NetworkManager/nmcli 命令行工具.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络栈管理/NetworkManager/nmcli connection 子命令.md"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制": [
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Linux 网络流量控制.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Connnection Tracking(连接跟踪).md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/TC 模块"
+    "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制": [
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/_index.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Linux 网络流量控制.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Connnection Tracking(连接跟踪).md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/TC 模块"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统": [
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/Netfilter 流量控制系统.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/Connection Tracking(连接跟踪)机制.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/nftables.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)"
+    "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统": [
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/_index.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/Netfilter 流量控制系统.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/Connection Tracking(连接跟踪)机制.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/nftables.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)": [
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)/firewalld(Iptables 的管理工具).md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)/firewalld 命令行工具.md"
+    "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)": [
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)/_index.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)/firewalld(Iptables 的管理工具).md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)/firewalld 命令行工具.md"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables": [
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables/iptables.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables/iptables 命令行工具.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables/最佳实践.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables/iptables 源码解析.md"
+    "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables": [
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables/_index.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables/iptables.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables/iptables 命令行工具.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables/最佳实践.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables/iptables 源码解析.md"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)": [
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)/iptables(Netfilter 的实现).md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)/使用 iptables 对多租户环境中的 TCP 限速.md",
-      "docs/1.操作系统/2.Kernel(内核)/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)/iptables 源码解析.md"
+    "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)": [
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)/_index.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)/iptables(Netfilter 的实现).md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)/使用 iptables 对多租户环境中的 TCP 限速.md",
+      "docs/1.操作系统/2.Kernel/8.Network 管理/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)/iptables 源码解析.md"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/BPF": [
-      "docs/1.操作系统/2.Kernel(内核)/BPF/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/BPF/BPF.md",
-      "docs/1.操作系统/2.Kernel(内核)/BPF/eBPF.md",
-      "docs/1.操作系统/2.Kernel(内核)/BPF/BPF 流量控制机制"
+    "docs/1.操作系统/2.Kernel/BPF": [
+      "docs/1.操作系统/2.Kernel/BPF/_index.md",
+      "docs/1.操作系统/2.Kernel/BPF/BPF.md",
+      "docs/1.操作系统/2.Kernel/BPF/eBPF.md",
+      "docs/1.操作系统/2.Kernel/BPF/BPF 流量控制机制"
     ],
-    "docs/1.操作系统/2.Kernel(内核)/BPF/BPF 流量控制机制": [
-      "docs/1.操作系统/2.Kernel(内核)/BPF/BPF 流量控制机制/_index.md",
-      "docs/1.操作系统/2.Kernel(内核)/BPF/BPF 流量控制机制/BPF 流量控制机制.md",
-      "docs/1.操作系统/2.Kernel(内核)/BPF/BPF 流量控制机制/【BPF网络篇系列-2】容器网络延时之 ipvs 定时器篇 _ 深入浅出 eBPF.md",
-      "docs/1.操作系统/2.Kernel(内核)/BPF/BPF 流量控制机制/10.2.深入理解 Cilium 的 eBPF 收发包路径.md",
-      "docs/1.操作系统/2.Kernel(内核)/BPF/BPF 流量控制机制/BPF 相关文章.md",
-      "docs/1.操作系统/2.Kernel(内核)/BPF/BPF 流量控制机制/BPF 在网络领域的实现.md",
-      "docs/1.操作系统/2.Kernel(内核)/BPF/BPF 流量控制机制/XDP eBPF 与 TC eBPF.md"
+    "docs/1.操作系统/2.Kernel/BPF/BPF 流量控制机制": [
+      "docs/1.操作系统/2.Kernel/BPF/BPF 流量控制机制/_index.md",
+      "docs/1.操作系统/2.Kernel/BPF/BPF 流量控制机制/BPF 流量控制机制.md",
+      "docs/1.操作系统/2.Kernel/BPF/BPF 流量控制机制/【BPF网络篇系列-2】容器网络延时之 ipvs 定时器篇 _ 深入浅出 eBPF.md",
+      "docs/1.操作系统/2.Kernel/BPF/BPF 流量控制机制/10.2.深入理解 Cilium 的 eBPF 收发包路径.md",
+      "docs/1.操作系统/2.Kernel/BPF/BPF 流量控制机制/BPF 相关文章.md",
+      "docs/1.操作系统/2.Kernel/BPF/BPF 流量控制机制/BPF 在网络领域的实现.md",
+      "docs/1.操作系统/2.Kernel/BPF/BPF 流量控制机制/XDP eBPF 与 TC eBPF.md"
     ],
     "docs/1.操作系统/3.Systemd 系统守护程序/Unit File": [
       "docs/1.操作系统/3.Systemd 系统守护程序/Unit File/_index.md",

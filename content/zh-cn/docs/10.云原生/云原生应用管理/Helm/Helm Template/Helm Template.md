@@ -5,7 +5,7 @@ title: Helm Template
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，Chart 模板指南](https://helm.sh/docs/chart_template_guide/)
 
 Helm 的 [Template(模板)](https://helm.sh/docs/chart_template_guide/getting_started/) 可以生成 manifests 文件，这些文件是 kuberntes 用于描述资源的 yaml 。
@@ -16,7 +16,7 @@ helm 作为 kuberntes 的包管理器，用来在 k8s 集群中安装应用程�
 
 既然有这样的需求，那么为了让一个应用程序可以自定义，template 就应运而生。template 就是可以将这些 yaml 文件中的 value 变成一种变量的形式，然后通过其他方式(helm 命令行 --set 标志或者 value.yaml 文件等)来对这些变量进行赋值，来实现应用程序自定义的效果。
 
-helm templete 使用 Go 语言的 [Template](docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Template.md) 来实现。而 go template 具有丰富的功能，除了可以普通赋值以外，还可以使用控制结构(比如 if...else、range 等)来将赋值的过程更具体和多次赋值。
+helm templete 使用 Go 语言的 [Template](/docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Template.md) 来实现。而 go template 具有丰富的功能，除了可以普通赋值以外，还可以使用控制结构(比如 if...else、range 等)来将赋值的过程更具体和多次赋值。
 
 注意：
 当我们谈论“ Helm 模板语言”时，就好像它是特定于 Helm 一样，但它实际上是 Go 模板语言，一些额外功能以及各种包装程序的组合，以将某些对象暴露给模板。当您了解模板时，Go 模板上的许多资源可能会有所帮助。
@@ -45,13 +45,13 @@ Note：如果想要测试模板渲染的效果，可以使用 helm install --deb
 
 在上面的 [hello world](https://helm.sh/docs/chart_template_guide/getting_started/) 示例中，从顶层对象开始，找到 Release 对象，在 Release 对象中找到 Name 对象，并将 Name 对象的值传递进模板里。（这种写法特别像 DNS 中的写法，通过点 . 来区分域名的级别，在 helm 模板中也有类似的概念，通过点 . 来区分对象之间级别，上级对象包含其内所有的下级对象）
 
-官方对于 `.` 这个符号称之为 **scope(范围)**，比如下图，圆形就代表了一个范围，最外层就是一个 `.` 符号。一个 . 范围的内置对象有 Values、Release 等等，而 **.Values 范围**下还有各种 **.Values.XXX 范围**，直到范围内的对象下没有新的范围。**scope(范围)** 常用来约束或指定模板指令的作用范围，或作为参数传递给函数来告知函数其可操作的范围有多大。比如 [Named Templates(命名模板)](docs/10.云原生/云原生应用管理/Helm/Helm%20Template/Named%20Templates(命名模板).md) 中，就将范围作为参数传递给 template，告知 Named Templates 内引用对象时使用的范围是多大。
+官方对于 `.` 这个符号称之为 **scope(范围)**，比如下图，圆形就代表了一个范围，最外层就是一个 `.` 符号。一个 . 范围的内置对象有 Values、Release 等等，而 **.Values 范围**下还有各种 **.Values.XXX 范围**，直到范围内的对象下没有新的范围。**scope(范围)** 常用来约束或指定模板指令的作用范围，或作为参数传递给函数来告知函数其可操作的范围有多大。比如 [Named Templates(命名模板)](/docs/10.云原生/云原生应用管理/Helm/Helm%20Template/Named%20Templates(命名模板).md) 中，就将范围作为参数传递给 template，告知 Named Templates 内引用对象时使用的范围是多大。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/nladcy/1617243339047-b1ddaebb-7a5d-41b2-a83e-5f6e9c1c52f0.png)
 
 可以这么说，这个 `.` 符号有两重含义：1、限定范围。2、引用。
 
-这个 scope(范围) 还可以这么理解。通过 helm 的控制结构语句 range 可以以另一种方式来理解 {{ . }} 的行为，详见：[控制结构与变量](docs/10.云原生/云原生应用管理/Helm/Helm%20Template/控制结构与变量.md) 章节中的 《通过 range 来梳理 . 范围内的对象》段落来加深理解
+这个 scope(范围) 还可以这么理解。通过 helm 的控制结构语句 range 可以以另一种方式来理解 {{ . }} 的行为，详见：[控制结构与变量](/docs/10.云原生/云原生应用管理/Helm/Helm%20Template/控制结构与变量.md) 章节中的 《通过 range 来梳理 . 范围内的对象》段落来加深理解
 
 实际上，说了这么多概念，其实 `.` 符号就是代表一个值。这个值可以是一个单独的字符串出或者数字、也可以是一个 map 或者 array。
 

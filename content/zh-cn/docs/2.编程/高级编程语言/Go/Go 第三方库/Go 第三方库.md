@@ -6,11 +6,13 @@ title: Go 第三方库
 
 > 参考：
 
+第三方库一般属于由个人开发，实现更多丰富功能的库。在 [Go.dev ](https://pkg.go.dev/)可以搜索自己想要使用的所有库。
 # 日志
 
 ## logrus
 
 > 参考：
+> 
 > - [GitHub 项目，sirupsen/logrus](https://github.com/sirupsen/logrus)
 > - <https://pkg.go.dev/github.com/sirupsen/logrus>
 

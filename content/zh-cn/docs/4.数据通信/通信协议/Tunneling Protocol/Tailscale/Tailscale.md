@@ -5,7 +5,7 @@ title: Tailscale
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，tailscale/tailscale](https://github.com/tailscale/tailscale)
 > - [官网](https://tailscale.com/)
 > - [公众号，云原声实验室-Tailscal 开源版本让你的 WireGuard 直接起飞](https://mp.weixin.qq.com/s/Y3z5RzuapZc8jS0UuHLhBw)
@@ -43,4 +43,4 @@ Tailscale 是一款商业产品，但个人用户是可以白嫖的，个人用�
 
 对于大部份用户来说，白嫖 Tailscale 已经足够了，如果你有更高的需求，比如自定义网段，可以选择付费。
 
-**我就不想付费行不行？行，不过得看 [Headscale](docs/4.数据通信/通信协议/Tunneling%20Protocol/Tailscale/Headscale.md)。**
+**我就不想付费行不行？行，不过得看 [Headscale](/docs/4.数据通信/通信协议/Tunneling%20Protocol/Tailscale/Headscale.md)。**

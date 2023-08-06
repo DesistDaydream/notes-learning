@@ -8,10 +8,10 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [Manual(手册)，systemd.exec(5)](https://man7.org/linux/man-pages/man5/systemd.exec.5.html)
 
-systemd.exec 类的指令是 [Unit File 指令中特殊部分的指令中的通用指令](docs/1.操作系统/3.Systemd%20系统守护程序/Unit%20File/Unit%20File%20指令.md#通用指令) 的一种，可以配置进程执行时的环境，主要用于 service、socket、mount、swap 部分。
+systemd.exec 类的指令是 [Unit File 指令中特殊部分的指令中的通用指令](/docs/1.操作系统/3.Systemd%20系统守护程序/Unit%20File/Unit%20File%20指令.md#通用指令) 的一种，可以配置进程执行时的环境，主要用于 service、socket、mount、swap 部分。
 
 systemd.exec 包含很多很多指令，我们可以将其分为如下几大类：
 

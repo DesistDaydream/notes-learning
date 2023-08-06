@@ -207,7 +207,7 @@ Headscale 只是实现了 Tailscale 的控制台，想要接入，依然需要�
 | FreeBSD | Yes                         |
 | macOS   | Yes                         |
 | Windows | Yes 参考 Windows 客户端文档 |
-| Android | 需要自己编译客户端          | 
+| Android | 需要自己编译客户端          |
 | iOS     | 暂不支持                    |
 
 想要让 Tailscale 客户端接入 Headscale，大体分为两个部分
@@ -438,4 +438,4 @@ Route           | Enabled
 
 # 总结
 
-目前从稳定性来看，Tailscale 比 Netmaker 略胜一筹，基本上不会像 Netmaker 一样时不时出现 ping 不通的情况，这取决于 Tailscale 在用户态对 NAT 穿透所做的种种优化，他们还专门写了一篇文章介绍 NAT 穿透的原理，中文版由国内的 eBPF 大佬赵亚楠翻译：[NAT 穿透是如何工作的：技术原理及企业级实践](docs/4.数据通信/NAT/NAT%20穿透是如何工作的：技术原理及企业级实践.md)
+目前从稳定性来看，Tailscale 比 Netmaker 略胜一筹，基本上不会像 Netmaker 一样时不时出现 ping 不通的情况，这取决于 Tailscale 在用户态对 NAT 穿透所做的种种优化，他们还专门写了一篇文章介绍 NAT 穿透的原理，中文版由国内的 eBPF 大佬赵亚楠翻译：[NAT 穿透是如何工作的：技术原理及企业级实践](/docs/4.数据通信/NAT/NAT%20穿透是如何工作的：技术原理及企业级实践.md)

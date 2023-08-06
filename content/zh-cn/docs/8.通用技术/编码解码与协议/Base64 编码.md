@@ -2,8 +2,10 @@
 title: Base64 编码
 ---
 # 概述
+
 > 参考：
-> - [Wiki](https://en.wikipedia.org/wiki/Base64)
+> 
+> - [Wiki，Base64](https://en.wikipedia.org/wiki/Base64)
 
 Base64 是一组 **二进制 到 文本** 的编码方案，它是基于64个可打印的字符来表示二进制的数据的一种方法。二进制的数据中的每一个位数的内容，都可以通过字符来表示。
 

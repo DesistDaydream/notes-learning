@@ -64,7 +64,7 @@ Promtail 根据 scrape_configs 字段的内容，使用指定的发现方法从�
 
 **job_name(STRING)** # 指定抓取日志的 Job 名字
 
-**pipeline_stages(pipeline_stages)** # 定义从指定的目标抓取日志的行为。`默认值：docker{}`。详见：[Pipeline 概念](docs/6.可观测性/日志系统/Log%20Clients/Promtail/Pipeline%20概念/Pipeline%20概念.md) 与 [Stages(阶段) 详解](docs/6.可观测性/日志系统/Log%20Clients/Promtail/Pipeline%20概念/Stages(阶段)%20详解.md)
+**pipeline_stages(pipeline_stages)** # 定义从指定的目标抓取日志的行为。`默认值：docker{}`。详见：[Pipeline 概念](/docs/6.可观测性/日志系统/Log%20Clients/Promtail/Pipeline%20概念/Pipeline%20概念.md) 与 [Stages(阶段) 详解](/docs/6.可观测性/日志系统/Log%20Clients/Promtail/Pipeline%20概念/Stages(阶段)%20详解.md)
 
 **loki_push_api(loki_push_api_config)** # 定义日志推送的路径 (e.g. from other Promtails or the Docker Logging Driver)
 
@@ -269,7 +269,7 @@ https://grafana.com/docs/loki/latest/clients/promtail/configuration/#docker_sd_c
 **filters([]Object)** # 过滤器，用于过滤发现的容器。只有满足条件的容器的日志，才会被 Promtail 采集并上报。
 
 > 可用的过滤器取决于上游 Docker 的 API：<https://docs.docker.com/engine/api/v1.41/#operation/ContainerList>，在这个链接中，可以从 Available filters 部分看到，等号左边就是 name 字段，等号右边就是 values 字段。
-> 
+>
 > 这个 name 与 values 的用法就像 `docker ps` 命令中的 `--filter` 标志，这个标志所使用的过滤器，也是符合 Docker API 中的 ContainerList。
 
 - **name(STRING)** #
@@ -294,7 +294,7 @@ https://grafana.com/docs/loki/latest/clients/promtail/configuration/#docker_sd_c
 
 ### relabel_configs(Object)
 
-详见 [Label 与 Relabeling](docs/6.可观测性/日志系统/Log%20Clients/Promtail/Label%20与%20Relabeling.md)
+详见 [Label 与 Relabeling](/docs/6.可观测性/日志系统/Log%20Clients/Promtail/Label%20与%20Relabeling.md)
 
 # 配置文件示例
 
