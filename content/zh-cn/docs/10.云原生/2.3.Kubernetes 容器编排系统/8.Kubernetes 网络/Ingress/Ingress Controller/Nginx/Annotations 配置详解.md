@@ -72,3 +72,11 @@ https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annota
 **nginx.ingress.kubernetes.io/canary**(BOOLEAN) # 是否启用 Canary 功能
 
 其他功能详见 《[实现应用灰度发布](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/8.Kubernetes%20网络/Ingress/Ingress%20Controller/Nginx/实现应用灰度发布.md)》
+
+## HTTPS 强制跳转
+
+nginx.ingress.kubernetes.io/ssl-redirect # 与配置文件中的 ssl-redirect 功能相同
+
+nginx.ingress.kubernetes.io/force-ssl-redirect  # 与配置文件中的 force-ssl-redirect 功能相同
+
+nginx.ingress.kubernetes.io/preserve-trailing-slash

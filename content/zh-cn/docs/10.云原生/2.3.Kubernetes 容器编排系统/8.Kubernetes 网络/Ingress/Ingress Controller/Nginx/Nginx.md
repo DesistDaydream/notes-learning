@@ -62,15 +62,15 @@ title: Nginx
 - **ConfigMap**# 通过 `--configmap` 命令行标志指定的名称空间下的 ConfigMap 资源，仅支持一个 ConfigMap 对象。
   - Nginx Ingress Controller 会读取该 ConfigMap 对象下的内容，并与 Custom template 一起生成 Nginx 的 nginx.conf 文件
 - **Annotations**# 通过为 Ingress 对象添加 Annotations 字段下的内容来定义 Nginx Ingress Controller 的运行时行为。
-- **Custom template** # Nginx Ingress Controller 会使用模板文件生成 nginx.conf 文件。模板文件可以在 [GitHub 代码](https://github.com/kubernetes/ingress-nginx/blob/master/rootfs/etc/nginx/template/nginx.tmpl)中找到
+- **Custom template** # Nginx Ingress Controller 会使用模板文件生成 nginx.conf 文件。模板文件可以在 [GitHub 代码](https://github.com/kubernetes/ingress-nginx/blob/main/rootfs/etc/nginx/template/nginx.tmpl)中找到
+  - **/etc/nginx/template/nginx.tmpl** # Nginx 的 nginx.conf 文件的模板文件
+    - 可以在 https://github.com/kubernetes/ingress-nginx/blob/main/rootfs/etc/nginx/template/nginx.tmpl 这里找到模版文件
 
 **ConfigMap、Annotations、Custom template 都可以用来定义 nginx.conf 这个配置文件**，不同的是：
 
 - Annotations 主要用于定义每一个 Virtual Server 中的指令(比如 server{}、location{} 中的指令)
 - 而 ConfigMap 更多是定义 http{}、stream{} 这种配置环境中的指令。
 - Custom template 则是生成 ngxin.conf 的模板文件，Annotations 与 ConfigMap 中定义的内容，都会通过值传递的方式，传递到模板文件中，然后生成 ngxin.conf 文件。
-
-[**/etc/nginx/template/nginx.tmpl**](https://github.com/kubernetes/ingress-nginx/blob/main/rootfs/etc/nginx/template/nginx.tmpl) # Nginx 的 nginx.conf 文件的模板文件
 
 # Grafana 面板
 

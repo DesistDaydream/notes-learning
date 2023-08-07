@@ -51,18 +51,28 @@ http {
 
 **use-geoip2(BOOL)** # 是否启用 geoip2 模块。
 
-- 默认值：`"false"`
+- 默认值：`false`
 - 对应指令：无
 
 该配置需要与 `--maxmind-license-key` 命令好标志配合使用。这是由于 MaxMind 已经于 [2019 年 12 月对数据库进行了大改](https://blog.maxmind.com/2019/12/18/significant-changes-to-accessing-and-using-geolite2-databases/)，需要一个 License 才可以访问数据库。所以，`--maxmind-license-key` 标志就是用来指定 License Key 的，可以创建完 MaxMind 账户后，在[此页面](https://www.maxmind.com/en/accounts/545756/license-key)创建一个 License Key。
 
-启用 geoip2 模块后，会自动添加相关 geoip2 指令到 http{} 配置环境，详见 [nginx.tmpl 模板文件](https://github.com/kubernetes/ingress-nginx/blob/master/rootfs/etc/nginx/template/nginx.tmpl#L195)。
+启用 geoip2 模块后，会自动添加相关 geoip2 指令到 http{} 配置环境，详见 [nginx.tmpl 模板文件](https://github.com/kubernetes/ingress-nginx/blob/main/rootfs/etc/nginx/template/nginx.tmpl) 中的 geoip2 相关指令。
 
 **use-forwarded-headers(BOOL)** # 是否使用 `X-Forwarded-*` 请求头
 
-- 默认值：`"false"`
+- 默认值：`false`
 
 注意：
 
 - 当 Nginx Ingress Controller 处于其他 7 层代理 或 负载均衡器 后面时，应为 `true`。
 - 当 Nginx Ingress Controller 直接暴露在互联网上是，应为
+
+## SSL
+
+**ssl-redirect**(BOOLEAN) # 当具有 TLS 证书时，是否通过 301 让请求强制跳转到 HTTPS
+
+- `默认值: true`
+
+**force-ssl-redirect**(BOOLEAN) # 当具有 TLS 证书时，是否通过 308 让请求强制跳转到 HTTPS
+
+- `默认值: false`
