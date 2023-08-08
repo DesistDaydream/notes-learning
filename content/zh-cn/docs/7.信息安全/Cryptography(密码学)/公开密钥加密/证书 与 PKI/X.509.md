@@ -22,7 +22,9 @@ X.509 是[密码学](https://www.yuque.com/go/doc/33178368)里定义公钥证书
 当然，全世界并不是只有 X.509 这一种格式，SSH 和 PGP 都有其各自的格式。
 
 X.509 在 1988 年作为 ITU(国际电信联盟) X.500 项目的一部分首次标准化。 这是 telecom(通信) 领域的标准，想通过它构建一个 global telephone book(全球电话簿)。 虽然这个项目没有成功，但却留下了一些遗产，X.509 就是其中之一。如果查看 X.509 的证书，会看到其中包含了 locality、state、country 等信息， 之前可能会有疑问为什么为 web 设计的证书会有这些东西，现在应该明白了，因为 X.509 并不是为 web 设计的。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/puor14/1635944301557-e8774c02-d1c8-4e0f-9f7a-a2c3a7180ce0.png)
+
 图片补充：可以说 Subject 其实就是符合 [Distinguished Name(专有名称，简称 DN)](https://en.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol#Directory_structure) 的规范，只不过 Subject 只是包含了 DN 中的部分字段罢了。也可以说，**Subject 是符合 X.509 标准的 DN。**
 
 # X.509 证书的格式

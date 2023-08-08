@@ -1991,6 +1991,13 @@
       "docs/7.信息安全/Cryptography(密码学)/公开密钥加密/RSA/_index.md",
       "docs/7.信息安全/Cryptography(密码学)/公开密钥加密/RSA/RSA.md",
       "docs/7.信息安全/Cryptography(密码学)/公开密钥加密/RSA/RSA 密钥生成的步骤.md"
+    ],
+    "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密": [
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密/crypto 库.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密/crypto 库进阶示例1.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密/crypto 库进阶示例2.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密/第三方库.md"
     ]
   },
   "actionBarOrder": {},

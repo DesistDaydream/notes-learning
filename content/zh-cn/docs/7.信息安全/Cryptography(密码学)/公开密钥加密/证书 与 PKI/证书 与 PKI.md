@@ -111,9 +111,13 @@ CA 自身的证书，通常称为 **Root Certificate(根证书)**，根证书是
 比如在 Linux 各种发行版中上述目录中有一个名为 GlobalSign_Root_CA 的根证书，百度就是使用这个证书签名的。
 
 这是通过浏览器访问 http://www.baidu.com 获取到的证书信息
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wlyw54/1638255619893-aaa4aaf0-0b19-4aab-94c7-ea6d52c40e8b.png)
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wlyw54/1638255970307-44dc01bc-7d7d-4adb-94c7-bb7ec2ce1636.png)
+
 这是从服务器的 CA 仓库中获取的 GlobalSign_Root_CA 这个 CA 的证书信息
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wlyw54/1638255663132-94adcb92-b634-4f45-936b-8f51245f7558.png)
 
 ```bash
@@ -164,7 +168,7 @@ CAB Forum Baseline Requirements 4.3.1 明确规定：一个 Web PKI CA 的 root 
 
 ## Certificate Signing Request(证书签名请求)
 
-在 PKI 系统中，**Certificate Signing Request(证书签名请求，简称 CSR)**是申请人发送到 PKI 的注册机构，用来申请**公钥证书**的一种消息。
+在 PKI 系统中，**Certificate Signing Request(证书签名请求，简称 CSR)** 是申请人发送到 PKI 的注册机构，用来申请**公钥证书**的一种消息。
 
 CSR 最常见的格式是 [PKCS](https://en.wikipedia.org/wiki/PKCS)＃10 规范；另一个是某些[浏览器](https://en.wikipedia.org/wiki/Web_browser)生成的签名公钥和质询 [SPKAC](https://en.wikipedia.org/wiki/SPKAC) 格式。
 

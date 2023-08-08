@@ -1,19 +1,34 @@
 ---
-title: crypto 库
+title: "crypto 库"
+linkTitle: "crypto 库"
+date: "2023-08-08T23:19"
+weight: 20
 ---
 
 # 概述
 
 > 参考：
+> 
 > - [Go crypto 库](https://pkg.go.dev/crypto)
 > - [Go crypto/rsa 库](https://pkg.go.dev/crypto/rsa)
 > - [Go crypto/x509 库](https://pkg.go.dev/crypto/x509)
 > - [Go encoding/pem 库](https://pkg.go.dev/encoding/pem)
 > - [简书](https://www.jianshu.com/p/54c20cc008c5)
 
-crypto 库中主要有 rand、rsa、x509 这几个常用的子库。
+crypto 标准库中主要有 cipher、rand、aes、rsa、x509、等等用于密码学加密的子包。
 
-# RSA 库
+- cipher 包实现了标准的的 [Block cipher](docs/7.信息安全/Cryptography(密码学)/Block%20cipher.md)、[Stream cipher](docs/7.信息安全/Cryptography(密码学)/Stream%20cipher.md)，可以围绕低级分组密码实现进行包装
+- rand 包 # 顾名思义，用来生成随机数的
+- aes 包 # 实现了 [AES](docs/7.信息安全/Cryptography(密码学)/对称密钥加密/AES.md) 加密
+- rsa 包 # 实现 `PKCS #1` 和 RFC 8017中指定的 [RSA](docs/7.信息安全/Cryptography(密码学)/公开密钥加密/RSA/RSA.md) 加密
+- x509 包  # 实现了 X.509 标准的一个子集
+
+# AES包
+
+依赖 cipher 包，需要实例化一个 [Block cipher](docs/7.信息安全/Cryptography(密码学)/Block%20cipher.md)，然后使用这个 cipher.Block 下的方法进行加密/解密。
+
+> 由于国际组织不推荐使用 ECB 的方式，所以该库没有实现 ECB 模式的方法，需要自己手动写函数。
+# RSA 包
 
 rsa 库大体分为 加密/解密 与 签名/验签 这两大类。
 
