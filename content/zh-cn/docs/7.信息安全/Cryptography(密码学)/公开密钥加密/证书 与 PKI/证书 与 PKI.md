@@ -43,9 +43,13 @@ Certificate 与 PKI 的目标很简单：Bind names to Public Keys(将名字关�
   - 被签名的实体称为 **Subject(主体)**。
 
 举个例子，如果某个 Issuer 为 Bob 签发了一张证书，其中的内容就可以解读如下：
+
 _Some Issuer_ says _Bob_’s public key is 01:23:42…
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wlyw54/1634110798410-4fe856d6-2d02-43a9-b233-229b8d48fa51.png)
+
 证书是权威机构颁发的身份证明，并没有什么神奇之处
+
 其中 `Some Issuer` 是证书的签发者(CA)，证书是为了证明这是 Bob 的公钥， Some Issuer 也是这个声明的签字方。
 
 如果签名有效，并且检查证书的软件信任发行者，那么它可以使用该密钥与证书的主题安全地通信。在电子邮件加密，代码签名和电子签名系统中，证书的主体通常是一个人或组织。然而，在传输层安全性（TLS）中，证书的主体通常是计算机或其他设备，但除了在识别设备中的核心作用之外，TLS 证书还可以识别组织或个人。 TLS 有时被其旧的名称安全套接字层（SSL）调用，对于 HTTPS 的一部分是值得注意的，该协议是安全浏览 Web 的协议。
