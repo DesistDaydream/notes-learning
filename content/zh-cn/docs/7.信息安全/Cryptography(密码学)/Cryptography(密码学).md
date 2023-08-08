@@ -6,7 +6,8 @@ weight: 1
 # 概述
 
 > 参考：
-> - [Wiki,Cryptography](https://en.wikipedia.org/wiki/Cryptography)
+> 
+> - [Wiki，Cryptography](https://en.wikipedia.org/wiki/Cryptography)
 
 # 密码学背景
 
@@ -24,47 +25,56 @@ Public-key cryptography(公开密钥加密、非对称密钥加密)，以及根�
 
 ## Symmetric Key Algorithm(对称密钥算法)
 
-> 参考： [Wiki-Symmetir Key Algorithm](https://en.wikipedia.org/wiki/Symmetric-key_algorithm)
+> 参考：
+> 
+> -  [Wiki，Symmetir Key Algorithm](https://en.wikipedia.org/wiki/Symmetric-key_algorithm)
 
-使用相同的密钥来加密明文和解密密文
+使用相同的密钥来加密明文和解密密文。Symmetric Key Algorithm 也称为 [对称密钥加密](docs/7.信息安全/Cryptography(密码学)/对称密钥加密/对称密钥加密.md)
 
-算法：
+加密规范：
 
-1. DES：Data Encryption Standard 数据加密标准。已被破解
-2. 3DES：3 倍的 DES。最常用
-3. AES：Advanced Encryption Standard 高级加密标准。最常用
-4. Blowfish
-5. Twofish
-6. IDEA：商业加密算法
+- **DES** # Data Encryption Standard 数据加密标准。已被破解
+- **3DES** # 3 倍的 DES。最常用
+- **AES** # Advanced Encryption Standard(高级加密标准)。最常用
+- **Blowfish**
+- **Twofish**
+- **IDEA** # 商业加密算法
 
 ### SKA 特点
 
 特性：
 
-- 加密和解密使用同一个密钥，效率高。
-- 将原始数据分割成固定大小的块，逐个进行加密；
+- 加密和解密使用同一个密钥，效率高
+- 将原始数据分割成固定大小的块，逐个进行加密
 
 缺点：
 
-- 密钥过多；
+- 密钥过多
 - 密钥分发(分发密钥过程无法保证),为了解决对称加密算法每个人需要保存密钥过多的问题，可以使用公钥加密
 - 数据来源无法确认
 
 ## Public Key Cryptography(公开密钥密码学)
 
 > 参考：
-> - [Wiki,PKC 英文](https://en.wikipedia.org/wiki/Public-key_cryptography)
-> - [Wiki,数字签名](https://en.wikipedia.org/wiki/Digital_signature)
+> 
+> - [Wiki，PKC 英文](https://en.wikipedia.org/wiki/Public-key_cryptography)
+> - [Wiki，数字签名](https://en.wikipedia.org/wiki/Digital_signature)
 > - [阮一峰](http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html)
 > - [知乎,RSA 的公钥和私钥到底那个才是用来加密和哪个用来解密](https://www.zhihu.com/question/25912483)
 > - [Wiki, 公开密钥加密 中文](https://zh.wikipedia.org/wiki/%E5%85%AC%E5%BC%80%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86)
 
-**Public Key Cryptography(公开密钥密码学) **也称为** Asymmetric Key Algorithm(非对称密钥算法)，**它是计算机通信安全的基石，保证了加密数据不会被破解。1976 年以前，所有的加密方法都是同一种模式：
+**Public Key Cryptography(公开密钥密码学)** 也称为 **Asymmetric Key Algorithm(非对称密钥算法)** 或 [公开密钥加密](docs/7.信息安全/Cryptography(密码学)/公开密钥加密/公开密钥加密.md)，它是计算机通信安全的基石，保证了加密数据不会被破解。1976 年以前，所有的加密方法都是同一种模式：
 
 - 甲方选择某种加密规则，对信息进行加密
 - 乙方使用同一种规则，对信息进行解密
 
-由于加密和解密使用同样规则（简称"密钥"），这被称为 Symmetric-key algorithm(对称密钥算法)。这种加密模式有一个最大弱点：甲方必须把加密规则告诉乙方，否则无法解密。保存和传递密钥，就成了最头疼的问题。因为大多数情况下，其实两方之间的通信，只有一方是需要加密的，另一方只需要知道信息内容。
+加密规范：
+
+- **RSA**
+- **DSA**
+- **ELGamal**
+
+由于 [Symmetric-key algorithm(对称密钥算法)](#Symmetric%20Key%20Algorithm(对称密钥算法)) 的加密和解密使用同样规则，导致这种加密模式有一个最大弱点：甲方必须把加密规则告诉乙方，否则无法解密。保存和传递密钥，就成了最头疼的问题。因为大多数情况下，其实两方之间的通信，只有一方是需要加密的，另一方只需要知道信息内容。
 
 1976 年，两位美国计算机学家 Whitfield Diffie 和 Martin Hellman，提出了一种崭新构思，可以在不直接传递密钥的情况下，完成解密。这被称为"Diffie-Hellman 密钥交换算法"。这个算法启发了其他科学家。人们认识到，加密和解密可以使用不同的规则，只要这两种规则之间存在某种对应关系即可，这样就避免了直接传递密钥。
 
@@ -94,6 +104,11 @@ Public-key cryptography(公开密钥加密、非对称密钥加密)，以及根�
 
 - 这种加密方式由于是单向加密、单向解密，所以如果双方都想要加密，则需要两对密钥，双方各自用对方的公钥加密信息发送给对方，然后双方再用自己的私钥解密阅读信息。
 
+缺点
+
+- 公钥加密可能出现的问题：当两者需要通信的时候，需要把公钥发送给对方，但是公钥是谁都可以获取的，那么在二者通信过程中，公钥就有可能被劫持，当公钥被劫持，劫持者把自己的公钥再发送给对方，那么双发再收到的信息，就是被劫持者篡改过的信息了。
+   - [**Public Key Certificate(公钥证书)**](docs/7.信息安全/Cryptography(密码学)/公开密钥加密/证书%20与%20PKI/证书%20与%20PKI.md) 可以解决以上问题
+
 ### 应用场景
 
 - 如果 A 持有私钥，B 持有对应公钥。那么此时 B 用对方的公钥加密一个对称密钥并发送给 A，A 使用私钥解密，以获得 B 发送的对称密钥，这时再发送的数据可以使用对称加密。
@@ -101,17 +116,6 @@ Public-key cryptography(公开密钥加密、非对称密钥加密)，以及根�
 - 如图所示，Alice 在一条消息的末尾签了名，消息内容是 `Hello Bob!`，这段签署的内容一般是对消息内容进行 hash 计算后，使用 Alice 的私钥的出来的。鲍勃同时收到消息和签名。他使用 Alice 的公钥来验证消息的真实性，即，如果使用公钥计算得出来的消息与原始消息完全匹配，那就证明，这条消息确实是 Alice 发送的。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/as985c/1616125981836-028fe2ce-77f2-4929-91cc-559c4ce9cda1.png)
-
-算法：
-
-1. RSA
-2. DSA
-3. ELGamal
-
-缺点
-
-1. 公钥加密可能出现的问题：当两者需要通信的时候，需要把公钥发送给对方，但是公钥是谁都可以获取的，那么在二者通信过程中，公钥就有可能被劫持，当公钥被劫持，劫持者把自己的公钥再发送给对方，那么双发再收到的信息，就是被劫持者篡改过的信息了。
-   1. [**Public Key Certificate(公钥证书)**](https://www.yuque.com/go/doc/33177961) 可以解决以上问题
 
 ## Cryptographic hash function(单向加密、加密散列函数)
 
@@ -130,3 +134,7 @@ Public-key cryptography(公开密钥加密、非对称密钥加密)，以及根�
 5. sha512....等
 
 MAC:Message Authentication Code(消息认证码)，单向加密的一种延伸应用，用于实现在网络通信中保证所传输的数据的完整性
+
+# 分类
+
+#密码学

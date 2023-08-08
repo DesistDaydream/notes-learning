@@ -41,7 +41,7 @@ title: Standardized Glossary(标准化术语)
 **key(密钥)** # 在密码学中，是指某个用来完成加密、解密、完整性验证等密码学应用的秘密信息。对于加密算法，key 指定明文转换成密文；对于解密算法，key 指定密文转换成明文
 
 - **Plaintext/Cleartext(明文)** # 在密码学中，明文是未加密的信息，可以供人类和计算机读取的信息
-- **Ciphertext/Cyphertext(密文) **# 在密码学中，密文是明文通过加密算法计算后生成的人类或计算器无法读取的一种信息
+- **Ciphertext/Cyphertext(密文)** # 在密码学中，密文是明文通过加密算法计算后生成的人类或计算器无法读取的一种信息
 
 **Key Generation(密钥生成)** # [详见 Wiki](https://en.wikipedia.org/wiki/Key_generation)。密钥一般都是各种程序根据指定算法生成的。
 
@@ -52,7 +52,7 @@ title: Standardized Glossary(标准化术语)
 
 **Encoding(编码)** # 将数据的原始格式，转换为便于存储的格式
 
-**Decoding(解码) **# 将存储的数据转换为原始格式以便使用
+**Decoding(解码)** # 将存储的数据转换为原始格式以便使用
 
 **Encrypt(加密)** # 使用 Key(密钥) 对信息进行编码的过程。
 
