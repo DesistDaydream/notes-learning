@@ -11,8 +11,11 @@ weight: 20
 > 
 > - [Wiki，Block_cipher](https://en.wikipedia.org/wiki/Block_cipher)
 > - [WIki，Block_cipher_mode_of_operation](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation)
+> - [B 站，【计算机博物志】DES的生与死](https://www.bilibili.com/video/BV1qW4y1L7tN)
 
-**Block cipher(分组密码)** 是一种确定性算法，对固定长度的 bits（也称为 blcok）进行操作。与 Block cipher 相关的另一种算法，是 [Stream cipher](docs/7.信息安全/Cryptography(密码学)/Cipher/Stream%20cipher.md)
+**Block cipher(分组密码)** 是一种确定性算法，对固定长度的 bits（也称为 blcok）进行操作。与 Block cipher 相关的另一种算法，是 [Stream cipher](docs/7.信息安全/Cryptography(密码学)/Cipher/Stream%20cipher.md)。
+
+Block cipher 的基本逻辑：将待加密的明文，分为固定 bits 的块，比如 AES 的 128 bit block，然后使用相同长度的密钥（或指定倍数的长度），对每个 block 进行加密。
 
 Block cipher 算法设计了多种模式以适应各种加密需求：
 
