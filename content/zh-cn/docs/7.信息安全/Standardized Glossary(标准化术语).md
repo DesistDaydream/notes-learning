@@ -8,6 +8,8 @@ title: Standardized Glossary(标准化术语)
 > 
 > - [RFC 4949(互联网安全术语)](https://datatracker.ietf.org/doc/html/rfc4949)
 
+**Crypto(密码学)** # 算是 **Cryptographic** 的前缀简写吧
+
 **Entity(实体)** # 是任何存在的东西（anything that exists） —— 即使 只在逻辑或概念上存在（even if only exists logically or conceptually）。 例如，
 
 - 你的计算机是一个 entity，
@@ -42,6 +44,7 @@ title: Standardized Glossary(标准化术语)
 
 - **Plaintext/Cleartext(明文)** # 在密码学中，明文是未加密的信息，可以供人类和计算机读取的信息
 - **Ciphertext/Cyphertext(密文)** # 在密码学中，密文是明文通过加密算法计算后生成的人类或计算器无法读取的一种信息
+  - cipher 和 cypher 是同一个意思，两种不同的拼写方法
 
 **Key Generation(密钥生成)** # [详见 Wiki](https://en.wikipedia.org/wiki/Key_generation)。密钥一般都是各种程序根据指定算法生成的。
 
