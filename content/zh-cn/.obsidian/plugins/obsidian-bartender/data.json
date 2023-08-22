@@ -2003,6 +2003,15 @@
       "docs/7.信息安全/Cryptography(密码学)/Cipher/Cipher.md",
       "docs/7.信息安全/Cryptography(密码学)/Cipher/Block cipher.md",
       "docs/7.信息安全/Cryptography(密码学)/Cipher/Stream cipher.md"
+    ],
+    "docs/8.通用技术/编码解码与协议": [
+      "docs/8.通用技术/编码解码与协议/_index.md",
+      "docs/8.通用技术/编码解码与协议/编码解码与协议.md",
+      "docs/8.通用技术/编码解码与协议/字符的编码与解码",
+      "docs/8.通用技术/编码解码与协议/音频的编码与解码.md",
+      "docs/8.通用技术/编码解码与协议/图像的编码与解码.md",
+      "docs/8.通用技术/编码解码与协议/视频的编码与解码.md",
+      "docs/8.通用技术/编码解码与协议/Base64 编码.md"
     ]
   },
   "actionBarOrder": {},
