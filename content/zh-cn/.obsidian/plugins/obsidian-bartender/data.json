@@ -320,8 +320,8 @@
       "docs/1.操作系统/4.Terminal 与 Shell/Bash/Bash 快捷键.md"
     ],
     "docs/1.操作系统/4.Terminal 与 Shell/Bash/控制结构": [
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/控制结构/控制结构.md",
       "docs/1.操作系统/4.Terminal 与 Shell/Bash/控制结构/_index.md",
+      "docs/1.操作系统/4.Terminal 与 Shell/Bash/控制结构/控制结构.md",
       "docs/1.操作系统/4.Terminal 与 Shell/Bash/控制结构/条件语句与运算.md"
     ],
     "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell": [
@@ -2012,6 +2012,25 @@
       "docs/8.通用技术/编码解码与协议/图像的编码与解码.md",
       "docs/8.通用技术/编码解码与协议/视频的编码与解码.md",
       "docs/8.通用技术/编码解码与协议/Base64 编码.md"
+    ],
+    "docs/8.通用技术/编码解码与协议/字符的编码与解码": [
+      "docs/8.通用技术/编码解码与协议/字符的编码与解码/_index.md",
+      "docs/8.通用技术/编码解码与协议/字符的编码与解码/字符的编码与解码.md",
+      "docs/8.通用技术/编码解码与协议/字符的编码与解码/控制字符.md",
+      "docs/8.通用技术/编码解码与协议/字符的编码与解码/ASCII 表.md"
+    ],
+    "docs/x_标准化术语": [
+      "docs/x_标准化术语/_index.md",
+      "docs/x_标准化术语/常用英文.md",
+      "docs/x_标准化术语/南北流量和东西流量——它们是什么意思.md",
+      "docs/x_标准化术语/Agent 与 Proxy.md",
+      "docs/x_标准化术语/Architecture(架构).md",
+      "docs/x_标准化术语/B_S 和 C_S 架构.md",
+      "docs/x_标准化术语/bit( 比特 ) 和 Byte(字节) 的关系 以及 网速怎么算.md",
+      "docs/x_标准化术语/Transaction(事务).md",
+      "docs/x_标准化术语/Foundation(基金会)",
+      "docs/x_标准化术语/计算机标准",
+      "docs/x_标准化术语/Internet(互联网)"
     ]
   },
   "actionBarOrder": {},
