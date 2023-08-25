@@ -155,7 +155,7 @@
       "docs/1.操作系统/2.Kernel/5.Memory/Memory 的分配机制.md",
       "docs/1.操作系统/2.Kernel/5.Memory/Memory 的缓存机制.md",
       "docs/1.操作系统/2.Kernel/5.Memory/Memroy 的 Over Commit 与 OOM.md",
-      "docs/1.操作系统/2.Kernel/5.Memory/堆区 与 栈区.md",
+      "docs/1.操作系统/2.Kernel/5.Memory/堆区与栈区.md",
       "docs/1.操作系统/2.Kernel/5.Memory/分享Linux内存占用几个案例.md",
       "docs/1.操作系统/2.Kernel/5.Memory/mmap可以让程序员解锁哪些骚操作？.md"
     ],

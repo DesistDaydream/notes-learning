@@ -33,6 +33,7 @@ OPTIONS
   - 比如：
     - -ldflags "-X main.version=1.0.0 -X 'main.buildTime=`date`'"
     - -ldflags "-s -w" # 告诉链接器在生成可执行文件时忽略调试信息和符号表，从而使得你的二进制文件更加紧凑而且不再可读。
+- **-gcflags [PATTERN=]ARG** # 每次执行"go tool compile"时要传递的参数。
 - **-o NAME** # 指定构建完成后生成的文件名为 NAME
 - **-x** # 输出 Go 程序编译、链接、打包的全过程。包括都使用了哪些库、执行了什么命令、等等
 
