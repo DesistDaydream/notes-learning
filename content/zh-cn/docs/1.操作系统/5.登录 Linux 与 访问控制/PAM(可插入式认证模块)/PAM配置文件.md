@@ -117,7 +117,6 @@ pam_access.so  pam_echo.so        pam_faildelay.so  pam_ftp.so            pam_is
 pam_cap.so     pam_env.so         pam_faillock.so   pam_gdm.so            pam_keyinit.so  pam_localuser.so  pam_motd.so       pam_pwhistory.so  pam_selinux.so    pam_succeed_if.so  pam_time.so       pam_unix.so    pam_xauth.so
 pam_debug.so   pam_exec.so        pam_filter.so     pam_gnome_keyring.so  pam_lastlog.so  pam_loginuid.so   pam_namespace.so  pam_rhosts.so     pam_sepermit.so   pam_systemd.so     pam_timestamp.so  pam_userdb.so
 pam_deny.so    pam_extrausers.so  pam_fprintd.so    pam_group.so          pam_limits.so   pam_mail.so       pam_nologin.so    pam_rootok.so     pam_shells.so     pam_tally2.so      pam_tty_audit.so  pam_warn.so
-
 ```
 
 ## Module-Arguments
@@ -133,6 +132,7 @@ pam_deny.so    pam_extrausers.so  pam_fprintd.so    pam_group.so          pam_li
 
 ## CentOS 发行版配置
 
+```
 auth required pam_env.so
 auth required pam_faildelay.so delay=2000000
 auth sufficient pam_unix.so nullok try_first_pass
@@ -155,11 +155,13 @@ session required pam_limits.so
 -session optional pam_systemd.so
 session \[success=1 default=ignore] pam_succeed_if.so service in crond quiet use_uid
 session required pam_unix.so
+```
 
 # /etc/pam.d/sshd
 
 这是用于安全的 Shell 服务的 PAM 配置，比如 OpenSSH
 
+```
 Standard Un\*x authentication
 @include common-auth
 ====================
@@ -199,7 +201,6 @@ Standard Un\*x session setup and teardown
 注释这两行，将会禁用登录后的消息提示功能
 session optional pam_motd.so motd=/run/motd.dynamic
 session optional pam_motd.so noupdate
-
 Print the status of the user's mailbox upon successful login
 session optional pam_mail.so standard noenv # \[1]
 ==========================================================
@@ -225,11 +226,14 @@ session \[success=ok ignore=ignore module_unknown=ignore default=bad] pam_selinu
 Standard Un\*x password updating
 @include common-password
 ========================
+```
 
 # /etc/pam.d/su
 
 **auth sufficient pam_rootok.so**
+
 当开始使用 pam_wheel.so 模块时，只有属于 wheel 组的用户，才可以使用 su 命令切换到 root 用户
+
 **auth sufficient pam_wheel.so trust use_uid**
 
 - 当用户在 wheel 组时，使用 su - root 命令不需要密码即可切换到 root 用户
@@ -239,17 +243,25 @@ Standard Un\*x password updating
 - 当用户在 wheel 组时，使用 su - root 命令需要密码即可切换到 root 用户
 
 **auth substack system-auth**
+
 **auth include postlogin**
+
 **account sufficient pam_succeed_if.so uid = 0 use_uid quiet**
+
 **account include system-auth**
+
 **password include system-auth**
+
 **session include system-auth**
+
 **session include postlogin**
+
 **session optional pam_xauth.so**
 
 # 配置示例
 
 **/etc/pam.d/sshd 配置文件示例**
+
 注意 sshd、login、remote、kde 这几个文件中的配置大部分都相同，
 
     # %PAM-1.0

@@ -38,11 +38,13 @@ pam_faillock 与大部分模块有一点不同，不建议在 PAM 规则中配�
 ## 关联文件
 
 **/etc/security/faillock.conf** # 运行时配置文件。除了在 /etc/pam.d/\* 文件中配置模块的参数，还可以通过这个文件配置模块的参数。
-**/var/run/faillock/\*** # 记录用户身份验证失败的事件。目录中的文件名以用户名命名
+
+**/var/run/faillock/** # 记录用户身份验证失败的事件。目录中的文件名以用户名命名
 
 ## 模块参数
 
 **preauth | authfail | authsucc** #
+
 **conf=\</PATH/TO/FILE>** # 指定要使用的配置文件路径。
 
 ## 应用示例
@@ -73,6 +75,7 @@ EOF
 ### faillock
 
 **faillock \[OPTIONS]**
+
 管理登录失败锁定记录的工具
 
 ```bash
