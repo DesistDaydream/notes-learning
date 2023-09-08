@@ -3,26 +3,79 @@ title = "首页"
 linkTitle = "首页"
 +++
 
-<!-- 这是首页显示的内容 -->
-
-{{< blocks/cover title="断念梦的笔记！" image_anchor="top" height="full" color="orange">}}
-<div class="mx-auto">
-	<a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref " /docs">}}">
-		学习 <i class="fas fa-arrow-alt-circle-right ml-2"></i>
-	</a>
-	<a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://github.com/DesistDaydream/desistdaydream.github.io">
-		下载 <i class="fab fa-github ml-2 "></i>
-	</a>
-	<p class="lead mt-5">站在巨人的肩膀上！</p>
-	{{< blocks/link-down color="info">}}
-</div>
+{{< blocks/cover title="欢迎来到 Goldydocs：一个 Docsy 示例项目！" image_anchor="top" height="full" color="orange">}}
+	<div class="mx-auto">
+		<a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref " /docs">}}">
+			了解更多 <i class="fas fa-arrow-alt-circle-right ml-2"></i>
+		</a>
+		<a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://github.com/google/docsy-example">
+			下载 <i class="fab fa-github ml-2 "></i>
+		</a>
+		<p class="lead mt-5">粥的温度评估-在云端！</p>
+		{{< blocks/link-down color="info">}}
+	</div>
 {{< /blocks/cover>}}
 
 
-
 {{% blocks/lead color="primary" %}}
-<p>声明！</p>
-<p>此手册仅供学习使用，切勿使用手册内涉及的技术进行违法活动。</p>
-<p>如利用手册中的技术进行违法活动，造成的后果与本人无关。</p>
-<p>倡导维护网络安全人人有责，共同维护网络文明和谐。</p>
+Goldydocs 提供一个单一的 Web 用户界面，提供视图，包括粥的温度、椅子的大小和床的柔软度指标！你甚至可以找出是谁吃了**你的**粥。
+
+(遗憾的是，Goldydocs 不是一个真正的项目，但是你可以使用这个网站作为例子，使用 Docsy 创建你自己的真正网站。[Docsy](https://docsy.dev))
 {{% /blocks/lead %}}
+
+
+{{< blocks/section color="dark">}}
+
+{{% blocks/feature icon="fa-lightbulb" title="New chair metrics!" %}}
+Goldydocs 用户界面现在默认显示椅子尺寸度量。
+
+请关注此空间以获取更新！
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fab fa-github" title="欢迎贡献！"
+url="https://github.com/google/docsy-example" %}}
+我们在 GitHub 上使用 [Pull Request](https://github.com/google/docsy-example/pulls) 的贡献流程。
+欢迎新用户加入！
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fab fa-twitter" title="Follow us on Twitter!" url="https://twitter.com/docsydocs"
+%}}
+关于最新特点的公告等。
+{{% /blocks/feature %}}
+
+{{< /blocks/section>}}
+
+
+{{< blocks/section>}}
+<div class="col">
+<h1 class="text-center">这是第二部分</h1>
+</div>
+{{< /blocks/section>}}
+
+
+
+{{< blocks/section>}}
+
+{{% blocks/feature icon="fab fa-app-store-ios" title="从 **AppStore** 下载" %}}
+获取 Goldydocs app!
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fab fa-github" title="欢迎贡献！"
+url="https://github.com/google/docsy-example" %}}
+我们在 GitHub 上使用 [Pull Request](https://github.com/google/docsy-example/pulls) 的贡献流程。
+欢迎新用户加入！
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fab fa-twitter" title="在 Twitter 上关注我们!"
+url="https://twitter.com/GoHugoIO" %}}
+关于最新功能等的通知
+{{% /blocks/feature %}}
+
+{{< /blocks/section>}}
+
+
+{{< blocks/section>}}
+<div class="col-12">
+<h1 class="text-center">这是另一个部分</h1>
+</div>
+{{< /blocks/section>}}
