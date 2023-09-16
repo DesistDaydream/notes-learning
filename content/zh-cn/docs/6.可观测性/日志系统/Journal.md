@@ -21,29 +21,34 @@ weight: 4
 
 ## 日志存放路径
 
-**/run/log/journal/${MACHINE-ID}/\***
-**/var/log/journal/${MACHINE-ID}/\***
+**/run/log/journal/${MACHINE-ID}/**
+
+**/var/log/journal/${MACHINE-ID}/**
 
 默认情况下，journald 的日志保存在 /run/log/journal 中，系统重启就会清除。通过新建 /var/log/journal 目录，日志会自动记录到这个目录中，并永久存储。
 
 路径中的 MACHINE-ID 的值，可以通过 `cat /etc/machine-id` 命令获取
 
-    root@lichenhao:/var/log/journal# ls
-    c14766a3e9ae49a3872fb9b7e2583710
-    root@lichenhao:/var/log/journal# cat /etc/machine-id
-    c14766a3e9ae49a3872fb9b7e2583710
+```bash
+root@lichenhao:/var/log/journal# ls
+c14766a3e9ae49a3872fb9b7e2583710
+root@lichenhao:/var/log/journal# cat /etc/machine-id
+c14766a3e9ae49a3872fb9b7e2583710
+```
 
 所有 journal 程序生成的日志，都会存在 MACHIN-ID 目录下
 
-    root@lichenhao:/var/log/journal/c14766a3e9ae49a3872fb9b7e2583710# ll -h
-    total 153M
-    drwxr-sr-x+ 2 root systemd-journal 4.0K Feb 21 23:15  ./
-    drwxr-sr-x+ 3 root systemd-journal   46 Dec  9 17:19  ../
-    -rw-r-----+ 1 root systemd-journal  40M Dec 28 16:23 'system@aa6b2b3f8f9d46fdb169f9d8aaab56c3-0000000000000001-0005b6048d0b7824.journal'
-    -rw-r-----+ 1 root systemd-journal  32M Jan 22 12:39 'system@aa6b2b3f8f9d46fdb169f9d8aaab56c3-00000000000080e9-0005b781fc8c48d9.journal'
-    -rw-r-----+ 1 root systemd-journal  32M Feb 21 23:10 'system@aa6b2b3f8f9d46fdb169f9d8aaab56c3-000000000000df93-0005b975c74c3caf.journal'
-    -rw-r-----+ 1 root systemd-journal  40M Mar 12 15:25  system.journal
-    -rw-r-----+ 1 root systemd-journal 8.0M Dec 28 16:23 'user-1000@571778ddc0db463990a85592631fa5e8-0000000000000496-0005b6049323448d.journal'
+```bash
+root@lichenhao:/var/log/journal/c14766a3e9ae49a3872fb9b7e2583710# ll -h
+total 153M
+drwxr-sr-x+ 2 root systemd-journal 4.0K Feb 21 23:15  ./
+drwxr-sr-x+ 3 root systemd-journal   46 Dec  9 17:19  ../
+-rw-r-----+ 1 root systemd-journal  40M Dec 28 16:23 'system@aa6b2b3f8f9d46fdb169f9d8aaab56c3-0000000000000001-0005b6048d0b7824.journal'
+-rw-r-----+ 1 root systemd-journal  32M Jan 22 12:39 'system@aa6b2b3f8f9d46fdb169f9d8aaab56c3-00000000000080e9-0005b781fc8c48d9.journal'
+-rw-r-----+ 1 root systemd-journal  32M Feb 21 23:10 'system@aa6b2b3f8f9d46fdb169f9d8aaab56c3-000000000000df93-0005b975c74c3caf.journal'
+-rw-r-----+ 1 root systemd-journal  40M Mar 12 15:25  system.journal
+-rw-r-----+ 1 root systemd-journal 8.0M Dec 28 16:23 'user-1000@571778ddc0db463990a85592631fa5e8-0000000000000496-0005b6049323448d.journal'
+```
 
 # journalctl 命令行工具
 
@@ -75,7 +80,7 @@ Systemd 统一管理所有 Unit 的启动日志。带来的好处就是，可以
 
 - **--output-fields=FIELD** # 显示指定字段的日志，多个字段以 `,` 分割。
   - 字段筛选仅对 -o 选项指定的 verbose、export、json、json-pretty、json-sse、json-seq 这几个输出格式有效
-- **-S, --since TIME** 与**-U, --unitl TIME** # 设置输出日志信息的开始与结束时间
+- **-S, --since TIME** 与 **-U, --unitl TIME** # 设置输出日志信息的开始与结束时间
 
 ## EXAMPLE
 
