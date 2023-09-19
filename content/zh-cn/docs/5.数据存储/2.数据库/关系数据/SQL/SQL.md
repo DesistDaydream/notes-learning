@@ -10,7 +10,9 @@ title: SQL
 > - [菜鸟教程，SQL](https://www.runoob.com/sql/sql-tutorial.html)
 
 **Structured Query Language(结构化查询语言，简称 SQL)** 是一种特定领域的编程语言，用于管理 RDBMS(关系数据库管理系统) 中保存的数据。使用 SQL 编写的语句也可以称为 **Expression(表达式)**。
-SQL 在 1986 年成为 **American National Standards Institute(美国国家标准化组织，简称 ANSI)** 的一项标准，在 1987 年成为国际标准化组织（ISO）标准。
+
+SQL 在 1986 年成为 [ANSI](docs/x_标准化术语/计算机标准/ANSI.md) 的一项标准，在 1987 年成为国际标准化组织（ISO）标准。
+
 每种关系型数据库所使用的 SQL 基本都一样，但是又有其自身特殊的 SQL。由于 MySQL 的使用率非常高，所以 SQL 文档的各种例子都以 MySQL 为主。
 
 ## 关键字

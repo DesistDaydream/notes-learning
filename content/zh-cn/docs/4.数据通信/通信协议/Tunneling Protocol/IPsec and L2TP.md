@@ -34,3 +34,15 @@ https://libreswan.org/
 https://github.com/hwdsl2/setup-ipsec-vpn/blob/master/README-zh.md
 
 - https://github.com/hwdsl2/docker-ipsec-vpn-server/blob/master/README-zh.md
+
+# IKEv2 客户端
+
+> 参考：
+> 
+> - https://github.com/hwdsl2/setup-ipsec-vpn/blob/master/docs/ikev2-howto-zh.md
+
+现代操作系统支持 IKEv2 协议标准。因特网密钥交换（英语：Internet Key Exchange，简称 IKE 或 IKEv2）是一种网络协议，归属于 IPsec 协议族之下，用以创建安全关联 (Security Association, SA)。与 IKE 版本 1 相比较，IKEv2 的 [功能改进](https://en.wikipedia.org/wiki/Internet_Key_Exchange#Improvements_with_IKEv2) 包括比如通过 MOBIKE 实现 Standard Mobility 支持，以及更高的可靠性。
+
+Libreswan 支持通过使用 RSA 签名算法的 X.509 Machine Certificates 来对 IKEv2 客户端进行身份验证。该方法无需 IPsec PSK, 用户名或密码。它可以用于 Windows, macOS, iOS, Android, Chrome OS, Linux 和 RouterOS。
+
+默认情况下，运行 VPN 安装脚本时会自动配置 IKEv2。如果你想了解有关配置 IKEv2 的更多信息，请参见 [使用辅助脚本配置 IKEv2](https://github.com/hwdsl2/setup-ipsec-vpn/blob/master/docs/ikev2-howto-zh.md#%E4%BD%BF%E7%94%A8%E8%BE%85%E5%8A%A9%E8%84%9A%E6%9C%AC%E9%85%8D%E7%BD%AE-ikev2)。Docker 用户请看 [配置并使用 IKEv2 VPN](https://github.com/hwdsl2/docker-ipsec-vpn-server/blob/master/README-zh.md#%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8-ikev2-vpn)。

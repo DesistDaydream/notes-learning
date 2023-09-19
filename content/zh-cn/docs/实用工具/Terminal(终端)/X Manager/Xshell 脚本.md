@@ -108,7 +108,8 @@ Sub Main
 End Sub
 ```
 
-注意：若 vbs 无法识别中文，则将文件保存时，选择编码为 ANSI
+注意：若 vbs 无法识别中文，则将文件保存时，选择编码为ANSI。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/xgwgbn/1618847088206-c4ccd20c-e089-4eb5-ad6c-4eeb47a56042.png)
 
 ## python
