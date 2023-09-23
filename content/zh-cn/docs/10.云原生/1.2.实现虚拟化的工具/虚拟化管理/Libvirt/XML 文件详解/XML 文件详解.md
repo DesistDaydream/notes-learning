@@ -14,12 +14,14 @@ Libvirt API 中的**对象**使用 [**XML 格式**](/docs/2.编程/无法分类�
 
 这里面的 Libvirt API 对象指的就是 Domain(虚拟机)、存储、快照、网络 等等。对于 Libvirt，所有 VM 相关的资源都会抽象为对象，这样也利于代码编写。
 
-> Kubernetes 的 API 对象跟这个有点像，只不过 Kubernetes 中，使用 YAML 格式而不是 XML 格式来声明对象而不是配置对象。
+> Kubernetes 的 API 对象跟这个有点像，只不过 Kubernetes 中，使用 YAML 格式来声明对象，而不是 XML 格式来配置对象。
 
-下面是**根元素**的名称，每个根元素都对应一个 **Libvirt 对象**。
+下面是所有可用的 Libvirt API 对象，每个 **Libvirt 对象** 都对应一个 **根元素**。
 
-- [Domain](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML%20文件详解/Domain.md) # 虚拟机相关的 XML 配置，可以直接使用 Domains XML 创建、启动、管理虚拟机。
+- [Domain](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML%20文件详解/Domain.md) # 虚拟机相关的 XML 配置，可以直接使用 Domain XML 文件创建、启动、管理虚拟机。
+  - 根元素名称: `<domain>`
 - [Network](/docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML%20文件详解/Network.md) # 虚拟网络相关的 XML 配置。
+  - 根元素名称: `<network>`
 - [Network filtering](https://libvirt.org/formatnwfilter.html)
 - [Network ports](https://libvirt.org/formatnetworkport.html)
 - [Storage](https://libvirt.org/formatstorage.html)

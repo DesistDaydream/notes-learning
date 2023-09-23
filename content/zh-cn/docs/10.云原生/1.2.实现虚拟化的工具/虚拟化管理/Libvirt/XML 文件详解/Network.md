@@ -10,7 +10,9 @@ weight: 3
 > 
 > - [官方文档，Network XML 格式](https://libvirt.org/formatnetwork.html)
 
-使用 `virsh net-list` 命令列出所有网络
+Network 对象用以控制虚拟网络，对应 `<network>` 根元素。
+
+使用 `virsh net-list` 命令列出所有网络，使用 `virsh net-edit XXX` 即可编辑 network 元素的 XML 内容。
 
 # bandwidth
 
@@ -24,7 +26,7 @@ burst
 
 # 最佳实践
 
-限制虚拟机网卡的网宿
+限制虚拟机网卡的网速
 
 ```xml
     <interface type='bridge'>

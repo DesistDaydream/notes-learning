@@ -171,6 +171,22 @@ virt-install --name centos7 \
 
 这是最基本的创建方式，virt-install 会自动创建很多默认的虚拟设备以满足所需。我们只需要指定网络、连接显示的方式、系统版本、cpu、内存即可
 
+### 其他安装
+
+爱快，使用通用的 linux
+
+```bash
+virt-install --name ikuaios \
+--memory 2048 --vcpus 1 \
+--os-variant linux2022 \
+--disk /var/lib/libvirt/images/ikuaios.qcow2,size=30,bus=virtio \
+--network bridge=br0,model=virtio \
+--network bridge=br1,model=virtio \
+--graphics vnc,listen=0.0.0.0,port=5901 \
+--noautoconsole \
+--cdrom /var/lib/libvirt/iso/iKuai8_x64_3.7.6_Build202309081651.iso
+```
+
 ## ChatGPT 通过 xml 文件推倒出来的 virt-install 参数
 
 ```yaml
