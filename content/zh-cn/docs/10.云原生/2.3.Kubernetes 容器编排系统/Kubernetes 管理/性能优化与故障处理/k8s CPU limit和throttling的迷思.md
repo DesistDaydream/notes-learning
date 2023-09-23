@@ -1,11 +1,17 @@
 ---
 title: k8s CPU limit和throttling的迷思
+linkTitle: k8s CPU limit和throttling的迷思
+date: 2023-09-23T18:35
+weight: 20
 ---
 
-原文链接：
+# 概述
 
-- <https://nanmu.me/zh-cn/posts/2021/myth-of-k8s-cpu-limit-and-throttle/>
-- <https://mp.weixin.qq.com/s/QYJycJCaxB42xdEo3qHHHA>
+> 参考：
+> 
+> - 原文链接：
+> - https://nanmu.me/zh-cn/posts/2021/myth-of-k8s-cpu-limit-and-throttle/
+> - https://mp.weixin.qq.com/s/QYJycJCaxB42xdEo3qHHHA
 
 你应当小心设定 k8s 中负载的 CPU limit，太小的值会给你的程序带来额外的、无意义的延迟，太大的值会带来过大的爆炸半径，削弱集群的整体稳定性。
 

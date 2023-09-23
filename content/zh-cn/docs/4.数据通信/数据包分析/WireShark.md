@@ -625,7 +625,7 @@ TCP 延迟确认 和 Nagle 算法混合使用
 最近因使用 FTP 上传数据的时候总是不能成功，抓包后发现 TCP 报文出现 **TCP dup ack** 与 **TCP Retransmission** 两种类型的包。收集整理下
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ih31vi/1659010179404-b81ce8f0-5408-4123-a653-fd898f3085dc.png)
 
-## TCP dup ack （重复应答）
+## TCP dup ack(重复应答)
 
 \[TCP dup ack XXX#X] 表示第几次重新请求某一个包，XXX 表示第几个包（不是 Seq），X 表示第几次请求。
 
@@ -633,59 +633,69 @@ TCP 延迟确认 和 Nagle 算法混合使用
 
 图例中：第 26548 第 0 此请求 4468792 的包，重复 4 申请了 4 次 ；
 
-## \[TCP Fast Retransmission] （快速重传）
+## TCP Fast Retransmission(快速重传)
 
 一般快速重传算法在收到**三次冗余的 Ack**，即三次\[TCP dup ack XXX#X]后，**发送端**进行快速重传。
+
 为什么是三次呢？因为**两次 duplicated ACK** 肯定是**乱序**造成的，**丢包**肯定会造成**三次 duplicated ACK**。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ih31vi/1659010179434-425f8348-3f91-4779-928b-afc260c28415.png)
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ih31vi/1659010179452-201f8a90-92b7-4577-a73d-b9afc5ee48cd.png)
 
-## \[TCP Retransmission] （超时重传）
+## TCP Retransmission(超时重传)
 
 超时重传，如果一个包的丢了，又**没有后续包**可以在接收方触发\[Dup Ack]，或者**\[Dup Ack]也丢失**的情况下，TCP 会触发超时重传机制。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ih31vi/1659010179388-13370a7d-1a0c-4611-a9e4-e2492cde492e.png)
 
-## \[TCP Out-Of-Order] (报文乱序)
+## TCP Out-Of-Order(报文乱序)
 
 \[TCP Out-Of-Order]指的是 TCP 发送端传输过程中报文乱序了。
 
-## \[TCP Previous segment not captured]
+## TCP Previous segment not captured
 
 在 TCP 发送端传输过程中，该 Seq 前的报文缺失了。一般在网络拥塞的情况下，造成 TCP 报文乱序、丢包时，会出现该标志。
+
 需要注意的是，\[TCP Previous segment not captured]解析文字是**wireshark 添加的标记**，**并非 TCP 报文内容**。
 
-## \[TCP Out-Of-Order]
+## TCP Out-Of-Order
 
 TCP 发送端传输过程中报文乱序了。
 
 ## Window
 
-### \[TCP ZeroWindow]
+### TCP ZeroWindow
 
 作为**接收方**发出现的标志，表示**接收缓冲区已经满**了，此时发送方不能再发送数据，一般会做流控调整。接收窗口，也就是接收缓冲区 win=xxx ，告诉对方接收窗口大小。
+
 传输过程中，接收方 TCP 窗口满了，win=0，**wireshark 会打上\[TCP ZeroWindow]标签**。
 
-### \[TCP window update]
+### TCP window update
 
 接收方消耗缓冲数据后，更新 TCP 窗口， 可以看到从 win=0 逐渐变大，这时**wireshark 会打上\[TCP window update]**标签
 
-### \[TCP window Full]
+### TCP window Full
 
 作为**发送方的标识**，当前**发送包的大小已经超过了接收端窗口大小**，wireshark 会打上此标识，标识不能在发送。
 
 ## TCP 慢启动
 
 慢启动是 TCP 的一个拥塞控制机制，慢启动算法的基本思想是当 TCP 开始在一个网络中传输数据或发现数据丢失并开始重发时，首先慢慢的对网路实际容量进行试探，避免由于发送了过量的数据而导致阻塞。
+
 慢启动为发送方的 TCP 增加了另一个窗口：拥塞窗口(congestion window)，记为 cwnd。当与另一个网络的主机建立 TCP 连接时，拥塞窗口被初始化为 1 个报文段（即另一端通告的报文段大小）。每收到一个 ACK，拥塞窗口就增加一个报文段（cwnd 以字节为单位，但是慢启动以报文段大小为单位进行增加）。发送方取拥塞窗口与通告窗口中的最小值作为发送上限。拥塞窗口是发送方使用的流量控制，而通告窗口则是接收方使用的流量控制。发送方开始时发送一个报文段，然后等待 ACK。当收到该 ACK 时，拥塞窗口从 1 增加为 2，即可以发送两个报文段。当收到这两个报文段的 A C K 时，拥塞窗口就增加为 4。这是一种指数增加的关系。
 
 ## 拥塞避免算法
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ih31vi/1659010179458-470eeff4-bf7b-4d4b-a5d2-215b501d9f61.png)
+
 网络中拥塞的发生会导致数据分组丢失，需要尽量避免。在实际中，拥塞算法与慢启动通常在一起实现，其基本过程：
-1\. 对一个给定的连接，初始化 cwnd 为 1 个报文段，ssthresh 为 65535 个字节。
-2\. TCP 输出例程的输出不能超过 cwnd 和接收方通告窗口的大小。拥塞避免是发送方使用 的流量控制，而通告窗口则是接收方进行的流量控制。前者是发送方感受到的网络拥塞的估 计，而后者则与接收方在该连接上的可用缓存大小有关。
-3\. 当拥塞发生时（超时或收到重复确认），ssthresh 被设置为当前窗口大小的一半（cwnd 和接收方通告窗口大小的最小值，但最少为 2 个报文段）。此外，如果是超时引起了拥塞，则 cwnd 被设置为 1 个报文段（这就是慢启动）。
-4\. 当新的数据被对方确认时，就增加 cwnd，但增加的方法依赖于是否正在进行慢启动或拥塞避免。如果 cwnd 小于或等于 ssthresh，则正 在进行慢启动，否则正在进行拥塞避免。慢启动一直持续到回到当拥塞发生时所处位置的半时候才停止（因为记录了在步骤 2 中制造麻烦的窗口大小的一半），然后转为执行拥塞避免。
+
+1. 对一个给定的连接，初始化 cwnd 为 1 个报文段，ssthresh 为 65535 个字节。
+2. TCP 输出例程的输出不能超过 cwnd 和接收方通告窗口的大小。拥塞避免是发送方使用 的流量控制，而通告窗口则是接收方进行的流量控制。前者是发送方感受到的网络拥塞的估 计，而后者则与接收方在该连接上的可用缓存大小有关。
+3. 当拥塞发生时（超时或收到重复确认），ssthresh 被设置为当前窗口大小的一半（cwnd 和接收方通告窗口大小的最小值，但最少为 2 个报文段）。此外，如果是超时引起了拥塞，则 cwnd 被设置为 1 个报文段（这就是慢启动）。
+4. 当新的数据被对方确认时，就增加 cwnd，但增加的方法依赖于是否正在进行慢启动或拥塞避免。如果 cwnd 小于或等于 ssthresh，则正 在进行慢启动，否则正在进行拥塞避免。慢启动一直持续到回到当拥塞发生时所处位置的半时候才停止（因为记录了在步骤 2 中制造麻烦的窗口大小的一半），然后转为执行拥塞避免。
+
 慢启动算法初始设置 cwnd 为 1 个报文段，此后每收到一个确认就加 1。那样，这会使窗口按指数方式增长：发送 1 个报文段，然后是 2 个，接着是 4 个……。
 
 ## TCP 协议中的计时器
