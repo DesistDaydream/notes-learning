@@ -40,6 +40,7 @@ default via 172.19.42.1 dev ens3 proto static
 - multicast
 
 **Route Tables(路由表)**
+
 Linux-2.x 版本内核以后，可以根据 **SELECTOR(选择器)** 将数据包交给不同的路由表进行路由处理。这些路由表由 1 到 232 范围内的数字表示(/etc/iproute2/rt_tables 文件中可以为数字起一个别名)。默认情况下，所有普通路由规则都会插入名为 main 的路由表中(main 路由表的 ID 为 254)。ip rule 命令可以对路由表进行控制。
 
 ## Syntax(语法)
@@ -81,6 +82,7 @@ Linux-2.x 版本内核以后，可以根据 **SELECTOR(选择器)** 将数据包
 **TABLE_ID := \[ local| main | default | all | NUMBER ]** #
 
 **SCOPE := \[ STRING | NUMBER ]** # 目的地址覆盖的范围。即路由数据包之前，从哪些地方找目的地址。SCOPE 的值来自于 /etc/iproute2/rt_scopes 文件中的数字或字符串。如果省略此参数，则 ip 程序默认 unicast(单播) 类型的路由范围为 global、local 类型的路由范围为 host、unicast 和 broadcst 类型的路由范围为 link。
+
 用人话说：为数据包选择路由条目前，还需要判断目的地址的有效性。也就是说，目的地址在哪里才是可以被路由的。
 
 - host # 目的地址仅在本主机上有效
