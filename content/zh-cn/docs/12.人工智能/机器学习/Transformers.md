@@ -84,6 +84,10 @@ print(response)
 你好👋！我是人工智能助手 ChatGLM-6B，很高兴见到你，欢迎问我任何问题。
 ```
 
+# 其他学习
+
+[公众号-阿里云开发者，Transformer 一起动手编码学原理](https://mp.weixin.qq.com/s/NgUNuWhvp2SqG-XWYv2PGQ)
+
 # 分类
 
 #人工智能 #机器学习

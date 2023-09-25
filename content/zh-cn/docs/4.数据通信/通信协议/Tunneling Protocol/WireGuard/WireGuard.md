@@ -6,6 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
+> 
 > - [官网](https://www.wireguard.com/)
 > - [GitHub 项目，WrieGuard/wireguard-linux](https://github.com/WireGuard/wireguard-linux)
 >   - [zx2c4 源码](https://git.zx2c4.com/wireguard-linux/tree/drivers/net/wireguard/)
@@ -19,6 +20,10 @@ WireGuard 是一种可以实现加密 VPN 的通信协议。通常也表示为�
 WireGuard 是由 Jason Donenfeld 等人用 C 语言编写的一个开源 VPN 协议，被视为下一代 VPN 协议，旨在解决许多困扰 IPSec/IKEv2、OpenVPN 或 L2TP 等其他 VPN 协议的问题。它与 Tinc 和 MeshBird 等现代 VPN 产品有一些相似之处，即加密技术先进、配置简单。从 2020 年 1 月开始，它已经并入了 Linux 内核的 5.6 版本，这意味着大多数 Linux 发行版的用户将拥有一个开箱即用的 WireGuard。
 
 WireGuard 没有传统的 Server 端、Client 端的概念，在 WireGuard 构建的 VPN 环境中，使用 **Peer** 来描述 VPN 中的每一个网络节点，这个 Peer 可以是 服务器、路由器 等等。通常来说，一个具有固定公网 IP 的 Peer，非官方得称为 **Bounce Server/Relay Server(弹跳服务器/中继服务器)**。各个在 NAT 后面的 Peer，可以通过 Bounce Server 这个 Peer 直接互通。
+
+## Wireguard 的不足
+
+[公众号-云原生实验室，WireGuard 真的很香吗？香个屁！](https://mp.weixin.qq.com/s/OvqpL9aO6oMSL4GgjE6zbw)
 
 # 待整理文章内容
 
