@@ -1,11 +1,13 @@
 ---
-title: "Java"
-linkTitle: "Java"
-weight: 20
+title: Java
+linkTitle: Java
+weight: 1
 ---
 
 # 概述
+
 > 参考：
+> 
 > - [官网](https://www.java.com/)
 > - [廖雪峰-Java教程，Java简介](https://www.liaoxuefeng.com/wiki/1252599548343744/1255876875896416#0)
 
@@ -27,6 +29,7 @@ Java 分三个版本：
 
 
 ## Java 名词
+
 JDK # Java Development Kit（Java 开发工具包）
 
 JRE # Java Runtime Environment（Java 运行时环境）
@@ -55,6 +58,7 @@ JRE 中包含运行 **Java 字节码** 的 JVM 和 库。但是，我们先要�
 
 
 ## 学习资料
+
 [菜鸟教程，Java](https://www.runoob.com/java/java-tutorial.html)
 
 [廖雪峰，Java 教程](https://www.liaoxuefeng.com/wiki/1252599548343744)
@@ -62,6 +66,7 @@ JRE 中包含运行 **Java 字节码** 的 JVM 和 库。但是，我们先要�
 
 
 ## Andrioid
+
 [Android与Java的关系](https://zhuanlan.zhihu.com/p/340609888)
 
 # Hello World

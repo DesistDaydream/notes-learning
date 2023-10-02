@@ -1,7 +1,7 @@
 ---
-title: "Java 工具"
-linkTitle: "Java 工具"
-weight: 20
+title: Java 工具
+linkTitle: Java 工具
+weight: 1
 ---
 
 # 概述
