@@ -47,6 +47,7 @@ title: Network Virtual(网络虚拟化)
 ## Linux Bridge(Linux 网桥)
 
 > 参考：
+>
 > - [Linux 上抽象网络设备的原理及使用](https://www.teambition.com/project/5f90e312755d8a00446050eb/app/5eba5fba6a92214d420a3219/workspaces/5f90e312c800160016ea22fb/docs/5f9d2b14eaa119000192206f)
 > - [云计算底层技术-虚拟网络设备(Bridge,VLAN)](https://www.teambition.com/project/5f90e312755d8a00446050eb/app/5eba5fba6a92214d420a3219/workspaces/5f90e312c800160016ea22fb/docs/5f9d2a2712d5ba000162d3e2)
 > - [云计算底层技术-虚拟网络设备(tun tap,veth)](https://www.teambition.com/project/5f90e312755d8a00446050eb/app/5eba5fba6a92214d420a3219/workspaces/5f90e312c800160016ea22fb/docs/5f9d294eeaa11900019215fc)
@@ -94,22 +95,22 @@ eth0.20，vent1 和 brvlan20 都可以看着 vlan20 的 access 口。
 
 ## Open vSwitch # 开放的虚拟交换机
 
-详见 [Open vSwitch](https://www.yuque.com/go/doc/33175901)
+详见 [Open vSwitch](/docs/10.云原生/1.1.虚拟化/Network%20Virtual(网络虚拟化)/Open%20vSwitch.md)
 
 ## Network Namespace # 网络名称空间
 
-Network Namespace 可以简单得理解为 Linux 上的 **虚拟路由器(vRouter)。**详见：[Network Namespace 详解](https://www.yuque.com/go/doc/33173252)
+Network Namespace 可以简单得理解为 Linux 上的 **虚拟路由器(vRouter)**。详见：[Network Namespace](/docs/10.云原生/2.1.容器/1.Namespaces/Network%20Namespace/Network%20Namespace.md)
 
 Network Namespace 在逻辑上是网络栈的另一个副本，具有自己的路由、防火墙规则、网络设备等功能。默认情况下，每个进程从其父进程继承其网络名称空间。在最初的时候，所有进程都共享来自系统启动的 PID 为 1 的父进程的名称空间。整个系统 PID 为 1 的进程的 Network Namespace 就是整台机器和系统的网络栈。Linux 内核可以通过 clone()函数的功能在默认的网络名称空间中，克隆出来一个具备相同功能的网络栈，该克隆出来的 Network Namespace 为绑定上来的进程提供一个完全独立的网络协议栈，多个进程也可同时共享同一个 Network Namespace。Host 上一个网络设备只能存在于一个 Network Namespace 当中，而不同的 Network Namespace 之间要想通信，可以通过虚拟网络设备来提供一种类似于管道的抽象，在不同的 Network Namespace 中建立隧道实现通信。当一个 Network Namespace 被销毁时，插入到该 Netwrok Namespace 上的虚拟网络设备会被自动移回最开始默认整台设备的 Network Namespace
 
 Network Namespace 的应用场景
 
 1. 可以把 Net Namepace 就相当于在物理机上创建了一台 vRouter，这台 vRouter 就是一块 namespace，把与 VM 连接的 vSwitch 连接到这台 vRouter，然后 VM 通过 vRouter 与外部或者另一部分被隔离的网络通信，这样即可实现对这台 vSwitch 以及与之关联的 VM 进行网络隔离（如果要与外部通信，那么需要使用桥接模型，把物理网卡模拟成 vSwitch，然后把该 vSwitch 关联到该 vRouter）
-2. Network Namespace 还可用于承载 Container 技术的网络功能，一个 Container 占据一个 Namespace，通过使用 Veth 设备连接 Namespace 与 Bridge 相连来实现各 Namespace 中的 Container 之间互相通信。具体详见 [Network Namespace 详解](https://www.yuque.com/go/doc/33173252)
+2. Network Namespace 还可用于承载 Container 技术的网络功能，一个 Container 占据一个 Namespace，通过使用 Veth 设备连接 Namespace 与 Bridge 相连来实现各 Namespace 中的 Container 之间互相通信。具体详见 [Network Namespace](/docs/10.云原生/2.1.容器/1.Namespaces/Network%20Namespace/Network%20Namespace.md)
 
 管理 Network Namesapce 的方式：
 
-1. 通过 ip netns 命令来管理，该命令的用法详见[ Iproute2 命令行工具](https://www.yuque.com/go/doc/33221906) 中的 netns 子命令
+1. 通过 ip netns 命令来管理，该命令的用法详见 [Iproute 工具包](/docs/1.操作系统/X.Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/Iproute%20工具包.md) 中的 netns 子命令
 
 # Overlay Network 叠加网络
 

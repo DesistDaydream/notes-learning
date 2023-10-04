@@ -69,7 +69,7 @@ jobs:
 
 # 获取并配置 GitHub 连接 Gitee 所需的认证信息
 
-认证信息：<https://www.yuque.com/desistdaydream/lmstiv/uvgrw2>
+认证信息比较敏感，详见 TOKEN 文章
 
 ## 获取 Gitee TOKEN
 

@@ -6,7 +6,7 @@ title: File Descriptor(文件描述符)
 
 > 参考
 >
-> - [Wiki,FileDescriptor](https://en.wikipedia.org/wiki/File_descriptor)
+> - [Wiki，FileDescriptor](https://en.wikipedia.org/wiki/File_descriptor)
 > - [CSDN，Linux 中的文件描述符与打开文件之间的关系](https://blog.csdn.net/cywosp/article/details/38965239)
 
 **File Descriptor(文件描述符，简称 FD，**有的地方也称为**Handle(句柄))** 是一个抽象的指示符(也可以称为**索引**)，用于应用程序便捷得访问文件或其他 I/O 资源。

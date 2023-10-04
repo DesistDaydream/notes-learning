@@ -11,11 +11,11 @@ weight: 2
 > - [公众号，Go Modules 终极入门](https://mp.weixin.qq.com/s/6gJkSyGAFR0v6kow2uVklA)
 > - <https://blog.csdn.net/benben_2015/article/details/82227338>
 
-**Go Moduel(Go 模块)** 是实现 [Modular Programming(模块化编程)](https://en.wikipedia.org/wiki/Modular_programming) 的工具。是 Go 语言中正式官宣的项目依赖解决方案，Go modules（前身为 vgo）发布于 Go1.11，成长于 Go1.12，丰富于 Go1.13，正式于 Go1.14 已经准备好，并且可以用在生产上（ready for production）了，Go 官方也鼓励所有用户从其他依赖项管理工具迁移到 Go modules。
+**Go Module(Go 模块)** 是实现 [Modular Programming(模块化编程)](https://en.wikipedia.org/wiki/Modular_programming) 的工具。是 Go 语言中正式官宣的项目依赖解决方案，Go modules（前身为 vgo）发布于 Go1.11，成长于 Go1.12，丰富于 Go1.13，正式于 Go1.14 已经准备好，并且可以用在生产上（ready for production）了，Go 官方也鼓励所有用户从其他依赖项管理工具迁移到 Go modules。
 
 module 是一个相关 Go 包的集合，它是源代码更替和版本控制的单元。模块由源文件形成的 go.mod 文件的根目录定义，包含 go.mod 文件的目录也被称为模块根。moudles 取代旧的的基于 GOPATH 方法来指定在工程中使用哪些源文件或导入包。模块路径是导入包的路径前缀，go.mod 文件定义模块路径，并且列出了在项目构建过程中使用的特定版本。
 
-使用 go module 时，GOPATH 不再用于解析导入。但是，它仍然用于存储下载的源代码（在$GOPATH/pkg/mod 中）和编译的命令（在 GOPATH / bin 中）。
+使用 Go Module 时，GOPATH 不再用于解析导入。但是，它仍然用于存储下载的源代码（在$GOPATH/pkg/mod 中）和编译的命令（在 GOPATH / bin 中）。
 
 当程序编译时，会读取 go.mod 文件中的路径，来加载其编译所需的各种库
 
@@ -93,12 +93,12 @@ GOPATH 目录下一共包含了三个子目录，分别是：
 
 为什么弃用 GOPATH 模式
 
-在 GOPATH 的 $GOPATH/src 下进行 .go 文件或源代码的存储，我们可以称其为 GOPATH 的模式，这个模式，看起来好像没有什么问题，那么为什么我们要弃用呢，参见如下原因：
+在 GOPATH 的 `$GOPATH/src/` 下进行 .go 文件或源代码的存储，我们可以称其为 GOPATH 的模式，这个模式，看起来好像没有什么问题，那么为什么我们要弃用呢，参见如下原因：
 
 - GOPATH 模式下没有版本控制的概念，具有致命的缺陷，至少会造成以下问题：
-    - 在执行 go get 的时候，你无法传达任何的版本信息的期望，也就是说你也无法知道自己当前更新的是哪一个版本，也无法通过指定来拉取自己所期望的具体版本。
-    - 在运行 Go 应用程序的时候，你无法保证其它人与你所期望依赖的第三方库是相同的版本，也就是说在项目依赖库的管理上，你无法保证所有人的依赖版本都一致。
-    - 你没办法处理 v1、v2、v3 等等不同版本的引用问题，因为 GOPATH 模式下的导入路径都是一样的，都是 github.com/foo/bar。
+  - 在执行 go get 的时候，你无法传达任何的版本信息的期望，也就是说你也无法知道自己当前更新的是哪一个版本，也无法通过指定来拉取自己所期望的具体版本。
+  - 在运行 Go 应用程序的时候，你无法保证其它人与你所期望依赖的第三方库是相同的版本，也就是说在项目依赖库的管理上，你无法保证所有人的依赖版本都一致。
+  - 你没办法处理 v1、v2、v3 等等不同版本的引用问题，因为 GOPATH 模式下的导入路径都是一样的，都是 github.com/foo/bar。
 - Go 语言官方从 Go1.11 起开始推进 Go modules（前身 vgo），Go1.13 起不再推荐使用 GOPATH 的使用模式，Go modules 也渐趋稳定，因此新项目也没有必要继续使用 GOPATH 模式。
 
 在 GOPATH 模式下的产物
@@ -150,7 +150,9 @@ GO111MODULE 的小历史
 
 GOPROXY 的默认值是：<https://proxy.golang.org,direct>，这有一个很严重的问题，就是 proxy.golang.org 在国内是无法访问的，因此这会直接卡住你的第一步，所以你必须在开启 Go modules 的时，同时设置国内的 Go 模块代理，执行如下命令：
 
-                go env -w GOPROXY=https://goproxy.cn,direct
+```bash
+go env -w GOPROXY=https://goproxy.cn,direct
+```
 
 GOPROXY 的值是一个以英文逗号 “,” 分割的 Go 模块代理列表，允许设置多个模块代理，假设你不想使用，也可以将其设置为 “off” ，这将会禁止 Go 在后续操作中使用任何 Go 模块代理。
 

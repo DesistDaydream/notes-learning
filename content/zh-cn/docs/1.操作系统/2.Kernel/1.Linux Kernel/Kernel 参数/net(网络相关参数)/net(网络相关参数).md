@@ -6,7 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [Manual(手册)，/proc/sys 部分](https://man7.org/linux/man-pages/man5/proc.5.html#DESCRIPTION)
 > - [官方文档，Linux 内核用户和管理员指南-/proc/sys 文档-/proc/sys/net 文档](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/net.html)
 > - [官方文档，内核子系统文档-Networking-IP Sysctl](https://www.kernel.org/doc/html/latest/networking/ip-sysctl.html)
@@ -14,7 +14,7 @@ weight: 1
 
 **/proc/sys/net/** 目录下通常包含下面的一个或多个子目录
 
-| 目录名    | 用处               |     | 目录名    | 用处                | 
+| 目录名    | 用处               |     | 目录名    | 用处                |
 | --------- | ------------------ | --- | --------- | ------------------- |
 | 802       | E802 protocol      |     | mptcp     | Multipath TCP       |
 | appletalk | Appletalk protocol |     | netfilter | Network Filter      |
@@ -28,7 +28,7 @@ weight: 1
 # ipv4 参数
 
 > 参考：
-> 
+>
 > - [官方文档，内核子系统文档-Networking-IP Sysctl-/proc/sys/net/ipv4/* 变量](https://www.kernel.org/doc/html/latest/networking/ip-sysctl.html#proc-sys-net-ipv4-variables)
 
 ## net.ipv4.ip_forward(0 | 非 0)
@@ -128,6 +128,7 @@ TCP 连接在 keepalive 状态下的探测次数。`默认值：9`
 #### net.ipv4.tcp_keepalive_intvl = 75
 
 TCP 连接在 keepalive 状态下的探测间隔。`默认值：75`。单位秒
+
 该参数的值乘以 tcp_keepalive_probes 参数的值所得结果，是探测启动后，TCP 断开没有响应的连接的时间。默认情况下探测间隔是 75 秒，那么就说明，11 分钟后，没有响应的 TCP 连接将会断开
 
 #### 总结
@@ -151,7 +152,7 @@ TCP 连接在 keepalive 状态下的探测间隔。`默认值：75`。单位秒
 ## VS 相关参数
 
 > 参考：
-> 
+>
 > - [官方文档，网络-IPvs Sysctl](https://www.kernel.org/doc/html/latest/networking/ipvs-sysctl.html)
 
 ### net.ipv4.vs.conn_reuse_mode = 1
@@ -167,6 +168,7 @@ TCP 连接在 keepalive 状态下的探测间隔。`默认值：75`。单位秒
 # bridge 参数
 
 > 参考：
+>
 > - [官方文档，内核子系统文档-Networking-IP Sysctl-/proc/sys/net/bridge/* 变量](https://www.kernel.org/doc/html/latest/networking/ip-sysctl.html#proc-sys-net-bridge-variables)
 
 ### net.bridge.bridge-nf-call-iptables = 1
@@ -197,4 +199,4 @@ TCP 连接在 keepalive 状态下的探测间隔。`默认值：75`。单位秒
 - 1：开启严格的反向路径校验。对每个进来的数据包，校验其反向路径是否是最佳路径。如果反向路径不是最佳路径，则直接丢弃该数据包。
 - 2：开启松散的反向路径校验。对每个进来的数据包，校验其源地址是否可达，即反向路径是否能通（通过任意网口），如果反向路径不同，则直接丢弃该数据包。
 
-rp_filter 参数详解见[此处](https://www.yuque.com/go/doc/33223050)
+rp_filter 参数详解见 [rp_filter](/docs/1.操作系统/2.Kernel/1.Linux%20Kernel/Kernel%20参数/net(网络相关参数)/rp_filter.md)

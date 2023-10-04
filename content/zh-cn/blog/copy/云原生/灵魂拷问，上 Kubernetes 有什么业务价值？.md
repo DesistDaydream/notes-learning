@@ -98,17 +98,3 @@ weight: 20
 可以看到它跟我们的传统 PaaS 还是有很大区别的，它的可扩展能力非常非常强。它本质上就是一个 K8s，但是它跟专有的 Service，Knative，OpenFaaS 也不一样。它不会把抽象程度锁定到某一种 Workload 上，你的 Workload 是可以随意去定义。运维侧的能力也可以随意可插拔的去定义。这才是我们叫做一个以应用为中心的 Kubernetes。那么这么一个 Kubernetes 怎么做呢？
 
 后续我们将会在下篇文章中详细为大家解读如何构建“以应用为中心”的 Kubernetes？以及构建这么一个以用户为中心的 Kubernetes，需要做几个层级的事情。
-
-![](https://mmbiz.qpic.cn/mmbiz_gif/US10Gcd0tQGY9ddd5GpbmVRuaRfuaESAUBGE7uHX5G0nxxLSub2QTKZdu538V7GaHXS5jsTCebYCUibaHsjg0ow/640?wx_fmt=gif)
-
-**《云原生实践公开课》**
-
-去年，CNCF 与 阿里云联合发布了《云原生技术公开课》已经成为了 Kubernetes 开发者的一门“必修课”。
-
-今天，阿里云再次集结多位具有丰富云原生实践经验的技术专家，正式推出《云原生实践公开课》。课程内容由浅入深，专注讲解“ 落地实践”。还为学习者打造了真实、可操作的实验场景，方便验证学习成果，也为之后的实践应用打下坚实基础。课程已经正式上线，欢迎大家观看。  
-
-![](https://mmbiz.qpic.cn/mmbiz_jpg/yvBJb5Iiafvk7Pu7LACjibshibapmweer8QTqBDk2H49h2Xstzgy8AZibst3YeGXiakpsaW4uRYrQqVWK0icwDVJJotQ/640?wx_fmt=jpeg)
-
-![](https://mmbiz.qpic.cn/mmbiz_gif/6aVaON9Kibf5ibKRPQgZ9XgbVNsIeQUnfKSiaErmr8dtdicicS3A8m6TiavR6ZB0Eah3pD0kjQg8ACyNb1x5ibdqRg2jA/640?wx_fmt=gif)
-
-**戳原文，免费观看云原生实践公开课！**

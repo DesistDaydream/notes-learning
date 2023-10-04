@@ -1,5 +1,8 @@
 ---
 title: Docker Image
+linkTitle: Docker Image
+date: 2023-11-03T22:25
+weight: 4
 ---
 
 # 概述
@@ -16,7 +19,9 @@ title: Docker Image
 
 实现联合文件系统的驱动程序：docker 本身支持 overlay，overlay2，aufs，btrfs，devicemapper，vfs 等
 
-## [Container Image 的分层结构](http://www.cnblogs.com/CloudMan6/p/6806193.html)(联合文件系统)
+## Container Image 的分层结构(联合文件系统)
+
+http://www.cnblogs.com/CloudMan6/p/6806193.html
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ma1cb7/1616121959962-5b74016a-126f-4a55-a37f-f93631fd335c.png)
 
@@ -36,9 +41,9 @@ Container Image 采用分层结构，最底层为 bootfs，其它为 rootfs
 
 ## 可写(writable)的层(layers)
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ma1cb7/1616121959993-37ba6cb0-18ec-495b-84c0-72e941c5a240.png)
+![600](https://notes-learning.oss-cn-beijing.aliyuncs.com/ma1cb7/1616121959993-37ba6cb0-18ec-495b-84c0-72e941c5a240.png)
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ma1cb7/1616121960020-2c73e0a5-a7e5-4e71-9907-d098c5233d30.png)
+![800](https://notes-learning.oss-cn-beijing.aliyuncs.com/ma1cb7/1616121960020-2c73e0a5-a7e5-4e71-9907-d098c5233d30.png)
 
 当容器启动时，一个新的“可读写”层被加载到镜像的顶部。这一层通常被称作“容器层”，“容器层”之下的都叫“镜像层”。位于下层的 image 称为父镜像(parent image)，最底层的称为基础镜像(base image)
 
@@ -64,7 +69,7 @@ Container Image 采用分层结构，最底层为 bootfs，其它为 rootfs
 比如当我获取一个镜像时，可以看到下面的信息
 
 ```bash
-[root@master overlay2]# docker pull lchdzh/network-test:v2.0
+~]# docker pull lchdzh/network-test:v2.0
 v2.0: Pulling from lchdzh/network-test
 f34b00c7da20: Pull complete # 镜像第一层
 b248a5455a16: Pull complete # 镜像第二层
@@ -86,7 +91,7 @@ overlay on /var/lib/docker/overlay2/XXXXXXX/merged type overlay (rw,relatime,low
 
 # Docker Image 的管理标准(OCI 标准)介绍
 
-OCI 规范详见：[OCI 标准介绍](https://www.yuque.com/go/doc/33996191)
+OCI 规范详见：[OCI Image 规范](/docs/10.云原生/2.1.容器/Open%20Containers%20Initiative(开放容器倡议)/OCI%20Image%20规范.md)
 
 ## docker pull 命令的大概过程
 
@@ -130,7 +135,7 @@ dockerd 和 registry 服务器之间的协议为 Registry HTTP API V2。
 现在通过命令 docker pull ubuntu 获取一个镜像(官方提供的最新 ubuntu 镜像，对应的完整名称为 docker.io/library/ubuntu:latest)
 
 ```bash
-[root@lichenhao ~]# docker pull ubuntu
+~]# docker pull ubuntu
 Using default tag: latest
 latest: Pulling from library/ubuntu
 a4a2a29f9ba4: Pull complete
@@ -199,9 +204,9 @@ Note：该对应关系对查找镜像的存储路径没有绝对关系。在 /va
 /var/lib/docker/image/overlay2/layerdb/ 目录下存放了所有镜像层的元数据信息，在 /var/lib/docker/image/overlay2/layerdb/sha256/\* 目录下，以镜像层的 chaind 命名。根据 OCI 默认规则，最底下的镜像层 chainid 与 diffid 相同
 
 ```bash
-[root@lichenhao sha256]# pwd
+~]# pwd
 /var/lib/docker/image/overlay2/layerdb/sha256
-[root@lichenhao sha256]# ll -h
+~]# ll -h
 total 0
 drwx------ 2 root root 85 Jun 21 19:26 27d46ebb54384edbc8c807984f9eb065321912422b0e6c49d6a9cd8c8b7d8ffc
 drwx------ 2 root root 85 Jun 21 19:26 8a8d1f0b34041a66f09e49bdc03e75c2190f606b0db7e08b75eb6747f7b49e11
@@ -213,7 +218,7 @@ drwx------ 2 root root 85 Jun 21 19:26 f1b8f74eff975ae600be0345aaac8f0a3d16680c2
 # echo -n "sha256:父层chainID sha256:本层diffID" | sha256sum -
 # 根据该命令得出本层的 chainID
 # 下面根据最低镜像层计算第二层镜像的 chainid
-[root@lichenhao sha256]# echo -n "sha256:e1c75a5e0bfa094c407e411eb6cc8a159ee8b060cbd0398f1693978b4af9af10 sha256:9e97312b63ff63ad98bb1f3f688fdff0721ce5111e7475b02ab652f10a4ff97d" | sha256sum -
+~]# echo -n "sha256:e1c75a5e0bfa094c407e411eb6cc8a159ee8b060cbd0398f1693978b4af9af10 sha256:9e97312b63ff63ad98bb1f3f688fdff0721ce5111e7475b02ab652f10a4ff97d" | sha256sum -
 27d46ebb54384edbc8c807984f9eb065321912422b0e6c49d6a9cd8c8b7d8ffc  -
 ```
 
@@ -253,9 +258,9 @@ sha256:e1c75a5e0bfa094c407e411eb6cc8a159ee8b060cbd0398f1693978b4af9af10
 /var/lib/docker/overlay2/ 目录存放了所有镜像层的数据。
 
 ```bash
-[root@lichenhao overlay2]# pwd
+~]# pwd
 /var/lib/docker/overlay2
-[root@lichenhao overlay2]# ll -h
+~]# ll -h
 total 0
 drwx------ 4 root root  72 Jun 21 19:26 113a9d8407c2db3892944c17beba7a635ea39aa5108c7f716088466ea302a7e3
 # 根据 cache-id 中显示的信息，ubuntu 第二层镜像就是在这个目录中
@@ -272,32 +277,40 @@ drwx------ 2 root root 142 Jun 21 21:01 l
 1\. 启动容器的时候(docker run)添加参数—add-host machine:ip 可以实现 hosts 修改，缺点就是如果很多个节点的话命令会很长
 2\. 修改容器 hosts de 查找目录，我们可以让容器启动的时候不去找 /etc/hosts 文件，而是去查找我们自己定义的 hosts 文件，下面是一个 Dockerfile 实例：
 
-    FROM ubuntu:14.04
-    RUN cp /etc/hosts /tmp/hosts  # 路径长度最好保持一致
-    RUN mkdir -p -- /lib-override && cp /lib/x86_64-linux-gnu/libnss_files.so.2 /lib-override
-    RUN sed -i 's:/etc/hosts:/tmp/hosts:g' /lib-override/libnss_files.so.2
-    ENV LD_LIBRARY_PATH /lib-override
-    RUN echo "192.168.0.1 node1" &gt;&gt; /tmp/hosts  # 可以随意修改/tmp/hosts了
-    ...
+```dockerfile
+FROM ubuntu:14.04
+RUN cp /etc/hosts /tmp/hosts  # 路径长度最好保持一致
+RUN mkdir -p -- /lib-override && cp /lib/x86_64-linux-gnu/libnss_files.so.2 /lib-override
+RUN sed -i 's:/etc/hosts:/tmp/hosts:g' /lib-override/libnss_files.so.2
+ENV LD_LIBRARY_PATH /lib-override
+RUN echo "192.168.0.1 node1" &gt;&gt; /tmp/hosts  # 可以随意修改/tmp/hosts了
+...
+```
 
 3. 在 dockerfile 中，使用脚本作为镜像入口，然后利用脚本运行修改 hosts 文件的命令以及真正的应用程序入口，下面是一个 Dockerfile 实例：
 
-    FROM centos:6
-    RUN mkdir /data
-    COPY run.sh /data/
-    COPY myhosts /data/
-    RUN chmod +x /data/run.sh
-    ENTRYPOINT /bin/sh -c /data/run.sh
+```dockerfile
+FROM centos:6
+RUN mkdir /data
+COPY run.sh /data/
+COPY myhosts /data/
+RUN chmod +x /data/run.sh
+ENTRYPOINT /bin/sh -c /data/run.sh
+```
 
 其中 run.sh 示例：
-\#!/bin/bash
+
+```bash
+#!/bin/bash
 cat /data/myhosts >> /etc/hosts # 向 hosts 文件追加内容
+```
 
 其他命令
+
 /bin/bash # 保留终端，防止容器自动退出
-==========================
 
 然后在 myhosts 文件中添加上你需要添加的 hosts 映射，然后镜像构建完成后，执行 docker run 指令运行容器，查看 /etc/hosts 配置是否生效。
 
 这个问题最重要的就是要理解 docker 镜像的分层结构，由只读层+可读写层+ init 层组成。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ma1cb7/1616121959946-c34b9fbf-7490-4ef8-919e-433e1c41f5b8.png)

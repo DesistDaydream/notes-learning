@@ -4,7 +4,7 @@ title: kube-controller-manager 实现控制器的程序
 
 # 概述
 
-kube-controller-manager 是实现 [Kubernetes 控制器功能](https://www.yuque.com/desistdaydream/learning/xwr8r7#0yYOq)的程序。一般在集群启动之前，由 kubelet 使用静态 Pod 以容器方式运行；或者使用 systemd 以 daemon 方式运行。
+kube-controller-manager 是实现 Kubernetes [Controller(控制器)](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/4.Controller(控制器)/4.Controller(控制器).md) 的程序。一般在集群启动之前，由 kubelet 使用静态 Pod 以容器方式运行；或者使用 systemd 以 daemon 方式运行。
 
 kube-controller-manager 启动后监听两个端口。
 
@@ -13,7 +13,7 @@ kube-controller-manager 启动后监听两个端口。
 
 ## kube-controller-manager 高可用
 
-> 参考：[Leader Election 机制](https://www.yuque.com/go/doc/34288737)
+> 参考：[Leader Election(领导人选举)](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/Kubernetes%20其他特性/Leader%20Election(领导人选举).md)
 
 我们都知道 k8s 核心组件，其中 apiserver 只用于接收 api 请求，不会主动进行各种动作，所以他们在每个节点都运行并且都可以接收请求，不会造成异常；kube-proxy 也是一样，只用于做端口转发，不会主动进行动作执行。
 但是 scheduler, controller-manager 不同，他们参与了 Pod 的调度及具体的各种资源的管控，如果同时有多个 controller-manager 来对 Pod 资源进行调度，结果太美不敢看，那么 k8s 是如何做到正确运转的呢？

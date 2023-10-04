@@ -5,11 +5,11 @@ title: Jinja
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，pallets/jinja](https://github.com/pallets/jinja)
 > - [官网](https://jinja.palletsprojects.com/)
 >   - [国人翻译官网](http://docs.jinkan.org/docs/jinja2/)
-> - [Wiki,Jinja](https://en.wikipedia.org/wiki/Jinja_(template_engine))
+> - [Wiki，Jinja](https://en.wikipedia.org/wiki/Jinja_(template_engine))
 > - [骏马金龙博客，9. 如虎添翼的力量：解锁强大的 Jinja2 模板](https://www.junmajinlong.com/ansible/9_power_of_jinja2/)
 
 Jinja 是一个用于 Python 变成语言中的 **Template Engine(模板引擎)**。Jinja 通常被用来作为 Python 的 Web 框架(e.g.Flask、Django)的数据渲染的底层调用。
@@ -67,7 +67,7 @@ Jinja 的 Literal(字面量) 是最简单、最直接的表达式形式。但是
 - 元组
    - `('tuple','of','values')`
 - 字典
-   - `{'dict': 'of', 'key': 'and', 'value': 'pairs'}` 
+   - `{'dict': 'of', 'key': 'and', 'value': 'pairs'}`
 - 布尔 # 不带引号的 true 与 false
    - `true` 和 `false`
 
@@ -155,24 +155,24 @@ Python 处理 YAML 数据时，实际上是将 YAML 格式数据转换为字典�
 
 - `+` # 将两个对象相加。通常对象是数字，但如果两者都是字符串或列表，您可以通过这种方式连接它们。然而，这不是连接字符串的首选方式！对于字符串连接，请查看 `~` 运算符。 `{{ 1 + 1 }}` 表达式的返回值为 2。
    - `+` 操作符也可用于字符串串联、列表相加，例如`"a"+"b"`得到”ab”，`[1,2]+[3,4]`得到`[1,2,3,4]`
-- `-` # 
-- `*` # 
+- `-` #
+- `*` #
    - `*` 也可用于重复字符串，例如`"-" * 10`得到 10 个连续的短横线
-- `/` # 
+- `/` #
    - `/` 是浮点数除法，例如 3/2 得到 1.5
-- `//` # 
+- `//` #
    - `//` 是截断式整除法，例如 20/7 得到 2
-- `%` # 
-- `**` # 
+- `%` #
+- `**` #
 
 ## Comparisons(比较) 运算
 
-- `>` # 
-- `<` # 
-- `>=` # 
-- `<=` # 
-- `==` # 
-- `!=` # 
+- `>` #
+- `<` #
+- `>=` #
+- `<=` #
+- `==` #
+- `!=` #
 
 需要说明一点：比较操作不仅仅只能比较数值，也能比较其它对象，比如字符串。
 
@@ -180,10 +180,10 @@ Python 处理 YAML 数据时，实际上是将 YAML 格式数据转换为字典�
 
 ## Logic(逻辑) 运算符
 
-- `not` # 
+- `not` #
 - `and` #
-- `or` # 
-- `(expr)` # 
+- `or` #
+- `(expr)` #
 
 ## 其他运算符
 
@@ -275,7 +275,7 @@ playbook 内容如下：
       default: 0
       prompt: "星期几(0->星期日,1->星期一...):"
       private: no
-  tasks: 
+  tasks:
     - template:
         src: a.txt.j2
         dest: /tmp/a.txt
@@ -324,7 +324,7 @@ jinja 使用 `is` 关键字，对表达式的渲染结果进行测试，测试�
 示例一：在 when 条件中测试
 
 ```yaml
-- debug: 
+- debug:
     msg: "a string"
   when: name is string
   vars:
@@ -382,7 +382,7 @@ class FilterModule(object):
 然后在 playbook 中便可使用 islist() 这个筛选器来判断是否是列表类型。例如：
 
 ```
-- debug: 
+- debug:
     msg: "a list"
   when: p | islist
   vars:
@@ -395,7 +395,7 @@ class FilterModule(object):
 通常，模板语言都会带有过滤器，JinJa 也不例外，每个过滤器函数都是一个功能，作用就类似于函数，而且它也可以接参数。变量可以通过 **Filters(过滤器)** 修改。Jinja 中有两种使用 Filters 的方式：
 
 - **`|` 符号** # 过滤器 与 变量 之间使用 `|` 符号分割，并且可以使用 `()` 符号传递参数。多个过滤器可以链式调用，前一个过滤器的返回值会作为有一个过滤器的输入。
-- **`filter` 关键字** # 
+- **`filter` 关键字** #
 
 ### `|` 符号
 
@@ -699,11 +699,11 @@ playbook 文件内容如下：
 ---
 - hosts: localhost
   gather_facts: no
-  tasks: 
+  tasks:
     - template:
         src: a.txt.j2
         dest: /tmp/a.txt
-      vars: 
+      vars:
         files:
           - /tmp/a1
           - /tmp/a2
@@ -745,7 +745,7 @@ Jinja2 的 for 循环没有提供 break 和 continue 的功能，所以只能通
 对于下面的字典结构：
 
 ```
-p: 
+p:
   name: junmajinlong
   age: 18
 ```
@@ -778,7 +778,7 @@ p:
 ```yaml
 - hosts: localhost
   gather_facts: no
-  tasks: 
+  tasks:
     - template:
         src: a.txt.j2
         dest: /tmp/a.txt
@@ -834,7 +834,7 @@ key: age, value: 18
 ```
 - hosts: localhost
   gather_facts: no
-  tasks: 
+  tasks:
     - template:
         src: a.txt.j2
         dest: /tmp/a.txt
@@ -872,7 +872,7 @@ playbook 内容如下：
 ```yaml
 - hosts: localhost
   gather_facts: no
-  tasks: 
+  tasks:
     - template:
         src: a.txt.j2
         dest: /tmp/a.txt
@@ -957,12 +957,12 @@ gzip {% for item in gzip_args %}
 ```yaml
 - hosts: localhost
   gather_facts: no
-  tasks: 
+  tasks:
     - template:
         src: a.txt.j2
         dest: /tmp/a.txt
       vars:
-        log_args: 
+        log_args:
           - host
           - port
           - date
@@ -1068,7 +1068,7 @@ location = /50x.html {
 ```yaml
 - hosts: localhost
   gather_facts: no
-  tasks: 
+  tasks:
     - template:
         src: child.conf.j2
         dest: /tmp/nginx.conf
@@ -1096,7 +1096,7 @@ location = /50x.html {
     fastcgi_param  SCRIPT_FILENAME /usr/share/www/php$fastcgi_script_name;
     include        fastcgi_params;
   }
-  
+
 }
 ```
 

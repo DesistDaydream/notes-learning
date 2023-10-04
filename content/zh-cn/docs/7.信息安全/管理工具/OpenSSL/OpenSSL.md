@@ -55,19 +55,19 @@ openssl 程序提供了丰富的子命令，以实现 TLS/SSL 网络协议以及
 - -in FILE # 指明使用的文件
 - -out FILE # 指明输出的文件
 
-## Standard commands # 标准命令
+## Standard commands(标准命令)
 
 [Standard commands(标准命令)](/docs/7.信息安全/管理工具/OpenSSL/Standard%20commands(标准命令).md)
 
-## Message Digest commands # 消息摘要命令
+## Message Digest commands(消息摘要命令)
 
 消息摘要算法的实现(用于单向加密)。使用 dgst 命令
 
-## Cipher commands # 密码命令
+## Cipher commands(密码命令)
 
 其中都是各种加密算法，用于对称加密。使用 enc 命令
 
-### openssl enc # 对称密钥程序，用于创建管理对称密钥
+### openssl enc - 对称密钥程序，用于创建管理对称密钥
 
 OPTIONS
 

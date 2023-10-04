@@ -197,7 +197,7 @@ RestartSec=5s
 ExecStartPre=-/sbin/modprobe br_netfilter
 ExecStartPre=-/sbin/modprobe overlay
 ExecStart=/usr/local/bin/k3s \
-# 根据实际情况修改命令行标志
+# 根据实际情况修改命令行标志。更推荐使用 /etc/rancher/k3s/config.yaml 文件而避免使用 k3s 命令行参数。
 EOF
 ```
 
@@ -265,10 +265,6 @@ elif type zypper >/dev/null 2>&1; then
     rm -f /etc/zypp/repos.d/rancher-k3s-common*.repo
 fi
 ```
-
-# 部署 k3s 并修改参数
-
-参考：[基杨文章](https://mp.weixin.qq.com/s/xpqZyoZltRkXcMQBcHos0Q)
 
 # Ansible 部署 K3S
 

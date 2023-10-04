@@ -17,30 +17,34 @@ cfssl 与 openssl 类似，不过是使用 go 编写，由 CloudFlare 开源的�
 
 cfssl 可以创建一个获取和操作证书的内部认证中心。运行认证中心需要一个 CA 证书和相应的 CA 私钥。任何知道私钥的人都可以充当 CA 来颁发证书。因此，私钥的保护至关重要，这里我们以 k8s 所需的证书来实践一下：
 
-    cfssl print-defaults config > config.json # 默认证书策略配置模板
-    cfssl print-defaults csr > csr.json #默认csr请求模板
+```bash
+cfssl print-defaults config > config.json # 默认证书策略配置模板
+cfssl print-defaults csr > csr.json #默认csr请求模板
+```
 
 结合自身的要求，修改证书请求文件`csr.json`,证书 10 年
 
+```json
+{
+  "CN": "kubernetes",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
     {
-      "CN": "kubernetes",
-      "key": {
-        "algo": "rsa",
-        "size": 2048
-      },
-      "names": [
-        {
-          "C": "CN",
-          "ST": "BeiJing",
-          "L": "BeiJing",
-          "O": "k8s",
-          "OU": "System"
-        }
-       ],
-       "ca": {
-        "expiry": "87600h"
-      }
+      "C": "CN",
+      "ST": "BeiJing",
+      "L": "BeiJing",
+      "O": "k8s",
+      "OU": "System"
     }
+   ],
+   "ca": {
+    "expiry": "87600h"
+  }
+}
+```
 
 知识点:
 
@@ -54,24 +58,26 @@ cfssl 可以创建一个获取和操作证书的内部认证中心。运行认�
 
 证书配置模板文件`ca-config.json`
 
-    {
-      "signing": {
-          "default": {
-            "expiry": "87600h"
-       },
-      "profiles": {
-        "kubernetes": {
-          "usages": [
-            "signing",
-            "key encipherment",
-            "server auth",
-            "client auth"
-          ],
-          "expiry": "87600h"
-        }
-       }
-      }
+```json
+{
+  "signing": {
+      "default": {
+        "expiry": "87600h"
+   },
+  "profiles": {
+    "kubernetes": {
+      "usages": [
+        "signing",
+        "key encipherment",
+        "server auth",
+        "client auth"
+      ],
+      "expiry": "87600h"
     }
+   }
+  }
+}
+```
 
 知识点：
 
@@ -83,43 +89,47 @@ cfssl 可以创建一个获取和操作证书的内部认证中心。运行认�
 
 初始化创建 CA 认证中心，将会生成`ca-key.pem`（私钥）和`ca.pem`（公钥）
 
-    cfssl gencert -initca ca-csr.json | cfssljson -bare ca
+```bash
+cfssl gencert -initca ca-csr.json | cfssljson -bare ca
+```
 
 ### 创建 kubernetes 证书
 
 创建`kubernetes-csr.json`证书请求文件
 
-    {
-        "CN": "kubernetes",
-        "hosts": [
-            "127.0.0.1",
-            "10.1.20.129",
-            "10.1.20.128",
-            "10.1.20.126",
-            "10.1.20.127",
-            "10.254.0.1",
-            "*.kubernetes.master",
-            "localhost",
-            "kubernetes",
-            "kubernetes.default",
-            "kubernetes.default.svc",
-            "kubernetes.default.svc.cluster",
-            "kubernetes.default.svc.cluster.local"
-        ],
-        "key": {
-            "algo": "rsa",
-            "size": 2048
-        },
-        "names": [
-            {
-                "C": "CN",
-                "ST": "BeiJing",
-                "L": "BeiJing",
-                "O": "k8s",
-                "OU": "System"
-            }
-        ]
-    }
+```json
+{
+    "CN": "kubernetes",
+    "hosts": [
+        "127.0.0.1",
+        "10.1.20.129",
+        "10.1.20.128",
+        "10.1.20.126",
+        "10.1.20.127",
+        "10.254.0.1",
+        "*.kubernetes.master",
+        "localhost",
+        "kubernetes",
+        "kubernetes.default",
+        "kubernetes.default.svc",
+        "kubernetes.default.svc.cluster",
+        "kubernetes.default.svc.cluster.local"
+    ],
+    "key": {
+        "algo": "rsa",
+        "size": 2048
+    },
+    "names": [
+        {
+            "C": "CN",
+            "ST": "BeiJing",
+            "L": "BeiJing",
+            "O": "k8s",
+            "OU": "System"
+        }
+    ]
+}
+```
 
 **知识点**：
 
@@ -128,7 +138,9 @@ cfssl 可以创建一个获取和操作证书的内部认证中心。运行认�
 
 生成 kubernetes 证书和私钥
 
-    cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=kubernetes kubernetes-csr.json | cfssljson -bare kubernetes
+```bash
+cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=kubernetes kubernetes-csr.json | cfssljson -bare kubernetes
+```
 
 **知识点**：
 
@@ -139,27 +151,31 @@ cfssl 可以创建一个获取和操作证书的内部认证中心。运行认�
 
 创建 admin 证书请求文件`admin-csr.json`
 
+```json
+{
+    "CN": "admin",
+    "hosts": [],
+    "key": {
+    "algo": "rsa",
+    "size": 2048
+    },
+    "names": [
     {
-        "CN": "admin",
-        "hosts": [],
-        "key": {
-        "algo": "rsa",
-        "size": 2048
-        },
-        "names": [
-        {
-            "C": "CN",
-            "ST": "BeiJing",
-            "L": "BeiJing",
-            "O": "system:masters",
-            "OU": "System"
-        }
-        ]
+        "C": "CN",
+        "ST": "BeiJing",
+        "L": "BeiJing",
+        "O": "system:masters",
+        "OU": "System"
     }
+    ]
+}
+```
 
 生成 admin 证书和私钥
 
-    cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=kubernetes admin-csr.json | cfssljson -bare admin
+```bash
+cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=kubernetes admin-csr.json | cfssljson -bare admin
+```
 
 **知识点**这个 admin 证书，是将来生成管理员用的`kubeconfig` 配置文件用的，现在我们一般建议使用 RBAC 来对 kubernetes 进行角色权限控制， kubernetes 将证书中的 CN 字段作为 User， O 字段作为 Group
 同样，我们也可以按照同样的方式来创建 kubernetes 中 etcd 集群的证书
@@ -169,70 +185,78 @@ cfssl 可以创建一个获取和操作证书的内部认证中心。运行认�
 1. 证书签署请求文件`ca-csr.json`
 
 
-    {
-        "CN": "etcd CA",
-        "key": {
-            "algo": "rsa",
-            "size": 2048
-        },
-        "names": [
-            {
-                "C": "CN",
-                "L": "Beijing",
-                "ST": "Beijing"
-            }
-        ]
-    }
+```json
+{
+    "CN": "etcd CA",
+    "key": {
+        "algo": "rsa",
+        "size": 2048
+    },
+    "names": [
+        {
+            "C": "CN",
+            "L": "Beijing",
+            "ST": "Beijing"
+        }
+    ]
+}
+```
 
 2. 为节点创建服务证书请求文件，指定授权的主机节点`etcd-server-csr.json`
 
 
-    {
-        "CN": "etcd",
-        "hosts": [
-            "10.1.20.129",
-            "10.1.20.126",
-            "10.1.20.128"
-            ],
-        "key": {
-            "algo": "rsa",
-            "size": 2048
-        },
-        "names": [
-            {
-                "C": "CN",
-                "L": "BeiJing",
-                "ST": "BeiJing"
-            }
-        ]
-    }
+```json
+{
+    "CN": "etcd",
+    "hosts": [
+        "10.1.20.129",
+        "10.1.20.126",
+        "10.1.20.128"
+        ],
+    "key": {
+        "algo": "rsa",
+        "size": 2048
+    },
+    "names": [
+        {
+            "C": "CN",
+            "L": "BeiJing",
+            "ST": "BeiJing"
+        }
+    ]
+}
+```
 
 3. 证书配置模板文件`ca-config.json`
 
 
-    {
-      "signing": {
-        "default": {
-          "expiry": "87600h"
-        },
-        "profiles": {
-          "etcd": {
-             "expiry": "87600h",
-             "usages": [
-                "signing",
-                "key encipherment",
-                "server auth",
-                "client auth"
-            ]
-          }
-        }
+```json
+{
+  "signing": {
+    "default": {
+      "expiry": "87600h"
+    },
+    "profiles": {
+      "etcd": {
+         "expiry": "87600h",
+         "usages": [
+            "signing",
+            "key encipherment",
+            "server auth",
+            "client auth"
+        ]
       }
     }
+  }
+}
+```
 
 5. 生成 etcd 集群所需的证书与私钥
 
 
-    cfssl gencert -initca ca-csr.json | cfssljson -bare ca -
-    cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=etcd etcd-server-csr.json | cfssljson -bare server
+```bash
+cfssl gencert -initca ca-csr.json | cfssljson -bare ca -
+cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=etcd etcd-server-csr.json | cfssljson -bare server
+```
 
 这样就完成 etcd 所需证书的申请，同时了解了 cfssl 工具的强大，写到这里，本次的实验就结束了。

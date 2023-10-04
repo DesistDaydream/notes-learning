@@ -1,5 +1,8 @@
 ---
-title: Maps AND Struct
+title: Map AND Struct
+linkTitle: Map AND Struct
+date: 2023-11-20T21:30
+weight: 8
 ---
 
 # 概述

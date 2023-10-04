@@ -11,7 +11,7 @@ weight: 1
 > - [GitHub 项目，gohugoio/hugo](https://github.com/gohugoio/hugo)
 >   - [GitHub 项目，coderzh/gohugo.org](https://github.com/coderzh/gohugo.org)（一个从19年停更的 Hugo 中文网）
 > - [官网](https://gohugo.io/)
-> - [Wiki,Hugo(软件)](https://en.wikipedia.org/wiki/Hugo_(software))
+> - [Wiki，Hugo(软件)](https://en.wikipedia.org/wiki/Hugo_(software))
 
 Hugo 是用 Go 语言编写的静态站点生成器。Steve Francia 最初于 2013 年将 Hugo 创建为开源项目。
 

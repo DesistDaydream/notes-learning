@@ -1,6 +1,7 @@
-
 ---
 title: OpenStack 部署与清理
+linkTitle: OpenStack 部署与清理
+date: 2023-11-20T20:05
 weight: 1
 ---
 

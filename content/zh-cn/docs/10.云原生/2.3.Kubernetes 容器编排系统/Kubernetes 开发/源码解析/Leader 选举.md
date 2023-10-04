@@ -112,7 +112,7 @@ func (le *LeaderElector) acquire(ctx context.Context) bool {
 
 （1）首先，通过 `le.config.Lock.Get` 函数获取资源锁，当资源锁不存在时，当前节点创建该 key（获取锁）并写入自身节点的信息，创建成功则当前节点成为领导者节点并返回 true。
 
-```kotlin
+```go
 oldLeaderElectionRecord, err := le.config.Lock.Get()
 if err != nil {
     if !errors.IsNotFound(err) {
@@ -129,7 +129,7 @@ if err != nil {
 
 （2）当资源锁存在时，更新本地缓存的租约信息。
 
-```swift
+```go
 if !reflect.DeepEqual(le.observedRecord, *oldLeaderElectionRecord) {
     le.observedRecord = *oldLeaderElectionRecord
     le.observedTime = le.clock.Now()
@@ -138,7 +138,7 @@ if !reflect.DeepEqual(le.observedRecord, *oldLeaderElectionRecord) {
 
 （3）候选节点会验证领导者节点的租约是否到期，如果尚未到期，暂时还不能抢占并返回 false。
 
-```cs
+```go
 if len(oldLeaderElectionRecord.HolderIdentity) > 0 &&
 le.observedTime.Add(le.config.LeaseDuration).After(now.Time) &&
 !le.IsLeader() {
@@ -149,7 +149,7 @@ le.observedTime.Add(le.config.LeaseDuration).After(now.Time) &&
 
 （4）如果是领导者节点，那么 AcquireTime（资源锁获得时间）和 LeaderTransitions（领导者进行切换的次数）字段保持不变。如果是候选节点，则说明领导者节点的租约到期，给 LeaderTransitions 字段加 1 并抢占资源锁。
 
-```javascript
+```go
 if le.IsLeader() {
     leaderElectionRecord.AcquireTime = oldLeaderElectionRecord.AcquireTime
     leaderElectionRecord.LeaderTransitions = oldLeaderElectionRecord.LeaderTransitions
@@ -160,7 +160,7 @@ if le.IsLeader() {
 
 （5）通过 `le.config.Lock.Update` 函数尝试去更新租约记录，若更新成功，函数返回 true。
 
-```kotlin
+```go
 if err = le.config.Lock.Update(leaderElectionRecord); err != nil {
     klog.Errorf("Failed to update lock: %v", err)
     return false

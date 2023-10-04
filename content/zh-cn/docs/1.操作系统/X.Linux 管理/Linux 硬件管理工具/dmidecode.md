@@ -12,11 +12,7 @@ weight: 20
 > - [Wiki，dmidecode](https://en.wikipedia.org/wiki/Dmidecode)
 > - Manual(手册)，dmidecode
 
-dmidecode 命令可以让我们在 Linux 系统下获取有关硬件方面的信息。dmidecode 的作用是将 [DMI](https://en.wikipedia.org/wiki/Desktop_Management_Interface) 数据库中的信息解码，以可读的文本方式显示。由于 DMI 信息可以人为修改，因此里面的信息不一定是系统准确的信息。dmidecode 遵循 SMBIOS/DMI 标准，其输出的信息包括BIOS、系统、主板、处理器、内存、缓存等等。
-
-**Desktop Management Interface，(桌面管理接口，简称 DMI)** 就是帮助收集电脑系统信息的管理系统，DMI 信息的收集必须在严格遵照SMBIOS规范的前提下进行。SMBIOS（System Management BIOS）是主板或系统制造者以标准格式显示产品管理信息所需遵循的统一规范。SMBIOS和DMI是由行业指导机构Desktop Management Task Force(DMTF)起草的开放性的技术标准，其中DMI设计适用于任何的平台和操作系统。
-
-DMI 充当了管理工具和系统层之间接口的角色。它建立了标准的可管理系统更加方便了电脑厂商和用户对系统的了解。DMI的主要组成部分是Management Information Format(MIF)数据库。这个数据库包括了所有有关电脑系统和配件的信息。通过DMI，用户可以获取序列号、电脑厂商、串口信息以及其它系统配件信息。
+dmidecode 命令可以让我们在 Linux 系统下获取有关硬件方面的信息。dmidecode 的作用是将 [DMI](docs/x_标准化/IT/DMTF.md#DMI) 数据库中的信息解码，以可读的文本方式显示。由于 DMI 信息可以人为修改，因此里面的信息不一定是系统准确的信息。dmidecode 遵循 SMBIOS/DMI 标准，其输出的信息包括BIOS、系统、主板、处理器、内存、缓存等等。
 
 dmidecode 附带三个额外的工具：
 
@@ -28,78 +24,77 @@ dmidecode 附带三个额外的工具：
 
 SMBIOS规范定义了以下DMI类型:
 
-      Type   Information
-       ────────────────────────────────────────────
-          0   BIOS
-          1   System
-          2   Baseboard
-          3   Chassis
-          4   Processor
-          5   Memory Controller
-          6   Memory Module
-          7   Cache
-          8   Port Connector
-          9   System Slots
-         10   On Board Devices
-         11   OEM Strings
-         12   System Configuration Options
-         13   BIOS Language
-         14   Group Associations
-         15   System Event Log
-         16   Physical Memory Array
-         17   Memory Device
-         18   32-bit Memory Error
-         19   Memory Array Mapped Address
-         20   Memory Device Mapped Address
-         21   Built-in Pointing Device
-         22   Portable Battery
-         23   System Reset
-         24   Hardware Security
-         25   System Power Controls
-         26   Voltage Probe
-         27   Cooling Device
-         28   Temperature Probe
-         29   Electrical Current Probe
-         30   Out-of-band Remote Access
-         31   Boot Integrity Services
-         32   System Boot
-         33   64-bit Memory Error
-         34   Management Device
-         35   Management Device Component
-         36   Management Device Threshold Data
-         37   Memory Channel
-         38   IPMI Device
-         39   Power Supply
-         40   Additional Information
-         41   Onboard Devices Extended Information
-         42   Management Controller Host Interface
+```
+Type   Information
+ ────────────────────────────────────────────
+    0   BIOS
+    1   System
+    2   Baseboard
+    3   Chassis
+    4   Processor
+    5   Memory Controller
+    6   Memory Module
+    7   Cache
+    8   Port Connector
+    9   System Slots
+   10   On Board Devices
+   11   OEM Strings
+   12   System Configuration Options
+   13   BIOS Language
+   14   Group Associations
+   15   System Event Log
+   16   Physical Memory Array
+   17   Memory Device
+   18   32-bit Memory Error
+   19   Memory Array Mapped Address
+   20   Memory Device Mapped Address
+   21   Built-in Pointing Device
+   22   Portable Battery
+   23   System Reset
+   24   Hardware Security
+   25   System Power Controls
+   26   Voltage Probe
+   27   Cooling Device
+   28   Temperature Probe
+   29   Electrical Current Probe
+   30   Out-of-band Remote Access
+   31   Boot Integrity Services
+   32   System Boot
+   33   64-bit Memory Error
+   34   Management Device
+   35   Management Device Component
+   36   Management Device Threshold Data
+   37   Memory Channel
+   38   IPMI Device
+   39   Power Supply
+   40   Additional Information
+   41   Onboard Devices Extended Information
+   42   Management Controller Host Interface
 
-       Additionally,  type 126 is used for disabled entries and type 127 is an end-of-table marker. Types 128 to 255 are for OEM-specific data.  dmidecode will display these entries by
-       default, but it can only decode them when the vendors have contributed documentation or code for them.
+ Additionally,  type 126 is used for disabled entries and type 127 is an end-of-table marker. Types 128 to 255 are for OEM-specific data.  dmidecode will display these entries by
+ default, but it can only decode them when the vendors have contributed documentation or code for them.
 
-       Keywords can be used instead of type numbers with --type.  Each keyword is equivalent to a list of type numbers:
+ Keywords can be used instead of type numbers with --type.  Each keyword is equivalent to a list of type numbers:
 
-       Keyword     Types
-       ──────────────────────────────
-       bios        0, 13
-       system      1, 12, 15, 23, 32
-       baseboard   2, 10, 41
-       chassis     3
-       processor   4
-       memory      5, 6, 16, 17
-       cache       7
-       connector   8
-       slot        9
+ Keyword     Types
+ ──────────────────────────────
+ bios        0, 13
+ system      1, 12, 15, 23, 32
+ baseboard   2, 10, 41
+ chassis     3
+ processor   4
+ memory      5, 6, 16, 17
+ cache       7
+ connector   8
+ slot        9
 
-       Keywords are matched case-insensitively. The following command lines are equivalent:
+ Keywords are matched case-insensitively. The following command lines are equivalent:
 
-       • dmidecode --type 0 --type 13
-
-       • dmidecode --type 0,13
-
-       • dmidecode --type bios
-
-       • dmidecode --type BIOS
+ • dmidecode --type 0 --type 13
+ • dmidecode --type 0,13
+ • dmidecode --type bios
+ • dmidecode --type BIOS
+```
 
 
 # Syntax(语法)

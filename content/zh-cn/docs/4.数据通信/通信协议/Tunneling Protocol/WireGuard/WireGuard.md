@@ -1,16 +1,18 @@
 ---
 title: WireGuard
+linkTitle: WireGuard
+date: 2023-11-03T22:27
 weight: 1
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官网](https://www.wireguard.com/)
 > - [GitHub 项目，WrieGuard/wireguard-linux](https://github.com/WireGuard/wireguard-linux)
 >   - [zx2c4 源码](https://git.zx2c4.com/wireguard-linux/tree/drivers/net/wireguard/)
-> - [Wiki,WireGuard](https://en.wikipedia.org/wiki/WireGuard)
+> - [Wiki，WireGuard](https://en.wikipedia.org/wiki/WireGuard)
 > - [IPFire 博客，Why Not WireGuard](https://blog.ipfire.org/post/why-not-wireguard)
 > - [米开朗基杨博客，WireGuard 教程：WireGuard 的工作原理](https://fuckcloudnative.io/posts/wireguard-docs-theory/)
 > - [张馆长博客，个人办公用 wireguard 组网笔记](https://zhangguanzhang.github.io/2020/08/05/wireguard-for-personal/)
@@ -438,13 +440,13 @@ PersistentKeepalive = 21
 ## wg-quick
 
 > 参考：
-> 
+>
 > - [Manual(手册)，wg-quick(8)](https://man7.org/linux/man-pages/man8/wg-quick.8.html)
 
 ### Syntax(语法)
 
-**wg-quick \[ up | down | save | strip ] \[ CONFIG_FILE | INTERFACE ]**
+**wg-quick [ up | down | save | strip ] [ CONFIG_FILE | INTERFACE ]**
 
 # 分类
 
-#网络 #隧道协议 #Wireguard
+ #网络 #隧道协议 #Wireguard

@@ -54,9 +54,9 @@ title: Service Manifests 详解
 - **metadata**([metadata](#ep_metadata))
 - **spec**([spec](#spec))
 - **status**([status](#status))
-- [metadata: OBJECT](#metadata)
-- [subsets: []OBJECT](#subsets)
-- status: OBJECT
+- **metadata**([OBJECT](#metadata))
+- **subsets**(\[][OBJECT](#subsets))
+- **status**(OBJECT)
 
 ## ep_metadata
 

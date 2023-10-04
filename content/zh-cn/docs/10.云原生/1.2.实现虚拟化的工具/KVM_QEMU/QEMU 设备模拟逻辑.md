@@ -14,7 +14,7 @@ QEMU 模拟设备主要是半虚拟化设备，从[这里](/docs/10.云原生/1.
 
 # QEMU Storage Emulation(QEMU 存储模拟)
 
-与 [网络模拟](https://www.yuque.com/desistdaydream/learning/tkr8dt#03psa) 类似，QEMU 想要让虚拟机获得一块硬盘，也需要由两部分组成一个完整的存储功能。
+与 [网络模拟](#QEMU%20Network%20Emulation(QEMU%20网络模拟)) 类似，QEMU 想要让虚拟机获得一块硬盘，也需要由两部分组成一个完整的存储功能。
 
 1. **front-end(前端)** # VM 中的 块设备
 2. **back-end(后端)** # 宿主机中的与 VM 中模拟出来的块设备进行交互的设备。

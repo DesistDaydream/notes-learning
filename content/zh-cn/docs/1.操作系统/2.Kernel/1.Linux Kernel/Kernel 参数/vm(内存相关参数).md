@@ -5,13 +5,14 @@ title: vm(内存相关参数)
 # 概述
 
 > 参考：
+>
 > - [官方文档，Linux 内核用户和管理员指南-/proc/sys 文档-/proc/sys/vm 文档](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/vm.html)
 
 /proc/sys/vm/ 目录下的文件可用于调整 Linux Kernel 中有关 Virtual Memory(虚拟内存) 子系统的操作。
 
 ### vm.drop_caches = NUM
 
-写入该文件可以清理内存中的缓存。详见《[Memory 的缓存机制](Memory%20 的缓存机制.md%20管理/Memory%20的缓存机制.md)》章节中“缓存清理”部分
+写入该文件可以清理内存中的缓存。详见 [Memory 的缓存](/docs/1.操作系统/2.Kernel/5.Memory/Memory%20的缓存.md#缓存的清理) 章节中“缓存清理”部分
 
 ### vm.swappiness = 10
 

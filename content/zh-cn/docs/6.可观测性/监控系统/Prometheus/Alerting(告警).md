@@ -1,10 +1,14 @@
 ---
 title: Alerting(告警)
+linkTitle: Alerting(告警)
+date: 2023-12-20T14:48
+weight: 5
 ---
 
 # 概述
 
 > 参考：
+>
 > - [官方文档,告警-告警概述](https://prometheus.io/docs/alerting/latest/overview/)
 > - [官方文档,告警-客户端](https://prometheus.io/docs/alerting/latest/clients/)
 > - [OpenAPI](https://github.com/prometheus/alertmanager/blob/main/api/v2/openapi.yaml)
@@ -45,7 +49,7 @@ rule_files:
 
 ### Prometheus 推出的 Alertmanager 程序简介
 
-> 详见：[Alertmanager 介绍](https://www.yuque.com/go/doc/33146169)
+> 详见：[Alertmanager](/docs/6.可观测性/监控系统/Alertmanager/Alertmanager.md)
 
 Prometheus 推出的 Alertmanager 作为一个独立的组件，可以实现告警管理功能，负责接收并处理来自 Prometheus Server(也可以是其它的客户端程序)的告警信息。Alertmanager 可以对这些告警信息进行进一步的处理，比如当接收到大量重复告警时能够消除重复的告警信息，同时对告警信息进行分组并且路由到正确的通知方，Alertmanager 内置了对邮件，Slack 等多种通知方式的支持。同时 AlertManager 还提供了静默和告警抑制机制来对告警通知行为进行优化。
 
@@ -64,12 +68,13 @@ Prometheus 推出的 Alertmanager 作为一个独立的组件，可以实现告�
 
 # Prometheus 告警规则配置
 
-> 详见：[Prometheus Alerting Rules 配置详解](https://www.yuque.com/go/doc/33147385)
+> 详见：[Rules 配置](/docs/6.可观测性/监控系统/Prometheus/Rules%20配置.md)
 
 # 告警数据结构
 
-**免责声明：Prometheus 会自动负责发送由其配置的**[警报规则](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)**生成的**[警报](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)**。强烈建议在 Prometheus 中根据时间序列数据配置警报规则，而不是实现直接客户端。**
-**也就是说，不要自己写一个程序，频繁对 Prometheus 发起 PromQL 查询请求，来生成告警。**
+免责声明：Prometheus 会自动负责发送由其配置的 **[警报规则](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)** 生成的 **[警报](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)**。强烈建议在 Prometheus 中根据时间序列数据配置警报规则，而不是实现直接客户端。
+
+**<font color="#ff0000">也就是说，不要自己写一个程序，频繁对 Prometheus 发起 PromQL 查询请求，来生成告警。</font>**
 
 Alertmanager 现阶段有两个 API，v1 和 v2，这两个 API 都是用来监听发送到自身的告警。
 
@@ -85,7 +90,7 @@ Prometheus 产生告警后，会通过 POST 请求将下列 JSON 格式内容向
     },
     "annotations": {
       "<LabelName>": "<LabelValue>",
-	  ...
+   ...
     },
     "startsAt": "<RFC3339>",
     "endsAt": "<RFC3339>",

@@ -6,7 +6,7 @@ weight: 3
 # 概述
 
 > 参考：
-> 
+>
 > - [Go 官方文档-参考-规范-变量](https://go.dev/ref/spec#Variables)
 > - [Go 官方文档-参考-规范-声明和范围](https://go.dev/ref/spec#Declarations_and_scope)
 
@@ -22,7 +22,7 @@ weight: 3
 格式：`var VarID TYPE = EXP`
 
 - VarID # 变量的标识符
-- TYPE # 详见 [TYPE 章节](https://www.yuque.com/desistdaydream/learning/hmvgmw)
+- TYPE # 详见 [Data type](/docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Data%20type.md)
 - EXP # 初始化时使用的表达式。i.e.给该变量一个值。
 
 其中 `TYPE` 或者 `= EXP` 这两个部分可以省略其中之一，如果省略 TYPE，那么将根据初始化 EXP 来自动推导变量的类型；如果初始化的 EXP

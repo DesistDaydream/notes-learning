@@ -35,7 +35,7 @@ fi
 >
 > - [官网](https://ubuntu.com/)
 > - [Wiki，Ubuntu](https://en.wikipedia.org/wiki/Ubuntu)
->
+> - [Ubuntu Manual(手册)](https://manpages.ubuntu.com/)
 
 Ubuntu 是一个基于 Debian 的 Linux 发行版，主要由 [FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software) 组成。
 

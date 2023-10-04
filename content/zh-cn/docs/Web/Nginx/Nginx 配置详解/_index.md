@@ -1,3 +1,6 @@
 ---
-title: Nginx 配置详解
+title: _index
+linkTitle: _index
+date: 2023-11-02T10:39
+weight: 2
 ---

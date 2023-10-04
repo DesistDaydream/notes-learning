@@ -7,7 +7,7 @@ title: systemd-resolved.service
 > 参考：
 > 
 > - [Manual(手册)，systemd-resolved.service(8)](https://man7.org/linux/man-pages/man8/systemd-resolved.service.8.html)
-> - [金步国-system 中文手册](http://www.jinbuguo.com/systemd/systemd-resolved.service.html)
+> - [金步国-system 中文手册，systemd-resolved.service](http://www.jinbuguo.com/systemd/systemd-resolved.service.html)
 
 systemd-resolved.service 是一个类似于 [DNSmasq](/docs/4.数据通信/DNS/DNSmasq.md) 的域名解析服务，只不过这个服务只适用于 Linux 中，且被 systemd 所管理。
 

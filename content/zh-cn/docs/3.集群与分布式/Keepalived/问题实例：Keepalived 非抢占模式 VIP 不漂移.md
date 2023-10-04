@@ -98,7 +98,7 @@ Keepalived 主要是通过虚拟路由冗余来实现高可用功能。本文将
 
 1. 将配置文件中的 nginx 去掉以后，可以解决上述问题，符合预期中的第 1，2，3 点，但是当原 MASTER 节点上服务恢复后，原 MASTER 会重新成为 MASTER 角色，这不符合预期中的第 4 点（不抢占）；
 
-## 问题原因：
+## 问题原因
 
 在网上查阅到的资料中，大都认为按照上述配置后可以完全符合预期中的 4 个点，不会出现 MASTER 节点服务检查失败后 VIP 不漂移的问题。但是实践是检验真理的唯一标准，配置 nopreemt 后，不仅是会让原 MASTER 节点服务恢复后不抢占，而是会完全的不选举新 MASTER(从头到尾永远不切换，除非 BACKUP 认为当前集群中不存在 MASTER, 才会重新选举)，这样便可以解释出现的问题 1 和问题 2 了：
 
@@ -134,6 +134,6 @@ Keepalived 主要是通过虚拟路由冗余来实现高可用功能。本文将
 
 节点之间通过 VRRP 报文获得相互的优先级及状态信息，因此，可以通过在服务检查失败时，配置防火墙，禁止本机的 VRRP 报文发出即可。这样，BACKUP 节点收不到 MASTER 节点的 VRRP 报文，认为 MASTER 节点不存在，同时 MASTER 节点能收到其他节点的 VRRP 报文，感知到新 MASTER 的产生，从而进入 BACKUP 状态。
 
-配置详见：[keepalived+nginx 配置示例](https://www.yuque.com/go/doc/33183799)
+配置详见：[10.2.keepalived+nginx 配置示例](/docs/3.集群与分布式/Keepalived/10.2.keepalived+nginx%20配置示例.md)
 
 重启 keepalived 服务，测试成功。

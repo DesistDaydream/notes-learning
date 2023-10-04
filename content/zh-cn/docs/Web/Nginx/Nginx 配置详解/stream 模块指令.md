@@ -100,7 +100,7 @@ http://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen
 
 http://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_pass
 
-- 语法：proxy_pass ADDRESS
+- 语法：`proxy_pass ADDRESS;`
 - 默认值：`无`
 - 作用范围：server{}
 

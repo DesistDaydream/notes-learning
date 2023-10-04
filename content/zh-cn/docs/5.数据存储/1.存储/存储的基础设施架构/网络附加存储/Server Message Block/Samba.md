@@ -4,7 +4,7 @@ title: Samba
 
 # 概述
 
-> 参考：[Wiki,Samba](https://en.wikipedia.org/wiki/Samba_(software))
+> 参考：[Wiki，Samba](https://en.wikipedia.org/wiki/Samba_(software))
 
 **Samba** 是 [SMB](/docs/5.数据存储/1.存储/存储的基础设施架构/网络附加存储/Server%20Message%20Block/Server%20Message%20Block.md) 协议的实现工具。
 

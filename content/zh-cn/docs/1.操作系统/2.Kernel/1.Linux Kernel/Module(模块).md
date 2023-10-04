@@ -155,7 +155,7 @@ EXAMPLE
 
 - **alias \<Wildcard> modulename** #
 - **blacklist** **\<ModuleName>**
-- **install \<ModuleName> <COMMAND>...** # 该命令指示 modprobe 工具运行我指定的命令，而不是像往常一样在内核中插入模块。该命令可以是任何 shell 命令: 这允许你做任何类型的复杂处理，你可能希望。例如，如果模块 “fred” 与已经安装的模块 “barney” 一起工作得更好 (但它不依赖于它，所以 modprobe 不会自动加载它)，你可以说 “安装 fred /sbin/modprobe barney; /sbin/modprobe-ignore-install fred”，你想做什么就做什么。注意 -- ignore-install，它阻止第二个 modprobe 再次运行相同的 install 命令。另请参阅下面的删除。
+- **install \<ModuleName> \<COMMAND>...** # 该命令指示 modprobe 工具运行我指定的命令，而不是像往常一样在内核中插入模块。该命令可以是任何 shell 命令: 这允许你做任何类型的复杂处理，你可能希望。例如，如果模块 “fred” 与已经安装的模块 “barney” 一起工作得更好 (但它不依赖于它，所以 modprobe 不会自动加载它)，你可以说 “安装 fred /sbin/modprobe barney; /sbin/modprobe-ignore-install fred”，你想做什么就做什么。注意 -- ignore-install，它阻止第二个 modprobe 再次运行相同的 install 命令。另请参阅下面的删除。
   - 注意：这个命令作为提供额外模块依赖的问题的解决方案的长期未来是不确定的，它打算用一个警告来代替这个命令，说明它在将来的版本中的某个时候最终被删除或弃用。它的使用使分发工具 (例如 mkinitrd) 对模块依赖关系的自动确定变得复杂 (因为它们现在需要以某种方式解释安装命令可能在做什么。在一个完美的世界中，模块将在不使用此命令的情况下提供所有依赖项信息，并且正在努力在 linux 内核中实现软依赖项支持。
 - **options \<ModuleName> \<OPTION>...** #
 - **remove \<ModuleName> \<COMMAND>...**#

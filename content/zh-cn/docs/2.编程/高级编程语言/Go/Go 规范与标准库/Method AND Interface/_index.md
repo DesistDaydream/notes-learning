@@ -1,3 +1,6 @@
 ---
-title: Method(方法)、Interface(接口)
+title: Method AND Interface
+linkTitle: Method AND Interface
+date: 2023-11-20T21:30
+weight: 9
 ---

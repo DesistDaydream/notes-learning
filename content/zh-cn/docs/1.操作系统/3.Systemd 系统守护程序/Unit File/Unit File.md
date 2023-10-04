@@ -131,7 +131,7 @@ WantedBy=multi-user.target
 
 **drop-in(嵌入式)** 单元文件就是一种类似配置文件的 **include**的功能(比如 Nginx 中的 include 指令)，可以让主配置文件包含其他子配置文件。**Systemd 设定了两种 include 的规范**
 
-假如现在有一个名为 `foo.service` 的 Unit File，那么，[Systemd 会从加载 Unit File 的目录](https://www.yuque.com/desistdaydream/learning/sa1uqi#o317e)中，加载与之相关联的一系列文件
+假如现在有一个名为 `foo.service` 的 Unit File，那么，Systemd 会从加载 Unit File 的目录中，加载与之相关联的一系列文件
 
 - **UnitFileName.wants/ 与 UnitFileName.requires/** # 比如 foo.service.wants/  与  foo.service.requires/。该目录中可以放置许多指向其他 Unit Files 的软连接。 软连接所指向的 Unit 将会被当做  `foo.service`  的 Unit 文件中  `Wants=`  与  `Requires=`  指令的值
   - 注意：即使文件中不存在 Wants 和 Requires 指令。只要存在对应的 _.wants/ 和_.requires/ 目录，就相当于为 Unit File 中加上了这两个指令。

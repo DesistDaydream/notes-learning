@@ -101,13 +101,17 @@ mount/umount 文件系统挂载/卸载工具
 ## Syntax(语法)
 
 **mount \[-l] \[-t fstype]**
+
 **mount -a \[-fFnrsvw] \[-t fstype] \[-O optlist]**
+
 **mount \[-fnrsvw] \[-o options] \<DEVICE | MountPoint>** # 从 /etc/fstab 文件读取 Device 或 MountPoint 的信息后执行对应的挂载操作
+
 **mount \[-fnrsvw] \[-t fstype] \[-o options] DEVICE MountPoint** # 将 DEVICE 设备挂载到 MountPoint 上
 
 - MountPoint 通常是一个绝对路径，/PATH/DIR，即将 DEVICE 设备挂载在 PATH 路径下的 DIR 目录上
 
 **mount --bind|--rbind|--move \<OldDIR> \<NewDIR>** # 执行 bind 挂载，将 OldDIR 目录挂载到 NewDIR 目录上
+
 **mount --make-\[shared|slave|private|unbindable|rshared|rslave|rprivate|runbindable] MountPoint**
 
 OPTIONS

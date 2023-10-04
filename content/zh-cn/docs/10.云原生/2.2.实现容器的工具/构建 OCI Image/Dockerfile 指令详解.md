@@ -113,11 +113,13 @@ VOLUME MountPoint
 # ENTRYPOINT # 用于为容器指定默认运行程序，从而使得容器像是一个单独的可执行程序
 
 Dockerfile 中可以有多个 ENTRYPOINT 指令，但只有最后一个生效。
+
 注意：**ENTRYPOINT 不会被 docker run 之后的参数替换**，CMD 指令的内容 或 docker run 命令最后手动添加的参数会被当做 ENTRYPOINT 指令设定的命令的参数。
 
 ## Syntax(语法)
 
 **ENTRYPOINT \["executable", "param-1", "param-2",..."param-n"]**
+
 注意：语法中 `[]` 符号不代表其内的内容是可选的，而是表示 `[]` 这个符号是语法中的一部分。
 
 - executable # 将要执行的具体二进制程序名
@@ -137,13 +139,15 @@ CMD ["--help"]
 
 举个例子吧：
 
-    # 这是用 CMD 的情况
-    [root@ansible exporter]# docker run -p=8081:8081 lchdzh/xsky-exporter:v0.1 --web.listen-address=":8081"
-    docker: Error response from daemon: OCI runtime create failed: container_linux.go:349: starting container process caused "exec: \"--web.listen-address=:8081\": executable file not found in $PATH": unknown.
-    # 这是用 ENTRYPOINT 的情况
-    [root@ansible exporter]# docker run -p=8081:8081 lchdzh/xsky-exporter:v0.1 --web.listen-address=":8081"
-    time="2020-12-30 05:41:52" level=info msg="Scraper enabled cluster_info"
-    time="2020-12-30 05:41:52" level=info msg="Listening on address :8081"
+```bash
+# 这是用 CMD 的情况
+[root@ansible exporter]# docker run -p=8081:8081 lchdzh/xsky-exporter:v0.1 --web.listen-address=":8081"
+docker: Error response from daemon: OCI runtime create failed: container_linux.go:349: starting container process caused "exec: \"--web.listen-address=:8081\": executable file not found in $PATH": unknown.
+# 这是用 ENTRYPOINT 的情况
+[root@ansible exporter]# docker run -p=8081:8081 lchdzh/xsky-exporter:v0.1 --web.listen-address=":8081"
+time="2020-12-30 05:41:52" level=info msg="Scraper enabled cluster_info"
+time="2020-12-30 05:41:52" level=info msg="Listening on address :8081"
+```
 
 ENTRYPOINT 与 CMD 的比较
 

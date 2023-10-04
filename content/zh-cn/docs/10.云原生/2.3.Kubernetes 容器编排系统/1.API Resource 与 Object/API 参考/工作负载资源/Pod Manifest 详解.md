@@ -6,7 +6,7 @@ title: Pod Manifest 详解
 
 > 参考：
 >
-> - [API 文档，单页](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#pod-v1-core)
+> - [API 文档，单页](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#pod-v1-core)
 > - [官方文档，参考-Kubernetes API-工作负载资源-Pod](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/)
 
 Pod 是可以在主机上运行的容器的集合。此资源由客户端创建并调度到主机上。
@@ -118,7 +118,7 @@ Pod 是可以在主机上运行的容器的集合。此资源由客户端创建�
 
 status 字段表示 Pod 的状态信息。状态可能会落后于系统的实际状态，尤其是当承载 Pod 的节点无法联系控制平面时。
 
-**phase: STRING** # phase(阶段) 字段是对 Pod 在其生命周期中所处位置的简单、高级的总结。条件数组、原因和消息字段以及各个容器状态数组包含有关 pod 状态的更多详细信息。有五个可能的相位值：
+**phase**(STRING) # phase(阶段) 字段是对 Pod 在其生命周期中所处位置的简单、高级的总结。条件数组、原因和消息字段以及各个容器状态数组包含有关 pod 状态的更多详细信息。有五个可能的相位值：
 
 - `Pending` # Pod 已被 Kubernetes 系统接受，但尚未创建容器镜像。 这包括 Pod 被调度之前的时间以及通过网络下载镜像所花费的时间。
 - `Running` # Pod 已经被绑定到某个节点，并且所有的容器都已经创建完毕。至少有一个容器仍在运行，或者正在启动或重新启动过程中。
@@ -130,31 +130,6 @@ status 字段表示 Pod 的状态信息。状态可能会落后于系统的实�
 # 通用字段
 
 ## containers
-
-**args([]STRING)** # 定义容器运行的命令和参数。用于替换容器镜像中 CMD 指令。详见[为容器定义命令和参数章节](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)
-
-```yaml
-# 注意，在使用 args 为容器传递 flags 时，不要使用空格。否则，会自动为 flags 和 参数 加上单引号，导致 flags 失效
-# 比如现在有如下 args 配置
-        args:
-        - deletecr
-        - --ns default
-# 当容器运行后，会被转换成 "deletecr '--ns default'"，这时，deletecr 的 flag 变成了 --ns default，而不是 --ns。
-# 这时，就会报错，并提示如下内容
-flag provided but not defined: '--ns default'
-# 可以看到，在容器中，将 --ns default 这个整体当作了一个 flags。
-# 所以，如果想要使用 args，可以这样写：
-        args:
-        - deletecr
-        - --ns=default
-# 或者
-        args:
-        - deletecr
-        - --ns
-        - default
-```
-
-**command([]STRING)** # 定义容器运行的命令和参数。用于替换容器镜像中的 ENTRYPOINT 指令。详见为[容器定义命令和参数章节](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)
 
 **env([]Object)** # 要在容器中设置的环境变量列表。详见[为容器定义命令和参数章节](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)
 
@@ -186,6 +161,33 @@ flag provided but not defined: '--ns default'
 **image(STRING)** # 容器使用的镜像
 
 **imagePullPolicy(STRING)** # 指明镜像拉取策略，公有三种 Always、IfNotPresent、Never。`默认值：IfNotPresent`
+
+### Entrypoint(入口点) 相关字段
+
+**args(\[]STRING)** # 定义容器运行的命令和参数。用于替换容器镜像中 CMD 指令。详见[为容器定义命令和参数章节](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)
+
+```yaml
+# 注意，在使用 args 为容器传递 flags 时，不要使用空格。否则，会自动为 flags 和 参数 加上单引号，导致 flags 失效
+# 比如现在有如下 args 配置
+        args:
+        - deletecr
+        - --ns default
+# 当容器运行后，会被转换成 "deletecr '--ns default'"，这时，deletecr 的 flag 变成了 --ns default，而不是 --ns。
+# 这时，就会报错，并提示如下内容
+flag provided but not defined: '--ns default'
+# 可以看到，在容器中，将 --ns default 这个整体当作了一个 flags。
+# 所以，如果想要使用 args，可以这样写：
+        args:
+        - deletecr
+        - --ns=default
+# 或者
+        args:
+        - deletecr
+        - --ns
+        - default
+```
+
+**command([]STRING)** # 定义容器运行的命令和参数。用于替换容器镜像中的 ENTRYPOINT 指令。详见为[容器定义命令和参数章节](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)
 
 ### Lifecycle(生命周期) 相关字段
 

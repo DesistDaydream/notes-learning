@@ -6,6 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
+> 
 > - [GitHub 项目，golang/go](https://github.com/golang/go)
 > - [官网](https://golang.org/)
 > - [Google 开放源代码](https://cs.opensource.google/go)
@@ -13,7 +14,7 @@ weight: 1
 >     - [中文版，GitHub 项目，yinggaozhen/awesome-go-cn](https://github.com/yinggaozhen/awesome-go-cn)
 >     - 另一个 go awesome: <https://github.com/shockerli/go-awesome>
 
-Go 是一种开源编程语言，可以轻松构建 **simple(简单)**、**reliable(可靠) **和 **efficient(高效) **的软件。
+Go 是一种开源编程语言，可以轻松构建 **simple(简单)**、**reliable(可靠)** 和 **efficient(高效)** 的软件。
 
 ## 学习资料
 

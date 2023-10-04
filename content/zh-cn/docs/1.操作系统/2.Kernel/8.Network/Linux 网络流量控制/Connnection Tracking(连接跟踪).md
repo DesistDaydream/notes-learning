@@ -5,9 +5,11 @@ title: Connnection Tracking(连接跟踪)
 # 概述
 
 > 参考：
-> - [arthurchiao,连接跟踪：原理、应用及 Linux 内核实现](http://arthurchiao.art/blog/conntrack-design-and-implementation-zh/)
+>
+> - [arthurchiao，连接跟踪：原理、应用及 Linux 内核实现](http://arthurchiao.art/blog/conntrack-design-and-implementation-zh/)
 
-**Connection Tracking(连接跟踪系统，简称 ConnTrack、CT)**，用于跟踪并且记录连接状态。CT 是[流量控制系统](https://www.yuque.com/go/doc/34346416)的基础
+**Connection Tracking(连接跟踪系统，简称 ConnTrack、CT)**，用于跟踪并且记录连接状态。CT 是 [Linux 网络流量控制](/docs/1.操作系统/2.Kernel/8.Network/Linux%20网络流量控制/Linux%20网络流量控制.md)的基础
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ynfo7m/1617860207674-43ea3c6d-0d0f-4fac-bccb-90e752e75a47.png)
 例如，上图是一台 IP 地址为 `10.1.1.2` 的 Linux 机器，我们能看到这台机器上有三条 连接：
 
@@ -64,15 +66,15 @@ title: Connnection Tracking(连接跟踪)
 因此，即便[卸载 Netfilter](https://github.com/cilium/cilium/issues/12879) ，也不会影响 Cilium 对 Kubernetes ClusterIP、NodePort、ExternalIPs 和 LoadBalancer 等功能的支持 \[2]。
 由于这套连接跟踪机制是独立于 Netfilter 的，因此它的 conntrack 和 NAT 信息也没有 存储在内核的（也就是 Netfilter 的）conntrack table 和 NAT table。所以常规的 `conntrack/netstats/ss/lsof` 等工具是看不到的，要使用 Cilium 的命令，例如：
 
-    $ cilium bpf nat list
-    $ cilium bpf ct list global
+    cilium bpf nat list
+    cilium bpf ct list global
 
 配置也是独立的，需要在 Cilium 里面配置，例如命令行选项 `--bpf-ct-tcp-max`。
 另外，本文会多次提到连接跟踪模块和 NAT 模块独立，但**出于性能考虑，具体实现中 二者代码可能是有耦合的**。例如 Cilium 做 conntrack 的垃圾回收（GC）时就会顺便把 NAT 里相应的 entry 回收掉，而非为 NAT 做单独的 GC。
 
 ### Netfilter 中的 Connection Tracking
 
-详见 [Netifilter 中 Connection Tracking 章节](https://www.yuque.com/go/doc/33221811)
+详见 Netifilter 中 [Connection Tracking(连接跟踪)机制](/docs/1.操作系统/2.Kernel/8.Network/Linux%20网络流量控制/Netfilter%20流量控制系统/Connection%20Tracking(连接跟踪)机制.md)
 
 ### BPF 中的 Connection Tracking
 

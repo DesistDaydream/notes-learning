@@ -5,6 +5,7 @@ title: Raid
 # 概述
 
 > 参考：
+>
 > - [Wiki，Raid](https://en.wikipedia.org/wiki/RAID)
 > - [Wiki 中文，Raid](https://zh.wikipedia.org/wiki/RAID)
 > - [Wiki，Erasure code](https://en.wikipedia.org/wiki/Erasure_code)(纠删码)
@@ -25,7 +26,7 @@ Raid 5 等的奇偶校验机制，是纠删码的最佳实践
 
 在配置界面中一般体现为“Read Policy”。RAID 卡支持如下两种数据读策略：
 
-- 预读取方式：在配置界面中一般有“Always Read Ahead”、“Read Ahead”、“Ahead”等配置选项。使用此策略后，从虚拟磁盘中读取所需数据时，会把后续数据同时读出放在 Cache 中，用户随后访问这些数据时可以直接在 Cache 中命中，将减少磁盘寻道操作，节省响应时间，提高了数据读取速度。要使用该策略，要求 RAID 控制卡支持数据掉电保护功能，但如果此时超级电容异常，可能导致数据丢失。
+- 预读取方式：在配置界面中一般有“Always Read Ahead”、“Read Ahead”、“Ahead”等配置选项。使用此策略后，从虚拟磁盘中读取所需数据时，会把后续数据同时读出放在 [Cache](/docs/8.通用技术/Cache.md) 中，用户随后访问这些数据时可以直接在 Cache 中命中，将减少磁盘寻道操作，节省响应时间，提高了数据读取速度。要使用该策略，要求 RAID 控制卡支持数据掉电保护功能，但如果此时超级电容异常，可能导致数据丢失。
 - 非预读取方式：使用此策略后，RAID 卡接收到数据读取命令时，才从虚拟磁盘读取数据，不会做预读取的操作。
 
 ## 数据写策略
@@ -41,6 +42,7 @@ Raid 5 等的奇偶校验机制，是纠删码的最佳实践
 ## JBOD
 
 > 参考：
+>
 > - [Wiki，Non-RAID_drive_architectures](https://en.wikipedia.org/wiki/Non-RAID_drive_architectures)
 
 **Just a Bunch Of Disks(只是一堆磁盘，简称 JBOD)** 是阵列卡可以提供的一种透传模式，让硬盘可以直接透过阵列卡对系统直接提供本身的存储能力。还可以将多个物理硬盘组成单个逻辑磁盘，但是**这并不是一种 RAID**，也不提供数据冗余，仅仅是将这些硬盘从头到尾串联起来而已。

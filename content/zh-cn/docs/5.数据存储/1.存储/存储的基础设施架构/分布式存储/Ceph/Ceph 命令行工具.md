@@ -54,7 +54,7 @@ OPTIONS
 - **--uid=STRING** # 指定用户的 ID。在执行绝大部分与用户相关的命令时，都需要指定该选项，以确定操作的用户。比如 查看用户信息、查看属于指定用户的桶的信息 等等等等
 - **--system** # 为指定用户设定 system 标志
 
-### EXAPMEL
+### EXAMPLE
 
 创建一个名为 lichenhao 的用户，并添加 system 标志
 

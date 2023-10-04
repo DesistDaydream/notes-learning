@@ -6,6 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
+> 
 > - [官方文档，概念-概述-使用 Kubernetes 对象-Kubernetes 对象管理](https://kubernetes.io/docs/concepts/overview/working-with-objects/object-management/)
 > - [官方文档，任务-管理 Kubernetes 对象](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/)
 > - [公众号-k8s 技术圈，理解 K8s 中的 Client-Side Apply 和 Server-Side Apply](https://mp.weixin.qq.com/s/EYtMO9KGRK_lHS2IW-mZug)

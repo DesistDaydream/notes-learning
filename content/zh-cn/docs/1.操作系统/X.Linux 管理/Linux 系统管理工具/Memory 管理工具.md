@@ -33,7 +33,7 @@ weight: 2
 
 ### Buffers 与 Cached
 
-详见：《[Memory 的缓存机制](docs/1.操作系统/2.Kernel/5.Memory/Memory%20的缓存机制.md)》
+详见：《[Memory 的缓存](/docs/1.操作系统/2.Kernel/5.Memory/Memory%20的缓存.md)》
 
 ### Active
 

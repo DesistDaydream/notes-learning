@@ -5,6 +5,7 @@ title: Prometheus Operator
 # 概述
 
 > 参考：
+>
 > - [官网](https://prometheus-operator.dev/)
 > - [GitHub 项目](https://github.com/prometheus-operator/prometheus-operator)
 
@@ -21,6 +22,7 @@ Prometheus Operator 通过数个 CRD 资源来控制 Prometheus 监控套件的�
 ## CRD 介绍
 
 > 参考：
+>
 > - [官方文档](https://prometheus-operator.dev/docs/operator/design)
 > - https://github.com/coreos/prometheus-operator/blob/master/Documentation/design.md
 
@@ -41,7 +43,7 @@ Prometheus Operator 现阶段引入了如下几种自定义资源：
 
 ### Prometheus
 
-详见：[Prometheus CRD 详解](https://www.yuque.com/go/doc/33146451)
+详见：[Prometheus](/docs/6.可观测性/监控系统/Prometheus/Prometheus%20衍生品/Prometheus%20Operator/CR%20详解/Prometheus/Prometheus.md) CR 详解
 
 ### Alertmanager
 
@@ -49,11 +51,11 @@ Prometheus Operator 现阶段引入了如下几种自定义资源：
 
 ### ServiceMonitor(简称 SM。。。囧)
 
-详见：[Service Monitor CRD 详解](https://www.yuque.com/go/doc/33146422)
+详见：[Service Monitor](/docs/6.可观测性/监控系统/Prometheus/Prometheus%20衍生品/Prometheus%20Operator/CR%20详解/Service%20Monitor.md)
 
 ### PodMonitor
 
-详见：[Pod Monitor CRD 详解](https://www.yuque.com/go/doc/33146411)
+详见：[Pod Monitor](/docs/6.可观测性/监控系统/Prometheus/Prometheus%20衍生品/Prometheus%20Operator/CR%20详解/Pod%20Monitor.md)
 
 ### Probe
 

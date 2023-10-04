@@ -5,15 +5,16 @@ title: ASN.1
 # 概述
 
 > 参考：
+> 
 > - [ITU 官网,ITU-T-ASN.1 项目](https://www.itu.int/en/ITU-T/asn1/Pages/asn1_project.aspx)
-> - [Wiki,ASN.1](https://en.wikipedia.org/wiki/ASN.1)
-> - [Wiki,X.690-DER_encoding](https://en.wikipedia.org/wiki/X.690#DER_encoding)
+> - [Wiki，ASN.1](https://en.wikipedia.org/wiki/ASN.1)
+> - [Wiki，X.690-DER_encoding](https://en.wikipedia.org/wiki/X.690#DER_encoding)
 > - <http://www.txrzx.com/i4477.html>
 > - <http://threelambda.com/2020/11/08/asn-1/>
 > - <https://lapo.it/asn1js>
 > - 《抽象语法记法 asn.1 原理与应用》
 
-**Abstract Syntax Notation One(抽象语法表示法，简称 ASN.1) **是一个形式化的标准，用于定义抽象数据类型的规范。它广泛用于计算机网络中，用于描述 telecommunications protocols(电信协议) 传输数据时所使用的 **formal notation(正式表示法)**。
+**Abstract Syntax Notation One(抽象语法表示法，简称 ASN.1)** 是一个形式化的标准，用于定义抽象数据类型的规范。它广泛用于计算机网络中，用于描述 telecommunications protocols(电信协议) 传输数据时所使用的 **formal notation(正式表示法)**。
 
 通信设备需要相互传输数据，但是设备可能是由不同厂家生产的，其硬件体系结构、程序语言的语法定义和程序功能实现一般是不相同的。例如，在一台设备中，整形数据类型是 16 位表示，而在另一台则可能用 32 位表示。这些差异导致了同一数据对象在不同的设备上被表示为不同的符号串。为了解决以上问题，ISO 组织推出了抽象语法表符号 1（ASN.1，Abstract Syntax Notation One）。ASN.1 通过定义若干简单类型和复合类型，使得各个设备对其间交换消息的数据类型有了一致的认识。系统的消息发送方采用编码规则（BER、PER）将 ASN.1 描述的消息编码成二进制字节流；消息接受方对收到的字节流进行解码，再转化为符合其自身语法的消息格式。这样，经过 ASN.1 处理的消息独立于应用环境，就不会因为系统终端的区别而产生歧义。基于 H.323 协议的视频会议系统的信令消息就是采用 ASN.1 来表示的。
 
@@ -60,7 +61,7 @@ ITU-T X.690 标准，指定了几种 ASN.1 编码格式：
 
 用白话说： DER 是一种以二进制形式编码 ASN.1 语法的方法
 
-**DER，是对 **[**ASN.1**](https://www.yuque.com/go/doc/33220231)** 这种语言进行编码的一种规则**，也是最常用的一种。所谓对某种语言编码，就是类似编译器的效果。所以也可以称为 **ASN.1 的 DER 规则**。
+**DER，是对 ASN.1** 这种语言进行编码的一种规则，也是最常用的一种。所谓对某种语言编码，就是类似编译器的效果。所以也可以称为 **ASN.1 的 DER 规则**。
 
 ## 编码示例
 

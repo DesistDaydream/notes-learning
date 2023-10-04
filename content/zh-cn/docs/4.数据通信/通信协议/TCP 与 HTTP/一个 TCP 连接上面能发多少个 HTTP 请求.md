@@ -18,11 +18,11 @@ title: 一个 TCP 连接上面能发多少个 HTTP 请求
 
 在 HTTP/1.0 中，一个服务器在发送完一个 HTTP 响应后，会断开 TCP 链接。但是这样每次请求都会重新建立和断开 TCP 连接，代价过大。所以虽然标准中没有设定，某些服务器对 Connection: keep-alive 的 Header 进行了支持。意思是说，完成这个 HTTP 请求之后，不要断开 HTTP 请求使用的 TCP 连接。这样的好处是连接可以被重新使用，之后发送 HTTP 请求的时候不需要重新建立 TCP 连接，以及如果维持连接，那么 SSL 的开销也可以避免，两张图片是我短时间内两次访问 [https://www.github.com](https://link.zhihu.com/?target=https%3A//www.github.com) 的时间统计：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/6cbfab08-4d4d-43ef-a7c1-84e9fba6d0bd/v2-db695f956c18bbedb5e4553f16aaced7_b.jpg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/tcp_and_http/v2-db695f956c18bbedb5e4553f16aaced7_b.jpg)
 
 头一次访问，有初始化连接和 SSL 开销
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/6cbfab08-4d4d-43ef-a7c1-84e9fba6d0bd/v2-2feab2309c3fac421fea2cf4492fb739_b.jpg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/tcp_and_http/v2-2feab2309c3fac421fea2cf4492fb739_b.jpg)
 
 初始化连接和 SSL 开销消失了，说明使用的是同一个 TCP 连接
 
@@ -66,7 +66,7 @@ Head-of-line Blocking 连接头阻塞：在建立起一个 TCP 连接之后，�
 
 但是，HTTP2 提供了 Multiplexing 多路传输特性，可以在一个 TCP 连接中同时完成多个 HTTP 请求。至于 Multiplexing 具体怎么实现的就是另一个问题了。我们可以看一下使用 HTTP2 的效果。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/6cbfab08-4d4d-43ef-a7c1-84e9fba6d0bd/v2-18674617fd7dbde4a6ab2a44611b53bc_b.jpg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/tcp_and_http/v2-18674617fd7dbde4a6ab2a44611b53bc_b.jpg)
 
 绿色是发起请求到请求返回的等待时间，蓝色是响应的下载时间，可以看到都是在同一个 Connection，并行完成的
 

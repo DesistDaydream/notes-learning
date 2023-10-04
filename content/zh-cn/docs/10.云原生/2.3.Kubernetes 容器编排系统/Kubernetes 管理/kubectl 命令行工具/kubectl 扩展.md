@@ -26,12 +26,12 @@ Kubernetes SIG 研发了一款名为 **Krew** 的插件，这是一个可以管�
 
 ## Krew 配置
 
-**~/.krew/\*** # Krew 配置文件与存储路径。
+**~/.krew/** # Krew 配置文件与存储路径。
 
-- **./bin/\*** # Krew 安装的插件的软连接
-- **./index/default/plugins/\*** # Krew 发现的插件元数据，想要安装插件，就会通过这里面的元数据信息进行。
-- **./receipts/\*** # 已安装的插件的元数据。
-- **./store/\*** # Krew 存储路径，所有安装的插件的二进制文件都会在该目录下。
+- **./bin/** # Krew 安装的插件的软连接
+- **./index/default/plugins/** # Krew 发现的插件元数据，想要安装插件，就会通过这里面的元数据信息进行。
+- **./receipts/** # 已安装的插件的元数据。
+- **./store/** # Krew 存储路径，所有安装的插件的二进制文件都会在该目录下。
 
 # 常见 kubectl 插件
 
@@ -47,4 +47,5 @@ kubectl 插件管理工具，项目地址：<https://github.com/kubernetes-sigs/
 ## kubecm
 
 项目地址：<https://github.com/sunny0826/kubecm>
+
 整合 kubectl 的 config 文件，并可以简单得切换 kubectl 所要操作的目标集群

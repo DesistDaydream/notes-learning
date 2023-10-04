@@ -5,7 +5,7 @@ title: UUID 与 ULID
 # 概述
 
 > 参考：
-> - [Wiki,UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)
+> - [Wiki，UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)
 > - [GitHub,ULID](https://github.com/ulid/spec)
 
 ## UUID

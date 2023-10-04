@@ -18,7 +18,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki,GNU Core Utilies](https://en.wikipedia.org/wiki/GNU_Core_Utilities)
+> - [Wiki，GNU Core Utilies](https://en.wikipedia.org/wiki/GNU_Core_Utilities)
 > - [官方文档](https://www.gnu.org/software/coreutils/manual/)
 
 GNU Core Utilities 是 GNU 操作系统的基本文件、Shell、文本操作的实用程序。同时，也是现在绝大部分 Linux 发行版内置的实用程序。
@@ -76,7 +76,7 @@ arch base64 basename cat chcon chgrp chmod chown chroot cksum comm cp  csplit cu
 > 参考：
 >
 > - [GitHub 项目，util-linux/util-linux](https://github.com/util-linux/util-linux)
-> - [Wiki,Util-linux](https://en.wikipedia.org/wiki/Util-linux)
+> - [Wiki，Util-linux](https://en.wikipedia.org/wiki/Util-linux)
 
 util-linux 是由 Linux 内核组织分发的标准软件包，用作 Linux 操作系统的一部分。一个分支 util-linux-ng（ng 的意思是“下一代”）是在开发停滞时创建的，但截至 2011 年 1 月，它已重命名为 util-linux，并且是该软件包的正式版本。
 

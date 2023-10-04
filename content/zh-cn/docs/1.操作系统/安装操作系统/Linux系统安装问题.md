@@ -28,7 +28,7 @@ title: Linux 系统安装问题
 
 **解决方式：**
 
-### 解决方式 1：
+### 解决方式 1
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/nebxk0/1616168532236-5667c5d2-d80e-428a-a9ae-28a8c02a9f96.png)
 
@@ -38,7 +38,7 @@ title: Linux 系统安装问题
 
 这样就可以保证使用 U 盘安装时，服务器可以根据标签来读取到 U 盘并进行后续安装了
 
-### 解决方式 2：
+### 解决方式 2
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/nebxk0/1616168532287-1f22f5eb-1b38-4bde-8048-9a5a8065373a.png)
 
@@ -57,7 +57,6 @@ title: Linux 系统安装问题
 ### 解决方式 3
 
 首先等待 timeout 报错完成，这是会进入 dracut 的简易终端，cd /dev 执行 ls 查看有哪些分区，我的分区有 sda 和 sdb、sdb4，所以 sdb4 就是镜像所在的分区，编辑 inst.stage2=hd:LABEL=CentOS\x207\x2086_64 为 inst.stage2=hd:/dev/sdb4 按 enter 开机，efi 安装按 ctrl+x 启动。之后就能正常开机了。
-
 
 ## 因此，具体操作有 2 个
 

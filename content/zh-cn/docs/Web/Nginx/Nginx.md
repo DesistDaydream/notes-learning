@@ -1,6 +1,8 @@
 ---
 title: Nginx
+linkTitle: Nginx
 weight: 1
+date: 2023-11-02T10:39
 ---
 
 # 概述
@@ -175,6 +177,14 @@ http {
     }
 }
 ```
+
+# 命令行工具
+
+## 应用示例
+
+让nginx在前台运行，常用于container中
+
+- `nginx -g 'daemon off;'`
 
 # 分类
 

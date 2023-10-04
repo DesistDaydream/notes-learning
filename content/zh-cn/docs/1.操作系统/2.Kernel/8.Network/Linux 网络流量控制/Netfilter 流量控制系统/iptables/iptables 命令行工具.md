@@ -86,7 +86,7 @@ MATCHES 的语法是一种类似命令行参数的写法
 - **-p, --protocol PROTOCOL** # 指定规则中要匹配的协议，即 ip 首部中的 protocols 所标识的协议
   - 可用的协议有 tcp、udp、icmp、等等
 - **-m, --match MATCH** # 使用[扩展匹配语法](#扩展匹配语法)指定扩展匹配规则
-- **-j, --jump TARGET** # 指定 [TARGET](#TARGET)
+- **-j, --jump TARGET** # 指定 [TARGET](#target)
 
 ### 扩展匹配规则
 
@@ -151,7 +151,7 @@ iptables 可以使用带有 -m 或 --match 选项的扩展的数据包匹配模�
 
 **conntrack 模块**
 
-- **--ctstate CTState1\[,CTState2...]** # 匹配指定的名为 CTState(conntrack State) 的[连接追踪](docs/1.操作系统/2.Kernel/8.Network/Linux%20网络流量控制/Netfilter%20流量控制系统/Connection%20Tracking(连接跟踪)机制.md)状态。可用的状态有{INVALID|ESTABLISHED|NEW|RELATED|UNTRACKED|SNAT|DNAT}
+- **--ctstate CTState1\[,CTState2...]** # 匹配指定的名为 CTState(conntrack State) 的[连接追踪](/docs/1.操作系统/2.Kernel/8.Network/Linux%20网络流量控制/Netfilter%20流量控制系统/Connection%20Tracking(连接跟踪)机制.md)状态。可用的状态有{INVALID|ESTABLISHED|NEW|RELATED|UNTRACKED|SNAT|DNAT}
 
 **state 模块**
 
@@ -166,7 +166,8 @@ state 模块是 conntrack 模块的子集，属于老式用法，慢慢会被淘
 **set 模块**
 
 **--match-set SetName {src|dst}..**. # 匹配指定的{源|目标}IP 是名为 SetName 的 ipset 集合
-  - 其中 FLAG 是逗号分隔的 src 和 dst 规范列表，其中不能超过六个。
+
+- 其中 FLAG 是逗号分隔的 src 和 dst 规范列表，其中不能超过六个。
 
 **iprange 模块**
 
@@ -185,18 +186,18 @@ state 模块是 conntrack 模块的子集，属于老式用法，慢慢会被淘
 
 **tcp 模块**
 
-  - **--sport, --source-port NUM** # 指定规则中要匹配的来源端口号
-  - **--dport, --destination-port NUM** # 指定规则中要匹配的目标端口号
-  - **--tcp-flags LIST1 LIST2** # 检查 LIST1 所指明的所有标志位，且这其中 LIST2 所表示出的所有标志位必须为 1，而余下的必须为 0,；没有 LIST1 中指明的，不做检查(e.g.--tcp-flags SYN,ACK,FIN,RST SYN)。LIST 包括“SYN ACK FIN RST URG PSH ALL NONE”
+- **--sport, --source-port NUM** # 指定规则中要匹配的来源端口号
+- **--dport, --destination-port NUM** # 指定规则中要匹配的目标端口号
+- **--tcp-flags LIST1 LIST2** # 检查 LIST1 所指明的所有标志位，且这其中 LIST2 所表示出的所有标志位必须为 1，而余下的必须为 0,；没有 LIST1 中指明的，不做检查(e.g.--tcp-flags SYN,ACK,FIN,RST SYN)。LIST 包括“SYN ACK FIN RST URG PSH ALL NONE”
 
 **udp 模块**
 
-  - **--dport NUM** # 指定规则中要匹配的目标端口号
-  - **--sport NUM** # 指定规则中要匹配的来源端口号
+- **--dport NUM** # 指定规则中要匹配的目标端口号
+- **--sport NUM** # 指定规则中要匹配的来源端口号
 
 **icmp 模块**
 
-  - **-m \[icmp] --icmp-type TYPE** # 指定 icmp 的类型，具体类型可以搜 icmp type 获得，可以是数字
+- **-m \[icmp] --icmp-type TYPE** # 指定 icmp 的类型，具体类型可以搜 icmp type 获得，可以是数字
 
 # EXAMPLE
 
@@ -275,21 +276,21 @@ state 模块是 conntrack 模块的子集，属于老式用法，慢慢会被淘
 
 凡是基于 tcp 协议访问本机 80 端口，且目的地址是 110.119.120.1 的数据包。全部把目的地址转变为 192.168.20.2，且目的端口转换为 8080
 
-  - iptables -t nat -A PREROUTING -d 110.119.120.1 -p tcp --dport 80 -j DNAT --to-destination 192.168.20.2:8080
+- iptables -t nat -A PREROUTING -d 110.119.120.1 -p tcp --dport 80 -j DNAT --to-destination 192.168.20.2:8080
 
 将源地址网段是 192.168.122.0/24 并且目的地址网段不是 192.168.122.0/24 的全部转换成 123.213.1.5 这个地址。常用于公司内使用私网 IP 的设备访问互联网使用
 
-  - iptables -t nat -A POSTROUTING -s 192.168.122.0/24 ! -d 192.168.122.0/24 -j SNAT --to-source 123.213.1.5
+- iptables -t nat -A POSTROUTING -s 192.168.122.0/24 ! -d 192.168.122.0/24 -j SNAT --to-source 123.213.1.5
 
 将所有到达 eth0 网卡 25 端口的流量转发到 2525 端口。也叫端口转发
 
-  - iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 25 -j REDIRECT --to-port 2525
+- iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 25 -j REDIRECT --to-port 2525
 
 ## RAW 表配置
 
 所有来自 10.0.9.0/24 网段的数据包，都不跟踪
 
-  - iptables -t raw -A PREROUTING -s 10.0.9.0/24 -j NOTRACK
+- iptables -t raw -A PREROUTING -s 10.0.9.0/24 -j NOTRACK
 
 # 其他关联命令行工具
 

@@ -5,6 +5,7 @@ title: 构建 OCI Image
 # 概述
 
 > 参考：
+>
 > - [官方文档，使用 Docker 开发-构建镜像-编写 Dockerfile 的最佳实践](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
 
 在容器刚刚流行的时候，想要构建一个容器镜像通常只有两种方式：
@@ -17,12 +18,13 @@ Dockerfile 构建镜像的方式逐渐成为主流甚至标准，但是随着各
 # Dockerfile
 
 > 参考：
+>
 > - [官方文档](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
 > - [Dockerfile 参考](https://docs.docker.com/engine/reference/builder/)
 
 Docker 通过读取 **Dockerfile 文件**中的指令来构建符合 OCI 标准的容器镜像。Dockerfile 这个称呼有多个理解方式，可以是指一个**功能**，也可以指一个文件的**文件名**，也可以代指一类文件的**统称。**
 
-## DockerFile 功能的工作逻辑：
+## DockerFile 功能的工作逻辑
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ymn9n3/1616121926992-8640dd4a-029c-487c-9fa2-f20ee1b61b83.png)
 
@@ -56,78 +58,86 @@ Sending build context to Docker daemon  2.048kB
 
 - 执行文件中 FROM 指令,将 ubuntu 作为基础镜像，IMAGE ID 为 93fd78260bd1
 
-
-    Step 1/3 : FROM ubuntu
-     ---> 93fd78260bd1
+```
+Step 1/3 : FROM ubuntu
+ ---> 93fd78260bd1
+```
 
 - 基于 93fd78260bd1 这个 IMAGE 启动名为 607ce2e8553f 的临时容器，执行 RUN 后面的命令执行文件中的第二行 RUN 指令,安装 VIM
 
-
-    Step 2/3 : RUN apt update && apt install -y vim
-     ---> Running in 607ce2e8553f
+```
+Step 2/3 : RUN apt update && apt install -y vim
+ ---> Running in 607ce2e8553f
+```
 
 - 开始执行安装程序，会有警告，具体过程忽略不截图了
 
-
-    WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
-    Get:1 http://archive.ubuntu.com/ubuntu bionic InRelease [242 kB]
-    Get:2 http://security.ubuntu.com/ubuntu bionic-security InRelease [83.2 kB]
-    Get:3 http://security.ubuntu.com/ubuntu bionic-security/multiverse amd64 Packages [1364 B]
-    Get:4 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
-    Get:5 http://security.ubuntu.com/ubuntu bionic-security/main amd64 Packages [264 kB]
-    Get:6 http://archive.ubuntu.com/ubuntu bionic-backports InRelease [74.6 kB]
-    Get:7 http://archive.ubuntu.com/ubuntu bionic/main amd64 Packages [1344 kB]
-    。。。。。。。后面省略
+```
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+Get:1 http://archive.ubuntu.com/ubuntu bionic InRelease [242 kB]
+Get:2 http://security.ubuntu.com/ubuntu bionic-security InRelease [83.2 kB]
+Get:3 http://security.ubuntu.com/ubuntu bionic-security/multiverse amd64 Packages [1364 B]
+Get:4 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
+Get:5 http://security.ubuntu.com/ubuntu bionic-security/main amd64 Packages [264 kB]
+Get:6 http://archive.ubuntu.com/ubuntu bionic-backports InRelease [74.6 kB]
+Get:7 http://archive.ubuntu.com/ubuntu bionic/main amd64 Packages [1344 kB]
+。。。。。。。后面省略
+```
 
 - 生成临时 IMAGE，ID 为 f5d8205bae1b，移除临时容器 607ce2e8553f
 - 注：这一步使用的就是 docker commit 命令类似的功能，提交一个运行中的容器生成镜像，只不过该容器是缓存状态，最后会彻底删除
 
-
-    Removing intermediate container 607ce2e8553f
-     ---> f5d8205bae1b
+```
+Removing intermediate container 607ce2e8553f
+ ---> f5d8205bae1b
+```
 
 - 基于 f5d8205bae1b 这个临时 IMAGE 启动 ddceac75c0ef 容器，执行 Dockerfile 中第三行的 RUN 指令
 
-
-    Step 3/3 : RUN apt install -y iproute2
-     ---> Running in ddceac75c0ef .......命令执行结果省略
+```
+Step 3/3 : RUN apt install -y iproute2
+ ---> Running in ddceac75c0ef .......命令执行结果省略
+```
 
 - 处理成功，生成最终 IMAGE，ID 为 9e0ddfd39bb1，并移除临时容器 ddceac75c0ef
 - 注：这一步使用的就是 docker commit 命令类似的功能，提交一个运行中的容器生成镜像，只不过该容器是缓存状态，最后会彻底删除
 
-
-    Processing triggers for libc-bin (2.27-3ubuntu1) ...
-    Removing intermediate container ddceac75c0ef
-     ---> 9e0ddfd39bb1
+```
+Processing triggers for libc-bin (2.27-3ubuntu1) ...
+Removing intermediate container ddceac75c0ef
+ ---> 9e0ddfd39bb1
+```
 
 - 创建 IMAGE ID 为 9e0ddfd39bb1 的 IMAGE 成功，并成功给 IMAGE 打上标签为 ubuntu-vi:latest
 
-
-    Successfully built 9e0ddfd39bb1
-    Successfully tagged ubuntu-vi:latest
+```
+Successfully built 9e0ddfd39bb1
+Successfully tagged ubuntu-vi:latest
+```
 
 - 下图是创建过程中查询容器，会发现，中间创建的临时 Container 已经都被删除了，并且还会有一个没有名字只有 IMAGE ID 的 IMAGE
 
-
-    [root@master0 ~]# docker ps -a
-    CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
-    607ce2e8553f        93fd78260bd1        "/bin/sh -c 'apt ins…"   2 seconds ago       Up 2 seconds                            jovial_almeida
-    [root@master0 ~]# docker ps -a
-    CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
-    ddceac75c0ef        f5d8205bae1b        "/bin/sh -c 'apt ins…"   2 seconds ago       Up 2 seconds                            serene_rosalind
-    [root@master0 ~]# docker ps -a
-    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-    [root@master0 ~]# docker ps -a
-    [root@master0 ~]# docker images -a
-    ubuntu-vi           latest              9e0ddfd39bb1        58 seconds ago      169M
-    <none>              <none>              f5d8205bae1b        58 seconds ago      151MB
-    ubuntu              latest              93fd78260bd1        7 days ago          86.2MB
+```
+[root@master0 ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+607ce2e8553f        93fd78260bd1        "/bin/sh -c 'apt ins…"   2 seconds ago       Up 2 seconds                            jovial_almeida
+[root@master0 ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+ddceac75c0ef        f5d8205bae1b        "/bin/sh -c 'apt ins…"   2 seconds ago       Up 2 seconds                            serene_rosalind
+[root@master0 ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+[root@master0 ~]# docker ps -a
+[root@master0 ~]# docker images -a
+ubuntu-vi           latest              9e0ddfd39bb1        58 seconds ago      169M
+<none>              <none>              f5d8205bae1b        58 seconds ago      151MB
+ubuntu              latest              93fd78260bd1        7 days ago          86.2MB
+```
 
 - 该过程结束
 - 总结
   - dockerfile 的每一个命令，就是给 base image 上新加一层 image
 
-### Dockerfile 构建镜像的过程：
+### Dockerfile 构建镜像的过程
 
 1. 从 base 镜像运行一个容器。
 2. 执行一条指令，对容器做修改。
@@ -152,4 +162,4 @@ INSTRUCTION-n arguments
 
 ## Dockerfile 指令
 
-详见 [Dockerfile 指令详解](https://www.yuque.com/go/doc/33171452)
+详见 [Dockerfile 指令详解](/docs/10.云原生/2.2.实现容器的工具/构建%20OCI%20Image/Dockerfile%20指令详解.md)

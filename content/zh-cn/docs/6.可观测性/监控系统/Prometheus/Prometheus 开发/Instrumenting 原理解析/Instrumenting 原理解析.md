@@ -21,7 +21,7 @@ Instrumenting 的实现主要依靠以下几种类型：
 
 # [Desc](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus#Desc)(描述符) # 用来描述 Metric 的结构体
 
-在 Prometheus 中，使用 **Desc 结构体 **来描述一个 Metric。Desc 是所有事物的基础，没有 Desc 也就无从采集 Metric，同时管理 Metric 也是通过 Desc
+在 Prometheus 中，使用 **Desc 结构体** 来描述一个 Metric。Desc 是所有事物的基础，没有 Desc 也就无从采集 Metric，同时管理 Metric 也是通过 Desc
 
 ```go
 type Desc struct {

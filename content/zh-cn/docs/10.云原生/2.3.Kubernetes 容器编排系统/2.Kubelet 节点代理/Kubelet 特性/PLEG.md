@@ -5,12 +5,12 @@ title: PLEG
 # 概述
 
 > 参考：
+> 
 > - [公众号,运维开发故事-PLEG is not healthy？幕后黑手居然是它！](https://mp.weixin.qq.com/s/lPYd9tNQyjidJ-sLt2sDLg)
 > - [公众号,云原生实验室-Kubelet 中的 “PLEG is not healthy” 到底是个什么鬼？](https://mp.weixin.qq.com/s/t7H2MQ2429LQB9XfrB23YA)
 > - <https://developers.redhat.com/blog/2019/11/13/pod-lifecycle-event-generator-understanding-the-pleg-is-not-healthy-issue-in-kubernetes#>
 
-[
-](https://mp.weixin.qq.com/s/lPYd9tNQyjidJ-sLt2sDLg)
+https://mp.weixin.qq.com/s/lPYd9tNQyjidJ-sLt2sDLg
 
 ## 问题描述
 

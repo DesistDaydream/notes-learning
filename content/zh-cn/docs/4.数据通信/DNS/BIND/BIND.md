@@ -7,7 +7,7 @@ title: BIND
 > 参考：
 >
 > - [ISC-BIND9 官方网站](https://www.isc.org/bind/)
-> - [Wiki,BIND](https://en.wikipedia.org/wiki/BIND)
+> - [Wiki，BIND](https://en.wikipedia.org/wiki/BIND)
 
 **Bekerley Internat Name Domain(伯克利互联网名字域，简称 BIND)** 是实现 DNS 服务的应用程序。该程序最著名的组件被称为 **named**，主要用来实现两个最主要的 DNS 功能：**NameServer(名称服务器)** 与 **Resolver(解析器)**。
 

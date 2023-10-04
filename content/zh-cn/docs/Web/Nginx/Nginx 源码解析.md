@@ -1,13 +1,20 @@
 ---
 title: Nginx 源码解析
+linkTitle: Nginx 源码解析
+date: 2023-11-02T01:41
+weight: 20
 ---
 
 # 概述
 
+> 参考：
+> 
+> - [GitHub 项目，nginx/nginx](https://github.com/nginx/nginx)
+
 Nginx 的架构设计是高度模块化的，从 Nginx 的源码目录与 Nginx 模块化及其功能的划分是紧密结合的。
 
 ```bash
-root@lichenhao:~/projects/someone_else/nginx# tree -d
+# tree -d
 .
 ├── auto
 ├── conf

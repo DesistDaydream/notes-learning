@@ -6,7 +6,7 @@ title: IPv6
 
 > 参考：
 >
-> - [Wiki,IPv6](https://en.wikipedia.org/wiki/IPv6)
+> - [Wiki，IPv6](https://en.wikipedia.org/wiki/IPv6)
 > - [RFC,8200](https://datatracker.ietf.org/doc/html/rfc8200)
 > - [IANA,IPv6 地址空间分配情况](https://www.iana.org/assignments/ipv6-address-space/ipv6-address-space.xhtml)
 > - [GitHub 项目，IPv6-CN/ipv6cn.github.io](https://github.com/IPv6-CN/ipv6-cn.github.io)(这个资料。。。怎么说呢。。。)

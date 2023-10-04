@@ -8,7 +8,7 @@ weight: 1
 > 参考：
 > - [RFC,675](https://datatracker.ietf.org/doc/html/rfc675)
 > - [RFC,793](https://datatracker.ietf.org/doc/html/rfc793)
-> - [Wiki,TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol)
+> - [Wiki，TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol)
 > - [极客时间,趣谈网络协议](https://time.geekbang.org/column/intro/100007101)
 > - <https://www.jianshu.com/p/1118f497a425>
 > - <https://www.jianshu.com/p/3c7a0771b67e>
@@ -134,6 +134,9 @@ TCP 报文段的标志内容，将会包含所有标志通过设置标志的值�
   - TCP 主动关闭连接的一方在发送最后一个 ACK 后进入  `TIME_AWAIT`  状态，再等待 2 个 MSL 时间后才会关闭(因为如果 server 没收到 client 第四次挥手确认报文，server 会重发第三次挥手 FIN 报文，所以 client 需要停留 2 MSL 的时长来处理可能会重复收到的报文段；同时等待 2 MSL 也可以让由于网络不通畅产生的滞留报文失效，避免新建立的连接收到之前旧连接的报文)，了解更详细的过程请参考 TCP 四次挥手。
 
 # TCP 行为的过程
+
+![image.png|500](https://notes-learning.oss-cn-beijing.aliyuncs.com/tcp/tcp-three-way-handshake-and-four-way-wave.png)
+
 
 ## TCP 三次握手
 

@@ -1,6 +1,6 @@
 ---
-title: "CPU"
-linkTitle: "CPU"
-weight: 20
+title: 4.CPU
+linkTitle: 4.CPU
+weight: 4
 ---
 

@@ -1,11 +1,13 @@
 ---
 title: Docker 部署
+linkTitle: Docker 部署
+date: 2023-10-15T21:18
+weight: 2
 ---
-
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，安装-概述](https://docs.docker.com/engine/install/)
 >   - [Centos 安装](https://docs.docker.com/engine/install/centos/)
 >   - [Ubuntu 安装](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
@@ -32,7 +34,7 @@ sudo apt-get -y install docker-ce
 ```
 
 > 若 centos8 提示无法安装 contained.io ,则执行如下指令安装
-> 
+>
 > yum install -y <https://mirrors.aliyun.com/docker-ce/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.13-3.2.el7.x86_64.rpm>
 
 ### 配置 Unit 文件
@@ -58,6 +60,7 @@ cp docker/* /usr/bin/
 ### 配置 Unit 文件
 
 > 参考：
+>
 > - [官方文档，使用 systemd 配置守护进程](https://docs.docker.com/config/daemon/systemd/)
 
 有两种配置 Docker 的 Unit 文件的方式
@@ -65,6 +68,7 @@ cp docker/* /usr/bin/
 #### 第一种是官方推荐的
 
 从 [GitHub 项目，moby/moby 的 contrib/init/systemd/](https://github.com/moby/moby/tree/master/contrib/init/systemd) 目录中下载如下两个文件
+
 - [docker.service](https://raw.githubusercontent.com/moby/moby/master/contrib/init/systemd/docker.service)
 - [docker.socket](https://raw.githubusercontent.com/moby/moby/master/contrib/init/systemd/docker.socket)
 

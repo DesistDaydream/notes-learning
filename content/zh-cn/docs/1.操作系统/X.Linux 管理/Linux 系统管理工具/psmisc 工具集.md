@@ -47,6 +47,8 @@ EXAMPLE：
 
 该命令与 ps 类似，但是不会像 ps -ef 一样显示内核态进程
 
+## Syntax(语法)
+
 pstree \[OPTIONS] \[USER or PID]
 
 OPTIONS:
@@ -61,7 +63,7 @@ OPTIONS:
 - -n # 按 PID 排序
 - -g # 显示 PGID。i.e 一个或多个进程组 ID
 
-EXAPMLE:
+## EXAMPLE
 
 - pstree -n
 

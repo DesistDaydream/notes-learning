@@ -75,7 +75,7 @@ copyto 可以在上传单个文件到目标目录下时，改变文件的原名�
 
 # rclone mount
 
-详见 [Rclone mount](docs/5.数据存储/数据管理工具/Rclone/Rclone%20mount.md)
+详见 [Rclone mount](/docs/5.数据存储/数据管理工具/Rclone/Rclone%20mount.md)
 
 # rclone sync
 
@@ -134,4 +134,4 @@ Start-Process "rclone.exe" `
 -RedirectStandardOutput "D:\Tools\Scripts\log\rclone.log" -RedirectStandardError "D:\Tools\Scripts\log\rclone-err.log"
 ```
 
-然后可以参考 Windows 管理中的 [设置开机自启动](/docs/1.操作系统/Y.Windows%20管理/设置开机自启动.md) 以便开机时自动挂载。
+然后可以参考 Windows 管理中的 [启动项](/docs/1.操作系统/Y.Windows%20管理/启动项.md) 以便开机时自动挂载。

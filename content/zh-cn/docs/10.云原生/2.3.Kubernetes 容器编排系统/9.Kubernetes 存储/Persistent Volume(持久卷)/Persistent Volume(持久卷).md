@@ -15,7 +15,7 @@ kubernetes 的 volume 有一个问题就是不够灵活，且使用 volume 的�
 
 ## PV 与 PVC 的生命周期
 
-详见：[PV 与 PVC 状态变化章节](https://www.yuque.com/go/doc/33163971)
+详见：[PV 与 PVC 的状态变化示例](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/9.Kubernetes%20存储/Persistent%20Volume(持久卷)/PV%20与%20PVC%20的状态变化示例.md)
 
 PV 是集群中的资源。 PVC 是对这些资源的请求，并且还充当对资源的声明检查。 PV 和 PVC 之间的交互遵循以下生命周期：
 
@@ -55,7 +55,7 @@ PV 与 PVC 的工作流程：Container—Volume—PVC—PV—StorageResource
 
 ### Reclaiming(回收)
 
-当删除 PVC 后，与之关联的 PV 会变为 **Released(已释放)** 状态。此时，控制器根据一个** Reclaim Policy(回收策略) **来处理已释放的 PV。目前, 回收策略包括三种：
+当删除 PVC 后，与之关联的 PV 会变为 **Released(已释放)** 状态。此时，控制器根据一个**Reclaim Policy(回收策略)**来处理已释放的 PV。目前, 回收策略包括三种：
 
 1. Retained(保留)
 2. Recycled(回收)

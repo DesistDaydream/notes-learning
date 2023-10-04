@@ -5,6 +5,7 @@ title: Charts
 # 概述
 
 > 参考：
+>
 > - [官方文档，主题-charts](https://helm.sh/docs/topics/charts/)
 
 Helm 管理的安装包称为 **Charts(图表)**。就好比 Cento 的安装包是 rpm、Windows 的安装包是 exe、Ubuntu 的安装包是 deb。
@@ -119,6 +120,7 @@ SemVer2 格式大体是这样的：`X.Y.Z`
 ## dependencies 字段
 
 > 参考：
+>
 > - [官方文档，主题-charts-chart 依赖](https://helm.sh/zh/docs/topics/charts/#chart-dependency)
 
 Helm 中，Chart 可以依赖其他任意数量的 Chart，这些可以被依赖的 Chart 可以通过 Chart.yaml 文件中的 dependencies 字段来控制。
@@ -173,7 +175,7 @@ mychart/
 
 ### SubCharts 的启用时机
 
-SubCharts 与 Charts 关于 values.yaml 文件的使用还有一些注意事项，详见 [Subcharts 与 Global Values 章节](https://www.yuque.com/go/doc/33981940)
+SubCharts 与 Charts 关于 values.yaml 文件的使用还有一些注意事项，详见 [Subcharts 与 Global Values](/docs/10.云原生/云原生应用管理/Helm/Helm%20Template/Subcharts%20与%20Global%20Values.md)
 
 Chart.yaml 文件中的 `dependencies.condition` 与 `dependencies.tags` 字段可以控制子图表安装的时机。
 
@@ -223,6 +225,7 @@ tags:
 # crds 目录
 
 > 参考：
+>
 > - 官方文档：[**https://helm.sh/docs/topics/charts/#limitations-on-crds**](https://helm.sh/docs/topics/charts/#limitations-on-crds)
 
 crds 目录下的资源将会在其他资源安装之前，进行安装。并且无法在卸载 release 时，卸载 crds 目录下的资源。

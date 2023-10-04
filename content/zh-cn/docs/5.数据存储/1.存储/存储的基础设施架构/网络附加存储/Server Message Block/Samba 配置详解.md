@@ -11,7 +11,7 @@ Samba 通过配置文件来配置运行时行为。
 
 ## 文件格式
 
-Samba 的配置文件格式类似于 [INI](https://www.yuque.com/go/doc/43793992) 格式的配置，由 **Sections(部分)** 和 **Parameters(参数) **组成。参数是以 `=` 分割的 **键/值对**。
+Samba 的配置文件格式类似于 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的配置，由 **Sections(部分)** 和 **Parameters(参数)**组成。参数是以 `=` 分割的 **键/值对**。
 
 配置文件中的每个 Sections(部分) 用于描述共享资源(Note：global 部分除外)。Section 的名称就是共享资源的名称，Section 中的 Parameters 定义共享资源的属性。
 

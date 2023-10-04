@@ -36,8 +36,10 @@ PromQL 支持基本的 逻辑 和 算术 运算符。 对于两个即时向量�
 
 #### Syntax(语法)
 
+```
 **<VectorExpr1> <BinaryOperators> ignoring(LabelList) <VectorExpr2>**
 **<VectorExpr1> <BinaryOperators> on(LabelList) <VectorExpr2>**
+```
 
 on 与 ignoring 关键字会将其左右两侧表达式中标签进行匹配，根据其指定的 LabelList 来匹配标签，匹配到的序列将会执行二元运算
 
@@ -79,10 +81,12 @@ on 与 ignoring 关键字会将其左右两侧表达式中标签进行匹配，�
 
 #### Syntax(语法)
 
+```
 **<VectorExpr1> <BinaryOperators> ignoring(LabelList) group_left(LabelList) <VectorExpr2>**
 **<VectorExpr1> <BinaryOperators> ignoring(LabelList) group_right(LabelList) <VectorExpr2>**
 **<VectorExpr1> <BinaryOperators> on(LabelList) group_left(LabelList) <VectorExpr2>**
 **<VectorExpr1> <BinaryOperators> on(LabelList) group_right(LabelList) <VectorExpr2>**
+```
 
 group_left 与 group_right 修饰符用来指定以左边或右边的向量表达式为主：
 
@@ -106,10 +110,12 @@ group_left 与 group_right 修饰符用来指定以左边或右边的向量表�
 
 # Aggregation Operators(聚合运算符)
 
-> 参考：[官方文档](https://prometheus.io/docs/prometheus/latest/querying/operators/#aggregation-operators)
+> 参考：
+>
+> - [官方文档](https://prometheus.io/docs/prometheus/latest/querying/operators/#aggregation-operators)
 
 聚合运算符可以聚合单个即时向量的元素，从而产生一个包含较少元素且具有聚合值得新向量。
 
 聚合运算符既可以用于聚合所有标签维度，也可以通过包含一个 without 或 by 子句来保留不同的维度。这些从句可以用在短语的前面或后面。
 
-详见：[聚合运算章节](https://www.yuque.com/go/doc/33147028)
+详见：[Aggregation Operators(聚合运算符)](/docs/6.可观测性/监控系统/Prometheus/PromQL/Aggregation%20Operators(聚合运算符).md)

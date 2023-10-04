@@ -1,12 +1,15 @@
 ---
 title: Server 配置
+linkTitle: Server 配置
+date: 2023-10-31T22:24
+weight: 2
 ---
 
 # 概述
 
 > 参考：
 >
-> - [官方文档,配置-配置](https://prometheus.io/docs/prometheus/latest/configuration/configuration/)
+> - [官方文档，配置-配置](https://prometheus.io/docs/prometheus/latest/configuration/configuration/)
 
 Prometheus Server 可通过两种方式来改变运行时行为
 
@@ -132,7 +135,7 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 
 https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config
 
-在 [Prometheus](https://www.yuque.com/go/doc/33112724) 一文中，粗略介绍了基本的 scrape_configs 配置段的内容，下面是最基本的配置：
+在 [Prometheus](/docs/6.可观测性/监控系统/Prometheus/Prometheus.md) 一文中，粗略介绍了基本的 scrape_configs 配置段的内容，下面是最基本的配置：
 
 ```yaml
 scrape_configs:

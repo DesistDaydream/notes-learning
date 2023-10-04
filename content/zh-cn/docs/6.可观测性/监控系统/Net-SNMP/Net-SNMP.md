@@ -22,7 +22,7 @@ Net-SNMP 是实现 SNMP 的工具和库的集合。包含如下内容：
 - **snmpd** # 用于响应请求的 SNMP 代理。说白了提供 SNMP 数据的程序。监听一个端口(默认监听 `161/udp`)，当别人向 161 发送 SNMP 请求时，snmpd 会将采集到的数据发送给对方。
 - **snmptrapd** # 用于接收 SNMP 通知的通知接收器
 - **agentxtrap** #
-- **net-snmp-create-v3-user **# 创建 v3 用户
+- **net-snmp-create-v3-user** # 创建 v3 用户
 - **snmpconf** # 用于生成配置文件
 
 # Net-SNMP 安装
@@ -31,7 +31,9 @@ Net-SNMP 提供了各种安装文件，对于 Linux 系统来说，直接使用 
 
 CentOS
 
-    yum install -y net-snmp*
+```bash
+yum install -y net-snmp*
+```
 
 Ubuntu
 

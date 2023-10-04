@@ -326,7 +326,7 @@ title: HTTP 重试
 
 其实熔断降级的概念总体上来说，实现都差不多。核心思想就是通过全局的计数器，用来统计调用次数、成功/失败次数。通过统计的计数器来判断熔断器的开关，熔断器的状态由三种状态表示：closed、open、half open，下面借用了 sentinel 的图来表示三者的关系：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/199a3baf-f67d-407b-9e0b-ba4bf6fc022f/20220528153628.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/go-web/20220528153628.png)
 
 首先初始状态是`closed`，每次调用都会经过计数器统计总次数和成功/失败次数，然后在达到一定阈值或条件之后熔断器会切换到 `open`状态，发起的请求会被拒绝。
 

@@ -5,8 +5,9 @@ title: Protobuf
 # 概述
 
 > 参考：
+> 
 > - [公众号-码农的荒岛求生，神奇的 Google 二进制编解码技术：Protobuf](https://mp.weixin.qq.com/s/kfyTcs6xuDvlCX3U04Edng)
-> - [Wiki,Protocol Buffers](https://en.wikipedia.org/wiki/Protocol_Buffers)
+> - [Wiki，Protocol Buffers](https://en.wikipedia.org/wiki/Protocol_Buffers)
 
 计算机网络编程中一个非常基本的问题：该怎样表示 client 与 server 之间交互的数据，在往下看之前先想一想这个问题。
 

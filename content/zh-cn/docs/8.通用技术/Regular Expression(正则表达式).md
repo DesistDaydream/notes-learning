@@ -6,13 +6,15 @@ title: Regular Expression(正则表达式)
 
 > 参考：
 >
-> - [Wiki,Regular Expression](v)
+> - [Wiki，Regular Expression](v)
 > - [正则表达式在线测试](https://regex101.com/)
 > - <https://r2coding.com/#/README?id=%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f>
 
 **记于 2023 年 2 月10 日：有了 ChatGPT，这正则表达式。。。我想。。。应该再也不用背了。。。。**
 
 **Regular Expression(正则表达式，简称 RegEX 或 RegEXP)** 是用于定义 Search Pattern(搜索模式) 的一系列字符串。这种 **Pattern(模式)** 通常被字符串搜索算法用于 find(查找) 字符串、或 find and replace(查找并替换) 字符串、或者验证输入内容。RegEX 是一种在 Theoretical Computer Science(理论计算机科学) 和 Formal Language(形式语言) 理论中发展起来的技术。
+
+> 还有一个学名是 PCRE，全称是 Perl Compatible Regular Expressions，这用来表示 Perl 语言兼容的正则表达式。
 
 用白话说，所谓的 正则表达式，就是用来通过一种称为 **Pattern(模式)** 的方式，筛选出长篇内容里的部分内容。其实就是一堆字符组合在一起形成一种行为，这个行为就是匹配字符行为。也可以勉强算编程语言的一种吧~
 

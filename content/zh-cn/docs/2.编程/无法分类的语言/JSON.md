@@ -5,8 +5,9 @@ title: JSON
 # 概述
 
 > 参考：
+> 
 > - 官方文档：<https://www.json.org/json-zh.html>
-> - [Wiki,JSON](https://en.wikipedia.org/wiki/JSON)
+> - [Wiki，JSON](https://en.wikipedia.org/wiki/JSON)
 > - [RFC 8259](https://tools.ietf.org/html/rfc8259)
 
 **JavaScript Object Notation(JS 对象表示法，简称 JSON)** 是一种轻量级的数据交换格式。易于人阅读和编写。同时也易于机器解析和生成。 它基于 JavaScript Programming Language, Standard ECMA-262 3rd Edition - December 1999 的一个子集。 JSON 采用完全独立于语言的文本格式，但是也使用了类似于 C 语言家族的习惯（包括 C, C++, C#, Java, JavaScript, Perl, Python 等）。 这些特性使 JSON 成为理想的数据交换语言。
@@ -25,29 +26,34 @@ JSON 具有以下这些形式：
 
 映射格式样例
 
-     {
-      "name": "lichenhao",
-      "age": 30
-    }
+```json
+ {
+  "name": "lichenhao",
+  "age": 30
+}
+```
 
 数组格式样例
 
-     [
-      "lichenhao",
-      "zhangna"
-    ]
-
+```json
+ [
+  "lichenhao",
+  "zhangna"
+]
+```
 混合格式样例：
 
+```json
+{
+  "family": [
     {
-      "family": [
-        {
-          "name": "lichenhao",
-          "age": 30
-        },
-        {
-          "name": "zhangna",
-          "age": 30
-        }
-      ]
+      "name": "lichenhao",
+      "age": 30
+    },
+    {
+      "name": "zhangna",
+      "age": 30
     }
+  ]
+}
+```

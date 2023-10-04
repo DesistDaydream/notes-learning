@@ -1,5 +1,8 @@
 ---
 title: PromQL
+linkTitle: PromQL
+date: 2023-12-20T14:51
+weight: 1
 ---
 
 # 概述
@@ -8,20 +11,28 @@ title: PromQL
 >
 > - [官方文档，Prometheus-查询-基础](https://prometheus.io/docs/prometheus/latest/querying/basics/)
 
-**Prometheus Query Language(Prometheus 查询语言，简称 PromQL)**是一种提供了查询功能的编程语言，用来实时选择和汇总 [**TimeSeries(时间序列)**](https://www.yuque.com/go/doc/33147376) 数据。通过 PromQL 可以对监控数据进行筛选、过滤、组合等等操作。使用 PromQL 编写的语句也可以称为 **Expression(表达式)**，表达式的结果可以通过其他方式显示为图形。
+**Prometheus Query Language(Prometheus 查询语言，简称 PromQL)** 是一种提供了查询功能的编程语言，用来实时选择和汇总 [时间序列数据](/docs/5.数据存储/2.数据库/时间序列数据/时间序列数据.md)。通过 PromQL 可以对监控数据进行筛选、过滤、组合等等操作。使用 PromQL 编写的语句也可以称为 **Expression(表达式)**，表达式的结果可以通过其他方式显示为图形。
 
 ## PromQL 体验
 
 在 graph 页面，可以在红框位置输入表达式
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lfubxg/1616069073146-722bd1dd-2647-4bf9-84ed-4c2cbf694785.png)
+
 点击红框内的对话框 并输入关键字，系统会自动弹出可用的 metrics name
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lfubxg/1616069073181-bbf09f64-c80f-4e9f-9644-2916ce031358.jpeg)
+
 表达式直接使用 MetricsName，则展示此时此刻的以 node_cpu_seconds_total 为指标名的所有 TimeSeries(时间序列) 数据
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lfubxg/1616069073159-7b2a2e59-5866-478c-a87e-a9c6e42a65d5.png)
+
 如果需要筛选则可以输入如下图实例的表达式：node_cpu_seconds_total{job=~"external.\*"}
 
 筛选出来 job 名开头是 external 的 cpu 情况。允许使用正则表达式，=~表示的就是用过正则来匹配后面的值
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lfubxg/1616069073186-857243c7-7acb-4a2a-9787-ecd8dabbf732.jpeg)
+
 Prometheus 通过 MetricsName(指标名称) 及其对应的一组 LabelSet(标签集) 定义唯一的一条时间序列。指标名称反映了监控样本的基本标识，而 label 则在这个基本特征上为采集到的数据提供了多种特征维度。用户可以基于这些特征维度过滤，聚合，统计从而产生新的计算后的一条时间序列。
 
 PromQL 是 Prometheus 内置的数据查询语言，其提供对时间序列数据丰富的查询，聚合以及逻辑运算能力的支持。并且被广泛应用在 Prometheus 的日常应用当中，包括对数据查询、可视化、告警处理当中。可以这么说，PromQL 是 Prometheus 所有应用场景的基础，理解和掌握 PromQL 是 Prometheus 入门的第一课。
@@ -44,8 +55,8 @@ PromQL 没有绝对通用的语法，在不同场景查询条件下，语法也�
 
 - Instant Vector Selectors 和 Range Vector Selectors 统称为 **TimeSeries Selectors(时间序列选择器)**
   - 这种表达式会根据 Metrics 来获取指定的时间序列。
-- String 和 Scalar 统称为 [**Literals**](<https://en.wikipedia.org/wiki/Literal_(computer_programming)>)\*\*(字面量)\*\*
-  - 给定不同类型的 [Literals](<https://en.wikipedia.org/wiki/Literal_(computer_programming)>)，就返回对应类型的的值，Prom 里只支持 string 和 scalar 这两种类型
+- String 和 Scalar 统称为 [**Literals(字面量)**](https://en.wikipedia.org/wiki/Literal_(computer_programming))
+  - 给定不同类型的 [Literals](https://en.wikipedia.org/wiki/Literal_(computer_programming))，就返回对应类型的的值，Prom 里只支持 string 和 scalar 这两种类型
 
 # Expression(表达式)
 

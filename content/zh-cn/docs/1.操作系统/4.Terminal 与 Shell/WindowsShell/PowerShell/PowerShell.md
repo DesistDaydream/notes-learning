@@ -28,19 +28,18 @@ PowerShell 的独特之处在于，它接受并返回 .NET 对象，而非纯文
 ## PowerShell 命令
 
 > 参考：
->
+> 
+> - [官方文档，PowerShell 命令是什么？](https://learn.microsoft.com/zh-cn/powershell/scripting/powershell-commands)
 > - [about_Command_Precedence](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_command_precedence) 介绍 PowerShell 如何确定要运行的命令。
 > - [about_Command_Syntax](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_command_syntax) 介绍 PowerShell 中使用的语法关系图
 > - [about_Core_Commands](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_core_commands) 列出设计用于 PowerShell 提供程序的 cmdlet
 
-介绍 PowerShell 如何确定要运行的命令。
-
 PowerShell 中可以执行的命令分两类
 
-- 系统上的可执行命令。
+- 操作系统中的可执行文件
 - cmdlet
 
-PowerShell 内置了一组 **cmdlet(全称 command-lets)**，cmdlet 并不是一个独立的可执行文件，而是一种统称，cmdlet 被收集在 PowerShell 模块中，可以按需加载它们。可以用任何编译的 .NET 语言或 PowerShell 脚本语言来编写 cmdlet。
+PowerShell 内置了一组 **cmdlet(全称 command-lets)**，cmdlet 是一种命令的统称，并不是一个独立的可执行文件。cmdlet 被收集在 PowerShell 模块中，可以按需加载它们。可以用任何编译的 .NET 语言或 PowerShell 脚本语言来编写 cmdlet。
 
 cmdlet 中每个命令的名称都是由 **Verb-Noun(动词-名词)** 组成，比如 Get-Command 命令用于获取在 CLI 中注册的所有 cmdlet。
 

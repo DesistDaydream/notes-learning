@@ -30,13 +30,14 @@ kubeadm 的配置文件可以看成是 kubeadm 几个资源的 Manifests 文件�
 # InitConfiguration Manifest 详解
 
 参考：[**v1beta3 版本**](https://pkg.go.dev/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta3#InitConfiguration)
+
 应该使用 InitConfiguration 类型来配置运行时设置，在 kubeadm init 情况下，是 bootstrap Tokens 的配置以及所有特定于执行 kubeadm 的节点的设置，包括以下几个字段
 
 ## apiVersion: kubeadm.k8s.io/v1beta3
 
 ## kind: InitConfiguration
 
-## bootstrapTokens: <Object>
+## bootstrapTokens: \<Object>
 
 **groups: \[]STRING**
 
@@ -50,7 +51,7 @@ kubeadm 的配置文件可以看成是 kubeadm 几个资源的 Manifests 文件�
 - signing
 - authentication
 
-## nodeRegistration: <Object>
+## nodeRegistration: \<Object>
 
 其中包含与将新节点注册到集群有关的字段；使用它来自定义节点名称，要使用的 CRI 套接字或仅应应用于该节点的任何其他设置（例如，节点 ip）。
 **name: STRING**
@@ -63,7 +64,7 @@ kubeadm 的配置文件可以看成是 kubeadm 几个资源的 Manifests 文件�
 **criSocket: STRING # kubelet 要使用的 runtime 的 Socket 文件的绝对路径**
 CRISocket 用于检索容器运行时信息。此信息将注释到节点 API 对象，以便稍后重用
 
-## LocalAPIEndpoint: <Object> # API Server 暴露的 IP 和 Port
+## LocalAPIEndpoint: \<Object> # API Server 暴露的 IP 和 Port
 
 该字段通常不用设置，直接设置 ClusterConfiguration 资源中的 controlPlaneEndpoint 字段即可。
 **advertiseAddress: STRING** # API Server 暴露的 IP 地址
@@ -83,9 +84,9 @@ ClusterConfiguration 类型应用于配置群集范围的设置，包括以下�
 
 ## kind: ClusterConfiguration
 
-## etcd: <Object> # 集群中 etcd 配置
+## etcd(Object) # 集群中 etcd 配置
 
-## networking: <Object> # 集群中网络拓扑的配置
+## networking(Object) # 集群中网络拓扑的配置
 
 **dnsDomain: STRING #**`默认值:cluster.local`。
 **serviceSubnet: STRING #**`默认值:10.96.0.0/12`。
@@ -93,27 +94,27 @@ ClusterConfiguration 类型应用于配置群集范围的设置，包括以下�
 ## controlPlaneEndpoint: STRING # 为控制平面设置一个 IP 或域名
 
 `默认值：InitConfiguration 资源中 localAPIEndpoint.advertiseAddress + localAPIEndpoint.bindPort 两个字段的值`。
-该字段就是设置访问 Kubernetes API 时，所要使用的端点，通过访问 Endpoint 就应该可以访问 [Kubernetes 的 API Server 程序](https://www.yuque.com/go/doc/33168516)。同时，各种与 API Server 交互时所用到的证书，其中也会包含该字段的值。
+该字段就是设置访问 Kubernetes API 时，所要使用的端点，通过访问 Endpoint 就应该可以访问 Kubernetes 的 [API Server](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/1.API%20Resource%20与%20Object/API%20Server/API%20Server.md)。同时，各种与 API Server 交互时所用到的证书，其中也会包含该字段的值。
 
-## apiServer: <Object> # 配置 apiserver 程序
+## apiServer(Object) # 配置 apiserver 程序
 
 **certSANs([]STRING)** # 为 API Server 的证书中的 Subject Alternative Name 字段设置额外的名称。
-**extraArgs: <Object>** # 设定 apiserver 程序的命令行标志
+**extraArgs(Object)** # 设定 apiserver 程序的命令行标志
 **extravolumes([]Object)** # 设定 apiserver 程序的卷，以及挂载卷
 
-## controllerManager: <Object> # 配置 controller-manager 程序
+## controllerManager(Object) # 配置 controller-manager 程序
 
-**extraArgs: <Object>** # 设定 controller-manager 程序的命令行标志
+**extraArgs(Object)** # 设定 controller-manager 程序的命令行标志
 **extravolumes([]Object)** # 设定 controller-manager 程序的卷，以及挂载卷
 
-## scheduler: <Object> # 配置 scheduler 程序
+## scheduler(Object) # 配置 scheduler 程序
 
-**extraArgs: <Object>** # 设定 scheduler 程序的命令行标志
+**extraArgs(Object)** # 设定 scheduler 程序的命令行标志
 **extravolumes([]Object)** # 设定 scheduler 程序的卷，以及挂载卷
 
-## dns: <Object> # 配置 DNS 插件
+## dns(Object) # 配置 DNS 插件
 
-## certificateDir: <STRING> # 指定 kubeadm 生成和读取证书的路径。`默认值：/etc/kubernetes/pki`
+## certificateDir(STRING) # 指定 kubeadm 生成和读取证书的路径。`默认值：/etc/kubernetes/pki`
 
 ## imageRepository: STRING # 部署集群时拉取所需镜像的仓库。`默认值:k8s.gcr.io`
 

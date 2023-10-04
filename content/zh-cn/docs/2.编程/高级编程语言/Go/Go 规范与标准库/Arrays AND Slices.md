@@ -1,5 +1,8 @@
 ---
 title: Arrays AND Slices
+linkTitle: Arrays AND Slices
+date: 2023-11-20T21:30
+weight: 5
 ---
 
 # 概述

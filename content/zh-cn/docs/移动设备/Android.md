@@ -1,8 +1,8 @@
 ---
-title: "Android"
-linkTitle: "Android"
-date: "2023-06-18T16:39"
-weight: 20
+title: Android
+linkTitle: Android
+date: 2023-06-18T16:39
+weight: 2
 ---
 
 # 概述
@@ -11,22 +11,30 @@ weight: 20
 >
 > - [官网](https://www.android.com/)
 
-Android 是一种 [类 Unix 操作系统](/docs/1.操作系统/0.操作系统/类%20Unix%20操作系统/类%20Unix%20操作系统.md)，主要设计用于触摸屏移动设备，如智能手机和平板电脑。Android由一个名为开放手持设备联盟的开发者联盟开发，但其最广泛使用的版本主要由Google开发。它于2007年11月公布，第一款商用Android设备HTC Dream于2008年9月发布。
+Android 是一种 [类 Unix 操作系统](/docs/1.操作系统/0.操作系统/类%20Unix%20操作系统/类%20Unix%20操作系统.md)，主要设计用于触摸屏移动设备，如智能手机和平板电脑。Android由一个名为开放手持设备联盟的开发者联盟开发，但其最广泛使用的版本主要由 Google 开发。它于2007年11月公布，第一款商用 Android 设备 HTC Dream 于2008年9月发布。
 
 **Device(设备)** 通常指 手机、平板、手表、等等，甚至可以是安卓 Studio 模拟的设备。
 
 # 目录结构
 
-安卓的目录结构与 [Linux 内核的目录结构](docs/1.操作系统/2.Kernel/6.Filesystem/FHS(文件系统层次标准).md)类似，但是有一些约定俗成的用于保存各类数据的目录
+安卓的目录结构与 [Linux 内核的目录结构](/docs/1.操作系统/2.Kernel/6.Filesystem/FHS(文件系统层次标准).md)类似，但是有一些约定俗成的用于保存各类数据的目录
 
 ## /data # ？
 
 - /data/app/ # ?
 - /data/data/ # ?
 
-## /sdcard # 与 /storage/emulated/0 目录一样，这俩谁是谁的软链接？
+## /sdcard
+
+与 /storage/emulated/0 目录一样
+
+/sdcard 软链接到 /storage/self/primary
+
+/storage/self/primary 软链接到 /storage/emulated/0
 
 ## /storage/emulated/0/
+
+这个好像是平时打开文件管理后看到的根目录（WSA 的文件管理也是在这个目录）
 
 - .**/Android/data/${应用的包名}/** # 应用的缓存和临时目录？
 

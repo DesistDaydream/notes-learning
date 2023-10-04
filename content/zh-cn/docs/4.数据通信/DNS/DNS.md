@@ -6,8 +6,8 @@ title: DNS
 
 > 参考：
 >
-> - [Wiki,DNS](https://en.wikipedia.org/wiki/Domain_Name_System)
-> - [Wiki,Name Server](https://en.wikipedia.org/wiki/Name_server)
+> - [Wiki，DNS](https://en.wikipedia.org/wiki/Domain_Name_System)
+> - [Wiki，Name Server](https://en.wikipedia.org/wiki/Name_server)
 > - 《DNS 与 BIND》(第 5 版)
 
 **Domain Name System(域名系统，简称 DNS)** 是一个分层的和去中心化的命名系统，以便人们可以更方便得访问互联网。DNS 主要用来将更容易让人类记忆的 `域名` 与 `IP地址` 互相映射，以便可以通过域名定位和访问互联网上的服务。自 1985 年以来，域名系统通过提供全球性、分布式的域名服务，已成为 Internet 功能的重要组成部分。
@@ -81,7 +81,7 @@ IANA 的所有任务可以大致分为三个类型：
 # DNS 架构与概念
 
 ![1024px-Domain_name_space.svg.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/msw4yv/1617092212523-dcc0c65c-8807-4964-8766-8613f94c8cd0.png)
-DNS(域名系统) 是一个树型架构，这颗大树被称为 **Domain Namespace(域名称空间)，**树中的每个节点都具有 **Label(标签)** 和 0 个或多个 **ResourceRecords(资源记录，简称 RR)**，其中保存与域名相关联的信息。域名本身由 Label(标签) 组成，多个标签通过 `.` 符号串联而成，`.` 符号右侧的标签就是其左侧标签的父节点名称。
+DNS(域名系统) 是一个树型架构，这颗大树被称为 **Domain Namespace(域名称空间)**，树中的每个节点都具有 **Label(标签)** 和 0 个或多个 **ResourceRecords(资源记录，简称 RR)**，其中保存与域名相关联的信息。域名本身由 Label(标签) 组成，多个标签通过 `.` 符号串联而成，`.` 符号右侧的标签就是其左侧标签的父节点名称。
 
 > 这里所描述的树形结构中的节点，实际上就是一个个的 NameSever
 
@@ -96,7 +96,7 @@ Domain 还可以用现实中的地理来类比，比如我前文所说的我的�
 ## Zone(区) 的概念
 
 DNS 这个树型结构还使用了一个 **Zone(区)** 的概念来进行分区管理，一个 Zone 可以包含一个域，也可以包含很多域及其子域。Zone 可以包含的内容具体取决于 **Delegation(授权)**。
-详见：[Zone 与 Domain 详解](https://www.yuque.com/go/doc/33890339)
+详见：[Zone 与 Domain](/docs/4.数据通信/DNS/Zone%20与%20Domain.md)
 
 ## DomainName(域名) 的结构
 
@@ -147,29 +147,29 @@ RR 定义的格式：NAME \[TTL] CLASS RR-TYPE VALUE（注意：格式中的域�
 - NAME 和 VALUE # 不同的 RR-TYPE 有不同的格式
 - CLASS：IN
 - TYPE 资源记录类型：A，AAAA，PTR，SOA，NS，CNAME，MX 等：
-    - SRV：域名系统中用于指定服务器提供服务的位置（如主机名和端口）
-        - name # \_服务.\_协议.名称.
-        - value # 优先级 权重 端口 主机.
-    - SOA：Start Of Authority：起始授权记录，一个区域解析库有且只能有一个 SOA 记录，而且必须为解析库第一条记录
-        - name # 域名，例如”baidu.com.“
-        - value # (属性)
-            - 当前区域的主 DNS 服务器的 FQDN，也可以使用当前区域的名字
-            - 当前区域管理员的邮箱地址，但是地址中不能用@符号，@符号用.替换
-            - （主从服务协调属性的定义以及否定结果的统一的 TTL）
-    - NS：Name Server：专用于标明当前区域的 DNS 服务器
-        - name # 域名
-        - value # 当前区域的某 DNS 服务器的名字，例如 ns.baidu.com.;(一个区域可以有多个 NS 记录)
-    - MX：Mail eXchanger：邮件交换器
-        - TTL 可以从全局继承
-    - A/AAAA：Address，A 格式用于实现将 FQDN 解析为 IPv4(AAAA 格式用于将 FQDN 解析为 IPv6)
-        - name # 域名
-        - value # 域名对应的 IP 地址
-    - PTR：PoinTeR，用于将 IP 解析为 FQDN
-        - name # IP，特殊格式，反写 IP，比如 1.2.3.4 要写成 4.3.2.1，跟后缀 in-addr.arpa.
-        - value # FQDN
-    - CNAME：Canonical Name，别名记录
-        - name # 别名的 FQDN
-        - value # 正式名字的 FQDN
+  - SRV：域名系统中用于指定服务器提供服务的位置（如主机名和端口）
+    - name # \_服务.\_协议.名称.
+    - value # 优先级 权重 端口 主机.
+  - SOA：Start Of Authority：起始授权记录，一个区域解析库有且只能有一个 SOA 记录，而且必须为解析库第一条记录
+    - name # 域名，例如”baidu.com.“
+    - value # (属性)
+      - 当前区域的主 DNS 服务器的 FQDN，也可以使用当前区域的名字
+      - 当前区域管理员的邮箱地址，但是地址中不能用@符号，@符号用.替换
+      - （主从服务协调属性的定义以及否定结果的统一的 TTL）
+  - NS：Name Server：专用于标明当前区域的 DNS 服务器
+    - name # 域名
+    - value # 当前区域的某 DNS 服务器的名字，例如 ns.baidu.com.;(一个区域可以有多个 NS 记录)
+  - MX：Mail eXchanger：邮件交换器
+    - TTL 可以从全局继承
+  - A/AAAA：Address，A 格式用于实现将 FQDN 解析为 IPv4(AAAA 格式用于将 FQDN 解析为 IPv6)
+    - name # 域名
+    - value # 域名对应的 IP 地址
+  - PTR：PoinTeR，用于将 IP 解析为 FQDN
+    - name # IP，特殊格式，反写 IP，比如 1.2.3.4 要写成 4.3.2.1，跟后缀 in-addr.arpa.
+    - value # FQDN
+  - CNAME：Canonical Name，别名记录
+    - name # 别名的 FQDN
+    - value # 正式名字的 FQDN
 - 注意：
   - @可用于引用当前区域的名字
   - 相邻的两个资源记录的 name 相同时，后续的可省略
@@ -219,15 +219,15 @@ EXAMPLE：172.16.100. 写成 100.16.172.in-addr-arpa.
 DNS 查询过程：主机发送请求到根域名解析服务器，然后重定向到二级域名解析服务器，再重定向到三级域名解析服务器，以此类推
 
 - 在本机上查询 DNS 的配置文件(比如/etc/hosts)，有没有 IP 地址与 Domain Name 的对应关系
-    - EXAMPLE：如果把本机 IP 的对应域名改 baidu.com.，那么在访问百度的时候，就只会访问本机了
+  - EXAMPLE：如果把本机 IP 的对应域名改 baidu.com.，那么在访问百度的时候，就只会访问本机了
 - 如果在本机无法查询到 Domain Name 与 IP 的对应关系，那么需要通过 DNS 代理来进行查询，总共分为两种查询类型
-    - 递归查询：主机只发送一次 DNS 解析请求，就获得最后的结果。
-        - 在本机配置一个运行 DNS 服务的 Server 的 IP 地址，把请求直接发送给该 server，
-        - 由该 server 去找.根域名服务器进行查询，然后.根域名服务器再根据该请求中的顶级域名把该请求重定向到顶级域名服务器上
-        - 如果该请求还有二级域名，那么顶级域名 server 会 再把该请求重定向二级域名 server 上
-        - 直到查询到最终结果后，把该结果返回给 DNS Server，然后 DNS Server 把结果直接告诉发送请求的主机
-    - 迭代查询：主机发送一次 DNS 解析请求后，被重定向到另一台 DNS 服务器继续发送请求，直到获得最后结果。
-        - 该查询主机直接发送请求到.根域名 server，然后进行递归查询中的 2,3,4 步骤
+  - 递归查询：主机只发送一次 DNS 解析请求，就获得最后的结果。
+    - 在本机配置一个运行 DNS 服务的 Server 的 IP 地址，把请求直接发送给该 server，
+    - 由该 server 去找.根域名服务器进行查询，然后.根域名服务器再根据该请求中的顶级域名把该请求重定向到顶级域名服务器上
+    - 如果该请求还有二级域名，那么顶级域名 server 会 再把该请求重定向二级域名 server 上
+    - 直到查询到最终结果后，把该结果返回给 DNS Server，然后 DNS Server 把结果直接告诉发送请求的主机
+  - 迭代查询：主机发送一次 DNS 解析请求后，被重定向到另一台 DNS 服务器继续发送请求，直到获得最后结果。
+    - 该查询主机直接发送请求到.根域名 server，然后进行递归查询中的 2,3,4 步骤
 
 一次完整的查询请求经过的流程
 
@@ -284,7 +284,7 @@ DNS-Rcode 作为 DNS 应答报文中有效的字段，主要用来说明 DNS 应
 
 > 参考：
 >
-> - [Wiki,Domain name registrar](https://en.wikipedia.org/wiki/Domain_name_registrar)
+> - [Wiki，Domain name registrar](https://en.wikipedia.org/wiki/Domain_name_registrar)
 > - [Name.com](https://www.name.com/)
 > - [eu.org](https://nic.eu.org/arf/en/)
 > - <https://iweec.com/144.html>
@@ -348,7 +348,6 @@ eu.org 域名通过后是有邮件通知的，但是都在垃圾箱。若是想�
 Bilibili：<https://www.bilibili.com/video/BV1ST4y1z7Ra/>
 
 Youtube：<https://www.youtube.com/watch?v=EOsBJxtiOho>
-
 
 注意：
 

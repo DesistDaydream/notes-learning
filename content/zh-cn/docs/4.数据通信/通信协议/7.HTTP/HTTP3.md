@@ -5,7 +5,8 @@ title: HTTP3
 # 概述
 
 > 参考：
-> - [ > ](https://mp.weixin.qq.com/s/Fwxfzzu6QdqyiYUI38afIQ)
+> 
+> - [支付宝二面：如何用 UDP 实现可靠传输？](https://mp.weixin.qq.com/s/Fwxfzzu6QdqyiYUI38afIQ)
 
 # QUIC
 

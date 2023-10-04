@@ -5,7 +5,7 @@ title: Sentinel(哨兵) 模式
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档](https://redis.io/topics/sentinel)
 > - [中文文档](http://www.redis.cn/topics/sentinel.html)
 > - [博客园大佬](https://www.cnblogs.com/kevingrace/p/9004460.html)
@@ -52,7 +52,7 @@ Redis Sentinel 为 Redis 提供了高可用性。这意味着，可以使用 Sen
 
 参考：[官方文档](https://redis.io/topics/sentinel#sentinels-and-replicas-auto-discovery)
 
-虽然 Sentinel 集群中各个 Sentinel 都互相连接彼此来检查对方的可用性以及互相发送消息。但是不用为任何一个 Sentinel 手动配置其它的 Sentinel 的信息。因为 Sentinel 利用了 Redis 的 [**Pub/Sub(发布/订阅)**](https://www.yuque.com/go/doc/33188044)\*\* \*\*机制去自动发现，监控了相同的 master 和 replica 的其他 Sentinel 节点。
+虽然 Sentinel 集群中各个 Sentinel 都互相连接彼此来检查对方的可用性以及互相发送消息。但是不用为任何一个 Sentinel 手动配置其它的 Sentinel 的信息。因为 Sentinel 利用了 Redis 的 [Pub/Sub(发布/订阅)](/docs/5.数据存储/2.数据库/键值数据/Redis/Pub_Sub(发布_订阅).md) 机制去自动发现，监控了相同的 master 和 replica 的其他 Sentinel 节点。
 
 > 通过向名为`__sentinel__:hello`的频道中发送消息来实现自动发现 Sentinel 节点的功能。
 

@@ -96,6 +96,7 @@ tw_recycle = 1 时，sync timestamps 比上次小时，会被 rst
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/24e305c7-9ba8-4113-9be1-44404948d366/640)
 
+
 #### 第一次握手丢失了，会发生什么？
 
 当客户端想和服务端建立 TCP 连接的时候，首先第一个发的就是 SYN 报文，然后进入到 `SYN_SENT` 状态。

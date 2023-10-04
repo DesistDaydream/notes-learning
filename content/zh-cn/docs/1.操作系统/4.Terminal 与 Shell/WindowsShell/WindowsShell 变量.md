@@ -47,7 +47,7 @@ TODO: Windows 中的变量好像不区分大小写？
 注意：
 
 - Windows 中没有指向 “文档”、“视频” 等等目录的变量，可以在 PowerShell 中使用 `[environment]::getfolderpath("mydocuments")` 获取。
-    - 参考：https://stackoverflow.com/questions/3492920/is-there-a-system-defined-environment-variable-for-documents-directory
+    - 参考: https://stackoverflow.com/questions/3492920/is-there-a-system-defined-environment-variable-for-documents-directory
 
 
 

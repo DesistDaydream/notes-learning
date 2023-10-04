@@ -6,10 +6,10 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [Go 官方文档，参考-语言规范](https://go.dev/ref/spec)
 > - [Go 包，标准库](https://pkg.go.dev/std)
->     - [中文文档](https://studygolang.com/pkgdoc)
+>   - [中文文档](https://studygolang.com/pkgdoc)
 > - [go.dev,Tour(Go 语言之旅，通过在线解析器体验 Go 语言的各种特性)](https://go.dev/tour/list)
 > - [GitHub,DesistDaydream/go-learning](https://github.com/DesistDaydream/go-learning)(学习代码)
 
@@ -21,6 +21,7 @@ Go 是一种通用语言，专为系统编程而设计。它是一种强类型�
 # Go 语言关键字
 
 > 参考：
+>
 > - [官方文档，参考-规范-关键字](https://go.dev/ref/spec#Keywords)
 
 Go 语言非常简单，只有 25 个`关键字(Keywords)`可以使用，记住这 25 个关键字，就掌握了最基本的 Go 语言用法。这些关键字是 go 语言保留的，不能用作标识符
@@ -60,9 +61,9 @@ Go 语言非常简单，只有 25 个`关键字(Keywords)`可以使用，记住�
 # Go 语言规范
 
 > 参考：
-> 
+>
 > - [官方文档，参考-规范](https://go.dev/ref/spec)
->     - [官方文档，参考-规范 的翻译](https://github.com/bekcpear/mypelicanconfandarticles/blob/master/content/Tech/gospec.rst)
+>   - [官方文档，参考-规范 的翻译](https://github.com/bekcpear/mypelicanconfandarticles/blob/master/content/Tech/gospec.rst)
 
 ## Notation(表示法)
 
@@ -71,12 +72,12 @@ Go 语言的语法遵从 [EBNF](https://en.wikipedia.org/wiki/Extended_Backus%E2
 # Go 标准库
 
 > 参考：
-> 
+>
 > - [Go 包，标准库](https://pkg.go.dev/std)
 
 **Go Standard Library(Go 标准库)** 是 Go 内置 **Package(包)** 的集合，每个 package 都可以实现一类功能。每个 package 里有他们对应的常量、变量、函数、方法等。每个库就是一类功能，比如 bufio 库，这里面就是关于实现读写功能的各种内容；而 fmt 库则是关于实现格式化输入输出等功能。在[这里](https://pkg.go.dev/std?tab=packages)可以看到 go 语言 原生支持的所有标准库。
 
-与 标准库 相对应的就是 [Go 第三方库](docs/2.编程/高级编程语言/Go/Go%20第三方库/Go%20第三方库.md) ，第三方库一般属于由个人开发，实现更多丰富功能的库。在 [Go.dev ](https://pkg.go.dev/)可以搜索自己想要使用的所有库。
+与 标准库 相对应的就是 [Go 第三方库](/docs/2.编程/高级编程语言/Go/Go%20第三方库/Go%20第三方库.md) ，第三方库一般属于由个人开发，实现更多丰富功能的库。在 [Go.dev](https://pkg.go.dev/)可以搜索自己想要使用的所有库。
 
 [Go.dev](https://pkg.go.dev/) 是 golang.org 的配套网站。 Golang.org 是开源项目和发行版的所在地，而 go.dev 是 Go 用户的中心，可从整个 Go 生态系统中提供集中和精选的资源。还可以在专门的[标准库](https://pkg.go.dev/std)页面看到所有标准库下的 Go 内置包。
 

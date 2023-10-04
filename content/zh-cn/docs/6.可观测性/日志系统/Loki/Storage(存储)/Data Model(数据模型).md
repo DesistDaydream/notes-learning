@@ -5,6 +5,7 @@ title: Data Model(数据模型)
 # 概述
 
 > 参考：
+> 
 > - 官方文档没有专门将 Log Stream 的章节，Stream 的概念都是在其他章节提到的
 > - [官方文档,入门-标签](https://grafana.com/docs/loki/latest/getting-started/labels/)
 > - [官方文档,运维-存储](https://grafana.com/docs/loki/latest/operations/storage/)
@@ -12,15 +13,15 @@ title: Data Model(数据模型)
 # Log Stream(日志流) 概念
 
 Loki 通过一种称为 **Log Stream(日志流)** 的概念组织所有日志数据。**Log Stream(日志流) 之于 Loki 类似于 Time series(时间序列) 之于 Prometheus**
-**
-Loki 使用 **Stream(流)** 这个词来描述保存的日志数据，并根据 **Label(标签)\*\* 来定位日志流，Label 是日志流的元数据。Label 的概念和用法与 Prometheus 中的 Label 一致。如果 Loki 与 Prometheus 同时使用，那么他们之间得标签是一致的，通过 Label，很容易得就可以将应用程序指标和日志数据关联起来。
+
+Loki 使用 **Stream(流)** 这个词来描述保存的日志数据，并根据 **Label(标签)** 来定位日志流，Label 是日志流的元数据。Label 的概念和用法与 Prometheus 中的 Label 一致。如果 Loki 与 Prometheus 同时使用，那么他们之间得标签是一致的，通过 Label，很容易得就可以将应用程序指标和日志数据关联起来。
 
 Stream 与 Label 是强关联的，在 Loki 中，Label 是唯一可以定义 Log Stream 的东西。每个标签键和值的组合定义了一条 log stream。如果一个标签值发生了变化，则这会生成一个新的 Log stream。在 Prometheus 中，类似 Log Stream 概念的是 time series(stream 对应 series)。但是不同的是，在 Prometheus 中还有一个维度，是 metrics name(指标名称)。但是在 Loki 中则谁 Path，一个 采集日志的 Path 实际上是会采集很多很多日志的。也正是由于此，所以 Loki 将这种概念称为 Stream，而不是 Series。
 
 用白话说，所谓的 Log Stream 可以是下面事物的一种：
 
 - **File** # 一个文件就是一个 Log Stream。一般情况，客户端(比如 Promtail)从文件中 tail 内容以获取日志信息，所以，一个日志就相当于一个 日志流。
-- **STDOUT **# 标准输出。
+- **STDOUT** # 标准输出。
 - ....等等
 
 所以 Log Stream 就是上述事物的一种通用抽象。

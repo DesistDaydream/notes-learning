@@ -1,17 +1,21 @@
 ---
 title: Linux 网络流量控制
+linkTitle: Linux 网络流量控制
+date: 2023-11-02T23:46
+weight: 1
 ---
 
 # 概述
 
 > 参考：
+>
 > - [Wiki-Network Traffic Control](https://en.wikipedia.org/wiki/Network_traffic_control)
 > - [arthurchiao.art 的文章](http://arthurchiao.art/index.html)：
 >   - [连接跟踪（conntrack）：原理、应用及 Linux 内核实现](http://arthurchiao.art/blog/conntrack-design-and-implementation-zh/)
 >   - [\[译\] 《Linux 高级路由与流量控制手册（2012）》第九章：用 tc qdisc 管理 Linux 网络带宽](http://arthurchiao.art/blog/lartc-qdisc-zh/#91-%E9%98%9F%E5%88%97queues%E5%92%8C%E6%8E%92%E9%98%9F%E8%A7%84%E5%88%99queueing-disciplines)
 > - [《Linux 高级路由与流量控制手册（2003）》 中文翻译](https://lartc.org/LARTC-zh_CN.GB2312.pdf)
 
-在计算机网络中，**Traffic Control(流量控制，简称 TC)** 系统可以让服务器，像路由器一样工作，这也是 [SDN](https://www.yuque.com/go/doc/33218298) 中重要的组成部分。通过精准的流量控制，可以让服务器减少拥塞、延迟、数据包丢失；实现 NAT 功能、控制带宽、阻止入侵；等等等等。
+在计算机网络中，**Traffic Control(流量控制，简称 TC)** 系统可以让服务器，像路由器一样工作，这也是 [SDN(软件定义网路)](/docs/4.数据通信/SDN(软件定义网路).md) 中重要的组成部分。通过精准的流量控制，可以让服务器减少拥塞、延迟、数据包丢失；实现 NAT 功能、控制带宽、阻止入侵；等等等等。
 
 Traffic Control(流量控制) 在不同的语境中有不同的含义，可以表示一整套完整功能的系统、也可以表示为一种处理网络数据包的行为
 
@@ -19,7 +23,7 @@ Traffic Control(流量控制) 在不同的语境中有不同的含义，可以�
 
 众所周知，在互联网诞生之初都是各个高校和科研机构相互通讯，并没有网络流量控制方面的考虑和设计，TCP/IP 协议的原则是尽可能好地为所有数据流服务，不同的数据流之间是平等的。然而多年的实践表明，这种原则并不是最理想的，有些数据流应该得到特别的照顾， 比如，远程登录的交互数据流应该比数据下载有更高的优先级。
 
-针对不同的数据流采取不同的策略，这种可能性是存在的。并且，随着研究的发展和深入， 人们已经提出了各种不同的管理模式。[IETF](https://www.yuque.com/go/doc/34208492) 已经发布了几个标准， 如综合服务(Integrated Services)、区分服务(Diferentiated Services)等。其实，Linux 内核从 2 2 开始，就已经实现了相关的 **Traffic Control(流量控制)** 功能。
+针对不同的数据流采取不同的策略，这种可能性是存在的。并且，随着研究的发展和深入， 人们已经提出了各种不同的管理模式。[IETF](docs/x_标准化/Internet/IETF.md) 已经发布了几个标准， 如综合服务(Integrated Services)、区分服务(Diferentiated Services)等。其实，Linux 内核从 2 2 开始，就已经实现了相关的 **Traffic Control(流量控制)** 功能。
 
 实际上，流量控制系统可以想象成 **Message Queue(消息队列)** 的功能。都是为了解决数据量瞬间太大导致处理不过来的问题。
 
@@ -28,7 +32,7 @@ Traffic Control(流量控制) 在不同的语境中有不同的含义，可以�
 想要实现 Traffic Control(流量控制) 系统，通常需要以下功能中的一个或多个：
 
 - **Queuing(队列)** # 每个进出服务器的数据包，都排好队逐一处理。
-- **Hook(钩子)** # 也可以称为** DataPath**。用于拦截进出服务器的每个数据包，并对数据包进行处理。
+- **Hook(钩子)** # 也可以称为**DataPath**。用于拦截进出服务器的每个数据包，并对数据包进行处理。
   - 每种实现流量控制的程序，在内核中添加的 Hook 的功能各不相同，Hook 的先后顺序也各不相同，甚至可以多个 Traffic Control 共存，然后在各自的 Hook 上处理数据包
 - **Connection Tracking(连接跟踪)** # 每个被拦截到的数据包，都需要记录其信息以跟踪他们。
 
@@ -50,11 +54,11 @@ Traffic Control(流量控制) 在不同的语境中有不同的含义，可以�
 
 流量控制系统的行为通常都是在内核中完成的，所有一般都是将将官代码直接写进内核，或者使用模块加载进内核，还有新时代的以 BPF 模式加在进内核。
 
-- [**Netfilter 框架**](https://www.yuque.com/go/doc/34346353)
+- [Netfilter 流量控制系统](/docs/1.操作系统/2.Kernel/8.Network/Linux%20网络流量控制/Netfilter%20流量控制系统/Netfilter%20流量控制系统.md)
   - 通过 iptables、nftables 控制 Netfilter 框架中的 Hook 行为
-- [**tc 模块**](https://www.yuque.com/go/doc/34380573)
+- [TC 模块](/docs/1.操作系统/2.Kernel/8.Network/Linux%20网络流量控制/TC%20模块/TC%20模块.md)
   - 通过 tc 二进制程序控制 Hook 行为
-- [**BPF 接口**](https://www.yuque.com/go/doc/33144610)
+- [BPF 流量控制机制](/docs/1.操作系统/2.Kernel/BPF/BPF%20流量控制机制/BPF%20流量控制机制.md)
   - 待整理，暂时不知道 Linux 中有什么会基于 BPF 的应用程序。
     - 但是有一个 Cilium 程序，是基于 BPF 做的，只不过只能部署在 Kubernetes 集群中。
 

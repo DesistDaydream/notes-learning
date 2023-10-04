@@ -4,10 +4,11 @@ title: Standard commands(标准命令)
 
 # 其他标准命令
 
-## openssl passwd # 对指定的字符串生成 hash 过的密码
+## openssl passwd - 对指定的字符串生成 hash 过的密码
 
 **openssl password \[OPTIONS] \[STRING]**
-MD5 算法加密后的格式为：$算法简称$SALT$XXXXXX，算法简称为 1 或者 apr1，SALT 为指定的盐的字符串，XXXX 为生成的加密的字符串
+
+MD5 算法加密后的格式为：`$算法简称$SALT$XXXXXX`，算法简称为 1 或者 apr1，SALT 为指定的盐的字符串，XXXX 为生成的加密的字符串
 
 OPTIONS
 
@@ -22,7 +23,7 @@ EXAMPLE
 - openssl passwd -1 -salt 123 123456
   - 结果为：$1$123$7mft0jKnzzvAdU4t0unTG1
 
-## openssl rand # 生成伪随机数字节
+## openssl rand - 生成伪随机数字节
 
 EXAMPLE
 
@@ -30,7 +31,7 @@ EXAMPLE
 
 # RSA 标准命令
 
-## openssl genrsa # 生成 RSA 密钥
+## openssl genrsa - 生成 RSA 密钥
 
 ### Syntax(语法)
 
@@ -43,7 +44,7 @@ EXAMPLE
 - 在当前目录下生成一个 2048 位的名为 lch.key 的私钥（括号的作用是创建子 shell 执行命令，这样 umask 命令对当前 shell 没影响）
   - **(umask 077; openssl genrsa -out ./lch.key 2048)**
 
-## openssl rsa # RSA 密钥管理
+## openssl rsa - RSA 密钥管理
 
 openssl rsa \[OPTIONS] \[ARGUMENTS]
 
@@ -61,7 +62,7 @@ EXAMPLE
 
 # 证书标准命令
 
-## openssl ca # sample minimal CA application。CA 程序
+## openssl ca - sample minimal CA application。CA 程序
 
 **注意**：使用 `req` 和 `x509` 命令是非常精简的生成证书的方式。
 
@@ -73,7 +74,7 @@ EXAMPLE
 - openssl ca -revoke /etc/pki/CA/newcerts/SERIAL.pem # 吊销证书
 - openssl ca -gencrl -out
 
-## openssl req # 生成根证书或符合 PKCS #10 标准的证书请求
+## openssl req - 生成根证书或符合 PKCS #10 标准的证书请求
 
 该命令主要以 PKCS#10 标准格式创建和处理 CSR。并且还可以创建自签名证书，以用作根 CA 证书。
 
@@ -109,7 +110,7 @@ EXAMPLE
   - openssl req -new -key httpd.key -days 365 -out httpd.csr
   - 在输入完该命令后，同样需要输入几个身份信息以供 CA 进行验证。由于是私有 CA，所以所有信息应该保持跟 CA 的信息一样，具体信息详见上面那个命令，否则无法签署成功。后面还可以输入密码，当然密码也可以为空，密码主要是对改请求进行加密的。创建完请求后，把该请求文件 XXX.csr 发送给 CA 所在的服务器，然后由 CA 进行签署。
 
-## openssl x509 # 证书显示或签名工具
+## openssl x509 - 证书显示或签名工具
 
 > 参考：
 >
@@ -151,8 +152,8 @@ EXAMPLE
 #### Certificate Checking OPTIONS(证书检查选项)
 
 - **-days** #
-- **-extfile <FILENAME>** #
-- **-extensions <SectionName>** # 从 -extfile 选项指定的文件中指定 SectionName，该 Section 中的参数用来配置 X.509 证书的 `X509v3 extensions` 字段。
+- **-extfile \<FILENAME>** #
+- **-extensions \<SectionName>** # 从 -extfile 选项指定的文件中指定 SectionName，该 Section 中的参数用来配置 X.509 证书的 `X509v3 extensions` 字段。
   - 若未指定本选项，则默认使用 “默认部分” 的 extensions 指令。
 
 #### Certificate Output OPTIONS(证书输出选项)

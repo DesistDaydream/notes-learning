@@ -71,6 +71,7 @@ configs:
 ### 数据库
 
 **--datastore-endpoint value** #  指定 etcd、Mysql、Postgres 或 Sqlite（默认）数据源名称
+
 - $K3S_DATASTORE_ENDPOINT
 
 **--datastore-cafile value** # (db) TLS Certificate Authority file used to secure datastore backend communication \[$K3S_DATASTORE_CAFILE]
@@ -94,6 +95,20 @@ configs:
 --cluster-domain value                     (networking) Cluster Domain (default: "cluster.local")
 
 --flannel-backend value                    (networking) One of 'none', 'vxlan', 'ipsec', or 'flannel' (default: "vxlan")
+
+### 定制 Kubernetes 的组件
+
+**--disable**([]STRING)	# 禁用 [K3S 封装的一些 K8S 之外的组件](https://docs.k3s.io/zh/installation/packaged-components)。多个组件以 `,` 分割。
+
+**--disable-scheduler** # 	禁用 Kubernetes 默认调度程序
+
+**--disable-cloud-controller** # 禁用 k3s 默认云 Controller Manager
+
+**--disable-kube-proxy**	# 禁用运行 kube-proxy
+
+**--disable-network-policy** # 禁用 K3s 默认网络策略控制器
+
+**--disable-helm-controller** # 禁用 Helm 控制器
 
 ### 定制 Kubernetes 进程的标志
 
@@ -121,43 +136,7 @@ configs:
 
 ## 其他
 
-- -v value (logging) Number for the log level verbosity (default: 0)
-- --vmodule value (logging) Comma-separated list of pattern=N settings for file-filtered logging
-- --log value, -l value (logging) Log to file
-- --alsologtostderr (logging) Log to standard error as well as file (if set)
-- --bind-address value (listener) k3s bind address (default: 0.0.0.0)
-- --https-listen-port value (listener) HTTPS listen port (default: 6443)
-- --advertise-address value (listener) IP address that apiserver uses to advertise to members of the cluster (default: node-external-ip/node-ip)
-- --advertise-port value (listener) Port that apiserver uses to advertise to members of the cluster (default: listen-port) (default: 0)
-- --tls-san value (listener) Add additional hostname or IP as a Subject Alternative Name in the TLS cert
-- --data-dir value, -d value (data) Folder to hold state default /var/lib/rancher/k3s or ${HOME}/.rancher/k3s if not root
-- --token value, -t value                    (cluster) Shared secret used to join a server or agent to a cluster \[$K3S_TOKEN]
-- --token-file value (cluster) File containing the cluster-secret/token \[$K3S\_TOKEN\_FILE]
-- --write-kubeconfig value, -o value         (client) Write kubeconfig for admin client to this file \[$K3S_KUBECONFIG_OUTPUT]
-- --write-kubeconfig-mode value (client) Write kubeconfig with this mode \[$K3S_KUBECONFIG_MODE]
-- --default-local-storage-path value (storage) Default local storage path for local provisioner storage class
-- --no-deploy value (components) Do not deploy packaged components (valid items: coredns, servicelb, traefik, local-storage, metrics-server)
-- --disable-scheduler (components) Disable Kubernetes default scheduler
-- --disable-cloud-controller (components) Disable k3s default cloud controller manager
-- --disable-network-policy (components) Disable k3s default network policy controller
-- --node-name value (agent/node) Node name \[$K3S\_NODE\_NAME]
-- --with-node-id                             (agent/node) Append id to node name
-- --node-label value                         (agent/node) Registering kubelet with set of labels
-- --node-taint value                         (agent/node) Registering kubelet with set of taints
-- --container-runtime-endpoint value         (agent/runtime) Disable embedded containerd and use alternative CRI implementation
-- --pause-image value                        (agent/runtime) Customized pause image for containerd sandbox
-- --private-registry value                   (agent/runtime) Private registry configuration file (default: "/etc/rancher/k3s/registries.yaml")
-- --node-ip value, -i value                  (agent/networking) IP address to advertise for node
-- --node-external-ip value                   (agent/networking) External IP address to advertise for node
-- --resolv-conf value                        (agent/networking) Kubelet resolv.conf file \[$K3S_RESOLV_CONF]
-- --flannel-iface value (agent/networking) Override default flannel interface
-- --flannel-conf value (agent/networking) Override default flannel config file
-- --rootless (experimental) Run rootless
-- --agent-token value (experimental/cluster) Shared secret used to join agents to the cluster, but not servers \[$K3S\_AGENT\_TOKEN]
-- --agent-token-file value                   (experimental/cluster) File containing the agent secret \[$K3S_AGENT_TOKEN_FILE]
-- --server value, -s value (experimental/cluster) Server to connect to, used to join a cluster \[$K3S\_URL]
-- --cluster-init                             (experimental/cluster) Initialize new cluster master \[$K3S_CLUSTER_INIT]
-- --cluster-reset (experimental/cluster) Forget all peers and become a single cluster new cluster master \[$K3S\_CLUSTER\_RESET]
+
 
 # 最佳实践
 

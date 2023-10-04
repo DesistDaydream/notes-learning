@@ -42,7 +42,7 @@ Volume(卷) 的工作流程：可以把 volume 想象成一个中间人，数据
 - [iscsi](https://kubernetes.io/zh/docs/concepts/storage/volumes/#iscsi)
 - [local](https://kubernetes.io/zh/docs/concepts/storage/volumes/#local) # 把宿主机上的目录作为 Volume
 - [nfs](https://kubernetes.io/zh/docs/concepts/storage/volumes/#nfs) # 将 NFS 服务提供的目录作为 Volume
-- [persistentVolumeClaim](https://kubernetes.io/zh/docs/concepts/storage/volumes/#persistentvolumeclaim) # 一种 Kubernetes 资源。详见[Persistent Volume 持久卷](https://www.yuque.com/go/doc/33163956) 中关于 PVC 的说明
+- [persistentVolumeClaim](https://kubernetes.io/zh/docs/concepts/storage/volumes/#persistentvolumeclaim) # 一种 Kubernetes 资源。详见 [Persistent Volume(持久卷)](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/9.Kubernetes%20存储/Persistent%20Volume(持久卷)/Persistent%20Volume(持久卷).md) 中关于 PVC 的说明
 - [portworxVolume](https://kubernetes.io/zh/docs/concepts/storage/volumes/#portworxvolume)
 - [projected](https://kubernetes.io/zh/docs/concepts/storage/volumes/#projected)
 - [quobyte](https://kubernetes.io/zh/docs/concepts/storage/volumes/#quobyte)

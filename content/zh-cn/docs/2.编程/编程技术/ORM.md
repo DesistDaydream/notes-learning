@@ -6,7 +6,7 @@ title: ORM
 
 > 参考：
 >
-> - [Wiki,Object–relational mapping](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping)
+> - [Wiki，Object–relational mapping](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping)
 > - [C 语言中文网，ORM 是什么](http://c.biancheng.net/hibernate/orm.html)
 > - [B 站-哔哩哔哩技术，如何用 go 实现一个 ORM（为什么需要 ORM）](https://www.bilibili.com/read/cv21943763)
 

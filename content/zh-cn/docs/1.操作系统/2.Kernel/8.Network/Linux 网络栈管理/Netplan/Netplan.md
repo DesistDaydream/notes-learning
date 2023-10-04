@@ -6,6 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，canonical/netplan](https://github.com/canonical/netplan)
 > - [官网](https://netplan.io/)
 
@@ -22,7 +23,7 @@ Netplan 从 /etc/netplan/\*.yaml 文件中读取配置信息。Netplan 启动初
 Netplan 当前支持如下 Renderers(渲染器)：
 
 - **networkd** # 默认 Renderer。该 Renderers 是 systemd 管理的网络管理程序 systemd-networkd，它属于 systemd 包
-- **Network Manager** # 详见：[Network Manager 章节](https://www.yuque.com/go/doc/33221845)
+- **Network Manager** # 详见：[NetworkManager](/docs/1.操作系统/2.Kernel/8.Network/Linux%20网络栈管理/NetworkManager/NetworkManager.md)
 
 注意：殊途同归，就算是 systemd-networkd，同样是会在 d-bus 中保存信息的
 

@@ -6,7 +6,7 @@ title: Inode
 
 > 参考：
 >
-> - [Wiki,Inode](https://en.wikipedia.org/wiki/Inode)
+> - [Wiki，Inode](https://en.wikipedia.org/wiki/Inode)
 > - [知乎，本地文件系统小计（二）：inode](https://zhuanlan.zhihu.com/p/78724124)
 
 **Index node(索引节点，简称 inode)** 是 Unix 风格的文件系统中的一种数据结构。每个索引节点保存了文件系统中的一个文件系统对象(i.e.文件、目录等)的元信息数据，但不包括数据内容或者文件名。
@@ -27,8 +27,8 @@ title: Inode
 
 不同文件系统，有不同的计算方式，详情可以参考各类文件系统中的章节
 
-- [EXT FileSystem](docs/1.操作系统/2.Kernel/6.Filesystem/磁盘文件系统/EXT%20FileSystem.md#块、块组、Inode%20计算)
-- [XFS](docs/1.操作系统/2.Kernel/6.Filesystem/磁盘文件系统/XFS.md)
+- [EXT FileSystem](/docs/1.操作系统/2.Kernel/6.Filesystem/磁盘文件系统/EXT%20FileSystem.md#块、块组、Inode%20计算)
+- [XFS](/docs/1.操作系统/2.Kernel/6.Filesystem/磁盘文件系统/XFS.md)
 
 总得来说，所以我们可以<font color="#ff0000">通过降低 BytesPerInode 的值以提高 Inode 数量</font>
 
@@ -239,4 +239,4 @@ struct ext4_inode {
 
 # 分类
 
-#文件系统 #文件
+# 文件系统 #文件

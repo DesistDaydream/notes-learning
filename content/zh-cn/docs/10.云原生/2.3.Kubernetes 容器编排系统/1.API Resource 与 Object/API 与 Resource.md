@@ -10,7 +10,7 @@ weight: 1
 > - [官方文档，概念-概述-Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/)
 > - [官方文档，参考-API 概述](https://kubernetes.io/docs/reference/using-api/)
 
-Kubernetes API 使我们可以查询和操纵 Kubernetes API 中资源的状态。Kubernetes API 符合 [RESTful 规范](https://www.yuque.com/go/doc/33220383)。
+Kubernetes API 使我们可以查询和操纵 Kubernetes API 中资源的状态。Kubernetes API 符合 RESTful 规范。
 
 Kubernetes 把自身一切抽象理解为 **Resource(资源)**，也叫 **API Resource**(有地方也叫 Group Resource)。对集群的所有操作都是通过对 Kubernetes API 的 HTTP(s) 请求来实现的。可以使用命令 kubectl api-resources 命令查看所有支持的资源。
 

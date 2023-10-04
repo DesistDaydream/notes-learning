@@ -1,5 +1,8 @@
 ---
 title: HTTPS 和 Authentication(认证)
+linkTitle: HTTPS 和 Authentication(认证)
+date: 2023-12-20T14:48
+weight: 7
 ---
 
 # 概述
@@ -172,7 +175,7 @@ Usernames and hashed passwords that have full access to the web
 
 ## 配置示例
 
-在[这里](https://bcrypt-generator.com/)生成密码的 hash 值，比如我使用 `Prometheus@lichenhao` 这个密码，生成的 hash 为 `$2a$12$twJp6N9kL5aEf08Ja8XRAOImHOjCTBQvb485Uuz7hJLEX1XT4iVDm`
+在[这里](https://bcrypt-generator.com/)生成密码的 hash 值，比如我使用 `Prometheus@lch` 这个密码，生成的 hash 为 `$2a$12$2MvNShJKv/FNV1T1.xFk4u4u9mFMolcTn4xb3lkFdjnXVMfOjbD6a`
 
 在 /etc/prometheus/config_out/ 目录中创建一个 web-config.yml 文件
 
@@ -184,4 +187,5 @@ basic_auth_users:
 为 Promethues Server 添加命令行标志 `--web.config.file=/etc/prometheus/config_out/web-config.yml`
 
 启动 Prometheus 后，将会需要认证信息，效果如下：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/bx144g/1628063307526-21ac3e4b-150d-4e77-9a7c-5069ad006369.png)

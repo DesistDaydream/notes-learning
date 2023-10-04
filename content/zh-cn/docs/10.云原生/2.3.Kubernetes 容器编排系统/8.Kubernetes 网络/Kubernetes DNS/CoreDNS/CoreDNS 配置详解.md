@@ -8,6 +8,7 @@ title: CoreDNS 配置详解
 > - [官方配置文档](https://coredns.io/manual/toc/#configuration)
 
 CoreDNS 的配置文件为 Corefile。
+
 Corefile 源于 Caddy 框架的的配置文件 Caddyfile。Corefile 将会定义如下 CoreDNS 的行为：
 
 - CoreDNS 的运行逻辑很像 Nginx，会抽象出 `server` 的概念并运行。可以同时定义多个 Server 以实现不同功能，每个 Server 主要定义下面几种行为：
@@ -42,24 +43,30 @@ ZONE[:PORT] {
 
 一个最简单的配置文件可以为：
 
-    .{}
+```
+.{}
+```
 
 即 server 监听 53 端口并不使用插件。
 如果此时在定义其他 server，要保证监听端口不冲突；如果是在原来 server 增加 zone，则要保证 zone 之间不冲突，如：
 
-    .    {}
-    .:54 {}
+```
+.    {}
+.:54 {}
+```
 
 另一个 server 运行于 54 端口并负责根域 `.` 的解析。
 
 又如：
 
-    example.org {
-        whoami
-    }
-    org {
-        whoami
-    }
+```
+example.org {
+    whoami
+}
+org {
+    whoami
+}
+```
 
 同一个 server 但是负责不同 zone 的解析，有不同插件链。
 
@@ -67,41 +74,52 @@ ZONE[:PORT] {
 
 跟其他 DNS 服务器类似，Corefile 也可以定义 `Reverse Zone`（反向解析 IP 地址对应的域名）：
 
-    0.0.10.in-addr.arpa {
-        whoami
-    }
+```
+0.0.10.in-addr.arpa {
+    whoami
+}
+```
 
 或者简化版本：
 
-    10.0.0.0/24 {
-        whoami
-    }
+```
+10.0.0.0/24 {
+    whoami
+}
+```
 
 可以通过 `dig` 进行反向查询：
 
-    $ dig -x 10.0.0.1
+```
+$ dig -x 10.0.0.1
+```
 
 ### 使用不同的通信协议
 
 CoreDNS 除了支持 DNS 协议，也支持 `TLS` 和 `gRPC`，即 DNS-over-TLS\[3] 和 DNS-over-gRPC 模式：
 
-    tls://example.org:1443 {
-    	#...
-    }
+```
+tls://example.org:1443 {
+  #...
+}
+```
 
 ### 添加其他的域名解析
 
-    .:53 {
-            hosts {
-               123.138.66.130 xsky.xa.ehualu.it
-               123.138.66.130 prometheus.xa.ehualu.it
-               116.182.4.38 xsky.heb.ehualu.it
-               116.182.4.38 prometheus.heb.ehualu.it
-               fallthrough
-            }
-    }
+```
+.:53 {
+        hosts {
+           123.138.66.130 xsky.xa.ehualu.it
+           123.138.66.130 prometheus.xa.ehualu.it
+           116.182.4.38 xsky.heb.ehualu.it
+           116.182.4.38 prometheus.heb.ehualu.it
+           fallthrough
+        }
+}
+```
 
 ## Forwarding(转发)
 
 > 参考：
+> 
 > - <https://coredns.io/manual/toc/#forwarding>

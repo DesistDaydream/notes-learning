@@ -6,14 +6,20 @@ title: SQL
 
 > 参考：
 >
-> - [Wiki,SQL](https://en.wikipedia.org/wiki/SQL)
+> - [Wiki，SQL](https://en.wikipedia.org/wiki/SQL)
 > - [菜鸟教程，SQL](https://www.runoob.com/sql/sql-tutorial.html)
 
 **Structured Query Language(结构化查询语言，简称 SQL)** 是一种特定领域的编程语言，用于管理 RDBMS(关系数据库管理系统) 中保存的数据。使用 SQL 编写的语句也可以称为 **Expression(表达式)**。
 
-SQL 在 1986 年成为 [ANSI](docs/x_标准化术语/计算机标准/ANSI.md) 的一项标准，在 1987 年成为国际标准化组织（ISO）标准。
+SQL 在 1986 年成为 [ANSI](docs/x_标准化/IT/ANSI.md) 的一项标准，在 1987 年成为国际标准化组织（ISO）标准。
 
 每种关系型数据库所使用的 SQL 基本都一样，但是又有其自身特殊的 SQL。由于 MySQL 的使用率非常高，所以 SQL 文档的各种例子都以 MySQL 为主。
+
+# 学习资料
+
+[GitHub 项目，liyupi/sql-mother](https://github.com/liyupi/sql-mother)
+
+- [程序员鱼皮，SQL 自学网站](http://sqlmother.yupi.icu/#/learn)
 
 ## 关键字
 
@@ -189,10 +195,10 @@ mysql> select * from pet;
 
 - null | not null # 指定该列是否可以插入 null 值。默认为 yes，可以插入。一般情况使用设置为 not null,原因见下面说明。
 - default \[VALUE] # 指定该列在插入数据为空时的默认值。默认插入 NULL。
-    - Note:如果当前列不设定 default 的 VALUE ，在插入数据时，如果不指定列的值。则会根据列的 null 或者 not null 来插入值
-    - 当 null 为 yes 时，默认插入 null
-    - 当 null 为 no 时，默认根据当前列的类型插入值,对于数值类型插入 0，字符串类型插入空字符串，时间戳类型插入当前日期和时间，ENUM 类型插入枚举组的第一条。
-    - e.g.当设置列为 not null、default 不指定 VALUE 时。在插入一个空值时，会报错。因为插入空值，会根据 default 的规则插入 null，但是又不能插入 null，所以插入失败
+  - Note:如果当前列不设定 default 的 VALUE ，在插入数据时，如果不指定列的值。则会根据列的 null 或者 not null 来插入值
+  - 当 null 为 yes 时，默认插入 null
+  - 当 null 为 no 时，默认根据当前列的类型插入值,对于数值类型插入 0，字符串类型插入空字符串，时间戳类型插入当前日期和时间，ENUM 类型插入枚举组的第一条。
+  - e.g.当设置列为 not null、default 不指定 VALUE 时。在插入一个空值时，会报错。因为插入空值，会根据 default 的规则插入 null，但是又不能插入 null，所以插入失败
 - comment # 指定该列的注释
 - key | primary key | unique key | foreign key <(Column_Name)> # 指定 Column_Name 为该表的索引
 - primary key # 关键字用于定义列为主键。 您可以使用多列来定义主键，列间以逗号分隔。

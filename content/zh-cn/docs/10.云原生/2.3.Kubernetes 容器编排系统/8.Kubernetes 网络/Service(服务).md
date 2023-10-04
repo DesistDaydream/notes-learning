@@ -26,11 +26,13 @@ Endpoints 是一个由 IP 和 PORT 组成的 endpoint 列表，Endpoints 的这�
 
 # Service 的实现
 
-Service 是 k8s 中的一种资源，但是如果想要实现 Service 资源定义的那些内容，则需要 [kube-proxy](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/8.Kubernetes%20网络/kube-proxy(实现%20Service%20 功能的组件).md)) 这个程序，实际上，创建一个 service，就是让 kube-proxy 创建一系列 iptables 或者 ipvs 规则
+Service 是 k8s 中的一种资源，但是如果想要实现 Service 资源定义的那些内容，则需要 [kube-proxy](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/8.Kubernetes%20网络/kube-proxy/kube-proxy.md) 这个程序，实际上，创建一个 service，就是让 kube-proxy 创建一系列 iptables 或者 ipvs 规则
 
 - userspace：在 1.1.0 版本之前使用该模型，由于需要把报文转到内核空间再回到用户空间过于低效
 - iptables：通过 Kube-proxy 监听 Pod 变化在宿主机上生成并维护。由于 kube-proxy 需要在总之循环里不断得刷新 iptables 规则来确保它们始终是正确的，这样当 Host 上有大量 Pod 时，会产生极多 Iptables 规则，大量占用 Host 的 CPU 资源，这时候 ipvs 模型就可以解决该问题
 - ipvs：将负载均衡与代理功能从 iptables 手中接过来，一些辅助性并且数量不多的(比如包过滤、SNAT 等)操作依然由 iptables 完成。如果想要启用 ipvs 工作模型，那么需要在/etc/sysconfig/kubelet 该配置文件中加入 KUBE_PROXY_MODE=ipvs 这一行，且给 linux 装载 ipvs 模块和连接跟踪模块
+
+有的 CNI 插件，比如 [Cilium](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/8.Kubernetes%20网络/CNI/Cilium/Cilium.md)、等等，其项目内部也基于自身的应用场景，做出了可以替代 kube-proxy 的程序，以更适用于本身的逻辑。
 
 # Publishing Service(发布 Service)
 
@@ -58,8 +60,10 @@ Service 是 k8s 中的一种资源，但是如果想要实现 Service 资源定�
 NodePort 建立在 ClusterIP 类型之上，NodePort 会将宿主机的 port 与 service 的 port 所关联，这样就可以将 service 乃至其 endpoint 都可以让集群外部直接访问。如果定义 NodePort 时不指定，则会随机选择宿主机上的 30000 至 32767 之间的一个端口作为 NodePort 的 PORT。
 
 比如下图画红框的部分就表示冒号前是 service 的 port，冒号后是宿主机上的 port，当访问宿主机的 port 的时候，该访问请求会被 iptables 或者 ipvs 规则转发到 service 的 port 上，然后转交给其 endpoint
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fd3b0g/1616118462642-7b49b026-38af-4641-84db-d58f9cbfbed8.jpeg)
-但是，请注意！NodePort 有个很致命的确定，详见 [kube-proxy 无法绑定 NodePort 案例](https://www.yuque.com/go/doc/44843491)
+
+但是，请注意！NodePort 有个很致命的确定，[kube-proxy 无法绑定 NodePort 案例]()
 
 ## LoadBalancer：一般当 kubernetes 部署在云上时使用
 

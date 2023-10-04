@@ -89,7 +89,7 @@ metrics-server 的部署文件在这个网址中：<https://github.com/kubernete
 
 ### prometheus-adapter
 
-详见：[Prometheus-adapter 章节](https://www.yuque.com/go/doc/33146377)
+详见：[Prometheus-adapter](/docs/6.可观测性/监控系统/Prometheus/Prometheus%20衍生品/Prometheus%20Operator/Prometheus-adapter.md)
 
 # kube-state-metrics
 

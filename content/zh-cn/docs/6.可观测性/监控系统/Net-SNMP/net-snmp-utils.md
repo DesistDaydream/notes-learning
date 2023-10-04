@@ -31,9 +31,11 @@ net-snmp-config --default-mibdirs 命令可以列出工具在使用中会读取 
 
 若是无法找到 MIB，则可能是版本过来，还需要在文件中添加如下内容，以手动指定要添加的 OID
 
-    mibs +HH3C-OID-MIB
-    mibs +HH3C-SERVER-AGENT-MIB
-    mibs +HH3C-SERVER-TRAP-MIB
+```text
+mibs +HH3C-OID-MIB
+mibs +HH3C-SERVER-AGENT-MIB
+mibs +HH3C-SERVER-TRAP-MIB
+```
 
 ## snmpwalk
 
@@ -41,7 +43,7 @@ net-snmp-config --default-mibdirs 命令可以列出工具在使用中会读取 
 OPTIONS
 
 - **-l \<noAuthNoPriv | authNoPriv | authPriv>** # 设置安全级别
-- **-c <STRING>** # 团体名
+- **-c \<STRING>** # 团体名
 - **-v <1 | 2c | 3>** # snmp 版本
 - 认证相关选项
   - **-A PASSWORD** # 指定认证的算法
@@ -67,8 +69,8 @@ OPTIONS
 - **-A PASSWORD** # 指定认证的算法
 - **-a PROTOCOL** # 指定认证的密码
 - **-X PASSWORD** # 指定加密的算法
-- **-x PROTOCOL **# 指定加密的密码
-- **-ro **# 创建的用户有只读权限
+- **-x PROTOCOL** # 指定加密的密码
+- **-ro** # 创建的用户有只读权限
 
 EXAMPLE
 
@@ -77,11 +79,14 @@ EXAMPLE
 
 # snmptranslate # 转换 OID 的格式
 
-> 参考：[官方文档](http://net-snmp.sourceforge.net/docs/man/snmptranslate.html)、[man 手册](https://man.cx/snmptranslate)
+> 参考：
+> 
+> - [官方文档](http://net-snmp.sourceforge.net/docs/man/snmptranslate.html)
+> - [man 手册](https://man.cx/snmptranslate)
 
 在数字格式和文本格式之间转换 MIB 的 OID
 
-**snmptranslate \[OPTIONS] OID \[OID]... **
+**snmptranslate \[OPTIONS] OID \[OID]...**
 
 **OPTIONS**
 

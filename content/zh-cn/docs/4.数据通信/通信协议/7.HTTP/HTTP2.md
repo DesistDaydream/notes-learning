@@ -5,7 +5,8 @@ title: HTTP2
 # 概述
 
 > 参考：
-> - [RFC,7540](https://tools.ietf.org/html/rfc7540)
+> 
+> - [RFC，7540](https://tools.ietf.org/html/rfc7540)
 > - [官网](https://http2.github.io/)
 > - [51 张图助你彻底掌握 HTTP 协议](https://mp.weixin.qq.com/s/WQpxfwLArltKEjEAdOO2Pw)
 > - <https://mp.weixin.qq.com/s/a83_NE-ww36FZsy320MQFQ>

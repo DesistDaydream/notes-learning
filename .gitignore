@@ -1,7 +1,6 @@
 content/zh-cn/.obsidian/plugins/editing-toolbar
-content/zh-cn/.obsidian/plugins/table-editor-obsidian
-content/zh-cn/.obsidian/plugins/obsidian-excel-to-markdown-table
-content/zh-cn/.obsidian/plugins/obsidian-enhancing-export
+content/zh-cn/.obsidian/plugins/obsidian-image-toolkit
+content/zh-cn/.obsidian/plugins/obsidian-image-auto-upload-plugin/data.json
 content/zh-cn/.obsidian/workspace.json
 content/zh-cn/files/
 
@@ -10,4 +9,3 @@ public/*
 docs/*
 
 node_modules/*
-content/zh-cn/.obsidian/plugins/obsidian-image-auto-upload-plugin/data.json

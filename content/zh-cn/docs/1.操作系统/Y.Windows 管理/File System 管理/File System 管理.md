@@ -7,12 +7,11 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - <https://www.howtogeek.com/318177/what-is-the-appdata-folder-in-windows/>
 
-
-
 **$USERPROFILE/AppData/** #
+
 - **./Local/** #
 - **./LocalLow/** #
 - **./Roaming/** #
@@ -34,6 +33,7 @@ $USERPROFILE/AppData/LocalLow/MSLiveStickerWhiteList
 $USERPROFILE/AppData/Roaming/Adobe
 $USERPROFILE/AppData/Roaming/Microsoft
 ```
+
 最主要的是这三个目录下的 Microsfot 目录，还有 Packages 目录。在整理 AppData 时，不要误删了。
 
 # Program Files
@@ -56,4 +56,4 @@ $USERPROFILE/AppData/Roaming/Microsoft
 
 Windows 操作系统的核心文件和 DLL 文件都存储在此目录中。
 
-**./System32/** # 类似于 Linux 中的 /usr/sbin/ 目录，系统自带的命令、服务、msc 的可执行文件都在这里。
+**./System32/** # 类似于 Linux 中的 /usr/sbin/ 目录，系统自带的命令、服务、[msc](/docs/1.操作系统/Y.Windows%20管理/Microsoft%20Management%20Console/Microsoft%20Management%20Console.md#MSC) 的可执行文件都在这里。

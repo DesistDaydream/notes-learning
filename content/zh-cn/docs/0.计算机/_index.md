@@ -7,9 +7,9 @@ weight: 1
 # 概述
 
 > 参考：
-> - [Wiki,Computer](https://en.wikipedia.org/wiki/Computer)
-> - [Wiki,Von Neumann Architecture(冯·诺依曼架构)](https://en.wikipedia.org/wiki/Von_Neumann_architecture)
-> - [Wiki,Xia_Peisu](https://en.wikipedia.org/wiki/Xia_Peisu)(夏培肃，中国计算机之母)
+> - [Wiki，Computer](https://en.wikipedia.org/wiki/Computer)
+> - [Wiki，Von Neumann Architecture(冯·诺依曼架构)](https://en.wikipedia.org/wiki/Von_Neumann_architecture)
+> - [Wiki，Xia_Peisu](https://en.wikipedia.org/wiki/Xia_Peisu)(夏培肃，中国计算机之母)
 
 世界上公认的第一台数字电子计算机于 1946 年问世，人们通常按照计算机元器件的演变，把计算机的发展过程分为如下几个阶段：
 

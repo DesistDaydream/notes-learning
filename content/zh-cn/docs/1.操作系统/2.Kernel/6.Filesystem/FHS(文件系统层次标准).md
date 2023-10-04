@@ -8,7 +8,7 @@ weight: 3
 > 参考：
 >
 > - [Linux 基金会参考标准,文件系统层次标准](https://refspecs.linuxfoundation.org/fhs.shtml)
-> - [Wiki,FHS](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard)
+> - [Wiki，FHS](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard)
 
 **Filesystem Hierarchy Standard(文件系统层次标准，简称 FHS)** 为文件系统的每个区域指定指导原则，指定所需的最少文件和目录
 
@@ -129,13 +129,13 @@ Unix（包含 Linux）的初学者，常常会很困惑，不明白目录结构�
 
 **process information pseudo-filesystem(进程信息伪文件系统，简称 proc)**， 提供了内核数据结构的接口。默认被挂载到 /proc 目录上。一般情况是由操作系统自动挂载的，也可以通过`mount -t proc proc /proc`命令手动挂载。proc 文件系统中的大多数文件都是只读的，但是有些文件是可写的，用于改变内核参数。
 
-详见：[Proc File System](docs/1.操作系统/2.Kernel/6.Filesystem/特殊文件系统/Proc%20File%20System.md)
+详见：[Proc File System](/docs/1.操作系统/2.Kernel/6.Filesystem/特殊文件系统/Proc%20File%20System.md)
 
 ## /root - 系统管理员的家目录
 
 ## /run - 存放目录
 
-**Run-time Variable Data(运行时变量数据，简称 Run)**。/run 目录是一个 **tmpfs(临时文件系统)**。该目录下的文件，在系统启动时会被清除，之后用来存放自系统启动以来正在运行的系统信息，例如 当前登录的用户 和 正在运行的程序 pid 等等。 详见 [tmpfs 详解](https://www.yuque.com/go/doc/33222775)
+**Run-time Variable Data(运行时变量数据，简称 Run)**。/run 目录是一个 **tmpfs(临时文件系统)**。该目录下的文件，在系统启动时会被清除，之后用来存放自系统启动以来正在运行的系统信息，例如 当前登录的用户 和 正在运行的程序 pid 等等。 详见 [tmpfs](/docs/1.操作系统/2.Kernel/6.Filesystem/特殊文件系统/tmpfs.md)
 
 ```bash
 ~]# df -h
@@ -197,4 +197,4 @@ usr 是哪个的缩写一般无法准确，就现在来看，unix share resource
 
 # 分类
 
-#文件系统
+# 文件系统

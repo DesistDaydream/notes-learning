@@ -5,6 +5,8 @@ title: Chrony
 # 概述
 
 > 参考：
+> 
+> - [GitLab，chrony/chrony](https://gitlab.com/chrony/chrony)
 > - [官网](https://chrony.tuxfamily.org/index.html)
 > - [官方文档](https://chrony.tuxfamily.org/documentation.html)
 
@@ -14,7 +16,7 @@ Chrony 是 NTP(网络时间协议) 的通用实现。它可以将系统时钟与
 
 # Chrony 配置
 
-**/etc/chrony.conf **# chronyd 守护进程运行的配置文件。该文件官方说明：<https://chrony.tuxfamily.org/doc/3.4/chrony.conf.html>
+**/etc/chrony.conf** # chronyd 守护进程运行的配置文件。该文件官方说明：<https://chrony.tuxfamily.org/doc/3.4/chrony.conf.html>
 
 ## 基础配合文件示例
 

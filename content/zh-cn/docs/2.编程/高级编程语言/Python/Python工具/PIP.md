@@ -37,10 +37,12 @@ WARNING: Target directory /root/pythonpath/bin already exists. Specify --upgrade
 
 通常来说，安装 Python 时，会自动安装 PIP
 
+> 一般都会被安装到 stie-packages/ 目录中
+
 pip 包通常包含两个目录
 
-- pip
-- pip-${VERSION}.dist-info
+- pip/
+- pip-${VERSION}.dist-info/
 
 # 关联文件与配置
 
@@ -80,18 +82,18 @@ Site 配置
 pip 安装的模块我们可以从如下目录中找到，该目录下的目录名或文件名通常来说即是包名
 
 - Windows
-    - **%USERPROFILE%/AppData/Local/Programs/Python/Python${版本号}/Lib/site-packages/***
+  - **%USERPROFILE%/AppData/Local/Programs/Python/Python${版本号}/Lib/site-packages/***
 - Linux
-    - root 用户：**/usr/local/lib/python${VERSION}/dist-packages/\***
-    - 普通 用户：**~/.local/lib/python${PythonVersion}/site-packages/\***
+  - root 用户：**/usr/local/lib/python${VERSION}/dist-packages/\***
+  - 普通 用户：**~/.local/lib/python${PythonVersion}/site-packages/\***
 
 有些包会生成一些可以执行程序，这些二进制文件则默认保存在如下目录
 
 - Windows
-    - **%USERPROFILE%/AppData/Local/Programs/Python/Python310/Scripts/**
+  - **%USERPROFILE%/AppData/Local/Programs/Python/Python310/Scripts/**
 - Linux
-    - root 用户：**/usr/local/bin/**
-    - 普通 用户：**~/.local/bin/**
+  - root 用户：**/usr/local/bin/**
+  - 普通 用户：**~/.local/bin/**
 
 # Syntax(语法)
 
@@ -101,14 +103,15 @@ pip 安装的模块我们可以从如下目录中找到，该目录下的目录�
 
 **pip COMMAND \[OPTIONS] COMMAND**
 
-Commands:
+**Commands**
+
 - **install** # 安装包
 - **download** # 下载包
-- uninstall                   Uninstall packages.
+- **uninstall** # 卸载包
 - **freeze** # 以 requirements 格式输出已安装的软件包
 - inspect                     Inspect the python environment.
-- list                        List installed packages.
-- show                        Show information about installed packages.
+- **list** # 列出已安装的包
+- **show** # 显示有关已安装软件包的信息。
 - check                       Verify installed packages have compatible dependencies.
 - **config** # 管理本地或全局配置
 - search                      Search PyPI for packages.
@@ -119,6 +122,10 @@ Commands:
 - completion                  A helper command used for command completion.
 - debug                       Show information useful for debugging.
 - help                        Show help for commands.
+
+**OPTIONS**
+
+- **-v, --verbose** # 在执行命令时显示更多信息，可多次使用，最多 3 次，每多一个 v，则显示的信息就更多一些。
 
 ## pip config
 
@@ -139,6 +146,8 @@ pip config edit --editor code # 使用 vscode 打开 pip 配置文件
 
 以 requirements 格式输出安装的软件包列表。软件包以不区分大小写的排序方式列出。
 
+`pip freeze > requirements.txt`
+
 ## pip install
 
 https://pip.pypa.io/en/stable/cli/pip_install/
@@ -151,6 +160,16 @@ https://pip.pypa.io/en/stable/cli/pip_install/
 - **-t, --target \<DIR>** # 将 Python 包安装到 DIR 目录中。可以添加 --upgrade 选项将现有包替换为 DIR 目录中的新版本。
 - **-U, --upgrade** # 将指定的所有 Python 包升级到最新的可用版本。
 - **--user** # 将包安装到 user 的 site-packages 目录下。
+
+### EXAMPLE
+
+安装 2.6.1.3 版本的 paddleocr
+
+- `pip install paddleocr==2.6.1.3`
+
+更新 paddleocr 包到最新版本，显示详细信息。
+
+- `pip install paddleocr --upgrade --verbose`
 
 # 最佳实践
 
@@ -205,3 +224,16 @@ Add-Content $env:APPDATA\pip\pip.ini "index-url = https://mirrors.aliyun.com/pyp
 TODO: --target 没效果，修改 user 的 site-packages 没效果。。。。o(╯□╰)o
 
 先用 [Python 虚拟环境](/docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20模块与包.md#Python%20虚拟环境)吧
+
+## 显示一个包的可安装版本
+
+pip 没有这种命令，但是可以通过 `pip install PACKAGE== --no-deps --no-cache-dir` 实现类似的效果，因为版本号为空，则会报错，在报错时，会显示所有可用的版本号。
+
+比如执行 `pip install numpy== --no-deps --no-cache-dir`
+
+报错：
+
+```
+ERROR: Could not find a version that satisfies the requirement numpy== (from versions: 1.3.0, 1.4.1, 1.5.0, 1.5.1, 1.6.0, 1.6.1, 1.6.2, 1.7.0, 1.7.1, 1.7.2, 1.8.0, 1.8.1, 1.8.2, 1.9.0, 1.9.1, 1.9.2, 1.9.3, 1.10.0.post2, 1.10.1, 1.10.2, 1.10.4, 1.11.0, 1.11.1, 1.11.2, 1.11.3, 1.12.0, 1.12.1, 1.13.0, 1.13.1, 1.13.3, 1.14.0, 1.14.1, 1.14.2, 1.14.3, 1.14.4, 1.14.5, 1.14.6, 1.15.0, 1.15.1, 1.15.2, 1.15.3, 1.15.4, 1.16.0, 1.16.1, 1.16.2, 1.16.3, 1.16.4, 1.16.5, 1.16.6, 1.17.0, 1.17.1, 1.17.2, 1.17.3, 1.17.4, 1.17.5, 1.18.0, 1.18.1, 1.18.2, 1.18.3, 1.18.4, 1.18.5, 1.19.0, 1.19.1, 1.19.2, 1.19.3, 1.19.4, 1.19.5, 1.20.0, 1.20.1, 1.20.2, 1.20.3, 1.21.0, 1.21.1, 1.21.2, 1.21.3, 1.21.4, 1.21.5, 1.21.6, 1.22.0, 1.22.1, 1.22.2, 1.22.3, 1.22.4, 1.23.0rc1, 1.23.0rc2, 1.23.0rc3, 1.23.0, 1.23.1, 1.23.2, 1.23.3, 1.23.4, 1.23.5, 1.24.0rc1, 1.24.0rc2, 1.24.0, 1.24.1, 1.24.2, 1.24.3, 1.24.4, 1.25.0rc1, 1.25.0, 1.25.1, 1.25.2, 1.26.0b1, 1.26.0rc1, 1.26.0, 1.26.1)
+ERROR: No matching distribution found for numpy==
+```

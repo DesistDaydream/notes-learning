@@ -5,7 +5,7 @@ title: VNC
 # 概述
 
 > 参考：
-> - [Wiki,VNC](https://en.wikipedia.org/wiki/Virtual_Network_Computing)
+> - [Wiki，VNC](https://en.wikipedia.org/wiki/Virtual_Network_Computing)
 > - [GitHub 项目，rfbproto/rfbproto](https://github.com/rfbproto/rfbproto)(RFB 协议规范)
 
 **Virtual Network Computing(虚拟网络计算，简称 VNC)** 是一种图形桌面共享系统，VNC 使用 **RFB Protocol(远程帧缓冲协议)** 以控制另一台计算机；它将键盘和鼠标输入从一台计算机传输到另一台计算机，通过网络中继更新显示器上的信息。

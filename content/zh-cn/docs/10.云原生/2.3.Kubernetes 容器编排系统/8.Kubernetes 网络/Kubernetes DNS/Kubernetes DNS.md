@@ -1,17 +1,21 @@
 ---
 title: Kubernetes DNS
+linkTitle: Kubernetes DNS
+date: 2023-12-20T13:14
+weight: 1
 ---
 
 # 概述
 
 > 参考：
+>
 > - [官方文档，概念-服务,负载均衡,网络-service 与 pod 的 DNS](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
 
 DNS 是 kubernetes 中 **Service Discovery(服务发现，简称 SD)** 的重要实现方式，虽然 K8S SD 还可以通过其他协议和机制提供，但 DNS 是非常常用的、并且是强烈建议的附加组件。
 
 Kubernetes 集群中创建的每个 **service 对象** 和 **pod 对象** 都会被分配一个 **DNS 名称**，Kubernetes 中实现 DNS 功能的程序需要自动创建 **DNS Resource Records(域名解析服务的资源记录)**。基于此，我们可以通过 DNS 名称连接我们部署到集群中的服务，而不用通过 IP 地址。
 
-kubernetes 实现 DNS 的方式：新版本默认使用 [CoreDNS](https://www.yuque.com/go/doc/33164774)，1.11.0 之前使用的是 kube-dns。Kubernetes DNS 的实现必须符合既定的规范，规范详见 [基于 Kubernetes DNS 的服务发现规范](https://www.yuque.com/go/doc/33165005) 文章。
+kubernetes 实现 DNS 的方式：新版本默认使用 [CoreDNS](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/8.Kubernetes%20网络/Kubernetes%20DNS/CoreDNS/CoreDNS.md)，1.11.0 之前使用的是 kube-dns。Kubernetes DNS 的实现必须符合既定的规范，规范详见 [基于 DNS 的 Kubernetes 服务发现的规范](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/8.Kubernetes%20网络/Kubernetes%20DNS/基于%20DNS%20的%20Kubernetes%20服务发现的规范.md) 文章。
 
 也就是说，任何可以用于实现 Kubernetes DNS 功能的应用程序，至少需要满足规范中描述的 Resource Records 格式标准。
 

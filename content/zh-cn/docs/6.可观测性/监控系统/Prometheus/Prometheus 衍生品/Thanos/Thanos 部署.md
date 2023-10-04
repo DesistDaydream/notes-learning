@@ -6,7 +6,7 @@ title: Thanos 部署
 
 > 参考：
 > 
-> - [官方文档,快速教程](https://thanos.io/tip/thanos/quick-tutorial.md/#sidecar)
+> - [官方文档，快速教程](https://thanos.io/tip/thanos/quick-tutorial.md/#sidecar)
 
 # 通过 docker 启动 Thanos
 
@@ -37,5 +37,5 @@ title: Thanos 部署
 
 > 参考：
 > 
-> - [官方文档,prometheus operator-thanos](https://prometheus-operator.dev/docs/operator/thanos/)
-> - [GitHub 文档,prometheus-operator-文档-thanos](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/thanos.md)
+> - [官方文档，prometheus operator-thanos](https://prometheus-operator.dev/docs/operator/thanos/)
+> - [GitHub 文档，prometheus-operator-文档-thanos](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/thanos.md)

@@ -23,7 +23,7 @@ title: ipvsadm 命令行工具
       - -t, --tcp-service
       - -u, --udp-service
 - **Scheduler** # Director 的调度方法
-  - 详见[ LVS 介绍](https://www.yuque.com/go/doc/33184072) 文章中描述的调度方法，使用其中 10 种任意一种的英文简称来写该参数，注意：是小写字母
+  - 详见 [LVS](/docs/3.集群与分布式/LVS/LVS.md) 文章中描述的调度方法，使用其中 10 种任意一种的英文简称来写该参数，注意：是小写字母
 - **ServerAddress** # RS 的 IP
 - **PacketForwardingMethod** # 该位置指明 LVS 的工作模式，不写该参数表明默认 DR 类型
   - -g, --gatewaying # 网关，表示 DR 模式
@@ -81,7 +81,6 @@ TCP  10.10.9.60:30000 rr persistent 30
 - InActConn # 指除了 ESTABLISHED 以外的,所有的其它状态的 tcp 连接.
 - **-c, --connection** # 输出 ipvs 当 前的连接状态信息。效果如下：
 
-
     [root@node-1 ~]# ipvsadm --list -nc
     IPVS connection entries
     pro expire state       source             virtual            destination
@@ -91,13 +90,11 @@ TCP  10.10.9.60:30000 rr persistent 30
 
 - **--timeout** # 输出 TCP 会话，接收到 FIN 数据包后的 TCP 会话和 UDP 数据包的超时值（以秒为单位）。效果如下：
 
-
     [root@node-1 ~]# ipvsadm -ln --timeout
     Timeout (tcp tcpfin udp): 900 120 300
 
-- **--daemon **# Daemon information output. The list command with this option will display the daemon status and its multicast interface.
+- **--daemon**# Daemon information output. The list command with this option will display the daemon status and its multicast interface.
 - **--stats** # 显示统计数据，效果如下
-
 
     [root@node-1 ~]# ipvsadm -ln --stats
     IP Virtual Server version 1.2.1 (size=4096)

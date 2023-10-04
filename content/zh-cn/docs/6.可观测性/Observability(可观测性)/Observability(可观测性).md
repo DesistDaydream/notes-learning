@@ -5,10 +5,10 @@ title: Observability(可观测性)
 # 概述
 
 > 参考：
-> 
+>
 > - [CNCF 可观测性白皮书](https://mp.weixin.qq.com/s/2xt1kHqJ2Sj2c4u08d1ejA)(中文)
 > - [CNCF 全景图](https://landscape.cncf.io/)
-> - [WIki,Observability](https://en.wikipedia.org/wiki/Observability#Observability_in_software_systems)
+> - [Wiki，Observability](https://en.wikipedia.org/wiki/Observability#Observability_in_software_systems)
 > - [宋净超-云原生资料库-OpenTelemetry 可观测性的未来](https://jimmysong.io/docs/opentelemetry-obervability/)
 > - [公众号，云原生技术爱好者社区-什么是可观测性](https://mp.weixin.qq.com/s/bO82iVKO0O8PTiYSHS-gag)(是对[ CNCF 中的一篇 Blog ](https://www.cncf.io/blog/2021/03/02/what-was-observability-again/)的翻译)
 > - [Goole 文章](https://cloud.google.com/architecture/integrating-monitoring-logging-trace-observability-and-alerting)
@@ -40,7 +40,7 @@ CNCF 将 可观测性 和 数据分析 归类为一个单独的类别，且划�
 - **监控系统** # 以 Prometheus 等为代表
 - **日志系统** # 以 Elastic Stack 和 PLG Stack 等为代表
 - **追踪系统** # 以 Jaeger、Zipkiin、SkyWalking、Pinpoint 等为代表
-    - 可以监控两个程序之间调用时，程序内部都调用了哪些函数。类似 Linux 的 Strace 命令，只不过这些监控是实时的。
+  - 可以监控两个程序之间调用时，程序内部都调用了哪些函数。类似 Linux 的 Strace 命令，只不过这些监控是实时的。
 - **混沌工程系统** # 以 ChaosMonkey 和 ChaosBlade 等为代表
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/boagu2/1619514000151-2c052586-b3d7-4c75-8683-bfcc40d9e7cf.png)
@@ -80,6 +80,7 @@ CNCF 将 可观测性 和 数据分析 归类为一个单独的类别，且划�
 # SLA
 
 > 参考：
-> - [Wiki,SLA](https://en.wikipedia.org/wiki/Service-level_agreement)
+> 
+> - [Wiki，SLA](https://en.wikipedia.org/wiki/Service-level_agreement)
 
 **Service level agreement(服务等级协议，简称 SLA)** 是

@@ -5,8 +5,8 @@ title: X Window
 # 概述
 
 > 参考：
-> - [Wiki,X Window 系统协议和架构](https://en.wikipedia.org/wiki/X_Window_System_protocols_and_architecture)
-> - [Wiki,X Window 管理器](https://en.wikipedia.org/wiki/X_window_manager)
+> - [Wiki，X Window 系统协议和架构](https://en.wikipedia.org/wiki/X_Window_System_protocols_and_architecture)
+> - [Wiki，X Window 管理器](https://en.wikipedia.org/wiki/X_window_manager)
 > - [鸟哥的 Linux 私房菜,第二十三章、X Window](http://linux.vbird.org/linux_basic/0590xwindow.php)
 
 Unix Like 操作系统不是只能进行服务器的架设而已，在美编、排版、制图、多媒体应用上也是有其需要的。 这些需求都需要用到图形介面 (Graphical User Interface, GUI) 的操作的， 所以后来才有所谓的 X Window System 这玩意儿。那么为啥图形窗口介面要称为 X 呢？因为就英文字母来看 X 是在 W(indow) 后面，因此，人们就戏称这一版的窗口介面为 X (有下一版的新窗口之意)！

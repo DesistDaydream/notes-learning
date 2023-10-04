@@ -6,7 +6,7 @@ weight: 2
 # 概述
 
 > 参考：
-> 
+>
 > - [Netfilter 官方文档，连接跟踪工具用户手册](https://conntrack-tools.netfilter.org/manual.html)
 > - [云计算基层技术-netfilter 框架研究](https://opengers.github.io/openstack/openstack-base-netfilter-framework-overview/)
 > - [arthurchiao.art 的文章](http://arthurchiao.art/index.html)
@@ -59,7 +59,7 @@ nf_conntrack 文件中，每个条目占用单独一行。条目中包含了数�
 
 conntrack 从经过它的数据包中提取详细的，唯一的信息，因此能保持对每一个连接的跟踪。关于 conntrack 如何确定一个连接，对于 tcp/udp，连接由他们的源目地址，源目端口唯一确定。对于 icmp，由 type，code 和 id 字段确定。
 
-```
+```bash
 ipv4     2 tcp      6 33 SYN_SENT src=172.16.200.119 dst=172.16.202.12 sport=54786 dport=10051 [UNREPLIED] src=172.16.202.12 dst=172.16.200.119 sport=10051 dport=54786 mark=0 zone=0 use=2
 ```
 
@@ -118,14 +118,14 @@ print 'sizeof(struct list_head):', ctypes.sizeof(ctypes.c_void_p) * 2
 
 那么，此系统下，连接跟踪表所占内存即为：
 
-```
+```text
 (524288 * 376 + 131072 * 16) / 1024 / 1024 = 190MiB
 ```
 
 # ConnTrack 关联文件与配置
 
 > 参考：
-> 
+>
 > - [内核官方文档，网络-nf_conntrack-sysctl](https://www.kernel.org/doc/Documentation/networking/nf_conntrack-sysctl.txt)
 
 连接跟踪系统的配置大部分都可以通过修改内核参数来进行，还有一部分需要通过指定 模块的参数 来配置。
@@ -161,26 +161,26 @@ print 'sizeof(struct list_head):', ctypes.sizeof(ctypes.c_void_p) * 2
 
 查看当前有多少活跃连接：
 
-```
+```bash
 cat /proc/sys/net/netfilter/nf_conntrack_count
 ```
 
 如果这个值跟上面介绍的 nf_conntrack_max 已经很接近了，就说明快满了，需要调大 nf_conntrack_max。可以使用下面的命令临时调大：
 
-```
+```bash
 echo 524288 > /proc/sys/net/netfilter/nf_conntrack_max
 ```
 
 如果不想每次重启都要重新设置，可以修改 /etc/sysctl.conf，加入下面的配置：
 
-```
+```bash
 net.netfilter.nf_conntrack_max = 524288
 ```
 
 为了缓解大量连接的问题，您可能还需要考虑减少服务器等待连接关闭/超时的时间。在 /etc/sysctl.conf 中加入下面的配置：
 
-```
-net.netfilter.nf_conntrack_tcp_timeout_close_wait = 60  
-net.netfilter.nf_conntrack_tcp_timeout_fin_wait = 60  
+```bash
+net.netfilter.nf_conntrack_tcp_timeout_close_wait = 60
+net.netfilter.nf_conntrack_tcp_timeout_fin_wait = 60
 net.netfilter.nf_conntrack_tcp_timeout_time_wait = 60
 ```

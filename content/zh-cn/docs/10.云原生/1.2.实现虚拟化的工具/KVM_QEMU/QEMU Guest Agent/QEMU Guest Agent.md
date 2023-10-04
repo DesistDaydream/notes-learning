@@ -5,6 +5,7 @@ title: QEMU Guest Agent
 # 概述
 
 > 参考：
+>
 > - [官方文档，系统模拟管理和互操作性-QEMU 客户机代理](https://www.qemu.org/docs/master/interop/qemu-ga.html)
 > - [官方文档，系统模拟管理和互操作性-QEMU 客户机代理协议参考](https://www.qemu.org/docs/master/interop/qemu-ga-ref.html)(i.e.QGA 的 QMP API 参考文档)
 > - <https://wiki.qemu.org/Features/GuestAgent>
@@ -13,7 +14,7 @@ title: QEMU Guest Agent
 
 **QEMU Guest Agent(QEMU 虚拟机代理，简称 QGA)** 是一个类似于 VMware Tools 的工具，用来辅助 Hypervisor 实现对 VM 的管理。
 
-QEMU Guest Agent 旨在通过标准的 **QEMU Monitor Protocol(QEMU 监控协议，简称 QMP) **命令，实现 VM 与 宿主机 之间数据交互的功能。(比如可以在不登陆 VM 的情况下，让 VM 执行某些命令或者直接获取 VM 的信息)
+QEMU Guest Agent 旨在通过标准的 **QEMU Monitor Protocol(QEMU 监控协议，简称 QMP)**命令，实现 VM 与 宿主机 之间数据交互的功能。(比如可以在不登陆 VM 的情况下，让 VM 执行某些命令或者直接获取 VM 的信息)
 
 ## QEMU Guest Agent 架构
 
@@ -37,7 +38,7 @@ QGA 功能的实现与 虚拟化 I/O 的实现，是相同的原理。KVM/QEMU �
 **这样一来，qemu-ga、qemu-guest-agent.service、virtio-serial、socket 这四个东西，就组成了一个完整的 QGA 技术栈。**
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/mxgyxv/1624240513497-c71382f6-ebc0-4486-a2de-68de15875a07.png)
 
-### **virtio-serial **和 **socket 之间的数据通信路线**
+### **virtio-serial**和 **socket 之间的数据通信路线**
 
 假如我现在启动如下虚拟机，在 宿主机上创建了一个 socket(/tmp/qga.sock)，并为 VM 模拟了一个 virtio-serial
 
@@ -67,7 +68,7 @@ root     267751 238001 99 01:45 pts/3    Sl+    0:36  |       \_ qemu-kvm -m 409
 ## **QEMU Monitor Protocol**
 
 **QEMU Monitor Protocol(QEMU 监控协议，简称 QMP)**
-可用的 QMP 命令详见：[QMP 命令参考](https://www.yuque.com/go/doc/33175114)
+可用的 QMP 命令详见：[QMP 命令参考](/docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/QEMU%20Guest%20Agent/QMP%20命令参考.md)
 
 # QEMU Guest Agent 部署
 

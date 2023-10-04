@@ -7,9 +7,8 @@ title: kubectl port-forward 工作原理
 本文的源码基于 Kubernetes v1.24.0，容器运行时使用 Containerd 1.5，从源码来分析 kubectl port-forward 的工作原理。
 
 通过 port-forward 流程的分析，梳理出 kubectl -> api-server -> kubelet -> 容器运行时 的交互，了解 cri 的工作方式。
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/5fe5cd55-40ba-42c9-a0f9-e6cdecefffb3/640)
-kubectl-port-forward
 
+![kubectl-port-forward](https://notes-learning.oss-cn-beijing.aliyuncs.com/kubernetes/source/port-forward.png)
 ## kubectl
 
 简单创建个 pod：

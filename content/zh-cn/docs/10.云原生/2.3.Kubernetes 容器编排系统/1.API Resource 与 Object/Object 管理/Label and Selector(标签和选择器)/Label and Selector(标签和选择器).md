@@ -62,12 +62,12 @@ spec:
 标签选择器可以用在下面这些资源的字段中：
 
 - 各种控制器
-    - .spec.selector
+  - .spec.selector
 - pod
-    - .spec.affinity.所有亲和类型.软/硬规则.nodeSelectorTerms
-    - .spec.nodeSelector
+  - .spec.affinity.所有亲和类型.软/硬规则.nodeSelectorTerms
+  - .spec.nodeSelector
 - service
-    - .spec.selector
+  - .spec.selector
 - 等等
 
 ## Selector Manifest
@@ -150,7 +150,7 @@ selector:
 
 #### 选择节点集
 
-通过标签进行选择的一个用例是确定节点集，方便 Pod 调度。 有关更多信息，详见 [让 Pod 运行在指定 Node](https://www.yuque.com/go/doc/33166071) 章节。
+通过标签进行选择的一个用例是确定节点集，方便 Pod 调度。 有关更多信息，详见 [让 Pod 运行在指定 Node 上](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/5.Scheduling(调度)/让%20Pod%20运行在指定%20Node%20上.md) 章节。
 
 # 使用 kubectl 命令控制标签
 

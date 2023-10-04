@@ -1,5 +1,8 @@
 ---
 title: kubectl 命令行工具
+linkTitle: kubectl 命令行工具
+date: 2023-11-04T10:49
+weight: 1
 ---
 
 # 概述
@@ -54,6 +57,10 @@ export RELEASE="v1.26.1"
 export ARCH="amd64"
 curl -LO https://dl.k8s.io/release/${RELEASE}/bin/linux/${ARCH}/kubectl
 ```
+
+## 下载后处理
+
+安装完成后，使用 `kubectl completion bash > /etc/bash_completion.d/kubectl` 生成自动补全功能。
 
 # kubectl 配置
 

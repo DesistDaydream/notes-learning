@@ -10,35 +10,41 @@ title: CoreDNS 应用实例
 
 默认情况下，Kubernetes 集群内的容器要解析外部域名时，CoreDNS 会将请求转发给`/etc/resolv.conf`文件里指定的上游 DNS 服务器。这个是由这个配置决定的。
 
-    forward . /etc/resolv.conf
+```json
+forward . /etc/resolv.conf
+```
 
 有的时候，我们如果需要在`集群内全局劫持某个域名时`，我们通常可以利用`hosts`插件来帮忙。**hosts**插件会每隔 5s 将需解析的信息重新加载到 coredns 当中，当你有任何变化时直接更新它的配置区块即可。常见的 host 有两种方法配置，分别如下：
 
 - 定义 host
 
-    .:53 {
-        hosts {
-            1.1.1.1 test.cloudxiaobai.com
-            2.2.2.2 test2.cloudxiaobai.com
-            fallthrough
-        }
+```json
+.:53 {
+    hosts {
+        1.1.1.1 test.cloudxiaobai.com
+        2.2.2.2 test2.cloudxiaobai.com
+        fallthrough
     }
+}
+```
 
 - 加载 hosts 文件
 
 # 直接从/etc/hosts加载host信息
 
-    . {
-        hosts {
-            fallthrough
-        }
+```
+. {
+    hosts {
+        fallthrough
     }
-    #又或者,从当前目录的test.hosts文件中加载host信息
-    . {
-        hosts test.hosts {
-            fallthrough
-        }
+}
+#又或者,从当前目录的test.hosts文件中加载host信息
+. {
+    hosts test.hosts {
+        fallthrough
     }
+}
+```
 
 > 当被需要解析的域名不在 hosts 当中时，需要用`fallthrough`继续将请求转发给其它插件继续处理
 

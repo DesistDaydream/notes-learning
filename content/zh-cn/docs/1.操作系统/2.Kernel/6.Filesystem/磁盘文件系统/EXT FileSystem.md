@@ -7,7 +7,7 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [公众号，小林 coding-一口气搞懂「文件系统」，就靠这 25 张图了](https://mp.weixin.qq.com/s/qJdoXTv_XS_4ts9YuzMNIw)
 > - [骏马金龙，第4章 ext文件系统机制原理剖析](https://www.junmajinlong.com/linux/ext_filesystem/)
 
@@ -43,19 +43,20 @@ Inode号    用途
 ## 块、块组、Inode 计算
 
 > 参考：
+>
 > - 参考哪里？我也想知道真实的计算逻辑。。。
 
 这些计算的结果通常与下列设置有关
 
 - **DiskSize** # 磁盘空间
 - **BlockSize** # 通常为 4096 Bytes
-    - 可使用 mke2fs -b 手动指定
+  - 可使用 mke2fs -b 手动指定
 - **BlocksPerGroup** # 通常为 32768。每个块组中块的数量。
-    - 可使用 mke2fs -g 手动指定
+  - 可使用 mke2fs -g 手动指定
 - **BytesPerInode** # 通常为 16384 Bytes。创建文件系统时，为每块 BytesPerInode 大小的空间创建一个 Inode。
-    - BytesPerInode 也称为 inode_ratio，即.Inode 比率，全称应该是 Inode 分配比率，即每多少空间分配一个 Inode。
-    - 可使用 mke2fs -i 手动指定 
-- **InodeSize** # 通常为 256 Bytes。大小是 128 的倍数，最小为 128 Bytes。 
+  - BytesPerInode 也称为 inode_ratio，即.Inode 比率，全称应该是 Inode 分配比率，即每多少空间分配一个 Inode。
+  - 可使用 mke2fs -i 手动指定
+- **InodeSize** # 通常为 256 Bytes。大小是 128 的倍数，最小为 128 Bytes。
 
 其中 BlocksPerGroup(每个块组中块的数量)、BytesPerInode(每个Inode负责的空间大小) 这种值是后续计算的基础。固定下来这些，就算分区空间自动扩容/缩容，也可以根据这种数据自动增加/删除块的数量和 Inode 的数量。
 
@@ -90,11 +91,12 @@ Inode号    用途
 
 计算所有 Inode 需要占用的磁盘空间
 
-- InodeUseage = InodeCount * InodeSize = 2293760 * 256 = 587202560 Bytes = 560 MiB
+- InodeUseage = InodeCount *InodeSize = 2293760* 256 = 587202560 Bytes = 560 MiB
 
 也就是说，一块 35 G 的硬盘，需要拿出来至少 560 MiB 的空间来存放 Inode 数据。
 
 **TODO:**
+
 - **Inode 还有一个最低数量？就算执行 `mke2fs -N 1` 命令，最后也不会只有一个 Inode，而是有 4480 个 Inode，这个数是怎么来的？**
 - **试了下 `mke2fs -N 1000000` 最后生成的 Inode 数为 1003520，正好是 4480 的倍数
 - **如果是 `mke2fs -N 4481`，则生成的 Inode 数为 8960，也是 4480 的倍数。。。这个值到底咋来的。。。o(╯□╰)o****
@@ -120,7 +122,7 @@ Inode blocks per group:   512
 Reserved blocks uid:      0 (user root)
 Reserved blocks gid:      0 (group root)
 First inode:              11
-Inode size:	          256
+Inode size:           256
 ```
 
 ### TODO: 最低的 Inode
@@ -138,24 +140,25 @@ Inode size:	          256
 每 4 个块给 1 个 Inode，但肯定不是这个思路，因为照着这种算法，那就是有 2293760 个。所以肯定不是每 4 个块给 1 个 Inode。
 
 真实场景：
+
 - 现在是每 2048 个块给 一个 Inode
 - 280 个块组
-- 
+-
 
 ```bash
 ~]# mke2fs -N 1 /dev/vdb
 mke2fs 1.45.5 (07-Jan-2020)
 /dev/vdb contains a ext2 file system
-	last mounted on Sat Mar 11 16:14:14 2023
+ last mounted on Sat Mar 11 16:14:14 2023
 Proceed anyway? (y,N) y
 Creating filesystem with 9175040 4k blocks and 4480 inodes
 Filesystem UUID: acebc9ab-c53e-4f74-bd6b-443343a76bab
-Superblock backups stored on blocks: 
-	32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208, 
-	4096000, 7962624
+Superblock backups stored on blocks:
+ 32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208,
+ 4096000, 7962624
 
-Allocating group tables: done                            
-Writing inode tables: done                            
+Allocating group tables: done
+Writing inode tables: done
 Writing superblocks and filesystem accounting information: done
 
 ~]# dumpe2fs -h ${DEVICE} | egrep -i "block|inode"
@@ -175,7 +178,7 @@ Inode blocks per group:   1
 Reserved blocks uid:      0 (user root)
 Reserved blocks gid:      0 (group root)
 First inode:              11
-Inode size:	          256
+Inode size:           256
 ```
 
 # 文件的存储
@@ -278,7 +281,7 @@ Inode size:	          256
 - 如果前面两种方式都不够存放大文件，则采用二级间接索引方式；
 - 如果二级间接索引也不够存放大文件，这采用三级间接索引方式；
 
-那么，文件头（_Inode_）就需要包含 13 个指针：
+那么，文件头（*Inode*）就需要包含 13 个指针：
 
 - 第 10 个指向数据块的指针；
 - 第 11 个指向索引块的指针；
@@ -327,7 +330,7 @@ Inode size:	          256
 
 当值为 0 时，表示对应的盘块空闲，值为 1 时，表示对应的盘块已分配。它形式如下：
 
-    1111110011111110001110110111111100111 ...
+`1111110011111110001110110111111100111 ...`
 
 在 Linux 文件系统就采用了位图的方式来管理空闲空间，不仅用于数据空闲块的管理，还用于 inode 空闲块的管理，因为 inode 也是存储在磁盘的，自然也要有对其管理。
 
@@ -366,19 +369,19 @@ Inode size:	          256
 ~]# mke2fs -N 10000000 /dev/vdb
 mke2fs 1.45.5 (07-Jan-2020)
 /dev/vdb contains a ext2 file system
-	created on Sat Mar 11 12:25:22 2023
+ created on Sat Mar 11 12:25:22 2023
 Proceed anyway? (y,N) y
 Creating filesystem with 9175040 4k blocks and 10002528 inodes
 Filesystem UUID: 8acc177c-5f26-4bb9-a0ee-01ceb61d4eaa
-Superblock backups stored on blocks: 
-	30072, 90216, 150360, 210504, 270648, 751800, 811944, 1473528, 2435832, 
-	3759000, 7307496
+Superblock backups stored on blocks:
+ 30072, 90216, 150360, 210504, 270648, 751800, 811944, 1473528, 2435832,
+ 3759000, 7307496
 
-Allocating group tables: done                            
-Writing inode tables: done                            
+Allocating group tables: done
+Writing inode tables: done
 Writing superblocks and filesystem accounting information: done
 ```
 
 # 分类
 
-#文件系统
+# 文件系统

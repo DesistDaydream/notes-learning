@@ -47,7 +47,7 @@ http {
 
 流量入口的指令通常都定义在 `**server{} 块指令**` 中。
 
-### server {}
+### server
 
 https://nginx.org/en/docs/http/ngx_http_core_module.html#server
 
@@ -74,7 +74,7 @@ server {
 
 https://nginx.org/en/docs/http/ngx_http_core_module.html#listen
 
-- 语法：listen TARGET[PARAMETER]
+- 语法：`listen TARGET[PARAMETER]`
 - 默认值：`listen *：80 | *：8000;`
 
 指定 Virtual Server 监听的端口，也可加上 IP:PORT
@@ -112,17 +112,27 @@ server_name 指令是用来匹配用户在浏览器浏览网站时，输入的 �
 
 http://nginx.org/en/docs/http/ngx_http_core_module.html#location
 
-**location [=|~|~\*|^~] URI {}**
+- 语法：`location [=|~|~\*|^~] URI {}`
+- 作用范围：server{}, location{}
 
-根据用户请求的 URI 进行匹配，匹配到时，此请求将被响应的 `location{}` 块指令中的指令所处理。对于用户请求的匹配优先级：
+location 指令让 Nginx 在 [find_config 阶段](/docs/Web/Nginx/Nginx%20处理%20HTTP%20请求的流程.md#find_config%20阶段) 根据用户请求的 URI 进行匹配，匹配到时，此请求将被响应的 `location{}` 块指令中的指令所处理。对于用户请求的匹配优先级：
 
-- **=** #
-- **^~** #
-- **~** # 正则匹配。区分大小写的匹配
-- **~\*** # 正则匹配。不区分大小写
-- **无符号** # 精确匹配,区分大小写,不区分大小写
+- `location =`：精准匹配
+- `location ^~`：带参前缀匹配
+- `location ~`：正则匹配（区分大小写）
+- `location ~*`：正则匹配（不区分大小写）
+- `location /XXX`：普通前缀匹配，优先级低于带参数前缀匹配
+- `location /`：任何没有匹配成功的，都会匹配这里处理
 
-> 下面详解的各种 简单指令 或 块指令 一般情况，都将会定义在 `location URL {}` 块指令中
+当接收到一个请求时，nginx会按照配置文件中server块的顺序逐个匹配 location 块：
+
+- nginx 会将请求的 URI **根据优先级**与每个 location 块中的匹配规则进行比较，找到第一个匹配的 location 块。
+- 如果找到匹配的 location 块，nginx 会按照该 location 块中的配置指令来处理请求，例如代理请求、返回静态文件等。
+- 如果没有找到匹配的location块，则会使用默认的配置（即 `location /`）若没定义默认的配置，则返回404错误。
+
+<font color="#ff0000">注意</font>：若 location 块中存在 ngx_http_rewrite_moudle 模块中的 [break](#break) 指令（不管指令单独使用，还是作为 rewrite 的标志使用），那么当遇到 break 后，则不会再查找任何 location，而是继续执行当前 location 中的其他指令，并像客户端返回请求结果。具体事例详见 [七层代理配置中的 rewrite 与 break 配置](/docs/Web/Nginx/Nginx%20配置详解/最佳实践/七层代理配置.md#rewrite%20与%20break)
+
+下面详解的各种 简单指令 或 块指令 一般情况，都将会定义在 `location URL {}` 块指令中
 
 ```nginx
 location / { # 用户请求 / 目录下的文件的时候如何处理
@@ -141,22 +151,98 @@ location ~ \.php$ { #用户请求的是.php文件的时候是如何处理的
 }
 ```
 
-### proxy_pass URL
+### proxy_pass
 
-https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass
+http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass
 
-代替用户把对 location 定义的请求下的 URL 交给指定的 UPSTREAM 来处理请求。该指令属于 ngx_http_proxy_modeule 模块
-URL 有多种表示方法(下面的 Protocol 通常都是 http 或 https)
+> 参考：
+>
+> - [公众号-YP小站，详解Nginx proxy_pass 使用](https://mp.weixin.qq.com/s/D3dri6v0Tk45TOWsDb0HqQ)
+
+- 语法：`proxy_pass URL;`
+- 默认值：`无`
+- 作用范围：location{}
+
+该指令是 [ngx_http_proxy_module 模块](#ngx_http_proxy_module%20模块指令)的核心指令，也是 http{}、stream{} 指令块中用来执行流量处理的指令。代替用户把对 location 定义的请求下的 URL 交给指定的 [后端服务器](/docs/Web/Nginx/Nginx%20配置详解/Nginx%20配置详解.md#后端服务器) 来处理请求。该指令属于 ngx_http_proxy_modeule 模块
+
+URL 指定后端服务器的语法有如下几种(下面的 Protocol 通常都是 http 或 https)
 
 - **Protocol://ServerGroup/URI;** # 将流量代理到 [一组服务器](/docs/Web/Nginx/Nginx%20配置详解/多用途模块的指令/upstream%20模块指令.md) 上。每个流量都会根据负载均衡的规则交给 upstream{} 指令块中定义的服务器。
-  - 新版中，也可以省略 Protocol://，直接使用 ServerGroup 的名称即可。
 - **Protocol://IP:PORT/URI;** # 将流量代理到指定的服务器上。当只有一台可用的后端服务器时可以使用这种方式，这样就不用再使用 upstream 指令块定义了
 - **Protocol:unix:/PATH/TO/FILE:/URI;** # 将流量代理到本地的 UNIX-domain Socket 上。socket 的路径需要使用 `:` 包裹起来。
 
-在[其他指令](#其他指令)中，以 `proxy_` 开头的简单指令，都可以作为 `proxy_pass` 指令的扩充，以定义更加丰富多样的流量处理功能。
+proxy_pass 指令指定的 URL 有多种，不同场景有不同的工作方式。
 
-注意：
+- URL 中 **有/无 PATH 部分**。
+  - Notes: 根据 [URL 与 URI](/docs/4.数据通信/通信协议/7.HTTP/URL%20与%20URI.md) 中 URL 的规范可知，就算只有一个 `/` 也算有 PATH。
+- 还有一些**特殊场景**
 
+#### 工作方式
+
+现假设客户端请求 URL 为：`https://172.16.1.1/hello/world.html`
+
+**场景一、无 PATH 部分**
+
+```nginx
+location /hello/ {
+    proxy_pass http://127.0.0.1;
+}
+```
+
+- 代理到 http://127.0.0.1/hello/world.html
+
+**场景二、有 PATH 部分**
+
+```nginx
+location /hello/ {
+    proxy_pass http://127.0.0.1/;
+}
+```
+
+- 代理到 http://127.0.0.1/world.html
+
+```nginx
+location /hello/ {
+    proxy_pass http://127.0.0.1/test/;
+}
+```
+
+- 代理到 URL：http://127.0.0.1/test/world.html
+
+```nginx
+location /hello/ {
+    proxy_pass http://127.0.0.1/test;
+}
+```
+
+- 代理到 URL：http://127.0.0.1/testworld.html
+
+**场景三、特殊情况，与 rewrite 指令一起使用**
+
+在某些情况下，无法确定请求 URI 中要替换的部分，比如使用 rewrite 指令通过正则表达式匹配路径时，不应该在 proxy_pass 的 URL 中使用 PATH
+
+```nginx
+location /name/ {
+    rewrite    /name/([^/]+) /users?name=$1 break;
+    proxy_pass http://127.0.0.1;
+}
+```
+
+在这种情况下，指令中指定的 PATH 将被忽略，完整更改的请求 PATH 将传递到服务器。
+
+**场景四、特殊情况，proxy_pass 的 URL 中有变量**
+
+```nginx
+location /name/ {
+    proxy_pass http://127.0.0.1$request_uri;
+}
+```
+
+在这种情况下，如果指令中指定了 PATH，它将按原样传递到服务器，替换原始请求 PATH。
+
+#### 注意
+
+- 在[其他指令](#其他指令)中，以 `proxy_` 开头的简单指令，都可以作为 `proxy_pass` 指令的扩充，以定义更加丰富多样的流量处理功能。
 - WebSocket 代理需要特殊配置。详见[官方文档-websocket](https://nginx.org/en/docs/http/websocket.html)
 
 ### 特殊的流量处理
@@ -186,7 +272,7 @@ URL 有多种表示方法(下面的 Protocol 通常都是 http 或 https)
 
 https://nginx.org/en/docs/http/ngx_http_core_module.html#alias
 
-- 语法：alias PATH
+- 语法：`alias PATH`
 
 用于 loation 上下文，定义 location 指令定义的路径的别名，注意与 root 指令的区别
 
@@ -194,7 +280,7 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#alias
 
 https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_in_file_only
 
-- 语法：client_body_in_file_only on | clean | off
+- 语法：`client_body_in_file_only on|clean|off`
 - 默认值：`client_body_in_file_only off;`
 - 作用范围：http{}、server{}、location{}
 
@@ -204,11 +290,13 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_in_file_onl
 
 clean 值将导致请求处理后留下的临时文件被删除。
 
-### client_header_timeout NUM
+### client_header_timeout
 
 https://nginx.org/en/docs/http/ngx_http_core_module.html#client_header_timeout
 
 读取 http 请求报文首部的超时时长
+
+- 语法：`client_header_timeout NUM`
 
 ### error_page CODE ... URI
 
@@ -222,7 +310,7 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#ignore_invalid_headers
 
 是否忽略无效的请求头。
 
-- 语法：ignore_invalid_headers on|off
+- 语法：`ignore_invalid_headers on|off`
 - 默认值：`ignore_invalid_headers on;`
 - 作用范围：http{}、server{}
 
@@ -234,24 +322,26 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_disable
 
 为指定类型的 User Agent(说白了就是浏览器) 禁用长连接
 
-- 语法：keepalive_disable msie6|safari|none
+- 语法：`keepalive_disable msie6|safari|none`
 
-### keepalive_requests NUMBER
+### keepalive_requests
 
 https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_requests
 
 在一个长连接上所能够允许的最大资源数
 
+- 语法：`keepalive_requests NUMBER`
 - 默认值：`keepalive_requests 1000;`
 - 作用范围：http{}、server{}、location{}
 
-### keepalive_timeout DURATION
+### keepalive_timeout
 
 https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_timeout
 
 设定长连接的超时时长为默认 75 秒
 
-- 默认值：keepalive_timeout 75s;
+- 语法：`keepalive_timeout DURATION`
+- 默认值：`keepalive_timeout 75s;`
 - 作用范围：http{}、server{}、location{}
 
 ### root
@@ -260,7 +350,7 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#root
 
 指明请求的 URL 所对应的资源所在文件系统上的起始路径。
 
-- 语法：root PATH
+- 语法：`root PATH`
 - 作用范围：http{}、server{}、location{}
 
 把 root 配置指令写到 `location / {} 指令块` 中，即表明当用户请求的是 / 下的资源时候，去 root 定义的本地的那个路径去找对应的资源。
@@ -269,9 +359,9 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#root
 
 https://nginx.org/en/docs/http/ngx_http_core_module.html#sendfile
 
-开启或关闭 sendfile() 功能，即[零拷贝](docs/1.操作系统/2.Kernel/6.Filesystem/零拷贝.md)功能。
+开启或关闭 sendfile() 功能，即[零拷贝](/docs/1.操作系统/2.Kernel/6.Filesystem/零拷贝.md)功能。
 
-- 语法：sendfile on|off
+- 语法：`sendfile on|off`
 - 默认值：`sendfile off;`
 - 作用范围：http{}、server{}、location{}
 
@@ -283,7 +373,7 @@ http://nginx.org/en/docs/http/ngx_http_core_module.html#server_names_hash_bucket
 
 设置 server_name 指定设定的服务器名称哈希表的桶容量。默认值取决于处理缓存线的大小。
 
-- 语法：server_names_hash_bucket_size SIZE
+- 语法：`server_names_hash_bucket_size SIZE`
 - 默认值：`server_namers_hash_bucket_size 32|64|128;`
 - 作用范围：http{}
 
@@ -293,7 +383,7 @@ http://nginx.org/en/docs/http/ngx_http_core_module.html#tcp_nodelay
 
 是否开启长连接使用 tcp_nodelay 选项
 
-- 语法：tcp_nodelay on|off
+- 语法：`tcp_nodelay on|off`
 
 ### underscores_in_headers
 
@@ -301,7 +391,7 @@ http://nginx.org/en/docs/http/ngx_http_core_module.html#underscores_in_headers
 
 是否允许请求头中的 key 带有下划线。
 
-- 语法：underscores_in_headers on|off
+- 语法：`underscores_in_headers on|off`
 - 默认值：`underscores_in_headers off;`
 - 作用范围：http{}、server{}
 
@@ -317,7 +407,7 @@ http://nginx.org/en/docs/http/ngx_http_log_module.html#access_log
 
 设置 access 日志的写入路径。
 
-- 语法：access_log PATH FORMAT [PARAMETER]
+- 语法：`access_log PATH FORMAT [PARAMETER]`
 - 默认值：`access_log logs/access.log combined;`
 - 作用范围：http{}、server{}、location{}
 
@@ -329,7 +419,7 @@ http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format
 
 设定 Nginx 的日志格式。
 
-- 语法：log_format NAME [escape=default|json|none] STRING
+- 语法：`log_format NAME [escape=default|json|none] STRING`
 - 默认值：`log_format combined "...";`
 - 作用范围：http{}
 
@@ -354,89 +444,43 @@ log_format combined '$remote_addr - $remote_user [$time_local] '
 > - [org 官方文档，http-ngx_http_proxy_module](https://nginx.org/en/docs/http/ngx_http_proxy_module.html)
 > - [GitHub 代码：nginx/nginx/src/http/modules/ngx_http_proxy_module.c](https://github.com/nginx/nginx/blob/master/src/http/modules/ngx_http_proxy_module.c)
 
-### proxy_pass
-
-http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass
-
-- 默认值：`无`
-- 作用范围：location{}
-
-该指令是 ngx_http_proxy_module 模块的核心指令，也是 http{}、stream{} 指令块中用来执行流量处理的指令。
-
-> 参考：<https://mp.weixin.qq.com/s/D3dri6v0Tk45TOWsDb0HqQ>
-
-根据 URL 最后有没有 `/` 会分为多种情况（现假设客户端请求 URL 为：`https://172.16.1.1/hello/world.html`）：
-
-- 有 `/`
-
-```nginx
-location /hello/ {
-    proxy_pass http://127.0.0.1/;
-}
-```
-
-- 代理到 http://127.0.0.1/world.html
-- 无 `/`
-
-```nginx
-location /hello/ {
-    proxy_pass http://127.0.0.1;
-}
-```
-
-- 代理到 URL：http://127.0.0.1/hello/world.html
-- 有其他路由，且有 `/`
-
-```nginx
-location /hello/ {
-    proxy_pass http://127.0.0.1/test/;
-}
-```
-
-- 代理到 URL：http://127.0.0.1/test/world.html
-- 有其他路由，且无 `/`
-
-```nginx
-location /hello/ {
-    proxy_pass http://127.0.0.1/test;
-}
-```
-
-- 代理到 URL：http://127.0.0.1/testworld.html
-
-### proxy_cache_path PATH ARGS
+### proxy_cache_path
 
 http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path
 
 设定代理服务缓存路径和其它参数
 
+- 语法：`proxy_cache_path PATH ARGS`
 - 作用范围：http{}
 
-### proxy_http_version VERSION
+### proxy_http_version
 
 http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version
 
 设置用于代理的 HTTP 协议版本。
 
+- 语法：`proxy_http_version VERSION`
 - 默认值：`proxy_http_version 1.0;`
 - 作用范围：http{}、server{}、location{}
 
 > 建议将 1.1 版与 Keepalive 连接和 NTLM 身份验证配合使用。
 
-### proxy_intercept_errors on|off
+### proxy_intercept_errors
 
 http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_intercept_errors
 
 确定是否应将代码大于或等于 300 的代理响应传递给客户端，还是应拦截并重定向到 nginx，以便使用 error_page 指令进行处理
 
+- 语法：`proxy_intercept_errors on|off`
 - 作用范围：http{}、server{}、location{}
 
-### proxy_redirect REDIRECT REPLACEMENT
+### proxy_redirect
 
 http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirect
 
 修改被代理服务器的响应头中 Location 和 Refresh 字段的值。
 
+- 语法：`proxy_redirect REDIRECT REPLACEMENT`
 - 默认值：`proxy_redirect default;`
 - 作用范围：http{}、server{}、location{}
 
@@ -447,12 +491,13 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirect
 - `proxy_redirect http:// https://;`
   - 所有 3XX 跳转的 http 的请求都会被转为 https
 
-### proxy_set_header FIELD VALUE
+### proxy_set_header
 
 http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header
 
-用来重定义发往后端服务器的请求 Header 内容。**常用指令**
+用来重定义发往后端服务器的请求 Header 内容。这是**常用指令**
 
+- 语法：`proxy_set_header FIELD VALUE`
 - 默认值：
   - `proxy_set_header Host $proxy_host;`
   - `proxy_set_header Connection close;`
@@ -466,49 +511,54 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header
   - 由于 UPSTREAM 服务器收到的请求报文所含 IP 为代理服务器的 IP，那么就需要在代理服务器上配置该项，把用户 IP 暴露给 UPSTREAM 服务器
   - 该指令最常用在 `location{}` 块指令中，以便为每个路径的 HTTP 请求，都设置各自的 请求头。
 
-### proxy_ssl_certificate file
+### proxy_ssl_certificate
 
 http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_certificate
 
 指定 PEM 格式的证书文件，Ngxin 作为客户端向被代理的 HTTPS 服务器发起请求时，用来进行身份验证
 
+- 语法：`proxy_ssl_certificate FILE`
 - 作用范围：http{}、server{}、location{}
 
-### proxy_ssl_certificate_key file
+### proxy_ssl_certificate_key
 
 http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_certificate_key
 
 指定 PEM 格式的密钥，Ngxin 作为客户端向被代理的 HTTPS 服务器发起请求时，用来进行身份验证
 
+- 语法：`proxy_ssl_certificate_key FILE`
 - 作用范围：http{}、server{}、location{}
 
-### proxy_ssl_trusted_certificate FILE
+### proxy_ssl_trusted_certificate
 
 http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_trusted_certificate
 
 指定想要信任的 CA 证书文件，Ngxin 作为客户端向被代理的 HTTPS 服务器发起请求时，用来进行身份验证
 
+- 语法：`proxy_ssl_trusted_certificate FILE`
 - 作用范围：http{}、server{}、location{}
 
 ### 代理超时相关指令
 
-#### proxy_connect_timeout DURATION
+#### proxy_connect_timeout
 
 http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_connect_timeout
 
 与被代理服务器建立连接的超时时间。
 
+- 语法：`proxy_connect_timeout DURATION`
 - 默认值：`proxy_connect_timeout 60s;`
 - 作用范围：http{}、server{}、location{}
 
 注意：这个超时时间通常不应该超过 75 秒
 
-#### proxy_read_timeout DURATION
+#### proxy_read_timeout
 
 http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout
 
 从被代理服务器读取响应的超时时间
 
+- 语法：`proxy_read_timeout DURATION`
 - 默认值：`proxy_read_timeout 60s;`
 - 作用范围：http{}、server{}、location{}
 
@@ -518,12 +568,13 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout
 
 当一个请求从 Client 发送到 Nginx 后，Nginx 再转发给被代理服务器，如果被代理服务器的响应时间超过了 proxy_read_timeout，则 Nginx 将会返回给 Client 一个 **504 状态码**。
 
-#### proxy_send_timeout DURATION
+#### proxy_send_timeout
 
 http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_send_timeout
 
 将请求发送到被代理服务器的超时时间。
 
+- 语法：`proxy_send_timeout DURATION`
 - 默认值：`proxy_send_timeout 60s;`
 - 作用范围：http{}、server{}、location{}
 
@@ -533,13 +584,40 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_send_timeout
 
 > 代码：<https://github.com/nginx/nginx/blob/master/src/http/modules/ngx_http_rewrite_module.c>
 
+ngx_http_rewrite_moudle 模块可以根据 [PCRE](/docs/8.通用技术/Regular%20Expression(正则表达式).md) 进行匹配和替换，实现 URL 重写、重定向等功能。还可以根据条件语句选择要执行的代理行为。
+
+### break
+
+https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#break
+
+- 语法：`break`
+- 作用范围：server{}、location{}、if{}
+
+使用了 break 指令后，将会停止处理 ngx_http_rewrite_module 指令的当前集合。常作为 rewrite 的选项使用，当一个 location 块中有多个 rewrite 规则时，可以在匹配到某个 rewrite 规则后，防止继续执行后续的 rewrite 规则，比如
+
+```nginx
+server {
+    listen 80;
+    server_name example.com;
+
+    location / {
+        rewrite ^/old-path/(.*)$ /new-path/$1 break;
+        rewrite ^/(.*)$ /legacy-path/$1;
+    }
+}
+```
+
+在上述示例中，如果请求 URL 匹配到 `/old-path/` 开头的路径，Nginx 会将其重写为 `/new-path/` 开头的路径，并使用 `break` 选项停止后续 `rewrite` 规则的处理。这样，请求将不会再匹配第二个 `rewrite` 规则，即不会再重写为 `/legacy-path/` 开头的路径。
+
+需要注意的是，`break` 选项只停止当前 `rewrite` 规则的处理，并不会终止整个请求处理过程。请求仍然会继续执行后续的 Nginx 配置指令，如 `location` 块中的其他指令。
+
 ### if
 
 http://nginx.org/en/docs/http/ngx_http_rewrite_module.html#if
 
 用于 server 和 location 上下文中，类似于 if..else..这种编程语言
 
-- 语法：if (Condition) {...}
+- 语法：`if (Condition) {...}`
 - 作用范围：server{}、location{}
 
 Condition 是具体的匹配条件
@@ -556,28 +634,44 @@ http://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return
 
 停止处理，并讲指定的状态码返回给客户端。常与 listen 指令的 default_server 参数一起使用，并指定状态码非 200，当客户端访问的域名不存在时，通过默认的 Virtual Server 处理，返回非 200 的状态码。
 
-- 语法：return CODE [TEXT | URL]
+- 语法：`return CODE [TEXT | URL]`
 - 作用范围：server{}、location{}、if{}
 
 ### rewrite
 
 http://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite
 
-URL 重写，把 RegEx 匹配到的资源重定向到 Replacement 定义的位置
-
-- 语法：rewrite RegEx Replacement [FLAG]
+- 语法：`rewrite RegEx Replacement [FLAG]`
 - 作用范围：server{}、location{}、if{}
 
-Flag 的用法
+rewrite 指令用于在 Nginx 的 [rewrite 阶段](/docs/Web/Nginx/Nginx%20处理%20HTTP%20请求的流程.md#rewrite%20阶段) 重写(i.e. 更改)客户端发起 HTTP 请求的 URL。根据 RegEx 的匹配规则，凡是匹配到的 URL 都改为 Replacement。**注意：rewrite 指令的执行优先级要高于 proxy_pass**。
 
-  - last，此 rewrite 规则重写完成后，不再被后面的其他 rewrite 规则进行处理，由 User Agent 重新对重写后 URL 发起新请求
-  - break，一旦此 rewrite 规则重写完成后，由 User Agent 重新对重写后的 URL 发起新请求，该新请求不再进行 rewrite 检查
-  - redirect，以 302 响应码，返回新的 URL，即在 web 界面地址栏上显示的 URL 也变了，注意跟前面两个 Flag 的区别
-  - permanent，以 301 响应码，返回新的 URL
+假如指令为: `rewrite ^/prom/(.*)$ /$1`，若请求是 http://localhost/prom/abc ，则 Nginx 会将该请求改为 http://localhost/abc 后进行后续处理。若不进行 3XX 重定向。那么客户端的 URL 不变，仅仅是 Nginx 内部执行逻辑时使用的 URL 改变了。
 
-EXAMPLE
+> 在访问一个网页时，除非收到 3XX 重定向的响应，否则浏览器地址栏中的地址是不会改变的。比如 Nginx 中的 rewrite 功能，如果不使用 **redirect** 或 **permanent** 标志，那么所有的 URL 改变都是针对 Nginx 内部来说的。
 
-  - rewrite ^/images/(.\*.jpg)$ /imgs/$1 break; # 把请求到 images 目录下的所有资源重定向到 imgs 目录下
+**Flag**
+
+- **last** # 此 rewrite 规则重写完成后，将会使用新的 URL 继续匹配 location。
+- **break** # 与 [break](#break) 指令效果一样。此 rewrite 规则重写完成后，不会匹配新的 location，继续执行后面的 break 所在 location 中的后续指令。
+- **redirect** # 以 302 响应码，返回新的 URL，即在 web 界面地址栏上显示的 URL 也变了，注意跟前面两个 Flag 的区别
+- **permanent** # 以 301 响应码，返回新的 URL
+- tips: 在一般情况下，如果希望重写 URL 后继续根据新的 URL 匹配 location 块，可以使用 `last` 标志；如果希望终止重写过程，直接使用重写后的 URL 处理请求，可以使用 `break` 标志。
+
+[rewrite 与 proxy_pass](https://blog.csdn.net/weixin_41565755/article/details/120679379)
+
+rewrite 和 proxy_pass 都可以重写整个url，区别是：（1）rewrite 重写整个 url 后，重定向的请求由浏览器发送，不常用，一般适用于访问公网其他服务器，如用于解决跨域问题；proxy_pass 重写整个 url 后，由代理服务器发起重定向请求，浏览器是无感知的，以便于访问内网和隐藏调用链；（2）rewrite 常用于重写 path，此时使用 break 和 last 也可以隐藏重定向的调用链，使用 redirect 和 permanent 则会暴露调用链;
+
+注意：只要不是 redirect 和 permanent 这两种重定向，那么客户端在网页上看到的 URL 是不变的，比如有一个 rewrite 规则为:
+
+```nginx
+  location /prom {
+      rewrite ^/prom/(.*)$ /$1 break;
+      proxy_pass http://192.168.254.253:9090;
+  }
+```
+
+Chrome 请求 http://192.168.254.1/prom/graph ，那么 nginx 会在 rewrite 后，向 http://192.168.254.253:9090/graph 发起请求，但是 Chrome 地址栏行看到的依然是 http://192.168.254.1/prom/graph
 
 ## 其他模块指令
 
@@ -611,8 +705,8 @@ http://nginx.org/en/docs/http/ngx_http_stub_status_module.html#stub_status
 ```nginx
 http {
   server {
-    location / {
-      proxy_pass http://wss_svr.desistdaydream.ltd; # 转发
+    location / { # 所有访问 / 的请求都执行下面的行为
+      proxy_pass http://192.168.254.254:10000; # 代理到 http://192.168.254.254:10000
       proxy_http_version 1.1; # 代理所用的 http 版本设为 1.1
       proxy_set_header Host $host;
       proxy_set_header X-Real_IP $remote_addr;

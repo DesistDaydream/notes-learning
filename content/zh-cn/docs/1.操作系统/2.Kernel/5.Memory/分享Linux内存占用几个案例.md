@@ -38,9 +38,9 @@ title: 分享Linux内存占用几个案例
 
 ### **问题描述和初步调查**
 
-    $ free \-g
+free \-g
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/4f0a785d-001c-46bc-b1e9-cccbaeb014cf/1616587355624-c46f3d6a-fe6b-4afe-9443-96bb1f27f340.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/memory/1616587355624-c46f3d6a-fe6b-4afe-9443-96bb1f27f340.png)
 
 这台服务器有 `16G 内存`，但是结果显示除了 2G 左右的文件 Buffer 缓存外，其余十几 G 都被确确实实的用光了。(free 按 1024 进制计算，总内存可能比实际偏小)
 
@@ -169,7 +169,7 @@ Linux 支持`NUMA 技术`，对于 NUMA 设备，NUMA 系统的结点通常是�
 
 可以看到从第 5 列开始，只剩下 `44*16*PAGE_SIZE` 的页块，后面剩下的分别是`1 * 32 *PAGE_SIZE`, `1 * 64 *PAGE_SIZE`, `2 *128 * PAGE_SIZE`，剩下 256,512 的页块都没有了因此推测，导致这个问题出现的时候，该机器的内存碎片很多，当某个应用执行时，在 xfs 的申请内存中有这种连续的大块的内存申请的操作的请求。
 
-比如：6000: map = kmem_alloc(subnex * sizeof(*map), KM_MAYFAIL | KM_NOFS); 就会导致内存一直分配不到。
+比如：6000: map = kmem_alloc(subnex *sizeof(*map), KM_MAYFAIL | KM_NOFS); 就会导致内存一直分配不到。
 
 例如：执行 `docker ps`，`docker exec`这些命令时，会一直阻塞在 `kmem_alloc` 的循环中，反复申请内存，由于内存碎片没有被组合，因此就一直申请不到，执行这些命令也会卡住，这也就验证了执行某些命令如`ls`、`ssh`都不会失败 (因为需要内存的 `PAGE` 不是那么大)。
 

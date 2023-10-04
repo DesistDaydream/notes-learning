@@ -6,9 +6,9 @@ weight: 1
 # 概述
 
 > 参考：
-> - [Wiki,C Programming Language](<https://en.wikipedia.org/wiki/C_(programming_language)>)
+> - [Wiki，C Programming Language](<https://en.wikipedia.org/wiki/C_(programming_language)>)
 > - [ISO C 工作组官网](http://www.open-std.org/jtc1/sc22/wg14/)
-> - [网道,C](https://wangdoc.com/clang/)
+> - [网道，C](https://wangdoc.com/clang/)
 > - <https://www.learn-c.org/>
 
 # Hello World

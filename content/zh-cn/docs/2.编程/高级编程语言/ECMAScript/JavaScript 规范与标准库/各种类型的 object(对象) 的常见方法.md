@@ -5,6 +5,7 @@ title: 各种类型的 object(对象) 的常见方法
 # 概述
 
 > 参考：
+> 
 > - [MDN 官方文档，参考-JavaScript-JavaScript-标准内置对象](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects)
 > - [MDN 官方文档，参考-WebAPIs](https://developer.mozilla.org/en-US/docs/Web/API)
 

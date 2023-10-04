@@ -1,5 +1,8 @@
 ---
-title: Goroutine 与 Channel
+title: Goroutine AND Channel
+linkTitle: Goroutine AND Channel
+date: 2023-11-20T21:31
+weight: 20
 ---
 
 # 概述

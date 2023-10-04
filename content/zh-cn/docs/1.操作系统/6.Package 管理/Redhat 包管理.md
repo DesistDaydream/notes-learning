@@ -5,8 +5,10 @@ title: "Redhat 包管理"
 # 概述
 
 # rpm 工具
+
 > 参考：
-> - [Manual(手册),rpm(8)](https://man7.org/linux/man-pages/man8/rpm.8.html)
+> 
+> - [Manual(手册)，rpm(8)](https://man7.org/linux/man-pages/man8/rpm.8.html)
 
 ## Syntax(语法)
 

@@ -20,7 +20,7 @@
     ],
     "docs": [
       "docs/_index.md",
-      "docs/Learning.md",
+      "docs/学习",
       "docs/0.计算机",
       "docs/1.操作系统",
       "docs/2.编程",
@@ -35,10 +35,10 @@
       "docs/11.多媒体",
       "docs/12.人工智能",
       "docs/Web",
-      "docs/实用工具",
       "docs/移动设备",
-      "docs/区块链",
-      "docs/x_标准化术语"
+      "docs/Blockchain",
+      "docs/x_标准化",
+      "docs/Utils"
     ],
     "docs/0.计算机": [
       "docs/0.计算机/_index.md",
@@ -51,7 +51,8 @@
     "docs/0.计算机/CPU": [
       "docs/0.计算机/CPU/_index.md",
       "docs/0.计算机/CPU/CPU.md",
-      "docs/0.计算机/CPU/CPU 精简指令集.md"
+      "docs/0.计算机/CPU/指令集架构.md",
+      "docs/0.计算机/CPU/精简指令集.md"
     ],
     "docs/0.计算机/Disk": [
       "docs/0.计算机/Disk/_index.md",
@@ -75,19 +76,23 @@
       "docs/1.操作系统/5.登录 Linux 与 访问控制",
       "docs/1.操作系统/6.Package 管理",
       "docs/1.操作系统/7.时间管理",
+      "docs/1.操作系统/Job",
       "docs/1.操作系统/系统审计",
       "docs/1.操作系统/Linux 源码解析",
       "docs/1.操作系统/X.Linux 管理",
       "docs/1.操作系统/Y.Windows 管理",
       "docs/1.操作系统/安装操作系统",
-      "docs/1.操作系统/图形管理"
+      "docs/1.操作系统/图形管理",
+      "docs/1.操作系统/Filesystem"
     ],
     "docs/1.操作系统/0.操作系统": [
       "docs/1.操作系统/0.操作系统/_index.md",
+      "docs/1.操作系统/0.操作系统/0.操作系统.md",
       "docs/1.操作系统/0.操作系统/分时系统 与 实时系统.md",
       "docs/1.操作系统/0.操作系统/POSIX.md",
       "docs/1.操作系统/0.操作系统/类 Unix 操作系统",
-      "docs/1.操作系统/0.操作系统/Microsoft 操作系统"
+      "docs/1.操作系统/0.操作系统/Microsoft 操作系统",
+      "docs/1.操作系统/0.操作系统/环境变量.md"
     ],
     "docs/1.操作系统/0.操作系统/类 Unix 操作系统": [
       "docs/1.操作系统/0.操作系统/类 Unix 操作系统/_index.md",
@@ -152,8 +157,8 @@
     "docs/1.操作系统/2.Kernel/5.Memory": [
       "docs/1.操作系统/2.Kernel/5.Memory/_index.md",
       "docs/1.操作系统/2.Kernel/5.Memory/5.Memory.md",
-      "docs/1.操作系统/2.Kernel/5.Memory/Memory 的分配机制.md",
-      "docs/1.操作系统/2.Kernel/5.Memory/Memory 的缓存机制.md",
+      "docs/1.操作系统/2.Kernel/5.Memory/Memory 的分配.md",
+      "docs/1.操作系统/2.Kernel/5.Memory/Memory 的缓存.md",
       "docs/1.操作系统/2.Kernel/5.Memory/Memroy 的 Over Commit 与 OOM.md",
       "docs/1.操作系统/2.Kernel/5.Memory/堆区与栈区.md",
       "docs/1.操作系统/2.Kernel/5.Memory/分享Linux内存占用几个案例.md",
@@ -210,6 +215,12 @@
       "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制",
       "docs/1.操作系统/2.Kernel/8.Network/Linux DNS 管理",
       "docs/1.操作系统/2.Kernel/8.Network/ftp 协议的实现工具，chroot说明.md"
+    ],
+    "docs/1.操作系统/2.Kernel/8.Network/Linux DNS 管理": [
+      "docs/1.操作系统/2.Kernel/8.Network/Linux DNS 管理/_index.md",
+      "docs/1.操作系统/2.Kernel/8.Network/Linux DNS 管理/Linux DNS 管理.md",
+      "docs/1.操作系统/2.Kernel/8.Network/Linux DNS 管理/配置详解.md",
+      "docs/1.操作系统/2.Kernel/8.Network/Linux DNS 管理/systemd-resolved.service.md"
     ],
     "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理": [
       "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/_index.md",
@@ -332,9 +343,10 @@
       "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell.md"
     ],
     "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell": [
-      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell/_index_.md",
+      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell/_index.md",
       "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell/PowerShell.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell/PowerShell 变量.md"
+      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell/PowerShell 变量.md",
+      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell/提供程序.md"
     ],
     "docs/1.操作系统/4.Terminal 与 Shell/Windows_Shell": [
       "docs/1.操作系统/4.Terminal 与 Shell/Windows_Shell/_index.md",
@@ -347,7 +359,7 @@
       "docs/1.操作系统/5.登录 Linux 与 访问控制/_index.md",
       "docs/1.操作系统/5.登录 Linux 与 访问控制/5.登录 Linux 与 访问控制.md",
       "docs/1.操作系统/5.登录 Linux 与 访问控制/Account Manager(账户管理)",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/Access Control(访问控制)",
+      "docs/1.操作系统/5.登录 Linux 与 访问控制/Access Control",
       "docs/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)",
       "docs/1.操作系统/5.登录 Linux 与 访问控制/SELinux",
       "docs/1.操作系统/5.登录 Linux 与 访问控制/su 与  sudo",
@@ -371,10 +383,10 @@
       "docs/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/_index.md",
       "docs/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/Secure Shell(SSH) 安全外壳协议.md",
       "docs/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/OpenSSH.md",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/配置文件详解.md",
+      "docs/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/配置详解.md",
       "docs/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/OpenSSH 管理工具套件.md",
       "docs/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/sshpass.md",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/使用 ssh 内网穿透示例.md"
+      "docs/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/最佳实践.md"
     ],
     "docs/1.操作系统/6.Package 管理": [
       "docs/1.操作系统/6.Package 管理/_index.md",
@@ -383,6 +395,11 @@
       "docs/1.操作系统/6.Package 管理/Redhat 包管理.md",
       "docs/1.操作系统/6.Package 管理/Snap.md",
       "docs/1.操作系统/6.Package 管理/Windows包管理.md"
+    ],
+    "docs/1.操作系统/Job": [
+      "docs/1.操作系统/Job/_index.md",
+      "docs/1.操作系统/Job/Job.md",
+      "docs/1.操作系统/Job/Cron.md"
     ],
     "docs/1.操作系统/X.Linux 管理": [
       "docs/1.操作系统/X.Linux 管理/_index.md",
@@ -438,6 +455,7 @@
       "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/perf 性能分析工具",
       "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/BCC 工具集.md",
       "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/bpftrace 工具.md",
+      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cron.md",
       "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit"
     ],
     "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具": [
@@ -485,8 +503,34 @@
       "docs/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/性能测试工具",
       "docs/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/Redhat 优化.md"
     ],
+    "docs/1.操作系统/Y.Windows 管理": [
+      "docs/1.操作系统/Y.Windows 管理/_index.md",
+      "docs/1.操作系统/Y.Windows 管理/依赖库",
+      "docs/1.操作系统/Y.Windows 管理/注册表.md",
+      "docs/1.操作系统/Y.Windows 管理/启动项.md",
+      "docs/1.操作系统/Y.Windows 管理/File System 管理",
+      "docs/1.操作系统/Y.Windows 管理/Microsoft Management Console",
+      "docs/1.操作系统/Y.Windows 管理/Windows Management Instrumentation.md",
+      "docs/1.操作系统/Y.Windows 管理/Windows 管理工具",
+      "docs/1.操作系统/Y.Windows 管理/Windows 共享.md",
+      "docs/1.操作系统/Y.Windows 管理/性能评估与故障处理",
+      "docs/1.操作系统/Y.Windows 管理/WSL.md",
+      "docs/1.操作系统/Y.Windows 管理/WSL 配置详解.md",
+      "docs/1.操作系统/Y.Windows 管理/WSA.md"
+    ],
+    "docs/1.操作系统/Y.Windows 管理/Microsoft Management Console": [
+      "docs/1.操作系统/Y.Windows 管理/Microsoft Management Console/_index.md",
+      "docs/1.操作系统/Y.Windows 管理/Microsoft Management Console/Microsoft Management Console.md",
+      "docs/1.操作系统/Y.Windows 管理/Microsoft Management Console/任务计划程序与服务.md"
+    ],
+    "docs/1.操作系统/Y.Windows 管理/Microsoft_Management_Console": [
+      "docs/1.操作系统/Y.Windows 管理/Microsoft_Management_Console/_index.md",
+      "docs/1.操作系统/Y.Windows 管理/Microsoft_Management_Console/Microsoft Management Console.md",
+      "docs/1.操作系统/Y.Windows 管理/Microsoft_Management_Console/任务计划程序与服务.md"
+    ],
     "docs/1.操作系统/Y.Windows 管理/Windows 管理工具": [
       "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/_index.md",
+      "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/Windows 管理工具.md",
       "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/PowerShell 内置管理工具",
       "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/其他.md"
     ],
@@ -615,9 +659,8 @@
       "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Neutron/neutron工作原理.md"
     ],
     "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/OpenStack 部署与清理": [
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/OpenStack 部署与清理/_index_.md",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/OpenStack 部署与清理/OpenStack 部署与清理.md",
-      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/OpenStack 部署与清理/MicroStack.md"
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/OpenStack 部署与清理/_index.md",
+      "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/OpenStack 部署与清理/OpenStack 部署与清理.md"
     ],
     "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Opensatck 介绍": [
       "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/Opensatck 介绍/_index.md",
@@ -689,6 +732,34 @@
       "docs/10.云原生/2.2.实现容器的工具/Docker/Docker 介绍/Docker 架构的演变.md",
       "docs/10.云原生/2.2.实现容器的工具/Docker/Docker 介绍/docker-shim 何去何从.md"
     ],
+    "docs/10.云原生/2.2.实现容器的工具/容器管理": [
+      "docs/10.云原生/2.2.实现容器的工具/容器管理/_index.md",
+      "docs/10.云原生/2.2.实现容器的工具/容器管理/容器管理.md",
+      "docs/10.云原生/2.2.实现容器的工具/容器管理/容器镜像管理.md",
+      "docs/10.云原生/2.2.实现容器的工具/容器管理/容器运行时管理",
+      "docs/10.云原生/2.2.实现容器的工具/容器管理/容器非root启动.md",
+      "docs/10.云原生/2.2.实现容器的工具/容器管理/使用 Tini 清理 Docker 容器僵死进程.md",
+      "docs/10.云原生/2.2.实现容器的工具/容器管理/性能优化与故障处理",
+      "docs/10.云原生/2.2.实现容器的工具/容器管理/未命名.md"
+    ],
+    "docs/10.云原生/2.2.实现容器的工具/容器管理/性能优化与故障处理": [
+      "docs/10.云原生/2.2.实现容器的工具/容器管理/性能优化与故障处理/_index.md",
+      "docs/10.云原生/2.2.实现容器的工具/容器管理/性能优化与故障处理/性能优化与故障处理.md",
+      "docs/10.云原生/2.2.实现容器的工具/容器管理/性能优化与故障处理/内核4.18版本以下导致slab内存过高问题.md",
+      "docs/10.云原生/2.2.实现容器的工具/容器管理/性能优化与故障处理/未命名.md",
+      "docs/10.云原生/2.2.实现容器的工具/容器管理/性能优化与故障处理/Containerd 问题汇总.md",
+      "docs/10.云原生/2.2.实现容器的工具/容器管理/性能优化与故障处理/docker 的 MountFlags=slave 与 live-restore 冲突问题.md",
+      "docs/10.云原生/2.2.实现容器的工具/容器管理/性能优化与故障处理/Docker 获取 parent 逻辑.md",
+      "docs/10.云原生/2.2.实现容器的工具/容器管理/性能优化与故障处理/Docker 资源泄露系列.md"
+    ],
+    "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image": [
+      "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image/_index.md",
+      "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image/构建 OCI Image.md",
+      "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image/BuildKit 构建工具.md",
+      "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image/Dockerfile 指令详解.md",
+      "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image/Multi-Stage Builds(多阶段构建).md",
+      "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image/Dockerfile 样例.md"
+    ],
     "docs/10.云原生/2.3.Kubernetes 容器编排系统": [
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/_index.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍",
@@ -755,6 +826,21 @@
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/1.API Resource 与 Object/Object 管理/Label and Selector(标签和选择器)/Label and Selector(标签和选择器).md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/1.API Resource 与 Object/Object 管理/Label and Selector(标签和选择器)/官方推荐标签用法.md"
     ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/2.Kubelet 节点代理": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/2.Kubelet 节点代理/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/2.Kubelet 节点代理/Kubelet 节点代理.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/2.Kubelet 节点代理/Kubelet 配置详解.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/2.Kubelet 节点代理/CRI 对比.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/2.Kubelet 节点代理/crictl 命令行工具.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/2.Kubelet 节点代理/Kubelet 特性"
+    ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/2.Kubelet 节点代理/Kubelet 特性": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/2.Kubelet 节点代理/Kubelet 特性/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/2.Kubelet 节点代理/Kubelet 特性/Garbage Collection(垃圾回收).md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/2.Kubelet 节点代理/Kubelet 特性/Node 资源预留与 Pod 驱逐.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/2.Kubelet 节点代理/Kubelet 特性/PLEG.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/2.Kubelet 节点代理/Kubelet 特性/10.1.bootstrap 认证配置步骤介绍.md"
+    ],
     "docs/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元": [
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元/_index.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/3.Pod 集群最小的工作单元/3.Pod 集群最小的工作单元.md",
@@ -782,11 +868,25 @@
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/8.Kubernetes 网络.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Service(服务).md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Kubernetes DNS",
-      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/kube-proxy(实现 Service 功能的组件)",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/kube-proxy",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/CNI",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Gateway API.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/NetworkPolicy 网络策略.md"
+    ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/CNI": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/CNI/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/CNI/CNI.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/CNI/Flannel.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/CNI/Calico.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/CNI/Cilium"
+    ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/CNI/Cilium": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/CNI/Cilium/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/CNI/Cilium/Cilium.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/CNI/Cilium/部署.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/CNI/Cilium/配置详解.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/CNI/Cilium/小问题.md"
     ],
     "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress": [
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress/_index.md",
@@ -801,6 +901,48 @@
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress/Ingress Controller/Nginx/命令行标志.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress/Ingress Controller/Nginx/实现应用灰度发布.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Ingress/Ingress Controller/Nginx/优化.md"
+    ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Kubernetes DNS": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Kubernetes DNS/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Kubernetes DNS/Kubernetes DNS.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Kubernetes DNS/CoreDNS",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Kubernetes DNS/DNS 管理与优化",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Kubernetes DNS/基于 DNS 的 Kubernetes 服务发现的规范.md"
+    ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Kubernetes DNS/CoreDNS": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Kubernetes DNS/CoreDNS/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Kubernetes DNS/CoreDNS/CoreDNS.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Kubernetes DNS/CoreDNS/CoreDNS 配置详解.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Kubernetes DNS/CoreDNS/CoreDNS Plugins.md"
+    ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Kubernetes DNS/DNS 管理与优化": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Kubernetes DNS/DNS 管理与优化/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Kubernetes DNS/DNS 管理与优化/DNS 管理与优化.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Kubernetes DNS/DNS 管理与优化/CoreDNS 应用实例.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/Kubernetes DNS/DNS 管理与优化/k8s DNS 中的 search 和 ndots 起源.md"
+    ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/kube-proxy": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/kube-proxy/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/kube-proxy/kube-proxy.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/kube-proxy/IPVS 模式原理.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/kube-proxy/深入 kube-proxy ipvs 模式的 conn_reuse_mode 问题.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/kube-proxy/基于 IPVS 的集群内负载平衡深入探讨.md"
+    ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/kube-proxy(实现 Service 功能的组件)": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/kube-proxy(实现 Service 功能的组件)/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/kube-proxy(实现 Service 功能的组件)/kube-proxy(实现 Service 功能的组件).md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/kube-proxy(实现 Service 功能的组件)/基于 IPVS 的集群内负载平衡深入探讨.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/kube-proxy(实现 Service 功能的组件)/深入 kube-proxy ipvs 模式的 conn_reuse_mode 问题.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/kube-proxy(实现 Service 功能的组件)/IPVS 模式原理.md"
+    ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/9.Kubernetes 存储.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/持久化存储流程.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/Volume",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/CSI",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/Persistent Volume(持久卷)",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/Storage Classes(存储类)"
     ],
     "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/CSI": [
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/9.Kubernetes 存储/CSI/_index.md",
@@ -858,7 +1000,7 @@
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/对象的创建与修改命令.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/get 子命令.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/set 与 rollout 更新资源命令.md",
-      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/logs # 打印 pod 中的 container 的日志.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/logs.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/kubectl 命令行工具/kubectl 扩展.md"
     ],
     "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理": [
@@ -868,6 +1010,23 @@
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/故障处理案例",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/故障处理技巧",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/kubernetes优化"
+    ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/故障处理案例": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/故障处理案例/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/故障处理案例/故障处理案例.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/故障处理案例/BUG.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/故障处理案例/常见问题排查与解决方案.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/故障处理案例/当master丢失一个节点后，如何恢复.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/故障处理案例/kubelet 相关",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/故障处理案例/kubernetes 环境开启 bridge-nf-call-iptables.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/故障处理案例/Kubernetes 网络疑难杂症排查分享.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/性能优化与故障处理/故障处理案例/记一次 K8S 内部服务调用域名解析超时排坑经历.md"
+    ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/重大变化": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/重大变化/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/重大变化/重大变化.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/重大变化/大事件：美国安全局 NSA、CISA 发布 Kubernetes 安全加固指南.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 管理/重大变化/大事件：Kubernetes不再在kubelet中维护docker-shim代码.md"
     ],
     "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品": [
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/_index.md",
@@ -888,6 +1047,14 @@
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/Kubesphere/_index.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/Kubesphere/Kubesphere.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/Kubesphere/Kubesphere 部署与清理.md"
+    ],
+    "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/Rancher": [
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/Rancher/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/Rancher/Rancher.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/Rancher/Rancher 部署与清理.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/Rancher/Rancher 配置.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/Rancher/RKE.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kubernetes 衍生品/Rancher/问题实例.md"
     ],
     "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍": [
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/_index.md",
@@ -960,7 +1127,11 @@
       "docs/12.人工智能/计算机视觉",
       "docs/12.人工智能/OpenAI",
       "docs/12.人工智能/Anthropic",
-      "docs/12.人工智能/Hugging Face.md"
+      "docs/12.人工智能/Hugging Face.md",
+      "docs/12.人工智能/LangChain.md",
+      "docs/12.人工智能/AI 项目.md",
+      "docs/12.人工智能/为什么需要 AI.md",
+      "docs/12.人工智能/待总结与分类"
     ],
     "docs/12.人工智能/OpenAI": [
       "docs/12.人工智能/OpenAI/_index.md",
@@ -979,18 +1150,22 @@
       "docs/12.人工智能/计算机视觉/_index.md",
       "docs/12.人工智能/计算机视觉/计算机视觉.md",
       "docs/12.人工智能/计算机视觉/OpenCV.md",
+      "docs/12.人工智能/计算机视觉/图像处理模块.md",
       "docs/12.人工智能/计算机视觉/OCR.md"
     ],
     "docs/2.编程": [
       "docs/2.编程/_index.md",
       "docs/2.编程/编程.md",
-      "docs/2.编程/解谜计算机科学",
+      "docs/2.编程/计算机科学",
       "docs/2.编程/API",
       "docs/2.编程/低级编程语言",
       "docs/2.编程/高级编程语言",
+      "docs/2.编程/标记语言",
       "docs/2.编程/无法分类的语言",
+      "docs/2.编程/Framework",
       "docs/2.编程/编程技术",
-      "docs/2.编程/编程工具"
+      "docs/2.编程/编程工具",
+      "docs/2.编程/项目实战"
     ],
     "docs/2.编程/API": [
       "docs/2.编程/API/_index.md",
@@ -1004,6 +1179,21 @@
       "docs/2.编程/API/Mock API.md",
       "docs/2.编程/API/API 相关工具"
     ],
+    "docs/2.编程/Framework": [
+      "docs/2.编程/Framework/_index.md",
+      "docs/2.编程/Framework/Framework.md",
+      "docs/2.编程/Framework/Vue",
+      "docs/2.编程/Framework/Electron"
+    ],
+    "docs/2.编程/Framework/Vue": [
+      "docs/2.编程/Framework/Vue/_index.md",
+      "docs/2.编程/Framework/Vue/Vue.md",
+      "docs/2.编程/Framework/Vue/Vue 环境安装与使用.md",
+      "docs/2.编程/Framework/Vue/Vue 响应式.md",
+      "docs/2.编程/Framework/Vue/Vue 组件.md",
+      "docs/2.编程/Framework/Vue/Vue 指令.md",
+      "docs/2.编程/Framework/Vue/Vue 第三方库.md"
+    ],
     "docs/2.编程/无法分类的语言": [
       "docs/2.编程/无法分类的语言/_index.md",
       "docs/2.编程/无法分类的语言/ASN.1.md",
@@ -1015,6 +1205,22 @@
       "docs/2.编程/无法分类的语言/TOML.md",
       "docs/2.编程/无法分类的语言/Protobuf.md",
       "docs/2.编程/无法分类的语言/按键精灵"
+    ],
+    "docs/2.编程/标记语言": [
+      "docs/2.编程/标记语言/_index.md",
+      "docs/2.编程/标记语言/Markup language.md",
+      "docs/2.编程/标记语言/HTML.md",
+      "docs/2.编程/标记语言/CSS.md",
+      "docs/2.编程/标记语言/XML.md",
+      "docs/2.编程/标记语言/Markdown.md"
+    ],
+    "docs/2.编程/编程工具": [
+      "docs/2.编程/编程工具/_index.md",
+      "docs/2.编程/编程工具/编程工具.md",
+      "docs/2.编程/编程工具/编程环境.md",
+      "docs/2.编程/编程工具/IDE",
+      "docs/2.编程/编程工具/Make.md",
+      "docs/2.编程/编程工具/SCM"
     ],
     "docs/2.编程/编程工具/SCM/Git": [
       "docs/2.编程/编程工具/SCM/Git/_index.md",
@@ -1045,36 +1251,47 @@
       "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Workflow 文件详解/Workflow 文件详解.md",
       "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Workflow 文件详解/Workflow 命令.md"
     ],
-    "docs/2.编程/解谜计算机科学": [
-      "docs/2.编程/解谜计算机科学/_index.md",
-      "docs/2.编程/解谜计算机科学/解谜计算机科学.md",
-      "docs/2.编程/解谜计算机科学/Data Type AND Literal",
-      "docs/2.编程/解谜计算机科学/Operator.md",
-      "docs/2.编程/解谜计算机科学/Control structure.md",
-      "docs/2.编程/解谜计算机科学/Function",
-      "docs/2.编程/解谜计算机科学/面向对象编程",
-      "docs/2.编程/解谜计算机科学/假如你来发明编程语言",
-      "docs/2.编程/解谜计算机科学/变量.md"
+    "docs/2.编程/编程技术": [
+      "docs/2.编程/编程技术/_index.md",
+      "docs/2.编程/编程技术/编程技术.md",
+      "docs/2.编程/编程技术/编程范式.md",
+      "docs/2.编程/编程技术/MIT  开源许可证.md",
+      "docs/2.编程/编程技术/排序.md",
+      "docs/2.编程/编程技术/ORM.md",
+      "docs/2.编程/编程技术/SDK 开发.md",
+      "docs/2.编程/编程技术/开发框架"
     ],
-    "docs/2.编程/解谜计算机科学/Data Type AND Literal": [
-      "docs/2.编程/解谜计算机科学/Data Type AND Literal/_index.md",
-      "docs/2.编程/解谜计算机科学/Data Type AND Literal/Data type AND Literal.md",
-      "docs/2.编程/解谜计算机科学/Data Type AND Literal/抽象数据类型",
-      "docs/2.编程/解谜计算机科学/Data Type AND Literal/复合数据类型",
-      "docs/2.编程/解谜计算机科学/Data Type AND Literal/进制表示法.md"
+    "docs/2.编程/计算机科学": [
+      "docs/2.编程/计算机科学/_index.md",
+      "docs/2.编程/计算机科学/计算机科学.md",
+      "docs/2.编程/计算机科学/Data Type AND Literal",
+      "docs/2.编程/计算机科学/Operator.md",
+      "docs/2.编程/计算机科学/Variable.md",
+      "docs/2.编程/计算机科学/Control structure.md",
+      "docs/2.编程/计算机科学/Function",
+      "docs/2.编程/计算机科学/面向对象编程",
+      "docs/2.编程/计算机科学/假如你来发明编程语言",
+      "docs/2.编程/计算机科学/Heap and Stack.md"
     ],
-    "docs/2.编程/解谜计算机科学/Function": [
-      "docs/2.编程/解谜计算机科学/Function/_index.md",
-      "docs/2.编程/解谜计算机科学/Function/Function.md",
-      "docs/2.编程/解谜计算机科学/Function/回调函数 callback.md"
+    "docs/2.编程/计算机科学/Data Type AND Literal": [
+      "docs/2.编程/计算机科学/Data Type AND Literal/_index.md",
+      "docs/2.编程/计算机科学/Data Type AND Literal/Data type AND Literal.md",
+      "docs/2.编程/计算机科学/Data Type AND Literal/抽象数据类型",
+      "docs/2.编程/计算机科学/Data Type AND Literal/复合数据类型",
+      "docs/2.编程/计算机科学/Data Type AND Literal/进制表示法.md"
     ],
-    "docs/2.编程/解谜计算机科学/假如你来发明编程语言": [
-      "docs/2.编程/解谜计算机科学/假如你来发明编程语言/_index.md",
-      "docs/2.编程/解谜计算机科学/假如你来发明编程语言/假如你来发明编程语言.md",
-      "docs/2.编程/解谜计算机科学/假如你来发明编程语言/Coroutine(协程).md",
-      "docs/2.编程/解谜计算机科学/假如你来发明编程语言/互斥锁、自旋锁、读写锁、悲观锁、乐观锁的应用场景.md",
-      "docs/2.编程/解谜计算机科学/假如你来发明编程语言/如何掌握所有的程序语言.md",
-      "docs/2.编程/解谜计算机科学/假如你来发明编程语言/FIFO与FILO.md"
+    "docs/2.编程/计算机科学/Function": [
+      "docs/2.编程/计算机科学/Function/_index.md",
+      "docs/2.编程/计算机科学/Function/Function.md",
+      "docs/2.编程/计算机科学/Function/回调函数 callback.md"
+    ],
+    "docs/2.编程/计算机科学/假如你来发明编程语言": [
+      "docs/2.编程/计算机科学/假如你来发明编程语言/_index.md",
+      "docs/2.编程/计算机科学/假如你来发明编程语言/假如你来发明编程语言.md",
+      "docs/2.编程/计算机科学/假如你来发明编程语言/Coroutine(协程).md",
+      "docs/2.编程/计算机科学/假如你来发明编程语言/互斥锁、自旋锁、读写锁、悲观锁、乐观锁的应用场景.md",
+      "docs/2.编程/计算机科学/假如你来发明编程语言/如何掌握所有的程序语言.md",
+      "docs/2.编程/计算机科学/假如你来发明编程语言/FIFO与FILO.md"
     ],
     "docs/2.编程/高级编程语言": [
       "docs/2.编程/高级编程语言/_index.md",
@@ -1091,6 +1308,7 @@
     "docs/2.编程/高级编程语言/C": [
       "docs/2.编程/高级编程语言/C/_index.md",
       "docs/2.编程/高级编程语言/C/C.md",
+      "docs/2.编程/高级编程语言/C/C 环境安装与使用",
       "docs/2.编程/高级编程语言/C/C Library(C库).md"
     ],
     "docs/2.编程/高级编程语言/ECMAScript": [
@@ -1099,39 +1317,34 @@
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 环境安装与使用",
       "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库",
       "docs/2.编程/高级编程语言/ECMAScript/TypeScript 规范与标准库",
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 网络编程",
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 第三方库",
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具",
-      "docs/2.编程/高级编程语言/ECMAScript/Vue",
       "docs/2.编程/高级编程语言/ECMAScript/常用编程技巧.md"
     ],
     "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具": [
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/_index.md",
-      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/ECMAScript 工具.md",
-      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/代码格式化.md",
-      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/Vite.md"
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/NPM.md",
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/npmrc 配置文件.md",
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/更多包管理工具.md",
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/Deno 工具.md",
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/Vite.md",
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/代码格式化.md"
     ],
     "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库": [
       "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库/_index.md",
       "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库/JavaScript 规范与标准库.md",
-      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库/数据类型.md",
+      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库/Data type.md",
+      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库/object.md",
       "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库/各种类型的 object(对象) 的常见方法.md",
-      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库/DOM(文档对象模型).md",
-      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库/Event(事件).md",
-      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库/回调函数与异步编程.md"
+      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库/Event.md",
+      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库/回调函数与异步编程.md",
+      "docs/2.编程/高级编程语言/ECMAScript/JavaScript 规范与标准库/Promise.md"
     ],
     "docs/2.编程/高级编程语言/ECMAScript/TypeScript 规范与标准库": [
       "docs/2.编程/高级编程语言/ECMAScript/TypeScript 规范与标准库/_index.md",
       "docs/2.编程/高级编程语言/ECMAScript/TypeScript 规范与标准库/TypeScript 规范与标准库.md",
       "docs/2.编程/高级编程语言/ECMAScript/TypeScript 规范与标准库/Data Type(数据类型).md"
-    ],
-    "docs/2.编程/高级编程语言/ECMAScript/Vue": [
-      "docs/2.编程/高级编程语言/ECMAScript/Vue/_index.md",
-      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue.md",
-      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 环境安装与使用.md",
-      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 响应式.md",
-      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 组件.md",
-      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 指令.md",
-      "docs/2.编程/高级编程语言/ECMAScript/Vue/Vue 第三方库.md"
     ],
     "docs/2.编程/高级编程语言/Go": [
       "docs/2.编程/高级编程语言/Go/_index.md",
@@ -1202,6 +1415,7 @@
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Go 规范与标准库.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Data type.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Variable.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Control structure",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Control structure.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Arrays AND Slices.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Function.md",
@@ -1211,6 +1425,7 @@
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Reflection.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Goroutine AND Channel",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Generic.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/错误处理.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/I_O",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Template.md",
@@ -1218,6 +1433,11 @@
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/嵌入静态文件.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Unit test(单元测试).md"
+    ],
+    "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Control structure": [
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Control structure/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Control structure/Control structure.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Control structure/错误处理.md"
     ],
     "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Goroutine AND Channel": [
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Goroutine AND Channel/_index.md",
@@ -1238,6 +1458,13 @@
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method AND Interface/接口设计示例 二.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method AND Interface/接收设计示例 三.md"
     ],
+    "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密": [
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密/crypto 库.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密/crypto 库进阶示例1.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密/crypto 库进阶示例2.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密/第三方库.md"
+    ],
     "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理": [
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/_index.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/文本处理.md",
@@ -1253,9 +1480,14 @@
     ],
     "docs/2.编程/高级编程语言/HTML与CSS": [
       "docs/2.编程/高级编程语言/HTML与CSS/_index.md",
+      "docs/2.编程/高级编程语言/HTML与CSS/HTML.md",
       "docs/2.编程/高级编程语言/HTML与CSS/CSS.md",
-      "docs/2.编程/高级编程语言/HTML与CSS/HTML 与 CSS.md",
       "docs/2.编程/高级编程语言/HTML与CSS/DOM.md"
+    ],
+    "docs/2.编程/高级编程语言/Lua": [
+      "docs/2.编程/高级编程语言/Lua/_index.md",
+      "docs/2.编程/高级编程语言/Lua/Lua.md",
+      "docs/2.编程/高级编程语言/Lua/Lua 规范与标准库.md"
     ],
     "docs/2.编程/高级编程语言/Python": [
       "docs/2.编程/高级编程语言/Python/_index.md",
@@ -1277,8 +1509,9 @@
     "docs/2.编程/高级编程语言/Python/Python 规范与标准库": [
       "docs/2.编程/高级编程语言/Python/Python 规范与标准库/_index.md",
       "docs/2.编程/高级编程语言/Python/Python 规范与标准库/Python 规范与标准库.md",
-      "docs/2.编程/高级编程语言/Python/Python 规范与标准库/数据类型.md",
-      "docs/2.编程/高级编程语言/Python/Python 规范与标准库/Python 类.md"
+      "docs/2.编程/高级编程语言/Python/Python 规范与标准库/Data type.md",
+      "docs/2.编程/高级编程语言/Python/Python 规范与标准库/Python 类.md",
+      "docs/2.编程/高级编程语言/Python/Python 规范与标准库/Control structure.md"
     ],
     "docs/2.编程/高级编程语言/Python/Python工具": [
       "docs/2.编程/高级编程语言/Python/Python工具/_index.md",
@@ -1306,7 +1539,6 @@
       "docs/4.数据通信/NAT",
       "docs/4.数据通信/SDN(软件定义网路).md",
       "docs/4.数据通信/WebDAV.md",
-      "docs/4.数据通信/数据包分析",
       "docs/4.数据通信/中间人攻击与HTTPS抓包.md",
       "docs/4.数据通信/交换机 与 路由器.md"
     ],
@@ -1330,18 +1562,6 @@
       "docs/4.数据通信/NAT/NAT.md",
       "docs/4.数据通信/NAT/NAT 穿透是如何工作的：技术原理及企业级实践.md"
     ],
-    "docs/4.数据通信/数据包分析": [
-      "docs/4.数据通信/数据包分析/_index.md",
-      "docs/4.数据通信/数据包分析/数据包分析.md",
-      "docs/4.数据通信/数据包分析/TCPDump",
-      "docs/4.数据通信/数据包分析/WireShark.md",
-      "docs/4.数据通信/数据包分析/Charles.md"
-    ],
-    "docs/4.数据通信/数据包分析/TCPDump": [
-      "docs/4.数据通信/数据包分析/TCPDump/_index.md",
-      "docs/4.数据通信/数据包分析/TCPDump/TCPDump.md",
-      "docs/4.数据通信/数据包分析/TCPDump/TCPDump Capture HTTP GET_POST requests.md"
-    ],
     "docs/4.数据通信/数据通信": [
       "docs/4.数据通信/数据通信/_index.md",
       "docs/4.数据通信/数据通信/数据通信.md",
@@ -1353,19 +1573,7 @@
     "docs/4.数据通信/通信协议": [
       "docs/4.数据通信/通信协议/_index.md",
       "docs/4.数据通信/通信协议/通信协议.md",
-      "docs/4.数据通信/通信协议/通信协议通用概念.md",
-      "docs/4.数据通信/通信协议/2.ARP 与 NDP.md",
-      "docs/4.数据通信/通信协议/3_4.TCP_IP",
-      "docs/4.数据通信/通信协议/3.BGP.md",
-      "docs/4.数据通信/通信协议/3.ICMP.md",
-      "docs/4.数据通信/通信协议/3.VRRP.md",
-      "docs/4.数据通信/通信协议/5.SSL 与 TLS.md",
-      "docs/4.数据通信/通信协议/7.DHCP.md",
-      "docs/4.数据通信/通信协议/7.FTP.md",
-      "docs/4.数据通信/通信协议/7.HTTP",
-      "docs/4.数据通信/通信协议/7.NTP.md",
-      "docs/4.数据通信/通信协议/7.WebSocket",
-      "docs/4.数据通信/通信协议/TCP 与 HTTP"
+      "docs/4.数据通信/通信协议/通信协议通用概念.md"
     ],
     "docs/4.数据通信/通信协议/3_4.TCP_IP": [
       "docs/4.数据通信/通信协议/3_4.TCP_IP/_index.md",
@@ -1386,16 +1594,22 @@
     "docs/4.数据通信/通信协议/7.HTTP": [
       "docs/4.数据通信/通信协议/7.HTTP/_index.md",
       "docs/4.数据通信/通信协议/7.HTTP/7.HTTP.md",
-      "docs/4.数据通信/通信协议/7.HTTP/HTTP 相关的协议或规范.md",
+      "docs/4.数据通信/通信协议/7.HTTP/URL 与 URI.md",
       "docs/4.数据通信/通信协议/7.HTTP/HTTP Header.md",
       "docs/4.数据通信/通信协议/7.HTTP/HTTP Status Codes.md",
       "docs/4.数据通信/通信协议/7.HTTP/HTTP 缓存",
-      "docs/4.数据通信/通信协议/7.HTTP/HTTP 的 持久化 与 认证_授权",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP 会话状态管理",
       "docs/4.数据通信/通信协议/7.HTTP/HTTP2.md",
       "docs/4.数据通信/通信协议/7.HTTP/HTTP3.md",
       "docs/4.数据通信/通信协议/7.HTTP/HTTP 的实现.md",
       "docs/4.数据通信/通信协议/7.HTTP/HTTPS",
       "docs/4.数据通信/通信协议/7.HTTP/HTTP 管理"
+    ],
+    "docs/4.数据通信/通信协议/7.HTTP/HTTP 会话状态管理": [
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP 会话状态管理/_index.md",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP 会话状态管理/HTTP 会话状态管理.md",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP 会话状态管理/Cookie AND Session.md",
+      "docs/4.数据通信/通信协议/7.HTTP/HTTP 会话状态管理/Token 与 JWT.md"
     ],
     "docs/4.数据通信/通信协议/7.HTTP/HTTP 管理": [
       "docs/4.数据通信/通信协议/7.HTTP/HTTP 管理/_index.md",
@@ -1442,6 +1656,15 @@
       "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard/应用示例",
       "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard/Wireguard 全互联模式（full mesh）权威指南",
       "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard/流量伪装.md"
+    ],
+    "docs/5.数据存储": [
+      "docs/5.数据存储/_index.md",
+      "docs/5.数据存储/1.存储",
+      "docs/5.数据存储/2.数据库",
+      "docs/5.数据存储/3.大数据",
+      "docs/5.数据存储/数据管理工具",
+      "docs/5.数据存储/其他",
+      "docs/5.数据存储/索引为什么能提高查询性能.md"
     ],
     "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储": [
       "docs/5.数据存储/1.存储/存储的基础设施架构/分布式存储/_index.md",
@@ -1785,27 +2008,74 @@
     ],
     "docs/7.信息安全": [
       "docs/7.信息安全/_index.md",
+      "docs/7.信息安全/Standardized Glossary.md",
       "docs/7.信息安全/信息安全.md",
-      "docs/7.信息安全/Standardized Glossary(标准化术语).md",
-      "docs/7.信息安全/Cryptography(密码学)",
-      "docs/7.信息安全/Access Control(访问控制)",
+      "docs/7.信息安全/Cryptography",
+      "docs/7.信息安全/Access Control",
       "docs/7.信息安全/管理工具",
-      "docs/7.信息安全/Bastion Host(堡垒机).md",
-      "docs/7.信息安全/Hacking.md"
+      "docs/7.信息安全/Packet analyzer",
+      "docs/7.信息安全/中间人攻击与HTTPS抓包.md",
+      "docs/7.信息安全/Bastion Host.md",
+      "docs/7.信息安全/Hacking.md",
+      "docs/7.信息安全/逆向工程",
+      "docs/7.信息安全/爬虫"
     ],
-    "docs/7.信息安全/Cryptography(密码学)": [
-      "docs/7.信息安全/Cryptography(密码学)/_index.md",
-      "docs/7.信息安全/Cryptography(密码学)/Cryptography(密码学).md",
-      "docs/7.信息安全/Cryptography(密码学)/Cipher",
-      "docs/7.信息安全/Cryptography(密码学)/对称密钥加密",
-      "docs/7.信息安全/Cryptography(密码学)/公开密钥加密"
+    "docs/7.信息安全/Cryptography": [
+      "docs/7.信息安全/Cryptography/_index.md",
+      "docs/7.信息安全/Cryptography/Cryptography.md",
+      "docs/7.信息安全/Cryptography/Cipher",
+      "docs/7.信息安全/Cryptography/对称密钥加密",
+      "docs/7.信息安全/Cryptography/公开密钥加密",
+      "docs/7.信息安全/Cryptography/加密解密的最佳实践.md"
     ],
-    "docs/7.信息安全/Cryptography(密码学)/公开密钥加密": [
-      "docs/7.信息安全/Cryptography(密码学)/公开密钥加密/_index.md",
-      "docs/7.信息安全/Cryptography(密码学)/公开密钥加密/公开密钥加密.md",
-      "docs/7.信息安全/Cryptography(密码学)/公开密钥加密/RSA",
-      "docs/7.信息安全/Cryptography(密码学)/公开密钥加密/证书 与 PKI",
-      "docs/7.信息安全/Cryptography(密码学)/公开密钥加密/密钥_证书的编码.md"
+    "docs/7.信息安全/Cryptography/Cipher": [
+      "docs/7.信息安全/Cryptography/Cipher/_index.md",
+      "docs/7.信息安全/Cryptography/Cipher/Cipher.md",
+      "docs/7.信息安全/Cryptography/Cipher/Block cipher.md",
+      "docs/7.信息安全/Cryptography/Cipher/Stream cipher.md"
+    ],
+    "docs/7.信息安全/Cryptography/公开密钥加密": [
+      "docs/7.信息安全/Cryptography/公开密钥加密/_index.md",
+      "docs/7.信息安全/Cryptography/公开密钥加密/公开密钥加密.md",
+      "docs/7.信息安全/Cryptography/公开密钥加密/RSA",
+      "docs/7.信息安全/Cryptography/公开密钥加密/证书 与 PKI",
+      "docs/7.信息安全/Cryptography/公开密钥加密/密钥_证书的编码.md"
+    ],
+    "docs/7.信息安全/Cryptography/公开密钥加密/RSA": [
+      "docs/7.信息安全/Cryptography/公开密钥加密/RSA/_index.md",
+      "docs/7.信息安全/Cryptography/公开密钥加密/RSA/RSA.md",
+      "docs/7.信息安全/Cryptography/公开密钥加密/RSA/RSA 密钥生成的步骤.md"
+    ],
+    "docs/7.信息安全/Cryptography/公开密钥加密/证书 与 PKI": [
+      "docs/7.信息安全/Cryptography/公开密钥加密/证书 与 PKI/_index.md",
+      "docs/7.信息安全/Cryptography/公开密钥加密/证书 与 PKI/证书 与 PKI.md",
+      "docs/7.信息安全/Cryptography/公开密钥加密/证书 与 PKI/X.509.md",
+      "docs/7.信息安全/Cryptography/公开密钥加密/证书 与 PKI/SSL_TLS Pinning.md"
+    ],
+    "docs/7.信息安全/Packet analyzer": [
+      "docs/7.信息安全/Packet analyzer/_index.md",
+      "docs/7.信息安全/Packet analyzer/Packet analyzer.md",
+      "docs/7.信息安全/Packet analyzer/TCPDump",
+      "docs/7.信息安全/Packet analyzer/WireShark.md",
+      "docs/7.信息安全/Packet analyzer/Charles.md"
+    ],
+    "docs/7.信息安全/Packet analyzer/TCPDump": [
+      "docs/7.信息安全/Packet analyzer/TCPDump/_index.md",
+      "docs/7.信息安全/Packet analyzer/TCPDump/TCPDump.md",
+      "docs/7.信息安全/Packet analyzer/TCPDump/TCPDump Capture HTTP GET_POST requests.md"
+    ],
+    "docs/8.通用技术": [
+      "docs/8.通用技术/_index.md",
+      "docs/8.通用技术/编码与解码",
+      "docs/8.通用技术/Cache.md",
+      "docs/8.通用技术/Job",
+      "docs/8.通用技术/CDN",
+      "docs/8.通用技术/I_O模型.md",
+      "docs/8.通用技术/Message Queue(消息队列)",
+      "docs/8.通用技术/Regular Expression(正则表达式).md",
+      "docs/8.通用技术/Service Discovery(服务发现).md",
+      "docs/8.通用技术/Timestamps(时间戳).md",
+      "docs/8.通用技术/UUID 与 ULID.md"
     ],
     "docs/8.通用技术/Message Queue(消息队列)": [
       "docs/8.通用技术/Message Queue(消息队列)/_index.md",
@@ -1828,14 +2098,30 @@
       "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/go rabbitmq 库.md",
       "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/rabbitmqctl 命令行工具详解.md"
     ],
+    "docs/8.通用技术/编码与解码": [
+      "docs/8.通用技术/编码与解码/_index.md",
+      "docs/8.通用技术/编码与解码/编码与解码.md",
+      "docs/8.通用技术/编码与解码/字符的编码与解码",
+      "docs/8.通用技术/编码与解码/音频的编码与解码.md",
+      "docs/8.通用技术/编码与解码/图像的编码与解码.md",
+      "docs/8.通用技术/编码与解码/视频的编码与解码.md",
+      "docs/8.通用技术/编码与解码/Base64 编码.md"
+    ],
+    "docs/8.通用技术/编码与解码/字符的编码与解码": [
+      "docs/8.通用技术/编码与解码/字符的编码与解码/_index.md",
+      "docs/8.通用技术/编码与解码/字符的编码与解码/字符的编码与解码.md",
+      "docs/8.通用技术/编码与解码/字符的编码与解码/控制字符.md",
+      "docs/8.通用技术/编码与解码/字符的编码与解码/ASCII 表.md"
+    ],
     "docs/9.运维": [
       "docs/9.运维/_index.md",
-      "docs/9.运维/Standardized Glossary(标准化术语)",
       "docs/9.运维/运维.md",
+      "docs/9.运维/运维管理",
       "docs/9.运维/Ansible",
       "docs/9.运维/Cobbler",
-      "docs/9.运维/PXE 简介.md",
-      "docs/9.运维/应用发布.md"
+      "docs/9.运维/应用发布.md",
+      "docs/9.运维/PXE.md",
+      "docs/9.运维/Standardized Glossary(标准化术语).md"
     ],
     "docs/9.运维/Ansible": [
       "docs/9.运维/Ansible/_index.md",
@@ -1887,9 +2173,67 @@
       "docs/9.运维/Standardized Glossary(标准化术语)/Standardized Glossary(标准化术语).md",
       "docs/9.运维/Standardized Glossary(标准化术语)/SRE 到底是干什么的？？.md"
     ],
+    "docs/9.运维/运维管理": [
+      "docs/9.运维/运维管理/_index.md",
+      "docs/9.运维/运维管理/运维管理.md",
+      "docs/9.运维/运维管理/CMDB.md",
+      "docs/9.运维/运维管理/运维工具.md"
+    ],
+    "docs/Blockchain": [
+      "docs/Blockchain/_index.md",
+      "docs/Blockchain/Blockchain.md",
+      "docs/Blockchain/图解区块链工作逻辑.md"
+    ],
+    "docs/Utils": [
+      "docs/Utils/_index.md",
+      "docs/Utils/实用工具.md",
+      "docs/Utils/Terminal(终端)",
+      "docs/Utils/IDE",
+      "docs/Utils/远程管理",
+      "docs/Utils/下载.md",
+      "docs/Utils/写作",
+      "docs/Utils/手机.md",
+      "docs/Utils/云盘.md",
+      "docs/Utils/即时通信",
+      "docs/Utils/Windows 系统实用工具",
+      "docs/Utils/计算机组装.md",
+      "docs/Utils/生活工具",
+      "docs/Utils/开源软件洞察.md"
+    ],
+    "docs/Utils/IDE/Visual Studio Code": [
+      "docs/Utils/IDE/Visual Studio Code/_index.md",
+      "docs/Utils/IDE/Visual Studio Code/Visual Studio Code.md",
+      "docs/Utils/IDE/Visual Studio Code/VS Code 快捷键.md",
+      "docs/Utils/IDE/Visual Studio Code/VS Code 配置详解.md",
+      "docs/Utils/IDE/Visual Studio Code/VS Code 中的 WSL.md",
+      "docs/Utils/IDE/Visual Studio Code/Plugins(插件)",
+      "docs/Utils/IDE/Visual Studio Code/code-server.md"
+    ],
+    "docs/Utils/Terminal(终端)": [
+      "docs/Utils/Terminal(终端)/_index.md",
+      "docs/Utils/Terminal(终端)/Terminal(终端).md",
+      "docs/Utils/Terminal(终端)/X Manager.md",
+      "docs/Utils/Terminal(终端)/X Manager"
+    ],
+    "docs/Utils/即时通信": [
+      "docs/Utils/即时通信/_index.md",
+      "docs/Utils/即时通信/即时通信.md",
+      "docs/Utils/即时通信/Slack.md"
+    ],
+    "docs/Utils/消息传递": [
+      "docs/Utils/消息传递/_index.md",
+      "docs/Utils/消息传递/消息传递.md",
+      "docs/Utils/消息传递/即时消息.md",
+      "docs/Utils/消息传递/Slack.md"
+    ],
     "docs/Web": [
       "docs/Web/_index.md",
       "docs/Web/Web.md",
+      "docs/Web/WebAPI",
+      "docs/Web/WebDriver",
+      "docs/Web/WebAssembly.md",
+      "docs/Web/浏览器",
+      "docs/Web/网站搭建",
       "docs/Web/Nginx"
     ],
     "docs/Web/Nginx": [
@@ -1897,9 +2241,11 @@
       "docs/Web/Nginx/Nginx.md",
       "docs/Web/Nginx/Nginx 配置详解",
       "docs/Web/Nginx/Nginx 命令行工具.md",
+      "docs/Web/Nginx/Nginx 处理 HTTP 请求的流程.md",
+      "docs/Web/Nginx/最佳实践",
       "docs/Web/Nginx/Nginx 优化.md",
       "docs/Web/Nginx/Nginx 源码解析.md",
-      "docs/Web/Nginx/Nginx Unit.md"
+      "docs/Web/Nginx/Nginx 衍生品"
     ],
     "docs/Web/Nginx/Nginx 配置详解": [
       "docs/Web/Nginx/Nginx 配置详解/_index.md",
@@ -1912,6 +2258,35 @@
       "docs/Web/Nginx/Nginx 配置详解/多用途模块的指令",
       "docs/Web/Nginx/Nginx 配置详解/Nginx 作为web服务器配置示例.md",
       "docs/Web/Nginx/Nginx 配置详解/Nginx 作为代理服务器配置示例.md"
+    ],
+    "docs/Web/WebAPI": [
+      "docs/Web/WebAPI/_index.md",
+      "docs/Web/WebAPI/WebAPI.md",
+      "docs/Web/WebAPI/DOM.md"
+    ],
+    "docs/Web/WebDriver": [
+      "docs/Web/WebDriver/_index.md",
+      "docs/Web/WebDriver/WebDriver.md",
+      "docs/Web/WebDriver/Selenium.md"
+    ],
+    "docs/Web/浏览器": [
+      "docs/Web/浏览器/_index.md",
+      "docs/Web/浏览器/浏览器.md",
+      "docs/Web/浏览器/Chromium.md",
+      "docs/Web/浏览器/Chrome.md",
+      "docs/Web/浏览器/Edge.md",
+      "docs/Web/浏览器/开发者工具.md"
+    ],
+    "docs/Web/浏览器/WebDriver": [
+      "docs/Web/浏览器/WebDriver/_index.md",
+      "docs/Web/浏览器/WebDriver/WebDriver.md",
+      "docs/Web/浏览器/WebDriver/Selenium.md"
+    ],
+    "docs/Web/浏览器/浏览器自动化": [
+      "docs/Web/浏览器/浏览器自动化/_index.md",
+      "docs/Web/浏览器/浏览器自动化/浏览器自动化.md",
+      "docs/Web/浏览器/浏览器自动化/WebDriver.md",
+      "docs/Web/浏览器/浏览器自动化/Selenium.md"
     ],
     "docs/Web/网站搭建": [
       "docs/Web/网站搭建/_index.md",
@@ -1933,104 +2308,48 @@
       "docs/Web/网站搭建/Hugo/模板/模板.md",
       "docs/Web/网站搭建/Hugo/模板/变量.md"
     ],
-    "docs/x_标准化术语/Internet(互联网)": [
-      "docs/x_标准化术语/Internet(互联网)/_index.md",
-      "docs/x_标准化术语/Internet(互联网)/Internet(互联网).md",
-      "docs/x_标准化术语/Internet(互联网)/IETF.md",
-      "docs/x_标准化术语/Internet(互联网)/W3C.md"
+    "docs/x_标准化": [
+      "docs/x_标准化/_index.md",
+      "docs/x_标准化/常用英文.md",
+      "docs/x_标准化/Foundation",
+      "docs/x_标准化/IT",
+      "docs/x_标准化/Internet",
+      "docs/x_标准化/Agent 与 Proxy.md",
+      "docs/x_标准化/Architecture(架构).md",
+      "docs/x_标准化/B_S 和 C_S 架构.md",
+      "docs/x_标准化/Transaction(事务).md",
+      "docs/x_标准化/南北流量和东西流量.md",
+      "docs/x_标准化/中国行政区划及代码.md"
     ],
-    "docs/实用工具": [
-      "docs/实用工具/_index.md",
-      "docs/实用工具/实用工具.md",
-      "docs/实用工具/Terminal(终端)",
-      "docs/实用工具/IDE",
-      "docs/实用工具/远程管理",
-      "docs/实用工具/下载.md",
-      "docs/实用工具/写作",
-      "docs/实用工具/手机.md",
-      "docs/实用工具/云盘.md",
-      "docs/实用工具/即时通信",
-      "docs/实用工具/Windows 系统实用工具",
-      "docs/实用工具/计算机组装.md",
-      "docs/实用工具/生活工具",
-      "docs/实用工具/开源软件洞察.md"
+    "docs/x_标准化/IT": [
+      "docs/x_标准化/IT/_index.md",
+      "docs/x_标准化/IT/IT.md",
+      "docs/x_标准化/IT/ANSI.md",
+      "docs/x_标准化/IT/IEEE.md"
     ],
-    "docs/实用工具/IDE/Visual Studio Code": [
-      "docs/实用工具/IDE/Visual Studio Code/_index.md",
-      "docs/实用工具/IDE/Visual Studio Code/Visual Studio Code.md",
-      "docs/实用工具/IDE/Visual Studio Code/VS Code 快捷键.md",
-      "docs/实用工具/IDE/Visual Studio Code/VS Code 配置详解.md",
-      "docs/实用工具/IDE/Visual Studio Code/VS Code 中的 WSL.md",
-      "docs/实用工具/IDE/Visual Studio Code/Plugins(插件)",
-      "docs/实用工具/IDE/Visual Studio Code/code-server.md"
+    "docs/x_标准化/Internet": [
+      "docs/x_标准化/Internet/_index.md",
+      "docs/x_标准化/Internet/Internet.md",
+      "docs/x_标准化/Internet/IETF.md",
+      "docs/x_标准化/Internet/RFC.md",
+      "docs/x_标准化/Internet/W3C.md"
     ],
-    "docs/实用工具/Terminal(终端)": [
-      "docs/实用工具/Terminal(终端)/_index.md",
-      "docs/实用工具/Terminal(终端)/Terminal(终端).md",
-      "docs/实用工具/Terminal(终端)/X Manager.md",
-      "docs/实用工具/Terminal(终端)/X Manager"
-    ],
-    "docs/实用工具/即时通信": [
-      "docs/实用工具/即时通信/_index.md",
-      "docs/实用工具/即时通信/即时通信.md",
-      "docs/实用工具/即时通信/Slack.md"
-    ],
-    "docs/实用工具/消息传递": [
-      "docs/实用工具/消息传递/_index.md",
-      "docs/实用工具/消息传递/消息传递.md",
-      "docs/实用工具/消息传递/即时消息.md",
-      "docs/实用工具/消息传递/Slack.md"
+    "docs/学习": [
+      "docs/学习/_index.md",
+      "docs/学习/信息检索.md",
+      "docs/学习/写作",
+      "docs/学习/学习资源.md"
     ],
     "docs/移动设备": [
       "docs/移动设备/_index.md",
+      "docs/移动设备/移动设备.md",
       "docs/移动设备/Android.md",
       "docs/移动设备/Android 开发.md"
     ],
-    "docs/7.信息安全/Cryptography(密码学)/公开密钥加密/RSA": [
-      "docs/7.信息安全/Cryptography(密码学)/公开密钥加密/RSA/_index.md",
-      "docs/7.信息安全/Cryptography(密码学)/公开密钥加密/RSA/RSA.md",
-      "docs/7.信息安全/Cryptography(密码学)/公开密钥加密/RSA/RSA 密钥生成的步骤.md"
-    ],
-    "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密": [
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密/_index.md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密/crypto 库.md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密/crypto 库进阶示例1.md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密/crypto 库进阶示例2.md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密/第三方库.md"
-    ],
-    "docs/7.信息安全/Cryptography(密码学)/Cipher": [
-      "docs/7.信息安全/Cryptography(密码学)/Cipher/_index.md",
-      "docs/7.信息安全/Cryptography(密码学)/Cipher/Cipher.md",
-      "docs/7.信息安全/Cryptography(密码学)/Cipher/Block cipher.md",
-      "docs/7.信息安全/Cryptography(密码学)/Cipher/Stream cipher.md"
-    ],
-    "docs/8.通用技术/编码解码与协议": [
-      "docs/8.通用技术/编码解码与协议/_index.md",
-      "docs/8.通用技术/编码解码与协议/编码解码与协议.md",
-      "docs/8.通用技术/编码解码与协议/字符的编码与解码",
-      "docs/8.通用技术/编码解码与协议/音频的编码与解码.md",
-      "docs/8.通用技术/编码解码与协议/图像的编码与解码.md",
-      "docs/8.通用技术/编码解码与协议/视频的编码与解码.md",
-      "docs/8.通用技术/编码解码与协议/Base64 编码.md"
-    ],
-    "docs/8.通用技术/编码解码与协议/字符的编码与解码": [
-      "docs/8.通用技术/编码解码与协议/字符的编码与解码/_index.md",
-      "docs/8.通用技术/编码解码与协议/字符的编码与解码/字符的编码与解码.md",
-      "docs/8.通用技术/编码解码与协议/字符的编码与解码/控制字符.md",
-      "docs/8.通用技术/编码解码与协议/字符的编码与解码/ASCII 表.md"
-    ],
-    "docs/x_标准化术语": [
-      "docs/x_标准化术语/_index.md",
-      "docs/x_标准化术语/常用英文.md",
-      "docs/x_标准化术语/南北流量和东西流量——它们是什么意思.md",
-      "docs/x_标准化术语/Agent 与 Proxy.md",
-      "docs/x_标准化术语/Architecture(架构).md",
-      "docs/x_标准化术语/B_S 和 C_S 架构.md",
-      "docs/x_标准化术语/bit( 比特 ) 和 Byte(字节) 的关系 以及 网速怎么算.md",
-      "docs/x_标准化术语/Transaction(事务).md",
-      "docs/x_标准化术语/Foundation(基金会)",
-      "docs/x_标准化术语/计算机标准",
-      "docs/x_标准化术语/Internet(互联网)"
+    "docs/2.编程/API/API 相关工具": [
+      "docs/2.编程/API/API 相关工具/_index.md",
+      "docs/2.编程/API/API 相关工具/PostMan.md",
+      "docs/2.编程/API/API 相关工具/Apifox.md"
     ]
   },
   "actionBarOrder": {},

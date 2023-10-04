@@ -15,6 +15,7 @@ Anthropic 是一家由前 OpenAI 团队成员创立的初创公司，它推出�
 # Claude
 
 > 参考：
+>
 > - [公众号-OSC 开源社区，Anthropic推出 “更理性的 Claude”，正面硬刚ChatGPT](https://mp.weixin.qq.com/s/7YJ7B6JTV7U1gXeLOiZsLw)
 
-Claude 可以作为 [Slack](/docs/实用工具/即时通信/Slack.md) 的应用被添加到 Workspace 中并无条件使用。
+Claude 可以作为 [Slack](/docs/Utils/即时通信/Slack.md) 的应用被添加到 Workspace 中并无条件使用。

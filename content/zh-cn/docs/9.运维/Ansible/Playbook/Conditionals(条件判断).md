@@ -17,15 +17,18 @@ Ansible 在条件中使用 Jinja 的 [测试](https://docs.ansible.com/ansible/l
 
 下面的样例表示：当 ansible_facts\['os_family'] 变量的值为 Debian 的时候，则执行上面的任务，任务内容是执行 shutdown 命令
 
-    tasks:
-    - name: "shut down Debian flavored systems"
-      command: /sbin/shutdown -t now
-      when: ansible_facts['os_family'] == "Debian"
+```yaml
+tasks:
+- name: "shut down Debian flavored systems"
+  command: /sbin/shutdown -t now
+  when: ansible_facts['os_family'] == "Debian"
+```
 
 判断主机是否在某个组中
-when: inventory_hostname is search("master") # 当 inventory_hostname 变量的值含有 master 字符串时。
-when: inventory_hostname == groups\['kube_master']\[0] # 当当前主机的 inventory_hostname 变量值等于 kube_master 主机组中的第一台主机时
-when: inventory_hostname in groups\['kube_master'] # 当当前主机的 inventory_hostname 变量值在 kube_master 主机组中时。
 
-when: testvar1 is none # 当变量 testvar1 已定义，但是值为空时。Note：值为空表示 key 后面的值什么都不写，双引号都不能有
-when: ((groups\['kube_master'] | length) > 1) # 当 kube_master 主机组的主机数量大于 1 时。
+- when: inventory_hostname is search("master") # 当 inventory_hostname 变量的值含有 master 字符串时。
+- when: inventory_hostname == groups\['kube_master']\[0] # 当当前主机的 inventory_hostname 变量值等于 kube_master 主机组中的第一台主机时
+- when: inventory_hostname in groups\['kube_master'] # 当当前主机的 inventory_hostname 变量值在 kube_master 主机组中时。
+
+- when: testvar1 is none # 当变量 testvar1 已定义，但是值为空时。Note：值为空表示 key 后面的值什么都不写，双引号都不能有
+- when: ((groups\['kube_master'] | length) > 1) # 当 kube_master 主机组的主机数量大于 1 时。

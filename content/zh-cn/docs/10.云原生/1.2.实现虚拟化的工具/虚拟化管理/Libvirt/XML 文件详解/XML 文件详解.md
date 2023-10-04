@@ -10,7 +10,7 @@ weight: 1
 >
 > - [官方文档，XML 格式](https://libvirt.org/format.html)
 
-Libvirt API 中的**对象**使用 [**XML 格式**](/docs/2.编程/无法分类的语言/XML.md) 的文档进行配置，以便在未来的版本中轻松扩展。每个 XML 文档都有一个关联的 Relax-NG 模式，可用于在使用前验证文档。
+Libvirt API 中的**对象**使用 [**XML 格式**](/docs/2.编程/标记语言/XML.md) 的文档进行配置，以便在未来的版本中轻松扩展。每个 XML 文档都有一个关联的 Relax-NG 模式，可用于在使用前验证文档。
 
 这里面的 Libvirt API 对象指的就是 Domain(虚拟机)、存储、快照、网络 等等。对于 Libvirt，所有 VM 相关的资源都会抽象为对象，这样也利于代码编写。
 

@@ -3,6 +3,7 @@ title: 大事件：Kubernetes不再在kubelet中维护docker-shim代码
 ---
 
 大事件：Kubernetes 不再在 kubelet 中维护 docker-shim 代码
+
 [原文链接](https://kubernetes.io/blog/2020/12/02/dont-panic-kubernetes-and-docker/)
 
 Don't Panic: Kubernetes and Docker

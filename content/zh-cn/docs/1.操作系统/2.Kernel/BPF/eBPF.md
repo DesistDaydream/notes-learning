@@ -1,25 +1,28 @@
 ---
 title: eBPF
+linkTitle: eBPF
+date: 2023-11-02T23:51
+weight: 2
 ---
 
 # 概述
 
 > 参考：
+>
 > - [官网](https://ebpf.io/)
 > - [Kernel 官方文档，BPF](https://www.kernel.org/doc/html/latest/bpf/)
-> 	- [Kernel 官方文档](https://www.infradead.org/~mchehab/kernel_docs/bpf/index.html)
-> 	- [Cilium 官方文档，BPF](https://docs.cilium.io/en/latest/bpf/) Kernel 官方文档中指向的另一个文档
+>  	- [Kernel 官方文档](https://www.infradead.org/~mchehab/kernel_docs/bpf/index.html)
+>  	- [Cilium 官方文档，BPF](https://docs.cilium.io/en/latest/bpf/) Kernel 官方文档中指向的另一个文档
 > - [GitHub 项目，torvalds/linux/tools/lib/bpf](https://github.com/torvalds/linux/tree/master/tools/lib/bpf)(libbpf 库)
-
-
-
 
 # 学习资料
 
 [arthurchiao.art 的文章](http://arthurchiao.art/index.html)：
+
 - [\[译\] 大规模微服务利器：eBPF + Kubernetes（KubeCon, 2020）](http://arthurchiao.art/blog/ebpf-and-k8s-zh/)
 
 [公众号，深入浅出 BPF](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzA3NzUzNTM4NA==&action=getalbum&album_id=1996568890906148869&scene=173&from_msgid=2649613575&from_itemidx=1&count=3&nolastread=1#wechat_redirect)
+
 - [eBPF 概述：第 1 部分：介绍](https://mp.weixin.qq.com/s/DK3Fv96m8dzKomSNGBznPw)
 - [eBPF 概述：第 2 部分：机器和字节码](https://mp.weixin.qq.com/s/CWxRROFmP2E4iUCXy5FzWA)
 - [eBPF 概述：第 3 部分：软件开发生态](https://mp.weixin.qq.com/s/H61TdIKCF-soyazJmWItTg)
@@ -37,6 +40,7 @@ https://coolshell.cn/articles/22320.html
 # 为什么要使用 eBPF
 
 > 参考：
+>
 > - [公众号，云原生实验室，为什么 eBPF 如此受欢迎](https://mp.weixin.qq.com/s/K5bVHjJeOm8KpluPW1iyvw)
 
 eBPF 是一项革命性的技术，起源于 Linux 内核，可以在操作系统内核中运行 **Sandbox Programs(沙箱程序)** 而无需修改内核源代码或加载内核模块。
@@ -58,6 +62,7 @@ eBPF 程序比传统程序“跑得”更快，因为它的代码是直接在内
 eBPF 无需将数据从内核空间复制到用户空间，你可以直接在内核空间运行监控程序来聚合可观测性数据，并将其发送到用户空间。eBPF 也可以直接在内核空间过滤数据以及创建 Histogram，这比在用户空间和内核空间之间交换大量数据要快得多。
 
 # eBPF Map
+
 eBPF 有一个黑科技，它会使用 **eBPF Map(eBPF 映射)** 来允许用户空间和内核空间之间进行双向数据交换。在 Linux 中，映射（Map）是一种通用的存储类型，用于在用户空间和内核空间之间共享数据，它们是驻留在内核中的键值存储。
 
 对于可观测性这种应用场景，eBPF 程序会直接在内核空间进行计算，并将结果写入用户空间应用程序可以读取/写入的 eBPF 映射中。
@@ -147,12 +152,13 @@ b.attach_kprobe(event="xxx", fn_name="yyy")
 # 基于 eBPF 的实现
 
 > 参考：
+>
 > - [官方文档，项目](https://ebpf.io/projects)
 
 - bcc # 高效的基于 BPF 的内核跟踪的工具包和库
 - bpftrace # Linux eBPF 的高级跟踪语言
 
-[BPF 在网络领域的实现](https://www.yuque.com/go/doc/33144610)
+[BPF 在网络领域的实现](/docs/1.操作系统/2.Kernel/BPF/BPF%20流量控制机制/BPF%20在网络领域的实现.md)
 
 - tcpdump # 网络抓包工具
 - TC eBPF # 作用在传统 TC 模块的 eBPF
@@ -169,10 +175,10 @@ from bcc import BPF
 
 # This may not work for 4.17 on x64, you need replace kprobe__sys_clone with kprobe____x64_sys_clone
 prog = """
-	int kprobe__sys_clone(void *ctx) {
-		bpf_trace_printk("Hello, World!\\n");
-		return 0;
-	}
+ int kprobe__sys_clone(void *ctx) {
+  bpf_trace_printk("Hello, World!\\n");
+  return 0;
+ }
 """
 
 b = BPF(text=prog, debug=0x04)
@@ -186,6 +192,7 @@ b.trace_print()
 # eBPF 库
 
 > 参考：
+>
 > - [官方文档，项目-eBPF 库](https://ebpf.io/projects/#ebpf-libraries)
 
 [github.com/libpf/libbpf](https://github.com/libbpf/libbpf) # 基于 C/C++ 的库，作为上游 Linux 内核的一部分进行维护。

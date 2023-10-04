@@ -96,13 +96,18 @@ OpenSSL 配置文件为 INI 格式的配置扩展了很多功能，并规定了�
 > 关于 CSR 的扩展信息的格式，详见 [Manual(手册),x509v3_config(5)](https://www.openssl.org/docs/manmaster/man5/x509v3_config.html)
 
 **basicConstraints = CA:FALSE** #
+
 **keyUsage = nonRepudiation, digitalSignature, keyEncipherment** #
+
 **extendedKeyUsage = clientAuth, serverAuth** #
+
 **subjectAltName = \<SectionName>**#
+
 
 ### \[SubjectAltName]
 
 DNS.1 = abc
+
 IP.1 = 1.1.1.1
 
 # 默认配置文件详解
@@ -266,6 +271,7 @@ commonName = "Root CA"
 
 ## tas Section
 
+```
 \[ tsa ]
 default_tsa = tsa_config1 # the default TSA section
 \[ tsa_config1 ]
@@ -293,6 +299,7 @@ ess_cert_id_chain = no # Must the ESS cert id chain be included?
  \# (optional, default: no)
 ess_cert_id_alg = sha1 # algorithm to compute certificate
  \# identifier (optional, default: sha1)
+```
 
 # 配置示例
 

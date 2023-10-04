@@ -5,6 +5,7 @@ title: Garbage Collection(垃圾收集)
 # 概述
 
 > 参考：
+> 
 > - [官方文档，概念-Kubernetes 架构-垃圾收集](https://kubernetes.io/docs/concepts/architecture/garbage-collection/)
 > - [宋净超-云原生资料库-Kubernetes 基础教程，集群资源管理-垃圾收集](https://lib.jimmysong.io/kubernetes-handbook/concepts/garbage-collection/)
 
@@ -23,6 +24,7 @@ Garbage Collector 是 k8s 垃圾收集功能的具体实现。Garbage Collector 
 # Owner 和 Dependent
 
 > 参考：
+> 
 > - [官方文档，概念-概述-使用 Kubernetes 对象-属主与从属](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/)
 
 在 Kubernetes 中

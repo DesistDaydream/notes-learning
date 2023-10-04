@@ -13,7 +13,7 @@ Ubuntu 的包管理系统源自使用 Debian GUN/Linux 发行版的系统。Debi
 
 # DPKG 工具集
 
-> 参考：[Wiki,Dpkg](https://en.wikipedia.org/wiki/Dpkg)
+> 参考：[Wiki，Dpkg](https://en.wikipedia.org/wiki/Dpkg)
 
 ## 概述
 
@@ -33,7 +33,7 @@ Dpkg 包含一系列的包管理工具：
 ## dpkg
 
 > 参考：
-> - [Manual(手册),dpkg(1)](https://man7.org/linux/man-pages/man1/dpkg.1.html)
+> - [Manual(手册)，dpkg(1)](https://man7.org/linux/man-pages/man1/dpkg.1.html)
 
 ### Syntax(语法)
 

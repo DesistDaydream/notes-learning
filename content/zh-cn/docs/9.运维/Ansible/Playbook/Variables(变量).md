@@ -6,6 +6,7 @@ weight: 3
 # 概述
 
 > 参考：
+> 
 > - [官方文档，用户指南-目录-使用变量](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html)
 
 # 变量基本的定义与引用方式

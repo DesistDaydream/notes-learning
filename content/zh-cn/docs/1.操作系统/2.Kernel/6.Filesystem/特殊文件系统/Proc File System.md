@@ -29,11 +29,11 @@ proc 文件系统不用于存储。其主要目的是为硬件，内存，运行
 
 ## ./fd/ - 其中包含 PID 进程打开的每个文件的一个条目
 
-- 该条目由其文件描述符命名，并且是指向实际文件的符号链接。 因此，0 是标准输入，1 是标准输出，2 是标准错误，依此类推。详解见：[File Descriptor(文件描述符)](docs/1.操作系统/2.Kernel/6.Filesystem/文件管理/File%20Descriptor(文件描述符).md)
+- 该条目由其文件描述符命名，并且是指向实际文件的符号链接。 因此，0 是标准输入，1 是标准输出，2 是标准错误，依此类推。详解见：[File Descriptor(文件描述符)](/docs/1.操作系统/2.Kernel/6.Filesystem/文件管理/File%20Descriptor(文件描述符).md)
 
 ## ./fdinfo/ - 其中包含 PID 进程打开的每个文件的一个条目，该条目由其文件描述符命名
 
-该目录中的文件仅由进程所有者读取。 可以读取每个文件的内容以获得有关相应文件描述符的信息。 内容取决于相应文件描述符所引用的文件类型。详解见：[File Descriptor(文件描述符)](docs/1.操作系统/2.Kernel/6.Filesystem/文件管理/File%20Descriptor(文件描述符).md)
+该目录中的文件仅由进程所有者读取。 可以读取每个文件的内容以获得有关相应文件描述符的信息。 内容取决于相应文件描述符所引用的文件类型。详解见：[File Descriptor(文件描述符)](/docs/1.操作系统/2.Kernel/6.Filesystem/文件管理/File%20Descriptor(文件描述符).md)
 
 ## ./maps - 进程的内存映射信息
 
@@ -216,7 +216,7 @@ Rss:               21304 kB
 
 # /proc/interrupts - 系统中断统计信息
 
-详见：[Interrupts(中断)](docs/1.操作系统/2.Kernel/4.CPU/Interrupts(中断)/Interrupts(中断).md)
+详见：[Interrupts(中断)](/docs/1.操作系统/2.Kernel/4.CPU/Interrupts(中断)/Interrupts(中断).md)
 
 这用于记录每个 IO 设备每个 CPU 的中断数。从 Linux 2.6.24 开始，至少对于 i386 和 x86-64 体系结构，这还包括系统内部的中断（即与设备本身不相关的中断），例如 NMI（不可屏蔽中断），LOC（本地）。计时器中断），而对于 SMP 系统，则是 TLB（TLB 刷新中断），RES（重新安排中断），CAL（远程功能调用中断）等。格式非常容易读取，以 ASCII 格式完成。
 
@@ -373,4 +373,4 @@ cpu47  200     0     134       4147222     10       0     0        0     0      
 
 # 分类
 
-#文件系统
+# 文件系统

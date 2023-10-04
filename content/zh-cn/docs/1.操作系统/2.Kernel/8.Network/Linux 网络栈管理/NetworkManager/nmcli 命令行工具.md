@@ -5,6 +5,7 @@ title: nmcli 命令行工具
 # 概述
 
 > 参考：
+>
 > - [RedHat7官方文档，网络指南-使用 nmcli 配置 IP 网络](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-configuring_ip_networking_with_nmcli)
 > - [Manual(手册)，nmcli(1)](https://networkmanager.dev/docs/api/latest/nmcli.html)
 
@@ -52,7 +53,7 @@ OBJECT
 
 # c\[onnection] # Connections 的管理命令，常用命令
 
-详见：[connection 子命令章节](https://www.yuque.com/go/doc/33221854)
+详见：[nmcli connection 子命令](/docs/1.操作系统/2.Kernel/8.Network/Linux%20网络栈管理/NetworkManager/nmcli%20connection%20子命令.md)
 
 ## clone 克隆连接
 

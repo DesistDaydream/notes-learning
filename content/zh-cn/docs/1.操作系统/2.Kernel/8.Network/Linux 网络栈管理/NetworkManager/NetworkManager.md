@@ -86,7 +86,7 @@ s "ens33"
 
 **Settings**用于描述一个 Connection。每个 Setting 都具有一个或多个 `**Property(属性)**` 。Setting 与 Property 中间以点 `.` 连接。每个 Setting.Property 都会有一个值。
 
-一个 Connection 有哪些 Settings，Setting 又有哪些 Property，以及这些 Property 都有什么作用，详见[Connection 配置文件详解](https://www.yuque.com/go/doc/33221861)
+一个 Connection 有哪些 Settings，Setting 又有哪些 Property，以及这些 Property 都有什么作用，详见 [Connection 配置详解](/docs/1.操作系统/2.Kernel/8.Network/Linux%20网络栈管理/NetworkManager/Connection%20配置详解.md)
 
 下面的命令，可以从 D-Bus API 中获取配置文件所在路径
 
@@ -151,7 +151,7 @@ ipv4.gateway:                           172.19.42.1
 
 ## NetworkManager API
 
-NetworkManager 提供了一个 API，用来管理 Connection、检查网络配置等。[nmcli 这个命令行工具](https://www.yuque.com/go/doc/33221856)是官方提供的用于使用 API 的客户端应用程序。
+NetworkManager 提供了一个 API，用来管理 Connection、检查网络配置等。[nmcli 命令行工具](/docs/1.操作系统/2.Kernel/8.Network/Linux%20网络栈管理/NetworkManager/nmcli%20命令行工具.md) 是官方提供的用于使用 API 的客户端应用程序。
 
 > 也可以手动管理 Connection 文件，就跟出现 NetworkManager 之前一样，手动配置 /etc/sysconfig/network-scripts 目录下的网络设备配置文件，然后重启 deamon 进程以便加载这些文件即可。
 

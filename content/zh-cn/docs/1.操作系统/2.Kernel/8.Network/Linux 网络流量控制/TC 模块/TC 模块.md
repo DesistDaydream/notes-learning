@@ -6,6 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
+>
 > - [原文链接](https://github.com/liucimin/Learning/blob/master/linux%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3/Linux-TC%E6%A1%86%E6%9E%B6%E8%AF%A6%E8%A7%A3.md)
 >   - [Linux 的高级路由和流量控制](http://www.lartc.org/LARTC-zh_CN.GB2312.pdf)
 >   - [Open vSwitch 之 QoS 的实现](http://www.sdnlab.com/19208.html)
@@ -102,55 +103,60 @@ qddis（排队规则）分为 CLASSLESS QDISC 和 CLASSFUL QDISC   类别如下
 
 ### CLASSLESS QDISC （无类别 QDISC）
 
-#### 1.无类别 QDISC 包括：
+#### 1.无类别 QDISC 包括
 
-**              \[ p | b ]fifo**,使用最简单的 qdisc（排队规则），纯粹的先进先出。只有一个参数：limit ，用来设置队列的长度，pfifo 是以数据包的个数为单位；bfifo 是以字节数为单位。
+**\[ p | b ]fifo**,使用最简单的 qdisc（排队规则），纯粹的先进先出。只有一个参数：limit ，用来设置队列的长度，pfifo 是以数据包的个数为单位；bfifo 是以字节数为单位。
 
 ---
 
-**               pfifo_fast**，在编译内核时，如果打开了高级路由器（Advanced Router）编译选项，pfifo_fast 就是系统的标准 qdisc(排队规则)。它的队列包括三个波段（band）。在每个波段里面，使用先进先出规则。而三个波段（band）的优先级也不相同，band 0 的优先级最高，band 2 的最低。如果 band 0 里面有数据包，系统就不会处理 band 1 里面的数据包，band 1 和 band 2 之间也是一样的。数据包是按照服务类型（Type Of Service，TOS ）被分配到三个波段（band）里面的。
+**pfifo_fast**，在编译内核时，如果打开了高级路由器（Advanced Router）编译选项，pfifo_fast 就是系统的标准 qdisc(排队规则)。它的队列包括三个波段（band）。在每个波段里面，使用先进先出规则。而三个波段（band）的优先级也不相同，band 0 的优先级最高，band 2 的最低。如果 band 0 里面有数据包，系统就不会处理 band 1 里面的数据包，band 1 和 band 2 之间也是一样的。数据包是按照服务类型（Type Of Service，TOS ）被分配到三个波段（band）里面的。
 
-**               red**，red 是 Random Early Detection（随机早期探测）的简写。如果使用这种 qdsic，当带宽的占用接近与规定的带宽时，系统会随机的丢弃一些数据包。他非常适合高带宽的应用。
+**red**，red 是 Random Early Detection（随机早期探测）的简写。如果使用这种 qdsic，当带宽的占用接近与规定的带宽时，系统会随机的丢弃一些数据包。他非常适合高带宽的应用。
 
-**              sfq**，sfq 是 Stochastic Fairness Queueing 的简写。它会按照会话（session --对应与每个 TCP 连接或者 UDP 流）为流量进行排序，然后循环发送每个会话的数据包。
+**sfq**，sfq 是 Stochastic Fairness Queueing 的简写。它会按照会话（session --对应与每个 TCP 连接或者 UDP 流）为流量进行排序，然后循环发送每个会话的数据包。
 
-**             tbf**，tbf 是 Token Bucket Filter 的简写，适用于把流速降低到某个值。
+**tbf**，tbf 是 Token Bucket Filter 的简写，适用于把流速降低到某个值。
 
 #### 2.无类别 qdisc 的配置
 
 如果没有可分类 qdisc，不可分类 qdisc 只能附属于设备的根。它们的用法如下:
 
-    tc qdisc add dev DEV root QDISC QDISC_PARAMETERS
+```bash
+tc qdisc add dev DEV root QDISC QDISC_PARAMETERS
+```
 
 要删除一个不可分类 qdisc，需要使用如下命令
 
-    tc qdisc del dev DEV root
+```bash
+tc qdisc del dev DEV root
+```
 
 一个网络接口上如果没有设置 qdisc，pfifo_fast 就作为缺省的 qdisc。
 
 ### CLASSFUL QDISC(分类 QDISC)
 
-#### 可分类 QDISC 包括：
+#### 可分类 QDISC 包括
 
-**   CBQ**，CBQ 是 Class Based Queueing（基于类别排队）的缩写。它实现了一个丰富的连接共享类别结构，既有限制（shaping）带宽的能力，也具有带宽优先级别管理的能力。带宽限制是通过计算连接的空闲时间完成的。空闲时间的计算标准是数据包离队事件的频率和下层连接（数据链路层）的带宽。
+**CBQ**，CBQ 是 Class Based Queueing（基于类别排队）的缩写。它实现了一个丰富的连接共享类别结构，既有限制（shaping）带宽的能力，也具有带宽优先级别管理的能力。带宽限制是通过计算连接的空闲时间完成的。空闲时间的计算标准是数据包离队事件的频率和下层连接（数据链路层）的带宽。
 
-** HTB**，HTB 是 Hierarchy Token Bucket 的缩写。通过在实践基础上的改进，它实现一个丰富的连接共享类别体系。使用 HTB 可以很容易地保证每个类别的带宽，虽然它也允许特定的类可以突破带宽上限，占用别的类的带宽。HTB 可以通过 TBF（Token Bucket Filter）实现带宽限制，也能够划分类别的优先级。
+**HTB**，HTB 是 Hierarchy Token Bucket 的缩写。通过在实践基础上的改进，它实现一个丰富的连接共享类别体系。使用 HTB 可以很容易地保证每个类别的带宽，虽然它也允许特定的类可以突破带宽上限，占用别的类的带宽。HTB 可以通过 TBF（Token Bucket Filter）实现带宽限制，也能够划分类别的优先级。
 
 **PRIO**，PRIO qdisc 不能限制带宽，因为属于不同类别的数据包是顺序离队的。使用 PRIO qdisc 可以很容易对流量进行优先级管理，只有属于高优先级类别的数据包全部发送完毕，参会发送属于低优先级类别的数据包。为了方便管理，需要使用 iptables 或者 ipchains 处理数据包的服务类型（Type Of Service，TOS）。
 
 HTB 型的一些注意：
-1\. HTB 型 class 具有优先级，prio。可以指定优先级，数字低的优先级高，优先级范围从 0~7，0 最高。
+
+1. HTB 型 class 具有优先级，prio。可以指定优先级，数字低的优先级高，优先级范围从 0~7，0 最高。
 它的效果是：存在空闲带宽时，优先满足高优先级 class 的需求，使得其可以占用全部空闲带宽，上限为 ceil 所指定的值。若此时还有剩余空闲带宽，则优先级稍低的 class 可以借用之。依优先级高低，逐级分配。
 
-    2. 相同优先级的class分配空闲带宽时，按照自身class所指定的rate（即保证带宽）之间的比例瓜分空闲带宽。
-      例如：clsss A和B优先级相同，他们的rate比为3：5，则class A占用空闲的3/8，B占5/8。
+2. 相同优先级的class分配空闲带宽时，按照自身class所指定的rate（即保证带宽）之间的比例瓜分空闲带宽。
+例如：clsss A和B优先级相同，他们的rate比为3：5，则class A占用空闲的3/8，B占5/8。
 
-    3. tc filter的prio使用提示，prio表示该filter的测试顺序，小的会优先进行测试，如果匹配到，则不会继续测试。故此filter 的prio跟class的prio并不一样，class的prio表明了此class的优先级：当有空闲带宽时prio 数值低的（优先级高）class会优先占用空闲。
-     若不同优先级的filter都可以匹配到包，则优先级高的filter起作用。相同优先级的filter（必须为同种类型classifier）严格按照命令的输入顺序进行匹配，先执行的filter起作用。
+3. tc filter的prio使用提示，prio表示该filter的测试顺序，小的会优先进行测试，如果匹配到，则不会继续测试。故此filter 的prio跟class的prio并不一样，class的prio表明了此class的优先级：当有空闲带宽时prio 数值低的（优先级高）class会优先占用空闲。
+若不同优先级的filter都可以匹配到包，则优先级高的filter起作用。相同优先级的filter（必须为同种类型classifier）严格按照命令的输入顺序进行匹配，先执行的filter起作用。
 
 #### 操作原理
 
-\*\*             \*\*类（class）组成一个树，每个类都只有一个父类，而一个类可以有多个子类。某些 qdisc （例如：CBQ 和 HTB）允许在运行时动态添加类，而其它的 qdisc（例如：PRIO）不允许动态建立类。允许动态添加类的 qdisc 可以有零个或者多个子类，由它们为数据包排队。此外，每个类都有一个叶子 qdisc，默认情况下，这个也在 qdisc 有可分类，不过每个子类只能有一个叶子 qdisc。 当一个数据包进入一个分类 qdisc，它会被归入某个子类。我们可以使用一下三种方式为数据包归类，不过不是所有的 qdisc 都能够使用这三种方式。
+类（class）组成一个树，每个类都只有一个父类，而一个类可以有多个子类。某些 qdisc （例如：CBQ 和 HTB）允许在运行时动态添加类，而其它的 qdisc（例如：PRIO）不允许动态建立类。允许动态添加类的 qdisc 可以有零个或者多个子类，由它们为数据包排队。此外，每个类都有一个叶子 qdisc，默认情况下，这个也在 qdisc 有可分类，不过每个子类只能有一个叶子 qdisc。 当一个数据包进入一个分类 qdisc，它会被归入某个子类。我们可以使用一下三种方式为数据包归类，不过不是所有的 qdisc 都能够使用这三种方式。
 
 如果过滤器附属于一个类，相关的指令就会对它们进行查询。过滤器能够匹配数据包头所有的域，也可以匹配由 ipchains 或者 iptables 做的标记。
 
@@ -168,24 +174,19 @@ qdisc，一个 qdisc 会被分配一个主序列号，叫做句柄（handle）�
 
 #### 单位
 
-\*\*            \*\*tc 命令所有的参数都可以使用浮点数，可能会涉及到以下计数单位。
+tc 命令所有的参数都可以使用浮点数，可能会涉及到以下计数单位。
 
-##### 带宽或者流速单位：
-
+##### 带宽或者流速单位
 
 ##### 数据的数量单位
 
-
-##### 时间的计量单位：
-
-
+##### 时间的计量单位
 
 # TC 的安装
 
 TC 是 Linux 自带的模块，一般情况下不需要另行安装，可以用 man tc 查看 tc 相关命令细节，tc 要求内核 2.4.18 以上
 
-    TC的安装
-    TC是Linux自带的模块，一般情况下不需要另行安装，可以用 man tc 查看tc 相关命令细节，tc 要求内核 2.4.18 以上
+TC是Linux自带的模块，一般情况下不需要另行安装，可以用 man tc 查看tc 相关命令细节，tc 要求内核 2.4.18 以上
 
 # TC 命令
 
@@ -427,13 +428,13 @@ tc class change dev eth0 parent 1:1 classid 1:2 cbq bandwidth 10Mbit rate 7Mbit 
 tc filter change dev eth0 parent 1:0 protocol ip prio 100 route to 10 flowid 1:8
 ```
 
-    	删除，删除动作通过 tc filter del 命令实现，如下所示：
+删除，删除动作通过 tc filter del 命令实现，如下所示：
 
 ```shell
 tc filter del dev eth0 parent 1:0 protocol ip prio 100 route to 10
 ```
 
-4\)与过滤器————映射路由的维护
+4）与过滤器————映射路由的维护
 
 增添，增添动作通过 ip route add 命令实现，如前面所示。
 
@@ -443,7 +444,7 @@ tc filter del dev eth0 parent 1:0 protocol ip prio 100 route to 10
    ip route change 192.168.1.30 dev eth0 via 192.168.1.66 realm 8
 ```
 
-    	删除，删除动作通过 ip route del 命令实现，如下所示：
+删除，删除动作通过 ip route del 命令实现，如下所示：
 
 ```shell
     ip route del 192.168.1.30 dev eth0 via 192.168.1.66 realm 8

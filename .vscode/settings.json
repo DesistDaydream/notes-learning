@@ -1,7 +1,4 @@
 {
-    "[markdown]": {
-        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
-    },
     "markdownlint.config": {
         "single-h1": false,
         "no-duplicate-header": false,
@@ -9,5 +6,8 @@
         "no-alt-text": false,
         // "hard_tab": false
         "no-bare-urls": false,
+    },
+    "[html]": {
+        "editor.formatOnSave": false
     },
 }

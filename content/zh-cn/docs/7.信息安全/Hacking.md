@@ -8,7 +8,7 @@ title: Hacking
 
 **Robo Hacking Game(机器人网络安全大赛，简称 RHG)** 是中国版的 CGC 大赛。
 
-**Cyber Grand Challenge(网络空间超级挑战赛，简称 CGC)** 是 **Defense Advanced Research Projects Agency(国防高级研究计划局，简称 DARPA) **举办的比赛。
+**Cyber Grand Challenge(网络空间超级挑战赛，简称 CGC)** 是 **Defense Advanced Research Projects Agency(国防高级研究计划局，简称 DARPA)** 举办的比赛。
 
 ## 安全公司
 

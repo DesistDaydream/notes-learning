@@ -47,7 +47,7 @@ iptables 中有默认的内置 4 个表，每个表的名称就是其 chain 类�
 
 ### raw- 原始
 
-用于跳过 nat 表以及连接追踪机制(ip_conntrack)的处理，详见 [连接跟踪系统](docs/1.操作系统/2.Kernel/8.Network/Linux%20网络流量控制/Connnection%20Tracking(连接跟踪).md)
+用于跳过 nat 表以及连接追踪机制(ip_conntrack)的处理，详见 [连接跟踪系统](/docs/1.操作系统/2.Kernel/8.Network/Linux%20网络流量控制/Connnection%20Tracking(连接跟踪).md)
 
 - 该类型的链可作用在以下几个 Hook 点上：PREROUTING、OUTPUT
 
@@ -89,4 +89,4 @@ INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，�
 
 # 分类
 
-#操作系统技术 #网络
+# 操作系统技术 #网络

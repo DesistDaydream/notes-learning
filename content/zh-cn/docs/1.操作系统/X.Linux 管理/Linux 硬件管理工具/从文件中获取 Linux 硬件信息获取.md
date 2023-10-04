@@ -72,7 +72,7 @@ BISO 信息
 
 # CPU(处理器)
 
-在 [Proc File System](docs/1.操作系统/2.Kernel/6.Filesystem/特殊文件系统/Proc%20File%20System.md) 的 `/proc/stst` 和 `/proc/cpuinfo` 文件中可以查看 CPU 相关的信息
+在 [Proc File System](/docs/1.操作系统/2.Kernel/6.Filesystem/特殊文件系统/Proc%20File%20System.md) 的 `/proc/stst` 和 `/proc/cpuinfo` 文件中可以查看 CPU 相关的信息
 
 通过 cat /proc/cpuinfo 命令，可以查看 CPU 相关的信息：
 
@@ -151,11 +151,11 @@ processor : 15
 
 通过上面的结果，可以看出这台机器：
 
-1. physical id # 有 2 个物理处理器(i.e.装在主板上的 CPU)（有 2 个）
-2. cpu cores # 每个物理处理器有 4 个内核（为 4）
-3. siblings # 每个物理处理器有 8 个逻辑处理器（为 8）
-    1. 可见台机器的处理器开启了**超线程技术**，每个内核（core）被划分为了 2 个逻辑处理器（processor）
-4. processor # 总共有 16 个逻辑处理器（有 16 个）
+- physical id # 有 2 个物理处理器(i.e.装在主板上的 CPU)（有 2 个）
+- cpu cores # 每个物理处理器有 4 个内核（为 4）
+- siblings # 每个物理处理器有 8 个逻辑处理器（为 8）
+  - 可见台机器的处理器开启了**超线程技术**，每个内核（core）被划分为了 2 个逻辑处理器（processor）
+- processor # 总共有 16 个逻辑处理器（有 16 个）
 
 **超线程技术**：超线程技术就是利用特殊的硬件指令，把两个逻辑处理器模拟成两个物理芯片，让单个处理器都能使用线程级并行计算，进而兼容多线程操作系统和软件，减少了 CPU 的闲置时间，提高的 CPU 的运行效率。
 

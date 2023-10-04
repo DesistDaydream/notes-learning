@@ -1,10 +1,24 @@
 ---
 title: Apifox
+linkTitle: Apifox
+date: 2024-01-16T11:21
+weight: 20
 ---
+
+# 概述
+
+> 参考：
+> 
+> -
+
+内嵌 [PostMan](docs/2.编程/API/API%20相关工具/PostMan.md) 的 Postman Collection SDK，可以直接使用 pm 对象对请求和响应进行控制。
+
+在 https://apifox.com/help/pre-post-processors-and-scripts/scripts/api-references/pm-reference#pm 可以看到 Apifox 对 pm 对象的描述文档
 
 # 自带的动态变量
 
 > 参考：
+> 
 > - [Postman 官方文档](https://learning.postman.com/docs/writing-scripts/script-references/variables-list/)
 > - [ApiFox 官方文档](https://www.apifox.cn/help/app/api-manage/dynamic-variables/)
 
@@ -13,6 +27,7 @@ title: Apifox
 程序脚本
 
 > 参考：
+> 
 > - [Postman 官方文档](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/)
 > - [ApiFox 官方文档](https://www.apifox.cn/help/app/scripts/)
 

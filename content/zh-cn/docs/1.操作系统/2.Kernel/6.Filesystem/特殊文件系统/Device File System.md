@@ -5,7 +5,7 @@ title: Device File System
 # 概述
 
 > 参考：
-> 
+>
 > - [Manual(手册)，devfs(5)](https://man.cx/devfs)
 > - [IBM，开发工作-Linux-DM 机制](https://www.ibm.com/developerworks/cn/linux/l-devmapper/index.html)
 
@@ -18,7 +18,7 @@ The [mknod(8)](<https://man.cx/mknod(8)>) 工具可用于恢复 devfs 下已删�
 # /dev/dm-\*
 
 > 参考：
-> - [Wiki,Device mapper](https://en.wikipedia.org/wiki/Device_mapper)
+> - [Wiki，Device mapper](https://en.wikipedia.org/wiki/Device_mapper)
 
 **Device Mapper(设备映射，简称 dm)**，是一个由 Linux 内核提供的框架，用于将物理块设备映射到更高级别的虚拟块设备。dm 是 LVM、软 Raid、dm-crypt 磁盘加密的基础。
 

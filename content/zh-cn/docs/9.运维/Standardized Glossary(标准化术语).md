@@ -4,11 +4,11 @@ title: Standardized Glossary(标准化术语)
 
 # 部署环境
 
-Proof of Concept(概念验证，简称 poc)
-Development(开发，简称 dev)
-Test(测试，简称 test)
-(灰度，简称 pre)
-Production(生产，简称 pro)
+- Proof of Concept(概念验证，简称 poc)
+- Development(开发，简称 dev)
+- Test(测试，简称 test)
+- (灰度，简称 pre)
+- Production(生产，简称 pro)
 
 # 服务器命名规范
 

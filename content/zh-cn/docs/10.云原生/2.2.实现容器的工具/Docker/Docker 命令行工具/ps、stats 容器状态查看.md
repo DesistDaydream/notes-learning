@@ -7,8 +7,11 @@ title: ps、stats 容器状态查看
 ## Syntax(语法)
 
 **docker ps \[OPTIONS]**
+
 以列表的形式显示容器，包括以下几个字段 CONTAINER ID(容器 ID 号)、IMAGE(启动该容器所用的 image)、COMMAND(该容器运行的命令)、CREATED(该容器被创建了多久)、STATUS(容器当前状态)、PORTS(容器所用端口)、NAMES(容器名，随机生成)，效果如图所示：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/tuw6e1/1616121626421-52b41c7f-068e-4c87-9a54-8aab4d638bb0.png)
+
 还可以通过 -s 选项，来输出容器占用的磁盘空间大小。
 
 **OPTIONS**
@@ -84,4 +87,4 @@ OPTIONS
 
 EXAMPLE
 
-- docker stats --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}" # 使用 go 模板输出指定内容
+- `docker stats --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}"` # 使用 go 模板输出指定内容

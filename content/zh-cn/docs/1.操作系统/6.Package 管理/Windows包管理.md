@@ -10,10 +10,12 @@ weight: 20
 > 
 > - 官方文档
 
+**%LOCALAPPDATA%/Packages/** # 通过应用商店安装的程序会保存在这里？待确认
 
 # AppX
 
 > 参考：
+> 
 > - [官方文档](https://learn.microsoft.com/en-us/powershell/module/appx/)
 
 Get-AppxPackage

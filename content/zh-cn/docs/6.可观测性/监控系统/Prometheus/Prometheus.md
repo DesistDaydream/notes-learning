@@ -1,5 +1,7 @@
 ---
 title: Prometheus
+linkTitle: Prometheus
+date: 2023-10-31T22:24
 weight: 1
 ---
 
@@ -14,7 +16,7 @@ weight: 1
 >   - [YouTube](https://www.youtube.com/watch?v=rT4fJNbfe14)
 >   - [B 站翻译](https://www.bilibili.com/video/BV1aW4y147GX)
 
-Prometheus 是由 SoundCloud 开发的 开源监控报警系统 和 时间序列数据库(TSDB) 。**Time Series(时间序列)** 概念详见：[Data Model(数据模型)](docs/6.可观测性/监控系统/Prometheus/Storage(存储)/Data%20Model(数据模型).md)。使用 Go 语言开发，是 Google BorgMon 监控系统的开源版本。
+Prometheus 是由 SoundCloud 开发的 开源监控报警系统 和 时间序列数据库(TSDB) 。**Time Series(时间序列)** 概念详见：[Data Model(数据模型)](/docs/6.可观测性/监控系统/Prometheus/Storage(存储)/Data%20Model(数据模型).md)。使用 Go 语言开发，是 Google BorgMon 监控系统的开源版本。
 
 > 题外话：Google 的 Borg 诞生了 kuberntes、Google 的 Borgmon 诞生了 Prometheus
 
@@ -25,7 +27,9 @@ Prometheus 是由 SoundCloud 开发的 开源监控报警系统 和 时间序列
 Prometheus 的基本原理是通过 HTTP 协议周期性抓取被监控组件的状态，任意组件只要提供对应的 HTTP 接口就可以接入监控。不需要任何 SDK 或者其他的集成过程。这样做非常适合做虚拟化环境监控系统，比如 VM、Docker、Kubernetes 等。输出被监控组件信息的 HTTP 接口被叫做 exporter 。
 
 下面这张图说明了 Prometheus 的整体架构，以及生态中的一些组件作用：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/usvgfl/1616041189523-5ca97287-5886-4ab9-a4f8-6c249117e314.jpeg)
+
 Prometheus 生态圈中包含了多个组件，其中许多组件是可选的，多数 Prometheus 组件是 Go 语言写的，使得这些组件很容易编译和部署：
 
 - **Prometheus Server** # 主要负责数据抓取和存储，提供 PromQL 查询语言的支持。用于收集和存储时间序列数据。

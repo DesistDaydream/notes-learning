@@ -9,7 +9,7 @@ weight: 4
 >
 > - [官方文档，系统模拟-磁盘镜像](https://qemu-project.gitlab.io/qemu/system/images.html)
 > - [GitHub 文档，qemu/qemu/docs/interop/qcow2.txt](https://github.com/qemu/qemu/blob/master/docs/interop/qcow2.txt)
-> - [Wiki,qcow](https://en.wikipedia.org/wiki/Qcow)
+> - [Wiki，qcow](https://en.wikipedia.org/wiki/Qcow)
 > - 其他
 >   - <https://www.unixmen.com/qemu-kvm-using-copy-write-mode/>
 >   - <https://opengers.github.io/virtualization/kvm-libvirt-qemu-5/>

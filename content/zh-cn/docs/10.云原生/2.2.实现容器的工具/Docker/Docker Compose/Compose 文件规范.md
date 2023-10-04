@@ -1,14 +1,19 @@
 ---
 title: Compose 文件规范
+linkTitle: Compose 文件规范
+date: 2023-11-03T22:23
+weight: 2
 ---
 
 # 概述
 
 > 参考：
+>
 > - [官方文档](https://docs.docker.com/compose/compose-file/)
 > - [v3 版本规范](https://docs.docker.com/compose/compose-file/compose-file-v3/)
 
 一个 Docker Compose 文件中通常包含如下顶级字段：
+
 - **version** # **必须的**。
 - **services**
 - **networks**
@@ -35,6 +40,7 @@ services:
 ```
 
 或者，作为具有在上下文指定的路径的对象，以及可选的 Dockerfile 和 args：
+
 ```yaml
 version: "3"
 services:
@@ -57,8 +63,10 @@ services:
 - labels：设置构建镜像的标签。
 - target：多层构建，可以指定构建哪一层。
 
-## cap_add，cap_drop
-添加或删除容器拥有的宿主机的内核功能。等价于 docker CLI 的 --cap-add 标志
+## cap_add 与 cap_drop
+
+添加或删除容器拥有的宿主机的内核功能。等价于 [docker run 命令中的的 --cap-add 标志](/docs/10.云原生/2.2.实现容器的工具/Docker/Docker%20命令行工具/run.md#特权%20与%20Linux%20Capabilities)
+
 ```yaml
 cap_add:
   - ALL # 开启全部权限
@@ -67,7 +75,8 @@ cap_drop:
 ```
 
 ## cgroup_parent
-为容器指定父 cgroup 组，意味着将继承该组的资源限制。
+
+为容器指定父 cgroup 组，意味着将继承该组的资源限制
 
 ```yaml
 cgroup_parent: m-executor-abcd
@@ -75,13 +84,16 @@ cgroup_parent: m-executor-abcd
 
 ## command
 
-覆盖容器启动的默认命令。
+覆盖容器启动的默认命令
+
 ```yaml
 command: ["bundle", "exec", "thin", "-p", "3000"]
 ```
 
 ## container_name
+
 指定自定义容器名称，而不是生成的默认名称。
+
 ```yaml
 container_name: my-web-container
 ```
@@ -118,13 +130,16 @@ services:
 devices:
   - "/dev/ttyUSB0:/dev/ttyUSB0"
 ```
+
 1
 2
 Plain Text
 
 ## dns
+
 自定义 DNS 服务器，可以是单个值或列表的多个值。
-```
+
+```yaml
 dns: 8.8.8.8
 dns:
   - 8.8.8.8
@@ -132,8 +147,10 @@ dns:
 ```
 
 ## dns_search
+
 自定义 DNS 搜索域。可以是单个值或列表。
-```
+
+```yaml
 dns_search: example.com
 dns_search:
   - dc1.example.com
@@ -141,12 +158,16 @@ dns_search:
 ```
 
 ## entrypoint
-覆盖容器默认的 entrypoint。
-```
+
+覆盖容器默认的 entrypoint
+
+```yaml
 entrypoint: /code/entrypoint.sh
 ```
+
 也可以是以下格式：
-```
+
+```yaml
 entrypoint:
     - php
     - -d
@@ -157,13 +178,16 @@ entrypoint:
 ```
 
 ## env_file
+
 从文件添加环境变量。可以是单个值或列表的多个值。
-```
+
+```yaml
 env_file: .env
 ```
 
 也可以是列表格式：
-```
+
+```yaml
 env_file:
   - ./common.env
   - ./apps/web.env
@@ -171,39 +195,49 @@ env_file:
 ```
 
 ## environment
+
 添加环境变量。您可以使用数组或字典、任何布尔值，布尔值需要用引号引起来，以确保 YML 解析器不会将其转换为 True 或 False。
-```
+
+```yaml
 environment:
   RACK_ENV: development
   SHOW: 'true'
 ```
 
 ## expose
+
 暴露端口，但不映射到宿主机，只被连接的服务访问。
 
 仅可以指定内部端口为参数：
-```
+
+```yaml
 expose:
  - "3000"
  - "8000"
 ```
 
 ## extra_hosts
+
 添加主机名映射。类似 docker client --add-host。
-```
+
+```yaml
 extra_hosts:
  - "somehost:162.242.195.82"
  - "otherhost:50.31.209.229"
 ```
+
 以上会在此服务的内部容器中 /etc/hosts 创建一个具有 ip 地址和主机名的映射关系：
-```
+
+```yaml
 162.242.195.82  somehost
 50.31.209.229   otherhost
 ```
 
 ## healthcheck
+
 用于检测 docker 服务是否健康运行。
-```
+
+```yaml
 healthcheck:
   test: ["CMD", "curl", "-f", "http://localhost"] # 设置检测程序
   interval: 1m30s # 设置检测间隔
@@ -213,8 +247,10 @@ healthcheck:
 ```
 
 ## image
+
 指定容器运行的镜像。以下格式都可以：
-```
+
+```yaml
 image: redis
 image: ubuntu:14.04
 image: tutum/influxdb
@@ -223,25 +259,31 @@ image: a4bc65fd # 镜像id
 ```
 
 ## logging
+
 服务的日志记录配置。
 driver：指定服务容器的日志记录驱动程序，默认值为json-file。有以下三个选项
-```
+
+```yaml
 driver: "json-file"
 driver: "syslog"
 driver: "none"
 ```
+
 仅在 json-file 驱动程序下，可以使用以下参数，限制日志得数量和大小。
-```
+
+```yaml
 logging:
   driver: json-file
   options:
     max-size: "200k" # 单个文件大小为200k
     max-file: "10" # 最多10个文件
 ```
+
 当达到文件限制上限，会自动删除旧得文件。
 
 syslog 驱动程序下，可以使用 syslog-address 指定日志接收地址。
-```
+
+```yaml
 logging:
   driver: syslog
   options:
@@ -249,8 +291,10 @@ logging:
 ```
 
 ## network_mode
+
 设置网络模式。
-```
+
+```yaml
 network_mode: "bridge"
 network_mode: "host"
 network_mode: "none"
@@ -259,8 +303,10 @@ network_mode: "container:[container name/id]"
 ```
 
 ## networks
+
 配置容器连接的网络，引用顶级 networks 下的条目 。
-```
+
+```yaml
 services:
   some-service:
     networks:
@@ -287,16 +333,21 @@ networks:
 - always：容器总是重新启动。
 - on-failure：在容器非正常退出时（退出状态非0），才会重启容器。
 - unless-stopped：在容器退出时总是重启容器，但是不考虑在Docker守护进程启动时就已经停止了的容器
-```
+
+```yaml
 restart: "no"
 restart: always
 restart: on-failure
 restart: unless-stopped
 ```
+
 注：swarm 集群模式，请改用 restart_policy。
+
 ## secrets
+
 存储敏感数据，例如密码：
-```
+
+```yaml
 version: "3.1"
 services:
 mysql:
@@ -311,8 +362,10 @@ secrets:
 ```
 
 ## security_opt
+
 修改容器默认的 schema 标签。
-```
+
+```yaml
 security-opt：
   - label:user:USER   # 设置容器的用户标签
   - label:role:ROLE   # 设置容器的角色标签
@@ -321,23 +374,31 @@ security-opt：
 ```
 
 ## stop_grace_period
+
 指定在容器无法处理 SIGTERM (或者任何 stop_signal 的信号)，等待多久后发送 SIGKILL 信号关闭容器。
-```
+
+```yaml
 stop_grace_period: 1s # 等待 1 秒
 stop_grace_period: 1m30s # 等待 1 分 30 秒
 ```
+
 默认的等待时间是 10 秒。
+
 ## stop_signal
+
 设置停止容器的替代信号。默认情况下使用 SIGTERM 。
 
 以下示例，使用 SIGUSR1 替代信号 SIGTERM 来停止容器。
-```
+
+```yaml
 stop_signal: SIGUSR1
 ```
 
 ## sysctls
+
 设置容器中的内核参数，可以使用数组或字典格式。
-```
+
+```yaml
 sysctls:
   net.core.somaxconn: 1024
   net.ipv4.tcp_syncookies: 0
@@ -347,8 +408,10 @@ sysctls:
 ```
 
 ## tmpfs
+
 在容器内安装一个临时文件系统。可以是单个值或列表的多个值。
-```
+
+```yaml
 tmpfs: /run
 tmpfs:
   - /run
@@ -356,8 +419,10 @@ tmpfs:
 ```
 
 ## ulimits
+
 覆盖容器默认的 ulimit。
-```
+
+```yaml
 ulimits:
   nproc: 65535
   nofile:
@@ -366,8 +431,10 @@ ulimits:
 ```
 
 ## volumes
+
 将主机的数据卷或着文件挂载到容器里。
-```
+
+```yaml
 version: "3.7"
 services:
   db:
@@ -387,9 +454,6 @@ services:
 
 # volumes
 
-
 # configs
 
-
 # secrets
-

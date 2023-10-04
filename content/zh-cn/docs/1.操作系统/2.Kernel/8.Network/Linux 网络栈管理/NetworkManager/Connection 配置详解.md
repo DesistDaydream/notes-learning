@@ -31,7 +31,7 @@ s "bridge-slave-bond0"
 
 注意：
 
-- 在[nmcli](https://www.yuque.com/go/doc/33221856) 命令中使用 SETTING.PROPERTY 时，如果 SETTING 和 PROPERTY 是 唯一的，则可以使用 `Alias(别名)`。
+- 在 [nmcli 命令行工具](/docs/1.操作系统/2.Kernel/8.Network/Linux%20网络栈管理/NetworkManager/nmcli%20命令行工具.md) 命令中使用 SETTING.PROPERTY 时，如果 SETTING 和 PROPERTY 是 唯一的，则可以使用 `Alias(别名)`。
   - 比如 connection.typ 的别名为 type。其实就是缩写，简化操作。
 - 802-3-ethernet 类型就是一般物理网卡，通常使用 ethernet 别名表示。不管 ethernet 是作为 SETTING 还是作为 VALUE，都可以使用别名。但是在 -f 选项中，不能使用别名。
 - **在 RedHad 中，是无法从 /etc/NetworkManager/system-connections/ 目录中找到连接配置文件，这是因为 RedHad 系发行版使用的是 ifcfg-rh 插件**

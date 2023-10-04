@@ -5,7 +5,8 @@ weight: 50
 
 # OMSA（全称 Openmanage Server Administrator),是戴尔公司自主研发的 IT 系统管理解决方案
 
-<http://linux.dell.com/>
+http://linux.dell.com/
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gknv4x/1616067497715-90aa8503-f2c3-4436-ac53-560ef9f66d5f.jpeg)
 
 ## OMSA 的安装

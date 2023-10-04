@@ -10,6 +10,7 @@ weight: 1
 # python
 
 > 参考：
+> 
 > - [官方文档，Python 安装与使用-命令行和环境](https://docs.python.org/3/using/cmdline.html)
 
 python 是一个工具，用来管理 Python 语言编写的代码。

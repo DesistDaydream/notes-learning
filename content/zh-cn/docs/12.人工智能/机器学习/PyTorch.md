@@ -33,6 +33,10 @@ GPU 版的 PyTorch 依赖 CUDA
 
 > 如果我们想要使用 GPU 但是却安装的 CPU 版的 PyTorch，将会报错：`Torch not compiled with CUDA enabled`。说白了就是下载的 PyTorch 不是在 CUDA 环境下编译的，无法处理 CUDA 的请求。
 
+# 学习
+
+[B 站，10分钟入门神经网络 PyTorch 手写数字识别](https://www.bilibili.com/video/BV1GC4y15736)
+
 # 分类
 
 #人工智能 #机器学习 #Python

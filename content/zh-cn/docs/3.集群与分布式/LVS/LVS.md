@@ -7,8 +7,8 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki,LVS](https://en.wikipedia.org/wiki/Linux_Virtual_Server)
-> - [Wiki,IPVS](https://en.wikipedia.org/wiki/IP_Virtual_Server)
+> - [Wiki，LVS](https://en.wikipedia.org/wiki/Linux_Virtual_Server)
+> - [Wiki，IPVS](https://en.wikipedia.org/wiki/IP_Virtual_Server)
 > - [官网](http://www.linuxvirtualserver.org/)
 > - [官网,中文](http://www.linuxvirtualserver.org/zh/)
 > - [官方文档,HOWTO](http://www.austintek.com/LVS/LVS-HOWTO/HOWTO/)

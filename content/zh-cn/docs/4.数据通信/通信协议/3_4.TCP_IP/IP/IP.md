@@ -1,5 +1,8 @@
 ---
 title: IP
+linkTitle: IP
+date: 2023-11-16T21:13
+weight: 1
 ---
 
 # 概述
@@ -7,10 +10,10 @@ title: IP
 > 参考：
 >
 > - [RFC,791](https://datatracker.ietf.org/doc/html/rfc791)(IP 规范)
-> - [Wiki,Internet Protocol](https://en.wikipedia.org/wiki/Internet_Protocol)
-> - [Wiki,IPv4](https://en.wikipedia.org/wiki/IPv4)
-> - [Wiki,Mask(掩码)](<https://en.wikipedia.org/wiki/Mask_(computing)>)
-> - [Wiki,Classful Network(分类网络)](https://en.wikipedia.org/wiki/Classful_network)
+> - [Wiki，Internet Protocol](https://en.wikipedia.org/wiki/Internet_Protocol)
+> - [Wiki，IPv4](https://en.wikipedia.org/wiki/IPv4)
+> - [Wiki，Mask(掩码)](<https://en.wikipedia.org/wiki/Mask_(computing)>)
+> - [Wiki，Classful Network(分类网络)](https://en.wikipedia.org/wiki/Classful_network)
 > - [IANA,IPv4 地址空间分配情况](https://www.iana.org/assignments/ipv4-address-space/ipv4-address-space.xhtml)
 >   - [APNIC](https://www.apnic.net/)(管理亚太地区的 IP 地址注册机构)
 >     - [APNIC,帮助-FTP 数据库](https://ftp.apnic.net/stats/apnic/)(亚太地区所有分配的 IP 地址信息)
@@ -27,6 +30,7 @@ IP 基于数据包的 Header 中的 IP 地址，将数据包从源主机发送�
 # IPv4 地址
 
 IPv4 地址最多使用 32 bit 表示，即最多 32 个 1，这 32 bit 以 `点` 分割为 4 组，每组 8 bit，在使用时，使用十进制表示。比如：`192.168.0.1`。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/nahgxm/1633534934848-ca44c51a-c787-47e7-a82b-589b6f78124b.jpeg)
 
 ## IPv4 地址结构
@@ -59,11 +63,11 @@ IPv4 地址的这 32 bit 可以分为两部分
 
 - **单播地址**
 
-| 类 | 开头的 bit | 网络位 bit 数 | 主机位 bit 数 | 子网数量 | 每个子网的地址数 | 总地址数 | 起始地址 | 结束地址 | 默认子网掩码 | [CIDR](https://en.wikipedia.org/wiki/CIDR_notation) |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Class A | 0 | 8 | 24 | 128 (27) | 16,777,216 (224) | 2,147,483,648 (231) | 0.0.0.0 | 127.255.255.255[\[a\]](https://en.wikipedia.org/wiki/Classful_network#cite_note-5) | 255.0.0.0 | /8 |
-| Class B | 10 | 16 | 16 | 16,384 (214) | 65,536 (216) | 1,073,741,824 (230) | 128.0.0.0 | 191.255.255.255 | 255.255.0.0 | /16 |
-| Class C | 110 | 24 | 8 | 2,097,152 (221) | 256 (28) | 536,870,912 (229) | 192.0.0.0 | 223.255.255.255 | 255.255.255.0 | /24 |
+| 类      | 开头的 bit | 网络位 bit 数 | 主机位 bit 数 | 子网数量        | 每个子网的地址数 | 总地址数            | 起始地址  | 结束地址        | 默认子网掩码  | [CIDR](https://en.wikipedia.org/wiki/CIDR_notation) |
+| ------- | ---------- | ------------- | ------------- | --------------- | ---------------- | ------------------- | --------- | --------------- | ------------- | --------------------------------------------------- |
+| Class A | 0          | 8             | 24            | 128 (27)        | 16,777,216 (224) | 2,147,483,648 (231) | 0.0.0.0   | 127.255.255.255 | 255.0.0.0     | /8                                                  |
+| Class B | 10         | 16            | 16            | 16,384 (214)    | 65,536 (216)     | 1,073,741,824 (230) | 128.0.0.0 | 191.255.255.255 | 255.255.0.0   | /16                                                 |
+| Class C | 110        | 24            | 8             | 2,097,152 (221) | 256 (28)         | 536,870,912 (229)   | 192.0.0.0 | 223.255.255.255 | 255.255.255.0 | /24                                                 |
 
 - **组播地址**
 
@@ -76,16 +80,16 @@ IPv4 地址的这 32 bit 可以分为两部分
 - **特殊地址**
 
   - **网络地址** # 网络位不变，主机位全为 0 的 IP 地址代表网络本身
-  - **Broadcast Address(广播地址)** # 网络位不变，主机位全为 1 的 IP 地址代表本网络的广播。是专门用于同时向网络中所有[工作站](https://baike.baidu.com/item/%E5%B7%A5%E4%BD%9C%E7%AB%99/217955)进行发送的一个**地址**。在使用[TCP/IP 协议](https://baike.baidu.com/item/TCP%2FIP%20%E5%8D%8F%E8%AE%AE/2116790)的网络中，[主机](https://baike.baidu.com/item/%E4%B8%BB%E6%9C%BA/455151)[标识](https://baike.baidu.com/item/%E6%A0%87%E8%AF%86/6396929)段 host ID 为全 1 的 IP 地址为广播地址，广播的分组传送给 host ID 段所涉及的所有[计算机](https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA/140338)。例如，对于 10.1.1.0 （255.0.0.0 ）网段，其直播[广播](https://baike.baidu.com/item/%E5%B9%BF%E6%92%AD/656406)地址为 10.255.255.255 （255 即为 2 进制的 11111111 ），当发出一个目的地址为 10.255.255.255 的分组（[封包](https://baike.baidu.com/item/%E5%B0%81%E5%8C%85/2017669)）时，它将被分发给该[网段](https://baike.baidu.com/item/%E7%BD%91%E6%AE%B5/11026985)上的所有计算机。
-  - **Link Local(链路本地地址)** # 169.254.0.0 ~ 169.254.255.255。用于[链路本地地址](https://en.wikipedia.org/wiki/Link-local_address)[\[9\]](https://en.wikipedia.org/wiki/IPv4#cite_note-rfc3927-9)两台主机之间的单个链路上时，否则指定 IP 地址，如将有通常被从检索到的[DHCP](https://en.wikipedia.org/wiki/DHCP)服务器。
+  - **Broadcast Address(广播地址)** # 网络位不变，主机位全为 1 的 IP 地址代表本网络的广播。是专门用于同时向网络中所有工作站进行发送的一个**地址**。在使用 TCP/IP 协议的网络中，主机标识]段 host ID 为全 1 的 IP 地址为广播地址，广播的分组传送给 host ID 段所涉及的所有计算机。例如，对于 10.1.1.0 （255.0.0.0 ）网段，其直播广播地址为 10.255.255.255 （255 即为 2 进制的 11111111 ），当发出一个目的地址为 10.255.255.255 的分组（封包）时，它将被分发给该网段上的所有计算机。
+  - **Link Local(链路本地地址)** # 169.254.0.0 ~ 169.254.255.255。用于[链路本地地址](https://en.wikipedia.org/wiki/Link-local_address)两台主机之间的单个链路上时，否则指定 IP 地址，如将有通常被从检索到的 [DHCP](/docs/4.数据通信/通信协议/7.DHCP.md) 服务器。
 
 - **Private Network(私人网络地址)**
 
-| 名称 | [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) | 地址范围 | 地址数量 | 描述 |
-| --- | --- | --- | --- | --- |
-| 24-bit block | 10.0.0.0/8 | 10.0.0.0 – 10.255.255.255 | 16777216 | 一个完整的 A 类地址 Single Class A. |
-| 20-bit block | 172.16.0.0/12 | 172.16.0.0 – 172.31.255.255 | 1048576 | Contiguous range of 16 Class B blocks. |
-| 16-bit block | 192.168.0.0/16 | 192.168.0.0 – 192.168.255.255 | 65536 | Contiguous range of 256 Class C blocks. |
+| 名称         | CIDR           | 地址范围                      | 地址数量 | 描述                                    |
+| ------------ | -------------- | ----------------------------- | -------- | --------------------------------------- |
+| 24-bit block | 10.0.0.0/8     | 10.0.0.0 – 10.255.255.255     | 16777216 | 一个完整的 A 类地址 Single Class A.     |
+| 20-bit block | 172.16.0.0/12  | 172.16.0.0 – 172.31.255.255   | 1048576  | Contiguous range of 16 Class B blocks.  |
+| 16-bit block | 192.168.0.0/16 | 192.168.0.0 – 192.168.255.255 | 65536    | Contiguous range of 256 Class C blocks. |
 
 # IPv4 Datagram 结构
 
@@ -137,6 +141,7 @@ IP Fragment(分片) 主要通过首部中的 Identification、Flags、Fragment O
 > - [APNIC,搜索](https://wq.apnic.net/static/search.html)(通过给定的 IP 地址搜索谁拥有这个 IP)
 
 IPv4 和 IPv6 地址通常以分层方式分配。**ISP(互联网服务提供商)** 为用户分配 IP 地址。ISP 从 **LIR(本地互联网注册机构)** 或 **NIR(国家互联网注册机构)** 或 **RIR(相应的区域互联网注册机构)** 获取 IP 地址分配
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/nahgxm/1646384624162-21c9bca1-0960-45e4-87bb-3802eca96278.svg)
 
 | 登记处                             | 覆盖面积                                                              |

@@ -16,18 +16,14 @@ KubeConfig 是对 UserAccount 的扩展，KubeConfig 会创建 UserAccount 并�
 使用 KubeConfig 的原因：可以不用进行双向证书交换，节省交互开销。仅用于对安全性不那么高的情况，否则依然使用双向认证，比如 etcd 与 apiserver 的交互
 
 1. 首先，Kubeconfig 可以是任意文件名的文件，Kubeconfig 只是一个概念，并以文本文件的形式展示出来。
-
 2. 在开启了 TLS 的集群中，每当与集群交互的时候少不了的是身份认证，使用证书和 token(令牌)两种认证方式是最简单也最通用的认证方式。
 
 以 kubectl 为例，kubectl 只是个 go 编写的可执行程序，只要为 kubectl 配置合适的 KubeConfig，就可以在集群中的任意节点使用。kubectl 默认会从 ~/.kube 目录下查找文件名为 config 的文件，也可以使用 --kubeconfig 命令行标志时指明具体的 KubeConfig 文件。(注意：下文中的用户指的是 kubernetes 中的用户，与 linux 的用户不同)
 
 - 比如
 - 当 kubectl 去 get 或者 delete 等资源的时候，相当于是对集群请求执行该指令，而集群是通过 API Server 来接收这些指令的
-
 - 那么首先要确认的是使用 kubectl 进行操作的这个 User 是谁，这个 User 是否有证书来对我发起这些操作。如果我都不认可这个 User，那么我都不会接受这些指令请求，这就是 KubeConfig 的作用
-
 - 然后 KubeConfig 可以指明一个 User 与一个 cluster 绑定，当绑定之后，即证明该 User 可以通过 kubectl 来对该绑定集群的 API Server 发起请求，一个 User 可以绑定多个集群。一个集群也可绑定多个 User
-
 - 当 API Server 认可这个 User 通过 kubectl 发送的请求后，就需要下一步授权来对该请求中指令进行鉴权，鉴别这个 User 是否有权利执行这个指令
 
 总之，KubeConfig 就是访问集群所需认证信息文件。
@@ -41,7 +37,7 @@ KubeConfig 是对 UserAccount 的扩展，KubeConfig 会创建 UserAccount 并�
 
 使用命令修改：
 
-- 配置方法详见 [kubectl 的 config 子命令](https://www.yuque.com/go/doc/33163778)，当使用 --kubeconfig 指定文件时，如果文件不存在，则会自动创建，并包含基本模板
+- 配置方法详见 kubectl 的 [config 子命令](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/Kubernetes%20管理/kubectl%20命令行工具/config%20子命令.md)，当使用 --kubeconfig 指定文件时，如果文件不存在，则会自动创建，并包含基本模板
 - 直接对文件中的各个字段进行修改
 
 ## apiVersion: v1

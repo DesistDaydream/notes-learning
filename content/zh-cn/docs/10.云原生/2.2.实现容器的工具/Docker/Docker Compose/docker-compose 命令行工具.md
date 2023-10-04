@@ -1,10 +1,14 @@
 ---
 title: docker-compose 命令行工具
+linkTitle: docker-compose 命令行工具
+date: 2023-11-03T22:24
+weight: 3
 ---
 
 # 概述
 
 > 参考：
+>
 > - [官方文档](https://docs.docker.com/compose/reference/)
 
 通过 run 命令，可以在容器启动失败时，进行调试

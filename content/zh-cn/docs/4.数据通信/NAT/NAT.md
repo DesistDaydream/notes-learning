@@ -6,8 +6,8 @@ weight: 1
 # 概述
 
 > 参考：
-> 
-> - [Wiki,Network Address Translation](https://en.wikipedia.org/wiki/Network_address_translation)
+>
+> - [Wiki，Network Address Translation](https://en.wikipedia.org/wiki/Network_address_translation)
 > - [RFC 4787](https://www.rfc-editor.org/rfc/rfc4787.html)
 > - [RFC 5382,TCP 的 NAT 行为要求](https://www.rfc-editor.org/rfc/rfc5382.html)
 > - [RFC 5508,ICMP 的 NAT 行为要求](https://www.rfc-editor.org/rfc/rfc5508.html)

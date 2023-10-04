@@ -5,10 +5,10 @@ title: CSI
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目,规范](https://github.com/container-storage-interface/spec)
 
-CSI 是与 [CNI ](https://www.yuque.com/go/doc/33165299)类似的东西，都是一种规范。
+CSI 是与 [CNI](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/8.Kubernetes%20网络/CNI/CNI.md) 类似的东西，都是一种规范。
 
 Container Storage Interface，容器存储接口（CSI）为容器编排系统（如 Kubernetes）定义了一个标准接口，以将任意存储系统暴露给其容器工作负载。
 
@@ -26,4 +26,4 @@ CSI 出现之前，很多存储类型的 PV，比如 iSCSI、NFS、CephFS 等等
 - in-tree 存储插件享有与 K8s 核心组件同等的特权，存在安全隐患
 - 三方存储开发者必须遵循 K8s 社区的规则开发 in-tree 类型存储代码
 
-**CSI(容器存储接口) **标准的出现解决了上述问题，将三方存储代码与 K8S 代码解耦，使得三方存储厂商研发人员只需实现 CSI 接口（无需关注容器平台是 K8s 还是 Swarm 等）。
+**CSI(容器存储接口)**标准的出现解决了上述问题，将三方存储代码与 K8S 代码解耦，使得三方存储厂商研发人员只需实现 CSI 接口（无需关注容器平台是 K8s 还是 Swarm 等）。

@@ -1,7 +1,7 @@
 ---
-title: "System Call"
-linkTitle: "System Call"
-weight: 20
+title: 3.System Call
+linkTitle: 3.System Call
+weight: 3
 ---
 
 # 概述

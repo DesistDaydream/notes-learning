@@ -22,7 +22,7 @@ rabbitmq:3-management
 >   - [安装](https://www.rabbitmq.com/kubernetes/operator/install-operator.html)
 >   - [通过 Operator 使用 RabbitMQ 集群](https://www.rabbitmq.com/kubernetes/operator/using-operator.html)
 
-注意：RabbitMQ Operator 会为每一个被其创建的 `rabbitmqclusters.rabbitmq.com` 资源的对象添加 `[finalizers](https://www.yuque.com/desistdaydream/learning/md69s3)` 字段，效果如下：
+注意：RabbitMQ Operator 会为每一个被其创建的 `rabbitmqclusters.rabbitmq.com` 资源的对象添加 `finalizers` 字段，效果如下：
 
 ```yaml
 apiVersion: rabbitmq.com/v1beta1

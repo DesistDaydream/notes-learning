@@ -1,6 +1,15 @@
 ---
 title: ftp 协议的实现工具，chroot说明
+linkTitle: ftp 协议的实现工具，chroot说明
+date: 2023-11-02T23:48
+weight: 20
 ---
+
+# 概述
+
+> 参考：
+> 
+> -
 
 # vsftp：实现 ftp 协议的工具
 

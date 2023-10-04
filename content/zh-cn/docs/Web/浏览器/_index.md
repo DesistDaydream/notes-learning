@@ -1,5 +1,5 @@
 ---
-title: "浏览器"
-linkTitle: "浏览器"
-weight: 20
+title: 浏览器
+linkTitle: 浏览器
+weight: 5
 ---

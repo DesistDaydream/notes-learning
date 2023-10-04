@@ -5,6 +5,7 @@ title: upstream 模块指令
 # 概述
 
 > 参考：
+> 
 > - [http 模块下的 upstream 模块](http://nginx.org/en/docs/http/ngx_http_upstream_module.html)
 > - [stream 模块下的 upstream 模块](http://nginx.org/en/docs/stream/ngx_stream_upstream_module.html)
 
@@ -40,8 +41,14 @@ server {
 # 服务器组指令
 
 服务器组相关的指令，一般是定义在 `upstream{} 指令块` 中。
-[**upstream NAME {}**](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) # 定义一组服务器。当请求代理到该 upstream 时，可以负载均衡到定义的各个 server 上。
 
+## upstream
+
+http://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream
+
+定义一组服务器。当请求代理到该 upstream 时，可以负载均衡到定义的各个 server 上。
+
+- 语法：`upstream NAME {}`
 - 作用范围：http{}、stram{}
 
 ```nginx
@@ -52,11 +59,17 @@ upstream NAME {
 }
 ```
 
-[**server ADDRESS \[PARAMETERS\];**](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) # 定义接受流量的服务器的地址和其他参数。
+## server
 
+http://nginx.org/en/docs/http/ngx_http_upstream_module.html#server
+
+定义接受流量的服务器的地址和其他参数。
+
+- 语法：`server ADDRESS [PARAMETERS]`
 - 作用范围：upstream NAME {}
 
 **ADDRESS** # 可以指定为具有可选端口的域名或 IP 地址，或者使用 `unix:` 前缀指定 UNIX 域套接字路径。如果未指定端口，则默认 80。解析为多个 IP 地址的域名一次定义多个服务器。
+
 **PARAMETERS** # 可以指定一个 server 的调度参数、健康检查时间间隔 等等。
 
 - **backup** # 将 server 标记为备份服务器。
@@ -66,7 +79,7 @@ upstream NAME {
 - **max_conns=\<INT>** # 限制到 server 的最大同时活动连接数，也就是限制 server 的并发数。`默认值：0`。默认 0 即表示不限制。
 - **weight=\<INT>** # server 的权重。`默认值：1`。权重越高，就会有更多的请求调度到这个 server 上。
 
-## EXAMPLE
+# 应用示例
 
 ```nginx
 http {

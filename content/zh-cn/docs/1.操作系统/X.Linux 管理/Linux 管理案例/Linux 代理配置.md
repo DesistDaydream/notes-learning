@@ -7,6 +7,8 @@ title: Linux 代理配置
 
 在 Linux 中，很多程序都会读取某些变量来读取代理信息
 
+> TODO: 这些变量到底应该大写还是小写？wget 命令无法识别到大写的变量。
+
 - http_proxy | https_proxy | ftp_proxy | all_proxy # 此变量值用于所有 http、https、ftp 或者所有流量
 - socks_proxy # 在大多数情况下，它用于 TCP 和 UDP 流量。其值通常采用 socks：// address：port 格式。
 - rsync_proxy # 这用于 rsync 流量，尤其是在 Gentoo 和 Arch 等发行版中。
@@ -31,7 +33,6 @@ EXAMPLE
 **注意：通过 Systemd 启动的进程，无法识别这些环境变量，只能通过 Unit File 中的 \[Service] 部分的 Environment 指令指定代理信息。**
 
 # 每种变量详解
-
 
 ## http_proxy
 

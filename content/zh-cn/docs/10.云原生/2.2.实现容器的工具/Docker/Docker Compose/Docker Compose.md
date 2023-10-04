@@ -1,5 +1,7 @@
 ---
 title: Docker Compose
+linkTitle: Docker Compose
+date: 2023-11-03T22:23
 weight: 1
 ---
 
@@ -79,7 +81,7 @@ OpenSSL version: OpenSSL 1.1.0l  10 Sep 2019
 
 # 使用
 
-### 1、准备
+### 准备
 
 创建一个测试目录：
 

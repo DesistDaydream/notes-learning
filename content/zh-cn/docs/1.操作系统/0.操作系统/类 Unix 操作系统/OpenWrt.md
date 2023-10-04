@@ -19,3 +19,5 @@ OpenWrt 的包管理器是 OPKG。
 据说，爱快(ikuai) 是基于 OpenWrt 的二次封装系统。
 
 ikuai 与 OpenWrt 大部分出现在软路由场景。
+
+iStoreOS 是 koolshare 团队基于OpenWrt定制的软路由系统

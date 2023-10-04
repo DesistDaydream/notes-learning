@@ -6,6 +6,7 @@ weight: 9
 # 概述
 
 > 参考：
+> 
 > - [官方文档，用户指南-传统目录-使用命令行工具-ansible-playbook](https://docs.ansible.com/ansible/latest/cli/ansible-playbook.html)
 
 ansible-playbook 用来运行运行 Ansible playbook，以便在目标主机上执行定义的任务。

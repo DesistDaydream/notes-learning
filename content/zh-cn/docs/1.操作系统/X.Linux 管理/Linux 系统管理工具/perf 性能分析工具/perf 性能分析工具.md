@@ -7,7 +7,7 @@ weight: 1
 
 > 参考：
 >
-> - [GitHub 项目](https://github.com/torvalds/linux/tree/master/tools/perf)
+> - [GitHub 项目，torvalds/linux 中的代码 /tools/perf](https://github.com/torvalds/linux/tree/master/tools/perf)
 > - [Kernel Wiki,perf](https://perf.wiki.kernel.org/index.php/Main_Page)
 > - [PMU 是什么？](https://qastack.cn/unix/326621/what-are-kernel-pmu-event-s-in-perf-events-list)
 

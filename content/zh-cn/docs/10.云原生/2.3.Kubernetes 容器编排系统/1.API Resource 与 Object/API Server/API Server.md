@@ -48,6 +48,7 @@ kubectl 处理对 API 服务器的定位和身份验证。如果你想通过 htt
 ### 获取认证所需信息
 
 **方法一：使用 kubectl 的配置文件中的证书与私钥**
+
 想要访问 https 下的内容，首先需要准备证书与私钥或者 ca 与 token 等等。
 
 1. 首先获取 kubeclt 工具配置文件中的证书与私钥
@@ -82,7 +83,8 @@ Note：也可以从一个具有权限的 ServiceAccount 下的 secret 获取，�
    2. Unauthorized
 2. TOKEN=$(kubectl get secrets -n monitoring prometheus-k8s-token-q5hm4 --template={{.data.token}} | base64 -d)
 
-**方法三：官方推荐，类似方法二**
+**方法三：官方推荐，类似方法二
+**
 官方文档：<https://kubernetes.io/docs/tasks/administer-cluster/access-cluster-api/>
 
 ```bash
@@ -118,8 +120,10 @@ Kubernetes 官方支持  [Go](https://kubernetes.io/zh/docs/tasks/administer-cl
 
 ### Go 客户端介绍
 
-> 参考：官方文档：<https://github.com/kubernetes/client-go/#compatibility-matrix>
-> 详见 [Client Libraries](https://www.yuque.com/go/doc/33161293)
+> 参考：
+>
+> - 官方文档：<https://github.com/kubernetes/client-go/#compatibility-matrix>
+> - 详见 [Client Libraries(客户端库)](/docs/10.云原生/2.3.Kubernetes%20容器编排系统/Kubernetes%20开发/Client%20Libraries(客户端库)/Client%20Libraries(客户端库).md)
 
 版本控制策略：k8s 版本 1.18.8 对应 client-go 版本 0.18.8，其他版本以此类推。
 
@@ -306,116 +310,118 @@ Kubernetes API 服务器也支持排除特定的检查项。 查询参数也可�
 
 一般情况，保存到 etcd 中后，会省略 Group 与 Version，直接使用 Resource 来作为 etcd 中的路径。比如：URI 为 /api/v1/namespaces/kube-system/pods/kube-apiserver-master1 的 pod 资源，在 etcd 中的存储路径为 /registry/pods/kube-system/kube-apiserver-master1。
 
-而序列化的方式可以通过 --storage-media-type 来指定，默认为 protobuf 。使用这种方式将数据序列化之后，得出来的将会有很多乱码，详见 [Etcd 数据探秘章节](https://www.yuque.com/go/doc/33166015) 中的说明
+而序列化的方式可以通过 --storage-media-type 来指定，默认为 protobuf 。使用这种方式将数据序列化之后，得出来的将会有很多乱码，详见 [Etcd 数据模型](/docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd%20数据模型.md) 中的说明
 
 # kube-apiserver Manifests 示例
 
-    apiVersion: v1
-    kind: Pod
-    metadata:
-      annotations:
-        kubeadm.kubernetes.io/kube-apiserver.advertise-address.endpoint: 172.19.42.231:6443
-      creationTimestamp: null
-      labels:
-        component: kube-apiserver
-        tier: control-plane
-      name: kube-apiserver
-      namespace: kube-system
-    spec:
-      containers:
-      - command:
-        - kube-apiserver
-        - --advertise-address=172.19.42.231
-        - --allow-privileged=true
-        - --authorization-mode=Node,RBAC
-        - --client-ca-file=/etc/kubernetes/pki/ca.crt
-        - --enable-admission-plugins=NodeRestriction
-        - --enable-bootstrap-token-auth=true
-        - --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt
-        - --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt
-        - --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key
-        - --etcd-servers=https://127.0.0.1:2379
-        - --insecure-port=0
-        - --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt
-        - --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key
-        - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
-        - --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt
-        - --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key
-        - --requestheader-allowed-names=front-proxy-client
-        - --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt
-        - --requestheader-extra-headers-prefix=X-Remote-Extra-
-        - --requestheader-group-headers=X-Remote-Group
-        - --requestheader-username-headers=X-Remote-User
-        - --secure-port=6443
-        - --service-account-key-file=/etc/kubernetes/pki/sa.pub
-        - --service-cluster-ip-range=10.96.0.0/12
-        - --service-node-port-range=30000-60000
-        - --tls-cert-file=/etc/kubernetes/pki/apiserver.crt
-        - --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
-        image: registry.aliyuncs.com/k8sxio/kube-apiserver:v1.19.2
-        imagePullPolicy: IfNotPresent
-        livenessProbe:
-          failureThreshold: 8
-          httpGet:
-            host: 172.19.42.231
-            path: /livez
-            port: 6443
-            scheme: HTTPS
-          initialDelaySeconds: 10
-          periodSeconds: 10
-          timeoutSeconds: 15
-        name: kube-apiserver
-        readinessProbe:
-          failureThreshold: 3
-          httpGet:
-            host: 172.19.42.231
-            path: /readyz
-            port: 6443
-            scheme: HTTPS
-          periodSeconds: 1
-          timeoutSeconds: 15
-        resources:
-          requests:
-            cpu: 250m
-        startupProbe:
-          failureThreshold: 24
-          httpGet:
-            host: 172.19.42.231
-            path: /livez
-            port: 6443
-            scheme: HTTPS
-          initialDelaySeconds: 10
-          periodSeconds: 10
-          timeoutSeconds: 15
-        volumeMounts:
-        - mountPath: /etc/ssl/certs
-          name: ca-certs
-          readOnly: true
-        - mountPath: /etc/pki
-          name: etc-pki
-          readOnly: true
-        - mountPath: /etc/localtime
-          name: host-time
-          readOnly: true
-        - mountPath: /etc/kubernetes/pki
-          name: k8s-certs
-          readOnly: true
-      hostNetwork: true
-      priorityClassName: system-node-critical
-      volumes:
-      - hostPath:
-          path: /etc/ssl/certs
-          type: DirectoryOrCreate
-        name: ca-certs
-      - hostPath:
-          path: /etc/pki
-          type: DirectoryOrCreate
-        name: etc-pki
-      - hostPath:
-          path: /etc/localtime
-          type: ""
-        name: host-time
-      - hostPath:
-          path: /etc/kubernetes/pki
-          type: DirectoryOrCreate
-        name: k8s-certs
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubeadm.kubernetes.io/kube-apiserver.advertise-address.endpoint: 172.19.42.231:6443
+  creationTimestamp: null
+  labels:
+    component: kube-apiserver
+    tier: control-plane
+  name: kube-apiserver
+  namespace: kube-system
+spec:
+  containers:
+  - command:
+    - kube-apiserver
+    - --advertise-address=172.19.42.231
+    - --allow-privileged=true
+    - --authorization-mode=Node,RBAC
+    - --client-ca-file=/etc/kubernetes/pki/ca.crt
+    - --enable-admission-plugins=NodeRestriction
+    - --enable-bootstrap-token-auth=true
+    - --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt
+    - --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt
+    - --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key
+    - --etcd-servers=https://127.0.0.1:2379
+    - --insecure-port=0
+    - --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt
+    - --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key
+    - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+    - --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt
+    - --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key
+    - --requestheader-allowed-names=front-proxy-client
+    - --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt
+    - --requestheader-extra-headers-prefix=X-Remote-Extra-
+    - --requestheader-group-headers=X-Remote-Group
+    - --requestheader-username-headers=X-Remote-User
+    - --secure-port=6443
+    - --service-account-key-file=/etc/kubernetes/pki/sa.pub
+    - --service-cluster-ip-range=10.96.0.0/12
+    - --service-node-port-range=30000-60000
+    - --tls-cert-file=/etc/kubernetes/pki/apiserver.crt
+    - --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
+    image: registry.aliyuncs.com/k8sxio/kube-apiserver:v1.19.2
+    imagePullPolicy: IfNotPresent
+    livenessProbe:
+      failureThreshold: 8
+      httpGet:
+        host: 172.19.42.231
+        path: /livez
+        port: 6443
+        scheme: HTTPS
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      timeoutSeconds: 15
+    name: kube-apiserver
+    readinessProbe:
+      failureThreshold: 3
+      httpGet:
+        host: 172.19.42.231
+        path: /readyz
+        port: 6443
+        scheme: HTTPS
+      periodSeconds: 1
+      timeoutSeconds: 15
+    resources:
+      requests:
+        cpu: 250m
+    startupProbe:
+      failureThreshold: 24
+      httpGet:
+        host: 172.19.42.231
+        path: /livez
+        port: 6443
+        scheme: HTTPS
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      timeoutSeconds: 15
+    volumeMounts:
+    - mountPath: /etc/ssl/certs
+      name: ca-certs
+      readOnly: true
+    - mountPath: /etc/pki
+      name: etc-pki
+      readOnly: true
+    - mountPath: /etc/localtime
+      name: host-time
+      readOnly: true
+    - mountPath: /etc/kubernetes/pki
+      name: k8s-certs
+      readOnly: true
+  hostNetwork: true
+  priorityClassName: system-node-critical
+  volumes:
+  - hostPath:
+      path: /etc/ssl/certs
+      type: DirectoryOrCreate
+    name: ca-certs
+  - hostPath:
+      path: /etc/pki
+      type: DirectoryOrCreate
+    name: etc-pki
+  - hostPath:
+      path: /etc/localtime
+      type: ""
+    name: host-time
+  - hostPath:
+      path: /etc/kubernetes/pki
+      type: DirectoryOrCreate
+    name: k8s-certs
+```
