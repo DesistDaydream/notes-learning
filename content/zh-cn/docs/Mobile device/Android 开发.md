@@ -25,7 +25,7 @@ weight: 3
 
 ## ADB
 
-详见 [ADB](docs/移动设备/ADB.md)
+详见 [ADB](docs/Mobile%20device/ADB.md)
 
 # 最佳实践
 

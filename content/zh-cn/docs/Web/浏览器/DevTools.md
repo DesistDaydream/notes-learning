@@ -1,6 +1,6 @@
 ---
-title: 开发者工具
-linkTitle: 开发者工具
+title: DevTools
+linkTitle: DevTools
 date: 2023-11-19T19:54
 weight: 20
 ---
@@ -10,6 +10,7 @@ weight: 20
 > 参考：
 > 
 > - [Chrome 开发者工具官方文档](https://developer.chrome.com/docs/devtools/)
+> - [Wiki，Web_development_tools](https://en.wikipedia.org/wiki/Web_development_tools)
 
 Chrome DevTools 是一组内置于 Chrome 浏览器中的 Web 开发者工具（通常使用 F12 快捷键打开）。
 
@@ -96,3 +97,34 @@ https://developer.chrome.com/docs/devtools/javascript/snippets?hl=zh-cn
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/devtools/202311201207139.png)
 
+
+## Scope(作用域)
+
+查看当前代码执行的地方都有哪些函数、变量及其对应的值。
+
+## Call Stack(调用堆栈)
+
+https://developer.chrome.com/docs/devtools/javascript/reference#call-stack
+
+**Call Stack(调用堆栈)** 可以查看当前断点位置的调用堆栈，i.e. 从访问网页开始到断点停止时，所有的函数调用，每行都是一个调用，也可以称为 Frame(帧)
+
+- 左侧是函数名称。若函数是匿名的则显示`（匿名）`，而且浏览器中的代码基本都是打包过甚至混淆过的，函数名不一定与源代码显示一样。
+- 右侧是函数所在文件及所在文件的行号。
+
+整个 Call Stack **由下到上**的顺序，是浏览器从访问网站开始，到断点位置为止的所有函数调用。
+
+> 若想从断点位置反查代码，只需要从上往下逐一查看，即可找到想要的网页中某个数据生成的最初位置。
+
+以百度为例
+
+![image.png|1000](https://notes-learning.oss-cn-beijing.aliyuncs.com/browser_devtools/202401182141362.png)
+
+当前断点的函数名 `XMLHttpRequest.send` 的，那么执行到 `u.apply()` 代码之前的函数就是第二行的 `send`；在执行到 `send` 代码之前的函数就是第三行的 ajax；以此类推。
+
+我们可以**右键点击**函数名，选择 **重启帧**，这样可以让代码直接重新运行并停顿到该函数位置。这样就无需重启整个调试流程（刷新网页）。
+
+假如我们右键点击 send，并选择重启帧，然后再点击一下执行下一步，可以看到上述关于 Call Stack 笔记的具体应用效果。在 `send` 执行完成后，会执行到 `XMLHttpRequest.send`
+
+![recording.gif|1000](https://notes-learning.oss-cn-beijing.aliyuncs.com/browser_devtools/restart_frame_1.gif)
+
+DevTools 源码中的调用栈，用来调试找代码是非常方便且好用的！

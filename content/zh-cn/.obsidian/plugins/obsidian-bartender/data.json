@@ -35,10 +35,10 @@
       "docs/11.多媒体",
       "docs/12.人工智能",
       "docs/Web",
-      "docs/移动设备",
+      "docs/Mobile device",
       "docs/Blockchain",
-      "docs/x_标准化",
-      "docs/Utils"
+      "docs/Utils",
+      "docs/x_标准化"
     ],
     "docs/0.计算机": [
       "docs/0.计算机/_index.md",
@@ -2340,11 +2340,11 @@
       "docs/学习/写作",
       "docs/学习/学习资源.md"
     ],
-    "docs/移动设备": [
-      "docs/移动设备/_index.md",
-      "docs/移动设备/移动设备.md",
-      "docs/移动设备/Android.md",
-      "docs/移动设备/Android 开发.md"
+    "docs/Mobile device": [
+      "docs/Mobile device/_index.md",
+      "docs/Mobile device/Mobile device.md",
+      "docs/Mobile device/Android.md",
+      "docs/Mobile device/Android 开发.md"
     ],
     "docs/2.编程/API/API 相关工具": [
       "docs/2.编程/API/API 相关工具/_index.md",
