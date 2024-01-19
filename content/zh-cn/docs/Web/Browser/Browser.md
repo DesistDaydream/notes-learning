@@ -1,6 +1,6 @@
 ---
-title: 浏览器
-linkTitle: 浏览器
+title: Browser
+linkTitle: Browser
 date: 2023-11-02T01:23
 weight: 1
 ---
@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 > 
-> -
+> - [Wiki，Web_browser](https://en.wikipedia.org/wiki/Web_browser)
 
 在访问一个网页时，除非收到 3XX 重定向的响应，否则浏览器地址栏中的地址是不会改变的。比如 Nginx 中的 rewrite 功能，如果不使用 **redirect** 或 **permanent** 标志，那么所有的 URL 改变都是针对 Nginx 内部来说的。
 

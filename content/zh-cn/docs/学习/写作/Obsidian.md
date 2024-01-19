@@ -5,7 +5,7 @@ title: Obsidian
 
 > 参考：
 
-Obsidian 也是基于 Chromium 的，使用 `Ctrl + Shift + i` 快捷键可以打开 [DevTools](docs/Web/浏览器/DevTools.md)
+Obsidian 也是基于 Chromium 的，使用 `Ctrl + Shift + i` 快捷键可以打开 [DevTools](docs/Web/Browser/DevTools.md)
 
 [英文论坛](https://forum.obsidian.md/)
 

@@ -95,7 +95,7 @@ Selenium WebDriver 是 [W3C 推荐标准](https://www.w3.org/TR/webdriver1/)
 - ......略
 - **tag 名称** #
 - **XPath** # 通过 [XML](/docs/2.编程/标记语言/XML.md) 的 XPath 表达式定位元素
-  - XPath 表达式可以在浏览器的 [DevTools](docs/Web/浏览器/DevTools.md) 中先使用 Ctrl+Shift+C 快捷键找到想要定位的元素，然后右键点击该元素，选择 `复制 - 复制 XPath`。即可获得 XPath 表达式
+  - XPath 表达式可以在浏览器的 [DevTools](docs/Web/Browser/DevTools.md) 中先使用 Ctrl+Shift+C 快捷键找到想要定位的元素，然后右键点击该元素，选择 `复制 - 复制 XPath`。即可获得 XPath 表达式
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/selenium/202312031841908.png)
 

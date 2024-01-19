@@ -2232,7 +2232,7 @@
       "docs/Web/WebAPI",
       "docs/Web/WebDriver",
       "docs/Web/WebAssembly.md",
-      "docs/Web/浏览器",
+      "docs/Web/Browser",
       "docs/Web/网站搭建",
       "docs/Web/Nginx"
     ],
@@ -2269,24 +2269,18 @@
       "docs/Web/WebDriver/WebDriver.md",
       "docs/Web/WebDriver/Selenium.md"
     ],
-    "docs/Web/浏览器": [
-      "docs/Web/浏览器/_index.md",
-      "docs/Web/浏览器/浏览器.md",
-      "docs/Web/浏览器/Chromium.md",
-      "docs/Web/浏览器/Chrome.md",
-      "docs/Web/浏览器/Edge.md",
-      "docs/Web/浏览器/开发者工具.md"
+    "docs/Web/Browser": [
+      "docs/Web/Browser/_index.md",
+      "docs/Web/Browser/Browser.md",
+      "docs/Web/Browser/Chromium.md",
+      "docs/Web/Browser/Chrome.md",
+      "docs/Web/Browser/Edge.md",
+      "docs/Web/Browser/开发者工具.md"
     ],
-    "docs/Web/浏览器/WebDriver": [
-      "docs/Web/浏览器/WebDriver/_index.md",
-      "docs/Web/浏览器/WebDriver/WebDriver.md",
-      "docs/Web/浏览器/WebDriver/Selenium.md"
-    ],
-    "docs/Web/浏览器/浏览器自动化": [
-      "docs/Web/浏览器/浏览器自动化/_index.md",
-      "docs/Web/浏览器/浏览器自动化/浏览器自动化.md",
-      "docs/Web/浏览器/浏览器自动化/WebDriver.md",
-      "docs/Web/浏览器/浏览器自动化/Selenium.md"
+    "docs/Web/Browser/WebDriver": [
+      "docs/Web/Browser/WebDriver/_index.md",
+      "docs/Web/Browser/WebDriver/WebDriver.md",
+      "docs/Web/Browser/WebDriver/Selenium.md"
     ],
     "docs/Web/网站搭建": [
       "docs/Web/网站搭建/_index.md",

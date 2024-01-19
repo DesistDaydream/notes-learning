@@ -41,3 +41,4 @@ Fiddler
 HTTP Debugger
 
 - https://www.httpdebugger.com/
+- 可以抓进程的包，而不是通过代理的方式抓包
