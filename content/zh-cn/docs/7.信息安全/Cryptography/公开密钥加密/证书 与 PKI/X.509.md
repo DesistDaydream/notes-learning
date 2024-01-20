@@ -14,7 +14,7 @@ weight: 2
 > - [Arthurchiao 博客，\[译\] 写给工程师：关于证书（certificate）和公钥基础设施（PKI）的一切（SmallStep, 2018）](https://arthurchiao.art/blog/everything-about-pki-zh/)
 > - [RFC 5280，Internet X.509 PKI 证书和 CRL 配置文件](https://datatracker.ietf.org/doc/html/rfc5280)
 
-X.509 是 [Cryptography](docs/7.信息安全/Cryptography/Cryptography.md) 里定义公钥证书格式的**标准**。X.509 格式的证书已应用在包括 TSL/SSL 在内的众多网络协议里，它是 HTTPS 的基础。
+X.509 是 [Cryptography](/docs/7.信息安全/Cryptography/Cryptography.md) 里定义公钥证书格式的**标准**。X.509 格式的证书已应用在包括 TSL/SSL 在内的众多网络协议里，它是 HTTPS 的基础。
 
 在大部分时候，人们提到证书而没有加额外的限定词时，通常都是指 X.509 v3 证书。
 

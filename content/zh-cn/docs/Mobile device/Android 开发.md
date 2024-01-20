@@ -11,8 +11,6 @@ weight: 3
 >
 > - [安卓开发者资源](https://developer.android.com/)
 
-
-
 # Android Studio
 
 **Andriid Studio(安卓工作室)** 是一款用于 Android 应用程序开发的官方 **Integrated Development Environment(集成开发环境，简称 IDE)**，包含代码编辑器、构建工具、签名工具、SDK 工具等。
@@ -25,7 +23,7 @@ weight: 3
 
 ## ADB
 
-详见 [ADB](docs/Mobile%20device/ADB.md)
+详见 [ADB](/docs/Mobile%20device/ADB.md)
 
 # 最佳实践
 
@@ -43,4 +41,3 @@ https://github.com/topjohnwu/Magisk/ 对应用隐藏 Root 信息
 - https://github.com/nccgroup/ConscryptTrustUserCerts # 适用于 andriod 14 ？
   - https://github.com/nccgroup/ConscryptTrustUserCerts/issues/3 有了下面那个仓库
 - https://github.com/lupohan44/TrustUserCertificates
-

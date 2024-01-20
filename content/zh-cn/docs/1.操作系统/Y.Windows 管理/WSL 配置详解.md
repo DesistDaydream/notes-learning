@@ -8,16 +8,15 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，WSL 配置](https://learn.microsoft.com/en-us/windows/wsl/wsl-config)
 
-wsl.conf 和 .wslconfig 是 [INI](docs/2.编程/无法分类的语言/INI.md) 格式的配置文件，两者互相配合以定义 WSL 虚拟机的运行方式
+wsl.conf 和 .wslconfig 是 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的配置文件，两者互相配合以定义 WSL 虚拟机的运行方式
 
 - wsl.conf 是在每个 Linux 发行版中的配置。通常是指 **本地配置**
 - .wslconfig 是在 Windows 中为所有 WSL发行版配置。通常是指 **全局配置**
 
 # wsl.conf
-
 
 # .wslconfig
 
@@ -34,7 +33,7 @@ wsl.conf 和 .wslconfig 是 [INI](docs/2.编程/无法分类的语言/INI.md) �
 ### 配置桥接网络和静态 IP
 
 > 参考：
-> 
+>
 > - [博客园，WSL2使用桥接网络，并指定IP](https://www.cnblogs.com/lic0914/p/17003251.html)
 >   - 该文章参考的原文: https://github.com/luxzg/WSL2-fixes/blob/master/networkingMode%3Dbridged.md
 >   - 上面这些做法可以弃用了
@@ -54,6 +53,3 @@ dnsTunneling=true
 firewall=true
 autoProxy=true
 ```
-
-
-

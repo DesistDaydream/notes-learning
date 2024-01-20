@@ -7,7 +7,7 @@ title: RBAC 授权
 > 参考：
 >
 > - [官方文档,参考-API 访问控制-使用 RBAC 授权](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
-> - [RBAC](docs/7.信息安全/Access%20Control/RBAC.md) 概念
+> - [RBAC](/docs/7.信息安全/Access%20Control/RBAC.md) 概念
 
 基于 **Role(角色)** 的访问控制(RBAC) 是一种根据各个用户的角色来控制对 Kubernetes 内资源的访问权限的方法。
 

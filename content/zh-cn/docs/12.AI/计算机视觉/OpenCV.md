@@ -44,7 +44,7 @@ OpenCV 具有模块化的结构，整个 OpenCV 的功能由一个个模块提�
 ## Main Modules(主模块)
 
 - **core** # 核心功能模块，全称 [Core functionality](https://docs.opencv.org/4.x/d0/de1/group__core.html) 。定义了基本的数据结构，包括最重要的 Mat 类、XML 读写、opengl三维渲染等。
-- **imgproc** # [图像处理模块](/docs/12.人工智能/计算机视觉/图像处理模块.md)，全称 Image processing。包括图像滤波、集合图像变换、直方图计算、形状描述、物体检测、等等。图像处理是计算机视觉的重要工具。
+- **imgproc** # [图像处理模块](/docs/12.AI/计算机视觉/图像处理模块.md)，全称 Image processing。包括图像滤波、集合图像变换、直方图计算、形状描述、物体检测、等等。图像处理是计算机视觉的重要工具。
 - **imgcodecs** # 图像文件读写模块，全称 [Image file reading and writing](https://docs.opencv.org/4.x/d4/da8/group__imgcodecs.html)。
 - **videoio** # 视频文件读写模块，全称 [Video I/O](https://docs.opencv.org/4.x/dd/de7/group__videoio.html)。也包括摄像头、Kinect 等的输入。
 - **highgui** # 高级图形界面及与 QT 框架的整合。

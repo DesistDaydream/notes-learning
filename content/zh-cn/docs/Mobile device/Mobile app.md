@@ -41,14 +41,19 @@ weight: 20
 
 ## 小程序
 
+### 调试小程序
+
 调试 微信小程序大体有两种办法，官方的和非官方的
+
+**使用微信官方的 [微信开发者工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/devtools.html) 一边写代码一边调试。**
+
+- 除了使用 微信开发者工具以外，在小程序中内嵌 web devtools 也可以实现类似浏览器调试的方法。可以在 PC 微信中调试
 
 **直接使用官方的 devtools** - 必须要有小程序源码才可以
 
 - https://github.com/Tencent/vConsole # 一个轻量、可拓展、针对手机网页的前端开发者调试面板。现在 vConsole 是微信小程序的官方调试工具。
 - https://github.com/weimobGroup/WeConsole # 替代了 vConsole。功能全面、界面与体验对标 Chrome devtools 的可定制化的小程序开发调试面板。个人开发，后被腾讯收编，项目转移到 微盟技术中心
   - https://github.com/weimob-tech/WeConsole # 收编了 weimobGroup/WeConsole 后的项目所在仓库，位于 weimob-tech(微盟技术中心) 组织下
-- 除了在小程序中内嵌 devtools 并在实体机器或 PC 微信中进行调试外，还可以使用微信官方的 [微信开发者工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/devtools.html) 一边写代码一边调试。
 
 **间接使用官方的 devtools** - 这类项目通常需要使用类似 hook、拦截等方式。TODO: 到底是使用了原本就存在的官方 devtools 还是
 

@@ -8,7 +8,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，microsoft/WSA](https://github.com/microsoft/WSA)
 > - [官方文档，windows-android-wsa](https://learn.microsoft.com/zh-cn/windows/android/wsa/)
 
@@ -25,7 +25,7 @@ WSA 管理器若没有打开任何应用、文件管理等功能，过一会会�
 # 安装 WSA
 
 > 参考：
-> 
+>
 > - [秋风于渭水，win11 安卓子系统（WSA）ROOT安装面具（Magisk）与谷歌框架（Google Apps）](https://www.tjsky.net/tutorial/384)
 > - [bitxeno's notes，通过 WSA 抓取 android 的 https 网络请求包](https://blog.xenori.com/2023/05/capture-android-https-network-packet-with-wsa/)
 > - [吾爱破解，[Android Tools] WSA with Magisk Root安装配置教程(2023.5)](https://www.52pojie.cn/thread-1790633-1-1.html)
@@ -44,8 +44,8 @@ Notes: 如果系统中的 Microsoft Store 搜不到 WSA，可以通过下面的�
 
 卸载官方的 WSA，后使用下面的项目构建安装包后安装。
 
- [GitHub 项目，LSPosed/MagiskOnWSALocal ](https://github.com/LSPosed/MagiskOnWSALocal ) 已 root 带 Magisk、Google app 的 WSA
- 
+ [GitHub 项目，LSPosed/MagiskOnWSALocal](https://github.com/LSPosed/MagiskOnWSALocal ) 已 root 带 Magisk、Google app 的 WSA
+
 - https://github.com/MustardChef/WSABuilds # 好像是把 LSPosed/MagiskOnWSALocal  项目的内容构建出来放到 release 里了，不用自己再 clone 项目后运行。
 
 安装完成后，启用开发者模式，可以看到启动的监听端口，使用 adb 工具可以控制 WSA。
@@ -54,7 +54,7 @@ Notes: 如果系统中的 Microsoft Store 搜不到 WSA，可以通过下面的�
 
 有个 BUG，在 Create system images 时报错: ERROR: Not yet implemented。用 https://github.com/sn-o-w/MagiskOnWSALocal 这个构建能解决。
 
- - https://github.com/LSPosed/MagiskOnWSALocal/issues/754
+- https://github.com/LSPosed/MagiskOnWSALocal/issues/754
 
 Magisk 安装完模块后，重启 WSA 后模块不显示
 
@@ -67,7 +67,7 @@ Magisk 安装完模块后，重启 WSA 后模块不显示
 
 [秋风于渭水，Windows Android 子系统 WSA 代理设置方法教程](https://www.tjsky.net/tutorial/391)
 
-方法一、通过 [ADB](docs/Mobile%20device/ADB.md) 进入 shell 使用 settings 设置代理。
+方法一、通过 [ADB](/docs/Mobile%20device/ADB.md) 进入 shell 使用 settings 设置代理。
 
 - 有局限性，有些 APP 的包在 Windows 的 Charles 上收不到包，WSA 中浏览器访问的包很全。
 

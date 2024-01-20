@@ -73,9 +73,12 @@ eBPF 的高效主要还是 **eBPF 提供了一种直接在内核空间运行自�
 
 # eBPF 原理与架构简述
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/kqvmni/1649300475763-25ddd536-5730-4065-a33c-5fb8fdd1c097.png)
+![image.png|800](https://notes-learning.oss-cn-beijing.aliyuncs.com/kqvmni/1649300475763-25ddd536-5730-4065-a33c-5fb8fdd1c097.png)
+
 众所周知，Linux 内核是一个事件驱动的系统设计，这意味着所有的操作都是基于事件来描述和执行的。比如打开文件是一种事件、CPU 执行指令是一种事件、接收网络数据包是一种事件等等。eBPF 作为内核中的一个子系统，可以检查这些基于事件的信息源，并且允许开发者编写并运行在内核触发任何事件时安全执行的 BPF 程序。
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kqvmni/1619101127228-9138d591-82c8-4ce2-9f45-c431a34d3189.png)
+
+![800](https://notes-learning.oss-cn-beijing.aliyuncs.com/kqvmni/1619101127228-9138d591-82c8-4ce2-9f45-c431a34d3189.png)
+
 下图简要描述了 eBPF 的架构及基本的工作流程。
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/bpf/20230206115723.png)
@@ -90,22 +93,30 @@ eBPF 的高效主要还是 **eBPF 提供了一种直接在内核空间运行自�
 
 eBPF 在内核主要由 5 个模块协作：
 
-1、BPF Verifier（验证器）
+**1、BPF Verifier（验证器）**
+
 确保 eBPF 程序的安全。验证器会将待执行的指令创建为一个有向无环图（DAG），确保程序中不包含不可达指令；接着再模拟指令的执行过程，确保不会执行无效指令，这里通过和个别同学了解到，这里的验证器并无法保证 100%的安全，所以对于所有 BPF 程序，都还需要严格的监控和评审。
 
-2、BPF JIT
+**2、BPF JIT**
+
 将 eBPF 字节码编译成本地机器指令，以便更高效地在内核中执行。
 
 3、多个 64 位寄存器、一个程序计数器和一个 512 字节的栈组成的存储模块
+
 用于控制 eBPF 程序的运行，保存栈数据，入参与出参。
 
-4、BPF Helpers（辅助函数）
+**4、BPF Helpers（辅助函数）**
+
 提供了一系列用于 eBPF 程序与内核其他模块进行交互的函数。这些函数并不是任意一个 eBPF 程序都可以调用的，具体可用的函数集由 BPF 程序类型决定。注意，eBPF 里面所有对入参，出参的修改都必须符合 BPF 规范，除了本地变量的变更，其他变化都应当使用 BPF Helpers 完成，如果 BPF Helpers 不支持，则无法修改。
+
 bpftool feature probe
+
 通过以上命令可以看到不同类型的 eBPF 程序可以运行哪些 BPF Helpers。
 
-5、BPF Map & context
+**5、BPF Map & context**
+
 用于提供大块的存储，这些存储可被用户空间程序用来进行访问，进而控制 eBPF 程序的运行状态。
+
 bpftool feature probe | grep map_type
 
 通过以上命令可以看到系统支持哪些类型的 map。
@@ -123,21 +134,23 @@ int bpf(int cmd, union bpf_attr *attr, unsigned int size);
 ```c
 // 5.11内核
 enum bpf_cmd {
-BPF_MAP_CREATE,
-BPF_MAP_LOOKUP_ELEM,
-BPF_MAP_UPDATE_ELEM,
-BPF_MAP_DELETE_ELEM,
-BPF_MAP_GET_NEXT_KEY,
-......
+  BPF_MAP_CREATE,
+  BPF_MAP_LOOKUP_ELEM,
+  BPF_MAP_UPDATE_ELEM,
+  BPF_MAP_DELETE_ELEM,
+  BPF_MAP_GET_NEXT_KEY,
+  ......
 };
 ```
 
 最核心的就是 PROG，MAP 相关的 cmd，就是程序加载和映射处理。
 
-1、程序加载
+**1、程序加载**
+
 调用 BPF_PROG_LOAD cmd，会将 BPF 程序加载到内核，但 eBPF 程序并不像常规的线程那样，启动后就一直运行在那里，它需要事件触发后才会执行。这些事件包括系统调用、内核跟踪点、内核函数和用户态函数的调用退出、网络事件，等等，所以需要第 2 个动作。
 
-2、绑定事件
+**2、绑定事件**
+
 b.attach_kprobe(event="xxx", fn_name="yyy")
 
 以上就是将特定的事件绑定到特定的 BPF 函数，实际实现原理如下：
@@ -146,7 +159,8 @@ b.attach_kprobe(event="xxx", fn_name="yyy")
 （3）根据 attach 的返回值调用 perf_event_open 创建性能监控事件；
 （4）通过 ioctl 的 PERF_EVENT_IOC_SET_BPF 命令，将 BPF 程序绑定到性能监控事件。
 
-3、映射操作
+**3、映射操作**
+
 通过 MAP 相关的 cmd，控制 MAP 增删，然后用户态基于该 MAP 与内核状态进行交互。
 
 # 基于 eBPF 的实现
@@ -200,6 +214,7 @@ b.trace_print()
 - 上游代码在 [GitHub 项目，torvalds/linux/tools/lib/bpf](https://github.com/torvalds/linux/tree/master/tools/lib/bpf)
 
 [github.com/cilium/ebpf](https://github.com/cilium/ebpf) # Cilium 维护的纯 Go 语言的 eBPF 库
+
 [github.com/aquasecurity/libbpfgo](https://github.com/aquasecurity/libbpfgo) # Aqua 维护的围绕 libbpf 的 Go 语言 eBPF 库。支持 CO-RE。使用 CGo 调用 libbpf 的链接版本。
 
 # 其他

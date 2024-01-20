@@ -14,11 +14,11 @@ weight: 1
 Cryptography(密码学)。大多数现代密码可以通过多种方式进行分类
 
 - 第一种分类方式：依据加密时对明文的分解方式
-  - 具有固定大小的块，称为 [Block cipher](docs/7.信息安全/Cryptography/Cipher/Block%20cipher.md)
-  - 适用于连续的符号留，称为 [Stream cipher](docs/7.信息安全/Cryptography/Cipher/Stream%20cipher.md)
+  - 具有固定大小的块，称为 [Block cipher](/docs/7.信息安全/Cryptography/Cipher/Block%20cipher.md)
+  - 适用于连续的符号留，称为 [Stream cipher](/docs/7.信息安全/Cryptography/Cipher/Stream%20cipher.md)
 - 第二种分类方式：依据密钥的使用方式
-  - 使用相同密码加密/解密的，称为 [对称密钥加密](docs/7.信息安全/Cryptography/对称密钥加密/对称密钥加密.md)
-  - 使用不同密钥加密/解密的，称为 [公开密钥加密](docs/7.信息安全/Cryptography/公开密钥加密/公开密钥加密.md) 或 非对称密钥加密
+  - 使用相同密码加密/解密的，称为 [对称密钥加密](/docs/7.信息安全/Cryptography/对称密钥加密/对称密钥加密.md)
+  - 使用不同密钥加密/解密的，称为 [公开密钥加密](/docs/7.信息安全/Cryptography/公开密钥加密/公开密钥加密.md) 或 非对称密钥加密
 
 # 密码学背景
 
@@ -40,7 +40,7 @@ Public-key cryptography(公开密钥加密、非对称密钥加密)，以及根�
 >
 > - [Wiki，Symmetir Key Algorithm](https://en.wikipedia.org/wiki/Symmetric-key_algorithm)
 
-使用相同的密钥来加密明文和解密密文。Symmetric Key Algorithm 也称为 [对称密钥加密](docs/7.信息安全/Cryptography/对称密钥加密/对称密钥加密.md)
+使用相同的密钥来加密明文和解密密文。Symmetric Key Algorithm 也称为 [对称密钥加密](/docs/7.信息安全/Cryptography/对称密钥加密/对称密钥加密.md)
 
 加密规范：
 
@@ -74,7 +74,7 @@ Public-key cryptography(公开密钥加密、非对称密钥加密)，以及根�
 > - [知乎,RSA 的公钥和私钥到底那个才是用来加密和哪个用来解密](https://www.zhihu.com/question/25912483)
 > - [Wiki， 公开密钥加密 中文](https://zh.wikipedia.org/wiki/%E5%85%AC%E5%BC%80%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86)
 
-**Public Key Cryptography(公开密钥密码学)** 也称为 **Asymmetric Key Algorithm(非对称密钥算法)** 或 [公开密钥加密](docs/7.信息安全/Cryptography/公开密钥加密/公开密钥加密.md)，它是计算机通信安全的基石，保证了加密数据不会被破解。1976 年以前，所有的加密方法都是同一种模式：
+**Public Key Cryptography(公开密钥密码学)** 也称为 **Asymmetric Key Algorithm(非对称密钥算法)** 或 [公开密钥加密](/docs/7.信息安全/Cryptography/公开密钥加密/公开密钥加密.md)，它是计算机通信安全的基石，保证了加密数据不会被破解。1976 年以前，所有的加密方法都是同一种模式：
 
 - 甲方选择某种加密规则，对信息进行加密
 - 乙方使用同一种规则，对信息进行解密
@@ -118,7 +118,7 @@ Public-key cryptography(公开密钥加密、非对称密钥加密)，以及根�
 缺点
 
 - 公钥加密可能出现的问题：当两者需要通信的时候，需要把公钥发送给对方，但是公钥是谁都可以获取的，那么在二者通信过程中，公钥就有可能被劫持，当公钥被劫持，劫持者把自己的公钥再发送给对方，那么双发再收到的信息，就是被劫持者篡改过的信息了。
-  - [**Public Key Certificate(公钥证书)**](docs/7.信息安全/Cryptography/公开密钥加密/证书%20与%20PKI/证书%20与%20PKI.md) 可以解决以上问题
+  - [**Public Key Certificate(公钥证书)**](/docs/7.信息安全/Cryptography/公开密钥加密/证书%20与%20PKI/证书%20与%20PKI.md) 可以解决以上问题
 
 ### 应用场景
 

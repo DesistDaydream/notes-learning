@@ -30,7 +30,7 @@ Pythonic(Python 范儿)
 
 **Python Enhancement Proposals(Python 增强建议，简称 PEP)** 是 Python 社区用于提出新特性、改进和决策的标准化文档。每个 PEP 都有一个唯一的编号，通过提交和讨论的过程，最终由 Python 社区接受或拒绝。
 
-PEP 的结构类似于 [RFC](docs/x_标准化/Internet/RFC.md)（Request for Comments）文档，它们提供了一种标准化的方式来描述新功能的设计、实现和其他相关信息。PEP 中包含了详细的说明、背景、动机、语法示例等，以便开发者能够理解和评估提案。
+PEP 的结构类似于 [RFC](/docs/x_标准化/Internet/RFC.md)（Request for Comments）文档，它们提供了一种标准化的方式来描述新功能的设计、实现和其他相关信息。PEP 中包含了详细的说明、背景、动机、语法示例等，以便开发者能够理解和评估提案。
 
 ## 项目结构
 

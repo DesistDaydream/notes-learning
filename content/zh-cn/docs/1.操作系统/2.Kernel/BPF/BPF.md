@@ -8,12 +8,13 @@ weight: 1
 # 概述
 
 > 参考：
-> - [Wiki-BPF](https://en.wikipedia.org/wiki/Berkeley_Packet_Filter)
+>
+> - [Wiki，BPF](https://en.wikipedia.org/wiki/Berkeley_Packet_Filter)
 > - [GitHub 项目,bcc-BPF 特性与 LInux 内核版本对照表](https://github.com/iovisor/bcc/blob/master/docs/kernel-versions.md)
 
 《Linux 内核观测技术 BPF》
 
-**Berkeley Packet Filter(伯克利包过滤器，简称 BPF)**，是类 Unix 系统上数据链路层的一种原始接口，提供原始链路层封包的收发。在 Kernel 官方文档中，BPF 也称为 **Linux Socket Filtering(LInux 套接字过滤，简称 LSF)。**BPF 有时也只表示 **filtering mechanism(过滤机制)**，而不是整个接口。
+**Berkeley Packet Filter(伯克利包过滤器，简称 BPF)**，是类 Unix 系统上数据链路层的一种原始接口，提供原始链路层封包的收发。在 Kernel 官方文档中，BPF 也称为 **Linux Socket Filtering(LInux 套接字过滤，简称 LSF)**。BPF 有时也只表示 **filtering mechanism(过滤机制)**，而不是整个接口。
 
 **注意：不管是后面描述的 eBPF 还是 BPF，这个名字或缩写，其本身所表达的含义，其实已经没有太大的意义了，因为这个项目的发展远远超出了它最初的构想。**
 
@@ -31,16 +32,16 @@ weight: 1
 ```bash
 ~]# tcpdump -d 'ip and tcp port 8080'
 (000) ldh      [12]
-(001) jeq      #0x800           jt 2	jf 12
+(001) jeq      #0x800           jt 2 jf 12
 (002) ldb      [23]
-(003) jeq      #0x6             jt 4	jf 12
+(003) jeq      #0x6             jt 4 jf 12
 (004) ldh      [20]
-(005) jset     #0x1fff          jt 12	jf 6
+(005) jset     #0x1fff          jt 12 jf 6
 (006) ldxb     4*([14]&0xf)
 (007) ldh      [x + 14]
-(008) jeq      #0x1f90          jt 11	jf 9
+(008) jeq      #0x1f90          jt 11 jf 9
 (009) ldh      [x + 16]
-(010) jeq      #0x1f90          jt 11	jf 12
+(010) jeq      #0x1f90          jt 11 jf 12
 (011) ret      #262144
 (012) ret      #0
 ```
@@ -71,10 +72,11 @@ weight: 1
 # eBPF 概述
 
 > 参考：
+>
 > - [eBPF 官网](https://ebpf.io/)
 > - [某网站系列文章](http://kerneltravel.net/categories/ebpf/)
 
-**extended Berkeley Packet Filter(扩展的 BPF，简称 eBPF) **起源于 BPF，是对 BPF 的扩展。eBPF 针对现代硬件进行了优化和全新的设计，使其生成的指令集比 cBPF 解释器生成的机器码更快。这个扩展版本还将 cBPF VM 中的寄存器数量从两个 32 位寄存器增加到 10 个 64 位寄存器。寄存器数量和寄存器宽度的增加为编写更复杂的程序提供了可能性，开发人员可以自由的使用函数参数交换更多的信息。这些改进使得 eBPF 比原来的 cBPF 快四倍。这些改进，主要还是对网络过滤器内部处理的 eBPF 指令集进行优化，仍然被限制在内核空间中，只有少数用户空间中的程序可以编写 BPF 过滤器供内核处理，比如 Tcpdump 和 Seccomp。
+**extended Berkeley Packet Filter(扩展的 BPF，简称 eBPF)** 起源于 BPF，是对 BPF 的扩展。eBPF 针对现代硬件进行了优化和全新的设计，使其生成的指令集比 cBPF 解释器生成的机器码更快。这个扩展版本还将 cBPF VM 中的寄存器数量从两个 32 位寄存器增加到 10 个 64 位寄存器。寄存器数量和寄存器宽度的增加为编写更复杂的程序提供了可能性，开发人员可以自由的使用函数参数交换更多的信息。这些改进使得 eBPF 比原来的 cBPF 快四倍。这些改进，主要还是对网络过滤器内部处理的 eBPF 指令集进行优化，仍然被限制在内核空间中，只有少数用户空间中的程序可以编写 BPF 过滤器供内核处理，比如 Tcpdump 和 Seccomp。
 
 除了上述的优化之外，eBPF 最让人兴奋的改进，是其向用户空间的开放。开发者可以在用户空间，编写 eBPF 程序，并将其加在到内核空间执行。虽然 eBPF 程序看起来更像内核模块，但与内核模块不同的是，eBPF 程序不需要开发者重新编译内核，而且保证了在内核不崩溃的情况下完成加载操作，着重强调了安全性和稳定性。BPF 代码的主要贡献单位主要包括 Cilium、Facebook、Red Hat 以及 Netronome 等。
 
@@ -124,8 +126,7 @@ eBPF 是如何诞生的呢？我最初开始讲起。这里“最初”我指的
 3. 此外就是前面提到的 feature creeping 问题，以及 **tc 和 netfilter 的代码重复问题，因为这两个子系统是竞争关系**。
 4. **OVS 当时被认为是内核中最先进的数据平面**，但它最大的问题是：与内核中其他网 络模块的集成不好【译者注 1】。此外，很多核心的内核开发者也比较抵触 OVS，觉得它很怪。
 
-> 【译者注 1】
-> 例如，OVS 的 internal port、patch port 用 tcpdump 都是 [抓不到包的](http://arthurchiao.art/blog/ovs-deep-dive-4-patch-port/)，排障非常不方便。
+> 【译者注 1】例如，OVS 的 internal port、patch port 用 tcpdump 都是 [抓不到包的](http://arthurchiao.art/blog/ovs-deep-dive-4-patch-port/)，排障非常不方便。
 
 ### eBPF 与 传统流量控制 的区别
 
@@ -158,11 +159,13 @@ eBPF 是如何诞生的呢？我最初开始讲起。这里“最初”我指的
 - 更多后续 patch，从核心代码中移除老的 BPF。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ksq56w/1617847999424-2c5e5133-2862-4574-bffb-0776c6b0aa4b.png)
+
 我们也从那时开始，顺理成章地成为了 eBPF 的 maintainer。
 
 ### Kubernetes 提交第一个 commit
 
 巧合的是，**对后来影响深远的 Kubernetes，也在这一年提交了第一个 commit**：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ksq56w/1617847999414-121919ac-67f3-4841-b2a0-c0bd1668c7bd.png)
 
 ## 2015
@@ -291,7 +294,7 @@ Cilium 此时支持的功能：
 
 ### 新 socket 类型：AF_XDP
 
-内核添加了一个**新 socket 类型 **`**AF_XDP**`。它提供的能力是：**在零拷贝（ zero-copy）的前提下将包从网卡驱动送到用户空间**。
+内核添加了一个**新 socket 类型**`**AF_XDP**`。它提供的能力是：**在零拷贝（ zero-copy）的前提下将包从网卡驱动送到用户空间**。
 
 > 回忆前面的内容，数据包到达网卡后，先经过 XDP，然后才为这个包分配内存。 因此在 XDP 层直接将包送到用户态是无需拷贝的。
 > 译者注

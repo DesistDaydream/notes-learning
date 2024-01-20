@@ -1,8 +1,8 @@
 ---
-title: 爬虫
-linkTitle: 爬虫
+title: Crawler
+linkTitle: Crawler
 date: 2023-11-24T10:27
-weight: 20
+weight: 1
 ---
 
 # 概述
@@ -13,7 +13,7 @@ weight: 20
 
 **Web crawler(网络爬虫)**，大家习惯性简称 **Crawler(爬虫)**。Web crawler 是一种可以系统浏览互联网的机器人，通常都是被搜索引擎用来抓取网络资源做成搜索索引。
 
-Crawler 与 [逆向工程](/docs/7.信息安全/逆向工程/逆向工程.md)、[Browser](docs/Web/Browser/Browser.md) 都紧密相连。
+Crawler 与 [Reverse engineering](/docs/7.信息安全/Reverse%20engineering/Reverse%20engineering.md)、[Browser](/docs/Web/Browser/Browser.md) 都紧密相连。
 
 # 学习资料
 

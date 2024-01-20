@@ -44,6 +44,10 @@ Headless Chrome 是 Chrome 浏览器的无界面形态，可以在不打开浏�
   - 注意：这个值并不需要填写绝对路径。只需要填写相对路径，该选项的值是 --user-data-dir 配置的目录的子目录。
 - **--remote-debugging-port**(INT) # 开启 debug 端口，可以通过其他程序连接浏览器。
 
+# 插件推荐
+
+[GitHub 项目，FelisCatus/SwitchyOmega](https://github.com/FelisCatus/SwitchyOmega) # 快速切换浏览器要使用的代理
+
 # 常见问题
 
 ## 如何避免打开谷歌自动跳转到香港 GOOGLE.COM.HK？

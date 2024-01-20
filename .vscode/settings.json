@@ -5,7 +5,8 @@
         "no-emphasis-as-header": false,
         "no-alt-text": false,
         // "hard_tab": false
-        "no-bare-urls": false,
+        "no-bare-urls": false, // 让 URL 可以没有 <> 包围
+        "no-emphasis-as-heading": false // 让一行全部加粗的文本可以存在
     },
     "[html]": {
         "editor.formatOnSave": false

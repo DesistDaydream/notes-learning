@@ -8,7 +8,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - 官网：<https://www.charlesproxy.com/>
 > - 小米手机安装 Charles 证书：<https://blog.csdn.net/yang450712123/article/details/112908643>
 >   - 安卓用不了 2022.9.19
@@ -51,7 +51,7 @@ IOS 访问 chls.pro/ssl 下载证书并安装
 HttpCanary 根证书安装(MIUI13 Android 12可用)
 
 - 还是没法抓集换社的包，微信小程序的包也抓不到
-- 主要是使用了 [SSL_TLS Pinning](docs/7.信息安全/Cryptography/公开密钥加密/证书%20与%20PKI/SSL_TLS%20Pinning.md) 的 app 对非自身认可的证书排斥，但是为啥 IOS 可以，安卓不行？
+- 主要是使用了 [SSL_TLS Pinning](/docs/7.信息安全/Cryptography/公开密钥加密/证书%20与%20PKI/SSL_TLS%20Pinning.md) 的 app 对非自身认可的证书排斥，但是为啥 IOS 可以，安卓不行？
 
 ## 安装证书
 
@@ -89,4 +89,3 @@ TODO: 这里可能会有问题，执行 `mount -o remount,rw /system` 可能会�
 给微信降级后即可在 PC 上抓包：<https://blog.csdn.net/weixin_46552558/article/details/124037807>
 
 小程序内嵌的 h5 调用如何抓到？
-
