@@ -30,3 +30,5 @@ B 站视频
 
 - https://github.com/onepureman/spider_draft 各种网站的登陆破解，仅供交流学习
 - https://github.com/Zero-S1/awesome-python-login-model python模拟登陆一些大型网站，还有一些简单的爬虫
+
+https://github.com/lixi5338619/lxSpider 爬虫案例合集

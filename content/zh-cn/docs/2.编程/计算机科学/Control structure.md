@@ -24,6 +24,12 @@ switch case
 
 **Loop(循环)**
 
+**Recurise(递归)**
+
+**Iterative(迭代)**
+
+**Traversal(遍历)**
+
 # 结构化的非局部控制流
 
 ## 异常处理
