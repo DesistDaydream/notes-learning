@@ -50,6 +50,19 @@ volumes:
 
 # Compose 安装
 
+## 安装 Docker 的 Compose 插件
+
+```bash
+DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+mkdir -p $DOCKER_CONFIG/cli-plugins
+curl -SL https://github.com/docker/compose/releases/download/v2.24.2/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+```
+
+## 安装独立的 docker-compose 工具
+
+<font color="#ff0000">注意</font>：从 22 还是 23 版本开始（待确认），官方已不图鉴使用此方案，仅处于向后兼容的目的才支持
+
 Linux 上我们可以从 Github 上下载它的二进制包来使用，最新发行的版本地址：[https://github.com/docker/compose/releases](https://github.com/docker/compose/releases)。
 
 运行以下命令以下载 Docker Compose 的当前稳定版本：

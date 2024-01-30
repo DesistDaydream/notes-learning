@@ -95,12 +95,6 @@ sys 0m0.206s
 
 在物理磁盘上划分的一块空间，用于当做内存使用，称为 swap。一般情况用不到
 
-total # （总量）
-
-used # （使用）
-
-free # （空闲）
-
 Swap 分区（也称交换分区）是硬盘上的一个区域，被指定为操作系统可以临时存储数据的地方，这些数据不能再保存在 RAM 中。 基本上，这使您能够增加服务器在工作“内存”中保留的信息量，但有一些注意事项，主要是当 RAM 中没有足够的空间容纳正在使用的应用程序数据时，将使用硬盘驱动器上的交换空间。
 
 写入磁盘的信息将比保存在 RAM 中的信息慢得多，但是操作系统更愿意将应用程序数据保存在内存中，并使用交换旧数据。 总的来说，当系统的 RAM 耗尽时，将交换空间作为回落空间可能是一个很好的安全网，可防止非 SSD 存储系统出现内存不足的情况。
@@ -116,6 +110,27 @@ END
 ```
 
 swappiness 参数配置您的系统将数据从 RAM 交换到交换空间的频率, 值介于 0 和 100 之间，表示百分比。如果 swappiness 值接近 0，内核将不会将数据交换到磁盘，除非绝对必要。要记住一点，与 swap 文件的交互是“昂贵的”，因为与 swap 交互花费的时间比与 RAM 的交互更长，并且会导致性能的显著下降。系统更少依赖 swap 分区通常会使你的系统更快。swappiness 接近 100 的值将尝试将更多的数据放入交换中，以保持更多的 RAM 空间。根据您的应用程序的内存配置文件或您使用的服务器，这可能会在某些情况下更好。
+
+### 使用 Swap
+
+- https://www.myfreax.com/how-to-add-swap-space-on-ubuntu-22-04/
+- https://www.yangbolin.com/?id=296
+
+```bash
+export SWAP_FILE="/swapfile.img"
+dd if=/dev/zero of=${SWAP_FILE} bs=1024 count=2000000
+chmod 600 ${SWAP_FILE}
+mkswap -f ${SWAP_FILE}
+
+# 激活 Swap
+swapon ${SWAP_FILE}
+```
+
+可以在 /etc/fstab 文件中添加配置以实现开启自动激活 swap
+
+```
+/swapfile.img	none	swap	sw	0	0
+```
 
 # 缓存的清理
 

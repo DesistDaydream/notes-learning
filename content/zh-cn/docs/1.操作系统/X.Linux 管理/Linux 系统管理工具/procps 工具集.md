@@ -303,32 +303,32 @@ Swap: 32764556k total,        0k used, 32764556k free,  3612636k cached
 
 第一行解析：任务队列信息，同 uptime 命令的执行结果，具体参数说明情况如下：
 
-1. 14:06:23 # 当前系统时间
-2. up 70 days, 16:44 # 系统已经运行了 70 天 16 小时 44 分钟
-3. 2 users # 当前有 2 个用户登录系统
-4. load average: 1.25, 1.32, 1.35 # load average 后面的三个数分别是 1 分钟、5 分钟、15 分钟的负载情况。
-   1. load average 数据是每隔 5 秒钟检查一次活跃的进程数，然后按特定算法计算出的数值。如果这个数除以逻辑 CPU 的数量，结果高于 5 的时候就表明系统在超负荷运转了。
-   2. 关于 load average 的说明详见：理解 load average—Linux 系统负荷
+- 14:06:23 # 当前系统时间
+- up 70 days, 16:44 # 系统已经运行了 70 天 16 小时 44 分钟
+- 2 users # 当前有 2 个用户登录系统
+- load average: 1.25, 1.32, 1.35 # load average 后面的三个数分别是 1 分钟、5 分钟、15 分钟的负载情况。
+   - load average 数据是每隔 5 秒钟检查一次活跃的进程数，然后按特定算法计算出的数值。如果这个数除以逻辑 CPU 的数量，结果高于 5 的时候就表明系统在超负荷运转了。
+   - 关于 load average 的说明详见：理解 load average—Linux 系统负荷
 
 第二行解析：Tasks # 任务（进程），具体信息说明如下：
 
-1. total # 系统全部的进程数。现在共有 206 个进程
-2. running # 运行状态的进程数
-3. sleeping # 睡眠状态的进程数
-4. stoped # 已经停止的状态的进程数
-5. zombie # 僵尸状态的进程数。
+- total # 系统全部的进程数。现在共有 206 个进程
+- running # 运行状态的进程数
+- sleeping # 睡眠状态的进程数
+- stoped # 已经停止的状态的进程数
+- zombie # 僵尸状态的进程数。
 
 第三行解析：cpu 状态信息，显示了基于上次刷新时间间隔内，CPU 使用率的百分比。如果 top 命令每 1 秒刷新一次，则下面的信息为 1 秒时间内，CPU 被占用时间的百分比（也就意味着 us 占用 0.059 秒，sy 占用 0.034 秒，空闲了 0.904 秒，st 占用了 0.002 秒）。
 具体属性说明如下：(且所有参数的值加起来应为 100%)
 
-1. 5.9%us # user cpu time，未改变过 nice 值的用户空间进程的运行时间
-2. 3.4% sy # system cpu time，内核空间进程的运行时间
-3. 0.0% ni # user nice cpu time，已改变过 nice 值的用户空间进程的运行时间
-4. 90.4% id # idle cpu time，CPU 空闲时间。
-5. 0.0% wa # io wait cpu time，等待磁盘写入完成的时间。该值较高时，说明 IO 等待比较严重，这可能磁盘大量作随机访问造成的，也可能是磁盘性能出现了瓶颈。
-6. 0.0% hi # hardware irq，硬中断（Hardware Interrupts）花费的时间
-7. 0.2% si # software irq，软中断（Software Interrupts）花费的时间
-8. 0.0% st # steal time，使用 hypervisor 管理的虚拟机偷取的时间
+- **us** # user cpu time，未改变过 nice 值的用户空间进程的运行时间
+- **sy** # system cpu time，内核空间进程的运行时间
+- **ni** # user nice cpu time，已改变过 nice 值的用户空间进程的运行时间
+- **id** # idle cpu time，CPU 空闲时间。
+- **wa** # io wait cpu time，等待磁盘写入完成的时间。该值较高时，说明 IO 等待比较严重，这可能磁盘大量作随机访问造成的，也可能是磁盘性能出现了瓶颈。
+- **hi** # hardware irq，硬中断（Hardware Interrupts）花费的时间
+- **si** # software irq，软中断（Software Interrupts）花费的时间
+- **st** # steal time，使用 hypervisor 管理的虚拟机偷取的时间
 
 第四行解析：内存状态，具体信息如下：
 

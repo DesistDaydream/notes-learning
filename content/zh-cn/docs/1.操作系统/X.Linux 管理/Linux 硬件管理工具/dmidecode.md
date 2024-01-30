@@ -123,6 +123,10 @@ dmidecode |grep -A16 "System Information$"
 
 ## CPU 信息
 
+```bash
+dmidecode -t processor
+```
+
 ## 内存信息
 
 查看内存信息
