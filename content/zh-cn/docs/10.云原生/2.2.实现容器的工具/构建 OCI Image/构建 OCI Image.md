@@ -162,4 +162,4 @@ INSTRUCTION-n arguments
 
 ## Dockerfile 指令
 
-详见 [Dockerfile 指令详解](/docs/10.云原生/2.2.实现容器的工具/构建%20OCI%20Image/Dockerfile%20指令详解.md)
+详见 [Dockerfile 指令](docs/10.云原生/2.2.实现容器的工具/构建%20OCI%20Image/Dockerfile%20指令.md)

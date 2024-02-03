@@ -756,8 +756,8 @@
       "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image/_index.md",
       "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image/构建 OCI Image.md",
       "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image/BuildKit 构建工具.md",
-      "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image/Dockerfile 指令详解.md",
       "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image/Multi-Stage Builds(多阶段构建).md",
+      "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image/Dockerfile 指令.md",
       "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image/Dockerfile 样例.md"
     ],
     "docs/10.云原生/2.3.Kubernetes 容器编排系统": [
