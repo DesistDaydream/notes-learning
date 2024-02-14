@@ -1,18 +1,19 @@
 ---
 title: Git 命令行工具
+linkTitle: Git 命令行工具
+date: 2024-02-13T08:48
+weight: 20
 ---
 
 # 概述
 
+> 参考：
+> 
+> -
+
 git 工具通过多个子命令来使用
 
-COMMAND:
-add Add file contents to the index
-bisect Find by binary search the change that introduced a bug
-branch List, create, or delete branches
-checkout Checkout a branch or paths to the working tree
-
-## clone # 将一个存储库克隆到一个新的目录
+# clone - 将一个存储库克隆到一个新的目录
 
 OPTIONS
 
@@ -24,9 +25,37 @@ EXAMPLE
 
 commit Record changes to the repository
 
-## config # 配置 git
+# config - 配置 git
 
-此命令分别设置要与提交一起使用的作者姓名和电子邮件地址。
+获取和设置存储库或全局选项
+
+## Syntax(语法)
+
+```bash
+git config [<file-option>] [--type=<type>] [--fixed-value] [--show-origin] [--show-scope] [-z|--null] <name> [<value> [<value-pattern>]]
+git config [<file-option>] [--type=<type>] --add <name> <value>
+git config [<file-option>] [--type=<type>] [--fixed-value] --replace-all <name> <value> [<value-pattern>]
+git config [<file-option>] [--type=<type>] [--show-origin] [--show-scope] [-z|--null] [--fixed-value] --get <name> [<value-pattern>]
+git config [<file-option>] [--type=<type>] [--show-origin] [--show-scope] [-z|--null] [--fixed-value] --get-all <name> [<value-pattern>]
+git config [<file-option>] [--type=<type>] [--show-origin] [--show-scope] [-z|--null] [--fixed-value] [--name-only] --get-regexp <name-regex> [<value-pattern>]
+git config [<file-option>] [--type=<type>] [-z|--null] --get-urlmatch <name> <URL>
+git config [<file-option>] [--fixed-value] --unset <name> [<value-pattern>]
+git config [<file-option>] [--fixed-value] --unset-all <name> [<value-pattern>]
+git config [<file-option>] --rename-section <old-name> <new-name>
+git config [<file-option>] --remove-section <name>
+git config [<file-option>] [--show-origin] [--show-scope] [-z|--null] [--name-only] -l | --list
+git config [<file-option>] --get-color <name> [<default>]
+git config [<file-option>] --get-colorbool <name> [<stdout-is-tty>]
+git config [<file-option>] -e | --edit
+```
+
+**OPTIONS**
+
+- **-l, --list** # 列出配置文件中设置的所有变量及其值。
+
+## EXAMPLE
+
+
 
 diff Show changes between commits, commit and working tree, etc
 
@@ -34,9 +63,9 @@ fetch Download objects and refs from another repository
 
 grep Print lines matching a pattern
 
-init # 创建一个空的 Git 存储库或重新初始化现有的存储库
+init - 创建一个空的 Git 存储库或重新初始化现有的存储库
 
-## log # 展示所有 commit 的记录。默认展示当前分支。
+# log - 展示所有 commit 的记录。默认展示当前分支。
 
 git log \[] \[] \[\[--] ...]
 
@@ -64,7 +93,7 @@ status Show the working tree status
 
 tag Create, list, delete or verify a tag object signed with GPG
 
-# git 命令的应用实例
+# 最佳实践
 
 git 放弃本地修改，强制拉取更新
 
@@ -242,7 +271,6 @@ git push  远程分支名
 如果直接 push 可能会失败，因为可能存在冲突，所以在 push 之前往往会先 pull 一下，如果存在冲突本地解决。push 成功后本地的远程分支引用会更新，与本地分支指向同一节点。
 
 综上所述
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/yc1he6/1622380437220-cc136a5f-1d56-4767-85a1-0e16753a3cd0.webp)
 
 - 不管是 HEAD 还是分支，它们都只是引用而已，引用+节点是 Git 构成分布式的关键
 - merge 相比于 rebase 有更明确的时间历史，而 rebase 会使提交更加线性应当优先使用

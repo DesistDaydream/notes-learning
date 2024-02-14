@@ -25,7 +25,9 @@ date: 2024-01-20T11:22
 
 ## 樱桃键盘
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/na3u1y/1654068821514-75ee0957-87fb-44b4-bcbf-c635517dc6fc.png)
+Cheey(樱桃) 键盘一按 F1 就是静音该如何解决？
+
+使用 `Ctrl + Fn` 即可切换 F1 的作用，其他 F 功能键效果同理
 
 # 攀升兄弟，名龙堂，宁美国度，京天华盛这四个哪个的主机好一些，自己不会组装，懒得组装，买个便宜的玩玩？
 

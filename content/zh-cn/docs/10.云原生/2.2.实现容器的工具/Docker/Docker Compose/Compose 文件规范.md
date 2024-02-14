@@ -327,6 +327,14 @@ networks:
 
 **aliases** ：同一网络上的其他容器可以使用服务名称或此别名来连接到对应容器的服务。
 
+## ports
+
+配置端口映射，有 3 种语法
+
+- `HOST:CONTAINER` # HOST 为主机上的端口，CONTAINER 为容器内的端口。
+- `CONTAINER` # 仅指定容器内的端口，主机端口随机选择
+- `IP:HOSTPORT:CONTAINERPORT` # 将容器内的端口映射到主机上指定 IP 的端口上。
+
 ## restart
 
 - no：是默认的重启策略，在任何情况下都不会重启容器。

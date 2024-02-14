@@ -46,7 +46,11 @@
       "docs/0.计算机/Motherboard",
       "docs/0.计算机/CPU",
       "docs/0.计算机/Memory",
-      "docs/0.计算机/Disk"
+      "docs/0.计算机/Disk",
+      "docs/0.计算机/小型机器.md",
+      "docs/0.计算机/扩展与外设.md",
+      "docs/0.计算机/Computer Peripheral.md",
+      "docs/0.计算机/计算机厂家信息.md"
     ],
     "docs/0.计算机/CPU": [
       "docs/0.计算机/CPU/_index.md",

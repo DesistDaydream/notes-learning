@@ -355,7 +355,7 @@ Youtube：<https://www.youtube.com/watch?v=EOsBJxtiOho>
 
 ## 可以为其他域名提供 NameServer 的域名注册商
 
-DNSPod
+DNSPod https://www.dnspod.cn/
 
 # 国内域名备案说明
 
