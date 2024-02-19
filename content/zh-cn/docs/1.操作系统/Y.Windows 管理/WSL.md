@@ -19,9 +19,12 @@ title: WSL
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wsl/20230601094318.png)
 
-若不开启“虚拟机平台”，在安装后启动时，将可能会出现下图错误
+之后在 Microsoft Store 中使用 `Windows Susystem for Linux` 关键字搜索并安装 WSL 的最新版。
+
+若不开启“虚拟机平台”  或 安装最新版 WSL，在安装后启动时，将可能会出现下图错误
 
 ![wsl-error.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wsl/wsl-error.png)
+
 
 ## 安装 Linux 发行版
 
@@ -30,7 +33,7 @@ title: WSL
 安装 Ubuntu 发行版的 WSL
 
 ```
-wsl --install -d Ubunt
+wsl --install -d Ubuntu
 ```
 
 ## 常见问题
@@ -89,8 +92,10 @@ wsl.exe --user root
 
 WSL 子系统管理选项
 
-- **--status** # 显示适用于 Linux 的 Windows 子系统的状态。
-- **--update** # 更新适用于 Linux 的 Windows 子系统程序包。
+- **--install \[DISTRIBUTION] [OPTIONS]** # 
+- **--shutdown** # 立即终止所有正在运行在 wsl 子系统上的 Linux 发行版
+- **--status** # 显示 wsl 子系统的状态。
+- **--update** # 更新 wsl 子系统程序包。
 
 发行版管理选项
 
