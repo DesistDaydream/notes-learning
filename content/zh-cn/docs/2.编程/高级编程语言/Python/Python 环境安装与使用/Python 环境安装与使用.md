@@ -51,7 +51,7 @@ Python 3.10.6 (main, Nov 14 2022, 16:10:14)
 
 ### 安装完成后自动设置的内容
 
-修改安装路劲到 `D:\Tools\Python\Python${版本号}` 目录下
+修改安装路径到 `D:\Tools\Python\Python${版本号}` 目录下
 
 - 比如我安装 Python 3.10 版本，则会安装到 `D:\Tools\Python\Python310` 目录下
 
