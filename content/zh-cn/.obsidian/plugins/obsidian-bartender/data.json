@@ -1062,12 +1062,10 @@
     ],
     "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍": [
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/_index.md",
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/Glossary.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/Kuberntes 介绍.md",
-      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/Standardized Glossary(标准化术语).md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/Kubernetes Runtime.md",
-      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/灵魂拷问，上 Kubernetes 有什么业务价值？.md",
-      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/如何构建以应用为中心的“Kubernetes”_（内含 QA 整理）.md",
-      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/如何玩转 Kubernetes 开源社区？这篇文章一定要看！.md"
+      "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/Kubernetes 开源社区指南.md"
     ],
     "docs/10.云原生/DevOps": [
       "docs/10.云原生/DevOps/_index.md",
@@ -2012,7 +2010,7 @@
     ],
     "docs/7.信息安全": [
       "docs/7.信息安全/_index.md",
-      "docs/7.信息安全/Standardized Glossary.md",
+      "docs/7.信息安全/Glossary.md",
       "docs/7.信息安全/信息安全.md",
       "docs/7.信息安全/Cryptography",
       "docs/7.信息安全/Access Control",
@@ -2120,13 +2118,12 @@
     ],
     "docs/9.运维": [
       "docs/9.运维/_index.md",
+      "docs/9.运维/Glossary.md",
       "docs/9.运维/运维.md",
       "docs/9.运维/运维管理",
       "docs/9.运维/Ansible",
       "docs/9.运维/Cobbler",
-      "docs/9.运维/应用发布.md",
-      "docs/9.运维/PXE.md",
-      "docs/9.运维/Standardized Glossary(标准化术语).md"
+      "docs/9.运维/应用发布.md"
     ],
     "docs/9.运维/Ansible": [
       "docs/9.运维/Ansible/_index.md",
@@ -2309,6 +2306,7 @@
     ],
     "docs/x_标准化": [
       "docs/x_标准化/_index.md",
+      "docs/x_标准化/Glossary.md",
       "docs/x_标准化/常用英文.md",
       "docs/x_标准化/Foundation",
       "docs/x_标准化/IT",

@@ -7,7 +7,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，numpy/numpy](https://github.com/numpy/numpy)
 > - [官网](https://numpy.org/)
 > - [Wiki，NumPy](https://en.wikipedia.org/wiki/NumPy)
@@ -22,4 +22,4 @@ pip install numpy
 
 # 分类
 
-#人工智能 #Python #科学计算
+ #人工智能 #Python #科学计算

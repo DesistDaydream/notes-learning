@@ -13,9 +13,9 @@ weight: 1
 > - [Wiki，tcpdump](https://en.wikipedia.org/wiki/Tcpdump)
 > - <https://www.middlewareinventory.com/blog/tcpdump-capture-http-get-post-requests-apache-weblogic-websphere/>
 
-TCPDump 是一个在命令行界面下的 Packet Analyzer(数据包分析器)。tcpdump 适用于大多数 [类 Unix](https://en.wikipedia.org/wiki/Unix-like) 操作系统，在这些系统中，tcpdump 使用 [libpcap](https://en.wikipedia.org/wiki/Libpcap) 库来捕获数据包。对于 Windows 操作系统来说，tcpdump 使用的 pcap API 是 [WinPcap](https://en.wikipedia.org/wiki/WinPcap)(即 libpcap 的 Windows 版本)。
+TCPDump 是一个在命令行界面下的 [Packet analyzer](docs/7.信息安全/Packet%20analyzer/Packet%20analyzer.md)(数据包分析器)。tcpdump 适用于大多数类 Unix 操作系统，在这些系统中，tcpdump 使用 [libpcap](https://en.wikipedia.org/wiki/Libpcap) 库来捕获数据包。对于 Windows 操作系统来说，tcpdump 使用的 pcap API 是 [WinPcap](https://en.wikipedia.org/wiki/WinPcap)(即 libpcap 的 Windows 版本)。
 
-tcpdump 最初由[Van Jacobson](https://en.wikipedia.org/wiki/Van_Jacobson)、[Sally Floyd](https://en.wikipedia.org/wiki/Sally_Floyd)、[Vern Paxson](https://en.wikipedia.org/wiki/Vern_Paxson)和[Steven McCanne](https://en.wikipedia.org/w/index.php?title=Steven_McCanne&action=edit&redlink=1)于 1988 年编写，他们当时在[劳伦斯伯克利实验室](https://en.wikipedia.org/wiki/Lawrence_Berkeley_Laboratory)网络研究小组工作。到 1990 年代后期，有许多版本的 tcpdump 作为各种操作系统的一部分分发，以及许多没有很好协调的补丁。 [Michael Richardson (mcr)](<https://en.wikipedia.org/w/index.php?title=Michael_Richardson_(mcr)&action=edit&redlink=1>)和[Bill Fenner](https://en.wikipedia.org/w/index.php?title=Bill_Fenner&action=edit&redlink=1)于 1999 年创建了[www.tcpdump.org](https://www.tcpdump.org/)。
+tcpdump 最初由[Van Jacobson](https://en.wikipedia.org/wiki/Van_Jacobson)、[Sally Floyd](https://en.wikipedia.org/wiki/Sally_Floyd)、[Vern Paxson](https://en.wikipedia.org/wiki/Vern_Paxson)和[Steven McCanne](https://en.wikipedia.org/w/index.php?title=Steven_McCanne&action=edit&redlink=1)于 1988 年编写，他们当时在[劳伦斯伯克利实验室](https://en.wikipedia.org/wiki/Lawrence_Berkeley_Laboratory)网络研究小组工作。到 1990 年代后期，有许多版本的 tcpdump 作为各种操作系统的一部分分发，以及许多没有很好协调的补丁。 [Michael Richardson (mcr)](<https://en.wikipedia.org/w/index.php?title=Michael_Richardson_(mcr)&action=edit&redlink=1>)和[Bill Fenner](https://en.wikipedia.org/w/index.php?title=Bill_Fenner&action=edit&redlink=1)于 1999 年创建 www.tcpdump.org
 
 说明：Dump 有 **转出，倾卸；转储；内容全部打印** 的含义，在官方文档中，通过 TCPDump 程序输出的数据包，通常称为 dump line，转储的行。说白了就是程序抓到的包，每个包都是一行~~~~~
 

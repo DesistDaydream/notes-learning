@@ -8,6 +8,7 @@ weight: 1
 # 概述
 
 > 参考：
+> 
 > - [Wiki，Blockchain](https://en.wikipedia.org/wiki/Blockchain)
 > - [B 站，汪杰解惑 NFT-02](https://www.bilibili.com/video/BV1T34y117Y9)
 
@@ -43,16 +44,24 @@ NFT 交易平台
 
 ## ETH
 
-**Etherscan 是**以太坊网络的区块链浏览器。 该网站可用于搜索交易、区块、钱包地址、智能合约以及其它链上数据，属于最热门的以太坊区块链浏览器之一，免费向用户开放。 使用**Etherscan**即可详细了解如何与区块链、其他钱包以及 DAapp 进行交互
+**Etherscan** 是以太坊网络的区块链浏览器。 该网站可用于搜索交易、区块、钱包地址、智能合约以及其它链上数据，属于最热门的以太坊区块链浏览器之一，免费向用户开放。 使用**Etherscan**即可详细了解如何与区块链、其他钱包以及 DAapp 进行交互
 
 <https://etherscan.io/address/0xED783c0ee7444435d31555f0Ab23E30ac2d0a9Eb>
 
 ## 链
 
-- HECO # 火币的链
-  - 火币的“区块链浏览器”<https://hecoinfo.com/>
-- Etherscan # 以太坊的链
-  - 以太坊的“区块链浏览器”<https://etherscan.io/>
+HECO # 火币的链
+
+  - 火币的 区块链浏览器 https://hecoinfo.com/
+
+Etherscan # 以太坊的链
+
+  - 以太坊的 区块链浏览器 https://etherscan.io/
+
+StarkNet
+
+- https://www.starknet.io/en
+- 该公链项目会不定期为向 GitHub 上 Star 数较多的项目提交过 PR 的开发者发送 STRK，称之为“空投奖励”。想要领取空投需要符合一定的条件，每次条件不定，时间不定。
 
 ## 应用示例
 
@@ -106,3 +115,6 @@ NFT 交易平台
 填入地址后，代币符号与小数精度将会自动出现
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/lddbaw/1647498857327-a04a31ff-ff5c-4e32-8809-8bcc8582bdd2.png)
+# 交易
+
+TODO: 如何将自己转移至交易所？手续费怎么算？转移至交易所后兑换成 USDT 出售。

@@ -1,6 +1,6 @@
 ---
-title: Standardized Glossary
-linkTitle: Standardized Glossary
+title: Glossary
+linkTitle: Glossary
 date: 2024-01-14T20:30
 weight: 20
 ---
@@ -10,8 +10,6 @@ weight: 20
 > 参考：
 > 
 > - [RFC 4949(互联网安全术语)](https://datatracker.ietf.org/doc/html/rfc4949)
-
-**Standardized Glossary(标准化术语)**
 
 **Crypto(密码学)** # 算是 **Cryptographic** 的前缀简写吧
 
@@ -85,3 +83,12 @@ weight: 20
 **Secure Hash Algorithm(安全哈希算法，简称 SHA)**
 
 **Personal Identification Number(个人识别码，简称 PIN)**
+
+# 其他
+
+**Information security management system(信息安全管理系统，简称 ISMS)**
+
+- https://en.wikipedia.org/wiki/Information_security_management
+
+**Call detail record(通话详细记录，简称 CDR)** 中文常简称为 话单。随着发展，话单的含义也逐步扩展，包含了不止是通话的详细信息。
+- https://en.wikipedia.org/wiki/Call_detail_record

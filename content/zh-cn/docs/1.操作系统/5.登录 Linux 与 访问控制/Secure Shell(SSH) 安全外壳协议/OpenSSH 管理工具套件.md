@@ -13,7 +13,7 @@ title: OpenSSH 管理工具套件
 - ssh-add、ssh-keysign、ssh-keyscan、ssh-keygen # 密钥管理工具
 - sshd、sftp-server、ssh-agent # 服务端管理工具
 
-# ssh # OpenSSH 的 ssh 客户端工具(远程登录程序)
+# ssh - OpenSSH 的 ssh 客户端工具(远程登录程序)
 
 ## Syntax(语法)
 
@@ -117,7 +117,7 @@ OPTIONS
 - 连接时启用 X11 转发，常用于在 Linux 系统上连接后启动
   - ssh -X -C 192.168.0.1
 
-# scp # 基于 ssh 协议的文件传输工具
+# scp - 基于 ssh 协议的文件传输工具
 
 ## Syntax(语法)
 

@@ -6,8 +6,10 @@ weight: 1
 # 概述
 
 > 参考：
-> - [RFC,675](https://datatracker.ietf.org/doc/html/rfc675)
-> - [RFC,793](https://datatracker.ietf.org/doc/html/rfc793)
+> 
+> - [RFC 675](https://datatracker.ietf.org/doc/html/rfc675)
+> - [RFC 793](https://datatracker.ietf.org/doc/html/rfc793)
+>   - [RFC 9293](https://datatracker.ietf.org/doc/html/rfc9293)
 > - [Wiki，TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol)
 > - [极客时间,趣谈网络协议](https://time.geekbang.org/column/intro/100007101)
 > - <https://www.jianshu.com/p/1118f497a425>
@@ -38,13 +40,17 @@ TCP 天然认为网络环境是恶劣的，丢包、乱序、重传，拥塞都�
 
 # TCP Segment 结构
 
+> 参考：
+> 
+> - [RFC 9293，3.1.Header Format](https://datatracker.ietf.org/doc/html/rfc9293#name-header-format)
+
 TCP 段被封装在 IP 数据报中
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/tvcktp/1628820358483-a9e565df-371d-4e47-b0d0-0f1fb6077945.png)
 
 首部长度：一般为 20 字节，选项最多 40 字节，限制 60 字节。下图中的位，即代表 bit，也就是说，首部一共 160 bit，即 20 Byte。
 
-![tcp-segment.jpg](https://notes-learning.oss-cn-beijing.aliyuncs.com/tcp/tcp-segment.jpg)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/tcp/tcp-segment.jpg)
 
 对照在 WireShark 中展示的内容看，排除 `[]` 中的内容，WireShark 中展示的一个 SYN TCP 段的内容，每一行就是包头中的一个内容
 

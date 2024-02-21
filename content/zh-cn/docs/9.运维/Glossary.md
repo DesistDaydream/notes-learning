@@ -1,5 +1,5 @@
 ---
-title: Standardized Glossary(标准化术语)
+title: Glossary
 ---
 
 # 部署环境
