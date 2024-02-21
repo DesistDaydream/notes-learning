@@ -250,7 +250,7 @@ Unveilr # 反编译解密后的 `*.wxapkg` 文件得到源码。
 
 有些混淆代码无法查找，通过编写代码段后调试，可以快速定位。
 
-比如下面这个，可以通过 `JSON.stringify = function (params) {}` 重新定义 `JSON.stringify` 方法的逻辑，在其中加入文本输出和 debug 暂停能力。
+比如下面这个，可以通过 `JSON.stringify = function (params) {}` 重新定义 `JSON.stringify` 方法的逻辑，在其中加入文本输出和 debug 暂停能力。只需要在 [DevTools](docs/Web/Browser/DevTools.md) - 源代码 - 代码段 中插入下面的代码后运行即可。
 
 ```js
 (function () {

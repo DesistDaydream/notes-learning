@@ -1,6 +1,20 @@
 ---
-title: 交换机 与 路由器
+title: Router And Switch
+linkTitle: Router And Switch
+date: 2024-02-22T13:23
+weight: 20
 ---
+
+# 概述
+
+> 参考：
+> 
+> - [Wiki，Router_(computing)](https://en.wikipedia.org/wiki/Router_(computing))
+> - [Wiki，Network switch](https://en.wikipedia.org/wiki/Network_switch)
+
+**Router(路由器)**
+
+**Switch(交换机)**
 
 # 华为交换机
 

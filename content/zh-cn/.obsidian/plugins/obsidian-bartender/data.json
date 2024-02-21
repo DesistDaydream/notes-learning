@@ -2058,9 +2058,11 @@
     "docs/7.信息安全/Packet analyzer": [
       "docs/7.信息安全/Packet analyzer/_index.md",
       "docs/7.信息安全/Packet analyzer/Packet analyzer.md",
+      "docs/7.信息安全/Packet analyzer/pcap.md",
       "docs/7.信息安全/Packet analyzer/TCPDump",
       "docs/7.信息安全/Packet analyzer/WireShark.md",
-      "docs/7.信息安全/Packet analyzer/Charles.md"
+      "docs/7.信息安全/Packet analyzer/Charles.md",
+      "docs/7.信息安全/Packet analyzer/Fiddler.md"
     ],
     "docs/7.信息安全/Packet analyzer/TCPDump": [
       "docs/7.信息安全/Packet analyzer/TCPDump/_index.md",
@@ -2353,6 +2355,12 @@
       "docs/7.信息安全/Crawler/Crawler.md",
       "docs/7.信息安全/Crawler/最佳实践.md",
       "docs/7.信息安全/Crawler/Python Web 爬虫武器库盘点.md"
+    ],
+    "docs/4.数据通信/Networking device": [
+      "docs/4.数据通信/Networking device/_index.md",
+      "docs/4.数据通信/Networking device/Networking device.md",
+      "docs/4.数据通信/Networking device/Router And Switch.md",
+      "docs/4.数据通信/Networking device/Optical splitter.md"
     ]
   },
   "actionBarOrder": {},
