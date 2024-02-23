@@ -39,7 +39,7 @@ HTTP(RFC 2616 版本) 规定了非常多的 Header 字段，可以实现各种�
 
 而这两类头字段下，又有各自的子分类
 
-在 2014 年之后的新版规范中，并非所有出现在请求中的 Header 都称为请求头，比如 Content-Length，在 RFC 2616 中称为 Entity Header(实体头)，而在新版规范中，称之为元数据。这也为 HTTP 2.0 的 [Header 压缩](/docs/4.数据通信/通信协议/7.HTTP/HTTP2.md) 打下了基础
+在 2014 年之后的新版规范中，并非所有出现在请求中的 Header 都称为请求头，比如 Content-Length，在 RFC 2616 中称为 Entity Header(实体头)，而在新版规范中，称之为元数据。这也为 HTTP 2.0 的 [Header 压缩](docs/4.数据通信/通信协议/HTTP/HTTP2.md) 打下了基础
 
 # Request Header(请求头)
 

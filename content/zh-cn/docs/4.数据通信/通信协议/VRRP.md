@@ -1,8 +1,15 @@
 ---
-title: 3.VRRP
+title: VRRP
+linkTitle: VRRP
+date: 2024-02-23T12:24
+weight: 20
 ---
 
 # 概述
+
+> 参考：
+> 
+> -
 
 **Virtual Router Redundancy Protocol(虚拟路由冗余协议，简称 VRRP)** 是一种容错协议，其主要目的是解决路由单点故障的问题。VRRP 协议将局域网内的一组路由器虚拟为单个路由，通常将其称为一个路由备份组， 而这组路由器内包括一个 Master 路由（ 即活动路由器）和若干个 Backup 路由（即备份路由器）， VRRP 虚拟路由示意图如图 3-3 所示。在图 3-3 中 RouterA 、RouterB 和 RouterC 属于同一个 VRRP 组，组成一个虚拟路由器，而由 VRRP 协议虚拟出来的路由器拥有自己的 IP 地址 10.110.10.1 ，而备份组内的路由器也有自己的 IP 地址（如 Master 的 IP 地址为 10.110.10.5, Backup 的 IP 地址为 10.110.10.6 和 10.110.10.7）。
 

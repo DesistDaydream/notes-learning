@@ -1,8 +1,13 @@
 ---
-title: 3.BGP
+title: BGP
+linkTitle: BGP
+date: 2024-02-23T12:23
+weight: 20
 ---
 
 # 概述
+
+> 参考：
 
 **Border Gateway Protocol(边界网关协议，简称 BFP)** 是一个 Linux 内核原生就支持的、专门用在大规模数据中心里维护不同的“自治系统”之间路由信息的、无中心的路由协议。
 

@@ -20,19 +20,24 @@ title: Terminal(终端)
 
 # GUI 终端工具
 
-Xmanager 远程桌面教程
+## Xmanager
 
 <https://blog.csdn.net/zhouchen1998/article/details/103424698>
 
-另一个可以转发 x11 的工具
+## SecureCRT
 
-<https://mobaxterm.mobatek.net/>
 
 ## MobaXterm
 
 > 参考：
 > 
 > - [官网](https://mobaxterm.mobatek.net/)
+
+可以转发 x11
+
+### 关联文件与配置
+
+**MobaXterm.ini**
 
 ## WindTerm
 

@@ -1,5 +1,8 @@
 ---
-title: 7.DHCP
+title: DHCP
+linkTitle: DHCP
+date: 2024-02-23T12:26
+weight: 20
 ---
 
 # 概述

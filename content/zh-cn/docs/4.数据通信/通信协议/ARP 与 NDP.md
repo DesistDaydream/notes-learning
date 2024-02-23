@@ -1,5 +1,8 @@
 ---
-title: 2.ARP 与 NDP
+title: ARP 与 NDP
+linkTitle: ARP 与 NDP
+date: 2024-02-23T12:23
+weight: 20
 ---
 
 # 概述

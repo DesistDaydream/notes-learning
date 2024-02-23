@@ -13,6 +13,12 @@ weight: 20
 
 GitHub 的集成搜索涵盖了 GitHub 上的许多存储库、用户和代码行。
 
+## 查找 Github 仓库所有者的联系方式
+
+https://juejin.cn/post/6951642072935825439
+
+通过提交记录
+
 # 搜索 Issue 和 PR
 
 ## 纯粹与用户相关的搜索

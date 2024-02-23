@@ -176,7 +176,7 @@ tcpdump -vv src mars or pluto and not dat port 22
 **抓取 HTTP 的包**
 
 - `tcpdump -AnnSs 70 'tcp[20:4]=0x48545450'`
-  - `tcp[20:4]` # 由 [TCP Segment 结构](/docs/4.数据通信/通信协议/3_4.TCP_IP/TCP/TCP.md#TCP%20Segment%20结构) 可知，TCP 的首部长度为 20 字节，那么 TCP 首部后面的 4 字节通常用来标识
+  - `tcp[20:4]` # 由 [TCP Segment 结构](docs/4.数据通信/通信协议/TCP_IP/TCP/TCP.md#TCP%20Segment%20结构) 可知，TCP 的首部长度为 20 字节，那么 TCP 首部后面的 4 字节通常用来标识
 - 或者
 - `tcpdump -AnnSs 70 'tcp[((tcp[12:1] & 0xf0) >> 2):4] = 0x48545450'`
   - `tcp[((tcp[12:1] & 0xf0) >> 2):4]` # 首先确定我们感兴趣的字节的位置 (在 TCP 头之后)，然后选择我们希望匹配的 4 个字节。TODO: 还没搞明白这个描述

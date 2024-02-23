@@ -8,6 +8,8 @@ weight: 20
 # 概述
 
 > 参考：
+> 
+> - [Wiki，Glossary](https://en.wikipedia.org/wiki/Glossary)
 
 **Standardized Glossary(标准化术语)**
 
@@ -31,3 +33,13 @@ https://en.wikipedia.org/wiki/Internet_service_provider
 | 英文     | 中文           | 缩写 | 说明                                                                |
 | -------- | -------------- | ---- | ------------------------------------------------------------------- |
 | Portable | 便携式、可移植 |      | 一个程序如果不需要安装，直接使用二进制文件运行，通常称为 Portable。 |
+# 全部
+
+| 英文 | 中文 | 缩写 | 链接 | 解释 |
+| ---- | ---- | ---- | ---- | ---- |
+| Deep packet inspection | 深度数据包检测 | DPI | [DPI](docs/7.信息安全/DPI/DPI.md) |  |
+| Transaction<br> | 事务 |  | [Transaction](#Transaction) |  |
+
+## Transaction
+
+假设某个数据可能需要经过A、B、C、D几个步骤才能修改完毕，我们把这四个步骤打包放到事务中，那么事务就可以确保这四个步骤要么全部执行完毕，要么全部都不去执行。这样即使在任意一个步骤断电或者程序崩溃都不会影响到数据的一致性问题。
