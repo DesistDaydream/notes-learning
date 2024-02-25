@@ -1578,7 +1578,7 @@
     "docs/4.数据通信/数据通信": [
       "docs/4.数据通信/数据通信/_index.md",
       "docs/4.数据通信/数据通信/数据通信.md",
-      "docs/4.数据通信/数据通信/OSI 模型概念图.md",
+      "docs/4.数据通信/数据通信/OSI 模型.md",
       "docs/4.数据通信/数据通信/Network Socket.md",
       "docs/4.数据通信/数据通信/CIDR.md",
       "docs/4.数据通信/数据通信/无线通信.md"
@@ -2046,7 +2046,7 @@
       "docs/7.信息安全/Cryptography",
       "docs/7.信息安全/Access Control",
       "docs/7.信息安全/管理工具",
-      "docs/7.信息安全/DPI",
+      "docs/7.信息安全/Network analysis",
       "docs/7.信息安全/Packet analyzer",
       "docs/7.信息安全/中间人攻击与HTTPS抓包.md",
       "docs/7.信息安全/Bastion Host.md",
@@ -2381,6 +2381,12 @@
       "docs/学习/信息检索.md",
       "docs/学习/写作",
       "docs/学习/学习资源.md"
+    ],
+    "docs/7.信息安全/Network analysis": [
+      "docs/7.信息安全/Network analysis/_index.md",
+      "docs/7.信息安全/Network analysis/NetFlow.md",
+      "docs/7.信息安全/Network analysis/DPI.md",
+      "docs/7.信息安全/Network analysis/Network tap.md"
     ]
   },
   "actionBarOrder": {},

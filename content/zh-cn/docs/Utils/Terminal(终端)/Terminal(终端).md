@@ -51,3 +51,11 @@ title: Terminal(终端)
 > 参考：
 > 
 > - [GitHub 项目，Eugeny/tabby](https://github.com/Eugeny/tabby)
+
+# Warp
+
+> 参考：
+> 
+> - [GitHub 项目，warpdotdev/Warp](https://github.com/warpdotdev/Warp)
+> - [官网](https://www.warp.dev/)
+

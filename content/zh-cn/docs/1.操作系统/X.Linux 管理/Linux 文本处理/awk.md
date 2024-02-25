@@ -19,7 +19,7 @@ awk 以字段为单位进行处理
 
 **awk \[OPTIONS] 'PATTERN1{ACTION1} PATTERN2{ACTION2}....' FILE**
 
-OPTIONS：
+**OPTIONS**
 
 - **-f FILE** # 指定要使用的 awk 代码文件。
 - **-F \[“\[分隔符]”]** # 指定分隔符，默认分隔符为一个或多个的“空格键”或者“tab 键”，也可以具体指定一个或多个
@@ -103,7 +103,10 @@ Hello World Text
 
 # 应用示例
 
-# 简单示例
+去除相同的行
+
+- `awk '!seen[$0]++' test.log`
+  - `!seen[$0]++` 的含义是，如果某一行第一次出现， `seen[$0]` 的值为 0，使用 ! 取反的话，值为 1，i.e. 结果为真，所以 awk 会输出该行。然后 `seen[$0]` 会自增 1，对于后续该行的重复，`!seen[$0]` 为假，因此 awk 不会再次输出该行。
 
 输出文本最后一行
 
@@ -113,19 +116,21 @@ Hello World Text
   - awk '{ $1=""; print $0 }' FILE
 
 查找 hcs 的 access 实时日志的带 HIT 字符的行，取出第五段内容然后排序总结，该日志可以实时查看用户的命中情况以及访问的资源
-  - cat accesslog | grep 'HIT' | awk '{print $5}' | sort | uniq -c
+  - `cat accesslog | grep 'HIT' | awk '{print $5}' | sort | uniq -c`
 
 在/etc/passwd 文件中，每行以:为分隔符，打印 username:这几个字符，后面跟以:分割的第一个字段内容，后面跟换行(\n)然后 uid:这几个字符，再跟第三个字段内容,效果如右图所示
-  - awk -F":" '{ print "username:" $1 "\nuid:" $3 }' /etc/passwd
+  - `awk -F":" '{ print "username:" $1 "\nuid:" $3 }' /etc/passwd`
 
 搜索模式以冒号为分隔符,找到第七个字段以 bash 结尾的所有行,输出每行的第一个和第三个字段(注意：这里面的~在 shell 环境中是用=~表示的)
-  - cat /etc/passwd | awk -F : '$7~/bash$/{print $1,$3}'
-    - 还可以写成判断模式，判断第七字段的字符是否等于/bin/bash，
-    - cat /etc/passwd | awk -F : '$7=="/bin/bash"/{print $1,$3}'
+- `cat /etc/passwd | awk -F : '$7~/bash$/{print $1,$3}'`
+  - 还可以写成判断模式，判断第七字段的字符是否等于/bin/bash，
+  - `cat /etc/passwd | awk -F : '$7=="/bin/bash"/{print $1,$3}'`
 
 以冒号为分隔符的第三个字段数小于 10 的那些行，输出其中的第一和第三个字段
-  - cat /etc/passwd | awk -F : '$3<10{print $1,$3}'
-- - cat /etc/passwd | awk 'BEGIN{FS=":"}{print "UserName\n-----------"}$3<10{print $1,$3}'
+
+- `cat /etc/passwd | awk -F : '$3<10{print $1,$3}'`
+
+- `cat /etc/passwd | awk 'BEGIN{FS=":"}{print "UserName\n-----------"}$3<10{print $1,$3}'`
 
 以=号为分隔符，不包含开头带#或者空白行的所有行，显示这些行的第一个字段,判断模式与搜索模式并用
   - `awk -F = '!/^#|^$/{print $1}' /etc/sysctl.conf`

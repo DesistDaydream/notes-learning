@@ -12,7 +12,7 @@ weight: 20
 > - [Chrome 开发者工具官方文档](https://developer.chrome.com/docs/devtools/)
 > - [Wiki，Web_development_tools](https://en.wikipedia.org/wiki/Web_development_tools)
 
-Chrome DevTools 是一组内置于 Chrome 浏览器中的 Web 开发者工具（通常使用 F12 快捷键打开）。
+Chrome DevTools 是一组内置于 Chrome 浏览器中的 Web 开发者工具（通常使用 F12 快捷键打开；`Ctrl + Shift +i` 也是常见的默认快捷键）。
 
 - **元素** # 当前网页被渲染的数据
 - **控制台** # 可以输入 JS 代码

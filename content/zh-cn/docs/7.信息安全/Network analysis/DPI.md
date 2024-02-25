@@ -2,7 +2,7 @@
 title: DPI
 linkTitle: DPI
 date: 2024-02-20T17:01
-weight: 1
+weight: 2
 ---
 
 # 概述
@@ -11,9 +11,11 @@ weight: 1
 > 
 > - [Wiki，Deep_packet_inspection](https://en.wikipedia.org/wiki/Deep_packet_inspection)
 
-**Deep packet inspection(深度数据包检测，简称 DPI)** 是一种处理数据包的 行为、技术、方法，它详细检查计算机网络上传输的数据，并可能根据情况采取警报、阻止、重新路由或记录等行动。
+**Deep packet inspection(深度数据包检测，简称 DPI)** 是一种用于 **Network analysis(网络分析)** 的 行为、技术、方法，它详细检查计算机网络上传输的数据包，并可能根据情况采取警报、阻止、重新路由或记录等行动。可以通过 软件、硬件、软硬结合 多种方式实现 DPI。
 
-可以通过多种手段获取数据包以进行 DPI。比如 **[Port mirroring](https://en.wikipedia.org/wiki/Port_mirroring)(端口镜像)**、etc. ；也可以通过纯硬件设备，比如 [Network tap(网络分流器)](docs/7.信息安全/DPI/Network%20tap.md)、etc. ，通过这些硬件设备复制数据流并将其发送到分析器工具以检查数据包。
+> 用白话说：DPI 不是一种特定的技术或协议，而是一种处理流量的方式，凡是可以处理 OSI 模型 4 层往上的程序或设备，都可以称为 DPI 的实现。
+
+可以通过多种手段获取数据包以进行 DPI。比如 **[Port mirroring](https://en.wikipedia.org/wiki/Port_mirroring)(端口镜像)**、etc. ；也可以通过纯硬件设备，比如 [Network tap(网络分流器)](docs/7.信息安全/Network%20analysis/Network%20tap.md)、etc. ，通过这些硬件设备复制数据流并将其发送到分析器工具以检查数据包。
 
 > Notes: 随着技术的发展，DPI 包含的概念也在增加，有时候从广义上来说 DPI 甚至可以看做是由多个组件组成的系统，其中包括的组件甚至可以是 Network tap 以便在复制数据包的同时处理数据包，还不影响原始数据包的传递。
 
@@ -46,7 +48,7 @@ Bypass tap 通常至少有 4 个端口。
 - C 和 D 是用来监控安全设备的端口，安全设备正常运行时，流量通过 C 和 D 端口，相当于将安全设备串联进网络中。
 - 当检测到安全设备出现异常时，将会切断 C 和 D 的端口，将流量转交给 A 和 B 以保证网络链路上的数据不间断。 
 
-![image.png|500](https://notes-learning.oss-cn-beijing.aliyuncs.com/information_security/202402220011706.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/information_security/202402220011706.png)
 
 通常来说，这两种情况可以用两种模式来概括
 

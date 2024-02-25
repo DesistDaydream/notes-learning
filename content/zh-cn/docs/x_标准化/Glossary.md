@@ -35,10 +35,11 @@ https://en.wikipedia.org/wiki/Internet_service_provider
 | Portable | 便携式、可移植 |      | 一个程序如果不需要安装，直接使用二进制文件运行，通常称为 Portable。 |
 # 全部
 
-| 英文 | 中文 | 缩写 | 链接 | 解释 |
-| ---- | ---- | ---- | ---- | ---- |
-| Deep packet inspection | 深度数据包检测 | DPI | [DPI](docs/7.信息安全/DPI/DPI.md) |  |
-| Transaction<br> | 事务 |  | [Transaction](#Transaction) |  |
+| 英文                     | 中文      | 缩写与简称   | 链接                                                      | 解释                                                 |     |
+| ---------------------- | ------- | ------- | ------------------------------------------------------- | -------------------------------------------------- | --- |
+| Deep packet inspection | 深度数据包检测 | DPI     | [DPI](docs/7.信息安全/Network%20analysis/DPI.md)                           |                                                    |     |
+| Call Detail Record     | 通话详细记录  | CDR(话单) | [CDR](https://en.wikipedia.org/wiki/Call_detail_record) | 后期随着发展该名词逐渐包含了 网络、等 通信之间的详细记录，而不是单指通话。可以写为 **xDR** |     |
+| Transaction<br>        | 事务      |         | [Transaction](#Transaction)                             |                                                    |     |
 
 ## Transaction
 

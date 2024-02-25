@@ -19,6 +19,10 @@ Rclone 将存储提供者抽象为 **Remote**，在我们配置 Rclone 时，经
 
 Rclone 还可以将这些 Remote 作为磁盘挂载在 Windows、macOS、Linux 上，并通过 SFTP、HTTP、WebDAV、FTP、DLNA 对外提供存储能力。
 
+# Rclone 安装
+
+rclone 的挂载使用 FUSE，需要安装 winfsp。
+
 # Rclone 关联文件与配置
 
 **rclone.conf** # 各种 Remotes 信息。
