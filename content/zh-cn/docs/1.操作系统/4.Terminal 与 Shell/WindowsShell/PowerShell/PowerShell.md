@@ -28,7 +28,7 @@ PowerShell 的独特之处在于，它接受并返回 .NET 对象，而非纯文
 ## PowerShell 命令
 
 > 参考：
-> 
+>
 > - [官方文档，PowerShell 命令是什么？](https://learn.microsoft.com/zh-cn/powershell/scripting/powershell-commands)
 > - [about_Command_Precedence](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_command_precedence) 介绍 PowerShell 如何确定要运行的命令。
 > - [about_Command_Syntax](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_command_syntax) 介绍 PowerShell 中使用的语法关系图

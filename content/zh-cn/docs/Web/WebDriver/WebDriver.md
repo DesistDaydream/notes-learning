@@ -51,6 +51,10 @@ Python 有个 selenium 库用于与 ChromeDriver 交互
 
 以前的版本是对 selenium 进行重新封装实现的。从 3.0 开始，作者另起炉灶，对底层进行了重新开发，摆脱对 selenium 的依赖，增强了功能，提升了运行效率。
 
+## Selenium
+
+[Selenium](/docs/Web/WebDriver/Selenium.md)
+
 ## Playwright
 
 Playwright 是一个由 Microsoft 开发的用于浏览器测试和网页抓取的开源自动化库，于 2020 年 1 月 31 日推出
