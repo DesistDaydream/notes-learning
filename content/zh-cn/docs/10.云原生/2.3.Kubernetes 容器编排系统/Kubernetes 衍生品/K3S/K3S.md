@@ -36,7 +36,7 @@ K3S 封装了部分非 K8S 核心组件，比如 `coredns`、`traefik`、`local
 
 **/run/k3s/** # K3S 所使用的容器 Runtime 的数据保存路径。
 
-- **./containerd/** # 与 [Containerd](</docs/10.云原生/2.2.实现容器的工具/Containerd/Containerd.md#Containerd 关联文件与配置>) 中的 /run/containerd/ 目录功能一致。
+- **./containerd/** # 与 [Containerd](/docs/10.云原生/Containerization%20implementation/Containerd/Containerd.md#Containerd%20关联文件与配置 关联文件与配置>) 中的 /run/containerd/ 目录功能一致。
 
 **/run/flannel/** # 与 [Flannel](</docs/10.云原生/2.3.Kubernetes 容器编排系统/8.Kubernetes 网络/CNI/Flannel.md#Flannel 关联文件与配置 容器编排系统/8.Kubernetes 网络/CNI/Flannel#Flannel 关联文件与配置>) 中 /run/flannel/ 目录功能一致。
 
@@ -50,7 +50,7 @@ K3S 封装了部分非 K8S 核心组件，比如 `coredns`、`traefik`、`local
 - **./agent/** # 作为 k8s 的 node 节点所需要的信息保存路径。对于 K3S 来说，master 节点也属于 node 节点，所以 master 节点在该目录也会保存数据。
   - 包括证书、containerd 数据目录、cni，containerd 的配置文件 等等都在此处
   - **./etc/** # 各种组件的配置文件保存路径。比如 CNI、Containerd、Flannel 等等，相当于各个组件自己所使用的 etc 目录。
-  - **./containerd/** # 与 [Containerd](</docs/10.云原生/2.2.实现容器的工具/Containerd/Containerd.md#Containerd 关联文件与配置>) 中的 /var/lib/containerd/ 目录功能一致。
+  - **./containerd/** # 与 [Containerd](/docs/10.云原生/Containerization%20implementation/Containerd/Containerd.md#Containerd%20关联文件与配置 关联文件与配置>) 中的 /var/lib/containerd/ 目录功能一致。
 - **./data/**
 
 **/var/lib/kubelet/** #
@@ -59,7 +59,7 @@ K3S 所有可能使用的目录可以参考 [清理 K3S](/docs/10.云原生/2.3.
 
 # 进入容器的文件系统
 
-详见 [进入容器文件系统](/docs/10.云原生/2.2.实现容器的工具/容器管理/容器运行时管理/进入容器文件系统.md)。在 k3s 中，如果是 containerd 的话，则是在 /run/k3s/containerd/ 目录代替 /run/containerd/ 目录
+详见 [进入容器文件系统](/docs/10.云原生/Containerization%20implementation/容器管理/容器运行时管理/进入容器文件系统.md)。在 k3s 中，如果是 containerd 的话，则是在 /run/k3s/containerd/ 目录代替 /run/containerd/ 目录
 
 `/run/k3s/containerd/io.containerd.runtime.v2.task/k8s.io/${ContainerID}/rootfs/``
 

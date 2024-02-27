@@ -39,7 +39,7 @@ Kubernetes 中各种资源(对象)的数据都通过 API 接口被提交到后�
 - **Discovery & LB(服务发现及均衡)** # 可以使用这些资源类型的对象将工作负载“缝合”到一个外部可访问的、负载均衡的服务中。
    - Service，Ingress 等
 - **Config & Storage(配置与存储)** # 这种类型的资源是用于将初始化数据注入到应用程序中并保留容器外部数据的对象。
-   - Volume，ConifgMap，secret 等
+   - Volume，ConfigMap，secret 等
 - **Cluster(集群级资源)** # 这种类型的资源对象定义了群集本身的配置方式。这些通常仅由集群运营商使用。
    - Namesapces,Node,Role,ClusterRole,RoleBinding,ClusterRoleBinding 等
 - **Metadata(元数据型资源)** # 这种类型的资源是用于配置集群中其他资源行为的对象。

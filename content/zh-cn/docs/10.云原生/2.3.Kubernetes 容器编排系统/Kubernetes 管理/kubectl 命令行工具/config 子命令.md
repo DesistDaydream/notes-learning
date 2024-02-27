@@ -24,7 +24,7 @@ SUBCOMMAND 包括：
 - **set-credentials** # 在 kubeconfig 中设定用户凭证。
 - **unset**# 取消在 KubeConfig 文件中设置的一个单独的值。Unsets an individual value in a kubeconfig file
 - **use-context**# 在 kubeconfig 中设定当前上下文(即使用哪个用户操作客户端)。
-- **view**# 显示已经合并的 KubeConifg 文件或一个指定的 KubeConfig 文件。Display merged kubeconfig settings or a specified kubeconfig file。
+- **view**# 显示已经合并的 KubeConfig 文件或一个指定的 KubeConfig 文件。Display merged kubeconfig settings or a specified kubeconfig file。
 
 ## OPTIONS
 

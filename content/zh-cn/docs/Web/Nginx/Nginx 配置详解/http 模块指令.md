@@ -174,7 +174,7 @@ URL 指定后端服务器的语法有如下几种(下面的 Protocol 通常都�
 proxy_pass 指令指定的 URL 有多种，不同场景有不同的工作方式。
 
 - URL 中 **有/无 PATH 部分**。
-  - Notes: 根据 [URL 与 URI](docs/4.数据通信/通信协议/HTTP/URL%20与%20URI.md) 中 URL 的规范可知，就算只有一个 `/` 也算有 PATH。
+  - Notes: 根据 [URL 与 URI](/docs/4.数据通信/通信协议/HTTP/URL%20与%20URI.md) 中 URL 的规范可知，就算只有一个 `/` 也算有 PATH。
 - 还有一些**特殊场景**
 
 #### 工作方式

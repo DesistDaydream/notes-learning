@@ -9,12 +9,11 @@ weight: 20
 
 > 参考：
 > 
-> -
-
+> - [Wiki，OSI model](https://en.wikipedia.org/wiki/OSI_model)
 
 # OSI
 
-开放式系统互联模型（英语：Open System Interconnection Model，缩写：OSI；简称为 OSI 模型）是一种概念模型，由国际标准化组织提出，一个试图使各种计算机在世界范围内互连为网络的标准框架。定义于 ISO/IEC 7498-1。
+**Open System Interconnection Model(开放式系统互联模型，简称 OSI 模型)** 是一种概念模型，由国际标准化组织提出，一个试图使各种计算机在世界范围内互连为网络的标准框架。定义于 ISO/IEC 7498-1。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/tudqyb/1616161546435-bc8ba6d0-bb9a-4fc8-819e-6108035f2d1a.jpeg)
 
@@ -70,13 +69,12 @@ weight: 20
 
 物理层（Physical Layer）在局部局域网上传送数据帧（data frame），它负责管理电脑通信设备和网络媒体之间的互通。包括了针脚、电压、线缆规范、集线器、中继器、网卡、主机接口卡等。
 
-|                         |                     |                                                      |                                        |
-| ----------------------- | ------------------- | ---------------------------------------------------- | -------------------------------------- |
-| OSI 七层网络模型        | TCP/IP 四层概念模型 | 对应网络协议                                         |                                        |
-| 应用层（Application）   | 应用层              | HTTP、TFTP, FTP, NFS, WAIS、SMTP                     |                                        |
-| 表示层（Presentation）  |                     |                                                      | Telnet, Rlogin, SNMP, Gopher           |
-| 会话层（Session）       |                     |                                                      | SMTP, DNS                              |
-| 传输层（Transport）     | 传输层              | TCP, UDP                                             |                                        |
-| 网络层（Network）       | 网络层              | IP, ICMP, ARP, RARP, AKP, UUCP                       |                                        |
-| 数据链路层（Data Link） | 数据链路层          | FDDI, Ethernet, Arpanet, PDN, SLIP, PPP、VLAN、VxLAN |                                        |
-| 物理层（Physical）      |                     |                                                      | IEEE 802.1A, IEEE 802.2 到 IEEE 802.11 |
+| OSI 七层网络模型        | TCP/IP 四层概念模型 | 对应网络协议                                             |
+| ----------------- | ------------- | -------------------------------------------------- |
+| 应用层（Application）  | 应用层           | HTTP、TFTP, FTP, NFS, WAIS、SMTP                     |
+| 表示层（Presentation） |               | Telnet, Rlogin, SNMP, Gopher                       |
+| 会话层（Session）      |               | SMTP, DNS                                          |
+| 传输层（Transport）    | 传输层           | TCP, UDP                                           |
+| 网络层（Network）      | 网络层           | IP, ICMP, ARP, RARP, AKP, UUCP                     |
+| 数据链路层（Data Link）  | 数据链路层         | FDDI, Ethernet, Arpanet, PDN, SLIP, PPP、VLAN、VxLAN |
+| 物理层（Physical）     |               | IEEE 802.1A, IEEE 802.2 到 IEEE 802.11              |

@@ -79,7 +79,7 @@ Kubernetes 对象是 Kubernetes 系统中的持久实体。 Kubernetes 使用这
 - workload：Pod，ReplicaSet，Deployment，StatefuSet()，DaemonSet，Job
 - 服务发现及均衡：Service，Ingress
 - 配置与存储：Volume
-  - ConifgMap，secret
+  - ConfiMap，secret
   - DownwardAPI
 - 集群级对象：Namesapces,Node,Role,ClusterRole,RoleBinding,ClusterRoleBinding
 - 元数据型对象：PodTemplate，LimitRange

@@ -6,10 +6,10 @@ title: sysstat 工具集
 
 > 参考：
 >
-> - [GitHub 项目](https://github.com/sysstat/sysstat)
+> - [GitHub 项目，sysstat/sysstat](https://github.com/sysstat/sysstat)
 > - [官网](http://sebastien.godard.pagesperso-orange.fr/)
-> - [Manual(手册),pidstat(1)](https://man7.org/linux/man-pages/man1/pidstat.1.html)
-> - [Manual(手册),sar(1)](https://man7.org/linux/man-pages/man1/sar.1.html)
+> - [Manual(手册)，pidstat(1)](https://man7.org/linux/man-pages/man1/pidstat.1.html)
+> - [Manual(手册)，sar(1)](https://man7.org/linux/man-pages/man1/sar.1.html)
 
 sysstat 包包含很多类 UNIX 的应用程序，用以监控系统性能和使用活动。
 

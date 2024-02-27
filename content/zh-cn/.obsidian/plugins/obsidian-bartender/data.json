@@ -554,96 +554,17 @@
     "docs/10.云原生": [
       "docs/10.云原生/_index.md",
       "docs/10.云原生/云原生",
-      "docs/10.云原生/1.1.虚拟化",
-      "docs/10.云原生/1.2.实现虚拟化的工具",
+      "docs/10.云原生/Virtualization",
+      "docs/10.云原生/Virtualization implementation",
       "docs/10.云原生/1.3.OpenStack 虚拟机编排系统",
-      "docs/10.云原生/2.1.容器",
-      "docs/10.云原生/2.2.实现容器的工具",
+      "docs/10.云原生/Containerization",
+      "docs/10.云原生/Containerization implementation",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统",
       "docs/10.云原生/DevOps",
       "docs/10.云原生/云原生应用管理",
       "docs/10.云原生/云原生的周边.md",
-      "docs/10.云原生/云厂商.md"
-    ],
-    "docs/10.云原生/1.2.实现虚拟化的工具": [
-      "docs/10.云原生/1.2.实现虚拟化的工具/_index.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU",
-      "docs/10.云原生/1.2.实现虚拟化的工具/Vmware",
-      "docs/10.云原生/1.2.实现虚拟化的工具/Xen",
-      "docs/10.云原生/1.2.实现虚拟化的工具/Hyper-V",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理"
-    ],
-    "docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU": [
-      "docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/_index.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/QEMU 设备模拟逻辑.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 部署.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 镜像管理.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 运行时管理.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/访问虚拟机",
-      "docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/QEMU Guest Agent",
-      "docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 命令行工具",
-      "docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/最佳实践.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理"
-    ],
-    "docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理": [
-      "docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理/_index.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理/KVM_QEMU 管理.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理/多 KVM_QEMU 集中管理.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/KVM_QEMU/KVM_QEMU 管理/在线热迁移.md"
-    ],
-    "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理": [
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/_index.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/部署 KVM_QEMU 虚拟化环境.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/性能优化与故障处理"
-    ],
-    "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt": [
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/_index.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Driver",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt 对接 Hypervisor.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt 配置详解.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/最佳实践.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/问题实例.md"
-    ],
-    "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API": [
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API/_index.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API/Libvirt API.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API/Libvirt 客户端库.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API/virt-manager.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API/virt-install.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/Libvirt API/libguestfs.md"
-    ],
-    "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解": [
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解/_index.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解/XML 文件详解.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解/Domain.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/XML 文件详解/Network.md"
-    ],
-    "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具": [
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/_index.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/virsh 命令行工具.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/通用命令.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/Domain 命令.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/Device 命令.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/Virtual Network 命令.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/Interface 命令.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/Libvirt/virsh 命令行工具/Snapshot 命令.md"
-    ],
-    "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例": [
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/_index.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/创建虚拟机及创建后常见操作.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/克隆与批量创建虚拟机.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/扩大 KVM 虚拟机 image 镜像.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/通过 veth 设备查找对应的虚拟机.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/在线热迁移.md",
-      "docs/10.云原生/1.2.实现虚拟化的工具/虚拟化管理/虚拟化管理案例/多宿主机集中管理.md"
+      "docs/10.云原生/云厂商.md",
+      "docs/10.云原生/ProxmoxVE"
     ],
     "docs/10.云原生/1.3.OpenStack 虚拟机编排系统": [
       "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/_index.md",
@@ -678,91 +599,6 @@
       "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/nova.md",
       "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/glance.md",
       "docs/10.云原生/1.3.OpenStack 虚拟机编排系统/命令行工具/neutron.md"
-    ],
-    "docs/10.云原生/2.1.容器": [
-      "docs/10.云原生/2.1.容器/_index.md",
-      "docs/10.云原生/2.1.容器/2.1.容器.md",
-      "docs/10.云原生/2.1.容器/Open Containers Initiative(开放容器倡议)",
-      "docs/10.云原生/2.1.容器/1.Namespaces",
-      "docs/10.云原生/2.1.容器/2.CGroup",
-      "docs/10.云原生/2.1.容器/容器开发.md"
-    ],
-    "docs/10.云原生/2.1.容器/Open Containers Initiative(开放容器倡议)": [
-      "docs/10.云原生/2.1.容器/Open Containers Initiative(开放容器倡议)/_index.md",
-      "docs/10.云原生/2.1.容器/Open Containers Initiative(开放容器倡议)/Open Containers Initiative(开放容器倡议).md",
-      "docs/10.云原生/2.1.容器/Open Containers Initiative(开放容器倡议)/OCI Image 规范.md",
-      "docs/10.云原生/2.1.容器/Open Containers Initiative(开放容器倡议)/OCI Runtime 规范.md"
-    ],
-    "docs/10.云原生/2.2.实现容器的工具": [
-      "docs/10.云原生/2.2.实现容器的工具/_index.md",
-      "docs/10.云原生/2.2.实现容器的工具/2.2.实现容器的工具.md",
-      "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image",
-      "docs/10.云原生/2.2.实现容器的工具/Containerd",
-      "docs/10.云原生/2.2.实现容器的工具/Docker",
-      "docs/10.云原生/2.2.实现容器的工具/Podman",
-      "docs/10.云原生/2.2.实现容器的工具/容器管理"
-    ],
-    "docs/10.云原生/2.2.实现容器的工具/Containerd": [
-      "docs/10.云原生/2.2.实现容器的工具/Containerd/_index.md",
-      "docs/10.云原生/2.2.实现容器的工具/Containerd/Containerd.md",
-      "docs/10.云原生/2.2.实现容器的工具/Containerd/Containerd 部署.md",
-      "docs/10.云原生/2.2.实现容器的工具/Containerd/Containerd 配置详解",
-      "docs/10.云原生/2.2.实现容器的工具/Containerd/Containerd Image.md",
-      "docs/10.云原生/2.2.实现容器的工具/Containerd/Containerd 命令行工具"
-    ],
-    "docs/10.云原生/2.2.实现容器的工具/Docker": [
-      "docs/10.云原生/2.2.实现容器的工具/Docker/_index.md",
-      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker 介绍",
-      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker 部署.md",
-      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker 配置详解.md",
-      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker Image.md",
-      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker Runtime.md",
-      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker 存储.md",
-      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker 权限管理.md",
-      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker 命令行工具",
-      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker API.md",
-      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker Compose",
-      "docs/10.云原生/2.2.实现容器的工具/Docker/在Docker中使用GPU.md"
-    ],
-    "docs/10.云原生/2.2.实现容器的工具/Docker/Docker Compose": [
-      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker Compose/_index.md",
-      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker Compose/Docker Compose.md",
-      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker Compose/Compose 文件规范.md",
-      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker Compose/docker-compose 命令行工具.md"
-    ],
-    "docs/10.云原生/2.2.实现容器的工具/Docker/Docker 介绍": [
-      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker 介绍/_index.md",
-      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker 介绍/Docker 介绍.md",
-      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker 介绍/Docker 架构的演变.md",
-      "docs/10.云原生/2.2.实现容器的工具/Docker/Docker 介绍/docker-shim 何去何从.md"
-    ],
-    "docs/10.云原生/2.2.实现容器的工具/容器管理": [
-      "docs/10.云原生/2.2.实现容器的工具/容器管理/_index.md",
-      "docs/10.云原生/2.2.实现容器的工具/容器管理/容器管理.md",
-      "docs/10.云原生/2.2.实现容器的工具/容器管理/容器镜像管理.md",
-      "docs/10.云原生/2.2.实现容器的工具/容器管理/容器运行时管理",
-      "docs/10.云原生/2.2.实现容器的工具/容器管理/容器非root启动.md",
-      "docs/10.云原生/2.2.实现容器的工具/容器管理/使用 Tini 清理 Docker 容器僵死进程.md",
-      "docs/10.云原生/2.2.实现容器的工具/容器管理/性能优化与故障处理",
-      "docs/10.云原生/2.2.实现容器的工具/容器管理/未命名.md"
-    ],
-    "docs/10.云原生/2.2.实现容器的工具/容器管理/性能优化与故障处理": [
-      "docs/10.云原生/2.2.实现容器的工具/容器管理/性能优化与故障处理/_index.md",
-      "docs/10.云原生/2.2.实现容器的工具/容器管理/性能优化与故障处理/性能优化与故障处理.md",
-      "docs/10.云原生/2.2.实现容器的工具/容器管理/性能优化与故障处理/内核4.18版本以下导致slab内存过高问题.md",
-      "docs/10.云原生/2.2.实现容器的工具/容器管理/性能优化与故障处理/未命名.md",
-      "docs/10.云原生/2.2.实现容器的工具/容器管理/性能优化与故障处理/Containerd 问题汇总.md",
-      "docs/10.云原生/2.2.实现容器的工具/容器管理/性能优化与故障处理/docker 的 MountFlags=slave 与 live-restore 冲突问题.md",
-      "docs/10.云原生/2.2.实现容器的工具/容器管理/性能优化与故障处理/Docker 获取 parent 逻辑.md",
-      "docs/10.云原生/2.2.实现容器的工具/容器管理/性能优化与故障处理/Docker 资源泄露系列.md"
-    ],
-    "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image": [
-      "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image/_index.md",
-      "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image/构建 OCI Image.md",
-      "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image/BuildKit 构建工具.md",
-      "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image/Multi-Stage Builds(多阶段构建).md",
-      "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image/Dockerfile 指令.md",
-      "docs/10.云原生/2.2.实现容器的工具/构建 OCI Image/Dockerfile 样例.md"
     ],
     "docs/10.云原生/2.3.Kubernetes 容器编排系统": [
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/_index.md",
@@ -1067,6 +903,91 @@
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/Kubernetes Runtime.md",
       "docs/10.云原生/2.3.Kubernetes 容器编排系统/Kuberntes 介绍/Kubernetes 开源社区指南.md"
     ],
+    "docs/10.云原生/Containerization": [
+      "docs/10.云原生/Containerization/_index.md",
+      "docs/10.云原生/Containerization/Containerization.md",
+      "docs/10.云原生/Containerization/Open Containers Initiative(开放容器倡议)",
+      "docs/10.云原生/Containerization/1.Namespaces",
+      "docs/10.云原生/Containerization/2.CGroup",
+      "docs/10.云原生/Containerization/容器开发.md"
+    ],
+    "docs/10.云原生/Containerization implementation": [
+      "docs/10.云原生/Containerization implementation/_index.md",
+      "docs/10.云原生/Containerization implementation/Containerization implementation.md",
+      "docs/10.云原生/Containerization implementation/构建 OCI Image",
+      "docs/10.云原生/Containerization implementation/Containerd",
+      "docs/10.云原生/Containerization implementation/Docker",
+      "docs/10.云原生/Containerization implementation/Podman",
+      "docs/10.云原生/Containerization implementation/容器管理"
+    ],
+    "docs/10.云原生/Containerization implementation/Containerd": [
+      "docs/10.云原生/Containerization implementation/Containerd/_index.md",
+      "docs/10.云原生/Containerization implementation/Containerd/Containerd.md",
+      "docs/10.云原生/Containerization implementation/Containerd/Containerd 部署.md",
+      "docs/10.云原生/Containerization implementation/Containerd/Containerd 配置详解",
+      "docs/10.云原生/Containerization implementation/Containerd/Containerd Image.md",
+      "docs/10.云原生/Containerization implementation/Containerd/Containerd 命令行工具"
+    ],
+    "docs/10.云原生/Containerization implementation/Docker": [
+      "docs/10.云原生/Containerization implementation/Docker/_index.md",
+      "docs/10.云原生/Containerization implementation/Docker/Docker 介绍",
+      "docs/10.云原生/Containerization implementation/Docker/Docker 部署.md",
+      "docs/10.云原生/Containerization implementation/Docker/Docker 配置详解.md",
+      "docs/10.云原生/Containerization implementation/Docker/Docker Image.md",
+      "docs/10.云原生/Containerization implementation/Docker/Docker Runtime.md",
+      "docs/10.云原生/Containerization implementation/Docker/Docker 存储.md",
+      "docs/10.云原生/Containerization implementation/Docker/Docker 权限管理.md",
+      "docs/10.云原生/Containerization implementation/Docker/Docker 命令行工具",
+      "docs/10.云原生/Containerization implementation/Docker/Docker API.md",
+      "docs/10.云原生/Containerization implementation/Docker/Docker Compose",
+      "docs/10.云原生/Containerization implementation/Docker/在Docker中使用GPU.md"
+    ],
+    "docs/10.云原生/Containerization implementation/Docker/Docker Compose": [
+      "docs/10.云原生/Containerization implementation/Docker/Docker Compose/_index.md",
+      "docs/10.云原生/Containerization implementation/Docker/Docker Compose/Docker Compose.md",
+      "docs/10.云原生/Containerization implementation/Docker/Docker Compose/Compose 文件规范.md",
+      "docs/10.云原生/Containerization implementation/Docker/Docker Compose/docker-compose 命令行工具.md"
+    ],
+    "docs/10.云原生/Containerization implementation/Docker/Docker 介绍": [
+      "docs/10.云原生/Containerization implementation/Docker/Docker 介绍/_index.md",
+      "docs/10.云原生/Containerization implementation/Docker/Docker 介绍/Docker 介绍.md",
+      "docs/10.云原生/Containerization implementation/Docker/Docker 介绍/Docker 架构的演变.md",
+      "docs/10.云原生/Containerization implementation/Docker/Docker 介绍/docker-shim 何去何从.md"
+    ],
+    "docs/10.云原生/Containerization implementation/容器管理": [
+      "docs/10.云原生/Containerization implementation/容器管理/_index.md",
+      "docs/10.云原生/Containerization implementation/容器管理/容器管理.md",
+      "docs/10.云原生/Containerization implementation/容器管理/容器镜像管理.md",
+      "docs/10.云原生/Containerization implementation/容器管理/容器运行时管理",
+      "docs/10.云原生/Containerization implementation/容器管理/容器非root启动.md",
+      "docs/10.云原生/Containerization implementation/容器管理/使用 Tini 清理 Docker 容器僵死进程.md",
+      "docs/10.云原生/Containerization implementation/容器管理/性能优化与故障处理",
+      "docs/10.云原生/Containerization implementation/容器管理/未命名.md"
+    ],
+    "docs/10.云原生/Containerization implementation/容器管理/性能优化与故障处理": [
+      "docs/10.云原生/Containerization implementation/容器管理/性能优化与故障处理/_index.md",
+      "docs/10.云原生/Containerization implementation/容器管理/性能优化与故障处理/性能优化与故障处理.md",
+      "docs/10.云原生/Containerization implementation/容器管理/性能优化与故障处理/内核4.18版本以下导致slab内存过高问题.md",
+      "docs/10.云原生/Containerization implementation/容器管理/性能优化与故障处理/未命名.md",
+      "docs/10.云原生/Containerization implementation/容器管理/性能优化与故障处理/Containerd 问题汇总.md",
+      "docs/10.云原生/Containerization implementation/容器管理/性能优化与故障处理/docker 的 MountFlags=slave 与 live-restore 冲突问题.md",
+      "docs/10.云原生/Containerization implementation/容器管理/性能优化与故障处理/Docker 获取 parent 逻辑.md",
+      "docs/10.云原生/Containerization implementation/容器管理/性能优化与故障处理/Docker 资源泄露系列.md"
+    ],
+    "docs/10.云原生/Containerization implementation/构建 OCI Image": [
+      "docs/10.云原生/Containerization implementation/构建 OCI Image/_index.md",
+      "docs/10.云原生/Containerization implementation/构建 OCI Image/构建 OCI Image.md",
+      "docs/10.云原生/Containerization implementation/构建 OCI Image/BuildKit 构建工具.md",
+      "docs/10.云原生/Containerization implementation/构建 OCI Image/Multi-Stage Builds(多阶段构建).md",
+      "docs/10.云原生/Containerization implementation/构建 OCI Image/Dockerfile 指令.md",
+      "docs/10.云原生/Containerization implementation/构建 OCI Image/Dockerfile 样例.md"
+    ],
+    "docs/10.云原生/Containerization/Open Containers Initiative(开放容器倡议)": [
+      "docs/10.云原生/Containerization/Open Containers Initiative(开放容器倡议)/_index.md",
+      "docs/10.云原生/Containerization/Open Containers Initiative(开放容器倡议)/Open Containers Initiative(开放容器倡议).md",
+      "docs/10.云原生/Containerization/Open Containers Initiative(开放容器倡议)/OCI Image 规范.md",
+      "docs/10.云原生/Containerization/Open Containers Initiative(开放容器倡议)/OCI Runtime 规范.md"
+    ],
     "docs/10.云原生/DevOps": [
       "docs/10.云原生/DevOps/_index.md",
       "docs/10.云原生/DevOps/DevOps.md",
@@ -1084,6 +1005,103 @@
       "docs/10.云原生/DevOps/Drone/Drone Pipelines 详解.md",
       "docs/10.云原生/DevOps/Drone/drone 命令行工具.md",
       "docs/10.云原生/DevOps/Drone/Drone 任务示例.md"
+    ],
+    "docs/10.云原生/Virtualization": [
+      "docs/10.云原生/Virtualization/_index.md",
+      "docs/10.云原生/Virtualization/Virtualization.md",
+      "docs/10.云原生/Virtualization/Computing Virtualization.md",
+      "docs/10.云原生/Virtualization/Memory Virtualization.md",
+      "docs/10.云原生/Virtualization/Network Virtualization",
+      "docs/10.云原生/Virtualization/Storage Virtualization.md"
+    ],
+    "docs/10.云原生/Virtualization implementation": [
+      "docs/10.云原生/Virtualization implementation/_index.md",
+      "docs/10.云原生/Virtualization implementation/KVM_QEMU",
+      "docs/10.云原生/Virtualization implementation/Vmware",
+      "docs/10.云原生/Virtualization implementation/Xen",
+      "docs/10.云原生/Virtualization implementation/Hyper-V",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理"
+    ],
+    "docs/10.云原生/Virtualization implementation/KVM_QEMU": [
+      "docs/10.云原生/Virtualization implementation/KVM_QEMU/_index.md",
+      "docs/10.云原生/Virtualization implementation/KVM_QEMU/KVM_QEMU.md",
+      "docs/10.云原生/Virtualization implementation/KVM_QEMU/QEMU 设备模拟逻辑.md",
+      "docs/10.云原生/Virtualization implementation/KVM_QEMU/KVM_QEMU 部署.md",
+      "docs/10.云原生/Virtualization implementation/KVM_QEMU/KVM_QEMU 镜像管理.md",
+      "docs/10.云原生/Virtualization implementation/KVM_QEMU/KVM_QEMU 运行时管理.md",
+      "docs/10.云原生/Virtualization implementation/KVM_QEMU/访问虚拟机",
+      "docs/10.云原生/Virtualization implementation/KVM_QEMU/QEMU Guest Agent",
+      "docs/10.云原生/Virtualization implementation/KVM_QEMU/KVM_QEMU 命令行工具",
+      "docs/10.云原生/Virtualization implementation/KVM_QEMU/最佳实践.md",
+      "docs/10.云原生/Virtualization implementation/KVM_QEMU/KVM_QEMU 管理"
+    ],
+    "docs/10.云原生/Virtualization implementation/KVM_QEMU/KVM_QEMU 管理": [
+      "docs/10.云原生/Virtualization implementation/KVM_QEMU/KVM_QEMU 管理/_index.md",
+      "docs/10.云原生/Virtualization implementation/KVM_QEMU/KVM_QEMU 管理/KVM_QEMU 管理.md",
+      "docs/10.云原生/Virtualization implementation/KVM_QEMU/KVM_QEMU 管理/多 KVM_QEMU 集中管理.md",
+      "docs/10.云原生/Virtualization implementation/KVM_QEMU/KVM_QEMU 管理/在线热迁移.md"
+    ],
+    "docs/10.云原生/Virtualization implementation/虚拟化管理": [
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/_index.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/虚拟化管理.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/部署 KVM_QEMU 虚拟化环境.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/虚拟化管理案例",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/性能优化与故障处理"
+    ],
+    "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt": [
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/_index.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/Libvirt.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/Driver",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/Libvirt 对接 Hypervisor.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/Libvirt 配置详解.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/XML 文件详解",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/virsh 命令行工具",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/Libvirt API",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/最佳实践.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/问题实例.md"
+    ],
+    "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/Libvirt API": [
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/Libvirt API/_index.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/Libvirt API/Libvirt API.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/Libvirt API/Libvirt 客户端库.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/Libvirt API/virt-manager.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/Libvirt API/virt-install.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/Libvirt API/libguestfs.md"
+    ],
+    "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/XML 文件详解": [
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/XML 文件详解/_index.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/XML 文件详解/XML 文件详解.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/XML 文件详解/Domain.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/XML 文件详解/Network.md"
+    ],
+    "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/virsh 命令行工具": [
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/virsh 命令行工具/_index.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/virsh 命令行工具/virsh 命令行工具.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/virsh 命令行工具/通用命令.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/virsh 命令行工具/Domain 命令.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/virsh 命令行工具/Device 命令.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/virsh 命令行工具/Virtual Network 命令.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/virsh 命令行工具/Interface 命令.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/virsh 命令行工具/Snapshot 命令.md"
+    ],
+    "docs/10.云原生/Virtualization implementation/虚拟化管理/虚拟化管理案例": [
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/虚拟化管理案例/_index.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/虚拟化管理案例/创建虚拟机及创建后常见操作.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/虚拟化管理案例/克隆与批量创建虚拟机.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/虚拟化管理案例/扩大 KVM 虚拟机 image 镜像.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/虚拟化管理案例/通过 veth 设备查找对应的虚拟机.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/虚拟化管理案例/在线热迁移.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/虚拟化管理案例/多宿主机集中管理.md"
+    ],
+    "docs/10.云原生/Virtualization/Network Virtualization": [
+      "docs/10.云原生/Virtualization/Network Virtualization/_index.md",
+      "docs/10.云原生/Virtualization/Network Virtualization/Network Virtualization.md",
+      "docs/10.云原生/Virtualization/Network Virtualization/2.Linux 上抽象网络设备的原理及使用.md",
+      "docs/10.云原生/Virtualization/Network Virtualization/云计算底层技术-虚拟网络设备(Bridge,VLAN)   opengers.md",
+      "docs/10.云原生/Virtualization/Network Virtualization/云计算底层技术-虚拟网络设备(tun tap,veth)   opengers.md",
+      "docs/10.云原生/Virtualization/Network Virtualization/Open vSwitch.md",
+      "docs/10.云原生/Virtualization/Network Virtualization/TUN 与 TAP设备浅析(一) -- 原理浅析.md"
     ],
     "docs/10.云原生/云原生应用管理/Helm": [
       "docs/10.云原生/云原生应用管理/Helm/_index.md",
@@ -2092,6 +2110,12 @@
       "docs/7.信息安全/Cryptography/公开密钥加密/证书 与 PKI/X.509.md",
       "docs/7.信息安全/Cryptography/公开密钥加密/证书 与 PKI/SSL_TLS Pinning.md"
     ],
+    "docs/7.信息安全/Network analysis": [
+      "docs/7.信息安全/Network analysis/_index.md",
+      "docs/7.信息安全/Network analysis/NetFlow.md",
+      "docs/7.信息安全/Network analysis/DPI.md",
+      "docs/7.信息安全/Network analysis/Network tap.md"
+    ],
     "docs/7.信息安全/Packet analyzer": [
       "docs/7.信息安全/Packet analyzer/_index.md",
       "docs/7.信息安全/Packet analyzer/Packet analyzer.md",
@@ -2381,16 +2405,11 @@
       "docs/学习/信息检索.md",
       "docs/学习/写作",
       "docs/学习/学习资源.md"
-    ],
-    "docs/7.信息安全/Network analysis": [
-      "docs/7.信息安全/Network analysis/_index.md",
-      "docs/7.信息安全/Network analysis/NetFlow.md",
-      "docs/7.信息安全/Network analysis/DPI.md",
-      "docs/7.信息安全/Network analysis/Network tap.md"
     ]
   },
   "actionBarOrder": {},
   "autoHide": true,
   "autoHideDelay": 2000,
-  "dragDelay": 200
+  "dragDelay": 200,
+  "sortOrder": "custom"
 }

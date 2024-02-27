@@ -25,7 +25,7 @@ weight: 1
 
 IP 基于数据包的 Header 中的 IP 地址，将数据包从源主机发送到目标主机。基于此目的，IP 还定义了数据包的封装结构、以及一种寻址方法。寻址方法用来使用源和目标的信息标记数据报。
 
-从历史上看，IP 是在 1974 年由 Vint Cerf 和 Bob Kahn 引入的原始 **Transmission Control Program(传输控制程序)** 中的[无连接](https://en.wikipedia.org/wiki/Connectionless_communication)数据报服务。该服务由一项面向连接的服务补充，成为 [**Transmission Control Protocol(传输控制协议，简称 TCP)**](docs/4.数据通信/通信协议/TCP_IP/TCP/TCP.md) 的基础。因此 IP 套件通常称为 TCP/IP。IP 的第一个版本是 IPv4，继任者是 IPv6
+从历史上看，IP 是在 1974 年由 Vint Cerf 和 Bob Kahn 引入的原始 **Transmission Control Program(传输控制程序)** 中的[无连接](https://en.wikipedia.org/wiki/Connectionless_communication)数据报服务。该服务由一项面向连接的服务补充，成为 [**Transmission Control Protocol(传输控制协议，简称 TCP)**](/docs/4.数据通信/通信协议/TCP_IP/TCP/TCP.md) 的基础。因此 IP 套件通常称为 TCP/IP。IP 的第一个版本是 IPv4，继任者是 IPv6
 
 # IPv4 地址
 
@@ -81,7 +81,7 @@ IPv4 地址的这 32 bit 可以分为两部分
 
   - **网络地址** # 网络位不变，主机位全为 0 的 IP 地址代表网络本身
   - **Broadcast Address(广播地址)** # 网络位不变，主机位全为 1 的 IP 地址代表本网络的广播。是专门用于同时向网络中所有工作站进行发送的一个**地址**。在使用 TCP/IP 协议的网络中，主机标识]段 host ID 为全 1 的 IP 地址为广播地址，广播的分组传送给 host ID 段所涉及的所有计算机。例如，对于 10.1.1.0 （255.0.0.0 ）网段，其直播广播地址为 10.255.255.255 （255 即为 2 进制的 11111111 ），当发出一个目的地址为 10.255.255.255 的分组（封包）时，它将被分发给该网段上的所有计算机。
-  - **Link Local(链路本地地址)** # 169.254.0.0 ~ 169.254.255.255。用于[链路本地地址](https://en.wikipedia.org/wiki/Link-local_address)两台主机之间的单个链路上时，否则指定 IP 地址，如将有通常被从检索到的 [DHCP](docs/4.数据通信/通信协议/DHCP.md) 服务器。
+  - **Link Local(链路本地地址)** # 169.254.0.0 ~ 169.254.255.255。用于[链路本地地址](https://en.wikipedia.org/wiki/Link-local_address)两台主机之间的单个链路上时，否则指定 IP 地址，如将有通常被从检索到的 [DHCP](/docs/4.数据通信/通信协议/DHCP.md) 服务器。
 
 - **Private Network(私人网络地址)**
 

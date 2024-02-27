@@ -64,9 +64,9 @@ http://www.cnlans.com/lx/tools 李玺的爬虫逆向工具
 
 ### 查壳反编译
 
-- [查壳小工具](https://pan.baidu.com/s/1s1BoElAyQCnPaxb2T3QpEw?pwd=tmbs) 
-- [AndroidKiller](https://down.52pojie.cn/Tools/Android_Tools/) 
-- [Apktools2.5.0](https://pan.baidu.com/s/12qB4N_2Fg-IsTB2BcQuiDw?pwd=gjqs) 
+- [查壳小工具](https://pan.baidu.com/s/1s1BoElAyQCnPaxb2T3QpEw?pwd=tmbs)
+- [AndroidKiller](https://down.52pojie.cn/Tools/Android_Tools/)
+- [Apktools2.5.0](https://pan.baidu.com/s/12qB4N_2Fg-IsTB2BcQuiDw?pwd=gjqs)
 - [超级Jadx](https://pan.baidu.com/s/1SHsJGfnGJJmcPfgcC_lnYA?pwd=9999)
 - [IDAPro7.0 调试工具Windows版本](https://pan.baidu.com/s/1_-PorRCwHDMpmUI1t_cKcQ?pwd=t39m)
 - [ddms](https://pan.baidu.com/s/1wdsZvTA-fAZ12o53Exw80A?pwd=wk3d)
@@ -76,8 +76,8 @@ http://www.cnlans.com/lx/tools 李玺的爬虫逆向工具
 ### 脱壳工具
 
 - [FDex2](https://pan.baidu.com/s/1e0zcp1IzA-u7UC-A3gaj8g?pwd=yds2)
-- [反射大师](https://pan.baidu.com/s/170oS04qoFdd-Btu9DanHfg?pwd=an39) 
-- [BlackDex3.1.0](https://pan.baidu.com/s/18gijmyy5dgUCbwi-hnqtpg?pwd=433u) 
+- [反射大师](https://pan.baidu.com/s/170oS04qoFdd-Btu9DanHfg?pwd=an39)
+- [BlackDex3.1.0](https://pan.baidu.com/s/18gijmyy5dgUCbwi-hnqtpg?pwd=433u)
 - [DumpDex](https://github.com/WrBug/dumpDex)
 - [FRIDA-DEXDump](https://github.com/hluwa/FRIDA-DEXDump)
 
@@ -86,14 +86,13 @@ http://www.cnlans.com/lx/tools 李玺的爬虫逆向工具
 - [Xposed](https://pan.baidu.com/s/15WnJD8qj9UzSss55DWLNfA?pwd=7sgb)
 - [VAExposed](https://pan.baidu.com/s/1fd0r2fy4mm4jUArGE4MZvA?pwd=mu9q)
 - [Inspeckage](https://pan.baidu.com/s/1WfnVM7hKE76jNpQc3FnKWg?pwd=pvcs)
-- [SSLUnpinning 20](https://pan.baidu.com/s/1EZuv-JK0a-TLHhw4v6SkvQ?pwd=dsfj)  
-
+- [SSLUnpinning 20](https://pan.baidu.com/s/1EZuv-JK0a-TLHhw4v6SkvQ?pwd=dsfj)
 
 ### 抓包工具
 
 - [httpCanary 安卓抓包工具](https://pan.baidu.com/s/1mdHHaXulnsM6Zxf335yMHA?pwd=tfhx)
-- [Postern安卓抓包工具](https://pan.baidu.com/s/1A-2kIVnYSxpgHqiDn4mqnw?pwd=1e5k)  
-- [Drony_113](https://pan.baidu.com/s/14d6ezZXRWDQayL73d2E8gw?pwd=tyk7)  
+- [Postern安卓抓包工具](https://pan.baidu.com/s/1A-2kIVnYSxpgHqiDn4mqnw?pwd=1e5k)
+- [Drony_113](https://pan.baidu.com/s/14d6ezZXRWDQayL73d2E8gw?pwd=tyk7)
 - [HttpAnalyzerStd V7](https://pan.baidu.com/s/1p3ThL5yqqc5XwTrDdmmGCg?pwd=x9hg)
 - [fridaManager](https://pan.baidu.com/s/1u_P2P_kd_H2n2SYTaLB0hA?pwd=jovi)
 - [AppSignGet](https://pan.baidu.com/s/1_j2QTVFD6qHP3FKp_FVeCw?pwd=6qmu)
@@ -107,7 +106,6 @@ http://www.cnlans.com/lx/tools 李玺的爬虫逆向工具
 
 - [UnpackMiniApp](https://pan.baidu.com/s/1dwUehOAnPka9eHjXN6Y-Lg?pwd=unp7)
 - [CrackMinApp](https://github.com/Cherrison/CrackMinApp)
-
 
 # 其他常用工具
 
@@ -250,7 +248,7 @@ Unveilr # 反编译解密后的 `*.wxapkg` 文件得到源码。
 
 有些混淆代码无法查找，通过编写代码段后调试，可以快速定位。
 
-比如下面这个，可以通过 `JSON.stringify = function (params) {}` 重新定义 `JSON.stringify` 方法的逻辑，在其中加入文本输出和 debug 暂停能力。只需要在 [DevTools](docs/Web/Browser/DevTools.md) - 源代码 - 代码段 中插入下面的代码后运行即可。
+比如下面这个，可以通过 `JSON.stringify = function (params) {}` 重新定义 `JSON.stringify` 方法的逻辑，在其中加入文本输出和 debug 暂停能力。只需要在 [DevTools](/docs/Web/Browser/DevTools.md) - 源代码 - 代码段 中插入下面的代码后运行即可。
 
 ```js
 (function () {
@@ -286,4 +284,3 @@ https://www.bilibili.com/video/BV1ew411K7nB/?p=17 及后面几 P
 - [lamda安卓逆向辅助框架](http://www.lxspider.com/?p=194)
 
 [GitHub 项目，skylot/jadx](https://github.com/skylot/jadx)
-

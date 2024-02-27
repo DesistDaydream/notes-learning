@@ -72,7 +72,7 @@ Objects 可以很简单，只有一个值。也可以包含其他对象或者功
 3. Chart # 该 Object 从 `Chart.yaml 文件`中提取值，并传递到模板中。格式与 Values 对象一致
    1. Note：Chart.yaml 文件中可用的字段详见：[Charts Guide 中的 The Chart.yaml File 章节](https://helm.sh/docs/topics/charts/#the-chartyaml-file)。
 4. Files # 该 Object 可以将 chart 中的文件传递到模板中。
-   1. Files.Get # 该 Object 通过文件的名字，将指定的文件传递到模板中。 (比如：.Files.Get config.ini，就是将 conifg.ini 文件传递进模板)
+   1. Files.Get # 该 Object 通过文件的名字，将指定的文件传递到模板中。 (比如：.Files.Get config.ini，就是将 config.ini 文件传递进模板)
    2. Files.GetBytes is a function for getting the contents of a file as an array of bytes instead of as a string. This is useful for things like images.
    3. Files.Glob is a function that returns a list of files whose names match the given shell glob pattern.
    4. Files.Lines is a function that reads a file line-by-line. This is useful for iterating over each line in a file.
@@ -165,7 +165,7 @@ Files 内置对象用来将文件中的内容直接传递到模板当中。
 
 Files 下的子对象也可以称为函数的一种，各种子对象的用处各不相同。
 
-### Files.Get # 通过文件的名字，将指定的文件传递到模板中。 (比如：.Files.Get "config.ini"，就是将 conifg.ini 文件内容传递进模板)
+### Files.Get # 通过文件的名字，将指定的文件传递到模板中。 (比如：.Files.Get "config.ini"，就是将 config.ini 文件内容传递进模板)
 
 ```yaml
 apiVersion: v1

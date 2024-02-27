@@ -166,7 +166,7 @@ HTTP 协议是 Stateless(无状态)。(因为连接一次后就断开了，不�
 - **Version** # 响应给 Client 的 HTTP 版本。
 - **Status** # HTTP 响应状态。用来标记请求过程中发生的情况，由 server 告诉 client。响应状态由两部分组成
 - **StatusCode** # 状态码。统一为 3 位的数字。
-  - 各个状态码的含义，见 [HTTP Status Codes](docs/4.数据通信/通信协议/HTTP/HTTP%20Status%20Codes.md)
+  - 各个状态码的含义，见 [HTTP Status Codes](/docs/4.数据通信/通信协议/HTTP/HTTP%20Status%20Codes.md)
 - **ReasonPhrase** # 原因短语。用来表示产生该状态的原因的简要说明
 - **Headers** # 响应头。
 - **Body** # 响应体。实体部分，请求时附加的数据或响应时附加的数据
@@ -193,7 +193,7 @@ HTTP 协议规定了非常多的 Header 字段，可以实现各种各样的功�
 
 **对 HTTP 报文的解析和处理其实本质上就是对头字段的处理**，HTTP 的连接管理，缓存控制，内容协商等都是通过头字段来处理的，**理解了头字段，基本上也就理解了 HTTP**，所以理解头字段非常重要。
 
-详见：[HTTP Header](docs/4.数据通信/通信协议/HTTP/HTTP%20Header.md)
+详见：[HTTP Header](/docs/4.数据通信/通信协议/HTTP/HTTP%20Header.md)
 
 > 注意：这种分类是在 RFC 2616 标准中定义的，在新的 RFC 7231 中，已经看不到这种分类了
 
@@ -257,11 +257,11 @@ HTTP 无法单独存在，要想让它生效，必须依赖其他的协议或者
 
 ## URL
 
-详见 [URL 与 URI](docs/4.数据通信/通信协议/HTTP/URL%20与%20URI.md)
+详见 [URL 与 URI](/docs/4.数据通信/通信协议/HTTP/URL%20与%20URI.md)
 
 ## TCP/IP
 
-详见：[TCP_IP](docs/4.数据通信/通信协议/TCP_IP/TCP_IP.md)
+详见：[TCP_IP](/docs/4.数据通信/通信协议/TCP_IP/TCP_IP.md)
 
 ## DNS
 

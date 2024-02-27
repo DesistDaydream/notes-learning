@@ -8,7 +8,7 @@ weight: 20
 # 概述
 
 > 参考
-> 
+>
 > - [官网](https://www.wireshark.org/)
 > - [官方文档](https://www.wireshark.org/docs/wsug_html_chunked/)
 > - <https://help.aliyun.com/document_detail/112990.html>(Wireshark 常见提示)
@@ -18,7 +18,7 @@ weight: 20
 
 # WireShark 安装
 
-WireShark 依赖 [pcap](docs/7.信息安全/Packet%20analyzer/pcap.md)，若使用 WireShark 便携包，那么需要手动安装 [Npcap](https://npcap.com/)。
+WireShark 依赖 [pcap](/docs/7.信息安全/Packet%20analyzer/pcap.md)，若使用 WireShark 便携包，那么需要手动安装 [Npcap](https://npcap.com/)。
 
 # 过滤语法
 
