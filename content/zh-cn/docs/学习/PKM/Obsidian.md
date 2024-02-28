@@ -21,7 +21,7 @@ Obsidian 也是基于 Chromium 的，使用 `Ctrl + Shift + i` 快捷键可以�
 
 https://forum.obsidian.md/t/file-explorer-custom-sort/1602/212
 
-- 主要是想用 Bartender 插件解决，而安装 Bartender 插件需要使用 Brat 插件
+- 主要是想用 Bartender 插件解决，而安装 Bartender 插件需要使用 Brat 插件（也可以直接下载文件放到 plugin/ 目录中）
 - Install BRAT from community plugin panel and then install Bartender beta plugin using BRAT
   - [https://github.com/nothingislost/obsidian-bartender 2](https://github.com/nothingislost/obsidian-bartender)
   - [https://github.com/TfTHacker/obsidian42-brat](https://github.com/TfTHacker/obsidian42-brat)

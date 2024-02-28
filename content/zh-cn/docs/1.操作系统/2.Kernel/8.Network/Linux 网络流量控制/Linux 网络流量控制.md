@@ -63,6 +63,7 @@ Traffic Control(流量控制) 在不同的语境中有不同的含义，可以�
     - 但是有一个 Cilium 程序，是基于 BPF 做的，只不过只能部署在 Kubernetes 集群中。
 
 如下图所示，每种实现方式，都具有不同的 Hook：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/pryclo/1616164826770-1d929135-1194-44e1-91a9-3dd4e99c34ca.png)
 
 - 其中 Netfilter 框架具有最庞大的 Hook 以及 DataPath，上图中间带颜色的部分，基本都是 Netfilter 框架可以处理流量的地方
@@ -77,7 +78,9 @@ Traffic Control(流量控制) 在不同的语境中有不同的含义，可以�
 ## kube-proxy 包转发路径
 
 从网络角度看，使用传统的 kube-proxy 处理 Kubernetes Service 时，包在内核中的 转发路径是怎样的？如下图所示：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/pryclo/1617936241861-a7af19e7-ea7f-49ec-ac8d-3ed6979e1f9e.png)
+
 步骤：
 
 1. 网卡收到一个包（通过 DMA 放到 ring-buffer）。
@@ -116,11 +119,17 @@ Traffic Control(流量控制) 在不同的语境中有不同的含义，可以�
 > 译者注。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/pryclo/1617936241799-94b516d7-7bf7-4b37-adf5-1c2defbac27c.png)
+
 对比可以看出，**Cilium eBPF datapath 做了短路处理**：从 tc ingress 直接 shortcut 到 tc egress，节省了 9 个中间步骤（总共 17 个）。更重要的是：这个 datapath **绕过了 整个 Netfilter 框架**（橘黄色的框们），Netfilter 在大流量情况下性能是很差的。
+
 去掉那些不用的框之后，Cilium eBPF datapath 长这样：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/pryclo/1617936242480-85cfc77b-217e-44d9-936a-b4d982cf1e7f.png)
+
 **Cilium/eBPF 还能走的更远**。例如，如果包的目的端是另一台主机上的 service endpoint，那你可以直接在 XDP 框中完成包的重定向（收包 `1->2`，在步骤 `2` 中对包 进行修改，再通过 `2->1` 发送出去），将其发送出去，如下图所示：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/pryclo/1617936241746-6f9a6415-8747-49ca-9a74-cbf06c7a7be8.png)
-可以看到，这种情况下包都**没有进入内核协议栈（准确地说，都没有创建 skb）**就被转 发出去了，性能可想而知。
+
+可以看到，这种情况下包都**没有进入内核协议栈（准确地说，都没有创建 skb）** 就被转 发出去了，性能可想而知。
 
 > XDP 是 eXpress DataPath 的缩写，支持在网卡驱动中运行 eBPF 代码，而无需将包送 到复杂的协议栈进行处理，因此处理代价很小，速度极快。

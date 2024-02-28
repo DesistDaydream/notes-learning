@@ -91,8 +91,8 @@ ipv4     2 tcp      6 33 SYN_SENT src=172.16.200.119 dst=172.16.202.12 sport=547
 
 `total * mem_used(单位为 Bytes) = nf_conntrack_max * sizeof(struct ip*conntrack) + nf_conntrack_buckets * sizeof(struct list_head)`
 
-1. sizeof(struct ip_conntrack) 连接跟踪对象大小，默认 376
-2. sizeof(struct list_head) 链表项大小，默认为 16
+- sizeof(struct ip_conntrack) 连接跟踪对象大小，默认 376
+- sizeof(struct list_head) 链表项大小，默认为 16
 
 上述两个值可以通过如下 python 代码计算出来
 

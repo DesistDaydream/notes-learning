@@ -1562,10 +1562,10 @@
       "docs/4.数据通信/通信协议",
       "docs/4.数据通信/DNS",
       "docs/4.数据通信/NAT",
+      "docs/4.数据通信/Networking device",
       "docs/4.数据通信/SDN(软件定义网路).md",
       "docs/4.数据通信/WebDAV.md",
-      "docs/4.数据通信/中间人攻击与HTTPS抓包.md",
-      "docs/4.数据通信/交换机 与 路由器.md"
+      "docs/4.数据通信/bit 与 Byte 的关系以及网速怎么算.md"
     ],
     "docs/4.数据通信/DNS": [
       "docs/4.数据通信/DNS/_index.md",
@@ -1614,6 +1614,7 @@
       "docs/4.数据通信/通信协议/DHCP.md",
       "docs/4.数据通信/通信协议/FTP.md",
       "docs/4.数据通信/通信协议/HTTP",
+      "docs/4.数据通信/通信协议/WebDAV.md",
       "docs/4.数据通信/通信协议/WebSocket",
       "docs/4.数据通信/通信协议/NTP.md",
       "docs/4.数据通信/通信协议/SSDP.md",
@@ -2403,8 +2404,23 @@
     "docs/学习": [
       "docs/学习/_index.md",
       "docs/学习/信息检索.md",
-      "docs/学习/写作",
-      "docs/学习/学习资源.md"
+      "docs/学习/PKM",
+      "docs/学习/学习资源.md",
+      "docs/学习/学习.md"
+    ],
+    "docs/学习/Personal knowledge management": [
+      "docs/学习/Personal knowledge management/_index.md",
+      "docs/学习/Personal knowledge management/Personal knowledge management.md",
+      "docs/学习/Personal knowledge management/写作.md",
+      "docs/学习/Personal knowledge management/Obsidian.md",
+      "docs/学习/Personal knowledge management/WPS.md"
+    ],
+    "docs/学习/PKM": [
+      "docs/学习/PKM/_index.md",
+      "docs/学习/PKM/PKM.md",
+      "docs/学习/PKM/写作.md",
+      "docs/学习/PKM/Obsidian.md",
+      "docs/学习/PKM/WPS.md"
     ]
   },
   "actionBarOrder": {},

@@ -716,7 +716,7 @@ TCP 延迟确认可以在 Socket 设置 TCP_QUICKACK 选项来关闭这个算法
 
 ## TCP Retransmission(超时重传)
 
-超时重传，如果一个包的丢了，又**没有后续包**可以在接收方触发\[Dup Ack]，或者**\[Dup Ack]也丢失**的情况下，TCP 会触发超时重传机制。
+超时重传，如果一个包的丢了，又**没有后续包**可以在接收方触发\[Dup Ack]，或者 **\[Dup Ack]也丢失**的情况下，TCP 会触发超时重传机制。
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wireshark/1659010179388-13370a7d-1a0c-4611-a9e4-e2492cde492e.png)
 

@@ -13,7 +13,33 @@ weight: 20
 
 **Networking device(网络设备)** 也成为 Networking hardware(网络硬件) 是计算机网络上的设备之间进行通信和交互所需的电子设备。具体来说，它们调解计算机网络中的数据传输。最后接收或产生数据的单元称为主机、端系统或数据终端设备。
 
-[Router(路由器) 与 Switch(交换机)](/docs/4.数据通信/Networking%20device/Router%20And%20Switch.md) 是常见的基础网络设备。
+- [Router(路由器) 与 Switch(交换机)](/docs/4.数据通信/Networking%20device/Router%20And%20Switch.md) 是常见的基础网络设备。
+
+# ATCA
+
+> 参考：
+> 
+> - [PICMG 官网，开放标准 - advancedtca](https://www.picmg.org/openstandards/advancedtca/)
+> - [Wiki，Advanced Telecommunications Computing Architecture](https://en.wikipedia.org/wiki/Advanced_Telecommunications_Computing_Architecture)
+
+**Advanced Telecommunications Computing Architecture(高级的电信计算架构，简称 ATCA or AdvancedTCA)** 是一系列 PICMG 规范，官方规范名称 PICMG 3.x 被称为 AdvancedTCA。
+
+![Shelf|250](https://notes-learning.oss-cn-beijing.aliyuncs.com/networking_device/202402281558843.png)![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/networking_device/202402281531971.png)
+
+AdvancedTCA 是基于模块化结构的、兼容的、并可扩展的硬件构架。模块化体现在：只要符合 ATCA 标准研发出来的刀片，都可以插入到 ATCA 标准的机框中。AdvancedTCA 主要用于构建电信和网络设备，如基站控制器、传输设备、数据交换机等。它采用了模块化的设计理念，可以容纳多个处理器、存储设备、网络接口等功能模块，并提供了高速互联和热插拔功能，以支持系统的灵活性和可维护性。
+
+> 随着时代的发展，ATCA 标准甚至将期范围扩展到面向军事/航空航天工业的更坚固的应用上。
+
+大体上 ATCA 规范的硬件分为两部分
+
+- Shelf(机架、机框)
+- Blade(刀片)
+
+## Blade
+
+**Blade(刀片)** 是可以插入 Shelf 中的硬件，可以是处理器、交换机、AMC 托架、etc. 。一个典型的 ATCA 设备将包含一个或多个交换机刀片和多个处理器刀片。
+
+Blade 也可以称为 **Board(板卡)**，常见的形容有 DPI 板、分流板、etc. 。
 
 # 辅助材料
 

@@ -41,6 +41,7 @@ https://en.wikipedia.org/wiki/Internet_service_provider
 | 5-tuple                                            | 五元组      |         | [RFC 6146](https://datatracker.ietf.org/doc/html/rfc6146#section-2)                      | IP地址，源端口，目的IP地址，目的端口，和传输层协议这五个量组成的一个集合                                |
 | Deep packet inspection                             | 深度数据包检测  | DPI     | [DPI](/docs/7.信息安全/Network%20analysis/DPI.md)                                            |                                                                       |
 | Call Detail Record                                 | 通话详细记录   | CDR(话单) | [CDR](https://en.wikipedia.org/wiki/Call_detail_record)                                  | 后期随着发展该名词逐渐包含了 网络、等 通信之间的详细记录，而不是单指通话。可以写为 **xDR**(wiki 上没有 xDR，自己造的) |
+| Remote Authentication Dial-In User Service         | 远程用户拨号认证 | RADIUS  | [Wiki](https://en.wikipedia.org/wiki/RADIUS)                                             |                                                                       |
 | Transaction<br>                                    | 事务       |         | [Transaction](#transaction)                                                              |                                                                       |
 
 ## Transaction

@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - [RFC,791](https://datatracker.ietf.org/doc/html/rfc791)(IP 规范)
+> - [RFC 791， INTERNET PROTOCOL PROTOCOL SPECIFICATION](https://datatracker.ietf.org/doc/html/rfc791)
 > - [Wiki，Internet Protocol](https://en.wikipedia.org/wiki/Internet_Protocol)
 > - [Wiki，IPv4](https://en.wikipedia.org/wiki/IPv4)
 > - [Wiki，Mask(掩码)](<https://en.wikipedia.org/wiki/Mask_(computing)>)
@@ -93,11 +93,15 @@ IPv4 地址的这 32 bit 可以分为两部分
 
 # IPv4 Datagram 结构
 
+> 参考：
+> 
+> - [RFC 791,3.1.Internet Header Format](https://datatracker.ietf.org/doc/html/rfc791#section-3.1)
+
 IPv4 数据报被封装在链路层的 Frame 中
 
 IPv4 数据报首部共 14 个字段，其中 13 个是必须的，第 14 个是可选的。前 13 个字段长度固定为 20 Bytes，即 160 bit；第 14 个字段长度在 0 ~ 40 Bytes 之间。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/nahgxm/1633533991076-2a9cb606-463a-4dd4-89c8-c3aae590c113.jpeg)
+![ipv4_datagram|1000](https://notes-learning.oss-cn-beijing.aliyuncs.com/nahgxm/1633533991076-2a9cb606-463a-4dd4-89c8-c3aae590c113.jpeg)
 
 对照 WireShark 中展示的内容看，排除 `[]` 中的内容，每一行就是首部中的一个字段
 
@@ -119,7 +123,7 @@ IPv4 数据报首部共 14 个字段，其中 13 个是必须的，第 14 个是
   - 第二个 # Don't Fragment(DF)
   - 第三个 # More Fragment(MF)
 - **Fragment Offset(分片偏移)** # IP 分片之后的偏移量
-- **Time To Live(存活时间，简称 TTL)** # 其实用 Hop Limit 的描述更准确，封包每经过一个路由器，怎会将 TTL 字段的值减 1，减到 0 是，该包将会被丢弃。
+- **Time To Live(存活时间，简称 TTL)** # 其实用 Hop Limit 的描述更准确，封包每经过一个路由器，就会将 TTL 字段的值减 1，减到 0 是，该包将会被丢弃。
 - **Protocol**# 封装 IP 数据报的上层协议，比如 6 表示 TCP、1 表示 ICMP
   - 每种协议根据 [RFC 1700](https://datatracker.ietf.org/doc/html/rfc1700) 都分配了一个固定的编号，该 RFC 1700 最终被 RFC 3232 废弃，并将协议编号的维护工作，转到[IANA 的在线数据库](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)中
 - **Header Checksum** # 当数据包到达路由器时，路由器会计算标头的校验和，并将其与校验和字段进行比较。如果值不匹配，则路由器会丢弃该数据包。
@@ -144,13 +148,13 @@ IPv4 和 IPv6 地址通常以分层方式分配。**ISP(互联网服务提供商
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/nahgxm/1646384624162-21c9bca1-0960-45e4-87bb-3802eca96278.svg)
 
-| 登记处                             | 覆盖面积                                                              |
-| ---------------------------------- | --------------------------------------------------------------------- |
-| [AFRINIC](http://www.afrinic.net/) | Africa Region(非洲地区)                                               |
-| [APNIC](http://www.apnic.net/)     | Asia/Pacific Region(亚洲/太平洋地区，亚太地区)                        |
+| 登记处                                | 覆盖面积                                                    |
+| ---------------------------------- | ------------------------------------------------------- |
+| [AFRINIC](http://www.afrinic.net/) | Africa Region(非洲地区)                                     |
+| [APNIC](http://www.apnic.net/)     | Asia/Pacific Region(亚洲/太平洋地区，亚太地区)                      |
 | [ARIN](http://www.arin.net/)       | Canada, USA, and some Caribbean Islands(加拿大、美国、一些加勒比岛屿) |
-| [LACNIC](http://www.lacnic.net/)   | Latin America and some Caribbean Islands(拉丁美洲、一些加勒比岛屿)    |
-| [RIPE NCC](http://www.ripe.net/)   | Europe, the Middle East, and Central Asia(欧洲、中东、中亚)           |
+| [LACNIC](http://www.lacnic.net/)   | Latin America and some Caribbean Islands(拉丁美洲、一些加勒比岛屿)  |
+| [RIPE NCC](http://www.ripe.net/)   | Europe, the Middle East, and Central Asia(欧洲、中东、中亚)     |
 
 [对 IP 地址的主要作用是根据全球政策](http://www.icann.org/en/general/global-addressing-policies.html)所述的需求将未分配地址池分配给 RIR，并记录 [IETF](http://www.ietf.org/) 所做的协议分配。当 RIR 需要在其区域内分配或分配更多 IP 地址时，我们会向 RIR 进行额外分配。我们不会直接向 ISP 或最终用户进行分配，除非在特定情况下，例如分配多播地址或其他协议特定需求。
 

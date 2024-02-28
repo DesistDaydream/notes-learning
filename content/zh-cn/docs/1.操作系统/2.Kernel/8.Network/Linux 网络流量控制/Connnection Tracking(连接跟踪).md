@@ -56,6 +56,7 @@ title: Connnection Tracking(连接跟踪)
 现在(2021 年 4 月 9 日)提到连接跟踪（conntrack），可能首先都会想到 Netfilter。但由上节讨论可知， 连接跟踪概念是独立于 Netfilter 的，**Netfilter 只是 Linux 内核中的一种连接跟踪实现**。
 
 换句话说，**只要具备了 hook 能力，能拦截到进出主机的每个包，完全可以在此基础上自 己实现一套连接跟踪**。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ynfo7m/1617861067581-3b23cb80-cd1f-4d7d-9767-57581c62233b.png)
 
 云原生网络方案 Cilium 在 `1.7.4+` 版本就实现了这样一套独立的连接跟踪和 NAT 机制 （完备功能需要 Kernel `4.19+`）。其基本原理是：
@@ -63,13 +64,17 @@ title: Connnection Tracking(连接跟踪)
 1. 基于 BPF hook 实现数据包的拦截功能（等价于 netfilter 里面的 hook 机制）
 2. 在 BPF hook 的基础上，实现一套全新的 conntrack 和 NAT
 
-因此，即便[卸载 Netfilter](https://github.com/cilium/cilium/issues/12879) ，也不会影响 Cilium 对 Kubernetes ClusterIP、NodePort、ExternalIPs 和 LoadBalancer 等功能的支持 \[2]。
+因此，即便[卸载 Netfilter](https://github.com/cilium/cilium/issues/12879) ，也不会影响 Cilium 对 Kubernetes ClusterIP、NodePort、ExternalIPs 和 LoadBalancer 等功能的支持。
+
 由于这套连接跟踪机制是独立于 Netfilter 的，因此它的 conntrack 和 NAT 信息也没有 存储在内核的（也就是 Netfilter 的）conntrack table 和 NAT table。所以常规的 `conntrack/netstats/ss/lsof` 等工具是看不到的，要使用 Cilium 的命令，例如：
 
-    cilium bpf nat list
-    cilium bpf ct list global
+```bash
+cilium bpf nat list
+cilium bpf ct list global
+```
 
 配置也是独立的，需要在 Cilium 里面配置，例如命令行选项 `--bpf-ct-tcp-max`。
+
 另外，本文会多次提到连接跟踪模块和 NAT 模块独立，但**出于性能考虑，具体实现中 二者代码可能是有耦合的**。例如 Cilium 做 conntrack 的垃圾回收（GC）时就会顺便把 NAT 里相应的 entry 回收掉，而非为 NAT 做单独的 GC。
 
 ### Netfilter 中的 Connection Tracking
@@ -82,18 +87,20 @@ title: Connnection Tracking(连接跟踪)
 
 来看几个 conntrack 的具体应用。
 
-### 1.5.1 网络地址转换（NAT）
+### 网络地址转换（NAT）
 
 网络地址转换（NAT），名字表达的意思也比较清楚：对（数据包的）网络地址（`IP + Port`）进行转换。
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ynfo7m/1617861112761-712ea43a-0ed4-4c94-8758-3f593fc3a1b6.png)
-Fig 1.4. NAT 及其内核位置示意图
+
+![NAT 及其内核位置示意图](https://notes-learning.oss-cn-beijing.aliyuncs.com/ynfo7m/1617861112761-712ea43a-0ed4-4c94-8758-3f593fc3a1b6.png)
+
 例如上图中，机器自己的 IP `10.1.1.2` 是能与外部正常通信的，但 `192.168` 网段是私有 IP 段，外界无法访问，也就是说源 IP 地址是 `192.168` 的包，其**应答包是无 法回来的**。因此
 
 - 当源地址为 `192.168` 网段的包要出去时，机器会先将源 IP 换成机器自己的 `10.1.1.2` 再发送出去；
 - 收到应答包时，再进行相反的转换。
 
 这就是 NAT 的基本过程。
-Docker 默认的 `bridge` 网络模式就是这个原理 \[4]。每个容器会分一个私有网段的 IP 地址，这个 IP 地址可以在宿主机内的不同容器之间通信，但容器流量出宿主机时要进行 NAT。
+
+Docker 默认的 `bridge` 网络模式就是这个原理。每个容器会分一个私有网段的 IP 地址，这个 IP 地址可以在宿主机内的不同容器之间通信，但容器流量出宿主机时要进行 NAT。
 NAT 又可以细分为几类：
 
 - SNAT：对源地址（source）进行转换
@@ -101,39 +108,49 @@ NAT 又可以细分为几类：
 - Full NAT：同时对源地址和目的地址进行转换
 
 以上场景属于 SNAT，将不同私有 IP 都映射成同一个“公有 IP”，以使其能访问外部网络服 务。这种场景也属于正向代理。
+
 NAT 依赖连接跟踪的结果。连接跟踪**最重要的使用场景**就是 NAT。
 
 #### 四层负载均衡（L4LB）
 
 再将范围稍微延伸一点，讨论一下 NAT 模式的四层负载均衡。
+
 四层负载均衡是根据包的四层信息（例如 `src/dst ip, src/dst port, proto`）做流量分发。
+
 VIP（Virtual IP）是四层负载均衡的一种实现方式：
 
 - 多个后端真实 IP（Real IP）挂到同一个虚拟 IP（VIP）上
 - 客户端过来的流量先到达 VIP，再经负载均衡算法转发给某个特定的后端 IP
 
 如果在 VIP 和 Real IP 节点之间使用的 NAT 技术（也可以使用其他技术），那客户端访 问服务端时，L4LB 节点将做双向 NAT（Full NAT），数据流如下图所示：
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ynfo7m/1617861112756-297f87b7-f40e-4886-899a-65629964fd2c.png)
-Fig 1.5. L4LB: Traffic path in NAT mode \[3]
+
+![L4LB: Traffic path in NAT mode](https://notes-learning.oss-cn-beijing.aliyuncs.com/ynfo7m/1617861112756-297f87b7-f40e-4886-899a-65629964fd2c.png)
 
 ### 1.5.2 有状态防火墙
 
-有状态防火墙（stateful firewall）是相对于早期的**无状态防火墙**（stateless firewall）而言的：早期防火墙只能写 `drop syn` 或者 `allow syn` 这种非常简单直接 的规则，**没有 flow 的概念**，因此无法实现诸如 **“如果这个 ack 之前已经有 syn， 就 allow，否则 drop”** 这样的规则，使用非常受限 \[6]。
+有状态防火墙（stateful firewall）是相对于早期的**无状态防火墙**（stateless firewall）而言的：早期防火墙只能写 `drop syn` 或者 `allow syn` 这种非常简单直接 的规则，**没有 flow 的概念**，因此无法实现诸如 **“如果这个 ack 之前已经有 syn， 就 allow，否则 drop”** 这样的规则，使用非常受限。
+
 显然，要实现有状态防火墙，就必须记录 flow 和状态，这正是 conntrack 做的事情。
+
 来看个更具体的防火墙应用：OpenStack 主机防火墙解决方案 —— 安全组（security group）。
 
 #### OpenStack 安全组
 
 简单来说，安全组实现了**虚拟机级别**的安全隔离，具体实现是：在 node 上连接 VM 的 网络设备上做有状态防火墙。在当时，最能实现这一功能的可能就是 Netfilter/iptables。
-回到宿主机内网络拓扑问题： OpenStack 使用 OVS bridge 来连接一台宿主机内的所有 VM。 如果只从网络连通性考虑，那每个 VM 应该直接连到 OVS bridge `br-int`。但这里问题 就来了 \[7]：
+回到宿主机内网络拓扑问题： OpenStack 使用 OVS bridge 来连接一台宿主机内的所有 VM。 如果只从网络连通性考虑，那每个 VM 应该直接连到 OVS bridge `br-int`。但这里问题 就来了：
 
 - OVS 没有 conntrack 模块，
 - Linux 中有 conntrack 模块，但基于 conntrack 的防火墙**工作在 IP 层**（L3），通过 iptables 控制，
 - 而 **OVS 是 L2 模块**，无法使用 L3 模块的功能，
 
 因此无法在 OVS （连接虚拟机）的设备上做防火墙。
+
 所以，2016 之前 OpenStack 的解决方案是，在每个 OVS 和 VM 之间再加一个 Linux bridge ，如下图所示，
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ynfo7m/1617861113322-0f9c4ca7-ffca-43ab-840d-78db13d23008.png)
+
 Fig 1.6. Network topology within an OpenStack compute node, picture from [Sai's Blog](https://thesaitech.wordpress.com/2017/09/24/how-to-trace-the-tap-interfaces-and-linux-bridges-on-the-hypervisor-your-openstack-vm-is-on/)
+
 Linux bridge 也是 L2 模块，按道理也无法使用 iptables。但是，**它有一个 L2 工具 ebtables，能够跳转到 iptables**，因此间接支持了 iptables，也就能用到 Netfilter/iptables 防火墙的功能。
+
 这种 workaround 不仅丑陋、增加网络复杂性，而且会导致性能问题。因此， RedHat 在 2016 年提出了一个 OVS conntrack 方案 \[7]，从那以后，才有可能干掉 Linux bridge 而仍然具备安全组的功能。
