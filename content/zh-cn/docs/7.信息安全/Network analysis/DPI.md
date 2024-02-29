@@ -9,7 +9,7 @@ weight: 2
 
 > 参考：
 >
-> - [Wiki，Deep_packet_inspection](https://en.wikipedia.org/wiki/Deep_packet_inspection)
+> - [Wiki，Deep packet inspection](https://en.wikipedia.org/wiki/Deep_packet_inspection)
 
 **Deep packet inspection(深度数据包检测，简称 DPI)** 是一种用于 **Network analysis(网络分析)** 的 行为、技术、方法，它详细检查计算机网络上传输的数据包，并可能根据情况采取警报、阻止、重新路由或记录等行动。可以通过 软件、硬件、软硬结合 多种方式实现 DPI。
 
@@ -46,7 +46,7 @@ DPI 始于 20 世纪 90 年代。早期的 DPI 实现有：
 
 https://en.wikipedia.org/wiki/Beam_splitter
 
-通常来说，为了高可用，DPI 等安全设备需要与 [Bypass tap](/docs/7.信息安全/Network%20analysis/Bypass%20tap.md) 共同使用，以保证 DPI 设备异常时流量不会中断。
+通常来说，为了保证高可用，DPI 等安全设备需要与 [Bypass tap](/docs/7.信息安全/Network%20analysis/Bypass%20tap.md) 共同使用，以保证 DPI 设备异常时流量不会中断。
 
 在有些不要求高可用的场景中，不需要 DPI 的流量过滤，只需要流量分析的能力时，也可以不用 Bypass tap，而使用市面上的 [Fiber-optic splitter(分光器)](/docs/4.数据通信/Networking%20device/Fiber-optic%20splitter.md)，将光的 20% 分到 DPI 或其他流量处理设备中进行后续的流量分析。
 

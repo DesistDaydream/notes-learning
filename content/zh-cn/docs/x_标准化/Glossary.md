@@ -42,6 +42,8 @@ https://en.wikipedia.org/wiki/Internet_service_provider
 | Deep packet inspection                             | 深度数据包检测  | DPI     | [DPI](/docs/7.信息安全/Network%20analysis/DPI.md)                                            |                                                                       |
 | Call Detail Record                                 | 通话详细记录   | CDR(话单) | [CDR](https://en.wikipedia.org/wiki/Call_detail_record)                                  | 后期随着发展该名词逐渐包含了 网络、等 通信之间的详细记录，而不是单指通话。可以写为 **xDR**(wiki 上没有 xDR，自己造的) |
 | Remote Authentication Dial-In User Service         | 远程用户拨号认证 | RADIUS  | [Wiki](https://en.wikipedia.org/wiki/RADIUS)                                             |                                                                       |
+| Situational awareness                              | 态势感知     | SA      | [Wiki](https://en.wikipedia.org/wiki/Situation_awareness)                                |                                                                       |
+| Cyberspace Situation Awareness                     | 网络态势感知   | CSA     |                                                                                          |                                                                       |
 | Transaction<br>                                    | 事务       |         | [Transaction](#transaction)                                                              |                                                                       |
 
 ## Transaction

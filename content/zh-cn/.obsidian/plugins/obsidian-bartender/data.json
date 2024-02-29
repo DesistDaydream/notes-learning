@@ -2408,12 +2408,11 @@
       "docs/学习/学习资源.md",
       "docs/学习/学习.md"
     ],
-    "docs/学习/Personal knowledge management": [
-      "docs/学习/Personal knowledge management/_index.md",
-      "docs/学习/Personal knowledge management/Personal knowledge management.md",
-      "docs/学习/Personal knowledge management/写作.md",
-      "docs/学习/Personal knowledge management/Obsidian.md",
-      "docs/学习/Personal knowledge management/WPS.md"
+    "docs/4.数据通信/通信协议/TCP_IP/IP": [
+      "docs/4.数据通信/通信协议/TCP_IP/IP/_index.md",
+      "docs/4.数据通信/通信协议/TCP_IP/IP/IP.md",
+      "docs/4.数据通信/通信协议/TCP_IP/IP/IPv6.md",
+      "docs/4.数据通信/通信协议/TCP_IP/IP/IP Header.md"
     ],
     "docs/学习/PKM": [
       "docs/学习/PKM/_index.md",
