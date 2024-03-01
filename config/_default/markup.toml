@@ -1,2 +1,9 @@
 [tableOfContents]
 startLevel = 1
+[goldmark]
+[goldmark.parser.attribute]
+block = true
+[goldmark.renderer]
+unsafe = true
+[highlight]
+style = "tango"

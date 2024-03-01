@@ -7,8 +7,12 @@ contentDir = "content/zh-cn"
 defaultContentLanguage = "zh-cn"
 defaultContentLanguageInSubdir = false
 
+enableMissingTranslationPlaceholders = true
+
+enableRobotsTXT = true
+
 enableGitInfo = true
 
 # URL 生成逻辑
 disablePathToLower = true # 不要将 URL 路径转为小写
-uglyURLs = false # URL 路径中最后不要带 .html 后缀
+uglyURLs = false          # URL 路径中最后不要带 .html 后缀

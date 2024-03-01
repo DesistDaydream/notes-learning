@@ -5,8 +5,8 @@ content/zh-cn/.obsidian/plugins/obsidian-image-auto-upload-plugin/data.json
 content/zh-cn/.obsidian/workspace.json
 content/zh-cn/files/
 
-resources/*
-public/*
-docs/*
+resources/
+public/
+docs/
 
-node_modules/*
+node_modules/

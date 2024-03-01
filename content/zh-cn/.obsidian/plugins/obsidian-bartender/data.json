@@ -2420,6 +2420,12 @@
       "docs/学习/PKM/写作.md",
       "docs/学习/PKM/Obsidian.md",
       "docs/学习/PKM/WPS.md"
+    ],
+    "docs/2.编程/高级编程语言/Java": [
+      "docs/2.编程/高级编程语言/Java/_index.md",
+      "docs/2.编程/高级编程语言/Java/Java.md",
+      "docs/2.编程/高级编程语言/Java/Java环境安装与使用",
+      "docs/2.编程/高级编程语言/Java/Java工具"
     ]
   },
   "actionBarOrder": {},

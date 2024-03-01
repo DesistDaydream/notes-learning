@@ -86,19 +86,33 @@ production 与 staging 文件夹用来区分运行时配置，比如使用 `hugo
 
 markup 部分的配置用于处理 Markdown 和其他 Markup(标记) 相关配置。
 
-[goldmark]
+**\[goldmark]**
 
 Goldmark 部分用于配置适用于 Go 的 Markdown 解析库，Hugo 从 0.60 开始使用。它速度快，符合 CommonMark 标准，而且非常灵活。
 
-[tableOfContents]
+**\[parser.attribute]**
 
-tableOfContents 部分配置目录相关指令。这些设定只适用于 Goldmark 渲染器。
+**block**(BOOLEAN) # 是否为 block 启用 [Markdown 属性](https://gohugo.io/content-management/markdown-attributes/)
+
+**\[renderer]**
+
+**unsafe**(BOOLEAN) # 是否让 Goldmark 渲染器将在 Markdown 中渲染原始 HTML。开启后是不安全的。`默认值: false`。
+
+**\[tableOfContents]**
+
+tableOfContents 部分配置目录相关指令。这些设定只适用于 Goldmark 渲染器。（这个目录是指文章的 *大纲*，并不是文件系统中的目录）
 
 **startLevel**(INT) # 目录中显示的标题级别。从该指令的级别开始显示
 
 **endLevel**(INT) # 目录中显示的标题级别。到该指令的级别结束显示
 
 **ordered**(BOOLEAN) # 是否生成有序列表而不是无序列表。
+
+**\[highlight]**
+
+highlight 部分配置高亮部分（通常都是代码块）
+
+**style**(STRING) # 高亮部分的样式
 
 # module 部分
 
@@ -109,6 +123,10 @@ tableOfContents 部分配置目录相关指令。这些设定只适用于 Goldma
 module 部分的配置用于处理 Hugo 模块的运行逻辑。
 
 **proxy = \<STRING>** # 定义用于下载模块的代理服务器。与 go 模块的 proxy 原理一样。`默认值：direct`
+
+**\[\[imports]]**
+
+**path**(STRING) # Hugo 指定 Hugo 要使用的的 [Go Module](docs/2.编程/高级编程语言/Go/Go%20环境安装与使用/Go%20Module.md)。值是标准的 Go 模块路径，可以是网络上的，也可以是本地的。
 
 # sitemap 部分
 

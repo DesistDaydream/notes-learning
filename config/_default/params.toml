@@ -5,7 +5,7 @@ offlineSearch = true
 github_repo = "https://github.com/DesistDaydream/notes-learning"
 github_project_repo = "https://github.com/DesistDaydream/desistdaydream.github.io"
 github_subdir = ""
-github_branch= "main"
+github_branch = "main"
 
 # 页面显示内容配置
 [ui]
@@ -26,7 +26,7 @@ url = "https://example.org/mail"
 icon = "fa fa-envelope"
 desc = "Discussion and help from your fellow users"
 [[links.user]]
-name ="Twitter"
+name = "Twitter"
 url = "https://example.org/twitter"
 icon = "fab fa-twitter"
 desc = "Follow us on Twitter to get the latest news!"

@@ -107,8 +107,10 @@ hosts = [
 ## TOML 与 INI、JSON、YAML 的对比
 
 配置文件是一种非常基础的文件格式，但远没有数据文件格式（如 `SQLite`）、文档文件格式（如 `Markdown`）、编程语言（如 `JavaScript`）、甚至二进制文件格式（如 `PNG`）需求那么复杂。
-　　只要严谨但不严苛、支持必要的数据类型和嵌套，又易于人类手工直接阅读和编辑就可以了。
-　　但就是这样一种广泛需要而又简单的应用场景，却反而长期以来一直没有一种足够好的文件格式。
+
+只要严谨但不严苛、支持必要的数据类型和嵌套，又易于人类手工直接阅读和编辑就可以了。
+
+但就是这样一种广泛需要而又简单的应用场景，却反而长期以来一直没有一种足够好的文件格式。
 
 ---
 
@@ -233,13 +235,17 @@ Table 的名称则用 `[]` 符号内的字符串表示。Table 的命名规则�
 
 ### 示例
 
-    [table-1]
-    key1 = "some string"
-    key2 = 123
+**Table 1**
 
-    [table-2]
-    key1 = "another string"
-    key2 = 456
+```toml
+[table-1]
+key1 = "some string"
+key2 = 123
+
+[table-2]
+key1 = "another string"
+key2 = 456
+```
 
 转为 JSON：
 
@@ -256,8 +262,12 @@ Table 的名称则用 `[]` 符号内的字符串表示。Table 的命名规则�
 }
 ```
 
-    [dog."tater.man"]
-    type.name = "pug"
+**Table 2**
+
+```toml
+[dog."tater.man"]
+type.name = "pug"
+```
 
 转为 JSON：
 
@@ -269,39 +279,45 @@ Table 的名称则用 `[]` 符号内的字符串表示。Table 的命名规则�
 
 比如：
 
-    name = { first = "Tom", last = "Preston-Werner" }
-    point = { x = 1, y = 2 }
-    animal = { type.name = "pug" }
+```
+name = { first = "Tom", last = "Preston-Werner" }
+point = { x = 1, y = 2 }
+animal = { type.name = "pug" }
+```
 
 表示：
 
-    [name]
-    first = "Tom"
-    last = "Preston-Werner"
+```toml
+[name]
+first = "Tom"
+last = "Preston-Werner"
 
-    [point]
-    x = 1
-    y = 2
+[point]
+x = 1
+y = 2
 
-    [animal]
-    type.name = "pug"
+[animal]
+type.name = "pug"
+```
 
 ### Array of Tables(表的数组)
 
 Table 的数组使用 `[[]]` 符号表示。
 比如，下面的配置：
 
-    [[products]]
-    name = "Hammer"
-    sku = 738594937
+```toml
+[[products]]
+name = "Hammer"
+sku = 738594937
 
-    [[products]]  # empty table within the array
+[[products]]  # empty table within the array
 
-    [[products]]
-    name = "Nail"
-    sku = 284758393
+[[products]]
+name = "Nail"
+sku = 284758393
 
-    color = "gray"
+color = "gray"
+```
 
 转换为 JSON 为：
 
@@ -320,16 +336,18 @@ Table 的数组使用 `[[]]` 符号表示。
 从某种成都上来说，TOML 也可以使用类似系统中的路径格式来表示，不管是 Table 还是 `.` 符号，这些原语组合成一个 Key 并确定唯一一个值，非常像 Kubernetes 在 Etcd 中存储的数据格式。
 比如前文的[基本示例](/docs/2.编程/无法分类的语言/TOML.md)中的所有 Key，可以看成下面这个样子：
 
-    /title
-    /owner/name
-    /owner/dob
-    /database/server
-    /database/ports
-    /database/connection_max
-    /database/enabled
-    /servers/alpha/ip
-    /servers/alpha/dc
-    /servers/beta/ip
-    /servers/beta/dc
-    /clients/data
-    /clients/hosts
+```
+/title
+/owner/name
+/owner/dob
+/database/server
+/database/ports
+/database/connection_max
+/database/enabled
+/servers/alpha/ip
+/servers/alpha/dc
+/servers/beta/ip
+/servers/beta/dc
+/clients/data
+/clients/hosts
+```

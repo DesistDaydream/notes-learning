@@ -10,7 +10,6 @@ menu:
 <p class="lead mt-5">学习使我快乐</p>
 {{< /blocks/cover >}}
 
-
 {{< blocks/section >}}
 <div class="col-12">
 <h1 class="text-center">自我介绍</h1>
@@ -26,7 +25,6 @@ menu:
 
 </div>
 {{< /blocks/section >}}
-
 
 {{< blocks/section >}}
 <div class="col-12">

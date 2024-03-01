@@ -1,12 +1,16 @@
 ---
 title: Kubeapps
+linkTitle: Kubeapps
+date: 2024-03-01T10:52
+weight: 1
 ---
 
 # 概述
 
 > 参考：
+> 
 > - [官网](https://kubeapps.com/)
-> - [GitHub](https://github.com/kubeapps/kubeapps)
+> - [GitHub 项目，kubeapps/kubeapps](https://github.com/kubeapps/kubeapps)
 
 Kubeapps 是一个基于 Web 的 UI，用于在 Kubernetes 集群中部署和管理应用程序。
 
@@ -58,3 +62,10 @@ kubectl create -n kubeapps rolebinding lch-kubeapps-repositories-write  \
 在 kubeapps 名称空间中创建一个 RoleBinding，将 `kubeapps:kubeapps:apprepositories-write` 这个角色与 user-sa-manage 名称空间下的 lch 这个 ServiceAccount 绑定。这样，使用 lch 的 token 登录时，就可以在全局名称空间(kubeapps)中操作镜像仓库了。
 
 > 2.3.2 版本有个小 BUG，从 其他名称空间切换的 kubeapps 名称空间后，会提示没权限，需要刷新一下才行。
+
+# kubeapps API
+
+> 参考：
+> 
+> -[官方 OpenAPI 3.0](https://github.com/kubeapps/kubeapps/blob/master/dashboard/public/openapi.yaml)
+

@@ -280,9 +280,9 @@ Hugo 运行站点时所使用的配置文件。
 
 推荐使用 `config/` 目录，以便拆分 hugo.toml 文件。可以将 hugo.tom 文件移动到在 `config/_default/hugo.toml` 处作为默认配置。
 
-# Hugo Modules(模块)
+# Hugo Modules
 
-Hugo 模块是一个类似 Go 模块一样的存在。模块可以是我们的主项目或其他较小的模块，提供 Hugo 的 7 种组件类型中的一种或多种：
+Hugo Modules(模块) 是一个类似 Go 模块一样的存在。模块可以是我们的主项目或其他较小的模块，提供 Hugo 的 7 种组件类型中的一种或多种：
 
 - **static**
 - **content**
@@ -313,7 +313,8 @@ Hugo 模块是一个类似 Go 模块一样的存在。模块可以是我们的�
 Hugo 运行时所需的缓存目录。包括需要使用的模块等：
 
 - Windows:
-	- **%TMP%/hugo_cache/**
+	- **%LocalAppData/hugo_cache/**
+	- **%TMP%/hugo_cache/** # 弃用
 - Linux:
 	- **${TMP}/hugo_cache/**
 

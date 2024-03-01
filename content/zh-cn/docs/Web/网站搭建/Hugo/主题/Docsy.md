@@ -7,6 +7,7 @@ weight: 20
 # 概述
 
 > 参考：
+> 
 > - [GitHub 项目，google/docsy](https://github.com/google/docsy)
 > - [官网](https://www.docsy.dev/)
 
@@ -17,6 +18,7 @@ Kubernetes 的官网就是 Docsy 主题。
 # 预览和部署 Docsy 主题网站
 
 > 参考：
+> 
 > - [官方文档，预览和部署](https://www.docsy.dev/docs/deployment/)
 
 ## 准备环境
@@ -46,13 +48,11 @@ hugo server
 hugo new site .
 hugo mod init github.com/me/my-new-site
 hugo mod get github.com/google/docsy@v0.6.0
-cat >> config.toml <<EOL
+cat >> hugo.toml <<EOL
 [module]
 proxy = "direct"
 [[module.imports]]
 path = "github.com/google/docsy"
-[[module.imports]]
-path = "github.com/google/docsy/dependencies"
 EOL
 ```
 
@@ -77,5 +77,13 @@ https://tomial.github.io/posts/hugo%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8
 # Docsy 配置与关联文件
 
 Docsy 也会使用 Hugo 的 CONFIG 文件来配置站点。参考[官网，内容和定制](https://www.docsy.dev/docs/adding-content/)章节来修改 CONFIG 文件，以改变主题样式。
+
+## 多语言支持
+
+https://www.docsy.dev/docs/language/#content-and-configuration
+
+Docsy 主题中的页面有些地方是没有翻译的，可以在 Hugo 项目根目录创建 `/i18n/` 目录，并按照语言编写像 `zh-cn.toml` 这种配置文件，即可为这些地方显示对应语言的内容。
+
+> 配置文件内容可以参考 Kubernetes 的 https://github.com/kubernetes/website/blob/main/data/i18n/zh-cn/zh-cn.toml
 
 

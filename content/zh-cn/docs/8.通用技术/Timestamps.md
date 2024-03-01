@@ -4,7 +4,12 @@ title: Timestamps(时间戳)
 
 # 概述
 
-> 参考：[RFC 3339](https://tools.ietf.org/html/rfc3339)、[时间戳在线转换](https://www.bejson.com/convert/unix/)
+> 参考：
+> 
+> - [RFC 3339](https://tools.ietf.org/html/rfc3339)
+> - [时间戳在线转换](https://www.bejson.com/convert/unix/)
+
+**Timestamps(时间戳)**
 
 <https://baike.baidu.com/item/unix>时间戳
 

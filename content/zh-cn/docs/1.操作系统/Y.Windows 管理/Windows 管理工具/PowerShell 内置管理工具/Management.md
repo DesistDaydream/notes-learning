@@ -14,15 +14,16 @@ weight: 20
 
 # Item 管理工具
 
--   [Clear-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/clear-item?view=powershell-7.3)
--   [Copy-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/copy-item?view=powershell-7.3)
--   [Get-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/get-item?view=powershell-7.3)
--   [Invoke-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/invoke-item?view=powershell-7.3)
--   [Move-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/move-item?view=powershell-7.3)
--   [New-Item](#New-Item)
--   [Remove-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/remove-item?view=powershell-7.3)
--   [Rename-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/rename-item?view=powershell-7.3)
--   [Set-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/set-item?view=powershell-7.3)
+- [Clear-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/clear-item?view=powershell-7.3)
+- [Copy-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/copy-item?view=powershell-7.3)
+- [Get-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/get-item?view=powershell-7.3)
+- [Invoke-Item](#Invoke-Item)
+- [Move-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/move-item?view=powershell-7.3)
+- [New-Item](#New-Item)
+- [Remove-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/remove-item?view=powershell-7.3)
+- [Rename-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/rename-item?view=powershell-7.3)
+- [Set-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/set-item?view=powershell-7.3)
+- [Get-ChildItem](#Get-ChildItem) # 获取指定位置的 Item 和 子Item。类似 ls 命令
 
 ## New-Item
 
@@ -41,10 +42,16 @@ https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.managem
 
 创建符号链接(软连接)
 
-- 创建一个 C:/Users/DesistDaydream/AppData/Roaming/yuzu 符号链接文件，指向 E:/emulator/yuzu_data/user
+- 创建 C:/Users/DesistDaydream/AppData/Roaming/yuzu 符号链接文件，指向 E:/emulator/yuzu_data/user
   - `New-Item -ItemType SymbolicLink -Path "C:/Users/DesistDaydream/AppData/Roaming/yuzu" -Target "E:/emulator/yuzu_data/user"`
+- 查看符号链接文件所指向的原始文件路径
+  - `(Get-Item ${PathToFile}).Target`
+
+
 
 ## Invoke-Item
+
+https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/invoke-item?view=powershell-7.3
 
 对指定的 Item 执行默认操作，默认操作取决于 Item 的类型。比如 目录类型的 Item，则使用默认的资源管理器打开、.docs 文件类型的 Item，则使用 .docs 默认的程序打开、等等
 
