@@ -7,7 +7,7 @@ title: OpenSSL
 > 参考：
 >
 > - [官网](https://www.openssl.org/)
-> - [GitHub 项目,openssl/openssl](https://github.com/openssl/openssl)
+> - [GitHub 项目，openssl/openssl](https://github.com/openssl/openssl)
 
 OpenSSL 是一个商业级且功能齐全的工具包，用于通用密码学和安全通信
 
@@ -33,7 +33,7 @@ OpenSSL 主要包含两组东西：
 
 > 参考：
 >
-> - [Manual(手册),openssl](https://www.openssl.org/docs/manmaster/man1/openssl.html)
+> - [Manual(手册)，openssl](https://www.openssl.org/docs/manmaster/man1/openssl.html)
 
 openssl 程序提供了丰富的子命令，以实现 TLS/SSL 网络协议以及它们所需要的相关加密标准。
 
@@ -57,7 +57,7 @@ openssl 程序提供了丰富的子命令，以实现 TLS/SSL 网络协议以及
 
 ## Standard commands(标准命令)
 
-[Standard commands(标准命令)](/docs/7.信息安全/管理工具/OpenSSL/Standard%20commands(标准命令).md)
+[Standard commands](/docs/7.信息安全/管理工具/OpenSSL/Standard%20commands.md)
 
 ## Message Digest commands(消息摘要命令)
 

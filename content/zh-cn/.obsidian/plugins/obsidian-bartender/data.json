@@ -2403,10 +2403,10 @@
     ],
     "docs/学习": [
       "docs/学习/_index.md",
+      "docs/学习/学习.md",
       "docs/学习/信息检索.md",
       "docs/学习/PKM",
-      "docs/学习/学习资源.md",
-      "docs/学习/学习.md"
+      "docs/学习/学习资源.md"
     ],
     "docs/4.数据通信/通信协议/TCP_IP/IP": [
       "docs/4.数据通信/通信协议/TCP_IP/IP/_index.md",
@@ -2426,6 +2426,20 @@
       "docs/2.编程/高级编程语言/Java/Java.md",
       "docs/2.编程/高级编程语言/Java/Java环境安装与使用",
       "docs/2.编程/高级编程语言/Java/Java工具"
+    ],
+    "docs/7.信息安全/管理工具/OpenSSL": [
+      "docs/7.信息安全/管理工具/OpenSSL/_index.md",
+      "docs/7.信息安全/管理工具/OpenSSL/OpenSSL.md",
+      "docs/7.信息安全/管理工具/OpenSSL/OpenSSL 配置详解.md",
+      "docs/7.信息安全/管理工具/OpenSSL/Standard commands(标准命令).md"
+    ],
+    "docs/7.信息安全/管理工具": [
+      "docs/7.信息安全/管理工具/_index.md",
+      "docs/7.信息安全/管理工具/管理工具.md",
+      "docs/7.信息安全/管理工具/自建CA脚本.md",
+      "docs/7.信息安全/管理工具/CFSSL.md",
+      "docs/7.信息安全/管理工具/OpenSSL",
+      "docs/7.信息安全/管理工具/系统证书管理.md"
     ]
   },
   "actionBarOrder": {},
