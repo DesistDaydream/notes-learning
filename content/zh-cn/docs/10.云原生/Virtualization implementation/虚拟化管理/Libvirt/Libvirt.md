@@ -56,7 +56,9 @@ libvirt 使用 URI 来与各种类型的虚拟化程序连接。[Libvirt 对接 
 - .**/qemu/** # xml 格式的配置文件存放路径，配置文件包括该 VM 的元数据(名字，uuid，内存，cpu 等)，设备配置(包括使用的硬盘文件的路径，网络类型等)，配置文件为 xml 格式。创建完一台 VM 后，会在该目录下生成对应 VM 名字的 xml 文件
 - **./network/** #
 
-**/var/lib/libvirt/** # 数据保存路径
+**/var/lib/libvirt/** # 数据保存的默认路径。
+
+TODO: 如何修改这个 /var/lib/libvirt/ 默认路径？网上只有 ./images/ 这种存储池路径的修改。
 
 - **./images/** # 所有通过 libvirt 创建的虚拟机所生成的 images 都保存在该目录下
 - **./qemu/snapshot/** # 创建快照 xml 文件都保存在该目录下

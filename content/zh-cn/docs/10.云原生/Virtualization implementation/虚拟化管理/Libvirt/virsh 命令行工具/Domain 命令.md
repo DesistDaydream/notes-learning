@@ -14,20 +14,20 @@ title: Domain 命令
 
 **autostart** # 指定 Domain 是否在开机后自启动，可以使用 --disable 选项关闭 Domain 的开机自启功能。
 
-# console # 连接到 VM 的终端
+# console - 连接到 VM 的终端
 
 console 用于把虚拟机屏幕上的信息投射到宿主机上，可以直接在宿主机的终端上操作虚拟机。
 注意：如果无法通过 console 连接到 VM，则需要在 VM 上启动 serial-getty@.service 服务并在开启服务的时候指定一个终端。e.g.**systemctl enable serial-getty@ttyS0.service --now**
 
-# cpu-stats # 显示 Domain 的 CPU 统计信息
+# cpu-stats - 显示 Domain 的 CPU 统计信息
 
 默认显示所有 CPU 的统计信息和总数。仅使用 --total 获取总统计信息，仅使用 start 获取从 --start 开始的 CPU 的 per-cpu 统计信息，仅使用 --count CPU 的统计信息。
 
-# create # 从一个 XML 文件里创建一个 domain
+# create - 从一个 XML 文件里创建一个 domain
 
 通过 XML 直接启动一台 VM，VM 关闭后，virsh list 列表中该 VM 会消失。
 
-# define # 从一个 XML 文件里定义一个 domain(仅定义不启动)
+# define - 从一个 XML 文件里定义一个 domain(仅定义不启动)
 
 通过 XML 文件创建一台 VM。
 
@@ -39,7 +39,7 @@ EXAMPLE
 
 - virsh define cirros.xml # 通过 cirros.xml 来定义一个 VM 的属性，如果 VM 不存在则创建
 
-# desc # 显示或者设置一个 domain 的 description 或 title
+# desc - 显示或者设置一个 domain 的 description 或 title
 
 **desc \<domain> \[--live] \[--config] \[--current] \[--title] \[--edit] \[\[--new-desc] \<STRING>]...**
 
@@ -65,9 +65,9 @@ EXAMPLE
 - virsh desc lchTest 10.10.100.200 --config # 为 lchTest 这台 VM 设定描述信息为 10.10.100.200，并将信息写入到 xml 文件中
 - virsh desc lchTest --title 10.10.100.200 --config # 指定 lchTest 这台虚拟机的 title 为 10.10.100.200，并将该信息写入到 xml 配置中
 
-# destroy # 摧毁一个 domain，类似于直接拔掉电源
+# destroy - 摧毁一个 domain，类似于直接拔掉电源
 
-# domblklist # 列出 domain 的所有 blocks(块设备)
+# domblklist - 列出 domain 的所有 blocks(块设备)
 
 列出 Domain 的所有 blocks(块设备)。i.e.指定 domain 所使用的磁盘文件
 
@@ -79,13 +79,13 @@ OPTIONS
 - --inactive #
 - --details # 列出的信息还包括类型和设备
 
-# domifaddr # 从正在运行的 domain 中获取网络接口的 IP 地址
+# domifaddr - 从正在运行的 domain 中获取网络接口的 IP 地址
 
 **domifaddr \<domain> \[--interface \<string>] \[--full] \[--source \<string>]**
 
 该信息包括：Name MAC address Protocol Address
 
-# domiflist # 列出 domain 所有的虚拟接口
+# domiflist - 列出 domain 所有的虚拟接口
 
 **domiflist \<domain> \[--inactive]**
 
@@ -95,15 +95,15 @@ EXAMPLE
 
 - virsh domiflist testvm # 列出名为 testvm 这台虚拟机的虚拟接口信息
 
-# domifstat # 获取指定的 domain 的网络接口状态信息
+# domifstat - 获取指定的 domain 的网络接口状态信息
 
 domifstat \<domain> \<interface>
 
 EXAMPLE
 
-# dominfo # 返回指定 domain 的基本信息，包括该 domain 的 name、uuid、mem、cpu 等
+# dominfo - 返回指定 domain 的基本信息，包括该 domain 的 name、uuid、mem、cpu 等
 
-# dommemstat # 获取指定 domain 的内存状态信息
+# dommemstat - 获取指定 domain 的内存状态信息
 
 https://libvirt.org/manpages/virsh.html#dommemstat
 
@@ -133,7 +133,7 @@ dommemstat 会获取正在运行的 domain 的内存统计信息。可以获取�
 
 返回有关 Domain 的状态。 --reason 选项告诉 virsh 还需要打印状态的原因。
 
-# domif-setlink # 设定 domain 网卡的状态
+# domif-setlink - 设定 domain 网卡的状态
 
 可以控制 VM 网卡的开关，关闭 VM 的 link，则开机不会自动启动网卡
 
@@ -141,11 +141,11 @@ EXAMPLE
 
 - virsh domif-setlink lichenhao--interface 52:54:00:6a:86:89 --state down # 关闭 lichenhao 这台虚拟机的指定网卡
 
-# domrename # 重命名一个 Domain
+# domrename - 重命名一个 Domain
 
 重命名一个**未激活状态**的 Domain。`virsh domrename <DOMAIN> <NewName>`
 
-# domxml-to-native # 根据 domain 的 XML 描述文件，转换成 qemu-kvm 创建虚拟机的命令
+# domxml-to-native - 根据 domain 的 XML 描述文件，转换成 qemu-kvm 创建虚拟机的命令
 
 **domxml-to-native \<FORMAT> \[OPTIONS]**
 
@@ -231,15 +231,15 @@ QEMU_AUDIO_DRV=none
 -msg timestamp=on
 ```
 
-# dumpxml # 显示 domain 的 XML 格式的信息
+# dumpxml - 显示 domain 的 XML 格式的信息
 
 EXAMLPE
 
 - virsh dumpxml lchTest # 显示 lchTest 这个虚拟机的 xml 信息
 
-# edit # 编辑一个 domain 的 XML 配置
+# edit - 编辑一个 domain 的 XML 配置
 
-# qemu-agent-command # 向 domain 中执行 QEMU Guest Agent 命令
+# qemu-agent-command - 向 domain 中执行 QEMU Guest Agent 命令
 
 可用的 QGA 命令详见：[QMP 命令参考](/docs/10.云原生/Virtualization%20implementation/KVM_QEMU/QEMU%20Guest%20Agent/QMP%20命令参考.md)
 
@@ -249,13 +249,13 @@ EXAMLPE
 
 命令示例详见：应用示例
 
-# reboot # 重新启动一个 domainre
+# reboot - 重新启动一个 domainre
 
-# shutdown # 优雅得关闭 domain
+# shutdown - 优雅得关闭 domain
 
-# start # 启动一个 domain
+# start - 启动一个 domain
 
-# undefine # 取消定义一个 domain。i.e.删除一台虚拟机
+# undefine - 取消定义一个 domain。i.e.删除一台虚拟机
 
 该命令会删除 /etc/libvirt/qemu/ 目录下描述该 domain 的 xml 文件
 
@@ -274,4 +274,4 @@ OPTIONS
 - --nvram remove nvram file, if inactive
 - --keep-nvram keep nvram file, if inactive
 
-# vncdisplay # 输出 Domain 的 VNC 显示的 IP 和端口
+# vncdisplay - 输出 Domain 的 VNC 显示的 IP 和端口

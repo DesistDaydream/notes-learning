@@ -39,6 +39,18 @@ title: Terminal(终端)
 
 **MobaXterm.ini**
 
+## 隧道
+
+启动隧道时，若隧道中的 SSH Server 是之前没有登录过或者没有在 User sessions 中创建，则会有新的提示
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/terminal/202403042144907.png)
+
+若 SSH Server 已经在 User seesions 中创建且登录过，则隧道会自动读取这些信息并连接，并不需要再次输入认证信息。
+
+开启动态隧道后，在 Network setting 中设置 Socks5 代理，并指向开启隧道时本地监听的端口即可通过隧道访问 SSH Server 另一侧的设备
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/terminal/202403042218800.png)
+
 ## WindTerm
 
 > 参考：

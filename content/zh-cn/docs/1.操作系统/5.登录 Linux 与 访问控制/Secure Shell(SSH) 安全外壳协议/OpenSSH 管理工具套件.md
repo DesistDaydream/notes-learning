@@ -64,7 +64,7 @@ OPTIONS
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/mzs2hg/1639031352911-319c0d47-4ef2-4aa2-ae0f-b0e3f77615d0.jpeg)
 
-**A 与 C 直接互通**
+**A 与 C 直接互通**，动态转发
 
 - 在 A 主机上执行命令：
   - **ssh -D localhost:10022 root@B-HOST**
@@ -142,17 +142,19 @@ OPTIONS：
 
 基于密钥的认证,当对方主机 ssh 登录的用户的家目录存在公钥，并且公钥设置密码为空，那么以后 ssh 协议登录传输都可以直接登录而不用密码
 
-# ssh-keygen # 在客户端生成密钥对
+# ssh-keygen - 在客户端生成密钥对
 
 **ssh-keygen -t rsa \[-P ''] \[-f ~/.ssh/id_rsa]**
 
 - EXAMPLE：
   - ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
 
-# ssh-copy-id # 把生成的公钥传输至远程服务器对应用户的家目录
+# ssh-copy-id - 把生成的公钥传输至远程服务器对应用户的家目录
 
 **ssh-copy-id \[-i \[Identity_File]] \[User@]HostIP**
+
 Identity_File(身份文件) # 一般为 /root/.ssh/id_rsa.pub
+
 EXAMPLE：
 
 - 将公钥拷贝到服务端

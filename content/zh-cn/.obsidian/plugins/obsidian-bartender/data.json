@@ -1083,6 +1083,7 @@
       "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/virsh 命令行工具/Device 命令.md",
       "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/virsh 命令行工具/Virtual Network 命令.md",
       "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/virsh 命令行工具/Interface 命令.md",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/virsh 命令行工具/Storage Pool 命令.md",
       "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/virsh 命令行工具/Snapshot 命令.md"
     ],
     "docs/10.云原生/Virtualization implementation/虚拟化管理/虚拟化管理案例": [

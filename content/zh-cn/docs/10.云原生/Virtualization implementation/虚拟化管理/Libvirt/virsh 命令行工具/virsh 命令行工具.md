@@ -45,7 +45,9 @@ virsh 有两种使用方式
 
 Note：其中各种命令用法，详见 virsh 命令行工具目录下每个子命令的专题文章
 
-## [Generic commands](/docs/10.云原生/Virtualization%20implementation/虚拟化管理/Libvirt/virsh%20命令行工具/通用命令.md)(通用命令)
+## Generic commands(通用命令)
+
+[Generic commands](/docs/10.云原生/Virtualization%20implementation/虚拟化管理/Libvirt/virsh%20命令行工具/通用命令.md)
 
 通用命令与 Domain 无关
 
@@ -70,11 +72,15 @@ The following commands manipulate networks. Libvirt has the capability to define
 The following commands manipulate host interfaces. Often, these host interfaces can then be used by name within domain \<interface> elements (such as a system-created bridge interface), but there is no requirement that host interfaces be tied to any particular guest configuration XML at all.
 Many of the commands for host interfaces are similar to the ones used for domains, and the way to name an interface is either by its name or its MAC address. However, using a MAC address for an _iface_ argument only works when that address is unique (if an interface and a bridge share the same MAC address, which is often the case, then using that MAC address results in an error due to ambiguity, and you must resort to a name instead).
 
-## STORAGE POOL COMMANDS
+## Storage Pool COMMANDS(存储池命令)
+
+[Storage Pool 命令](docs/10.云原生/Virtualization%20implementation/虚拟化管理/Libvirt/virsh%20命令行工具/Storage%20Pool%20命令.md)
 
 - 一个 storage pool 包括很多 storage volume，storage volume 有单独的一组命令进行管理
 - storage pool 就是存放 s torage volume 的地方，是一个目录，详见 1.5.Storage Virtualization.note 中的 kvm 的存储虚拟化
 - 存储池默认目录为/var/lib/libvirt/images/，这个目录会存放所有 VM 的文件，通过 libvirt 创建完虚拟机后生成的 image 都会放在 default 目录下
+
+
 
 ## VOLUME COMMANDS
 
