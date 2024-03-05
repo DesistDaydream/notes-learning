@@ -33,3 +33,9 @@ HTTP Debugger
 
 - https://www.httpdebugger.com/
 - 可以抓进程的包，而不是通过代理的方式抓包
+
+openQPA
+
+- https://github.com/l7dpi/openQPA, https://gitee.com/l7dpi/openQPA
+- http://www.l7dpi.com/
+- 基于进程抓包

@@ -21,7 +21,7 @@ Bypass tap 通常至少有 4 个端口。
 - C 和 D 是用来监控安全设备的端口，安全设备正常运行时，流量通过 C 和 D 端口，相当于将安全设备串联进网络中。
 - 当检测到安全设备出现异常时，将会切断 C 和 D 的端口，将流量转交给 A 和 B 以保证网络链路上的数据不间断。 
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/information_security/202402220011706.png)
+![bypass.drawio.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/information_security/202402220011706.png)
 
 通常来说，这两种情况可以用两种模式来概括
 
