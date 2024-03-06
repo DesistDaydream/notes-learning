@@ -2,7 +2,7 @@
 title: IDE
 linkTitle: IDE
 date: 2023-11-30T13:24
-weight: 20
+weight: 1
 ---
 
 # 概述

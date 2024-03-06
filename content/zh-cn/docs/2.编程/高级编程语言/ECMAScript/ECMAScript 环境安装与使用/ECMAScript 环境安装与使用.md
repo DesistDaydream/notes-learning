@@ -303,7 +303,7 @@ https://deno.land/std 是 Deno 的标准库
 
 Deno 有一个类似 go 一样的命令行工具 deno，内置了开发者需要的各种功能，不再需要外部工具。打包、格式清理、测试、安装、文档生成、linting、脚本编译成可执行文件等，都有专门命令。
 
-直接运行 deno 命令，也可直接进入 REPL [编程环境](/docs/2.编程/编程工具/编程环境.md)。
+直接运行 deno 命令，也可直接进入 [REPL](docs/2.编程/Programming%20environment/REPL.md)。
 
 ### 兼容 Node 和 npm 模块
 

@@ -108,7 +108,7 @@ Selenium WebDriver 是 [W3C 推荐标准](https://www.w3.org/TR/webdriver1/)
 > - [官方文档，WebDriver-交互-窗口](https://www.selenium.dev/zh-cn/documentation/webdriver/interactions/windows/)
 > - [51CTO，selenium工具UI自动化之浏览器的窗口切换（句柄切换）](https://blog.51cto.com/u_15688254/5723115)
 
-WebDriver 不区分窗口和标签页。如果打开了一个新标签页或窗口，Selenium 将使用 **Handle(句柄)** 处理它，每个标签页和窗口的 Handle 是其唯一的标识符，该标识符在单个会话中保持持久性。
+*WebDriver 不区分窗口和标签页*。如果打开了一个新标签页或窗口，Selenium 将使用 **Handle(句柄)** 处理它，每个标签页和窗口的 Handle 是其唯一的标识符，该标识符在单个会话中保持持久性。
 
 可以使用以下方法获得当前窗口的窗口句柄:
 

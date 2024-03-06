@@ -1185,7 +1185,8 @@
       "docs/2.编程/无法分类的语言",
       "docs/2.编程/Framework",
       "docs/2.编程/编程技术",
-      "docs/2.编程/编程工具",
+      "docs/2.编程/Programming tools",
+      "docs/2.编程/Programming environment",
       "docs/2.编程/项目实战"
     ],
     "docs/2.编程/API": [
@@ -1240,42 +1241,40 @@
       "docs/2.编程/标记语言/XML.md",
       "docs/2.编程/标记语言/Markdown.md"
     ],
-    "docs/2.编程/编程工具": [
-      "docs/2.编程/编程工具/_index.md",
-      "docs/2.编程/编程工具/编程工具.md",
-      "docs/2.编程/编程工具/编程环境.md",
-      "docs/2.编程/编程工具/IDE",
-      "docs/2.编程/编程工具/Make.md",
-      "docs/2.编程/编程工具/SCM"
+    "docs/2.编程/Programming tools": [
+      "docs/2.编程/Programming tools/_index.md",
+      "docs/2.编程/Programming tools/Programming tools.md",
+      "docs/2.编程/Programming tools/Make.md",
+      "docs/2.编程/Programming tools/SCM"
     ],
-    "docs/2.编程/编程工具/SCM/Git": [
-      "docs/2.编程/编程工具/SCM/Git/_index.md",
-      "docs/2.编程/编程工具/SCM/Git/Git.md",
-      "docs/2.编程/编程工具/SCM/Git/Git 配置详解.md",
-      "docs/2.编程/编程工具/SCM/Git/Git 常见问题.md",
-      "docs/2.编程/编程工具/SCM/Git/Git 命令行工具.md"
+    "docs/2.编程/Programming tools/SCM/Git": [
+      "docs/2.编程/Programming tools/SCM/Git/_index.md",
+      "docs/2.编程/Programming tools/SCM/Git/Git.md",
+      "docs/2.编程/Programming tools/SCM/Git/Git 配置详解.md",
+      "docs/2.编程/Programming tools/SCM/Git/Git 常见问题.md",
+      "docs/2.编程/Programming tools/SCM/Git/Git 命令行工具.md"
     ],
-    "docs/2.编程/编程工具/SCM/GitHub": [
-      "docs/2.编程/编程工具/SCM/GitHub/_index.md",
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub.md",
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions",
-      "docs/2.编程/编程工具/SCM/GitHub/我在 GitHub 上的互动.md",
-      "docs/2.编程/编程工具/SCM/GitHub/git clone克隆或下载一个仓库单个文件夹.md",
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub 技巧.md",
-      "docs/2.编程/编程工具/SCM/GitHub/github上fork了别人的项目后，再同步更新别人的提交.github上fork了别人的项目后，再同步更新别人的提交.md"
+    "docs/2.编程/Programming tools/SCM/GitHub": [
+      "docs/2.编程/Programming tools/SCM/GitHub/_index.md",
+      "docs/2.编程/Programming tools/SCM/GitHub/GitHub.md",
+      "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions",
+      "docs/2.编程/Programming tools/SCM/GitHub/我在 GitHub 上的互动.md",
+      "docs/2.编程/Programming tools/SCM/GitHub/git clone克隆或下载一个仓库单个文件夹.md",
+      "docs/2.编程/Programming tools/SCM/GitHub/GitHub 技巧.md",
+      "docs/2.编程/Programming tools/SCM/GitHub/github上fork了别人的项目后，再同步更新别人的提交.github上fork了别人的项目后，再同步更新别人的提交.md"
     ],
-    "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions": [
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/_index.md",
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/GitHub Actions.md",
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Contexts 与 Variables.md",
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Workflow 文件详解",
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/好用的 Action.md",
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Actions 样例.md"
+    "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions": [
+      "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/_index.md",
+      "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/GitHub Actions.md",
+      "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/Contexts 与 Variables.md",
+      "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/Workflow 文件详解",
+      "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/好用的 Action.md",
+      "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/Actions 样例.md"
     ],
-    "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Workflow 文件详解": [
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Workflow 文件详解/_index.md",
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Workflow 文件详解/Workflow 文件详解.md",
-      "docs/2.编程/编程工具/SCM/GitHub/GitHub Actions/Workflow 文件详解/Workflow 命令.md"
+    "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/Workflow 文件详解": [
+      "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/Workflow 文件详解/_index.md",
+      "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/Workflow 文件详解/Workflow 文件详解.md",
+      "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/Workflow 文件详解/Workflow 命令.md"
     ],
     "docs/2.编程/编程技术": [
       "docs/2.编程/编程技术/_index.md",
@@ -2441,6 +2440,12 @@
       "docs/7.信息安全/管理工具/CFSSL.md",
       "docs/7.信息安全/管理工具/OpenSSL",
       "docs/7.信息安全/管理工具/系统证书管理.md"
+    ],
+    "docs/2.编程/Programming environment": [
+      "docs/2.编程/Programming environment/_index.md",
+      "docs/2.编程/Programming environment/Programming environment.md",
+      "docs/2.编程/Programming environment/REPL.md",
+      "docs/2.编程/Programming environment/IDE"
     ]
   },
   "actionBarOrder": {},

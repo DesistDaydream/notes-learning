@@ -12,6 +12,8 @@ weight: 20
 > - [GitHub 项目，microsoft/WSA](https://github.com/microsoft/WSA)
 > - [官方文档，windows-android-wsa](https://learn.microsoft.com/zh-cn/windows/android/wsa/)
 
+:warning: 微软将在 三月2025 年 3 月 5 日停止支持 WSA。[Learn more](https://learn.microsoft.com/en-us/windows/android/wsa/).
+
 Windows Subsystem for Android with Amazon Appsotre
 
 WSA 管理器若没有打开任何应用、文件管理等功能，过一会会自动关闭 WSA，此时 adb 工具也连接不上，要想保持连接，至少要开着一个 WSA 系统中的功能。

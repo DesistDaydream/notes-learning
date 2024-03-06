@@ -1,56 +1,53 @@
 ---
 title: psql 命令
+linkTitle: psql 命令
+date: 2024-03-06T10:04
+weight: 20
 ---
 
-# 控制台命令
 
-除了前面已经用到的 \password 命令（设置密码）和 \q 命令（退出）以外，控制台还提供一系列其他命令。
+# 概述
 
-    \h：查看SQL命令的解释，比如\h select。
-    \?：查看psql命令列表。
-    \l：列出所有数据库。
-    \c [database_name]：连接其他数据库。
-    \d：列出当前数据库的所有表格。
-    \d [table_name]：列出某一张表格的结构。
-    \du：列出所有用户。
-    \e：打开文本编辑器。
-    \conninfo：列出当前数据库和连接的信息。
+> 参考：
+> 
+> - [官方文档](https://www.postgresql.org/docs/current/app-psql.html)
 
-数据库操作
+psql 是 PostgreSQL 的交互式终端，可以看作是 PostgreSQL 的 [REPL](docs/2.编程/Programming%20environment/REPL.md)。
 
-基本的数据库操作，就是使用一般的 SQL 语言。
+psql 中可以执行有多种类型的命令
 
-```plsql
-# 创建新表
-CREATE TABLE user_tbl(name VARCHAR(20), signup_date DATE);
+- [Meta-Commands](#Meta-Commands)
+- SQL
 
-# 插入数据
-INSERT INTO user_tbl(name, signup_date) VALUES('张三', '2013-12-22');
+# Syntax(语法)
 
-# 从表中查询数据
-SELECT * FROM user_tbl;
+**psql \[OPTION] \[DBNAME \[USERNAME]]**
 
-# 更新数据
-UPDATE user_tbl set name = '李四' WHERE name = '张三';
+**OPTIONS**
 
-# 删除记录
-DELETE FROM user_tbl WHERE name = '李四' ;
+- 连接数据库相关选项
+  - **-U, --username USERNAME** # 使用指定的用户连接数据库。`默认值: 当前 Shell 环境的用户`。
+  - **-h, --host HOSTNAME** # 指定 PostgreSQL 服务端所在的 HOSTNAME，可以是 IP 或 Domain。如果该以 `\` 开头，则将其用作 Unix 域套接字的目录。
+  - **-p, --port PORT** # 指定 PostgreSQL 服务端监听的 TCP 端口或本地 Unix 域套接字文件扩展名。默认为 PGPORT 环境变量的值，`默认值: 5432`。
 
-# 添加栏位
-ALTER TABLE user_tbl ADD email VARCHAR(40);
+# Meta-Commands
 
-# 更新结构
-ALTER TABLE user_tbl ALTER COLUMN signup_date SET NOT NULL;
-
-# 更名栏位
-ALTER TABLE user_tbl RENAME COLUMN signup_date TO signup;
-
-# 删除栏位
-ALTER TABLE user_tbl DROP COLUMN email;
-
-# 表格更名
-ALTER TABLE user_tbl RENAME TO backup_tbl;
-
-# 删除表格
-DROP TABLE IF EXISTS backup_tbl;
+```sql
+\h：查看SQL命令的解释，比如\h select。
+\?：查看psql命令列表。
+\l：列出所有数据库。
+\c [database_name]：连接其他数据库。
+\d：列出当前数据库的所有表格。
+\d [table_name]：列出某一张表格的结构。
+\du：列出所有 roles(角色)。由于 “用户” 和 “组” 的概念已统一为 “角色”，因此该命令现在相当于 \dg。
+\e：打开文本编辑器。
+\conninfo：列出当前数据库和连接的信息。
+\password USER # 为指定的 USER 设置密码
 ```
+
+# 最佳实践
+
+使用 pgadmin 用户连接本地 127.0.0.1 且监听在 5432 端口上的 PgSQL Server 中的 postgres 数据库
+
+- `psql postgres -U pgadmin -h 127.0.0.1 -p 5432`
+
