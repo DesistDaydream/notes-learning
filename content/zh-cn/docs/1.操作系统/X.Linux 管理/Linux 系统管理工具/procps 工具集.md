@@ -63,7 +63,7 @@ PATTERN(模式) 代指正则表达式的匹配模式。比如 pgrep 根据 PATTE
 `()` 表示该选项所适用的工具，若没有括号，则说明选项适用于所有三个工具
 
 - **-SIGNAL, --signal SIGNAL** # (pkill)指定要发送的信号。可以使用数字或信号名称。
-- **-f, --full** # 这三个程序通常只会对进程名称进行匹配。加上 -f 之后，会对进程的完整命令行进行匹配。
+- **-f, --full** # 对进程的完整命令行进行匹配。默认情况这三个程序通常只会对进程名称进行匹配。
   - 比如 `pgrep -f containerd` 将会出现 `3313 /usr/bin/dockerd --containerd=/run/containerd/containerd.sock` 这种结果。
 - **-l, --list-full** # (pgrep)显示出完整的命令行以及进程 ID
 - **-t, --terminal \<TERM,...>** # 仅匹配使用指定终端的进程。终端名称不用使用绝对路径。

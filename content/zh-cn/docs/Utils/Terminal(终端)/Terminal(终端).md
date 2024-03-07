@@ -22,10 +22,17 @@ title: Terminal(终端)
 
 ## Xmanager
 
-<https://blog.csdn.net/zhouchen1998/article/details/103424698>
+https://blog.csdn.net/zhouchen1998/article/details/103424698
+
+Xshell 没有自带的 x11 能力
 
 ## SecureCRT
 
+> 参考：
+> 
+> - [官网](https://www.vandyke.com/products/securecrt/index.html)
+
+SecureCRT 是 VanDyke Software 开发的商业终端产品。初始发行于 1995 年 10 月 4 日，没有任何免费版可用，且界面样式非常老旧。
 
 ## MobaXterm
 
@@ -37,9 +44,9 @@ title: Terminal(终端)
 
 ### 关联文件与配置
 
-**MobaXterm.ini**
+**MobaXterm.ini** # 所有程序配置、会话信息、etc. 都保存在该文件中。
 
-## 隧道
+### 隧道
 
 启动隧道时，若隧道中的 SSH Server 是之前没有登录过或者没有在 User sessions 中创建，则会有新的提示
 
@@ -58,13 +65,20 @@ title: Terminal(终端)
 > - [GitHub 项目，kingToolbox/WindTerm](https://github.com/kingToolbox/WindTerm)
 > - [公众号-k8s 技术圈，C 语言编写的超好用的新一代 SSH 终端 - WindTerm](https://mp.weixin.qq.com/s/2KJi7frtKYExkyBuM5K2hw)
 
+由于作者工作原因，没有更多的时间维护 https://github.com/kingToolbox/WindTerm/issues/1596
+
+
+快捷键
+
+- Alt + w, Alt + m # 打开/关闭菜单栏
+
 ## Tabby
 
 > 参考：
 > 
 > - [GitHub 项目，Eugeny/tabby](https://github.com/Eugeny/tabby)
 
-# Warp
+## Warp
 
 > 参考：
 > 

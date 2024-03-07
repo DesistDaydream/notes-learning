@@ -2306,7 +2306,9 @@
       "docs/Web/WebAssembly.md",
       "docs/Web/Browser",
       "docs/Web/网站搭建",
-      "docs/Web/Nginx"
+      "docs/Web/WebServer.md",
+      "docs/Web/Nginx",
+      "docs/Web/代理.md"
     ],
     "docs/Web/Browser": [
       "docs/Web/Browser/_index.md",

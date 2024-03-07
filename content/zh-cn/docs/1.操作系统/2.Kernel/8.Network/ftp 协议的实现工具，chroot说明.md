@@ -43,6 +43,7 @@ weight: 20
 注：chroot 的意思是改变根路径的位置(linux 系统中以/为根目录位置，但是对于执行 chroot 的用户或者程序来说，是 chroot(PATH)后 PATH 的位置是新的根目录位置)，比如 Telnet，ssh，如果都定义了 chroot(PATH)规则，那么远程登录的用户将无法访问到该 linux 系统中除了定义的 PATH 外的其余目录
 
 例：第一个图是不启动 chroot 规则的情况，第二张图是启用 chroot 规则的情况，可以看到当使用 chroot 时，对于 linux 系统中/srv/ftp 目录在 ftp 软件中，是作为/来存在的，由于这个原因，所以启动 chroot 的时候，ftp 工具无法访问所设定的/目录以外的其他目录+
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/pvqe8m/1616165219993-ce6cd857-e9ba-4af0-b7fc-7d77cf547d84.jpeg)
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/pvqe8m/1616165220004-51f8038e-598e-427a-9b04-8f1987475f04.jpeg)
@@ -53,12 +54,12 @@ weight: 20
 
 ftp \[\[UserName@]目标 IP] # 可以使用 UserName 用户来登录目标 IP 的 ftp 服务器或直接进入 ftp 客户端
 
-1. open \[IP] # 连接某个 FTP 服务器。
-2. close # 关闭连接
-3. user # 对已经连接的 FTP 再输入一次用户名和密码，类似于更改登陆账户
-4. ？ # 查看可以使用的命令
-5. get \[需要下载的文件] \[下载路径以及定义文件名] # 下载文件
-6. put \[需要上传的文件] \[上传路径以及定义文件名] # 上传文件
+- open \[IP] # 连接某个 FTP 服务器。
+- close # 关闭连接
+- user # 对已经连接的 FTP 再输入一次用户名和密码，类似于更改登陆账户
+- ？ # 查看可以使用的命令
+- get \[需要下载的文件] \[下载路径以及定义文件名] # 下载文件
+- put \[需要上传的文件] \[上传路径以及定义文件名] # 上传文件
 
 注意：这些命令可以直接输入然后根据提示再输入想要执行的内容；也可直接在命令后接需要完成的动作，直接执行
 

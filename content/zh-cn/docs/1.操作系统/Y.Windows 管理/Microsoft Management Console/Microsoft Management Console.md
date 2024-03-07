@@ -44,7 +44,7 @@ https://jingyan.baidu.com/article/7e440953dcc56e6ec1e2ef17.html
 - fsmgmt.msc
   - 作用：共享文件夹管理
 - gpedit.msc
-  - 作用：组策略管理器，功能强大。
+  - 作用：组策略管理器，功能强大。TODO: 家庭版没有咋办？
 - lusrmgr.msc
   - 作用：本地用户和组管理器
 - ntmsmgr.msc
