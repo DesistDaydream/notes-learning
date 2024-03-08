@@ -1,10 +1,15 @@
 ---
 title: grep
+linkTitle: grep
+date: 2024-03-08T17:32
+weight: 20
 ---
 
 # 概述
 
-> 参考：[man 手册](https://man.cx/grep)
+> 参考：
+> 
+> - [Manual(手册)，grep(1)](https://man7.org/linux/man-pages/man1/grep.1.html)
 
 grep 是文本搜索工具，可以使用正则表达式在文件内查找符合条件的字串行
 
@@ -50,6 +55,7 @@ grep 根据 PATTERNS(模式) 过滤给定的内容。其实就是使用正则表
 
 - **-a, --text** # 像对待文本一样处理二进制文件；这等效于--binary-files = text 选项。
 - **-R, --dereference-recursive** # 递归地阅读每个目录下的所有文件并进行 grep 操作;该选项相当于-d recurse
+- 
 
 ## EXAMPLE
 
@@ -63,24 +69,28 @@ grep 根据 PATTERNS(模式) 过滤给定的内容。其实就是使用正则表
 - egrep --color=auto -n '<\[0-9]{2}>.\[0-9]+.\[0-9]+.\[0-9]+' # 可以搜索第一段是两位数的 IP，比如 10.0.0.0 网段
 - grep -i --color=auto '\[0-9]+.\[0-9]+.\[0-9]+.\[0-9]+' ./interfaces # 不适用 egrep 的方法
 
-应用示例
+# 应用示例
 
 ## 筛选 `{{ }}` 之间的内容
 
-    hi,hello {{A1}}
-    {{B0B}}test{{CC_CC}}
-    @{{D-DD}}
-    {{E#@EEE}}
+```
+hi,hello {{A1}}
+{{B0B}}test{{CC_CC}}
+@{{D-DD}}
+{{E#@EEE}}
+```
 
 ### 筛选后文本
 
-**cat content.txt | grep -oP "(?<={{)(\w|-|#|@)+(?=}})"**
+```
+cat content.txt | grep -oP "(?<={{)(\w|-|#|@)+(?=}})"
 
-    A1
-    B0B
-    CC_CC
-    D-DD
-    E#@EEE
+A1
+B0B
+CC_CC
+D-DD
+E#@EEE
+```
 
 **cat content.txt | grep -oE "{{(\w|-|#|@)+}}"**
 

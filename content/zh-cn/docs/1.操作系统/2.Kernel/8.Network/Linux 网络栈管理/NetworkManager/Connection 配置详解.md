@@ -55,7 +55,7 @@ s "bridge-slave-bond0"
 
 **type=\<STRING>** # 别名 type。连接类型，常用的有 ethernet、bridge、bridge-slave、bond、bond-slave、tun 等等。其实就是要添加的连接的网络设备的类型。**必选，每个连接必须有一个 type**
 
-# ipv4 SETTING、
+# ipv4 SETTING
 
 用于配置一个 connection 的 IPv4 信息
 

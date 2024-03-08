@@ -16,16 +16,23 @@ weight: 20
 
 [NirSoft](https://www.nirsoft.net/) 网站提供了一系列独特的小型且有用的免费软件，全部由 Nir Sofer 开发。
 
+PowerToys
+
+- https://github.com/microsoft/PowerToys
+- 非常强大的 windows 系统工具
+
 ## 卸载工具
 
 Revo Uninstaller # 
+
 - https://www.revouninstaller.com/
 - https://www.bilibili.com/video/BV13x4y1G7Qc
   - 30天过后请按照我的教程走一遍就好了哈
 
 Geek Uninstaller # 
+
 - https://geekuninstaller.com/
-	- 卸载完成后扫描系统和注册表，手动选择要删除的项目
+  - 卸载完成后扫描系统和注册表，手动选择要删除的项目
 
 ## 磁盘空间管理工具
 
