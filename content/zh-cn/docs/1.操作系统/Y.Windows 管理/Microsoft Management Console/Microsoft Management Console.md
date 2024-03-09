@@ -61,3 +61,9 @@ https://jingyan.baidu.com/article/7e440953dcc56e6ec1e2ef17.html
   - 作用：各项本地服务管理器
 - wmimgmt.msc
   - 作用：Windows管理体系结构（WMI）
+
+# gpedit.msc
+
+**Group policy edit(本地组策略编辑器，简称 gpedit)** 仅有专业版可用。
+
+可以用来禁用小组件的重复安装

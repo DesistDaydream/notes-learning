@@ -1,10 +1,17 @@
 ---
 title: Vim
+linkTitle: Vim
+date: 2024-03-08T21:29
+weight: 20
 ---
-
 # 概述
 
-> 参考：官网
+> 参考：
+> 
+> - [GitHub 项目，vim/vim](https://github.com/vim/vim)
+> - [官网](https://www.vim.org/)
+>   - [用户手册](https://vimdoc.sourceforge.net/htmldoc/usr_toc.html) 可跳转到 [帮助文件](https://vimdoc.sourceforge.net/htmldoc/help.html)
+>   - Carlo Teubner 维护的 [文档](https://vimhelp.org/)
 
 ## Syntax(语法)
 
@@ -18,7 +25,7 @@ OPTIONS：
 - **+#** # 打开文件后直接让光标处于第#行的行首，不输入#默认为最后一行
 - **-b** # 使用二进制模式打开 vim
 
-# 三种主要模式
+## 三种主要模式
 
 - 默认命令（Normal）模式，可以移动光标，剪切和粘贴。
 - 插入（Insert）模式，用户可以编辑文本。
@@ -26,7 +33,7 @@ OPTIONS：
 
 Exc 按键可退出当前模式。
 
-## 默认模式
+# 默认模式
 
 ### 移动定位光标位置
 
@@ -34,7 +41,11 @@ Exc 按键可退出当前模式。
 
 注：在任意移动前加数字则代表该移动模式移动几次（例：#→，向右移动#个字符，#为任意数或者字符）
 
-\#G 移动光标到指定的#行 G 到文件尾 gg 到文件首
+行跳转
+
+- `#G` 移动光标到指定的 `#` 行
+- G 到文件尾
+- gg 到文件首
 
 w 移至下一个单词的词首 e 移动至当前或下一个单词的词尾(这两项前面跟数字可以移动数字个单词)
 
@@ -45,6 +56,15 @@ b 移动至当前或之前一个单词的词首
 )下一句 (上一句 }下一段 {上一段
 
 H 移动光标到屏幕上面 M 移动光标到屏幕中间 L 移动光标到屏幕下面
+
+Scroll(滚动 i.e. 翻页)
+
+https://vimdoc.sourceforge.net/htmldoc/scroll.html
+
+- ctrl + d # 向下翻半页 Downwards
+- ctrl + u # 向上翻半页 Upwards
+- ctrl + f # 向下翻一页 Forwards
+- ctrl + b # 向上翻一页 Backwards
 
 ### 搜索
 
@@ -106,7 +126,7 @@ yy：拷贝当前行。
 
 粘贴：p
 
-## 插入模式
+# 插入模式
 
 i：在当前字符的左边插入 I：在当前行首插入
 
@@ -120,7 +140,7 @@ Vim 多缓冲区编辑
 
 比如：我们要拷贝当前行到寄存器 a 或者其他字母。你应该按 “ayy。现在当前行已存在寄存器 a 里面直到你又拷贝了一些东西进入寄存器 a。你可以使用命令 “ap 来粘贴寄存器 a 里面的内容到你想要的位置。
 
-## 扩展模式（命令模式）（与 sed 通用）
+# 扩展模式（命令模式）（与 sed 通用）
 
 替换
 
