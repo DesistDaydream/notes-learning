@@ -114,7 +114,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
 EOF
 ```
 
-也可以通过一个可以访问外网的机器，使用 nginx 代理出去
+> 可以通过 `python3 -m http.server NUM` 在当前目录启动一个简易的 HTTP 服务器。也可以通过一个可以访问外网的机器，使用 nginx 代理出去
 
 ## Syntax(语法)
 

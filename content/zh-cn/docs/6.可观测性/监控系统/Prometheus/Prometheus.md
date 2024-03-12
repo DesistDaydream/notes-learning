@@ -53,7 +53,7 @@ Prometheus 不适用的场景
 
 - Prometheus 它的价值在于可靠性，甚至在很恶劣的环境下，你都可以随时访问它和查看系统服务各种指标的统计信息。 如果你对统计数据需要 100%的精确，它并不适用，例如：它不适用于实时计费系统。
 
-### 总结：prometheus 从 Instrumenting 那里抓取监控数据，储存。完了~~~~哈哈哈哈哈
+### 总结：prometheus 从 Instrumenting 那里抓取监控数据，储存。完了~哈哈哈哈哈
 
 ## Instrumenting(检测仪表装置) 的实现方式
 

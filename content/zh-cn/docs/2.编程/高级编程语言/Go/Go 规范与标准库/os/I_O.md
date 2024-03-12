@@ -1,6 +1,19 @@
 ---
-title: 读取文件时显示进度
+title: I/O
+linkTitle: I/O
+date: 2023-07-04T10:36
+weight: 2
 ---
+
+# 概述
+
+> 参考：
+
+Go 写文件的几种姿势，你喜欢哪一种？<https://mp.weixin.qq.com/s/56g5k17Zt4iytbWkYcouig>
+
+# 最佳实践
+
+## 读取文件时显示进度
 
 ```go
 package main

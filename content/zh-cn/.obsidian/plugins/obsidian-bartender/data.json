@@ -2448,6 +2448,11 @@
       "docs/2.编程/Programming environment/Programming environment.md",
       "docs/2.编程/Programming environment/REPL.md",
       "docs/2.编程/Programming environment/IDE"
+    ],
+    "docs/2.编程/高级编程语言/Go/Go 规范与标准库/os": [
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/os/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/os/os.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/os/I_O.md"
     ]
   },
   "actionBarOrder": {},

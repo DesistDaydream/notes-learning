@@ -90,6 +90,7 @@ target 可用的值有：
 ## 最基本的运行条件
 
 这些组件中，可以和存储直接交互的有 Ingester、Querier、Ruler。**最重要的组件是 Distributor、Ingester、Querier**这三个，这是 Loki 基本运行的最低要求。
+
 Distributor 接收客户端(比如 Promtail) 推送的日志，处理后交给 Ingester 转存到本地或对象存储中，Querier 接收 LogQL 查询请求。
 
 ## 架构分类

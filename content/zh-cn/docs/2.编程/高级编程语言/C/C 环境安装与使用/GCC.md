@@ -16,6 +16,10 @@ weight: 20
 
 Linux 内核本身就是 C 写的，所以一般都自带 GCC，我们安装的通常都是适用于 Windows 的 GCC，一般是 [MinGW-w64](#MinGW-w64)
 
+## Linux
+
+yum install gcc make -y
+
 ## MinGW-w64
 
 > 参考：

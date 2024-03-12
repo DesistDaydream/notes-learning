@@ -354,7 +354,7 @@ npm 等包管理工具下载完框架后，会自动生成项目目录，这些�
 > - [GitHub 项目，webpack/webpack](https://github.com/webpack/webpack)
 > - [GitHub 项目，rollup/rollup](https://github.com/rollup/rollup)
 
-前端代码通常是直接在某个运行环境中执行代码，并不需要 Compile(编译) 代码，而是通过一种称为 **Bundle(打包)** 的行为，将多个 JS、HTMl、CSS 等文件组合成一个文件，实现这个行为的称为 **Bundler(打包器)**
+前端代码通常是直接在某个运行环境中执行代码，并不需要 Compile(编译) 代码，而是通过一种称为 **Bundle(打包)** 的行为，将多个 JS、HTML、CSS 等文件组合成一个文件，实现这个行为的称为 **Bundler(打包器)**
 
 为什么需要打包呢？在 [ECMAScript 模块与包](/docs/2.编程/高级编程语言/ECMAScript/ECMAScript%20环境安装与使用/ECMAScript%20模块与包.md) 中的 “浏览器中使用 ESM 的常见问题” 可以看到，浏览器自身是没法自动导入某个依赖库的，所以想要在浏览器中运行 JS 代码，就需要吧依赖库与本身的 JS 文件打包起来，形成一个或一组 JS 文件，这时，浏览器再执行 import 时，就从这些已打包的文件中查找，就可以找到相关依赖了。
 

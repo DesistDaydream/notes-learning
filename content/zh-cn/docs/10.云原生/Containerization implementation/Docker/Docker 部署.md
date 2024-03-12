@@ -49,7 +49,8 @@ docker 自 1.13 版起会自动设置 iptables 的 FORWARD 默认策略为 DROP�
 
 ### 获取并部署二进制文件
 
-在 <https://download.docker.com/linux/static/stable/x86_64/> 页面下载 [20.10.6](https://download.docker.com/linux/static/stable/x86_64/docker-20.10.6.tgz) 版本的二进制程序
+在 https://download.docker.com/linux/static/stable/x86_64/ 页面下载 [20.10.6](https://download.docker.com/linux/static/stable/x86_64/docker-20.10.6.tgz) 版本的二进制程序
+
 解压并将二进制程序放到 $PATH 中
 
 ```bash
