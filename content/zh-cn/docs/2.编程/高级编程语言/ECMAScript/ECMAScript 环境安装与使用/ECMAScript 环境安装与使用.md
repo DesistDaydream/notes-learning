@@ -40,7 +40,7 @@ http-server 来源于 [GitHub 项目，http-party/http-server](https://github.co
 
 ## (重点)运行具有 Module(模块) 功能的静态资源
 
-从 [ECMAScript 模块与包](/docs/2.编程/高级编程语言/ECMAScript/ECMAScript%20环境安装与使用/ECMAScript%20模块与包.md) 章节可以看到，当我们使用 `import name from './one.js'` 导入的模块是一个文件时，那么这个文件将会被响应给浏览器，如果使用 `import name from 'one'` 导入的模块是一组文件时，此时浏览器无法直接识别，将会产生报错。因为浏览器想要执行这一组文件需要发起很多次的请求将所有文件都加载到本地，这其中的路由路径将是不可答的。
+从 [ECMAScript 模块与包](/docs/2.编程/高级编程语言/ECMAScript/ECMAScript%20环境安装与使用/ECMAScript%20模块与包.md) 章节可以看到，当我们使用 `import name from './one.js'` 导入的模块是一个文件时，那么这个文件将会被响应给浏览器，如果使用 `import name from 'one'` 导入的模块是一组文件时，此时浏览器无法直接识别，将会产生报错。因为浏览器想要执行这一组文件需要发起很多次的请求将所有文件都加载到本地，这其中的路由路径将是不可达的。
 
 所以，此时我们则需要想办法将这**一组文件变为一个文件**响应给浏览器以便加载代码。这个转换的操作，我们可以使用打包工具(i.e.Webpack、[Vite](/docs/2.编程/高级编程语言/ECMAScript/ECMAScript%20工具/Vite.md) 等等) 将源代码**打包编译**成新的静态文件即可。
 

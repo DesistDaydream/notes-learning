@@ -27,23 +27,29 @@ Redis 可以在不使用配置文件的情况下使用内置的默认配置启�
 
 格式如下：
 
-    # 关键字 参数(多个参数以空格分隔)
-    Keyword Argument1 Argument2 ... ArugmentN
+```bash
+# 关键字 参数(多个参数以空格分隔)
+Keyword Argument1 Argument2 ... ArugmentN
+```
 
 ## 通过命令函参数传递配置
 
 通过命令行传递参数的格式与 redis.conf 文件中配置格式完全相同，只不过关键字前面有个 `--` 前缀。比如：
 
-    redis-server --port 6380 --replicaof 127.0.0.1 6379
+```bash
+redis-server --port 6380 --replicaof 127.0.0.1 6379
+```
 
 生成的内存中配置如下：
 
-    127.0.0.1:6380> config get "replicaof"
-    1) "replicaof"
-    2) "127.0.0.1 6379"
-    127.0.0.1:6380> config get "port"
-    1) "port"
-    2) "6380"
+```bash
+127.0.0.1:6380> config get "replicaof"
+1) "replicaof"
+2) "127.0.0.1 6379"
+127.0.0.1:6380> config get "port"
+1) "port"
+2) "6380"
+```
 
 ### 其他基本示例
 
@@ -68,21 +74,23 @@ Redis 支持在线热更新配置，可以通过 config set ARGUMENT 命令来�
 
 ## 简单的配置文件示例
 
-    dir "/data"
-    port 6379
-    maxmemory 1G
-    maxmemory-policy volatile-lru
-    min-replicas-max-lag 5
-    min-replicas-to-write 1
-    rdbchecksum yes
-    rdbcompression yes
-    repl-diskless-sync yes
-    save 900 1
-    requirepass redis
-    masterauth "redis"
+```bash
+dir "/data"
+port 6379
+maxmemory 1G
+maxmemory-policy volatile-lru
+min-replicas-max-lag 5
+min-replicas-to-write 1
+rdbchecksum yes
+rdbcompression yes
+repl-diskless-sync yes
+save 900 1
+requirepass redis
+masterauth "redis"
 
-    replica-announce-port 6379
-    replica-announce-ip "10.105.180.122"
+replica-announce-port 6379
+replica-announce-ip "10.105.180.122"
+```
 
 # redis.conf 文件详解
 

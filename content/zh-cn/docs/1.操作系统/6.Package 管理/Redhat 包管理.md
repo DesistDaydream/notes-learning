@@ -1,8 +1,12 @@
 ---
-title: "Redhat 包管理"
+title: Redhat 包管理
+linkTitle: Redhat 包管理
+date: 2024-03-13T08:10
+weight: 20
 ---
-
 # 概述
+
+> 参考：
 
 # rpm 工具
 
@@ -80,7 +84,8 @@ AppStream 库中的包一般是用户空间程序包，这些程序的更新速�
 # yum 工具
 
 > 参考：
-> - Manual(手册),yum(8)
+> 
+> - [Manual(手册)，yum(8)](https://man7.org/linux/man-pages/man8/yum.8.html)
 
 ## yum 关联文件与配置
 
@@ -114,7 +119,13 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
 EOF
 ```
 
-> 可以通过 `python3 -m http.server NUM` 在当前目录启动一个简易的 HTTP 服务器。也可以通过一个可以访问外网的机器，使用 nginx 代理出去
+> 可以通过 `python3 -m http.server 80` 在当前目录启动一个简易的 HTTP 服务器。也可以通过一个可以访问外网的机器，使用 nginx 代理出去
+
+### 配置详解
+
+**gpgcheck**(INT) # 是否检查 gpg。1 检查；0 不检查
+
+**gpgkey**(STRING) # 若检查 gpg，则要指定 gpg 路径。通常在 `/etc/pki/rpm-gpg/` 目录下
 
 ## Syntax(语法)
 
