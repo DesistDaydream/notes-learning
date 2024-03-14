@@ -30,14 +30,15 @@ grep 根据 PATTERNS(模式) 过滤给定的内容。其实就是使用正则表
 
 ### Matching Control(配置控制)
 
-- **-i**# 忽略大小写
-- **-v, --invert-match**# 反向选择，选择没有要匹配的字符串的行
+- **-i** # 忽略大小写
+- **-v, --invert-match** # 反向选择，选择没有要匹配的字符串的行
 
 ### General Output Control(通用输出控制) 选项
 
 - **-c, --count** # 计算找到的符合行的次数
 - **--color=auto** # 把查找到内容自动表上默认颜色，auto 可改成别的颜色英文
 - **-l,--files-with-matches** # 在筛选时，只输出文件名。常用来在一堆文件中，筛选指定内容，只查看哪些文件有指定的内容。
+- **-m, --max-count=NUM** # 在 NUM 个匹配行后停止读取文件。i.e. 
 - **-o, --only-matching** # 仅显示被匹配到的字符串，不显示整行
 - **-s, --no-messages** # 不显示错误信息
 
@@ -55,7 +56,6 @@ grep 根据 PATTERNS(模式) 过滤给定的内容。其实就是使用正则表
 
 - **-a, --text** # 像对待文本一样处理二进制文件；这等效于--binary-files = text 选项。
 - **-R, --dereference-recursive** # 递归地阅读每个目录下的所有文件并进行 grep 操作;该选项相当于-d recurse
-- 
 
 ## EXAMPLE
 

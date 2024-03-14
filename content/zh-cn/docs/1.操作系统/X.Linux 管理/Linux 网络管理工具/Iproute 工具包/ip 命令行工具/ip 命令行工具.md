@@ -70,11 +70,11 @@ Command "-c" is unknown, try "ip route help".
 
 # OBJECT 命令详解
 
-## link # 网络设备配置
+## link - 网络设备配置
 
 详见：[link](/docs/1.操作系统/X.Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ip%20命令行工具/link.md)
 
-## address # IPv4 或 IPv6 地址管理
+## address - IPv4 或 IPv6 地址管理
 
 ### Syntax(语法)
 
@@ -117,13 +117,13 @@ ip addr add 10.0.0.101/24 broadcast 10.0.0.255 dev eth0 label eth0:0
 
 Note：在 ip address show 命令中列出的网络设备，可能包含这样的名称 eth0.2@eth0 。其实设备名就是 eth0.2(其中 2 表示 vlan 号)，至于后面的`@`则是一个关联同等级网络设备的符号，表示 eth0.2 这个设备是与 eth0 关联的。如果是 bridge 和 bond 之类的网络设备，则没有`@`符号，因为和 bridge 或者 bond 关联的设备都是属于下级设备。
 
-## route # 路由条目管理
+## route - 路由条目管理
 
 详见：
 
 [rule 与 route](/docs/1.操作系统/X.Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ip%20命令行工具/rule%20与%20route.md)
 
-## rule # 路由策略数据库管理
+## rule - 路由策略数据库管理
 
 详见：
 

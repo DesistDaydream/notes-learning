@@ -77,6 +77,8 @@ https://developer.chrome.com/docs/devtools/javascript/snippets?hl=zh-cn
 
 这时，凡是页面的 JS 代码中调用了 JSON.stringify 和 JSON.parse 这俩方法的地方，都会输出参数，并被 debugger 关键字暂停以进行断点检查。然后可以在右侧 *调用堆栈* 中点击直接跳转到网页的代码中，对应的位置。
 
+Notes: 仅对已经加载完成的页面有效，i.e. 发起 Fetch/XHR 之类的请求时才会被拦截。
+
 ## 断点
 
 可以通过多种方式添加断点

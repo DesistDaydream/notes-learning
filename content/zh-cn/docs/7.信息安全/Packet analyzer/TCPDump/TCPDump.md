@@ -29,7 +29,7 @@ tcpdump 最初由[Van Jacobson](https://en.wikipedia.org/wiki/Van_Jacobson)、[S
 - **-c \<INT>** # 指定程序将会捕获的数据包数量。
 - **-D, --list-interfaces** # 列出可用于抓包的接口。将会列出接口的数值编号和接口名，它们都可以用于"-i"后
 - **-e** # 在每条 dump 出来的行上显示二层头信息。这个选项可以输出 以太网 和 IEEE802.11 等协议的 MAC 层信息。
-  - 通常用来抓取 VLAN 的 Tag。
+  - Notes: 通常用来抓取 VLAN 的 Tag。
 - **-F \<FEIL>** # 指定一个包含 Filter-Expression 语法的文件。程序将会使用该文件的内容作为过滤表达式，并忽略命令行给出的过滤表达式。
 - **-i, --interface \<DEV>** # 抓取指定网卡 DEV 的包，`默认值：any`，即抓取所有设备
   - 注意：在有 Bond 的服务器上，不要抓所有设备的包，否则使用 Wireshark 读取抓包文件时，会显示出很多乱序和重传，这是因为 Bond 设备和 Bond Salve 设备的包是相同的，但是咱都抓了。相同的包，时间不同，Wireshark 就识别成乱序了。

@@ -213,14 +213,15 @@ lspci | grep -i Ethernet
 ```
 
 这里是先获取系统上的网络接口，这包括了物理网卡和虚拟网卡(如 `docker` 创建的)。
+
 所以要先过滤，过滤顺序如下：
 
-1. 按名字过滤~~
-过滤掉 `lo`
-2. 按驱动过滤~~
-过滤掉驱动为 `dummy, veth, vboxnet, vmnet, vmxnet, vmxnet2, vmxnet3` 的网卡, 虚拟机中的
-3. 按网卡类型过滤~~
-过滤掉 `bridge` 类型的网卡
+- 按名字过滤~~
+  - 过滤掉 `lo`
+- 按驱动过滤~~
+  - 过滤掉驱动为 `dummy, veth, vboxnet, vmnet, vmxnet, vmxnet2, vmxnet3` 的网卡, 虚拟机中的
+- 按网卡类型过滤~~
+  - 过滤掉 `bridge` 类型的网卡
 
 如果网卡接口同时存在于 `/sys/class/net/` 和 `/sys/devices/virtual/net/` 中，则需要过滤掉。
 

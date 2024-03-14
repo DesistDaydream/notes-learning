@@ -10,6 +10,20 @@ weight: 1
 
 Programming tools(编程工具)
 
+# 构建系统
+
+[Make](docs/2.编程/Programming%20tools/Make.md)
+
+Meson # Python 实现的构建系统
+
+- https://github.com/mesonbuild/meson
+- https://www.techgrow.cn/posts/68d93948.html
+
+Ninja # C++ 编写的小型构件系统
+
+- https://github.com/ninja-build/ninja
+- https://www.cnblogs.com/sandeepin/p/ninja.html
+
 # 辅助
 
 ## Lint

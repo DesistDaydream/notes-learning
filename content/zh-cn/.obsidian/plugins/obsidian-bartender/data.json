@@ -1352,7 +1352,7 @@
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/NPM.md",
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/npmrc 配置文件.md",
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/更多包管理工具.md",
-      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/Deno 工具.md",
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/Deno.md",
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/Vite.md",
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 工具/代码格式化.md"
     ],
@@ -2453,6 +2453,14 @@
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/os/_index.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/os/os.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/os/I_O.md"
+    ],
+    "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 环境安装与使用": [
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 环境安装与使用/_index.md",
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 环境安装与使用/ECMAScript 环境安装与使用.md",
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 环境安装与使用/ECMAScript 模块与包.md",
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 环境安装与使用/package.json.md",
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 环境安装与使用/TSConfig.md",
+      "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 环境安装与使用/Deno.md"
     ]
   },
   "actionBarOrder": {},

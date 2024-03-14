@@ -269,13 +269,42 @@ Unveilr # 反编译解密后的 `*.wxapkg` 文件得到源码。
 
 这时，凡是页面的 JS 代码中调用了 JSON.stringify 和 JSON.parse 这俩方法的地方，都会输出参数，并被 debugger 关键字暂停以进行断点检查。然后可以在右侧 *调用堆栈* 中点击直接跳转到网页的代码中，对应的位置（堆栈是顺序执行的，查看下面几个即可）。
 
-若是想拦截 cookie 设置，那就重新定义 `Cookie.set` 方法。
+上面的做法有一个文件，就是页面刷新时就失效了，只有在当前页面发起 Fetch/XHR 之类的请求时才会被拦截。若想拦截 Cookie.set 之类的请求，就需要用到代理，在代理中添加 Hook 逻辑，详见下面的 Cookie 处理。
 
 ## Cookie 处理
 
 动态生成 cookie、时效性 cookie、需要登录网站
 
 https://www.bilibili.com/video/BV1ew411K7nB/?p=17 及后面几 P
+
+想要 Hook Cookie，需要通过类似代理的方式进行，在 代理中添加如下代码。
+
+```javascript
+//当前版本hook工具只支持Content-Type为html的自动hook  
+//下面是一个示例:这个示例演示了hook全局的cookie设置点  
+(function() {  
+    //严谨模式 检查所有错误  
+    'use strict';  
+    //document 为要hook的对象   这里是hook的cookie  
+    var cookieTemp = "";  
+    Object.defineProperty(document, 'cookie', {  
+        //hook set方法也就是赋值的方法   
+        set: function(val) {  
+        //这样就可以快速给下面这个代码行下断点  
+        //从而快速定位设置cookie的代码  
+        if (val.indexOf('w_tsfp') != -1){debugger}  
+            console.log('Hook捕获到cookie设置->', val);  
+            cookieTemp = val;  
+            return val;  
+        },  
+        //hook get方法也就是取值的方法   
+        get: function()  
+        {  
+                return cookieTemp;  
+        }  
+    });  
+})();
+```
 
 # Android 逆向
 

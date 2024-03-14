@@ -1,12 +1,15 @@
 ---
-title: jq 命令行工具
+title: jq
+linkTitle: jq
+date: 2024-03-14T14:21
+weight: 20
 ---
 
 # 概述
 
 > 参考：
 > 
-> - 官方文档：<https://stedolan.github.io/jq/>
+> - [官方文档](https://stedolan.github.io/jq/)
 
 jq 是轻量级且灵活的处理 JSON 数据的 shell 命令行工具
 
@@ -24,7 +27,9 @@ jq 程序是一个`过滤器`，接收一个输入，并产生一个输出。
 
 下面的 jq 用法，都是用下面这个 json 文件作为演示
 
-    {"favorite":{"drink":"water","food":"sushi","game":"WOW & PAL"},"sushiKinds":["sashimi",{"name":"hot"},{"name":"handRoll","rice":"more"},{"name":null}],"arrayBrowser":[{"name":"360","url":"http://www.so.com"},{"name":"bing","url":"http://www.bing.com"}]}
+```json
+{"favorite":{"drink":"water","food":"sushi","game":"WOW & PAL"},"sushiKinds":["sashimi",{"name":"hot"},{"name":"handRoll","rice":"more"},{"name":null}],"arrayBrowser":[{"name":"360","url":"http://www.so.com"},{"name":"bing","url":"http://www.bing.com"}]}
+```
 
 格式化后的内容如下，格式化内容仅作参考对照，因为 jq 命令本身就可以实现格式化的 json 的作用。
 
@@ -142,3 +147,25 @@ jq 程序是一个`过滤器`，接收一个输入，并产生一个输出。
   "url": "http://www.bing.com"
 }
 ```
+
+# 最佳实践
+
+## 修改文件内容
+
+```
+$ jq '.foo.bar' file.json
+```
+
+这会定位JSON文件中名为“foo”的对象的“bar”字段。
+
+```
+$ jq '.foo.bar = "new value"' file.json
+```
+
+这会将名为“foo”的对象中的“bar”字段的值替换为“new value”。
+
+```
+$ jq -i '.foo.bar = "new value"' file.json
+```
+
+这将在原始JSON文件中直接替换“foo”对象的“bar”字段的值为“new value”。

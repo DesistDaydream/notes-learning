@@ -9,7 +9,7 @@ title: rule 与 route
 > - [Manual(手册)，ip-route(8)](https://man7.org/linux/man-pages/man8/ip-route.8.html)
 > - [Manual(手册)，ip-rule(8)](https://man7.org/linux/man-pages/man8/ip-rule.8.html)
 
-# route # 路由条目管理
+# route - 路由条目管理
 
 route 可以操作内核路由表中的**条目**。直接使用命令可以列出 main 路由表中的条目：
 
@@ -107,7 +107,7 @@ Linux-2.x 版本内核以后，可以根据 **SELECTOR(选择器)** 将数据包
 - 添加路由条目，目的地址是 10.10.10.0/24 网段的数据包的下一跳地址是 192.168.0.2 使用 eth0 网络设备
   - ip route add 10.10.10.0/24 via 192.168.0.2 dev eth0
 
-# rule # 路由策略数据库管理
+# rule - 路由策略数据库管理
 
 rule 可以操作路由策略数据库中的规则，控制路由选择算法。说白了就是可以**控制路由表**，而 ip route 则是**控制路由表的条目**。
 
