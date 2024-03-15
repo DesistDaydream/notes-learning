@@ -181,7 +181,7 @@ jobs:
       - run: echo ${{needs.job1.outputs.output1}} ${{needs.job1.outputs.output2}}
 ```
 
-> 双冒号中的语法为 [Workflow 命令](docs/2.编程/Programming%20tools/SCM/GitHub/GitHub%20Actions/Workflow%20文件详解/Workflow%20命令.md)
+> 双冒号中的语法为 [Workflow 命令](/docs/2.编程/Programming%20tools/SCM/GitHub/GitHub%20Actions/Workflow%20文件详解/Workflow%20命令.md)
 
 job1 创建了 `output1` 变量，值为 `hello`，同时创建了 `output2` 变量，值为 `world`。
 

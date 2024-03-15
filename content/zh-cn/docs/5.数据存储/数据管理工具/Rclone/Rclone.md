@@ -127,7 +127,7 @@ lsjson
 rclone mount --config rclone.conf alist:/ Z: --cache-dir D:\appdata\rclone --vfs-cache-mode full --header "Referer:"
 ```
 
-可以参考 PowerShell 的 [Management](/docs/1.操作系统/Y.Windows%20管理/Windows%20管理工具/PowerShell%20内置管理工具/Management.md) 模块下的 Start-Process 命令的，以便在后台运行，效果如下：
+可以参考 PowerShell 的 [Management](/docs/1.操作系统/Windows%20管理/Windows%20管理工具/PowerShell%20内置管理工具/Management.md) 模块下的 Start-Process 命令的，以便在后台运行，效果如下：
 
 ```powershell
 Start-Process "alist.exe" -ArgumentList "server --data D:\appdata\alist" -WindowStyle Hidden -RedirectStandardOutput "D:\Tools\Scripts\log\alist.log" -RedirectStandardError "D:\Tools\Scripts\log\alist-err.log"
@@ -138,4 +138,4 @@ Start-Process "rclone.exe" `
 -RedirectStandardOutput "D:\Tools\Scripts\log\rclone.log" -RedirectStandardError "D:\Tools\Scripts\log\rclone-err.log"
 ```
 
-然后可以参考 Windows 管理中的 [启动项](/docs/1.操作系统/Y.Windows%20管理/启动项.md) 以便开机时自动挂载。
+然后可以参考 Windows 管理中的 [启动项](/docs/1.操作系统/Windows%20管理/启动项.md) 以便开机时自动挂载。

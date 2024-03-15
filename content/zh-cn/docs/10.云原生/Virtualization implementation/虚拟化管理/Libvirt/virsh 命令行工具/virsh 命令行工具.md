@@ -74,7 +74,7 @@ Many of the commands for host interfaces are similar to the ones used for domain
 
 ## Storage Pool COMMANDS(存储池命令)
 
-[Storage Pool 命令](docs/10.云原生/Virtualization%20implementation/虚拟化管理/Libvirt/virsh%20命令行工具/Storage%20Pool%20命令.md)
+[Storage Pool 命令](/docs/10.云原生/Virtualization%20implementation/虚拟化管理/Libvirt/virsh%20命令行工具/Storage%20Pool%20命令.md)
 
 - 一个 storage pool 包括很多 storage volume，storage volume 有单独的一组命令进行管理
 - storage pool 就是存放 s torage volume 的地方，是一个目录，详见 1.5.Storage Virtualization.note 中的 kvm 的存储虚拟化

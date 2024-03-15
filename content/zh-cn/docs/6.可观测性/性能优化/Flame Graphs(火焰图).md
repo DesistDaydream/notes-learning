@@ -15,7 +15,7 @@ title: Flame Graphs(火焰图)
 
 可以生成火焰图的工具：
 
-- [perf 性能分析工具](/docs/1.操作系统/X.Linux%20管理/Linux%20系统管理工具/perf%20性能分析工具/perf%20性能分析工具.md)
+- [perf 性能分析工具](/docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/perf%20性能分析工具/perf%20性能分析工具.md)
 
 # 前言
 

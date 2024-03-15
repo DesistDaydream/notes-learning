@@ -12,7 +12,7 @@ Programming tools(编程工具)
 
 # 构建系统
 
-[Make](docs/2.编程/Programming%20tools/Make.md)
+[Make](/docs/2.编程/Programming%20tools/Make.md)
 
 Meson # Python 实现的构建系统
 
@@ -29,7 +29,7 @@ Ninja # C++ 编写的小型构件系统
 ## Lint
 
 > 参考：
-> 
+>
 > - [Wiki，Lint](<https://en.wikipedia.org/wiki/Lint_(software)>)
 
 Lint 或 Linter 是一种静态代码分析工具，用于标记 编程错误、Bug、风格错误、可疑结构 等。该术语源自一个检查 C 语言代码的 Unix 程序。
@@ -68,7 +68,7 @@ https://github.com/aws/aws-toolkit-vscode
 ## ILSpy
 
 > 参考：
-> 
+>
 > - [GitHub 项目，icsharpcode/ILSpy](https://github.com/icsharpcode/ILSpy)
 
 ILSpy 是开源的 .NET 程序集浏览器和反编译器

@@ -258,7 +258,7 @@ Notes: 有的时候 TS 依赖库还依赖原始的 JS 库，所以也要同时�
 
 # Deno
 
-详见 [Deno](docs/2.编程/高级编程语言/ECMAScript/ECMAScript%20环境安装与使用/Deno.md)
+详见 [Deno](/docs/2.编程/高级编程语言/ECMAScript/ECMAScript%20环境安装与使用/Deno.md)
 
 # 初始化项目
 

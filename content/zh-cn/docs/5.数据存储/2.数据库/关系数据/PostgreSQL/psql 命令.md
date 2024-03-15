@@ -9,10 +9,10 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档](https://www.postgresql.org/docs/current/app-psql.html)
 
-psql 是 PostgreSQL 的交互式终端，可以看作是 PostgreSQL 的 [REPL](docs/2.编程/Programming%20environment/REPL.md)。
+psql 是 PostgreSQL 的交互式终端，可以看作是 PostgreSQL 的 [REPL](/docs/2.编程/Programming%20environment/REPL.md)。
 
 psql 中可以执行有多种类型的命令
 

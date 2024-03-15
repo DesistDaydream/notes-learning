@@ -19,7 +19,7 @@ NetFlow 通常由三个部分组成
 - **Flow collector(流收集器)** # 负责从流导出器接收的流数据的接收、存储和预处理。
 - **Analysis application(分析程序)** # 在入侵检测或流量分析的情况下分析接收到的流数据。
 
-截至 2012 年，大多数防火墙和基于软件的 IP 路由器仍在使用类似于 NetFlow 交换的技术。例如 Linux 使用的 [Netfilter](/docs/1.操作系统/2.Kernel/8.Network/Linux%20网络流量控制/Netfilter%20流量控制系统/Netfilter%20流量控制系统.md) 框架的 conntrack 功能。
+截至 2012 年，大多数防火墙和基于软件的 IP 路由器仍在使用类似于 NetFlow 交换的技术。例如 Linux 使用的 [Netfilter](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter%20流量控制系统/Netfilter%20流量控制系统.md) 框架的 conntrack 功能。
 
 # NetFlow 与 DPI
 

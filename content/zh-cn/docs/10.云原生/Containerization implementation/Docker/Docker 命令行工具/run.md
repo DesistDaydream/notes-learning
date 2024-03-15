@@ -76,7 +76,7 @@ run 命令可以启动容器
 
 默认情况下，Docker 容器是 “unprivileged”，即无特权的。
 
-另外，在官方文档中，还可以找到所有可以通过 --cap-add 和 --cap-drop 控制的容器内的 [Linux Capabilities(能力)](/docs/1.操作系统/5.登录%20Linux%20与%20访问控制/Access%20Control(访问控制)/Capabilities(能力)%20管理.md)。
+另外，在官方文档中，还可以找到所有可以通过 --cap-add 和 --cap-drop 控制的容器内的 [Linux Capabilities(能力)](/docs/1.操作系统/登录%20Linux%20与%20访问控制/Access%20Control(访问控制)/Capabilities(能力)%20管理.md)。
 
 - **--cap-add < STRING | ALL>** # 添加 Linux 能力。可以多次指定该选项，或使用 ALL 添加所有。
 - **--cap-drop < STRING | ALL>** # 禁用 Linux 能力。可以多次指定该选项，或使用 ALL 禁用所有。

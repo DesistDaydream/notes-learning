@@ -42,7 +42,7 @@
     ],
     "docs/0.计算机": [
       "docs/0.计算机/_index.md",
-      "docs/0.计算机/计算机工作的原理.md",
+      "docs/0.计算机/Computer.md",
       "docs/0.计算机/Motherboard",
       "docs/0.计算机/CPU",
       "docs/0.计算机/Memory",
@@ -50,7 +50,8 @@
       "docs/0.计算机/小型机器.md",
       "docs/0.计算机/扩展与外设.md",
       "docs/0.计算机/Computer Peripheral.md",
-      "docs/0.计算机/计算机厂家信息.md"
+      "docs/0.计算机/计算机厂家信息.md",
+      "docs/0.计算机/Rack.md"
     ],
     "docs/0.计算机/CPU": [
       "docs/0.计算机/CPU/_index.md",
@@ -72,478 +73,478 @@
     ],
     "docs/1.操作系统": [
       "docs/1.操作系统/_index.md",
-      "docs/1.操作系统/0.操作系统",
-      "docs/1.操作系统/1.Bootloader",
-      "docs/1.操作系统/2.Kernel",
-      "docs/1.操作系统/3.Systemd 系统守护程序",
-      "docs/1.操作系统/4.Terminal 与 Shell",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制",
-      "docs/1.操作系统/6.Package 管理",
-      "docs/1.操作系统/7.时间管理",
+      "docs/1.操作系统/操作系统",
+      "docs/1.操作系统/Bootloader",
+      "docs/1.操作系统/Kernel",
+      "docs/1.操作系统/Systemd",
+      "docs/1.操作系统/Terminal 与 Shell",
+      "docs/1.操作系统/登录 Linux 与 访问控制",
+      "docs/1.操作系统/Package 管理",
+      "docs/1.操作系统/时间管理",
       "docs/1.操作系统/Job",
       "docs/1.操作系统/系统审计",
       "docs/1.操作系统/Linux 源码解析",
-      "docs/1.操作系统/X.Linux 管理",
-      "docs/1.操作系统/Y.Windows 管理",
+      "docs/1.操作系统/Linux 管理",
+      "docs/1.操作系统/Windows 管理",
       "docs/1.操作系统/安装操作系统",
       "docs/1.操作系统/图形管理",
       "docs/1.操作系统/Filesystem"
     ],
-    "docs/1.操作系统/0.操作系统": [
-      "docs/1.操作系统/0.操作系统/_index.md",
-      "docs/1.操作系统/0.操作系统/0.操作系统.md",
-      "docs/1.操作系统/0.操作系统/分时系统 与 实时系统.md",
-      "docs/1.操作系统/0.操作系统/POSIX.md",
-      "docs/1.操作系统/0.操作系统/类 Unix 操作系统",
-      "docs/1.操作系统/0.操作系统/Microsoft 操作系统",
-      "docs/1.操作系统/0.操作系统/环境变量.md"
+    "docs/1.操作系统/操作系统": [
+      "docs/1.操作系统/操作系统/_index.md",
+      "docs/1.操作系统/操作系统/操作系统.md",
+      "docs/1.操作系统/操作系统/分时系统 与 实时系统.md",
+      "docs/1.操作系统/操作系统/POSIX.md",
+      "docs/1.操作系统/操作系统/类 Unix 操作系统",
+      "docs/1.操作系统/操作系统/Microsoft 操作系统",
+      "docs/1.操作系统/操作系统/环境变量.md"
     ],
-    "docs/1.操作系统/0.操作系统/类 Unix 操作系统": [
-      "docs/1.操作系统/0.操作系统/类 Unix 操作系统/_index.md",
-      "docs/1.操作系统/0.操作系统/类 Unix 操作系统/类 Unix 操作系统.md",
-      "docs/1.操作系统/0.操作系统/类 Unix 操作系统/Alpine.md",
-      "docs/1.操作系统/0.操作系统/类 Unix 操作系统/Debian 与 Ubuntu.md",
-      "docs/1.操作系统/0.操作系统/类 Unix 操作系统/EulerOS 与 OpenEuler.md",
-      "docs/1.操作系统/0.操作系统/类 Unix 操作系统/RedHat 与 CentOS.md",
-      "docs/1.操作系统/0.操作系统/类 Unix 操作系统/Android 操作系统.md",
-      "docs/1.操作系统/0.操作系统/类 Unix 操作系统/系统启动流程.md"
+    "docs/1.操作系统/操作系统/类 Unix 操作系统": [
+      "docs/1.操作系统/操作系统/类 Unix 操作系统/_index.md",
+      "docs/1.操作系统/操作系统/类 Unix 操作系统/类 Unix 操作系统.md",
+      "docs/1.操作系统/操作系统/类 Unix 操作系统/Alpine.md",
+      "docs/1.操作系统/操作系统/类 Unix 操作系统/Debian 与 Ubuntu.md",
+      "docs/1.操作系统/操作系统/类 Unix 操作系统/EulerOS 与 OpenEuler.md",
+      "docs/1.操作系统/操作系统/类 Unix 操作系统/RedHat 与 CentOS.md",
+      "docs/1.操作系统/操作系统/类 Unix 操作系统/Android 操作系统.md",
+      "docs/1.操作系统/操作系统/类 Unix 操作系统/系统启动流程.md"
     ],
-    "docs/1.操作系统/2.Kernel": [
-      "docs/1.操作系统/2.Kernel/_index.md",
-      "docs/1.操作系统/2.Kernel/Kernel.md",
-      "docs/1.操作系统/2.Kernel/1.Linux Kernel",
-      "docs/1.操作系统/2.Kernel/3.System Call",
-      "docs/1.操作系统/2.Kernel/4.CPU",
-      "docs/1.操作系统/2.Kernel/5.Memory",
-      "docs/1.操作系统/2.Kernel/6.Filesystem",
-      "docs/1.操作系统/2.Kernel/7.Process",
-      "docs/1.操作系统/2.Kernel/8.Network",
-      "docs/1.操作系统/2.Kernel/微内核",
-      "docs/1.操作系统/2.Kernel/BPF"
+    "docs/1.操作系统/Kernel": [
+      "docs/1.操作系统/Kernel/_index.md",
+      "docs/1.操作系统/Kernel/Kernel.md",
+      "docs/1.操作系统/Kernel/Linux Kernel",
+      "docs/1.操作系统/Kernel/System Call",
+      "docs/1.操作系统/Kernel/CPU",
+      "docs/1.操作系统/Kernel/Memory",
+      "docs/1.操作系统/Kernel/Filesystem",
+      "docs/1.操作系统/Kernel/Process",
+      "docs/1.操作系统/Kernel/Network",
+      "docs/1.操作系统/Kernel/微内核",
+      "docs/1.操作系统/Kernel/BPF"
     ],
-    "docs/1.操作系统/2.Kernel/1.Linux Kernel": [
-      "docs/1.操作系统/2.Kernel/1.Linux Kernel/_index.md",
-      "docs/1.操作系统/2.Kernel/1.Linux Kernel/1.Linux Kernel.md",
-      "docs/1.操作系统/2.Kernel/1.Linux Kernel/Boot Configuration.md",
-      "docs/1.操作系统/2.Kernel/1.Linux Kernel/Kernel 的安装与卸载.md",
-      "docs/1.操作系统/2.Kernel/1.Linux Kernel/Kernel 参数",
-      "docs/1.操作系统/2.Kernel/1.Linux Kernel/Module(模块).md",
-      "docs/1.操作系统/2.Kernel/1.Linux Kernel/硬核致敬Linux ！30岁生日快乐！.md"
+    "docs/1.操作系统/Kernel/Linux Kernel": [
+      "docs/1.操作系统/Kernel/Linux Kernel/_index.md",
+      "docs/1.操作系统/Kernel/Linux Kernel/Linux Kernel.md",
+      "docs/1.操作系统/Kernel/Linux Kernel/Boot Configuration.md",
+      "docs/1.操作系统/Kernel/Linux Kernel/Kernel 的安装与卸载.md",
+      "docs/1.操作系统/Kernel/Linux Kernel/Kernel 参数",
+      "docs/1.操作系统/Kernel/Linux Kernel/Module(模块).md",
+      "docs/1.操作系统/Kernel/Linux Kernel/硬核致敬Linux ！30岁生日快乐！.md"
     ],
-    "docs/1.操作系统/2.Kernel/1.Linux Kernel/Kernel 参数": [
-      "docs/1.操作系统/2.Kernel/1.Linux Kernel/Kernel 参数/_index.md",
-      "docs/1.操作系统/2.Kernel/1.Linux Kernel/Kernel 参数/Kernel 参数.md",
-      "docs/1.操作系统/2.Kernel/1.Linux Kernel/Kernel 参数/fs(文件系统相关参数).md",
-      "docs/1.操作系统/2.Kernel/1.Linux Kernel/Kernel 参数/net(网络相关参数)",
-      "docs/1.操作系统/2.Kernel/1.Linux Kernel/Kernel 参数/vm(内存相关参数).md",
-      "docs/1.操作系统/2.Kernel/1.Linux Kernel/Kernel 参数/应用实例.md"
+    "docs/1.操作系统/Kernel/Linux Kernel/Kernel 参数": [
+      "docs/1.操作系统/Kernel/Linux Kernel/Kernel 参数/_index.md",
+      "docs/1.操作系统/Kernel/Linux Kernel/Kernel 参数/Kernel 参数.md",
+      "docs/1.操作系统/Kernel/Linux Kernel/Kernel 参数/fs(文件系统相关参数).md",
+      "docs/1.操作系统/Kernel/Linux Kernel/Kernel 参数/net(网络相关参数)",
+      "docs/1.操作系统/Kernel/Linux Kernel/Kernel 参数/vm(内存相关参数).md",
+      "docs/1.操作系统/Kernel/Linux Kernel/Kernel 参数/应用实例.md"
     ],
-    "docs/1.操作系统/2.Kernel/3.System Call": [
-      "docs/1.操作系统/2.Kernel/3.System Call/_index.md",
-      "docs/1.操作系统/2.Kernel/3.System Call/3.System Call.md",
-      "docs/1.操作系统/2.Kernel/3.System Call/System Call 类别.md",
-      "docs/1.操作系统/2.Kernel/3.System Call/常见 Syscalls.md"
+    "docs/1.操作系统/Kernel/System Call": [
+      "docs/1.操作系统/Kernel/System Call/_index.md",
+      "docs/1.操作系统/Kernel/System Call/System Call.md",
+      "docs/1.操作系统/Kernel/System Call/System Call 类别.md",
+      "docs/1.操作系统/Kernel/System Call/常见 Syscalls.md"
     ],
-    "docs/1.操作系统/2.Kernel/4.CPU": [
-      "docs/1.操作系统/2.Kernel/4.CPU/_index.md",
-      "docs/1.操作系统/2.Kernel/4.CPU/4.CPU.md",
-      "docs/1.操作系统/2.Kernel/4.CPU/调度算法.md",
-      "docs/1.操作系统/2.Kernel/4.CPU/读写数据的方式.md",
-      "docs/1.操作系统/2.Kernel/4.CPU/Context Switch(上下文切换).md",
-      "docs/1.操作系统/2.Kernel/4.CPU/Interrupts(中断)",
-      "docs/1.操作系统/2.Kernel/4.CPU/10.1.CPU 执行程序的秘密，藏在了这 15 张图里.md",
-      "docs/1.操作系统/2.Kernel/4.CPU/10.2.知道硬盘很慢，但没想到比 CPU Cache 慢 10000000 倍.md",
-      "docs/1.操作系统/2.Kernel/4.CPU/10.3.如何写出让 CPU 跑得更快的代码？.md",
-      "docs/1.操作系统/2.Kernel/4.CPU/10.4.CPU 缓存一致性.md",
-      "docs/1.操作系统/2.Kernel/4.CPU/CPU 空闲时在干嘛？.md",
-      "docs/1.操作系统/2.Kernel/4.CPU/Load Average 平均负载简述.md"
+    "docs/1.操作系统/Kernel/CPU": [
+      "docs/1.操作系统/Kernel/CPU/_index.md",
+      "docs/1.操作系统/Kernel/CPU/CPU.md",
+      "docs/1.操作系统/Kernel/CPU/调度算法.md",
+      "docs/1.操作系统/Kernel/CPU/读写数据的方式.md",
+      "docs/1.操作系统/Kernel/CPU/Context Switch(上下文切换).md",
+      "docs/1.操作系统/Kernel/CPU/Interrupts(中断)",
+      "docs/1.操作系统/Kernel/CPU/10.1.CPU 执行程序的秘密，藏在了这 15 张图里.md",
+      "docs/1.操作系统/Kernel/CPU/10.2.知道硬盘很慢，但没想到比 CPU Cache 慢 10000000 倍.md",
+      "docs/1.操作系统/Kernel/CPU/10.3.如何写出让 CPU 跑得更快的代码？.md",
+      "docs/1.操作系统/Kernel/CPU/10.CPU 缓存一致性.md",
+      "docs/1.操作系统/Kernel/CPU/CPU 空闲时在干嘛？.md",
+      "docs/1.操作系统/Kernel/CPU/Load Average 平均负载简述.md"
     ],
-    "docs/1.操作系统/2.Kernel/5.Memory": [
-      "docs/1.操作系统/2.Kernel/5.Memory/_index.md",
-      "docs/1.操作系统/2.Kernel/5.Memory/5.Memory.md",
-      "docs/1.操作系统/2.Kernel/5.Memory/Memory 的分配.md",
-      "docs/1.操作系统/2.Kernel/5.Memory/Memory 的缓存.md",
-      "docs/1.操作系统/2.Kernel/5.Memory/Memroy 的 Over Commit 与 OOM.md",
-      "docs/1.操作系统/2.Kernel/5.Memory/堆区与栈区.md",
-      "docs/1.操作系统/2.Kernel/5.Memory/分享Linux内存占用几个案例.md",
-      "docs/1.操作系统/2.Kernel/5.Memory/mmap可以让程序员解锁哪些骚操作？.md"
+    "docs/1.操作系统/Kernel/Memory": [
+      "docs/1.操作系统/Kernel/Memory/_index.md",
+      "docs/1.操作系统/Kernel/Memory/Memory.md",
+      "docs/1.操作系统/Kernel/Memory/Memory 的分配.md",
+      "docs/1.操作系统/Kernel/Memory/Memory 的缓存.md",
+      "docs/1.操作系统/Kernel/Memory/Memroy 的 Over Commit 与 OOM.md",
+      "docs/1.操作系统/Kernel/Memory/堆区与栈区.md",
+      "docs/1.操作系统/Kernel/Memory/分享Linux内存占用几个案例.md",
+      "docs/1.操作系统/Kernel/Memory/mmap可以让程序员解锁哪些骚操作？.md"
     ],
-    "docs/1.操作系统/2.Kernel/6.Filesystem": [
-      "docs/1.操作系统/2.Kernel/6.Filesystem/_index.md",
-      "docs/1.操作系统/2.Kernel/6.Filesystem/6.Filesystem.md",
-      "docs/1.操作系统/2.Kernel/6.Filesystem/Mount(挂载).md",
-      "docs/1.操作系统/2.Kernel/6.Filesystem/FHS(文件系统层次标准).md",
-      "docs/1.操作系统/2.Kernel/6.Filesystem/磁盘文件系统",
-      "docs/1.操作系统/2.Kernel/6.Filesystem/特殊文件系统",
-      "docs/1.操作系统/2.Kernel/6.Filesystem/文件管理",
-      "docs/1.操作系统/2.Kernel/6.Filesystem/零拷贝.md",
-      "docs/1.操作系统/2.Kernel/6.Filesystem/读取文件时，程序经历了什么？.md",
-      "docs/1.操作系统/2.Kernel/6.Filesystem/I_O Multiplexing(输入_输出多路复用)"
+    "docs/1.操作系统/Kernel/Filesystem": [
+      "docs/1.操作系统/Kernel/Filesystem/_index.md",
+      "docs/1.操作系统/Kernel/Filesystem/Filesystem.md",
+      "docs/1.操作系统/Kernel/Filesystem/Mount(挂载).md",
+      "docs/1.操作系统/Kernel/Filesystem/FHS(文件系统层次标准).md",
+      "docs/1.操作系统/Kernel/Filesystem/磁盘文件系统",
+      "docs/1.操作系统/Kernel/Filesystem/特殊文件系统",
+      "docs/1.操作系统/Kernel/Filesystem/文件管理",
+      "docs/1.操作系统/Kernel/Filesystem/零拷贝.md",
+      "docs/1.操作系统/Kernel/Filesystem/读取文件时，程序经历了什么？.md",
+      "docs/1.操作系统/Kernel/Filesystem/I_O Multiplexing(输入_输出多路复用)"
     ],
-    "docs/1.操作系统/2.Kernel/6.Filesystem/文件管理": [
-      "docs/1.操作系统/2.Kernel/6.Filesystem/文件管理/_index.md",
-      "docs/1.操作系统/2.Kernel/6.Filesystem/文件管理/文件管理.md",
-      "docs/1.操作系统/2.Kernel/6.Filesystem/文件管理/Inode.md",
-      "docs/1.操作系统/2.Kernel/6.Filesystem/文件管理/File Descriptor(文件描述符).md",
-      "docs/1.操作系统/2.Kernel/6.Filesystem/文件管理/Archive File(归档文件).md"
+    "docs/1.操作系统/Kernel/Filesystem/文件管理": [
+      "docs/1.操作系统/Kernel/Filesystem/文件管理/_index.md",
+      "docs/1.操作系统/Kernel/Filesystem/文件管理/文件管理.md",
+      "docs/1.操作系统/Kernel/Filesystem/文件管理/Inode.md",
+      "docs/1.操作系统/Kernel/Filesystem/文件管理/File Descriptor(文件描述符).md",
+      "docs/1.操作系统/Kernel/Filesystem/文件管理/Archive File(归档文件).md"
     ],
-    "docs/1.操作系统/2.Kernel/6.Filesystem/磁盘文件系统": [
-      "docs/1.操作系统/2.Kernel/6.Filesystem/磁盘文件系统/_index.md",
-      "docs/1.操作系统/2.Kernel/6.Filesystem/磁盘文件系统/Journaling File System.md",
-      "docs/1.操作系统/2.Kernel/6.Filesystem/磁盘文件系统/EXT FileSystem.md",
-      "docs/1.操作系统/2.Kernel/6.Filesystem/磁盘文件系统/XFS.md"
+    "docs/1.操作系统/Kernel/Filesystem/磁盘文件系统": [
+      "docs/1.操作系统/Kernel/Filesystem/磁盘文件系统/_index.md",
+      "docs/1.操作系统/Kernel/Filesystem/磁盘文件系统/Journaling File System.md",
+      "docs/1.操作系统/Kernel/Filesystem/磁盘文件系统/EXT FileSystem.md",
+      "docs/1.操作系统/Kernel/Filesystem/磁盘文件系统/XFS.md"
     ],
-    "docs/1.操作系统/2.Kernel/7.Process": [
-      "docs/1.操作系统/2.Kernel/7.Process/_index.md",
-      "docs/1.操作系统/2.Kernel/7.Process/7.Process.md",
-      "docs/1.操作系统/2.Kernel/7.Process/进程、线程、线程池.md",
-      "docs/1.操作系统/2.Kernel/7.Process/Inter Process Communication(进程间通信)",
-      "docs/1.操作系统/2.Kernel/7.Process/D-Bus.md",
-      "docs/1.操作系统/2.Kernel/7.Process/判断Linux进程在哪个CPU核运行的4个方法 - 嵌入式Linux中文站.md"
+    "docs/1.操作系统/Kernel/Process": [
+      "docs/1.操作系统/Kernel/Process/_index.md",
+      "docs/1.操作系统/Kernel/Process/Process.md",
+      "docs/1.操作系统/Kernel/Process/进程、线程、线程池.md",
+      "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)",
+      "docs/1.操作系统/Kernel/Process/D-Bus.md",
+      "docs/1.操作系统/Kernel/Process/判断Linux进程在哪个CPU核运行的4个方法 - 嵌入式Linux中文站.md"
     ],
-    "docs/1.操作系统/2.Kernel/7.Process/Inter Process Communication(进程间通信)": [
-      "docs/1.操作系统/2.Kernel/7.Process/Inter Process Communication(进程间通信)/_index.md",
-      "docs/1.操作系统/2.Kernel/7.Process/Inter Process Communication(进程间通信)/Inter Process Communication(进程间通信).md",
-      "docs/1.操作系统/2.Kernel/7.Process/Inter Process Communication(进程间通信)/Socket(套接字)",
-      "docs/1.操作系统/2.Kernel/7.Process/Inter Process Communication(进程间通信)/Signal(信号).md",
-      "docs/1.操作系统/2.Kernel/7.Process/Inter Process Communication(进程间通信)/RPC"
+    "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)": [
+      "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)/_index.md",
+      "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)/Inter Process Communication(进程间通信).md",
+      "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)/Socket(套接字)",
+      "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)/Signal(信号).md",
+      "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)/RPC"
     ],
-    "docs/1.操作系统/2.Kernel/7.Process/Inter Process Communication(进程间通信)/RPC": [
-      "docs/1.操作系统/2.Kernel/7.Process/Inter Process Communication(进程间通信)/RPC/_index.md",
-      "docs/1.操作系统/2.Kernel/7.Process/Inter Process Communication(进程间通信)/RPC/RPC.md",
-      "docs/1.操作系统/2.Kernel/7.Process/Inter Process Communication(进程间通信)/RPC/gRPC.md"
+    "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)/RPC": [
+      "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)/RPC/_index.md",
+      "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)/RPC/RPC.md",
+      "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)/RPC/gRPC.md"
     ],
-    "docs/1.操作系统/2.Kernel/8.Network": [
-      "docs/1.操作系统/2.Kernel/8.Network/_index.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux DNS 管理",
-      "docs/1.操作系统/2.Kernel/8.Network/ftp 协议的实现工具，chroot说明.md"
+    "docs/1.操作系统/Kernel/Network": [
+      "docs/1.操作系统/Kernel/Network/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制",
+      "docs/1.操作系统/Kernel/Network/Linux DNS 管理",
+      "docs/1.操作系统/Kernel/Network/ftp 协议的实现工具，chroot说明.md"
     ],
-    "docs/1.操作系统/2.Kernel/8.Network/Linux DNS 管理": [
-      "docs/1.操作系统/2.Kernel/8.Network/Linux DNS 管理/_index.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux DNS 管理/Linux DNS 管理.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux DNS 管理/配置详解.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux DNS 管理/systemd-resolved.service.md"
+    "docs/1.操作系统/Kernel/Network/Linux DNS 管理": [
+      "docs/1.操作系统/Kernel/Network/Linux DNS 管理/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux DNS 管理/Linux DNS 管理.md",
+      "docs/1.操作系统/Kernel/Network/Linux DNS 管理/配置详解.md",
+      "docs/1.操作系统/Kernel/Network/Linux DNS 管理/systemd-resolved.service.md"
     ],
-    "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理": [
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/_index.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/Linux 网络栈管理.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/Linux 网络包发送过程.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/数据包接收过程详解.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/数据包发送过程详解.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/Linux 网络设备详解",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/Netlink",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/network-scripts.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/systemd-networkd.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/NetworkManager",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/Netplan"
+    "docs/1.操作系统/Kernel/Network/Linux 网络栈管理": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络栈管理.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络包发送过程.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/数据包接收过程详解.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/数据包发送过程详解.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netlink",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/network-scripts.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/systemd-networkd.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/NetworkManager",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netplan"
     ],
-    "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/Netplan": [
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/Netplan/_index.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/Netplan/Netplan.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/Netplan/Netplan 配置详解.md"
+    "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netplan": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netplan/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netplan/Netplan.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netplan/Netplan 配置详解.md"
     ],
-    "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/NetworkManager": [
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/NetworkManager/_index.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/NetworkManager/NetworkManager.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/NetworkManager/NetworkManager 配置详解.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/NetworkManager/Connection 配置详解.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/NetworkManager/nmcli 命令行工具.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络栈管理/NetworkManager/nmcli connection 子命令.md"
+    "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/NetworkManager": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/NetworkManager/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/NetworkManager/NetworkManager.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/NetworkManager/NetworkManager 配置详解.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/NetworkManager/Connection 配置详解.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/NetworkManager/nmcli 命令行工具.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/NetworkManager/nmcli connection 子命令.md"
     ],
-    "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制": [
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/_index.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Linux 网络流量控制.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Connnection Tracking(连接跟踪).md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/TC 模块"
+    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Linux 网络流量控制.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Connnection Tracking(连接跟踪).md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/TC 模块"
     ],
-    "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统": [
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/_index.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/Netfilter 流量控制系统.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/Connection Tracking(连接跟踪)机制.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/nftables.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)"
+    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/Netfilter 流量控制系统.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/Connection Tracking(连接跟踪)机制.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/nftables.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)"
     ],
-    "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)": [
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)/_index.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)/firewalld(Iptables 的管理工具).md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)/firewalld 命令行工具.md"
+    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)/firewalld(Iptables 的管理工具).md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)/firewalld 命令行工具.md"
     ],
-    "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables": [
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables/_index.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables/iptables.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables/iptables 命令行工具.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables/最佳实践.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables/iptables 源码解析.md"
+    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables/iptables.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables/iptables 命令行工具.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables/最佳实践.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables/iptables 源码解析.md"
     ],
-    "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)": [
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)/_index.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)/iptables(Netfilter 的实现).md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)/使用 iptables 对多租户环境中的 TCP 限速.md",
-      "docs/1.操作系统/2.Kernel/8.Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)/iptables 源码解析.md"
+    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)/iptables(Netfilter 的实现).md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)/使用 iptables 对多租户环境中的 TCP 限速.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)/iptables 源码解析.md"
     ],
-    "docs/1.操作系统/2.Kernel/BPF": [
-      "docs/1.操作系统/2.Kernel/BPF/_index.md",
-      "docs/1.操作系统/2.Kernel/BPF/BPF.md",
-      "docs/1.操作系统/2.Kernel/BPF/eBPF.md",
-      "docs/1.操作系统/2.Kernel/BPF/BPF 流量控制机制"
+    "docs/1.操作系统/Kernel/BPF": [
+      "docs/1.操作系统/Kernel/BPF/_index.md",
+      "docs/1.操作系统/Kernel/BPF/BPF.md",
+      "docs/1.操作系统/Kernel/BPF/eBPF.md",
+      "docs/1.操作系统/Kernel/BPF/BPF 流量控制机制"
     ],
-    "docs/1.操作系统/2.Kernel/BPF/BPF 流量控制机制": [
-      "docs/1.操作系统/2.Kernel/BPF/BPF 流量控制机制/_index.md",
-      "docs/1.操作系统/2.Kernel/BPF/BPF 流量控制机制/BPF 流量控制机制.md",
-      "docs/1.操作系统/2.Kernel/BPF/BPF 流量控制机制/【BPF网络篇系列-2】容器网络延时之 ipvs 定时器篇 _ 深入浅出 eBPF.md",
-      "docs/1.操作系统/2.Kernel/BPF/BPF 流量控制机制/10.2.深入理解 Cilium 的 eBPF 收发包路径.md",
-      "docs/1.操作系统/2.Kernel/BPF/BPF 流量控制机制/BPF 相关文章.md",
-      "docs/1.操作系统/2.Kernel/BPF/BPF 流量控制机制/BPF 在网络领域的实现.md",
-      "docs/1.操作系统/2.Kernel/BPF/BPF 流量控制机制/XDP eBPF 与 TC eBPF.md"
+    "docs/1.操作系统/Kernel/BPF/BPF 流量控制机制": [
+      "docs/1.操作系统/Kernel/BPF/BPF 流量控制机制/_index.md",
+      "docs/1.操作系统/Kernel/BPF/BPF 流量控制机制/BPF 流量控制机制.md",
+      "docs/1.操作系统/Kernel/BPF/BPF 流量控制机制/【BPF网络篇系列-2】容器网络延时之 ipvs 定时器篇 _ 深入浅出 eBPF.md",
+      "docs/1.操作系统/Kernel/BPF/BPF 流量控制机制/10.2.深入理解 Cilium 的 eBPF 收发包路径.md",
+      "docs/1.操作系统/Kernel/BPF/BPF 流量控制机制/BPF 相关文章.md",
+      "docs/1.操作系统/Kernel/BPF/BPF 流量控制机制/BPF 在网络领域的实现.md",
+      "docs/1.操作系统/Kernel/BPF/BPF 流量控制机制/XDP eBPF 与 TC eBPF.md"
     ],
-    "docs/1.操作系统/3.Systemd 系统守护程序/Unit File": [
-      "docs/1.操作系统/3.Systemd 系统守护程序/Unit File/_index.md",
-      "docs/1.操作系统/3.Systemd 系统守护程序/Unit File/Unit File.md",
-      "docs/1.操作系统/3.Systemd 系统守护程序/Unit File/Unit File 指令.md",
-      "docs/1.操作系统/3.Systemd 系统守护程序/Unit File/systemd.exec 类指令.md",
-      "docs/1.操作系统/3.Systemd 系统守护程序/Unit File/mount Unit.md",
-      "docs/1.操作系统/3.Systemd 系统守护程序/Unit File/service Unit.md",
-      "docs/1.操作系统/3.Systemd 系统守护程序/Unit File/timer Unit.md",
-      "docs/1.操作系统/3.Systemd 系统守护程序/Unit File/应用示例.md"
+    "docs/1.操作系统/Systemd/Unit File": [
+      "docs/1.操作系统/Systemd/Unit File/_index.md",
+      "docs/1.操作系统/Systemd/Unit File/Unit File.md",
+      "docs/1.操作系统/Systemd/Unit File/Unit File 指令.md",
+      "docs/1.操作系统/Systemd/Unit File/systemd.exec 类指令.md",
+      "docs/1.操作系统/Systemd/Unit File/mount Unit.md",
+      "docs/1.操作系统/Systemd/Unit File/service Unit.md",
+      "docs/1.操作系统/Systemd/Unit File/timer Unit.md",
+      "docs/1.操作系统/Systemd/Unit File/应用示例.md"
     ],
-    "docs/1.操作系统/4.Terminal 与 Shell": [
-      "docs/1.操作系统/4.Terminal 与 Shell/_index.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/4.Terminal 与 Shell.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Shell 编程语言.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash",
-      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell"
+    "docs/1.操作系统/Terminal 与 Shell": [
+      "docs/1.操作系统/Terminal 与 Shell/_index.md",
+      "docs/1.操作系统/Terminal 与 Shell/Terminal 与 Shell.md",
+      "docs/1.操作系统/Terminal 与 Shell/Shell 编程语言.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash",
+      "docs/1.操作系统/Terminal 与 Shell/WindowsShell"
     ],
-    "docs/1.操作系统/4.Terminal 与 Shell/Bash": [
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/_index.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/Bash.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/特殊符号.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/数据类型.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/Bash 变量.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/控制结构",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/数组.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/函数.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/重定向.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/exec,xargs,管道符等组合命令.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/set 命令.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/Bash 命令行参数处理.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/Bash 操作历史记录.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/Job(任务)控制.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/Bash 快捷键.md"
+    "docs/1.操作系统/Terminal 与 Shell/Bash": [
+      "docs/1.操作系统/Terminal 与 Shell/Bash/_index.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/特殊符号.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/数据类型.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 变量.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/控制结构",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/数组.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/函数.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/重定向.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/exec,xargs,管道符等组合命令.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/set 命令.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 命令行参数处理.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 操作历史记录.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/Job(任务)控制.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 快捷键.md"
     ],
-    "docs/1.操作系统/4.Terminal 与 Shell/Bash/控制结构": [
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/控制结构/_index.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/控制结构/控制结构.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Bash/控制结构/条件语句与运算.md"
+    "docs/1.操作系统/Terminal 与 Shell/Bash/控制结构": [
+      "docs/1.操作系统/Terminal 与 Shell/Bash/控制结构/_index.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/控制结构/控制结构.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/控制结构/条件语句与运算.md"
     ],
-    "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell": [
-      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/_index.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/WindowsShell.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/WindowsShell 变量.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/WindowsShell 命令.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell.md"
+    "docs/1.操作系统/Terminal 与 Shell/WindowsShell": [
+      "docs/1.操作系统/Terminal 与 Shell/WindowsShell/_index.md",
+      "docs/1.操作系统/Terminal 与 Shell/WindowsShell/WindowsShell.md",
+      "docs/1.操作系统/Terminal 与 Shell/WindowsShell/WindowsShell 变量.md",
+      "docs/1.操作系统/Terminal 与 Shell/WindowsShell/WindowsShell 命令.md",
+      "docs/1.操作系统/Terminal 与 Shell/WindowsShell/PowerShell.md"
     ],
-    "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell": [
-      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell/_index.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell/PowerShell.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell/PowerShell 变量.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/WindowsShell/PowerShell/提供程序.md"
+    "docs/1.操作系统/Terminal 与 Shell/WindowsShell/PowerShell": [
+      "docs/1.操作系统/Terminal 与 Shell/WindowsShell/PowerShell/_index.md",
+      "docs/1.操作系统/Terminal 与 Shell/WindowsShell/PowerShell/PowerShell.md",
+      "docs/1.操作系统/Terminal 与 Shell/WindowsShell/PowerShell/PowerShell 变量.md",
+      "docs/1.操作系统/Terminal 与 Shell/WindowsShell/PowerShell/提供程序.md"
     ],
-    "docs/1.操作系统/4.Terminal 与 Shell/Windows_Shell": [
-      "docs/1.操作系统/4.Terminal 与 Shell/Windows_Shell/_index.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Windows_Shell/Windows Shell.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Windows_Shell/PowerShell.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Windows_Shell/Windows_Shell_变量.md",
-      "docs/1.操作系统/4.Terminal 与 Shell/Windows_Shell/Windows_Shell_命令.md"
+    "docs/1.操作系统/Terminal 与 Shell/Windows_Shell": [
+      "docs/1.操作系统/Terminal 与 Shell/Windows_Shell/_index.md",
+      "docs/1.操作系统/Terminal 与 Shell/Windows_Shell/Windows Shell.md",
+      "docs/1.操作系统/Terminal 与 Shell/Windows_Shell/PowerShell.md",
+      "docs/1.操作系统/Terminal 与 Shell/Windows_Shell/Windows_Shell_变量.md",
+      "docs/1.操作系统/Terminal 与 Shell/Windows_Shell/Windows_Shell_命令.md"
     ],
-    "docs/1.操作系统/5.登录 Linux 与 访问控制": [
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/_index.md",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/5.登录 Linux 与 访问控制.md",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/Account Manager(账户管理)",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/Access Control",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/SELinux",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/su 与  sudo",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/登录与登录信息工具",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/TCP Wrappers.md"
+    "docs/1.操作系统/登录 Linux 与 访问控制": [
+      "docs/1.操作系统/登录 Linux 与 访问控制/_index.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/登录 Linux 与 访问控制.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/Account Manager(账户管理)",
+      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control",
+      "docs/1.操作系统/登录 Linux 与 访问控制/PAM(可插入式认证模块)",
+      "docs/1.操作系统/登录 Linux 与 访问控制/SELinux",
+      "docs/1.操作系统/登录 Linux 与 访问控制/su 与  sudo",
+      "docs/1.操作系统/登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议",
+      "docs/1.操作系统/登录 Linux 与 访问控制/登录与登录信息工具",
+      "docs/1.操作系统/登录 Linux 与 访问控制/TCP Wrappers.md"
     ],
-    "docs/1.操作系统/5.登录 Linux 与 访问控制/Account Manager(账户管理)": [
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/Account Manager(账户管理)/_index.md",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/Account Manager(账户管理)/Account Manager(账户管理).md",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/Account Manager(账户管理)/账户配置文件.md"
+    "docs/1.操作系统/登录 Linux 与 访问控制/Account Manager(账户管理)": [
+      "docs/1.操作系统/登录 Linux 与 访问控制/Account Manager(账户管理)/_index.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/Account Manager(账户管理)/Account Manager(账户管理).md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/Account Manager(账户管理)/账户配置文件.md"
     ],
-    "docs/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)": [
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)/_index.md",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)/PAM(可插入式认证模块).md",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)/PAM配置文件.md",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)/PAM 模块详解",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/PAM(可插入式认证模块)/已弃用模块.md"
+    "docs/1.操作系统/登录 Linux 与 访问控制/PAM(可插入式认证模块)": [
+      "docs/1.操作系统/登录 Linux 与 访问控制/PAM(可插入式认证模块)/_index.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/PAM(可插入式认证模块)/PAM(可插入式认证模块).md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/PAM(可插入式认证模块)/PAM配置文件.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/PAM(可插入式认证模块)/PAM 模块详解",
+      "docs/1.操作系统/登录 Linux 与 访问控制/PAM(可插入式认证模块)/已弃用模块.md"
     ],
-    "docs/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议": [
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/_index.md",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/Secure Shell(SSH) 安全外壳协议.md",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/OpenSSH.md",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/配置详解.md",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/OpenSSH 管理工具套件.md",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/sshpass.md",
-      "docs/1.操作系统/5.登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/最佳实践.md"
+    "docs/1.操作系统/登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议": [
+      "docs/1.操作系统/登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/_index.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/Secure Shell(SSH) 安全外壳协议.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/OpenSSH.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/配置详解.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/OpenSSH 管理工具套件.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/sshpass.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/Secure Shell(SSH) 安全外壳协议/最佳实践.md"
     ],
-    "docs/1.操作系统/6.Package 管理": [
-      "docs/1.操作系统/6.Package 管理/_index.md",
-      "docs/1.操作系统/6.Package 管理/6.Package 管理.md",
-      "docs/1.操作系统/6.Package 管理/Debian 包管理.md",
-      "docs/1.操作系统/6.Package 管理/Redhat 包管理.md",
-      "docs/1.操作系统/6.Package 管理/Snap.md",
-      "docs/1.操作系统/6.Package 管理/Windows包管理.md"
+    "docs/1.操作系统/Package 管理": [
+      "docs/1.操作系统/Package 管理/_index.md",
+      "docs/1.操作系统/Package 管理/Package 管理.md",
+      "docs/1.操作系统/Package 管理/Debian 包管理.md",
+      "docs/1.操作系统/Package 管理/Redhat 包管理.md",
+      "docs/1.操作系统/Package 管理/Snap.md",
+      "docs/1.操作系统/Package 管理/Windows包管理.md"
     ],
     "docs/1.操作系统/Job": [
       "docs/1.操作系统/Job/_index.md",
       "docs/1.操作系统/Job/Job.md",
       "docs/1.操作系统/Job/Cron.md"
     ],
-    "docs/1.操作系统/X.Linux 管理": [
-      "docs/1.操作系统/X.Linux 管理/_index.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 管理.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 硬件管理工具",
-      "docs/1.操作系统/X.Linux 管理/Linux 内核管理工具",
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具",
-      "docs/1.操作系统/X.Linux 管理/Linux 网络管理工具",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理",
-      "docs/1.操作系统/X.Linux 管理/GNU C Library 管理工具.md",
-      "docs/1.操作系统/X.Linux 管理/性能评估与故障处理",
-      "docs/1.操作系统/X.Linux 管理/Linux 管理案例"
+    "docs/1.操作系统/Linux 管理": [
+      "docs/1.操作系统/Linux 管理/_index.md",
+      "docs/1.操作系统/Linux 管理/Linux 管理.md",
+      "docs/1.操作系统/Linux 管理/Linux 硬件管理工具",
+      "docs/1.操作系统/Linux 管理/Linux 内核管理工具",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具",
+      "docs/1.操作系统/Linux 管理/Linux 网络管理工具",
+      "docs/1.操作系统/Linux 管理/Linux 文本处理",
+      "docs/1.操作系统/Linux 管理/GNU C Library 管理工具.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理",
+      "docs/1.操作系统/Linux 管理/Linux 管理案例"
     ],
-    "docs/1.操作系统/X.Linux 管理/Linux 文本处理": [
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/_index.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Linux 文本处理.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/sed.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/awk.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/grep.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/jq 命令行工具.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/printf 与 echo 文本输出命令.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Windows文件换行符转Linux换行符.md"
+    "docs/1.操作系统/Linux 管理/Linux 文本处理": [
+      "docs/1.操作系统/Linux 管理/Linux 文本处理/_index.md",
+      "docs/1.操作系统/Linux 管理/Linux 文本处理/Linux 文本处理.md",
+      "docs/1.操作系统/Linux 管理/Linux 文本处理/Vim",
+      "docs/1.操作系统/Linux 管理/Linux 文本处理/sed.md",
+      "docs/1.操作系统/Linux 管理/Linux 文本处理/awk.md",
+      "docs/1.操作系统/Linux 管理/Linux 文本处理/grep.md",
+      "docs/1.操作系统/Linux 管理/Linux 文本处理/jq 命令行工具.md",
+      "docs/1.操作系统/Linux 管理/Linux 文本处理/printf 与 echo 文本输出命令.md",
+      "docs/1.操作系统/Linux 管理/Linux 文本处理/Windows文件换行符转Linux换行符.md"
     ],
-    "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim": [
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim/_index.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim/Vim.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim/Vim 黄色阴影处理.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 文本处理/Vim/Vim中复制粘贴缩进错乱问题的解决方案.md"
+    "docs/1.操作系统/Linux 管理/Linux 文本处理/Vim": [
+      "docs/1.操作系统/Linux 管理/Linux 文本处理/Vim/_index.md",
+      "docs/1.操作系统/Linux 管理/Linux 文本处理/Vim/Vim.md",
+      "docs/1.操作系统/Linux 管理/Linux 文本处理/Vim/Vim 黄色阴影处理.md",
+      "docs/1.操作系统/Linux 管理/Linux 文本处理/Vim/Vim中复制粘贴缩进错乱问题的解决方案.md"
     ],
-    "docs/1.操作系统/X.Linux 管理/Linux 硬件管理工具": [
-      "docs/1.操作系统/X.Linux 管理/Linux 硬件管理工具/_index.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 硬件管理工具/Linux 硬件管理工具.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 硬件管理工具/dmidecode.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 硬件管理工具/Memory 硬件管理工具.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 硬件管理工具/从文件中获取 Linux 硬件信息获取.md"
+    "docs/1.操作系统/Linux 管理/Linux 硬件管理工具": [
+      "docs/1.操作系统/Linux 管理/Linux 硬件管理工具/_index.md",
+      "docs/1.操作系统/Linux 管理/Linux 硬件管理工具/Linux 硬件管理工具.md",
+      "docs/1.操作系统/Linux 管理/Linux 硬件管理工具/dmidecode.md",
+      "docs/1.操作系统/Linux 管理/Linux 硬件管理工具/Memory 硬件管理工具.md",
+      "docs/1.操作系统/Linux 管理/Linux 硬件管理工具/从文件中获取 Linux 硬件信息获取.md"
     ],
-    "docs/1.操作系统/X.Linux 管理/Linux 管理案例": [
-      "docs/1.操作系统/X.Linux 管理/Linux 管理案例/_index.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 管理案例/Linux 管理案例.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 管理案例/通过 Socket 文件找到 TCP 连接信息.md"
+    "docs/1.操作系统/Linux 管理/Linux 管理案例": [
+      "docs/1.操作系统/Linux 管理/Linux 管理案例/_index.md",
+      "docs/1.操作系统/Linux 管理/Linux 管理案例/Linux 管理案例.md",
+      "docs/1.操作系统/Linux 管理/Linux 管理案例/通过 Socket 文件找到 TCP 连接信息.md"
     ],
-    "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具": [
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/_index.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/CPU 管理工具.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/Memory 管理工具.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具",
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/文件与文件系统管理工具",
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/procps 工具集.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/psmisc 工具集.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/sysstat 工具集.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/strace 工具.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/perf 性能分析工具",
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/BCC 工具集.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/bpftrace 工具.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cron.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit"
+    "docs/1.操作系统/Linux 管理/Linux 系统管理工具": [
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/_index.md",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/CPU 管理工具.md",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/Memory 管理工具.md",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/文件与文件系统管理工具",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/procps 工具集.md",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/psmisc 工具集.md",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/sysstat 工具集.md",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/strace 工具.md",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/perf 性能分析工具",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/BCC 工具集.md",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/bpftrace 工具.md",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/Cron.md",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/Cockpit"
     ],
-    "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具": [
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具/_index.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具/Cockpit.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具/Cockpit 介绍.md"
+    "docs/1.操作系统/Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具": [
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具/_index.md",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具/Cockpit.md",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/Cockpit # 基于 Web 的 Linux 服务器管理工具/Cockpit 介绍.md"
     ],
-    "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具": [
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/_index.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/磁盘与文件系统管理工具.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/文件系统管理工具.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/dd 生成指定大小的文件.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/pt-ioprofile.md"
+    "docs/1.操作系统/Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具": [
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/_index.md",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/磁盘与文件系统管理工具.md",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/文件系统管理工具.md",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/dd 生成指定大小的文件.md",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/pt-ioprofile.md"
     ],
-    "docs/1.操作系统/X.Linux 管理/Linux 网络管理工具": [
-      "docs/1.操作系统/X.Linux 管理/Linux 网络管理工具/_index.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 网络管理工具/Iproute 工具包",
-      "docs/1.操作系统/X.Linux 管理/Linux 网络管理工具/ethtool.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 网络管理工具/cURL.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 网络管理工具/wget.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 网络管理工具/Netcat.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 网络管理工具/Socat.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 网络管理工具/流量监控与处理工具.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 网络管理工具/网络链路追踪工具.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 网络管理工具/一个简易的http服务器，一条命令即可.md"
+    "docs/1.操作系统/Linux 管理/Linux 网络管理工具": [
+      "docs/1.操作系统/Linux 管理/Linux 网络管理工具/_index.md",
+      "docs/1.操作系统/Linux 管理/Linux 网络管理工具/Iproute 工具包",
+      "docs/1.操作系统/Linux 管理/Linux 网络管理工具/ethtool.md",
+      "docs/1.操作系统/Linux 管理/Linux 网络管理工具/cURL.md",
+      "docs/1.操作系统/Linux 管理/Linux 网络管理工具/wget.md",
+      "docs/1.操作系统/Linux 管理/Linux 网络管理工具/Netcat.md",
+      "docs/1.操作系统/Linux 管理/Linux 网络管理工具/Socat.md",
+      "docs/1.操作系统/Linux 管理/Linux 网络管理工具/流量监控与处理工具.md",
+      "docs/1.操作系统/Linux 管理/Linux 网络管理工具/网络链路追踪工具.md",
+      "docs/1.操作系统/Linux 管理/Linux 网络管理工具/一个简易的http服务器，一条命令即可.md"
     ],
-    "docs/1.操作系统/X.Linux 管理/Linux 网络管理工具/Iproute 工具包": [
-      "docs/1.操作系统/X.Linux 管理/Linux 网络管理工具/Iproute 工具包/_index.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 网络管理工具/Iproute 工具包/Iproute 工具包.md",
-      "docs/1.操作系统/X.Linux 管理/Linux 网络管理工具/Iproute 工具包/ip 命令行工具",
-      "docs/1.操作系统/X.Linux 管理/Linux 网络管理工具/Iproute 工具包/ss 命令行工具.md"
+    "docs/1.操作系统/Linux 管理/Linux 网络管理工具/Iproute 工具包": [
+      "docs/1.操作系统/Linux 管理/Linux 网络管理工具/Iproute 工具包/_index.md",
+      "docs/1.操作系统/Linux 管理/Linux 网络管理工具/Iproute 工具包/Iproute 工具包.md",
+      "docs/1.操作系统/Linux 管理/Linux 网络管理工具/Iproute 工具包/ip 命令行工具",
+      "docs/1.操作系统/Linux 管理/Linux 网络管理工具/Iproute 工具包/ss 命令行工具.md"
     ],
-    "docs/1.操作系统/X.Linux 管理/性能评估与故障处理": [
-      "docs/1.操作系统/X.Linux 管理/性能评估与故障处理/_index.md",
-      "docs/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估与故障处理.md",
-      "docs/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估",
-      "docs/1.操作系统/X.Linux 管理/性能评估与故障处理/CPU 性能优化",
-      "docs/1.操作系统/X.Linux 管理/性能评估与故障处理/网络性能优化",
-      "docs/1.操作系统/X.Linux 管理/性能评估与故障处理/故障处理",
-      "docs/1.操作系统/X.Linux 管理/性能评估与故障处理/故障处理案例"
+    "docs/1.操作系统/Linux 管理/性能评估与故障处理": [
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/_index.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估与故障处理.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/CPU 性能优化",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/网络性能优化",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例"
     ],
-    "docs/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估": [
-      "docs/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/_index.md",
-      "docs/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/性能评估.md",
-      "docs/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/性能测试工具",
-      "docs/1.操作系统/X.Linux 管理/性能评估与故障处理/性能评估/Redhat 优化.md"
+    "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估": [
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/_index.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能评估.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/Redhat 优化.md"
     ],
-    "docs/1.操作系统/Y.Windows 管理": [
-      "docs/1.操作系统/Y.Windows 管理/_index.md",
-      "docs/1.操作系统/Y.Windows 管理/依赖库",
-      "docs/1.操作系统/Y.Windows 管理/注册表.md",
-      "docs/1.操作系统/Y.Windows 管理/启动项.md",
-      "docs/1.操作系统/Y.Windows 管理/File System 管理",
-      "docs/1.操作系统/Y.Windows 管理/Microsoft Management Console",
-      "docs/1.操作系统/Y.Windows 管理/Windows Management Instrumentation.md",
-      "docs/1.操作系统/Y.Windows 管理/Windows 管理工具",
-      "docs/1.操作系统/Y.Windows 管理/Windows 共享.md",
-      "docs/1.操作系统/Y.Windows 管理/性能评估与故障处理",
-      "docs/1.操作系统/Y.Windows 管理/WSL.md",
-      "docs/1.操作系统/Y.Windows 管理/WSL 配置详解.md",
-      "docs/1.操作系统/Y.Windows 管理/WSA.md"
+    "docs/1.操作系统/Windows 管理": [
+      "docs/1.操作系统/Windows 管理/_index.md",
+      "docs/1.操作系统/Windows 管理/依赖库",
+      "docs/1.操作系统/Windows 管理/注册表.md",
+      "docs/1.操作系统/Windows 管理/启动项.md",
+      "docs/1.操作系统/Windows 管理/File System 管理",
+      "docs/1.操作系统/Windows 管理/Microsoft Management Console",
+      "docs/1.操作系统/Windows 管理/Windows Management Instrumentation.md",
+      "docs/1.操作系统/Windows 管理/Windows 管理工具",
+      "docs/1.操作系统/Windows 管理/Windows 共享.md",
+      "docs/1.操作系统/Windows 管理/性能评估与故障处理",
+      "docs/1.操作系统/Windows 管理/WSL.md",
+      "docs/1.操作系统/Windows 管理/WSL 配置详解.md",
+      "docs/1.操作系统/Windows 管理/WSA.md"
     ],
-    "docs/1.操作系统/Y.Windows 管理/Microsoft Management Console": [
-      "docs/1.操作系统/Y.Windows 管理/Microsoft Management Console/_index.md",
-      "docs/1.操作系统/Y.Windows 管理/Microsoft Management Console/Microsoft Management Console.md",
-      "docs/1.操作系统/Y.Windows 管理/Microsoft Management Console/任务计划程序与服务.md"
+    "docs/1.操作系统/Windows 管理/Microsoft Management Console": [
+      "docs/1.操作系统/Windows 管理/Microsoft Management Console/_index.md",
+      "docs/1.操作系统/Windows 管理/Microsoft Management Console/Microsoft Management Console.md",
+      "docs/1.操作系统/Windows 管理/Microsoft Management Console/任务计划程序与服务.md"
     ],
-    "docs/1.操作系统/Y.Windows 管理/Microsoft_Management_Console": [
-      "docs/1.操作系统/Y.Windows 管理/Microsoft_Management_Console/_index.md",
-      "docs/1.操作系统/Y.Windows 管理/Microsoft_Management_Console/Microsoft Management Console.md",
-      "docs/1.操作系统/Y.Windows 管理/Microsoft_Management_Console/任务计划程序与服务.md"
+    "docs/1.操作系统/Windows 管理/Microsoft_Management_Console": [
+      "docs/1.操作系统/Windows 管理/Microsoft_Management_Console/_index.md",
+      "docs/1.操作系统/Windows 管理/Microsoft_Management_Console/Microsoft Management Console.md",
+      "docs/1.操作系统/Windows 管理/Microsoft_Management_Console/任务计划程序与服务.md"
     ],
-    "docs/1.操作系统/Y.Windows 管理/Windows 管理工具": [
-      "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/_index.md",
-      "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/Windows 管理工具.md",
-      "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/PowerShell 内置管理工具",
-      "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/其他.md"
+    "docs/1.操作系统/Windows 管理/Windows 管理工具": [
+      "docs/1.操作系统/Windows 管理/Windows 管理工具/_index.md",
+      "docs/1.操作系统/Windows 管理/Windows 管理工具/Windows 管理工具.md",
+      "docs/1.操作系统/Windows 管理/Windows 管理工具/PowerShell 内置管理工具",
+      "docs/1.操作系统/Windows 管理/Windows 管理工具/其他.md"
     ],
-    "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/PowerShell 内置管理工具": [
-      "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/PowerShell 内置管理工具/_index.md",
-      "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/PowerShell 内置管理工具/PowerShell 内置管理工具.md",
-      "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/PowerShell 内置管理工具/Core.md",
-      "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/PowerShell 内置管理工具/Management.md",
-      "docs/1.操作系统/Y.Windows 管理/Windows 管理工具/PowerShell 内置管理工具/Security.md"
+    "docs/1.操作系统/Windows 管理/Windows 管理工具/PowerShell 内置管理工具": [
+      "docs/1.操作系统/Windows 管理/Windows 管理工具/PowerShell 内置管理工具/_index.md",
+      "docs/1.操作系统/Windows 管理/Windows 管理工具/PowerShell 内置管理工具/PowerShell 内置管理工具.md",
+      "docs/1.操作系统/Windows 管理/Windows 管理工具/PowerShell 内置管理工具/Core.md",
+      "docs/1.操作系统/Windows 管理/Windows 管理工具/PowerShell 内置管理工具/Management.md",
+      "docs/1.操作系统/Windows 管理/Windows 管理工具/PowerShell 内置管理工具/Security.md"
     ],
     "docs/1.操作系统/系统审计": [
       "docs/1.操作系统/系统审计/_index.md",
@@ -1177,6 +1178,7 @@
     "docs/2.编程": [
       "docs/2.编程/_index.md",
       "docs/2.编程/编程.md",
+      "docs/2.编程/Program.md",
       "docs/2.编程/计算机科学",
       "docs/2.编程/API",
       "docs/2.编程/低级编程语言",
@@ -1834,7 +1836,7 @@
     ],
     "docs/6.可观测性": [
       "docs/6.可观测性/_index.md",
-      "docs/6.可观测性/Observability(可观测性)",
+      "docs/6.可观测性/Observability",
       "docs/6.可观测性/OpenTelemetry.md",
       "docs/6.可观测性/日志系统",
       "docs/6.可观测性/监控系统",
@@ -2461,6 +2463,24 @@
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 环境安装与使用/package.json.md",
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 环境安装与使用/TSConfig.md",
       "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 环境安装与使用/Deno.md"
+    ],
+    "docs/6.可观测性/Observability": [
+      "docs/6.可观测性/Observability/_index.md",
+      "docs/6.可观测性/Observability/Observability.md",
+      "docs/6.可观测性/Observability/可观测性之数据模型.md",
+      "docs/6.可观测性/Observability/Exemplars.md"
+    ],
+    "docs/1.操作系统/Systemd": [
+      "docs/1.操作系统/Systemd/_index.md",
+      "docs/1.操作系统/Systemd/Systemd.md",
+      "docs/1.操作系统/Systemd/systemctl 命令行工具.md",
+      "docs/1.操作系统/Systemd/Systemd 运行流程.md",
+      "docs/1.操作系统/Systemd/Unit File"
+    ],
+    "docs/1.操作系统/Bootloader": [
+      "docs/1.操作系统/Bootloader/_index.md",
+      "docs/1.操作系统/Bootloader/Bootloader.md",
+      "docs/1.操作系统/Bootloader/启动引导.md"
     ]
   },
   "actionBarOrder": {},

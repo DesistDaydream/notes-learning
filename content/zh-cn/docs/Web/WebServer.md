@@ -8,7 +8,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [MDN，Web server](https://developer.mozilla.org/en-US/docs/Glossary/Web_server)
 > - [Wiki，Web server](https://en.wikipedia.org/wiki/Web_server)
 
@@ -21,12 +21,12 @@ weight: 20
 实现 Web server 的软/硬件
 
 - Tomcat
-- [Nginx](docs/Web/Nginx/Nginx.md)
+- [Nginx](/docs/Web/Nginx/Nginx.md)
 
 # Tomcat
 
 > 参考：
-> 
+>
 > - [官网](https://tomcat.apache.org/)
 > - [Wiki，Apache Tomcat](https://en.wikipedia.org/wiki/Apache_Tomcat)
 

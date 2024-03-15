@@ -114,7 +114,7 @@ Network Namespace 的应用场景
 
 管理 Network Namesapce 的方式：
 
-1. 通过 ip netns 命令来管理，该命令的用法详见 [Iproute 工具包](/docs/1.操作系统/X.Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/Iproute%20工具包.md) 中的 netns 子命令
+1. 通过 ip netns 命令来管理，该命令的用法详见 [Iproute 工具包](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/Iproute%20工具包.md) 中的 netns 子命令
 
 # Overlay Network 叠加网络
 

@@ -126,7 +126,7 @@ module 部分的配置用于处理 Hugo 模块的运行逻辑。
 
 **\[\[imports]]**
 
-**path**(STRING) # Hugo 指定 Hugo 要使用的的 [Go Module](docs/2.编程/高级编程语言/Go/Go%20环境安装与使用/Go%20Module.md)。值是标准的 Go 模块路径，可以是网络上的，也可以是本地的。
+**path**(STRING) # Hugo 指定 Hugo 要使用的的 [Go Module](/docs/2.编程/高级编程语言/Go/Go%20环境安装与使用/Go%20Module.md)。值是标准的 Go 模块路径，可以是网络上的，也可以是本地的。
 
 # sitemap 部分
 

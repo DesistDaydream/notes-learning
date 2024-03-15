@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> -[Socket(套接字)](/docs/1.操作系统/2.Kernel/7.Process/Inter%20Process%20Communication(进程间通信)/Socket(套接字)/Socket(套接字).md)
+> -[Socket(套接字)](/docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication(进程间通信)/Socket(套接字)/Socket(套接字).md)
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/zvw5dg/1616161399168-31d4bf21-49d1-45dc-993e-83ea35d7a7f2.jpeg)
 

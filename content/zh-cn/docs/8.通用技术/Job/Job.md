@@ -23,6 +23,6 @@ weight: 20
 
 # Job 的衍生
 
-[Cron](/docs/1.操作系统/X.Linux%20管理/Linux%20系统管理工具/Cron.md) 是类 Unix 系统中的 Job 调度工具
+[Cron](/docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/Cron.md) 是类 Unix 系统中的 Job 调度工具
 
 GitHub 的 Action 使用 Workflow(工作流) 称呼多个多个 Job 组成的任务。

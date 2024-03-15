@@ -281,7 +281,7 @@ https://www.bilibili.com/video/BV1ew411K7nB/?p=17 及后面几 P
 
 ```javascript
 //当前版本hook工具只支持Content-Type为html的自动hook  
-//下面是一个示例:这个示例演示了hook全局的cookie设置点  
+//下面是一个示例:这个示例演示了hook全局的cookie设置点
 (function() {  
     //严谨模式 检查所有错误  
     'use strict';  
@@ -300,7 +300,7 @@ https://www.bilibili.com/video/BV1ew411K7nB/?p=17 及后面几 P
         //hook get方法也就是取值的方法   
         get: function()  
         {  
-                return cookieTemp;  
+            return cookieTemp;  
         }  
     });  
 })();

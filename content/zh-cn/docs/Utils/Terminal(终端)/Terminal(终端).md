@@ -6,14 +6,14 @@ title: Terminal(终端)
 
 > 参考：
 
-这里说的 Terminal(终端) 工具是一种可以连接 [Shell](/docs/1.操作系统/4.Terminal%20与%20Shell/4.Terminal%20与%20Shell.md) 的图形话工具。
+这里说的 Terminal(终端) 工具是一种可以连接 [Shell](/docs/1.操作系统/Terminal%20与%20Shell/Terminal%20与%20Shell.md) 的图形话工具。
 
 # Terminal 增强工具
 
 ## tmux
 
 > 参考：
-> 
+>
 > - [GitHub 项目，tmux/tmux](https://github.com/tmux/tmux)
 
 **terminal multiplexer(终端多路复用，简称 tmux)**，它允许从单个屏幕创建、访问和控制多个终端。 tmux 可能会从屏幕上分离并继续在后台运行，然后再重新连接。
@@ -29,7 +29,7 @@ Xshell 没有自带的 x11 能力
 ## SecureCRT
 
 > 参考：
-> 
+>
 > - [官网](https://www.vandyke.com/products/securecrt/index.html)
 
 SecureCRT 是 VanDyke Software 开发的商业终端产品。初始发行于 1995 年 10 月 4 日，没有任何免费版可用，且界面样式非常老旧。
@@ -37,7 +37,7 @@ SecureCRT 是 VanDyke Software 开发的商业终端产品。初始发行于 199
 ## MobaXterm
 
 > 参考：
-> 
+>
 > - [官网](https://mobaxterm.mobatek.net/)
 
 可以转发 x11
@@ -61,7 +61,7 @@ SecureCRT 是 VanDyke Software 开发的商业终端产品。初始发行于 199
 ## WindTerm
 
 > 参考：
-> 
+>
 > - [GitHub 项目，kingToolbox/WindTerm](https://github.com/kingToolbox/WindTerm)
 > - [公众号-k8s 技术圈，C 语言编写的超好用的新一代 SSH 终端 - WindTerm](https://mp.weixin.qq.com/s/2KJi7frtKYExkyBuM5K2hw)
 
@@ -83,13 +83,13 @@ SecureCRT 是 VanDyke Software 开发的商业终端产品。初始发行于 199
 ## Tabby
 
 > 参考：
-> 
+>
 > - [GitHub 项目，Eugeny/tabby](https://github.com/Eugeny/tabby)
 
 ## Warp
 
 > 参考：
-> 
+>
 > - [GitHub 项目，warpdotdev/Warp](https://github.com/warpdotdev/Warp)
 > - [官网](https://www.warp.dev/)
 

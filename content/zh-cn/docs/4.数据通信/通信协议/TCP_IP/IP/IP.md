@@ -93,7 +93,7 @@ IPv4 地址的这 32 bit 可以分为两部分
 
 # IPv4 Datagram 结构
 
-详见 [IP Header](docs/4.数据通信/通信协议/TCP_IP/IP/IP%20Header.md)
+详见 [IP Header](/docs/4.数据通信/通信协议/TCP_IP/IP/IP%20Header.md)
 
 # IPv4 Fragment
 

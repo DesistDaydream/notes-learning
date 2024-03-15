@@ -5,7 +5,7 @@ title: PostgreSQL
 # 概述
 
 > 参考：
-> 
+>
 > - [官网](https://www.postgresql.org/)
 > - [PostgreSQL 新手入门-阮一峰](http://www.ruanyifeng.com/blog/2013/12/getting_started_with_postgresql.html)
 
@@ -214,4 +214,4 @@ psql 命令存在简写形式。如果当前 Linux 系统用户，同时也是 P
 
 
 
-[数据库管理工具](docs/5.数据存储/数据管理工具/数据库管理工具.md)
+[数据库管理工具](/docs/5.数据存储/数据管理工具/数据库管理工具.md)
