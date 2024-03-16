@@ -21,7 +21,7 @@ weight: 1
 > - [Wiki，GNU Core Utilies](https://en.wikipedia.org/wiki/GNU_Core_Utilities)
 > - [官方文档](https://www.gnu.org/software/coreutils/manual/)
 
-GNU Core Utilities 是 GNU 操作系统的基本文件、Shell、文本操作的实用程序。同时，也是现在绝大部分 Linux 发行版内置的实用程序。
+GNU Core Utilities 是 GNU/Linux 操作系统的基本文件、Shell、文本操作的实用程序。同时，也是现在绝大部分 Linux 发行版内置的实用程序。
 
 Coreutils 通常可以通过各种 Linux 发行版的包管理器直接安装。
 
@@ -63,13 +63,9 @@ Description-md5: d0d975dec3625409d24be1238cede238
 Task: minimal
 ```
 
-这个包中，通常包含如下应用程序
+这个包中包含的程序可以在上面的 Specifically, this package includes 部分看到。
 
-```bash
-arch base64 basename cat chcon chgrp chmod chown chroot cksum comm cp  csplit cut date dd df dir dircolors dirname du echo env expand expr  factor false flock fmt fold groups head hostid id install join link ln  logname ls md5sum mkdir mkfifo mknod mktemp mv nice nl nohup nproc numfmt  od paste pathchk pinky pr printenv printf ptx pwd readlink realpath rm  rmdir runcon sha*sum seq shred sleep sort split stat stty sum sync tac  tail tee test timeout touch tr true truncate tsort tty uname unexpand  uniq unlink users vdir wc who whoami yes
-```
-
-可以发现，这些命令就是我们日常经常使用那些~
+这些命令就是我们日常经常使用那些~
 
 # Util-linux
 

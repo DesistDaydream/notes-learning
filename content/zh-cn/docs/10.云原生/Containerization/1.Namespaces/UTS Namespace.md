@@ -8,27 +8,31 @@ title: UTS Namespace
 
 例如，使用 unshare 命令(较新版本 Linux 内核还支持 nscreate 命令)创建一个新的 uts namespace：
 
-    # -u或--uts表示创建一个uts namespace
-    # 这个namespace中运行/bin/bash程序
-    $ hostname
-    longshuai-vm      # 当前root namespace的主机名为longshuai-vm
-    $ sudo unshare -u /bin/bash
-    root@longshuai-vm:/home/longshuai#   # 进入了新的namespace中的shell
-    # 其主机名初始时也是longshuai-vm，
-    # 其拷贝自上级namespace资源
+```bash
+# -u或--uts表示创建一个uts namespace
+# 这个namespace中运行/bin/bash程序
+$ hostname
+longshuai-vm      # 当前root namespace的主机名为longshuai-vm
+$ sudo unshare -u /bin/bash
+root@longshuai-vm:/home/longshuai#   # 进入了新的namespace中的shell
+# 其主机名初始时也是longshuai-vm，
+# 其拷贝自上级namespace资源
+```
 
 上面指定运行的是/bin/bash 程序，这会进入交互式模式，当执行 exit 时，bash 退出，回到当前的 namespace 中。也可以指定在 namespace 中运行其他程序，例如 unshare -u sleep 3 表示在 uts namespace 中睡眠 3 秒后退出并回到当前 namespace。
 
 因为是 uts namespace，所以可在此 namespace 中修改主机名：
 
-    # 修改该namespace的主机名为ns1
-    # 修改后会立即生效，但不会显示在当前Shell提示符下
-    # 需重新加载Shell环境
-    root@longshuai-vm:/home/longshuai# hostname ns1
-    root@longshuai-vm:/home/longshuai# hostname
-    ns1
-    root@longshuai-vm:/home/longshuai# exec $SHELL
-    root@ns1:/home/longshuai#
+```bash
+# 修改该namespace的主机名为ns1
+# 修改后会立即生效，但不会显示在当前Shell提示符下
+# 需重新加载Shell环境
+root@longshuai-vm:/home/longshuai# hostname ns1
+root@longshuai-vm:/home/longshuai# hostname
+ns1
+root@longshuai-vm:/home/longshuai# exec $SHELL
+root@ns1:/home/longshuai#
+```
 
 namespace 中修改的主机名不会直接修改主机名配置文件(如/etc/hostname)，而是修改内核属性/proc/sys/kernel/hostname：
 

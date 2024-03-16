@@ -24,7 +24,7 @@ $ sudo unshare --pid --mount --fork /bin/bash
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kvsekb/1616122886383-f38feb75-27c3-4dcb-87ab-03d41a12597c.png)
 
-看样子 ps 命令显示的 PID 还是旧 namespace 中的编号，而 $$ 为 1 说明当前进程已经被认为是该 PID namespace 中的 1 号进程了。再看看 1 号进程的详细信息：/sbin/init，这是系统的 init 进程，这一切看起来实在是太乱了。
+看样子 ps 命令显示的 PID 还是旧 namespace 中的编号，而 `$$` 为 1 说明当前进程已经被认为是该 PID namespace 中的 1 号进程了。再看看 1 号进程的详细信息：/sbin/init，这是系统的 init 进程，这一切看起来实在是太乱了。
 
 造成混乱的原因是当前进程没有正确的挂载 /proc 文件系统，由于我们新的 mount namespace 的挂载信息是从老的 namespace 拷贝过来的，所以这里看到的还是老 namespace 里面的进程号为 1 的信息。执行下面的命令挂载 /proc 文件系统：
 
@@ -46,21 +46,18 @@ $ sudo unshare --pid --mount-proc --fork /bin/bash
 
 在前面的演示中我们为 unshare 命令添加了 --fork /bin/bash 参数：
 
-    sudo unshare --pid --mount-proc --fork /bin/bash
-
-1
-Plain Text
+```bash
+sudo unshare --pid --mount-proc --fork /bin/bash
+```
 
 --fork 是为了让 unshare 进程 fork 一个新的进程出来，然后再用 /bin/bash 替换掉新的进程中执行的命令。需要这么做是由于 PID namespace 本身的特点导致的。进程所属的 PID namespace 在它创建的时候就确定了，不能更改，所以调用 unshare 和 nsenter 等命令后，原进程还是属于老的 PID namespace，新 fork 出来的进程才属于新的 PID namespace。
 
 我们在一个 shell 中执行下面的命令：
 
-    echo $$
-    sudo unshare --pid --mount-proc --fork /bin/bash
-
-1
-2
-Shell
+```bash
+echo $$
+sudo unshare --pid --mount-proc --fork /bin/bash
+```
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kvsekb/1616122886376-06b3b42c-1259-4ee9-987b-4aa84f6902c9.png)
 
@@ -174,23 +171,19 @@ $ kill 51
 
 首先，利用 unshare、nohup 和 sleep 命令组合，创建出父子进程。下面的命令 fork 出一个子进程并在后台 sleep 一小时：
 
-    unshare --fork nohup sleep 3600&
-    pstree -p
-
-1
-2
-Shell
+```bash
+unshare --fork nohup sleep 3600&
+pstree -p
+```
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kvsekb/1616122886445-7ba2a5b3-2ddd-4bb3-8e05-1f8681fafc75.png)
 
 然后我们 kill 掉进程 unshare(34)：
 
-    kill 34
-    pstree -p
-
-1
-2
-Shell
+```bash
+kill 34
+pstree -p
+```
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kvsekb/1616122886453-307dde0f-fbca-4fea-ac99-9bd9c9c58a38.png)
 
@@ -206,25 +199,19 @@ Shell
 
 先检查当前的进程树：
 
-    $ pstree -p
-    bash(1)───
-    sudo(12)───unshare(13)───bash(14)───
-    sudo(25)───unshare(26)───bash(27)───bash(79)───bash(89)───unshare(105)───sleep(106)
-
-1
-2
-3
-4
-Shell
+```bash
+$ pstree -p
+bash(1)───
+sudo(12)───unshare(13)───bash(14)───
+sudo(25)───unshare(26)───bash(27)───bash(79)───bash(89)───unshare(105)───sleep(106)
+```
 
 我们先 kill 掉 sleep 进程的父进程 unshare(105)：
 
-    kill 105
-    pstree -p
-
-1
-2
-Shell
+```bash
+kill 105
+pstree -p
+```
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kvsekb/1616122886466-1722c940-d36c-4d31-8fb8-6152fb71f100.png)
 
@@ -232,12 +219,10 @@ Shell
 
 接下来 kill 掉第二个 PID namespace 中的 init 进程，即这里的 bash(14)：
 
-    kill -SIGKILL 14
-    pstree -p
-
-1
-2
-Shell
+```bash
+kill -SIGKILL 14
+pstree -p
+```
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kvsekb/1616122886430-1bc975f7-e52c-4e9d-b045-ff2ab5584bf0.png)
 

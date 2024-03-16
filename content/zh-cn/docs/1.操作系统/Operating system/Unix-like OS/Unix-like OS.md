@@ -1,10 +1,14 @@
 ---
-title: 类 Unix 操作系统
+title: Unix-like OS
+linkTitle: Unix-like OS
+date: 2024-03-16T19:13
+weight: 1
 ---
 
 # 概述
 
 > 参考：
+> 
 > - [Wiki，Unix](https://en.wikipedia.org/wiki/Unix)
 > - [Manual(手册)，os-release](https://man7.org/linux/man-pages/man5/os-release.5.html)
 > - [DistroWatch](https://distrowatch.com/)(类 UNIX 系统的资讯网站)
@@ -72,9 +76,11 @@ UBUNTU_CODENAME=focal
 ## 安装镜像
 
 CentOS 的 iso 中包含了所有基础环境所需的软件包，但是 iso 文件过大，7 是 4G 多，8 有 9G 多
+
 Ubuntu 的 iso 中只有一点软件包，虚拟化环境的都没有，但是 iso 文件很小，只有不到 1G
 
 ## 网络配置
 
 CentOS 对 NetworkManager 改动较大
+
 Ubuntu 对 NetworkManager 改动几乎没有

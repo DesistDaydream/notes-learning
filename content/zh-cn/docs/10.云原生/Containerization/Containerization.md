@@ -13,8 +13,10 @@ weight: 1
 > - [Wiki，OS-level virtualization](https://en.wikipedia.org/wiki/OS-level_virtualization)
 
 **Container(容器)** 是一种基础工具；泛指任何可以用于容纳其它物品的工具，可以部分或完全封闭，被用于容纳、储存、运输物品。物体可以被放置在容器中，而容器则可以保护内容物。人类使用容器的历史至少有十万年，甚至可能有数百万年的历史。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lei5gl/1616122918518-107de7cd-51b4-4427-8281-8e81f7c2383d.png)
-自 1979 年，Unix 版本 7 引用 Chroot Jail 以及 Chroot 系统调用开始，直到 2013 年开源出的 Docker，2014 年开源出来的 Kubernetes，直到现在的云原生生态的火热。容器技术已经逐步成为主流的基础技术之一。
+
+自 1979 年，Unix 版本 7 引用 Chroot Jail 以及 [Chroot](/docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/Chroot.md) 系统调用开始，直到 2013 年开源出的 Docker，2014 年开源出来的 Kubernetes，直到现在的云原生生态的火热。容器技术已经逐步成为主流的基础技术之一。
 
 ## 一、什么是容器
 

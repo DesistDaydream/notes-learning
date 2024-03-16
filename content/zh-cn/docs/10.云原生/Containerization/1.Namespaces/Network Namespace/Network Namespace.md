@@ -32,4 +32,4 @@ Veth Pair 设备的特点是：它被创建出来后，总是以两张虚拟网�
 
 # Network Namespace 介绍
 
-grep -l xxxx /proc/\*/mountinfo # 可以查到哪个进程在使用指定的 netns。XXX 为 ip netns 命令查看到的 netns
+`grep -l xxxx /proc/*/mountinfo` # 可以查到哪个进程在使用指定的 netns。XXX 为 ip netns 命令查看到的 netns

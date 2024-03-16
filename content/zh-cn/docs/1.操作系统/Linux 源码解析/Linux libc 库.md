@@ -1,5 +1,8 @@
 ---
 title: Linux libc 库
+linkTitle: Linux libc 库
+date: 2024-03-15T21:47
+weight: 2
 ---
 
 # 概述

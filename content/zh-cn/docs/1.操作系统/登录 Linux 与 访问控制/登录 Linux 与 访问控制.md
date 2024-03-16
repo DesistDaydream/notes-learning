@@ -62,6 +62,7 @@ Linux 操作系统是一个多用户操作系统，所以除了 **Terminal(终�
 #### login 关联文件与配置
 
 **/etc/login.defs** # shadow 与 password 套件的配置文件。
+
 **/etc/pam.d/login** #
 
 ## 通过远程的方式来登陆 Linux 系统
@@ -70,10 +71,12 @@ Linux 操作系统是一个多用户操作系统，所以除了 **Terminal(终�
 
 详见：[Secure Shell(SSH) 安全外壳协议](/docs/1.操作系统/登录%20Linux%20与%20访问控制/Secure%20Shell(SSH)%20安全外壳协议/Secure%20Shell(SSH)%20安全外壳协议.md)
 
-    root       981     1  0 Jul08 ?        Ss     0:00 /usr/sbin/sshd -D
-    root      1947   981  0 09:05 ?        Ss     0:00  \_ sshd: root@pts/0
-    root      1949  1947  1 09:05 pts/0    Ss     0:00      \_ -bash
-    root      1970  1949  0 09:05 pts/0    R+     0:00          \_ ps -ef f
+```bash
+root       981     1  0 Jul08 ?        Ss     0:00 /usr/sbin/sshd -D
+root      1947   981  0 09:05 ?        Ss     0:00  \_ sshd: root@pts/0
+root      1949  1947  1 09:05 pts/0    Ss     0:00      \_ -bash
+root      1970  1949  0 09:05 pts/0    R+     0:00          \_ ps -ef f
+```
 
 OpenSSH 会为用户分配一个 Pseudoterminal(伪终端，即 pts) 以便用户可以与操作系统进行交互。
 
@@ -85,7 +88,7 @@ OpenSSH 会为用户分配一个 Pseudoterminal(伪终端，即 pts) 以便用�
 
 > 参考：
 >
-> - [Wiki:MOTD](<https://en.wikipedia.org/wiki/Motd_(Unix)>)
+> - [Wiki:MOTD](https://en.wikipedia.org/wiki/Motd_(Unix))
 > - [Manual(手册)，MOTD](https://man7.org/linux/man-pages/man5/motd.5.html)
 
 **Message of the day(每日消息，简称 MOTD)** 是一种比向所有用户发送一个邮件更有效的发送共同的信息的方式

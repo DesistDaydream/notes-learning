@@ -95,8 +95,9 @@ Kubernetes
 
 Node exporter
 
-- 8919
-- 16098 新的，代替 8919
+- 1860 # https://github.com/rfmoz/grafana-dashboards
+- 8919 # 国人出的，22 年4月12日之后不维护了
+  - 16098 新的，代替 8919
 
 Nginx
 

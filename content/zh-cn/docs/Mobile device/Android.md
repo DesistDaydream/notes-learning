@@ -11,7 +11,7 @@ weight: 2
 >
 > - [官网](https://www.android.com/)
 
-Android 是一种 [类 Unix 操作系统](/docs/1.操作系统/操作系统/类%20Unix%20操作系统/类%20Unix%20操作系统.md)，主要设计用于触摸屏移动设备，如智能手机和平板电脑。Android由一个名为开放手持设备联盟的开发者联盟开发，但其最广泛使用的版本主要由 Google 开发。它于2007年11月公布，第一款商用 Android 设备 HTC Dream 于2008年9月发布。
+Android 是一种 [Unix-like OS](docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md)，主要设计用于触摸屏移动设备，如智能手机和平板电脑。Android由一个名为开放手持设备联盟的开发者联盟开发，但其最广泛使用的版本主要由 Google 开发。它于2007年11月公布，第一款商用 Android 设备 HTC Dream 于2008年9月发布。
 
 **Device(设备)** 通常指 手机、平板、手表、等等，甚至可以是安卓 Studio 模拟的设备。
 

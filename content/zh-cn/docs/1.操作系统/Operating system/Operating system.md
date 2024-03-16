@@ -1,14 +1,17 @@
 ---
-title: 操作系统
-linkTitle: 操作系统
-date: 2023-10-04T12:17
+title: Operating system
+linkTitle: Operating system
+date: 2024-03-16T19:37
 weight: 1
 ---
 
 # 概述
 
 > 参考：
->
+> 
+> - [Wiki，Operating_system](https://en.wikipedia.org/wiki/Operating_system)
+
+**Operating system(操作系统，简称 OS)** 也是一种软件，用来管理计算机硬件和其他以及自身软件资源的。
 
 # Time Sharing System(分时系统)
 

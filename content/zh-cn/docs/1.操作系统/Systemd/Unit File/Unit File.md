@@ -188,7 +188,7 @@ WantedBy=multi-user.target
 - 我们可以通过 systemctl set-default UNIT 命令来设定系统启动时，默认启动的一组 Unit
 # Unit File 加载示例
 
-可以通过 [系统启动流程](/docs/1.操作系统/操作系统/类%20Unix%20操作系统/系统启动流程.md) 看出来 Systemd 是如何加载 Unit File 的
+可以通过 [系统启动流程](docs/1.操作系统/Operating%20system/Unix-like%20OS/系统启动流程.md) 看出来 Systemd 是如何加载 Unit File 的
 
 # 分类
 

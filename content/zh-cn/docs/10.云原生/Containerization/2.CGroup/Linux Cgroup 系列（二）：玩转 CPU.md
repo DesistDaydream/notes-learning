@@ -10,58 +10,62 @@ title: Linux Cgroup 系列（二）：玩转 CPU
 
 有两种方法来查看系统的当前 cgroup 信息。第一种方法是通过 `systemd-cgls` 命令来查看，它会返回系统的整体 cgroup 层级，cgroup 树的最高层由 `slice` 构成，如下所示：
 
-    $ systemd-cgls --no-page
-    ├─1 /usr/lib/systemd/systemd --switched-root --system --deserialize 22
-    ├─user.slice
-    │ ├─user-1000.slice
-    │ │ └─session-11.scope
-    │ │   ├─9507 sshd: tom [priv]
-    │ │   ├─9509 sshd: tom@pts/3
-    │ │   └─9510 -bash
-    │ └─user-0.slice
-    │   └─session-1.scope
-    │     ├─ 6239 sshd: root@pts/0
-    │     ├─ 6241 -zsh
-    │     └─11537 systemd-cgls --no-page
-    └─system.slice
-      ├─rsyslog.service
-      │ └─5831 /usr/sbin/rsyslogd -n
-      ├─sshd.service
-      │ └─5828 /usr/sbin/sshd -D
-      ├─tuned.service
-      │ └─5827 /usr/bin/python2 -Es /usr/sbin/tuned -l -P
-      ├─crond.service
-      │ └─5546 /usr/sbin/crond -n
+```ba
+$ systemd-cgls --no-page
+├─1 /usr/lib/systemd/systemd --switched-root --system --deserialize 22
+├─user.slice
+│ ├─user-1000.slice
+│ │ └─session-11.scope
+│ │   ├─9507 sshd: tom [priv]
+│ │   ├─9509 sshd: tom@pts/3
+│ │   └─9510 -bash
+│ └─user-0.slice
+│   └─session-1.scope
+│     ├─ 6239 sshd: root@pts/0
+│     ├─ 6241 -zsh
+│     └─11537 systemd-cgls --no-page
+└─system.slice
+  ├─rsyslog.service
+  │ └─5831 /usr/sbin/rsyslogd -n
+  ├─sshd.service
+  │ └─5828 /usr/sbin/sshd -D
+  ├─tuned.service
+  │ └─5827 /usr/bin/python2 -Es /usr/sbin/tuned -l -P
+  ├─crond.service
+  │ └─5546 /usr/sbin/crond -n
+```
 
 可以看到系统 cgroup 层级的最高层由 `user.slice` 和 `system.slice` 组成。因为系统中没有运行虚拟机和容器，所以没有 `machine.slice`，所以当 CPU 繁忙时，`user.slice` 和 `system.slice` 会各获得 `50%` 的 CPU 使用时间。user.slice 下面有两个子 slice：`user-1000.slice` 和 `user-0.slice`，每个子 slice 都用 User ID (`UID`) 来命名，因此我们很容易识别出哪个 slice 属于哪个用户。例如：从上面的输出信息中可以看出 `user-1000.slice` 属于用户 tom，`user-0.slice` 属于用户 root。`systemd-cgls` 命令提供的只是 cgroup 层级的静态信息快照，要想查看 cgroup 层级的动态信息，可以通过 `systemd-cgtop` 命令查看：
 
-    $ systemd-cgtop
-    Path                                                                                                                                       Tasks   %CPU   Memory  Input/s Output/s
-    /                                                                                                                                            161    1.2   161.0M        -        -
-    /system.slice                                                                                                                                  -    0.1        -        -        -
-    /system.slice/vmtoolsd.service                                                                                                                 1    0.1        -        -        -
-    /system.slice/tuned.service                                                                                                                    1    0.0        -        -        -
-    /system.slice/rsyslog.service                                                                                                                  1    0.0        -        -        -
-    /system.slice/auditd.service                                                                                                                   1      -        -        -        -
-    /system.slice/chronyd.service                                                                                                                  1      -        -        -        -
-    /system.slice/crond.service                                                                                                                    1      -        -        -        -
-    /system.slice/dbus.service                                                                                                                     1      -        -        -        -
-    /system.slice/gssproxy.service                                                                                                                 1      -        -        -        -
-    /system.slice/lvm2-lvmetad.service                                                                                                             1      -        -        -        -
-    /system.slice/network.service                                                                                                                  1      -        -        -        -
-    /system.slice/polkit.service                                                                                                                   1      -        -        -        -
-    /system.slice/rpcbind.service                                                                                                                  1      -        -        -        -
-    /system.slice/sshd.service                                                                                                                     1      -        -        -        -
-    /system.slice/system-getty.slice/getty@tty1.service                                                                                            1      -        -        -        -
-    /system.slice/systemd-journald.service                                                                                                         1      -        -        -        -
-    /system.slice/systemd-logind.service                                                                                                           1      -        -        -        -
-    /system.slice/systemd-udevd.service                                                                                                            1      -        -        -        -
-    /system.slice/vgauthd.service                                                                                                                  1      -        -        -        -
-    /user.slice                                                                                                                                    3      -        -        -        -
-    /user.slice/user-0.slice/session-1.scope                                                                                                       3      -        -        -        -
-    /user.slice/user-1000.slice                                                                                                                    3      -        -        -        -
-    /user.slice/user-1000.slice/session-11.scope                                                                                                   3      -        -        -        -
-    /user.slice/user-1001.slice/session-8.scope                                                                                                    3      -        -        -        -
+```bash
+$ systemd-cgtop
+Path                                                                                                                                       Tasks   %CPU   Memory  Input/s Output/s
+/                                                                                                                                            161    1.2   161.0M        -        -
+/system.slice                                                                                                                                  -    0.1        -        -        -
+/system.slice/vmtoolsd.service                                                                                                                 1    0.1        -        -        -
+/system.slice/tuned.service                                                                                                                    1    0.0        -        -        -
+/system.slice/rsyslog.service                                                                                                                  1    0.0        -        -        -
+/system.slice/auditd.service                                                                                                                   1      -        -        -        -
+/system.slice/chronyd.service                                                                                                                  1      -        -        -        -
+/system.slice/crond.service                                                                                                                    1      -        -        -        -
+/system.slice/dbus.service                                                                                                                     1      -        -        -        -
+/system.slice/gssproxy.service                                                                                                                 1      -        -        -        -
+/system.slice/lvm2-lvmetad.service                                                                                                             1      -        -        -        -
+/system.slice/network.service                                                                                                                  1      -        -        -        -
+/system.slice/polkit.service                                                                                                                   1      -        -        -        -
+/system.slice/rpcbind.service                                                                                                                  1      -        -        -        -
+/system.slice/sshd.service                                                                                                                     1      -        -        -        -
+/system.slice/system-getty.slice/getty@tty1.service                                                                                            1      -        -        -        -
+/system.slice/systemd-journald.service                                                                                                         1      -        -        -        -
+/system.slice/systemd-logind.service                                                                                                           1      -        -        -        -
+/system.slice/systemd-udevd.service                                                                                                            1      -        -        -        -
+/system.slice/vgauthd.service                                                                                                                  1      -        -        -        -
+/user.slice                                                                                                                                    3      -        -        -        -
+/user.slice/user-0.slice/session-1.scope                                                                                                       3      -        -        -        -
+/user.slice/user-1000.slice                                                                                                                    3      -        -        -        -
+/user.slice/user-1000.slice/session-11.scope                                                                                                   3      -        -        -        -
+/user.slice/user-1001.slice/session-8.scope                                                                                                    3      -        -        -        -
+```
 
 systemd-cgtop 提供的统计数据和控制选项与 `top` 命令类似，但该命令只显示那些开启了资源统计功能的 service 和 slice。比如：如果你想开启 `sshd.service` 的资源统计功能，可以进行如下操作：
 
