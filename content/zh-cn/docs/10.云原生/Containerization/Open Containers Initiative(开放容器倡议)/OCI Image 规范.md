@@ -36,22 +36,22 @@ Future versions of this specification may include the following OPTIONAL feature
 
 OCI Image 的所有组件其实都是一个个的文件，这些文件的名称都是其内容执行 sha256 后的值。每个文件都有一个 [**OCI Image Media Types**](https://github.com/opencontainers/image-spec/blob/master/media-types.md)**(OCI 镜像媒体类型)**，在官方文档中详细介绍了规范中各个组件的媒体类型
 
-### Media Types(媒体类型) # OCI Image 组件文件的打包格式
+### Media Types(媒体类型) - OCI Image 组件文件的打包格式
 
 OCI Image 中的每个组件都会打包成一个文件。做过 web 开发的程序员对 media type 应该比较熟悉，简单点说，就是当客户端用 http 协议下载一个文件的时候，需要在 http 的首部带上 Accept 字段，告诉服务器端它支持哪些类型的文件，服务器返回文件的时候，需要在 http 的首部带上 Content-Type 字段，告诉客户端返回文件的类型，如 Accept: text/html,application/xml 和 Content-Type: text/html
 
 **OCI Media Type 文件类型:**
 
-| Media Type                                                   | 说明                                  |
-| ------------------------------------------------------------ | ------------------------------------- |
-| application/vnd.oci.descriptor.v1+json                       | Content Descriptor 内容描述文件       |
-| application/vnd.oci.layout.header.v1+json                    | OCI Layout 布局描述文件               |
-| application/vnd.oci.image.index.v1+json                      | Image Index 高层次的镜像元信息文件    |
-| application/vnd.oci.image.manifest.v1+json                   | Image Manifest 镜像元信息文件         |
-| application/vnd.oci.image.config.v1+json                     | Image Config 镜像配置文件             |
-| application/vnd.oci.image.layer.v1.tar                       | Image Layer 镜像层文件                |
-| application/vnd.oci.image.layer.v1.tar+gzip                  | Image Layer 镜像层文件 gzip 压缩      |
-| application/vnd.oci.image.layer.nondistributable.v1.tar      | Image Layer 非内容寻址管理            |
+| Media Type                                                   | 说明                           |
+| ------------------------------------------------------------ | ---------------------------- |
+| application/vnd.oci.descriptor.v1+json                       | Content Descriptor 内容描述文件    |
+| application/vnd.oci.layout.header.v1+json                    | OCI Layout 布局描述文件            |
+| application/vnd.oci.image.index.v1+json                      | Image Index 高层次的镜像元信息文件      |
+| application/vnd.oci.image.manifest.v1+json                   | Image Manifest 镜像元信息文件       |
+| application/vnd.oci.image.config.v1+json                     | Image Config 镜像配置文件          |
+| application/vnd.oci.image.layer.v1.tar                       | Image Layer 镜像层文件            |
+| application/vnd.oci.image.layer.v1.tar+gzip                  | Image Layer 镜像层文件 gzip 压缩    |
+| application/vnd.oci.image.layer.nondistributable.v1.tar      | Image Layer 非内容寻址管理          |
 | application/vnd.oci.image.layer.nondistributable.v1.tar+gzip | Image Layer, gzip 压缩 非内容寻址管理 |
 
 # Image Layout

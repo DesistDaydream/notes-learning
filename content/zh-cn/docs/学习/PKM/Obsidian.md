@@ -38,11 +38,13 @@ then you can drag as you like
 >
 > - [官方文档，Obsidian 如何存储数据](https://publish.obsidian.md/help-zh/%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/Obsidian+%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE)
 
-Obsidian 本身的运行时数据保存路径
+Obsidian 本身的运行时数据保存路径（我们假定设为 `${ObsidianData}`）
 
 - **~/.config/Obsidian/** # Linux 系统
 - **%APPDATA%/Obsidian/** # Windows 系统
 
-# 插件
+**${REPO}/.obsidian/** # 特定于每个仓的配置的保存路径。在每个仓库的根目录下的 .obsidian/ 目录中。
+
+- **workspaces.json** # 工作区布局的配置文件。通常在每个仓库各自 .obsidian/ 目录下。
 
 [https://www.bilibili.com/video/BV1Dy4y1375P](https://www.bilibili.com/video/BV1Dy4y1375P)

@@ -129,9 +129,9 @@ Try '/usr/bin/grpcurl -help' for more details.
 下面是在 docker 环境下 bundle 位置的示例：
 
 ```shell
-[root@lichenhao containerd]# pwd
+]# pwd
 /run/containerd
-[root@lichenhao containerd]# tree
+]# tree
 .
 ├── containerd.sock
 ├── io.containerd.runtime.v1.linux
@@ -147,9 +147,9 @@ Try '/usr/bin/grpcurl -help' for more details.
 而 rootfs 实际在另外一个目录，通过 config.json 中可以看到
 
 ```shell
-[root@lichenhao 28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10]# pwd
+28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10]# pwd
 /run/containerd/io.containerd.runtime.v1.linux/moby/28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10
-[root@lichenhao 28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10]# cat config.json | jq . | more
+28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10]# cat config.json | jq . | more
 .....
   "root": {
     "path": "/var/lib/docker/overlay2/d976eddf7575a3464486d92539229146f3df66080a3265195791ebb0d24b24dd/merged"

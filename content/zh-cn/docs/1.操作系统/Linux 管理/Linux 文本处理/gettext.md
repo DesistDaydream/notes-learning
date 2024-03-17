@@ -13,14 +13,16 @@ weight: 20
 
 gettext 是 GNU 旗下的一组工具集合，提供了一个框架以帮助其他 GNU 包生成多语言消息。
 
-# 安装 gettext
-
-一般的发行版都默认自带 gettext 工具集，如果没有，使用包管理器安装 gettext 包即可，通常包含如下几个工具：
+通常包含如下几个工具：
 
 - envsubst
 - gettext
 - gettext.sh
 - ngettext
+
+# 安装 gettext
+
+一般的发行版都默认自带 gettext 工具集，如果没有，使用包管理器安装 gettext 包即可
 
 Ubuntu
 
@@ -64,3 +66,8 @@ API_URL =
 ```
 
 也可以使用 `envsubst '${HOME}' < test.txt > test1.txt` 这种方式只替换 `${HOME}` 变量，多个变量以 `,` 分隔。
+
+## Syntax(语法)
+
+**envsubst \[OPTIONS] \[ShellFormat]**
+

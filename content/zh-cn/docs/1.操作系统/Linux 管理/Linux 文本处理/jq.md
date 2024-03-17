@@ -165,7 +165,7 @@ $ jq '.foo.bar = "new value"' file.json
 这会将名为“foo”的对象中的“bar”字段的值替换为“new value”。
 
 ```
-$ jq -i '.foo.bar = "new value"' file.json
+$ jq '.foo.bar = "new value"' > /tmp/jq_result.json && /usr/bin/cp /tmp/js_result.json file.json
 ```
 
 这将在原始JSON文件中直接替换“foo”对象的“bar”字段的值为“new value”。

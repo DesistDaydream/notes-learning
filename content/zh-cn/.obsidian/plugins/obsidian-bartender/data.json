@@ -409,6 +409,7 @@
     "docs/1.操作系统/Linux 管理": [
       "docs/1.操作系统/Linux 管理/_index.md",
       "docs/1.操作系统/Linux 管理/Linux 管理.md",
+      "docs/1.操作系统/Linux 管理/Util-linux Utilities.md",
       "docs/1.操作系统/Linux 管理/Linux 硬件管理工具",
       "docs/1.操作系统/Linux 管理/Linux 内核管理工具",
       "docs/1.操作系统/Linux 管理/Linux 系统管理工具",

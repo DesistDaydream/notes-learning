@@ -118,7 +118,7 @@ goharbor/harbor-registryctl:v1.9.3                      registryctl
 goharbor/registry-photon:v2.7.1-patch-2819-2553-v1.9.3  registry
 ```
 
-# wc # 行数统计
+# wc - 行数统计
 
 **wc\[OPTIONS] FILE**
 OPTIONS
@@ -128,7 +128,7 @@ OPTIONS
 - -w # 统计单词数
 - -c # 统计字节
 
-# tr # 转换或删除字符
+# tr - 转换或删除字符
 
 转换，压缩和/或删除标准输入中的字符，写入标准输出。
 
@@ -144,12 +144,12 @@ OPTIONS
 EXAMPLE
 
 - 把 echo 输出内容的所有大写字母转换成小写字母
-  - echo "HELLO WORLD" | tr 'A-Z' 'a-z'
+  - `echo "HELLO WORLD" | tr 'A-Z' 'a-z'`
 - 删除 JoinNodeCMD 变量中的 \r 的换行符。
-  - echo ${JoinNodeCMD} | tr -d "\r"
+  - `echo ${JoinNodeCMD} | tr -d "\r"`
 - 删除结果中的 `"` 双引号
-  - docker inspect snmp-exporter | jq .\[0].GraphDriver.Data.MergedDir | tr -d """
-
+  - `docker inspect snmp-exporter | jq .[0].GraphDriver.Data.MergedDir | tr -d """
+`
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gi5hfh/1616166386079-058c4b7f-d68f-4896-9f61-307cc928833b.jpeg)
 
 - 以默认分隔符展示每 3 个 ARGS 为一行，替换空格符为冒号
