@@ -76,7 +76,7 @@ OPTIONS
   - Windows 上可以使用 [ncat ](https://nmap.org/download.html)工具
     - ssh -o ProxyCommand="ncat --proxy-type socks5 --proxy 127.0.0.1:10022 %h %p" root@C-HOST
 
-**通过 B 中转，将 C 的端口映射到 A 的端口上**
+**通过 B 中转，将 C 的端口映射到 A 的端口上**，本地转发
 
 - **通过 A 访问 C 上的 mysql**
   - 在 A 主机上执行
@@ -89,7 +89,7 @@ OPTIONS
     - **ssh -L 19090:C-IP:9090 root@B-HOST**
   - 此时通过浏览器访问 http://A-IP:19090 即可打开 C 在 9090 端口上的 Web 应用
 
-**将 C 的端口映射到 B 的端口上**
+**将 C 的端口映射到 B 的端口上**，远程转发
 
 - 在 C 主机上执行
   - **ssh -R 19090:C-IP:9090 root@B-HOST**

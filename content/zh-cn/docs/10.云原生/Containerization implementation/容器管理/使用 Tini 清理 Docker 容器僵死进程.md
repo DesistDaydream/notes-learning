@@ -10,11 +10,11 @@ title: 使用 Tini 清理 Docker 容器僵死进程
 
 我们在查看一些大项目的 Dockerfile 时经常发现，它们的 ENTRYPOINT 中往往都有 tini 的身影：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/635f36ef-00c6-4161-bed8-02cbbf17e561/640)
+
 
 Rancher 官方镜像
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/635f36ef-00c6-4161-bed8-02cbbf17e561/640)
+
 
 Jenkins 官方镜像
 

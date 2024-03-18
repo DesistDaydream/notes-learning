@@ -80,21 +80,21 @@ vmlinuz 位于 /boot 目录中，该目录包含开始引导系统所需的文�
 
 这会在 /usr/src/linux/arch/i386/linux/boot/ 等目录中创建名为\_bzImage\_的文件。
 
-编译是将内核的[_源代码_](http://www.linfo.org/source_code.html)（即内核由人类编写的原始形式）转换为\_目标代码\_（计算机处理器可以直接理解）。它由称为[_编译器_](http://www.linfo.org/compiler.html)的专门程序执行，通常是[_GCC_](http://www.linfo.org/gcc.html)（[GNU](http://www.linfo.org/gnu.html)编译器集合）中的一个。
+编译是将内核的[_源代码_](http://www.linfo.org/source_code.html)（即内核由人类编写的原始形式）转换为 _目标代码_（计算机处理器可以直接理解）。它由称为[_编译器_](http://www.linfo.org/compiler.html)的专门程序执行，通常是 [_GCC_](http://www.linfo.org/gcc.html)（[GNU](http://www.linfo.org/gnu.html)编译器集合）中的一个。
 
 然后使用 _cp_ 命令将 bzImage 复制到 /boot 目录，同时使用诸如以下命令   重命名_vmlinuz_
 
 > `cp /usr/src/linux/arch/i386/linux/boot/bzImage /boot/vmlinuz`
 
-vmlinuz 不仅仅是一个压缩图像。它还内置了_gzip_解压缩器代码。gzip 是[类 Unix](http://www.linfo.org/unix-like.html)操作系统上最流行的压缩实用程序之一。
+vmlinuz 不仅仅是一个压缩图像。它还内置了 gzip 解压缩器代码。gzip 是 [Unix-like OS](docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 操作系统上最流行的压缩实用程序之一。
 
-一个名为_zImage_文件的编译内核是在一些较旧的系统上创建的，并保留在较新的系统上以实现向后兼容性。zImage 和 bzImage 都是用 gzip 压缩的。区别在于 zImage 解压到_低内存_（即前 640kB），bzImage 解压到_高内存_（1MB 以上）。有一个常见的误解，认为 bzImage 是使用_bzip2_实用程序压缩的。实际上，_b_只代表_big_。
+一个名为 zImage 文件的编译内核是在一些较旧的系统上创建的，并保留在较新的系统上以实现向后兼容性。zImage 和 bzImage 都是用 gzip 压缩的。区别在于 zImage 解压到 _低内存_（即前 640kB），bzImage 解压到 _高内存_（1MB 以上）。有一个常见的误解，认为 bzImage 是使用 _bzip2_ 实用程序压缩的。实际上，_b_ 只代表 _big_。
 
-_vmlinuz_ 这个名字很大程度上是历史的偶然。在贝尔实验室开发的原始 UNIX 上的内核二进制文件称为_unix_。当后来在加州大学伯克利分校 (UCB) 编写包含支持[_虚拟内存_](http://www.linfo.org/virtual_memory.html)的新内核时，内核二进制文件更名为_vmunix_。
+_vmlinuz_ 这个名字很大程度上是历史的偶然。在贝尔实验室开发的原始 UNIX 上的内核二进制文件称为 _unix_。当后来在加州大学伯克利分校 (UCB) 编写包含支持[_虚拟内存_](http://www.linfo.org/virtual_memory.html)的新内核时，内核二进制文件更名为 _vmunix_。
 
 虚拟内存是使用硬盘驱动器 (HDD) 上的空间来模拟额外的 RAM（随机存取内存）容量。与当时使用的其他一些流行操作系统（例如[MS-DOS）](http://www.linfo.org/ms-dos.html)相比，Linux 内核几乎从 Linux 一开始就支持它。
 
-因此，Linux 内核很自然地被称为_vmlinux_。由于 Linux 内核可执行文件被制作成压缩文件，并且压缩文件在类 Unix 系统上通常具有_z_或_gz_扩展名，因此压缩内核可执行文件的名称变为_vmlinuz_。
+因此，Linux 内核很自然地被称为 _vmlinux_。由于 Linux 内核可执行文件被制作成压缩文件，并且压缩文件在类 Unix 系统上通常具有 _z_ 或 _gz_ 扩展名，因此压缩内核可执行文件的名称变为 _vmlinuz_。
 
 ## initrd
 

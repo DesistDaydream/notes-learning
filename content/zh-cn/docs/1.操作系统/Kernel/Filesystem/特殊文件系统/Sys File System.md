@@ -81,20 +81,26 @@ lrwxrwxrwx  1 root root 0 Apr  1 14:36 vda -> ../devices/pci0000:00/0000:00:07.0
 
 该目录下的每个子目录都是 kernel 支持并且已经注册了的总线类型。这是内核设备按照总线类型分层放置的目录结构，/sys/devices/ 中的所有设备都是连接于某种总线之下的，bus 子目录下的每种具体总线之下可以找到每个具体设备的符号链接，一般来说每个子目录(总线类型)下包含两个子目录，一个是 devices，另一个是 drivers；其中 devices 下是这个总线类型下的所有设备，这些设备**都是符号链接，它们分别指向真正的设备(/sys/devices/)**；而 drivers 下是所有注册在这个总线上的驱动，每个 driver 子目录下 是一些可以观察和修改的 driver 参数。
 
+```bash
 ~]# ls /sys/bus/
 i2c mdio_bus platform sdio usb
 iio mmc scsi spi
+```
 
 应用 1：msp700 中计算电池电压
-PipeADC5 = popen("cat **/sys/bus/iio/devices/iio\\:device0/in_voltage5_raw**", "r");
+
+PipeADC5 = popen("cat /sys/bus/iio/devices/iio\\:device0/in_voltage5_raw", "r");
 
 应用 2：改变提醒等级
+
 echo 6 > /proc/sys/kernel/printk；
 
 应用 3：msp700 中设置背光
-echo 20 > **/sys/class/backlight/pwm-backlight/brightness**;
+
+echo 20 > /sys/class/backlight/pwm-backlight/brightness;
 
 等价于：
+
 echo 20 > /sys/bus/platform/devices/pwm-backlight/backlight/pwm-backlight/brightness;
 
 # /sys/class/

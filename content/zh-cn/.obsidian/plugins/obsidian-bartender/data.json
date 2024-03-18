@@ -1054,12 +1054,11 @@
     "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt": [
       "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/_index.md",
       "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/Libvirt.md",
-      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/Driver",
-      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/Libvirt 对接 Hypervisor.md",
       "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/Libvirt 配置详解.md",
       "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/XML 文件详解",
-      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/virsh 命令行工具",
       "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/Libvirt API",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/Driver",
+      "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/virsh 命令行工具",
       "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/最佳实践.md",
       "docs/10.云原生/Virtualization implementation/虚拟化管理/Libvirt/问题实例.md"
     ],
@@ -2493,6 +2492,12 @@
       "docs/10.云原生/Containerization implementation/容器管理/容器运行时管理/容器运行时管理.md",
       "docs/10.云原生/Containerization implementation/容器管理/容器运行时管理/改变运行状态的容器配置.md",
       "docs/10.云原生/Containerization implementation/容器管理/容器运行时管理/进入容器文件系统.md"
+    ],
+    "docs/1.操作系统/Kernel/CPU/Interrupts(中断)": [
+      "docs/1.操作系统/Kernel/CPU/Interrupts(中断)/_index.md",
+      "docs/1.操作系统/Kernel/CPU/Interrupts(中断)/Interrupts(中断).md",
+      "docs/1.操作系统/Kernel/CPU/Interrupts(中断)/中断的理解.md",
+      "docs/1.操作系统/Kernel/CPU/Interrupts(中断)/中断优化.md"
     ]
   },
   "actionBarOrder": {},

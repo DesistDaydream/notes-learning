@@ -46,6 +46,7 @@ Blade 也可以称为 **Board(板卡)**，常见的形容有 DPI 板、分流板
 ## 以太网双绞线
 
 > 参考：
+> 
 > - [Wiki，Ethernet over twisted pair](https://en.wikipedia.org/wiki/Ethernet_over_twisted_pair)
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/networking_device/202402271413818.png)
@@ -83,3 +84,6 @@ TODO: Single-mode fiber(单模) 和 Multi-mode fiber(多模)？
 
 - 简单的说，光模块的作用就是光电转换，发送端把电信号转换成光信号，通过光纤传送后，接收端再把光信号转换成电信号。
 
+# 分类
+
+> #网络硬件

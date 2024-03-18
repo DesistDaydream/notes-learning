@@ -18,7 +18,8 @@ title: Linux 网络包发送过程
 
 带着这三个问题，我们开始今天对 Linux 内核网络发送过程的深度剖析。还是按照我们之前的传统，先从一段简单的代码作为切入。如下代码是一个典型服务器程序的典型的缩微代码：
 
-\`int main(){
+```c
+int main(){
  fd = socket(AF_INET, SOCK_STREAM, 0);
  bind(fd, ...);
  listen(fd, ...);
@@ -34,8 +35,7 @@ cfd = accept(fd, ...);
 //  给用户返回结果
  send(cfd, buf, sizeof(buf), 0);
 }
-
-\`
+```
 
 今天我们来讨论上述代码中，调用 send 之后内核是怎么样把数据包发送出去的。本文基于 Linux 3.10，网卡驱动采用 Intel 的 igb 网卡举例。
 

@@ -1,5 +1,8 @@
 ---
 title: Kernel 参数
+linkTitle: Kernel 参数
+date: 2024-03-18T15:21
+weight: 1
 ---
 
 # 概述

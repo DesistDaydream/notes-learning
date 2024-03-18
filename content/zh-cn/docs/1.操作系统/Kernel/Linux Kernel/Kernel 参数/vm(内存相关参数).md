@@ -1,5 +1,8 @@
 ---
 title: vm(内存相关参数)
+linkTitle: vm(内存相关参数)
+date: 2024-03-18T15:22
+weight: 20
 ---
 
 # 概述

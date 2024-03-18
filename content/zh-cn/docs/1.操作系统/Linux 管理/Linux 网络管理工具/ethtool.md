@@ -6,7 +6,7 @@ title: ethtool
 
 > 参考：
 > 
-> - [Manual(手册),ethtool(8)](https://man7.org/linux/man-pages/man8/ethtool.8.html)
+> - [Manual(手册)，ethtool(8)](https://man7.org/linux/man-pages/man8/ethtool.8.html)
 
 ethtool 是一个工具，用来查询或控制网络驱动程序和硬件设备
 
@@ -54,6 +54,20 @@ Settings for em1:
 
 ### 查询选项
 
+- **-i, --driver** # 查询指定网络设备的关联驱动程序的信息。
+```bash
+]# ethtool -i eno3
+driver: igb
+version: 5.10.0-136.12.0.86.oe2203sp1.x8
+firmware-version: 1.67, 0x80000d72, 17.0.12
+expansion-rom-version: 
+bus-info: 0000:01:00.0
+supports-statistics: yes
+supports-test: yes
+supports-eeprom-access: yes
+supports-register-dump: yes
+supports-priv-flags: yes
+```
 - **-l, --show-channels** # 显示指定网络设备的通道数。通道是一个 IRQ，是可以触发该 IRQ 的队列集。
 
 ```bash
@@ -100,9 +114,9 @@ NIC statistics:
 ### 其他选项
 
 - **-p, --identify** # 可以让指定网络设备关联的网卡上的 led 灯闪烁。**常用来在机房中识别机器网卡**。
-- **-s,--change <DEV>** # 允许更改指定网络设备的部分或全部设置。 以下所有选项仅在指定了-s 时适用。
+- **-s,--change \<DEV>** # 允许更改指定网络设备的部分或全部设置。 以下所有选项仅在指定了-s 时适用。
   - **speed N** # 用 Mb/s 作为单位设置网卡速率。Set speed in Mb/s. ethtool with just the device name as an argument will show you the supported device speeds.
-  - **duplex {half|full} **# 设置全双工或半双工模式
+  - **duplex {half|full}** # 设置全双工或半双工模式
 
 # EXAMPLE
 
@@ -113,16 +127,41 @@ NIC statistics:
 设置 eth0 网卡速率为 100Mb/s，全双工
 
 - ethtool -s eth0 speed 100 duplex full
+## -i 选项信息
 
+```bash
+]# ethtool -i eno3
+driver: igb
+version: 5.10.0-136.12.0.86.oe2203sp1.x8
+firmware-version: 1.67, 0x80000d72, 17.0.12
+expansion-rom-version: 
+bus-info: 0000:01:00.0
+supports-statistics: yes
+supports-test: yes
+supports-eeprom-access: yes
+supports-register-dump: yes
+supports-priv-flags: yes
+```
+
+- **driver** # 网络设备连接网卡所使用的驱动程序
+- **version** # 驱动程序的版本号
+- **firmware-version** # 与驱动程序一起使用的固件的版本号
+- **bus-info** # 网卡在系统总线上的位置信息，比如 PCI 总线上的位置
+- supports-XXX # 网络设备的驱动是否支持某些特性
+  - **supperts-statistics** # 驱动是否支持收集统计信息
+  - **supports-test** # 驱动是否支持测试功能
+  - **supports-eeprom-access** # 驱动是否支持 EEPROM 访问
+  - **supports-register-dump** # 驱动是否支持寄存器转储功能
+  - **supports-priv-flags** # 驱动是否支持私有标志
 ## -m 选项信息
 
 ### 光模块插件信息
 
-- **Identifier** # 标识符。即该口上所插的模块信息。示例值：`**0x03 (SFP)**`
-- **Extended identifier **# 扩展标识符。模块的扩展信息。示例值：`**0x04 (GBIC/SFP defined by 2-wire interface ID)**`
-- **Connector **# 连接器信息。即. 示例值：`**0x07 (LC)**`
+- **Identifier** # 标识符。即该口上所插的模块信息。示例值：`0x03 (SFP)`
+- **Extended identifier** # 扩展标识符。模块的扩展信息。示例值：`0x04 (GBIC/SFP defined by 2-wire interface ID)`
+- **Connector** # 连接器信息。即. 示例值：`0x07 (LC)`
 - **Transceiver codes : 0x10 0x00 0x00 0x00 0x00 0x00 0x00 0x00**
-- **Transceiver type **# 收发器类型。示例值：`**10G Ethernet: 10G Base-SR**`
+- **Transceiver type** # 收发器类型。示例值：`10G Ethernet: 10G Base-SR`
 - **Encoding : 0x06 (64B/66B)**
 - **BR, Nominal : 10300MBd**
 - **Rate identifier : 0x00 (unspecified)**
@@ -147,9 +186,9 @@ NIC statistics:
 - **Date code : 200727\_\_**
 - **Optical diagnostics support : Yes**
 - **光模块特有信息**
-  - **Laser bias current **# 激光偏置电流。示例值：`**5.762 mA**`
-  - **Laser output power** # 激光输出功率(光模块发送功率)。示例值：`**0.5240 mW / -2.81 dBm**`
-  - **Receiver signal average optical power **# 接收信号的平均光功率(光模块接收功率)。示例值：`**0.4646 mW / -3.33 dBm**`
+  - **Laser bias current** # 激光偏置电流。示例值：`5.762 mA`
+  - **Laser output power** # 激光输出功率(光模块发送功率)。示例值：`0.5240 mW / -2.81 dBm`
+  - **Receiver signal average optical power** # 接收信号的平均光功率(光模块接收功率)。示例值：`0.4646 mW / -3.33 dBm`
 - **Module temperature : 26.32 degrees C / 79.38 degrees F**
 - **Module voltage : 3.3360 V**
 - **模块告警开关**

@@ -73,3 +73,7 @@ sy
     Warning: Does not recommend to disable complexity check. A simple community name may result in security threats.
     # 配置 read 模式的团体名
     [HUAWEI]snmp-agent community read public
+
+# 分类
+
+> #网络硬件

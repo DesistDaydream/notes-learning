@@ -23,7 +23,7 @@ Linux 内核对计算机上所有的设备进行管理，进行管理的方式�
 
 常见的两种中断控制器：
 
-1. **Programmable Interrupt Controller(可编程中断控制器，简称 PIC)**8259A
+1. **Programmable Interrupt Controller(可编程中断控制器，简称 PIC)** 8259A
 2. **Advanced Programmable Interrupt Controller(高级可编程中断控制器，简称 APIC)**
 
 传统的 PIC 是由两片 8259A 风格的外部芯片以“级联”的方式连接在一起。每个芯片可处理多达 8 个不同的 IRQ。因为从 PIC 的 INT 输出线连接到主 PIC 的 IRQ2 引脚，所以可用 IRQ 线的个数达到 15 个

@@ -23,7 +23,7 @@ HTTP 缓存有两种实现方式，分别是**强制缓存和协商缓存**。
 
 如下图中，返回的是 200 状态码，但在 size 项中标识的是 from disk cache，就是使用了强制缓存。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/884948f1-0dd2-48b3-8dd0-41b261df0633/1649668520864-47bf15a0-854c-4725-ae4f-45751f99cf0f.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/http/1649668520864-47bf15a0-854c-4725-ae4f-45751f99cf0f.png)
 
 强缓存是利用下面这两个 HTTP 响应头部（Response Header）字段实现的，它们都用来表示资源在客户端缓存的有效期：
 
@@ -42,7 +42,7 @@ Cache-control 选项更多一些，设置更加精细，所以建议使用 Cache
 
 当我们在浏览器使用开发者工具的时候，你可能会看到过某些请求的响应码是 `304`，这个是告诉浏览器可以使用本地缓存的资源，通常这种通过服务端告知客户端是否可以使用缓存的方式被称为协商缓存。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/884948f1-0dd2-48b3-8dd0-41b261df0633/1649668520944-8c9a8b13-8145-4ffc-9334-3d5eb46c4231.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/http/1649668520944-8c9a8b13-8145-4ffc-9334-3d5eb46c4231.png)
 
 上图就是一个协商缓存的过程，所以**协商缓存就是与服务端协商之后，通过协商结果来判断是否使用本地缓存**。
 
@@ -64,7 +64,7 @@ Cache-control 选项更多一些，设置更加精细，所以建议使用 Cache
 
 注意，**协商缓存这两个字段都需要配合强制缓存中 Cache-control 字段来使用，只有在未能命中强制缓存的时候，才能发起带有协商缓存字段的请求**。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/884948f1-0dd2-48b3-8dd0-41b261df0633/1649668520918-e343317a-4c73-4f3c-b059-fc656dab9631.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/http/1649668520918-e343317a-4c73-4f3c-b059-fc656dab9631.png)
 
 使用 ETag 字段实现的协商缓存的过程如下；
 

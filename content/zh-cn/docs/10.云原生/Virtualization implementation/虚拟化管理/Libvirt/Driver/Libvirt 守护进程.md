@@ -18,7 +18,7 @@ weight: 2
 
 # libvirtd
 
-libvirtd 程序是 libvirt 虚拟化管理系统的服务器端守护进程组件。包含了部分 Hypervisor 驱动，并暴露了 [Libvirt API](/docs/10.云原生/Virtualization%20implementation/虚拟化管理/Libvirt/Libvirt%20API/Libvirt%20API.md)。
+libvirtd 程序是 libvirt 虚拟化管理系统的服务器端守护进程组件。包含了部分 Hypervisor 驱动，并暴露了 [Libvirt API](/docs/10.云原生/Virtualization%20implementation/虚拟化管理/Libvirt/Libvirt%20API/Libvirt%20API.md)
 
 该守护进程在主机服务器上运行，并为虚拟来宾执行所需的管理任务。这包括启动、停止和在主机服务器之间迁移来宾、配置和操作网络以及管理供来宾使用的存储等活动。
 

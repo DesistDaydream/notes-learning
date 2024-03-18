@@ -1,10 +1,18 @@
 ---
 title: Module(模块)
+linkTitle: Module(模块)
+date: 2024-03-18T15:14
+weight: 20
 ---
 
-# Linux 模块介绍
 
-**Loadable Kernel Module(全称为动态可加载内核模块，简称 LKM)，简称为模块**。模块是具有独立功能的程序，它可以被单独编译，但不能独立运行。它在运行时被链接到内核作为内核的一部分在内核空间运行，这与运行在用户空间的进程是不同的。模块通常由一组函数和数据结构组成，用来实现一种文件系统、一个驱动程序或其他内核上层的功能。
+# 概述
+
+> 参考：
+> 
+> -
+
+Linux 模块是 **Loadable Kernel Module(全称为动态可加载内核模块，简称 LKM)，简称为模块**。模块是具有独立功能的程序，它可以被单独编译，但不能独立运行。它在运行时被链接到内核作为内核的一部分在内核空间运行，这与运行在用户空间的进程是不同的。模块通常由一组函数和数据结构组成，用来实现一种文件系统、一个驱动程序或其他内核上层的功能。
 
 总之，模块是一个伪内核（从某种意义上来说，内核也是一个模块）或其他内核模块提供使用功能的代码块。
 
@@ -12,19 +20,19 @@ title: Module(模块)
 
 该 unit 启动后读取其中指定目录下的配置以加载模块
 
-# 模块配置
-
-系统启动后，依次从上到下从以下目录读取**模块的额外参数**并应用它们
-
-- /etc/modprobe.d/\*.conf
-- /run/modprobe.d/\*.conf
-- /usr/lib/modprobe.d/\*.conf
+# 模块关联文件与配置
 
 系统启动后，依次从上到下从以下目录读取**模块名称**以加载它们
 
 - /etc/modules-load.d/\*.conf
 - /run/modules-load.d/\*.conf
 - /usr/lib/modules-load.d/\*.conf
+
+系统启动后，依次从上到下从以下目录读取**模块的额外参数**并应用它们
+
+- /etc/modprobe.d/\*.conf
+- /run/modprobe.d/\*.conf
+- /usr/lib/modprobe.d/\*.conf
 
 ```bash
 ~]# cat /etc/modules-load.d/br_netfilter.conf
@@ -34,8 +42,9 @@ br_netfilter
 - 该目录格式为每个模块一行
 - 注意不要给模块名加任何后缀
 
-/etc/sysconfig/modules/\*.modules # 系统读取该目录下的脚本加载用户自定义的模块，该目录下的文件必须要以 `.modules` 为文件名结尾。该文件会被系统视为 shell 脚本，因此该文件应以解释器指令作为开头第一行。
-/usr/lib/modules/$(uname -r)/kernel/ # 模块所在目录，不同类型的模块有不同目录
+**/etc/sysconfig/modules/\*.modules** # 系统读取该目录下的脚本加载用户自定义的模块，该目录下的文件必须要以 `.modules` 为文件名结尾。该文件会被系统视为 shell 脚本，因此该文件应以解释器指令作为开头第一行。
+
+**/usr/lib/modules/$(uname -r)/kernel/** # 模块所在目录，不同类型的模块有不同目录
 
 Note：不同版本内核的模块目录不同，所有安装的模块都在该目录下，如果需要把模块加载到内核中，则可以通过命令来加载该目录下的对应模块即可
 
@@ -48,7 +57,8 @@ Note：不同版本内核的模块目录不同，所有安装的模块都在该�
 7. sound # 与音效有关的各项模块
 
 **模块之间的依赖性**
-使用 depmod 命令读取 **/lib/modules/$(uname -r )/kernel/** 目录下每个模块并分析，然后把分析结果写入/lib/modules/$(uname -r)/modules.dep 文件中。
+
+使用 depmod 命令读取 `/lib/modules/$(uname -r )/kernel/` 目录下每个模块并分析，然后把分析结果写入 `/lib/modules/$(uname -r)/modules.dep` 文件中。
 
 # 模块管理命令行工具
 
@@ -56,21 +66,21 @@ Note：不同版本内核的模块目录不同，所有安装的模块都在该�
 
 参考：<https://serverfault.com/questions/62316/how-do-i-list-loaded-linux-module-parameter-values>
 
-## depmod # 输出适用于 modprobe 可用性的依赖列表
+## depmod - 输出适用于 modprobe 可用性的依赖列表
 
 depmod 输出的分析结果将会写入 /lib/modules/$(uname -r)/modules.dep 文件中。
 
 EXAMPLE
 
-1. depmod -n # 可以不写入文件而把结果输出到屏幕上
-2. depmod -e # 显示出目前已载入的不可执行的模块名称
+- depmod -n # 可以不写入文件而把结果输出到屏幕上
+- depmod -e # 显示出目前已载入的不可执行的模块名称
 
-## lsmod # 显示当前系统下已经加载了哪些模块
+## lsmod - 显示当前系统下已经加载了哪些模块
 
 共三列信息 Module(模块名)、size(模块的大小)、Used by(此模块被哪个模块所使用)
 
 ```bash
-root@lichenhao:~# lsmod
+~]# lsmod
 Module                  Size  Used by
 ip_vs                 155648  0
 xt_conntrack           16384  1
@@ -80,7 +90,7 @@ xt_MASQUERADE          20480  1
 
 EXAMPLE
 
-## modinfo # 通过模块名或者模块文件名来查看模块信息
+## modinfo - 通过模块名或者模块文件名来查看模块信息
 
 下面就是一个 ip_vs 模块的信息示例，第一列是想要显示的信息名称，第二列是该信息的具体内容
 
@@ -111,9 +121,9 @@ OPTIONS
 - **-F,--field \<STRING>** # 仅仅列出指定字段的值，这对于在脚本中使用非常有用。STRING 就是上面示例中，第一列的字符串，比如 filename、license 等等，效果如下：
 
 ```bash
-root@lichenhao:~# modinfo -F filename ip_vs
+~]# modinfo -F filename ip_vs
 /lib/modules/5.4.0-73-generic/kernel/net/netfilter/ipvs/ip_vs.ko
-root@lichenhao:~# modinfo -F license ip_vs
+~]# modinfo -F license ip_vs
 GPL
 ```
 
@@ -128,9 +138,10 @@ GPL
 
 EXAMPLE
 
-## modprobe # 通过 module 的名字管理 module(不能通过文件名)
+## modprobe - 通过 module 的名字管理 module(不能通过文件名)
 
 **modprobe \[OPTIONS] ModuleName**
+
 如果用该命令不加任何 OPTIONS 则是加载 module，重启后消失
 
 modprobe(module 探针)(自动处理可载入模块)是 linux 的一个命令，可载入指定的个别模块，或是载入一组相依的模块。modprobe 会根据 depmod.dep 文件的相依关系，决定要载入哪些模块。若在载入过程中发生错误，在 modprobe 会卸载整组的模块
@@ -143,7 +154,7 @@ OPTIONS
 
 EXAMPLE
 
-## rmmod # 卸载模块
+## rmmod - 卸载模块
 
 # modeprobe.d 配置文件详解
 
