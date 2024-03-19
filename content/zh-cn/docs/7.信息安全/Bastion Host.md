@@ -16,3 +16,10 @@ weight: 20
 [GitHub 项目，jumpserver/jumpserver](https://github.com/jumpserver/jumpserver/)
 
 https://jumpserver.org/
+
+# OneTerm
+
+[GitHub 项目，veops/oneterm](https://github.com/veops/oneterm)
+
+https://mp.weixin.qq.com/s/iFy83vu3Yybj1X6gypPKjg
+

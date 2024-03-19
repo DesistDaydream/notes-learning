@@ -113,9 +113,9 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 
 **scrape_interval(DURATION)** # 抓取 targets 的指标频率，`默认值：1m`。
 
-**scrape_timeout(DURATION)**# 对 targets 发起抓取请求的超时时间。`默认值：10s`。
+**scrape_timeout(DURATION)** # 对 targets 发起抓取请求的超时时间。`默认值：10s`。
 
-**evaluation_interval(DURATION)**# 评估规则的周期。`默认值：1m`。
+**evaluation_interval(DURATION)** # 评估规则的周期。`默认值：1m`。
 
 该字段主要用于向规则配置文件传递全局的配置。这个值会被规则配置文件中的 `.groups.interval` 覆盖，详见 interval 字段详解
 
@@ -149,7 +149,7 @@ scrape_configs 是 Prometheus 采集指标的最重要也是最基本的配置�
 
 - **名字** # 每个 scrape 工作都应该具有一个名字。称为 job_name，名字主要起到标识符的作用。
   - 该示例定义了一个抓取配置的 job，名字叫 prometheus
-- **目标** # 要抓取的 metrics 的目标。目标可以通过 **静态**或者 **动态(i.e.各种服务发现)**这两种方式指定
+- **目标** # 要抓取的 metrics 的目标。目标可以通过 **静态** 或者 **动态(i.e.各种服务发现)** 这两种方式指定
   - 该示例通过静态配置定义这个 job 中要抓取的目标主机，目标主机由 IP:PORT 组成
 - **间隔** # 该 scrape 工作每次抓取 metrics 的时间间隔。就是每隔 X 秒抓一次
   - 该示例每次抓取 metrics 的时间间隔为 5 秒(i.e.每 5 秒获取一次 metrics)
