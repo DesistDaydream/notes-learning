@@ -1,11 +1,15 @@
 ---
 title: Netcat
+linkTitle: Netcat
+date: 2024-03-20T08:57
+weight: 20
 ---
 
 # 概述
 
 > 参考：
-> - [Wike,Netcat](https://en.wikipedia.org/wiki/Netcat)
+> 
+> - [Wike，Netcat](https://en.wikipedia.org/wiki/Netcat)
 > - [Nmap 官网](https://nmap.org/)
 > - [Nmap 官网-Ncat](https://nmap.org/ncat/)
 > - [Ncat Manual(手册)](https://nmap.org/book/ncat-man.html)
@@ -124,7 +128,8 @@ Connection to localhost 323 port [udp/*] succeeded!
 # Nmap
 
 > 参考：
-> - [Manual(手册),NMAP(1)](https://nmap.org/book/man.html)
+> 
+> - [Manual(手册)，NMAP(1)](https://nmap.org/book/man.html)
 
 **Network Mapper(网络映射器，简称 Nmap)** 是一个用于网络探索和安全审计的开源工具。旨在快速扫描大型网络。
 

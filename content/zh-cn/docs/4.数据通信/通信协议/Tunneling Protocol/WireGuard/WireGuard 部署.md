@@ -5,6 +5,7 @@ title: WireGuard 部署
 # 概述
 
 > 参考：
+> 
 > - 原文链接：<https://mp.weixin.qq.com/s/vbt30eEGcp5JP5sHAPkwhw>
 > - 英文原文链接：<https://github.com/pirate/wireguard-docs>
 
@@ -123,7 +124,9 @@ EOF
 
 启动中继服务器 Peer
 
-    wg-quick up /etc/wireguard/company-wg.conf
+```bash
+wg-quick up /etc/wireguard/company-wg.conf
+```
 
 启动其他 Peer
 
@@ -135,7 +138,7 @@ wg-quick up /etc/wireguard/company.conf
 服务启动时，本质是只是执行了几条命令，比如我现在使用 wg-company 配置启动 WireGuard：
 
 ```bash
-[root@hw-cloud-xngy-jump-server-linux-1 ~]# wg-quick up /etc/wireguard/company-wg.conf
+~]# wg-quick up /etc/wireguard/company-wg.conf
 [#] ip link add company-wg type wireguard
 [#] wg setconf company-wg /dev/fd/63
 [#] ip -4 address add 10.1.0.254/24 dev company-wg
@@ -168,7 +171,7 @@ wg-quick up /etc/wireguard/company.conf
 WireGuard 安装完成后，会生成一个 `wg-qucik@.service` 的 Unit 文件：
 
 ```bash
-[root@hw-cloud-xngy-jump-server-linux-1 /etc/wireguard]# systemctl cat wg-quick@.service
+~]# systemctl cat wg-quick@.service
 # /lib/systemd/system/wg-quick@.service
 [Unit]
 Description=WireGuard via wg-quick(8) for %I
@@ -207,25 +210,31 @@ systemctl enable wg-quick@company --now
 
 接口：
 
-    # 查看系统 VPN 接口信息
-    $ ip link show wg-company
-    # 查看 VPN 接口详细信息
-    $ wg show all
-    $ wg show wg-company
+```bash
+# 查看系统 VPN 接口信息
+$ ip link show wg-company
+# 查看 VPN 接口详细信息
+$ wg show all
+$ wg show wg-company
+```
 
 地址：
 
-    # 查看 VPN 接口地址
-    $ ip address show wg-company
+```bash
+# 查看 VPN 接口地址
+$ ip address show wg-company
+```
 
 路由
 
-    # 查看系统路由表
-    $ ip route show table main
-    $ ip route show table local
-    # 获取到特定 IP 的路由
-    $ ip route get 192.0.2.3
+```bash
+# 查看系统路由表
+$ ip route show table main
+$ ip route show table local
+# 获取到特定 IP 的路由
+$ ip route get 192.0.2.3
+```
 
 # 分类
 
- #网络 #隧道协议 #Wireguard
+> #网络 #隧道协议 #Wireguard

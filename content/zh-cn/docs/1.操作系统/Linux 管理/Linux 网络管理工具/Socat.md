@@ -1,5 +1,8 @@
 ---
 title: Socat
+linkTitle: Socat
+date: 2024-03-20T08:58
+weight: 20
 ---
 
 # 概述

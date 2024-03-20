@@ -1,5 +1,8 @@
 ---
 title: ethtool
+linkTitle: ethtool
+date: 2024-03-20T08:15
+weight: 20
 ---
 
 # 概述
@@ -8,7 +11,9 @@ title: ethtool
 > 
 > - [Manual(手册)，ethtool(8)](https://man7.org/linux/man-pages/man8/ethtool.8.html)
 
-ethtool 是一个工具，用来查询或控制网络驱动程序和硬件设备
+ethtool 是一个工具，用来查询或控制网络驱动程序和硬件设备。
+
+> Notes: ethtool 无法查看到 [DPDK](docs/4.数据通信/DPDK.md) 等程序接管的网卡的网络设备。因为已经绕过了内核，ethtool 只能查询或控制直接由内核管理的网卡。
 
 ```bash
 ~]# ethtool em1

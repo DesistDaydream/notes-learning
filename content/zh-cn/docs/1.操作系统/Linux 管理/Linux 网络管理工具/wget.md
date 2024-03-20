@@ -1,8 +1,18 @@
 ---
 title: wget
+linkTitle: wget
+date: 2024-03-20T08:57
+weight: 20
 ---
 
-语法格式
+# 概述
+
+> 参考：
+> 
+> -
+
+
+# Syntax(语法)
 
 OPTIONS
 
@@ -10,4 +20,4 @@ OPTIONS
 
 EXAMPLE
 
-- wget -q -O - <http://www.baidu.com/> # 不下载，将 URL 为<http://www.baidu.com/>的内容输出到标准输出上
+`wget -q -O - http://www.baidu.com/` # 不下载，将 URL 为<http://www.baidu.com/>的内容输出到标准输出上

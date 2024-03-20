@@ -6,8 +6,8 @@ title: Headscale
 
 > 参考：
 >
-> - [公众号，云原声实验室-Tailscal 开源版本让你的 WireGuard 直接起飞](https://mp.weixin.qq.com/s/Y3z5RzuapZc8jS0UuHLhBw)
 > - [GitHub 项目，juanfont/headscale](https://github.com/juanfont/headscale)
+> - [公众号，云原声实验室-Tailscal 开源版本让你的 WireGuard 直接起飞](https://mp.weixin.qq.com/s/Y3z5RzuapZc8jS0UuHLhBw)
 
 Tailscale 的控制服务器是不开源的，而且对免费用户有诸多限制，这是人家的摇钱树，可以理解。好在目前有一款开源的实现叫 Headscale，这也是唯一的一款，希望能发展壮大。
 
@@ -66,7 +66,7 @@ chown -R headscale:headscale /var/lib/headscale
 下载配置文件
 
 ```bash
-wget https://github.com/juanfont/headscale/raw/main/config-example.yaml -O /etc/headscale/config.yaml
+wget https://raw.githubusercontent.com/juanfont/headscale/v${HeadscaleVersion}/config-example.yaml -O /etc/headscale/config.yaml
 ```
 
 - 修改配置文件
@@ -161,10 +161,10 @@ EOF
 
 ```bash
 systemctl daemon-reload
-systemctl enable --now headscale
+systemctl enable headscale --now
 ```
 
-## 创建 Headscale Namespace
+## 创建 Headscale Namespace(新版已弃用)
 
 Tailscale 中有一个概念叫 tailnet，你可以理解成租户， Tailscale 与 Tailscale 之间是相互隔离的，具体看参考 Tailscale 的官方文档：[What is a tailnet](https://tailscale.com/kb/1136/tailnet/)。
 
@@ -188,7 +188,7 @@ ID | Name      | Created
 
 **/etc/headscale/config.yaml** # Headscale 运行时配置文件
 
-**/var/lib/headscale/\***# Headscale 运行时数据目录。包括 数据库文件、证书 等
+**/var/lib/headscale/**# Headscale 运行时数据目录。包括 数据库文件、证书 等
 
 - **./db.sqlite** # Headscale 使用 sqlite 作为数据库
 
@@ -284,11 +284,11 @@ Success.
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/1648097896734-2252f545-7f43-46fb-ad3a-1e1c85ce3d08.png)
 
-最后，根据 [在 Headscale 中添加节点](#LWIp8) 部分的文档，将节点接入到 Headscale 中。
+最后，根据 [在 Headscale 中添加节点](#Headscale%20中添加节点) 部分的文档，将节点接入到 Headscale 中。
 
 ### Windows
 
-Windows Tailscale 客户端想要使用 Headscale 作为控制服务器，只需在浏览器中打开 `http://${HeadscaleIP}>:8080/windows`，便会出现如下的界面：
+Windows Tailscale 客户端想要使用 Headscale 作为控制服务器，只需在浏览器中打开 `http://${HeadscaleIP}:8080/windows`，便会出现如下的界面：
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/1648103689211-3b019793-7262-4a6c-a668-127c0f01c284.png)
 

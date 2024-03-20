@@ -30,12 +30,12 @@ ip 程序的语法有点复杂，对 Object 控制的命令中，有非常多的
 注意：这里的 OPTIONS 是全局选项，要用在 ip 与 OBJECT 之间，比如：
 
 ```bash
-root@lichenhao:~# ip -c route
+~]# ip -c route
 default via 172.19.42.1 dev ens3 proto static metric 100
 10.19.0.0/24 dev docker0 proto kernel scope link src 10.19.0.1 linkdown
 172.19.42.0/24 dev ens3 proto kernel scope link src 172.19.42.248 metric 100
 
-root@lichenhao:~# ip route -c
+~]# ip route -c
 Command "-c" is unknown, try "ip route help".
 ```
 

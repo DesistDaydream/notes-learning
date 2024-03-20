@@ -10,7 +10,7 @@ title: Chrony
 > - [官网](https://chrony.tuxfamily.org/index.html)
 > - [官方文档](https://chrony.tuxfamily.org/documentation.html)
 
-Chrony 是 NTP(网络时间协议) 的通用实现。它可以将系统时钟与 NTP 服务器，参考时钟（例如 GPS 接收器）以及使用手表和键盘进行的手动输入进行同步。它还可以充当 NTPv4（RFC 5905）服务器并与之对等，以向网络中的其他计算机提供时间服务。
+Chrony 是 [NTP](docs/4.数据通信/通信协议/NTP.md)(网络时间协议) 的通用实现。它可以将系统时钟与 NTP 服务器，参考时钟（例如 GPS 接收器）以及使用手表和键盘进行的手动输入进行同步。它还可以充当 NTPv4（RFC 5905）服务器并与之对等，以向网络中的其他计算机提供时间服务。
 
 `yum install chrony` 即可安装该工具
 
@@ -51,7 +51,8 @@ logdir /var/log/chrony
 ## Chrony 配置详解
 
 > 参考：
-> - [官方文档,Manual(手册)](https://chrony.tuxfamily.org/doc/4.1/chrony.conf.html)
+> 
+> - [官方文档，Manual(手册)](https://chrony.tuxfamily.org/doc/4.1/chrony.conf.html)
 
 chrony.conf 配置文件与 nginx 的配置文件类似，由指令和指令的参数组成。每条指令放在单独的一行上。虽然受支持的指令数量很多，但通常仅需要其中几个就可以满足日常所需。下面介绍几个常用的指令
 
@@ -72,7 +73,7 @@ chrony.conf 配置文件与 nginx 的配置文件类似，由指令和指令的�
 
 > 参考：
 > 
-> - [官方文档,Manual(手册)](https://chrony.tuxfamily.org/doc/4.1/chronyc.html)
+> - [官方文档，Manual(手册)](https://chrony.tuxfamily.org/doc/4.1/chronyc.html)
 
 **chronyc \[OPTIONS] \[COMMAND]**
 
@@ -82,10 +83,10 @@ chronyc 通过子命令来实现各种功能
 
 ## System Clock COMMAND
 
-### tracking # 显示有关系统时钟性能的参数
+### tracking - 显示有关系统时钟性能的参数
 
 ```bash
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~]$ chronyc tracking
+~]$ chronyc tracking
 Reference ID    : 647D0028 (100.125.0.40)
 Stratum         : 4
 Ref time (UTC)  : Sat Oct 09 08:49:47 2021
@@ -109,7 +110,7 @@ Leap status     : Normal
 
 ## Time Sources COMMAND
 
-### sources # 显示 chronyd 进程访问的当前时间源的信息
+### sources - 显示 chronyd 进程访问的当前时间源的信息
 
 ```bash
 [lichenhao@hw-cloud-xngy-jump-server-linux-2 ~]$ chronyc sources -v
@@ -128,7 +129,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ^* 100.125.0.40                  3   8   377   250  +5730ns[  +16us] +/-  133ms
 ```
 
-### sourcestats # 显示有关 chronyd 进程所使用的每个时间源的状态信息
+### sourcestats - 显示有关 chronyd 进程所使用的每个时间源的状态信息
 
 ```bash
 [lichenhao@hw-cloud-xngy-jump-server-linux-2 ~]$ chronyc sourcestats -v
@@ -177,8 +178,8 @@ Name/IP Address            NP  NR  Span  Frequency  Freq Skew  Offset  Std Dev
 
 **add server**
 
-**delete ADDRESS
-**
+**delete ADDRESS**
+
 **burst**
 
 ## Manual Time Input COMMAND

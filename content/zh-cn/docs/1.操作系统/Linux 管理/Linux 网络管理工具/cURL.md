@@ -1,13 +1,17 @@
 ---
 title: cURL
+linkTitle: cURL
+date: 2024-03-20T08:57
+weight: 20
 ---
 
 # 概述
 
 > 参考：
->
+> 
+> - [GitHub 项目，curl/curl](https://github.com/curl/curl)
 > - [官网](https://curl.se/)
-> - [manual(手册)](https://man.cx/curl)
+> - [Manual(手册)](https://man.cx/curl)
 
 cURL 是一个用于 URLs 传输的命令行工具和库，始于 1998 年。
 
