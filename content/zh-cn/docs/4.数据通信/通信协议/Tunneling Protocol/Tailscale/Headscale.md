@@ -128,6 +128,8 @@ EOF
 
 ## 创建 Systemd Unit 文件
 
+https://github.com/juanfont/headscale/blob/main/docs/packaging/headscale.systemd.service
+
 ```bash
 tee /etc/systemd/system/headscale.service > /dev/null <<EOF
 [Unit]
@@ -164,15 +166,16 @@ systemctl daemon-reload
 systemctl enable headscale --now
 ```
 
-## 创建 Headscale Namespace(新版已弃用)
+## 创建 Headscale User
 
-Tailscale 中有一个概念叫 tailnet，你可以理解成租户， Tailscale 与 Tailscale 之间是相互隔离的，具体看参考 Tailscale 的官方文档：[What is a tailnet](https://tailscale.com/kb/1136/tailnet/)。
-
-Headscale 也有类似的实现叫 namespace，即命名空间。Namespace 是一个实体拥有的机器的逻辑组，这个实体对于 Tailscale 来说，通常代表一个用户。
-
-我们需要先创建一个 namespace，以便后续客户端接入，例如：
+> Notes: 老版本是创建 Namesapce
+> 
+> - Tailscale 中有一个概念叫 tailnet，你可以理解成租户， Tailscale 与 Tailscale 之间是相互隔离的，具体看参考 Tailscale 的官方文档：[What is a tailnet](https://tailscale.com/kb/1136/tailnet/)。
+> - Headscale 也有类似的实现叫 namespace，即命名空间。Namespace 是一个实体拥有的机器的逻辑组，这个实体对于 Tailscale 来说，通常代表一个用户。
+> - 我们需要先创建一个 namespace，以便后续客户端接入，例如：
 
 ```bash
+# 这部分命令不用再执行了
 ~]# headscale namespaces create lichenhao
 Namespace created
 ~]# headscale namespaces list
@@ -182,7 +185,15 @@ ID | Name      | Created
 
 注意：
 
-- 从 v0.15.0 开始，Namespace 之间的边界已经被移除了，所有节点默认可以通信，如果想要限制节点之间的访问，可以使用 [ACL](https://github.com/juanfont/headscale/blob/v0.15.0/docs/acls.md)。在配置文件中只用 `acl_policy_path` 字段指定 ACL 配置文件路径，文件配置方式详见：<https://tailscale.com/kb/1018/acls/>
+- 从 v0.15.0 开始，Namespace 之间的边界已经被移除了，所有节点默认可以通信，如果想要限制节点之间的访问，可以使用 [ACL](https://github.com/juanfont/headscale/blob/v0.15.0/docs/acls.md)。在配置文件中只用 `acl_policy_path` 字段指定 ACL 配置文件路径，文件配置方式详见：<https://tailscale.com/kb/1018/acls/
+
+```bash
+~]# headscale users create desistdaydream
+~]# headscale user list
+An updated version of Headscale has been found (0.23.0-alpha5 vs. your current v0.22.3). Check it out https://github.com/juanfont/headscale/releases
+ID | Name           | Created
+1  | desistdaydream | 2024-03-20 14:29:47
+```
 
 # Headscale 关联文件与配置
 
@@ -288,19 +299,25 @@ Success.
 
 ### Windows
 
-Windows Tailscale 客户端想要使用 Headscale 作为控制服务器，只需在浏览器中打开 `http://${HeadscaleIP}:8080/windows`，便会出现如下的界面：
+https://headscale.net/windows-client/
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/1648103689211-3b019793-7262-4a6c-a668-127c0f01c284.png)
+Windows Tailscale 客户端想要使用 Headscale 作为控制服务器，只需在浏览器中打开 `http://${HeadscaleIP}:${HeadscalePORT}/windows`，根据页面提示，本质上是执行下面这些操作
 
-- 下载页面中的 `Windows registry file`，这是一个注册表文件，用来配置 Tailscale 客户端中控制服务器的地址，让其指向自己部署的 Headscale
-- 下载完成后运行 `tailscale.reg` 文件以编辑注册表信息。
-- 在[这里](https://tailscale.com/download/windows)下载 Windows 版的 Tailscale 客户端并安装
+- 添加注册表信息（两种方式）
+  - 点击页面中的 `Windows registry file`，下载注册表文件，并运行
+  - 或者执行下面的 PowerShell 命令添加注册表信息
+```powershell
+New-Item -Path "HKLM:\SOFTWARE\Tailscale IPN"
+New-ItemProperty -Path 'HKLM:\Software\Tailscale IPN' -Name UnattendedMode -PropertyType String -Value always
+New-ItemProperty -Path 'HKLM:\Software\Tailscale IPN' -Name LoginURL -PropertyType String -Value https://${HeadscaleIP}:${HeadscalePORT}
+```
+- 在[这里](https://pkgs.tailscale.com/stable/#windows)下载 Windows 版的 Tailscale 客户端并安装
+- 在 Powershell 执行 `tailscale up --login-server=http://${HeadscaleIP}:8080 --accept-routes=true --accept-dns=false`
 - 右键点击任务栏中的 Tailscale 图标，再点击 `Log in` 获取接入 Headscale 的命令
 - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/1648104111282-99d562e1-d7d9-4ea5-9943-f16861efe87e.png)
-
-- 此时会自动在浏览器中出现接入 Headscale 的页面
-
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/1648104342439-c7a4a6ba-8690-4883-bf2f-c324c8336607.png)
+- 此时会自动在浏览器中出现接入 Headscale 的页面，记录下注册命令，去 Headscale 所在设备上执行命令添加节点。
+- 注册命令示例: `headscale nodes register --user USERNAME --key nodekey:75b424a753067b906fee373411743bf34264a9c40a4f7798836bf28bb24d2467`
+- 根据 [在 Headscale 中添加节点](#Headscale%20中添加节点) 部分的文档，使用注册命令将节点接入到 Headscale 中。
 
 ### 其他 Linux 发行版
 
@@ -315,11 +332,11 @@ Windows Tailscale 客户端想要使用 Headscale 作为控制服务器，只需
 将其中的命令复制粘贴到 Headscale 所在机器的终端中，并将 NAMESPACE 替换为前面所创建的 namespace。
 
 ```bash
-export HeadscaleNamespace="lichenhao"
+export HeadscaleUser="desistdaydream"
 # 上面例子中的 Linux 客户端
-headscale -n ${HeadscaleNamespace} nodes register --key 30e9c9c952e2d66680b9904eb861e24a595e80c0839e3541142edb56c0d43e16
+headscale -n ${HeadscaleUser} nodes register --key 30e9c9c952e2d66680b9904eb861e24a595e80c0839e3541142edb56c0d43e16
 # 上面例子中的 Windows 客户端
-headscale -n ${HeadscaleNamespace} nodes register --key 105363c37b5449b85bb3e4107b6f6bbd3a2bb379dcf731bc98f979584740644a
+headscale -n ${HeadscaleUser} nodes register --key 105363c37b5449b85bb3e4107b6f6bbd3a2bb379dcf731bc98f979584740644a
 ```
 
 注册成功，查看注册的节点：
@@ -328,9 +345,9 @@ headscale -n ${HeadscaleNamespace} nodes register --key 105363c37b5449b85bb3e410
 
 ```bash
 ~]# headscale nodes  list
-ID | Name                 | NodeKey | Namespace | IP addresses                  | Ephemeral | Last seen           | Online | Expired
-1  | tj-test-oc-lichenhao | [Bo2d3] | lichenhao | fd7a:115c:a1e0::1, 100.64.0.1 | false     | 2022-03-24 06:48:46 | online | no
-2  | home-desktop         | [VZuAp] | lichenhao | fd7a:115c:a1e0::2, 100.64.0.2 | false     | 2022-03-24 06:49:31 | online | no
+ID | Hostname        | Name            | MachineKey | NodeKey | User           | IP addresses                  | Ephemeral | Last seen           | Expiration          | Online | Expired
+1  | HOME-WUJI       | home-wuji       | [fqHlf]    | [dbQkp] | desistdaydream | 100.64.0.1, fd7a:115c:a1e0::1 | false     | 2024-03-20 15:55:30 | 0001-01-01 00:00:00 | online | no
+2  | DESKTOP-R02G6RP | desktop-r02g6rp | [zMy/C]    | [Utjz0] | desistdaydream | 100.64.0.2, fd7a:115c:a1e0::2 | false     | 2024-03-20 15:55:36 | 0001-01-01 00:00:00 | online | no
 ```
 
 ## 检查 Tailscale
@@ -413,28 +430,29 @@ tailscale up --login-server=http://${HeadscaleIP}:8080 --accept-routes=true --ac
 
 ```bash
 ~]# headscale nodes list
-ID | Name                 | NodeKey | Namespace | IP addresses                  | Ephemeral | Last seen           | Online | Expired
-1  | tj-test-oc-lichenhao | [Bo2d3] | lichenhao | fd7a:115c:a1e0::1, 100.64.0.1 | false     | 2022-03-24 05:08:46 | online | no
-2  | home-desktop         | [qZVTo] | lichenhao | fd7a:115c:a1e0::2, 100.64.0.2 | false     | 2022-03-24 05:09:16 | online | no
-~]# headscale routes list -i 1
-Route           | Enabled
-172.38.40.0/24  | false
-192.168.88.0/24 | false
+ID | Hostname        | Name            | MachineKey | NodeKey | User           | IP addresses                  | Ephemeral | Last seen           | Expiration          | Online | Expired
+1  | HOME-WUJI       | home-wuji       | [fqHlf]    | [dbQkp] | desistdaydream | 100.64.0.1, fd7a:115c:a1e0::1 | false     | 2024-03-20 15:55:30 | 0001-01-01 00:00:00 | online | no
+2  | DESKTOP-R02G6RP | desktop-r02g6rp | [zMy/C]    | [Utjz0] | desistdaydream | 100.64.0.2, fd7a:115c:a1e0::2 | false     | 2024-03-20 15:55:36 | 0001-01-01 00:00:00 | online | no
+~]# headscale routes list
+ID | Machine         | Prefix           | Advertised | Enabled  | Primary
+1  | desktop-r02g6rp | 172.38.40.0/24   | true       | false    | false
+2  | desktop-r02g6rp | 192.168.88.0/24  | true       | false    | false
 ```
 
 开启路由：
 
 ```bash
-~]# headscale routes enable -i 1 -r "172.38.40.0/24,192.168.88.0/24"
-Route           | Enabled
-172.38.40.0/24  | true
-192.168.88.0/24 | true
+~]# headscale routes enable -r 1
+~]# headscale routes enable -r 2
+ID | Machine         | Prefix           | Advertised | Enabled | Primary
+1  | desktop-r02g6rp | 172.38.40.0/24   | true       | true    | true
+2  | desktop-r02g6rp | 192.168.88.0/24  | true       | true    | true
 
 ```
 
-其他非 Headscale 节点查看路由结果：
+~~其他非 Headscale 节点查看路由结果：~~
 
-`$ ip route show table 52|grep "172.38.40.0/24" 172.38.40.0/24 dev tailscale0`
+~~`$ ip route show table 52|grep "172.38.40.0/24" 172.38.40.0/24 dev tailscale0`~~
 
 # 总结
 

@@ -1,7 +1,17 @@
 ---
 title: V2Ray
+linkTitle: V2Ray
+date: 2024-03-20T23:17
+weight: 20
 ---
 
+# 概述
+
+> 参考：
+> 
+> -
+
+https://www.chengxiaobai.com/essays/v2ray-trojan-xray.html
 # 前言
 
 https://qoant.com/2021/04/vps-with-xray/
@@ -22,7 +32,7 @@ XTLS和Xray离不开作者[@rprx](https://github.com/rprx)的辛勤付出，因�
 2. [@rprx](https://github.com/rprx)是XTLS的作者，在[XTLS库](https://github.com/XTLS/Go)中写下了“THE FUTURE”的霸气描述。将内外两条TLS连接结合，rprx可能不是第一个有这想法的人，但却是第一个将其实现、并成熟应用到实际中的作者。从使用表现上看，XTLS无愧于rprx对其的评价：“划时代的革命性概念与技术：XTLS”，以及社区给出的“黑科技”称谓；
 3. [@rprx](https://github.com/rprx)是Project X和Xray项目的创始人。由于LICENSE理念之争，rprx创建了对标Project V和V2ray-core的Project X和Xray-core项目，广受欢迎。
 
-## Xray和V2ray的区别
+## Xray 和 V2ray 的区别
 
 在说明Xray和V2ray区别之前，先说一下三个相近但不同的概念：
 
@@ -47,4 +57,4 @@ Xray和V2ray区别如下：
 > - [GItHub 项目，v2fly/v2ray-core](https://github.com/v2fly/v2ray-core)
 > - [路由规则](https://github.com/Loyalsoldier/v2ray-rules-dat)
 
-V2Ray 是 Project V 下的一个工具。Project V 是一个包含一系列构建特定网络环境工具的项目，而 V2Ray 属于最核心的一个。 官方中介绍`Project V 提供了单一的内核和多种界面操作方式。内核（V2Ray）用于实际的网络交互、路由等针对网络数据的处理，而外围的用户界面程序提供了方便直接的操作流程。`不过从时间上来说，先有 V2Ray 才有 Project V。 如果还是不理解，那么简单地说，V2Ray 是一个与 Shadowsocks 类似的代理软件，可以用来科学上网（翻墙）学习国外先进科学技术。
+V2Ray 是 Project V 下的一个工具。Project V 是一个包含一系列构建特定网络环境工具的项目，而 V2Ray 属于最核心的一个。 官方中介绍 `Project V 提供了单一的内核和多种界面操作方式。内核（V2Ray）用于实际的网络交互、路由等针对网络数据的处理，而外围的用户界面程序提供了方便直接的操作流程。` 不过从时间上来说，先有 V2Ray 才有 Project V。 如果还是不理解，那么简单地说，V2Ray 是一个与 Shadowsocks 类似的代理软件，可以用来科学上网（翻墙）学习国外先进科学技术。

@@ -41,13 +41,12 @@ Dpkg 包含一系列的包管理工具：
 
 **ACTION**
 
+- **-c, --contents PACKAGE** # 列出 PACKAGE 中的内容。实际上是 dpkg-deb 命令的动作。有点类似 ls -al 命令。
 - **-i, --install PACKAGE** # 安装指定的 PACKAGE。
 - **-r，--remove PACKAGE** # 删除指定的已安装的 PACKAGE。保留配置
 - **-p, --purge PACKAGE** # 删除指定的已安装的 PACKAGE。连配置也删除
 
 **OPTIONS**
-
--
 
 ## dpkg-query
 
@@ -78,8 +77,9 @@ dpki-query 是一个查询工具，可以从 dpkg 数据库中查询包的信息
 - 查找 nsswitch.conf 文件属于哪个包，并显示所在路径
   - dpkg-query --search nsswitch.conf
 - 清除所有已删除包的残余配置文件，可以清除一些残留无用的配置。
-  - dpkg -l | grep ^rc|awk '{print $2}' | sudo xargs dpkg -P
-
+  - `dpkg -l | grep ^rc|awk '{print $2}' | sudo xargs dpkg -P`
+- 将 DEB_PACK 这几个 .deb 包中的文件提取到 PATH 路径下
+  - `dpkg-deb -xv ${DEB_PACK} ${PATH}`
 # APT 工具集
 
 > 参考：
