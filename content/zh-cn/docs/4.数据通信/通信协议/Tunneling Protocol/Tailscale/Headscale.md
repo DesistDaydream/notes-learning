@@ -1,5 +1,8 @@
 ---
 title: Headscale
+linkTitle: Headscale
+date: 2024-03-21T08:11
+weight: 2
 ---
 
 # 概述
@@ -14,6 +17,16 @@ Tailscale 的控制服务器是不开源的，而且对免费用户有诸多限�
 Headscale 由欧洲航天局的 Juan Font 使用 Go 语言开发，在 BSD 许可下发布，实现了 Tailscale 控制服务器的所有主要功能，可以部署在企业内部，没有任何设备数量的限制，且所有的网络流量都由自己控制。
 
 目前 Headscale 还没有可视化界面，期待后续更新吧。
+
+# Headscale 关联文件与配置
+
+**/etc/headscale/config.yaml** # Headscale 运行时配置文件
+
+**/var/lib/headscale/**# Headscale 运行时数据目录。包括 数据库文件、证书 等
+
+- **./db.sqlite** # Headscale 使用 sqlite 作为数据库
+
+[这里](https://github.com/juanfont/headscale/blob/main/config-example.yaml)是配置文件示例
 
 # Headscale 部署
 
@@ -130,35 +143,6 @@ EOF
 
 https://github.com/juanfont/headscale/blob/main/docs/packaging/headscale.systemd.service
 
-```bash
-tee /etc/systemd/system/headscale.service > /dev/null <<EOF
-[Unit]
-Description=headscale controller
-After=syslog.target
-After=network.target
-
-[Service]
-Type=simple
-User=headscale
-Group=headscale
-ExecStart=/usr/local/bin/headscale serve
-Restart=always
-RestartSec=5
-
-# Optional security enhancements
-NoNewPrivileges=yes
-PrivateTmp=yes
-ProtectSystem=strict
-ProtectHome=yes
-ReadWritePaths=/var/lib/headscale /var/run/headscale
-AmbientCapabilities=CAP_NET_BIND_SERVICE
-RuntimeDirectory=headscale
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-
 ## 启动 Headscale 服务
 
 ```bash
@@ -194,16 +178,6 @@ An updated version of Headscale has been found (0.23.0-alpha5 vs. your current v
 ID | Name           | Created
 1  | desistdaydream | 2024-03-20 14:29:47
 ```
-
-# Headscale 关联文件与配置
-
-**/etc/headscale/config.yaml** # Headscale 运行时配置文件
-
-**/var/lib/headscale/**# Headscale 运行时数据目录。包括 数据库文件、证书 等
-
-- **./db.sqlite** # Headscale 使用 sqlite 作为数据库
-
-[这里](https://github.com/juanfont/headscale/blob/main/config-example.yaml)是配置文件示例
 
 # Tailscale 客户端部署与接入 Headscale
 
@@ -303,16 +277,17 @@ https://headscale.net/windows-client/
 
 Windows Tailscale 客户端想要使用 Headscale 作为控制服务器，只需在浏览器中打开 `http://${HeadscaleIP}:${HeadscalePORT}/windows`，根据页面提示，本质上是执行下面这些操作
 
-- 添加注册表信息（两种方式）
+- 添加注册表信息（两种方式）（在 `HKEY_LOCAL_MACHINE\SOFTWARE\Tailscale IPN` 位置生成信息）
   - 点击页面中的 `Windows registry file`，下载注册表文件，并运行
   - 或者执行下面的 PowerShell 命令添加注册表信息
 ```powershell
+$headscale_server="DOMAIN:PORT"
 New-Item -Path "HKLM:\SOFTWARE\Tailscale IPN"
 New-ItemProperty -Path 'HKLM:\Software\Tailscale IPN' -Name UnattendedMode -PropertyType String -Value always
-New-ItemProperty -Path 'HKLM:\Software\Tailscale IPN' -Name LoginURL -PropertyType String -Value https://${HeadscaleIP}:${HeadscalePORT}
+New-ItemProperty -Path 'HKLM:\Software\Tailscale IPN' -Name LoginURL -PropertyType String -Value http://${headscale_server}
 ```
 - 在[这里](https://pkgs.tailscale.com/stable/#windows)下载 Windows 版的 Tailscale 客户端并安装
-- 在 Powershell 执行 `tailscale up --login-server=http://${HeadscaleIP}:8080 --accept-routes=true --accept-dns=false`
+- 在 Powershell 执行 `tailscale login --login-server=http://${headscale_server} --accept-routes=true --accept-dns=false`
 - 右键点击任务栏中的 Tailscale 图标，再点击 `Log in` 获取接入 Headscale 的命令
 - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/1648104111282-99d562e1-d7d9-4ea5-9943-f16861efe87e.png)
 - 此时会自动在浏览器中出现接入 Headscale 的页面，记录下注册命令，去 Headscale 所在设备上执行命令添加节点。
@@ -457,3 +432,21 @@ ID | Machine         | Prefix           | Advertised | Enabled | Primary
 # 总结
 
 目前从稳定性来看，Tailscale 比 Netmaker 略胜一筹，基本上不会像 Netmaker 一样时不时出现 ping 不通的情况，这取决于 Tailscale 在用户态对 NAT 穿透所做的种种优化，他们还专门写了一篇文章介绍 NAT 穿透的原理，中文版由国内的 eBPF 大佬赵亚楠翻译：[NAT 穿透是如何工作的：技术原理及企业级实践](/docs/4.数据通信/NAT/NAT%20穿透是如何工作的：技术原理及企业级实践.md)
+
+# Headscale 内嵌 DERP
+
+https://github.com/juanfont/headscale/issues/1326
+
+https://github.com/juanfont/headscale/pull/388
+
+修改配置文件中的如下几个字段
+
+```yaml
+derp:
+  server:
+    enable: true
+tls_cert_path: "/PATH/TO/FILE"
+tls_key_path: "/PATH/TO/FILE"
+```
+
+多监听 3478 端口，且可以通过 https 访问 

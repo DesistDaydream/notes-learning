@@ -22,7 +22,7 @@ Prometheus 是由 SoundCloud 开发的 开源监控报警系统 和 时间序列
 
 2016 年由 Google 发起 Linux 基金会旗下的 Cloud Native Computing Foundation(云原生计算基金会), 将 Prometheus 纳入其下第二大开源项目。Prometheus 目前在开源社区相当活跃。
 
-## Prometheus 架构概述
+# Prometheus 架构概述
 
 Prometheus 的基本原理是通过 HTTP 协议周期性抓取被监控组件的状态，任意组件只要提供对应的 HTTP 接口就可以接入监控。不需要任何 SDK 或者其他的集成过程。这样做非常适合做虚拟化环境监控系统，比如 VM、Docker、Kubernetes 等。输出被监控组件信息的 HTTP 接口被叫做 exporter 。
 
@@ -53,7 +53,9 @@ Prometheus 不适用的场景
 
 - Prometheus 它的价值在于可靠性，甚至在很恶劣的环境下，你都可以随时访问它和查看系统服务各种指标的统计信息。 如果你对统计数据需要 100%的精确，它并不适用，例如：它不适用于实时计费系统。
 
-### 总结：prometheus 从 Instrumenting 那里抓取监控数据，储存。完了~哈哈哈哈哈
+### 总结：prometheus 从 Instrumenting 那里抓取监控数据，储存。完了~哈哈哈哈哈。
+
+其他程序（e.g. Grafana） 通过 PromQL 从 Prometheus 存储中查询数据后拿着查询数据干啥都行
 
 ## Instrumenting(检测仪表装置) 的实现方式
 
@@ -71,6 +73,84 @@ Prometheus 可以通过 3 种方式从目标上 Scrape(抓取) 指标：
 ## Instrumenting 的安装与使用
 
 详见 [Instrumenting 章节](/docs/6.可观测性/监控系统/Instrumenting/Instrumenting.md)
+
+# Prometheus 关联文件与配置
+
+**/etc/prometheus/prometheus.yml** # Prometheus Server 运行时的配置文件。可通过 --config.file 标志指定其他文件。
+
+**/etc/prometheus/rule.yml** # Prometheus Rule 配置文件。该文件默认不存在，需手动创建。可以在 prometheus.yml 配置中指定其他文件。
+
+## Prometheus 配置示例
+
+### 默认配置文件
+
+```yaml
+# 全局配置
+global:
+  scrape_interval:     15s # 默认抓取间隔, 15秒向目标抓取一次数据。
+  evaluation_interval: 15s # 每15秒评估一次规则，默认为1分钟。
+  # scrape_timeout is set to the global default (10s).
+
+ # 告警报警配置，设置prometheus主程序对接alertmanager程序的
+ alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      # - alertmanagerIP:9093
+
+# 指定要使用的规则文件位置，并加载一次，根据全局配置中的 evaluation_interval 来定期评估
+# 从所有匹配到的文件中读取配置内容。可以使用正则表达式匹配多个符合的文件。Prometheus支持两种规则
+# 其一是记录规则(recording rules)
+# 其二是告警规则(alerting rules)
+rule_files:
+  # - "first.rules"
+  # - "second.rules"
+
+# 抓取配置，prometheus抓取exporter上的数据时的配置，一个job就是一个抓取工作，其中可以包括1个或者多个目标
+# 目标指的是可以被 prometheus 采集的服务器、服务等。
+# 默认配置里，Prometheus Server 会抓取本地9090端口上数据。该端口上的 exporter 就是 PrometheusServer 自己的 exporter
+scrape_configs:
+# job_name 指定要 scrape(抓取) 的 job(工作) 名称，名称必须是唯一的
+# 并且在这个配置内的时间序例，每一条都会自动添加上这个{job_name:"prometheus"}的标签。
+- job_name: 'prometheus'
+  # 设定该job的抓取时间间隔
+  scrape_interval: 5s
+  static_configs:
+  - targets: ['localhost:9090']
+```
+
+### 具有 node_exporter 的配置简单文件
+
+抓取部署了 node_exporter 设备的监控数据的方式及 prometheus.yml 配置文件说明
+prometheus 会从 Node Exporter 所在服务器的 http://IP:9100/metrics 这个地址里的内容来获取该设备的监控数据
+所以需要给 prometheus 创建一个工作(i.e.job)。一个 job 就是一个抓取监控数据的工作，其中包括要抓取目标的 ip 和 port，还可以设置标签进行分类，还能进行抓取筛选等等，下面提供一个基本的配置
+修改 prometheus.yml，加入下面的监控目标，以便让 prometheus 监控这个已经安装了 node_exporter 的设备
+
+```yaml
+- job_name: "linux" #新增一个job，名为linux
+  static_configs: # 使用静态配置
+    - targets: ["10.10.100.101:9100"] #添加一个要抓取数据的目标，指定IP与PORT 。node_exporter所安装的设备
+      labels:
+        instance: lchTest #给该目标添加一个标签
+```
+
+现在，prometheus.yml 配置文件中中一共定义了两个监控：一个是默认自带监控 prometheus 自身服务，另一个是我们新增的 job，这个 job 就是要抓取目标是 10.10.100.101 这台服务器上的监控数据
+
+```yaml
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+  - job_name: "linux" # 指定job名称
+    static_configs: #设定静态配置
+      - targets: ["10.10.100.101:9100"] # 指定node_exporter所安装设备的ip:port
+        labels:
+          instance: lchTest #给该target一个label来分类，常用于在查询语句中的筛选条件
+```
+
+访问 Prometheus Web，在 Status->Targets 页面下，我们可以看到我们配置的两个 Target，它们的 State 为 UP
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/usvgfl/1616041189541-1dfdddd7-ee74-4f32-8df6-8821cf415a14.jpeg)
 
 # Prometheus 部署
 
@@ -151,83 +231,6 @@ docker run -d --name prometheus --restart=always \
   prom/prometheus \
   --config.file=/etc/prometheus/config_out/prometheus.yml
 ```
-
-# Prometheus 关联文件与配置
-
-**/etc/prometheus/prometheus.yml** # Prometheus Server 运行时的配置文件。可通过 --config.file 标志指定其他文件。
-**/etc/prometheus/rule.yml** # Prometheus Rule 配置文件。该文件默认不存在，需手动创建。可以在 prometheus.yml 配置中指定其他文件。
-
-## Prometheus 配置示例
-
-### 默认配置文件
-
-```yaml
-# 全局配置
-global:
-  scrape_interval:     15s # 默认抓取间隔, 15秒向目标抓取一次数据。
-  evaluation_interval: 15s # 每15秒评估一次规则，默认为1分钟。
-  # scrape_timeout is set to the global default (10s).
-
- # 告警报警配置，设置prometheus主程序对接alertmanager程序的
- alerting:
-  alertmanagers:
-  - static_configs:
-    - targets:
-      # - alertmanagerIP:9093
-
-# 指定要使用的规则文件位置，并加载一次，根据全局配置中的 evaluation_interval 来定期评估
-# 从所有匹配到的文件中读取配置内容。可以使用正则表达式匹配多个符合的文件。Prometheus支持两种规则
-# 其一是记录规则(recording rules)
-# 其二是告警规则(alerting rules)
-rule_files:
-  # - "first.rules"
-  # - "second.rules"
-
-# 抓取配置，prometheus抓取exporter上的数据时的配置，一个job就是一个抓取工作，其中可以包括1个或者多个目标
-# 目标指的是可以被 prometheus 采集的服务器、服务等。
-# 默认配置里，Prometheus Server 会抓取本地9090端口上数据。该端口上的 exporter 就是 PrometheusServer 自己的 exporter
-scrape_configs:
-# job_name 指定要 scrape(抓取) 的 job(工作) 名称，名称必须是唯一的
-# 并且在这个配置内的时间序例，每一条都会自动添加上这个{job_name:"prometheus"}的标签。
-- job_name: 'prometheus'
-  # 设定该job的抓取时间间隔
-  scrape_interval: 5s
-  static_configs:
-  - targets: ['localhost:9090']
-```
-
-### 具有 node_exporter 的配置简单文件
-
-抓取部署了 node_exporter 设备的监控数据的方式及 prometheus.yml 配置文件说明
-prometheus 会从 Node Exporter 所在服务器的 http://IP:9100/metrics 这个地址里的内容来获取该设备的监控数据
-所以需要给 prometheus 创建一个工作(i.e.job)。一个 job 就是一个抓取监控数据的工作，其中包括要抓取目标的 ip 和 port，还可以设置标签进行分类，还能进行抓取筛选等等，下面提供一个基本的配置
-修改 prometheus.yml，加入下面的监控目标，以便让 prometheus 监控这个已经安装了 node_exporter 的设备
-
-```yaml
-- job_name: "linux" #新增一个job，名为linux
-  static_configs: # 使用静态配置
-    - targets: ["10.10.100.101:9100"] #添加一个要抓取数据的目标，指定IP与PORT 。node_exporter所安装的设备
-      labels:
-        instance: lchTest #给该目标添加一个标签
-```
-
-现在，prometheus.yml 配置文件中中一共定义了两个监控：一个是默认自带监控 prometheus 自身服务，另一个是我们新增的 job，这个 job 就是要抓取目标是 10.10.100.101 这台服务器上的监控数据
-
-```yaml
-scrape_configs:
-  - job_name: "prometheus"
-    static_configs:
-      - targets: ["localhost:9090"]
-  - job_name: "linux" # 指定job名称
-    static_configs: #设定静态配置
-      - targets: ["10.10.100.101:9100"] # 指定node_exporter所安装设备的ip:port
-        labels:
-          instance: lchTest #给该target一个label来分类，常用于在查询语句中的筛选条件
-```
-
-访问 Prometheus Web，在 Status->Targets 页面下，我们可以看到我们配置的两个 Target，它们的 State 为 UP
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/usvgfl/1616041189541-1dfdddd7-ee74-4f32-8df6-8821cf415a14.jpeg)
 
 # Prometheus 的基本使用方式
 

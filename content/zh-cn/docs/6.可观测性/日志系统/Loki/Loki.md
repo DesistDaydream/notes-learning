@@ -109,7 +109,9 @@ Loki 旨在根据需求变化轻松地在不同架构下重新部署集群，无
 ### Monolithic(统一) 架构
 
 这种架构需要通过 loki 二进制文件只启动 1 个进程，使该进程用 `-target=all` 以便在一个进程中运行所有组件。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gcp6zx/1660115619129-e6fa2017-8e05-46d7-ab56-207ee3cfc90b.png)
+
 这是最经典的模式，早期 Loki 通常都是以这种模式被大家部署。这种模式是 loki 以单个二进制文件运行 Loki 的所有组件，如上图，instance 可以看作一个单独的二进制文件。
 Monolithic 模式非常适合于本地开发、小规模等场景，Monolithic 模式可以通过多个进程进行扩展，但有以下限制：
 

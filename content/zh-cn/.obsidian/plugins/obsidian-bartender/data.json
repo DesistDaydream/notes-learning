@@ -1694,8 +1694,9 @@
       "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/_index.md",
       "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/Tailscale.md",
       "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/Headscale.md",
+      "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/Tailscale DERP.md",
       "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/Tailscale ACL 访问控制策略.md",
-      "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/自建 DERP 中继服务器，从此 Tailscale 畅通无阻.md"
+      "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/tailscale 命令行工具.md"
     ],
     "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard": [
       "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard/_index.md",

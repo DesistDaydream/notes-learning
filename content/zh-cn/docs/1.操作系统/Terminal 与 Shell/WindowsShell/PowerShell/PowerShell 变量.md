@@ -78,8 +78,8 @@ PowerShell 中有几种不同类型的变量：
 
 # 引用变量
 
-- 普通变量: `$VAR_NAME`
-- 环境变量: `$env:VAR_NAME`
+- 普通变量: `$VAR_NAME` 或 `${VAR_NAME}`
+- 环境变量: `$env:VAR_NAME` 或 `${env:VAR_NAME}`
 
 想要获取变量，有几下几种方式：
 

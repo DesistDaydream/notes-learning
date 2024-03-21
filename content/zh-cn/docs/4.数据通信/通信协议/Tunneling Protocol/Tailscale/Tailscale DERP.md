@@ -1,13 +1,18 @@
 ---
-title: 自建 DERP 中继服务器，从此 Tailscale 畅通无阻
+title: Tailscale DERP
+linkTitle: Tailscale DERP
+date: 2024-03-21T23:14
+weight: 20
 ---
 
 # 概述
 
 > 参考：
-> - 原文：<https://mp.weixin.qq.com/s/r5OQi9YreI-BFnClKhBR0w>
+> 
+> - [公众号，自建 DERP 中继服务器，从此 Tailscale 畅通无阻](https://mp.weixin.qq.com/s/r5OQi9YreI-BFnClKhBR0w)
+> - [官方文档，自定义 DERP 服务器](https://tailscale.com/kb/1118/custom-derp-servers)
 
-[👉 上篇文章](https://mp.weixin.qq.com/s?__biz=MzU1MzY4NzQ1OA==&mid=2247504037&idx=1&sn=b059e0ed24be4ae39a25e5724700ff54&scene=21#wechat_redirect)介绍了如何使用 `Headscale` 替代 Tailscale 官方的控制服务器，并接入各个平台的客户端。本文将会介绍如何让 Tailscale 使用自定义的 DERP Servers。可能很多人都不知道 `DERP` 是个啥玩意儿，没关系，我先从**中继服务器**开始讲起。
+[👉 上篇文章](https://mp.weixin.qq.com/s?__biz=MzU1MzY4NzQ1OA==&mid=2247504037&idx=1&sn=b059e0ed24be4ae39a25e5724700ff54&scene=21#wechat_redirect)介绍了如何使用 `Headscale` 替代 Tailscale 官方的控制服务器，并接入各个平台的客户端。本文将会介绍如何让 Tailscale 使用自定义的 DERP Servers。可能很多人都不知道 DERP 是个啥玩意儿，没关系，我先从 **中继服务器** 开始讲起。
 
 ## STUN 是什么
 
@@ -70,13 +75,13 @@ Tailscale 使用的算法很有趣，**所有客户端之间的连接都是先�
 
 Tailscale 的私钥只会保存在当前节点，因此 DERP server 无法解密流量，它只能和互联网上的其他路由器一样，呆呆地将加密的流量从一个节点转发到另一个节点，只不过 DERP 使用了一个稍微高级一点的协议来防止滥用。
 
-Tailscale 开源了 DERP 服务器的代码，如果你感兴趣，可以阅读 DERP 的源代码\[1]。
+Tailscale 开源了 DERP 服务器的代码，如果你感兴趣，可以阅读 [DERP 的源代码](https://github.com/tailscale/tailscale/tree/main/derp)。
 
 ---
 
 Tailscale 官方内置了很多 DERP 服务器，分步在全球各地，**惟独不包含中国大陆**，原因你懂得。这就导致了一旦流量通过 DERP 服务器进行中继，延时就会非常高。而且官方提供的 DERP 服务器是万人骑，存在安全隐患。
 
-为了实现低延迟、高安全性，我们可以参考 Tailscale 官方文档\[2]自建私有的 DERP 服务器。有两种部署模式，一种是基于域名，另外一种不需要域名，可以直接使用 IP，不过需要一点黑科技。我们先来看最简单的使用域名的方案。
+为了实现低延迟、高安全性，我们可以参考 [Tailscale 官方文档](https://tailscale.com/kb/1118/custom-derp-servers)自建私有的 DERP 服务器。有两种部署模式，一种是基于域名，另外一种不需要域名，可以直接使用 IP，不过需要一点黑科技。我们先来看最简单的使用域名的方案。
 
 ### 使用域名
 
@@ -91,7 +96,15 @@ Tailscale 官方内置了很多 DERP 服务器，分步在全球各地，**惟�
 
 推荐直接使用 Docker 来部署，我已经构建好了 Docker 镜像，直接部署就可以了：
 
-`🐳  → docker run --restart always \   --name derper -p 12345:12345 -p 3478:3478/udp \   -v /root/.acme.sh/xxxx/:/app/certs \   -e DERP_CERT_MODE=manual \   -e DERP_ADDR=12345 \   -e DERP_DOMAIN=xxxx \   -d ghcr.io/yangchuansheng/derper:latest`
+```
+docker run --restart always \  
+  --name derper -p 12345:12345 -p 3478:3478/udp \  
+  -v /root/.acme.sh/xxxx/:/app/certs \  
+  -e DERP_CERT_MODE=manual \  
+  -e DERP_ADDR=12345 \  
+  -e DERP_DOMAIN=xxxx \  
+  -d ghcr.io/yangchuansheng/derper:latest
+```
 
 有几点需要注意：
 
@@ -101,17 +114,24 @@ Tailscale 官方内置了很多 DERP 服务器，分步在全球各地，**惟�
 - 准备好 SSL 证书；
 - 域名部分我打了码，请换成你自己的域名。
 
-关于证书部分需要重点说明：**假设你的域名是 **`**xxx.com**`**，那么证书的名称必须是 **`**xxx.com.crt**`**，一个字符都不能错！同理，私钥名称必须是 **`**xxx.com.key**`**，一个字符都不能错！**
+关于证书部分需要重点说明：**假设你的域名是 `xxx.com`**，那么证书的名称必须是 **`xxx.com.crt`**，一个字符都不能错！同理，私钥名称必须是 **`xxx.com.key`**，一个字符都不能错！
 
 查看容器日志：
 
-`🐳  → docker logs -f derper 2022/03/26 11:36:28 no config path specified; using /var/lib/derper/derper.key 2022/03/26 11:36:28 derper: serving on :12345 with TLS 2022/03/26 11:36:28 running STUN server on [::]:3478`
+```bash
+🐳  → docker logs -f derper  
+2022/03/26 11:36:28 no config path specified; using /var/lib/derper/derper.key  
+2022/03/26 11:36:28 derper: serving on :12345 with TLS  
+2022/03/26 11:36:28 running STUN server on [::]:3478
+```
 
 目前 derper 运行一段时间就会崩溃，暂时还没有更好的解决方案，只能通过定时重启来解决，比如通过 crontab 来设置每两小时重启一次容器：
 
-`0 */2 * * * docker restart derper &> /dev/null`
+```
+0 */2 * * * docker restart derper &> /dev/null
+```
 
-具体可参考这个 issue：Derper TLS handshake error: remote error: tls: internal error\[3]
+具体可参考这个 issue：[Derper TLS handshake error: remote error: tls: internal error](https://github.com/tailscale/tailscale/issues/4082)
 
 ---
 
@@ -122,7 +142,41 @@ Tailscale 官方内置了很多 DERP 服务器，分步在全球各地，**惟�
 
 我们可以直接使用本地的 YAML 配置文件，内容如下：
 
-`# /etc/headscale/derp.yaml regions:   900:     regionid: 900     regioncode: thk      regionname: Tencent Hongkong      nodes:       - name: 900a         regionid: 900         hostname: xxxx         ipv4: xxxx         stunport: 3478         stunonly: false         derpport: 12345       - name: 900b         regionid: 900         hostname: xxxx         ipv4: xxxx         stunport: 3478         stunonly: false         derpport: 12345   901:     regionid: 901     regioncode: hs      regionname: Huawei Shanghai      nodes:       - name: 901a         regionid: 901         hostname: xxxx         ipv4: xxxx         stunport: 3478         stunonly: false         derpport: 12345`
+```yaml
+# /etc/headscale/derp.yaml  
+regions:  
+  900:  
+    regionid: 900  
+    regioncode: thk   
+    regionname: Tencent Hongkong   
+    nodes:  
+      - name: 900a  
+        regionid: 900  
+        hostname: xxxx  
+        ipv4: xxxx  
+        stunport: 3478  
+        stunonly: false  
+        derpport: 12345  
+      - name: 900b  
+        regionid: 900  
+        hostname: xxxx  
+        ipv4: xxxx  
+        stunport: 3478  
+        stunonly: false  
+        derpport: 12345  
+  901:  
+    regionid: 901  
+    regioncode: hs   
+    regionname: Huawei Shanghai   
+    nodes:  
+      - name: 901a  
+        regionid: 901  
+        hostname: xxxx  
+        ipv4: xxxx  
+        stunport: 3478  
+        stunonly: false  
+        derpport: 12345
+```
 
 配置说明：
 
@@ -136,55 +190,57 @@ Tailscale 官方内置了很多 DERP 服务器，分步在全球各地，**惟�
 
 接下来还需要修改 Headscale 的配置文件，引用上面的自定义 DERP 配置文件。需要修改的配置项如下：
 
-\`# /etc/headscale/config.yaml
-derp:
-  # List of externally available DERP maps encoded in JSON
-  urls:
-  #  - <https://controlplane.tailscale.com/derpmap/default>
-
-\# Locally available DERP map files encoded in YAML
-  #
-  # This option is mostly interesting for people hosting
-  # their own DERP servers:
-  # <https://tailscale.com/kb/1118/custom-derp-servers/>
-  #
-  # paths:
-  #   - /etc/headscale/derp-example.yaml
-  paths:
-    - /etc/headscale/derp.yaml
-
-\# If enabled, a worker will be set up to periodically
-  # refresh the given sources and update the derpmap
-  # will be set up.
-  auto_update_enabled: true
-
-\# How often should we check for DERP updates?
+```yaml
+# /etc/headscale/config.yaml  
+derp:  
+  # List of externally available DERP maps encoded in JSON  
+  urls:  
+  #  - https://controlplane.tailscale.com/derpmap/default  
+  
+  # Locally available DERP map files encoded in YAML  
+  #  
+  # This option is mostly interesting for people hosting  
+  # their own DERP servers:  
+  # https://tailscale.com/kb/1118/custom-derp-servers/  
+  #  
+  # paths:  
+  #   - /etc/headscale/derp-example.yaml  
+  paths:  
+    - /etc/headscale/derp.yaml  
+  
+  # If enabled, a worker will be set up to periodically  
+  # refresh the given sources and update the derpmap  
+  # will be set up.  
+  auto_update_enabled: true  
+  
+  # How often should we check for DERP updates?  
   update_frequency: 24h
-
-\`
+```
 
 可以把 Tailscale 官方的 DERP 服务器禁用，来测试自建的 DERP 服务器是否能正常工作。
 
 修改完配置后，重启 headscale 服务：
 
-`$ systemctl restart headscale`
+```
+$ systemctl restart headscale
+```
 
 在 Tailscale 客户端上使用以下命令查看目前可以使用的 DERP 服务器：
 
-\`$ tailscale netcheck
-
-Report:
-        * UDP: true
-        * IPv4: yes, xxxxx:57068
-        * IPv6: no
-        * MappingVariesByDestIP: false
-        * HairPinning: false
-        * PortMapping: 
-        * Nearest DERP: Tencent Hongkong
-        * DERP latency:
+```bash
+$ tailscale netcheck  
+  
+Report:  
+        * UDP: true  
+        * IPv4: yes, xxxxx:57068  
+        * IPv6: no  
+        * MappingVariesByDestIP: false  
+        * HairPinning: false  
+        * PortMapping:   
+        * Nearest DERP: Tencent Hongkong  
+        * DERP latency:  
                 - thk: 39.7ms (Tencent Hongkong)
-
-\`
+```
 
 `tailscale netcheck` 实际上只检测 `3478/udp` 的端口， 就算 netcheck 显示能连，也不一定代表 12345 端口可以转发流量。最简单的办法是直接打开 DERP 服务器的 URL：https://xxxx:12345，如果看到如下页面，且地址栏的 SSL 证书标签显示正常可用，那才是真没问题了。
 
@@ -192,29 +248,53 @@ Report:
 
 查看与通信对端的连接方式：
 
-`$ tailscale status 10.1.0.5        coredns              default      linux   -                 carsondemacbook-pro  default      macOS   active; direct xxxx:2756; offline, tx 50424 rx 34056                 oneplus-8t           default      android active; relay "thk"; offline, tx 1608 rx 1552                 openwrt              default      linux   active; direct xxxx:2834; offline, tx 1403688 rx 1217620`
+```bash
+$ tailscale status  
+10.1.0.5        coredns              default      linux   -  
+                carsondemacbook-pro  default      macOS   active; direct xxxx:2756; offline, tx 50424 rx 34056  
+                oneplus-8t           default      android active; relay "thk"; offline, tx 1608 rx 1552  
+                openwrt              default      linux   active; direct xxxx:2834; offline, tx 1403688 rx 1217620
+```
 
 这个客户端是一台云主机，有 3 个通信对端，分别是 macOS、OpenWRT 与 Android 手机，macOS 和 OpenWRT 都处于电信家庭内网中，Android 手机使用的是电信流量。可以看到只有 Android 手机是通过自定义的 DERP 服务器来中继流量的，打洞成功率相当高。使用 ping 来测试连通性：
 
-`$ ping 10.1.0.8 PING 10.1.0.8 (10.1.0.8) 56(84) bytes of data. 64 bytes from 10.1.0.8: icmp_seq=1 ttl=64 time=150 ms 64 bytes from 10.1.0.8: icmp_seq=2 ttl=64 time=131 ms 64 bytes from 10.1.0.8: icmp_seq=3 ttl=64 time=161 ms 64 bytes from 10.1.0.8: icmp_seq=4 ttl=64 time=137 ms 64 bytes from 10.1.0.8: icmp_seq=5 ttl=64 time=156 ms 64 bytes from 10.1.0.8: icmp_seq=6 ttl=64 time=169 ms ^C --- 10.1.0.8 ping statistics --- 6 packets transmitted, 6 received, 0% packet loss, time 5005ms rtt min/avg/max/mdev = 131.728/151.154/169.627/13.193 ms`
+```bash
+$ ping 10.1.0.8  
+PING 10.1.0.8 (10.1.0.8) 56(84) bytes of data.  
+64 bytes from 10.1.0.8: icmp_seq=1 ttl=64 time=150 ms  
+64 bytes from 10.1.0.8: icmp_seq=2 ttl=64 time=131 ms  
+64 bytes from 10.1.0.8: icmp_seq=3 ttl=64 time=161 ms  
+64 bytes from 10.1.0.8: icmp_seq=4 ttl=64 time=137 ms  
+64 bytes from 10.1.0.8: icmp_seq=5 ttl=64 time=156 ms  
+64 bytes from 10.1.0.8: icmp_seq=6 ttl=64 time=169 ms  
+^C  
+--- 10.1.0.8 ping statistics ---  
+6 packets transmitted, 6 received, 0% packet loss, time 5005ms  
+rtt min/avg/max/mdev = 131.728/151.154/169.627/13.193 ms
+```
 
 也可以使用 Tailscale 命令行工具来测试：
 
-`$ tailscale ping 10.1.0.8 pong from oneplus-8t (10.1.0.8) via DERP(thk) in 104ms pong from oneplus-8t (10.1.0.8) via DERP(thk) in 111ms pong from oneplus-8t (10.1.0.8) via DERP(thk) in 105ms`
+```bash
+$ tailscale ping 10.1.0.8  
+pong from oneplus-8t (10.1.0.8) via DERP(thk) in 104ms  
+pong from oneplus-8t (10.1.0.8) via DERP(thk) in 111ms  
+pong from oneplus-8t (10.1.0.8) via DERP(thk) in 105ms
+```
 
 这个更加友好一点，会直接告诉你是通过 DERP 中继服务器来和对方通信的。
 
 如果当前 Tailscale 客户端所在主机开启了 IPv6，那么与手机便可以直接通过 IPv6 点对点连接：
 
-\`$ /Applications/Tailscale.app/Contents/MacOS/Tailscale status
-                coredns              default      linux   active; direct xxxx:45986; offline, tx 124352 rx 185736
-                oneplus-8t           default      android active; direct \[240e:472:da0:24a2:a07f:2a67:2a1e:4475]:37237; offline, tx 125216 rx 20052
-                openwrt              default      linux   active; direct \[240e:390:caf:1870:c02c:e8ff:feb9:b0b]:41641; offline, tx 181992 rx 3910120
-
-$ /Applications/Tailscale.app/Contents/MacOS/Tailscale ping 10.1.0.8
-pong from oneplus-8t (10.1.0.8) via \[240e:472:da0:24a2:a07f:2a67:2a1e:4475]:37237 in 62ms
-
-\`
+```bash
+$ /Applications/Tailscale.app/Contents/MacOS/Tailscale status  
+                coredns              default      linux   active; direct xxxx:45986; offline, tx 124352 rx 185736  
+                oneplus-8t           default      android active; direct [240e:472:da0:24a2:a07f:2a67:2a1e:4475]:37237; offline, tx 125216 rx 20052  
+                openwrt              default      linux   active; direct [240e:390:caf:1870:c02c:e8ff:feb9:b0b]:41641; offline, tx 181992 rx 3910120  
+  
+$ /Applications/Tailscale.app/Contents/MacOS/Tailscale ping 10.1.0.8  
+pong from oneplus-8t (10.1.0.8) via [240e:472:da0:24a2:a07f:2a67:2a1e:4475]:37237 in 62ms
+```
 
 所以如果你开启了 IPv6，可以大大增加**点对点连接**的成功率。
 
@@ -559,16 +639,9 @@ docker run --restart always \
 ## 参考资料
 
 - NAT 穿透是如何工作的：技术原理及企业级实践\[6]
-- Custom DERP Servers\[7]
 - Encrypted TCP relays (DERP)\[8]
 
 ### 引用链接
-
-\[1]DERP 的源代码: [_https://github.com/tailscale/tailscale/tree/main/derp_](https://github.com/tailscale/tailscale/tree/main/derp)
-
-\[2]Tailscale 官方文档: [_https://tailscale.com/kb/1118/custom-derp-servers/_](https://tailscale.com/kb/1118/custom-derp-servers/)
-
-\[3]Derper TLS handshake error: remote error: tls: internal error: [_https://github.com/tailscale/tailscale/issues/4082_](https://github.com/tailscale/tailscale/issues/4082)
 
 \[4]我的 GitHub 仓库: [_https://github.com/yangchuansheng/ip_derper_](https://github.com/yangchuansheng/ip_derper)
 
