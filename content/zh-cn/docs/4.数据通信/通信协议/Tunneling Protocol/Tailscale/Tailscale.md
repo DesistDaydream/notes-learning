@@ -42,11 +42,11 @@ Tailscale 是一款商业产品，但个人用户是可以白嫖的，个人用�
 
 # Tailscale 架构概述
 
-控制台，可以通过 [Headscale](docs/4.数据通信/通信协议/Tunneling%20Protocol/Tailscale/Headscale.md) 开源实现
-
-客户端，主要是 [tailscale 命令行工具](docs/4.数据通信/通信协议/Tunneling%20Protocol/Tailscale/tailscale%20命令行工具.md)。windows 也有调用 tailscale 命令行工具的守护进程以右下角小图标的形式存在
-
-[Tailscale DERP](docs/4.数据通信/通信协议/Tunneling%20Protocol/Tailscale/Tailscale%20DERP.md)，当两个节点第一次连接以及两个节点直连失败时，会切换到通过 DERP 来连接。DERP 是 Tailscale 自研的协议，也是一个中继程序，用以代理两个节点的访问请求。
+- **控制台** # 管理 Tailscale 客户端，向 Tailscale 客户端下发规则。
+  - 可以通过 [Headscale](docs/4.数据通信/通信协议/Tunneling%20Protocol/Tailscale/Headscale.md) 开源实现
+- **客户端** # 主要是 [tailscale 命令行工具](docs/4.数据通信/通信协议/Tunneling%20Protocol/Tailscale/tailscale%20命令行工具.md)。windows 也有调用 tailscale 命令行工具的守护进程以右下角小图标的形式存在
+- [Tailscale DERP](docs/4.数据通信/通信协议/Tunneling%20Protocol/Tailscale/Tailscale%20DERP.md) # 当两个节点第一次连接以及两个节点直连失败时，会切换到通过 DERP 来连接。DERP 是 Tailscale 自研的协议，也是一个中继程序，用以代理两个节点的访问请求。
+  - 可以自行搭建 DERP
 
 
 ## Tailscale 工作逻辑
