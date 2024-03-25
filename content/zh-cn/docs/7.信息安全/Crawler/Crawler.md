@@ -32,3 +32,10 @@ B 站视频
 - https://github.com/Zero-S1/awesome-python-login-model python模拟登陆一些大型网站，还有一些简单的爬虫
 
 https://github.com/lixi5338619/lxSpider 爬虫案例合集
+
+# 实用工具
+
+[Easy Scrapper 浏览器插件](https://chromewebstore.google.com/detail/easy-scraper-free-web-scr/ibdncfidcgeammedkdhoopophkkhcbme)
+
+- [Easy Scraper - 可视化网络爬虫，不写代码，鼠标点点获取数据](https://www.bilibili.com/video/BV1jx4y1S75U)
+

@@ -1,20 +1,21 @@
 ---
-title: 爬虫
+title: Python 爬虫工具
+linkTitle: Python 爬虫工具
+date: 2024-03-25T08:38
+weight: 20
 ---
 
 # 概述
 
-[2022 Python Web 爬虫武器库盘点](https://zhuanlan.zhihu.com/p/461875098)
+> 参考：
+> 
+> - [2022 Python Web 爬虫武器库盘点](https://zhuanlan.zhihu.com/p/461875098)
 
-> 本文大约五千字，耗费了作者近三天时间，希望能带给你提供有用信息。
+[curl_cffi: 支持原生模拟浏览器 TLS/JA3 指纹的 Python 库](https://zhuanlan.zhihu.com/p/601474166)
 
-以前大家写爬虫一般都用 Requests、Scrapy、Selenium。但近几年出现了一些更好用的工具或库。本文就来介绍一下个人强烈推荐爬虫库和工具。
+# HTTP 请求
 
-[curl_cffi: 支持原生模拟浏览器TLS/JA3 指纹的Python 库](https://zhuanlan.zhihu.com/p/601474166)
-
-## HTTP 请求
-
-### Requests
+## Requests
 
 Requests 是从 Python 2 就开始流行的 HTTP 请求库，至今已有十一年历史。当初 Python 内置的 http 库过于底层，用起来非常麻烦，Requests 的出现像救世主一样，slogan 就是“http for humans”，标版自己简单好用人性化。Requests 也确实对得起自己的 solgan，至少提供了以下便捷功能：
 
@@ -53,7 +54,7 @@ Requests 是从 Python 2 就开始流行的 HTTP 请求库，至今已有十一�
 
 [Requests: HTTP for Humans™ (python-requests.org)](https://link.zhihu.com/?target=https%3A//docs.python-requests.org/en/latest/)
 
-### HTTPX
+## HTTPX
 
 HTTPX 的 slogan 是 “Python 的下一代 HTTP 客户端”，从出生开始就只支持 Python 3.6 及更高版本。使用了 Type Hint，同时支持同步和异步接口，同时支持 HTTP/1.1 和 HTTP/2，还提供了命令行工具，可以在命令行中直接发送 HTTP 请求。HTTPX 站在 Requests 的肩膀上，Requests 支持的功能它都支持，Requests 不支持的功能它也支持，比 Requests 更现代，没有历史包袱。
 
@@ -77,9 +78,9 @@ HTTPX 的 slogan 是 “Python 的下一代 HTTP 客户端”，从出生开始�
 
 [encode/httpx: A next generation HTTP client for Python. (github.com)](https://link.zhihu.com/?target=https%3A//github.com/encode/httpx/)
 
-## 数据解析
+# 数据解析
 
-### Beautiful Soup
+## Beautiful Soup
 
 Beautiful Soup 也是从 Python2 时代就开始流行的解析库，用于从 HTML 或 XML 文档中提取数据。Beautiful Soup 会将文档解析成树形文档结构，树中每个节点都是一个 Python 对象，并将节点分为 4 种类型：`Tag` 、 `NavigableString` 、`BeautifulSoup` 、 `Comment` ，并提供了遍历、搜索、修改文档树的接口。支持 CSS 搜索，可以美化 HTML 文档，快速提取文本。Beautiful Soup 还可以指定解析文档时使用的解析器，有的解析器效率高，有的解析器兼容性好，可以根据需要选择。
 
@@ -105,7 +106,7 @@ Beautiful Soup 也是从 Python2 时代就开始流行的解析库，用于从 H
 
 [Beautiful Soup Documentation — Beautiful Soup 4.4.0 documentation (beautiful-soup-4.readthedocs.io)](https://link.zhihu.com/?target=https%3A//beautiful-soup-4.readthedocs.io/en/latest/)
 
-### Parsel
+## Parsel
 
 Parsel 是新一代的 HTML/XML 文档解析库，也是知名爬虫框架 Scrapy 内置的解析器，属于 Scrapy 项目。Parsel 支持 XPath 和 CSS 两种风格的解析器，并集成了正则表达式。
 
@@ -123,7 +124,7 @@ Parsel 是新一代的 HTML/XML 文档解析库，也是知名爬虫框架 Scrap
 
 [scrapy/parsel: Parsel lets you extract data from XML/HTML documents using XPath or CSS selectors (github.com)](https://link.zhihu.com/?target=https%3A//github.com/scrapy/parsel)
 
-### JSONPath
+## JSONPath
 
 JSONPath 是查询和解析复杂 JSON 文档的一门语言，JSONPath 的 slogan 是“XPath to JSON”，可以像用 XPath 解析 XML 文档一样用 JSONPath 解析 JSON 文档。JSONPath 由 Stefan Goessner 于 2007 年在[一篇博客](https://link.zhihu.com/?target=https%3A//goessner.net/articles/JsonPath/)中提出，Stefan Goessner 认为 JSON 是 C 系列编程语言中数据的自然表示，所以 JSONPath 表达式的语法也是 C 系列语言风格。例如，访问嵌套的结构可以用 `.` 也可以用 `[]`。
 
@@ -167,7 +168,7 @@ JSONPath 有多种实现，在主流的编程语言中都有对应的库。但�
 
 [JSONPath 在线验证](https://link.zhihu.com/?target=https%3A//www.jsonpath.cn/)
 
-### JMESPath
+## JMESPath
 
 JMESPath 是最近几年最流行的 JSON 文档查询、提取、转换的语言。克服了 JSONPath 的缺点，并提供更加强大功能，例如投影和管道。
 
@@ -194,11 +195,11 @@ JSONPath 的优点它都有，此外还具有 JSONPath 没有的优点：
 
 [jmespath vs json-query vs jsonata vs jsonpath vs jsonpath-plus | npm trends](https://link.zhihu.com/?target=https%3A//www.npmtrends.com/jmespath-vs-json-query-vs-jsonata-vs-jsonpath-vs-jsonpath-plus)
 
-## 框架
+# 框架
 
 Scrapy 是爬虫领域至今未被取代的框架，所以本节只介绍了 Scrapy。
 
-### Scrapy
+## Scrapy
 
 Scrapy 是一款流行了 11 年的 web 爬虫框架，也许是唯一广泛流行的 Python 爬虫框架。Scrapy 框架集成了 HTTP 请求、数据解析、数据持久化、请求调度、并发爬取。
 
@@ -230,13 +231,13 @@ Scrapy 还提供了 Scrapy-Redis 用于支持分布式爬取。
 
 [scrapy/scrapy: Scrapy, a fast high-level web crawling & scraping framework for Python. (github.com)](https://link.zhihu.com/?target=https%3A//github.com/scrapy/scrapy)
 
-## 模拟/自动化工具
+# 模拟/自动化工具
 
 用自动化测试工具模拟真人爬取网页可以绕过大多数反爬策略，而且不用担心页面动态渲染的问题。
 
 下面介绍的自动化测试工具，原本都是为 Web 自动化测试而生，并不是为爬虫而设计的。本人是从爬虫角度了解它们，所以对它们的介绍肯定不全面，也可能某些地方不准确。
 
-### Selenium
+## Selenium
 
 Selenium 是用于支持 web 浏览器自动化的综合项目，包括一系列工具和库的集合。其中最核心的是 WebDriver。我们用 Selenium 模拟爬取就是通过特定于浏览器**驱动**控制浏览器，模拟真人使用浏览器的过程。驱动特定了浏览器，一般由浏览器厂商自己提供，例如 Chrome 浏览器的驱动为 ChromeDriver，Firefox 浏览器的驱动为 GeckoDriver。
 
@@ -268,7 +269,7 @@ Selenium 3.x 完全没有网络拦截功能，只能通过浏览器插件的形�
 
 [https://github.com/SeleniumHQ/Selenium](https://link.zhihu.com/?target=https%3A//github.com/SeleniumHQ/Selenium)
 
-### Puppeteer
+## Puppeteer
 
 Puppeteer 是 Google Chrome 官方团队于 2017 年发布的一个 Node 库，通过 DevTools 协议控制浏览器。能控制的浏览器包括 Google Chrome、Microsoft Edge，不包括 Mozilla Firefox。默认为无头模式，也可以为有头模式。
 
@@ -297,7 +298,7 @@ Puppeteer 有个 Python 迁移版，叫 Pyppeteer，用 Python 的协程语法�
 
 [pyppeteer/pyppeteer: Headless chrome/chromium automation library (unofficial port of puppeteer) (github.com)](https://link.zhihu.com/?target=https%3A//github.com/pyppeteer/pyppeteer)
 
-### Playwright
+## Playwright
 
 Playwright 是微软官方于 2020 年发布的 Web 自动化测试工具。
 
@@ -323,7 +324,7 @@ Playwright 提供的网络拦截功能很适合写爬虫，包括修改请求、
 
 [Fast and reliable end-to-end testing for modern web apps | Playwright](https://link.zhihu.com/?target=https%3A//playwright.dev/)
 
-## JS 引擎 for Python
+# JS 引擎 for Python
 
 写爬虫经常会遇到一些场景，某个请求需要一些参数，而这些参数是经过执行一段复杂的 JavaScript 代码生成的。在用 Python 代码模拟发出该请求时，你可以选择用 Python 重写对于的 js 逻辑，这样会很麻烦，因为你要保证你的 Python 代码逻辑和对应的 JS 代码一模一样，通常还有考虑两种编程语言的异同。如果这段 JS 代码被混淆过，读懂它的逻辑就需要很大的工作量，更便捷的方法是直接将这段 JS 代码拷贝下来，放到一个 JavaScript 环境中执行，再拿到其结果。这就需要一个能在 Python 中使用的 JS 引擎库。
 
@@ -331,7 +332,7 @@ Playwright 提供的网络拦截功能很适合写爬虫，包括修改请求、
 
 在 PyV8、PyExecJS 等库都停止维护的情况下，目前唯一比较好的选择是 PyMiniRacer。
 
-### PyMiniRacer
+## PyMiniRacer
 
 PyMiniRacer 是适用于 Python 的最小的现代嵌入式 V8。虽然维护团队很小，但却是目前的唯一选择。PyMiniRacer 支持最新的 ECMAScript 标准，支持 Assembly，并提供可重用的上下文。
 
@@ -350,11 +351,11 @@ PyMiniRacer 是适用于 Python 的最小的现代嵌入式 V8。虽然维护团
 
 [py-mini-racer · PyPI](https://link.zhihu.com/?target=https%3A//pypi.org/project/py-mini-racer/)
 
-## 虚拟显示器
+# 虚拟显示器
 
 服务器一般不会配置显式设备，服务器上的 Linux 系统一般也不会安装桌面环境。但如果我们要将一个使用有头浏览器的爬虫部署到服务器上，甚至是 Docker 容器里，该怎么办呢？这时候就可以用虚拟显示器了。目前只有 Xvfb 一个选择。
 
-### Xvfb
+## Xvfb
 
 Xvfb 是一个 X server，可以在没有显式硬件和物理输入设备的机器上运行，用虚拟内存模拟帧缓冲。
 
@@ -370,9 +371,9 @@ Xvfb 可以设置模拟屏幕的分辨率、像素深度。
 
 [X](https://link.zhihu.com/?target=https%3A//www.x.org/releases/X11R7.7/doc/man/man7/X.7.xhtml)
 
-## 抓包工具
+# 抓包工具
 
-### Fiddler Classic
+## Fiddler Classic
 
 Fiddler Classic 是 Windows 平台上一款非常好用的抓包工具。网络上提到的 Fiddler 通常就是指的 Fiddler Classic。
 
@@ -402,7 +403,7 @@ Fiddler 的抓包原理本质上属于一种“中间人攻击”，有的 app �
 
 [Fiddler Classic | Original Web Capturing Tool for Windows (telerik.com)](https://link.zhihu.com/?target=https%3A//www.telerik.com/fiddler/fiddler-classic)
 
-### 浏览器
+## 浏览器
 
 浏览器自带的调试工具可以监控网络流量，而且不需要创建代理。但在浏览器的调试页面分析流量不怎么方便，对于复杂的网络交互过程可以将浏览器抓包到的结果保存为 HAR 文件，再用其他工具（例如 Fiddler Classic）分析。
 
@@ -416,7 +417,7 @@ Fiddler 的抓包原理本质上属于一种“中间人攻击”，有的 app �
 
 - 分析网络交互过程没有专门的工具方便。
 
-## 个人推荐的最佳组合
+# 个人推荐的最佳组合
 
 - 请求库： HTTPX。
 - 框架：Scrapy
