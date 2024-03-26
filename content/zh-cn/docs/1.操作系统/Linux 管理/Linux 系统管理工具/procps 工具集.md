@@ -93,14 +93,14 @@ ps 是 **process status(进程状态)** 的简称~
 
 Note：该命令显示出来的带 `[]` 的进程为内核线程，一般不用关注。出现这种情况一般是因为 ps 命令无法获取进程的命令参数，所以会将命令名称放入括号中。毕竟用户态的 ps 命令怎么可能会获得内核内部程序的参数呢~~~
 
-ps 命令输出的内容中部分字段的含义说明：
+在 Manual 中的 [STANDARD FORMAT SPECIFIERS(标准格式说明符)](https://man7.org/linux/man-pages/man1/ps.1.html#STANDARD_FORMAT_SPECIFIERS) 部分，列出了每个列（i.e. Specifiers(说明符)）表示的含义。这里对常用的 `ps -ef f` 命令输出的内容的 Specifiers 的含义进行说明：
 
-- PID # Process ID(进程标识符)
-- PPID # Parent Process ID(父进程标识符)，父进程是创建一个或多个子进程的进程。
-- VSZ # Virtual Memory Size(虚拟内存大小)，包括进程可以访问的所有内存，包括进入交换分区的内容，以及共享库占用的内存。有的地方也称为 total_vm、VIRT
-- RRS # Resident Set Size(实际内存用量)，不包括进入交换分区的内存。RSS 包括共享库占用的内存（只要共享库在内存中）。RSS 包括所有分配的栈内存和堆内存。
-- LWP # 线程 ID
-- NLWP # 线程数量
+- UID # User ID(用户标识符)。进程所属用户 ID
+- PID # Process ID(进程标识符)。
+- PPID # Parent Process ID(父进程标识符)。创建该进程的进程的 ID 号。
+- C # CPU utilization(CPU 利用率)。
+- STIME # Start Time(启动时间)。进程的启动时间，格式为 HH:MM:SS
+- TTY # Controlling Terminal(控制终端)。与该进程关联的终端设备
 - STAT # 进程的当前状态
   - D # 不可中断的休眠。通常是 IO。
   - R # 运行。正在运行或者在运行队列中等待。
@@ -115,7 +115,15 @@ ps 命令输出的内容中部分字段的含义说明：
       - s 进程领导者，其有子进程。
       - l 多线程
         - `-` 位于前台进程组。
+- TIME # CPU Time(CPU 时间)。进程在 CPU 上消耗的总时间
 - CMD # 启动该进程的命令。包括可执行文件的路径、命令参数、etc.
+
+不常用的说明符
+
+- VSZ # Virtual Memory Size(虚拟内存大小)，包括进程可以访问的所有内存，包括进入交换分区的内容，以及共享库占用的内存。有的地方也称为 total_vm、VIRT
+- RRS # Resident Set Size(实际内存用量)，不包括进入交换分区的内存。RSS 包括共享库占用的内存（只要共享库在内存中）。RSS 包括所有分配的栈内存和堆内存。
+- LWP # 线程 ID
+- NLWP # 线程数量
 
 可以使用 **-o FORMAT** 选项来自定义输出的格式(就是字段)。 FORMAT 是单个参数，格式为空格分隔或逗号分隔的列表，它提供了一种指定单个输出列的方法。 可以在 man 手册的 [STANDARD FORMAT SPECIFIERS(标准格式说明符)](https://man7.org/linux/man-pages/man1/ps.1.html#STANDARD_FORMAT_SPECIFIERS) 部分中找到所有可用的关键字。
 

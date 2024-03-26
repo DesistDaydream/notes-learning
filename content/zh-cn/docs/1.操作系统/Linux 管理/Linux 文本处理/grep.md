@@ -55,6 +55,8 @@ grep 根据 PATTERNS(模式) 过滤给定的内容。其实就是使用正则表
 ### File and Directory Selection(文件和目录选择)
 
 - **-a, --text** # 像对待文本一样处理二进制文件；这等效于--binary-files = text 选项。
+- **--exclude FILE** # 跳过指定文件，不让 grep 处理跳过的文件。可以使用通配符。
+- **--exclude-dir=DIR** # 跳过指定目录，不让 grep 处理跳过的目录。可以使用通配符。
 - **-R, --dereference-recursive** # 递归地阅读每个目录下的所有文件并进行 grep 操作;该选项相当于-d recurse
 
 ## EXAMPLE
@@ -70,6 +72,22 @@ grep 根据 PATTERNS(模式) 过滤给定的内容。其实就是使用正则表
 - grep -i --color=auto '\[0-9]+.\[0-9]+.\[0-9]+.\[0-9]+' ./interfaces # 不适用 egrep 的方法
 
 # 应用示例
+
+## 多个字符串逐一匹配多个文件，匹配到的话输出字符串与所在文件
+
+```bash
+#!/bin/bash
+#
+CMD_ID="10385455 10385631 10385269 10385176 10385362 10385734 10385920 10385083 10384897 10384764 10384618 10384153 10384339 10384246 10384525 10383781 10383967 10383595 10383315"
+for id in $CMD_ID; do
+    matched_files=$(grep -l -r --exclude=test.sh --exclude-dir=scripts "$id" /PATH/TO/DIR/*)
+    if [ -n "$matched_files" ]; then
+        echo "ID ${id} matched in: ${matched_files}"
+    else
+        echo "ID ${id} not found"
+    fi
+done
+```
 
 ## 筛选 `{{ }}` 之间的内容
 
@@ -96,8 +114,10 @@ E#@EEE
 
 **cat content.txt | grep -oP "{{(\w|-|#|@)+}}"**
 
-    {{A1}}
-    {{B0B}}
-    {{CC_CC}}
-    {{D-DD}}
-    {{E#@EEE}}
+```
+{{A1}}
+{{B0B}}
+{{CC_CC}}
+{{D-DD}}
+{{E#@EEE}}
+```

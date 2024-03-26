@@ -5,6 +5,7 @@ title: lsof 列出打开的文件
 # 概述
 
 > 参考：
+> 
 > - [Manual(手册)，lsof(8)](https://man7.org/linux/man-pages/man8/lsof.8.html)
 
 该工具以文件为主体，用于列出打开文件的进程，进程打开的端口(TCP、UDP)等、找回/恢复删除的文件。是十分方便的系统监视工具，因为 lsof 需要访问核心内存和各种文件，所以需要 root 用户执行。
