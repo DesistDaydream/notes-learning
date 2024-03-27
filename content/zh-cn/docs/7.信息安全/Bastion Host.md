@@ -11,6 +11,8 @@ weight: 20
 > 
 > - [Wiki，Bastion host](https://en.wikipedia.org/wiki/Bastion_host)
 
+**Bastion Host(堡垒机)**
+
 # JumpServer
 
 [GitHub 项目，jumpserver/jumpserver](https://github.com/jumpserver/jumpserver/)

@@ -2066,15 +2066,16 @@
       "docs/7.信息安全/Glossary.md",
       "docs/7.信息安全/信息安全.md",
       "docs/7.信息安全/Cryptography",
+      "docs/7.信息安全/Crypto mgmt tools",
       "docs/7.信息安全/Access Control",
-      "docs/7.信息安全/管理工具",
       "docs/7.信息安全/Network analysis",
       "docs/7.信息安全/Packet analyzer",
       "docs/7.信息安全/中间人攻击与HTTPS抓包.md",
-      "docs/7.信息安全/Bastion Host.md",
       "docs/7.信息安全/Hacking.md",
       "docs/7.信息安全/Reverse engineering",
-      "docs/7.信息安全/Crawler"
+      "docs/7.信息安全/Crawler",
+      "docs/7.信息安全/Vulnerable.md",
+      "docs/7.信息安全/Bastion Host.md"
     ],
     "docs/7.信息安全/Crawler": [
       "docs/7.信息安全/Crawler/_index.md",
@@ -2432,19 +2433,19 @@
       "docs/2.编程/高级编程语言/Java/Java环境安装与使用",
       "docs/2.编程/高级编程语言/Java/Java工具"
     ],
-    "docs/7.信息安全/管理工具/OpenSSL": [
-      "docs/7.信息安全/管理工具/OpenSSL/_index.md",
-      "docs/7.信息安全/管理工具/OpenSSL/OpenSSL.md",
-      "docs/7.信息安全/管理工具/OpenSSL/OpenSSL 配置详解.md",
-      "docs/7.信息安全/管理工具/OpenSSL/Standard commands(标准命令).md"
+    "docs/7.信息安全/Crypto mgmt tools/OpenSSL": [
+      "docs/7.信息安全/Crypto mgmt tools/OpenSSL/_index.md",
+      "docs/7.信息安全/Crypto mgmt tools/OpenSSL/OpenSSL.md",
+      "docs/7.信息安全/Crypto mgmt tools/OpenSSL/OpenSSL 配置详解.md",
+      "docs/7.信息安全/Crypto mgmt tools/OpenSSL/Standard commands(标准命令).md"
     ],
-    "docs/7.信息安全/管理工具": [
-      "docs/7.信息安全/管理工具/_index.md",
-      "docs/7.信息安全/管理工具/管理工具.md",
-      "docs/7.信息安全/管理工具/自建CA脚本.md",
-      "docs/7.信息安全/管理工具/CFSSL.md",
-      "docs/7.信息安全/管理工具/OpenSSL",
-      "docs/7.信息安全/管理工具/系统证书管理.md"
+    "docs/7.信息安全/Crypto mgmt tools": [
+      "docs/7.信息安全/Crypto mgmt tools/_index.md",
+      "docs/7.信息安全/Crypto mgmt tools/Crypto mgmt tools.md",
+      "docs/7.信息安全/Crypto mgmt tools/自建CA脚本.md",
+      "docs/7.信息安全/Crypto mgmt tools/CFSSL.md",
+      "docs/7.信息安全/Crypto mgmt tools/OpenSSL",
+      "docs/7.信息安全/Crypto mgmt tools/系统证书管理.md"
     ],
     "docs/2.编程/Programming environment": [
       "docs/2.编程/Programming environment/_index.md",

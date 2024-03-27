@@ -2,7 +2,7 @@
 title: Glossary
 linkTitle: Glossary
 date: 2024-01-14T20:30
-weight: 20
+weight: 1
 ---
 
 # 概述
@@ -89,7 +89,3 @@ weight: 20
 **Information security management system(信息安全管理系统，简称 ISMS)**
 
 - https://en.wikipedia.org/wiki/Information_security_management
-
-**Call detail record(通话详细记录，简称 CDR)** 中文常简称为 话单。随着发展，话单的含义也逐步扩展，包含了不止是通话的详细信息。
-
-- https://en.wikipedia.org/wiki/Call_detail_record
