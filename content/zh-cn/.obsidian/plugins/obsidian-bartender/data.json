@@ -1592,8 +1592,10 @@
     "docs/4.数据通信/Networking device": [
       "docs/4.数据通信/Networking device/_index.md",
       "docs/4.数据通信/Networking device/Networking device.md",
+      "docs/4.数据通信/Networking device/NIC.md",
       "docs/4.数据通信/Networking device/Router And Switch.md",
-      "docs/4.数据通信/Networking device/Optical splitter.md"
+      "docs/4.数据通信/Networking device/Fiber-optic splitter.md",
+      "docs/4.数据通信/Networking device/Optical amplifier.md"
     ],
     "docs/4.数据通信/数据通信": [
       "docs/4.数据通信/数据通信/_index.md",

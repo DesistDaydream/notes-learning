@@ -2,7 +2,7 @@
 title: Networking device
 linkTitle: Networking device
 date: 2024-02-22T13:29
-weight: 20
+weight: 1
 ---
 
 # 概述
@@ -51,7 +51,7 @@ Blade 也可以称为 **Board(板卡)**，常见的形容有 DPI 板、分流板
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/networking_device/202402271413818.png)
 
-## 光纤
+## Optical fiber(光纤)
 
 > 参考：
 >

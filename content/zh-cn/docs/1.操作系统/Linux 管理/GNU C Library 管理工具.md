@@ -1,6 +1,6 @@
 ---
 title: GNU C Library 管理工具
-weight: 6
+weight: 8
 ---
 
 # 概述
