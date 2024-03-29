@@ -2,7 +2,7 @@
 title: Optical amplifier
 linkTitle: Optical amplifier
 date: 2024-03-28T09:43
-weight: 20
+weight: 5
 ---
 
 # 概述

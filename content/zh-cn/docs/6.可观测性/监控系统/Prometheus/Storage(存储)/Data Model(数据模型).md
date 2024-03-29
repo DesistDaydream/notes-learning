@@ -5,7 +5,7 @@ title: Data Model(数据模型)
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，概念-数据模型](https://prometheus.io/docs/concepts/data_model/)
 > - [yunlzheng 文档](https://yunlzheng.gitbook.io/prometheus-book/parti-prometheus-ji-chu/promql)
 
@@ -14,14 +14,14 @@ Prometheus 从根本上将所有数据存储为 [Time Series(时间序列)](http
 ## Time-Series Data(时间序列数据) 概念
 
 > 参考：
-> 
+>
 > - [Wiki](https://en.wikipedia.org/wiki/Time_series)
 > - [InfluxDB 对时间序列数据的定义](https://www.influxdata.com/what-is-time-series-data/)
 > - [这是论文](http://get.influxdata.com/rs/972-GDU-533/images/why%20time%20series.pdf)
 
 **Time Series(时间序列)** 是一组按照时间发生先后顺序进行排列的数据点序列。通常一组时间序列的时间间隔为一恒定值（如 1 秒，5 分钟，12 小时，7 天，1 年），因此时间序列可以作为离散时间数据进行分析处理。时间序列广泛应用于数理统计、信号处理、模式识别、计量经济学、数学金融、天气预报、地震预测、脑电图、控制工程、航空学、通信工程以及绝大多数涉及到时间数据测量的应用科学与工程学。
 
-**[Time Series Data](/docs/5.数据存储/2.数据库/时间序列数据/时间序列数据.md)(时间序列数据，简称 series)** 是在一段时间内通过重复 Measurement(测量) 而获得的观测值的集合；可以将这些观测值绘制于图形之上，它会有一个数据轴和一个时间轴。
+**[Time Series Data](/docs/5.数据存储/数据库/时间序列数据/时间序列数据.md)(时间序列数据，简称 series)** 是在一段时间内通过重复 Measurement(测量) 而获得的观测值的集合；可以将这些观测值绘制于图形之上，它会有一个数据轴和一个时间轴。
 
 从另一个角度看，时间序列数据是在不同时间上收集到的数据，用于所描述现象随时间变化的情况。这类数据反映了某一事物、现象等随时间的变化状态或程度。
 
@@ -186,7 +186,7 @@ topk(10, http_requests_total)
 ## Histogram(直方图) 与 Summary(摘要)
 
 > 参考：
-> 
+>
 > - [官方文档](https://prometheus.io/docs/practices/histograms/)
 > - [云原生实验室](https://fuckcloudnative.io/posts/prometheus-histograms/)
 
@@ -216,7 +216,7 @@ Prometheus 中的直方图与传统意义的直方图有一些差别，准确描
 
 Histogram 类型的指标在同一时间具有多条时间序列(假设指标名称为 <basename)：(这些时间序列大体分为 3 种)
 
-- **\<basename>\_bucket{le="<上边界>"} **# 要观察的样本分布在 bucket 中的数量。解释的更通俗易懂一点，这个值表示 要观察的样本的值 小于等于 上边界的值 的所有样本数量。
+- **\<basename>\_bucket{le="<上边界>"}**# 要观察的样本分布在 bucket 中的数量。解释的更通俗易懂一点，这个值表示 要观察的样本的值 小于等于 上边界的值 的所有样本数量。
   - le 通常用来表示该 bucket 的上限。le 这俩字符按照关系运算符来理解，就是“小于或等于”的意思。。。。。。。
   - 用白话说就是，le 是 bucket 的标识符，比如下面的示例，就可以这么描述：0 到 0.00025 储存区，含有 332 个样本；0 到 0.0005 储存区，含有 336 个样本。
 - **\<basename>\_sum** # 所有 被观察样本的值 的总和。
@@ -293,7 +293,7 @@ prometheus_tsdb_wal_fsync_duration_seconds_count 216
 # Prometheus 格式的 Metrics 详解
 
 > 参考：
-> 
+>
 > - [官方文档](https://prometheus.io/docs/instrumenting/exposition_formats/)
 
 通过各种 Exporter 暴露的 HTTP 服务，Prometheus 可以采集到 当前时间 主机所有监控指标的样本数据。数据格式示例如下：
@@ -314,7 +314,9 @@ something_weird{problem="division by zero"} +Inf -3982045
 Note：上面通过 http 采集到的数据就是文本格式的 Metrics，格式一定是上述的样子，每个时间序列都分为 3 个部分。
 
 1. # HELP 时间序列名称 时间序列描述
+
 2. # TYPE 时间序列名称 时间序列类型
+
 3. 非#开头的每一行表示当前 Node Exporter 采集到的一个监控样本：node_cpu 和 node_load1 表明了当前指标的名称、大括号中的标签则反映了当前样本的一些特征和维度、浮点数则是该监控样本的具体值。
    1. 如果有多个 Metrics 的项目，则会有多行
 

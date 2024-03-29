@@ -8,7 +8,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [Wiki，File_Transfer_Protocol](https://en.wikipedia.org/wiki/File_Transfer_Protocol)
 
 **File Transfer Protocol(文件传输协议，简称 FTP)** 是因特网网络上历史最悠久的网络工具，从 1971 年由 A KBHUSHAN 提出第一个 FTP 的 RFC（RFC114）至今近半个世纪来，FTP 凭借其独特的优势一直都是因特网中最重要、最广泛的服务之一。
@@ -17,11 +17,10 @@ FTP 的目标是提高文件的共享性，提供非直接使用远程计算机�
 
 # FTP 协议的实现工具
 
-
 # 概述
 
 > 参考：
-> 
+>
 > -
 
 # vsftp：实现 ftp 协议的工具
@@ -54,7 +53,7 @@ FTP 的目标是提高文件的共享性，提供非直接使用远程计算机�
 - chroot_list_file=/etc/vsftpd.chroot_list # 定义不受限制的用户名单在哪个文件中
 - pam_service_name=vsftpd 改为 pam_service_name=ftp # 如果始终登录时候提示密码错误，则修改此项
 
-vsftp 可以使用 [Chroot](docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/Chroot.md) 功能。比如：下面第一个图是不启动 Chroot 规则的情况，第二张图是启用 Chroot 规则的情况，可以看到当使用 Chroot 时，`/srv/ftp/` 目录对于 ftp 程序来说是作为 `/` 存在的。由于这个原因，所以启动 Chroot 的时候，ftp 工具无法访问所设定的 `/` 目录以外的其他目录
+vsftp 可以使用 [Chroot](/docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/Chroot.md) 功能。比如：下面第一个图是不启动 Chroot 规则的情况，第二张图是启用 Chroot 规则的情况，可以看到当使用 Chroot 时，`/srv/ftp/` 目录对于 ftp 程序来说是作为 `/` 存在的。由于这个原因，所以启动 Chroot 的时候，ftp 工具无法访问所设定的 `/` 目录以外的其他目录
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/pvqe8m/1616165219993-ce6cd857-e9ba-4af0-b7fc-7d77cf547d84.jpeg)
 

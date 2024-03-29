@@ -95,10 +95,10 @@ OpenSSH 会为用户分配一个 Pseudoterminal(伪终端，即 pts) 以便用�
 
 #### MOTD 关联文件
 
-**/etc/default/motd-news** # 动态 MOTD 新闻信息配置，新闻信息主要是互联网相关的
-**/etc/update-motd.d/\*** # MOTD 执行脚本保存路径
-**~/.hushlogin** # 该文件存在时，将为当前用户禁用 MOTD 消息
-**/etc/pam.d/sshd** # PAM 模块中可以为 sshd 配置 MOTD。
+- **/etc/default/motd-news** # 动态 MOTD 新闻信息配置，新闻信息主要是互联网相关的
+- **/etc/update-motd.d/** # MOTD 执行脚本保存路径
+- **~/.hushlogin** # 该文件存在时，将为当前用户禁用 MOTD 消息
+- **/etc/pam.d/sshd** # PAM 模块中可以为 sshd 配置 MOTD。
 
 # 访问控制
 

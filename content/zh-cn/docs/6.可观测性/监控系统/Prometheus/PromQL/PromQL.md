@@ -11,7 +11,7 @@ weight: 1
 >
 > - [官方文档，Prometheus-查询-基础](https://prometheus.io/docs/prometheus/latest/querying/basics/)
 
-**Prometheus Query Language(Prometheus 查询语言，简称 PromQL)** 是一种提供了查询功能的编程语言，用来实时选择和汇总 [时间序列数据](/docs/5.数据存储/2.数据库/时间序列数据/时间序列数据.md)。通过 PromQL 可以对监控数据进行筛选、过滤、组合等等操作。使用 PromQL 编写的语句也可以称为 **Expression(表达式)**，表达式的结果可以通过其他方式显示为图形。
+**Prometheus Query Language(Prometheus 查询语言，简称 PromQL)** 是一种提供了查询功能的编程语言，用来实时选择和汇总 [时间序列数据](/docs/5.数据存储/数据库/时间序列数据/时间序列数据.md)。通过 PromQL 可以对监控数据进行筛选、过滤、组合等等操作。使用 PromQL 编写的语句也可以称为 **Expression(表达式)**，表达式的结果可以通过其他方式显示为图形。
 
 ## PromQL 体验
 

@@ -6,7 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [Wiki，Tunneling Protocol](https://en.wikipedia.org/wiki/Tunneling_protocol)
 > - [Wiki，Overlay Network](https://en.wikipedia.org/wiki/Overlay_network)
 
@@ -28,7 +28,7 @@ weight: 1
 ## VPN
 
 > 参考：
-> 
+>
 > - [Wiki，VPN](https://en.wikipedia.org/wiki/Virtual_private_network)
 
 **Virtual Private Network(虚拟专用网络，简称 VPN)** 是通过**隧道协议**建立的虚拟点对点连接。可以从逻辑上，让人们将通过 VPN 将两个或多个互不连接的网络打通，组成一个更大型的局域网。
@@ -53,7 +53,7 @@ Tunnel 技术的实现方式：
   - IPsec/L2TP（数据链接层隧道协议）
   - [WireGuard](/docs/4.数据通信/通信协议/Tunneling%20Protocol/WireGuard/WireGuard.md)
   - 依赖其他协议实现的隧道功能
-    - SSL 
+    - SSL
     - SSH
     - SOCKS
     - 等
@@ -64,7 +64,7 @@ Tunnel 技术的实现方式：
 
 [xl2tpd](https://github.com/xelerance/xl2tpd) # L2TP 提供者
 
-[WireGuard](docs/4.数据通信/通信协议/Tunneling%20Protocol/WireGuard/WireGuard.md)
+[WireGuard](/docs/4.数据通信/通信协议/Tunneling%20Protocol/WireGuard/WireGuard.md)
 
 OpenVPN # 基于 SSL 的 VPN 系统，广泛使用 OpenSSL 加密库和 TLS 协议。
 

@@ -8,12 +8,12 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，DPDK/dpdk](https://github.com/DPDK/dpdk)
 > - [官网](https://www.dpdk.org/)
 > - [Wiki，Data Plane Development Kit](https://en.wikipedia.org/wiki/Data_Plane_Development_Kit)
 
-**Data Plane Development Kit(数据平面开发套件，简称 DPDK)** 是一个由 [Linux 基金会](docs/x_标准化/Foundation/Linux%20Foundation.md) 管理的开源软件项目。用于将 TCP 数据包的处理能力从内核空间移动到用户空间中的进程。主要是跳过了内核的 [Interrupts(中断)](docs/1.操作系统/Kernel/CPU/Interrupts(中断)/Interrupts(中断).md) 逻辑。
+**Data Plane Development Kit(数据平面开发套件，简称 DPDK)** 是一个由 [Linux 基金会](/docs/x_标准化/Foundation/Linux%20Foundation.md) 管理的开源软件项目。用于将 TCP 数据包的处理能力从内核空间移动到用户空间中的进程。主要是跳过了内核的 [Interrupts(中断)](/docs/1.操作系统/Kernel/CPU/Interrupts(中断)/Interrupts(中断).md) 逻辑。
 
 处理数据包的传统方式是 CPU 中断方式，即网卡驱动接收到数据包后通过中断通知 CPU 处理，然后由 CPU 拷贝数据并交给协议栈。在数据量大时，这种方式会产生大量 CPU 中断，导致 CPU 无法运行其他程序。
 
@@ -26,7 +26,7 @@ DPDK 主要包含如下几个部分（https://doc.dpdk.org/guides/prog_guide/sou
 - **Environmental Abstraction Layer(环境抽象层，简称 EAL)** # 负责为应用间接访问底层的资源，比如内存空间、线程、设备、定时器等。如果把我们使用了 DPDK 的应用比作一个豪宅的主人的话，`EAL`就是这个豪宅的管家。
 - **DPDK API Library** # DPDK 的 API 库
   - etc.
-- **[NIC](docs/4.数据通信/Networking%20device/NIC.md) Driver(网卡驱动程序)** # 如名，只不过是轮询模式的驱动。
+- **[NIC](/docs/4.数据通信/Networking%20device/NIC.md) Driver(网卡驱动程序)** # 如名，只不过是轮询模式的驱动。
   - etc.
 - **DPDK APP** # 一些实用的程序
 
@@ -45,7 +45,7 @@ TODO: 好多好多的库，功能非常全。
 Linux 驱动
 
 - https://doc.dpdk.org/guides/linux_gsg/linux_drivers.html#binding-and-unbinding-network-ports-to-from-the-kernel-modules
-- **vfio** # 使用 [VFIO](docs/1.操作系统/Kernel/VFIO.md) 功能的驱动。依赖 `vfio-pci` 模块。[官方文档](https://doc.dpdk.org/guides/linux_gsg/linux_drivers.html#binding-and-unbinding-network-ports-to-from-the-kernel-modules)建议所有情况下都是用 vfio-pci 作为 DPDK 绑定端口的内核模块
+- **vfio** # 使用 [VFIO](/docs/1.操作系统/Kernel/VFIO.md) 功能的驱动。依赖 `vfio-pci` 模块。[官方文档](https://doc.dpdk.org/guides/linux_gsg/linux_drivers.html#binding-and-unbinding-network-ports-to-from-the-kernel-modules)建议所有情况下都是用 vfio-pci 作为 DPDK 绑定端口的内核模块
 
 TODO: 好多好多驱动。
 
@@ -85,13 +85,13 @@ Network devices using DPDK-compatible driver
 Network devices using kernel driver
 ===================================
 0000:01:00.0 'I350 Gigabit Network Connection 1521' if=eno3 drv=igb unused=vfio-pci *Active*
-0000:02:00.1 'I350 Gigabit Network Connection 1521' if=enp2s0f1 drv=igb unused=vfio-pci 
+0000:02:00.1 'I350 Gigabit Network Connection 1521' if=enp2s0f1 drv=igb unused=vfio-pci
 
 ```
 
 可以看到机器上有 4 个 Ethernet，但是通过 ip 命令仅能看到 2 个（ip 这类命令只能看到内核管理的），另外 2 个被 DPDK 使用了，只有使用 DPDK 提供的程序才能获取到非内核管理的网卡信息。
 
-当我们让 DPDK 接管了网卡后，想要查看网卡当前所使用的驱动，可以使用 [lspci](docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/Linux%20硬件管理工具.md#lspci) 命令查看到当前网卡所使用的驱动程序。（虽然其中显示的是 Kernel driver in use，但是实际上，驱动是 vfio-pci 的网卡已经被 DPDK 接管了）
+当我们让 DPDK 接管了网卡后，想要查看网卡当前所使用的驱动，可以使用 [lspci](/docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/Linux%20硬件管理工具.md#lspci) 命令查看到当前网卡所使用的驱动程序。（虽然其中显示的是 Kernel driver in use，但是实际上，驱动是 vfio-pci 的网卡已经被 DPDK 接管了）
 
 ```bash
 ]# lspci -k | grep -i "Ethernet controller" -A 3
@@ -118,7 +118,7 @@ Network devices using kernel driver
 # DPDK 的实现
 
 > 参考：
-> 
+>
 > - [知乎，DPDK的整体工作原理](https://zhuanlan.zhihu.com/p/486288121)
 > - https://doc.dpdk.org/guides/prog_guide/overview.html
 
@@ -148,7 +148,6 @@ https://doc.dpdk.org/guides/tools/index.html
 - **-b, --bind DRIVER** # 选择绑定网卡要使用的驱动程序。可以使用 none 以解除绑定
 - **-u, --unbind** # 接触网卡设备绑定。等价于 `-b none`
 - **--force** # 强制绑定。默认情况下，若目标网卡已被内核启用（通常表现为已在路由表条目中），则无法被 DPDK 绑定。
-
 
 EXAMPLE
 

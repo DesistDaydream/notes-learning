@@ -186,10 +186,11 @@ WantedBy=multi-user.target
 - 在启动系统的时候，也是首先通过查询 target 中的内容，以便启动相应的 Unit
 - 传统的 init 启动模式里面，有 RunLevel 的概念，Target 就能起到同样的效果。不同的是，RunLevel 是互斥的，不可能多个 RunLevel 同时启动，但是多个 Target 可以同时启动，并且更加灵活，可以自己定义每个 Target 可以包含的 Unit。比如启动 graphical.target 则里面就包含运行图形界面的 Unit 和 multi-user.target 中的所有 Unit。
 - 我们可以通过 systemctl set-default UNIT 命令来设定系统启动时，默认启动的一组 Unit
+
 # Unit File 加载示例
 
-可以通过 [系统启动流程](docs/1.操作系统/Operating%20system/Unix-like%20OS/系统启动流程.md) 看出来 Systemd 是如何加载 Unit File 的
+可以通过 [系统启动流程](/docs/1.操作系统/Operating%20system/Unix-like%20OS/系统启动流程.md) 看出来 Systemd 是如何加载 Unit File 的
 
 # 分类
 
-#systemd #unit-file
+# systemd #unit-file

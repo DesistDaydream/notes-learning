@@ -2,13 +2,13 @@
 title: Fiber-optic splitter
 linkTitle: Fiber-optic splitter
 date: 2024-02-22T13:32
-weight: 20
+weight: 4
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [Wiki，Fiber-optic splitter](https://en.wikipedia.org/wiki/Fiber-optic_splitter)
 > - [Wiki，Beam_splitter](https://en.wikipedia.org/wiki/Beam_splitter)
 > - [百度百科，光纤分路器](https://baike.baidu.com/item/%E5%85%89%E7%BA%A4%E5%88%86%E8%B7%AF%E5%99%A8)
@@ -18,7 +18,7 @@ weight: 20
 
 > 有的地方也会用 Optical splitter 或 Beam splitter
 
-分光器仅仅是单纯针对物理链路进行按比例分光，不会涉及上层的流量识别和处理，通常按照 2/8 比例分光，80% 的光能量在原始链路传输以保证通信不受影响；20% 的光能量作为复制的流量发送给下一个设备以进一步处理（可以分析流量中恶意数据等）。通常这 20% 的光需要经过 [Optical amplifier](docs/4.数据通信/Networking%20device/Optical%20amplifier.md)(光放大器) 才能被其他设备正常使用。
+分光器仅仅是单纯针对物理链路进行按比例分光，不会涉及上层的流量识别和处理，通常按照 2/8 比例分光，80% 的光能量在原始链路传输以保证通信不受影响；20% 的光能量作为复制的流量发送给下一个设备以进一步处理（可以分析流量中恶意数据等）。通常这 20% 的光需要经过 [Optical amplifier](/docs/4.数据通信/Networking%20device/Optical%20amplifier.md)(光放大器) 才能被其他设备正常使用。
 
 # 分类
 

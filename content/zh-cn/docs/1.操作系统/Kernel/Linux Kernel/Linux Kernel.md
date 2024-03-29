@@ -86,7 +86,7 @@ vmlinuz 位于 /boot 目录中，该目录包含开始引导系统所需的文�
 
 > `cp /usr/src/linux/arch/i386/linux/boot/bzImage /boot/vmlinuz`
 
-vmlinuz 不仅仅是一个压缩图像。它还内置了 gzip 解压缩器代码。gzip 是 [Unix-like OS](docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 操作系统上最流行的压缩实用程序之一。
+vmlinuz 不仅仅是一个压缩图像。它还内置了 gzip 解压缩器代码。gzip 是 [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 操作系统上最流行的压缩实用程序之一。
 
 一个名为 zImage 文件的编译内核是在一些较旧的系统上创建的，并保留在较新的系统上以实现向后兼容性。zImage 和 bzImage 都是用 gzip 压缩的。区别在于 zImage 解压到 _低内存_（即前 640kB），bzImage 解压到 _高内存_（1MB 以上）。有一个常见的误解，认为 bzImage 是使用 _bzip2_ 实用程序压缩的。实际上，_b_ 只代表 _big_。
 

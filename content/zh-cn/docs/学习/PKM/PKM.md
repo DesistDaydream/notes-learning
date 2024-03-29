@@ -8,7 +8,7 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [Wiki，Personal knowledge management](https://en.wikipedia.org/wiki/Personal_knowledge_management)
 
 **Personal knowledge management(个人知识管理，简称 PKM)** 是一个收集信息的过程
@@ -57,4 +57,4 @@ weight: 1
 
 - [公众号-Github 爱好者，专为开发人员构建的个人知识管理工具-Dendron](https://mp.weixin.qq.com/s/HbM93O49aOgW6w_ZX9lzlA)
 
-[Obsidian](https://obsidian.md/) # 
+[Obsidian](/docs/学习/PKM/Obsidian.md) # Markdown 渲染程序

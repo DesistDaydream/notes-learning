@@ -63,6 +63,10 @@ https://github.com/aws/aws-toolkit-vscode
 
 亚马逊出的 AI 代码补全
 
+## Fitten Code
+
+https://code.fittentech.com/
+
 # 反编译器
 
 ## ILSpy

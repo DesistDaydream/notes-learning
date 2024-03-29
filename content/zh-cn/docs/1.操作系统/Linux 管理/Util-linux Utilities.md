@@ -16,7 +16,7 @@ util-linux 是由 Linux 内核组织分发的标准软件包，用作 Linux 操�
 
 可以在 [这里](https://en.wikipedia.org/wiki/Util-linux#Included) 找到 Util-linux 包中通常包含的所有程序。这些程序可以分为几大类
 
-- Namespace 管理，包括 unshare, nsenter, lsns, etc. 。详见 [容器运行时管理](docs/10.云原生/Containerization%20implementation/容器管理/容器运行时管理/容器运行时管理.md)
+- Namespace 管理，包括 unshare, nsenter, lsns, etc. 。详见 [容器运行时管理](/docs/10.云原生/Containerization%20implementation/容器管理/容器运行时管理/容器运行时管理.md)
 - etc.
 
 还有一部分已经弃用的程序可以在[这里](https://en.wikipedia.org/wiki/Util-linux#Removed)找到列表

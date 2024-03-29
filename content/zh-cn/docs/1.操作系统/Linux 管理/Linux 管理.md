@@ -69,4 +69,4 @@ Task: minimal
 
 # Util-linux
 
-详见 [Util-linux Utilities](docs/1.操作系统/Linux%20管理/Util-linux%20Utilities.md)
+详见 [Util-linux Utilities](/docs/1.操作系统/Linux%20管理/Util-linux%20Utilities.md)

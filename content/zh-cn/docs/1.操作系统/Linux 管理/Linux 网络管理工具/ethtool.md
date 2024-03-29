@@ -8,12 +8,12 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [Manual(手册)，ethtool(8)](https://man7.org/linux/man-pages/man8/ethtool.8.html)
 
 ethtool 是一个工具，用来查询或控制网络驱动程序和硬件设备。
 
-> Notes: ethtool 无法查看到 [DPDK](docs/4.数据通信/DPDK.md) 等程序接管的网卡的网络设备。因为已经绕过了内核，ethtool 只能查询或控制直接由内核管理的网卡。
+> Notes: ethtool 无法查看到 [DPDK](/docs/4.数据通信/DPDK.md) 等程序接管的网卡的网络设备。因为已经绕过了内核，ethtool 只能查询或控制直接由内核管理的网卡。
 
 ```bash
 ~]# ethtool em1
@@ -60,12 +60,13 @@ Settings for em1:
 ### 查询选项
 
 - **-i, --driver** # 查询指定网络设备的关联驱动程序的信息。
+
 ```bash
 ]# ethtool -i eno3
 driver: igb
 version: 5.10.0-136.12.0.86.oe2203sp1.x8
 firmware-version: 1.67, 0x80000d72, 17.0.12
-expansion-rom-version: 
+expansion-rom-version:
 bus-info: 0000:01:00.0
 supports-statistics: yes
 supports-test: yes
@@ -73,21 +74,22 @@ supports-eeprom-access: yes
 supports-register-dump: yes
 supports-priv-flags: yes
 ```
+
 - **-l, --show-channels** # 显示指定网络设备的通道数。通道是一个 IRQ，是可以触发该 IRQ 的队列集。
 
 ```bash
 ~]# ethtool -l ens4f0
 Channel parameters for ens4f0:
 Pre-set maximums:
-RX:		0
-TX:		0
-Other:		1
-Combined:	63
+RX:  0
+TX:  0
+Other:  1
+Combined: 63
 Current hardware settings:
-RX:		0
-TX:		0
-Other:		1
-Combined:	32
+RX:  0
+TX:  0
+Other:  1
+Combined: 32
 ```
 
 - **-m, --dump-module-eeprom, --module-info** # 从 “EEPROM 插件模块”检索并解码硬件信息。比如 SFP+、QSFP。如果驱动程序和模块支持它，光学诊断信息也会被读取和解码。如果指定了 page、bank 或 i2c 参数之一，则仅允许转储单个页面或其部分。在这种情况下，偏移和长度参数相对于 EEPROM 页面边界进行处理。
@@ -113,7 +115,7 @@ NIC statistics:
      tx_pkts_nic: 59794820
      rx_bytes_nic: 75088927199
      tx_bytes_nic: 7672892990
-		 ......略
+   ......略
 ```
 
 ### 其他选项
@@ -132,6 +134,7 @@ NIC statistics:
 设置 eth0 网卡速率为 100Mb/s，全双工
 
 - ethtool -s eth0 speed 100 duplex full
+
 ## -i 选项信息
 
 ```bash
@@ -139,7 +142,7 @@ NIC statistics:
 driver: igb
 version: 5.10.0-136.12.0.86.oe2203sp1.x8
 firmware-version: 1.67, 0x80000d72, 17.0.12
-expansion-rom-version: 
+expansion-rom-version:
 bus-info: 0000:01:00.0
 supports-statistics: yes
 supports-test: yes
@@ -158,6 +161,7 @@ supports-priv-flags: yes
   - **supports-eeprom-access** # 驱动是否支持 EEPROM 访问
   - **supports-register-dump** # 驱动是否支持寄存器转储功能
   - **supports-priv-flags** # 驱动是否支持私有标志
+
 ## -m 选项信息
 
 ### 光模块插件信息
@@ -183,8 +187,8 @@ supports-priv-flags: yes
 - **Vendor rev : 1**
 - **Option values : 0x00 0x1a**
 - **Option : RX_LOS implemented**
-- **Option : TX_FAULT implemented **
-- **Option : TX_DISABLE implemented **
+- **Option : TX_FAULT implemented**
+- **Option : TX_DISABLE implemented**
 - **BR margin, max : 20%**
 - **BR margin, min : 20%**
 - **Vendor SN : U8AA7H05H97**

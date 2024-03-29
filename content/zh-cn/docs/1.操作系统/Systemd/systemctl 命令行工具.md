@@ -249,7 +249,7 @@ poweroff Shut down and power-off the system
 
 **reboot \[ARG]** 关闭并重启系统
 
-- [Util-linux Utilities](docs/1.操作系统/Linux%20管理/Util-linux%20Utilities.md) 包中的 reboot 命令不再维护后，reboot 命令的软链接就是 systemctl。
+- [Util-linux Utilities](/docs/1.操作系统/Linux%20管理/Util-linux%20Utilities.md) 包中的 reboot 命令不再维护后，reboot 命令的软链接就是 systemctl。
 
 kexec Shut down and reboot the system with kexec
 

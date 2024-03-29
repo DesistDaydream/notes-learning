@@ -2,7 +2,7 @@
 title: NIC
 linkTitle: NIC
 date: 2024-03-18T12:50
-weight: 20
+weight: 2
 ---
 
 # 概述
