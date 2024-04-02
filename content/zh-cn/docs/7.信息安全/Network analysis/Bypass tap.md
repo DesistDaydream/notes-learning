@@ -28,4 +28,4 @@ Bypass tap 通常至少有 4 个端口。
 - **Bypass mode** # 流量直接经过 Bypass tap 到下一跳的设备
   - 有的地方也称为 **直通模式**
 
-> 很多时候会在 Bypass tap 中加入 [Fiber-optic splitter](/docs/4.数据通信/Networking%20device/Fiber-optic%20splitter.md) 能力，让 Bypass 可以分光。在中文环境中也有的将 Bypass tap 称为 Optical swap(光切换设备，Optiswap)、光开关、etc.
+> 在中文环境中也有的将 Bypass tap 称为 Optical swap(光切换设备，Optiswap)、光开关、etc.

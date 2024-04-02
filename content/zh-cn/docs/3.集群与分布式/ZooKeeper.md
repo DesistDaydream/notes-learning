@@ -1,12 +1,24 @@
 ---
-title: 可能是把 ZooKeeper 概念讲的最清楚的一篇文章
+title: ZooKeeper
+linkTitle: ZooKeeper
+date: 2024-04-02T16:56
+weight: 20
 ---
 
-#
+# 概述
+
+> 参考：
+> 
+> - [GitHub 项目，apache/zookeeper](https://github.com/apache/zookeeper)
+> - [官网](https://zookeeper.apache.org/)
+> - https://github.com/Snailclimb/JavaGuide?tab=readme-ov-file
+>   - https://javaguide.cn/distributed-system/distributed-process-coordination/zookeeper/zookeeper-intro.html
+>   - https://javaguide.cn/distributed-system/distributed-process-coordination/zookeeper/zookeeper-plus.html
+
 
 > 该文已加入开源文档：JavaGuide（一份涵盖大部分 Java 程序员所需要掌握的核心知识）。地址:<https://github.com/Snailclimb/JavaGuide>.
 
-1\. 前言
+## 1\. 前言
 
 相信大家对 ZooKeeper 应该不算陌生。但是你真的了解 ZooKeeper 到底有啥用不？如果别人/面试官让你给他讲讲对于 ZooKeeper 的认识，你能回答到什么地步呢？
 
@@ -14,11 +26,9 @@ title: 可能是把 ZooKeeper 概念讲的最清楚的一篇文章
 
 前几天，总结项目经验的时候，我突然问自己 ZooKeeper 到底是个什么东西？想了半天，脑海中只是简单的能浮现出几句话：
 
-1. ZooKeeper 可以被用作注册中心、分布式锁；
-
-2. ZooKeeper 是 Hadoop 生态系统的一员；
-
-3. 构建 ZooKeeper 集群的时候，使用的服务器最好是奇数台。
+- ZooKeeper 可以被用作注册中心、分布式锁；
+- ZooKeeper 是 Hadoop 生态系统的一员；
+- 构建 ZooKeeper 集群的时候，使用的服务器最好是奇数台。
 
 由此可见，我对于 ZooKeeper 的理解仅仅是停留在了表面。
 
@@ -75,9 +85,7 @@ ZooKeeper 概览中，我们介绍到使用其通常被用于实现诸如数据�
 ### 2.5. 有哪些著名的开源项目用到了 ZooKeeper?
 
 1. **Kafka** : ZooKeeper 主要为 Kafka 提供 Broker 和 Topic 的注册以及多个 Partition 的负载均衡等功能。
-
 2. **Hbase** : ZooKeeper 为 Hbase 提供确保整个集群只有一个 Master 以及保存和提供 regionserver 状态信息（是否在线）等功能。
-
 3. **Hadoop** : ZooKeeper 为 Namenode 提供高可用支持。
 
 ## 3. ZooKeeper 重要概念解读
@@ -101,11 +109,8 @@ ZooKeeper 数据模型采用层次化的多叉树形结构，每个节点上都�
 我们通常是将 znode 分为 4 大类：
 
 - **持久（PERSISTENT）节点** ：一旦创建就一直存在即使 ZooKeeper 集群宕机，直到将其删除。
-
 - **临时（EPHEMERAL）节点** ：临时节点的生命周期是与 **客户端会话（session）** 绑定的，**会话消失则节点消失** 。并且，**临时节点只能做叶子节点** ，不能创建子节点。
-
 - **持久顺序（PERSISTENT_SEQUENTIAL）节点** ：除了具有持久（PERSISTENT）节点的特性之外， 子节点的名称还具有顺序性。比如 `/node1/app0000000001` 、`/node1/app0000000002` 。
-
 - **临时顺序（EPHEMERAL_SEQUENTIAL）节点** ：除了具备临时（EPHEMERAL）节点的特性之外，子节点的名称还具有顺序性。
 
   3.2.2. znode 数据结构
@@ -113,7 +118,6 @@ ZooKeeper 数据模型采用层次化的多叉树形结构，每个节点上都�
 每个 znode 由 2 部分组成:
 
 - **stat** ：状态信息
-
 - **data** ： 节点存放的数据的具体内容
 
 如下所示，我通过 get 命令来获取 根目录下的 dubbo 节点的内容。（get 命令在下面会介绍到）。
@@ -134,50 +138,30 @@ ZooKeeper 数据模型采用层次化的多叉树形结构，每个节点上都�
     dataLength = 0
     numChildren = 1
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-Plain Text
-
 Stat 类中包含了一个数据节点的所有状态信息的字段，包括事务 ID-cZxid、节点创建时间-ctime 和子节点个数-numChildren 等等。
 
 下面我们来看一下每个 znode 状态信息究竟代表的是什么吧！（下面的内容来源于《从 Paxos 到 ZooKeeper 分布式一致性原理与实践》，因为 Guide 确实也不是特别清楚，要学会参考资料的嘛！ ） ：
 
-|                |                                                                                                     |
-| -------------- | --------------------------------------------------------------------------------------------------- |
-| znode 状态信息 | 解释                                                                                                |
-| cZxid          | create ZXID，即该数据节点被创建时的事务 id                                                          |
-| ctime          | create time，即该节点的创建时间                                                                     |
-| mZxid          | modified ZXID，即该节点最终一次更新时的事务 id                                                      |
-| mtime          | modified time，即该节点最后一次的更新时间                                                           |
+| znode 状态信息     | 解释                                                     |
+| -------------- | ------------------------------------------------------ |
+| cZxid          | create ZXID，即该数据节点被创建时的事务 id                           |
+| ctime          | create time，即该节点的创建时间                                  |
+| mZxid          | modified ZXID，即该节点最终一次更新时的事务 id                        |
+| mtime          | modified time，即该节点最后一次的更新时间                            |
 | pZxid          | 该节点的子节点列表最后一次修改时的事务 id，只有子节点列表变更才会更新 pZxid，子节点内容变更不会更新 |
-| cversion       | 子节点版本号，当前节点的子节点每次变化时值增加 1                                                    |
-| dataVersion    | 数据节点内容版本号，节点创建时为 0，每更新一次节点内容(不管内容有无变化)该版本号的值增加 1          |
-| aclVersion     | 节点的 ACL 版本号，表示该节点 ACL 信息变更次数                                                      |
-| ephemeralOwner | 创建该临时节点的会话的 sessionId；如果当前节点为持久节点，则 ephemeralOwner=0                       |
-| dataLength     | 数据节点内容长度                                                                                    |
-| numChildren    | 当前节点的子节点个数                                                                                |
+| cversion       | 子节点版本号，当前节点的子节点每次变化时值增加 1                              |
+| dataVersion    | 数据节点内容版本号，节点创建时为 0，每更新一次节点内容(不管内容有无变化)该版本号的值增加 1       |
+| aclVersion     | 节点的 ACL 版本号，表示该节点 ACL 信息变更次数                           |
+| ephemeralOwner | 创建该临时节点的会话的 sessionId；如果当前节点为持久节点，则 ephemeralOwner=0   |
+| dataLength     | 数据节点内容长度                                               |
+| numChildren    | 当前节点的子节点个数                                             |
 
 ### 3.3. 版本（version）
 
 在前面我们已经提到，对应于每个 znode，ZooKeeper 都会为其维护一个叫作 **Stat** 的数据结构，Stat 中记录了这个 znode 的三个相关的版本：
 
 - **dataVersion** ：当前 znode 节点的版本号
-
 - **cversion** ： 当前 znode 子节点的版本
-
 - **aclVersion** ： 当前 znode 的 ACL 的版本。
 
 ### 3.4. ACL（权限控制）
@@ -187,13 +171,9 @@ ZooKeeper 采用 ACL（AccessControlLists）策略来进行权限控制，类似
 对于 znode 操作的权限，ZooKeeper 提供了以下 5 种：
 
 - **CREATE** : 能创建子节点
-
 - **READ** ：能获取节点数据和列出其子节点
-
 - **WRITE** : 能设置/更新节点数据
-
 - **DELETE** : 能删除子节点
-
 - **ADMIN** : 能设置节点 ACL 的权限
 
 其中尤其需要注意的是，**CREATE** 和 **DELETE** 这两种权限都是针对 **子节点** 的权限控制。
@@ -201,11 +181,8 @@ ZooKeeper 采用 ACL（AccessControlLists）策略来进行权限控制，类似
 对于身份认证，提供了以下几种方式：
 
 - **world** ： 默认方式，所有用户都可无条件访问。
-
 - **auth** :不使用任何 id，代表任何已认证的用户。
-
 - **digest** :用户名:密码认证方式： _username:password_ 。
-
 - **ip** : 对指定 ip 进行限制。
 
 ### 3.5. Watcher（事件监听器）
@@ -240,11 +217,10 @@ Session 有一个属性叫做：`sessionTimeout` ，`sessionTimeout` 代表会�
 
 ZooKeeper 集群中的所有机器通过一个 **Leader 选举过程** 来选定一台称为 “**Leader**” 的机器，Leader 既可以为客户端提供写服务又能提供读服务。除了 Leader 外，**Follower** 和 **Observer** 都只能提供读服务。Follower 和 Observer 唯一的区别在于 Observer 机器不参与 Leader 的选举过程，也不参与写操作的“过半写成功”策略，因此 Observer 机器可以在不影响写性能的情况下提升集群的读性能。
 
-|          |                                                                                                                                                                                     |
-| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 角色     | 说明                                                                                                                                                                                |
-| Leader   | 为客户端提供读和写的服务，负责投票的发起和决议，更新系统状态。                                                                                                                      |
-| Follower | 为客户端提供读服务，如果是写服务则转发给 Leader。在选举过程中参与投票。                                                                                                             |
+| 角色       | 说明                                                                                                    |
+| -------- | ----------------------------------------------------------------------------------------------------- |
+| Leader   | 为客户端提供读和写的服务，负责投票的发起和决议，更新系统状态。                                                                       |
+| Follower | 为客户端提供读服务，如果是写服务则转发给 Leader。在选举过程中参与投票。                                                               |
 | Observer | 为客户端提供读服务器，如果是写服务则转发给 Leader。不参与选举过程中的投票，也不参与“过半写成功”策略。在不影响写性能的情况下提升集群的读性能。此角色于 ZooKeeper3.3 系列新增的角色。 |
 
 当 Leader 服务器出现网络中断、崩溃退出与重启等异常情况时，就会进入 Leader 选举过程，这个过程会选举产生新的 Leader 服务器。
@@ -252,21 +228,15 @@ ZooKeeper 集群中的所有机器通过一个 **Leader 选举过程** 来选定
 这个过程大致是这样的：
 
 1. **Leader election（选举阶段）**：节点在一开始都处于选举阶段，只要有一个节点得到超半数节点的票数，它就可以当选准 leader。
-
 2. **Discovery（发现阶段）** ：在这个阶段，followers 跟准 leader 进行通信，同步 followers 最近接收的事务提议。
-
 3. **Synchronization（同步阶段）** :同步阶段主要是利用 leader 前一阶段获得的最新提议历史，同步集群中所有的副本。同步完成之后 准 leader 才会成为真正的 leader。
-
 4. **Broadcast（广播阶段）** :到了这个阶段，ZooKeeper 集群才能正式对外提供事务服务，并且 leader 可以进行消息广播。同时如果有新的节点加入，还需要对新节点进行同步。
 
 ### 4.2. ZooKeeper 集群中的服务器状态
 
 - **LOOKING** ：寻找 Leader。
-
 - **LEADING** ：Leader 状态，对应的节点为 Leader。
-
 - **FOLLOWING** ：Follower 状态，对应的节点为 Follower。
-
 - **OBSERVING** ：Observer 状态，对应节点为 Observer，该节点不参与 Leader 选举。
 
 ### 4.3. ZooKeeper 集群为啥最好奇数台？
@@ -300,15 +270,10 @@ ZAB 协议包括两种基本的模式，分别是
 ## 6. 总结
 
 1. ZooKeeper 本身就是一个分布式程序（只要半数以上节点存活，ZooKeeper 就能正常服务）。
-
 2. 为了保证高可用，最好是以集群形态来部署 ZooKeeper，这样只要集群中大部分机器是可用的（能够容忍一定的机器故障），那么 ZooKeeper 本身仍然是可用的。
-
 3. ZooKeeper 将数据保存在内存中，这也就保证了 高吞吐量和低延迟（但是内存限制了能够存储的容量不太大，此限制也是保持 znode 中存储的数据量较小的进一步原因）。
-
 4. ZooKeeper 是高性能的。 在“读”多于“写”的应用程序中尤其地明显，因为“写”会导致所有的服务器间同步状态。（“读”多于“写”是协调服务的典型场景。）
-
 5. ZooKeeper 有临时节点的概念。 当创建临时节点的客户端会话一直保持活动，瞬时节点就一直存在。而当会话终结时，瞬时节点被删除。持久节点是指一旦这个 znode 被创建了，除非主动进行 znode 的移除操作，否则这个 znode 将一直保存在 ZooKeeper 上。
-
 6. ZooKeeper 底层其实只提供了两个功能：① 管理（存储、读取）用户程序提交的数据；② 为用户程序提供数据节点监听服务。
 
 ## 7. 参考

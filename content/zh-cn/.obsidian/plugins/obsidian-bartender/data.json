@@ -11,11 +11,14 @@
   ],
   "fileExplorerOrder": {
     "/": [
-      "_index.html",
+      "_index.md",
       "about",
       "blog",
       "docs",
       "obsidian模板",
+      "Excalidraw",
+      "files",
+      "search.md",
       "featured-background.jpg"
     ],
     "docs": [
@@ -1625,7 +1628,7 @@
       "docs/3.集群与分布式/HAProxy",
       "docs/3.集群与分布式/Keepalived",
       "docs/3.集群与分布式/LVS",
-      "docs/3.集群与分布式/可能是把 ZooKeeper 概念讲的最清楚的一篇文章.md",
+      "docs/3.集群与分布式/ZooKeeper.md",
       "docs/3.集群与分布式/老旧技术"
     ],
     "docs/3.集群与分布式/LVS": [
@@ -2238,6 +2241,7 @@
       "docs/7.信息安全/Network analysis/_index.md",
       "docs/7.信息安全/Network analysis/NetFlow.md",
       "docs/7.信息安全/Network analysis/DPI.md",
+      "docs/7.信息安全/Network analysis/Bypass tap.md",
       "docs/7.信息安全/Network analysis/Network tap.md"
     ],
     "docs/7.信息安全/Packet analyzer": [

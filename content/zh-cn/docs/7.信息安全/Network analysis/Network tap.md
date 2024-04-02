@@ -15,6 +15,8 @@ weight: 20
 
 > tap 本身有窃听的意思，Network tap 本质上可以算是 网络窃听器、网络监听器
 
+Network tap 更进一层的能力可以是 Network Packet Broker
+
 # Network tap 与 Fiber-optic splitter
 
 下面是来自 ChatGPT 3.5 的回答：

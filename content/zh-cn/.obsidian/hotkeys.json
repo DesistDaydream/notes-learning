@@ -118,15 +118,6 @@
       "key": "."
     }
   ],
-  "insert-template": [
-    {
-      "modifiers": [
-        "Alt",
-        "Mod"
-      ],
-      "key": "N"
-    }
-  ],
   "file-explorer:open": [
     {
       "modifiers": [
@@ -151,5 +142,27 @@
       ],
       "key": "E"
     }
-  ]
+  ],
+  "obsidian-excalidraw-plugin:insert-link": [],
+  "obsidian-excalidraw-plugin:insert-link-to-element": [],
+  "obsidian-excalidraw-plugin:toggle-lock": [],
+  "insert-template": [
+    {
+      "modifiers": [
+        "Alt",
+        "Mod"
+      ],
+      "key": "N"
+    }
+  ],
+  "templater-obsidian:insert-templater": [
+    {
+      "modifiers": [
+        "Alt",
+        "Shift"
+      ],
+      "key": "N"
+    }
+  ],
+  "file-explorer:new-file-in-new-pane": []
 }

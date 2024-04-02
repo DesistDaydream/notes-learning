@@ -1,7 +1,7 @@
 ---
-title: Glossary
-linkTitle: Glossary
-date: 2024-01-14T20:30
+title: "Glossary"
+linkTitle: "Glossary"
+date: "2024-01-14T20:30"
 weight: 1
 ---
 

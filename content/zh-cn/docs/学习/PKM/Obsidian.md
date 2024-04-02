@@ -1,6 +1,10 @@
 ---
 title: Obsidian
+linkTitle: Obsidian
+date: 2024-04-02T22:08
+weight: 20
 ---
+
 # 概述
 
 > 参考：
@@ -51,6 +55,25 @@ https://forum.obsidian.md/t/file-explorer-custom-sort/1602/212
 - ![image](https://forum.obsidian.md/uploads/default/original/3X/2/d/2d251736195adb913c336f7d309be7ab7c4f25ef.png)
 
 then you can drag as you like
+
+## Templater
+
+- https://github.com/SilentVoid13/Templater
+- 
+
+比官方自带的模板功能更强大
+
+## Excalidraw
+
+让 Obsidian 可以渲染 Excalidraw 图，并且可以在 Obsidian 中编辑 Excalidraw 图。
+
+## Image auto upload Plugin
+
+图片自动上传到图床，依赖系统中启动的 PicGo 或 PicList
+
+## Image Toolkit
+
+可以在 Obsidian 中打开图片
 
 # 常见问题
 

@@ -44,11 +44,19 @@ DPI 始于 20 世纪 90 年代。早期的 DPI 实现有：
 
 # 最佳实践
 
-https://en.wikipedia.org/wiki/Beam_splitter
-
 通常来说，为了保证高可用，DPI 等安全设备需要与 [Bypass tap](/docs/7.信息安全/Network%20analysis/Bypass%20tap.md) 共同使用，以保证 DPI 设备异常时流量不会中断。
 
-在有些不要求高可用的场景中，不需要 DPI 的流量过滤，只需要流量分析的能力时，也可以不用 Bypass tap，而使用市面上的 [Fiber-optic splitter(分光器)](/docs/4.数据通信/Networking%20device/Fiber-optic%20splitter.md)，将光的 20% 分到 DPI 或其他流量处理设备中进行后续的流量分析。
+![bypass.drawio.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/information_security/202402220011706.png)
+
+DPI 中还可以加入 [Fiber-optic splitter](/docs/4.数据通信/Networking%20device/Fiber-optic%20splitter.md) 能力，让 DPI 可以分光给上层 程序/设备 以进一步处理流量，比如根据流量生成话单、分析流量特征、etc. ，以实现多种多样的业务能力，拿到了流量就相当于有了数据，至于数据如何用，根据具体业务情况而定。
+
+> 在有些不要求高可用的场景中，不需要 DPI 的流量过滤，只需要流量分析的能力时，也可以不用 Bypass tap，而使用市面上的 [Fiber-optic splitter(分光器)](/docs/4.数据通信/Networking%20device/Fiber-optic%20splitter.md)，将光的 20% 分到 DPI 或其他流量处理设备中进行后续的流量分析。
+
+## 具有流量与数据分析的架构
+
+TODO:
+
+Bypass DPI 然后接 Network Packet Broker，只有接各种业务系统。画图
 
 # Deep/Dynamic Flow Inspection
 
