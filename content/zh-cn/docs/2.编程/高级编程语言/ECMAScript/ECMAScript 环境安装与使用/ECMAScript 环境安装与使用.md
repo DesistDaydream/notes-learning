@@ -187,7 +187,7 @@ $ tree -L 2 -F
 
 ## Node.js 关联文件与配置
 
-详见：[npm 关联文件与配置](/docs/2.编程/高级编程语言/ECMAScript/ECMAScript%20环境安装与使用/ECMAScript%20模块与包的使用与管理.md#npm%20关联文件与配置)
+详见：[NPM](docs/2.编程/高级编程语言/ECMAScript/ECMAScript%20工具/NPM.md) 中的关联文件与配置
 
 ## 常见问题
 

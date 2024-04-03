@@ -2239,10 +2239,13 @@
     ],
     "docs/7.信息安全/Network analysis": [
       "docs/7.信息安全/Network analysis/_index.md",
-      "docs/7.信息安全/Network analysis/NetFlow.md",
+      "docs/7.信息安全/Network analysis/Network analysis.md",
+      "docs/7.信息安全/Network analysis/Port mirroring.md",
       "docs/7.信息安全/Network analysis/DPI.md",
       "docs/7.信息安全/Network analysis/Bypass tap.md",
-      "docs/7.信息安全/Network analysis/Network tap.md"
+      "docs/7.信息安全/Network analysis/Network tap.md",
+      "docs/7.信息安全/Network analysis/Network Packet Broker.md",
+      "docs/7.信息安全/Network analysis/NetFlow.md"
     ],
     "docs/7.信息安全/Packet analyzer": [
       "docs/7.信息安全/Packet analyzer/_index.md",
@@ -2543,6 +2546,16 @@
       "docs/学习/PKM/写作.md",
       "docs/学习/PKM/Obsidian.md",
       "docs/学习/PKM/WPS.md"
+    ],
+    "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑": [
+      "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑/_index.md",
+      "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑/Prometheus 规则处理逻辑.md",
+      "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑/从配置文件入手寻找代码逻辑.md"
+    ],
+    "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netlink": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netlink/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netlink/Netlink.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netlink/用户空间和内核空间通讯--netlink.md"
     ]
   },
   "actionBarOrder": {},

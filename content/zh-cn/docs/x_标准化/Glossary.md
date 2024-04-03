@@ -48,8 +48,9 @@ https://en.wikipedia.org/wiki/Internet_service_provider
 | Mellanox Technologies                              |                |         |                                                                                          | 一家以色列裔美国跨国供应商，提供基于 InfiniBand 和以太网技术的计算机网络产品。Mellanox 为高性能计算、数据中心、云计算、计算机数据存储和金融服务                       |
 | Remote Authentication Dial-In User Service         | 远程用户拨号认证       | RADIUS  | [Wiki](https://en.wikipedia.org/wiki/RADIUS)                                             |                                                                                                          |
 | Situational awareness                              | 态势感知           | SA      | [Wiki](https://en.wikipedia.org/wiki/Situation_awareness)                                |                                                                                                          |
+| Switched Port Analyzer                             |                | SPAN    |                                                                                          |                                                                                                          |
 | Transaction<br>                                    | 事务             |         | [Transaction](#transaction)                                                              |                                                                                                          |
-| terminal access point/test access point            | 窃听/终端接入点/测试接入点 | tap     | [Wiki](https://en.wikipedia.org/wiki/Network_tap#Terminology)                            | tap 并不是什么单词的缩写，仅仅就是原本的窃听之类的意思。只不过有人觉得这词不好，而且也有一些特殊情况在，就通过 backronyms(把单词扩写，不是缩写的楞扩成好几个词) 把 tap 改成了其他的意思。 |
+| tap/terminal access point/test access point        | 窃听/终端接入点/测试接入点 | tap/TAP | [Wiki](https://en.wikipedia.org/wiki/Network_tap#Terminology)                            | tap 并不是什么单词的缩写，仅仅就是原本的窃听之类的意思。只不过有人觉得这词不好，而且也有一些特殊情况在，就通过 backronyms(把单词扩写，不是缩写的楞扩成好几个词) 把 tap 改成了其他的意思。 |
 
 ## Transaction
 

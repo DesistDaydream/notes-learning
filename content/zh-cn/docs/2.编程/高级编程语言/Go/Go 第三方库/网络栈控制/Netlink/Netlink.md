@@ -8,7 +8,7 @@ title: Netlink
 >
 > - [GitHub 项目，vishvananda/netlink](https://github.com/vishvananda/netlink)
 
-netlink 包为 go 提供了一个简单的 netlink 库。[Netlink](/docs/1.操作系统/2.Kernel/8.Network%20管理/Linux%20网络栈管理/Netlink.md) 是 Linux 中的用户空间程序用来与内核进行通信的界面。它可以用于添加和删除接口，设置 ip 地址和路由以及配置 ipsec。Netlink 通信需要提升的权限，因此在大多数情况下，此代码需要以 root 用户身份运行。由于低级 netlink 消息充其量是难以理解的，因此该库试图提供一个以 iproute2 提供的 CLI 为松散建模的 api。ip 链接添加之类的操作将通过类似名称的函数 (例如 AddLink()) 来完成。该库的生命开始于 docker/libcontainer 中的 netlink 功能分支，但经过大量重写以提高可测试性，性能并添加 ipsec xfrm 处理等新功能。
+netlink 包为 go 提供了一个简单的 netlink 库。[Netlink](docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Netlink/Netlink.md) 是 Linux 中的用户空间程序用来与内核进行通信的界面。它可以用于添加和删除接口，设置 ip 地址和路由以及配置 ipsec。Netlink 通信需要提升的权限，因此在大多数情况下，此代码需要以 root 用户身份运行。由于低级 netlink 消息充其量是难以理解的，因此该库试图提供一个以 iproute2 提供的 CLI 为松散建模的 api。ip 链接添加之类的操作将通过类似名称的函数 (例如 AddLink()) 来完成。该库的生命开始于 docker/libcontainer 中的 netlink 功能分支，但经过大量重写以提高可测试性，性能并添加 ipsec xfrm 处理等新功能。
 
 # Hello World
 

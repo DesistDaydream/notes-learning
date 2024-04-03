@@ -113,7 +113,7 @@ groups:
 
 所谓 Evaluated(评估)规则，就是指 PrometheusServer 会检查规则的状态，如果告警规则的状态是 FIRING，则发送告警。
 
-interval 字段的值 加上 PrometheusServer 的命令行标志 --rules.alert.resend-delay 的值(默认 1m)，才是真实的评估周期。这个说明在官方文档中没有，请参考[源码解析](/docs/6.可观测性/监控系统/Prometheus/Prometheus%20开发/Prometheus%20规则处理逻辑.md)
+interval 字段的值 加上 PrometheusServer 的命令行标志 --rules.alert.resend-delay 的值(默认 1m)，才是真实的评估周期。这个说明在官方文档中没有，请参考 [Prometheus 规则处理逻辑](docs/6.可观测性/监控系统/Prometheus/Prometheus%20开发/Prometheus%20规则处理逻辑/Prometheus%20规则处理逻辑.md)
 
 ## rules 字段
 

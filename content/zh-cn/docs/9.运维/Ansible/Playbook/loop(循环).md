@@ -12,7 +12,7 @@ weight: 6
 有时需要重复执行多次任务。在计算机编程中，这称为循环。常见的 Ansible 循环包括使用文件模块更改多个文件和/或目录的所有权，使用用户模块创建多个用户以及重复轮询步骤直到达到特定结果。Ansible 提供了两个用于创建循环的关键字：`loop` 和 `with_XX`
 
 - `with_XX` 关键字依赖于 [Lookup Plugins(Lookup 插件)](https://docs.ansible.com/ansible/latest/plugins/inventory.html)。其中 根据插件的不同功能，使用不同的字符串。e.g.with_items 也是 Lookup 插件。
-  - 插件的介绍详见：[Plugins 插件](/docs/9.运维/Ansible/Playbook/Plugins(插件)/Plugins(插件).md)
+  - 插件的介绍详见：[Ansible Plugins](docs/9.运维/Ansible/Ansible%20Plugins/Ansible%20Plugins.md)
 - `loop` 关键字与 with_list 等效，是简单循环的最佳选择
 
 ## 循环的简单样例
