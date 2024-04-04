@@ -1,8 +1,8 @@
 [
   "obsidian-image-auto-upload-plugin",
-  "editing-toolbar",
-  "obsidian-image-toolkit",
-  "obsidian-bartender",
+  "templater-obsidian",
   "obsidian-excalidraw-plugin",
-  "templater-obsidian"
+  "obsidian-image-toolkit",
+  "editing-toolbar",
+  "obsidian-bartender"
 ]

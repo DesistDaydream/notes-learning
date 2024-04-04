@@ -1,12 +1,13 @@
-content/zh-cn/.obsidian/plugins/templater-obsidian/
-content/zh-cn/.obsidian/plugins/obsidian-excalidraw-plugin/
-content/zh-cn/.obsidian/plugins/obsidian42-brat/
-content/zh-cn/.obsidian/plugins/editing-toolbar/
-content/zh-cn/.obsidian/plugins/obsidian-image-toolkit/
-content/zh-cn/.obsidian/plugins/obsidian-image-auto-upload-plugin/data.json
-content/zh-cn/.obsidian/workspace.json
-content/zh-cn/.obsidian/graph.json
-content/zh-cn/files/
+/content/zh-cn/.obsidian/plugins/templater-obsidian/
+/content/zh-cn/.obsidian/plugins/obsidian-excalidraw-plugin/
+/content/zh-cn/.obsidian/plugins/obsidian42-brat/
+/content/zh-cn/.obsidian/plugins/editing-toolbar/*
+!/content/zh-cn/.obsidian/plugins/editing-toolbar/data.json
+/content/zh-cn/.obsidian/plugins/obsidian-image-toolkit/
+/content/zh-cn/.obsidian/plugins/obsidian-image-auto-upload-plugin/data.json
+/content/zh-cn/.obsidian/workspace.json
+/content/zh-cn/.obsidian/graph.json
+/content/zh-cn/files/
 
 /resources/
 /public/

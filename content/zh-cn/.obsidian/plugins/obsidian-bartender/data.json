@@ -2242,9 +2242,9 @@
       "docs/7.信息安全/Network analysis/Network analysis.md",
       "docs/7.信息安全/Network analysis/Port mirroring.md",
       "docs/7.信息安全/Network analysis/DPI.md",
-      "docs/7.信息安全/Network analysis/Bypass tap.md",
+      "docs/7.信息安全/Network analysis/Bypass swtich.md",
       "docs/7.信息安全/Network analysis/Network tap.md",
-      "docs/7.信息安全/Network analysis/Network Packet Broker.md",
+      "docs/7.信息安全/Network analysis/Network packet broker.md",
       "docs/7.信息安全/Network analysis/NetFlow.md"
     ],
     "docs/7.信息安全/Packet analyzer": [
@@ -2556,6 +2556,17 @@
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netlink/_index.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netlink/Netlink.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netlink/用户空间和内核空间通讯--netlink.md"
+    ],
+    "docs/5.数据存储/数据库/关系数据/PostgreSQL": [
+      "docs/5.数据存储/数据库/关系数据/PostgreSQL/_index.md",
+      "docs/5.数据存储/数据库/关系数据/PostgreSQL/PostgreSQL.md",
+      "docs/5.数据存储/数据库/关系数据/PostgreSQL/psql 命令.md",
+      "docs/5.数据存储/数据库/关系数据/PostgreSQL/PostgreSQL 的 SQL.md"
+    ],
+    "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 日志": [
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 日志/_index.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 日志/Kubernetes 日志.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 日志/Event 资源.md"
     ]
   },
   "actionBarOrder": {},

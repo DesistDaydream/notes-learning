@@ -30,7 +30,7 @@ Note：其实 libvirtd 在绝大部分情况下是与 qemu/kvm 相搭配来使�
 
 libvirt 支持不同的虚拟化类型，所以需要一种方法来指定所要连接的虚拟化驱动。
 
-libvirt 使用 URI 来与各种类型的虚拟化程序连接。[Driver](docs/10.云原生/Virtualization%20implementation/虚拟化管理/Libvirt/Driver/Driver.md)
+libvirt 使用 URI 来与各种类型的虚拟化程序连接。[Driver](/docs/10.云原生/Virtualization%20implementation/虚拟化管理/Libvirt/Driver/Driver.md)
 
 ## Libvirt 支持的虚拟化平台版本
 

@@ -1,6 +1,6 @@
 ---
-title: Bypass tap
-linkTitle: Bypass tap
+title: Bypass swtich
+linkTitle: Bypass swtich
 date: 2024-02-26T23:09
 weight: 20
 ---
@@ -9,9 +9,11 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Bypass tap](https://en.wikipedia.org/wiki/Bypass_switch)
+> - [Wiki，Bypass switch](https://en.wikipedia.org/wiki/Bypass_switch)
 
-**Bypass tap(旁路分路器)** 也称为 Bypass switch(旁路交换机)。Bypass tap 是一种硬件设备，可以与安全设备并联并串联到网络链路中，为安全设备提供 **fail-safe access(故障时可安全访问)** 的能力。
+**Bypass switch(旁路交换机)** 是一种硬件设备，可以与安全设备并联并串联到网络链路中，为安全设备提供 **fail-safe access(故障时可安全访问)** 的能力。
+
+> tips: Bypass switch 早期也有 **Bypass tap(旁路分路器)** 的含义，具有一部分 [Network tap](docs/7.信息安全/Network%20analysis/Network%20tap.md) 的能力，后来随着发展，Bypass 仅仅作为提供高可用所用，Tap 能力由更专业的设备实现。
 
 Bypass tap 通常至少有 4 个端口。
 
@@ -23,9 +25,9 @@ Bypass tap 通常至少有 4 个端口。
 
 通常来说，这两种情况可以用两种模式来概括
 
-- **Normal mode** # 流量经过 Bypass 连接的其他设备后，在发送到下一跳的设备
+- **Normal mode** # 流量经过 Bypass 的 C 与 D 端口，到达其他设备后，再发送到下一跳的设备
   - 有的地方也称为 **控制模式**
-- **Bypass mode** # 流量直接经过 Bypass tap 到下一跳的设备
+- **Bypass mode** # 流量经过 Bypass 的 A 与 B 端口，直接到达下一跳的设备
   - 有的地方也称为 **直通模式**
 
 > 在中文环境中也有的将 Bypass tap 称为 Optical swap(光切换设备，Optiswap)、光开关、etc.

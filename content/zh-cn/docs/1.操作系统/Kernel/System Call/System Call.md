@@ -41,7 +41,7 @@ weight: 1
 
 # Interrupts(中断)
 
-详见：[Interrupts(中断)](docs/1.操作系统/Kernel/CPU/Interrupts(中断)/Interrupts(中断).md)
+详见：[Interrupts(中断)](/docs/1.操作系统/Kernel/CPU/Interrupts(中断)/Interrupts(中断).md)
 
 # syscall 的方式
 

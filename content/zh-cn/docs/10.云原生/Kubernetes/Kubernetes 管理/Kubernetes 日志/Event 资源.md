@@ -5,10 +5,13 @@ title: Event 资源
 # 概述
 
 > 参考：
+> 
 > - [公众号，张晋涛-彻底搞懂 Kubernetes 中的 Events](https://mp.weixin.qq.com/s/lOM5BnvYixOnWFR7Axky8Q)
 
 之前我写了一篇[《更优雅的 Kubernetes 集群事件度量方案》](http://mp.weixin.qq.com/s?__biz=MzI2ODAwMzUwNA==&mid=2649296276&idx=1&sn=e4832b819db454fb13af5b052a3158d9&chksm=f2eb9c4bc59c155d24a253981db7ff39c50c38ea40f6c87a9f0f04ce5a0f3012627a3d7ccde0&scene=21#wechat_redirect)，利用 Jaeger 利用 tracing 的方式来采集 Kubernetes 集群中的 events 并进行展示。最终效果如下：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ho6kqg/1641358554427-b25ce8b8-3629-4659-9064-70b089ab1ead.webp)
+
 写那篇文章的时候，立了个 flag 要详细介绍下其中的原理，鸽了很久，现在年底了，也该发出来了。
 
 # Eents 概览

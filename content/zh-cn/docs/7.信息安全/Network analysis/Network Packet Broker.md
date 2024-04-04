@@ -1,28 +1,30 @@
 ---
-title: Network Packet Broker
-linkTitle: Network Packet Broker
+title: Network packet broker
+linkTitle: Network packet broker
 date: 2024-04-03T00:02
 weight: 20
 ---
 
-# 概述
+# ![](无标题-2024-04-01-2129.excalidraw) 概述
 
 > 参考：
-> 
+>
 > - [Wiki，Data monitoring switch](https://en.wikipedia.org/wiki/Data_monitoring_switch)
 > - [知乎，什么是TAP分流器/交换机，有哪些品牌](https://zhuanlan.zhihu.com/p/164828332)
 
-**Network Packet Broker(网络数据包代理，简称 NPB)** 是一种比 [Network tap](docs/7.信息安全/Network%20analysis/Network%20tap.md) 更强大的流量处置技术，实现了 NPB 的设备接收来自大量链路上的流量，将其汇聚在设备内部处理（e.g. 过滤、etc.）后，再将流量分发给另一侧的其他设备。这种行为也可以称为**汇聚分流**，对应的，实现了 NPB 的设备可以称为 **汇聚分流设备**。
+**Network Packet Broker(网络数据包代理，简称 NPB)** 是一种比 [Network tap](/docs/7.信息安全/Network%20analysis/Network%20tap.md) 更强大的流量处置技术，实现了 NPB 的设备接收来自大量链路上的流量，将其汇聚在设备内部处理（e.g. 过滤、etc.）后，再将流量分发给另一侧的其他设备。这种行为也可以称为**汇聚分流**，对应的，实现了 NPB 的设备可以称为 **汇聚分流设备**。
 
 > Network tap 通常只能是 1 对 2 让流量复制一份；而 NPB 可以实现 1 对 多，多 对 多，且除了基本的窃听流量（i.e. 复制流量）功能外，还可以实现多种多样的流量处理能力
 
-![network_packet_broker.excalidraw](Excalidraw/network_packet_broker.excalidraw.md)
+![npb.excalidraw](Excalidraw/npb.excalidraw.md)
 
-> 还有一些词汇也是用来描述实现 NPB 功能的设备：Data access switch(数据访问交换机)、Tool aggregator(工具聚合器)、Data monitoring switch(数据监控交换机)、Net tool optimizer(网络工具优化器)、Distributed filter tap(分布式过滤器)、Network Traffic Aggregator(网络流量聚合器)、Aggregation Taps(聚合)
+> 还有一些词汇也是用来描述实现 NPB 功能的设备：Data monitoring switch(数据监控交换机)、Data access switch(数据访问交换机)、Tool aggregator(工具聚合器)、Net tool optimizer(网络工具优化器)、Distributed filter tap(分布式过滤器)、Network Traffic Aggregator(网络流量聚合器)、Aggregation Taps(聚合)
 
-NPB 设备通常是作为 <font color="#ff0000">**旁路设备**</font> 以 **并接** 的方式接入到主链路中，接收的是来自 [DPI](docs/7.信息安全/Network%20analysis/DPI.md)、其他 NPB 设备、etc. 的流量。
+NPB 设备通常是作为 <font color="#ff0000">**旁路设备**</font> 以 **并接** 的方式接入到主链路中，接收的是来自 [DPI](/docs/7.信息安全/Network%20analysis/DPI.md)、其他 NPB 设备、etc. 的流量。
 
-NPB 内部的核心能力是实现了 [同源同宿](docs/4.数据通信/同源同宿.md)。主要是对接收到的流量进行大量的汇聚、过滤、分发，NPB 并不需要串联进进链路中执行具体的像安全设备似的丢弃报文、阻断流量相关的任务。主要是基于如下需求产生的
+NPB 内部的核心能力是对来自多条链路的流量实现了 [同源同宿](/docs/4.数据通信/同源同宿.md)，保证多条链路的流量不会混乱。NPB 对接收到的大量流量进行汇聚、过滤、分发，NPB 并不需要串联进进链路中执行具体的像安全设备似的丢弃报文、阻断流量相关的任务。主要是基于如下需求产生的
+
+![why_we_need_npb.excalidraw](Excalidraw/why_we_need_npb.excalidraw.md)
 
 # 汇聚分流
 

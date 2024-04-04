@@ -62,7 +62,7 @@ curl -LO https://dl.k8s.io/release/${RELEASE}/bin/linux/${ARCH}/kubectl
 
 安装完成后，使用 `kubectl completion bash > /etc/bash_completion.d/kubectl` 生成自动补全功能。
 
-# kubectl 配置
+# kubectl 管理文件与配置
 
 **~/.kube/config** # kubeclt 使用的 kubeconfig 文件的默认路径。kubectl 工具运行时将会使用该文件作为连接 kubernetes 集群的信息
 
@@ -87,39 +87,12 @@ kubeamd 部署的集群一般直接使用 /etc/kubernetes/admin.conf 文件拷�
 
 ## Global FLAGS(全局标志)
 
-- --alsologtostderr=false: log to standard error as well as files
-- --as='': Username to impersonate for the operation
-- --as-group=\[]: Group to impersonate for the operation, this flag can be repeated to specify multiple groups.
-- --cache-dir='/root/.kube/http-cache': Default HTTP cache directory
-- --certificate-authority='': Path to a cert file for the certificate authority
-- --client-certificate='': Path to a client certificate file for TLS
-- --client-key='': Path to a client key file for TLS
-- --cluster='': The name of the kubeconfig cluster to use
-- --context='': The name of the kubeconfig context to use
-- --insecure-skip-tls-verify=false: If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
-- **--kubeconfig=/PATH/TO/FILE** # 指定 kubectl 所要使用的配置文件(需要使用绝对路径)
-- --log-backtrace-at=:0: when logging hits line file:N, emit a stack trace
-- --log-dir='': If non-empty, write log files in this directory
-- --log-file='': If non-empty, use this log file
-- --log-flush-frequency=5s: Maximum number of seconds between log flushes
-- --logtostderr=true: log to standard error instead of files
-- --match-server-version=false: Require server version to match client version
-- -n, --namespace='': If present, the namespace scope for this CLI request
-- --password='': Password for basic authentication to the API server
-- --profile='none': Name of profile to capture. One of (none|cpu|heap|goroutine|threadcreate|block|mutex)
-- --profile-output='profile.pprof': Name of the file to write the profile to
-- --request-timeout='0': The length of time to wait before giving up on a single server request. Non-zero values
-- should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
-- -s, --server='': The address and port of the Kubernetes API server
-- --skip-headers=false: If true, avoid header prefixes in the log messages
-- --stderrthreshold=2: logs at or above this threshold go to stderr
-- --token='': Bearer token for authentication to the API server
-- --user='': The name of the kubeconfig user to use
-- --username='': Username for basic authentication to the API server
-- **-v=NUM** # 指定 kubectl 命令执行的 debug 级别，默认为 0。如果使用高级别，可以看到 RESTful 风格请求 APIServer 时的请求头以及响应头信息。打开调试日志也可以看到每个 API 调用的格式。number for the log level verbosity
-- --vmodule=: comma-separated list of pattern=N settings for file-filtered logging
+https://kubernetes.io/docs/reference/kubectl/kubectl/#options
 
-## Basic Commands (Beginner)(基本命令(初学者))
+- **--kubeconfig=/PATH/TO/FILE** # 指定 kubectl 所要使用的配置文件(需要使用绝对路径)
+- **-v, --v NUM** # 指定 kubectl 命令执行的 debug 级别，`默认值: 0`。如果使用高级别，可以看到 RESTful 风格请求 APIServer 时的请求头以及响应头信息。打开调试日志也可以看到每个 API 调用的格式。
+
+# Basic Commands (Beginner)(基本命令(初学者))
 
 create # 从文件或者 stdin 上创建一个资源
 
@@ -132,9 +105,9 @@ run # 在集群上创建并运行一个特定的镜像
 
 set # 配置应用程序资源，用法详见单独章节
 
-## Basic Commands (Intermediate)(基本命令(中级))
+# Basic Commands (Intermediate)(基本命令(中级))
 
-### explain # 解释。列出资源所支持的字段
+## explain - 解释。列出资源所支持的字段
 
 kubectl explain RESOURCE\[.FIELD1.FELD2...FIELDn] \[options] # 每个 FIELD(字段)都可以用.后面跟字段名来查询这个字段下的描述信息，以及该字段下还可以声明什么字段
 
@@ -148,15 +121,15 @@ kubectl explain RESOURCE\[.FIELD1.FELD2...FIELDn] \[options] # 每个 FIELD(字�
 - \#表示该字段需要加字符串来定义该字段，不再包含子字段
 - <\[]string> # 表示该字段的字符串以列表形式，前面每个参数都要加-符号，依然要使用子字段来写这些字符串
 
-### get # 显示一个或多个资源
+## get - 显示一个或多个资源
 
 详见：get 和 describe 显示资源信息命令
 
-### edit # 编辑服务器上的资源
+## edit - 编辑服务器上的资源
 
 详见《[对象的创建与修改命令](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20命令行工具/对象的创建与修改命令.md)》
 
-### delete # 通过文件名、标准输入、资源名或者资源表删除资源
+## delete - 通过文件名、标准输入、资源名或者资源表删除资源
 
 EXAMPLE
 
@@ -164,15 +137,15 @@ EXAMPLE
 - kubectl delete -f nginx.yaml
 - kubectl delete pods nginx --grace-period=0 --force # 强制删除 nginx 这个 pod
 
-## Deploy Commands(部署命令)
+# Deploy Commands(部署命令)
 
-### rollout # 管理资源的滚动更新，用法详见 set,rollout 更新资源命令.note
+## rollout - 管理资源的滚动更新，用法详见 set,rollout 更新资源命令.note
 
 scale # 为 Deployment, ReplicaSet, Replication Controller, or Job 设置新的容量大小
 
 autoscale      Auto-scale a Deployment, ReplicaSet, or ReplicationController
 
-## Cluster Management Commands(集群管理命令)
+# Cluster Management Commands(集群管理命令)
 
 certificate # 修改证书资源。Modify certificate resources.
 
@@ -180,7 +153,7 @@ approve # 批准一个证书请求 Approve a certificate signing request
 
 deny # 拒绝一个证书请求。Deny a certificate signing request
 
-### cluster-info # 展示 kubernetes 集群的信息，默认展示 master 运行的位置和 DNS 运行的位置
+## cluster-info - 展示 kubernetes 集群的信息，默认展示 master 运行的位置和 DNS 运行的位置
 
 **kubectl cluster-info SubCommand \[flags] \[OPTIONS]**
 
@@ -201,7 +174,7 @@ EXAMPLE
 - kubectl cluster-info # 显示集群信息，效果如图
 - kubectl cluster-info dump # 显示集群的 dbug 信息
 
-### top # 显示硬件资源(CPU/内存/存储)的用量
+## top - 显示硬件资源(CPU/内存/存储)的用量
 
 该命令只有在集群部署玩 metrics-server 或者 kube-state-metrics 等资源后，才可以获得数据。显示每个 Node 或者每个 Pod 使用的硬件资源情况，效果如图
 **kubectl top \[flags] \[options]**
@@ -210,11 +183,11 @@ EXAMPLE
 - kubectl top node # 显示所有 Node 的硬件资源使用量
 - kubectl top pod --all-namespaces # 显示所有名称空间下的 Pod 对硬件资源的使用量
 
-### cordon # 将指定节点标记为不可调度
+## cordon - 将指定节点标记为不可调度
 
-### uncordon # 将指定节点标记为可调度
+## uncordon - 将指定节点标记为可调度
 
-### drain # 排空指定的节点，为维护做准备
+## drain - 排空指定的节点，为维护做准备
 
 给定节点将被标记为不可调度(就是 `cordon` 子命令)，以防止新 Pod 被调度到该节点。如果 APIServer 支持 <http://kubernetes.io/docs/admin/disruptions/>，则 `drain` 会 evicts(驱逐) Pod。否则，它将使用普通的 DELETE 请求删除 Pod。`drain` 会驱逐或删除除 mirror pods (不能通过 API 服务器删除) 之外的所有 pod。如果存在 DaemonSet 管理的 Pod，则不会在没有 --ignore-daemonsets 标志的情况下进行，并且无论如何也不会删除任何 DaemonSet 管理的 Pod，因为这些 Pod 将立即被 DaemonSet 控制器替换，该控制器忽略不可调度的标记。如果有任何 Pod 既不是 mirror pods，也不是由 replicationcontrol,replicaset，DaemonSet，statprit set 或 Job 管理的，则除非使用 --force，否则不会删除任何 Pod。-- force 还将允许在一个或多个 pod 的管理资源丢失时继续删除。
 
@@ -222,7 +195,7 @@ EXAMPLE
 
 当您准备好将节点重新投入服务时，请使用 `kubectl uncordon`，这将使节点再次可调度。
 
-### taint # 在一个或多个 node 上更新污点
+## taint - 在一个或多个 node 上更新污点
 
 **kubectl taint NODE NAME KEY_1=VAL_1:TAINT_EFFECT_1 ... KEY_N=VAL_N:TAINT_EFFECT_N \[OPTIONS]**
 定义的时候要指明 key，val 以及 effect，注意格式
@@ -234,13 +207,13 @@ EXAMPLE
 - 给 master 节点加一个污点，key 为 node-type，val 为 qa，effect 为 NoExecut
   - **kubectl taint nodes master node-type=qa:NoExecute**
 
-## Troubleshooting and Debugging Commands(故障排除和调试命令)
+# Troubleshooting and Debugging Commands(故障排除和调试命令)
 
-### debug # 创建调试 Pod 以便对工作负载或节点进行故障排除
+## debug - 创建调试 Pod 以便对工作负载或节点进行故障排除
 
 详见：[故障处理技巧章节](/docs/10.云原生/Kubernetes/Kubernetes%20管理/性能优化与故障处理/故障处理技巧/故障处理技巧.md)
 
-### describe # 显示特定资源或资源组的详细信息
+## describe - 显示特定资源或资源组的详细信息
 
 **kubectl describe (-f FILENAME | TYPE \[NAME_PREFIX | -l label] | TYPE/NAME) \[OPTIONS]**
 
@@ -249,7 +222,7 @@ EXAMPLE
 - kubectl describe node
 - kubectl describe pod kubernetes-dashboard-87f58dc9-j244f --namespace=kube-system
 
-### logs # 打印出在一个 pod 中的一个 container 的日志
+## logs - 打印出在一个 pod 中的一个 container 的日志
 
 kubectl logs \[-f] \[-p] (POD | TYPE/NAME) \[OPTIONS]
 
@@ -261,7 +234,7 @@ EXAMPLE
 
 - kubectl attach client-7c9999bd74-76s4t -it # 进入该 pod 中
 
-### exec # 在一个容器中执行一条命令
+## exec - 在一个容器中执行一条命令
 
 可执行/bin/sh 命令来进入容器当中
 
@@ -276,11 +249,11 @@ EXAMPLE
 
 - kubectl exec -it httpd-79c4f99955-2s8rw -- /bin/sh # 以 TTY 终端的形式传递/bin/sh 命令到容器中
 
-### port-forward # 转发一个或多个本地端口到一个 pod 上
+## port-forward - 转发一个或多个本地端口到一个 pod 上
 
 OPTIONS
 
-- --address IP # 要监听的地址（逗号分隔），默认为 localhost。 仅接受 IP 或 localhost 为值。 提供 localhost 时，kubectl 将尝试同时绑定 127.0.0.1 和:: 1。
+- **--address IP** # 要监听的地址（逗号分隔），默认为 localhost。 仅接受 IP 或 localhost 为值。 提供 localhost 时，kubectl 将尝试同时绑定 127.0.0.1 和:: 1。
 
 EXAMPLE
 
@@ -288,7 +261,7 @@ EXAMPLE
 - 将名为 traefik 的 service 的 8080 和 443 端口，进行端口转发暴露出来，监听的地址是本地 0.0.0.0
   - kubectl port-forward --address 0.0.0.0 service/traefik 8080:8080 443:4443
 
-### proxy # 运行一个到 kubernetes 的 API 服务器的代理程序
+## proxy - 运行一个到 kubernetes 的 API 服务器的代理程序
 
 在服务器和 Kubernetes API Server 之间创建代理服务器或应用程序级网关。 它还允许在指定的 HTTP 路径上保留静态内容。 所有传入数据都通过一个端口进入，并转发到远程 kubernetes API 服务器端口，但与静态内容路径匹配的路径除外
 
@@ -320,25 +293,25 @@ cp             Copy files and directories to and from containers.
 
 auth           Inspect authorization
 
-## Advanced Commands # 高级命令
+# Advanced Commands - 高级命令
 
-### diff # Diff live version against would-be applied version
+## diff - Diff live version against would-be applied version
 
-### apply # 通过文件或标准输入将配置应用到资源
+## apply - 通过文件或标准输入将配置应用到资源
 
 详见《[对象的创建与修改命令](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20命令行工具/对象的创建与修改命令.md)》
 
-### patch #   用 strategic merge、JSON merge、JSON，更新一个资源的字段
+## patch - 用 strategic merge、JSON merge、JSON，更新一个资源的字段
 
 **kubectl patch (-f FILENAME | TYPE NAME) -p PATCH \[options]**
 
-### replace # 替换。使用文件或标准输入替换一个资源
+## replace - 替换。使用文件或标准输入替换一个资源
 
 详见《[对象的创建与修改命令](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20命令行工具/对象的创建与修改命令.md)》
 
-### wait # 在一个或多个资源上等待指定的条件达成
+## wait - 在一个或多个资源上等待指定的条件达成
 
-#### EXAMPLE
+### EXAMPLE
 
 Wait for the pod "busybox1" to contain the status condition of type "Ready"
 
@@ -365,11 +338,11 @@ kubectl delete pod/busybox1
 kubectl wait --for=delete pod/busybox1 --timeout=60s
 ```
 
-### convert # Convert config files between different API versions
+## convert - Convert config files between different API versions
 
-## Settings Commands # 设置命令
+# Settings Commands - 设置命令
 
-### label # 更新对象上的标签
+## label - 更新对象上的标签
 
 详见 [标签与选择器 文章中的 通过 kubectl 命令设置标签](Label%20and%20Selector(标签和选择器).md and Selector(标签和选择器).md) 章节
 
@@ -377,9 +350,9 @@ annotate       Update the annotations on a resource
 
 completion     Output shell completion code for the specified shell (bash or zsh)
 
-## Other Commands # 其他命令
+# Other Commands - 其他命令
 
-### api-resources # 显示所支持的所有 API 资源(即对象)
+## api-resources - 显示所支持的所有 API 资源(即对象)
 
 显示的信息包括：NAME(对象名),SHORTNAMES(短名称)，APIGROUP(API 组)，NAMESPACED，KIND(所属种类)，VERBS(动作，即该对象可以执行的命令)
 
@@ -391,11 +364,11 @@ OPTIONS
 
 EXAMPLE
 
-### api-versions # 以“组/版本”的方式在服务器上显示所支持的所有 API 版本
+## api-versions - 以“组/版本”的方式在服务器上显示所支持的所有 API 版本
 
 在编写 yaml 文件中的“apiVersion”字段时，可以使用该命令显示出的组/版本
 
-### config # 使用子命令修改 kubeconfig 文件
+## config - 使用子命令修改 kubeconfig 文件
 
 用法详见 [config 子命令](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20命令行工具/config%20子命令.md)
 

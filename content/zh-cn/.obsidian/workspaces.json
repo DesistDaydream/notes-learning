@@ -6,11 +6,11 @@
         "type": "split",
         "children": [
           {
-            "id": "79f689a515d214c7",
+            "id": "ca37199cc1800569",
             "type": "tabs",
             "children": [
               {
-                "id": "43aa7e958830456b",
+                "id": "b2cc863ff06032f8",
                 "type": "leaf",
                 "state": {
                   "type": "empty",
@@ -46,7 +46,7 @@
                 "state": {
                   "type": "search",
                   "state": {
-                    "query": "",
+                    "query": "file: git",
                     "matchingCase": false,
                     "explainSearch": false,
                     "collapseAll": true,
@@ -159,17 +159,18 @@
       },
       "left-ribbon": {
         "hiddenItems": {
-          "workspaces:管理工作区布局": false,
-          "command-palette:打开命令面板": false,
-          "templates:插入模板": false,
-          "switcher:打开快速切换": false,
           "graph:查看关系图谱": false,
+          "canvas:新建白板": false,
+          "switcher:打开快速切换": false,
+          "templates:插入模板": true,
+          "command-palette:打开命令面板": false,
+          "workspaces:管理工作区布局": false,
           "obsidian-excalidraw-plugin:新建绘图文件": false,
-          "canvas:新建白板": false
+          "templater-obsidian:Templater": true
         }
       },
-      "active": "0d428aa4516b1652",
-      "mtime": "2024-04-02T08:38:39+08:00"
+      "active": "b2cc863ff06032f8",
+      "mtime": "2024-04-03T20:45:55+08:00"
     }
   },
   "active": "my style"

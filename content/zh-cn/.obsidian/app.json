@@ -10,5 +10,5 @@
   "useTab": false,
   "smartIndentList": true,
   "showLineNumber": false,
-  "strictLineBreaks": false
+  "strictLineBreaks": true
 }

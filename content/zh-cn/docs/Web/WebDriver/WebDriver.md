@@ -28,7 +28,7 @@ WebDriver 符合 [W3C](/docs/x_标准化/Internet/W3C.md) 标准。
 
 在 Windows 可以直接下载一个 chromedriver.exe 文件，即可与 Python 库对接，由 Python 控制浏览器。
 
-如果想使用 浏览器自动化程序（e.g. [Selenium](docs/Web/WebDriver/Selenium.md)） 来模拟用户在浏览器中的各种操作，包括但不限于点击、复制、填写等，那么 ChromeDriver 就是 Chrome 浏览器与 Selenium 进行通信的载体之一
+如果想使用 浏览器自动化程序（e.g. [Selenium](/docs/Web/WebDriver/Selenium.md)） 来模拟用户在浏览器中的各种操作，包括但不限于点击、复制、填写等，那么 ChromeDriver 就是 Chrome 浏览器与 Selenium 进行通信的载体之一
 
 `Selenium` 是一个用于 Web 应用程序测试的工具。它可以直接运行在浏览器中，模拟用户在浏览器中的各种操作，包括但不限于点击、复制、填写等。Selenium 支持市场上所有主流浏览器的自动化，包括 Chrome、Firefox、Safari 等]
 

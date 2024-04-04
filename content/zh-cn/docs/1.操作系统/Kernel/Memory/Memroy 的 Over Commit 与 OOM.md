@@ -431,8 +431,8 @@ Jun  4 17:19:10 iZ23tpcto8eZ kernel: lowmem_reserve[]: 0 0 0 0
 lowmen_reserve 的值是一个数组，当 Normal(index=2)像 DMA32 申请内存的时候，需要满足条件：DMA32 high+lowmem_reserve\[2] < free，才能申请，来算下：
 
 - Normal：从自己这里申请，free(36200) < min(43192)，所以申请失败了(watermark\[min]以下的内存属于系统的自留内存，用以满足特殊使用，所以不会给用户态的普通申请来用)
-- Normal 转到 DMA32 申请:high(36376KB) + lowmem_reserve[2](4990)\*4=56336KB > DMA32 Free(43500KB),不允许申请
-- Normal 转到 DMA 申请:high(196KB) + lowmem_reserve[2](7792)\*4 = 31364KB > DMA Free(15900KB),不允许申请,所以....最终失败了
+- Normal 转到 DMA32 申请:`high(36376KB) + lowmem_reserve[2](4990)\*4=56336KB > DMA32 Free(43500KB)`,不允许申请
+- Normal 转到 DMA 申请:`high(196KB) + lowmem_reserve[2](7792)\*4 = 31364KB > DMA Free(15900KB)`,不允许申请,所以....最终失败了
 
   2.2 min_free_kbytes
 
