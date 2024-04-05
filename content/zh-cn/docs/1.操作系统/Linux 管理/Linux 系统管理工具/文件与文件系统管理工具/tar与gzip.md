@@ -12,24 +12,37 @@ tar 是一个归档工具，用以实现 [Archive File(归档文件)](/docs/1.�
 
 ## Syntax(语法)
 
-**tar \[OPTIONS] /PATH/FILE**
+**tar  \[Operation mode] \[OPTIONS] /PATH/FILE**
+
+Operation mode(操作模式)
+
+- **-c, --create** # 打包文件，需要与 -f 选项搭配使用。创建一个新的 archive(归档)
+- **-x, --extract, --get** # 解包文件，需要与 -f 选项搭配使用。从 archive(归档) 中 extract(提取) 文件。当使用该选项时，需要指定要提取的档案成员的名称。
+
 OPTIONS:
 
 - **-f** # 指定被处理的文件（在所有选项里一定要放最后一个，否则会报错）
-- **-x** # 解包文件
-- **-c** # 打包文件
 - **-C, --directory=\<DIR>**# 解包到指定目录
 - **-v** # 显示执行命令时的详细过程
 - **-t** # 查看已经打包的文件中的内容
 - **-z** # 通过 gzip 指令处理打包的文件；
 - **--strip-components NUM** # 去除前缀目录，i.e.默认会自动创建与压缩包同名的目录来存放压缩包内的文件，当 NUM 为 1 时，则不再创建该目录，直接将压缩包内的文件全部解压到当前目录
+- Local file selection(本地文件选择)
+  - **--exclude=PATTERN** # 打包时排除指定的文件或目录。PATTERN 是通配符匹配模式。
+    - <font color="#ff0000">Notes: 打包的路径使用相对路径时，排除的文件只能接相对路径；打包的目录使用绝对路径，排除的文件接相对路径或绝对路径</font>
+    - 建议打包的目录和排除的文件使用的路径要保持一致，都是用绝对路径，或都是用相对路径。
 
-EXAMPLE:
+## EXAMPLE
 
-- tar -zcvf xxx.tar.gz /tmp/test/\* # 把/tmp/test/下所有的文件和目录都打包并压缩成 xxx.tar.gz
-- tar -zxvf xxx.tar.gz \[-C /XXX] # 解压 xxx.tar.gz 文件（加-C /tmp/test2/ 指定解压缩的路径，解压缩到/tmp/test2/目录下）
+- `tar -zcvf xxx.tar.gz /tmp/test/*` # 把 /tmp/test/ 下所有的文件和目录都打包并压缩成 xxx.tar.gz
+- tar -zxvf xxx.tar.gz \[-C /XXX] # 解压 xxx.tar.gz 文件（加-C /tmp/test2/ 指定解压缩的路径，解压缩到 /tmp/test2/ 目录下）
 - tar -tvf xxx.tar.gz # 不解包查看压缩文件里有哪些文件和目录
 - zcat xxx.tar.gz # 读取打包文件的内容等详细信息
+
+排除 `Saved/` 目录下的 `SaveGames/*/*/backup` 目录后打包
+
+- `tar -zcf "$FILE_PATH" --exclude="SaveGames/*/*/backup" "Saved/"`
+
 
 # gzip
 

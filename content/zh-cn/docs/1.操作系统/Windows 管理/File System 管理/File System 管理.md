@@ -57,3 +57,7 @@ $USERPROFILE/AppData/Roaming/Microsoft
 Windows 操作系统的核心文件和 DLL 文件都存储在此目录中。
 
 **./System32/** # 类似于 Linux 中的 /usr/sbin/ 目录，系统自带的命令、服务、[msc](/docs/1.操作系统/Windows%20管理/Microsoft%20Management%20Console/Microsoft%20Management%20Console.md#MSC) 的可执行文件都在这里。
+
+# 资源管理器
+
+资源管理器左侧的 “导航窗格” 有时候会加载缓慢，有可能是因为快速访问里有非本地的链接，将这些非本地链接取消固定试试。比如 把 WSL 中的目录固定到快速访问、某种网络文件系统固定到快速访问、etc.

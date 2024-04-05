@@ -78,7 +78,7 @@ Headless Chrome 是 Chrome 浏览器的无界面形态，可以在不打开浏�
 
 https://blog.csdn.net/zhangxingyu126/article/details/105010443/
 
-访问https的网页，以前正常访问提示不是私密连接，可以点击高级，继续访问，但是最近突然没有继续访问的按钮了。
+访问 https 的网页，以前正常访问提示不是私密连接，可以点击高级，继续访问，但是最近突然没有继续访问的按钮了。
 
 ![](https://img-blog.csdnimg.cn/20200321151204453.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYW5neGluZ3l1MTI2,size_16,color_FFFFFF,t_70)
 
