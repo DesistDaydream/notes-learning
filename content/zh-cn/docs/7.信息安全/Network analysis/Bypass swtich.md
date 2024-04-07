@@ -2,7 +2,7 @@
 title: Bypass swtich
 linkTitle: Bypass swtich
 date: 2024-02-26T23:09
-weight: 20
+weight: 4
 ---
 
 # 概述

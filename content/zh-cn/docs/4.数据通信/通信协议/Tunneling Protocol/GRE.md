@@ -1,8 +1,15 @@
 ---
 title: GRE
+linkTitle: GRE
+date: 2024-04-07T13:07
+weight: 2
 ---
 
 # 概述
+
+> 参考：
+> 
+> -
 
 **Generic Routing Encapsulation(通用路由封装，简称 GRE)** 是一种隧道协议，在数据两端，对数据进行封装和解封装。是 Cisco Systems 开发的隧道协议，可以通过 Internet 协议网络将各种网络层协议封装在虚拟点对点链路中。
 

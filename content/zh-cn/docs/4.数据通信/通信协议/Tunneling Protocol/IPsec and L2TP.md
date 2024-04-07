@@ -1,8 +1,8 @@
 ---
-title: "IPsec and L2TP"
-linkTitle: "IPsec and L2TP"
-date: "2023-07-18T12:48"
-weight: 20
+title: IPsec and L2TP
+linkTitle: IPsec and L2TP
+date: 2023-07-18T12:48
+weight: 2
 ---
 
 # 概述

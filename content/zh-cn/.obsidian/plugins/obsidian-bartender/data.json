@@ -15,11 +15,11 @@
       "about",
       "blog",
       "docs",
-      "obsidian模板",
       "Excalidraw",
-      "files",
       "search.md",
-      "featured-background.jpg"
+      "featured-background.jpg",
+      "obsidian_template",
+      "files"
     ],
     "docs": [
       "docs/_index.md",
@@ -2178,12 +2178,13 @@
       "docs/7.信息安全/Access Control",
       "docs/7.信息安全/Network analysis",
       "docs/7.信息安全/Packet analyzer",
-      "docs/7.信息安全/中间人攻击与HTTPS抓包.md",
-      "docs/7.信息安全/Hacking.md",
       "docs/7.信息安全/Reverse engineering",
       "docs/7.信息安全/Crawler",
+      "docs/7.信息安全/中间人攻击与HTTPS抓包.md",
+      "docs/7.信息安全/Hacking.md",
       "docs/7.信息安全/Vulnerable.md",
-      "docs/7.信息安全/Bastion Host.md"
+      "docs/7.信息安全/Bastion Host.md",
+      "docs/7.信息安全/安全系统.md"
     ],
     "docs/7.信息安全/Crawler": [
       "docs/7.信息安全/Crawler/_index.md",
@@ -2244,7 +2245,7 @@
       "docs/7.信息安全/Network analysis/DPI.md",
       "docs/7.信息安全/Network analysis/Bypass swtich.md",
       "docs/7.信息安全/Network analysis/Network tap.md",
-      "docs/7.信息安全/Network analysis/Network packet broker.md",
+      "docs/7.信息安全/Network analysis/Network Packet Broker.md",
       "docs/7.信息安全/Network analysis/NetFlow.md"
     ],
     "docs/7.信息安全/Packet analyzer": [

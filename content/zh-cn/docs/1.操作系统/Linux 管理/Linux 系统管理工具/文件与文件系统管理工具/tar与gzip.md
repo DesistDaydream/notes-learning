@@ -43,7 +43,6 @@ OPTIONS:
 
 - `tar -zcf "$FILE_PATH" --exclude="SaveGames/*/*/backup" "Saved/"`
 
-
 # gzip
 
 命令用来压缩文件。gzip 是个使用广泛的压缩程序，文件经它压缩过后，其名称后面会多处“.gz”扩展名。

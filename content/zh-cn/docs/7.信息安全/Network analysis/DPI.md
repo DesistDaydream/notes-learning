@@ -2,7 +2,7 @@
 title: DPI
 linkTitle: DPI
 date: 2024-02-20T17:01
-weight: 2
+weight: 3
 ---
 
 # 概述

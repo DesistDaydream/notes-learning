@@ -15,7 +15,7 @@ systemd.exec 类的指令是 [Unit File 指令中特殊部分的指令中的通�
 
 systemd.exec 包含很多很多指令，我们可以将其分为如下几大类：
 
-- [PATHS](#Paths) # 路径相关指令
+- [PATHS](#paths) # 路径相关指令
 - [USER/GROUP IDENTITY](#USER/GROUP%20IDENTITY) # 用户/组标识相关指令
 - CAPABILITIES
 - SECURITY
@@ -24,7 +24,7 @@ systemd.exec 包含很多很多指令，我们可以将其分为如下几大类�
 - SCHEDULING
 - SANDBOXING
 - SYSTEM CALL FILTERING
-- [ENVIRONMENT](#ENVIRONMENT) # 环境变量相关指令
+- [ENVIRONMENT](#environment) # 环境变量相关指令
 - LOGGING AND STANDARD INPUT/OUTPUT
 - CREDENTIALS
 - SYSTEM V COMPATIBILITY
@@ -94,4 +94,4 @@ https://man7.org/linux/man-pages/man5/systemd.exec.5.html#LOGGING_AND_STANDARD_I
 
 # 分类
 
-#systemd #unit-file
+> #systemd #unit-file

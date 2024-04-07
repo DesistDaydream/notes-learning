@@ -107,11 +107,15 @@ http_request_total{status="200", method="POST"}=1434417561287 => 4785
 
 指标的样式一：在形式上(输出到某个程序供人阅读)，指标(Metrics)都通过如下格式标识(指标名称(metrics name)和一组标签集(LabelSet))
 
-    <Metrics Name>{<Label Name>=<Label Value>, ...}
+```text
+<Metrics Name>{<Label Name>=<Label Value>, ...}
+```
 
 指标的样式二：在时间序列数据库中，指标(Metrics)则是使用下面的格式标识
 
-    {__name__=<Metrics Name>, <Label Name>=<Label Value>, ...}
+```json
+{__name__=<Metrics Name>, <Label Name>=<Label Value>, ...}
+```
 
 1. **Metrics Name(指标的名称)** # 可以反映被监控数据的含义（比如，http_request_total - 表示当前系统接收到的 HTTP 请求总量）。指标名称只能由 ASCII 字符、数字、下划线以及冒号组成并必须符合正则表达式\[a-zA-Z\_:]\[a-zA-Z0-9\_:]\*。
 2. **LabelSet(标签集)** # 反映了当前样本的特征维度，通过这些维度 Prometheus 可以对样本数据进行过滤，聚合等。标签的名称只能由 ASCII 字符、数字以及下划线组成并满足正则表达式\[a-zA-Z\_]\[a-zA-Z0-9\_]\*。
@@ -119,9 +123,11 @@ http_request_total{status="200", method="POST"}=1434417561287 => 4785
 
 因此以下两种方式均表示的同一条 time-series ：
 
-    api_http_requests_total{method="POST", handler="/messages"}
-    等同于：
-    {__name__="api_http_requests_total", method="POST", handler="/messages"}
+```text
+api_http_requests_total{method="POST", handler="/messages"}
+等同于：
+{__name__="api_http_requests_total", method="POST", handler="/messages"}
+```
 
 在 Prometheus 的源码中也可以看到指标(Metric)对应的数据结构，如下所示：
 
@@ -139,6 +145,7 @@ http_request_total{status="200", method="POST"}=1434417561287 => 4785
 # Metrics(指标) 的类型
 
 > 参考：
+> 
 > [官网文档，概念-metric 类型](https://prometheus.io/docs/concepts/metric_types/)
 
 在 Prometheus 的存储实现上所有的监控样本都是以 time-series 的形式保存在 Prometheus 的 TSDB(时序数据库) 中，而 TimeSeries 所对应的 Metric(监控指标) 也是通过 LabelSet 进行唯一命名的。
@@ -151,9 +158,11 @@ http_request_total{status="200", method="POST"}=1434417561287 => 4785
 
 > 其中 TYPE node_cpu counter 表明 node_cpu 的指标类型为 counter
 
-    # HELP node_cpu Seconds the cpus spent in each mode.
-    # TYPE node_cpu counter
-    node_cpu{cpu="cpu0",mode="idle"} 362812.789625
+```text
+# HELP node_cpu Seconds the cpus spent in each mode.
+# TYPE node_cpu counter
+node_cpu{cpu="cpu0",mode="idle"} 362812.789625
+```
 
 ## Counter(计数器) # 只增不减的计数器
 
@@ -162,9 +171,11 @@ Counter 类型的指标其工作方式和计数器一样，只增不减（除非
 Counter 是一个简单但有强大的工具，例如我们可以在应用程序中记录某些事件发生的次数，通过以时序的形式存储这些数据，我们可以轻松的了解该事件产生速率的变化。 PromQL 内置的聚合操作和函数可以让用户对这些数据进行进一步的分析：
 
 例如，通过 rate()函数获取 HTTP 请求量的增长率：
+
 rate(http_requests_total\[5m])
 
 查询当前系统中，访问量前 10 的 HTTP 地址：
+
 topk(10, http_requests_total)
 
 ## Gauge(仪表盘) # 可增可减的 Gauge
@@ -173,15 +184,15 @@ topk(10, http_requests_total)
 
 通过 Gauge 指标，用户可以直接查看系统的当前状态：
 
-    node_memory_MemFree
+`node_memory_MemFree`
 
 对于 Gauge 类型的监控指标，通过 PromQL 内置函数 delta() 可以获取样本在一段时间返回内的变化情况。例如，计算 CPU 温度在两个小时内的差异：
 
-    delta(cpu_temp_celsius{host="zeus"}[2h])
+`delta(cpu_temp_celsius{host="zeus"}[2h])`
 
 还可以使用 deriv() 计算样本的线性回归模型，甚至是直接使用 predict_linear() 对数据的变化趋势进行预测。例如，预测系统磁盘空间在 4 个小时之后的剩余情况：
 
-    predict_linear(node_filesystem_free{job="node"}[1h], 4 * 3600)
+`predict_linear(node_filesystem_free{job="node"}[1h], 4 * 3600)`
 
 ## Histogram(直方图) 与 Summary(摘要)
 
@@ -313,20 +324,18 @@ something_weird{problem="division by zero"} +Inf -3982045
 
 Note：上面通过 http 采集到的数据就是文本格式的 Metrics，格式一定是上述的样子，每个时间序列都分为 3 个部分。
 
-1. # HELP 时间序列名称 时间序列描述
-
-2. # TYPE 时间序列名称 时间序列类型
-
+1. `# HELP` 时间序列名称 时间序列描述
+2. `# TYPE` 时间序列名称 时间序列类型
 3. 非#开头的每一行表示当前 Node Exporter 采集到的一个监控样本：node_cpu 和 node_load1 表明了当前指标的名称、大括号中的标签则反映了当前样本的一些特征和维度、浮点数则是该监控样本的具体值。
    1. 如果有多个 Metrics 的项目，则会有多行
 
 主要由三个部分组成：样本的一般注释信息（HELP），样本的类型注释信息（TYPE）和样本。Prometheus 会对 Exporter 响应的内容逐行解析：
 
-如果当前行以# HELP 开始，Prometheus 将会按照以下规则对内容进行解析，得到当前的指标名称以及相应的说明信息：
+如果当前行以 `# HELP` 开始，Prometheus 将会按照以下规则对内容进行解析，得到当前的指标名称以及相应的说明信息：
 
 ## # HELP
 
-如果当前行以# TYPE 开始，Prometheus 会按照以下规则对内容进行解析，得到当前的指标名称以及指标类型:
+如果当前行以 `# TYPE` 开始，Prometheus 会按照以下规则对内容进行解析，得到当前的指标名称以及指标类型:
 
 ## # TYPE
 
@@ -334,7 +343,7 @@ TYPE 注释行必须出现在指标的第一个样本之前。如果没有明确
 
 ## MetricsName 与 Metrics 的值
 
-除了# 开头的所有行都会被视为是监控样本数据。 每一行样本需要满足以下格式规范:
+除了 `#` 开头的所有行都会被视为是监控样本数据。 每一行样本需要满足以下格式规范:
 
 ```bash
 metric_name [{ label_name = "label_value" { , label_name = "label_value" } [ ,... ] }] value [ timestamp ]

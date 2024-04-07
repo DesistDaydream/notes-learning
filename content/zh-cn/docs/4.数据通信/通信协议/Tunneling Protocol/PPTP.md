@@ -1,8 +1,8 @@
 ---
-title: "PPTP"
-linkTitle: "PPTP"
-date: "2023-07-18T09:37"
-weight: 20
+title: PPTP
+linkTitle: PPTP
+date: 2023-07-18T09:37
+weight: 2
 ---
 
 # 概述

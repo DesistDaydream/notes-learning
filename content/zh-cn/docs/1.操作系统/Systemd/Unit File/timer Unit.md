@@ -5,6 +5,7 @@ title: timer Unit
 # 概述
 
 > 参考：
+>
 > - [Manual(手册),systemd.timer(5)](https://man7.org/linux/man-pages/man5/systemd.timer.5.html)
 > - [阮一峰博客,Systemd 定时器教程](http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html)
 
@@ -38,7 +39,7 @@ Linux 系统通常都使用 [cron](https://wiki.archlinux.org/index.php/Cron_%28
 
 >
 
-     $ bash mail.sh
+     bash mail.sh
 
 执行后，你应该就会收到一封邮件，标题为`Subject`。
 
@@ -62,29 +63,25 @@ Linux 系统通常都使用 [cron](https://wiki.archlinux.org/index.php/Cron_%28
 
 >
 
-     $ systemctl list-unit-files
-
-    $ systemctl list-unit-files --type service
-
-    $ systemctl list-unit-files --type timer
+```bash
+systemctl list-unit-files
+systemctl list-unit-files --type service
+systemctl list-unit-files --type timer
+```
 
 ## 四、单元的管理命令
 
 下面是常用的单元管理命令。
 
-     $ systemctl start [UnitName]
-
-    $ systemctl stop [UnitName]
-
-    $ systemctl restart [UnitName]
-
-    $ systemctl kill [UnitName]
-
-    $ systemctl status [UnitName]
-
-    $ systemctl enable [UnitName]
-
-    $ systemctl disable [UnitName]
+```bash
+systemctl start [UnitName]
+systemctl stop [UnitName]
+systemctl restart [UnitName]
+systemctl kill [UnitName]
+systemctl status [UnitName]
+systemctl enable [UnitName]
+systemctl disable [UnitName]
+```
 
 ## 五、Service 单元
 
@@ -92,11 +89,12 @@ Linux 系统通常都使用 [cron](https://wiki.archlinux.org/index.php/Cron_%28
 
 新建 Service 非常简单，就是在`/usr/lib/systemd/system`目录里面新建一个文件，比如`mytimer.service`文件，你可以写入下面的内容。
 
-     [Unit]
-    Description=MyTimer
-
-    [Service]
-    ExecStart=/bin/bash /path/to/mail.sh
+```bash
+[Unit]
+Description=MyTimer
+[Service]
+ExecStart=/bin/bash /path/to/mail.sh
+```
 
 可以看到，这个 Service 单元文件分成两个部分。
 
@@ -115,8 +113,9 @@ Linux 系统通常都使用 [cron](https://wiki.archlinux.org/index.php/Cron_%28
 
 现在，启动这个 Service。
 
-     $ sudo systemctl start mytimer.service
-
+```bash
+sudo systemctl start mytimer.service
+```
 如果一切正常，你应该就会收到一封邮件。
 
 ## 六、Timer 单元
@@ -125,15 +124,17 @@ Service 单元只是定义了如何执行任务，要定时执行这个 Service�
 
 `/usr/lib/systemd/system`目录里面，新建一个`mytimer.timer`文件，写入下面的内容。
 
-    [Unit]
-    Description=Runs mytimer every hour
+```bash
+[Unit]
+Description=Runs mytimer every hour
 
-    [Timer]
-    OnUnitActiveSec=1h
-    Unit=mytimer.service
+[Timer]
+OnUnitActiveSec=1h
+Unit=mytimer.service
 
-    [Install]
-    WantedBy=multi-user.target
+[Install]
+WantedBy=multi-user.target
+```
 
 这个 Timer 单元文件分成几个部分。
 
@@ -168,39 +169,41 @@ Service 单元只是定义了如何执行任务，要定时执行这个 Service�
 
 下面，启动刚刚新建的这个定时器。
 
-     $ sudo systemctl start mytimer.timer
+sudo systemctl start mytimer.timer
 
 你应该立刻就会收到邮件，然后每个小时都会收到同样邮件。
 
 查看这个定时器的状态。
 
-     $ systemctl status mytimer.timer
+ systemctl status mytimer.timer
 
 查看所有正在运行的定时器。
 
-     $ systemctl list-timers
+ systemctl list-timers
 
 关闭这个定时器。
 
-     $ sudo systemctl stop myscript.timer
+sudo systemctl stop myscript.timer
 
 下次开机，自动运行这个定时器。
 
-     $ sudo systemctl enable myscript.timer
+sudo systemctl enable myscript.timer
 
 关闭定时器的开机自启动。
 
-     $ sudo systemctl disable myscript.timer
+sudo systemctl disable myscript.timer
 
 ## 九、日志相关命令
 
 如果发生问题，就需要查看日志。Systemd 的日志功能很强，提供统一的命令。
 
-    $ sudo journalctl
-    $ sudo journalctl -u mytimer.timer
-    $ sudo journalctl -u mytimer
-    $ sudo journalctl -f
-    $ journalctl -f -u timer.timer
+```bash
+sudo journalctl
+sudo journalctl -u mytimer.timer
+sudo journalctl -u mytimer
+sudo journalctl -f
+journalctl -f -u timer.timer
+```
 
 ## 十、参考链接
 
@@ -214,4 +217,4 @@ Service 单元只是定义了如何执行任务，要定时执行这个 Service�
 
 # 分类
 
-#systemd #unit-file
+> #systemd #unit-file

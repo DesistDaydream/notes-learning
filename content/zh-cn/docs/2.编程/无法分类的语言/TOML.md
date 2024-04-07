@@ -1,5 +1,8 @@
 ---
 title: TOML
+linkTitle: TOML
+date: 2024-04-07T08:48
+weight: 20
 ---
 
 # 概述
@@ -31,7 +34,7 @@ TOML 放弃了括号或缩进的底层原理，而是以 `.` 符号来表示层�
 
 ## TOML 基本示例
 
-```yaml
+```toml
 # This is a TOML document.
 title = "TOML Example"
 
@@ -184,7 +187,7 @@ e:
 　　为了方便（同时看起来更清楚——这种读和写的契合非常关键！），你可以指定小节名。妙的是，小节名也是可以链式声明的。
 　　另外，某些数据可能使用内联数组或表更合适以避免臃肿，这也是支持的。
 
-```yaml
+```toml
 a = "a"
 b = "b"
 c.x = "c.x"
@@ -279,7 +282,7 @@ type.name = "pug"
 
 比如：
 
-```
+```text
 name = { first = "Tom", last = "Preston-Werner" }
 point = { x = 1, y = 2 }
 animal = { type.name = "pug" }
@@ -336,7 +339,7 @@ color = "gray"
 从某种成都上来说，TOML 也可以使用类似系统中的路径格式来表示，不管是 Table 还是 `.` 符号，这些原语组合成一个 Key 并确定唯一一个值，非常像 Kubernetes 在 Etcd 中存储的数据格式。
 比如前文的[基本示例](/docs/2.编程/无法分类的语言/TOML.md)中的所有 Key，可以看成下面这个样子：
 
-```
+```text
 /title
 /owner/name
 /owner/dob
@@ -351,3 +354,4 @@ color = "gray"
 /clients/data
 /clients/hosts
 ```
+
