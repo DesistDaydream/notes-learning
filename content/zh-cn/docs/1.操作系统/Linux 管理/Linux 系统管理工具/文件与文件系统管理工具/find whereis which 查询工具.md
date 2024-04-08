@@ -2,21 +2,25 @@
 title: find whereis which 查询工具
 ---
 
-# which 查看可执行文件的位置
+# which - 查看可执行文件的位置
 
 ```bash
 root@lichenhao:~# which ls
 /usr/bin/ls
 ```
 
-# whereis 查看文件的位置， 如 whereis ls
+# whereis - 查看文件的位置， 如 whereis ls
 
 ```bash
 root@lichenhao:~# whereis ls
 ls: /usr/bin/ls /usr/share/man/man1/ls.1.gz
 ```
 
-# find # 在目录中搜索文件
+# find - 在目录中搜索文件
+
+> 参考：
+> 
+> - [Manual(手册)，find(1)](https://man7.org/linux/man-pages/man1/find.1.html)
 
 ## Syntax(语法)
 
@@ -40,9 +44,9 @@ ls: /usr/bin/ls /usr/share/man/man1/ls.1.gz
 
 注意：
 
-1. 上述五个 OPTIONS 必须出现在第一个 PATH 之前。
-2. 下面 EXPRESSIONS(表达式)中的 OPTIONS，用来控制 find 的行为，与上述这些 OPTIONS 不同。并且表达式中的 OPTIONS 需要在第一个 PATH 之后指定。
-3. find 默认将在当前目录下查找子目录与文件。并且将查找到的子目录和文件全部进行显示
+- 上述五个 OPTIONS 必须出现在第一个 PATH 之前。
+- 下面 EXPRESSIONS(表达式)中的 OPTIONS，用来控制 find 的行为，与上述这些 OPTIONS 不同。并且表达式中的 OPTIONS 需要在第一个 PATH 之后指定。
+- find 默认将在当前目录下查找子目录与文件。并且将查找到的子目录和文件全部进行显示
 
 ### EXPRESSIONS(表达式)
 
