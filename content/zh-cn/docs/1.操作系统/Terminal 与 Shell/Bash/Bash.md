@@ -138,8 +138,9 @@ login_shell     on
 /etc/rc.local
 
 - 注意：centos7 的 rc.local 没有可执行权限，需要添加权限(chmod +x /etc/rc.d/rc.local)，否则无法使用
-- 官方推荐使用 systemd 来管理启动脚本。而不是这种方式
+- 官方推荐使用 [Systemd](docs/1.操作系统/Systemd/Systemd.md) 来管理启动脚本。而不是这种方式
 
+Systemd # [Systemd](docs/1.操作系统/Systemd/Systemd.md)
 
 # 在 Bash 中执行命令
 

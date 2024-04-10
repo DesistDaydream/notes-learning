@@ -10,7 +10,7 @@ weight: 20
 > 参考
 >
 > - [官网](https://www.wireshark.org/)
-> - [官方文档](https://www.wireshark.org/docs/wsug_html_chunked/)
+> - [官方文档，用户指南](https://www.wireshark.org/docs/wsug_html_chunked/)
 > - <https://help.aliyun.com/document_detail/112990.html>(Wireshark 常见提示)
 > - <https://blog.csdn.net/qq_15437629/article/details/116565673>
 > - [公众号-马哥 Linux 运维，8 个常用的 Wireshark 使用技巧](https://mp.weixin.qq.com/s/yWuDodOpCClZT36yVBeeaQ)
@@ -26,49 +26,14 @@ WireShark 依赖 [pcap](/docs/7.信息安全/Packet%20analyzer/pcap.md)，若使
 
 # 一文搞定 Wireshark 网络数据包分析
 
-原文：[公众号-小林 coding，一文搞定 Wireshark 网络数据包分析](https://mp.weixin.qq.com/s/hL96imOvuodILIhI70fbTg)
+原文：[公众号-小林 coding，一文搞定 Wireshark 网络数据包分析](https://mp.weixin.qq.com/s/hL96imOvuodILIhI70fbTg)（Notes: 一文搞不定）
 
 [TCPDump](/docs/7.信息安全/Packet%20analyzer/TCPDump/TCPDump.md) 和 Wireshark，这两大利器把我们“看不见”的数据包，呈现在我们眼前，一目了然。这两个工具就是最常用的网络抓包和分析工具，更是分析网络性能必不可少的利器。
 
 - tcpdump 仅支持命令行格式使用，常用在 Linux 服务器中抓取和分析网络包。
 - Wireshark 除了可以抓包外，还提供了可视化分析网络包的图形页面。
 
-所以，这两者实际上是搭配使用的，先用 tcpdump 命令在 Linux 服务器上抓包，接着把抓包的文件拖出到 Windows 电脑后，用 Wireshark 可视化分析。
-
-当然，如果是在 Windows 上抓包，只需要用 Wireshark 工具就可以。
-
-### tcpdump 在 Linux 下如何抓包？
-
-tcpdump 提供了大量的选项以及各式各样的过滤表达式，来帮助你抓取指定的数据包，不过不要担心，只需要掌握一些常用选项和过滤表达式，就可以满足大部分场景的需要了。
-
-假设我们要抓取下面的 ping 的数据包：
-
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wireshark/202311011442811.png)
-
-要抓取上面的 ping 命令数据包，首先我们要知道 ping 的数据包是 icmp 协议，接着在使用 tcpdump 抓包的时候，就可以指定只抓 icmp 协议的数据包：
-
-```bash
-tcpdump -i eth1 icmp and host 183.232.231.174 -nn
-```
-
-- -i eth1 表示抓取 eth1 网络的数据包
-- icmp 表示抓取 icmp 协议的数据包
-- host 表示主机过滤，抓取对应 IP 的数据包
-- -nn 表示不解析 IP 地址和端口号的名称。
-
-那么当 tcpdump 抓取到 icmp 数据包后， 输出格式如下：
-
-`时间戳 协议 源地址:源端口 > 目的地址.目的端口 网络包详细信息`
-
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wireshark/202311011445804.png)
-
-从 tcpdump 抓取的 icmp 数据包，我们很清楚的看到 icmp echo 的交互过程了，首先发送方发起了 ICMP echo request 请求报文，接收方收到后回了一个 ICMP echo reply 响应报文，之后 seq 是递增的。
-
-常用的过滤用法，在上面的 ping 例子中，我们用过的是 icmp and host 183.232.231.174，表示抓取 icmp 协议的数据包，以及源地址或目标地址为 183.232.231.174 的包。其他常用的过滤选项，我也整理成了下面这个表格。
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/wireshark/1616160823006-3337d6a9-7797-42d5-a4b7-3b6d81625079.jpeg)
-
-tcpdump 虽然功能强大，但是输出的格式并不直观。所以，在工作中 tcpdump 只是用来抓取数据包，不用来分析数据包，而是把 tcpdump 抓取的数据包保存成 pcap 后缀的文件，接着用 Wireshark 工具进行数据包分析。
+tcpdump 虽然功能强大，但是输出的格式并不直观。所以，在工作中 tcpdump 只是用来抓取数据包，不用来分析数据包，而是把 tcpdump 抓取的数据包保存成 pcap 后缀的文件，接着用 Wireshark 工具进行数据包的可视化分析。
 
 ### Wireshark 工具如何分析数据包？
 
@@ -94,11 +59,9 @@ Wireshark 用了分层的方式，展示了各个层的包头信息，把“不�
 
 从 ping 的例子中，我们可以看到网络分层就像有序的分工，每一层都有自己的责任范围和信息，上层协议完成工作后就交给下一层，最终形成一个完整的网络包。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/wireshark/1616160823012-2b2fe027-fa3f-44d5-ba58-e22422160283.jpeg)
-
 ## 解密 TCP 三次握手和四次挥手
 
-既然学会了 tcpdump 和 Wireshark 两大网络分析利器，那我们快马加鞭，接下用它俩抓取和分析 HTTP 协议网络包，并理解 TCP 三次握手和四次挥手的工作原理。
+尝试使用通过 Wireshark 分析网络包，并理解 TCP 三次握手和四次挥手的工作原理。
 
 本次例子，我们将要访问的 <http://192.168.3.200> 服务端。在终端用 tcpdump 命令抓取数据包：
 
@@ -114,8 +77,6 @@ tcpdump -i any tcp and host 192.168.3.200 and port 80 -w http.pcap
 使用 Wireshark 打开 http.pcap 后，你就可以在 Wireshark 中，看到如下的界面：
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/wireshark/1616160823027-31c76057-664b-4c75-b496-01d9f48d775f.jpeg)
-
-HTTP 网络包
 
 我们都知道 HTTP 是基于 TCP 协议进行传输的，那么：
 
@@ -674,24 +635,6 @@ TCP 延迟确认可以在 Socket 设置 TCP_QUICKACK 选项来关闭这个算法
 > - 原文：[程序员宅基地，TCP报文（ tcp dup ack 、TCP Retransmission）](https://www.cxyzjd.com/article/ynchyong/109110028)
 >   - [CSDN，TCP报文（ tcp dup ack 、TCP Retransmission）](https://blog.csdn.net/ynchyong/article/details/109110028)
 
-- [TCP dup ack （重复应答）](https://www.cxyzjd.com/article/ynchyong/109110028#TCP_dup_ack__4)
-- [\[TCP Fast Retransmission\] （快速重传）](https://www.cxyzjd.com/article/ynchyong/109110028#TCP_Fast_Retransmission__12)
-- [\[TCP Retransmission\] （超时重传）](https://www.cxyzjd.com/article/ynchyong/109110028#TCP_Retransmission__19)
-- [\[TCP Out-Of-Order\] (报文乱序)](https://www.cxyzjd.com/article/ynchyong/109110028#TCP_OutOfOrder__24)
-- [\[TCP Previous segment not captured\]](https://www.cxyzjd.com/article/ynchyong/109110028#TCP_Previous_segment_not_captured_27)
-- [\[TCP Out-Of-Order\]](https://www.cxyzjd.com/article/ynchyong/109110028#TCP_OutOfOrder_31)
-- [Window](https://www.cxyzjd.com/article/ynchyong/109110028#Window_33)
-  - [\[TCP ZeroWindow\]](https://www.cxyzjd.com/article/ynchyong/109110028#TCP_ZeroWindow_34)
-  - [\[TCP window update\]](https://www.cxyzjd.com/article/ynchyong/109110028#TCP_window_update_39)
-  - [\[TCP window Full\]](https://www.cxyzjd.com/article/ynchyong/109110028#TCP_window_Full_42)
-- [TCP 慢启动](https://www.cxyzjd.com/article/ynchyong/109110028#TCP_45)
-- [拥塞避免算法](https://www.cxyzjd.com/article/ynchyong/109110028#_51)
-- [TCP 协议中的计时器](https://www.cxyzjd.com/article/ynchyong/109110028#TCP_62)
-  - [重传计时器](https://www.cxyzjd.com/article/ynchyong/109110028#_71)
-  - [持久计时器](https://www.cxyzjd.com/article/ynchyong/109110028#_77)
-  - [保活计时器](https://www.cxyzjd.com/article/ynchyong/109110028#_83)
-  - [时间等待计时器](https://www.cxyzjd.com/article/ynchyong/109110028#_89)
-
 最近因使用 FTP 上传数据的时候总是不能成功，抓包后发现 TCP 报文出现 **TCP dup ack** 与 **TCP Retransmission** 两种类型的包。收集整理下
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wireshark/1659010179404-b81ce8f0-5408-4123-a653-fd898f3085dc.png)
@@ -744,7 +687,7 @@ TCP 发送端传输过程中报文乱序了。
 
 ### TCP window update
 
-接收方消耗缓冲数据后，更新 TCP 窗口， 可以看到从 win=0 逐渐变大，这时**wireshark 会打上\[TCP window update]** 标签
+接收方消耗缓冲数据后，更新 TCP 窗口， 可以看到从 win=0 逐渐变大，这时 **wireshark 会打上\[TCP window update]** 标签
 
 ### TCP window Full
 
@@ -813,3 +756,10 @@ TCP 中有四种计时器（Timer），分别为：
 附加：
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wireshark/1659010180979-c35b1d03-9cfd-4197-bb63-6168a4110ae5.png)
+# Following Protocol Streams(追踪协议流)
+
+https://www.wireshark.org/docs/wsug_html_chunked/ChAdvFollowStreamSection.html#ChAdvFollowStream
+
+# 统计
+
+统计 - 会话 https://www.wireshark.org/docs/wsug_html_chunked/ChStatConversations.html

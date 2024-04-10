@@ -24,7 +24,7 @@ NPB 设备通常是作为 <font color="#ff0000">**旁路设备**</font> 以 **�
 
 NPB 内部的核心能力是对来自多条链路的流量实现了 [同源同宿](/docs/4.数据通信/同源同宿.md)，保证多条链路的流量不会混乱。NPB 对接收到的大量流量进行汇聚、过滤、分发，NPB 并不需要串联进进链路中执行具体的像安全设备似的丢弃报文、阻断流量相关的任务。主要是基于如下需求产生的
 
-![why_we_need_npb.excalidraw](Excalidraw/why_we_need_npb.excalidraw.md)
+![why_we_need_npb.excalidraw|600](Excalidraw/why_we_need_npb.excalidraw.md)
 
 # 汇聚分流
 
