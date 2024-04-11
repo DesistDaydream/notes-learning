@@ -6,6 +6,8 @@ title: SNMP(传统监控标准)
 
 > 参考：
 > 
+> - [RFC 1157，A Simple Network Management Protocol (SNMP)](https://datatracker.ietf.org/doc/html/rfc1157)
+> - [RFC 1156，Management Information Base for Network Management of TCP/IP-based internets](https://datatracker.ietf.org/doc/html/rfc1156)
 > - [Wiki，SNMP](https://en.wikipedia.org/wiki/Simple_Network_Management_Protocol)
 
 **Simple Network Management Protocol(简单网络管理协议，简称 SNMP)**。想实现该协议，通常需要由两部分完成(监控端和被监控端)，是在两端的两个进程之间进行通信，该进程都需要占用一个 socket
@@ -25,14 +27,12 @@ SNMP 的工作模式，使用 udp 协议发送报文
   - **Object(对象)** # 这个对象可以是一个具体需要采集到的数据，比如 内存、CPU、磁盘、网络接口等等，也可以是一种抽象的集合，比如地区、硬件、系统、硬件、网络等等。上面说的所有事物，每一个都是一个 Object。所以，Object 可以包含另一个 Object，这也是人称常常将 MIB 称为**树状**的原因
     - **Object Identifier(对象标识符，简称 OID)** # 每一个 Object 都有一个 OID
     - 数据存取格式：即每个 object 除了 OID 用作标示以外，还有数据内容需要遵循一定个格式规范
-- **Structure of Managerment Intormation(管理信息结构,简称 SMI)** # 是 ASN.1 的子集
+- **Structure of Managerment Intormation(管理信息结构,简称 SMI)** # 是 [ASN.1](docs/2.编程/无法分类的语言/ASN.1.md) 的子集
 - **SNMP 本身** # 一般通过 Net-SNMP 中的工具实现。
 
 所谓的 **MIB**，其实主要是通过文件记录的内容。与其说是用文件记录，不如说 MIB 就是使用 ASN.1(标准的接口描述语言) 编写的代码。ASN.1 语言同样有类似 import、 function 这类的东西。只不过，记录 MIB 文件的语言，又与 ASN.1 有一些细微的区别，我们暂且称为 **MIB 语言** 吧~
 
 可以这么说，**MIB 就是一门描述 OID 的编程语言。**
-
-> **Abstract Syntax Notation One** (**ASN.1**) 是一种标准的 interface description language(接口描述语言)，用于定义以跨平台方式序列化和反序列化的数据结构。 它广泛用于电信和计算机网络，尤其是在密码学中。
 
 # SNMP 安全
 
@@ -100,6 +100,7 @@ INDEX 是该 obejct 中项目的索引，默认值为 0。一个 object 里面�
 注释的写法：在每行开头写两个 - 的行
 
 MIB 编写完成后，呈现的是一种树状的结构。MIB 实际上就是很多 Objects 的集合。Objects 的结构就像树状一样。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fqmpt9/1616067085173-e9ba88c6-a0c7-417e-a19e-d3eee254cc58.jpeg)
 
 ## MIB HelloWorld
@@ -137,9 +138,9 @@ END
 
 ## MIB 语言关键字
 
-### DEFINITIONS # 一般只出现在文件开头，用来定义一个该 MIB 的名称。与文件最后一行的 END 关键字组合，构成了一个完成 MIB 代码
+### DEFINITIONS - 一般只出现在文件开头，用来定义一个该 MIB 的名称。与文件最后一行的 END 关键字组合，构成了一个完成 MIB 代码
 
-### OBJECT IDENTIFIER # 对象标识符，就是用来定义一个对象
+### OBJECT IDENTIFIER - 对象标识符，就是用来定义一个对象
 
 ```
 org            OBJECT IDENTIFIER ::= { iso 3 } --  "iso" = 1
@@ -154,18 +155,18 @@ org            OBJECT IDENTIFIER ::= { iso 3 } --  "iso" = 1
 
 比如咱用 snmptranslate 转换以下
 
-```
-[root@exporter ~]# snmptranslate -On iso
+```bash
+~]# snmptranslate -On iso
 .1
-[root@exporter ~]# snmptranslate -On org
+~]# snmptranslate -On org
 org: Unknown Object Identifier (Sub-id not found: (top) -> org)
-[root@exporter ~]# snmptranslate -On SNMPv2-SMI::org
+~]# snmptranslate -On SNMPv2-SMI::org
 .1.3
 ```
 
 除了这种最基本的定义 Object 的格式，**还可以通过自定义的 MACRO 来定义 Object**，这种方式更为复杂，但是可以更详细得描述一个 Object 的数据格式，以及代表什么监控项。详见 OBJECT-TYPE 宏。这种定义 Object 的方式，常用来定义一个具体的待采集的具体的监控项，比如 内存大小、内存使用率、磁盘大小 等等
 
-### MACRO # 宏，用来定义一个宏指令
+### MACRO - 宏，用来定义一个宏指令
 
 ```
 MODULE-IDENTITY MACRO ::=
@@ -194,7 +195,7 @@ END
 
 MACRO 也是以 BEGIN 开头，END 结尾，上面的例子定义个一个名为 MODULE-IDENITY 的宏指令，可以让其他 MIB 导入后直接使用。
 
-### IMPORTS # 从其他 MIB 中导入 Object(对象) 或 MARCRO(宏指令)
+### IMPORTS - 从其他 MIB 中导入 Object(对象) 或 MARCRO(宏指令)
 
 ```
 IMPORTS
@@ -388,3 +389,4 @@ END
 <https://github.com/librenms/librenms/tree/master/mibs> 也是不错的 MIB 来源，这里收录了很多的 MIB 文件
 
 推荐使用 <http://oidref.com> 浏览 MIBs.
+

@@ -15,46 +15,59 @@ TCP RST 引起的常见报错：
 - Connection reset by peer
 
 TCP 连接和释放时还有许多细节，比如半连接状态、半关闭状态等。详情请参考这方面的巨著《TCP/IP 详解》和《UNIX 网络编程》。
+
 前面说到出现“Connection reset”的原因是服务器关闭了 Connection\[调用了 Socket.close()方法]。大家可能有疑问了：服务器关闭了 Connection 为什么会返回“RST”而不是返回“FIN”标志。原因在于 Socket.close()方法的语义和 TCP 的“FIN”标志语义不一样：发送 TCP 的“FIN”标志表示我不再发送数据了，而 Socket.close()表示我不在发送也不接受数据了。问题就出在“我不接受数据” 上，如果此时客户端还往服务器发送数据，服务器内核接收到数据，但是发现此时 Socket 已经 close 了，则会返回“RST”标志给客户端。当然，此时客户端就会提示：“Connection reset”。详细说明可以参考 oracle 的有关文档：<http://docs.oracle.com/javase/1.5.0/docs/guide/net/articles/connection\_release.html。>
+
 另一个可能导致的“Connection reset”的原因是服务器设置了 Socket.setLinger (true, 0)。但我检查过线上的 tomcat 配置，是没有使用该设置的，而且线上的服务器都使用了 nginx 进行反向代理，所以并不是该原因导致的。关于该原因上面的 oracle 文档也谈到了并给出了解释。
+
 此外啰嗦一下，另外还有一种比较常见的错误“Connection reset by peer”，该错误和“Connection reset”是有区别的：
-服务器返回了“RST”时，如果此时客户端正在从 Socket 套接字的输出流中读数据则会提示 Connection reset”；
-服务器返回了“RST”时，如果此时客户端正在往 Socket 套接字的输入流中写数据则会提示“Connection reset by peer”。
+
+- 服务器返回了“RST”时，如果此时客户端正在从 Socket 套接字的输出流中读数据则会提示 Connection reset”；
+- 服务器返回了“RST”时，如果此时客户端正在往 Socket 套接字的输入流中写数据则会提示“Connection reset by peer”。
+
 “Connection reset by peer”如下图所示：
 
 前面谈到了导致“Connection reset”的原因，而具体的解决方案有如下几种：
+
 出错了重试；
+
 客户端和服务器统一使用 TCP 长连接；
+
 客户端和服务器统一使用 TCP 短连接。
+
 首先是出错了重试：这种方案可以简单防止“Connection reset”错误，然后如果服务不是“幂等”的则不能使用该方法；比如提交订单操作就不是幂等的，如果使用重试则可能造成重复提单。
+
 然后是客户端和服务器统一使用 TCP 长连接：客户端使用 TCP 长连接很容易配置（直接设置 HttpClient 就好），而服务器配置长连接就比较麻烦了，就拿 tomcat 来说，需要设置 tomcat 的 maxKeepAliveRequests、connectionTimeout 等参数。另外如果使用了 nginx 进行反向代理或负载均衡，此时也需要配置 nginx 以支持长连接（nginx 默认是对客户端使用长连接，对服务器使用短连接）。
+
 使用长连接可以避免每次建立 TCP 连接的三次握手而节约一定的时间，但是我这边由于是内网，客户端和服务器的 3 次握手很快，大约只需 1ms。ping 一下大约 0.93ms（一次往返）；三次握手也是一次往返（第三次握手不用返回）。根据 80/20 原理，1ms 可以忽略不计；又考虑到长连接的扩展性不如短连接好、修改 nginx 和 tomcat 的配置代价很大（所有后台服务都需要修改）；所以这里并没有使用长连接。
 
-正常情况 tcp 四层握手关闭连接，rst 基本都是异常情况，整理如下： 0.使用 ping 可以看到丢包情况
-1\. GFW
-2\. 对方端口未打开，发生在连接建立
+正常情况 tcp 四层握手关闭连接，rst 基本都是异常情况，整理如下： 
+
+0. 使用 ping 可以看到丢包情况
+1. GFW
+2. 对方端口未打开，发生在连接建立。
 如果对方 sync_backlog 满了的话，sync 简单被丢弃，表现为超时，而不会 rst
-3\. close Socket 时 recv buffer 不为空
+3. close Socket 时 recv buffer 不为空。
 例如，客户端发了两个请求，服务器只从 buffer 读取第一个请求处理完就关闭连接，tcp 层认为数据没有正确提交到应用，使用 rst 关闭连接。
-3\. 移动链路
+3. 移动链路。
 移动网络下，国内是有 5 分钟后就回收信令，也就是 IM 产品，如果心跳>5 分钟后服务器再给客户端发消息，就会收到 rst。也要查移动网络下 IM 保持<5min 心跳。
-4\. 负载等设备
+4. 负载等设备。
 负载设备需要维护连接转发策略，长时间无流量，连接也会被清除，而且很多都不告诉两层机器，新的包过来时才通告 rst。
 Apple push 服务也有这个问题，而且是不可预期的偶发性连接被 rst；rst 前第一个消息 write 是成功的，而第二条写才会告诉你连接被重置，
 曾经被它折腾没辙，因此打开每 2 秒一次 tcp keepalive，固定 5 分钟 tcp 连接回收，而且发现连接出错时，重发之前 10s 内消息。
-5\. SO_LINGER 应用强制使用 rst 关闭
+5. SO_LINGER 应用强制使用 rst 关闭
 该选项会直接丢弃未发送完毕的 send buffer，可能造成业务错误，慎用； 当然内网服务间 http client 在收到应该时主动关闭，使用改选项，会节省资源。
 好像曾经测试过 haproxy 某种配置下，会使用 rst 关闭连接，少了网络交互而且没有 TIME_WAIT 问题
-6\. 超过超时重传次数、网络暂时不可达
-7\. TIME_WAIT 状态
+6. 超过超时重传次数、网络暂时不可达
+7. TIME_WAIT 状态。
 tw_recycle = 1 时，sync timestamps 比上次小时，会被 rst
-7\. 设置 connect_timeout
+7. 设置 connect_timeout。
 应用设置了连接超时，sync 未完成时超时了，会发送 rst 终止连接。
-8\. 非正常包
+8. 非正常包。
 连接已经关闭，seq 不正确等
-9\. keepalive 超时
+9. keepalive 超时。
 公网服务 tcp keepalive 最好别打开；移动网络下会增加网络负担，切容易掉线；非移动网络核心 ISP 设备也不一定都支持 keepalive，曾经也发现过广州那边有个核心节点就不支持。
-10\. 数据错误，不是按照既定序列号发送数据 11.在一个已关闭的 socket 上接收数据 12.服务器关闭或异常终止了连接，由于网络问题，客户端没有收到服务器的关闭请求，这称为 TCP 半打开连接。就算重启服务器，也没有连接信息。如果客户端向提其写入数据，对方就会回应一个 RST 报文段。
+10. 数据错误，不是按照既定序列号发送数据 11.在一个已关闭的 socket 上接收数据 12.服务器关闭或异常终止了连接，由于网络问题，客户端没有收到服务器的关闭请求，这称为 TCP 半打开连接。就算重启服务器，也没有连接信息。如果客户端向提其写入数据，对方就会回应一个 RST 报文段。
 
 # 三次握手与四次挥手异常处理
 
@@ -78,10 +91,6 @@ tw_recycle = 1 时，sync timestamps 比上次小时，会被 rst
 
 **TCP 当然不傻**，对以上这些异常场景都是有做处理的。
 
-这些内容在我的「图解网络 PDF」 也有说过。
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/24e305c7-9ba8-4113-9be1-44404948d366/640)
-
 当时也用做实验的方式带大家看 TCP 是如何处理这些异常场景的。
 
 > 如果新读者还不知道小林的图解网络 PDF，可以到我公众号后台回复「图解」获取就行。
@@ -93,9 +102,6 @@ tw_recycle = 1 时，sync timestamps 比上次小时，会被 rst
 ### TCP 三次握手期间的异常
 
 我们先来看看 TCP 三次握手是怎样的。
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/24e305c7-9ba8-4113-9be1-44404948d366/640)
-
 
 #### 第一次握手丢失了，会发生什么？
 

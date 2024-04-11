@@ -55,3 +55,10 @@ https://en.wikipedia.org/wiki/Internet_service_provider
 ## Transaction
 
 假设某个数据可能需要经过 A、B、C、D 几个步骤才能修改完毕，我们把这四个步骤打包放到事务中，那么事务就可以确保这四个步骤要么全部执行完毕，要么全部都不去执行。这样即使在任意一个步骤断电或者程序崩溃都不会影响到数据的一致性问题。
+
+# Internet
+
+> 参考：
+> 
+> - [RFC 1594，13 章](https://datatracker.ietf.org/doc/html/rfc1594#section-13)
+

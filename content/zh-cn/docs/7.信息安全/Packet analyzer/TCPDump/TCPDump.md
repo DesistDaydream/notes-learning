@@ -1,5 +1,7 @@
 ---
 title: TCPDump
+linkTitle: TCPDump
+date: 2024-04-11T10:12
 weight: 1
 ---
 
@@ -121,6 +123,8 @@ tcpdump 最初由[Van Jacobson](https://en.wikipedia.org/wiki/Van_Jacobson)、[S
   - **tcp\[tcpflags] & (tcp-syn|tcp-fin) != 0**
 
 # 应用示例
+
+https://cloud.tencent.com/developer/article/1858612
 
 从 bond0 网卡抓取 源地址为 10.10.10.10 且 端口号为 18999 的 UDP 的包，每个包大小为 500
 

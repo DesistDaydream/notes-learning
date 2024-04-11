@@ -2253,7 +2253,7 @@
       "docs/7.信息安全/Packet analyzer/Packet analyzer.md",
       "docs/7.信息安全/Packet analyzer/pcap.md",
       "docs/7.信息安全/Packet analyzer/TCPDump",
-      "docs/7.信息安全/Packet analyzer/WireShark.md",
+      "docs/7.信息安全/Packet analyzer/WireShark",
       "docs/7.信息安全/Packet analyzer/Charles.md",
       "docs/7.信息安全/Packet analyzer/Fiddler.md"
     ],
@@ -2569,6 +2569,12 @@
       "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 日志/_index.md",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 日志/Kubernetes 日志.md",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 日志/Event 资源.md"
+    ],
+    "docs/7.信息安全/Packet analyzer/WireShark": [
+      "docs/7.信息安全/Packet analyzer/WireShark/_index.md",
+      "docs/7.信息安全/Packet analyzer/WireShark/WireShark.md",
+      "docs/7.信息安全/Packet analyzer/WireShark/Packet Reassembly.md",
+      "docs/7.信息安全/Packet analyzer/WireShark/TCP Analysis.md"
     ]
   },
   "actionBarOrder": {},
