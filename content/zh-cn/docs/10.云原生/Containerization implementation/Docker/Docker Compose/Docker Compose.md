@@ -61,7 +61,7 @@ chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 
 ## 安装独立的 docker-compose 工具
 
-<font color="#ff0000">注意</font>：从 22 还是 23 版本开始（待确认），官方已不图鉴使用此方案，仅处于向后兼容的目的才支持
+<font color="#ff0000">注意</font>：从 22 还是 23 版本开始（待确认），官方已不推荐使用此方案，仅处于向后兼容的目的才支持
 
 Linux 上我们可以从 Github 上下载它的二进制包来使用，最新发行的版本地址：[https://github.com/docker/compose/releases](https://github.com/docker/compose/releases)。
 

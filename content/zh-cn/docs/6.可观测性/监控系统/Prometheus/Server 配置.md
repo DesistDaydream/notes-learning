@@ -158,9 +158,13 @@ scrape_configs 是 Prometheus 采集指标的最重要也是最基本的配置�
 ### 基本配置
 
 **job_name(STRING)** # 指定抓取 Metrics 的 Job 名字
+
 **scrape_interval(DURATION)** # 指定这个 job 中抓取 targets 的频率。默认使用 global 配置环境中同名参数的值
+
 **scrape_timeout(DURATION)** # 指定这个 job 中抓取 targets 的超时时长。默认使用 global 配置环境中同名参数的值
+
 **metrics_path: PATH** # 从 targets 获取 metrics 时 http 请求的路径。默认为/metrics
+
 **honor_labels(BOOLEAN)** # 控制 Prometheus 如何处理标间之间的冲突。`默认值：false`
 
 - 获取 targets 的 metrics 时(e.g.snmp_exporter|Federate|pushgateway 等)，其中的标签有可能会与本身的标签存在冲突

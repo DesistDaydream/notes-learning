@@ -39,6 +39,7 @@ https://en.wikipedia.org/wiki/Internet_service_provider
 | -------------------------------------------------- | -------------- | ------- | ---------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | 5-tuple                                            | 五元组            |         | [RFC 6146](https://datatracker.ietf.org/doc/html/rfc6146#section-2)                      | 源 IP，源 PORT，目的 IP，目的 PORT，传输层协议，这五个量组成的一个集合                                                              |
 | Advanced Telecommunications Computing Architecture | 高级电信计算架构       | ATCA    | [Wiki](https://en.wikipedia.org/wiki/Advanced_Telecommunications_Computing_Architecture) | atca架构本身就是一组工业标准框架，只要是基于这个国际统一标准做的板卡都可以集成到一起                                                             |
+| Architecture                                       | 架构             | arch    |                                                                                          |                                                                                                          |
 | Broadband Remote Access Server                     | 宽带远程接入服务器      | BRAS    | [Wiki](https://en.wikipedia.org/wiki/Broadband_remote_access_server)                     | 是一种用于管理和控制带宽接入用户的网络设备                                                                                    |
 | Call detail record                                 | 通话详细记录         | CDR     | [Wiki](https://en.wikipedia.org/wiki/Call_detail_record)                                 | 中文常简称为 "话单"。随着发展，话单的含义也逐步扩展，包含了不止是通话的详细信息。有时候也用 xDR 描述。                                                  |
 | Data Plane Development Kit                         | 数据平面开发套件       | DPDK    | [DPDK](/docs/4.数据通信/DPDK.md)                                                             |                                                                                                          |
@@ -61,4 +62,22 @@ https://en.wikipedia.org/wiki/Internet_service_provider
 > 参考：
 > 
 > - [RFC 1594，13 章](https://datatracker.ietf.org/doc/html/rfc1594#section-13)
+
+[Internet](docs/x_标准化/Internet/Internet.md)
+
+# 中国标准
+
+> 参考：
+> 
+> - [全国标准信息公共服务平台](https://std.samr.gov.cn/)
+> - [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/index)
+> - [地方标准信息服务平台](https://dbba.sacinfo.org.cn/)
+> - [行业标准信息服务平台](https://hbba.sacinfo.org.cn/)
+> - [知乎，全网最全的国家标准、行业标准文本查询下载方法](https://zhuanlan.zhihu.com/p/82467306)
+
+## 中华人民共和国工业和信息化部
+
+标准文件从 [工业和信息化标准信息服务平台](https://std.miit.gov.cn/#/index) 这里搜索后可以预览具体内容
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/glossary/std_miit_1.png)
 
