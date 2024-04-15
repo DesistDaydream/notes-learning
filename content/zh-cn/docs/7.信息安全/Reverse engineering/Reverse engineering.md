@@ -194,7 +194,7 @@ Unveilr # 反编译解密后的 `*.wxapkg` 文件得到源码。
 - 通过控制台的代码段重写 `JSON.stringify`、`JSON.parse` 等常见方法的逻辑，添加 debugger 关键字，以便在代码无法找到时，虽慢但准得找到解密相关代码。
   - https://www.bilibili.com/video/BV1Cz4y1w78y
 
-补环境。有的代码，可能会获取浏览器特定的一些属性，比如 [WebAPI](/docs/Web/WebAPI/WebAPI.md) 中 document、window 等对象中的数据。此时如果使用代码编译器运行代码的场合是没有办法获取到这些信息的，需要在代码中手动造一些浏览器信息。
+补环境。有的代码，可能会获取浏览器特定的一些属性，比如 [WebAPIs](docs/Web/WebAPIs/WebAPIs.md) 中 document、window 等对象中的数据。此时如果使用代码编译器运行代码的场合是没有办法获取到这些信息的，需要在代码中手动造一些浏览器信息。
 
 ## JS 逆向的调试方法
 

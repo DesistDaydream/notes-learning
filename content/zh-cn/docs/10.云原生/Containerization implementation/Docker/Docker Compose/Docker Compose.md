@@ -13,8 +13,6 @@ weight: 1
 > - [菜鸟教程](https://compose-spec.io/)
 > - [Compose 规范](https://compose-spec.io/)
 
-# Docker Compose 简介
-
 Compose 是用于定义和运行多容器 Docker 应用程序的工具。通过 Compose，您可以使用 YML 文件来配置应用程序需要的所有服务。然后，使用一个命令，就可以通过该配置文件创建并启动所有服务。
 
 Compose 使用的三个步骤：
@@ -27,7 +25,7 @@ Compose 使用的三个步骤：
 
 docker-compose.yml 的配置案例如下（配置参数参考下文）：
 
-## 实例
+## compose 文件示例
 
 ```yaml
 # yaml 配置实例
@@ -53,9 +51,10 @@ volumes:
 ## 安装 Docker 的 Compose 插件
 
 ```bash
-DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+export COMPOSE_VERSION="2.24.2"
+export DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
 mkdir -p $DOCKER_CONFIG/cli-plugins
-curl -SL https://github.com/docker/compose/releases/download/v2.24.2/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+curl -SL https://github.com/docker/compose/releases/download/v${COMPOSE_VERSION}/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
 chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 ```
 

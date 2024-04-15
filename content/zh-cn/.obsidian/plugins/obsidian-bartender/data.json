@@ -1244,14 +1244,15 @@
     "docs/2.编程/API": [
       "docs/2.编程/API/_index.md",
       "docs/2.编程/API/API.md",
-      "docs/2.编程/API/Web API 与 REST.md",
+      "docs/2.编程/API/Webservice And REST.md",
       "docs/2.编程/API/Swagger 介绍.md",
       "docs/2.编程/API/Swagger 工具.md",
       "docs/2.编程/API/OpenAPI 介绍.md",
       "docs/2.编程/API/OpenAPI 格式.md",
       "docs/2.编程/API/OpenAPI Tools.md",
       "docs/2.编程/API/Mock API.md",
-      "docs/2.编程/API/API 相关工具"
+      "docs/2.编程/API/API 相关工具",
+      "docs/2.编程/API/GraphQL.md"
     ],
     "docs/2.编程/API/API 相关工具": [
       "docs/2.编程/API/API 相关工具/_index.md",
@@ -2432,7 +2433,7 @@
     "docs/Web": [
       "docs/Web/_index.md",
       "docs/Web/Web.md",
-      "docs/Web/WebAPI",
+      "docs/Web/WebAPIs",
       "docs/Web/WebDriver",
       "docs/Web/WebAssembly.md",
       "docs/Web/Browser",
@@ -2476,11 +2477,6 @@
       "docs/Web/Nginx/Nginx 配置详解/多用途模块的指令",
       "docs/Web/Nginx/Nginx 配置详解/Nginx 作为web服务器配置示例.md",
       "docs/Web/Nginx/Nginx 配置详解/Nginx 作为代理服务器配置示例.md"
-    ],
-    "docs/Web/WebAPI": [
-      "docs/Web/WebAPI/_index.md",
-      "docs/Web/WebAPI/WebAPI.md",
-      "docs/Web/WebAPI/DOM.md"
     ],
     "docs/Web/WebDriver": [
       "docs/Web/WebDriver/_index.md",
@@ -2575,6 +2571,11 @@
       "docs/7.信息安全/Packet analyzer/WireShark/WireShark.md",
       "docs/7.信息安全/Packet analyzer/WireShark/Packet Reassembly.md",
       "docs/7.信息安全/Packet analyzer/WireShark/TCP Analysis.md"
+    ],
+    "docs/Web/WebAPIs": [
+      "docs/Web/WebAPIs/_index.md",
+      "docs/Web/WebAPIs/WebAPIs.md",
+      "docs/Web/WebAPIs/DOM.md"
     ]
   },
   "actionBarOrder": {},

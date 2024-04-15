@@ -1,17 +1,16 @@
 ---
-title: Web API 与 REST
+title: Webservice And REST
+linkTitle: Webservice And REST
+date: 2024-04-15T19:32
+weight: 20
 ---
 
 # 概述
 
 > 参考：
 > 
-> - [Wiki，WebAPI](https://en.wikipedia.org/wiki/Web_API)
-> - [Wiki，REST](https://en.wikipedia.org/wiki/Representational_state_transfer)
 > - [阮一峰，RESTful API 设计指南](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)
 > - [思否，REST架构的思考](https://segmentfault.com/a/1190000004311893)
-
-WebAPI 是用于 Web 服务器或 Web 浏览器的应用程序变成接口。这是一个 Web 开发概念，
 
 ## Server Side(服务端)
 
@@ -36,11 +35,41 @@ Endpoint 这个词以前经常被用来描述进程间通信。例如
 
 **Client Side(客户端) 的 WebAPI** 也是一个编程接口，用于扩展 Web 浏览器或其他 HTTP 客户端内的功能。
 
+# Webservice
+
+> 参考：
+> 
+> - [Wiki，Webservice](https://en.wikipedia.org/wiki/Web_service)
+> - https://hygraph.com/blog/web-service-vs-api
+
+Webservice 描述了一种在 Internet 协议主干上使用 XML、SOAP、WSDL 和 UDDI 开放标准集成基于 Web 的应用程序的标准化方法。XML 是用于包含数据并提供围绕数据的元数据的数据格式，SOAP 用于传输数据，WSDL 用于描述可用的服务，UDDI 列出可用的服务。
+
+什么是 Web service 的答案在很大程度上取决于正在进行的对话的上下文。在一种情况下，我们可以将 Web 服务视为支付生态系统、存储服务、电子邮件服务、云功能、文本到语音转换器等。这些服务本身就是单独的系统，可以为您节省大量“从头开始构建”的时间。当您编写应用程序代码时。任何想要使用它们的人都可以通过即用即付模式进行注册。
+
+回到 2000 年代，在另一个上下文中，我们可以说 Web 服务是一组促进不同软件应用程序之间数据交换的协议和标准。
+
+以下是构建 Web 服务所需的组件。
+
+- SOAP - Simple Object Access Protocol - 简单对象访问协议
+- RDF - Resource Description Framework - 资源描述框架
+- UDDI - Universal Description, Discovery and IntegrationI - 通用描述、发现和集成
+- WSDL - Web Services Description Language - Web 服务描述语言
+
+构建 Web 服务需要遵循严格的规则，并且它们往往更加流程密集和代码繁重。 Web 服务与 SOA（面向服务的架构）大致相同，并且主要基于 XML-RPC 和 SOAP 等标准。通常使用 SOAP，数据交换通过 HTTP 协议以 XML 形式进行。
+
+API 一词指的是应用程序编程接口，类似于 Web 服务，当两个软件组件需要相互通信时，它们可以借助 API 来实现。 API 利用技术并遵循协议来促进通信。有不同的 API，例如 GraphQL、REST、WebSocket API、RPC API 等。所有 API 都有自己的一套协议和定义，因此每种 API 类型都会有不同的运行机制。
+
+最终，API 可以被认为包括但不限于 Web service，可以说 Web service 是 API 的子集，是一种特殊情况下的 API。
+
+随着时代的发展，Web service 过于笨重的逻辑非常影响程序交互。能用 RestFul 风格的 API 就不要再用 Web service 了。
+
 # REST
 
-## 概述
+> 参考：
+> 
+> - [Wiki，REST](https://en.wikipedia.org/wiki/Representational_state_transfer)
 
-**Representational State Transfer(表述性状态传递，简称 REST)** 是交互式应用程序(通常使用多个 Web 服务实现)的软件架构的事实标准。说白了就是两个应用程序的交互标准。规定了两个程序互相传递数据的格式(JSON、XML 等)、内容、方法(增删改查)等等。这种格式，称为 REST 风格的接口
+**Representational State Transfer(表述性状态传递，简称 REST)** 是交互式应用程序（通常使用多个 Web 服务实现）的软件架构的事实标准。说白了就是两个应用程序的交互标准。规定了两个程序互相传递数据的格式(JSON、XML 等)、内容、方法(增删改查)等等。这种格式，称为 REST 风格的接口
 
 REST 是由 Roy Thomas Fielding 博士在他的论文 《Architectural Styles and the Design of Network-based Software Architectures》中提出的一个术语。REST 本身只是为分布式超媒体系统设计的一种架构风格，而不是标准。
 
