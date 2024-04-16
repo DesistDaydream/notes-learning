@@ -1,7 +1,7 @@
 ---
-title: 配置详解
-linkTitle: 配置详解
-date: 2023-11-14T09:31
+title: OpenSSH 配置
+linkTitle: OpenSSH 配置
+date: 2024-04-17T08:39
 weight: 20
 ---
 

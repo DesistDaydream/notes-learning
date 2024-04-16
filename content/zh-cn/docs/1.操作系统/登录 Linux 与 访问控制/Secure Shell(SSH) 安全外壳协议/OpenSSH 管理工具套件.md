@@ -146,8 +146,9 @@ OPTIONS：
 
 **ssh-keygen -t rsa \[-P ''] \[-f ~/.ssh/id_rsa]**
 
-- EXAMPLE：
-  - ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+EXAMPLE
+
+- ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
 
 # ssh-copy-id - 把生成的公钥传输至远程服务器对应用户的家目录
 
@@ -155,7 +156,7 @@ OPTIONS：
 
 Identity_File(身份文件) # 一般为 /root/.ssh/id_rsa.pub
 
-EXAMPLE：
+EXAMPLE
 
 - 将公钥拷贝到服务端
   - ssh-copy-id -i /root/.ssh/id_rsa.pub root@192.168.0.10

@@ -1,5 +1,5 @@
 ---
-title: 大事件：Kubernetes不再在kubelet中维护docker-shim代码
+title: Kubernetes不再在kubelet中维护docker-shim代码
 ---
 
 大事件：Kubernetes 不再在 kubelet 中维护 docker-shim 代码

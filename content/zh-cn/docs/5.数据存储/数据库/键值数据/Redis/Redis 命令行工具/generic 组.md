@@ -30,13 +30,13 @@ summary: Set the expiration for a key as a UNIX timestamp
 
 since: 1.2.0
 
-## KEYS pattern # 查找与指定 pattern 匹配到的所有 keys。
+## KEYS pattern - 查找与指定 pattern 匹配到的所有 keys。
 
 since: 1.0.0
 
 EXAMPLE
 
-1. keys \* # 获取所有的键
+- `keys *` # 获取所有的键
 
 MIGRATE host port key| destination-db timeout \[COPY] \[REPLACE] \[KEYS key]
 

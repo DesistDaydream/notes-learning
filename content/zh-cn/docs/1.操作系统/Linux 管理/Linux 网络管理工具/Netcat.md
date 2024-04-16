@@ -42,7 +42,7 @@ Ncat 与 Nmap 集成，可在 Nmap 下载页面提供的标准 Nmap 下载包（
 
 许多用户要求提供一个静态编译的 ncat.exe 版本，他们可以将其放在 Windows 系统上并使用，而无需运行任何安装程序或复制额外的库文件。我们已经构建了一个静态编译的 Windows 二进制版本的 Ncat 5.59BETA1。您可以在[此处](http://nmap.org/dist/ncat-portable-5.59BETA1.zip)下载 zip 文件。为确保文件未被篡改，您可以检查[加密签名](http://nmap.org/book/install.html#inst-integrity)。如果您需要更新的 Ncat 版本的便携版本，请参阅[Ncat 便携编译说明](https://secwiki.org/w/Nmap/Ncat_Portable)。
 
-该[NCAT 用户指南](https://nmap.org/ncat/guide/index.html)包含完整的文档，包括很多技巧，窍门和实用现实生活的例子！还有一个[Ncat 手册页](https://nmap.org/book/ncat-man.html)用于快速使用摘要。
+该 [NCAT 用户指南](https://nmap.org/ncat/guide/index.html)包含完整的文档，包括很多技巧，窍门和实用现实生活的例子！还有一个[Ncat 手册页](https://nmap.org/book/ncat-man.html)用于快速使用摘要。
 
 ## OpenBSD Netcat
 
@@ -54,15 +54,18 @@ Ubuntu 使用 OpenBSD 的 Netcat 作为 Netcat 的替代品
 
 安装 netcat-openbsd 包即可，安装完成后，nc 命令本质上是 nc.openbsd 命令的软链接
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/nnt66u/1626359398275-d7639c00-614d-4ff7-8b10-3e49b50eb576.png)
+```bash
+ ~]# ll /usr/bin/nc
+lrwxrwxrwx 1 root root 20 Aug 10  2023 /usr/bin/nc -> /etc/alternatives/nc*
+~]# ll /etc/alternatives/nc
+lrwxrwxrwx 1 root root 15 Aug 10  2023 /etc/alternatives/nc -> /bin/nc.openbsd*
+```
 
 ## CentOS
 
 CentOS 使用 Nmap 的 Ncat 作为 Netcat 的替代品
 
 安装 nmap-ncat 包即可，安装完成后，nc 命令本质上是 ncat 命令的软链接
-
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/nnt66u/1626359200164-165e5748-0a31-433b-bd62-0dcd3c157cf3.png)
 
 # Syntax(语法)
 
