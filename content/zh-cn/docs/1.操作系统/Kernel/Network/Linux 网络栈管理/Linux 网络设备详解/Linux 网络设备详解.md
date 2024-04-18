@@ -11,7 +11,7 @@ title: Linux 网络设备详解
 > 参考：
 >
 > - <https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#>
-> - [本知识库虚拟化网络章节](/docs/10.云原生/1.1.虚拟化/Network%20Virtual(网络虚拟化).md Virtual(网络虚拟化).md)
+> - [Network Virtualization](docs/10.云原生/Virtualization/Network%20Virtualization/Network%20Virtualization.md)
 
 Linux 具有丰富的虚拟网络功能，可用作托管 VM 和容器以及云环境的基础。在这篇文章中，我将简要介绍所有常用的虚拟网络接口类型。没有代码分析，只简单介绍了接口及其在 Linux 上的使用。任何有网络背景的人都可能对这篇博文感兴趣。可以使用命令 ip link help 获取接口列表。
 
@@ -40,7 +40,9 @@ Linux 具有丰富的虚拟网络功能，可用作托管 VM 和容器以及云�
 Bridge 网络设备的行为类似于网络交换机。它在连接到它的网络设备之间转发数据包。通常用于在 路由器、网关、虚拟机、网络名称空间之间转发数据包。同时 Bridge 设备还支持 STP、VLAN 过滤和组播侦听。
 
 当我们想要在 虚拟机、容器、宿主机 之间建立通信时，Bridge 设备是必不可少的。
-[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493495381-a7c7e048-4783-45a6-a1d1-c44526401132.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/bridge.png)
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493495381-a7c7e048-4783-45a6-a1d1-c44526401132.png)
+
 下面是一个是创建 Brdige 并连接其他网络设备的示例：
 
 ```bash

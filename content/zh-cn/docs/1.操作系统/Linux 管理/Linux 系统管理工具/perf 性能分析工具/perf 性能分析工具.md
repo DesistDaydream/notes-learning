@@ -8,7 +8,7 @@ weight: 1
 > 参考：
 >
 > - [GitHub 项目，torvalds/linux 中的代码 /tools/perf](https://github.com/torvalds/linux/tree/master/tools/perf)
-> - [Kernel Wiki,perf](https://perf.wiki.kernel.org/index.php/Main_Page)
+> - [Kernel Wiki，perf](https://perf.wiki.kernel.org/index.php/Main_Page)
 > - [PMU 是什么？](https://qastack.cn/unix/326621/what-are-kernel-pmu-event-s-in-perf-events-list)
 
 **Linux Performance Events(Linux 性能事件，简称 LPE)** 是用来分析 Linux 性能的工具，通常称为 **perf**。perf 随 Kernel 2.6+ 一同发布。通过它，应用程序可以利用 PMU，tracepoint 和内核中的特殊计数器来进行性能统计。它不但可以分析指定应用程序的性能问题 (per thread)，也可以用来分析内核的性能问题，当然也可以同时分析应用代码和内核，从而全面理解应用程序中的性能瓶颈。

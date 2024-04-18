@@ -41,12 +41,12 @@ weight: 1
 
 基于 Linux 本身的网络虚拟化方案
 
-1. Linux Bridge # 虚拟网络基础资源，用于二层网络虚拟化
-2. Namespace # 网络名称空间，用于三层网络虚拟化
+- Linux Bridge # 虚拟网络基础资源，用于二层网络虚拟化
+- Namespace # 网络名称空间，用于三层网络虚拟化
 
 高级虚拟化方案
 
-1. Open vSwitch # 开源的虚拟交换机，用于二层网络虚拟化
+- Open vSwitch # 开源的虚拟交换机，用于二层网络虚拟化
 
 ## Linux Bridge(Linux 网桥)
 
@@ -67,7 +67,7 @@ veth 的作用是反转数据流量，从一段接收到数据后，会把该数
 **TAP/TUN**：该设备会创建一个 /dev/tunX 的文件并作用在内核空间，与用户空间的 APP 相连(比如 VM)，当这个 VM 通过其 Hypervisor 通信时，会把数据写入该/dev/tunX 文件，并交给内核，内核会处理这些数据并通过网卡发送。TAP 工作在二层，TUN 工作在三层。详见 TUN TAP 设备浅析(一) -- 原理浅析
 
 - Veth Pari 与 TAP/TUN 设备在 VM 与 Container 中的使用注意事项以及原因
-  - 为什么 VM 要使用 TAP/TUN,而 Container 不用？因为 VM 数据包在从其进程发送到 Host 的时候，由于 VM 有自己的内核，那么这个数据包相当于已经经过了一个 VM 的网络栈，这时候就不能直接发送给 Host 的网络栈再进行处理了，所以需要 TAP/TUN 设备来作为一个转折点，接收 VM 的数据包，并以一个已经经过网络栈处理过的姿态直接进入内核的网络设备。
+  - 为什么 VM 要使用 TAP/TUN, 而 Container 不用？因为 VM 数据包在从其进程发送到 Host 的时候，由于 VM 有自己的内核，那么这个数据包相当于已经经过了一个 VM 的网络栈，这时候就不能直接发送给 Host 的网络栈再进行处理了，所以需要 TAP/TUN 设备来作为一个转折点，接收 VM 的数据包，并以一个已经经过网络栈处理过的姿态直接进入内核的网络设备。
 
 **Bridge(网桥)**：在 Linux 中能够起到虚拟交换机作用的网络设备，但不同于 TAP/TUN 这种单端口的设备，Bridge 实现虚拟为多端口，本质上是一个虚拟交换机，具备和物理交换机类似的功能。Bridge 可以绑定其他 Linux 网络设备作为从设备，并将这些从设备虚拟化为端口，当一个从设备被绑定到 Bridge 上时，就相当于真实网络中的交换机端口上插入了一根连有终端的网线。
 
@@ -97,11 +97,11 @@ eth0.10，vent0 和 brvlan10 都可以看着 vlan10 的 access 口。
 
 eth0.20，vent1 和 brvlan20 都可以看着 vlan20 的 access 口。
 
-## Open vSwitch # 开放的虚拟交换机
+## Open vSwitch - 开放的虚拟交换机
 
 详见 [Open vSwitch](/docs/10.云原生/Virtualization/Network%20Virtualization/Open%20vSwitch.md)
 
-## Network Namespace # 网络名称空间
+## Network Namespace - 网络名称空间
 
 Network Namespace 可以简单得理解为 Linux 上的 **虚拟路由器(vRouter)**。详见：[Network Namespace](/docs/10.云原生/Containerization/1.Namespaces/Network%20Namespace/Network%20Namespace.md)
 
@@ -119,6 +119,7 @@ Network Namespace 的应用场景
 # Overlay Network 叠加网络
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kinqyh/1616124322243-b9ecf172-ef2b-4452-8c3c-364af95526aa.jpeg)
+
 Overlay Network 产生的原因
 
 在网桥的概念中，各个 VM 可以通过 Host 上的 vSwitch 来进行通信，那么当需要访问另外一台 Host 上不同网段的 VM 的时候呢？
@@ -127,4 +128,4 @@ Overlay Network 产生的原因
 
 VXLAN
 
-概念详见 flannel.note 中的 vxlan 模型
+概念详见 [Flannel](docs/10.云原生/Kubernetes/Kubernetes%20网络/CNI/Flannel.md) 中的 vxlan 模型

@@ -126,57 +126,12 @@ MODE 格式如下 : `[ugoa][[+-=][rwxX]…][,…]`，其中
 ### Syntax(语法)
 
 **chown \[OPTION] \[OWNER]\[:\[GROUP]] FILE...**
+
 **chown \[OPTION] --reference=RFILE FILE...**
 
--c, --changes like verbose but report only when a change is made
+--from=当前所有者:当前所属组
 
--f, --silent, --quiet suppress most error messages
-
--v, --verbose output a diagnostic for every file processed
-
-      --dereference      affect the referent of each symbolic link (this is
-
-                         the default), rather than the symbolic link itself
-
--h, --no-dereference affect symbolic links instead of any referenced file
-
-                         (useful only on systems that can change the
-
-                         ownership of a symlink)
-
-      --from=当前所有者:当前所属组
-
-                         只当每个文件的所有者和组符合选项所指定时才更改所
-
-有者和组。其中一个可以省略，这时已省略的属性就不
-
-需要符合原有的属性。
-
-      --no-preserve-root  do not treat '/' specially (the default)
-
-      --preserve-root    fail to operate recursively on '/'
-
-      --reference=RFILE  use RFILE's owner and group rather than
-
-                         specifying OWNER:GROUP values
-
--R, --recursive operate on files and directories recursively
-
-The following options modify how a hierarchy is traversed when the -R
-
-option is also specified. If more than one is specified, only the final
-
-one takes effect.
-
--H if a command line argument is a symbolic link
-
-                         to a directory, traverse it
-
--L traverse every symbolic link to a directory
-
-                         encountered
-
--P do not traverse any symbolic links (default)
+- 只当每个文件的所有者和组符合选项所指定时才更改所有者和组。其中一个可以省略，这时已省略的属性就不需要符合原有的属性。
 
 ### EXAMPLE
 

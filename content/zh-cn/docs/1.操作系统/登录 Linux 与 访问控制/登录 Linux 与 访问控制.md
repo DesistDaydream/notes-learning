@@ -41,11 +41,11 @@ Linux 操作系统是一个多用户操作系统，所以除了 **Terminal(终�
 
 当我们刚刚安装完操作系统，systemd-logind.service 服务会让我们看到这样的画面
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gwpmr6/1634785246289-3a353c73-2899-4b6c-8341-ffc4a02008ef.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/linux_login/1634785246289-3a353c73-2899-4b6c-8341-ffc4a02008ef.png)
 
 想要在服务器本地登录系统，则需要进行认证，在输入用户名之后，实际上是调用了 `login` 这个二进制程序，看到：
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gwpmr6/1634785206973-885fa7fb-3dfb-4fb1-80c8-1c56cb903974.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/linux_login/1634785206973-885fa7fb-3dfb-4fb1-80c8-1c56cb903974.png)
 
 此时我们通过远程方式(如果可以的话)登录服务器，查看进程，将会看到名为 login 的进程
 
@@ -57,7 +57,7 @@ Linux 操作系统是一个多用户操作系统，所以除了 **Terminal(终�
 
 当我们输入完密码，经过 [Access Control(访问控制)](/docs/1.操作系统/登录%20Linux%20与%20访问控制/Access%20Control(访问控制)/Access%20Control(访问控制).md) 相关程序的认证之后，login 工具会为我们分配一个 ttyX 的终端设备，然后我们就可以通过 tty 所关联的 Shell(通常是 bash)，与系统进行交互
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gwpmr6/1634785329507-0cb1fcec-8c6e-4fd0-a99f-005a2b19807e.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/linux_login/1634785329507-0cb1fcec-8c6e-4fd0-a99f-005a2b19807e.png)
 
 #### login 关联文件与配置
 
@@ -69,7 +69,7 @@ Linux 操作系统是一个多用户操作系统，所以除了 **Terminal(终�
 
 ### ssh 程序
 
-详见：[Secure Shell(SSH) 安全外壳协议](/docs/1.操作系统/登录%20Linux%20与%20访问控制/Secure%20Shell(SSH)%20安全外壳协议/Secure%20Shell(SSH)%20安全外壳协议.md)
+详见：[OpenSSH](docs/4.数据通信/Utility/OpenSSH/OpenSSH.md)
 
 ```bash
 root       981     1  0 Jul08 ?        Ss     0:00 /usr/sbin/sshd -D
@@ -88,7 +88,7 @@ OpenSSH 会为用户分配一个 Pseudoterminal(伪终端，即 pts) 以便用�
 
 > 参考：
 >
-> - [Wiki:MOTD](https://en.wikipedia.org/wiki/Motd_(Unix))
+> - [Wiki，MOTD](https://en.wikipedia.org/wiki/Motd_(Unix))
 > - [Manual(手册)，MOTD](https://man7.org/linux/man-pages/man5/motd.5.html)
 
 **Message of the day(每日消息，简称 MOTD)** 是一种比向所有用户发送一个邮件更有效的发送共同的信息的方式

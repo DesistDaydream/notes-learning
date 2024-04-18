@@ -1,8 +1,20 @@
 ---
-title: TUN 与 TAP设备浅析(一) -- 原理浅析
+title: TUN and TAP
+linkTitle: TUN and TAP
+date: 2024-04-19T17:06
+weight: 20
+tags:
+  - virtualization
 ---
 
-# TUN/TAP 设备浅析
+# 概述
+
+> 参考：
+>
+> - [网络虚拟化技术（二）: TUN/TAP MACVLAN MACVTAP](https://blog.kghost.info/2013/03/27/linux-network-tun/)
+> - [Wiki, TUN/TAP](https://en.wikipedia.org/wiki/TUN/TAP)
+
+TUN/TAP 类型的设备会利用 /dev/net/tun 文件, 基于 tun.ko 模块实现(TODO).
 
 ## TUN 设备
 
@@ -42,9 +54,8 @@ TUN 设备是一种虚拟网络设备，通过此设备，程序可以方便地�
 
 TAP 设备与 TUN 设备工作方式完全相同，区别在于：
 
-1. TUN 设备是一个三层设备，它只模拟到了 IP 层，即网络层 我们可以通过 /dev/tunX 文件收发 IP 层数据包，它无法与物理网卡做 bridge，但是可以通过三层交换（如 ip_forward）与物理网卡连通。可以使用 ifconfig 之类的命令给该设备设定 IP 地址。
-
-2. TAP 设备是一个二层设备，它比 TUN 更加深入，通过 /dev/tapX 文件可以收发 MAC 层数据包，即数据链路层，拥有 MAC 层功能，可以与物理网卡做 bridge，支持 MAC 层广播。同样的，我们也可以通过 ifconfig 之类的命令给该设备设定 IP 地址，你如果愿意，我们可以给它设定 MAC 地址。
+- TUN 设备是一个三层设备，它只模拟到了 IP 层，即网络层 我们可以通过 /dev/tunX 文件收发 IP 层数据包，它无法与物理网卡做 bridge，但是可以通过三层交换（如 ip_forward）与物理网卡连通。可以使用 ifconfig 之类的命令给该设备设定 IP 地址。
+- TAP 设备是一个二层设备，它比 TUN 更加深入，通过 /dev/tapX 文件可以收发 MAC 层数据包，即数据链路层，拥有 MAC 层功能，可以与物理网卡做 bridge，支持 MAC 层广播。同样的，我们也可以通过 ifconfig 之类的命令给该设备设定 IP 地址，你如果愿意，我们可以给它设定 MAC 地址。
 
 最后，关于文章中出现的二层，三层，我这里说明一下，第一层是物理层，第二层是数据链路层，第三层是网络层，第四层是传输层。
 

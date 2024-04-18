@@ -2,15 +2,15 @@
 title: OpenSSH 配置
 linkTitle: OpenSSH 配置
 date: 2024-04-17T08:39
-weight: 20
+weight: 2
 ---
 
 # 概述
 
 > 参考：
 >
-> - [官方文档,手册-sshd_config](https://man.openbsd.org/sshd_config)
-> - [官方文档,手册-ssh_config](https://man.openbsd.org/ssh_config)
+> - [官方文档，手册-sshd_config](https://man.openbsd.org/sshd_config)
+> - [官方文档，手册-ssh_config](https://man.openbsd.org/ssh_config)
 
 # sshd_config 文件
 
@@ -24,175 +24,24 @@ weight: 20
 
 **AllowGroups <Group1 Group2.........>** # 设定允许通过 ssh 登录的组 Group1,2,3,等等等
 
-**UseDNS {yes|no}** # 指定登陆时是否进行 DNS 解析
+**UseDNS**(BOOLEAN) # 指定登陆时是否进行 DNS 解析
 
 [KbdInteractiveAuthentication](https://man.openbsd.org/sshd_config#KbdInteractiveAuthentication) #
 
 > 注意：该关键字是已经被启用的 ChallengeResponseAuthentication 关键字的替代品
 
+**PermitTunnel**(STRING) # 指定是否允许 tun 设备转发。可用的值有 yes、point-to-point、ethernet、no。`默认值: no`
+
+- https://man.openbsd.org/sshd_config#PermitTunnel
+
 # ssh_config 文件
 
-注意：该配置文件中的配置信息，可以通过 ssh 命令的 -o 选项来覆盖配置文件中关键字的值
+> [!Notes]
+> 该配置文件中的配置信息，可以通过 ssh 命令的 -o 选项来覆盖配置文件中关键字的值
 
-**AddKeysToAgent**
+**Tunnel** # 启用隧道功能后, 客户端创建的 tun 设备的类型. 默认为 point-to-point. 该配置的功能与 sshd_config 中的 PermitTunnel 配置一样, 用来指定隧道功能下的 tun/tap 网络设备的类型.
 
-**AddressFamily**
-
-**BatchMode**
-
-**BindAddress**
-
-**CanonicalDomains**
-
-**CanonicalizeFallbackLocal**
-
-**CanonicalizeHostname**
-
-**CanonicalizeMaxDots**
-
-**CanonicalizePermittedCNAMEs**
-
-**CASignatureAlgorithms**
-
-**CertificateFile**
-
-**ChallengeResponseAuthentication**
-
-**CheckHostIP**
-
-**Ciphers**
-
-**ClearAllForwardings**
-
-**Compression**
-
-**ConnectionAttempts**
-
-**ConnectTimeout**
-
-**ControlMaster**
-
-**ControlPath**
-
-**ControlPersist**
-
-**DynamicForward**
-
-**EscapeChar**
-
-**ExitOnForwardFailure**
-
-**FingerprintHash**
-
-**ForwardAgent**
-
-**ForwardX11**
-
-**ForwardX11Timeout**
-
-**ForwardX11Trusted**
-
-**GatewayPorts**
-
-**GlobalKnownHostsFile**
-
-**GSSAPIAuthentication**
-
-**GSSAPIKeyExchange**
-
-**GSSAPIClientIdentity**
-
-**GSSAPIDelegateCredentials**
-
-**GSSAPIKexAlgorithms**
-
-**GSSAPIRenewalForcesRekey**
-
-**GSSAPIServerIdentity**
-
-**GSSAPITrustDns**
-
-**HashKnownHosts**
-
-**Host**
-
-**HostbasedAuthentication**
-
-**HostbasedKeyTypes**
-
-**HostKeyAlgorithms**
-
-**HostKeyAlias**
-
-**Hostname**
-
-**IdentitiesOnly**
-
-**IdentityAgent**
-
-**IdentityFile**
-
-**IPQoS**
-
-**KbdInteractiveAuthentication**
-
-**KbdInteractiveDevices**
-
-**KexAlgorithms**
-
-**LocalCommand**
-
-**LocalForward**
-
-**LogLevel**
-
-**MACs**
-
-**Match**
-
-**NoHostAuthenticationForLocalhost**
-
-**umberOfPasswordPrompts**
-
-**PasswordAuthentication**
-
-**PermitLocalCommand**
-
-**PKCS11Provider**
-
-**Port**
-
-**PreferredAuthentications**
-
-**ProxyCommand**
-
-**ProxyJump**
-
-**ProxyUseFdpass**
-
-**PubkeyAcceptedKeyTypes**
-
-**PubkeyAuthentication**
-
-**RekeyLimit**
-
-**RemoteCommand**
-
-**RemoteForward**
-
-**RequestTTY**
-
-**SendEnv**
-
-**ServerAliveInterval**
-
-**ServerAliveCountMax**
-
-**SetEnv**
-
-**StreamLocalBindMask**
-
-**StreamLocalBindUnlink**
+**TunnelDevice LOCAL_TUN\[:REMOTE_TUN]** # 与 ssh 的 -w 选项功能一致.
 
 **StrictHostKeyChecking**
 
@@ -217,20 +66,3 @@ Warning: Permanently added '172.19.42.248' (ECDSA) to the list of known hosts.
 root@172.19.42.248's password:
 ```
 
-**TCPKeepAlive**
-
-**Tunnel**
-
-**TunnelDevice**
-
-**UpdateHostKeys**
-
-**User**
-
-**UserKnownHostsFile**
-
-**VerifyHostKeyDNS**
-
-**VisualHostKey**
-
-**XAuthLocation**

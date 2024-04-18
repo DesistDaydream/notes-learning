@@ -79,11 +79,17 @@ INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，�
 
 # iptables 关联文件与配置
 
+**/run/xtables.lock** # 该文件在 iptables 程序启动时被使用，以获取排他锁
+
+- 可以通过 `XTABLES_LOCKFILE` 环境变量修改 iptables 需要使用 xtalbes.lock 文件的路径
+
+---
+
+RedHat 系特定的关联文件
+
 **/etc/sysconfig/iptables** # 存放用户定义的规则信息，每次重启 iptabels.service 服务后，都会读取该配置文件信息并应用到系统中
 
 **/etc/sysconfig/iptables-conf** # 存放 iptables 工具的具体配置信息
 
-**/run/xtables.lock** # 该文件在 iptables 程序启动时被使用，以获取排他锁
-
-- 可以通过 `XTABLES_LOCKFILE` 环境变量修改 iptables 需要使用 xtalbes.lock 文件的路径
+---
 

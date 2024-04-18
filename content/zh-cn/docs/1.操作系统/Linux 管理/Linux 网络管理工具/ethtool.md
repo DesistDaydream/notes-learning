@@ -135,6 +135,7 @@ NIC statistics:
 
 - ethtool -s eth0 speed 100 duplex full
 
+# Reference
 ## -i 选项信息
 
 ```bash
@@ -151,7 +152,7 @@ supports-register-dump: yes
 supports-priv-flags: yes
 ```
 
-- **driver** # 网络设备连接网卡所使用的驱动程序
+- **driver** # 网络设备连接网卡所使用的驱动程序. 也可以当作网络设备的类型, 还有 bridge、tun、etc. 这些.
 - **version** # 驱动程序的版本号
 - **firmware-version** # 与驱动程序一起使用的固件的版本号
 - **bus-info** # 网卡在系统总线上的位置信息，比如 PCI 总线上的位置

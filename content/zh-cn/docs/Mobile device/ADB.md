@@ -41,7 +41,7 @@ https://blog.51cto.com/u_15549234/5139197
 
 ### ADB 使用
 
-adb 服务端连接到设备之后，就可以使用 adb <font color="#ff0000">客户端向设备发送命令了</font>。最简单直接的方式是使用 `adb shell` 命令打开一个 Shell，这就像使用 [OpenSSH](/docs/1.操作系统/登录%20Linux%20与%20访问控制/Secure%20Shell(SSH)%20安全外壳协议/OpenSSH.md) 类似，可以通过一个 Shell 访问 Android 系统。
+adb 服务端连接到设备之后，就可以使用 adb <font color="#ff0000">客户端向设备发送命令了</font>。最简单直接的方式是使用 `adb shell` 命令打开一个 Shell，这就像使用 [OpenSSH](docs/4.数据通信/Utility/OpenSSH/OpenSSH.md) 类似，可以通过一个 Shell 访问 Android 系统。
 
 > 获取 Root 权限的设备（比如通过 Magisk 授予 Shell 超级用户权限）可以通过 `su` 命令直接切换到 root 用户。
 

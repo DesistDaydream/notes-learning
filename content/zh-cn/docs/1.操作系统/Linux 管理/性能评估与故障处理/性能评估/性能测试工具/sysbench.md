@@ -24,8 +24,8 @@ TestName
 
 ## General OPTIONS
 
-- **--threads <INT>** # 要创建的工作线程总数
-- **--time <DURATION>** # 运行持续时间。单位：秒。`默认值：0`。0 表示没有限制。
+- **--threads \<INT>** # 要创建的工作线程总数
+- **--time \<DURATION>** # 运行持续时间。单位：秒。`默认值：0`。0 表示没有限制。
 
 # Example
 

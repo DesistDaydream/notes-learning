@@ -140,7 +140,7 @@ status 字段表示 Pod 的状态信息。状态可能会落后于系统的实�
 - **containerPort(INTEGER)** # 容器内端口号
 - **name(STRING)** # 端口号的名称，必须在 pod 中唯一。service 可以通过 name 引用端口。
 
-**resources(OJBECT)**# 容器所需的资源。即.所需的 CPU、Memory 等等
+**resources(OJBECT)**# 容器所需的资源。i.e. 所需的 CPU、Memory 等等
 
 - **limits(map\[STRING]STRING)** # 容器可以使用的最大资源
   - **cpu(STRING)** # 定义容器的 CPU 限额

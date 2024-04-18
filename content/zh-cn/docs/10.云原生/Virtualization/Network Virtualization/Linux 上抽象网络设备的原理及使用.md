@@ -1,6 +1,16 @@
 ---
-title: 2.Linux 上抽象网络设备的原理及使用
+title: Linux 上抽象网络设备的原理及使用
+linkTitle: Linux 上抽象网络设备的原理及使用
+date: 2024-04-19T13:55
+weight: 20
 ---
+
+
+# 概述
+
+> 参考：
+>
+> -
 
 # Linux 抽象网络设备简介
 
@@ -63,25 +73,15 @@ VETH 设备总是成对出现，送到一端请求发送的数据总是从另一
 如图所示，当用户尝试 ping 192.168.100.3 时，Linux 将会根据路由表，从 vlan100 子设备发出 ARP 报文，具体过程如下：
 
 1. 用户 ping 192.168.100.3
-
 2. Linux 向 vlan100 子设备发送 ARP 信息。
-
 3. ARP 报文被打上 VLAN ID 100 的 Tag 成为 ARP@vlan100，转发到母设备上。
-
 4. VETH 设备将这一发送请求转变方向，成为一个需要接受处理的报文送入内核网络模块。
-
 5. 由于对端的 VETH 设备被加入到了 bridge0 上，并且内核发现它收到一个报文，于是报文被转发到 bridge0 上。
-
 6. bridge0 处理此 ARP@vlan100 信息，根据 TCP/IP 二层协议发现是一个广播请求，于是向它所知道的所有端口广播此报文，其中一路进入另一对 VETH 设备的一端，一路进入 TAP 设备 tap0，一路进入物理网卡设备 eth0。此时在 tap0 上，用户程序可以通过 read()操作读到 ARP@vlan100，eth0 将会向外界发送 ARP@vlan100，但 eth0 的 VLAN 子设备不会收到它，因为此数据方向为请求发送而不是请求接收。
-
 7. VETH 将请求方向转换，此时在另一端得到请求接受的 ARP@vlan100 报文。
-
 8. 对端 VETH 设备发现有数据需要接受，并且自己有两个 VLAN 子设备，于是执行 VLAN 处理逻辑。其中一个子设备是 vlan100，与 ARP@vlan100 吻合，于是去除 VLAN ID 100 的 Tag 转发到这个子设备上，重新成为标准的以太网 ARP 报文。另一个子设备由于 ID 不吻合，不会得到此报文。
-
 9. 此 VLAN 子设备又被 attach 到另一个桥 bridge1 上，于是转发自己收到的 ARP 报文。
-
 10. bridge1 广播 ARP 报文。
-
 11. 最终另外一个 TAP 设备 tap1 收到此请求发送报文，用户程序通过 read()可以得到它。
 
 ### 从 vlan200 子设备发送 ARP 报文
@@ -129,21 +129,13 @@ VETH 设备总是成对出现，送到一端请求发送的数据总是从另一
 以 Redhat6.2 红帽 Linux 发行版为例，如果已安装 VLAN 内核模块和管理工具 vconfig，TAP/TUN 设备管理工具 tunctl，那么可以用以下命令设置前述网络设备：
 
 - 创建 Bridge：brctl addbr \[BRIDGE NAME]
-
 - 删除 Bridge：brctl delbr \[BRIDGE NAME]
-
 - attach 设备到 Bridge：brctl addif \[BRIDGE NAME] \[DEVICE NAME]
-
 - 从 Bridge detach 设备：brctl delif \[BRIDGE NAME] \[DEVICE NAME]
-
 - 查询 Bridge 情况：brctl show
-
 - 创建 VLAN 设备：vconfig add \[PARENT DEVICE NAME] \[VLAN ID]
-
 - 删除 VLAN 设备：vconfig rem \[VLAN DEVICE NAME]
-
 - 设置 VLAN 设备 flag：vconfig set_flag \[VLAN DEVICE NAME] \[FLAG] \[VALUE]
-
 - 设置 VLAN 设备 qos：
 
 vconfig set_egress_map \[VLAN DEVICE NAME] \[SKB_PRIORITY] \[VLAN_QOS]
@@ -151,15 +143,10 @@ vconfig set_egress_map \[VLAN DEVICE NAME] \[SKB_PRIORITY] \[VLAN_QOS]
 vconfig set_ingress_map \[VLAN DEVICE NAME] \[SKB_PRIORITY] \[VLAN_QOS]
 
 - 查询 VLAN 设备情况：cat /proc/net/vlan/\[VLAN DEVICE NAME]
-
 - 创建 VETH 设备：ip link add link \[DEVICE NAME] type veth
-
 - 创建 TAP 设备：tunctl -p \[TAP DEVICE NAME]
-
 - 删除 TAP 设备：tunctl -d \[TAP DEVICE NAME]
-
 - 查询系统里所有二层设备，包括 VETH/TAP 设备：ip link show
-
 - 删除普通二层设备：ip link delete \[DEVICE NAME] type \[TYPE]
 
 ## 小结

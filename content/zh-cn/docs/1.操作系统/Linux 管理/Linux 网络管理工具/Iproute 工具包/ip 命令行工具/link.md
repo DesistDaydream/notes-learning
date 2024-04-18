@@ -52,46 +52,53 @@ weight: 20
 
 > 注意: 如果请求多个参数更改，则在任何更改失败后，ip 立即中止。当 ip 可以将系统移动到不可预测的状态时，这是唯一的情况。解决方案是避免使用一个 ip 链路集调用更改几个参数。修饰符更改等效于 set。
 
-**ip link set { DEVICE | group GROUP } \[ { up | down } ]**
-**\[ type ETYPE TYPE_ARGS ]**
-**\[ arp { on | off } ]**
-**\[ dynamic { on | off } ]**
-**\[ multicast { on | off } ]**
-**\[ allmulticast { on | off } ]**
-**\[ promisc { on | off } ]**
-**\[ protodown { on | off } ]**
-**\[ trailers { on | off } ]**
-**\[ txqueuelen PACKETS ]**
-**\[ name NEWNAME ]**
-**\[ address LLADDR ]**
-**\[ broadcast LLADDR ]**
-**\[ mtu MTU ]**
-**\[ netns { PID | NETNSNAME } ]**
-**\[ link-netnsid ID ]**
-**\[ alias NAME ]**
-**\[ vf NUM \[ mac LLADDR ]**
-**\[ VFVLAN-LIST ]**
-**\[ rate TXRATE ]**
-**\[ max_tx_rate TXRATE ]**
-**\[ min_tx_rate TXRATE ]**
-**\[ spoofchk { on | off } ]**
-**\[ query_rss { on | off } ]**
-**\[ state { auto | enable | disable } ]**
-**\[ trust { on | off } ]**
-**\[ node_guid eui64 ]**
-**\[ port_guid eui64 ] ]**
-**\[ { xdp | xdpgeneric | xdpdrv | xdpoffload } { off |**
-**object FILE \[ section NAME ] \[ verbose ] |**
-**pinned FILE } ]**
-**\[ master DEVICE ]**
-**\[ nomaster ]**
-**\[ vrf NAME ]**
-**\[ addrgenmode { eui64 | none | stable_secret | random } ]**
-**\[ macaddr \[ MACADDR ]**
-**\[ { flush | add | del } MACADDR ]**
-**\[ set MACADDR ] ]**
+```bash
+ip link set { DEVICE | group GROUP } [ { up | down } ]
+[ type ETYPE TYPE_ARGS ]
+[ arp { on | off } ]
+[ dynamic { on | off } ]
+[ multicast { on | off } ]
+[ allmulticast { on | off } ]
+[ promisc { on | off } ]
+[ protodown { on | off } ]
+[ trailers { on | off } ]
+[ txqueuelen PACKETS ]
+[ name NEWNAME ]
+[ address LLADDR ]
+[ broadcast LLADDR ]
+[ mtu MTU ]
+[ netns { PID | NETNSNAME } ]
+[ link-netnsid ID ]
+[ alias NAME ]
+[ vf NUM [ mac LLADDR ]
+[ VFVLAN-LIST ]
+[ rate TXRATE ]
+[ max_tx_rate TXRATE ]
+[ min_tx_rate TXRATE ]
+[ spoofchk { on | off } ]
+[ query_rss { on | off } ]
+[ state { auto | enable | disable } ]
+[ trust { on | off } ]
+[ node_guid eui64 ]
+[ port_guid eui64 ] ]
+[ { xdp | xdpgeneric | xdpdrv | xdpoffload } { off |
+object FILE [ section NAME ] [ verbose ] |
+pinned FILE } ]
+[ master DEVICE ]
+[ nomaster ]
+[ vrf NAME ]
+[ addrgenmode { eui64 | none | stable_secret | random } ]
+[ macaddr [ MACADDR ]
+[ { flush | add | del } MACADDR ]
+[ set MACADDR ] ]
+```
 
 # show - 显示设备属性
+
+>[!Notes]
+> show 命令无法显示网络设备的类型。想要查看网络设备的类型，可以通过与 [ethtool](docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/ethtool.md) 工具配置实现
+> 
+> `for i in $(ip link show | awk -F: '$0 !~ "lo|vir|wl|^[^0-9]"{print $2;getline}'); do ethtool -i $i | grep driver; done`
 
 **ip link show \[ DEVICE | group GROUP ] \[ up ] \[ master DEVICE ] \[ type ETYPE ] \[ vrf NAME ]**
 
@@ -99,6 +106,8 @@ weight: 20
 
 - 显示链路详细信息，包括接收与发送的数据包数以及错误数，丢弃数等
   - ip -s link show
+- 查看所有 bridge 类型的网络设备
+  - ip link show type bridge
 - 启动或者停止 eth0 网卡，可以简写为 `ip l s eth0 up`
   - ip link set dev eth0 up|down
 - 添加名字为 veth1.1 的链路，类型为 veth，veth 的另一半名字为 veth1.2
@@ -107,8 +116,6 @@ weight: 20
   - ip link set veth1.1 netns r1
 - 将 vnet0 设备绑定到 br0 桥上
   - ip link set dev vnet0 master br0
-- 查看所有 bridge 类型的网络设备
-  - ip link show type bridge
 - 创建 Bond 类型网络设备
   - 创建 802.3ad 模式的 Bond 类型网络设备
     - ip link add bond1 type bond mod 802.3ad

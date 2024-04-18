@@ -1,10 +1,15 @@
 ---
-title: 流量伪装
+title: Wireguard 流量伪装
+linkTitle: Wireguard 流量伪装
+date: 2024-04-19T23:33
+weight: 20
 ---
 
 # 概述
 
 > 参考：
+>
+> -
 
 WireGuard 在国内网络环境下会遇到一个致命的问题：**UDP 封锁/限速**。虽然通过 WireGuard 可以在隧道内传输任何基于 IP 的协议（TCP、UDP、ICMP、SCTP、IPIP、GRE 等），但 WireGuard 隧道本身是通过 UDP 协议进行通信的，而国内运营商根本没有能力和精力根据 TCP 和 UDP 的不同去深度定制不同的 QoS 策略，几乎全部采取一刀切的手段：对 UDP 进行限速甚至封锁。
 

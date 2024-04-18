@@ -1,8 +1,18 @@
 ---
-title: 云计算底层技术-虚拟网络设备(Bridge,VLAN)   opengers
+title: 虚拟网络设备(Bridge,VLAN)
+linkTitle: 虚拟网络设备(Bridge,VLAN)
+date: 2024-04-19T13:03
+weight: 20
 ---
 
-#
+
+
+# 概述
+
+> 参考：
+>
+> -
+
 
 # 云计算底层技术-虚拟网络设备(Bridge,VLAN)
 
@@ -16,17 +26,21 @@ OpenStack 一般分为计算，存储，网络三部分。考虑构建一个灵�
 
 文中会牵涉虚拟机，所以文中出现的”主机”一词明确表示一台物理机，”接口”指挂载到网桥上的网络设备，环境如下：
 
-    CentOS Linux release 7.3.1611 (Core)
-    Linux controller 3.10.0-514.16.1.el7.x86_64 #1 SMP Wed Apr 12 15:04:24 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+```
+CentOS Linux release 7.3.1611 (Core)
+Linux controller 3.10.0-514.16.1.el7.x86_64 #1 SMP Wed Apr 12 15:04:24 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
 
-    OpenStack社区版 Newton
+OpenStack社区版 Newton
+```
 
 Linux Bridge
 
 内核模块`bridge`
 
-    [root@controller ~]# modinfo bridge
-    filename:       /lib/modules/3.10.0-514.16.1.el7.x86_64/kernel/net/bridge/bridge.ko
+```bash
+[root@controller ~]# modinfo bridge
+filename:       /lib/modules/3.10.0-514.16.1.el7.x86_64/kernel/net/bridge/bridge.ko
+```
 
 Bridge 是 Linux 上工作在内核协议栈二层的虚拟交换机，虽然是软件实现的，但它与普通的二层物理交换机功能一样。可以添加若干个网络设备(em1,eth0,tap,..)到 Bridge 上(`brctl addif`)作为其接口，添加到 Bridge 上的设备被设置为只接受二层数据帧并且转发所有收到的数据包到 Bridge 中(bridge 内核模块)，在 Bridge 中会进行一个类似物理交换机的查 MAC 端口映射表，转发，更新 MAC 端口映射表这样的处理逻辑，从而数据包可以被转发到另一个接口/丢弃/广播/发往上层协议栈，由此 Bridge 实现了数据转发的功能。如果使用`tcpdump`在 Bridge 接口上抓包，是可以抓到桥上所有接口进出的包跟物理交换机不同的是，运行 Bridge 的是一个 Linux 主机，Linux 主机本身也需要 IP 地址与其它设备通信。但被添加到 Bridge 上的网卡是不能配置 IP 地址的，他们工作在数据链路层，对路由系统不可见。不过 Bridge 本身可以设置 IP 地址，可以认为当使用`brctl addbr br0`新建一个`br0`网桥时，系统自动创建了一个同名的隐藏`br0`网络设备。`br0`一旦设置 IP 地址，就意味着`br0`可以作为路由接口设备，参与 IP 层的路由选择(可以使用`route -n`查看最后一列`Iface`)。因此只有当`br0`设置 IP 地址时，Bridge 才有可能将数据包发往上层协议栈。
 

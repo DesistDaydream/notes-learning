@@ -14,7 +14,7 @@ title: rule 与 route
 route 可以操作内核路由表中的**条目**。直接使用命令可以列出 main 路由表中的条目：
 
 ```bash
-root@lichenhao:~# ip route
+~]# ip route
 default via 172.19.42.1 dev ens3 proto static
 172.19.42.0/24 dev ens3 proto kernel scope link src 172.19.42.248
 ```

@@ -12,8 +12,10 @@ snmpwalk 与 snmpget 使用 snmp 协议的 GETNEXT 请求，向 SNMP 代理发�
 ## snmpwalk 配置
 
 **/etc/snmp/snmp.conf** # snmpwalk 运行时配置文件。若不存在则手动创建
+
 **/usr/local/share/snmp/mibs** # MIB 文件的默认路径。这里现阶段包含 66 个 MIB 文件。
-net-snmp-config --default-mibdirs 命令可以列出工具在使用中会读取 MIB 文件的路径，包括如下几个。
+
+`net-snmp-config --default-mibdirs` 命令可以列出工具在使用中会读取 MIB 文件的路径，包括如下几个。
 
 - 注意，CentOS 和 Ubuntu 的路径可能不相同。这种老程序是真滴坑。
 - **$HOME/.snmp/mibs**
@@ -25,7 +27,9 @@ net-snmp-config --default-mibdirs 命令可以列出工具在使用中会读取 
 
 在 /etc/snmp/snmp.conf 文件中添加如下内容
 
-    mibdirs +/root/.snmp/mibs/h3c
+```bash
+mibdirs +/root/.snmp/mibs/h3c
+```
 
 在 /root/.snmp/mibs/h3c 目录下添加 MIB 文件后，snmpwalk 就可以获取到第三方 MIB 信息。
 
@@ -40,6 +44,7 @@ mibs +HH3C-SERVER-TRAP-MIB
 ## snmpwalk
 
 **snmpwalk \[OPTIONS] AGENT \[OID]**
+
 OPTIONS
 
 - **-l \<noAuthNoPriv | authNoPriv | authPriv>** # 设置安全级别
@@ -82,7 +87,7 @@ EXAMPLE
 > 参考：
 > 
 > - [官方文档](http://net-snmp.sourceforge.net/docs/man/snmptranslate.html)
-> - [man 手册](https://man.cx/snmptranslate)
+> - [Manual(手册)](https://man.cx/snmptranslate)
 
 在数字格式和文本格式之间转换 MIB 的 OID
 

@@ -1,6 +1,8 @@
 ---
-title: Secure Shell(SSH) 安全外壳协议
-weight: 1
+title: Secure Shell Protocol
+linkTitle: Secure Shell Protocol
+date: 2024-04-19T10:30
+weight: 20
 ---
 
 # 概述

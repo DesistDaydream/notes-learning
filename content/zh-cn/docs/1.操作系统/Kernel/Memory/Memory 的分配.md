@@ -14,6 +14,7 @@ weight: 2
 ### Linux 进程的内存分布长什么样？
 
 在 Linux 操作系统中，虚拟地址空间的内部又被分为**内核空间和用户空间**两部分，不同位数的系统，地址空间的范围也不同。比如最常见的 32 位和 64 位系统，如下所示：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/qcafxw/1647849537444-83cb3179-0921-484f-942a-7b6d033ae1dc.jpeg)
 
 通过这张图你可以看到，用户空间内存从**低到高**分别是 6 种不同的内存段：
@@ -31,7 +32,9 @@ weight: 2
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/qcafxw/1647849537507-75fe030f-a12b-49df-bfce-577a2b2d85d4.jpeg)
 
 接下来，进一步了解虚拟空间的划分情况，用户空间和内核空间划分的方式是不同的，内核空间的分布情况就不多说了。
+
 我们看看用户空间分布的情况，以 32 位系统为例，我画了一张图来表示它们的关系：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/qcafxw/1647849537503-d90ad8ad-2ce1-4231-b2b8-f14d7f38112f.png)
 
 - 程序文件段，包括二进制可执行代码；

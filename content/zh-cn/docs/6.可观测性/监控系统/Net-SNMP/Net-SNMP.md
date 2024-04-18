@@ -1,10 +1,14 @@
 ---
 title: Net-SNMP
+linkTitle: Net-SNMP
+date: 2024-04-19T09:41
+weight: 20
 ---
 
 # 概述
 
 > 参考：
+> 
 > - [官网](http://net-snmp.sourceforge.net/)
 
 Net-SNMP 是实现 SNMP 的工具和库的集合。包含如下内容：
@@ -44,5 +48,7 @@ apt-get install snmp snmp-mibs-downloader
 # net-snmp 关联文件
 
 **/etc/snmp/snmpd.conf** # snmpd 根据该文件定义运行时行为
-**/etc/snmp/snmp.conf** # net-snmp-utils 包中的相关工具所用的配置文件。snmpd 也会从这个文件中指定的 MIB 路径中加载 MIB 信息。
+
+**/etc/snmp/snmp.conf** # net-snmp-utils 包中的相关工具所用的配置文件。snmpd 也会从这个文件中指定的 MIB 路径中加载 MIB 信息
+
 **/etc/snmp/snmptrapd.conf** # snmptrapd 运行时配置文件
