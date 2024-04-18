@@ -221,15 +221,15 @@ import "fmt"
 var _ Study = (*study)(nil)
 
 type study struct {
- Name string
+    Name string
 }
 
 type Study interface {
- Listen(message string) string
+    Listen(message string) string
 }
 
 func main() {
- fmt.Println("hello world")
+    fmt.Println("hello world")
 }
 ```
 
@@ -255,12 +255,12 @@ func main() {
 package study
 
 type Study interface {
- Listen(message string) string
- i()
+    Listen(message string) string
+    i()
 }
 
 func Speak(s Study) string {
- return s.Listen("abc")
+    return s.Listen("abc")
 }
 ```
 
@@ -268,18 +268,18 @@ func Speak(s Study) string {
 package main
 
 type stu struct {
- Name string
+    Name string
 }
 
 func (s *stu) Listen(message string) string {
- return s.Name + " 听 " + message
+    return s.Name + " 听 " + message
 }
 
 func (s *stu) i() {}
 
 func main() {
- message := study.Speak(new(stu))
- fmt.Println(message)
+    message := study.Speak(new(stu))
+    fmt.Println(message)
 }
 ```
 
@@ -332,14 +332,14 @@ USB 接口规定了他可以处理 `Start()` 和 `End()` 两个方法，这与�
 
 ```go
 type USB interface {
- Start()
- End()
+    Start()
+    End()
 }
 
 func OperatorRead(u USB) {
- u.Start()
+    u.Start()
     fmt.Printf("当前连接设备的信息为：%v\n", u)
- u.End()
+    u.End()
 }
 ```
 
@@ -352,23 +352,23 @@ USB 接口的意思就是，我不管要插我的是什么，鼠标键盘也罢�
 ```go
 // KingstonDisk 金士顿牌移动硬盘
 type KingstonDisk struct {
- Name string
- Type string
- Data string
+    Name string
+    Type string
+    Data string
 }
 
 // NewKingstonDisk is
 func NewKingstonDisk() *KingstonDisk {
- return &KingstonDisk{
-  Name: "A1",
-  Type: "SSD",
-  Data: "KingstonDisk fastest SSD",
- }
+    return &KingstonDisk{
+        Name: "A1",
+        Type: "SSD",
+        Data: "KingstonDisk fastest SSD",
+    }
 }
 
 // Start is
 func (k *KingstonDisk) Start() {
- fmt.Println("金士顿SSD硬盘已连接")
+    fmt.Println("金士顿SSD硬盘已连接")
 }
 
 // End is
@@ -381,9 +381,8 @@ func (k *KingstonDisk) End() {
 
 ```go
 func main() {
- //
- k := NewKingstonDisk()
- usbinterface.OperatorRead(k)
+    k := NewKingstonDisk()
+    usbinterface.OperatorRead(k)
 }
 ```
 
@@ -407,15 +406,15 @@ import "fmt"
 
 // USB is
 type USB interface {
- Start()
- End()
+    Start()
+    End()
 }
 
 // OperatorRead 启动插入接口的设备并从中读取信息读取、读取后结束
 func OperatorRead(u USB) {
- u.Start()
- fmt.Printf("当前连接设备的信息为：%v\n", u)
- u.End()
+    u.Start()
+    fmt.Printf("当前连接设备的信息为：%v\n", u)
+    u.End()
 }
 ```
 
@@ -428,28 +427,28 @@ import "fmt"
 
 // KingstonDisk 金士顿牌移动硬盘
 type KingstonDisk struct {
- Name string
- Type string
- Data string
+    Name string
+    Type string
+    Data string
 }
 
 // NewKingstonDisk is
 func NewKingstonDisk() *KingstonDisk {
- return &KingstonDisk{
-  Name: "A1",
-  Type: "SSD",
-  Data: "KingstonDisk fastest SSD",
- }
+    return &KingstonDisk{
+        Name: "A1",
+        Type: "SSD",
+        Data: "KingstonDisk fastest SSD",
+    }
 }
 
 // Start is
 func (k *KingstonDisk) Start() {
- fmt.Println("金士顿SSD硬盘已连接")
+    fmt.Println("金士顿SSD硬盘已连接")
 }
 
 // End is
 func (k *KingstonDisk) End() {
- //
+    //
 }
 ```
 
@@ -459,14 +458,13 @@ func (k *KingstonDisk) End() {
 package main
 
 import (
-
- usbinterface "github.com/DesistDaydream/GoLearning/practice/usb_interface/usb_interface"
- usbdevice "github.com/DesistDaydream/GoLearning/practice/usb_interface/usb_device"
+    usbinterface "github.com/DesistDaydream/GoLearning/practice/usb_interface/usb_interface"
+    usbdevice "github.com/DesistDaydream/GoLearning/practice/usb_interface/usb_device"
 )
 
 func main() {
- k := usbdevice.NewKingstonDisk()
- usbinterface.OperatorRead(k)
+    k := usbdevice.NewKingstonDisk()
+    usbinterface.OperatorRead(k)
 }
 ```
 
@@ -495,18 +493,18 @@ func main() {
 比如我现在在 `main()` 中声明一个 map，key 设置为 USB 接口类型，value 设置为 bool 类型。当我们给这个 map 设置值的时候，凡是实现了这个接口的结构体，都可以作为该 map 的 key 使用。并且在输出 map 时，可以根据这个 key 来输出。
 
 ```go
- // usbs 测试接口多态效果，
- usbs := map[usbinterface.USB]bool{
-  &usbdevice.KingstonDisk{}: true,
-  &usbdevice.Mouse{}:        true, // 这是后面讲到的另一个实现了接口的结构体
- }
- fmt.Println(usbs)
+    // usbs 测试接口多态效果，
+    usbs := map[usbinterface.USB]bool{
+        &usbdevice.KingstonDisk{}: true,
+        &usbdevice.Mouse{}:        true, // 这是后面讲到的另一个实现了接口的结构体
+    }
+    fmt.Println(usbs)
 
- // 这是一个最简单的，把接口当作变量，把结构体当作值，然后调用接口下方法的例子
- // 此时 结构体=方法，所以在调用作用在 usbVar 变量上的方法，实际上就是 func (k *KingstonDisk) Start() {}
- var usbsVar usbinterface.USB
- usbsVar = usbdevice.KingstonDisk()
- usbsVar.Start()
+    // 这是一个最简单的，把接口当作变量，把结构体当作值，然后调用接口下方法的例子
+    // 此时 结构体=方法，所以在调用作用在 usbVar 变量上的方法，实际上就是 func (k *KingstonDisk) Start() {}
+    var usbsVar usbinterface.USB
+    usbsVar = usbdevice.KingstonDisk()
+    usbsVar.Start()
 ```
 
 输出结果：
@@ -536,9 +534,9 @@ map[0xc00005c1e0:true]
 package usbinterface
 
 import (
- "fmt"
-
- usbdevice "github.com/DesistDaydream/GoLearning/practice/usb_interface/usb_device"
+    "fmt"
+    
+    usbdevice "github.com/DesistDaydream/GoLearning/practice/usb_interface/usb_device"
 )
 
 // USB 接口
@@ -549,9 +547,9 @@ import (
 
 // OperatorRead 启动插入接口的设备并从中读取信息读取、读取后结束
 func OperatorRead(u *usbdevice.KingstonDisk) {
- u.Start()
- fmt.Printf("当前连接的设备信息为：%v\n", u)
- u.End()
+    u.Start()
+    fmt.Printf("当前连接的设备信息为：%v\n", u)
+    u.End()
 }
 ```
 
@@ -566,16 +564,16 @@ func OperatorRead(u *usbdevice.KingstonDisk) {
 ```go
 // OperatorRead 启动插入接口的设备并从中读取信息读取、读取后结束
 func OperatorRead(u *usbdevice.KingstonDisk) {
- u.Start()
- fmt.Printf("当前连接的设备信息为：%v\n", u)
- u.End()
+    u.Start()
+    fmt.Printf("当前连接的设备信息为：%v\n", u)
+    u.End()
 }
 
 // OperatorRead 启动插入接口的设备并从中读取信息读取、读取后结束
 func OperatorRead2(u *usbdevice.Mouse) {
- u.Start()
- fmt.Printf("当前连接的设备信息为：%v\n", u)
- u.End()
+    u.Start()
+    fmt.Printf("当前连接的设备信息为：%v\n", u)
+    u.End()
 }
 ```
 
@@ -583,10 +581,10 @@ func OperatorRead2(u *usbdevice.Mouse) {
 
 ```go
 func main() {
- k := usbdevice.NewKingstonDisk()
- usbinterface.OperatorRead(k)
- m:=usbdevice.NewMouse()
- usbinterface.OperatorReadMouse(m)
+    k := usbdevice.NewKingstonDisk()
+    usbinterface.OperatorRead(k)
+    m:=usbdevice.NewMouse()
+    usbinterface.OperatorReadMouse(m)
 }
 ```
 
@@ -600,10 +598,10 @@ func main() {
 
 ```go
 func main() {
- k := usbdevice.NewKingstonDisk()
- usbinterface.OperatorRead(k)
- m := usbdevice.NewMouse()
- usbinterface.OperatorRead(m)
+    k := usbdevice.NewKingstonDisk()
+    usbinterface.OperatorRead(k)
+    m := usbdevice.NewMouse()
+    usbinterface.OperatorRead(m)
 }
 ```
 

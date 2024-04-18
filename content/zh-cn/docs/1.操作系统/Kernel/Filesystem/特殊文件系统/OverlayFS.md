@@ -131,6 +131,3 @@ overlay on /var/lib/docker/overlay2/f4356a8f14342008fc298bf3d313b863d10f30ef44
 
 本节，我为你介绍了 OverlayFS 及 Overlay2 存储驱动相关的内容。通过实际启动容器生成的相关目录来介绍 overlay2 的工作流程，想必通过这种方式能更易理解。
 
-# 分类
-
- #文件系统

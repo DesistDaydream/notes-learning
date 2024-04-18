@@ -3,6 +3,10 @@ title: Nginx
 linkTitle: Nginx
 weight: 1
 date: 2023-11-02T10:39
+tags:
+  - Proxy
+  - Network
+  - Web
 ---
 
 # 概述
@@ -186,6 +190,3 @@ http {
 
 - `nginx -g 'daemon off;'`
 
-# 分类
-
-> #代理 #网络 #Web

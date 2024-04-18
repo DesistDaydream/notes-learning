@@ -58,6 +58,4 @@ service Unit 是 systemd 使用数量最多，使用频率最高的单元。
 - **notify** # 当前服务启动完毕，会通知 Systemd，再继续往下执行
 - **idle** # 若有其他任务执行完毕，当前服务才会运行
 
-# 分类
 
-> #systemd #unit-file #service

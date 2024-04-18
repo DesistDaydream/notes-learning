@@ -243,6 +243,3 @@ root@RPM /sys$ ls power/
 pm_async      pm_test       state         wakeup_count
 ```
 
-# 分类
-
- #文件系统

@@ -47,7 +47,3 @@ File System(文件系统) 要解决的一个关键问题是怎样防止掉电或
 一个更高效的方式是 Metadata Journaling，不把 user data(用户数据) 记录在日志中，它防止数据损坏的方法是先写入 user data(用户数据)、再写日志，即在上述 ”Journal write” 之前先写用户数据，这样就保证了只要日志是有效的，那么它对应的用户数据也是有效的，一旦发生掉电故障，最坏的结果也就是最后一条日志没记完，那么对应的用户数据也会丢，效果与 Data Journaling 丢弃日志一样，重要的是文件系统的一致性和完整性是有保证的。
 
 Metadata Journaling 又叫 Ordered Journaling，大多数文件系统都采用这种方式。像 Linux EXT3 文件系统也是可以选择 Data Journaling 还是 Ordered Journaling 的。
-
-# 分类
-
- #文件系统

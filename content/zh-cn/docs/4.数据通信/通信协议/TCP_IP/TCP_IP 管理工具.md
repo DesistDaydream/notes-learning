@@ -24,7 +24,3 @@ https://ip.netarm.com
 http://ip.cip.cc
 http://ip.sb
 https://geo.ipify.org/docs
-
-# 分类
-
- #网络 #TCP/IP

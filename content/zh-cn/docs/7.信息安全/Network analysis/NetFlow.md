@@ -51,5 +51,3 @@ NetFlow（网络流量流）和DPI（深度数据包检测）是两种不同的�
 # 分类
 
 Wiki 中的分类: [Computer network analysis](https://en.wikipedia.org/wiki/Category:Computer_network_analysis)，还分类下还包括 [Network analyers](https://en.wikipedia.org/wiki/Category:Network_analyzers)，这里有 DPI
-
-> #network #security

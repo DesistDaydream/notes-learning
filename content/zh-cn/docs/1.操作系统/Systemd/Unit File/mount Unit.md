@@ -254,6 +254,3 @@ mount 单元既可以通过单元文件进行配置， 也可以通过 /etc/fsta
 <https://blog.csdn.net/richerg85/article/details/17917129>
 [https://wiki.archlinux.org/index.php/Fstab\_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)](<https://wiki.archlinux.org/index.php/Fstab_(%25E7%25AE%2580%25E4%25BD%2593%25E4%25B8%25AD%25E6%2596%2587)>)
 
-# 分类
-
- > #systemd #unit-file

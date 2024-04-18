@@ -59,7 +59,6 @@ then you can drag as you like
 ## Templater
 
 - https://github.com/SilentVoid13/Templater
-- 
 
 比官方自带的模板功能更强大
 
@@ -74,6 +73,26 @@ then you can drag as you like
 ## Image Toolkit
 
 可以在 Obsidian 中打开图片
+
+# 最佳实践
+
+[用 Git 在 Android 和 Windows 间同步 Obsidian 数据库](https://sspai.com/post/68989)
+
+- Android 上使用了 MGit 工具
+
+## Properties vs Tags
+
+https://forum.obsidian.md/t/the-remaining-advantages-of-tags-over-properties-in-obsidian/69436?page=2
+
+先有的 Tag 后有的 Properties
+
+老式 Tag 需要在文章内部使用 `#STRING` 来标识
+
+Property 可以在开头的 `---` 包裹的文章元数据中使用 tags 关键字添加 Tag。
+
+个人感觉只有在一个知识点被用在多个大类的情况下，才需要添加标签，否则该知识点通过目录即可进行分类，比如一个程序又属于网络工具，又属于安全工具，那么若是放在安全目录下则可以添加网络标签，放在网络目录下则可以添加安全标签。
+
+或者某个知识点的文章，不太好分类，甚至具有嵌套类型等，都可以通过标签解决。
 
 # 常见问题
 

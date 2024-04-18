@@ -30,7 +30,3 @@ Tar 是一种计算机应用程序，用于将许多文件汇集到一个 **Arch
 > 参考：
 > 
 > - [Wiki，Data compression](https://en.wikipedia.org/wiki/Data_compression)(数据压缩)
-
-# 分类
-
-> #文件系统 #文件

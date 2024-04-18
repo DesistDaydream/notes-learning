@@ -20,7 +20,3 @@ weight: 20
 > - [Wiki，Filesystem_in_Userspace](https://en.wikipedia.org/wiki/Filesystem_in_Userspace)
 
 **Filesystem in Userspace(用户空间中的文件系统，简称 FUSE)**
-
-# 分类
-
- > #文件系统

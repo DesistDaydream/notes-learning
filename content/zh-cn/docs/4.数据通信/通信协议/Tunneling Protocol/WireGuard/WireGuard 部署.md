@@ -235,6 +235,3 @@ $ ip route show table local
 $ ip route get 192.0.2.3
 ```
 
-# 分类
-
-> #网络 #隧道协议 #Wireguard

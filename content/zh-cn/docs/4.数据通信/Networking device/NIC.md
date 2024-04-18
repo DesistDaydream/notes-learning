@@ -15,6 +15,4 @@ weight: 2
 
 > 很多时候口语化表达为 **网卡**。还有 Network interface card(网络接口卡)、Network adapter(网络适配器)、LAN adapter(LAN适配器)、Physical network interface(物理网络接口) 等描述都是用来形容网卡的。
 
-# 分类
 
-> #网络硬件

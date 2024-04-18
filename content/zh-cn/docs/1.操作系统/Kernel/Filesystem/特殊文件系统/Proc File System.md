@@ -370,7 +370,3 @@ cpu47  200     0     134       4147222     10       0     0        0     0      
 
 1. cat /proc/net/bonding/\* # 在该目录查看网卡 bonding 信息
 2. cat /proc/cpuinfo # 查看 CPU 信息
-
-# 分类
-
-> #文件系统

@@ -1,7 +1,9 @@
 ---
-title: "PyTorch"
-linkTitle: "PyTorch"
+title: PyTorch
+linkTitle: PyTorch
 weight: 20
+tags:
+  - Python
 ---
 
 # 概述
@@ -36,7 +38,3 @@ GPU 版的 PyTorch 依赖 CUDA
 # 学习
 
 [B 站，10分钟入门神经网络 PyTorch 手写数字识别](https://www.bilibili.com/video/BV1GC4y15736)
-
-# 分类
-
- > #人工智能 #机器学习 #Python

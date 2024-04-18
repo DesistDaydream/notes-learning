@@ -197,6 +197,3 @@ usr 是哪个的缩写一般无法准确，就现在来看，unix share resource
 - **/var/spool** # 放置“假脱机(spool)”程序的目录，如 mail、 news、打印队列和其他队列工作的目录。每个不同的 spool 在/var/spool 下有自己的子目录，例如，用户的邮箱就存放在/var/spool/mail 中。
 - **/var/tmp** # 比/tmp 允许更大的或需要存在较长时间的临时文件。注意系统管理 员可能不允许/var/tmp 有很旧的文件。
 
-# 分类
-
-> #文件系统

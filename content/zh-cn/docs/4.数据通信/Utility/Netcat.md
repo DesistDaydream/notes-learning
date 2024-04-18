@@ -3,6 +3,8 @@ title: Netcat
 linkTitle: Netcat
 date: 2024-03-20T08:57
 weight: 20
+tags:
+  - Network_analyzer
 ---
 
 # 概述
@@ -10,17 +12,14 @@ weight: 20
 > 参考：
 > 
 > - [Wike，Netcat](https://en.wikipedia.org/wiki/Netcat)
-> - [Nmap 官网](https://nmap.org/)
-> - [Nmap 官网-Ncat](https://nmap.org/ncat/)
 > - [Ncat Manual(手册)](https://nmap.org/book/ncat-man.html)
-> - [OpenBSD-nc Manual(手册)](https://man.openbsd.org/nc)
 > - <https://zhuanlan.zhihu.com/p/83959309>
 
 Netcat 是一个简单的实用程序通过 TCP 或 UDP 网络连接读取和写入数据。它旨在成为一个可靠的后端工具，可直接使用或轻松由其他程序和脚本驱动。同时，它还是一个功能丰富的网络调试和探索工具，因为它几乎可以创建您需要的任何类型的连接，包括端口绑定以接受传入连接。
 
 由于 Netcat 的设计理念和功能，被人亲切的亲切得称为 **网络工具中的瑞士军刀**
 
-最初的 Netcat 是由霍比特人于 1995 年[发布](http://seclists.org/bugtraq/1995/Oct/0028.html)的，尽管它很受欢迎，但它并没有得到维护。有时甚至很难找到[v1.10 源代码的副本](http://download.insecure.org/stf/nc110.tgz)。该工具的灵活性和实用性促使 Nmap 项目产生[Ncat](http://nmap.org/ncat/)，这是一种支持 SSL、IPv6、SOCKS 和 http 代理、连接代理等的现代重新实现。除了 Nmap 项目重新了 Netcat，还有很多重写甚至扩展了 Netcat 的工具
+最初的 Netcat 是由 hobbit 于 1995 年[发布](http://seclists.org/bugtraq/1995/Oct/0028.html)的，尽管它很受欢迎，但它并没有得到维护。有时甚至很难找到[v1.10 源代码的副本](http://download.insecure.org/stf/nc110.tgz)。该工具的灵活性和实用性促使 Nmap 项目产生 [Ncat](#Ncat))，这是一种支持 SSL、IPv6、SOCKS 和 http 代理、连接代理等的现代重新实现。除了 Nmap 项目重新了 Netcat，还有很多重写甚至扩展了 Netcat 的工具
 
 - [Socat](https://sectools.org/tool/socat/)
 - [OpenBSD 的 Netcat](http://www.openbsd.org/cgi-bin/cvsweb/src/usr.bin/nc/)
@@ -34,17 +33,27 @@ Netcat 是一个简单的实用程序通过 TCP 或 UDP 网络连接读取和写
 
 ## Ncat
 
+> 参考：
+> 
+> - [Nmap，ncat](http://nmap.org/ncat/)
+
 Ncat 是一个功能丰富的网络实用程序，它可以从命令行跨网络读取和写入数据。Ncat 由 Nmap 项目编写的，是对古老的 [Netcat](http://sectools.org/tool/netcat/) 的大大改进的重新实现。它同时使用 TCP 和 UDP 进行通信，并被设计为一种可靠的后端工具，可立即为其他应用程序和用户提供网络连接。Ncat 不仅适用于 IPv4 和 IPv6，还为用户提供了几乎无限的潜在用途。
 
 在 Ncat 的众多功能中，包括将 Ncat 链接在一起、将 TCP 和 UDP 端口重定向到其他站点、SSL 支持以及通过 SOCKS4 或 HTTP（CONNECT 方法）代理（以及可选的代理身份验证）进行代理连接的能力。一些通用原则适用于大多数应用程序，从而使您能够立即向通常不支持它的软件添加网络支持。
 
-Ncat 与 Nmap 集成，可在 Nmap 下载页面提供的标准 Nmap 下载包（包括源代码和 Linux、Windows 和 Mac 二进制文件）中找到。。您也可以在我们的[SVN 源代码存储库中](http://nmap.org/book/install.html#inst-svn)找到它。
+Ncat 与 Nmap 集成，可在 Nmap 下载页面提供的标准 Nmap 下载包（包括源代码和 Linux、Windows 和 Mac 二进制文件）中找到。。也可以再 [SVN 源代码存储库中](http://nmap.org/book/install.html#inst-svn)找到它。
 
-许多用户要求提供一个静态编译的 ncat.exe 版本，他们可以将其放在 Windows 系统上并使用，而无需运行任何安装程序或复制额外的库文件。我们已经构建了一个静态编译的 Windows 二进制版本的 Ncat 5.59BETA1。您可以在[此处](http://nmap.org/dist/ncat-portable-5.59BETA1.zip)下载 zip 文件。为确保文件未被篡改，您可以检查[加密签名](http://nmap.org/book/install.html#inst-integrity)。如果您需要更新的 Ncat 版本的便携版本，请参阅[Ncat 便携编译说明](https://secwiki.org/w/Nmap/Ncat_Portable)。
+许多用户要求提供一个静态编译的 ncat.exe 版本，他们可以将其放在 Windows 系统上并使用，而无需运行任何安装程序或复制额外的库文件。我们已经构建了一个静态编译的 Windows 二进制版本。可以在[此处](http://nmap.org/dist/ncat-portable-5.59BETA1.zip)下载 zip 文件。为确保文件未被篡改，可以检查[加密签名](http://nmap.org/book/install.html#inst-integrity)。如果您需要更新的 Ncat 版本的便携版本，请参阅 [Ncat 便携编译说明](https://secwiki.org/w/Nmap/Ncat_Portable)。
 
 该 [NCAT 用户指南](https://nmap.org/ncat/guide/index.html)包含完整的文档，包括很多技巧，窍门和实用现实生活的例子！还有一个[Ncat 手册页](https://nmap.org/book/ncat-man.html)用于快速使用摘要。
 
 ## OpenBSD Netcat
+
+> 参考：
+>
+> - [OpenBSD-nc Manual(手册)](https://man.openbsd.org/nc)
+
+由 OpenBSD 对原始 Netcat 的更新支持
 
 # Netcat 安装
 
@@ -81,7 +90,7 @@ Ncat 与 OpenBSD-nc 这两个程序的选项有不同的地方
 
 ### Ncat OPTIONS
 
-- **--proxy <ADDRESS:[PORT]>** # 连接目的地时所使用代理 IP 和 PORT。
+- **--proxy <ADDRESS:\[PORT]>** # 连接目的地时所使用代理 IP 和 PORT。
 - **--proxy-type \<STRING>** # 连接目的地时所使用的代理类型(也就是代理协议)。可用的值有：
   - socks4 # 表示 SOCKS v.4
   - socks5 # 表示 SOCKS v.5。默认值
@@ -128,21 +137,3 @@ Connection to localhost 323 port [udp/*] succeeded!
 
 解决：下载 7.80 版本即可，将下载连接的版本号改为 7.80 即可下载。
 
-# Nmap
-
-> 参考：
-> 
-> - [Manual(手册)，NMAP(1)](https://nmap.org/book/man.html)
-
-**Network Mapper(网络映射器，简称 Nmap)** 是一个用于网络探索和安全审计的开源工具。旨在快速扫描大型网络。
-
-## Syntax(语法)
-
-**nmap \[Scan Type...] \[OPTIONS] {TARGET}**
-
-- **Scan Type(扫描类型)** #
-- **TARGET** # 扫描目标
-
-直接使用 `nmap IP` 即可开始一个简单的扫描任务
-
-## EXAMPLE

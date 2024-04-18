@@ -92,6 +92,3 @@ https://man7.org/linux/man-pages/man5/systemd.exec.5.html#ENVIRONMENT
 
 https://man7.org/linux/man-pages/man5/systemd.exec.5.html#LOGGING_AND_STANDARD_INPUT/OUTPUT
 
-# 分类
-
-> #systemd #unit-file

@@ -191,6 +191,3 @@ WantedBy=multi-user.target
 
 可以通过 [系统启动流程](/docs/1.操作系统/Operating%20system/Unix-like%20OS/系统启动流程.md) 看出来 Systemd 是如何加载 Unit File 的
 
-# 分类
-
-> #systemd #unit-file

@@ -179,7 +179,3 @@ mount \[-t ] # 查看当前系统下的挂载信息\[查看指定的类型]
 # systemd 管理 mount
 
 详见 [mount Unit](/docs/1.操作系统/Systemd/Unit%20File/mount%20Unit.md)
-
-# 分类
-
- #文件系统

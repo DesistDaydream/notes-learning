@@ -447,6 +447,3 @@ PersistentKeepalive = 21
 
 **wg-quick [ up | down | save | strip ] [ CONFIG_FILE | INTERFACE ]**
 
-# 分类
-
-> #网络 #隧道协议 #Wireguard

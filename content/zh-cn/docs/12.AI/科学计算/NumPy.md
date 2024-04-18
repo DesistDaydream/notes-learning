@@ -1,7 +1,9 @@
 ---
-title: "NumPy"
-linkTitle: "NumPy"
+title: NumPy
+linkTitle: NumPy
 weight: 20
+tags:
+  - Python
 ---
 
 # 概述
@@ -20,6 +22,3 @@ weight: 20
 pip install numpy
 ```
 
-# 分类
-
- #人工智能 #Python #科学计算

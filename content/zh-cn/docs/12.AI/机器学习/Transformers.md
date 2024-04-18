@@ -88,6 +88,3 @@ print(response)
 
 [公众号-阿里云开发者，Transformer 一起动手编码学原理](https://mp.weixin.qq.com/s/NgUNuWhvp2SqG-XWYv2PGQ)
 
-# 分类
-
-> #人工智能 #机器学习

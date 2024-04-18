@@ -145,7 +145,3 @@ Public-key cryptography(公开密钥加密、非对称密钥加密)，以及根�
 5. sha512....等
 
 MAC:Message Authentication Code(消息认证码)，单向加密的一种延伸应用，用于实现在网络通信中保证所传输的数据的完整性
-
-# 分类
-
-> #密码学

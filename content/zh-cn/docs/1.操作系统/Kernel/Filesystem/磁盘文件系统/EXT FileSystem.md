@@ -382,6 +382,3 @@ Writing inode tables: done
 Writing superblocks and filesystem accounting information: done
 ```
 
-# 分类
-
-> #文件系统

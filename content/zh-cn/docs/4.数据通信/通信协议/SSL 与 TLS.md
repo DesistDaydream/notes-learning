@@ -3,6 +3,8 @@ title: SSL 与 TLS
 linkTitle: SSL 与 TLS
 date: 2024-02-23T12:26
 weight: 20
+tags:
+  - Information_security
 ---
 
 # 概述
@@ -72,6 +74,3 @@ Linux 发行版中，有一个目录会保存一些常见的 CA 证书，称之�
 - Ubuntu 发行版
   - **/etc/ssl/certs/\*** # 该目录中一个证书一个文件
 
-# 分类
-
-> #信息安全 #SSL #TLS

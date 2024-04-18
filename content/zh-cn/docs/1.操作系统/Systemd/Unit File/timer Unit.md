@@ -215,6 +215,3 @@ journalctl -f -u timer.timer
 
 （完）
 
-# 分类
-
-> #systemd #unit-file

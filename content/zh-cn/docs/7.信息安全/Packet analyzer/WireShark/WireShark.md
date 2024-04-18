@@ -51,7 +51,7 @@ Wireshark 用了分层的方式，展示了各个层的包头信息，把“不�
 
 WireShark 依赖 [pcap](/docs/7.信息安全/Packet%20analyzer/pcap.md)，若使用 WireShark 便携包，那么需要手动安装 [Npcap](https://npcap.com/)。
 
-# 过滤语法
+# Syntax(语法)
 
 `!tcp.analysis.flags` # 去掉 Bad TCP 的包
 

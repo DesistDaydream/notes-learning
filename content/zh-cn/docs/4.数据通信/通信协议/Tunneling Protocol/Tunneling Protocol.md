@@ -80,6 +80,3 @@ overlay 技术，一般都需要一个第三方程序来实现(这个程序可�
 
 Overlay 技术的实现就是 VXLAN，关于 VXLAN 的介绍，可以参考 [Flannel](docs/10.云原生/Kubernetes/Kubernetes%20网络/CNI/Flannel.md) 中的 VXLAN 模型，其中有关于 VXLAN 工作流程的详细讲解
 
-# 分类
-
-> #网络 #隧道协议

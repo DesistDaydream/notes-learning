@@ -26,6 +26,3 @@ log      =internal log           bsize=4096   blocks=63937, version=2
 realtime =none                   extsz=4096   blocks=0, rtextents=0
 ```
 
-# 分类
-
- #文件系统

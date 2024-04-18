@@ -236,7 +236,3 @@ struct ext4_inode {
 `static struct hlist_head *inode_hashtable __read_mostly;`
 
 在上面进行文件索引时，并没有讲根目录 inode 号为 2 是怎么获取的，这将下一章中讲解。
-
-# 分类
-
-> #文件系统 #文件

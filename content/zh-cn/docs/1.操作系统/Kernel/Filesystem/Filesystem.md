@@ -281,6 +281,3 @@ ssize_t write(int fd, const void *buf, size_t count);
 
 异步 I/O 好比，你让饭堂阿姨将菜做好并把菜打到饭盒里后，把饭盒送到你面前，整个过程你都不需要任何等待。
 
-# 分类
-
-> #文件系统

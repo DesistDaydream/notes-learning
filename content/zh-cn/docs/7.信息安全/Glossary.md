@@ -90,3 +90,7 @@ weight: 1
 
 - https://en.wikipedia.org/wiki/Information_security_management
 
+
+| 英文                 | 中文   | 缩写与简称 | 链接                                                       | 解释  |
+| ------------------ | ---- | ----- | -------------------------------------------------------- | --- |
+| Brute-force attack | 暴力破解 |       | [Wiki](https://en.wikipedia.org/wiki/Brute-force_attack) |     |

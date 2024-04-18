@@ -27,9 +27,9 @@ FTP 的目标是提高文件的共享性，提供非直接使用远程计算机�
 
 ## vsftp 关联文件与配置
 
-/etc/vsftpd.conf # vsftpd 程序的配置文件
+**/etc/vsftpd.conf** # vsftpd 程序的配置文件
 
-/etc/ftpusers # 此文件包含*禁止*FTP 登录的用户名，通常有"root"，"uucp"，"news" 之类，因为这些用户权限太高，登录 FTP 误操作危险性大。
+**/etc/ftpusers** # 此文件包含*禁止*FTP 登录的用户名，通常有"root"，"uucp"，"news" 之类，因为这些用户权限太高，登录 FTP 误操作危险性大。
 
 - User NAME
 - User NAME
@@ -80,4 +80,4 @@ ftp \[\[UserName@]目标 IP] # 可以使用 UserName 用户来登录目标 IP �
 
 如果 iptables 仅仅放了 21 端口，在启动被动模式后，需要给 iptables 添加模块以便被动模式正常运行
 
-在/etc/sysconfig/iptalbes-conf 文件中，修改成 IPTABLES_MODULES="nf_conntrack_ftp nf_nat_ftp" 这个内容
+在 /etc/sysconfig/iptalbes-conf 文件中，修改成 IPTABLES_MODULES="nf_conntrack_ftp nf_nat_ftp" 这个内容

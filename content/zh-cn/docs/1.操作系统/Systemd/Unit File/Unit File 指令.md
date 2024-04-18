@@ -106,7 +106,3 @@ https://man7.org/linux/man-pages/man5/systemd.service.5.html
 https://man7.org/linux/man-pages/man5/systemd.timer.5.html
 
 详见 [timer Unit](/docs/1.操作系统/Systemd/Unit%20File/timer%20Unit.md)
-
-# 分类
-
-> #systemd #unit-file
