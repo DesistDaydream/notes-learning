@@ -164,20 +164,20 @@ NetworkManager 提供了一个 API，用来管理 Connection、检查网络配�
 
 # NetworkManager 关联文件
 
-**/etc/NetworkManager/\*** #
+**/etc/NetworkManager/** #
 
-- **./conf.d/\*** # 类似 include 功能，是 NetworkManager.conf 文件的内容片段。
+- **./conf.d/** # 类似 include 功能，是 NetworkManager.conf 文件的内容片段。
 - **./NetworkManager.conf** # NetworkManager 程序的运行时配置文件
-- **./system-connections/\*** # 每个 Connection 的配置文件保存路径。
+- **./system-connections/** # 每个 Connection 的配置文件保存路径。
   - 在 RedHad 中，该路径被修改到 /etc/sysconfig/network-scripts/ 上去了。
 
-**/run/NetworkManager/\*** #
+**/run/NetworkManager/** #
 
-- **./system-connections/\*** # 自动生成的 Connection 的配置文件保存路径。
+- **./system-connections/** # 自动生成的 Connection 的配置文件保存路径。
 
-**/usr/lib/NetworkManager/\*** #
+**/usr/lib/NetworkManager/** #
 
-- **./system-connections/\*** #
+- **./system-connections/** #
 
 # 常见问题
 

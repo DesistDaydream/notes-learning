@@ -87,7 +87,7 @@ Docker 这门技术成功了，Docker 这个公司却失败了。
 
 **/etc/containerd/config.toml** # Containerd 运行时配置文件。该文件可以通过 containerd config default 命令来生成一个默认的配置。
 
-**/var/lib/containerd/\*** # Root(根) 文件夹。用于保存持久化数据，镜像、元数据 所在路径。包括 Snapshots, Content, Metadata 以及各种插件的数据。每一个插件都有自己单独的目录，Containerd 本身不存储任何数据，它的所有功能都来自于已加载的插件。目录下的内容详解，见 [《Containerd Image 章节》](/docs/10.云原生/Containerization%20implementation/Containerd/Containerd%20Image.md)
+**/var/lib/containerd/** # Root(根) 文件夹。用于保存持久化数据，镜像、元数据 所在路径。包括 Snapshots, Content, Metadata 以及各种插件的数据。每一个插件都有自己单独的目录，Containerd 本身不存储任何数据，它的所有功能都来自于已加载的插件。目录下的内容详解，见 [《Containerd Image 章节》](/docs/10.云原生/Containerization%20implementation/Containerd/Containerd%20Image.md)
 
 - .**/io.containerd.content.v1.content/** # 镜像的上下文保存目录
   - .**/blobs/** # 镜像文件系统布局中。blobs 目录数据的存放路径

@@ -23,9 +23,9 @@ Nginx 等软件可以提供 Web 服务。
 
 ## Web APIs
 
-不管用什么语言编写 Web 代码，通常都有一些标准的 APIs，有点类似于操作系统的 [POSIX](/docs/1.操作系统/Operating%20system/POSIX.md)。这些 Web API 的标准通常都是由 [W3C](/docs/x_标准化/Internet/W3C.md)、[IETF](/docs/x_标准化/Internet/IETF.md)、等多个组织和公司一起制定的，其中 W3C 和 IETF 占了很重要的地位。
+不管用什么语言编写 Web 代码，通常都有一些标准的 APIs，有点类似于操作系统的 [POSIX](/docs/1.操作系统/Operating%20system/POSIX.md)。这些 Web API 的标准通常都是由 [W3C](/docs/Standard/Internet/W3C.md)、[IETF](/docs/Standard/Internet/IETF.md)、等多个组织和公司一起制定的，其中 W3C 和 IETF 占了很重要的地位。
 
-详见 [WebAPIs](docs/Web/WebAPIs/WebAPIs.md)
+详见 [WebAPIs](/docs/Web/WebAPIs/WebAPIs.md)
 
 ## 编程语言
 

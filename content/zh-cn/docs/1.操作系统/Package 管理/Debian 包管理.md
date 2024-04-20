@@ -5,19 +5,24 @@ title: "Debian 包管理"
 # 概述
 
 > 参考：
+>
 > - [Ubuntu 官方文档，软件-包管理](https://ubuntu.com/server/docs/package-management)
 
 Ubuntu 具有一个全面的包管理系统，用于安装、升级、配置和删除软件。除了为我们的 Ubuntu 系统提供超过 60k 个软件包的有组织访问之外，软件包管理工具还具有依赖性解析功能和软件更新检查功能。
+
 Ubuntu 的包管理系统源自使用 Debian GUN/Linux 发行版的系统。Debian 软件包文件通常具有 `.deb` 扩展名，并且可以存储于 **Repositories(存储库)** 中，存储库是网络上或物理媒体(e.g.CD-ROM 光盘)上的软件包集合。软件包通常是预编译的二进制格式。
+
 许多包使用依赖项。依赖项是主包为了正常运行而需要的附加包。例如，语音合成包 Festival 依赖于包 alsa-utils，该包提供了音频播放所需的 ALSA 声音库工具。为了让节日正常运行，必须安装它及其所有依赖项。 Ubuntu 中的软件管理工具会自动执行此操作。
 
 # DPKG 工具集
 
-> 参考：[Wiki，Dpkg](https://en.wikipedia.org/wiki/Dpkg)
+> 参考：
+>
+> - [Wiki，Dpkg](https://en.wikipedia.org/wiki/Dpkg)
 
 ## 概述
 
-**Debian Package(Debian 包，简称 dpkg)** 是 Debian 及其衍生的 Linux 发行版的软件包管理程序，用于安装、删除 _.deb 软件包，以及查看 _.deb 软件包的信息。
+**Debian Package(Debian 包，简称 dpkg)** 是 Debian 及其衍生的 Linux 发行版的软件包管理程序，用于安装、删除 _.deb 软件包，以及查看_.deb 软件包的信息。
 
 Dpkg 包含一系列的包管理工具：
 
@@ -30,9 +35,19 @@ Dpkg 包含一系列的包管理工具：
 
 ## DPKG 关联文件与配置
 
+**/etc/alternatives/** # 很多程序的替代方案的文件将会保存在这里. e.g. iptables 被 nftables 替代了, 但是 Ubuntu 保留了很多 iptables 时代的操作习惯和命令, 会把这些命令、服务 相关的文件, 通过符号连接的方式连接到 alternatvies/ 目录中, 然后在该目录中再执行一次链接, 链接到 其他地方, 效果如下:
+
+```bash
+~]# ls -l $(which iptables)
+lrwxrwxrwx 1 root root 26 Aug 10  2023 /usr/sbin/iptables -> /etc/alternatives/iptables
+~]# ls -l /etc/alternatives/iptables
+lrwxrwxrwx 1 root root 22 Aug 10  2023 /etc/alternatives/iptables -> /usr/sbin/iptables-nft
+```
+
 ## dpkg
 
 > 参考：
+>
 > - [Manual(手册)，dpkg(1)](https://man7.org/linux/man-pages/man1/dpkg.1.html)
 
 ### Syntax(语法)
@@ -51,6 +66,7 @@ Dpkg 包含一系列的包管理工具：
 ## dpkg-query
 
 > 参考：
+>
 > - [Manual(手册)，dpkg-query(1)](https://man7.org/linux/man-pages/man1/dpkg-query.1.html)
 
 dpki-query 是一个查询工具，可以从 dpkg 数据库中查询包的信息
@@ -66,8 +82,8 @@ dpki-query 是一个查询工具，可以从 dpkg 数据库中查询包的信息
 - **-L, --listfiles \<PACKAGE>** # 列出系统中 PACKAGE 的安装路径，所有关联的安装文件都会列出
 - **-l, --list \[PACKAGE]** # 列出所有包，或指定的 PACKAGE，PACKAGE 可以使用通配符。
 - **-S, --search \<FILE>** # 搜索 FILE 属于哪个 Package。FILE 可以使用通配符。
-    - 注意：当我们搜索二进制的命令文件属于哪个 Package 时，经常会搜不到，这是因为 which 命令查到的命令路径是 **/usr/bin**，但是 Debian 包安装的程序，通常都是在 **/bin** 目录下，虽然这俩是具有软链接的关系。
-    - 所以，当我们搜不到时，可以尝试使用 /bin 目录作为二进制文件的路径前缀。
+  - 注意：当我们搜索二进制的命令文件属于哪个 Package 时，经常会搜不到，这是因为 which 命令查到的命令路径是 **/usr/bin**，但是 Debian 包安装的程序，通常都是在 **/bin** 目录下，虽然这俩是具有软链接的关系。
+  - 所以，当我们搜不到时，可以尝试使用 /bin 目录作为二进制文件的路径前缀。
 - **-s, --status \<PackageName>** # 报告所输入的(PackageName)这个软件包的状态
 
 ## dpkg 相关程序示例
@@ -80,9 +96,11 @@ dpki-query 是一个查询工具，可以从 dpkg 数据库中查询包的信息
   - `dpkg -l | grep ^rc|awk '{print $2}' | sudo xargs dpkg -P`
 - 将 DEB_PACK 这几个 .deb 包中的文件提取到 PATH 路径下
   - `dpkg-deb -xv ${DEB_PACK} ${PATH}`
+
 # APT 工具集
 
 > 参考：
+>
 > - [Wiki](<https://en.wikipedia.org/wiki/APT_(software)>)
 > - [APT](<https://en.wikipedia.org/wiki/APT_(software)>)
 > - [Debian 项目](https://salsa.debian.org/apt-team/apt)
@@ -107,23 +125,23 @@ APT 中包含如下工具
 
 ## APT 关联文件
 
-**/etc/apt/\*** # APT 程序配置文件目录
+**/etc/apt/** # APT 程序配置文件目录
 
 - **./apt.conf** # APT 程序的运行时配置文件。Configuration Item: Dir::Etc::Main.
-- **./apt.conf.d/\*** # apt.conf 文件 include(包含) 该目录下的所有文件。Configuration Item: Dir::Etc::Parts.
+- **./apt.conf.d/** # apt.conf 文件 include(包含) 该目录下的所有文件。Configuration Item: Dir::Etc::Parts.
 - **./sources.list** # 包源列表，apt 程序根据这个文件中列表，从对应位置获取包。Configuration Item: Dir::Etc::SourceList.
-- **./sources.list.d/\*** # sources.list 文件 include(包含) 该目录下的所有文件。文件以 .list 结尾。Configuration Item: Dir::Etc::SourceParts.
+- **./sources.list.d/** # sources.list 文件 include(包含) 该目录下的所有文件。文件以 .list 结尾。Configuration Item: Dir::Etc::SourceParts.
 - **/etc/apt/preferences** # Version preferences file. This is where you would specify "pinning", i.e. a preference to get certain packages from a separate source or from a different version of a distribution. Configuration Item: Dir::Etc::Preferences.
-- **/etc/apt/preferences.d/\*** # File fragments for the version preferences. Configuration Item: Dir::Etc::PreferencesParts.
+- **/etc/apt/preferences.d/** # File fragments for the version preferences. Configuration Item: Dir::Etc::PreferencesParts.
 
-**/var/cache/apt/archives/\*** # retrieved(已检索) 的包文件的存储路径。apt 程序的缓存路径。所有下载的 .deb 包都会在这个目录中。Configuration Item: Dir::Cache::Archives.
+**/var/cache/apt/archives/** # retrieved(已检索) 的包文件的存储路径。apt 程序的缓存路径。所有下载的 .deb 包都会在这个目录中。Configuration Item: Dir::Cache::Archives.
 
 - 这个目录下的所有 \*.deb 文件会被 **apt clean** 命令清理。在使用 apt install 安装时，被安装的 .deb 包有时候也会存在该目录下
-- **./partial/\*** # Storage area for package files in transit. Configuration Item: Dir::Cache::Archives (partial will be implicitly appended)
+- **./partial/** # Storage area for package files in transit. Configuration Item: Dir::Cache::Archives (partial will be implicitly appended)
 
-**/var/lib/apt/lists/\*** # Storage area for state information for each package resource specified in sources.list(5) Configuration Item: Dir::State::Lists.
+**/var/lib/apt/lists/** # Storage area for state information for each package resource specified in sources.list(5) Configuration Item: Dir::State::Lists.
 
-- **./partial/\*** # Storage area for state information in transit. Configuration Item: Dir::State::Lists (partial will be implicitly appended)
+- **./partial/** # Storage area for state information in transit. Configuration Item: Dir::State::Lists (partial will be implicitly appended)
 
 ### 配置本地 apt 源
 
@@ -145,6 +163,7 @@ EOF
 ## apt-get
 
 > 参考：
+>
 > - [Manual(手册),apt-get(8)](https://manpages.ubuntu.com/manpages/focal/man8/apt-get.8.html)
 
 ### Syntax(语法)
@@ -185,6 +204,7 @@ EOF
 ## apt-cache
 
 > 参考：
+>
 > - [Manul(手册)](https://man.cx/apt-cache)
 
 对 APT 程序生成的包缓存执行各种操作。
@@ -224,12 +244,15 @@ EOF
     - sudo apt-key del "3820 03C2 C8B7 B4AB 813E 915B 14E4 9429 73C6 2A1B"
     - 也可以仅指定最后 8 个字符
     - sudo apt-key del 73C62A1B
-  - # 更新仓库
+
+- # 更新仓库
+
     - sudo apt update
 
 # 包的自动更新
 
 > 参考：
+>
 > - [Ubuntu 官方文档，软件-包管理](https://ubuntu.com/server/docs/package-management)-自动更新(这个小节没有链接)
 > - https://wiki.debian.org/UnattendedUpgrades
 > - [GitHub 项目，mvo5/unattended-upgrades](https://github.com/mvo5/unattended-upgrades)
@@ -238,7 +261,7 @@ APT 工具可以实现软件包的 Automatic Updates(自动更新) 功能，主�
 
 ## Unattended upgrades 关联文件与配置
 
-**/etc/apt/apt.conf.d/\*** #
+**/etc/apt/apt.conf.d/** #
 
 - **10periodic**
 - **20auto-upgrades**

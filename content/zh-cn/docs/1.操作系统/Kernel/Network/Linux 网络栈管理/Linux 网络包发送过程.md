@@ -2,7 +2,7 @@
 title: Linux 网络包发送过程
 ---
 
-[25 张图，一万字，拆解 Linux 网络包发送过程](https://mp.weixin.qq.com/s?__biz=MjM5Njg5NDgwNA==&mid=2247485146&idx=1&sn=e5bfc79ba915df1f6a8b32b87ef0ef78&scene=21#wechat_redirect)
+[25 张图，一万字，拆解 Linux 网络包发送过程](https://mp.weixin.qq.com/s/wThfD9th9e_-YGHJJ3HXNQ)
 
 大家好，我是飞哥!
 
@@ -40,8 +40,6 @@ cfd = accept(fd, ...);
 今天我们来讨论上述代码中，调用 send 之后内核是怎么样把数据包发送出去的。本文基于 Linux 3.10，网卡驱动采用 Intel 的 igb 网卡举例。
 
 **预警：本文共有一万多字，25 张图，长文慎入！**
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/77c123f6-fc35-4ed5-8a1a-aa37c6f474d2/0)
 
 **开发内功修炼**
 

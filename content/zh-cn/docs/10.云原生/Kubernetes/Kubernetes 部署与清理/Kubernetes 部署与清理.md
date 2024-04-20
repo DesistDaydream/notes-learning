@@ -19,14 +19,14 @@ title: Kubernetes 部署与清理
 ## Kubernetes 关联文件
 
 下面这些是逐步总结的，应该是准确的，但是没有官方说明
-**/etc/kubernetes/\*** # 系统组件运行时配置
-**/var/lib/etcd/\*** # Etcd 数据目录
-**/var/lib/kubelet/\*** # Kubelet 运行时配置及数据持久化目录
+**/etc/kubernetes/** # 系统组件运行时配置
+**/var/lib/etcd/** # Etcd 数据目录
+**/var/lib/kubelet/** # Kubelet 运行时配置及数据持久化目录
 CNI 目录
 
-- **/etc/cni/net.d/\***# 默认配置文件保存目录
-- **/opt/cni/bin/\*** # 默认 CNI 插件保存目录
-- **/var/lib/cni/\*** # 默认 CNI 运行时产生的数据目录
+- **/etc/cni/net.d/**# 默认配置文件保存目录
+- **/opt/cni/bin/** # 默认 CNI 插件保存目录
+- **/var/lib/cni/** # 默认 CNI 运行时产生的数据目录
 
 # 部署 Kubernetes 集群
 

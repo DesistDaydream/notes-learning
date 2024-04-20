@@ -21,3 +21,6 @@ OpenWrt 的包管理器是 OPKG。
 ikuai 与 OpenWrt 大部分出现在软路由场景。
 
 iStoreOS 是 koolshare 团队基于OpenWrt定制的软路由系统
+
+# 关联文件与配置
+

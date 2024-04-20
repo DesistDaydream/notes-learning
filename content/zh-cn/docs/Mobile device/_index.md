@@ -1,6 +1,6 @@
 ---
-title: "移动设备"
-linkTitle: "移动设备"
+title: "📱Mobile device"
+linkTitle: "📱Mobile device"
 date: "2023-08-01T10:05"
-weight: 20
+weight: 14
 ---

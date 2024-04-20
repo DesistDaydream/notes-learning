@@ -42,7 +42,7 @@ codercom/code-server:latest \
 
 # code-server 关联文件
 
-**~/\*** # code-server 运行时生成的持久化数据都在当前用户的家目录下。刚部署完只有如下几个文件
+**~/** # code-server 运行时生成的持久化数据都在当前用户的家目录下。刚部署完只有如下几个文件
 
 ```shell
 .
@@ -59,15 +59,15 @@ codercom/code-server:latest \
 ```
 
 **~/.config/code-server/config.yaml** # 登录密码、监听端口 等基本信息
-**~/.vscode-remote/data/\*** #
-**~/.local/share/code-server/\*** # 默认的用户数据(即.持久化数据)路径。可以通过 `--user-data-dir` 命令行参数指定。
+**~/.vscode-remote/data/** #
+**~/.local/share/code-server/** # 默认的用户数据(即.持久化数据)路径。可以通过 `--user-data-dir` 命令行参数指定。
 
 > 默认的目录中有一些文件是不属于用户数据。比如 coder-logs、hearteat 等。
 
 - **./coder.json** #
-- .**/coder-logs/\*** #
-- .**/extensions/\*** # 默认扩展保存路径。可以通过 `--extensions-dir` 命令行参数指定。
-- **./logs/\*** #
+- .**/coder-logs/** #
+- .**/extensions/** # 默认扩展保存路径。可以通过 `--extensions-dir` 命令行参数指定。
+- **./logs/** #
 - .**/machineid** #
-- .**/User/\*** #
+- .**/User/** #
   - **./settings.json** # 默认配置

@@ -200,7 +200,7 @@ Linux 相关的日志格式一般为：
 - **/run/systemd/journal/syslog** # rsyslogd 会持续监听该 Socket，当有数据传入时，使用 recvmsg() 调用获取日志数据。
   - 这个文件是由 Systemd 提供的 Socket 文件，用以兼容传统日志服务。在 /etc/systemd/journald.conf 配置文件中，可以看到默认 ForwardToSyslog=yes 设置，即表示将自己的日志转发到 syslog 中。
 
-**/var/log/\*** # 日志记录的位置。根据 rsyslog 程序的基础配置文件，各个 Linux 发行版的文件名也许不同，但是大体都差不多
+**/var/log/** # 日志记录的位置。根据 rsyslog 程序的基础配置文件，各个 Linux 发行版的文件名也许不同，但是大体都差不多
 
 - ./message # CentOS 发行版的绝大部分日志文件
   - ./syslog # Ubuntu 发型版的绝大部分日志文件

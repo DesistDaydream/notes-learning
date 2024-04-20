@@ -6,7 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [RFC 675](https://datatracker.ietf.org/doc/html/rfc675)
 > - [RFC 793](https://datatracker.ietf.org/doc/html/rfc793)
 >   - [RFC 9293](https://datatracker.ietf.org/doc/html/rfc9293)
@@ -41,7 +41,7 @@ TCP 天然认为网络环境是恶劣的，丢包、乱序、重传，拥塞都�
 # TCP Segment 结构
 
 > 参考：
-> 
+>
 > - [RFC 9293，3.1.Header Format](https://datatracker.ietf.org/doc/html/rfc9293#name-header-format)
 
 TCP 段被封装在 IP 数据报中
@@ -218,7 +218,7 @@ TCP 的连接的拆除需要发送四个包，因此称为四次挥手(Four-way 
 
 ## 通过 WireShark 理解三次握手和四次挥手
 
-[TCP Analysis](docs/7.信息安全/Packet%20analyzer/WireShark/TCP%20Analysis.md)
+[TCP Analysis](/docs/7.信息安全/Packet%20analyzer/WireShark/TCP%20Analysis.md)
 
 # TCP 报文
 

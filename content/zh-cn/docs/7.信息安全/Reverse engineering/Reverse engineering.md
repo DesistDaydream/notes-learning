@@ -194,7 +194,7 @@ Unveilr # 反编译解密后的 `*.wxapkg` 文件得到源码。
 - 通过控制台的代码段重写 `JSON.stringify`、`JSON.parse` 等常见方法的逻辑，添加 debugger 关键字，以便在代码无法找到时，虽慢但准得找到解密相关代码。
   - https://www.bilibili.com/video/BV1Cz4y1w78y
 
-补环境。有的代码，可能会获取浏览器特定的一些属性，比如 [WebAPIs](docs/Web/WebAPIs/WebAPIs.md) 中 document、window 等对象中的数据。此时如果使用代码编译器运行代码的场合是没有办法获取到这些信息的，需要在代码中手动造一些浏览器信息。
+补环境。有的代码，可能会获取浏览器特定的一些属性，比如 [WebAPIs](/docs/Web/WebAPIs/WebAPIs.md) 中 document、window 等对象中的数据。此时如果使用代码编译器运行代码的场合是没有办法获取到这些信息的，需要在代码中手动造一些浏览器信息。
 
 ## JS 逆向的调试方法
 
@@ -280,29 +280,29 @@ https://www.bilibili.com/video/BV1ew411K7nB/?p=17 及后面几 P
 想要 Hook Cookie，需要通过类似代理的方式进行，在 代理中添加如下代码。
 
 ```javascript
-//当前版本hook工具只支持Content-Type为html的自动hook  
+//当前版本hook工具只支持Content-Type为html的自动hook
 //下面是一个示例:这个示例演示了hook全局的cookie设置点
-(function() {  
-    //严谨模式 检查所有错误  
-    'use strict';  
-    //document 为要hook的对象   这里是hook的cookie  
-    var cookieTemp = "";  
-    Object.defineProperty(document, 'cookie', {  
-        //hook set方法也就是赋值的方法   
-        set: function(val) {  
-        //这样就可以快速给下面这个代码行下断点  
-        //从而快速定位设置cookie的代码  
-        if (val.indexOf('w_tsfp') != -1){debugger}  
-            console.log('Hook捕获到cookie设置->', val);  
-            cookieTemp = val;  
-            return val;  
-        },  
-        //hook get方法也就是取值的方法   
-        get: function()  
-        {  
-            return cookieTemp;  
-        }  
-    });  
+(function() {
+    //严谨模式 检查所有错误
+    'use strict';
+    //document 为要hook的对象   这里是hook的cookie
+    var cookieTemp = "";
+    Object.defineProperty(document, 'cookie', {
+        //hook set方法也就是赋值的方法 
+        set: function(val) {
+        //这样就可以快速给下面这个代码行下断点
+        //从而快速定位设置cookie的代码
+        if (val.indexOf('w_tsfp') != -1){debugger}
+            console.log('Hook捕获到cookie设置->', val);
+            cookieTemp = val;
+            return val;
+        },
+        //hook get方法也就是取值的方法 
+        get: function()
+        {
+            return cookieTemp;
+        }
+    });
 })();
 ```
 
@@ -317,7 +317,7 @@ https://www.bilibili.com/video/BV1ew411K7nB/?p=17 及后面几 P
 ### Jadx
 
 > 参考：
-> 
+>
 > - [GitHub 项目，skylot/jadx](https://github.com/skylot/jadx)
 > - [博客园，jadx 使用](https://www.cnblogs.com/lsgxeva/p/13500813.html)
 

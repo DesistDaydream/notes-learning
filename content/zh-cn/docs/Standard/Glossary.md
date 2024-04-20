@@ -9,9 +9,13 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Glossary](https://en.wikipedia.org/wiki/Glossary)
+> - [Wiki, Glossary](https://en.wikipedia.org/wiki/Glossary)
+> - [Wiki, Standardization](https://en.wikipedia.org/wiki/Standardization)
 
-**Standardized Glossary(标准化术语)**
+**Standard(标准)** 与 **Standardized(标准化)**
+
+- Standardized 更多用来行用指定标准的过程
+- Standard 是经过标准化后产生的结果，已经定义好的标准是在 执行、构建、生产 各种 任务、流程、产品 时的最佳方式或期望
 
 学习某项技术时，有些名词，比如某某可以是技术、规范、标准、行为、协议(协议其实从广义角度看也是标准)、等。
 
@@ -60,15 +64,15 @@ https://en.wikipedia.org/wiki/Internet_service_provider
 # Internet
 
 > 参考：
-> 
+>
 > - [RFC 1594，13 章](https://datatracker.ietf.org/doc/html/rfc1594#section-13)
 
-[Internet](docs/x_标准化/Internet/Internet.md)
+[Internet](/docs/Standard/Internet/Internet.md)
 
 # 中国标准
 
 > 参考：
-> 
+>
 > - [全国标准信息公共服务平台](https://std.samr.gov.cn/)
 > - [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/index)
 > - [地方标准信息服务平台](https://dbba.sacinfo.org.cn/)
@@ -81,3 +85,27 @@ https://en.wikipedia.org/wiki/Internet_service_provider
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/glossary/std_miit_1.png)
 
+# 其他
+
+StandardizedGlossary(标准化术语)
+
+## 黑盒学习 与 白盒学习
+
+学习过程分两种
+
+- 黑盒 # 看看这个知识点与周围其他系统之间的关系，以及互相作用的效果。了解基本工作逻辑
+- 白盒 # 打开待学习的知识点，直接学习知识点的原理
+
+要掌握一个学科的精髓，不能从细枝末节开始。人脑的能力很大程度上受限于信念。一个人不相信自己的时候，他就做不到本来可能的事。信心是很重要的，信心却容易被挫败。如果只见树木不见森林，人会失去信心，以为要到猴年马月才能掌握一个学科。
+
+所以我们不从 “树木” 开始，而是引导读者一起来探索这背后的“森林”，把计算机科学最根本的概念用浅显的例子解释，让读者领会到它们的本质。把这些概念稍作发展，你就得到逐渐完整的把握。你一开头就掌握着整个学科，而且一直掌握着它，只不过增添更多细节而已。这就像画画，先勾勒出轮廓，一遍遍的增加细节，日臻完善，却不失去对大局的把握。
+
+## Bare metal(裸金属)
+
+> 参考：
+>
+> - [Wiki，Bare machine](https://en.wikipedia.org/wiki/Bare_machine)
+
+在计算机科学中，**Bare metal(裸金属)** 也称为 **Bare machine(裸机)**，是指在没有介入操作系统的逻辑硬件上执行指令的计算机。
+
+在很多软件的部署文档中，Bare metal 经常作为部署方式的一种，但是这时候裸金属部署，并不是真的在没有操作系统的服务器上安装软件，而是指在没有其他通用平台上安装，说白了，就是指**原始安装**

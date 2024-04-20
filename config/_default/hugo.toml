@@ -18,4 +18,7 @@ disablePathToLower = true # 不要将 URL 路径转为小写
 uglyURLs = false          # URL 路径中最后不要带 .html 后缀
 
 # 渲染时忽略的文件
-ignoreFiles = ["/content/zh-cn/obsidian_template/.*"]
+ignoreFiles = [
+    "/content/zh-cn/obsidian_template/.*",
+    "/content/zh-cn/.obsidian/.*",
+]

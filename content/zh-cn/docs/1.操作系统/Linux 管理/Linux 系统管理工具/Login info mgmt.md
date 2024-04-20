@@ -19,7 +19,7 @@ weight: 20
 
 # last - 用来显示所有登录的信息
 
-last 是 [Util-linux Utilities](docs/1.操作系统/Linux%20管理/Util-linux%20Utilities.md)
+last 是 [Util-linux Utilities](/docs/1.操作系统/Linux%20管理/Util-linux%20Utilities.md)
 
 **EXAMPLE**
 

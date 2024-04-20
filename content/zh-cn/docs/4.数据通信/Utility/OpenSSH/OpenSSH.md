@@ -12,7 +12,7 @@ weight: 1
 > - [官网](https://www.openssh.com/)
 > - [官方文档，Manual(手册)](https://www.openssh.com/manual.html)
 
-OpenSSH 是 [Secure Shell Protocol](docs/4.数据通信/通信协议/Secure%20Shell%20Protocol.md) 的开源实现方案，该工具为 C/S 架构，服务端默认监听在 22/tcp 端口上。如果想要连接到服务端，同样需要一个客户端来进行连接。
+OpenSSH 是 [Secure Shell Protocol](/docs/4.数据通信/通信协议/Secure%20Shell%20Protocol.md) 的开源实现方案，该工具为 C/S 架构，服务端默认监听在 22/tcp 端口上。如果想要连接到服务端，同样需要一个客户端来进行连接。
 
 比如，现在有两台主机，主机 A 和主机 B，如果想要在 B 上可以操作 A，那么就需要在 A 机上安装服务端工具(openssh-server)，在 B 机上安装客户端工具(openssh-client)，然后通过 ssh 工具进行互联
 

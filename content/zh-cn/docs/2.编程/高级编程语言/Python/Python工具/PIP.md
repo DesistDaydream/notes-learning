@@ -50,7 +50,7 @@ pip 包通常包含两个目录
 
 全局配置
 
--   **C:/ProgramData/pip/pip.ini**
+- **C:/ProgramData/pip/pip.ini**
 
 用户配置
 
@@ -84,8 +84,8 @@ pip 安装的模块我们可以从如下目录中找到，该目录下的目录�
 - Windows
   - **%USERPROFILE%/AppData/Local/Programs/Python/Python${版本号}/Lib/site-packages/***
 - Linux
-  - root 用户：**/usr/local/lib/python${VERSION}/dist-packages/\***
-  - 普通 用户：**~/.local/lib/python${PythonVersion}/site-packages/\***
+  - root 用户：**/usr/local/lib/python${VERSION}/dist-packages/**
+  - 普通 用户：**~/.local/lib/python${PythonVersion}/site-packages/**
 
 有些包会生成一些可以执行程序，这些二进制文件则默认保存在如下目录
 
@@ -155,7 +155,7 @@ https://pip.pypa.io/en/stable/cli/pip_install/
 **OPTIONS**
 
 - **-i, --index-url \<URL>** # Python 包索引的 URL。`默认值：https://pypi.org/simple`
-    - 可以通过 -i 配置 pip 安装包时使用国内的源，避免国从国外下载速度太慢
+  - 可以通过 -i 配置 pip 安装包时使用国内的源，避免国从国外下载速度太慢
 - **-r, --requirement \<FILE>** # 安装指定 requirement 文件中的 Python 包。
 - **-t, --target \<DIR>** # 将 Python 包安装到 DIR 目录中。可以添加 --upgrade 选项将现有包替换为 DIR 目录中的新版本。
 - **-U, --upgrade** # 将指定的所有 Python 包升级到最新的可用版本。

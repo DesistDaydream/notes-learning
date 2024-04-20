@@ -37,11 +37,11 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 - **inventory file or script group vars** # Inventory 文件中的组变量，即.`[XXX:vars]`
 - **inventory group_vars/all** #
 - **playbook group_vars/all** #
-- **inventory group_vars/\*** # 存放 Inventory 文件的目录下的 `group_vars/` 目录
-- **playbook group_vars/\*** # Playbook 根目录下的 `group_vars/` 目录
+- **inventory group_vars/** # 存放 Inventory 文件的目录下的 `group_vars/` 目录
+- **playbook group_vars/** # Playbook 根目录下的 `group_vars/` 目录
 - **inventory file or script host vars** #
-- **inventory host_vars/\*** #
-- **playbook host_vars/\*** #
+- **inventory host_vars/** #
+- **playbook host_vars/** #
 - **host facts / cached set_facts** #
 - play vars #
 - play vars_prompt #

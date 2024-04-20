@@ -77,7 +77,7 @@ Generator 使用 MIB 中的哪些信息、转换后是否需要设置标签、�
 **总结：Generator(生成器) 通过 `MIB 库文件` 以及 `generator.yml 文件` 这两种东西，来生成 snmp.yml 文件**
 
 > MIB 库文件一般是放在 generator 程序运行时所在目录的 mibs 目录下的，generator.yml 文件一般是放在 generator 程序运行时所在目录下。
-> 
+>
 > 如果运行 generator 时无法在 MIB 库文件中找到 generator.yml 文件中配置的 OID，则 generator 程序运行将会报错，提示无法找到对应的 Object。此时就需要将必要的 MIB 库文件，拷贝到 mibs/ 目录下即可。
 
 generator.yml 文件详解见[此处](/docs/6.可观测性/监控系统/Instrumenting/SNMP%20Exporter/配置详解.md)
@@ -122,6 +122,7 @@ cd snmp_exporter
 go build .
 docker build -t lchdzh/snmp-exporter:0.19.1 .
 ```
+
 # snmp_exporter 配置
 
 ## Exporter 配置
@@ -132,7 +133,7 @@ docker build -t lchdzh/snmp-exporter:0.19.1 .
 
 ## Generator 配置
 
-**mibs/\***# 用来存放 MIB 文件。
+**mibs/**# 用来存放 MIB 文件。
 **generator.yml** # 用来配置生成 snmp.yml 的行为。
 
 # Prometheus 中的 scrape_configs 配置示例

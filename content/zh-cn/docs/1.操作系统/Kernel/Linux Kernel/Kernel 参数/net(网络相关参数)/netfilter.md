@@ -11,4 +11,4 @@ weight: 20
 >
 > - [官方文档，内核子系统文档-Networking-Netfilter Conntrack Sysfs variables](https://www.kernel.org/doc/html/latest/networking/nf_conntrack-sysctl.html)
 
-用于配置 Netfilter 系统中的 [Connection Tracking(连接跟踪)机制](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter%20流量控制系统/Connection%20Tracking(连接跟踪)机制.md)
+用于配置 Netfilter 系统中的 [Connection Tracking for netfilter](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Connection%20Tracking%20for%20netfilter.md)

@@ -240,7 +240,7 @@ Kubernetes Member
 
 网址：www.daocloud.io
 
-邮件：info[@daocloud.io ](/daocloud.io)
+邮件：info@daocloud.io
 
 电话：400 002 6898
 

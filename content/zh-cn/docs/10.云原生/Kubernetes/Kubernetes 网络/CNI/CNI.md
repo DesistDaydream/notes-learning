@@ -134,6 +134,6 @@ kubelet 配置 pod 网络时，首先会读取下 /etc/cni/net.d/_目录下的�
 
 # CNI 关联文件
 
-**/etc/cni/net.d/\***# 默认配置文件保存目录
-**/opt/cni/bin/\*** # 默认 CNI 插件保存目录
-**/var/lib/cni/\*** # 默认 CNI 运行时产生的数据目录
+**/etc/cni/net.d/**# 默认配置文件保存目录
+**/opt/cni/bin/** # 默认 CNI 插件保存目录
+**/var/lib/cni/** # 默认 CNI 运行时产生的数据目录

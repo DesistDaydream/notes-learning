@@ -39,9 +39,9 @@
       "docs/12.AI",
       "docs/Web",
       "docs/Mobile device",
-      "docs/Blockchain",
       "docs/Utils",
-      "docs/x_标准化"
+      "docs/Blockchain",
+      "docs/Standard"
     ],
     "docs/0.计算机": [
       "docs/0.计算机/_index.md",
@@ -167,6 +167,7 @@
       "docs/1.操作系统/Kernel/Filesystem/文件管理/_index.md",
       "docs/1.操作系统/Kernel/Filesystem/文件管理/文件管理.md",
       "docs/1.操作系统/Kernel/Filesystem/文件管理/Inode.md",
+      "docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic link.md",
       "docs/1.操作系统/Kernel/Filesystem/文件管理/File Descriptor(文件描述符).md",
       "docs/1.操作系统/Kernel/Filesystem/文件管理/Archive File(归档文件).md"
     ],
@@ -251,34 +252,34 @@
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/_index.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Linux 网络流量控制.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Connnection Tracking(连接跟踪).md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter",
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/TC 模块"
     ],
-    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统": [
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/_index.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/Netfilter 流量控制系统.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/Connection Tracking(连接跟踪)机制.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/nftables.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)"
+    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Netfilter.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Connection Tracking for netfilter.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/nftables.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld(Iptables 的管理工具)"
     ],
-    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)": [
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)/_index.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)/firewalld(Iptables 的管理工具).md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/firewalld(Iptables 的管理工具)/firewalld 命令行工具.md"
+    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld(Iptables 的管理工具)": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld(Iptables 的管理工具)/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld(Iptables 的管理工具)/firewalld(Iptables 的管理工具).md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld(Iptables 的管理工具)/firewalld 命令行工具.md"
     ],
-    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables": [
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables/_index.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables/iptables.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables/iptables 命令行工具.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables/最佳实践.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables/iptables 源码解析.md"
+    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables/iptables.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables/iptables 命令行工具.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables/最佳实践.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables/iptables 源码解析.md"
     ],
-    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)": [
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)/_index.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)/iptables(Netfilter 的实现).md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)/使用 iptables 对多租户环境中的 TCP 限速.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter 流量控制系统/iptables(Netfilter 的实现)/iptables 源码解析.md"
+    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables(Netfilter 的实现)": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables(Netfilter 的实现)/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables(Netfilter 的实现)/iptables(Netfilter 的实现).md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables(Netfilter 的实现)/使用 iptables 对多租户环境中的 TCP 限速.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables(Netfilter 的实现)/iptables 源码解析.md"
     ],
     "docs/1.操作系统/Kernel/Process": [
       "docs/1.操作系统/Kernel/Process/_index.md",
@@ -1005,8 +1006,8 @@
     ],
     "docs/10.云原生/Kubernetes/Kuberntes 介绍": [
       "docs/10.云原生/Kubernetes/Kuberntes 介绍/_index.md",
+      "docs/10.云原生/Kubernetes/Kuberntes 介绍/Kuberntes.md",
       "docs/10.云原生/Kubernetes/Kuberntes 介绍/Glossary.md",
-      "docs/10.云原生/Kubernetes/Kuberntes 介绍/Kuberntes 介绍.md",
       "docs/10.云原生/Kubernetes/Kuberntes 介绍/Kubernetes Runtime.md",
       "docs/10.云原生/Kubernetes/Kuberntes 介绍/Kubernetes 开源社区指南.md"
     ],
@@ -2429,16 +2430,14 @@
       "docs/Utils/_index.md",
       "docs/Utils/实用工具.md",
       "docs/Utils/Terminal(终端)",
-      "docs/Utils/IDE",
       "docs/Utils/远程管理",
       "docs/Utils/下载.md",
-      "docs/Utils/写作",
       "docs/Utils/手机.md",
       "docs/Utils/云盘.md",
       "docs/Utils/即时通信",
       "docs/Utils/Windows 系统实用工具",
-      "docs/Utils/计算机组装.md",
-      "docs/Utils/生活工具",
+      "docs/Utils/Surveillance",
+      "docs/Utils/任务管理",
       "docs/Utils/开源软件洞察.md"
     ],
     "docs/Utils/IDE/Visual Studio Code": [
@@ -2545,32 +2544,32 @@
       "docs/Web/网站搭建/Hugo/模板/模板.md",
       "docs/Web/网站搭建/Hugo/模板/变量.md"
     ],
-    "docs/x_标准化": [
-      "docs/x_标准化/_index.md",
-      "docs/x_标准化/Glossary.md",
-      "docs/x_标准化/常用英文.md",
-      "docs/x_标准化/Foundation",
-      "docs/x_标准化/IT",
-      "docs/x_标准化/Internet",
-      "docs/x_标准化/Agent 与 Proxy.md",
-      "docs/x_标准化/Architecture(架构).md",
-      "docs/x_标准化/B_S 和 C_S 架构.md",
-      "docs/x_标准化/Transaction(事务).md",
-      "docs/x_标准化/南北流量和东西流量.md",
-      "docs/x_标准化/中国行政区划及代码.md"
+    "docs/Standard": [
+      "docs/Standard/_index.md",
+      "docs/Standard/Glossary.md",
+      "docs/Standard/常用英文.md",
+      "docs/Standard/Foundation",
+      "docs/Standard/IT",
+      "docs/Standard/Internet",
+      "docs/Standard/Agent 与 Proxy.md",
+      "docs/Standard/Architecture(架构).md",
+      "docs/Standard/B_S 和 C_S 架构.md",
+      "docs/Standard/Transaction(事务).md",
+      "docs/Standard/南北流量和东西流量.md",
+      "docs/Standard/中国行政区划及代码.md"
     ],
-    "docs/x_标准化/IT": [
-      "docs/x_标准化/IT/_index.md",
-      "docs/x_标准化/IT/IT.md",
-      "docs/x_标准化/IT/ANSI.md",
-      "docs/x_标准化/IT/IEEE.md"
+    "docs/Standard/IT": [
+      "docs/Standard/IT/_index.md",
+      "docs/Standard/IT/IT.md",
+      "docs/Standard/IT/ANSI.md",
+      "docs/Standard/IT/IEEE.md"
     ],
-    "docs/x_标准化/Internet": [
-      "docs/x_标准化/Internet/_index.md",
-      "docs/x_标准化/Internet/Internet.md",
-      "docs/x_标准化/Internet/IETF.md",
-      "docs/x_标准化/Internet/RFC.md",
-      "docs/x_标准化/Internet/W3C.md"
+    "docs/Standard/Internet": [
+      "docs/Standard/Internet/_index.md",
+      "docs/Standard/Internet/Internet.md",
+      "docs/Standard/Internet/IETF.md",
+      "docs/Standard/Internet/RFC.md",
+      "docs/Standard/Internet/W3C.md"
     ],
     "docs/学习": [
       "docs/学习/_index.md",
@@ -2592,6 +2591,11 @@
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解/Linux 网络设备详解.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解/Bond 与 Team.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解/Bridge.md"
+    ],
+    "docs/1.操作系统/Filesystem": [
+      "docs/1.操作系统/Filesystem/_index.md",
+      "docs/1.操作系统/Filesystem/Filesystem.md",
+      "docs/1.操作系统/Filesystem/Archive File(归档文件).md"
     ]
   },
   "actionBarOrder": {},

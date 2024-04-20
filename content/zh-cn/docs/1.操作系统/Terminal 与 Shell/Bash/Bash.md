@@ -5,7 +5,7 @@ weight: 1
 
 # 概述
 > 参考：
-> 
+>
 > - [GNU 官网](https://www.gnu.org/software/bash/)
 > - [Wiki，Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
 > - [Manual(手册)，bash(1)-Shell 内置命令](https://www.man7.org/linux/man-pages/man1/bash.1.html#SHELL_BUILTIN_COMMANDS)
@@ -138,9 +138,9 @@ login_shell     on
 /etc/rc.local
 
 - 注意：centos7 的 rc.local 没有可执行权限，需要添加权限(chmod +x /etc/rc.d/rc.local)，否则无法使用
-- 官方推荐使用 [Systemd](docs/1.操作系统/Systemd/Systemd.md) 来管理启动脚本。而不是这种方式
+- 官方推荐使用 [Systemd](/docs/1.操作系统/Systemd/Systemd.md) 来管理启动脚本。而不是这种方式
 
-Systemd # [Systemd](docs/1.操作系统/Systemd/Systemd.md)
+Systemd # [Systemd](/docs/1.操作系统/Systemd/Systemd.md)
 
 # 在 Bash 中执行命令
 
@@ -200,7 +200,7 @@ OPTIONS
 # 命令行补全
 
 > 参考：
-> 
+>
 > - [Wiki，CommandLineCompletion](https://en.wikipedia.org/wiki/Command-line_completion)
 
 **Command Line Completion(命令行补全)** 也称为 **tab completion**，是命令行解释器的常见功能，在命令行中的程序，可以自动填充部分需要手动输入的命令。
@@ -209,6 +209,6 @@ OPTIONS
 
 ## 关联文件与配置
 
-**/etc/bash_completion.d/** # 
+**/etc/bash_completion.d/** #
 
 **/usr/share/bash-completion/completions/** # 各种程序补全功能所需文件的保存目录。

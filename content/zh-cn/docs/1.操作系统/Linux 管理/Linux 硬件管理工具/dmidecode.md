@@ -12,7 +12,7 @@ weight: 20
 > - [Wiki，dmidecode](https://en.wikipedia.org/wiki/Dmidecode)
 > - Manual(手册)，dmidecode
 
-dmidecode 命令可以让我们在 Linux 系统下获取有关硬件方面的信息。dmidecode 的作用是将 [DMI](/docs/x_标准化/IT/DMTF.md#DMI) 数据库中的信息解码，以可读的文本方式显示。由于 DMI 信息可以人为修改，因此里面的信息不一定是系统准确的信息。dmidecode 遵循 SMBIOS/DMI 标准，其输出的信息包括BIOS、系统、主板、处理器、内存、缓存等等。
+dmidecode 命令可以让我们在 Linux 系统下获取有关硬件方面的信息。dmidecode 的作用是将 [DMI](/docs/Standard/IT/DMTF.md#DMI) 数据库中的信息解码，以可读的文本方式显示。由于 DMI 信息可以人为修改，因此里面的信息不一定是系统准确的信息。dmidecode 遵循 SMBIOS/DMI 标准，其输出的信息包括BIOS、系统、主板、处理器、内存、缓存等等。
 
 dmidecode 附带三个额外的工具：
 

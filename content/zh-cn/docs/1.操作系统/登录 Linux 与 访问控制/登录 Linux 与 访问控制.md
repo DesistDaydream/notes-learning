@@ -69,7 +69,7 @@ Linux 操作系统是一个多用户操作系统，所以除了 **Terminal(终�
 
 ### ssh 程序
 
-详见：[OpenSSH](docs/4.数据通信/Utility/OpenSSH/OpenSSH.md)
+详见：[OpenSSH](/docs/4.数据通信/Utility/OpenSSH/OpenSSH.md)
 
 ```bash
 root       981     1  0 Jul08 ?        Ss     0:00 /usr/sbin/sshd -D

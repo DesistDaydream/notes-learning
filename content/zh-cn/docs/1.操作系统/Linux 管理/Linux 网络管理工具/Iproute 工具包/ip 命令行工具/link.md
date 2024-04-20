@@ -8,7 +8,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [Manual(手册)，ip-link(8)](https://man7.org/linux/man-pages/man8/ip-link.8.html)
 
 一个 **link** 代表一个 **network device(网络设备)**。link 对象及其相应的命令集，可以查看和操纵网络设备(增删改查等)。主要通过其自身的子命令来实现本身的功能。
@@ -96,8 +96,8 @@ pinned FILE } ]
 # show - 显示设备属性
 
 >[!Notes]
-> show 命令无法显示网络设备的类型。想要查看网络设备的类型，可以通过与 [ethtool](docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/ethtool.md) 工具配置实现
-> 
+> show 命令无法显示网络设备的类型。想要查看网络设备的类型，可以通过与 [ethtool](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/ethtool.md) 工具配置实现
+>
 > `for i in $(ip link show | awk -F: '$0 !~ "lo|vir|wl|^[^0-9]"{print $2;getline}'); do ethtool -i $i | grep driver; done`
 
 **ip link show \[ DEVICE | group GROUP ] \[ up ] \[ master DEVICE ] \[ type ETYPE ] \[ vrf NAME ]**

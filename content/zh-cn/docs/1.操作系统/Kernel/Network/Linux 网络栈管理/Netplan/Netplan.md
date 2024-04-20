@@ -36,4 +36,4 @@ Netplan 当前支持如下 Renderers(渲染器)：
 
 # Netplan 关联文件与配置
 
-**/etc/netplan/\*** # netplan 读取 yaml 格式配置文件的路径
+**/etc/netplan/** # netplan 读取 yaml 格式配置文件的路径

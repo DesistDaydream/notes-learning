@@ -19,7 +19,7 @@ Web APIs 主要用于 JavaScript，但也可能有例外。
 
 https://developer.mozilla.org/zh-CN/docs/Web/API/Window
 
-Window 接口是各种函数、对象、等等的家。`window` 对象表示一个包含 [DOM](docs/Web/WebAPIs/DOM.md) 的窗口（通常来说都是具有浏览器功能的窗口），document 属性指向窗口中载入的 DOM 文档。
+Window 接口是各种函数、对象、等等的家。`window` 对象表示一个包含 [DOM](/docs/Web/WebAPIs/DOM.md) 的窗口（通常来说都是具有浏览器功能的窗口），document 属性指向窗口中载入的 DOM 文档。
 
 Navigator 接口表示用户代理的状态和标识。它允许脚本查询它和注册自己进行一些活动。用白话说：这里面包含了浏览器相关的信息。
 

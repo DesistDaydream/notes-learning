@@ -13,7 +13,7 @@ weight: 1
 
 WebDriver 是远程控制接口，可以对用户代理进行控制。它提供了一个平台和语言中立的协议，作为浏览器自身进程外的程序远程控制 web 浏览器行为的方法。
 
-WebDriver 符合 [W3C](/docs/x_标准化/Internet/W3C.md) 标准。
+WebDriver 符合 [W3C](/docs/Standard/Internet/W3C.md) 标准。
 
 - https://www.w3.org/TR/webdriver1/ 2018 年标准
 - https://www.w3.org/TR/webdriver2/ 2023 年草案

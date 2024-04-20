@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki-Network Traffic Control](https://en.wikipedia.org/wiki/Network_traffic_control)
+> - [Wiki, Network Traffic Control](https://en.wikipedia.org/wiki/Network_traffic_control)
 > - [arthurchiao.art 的文章](http://arthurchiao.art/index.html)：
 >   - [连接跟踪（conntrack）：原理、应用及 Linux 内核实现](http://arthurchiao.art/blog/conntrack-design-and-implementation-zh/)
 >   - [\[译\] 《Linux 高级路由与流量控制手册（2012）》第九章：用 tc qdisc 管理 Linux 网络带宽](http://arthurchiao.art/blog/lartc-qdisc-zh/#91-%E9%98%9F%E5%88%97queues%E5%92%8C%E6%8E%92%E9%98%9F%E8%A7%84%E5%88%99queueing-disciplines)
@@ -23,9 +23,9 @@ Traffic Control(流量控制) 在不同的语境中有不同的含义，可以�
 
 众所周知，在互联网诞生之初都是各个高校和科研机构相互通讯，并没有网络流量控制方面的考虑和设计，TCP/IP 协议的原则是尽可能好地为所有数据流服务，不同的数据流之间是平等的。然而多年的实践表明，这种原则并不是最理想的，有些数据流应该得到特别的照顾， 比如，远程登录的交互数据流应该比数据下载有更高的优先级。
 
-针对不同的数据流采取不同的策略，这种可能性是存在的。并且，随着研究的发展和深入， 人们已经提出了各种不同的管理模式。[IETF](/docs/x_标准化/Internet/IETF.md) 已经发布了几个标准， 如综合服务(Integrated Services)、区分服务(Diferentiated Services)等。其实，Linux 内核从 2 2 开始，就已经实现了相关的 **Traffic Control(流量控制)** 功能。
+针对不同的数据流采取不同的策略，这种可能性是存在的。并且，随着研究的发展和深入， 人们已经提出了各种不同的管理模式。[IETF](/docs/Standard/Internet/IETF.md) 已经发布了几个标准， 如综合服务(Integrated Services)、区分服务(Diferentiated Services)等。其实，Linux 内核从 2 2 开始，就已经实现了相关的 **Traffic Control(流量控制)** 功能。
 
-实际上，流量控制系统可以想象成 **Message Queue(消息队列)** 的功能。都是为了解决数据量瞬间太大导致处理不过来的问题。
+实际上，流量控制系统可以想象成 [Message Queue(消息队列)](/docs/8.通用技术/Message%20Queue(消息队列)/Message%20Queue(消息队列).md) 的功能。都是为了解决数据量瞬间太大导致处理不过来的问题。
 
 # Traffic Control 的实现
 
@@ -46,7 +46,7 @@ Traffic Control(流量控制) 在不同的语境中有不同的含义，可以�
 
 如果内网有一台路由器，你希望**限制某几台主机的下载速度**，那你应该找到发送数据到这些主机的路由器内部的接口，然后在这些 **路由器内部接口**上做 **整流**（traffic shaping，流量整形）。
 
-此外，还要确保链路瓶颈（bottleneck of the link）也在你的控制范围内。例如，如果网卡是 100Mbps，但路由器的链路带宽是 256Kbps，那首先应该确保不要发送过多数据给路由 器，因为它扛不住。否则，**链路控制和带宽整形的决定权就不在主机侧而到路由器侧了**。要达到限速目的，需要对**“发送队列”**有完全的把控（”own the queue”），这里的“发送队列”也就是**整条链路上最慢的一段**（slowest link in the chain）。 幸运的是，大多数情况下这个条件都是能满足的。
+此外，还要确保链路瓶颈（bottleneck of the link）也在你的控制范围内。例如，如果网卡是 100Mbps，但路由器的链路带宽是 256Kbps，那首先应该确保不要发送过多数据给路由 器，因为它扛不住。否则，**链路控制和带宽整形的决定权就不在主机侧而到路由器侧了**。要达到限速目的，需要对 **“发送队列”** 有完全的把控（”own the queue”），这里的 “发送队列” 也就是 **slowest link in the chain(整条链路上最慢的一段)**。 幸运的是，大多数情况下这个条件都是能满足的。
 
 再用白话一点的描述：其实所谓的控制发送端行为，这种描述中的 发送端 是一个相对概念，在 Linux 每个 Hook 发给下一个 Hook 的时候，前一个 Hook 就是下一个 Hook 的发送端，所以，控制发送端行为，就是在第一个 Hook 收到数据包时，控制他发給下一个 Hook 或应用程序的数据包的行为。
 
@@ -54,7 +54,7 @@ Traffic Control(流量控制) 在不同的语境中有不同的含义，可以�
 
 流量控制系统的行为通常都是在内核中完成的，所有一般都是将将官代码直接写进内核，或者使用模块加载进内核，还有新时代的以 BPF 模式加在进内核。
 
-- [Netfilter 流量控制系统](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter%20流量控制系统/Netfilter%20流量控制系统.md)
+- [Netfilter](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Netfilter.md)
   - 通过 iptables、nftables 控制 Netfilter 框架中的 Hook 行为
 - [TC 模块](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/TC%20模块/TC%20模块.md)
   - 通过 tc 二进制程序控制 Hook 行为

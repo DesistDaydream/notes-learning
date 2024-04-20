@@ -19,8 +19,8 @@ git、Subversion(SVN)、CVS、Perforce、ClearCase 等都可以称为 SCM。
 
 可以称为 SCM 的在线网站：
 
-- [GitLab](docs/2.编程/Programming%20tools/SCM/GitLab/GitLab.md)
-- [GitHub](docs/2.编程/Programming%20tools/SCM/GitHub/GitHub.md)
+- [GitLab](/docs/2.编程/Programming%20tools/SCM/GitLab/GitLab.md)
+- [GitHub](/docs/2.编程/Programming%20tools/SCM/GitHub/GitHub.md)
 - [SourceForge](https://sourceforge.net/)
 - [GNU/git](https://git.savannah.gnu.org/)
 

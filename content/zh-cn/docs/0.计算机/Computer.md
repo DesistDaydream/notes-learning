@@ -8,14 +8,21 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [Wiki，Computer](https://en.wikipedia.org/wiki/Computer)
 
+冯·诺依曼
+
+[CPU](/docs/1.操作系统/Kernel/CPU/CPU.md)
+
+[Memory](/docs/1.操作系统/Kernel/Memory/Memory.md)
+
+[Disk](/docs/0.计算机/Disk/Disk.md)
 
 # 计算机工作的原理
 
 > 参考：
-> 
+>
 > - [公众号-码农的荒岛求生，你管这破玩意叫 CPU ？](https://mp.weixin.qq.com/s/Yntk83Z5cuZ2OhfnZzvWUA)
 > - [B 站-幼麟实验室，迷你计算机(小白入门)：计算机工作的原理](https://www.bilibili.com/video/BV12d4y1272j)
 
@@ -35,8 +42,8 @@ weight: 1
 
 **无论程序员编写的程序多么复杂，软件承载的功能最终都是通过这个小东西简单的开闭完成的**，除了神奇二字，我想不出其它词来。
 
-
 ## AND、OR、NOT
+
 现在有了晶体管，也就是开关，在此基础之上就可以搭积木了，你随手搭建出来这样三种组合：
 
 - 两个开关只有同时打开电流才会通过，灯才会亮
@@ -46,7 +53,6 @@ weight: 1
 天赋异禀的你搭建的上述组合分别就是：与门，AND Gate、或门，OR gate、非门，NOT gate，用符号表示就是这样：
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/8g3rwJPmya2J1UjGyUZ2x0Yxh82cWJu3ZbdZfNMWa7OibAXw4a7J9XVTtOyPSVicdgI4icAK9GUzMa0eBIhkcxh0Q/640?wx_fmt=png#crop=0&crop=0&crop=1&crop=1&height=284&id=ln8oX&margin=%5Bobject%20Object%5D&originHeight=284&originWidth=1080&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=1080)
-
 
 **道生一、一生二、二生三、三生万物**
 
@@ -89,7 +95,6 @@ weight: 1
 
 但，只有计算能力是不够的，电路需要能**记得住**信息。
 
-
 # 神奇的记忆能力
 
 到目前为止，你设计的组合电路比如加法器天生是没有办法存储信息的，它们只是简单的根据输入得出输出，但输入输出总的有个地方能够保存起来，这就是需要电路能保存信息。
@@ -117,7 +122,6 @@ weight: 1
 
 这样，当 D 为 0 时，整个电路保存的就是 0，否则就是 1。
 
-
 # 寄存器与内存的诞生
 
 现在你的电路能存储一个比特位了，想存储多个比特位还不简单，复制粘贴就可以了：
@@ -129,7 +133,6 @@ weight: 1
 你不满足，还要继续搭建更加复杂的电路以存储更多信息，同时提供寻址功能，就这样**内存**也诞生了。
 
 寄存器及内存都离不开上一节那个简单电路，只要通电，这个电路中就保存信息，但是断电后很显然保存的信息就丢掉了，**现在你应该明白为什么内存在断电后就不能保存数据了吧**。
-
 
 # 硬件还是软件？
 
@@ -149,7 +152,6 @@ weight: 1
 
 扯远了，接下来我们看下硬件是怎么提供所谓的基本功能的。
 
-
 # 硬件的基本功
 
 让我们来思考一个问题，CPU 怎么能知道自己要去对两个数进行加法计算，以及哪两个数进行加法计算呢？
@@ -163,7 +165,6 @@ weight: 1
 因此我们可以看到 CPU 只提供**机制**或者说功能 (打人、唱歌、炒菜，加法、减法、跳转)，我们提供**策略**(打谁、歌名、菜名，操作数，跳转地址)。
 
 CPU 表达机制就通过指令集来实现的。
-
 
 ## 指令集
 
@@ -187,7 +188,6 @@ CPU 表达机制就通过指令集来实现的。
 
 可以看到，机器指令是非常繁琐的，现代程序员都使用高级语言来编写程序，关于高级程序语言以及机器指令的话题请参见[《你管这破玩意叫编程语言？](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247485439&idx=1&sn=5045e795fe3a881ec719ffd0ea41302a&chksm=fcb980a1cbce09b7cb79cac0964d082bda3f8b94701012ab5fbd911d630bd5fef6017feb6dd9&scene=21#wechat_redirect)》。
 
-
 ### 指挥家：让我们演奏一曲
 
 现在我们的电路有了计算功能、存储功能，还可以通过指令告诉该电路执行什么操作，还有一个问题没有解决。
@@ -202,11 +202,9 @@ CPU 表达机制就通过指令集来实现的。
 
 现在你应该知道 CPU 的主频是什么意思了吧，主频是说一秒钟指挥棒挥动了多少次，显然主频越高 CPU 在一秒内完成的操作也就越多。
 
-
 ## 大功告成
 
 现在我们有了可以完成各种计算的 ALU、可以存储信息的寄存器以及控制它们协同工作的时钟信号，这些统称 **Central Processing Unit**，简称就是 **CPU**。
-
 
 # 总结
 
@@ -219,5 +217,3 @@ CPU 表达机制就通过指令集来实现的。
 1. [**程序员应如何理解 CPU**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247483850&idx=1&sn=b90a78604fa174f0e7314227a3002bdc&chksm=fcb98694cbce0f82024467c835c6e3b4984773b1a2f6c1625d573066c36b14420d996819bed7&scene=21#wechat_redirect)[**？**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247483736&idx=1&sn=4da1eec64e42567a0fdf4ae6d4e9344e&chksm=fcb98606cbce0f10090d950ec468b0a1e28087cd158a850bc7dc4c262fd2612a319851987220&scene=21#wechat_redirect)
 2. [**CPU 空闲时在干嘛？**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247485379&idx=1&sn=77ccd2258f0280dfb536ad3d389cd43a&chksm=fcb9809dcbce098b6f89dc59e71cf7fb6af6e5152e40f2f84f7c33ba9ea62e5bc8390ffd0553&scene=21#wechat_redirect)
 3. [**CPU 与进程、线程、操作系统**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247484768&idx=1&sn=049db350af9e5eea5cf3523ceb83f447&chksm=fcb9823ecbce0b28ca28d021e68c78138cde4a1b86ea7209c0c667d3d544d223d8b2aecbccec&scene=21#wechat_redirect)
-
-

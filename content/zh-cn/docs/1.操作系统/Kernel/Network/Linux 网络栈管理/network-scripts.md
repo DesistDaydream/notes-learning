@@ -14,16 +14,16 @@ RedHad 相关发行版的网络配置通过一系列脚本实现，随着时代�
 
 # 关联文件
 
-**/etc/sysconfig/\*** # 全局
+**/etc/sysconfig/** # 全局
 
 - **./network** # 全局网络配置
-- **./network-scripts/\*** # 曾经是网络配置脚本文件所在目录。CentOS 8 以后，移除了所有脚本，只用来为网络配置程序提供网络设备的配置文件
+- **./network-scripts/** # 曾经是网络配置脚本文件所在目录。CentOS 8 以后，移除了所有脚本，只用来为网络配置程序提供网络设备的配置文件
   - **./ifcfg-INTERFACE** # 名为 INTERFACE 网络设备配置文件。通常情况下，INTERFACE 的值通常与配置文件中 DEVICE 指令的值相同。
   - **./route-INTERFACE** # IPv4 静态路由配置文件。INTERFACE 为网络设备名称，该路由条目仅对名为 INTERFACE 的网络设备起作用
   - **./route6-INTERFACE** # IPv6 静态路由配置文件。INTERFACE 为网络设备名称，该路由条目仅对名为 INTERFACE 的网络设备起作用
   - **./rule-INTERFACE** # 定义内核将流量路由到特定路由表的 IPv4 源网络规则。
   - **./rule6-INTERFACE** # 定义内核将流量路由到特定路由表的 IPv6 源网络规则。
-- **./networking/\** * #
+- **./networking/\*** #
   - 注意：在 [RedHat 6 文档](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/ch-network_interfaces#s1-networkscripts-files)中表示，/etc/sysconfig/networking/ 目录由现在已经弃用的网络管理工具(system-config-network) 管理，这个内容不应该手动编辑。推荐使用 NetworkManager。并且在后续的版本中， NetworkManager 也接管了这些文件
 
 **/etc/iproute2/rt_tables** # 如果您想要使用名称而不是数字来引用特定的路由表，这个文件会定义映射映射。

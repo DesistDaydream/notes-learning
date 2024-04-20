@@ -8,7 +8,7 @@ weight: 3
 # 概述
 
 > 参考：
-> 
+>
 > - [官方 Manual(手册)](http://www.openssh.com/manual.html)
 > - <https://www.myfreax.com/how-to-setup-ssh-tunneling/>
 > - <https://hellolzc.github.io/2020/04/port-forwarding-with-ssh/>
@@ -20,7 +20,7 @@ weight: 3
 
 # ssh - OpenSSH 的 ssh 客户端工具(远程登录程序)
 
-详见 [ssh](docs/4.数据通信/Utility/OpenSSH/ssh.md)
+详见 [ssh](/docs/4.数据通信/Utility/OpenSSH/ssh.md)
 
 # scp - 基于 ssh 协议的文件传输工具
 
@@ -32,7 +32,7 @@ Note：远程 FILE 的格式为：USER@IP:/PATH/FILE)
 
 OPTIONS：
 
-- **-p** # 
+- **-p** #
 - **-r** # 以递归方式复制，用于复制整个目录
 
 ## EXAMPLE

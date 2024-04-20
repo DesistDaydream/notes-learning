@@ -79,7 +79,7 @@ cilium bpf ct list global
 
 ### Netfilter 中的 Connection Tracking
 
-详见 Netifilter 中 [Connection Tracking(连接跟踪)机制](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter%20流量控制系统/Connection%20Tracking(连接跟踪)机制.md)
+详见 Netifilter 中 [Connection Tracking for netfilter](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Connection%20Tracking%20for%20netfilter.md)
 
 ### BPF 中的 Connection Tracking
 

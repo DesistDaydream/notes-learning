@@ -12,7 +12,7 @@ title: Raid
 > - [Wiki，Parity bit](https://en.wikipedia.org/wiki/Parity_bit)(奇偶校验)
 > - <https://support.huawei.com/enterprise/zh/doc/EDOC1000163568/26751928>
 
-**Redundant array of independent disks(独立磁盘冗余阵列，简称 RAID)** 是一种存储虚拟化技术，可以将多个物理磁盘组合成一个或多个 Logical unit(逻辑单元) 以达到数据冗余、提高性能或两者兼得的目的。
+**Redundant array of independent disks(独立磁盘冗余阵列，简称 RAID)** 是一种存储虚拟化技术，可以将多个 [Disk](/docs/0.计算机/Disk/Disk.md)(物理磁盘) 组合成一个或多个 Logical unit(逻辑单元) 以达到数据冗余、提高性能或两者兼得的目的。
 
 数据以多种方式之一分布在驱动器上，称为 RAID 级别，具体取决于所需的冗余和性能级别。不同的方案或数据分布布局由单词“RAID”命名，后跟一个数字，例如 RAID 0 或 RAID 1。每个方案或 RAID 级别在关键目标之间提供不同的平衡：可靠性、可用性、性能和容量。高于 RAID 0 的 RAID 级别可针对不可恢复的扇区读取错误以及整个物理驱动器的故障提供保护。
 

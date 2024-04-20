@@ -5,6 +5,7 @@ title: Xrdp
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，neutrinolabs/xrdp](https://github.com/neutrinolabs/xrdp)
 > - <https://tecadmin.net/how-to-install-xrdp-on-ubuntu-20-04/>
 
@@ -90,7 +91,7 @@ XRDP 服务已成功安装并准备连接。在 Windows 客户端上，打开 RD
 
 # Xrdp 配置
 
-**/etc/xrdp/\*** #
+**/etc/xrdp/** #
 
 - **./sesman.ini** #
 - **./xrdp.ini** #
@@ -99,7 +100,7 @@ XRDP 服务已成功安装并准备连接。在 Windows 客户端上，打开 RD
 
 ## sorry, that didn’t work please try again(抱歉，登录失败，请再试一次) 问题
 
-注释掉下面文件文件中 `auth	required	pam_succeed_if.so user != root quiet_success` 这一行
+注释掉下面文件文件中 `auth required pam_succeed_if.so user != root quiet_success` 这一行
 
 ```bash
 sudo sed -i.bak 's/^auth.*quiet_success/#&/' /etc/pam.d/gdm-autologin

@@ -22,7 +22,7 @@ hping 不支持 IPv6
 
 https://github.com/TeddyGuo/tping 像 hping，但支持 IPv6，Python 编写
 
-[nping](docs/4.数据通信/Utility/nping.md) 由 Nmap 
+[nping](/docs/4.数据通信/Utility/nping.md) 由 Nmap
 
 hping 是由 Salvatore Sanfilippo（也称为 Antirez）创建的 TCP/IP 协议的开源数据包生成器和分析器。它是用于防火墙和网络安全审计和测试的常用工具之一，用于利用空闲扫描扫描技术（也是由 hping 作者发明的），现在在 Nmap Security Scanner 中实现。新版本的 hping，hping3，可以使用 Tcl 语言编写脚本，并实现一个基于字符串的、人类可读的 TCP/IP 数据包描述引擎，以便程序员可以编写与低级 TCP/IP 数据包操作和分析相关的脚本。很短的时间。
 

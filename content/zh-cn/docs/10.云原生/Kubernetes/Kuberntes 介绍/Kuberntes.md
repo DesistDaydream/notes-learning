@@ -1,8 +1,8 @@
 ---
-title: Kuberntes 介绍
-linkTitle: Kuberntes 介绍
-date: 2024-04-02T10:26
-weight: 1
+title: Kuberntes
+linkTitle: Kuberntes
+date: 2024-04-20T12:01
+weight: 20
 ---
 
 # 概述

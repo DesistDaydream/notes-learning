@@ -80,8 +80,10 @@ Query 标签的页面由一下几个元素组成
 - Expressions(表达式)
 
 可以输入数据源的查询语句，查询结果将会实时展现在面板上，比如，从 Prometheus 中获取了节点内存使用率的数据：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636274684211-5c3cddae-a4f0-4fc1-b10b-0c43417df8dc.png)
-Query 详解见 [Query(查询)](/docs/6.可观测性/Grafana/Panel(面板)%20 与%20Dashboard(仪表盘)/Panel(面板)%20 配置详解/Query(查询).md 配置详解/Query(查询).md)
+
+Query 详解见 [Query(查询)](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Panel%20配置详解/Query(查询).md)
 
 ## Transform(转换)
 

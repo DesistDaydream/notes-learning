@@ -85,11 +85,31 @@ INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，�
 
 ---
 
-RedHat 系特定的关联文件
+**RedHat 系特定的关联文件**
 
 **/etc/sysconfig/iptables** # 存放用户定义的规则信息，每次重启 iptabels.service 服务后，都会读取该配置文件信息并应用到系统中
 
 **/etc/sysconfig/iptables-conf** # 存放 iptables 工具的具体配置信息
 
 ---
+
+**Debian 系特定的关联文件**
+
+需要 `apt install iptables-persistent` 包, 安装时还有如下提示, 选择 yes 后, 当前系统中的 iptables 规则将会保存到 rules.v4 文件中.
+
+> Ubuntu 20.04 版本后，默认使用使用 nftables，安装 iptables-persistent 本质是 netfilter-persistent 包。但是带有 iptables 的相关功能以兼容
+
+```
+ │ Current iptables rules can be saved to the configuration file /etc/iptables/rules.v4. These rules will then   │  
+ │ be loaded automatically during system startup.                                                                │  
+ │                                                                                                               │  
+ │ Rules are only saved automatically during package installation. See the manual page of iptables-save(8) for   │  
+ │ instructions on keeping the rules file up-to-date.                                                            │  
+ │                                                                                                               │  
+ │ Save current IPv4 rules? 
+```
+
+**/etc/iptables/rules.v4** # IPv4 版本的 iptables 规则保存文件
+
+**/etc/iptables/rules.v6** # IPv6 版本的 iptables 规则保存文件
 

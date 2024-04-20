@@ -151,7 +151,7 @@ iptables 可以使用带有 -m 或 --match 选项的扩展的数据包匹配模�
 
 **conntrack 模块**
 
-- **--ctstate CTState1\[,CTState2...]** # 匹配指定的名为 CTState(conntrack State) 的[连接追踪](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter%20流量控制系统/Connection%20Tracking(连接跟踪)机制.md)状态。可用的状态有{INVALID|ESTABLISHED|NEW|RELATED|UNTRACKED|SNAT|DNAT}
+- **--ctstate CTState1\[,CTState2...]** # 匹配指定的名为 CTState(conntrack State) 的[连接追踪](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Connection%20Tracking%20for%20netfilter.md)状态。可用的状态有{INVALID|ESTABLISHED|NEW|RELATED|UNTRACKED|SNAT|DNAT}
 
 **state 模块**
 

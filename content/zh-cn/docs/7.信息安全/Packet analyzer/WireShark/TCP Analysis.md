@@ -8,11 +8,11 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，TCP Analysis](https://www.wireshark.org/docs/wsug_html_chunked/ChAdvTCPAnalysis.html)
 > - [公众号-小林 coding，一文搞定 Wireshark 网络数据包分析](https://mp.weixin.qq.com/s/hL96imOvuodILIhI70fbTg)
 
-使用 Wireshark 分析 [TCP](docs/4.数据通信/通信协议/TCP_IP/TCP/TCP.md)。
+使用 Wireshark 分析 [TCP](/docs/4.数据通信/通信协议/TCP_IP/TCP/TCP.md)。
 
 ## 通过 WireShark 理解三次握手和四次挥手
 
@@ -108,7 +108,7 @@ TCP Fast Open 抓包分析。在下图，数据包 7 号，客户端发起了第
 # TCP 提示信息
 
 > 参考：
-> 
+>
 > - [官方文档，TCP Analysis](https://www.wireshark.org/docs/wsug_html_chunked/ChAdvTCPAnalysis.html)
 > - 原文：[程序员宅基地，TCP报文（ tcp dup ack 、TCP Retransmission）](https://www.cxyzjd.com/article/ynchyong/109110028)
 >   - [CSDN，TCP报文（ tcp dup ack 、TCP Retransmission）](https://blog.csdn.net/ynchyong/article/details/109110028)

@@ -11,7 +11,7 @@ date: 2024-03-29T15:35
 > 参考：
 >
 > - [GitHub 项目，redis/redis](https://github.com/redis/redis)
-> - [GitHub 项目，valkey-io/valkey](https://github.com/valkey-io/valkey) # [Linux Foundation](/docs/x_标准化/Foundation/Linux%20Foundation.md) 基于 7.2.4 版本分叉的项目，保持原有 License
+> - [GitHub 项目，valkey-io/valkey](https://github.com/valkey-io/valkey) # [Linux Foundation](/docs/Standard/Foundation/Linux%20Foundation.md) 基于 7.2.4 版本分叉的项目，保持原有 License
 > - [官网](https://redis.io/)
 
 Notes: [3 月 30 日 Redis 发布博客改变 License](https://redis.com/blog/redis-adopts-dual-source-available-licensing/)，后续 Linux 基金会基于 7.2.4 版本分叉，保持原有 License。

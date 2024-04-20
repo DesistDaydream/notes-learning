@@ -8,11 +8,11 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档](https://learn.microsoft.com/en-us/windows/win32/wmisdk/wmi-start-page)
 > - [Wiki，Windows_Management_Instrumentation](https://en.wikipedia.org/wiki/Windows_Management_Instrumentation)
 
-**Windows Management Instrumentation(简称 WMI)** 使用 [CIM](/docs/x_标准化/IT/DMTF.md#CIM)(通用信息模型) 行业标准来表示系统、应用程序、网络、设备和其他受管理的组件。
+**Windows Management Instrumentation(简称 WMI)** 使用 [CIM](/docs/Standard/IT/DMTF.md#CIM)(通用信息模型) 行业标准来表示系统、应用程序、网络、设备和其他受管理的组件。
 
 https://www.syscom.com.tw/ePaper_Content_EPArticledetail.aspx?id=76&EPID=159&j=4&HeaderName=%E7%A0%94%E7%99%BC%E6%96%B0%E8%A6%96%E7%95%8C
 

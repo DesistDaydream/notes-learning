@@ -45,3 +45,4 @@ Ubuntu 由英国公司 [Canonical](https://en.wikipedia.org/wiki/Canonical_(comp
 
 Ubuntu Server 安装完成后，通常需要关闭自动更新，详见 [Debian 包管理](/docs/1.操作系统/Package%20管理/Debian%20包管理.md#包的自动更新)
 
+# 关联文件与配置

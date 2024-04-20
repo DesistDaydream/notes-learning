@@ -8,4 +8,4 @@ title: systemd-networkd
 
 # 配置
 
-**/run/systemd/network/\*** # 读取网络设备配置的目录
+**/run/systemd/network/** # 读取网络设备配置的目录

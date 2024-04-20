@@ -11,7 +11,7 @@ title: Linux 网络设备详解
 > 参考：
 >
 > - <https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking#>
-> - [Network Virtualization](docs/10.云原生/Virtualization/Network%20Virtualization/Network%20Virtualization.md)
+> - [Network Virtualization](/docs/10.云原生/Virtualization/Network%20Virtualization/Network%20Virtualization.md)
 
 Linux 具有丰富的虚拟网络功能，可用作托管 VM 和容器以及云环境的基础。在这篇文章中，我将简要介绍所有常用的虚拟网络接口类型。没有代码分析，只简单介绍了接口及其在 Linux 上的使用。任何有网络背景的人都可能对这篇博文感兴趣。可以使用命令 ip link help 获取接口列表。
 

@@ -9,9 +9,9 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档,概念-集群管理-集群网络](https://kubernetes.io/docs/concepts/cluster-administration/networking/)
+> - [官方文档, 概念-集群管理-集群网络](https://kubernetes.io/docs/concepts/cluster-administration/networking/)
 
-kubernetes 的整体网络分为以下三类
+Kubernetes 的整体网络分为以下三类
 
 - Node IP(各节点网络) #
 - Cluster IP(Service 网络) # 虚拟的，在 Netfilter 结构上，就是主机上 iptables 规则中的地址
@@ -19,11 +19,11 @@ kubernetes 的整体网络分为以下三类
 
 网络是 Kubernetes 的核心部分，Kubernetes 中有下面几个点需要互相通信
 
-1. 同一个 Pod 内的多个容器间通信，通过各容器的 lo 通信
-2. Pod 之间的通信，Pod IP<-->Pod IP
-    1. overlay 叠加网络转发二层报文，通过隧道方式转发三层报文
-3. Pod 与 Service 之间的通信，Pod IP<-->Cluster IP。详见 [Service(服务)](/docs/10.云原生/Kubernetes/Kubernetes%20网络/Service(服务).md)。
-4. Service 与集群外部客户端的通信。详见 [Service(服务)](/docs/10.云原生/Kubernetes/Kubernetes%20网络/Service(服务).md)。
+- 同一个 Pod 内的多个容器间通信，通过各容器的 lo 通信
+- Pod 之间的通信，Pod IP<-->Pod IP
+  - overlay 叠加网络转发二层报文，通过隧道方式转发三层报文
+- Pod 与 Service 之间的通信，Pod IP<-->Cluster IP。详见 [Service(服务)](/docs/10.云原生/Kubernetes/Kubernetes%20网络/Service(服务).md)。
+- Service 与集群外部客户端的通信。详见 [Service(服务)](/docs/10.云原生/Kubernetes/Kubernetes%20网络/Service(服务).md)。
 
 Kubernetes 的宗旨就是在应用之间共享机器。 通常来说，共享机器需要两个应用之间不能使用相同的端口，但是在多个应用开发者之间 去大规模地协调端口是件很困难的事情，尤其是还要让用户暴露在他们控制范围之外的集群级别的问题上。
 

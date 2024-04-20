@@ -8,7 +8,7 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，面板](https://grafana.com/docs/grafana/latest/panels/)
 
 **Panel(面板)** 与 **Dashboard(仪表盘)**
@@ -50,6 +50,8 @@ weight: 1
 该可视化是 Grafana 生态系统中最常用的。它可以渲染为一条线，一条点的路径或一系列条形图。这种类型的图具有足够的通用性，几乎可以显示任何时间序列数据。
 
 详见：[(弃用)Graph 类型面板详解](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Time%20series%20类型面板/(弃用)Graph%20类型面板详解.md)
+
+改用 [Time series 类型面板](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Time%20series%20类型面板/Time%20series%20类型面板.md)
 
 ### Heatmap
 
@@ -102,5 +104,3 @@ Node exporter
 Nginx
 
 - 9614
-
-

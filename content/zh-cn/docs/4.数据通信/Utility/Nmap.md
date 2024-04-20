@@ -10,13 +10,13 @@ tags:
 # 概述
 
 > 参考：
-> 
+>
 > - [官网](https://nmap.org/)
 > - [Manual(手册)，NMAP(1)](https://nmap.org/book/man.html)
 
 **Network Mapper(网络映射器，简称 Nmap)** 是一个用于网络探索和安全审计的开源工具。旨在快速扫描大型网络。
 
-Nmap 项目除了有自己的 nmap 工具外，还有很多实用程序，比如 [Netcat](docs/4.数据通信/Utility/Netcat.md)、etc.
+Nmap 项目除了有自己的 nmap 工具外，还有很多实用程序，比如 [Netcat](/docs/4.数据通信/Utility/Netcat.md)、etc.
 
 # Syntax(语法)
 
@@ -30,7 +30,7 @@ Nmap 项目除了有自己的 nmap 工具外，还有很多实用程序，比如
 ## OPTIONS
 
 > 参考：
-> 
+>
 > - https://nmap.org/book/man-briefoptions.html
 
 

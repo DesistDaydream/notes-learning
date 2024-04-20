@@ -13,7 +13,7 @@ weight: 20
 > - [官网](https://www.dpdk.org/)
 > - [Wiki，Data Plane Development Kit](https://en.wikipedia.org/wiki/Data_Plane_Development_Kit)
 
-**Data Plane Development Kit(数据平面开发套件，简称 DPDK)** 是一个由 [Linux 基金会](/docs/x_标准化/Foundation/Linux%20Foundation.md) 管理的开源软件项目。用于将 TCP 数据包的处理能力从内核空间移动到用户空间中的进程。主要是跳过了内核的 [Interrupts(中断)](/docs/1.操作系统/Kernel/CPU/Interrupts(中断)/Interrupts(中断).md) 逻辑。
+**Data Plane Development Kit(数据平面开发套件，简称 DPDK)** 是一个由 [Linux 基金会](/docs/Standard/Foundation/Linux%20Foundation.md) 管理的开源软件项目。用于将 TCP 数据包的处理能力从内核空间移动到用户空间中的进程。主要是跳过了内核的 [Interrupts(中断)](/docs/1.操作系统/Kernel/CPU/Interrupts(中断)/Interrupts(中断).md) 逻辑。
 
 处理数据包的传统方式是 CPU 中断方式，即网卡驱动接收到数据包后通过中断通知 CPU 处理，然后由 CPU 拷贝数据并交给协议栈。在数据量大时，这种方式会产生大量 CPU 中断，导致 CPU 无法运行其他程序。
 

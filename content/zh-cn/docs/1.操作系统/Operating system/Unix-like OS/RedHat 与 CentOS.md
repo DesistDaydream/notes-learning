@@ -40,15 +40,16 @@ RedHat 系列的 .iso 安装文件中包含了 Anaconda 安装器。
 - 高于 6 版本的分之代码将这个行为封装了
   - <https://github.com/rhinstaller/anaconda/blob/rhel-9/pyanaconda/modules/storage/checker/utils.py#L31>
 
-# 关联文件
+# 关联文件与配置
 
 **/etc/sysconfig/** # Red Hat Linux 发行版的各种系统配置文件
 
-# CentOS 法律
+# CentOS 史
+## CentOS 法律
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wlni0v/1647171407465-5e7ad5f3-913d-4c93-a893-e3334b09bfbb.png)
 
-# Centos 变为上游项目
+## Centos 变为上游项目
 
 Centos 的创始人新建了一个 [**Rocky 项目**](https://github.com/rocky-linux/rocky)，旨在作为 RedHat 下游 Linux 发行版
 

@@ -5,6 +5,7 @@ title: Containerd Image
 # 概述
 
 > 参考：
+>
 > - <https://blog.frognew.com/tags/containerd.html>
 > - [重学容器 09: Containerd 是如何存储容器镜像和数据的](https://blog.frognew.com/2021/06/relearning-container-09.html)
 
@@ -98,14 +99,14 @@ title: Containerd Image
 这些插件具有对应的目录：
 
 - **io.containerd.content.v1.content/** #
-  - **./blobs/sha256/\*** # OCI Image 的 blob 文件存放路径。其中 tar.gzip 类型的 blob 文件(即.镜像层的压缩文件)将会被解压到 io.containerd.snapshotter.v1.overlayfs/snapshots/ 目录中
-  - **./ingest/\*** # 当 pull 一个镜像时，会在该目录形成缓存，并逐渐在 blobs 目录中生成 blob 文件，pull 完之后，该目录将会清空。
+  - **./blobs/sha256/** # OCI Image 的 blob 文件存放路径。其中 tar.gzip 类型的 blob 文件(即.镜像层的压缩文件)将会被解压到 io.containerd.snapshotter.v1.overlayfs/snapshots/ 目录中
+  - **./ingest/** # 当 pull 一个镜像时，会在该目录形成缓存，并逐渐在 blobs 目录中生成 blob 文件，pull 完之后，该目录将会清空。
 - **io.containerd.grpc.v1.introspection/** #
 - **io.containerd.metadata.v1.bolt/** #
   - **./meta.db** # 这是一个 boltdb 的持久化文件。保存了 OCI Image 标准中 bolts 目录下的文件的组织信息。
 - **io.containerd.runtime.v2.task/** #
-  - .**/default/\*** # default 名称空间中运行的容器
-  - **./moby/\*** # moby 名称空间中运行的容器
+  - .**/default/** # default 名称空间中运行的容器
+  - **./moby/** # moby 名称空间中运行的容器
 - **io.containerd.snapshotter.v1.overlayfs/** #
   - **./metadata.db** #
   - .**/snapshots/INT/** # OCI Image 的 Layers 文件解压后的文件系统存放路径。每个镜像层都使用一个 INT 类型的数字作为目录名，目录中即是文件系统内容。
@@ -120,66 +121,66 @@ meta.db 是 boltdb 文件。通过 `go.etcd.io/bbolt` 库，使用 go 语言获�
 package main
 
 import (
-	"fmt"
-	"log"
+ "fmt"
+ "log"
 
-	bolt "go.etcd.io/bbolt"
+ bolt "go.etcd.io/bbolt"
 )
 
 func iteratingAll(bucket *bolt.Bucket, space string) {
-	space = space + "  "
-	bucket.ForEach(func(k, v []byte) error {
-		if v == nil {
-			fmt.Printf("%s[%s]: \n", space, k)
-			// 嵌套迭代
-			iteratingAll(bucket.Bucket([]byte(k)), space)
-		} else {
-			fmt.Printf("%s%s=%s\n", space, k, v)
-		}
-		return nil
-	})
+ space = space + "  "
+ bucket.ForEach(func(k, v []byte) error {
+  if v == nil {
+   fmt.Printf("%s[%s]: \n", space, k)
+   // 嵌套迭代
+   iteratingAll(bucket.Bucket([]byte(k)), space)
+  } else {
+   fmt.Printf("%s%s=%s\n", space, k, v)
+  }
+  return nil
+ })
 }
 
 func iteratingBucket(bucket *bolt.Bucket, space string) {
-	space = space + "  "
-	bucket.ForEach(func(k, v []byte) error {
-		if v == nil {
-			fmt.Printf("%s[%s]\n", space, k)
-			// 嵌套迭代
-			iteratingBucket(bucket.Bucket([]byte(k)), space)
-		}
-		return nil
-	})
+ space = space + "  "
+ bucket.ForEach(func(k, v []byte) error {
+  if v == nil {
+   fmt.Printf("%s[%s]\n", space, k)
+   // 嵌套迭代
+   iteratingBucket(bucket.Bucket([]byte(k)), space)
+  }
+  return nil
+ })
 }
 
 func r_transactions(tx *bolt.Tx) {
-	// 迭代根中的所有 Bucket
-	tx.ForEach(func(bucket_name []byte, bucket *bolt.Bucket) error {
-		fmt.Printf("root_bucket=%v\n", string(bucket_name))
+ // 迭代根中的所有 Bucket
+ tx.ForEach(func(bucket_name []byte, bucket *bolt.Bucket) error {
+  fmt.Printf("root_bucket=%v\n", string(bucket_name))
 
-		space := ""
-		// 迭代所有 Bucket
-		iteratingBucket(bucket, space)
+  space := ""
+  // 迭代所有 Bucket
+  iteratingBucket(bucket, space)
 
-		// 迭代所有 Bucket 及其 K/V。
-		// 可以指定名称空间，以跌点特定名称空间写下的 Bucket 及其 K/V
-		// bucket = tx.Bucket(bucket_name).Bucket([]byte("default"))
-		iteratingAll(bucket, space)
-		return nil
-	})
+  // 迭代所有 Bucket 及其 K/V。
+  // 可以指定名称空间，以跌点特定名称空间写下的 Bucket 及其 K/V
+  // bucket = tx.Bucket(bucket_name).Bucket([]byte("default"))
+  iteratingAll(bucket, space)
+  return nil
+ })
 }
 
 func main() {
-	db, err := bolt.Open("meta.db", 0600, nil)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer db.Close()
+ db, err := bolt.Open("meta.db", 0600, nil)
+ if err != nil {
+  log.Fatal(err)
+ }
+ defer db.Close()
 
-	db.View(func(tx *bolt.Tx) error {
-		r_transactions(tx)
-		return nil
-	})
+ db.View(func(tx *bolt.Tx) error {
+  r_transactions(tx)
+  return nil
+ })
 }
 ```
 
@@ -240,9 +241,9 @@ Version/Namespace/Object/Key -> Value
 - **Version** # 当前版本始终是 v1
 - **Namespace** # Object 所属的名称空间
 - **Object** # Object(对象) 在数据库中就是具有 K/V 的 Bucket。由于 Containerd 的插件机制，不同类型的 blob 文件，是由不同插件管理的。所以，Object 由可以由 Plugin/Type 组成。Containerd 的对象就是其所管理的原子单位，也就是各种元数据信息：
-  - **content/blob/\*** # OCI Image 规范的 blob 文件信息
+  - **content/blob/** # OCI Image 规范的 blob 文件信息
   - **image/IMAGE** # 镜像名称
-  - **snapshots/overlayfs/\*** # 镜像层解压后的文件系统信息
+  - **snapshots/overlayfs/** # 镜像层解压后的文件系统信息
   - ......等等
   - 这里有两个特殊的 Object
     - labels # 用来存储其 父 Bucket 的额外属性。比如 content/blob/DIGEST/ 下就有 labels，用来描述 blob 数据的额外属性。

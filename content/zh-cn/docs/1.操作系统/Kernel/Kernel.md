@@ -1,7 +1,15 @@
 ---
-title: 2.Kernel
+title: Kernel
+linkTitle: Kernel
+date: 2024-04-20T11:12
 weight: 1
 ---
+
+# 概述
+
+> 参考：
+>
+> -
 
 ## 操作系统 OS 与内核 Kernel 有什么区别？
 

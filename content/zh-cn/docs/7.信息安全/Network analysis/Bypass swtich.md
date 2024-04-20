@@ -13,7 +13,7 @@ weight: 4
 
 **Bypass switch(旁路交换机)** 是一种硬件设备，可以与安全设备并联并串联到网络链路中，为安全设备提供 **fail-safe access(故障时可安全访问)** 的能力。
 
-> tips: Bypass switch 早期也有 **Bypass tap(旁路分路器)** 的含义，具有一部分 [Network tap](docs/7.信息安全/Network%20analysis/Network%20tap.md) 的能力，后来随着发展，Bypass 仅仅作为提供高可用所用，Tap 能力由更专业的设备实现。
+> tips: Bypass switch 早期也有 **Bypass tap(旁路分路器)** 的含义，具有一部分 [Network tap](/docs/7.信息安全/Network%20analysis/Network%20tap.md) 的能力，后来随着发展，Bypass 仅仅作为提供高可用所用，Tap 能力由更专业的设备实现。
 
 Bypass tap 通常至少有 4 个端口。
 

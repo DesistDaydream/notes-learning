@@ -128,4 +128,4 @@ Overlay Network 产生的原因
 
 VXLAN
 
-概念详见 [Flannel](docs/10.云原生/Kubernetes/Kubernetes%20网络/CNI/Flannel.md) 中的 vxlan 模型
+概念详见 [Flannel](/docs/10.云原生/Kubernetes/Kubernetes%20网络/CNI/Flannel.md) 中的 vxlan 模型

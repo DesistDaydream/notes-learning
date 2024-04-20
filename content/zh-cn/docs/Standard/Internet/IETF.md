@@ -18,7 +18,7 @@ IETF 是首屈一指的互联网标准组织。它遵循设置这些标准的开
 
 <https://www.ietf.org/standards/>
 
-- [RFCs](/docs/x_标准化/Internet/RFC.md)(征求意见稿)
+- [RFCs](/docs/Standard/Internet/RFC.md)(征求意见稿)
 - IANA(互联网号码分配机构)
 - Standards process(标准流程)
 - Internet Drafts(互联网草案)

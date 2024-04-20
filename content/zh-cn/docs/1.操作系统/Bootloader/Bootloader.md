@@ -8,7 +8,7 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [Wiki，Bootloader](https://en.wikipedia.org/wiki/Bootloader)
 
 **Bootloader(引导加载程序)** 是负责 [booting(引导)](https://en.wikipedia.org/wiki/Booting) 计算器的软件。通常也被称为 Bootstrap Loader、Bootstrap。
@@ -17,7 +17,7 @@ weight: 1
 
 # 配置
 
-**/boot/\*** # 所有关于系统引导启动的配置信息，都在该目录下
+**/boot/** # 所有关于系统引导启动的配置信息，都在该目录下
 
 **/boot/grub2/** #
 

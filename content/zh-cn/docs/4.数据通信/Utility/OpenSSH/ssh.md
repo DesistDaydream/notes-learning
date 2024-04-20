@@ -23,7 +23,7 @@ weight: 20
 - **-i \</PATH/FILE>** # 使用指定的私钥文件来进行登录认证
 - **-J \<DEST\[,DEST2,...]>** # 首先与 DEST 建立 ssh 连接，并通过 DEST 跳转到最终目标主机。如果需要多次跳转。可以指定多个 DEST 并以逗号分割。
   - DEST 格式为：`[USER@]HOST[:PORT]`
-- **-o \<KEY=VALUE>** # 以命令行的方式配置本应该在 [OpenSSH 配置](docs/4.数据通信/Utility/OpenSSH/OpenSSH%20配置.md) - ssh_config 文件中的内容。KEY 是 ssh_config 配置文件中的关键字。
+- **-o \<KEY=VALUE>** # 以命令行的方式配置本应该在 [OpenSSH 配置](/docs/4.数据通信/Utility/OpenSSH/OpenSSH%20配置.md) - ssh_config 文件中的内容。KEY 是 ssh_config 配置文件中的关键字。
 - **-p \<PORT>** # 指定 HostIP 所在远程服务器监听的端口
 - **-T** # 不要分配一个伪终端
 - **-W** # 请求将客户端上的标准输入和输出通过安全通道转发到端口上的主机。 表示 -N，-T，ExitOnForwardFailure 和 ClearAllForwardings，尽管可以在配置文件中或使用 -o 命令行选项覆盖它们。
@@ -32,18 +32,18 @@ weight: 20
 
 ### 隧道选项
 
-**-w LOCAL_TUN\[:REMOTE_TUN]** # 在客户端与服务端建立互相连接的 tun 设备. tun 设备的默认模式为 **point-to-point**. 
+**-w LOCAL_TUN\[:REMOTE_TUN]** # 在客户端与服务端建立互相连接的 tun 设备. tun 设备的默认模式为 **point-to-point**.
 
 - LOCAL_TUN 和 REMOTE_TUN 可以是 数字 或者 any 关键字. e.g. `-w 0:0` 则会创建名为 tun0 的设备
-- Notes: 
+- Notes:
   - 必须使用具有创建网络设备权限的用户执行 ssh 命令, 比如 root 用户.
-  - 必须保证 [OpenSSH 配置](docs/4.数据通信/Utility/OpenSSH/OpenSSH%20配置.md) 中 sshd_config 文件中的 PermitTunnel 的值不为 no, 才能保证在两端创建 tun 设备, 并让 tun 设备互联. 
+  - 必须保证 [OpenSSH 配置](/docs/4.数据通信/Utility/OpenSSH/OpenSSH%20配置.md) 中 sshd_config 文件中的 PermitTunnel 的值不为 no, 才能保证在两端创建 tun 设备, 并让 tun 设备互联.
   - 可以通过 ssh_config 中的 Tunnel 指令改变 tun 设备的类型. e.g. `ssh -p 20022 -o "Tunnel=ethernet" -w 0:0 root@1.1.1.1` 将会创建 tap 设备
 
 ### 端口转发选项
 
 **-D \<\[Bind_Address]:PORT>** # Dynamic(动态) 转发。启用动态转发的 ssh 程序相当于一个代理服务，通过监听的端口，可以将流量送到指定的目标主机。
-  
+
 **-L \<XXX>** # Local(本地) 转发。发往本地的 TCP 端口 或 Unix Socket 上的流量转发到远端 TCP 端口 或 Unix Socket 上。
 
 - XXX 有多种语法格式：
@@ -109,7 +109,7 @@ weight: 20
   - **ssh -o ProxyCommand="nc -x 127.0.0.1:10022 %h %p" root@C-HOST**
   - 也可以使用 socat 工具
     - ssh -o ProxyCommand='socat - socks:127.0.0.1:%h:%p,socksport=10022' root@C-HOST
-  - Windows 上可以使用 [Netcat](docs/4.数据通信/Utility/Netcat.md) 工具
+  - Windows 上可以使用 [Netcat](/docs/4.数据通信/Utility/Netcat.md) 工具
     - ssh -o ProxyCommand="ncat --proxy-type socks5 --proxy 127.0.0.1:10022 %h %p" root@C-HOST
 
 **通过 B 中转，将 C 的端口映射到 A 的端口上**，本地转发

@@ -1,5 +1,7 @@
 ---
-title: "Netfilter 流量控制系统"
+title: Netfilter
+linkTitle: Netfilter
+date: 2024-04-20T10:04
 weight: 1
 ---
 
@@ -19,9 +21,22 @@ weight: 1
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gral7u/1616165512374-db897dd5-0704-42f2-a1d8-441af05f247c.jpeg)
 
-Netfilter 是 Linux 操作系统核心层内部的一个数据包处理模块集合的统称。一种网络筛选系统，对数据包进入以及出去本机进行的一些控制与管理。该功能的所有模块可以通过下图所示的目录进行查找，其中还包括 ipvs 等。
+Netfilter 是 Linux 操作系统核心层内部的一个**数据包处理**模块集合的统称, 是一种**流量控制系统**。一种网络筛选系统，对数据包进入以及出去本机进行的一些控制与管理。该功能的所有模块可以通过下图所示的目录进行查找，其中还包括 i
+# 概述
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gral7u/1616165512330-720231f3-a4f2-4a51-96cf-137a36724b74.jpeg)
+> 参考：
+>
+> -
+
+pvs 等。
+
+```bash
+~]# find /usr/lib/modules/$(uname -r)/kernel -name netfilter -exec realpath {} \;
+/usr/lib/modules/5.15.0-102-generic/kernel/net/bridge/netfilter
+/usr/lib/modules/5.15.0-102-generic/kernel/net/netfilter
+/usr/lib/modules/5.15.0-102-generic/kernel/net/ipv6/netfilter
+/usr/lib/modules/5.15.0-102-generic/kernel/net/ipv4/netfilter
+```
 
 Netfilter 项目支持如下功能
 
@@ -65,13 +80,31 @@ Netfilter 所设置的规则是存放在内核内存中的，Iptables 是一个�
 
 ## 规则(Rule)匹配(Match)
 
-(规则的匹配条件)匹配的用法详见：[iptables](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter%20流量控制系统/iptables/iptables.md)
+(规则的匹配条件)匹配的用法详见：[iptables](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/iptables/iptables.md)
 
 规则，需要有具体的内容才能称为规则，所以 Match 就是规则中的具体内容。
 
 每条链上的规则，需要对流量进行匹配后才能对该流量进行相应的处理，匹配内容包括“数据包的源地址、目标地址、协议、目标等”，(e.g.这个数据使用哪个协议从哪来的到哪去的目标是什么)
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gral7u/1616165512349-f2e6f4c5-d617-4b04-a432-f9a7389120df.jpeg)
+```bash
+]# ls -al /usr/lib/x86_64-linux-gnu/xtables
+total 2184
+......
+-rw-r--r--  1 root root 14784 Jan 17 05:14 libebt_dnat.so
+-rw-r--r--  1 root root 22968 Jan 17 05:14 libebt_ip6.so
+-rw-r--r--  1 root root 27064 Jan 17 05:14 libebt_ip.so
+......
+-rw-r--r--  1 root root 14784 Jan 17 05:14 libebt_snat.so
+-rw-r--r--  1 root root 14776 Jan 17 05:14 libebt_stp.so
+-rw-r--r--  1 root root 14776 Jan 17 05:14 libebt_vlan.so
+-rw-r--r--  1 root root 14776 Jan 17 05:14 libip6t_ah.so
+-rw-r--r--  1 root root 14984 Jan 17 05:14 libip6t_DNAT.so
+......
+-rw-r--r--  1 root root 19080 Jan 17 05:14 libipt_DNAT.so
+......
+-rw-r--r--  1 root root 14968 Jan 17 05:14 libxt_ipvs.so
+......
+```
 
 Match 功能的实现依赖于模块(类似于内核的模块)，比如右图，可以使用命令 rpm -ql iptables | grep ".so"查看都有哪些模块，其中的 XXX.so 就是各个功能的模块，大写字母是 target 所用的模块，小写字母是基本匹配与扩展匹配所用的模块
 
