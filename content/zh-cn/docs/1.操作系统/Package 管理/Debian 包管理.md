@@ -20,8 +20,6 @@ Ubuntu 的包管理系统源自使用 Debian GUN/Linux 发行版的系统。Debi
 >
 > - [Wiki，Dpkg](https://en.wikipedia.org/wiki/Dpkg)
 
-## 概述
-
 **Debian Package(Debian 包，简称 dpkg)** 是 Debian 及其衍生的 Linux 发行版的软件包管理程序，用于安装、删除 _.deb 软件包，以及查看_.deb 软件包的信息。
 
 Dpkg 包含一系列的包管理工具：
@@ -101,11 +99,8 @@ dpki-query 是一个查询工具，可以从 dpkg 数据库中查询包的信息
 
 > 参考：
 >
-> - [Wiki](<https://en.wikipedia.org/wiki/APT_(software)>)
-> - [APT](<https://en.wikipedia.org/wiki/APT_(software)>)
+> - [Wiki，APT_(software)](https://en.wikipedia.org/wiki/APT_(software))
 > - [Debian 项目](https://salsa.debian.org/apt-team/apt)
-
-## 概述
 
 **Advanced Package Tool(高级包工具，简称 APT)** 是一个开源的用户接口，用来处理 Debian、Ubuntu 及其相关 Linux 发行版的软件安装和删除。
 
@@ -164,7 +159,7 @@ EOF
 
 > 参考：
 >
-> - [Manual(手册),apt-get(8)](https://manpages.ubuntu.com/manpages/focal/man8/apt-get.8.html)
+> - [Manual(手册)，apt-get(8)](https://manpages.ubuntu.com/manpages/focal/man8/apt-get.8.html)
 
 ### Syntax(语法)
 
@@ -247,7 +242,7 @@ EOF
 
 - # 更新仓库
 
-    - sudo apt update
+  - sudo apt update
 
 # 包的自动更新
 

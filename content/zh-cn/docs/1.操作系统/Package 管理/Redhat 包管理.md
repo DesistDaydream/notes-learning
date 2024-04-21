@@ -19,16 +19,19 @@ weight: 20
 **rpm -i \[OPTIONS] PACKAGE** # 安装软件包
 
 OPTIONS
+
 - **-v** # 显示安装过程
 - **-h** # 显示安装进度
 
 EXAMPLE
+
 - **rpm -ivh X.rpm** # 安装 X.rpm 软件包
 - **rpm -Uvh X.rpm** # 升级 X.rpm 软件包
 
 **rpm -q \[OPTIONS] PACKAGE** # 查询软件包
 
 OPTIONS
+
 - **-a** # 列出所有已经安装在系统上的所有软件包的完整名称
 - **-i \<PACKAGE>** # 列出 PACKAGE 这个包的详细信息，安装时间，版本，开发商，描述等等
 - **-l \<PACKAGE>** # 列出 PACKAGE 这个包的所有文件与目录所在完整文件名(list)
@@ -36,6 +39,7 @@ OPTIONS
 - **-f \<FILE>** # 列出该 FILE 属于哪个 PACKAGE 中的文件
 
 EXAMPLE
+
 - rpm -q PACKAGE_NAME
 - rpm -qp \*.rpm # 获取当前目录下的 rpm 包相关信息
 - rpm -qa | less # 列出所有已安装的软件包
@@ -50,9 +54,11 @@ EXAMPLE
 **rpm -e \[OPTIONS] PACKAGE** # 删除软件包
 
 OPTIONS
+
 - **--nodeps** # 不考虑依赖，单独卸载
 
 EXAMPLE
+
 - rpm -e PACKAGE_NAME
 - rpm -e –nodeps PACKAGE_NAME # 不考虑依赖包
 - rpm -e –allmatches PACKAGE_NAME # 删除所有跟 PACKAGE_NAME 匹配的所有版本的包
@@ -60,6 +66,7 @@ EXAMPLE
 **rpm -V \[OPTIONS] PACKAGE** # 验证软件包
 
 OPTIONS
+
 - **-a** # 列出系统上所有可能被更改过的文件
 
 # dnf 工具
@@ -189,6 +196,7 @@ EOF
 - **search \<STRING>** # 从包名以及该包的描述中搜索 STRING(字符串)的内容
 
 ### list OPTIONS
+
 - **installed** # 列出已安装的包
 
 ## EXAMPLE

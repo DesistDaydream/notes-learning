@@ -77,6 +77,27 @@ INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，�
 -A INPUT -p tcp -m tcp --dport 9090 -j DROP
 ```
 
+# 安装 iptables
+
+iptables 程序一般随系统安装自带（Minimal 也带），需要安装的通常是保证 iptables 规则可以在开机时启动的程序
+
+## Ubuntu 安装 iptables
+
+```bash
+apt install netfilter-persistent iptables-persistent
+```
+
+netfilter-persistent 用来在保证在系统启动时加载 [Netfilter](docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Netfilter.md) 规则；或者通过期内的一些 [Systemd](docs/1.操作系统/Systemd/Systemd.md) 的 [Unit File](docs/1.操作系统/Systemd/Unit%20File/Unit%20File.md) 和脚本自动加载保存好的 Netfilter 规则。iptables-persistent 算作 netfilter-persistent 包的插件，可以实现加载 iptables 规则效果
+
+> [!Notes]
+> Ubuntu 20.04 版本后，默认使用使用 nftables，安装 iptables-persistent 本质是 netfilter-persistent 包。iptables-persistent 作为 netfilter-persistent 的插件以兼容老的 iptables 功能。
+> ```bash
+> ~]# ll /lib/systemd/system/iptables.service
+> lrwxrwxrwx 1 root root 34 Apr 20 11:36 /lib/systemd/system/iptables.service -> /etc/alternatives/iptables.service
+> ~]# ll /etc/alternatives/iptables.service 
+> rwxrwxrwx 1 root root 48 Apr 20 11:36 /etc/alternatives/iptables.service -> /lib/systemd/system/netfilter-persistent.service
+> ```
+
 # iptables 关联文件与配置
 
 **/run/xtables.lock** # 该文件在 iptables 程序启动时被使用，以获取排他锁
@@ -95,21 +116,7 @@ INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，�
 
 **Debian 系特定的关联文件**
 
-需要 `apt install iptables-persistent` 包, 安装时还有如下提示, 选择 yes 后, 当前系统中的 iptables 规则将会保存到 rules.v4 文件中.
+**/etc/iptables/rules.v4** # IPv4 版本的 iptables 规则保存文件，由 iptables-persistent.service 服务使用
 
-> Ubuntu 20.04 版本后，默认使用使用 nftables，安装 iptables-persistent 本质是 netfilter-persistent 包。但是带有 iptables 的相关功能以兼容
-
-```
- │ Current iptables rules can be saved to the configuration file /etc/iptables/rules.v4. These rules will then   │  
- │ be loaded automatically during system startup.                                                                │  
- │                                                                                                               │  
- │ Rules are only saved automatically during package installation. See the manual page of iptables-save(8) for   │  
- │ instructions on keeping the rules file up-to-date.                                                            │  
- │                                                                                                               │  
- │ Save current IPv4 rules? 
-```
-
-**/etc/iptables/rules.v4** # IPv4 版本的 iptables 规则保存文件
-
-**/etc/iptables/rules.v6** # IPv6 版本的 iptables 规则保存文件
+**/etc/iptables/rules.v6** # IPv6 版本的 iptables 规则保存文件，由 iptables-persistent.service 服务使用
 

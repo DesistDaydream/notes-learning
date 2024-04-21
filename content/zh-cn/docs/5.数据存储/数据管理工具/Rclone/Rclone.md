@@ -15,7 +15,7 @@ weight: 1
 
 Rclone 将存储提供者抽象为 **Remote**，在我们配置 Rclone 时，经常会看到 Remote 这个词，创建、删除 Remote 这种行为，就是在 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的配置文件中配置 Remote。这些 Remote 由指定类型的 **Backend** 提供支持。
 
-> 比如，我们可以这样描述，我创建了一个名为 alist 的 Remote，使用的是 WebDav 类型的 Backend。
+> 比如，我们可以这样描述: 我创建了一个名为 alist 的 Remote，使用的是 WebDav 类型的 Backend。
 
 Rclone 还可以将这些 Remote 作为磁盘挂载在 Windows、macOS、Linux 上，并通过 SFTP、HTTP、WebDAV、FTP、DLNA 对外提供存储能力。
 
@@ -87,19 +87,31 @@ copyto 可以在上传单个文件到目标目录下时，改变文件的原名�
 
 https://rclone.org/commands/rclone_sync/
 
-注意：由于 sync 命令会导致目标数据丢失，最好使用 --dry-run 或 -i, --interactive 标志进行测试
+<font color="#ff0000">注意：sync 命令会导致**目标数据丢失**</font>，最好使用 --dry-run 或 -i, --interactive 标志进行测试
 
 ## Syntax(语法)
 
 **rclone sync SOURCE:PATH DEST:PATH \[FLAGS]**
 
+## EXAMPLE
+
+  将 SRC_REMOTE 中的 SRC_PATH 路径下的文件同步到 DST_REMOTE 中的 DST_PATH 路径下
+
+```bash
+export SRC_REMOTE="ali-oss"
+export DST_REMOTE="hwc-obs"
+export SRC_PATH="/notes-learning"
+export DST_PATH="/notes-learning"
+rclone sync ${SRC_REMOTE}:${SRC_PATH} ${DST_REMOTE}:${DST_PATH}  -v
+```
+
 # 列出 Remote 中的数据相关命令
 
-ls
+ls # 列出路径中的对象及其大小和路径
 
-lsl
+lsl # 列出路径中的对象以及修改时间、大小和路径
 
-lsd
+lsd # 列出路径中的所有目录/容器/存储桶
 
 lsf
 
@@ -111,7 +123,7 @@ lsjson
 
 **rclone sync** 命令会在源和目标之间同步文件。 它会删除目标目录中源目录没有的文件，并且会更新目标目录中的文件。 **rclone copy** 命令只会在源和目标之间复制文件。 它不会删除目标目录中的文件，也不会更新文件。
 
-同步两个云盘中的数据（待验证）
+同步两个云盘中的数据（待验证，alist 好像有点问题）
 
 - `nohup rclone sync alist-local:/aliyun alist-local:/baiduyun -vv >> /root/rclone.log 2>&1 &`
 

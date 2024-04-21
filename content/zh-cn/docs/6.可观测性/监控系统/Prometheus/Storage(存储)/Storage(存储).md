@@ -233,8 +233,6 @@ Prometheus 通过下面几种方式与远程存储系统集成：
     remote_read:
       - url: "http://localhost:9201/read"
 
-####
-
 # 压缩示例
 
 ```bash

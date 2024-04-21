@@ -212,7 +212,7 @@ CPU 表达机制就通过指令集来实现的。
 
 本文从一枚开关开始讲解了 CPU 构造的基本原理，希望这篇对大家理解 CPU 有所帮助。
 
-##### _**参考资料:**_
+# 参考资料
 
 1. [**程序员应如何理解 CPU**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247483850&idx=1&sn=b90a78604fa174f0e7314227a3002bdc&chksm=fcb98694cbce0f82024467c835c6e3b4984773b1a2f6c1625d573066c36b14420d996819bed7&scene=21#wechat_redirect)[**？**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247483736&idx=1&sn=4da1eec64e42567a0fdf4ae6d4e9344e&chksm=fcb98606cbce0f10090d950ec468b0a1e28087cd158a850bc7dc4c262fd2612a319851987220&scene=21#wechat_redirect)
 2. [**CPU 空闲时在干嘛？**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247485379&idx=1&sn=77ccd2258f0280dfb536ad3d389cd43a&chksm=fcb9809dcbce098b6f89dc59e71cf7fb6af6e5152e40f2f84f7c33ba9ea62e5bc8390ffd0553&scene=21#wechat_redirect)

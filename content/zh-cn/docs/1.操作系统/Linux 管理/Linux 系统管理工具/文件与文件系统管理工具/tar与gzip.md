@@ -10,7 +10,7 @@ title: tar与gzip
 
 tar 是一个归档工具，用以实现 [Archive File(归档文件)](/docs/1.操作系统/Filesystem/Archive%20File(归档文件).md) 的管理
 
-## Syntax(语法)
+## tar Syntax(语法)
 
 **tar  \[Operation mode] \[OPTIONS] /PATH/FILE**
 
@@ -49,7 +49,7 @@ OPTIONS:
 
 gzip 是在 Linux 系统中经常使用的一个对文件进行压缩和解压缩的命令，既方便又好用。gzip 不仅可以用来压缩大的、较少使用的文件以节省磁盘空间，还可以和 tar 命令一起构成 Linux 操作系统中比较流行的压缩文件格式。据统计，gzip 命令对文本文件有 60%～ 70%的压缩率。减少文件大小有两个明显的好处，一是可以减少存储空间，二是通过网络传输文件时，可以减少传输的时间。
 
-## Syntax(语法)
+## gzip Syntax(语法)
 
 **gzip \[OPTIONS] /PATH/FILE**
 
@@ -127,6 +127,7 @@ drwxr-xr-x sk/users 0 2018-07-02 19:30 ostechnix/
 
 要查看一个 rar 文件的内容，只需要执行：
 
+```bash
 $ rar v ostechnix.rar
 RAR 5.60 Copyright (c) 1993-2018 Alexander Roshal 24 Jun 2018
 Trial version Type 'rar -?' for help
@@ -139,11 +140,13 @@ rw-r--r-- 53632 52166 97% 2018-06-29 15:57 70260AC4 ostechnix/image.jpg
 -rw-r--r-- 9702219 9658527 99% 2018-04-25 20:35 DD875AC4 ostechnix/song.mp3
 ---------- --------- -------- ----- ---------- ----- -------- ----
 9912682 9849787 99% 3
+```
 
 ## 使用 unrar 命令
 
 你也可以使用带有 l 选项的 unrar 来做到与上面相同的事情，展示如下：
 
+```bash
 $ unrar l ostechnix.rar
 UNRAR 5.60 freeware Copyright (c) 1993-2018 Alexander Roshal
 Archive: ostechnix.rar
@@ -155,6 +158,7 @@ rw-r--r-- 53632 2018-06-29 15:57 ostechnix/image.jpg
 -rw-r--r-- 9702219 2018-04-25 20:35 ostechnix/song.mp3
 ----------- --------- ---------- ----- ----
 9912682 3
+```
 
 ## 使用 zip 命令
 
@@ -167,6 +171,8 @@ Total 1 entries (597219 bytes)
 ## 使用 unzip 命令
 
 你也可以像下面这样使用 -l 选项的 unzip 命令来呈现一个 zip 文件的内容：
+
+```bash
 $ unzip -l ostechnix.zip
 Archive: ostechnix.zip
 Length Date Time Name
@@ -174,14 +180,17 @@ Length Date Time Name
 597219 2018-04-09 12:48 Life advices.jpg
 -------- -------
 597219 1 file
+```
 
 ## 使用 zipinfo 命令
 
+```bash
 $ zipinfo ostechnix.zip
 Archive: ostechnix.zip
 Zip file size: 584859 bytes, number of entries: 1
 -rw-r--r-- 6.3 unx 597219 bx defN 18-Apr-09 12:48 Life advices.jpg
 1 file, 597219 bytes uncompressed, 584693 bytes compressed: 2.1%
+```
 
 如你所见，上面的命令展示了一个 zip 文件的内容、它的权限、创建日期和压缩百分比等等信息。
 

@@ -2,7 +2,7 @@
 title: nftables
 linkTitle: nftables
 date: 2024-04-20T10:06
-weight: 3
+weight: 4
 ---
 
 # 概述
@@ -26,13 +26,6 @@ nftables 和 iptables 一样，由 table(表)、chain(链)、rule(规则) 组成
 - 原生支持集合、字典和映射
 
 nftables 没有任何默认规则，如果关闭了 firewalld 服务，则命令 nft list ruleset 输出结果为空。意思就是没有任何内置链或者表
-
----
-
-各 [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 使用 nftables 的说明
-
-- Ubuntu # 从 20 及以后的版本，默认使用 nftables，所有 iptables 相关的文件，都是 nftables 相关文件的 [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)(符号链接)
-- RedHat # TODO
 
 ## nftables table 表 与 nftables family 簇
 
@@ -131,7 +124,19 @@ Note：对于每条规则而言，其 index 可以随时改变，当在多个规
 
 nftables 的结构为：表包含链，链包含规则，这个逻辑是非常清晰明了的。而 iptable 呢，则需要先指定什么类型的表，再添加规则，规则与链则互相存在，让人摸不清关系；其实也可以说，iptables 的表类型，就是 nftables 中的链的类型。
 
-# Nftable 关联文件与配置
+# 安装 Nftables
+
+nftables 程序与 [iptables](docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/iptables/iptables.md) 程序一样，一般随系统安装自带（Minimal 也带），需要安装的通常是保证 nftables 规则可以在开机时启动的程序（只不过 nftables 是新的程序，各类系统默认安装的是 iptables 还是 nftables，取决于自身的规划）。
+
+各 [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 默认使用 nftables 的版本说明
+
+- Ubuntu # 从 20 及以后的版本，默认使用 nftables，所有 iptables 相关的文件，都是 nftables 相关文件的 [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)(符号链接)
+  - 主要通过 netfilter-persistent 包实现规则的持久化
+- RedHat # TODO
+
+
+
+# Nftables 关联文件与配置
 
 ---
 
@@ -148,8 +153,6 @@ $ nft list ruleset > /root/nftables.conf
 ---
 
 **Debian 系特定的关联文件**
-
-通过 netfilter-persistent 包实现规则的持久化
 
 TODO
 
@@ -391,8 +394,6 @@ $ nft add element inet my_table my_vmap { 192.168.0.10 : drop, 192.168.0.11 : ac
 后面就可以在规则中引用字典中的元素了：
 
 $ nft add rule inet my_table my_filter_chain ip saddr vmap @my_vmap
-
-9.
 
 表与命名空间
 
