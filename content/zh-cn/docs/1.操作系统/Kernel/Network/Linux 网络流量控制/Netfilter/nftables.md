@@ -126,15 +126,13 @@ nftables 的结构为：表包含链，链包含规则，这个逻辑是非常�
 
 # 安装 Nftables
 
-nftables 程序与 [iptables](docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/iptables/iptables.md) 程序一样，一般随系统安装自带（Minimal 也带），需要安装的通常是保证 nftables 规则可以在开机时启动的程序（只不过 nftables 是新的程序，各类系统默认安装的是 iptables 还是 nftables，取决于自身的规划）。
+nftables 程序与 [iptables](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/iptables/iptables.md) 程序一样，一般随系统安装自带（Minimal 也带），需要安装的通常是保证 nftables 规则可以在开机时启动的程序（只不过 nftables 是新的程序，各类系统默认安装的是 iptables 还是 nftables，取决于自身的规划）。
 
 各 [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 默认使用 nftables 的版本说明
 
 - Ubuntu # 从 20 及以后的版本，默认使用 nftables，所有 iptables 相关的文件，都是 nftables 相关文件的 [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)(符号链接)
   - 主要通过 netfilter-persistent 包实现规则的持久化
 - RedHat # TODO
-
-
 
 # Nftables 关联文件与配置
 

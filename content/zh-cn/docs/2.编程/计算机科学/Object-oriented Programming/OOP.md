@@ -1,6 +1,8 @@
 ---
-title: 面向对象编程
-weight: 5
+title: OOP
+linkTitle: OOP
+date: 2024-04-22T09:23
+weight: 1
 ---
 
 # 概述

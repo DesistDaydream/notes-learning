@@ -59,7 +59,7 @@ Go 的 Methods 就是面向对象编程的基础，Go 语言中并没有一个�
 >
 > - [知乎《如何理解 Golang 中的接口》](https://www.zhihu.com/question/318138275)
 > - [公众号-码农桃花源，深度解密 Go 语言之关于 interface 的 10 个问题](https://mp.weixin.qq.com/s/EbxkBokYBajkCR-MazL0ZA)
-
+>
 > 本文的[总结](#总结)部分，将会根据实际案例，列举，并总结一些**编程思想**
 
 首先，**Interface(接口) 是一种类型。更准确地说，Interface(接口)** 是仅包含方法名、参数、返回值的未具体实现的**一组方法的集合**。当一个类型定义了接口中所有的方法(注意：是所有方法)，就称这个类型 **implements(实现了)** 该接口，这个类型就称为这个接口的 **implementator(实现者)**。
@@ -296,7 +296,7 @@ func main() {
 
 # 总结
 
-结构体、方法、接口，这三者在项目开发中，占有很大的比重，也是一个 go 项目的设计思路。这三者也是[面向对象编程](/docs/2.编程/计算机科学/面向对象编程/面向对象编程.md)的解决方式。
+结构体、方法、接口，这三者在项目开发中，占有很大的比重，也是一个 go 项目的设计思路。这三者也是[OOP](/docs/2.编程/计算机科学/Object-oriented%20Programming/OOP.md)的解决方式。
 
 **如果用现实来比喻，那 Struct 是对实体的抽象，将各种实体或个体抽象为一个 Object(对象)，Method 就是这些对象的行为，那么 Interface 就是将很多对象进行了分类，把具有相同行为的对象统一划做同一类别**。
 
@@ -535,7 +535,7 @@ package usbinterface
 
 import (
     "fmt"
-    
+
     usbdevice "github.com/DesistDaydream/GoLearning/practice/usb_interface/usb_device"
 )
 

@@ -1,12 +1,14 @@
 ---
 title: GitHub Actions
+linkTitle: GitHub Actions
+date: 2024-04-22T22:48
 weight: 1
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档](https://docs.github.com/cn/actions)
 > - [官方文档,学习 GitHub Actions-GitHub Actions 简介](https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions)
 > - GitHub Actions 官方市场：[Actions Marketplace](https://github.com/marketplace?type=actions)
@@ -28,9 +30,9 @@ GitHub Actions 是一个 `CI/CD（持续集成/持续部署）`工具，持续�
 Actions 是 GitHub Actions 的核心，简单来说，它其实就是一段可以执行的代码，可以用来做很多事情。
 
 > 比如，你在 python 3.7 环境下写了一个 python 项目放到了 GitHub 上，但是考虑到其他用户的生产环境各异，可能在不同的环境中运行结果都不一样，甚至无法安装，这时你总不能在自己电脑上把所有的 python 环境都测试一遍吧
-> 
+>
 > 但是如果有了 GitHub Actions，你可以在 runner 服务器上部署一段 actions 代码来自动完成这项任务。你不仅可以指定它的操作系统（支持 Windows Server 2019、Ubuntu 18.04、Ubuntu 16.04 和 macOS Catalina 10.15），还可以指定触发时机、指定 python 版本、安装其他库等等
-> 
+>
 > 此外，它还可以用来做很多有趣的事，比如当有人向仓库里提交 issue 时，给你的微信发一条消息；爬取课程表，每天早上准时发到你的邮箱；当向 master 分支提交代码时，自动构建 Docker 镜像并打上标签发布到 Docker Hub 上 ……
 
 慢慢的，你会发现很多操作在不同项目里面是类似的，完全可以共享。GitHub 也注意到了这一点，于是它允许开发者把每个操作写成独立的脚本文件，存放到代码仓库，使得其他开发者可以引用。如果我们需要某个 action，不必自己写复杂的脚本，直接引用他人写好的 action 即可，整个 CI/CD 过程，就变成了一个个 action 的组合。这就是 GitHub Actions 最特别的地方。
@@ -41,9 +43,11 @@ GitHub 做了一个官方市场(暂且称为 Actions Hub)，在这里可以搜�
 
 既然 actions 是代码仓库，就有版本的概念，用户可以引用某个具体版本的 action。比如下面的例子，用的就是 Git 的指针的概念。
 
-    actions/setup-node@74bc508 # 指向一个 commit
-    actions/setup-node@v1.0    # 指向一个标签
-    actions/setup-node@master  # 指向一个分支
+```bash
+actions/setup-node@74bc508 # 指向一个 commit
+actions/setup-node@v1.0    # 指向一个标签
+actions/setup-node@master  # 指向一个分支
+```
 
 ## Actions 基本概念
 
@@ -64,11 +68,13 @@ Workflow 文件是 YAML 格式，后缀名必须统一为 `.yml`。一个代码�
 
 # Actions 关联文件与配置
 
-**./.github/workflows** #
+**.github/workflows/** # 工作流文件保存目录
+
+详见 [Actions 配置](docs/2.编程/Programming%20tools/SCM/GitHub/GitHub%20Actions/Actions%20配置.md)
 
 # 简单示例
 
-- 从 GitHub 上的仓库，在 .github/workflows 目录中创建一个名为 github-actions-demo.yml 的新文件。 更多信息请参阅“[创建新文件](https://docs.github.com/cn/github/managing-files-in-a-repository/creating-new-files)”。
+- 从 GitHub 上的仓库，在 .github/workflows/ 目录中创建一个名为 github-actions-demo.yml 的新文件。 更多信息请参阅“[创建新文件](https://docs.github.com/cn/github/managing-files-in-a-repository/creating-new-files)”。
 - 将以下 YAML 内容复制到 github-actions-demo.yml 文件中：
 
 ```yaml
@@ -95,7 +101,7 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
 ```
 
-3. 滚动到页面底部，然后选择 Create a new branch for this commit and start a pull request（为此提交创建一个新分支并开始拉取请求）。 然后，若要创建拉取请求，请单击 Propose new file（提议新文件）。![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hd4aro/1627537717320-0a2fe106-9eda-4c6f-a81b-6a5837803589.png)
+3. 滚动到页面底部，然后选择 Create a new branch for this commit and start a pull request（为此提交创建一个新分支并开始拉取请求）。 然后，若要创建拉取请求，请单击 Propose new file（提议新文件）。![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/github_action/1627537717320-0a2fe106-9eda-4c6f-a81b-6a5837803589.png)
 
 向仓库的分支提交工作流程文件会触发 push 事件并运行工作流程。
 
@@ -103,15 +109,15 @@ jobs:
 
 - 在 GitHub 上，导航到仓库的主页面。
 - 在仓库名称下，单击 Actions（操作）。
-- ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hd4aro/1627537717252-5a465a80-ace7-4a19-b689-c8a145ed90ee.png)
+- ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/github_action/1627537717252-5a465a80-ace7-4a19-b689-c8a145ed90ee.png)
 - 在左侧边栏中，单击您想要查看的工作流程。
-- ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hd4aro/1627537717301-b7808d18-7c4f-40cc-85d4-83ef97121511.png)
+- ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/github_action/1627537717301-b7808d18-7c4f-40cc-85d4-83ef97121511.png)
 - 从工作流程运行列表中，单击要查看的运行的名称。
-- ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hd4aro/1627537717306-2e079ccf-8130-47fd-9642-f989e7b5fa74.png)
+- ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/github_action/1627537717306-2e079ccf-8130-47fd-9642-f989e7b5fa74.png)
 - 在 Jobs（作业）下，单击 Explore-GitHub-Actions 作业。
-- ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hd4aro/1627537717287-fecb853f-8ee7-4868-81e3-7c843f665bcd.png)
+- ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/github_action/1627537717287-fecb853f-8ee7-4868-81e3-7c843f665bcd.png)
 - 日志显示每个步骤的处理方式。 展开任何步骤以查看其细节。
-- ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hd4aro/1627537718475-e6315bfa-71e1-48e5-9514-16a822265b81.png)
+- ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/github_action/1627537718475-e6315bfa-71e1-48e5-9514-16a822265b81.png)
 
 ## 更多工作流程模板
 

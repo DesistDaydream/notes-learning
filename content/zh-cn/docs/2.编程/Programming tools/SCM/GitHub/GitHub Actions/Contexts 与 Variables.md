@@ -66,6 +66,7 @@ jobs:
 以 `$` 开口，`{{ }}` 括起来的内容即为表达式的语法，当 GitHub Action 运行时，Workflow 中的 `${{ <EXPRESSION> }}` 内容会被解析为表达式进行处理，表达式就像模板一样，解析完成后，使用实际的值替换表达式。以实现以变成的方式设置 Workflow 文件。
 
 > 注意：
+>
 > Workflow 中的 if 字段，会自动将其下的值解析为表达式，所以可以省略 `${{ }}` 符号。
 
 表达式 Fiterals(字面量)
@@ -141,13 +142,15 @@ github 上下文包含本次工作流的事件信息，还有很多 GitHub 信�
 
 对于工作流程运行中的每个 Job，此上下文都是相同的。 您可以从 Job 中的任何步骤访问此上下文。 此对象包含下面列出的所有属性。
 
-| 属性名称             | 类型   | 描述                                                                                                                                                       |
-| -------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| secrets.GITHUB_TOKEN | String | 为每个工作流程运行自动创建的令牌。 更多信息请参阅“[自动令牌身份验证](https://docs.github.com/cn/actions/security-guides/automatic-token-authentication)”。 |
-| secrets.<SecretName> | String | 特定 Secret 的值                                                                                                                                           |
+| 属性名称                  | 类型     | 描述                                                                                                                        |
+| --------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------- |
+| secrets.GITHUB_TOKEN  | String | 为每个工作流程运行自动创建的令牌。 更多信息请参阅“[自动令牌身份验证](https://docs.github.com/cn/actions/security-guides/automatic-token-authentication)”。 |
+| secrets.\<SecretName> | String | 特定 Secret 的值                                                                                                              |
 
 SecretName 可以在在一个项目的设置中添加，如下图：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/qaf8qw/1652758616297-59e0ad52-f622-4d41-9235-b36a995ee87d.png)
+
 我们为本仓库添加了一个 SecretName 为 DOCKER_REGISTRY_PASSWORD 的 Secret，那么，在 Actions 中，可以使用 `${{ secrets.DOCKER_REGISTRY_PASSWORD }}` 引用 DOCKER_REGISTRY_PASSWORD 的值。
 
 这个上下文常用在登录行为，以防止将密码以明文形式呈现，比如下面的示例，我们将会通过 secrets 上下文登录容器镜像仓库，并推送构建的镜像到仓库中。

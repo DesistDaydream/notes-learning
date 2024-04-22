@@ -87,14 +87,15 @@ iptables 程序一般随系统安装自带（Minimal 也带），需要安装的
 apt install netfilter-persistent iptables-persistent
 ```
 
-netfilter-persistent 用来在保证在系统启动时加载 [Netfilter](docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Netfilter.md) 规则；或者通过期内的一些 [Systemd](docs/1.操作系统/Systemd/Systemd.md) 的 [Unit File](docs/1.操作系统/Systemd/Unit%20File/Unit%20File.md) 和脚本自动加载保存好的 Netfilter 规则。iptables-persistent 算作 netfilter-persistent 包的插件，可以实现加载 iptables 规则效果
+netfilter-persistent 用来在保证在系统启动时加载 [Netfilter](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Netfilter.md) 规则；或者通过期内的一些 [Systemd](/docs/1.操作系统/Systemd/Systemd.md) 的 [Unit File](/docs/1.操作系统/Systemd/Unit%20File/Unit%20File.md) 和脚本自动加载保存好的 Netfilter 规则。iptables-persistent 算作 netfilter-persistent 包的插件，可以实现加载 iptables 规则效果
 
 > [!Notes]
 > Ubuntu 20.04 版本后，默认使用使用 nftables，安装 iptables-persistent 本质是 netfilter-persistent 包。iptables-persistent 作为 netfilter-persistent 的插件以兼容老的 iptables 功能。
+>
 > ```bash
 > ~]# ll /lib/systemd/system/iptables.service
 > lrwxrwxrwx 1 root root 34 Apr 20 11:36 /lib/systemd/system/iptables.service -> /etc/alternatives/iptables.service
-> ~]# ll /etc/alternatives/iptables.service 
+> ~]# ll /etc/alternatives/iptables.service
 > rwxrwxrwx 1 root root 48 Apr 20 11:36 /etc/alternatives/iptables.service -> /lib/systemd/system/netfilter-persistent.service
 > ```
 
@@ -119,4 +120,3 @@ netfilter-persistent 用来在保证在系统启动时加载 [Netfilter](docs/1.
 **/etc/iptables/rules.v4** # IPv4 版本的 iptables 规则保存文件，由 iptables-persistent.service 服务使用
 
 **/etc/iptables/rules.v6** # IPv6 版本的 iptables 规则保存文件，由 iptables-persistent.service 服务使用
-

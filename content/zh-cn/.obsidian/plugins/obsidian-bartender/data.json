@@ -1314,6 +1314,7 @@
     "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions": [
       "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/_index.md",
       "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/GitHub Actions.md",
+      "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/Actions 配置.md",
       "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/Contexts 与 Variables.md",
       "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/Workflow 文件详解",
       "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/好用的 Action.md",
@@ -1362,9 +1363,10 @@
       "docs/2.编程/计算机科学/Variable.md",
       "docs/2.编程/计算机科学/Control structure.md",
       "docs/2.编程/计算机科学/Function",
-      "docs/2.编程/计算机科学/面向对象编程",
+      "docs/2.编程/计算机科学/Object-oriented Programming",
       "docs/2.编程/计算机科学/假如你来发明编程语言",
-      "docs/2.编程/计算机科学/Heap and Stack.md"
+      "docs/2.编程/计算机科学/Heap and Stack.md",
+      "docs/2.编程/计算机科学/I_O 模型.md"
     ],
     "docs/2.编程/计算机科学/Data Type AND Literal": [
       "docs/2.编程/计算机科学/Data Type AND Literal/_index.md",
@@ -2596,6 +2598,11 @@
       "docs/1.操作系统/Filesystem/_index.md",
       "docs/1.操作系统/Filesystem/Filesystem.md",
       "docs/1.操作系统/Filesystem/Archive File(归档文件).md"
+    ],
+    "docs/2.编程/计算机科学/Object-oriented Programming": [
+      "docs/2.编程/计算机科学/Object-oriented Programming/_index.md",
+      "docs/2.编程/计算机科学/Object-oriented Programming/OOP.md",
+      "docs/2.编程/计算机科学/Object-oriented Programming/设计模式.md"
     ]
   },
   "actionBarOrder": {},

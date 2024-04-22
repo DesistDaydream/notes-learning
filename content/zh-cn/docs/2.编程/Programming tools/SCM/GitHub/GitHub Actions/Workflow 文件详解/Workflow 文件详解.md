@@ -25,7 +25,7 @@ GitHub 的 Actions 通过 [YAML](/docs/2.编程/无法分类的语言/YAML.md) �
 
 # on
 
-https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#on
+https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
 
 这个字段用来定义触发工作流的事件，在这里可以看到 GitHub 支持的所有事件，通常包含如下字段
 
@@ -79,6 +79,7 @@ jobs:
 **inputs(OBJECT)** # 触发 Workflow 时，传入的信息
 
 更多 GitHub 可用的传入信息，详见 [Contexts](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context)
+
 **NAME(OBJECT)** # 定义变量。这里的 NAME 可以任意字符串，然后在 workflow 文件中使用`${{ github.event.inputs.NAME }}`的方式调用
 
 - **description(STRING)** # 对 NAME 的描述
@@ -126,9 +127,11 @@ jobs:
 
 ## steps
 
-**env(map\[STRING]STRING)** # 设定前 Job 中可用的环境变量。
-**name(STRING)** # 当前 Job 的名称。
-**run(STRING)** # 运行命令。使用 runs-on 中指定的操作系统的 shell 运行。
+**env**(map\[STRING]STRING) # 设定前 Job 中可用的环境变量。
+
+**name**(STRING) # 当前 Job 的名称。
+
+**run**(STRING) # 运行命令。使用 runs-on 中指定的操作系统的 shell 运行。
 
 ```yaml
 # 单行命令
@@ -150,7 +153,8 @@ steps:
     shell: bash
 ```
 
-**uses(STRING)** # 当前步骤要使用的 Action。
+**uses**(STRING) # 当前步骤要使用的 Action。
+
 在这里可以指定其他 Action 作为工作流的一部分来运行，本质上，Action 是可重用的代码。其实就类似于在代码中调用函数一样，`uses` 字段可以理解为调用某个函数，这个函数就是指其他的 Action。在[这篇文章](/docs/2.编程/SCM/GitHub/GitHub%20Actions/好用的%20Action.md Action.md)中，介绍了很多比较好用的 Action。
 
 通过使用其他 Action，可以大大简化自身工作流的配置文件。比如 Git Action 官方提供的 [actions/checkout](https://github.com/actions/checkout) 这个 Action，可以用来将仓库中的代码，拷贝到运行 Action 的容器中，然后进行后续操作，如果不使用这个 Action，那么我们就要写很多命令来 pull 代码了~
@@ -188,3 +192,31 @@ job1 创建了 `output1` 变量，值为 `hello`，同时创建了 `output2` 变
 job2 中首先通过 needs 创建依赖关系，然后通过 `${{ needs.job1.outputs.output1 }}` 与 `${{ needs.job1.outputs.output2 }}` 引用 job1 中输出的变量。
 
 通过 needs 上下文引用值得表达式语法详见 [Context,needs](https://docs.github.com/en/actions/learn-github-actions/contexts#needs-context)
+
+## strategy
+
+**strategy(策略，尤指为获得某物制定长期的策略)** 可以帮我们创建一个 matrix strategy(矩阵策略)，这是一个类似循环的功能，比如我们创建了这么一个 Workflow
+
+```yaml
+jobs:
+  example_matrix:
+    strategy:
+      matrix:
+        version: [10, 12, 14]
+        os: [ubuntu-latest, windows-latest]
+```
+
+将为每个可能的变量组合运行一个 job。在此示例中，Workflod 将运行六个 job，每个作业对应操作系统和版本变量的组合。
+
+默认情况下，GitHub 将根据运行器的可用性最大化并行运行的 job 数量。矩阵中变量的顺序决定了作业的创建顺序。您定义的第一个变量将是在工作流程运行中创建的第一个作业。例如，上面的 strategy 将按以下顺序创建 job：
+
+- `{version: 10, os: ubuntu-latest}`
+- `{version: 10, os: windows-latest}`
+- `{version: 12, os: ubuntu-latest}`
+- `{version: 12, os: windows-latest}`
+- `{version: 14, os: ubuntu-latest}`
+- `{version: 14, os: windows-latest}`
+
+> Notes: 每个 Workflow 通过 strategy 最多生成 256 个作业。
+
+strategy.matrix 下定义的字段还可以作为 [Contexts 与 Variables](docs/2.编程/Programming%20tools/SCM/GitHub/GitHub%20Actions/Contexts%20与%20Variables.md) 变量使用，e.g. `${{ matrix.version }}` 将会获取当前 job 下对应的 version 的值，比如上面例子中，进行到第三个任务，那么 version 的值为 12

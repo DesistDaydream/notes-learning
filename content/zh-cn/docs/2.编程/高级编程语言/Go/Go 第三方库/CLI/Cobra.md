@@ -5,9 +5,10 @@ title: Cobra
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，spf13/cobra](https://github.com/spf13/cobra)
 > - [官网](https://cobra.dev/)
-> - <https://zhangguanzhang.github.io/2019/06/02/cobra/>
+> - https://zhangguanzhang.github.io/2019/06/02/cobra/
 
 Cobra 是一个 [Go](/docs/2.编程/高级编程语言/Go/Go.md)  语言的库，其提供简单的接口来创建强大现代的 CLI 接口，类似于 git 或者 go 工具。同时，它也是一个应用，用来生成个人应用框架，从而开发以 Cobra 为基础的应用。热门的 docker 和 k8s 源码中都使用了 Cobra
 
@@ -76,8 +77,10 @@ rootCommand subcommand1 subcommand2 -X value --XXXX value -Y a -Y b --ZZ c --ZZ 
 ## 使用 Cobra 编写的典型项目
 
 Cobra 用于许多 Go 项目，例如 [Kubernetes](https://kubernetes.io/)、 [Hugo](https://gohugo.io/) 和 [GitHub CLI](https://github.com/cli/cli) 等等。[此列表](https://github.com/spf13/cobra/blob/main/projects_using_cobra.md)包含更广泛的使用 Cobra 的项目列表。
-<https://github.com/gohugoio/hugo>
-<https://github.com/containerd/nerdctl>
+
+https://github.com/gohugoio/hugo
+
+https://github.com/containerd/nerdctl
 
 # 安装与导入
 
@@ -112,7 +115,13 @@ $ which cobra-cli
 
 # Cobra 的基本使用
 
-我们使用 `go mod init github.com/DesistDaydream/go-cobra` 初始化一个项目。
+我们使用如下命令初始化一个项目
+
+```bash
+go mod init github.com/DesistDaydream/go-cobra
+cobra-cli init
+```
+
 Cobra 的应用程序目录结构通常如下：
 
 ```bash
@@ -126,8 +135,7 @@ $ tree
 └── main.go
 ```
 
-> cobra-cli 默认情况下，Cobra 将添加 Apache 许可证。如果您不想这样，可以将标志添加 `-l none` 到所有生成器命令。但是，它会在每个文件顶部添加 `Copyright © 2022 NAME HERE <EMAIL ADDRESS>` 这样的添加版权声明。如果通过选项 `-a YOUR NAME` 则索赔将包含您的姓名。
-> **注意：使用 cobra-cli 生成的目录结构在真正使用时并不灵活，我们通常会将 XXXCmd 变量封装到函数数，以便可以对变量进行更多的处理。灵活性更大。下面的使用示例并不是生产推荐的结构和用法。**
+> Notes: cobra-cli 默认情况下，Cobra 将添加 Apache 许可证。如果不想这样，可以将标志添加 `-l none` 到所有生成器命令。但是，它会在每个文件顶部添加 `Copyright © 2022 NAME HERE <EMAIL ADDRESS>` 这样的添加版权声明。如果通过选项 `-a YOUR NAME` 则将包含姓名。
 
 `main.go` 文件非常简单，只有一个目的，初始化 Cobra
 
@@ -137,7 +145,47 @@ package main
 import "github.com/DesistDaydream/go-cobra/cmd"
 
 func main() {
-	cmd.Execute()
+    cmd.Execute()
+}
+```
+
+## 注意
+
+> 这部分无法理解的话，可以先了解 Cobra 的基本机制，再写点项目、看点项目，可有有更深入的体会
+
+使用 cobra-cli 生成的目录结构在真正使用时并不灵活，我们通常会将 XXXCmd 变量封装到函数数，以便可以对变量进行更多的处理。灵活性更大。下面的使用示例并不是生产推荐的结构和用法。
+
+比较不错的 目录结构 与 添加子命令的抽象语法 参考早期的 [nerdctl](https://github.com/containerd/nerdctl) 项目，不使用 init() 函数进行初始化，而是将 `*cobra.Command` 的实例作为某个函数的返回值，由上级命令的函数批量管理子命令，效果如下
+
+```go
+func Execute() {
+    app := newApp()
+    err := app.Execute()
+    if err != nil {
+        os.Exit(1)
+    }
+}
+func newApp() *cobra.Command {
+    var rootCmd = &cobra.Command{
+        ......
+    }
+    rootCmd.AddCommand(
+        createOneCommand(),
+        createTwoCommand(),
+    )
+    return rootCmd
+}
+func createOneCommand() *cobra.Command {
+    oneCommand := &cobra.Command{
+        ......
+    }
+    return oneCommand
+}
+func createTwokCommand() *cobra.Command {
+    twoCommand := &cobra.Command{
+        ......
+    }
+    return twoCommand
 }
 ```
 
@@ -152,14 +200,14 @@ func main() {
 ```go
 // rootCmd 表示在没有任何子命令调用的情况时的基本命令
 var rootCmd = &cobra.Command{
-	Use:   "go-cobra",
-	Short: "这个应用简要的描述",
-	Long: `横跨多行的较长描述，可能包含示例和使用应用程序的用法。 例如：
+    Use:   "go-cobra",
+    Short: "这个应用简要的描述",
+    Long: `横跨多行的较长描述，可能包含示例和使用应用程序的用法。 例如：
 当我运行程序时，会显示该描述内容
-	如果使用缩进，这行在界面展示时有缩进。`,
-	Run: func(cmd *cobra.Command, args []string) {
-		// 如果这个应用没有任何子命令，直接使用 go-cobra 执行的话，将会执行这里面的代码
-	},
+    如果使用缩进，这行在界面展示时有缩进。`,
+    Run: func(cmd *cobra.Command, args []string) {
+        // 如果这个应用没有任何子命令，直接使用 go-cobra 执行的话，将会执行这里面的代码
+    },
 }
 ```
 
@@ -168,10 +216,6 @@ var rootCmd = &cobra.Command{
 使用 `Command.AddCommand()` 方法将一个或多个命令添加到父命令中，下面的示例可以为根命令添加一个 version 子命令。
 
 ```go
-func init() {
-  rootCmd.AddCommand(versionCmd)
-}
-
 var versionCmd := &cobra.Command{
     Use:   "version",
     Short: "这个命令的简要描述",
@@ -179,6 +223,10 @@ var versionCmd := &cobra.Command{
     Run: func(cmd *cobra.Command, args []string) {
         fmt.Println("version called")
     },
+}
+
+func init() {
+  rootCmd.AddCommand(versionCmd)
 }
 ```
 
@@ -222,22 +270,28 @@ cmd.Flags().Int32VarP(&dates,"date", "d", 1234, "this is var test")
 
 ## 读取配置文件
 
-\~~类似~~`~~kubectl~~`~~ 的~~`~~~/.kube/config~~`~~ 和 ~~`~~gcloud~~`~~这些 ~~`~~cli~~`~~ 都会读取一些配置信息，也可以从命令行指定信息。细心观察的话可以看到这个是一直存在在命令帮助上的~~
+类似 `kubectl` 的 `~/.kube/config` 和 `gcloud` 这些 `cli` 都会读取一些配置信息，也可以从命令行指定信息。细心观察的话可以看到这个是一直存在在命令帮助上的
 
-    Global Flags:
-          --config string   config file (default is $HOME/.cli.yaml)
+```bash
+Global Flags:
+    --config string   config file (default is $HOME/.cli.yaml)
+```
 
-\~~spf13 里的 viper 包的几个方法就是干这个的，viper 是 cobra 集成的配置文件读取的库
+spf13 里的 viper 包的几个方法就是干这个的，viper 是 cobra 集成的配置文件读取的库
 可以通过环境变量读取~~
 
-    removeCmd.Flags().StringP("name", "n", viper.GetString("ENVNAME"), "The application to be executed")
+```go
+removeCmd.Flags().StringP("name", "n", viper.GetString("ENVNAME"), "The application to be executed")
+```
 
-\~~默认可以在 ~~`~~cmd/root.go~~`~~ 文件里看到默认配置文件是家目录下的.应用名，这里我是~~`~~$HOME/.cli.yaml~~`~~，创建并添加下面内容~~
+默认可以在 `cmd/root.go` 文件里看到默认配置文件是家目录下的.应用名，这里我是 `$HOME/.cli.yaml`，创建并添加下面内容
 
-    name: "Billy"
-    greeting: "Howdy"
+```bash
+name: "Billy"
+greeting: "Howdy"
+```
 
-\~~Command 的 Run 里提取字段~~
+Command 的 Run 里提取字段
 
 ```go
 Run: func(cmd *cobra.Command, args []string) {
@@ -280,85 +334,85 @@ Copyright © 2022 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"fmt"
-	"os"
+    "fmt"
+    "os"
 
-	vipercmd "github.com/DesistDaydream/go-cobra/cmd/viper"
-	"github.com/DesistDaydream/go-cobra/config"
-	"github.com/spf13/cobra"
+    vipercmd "github.com/DesistDaydream/go-cobra/cmd/viper"
+    "github.com/DesistDaydream/go-cobra/config"
+    "github.com/spf13/cobra"
 )
 
 type RootFlags struct {
-	// 这里定义的变量，可以在下面的 init 函数中，通过 rootCmd.PersistentFlags().StringVar(&CfgFile, "config", "", "指定配置文件(默认在$HOME/.cobracli.yaml)") 进行绑定
-	// 也可以通过 viper 进行绑定
-	CfgFile string
+    // 这里定义的变量，可以在下面的 init 函数中，通过 rootCmd.PersistentFlags().StringVar(&CfgFile, "config", "", "指定配置文件(默认在$HOME/.cobracli.yaml)") 进行绑定
+    // 也可以通过 viper 进行绑定
+    CfgFile string
 }
 
 var rootFlags RootFlags
 
 // Execute 将所有子命令添加到根命令并设置 Flags。这由 main.main() 调用。它只需要对 rootCmd 发生一次。
 func Execute() {
-	app := newApp()
-	err := app.Execute()
-	if err != nil {
-		os.Exit(1)
-	}
+    app := newApp()
+    err := app.Execute()
+    if err != nil {
+        os.Exit(1)
+    }
 
 }
 
 func newApp() *cobra.Command {
-	// rootCmd 表示在没有任何子命令调用的情况时的基本命令。
-	var rootCmd = &cobra.Command{
-		Use:   "go-cobra",
-		Short: "这个应用简要的描述",
-		Long: `横跨多行的较长描述，可能包含示例和使用应用程序的用法。 例如：
+    // rootCmd 表示在没有任何子命令调用的情况时的基本命令。
+    var rootCmd = &cobra.Command{
+        Use:   "go-cobra",
+        Short: "这个应用简要的描述",
+        Long: `横跨多行的较长描述，可能包含示例和使用应用程序的用法。 例如：
 当我运行程序时，会显示该描述内容
-	如果使用缩进，这行在界面展示时有缩进。`,
-		// 如果这个应用没有任何子命令，直接使用 go-cobra 执行的话，将会执行下面 Run 字段指定的函数
-		Run: rootRun,
-	}
+    如果使用缩进，这行在界面展示时有缩进。`,
+        // 如果这个应用没有任何子命令，直接使用 go-cobra 执行的话，将会执行下面 Run 字段指定的函数
+        Run: rootRun,
+    }
 
-	// 我们可以在这里定义命令行 Flags 和 配置设置。
-	// 这里可以做一些初始化的工作，比如初始化数据库连接、初始化日志、读取配置文件等等
+    // 我们可以在这里定义命令行 Flags 和 配置设置。
+    // 这里可以做一些初始化的工作，比如初始化数据库连接、初始化日志、读取配置文件等等
 
-	// ######## 添加 命令行Flags ########
-	// Cobra 支持 持久性flags (i.e. Global Flags)，如果在这个位置定义，则这些 flags 对应用程序来说是全局的。
-	// 第一个参数是变量，用于存储该flag的值；第二个参数为该flag的名字；第三个参数为该flag的默认值,无默认值可以为空；第四个参数是该flag的描述信息
-	// 比如我现在使用如下命令: go-cobra --config abc 。那么 cfgFile 的值为abc。
-	rootCmd.PersistentFlags().StringVarP(&rootFlags.CfgFile, "config", "c", "", "指定配置文件")
-	// Cobra 还支持本地 flags ，仅在直接调用此命令时才有意义。
-	rootCmd.Flags().BoolP("toggle", "t", false, "关于toggle标志的帮助信息")
+    // ######## 添加 命令行Flags ########
+    // Cobra 支持 持久性flags (i.e. Global Flags)，如果在这个位置定义，则这些 flags 对应用程序来说是全局的。
+    // 第一个参数是变量，用于存储该flag的值；第二个参数为该flag的名字；第三个参数为该flag的默认值,无默认值可以为空；第四个参数是该flag的描述信息
+    // 比如我现在使用如下命令: go-cobra --config abc 。那么 cfgFile 的值为abc。
+    rootCmd.PersistentFlags().StringVarP(&rootFlags.CfgFile, "config", "c", "", "指定配置文件")
+    // Cobra 还支持本地 flags ，仅在直接调用此命令时才有意义。
+    rootCmd.Flags().BoolP("toggle", "t", false, "关于toggle标志的帮助信息")
 
-	// ######## 添加 配置 ########
-	// ！！！注意！！！：Cobra 只有在上面的 Run 字段定义的函数运行之前才会解析手动指定的命令行 Flags，否则只能获取到代码中设置的 Flags 默认值。
-	// 比如运行 go run main.go --config="abc.yaml" 时，rootFlags.CfgFile 并不会被赋值为 abc.yaml，而是默认值。
-	// 此时有两种方式解决这个问题：
-	// 1. 使用 Prase() 函数，提前解析 Flags：
-	// rootCmd.PersistentFlags().Parse(os.Args)
-	// 2. 使用 OnInitialize() 函数，该函数会在 Command.Run 字段指定的函数执行前，先执行 initConfig 函数。
-	// 查看 Cobra 源码，OnInitialize() 中的 initializers 变量会在 preRun() 函数中被执行。
-	cobra.OnInitialize(initConfig)
-	// 假如我现在在这里执加了一行 config.NewConfig(rootFlags.CfgFile)，那么这个函数其实是会在 OnInitialize 函数执行之前执行的。
-	// config.NewConfig(rootFlags.CfgFile)
+    // ######## 添加 配置 ########
+    // ！！！注意！！！：Cobra 只有在上面的 Run 字段定义的函数运行之前才会解析手动指定的命令行 Flags，否则只能获取到代码中设置的 Flags 默认值。
+    // 比如运行 go run main.go --config="abc.yaml" 时，rootFlags.CfgFile 并不会被赋值为 abc.yaml，而是默认值。
+    // 此时有两种方式解决这个问题：
+    // 1. 使用 Prase() 函数，提前解析 Flags：
+    // rootCmd.PersistentFlags().Parse(os.Args)
+    // 2. 使用 OnInitialize() 函数，该函数会在 Command.Run 字段指定的函数执行前，先执行 initConfig 函数。
+    // 查看 Cobra 源码，OnInitialize() 中的 initializers 变量会在 preRun() 函数中被执行。
+    cobra.OnInitialize(initConfig)
+    // 假如我现在在这里执加了一行 config.NewConfig(rootFlags.CfgFile)，那么这个函数其实是会在 OnInitialize 函数执行之前执行的。
+    // config.NewConfig(rootFlags.CfgFile)
 
-	// ######## 添加 子命令 ########
-	// 为了更好的管理子命令，我们通常会将子命令放在不同的文件中，然后在这里进行注册
-	rootCmd.AddCommand(
-		NewVersionCmd(),
-		vipercmd.NewViperCmd(),
-	)
+    // ######## 添加 子命令 ########
+    // 为了更好的管理子命令，我们通常会将子命令放在不同的文件中，然后在这里进行注册
+    rootCmd.AddCommand(
+        NewVersionCmd(),
+        vipercmd.NewViperCmd(),
+    )
 
-	return rootCmd
+    return rootCmd
 }
 
 func initConfig() {
-	// 使用 Viper 简化处理配置文件的过程。Viper 可以从 JSON、TOML、YAML、HCL、环境变量和命令行参数等等地方中读取配置。
-	config.NewConfig(rootFlags.CfgFile)
+    // 使用 Viper 简化处理配置文件的过程。Viper 可以从 JSON、TOML、YAML、HCL、环境变量和命令行参数等等地方中读取配置。
+    config.NewConfig(rootFlags.CfgFile)
 }
 
 func rootRun(cmd *cobra.Command, args []string) {
-	fmt.Println("主程序运行后执行的代码块。如果注销 Run，则运行主程序会显示上面Long上的信息")
-	fmt.Println("在 Run 字段指定的函数中，我们可以获取到 Flags 的值：", rootFlags.CfgFile)
+    fmt.Println("主程序运行后执行的代码块。如果注销 Run，则运行主程序会显示上面Long上的信息")
+    fmt.Println("在 Run 字段指定的函数中，我们可以获取到 Flags 的值：", rootFlags.CfgFile)
 }
 ```
 
@@ -368,7 +422,7 @@ func rootRun(cmd *cobra.Command, args []string) {
 
 现在我们想添加一个别名
 
-```
+```text
 cli
 |----app
 |----remove|rm
@@ -378,7 +432,7 @@ cli
 
 ```go
 var removeCmd = &cobra.Command{
-	Use:   "remove",
+    Use:   "remove",
     Aliases: []string{"rm"},
 ```
 
@@ -424,7 +478,7 @@ Global Flags:
 
 ```go
 var removeCmd = &cobra.Command{
-	Use:   "remove",
+    Use:   "remove",
         Aliases: []string{"rm"},
         Example: `
 cli remove -n test
@@ -489,8 +543,6 @@ Global Flags:
 
 前面说的没传递选项和任何值希望打印命令帮助也可以用`MinimumNArgs(1)`来触发
 
-
-
 # 自定义 help,usage 输出
 
 help
@@ -511,6 +563,7 @@ command.SetUsageTemplate(s string)
 # Run 的 hook
 
 Run 功能的执行先后顺序如下：
+
 - PersistentPreRun
 - PreRun
 - Run
@@ -520,6 +573,7 @@ Run 功能的执行先后顺序如下：
 接收 `func(cmd *Command, args []string)` 类型的函数，Persistent 的能被下面的子命令继承
 
 RunE 功能的执行先后顺序如下：
+
 - PersistentPreRunE
 - PreRunE
 - RunE
@@ -533,12 +587,14 @@ RunE 功能的执行先后顺序如下：
 当具有多级子命令时，`PersistentXXX()` 相关函数只会执行一次
 
 比如现在创建了一个 cobra 命令，具有如下几个子命令：
+
 - add
   - command
   - args
 - del
 
 如果在 cobra 和 add 中都使用了 PersistentPreRun() 函数的话，只会有第一个执行，并且是子命令的方法优先，参考 Issue：
+
 - https://github.com/spf13/cobra/issues/216
 - https://github.com/spf13/cobra/issues/252
 
@@ -546,35 +602,35 @@ RunE 功能的执行先后顺序如下：
 
 ```go
 func CreateCommand() *cobra.Command {
-	subCmd := &cobra.Command{
-		PersistentPreRun: subPersistentPreRun,
-	}
+    subCmd := &cobra.Command{
+        PersistentPreRun: subPersistentPreRun,
+    }
 
-	subCmd.AddCommand(
-		CreateSubSubCommand(),
-	)
+    subCmd.AddCommand(
+        CreateSubSubCommand(),
+    )
 
-	return subCmd
+    return subCmd
 }
 
 func subPersistentPreRun(cmd *cobra.Command, args []string) {
-	// 执行父命令的预运行逻辑
-	parent := cmd.Parent()
-	if parent.PersistentPreRun != nil {
-		parent.PersistentPreRun(parent, args)
-	}
+    // 执行父命令的预运行逻辑
+    parent := cmd.Parent()
+    if parent.PersistentPreRun != nil {
+        parent.PersistentPreRun(parent, args)
+    }
 
-	// 本子命令的预运行逻辑
+    // 本子命令的预运行逻辑
 }
 ```
 
 ### OnInitialize与OnFinalize函数
 
 除了 PersistentXXX() 这种函数以外，我们还可以使用 `OnInitialize()` 函数来执行预运行的逻辑，该函数可以避免在每一个子命令的  `PersistentPreRun()` 中重复调用 `parent.PersistentPreRun`。
+
 - `OnInitialize()` 函数会在**调用**每个命令的 `Execute()` 方法时运行。
 - `OnFinalize()` 函数则会在**完成**每个命令的 `Execute()` 方法时运行。
 
 `OnInitialize()` 会将其参数赋值给 initializers 变量(这个变量的类型是一个函数)，该变量会在 Command.preRun() 函数中被执行
 > 注意，这个 Command.preRun() 与 Command.PreRun() 不同。前者是 Command 结构体的方法，后者是 Command 的一个属性。
 > 在 execute() 中，preRun 在 PreRun 之前执行。
-

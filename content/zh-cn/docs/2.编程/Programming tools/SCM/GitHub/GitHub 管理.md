@@ -1,6 +1,15 @@
 ---
-title: GitHub 项目管理
+title: GitHub 管理
+linkTitle: GitHub 管理
+date: 2024-04-22T22:50
+weight: 20
 ---
+
+# 概述
+
+> 参考：
+>
+> -
 
 # git clone克隆或下载一个仓库单个文件夹
 
@@ -20,14 +29,15 @@ title: GitHub 项目管理
 
 **举个例子：**
 
-> 现在有一个**test**仓库<https://github.com/mygithub/test>你要 gitclone 里面的**tt**子目录：在本地的硬盘位置打开**Git Bash**
+> 现在有一个 **test** 仓库<https://github.com/mygithub/test>你要 gitclone 里面的**tt**子目录：在本地的硬盘位置打开**Git Bash**
 
-    git init test && cd test     //新建仓库并进入文件夹
-    git config core.sparsecheckout true //设置允许克隆子目录
-    echo 'tt*' >> .git/info/sparse-checkout //设置要克隆的仓库的子目录路径   //空格别漏
-    git remote add origin git@github.com:mygithub/test.git  //这里换成你要克隆的项目和库
-    git pull origin master    //下载
-    复制代码
+```bash
+git init test && cd test     //新建仓库并进入文件夹
+git config core.sparsecheckout true //设置允许克隆子目录
+echo 'tt*' >> .git/info/sparse-checkout //设置要克隆的仓库的子目录路径   //空格别漏
+git remote add origin git@github.com:mygithub/test.git  //这里换成你要克隆的项目和库
+git pull origin master    //下载
+```
 
 **ok，大功告成！！！**
 
