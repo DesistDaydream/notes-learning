@@ -6,6 +6,8 @@ weight: 3
 # 概述
 
 > 参考：
+> 
+> - [Wiki，Log_rotation](https://en.wikipedia.org/wiki/Log_rotation)
 > - [公众号-马哥 Linux 运维，\[译\] 理解 logrotate 实用工具](https://mp.weixin.qq.com/s/b_CWt_ycvnbQG9TXPqRoCQ)
 
 为了防止日志文件持续被写入文件导致过于庞大，那么就需要对日志进行拆分，每隔一段时间就把日志文件保存(打包压缩)起来，然后再创建一个新的空文件继续接收日志，来回循环该过程直到通过配置规定的保留日期，来清除存在过久的日志。通过这种方式来进行日志的归档，分类，清理。这就是 LogRotate 所做的事情。是否进行轮替会有一系列的配置，比如文件的大小达到 N 会轮替一次，每隔多少天轮替一次等等。
@@ -14,14 +16,17 @@ logrotate 只是一个命令行工具，不以守护进程的方式运行在后�
 
 # 关联文件与配置
 
-/etc/logrotate.conf # logrotate 基本配置文件
-/etc/logrotate.d/\* # 对基本文件的扩展，该目录下的文件的配置会被包含在基本配置文件中。该目录下一般是一个程序一个文件，每个程序都有自己的日志轮替配置。
-/etc/cron.daily/logrotate # 该文件定义了 cron 定时任务执行日志轮替工作的时间
-/var/lib/logrotate.status # logrotate 的执行历史
+**/etc/logrotate.conf** # logrotate 基本配置文件
+
+**/etc/logrotate.d/** # 对基本文件的扩展，该目录下的文件的配置会被包含在基本配置文件中。该目录下一般是一个程序一个文件，每个程序都有自己的日志轮替配置。
+
+**/etc/cron.daily/logrotate** # 该文件定义了 cron 定时任务执行日志轮替工作的时间
+
+**/var/lib/logrotate.status** # logrotate 的执行历史
 
 ## logrotate.conf 配置文件详解
 
-- /PATH/TO/FILES {...} # 指定想要轮替的日志文件，可以通过＊通配指定多个文件名
+- /PATH/TO/FILES {...} # 指定想要轮替的日志文件，可以通过 `*` 通配指定多个文件名
   - **copytruncate** # 把正在输出的日志拷(copy)一份出来，再清空(trucate)原来的日志。
   - **compress** # 压缩日志文件的所有非当前版本
   - **dateext** # 切换后的日志文件会附加上一个短横线和 YYYYMMDD 格式的日期,
@@ -38,18 +43,20 @@ logrotate 只是一个命令行工具，不以守护进程的方式运行在后�
 
 配置样例
 
-    /var/log/nginx/*log {
-        daily
-        rotate 10
-        missingok
-        notifempty
-        compress
-        dateext
-        sharedscripts
-        postrotate
-            /bin/kill -USR1 $(cat /var/run/ngnix/nginx.pid 2>/dev/null) 2>/dev/null
-        endscript
-    }
+```text
+/var/log/nginx/*log {
+    daily
+    rotate 10
+    missingok
+    notifempty
+    compress
+    dateext
+    sharedscripts
+    postrotate
+        /bin/kill -USR1 $(cat /var/run/ngnix/nginx.pid 2>/dev/null) 2>/dev/null
+    endscript
+}
+```
 
 Note：关于 postrotate
 postrotate 后面跟随的是一个命令行，一般是用来重新生成日志文件或者冲定义应用所指向的文件描述符（fd：file description），拿 nginx 和 uwsgi 为例：
@@ -72,7 +79,7 @@ nginx 中日志输出对应的文件 fd 未同步更新，nginx 会向原 fd 对
 
 # 命令行工具
 
-logrotate \[OPTIONS...]
+**logrotate \[OPTIONS...]**
 
 OPTIONS
 
