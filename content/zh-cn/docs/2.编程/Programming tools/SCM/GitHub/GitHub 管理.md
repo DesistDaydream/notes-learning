@@ -83,12 +83,3 @@ github 网站上操作
 
 git remote -v git remote add upstream git@github.com:xxx/xxx.gitgit fetch upstreamgit merge upstream/mastergit push
 
-- 1
-
-- 2
-
-- 3
-
-- 4
-
-- 5

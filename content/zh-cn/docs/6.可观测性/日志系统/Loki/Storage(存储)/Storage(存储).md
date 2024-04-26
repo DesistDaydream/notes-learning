@@ -9,9 +9,9 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档,存储](https://grafana.com/docs/loki/latest/storage/)
-> - [官方文档,运维-存储](https://grafana.com/docs/loki/latest/operations/storage/)
-> - [官方文档,运维-存储-BoltDB-Shipper](https://grafana.com/docs/loki/latest/operations/storage/boltdb-shipper/)
+> - [官方文档，存储](https://grafana.com/docs/loki/latest/storage/)
+> - [官方文档，运维-存储](https://grafana.com/docs/loki/latest/operations/storage/)
+> - [官方文档，运维-存储-BoltDB-Shipper](https://grafana.com/docs/loki/latest/operations/storage/boltdb-shipper/)
 
 与其他日志记录系统不同，Loki 是基于仅索引日志的元数据的想法而构建的。从 [Loki 的数据模型](/docs/6.可观测性/日志系统/Loki/Storage(存储)/Data%20Model(数据模型).md Model(数据模型).md)可知，日志是根据标签进行定位的。 日志数据本身会被压缩成 Chunks，并存储在本地的文件系统中；并且 Loki 还提供了一个 Index 数据，用来根据索引定位日志数据。小索引和高度压缩的 Chunks 简化了操作，并显着降低了 Loki 的成本。
 
@@ -31,7 +31,7 @@ weight: 1
 
 同时，Loki 还可以将这些数据，同时存储到 远程存储 中去(比如对象存储)。这些功能都是通过 Ingester 组件实现的。
 
-Loki 在不同的 Log Stream(日志流) 中接收日志，其中每个 Stream 的 tenantID(租户 ID) 和 一组标签 是该 Stream 的唯一标识。如果 Loki 以单租户模式运行，则所有块都放在名为 `**fake**` 的文件夹中，这是用于单个租户模式的合成租户名称。
+Loki 在不同的 Log Stream(日志流) 中接收日志，其中每个 Stream 的 tenantID(租户 ID) 和 一组标签 是该 Stream 的唯一标识。如果 Loki 以单租户模式运行，则所有块都放在名为 **`fake`** 的文件夹中，这是用于单个租户模式的合成租户名称。
 
 ## Local Storage(本地存储)
 
@@ -210,7 +210,9 @@ index 目录总就是 Index 数据
 > - [官方文档，运维-存储-存储模式](https://grafana.com/docs/loki/latest/operations/storage/schema/)
 
 Loki 旨在向后兼容，当 Loki 内部存储发生变化时，通过 **Schema(模式)** 功能，可以让 Loki 的数据迁移更加平滑。在 Schema 概念中，通过一种 **Period(期间)** 的概念，来区分多个 Schema 的配置。本质上，一个 Schema 是一个数组，数组中的每个元素都是一个 Period，表示在这个 Period(期间) 内所使用的存储模式是 XX。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gzp72g/1660102594593-ad7383b9-e99d-414b-b4e4-8547ef28758f.png)
+
 同时，**Schema 中的配置，也可以定义 Loki 储存数据所用的存储类型，Loki 想要正常运行，必须要指定具体的 Schema**。
 
 假如现在配置文件中有如下配置：
@@ -265,8 +267,7 @@ Ingester 组件用于将 Index 与 Chunks 数据写入存储；Querier 组件用
 
 ## 读取数据
 
-Queriers lazily loads BoltDB files from shared object store to configured `cache_location`. When a querier receives a read request, the query range from the request is resolved to period numbers and all the files for those period numbers are downloaded to `cache_location`, if not already. Once we have downloaded files for a period we keep looking for updates in shared object store and download them every 5 Minutes by default. Frequency for checking updates can be configured with `resync_interval` config.
-查询者将 BoltDB 文件从共享对象存储延迟加载到已配置的 cache_location。 当查询器接收到读取请求时，该请求的查询范围将解析为期间号，并将那些期间号的所有文件下载到 cache_location（如果尚未下载）。 下载文件一段时间后，我们会继续在共享库中查找更新，默认情况下每 5 分钟下载一次。 可以使用 resync_interval config 来配置检查更新的频率。
+Queriers lazily loads BoltDB files from shared object store to configured `cache_location`. When a querier receives a read request, the query range from the request is resolved to period numbers and all the files for those period numbers are downloaded to `cache_location`, if not already. Once we have downloaded files for a period we keep looking for updates in shared object store and download them every 5 Minutes by default. Frequency for checking updates can be configured with `resync_interval` config.查询者将 BoltDB 文件从共享对象存储延迟加载到已配置的 cache_location。 当查询器接收到读取请求时，该请求的查询范围将解析为期间号，并将那些期间号的所有文件下载到 cache_location（如果尚未下载）。 下载文件一段时间后，我们会继续在共享库中查找更新，默认情况下每 5 分钟下载一次。 可以使用 resync_interval config 来配置检查更新的频率。
 
 To avoid keeping downloaded index files forever there is a ttl for them which defaults to 24 hours, which means if index files for a period are not used for 24 hours they would be removed from cache location. ttl can be configured using `cache_ttl` config.为了避免永久保存下载的索引文件，有一个 ttl，默认值为 24 小时，这意味着如果一段时间内未使用索引文件 24 小时，它们将从缓存位置中删除。 可以使用 cache_ttl config 来配置 ttl。
 
@@ -306,7 +307,9 @@ Loki 可以将 Index 和 Chunks 数据以 **Table(表)** 的形式储存起来�
 **注意：表的概念不适用与存储在 S3 的 Index 与 Chunk 数据**
 
 如图所示，数据在存储中就是这样一种结构：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gzp72g/1621406186450-f1bdfeb2-3225-472f-ae51-feee150458e8.png)
+
 Loki 接收到的 Log Stream，会根据时间被分配到一个 Periodic Table 中
 
 这是一种数据整合的方法，以便于更好的管理数。将数据基于表来进行分组有两个好处：

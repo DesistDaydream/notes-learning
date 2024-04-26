@@ -41,7 +41,9 @@ Loki 像 Prometheus 一样，但是是用于处理日志的：我们更喜欢基
 > - [官方文档，运维-可观测性](https://grafana.com/docs/loki/latest/operations/observability/)
 
 Loki 和 Promtail 都在 `/metrics` 端点上公开了指标，该端点暴露了 OpenMetrics 格式的指标。
+
 Loki 存储库具有一个[混合包](https://github.com/grafana/loki/tree/main/production/loki-mixin)，其中包括一组仪表板，记录规则和警报。总之，mixin 为您提供了一个全面的软件包，用于监视生产中的 Loki。
+
 有关 mixin 的更多信息，请参阅 [monitoring-mixins 项目](https://github.com/monitoring-mixins/docs) 的文档 。
 
 ## Multi Tenancy(多租户)
@@ -68,6 +70,7 @@ Loki 由多个组件组成，每个组件都可以实现特定的功能：
   - **Ruler(规则管理器)** # 对应 ruler 组件。从存储中读取数据，根据规则发送给告警处理程序。
 
 loki 二进制文件的设计方式与 thanos 非常类似，都是在单一二进制文件中，可以运行指定的一个或多个组件。
+
 Loki 内部将组件称为 **Modules(模块)**。如果想要运行指定的模块，有两种方式：
 
 - 命令行标志 # loki 二进制文件的 `-target` 命令行标志
@@ -100,6 +103,7 @@ Distributor 接收客户端(比如 Promtail) 推送的日志，处理后交给 I
 > - [官方文档，基础-架构-部署模式](https://grafana.com/docs/loki/latest/fundamentals/architecture/deployment-modes/)
 
 作为一个应用程序，Loki 由许多组件微服务构建而成，旨在作为一个可水平扩展的分布式系统运行。Loki 的独特设计将整个分布式系统的代码编译成单个二进制或 Docker 映像。该单个二进制文件的行为由-target 命令行标志控制，并定义了三种操作模式之一。
+
 Loki 旨在根据需求变化轻松地在不同架构下重新部署集群，无需更改配置或进行最少的配置更改。
 
 - Monolithic 架构对于快速开始试验 Loki 以及每天高达约 100GB 的小读/写量非常有用。
