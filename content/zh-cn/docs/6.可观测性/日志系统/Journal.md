@@ -39,7 +39,7 @@ c14766a3e9ae49a3872fb9b7e2583710
 所有 journal 程序生成的日志，都会存在 MACHIN-ID 目录下
 
 ```bash
-root@lichenhao:/var/log/journal/c14766a3e9ae49a3872fb9b7e2583710# ll -h
+/var/log/journal/c14766a3e9ae49a3872fb9b7e2583710# ll -h
 total 153M
 drwxr-sr-x+ 2 root systemd-journal 4.0K Feb 21 23:15  ./
 drwxr-sr-x+ 3 root systemd-journal   46 Dec  9 17:19  ../

@@ -36,11 +36,15 @@ avg_over_time(up{}[1h])
 
 查询端口接收的实时带宽。注意:是带宽
 
-    irate(ifHCInOctets{instance="IP.IP.IP.IP",ifAlias="XXXX"}[6m]) * 8
+```promql
+irate(ifHCInOctets{instance="IP.IP.IP.IP",ifAlias="XXXX"}[6m]) * 8
+```
 
 查询端口发送的实时带宽。注意:是带宽
 
-    irate(ifHCOutOctets{instance="IP.IP.IP.IP",ifAlias="XXXX"}[6m]) * 8
+```promql
+irate(ifHCOutOctets{instance="IP.IP.IP.IP",ifAlias="XXXX"}[6m]) * 8
+```
 
 # 物理机资源查询语句
 

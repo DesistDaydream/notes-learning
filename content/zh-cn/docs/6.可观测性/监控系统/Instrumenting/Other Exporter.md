@@ -4,7 +4,11 @@ title: Other Exporter
 
 # 概述
 
-官方推荐的一些第三方 exporter：<https://prometheus.io/docs/instrumenting/exporters/>
+官方推荐的一些第三方 exporter: https://prometheus.io/docs/instrumenting/exporters/
+
+process-exporter: 采集进程指标
+
+- https://github.com/ncabatoff/process-exporter
 
 # Kubernetes Event Exporter
 

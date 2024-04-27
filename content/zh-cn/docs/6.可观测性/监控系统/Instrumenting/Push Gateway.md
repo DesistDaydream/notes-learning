@@ -27,16 +27,20 @@ pushgateway 无法主动获取获取目标 metrics。目标需要通过脚本、
 
 # PushGateway 部署
 
-    docker run -d -p 9091:9091 prom/pushgateway
+```bash
+docker run -d -p 9091:9091 prom/pushgateway
+```
 
 在 Prometheus Server 的配置文件中加入配置以便让 Prometheus Server 获取 pushgateway 中的 metrics
 
-    - job_name: 'push_node'
-        static_configs:
-        - targets: ['10.10.100.110:9091']
-          labels:
-             env: 'pushgateway'
-        honor_labels: true
+```yaml
+- job_name: 'push_node'
+    static_configs:
+    - targets: ['10.10.100.110:9091']
+      labels:
+         env: 'pushgateway'
+    honor_labels: true
+```
 
 # PushGateway 的使用方式
 
