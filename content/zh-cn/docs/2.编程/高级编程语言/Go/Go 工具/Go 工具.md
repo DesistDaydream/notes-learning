@@ -19,9 +19,9 @@ go 是用来管理 Go 编程语言源代码的工具
 
 go 是一个工具，用来管理 Go 语言编写的代码。该工具由多个子命令组成。每个子命令可以实现不同类型的功能。
 
-## bug # start a bug report
+## bug - start a bug report
 
-## build # 编译 package 及其依赖
+## build - 编译 package 及其依赖
 
 https://pkg.go.dev/cmd/go#hdr-Compile_packages_and_dependencies
 
@@ -31,8 +31,8 @@ OPTIONS
 
 - **-ldflags [PATTERN=]ARG** # 向链接器传递一些参数。这些参数可用于指定编译时需要使用的一些信息，例如项目版本号、Git 提交 ID、构建时间、构建平台和架构等元数据信息
   - 比如：
-    - -ldflags "-X main.version=1.0.0 -X 'main.buildTime=`date`'"
-    - -ldflags "-s -w" # 告诉链接器在生成可执行文件时忽略调试信息和符号表，从而使得你的二进制文件更加紧凑而且不再可读。
+    - `-ldflags "-X 'main.version=1.0.0' -X 'main.buildTime=$(date)'"` # 为 main 包中的 version 和 buildTime 变量设置值
+    - `-ldflags "-s -w"` # 告诉链接器在生成可执行文件时忽略调试信息和符号表，从而使得你的二进制文件更加紧凑而且不再可读。
 - **-gcflags [PATTERN=]ARG** # 每次执行"go tool compile"时要传递的参数。
 - **-o NAME** # 指定构建完成后生成的文件名为 NAME
 - **-x** # 输出 Go 程序编译、链接、打包的全过程。包括都使用了哪些库、执行了什么命令、等等
@@ -42,7 +42,48 @@ EXAMPLE
 - 指定构建名称
   - go build -o jhs_cli cmd/jhs_cli/main.go
 
-## clean # remove object files and cached files
+比如下面的构建脚本
+
+```bash
+#!/bin/bash
+#
+# 参考: https://github.com/alist-org/alist/blob/main/build.sh
+# 执行: `bash build.sh bin/net_tool` 构建程序
+
+builtAt="$(date +'%F %T %z')"
+goVersion=$(go version | sed 's/go version //')
+gitAuthor="DesistDaydream"
+gitCommit=$(git log --pretty=format:"%h" -1)
+version=$(git describe --abbrev=0 --tags)
+
+ldflags="\
+-w -s \
+-X 'github.com/DesistDaydream/net_tool/internal/conf.BuiltAt=$builtAt' \
+-X 'github.com/DesistDaydream/net_tool/internal/conf.GoVersion=$goVersion' \
+-X 'github.com/DesistDaydream/net_tool/internal/conf.GitAuthor=$gitAuthor' \
+-X 'github.com/DesistDaydream/net_tool/internal/conf.GitCommit=$gitCommit' \
+-X 'github.com/DesistDaydream/net_tool/internal/conf.Version=$version' \
+"
+
+ go build -o "$1" -ldflags="$ldflags" -tags=jsoniter .
+```
+
+相当于为 github.com/DesistDaydream/net_tool 项目中的 internal/conf/ 目录(i.e. 该项目中的 conf 这个 packet)下的 BuiltAt、GoVersion、etc. 变量赋予了指定的值，这些变量可以通过 version 相关的子命令或命令行参数显示出来。
+
+```go
+package conf
+
+var (
+	BuiltAt    string
+	GoVersion  string
+	GitAuthor  string
+	GitCommit  string
+	Version    string = "dev"
+	WebVersion string
+)
+```
+
+## clean - remove object files and cached files
 
 EXAMPLE
 
@@ -58,7 +99,7 @@ fmt gofmt (reformat) package sources
 
 generate generate Go files by processing source
 
-## get # 下载并安装 package 及其依赖
+## get - 下载并安装 package 及其依赖
 
 OPTIONS
 
@@ -69,19 +110,19 @@ install compile and install packages and dependencies
 
 list list packages or modules
 
-## mod # go 模块维护与管理命令
+## mod - go 模块维护与管理命令
 
 详见《[Go Module](/docs/2.编程/高级编程语言/Go/Go%20环境安装与使用/Go%20Module.md)》章节
 
-## run # 编译并运行 Go 程序
+## run - 编译并运行 Go 程序
 
-## test # test packages
+## test - test packages
 
 详见 《[Go 单元测试](/docs/2.编程/高级编程语言/Go/Go%20单元测试.md)》 章节
 
-## tool # run specified go tool
+## tool - run specified go tool
 
-## vet # report likely mistakes in packages
+## vet - report likely mistakes in packages
 
 # 其他工具
 
