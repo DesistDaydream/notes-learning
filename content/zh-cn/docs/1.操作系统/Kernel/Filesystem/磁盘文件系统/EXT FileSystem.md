@@ -1,14 +1,15 @@
 ---
-title: "EXT FileSystem"
-linkTitle: "EXT FileSystem"
-weight: 1
+title: EXT FileSystem
+linkTitle: EXT FileSystem
+weight: 20
+date: 2024-04-30T16:39
 ---
 
 # 概述
 
 > 参考：
 >
-> - [公众号，小林 coding-一口气搞懂「文件系统」，就靠这 25 张图了](https://mp.weixin.qq.com/s/qJdoXTv_XS_4ts9YuzMNIw)
+> - [公众号 - 小林 coding，一口气搞懂「文件系统」，就靠这 25 张图了](https://mp.weixin.qq.com/s/qJdoXTv_XS_4ts9YuzMNIw)
 > - [骏马金龙，第4章 ext文件系统机制原理剖析](https://www.junmajinlong.com/linux/ext_filesystem/)
 
 硬盘最底层的读写 IO 一次是一个扇区 512 字节，如果要读写大量文件，以扇区为单位肯定很慢很消耗性能，所以硬盘使用了一个称作逻辑块的概念。逻辑块是逻辑的，由磁盘驱动器负责维护和操作，它并非是像扇区一样物理划分的。一个逻辑块的大小可能包含一个或多个扇区，每个逻辑块都有唯一的地址，称为 LBA。有了逻辑块之后，磁盘控制器对数据的操作就以逻辑块为单位，一次读写一个逻辑块，磁盘控制器知道如何将逻辑块翻译成对应的扇区并读写数据。

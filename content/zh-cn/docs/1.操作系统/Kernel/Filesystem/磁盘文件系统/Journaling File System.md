@@ -1,10 +1,14 @@
 ---
 title: Journaling File System
+linkTitle: Journaling File System
+date: 2024-04-30T16:39
+weight: 20
 ---
 
 # 概述
 
 > 参考：
+> 
 > - [Wiki，Journaling file system](https://en.wikipedia.org/wiki/Journaling_file_system)
 
 ## 背景

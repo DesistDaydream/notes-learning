@@ -51,15 +51,13 @@ Wireshark 用了分层的方式，展示了各个层的包头信息，把“不�
 
 WireShark 依赖 [pcap](/docs/7.信息安全/Packet%20analyzer/pcap.md)，若使用 WireShark 便携包，那么需要手动安装 [Npcap](https://npcap.com/)。
 
-# Syntax(语法)
-
-`!tcp.analysis.flags` # 去掉 Bad TCP 的包
-
-# Following Protocol Streams(追踪协议流)
+# Protocol Streams(协议流)
 
 https://www.wireshark.org/docs/wsug_html_chunked/ChAdvFollowStreamSection.html#ChAdvFollowStream
 
-WireShark 将具有某些相同特征的多个数据包分为一组，称为 Protocol Stream(协议流)，每条 stream 都有一个 Stream ID。若是 TCP 的包，则是 TCP Protocol Streams；若是 HTTP 的包，则是 HTTP Protocol Stream；以此类推。
+WireShark 将具有某些相同特征的多个数据包分为一组，称为 **Protocol Stream(协议流)**，每条 stream 都有一个 Stream ID。若是 TCP 的包，则是 TCP Protocol Streams；若是 HTTP 的包，则是 HTTP Protocol Stream；以此类推。
+
+WireShark 通过 **Follow Protocol Streams(追踪协议流)** 的行为实现 统计、etc. 很多功能
 
 想要将多个数据包分为一组，通常要有一些前提条件，比如 TCP 流要保证这些数据包的 src port 和 dest port 且 src ip 和 dest ip 完全相同、etc. 
 

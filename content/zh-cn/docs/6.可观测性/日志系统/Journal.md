@@ -30,16 +30,16 @@ weight: 4
 路径中的 MACHINE-ID 的值，可以通过 `cat /etc/machine-id` 命令获取
 
 ```bash
-root@lichenhao:/var/log/journal# ls
+~]# ls /run/log/journal
 c14766a3e9ae49a3872fb9b7e2583710
-root@lichenhao:/var/log/journal# cat /etc/machine-id
+~]# cat /etc/machine-id
 c14766a3e9ae49a3872fb9b7e2583710
 ```
 
 所有 journal 程序生成的日志，都会存在 MACHIN-ID 目录下
 
 ```bash
-/var/log/journal/c14766a3e9ae49a3872fb9b7e2583710# ll -h
+~]# ll -h /var/log/journal/c14766a3e9ae49a3872fb9b7e2583710
 total 153M
 drwxr-sr-x+ 2 root systemd-journal 4.0K Feb 21 23:15  ./
 drwxr-sr-x+ 3 root systemd-journal   46 Dec  9 17:19  ../
@@ -48,6 +48,7 @@ drwxr-sr-x+ 3 root systemd-journal   46 Dec  9 17:19  ../
 -rw-r-----+ 1 root systemd-journal  32M Feb 21 23:10 'system@aa6b2b3f8f9d46fdb169f9d8aaab56c3-000000000000df93-0005b975c74c3caf.journal'
 -rw-r-----+ 1 root systemd-journal  40M Mar 12 15:25  system.journal
 -rw-r-----+ 1 root systemd-journal 8.0M Dec 28 16:23 'user-1000@571778ddc0db463990a85592631fa5e8-0000000000000496-0005b6049323448d.journal'
+......
 ```
 
 # journalctl 命令行工具
@@ -56,7 +57,7 @@ drwxr-sr-x+ 3 root systemd-journal   46 Dec  9 17:19  ../
 >
 > - [Manual(手册)，journalctl(1)](https://man7.org/linux/man-pages/man1/journalctl.1.html)
 
-Systemd 统一管理所有 Unit 的启动日志。带来的好处就是，可以只用 journalctl 一个命令，查看所有日志（内核日志和应用日志）。日志的配置文件是/etc/systemd/journald.conf。journalctl 功能强大，用法非常多。
+[Systemd](docs/1.操作系统/Systemd/Systemd.md) 统一管理所有 Unit 的启动日志。带来的好处就是，可以只用 journalctl 命令，查看所有日志（内核日志和应用日志）。日志的配置文件是 /etc/systemd/journald.conf。journalctl 功能强大，用法非常多。
 
 ## Syntax(语法)
 
@@ -147,21 +148,14 @@ $ journalctl -u nginx.service -u php-fpm.service --since today
 
 # 查看指定优先级（及其以上级别）的日志，共有 8 级
 
-# 0: emerg
-
-# 1: alert
-
-# 2: crit
-
-# 3: err
-
-# 4: warning
-
-# 5: notice
-
-# 6: info
-
-# 7: debug
+- 0: emerg
+- 1: alert
+- 2: crit
+- 3: err
+- 4: warning
+- 5: notice
+- 6: info
+- 7: debug
 
 $ sudo journalctl -p err -b
 
