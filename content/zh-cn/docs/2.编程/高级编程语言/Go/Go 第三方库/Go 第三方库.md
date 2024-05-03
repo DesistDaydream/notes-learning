@@ -49,3 +49,18 @@ func main() {
 > 
 > - [GitHub 项目，xuri/excelize](https://github.com/xuri/excelize)
 > - [官方文档](https://xuri.me/excelize/zh-hans/)
+
+# 网络相关
+
+https://pkg.go.dev/golang.org/x/crypto/ssh # SSH 客户端和服务端库
+
+https://github.com/jlaffaye/ftp # FTP 客户端库
+
+https://github.com/pkg/sftp # SFTP 客户端与服务端库
+
+https://github.com/scrapli/scrapligo # 专注于通过 SSH 和 NETCONF 连接到设备，特别是网络设备（路由器/交换机/防火墙/等）
+
+- [知乎，请问golang有没有类似netmiko，paramiko这样高度集成的第三方库？](https://www.zhihu.com/question/498240883/answer/2238301649)
+- [知乎，浅谈如何使用Scrapligo控制网络设备](https://zhuanlan.zhihu.com/p/641358349)
+
+

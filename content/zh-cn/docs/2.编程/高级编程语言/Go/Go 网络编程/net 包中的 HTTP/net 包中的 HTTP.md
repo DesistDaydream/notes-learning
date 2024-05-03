@@ -5,6 +5,7 @@ title: net 包中的 HTTP
 # 概述
 
 > 参考：
+> 
 > - [GitHub 项目，DesistDaydream/go-net](https://github.com/DesistDaydream/go-net)(学习代码)
 > - [GoWeb 编程](https://github.com/astaxie/build-web-application-with-golang)
 > - [看云，GoWeb 编程](https://www.kancloud.cn/kancloud/web-application-with-golang)
@@ -48,13 +49,15 @@ func main() {
 
 以 1.16 版本为例
 
-[http.Client{}](https://github.com/golang/go/blob/release-branch.go1.16/src/net/http/client.go#L57) 结构体 # HTTP 客户端，作用在该结构体的方法，就是用来发起 HTTP 请求的方法，比如 GET、POST 等
+**[http.Client{}](https://github.com/golang/go/blob/release-branch.go1.16/src/net/http/client.go#L57) 结构体** # HTTP 客户端，作用在该结构体的方法，就是用来发起 HTTP 请求的方法，比如 GET、POST 等
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/xi368g/1626314106732-1e5da8f4-21b9-485f-988c-c99837e21513.png)
 
-[do()](https://cs.opensource.google/go/go/+/refs/tags/go1.16.6:src/net/http/client.go;l=590) 方法 # do 是用来发送 HTTP 请求并返回 HTTP 响应的最本质方法。像 Get()、Post() 等方法，最终还是调用的 do()
+**[do()](https://cs.opensource.google/go/go/+/refs/tags/go1.16.6:src/net/http/client.go;l=590) 方法** # do 是用来发送 HTTP 请求并返回 HTTP 响应的最本质方法。像 Get()、Post() 等方法，最终还是调用的 do()
 
-# 使用 Go 发起 HTTP Request 并处理 Response Body 的基本示例
+# 基本示例
+
+## 使用 Go 发起 HTTP Request 并处理 Response Body 的基本示例
 
 ```go
 package main
@@ -121,11 +124,11 @@ func main() {
 }
 ```
 
-# Go HTTP GET/POST JSON 的服务端、客户端示例，包含序列化、反序列化
+## Go HTTP GET/POST JSON 的服务端、客户端示例，包含序列化、反序列化
 
 https://www.cnblogs.com/junneyang/p/6211190.html
 
-## 服务端代码示例：
+### 服务端代码示例：
 
 ```go
 package handler
@@ -215,7 +218,7 @@ func main() {
 }
 ```
 
-## 客户端代码示例：
+### 客户端代码示例：
 
 ```go
 package main

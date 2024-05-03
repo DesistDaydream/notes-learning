@@ -2604,6 +2604,11 @@
       "docs/2.编程/计算机科学/Object-oriented Programming/_index.md",
       "docs/2.编程/计算机科学/Object-oriented Programming/OOP.md",
       "docs/2.编程/计算机科学/Object-oriented Programming/设计模式.md"
+    ],
+    "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/Netlink": [
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/Netlink/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/Netlink/Netlink.md",
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/Netlink/Netlink 操作.md"
     ]
   },
   "actionBarOrder": {},

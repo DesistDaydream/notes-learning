@@ -5,6 +5,7 @@ title: HTTP 重试
 # 概述
 
 > 参考：
+> 
 > - [公众号-luozhiyun，在 Go 中如何正确重试请求](https://mp.weixin.qq.com/s/D2mLZI9NXMjgQwLOReQCgg)(原文)
 >   - <https://www.luozhiyun.com/archives/677>
 
