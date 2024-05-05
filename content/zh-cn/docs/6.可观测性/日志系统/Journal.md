@@ -57,7 +57,7 @@ drwxr-sr-x+ 3 root systemd-journal   46 Dec  9 17:19  ../
 >
 > - [Manual(手册)，journalctl(1)](https://man7.org/linux/man-pages/man1/journalctl.1.html)
 
-[Systemd](docs/1.操作系统/Systemd/Systemd.md) 统一管理所有 Unit 的启动日志。带来的好处就是，可以只用 journalctl 命令，查看所有日志（内核日志和应用日志）。日志的配置文件是 /etc/systemd/journald.conf。journalctl 功能强大，用法非常多。
+[Systemd](/docs/1.操作系统/Systemd/Systemd.md) 统一管理所有 Unit 的启动日志。带来的好处就是，可以只用 journalctl 命令，查看所有日志（内核日志和应用日志）。日志的配置文件是 /etc/systemd/journald.conf。journalctl 功能强大，用法非常多。
 
 ## Syntax(语法)
 

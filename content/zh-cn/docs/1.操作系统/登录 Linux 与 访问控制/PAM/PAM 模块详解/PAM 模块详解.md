@@ -8,6 +8,10 @@ weight: 20
 
 > 参考：
 
+[pam_faillock](/docs/1.操作系统/登录%20Linux%20与%20访问控制/PAM/PAM%20模块详解/pam_faillock.md) # 在指定的时间间隔内维护每个账户在尝试进行身份验证时的失败事件，并且在连续失败时锁定账户。
+
+[pam_limits](/docs/1.操作系统/登录%20Linux%20与%20访问控制/PAM/PAM%20模块详解/pam_limits.md)
+
 # PAM 的各模块说明
 
 全局参数
@@ -19,89 +23,15 @@ weight: 20
 - no_log_info # 不打印日志信息通过 syslog
 - 上面的五项全局参数，一般在使用中都不需要单独配置。
 
-# pam_faillock # 在指定的时间间隔内计算身份验证失败
-
-> 参考：
->
-> - [Manual(手册),pam_faillock(8)](https://man.cx/pam_faillock)
-> - [Manual(手册),faillock.conf(5)](<https://man.cx/faillock.conf(5)>)
-> - <https://github.com/dev-sec/ansible-collection-hardening/issues/377>
-> - 红帽官方文档,安全指南-账户锁
->   - <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/chap-hardening_your_system_with_tools_and_services#sect-Security_Guide-Workstation_Security-Account_Locking>
-
-提供 auth、account 管理类型的模块
-
-pam_faillock 模块在指定的时间间隔内维护每个账户在尝试进行身份验证时的失败事件，并且在连续失败时锁定账户。
-
-pam_faillock 与大部分模块有一点不同，不建议在 PAM 规则中配置参数，而是推荐使用默认的 /etc/security/faillock.conf 配置文件中配置参数
-
-## 关联文件
-
-**/etc/security/faillock.conf** # 运行时配置文件。除了在 /etc/pam.d/\* 文件中配置模块的参数，还可以通过这个文件配置模块的参数。
-
-**/var/run/faillock/** # 记录用户身份验证失败的事件。目录中的文件名以用户名命名
-
-## 模块参数
-
-**preauth | authfail | authsucc** #
-
-**conf=\</PATH/TO/FILE>** # 指定要使用的配置文件路径。
-
-## 应用示例
-
-登录失败 3 次会锁定用户 60 秒，账户登录失败 3 次 锁定 30 秒
-
-```bash
-    sudo tee /etc/pam.d/password-auth-local > /dev/null <<EOF
-auth        required       pam_faillock.so preauth  audit deny=3 even_deny_root unlock_time=60 root_unlock_time=30
-auth        include        password-auth-ac
-auth        [default=die]  pam_faillock.so authfail audit deny=3 even_deny_root unlock_time=60 root_unlock_time=30
-
-account     required       pam_faillock.so
-account     include        password-auth-ac
-
-password    include        password-auth-ac
-
-session     include        password-auth-ac
-EOF
-
-    ln -sf /etc/pam.d/password-auth-local /etc/pam.d/password-auth
-```
-
-注意：由于 password-auth-ac 中有 pam_succeed_if.so uid >= 1000 quiet_success 这样一条规则，所以上述配置对 root 账户不起作用。
-
-## 命令行工具
-
-### faillock
-
-**faillock \[OPTIONS]**
-
-管理登录失败锁定记录的工具
-
-```bash
-[root@LNDL-PSC-SCORE-PM-OS04-EBRS-HA02 pam.d]# faillock
-developer:
-When                Type  Source                                           Valid
-2021-10-21 21:42:50 RHOST 172.16.10.11                                         V
-root:
-When                Type  Source                                           Valid
-2021-10-21 21:42:41 RHOST 172.16.10.11                                         V
-```
-
-OPTIONS
-
-- **--user \<USERNAME>** # 指定要处理的用户名称
-- **--reset** # 清除失败记录，解除锁定
-
 # pam_nologin
 
 这个模块可以限制一般用户是否能够登入主机之用。当 /etc/nologin 这个文件存在时，则所有一般使用者均无法再登入系统了！若 /etc/nologin 存在，则一般使用者在登入时， 在他们的终端机上会将该文件的内容显示出来！所以，正常的情况下，这个文件应该是不能存在系统中的。 但这个模块对 root 以及已经登入系统中的一般账号并没有影响。
 
-# pam_pwhistory # 记住最后的密码
+# pam_pwhistory - 记住最后的密码
 
 > 参考：
 >
-> - [Manual(手册),pam_pwhistory(8)](https://man7.org/linux/man-pages/man8/pam_pwhistory.8.html)
+> - [Manual(手册)，pam_pwhistory(8)](https://man7.org/linux/man-pages/man8/pam_pwhistory.8.html)
 
 该模块用于记住用户设置过的密码，以防止用户在修改密码时频繁交替得使用相同的密码
 
@@ -113,7 +43,7 @@ OPTIONS
 
 - **remember=INT** # 用户设置过的 remember 个密码将会保存在 /etc/security/opasswd 文件中。`默认值：10`。值为 0 时，模块将会保持 opasswd 文件的现有内容不变
 
-# pam_pwquality # 密码质量检查
+# pam_pwquality - 密码质量检查
 
 > 参考：
 >
@@ -142,6 +72,7 @@ pam_pwquality 模块属于 libpwquality 库，最初基于 pam_cracklib 模块�
 ## 关联文件
 
 **/etc/security/pwquality.conf** # 模块运行时配置文件
+
 **/usr/lib64/security/pam_pwquality.so** # 模块文件
 
 ## 模块参数
@@ -181,7 +112,7 @@ dcredit = -1
 ocredit = -1
 ```
 
-# pam_succeed_if # 测试账户特性
+# pam_succeed_if - 测试账户特性
 
 pam_succeed_if 模块旨在根据 **账户的特征**或 其他
 
@@ -231,18 +162,18 @@ auth        required      pam_deny.so
 
 此时，所有 uid 小于 1000 的，包括 root 账户，都是无法享受到第 6 行规则的效果的，因为当执行到第 5 行时，发现此次认证行为的账户是 root(uid=0) 则直接返回失败，不在执行第 6 行的规则了~~
 
-# pam_unix # 传统密码认证
+# pam_unix - 传统密码认证
 
 > 参考：
 >
-> - [Manual(手册),pam_unix(8)](https://man7.org/linux/man-pages/man8/pam_unix.8.html)
+> - [Manual(手册)，pam_unix(8)](https://man7.org/linux/man-pages/man8/pam_unix.8.html)
 
 注意：推荐使用 pam_pwquality 模块与 pam_unix 模块配合使用
 
 若是不满足密码强度要求，将会出现类似如下的提示：
 
 ```bash
-[root@common-centos-test pam.d]# passwd developer
+~]# passwd developer
 Changing password for user developer.
 New password:
 BAD PASSWORD: The password contains less than 1 uppercase letters
@@ -250,7 +181,7 @@ Retype new password:
 BAD PASSWORD: The password fails the dictionary check - it is too simplistic/systematic
 ```
 
-注意：root 用户修改任何用户的密码不受此模块限制，只有普通用户修改自己的密码时才有效。
+<font color="#ff0000">注意：root 用户修改任何用户的密码不受此模块限制，只有普通用户修改自己的密码时才有效。</font>
 
 ## 模块参数
 
@@ -264,5 +195,3 @@ BAD PASSWORD: The password fails the dictionary check - it is too simplistic/sys
   - **lcredit=-1** # 最少 1 个小写字符
   - **ucredit=-1** # 最少 1 个大写字符
   - **ocredit=-1** # 最少 1 个特殊字符
-
-#

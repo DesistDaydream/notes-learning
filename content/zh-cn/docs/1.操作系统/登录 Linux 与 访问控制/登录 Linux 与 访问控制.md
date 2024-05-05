@@ -98,7 +98,23 @@ OpenSSH 会为用户分配一个 Pseudoterminal(伪终端，即 pts) 以便用�
 - **/etc/default/motd-news** # 动态 MOTD 新闻信息配置，新闻信息主要是互联网相关的
 - **/etc/update-motd.d/** # MOTD 执行脚本保存路径
 - **~/.hushlogin** # 该文件存在时，将为当前用户禁用 MOTD 消息
-- **/etc/pam.d/sshd** # PAM 模块中可以为 sshd 配置 MOTD。
+- **/etc/pam.d/sshd** # 使用 ssh 登录后显示的 MOTD，可以通过 sshd 的 [PAM 配置文件](/docs/1.操作系统/登录%20Linux%20与%20访问控制/PAM/PAM%20配置文件.md#/etc/pam.d/sshd)进行配置。
+
+## 示例
+
+`There were 9 failed login attempts since the last successful login.`
+
+TODO: 这段信息来源未知。CentOS 系自带；Ubuntu 无法通过配置 faillock PAM 模块显示出来，也不知道该如何显示出来。
+
+`Last login: Sun May  5 22:16:35 2024 from 192.168.254.254`
+
+这段信息由 sshd_config 文件中的 PrintLastLog yes 指令配置
+
+`其他`
+
+其他的信息可能是由 /etc/pam.d/sshd 配置中的 pam_motd.so 模块产生的
+
+也有可能是 /etc/profile 相关的脚本文件输出的
 
 # 访问控制
 

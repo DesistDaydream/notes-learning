@@ -545,7 +545,7 @@
       "docs/1.操作系统/登录 Linux 与 访问控制/_index.md",
       "docs/1.操作系统/登录 Linux 与 访问控制/登录 Linux 与 访问控制.md",
       "docs/1.操作系统/登录 Linux 与 访问控制/Account Manager(账户管理)",
-      "docs/1.操作系统/登录 Linux 与 访问控制/PAM(可插入式认证模块)",
+      "docs/1.操作系统/登录 Linux 与 访问控制/PAM",
       "docs/1.操作系统/登录 Linux 与 访问控制/SELinux",
       "docs/1.操作系统/登录 Linux 与 访问控制/su 与  sudo",
       "docs/1.操作系统/登录 Linux 与 访问控制/登录与登录信息工具",
@@ -557,12 +557,12 @@
       "docs/1.操作系统/登录 Linux 与 访问控制/Account Manager(账户管理)/Account Manager(账户管理).md",
       "docs/1.操作系统/登录 Linux 与 访问控制/Account Manager(账户管理)/账户配置文件.md"
     ],
-    "docs/1.操作系统/登录 Linux 与 访问控制/PAM(可插入式认证模块)": [
-      "docs/1.操作系统/登录 Linux 与 访问控制/PAM(可插入式认证模块)/_index.md",
-      "docs/1.操作系统/登录 Linux 与 访问控制/PAM(可插入式认证模块)/PAM(可插入式认证模块).md",
-      "docs/1.操作系统/登录 Linux 与 访问控制/PAM(可插入式认证模块)/PAM配置文件.md",
-      "docs/1.操作系统/登录 Linux 与 访问控制/PAM(可插入式认证模块)/PAM 模块详解",
-      "docs/1.操作系统/登录 Linux 与 访问控制/PAM(可插入式认证模块)/已弃用模块.md"
+    "docs/1.操作系统/登录 Linux 与 访问控制/PAM": [
+      "docs/1.操作系统/登录 Linux 与 访问控制/PAM/_index.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/PAM/PAM.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/PAM/PAM 配置文件.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/PAM/PAM 模块详解",
+      "docs/1.操作系统/登录 Linux 与 访问控制/PAM/已弃用模块.md"
     ],
     "docs/1.操作系统/系统审计": [
       "docs/1.操作系统/系统审计/_index.md",
@@ -2609,6 +2609,15 @@
       "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/Netlink/_index.md",
       "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/Netlink/Netlink.md",
       "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/Netlink/Netlink 操作.md"
+    ],
+    "docs/2.编程/Programming environment/IDE/Visual Studio Code": [
+      "docs/2.编程/Programming environment/IDE/Visual Studio Code/_index.md",
+      "docs/2.编程/Programming environment/IDE/Visual Studio Code/Visual Studio Code.md",
+      "docs/2.编程/Programming environment/IDE/Visual Studio Code/VS Code 快捷键.md",
+      "docs/2.编程/Programming environment/IDE/Visual Studio Code/VS Code 配置详解.md",
+      "docs/2.编程/Programming environment/IDE/Visual Studio Code/VS Code 中的 WSL.md",
+      "docs/2.编程/Programming environment/IDE/Visual Studio Code/Plugins.md",
+      "docs/2.编程/Programming environment/IDE/Visual Studio Code/code-server.md"
     ]
   },
   "actionBarOrder": {},

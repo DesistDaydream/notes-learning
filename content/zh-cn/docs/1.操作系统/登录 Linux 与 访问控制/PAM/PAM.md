@@ -1,6 +1,6 @@
 ---
-title: PAM(可插入式认证模块)
-linkTitle: PAM(可插入式认证模块)
+title: PAM
+linkTitle: PAM
 date: 2023-12-26T17:17
 weight: 1
 ---
@@ -130,7 +130,7 @@ PAM 通过一个与程序相同文件名的配置文件来进行一连串的认�
 - auth 认证 # 登录应用程序提示输入用户名和密码，然后进行 libpam 身份认证调用以询问：“这个用户是他们所说的吗？” 该 pam_unix 模块负责检查本地账户认证。也可能会检查其他模块，最终将结果传递回登录过程。
 - account 认证 # 登录过程接下来会询问“此用户是否允许连接？”，然后对 进行帐户调用 libpam。该 pam_unix 模块会检查诸如密码是否已过期之类的内容。其他模块可能会检查主机或基于时间的访问控制列表。总体响应将返回给流程。
   - 如果密码已过期，应用程序会做出响应。某些应用程序根本无法登录用户。登录过程会提示用户输入新密码。
-- password 认证 # 为了验证密码并将其写入正确的位置，登录过程会对 进行密码调用 libpam。该 pam_unix 模块写入到本地**影子**文件。也可以调用其他模块来验证密码强度。
+- password 认证 # 为了验证密码并将其写入正确的位置，登录过程会对 进行密码调用 libpam。该 pam_unix 模块写入到本地 **shadow** 文件。也可以调用其他模块来验证密码强度。
   - 如果此时登录过程仍在继续，则已准备好创建会话。会话调用 libpam 导致 pam_unix 模块将登录时间戳写入**wtmp**文件。其他模块启用 X11 身份认证或 SELinux 用户上下文。
 - session 认证 # 在注销时，当会话关闭时，可以对 进行另一个会话调用 libpam。这是 pam_unix 模块将注销时间戳写入**wtmp**文件的时间。
 
@@ -150,19 +150,21 @@ auth   required     pam_dial_auth.so.1
 
 # Linux-PAM 关联文件与配置
 
-/etc/pam.conf # PAM 的默认配置文件，当存在 pam.d 文件夹时，自动接管配置，不再读取 pam.conf 下的配置
-/etc/pam.d/\* # PAM 的配置文件，当存在该目录时，不再读取 pam.conf 文件中的配置。该目录下的文件，通常都是由其他应用程序在安装时自动创建的。
+**/etc/pam.conf** # PAM 的默认配置文件，当存在 pam.d 文件夹时，自动接管配置，不再读取 pam.conf 下的配置
 
-- /etc/pam.d/sshd # 使用 ssh 方式登录时候的配置文件
-- /etc/pam.d/login # 使用 tty 方式登录时候的配置文件。i.e.通过设备直接登录或者 su 方式切换用户
-- /etc/pam.d/remote # 使用 telnet 方式登录时候的配置文件
-- /etc/pam.d/kde # 使用"图形界面"方式登录时候的配置文件
-- /etc/pam.d/system-auth # 配置凡是调用 system-auth 文件的服务，都会生效
-- /etc/pam.d/common-auth # 此文件中的安全策略可以限制用户不能更改为之前使用的历史密码
+**/etc/pam.d/** # PAM 的配置文件，当存在该目录时，不再读取 pam.conf 文件中的配置。该目录下的文件，通常都是由其他应用程序在安装时自动创建的。
+
+- **/etc/pam.d/sshd** # 使用 ssh 方式登录时候的配置文件
+- **/etc/pam.d/login** # 使用 tty 方式登录时候的配置文件。i.e.通过设备直接登录或者 su 方式切换用户
+- **/etc/pam.d/remote** # 使用 telnet 方式登录时候的配置文件
+- **/etc/pam.d/kde** # 使用"图形界面"方式登录时候的配置文件
+- **/etc/pam.d/system-auth** # 配置凡是调用 system-auth 文件的服务，都会生效
+- **/etc/pam.d/common-auth** # 此文件中的安全策略可以限制用户不能更改为之前使用的历史密码
 - ...... 等等
 
-/usr/lib64/security/_# CentOS 发行版的 PAM 模块存放目录
-/usr/lib/x86_64-linux-gnu/_ # Ubuntu 发行版的 PAM 模块存放目录
+`/usr/lib64/security/` # CentOS 发行版的 PAM 模块存放目录
+
+`/usr/lib/x86_64-linux-gnu/` # Ubuntu 发行版的 PAM 模块存放目录
 
 # Linux-PAM 认证机制示例
 
@@ -206,4 +208,4 @@ session     required      pam_unix.so
 
 第三部分会通过 password 类接口来确认用户使用的密码或者口令的合法性。第一行配置项表示需要的情况下将调用 pam_cracklib 来验证用户密码复杂度。如果用户输入密码不满足复杂度要求或者密码错，最多将在三次这种错误之后直接返回密码错误的提示，否则期间任何一次正确的密码验证都允许登录。需要指出的是，pam_cracklib.so 是一个常用的控制密码复杂度的 pam 模块，关于其用法举例我们会在之后详细介绍。之后带 pam_unix.so 和 pam_deny.so 的两行配置项的意思与之前类似。都表示需要通过密码认证并对不符合上述任何配置项要求的登录请求直接予以拒绝。不过用户如果执行的操作是单纯的登录，则这部分配置是不起作用的。
 
-第四部分主要将通过 session 会话类接口为用户初始化会话连接。其中几个比较重要的地方包括，使用 pam_keyinit.so 表示当用户登录的时候为其建立相应的密钥环，并在用户登出的时候予以撤销。不过该行配置的控制位使用的是 optional，表示这并非必要条件。之后通过 pam_limits.so 限制用户登录时的会话连接资源，相关 pam_limit.so 配置文件是/etc/security/limits.conf，默认情况下对每个登录用户都没有限制。关于该模块的配置方法在后面也会详细介绍。
+第四部分主要将通过 session 会话类接口为用户初始化会话连接。其中几个比较重要的地方包括，使用 pam_keyinit.so 表示当用户登录的时候为其建立相应的密钥环，并在用户登出的时候予以撤销。不过该行配置的控制位使用的是 optional，表示这并非必要条件。之后通过 pam_limits.so 限制用户登录时的会话连接资源，相关 pam_limit.so 配置文件是 /etc/security/limits.conf，默认情况下对每个登录用户都没有限制。关于该模块的配置方法在后面也会详细介绍。

@@ -219,4 +219,4 @@ jobs:
 
 > Notes: 每个 Workflow 通过 strategy 最多生成 256 个作业。
 
-strategy.matrix 下定义的字段还可以作为 [Contexts 与 Variables](docs/2.编程/Programming%20tools/SCM/GitHub/GitHub%20Actions/Contexts%20与%20Variables.md) 变量使用，e.g. `${{ matrix.version }}` 将会获取当前 job 下对应的 version 的值，比如上面例子中，进行到第三个任务，那么 version 的值为 12
+strategy.matrix 下定义的字段还可以作为 [Contexts 与 Variables](/docs/2.编程/Programming%20tools/SCM/GitHub/GitHub%20Actions/Contexts%20与%20Variables.md) 变量使用，e.g. `${{ matrix.version }}` 将会获取当前 job 下对应的 version 的值，比如上面例子中，进行到第三个任务，那么 version 的值为 12

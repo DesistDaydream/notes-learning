@@ -1,5 +1,8 @@
 ---
 title: Visual Studio Code
+linkTitle: Visual Studio Code
+date: 2024-05-03T10:16
+weight: 1
 ---
 
 # 概述
@@ -40,11 +43,11 @@ VS Code 运行时生成的持久化数据通常都在同一个目录中。之所
 - **首选项：打开工作区设置(JSON) # 打开 .vscode/setting 文件**。
 
 **defaultSettings.json** # VS Code 默认配置文件。其中还有每个字段的注释
+
 **settings.json** # VS Code 配置文件。该配置文件分为两类
 
 - **用户配置** # 当前用户使用 VS Code 的配置，用来覆盖默认配置。
-  - Windows 目录：**~/AppData/Roaming/Code/User/settings.json** #
-    - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/rxda5d/1622255508565-70016efb-d366-4869-a851-8d29af6810ab.png)
+  - Windows 目录：**%APPDATA%/Code/User/settings.json** #
 - **工作区配置** # VS Code 当前工作区的配置，该配置文件通常存在于项目目录中。这个配置会覆盖用户配置以及默认配置。具有最高优先级
   - **$PROJECT/.vscode/settings.json** # $PROJECT 为当前项目的目录。
 

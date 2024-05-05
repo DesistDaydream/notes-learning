@@ -70,7 +70,7 @@ Workflow 文件是 YAML 格式，后缀名必须统一为 `.yml`。一个代码�
 
 **.github/workflows/** # 工作流文件保存目录
 
-详见 [Actions 配置](docs/2.编程/Programming%20tools/SCM/GitHub/GitHub%20Actions/Actions%20配置.md)
+详见 [Actions 配置](/docs/2.编程/Programming%20tools/SCM/GitHub/GitHub%20Actions/Actions%20配置.md)
 
 # 简单示例
 
