@@ -15,11 +15,15 @@ weight: 1
 
 # cat - 用于把标准输入的内容输出到屏幕上
 
-Note:如果标准输入的内容是一个文件，那么就把文件中的内容当作标准输入发送给 cat 命令，然后再输出到屏幕上
+Note: 如果标准输入的内容是一个文件，那么就把文件中的内容当作标准输入发送给 cat 命令，然后再输出到屏幕上
 
 执行完 cat 命令后，屏幕上会等待我输入内容，当我输入完成按回车后，会在屏幕上输出同样的内容，这就是 cat 最基本的作用，效果如下图，第一行是我主动输入的，按下回车后，自动输出内容
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gi5hfh/1616166386092-a6649d83-8e1d-4878-b609-cd9c6c5f90de.jpeg)
+```bash
+~]$ cat 
+我在标准输入上输入了一些内容，按下回车后，输入的内容原样输出出来
+我在标准输入上输入了一些内容，按下回车后，输入的内容原样输出出来
+```
 
 ## Syntax(语法)
 
@@ -50,7 +54,7 @@ EXAMPLE
 ```
 
 - 将多个文件的内容合并到一个文件
-  - cat /data/users\_\* > users.sql
+  - `cat /data/users_* > users.sql`
 - cat 命令可以与输入输出重定向配合向文件中写入内容，效果如下
 
 ```bash
@@ -135,6 +139,7 @@ OPTIONS
 ## Syntax(语法)
 
 **tr \[OPTION]... SET1 \[SET2]**
+
 默认情况，不加任何参数的话，tr 命令会把 SET1 转换为 SET2
 
 OPTIONS
@@ -225,15 +230,29 @@ EXAMPLE
 
 如果你有一个很大的文件，你想把其分割成一些小的文件，那么这个命令就是干这件事的了。
 
-\[hchen@RHELSVR5 applebak]# ls -l largefile.tar.gz-rw-r--r-- 1 hchen hchen 436774774 04-17 02:00 largefile.tar.gz
+```
+~]# ls -l largefile.tar.gz
+-rw-r--r-- 1 hchen hchen 436774774 04-17 02:00 largefile.tar.gz
 
-\[hchen@RHELSVR5 applebak]# split -b 50m largefile.tar.gz LF\_
+~]# split -b 50m largefile.tar.gz LF_
 
-\[hchen@RHELSVR5]# ls -l LF\_\*-rw-r--r-- 1 hchen hchen 52428800 05-10 18:34 LF_aa-rw-r--r-- 1 hchen hchen 52428800 05-10 18:34 LF_ab-rw-r--r-- 1 hchen hchen 52428800 05-10 18:34 LF_ac-rw-r--r-- 1 hchen hchen 52428800 05-10 18:34 LF_ad-rw-r--r-- 1 hchen hchen 52428800 05-10 18:34 LF_ae-rw-r--r-- 1 hchen hchen 52428800 05-10 18:35 LF_af-rw-r--r-- 1 hchen hchen 52428800 05-10 18:35 LF_ag-rw-r--r-- 1 hchen hchen 52428800 05-10 18:35 LF_ah-rw-r--r-- 1 hchen hchen 17344374 05-10 18:35 LF_ai
+~]# ls -l LF_*
+-rw-r--r-- 1 hchen hchen 52428800 05-10 18:34 LF_aa
+-rw-r--r-- 1 hchen hchen 52428800 05-10 18:34 LF_ab
+-rw-r--r-- 1 hchen hchen 52428800 05-10 18:34 LF_ac
+-rw-r--r-- 1 hchen hchen 52428800 05-10 18:34 LF_ad
+-rw-r--r-- 1 hchen hchen 52428800 05-10 18:34 LF_ae
+-rw-r--r-- 1 hchen hchen 52428800 05-10 18:35 LF_af
+-rw-r--r-- 1 hchen hchen 52428800 05-10 18:35 LF_ag
+-rw-r--r-- 1 hchen hchen 52428800 05-10 18:35 LF_ah
+-rw-r--r-- 1 hchen hchen 17344374 05-10 18:35 LF_ai
+```
 
 文件合并只需要使用简单的合并就行了，如：
 
-\[hchen@RHELSVR5]# cat LF\_\* >largefile.tar.gz
+```bash
+~]# cat LF_* >largefile.tar.gz
+```
 
 # Windows 文件换行符转换为 Linux 换行符
 

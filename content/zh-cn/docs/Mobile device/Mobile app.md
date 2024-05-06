@@ -15,6 +15,12 @@ weight: 20
 
 > 电脑上的应用程序通常都称为 Application software。
 
+# 好用的 APP
+
+[李跳跳](https://www.litiaotiao.com/) # 自定义屏幕点击。常用来跳过广告
+
+[GitHub 项目，gkd-kit/gkd](https://github.com/gkd-kit/gkd) # 自定义屏幕点击。常用来跳过广告
+
 # WeChat
 
 > 参考：

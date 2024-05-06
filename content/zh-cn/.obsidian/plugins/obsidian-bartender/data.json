@@ -2431,17 +2431,16 @@
     ],
     "docs/Utils": [
       "docs/Utils/_index.md",
-      "docs/Utils/实用工具.md",
+      "docs/Utils/Utility.md",
       "docs/Utils/Terminal(终端)",
       "docs/Utils/远程管理",
       "docs/Utils/下载.md",
-      "docs/Utils/手机.md",
       "docs/Utils/云盘.md",
       "docs/Utils/即时通信",
       "docs/Utils/Windows 系统实用工具",
-      "docs/Utils/Surveillance",
       "docs/Utils/任务管理",
-      "docs/Utils/开源软件洞察.md"
+      "docs/Utils/开源软件洞察.md",
+      "docs/Utils/Surveillance.md"
     ],
     "docs/Utils/IDE/Visual Studio Code": [
       "docs/Utils/IDE/Visual Studio Code/_index.md",
@@ -2618,6 +2617,12 @@
       "docs/2.编程/Programming environment/IDE/Visual Studio Code/VS Code 中的 WSL.md",
       "docs/2.编程/Programming environment/IDE/Visual Studio Code/Plugins.md",
       "docs/2.编程/Programming environment/IDE/Visual Studio Code/code-server.md"
+    ],
+    "docs/7.信息安全/Security software": [
+      "docs/7.信息安全/Security software/_index.md",
+      "docs/7.信息安全/Security software/Security software.md",
+      "docs/7.信息安全/Security software/Snort.md",
+      "docs/7.信息安全/Security software/Snort Rule body.md"
     ]
   },
   "actionBarOrder": {},

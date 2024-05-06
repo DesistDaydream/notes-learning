@@ -1,10 +1,15 @@
 ---
 title: Terminal(终端)
+linkTitle: Terminal(终端)
+date: 2024-05-06T09:04
+weight: 1
 ---
 
 # 概述
 
 > 参考：
+>
+> -
 
 这里说的 Terminal(终端) 工具是一种可以连接 [Shell](/docs/1.操作系统/Terminal%20与%20Shell/Terminal%20与%20Shell.md) 的图形话工具。
 
@@ -74,7 +79,7 @@ SecureCRT 是 VanDyke Software 开发的商业终端产品。初始发行于 199
 
 工具 - 同步输入 可以实现多终端同时响应用户输入（Notes: ctrl + l 快捷键无法同时识别）
 
-## WindTerm 关联文件与配置
+### WindTerm 关联文件与配置
 
 **${WindTermInstalledDir}/tmp/** # 从 WindTerm 程序的文件管理器直接打开的文件将会在该目录下载作为缓存。当结束 WindTerm 程序时，该目录将会清空
 

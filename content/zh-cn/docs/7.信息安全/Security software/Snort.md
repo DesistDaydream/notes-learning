@@ -1,32 +1,26 @@
 ---
-title: 安全系统
-linkTitle: 安全系统
-date: 2024-03-27T10:35
+title: Snort
+linkTitle: Snort
+date: 2024-05-06T13:08
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
-> -
-
-# Snort
-
-> 参考：
-> 
+>
 > - [GitHub 项目，snort3/snort3](https://github.com/snort3/snort3)
 > - [官网](https://www.snort.org/)
 > - [Wiki，Snort_(software)](https://en.wikipedia.org/wiki/Snort_(software))
 
-Snort 是世界上最重要的开源入侵防御系统 (IPS)。 Snort IPS 使用一系列规则来帮助定义恶意网络活动，并使用这些规则来查找与其匹配的数据包并为用户生成警报。
+Snort 是世界上最重要的开源 Intrusion Prevention System(入侵防御系统，IPS)。 Snort IPS 使用一系列规则来帮助定义恶意网络活动，并使用这些规则来查找与其匹配的数据包并为用户生成警报。
 
 Snort 也可以内联部署来阻止这些数据包。 Snort 有三个主要用途：作为数据包嗅探器（如 tcpdump）、作为数据包记录器 — 这对于网络流量调试很有用，或者可以用作成熟的网络入侵防御系统。 Snort 可以下载并配置用于个人和商业用途。
 
-## Snort 规则
+# Snort 规则
 
 > 参考：
-> 
+>
 > - [官方文档，规则](https://docs.snort.org/rules/)
 
 Snort 规则主要由两部分组成
@@ -55,38 +49,12 @@ alert tcp $EXTERNAL_NET 80 -> $HOME_NET any
 
 **匹配规则** # 除了 源/目 IP 或 PORT 之外，还可以匹配数据包的 URL、数据内容 等进行过滤。只有完全匹配到的才会记录成安全事件。
 
-### EXAMPLE
+## Rule header
+
+## Rule body
+
+详见 [Snort Rule body](/docs/7.信息安全/Security%20software/Snort%20Rule%20body.md)
+
+# Snort 规则最佳实践
 
 `alert udp 159.138.48.8 any -> [111.30.108.165] [53] (msg:\"ip test\"; pcre:\"/./\"; sid:99999999;)`
-
-# Yara
-
-> 参考：
-> 
-> - [GitHub 项目，virustotal/yara](https://github.com/virustotal/yara)
-> - [官网](https://virustotal.github.io/yara/)
-> - [Wiki，YARA](https://en.wikipedia.org/wiki/YARA)
-
-YARA 是一款旨在（但不限于）帮助恶意软件研究人员识别和分类恶意软件样本的工具。使用 YARA，您可以根据 **文本** 或 **二进制** 模式创建恶意软件系列（或您想要描述的任何内容）的描述。每个描述（也称为规则）由一组字符串和一个决定其逻辑的布尔表达式组成。让我们看一个例子：
-
-```json
-rule silent_banker : banker
-{
-    meta:
-        description = "This is just an example"
-        threat_level = 3
-        in_the_wild = true
-
-    strings:
-        $a = {6A 40 68 00 30 00 00 6A 14 8D 91}
-        $b = {8D 4D B0 2B C1 83 C0 27 99 6A 4E 59 F7 F9}
-        $c = "UVODFRYSIHLNWPEJXQZAKCBGMT"
-
-    condition:
-        $a or $b or $c
-}
-```
-
-# 安全系统提供商
-
-数美科技 https://www.ishumei.com/ # 在线业务风控解决方案提供商
