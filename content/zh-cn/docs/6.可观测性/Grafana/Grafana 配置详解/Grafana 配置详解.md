@@ -55,13 +55,17 @@ Grafana 容器镜像会默认配置一些环境变量，以指定一些基本的
 ## [paths]
 
 **data = \<STRING>** # Grafana 数据存储路径。`默认值：/var/lib/grafana/data`
+
 **logs = \<STRING>** # Grafana 日志模式为 file 时，记录日志的路径。`默认值：/var/log/grafana`
+
 **plugins = \<STRING>** # Grafana 插件的安装路径。`默认值：/var/lib/grafana/plugins`
+
 **provisioning = \<STRING>** # Grafana 的 provisioning 功能加载配置文件的路径。`默认值：/etc/grafana/provisioning`
 
 ## [server]
 
 **http_port = \<INT>** # Grafana 监听的端口。`默认值：3000`。
+
 **root_url = \<STRING>** # 通过 Web 浏览器访问 Grafana 的完整 URL。`默认值：%(protocol)://%(domain)s:%(http_port)s/`
 
 - %(protocol)、%(domain)、%(http_port) 对应配置文件中 \[server] 部分的 protocol、domain、http_port 字段
@@ -70,6 +74,7 @@ Grafana 容器镜像会默认配置一些环境变量，以指定一些基本的
 ## [security]
 
 **admin_user = \<STRING>** # Grafana Web UI 的管理员账号的用户命。默认值：admin
+
 **admin_password = \<STRING>** # Grafana Web UI 的管理员账号的密码。默认值：admin
 
 ## [auth]
@@ -77,8 +82,11 @@ Grafana 容器镜像会默认配置一些环境变量，以指定一些基本的
 ## [auth.anonymous]
 
 匿名访问的配置，配置匿名访问，可以使无需任何登录操作即可访问 Grafana
+
 **enabled = \<BOOL>** # 是否开启匿名访问，开启后，可以匿名访问指定的 Organization(组织) 的仪表盘。`默认值：false`。
+
 **org_name = \<STRING>** # 匿名用户可以访问的组织名称。`默认值：Main Org.`。
+
 **org_role = \<STRING>** # 通过匿名访问的组织应该具有的权限。`默认值：Viewer`。
 
 - 可用的值有 Editor 和 Admin。

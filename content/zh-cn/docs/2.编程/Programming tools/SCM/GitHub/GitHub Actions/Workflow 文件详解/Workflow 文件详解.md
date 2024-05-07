@@ -29,6 +29,16 @@ https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-ac
 
 这个字段用来定义触发工作流的事件，在这里可以看到 GitHub 支持的所有事件，通常包含如下字段
 
+- **<EVENT_NAME>.types** # 根据指定 EVENT_NAME(事件名称) 事件的活动，触发 Workflow
+  - EVENT_NAME 指事件的名称，所有可用的事件详见 [Events that trigger workflows](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#available-events)
+  - types 就是指事件的 Activity types(活动类型)
+  - 比如名为 release 的事件是指一个项目的 Releases，release 有 published、created、edited、etc. 很多活动类型。
+  - 下面的示例就是指当项目的 Release 发布时（创建后点击 Publish release 按钮），开始执行 Workflow
+```yaml
+on:
+  release:
+    types: [published]
+```
 - **push**([push](#push)) # 当上传代码时，触发 Workflow
 - **pull_request**([pull_request](#pull_request)) # 当发生 PR 时，触发 orkflow
 - **schedule**(\[][schedule](#schedule)) # 定时触发 Worlkflow

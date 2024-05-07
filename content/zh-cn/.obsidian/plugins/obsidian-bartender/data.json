@@ -83,14 +83,12 @@
       "docs/1.操作系统/Terminal 与 Shell",
       "docs/1.操作系统/登录 Linux 与 访问控制",
       "docs/1.操作系统/Package 管理",
-      "docs/1.操作系统/时间管理",
-      "docs/1.操作系统/Job",
+      "docs/1.操作系统/Time and Language",
       "docs/1.操作系统/系统审计",
       "docs/1.操作系统/Linux 源码解析",
       "docs/1.操作系统/Linux 管理",
       "docs/1.操作系统/Windows 管理",
       "docs/1.操作系统/安装操作系统",
-      "docs/1.操作系统/图形管理",
       "docs/1.操作系统/Filesystem"
     ],
     "docs/1.操作系统/Bootloader": [

@@ -5,11 +5,13 @@ title: Grafana 管理
 # 概述
 
 > 参考：
+>
 > - [官方文档,管理](https://grafana.com/docs/grafana/latest/administration/)
 
 # Grafana 密码重置
 
 > 参考：
+>
 > - [官方文档,管理-CLI-重置 admin 密码](https://grafana.com/docs/grafana/latest/administration/cli/#reset-admin-password)
 
 ## SQLite3 重置

@@ -4,9 +4,11 @@ title: dd 生成指定大小的文件
 
 # 概述
 
-# dd 命令使用说明
+# Syntax(语法)
 
-> 参考：<https://blog.csdn.net/menogen/article/details/38059671>
+> 参考:
+>
+> - https://blog.csdn.net/menogen/article/details/38059671
 
 **dd [OPTIONS[=FLAGS]]**
 

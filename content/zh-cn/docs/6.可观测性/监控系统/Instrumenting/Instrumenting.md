@@ -8,7 +8,7 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，Instrumenting-Exporter](https://prometheus.io/docs/instrumenting/exporters/)
 > - [官方文档，最佳实践-Instrumentation](https://prometheus.io/docs/practices/instrumentation/)
 
