@@ -58,3 +58,11 @@ weight: 1
 - [公众号-Github 爱好者，专为开发人员构建的个人知识管理工具-Dendron](https://mp.weixin.qq.com/s/HbM93O49aOgW6w_ZX9lzlA)
 
 [Obsidian](/docs/学习/PKM/Obsidian.md) # Markdown 渲染程序
+
+# 社区
+
+PKMer
+
+- 是一个【知识管理】爱好组织，我们热衷于知识管理，喜欢讨论提升效率软件，以及那些让你觉得欣喜的技术。
+- https://pkmer.cn/
+- 包含 Markdown、Obsidian、Excaildraw、Zotero、TiddyWiki、etc. 相关专题

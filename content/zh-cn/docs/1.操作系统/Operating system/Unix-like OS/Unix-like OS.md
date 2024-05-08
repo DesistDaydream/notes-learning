@@ -8,12 +8,12 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [Wiki，Unix](https://en.wikipedia.org/wiki/Unix)
 > - [Manual(手册)，os-release](https://man7.org/linux/man-pages/man5/os-release.5.html)
 > - [DistroWatch](https://distrowatch.com/)(类 UNIX 系统的资讯网站)
 
-Unix 是一系列多任务、多用户计算机操作系统的统称。
+Unix 是一系列多任务、多用户 [Operating system](/docs/1.操作系统/Operating%20system/Operating%20system.md)(操作系统) 的统称。
 
 最初打算在[贝尔系统](https://en.wikipedia.org/wiki/Bell_System)内部使用，AT\&T 在 1970 年代后期[将](https://en.wikipedia.org/wiki/License)Unix[授权](https://en.wikipedia.org/wiki/License)给外部各方，导致来自[加利福尼亚大学伯克利分校](https://en.wikipedia.org/wiki/University_of_California,_Berkeley)( [BSD](https://en.wikipedia.org/wiki/Berkeley_Software_Distribution) )、[微软](https://en.wikipedia.org/wiki/Microsoft)( [Xenix](https://en.wikipedia.org/wiki/Xenix) )、[Sun Microsystems 等](https://en.wikipedia.org/wiki/Sun_Microsystems)供应商的各种学术和商业 Unix 变体( [SunOS](https://en.wikipedia.org/wiki/SunOS) / [Solaris](<https://en.wikipedia.org/wiki/Solaris_(operating_system)>) )、[HP](https://en.wikipedia.org/wiki/Hewlett-Packard) / [HPE](https://en.wikipedia.org/wiki/Hewlett_Packard_Enterprise) ( [HP-UX](https://en.wikipedia.org/wiki/HP-UX) ) 和[IBM](https://en.wikipedia.org/wiki/IBM) ( [AIX](https://en.wikipedia.org/wiki/AIX) )。在 1990 年代初期，AT\&T 将其在 Unix 中的权利出售给了[Novell](https://en.wikipedia.org/wiki/Novell)，[Novell](https://en.wikipedia.org/wiki/Novell)随后将其 Unix 业务出售给了[Santa Cruz Operation](https://en.wikipedia.org/wiki/Santa_Cruz_Operation) (SCO) 于 1995 年。[\[4\]](https://en.wikipedia.org/wiki/Unix#cite_note-4) UNIX 商标转让给了[The Open Group](https://en.wikipedia.org/wiki/The_Open_Group)，这是一个成立于 1996 年的行业联盟，允许将该标志用于符合[单一 UNIX 规范](https://en.wikipedia.org/wiki/Single_UNIX_Specification)(SUS) 的认证操作系统。但是，Novell 继续拥有 Unix 版权，[SCO Group, Inc. 诉 Novell, Inc.](https://en.wikipedia.org/wiki/SCO_Group,_Inc._v._Novell,_Inc.)法庭案件 (2010) 证实了这一点。
 

@@ -447,3 +447,12 @@ PersistentKeepalive = 21
 
 **wg-quick [ up | down | save | strip ] [ CONFIG_FILE | INTERFACE ]**
 
+# WireGuard 衍生品
+
+[Tailscale](/docs/4.数据通信/通信协议/Tunneling%20Protocol/Tailscale/Tailscale.md)
+
+NetBird
+
+- https://github.com/netbirdio/netbird
+- https://mp.weixin.qq.com/s/amPzZb7NZCtSls0p8k-2HQ
+- 简要来说 NetBird 是一个配置简易的，基于 WireGuard 的 VPN。它与 Tailscale 很像，但是区别也比较明显。**Tailscale 是在用户态实现了 WireGuard 协议**，无法使用 WireGuard 原生的命令行工具来进行管理。而 **NetBird 直接使用了内核态的 WireGuard**，可以使用命令行工具 wg 来查看和管理。

@@ -8,12 +8,12 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，curl/curl](https://github.com/curl/curl)
 > - [官网](https://curl.se/)
 > - [Manual(手册)](https://man.cx/curl)
 
-cURL 是一个用于 URLs 传输的命令行工具和库，始于 1998 年。
+cURL 是一个用于 [URL 与 URI](/docs/4.数据通信/通信协议/HTTP/URL%20与%20URI.md)s 传输的命令行工具和库，始于 1998 年。
 
 早在 20 世纪 90 年代中期，当时互联网还处于萌芽阶段，瑞典程序员 Daniel Stenberg 开始了一个项目，这个项目最终发展成了我们今天所知道的 curl 程序。
 
@@ -26,6 +26,7 @@ curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就�
 # Syntax(语法)
 
 **curl \[OPTIONS] URL....**
+
 如果没有另外说明，curl 将接收到的数据写入标准输出。可以使用 -o、--output 或 -O、--remote-name 选项将该数据保存到本地文件中。如果 curl 被赋予多个 URL 以在命令行上传输，它同样需要多个选项来保存它们。curl 不会解析或以其他方式“理解”它作为输出获取或写入的内容。它不进行编码或解码，除非使用专用命令行选项明确要求。
 
 ## OPTIONS

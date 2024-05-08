@@ -107,10 +107,11 @@ weight: 20
   - 这个命令的意思是：以 root 用户连接到 B 主机，并在本地 28080 端口上启用动态转发功能。相当于在 B 主机上与本地的 10022 端口建立了一个隧道。
 - 此时在 A 主机上执行如下命令即可直接远程登录到 C 主机
   - **ssh -o ProxyCommand="nc -x 127.0.0.1:10022 %h %p" root@C-HOST**
-  - 也可以使用 socat 工具
-    - ssh -o ProxyCommand='socat - socks:127.0.0.1:%h:%p,socksport=10022' root@C-HOST
+  - 也可以使用 socat 或 nc 程序
+    - `ssh -o ProxyCommand='socat - socks:127.0.0.1:%h:%p,socksport=10022' root@C-HOST`
+    - `ssh -o ProxyCommand='nc -X 5 -x 127.0.0.110022 %h %p' root@C-HOST`
   - Windows 上可以使用 [Netcat](/docs/4.数据通信/Utility/Netcat.md) 工具
-    - ssh -o ProxyCommand="ncat --proxy-type socks5 --proxy 127.0.0.1:10022 %h %p" root@C-HOST
+    - `ssh -o ProxyCommand="ncat --proxy-type socks5 --proxy 127.0.0.1:10022 %h %p" root@C-HOST`
 
 **通过 B 中转，将 C 的端口映射到 A 的端口上**，本地转发
 

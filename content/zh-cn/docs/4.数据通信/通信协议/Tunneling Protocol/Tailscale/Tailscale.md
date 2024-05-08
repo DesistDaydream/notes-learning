@@ -32,7 +32,7 @@ Tailscale 是一种基于 WireGuard 的虚拟组网工具，和 Netmaker 类似�
 - 基于公网的控制服务器下发 ACL 和配置，实现节点动态更新
 - 通过第三方（如 Google） SSO 服务生成用户和私钥，实现身份认证
 
-简而言之，我们可以将 Tailscale 看成是更为易用、功能更完善的 WireGuard。
+简而言之，我们可以将 Tailscale 看成是更为易用、功能更完善的 [WireGuard](/docs/4.数据通信/通信协议/Tunneling%20Protocol/WireGuard/WireGuard.md)。
 
 Tailscale 是一款商业产品，但个人用户是可以白嫖的，个人用户在接入设备不超过 20 台的情况下是可以免费使用的（虽然有一些限制，比如子网网段无法自定义，且无法设置多个子网）。除 Windows 和 macOS 的图形应用程序外，其他 Tailscale 客户端的组件（包含 Android 客户端）是在 BSD 许可下以开源项目的形式开发的，你可以在他们的 GitHub 仓库找到各个操作系统的客户端源码。
 

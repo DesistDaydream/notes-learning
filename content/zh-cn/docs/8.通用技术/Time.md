@@ -12,6 +12,11 @@ weight: 20
 > - [Wiki，ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
 > - [Wiki-cn，各地日期和时间表示法](https://zh.wikipedia.org/zh-hans/%E5%90%84%E5%9C%B0%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4%E8%A1%A8%E7%A4%BA%E6%B3%95)
 > - https://baike.baidu.com/item/ISO%208601/3910715?fr=aladdin
+> - [中国计量科学研究院，SI 基本单位](https://www.nim.ac.cn/520/node/4.html)
+
+1983 年，国际计量打会讨论决定，把 1 米的定义修改为光在 1/299792458 秒内走过的距离
+
+1967 年，国际计量大会定义：1 秒是铯 133 原子基态的两个超精细能量间跃迁对应辐射的 9192631770 个周期的持续时间。
 
 ## 时间格式
 

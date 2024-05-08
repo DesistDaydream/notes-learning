@@ -65,7 +65,6 @@ depth 选项允许规则编写者指定在 Snort 数据包或缓冲区中查找�
 
 https://docs.snort.org/rules/options/payload/pcre
 
-pcre 选项可以根据 Perl 兼容的 [Regular Expression(正则表达式)](docs/8.通用技术/Regular%20Expression(正则表达式).md) 对数据包进行匹配。
+pcre 选项可以根据 Perl 兼容的 [Regular Expression(正则表达式)](/docs/8.通用技术/Regular%20Expression(正则表达式).md) 对数据包进行匹配。
 
 > Notes: 由于从性能角度来看，正则表达式的成本相对较高，因此使用 PCRE 的选项还应该至少有一个 [content](#content) 选项，以利用 Snort 的快速模式引擎。
-

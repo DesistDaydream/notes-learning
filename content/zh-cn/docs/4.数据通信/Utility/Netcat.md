@@ -93,15 +93,15 @@ Ncat 与 OpenBSD-nc 这两个程序的选项有不同的地方
 - **--proxy <ADDRESS:\[PORT]>** # 连接目的地时所使用代理 IP 和 PORT。
 - **--proxy-type \<STRING>** # 连接目的地时所使用的代理类型(也就是代理协议)。可用的值有：
   - socks4 # 表示 SOCKS v.4
-  - socks5 # 表示 SOCKS v.5。默认值
+  - socks5 # 表示 SOCKS v.5（默认值）
   - http # 表示 HTTP
 
 ### OpenBSD-nc OPTIONS
 
 - **-x \<ADDRESS\[:PORT]>** # 连接目的地时所使用代理 IP 和 PORT。代理不能与 -LsuU 这些选项一起使用。
-- **-X \<PROTOCOL>** # 连接目的地时所使用的代理协议。可用的值有：
+- **-X \<PROXY_PROTOCOL>** # 连接目的地时所使用的代理协议。可用的值有：
   - 4 # 表示 SOCKS v.4
-  - 5 # 表示 SOCKS v.5。默认值
+  - 5 # 表示 SOCKS v.5（默认值）
   - connect # 表示 HTTP
 
 # 应用示例

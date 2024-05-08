@@ -1654,12 +1654,13 @@
       "docs/4.数据通信/通信协议",
       "docs/4.数据通信/DNS",
       "docs/4.数据通信/NAT",
+      "docs/4.数据通信/File transfer",
       "docs/4.数据通信/Networking device",
       "docs/4.数据通信/SDN(软件定义网路).md",
       "docs/4.数据通信/bit 与 Byte.md",
       "docs/4.数据通信/DPDK.md",
       "docs/4.数据通信/同源同宿.md",
-      "docs/4.数据通信/utility"
+      "docs/4.数据通信/Utility"
     ],
     "docs/4.数据通信/DNS": [
       "docs/4.数据通信/DNS/_index.md",
@@ -2621,6 +2622,11 @@
       "docs/7.信息安全/Security software/Security software.md",
       "docs/7.信息安全/Security software/Snort.md",
       "docs/7.信息安全/Security software/Snort Rule body.md"
+    ],
+    "docs/8.通用技术/Job": [
+      "docs/8.通用技术/Job/_index.md",
+      "docs/8.通用技术/Job/Job.md",
+      "docs/8.通用技术/Job/青龙.md"
     ]
   },
   "actionBarOrder": {},

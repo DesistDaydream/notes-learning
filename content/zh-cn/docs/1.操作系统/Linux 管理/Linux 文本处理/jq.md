@@ -8,10 +8,10 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档](https://stedolan.github.io/jq/)
 
-jq 是轻量级且灵活的处理 [JSON](docs/2.编程/无法分类的语言/JSON.md) 数据的 Shell 命令行工具
+jq 是轻量级且灵活的处理 [JSON](/docs/2.编程/无法分类的语言/JSON.md) 数据的 Shell 命令行工具
 
 [这里是官方提供的 jq 命令在线测试工具](https://jqplay.org/)，提供原始 JSON 内容，会自动根据 表达式 输出结果。
 

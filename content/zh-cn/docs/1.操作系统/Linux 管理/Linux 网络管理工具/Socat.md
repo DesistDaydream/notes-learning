@@ -12,7 +12,7 @@ weight: 20
 > - 官网：<http://www.dest-unreach.org/socat/>
 > - 官方文档：<http://www.dest-unreach.org/socat/doc/socat.html>
 
-Socat 是一个多功能的网络工具，名字来由是” Socket CAT”，可以看作是 netcat 的 N 倍加强版。
+Socat 是一个多功能的网络工具，名字来由是” Socket CAT”，可以看作是 [Netcat](/docs/4.数据通信/Utility/Netcat.md) 的 N 倍加强版。
 
 Socat 是一个两个独立数据通道之间的双向数据传输的继电器。这些数据通道包含文件、管道、设备（终端或调制解调器等）、socket（Unix，IP4，IP6 - raw，UDP，TCP）、SSL、SOCKS4 客户端或代理 CONNECT。
 
@@ -31,23 +31,23 @@ socat 的运行有 4 个阶段:
 - 地址类型 参数由 2 部分组成，第一个连接和第二个连接，最简单的用法就是 socat - - 其效果就是输入什么，回显什么其用法主要在于地址如何描述, 下面介绍几个常用的。
 - TCP
 
-TCP:<host>:<port> 目标机器 IP 对应端口 portTCP-LISTEN:<port> 本机监听端口。
+`TCP:<host>:<port> 目标机器 IP 对应端口 portTCP-LISTEN:<port> 本机监听端口`。
 
 - UDP
 
-UDP:<host>:<port> 目标机器 host 对应端口 portUDP-LISTEN:<port> 本机监听端口。
+`UDP:<host>:<port> 目标机器 host 对应端口 portUDP-LISTEN:<port> 本机监听端口`。
 
 - OPENSSL
 
 需要一个证书,否则会失败提示: 2012/04/06 11:29:11 socat\[1614] E SSL_connect(): error:14077410:SSL routines:SSL23_GET_SERVER_HELLO:sslv3 alert handshake failure
 
-OPENSSL:<host>:<port> 目标机器 host 对应端口 portOPENSSL-LISTEN:<port> 本机监听端口。
+`OPENSSL:<host>:<port> 目标机器 host 对应端口 portOPENSSL-LISTEN:<port> 本机监听端口`。
 
 - TUN
 
 Syntax(语法)
 
-**socat \[OPTIONS] <ADDRESS> <ADDRESS>**
+**socat \[OPTIONS] \<ADDRESS> \<ADDRESS>**
 
 ## OPTIONS
 

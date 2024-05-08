@@ -10,6 +10,8 @@ weight: 20
 > 参考：
 > 
 > - [官网](https://obsidian.md/)
+> - [官方文档](https://help.obsidian.md/)
+> - [开发者文档](https://docs.obsidian.md/)
 
 Obsidian 也是基于 Chromium 的，使用 `Ctrl + Shift + i` 快捷键可以打开 [DevTools](/docs/Web/Browser/DevTools.md)
 

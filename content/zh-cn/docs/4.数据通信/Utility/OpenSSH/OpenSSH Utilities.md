@@ -24,6 +24,8 @@ weight: 3
 
 # scp - 基于 ssh 协议的文件传输工具
 
+scp 是基于 SSH 的 [File transfer](/docs/4.数据通信/File%20transfer/File%20transfer.md) 工具
+
 ## Syntax(语法)
 
 **scp \[OPTIONS] SourceFILE DestinationFILE**
@@ -39,11 +41,11 @@ OPTIONS：
 
 把本地 nginx 文件推上去复制到以 root 用户登录的 10.10.10.10 这台机器的/opt/soft/scptest 目录下
 
-  - scp /opt/soft/nginx-0.5.38.tar.gz root@10.10.10.10:/opt/soft/scptest
+- scp /opt/soft/nginx-0.5.38.tar.gz root@10.10.10.10:/opt/soft/scptest
 
 把以 root 用户登录的 10.10.10.10 机器中的 nginx 文件拉下来复制到本地/opt/soft 目录下
 
-  - scp root@10.10.10.10:/opt/soft/nginx-0.5.38.tar.gz /opt/soft/
+- scp root@10.10.10.10:/opt/soft/nginx-0.5.38.tar.gz /opt/soft/
 
 基于密钥的认证,当对方主机 ssh 登录的用户的家目录存在公钥，并且公钥设置密码为空，那么以后 ssh 协议登录传输都可以直接登录而不用密码
 

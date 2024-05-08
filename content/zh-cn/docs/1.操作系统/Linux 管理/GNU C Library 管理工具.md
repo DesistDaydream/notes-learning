@@ -5,7 +5,7 @@ weight: 8
 
 # 概述
 
-CentOS 与 Ubuntu 中关于 [Linux libc 库](docs/1.操作系统/Linux%20源码解析/Linux%20libc%20库.md)(glibc) 的管理工具包的名称不太一样
+CentOS 与 Ubuntu 中关于 [Linux libc 库](/docs/1.操作系统/Linux%20源码解析/Linux%20libc%20库.md)(glibc) 的管理工具包的名称不太一样
 
 - CentOS 为 glibc-common
 - Ubuntu 为 libc-bin、libc-dev-bin

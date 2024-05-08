@@ -19,6 +19,19 @@ https://stability.ai/
 
 - 一个快速使用 openai api 的平台。支持一键构建AI知识库，支持多用户、多模型管理。
 
+https://github.com/binary-husky/gpt_academic # 为GPT/GLM等LLM大语言模型提供实用化交互接口，特别优化论文阅读/润色/写作体验，模块化设计，支持自定义快捷按钮&函数插件，支持Python和C++等项目剖析&自译解功能，PDF/LaTex论文翻译&总结功能，支持并行问询多种LLM模型，支持chatglm3等本地模型。接入通义千问, deepseekcoder, 讯飞星火, 文心一言, llama2, rwkv, claude2, moss等。
+
+**NovelAI** # https://novelai.net/ 写故事、作图
+
+**ChatGPT** # https://chat.openai.com/
+
+**Bard**，google # https://bard.google.com/
+
+**Claude**，Anthropic # 在 Slack 中创建名为 Claude 的应用。
+
+**文心一言**，百度 # https://yiyan.baidu.com/
+
+**通义千问**，阿里 # https://tongyi.aliyun.com/
 
 # 用于解决复杂任务的 AI
 

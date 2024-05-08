@@ -8,10 +8,10 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [WIki，Cache(computing)](https://en.wikipedia.org/wiki/Cache_(computing))
 
-**Cache(缓存)** 在计算机中，是指一种用于存储数据的软件或硬件，以便可以更快的满足未来对该数据的请求；存储在缓存中的数据可能是早期计算的结果或存储在其他地方的数据的副本。作为缓存的组件的最低要求就是速度够快，避免对存储原始数据的组件产生过大压力。
+**Cache(缓存)** 在 [Computer](/docs/0.计算机/Computer.md)(计算机) 中，是指一种用于存储数据的软件或硬件，以便可以更快的满足未来对该数据的请求；存储在缓存中的数据可能是早期计算的结果或存储在其他地方的数据的副本。作为缓存的组件的最低要求就是速度够快，避免对存储原始数据的组件产生过大压力。
 
 # 写入策略
 
@@ -34,7 +34,7 @@ https://en.wikipedia.org/wiki/Cache_(computing)#Writing_policies
 
 如果您想了解更多关于回写（write back）和透写（write through）的区别和优缺点，请参考以下链接：
 
-1: [计算机的Cache和Memory访问时Write-back，Write-through及write allocate的区别 - 国静德远 - 博客园](https://www.cnblogs.com/guojingdeyuan/p/7626983.html)  
-2: [cache 写回策略_写回cache_xingzhe22222的博客-CSDN博客](https://blog.csdn.net/xingzhe22222/article/details/81988101)  
-3: [透写和回写缓存（Write Through and Write Back in Cache）](https://zhuanlan.zhihu.com/p/571429282)  
-4: [Cache写机制：Write-through与Write-back - CSDN博客](https://blog.csdn.net/zhangj95/article/details/81199272)  
+1: [计算机的Cache和Memory访问时Write-back，Write-through及write allocate的区别 - 国静德远 - 博客园](https://www.cnblogs.com/guojingdeyuan/p/7626983.html)
+2: [cache 写回策略_写回cache_xingzhe22222的博客-CSDN博客](https://blog.csdn.net/xingzhe22222/article/details/81988101)
+3: [透写和回写缓存（Write Through and Write Back in Cache）](https://zhuanlan.zhihu.com/p/571429282)
+4: [Cache写机制：Write-through与Write-back - CSDN博客](https://blog.csdn.net/zhangj95/article/details/81199272)

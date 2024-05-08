@@ -2,7 +2,7 @@
 title: Job
 linkTitle: Job
 date: 2023-11-23T10:59
-weight: 20
+weight: 1
 ---
 
 # 概述
@@ -19,7 +19,7 @@ weight: 20
 >
 > - [Wiki，Job_scheduler](https://en.wikipedia.org/wiki/Job_scheduler)
 
-大多数操作系统（例如 Unix 和 Windows）都提供基本的作业调度功能，特别是通过 批处理、cron 和 Windows 任务调度程序。 Web 托管服务通过控制面板或 webcron 解决方案提供作业调度功能。许多程序（例如 DBMS、备份、ERP 和 BPM）还包含相关的作业调度功能。操作系统（“OS”）或点程序提供的作业调度通常不会提供超出单个操作系统实例或超出特定程序范围的调度能力。需要自动化不相关 IT 工作负载的组织还可以利用作业调度程序的更多高级功能
+大多数操作系统（例如 [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 和 [Microsoft OS](/docs/1.操作系统/Operating%20system/Microsoft%20OS/Microsoft%20OS.md)）都提供基本的作业调度功能，特别是通过 批处理、cron 和 Windows 任务调度程序。 Web 托管服务通过控制面板或 webcron 解决方案提供作业调度功能。许多程序（例如 DBMS、备份、ERP 和 BPM）还包含相关的作业调度功能。操作系统（“OS”）或点程序提供的作业调度通常不会提供超出单个操作系统实例或超出特定程序范围的调度能力。需要自动化不相关 IT 工作负载的组织还可以利用作业调度程序的更多高级功能
 
 # Job 的衍生
 
