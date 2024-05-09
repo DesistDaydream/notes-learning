@@ -128,7 +128,7 @@ EXPRESSIONS 由以下几部分组成
 根据时间查找文件
 
 - 查找今天修改过的文件
-  - `find -type f -newermt $(date +"%Y-%m-%d")`
+  - `find -type f -newermt $(date +"%F")`
 - 查找今天某个时间段（比 20:15 新且比 20:30 旧）内修改过的文件
   - `find -type f -newermt "today 20:15" -and ! -newermt "today 20:30"`
 - 查找 2024 年 3 月 5 号之后修改过的文件

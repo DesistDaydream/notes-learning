@@ -8,7 +8,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [官网](https://obsidian.md/)
 > - [官方文档](https://help.obsidian.md/)
 > - [开发者文档](https://docs.obsidian.md/)
@@ -27,7 +27,7 @@ Obsidian 也是基于 Chromium 的，使用 `Ctrl + Shift + i` 快捷键可以�
 >
 > - [官方文档，Obsidian 如何存储数据](https://publish.obsidian.md/help-zh/%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/Obsidian+%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE)
 
-Obsidian 本身的运行时数据保存路径（我们假定设为 `${ObsidianData}`）
+Obsidian 本身的运行时数据保存路径（我们假定设为 `${ObsidianData}`）[^官方文档]
 
 - **~/.config/Obsidian/** # Linux 系统
 - **%APPDATA%/Obsidian/** # Windows 系统
@@ -38,7 +38,51 @@ Obsidian 本身的运行时数据保存路径（我们假定设为 `${ObsidianDa
 
 [https://www.bilibili.com/video/BV1Dy4y1375P](https://www.bilibili.com/video/BV1Dy4y1375P)
 
-# 插件
+# 编辑与格式
+
+https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax
+
+Obsidian 识别 [Markdown](/docs/2.编程/标记语言/Markdown.md) 语法并渲染成文章。
+
+## Callouts
+
+https://help.obsidian.md/Editing+and+formatting/Callouts
+
+Obsidian 扩展了 Markdown 的 **Callouts(标注)** 效果。
+
+> [!note]
+> Lorem ipsum dolor sit amet
+
+> [!warning]
+> Lorem ipsum dolor sit amet
+
+> [!bug]
+> Lorem ipsum dolor sit amet
+
+> [!example]
+> Lorem ipsum dolor sit amet
+
+还有很多样式可以参考官方文档
+
+## Properties vs Tags
+
+https://help.obsidian.md/Editing+and+formatting/Tags
+
+https://help.obsidian.md/Editing+and+formatting/Properties
+
+https://forum.obsidian.md/t/the-remaining-advantages-of-tags-over-properties-in-obsidian/69436?page=2
+
+先有的 Tag 后有的 Properties
+
+老式 Tag 需要在文章内部使用 `#STRING` 来标识
+
+Property 可以在开头的 `---` 包裹的文章元数据中使用 tags 关键字添加 Tag。
+
+个人感觉只有在一个知识点被用在多个大类的情况下，才需要添加标签，否则该知识点通过目录即可进行分类，比如一个程序又属于网络工具，又属于安全工具，那么若是放在安全目录下则可以添加网络标签，放在网络目录下则可以添加安全标签。
+
+或者某个知识点的文章，不太好分类，甚至具有嵌套类型等，都可以通过标签解决。
+
+# 第三方插件
 ## 自定义排序目录
 
 众人的需求: https://forum.obsidian.md/t/file-explorer-custom-sort/1602
@@ -81,20 +125,6 @@ then you can drag as you like
 [用 Git 在 Android 和 Windows 间同步 Obsidian 数据库](https://sspai.com/post/68989)
 
 - Android 上使用了 MGit 工具
-
-## Properties vs Tags
-
-https://forum.obsidian.md/t/the-remaining-advantages-of-tags-over-properties-in-obsidian/69436?page=2
-
-先有的 Tag 后有的 Properties
-
-老式 Tag 需要在文章内部使用 `#STRING` 来标识
-
-Property 可以在开头的 `---` 包裹的文章元数据中使用 tags 关键字添加 Tag。
-
-个人感觉只有在一个知识点被用在多个大类的情况下，才需要添加标签，否则该知识点通过目录即可进行分类，比如一个程序又属于网络工具，又属于安全工具，那么若是放在安全目录下则可以添加网络标签，放在网络目录下则可以添加安全标签。
-
-或者某个知识点的文章，不太好分类，甚至具有嵌套类型等，都可以通过标签解决。
 
 # 常见问题
 

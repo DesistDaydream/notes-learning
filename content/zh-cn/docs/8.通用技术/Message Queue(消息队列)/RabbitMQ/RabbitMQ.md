@@ -1,15 +1,19 @@
 ---
 title: RabbitMQ
+linkTitle: RabbitMQ
+date: 2024-05-08T20:09
+weight: 1
 ---
 
 # 概述
 
 > 参考：
-> - 官方网址：<https://www.rabbitmq.com/>
-> - 消息队列模拟器：<http://tryrabbitmq.com/>
-> - <https://www.yuque.com/noobwo/mq/hpiop0>
-> - <https://m.6-km.com/next/quorum-queues.html>
-> - <https://zhuanlan.zhihu.com/p/63700605>
+>
+> - [官方网址](https://www.rabbitmq.com/)
+> - [消息队列模拟器](http://tryrabbitmq.com/)
+> - https://www.yuque.com/noobwo/mq/hpiop0
+> - https://m.6-km.com/next/quorum-queues.html
+> - https://zhuanlan.zhihu.com/p/63700605
 
 Rabbit Message Queue(Rabbit 消息队列，简称：RabbitMQ)。是一个在 AMQP 基础上实现的，可复用的消息队列服务。
 
@@ -65,9 +69,9 @@ Broker(代理)：就是 RabbitMQ 本身，用于扮演“快递”的角色，�
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/vi79ye/1616130695576-789c9f61-914e-4f88-951c-b1a0915fdc4a.jpeg)
 
-## Broker # 指安装了 RabbitMQ 的服务器
+## Broker - 指安装了 RabbitMQ 的服务器
 
-## Virtual Host(虚拟主机) # 类似 RabbitMQ 虚拟化的感觉
+## Virtual Host(虚拟主机) - 类似 RabbitMQ 虚拟化的感觉
 
 每个 Rabbit 都能创建很多 vhost 我们称之为虚拟主机，每个虚拟主机其实都是 mini 版的 RabbitMQ，拥有自己的队列，交换器和绑定，拥有自己的权限机制。
 
@@ -77,11 +81,11 @@ Broker(代理)：就是 RabbitMQ 本身，用于扮演“快递”的角色，�
 
 注意，从上层角度看，RabbitMQ 实现主要依靠 Exchange 与 Queue 来实现。
 
-## Queue(队列) # 用于存储消息
+## Queue(队列) - 用于存储消息
 
 官方文档：<https://www.rabbitmq.com/queues.html>
 
-## Exchange(交换器) # 用于接受、分配消息
+## Exchange(交换器) - 用于接受、分配消息
 
 官方文档：未知
 
@@ -113,8 +117,9 @@ Queue 可以通过 Routing key 关联到 Exchange 上(也可以省略 Routing ke
    2. 这是因为每个 vhost 下都有一个 default Exchange。默认的 Exchange 不可以手动绑定，没有名字，不可以删除，direct 类型。每个 Queue 都会与当前 vhost 下的 默认 Exchange 隐式绑定在一起，且 Binding key 为 Queue 名称。
    3. 消息中的 Routing key 必须指定为 Queue 名称，这时消息通过默认的 Exchange 被路由到对应的 Queue 上。这保证了消息准确投递。
 
-## Connection(连接) # 应用程序与 Rabbit 之间建立的连接，程序代码中使用
+## Connection(连接) - 应用程序与 Rabbit 之间建立的连接，程序代码中使用
 
-## Channel(信道) # 消息推送使用的通道
+## Channel(信道) - 消息推送使用的通道
 
 # RabbitMQ 配置
+

@@ -153,7 +153,7 @@ systemctl enable headscale --now
 ## 创建 Headscale User
 
 > Notes: 老版本是创建 Namesapce
-> 
+>
 > - Tailscale 中有一个概念叫 tailnet，你可以理解成租户， Tailscale 与 Tailscale 之间是相互隔离的，具体看参考 Tailscale 的官方文档：[What is a tailnet](https://tailscale.com/kb/1136/tailnet/)。
 > - Headscale 也有类似的实现叫 namespace，即命名空间。Namespace 是一个实体拥有的机器的逻辑组，这个实体对于 Tailscale 来说，通常代表一个用户。
 > - 我们需要先创建一个 namespace，以便后续客户端接入，例如：
@@ -267,7 +267,7 @@ Success.
 
 在浏览器中打开该链接，就会出现如下的界面：
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/1648097896734-2252f545-7f43-46fb-ad3a-1e1c85ce3d08.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/headscale/1648097896734-2252f545-7f43-46fb-ad3a-1e1c85ce3d08.png)
 
 最后，根据 [在 Headscale 中添加节点](#Headscale%20中添加节点) 部分的文档，将节点接入到 Headscale 中。
 
@@ -280,16 +280,18 @@ Windows Tailscale 客户端想要使用 Headscale 作为控制服务器，只需
 - 添加注册表信息（两种方式）（在 `HKEY_LOCAL_MACHINE\SOFTWARE\Tailscale IPN` 位置生成信息）
   - 点击页面中的 `Windows registry file`，下载注册表文件，并运行
   - 或者执行下面的 PowerShell 命令添加注册表信息
+
 ```powershell
 $headscale_server="DOMAIN:PORT"
 New-Item -Path "HKLM:\SOFTWARE\Tailscale IPN"
 New-ItemProperty -Path 'HKLM:\Software\Tailscale IPN' -Name UnattendedMode -PropertyType String -Value always
 New-ItemProperty -Path 'HKLM:\Software\Tailscale IPN' -Name LoginURL -PropertyType String -Value http://${headscale_server}
 ```
+
 - 在[这里](https://pkgs.tailscale.com/stable/#windows)下载 Windows 版的 Tailscale 客户端并安装
 - 在 Powershell 执行 `tailscale login --login-server=http://${headscale_server} --accept-routes=true --accept-dns=false`
 - 右键点击任务栏中的 Tailscale 图标，再点击 `Log in` 获取接入 Headscale 的命令
-- ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/af37c7a5-9f8e-4905-a639-0a377cb44ee6/1648104111282-99d562e1-d7d9-4ea5-9943-f16861efe87e.png)
+- ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/headscale/1648104111282-99d562e1-d7d9-4ea5-9943-f16861efe87e.png)
 - 此时会自动在浏览器中出现接入 Headscale 的页面，记录下注册命令，去 Headscale 所在设备上执行命令添加节点。
 - 注册命令示例: `headscale nodes register --user USERNAME --key nodekey:75b424a753067b906fee373411743bf34264a9c40a4f7798836bf28bb24d2467`
 - 根据 [在 Headscale 中添加节点](#Headscale%20中添加节点) 部分的文档，使用注册命令将节点接入到 Headscale 中。
@@ -449,4 +451,4 @@ tls_cert_path: "/PATH/TO/FILE"
 tls_key_path: "/PATH/TO/FILE"
 ```
 
-多监听 3478 端口，且可以通过 https 访问 
+多监听 3478 端口，且可以通过 https 访问

@@ -25,11 +25,11 @@ Prometheus 提供了其它大量的内置函数，可以对时序数据进行丰
 
 # Prometheus 内置函数
 
-## abs() # 绝对值
+## abs() - 绝对值
 
 `abs(v instant-vector)` 返回输入向量的所有样本的 **Absolute Value(绝对值)**。
 
-## absent() # 判断表达式是否可以获取到序列
+## absent() - 判断表达式是否可以获取到序列
 
 `absent(v instant-vector)` 返回值有两种
 
@@ -125,7 +125,7 @@ func funcIncrease(vals []parser.Value, args parser.Expressions, enh *EvalNodeHel
 - delta() 与 increase() 的区别在于 isCounter 参数
 - rate() 与 increase() 的区别在于 isRate 参数
 
-### delta() # 增量/差量
+### delta() - 增量/差量
 
 `delta(v range-vector)` 计算范围向量 `v` 中，所有时间序列元素的第一个和最后一个值之间的差异。由于这个值被外推到指定的整个时间范围，所以即使样本值都是整数，你仍然可能会得到一个非整数值。
 
@@ -198,7 +198,7 @@ histogram_quantile(0.9, rate(employee_age_bucket_bucket\[10m]))
 
 这个计算结果是每组标签组合成一个时间序列。我们可能不会对所有这些维度（如 job、instance 和 method）感兴趣，并希望将其中的一些维度进行聚合，则可以使用 sum() 函数。例如，以下表达式根据 job 标签来对第 90 个百分位数进行聚合：
 
-# histogram_quantile() 函数必须包含 le 标签 histogram_quantile(0.9, sum(rate(employee_age_bucket_bucket\[10m])) by (job, le))
+histogram_quantile() 函数必须包含 le 标签 histogram_quantile(0.9, sum(rate(employee_age_bucket_bucket\[10m])) by (job, le))
 
 如果要聚合所有的标签，则使用如下表达式：
 
@@ -272,7 +272,7 @@ up{host="localhost",instance="localhost:8080",job="cadvisor"} 1up{host="localhos
 24. log10()
     log10(v instant-vector) 计算瞬时向量 v 中所有样本数据的十进制对数。特殊情况同上。
 
-## predict_linear() # 线性预测
+## predict_linear() - 线性预测
 
 `predict_linear(v range-vector, t scalar)` 预测时间序列 v 在 t 秒后的值。它基于简单线性回归的方式，对时间窗口内的样本数据进行统计，从而可以对时间序列的变化趋势做出预测。该函数的返回结果不带有度量指标，只有标签列表。
 
@@ -378,8 +378,7 @@ year(v=vector(time()) instant-vector) 函数返回被给定 UTC 时间的当前�
 - last_over_time(RangeVector) # 范围向量内，最新时间点的值
 - present_over_time(RangeVector) # 没懂
 
-注意
-即使范围向量内的值分布不均匀，它们在聚合时的权重也是相同的。
+注意: 即使范围向量内的值分布不均匀，它们在聚合时的权重也是相同的。
 
 # 应用示例
 
@@ -427,16 +426,18 @@ PromQL 中内置的 predict_linear(v range-vector, t scalar) 函数可以帮助�
 
 以指标 http_request_duration_seconds_bucket 为例：
 
-    # HELP http_request_duration_seconds request duration histogram
-    # TYPE http_request_duration_seconds histogram
-    http_request_duration_seconds_bucket{le="0.5"} 0
-    http_request_duration_seconds_bucket{le="1"} 1
-    http_request_duration_seconds_bucket{le="2"} 2
-    http_request_duration_seconds_bucket{le="3"} 3
-    http_request_duration_seconds_bucket{le="5"} 3
-    http_request_duration_seconds_bucket{le="+Inf"} 3
-    http_request_duration_seconds_sum 6
-    http_request_duration_seconds_count 3
+```text
+# HELP http_request_duration_seconds request duration histogram
+# TYPE http_request_duration_seconds histogram
+http_request_duration_seconds_bucket{le="0.5"} 0
+http_request_duration_seconds_bucket{le="1"} 1
+http_request_duration_seconds_bucket{le="2"} 2
+http_request_duration_seconds_bucket{le="3"} 3
+http_request_duration_seconds_bucket{le="5"} 3
+http_request_duration_seconds_bucket{le="+Inf"} 3
+http_request_duration_seconds_sum 6
+http_request_duration_seconds_count 3
+```
 
 当计算 9 分位数时，使用如下表达式：
 
@@ -454,9 +455,11 @@ histogram_quantile(0.5, http_request_duration_seconds_bucket)
 
 一般来说来说，使用 PromQL 查询到时间序列后，可视化工具会根据时间序列的标签来渲染图表。例如通过 up 指标可以获取到当前所有运行的 Exporter 实例以及其状态：
 
-    up{instance="localhost:8080",job="cadvisor"}    1
-    up{instance="localhost:9090",job="prometheus"}    1
-    up{instance="localhost:9100",job="node"}    1
+```text
+up{instance="localhost:8080",job="cadvisor"}    1
+up{instance="localhost:9090",job="prometheus"}    1
+up{instance="localhost:9100",job="node"}    1
+```
 
 这是可视化工具渲染图标时可能根据，instance 和 job 的值进行渲染，为了能够让客户端的图标更具有可读性，可以通过 label_replace 标签为时间序列添加额外的标签。label_replace 的具体参数如下：
 
@@ -464,16 +467,22 @@ label_replace(v instant-vector, dst_label string, replacement string, src_label 
 
 该函数会依次对 v 中的每一条时间序列进行处理，通过 regex 匹配 src_label 的值，并将匹配部分 relacement 写入到 dst_label 标签中。如下所示：
 
+```text
 label*replace(up, "host", "$1", "instance", "(.*):.\_")
+```
 
 函数处理后，时间序列将包含一个 host 标签，host 标签的值为 Exporter 实例的 IP 地址：
 
-    up{host="localhost",instance="localhost:8080",job="cadvisor"}    1
-    up{host="localhost",instance="localhost:9090",job="prometheus"}    1
-    up{host="localhost",instance="localhost:9100",job="node"} 1
+```text
+up{host="localhost",instance="localhost:8080",job="cadvisor"}    1
+up{host="localhost",instance="localhost:9090",job="prometheus"}    1
+up{host="localhost",instance="localhost:9100",job="node"} 1
+```
 
 除了 label_replace 以外，Prometheus 还提供了 label_join 函数，该函数可以将时间序列中 v 多个标签 src_label 的值，通过 separator 作为连接符写入到一个新的标签 dst_label 中:
 
+```text
 label_join(v instant-vector, dst_label string, separator string, src_label_1 string, src_label_2 string, ...)
+```
 
 label_replace 和 label_join 函数提供了对时间序列标签的自定义能力，从而能够更好的于客户端或者可视化工具配合。

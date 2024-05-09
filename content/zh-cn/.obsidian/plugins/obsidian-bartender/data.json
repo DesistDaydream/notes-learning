@@ -1785,6 +1785,7 @@
     "docs/4.数据通信/通信协议/TCP_IP/TCP": [
       "docs/4.数据通信/通信协议/TCP_IP/TCP/_index.md",
       "docs/4.数据通信/通信协议/TCP_IP/TCP/TCP.md",
+      "docs/4.数据通信/通信协议/TCP_IP/TCP/TCP Header.md",
       "docs/4.数据通信/通信协议/TCP_IP/TCP/常见 TCP 端口号.md",
       "docs/4.数据通信/通信协议/TCP_IP/TCP/其他.md"
     ],
@@ -2326,7 +2327,6 @@
     ],
     "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ": [
       "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/_index.md",
-      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/问题实例.md",
       "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ.md",
       "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ 部署.md",
       "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ 配置详解.md",
@@ -2335,7 +2335,8 @@
       "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ 性能与优化.md",
       "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/RabbitMQ Operator.md",
       "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/go rabbitmq 库.md",
-      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/rabbitmqctl 命令行工具详解.md"
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/rabbitmqctl 命令行工具详解.md",
+      "docs/8.通用技术/Message Queue(消息队列)/RabbitMQ/问题实例.md"
     ],
     "docs/8.通用技术/编码与解码": [
       "docs/8.通用技术/编码与解码/_index.md",

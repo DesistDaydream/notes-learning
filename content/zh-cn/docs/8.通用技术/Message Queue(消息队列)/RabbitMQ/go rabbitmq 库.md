@@ -1,10 +1,18 @@
 ---
 title: go rabbitmq 库
+linkTitle: go rabbitmq 库
+date: 2024-05-08T20:10
+weight: 20
 ---
 
 #
+# 概述
 
-[http://www.topgoer.com/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/go%E6%93%8D%E4%BD%9CRabbitMQ/Simple%E6%A8%A1%E5%BC%8F.html](http://www.topgoer.com/%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593%25E6%2593%258D%25E4%25BD%259C/go%25E6%2593%258D%25E4%25BD%259CRabbitMQ/Simple%25E6%25A8%25A1%25E5%25BC%258F.html)
+> 参考：
+>
+> -
+
+http://www.topgoer.com/%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593%25E6%2593%258D%25E4%25BD%259C/go%25E6%2593%258D%25E4%25BD%259CRabbitMQ/Simple%25E6%25A8%25A1%25E5%25BC%258F.html
 
 ```go
 package RabbitMQ

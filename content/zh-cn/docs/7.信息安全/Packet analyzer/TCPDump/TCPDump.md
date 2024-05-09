@@ -34,12 +34,11 @@ tcpdump 最初由[Van Jacobson](https://en.wikipedia.org/wiki/Van_Jacobson)、[S
   - Notes: 通常用来抓取 VLAN 的 Tag。
 - **-F \<FEIL>** # 指定一个包含 Filter-Expression 语法的文件。程序将会使用该文件的内容作为过滤表达式，并忽略命令行给出的过滤表达式。
 - **-i, --interface \<DEV>** # 抓取指定网卡 DEV 的包，`默认值：any`，即抓取所有设备
-  - 注意：在有 Bond 的服务器上，不要抓所有设备的包，否则使用 Wireshark 读取抓包文件时，会显示出很多乱序和重传，这是因为 Bond 设备和 Bond Salve 设备的包是相同的，但是咱都抓了。相同的包，时间不同，Wireshark 就识别成乱序了。
 - -l # 使用标准输出列的缓冲区；
 - **-n** # 不把主机的网络地址转换成 IP。可以多次指定，-nn 表示不转换 IP 地址和端口号的名称
-- -O # 不将数据包编码最佳化
-- -p # 不让网络界面进入混杂模式
-- -q # 快速输出，仅列出少数的传输协议信息
+- **-O** # 不将数据包编码最佳化
+- **-p** # 不让网络界面进入混杂模式
+- **-q** # 快速输出，仅列出少数的传输协议信息
 - **-r \<FILE>** # 从 FILE 读取数据包。FILE 是通过 -w 选项保存的文件，或者任何使用 pcap API 的应用程序生成的文件。
 - **-s <数据包大小>** # 设置每个数据包的大小；
 - **-S, --absolute-tcp-sequence-numbers** # 输出 TCP sequence 号的绝对值，而不是相对值
@@ -49,6 +48,12 @@ tcpdump 最初由[Van Jacobson](https://en.wikipedia.org/wiki/Van_Jacobson)、[S
 - **-T <数据包类型>** # 强制将表达方式所指定的数据包转译成设置的数据包类型；
 - **-v\[vv]** # 从一个 v 开始，每多一个 v 则抓出的包的信息则做出一部分最多 3 个 v，包信息最多
 - **-w \</Path/TO/FILE>** # 把数据包数据写入指定的文件
+
+> [!tip]
+> -i 选项说明:
+> - 在有 Bond 的服务器上，不要抓所有设备的包，否则使用 Wireshark 读取抓包文件时，会显示出很多乱序和重传，这是因为 Bond 设备和 Bond Salve 设备的包是相同的，但是咱都抓了。相同的包，时间不同，Wireshark 就识别成乱序了。
+> - 若使用 any，则用 -w 生成的 .pcap 文件中，所有包的二层信息（i.e. Mac 信息）是异常的，显示为 `Linux cooked capture v1`
+> - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/tcpdump/202405091416902.png)
 
 ## Filter-Expression(过滤表达式)
 

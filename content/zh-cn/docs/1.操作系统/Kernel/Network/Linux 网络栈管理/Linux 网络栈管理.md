@@ -8,7 +8,8 @@ date: 2023-11-02T23:46
 # 概述
 
 > 参考：
-> - [Kernel 文档-Linux Networkiing Documentation](https://www.kernel.org/doc/html/latest/networking/index.html)
+>
+> - [Kernel 文档-Linux Networking Documentation](https://www.kernel.org/doc/html/latest/networking/index.html)
 > - [Kernel 文档-Linux Networking and Network Devices APIs](https://www.kernel.org/doc/html/latest/networking/kapi.html)
 > - [arthurchiao.art 的文章](http://arthurchiao.art/index.html)
 >   - [[译] Linux 网络栈监控和调优：接收数据（2016）](http://arthurchiao.art/blog/tuning-stack-rx-zh/)

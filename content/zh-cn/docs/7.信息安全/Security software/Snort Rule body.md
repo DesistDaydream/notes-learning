@@ -25,9 +25,9 @@ Snort Rule body 由很多的 Options 组成，<font color="#ff0000">Options 是 
 
 Rule Options 总共分为 4 类:
 
-- **General(常规)**
-- **Payload Detection(Payload 检测)**
-- **Non-Payload Detection(非 Payload 检测)**
+- **General(常规)** # 添加一些自定义的信息，以便程序可以方便的集成 Snort 规则。
+- **Payload Detection(Payload 检测)** # 根据 Payload 的内容进行匹配
+- **Non-Payload Detection(非 Payload 检测)** # 根据非 Payload 的其他信息进行配置，e.g. 各种协议的 Header（TCP 的 Flags、etc.）、etc.
 - **Post-Detection(监测后)** # 指定的规则触发后要对数据包采取的操作
 
 # 常规
@@ -57,7 +57,7 @@ content 用于执行 基本字符串 和/或 十六进制 模式匹配。十六�
 
 ## offset, depth, distance, within
 
-这四个 Options 是对匹配内容的修饰符，用以指定如何对 Payload 进行查找，比如: 从 Payload 何处开始查找、查找 Payload 的前多少个字节、etc.
+这四个选项是对匹配内容的修饰符，用以指定如何对 Payload 进行查找，比如: 从 Payload 何处开始查找、查找 Payload 的前多少个字节、etc.
 
 depth 选项允许规则编写者指定在 Snort 数据包或缓冲区中查找指定模式的深度。例如，将 depth 设置为 5 将告诉 Snort 仅查找 Payload 的前 5 个字节内的模式。
 
@@ -68,3 +68,9 @@ https://docs.snort.org/rules/options/payload/pcre
 pcre 选项可以根据 Perl 兼容的 [Regular Expression(正则表达式)](/docs/8.通用技术/Regular%20Expression(正则表达式).md) 对数据包进行匹配。
 
 > Notes: 由于从性能角度来看，正则表达式的成本相对较高，因此使用 PCRE 的选项还应该至少有一个 [content](#content) 选项，以利用 Snort 的快速模式引擎。
+
+# 非 Payload 检测
+
+## flags
+
+flags 选项用于检查 [TCP Header](/docs/4.数据通信/通信协议/TCP_IP/TCP/TCP%20Header.md) 中是否设置了指定的 Flag

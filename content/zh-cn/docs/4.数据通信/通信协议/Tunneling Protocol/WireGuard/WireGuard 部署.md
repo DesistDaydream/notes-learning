@@ -11,30 +11,6 @@ title: WireGuard 部署
 
 # 安装 WireGuard 包
 
-```bash
-# CentOS7
-yum install epel-release.noarch elrepo-release.noarch -y
-yum install --enablerepo=elrepo-kernel kmod-wireguard wireguard-tools -y
-
-# 如果使用的是非标准内核，需要安装 DKMS 包，待验证
-yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
-yum install wireguard-dkms wireguard-tools
-
-# CentOS Stream
-yum install epel-release.noarch elrepo-release.noarch -y
-yum install --enablerepo=elrepo-kernel kmod-wireguard wireguard-tools
-
-# Ubuntu ≥ 18.04
-apt install wireguard
-
-# MacOS
-brew install wireguard-tools
-
-# Windows 客户端下载地址：
-https://download.wireguard.com/windows-client/wireguard-amd64-0.1.1.msi
-```
-
 在中继服务器上开启 IP 地址转发：
 
 ```bash
@@ -44,6 +20,46 @@ net.ipv4.conf.all.proxy_arp = 1
 EOF
 
 sysctl -p /etc/sysctl.conf
+```
+
+## CentOS 7
+
+
+```bash
+yum install epel-release.noarch elrepo-release.noarch -y
+yum install --enablerepo=elrepo-kernel kmod-wireguard wireguard-tools -y
+```
+
+```bash
+# 如果使用的是非标准内核，需要安装 DKMS 包，待验证
+yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
+yum install wireguard-dkms wireguard-tools
+
+# CentOS Stream
+yum install epel-release.noarch elrepo-release.noarch -y
+yum install --enablerepo=elrepo-kernel kmod-wireguard wireguard-tools
+```
+
+## Ubuntu
+
+```bash
+# Ubuntu ≥ 18.04
+apt install wireguard
+```
+
+## MacOS
+
+```bash
+# MacOS
+brew install wireguard-tools
+```
+
+## MicrosoftOS
+
+```powershell
+# Windows 客户端下载地址：
+https://download.wireguard.com/windows-client/wireguard-amd64-0.1.1.msi
 ```
 
 # 编写配置文件

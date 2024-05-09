@@ -8,7 +8,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [RFC 791，3.1.Internet Header Format](https://datatracker.ietf.org/doc/html/rfc791#section-3.1)
 
 IPv4 数据报被封装在链路层的 Frame 中
@@ -17,12 +17,9 @@ IPv4 数据报首部共 14 个字段，其中 13 个是必须的，第 14 个是
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ip/ip_datagram.png)
 
+对照 [WireShark](/docs/7.信息安全/Packet%20analyzer/WireShark/WireShark.md) 中展示的内容看，排除 `[]` 中的内容，每一行就是首部中的一个字段
 
-![ipv4_datagram|1000](https://notes-learning.oss-cn-beijing.aliyuncs.com/nahgxm/1633533991076-2a9cb606-463a-4dd4-89c8-c3aae590c113.jpeg)
-
-对照 WireShark 中展示的内容看，排除 `[]` 中的内容，每一行就是首部中的一个字段
-
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/nahgxm/1633532862295-9b420f37-7a97-43b9-85c8-1e973ea1aa59.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ip/ip_header_in_wireshark.png)
 
 - **Version(版本)** # IP 协议的版本号。IPv4 其版本号为 4，因此在这个字段上的值为“6”。
 - **Internet Header Length(首部长度，简称 IHL)** # 由于 Options 字段的长度是可变的。所以 IPv4 的首部长度也是可变的。该字段的值在 5 ~ 15 之间(该字段只有 4 bits，1111 即为 15)

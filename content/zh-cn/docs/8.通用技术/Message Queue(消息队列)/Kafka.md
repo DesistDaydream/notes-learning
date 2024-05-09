@@ -1,6 +1,15 @@
 ---
-title: Kafka原理详解
+title: Kafka
+linkTitle: Kafka
+date: 2024-05-08T20:14
+weight: 20
 ---
+
+# 概述
+
+> 参考：
+>
+> - [官网](https://kafka.apache.org/)
 
 Kafka 原理详解
 

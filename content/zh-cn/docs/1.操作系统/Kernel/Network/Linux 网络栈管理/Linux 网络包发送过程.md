@@ -55,7 +55,7 @@ cfd = accept(fd, ...);
 
 我这里先给大家准备了一个总的流程图，简单阐述下 send 发送了的数据是如何一步一步被发送到网卡的。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/77c123f6-fc35-4ed5-8a1a-aa37c6f474d2/640)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/linux_networking/202405082017947.png)
 
 在这幅图中，我们看到用户数据被拷贝到内核态，然后经过协议栈处理后进入到了 RingBuffer 中。随后网卡驱动真正将数据发送了出去。当发送完成的时候，是通过硬中断来通知 CPU，然后清理 RingBuffer。
 

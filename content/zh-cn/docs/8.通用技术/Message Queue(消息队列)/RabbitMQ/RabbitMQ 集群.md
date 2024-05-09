@@ -5,6 +5,7 @@ title: RabbitMQ 集群
 # 概述
 
 > 参考：
+> 
 > - 官方文档：<https://www.rabbitmq.com/clustering.html>
 
 RabbitMQ 这款消息队列中间件产品本身是基于 Erlang 语言编写，Erlang 语言天生具备分布式特性（通过同步 Erlang 集群各节点的 magic cookie 来实现）。

@@ -5,6 +5,7 @@ title: RabbitMQ 部署
 # 概述
 
 > 参考：
+> 
 > - [官方文档，安装与配置](https://www.rabbitmq.com/download.html)
 
 ## 使用 docker 启动单节点 RabbitMQ
@@ -18,6 +19,7 @@ rabbitmq:3-management
 ## 在 kubernetes 集群中使用 Operator 部署 RabbitMQ
 
 > 参考：
+> 
 > - [官方文档，安装和配置-Kubernetes Operator](https://www.rabbitmq.com/kubernetes/operator/operator-overview.html)
 >   - [安装](https://www.rabbitmq.com/kubernetes/operator/install-operator.html)
 >   - [通过 Operator 使用 RabbitMQ 集群](https://www.rabbitmq.com/kubernetes/operator/using-operator.html)
