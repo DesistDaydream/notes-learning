@@ -54,3 +54,15 @@ UNIX 就是典型的通用的分时操作系统。
 # 总结
 
 实际上，Time Sharing 与 Real Time 都是一种任务处理的方式，只要一个操作系统实现了这种方式，就可以称为 TSOS 或 RTOS，LInux 的进程调度系统，随着时间的发展，也逐渐具备了两种方式。
+
+# 特殊的操作系统
+
+https://github.com/HeyPuter/puter
+
+- 基于 Web 的桌面操作系统。Puter 使用原生 JavaScript 和 jQuery，直接与 DOM 进行互动。
+- https://mp.weixin.qq.com/s/pB6VYlLk6_MmjvnkEyMbLA
+
+https://github.com/tjy-gitnub/win12
+
+- Windows 12 网页版
+- https://mp.weixin.qq.com/s/TiG_lDVpSGbpyZpFZrSVaw

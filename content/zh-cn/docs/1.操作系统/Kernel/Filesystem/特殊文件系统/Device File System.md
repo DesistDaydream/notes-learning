@@ -52,5 +52,5 @@ tun 驱动程序提供网络接口伪设备。发送到此接口的数据包可�
 > - https://www.cnblogs.com/oloroso/p/5405113.html
 > - https://superuser.com/questions/45342/when-should-i-use-dev-shm-and-when-should-i-use-tmp
 
-/dev/shm/ 目录时一个 [tmpfs](docs/1.操作系统/Kernel/Filesystem/特殊文件系统/tmpfs.md)
+/dev/shm/ 目录时一个 [tmpfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/tmpfs.md)
 

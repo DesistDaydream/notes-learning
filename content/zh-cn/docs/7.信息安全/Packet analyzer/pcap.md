@@ -17,7 +17,7 @@ weight: 20
 - [Npcap](https://nmap.org/npcap/) # Windows 新的 pcap
 - [libpcap](https://www.tcpdump.org/) # 类 Unix 系统下的 pcap
 
-> 虽然该名称是 packet capture 的缩写，但这并不是 API 的正确名称。类 Unix 系统在 libpcap 库中实现 pcap；对于 Windows，有一个名为 WinPcap 的 libpcap 端口不再受支持或开发，而对于 Windows 7 及更高版本，仍支持一个名为 Npcap 的端口。
+> Notes: 虽然该名称是 packet capture 的缩写，但这并不是 API 的正确名称。类 Unix 系统在 libpcap 库中实现 pcap；对于 Windows，有一个名为 WinPcap 的 libpcap 端口不再受支持或开发，而对于 Windows 7 及更高版本，仍支持一个名为 Npcap 的端口。
 
 # pcap 安装
 

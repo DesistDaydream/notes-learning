@@ -12,7 +12,9 @@ date: 2024-04-30T16:39
 > - [公众号 - 小林 coding，一口气搞懂「文件系统」，就靠这 25 张图了](https://mp.weixin.qq.com/s/qJdoXTv_XS_4ts9YuzMNIw)
 > - [骏马金龙，第4章 ext文件系统机制原理剖析](https://www.junmajinlong.com/linux/ext_filesystem/)
 
-硬盘最底层的读写 IO 一次是一个扇区 512 字节，如果要读写大量文件，以扇区为单位肯定很慢很消耗性能，所以硬盘使用了一个称作逻辑块的概念。逻辑块是逻辑的，由磁盘驱动器负责维护和操作，它并非是像扇区一样物理划分的。一个逻辑块的大小可能包含一个或多个扇区，每个逻辑块都有唯一的地址，称为 LBA。有了逻辑块之后，磁盘控制器对数据的操作就以逻辑块为单位，一次读写一个逻辑块，磁盘控制器知道如何将逻辑块翻译成对应的扇区并读写数据。
+## block 的出现
+
+硬盘最底层的读写 I/O 一次是一个扇区 512 字节，如果要读写大量文件，以扇区为单位肯定很慢很消耗性能，所以硬盘使用了一个称作逻辑块的概念。逻辑块是逻辑的，由磁盘驱动器负责维护和操作，它并非是像扇区一样物理划分的。一个逻辑块的大小可能包含一个或多个扇区，每个逻辑块都有唯一的地址，称为 LBA。有了逻辑块之后，磁盘控制器对数据的操作就以逻辑块为单位，一次读写一个逻辑块，磁盘控制器知道如何将逻辑块翻译成对应的扇区并读写数据。
 
 到了 Linux 操作系统层次，通过文件系统提供了一个也称为块的读写单元，文件系统数据块的大小一般为 1024bytes (1KiB) 或 2048bytes (2KiB) 或 4096bytes (4KiB)。文件系统数据块也是逻辑概念，是文件系统层次维护的，而磁盘上的逻辑数据块是由磁盘控制器维护的，文件系统的 IO 管理器知道如何将它的数据块翻译成磁盘维护的数据块地址 LBA。
 
@@ -25,7 +27,7 @@ date: 2024-04-30T16:39
 Ext 预留了一些 Inode 做特殊特性使用，如下：某些可能并非总是准确，具体的 inode 号对应什么文件可以使用 `find /-inum NUM` 查看
 
 ```bash
-Ext4的特殊inode
+Ext4 的特殊 inode
 Inode号    用途
 0         不存在0号inode，可用于标识目录data block中已删除的文件
 1         虚拟文件系统，如/proc和/sys
@@ -144,7 +146,6 @@ Inode size:           256
 
 - 现在是每 2048 个块给 一个 Inode
 - 280 个块组
--
 
 ```bash
 ~]# mke2fs -N 1 /dev/vdb
@@ -182,204 +183,302 @@ First inode:              11
 Inode size:           256
 ```
 
-# 文件的存储
+# EXT 文件系统详解
 
-文件的数据是要存储在硬盘上面的，数据在磁盘上的存放方式，就像程序在内存中存放的方式那样，有以下两种：
+> 参考:
+>
+> - [公众号 -  无聊的闪客，你管这破玩意叫文件系统](https://mp.weixin.qq.com/s/q6OjwCXSk05TvX_BIu1M0g)
 
-- 连续空间存放方式
-- 非连续空间存放方式
+**你手里有一块硬盘，大小为 1T**  
 
-其中，非连续空间存放方式又可以分为「链表方式」和「索引方式」。
-不同的存储方式，有各自的特点，重点是要分析它们的存储效率和读写性能，接下来分别对每种存储方式说一下。
+![](https://mmbiz.qpic.cn/mmbiz_png/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDfZqVQibyBs0wVPoFMcGCmqwVCiaBK4j30rciagooOJK38S0Gk3Tb2udw0g/640?wx_fmt=png)
 
-## 连续空间存放方式
+**你还有一堆文件**
 
-> 注意：这里只针对机械硬盘，固态硬盘并没有磁道等概念
+![](https://mmbiz.qpic.cn/mmbiz_jpg/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDfDf52Y0RCfHGsgYDk3yP8RXAjlFgFaPwPyNPVqmiaxrCDY2y2hHDRuzQ/640?wx_fmt=jpeg)
 
-连续空间存放方式顾名思义，**文件存放在磁盘「连续的」物理空间中**。这种模式下，文件的数据都是紧密相连，**读写效率很高**，因为一次磁盘寻道就可以读出整个文件。
+这些文件在硬盘看来，就是一堆二进制数据而已
 
-使用连续存放的方式有一个前提，必须先知道一个文件的大小，这样文件系统才会根据文件的大小在磁盘上找到一块连续的空间分配给文件。
+![](https://mmbiz.qpic.cn/mmbiz_jpg/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDfmENc0IKA0Kd8ITOfDe5D0z3wlTsyvb0iamvbzjy3icUU5uKHPb8icklIg/640?wx_fmt=jpeg)
 
-所以，**文件头里需要指定「起始块的位置」和「长度」**，有了这两个信息就可以很好的表示文件存放方式是一块连续的磁盘空间。
+你准备把这些文件存储在硬盘上，并在需要的时候读取出来。
 
-注意，此处说的文件头，就类似于 Linux 的 inode。
+要设计怎样的软件，才能更方便地在硬盘中读写这些文件呢？
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/op2fw9/1616167677049-26c7ae42-9e37-426a-99f9-6e59df62e691.png)
+首先我不想和复杂的扇区，设备驱动等细节打交道，因此我先实现了一个简单的功能，将硬盘按逻辑分成一个个的**块**，并可以以块为单位进行读写。
 
-连续空间存放的方式虽然读写效率高，**但是有「磁盘空间碎片」和「文件长度不易扩展」的缺陷。**
+每个块就定义为两个物理扇区的大小，即 1024 字节，就是 1KB 啦。
 
-如下图，如果文件 B 被删除，磁盘上就留下一块空缺，这时，如果新来的文件小于其中的一个空缺，我们就可以将其放在相应空缺里。但如果该文件的大小大于所有的空缺，但却小于空缺大小之和，则虽然磁盘上有足够的空缺，但该文件还是不能存放。当然了，我们可以通过将现有文件进行挪动来腾出空间以容纳新的文件，但是这个在磁盘挪动文件是非常耗时，所以这种方式不太现实。
+硬盘太大不好分析，我们就假设你的硬盘只有 1MB，那么这块硬盘则有 1024 个块。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/op2fw9/1616167677046-4fd1191e-4e74-4653-8ef4-24ba781c4f57.png)
+![](https://mmbiz.qpic.cn/mmbiz_jpg/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDf56b6Iia6zq3Yw6XeosYOV7Rds82Xn2sxuV75Iaib9Qb72yE30zNqXOicg/640?wx_fmt=jpeg)
 
-另外一个缺陷是文件长度扩展不方便，例如上图中的文件 A 要想扩大一下，需要更多的磁盘空间，唯一的办法就只能是挪动的方式，前面也说了，这种方式效率是非常低的。
-那么有没有更好的方式来解决上面的问题呢？答案当然有，既然连续空间存放的方式不太行，那么我们就改变存放的方式，使用非连续空间存放方式来解决这些缺陷。
+OK，我们开始存文件啦！
 
-## 非连续空间存放方式
+准备一个文件
 
-非连续空间存放方式分为「链表方式」和「索引方式」。
+![](https://mmbiz.qpic.cn/mmbiz_png/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDftL60S3R7ftR7ygNTQOHRAmPayVlLj4At7uJKoAyu6icibxIXzIWAKsHg/640?wx_fmt=png)
 
-> 我们先来看看链表的方式。
+随便选个块放进去，3 号块吧！
 
-链表的方式存放是**离散的，不用连续的**，于是就可以**消除磁盘碎片**，可大大提高磁盘空间的利用率，同时**文件的长度可以动态扩展**。根据实现的方式的不同，链表可分为「**隐式链表**」和「**显式链接**」两种形式。
+![](https://mmbiz.qpic.cn/mmbiz_jpg/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDfkHibk00PpYTMhgbwniamDKiarXxAU0oibicgXTjeznytfHdJZJR7a2PTl2w/640?wx_fmt=jpeg)
 
-文件要以「**隐式链表**」的方式存放的话，**实现的方式是文件头要包含「第一块」和「最后一块」的位置，并且每个数据块里面留出一个指针空间，用来存放下一个数据块的位置**，这样一个数据块连着一个数据块，从链头开是就可以顺着指针找到所有的数据块，所以存放的方式可以是不连续的。
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/op2fw9/1616167677039-c71df217-651d-42ac-8cf6-444dedae8c1c.png)
-隐式链表的存放方式的**缺点在于无法直接访问数据块，只能通过指针顺序访问文件，以及数据块指针消耗了一定的存储空间**。隐式链接分配的**稳定性较差**，系统在运行过程中由于软件或者硬件错误**导致链表中的指针丢失或损坏，会导致文件数据的丢失。**
+成功！首战告捷！
 
-如果取出每个磁盘块的指针，把它放在内存的一个表中，就可以解决上述隐式链表的两个不足。那么，这种实现方式是「**显式链接**」，它指**把用于链接文件各数据块的指针，显式地存放在内存的一张链接表中**，该表在整个磁盘仅设置一张，**每个表项中存放链接指针，指向下一个数据块号**。
+## 再存一个文件！
 
-对于显式链接的工作方式，我们举个例子，文件 A 依次使用了磁盘块 4、7、2、10 和 12 ，文件 B 依次使用了磁盘块 6、3、11 和 14 。利用下图中的表，可以从第 4 块开始，顺着链走到最后，找到文件 A 的全部磁盘块。同样，从第 6 块开始，顺着链走到最后，也能够找出文件 B 的全部磁盘块。最后，这两个链都以一个不属于有效磁盘编号的特殊标记（如 -1 ）结束。内存中的这样一个表格称为**文件分配表（File Allocation Table，FAT）**。
+诶？发现问题了，万一这个文件也存到了 3 号块，不是把原来的文件覆盖了么？不行，得有一个地方记录，现在可使用的块有哪些，像这样。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/op2fw9/1616167677063-b7bb2a32-dde6-4c17-9119-096413902ae8.png)
+块 0：未使用
 
-由于查找记录的过程是在内存中进行的，因而不仅显著地**提高了检索速度**，而且**大大减少了访问磁盘的次数**。但也正是整个表都存放在内存中的关系，它的主要的缺点是**不适用于大磁盘\*\*。
+块 1：未使用
 
-比如，对于 200GB 的磁盘和 1KB 大小的块，这张表需要有 2 亿项，每一项对应于这 2 亿个磁盘块中的一个块，每项如果需要 4 个字节，那这张表要占用 800MB 内存，很显然 FAT 方案对于大磁盘而言不太合适。
+块 2：未使用
 
-> 接下来，我们来看看索引的方式。
+块 3：已使用
 
-链表的方式解决了连续分配的磁盘碎片和文件动态扩展的问题，但是不能有效支持直接访问（FAT 除外），索引的方式可以解决这个问题。
-索引的实现是为每个文件创建一个「**索引数据块**」，里面存放的是**指向文件数据块的指针列表**，说白了就像书的目录一样，要找哪个章节的内容，看目录查就可以。
+块 4：未使用
 
-另外，**文件头需要包含指向「索引数据块」的指针**，这样就可以通过文件头知道索引数据块的位置，再通过索引数据块里的索引信息找到对应的数据块。
-创建文件时，索引块的所有指针都设为空。当首次写入第 i 块时，先从空闲空间中取得一个块，再将其地址写到索引块的第 i 个条目。
+...
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/op2fw9/1616167677054-825db739-3c6c-4fec-bb21-1dd52effb539.png)
+块 1023：未使用
 
-索引的方式优点在于：
+那我们就用 0 号块，来记录所有块的使用情况吧！怎么记录呢？
 
-- 文件的创建、增大、缩小很方便；
-- 不会有碎片的问题；
-- 支持顺序读写和随机读写；
+**位图！**
 
-由于索引数据也是存放在磁盘块的，如果文件很小，明明只需一块就可以存放的下，但还是需要额外分配一块来存放索引数据，所以缺陷之一就是存储索引带来的开销。
+![](https://mmbiz.qpic.cn/mmbiz_gif/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDfRruNoC8sYKTcib1ibOYFzGlLtYBphS1U3fnavQY1vasqjw4EG6IkrGfQ/640?wx_fmt=gif)
 
-如果文件很大，大到一个索引数据块放不下索引信息，这时又要如何处理大文件的存放呢？我们可以通过组合的方式，来处理大文件的存。
+那我们给块 0 起个名字，叫**块位图**，之后这个块 0 就专门用来记录所有块的使用情况，不再用来存具体文件了。
 
-先来看看链表 + 索引的组合，这种组合称为「**链式索引块**」，它的实现方式是**在索引数据块留出一个存放下一个索引数据块的指针**，于是当一个索引数据块的索引信息用完了，就可以通过指针的方式，找到下一个索引数据块的信息。那这种方式也会出现前面提到的链表方式的问题，万一某个指针损坏了，后面的数据也就会无法读取了。
+![](https://mmbiz.qpic.cn/mmbiz_jpg/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDfN7kfnVIs7NVmZVxcBoTyK2aoa24OOxu56VMDEYXpeibswiagvGMZqB7A/640?wx_fmt=jpeg)
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/op2fw9/1616167677072-417dcaa4-348d-4a45-b9b0-aa170d0f3bd7.png)
+当我们再存入一个新文件时，只需要在块位图中找到第一个为 0 的位，就可以找到第一个还未被使用的块，将文件存入。同时，别忘了把块位图中的相应位置 1。
 
-还有另外一种组合方式是索引 + 索引的方式，这种组合称为「**多级索引块**」，实现方式是**通过一个索引块来存放多个索引数据块**，一层套一层索引，像极了俄罗斯套娃是吧。
+完美！
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/op2fw9/1616167677056-ecb3b996-c14c-455d-82aa-7ca16aeb7feb.png)
+## 尝试读取刚刚的文件。
 
-## Unix 文件的实现方式
+咦？又遇到问题了，我怎么找到刚刚的文件呢？根据块号么？这也太蠢了，就像你去书店找书，店员让你提供书的编号，而不是书名，显然不合理。
 
-我们先把前面提到的文件实现方式，做个比较：
+因此我们给每个文件起一个名字，叫**文件名**，通过它来寻找这个文件。
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/op2fw9/1671074085764-374b9218-86e8-412d-85c7-9d051b9340b2.png)
+那必然就要有一个地方，记录文件名与块号的对应关系，像这样。
 
-那早期 Unix 文件系统是组合了前面的文件存放方式的优点，如下图：
+葵花宝典.txt：3 号块
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/op2fw9/1616167677095-e05fe455-c302-43bb-a9d8-dd43cd4551e1.png)
+数学期末复习资料.mp4：5 号块
 
-它是根据文件的大小，存放的方式会有所变化：
+无聊的闪客.pdf：10 号块
 
-- 如果存放文件所需的数据块小于 10 块，则采用直接查找的方式；
-- 如果存放文件所需的数据块超过 10 块，则采用一级间接索引方式；
-- 如果前面两种方式都不够存放大文件，则采用二级间接索引方式；
-- 如果二级间接索引也不够存放大文件，这采用三级间接索引方式；
+...
 
-那么，文件头（*Inode*）就需要包含 13 个指针：
+别急，既然都要选一个地方记录文件名称了，不妨多记录一点我们关心的信息吧，比如文件大小、文件创建时间、文件权限等。
 
-- 第 10 个指向数据块的指针；
-- 第 11 个指向索引块的指针；
-- 第 12 个指向二级索引块的指针；
-- 第 13 个指向三级索引块的指针；
+这些东西自然也要保存在硬盘上，我们选择用一个固定大小的空间，来表示这些信息，多大空间呢？128 字节吧。
 
-所以，这种方式能很灵活地支持小文件和大文件的存放：
+为啥是 128 字节呢？我乐意。
 
-- 对于小文件使用直接查找的方式可减少索引数据块的开销；
-- 对于大文件则以多级索引的方式来支持，所以大文件在访问数据块时需要大量查询；
+![](https://mmbiz.qpic.cn/mmbiz_png/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDfUHOgLG93SuaRKVQx7KwvwEMkibXibUBiahk2zPGHxJEllw9yGIiaEHOZ7w/640?wx_fmt=png)
 
-这个方案就用在了 Linux Ext 2/3 文件系统里，虽然解决大文件的存储，但是对于大文件的访问，需要大量的查询，效率比较低。
+我们将这 128 字节的结构体，叫做一个 **inode**。
 
-为了解决这个问题，Ext 4 做了一定的改变，具体怎么解决的，本文就不展开了。
+之后，我们每存入一个新的文件，不但要占用一个块来存放这个文件本身，还要占用一个 inode 来存放文件的这些**元信息**，并且这个 inode 的**所在块号**这个字段，就指向这个文件所在的块号。
 
-# 空闲空间管理
+![](https://mmbiz.qpic.cn/mmbiz_jpg/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDfXh1ic04TbyrJJ8tjpSWGDnsStYz6Diazzibg6keU2nJdODg5XAq6IZ8eQ/640?wx_fmt=jpeg)
 
-前面说到的文件的存储是针对已经被占用的数据块组织和管理，接下来的问题是，如果我要保存一个数据块，我应该放在硬盘上的哪个位置呢？难道需要将所有的块扫描一遍，找个空的地方随便放吗？
+如果一个 inode 为 128 字节，那么一个块就可以容纳 8 个 inode，我们可以将这些 inode 编上号。
 
-那这种方式效率就太低了，所以针对磁盘的空闲空间也是要引入管理的机制，接下来介绍几种常见的方法：
+![](https://mmbiz.qpic.cn/mmbiz_jpg/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDf4yV2MR2qXibFaibLRaT23S0FicZyuFAbUtCQnylRic8KdQL6zS04KvzM2Q/640?wx_fmt=jpeg)
 
-- 空闲表法
-- 空闲链表法
-- 位图法
+如果你觉得 inode 数不够，也可以用两个或者多个块来存放 inode 信息，但这样用于存放数据的块就少了，这就看你自己的平衡了。
 
-## 空闲表法
+![](https://mmbiz.qpic.cn/mmbiz_jpg/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDffrPoFxjuBZdpk3FFcrBricxWA8Iur8vSianfxgOFbVSxA1qjkMF9AugQ/640?wx_fmt=jpeg)
 
-空闲表法就是为所有空闲空间建立一张表，表内容包括空闲区的第一个块号和该空闲区的块个数，注意，这个方式是连续分配的。如下图：
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/op2fw9/1616167677079-9e2989d6-2cda-4460-80ca-f3c0f28783f1.png)
-当请求分配磁盘空间时，系统依次扫描空闲表里的内容，直到找到一个合适的空闲区域为止。当用户撤销一个文件时，系统回收文件空间。这时，也需顺序扫描空闲表，寻找一个空闲表条目并将释放空间的第一个物理块号及它占用的块数填到这个条目中。
-这种方法仅当有少量的空闲区时才有较好的效果。因为，如果存储空间中有着大量的小的空闲区，则空闲表变得很大，这样查询效率会很低。另外，这种分配技术适用于建立连续文件。
+同样，和块位图管理块的使用情况一样，我们也需要一个 **inode 位图**，来管理 inode 的使用情况。我们就把 inode 位图，放在 1 号块吧！
 
-## 空闲链表法
+同时，我们把 inode 信息，放在 2 号块，一共存 8 条 inode，这样我们的 2 号块就叫做 **inode 表**。
 
-我们也可以使用「链表」的方式来管理空闲空间，每一个空闲块里有一个指针指向下一个空闲块，这样也能很方便的找到空闲块并管理起来。如下图：
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/op2fw9/1616167677070-be98384a-ad4f-4a20-b5da-1d969816b938.png)
-当创建文件需要一块或几块时，就从链头上依次取下一块或几块。反之，当回收空间时，把这些空闲块依次接到链头上。
+现在，我们的文件系统结构，变成了下面这个样子。
 
-这种技术只要在主存中保存一个指针，令它指向第一个空闲块。其特点是简单，但不能随机访问，工作效率低，因为每当在链上增加或移动空闲块时需要做很多 I/O 操作，同时数据块的指针消耗了一定的存储空间。
+![](https://mmbiz.qpic.cn/mmbiz_jpg/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDf7uy19fsibjjvkCBD82o2LzYoiaXMOUCoH5tswW0HVTAIxmdsbyH0oVDQ/640?wx_fmt=jpeg)
 
-空闲表法和空闲链表法都不适合用于大型文件系统，因为这会使空闲表或空闲链表太大。
+注意：块位图是管理可用的块，每一位代表一个块的使用与否。inode 位图管理的是一条一条的 inode，并不是 inode 所占用的块，比如上图中有 8 条 inode，则 inode 位图中就有 8 位是管理他们的使用与否。
 
-## 位图法
+## 多个块
 
-位图是利用二进制的一位来表示磁盘中一个盘块的使用情况，磁盘上所有的盘块都有一个二进制位与之对应。
+现在，我们的文件很小，一个块就能容下。
 
-当值为 0 时，表示对应的盘块空闲，值为 1 时，表示对应的盘块已分配。它形式如下：
+但如果需要两个块、三个块、四个块呢？
 
-`1111110011111110001110110111111100111 ...`
+很简单，我们只需要采用**连续存储法**，而 inode 则只记录文件的第一个块，以及后面还需要多少块，即可。
 
-在 Linux 文件系统就采用了位图的方式来管理空闲空间，不仅用于数据空闲块的管理，还用于 inode 空闲块的管理，因为 inode 也是存储在磁盘的，自然也要有对其管理。
+这种办法的缺点就是：容易留下大大小小的**空洞**，新的文件到来以后，难以找到合适的空白块，空间会被浪费。
 
-# 文件系统的结构
+![](https://mmbiz.qpic.cn/mmbiz_png/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDfdjiaibCH3Amv5m7eslaImM2Z1HgnobqPdicCdczx9yd01ZkkykHxiaB4ug/640?wx_fmt=png)
 
-前面提到 Linux 是用位图的方式管理空闲空间，用户在创建一个新文件时，Linux 内核会通过 inode 的位图找到空闲可用的 inode，并进行分配。要存储数据时，会通过块的位图找到空闲的块，并分配，但仔细计算一下还是有问题的。
+看来这种方式不行，那怎么办呢？
 
-数据块的位图是放在磁盘块里的，假设是放在一个块里，一个块 4K，每位表示一个数据块，共可以表示 `4 * 1024 * 8 = 2^15` 个空闲块，由于 1 个数据块是 4K 大小，那么最大可以表示的空间为 `2^15 * 4 * 1024 = 2^27` 个 byte，也就是 128M。
+既然在 inode 中记录了文件所在的块号，为什么不扩展一下，多记录几块呢？
 
-也就是说按照上面的结构，如果采用「一个块的位图 + 一系列的块」，外加「一个块的 inode 的位图 + 一系列的 inode 的结构」能表示的最大空间也就 128M，这太少了，现在很多文件都比这个大。
+![](https://mmbiz.qpic.cn/mmbiz_png/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDfUHOgLG93SuaRKVQx7KwvwEMkibXibUBiahk2zPGHxJEllw9yGIiaEHOZ7w/640?wx_fmt=png)
 
-在 Linux 文件系统，把这个结构称为一个**块组**，那么有 N 多的块组，就能够表示 N 大的文件。
+原来在 inode 中只记录了一个块号，现在扩展一下，记录 8 个块号！而且这些块**不需要连续**。
 
-下图给出了 Linux Ext2 整个文件系统的结构和块组的内容，文件系统都由大量块组组成，在硬盘上相继排布：
+![](https://mmbiz.qpic.cn/mmbiz_png/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDfkJRKnxe1tV7DsOYnibcqnx06huWZHgJZS8qG5kKG3UPOfAlvGF5oL1A/640?wx_fmt=png)
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/op2fw9/1616167677099-7ffa20c4-57d9-4c49-9e02-24afef066cfb.png)
+嗯，这是个可行的办法！  
 
-最前面的第一个块是引导块，在系统启动时用于启用引导，接着后面就是一个一个连续的块组了，块组的内容如下：
+但是这也仅仅能表示 8 个块，能记录的最大文件是 8K（记住，一个块是 1K）, 现在的文件轻松就超过这个限制了，这怎么办？
 
-- **超级块** # 包含的是文件系统的重要信息，比如 inode 总个数、块总个数、每个块组的 inode 个数、每个块组的块个数等等。
-- **块组描述符** # 包含文件系统中各个块组的状态，比如块组中空闲块和 inode 的数目等，每个块组都包含了文件系统中「所有块组的组描述符信息」。
-- **数据位图和 inode 位图** # 用于表示对应的数据块或 inode 是空闲的，还是被使用中。
-- **inode 列表** # 包含了块组中所有的 inode，inode 用于保存文件系统中与各个文件和目录相关的所有元数据。
-- **数据块** # 包含文件的有用数据。
+很简单，我们可以让其中一个块，作为**间接索引**。
 
-你可以会发现每个块组里有很多重复的信息，比如**超级块和块组描述符表，这两个都是全局信息，而且非常的重要**，这么做是有两个原因：
+![](https://mmbiz.qpic.cn/mmbiz_png/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDf78H2eJA2Hsib2kDzzibPdaM37BII5aJOkIbemBSWlfKL9VpaLmLemYkA/640?wx_fmt=png)
 
-- 如果系统崩溃破坏了超级块或块组描述符，有关文件系统结构和内容的所有信息都会丢失。如果有冗余的副本，该信息是可能恢复的。
-- 通过使文件和管理数据尽可能接近，减少了磁头寻道和旋转，这可以提高文件系统的性能。
+这样瞬间就有 263 个块（多了 256 -1 个块）可用了，这种索引叫**一级间接索引**。
 
-不过，Ext2 的后续版本采用了**稀疏技术**。该做法是，超级块和块组描述符表不再存储到文件系统的每个块组中，而是只写入到块组 0、块组 1 和其他 ID 可以表示为 3、 5、7 的幂的块组中。
+如果还嫌不够，就再弄一个块做一级间接索引，或者做二级间接索引（二级间接索引则可以多出 256 * 256 - 1 个块）。
 
-在创建文件系统时，也可以看到 `Superblock backups stored on blocks` 这种描述，这记录了超级块的备份存在哪些块中
+我们的文件系统，暂且先只弄一个一级间接索引。硬盘一共才 1024 个块，一个文件 263 个块够大了。再大了不允许，就这么任性，爱用不用。
 
-```bash
-~]# mke2fs -N 10000000 /dev/vdb
-mke2fs 1.45.5 (07-Jan-2020)
-/dev/vdb contains a ext2 file system
- created on Sat Mar 11 12:25:22 2023
-Proceed anyway? (y,N) y
-Creating filesystem with 9175040 4k blocks and 10002528 inodes
-Filesystem UUID: 8acc177c-5f26-4bb9-a0ee-01ceb61d4eaa
-Superblock backups stored on blocks:
- 30072, 90216, 150360, 210504, 270648, 751800, 811944, 1473528, 2435832,
- 3759000, 7307496
+好了，现在我们已经可以保存很大的文件了，并且可以通过文件名和文件大小，将它们准确读取出来啦！
 
-Allocating group tables: done
-Writing inode tables: done
-Writing superblocks and filesystem accounting information: done
-```
+## 元数据记录
+
+但我们得精益求精，我们再想想看这个文件系统有什么毛病。
+
+比如，inode 数量不够时，我们是怎么得知的呢？是不是需要在 inode 位图中找，找不到了才知道不够用了？
+
+同样，对于块数量不够时，也是如此。
+
+要是有个全局的地方，来记录这一切，就好了，也方便随时调整，比如这样
+
+inode 数量
+
+空闲 inode 数量
+
+块数量
+
+空闲块数量
+
+那我们就再占用一个块来存储这些数据吧！由于他们看起来像是站在上帝视角来描述这个文件系统的，所以我们把它放在最开始的块上，并把它叫做**超级块**，现在的布局如下。
+
+![](https://mmbiz.qpic.cn/mmbiz_jpg/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDfc7McjdEjQfcUbDDxOzVw6ZDqLLrJDAsY8IgdXN5lmsodZ6aHCxpbjg/640?wx_fmt=jpeg)
+
+我们继续精益求精。
+
+现在，**块位图**、**inode 位图**、**inode 表**，都是是固定地占据这块 1、块 2、块 3 这三个位置。
+
+假如之后 inode 的数量很多，使得 inode 表或者 inode 位图需要占据多个块，怎么办？
+
+或者，块的数量增多（硬盘本身大了，或者每个块变小了），块位图需要占据多个块，怎么办？
+
+程序是死的，你不告诉它哪个块表示什么，它可不会自己猜。
+
+很简单，与超级块记录信息一样，这些信息也选择一个块来记录，就不怕了。那我们就选择紧跟在超级块后面的 1 号块来记录这些信息吧，并把它称之为**块描述符**。
+
+![](https://mmbiz.qpic.cn/mmbiz_jpg/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDffia4t0XszAj6icMpTAiaJY4d5cgN0Ka0DnULFZZZlCEdK3UmanFbqcSEA/640?wx_fmt=jpeg)
+
+当然，这些所在块号只是记录起始块号，块位图、inode 位图、inode 表分别都可以占用多个块。
+
+好了，大功告成！
+
+## 我们再尝试存入一批文件。
+
+*   葵花宝典.txt
+*   数学期末复习资料.mp4
+*   赘婿1.mp4
+*   赘婿2.mp4
+*   赘婿3.mp4
+*   赘婿4.mp4
+*   无聊的闪客.pdf
+
+诶？这看着好不爽，所有的文件都是平铺开的，能不能拥有**层级关系**呢？比如这样
+
+*   葵花宝典.txt
+*   数学期末复习资料.mp4
+*   赘婿
+*   赘婿1.mp4
+*   赘婿2.mp4
+*   赘婿3.mp4
+*   赘婿4.mp4
+*   无聊的闪客.pdf
+
+我们将葵花宝典.txt 这种称为**普通文件**，将赘婿这种称为**目录文件**，如果要访问赘婿1.mp4，那全文件名要写成：赘婿/赘婿1.mp4。
+
+如何做到这一点呢？那我们又得把 inode 结构拿出来说事了。
+
+![](https://mmbiz.qpic.cn/mmbiz_png/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDfUHOgLG93SuaRKVQx7KwvwEMkibXibUBiahk2zPGHxJEllw9yGIiaEHOZ7w/640?wx_fmt=png)
+
+此时需要一个属性来区分这个文件是普通文件，还是目录文件。
+
+缺什么就补什么嘛，我们已经很熟悉了，专门加一个 4 字节，来表示**文件类型**。
+
+![](https://mmbiz.qpic.cn/mmbiz_png/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDf9C2jf6WySMyJTvESoChM9aOCWDibOys76I4hufo45zu0WPWWMnea0xw/640?wx_fmt=png)
+
+如果是**普通文件**，则这个 inode 所指向的数据块仍然和之前一样，就是文件本身原封不动的内容。
+
+但如果是**目录文件**，则这个 inode 所指向的数据块，就需要重新规划了。
+
+这个数据块里应该是什么样子呢？可以是一个一个指向不同 inode 的紧挨着的结构体，比如这样。
+
+![](https://mmbiz.qpic.cn/mmbiz_png/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDf4ia6OOsneVH1xWqnibiboqPCbDvZetEmTJ15oRATib4NicpqHibhPPp83BMw/640?wx_fmt=png)
+
+这样先通过 **赘婿**这个目录文件，找到所在的数据块。再根据这个数据块里的一个个带有 **inode** 信息的结构体，找到这个目录下的所有文件。
+
+完美！
+
+## 目录
+
+不过这样的话，你想想看，如果想要查看一下赘婿**这个目录下的所有文件**（比如 ll 命令），将文件名和文件类型都展示出来，怎么办呢？
+
+就需要把一个个结构体指向的 inode 从 inode 表中取出，再把文件名和文件类型取出，这很是浪费时间。
+
+而让用户看到一个目录下的所有文件，又是一个极其常见的操作。
+
+所以，不如把文件名和文件类型这种常见的信息，放在数据块中的结构体里吧。
+
+![](https://mmbiz.qpic.cn/mmbiz_png/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDfaCmiaOAibU7q8kxf8CJdJRYYdqGdmnGAvb2pN5IhKENAON2GicIjAAAww/640?wx_fmt=png)
+
+同时，inode 结构中的文件名，好像就没啥用了，这种变长的东西放在这种定长的结构中本身就很讨厌，早就想给它去掉了。而且还能给其他信息省下空间，比如文件所在块的数组，就能再多几个了。
+
+太好了，去掉它！
+
+![](https://mmbiz.qpic.cn/mmbiz_png/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDfJSNp4Dxibd7IFba5DoicWdgkHiba1khAdAibwU1vmpDjN8ia3DS1ibwMklew/640?wx_fmt=png)
+
+OK，大功告成，现在我们就可以给文件分门别类放进不同目录下了，还可以在目录下创建目录，无限套娃！
+
+现在的文件系统，已经比较完善了，只是还有一点不太爽。
+
+## 最后
+
+我们访问到一个目录下，可以很舒服地看到目录里的文件，然后再根据名称访问这个目录下的文件或者目录，整个过程都是一个套路。
+
+但是，最上层的目录下的所有文件，即**根目录**，现在仍然需要通过遍历所有的 inode 来获得，能不能和上面的套路统一呢？
+
+答案非常简单，我们规定，**inode 表中的 0 号 inode，就表示根目录**，一切的访问，就从这个根目录开始！
+
+![](https://mmbiz.qpic.cn/mmbiz_png/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDf8t0qNVGLR6cKLv4SR0SGywsX1b5lPcu3AcGzUNjnCQ7V7QA7YE5IWg/640?wx_fmt=png)
+
+好了，这回没有然后了！
+
+我们最后来欣赏下我们的文件系统架构。
+
+![](https://mmbiz.qpic.cn/mmbiz_png/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDfnk5ApwlxjBJSF2rSoxyhVFDcmktSrrah5Mj8iakhm4raOciaT4PLqQRg/640?wx_fmt=png)
+
+你是不是觉得这没啥了不起的。
+
+**但这个破玩意，它就叫文件系统**
+
+## 后记
+
+这个文件系统，和 linux 上的经典文件系统 **ext2** 基本相同。
+
+下面是我画的 ext2 文件系统的结构（字段部分只画了核心字段）
+
+![](https://mmbiz.qpic.cn/mmbiz_png/GLeh42uInXRPpGdb1rLVOuU9fgMuLiaDfP9ia54kT3wLekE3Id4bAib4EYTHVWP7p0PX1VQun1789BYzJNgTq2uUw/640?wx_fmt=png)
+
+如果你想了解更多的细节，可以参考官方说明文档: https://www.nongnu.org/ext2-doc/ext2.pdf
+
+你也可以用 linux 的 mke2fs 命令生成一个 ext2 文件系统的磁盘镜像，然后一个字节一个字节地对照这官方说明文档拆解，这种方式其实是最直接的。
 

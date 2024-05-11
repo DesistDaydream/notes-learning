@@ -495,7 +495,7 @@ func startKubelet(k kubelet.Bootstrap, podCfg *config.PodConfig, kubeCfg *kubele
 
 ## kubelet.Run()
 
-`kubelet.Run()` 方法是**启动 kubelet 的核心方法**，其中会启动 kubelet 的依赖模块以及主循环逻辑，这是实现了 [Bootstrap](/docs/10.云原生/Kubernetes/Kubernetes%20开发/源码解析/Kubelet%20源码.md#Bootstrap%20接口) 接口的 [Kubelet](/docs/10.云原生/Kubernetes/Kubernetes%20开发/源码解析/Kubelet%20源码.md#Kubelet%20结构体) 结构体的方法。该方法的主要逻辑为：
+`kubelet.Run()` 方法是**启动 kubelet 的核心方法**，其中会启动 kubelet 的依赖模块以及主循环逻辑，这是实现了 [Bootstrap](/docs/10.云原生/Kubernetes/Kubernetes%20开发/源码解析/Kubelet%20源码/Kubelet%20源码.md#Bootstrap%20接口) 接口的 [Kubelet](/docs/10.云原生/Kubernetes/Kubernetes%20开发/源码解析/Kubelet%20源码/Kubelet%20源码.md#Kubelet%20结构体) 结构体的方法。该方法的主要逻辑为：
 
 - 注册 logServer；
 - 判断是否需要启动 cloud provider sync manager；

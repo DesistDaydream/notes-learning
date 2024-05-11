@@ -21,6 +21,20 @@
       "obsidian_template",
       "files"
     ],
+    "blog/copy": [
+      "blog/copy/_index.md",
+      "blog/copy/Linux Torvalds 采访.md",
+      "blog/copy/硬核致敬Linux ！30岁生日快乐！.md",
+      "blog/copy/程序员的酒后真言.md",
+      "blog/copy/调度系统设计精要.md",
+      "blog/copy/多CPU架构问题",
+      "blog/copy/二十年老程序员的二十条心得：面试几乎没用，警惕很久没写过代码的“大牛”.md",
+      "blog/copy/公众号,码农的荒岛求生-操作系统话题系列文章",
+      "blog/copy/你天天关注这些新闻有什么用.md",
+      "blog/copy/云原生",
+      "blog/copy/BPF 文章.md",
+      "blog/copy/ext 文件系统机制原理剖析.md"
+    ],
     "docs": [
       "docs/_index.md",
       "docs/学习",
@@ -95,6 +109,11 @@
       "docs/1.操作系统/Bootloader/_index.md",
       "docs/1.操作系统/Bootloader/Bootloader.md",
       "docs/1.操作系统/Bootloader/启动引导.md"
+    ],
+    "docs/1.操作系统/Filesystem": [
+      "docs/1.操作系统/Filesystem/_index.md",
+      "docs/1.操作系统/Filesystem/Filesystem.md",
+      "docs/1.操作系统/Filesystem/Archive File(归档文件).md"
     ],
     "docs/1.操作系统/Job": [
       "docs/1.操作系统/Job/_index.md",
@@ -171,9 +190,9 @@
     ],
     "docs/1.操作系统/Kernel/Filesystem/磁盘文件系统": [
       "docs/1.操作系统/Kernel/Filesystem/磁盘文件系统/_index.md",
-      "docs/1.操作系统/Kernel/Filesystem/磁盘文件系统/Journaling File System.md",
       "docs/1.操作系统/Kernel/Filesystem/磁盘文件系统/EXT FileSystem.md",
-      "docs/1.操作系统/Kernel/Filesystem/磁盘文件系统/XFS.md"
+      "docs/1.操作系统/Kernel/Filesystem/磁盘文件系统/XFS.md",
+      "docs/1.操作系统/Kernel/Filesystem/磁盘文件系统/Journaling File System.md"
     ],
     "docs/1.操作系统/Kernel/Linux Kernel": [
       "docs/1.操作系统/Kernel/Linux Kernel/_index.md",
@@ -227,6 +246,12 @@
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/systemd-networkd.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/NetworkManager",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netplan"
+    ],
+    "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解/Linux 网络设备详解.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解/Bond 与 Team.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解/Bridge.md"
     ],
     "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netlink": [
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netlink/_index.md",
@@ -697,6 +722,19 @@
       "docs/10.云原生/DevOps/Drone/drone 命令行工具.md",
       "docs/10.云原生/DevOps/Drone/Drone 任务示例.md"
     ],
+    "docs/10.云原生/DevOps/Jenkins": [
+      "docs/10.云原生/DevOps/Jenkins/_index.md",
+      "docs/10.云原生/DevOps/Jenkins/Jenkins.md",
+      "docs/10.云原生/DevOps/Jenkins/Jenkins 任务示例.md",
+      "docs/10.云原生/DevOps/Jenkins/Jenkins 页面详解.md",
+      "docs/10.云原生/DevOps/Jenkins/Jenkins基于k8s的 CICD平台部署.md"
+    ],
+    "docs/10.云原生/DevOps/Skaffold": [
+      "docs/10.云原生/DevOps/Skaffold/_index.md",
+      "docs/10.云原生/DevOps/Skaffold/Skaffold.md",
+      "docs/10.云原生/DevOps/Skaffold/Skaffold Pipeline 详解.md",
+      "docs/10.云原生/DevOps/Skaffold/Skaffold 命令行工具.md"
+    ],
     "docs/10.云原生/Kubernetes": [
       "docs/10.云原生/Kubernetes/_index.md",
       "docs/10.云原生/Kubernetes/Kuberntes 介绍",
@@ -831,6 +869,14 @@
       "docs/10.云原生/Kubernetes/Kubernetes 存储/Volume/ConfigMap 与 Secret.md",
       "docs/10.云原生/Kubernetes/Kubernetes 存储/Volume/emptyDir、hostPath、local.md"
     ],
+    "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码": [
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码/_index.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码/Kubelet 源码.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码/EvictionManager 模块.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码/PodWorker 模块.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码/SyncLoop 模块.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码/Kubelet 启动流程.md"
+    ],
     "docs/10.云原生/Kubernetes/Kubernetes 管理": [
       "docs/10.云原生/Kubernetes/Kubernetes 管理/_index.md",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 管理.md",
@@ -880,10 +926,16 @@
     "docs/10.云原生/Kubernetes/Kubernetes 管理/性能优化与故障处理": [
       "docs/10.云原生/Kubernetes/Kubernetes 管理/性能优化与故障处理/_index.md",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/性能优化与故障处理/性能优化与故障处理.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/性能优化与故障处理/k8s CPU limit和throttling的迷思.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/性能优化与故障处理/故障处理案例",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/性能优化与故障处理/故障处理技巧",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/性能优化与故障处理/kubernetes优化"
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/性能优化与故障处理/故障处理案例",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/性能优化与故障处理/kubernetes优化",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/性能优化与故障处理/k8s CPU limit和throttling的迷思.md"
+    ],
+    "docs/10.云原生/Kubernetes/Kubernetes 管理/性能优化与故障处理/故障处理技巧": [
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/性能优化与故障处理/故障处理技巧/_index.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/性能优化与故障处理/故障处理技巧/故障处理技巧.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/性能优化与故障处理/故障处理技巧/Kubernetes排障图谱.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/性能优化与故障处理/故障处理技巧/etc_kubernetes 目录误删恢复.md"
     ],
     "docs/10.云原生/Kubernetes/Kubernetes 管理/性能优化与故障处理/故障处理案例": [
       "docs/10.云原生/Kubernetes/Kubernetes 管理/性能优化与故障处理/故障处理案例/_index.md",
@@ -1279,6 +1331,15 @@
       "docs/2.编程/Programming environment/REPL.md",
       "docs/2.编程/Programming environment/IDE"
     ],
+    "docs/2.编程/Programming environment/IDE/Visual Studio Code": [
+      "docs/2.编程/Programming environment/IDE/Visual Studio Code/_index.md",
+      "docs/2.编程/Programming environment/IDE/Visual Studio Code/Visual Studio Code.md",
+      "docs/2.编程/Programming environment/IDE/Visual Studio Code/VS Code 快捷键.md",
+      "docs/2.编程/Programming environment/IDE/Visual Studio Code/VS Code 配置详解.md",
+      "docs/2.编程/Programming environment/IDE/Visual Studio Code/VS Code 中的 WSL.md",
+      "docs/2.编程/Programming environment/IDE/Visual Studio Code/Plugins.md",
+      "docs/2.编程/Programming environment/IDE/Visual Studio Code/code-server.md"
+    ],
     "docs/2.编程/Programming tools": [
       "docs/2.编程/Programming tools/_index.md",
       "docs/2.编程/Programming tools/Programming tools.md",
@@ -1377,6 +1438,11 @@
       "docs/2.编程/计算机科学/Function/_index.md",
       "docs/2.编程/计算机科学/Function/Function.md",
       "docs/2.编程/计算机科学/Function/回调函数 callback.md"
+    ],
+    "docs/2.编程/计算机科学/Object-oriented Programming": [
+      "docs/2.编程/计算机科学/Object-oriented Programming/_index.md",
+      "docs/2.编程/计算机科学/Object-oriented Programming/OOP.md",
+      "docs/2.编程/计算机科学/Object-oriented Programming/设计模式.md"
     ],
     "docs/2.编程/计算机科学/假如你来发明编程语言": [
       "docs/2.编程/计算机科学/假如你来发明编程语言/_index.md",
@@ -1492,6 +1558,11 @@
       "docs/2.编程/高级编程语言/Go/Go 第三方库/GUI/_index.md",
       "docs/2.编程/高级编程语言/Go/Go 第三方库/GUI/GUI.md",
       "docs/2.编程/高级编程语言/Go/Go 第三方库/GUI/Fyne.md"
+    ],
+    "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/Netlink": [
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/Netlink/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/Netlink/Netlink.md",
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/Netlink/Netlink 操作.md"
     ],
     "docs/2.编程/高级编程语言/Go/Go 网络编程": [
       "docs/2.编程/高级编程语言/Go/Go 网络编程/_index.md",
@@ -1711,6 +1782,7 @@
       "docs/4.数据通信/通信协议/_index.md",
       "docs/4.数据通信/通信协议/通信协议.md",
       "docs/4.数据通信/通信协议/通信协议通用概念.md",
+      "docs/4.数据通信/通信协议/Data Link Layer",
       "docs/4.数据通信/通信协议/ARP 与 NDP.md",
       "docs/4.数据通信/通信协议/BGP.md",
       "docs/4.数据通信/通信协议/ICMP.md",
@@ -1726,7 +1798,9 @@
       "docs/4.数据通信/通信协议/SSDP.md",
       "docs/4.数据通信/通信协议/RTSP.md",
       "docs/4.数据通信/通信协议/TCP 与 HTTP",
-      "docs/4.数据通信/通信协议/Tunneling Protocol"
+      "docs/4.数据通信/通信协议/Tunneling Protocol",
+      "docs/4.数据通信/通信协议/Secure Shell Protocol.md",
+      "docs/4.数据通信/通信协议/其他.md"
     ],
     "docs/4.数据通信/通信协议/HTTP": [
       "docs/4.数据通信/通信协议/HTTP/_index.md",
@@ -2304,6 +2378,12 @@
       "docs/7.信息安全/Packet analyzer/WireShark/Filter.md",
       "docs/7.信息安全/Packet analyzer/WireShark/TCP Analysis.md"
     ],
+    "docs/7.信息安全/Security software": [
+      "docs/7.信息安全/Security software/_index.md",
+      "docs/7.信息安全/Security software/Security software.md",
+      "docs/7.信息安全/Security software/Snort.md",
+      "docs/7.信息安全/Security software/Snort Rule body.md"
+    ],
     "docs/8.通用技术": [
       "docs/8.通用技术/_index.md",
       "docs/8.通用技术/编码与解码",
@@ -2316,6 +2396,11 @@
       "docs/8.通用技术/Service Discovery(服务发现).md",
       "docs/8.通用技术/Timestamps(时间戳).md",
       "docs/8.通用技术/UUID 与 ULID.md"
+    ],
+    "docs/8.通用技术/Job": [
+      "docs/8.通用技术/Job/_index.md",
+      "docs/8.通用技术/Job/Job.md",
+      "docs/8.通用技术/Job/青龙.md"
     ],
     "docs/8.通用技术/Message Queue(消息队列)": [
       "docs/8.通用技术/Message Queue(消息队列)/_index.md",
@@ -2428,6 +2513,33 @@
       "docs/Mobile device/Mobile device.md",
       "docs/Mobile device/Android.md",
       "docs/Mobile device/Android 开发.md"
+    ],
+    "docs/Standard": [
+      "docs/Standard/_index.md",
+      "docs/Standard/Glossary.md",
+      "docs/Standard/常用英文.md",
+      "docs/Standard/Foundation",
+      "docs/Standard/IT",
+      "docs/Standard/Internet",
+      "docs/Standard/Agent 与 Proxy.md",
+      "docs/Standard/Architecture(架构).md",
+      "docs/Standard/B_S 和 C_S 架构.md",
+      "docs/Standard/Transaction(事务).md",
+      "docs/Standard/南北流量和东西流量.md",
+      "docs/Standard/中国行政区划及代码.md"
+    ],
+    "docs/Standard/IT": [
+      "docs/Standard/IT/_index.md",
+      "docs/Standard/IT/IT.md",
+      "docs/Standard/IT/ANSI.md",
+      "docs/Standard/IT/IEEE.md"
+    ],
+    "docs/Standard/Internet": [
+      "docs/Standard/Internet/_index.md",
+      "docs/Standard/Internet/Internet.md",
+      "docs/Standard/Internet/IETF.md",
+      "docs/Standard/Internet/RFC.md",
+      "docs/Standard/Internet/W3C.md"
     ],
     "docs/Utils": [
       "docs/Utils/_index.md",
@@ -2546,33 +2658,6 @@
       "docs/Web/网站搭建/Hugo/模板/模板.md",
       "docs/Web/网站搭建/Hugo/模板/变量.md"
     ],
-    "docs/Standard": [
-      "docs/Standard/_index.md",
-      "docs/Standard/Glossary.md",
-      "docs/Standard/常用英文.md",
-      "docs/Standard/Foundation",
-      "docs/Standard/IT",
-      "docs/Standard/Internet",
-      "docs/Standard/Agent 与 Proxy.md",
-      "docs/Standard/Architecture(架构).md",
-      "docs/Standard/B_S 和 C_S 架构.md",
-      "docs/Standard/Transaction(事务).md",
-      "docs/Standard/南北流量和东西流量.md",
-      "docs/Standard/中国行政区划及代码.md"
-    ],
-    "docs/Standard/IT": [
-      "docs/Standard/IT/_index.md",
-      "docs/Standard/IT/IT.md",
-      "docs/Standard/IT/ANSI.md",
-      "docs/Standard/IT/IEEE.md"
-    ],
-    "docs/Standard/Internet": [
-      "docs/Standard/Internet/_index.md",
-      "docs/Standard/Internet/Internet.md",
-      "docs/Standard/Internet/IETF.md",
-      "docs/Standard/Internet/RFC.md",
-      "docs/Standard/Internet/W3C.md"
-    ],
     "docs/学习": [
       "docs/学习/_index.md",
       "docs/学习/学习.md",
@@ -2587,52 +2672,10 @@
       "docs/学习/PKM/写作.md",
       "docs/学习/PKM/Obsidian.md",
       "docs/学习/PKM/WPS.md"
-    ],
-    "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解": [
-      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解/_index.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解/Linux 网络设备详解.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解/Bond 与 Team.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解/Bridge.md"
-    ],
-    "docs/1.操作系统/Filesystem": [
-      "docs/1.操作系统/Filesystem/_index.md",
-      "docs/1.操作系统/Filesystem/Filesystem.md",
-      "docs/1.操作系统/Filesystem/Archive File(归档文件).md"
-    ],
-    "docs/2.编程/计算机科学/Object-oriented Programming": [
-      "docs/2.编程/计算机科学/Object-oriented Programming/_index.md",
-      "docs/2.编程/计算机科学/Object-oriented Programming/OOP.md",
-      "docs/2.编程/计算机科学/Object-oriented Programming/设计模式.md"
-    ],
-    "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/Netlink": [
-      "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/Netlink/_index.md",
-      "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/Netlink/Netlink.md",
-      "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/Netlink/Netlink 操作.md"
-    ],
-    "docs/2.编程/Programming environment/IDE/Visual Studio Code": [
-      "docs/2.编程/Programming environment/IDE/Visual Studio Code/_index.md",
-      "docs/2.编程/Programming environment/IDE/Visual Studio Code/Visual Studio Code.md",
-      "docs/2.编程/Programming environment/IDE/Visual Studio Code/VS Code 快捷键.md",
-      "docs/2.编程/Programming environment/IDE/Visual Studio Code/VS Code 配置详解.md",
-      "docs/2.编程/Programming environment/IDE/Visual Studio Code/VS Code 中的 WSL.md",
-      "docs/2.编程/Programming environment/IDE/Visual Studio Code/Plugins.md",
-      "docs/2.编程/Programming environment/IDE/Visual Studio Code/code-server.md"
-    ],
-    "docs/7.信息安全/Security software": [
-      "docs/7.信息安全/Security software/_index.md",
-      "docs/7.信息安全/Security software/Security software.md",
-      "docs/7.信息安全/Security software/Snort.md",
-      "docs/7.信息安全/Security software/Snort Rule body.md"
-    ],
-    "docs/8.通用技术/Job": [
-      "docs/8.通用技术/Job/_index.md",
-      "docs/8.通用技术/Job/Job.md",
-      "docs/8.通用技术/Job/青龙.md"
     ]
   },
   "actionBarOrder": {},
   "autoHide": true,
   "autoHideDelay": 2000,
-  "dragDelay": 200,
-  "sortOrder": "custom"
+  "dragDelay": 200
 }

@@ -23,5 +23,8 @@ https://jumpserver.org/
 
 [GitHub 项目，veops/oneterm](https://github.com/veops/oneterm)
 
-https://mp.weixin.qq.com/s/iFy83vu3Yybj1X6gypPKjg
+[公众号 - Kubernetes技术栈，开源推荐｜简洁且强大的开源堡垒机OneTerm](https://mp.weixin.qq.com/s/iFy83vu3Yybj1X6gypPKjg)
+
+[公众号 - Kubernetes技术栈，用了两周开源堡垒机OneTerm，我有一些建议](https://mp.weixin.qq.com/s/AyY0SknYGjJhQbbWHu7-bQ)
+
 

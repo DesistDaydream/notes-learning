@@ -8,7 +8,6 @@ title: Leader 选举
 > - [原文链接](https://mp.weixin.qq.com/s/EPKShekTZWe04H1X2E21LQ)
 
 领导者选举要解决什么问题呢？首先，一个分布式集群中运行了多个组件，每个组件负责自身重要的功能。其中有一个组件因为某些原因而退出，此时整个集群的运作都受到了影响。**领导者选举就是要保证每个组件的高可用性**，例如，在 Kubernetes 集群中，允许同时运行多个 kube-scheduler 节点，其中正常工作的只有一个 kube-scheduler 节点（即领导者节点），其他 kube-scheduler 节点为候选（Candidate）节点并处于阻塞状态。在领导者节点因某些原因而退出后，其他候选节点则通过领导者选举机制竞选，有一个候选节点成为领导者节点并接替之前领导者节点的工作。领导者选举机制如下图所示。
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/d05e3808-6527-434a-b7bb-bdf3bc826284/640)
 
 ## 领导者选举机制
 
@@ -65,7 +64,7 @@ Get 方法用于获取资源锁的所有信息，Create 方法用于创建资源
 
 # 领导者选举过程
 
-领导者选举过程如下图所示：![](https://notes-learning.oss-cn-beijing.aliyuncs.com/d05e3808-6527-434a-b7bb-bdf3bc826284/640)
+领导者选举过程如下图所示：
 
 领导者选举过程
 
@@ -207,5 +206,3 @@ func (le *LeaderElector) renew(ctx context.Context) {
 
 执行 `le.tryAcquireOrRenew` 函数来实现领导者节点的续约，其原理与资源锁获取过程相同。le.tryAcquireOrRenew 函数返回 true 说明续约成功，并进入下一个定时续约；返回 false 则退出并执行 le.release 函数且释放资源锁。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/d05e3808-6527-434a-b7bb-bdf3bc826284/640)
-本文授权转载于：Kubernetes 源码剖析，作者：郑东旭

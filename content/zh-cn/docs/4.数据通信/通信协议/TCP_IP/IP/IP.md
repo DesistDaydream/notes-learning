@@ -208,3 +208,10 @@ apnic|HK|ipv6|2001:df5:b800::|48|20140514|assigned
 | ORG  | 组织机构 | 非营利性组织机构                                        |
 | SAT  | 卫星通信 | 通过卫星上网的出口 IP                                   |
 | VPN  | 代理网络 | 属于数据中心的一部分，专门做 VPN 业务的                 |
+## IP 归属地
+
+> 参考:
+>
+> - [公众号 -  golang学习记，Go实现全球IP属地，这个强大到离谱的离线库准确率高达99.99%](https://mp.weixin.qq.com/s/_Zjg2HgKlPzZVDwdUj88vQ)
+
+[GitHub 项目，lionsoul2014/ip2region](https://github.com/lionsoul2014/ip2region) # 一个离线IP地址定位库和IP定位数据管理框架，10微秒级别的查询效率，提供了众多主流编程语言的 `xdb` 数据生成和查询客户端实现。

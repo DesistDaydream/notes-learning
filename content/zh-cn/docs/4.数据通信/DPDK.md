@@ -51,7 +51,10 @@ TODO: 好多好多驱动。
 
 # DPDK 部署
 
-https://core.dpdk.org/doc/quick-start/
+> 参考:
+>
+> - [官方文档，快速开始](https://core.dpdk.org/doc/quick-start/)
+> - [知乎，KVM虚拟机安装DPDK(vfio+igb_uio)](https://zhuanlan.zhihu.com/p/613149235) TODO: 待验证
 
 [这里](https://doc.dpdk.org/guides/linux_gsg/index.html) 是要在 Linux 安装 DPDK 的一些要求
 

@@ -13,7 +13,7 @@ weight: 1
 > - [Linux 性能优化实践-文件系统](https://time.geekbang.org/column/article/76876)
 > - [公众号，小林 coding-一口气搞懂「文件系统」，就靠这 25 张图了](https://mp.weixin.qq.com/s/qJdoXTv_XS_4ts9YuzMNIw)
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/op2fw9/1616167805545-2b948cff-7e56-4eb8-8c12-3851fd6c2e36.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/filesystem/the_linux_storage_stack_diagram_1.png)
 
 > 图片来源：<https://www.thomas-krenn.com/en/wiki/Linux_Storage_Stack_Diagram>
 > 从上面的结构可以看到，文件系统的作用就是用来接收用户的操作，并将数据保存到物理硬盘的。可以想见，如果没有文件系统帮助用户操作，那么人们又怎么能将数据保存到存储设备上呢~
@@ -47,7 +47,7 @@ weight: 1
 
 这个层次化的树形结构就像下图一样：
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/op2fw9/1617088781476-3d7a9ccc-e8df-4680-acc5-26f4f82aa8b5.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/filesystem/1617088781476-3d7a9ccc-e8df-4680-acc5-26f4f82aa8b5.png)
 
 **注意：目录项缓存记录在 slab 中，当我们使用 find 命令时，slab 中的 dentry 缓存就会增大；打开文件过多，slab 中的 dentry 缓存也会增大。**
 
@@ -74,7 +74,7 @@ inode 是每个文件的唯一标志，而 dentry 维护的正是文件系统的
 > 索引节点和目录项记录了文件的元数据，以及文件间的目录关系，那么具体来说，文件数据到底是怎么存储的呢？是不是直接写到磁盘中就好了呢？
 > 实际上，磁盘读写的最小单位是扇区，然而扇区只有 512B 大小，如果每次都读写这么小的单位，效率一定很低。所以，文件系统又把连续的扇区组成了逻辑块，然后每次都以逻辑块为最小单元，来管理数据。常见的逻辑块大小为 4KB，也就是由连续的 8 个扇区组成。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/op2fw9/1616167805558-180916c2-cc19-40a0-b8f4-3ff805929883.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/filesystem/1616167805558-180916c2-cc19-40a0-b8f4-3ff805929883.png)
 
 注意：
 
@@ -117,7 +117,7 @@ dentry、inode、逻辑块以及超级块构成了 Linux 文件系统的四大�
 >
 > 比如 VFS 可以用来弥合 Windows、MacOS、Unix 文件系统中的差异，以便应用程序可以访问那些类型的本地文件系统上的文件，而不必知道它们正在访问哪种文件系统。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/op2fw9/1616167805621-09dbf293-4f9a-4892-8e30-8d33f32031c4.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/filesystem/1616167805621-09dbf293-4f9a-4892-8e30-8d33f32031c4.png)
 
 举个例子，Linux 用户程序可以通过`read()` 来读取`ext4`、`NFS`、`XFS`等文件系统的文件，也可以读取存储在`SSD`、`HDD`等不同存储介质的文件，无须考虑不同文件系统或者不同存储介质的差异。
 
@@ -140,7 +140,8 @@ int ret = write(fd, buf, len);
 - 最后，调用 `op_write()` 实际的把数据写入到文件中。
 
 操作示意图如下：
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/op2fw9/1616167805551-1b23e389-6142-4e11-8ef1-b1b1c1722cbe.jpeg)
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/filesystem/1616167805551-1b23e389-6142-4e11-8ef1-b1b1c1722cbe.jpeg)
 
 # 文件系统类型
 
@@ -259,7 +260,7 @@ ssize_t write(int fd, const void *buf, size_t count);
 
 ## 总结
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/op2fw9/1616167677139-656d34bf-0195-4576-919f-2eedc4f4ba5a.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/filesystem/1616167677139-656d34bf-0195-4576-919f-2eedc4f4ba5a.png)
 
 在前面我们知道了，I/O 是分为两个过程的：
 
