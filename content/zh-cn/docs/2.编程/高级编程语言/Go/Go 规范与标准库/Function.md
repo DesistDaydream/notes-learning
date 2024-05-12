@@ -108,7 +108,7 @@ Greeting("hello:", "Joe", "Anna", "Eileen")
 
 所谓的匿名函数，其实就是定义时即调用运行，而普通函数，定义后，在定义后不调用之前，是不会运行的。
 
-**匿名函数 **可以构造** Closure(闭包)**。
+**匿名函数** 可以构造 **Closure(闭包)**。
 
 闭包的特性：
 
@@ -135,17 +135,19 @@ Greeting("hello:", "Joe", "Anna", "Eileen")
 
 `new()` 是 go 语言中很重要的一种 **设计思想**,在原生基础包里，仅仅返回一个类型的指针。而在实际项目中，人们常常将 new() 思想与 struct 相结合。比如下面这个例子：
 
-    // 声明一个结构体
-    type MemorySession struct {
-        sessionID string
-        data      map[string]interface{}
-        rwlock    sync.RWMutex
-    }
-    // NewMemorySession 返回一个储存 Session 的内存引擎
-    func NewMemorySession(id string) *MemorySession {
-        s := &MemorySession{}
-    return s
-    }
+```go
+// 声明一个结构体
+type MemorySession struct {
+    sessionID string
+    data      map[string]interface{}
+    rwlock    sync.RWMutex
+}
+// NewMemorySession 返回一个储存 Session 的内存引擎
+func NewMemorySession(id string) *MemorySession {
+    s := &MemorySession{}
+return s
+}
+```
 
 这个例子中，就使用了 new() 的思想，通过一个函数，来生成一个结构体的指针，这个指针通常称为该结构体的 **instance(实例)**。这样，后续要操作这个结构体属性的值，调用这些指针(i.e.实例)即可
 
@@ -189,17 +191,19 @@ make 负责初始化值，make(T) 返回初始化后的 T ，而非指针
 
 关于，并非是空值，而是一种“变量未填充前”的默认值，通常为 0，如下
 
-    int  0
-    int8 0
-    int32 0
-    int64 0
-    uint 0x0
-    rune 0 //rune的实际类型是 int32
-    byte 0x0 //byte的实际类型是uint8
-    float32 0 //长度为4 byte
-    float64 0 //长度为8 byte
-    bool false
-    string ""
+```go
+int  0
+int8 0
+int32 0
+int64 0
+uint 0x0
+rune 0 //rune的实际类型是 int32
+byte 0x0 //byte的实际类型是uint8
+float32 0 //长度为4 byte
+float64 0 //长度为8 byte
+bool false
+string ""
+```
 
 # Other
 

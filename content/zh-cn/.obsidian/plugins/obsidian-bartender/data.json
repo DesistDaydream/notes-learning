@@ -2677,5 +2677,6 @@
   "actionBarOrder": {},
   "autoHide": true,
   "autoHideDelay": 2000,
-  "dragDelay": 200
+  "dragDelay": 200,
+  "sortOrder": "custom"
 }

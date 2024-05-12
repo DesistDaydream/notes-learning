@@ -14,6 +14,7 @@ type Config struct {
 	AutoHide         bool                `json:"autoHide"`
 	AutoHideDelay    int                 `json:"autoHideDelay"`
 	DragDelay        int                 `json:"dragDelay"`
+	SortOrder        string              `json:"sortOrder"`
 }
 
 func main() {
