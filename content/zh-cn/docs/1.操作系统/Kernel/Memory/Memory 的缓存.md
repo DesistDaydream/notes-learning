@@ -8,7 +8,7 @@ weight: 3
 # 概述
 
 > 参考：
-> 
+>
 > -
 
 linux 中每个程序启动之后都会占用内存，一般情况下是不会把内存全部占满。那么空闲的这部分内存用来干什么呢？~
@@ -74,7 +74,7 @@ Swap:          4.0G        8.7M        4.0G
 real 0m0.614s
 user 0m0.011s
 sys 0m0.412s
-[root@lichenhao bonding]# free -h
+[root@desistdaydream bonding]# free -h
               total        used        free      shared  buff/cache   available
 Mem:           3.7G        326M        2.1G         16M        1.3G        3.1G
 Swap:          4.0G        8.7M        4.0G
@@ -129,7 +129,7 @@ swapon ${SWAP_FILE}
 可以在 /etc/fstab 文件中添加配置以实现开启自动激活 swap
 
 ```
-/swapfile.img	none	swap	sw	0	0
+/swapfile.img none swap sw 0 0
 ```
 
 # 缓存的清理

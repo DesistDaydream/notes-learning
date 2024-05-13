@@ -152,7 +152,7 @@ EXPRESSIONS 由以下几部分组成
   - find /etc -size +1k -a -size -10k
 - find -maxdepth 1 -mtime +1 -exec ls -l {} ; # 查找出来的如果是文件夹，那么就对这个文件夹执行该命令，如下图所示，查找出来./test 等 3 个文件夹，那么就这三个文件夹执行 ls -l 的命令，即
   - ls -l ./test
-  - ls -l ./lichenhao
+  - ls -l ./desistdaydream
   - ls -l ./lost+found
   - 注：查找出来的文字，一字不差的全部放在后面的 `{}` 中，等待 COMMAND 执行，所以没法列出目录的详细信息
   - 注意与-ls 参数的区别

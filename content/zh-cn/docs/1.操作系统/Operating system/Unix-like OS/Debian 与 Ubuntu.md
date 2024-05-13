@@ -10,8 +10,8 @@ title: Debian 与 Ubuntu
 
 ```bash
 groupadd wheel
-usermod -G wheel lichenhao
-tee /etc/sudoers.d/lichenhao > /dev/null <<EOF
+usermod -G wheel desistdaydream
+tee /etc/sudoers.d/desistdaydream > /dev/null <<EOF
 %wheel        ALL=(ALL)       NOPASSWD: ALL
 EOF
 ```

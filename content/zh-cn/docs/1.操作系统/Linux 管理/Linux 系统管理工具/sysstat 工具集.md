@@ -130,7 +130,7 @@ Linux 4.18.0-193.19.1.el8_2.x86_64 (ansible.tj-test)  10/27/2020  _x86_64_ (4 CP
 
 ```bash
 ~]# pidstat -r
-Linux 4.18.0-193.28.1.el8_2.x86_64 (lichenhao.bj-net)  11/18/2020  _x86_64_ (2 CPU)
+Linux 4.18.0-193.28.1.el8_2.x86_64 (desistdaydream.bj-net)  11/18/2020  _x86_64_ (2 CPU)
 09:58:16 PM   UID       PID  minflt/s  majflt/s     VSZ     RSS   %MEM  Command
 09:58:16 PM     0         1      5.57      0.05  176812   10844   0.28  systemd
 09:58:16 PM     0       664      0.43      0.00   91980    8980   0.23  systemd-journal
@@ -145,7 +145,7 @@ Linux 4.18.0-193.28.1.el8_2.x86_64 (lichenhao.bj-net)  11/18/2020  _x86_64_ (2 C
 
 ```bash
 ~]# pidstat -d
-Linux 4.18.0-193.28.1.el8_2.x86_64 (lichenhao.bj-net)  11/18/2020  _x86_64_ (2 CPU)
+Linux 4.18.0-193.28.1.el8_2.x86_64 (desistdaydream.bj-net)  11/18/2020  _x86_64_ (2 CPU)
 09:58:37 PM   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
 09:58:37 PM     0         1     56.46      0.18      0.01      33  systemd
 09:58:37 PM     0         7      0.18      0.00      0.00       0  kworker/u4:0-events_unbound
@@ -208,7 +208,7 @@ KEYWORD 可用的值有 DEV、EDEV、NFS、NFSD、SOCK、IP、EIP、ICMP、EICMP
 
 ```bash
 ~]# sar -n DEV 1
-Linux 4.18.0-193.28.1.el8_2.x86_64 (lichenhao.bj-net)  11/18/2020  _x86_64_ (2 CPU)
+Linux 4.18.0-193.28.1.el8_2.x86_64 (desistdaydream.bj-net)  11/18/2020  _x86_64_ (2 CPU)
 10:18:38 PM     IFACE   rxpck/s   txpck/s    rxkB/s    txkB/s   rxcmp/s   txcmp/s  rxmcst/s   %ifutil
 10:18:39 PM   docker0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
 10:18:39 PM      ens3      4.00      1.00      0.23      0.10      0.00      0.00      0.00      0.00

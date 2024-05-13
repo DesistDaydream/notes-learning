@@ -5,6 +5,7 @@ title: qemu-img
 # 概述
 
 > 参考：
+>
 > - [官方文档，工具-QEMU 磁盘镜像工具](https://www.qemu.org/docs/master/tools/qemu-img.html)
 
 管理 VM image(虚拟机的镜像) 文件。qemu-img 工具可以创建、转换和修改 image 文件。所有 QEMU 支持的格式都可以处理
@@ -76,10 +77,10 @@ OPTIONS
 
 - 创建一个 1T 容量的 qcow2 格式的镜像文件
   - **qemu-img create -f qcow2 -o size=1Ti data.bj-cs.qcow2**
-- 基于 centos8-2004.qcow2 镜像文件，创建一个名为 lichenhao.bj-net.qcow2 的增量镜像文件
-  - **qemu-img create -f qcow2 -b /var/lib/libvirt/images/backingFile/centos8-2004.qcow2 -F qcow2 lichenhao.bj-net.qcow2**
-  - **qemu-img create -f qcow2 -b /var/lib/libvirt/images/backingFile/centos8-2004.qcow2 -F qcow2 lichenhao.bj-net.qcow2** # 其中 -o backing_file 可以简写为 -b
-  - **qemu-img create -f qcow2 -b /var/lib/libvirt/images/backingFile/centos8-2004.qcow2 -o size=1Ti -F qcow2 lichenhao.bj-net.qcow2** # 创建时指定新镜像文件的大小
+- 基于 centos8-2004.qcow2 镜像文件，创建一个名为 desistdaydream.bj-net.qcow2 的增量镜像文件
+  - **qemu-img create -f qcow2 -b /var/lib/libvirt/images/backingFile/centos8-2004.qcow2 -F qcow2 desistdaydream.bj-net.qcow2**
+  - **qemu-img create -f qcow2 -b /var/lib/libvirt/images/backingFile/centos8-2004.qcow2 -F qcow2 desistdaydream.bj-net.qcow2** # 其中 -o backing_file 可以简写为 -b
+  - **qemu-img create -f qcow2 -b /var/lib/libvirt/images/backingFile/centos8-2004.qcow2 -o size=1Ti -F qcow2 desistdaydream.bj-net.qcow2** # 创建时指定新镜像文件的大小
 
 # convert - 转换 VM 镜像文件的格式
 

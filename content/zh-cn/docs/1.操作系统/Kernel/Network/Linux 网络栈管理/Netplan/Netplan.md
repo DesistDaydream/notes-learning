@@ -27,11 +27,11 @@ Netplan 当前支持如下 Renderers(渲染器)：
 
 注意：殊途同归，就算是 systemd-networkd，同样是会在 d-bus 中保存信息的
 
-    root@lichenhao:/etc/networkd-dispatcher# busctl get-property org.freedesktop.network1 /org/freedesktop/network1/network/_310_2dnetplan_2dens3 org.freedesktop.network1.Network MatchName
+    root@desistdaydream:/etc/networkd-dispatcher# busctl get-property org.freedesktop.network1 /org/freedesktop/network1/network/_310_2dnetplan_2dens3 org.freedesktop.network1.Network MatchName
     as 1 "ens3"
-    root@lichenhao:/etc/networkd-dispatcher# busctl get-property org.freedesktop.network1 /org/freedesktop/network1/network/_310_2dnetplan_2dens3 org.freedesktop.network1.Network MatchDriver
+    root@desistdaydream:/etc/networkd-dispatcher# busctl get-property org.freedesktop.network1 /org/freedesktop/network1/network/_310_2dnetplan_2dens3 org.freedesktop.network1.Network MatchDriver
     as 0
-    root@lichenhao:/etc/networkd-dispatcher# busctl get-property org.freedesktop.network1 /org/freedesktop/network1/network/_310_2dnetplan_2dens3 org.freedesktop.network1.Network SourcePath
+    root@desistdaydream:/etc/networkd-dispatcher# busctl get-property org.freedesktop.network1 /org/freedesktop/network1/network/_310_2dnetplan_2dens3 org.freedesktop.network1.Network SourcePath
     s "/run/systemd/network/10-netplan-ens3.network"
 
 # Netplan 关联文件与配置

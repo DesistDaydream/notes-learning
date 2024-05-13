@@ -30,12 +30,12 @@ weight: 7
 **通过 htpasswd 生成一个“auth”文件;用来存取我们创建的用户及加密之后的密码**
 
 ```bash
-root@lichenhao:~# htpasswd -c auth admin
+root@desistdaydream:~# htpasswd -c auth admin
 New password:
 Re-type new password:
 Adding password for user admin
 # 查看这个文件，可以看到密码是加密之后的字符串
-root@lichenhao:~# cat auth
+root@desistdaydream:~# cat auth
 admin:$apr1$8NSwCSR3$s5G25cvkaUDAoxEFtaGZ11
 # 密码：ehl1234
 ```
@@ -43,10 +43,10 @@ admin:$apr1$8NSwCSR3$s5G25cvkaUDAoxEFtaGZ11
 **创建 kubernetes secret 来存储 auth 文件中的用户名和密码**
 
 ```yaml
-root@lichenhao:~# kubectl create -n monitoring secret generic basic-auth --from-file=auth
+root@desistdaydream:~# kubectl create -n monitoring secret generic basic-auth --from-file=auth
 secret "basic-auth" created
 
-root@lichenhao:~# kubectl get secrets -n monitoring basic-auth -oyaml | neat
+root@desistdaydream:~# kubectl get secrets -n monitoring basic-auth -oyaml | neat
 apiVersion: v1
 data:
   auth: YWRtaW46JGFwcjEkOE5Td0NTUjMkczVHMjVjdmthVURBb3hFRnRhR1oxMQo=
@@ -65,7 +65,7 @@ type: Opaque
 **在 ingress 资源中添加注释**
 
 ```yaml
-root@lichenhao:~# kubectl get ingress -n monitoring  monitor-bj-net-k8s-prometheus -oyaml | neat
+root@desistdaydream:~# kubectl get ingress -n monitoring  monitor-bj-net-k8s-prometheus -oyaml | neat
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:

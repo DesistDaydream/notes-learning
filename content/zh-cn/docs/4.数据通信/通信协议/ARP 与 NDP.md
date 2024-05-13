@@ -8,7 +8,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [Wiki，ARP](https://en.wikipedia.org/wiki/Address_Resolution_Protocol)
 > - [Wiki，NDP](https://en.wikipedia.org/wiki/Neighbor_Discovery_Protocol)
 > - [RFC 826](https://www.rfc-editor.org/rfc/rfc826.html)
@@ -25,9 +25,9 @@ weight: 20
 在抓包时，可以抓到如下几种 ARP 包
 
 - ARP, Request who-has 10.10.100.254 tell 10.10.100.101, length 28
-   - 在局域网中询问谁有 10.10.100.254，告诉自己，自己就是 10.10.100.101
+  - 在局域网中询问谁有 10.10.100.254，告诉自己，自己就是 10.10.100.101
 - ARP, Reply 10.10.100.254 is-at 00:0f:e2:ff:05:92, length 46
-   - 当 10.10.100.254 收到 arp 广播包之后，就会进行 reply(响应)，10.10.100.254 的 mac 地址是 00:0f:e2:ff:05:92
+  - 当 10.10.100.254 收到 arp 广播包之后，就会进行 reply(响应)，10.10.100.254 的 mac 地址是 00:0f:e2:ff:05:92
 - 这时候 10.10.100.101 就会更新自己的 arp 表，记录下来 10.10.100.254 与 00:0f:e2:ff:05:92 的对应关系
 
 ARP 报文分为 **ARP 请求报文**和 **ARP 应答报文**，它们的报文格式相同，但是各个字段的取值不同。
@@ -40,19 +40,19 @@ ARP 报文中各个字段的含义如下。
 
 # ARP 原理
 
-ARP 是通过 **ARP Request(请求) **和 **ARP Reply(响应) **报文确定 MAC 地址的。
+ARP 是通过 **ARP Request(请求)**和 **ARP Reply(响应)**报文确定 MAC 地址的。
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/nguycm/1623910582328-062e8f26-c6da-4ee5-97e4-857507dbb707.png)
 
 ## 同网段交互流程
 
 ```bash
-root@lichenhao:~# tcpdump -i any host 172.19.42.202
+root@desistdaydream:~# tcpdump -i any host 172.19.42.202
 tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
 listening on any, link-type LINUX_SLL (Linux cooked v1), capture size 262144 bytes
-14:13:38.036170 ARP, Request who-has 172.19.42.202 tell lichenhao.bj-test, length 28
+14:13:38.036170 ARP, Request who-has 172.19.42.202 tell desistdaydream.bj-test, length 28
 14:13:38.036549 ARP, Reply 172.19.42.202 is-at 00:be:d5:ef:24:4e (oui Unknown), length 46
-14:13:38.036583 IP lichenhao.bj-test > 172.19.42.202: ICMP echo request, id 3, seq 1, length 64
-14:13:38.036821 IP 172.19.42.202 > lichenhao.bj-test: ICMP echo reply, id 3, seq 1, length 64
+14:13:38.036583 IP desistdaydream.bj-test > 172.19.42.202: ICMP echo request, id 3, seq 1, length 64
+14:13:38.036821 IP 172.19.42.202 > desistdaydream.bj-test: ICMP echo reply, id 3, seq 1, length 64
 ```
 
 如上所示，当前主机没有 172.19.42.202 主机的 arp 关系表，当我们向 172.19.42.202 发送 icmp 请求时，数据包将会经历如下过程：

@@ -1,6 +1,16 @@
 ---
-title: 判断Linux进程在哪个CPU核运行的4个方法 - 嵌入式Linux中文站
+title: 进程与CPU核心的绑定
+linkTitle: 进程与CPU核心的绑定
+date: 2024-05-13T08:56
+weight: 20
 ---
+
+# 概述
+
+> 参考:
+>
+> - [Linux 有问必答：如何知道进程运行在哪个 CPU 内核上？](https://linux.cn/article-6307-1.html?pr)
+>   - https://www.xmodulo.com/cpu-core-process-is-running.html
 
 问题：我有个 Linux 进程运行在多核处理器系统上。怎样才能找出哪个 CPU 内核正在运行该进程？
 

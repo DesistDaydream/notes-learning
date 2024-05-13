@@ -47,21 +47,25 @@ echo "hello"
 
 Shell 脚本不像其他高级语言，如 Python, Ruby 等，Shell 脚本默认不提供安全机制，举个简单的例子，Ruby 脚本尝试去读取一个没有初始化的变量的内容的时候会报错，而 Shell 脚本默认不会有任何提示，只是简单地忽略。
 
-    #!/bin/bash
-    echo $v
-    echo "hello"
-    # output:
-    #
-    # hello
+```bash
+#!/bin/bash
+echo $v
+echo "hello"
+# output:
+#
+# hello
+```
 
 可以看到，echo $v 输出了一个空行，Bash完全忽略了不存在的$v 继续执行后面的命令 echo "hello"。这其实并不是开发者想要的行为，对于不存在的变量，脚本应该报错且停止执行来防止错误的叠加。set -u 就用来改变这种默认忽略未定义变量行为，脚本在头部加上它，遇到不存在的变量就会报错，并停止执行。
 
-    #!/bin/bash
-    set -u
-    echo $a
-    echo bar
-    # output:
-    # ./script.sh: line 4: v: unbound variable
+```bash
+#!/bin/bash
+set -u
+echo $a
+echo bar
+# output:
+# ./script.sh: line 4: v: unbound variable
+```
 
 set -u 另一种写法是 set -o nounset
 
@@ -69,48 +73,56 @@ set -u 另一种写法是 set -o nounset
 
 对于默认的 Shell 脚本运行环境，有运行失败的命令（返回值非 0），Bash 会继续执行后面的命令：
 
-    #!/bin/bash
-    unknowncmd
-    echo "hello"
-    # output:
-    # ./script.sh: line 3: unknowncmd: command not found
-    # hello
+```bash
+#!/bin/bash
+unknowncmd
+echo "hello"
+# output:
+# ./script.sh: line 3: unknowncmd: command not found
+# hello
+```
 
 可以看到，Bash 只是显示有错误，接着继续执行 Shell 脚本，这种行为很不利于脚本安全和排错。实际开发中，如果某个命令失败，往往需要脚本停止
 
 set -e 从根本上解决了这个问题，它使得脚本只要发生错误，就终止执行：
 
-    #!/bin/bash
-    set -e
-    unknowncmd
-    echo "hello"
-    # output:
-    # ./script.sh: line 4: unknowncmd: command not found
+```bash
+#!/bin/bash
+set -e
+unknowncmd
+echo "hello"
+# output:
+# ./script.sh: line 4: unknowncmd: command not found
+```
 
 可以看到，第 4 行执行失败以后，脚本就终止执行了。
 
 set -e 根据命令的返回值来判断命令是否运行失败。但是，某些命令的非零返回值可能不表示失败，或者开发者希望在命令失败的情况下，脚本继续执行下去：
 
-    #!/bin/bash
-    set -e
-    $(ls foobar)
-    echo "hello"
-    # output:
-    # ls: cannot access 'foobar': No such file or directory
+```bash
+#!/bin/bash
+set -e
+$(ls foobar)
+echo "hello"
+# output:
+# ls: cannot access 'foobar': No such file or directory
+```
 
 可以看到，打开 set -e 之后，即使 ls 是一个已存在的命令，但因为 ls 命令的运行参数 foobar 实际上并不存在导致命令的返回非 0 值，这有时候并不是我们看到的。
 
 可以暂时关闭 set -e，该命令执行结束后，再重新打开 set -e：
 
-    #!/bin/bash
-    set -e
-    set +e
-    $(ls foobar)
-    set -e
-    echo "hello"
-    # output:
-    # ls: cannot access 'foobar': No such file or directory
-    # hello
+```bash
+#!/bin/bash
+set -e
+set +e
+$(ls foobar)
+set -e
+echo "hello"
+# output:
+# ls: cannot access 'foobar': No such file or directory
+# hello
+```
 
 上面代码中，set +e 表示关闭-e 选项，set -e 表示重新打开-e 选项。
 
@@ -124,27 +136,31 @@ set -e 有一个例外情况，就是不适用于管道命令。对于管道命�
 
 请看下面这个例子。
 
-    #!/bin/bash
-    set -e
-    foo | echo "bar"
-    echo "hello"
-    # output:
-    # ./script.sh: line 4: foo: command not found
-    # bar
-    # hello
+```bash
+#!/bin/bash
+set -e
+foo | echo "bar"
+echo "hello"
+# output:
+# ./script.sh: line 4: foo: command not found
+# bar
+# hello
+```
 
 可以看到，foo 是一个不存在的命令，但是 foo | echo bar 这个管道命令还是会执行成功，导致后面的 echo hello 会继续执行。
 
 set -o pipefail 用来解决这种情况，只要一个子命令失败，整个管道命令就失败，脚本就会终止执行：
 
-    #!/bin/bash
-    set -e
-    set -o pipefail
-    foo | echo "bar"
-    echo "hello"
-    # output:
-    # ./script.sh: line 5: foo: command not found
-    # bar
+```bash
+#!/bin/bash
+set -e
+set -o pipefail
+foo | echo "bar"
+echo "hello"
+# output:
+# ./script.sh: line 5: foo: command not found
+# bar
+```
 
 可以看到，echo hello 命令并没有执行。
 
@@ -152,7 +168,8 @@ set -o pipefail 用来解决这种情况，只要一个子命令失败，整个�
 
 对于上面提到的四个 set 命令参数，一般都放在一起使用。
 
-# 写法一 set -euxo pipefail# 写法二 set -euxset -o pipefail
+- 写法一 set -euxo pipefail
+- 写法二 set -euxset -o pipefail
 
 这两种写法任选其一放在所有 Shell 脚本的头部。
 
@@ -168,7 +185,9 @@ bash -euxo pipefail script.sh
 
 我们必须时刻注意字符串中的空格字符，如文件名中的空格，命令参数中的空格等等，对于这些空格字符安全的最佳时实践是使用"括住相应的字符串：
 
-# will fail if $filename contains spacesif \[ $filename = "foo" ];# will success even if $filename contains spacesif \[ "$filename" = "foo" ];
+```
+will fail if $filename contains spacesif \[ $filename = "foo" ];# will success even if $filename contains spacesif \[ "$filename" = "foo" ];
+```
 
 Someone will always use spaces in filenames or command line arguments and you should keep this in mind when writing shell scripts. In particular you should use quotes around variables.
 
@@ -178,7 +197,9 @@ if \[ “$filename” = “foo” ];
 
 类似的情况是，我们在使用$@或者其他包含由空格分割的多个字符串也要注意使用"括住相应的变量，实际上，使用"括住相应的变量没有任何副作用，只会是我们的 Shell 脚本更加健壮：
 
+```
 foo() { for i in $@; do printf "%s\n" "$i"; done }; foo bar "baz quux"barbazquuxfoo() { for i in "$@"; do printf "%s\n" "$i"; done }; foo bar "baz quux"barbaz quux
+```
 
 # 使用 trap 命令
 
@@ -188,9 +209,8 @@ trap command signal \[signal ...]
 
 其实 Shell 脚本可以捕捉很多类型的信号（完整信号列表可以使用 kill -l 命令获取），但是我们通常只关心在问题发生之后用来恢复现场的三种信号：INT，TERM 和 EXIT
 
-|        |                                                                                                                                                                                  |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Signal | Description                                                                                                                                                                      |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | INT    | Interrupt – this signal is sent when someone kills the script by pressing ctrl-c                                                                                                 |
 | TERM   | Terminate – this signal is sent when someone sends the TERM signal using the kill command                                                                                        |
 | EXIT   | Exit – this is a pseudo-signal and is triggered when your script exits, either through reaching the end of the script, an exit command or by a command failing when using set -e |

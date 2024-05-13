@@ -139,7 +139,7 @@ dommemstat 会获取正在运行的 domain 的内存统计信息。可以获取�
 
 EXAMPLE
 
-- virsh domif-setlink lichenhao--interface 52:54:00:6a:86:89 --state down # 关闭 lichenhao 这台虚拟机的指定网卡
+- virsh domif-setlink desistdaydream--interface 52:54:00:6a:86:89 --state down # 关闭 desistdaydream 这台虚拟机的指定网卡
 
 # domrename - 重命名一个 Domain
 
@@ -160,13 +160,13 @@ OPTIONS
 
 EXAMPLE
 
-- **virsh domxml-to-native qemu-argv --domain lichenhao.bj-net**# 根据 lichenhao.bj-net 虚拟机的 xml 文件，生成 qemu-kvm 命令行
-- lichenhao.bj-net.xml 该文件会转换成如下内容
+- **virsh domxml-to-native qemu-argv --domain desistdaydream.bj-net**# 根据 desistdaydream.bj-net 虚拟机的 xml 文件，生成 qemu-kvm 命令行
+- desistdaydream.bj-net.xml 该文件会转换成如下内容
 
 ```bash
 LC_ALL=C PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
 QEMU_AUDIO_DRV=none
-/usr/libexec/qemu-kvm -name lichenhao.bj-net \
+/usr/libexec/qemu-kvm -name desistdaydream.bj-net \
 -machine pc-i440fx-rhel7.0.0,accel=kvm,usb=off,dump-guest-core=off \
 -cpu Skylake-Server-IBRS,-ds,-acpi,+ss,-ht,-tm,-pbe,-dtes64,-monitor,-ds_cpl,-vmx,-smx,-est,-tm2,-xtpr,-pdcm,-dca,-osxsave,-tsc_adjust,+clflushopt,-intel-pt,+pku,-ospke,+avx512vnni,+md-clear,+stibp,+ssbd,+hypervisor,-arat \
 -m 4096 \
@@ -176,7 +176,7 @@ QEMU_AUDIO_DRV=none
 -uuid 51b47472-5564-424e-90b5-19e9eecfd671 \
 -no-user-config -nodefaults \
 
--chardev socket,id=charmonitor,path=/var/lib/libvirt/qemu/domain--1-lichenhao.bj-net/monitor.sock,server,nowait \
+-chardev socket,id=charmonitor,path=/var/lib/libvirt/qemu/domain--1-desistdaydream.bj-net/monitor.sock,server,nowait \
 -mon chardev=charmonitor,id=monitor,mode=control \
 
 -rtc base=utc,driftfix=slew \
@@ -191,7 +191,7 @@ QEMU_AUDIO_DRV=none
 -device ich9-usb-uhci3,masterbus=usb.0,firstport=4,bus=pci.0,addr=0x4.0x2 \
 -device virtio-serial-pci,id=virtio-serial0,bus=pci.0,addr=0x5 \
 
--drive file=/var/lib/libvirt/images/lichenhao.bj-net.qcow2,format=qcow2,if=none,id=drive-virtio-disk0 \
+-drive file=/var/lib/libvirt/images/desistdaydream.bj-net.qcow2,format=qcow2,if=none,id=drive-virtio-disk0 \
 -device virtio-blk-pci,scsi=off,bus=pci.0,addr=0x6,drive=drive-virtio-disk0,id=virtio-disk0,bootindex=1 \
 
 -drive if=none,id=drive-ide0-0-0,readonly=on \
@@ -203,7 +203,7 @@ QEMU_AUDIO_DRV=none
 -chardev pty,id=charserial0 \
 -device isa-serial,chardev=charserial0,id=serial0 \
 
--chardev socket,id=charchannel0,path=/var/lib/libvirt/qemu/channel/target/domain--1-lichenhao.bj-net/org.qemu.guest_agent.0,server,nowait \
+-chardev socket,id=charchannel0,path=/var/lib/libvirt/qemu/channel/target/domain--1-desistdaydream.bj-net/org.qemu.guest_agent.0,server,nowait \
 -device virtserialport,bus=virtio-serial0.0,nr=1,chardev=charchannel0,id=channel0,name=org.qemu.guest_agent.0 \
 
 -chardev spicevmc,id=charchannel1,name=vdagent \

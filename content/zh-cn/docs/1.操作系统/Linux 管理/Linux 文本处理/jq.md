@@ -169,3 +169,31 @@ $ jq '.foo.bar = "new value"' > /tmp/jq_result.json && /usr/bin/cp /tmp/js_resul
 ```
 
 这将在原始JSON文件中直接替换“foo”对象的“bar”字段的值为“new value”。
+
+## 使用 --arg 选项修改文件内容
+
+主要是适用于修改的内容来自于变量的场景
+
+**不用 --arg 的示例**
+
+```bash
+~]# jq ".favorite.drink = "${DRINK}"" test/test.json
+jq: error: water_var/0 is not defined at <top-level>, line 1:
+.favorite.drink = water_var                  
+jq: 1 compile error
+```
+
+这样报错了，需要给 `"` 添加 `\`
+
+```bash
+jq ".favorite.drink = \"${DRINK}\"" test/test.json
+```
+
+
+**使用 --arg 的效果**
+
+```bash
+jq --arg drink "${DRINK}" '.favorite.drink = $drink' test/test.json
+```
+
+通过 --arg 使用了 外部变量 DRINK

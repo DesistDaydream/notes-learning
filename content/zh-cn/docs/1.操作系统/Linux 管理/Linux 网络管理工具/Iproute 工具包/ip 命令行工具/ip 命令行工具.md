@@ -48,7 +48,7 @@ Command "-c" is unknown, try "ip route help".
   - **-B** # `-family bridge` 的简写
   - **-M** # `-family mpls` 的简写
   - **-0** # `-family link` 的简写
-- **-o, -oneline**# 在一行中输出每条记录，并用''字符替换换行符。在使用 wc(1) 对记录进行计数 或 对输出进行 grep(1) 时，这非常方便。
+- **-o, -oneline** # 在一行中输出每条记录，并用''字符替换换行符。在使用 wc(1) 对记录进行计数 或 对输出进行 [grep](docs/1.操作系统/Linux%20管理/Linux%20文本处理/grep.md) 时，这非常方便。
   - 注意，使用 -o 选项时，不会打印没有 IP 地址的网络设备
 - **-s, -stats** # 显示更详细的信息,主要显示该网络设备的接收、发送、错误、丢弃的数据包信息
 

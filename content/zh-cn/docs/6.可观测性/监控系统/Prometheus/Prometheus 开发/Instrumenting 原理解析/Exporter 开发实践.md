@@ -104,7 +104,7 @@ func main() {
 
 这个最简单的 Exporter 内部其实是使用了一个 **prometheus 库** 默认的采集器 `NewGoCollector()` 和 `NewProcessCollector()` 采集当前 Go 运行时的相关信息，比如 go 堆栈使用、goroutine 数据、当前程序所用资源等等。内容如下：
 
-    root@lichenhao:~# curl localhost:8080/metrics
+    root@desistdaydream:~# curl localhost:8080/metrics
     # HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.
     # TYPE go_gc_duration_seconds summary
     go_gc_duration_seconds{quantile="0"} 0

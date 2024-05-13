@@ -38,7 +38,7 @@ title: su 与  sudo
 
 **sudo(substitute user \[或 superuser] do)** 程序可以让当前用户使用其他的用户的权限来执行指定的命令
 
-通过 sudo 命令，我们可以把某些 root 权限(e.g.只有 root 用户才能执行的命令)分类有针对性授权给指定的普通用户，并且普通用户不需要知道 root 密码就可以使用得到的授权来管理。效果如下所示(配置好 sudo 之后，普通用户 lichenhao 也可以通过在命令前加 sudo 来执行 root 才能执行的命令)
+通过 sudo 命令，我们可以把某些 root 权限(e.g.只有 root 用户才能执行的命令)分类有针对性授权给指定的普通用户，并且普通用户不需要知道 root 密码就可以使用得到的授权来管理。效果如下所示(配置好 sudo 之后，普通用户 desistdaydream 也可以通过在命令前加 sudo 来执行 root 才能执行的命令)
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ucpd2y/1616166756129-0c242239-c867-4503-8d14-2b199cab5600.png)
 
 sudo 通过各种插件实现功能。默认插件为 sudoers，用来确定用户的 sudo 权限，sudoers 的策略，通过 /etc/sudoers 文件进行配置，或者在 LDAP 中进行配置。
@@ -73,12 +73,12 @@ OPTIONS
 
 EXAMPLE
 
-- sudo -u lichenhao whoami # 使用用户 lichenhao 来执行 whoami 命令
+- sudo -u desistdaydream whoami # 使用用户 desistdaydream 来执行 whoami 命令
 
     [root@master ~]# whoami
     root
-    [root@master ~]# sudo -u lichenhao whoami
-    lichenhao
+    [root@master ~]# sudo -u desistdaydream whoami
+    desistdaydream
 
 ## visudo # 编辑/etc/sudoers 文件
 

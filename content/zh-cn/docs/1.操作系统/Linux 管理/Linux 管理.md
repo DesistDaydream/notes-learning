@@ -26,7 +26,7 @@ GNU Core Utilities 是 GNU/Linux 操作系统的基本文件、Shell、文本操
 Coreutils 通常可以通过各种 Linux 发行版的包管理器直接安装。
 
 ```bash
-root@lichenhao:~/downloads# apt-cache show coreutils
+root@desistdaydream:~/downloads# apt-cache show coreutils
 Package: coreutils
 Architecture: amd64
 Version: 8.30-3ubuntu2

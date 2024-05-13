@@ -50,7 +50,7 @@ blockinfile 模块使用示例：
 添加结果
 
 ```shell
-[root@lichenhao ~]# cat /etc/hosts
+[root@desistdaydream ~]# cat /etc/hosts
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
 # BEGIN ANSIBLE MANAGED BLOCK
@@ -80,7 +80,7 @@ Note：
 
 ```bash
 ~]$ ansible all -m copy -a "src=/etc/hosts dest=/tmp/hosts"
-~]$ ansible all -m file -a "dest=/tmp/hosts mode=755 owner=lichenhao group=lichenhao state=directory"
+~]$ ansible all -m file -a "dest=/tmp/hosts mode=755 owner=desistdaydream group=desistdaydream state=directory"
 ```
 
 ```yaml
@@ -92,8 +92,8 @@ Note：
   copy:
     dest: /tmp/hosts
     mode: 0755
-    owner: lichenhao
-    group: lichenhao
+    owner: desistdaydream
+    group: desistdaydream
     state: directory
 ```
 
@@ -267,7 +267,7 @@ Jinja 行为控制
         "mode": "0644",
         "owner": "root",
         "size": 329,
-        "src": "/home/lichenhao/.ansible/tmp/ansible-tmp-1634401131.4389606-251148042480663/source",
+        "src": "/home/desistdaydream/.ansible/tmp/ansible-tmp-1634401131.4389606-251148042480663/source",
         "state": "file",
         "uid": 0
     }

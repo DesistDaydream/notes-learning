@@ -8,7 +8,7 @@ weight: 2
 # 概述
 
 > 参考：
-> 
+>
 > -
 
 **Generic Routing Encapsulation(通用路由封装，简称 GRE)** 是一种隧道协议，在数据两端，对数据进行封装和解封装。是 Cisco Systems 开发的隧道协议，可以通过 Internet 协议网络将各种网络层协议封装在虚拟点对点链路中。
@@ -31,7 +31,7 @@ weight: 2
 
 注意：在 Linux1 上 ping172.16.0.2 的时候，在 Linux2 上抓包的话，会显示源地址是 172.16.0.1。
 
-## 配置方式：
+## 配置方式
 
 通过配置文件来进行配置
 
@@ -45,7 +45,7 @@ PEER_OUTER_IPADDR=100.0.2.100
 PEER_INNER_IPADDR=172.16.0.2/30
 MY_OUTER_IPADDR=100.0.1.100
 MY_INNER_IPADDR=172.16.0.1
-KEY=lichenhao
+KEY=desistdaydream
 BOOTPROTO=none
 # 配置完成后会自动下面的路由信息
 172.16.0.2/30 dev tun0  proto kernel  scope link  src 172.16.0.1/30
@@ -61,7 +61,7 @@ PEER_OUTER_IPADDR=100.0.1.100
 PEER_INNER_IPADDR=172.16.0.1/30
 MY_OUTER_IPADDR=100.0.2.100
 MY_INNER_IPADDR=172.16.0.2
-KEY=lichenhao
+KEY=desistdaydream
 BOOTPROTO=none
 # 配置完成后会自动下面的路由信息
 172.16.0.1/30 dev tun0  proto kernel  scope link  src 172.16.0.2/30

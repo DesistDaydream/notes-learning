@@ -6,7 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [Go 官方文档，诊断](https://go.dev/doc/diagnostics)
 > - [GitHub 项目，google/pprof](https://github.com/google/pprof)
 > - [GitHub 项目-文档，google/pprof/doc](https://github.com/google/pprof/tree/master/doc)
@@ -29,15 +29,15 @@ profile.proto 是一个协议缓冲区，描述了一组调用堆栈和符号化
 package main
 
 import (
-	"log"
-	"net/http"
-	_ "net/http/pprof"
+ "log"
+ "net/http"
+ _ "net/http/pprof"
 )
 
 func main() {
-	if err := http.ListenAndServe("localhost:18080", nil); err != nil {
-		log.Fatal("ListenAndServe: ", err)
-	}
+ if err := http.ListenAndServe("localhost:18080", nil); err != nil {
+  log.Fatal("ListenAndServe: ", err)
+ }
 }
 ```
 
@@ -47,21 +47,21 @@ func main() {
 package main
 
 import (
-	"log"
-	"net/http"
-	_ "net/http/pprof"
+ "log"
+ "net/http"
+ _ "net/http/pprof"
 )
 
 func main() {
     mux := http.NewServeMux()
-	mux.Handle("/debug/pprof/", http.HandlerFunc(pprof.Index))
-	mux.Handle("/debug/pprof/cmdline", http.HandlerFunc(pprof.Cmdline))
-	mux.Handle("/debug/pprof/profile", http.HandlerFunc(pprof.Profile))
-	mux.Handle("/debug/pprof/symbol", http.HandlerFunc(pprof.Symbol))
-	mux.Handle("/debug/pprof/trace", http.HandlerFunc(pprof.Trace))
-	if err := http.ListenAndServe("localhost:18080", nil); err != nil {
-		log.Fatal("ListenAndServe: ", err)
-	}
+ mux.Handle("/debug/pprof/", http.HandlerFunc(pprof.Index))
+ mux.Handle("/debug/pprof/cmdline", http.HandlerFunc(pprof.Cmdline))
+ mux.Handle("/debug/pprof/profile", http.HandlerFunc(pprof.Profile))
+ mux.Handle("/debug/pprof/symbol", http.HandlerFunc(pprof.Symbol))
+ mux.Handle("/debug/pprof/trace", http.HandlerFunc(pprof.Trace))
+ if err := http.ListenAndServe("localhost:18080", nil); err != nil {
+  log.Fatal("ListenAndServe: ", err)
+ }
 }
 ```
 
@@ -94,14 +94,14 @@ pprof 库会暴露多个端点
 package main
 
 import (
-	"github.com/gin-contrib/pprof"
-	"github.com/gin-gonic/gin"
+ "github.com/gin-contrib/pprof"
+ "github.com/gin-gonic/gin"
 )
 
 func main() {
-	router := gin.Default()
-	pprof.Register(router)
-	router.Run(":8080")
+ router := gin.Default()
+ pprof.Register(router)
+ router.Run(":8080")
 }
 ```
 
@@ -111,16 +111,16 @@ func main() {
 package main
 
 import (
-	"net/http"
+ "net/http"
 
-	"github.com/go-chi/chi"
-	"github.com/go-chi/chi/middleware"
+ "github.com/go-chi/chi"
+ "github.com/go-chi/chi/middleware"
 )
 
 func main() {
-	r := chi.NewRouter()
-	r.Mount("/debug", middleware.Profiler())
-	http.ListenAndServe(":8080", r)
+ r := chi.NewRouter()
+ r.Mount("/debug", middleware.Profiler())
+ http.ListenAndServe(":8080", r)
 }
 ```
 
@@ -167,7 +167,7 @@ pprof 工具运行时，会在 ${HOME}/pprof/ 目录下生成临时的 `*.pb.gz`
 ```bash
 ~]# go tool pprof -proto http://localhost:18080/debug/pprof/profile
 Fetching profile over HTTP from http://localhost:18080/debug/pprof/profile
-Saved profile in /home/lichenhao/pprof/pprof.main.samples.cpu.001.pb.gz
+Saved profile in /home/desistdaydream/pprof/pprof.main.samples.cpu.001.pb.gz
 Generating report in profile001.pb.gz
 ```
 
@@ -207,7 +207,7 @@ CLI 中最常见的操作就是 top、list、web，web 命令是打开一个 Web
 Serving web UI on http://localhost:8080
 ```
 
-> 也可以在交互式 CLI 中使用 `web` 命令打开该界面。若出现 ` Could not execute dot; may need to install graphviz.` 报错，安装 graphviz 即可。
+> 也可以在交互式 CLI 中使用 `web` 命令打开该界面。若出现 `Could not execute dot; may need to install graphviz.` 报错，安装 graphviz 即可。
 
 在 Web 中可以将 profile 数据解析成火焰图、以图形和线条方式展示调用链、等等等
 
@@ -230,7 +230,7 @@ h.router.Get("/receivers", h.handler.ListReceivers)
 ```bash
 ~]# go tool pprof -proto http://localhost:19093/debug/pprof/profile
 Fetching profile over HTTP from http://localhost:19093/debug/pprof/profile
-Saved profile in /home/lichenhao/pprof/pprof.main.samples.cpu.002.pb.gz
+Saved profile in /home/desistdaydream/pprof/pprof.main.samples.cpu.002.pb.gz
 Generating report in profile001.pb.gz
 ```
 
@@ -640,4 +640,3 @@ func (c *Cat) Pee() {
 ——还记得吗，本文的目的是让你熟悉使用 pprof，消除对它的陌生感，并能借用它进一步得了解 golang。而你通过这次试验，发现了程序的很多行为不同于你以往的认知或假设，并抱着好奇心，开始向比深处更深处迈进，那么，我何尝不觉得这是本文的功德呢？
 
 与君共勉。
-

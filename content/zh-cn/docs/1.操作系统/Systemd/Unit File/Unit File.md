@@ -104,7 +104,7 @@ WantedBy=multi-user.target
 上面就是一个模板文件，我们需要实例化他，那么只需要在 `@` 符号后面添加字符串即可，`systemctl enable wg-quick@wg0.service`，此时，将会生成如下 Unit File
 
 ```bash
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~]$ systemctl cat wg-quick@wg0.service
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~]$ systemctl cat wg-quick@wg0.service
 # /lib/systemd/system/wg-quick@.service
 [Unit]
 Description=WireGuard via wg-quick(8) for %I
@@ -190,4 +190,3 @@ WantedBy=multi-user.target
 # Unit File 加载示例
 
 可以通过 [系统启动流程](/docs/1.操作系统/Operating%20system/Unix-like%20OS/系统启动流程.md) 看出来 Systemd 是如何加载 Unit File 的
-

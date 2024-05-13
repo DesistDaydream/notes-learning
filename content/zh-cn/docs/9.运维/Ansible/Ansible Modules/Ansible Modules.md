@@ -6,7 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，使用 Ansible 模块和插件-模块介绍](https://docs.ansible.com/ansible/latest/module_plugin_guide/modules_intro.html)
 >   - [2.10 版本](https://docs.ansible.com/ansible/2.10/user_guide/modules.html)
 
@@ -61,7 +61,7 @@ ansible webservers -m service -a "name=httpd state=started"
 这个 Playbooks 的意思就是在受管理节点上执行 `whoami` 命令，并将返回值保存到 info 变量中，通过 debug 模块，将 info 变量中的内容输出出来，效果如下：
 
 ```json
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ehualu/ansible/playbook]$ ansible-playbook 90-test.yaml
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ehualu/ansible/playbook]$ ansible-playbook 90-test.yaml
 
 PLAY [test] *******************************************************************************************************************************************************************
 
@@ -104,12 +104,12 @@ hw-cloud-xngy-jump-server-linux-2 : ok=2    changed=1    unreachable=0    failed
 所以，这也是为什么将 Moduels 称为代码的原因，**所谓的 Modules，本质上就是代码写出来的程序，就像 Functions**，具有形参，可以接受实参，执行完成后，还会有返回值。Ansible 通过模块执行完一个任务之后，就会处理这些返回值，将其 或保存、或展示、或丢弃 等等。同时，在 Playbooks 中，还可以通过判断语句，根据返回值的内容，决定下一个任务的运行模式。
 
 我们可以通过 `ansible-doc -l` 命令查看所有可用的模块，或者从[官方文档-Collections 文档](https://docs.ansible.com/ansible/latest/collections/index.html#list-of-collections)中查看所有模块
-还可以使用` ansible-doc MODULE` 命令查看指定模块的文档
+还可以使用`ansible-doc MODULE` 命令查看指定模块的文档
 
 # 模块分类
 
 > 参考：
-> 
+>
 > - [官方文档 2.9，用户指南-使用模块-模块索引](https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html)
 > - [官方文档 2.10+，所有模块和插件的索引-所有模块的索引](https://docs.ansible.com/ansible/latest/collections/index_module.html)
 
@@ -121,7 +121,7 @@ hw-cloud-xngy-jump-server-linux-2 : ok=2    changed=1    unreachable=0    failed
 ~]# ansible --version
 ansible 2.9.6
   config file = /etc/ansible/ansible.cfg
-  configured module search path = ['/home/lichenhao/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  configured module search path = ['/home/desistdaydream/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
   ansible python module location = /usr/lib/python3/dist-packages/ansible
   executable location = /usr/bin/ansible
   python version = 3.8.10 (default, Jun 22 2022, 20:18:18) [GCC 9.4.0]

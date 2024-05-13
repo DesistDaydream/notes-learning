@@ -25,7 +25,7 @@ COMMAND
   - **add \<HOSTNAME> \[ADDR] \[LABELs...] \[--maintenance]** # 向集群中添加一个节点
   - **label add \<HOSTNAME> \<LABEL>** # 为节点添加一个标签
 - **ls** # 列出 Orch 已知的服务
-- **rm \<ServiceName> **# 移除一个服务
+- **rm \<ServiceName>**# 移除一个服务
 
 EXAMPLE
 
@@ -56,9 +56,9 @@ OPTIONS
 
 ### EXAMPLE
 
-创建一个名为 lichenhao 的用户，并添加 system 标志
+创建一个名为 desistdaydream 的用户，并添加 system 标志
 
-- **radosgw-admin user create --uid=lichenhao --display-name=lichenhao --system**
+- **radosgw-admin user create --uid=desistdaydream --display-name=desistdaydream --system**
 
 ## bucket
 

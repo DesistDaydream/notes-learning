@@ -111,8 +111,8 @@ OPTIONS：
 
 EXAMPLE：
 
-- 创建一个名为 lichenhao 的用户，并设置该用户密码为 lch@password
-  - useradd -m lichenhao && echo 'lch@password' | passwd lichenhao --stdin
+- 创建一个名为 desistdaydream 的用户，并设置该用户密码为 lch@password
+  - useradd -m desistdaydream && echo 'lch@password' | passwd desistdaydream --stdin
 - 新增一个用户 user，并指定用户组 ftp
   - useradd -g ftp user
 - 新增一个用户：user 并指定家目录为/mnt/bak/。如果没有此目录，则报错，就需要手动创建目录

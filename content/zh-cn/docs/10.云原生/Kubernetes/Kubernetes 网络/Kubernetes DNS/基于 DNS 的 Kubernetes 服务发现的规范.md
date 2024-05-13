@@ -7,11 +7,10 @@ weight: 20
 
 # 概述
 
-
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档](https://github.com/kubernetes/dns/blob/master/docs/specification.md)
 
 任何基于 DNS 的以实现 Kubernetes 服务发现的实现工具，必须提供本规范描述的 Resource Record
@@ -140,13 +139,13 @@ PING myapp.default.svc.cluster.local (10.108.255.155) 56(84) bytes of data.
 有两种类型的控制器，各自有两种类型的 Service。
 
 ```bash
-root@lichenhao:~# kubectl get svc -n logging
+root@desistdaydream:~# kubectl get svc -n logging
 NAME                           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
 log-bj-test-grafana            ClusterIP   10.103.6.159    <none>        80/TCP     2d4h
 log-bj-test-grafana-headless   ClusterIP   None            <none>        80/TCP     4h37m
 log-bj-test-loki               ClusterIP   10.102.159.19   <none>        3100/TCP   2d4h
 log-bj-test-loki-headless      ClusterIP   None            <none>        3100/TCP   2d4h
-root@lichenhao:~# kubectl get pod -n logging -o wide
+root@desistdaydream:~# kubectl get pod -n logging -o wide
 NAME                                   READY   STATUS    RESTARTS   AGE    IP             NODE               NOMINATED NODE   READINESS GATES
 log-bj-test-grafana-7764f5b4d7-28ngk   2/2     Running   0          2d4h   10.244.2.129   master-3.bj-test   <none>           <none>
 log-bj-test-loki-0                     1/1     Running   0          2d4h   10.244.1.211   master-2.bj-test   <none>           <none>

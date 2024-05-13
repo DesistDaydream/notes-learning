@@ -73,7 +73,7 @@ Transfer/sec:    151.11KB #平均每秒读取数据的值
 # 并发测试案例
 
 ```bash
-root@lichenhao:/usr/local/bin# wrk -t 8 -c 1000 -d 30s --latency -H "Host: desistdaydream.ltd" http://172.19.42.217/robots.txt
+root@desistdaydream:/usr/local/bin# wrk -t 8 -c 1000 -d 30s --latency -H "Host: desistdaydream.ltd" http://172.19.42.217/robots.txt
 Running 30s test @ http://172.19.42.217/robots.txt
   8 threads and 1000 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
@@ -87,11 +87,11 @@ Running 30s test @ http://172.19.42.217/robots.txt
   324797 requests in 30.08s, 97.56MB read
 Requests/sec:  10797.85
 Transfer/sec:      3.24MB
-root@lichenhao:/usr/local/bin#
-root@lichenhao:/usr/local/bin#
-root@lichenhao:/usr/local/bin#
-root@lichenhao:/usr/local/bin#
-root@lichenhao:/usr/local/bin# wrk -t 8 -c 1000 -d 30s --latency -H "Host: desistdaydream.ltd" http://172.19.42.217
+root@desistdaydream:/usr/local/bin#
+root@desistdaydream:/usr/local/bin#
+root@desistdaydream:/usr/local/bin#
+root@desistdaydream:/usr/local/bin#
+root@desistdaydream:/usr/local/bin# wrk -t 8 -c 1000 -d 30s --latency -H "Host: desistdaydream.ltd" http://172.19.42.217
 Running 30s test @ http://172.19.42.217
   8 threads and 1000 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev

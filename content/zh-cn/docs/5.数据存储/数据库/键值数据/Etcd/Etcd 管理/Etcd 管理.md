@@ -50,14 +50,14 @@ etcd 通过 **Space Quota(空间配额)** 确保集群以可靠的方式运行�
 
 ```bash
 # 使用一个循环填满 keyspace(键空间)，空间爆满后，触发了告警
-[root@lichenhao ~]# while [ 1 ]; do dd if=/dev/urandom bs=1024 count=1024  | etcdctl put key  || break; done
+[root@desistdaydream ~]# while [ 1 ]; do dd if=/dev/urandom bs=1024 count=1024  | etcdctl put key  || break; done
 ......
 1048576 bytes (1.0 MB, 1.0 MiB) copied, 0.0132167 s, 79.3 MB/s
 {"level":"warn","ts":"2020-11-19T22:20:16.018+0800","caller":"clientv3/retry_interceptor.go:62","msg":"retrying of unary invoker failed","target":"endpoint://client-e3fb4b20-987e-4de7-b6d4-bb41ceb2ff59/127.0.0.1:2379","attempt":0,"error":"rpc error: code = ResourceExhausted desc = etcdserver: mvcc: database space exceeded"}
 Error: etcdserver: mvcc: database space exceeded
 
 # 查看 etcd 状态，也可以看到告警，告警内容 alarm: NOSPACE
-[root@lichenhao ~]# etcdctl endpoint status -wtable
+[root@desistdaydream ~]# etcdctl endpoint status -wtable
 +----------------+------------------+---------+---------+-----------+------------+-----------+------------+--------------------+--------------------------------+
 |    ENDPOINT    |        ID        | VERSION | DB SIZE | IS LEADER | IS LEARNER | RAFT TERM | RAFT INDEX | RAFT APPLIED INDEX |             ERRORS             |
 +----------------+------------------+---------+---------+-----------+------------+-----------+------------+--------------------+--------------------------------+
@@ -66,7 +66,7 @@ Error: etcdserver: mvcc: database space exceeded
 +----------------+------------------+---------+---------+-----------+------------+-----------+------------+--------------------+--------------------------------+
 
 # 此时已经无法向 etcd 中写入数据
-[root@lichenhao ~]# etcdctl put /hello world
+[root@desistdaydream ~]# etcdctl put /hello world
 {"level":"warn","ts":"2020-11-19T22:35:16.870+0800","caller":"clientv3/retry_interceptor.go:62","msg":"retrying of unary invoker failed","target":"endpoint://client-ed96eb23-4bc4-41e9-84bf-1a357fde2b6f/127.0.0.1:2379","attempt":0,"error":"rpc error: code = ResourceExhausted desc = etcdserver: mvcc: database space exceeded"}
 Error: etcdserver: mvcc: database space exceeded
 ```

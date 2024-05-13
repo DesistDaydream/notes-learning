@@ -5,7 +5,7 @@ title: rule 与 route
 # 概述
 
 > 参考：
-> 
+>
 > - [Manual(手册)，ip-route(8)](https://man7.org/linux/man-pages/man8/ip-route.8.html)
 > - [Manual(手册)，ip-rule(8)](https://man7.org/linux/man-pages/man8/ip-rule.8.html)
 
@@ -21,7 +21,7 @@ default via 172.19.42.1 dev ens3 proto static
 
 > 注意：如果默认网关已由 DHCP 分配，并且配置文件中指定了具有相同度量的同一网关，则在启动或启动接口时将发生错误。可能会显示以下错误消息：`RTNETLINK answers:File exists`。可以忽略此错误。
 
-| 目的地址 | via<br>下一跳 | dev<br>网络设备 | proto<br>生成路由条目的方式 | scope<br>覆盖范围 | 源地址 | 
+| 目的地址 | via<br>下一跳 | dev<br>网络设备 | proto<br>生成路由条目的方式 | scope<br>覆盖范围 | 源地址 |
 | --- | --- | --- | --- | --- | --- |
 | default | 172.19.42.1 | ens3 | static |  |
 | 172.19.42.0/24 |  | ens3 | kernel | link | 172.19.42.248 |
@@ -126,10 +126,10 @@ RPDB 按照优先级递减的顺序注意扫描这些规则(数字越小，优�
 在启动时，内核将会配置三个规则组成默认的 RPDB 条目：
 
 ```bash
-root@lichenhao:~# ip rule
-0:	from all lookup local
-32766:	from all lookup main
-32767:	from all lookup default
+root@desistdaydream:~# ip rule
+0: from all lookup local
+32766: from all lookup main
+32767: from all lookup default
 ```
 
 - 0: from all lookup local

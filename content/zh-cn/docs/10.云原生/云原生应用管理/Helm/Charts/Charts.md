@@ -148,7 +148,7 @@ Helm 中，Chart 可以依赖其他任意数量的 Chart，这些可以被依赖
 此时该 Chart 目录结构如下
 
 ```shell
-root@lichenhao:~/testDir# tree -L 2 mychart/
+root@desistdaydream:~/testDir# tree -L 2 mychart/
 mychart/
 ├── charts
 │   ├── subchartA

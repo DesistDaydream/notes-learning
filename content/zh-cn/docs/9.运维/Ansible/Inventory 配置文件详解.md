@@ -7,7 +7,7 @@ weight: 3
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档,用户指南-如何建立你的 Inventory](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html)
 
 Ansible 可同时操作属于一个组的多台主机,组和主机之间的关系通过 Inventory 文件配置。默认的文件路径为 /etc/ansible/hosts，也可以在 `ansible`、`ansible-playbook` 命令中使用 -i 选项指定其他的 Inventory 文件。
@@ -106,13 +106,17 @@ three.example.com
 如果有主机的SSH端口不是标准的22端口,可在主机名之后加上端口号,用冒号分隔.SSH 配置文件中列出的端口号不会在 paramiko 连接中使用,会在 openssh 连接中使用.
 
 端口号不是默认设置时,可明确的表示为:
+
 ```
 badwolf.example.com:5309
 ```
+
 假设你有一些静态IP地址,希望设置一些别名,但不是在系统的 host 文件中设置,又或者你是通过隧道在连接,那么可以设置如下:
+
 ```
 jumper ansible_ssh_port=5555 ansible_ssh_host=192.168.1.50
 ```
+
 在这个例子中,通过 “jumper” 别名,会连接 192.168.1.50:5555.记住,这是通过 inventory 文件的特性功能设置的变量. 一般而言,这不是设置变量(描述你的系统策略的变量)的最好方式.后面会说到这个问题.
 
 一组相似的 hostname , 可简写如下:
@@ -196,6 +200,7 @@ northeast
 southwest
 northwest
 ```
+
 如果我们需要存储一个列表或 hash 值，或者更喜欢把 host 和 group 的变量分开配置，请看下一节的说明.
 
 # 组织 host_vars(主机变量) 和 group_vars(组变量)
@@ -208,16 +213,18 @@ northwest
 - webservers
 
 那么以下配置文件中的变量可以为 ‘foosball’ 主机所用.依次为 ‘raleigh’ 的组变量,’webservers’ 的组变量,’foosball’ 的主机变量:
+
 ```
 /etc/ansible/group_vars/raleigh
 /etc/ansible/group_vars/webservers
 /etc/ansible/host_vars/foosball
 ```
-> 注意：
-> - `group_vars/` 目录下文件名必须是**组名**才可以将变量的值应用相同组名的组中的主机
->    - 如上所示：group_vars/raleigh 中的组变量适用于 raleigh 组。
->    - 文件名也可以使用 all 和 ungrouped 用于为所有主机或所有未分组的主机定义变量。
 
+> 注意：
+>
+> - `group_vars/` 目录下文件名必须是**组名**才可以将变量的值应用相同组名的组中的主机
+>   - 如上所示：group_vars/raleigh 中的组变量适用于 raleigh 组。
+>   - 文件名也可以使用 all 和 ungrouped 用于为所有主机或所有未分组的主机定义变量。
 
 举例来说,假设你有一些主机,属于不同的数据中心,并依次进行划分.每一个数据中心使用一些不同的服务器.比如 ntp 服务器, database 服务器等等. 那么 ‘raleigh’ 这个组的组变量定义在文件 ‘/etc/ansible/group_vars/raleigh’ 之中,可能类似这样:
 
@@ -245,12 +252,12 @@ database_server: storage.example.org
 # 主机匹配模式
 
 > 参考：
+>
 > - [官方文档，用户指南-传统目录-模式：针对主机和组](https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html)
 
 主机列表的正则匹配
 
 ansible支持主机列表的正则匹配
-
 
 - 全量: `all/*`
 - 逻辑或: `:`
@@ -272,11 +279,12 @@ ansible支持主机列表的正则匹配
 # Inventory 参数详解
 
 > 参考：
+>
 > - [官方文档,用户指南-传统目录-如何构建你的 Inventory-连接到主机:Inventory 参数](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#connecting-to-hosts-behavioral-inventory-parameters)
 
 如同前面提到的,通过设置下面的参数,可以控制 ansible 与远程主机的交互方式,
 
-ansible_connection	# 指定ansible与远程主机的connector(连接器)，默认为 ssh 的smart类型。'smart' 方式会根据是否支持 ControlPersist, 来判断'ssh' 方式是否可行.
+ansible_connection # 指定ansible与远程主机的connector(连接器)，默认为 ssh 的smart类型。'smart' 方式会根据是否支持 ControlPersist, 来判断'ssh' 方式是否可行.
 
 - smart、ssh、paramiko # 这三种类型都是ssh连接器下的类型。默认为smart
 - local
@@ -305,10 +313,10 @@ General通用连接参数
 远程主机环境参数
 
 - **ansible_python_interprete** # 目标主机的 python 路径.适用于的情况: 系统中有多个 Python, 或者命令路径不是"/usr/bin/python",比如  \*BSD, 或者 /usr/bin/python
-   - 不是 2.X 版本的 Python.我们不使用 "/usr/bin/env" 机制,因为这要求远程用户的路径设置正确,且要求 "python" 可执行程序名不可为 python以外的名字(实际有可能名为python26). 与 ansible_python_interpreter 的工作方式相同,可设定如 ruby 或 perl 的路径....
-
+  - 不是 2.X 版本的 Python.我们不使用 "/usr/bin/env" 机制,因为这要求远程用户的路径设置正确,且要求 "python" 可执行程序名不可为 python以外的名字(实际有可能名为python26). 与 ansible_python_interpreter 的工作方式相同,可设定如 ruby 或 perl 的路径....
 
 一个主机文件的例子:
+
 ```
 some_host         ansible_ssh_port=2222     ansible_ssh_user=manager
 aws_host          ansible_ssh_private_key_file=/home/example/.ssh/aws.pem
@@ -324,7 +332,7 @@ ruby_module_host  ansible_ruby_interpreter=/usr/bin/ruby.1.9.3
 [test]
 hw-cloud-xngy-jump-server-linux-2 ansible_host=192.168.0.249 ansible_port=10022
 [test:vars]
-ansible_user=lichenhao
+ansible_user=desistdaydream
 ansible_password={{ test_password }}
 ansible_become=yes
 ansible_become_password={{ test_become_password }}
@@ -363,7 +371,7 @@ $ANSIBLE_VAULT;1.1;AES256
 这时候，我们执行 Playbooks 时，如果不指定解密所需的密码，将会提示如下报错
 
 ```bash
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible-playbook -i ../inventory/ variables.yaml 
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible-playbook -i ../inventory/ variables.yaml
 
 PLAY [test] *******************************************************************************************************************************************************************
 ERROR! Attempting to decrypt but no vault secrets found
@@ -372,8 +380,8 @@ ERROR! Attempting to decrypt but no vault secrets found
 只需要添加 `--ask-vault-pass` 参数并输入密码，Ansible 即可在运行中解密文件，并获取其中的变量值
 
 ```bash
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible-playbook -i ../inventory/ variables.yaml --ask-vault-pass 
-Vault password: 
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible-playbook -i ../inventory/ variables.yaml --ask-vault-pass
+Vault password:
 
 PLAY [test] *******************************************************************************************************************************************************************
 

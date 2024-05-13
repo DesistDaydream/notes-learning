@@ -2672,6 +2672,11 @@
       "docs/学习/PKM/写作.md",
       "docs/学习/PKM/Obsidian.md",
       "docs/学习/PKM/WPS.md"
+    ],
+    "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具/fio 磁盘性能测试工具": [
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具/fio 磁盘性能测试工具/_index.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具/fio 磁盘性能测试工具/fio 磁盘性能测试工具.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具/fio 磁盘性能测试工具/fio 参数详解.md"
     ]
   },
   "actionBarOrder": {},

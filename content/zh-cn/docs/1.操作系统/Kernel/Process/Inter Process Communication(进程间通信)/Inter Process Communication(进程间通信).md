@@ -205,7 +205,7 @@ P 操作是用在进入共享资源之前，V 操作是用在离开共享资源�
 在 Linux 操作系统中， 为了响应各种各样的事件，提供了几十种信号，分别代表不同的意义。我们可以通过 `kill -l` 命令，查看所有的信号：
 
 ```bash
-root@lichenhao:~# kill -l
+root@desistdaydream:~# kill -l
  1) SIGHUP  2) SIGINT  3) SIGQUIT  4) SIGILL  5) SIGTRAP
  6) SIGABRT  7) SIGBUS  8) SIGFPE  9) SIGKILL 10) SIGUSR1
 11) SIGSEGV 12) SIGUSR2 13) SIGPIPE 14) SIGALRM 15) SIGTERM

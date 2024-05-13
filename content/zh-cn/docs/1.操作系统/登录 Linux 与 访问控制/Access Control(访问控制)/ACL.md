@@ -5,6 +5,7 @@ title: ACL
 # 概述
 
 > 参考：
+>
 > - [红帽官方文档,RedHat7-系统管理员指南-第五章.访问控制列表](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-access_control_lists)
 
 **Access Control Lists(访问控制列表，简称 ACL)**。Linux 权限管理是 Linux 很重要的一项内容，重则引起用户信息泄露，轻则导致文件错乱和丢失。企业服务器里有些目录下面的东西暂时保密，不希望别人可以进入目录并查看。有些文件希望别人可以看，但不能删除。有些目录只有 root 等管理员权限的账户才能修改，
@@ -85,8 +86,8 @@ OPTIONS
 
 EXAMPLE
 
-- setfacl -m u:lichenhao:rwx test # 让 lichenhao 这个用户对 test 文件具有 rwx 的权限
-- setfacl -m g:lichenhao:rwx test # 让 lichenhao 这个组对 test 文件具有 rwx 的权限
+- setfacl -m u:desistdaydream:rwx test # 让 desistdaydream 这个用户对 test 文件具有 rwx 的权限
+- setfacl -m g:desistdaydream:rwx test # 让 desistdaydream 这个组对 test 文件具有 rwx 的权限
 - Note：我们给用户或用户组设定 ACL 权限其实并不是真正我们设定的权限，是与 mask 的权限“相与”之后的权限才是用户的真正权限，一般默认 mask 权限都是 rwx，与我们所设定的权限相与就是我们设定的权限。mask 权限下面我们会详细讲解
 
 范例：所有者 root 用户在根目录下创建一个文件目录/project，然后创建一个 QQ 群所属组，所属组里面创建两个用户 zhangsan 和 lisi。所有者和所属组权限和其他人权限是 770。

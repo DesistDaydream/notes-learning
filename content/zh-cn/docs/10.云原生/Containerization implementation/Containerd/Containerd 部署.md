@@ -6,7 +6,7 @@ weight: 2
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 文档，containerd/containerd/docs/getting-started.md](https://github.com/containerd/containerd/blob/main/docs/getting-started.md)
 
 我们可以在官方 README 中的 [Runtime Requirements](https://github.com/containerd/containerd#runtime-requirements) 处找到当前 Containerd 版本所依赖的各种组件所需的版本，比如 runc 的版本等。
@@ -155,13 +155,13 @@ systemctl enable containerd --now
 [WARNING] Enabling cgroup v2 is highly recommended, see https://rootlesscontaine.rs/getting-started/common/cgroup2/
 [INFO] Checking overlayfs
 [INFO] Requirements are satisfied
-[INFO] Creating "/home/lichenhao/.config/systemd/user/containerd.service"
+[INFO] Creating "/home/desistdaydream/.config/systemd/user/containerd.service"
 [INFO] Starting systemd unit "containerd.service"
 + systemctl --user start containerd.service
 + sleep 3
 + systemctl --user --no-pager --full status containerd.service
 ● containerd.service - containerd (Rootless)
-     Loaded: loaded (/home/lichenhao/.config/systemd/user/containerd.service; disabled; vendor preset: enabled)
+     Loaded: loaded (/home/desistdaydream/.config/systemd/user/containerd.service; disabled; vendor preset: enabled)
      Active: active (running) since Mon 2021-09-13 21:48:44 CST; 3s ago
    Main PID: 2625 (rootlesskit)
      CGroup: /user.slice/user-1000.slice/user@1000.service/containerd.service
@@ -181,10 +181,10 @@ systemctl enable containerd --now
 9月 13 21:48:44 hw-cloud-xngy-jump-server-linux-2 containerd-rootless.sh[2659]: time="2021-09-13T21:48:44.603068510+08:00" level=info msg=serving... address=/run/containerd/containerd.sock
 9月 13 21:48:44 hw-cloud-xngy-jump-server-linux-2 containerd-rootless.sh[2659]: time="2021-09-13T21:48:44.603088751+08:00" level=info msg="containerd successfully booted in 0.056085s"
 + systemctl --user enable containerd.service
-Created symlink /home/lichenhao/.config/systemd/user/default.target.wants/containerd.service → /home/lichenhao/.config/systemd/user/containerd.service.
+Created symlink /home/desistdaydream/.config/systemd/user/default.target.wants/containerd.service → /home/desistdaydream/.config/systemd/user/containerd.service.
 [INFO] Installed "containerd.service" successfully.
 [INFO] To control "containerd.service", run: `systemctl --user (start|stop|restart) containerd.service`
-[INFO] To run "containerd.service" on system startup automatically, run: `sudo loginctl enable-linger lichenhao`
+[INFO] To run "containerd.service" on system startup automatically, run: `sudo loginctl enable-linger desistdaydream`
 [INFO] ------------------------------------------------------------------------------------------
 [INFO] Use `nerdctl` to connect to the rootless containerd.
 [INFO] You do NOT need to specify $CONTAINERD_ADDRESS explicitly.

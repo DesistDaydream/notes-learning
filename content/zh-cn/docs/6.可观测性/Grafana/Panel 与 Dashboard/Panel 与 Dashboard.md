@@ -93,14 +93,17 @@ weight: 1
 
 Kubernetes
 
-- 13105
+- [13105](https://grafana.com/grafana/dashboards/13105-k8s-dashboard-cn-20240513-starsl-cn/)
 
 Node exporter
 
-- 1860 # https://github.com/rfmoz/grafana-dashboards
-- 8919 # 国人出的，22 年4月12日之后不维护了
-  - 16098 新的，代替 8919
+- 1860
+  - https://github.com/rfmoz/grafana-dashboards
+- [8919](https://grafana.com/grafana/dashboards/8919-1-node-exporter-for-prometheus-dashboard-cn-0413-consulmanager/)
+  - 国人出的，22 年4月12日之后不维护了
+  - [16098](https://grafana.com/grafana/dashboards/16098-1-node-exporter-for-prometheus-dashboard-cn-0417-job/) 新的，代替 8919
 
 Nginx
 
-- 9614
+- [9614](https://grafana.com/grafana/dashboards/9614-nginx-ingress-controller/)
+

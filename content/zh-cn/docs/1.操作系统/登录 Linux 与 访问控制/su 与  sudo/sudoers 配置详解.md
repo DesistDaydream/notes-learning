@@ -5,6 +5,7 @@ title: sudoers 配置详解
 # 概述
 
 > 参考：
+>
 > - [Manual(手册),sudoers(5)-sudoers 文件格式](https://man7.org/linux/man-pages/man5/sudoers.5.html#SUDOERS_FILE_FORMAT)
 
 使用 `visudo` 命令可直接进入编辑模式以编辑 /etc/sudoers 文件
@@ -189,7 +190,7 @@ Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
 **logfile = <FILE>** # 使用本地文件记录日志，并指定文件的绝对路径。默认情况下，sudo 使用 syslog 记录日志。
 **syslog = <FACILITY>** # 使用 syslog 记录日志，并指定 syslog 的日志设施。`默认值：authpriv`。
 
-- 可用的设施有：**authpriv **(if your OS supports it), **auth**, **daemon**,**user**, **local0**, **local1**, **local2**, **local3**, **local4**, **local5**,**local6**, and **local7**.
+- 可用的设施有：**authpriv**(if your OS supports it), **auth**, **daemon**,**user**, **local0**, **local1**, **local2**, **local3**, **local4**, **local5**,**local6**, and **local7**.
 
 ## 其他
 
@@ -202,15 +203,16 @@ EXAMPLE
 
 - 别名
   - 设定别名 DOCKER，该 DOCKER 别名包括 docker 命令和 systemctl 中子命令对 docker 服务的操作
-    - Cmnd_Alias DOCKER = /usr/bin/docker*, /usr/bin/systemctl * docker\*
+    - Cmnd_Alias DOCKER = /usr/bin/docker*, /usr/bin/systemctl* docker\*
 - 赋权
-  - 表示 lichenhao 用户可以在所有主机执行所有命令
-    - lichenhao ALL=ALL #
-  - 表示 lichenhao 用户在所有主机，变换为 root 身份，可以执行所有命令
-    - lichenhao ALL=(root) ALL
+  - 表示 desistdaydream 用户可以在所有主机执行所有命令
+    - desistdaydream ALL=ALL #
+  - 表示 desistdaydream 用户在所有主机，变换为 root 身份，可以执行所有命令
+    - desistdaydream ALL=(root) ALL
 
 赋予 developer 用户，可以操作 docker 和 nginx 的所有权限。i.e.通过 systemctl 控制 docker 和 nginx 服务，使用 docker 和 nginx 相关命令
--   **Cmnd_Alias DOCKER = /usr/bin/systemctl * docker*, /usr/bin/docker*** # 为某些命令设置别名
--   **Cmnd_Alias NGINX = /usr/bin/systemctl * nginx*, /usr/bin/nginx*** # 为某些命令设置别名
--   **developer ALL=(root) NOPASSWD:DOCKER,NGINX** # 让 developer 用户可以以 root 用户且不使用密码执行 DOCKER 和 NGINX 别名中的所有命令
--   **Defaults logfile = /var/log/sudo/sudo.log** # 将 sudo 的日志保存到其他目录，不通过 rsyslog 保存。
+
+- **Cmnd_Alias DOCKER = /usr/bin/systemctl * docker*, /usr/bin/docker*** # 为某些命令设置别名
+- **Cmnd_Alias NGINX = /usr/bin/systemctl * nginx*, /usr/bin/nginx*** # 为某些命令设置别名
+- **developer ALL=(root) NOPASSWD:DOCKER,NGINX** # 让 developer 用户可以以 root 用户且不使用密码执行 DOCKER 和 NGINX 别名中的所有命令
+- **Defaults logfile = /var/log/sudo/sudo.log** # 将 sudo 的日志保存到其他目录，不通过 rsyslog 保存。

@@ -44,7 +44,8 @@ grep 根据 PATTERNS(模式) 过滤给定的内容。其实就是使用正则表
 
 ### Output Line Prefix Control(控制输出行的前缀)
 
-- **-n** # 顺便输出行号
+- **-h, --no-filename** # 当过滤多个文件时，不要输出文件名，仅输出过滤到的内容。
+- **-n, --line-number** # 顺便输出行号
 
 ### Context Line Control(控制输出内容的上下行)
 

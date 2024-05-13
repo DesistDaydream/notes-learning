@@ -47,7 +47,7 @@ ERROR 1046 (3D000): No database selected
 
 ### 基础示例
 
-- grant select,insert,update,delete,create,drop ON mysql.\* TO 'lichenhao'@'localhost' identified by 'lichenhao'; # 为名为 mysql 的数据库创建名为 lichenhao 的用户，密码为 lichenhao，具有 select、insert、update、delete、create、drop 这些命令的执行权限。
+- grant select,insert,update,delete,create,drop ON mysql.\* TO 'desistdaydream'@'localhost' identified by 'desistdaydream'; # 为名为 mysql 的数据库创建名为 desistdaydream 的用户，密码为 desistdaydream，具有 select、insert、update、delete、create、drop 这些命令的执行权限。
 - flush privileges; # 刷新权限。由权限账号信息是在 MYSQLD 服务启动的时候就加载到内存中的，所以你在原权限表中的任何直接修改都不会直接生效。用 flush privileges 把中表中的信息更新到内存。
 - select user(); # 查看当前登录的用户。
 - show databases; # 列出所有已经存在的数据库

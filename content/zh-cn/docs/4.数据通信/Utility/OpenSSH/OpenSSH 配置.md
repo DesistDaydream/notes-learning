@@ -61,8 +61,7 @@ The authenticity of host '172.19.42.248 (172.19.42.248)' can't be established.
 ECDSA key fingerprint is SHA256:dugyXVC21RvaDTtRp/cBTsqr0MPtjhBJmtjmzZTXljo.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? ^C
 # 不严格检查，改为 no
-root@lichenhao:~# ssh -o 'StrictHostKeyChecking=no' 172.19.42.248
+root@desistdaydream:~# ssh -o 'StrictHostKeyChecking=no' 172.19.42.248
 Warning: Permanently added '172.19.42.248' (ECDSA) to the list of known hosts.
 root@172.19.42.248's password:
 ```
-

@@ -187,7 +187,7 @@ route:
 receivers:
   - name: "default" # 指定receiver的名字
     email_configs: # 指定该receiver使用哪种配置
-      - to: "lichenhao@wisetv.com.cn"
+      - to: "desistdaydream@wisetv.com.cn"
         send_resolved: true # 指定是否发送告警已解决的信息。默认为false,i.e.不发送
 ```
 
@@ -221,14 +221,14 @@ inhibit_rules:
 
 Note：如果要使用腾讯企业邮箱，则需要生成客户端密码，位置如下图
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fesx4v/1616068406969-84d8a216-cd2b-4438-a0e6-a6a85c64318a.jpeg)
-下面的配置默认会将所有告警都发送给lichenhao@wisetv.com.cn。其中具有 network_device: interface-state 标签名和值的告警会发送给wangpeng@wisetv.com.cn
+下面的配置默认会将所有告警都发送给desistdaydream@wisetv.com.cn。其中具有 network_device: interface-state 标签名和值的告警会发送给wangpeng@wisetv.com.cn
 
 ```yaml
 global:
   resolve_timeout: 5m
   smtp_smarthost: "smtp.exmail.qq.com:587"
-  smtp_from: "lichenhao@wisetv.com.cn"
-  smtp_auth_username: "lichenhao@wisetv.com.cn"
+  smtp_from: "desistdaydream@wisetv.com.cn"
+  smtp_auth_username: "desistdaydream@wisetv.com.cn"
   smtp_auth_password: "bVcyqAh4jnz2hkVg"
   smtp_hello: "qq.com"
   smtp_require_tls: true
@@ -246,13 +246,13 @@ route:
 receivers:
   - name: "default"
     email_configs:
-      - to: "lichenhao@wisetv.com.cn"
+      - to: "desistdaydream@wisetv.com.cn"
         send_resolved: true
   - name: "network-group"
     email_configs:
       - to: "wangpeng@wisetv.com.cn"
         send_resolved: true
-      - to: "lichenhao@wisetv.com.cn"
+      - to: "desistdaydream@wisetv.com.cn"
         send_resolved: true
 ```
 

@@ -124,7 +124,7 @@ libvrit 提供了专门的 DomainQemuAgentCommand API（对应 virsh qemu-agent-
 
 ```bash
 ~]# fuser org.qemu.guest_agent.0
-/var/lib/libvirt/qemu/channel/target/domain-54-lichenhao.bj-net/org.qemu.guest_agent.0: 255192
+/var/lib/libvirt/qemu/channel/target/domain-54-desistdaydream.bj-net/org.qemu.guest_agent.0: 255192
 ```
 
 而在 VM 内部，默认情况下，会在 /dev 目录下生成也会自动生成串口设备，并自动生成 qemu-ga 文件，且启动 qemu-guest-agent.service 服务
@@ -135,7 +135,7 @@ total 0
 lrwxrwxrwx 1 root root 11 Nov 21 00:41 com.redhat.spice.0 -> ../vport1p2
 lrwxrwxrwx 1 root root 11 Nov 21 00:41 org.qemu.guest_agent.0 -> ../vport1p1
 lrwxrwxrwx 1 root root 11 Nov 21 00:41 org.qemu.guest_agent.1 -> ../vport1p3
-[root@lichenhao ~]# systemctl status qemu-guest-agent.service
+[root@desistdaydream ~]# systemctl status qemu-guest-agent.service
 ● qemu-guest-agent.service - QEMU Guest Agent
 Loaded: loaded (/usr/lib/systemd/system/qemu-guest-agent.service; disabled; vendor preset: enabled)
 Active: active (running) since Fri 2020-11-20 23:40:33 CST; 44min ago
@@ -144,7 +144,7 @@ Tasks: 1 (limit: 23968)
 Memory: 2.7M
 CGroup: /system.slice/qemu-guest-agent.service
 └─826 /usr/bin/qemu-ga --method=virtio-serial --path=/dev/virtio-ports/org.qemu.guest_agent.0 --blacklist= -F/etc/qemu-ga/fsfreeze-hook
-Nov 20 23:40:33 lichenhao.bj-net systemd[1]: Started QEMU Guest Agent.
+Nov 20 23:40:33 desistdaydream.bj-net systemd[1]: Started QEMU Guest Agent.
 ```
 
 此时，宿主机的 socket 与 VM 中的串口设备(/dev/virtio-ports/org.qemu.guest_agent.0) 之间建立了一条 channel
@@ -152,7 +152,7 @@ Nov 20 23:40:33 lichenhao.bj-net systemd[1]: Started QEMU Guest Agent.
 然后宿主机通过 libvirt 的 API(即 virsh qemu-agent-command 命令)，即可向 VM 中发送指令，效果如下：
 
 ```bash
-~]# virsh qemu-agent-command lichenhao.bj-net --pretty '{"execute":"guest-get-osinfo"}'
+~]# virsh qemu-agent-command desistdaydream.bj-net --pretty '{"execute":"guest-get-osinfo"}'
 {
   "return": {
     "name": "CentOS Linux",
@@ -195,7 +195,7 @@ Nov 20 23:40:33 lichenhao.bj-net systemd[1]: Started QEMU Guest Agent.
 最后，我们就可以在宿主机上使用 socat 去连接 socket 文件了：
 
 ```bash
-~]# socat unix:/var/lib/libvirt/qemu/channel/target/domain-55-lichenhao.bj-net/org.qemu.guest_agent.1 readline
+~]# socat unix:/var/lib/libvirt/qemu/channel/target/domain-55-desistdaydream.bj-net/org.qemu.guest_agent.1 readline
 {"execute":"guest-get-osinfo"}
 {"return": {"name": "CentOS Linux", "kernel-release": "4.18.0-193.28.1.el8_2.x86_64", "version": "8 (Core)", "pretty-name": "CentOS Linux 8 (Core)", "version-id": "8", "kernel-version": "#1 SMP Thu Oct 22 00:20:22 UTC 2020", "machine": "x86_64", "id": "centos"}}
 ```

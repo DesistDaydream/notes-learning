@@ -8,7 +8,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，Linux 内核用户和管理员指南-/proc/sys 文档-/proc/sys/fs 文档](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/fs.html)
 
 ## file-max 与 file-nr
@@ -30,10 +30,10 @@ file-nr 中的三个值分别表示：
 - 最大文件描述符
 
 ```bash
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~]$ cat /proc/sys/fs/file-max
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~]$ cat /proc/sys/fs/file-max
 9223372036854775807
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~]$ cat /proc/sys/fs/file-nr
-2400	0	9223372036854775807
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~]$ cat /proc/sys/fs/file-nr
+2400 0 9223372036854775807
 ```
 
 通常情况下 已分配但未使用的文件描述符 的值总是为 0，这并不是错误的，只是意味着 `已分配的文件描述符=正在使用的文件描述符`

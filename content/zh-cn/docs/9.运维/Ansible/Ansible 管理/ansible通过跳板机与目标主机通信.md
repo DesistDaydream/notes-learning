@@ -60,7 +60,7 @@ A–>B：一般用户（luke）的互信
 C：root 的登录信息
 
 ```bash
-# ansible all -m ping --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q lichenhao@10.0.13.251"'
+# ansible all -m ping --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q desistdaydream@10.0.13.251"'
 192.22.4.46 | SUCCESS => {
     "changed": false,
     "ping": "pong"
@@ -70,7 +70,7 @@ C：root 的登录信息
 跳板机普通用户，访问目标机器的 root 目录
 
 ```bash
-# ansible all --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q lichenhao@10.0.13.251"' -m command -a 'ls /root/'
+# ansible all --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q desistdaydream@10.0.13.251"' -m command -a 'ls /root/'
 192.22.4.46 | CHANGED | rc=0 >>
 1115.txt
 anaconda-ks.cfg
@@ -99,7 +99,7 @@ A–>B：一般用户（luke）的互信
 C：一般用户（luke）的登录信息
 
 ```bash
-# ansible all -m ping --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q lichenhao@10.0.13.251"'
+# ansible all -m ping --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q desistdaydream@10.0.13.251"'
 192.22.4.46 | SUCCESS => {
     "changed": false,
     "ping": "pong"
@@ -107,15 +107,15 @@ C：一般用户（luke）的登录信息
 ```
 
 ```bash
-# ansible all --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q lichenhao@10.0.13.251"' -m command -a 'pwd'
+# ansible all --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q desistdaydream@10.0.13.251"' -m command -a 'pwd'
 192.22.4.46 | CHANGED | rc=0 >>
-/home/lichenhao
+/home/desistdaydream
 ```
 
 跳板机普通用户，目标机普通用户，无法访问 root
 
 ```bash
-# ansible all --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q lichenhao@10.0.13.251"' -m command -a 'ls /root/'
+# ansible all --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q desistdaydream@10.0.13.251"' -m command -a 'ls /root/'
 192.22.4.46 | FAILED | rc=2 >>
 ls: cannot open directory /root/: Permission deniednon-zero return code
 ```
@@ -128,7 +128,7 @@ A–>B：root 用户的互信
 C：luke 的登录信息
 
 ```bash
-# ansible all --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q lichenhao@10.0.13.251"' -m command -a 'pwd'
+# ansible all --ssh-common-args='-o ProxyCommand="ssh -W %h:%p -q desistdaydream@10.0.13.251"' -m command -a 'pwd'
 192.22.4.46 | CHANGED | rc=0 >>
 /home/luke
 ```

@@ -52,7 +52,7 @@ weight: 1
 现在使用 NFS Provisioner 作为 Storage Class 的控制器，要根据[此项目](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner)来创建一个 nfs-client 的 Pod，并与后端存储关联。这个 Pod 就是 Provisioner。
 
 ```bash
-[root@lichenhao rabbitmq-stack-allinone]# kubectl get pod -n sc-provisioner
+[root@desistdaydream rabbitmq-stack-allinone]# kubectl get pod -n sc-provisioner
 NAME                                           READY   STATUS    RESTARTS   AGE
 test-nfs-client-provisioner-58675b55fb-nprpl   1/1     Running   0          5h2m
 ```
@@ -71,7 +71,7 @@ test-nfs-client-provisioner-58675b55fb-nprpl   1/1     Running   0          5h2m
 创建一个 Storage Class 资源，并关联 Provisioner
 
 ```bash
-[root@lichenhao rabbitmq-stack-allinone]# kubectl get storageclasses.storage.k8s.io managed-nfs-storage -o yaml | neat
+[root@desistdaydream rabbitmq-stack-allinone]# kubectl get storageclasses.storage.k8s.io managed-nfs-storage -o yaml | neat
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -84,12 +84,12 @@ parameters:
 这时候，如果创建了一个 PVC，并指定要使用的 Storage Class 的名字，则 PVC 控制器会将请求交给对应的 Storage Class 并创建一个属于该 Storage Class 的 PV，此时由于 Provisioner 一直监控着 该 Storage Class 的状态，所以会触发工作，再根据自身配置规则，在本地目录中，创建对应名称的目录(比如这个 NFS Provisioner 就会创建名为 `名称空间-pvc名-pv名` 这样的目录)
 
 ```bash
-[root@lichenhao rabbitmq-stack-allinone]# kubectl get pvc -n rabbitmq
+[root@desistdaydream rabbitmq-stack-allinone]# kubectl get pvc -n rabbitmq
 NAME                        STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS          AGE
 persistence-test-server-0   Bound    pvc-ed8e801f-2659-4829-912b-669145c8396b   10Gi       RWO            managed-nfs-storage   42m
 persistence-test-server-1   Bound    pvc-72c85e1c-8c06-45b2-ba46-e223fafd24d5   10Gi       RWO            managed-nfs-storage   42m
 persistence-test-server-2   Bound    pvc-9157e421-7150-45ab-8432-2be935dd69ef   10Gi       RWO            managed-nfs-storage   42m
-[root@lichenhao rabbitmq-stack-allinone]# kubectl get pv
+[root@desistdaydream rabbitmq-stack-allinone]# kubectl get pv
 NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                STORAGECLASS          REASON   AGE
 pvc-72c85e1c-8c06-45b2-ba46-e223fafd24d5   10Gi       RWO            Delete           Bound    rabbitmq/persistence-test-server-1   managed-nfs-storage            42m
 pvc-9157e421-7150-45ab-8432-2be935dd69ef   10Gi       RWO            Delete           Bound    rabbitmq/persistence-test-server-2   managed-nfs-storage            42m

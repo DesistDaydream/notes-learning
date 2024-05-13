@@ -158,7 +158,7 @@ deny # 拒绝一个证书请求。Deny a certificate signing request
 **kubectl cluster-info SubCommand \[flags] \[OPTIONS]**
 
 ```bash
-root@lichenhao:~# kubectl cluster-info
+root@desistdaydream:~# kubectl cluster-info
 Kubernetes control plane is running at https://k8s-api.bj-net.ehualu.local:6443
 KubeDNS is running at https://k8s-api.bj-net.ehualu.local:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
 

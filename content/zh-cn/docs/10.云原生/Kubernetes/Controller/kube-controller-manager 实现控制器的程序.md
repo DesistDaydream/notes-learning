@@ -53,11 +53,11 @@ Events:
 其实，kube-controller-manager 默认使用 leases 资源来实现领导者选举功能：
 
 ```bash
-root@lichenhao:~# kubectl get leases.coordination.k8s.io -n kube-system
+root@desistdaydream:~# kubectl get leases.coordination.k8s.io -n kube-system
 NAME                      HOLDER                                                 AGE
 kube-controller-manager   master-2.bj-net_62b724de-66a3-4aff-9a7c-e7c3d66555d1   176d
 kube-scheduler            master-2.bj-net_50df0a21-f59a-48de-98a5-93ab4a0ddf3b   176d
-root@lichenhao:~# kubectl get leases.coordination.k8s.io -n kube-system kube-controller-manager -oyaml  | neat
+root@desistdaydream:~# kubectl get leases.coordination.k8s.io -n kube-system kube-controller-manager -oyaml  | neat
 apiVersion: coordination.k8s.io/v1
 kind: Lease
 metadata:

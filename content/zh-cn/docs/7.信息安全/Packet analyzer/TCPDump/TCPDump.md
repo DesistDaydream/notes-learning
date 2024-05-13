@@ -123,7 +123,7 @@ tcpdump 最初由[Van Jacobson](https://en.wikipedia.org/wiki/Van_Jacobson)、[S
 简单示例：
 
 - 匹配 TCP 头中标志为 tcp-syn 的包
-  - **'tcp\[tcpflags] & tcp-syn != 0'**
+  - **tcp\[tcpflags] & tcp-syn != 0**
 - 匹配 TCP 头中标志为 SYN 或 FIN 的包。也就是说一个 TCP 会话的开始和结束的包。
   - **tcp\[tcpflags] & (tcp-syn|tcp-fin) != 0**
 

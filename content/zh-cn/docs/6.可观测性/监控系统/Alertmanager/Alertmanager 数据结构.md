@@ -89,7 +89,7 @@ title: Alertmanager 数据结构
       },
       "startsAt": "2021-04-24T15:22:27.944457098Z",
       "endsAt": "0001-01-01T00:00:00Z",
-      "generatorURL": "http://lichenhao:9090/graph?g0.expr=vector%281%29\u0026g0.tab=1",
+      "generatorURL": "http://desistdaydream:9090/graph?g0.expr=vector%281%29\u0026g0.tab=1",
       "fingerprint": "5adc80257c32889a"
     },
     {
@@ -105,7 +105,7 @@ title: Alertmanager 数据结构
       },
       "startsAt": "2021-04-24T15:22:27.944457098Z",
       "endsAt": "0001-01-01T00:00:00Z",
-      "generatorURL": "http://lichenhao:9090/graph?g0.expr=vector%281%29\u0026g0.tab=1",
+      "generatorURL": "http://desistdaydream:9090/graph?g0.expr=vector%281%29\u0026g0.tab=1",
       "fingerprint": "e6532a92e438cdbf"
     }
   ],
@@ -117,7 +117,7 @@ title: Alertmanager 数据结构
     "severity": "warning"
   },
   "commonAnnotations": {},
-  "externalURL": "http://lichenhao:9093",
+  "externalURL": "http://desistdaydream:9093",
   "version": "4",
   "groupKey": "{}:{instance=\"192.168.0.1:9100\"}",
   "truncatedAlerts": 0
@@ -142,7 +142,7 @@ title: Alertmanager 数据结构
       },
       "startsAt": "2021-04-24T15:22:27.944457098Z",
       "endsAt": "0001-01-01T00:00:00Z",
-      "generatorURL": "http://lichenhao:9090/graph?g0.expr=vector%281%29\u0026g0.tab=1",
+      "generatorURL": "http://desistdaydream:9090/graph?g0.expr=vector%281%29\u0026g0.tab=1",
       "fingerprint": "496f742ac98e2398"
     }
   ],
@@ -156,7 +156,7 @@ title: Alertmanager 数据结构
   "commonAnnotations": {
     "additionalProp1": "string"
   },
-  "externalURL": "http://lichenhao:9093",
+  "externalURL": "http://desistdaydream:9093",
   "version": "4",
   "groupKey": "{}:{}",
   "truncatedAlerts": 0

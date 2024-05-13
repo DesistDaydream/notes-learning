@@ -108,9 +108,9 @@ go install github.com/spf13/cobra-cli@latest
 
 ```bash
 $ go env | grep GOPATH
-GOPATH="/home/lichenhao/go"
+GOPATH="/home/desistdaydream/go"
 $ which cobra-cli
-/home/lichenhao/go/bin/cobra-cli
+/home/desistdaydream/go/bin/cobra-cli
 ```
 
 # Cobra 的基本使用

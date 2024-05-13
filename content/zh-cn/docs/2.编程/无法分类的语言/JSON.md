@@ -5,7 +5,7 @@ title: JSON
 # 概述
 
 > 参考：
-> 
+>
 > - 官方文档：<https://www.json.org/json-zh.html>
 > - [Wiki，JSON](https://en.wikipedia.org/wiki/JSON)
 > - [RFC 8259](https://tools.ietf.org/html/rfc8259)
@@ -28,7 +28,7 @@ JSON 具有以下这些形式：
 
 ```json
  {
-  "name": "lichenhao",
+  "name": "desistdaydream",
   "age": 30
 }
 ```
@@ -37,17 +37,18 @@ JSON 具有以下这些形式：
 
 ```json
  [
-  "lichenhao",
+  "desistdaydream",
   "zhangna"
 ]
 ```
+
 混合格式样例：
 
 ```json
 {
   "family": [
     {
-      "name": "lichenhao",
+      "name": "desistdaydream",
       "age": 30
     },
     {

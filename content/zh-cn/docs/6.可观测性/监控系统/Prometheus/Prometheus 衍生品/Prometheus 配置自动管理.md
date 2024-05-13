@@ -10,6 +10,7 @@ title: Prometheus 配置自动管理
 # Prometheus Configmanager
 
 > 参考：
+>
 > - [GitHub 项目，facebookincubator/prometheus-configmanager](https://github.com/facebookincubator/prometheus-configmanager)
 
 Prometheus-Configmanager 将规则配置文件抽象成 **tenant(租户)**，每个 tenant 都会有对应唯一的文件名(格式为：**TenantID_rules.yml**)。每当修改这些规则配置文件时，都会对 http://PrometheusIP:PORT/-/reload 发送 POST 请求以便让 Prometheus Server 重新加载配置文件。
@@ -19,7 +20,7 @@ Prometheus-Configmanager 将规则配置文件抽象成 **tenant(租户)**，每
 ## 基本示例
 
 ```json
-curl -X POST "http://localhost:9100/v1/lichenhao/alert" -H  "accept: application/json" -H  "Content-Type: application/json" -d '
+curl -X POST "http://localhost:9100/v1/desistdaydream/alert" -H  "accept: application/json" -H  "Content-Type: application/json" -d '
 {
   "alert": "test",
   "expr": "string",
@@ -38,9 +39,9 @@ curl -X POST "http://localhost:9100/v1/lichenhao/alert" -H  "accept: application
 上面的 curl 请求会生成如下文件
 
 ```yaml
-/ # cat lichenhao_rules.yml
+/ # cat desistdaydream_rules.yml
 groups:
-    - name: lichenhao
+    - name: desistdaydream
       rules:
         - alert: test
           expr: string
@@ -48,7 +49,7 @@ groups:
           labels:
             additionalProp1: string
             additionalProp2: string
-            tenant: lichenhao
+            tenant: desistdaydream
           annotations:
             additionalProp1: string
             additionalProp2: string
@@ -74,7 +75,7 @@ groups:
 
 ### GET /v1/{tenant_id}/alert # 获取 {tennat_id}\_rules.yml 文件中所有告警规则
 
-    curl -X GET "http://localhost:9100/v1/lichenhao/alert" -H  "accept: application/json" -H  "Content-Type: application/json"
+    curl -X GET "http://localhost:9100/v1/desistdaydream/alert" -H  "accept: application/json" -H  "Content-Type: application/json"
 
 ### POST /v1/{tenant_id}/alert # 创建 {tennat_id}\_rules.yml 文件中的告警规则
 
@@ -84,11 +85,11 @@ groups:
 
 ### DELETE /v1/{tenant_id}/alert/{alert_name} # 删除 {tennat_id}\_rules.yml 文件中指定的告警规则
 
-    curl -X DELETE "http://localhost:9100/v1/lichenhao/alert/test" -H  "accept: application/json" -H  "Content-Type: application/json"
+    curl -X DELETE "http://localhost:9100/v1/desistdaydream/alert/test" -H  "accept: application/json" -H  "Content-Type: application/json"
 
 ### PUT /v1/{tenant_id}/alert/{alert_name} # 更新 {tennat_id}\_rules.yml 文件中已经存在的指定的告警规则
 
-    curl -X PUT "http://localhost:9100/v1/lichenhao/alert/test" -H  "accept: application/json" -H  "Content-Type: application/json" -d '
+    curl -X PUT "http://localhost:9100/v1/desistdaydream/alert/test" -H  "accept: application/json" -H  "Content-Type: application/json" -d '
     {
       "alert": "test",
       "expr": "string_update",
@@ -105,7 +106,7 @@ groups:
 
 若文件不存在，则
 
-    curl -X POST "http://localhost:9100/v1/lichenhao/alert/bulk" -H  "accept: application/json" -H  "Content-Type: application/json" -d '
+    curl -X POST "http://localhost:9100/v1/desistdaydream/alert/bulk" -H  "accept: application/json" -H  "Content-Type: application/json" -d '
     [{
       "alert": "test1",
       "expr": "string",
@@ -506,7 +507,7 @@ for: 1m
                 labels:
 additionalProp1: string
 additionalProp2: string
-tenant: lichenhao
+tenant: desistdaydream
                 annotations:
 additionalProp1: string
 additionalProp2: string
@@ -515,7 +516,7 @@ expr: string
 for: 1m
                 labels:
 additionalProp1: string
-tenant: lichenhao
+tenant: desistdaydream
                 annotations:
 additionalProp1: string
       responses:

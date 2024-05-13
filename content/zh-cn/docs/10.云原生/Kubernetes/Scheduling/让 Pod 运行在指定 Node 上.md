@@ -59,10 +59,10 @@ nodeSelector(节点选择器) 是最简单的约束行为。在 Pod 的 manifest
 
 ```bash
 # 设置标签
-root@lichenhao:~# kubectl label nodes master-3.bj-test disktype=ssd
+root@desistdaydream:~# kubectl label nodes master-3.bj-test disktype=ssd
 node/master-3.bj-test labeled
 # 查看该节点标签
-root@lichenhao:~# kubectl get nodes master-3.bj-test --show-labels
+root@desistdaydream:~# kubectl get nodes master-3.bj-test --show-labels
 NAME               STATUS   ROLES         AGE    VERSION   LABELS
 master-3.bj-test   Ready    master,work   183d   v1.19.2   ....,disktype=ssd...这里省略了很多其他标签
 ```

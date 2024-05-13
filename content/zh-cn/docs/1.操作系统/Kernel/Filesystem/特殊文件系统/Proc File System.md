@@ -266,7 +266,7 @@ Rss:               21304 kB
 - inode # 该 socket 的 inode 号，后面一串 16 进制的字符是该 socket 在内存中的地址。
 
 ```bash
-root@lichenhao:~# cat /proc/net/tcp
+root@desistdaydream:~# cat /proc/net/tcp
   sl  local_address rem_address   st tx_queue rx_queue tr tm->when retrnsmt   uid  timeout inode
    0: 0100007F:177A 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 12975942 1 ffff923dd621a300 100 0 0 10 0
    1: 3500007F:0035 00000000:0000 0A 00000000:00000000 00:00000000 00000000   101        0 28017 1 ffff923ef9dd08c0 100 0 0 10 0

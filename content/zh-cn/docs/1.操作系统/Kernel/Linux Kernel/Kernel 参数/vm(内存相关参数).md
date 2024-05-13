@@ -60,9 +60,9 @@ weight: 20
 ```bash
 # 在没有swap 和 大页预留的情况下
 # vm.overcommit_ration=100 时，CommitLimit 等于 Mem 总量
-[root@lichenhao ~]# sysctl -w vm.overcommit_ratio=100
+[root@desistdaydream ~]# sysctl -w vm.overcommit_ratio=100
 vm.overcommit_ratio = 100
-[root@lichenhao ~]# cat /proc/meminfo  | grep Commit
+[root@desistdaydream ~]# cat /proc/meminfo  | grep Commit
  && free -k
 CommitLimit:     3868968 kB
 Committed_AS:     806056 kB
@@ -70,18 +70,18 @@ Committed_AS:     806056 kB
 Mem:        3868968      282904     3195972        8748      390092     3368548
 Swap:             0           0           0
 # vm.overcommit_ration=50 时，CommitLimit 等于 Mem 总量的一半
-[root@lichenhao ~]# sysctl -w vm.overcommit_ratio=100
+[root@desistdaydream ~]# sysctl -w vm.overcommit_ratio=100
 vm.overcommit_ratio = 50
-[root@lichenhao ~]# cat /proc/meminfo  | grep Commit && free -k
+[root@desistdaydream ~]# cat /proc/meminfo  | grep Commit && free -k
 CommitLimit:     1934484 kB
 Committed_AS:     800516 kB
               total        used        free      shared  buff/cache   available
 Mem:        3868968      282712     3196160        8748      390096     3368740
 Swap:             0           0           0
 # vm.overcommit_ration=200 时，CommitLimit 等于 Mem 总量的一倍。此时内存可以 overcommit，有可能会触发 OOM
-[root@lichenhao ~]# sysctl -w vm.overcommit_ratio=100
+[root@desistdaydream ~]# sysctl -w vm.overcommit_ratio=100
 vm.overcommit_ratio = 200
-[root@lichenhao ~]# cat /proc/meminfo  | grep Commit && free -k
+[root@desistdaydream ~]# cat /proc/meminfo  | grep Commit && free -k
 CommitLimit:     7737936 kB
 Committed_AS:     800516 kB
               total        used        free      shared  buff/cache   available

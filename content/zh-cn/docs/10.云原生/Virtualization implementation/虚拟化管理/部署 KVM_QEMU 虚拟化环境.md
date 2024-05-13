@@ -25,7 +25,7 @@ weight: 20
   - 若安装完成后，模块未装载，则手动装载 KVM 模块
     - modprobe kvm
     - modprobe kvm-intel
-  - 验证系统是否已经准备好称为虚拟化主机
+  - 验证系统是否已经准备好成为虚拟化主机
     - virt-host-validate
 - 启动 libvirt 服务
   - systemctl enable libvirtd --now

@@ -66,7 +66,7 @@ Note：可以说 ansible playbook 中写的所有内容都是变量。都是可�
 Ansible 使用 Jinja2 语法引用变量。Jinjia2 使用 `{{ VarName }}` 来引用变量，比如
 
 ```bash
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "test_var=hello_world" -m debug -a 'msg={{test_var}}'
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "test_var=hello_world" -m debug -a 'msg={{test_var}}'
 hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
     "msg": "hello_world"
 }
@@ -81,12 +81,12 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 ### List(列表)变量
 
 ```bash
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ cat test_var.yaml
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ cat test_var.yaml
 region:
 - northeast
 - southeast
 - midwest
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "@./test_var.yaml" -m debug -a 'msg={{region[1]}}'
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "@./test_var.yaml" -m debug -a 'msg={{region[1]}}'
 hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
     "msg": "southeast"
 }
@@ -102,15 +102,15 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
   - foo.field1
 
 ```bash
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ cat test_var.yaml
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ cat test_var.yaml
 foo:
   field1: one
   field2: two
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "@./test_var.yaml" -m debug -a msg="{{foo['field1']}}"
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "@./test_var.yaml" -m debug -a msg="{{foo['field1']}}"
 hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
     "msg": "one"
 }
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "@./test_var.yaml" -m debug -a msg="{{foo.field1}}"
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "@./test_var.yaml" -m debug -a msg="{{foo.field1}}"
 hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
     "msg": "one"
 }
@@ -124,14 +124,14 @@ Registering 类型的变量适用于 Playbooks 中，通过 `register` 关键字
 比如
 
 ```yaml
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ cat roles/variables/tasks/main.yaml
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ cat roles/variables/tasks/main.yaml
 - name: test
   command: whoami
   register: info
 - name: debug
   debug:
     msg: "{{info}}"
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible-playbook -i ../inventory/ variables.yaml
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible-playbook -i ../inventory/ variables.yaml
 
 PLAY [test] **********************************************************************************************************************************************************************************************************************************************************************************************************************************************************
 
@@ -179,13 +179,13 @@ hw-cloud-xngy-jump-server-linux-2 : ok=2    changed=1    unreachable=0    failed
 ### Nested(嵌套)变量
 
 ```bash
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ cat test_var.yaml
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ cat test_var.yaml
 foo:
 - field1:
     name: one
 - field2:
     name: two
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "@./test_var.yaml" -m debug -a msg="{{foo[0].field1.name}}"
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "@./test_var.yaml" -m debug -a msg="{{foo[0].field1.name}}"
 hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
     "msg": "one"
 }
@@ -203,7 +203,7 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 - **KEY=VALUE**
 
 ```bash
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "test_var=hello_world" -m debug -a 'msg={{test_var}}'
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "test_var=hello_world" -m debug -a 'msg={{test_var}}'
 hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
     "msg": "hello_world"
 }
@@ -212,7 +212,7 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 - **JSON 字符串**
 
 ```bash
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars '{"test_var":"hello world"}' -m debug -a 'msg={{test_var}}'
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars '{"test_var":"hello world"}' -m debug -a 'msg={{test_var}}'
 hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
     "msg": "hello world"
 }
@@ -221,9 +221,9 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 - **来自 JSON 或 YAML 文件**
 
 ```bash
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ cat test_var.yaml
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ cat test_var.yaml
 test_var: 'hello world'
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "@./test_var.yaml" -m debug -a 'msg={{test_var}}'
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "@./test_var.yaml" -m debug -a 'msg={{test_var}}'
 hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
     "msg": "hello world"
 }

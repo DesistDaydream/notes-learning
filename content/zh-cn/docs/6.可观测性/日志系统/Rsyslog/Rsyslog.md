@@ -48,7 +48,7 @@ import (
 )
 
 func main() {
-        sysLog, err := syslog.Dial("", "",syslog.LOG_ERR, "lichenhao")
+        sysLog, err := syslog.Dial("", "",syslog.LOG_ERR, "desistdaydream")
         if err != nil {
                 log.Fatal(err)
         }
@@ -57,21 +57,21 @@ func main() {
 }
 ```
 
-运行一下，查看日志，可以看到，进程名 lichenhao，输出了一条日志消息
+运行一下，查看日志，可以看到，进程名 desistdaydream，输出了一条日志消息
 
 ```bash
 [root@hw-cloud-xngy-jump-server-linux-2 /var/log]# tail -n 1 syslog
-Oct 19 23:46:03 hw-cloud-xngy-jump-server-linux-2 lichenhao[3283]: Hello world!
+Oct 19 23:46:03 hw-cloud-xngy-jump-server-linux-2 desistdaydream[3283]: Hello world!
 ```
 
 此时如果同时在查看 /dev/log 文件，也可以看到同样的内容
 
 ```bash
-[root@hw-cloud-xngy-jump-server-linux-2 /home/lichenhao/test_dir]# socat - /dev/log
+[root@hw-cloud-xngy-jump-server-linux-2 /home/desistdaydream/test_dir]# socat - /dev/log
 
 Broadcast message from systemd-journald@hw-cloud-xngy-jump-server-linux-2 (Tue 2021-10-19 23:49:24 HKT):
 
-lichenhao[3820]: Hello world!
+desistdaydream[3820]: Hello world!
 ```
 
 ### 验证 Rsyslog 接收日志
@@ -100,8 +100,8 @@ l-wx------ 1 root   root   64 Oct 19 21:16 9 -> /var/log/auth.log
 ```bash
 [root@hw-cloud-xngy-jump-server-linux-2 ~]# strace -p 595 -f -e recvmsg -s 1000
 strace: Process 595 attached with 4 threads
-[pid   626] recvmsg(3, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="<37>Oct 19 22:01:40 su: (to root) lichenhao on pts/1", iov_len=8096}], msg_iovlen=1, msg_control=[{cmsg_len=32, cmsg_level=SOL_SOCKET, cmsg_type=SO_TIMESTAMP_OLD, cmsg_data={tv_sec=1634652100, tv_usec=471671}}, {cmsg_len=28, cmsg_level=SOL_SOCKET, cmsg_type=SCM_CREDENTIALS, cmsg_data={pid=2549, uid=0, gid=0}}], msg_controllen=64, msg_flags=0}, MSG_DONTWAIT) = 52
-[pid   626] recvmsg(3, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="<86>Oct 19 22:01:40 su: pam_unix(su-l:session): session opened for user root by lichenhao(uid=0)", iov_len=8096}], msg_iovlen=1, msg_control=[{cmsg_len=32, cmsg_level=SOL_SOCKET, cmsg_type=SO_TIMESTAMP_OLD, cmsg_data={tv_sec=1634652100, tv_usec=471786}}, {cmsg_len=28, cmsg_level=SOL_SOCKET, cmsg_type=SCM_CREDENTIALS, cmsg_data={pid=2549, uid=0, gid=0}}], msg_controllen=64, msg_flags=0}, MSG_DONTWAIT) = 96
+[pid   626] recvmsg(3, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="<37>Oct 19 22:01:40 su: (to root) desistdaydream on pts/1", iov_len=8096}], msg_iovlen=1, msg_control=[{cmsg_len=32, cmsg_level=SOL_SOCKET, cmsg_type=SO_TIMESTAMP_OLD, cmsg_data={tv_sec=1634652100, tv_usec=471671}}, {cmsg_len=28, cmsg_level=SOL_SOCKET, cmsg_type=SCM_CREDENTIALS, cmsg_data={pid=2549, uid=0, gid=0}}], msg_controllen=64, msg_flags=0}, MSG_DONTWAIT) = 52
+[pid   626] recvmsg(3, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="<86>Oct 19 22:01:40 su: pam_unix(su-l:session): session opened for user root by desistdaydream(uid=0)", iov_len=8096}], msg_iovlen=1, msg_control=[{cmsg_len=32, cmsg_level=SOL_SOCKET, cmsg_type=SO_TIMESTAMP_OLD, cmsg_data={tv_sec=1634652100, tv_usec=471786}}, {cmsg_len=28, cmsg_level=SOL_SOCKET, cmsg_type=SCM_CREDENTIALS, cmsg_data={pid=2549, uid=0, gid=0}}], msg_controllen=64, msg_flags=0}, MSG_DONTWAIT) = 96
 ```
 
 可以发现，从 fd 为 3 的 `socket:[15881]` 这个文件接收到了日志信息

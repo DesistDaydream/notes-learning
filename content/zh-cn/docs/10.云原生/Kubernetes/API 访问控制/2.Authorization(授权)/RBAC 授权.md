@@ -90,7 +90,7 @@ rules:
 
 1. RoleBinding 引用（reference 一般简写为 REF）了一个角色，但不包含角色。它可以引用同一命名空间中的角色或全局命名空间中的一个 CR。它通过主题和命名空间信息来添加 WHO 信息，命名空间中存在命名空间。给定命名空间中的角色绑定在该命名空间中仅起作用。
 
-下面的例子是将 k8s 集群中 default 这个 namespace 的用户 lichenhao 绑定到名为 pod-reader 这个 role 上，并具备该 role 上定义的对集群操作的相关权限
+下面的例子是将 k8s 集群中 default 这个 namespace 的用户 desistdaydream 绑定到名为 pod-reader 这个 role 上，并具备该 role 上定义的对集群操作的相关权限
 
 如果 subjects.kind 是 ServiceAccount，则表示凡是使用该 ServcieAccount 的 pod，都可以对该名称空间中其他 pod 具有要绑定的 role 中指定的动作。
 
@@ -102,7 +102,7 @@ metadata:
   namespace: default
 subjects: # 指定“被作用者”的相关信息
   - kind: User # 指定Subject的类型，有 User、ServiceAccount、Group
-    name: lichenhao # 指定Subject类型的名字是什么
+    name: desistdaydream # 指定Subject类型的名字是什么
     apiGroup: rbac.authorization.k8s.io # 指定
 roleRef: #定义角色引用，即绑定Role与Subject，让Subject具有Role中定义的规则权限
   kind: Role #定义要绑定的是Role还是ClusterRole

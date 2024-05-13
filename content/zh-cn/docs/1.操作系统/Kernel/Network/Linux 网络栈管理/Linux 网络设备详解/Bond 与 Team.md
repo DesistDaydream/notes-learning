@@ -29,7 +29,7 @@ Bond 类型的网络设备是通过把多个网络设备绑定为一个逻辑网
 Linux 中使用 bonding 模块实现 bonding 驱动程序。
 
 ```bash
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~]$ modinfo bonding
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~]$ modinfo bonding
 filename:       /lib/modules/5.4.0-88-generic/kernel/drivers/net/bonding/bonding.ko
 author:         Thomas Davis, tadavis@lbl.gov and many others
 description:    Ethernet Channel Bonding Driver, v3.7.1
@@ -105,13 +105,13 @@ MII 监控参数与 ARP 监控参数不可同时使用
 
 - **balance-rr(0)** # 表示负载分担 round-robin，和交换机的聚合强制不协商的方式配合。
 - **active-backup(1)** # 表示主备模式，只有一块网卡是 active,另外一块是备的 standby，这时如果交换机配的是捆绑，将不能正常工作，因为交换机往两块网卡发包，有一半包是丢弃的。
-    - 注意：vmwork 的虚拟机中只能做 mode=1 的实验，其它的工作模式得用真机来实践，并且需要添加额外参数(fail_over_mac=1)才能实现主备模式
+  - 注意：vmwork 的虚拟机中只能做 mode=1 的实验，其它的工作模式得用真机来实践，并且需要添加额外参数(fail_over_mac=1)才能实现主备模式
 - **balance-xor(2)** # 表示 XOR Hash 负载分担，和交换机的聚合强制不协商方式配合(需要 xmit_hash_policy)
-    - 推荐 bond 参数：mode=balance-xor,miimon=100,xmit_hash_policy=layer3+4
+  - 推荐 bond 参数：mode=balance-xor,miimon=100,xmit_hash_policy=layer3+4
 - **broadcast(3)** # 表示所有包从所有 interface 发出，这个不均衡，只有冗余机制...和交换机的聚合强制不协商方式配合。
 - **802.3ad(4)** # 表示支持 802.3ad 协议，动态链路聚合，需要和交换机的聚合 LACP 方式配合(需要 xmit_hash_policy)
-    - 推荐 bond 参数：mode=802.3ad,miimon=100,lacp_rate=1,xmit_hash_policy=layer3+4
-    - 802.3ad 模式的 Bond 网络设备的最大带宽是所有 Slave 设备最大带宽之和
+  - 推荐 bond 参数：mode=802.3ad,miimon=100,lacp_rate=1,xmit_hash_policy=layer3+4
+  - 802.3ad 模式的 Bond 网络设备的最大带宽是所有 Slave 设备最大带宽之和
 - **balance-tlb(5)** # 是根据每个 slave 的负载情况选择 slave 进行发送，接收时使用当前轮到的 slave
 - **balance-alb(6)** # 在 5 的 tlb 基础上增加了 rlb。Adaptive Load Balancing(简称 ALB) 协议，可以根据网络状态和物理网卡的带宽来动态地将数据包分配到每个物理网卡上。
 
@@ -141,9 +141,9 @@ MII 监控参数与 ARP 监控参数不可同时使用
 - layer2+3 # 该策略支持 802.3ad。使用 XOR 或硬件 MAC 地址与 IP 地址一起生成 hash。
 - layer3+4 # 该策略不完全支持 802.3ad
 - 说明：
-    - 这里面的 2，3，4 其实就是指的 ISO 模型里的层，2 层就是用 MAC 进行计算，2+3 就是用 MAC 加 IP 进行计算，3+4 就是用 IP 加 PORT 进行计算。
-    - 只使用 2 层的 MAC 进行计算时，会导致同一个网关的数据流将完全从一个端口发送，但是如果使用 2+3 或 3+4，虽然负载更均衡了，但是由于使用了上层协议进行计算，则增加了 hash 的开销。
-    - 计算越负责，负载均衡效果越好，但是资源开销越大。
+  - 这里面的 2，3，4 其实就是指的 ISO 模型里的层，2 层就是用 MAC 进行计算，2+3 就是用 MAC 加 IP 进行计算，3+4 就是用 IP 加 PORT 进行计算。
+  - 只使用 2 层的 MAC 进行计算时，会导致同一个网关的数据流将完全从一个端口发送，但是如果使用 2+3 或 3+4，虽然负载更均衡了，但是由于使用了上层协议进行计算，则增加了 hash 的开销。
+  - 计算越负责，负载均衡效果越好，但是资源开销越大。
 
 # Bond 关联文件与配置
 

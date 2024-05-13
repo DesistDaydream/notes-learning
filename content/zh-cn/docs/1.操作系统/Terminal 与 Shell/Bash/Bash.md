@@ -4,6 +4,7 @@ weight: 1
 ---
 
 # 概述
+>
 > 参考：
 >
 > - [GNU 官网](https://www.gnu.org/software/bash/)
@@ -94,12 +95,12 @@ Note：
 ```bash
 echo $-
 # 比如下面的情况
-root@lichenhao:~# ssh 172.19.42.248
-root@lichenhao:~# echo $-
+root@desistdaydream:~# ssh 172.19.42.248
+root@desistdaydream:~# echo $-
 himBHs
 
 # 当使用 ssh 登录时，使用 -T 参数不分配终端，则 $- 没有 i
-root@lichenhao:~# ssh -T 172.19.42.248
+root@desistdaydream:~# ssh -T 172.19.42.248
 echo $-
 hBs
 
@@ -164,8 +165,8 @@ source 程序可以在当前 Shell 环境中从指定文件中读取并执行命
 
 EXAMPLE：
 
-   - source openrc admin admin # 运行 openrc 这个配置文件，把第一个参数 admin 和第二个参数 admin 送给 openrc 文件中的$1 和$2
-   - source .bash_profile #
+- source openrc admin admin # 运行 openrc 这个配置文件，把第一个参数 admin 和第二个参数 admin 送给 openrc 文件中的$1 和$2
+- source .bash_profile #
 
 ## sh 和 bash 程序
 
@@ -175,8 +176,8 @@ EXAMPLE：
 
 - 开启一个新的 shell，读取并执行 File 中的命令。该 file 可以“无执行权限”
 - 注：两者在执行文件时的不同，是分别用自己的 shell 来跑文件。
-    - sh 使用“-n”选项进行 shell 脚本的语法检查，使用“-x”选项实现 shell 脚本逐条语句的跟踪
-    - 可以巧妙地利用 shell 的内置变量增强“-x”选项的输出信息等。
+  - sh 使用“-n”选项进行 shell 脚本的语法检查，使用“-x”选项实现 shell 脚本逐条语句的跟踪
+  - 可以巧妙地利用 shell 的内置变量增强“-x”选项的输出信息等。
 
 **bash \[OPTIONS] \[File]** #
 
@@ -207,7 +208,7 @@ OPTIONS
 
 由 bash-completion 程序实现
 
-## 关联文件与配置
+# Bash 关联文件与配置
 
 **/etc/bash_completion.d/** #
 

@@ -353,12 +353,12 @@ o $LINENO 显示的当前的行号
 ## 使用 eval 命令让变量的值作为另一个变量的变量名
 
 ```bash
-root@lichenhao:~# varname=name
-root@lichenhao:~# name=lichenhao
-root@lichenhao:~# echo $$varname
+~]# varname=name
+~]# name=DesistDaydream
+~]## echo $$varname
 209409varname
-root@lichenhao:~# echo '$'$varname
+~]# echo '$'$varname
 $name
-root@lichenhao:~# eval echo '$'$varname
-lichenhao
+~]# eval echo '$'$varname
+DesistDaydream
 ```

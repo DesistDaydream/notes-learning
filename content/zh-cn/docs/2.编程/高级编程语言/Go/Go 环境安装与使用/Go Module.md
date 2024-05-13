@@ -212,7 +212,7 @@ go.mod 文件定义 module 路径以及列出其他需要在 build 时引入的�
 
 go.mod 文件中有如下几个关键字：
 
-- **module** # 定义 module 路径，该路径不用与当前路径相同，只是 module 所用的一个名称，可以代指当前目录。(比如/root/lichenhao/cobra/目录下，创建一个 go.mod 文件，可以定义 module 路径为 cobratest，这个 cobratest 模块路径名，就表示/root/lichenhao/cobra/这个目录)to define the module path;
+- **module** # 定义 module 路径，该路径不用与当前路径相同，只是 module 所用的一个名称，可以代指当前目录。(比如/root/desistdaydream/cobra/目录下，创建一个 go.mod 文件，可以定义 module 路径为 cobratest，这个 cobratest 模块路径名，就表示/root/desistdaydream/cobra/这个目录)to define the module path;
 - **go** # to set the expected language version;
 - **require** # to require a particular module at a given version or later;
 - **exclude** # to exclude a particular module version from use; and

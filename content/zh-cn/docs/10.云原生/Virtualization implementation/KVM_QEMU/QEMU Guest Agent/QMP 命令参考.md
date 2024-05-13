@@ -5,6 +5,7 @@ title: QMP 命令参考
 # 概述
 
 > 参考：
+>
 > - [官方文档，系统模拟管理与交互-QEMU Guest Agent 协议参考](https://www.qemu.org/docs/master/interop/qemu-ga-ref.html)
 > - [简书，qemu-agent-command 命令含义](https://www.jianshu.com/p/27d8491ed100)
 
@@ -305,12 +306,11 @@ _如成功则无返回值_
 
 设置虚拟机中的内存块信息
 
-## guest-exec-status # 获取虚拟机中的进程状态，如进程退出，则获取其相关元数据。
+## guest-exec-status # 获取虚拟机中的进程状态，如进程退出，则获取其相关元数据
 
 Arguments：
 
 - pid: int
-
 
     { "execute": "guest-exec-status", "arguments": { "pid": PID } }
 
@@ -336,7 +336,6 @@ err-truncated: boolean (optional)，如果由于大小限制而没有完全捕�
 - input-data: string (optional)，所需数据
 - capture-output: boolean (optional)，获取进程的 stdout/stderr
 
-
     { "execute": "guest-exec", "arguments": { "path": "ip", "arg": [ "addr", "list" ], "capture-output": true } }
 
 **Returns:**
@@ -355,7 +354,7 @@ err-truncated: boolean (optional)，如果由于大小限制而没有完全捕�
 ## 在 VM 中执行命令，并在宿主机接收执行结果
 
     # 在 VM 中执行命令，并返回该命令 PID
-    [root@host-3 ~]# virsh qemu-agent-command lichenhao.bj-net --pretty '{ "execute": "guest-exec", "arguments": { "path": "ip", "arg": [ "addr", "list" ], "capture-output": true } }'
+    [root@host-3 ~]# virsh qemu-agent-command desistdaydream.bj-net --pretty '{ "execute": "guest-exec", "arguments": { "path": "ip", "arg": [ "addr", "list" ], "capture-output": true } }'
     {
       "return": {
         "pid": 1826
@@ -363,7 +362,7 @@ err-truncated: boolean (optional)，如果由于大小限制而没有完全捕�
     }
 
     # 通过 PID 获取命令输出结果，这个结果是 base64 编码的。
-    [root@host-3 ~]# virsh qemu-agent-command lichenhao.bj-net --pretty '{ "execute": "guest-exec-status", "arguments": { "pid": 1826 } }'
+    [root@host-3 ~]# virsh qemu-agent-command desistdaydream.bj-net --pretty '{ "execute": "guest-exec-status", "arguments": { "pid": 1826 } }'
     {
       "return": {
         "exitcode": 0,

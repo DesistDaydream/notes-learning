@@ -91,6 +91,10 @@ status Show the working tree status
 
 tag Create, list, delete or verify a tag object signed with GPG
 
+# tag - 管理仓库的 Tag 信息
+
+git tag -d v0.7.0 删除 v0.7.0 这个 Tag
+
 # 最佳实践
 
 git 放弃本地修改，强制拉取更新

@@ -5,7 +5,7 @@ title: Ceph 部署
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档, Cephadm](https://docs.ceph.com/en/latest/cephadm/)
 
 # 以 pacific 版本为例
@@ -148,14 +148,14 @@ root@hw-cloud-xngy-ecs-test-0001:~# curl 192.168.1.201:8000
 创建一个系统用户并记录下 ak 与 sk。通过这个用户的信息，可以使用 blemmenes/radosgw_usage_exporter 导出对象存储监控指标
 
 ```bash
-root@hw-cloud-xngy-ecs-test-0001:~# radosgw-admin user create --uid=lichenhao --display-name=lichenhao --system
+root@hw-cloud-xngy-ecs-test-0001:~# radosgw-admin user create --uid=desistdaydream --display-name=desistdaydream --system
 {
-    "user_id": "lichenhao",
-    "display_name": "lichenhao",
+    "user_id": "desistdaydream",
+    "display_name": "desistdaydream",
 ......
     "keys": [
         {
-            "user": "lichenhao",
+            "user": "desistdaydream",
             "access_key": "4O23LGQI3UAUKSSO50UK",
             "secret_key": "JQLul4q2r2qo1vyOLpQ4FVUnh3LWfiNyuiZHQDT6"
         }
@@ -168,8 +168,8 @@ root@hw-cloud-xngy-ecs-test-0001:~# radosgw-admin user create --uid=lichenhao --
 [启动对象网关的管理前端](https://docs.ceph.com/en/pacific/mgr/dashboard/#enabling-the-object-gateway-management-frontend)
 
 ```bash
-radosgw-admin user info --uid=lichenhao | jq .keys[0].access_key > ak
-radosgw-admin user info --uid=lichenhao | jq .keys[0].secret_key > sk
+radosgw-admin user info --uid=desistdaydream | jq .keys[0].access_key > ak
+radosgw-admin user info --uid=desistdaydream | jq .keys[0].secret_key > sk
 ceph dashboard set-rgw-api-access-key -i ak
 ceph dashboard set-rgw-api-secret-key -i sk
 ```
@@ -178,7 +178,7 @@ ceph dashboard set-rgw-api-secret-key -i sk
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/sx1zt0/1630856235488-d2d2e334-a0a9-4d41-aa17-06522f30d11a.png)
 
-使用 192.168.1.202:8000 作为 Endpoint，以及 lichenhao 用户的 ak、sk，可以通过 S3 Brower 访问 Ceph 提供的对象存储。注意：由于此时没有开启 SSL，所以 S3 Brower 也要关闭 SSL。
+使用 192.168.1.202:8000 作为 Endpoint，以及 desistdaydream 用户的 ak、sk，可以通过 S3 Brower 访问 Ceph 提供的对象存储。注意：由于此时没有开启 SSL，所以 S3 Brower 也要关闭 SSL。
 
 ## 添加监控服务(可选)
 
@@ -218,4 +218,3 @@ blemmenes/radosgw_usage_exporter:latest \
 正常
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/sx1zt0/1630835261055-137daaea-90de-4045-a62f-5a0e28077860.png)
-

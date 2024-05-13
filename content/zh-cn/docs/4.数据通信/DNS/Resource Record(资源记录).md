@@ -42,7 +42,7 @@ RR 定义的格式：NAME \[TTL] CLASS RR-TYPE VALUE（注意：格式中的域�
 
 ### EXAMPLE
 
-    baidu.com 86499        IN            SOA    ns.baidu.com.        lichenhao.qq.com.  （
+    baidu.com 86499        IN            SOA    ns.baidu.com.        desistdaydream.qq.com.  （
                                                                      2018072001    #序列号，当序列号变化时，即代表资源有变化，主DNS会主动同步数据给备
                                                                      2H            #刷新时间，2小时
                                                                      10M           #重试时间，10分钟

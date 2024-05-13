@@ -114,7 +114,7 @@ Leap status     : Normal
 ### sources - 显示 chronyd 进程访问的当前时间源的信息
 
 ```bash
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~]$ chronyc sources -v
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~]$ chronyc sources -v
 210 Number of sources = 1
 
   .-- Source mode  '^' = server, '=' = peer, '#' = local clock.
@@ -133,7 +133,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ### sourcestats - 显示有关 chronyd 进程所使用的每个时间源的状态信息
 
 ```bash
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~]$ chronyc sourcestats -v
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~]$ chronyc sourcestats -v
 210 Number of sources = 1
                              .- Number of sample points in measurement set.
                             /    .- Number of residual runs with same sign.
@@ -160,7 +160,7 @@ Name/IP Address            NP  NR  Span  Frequency  Freq Skew  Offset  Std Dev
 ### activity # 报告在线与离线的服务端和对等体的数量
 
 ```bash
-[lichenhao@hw-cloud-xngy-jump-server-linux-2 ~]$ chronyc activity
+[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~]$ chronyc activity
 200 OK
 1 sources online
 0 sources offline

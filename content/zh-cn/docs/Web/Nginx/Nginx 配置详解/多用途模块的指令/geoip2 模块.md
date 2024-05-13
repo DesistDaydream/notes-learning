@@ -19,7 +19,7 @@ geoip2 模块与 geo/geoip 模块的功能类似。geoip2 模块根据 客户端
 ### 首先通过 [mmdblookup](https://maxmind.github.io/libmaxminddb/mmdblookup.html) 工具查看数据库中的内容
 
 ```json
-root@lichenhao:~/test_dir/downloads# mmdblookup --file ./GeoLite2-City.mmdb --ip 59.46.138.226
+root@desistdaydream:~/test_dir/downloads# mmdblookup --file ./GeoLite2-City.mmdb --ip 59.46.138.226
 
   {
     "city":
@@ -163,7 +163,7 @@ http {
         $geoip2_data_country_name country names en;
     }
 
-  	# 指定数据库路径
+   # 指定数据库路径
     geoip2 /etc/maxmind-city.mmdb {
         # 根据数据库内容生成变量
         $geoip2_data_city_name default=London city names en;
@@ -218,7 +218,7 @@ load_module modules/ngx_http_geoip2_module.so;
 
 该指令类似于 geo 模块的 geo 指令，可以自己定义变量名称
 
-###  $VariableName \[default=STRING] \[source=IP] PATH
+### $VariableName \[default=STRING] \[source=IP] PATH
 
 定义名为 `$VariableName` 的变量
 

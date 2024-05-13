@@ -102,7 +102,7 @@ The default password used by the sample templates for newly installed machines (
 生成密码来取代默认的密码，更安全。该密码用来给新安装的设备提供 root 密码。根据提示 your-password-here，这里是自己的密码，random-phrase-here，这里是随机的干扰码
 
 ```bash
-openssl passwd -1 -salt 'lichenhao' '123456'
+openssl passwd -1 -salt 'desistdaydream' '123456'
 sed -i 's/'default_password_crypted:.\*'/'default_password_crypted: "$1$lichenha$UkZ9KiUaiwS/0C324YtoP0"/g' /etc/cobbler/settings
 ```
 
@@ -151,19 +151,23 @@ max-lease-time 86400;
 ## 导入镜像
 
 挂载 centos 光盘镜像
+
 - mount /dev/cdrom /mnt/
 
 导入镜像,创建一个可以提供给其余被安装设备将要使用到的系统镜像
+
 - cobbler import --path=/mnt/ --name=CentOS7-2003 --arch=x86_64
 - 安装源的唯一标示就是根据 name 参数来定义，本例导入成功后，安装源的唯一标示就是：CentOS7-2003-x86_64，如果重复，系统会提示导入失败。
 
 同步 cobbler 的配置，可以看到同步干了哪些事
+
 - cobbler sync
 
 查看镜像列表
+
 - cobbler distro list
   - 镜像存放目录，cobbler 会将镜像中的所有安装文件拷贝到本地一份，放在/var/www/cobbler/ks_mirror 下的 CentOS7-2003-x86_64 目录下。因此/var/www/cobbler 目录必须具有足够容纳安装文件的空间，查看一下目录内容
-     - cd /var/www/cobbler/ks_mirror/
+    - cd /var/www/cobbler/ks_mirror/
 
 ### 配置 ks.cfg
 
@@ -223,7 +227,7 @@ volgroup vg0 pv.01
 logvol / --fstype xfs --size=10240 --name=root --vgname=vg0
 logvol swap --fstype swap --size=1024 --name=swap --vgname=vg0
 logvol /var --fstype xfs --size=1 --grow --name=var --vgname=vg0
- 
+
 %pre
 # %pre段落为安装前执行的任务
 %end
@@ -247,11 +251,11 @@ $SNIPPET('tools')
 - 在第一次导入系统镜像后，Cobbler 会给镜像指定一个默认的 kickstart 自动安装文件在/var/lib/cobbler/kickstarts 下的 sample_end.ks。
 - cobbler list
 - 查看所有的 profile 设置
-   - cobbler profile report
+  - cobbler profile report
 - 编辑 profile，修改关联的 ks 文件
-   - cobbler profile edit --name=CentOS7-2003-x86_64 --kickstart=/var/lib/cobbler/kickstarts/CentOS7.ks
+  - cobbler profile edit --name=CentOS7-2003-x86_64 --kickstart=/var/lib/cobbler/kickstarts/CentOS7.ks
 - （可选）修改安装系统的内核参数，使得网卡名变为 eth
-   - cobbler profile edit --name=CentOS7-2003-x86_64 --kopts='net.ifnames=0 biosdevname=0'
+  - cobbler profile edit --name=CentOS7-2003-x86_64 --kopts='net.ifnames=0 biosdevname=0'
 
 可以看到下面 Kickstart 那里的配置 cfg 文件地址被改变了
 
@@ -414,7 +418,7 @@ max-lease-time 43200;
 ```bash
 1.添加repo源
 #举个栗子，centos7.2版本的openstack的repo源
-[root@cobbler02 ~]# cobbler repo add --name=centos7.2-openstack-mitaka --mirror=http://mirrors.aliyun.com/centos/7.2.1511/cloud/x86_64/openstack-mitaka/ --arch=x86_64 --breed=yum    
+[root@cobbler02 ~]# cobbler repo add --name=centos7.2-openstack-mitaka --mirror=http://mirrors.aliyun.com/centos/7.2.1511/cloud/x86_64/openstack-mitaka/ --arch=x86_64 --breed=yum
 #添加repo源，举个栗子，centos7版本的epel源
 [root@cobbler02 ~]# cobbler repo add --name=centos7-x86_64-epel --mirror=http://mirrors.aliyun.com/epel/7/x86_64/ --arch=x86_64 --breed=yum
 2.同步repo

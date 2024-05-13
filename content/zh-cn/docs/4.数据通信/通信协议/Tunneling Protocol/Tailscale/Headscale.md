@@ -160,11 +160,11 @@ systemctl enable headscale --now
 
 ```bash
 # 这部分命令不用再执行了
-~]# headscale namespaces create lichenhao
+~]# headscale namespaces create desistdaydream
 Namespace created
 ~]# headscale namespaces list
 ID | Name      | Created
-1  | lichenhao | 2022-03-24 04:23:04
+1  | desistdaydream | 2022-03-24 04:23:04
 ```
 
 注意：

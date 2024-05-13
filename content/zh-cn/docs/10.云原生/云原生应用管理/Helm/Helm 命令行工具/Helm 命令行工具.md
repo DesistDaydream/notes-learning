@@ -104,7 +104,7 @@ SubCommand
 - add # 添加一个 charts 仓库
   - helm repo add [FLAGS] NAME URL # 添加一个名为 Name,url 为 URL 的仓库
   - EXAMPLE
-    - helm repo add lichenhao https://www.lichenhao.com
+    - helm repo add desistdaydream https://www.desistdaydream.com
 - index       generate an index file given a directory containing packaged charts
 - list        list chart repositories
   - EXAMPLE

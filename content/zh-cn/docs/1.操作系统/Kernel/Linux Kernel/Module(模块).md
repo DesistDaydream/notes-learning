@@ -9,7 +9,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > -
 
 Linux 模块是 **Loadable Kernel Module(全称为动态可加载内核模块，简称 LKM)，简称为模块**。模块是具有独立功能的程序，它可以被单独编译，但不能独立运行。它在运行时被链接到内核作为内核的一部分在内核空间运行，这与运行在用户空间的进程是不同的。模块通常由一组函数和数据结构组成，用来实现一种文件系统、一个驱动程序或其他内核上层的功能。
@@ -95,7 +95,7 @@ EXAMPLE
 下面就是一个 ip_vs 模块的信息示例，第一列是想要显示的信息名称，第二列是该信息的具体内容
 
 ```bash
-root@lichenhao:~# modinfo ip_vs
+root@desistdaydream:~# modinfo ip_vs
 filename:       /lib/modules/5.4.0-73-generic/kernel/net/netfilter/ipvs/ip_vs.ko
 license:        GPL
 srcversion:     D98100F31C2694A169510A5

@@ -5,6 +5,7 @@ title: Alertmanager 配置
 # 概述
 
 > 参考：
+>
 > - [官方文档，告警-配置](https://prometheus.io/docs/alerting/latest/configuration/)
 
 # Alertmanager 配置文件
@@ -168,7 +169,7 @@ route:
     receivers:
     - name: "default"
       email_configs:
-      - to: "lichenhao@wisetv.com.cn"
+      - to: "desistdaydream@wisetv.com.cn"
         send_resolved: true
 
 ### webhook_configs 字段。webhook 接收者

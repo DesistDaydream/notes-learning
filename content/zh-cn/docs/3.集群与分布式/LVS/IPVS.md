@@ -51,7 +51,7 @@ conn_tab_bits:Set connections' hash size (int)
 - 该参数控制下面示例中 size 的大小，2 的 12 次方，4096
 
 ```bash
-root@lichenhao:~# ipvsadm -ln
+root@desistdaydream:~# ipvsadm -ln
 IP Virtual Server version 1.2.1 (size=4096)
 Prot LocalAddress:Port Scheduler Flags
   -> RemoteAddress:Port           Forward Weight ActiveConn InActConn

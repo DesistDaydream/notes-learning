@@ -73,7 +73,7 @@ Note：
 点击保存后，开始立即构建，并观察控制台输出内容
 
     Console Output
-    Started by user lichenhao
+    Started by user desistdaydream
     Running in Durability level: MAX_SURVIVABILITY
     [Pipeline] Start of Pipeline
     [Pipeline] node
