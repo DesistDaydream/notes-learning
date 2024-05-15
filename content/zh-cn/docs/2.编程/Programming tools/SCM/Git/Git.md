@@ -85,7 +85,7 @@ HEAD 是 Git 中非常重要的一个概念，你可以称它为指针或者引�
 
 windows 版 git 安装完成后，git config --global core.autocrlf input 执行该命令让，git 在 pull 时不转换换行符为 CRLF，而在 push 时，所有 CRLF 转换为 LF。
 
-也可通过配置文件进行修改 ，配置文件在 C:\Users\用户名.gitconfig，修改其中的 autocrlf = input 即可。
+也可通过 .gitconfig 配置文件进行修改 ，修改其中的 autocrlf = input 即可。
 
 <https://github.com/cssmagic/blog/issues/22>
 
@@ -110,3 +110,5 @@ name = DesistDaydream
 ```
 
 其中 user 配置环境标识，name 为该配置环境中的关键字。
+
+**${Project}/.git/** # 通过 Git 管理的项目的根目录下通常都有一个 .git/ 目录。

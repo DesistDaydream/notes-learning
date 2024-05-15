@@ -174,3 +174,35 @@ EXAMPLE
 - ip netns exec r1 ip link set veth1.1 name eth0 # 设定 r1 这个 namespace 中的 veth1.1 网卡的名字为 eth0
 
 monitor
+
+# 网络设备信息
+
+通过 ip link、ip address 等命令获取的网络信息的大体结构如下:
+
+```bash
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+4: eno1: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc mq master bond0 state UP group default qlen 1000
+    link/ether ac:1f:6b:e9:62:da brd ff:ff:ff:ff:ff:ff
+6: eno2: <NO-CARRIER,BROADCAST,MULTICAST,SLAVE,UP> mtu 1500 qdisc mq master bond0 state DOWN group default qlen 1000
+    link/ether ac:1f:6b:e9:62:da brd ff:ff:ff:ff:ff:ff permaddr ac:1f:6b:e9:62:db
+8: enp67s0f0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state DOWN group default qlen 1000
+    link/ether 68:91:d0:6c:2e:86 brd ff:ff:ff:ff:ff:ff
+20: bond0: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether ac:1f:6b:e9:62:da brd ff:ff:ff:ff:ff:ff
+    inet 111.32.26.178/27 brd 111.32.26.191 scope global noprefixroute bond0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::7128:83cd:3cc7:9074/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+```
+
+`< >` 中的信息描述了网路设备的状态:
+
+- **BROADCAST** # 表示该网络接口支持广播通信，也就是可以向同一网络中的所有设备广播信息。
+- **MULTICAST** # 表示该网络接口支持多播通信，也就是可以向同一网络中的一组设备广播信息。
+- **NO-CARRIER** # 表示该网络接口当前没有连接到任何物理设备，或者该连接已经断开。例如，当网线未连接到网卡时，该属性会显示为NO-CARRIER
+- **UP** # 表示该网络接口已经启用并正在工作

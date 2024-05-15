@@ -1,7 +1,7 @@
 ---
-title: Git 命令行工具
-linkTitle: Git 命令行工具
-date: 2024-02-13T08:48
+title: Git 最佳实践
+linkTitle: Git 最佳实践
+date: 2024-05-16T09:05
 weight: 20
 ---
 
@@ -10,92 +10,6 @@ weight: 20
 > 参考：
 >
 > -
-
-git 工具通过多个子命令来使用
-
-# clone - 将一个存储库克隆到一个新的目录
-
-OPTIONS
-
-- **--branch,-b** # 指定名为 NAME 的分支
-
-EXAMPLE
-
-- git clone -b v1.0 XXXX # 克隆 v1.0 分支的代码
-
-commit Record changes to the repository
-
-# config - 配置 git
-
-获取和设置存储库或全局选项
-
-## Syntax(语法)
-
-```bash
-git config [<file-option>] [--type=<type>] [--fixed-value] [--show-origin] [--show-scope] [-z|--null] <name> [<value> [<value-pattern>]]
-git config [<file-option>] [--type=<type>] --add <name> <value>
-git config [<file-option>] [--type=<type>] [--fixed-value] --replace-all <name> <value> [<value-pattern>]
-git config [<file-option>] [--type=<type>] [--show-origin] [--show-scope] [-z|--null] [--fixed-value] --get <name> [<value-pattern>]
-git config [<file-option>] [--type=<type>] [--show-origin] [--show-scope] [-z|--null] [--fixed-value] --get-all <name> [<value-pattern>]
-git config [<file-option>] [--type=<type>] [--show-origin] [--show-scope] [-z|--null] [--fixed-value] [--name-only] --get-regexp <name-regex> [<value-pattern>]
-git config [<file-option>] [--type=<type>] [-z|--null] --get-urlmatch <name> <URL>
-git config [<file-option>] [--fixed-value] --unset <name> [<value-pattern>]
-git config [<file-option>] [--fixed-value] --unset-all <name> [<value-pattern>]
-git config [<file-option>] --rename-section <old-name> <new-name>
-git config [<file-option>] --remove-section <name>
-git config [<file-option>] [--show-origin] [--show-scope] [-z|--null] [--name-only] -l | --list
-git config [<file-option>] --get-color <name> [<default>]
-git config [<file-option>] --get-colorbool <name> [<stdout-is-tty>]
-git config [<file-option>] -e | --edit
-```
-
-**OPTIONS**
-
-- **-l, --list** # 列出配置文件中设置的所有变量及其值。
-
-## EXAMPLE
-
-diff Show changes between commits, commit and working tree, etc
-
-fetch Download objects and refs from another repository
-
-grep Print lines matching a pattern
-
-init - 创建一个空的 Git 存储库或重新初始化现有的存储库
-
-# log - 展示所有 commit 的记录。默认展示当前分支
-
-git log \[] \[] \[\[--] ...]
-
-EXAMPLE
-
-- git log -p -2 prometheus-rules.yaml # 查看 prometheus-rules.yaml 文件最近两次的修改记录
-
-merge Join two or more development histories together
-
-mv Move or rename a file, a directory, or a symlink
-
-pull Fetch from and merge with another repository or a local branch
-
-push Update remote refs along with associated objects
-
-rebase Forward-port local commits to the updated upstream head
-
-reset Reset current HEAD to the specified state
-
-rm Remove files from the working tree and from the index
-
-show Show various types of objects
-
-status Show the working tree status
-
-tag Create, list, delete or verify a tag object signed with GPG
-
-# tag - 管理仓库的 Tag 信息
-
-git tag -d v0.7.0 删除 v0.7.0 这个 Tag
-
-# 最佳实践
 
 git 放弃本地修改，强制拉取更新
 
@@ -155,8 +69,9 @@ HEAD is now at 8251ddb Update e37-exporter-workflows.yml
 强制推送，覆盖远端的版本信息
 
 ```bash
+~]# export REPO="origin"
 ~]# export BRANCH="main"
-~]# git push origin ${BRANCH} --force
+~]# git push ${REPO} ${BRANCH} --force
 Total 0 (delta 0), reused 0 (delta 0)
 To https://github.com/DesistDaydream/e37-exporter.git
  + 3c15aad...8251ddb main -> main (forced update)

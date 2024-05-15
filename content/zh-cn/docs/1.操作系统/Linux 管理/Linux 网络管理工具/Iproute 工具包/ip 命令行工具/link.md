@@ -98,7 +98,12 @@ pinned FILE } ]
 >[!Notes]
 > show 命令无法显示网络设备的类型。想要查看网络设备的类型，可以通过与 [ethtool](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/ethtool.md) 工具配置实现
 >
-> `for i in $(ip link show | awk -F: '$0 !~ "lo|vir|wl|^[^0-9]"{print $2;getline}'); do ethtool -i $i | grep driver; done`
+
+```bash
+for i in $(ip link show | awk -F: '$0 !~ "lo|vir|wl|^[^0-9]"{print $2;getline}'); do 
+  printf "%s\t%s\n" "${i}" "$(ethtool -i $i | grep driver)";
+done | column -t
+```
 
 **ip link show \[ DEVICE | group GROUP ] \[ up ] \[ master DEVICE ] \[ type ETYPE ] \[ vrf NAME ]**
 
