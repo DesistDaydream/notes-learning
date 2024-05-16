@@ -237,10 +237,10 @@
     "docs/1.操作系统/Kernel/Network/Linux 网络栈管理": [
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/_index.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络栈管理.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络包发送过程.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/数据包接收过程详解.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/数据包发送过程详解.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netlink",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/network-scripts.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/systemd-networkd.md",
@@ -415,7 +415,7 @@
     "docs/1.操作系统/Linux 管理/Linux 网络管理工具/Iproute 工具包": [
       "docs/1.操作系统/Linux 管理/Linux 网络管理工具/Iproute 工具包/_index.md",
       "docs/1.操作系统/Linux 管理/Linux 网络管理工具/Iproute 工具包/Iproute 工具包.md",
-      "docs/1.操作系统/Linux 管理/Linux 网络管理工具/Iproute 工具包/ip 命令行工具",
+      "docs/1.操作系统/Linux 管理/Linux 网络管理工具/Iproute 工具包/ip",
       "docs/1.操作系统/Linux 管理/Linux 网络管理工具/Iproute 工具包/ss 命令行工具.md"
     ],
     "docs/1.操作系统/Linux 管理/性能评估与故障处理": [

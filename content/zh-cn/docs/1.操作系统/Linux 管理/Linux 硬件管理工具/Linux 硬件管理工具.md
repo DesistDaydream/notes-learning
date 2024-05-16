@@ -31,7 +31,7 @@ FORMAT
 - **-html** # to activate HTML mode  
 - **-xml** # to activate XML mode  
 - **-short** # to print hardware paths  
-- **-businfo** # to print bus information
+- **-businfo** # 打印 bus(总线) 的信息
 
 OPTIONS
 
@@ -39,7 +39,6 @@ OPTIONS
 - `-disable` TEST to disable a test  
 - **-C, -class CLASS** # 只输出指定 CLASS 的信息。
     - 所有可用的 CLASS 列表见：<https://ezix.org/project/wiki/HardwareLiSter#Deviceclasses>
-
 
 # lspci
 

@@ -24,7 +24,7 @@ Iproute2 基于 Linux 的 [Netlink](/docs/2.编程/高级编程语言/Go/Go%20�
 6. genl
 7. ifcfg
 8. ifstat
-9. [ip](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ip%20命令行工具/ip%20命令行工具.md) # 显示或操纵 routing, devices, policy routing and tunnels
+9. [ip](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ip/ip.md) # 显示或操纵 routing, devices, policy routing and tunnels
 10. lnstat
 11. nstat
 12. rdma
@@ -34,7 +34,7 @@ Iproute2 基于 Linux 的 [Netlink](/docs/2.编程/高级编程语言/Go/Go%20�
 16. rtmon
 17. rtpr
 18. rtstat
-19. [ss](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ss%20命令行工具.md) # 转存 Socket 信息
+19. [ss](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ss.md) # 转存 Socket 信息
 20. tipc #
 21. tc # 实现 [TC 模块](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/TC%20模块/TC%20模块.md) 进行流量控制的程序
 

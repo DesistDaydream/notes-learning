@@ -56,9 +56,9 @@ GitLab 选择 `新建项目/仓库 - 导入项目` 选择 GitHub 项目（需要
 
 二、关联仓库
 
-假如已经成功导入了 DesistDaydream/net_tool 项目。需要通过 [git CLI](docs/2.编程/Programming%20tools/SCM/Git/git%20CLI.md) 让两个仓库互相管理起来
+假如已经成功导入了 DesistDaydream/net_tool 项目。需要通过 [git CLI](/docs/2.编程/Programming%20tools/SCM/Git/git%20CLI.md) 让两个仓库互相管理起来
 
-> 在设备上使用 [OpenSSH Utilities](docs/4.数据通信/Utility/OpenSSH/OpenSSH%20Utilities.md) 创建 id_rsa.pub，并拷贝到 [GitLab](https://gitlab.com/-/profile/keys) 和 [GitHub](https://github.com/settings/keys) 的 SSH 密钥中
+> 在设备上使用 [OpenSSH Utilities](/docs/4.数据通信/Utility/OpenSSH/OpenSSH%20Utilities.md) 创建 id_rsa.pub，并拷贝到 [GitLab](https://gitlab.com/-/profile/keys) 和 [GitHub](https://github.com/settings/keys) 的 SSH 密钥中
 
 先 clone 刚才已导入的仓库，然后查看一下当前的 remote 信息
 

@@ -1,10 +1,29 @@
 ---
 title: Linux 网络设备详解
+linkTitle: Linux 网络设备详解
+date: 2024-05-16T22:19
+weight: 1
 ---
 
 # 概述
 
 > 参考：
+>
+> - [GitHub 项目，torvalds/linux - include/uapi/linux/if_arp.h](https://github.com/torvalds/linux/blob/master/include/uapi/linux/if_arp.h)
+> - [IANA，Address Resolution Protocol (ARP) Parameters，Hardware Types](https://www.iana.org/assignments/arp-parameters/arp-parameters.xhtml#arp-parameters-2)
+> - https://stackoverflow.com/questions/18598283/the-meaning-of-the-sys-class-net-interface-type-value
+
+Linux 中对于每个网络设备，在 [Sys File System](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/Sys%20File%20System.md) 中都有一系列文件用来描述或定义这些网络设备
+
+`/sys/class/net/${NET_DEVICE_NAME}/type` # 网络设备的类型，该文件中只有数字。从 [GitHub 项目，torvalds/linux - include/uapi/linux/if_arp.h](https://github.com/torvalds/linux/blob/master/include/uapi/linux/if_arp.h) 文件中找到数字对应的设备类型表和该设备的定义，这个 C 的头文件将网络设备分为如下几大块
+
+  - ARP 协议硬件定义 # [ARP 与 NDP](/docs/4.数据通信/通信协议/ARP%20与%20NDP.md) 的 RFC 标准中，定义了这些，并且 IANA 中也维护了这些注册信息。
+  - 非 ARP 硬件的虚拟网络设备 #
+  - etc.
+
+`/sys/class/net/${NET_DEVICE_NAME}/flags` # 网络设备的 Flags(标志)，常用来描述设备的状态和基本功能。从 [GitHub 项目，torvalds/linux - include/uapi/linux/if.sh](https://github.com/torvalds/linux/blob/master/include/uapi/linux/if.h) 文件中找到这些 Flags 的含义
+
+> [ip](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ip/ip.md) 工具下的 link 和 address 子命令通过 show 显示的网络设备信息中，第三部分由 `< >` 包裹起来的就是网络设备的 Flags
 
 # 虚拟网络设备
 
@@ -273,7 +292,9 @@ Linux 支持多种隧道，但新用户可能会对它们的差异感到困惑�
 ## IPIP Tunnel
 
 IPIP tunnel, just as the name suggests, is an IP over IP tunnel, defined in [RFC 2003](https://tools.ietf.org/html/rfc2003). The IPIP tunnel header looks like:
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493541929-3c498a49-7406-4a02-ae97-da31bd386c6b.png)
+
 It's typically used to connect two internal IPv4 subnets through public IPv4 internet. It has the lowest overhead but can only transmit IPv4 unicast traffic. That means you **cannot** send multicast via IPIP tunnel.
 IPIP tunnel supports both IP over IP and MPLS over IP.
 **Note**: When the ipip module is loaded, or an IPIP device is created for the first time, the Linux kernel will create a tunl0 default device in each namespace, with attributes local=any and remote=any. When receiving IPIP protocol packets, the kernel will forward them to tunl0 as a fallback device if it can't find another device whose local/remote attributes match their source or destination address more closely.

@@ -1,12 +1,15 @@
 ---
-title: ss 命令行工具
+title: ss
+linkTitle: ss
+date: 2024-05-16T21:40
+weight: 20
 ---
 
 # 概述
 
 > 参考：
 >
-> - [manual](https://man.cx/ss)
+> - [Manual(手册)，ss(8)](https://man7.org/linux/man-pages/man8/ss.8.html)
 
 ss 用于转储 socket 统计信息。 它允许显示类似于 netstat 工具的信息。 它可以显示比其他工具更多的 TCP 和状态信息
 

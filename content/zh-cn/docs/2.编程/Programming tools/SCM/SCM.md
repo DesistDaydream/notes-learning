@@ -15,7 +15,7 @@ SCM(Software Configuration Management，软件配置管理系统)。
 
 SCM(Source Control Management，源代码控制管理系统)。
 
-[Git](docs/2.编程/Programming%20tools/SCM/Git/Git.md)、Subversion(SVN)、CVS、Perforce、ClearCase 等都可以称为 SCM。
+[Git](/docs/2.编程/Programming%20tools/SCM/Git/Git.md)、Subversion(SVN)、CVS、Perforce、ClearCase 等都可以称为 SCM。
 
 可以称为 SCM 的在线网站：
 

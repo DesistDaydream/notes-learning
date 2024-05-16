@@ -31,7 +31,9 @@ weight: 20
 - **-4** # 指定使用的网络层协议是 IPV4
 - **-r** # 显示主机时，不使用 IP，而是使用主机的域名
 
-# add - 添加网络设备
+# add - 添加网络设备的虚拟链接
+
+> Notes: 真实物理网卡对应的网络设备无法通过 ip link add 命令添加
 
 **ip link add \[link DEVICE] \[ name ] NAME \[ARGS] type TYPE \[ ARGS ]**
 

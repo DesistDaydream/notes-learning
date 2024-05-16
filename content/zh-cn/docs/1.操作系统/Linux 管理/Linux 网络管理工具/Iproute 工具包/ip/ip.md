@@ -1,5 +1,7 @@
 ---
-title: ip 命令行工具
+title: ip
+linkTitle: ip
+date: 2024-05-16T21:40
 weight: 1
 ---
 
@@ -21,7 +23,7 @@ ip 程序的语法有点复杂，对 Object 控制的命令中，有非常多的
 
 在后面的文章中，凡是这种复杂的参数，都使用这类格式表示：`参数 := 参数 | 值`，这就有点像编程中初始化**变量**一样。在这里就是等于是定义一个参数，并为参数赋值。比如 `ip link` 命令中，就有这种样子的写法：
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/us4bal/1638423450051-14c93955-fbe9-425a-9d96-eaf14b140241.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/iproute/ip_1.png)
 
 这里面有一个 IFADDR 表示一个参数，IFADDR 参数又是由 PREFIX、SCOPE-ID 等参数组成，而 SCOPE-ID 则表示有具体含义的值。其实，本质上，命令行工具的参数，就是要传入代码的 Function 中的的实际参数。
 
@@ -48,7 +50,7 @@ Command "-c" is unknown, try "ip route help".
   - **-B** # `-family bridge` 的简写
   - **-M** # `-family mpls` 的简写
   - **-0** # `-family link` 的简写
-- **-o, -oneline** # 在一行中输出每条记录，并用''字符替换换行符。在使用 wc(1) 对记录进行计数 或 对输出进行 [grep](docs/1.操作系统/Linux%20管理/Linux%20文本处理/grep.md) 时，这非常方便。
+- **-o, -oneline** # 在一行中输出每条记录，并用''字符替换换行符。在使用 wc(1) 对记录进行计数 或 对输出进行 [grep](/docs/1.操作系统/Linux%20管理/Linux%20文本处理/grep.md) 时，这非常方便。
   - 注意，使用 -o 选项时，不会打印没有 IP 地址的网络设备
 - **-s, -stats** # 显示更详细的信息,主要显示该网络设备的接收、发送、错误、丢弃的数据包信息
 
@@ -72,9 +74,11 @@ Command "-c" is unknown, try "ip route help".
 
 ## link - 网络设备配置
 
-详见：[link](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ip%20命令行工具/link.md)
+详见：[link](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ip/link.md)
 
 ## address - IPv4 或 IPv6 地址管理
+
+https://man7.org/linux/man-pages/man8/ip-address.8.html
 
 ### Syntax(语法)
 
@@ -115,19 +119,17 @@ Command "-c" is unknown, try "ip route help".
 
 ip addr add 10.0.0.101/24 broadcast 10.0.0.255 dev eth0 label eth0:0
 
-Note：在 ip address show 命令中列出的网络设备，可能包含这样的名称 eth0.2@eth0 。其实设备名就是 eth0.2(其中 2 表示 vlan 号)，至于后面的`@`则是一个关联同等级网络设备的符号，表示 eth0.2 这个设备是与 eth0 关联的。如果是 bridge 和 bond 之类的网络设备，则没有`@`符号，因为和 bridge 或者 bond 关联的设备都是属于下级设备。
-
 ## route - 路由条目管理
 
 详见：
 
-[rule 与 route](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ip%20命令行工具/rule%20与%20route.md)
+[rule 与 route](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ip/rule%20与%20route.md)
 
 ## rule - 路由策略数据库管理
 
 详见：
 
-[rule 与 route](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ip%20命令行工具/rule%20与%20route.md)
+[rule 与 route](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ip/rule%20与%20route.md)
 
 ## neighbor - 管理 ARP 或 NDISC 缓存条目
 
@@ -177,14 +179,20 @@ monitor
 
 # 网络设备信息
 
-通过 ip link、ip address 等命令获取的网络信息的大体结构如下:
+> 参考:
+>
+> - [Manual(手册)，netdevice(7)](https://man7.org/linux/man-pages/man7/netdevice.7.html) - Ioctls - SIOCGIFFLAGS, SIOCSIFFLAGS
+> - [GitHub 项目，iproute2/iproute2 - include/uapi/linux/if.h](https://github.com/iproute2/iproute2/blob/main/include/uapi/linux/if.h)
+> - https://stackoverflow.com/questions/36715664/using-ip-what-does-lower-up-mean
+
+通过 ip link、ip address 等命令通过 show 子命令获取的网络信息的大体结构如下:
 
 ```bash
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
        valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host 
+    inet6 ::1/128 scope host
        valid_lft forever preferred_lft forever
 4: eno1: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc mq master bond0 state UP group default qlen 1000
     link/ether ac:1f:6b:e9:62:da brd ff:ff:ff:ff:ff:ff
@@ -196,13 +204,31 @@ monitor
     link/ether ac:1f:6b:e9:62:da brd ff:ff:ff:ff:ff:ff
     inet 111.32.26.178/27 brd 111.32.26.191 scope global noprefixroute bond0
        valid_lft forever preferred_lft forever
-    inet6 fe80::7128:83cd:3cc7:9074/64 scope link noprefixroute 
+    inet6 fe80::7128:83cd:3cc7:9074/64 scope link noprefixroute
        valid_lft forever preferred_lft forever
 ```
 
-`< >` 中的信息描述了网路设备的状态:
+## 第一部分
+
+## 第二部分
+
+在 ip address show 命令中列出的网络设备，可能包含这样的名称 eth0.2@eth0 。其实设备名就是 eth0.2(其中 2 表示 vlan 号)，至于后面的`@`则是一个关联同等级网络设备的符号，表示 eth0.2 这个设备是与 eth0 关联的。如果是 bridge 和 bond 之类的网络设备，则没有`@`符号，因为和 bridge 或者 bond 关联的设备都是属于下级设备。
+
+## 第三部分
+
+`< >` 中的信息描述了网路设备的状态，这些状态的的含义可以从 [iproute2 的源码 include/uapi/linux/if.h](https://github.com/iproute2/iproute2/blob/main/include/uapi/linux/if.h) 出查到（这部分源码与 Linux 的 [if.h](https://github.com/torvalds/linux/blob/master/include/uapi/linux/if.h) 源码相同，从 [Linux 网络设备详解](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Linux%20网络设备详解/Linux%20网络设备详解.md) 中可以看到相关介绍）。
 
 - **BROADCAST** # 表示该网络接口支持广播通信，也就是可以向同一网络中的所有设备广播信息。
 - **MULTICAST** # 表示该网络接口支持多播通信，也就是可以向同一网络中的一组设备广播信息。
 - **NO-CARRIER** # 表示该网络接口当前没有连接到任何物理设备，或者该连接已经断开。例如，当网线未连接到网卡时，该属性会显示为NO-CARRIER
+- **LOWER_UP** # 物理层连接是活跃的，通常表示网线已连接且对端设备工作正常。
 - **UP** # 表示该网络接口已经启用并正在工作
+  - LOWER_UP 与 UP 的区别：LOWER_UP 仅仅是表示物理层插了网线，UP 是网络层准备好了可以开始传输数据了。
+
+## 第四部分
+
+TODO:
+
+- qdisc # 队列管理机制？
+- noqueue
+- qlen # 队列的长度？
