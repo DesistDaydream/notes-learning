@@ -7,7 +7,7 @@ title: Deployment Manifest 详解
 > 参考：
 >
 > - [API 文档，单页](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#deployment-v1-apps)
-> - [官方文档,参考-Kubernetes API-工作负载资源-Deployment](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/deployment-v1/)
+> - [官方文档，参考-Kubernetes API-工作负载资源-Deployment](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/deployment-v1/)
 
 # Manifest 中的顶层字段
 

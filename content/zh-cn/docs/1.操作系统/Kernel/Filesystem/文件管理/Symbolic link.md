@@ -3,6 +3,9 @@ title: Symbolic link
 linkTitle: Symbolic link
 date: 2024-04-20T12:27
 weight: 3
+tags:
+  - 符号链接
+  - 软链接
 ---
 
 # 概述

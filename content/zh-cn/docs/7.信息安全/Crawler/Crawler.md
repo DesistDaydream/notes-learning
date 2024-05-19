@@ -39,3 +39,10 @@ https://github.com/lixi5338619/lxSpider 爬虫案例合集
 
 - [Easy Scraper - 可视化网络爬虫，不写代码，鼠标点点获取数据](https://www.bilibili.com/video/BV1jx4y1S75U)
 
+https://github.com/NanmiCoder/MediaCrawler
+
+- 小红书笔记 | 评论爬虫、抖音视频 | 评论爬虫、快手视频 | 评论爬虫、B 站视频 ｜ 评论爬虫、微博帖子 ｜ 评论爬虫
+
+https://github.com/g1879/DrissionPage
+
+- 基于python的网页自动化工具。既能控制浏览器，也能收发数据包。可兼顾浏览器自动化的便利性和requests的高效率。功能强大，内置无数人性化设计和便捷功能。语法简洁而优雅，代码量少。

@@ -1588,7 +1588,6 @@
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Data type.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Variable.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Control structure",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Control structure.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Arrays AND Slices.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Function.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Pointer.md",
@@ -1597,13 +1596,13 @@
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Reflection.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Goroutine AND Channel",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Generic.md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/错误处理.md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/I_O",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Template.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/时间处理",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/嵌入静态文件.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/I_O.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/os.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Unit test(单元测试).md"
     ],
     "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Control structure": [

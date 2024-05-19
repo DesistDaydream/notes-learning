@@ -15,15 +15,33 @@ weight: 1
 
 Linux 中对于每个网络设备，在 [Sys File System](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/Sys%20File%20System.md) 中都有一系列文件用来描述或定义这些网络设备
 
-`/sys/class/net/${NET_DEVICE_NAME}/type` # 网络设备的类型，该文件中只有数字。从 [GitHub 项目，torvalds/linux - include/uapi/linux/if_arp.h](https://github.com/torvalds/linux/blob/master/include/uapi/linux/if_arp.h) 文件中找到数字对应的设备类型表和该设备的定义，这个 C 的头文件将网络设备分为如下几大块
+在 `/sys/class/net/${NetDeviceName}/` 目录下可以找到很多关于网络设备信息
 
+- **./type** # **网络设备的类型**。该文件中只有数字。从 [GitHub 项目，torvalds/linux - include/uapi/linux/if_arp.h](https://github.com/torvalds/linux/blob/master/include/uapi/linux/if_arp.h) 文件中找到数字对应的设备类型表和该设备的定义，这个 C 的头文件将网络设备分为如下几大块
   - ARP 协议硬件定义 # [ARP 与 NDP](/docs/4.数据通信/通信协议/ARP%20与%20NDP.md) 的 RFC 标准中，定义了这些，并且 IANA 中也维护了这些注册信息。
-  - 非 ARP 硬件的虚拟网络设备 #
-  - etc.
-
-`/sys/class/net/${NET_DEVICE_NAME}/flags` # 网络设备的 Flags(标志)，常用来描述设备的状态和基本功能。从 [GitHub 项目，torvalds/linux - include/uapi/linux/if.sh](https://github.com/torvalds/linux/blob/master/include/uapi/linux/if.h) 文件中找到这些 Flags 的含义
-
-> [ip](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ip/ip.md) 工具下的 link 和 address 子命令通过 show 显示的网络设备信息中，第三部分由 `< >` 包裹起来的就是网络设备的 Flags
+  - 非 ARP 硬件的虚拟网络设备 # Linux 自身实现的一些虚拟网络设备
+  - TODO: 其他信息待整理
+- **./flags** # **网络设备的 Flags(标志)**。常用来描述设备的状态和基本功能。从 [GitHub 项目，torvalds/linux - include/uapi/linux/if.sh](https://github.com/torvalds/linux/blob/master/include/uapi/linux/if.h) 文件中找到这些 Flags 的含义
+  - Notes: [ip](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ip/ip.md) 工具下的 link 和 address 子命令通过 show 显示的网络设备信息中，第三部分由 `< >` 包裹起来的就是网络设备的 Flags
+- **./device/uevent** # **网络设备的驱动与 PCI 信息**。
+  - PCI_SLOT_NAME # 网络设备所在的总线信息，与 [ethtool](docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/ethtool.md) 命令的 -i 选项输出的 bus-info 信息相同；与 [Linux 硬件管理工具](docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/Linux%20硬件管理工具.md) 中的 lspci 的第一列信息相同、lshw -C net -businfo 的第一列信息相同
+    - Notes: 虚拟机中，该文件没有 PCI_SLOT_NAME 的信息。
+    - https://stackoverflow.com/questions/78497110/how-to-get-bus-info-in-a-generic-way
+    - https://askubuntu.com/questions/654820/how-to-find-pci-address-of-an-ethernet-interface
+    - https://stackoverflow.com/questions/73650069/how-to-use-ethtool-drvinfo-to-collect-driver-information-for-a-network-interface
+  - TODO: 其他信息待整理
+```bash
+~]# lshw -C net -businfo | grep I350
+pci@0000:61:00.0  eno1       network        I350 Gigabit Network Connection
+pci@0000:61:00.1  eno2       network        I350 Gigabit Network Connection
+~]# lspci | grep I350
+61:00.0 Ethernet controller: Intel Corporation I350 Gigabit Network Connection (rev 01)
+61:00.1 Ethernet controller: Intel Corporation I350 Gigabit Network Connection (rev 01)
+~]# ethtool -i eno1 | grep bus-info
+bus-info: 0000:61:00.0
+~]# cat /sys/class/net/eno1/device/uevent | grep PCI_SLOT_NAME
+PCI_SLOT_NAME=0000:61:00.0
+```
 
 # 虚拟网络设备
 
