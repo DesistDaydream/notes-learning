@@ -24,7 +24,11 @@ Program(程序) 和 Process(进程) 的区别是什么呢?
 
 <font color="#ff0000">举例说明</font>：
 
-比如 `root         839       1  0 Mar07 ?        Ssl   28:50 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock` 这就是一个 **Processs(进程)**，包括其 ID、启动时间、等等信息的集合体。进程的唯一标识符就是 ID，而启动该进程的程序是 dockerd
+比如:
+
+`root         839       1  0 Mar07 ?        Ssl   28:50 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock`
+
+这就是一个 **Processs(进程)**，包括其 ID、启动时间、等等信息的集合体。进程的唯一标识符就是 ID，而启动该进程的程序是 dockerd
 
 - 至于 `/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock` 这一串则是启动进程的 **Command(命令)**
 - 其中命令中的 dockerd 就是启动该进程的 **Program(程序)**，`/usr/bin/` 是程序所在路径，后面的 `-H fd:// --containerd=/run/containerd/containerd.sock` 是程序的参数。
@@ -47,7 +51,9 @@ Linux 通过在短的时间间隔内轮流运行这些进程而实现“多任�
 ## 进程的生命周期
 
 每一个进程都有其生命周期，例如创建、运行、终止和消除。这些阶段会在系统启动和运行中重复无数次。因此，进程的生命周期对于其性能的分析是非常重要的。下图展示了经典的进程生命周期。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ld23ik/1616167507353-2f676d82-88da-483c-a939-399f284d6425.jpeg)
+
 不会关闭的常驻进程可以称为 **Daemon Process(守护进程，简称 Daemon)**
 
 > 一般 daemon 的名称都会在进程名后加一个字母 d 作为 daemon 的 process，比如 vsftp 的 daemon 就是 vsftpd。
@@ -86,9 +92,13 @@ exec() 系统调用复制新的程序到子进程的地址空间。因为父子�
 一个线程是一个单独的进程生成的一个执行单元。它与其他的线程并行地运行在同一个进程中。各个线程可以共享进程的资源，例如内存、地址空间、打开的文件等等。它们能访问相同的程序数据集。线程也被叫作轻量级的进程（Light Weight Process，LWP）。因为它们共享资源，所以每个线程不应该在同一时间改变它们共享的资源。互斥的实现、锁、序列化等是用户程序的责任。
 
 从性能的角度来说，创建线程的开销比创建进程少，因数创建一个线程时不需要复制资源。另一方面，进程和线程拥在调度算法上有相似的特性。**内核以相似的方式处理它们**。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ld23ik/1616167507380-b6ae3b1e-b47c-454c-b3c7-9942dde4f480.jpeg)
+
 所以，一个进程创建的线程，也是可以运行在多个 CPU 上的。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ld23ik/1616645843002-c07df4a7-3d7a-4969-8203-4bc20169721a.png)
+
 在现在的 Linux 实现中，线程支持 UNIX 的可移植操作系统接口（POSIX）标准库。在 Linux 操作系统中有几种可用的线程实现。以下是广泛使用的线程库：
 
 Linux Threads 自从 Linux 内核 2.0 起就已经被作为默认的线程实现。Linux Threads 的一些实现并不符合 POSIX 标准。Native POSIX Thread Library（NPTL）正在取代 Linux Threads。Linux Threads 在将来的 Linux 企业发行版中将不被支持。
@@ -135,7 +145,9 @@ struct task_struct {
 ```
 
 下图展示了进程结构相关的进程信息概述。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ld23ik/1616167507336-aaeec645-b9df-41c3-99ab-6bf39aed4f42.jpeg)
+
 其实从这里能看出来，从某种角度来看，**对于内核来说并没有线程这个概念。Linux 把所有的线程都当做进程来实现，内核也没有特别的调度算法来处理线程。**线程仅仅被视为一个与其他进程共享某些资源的进程，和进程一样，每个线程也都是有自己的 `task_struct`，所以在内核中，线程看起来就是一个普通的进程。线程也被称作轻量级进程，一个进程可以有多个线程，线程拥有自己独立的栈，切换也由操作系统调度。在 Linux 上可以通过 `pthread_create()` 方法或者 `clone()` 系统调用创建；
 
 # 进程优先级和 nice 值
@@ -151,6 +163,7 @@ Linux 支持从 19（最低优先级）到-20（最高优先级）的 nice 值�
 在进程运行过程中，进程的运行信息被保存于处理器的寄存器和它的缓存中。正在执行的进程加载到寄存器中的数据集被称为上下文。为了切换进程，运行中进程的上下文将会被保存，接下来的运行进程的上下文将被被恢复到寄存器中。进程描述和内核模式堆栈的区域将会用来保存上下文。这个切换被称为上下文切换。过多的上下文切换是不受欢迎的，因为处理器每次都必须清空刷新寄存器和缓存，为新的进程制造空间。它可能会引起性能问题。
 
 下图说明了上下文切换如何工作。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ld23ik/1616167507475-6f5a9385-f033-4c00-8344-2953197b973c.jpeg)
 
 # 中断处理

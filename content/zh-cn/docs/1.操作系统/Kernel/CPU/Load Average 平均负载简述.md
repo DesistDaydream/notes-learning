@@ -1,25 +1,29 @@
 ---
 title: Load Average 平均负载简述
+linkTitle: Load Average 平均负载简述
+date: 2024-05-21T16:53
+weight: 20
 ---
 
 # 概述
 
-<https://blog.csdn.net/u011183653/article/details/19489603>
-
-<https://blog.csdn.net/slvher/article/details/9199439>
+> 参考：
+>
+> - https://blog.csdn.net/u011183653/article/details/19489603
+> - https://blog.csdn.net/slvher/article/details/9199439
 
 # Load 与 Load Average
 
-    LoadAverage = calc_load(TASK_RUNNING + TASK_UNINTERRUPTIBLE,n)
+```bash
+LoadAverage = calc_load(TASK_RUNNING + TASK_UNINTERRUPTIBLE,n)
+```
 
 Load 是此时此刻 CPU 正在处理的进程数。进程可运行状态时，它处在一个运行队列 run queue 中，与其他可运行进程争夺 CPU 时间。 系统的 load 是指正在运行 running 和准备好运行 runnable 以及 不可中断睡眠 的进程的总数。比如现在系统有 2 个正在运行的进程，3 个可运行进程，那么系统的 load 就是 5
 
 Load Average 为在特定时间间隔内运行队列中(在 CPU 上运行或者等待运行多少进程)的平均进程数。如果一个进程满足以下条件则其就会位于运行队列中：
 
 1. 它没有在等待 I/O 操作的结果
-
 2. 它没有主动进入等待状态(也就是没有调用’wait’)
-
 3. 没有被停止(例如：等待终止)
 
 在 Linux 中，进程分为三种状态，一种是阻塞的进程 blocked process，一种是可运行的进程 runnable process，另外就是正在运行的进程 running process。当进程阻塞时，进程会等待 I/O 设备的数据或者系统调用。
@@ -32,8 +36,10 @@ Load Average 为在特定时间间隔内运行队列中(在 CPU 上运行或者�
 
 你在终端窗口键入 uptime，系统会返回一行信息。
 
-    [root@desistdaydream ~]# uptime
-     17:00:00 up 2 days,  2:53,  1 user,  load average: 0.09, 0.05, 0.01
+```bash
+[root@desistdaydream ~]# uptime
+17:00:00 up 2 days,  2:53,  1 user,  load average: 0.09, 0.05, 0.01
+```
 
 这行信息的后半部分，显示"load average"，它的意思是"系统的平均负荷"，里面有三个数字，我们可以从中判断系统负荷是大还是小。
 

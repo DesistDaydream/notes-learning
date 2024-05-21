@@ -48,7 +48,7 @@ sysfs（或 /sys 文件系统）旨在为这种混乱增加结构，并提供一
 # /sys/block/
 
 > 参考：
-> 
+>
 > - [Kernel 文档，Linux 内核用户与管理员指南-Linux ABI 描述-ABI 稳定 链接-/sys/block 链接](https://www.kernel.org/doc/html/latest/admin-guide/abi-stable.html#symbols-under-sys-block)
 > - [Kernel 文档，内核子系统文档-Block](https://www.kernel.org/doc/html/latest/block/index.html)
 
@@ -105,7 +105,7 @@ echo 20 > /sys/bus/platform/devices/pwm-backlight/backlight/pwm-backlight/bright
 
 # /sys/class/
 
-该目录下包含所有注册在 [Linux Kernel](docs/1.操作系统/Kernel/Linux%20Kernel/Linux%20Kernel.md) 里面的设备，子目录按照设备功能分类，每个设备类型表达具有某种功能的设备。每个设备类型子目录下都是这种设备类型的各种具体设备的 **[Symbolic link](docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)(符号链接)，这些链接指向 /sys/devices/ 下的具体设备**。 设备类型和设备并没有一一对应的关系，一个物理设备可能具备多种设备类型；一个设备类型只表达具有一种功能的设备，e.g. 系统所有输入设备都会出现在 /sys/class/input/ 目录中，而不论它们是以何种总线连接到系统的。
+该目录下包含所有注册在 [Linux Kernel](/docs/1.操作系统/Kernel/Linux%20Kernel/Linux%20Kernel.md) 里面的设备，子目录按照设备功能分类，每个设备类型表达具有某种功能的设备。每个设备类型子目录下都是这种设备类型的各种具体设备的 **[Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)(符号链接)，这些链接指向 /sys/devices/ 下的具体设备**。 设备类型和设备并没有一一对应的关系，一个物理设备可能具备多种设备类型；一个设备类型只表达具有一种功能的设备，e.g. 系统所有输入设备都会出现在 /sys/class/input/ 目录中，而不论它们是以何种总线连接到系统的。
 
 ```bash
 ~]# ls /sys/class/
@@ -133,7 +133,7 @@ lrwxrwxrwx  1 root root 0 9月   1 10:50 wg0 -> ../../devices/virtual/net/wg0/
 
 **/sys/class/block/DEVICE/** # 块设备信息，DEVICE 是块设备的名称，用来顶替 [/sys/block/](#/sys/block) 目录，软链接到 **/sys/device/** 中的某个目录。
 
-**/sys/class/net/DEVICE** # 网络设备信息，DEVICE 是网络设备的名称。目录中的信息详见 [Linux 网络设备详解](docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Linux%20网络设备详解/Linux%20网络设备详解.md)
+**/sys/class/net/DEVICE** # 网络设备信息，DEVICE 是网络设备的名称。目录中的信息详见 [Linux 网络设备详解](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Linux%20网络设备详解/Linux%20网络设备详解.md)
 
 # /sys/dev/
 

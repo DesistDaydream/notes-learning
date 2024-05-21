@@ -125,9 +125,11 @@ SReclaimable(Linux 2.6.19+) 都是 clean 的缓存，随时可以释放。回到
 
 该配置用于控制系统将内存 `swap out` 到交换空间的积极性，取值范围是\[0, 100]。`vm.swappiness` 越大，系统的交换积极性越高，默认是 60， 如果为 0 则不会进行交换。
 
-    $ vim /etc/sysctl.conf
+```bash
+$ vim /etc/sysctl.conf
 
-    vm.swappiness \= 1
+vm.swappiness = 1
+```
 
 查看默认设置：`cat /proc/sys/vm/swappiness`
 
@@ -161,15 +163,17 @@ Linux 支持`NUMA 技术`，对于 NUMA 设备，NUMA 系统的结点通常是�
 
 表示当前系统中 normal 区域，可用的连续四页的内存大小为 `52*2^2* PAGE_SIZE`
 
-    $ cat /proc/buddyinfo
+```bash
+$ cat /proc/buddyinfo
 
-    Node 0, zone DMA 23 15 4 5 2 3 3 2 3 1 0
-    Node 0, zone Normal 149 100 52 33 23 5 32 8 12 2 59
-    Node 0, zone HighMem 11 21 23 49 29 15 8 16 12 2 142
+Node 0, zone DMA 23 15 4 5 2 3 3 2 3 1 0
+Node 0, zone Normal 149 100 52 33 23 5 32 8 12 2 59
+Node 0, zone HighMem 11 21 23 49 29 15 8 16 12 2 142
+```
 
 可以看到从第 5 列开始，只剩下 `44*16*PAGE_SIZE` 的页块，后面剩下的分别是`1 * 32 *PAGE_SIZE`, `1 * 64 *PAGE_SIZE`, `2 *128 * PAGE_SIZE`，剩下 256,512 的页块都没有了因此推测，导致这个问题出现的时候，该机器的内存碎片很多，当某个应用执行时，在 xfs 的申请内存中有这种连续的大块的内存申请的操作的请求。
 
-比如：6000: map = kmem_alloc(subnex *sizeof(*map), KM_MAYFAIL | KM_NOFS); 就会导致内存一直分配不到。
+比如：`6000: map = kmem_alloc(subnex *sizeof(*map), KM_MAYFAIL | KM_NOFS);` 就会导致内存一直分配不到。
 
 例如：执行 `docker ps`，`docker exec`这些命令时，会一直阻塞在 `kmem_alloc` 的循环中，反复申请内存，由于内存碎片没有被组合，因此就一直申请不到，执行这些命令也会卡住，这也就验证了执行某些命令如`ls`、`ssh`都不会失败 (因为需要内存的 `PAGE` 不是那么大)。
 

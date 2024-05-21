@@ -30,6 +30,10 @@ weight: 20
 
 # URL Syntax(URL 语法)
 
+> 参考:
+>
+> - https://www.rfc-editor.org/rfc/rfc3986.html#section-3
+
 URL 主要由四个部分组成：协议、主机、端口、路径
 
 **`**Scheme:[//Authority]/Path[?query][#fragment]**`**

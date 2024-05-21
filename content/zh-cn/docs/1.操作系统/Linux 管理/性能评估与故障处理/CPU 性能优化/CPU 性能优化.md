@@ -60,7 +60,10 @@ NUMA node2 CPU(s):     16-23
 NUMA node3 CPU(s):     24-31  
 `
 
-你可能注意到，三级缓存要比一、二级缓存大许多倍，这是因为当下的 CPU 都是多核心的，每个核心都有自己的一、二级缓存，但三级缓存却是一颗 CPU 上所有核心共享的。![](https://mmbiz.qpic.cn/mmbiz_png/ibD9iaaPDn99gtSUiaaFg901xOL7aeib35k3AZ3lZlxEz64mnaUTticqnOgVKRoC7NcmZyiaACsneOu3LREqIFjlJZgQ/640?wx_fmt=png)
+你可能注意到，三级缓存要比一、二级缓存大许多倍，这是因为当下的 CPU 都是多核心的，每个核心都有自己的一、二级缓存，但三级缓存却是一颗 CPU 上所有核心共享的。
+
+![](https://mmbiz.qpic.cn/mmbiz_png/ibD9iaaPDn99gtSUiaaFg901xOL7aeib35k3AZ3lZlxEz64mnaUTticqnOgVKRoC7NcmZyiaACsneOu3LREqIFjlJZgQ/640?wx_fmt=png)
+
 但是，有个地方需要你注意一下：如果应用程序先在一个 Socket 上运行，并且把数据保存到了内存，然后被调度到另一个 Socket 上运行，此时，应用程序再进行内存访问时，就需要访问之前 Socket 上连接的内存，这种访问属于远端内存访问。和访问 Socket 直接连接的内存相比，远端内存访问会增加应用程序的延迟。
 
 ### 常用性能监测工具

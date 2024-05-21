@@ -24,7 +24,7 @@ Linux 中对于每个网络设备，在 [Sys File System](/docs/1.操作系统/K
 - **./flags** # **网络设备的 Flags(标志)**。常用来描述设备的状态和基本功能。从 [GitHub 项目，torvalds/linux - include/uapi/linux/if.sh](https://github.com/torvalds/linux/blob/master/include/uapi/linux/if.h) 文件中找到这些 Flags 的含义
   - Notes: [ip](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ip/ip.md) 工具下的 link 和 address 子命令通过 show 显示的网络设备信息中，第三部分由 `< >` 包裹起来的就是网络设备的 Flags
 - **./device/uevent** # **网络设备的驱动与 PCI 信息**。
-  - PCI_SLOT_NAME # 网络设备所在的总线信息，与 [ethtool](docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/ethtool.md) 命令的 -i 选项输出的 bus-info 信息相同；与 [Linux 硬件管理工具](docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/Linux%20硬件管理工具.md) 中的 lspci 的第一列信息相同、lshw -C net -businfo 的第一列信息相同
+  - PCI_SLOT_NAME # 网络设备所在的总线信息，与 [ethtool](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/ethtool.md) 命令的 -i 选项输出的 bus-info 信息相同；与 [Linux 硬件管理工具](/docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/Linux%20硬件管理工具.md) 中的 lspci 的第一列信息相同、lshw -C net -businfo 的第一列信息相同
     - Notes: 虚拟机中，该文件没有 PCI_SLOT_NAME 的信息。
     - https://stackoverflow.com/questions/78497110/how-to-get-bus-info-in-a-generic-way
     - https://askubuntu.com/questions/654820/how-to-find-pci-address-of-an-ethernet-interface

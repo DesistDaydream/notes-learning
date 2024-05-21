@@ -8,7 +8,7 @@ weight: 8
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，参考-规范-Map 类型](https://go.dev/ref/spec#Map_types)
 > - [官方文档，参考-规范-Struct 类型](https://go.dev/ref/spec#Struct_types)
 
@@ -85,7 +85,7 @@ MapID["KEY"]
 
 # Struct(结构体)
 
-**Struct(结构体)** 是一种**复合[Data type](docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Data%20type.md)(数据类型)**，Struct 可以看作是一个自定义的 Data type，由一系列的 **Fields(字段，有的地方也称为属性)** 组成，每个字段通常都包含 **名称** 和 **类型**。Struct 把数据聚集在一起，然后访问这些数据的时候，好像这些数据是一个独立实体的一部分。Struct 也是值类型，可以通过 `* new()` 函数创建。
+**Struct(结构体)** 是一种**复合[Data type](/docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Data%20type.md)(数据类型)**，Struct 可以看作是一个自定义的 Data type，由一系列的 **Fields(字段，有的地方也称为属性)** 组成，每个字段通常都包含 **名称** 和 **类型**。Struct 把数据聚集在一起，然后访问这些数据的时候，好像这些数据是一个独立实体的一部分。Struct 也是值类型，可以通过 `* new()` 函数创建。
 
 组成结构体的属性分两部分：
 

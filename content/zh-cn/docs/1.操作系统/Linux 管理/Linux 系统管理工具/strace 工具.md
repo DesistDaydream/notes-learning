@@ -8,7 +8,7 @@ title: strace 工具
 >
 > - [GitHub 项目，strace/strace](https://github.com/strace/strace)
 > - [官网](https://strace.io/)
-> - [Manual(手册),strace(1)](https://man7.org/linux/man-pages/man1/strace.1.html)
+> - [Manual(手册)，strace(1)](https://man7.org/linux/man-pages/man1/strace.1.html)
 
 **strace** 是一个用来跟踪 **system calls(系统调用)** 和 **signals(信号)** 的工具。
 
@@ -142,9 +142,9 @@ read(7, "HTTP/1.1 426 Upgrade Required\r\ndate: Fri, 24 Jul 2020 07:53:01 GMT\r\
 # 使用 -yy 参数，显示3号文件描述符的Socket的具体信息(源和目的地址)
 [pid  8623] write(3<TCP:[172.38.40.250:27436->10.20.5.98:8056]>, "POST /api/v1/auth/tokens:login HTTP/1.1\r\nHost: 10.20.5.98:8056\r\nUser-Agent: Go-http-client/1.1\r\nContent-Length: 44\r\nContent-Type: application/json\r\nAccept-Encoding: gzip\r\n\r\n{\"auth\":{\"name\":\"admin\",\"password\":\"admin\"}}", 217) = 217
 # 查看一下这个进程的3号文件描述符
-[root@ansible fd]# ll /proc/8685/fd/3
+~]# ll /proc/8685/fd/3
 lrwx------ 1 root root 64 Jan 24 10:55 /proc/8675/fd/3 -> 'socket:[80219]'
-[root@ansible fdinfo]# cat /proc/net/tcp
+~]# cat /proc/net/tcp
 # 从这里查看socket号为80219的连接信息，16进制转换过去就是 172.38.40.250:27436 与 10.20.5.98:8056
 ```
 
@@ -154,7 +154,7 @@ lrwx------ 1 root root 64 Jan 24 10:55 /proc/8675/fd/3 -> 'socket:[80219]'
   - -c 参数常用来在排障之前，查看当前进程使用了哪些系统调用，然后在后续排障中单独追踪指定的系统调用
 
 ```bash
-[root@dr-02 keepalived]# strace -p 22863 -c
+~]# strace -p 22863 -c
 strace: Process 22863 attached
 % time     seconds  usecs/call     calls    errors syscall
 ------ ----------- ----------- --------- --------- ----------------

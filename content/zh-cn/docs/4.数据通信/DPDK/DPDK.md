@@ -2,7 +2,7 @@
 title: DPDK
 linkTitle: DPDK
 date: 2024-03-18T11:28
-weight: 20
+weight: 1
 ---
 
 # 概述
@@ -39,6 +39,8 @@ https://doc.dpdk.org/guides/prog_guide/env_abstraction_layer.html
 ## DPDK Library
 
 TODO: 好多好多的库，功能非常全。
+
+[Graph Library](docs/4.数据通信/DPDK/Graph%20Library.md)
 
 ## Driver
 
@@ -161,3 +163,7 @@ EXAMPLE
 # DPDK 与 BPF 与 Netfilter
 
 TODO
+
+# FAQ
+
+https://doc.dpdk.org/guides/faq/index.html
