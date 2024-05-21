@@ -10,7 +10,7 @@ weight: 1
 > - [官方文档，组件](https://thanos.io/tip/components/)
 > - <https://zhuanlan.zhihu.com/p/137248127>
 
-# Compactor(压缩器)
+# Compactor(压实器)
 
 **注意：Compactor 在持久运行状态，会对对象存储发起大量的 GET 请求。最好间隔一段时间，运行一次，压缩一次数据即可，不必持久运行**
 

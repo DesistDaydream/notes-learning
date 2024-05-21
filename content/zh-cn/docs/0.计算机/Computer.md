@@ -15,7 +15,7 @@ weight: 1
 
 [CPU](/docs/1.操作系统/Kernel/CPU/CPU.md)
 
-[Memory](/docs/1.操作系统/Kernel/Memory/Memory.md)
+[Memory](docs/0.计算机/Memory/Memory.md)
 
 [Disk](/docs/0.计算机/Disk/Disk.md)
 

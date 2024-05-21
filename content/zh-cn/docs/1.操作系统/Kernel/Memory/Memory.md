@@ -9,24 +9,80 @@ weight: 1
 
 > 参考：
 >
+> - [Linux Kernel 文档，子系统 - 内存管理文档](https://www.kernel.org/doc/html/latest/mm/index.html)
+> - [Linux Kernel 文档，管理员指南 - 内存管理](https://www.kernel.org/doc/html/latest/admin-guide/mm/)
 > - [公众号-小林coding，真棒！ 20 张图揭开内存管理的迷雾，瞬间豁然开朗](https://mp.weixin.qq.com/s/HJB_ATQFNqG82YBCRr97CA)
 > - [公众号-码农的荒岛求生，神秘！申请内存时底层发生了什么？](https://mp.weixin.qq.com/s/0g3sS63yM2qbBja-blw5Dw)(malloc 简介)
+
+**Linux Memory Management Subsystem(Linux 内存管理子系统)** 负责管理系统中的内存。这包括 **virtual memory(虚拟内存)** 和 **demand paging(请求分页)** 的实现、[Linux Kernel](docs/1.操作系统/Kernel/Linux%20Kernel/Linux%20Kernel.md)内部结构和用户空间程序的内存分配、将文件映射到进程地址空间、etc.
+
+Linux 内存管理是一个非常复杂系统，有很多可以配置的设置，这些设置可以通过 [Proc File System](docs/1.操作系统/Kernel/Filesystem/特殊文件系统/Proc%20File%20System.md) 修改，还可以使用 [sysctl](docs/1.操作系统/Linux%20管理/Linux%20内核管理工具/sysctl.md) 程序进行查询和调整，具体参数详见 Kernel 参数中的 [vm(内存相关参数)](docs/1.操作系统/Kernel/Linux%20Kernel/Kernel%20参数/vm(内存相关参数).md)。
+
+## 基础概念
+
+Linux 中的内存管理是一个经过多年发展的复杂系统，包含越来越多的功能来支持从无 MMU 的微控制器到超级计算机的各种系统，下面是一些常见的内存管理中的概念和术语
+
+> 没有 MMU 的系统的内存管理称为 nommu，它绝对值得一个专门的文档，希望最终能够编写出来。然而，随着时代的发展 nommu 的系统或设备已经基本不存在了，但这里我们假设 MMU 可用并且 CPU 可以将虚拟地址转换为物理地址。
+
+- **Virtual Memory(虚拟内存)**
+- **Huge Pages(大页)**
+- **Zones(区域)**
+- **Nodes(节点)**
+- **Page cache(页缓存)**
+- **Anonymous Memory(匿名内存)**
+- **Reclaim(回收)**
+- **Compaction(压实)** # 整理碎片化的内存，将空闲内存整理到一片连续的区域中，让已经使用的内存也处于连续的区域
+- **OOM killer(内存不足杀手)** # 当程序启动申请内存但是不足时，如何停止某些权重低的内存以供新程序运行。
+
+**Virtual Memory(虚拟内存)**
+
+- https://www.kernel.org/doc/html/latest/admin-guide/mm/concepts.html#virtual-memory-primer
+
+**Huge Pages(大页)**
+
+- https://www.kernel.org/doc/html/latest/admin-guide/mm/concepts.html#huge-pages
+
+**Zones(区域)**
+
+- https://www.kernel.org/doc/html/latest/admin-guide/mm/concepts.html#zones
+
+**Nodes(节点)**
+
+- https://www.kernel.org/doc/html/latest/admin-guide/mm/concepts.html#nodes
+
+**Page cache(页缓存)**
+
+- https://www.kernel.org/doc/html/latest/admin-guide/mm/concepts.html#page-cache
+
+**Anonymous Memory(匿名内存)**
+
+- https://www.kernel.org/doc/html/latest/admin-guide/mm/concepts.html#anonymous-memory
+
+**Reclaim(回收)**
+
+- https://www.kernel.org/doc/html/latest/admin-guide/mm/concepts.html#reclaim
+
+**Compaction(压实)**
+
+- https://www.kernel.org/doc/html/latest/admin-guide/mm/concepts.html#compaction
+
+**OOM killer**
+
+- https://www.kernel.org/doc/html/latest/admin-guide/mm/concepts.html#oom-killer
+
+# 虚拟内存
 
 对任何一台计算机而言，其内存以及其它资源都是有限的。为了让有限的**物理内存**满足应用程序对内存的大需求量，Linux 采用了称为 **虚拟内存**的内存管理方式。Linux 将内存划分为容易处理的“内存页”（对于大部分体系结构来说都是 4KB）。Linux 包括了管理可用内存的方式，以及物理和虚拟映射所使用的硬件机制。
 
 不过内存管理要管理的可不止 4KB 缓冲区。Linux 提供了对 4KB 缓冲区的抽象，例如 slab 分配器。这种内存管理模式使用 4KB 缓冲区为基数，然后从中分配结构，并跟踪内存页使用情况，比如哪些内存页是满的，哪些页面没有完全使用，哪些页面为空。这样就允许该模式根据系统需要来动态调整内存使用。
 
-为了支持多个用户使用内存，有时会出现可用内存被消耗光的情况。由于这个原因，页面可以移出内存并放入磁盘中。这个过程称为交换，因为页面会被从内存交换到硬盘上。内存管理的源代码可以在 ./linux/mm 中找到。
+为了支持多个用户使用内存，有时会出现可用内存被消耗光的情况。由于这个原因，页面可以移出内存并放入磁盘中。这个过程称为交换，因为页面会被从内存交换到硬盘上。内存管理的源代码可以在 [./linux/mm](https://github.com/torvalds/linux/tree/master/mm) 中找到。
 
-# 虚拟内存
+---
 
-如果你是电子相关专业的，肯定在大学里捣鼓过单片机。
-
-单片机是没有操作系统的，所以每次写完代码，都需要借助工具把程序烧录进去，这样程序才能跑起来。
+大学里捣鼓过的单片机是没有操作系统的，所以每次写完代码，都需要借助工具把程序烧录进去，这样程序才能跑起来。
 
 另外，单片机的 CPU 是直接操作内存的「物理地址」。
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/odexpg/1616167919093-db60b152-2475-49e7-8a9d-813007e27b8d.jpeg)
 
 在这种情况下，要想在内存中同时运行两个程序是不可能的。如果第一个程序在 2000 的位置写入一个新的值，将会擦掉第二个程序存放在相同位置上的所有内容，所以同时运行两个程序是根本行不通的，这两个程序会立刻崩溃。
 

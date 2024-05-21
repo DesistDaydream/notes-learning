@@ -117,6 +117,6 @@ netfilter-persistent 用来在保证在系统启动时加载 [Netfilter](/docs/1
 
 **Debian 系特定的关联文件**
 
-**/etc/iptables/rules.v4** # IPv4 版本的 iptables 规则保存文件，由 iptables-persistent.service 服务使用
+**/etc/iptables/rules.v4** # IPv4 版本的 iptables 规则保存文件，由 iptables-persistent.service(netfilter-persistent.service) 服务使用
 
-**/etc/iptables/rules.v6** # IPv6 版本的 iptables 规则保存文件，由 iptables-persistent.service 服务使用
+**/etc/iptables/rules.v6** # IPv6 版本的 iptables 规则保存文件，由 iptables-persistent.service(netfilter-persistent.service) 服务使用

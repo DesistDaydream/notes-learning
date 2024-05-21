@@ -57,6 +57,21 @@ Linux 的 man 手册来自于 [Linux man-pages project](https://www.kernel.org/d
 
 在 Linux man 手册中，可以找到 Linux 系统中的一切使用说明。Linux 操作系统围绕 Linux Kernel 构建了一套高效、健壮的应用程序运行环境
 
+# SubSystem
+
+https://www.kernel.org/doc/html/latest/subsystem-apis.html
+
+核心子系统
+
+- [Memory](docs/1.操作系统/Kernel/Memory/Memory.md) 管理子系统
+- TODO
+
+网络接口
+
+存储接口
+
+其他子系统
+
 # intird.img、vmlinuz、System.map 文件
 
 Kernel 会被安装到 `/boot/` 目录中，并生成 **config、initrd.img、System.map、vmlinuz** 这几个文件

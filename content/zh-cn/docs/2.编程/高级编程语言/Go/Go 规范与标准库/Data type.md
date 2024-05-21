@@ -56,7 +56,7 @@ Go 语言将数据类型分为四类：基础类型、复合类型、引用类�
 
 # 类型检测
 
-详见 [Reflection](/docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Reflection.md) 特性
+详见 [Reflect](/docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Reflect.md) 特性
 
 # 类型转换
 

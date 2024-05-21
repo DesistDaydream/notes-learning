@@ -61,6 +61,14 @@ https://en.wikipedia.org/wiki/Internet_service_provider
 
 假设某个数据可能需要经过 A、B、C、D 几个步骤才能修改完毕，我们把这四个步骤打包放到事务中，那么事务就可以确保这四个步骤要么全部执行完毕，要么全部都不去执行。这样即使在任意一个步骤断电或者程序崩溃都不会影响到数据的一致性问题。
 
+## Compaction 与 Compression
+
+**Compaction(压实)** # 数据分散在一大片区域中，将这些数据压实到某一块，以便留出来非碎片的，完整的空白区域
+
+- [Thanos](docs/6.可观测性/监控系统/Prometheus/Prometheus%20衍生品/Thanos/Thanos.md) 的 Compactor 组件就是一个实现类似 Compaction 的行为
+
+**Compression(压缩)** # 将数据通过算法进行压缩，比如把 1MiB 的数据压缩成 500KiB
+
 # Internet
 
 > 参考：

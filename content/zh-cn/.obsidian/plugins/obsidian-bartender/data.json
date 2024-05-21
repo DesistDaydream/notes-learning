@@ -1593,7 +1593,7 @@
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Pointer.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Map AND Struct.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Method AND Interface",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Reflection.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Reflect.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Goroutine AND Channel",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Generic.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理",
@@ -1728,8 +1728,8 @@
       "docs/4.数据通信/Networking device",
       "docs/4.数据通信/SDN(软件定义网路).md",
       "docs/4.数据通信/bit 与 Byte.md",
-      "docs/4.数据通信/DPDK.md",
       "docs/4.数据通信/同源同宿.md",
+      "docs/4.数据通信/DPDK",
       "docs/4.数据通信/Utility"
     ],
     "docs/4.数据通信/DNS": [

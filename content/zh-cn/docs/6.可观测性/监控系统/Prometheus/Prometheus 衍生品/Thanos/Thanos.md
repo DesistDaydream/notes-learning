@@ -44,7 +44,7 @@ Thanos 遵循 [KISS ](https://en.wikipedia.org/wiki/KISS_principle)和 Unix 哲�
   - **Query Frontend** # 实现 Prometheus 的 API、以及一个类似 Prometheus 的 Web 页面。可以将请求负载均衡到指定的多个 Querier 上，同时可以缓存响应数据、也可以按查询日拆分。有点像 Redis 的效果。
 - 对象存储中的数据处理
   - **Store Gateway** # 暴露 StoreAPI。将对象存储中的数据暴露出来，供 Querier 组件通过 PromQL 查询
-  - **Compactor** # 压缩数据，对保存在对象存储中的数据进行降采样。
+  - **Compactor** # 压实数据，对保存在对象存储中的数据进行降采样。
 - 其他
   - **Ruler** # 针对 Thanos 中的数据评估记录和警报规则以进行展示/上传。
 
@@ -166,7 +166,9 @@ Receiver
 - Receiver 自身就是一个 TSDB，也实现了 Prometheus 的 Remote Write API。接收 Prometheus 发送过来的 WAL 数据存储到 Receiver 本地的 TSDB 中。
   - 当然，Receiver 也可以将本地时序数据推送到对象存储。
 
-## [Sidecar(边车)](https://thanos.io/tip/components/sidecar.md/)
+## Sidecar(边车)
+
+https://thanos.io/tip/components/sidecar.md/
 
 Sidecar 可以连接 Prometheus Server，读取其数据以便进行下一步处理。Sidecar 可以提供下列功能：
 
@@ -181,7 +183,9 @@ Sidecar 可以连接 Prometheus Server，读取其数据以便进行下一步处
 - 要使 Sidecar 模式正常运行，必须修改 Prometheus 的 `--storage.tsdb.min-block-duration` 与 `--storage.tsdb.max-block-duration` 这俩命令行标志的值为相同的值以禁用 Prometheus 的本地压缩，通常推荐设置为默认的 `2h`。
   - 这个设置是为了避免当 Sidecar 在上传数据会读取 Prometheus 的本地数据时而产生的问题。比如正在读取的数据正在被压缩，那么该数据上传到对象存储中将会出现问题，甚至都无法正常读取与上传
 
-## [Receiver(接收器)](https://thanos.io/tip/components/receive.md/)
+## Receiver(接收器)
+
+https://thanos.io/tip/components/receive.md/
 
 Receiver 是一个实现了 Prometheus 的 Remote Write API 的 TSDB，具有如下功能。
 
@@ -192,7 +196,9 @@ Receiver 是一个实现了 Prometheus 的 Remote Write API 的 TSDB，具有如
 
 # Thanos 其他组件概述
 
-## [Querier(查询器)](https://thanos.io/tip/components/query.md/)
+## Querier(查询器)
+
+https://thanos.io/tip/components/query.md/
 
 **Query 组件分为两部分**
 
@@ -201,7 +207,9 @@ Receiver 是一个实现了 Prometheus 的 Remote Write API 的 TSDB，具有如
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gq2u99/1620707578416-24269f9e-5260-465a-ab5b-083980a3a016.png)
 
-## [Store Gateway(存储网关)](https://thanos.io/tip/components/store.md/)
+## Store Gateway(存储网关)
+
+https://thanos.io/tip/components/store.md/
 
 当 Sidcar 或 Receiver 将 Prometheus Server 中的数据转存到对象存储中后，下一步我们就会希望如何用起来这些数据，比如，我们可不可以直接使用 PromQL 查询对象存储中的数据呢？当然可以！这就是 Store Gateway 的工作。
 
@@ -209,13 +217,17 @@ Receiver 是一个实现了 Prometheus 的 Remote Write API 的 TSDB，具有如
 
 注意：当 Query 组件通过 Store Gateway 查询数据时，由于对象存储中数据并不是实时的，所以，并不适合查询即时数据。
 
-## [Compactor(压缩器)](https://thanos.io/tip/components/compact.md/)
+## Compactor(压实器)
 
-Prometheus Server 会定期压缩旧数据以提高查询效率。Compactor 组件可以实现相同功能，只不过，压缩目标是 Sidecar 或 Receiver 转存到对象存储中的数据。
+https://thanos.io/tip/components/compact.md/
 
-由于我们有数据长期存储的能力，也就可以实现查询较大时间范围的监控数据，当时间范围很大时，查询的数据量也会很大，这会导致查询速度非常慢。通常在查看较大时间范围的监控数据时，我们并不需要那么详细的数据，只需要看到大致就行。Thanos Compact 这个组件应运而生，它读取对象存储的数据，**对其进行压缩(下采样)再上传到对象存储**，这样在查询大时间范围数据时就可以只读取压缩和降采样后的数据，极大地减少了查询的数据量，从而加速查询。
+Prometheus Server 会定期压实旧数据以提高查询效率。Compactor 组件可以实现相同功能，只不过，压实目标是 Sidecar 或 Receiver 转存到对象存储中的数据。
 
-## [Ruler(规则管理器)](https://thanos.io/tip/components/rule.md/)
+由于我们有数据长期存储的能力，也就可以实现查询较大时间范围的监控数据，当时间范围很大时，查询的数据量也会很大，这会导致查询速度非常慢。通常在查看较大时间范围的监控数据时，我们并不需要那么详细的数据，只需要看到大致就行。Thanos Compact 这个组件应运而生，它读取对象存储的数据，**对其进行压实(下采样)再上传到对象存储**，这样在查询大时间范围数据时就可以只读取压实和降采样后的数据，极大地减少了查询的数据量，从而加速查询。
+
+## Ruler(规则管理器)
+
+https://thanos.io/tip/components/rule.md/
 
 由于 Ruler 组件获取评估数据的路径是 `ruler --> query --> sidecar --> prometheus`，需要经整个查询链条，这也提升了发生故障的风险，而且评估原本就可以在 Prometheus 中进行，所以在非必要的情况下更加推荐使用原本的 Prometheus 方式来做报警和记录规则的评估。
 
