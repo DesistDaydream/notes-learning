@@ -52,7 +52,7 @@ Error: provide only one container name or ID`
 pod 类型 yaml 生成效果如下：
 
 ```yaml
-[root@desistdaydream ~]# podman generate kube generate_test
+~]# podman generate kube generate_test
 # Generation of Kubernetes YAML is still under development!
 #
 # Save the output of this file and use kubectl create -f to import

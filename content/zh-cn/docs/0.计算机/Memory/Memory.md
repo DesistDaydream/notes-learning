@@ -22,19 +22,3 @@ RAM包含多路复用和多路分解电路，用于将数据线连接到寻址�
 
 # Error-Correcting Code memory
 
-
-# MMU
-
-> 参考：
->
-> - [Wiki，Memory management unit](https://en.wikipedia.org/wiki/Memory_management_unit)
-
-CPU 芯片中的 **Memory management unit(内存管理单元，简称 MMU)**
-
-# TLB
-
-> 参考：
->
-> - [Wiki，Translation lookaside buffer](https://en.wikipedia.org/wiki/Translation_lookaside_buffer)
-
-**translation lookaside buffer(转换后被缓冲区，简称 TLB)** 用于减少访问用户内存位置所需的时间，是 MMU 的一部分

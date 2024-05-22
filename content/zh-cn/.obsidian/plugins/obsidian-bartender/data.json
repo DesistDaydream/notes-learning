@@ -214,10 +214,12 @@
     "docs/1.操作系统/Kernel/Memory": [
       "docs/1.操作系统/Kernel/Memory/_index.md",
       "docs/1.操作系统/Kernel/Memory/Memory.md",
+      "docs/1.操作系统/Kernel/Memory/Huge Pages.md",
       "docs/1.操作系统/Kernel/Memory/Memory 的分配.md",
       "docs/1.操作系统/Kernel/Memory/Memory 的缓存.md",
       "docs/1.操作系统/Kernel/Memory/Memroy 的 Over Commit 与 OOM.md",
       "docs/1.操作系统/Kernel/Memory/堆区与栈区.md",
+      "docs/1.操作系统/Kernel/Memory/NUMA.md",
       "docs/1.操作系统/Kernel/Memory/分享Linux内存占用几个案例.md",
       "docs/1.操作系统/Kernel/Memory/mmap可以让程序员解锁哪些骚操作？.md"
     ],
@@ -2387,14 +2389,14 @@
       "docs/8.通用技术/_index.md",
       "docs/8.通用技术/编码与解码",
       "docs/8.通用技术/Cache.md",
+      "docs/8.通用技术/Scheduler.md",
       "docs/8.通用技术/Job",
       "docs/8.通用技术/CDN",
-      "docs/8.通用技术/I_O模型.md",
       "docs/8.通用技术/Message Queue(消息队列)",
       "docs/8.通用技术/Regular Expression(正则表达式).md",
       "docs/8.通用技术/Service Discovery(服务发现).md",
-      "docs/8.通用技术/Timestamps(时间戳).md",
-      "docs/8.通用技术/UUID 与 ULID.md"
+      "docs/8.通用技术/UUID 与 ULID.md",
+      "docs/8.通用技术/Time.md"
     ],
     "docs/8.通用技术/Job": [
       "docs/8.通用技术/Job/_index.md",

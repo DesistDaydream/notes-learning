@@ -35,20 +35,20 @@ weight: 1
 **/proc/sys/** 目录下的每一个子目录，都表示一种内核参数的分类，大体可以分为如下几类：
 
 - **./abi/** # execution domains & personalities
+  - [Documentation for /proc/sys/abi/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/abi.html)
 - **./debug/** # 空
 - **./dev/** # device specific information (eg dev/cdrom/info)
 - **./fs/** # specific filesystems filehandle, inode, dentry and quota tuning binfmt_misc \<Kernel Support for miscellaneous Binary Formats (binfmt_misc)>
+  - 详见 [fs(文件系统相关参数)](docs/1.操作系统/Kernel/Linux%20Kernel/Kernel%20参数/fs(文件系统相关参数).md)
 - **./kernel/** # global kernel info / tuning miscellaneous stuff
-- **./net/** # 网络相关的内核参数，详见 [net(网络相关参数)](/docs/1.操作系统/Kernel/Linux%20Kernel/Kernel%20参数/net(网络相关参数)/net(网络相关参数).md)
+  - [Documentation for /proc/sys/kernel/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/kernel.html)
+- **./net/** # 网络相关的内核参数
+  - 详见 [net(网络相关参数)](/docs/1.操作系统/Kernel/Linux%20Kernel/Kernel%20参数/net(网络相关参数)/net(网络相关参数).md)
 - **./proc/** # 空
 - **./sunrpc/** # SUN Remote Procedure Call (NFS)
-- **./vm/** # memory management tuning buffer and cache management
+  - [Documentation for /proc/sys/sunrpc/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/sunrpc.html)
+- **./vm/** # 内存管理调整缓冲区和高速缓存管理。memory management tuning buffer and cache management
+  - 详见 [vm(内存相关参数)](docs/1.操作系统/Kernel/Linux%20Kernel/Kernel%20参数/vm(内存相关参数).md)
 - **./user/** # Per user per user namespace limits
+  - [Documentation for /proc/sys/user/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/user.html)
 
-- [Documentation for /proc/sys/abi/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/abi.html)
-- [Documentation for /proc/sys/fs/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/fs.html)
-- [Documentation for /proc/sys/kernel/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/kernel.html)
-- [Documentation for /proc/sys/net/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/net.html)
-- [Documentation for /proc/sys/sunrpc/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/sunrpc.html)
-- [Documentation for /proc/sys/user/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/user.html)
-- [Documentation for /proc/sys/vm/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/vm.html)

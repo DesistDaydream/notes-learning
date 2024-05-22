@@ -3,8 +3,11 @@ title: SNMP 采集第三方 MIB 文件定义的设备信息
 ---
 
 <https://lvii.github.io/server/2013-07-05-net-snmp-get-info-from-third-custumed-mib-file/>
+
 厂里机房搞来 PDU 机柜电源插座，这个 bootbox 可以采集一些机柜温度，以及各个插座的电流功率啥的。
+
 要用 SNMP 协议来获取这些信息，因为是第三方设备，要根据厂商的 MIB 文件中定义的 OID 来解析相关字段。
+
 下面开始介绍怎么折腾：
 
 - 把 MIB 放到系统 `mibdirs` 路径
@@ -59,6 +62,7 @@ NPM3G-MIB DEFINITIONS ::= BEGIN
 ```
 
 net-snmp 官网文档还提供 **环境变量** 和 **命令行** 方法加载 MIB 文件：
+
 <http://www.net-snmp.org/FAQ.html#How_do_I_add_a_MIB_to_the_tools_>
 
 ```bash
@@ -162,5 +166,7 @@ NPM3G-MIB::npm1Humidity1.0 = STRING: 76
 ## 参考 [Permalink](https://lvii.github.io/server/2013-07-05-net-snmp-get-info-from-third-custumed-mib-file/#%E5%8F%82%E8%80%83)
 
 [net-snmp 中载入第三方 mib 库](http://fs20041242.iteye.com/blog/889041)
+
 <http://www.net-snmp.org/FAQ.html>
+
 [Using and loading MIBS](http://www.net-snmp.org/wiki/index.php/TUT:Using_and_loading_MIBS)

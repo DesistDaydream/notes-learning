@@ -4,7 +4,7 @@ title: HTTP(新监控标准)
 
 # 概述
 
-由于 SNMP 的种种不便，现在更多的是基于 HTTP 协议来实现监控指标的采集。
+由于 SNMP 的种种不便，现在更多的是基于 [HTTP](docs/4.数据通信/通信协议/HTTP/HTTP.md) 协议来实现监控指标的采集。
 
 同样，也是需要一个 Client 采集指标，需要一个 Server 端接收指标后存储指标。
 
@@ -36,7 +36,7 @@ Metric values in OpenMetrics MUST be either floating points or integers. Note th
 
 #### Booleans
 
-Boolean values MUST follow 1==true, 0==false.
+`Boolean values MUST follow 1==true, 0==false`
 
 ### Timestamps
 

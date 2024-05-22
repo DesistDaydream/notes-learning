@@ -34,31 +34,31 @@ docker run 命令直接创建并运行一个容器，它的背后其实包含独
 
 ```bash
 # 创建容器前的 layers
-[root@desistdaydream overlay2]# ls
+overlay2]# ls
 113a9d8407c2db3892944c17beba7a635ea39aa5108c7f716088466ea302a7e3  7704e53a9392b092479707d38b2b183b17bbe2cc220e2283cead9493e19aa651  l
 5de7ac8af2fb0a5fb0be4244aa07685bfcfcfc4c4b1c149bc753eb044d7f4a12  8f377ae99a442b37f5a831724951ce1cf8bfc7b874843c97d09e8027c3dd19e6
 # 创建容器后的 layers，多了两个
-[root@desistdaydream overlay2]# docker create -it --name docker_runtime_test ubuntu:latest
+overlay2]# docker create -it --name docker_runtime_test ubuntu:latest
 28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10
-[root@desistdaydream overlay2]# ls
+overlay2]# ls
 113a9d8407c2db3892944c17beba7a635ea39aa5108c7f716088466ea302a7e3  8f377ae99a442b37f5a831724951ce1cf8bfc7b874843c97d09e8027c3dd19e6       l
 5de7ac8af2fb0a5fb0be4244aa07685bfcfcfc4c4b1c149bc753eb044d7f4a12  d976eddf7575a3464486d92539229146f3df66080a3265195791ebb0d24b24dd
 7704e53a9392b092479707d38b2b183b17bbe2cc220e2283cead9493e19aa651  d976eddf7575a3464486d92539229146f3df66080a3265195791ebb0d24b24dd-init
 # 这俩 layers 的元数据在 ${DockerRootDir}/image/${StorageDriver}/layerdb/mounts目录中
-[root@desistdaydream 28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10]# pwd
+28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10]# pwd
 /var/lib/docker/image/overlay2/layerdb/mounts/28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10
-[root@desistdaydream 28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10]# ls
+28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10]# ls
 init-id  mount-id  parent
 # init-id 文件包含了 init layer 的 cacheID
 # init layer 的 cacheid 就是在 mount layer 的 cacheID 后面加上了一个“-init”
-[root@desistdaydream 28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10]# cat init-id
+28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10]# cat init-id
 d976eddf7575a3464486d92539229146f3df66080a3265195791ebb0d24b24dd-init
 # mount-id 文件包含了 mount layer 的 cacheID
-[root@desistdaydream 28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10]# cat mount-id
+28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10]# cat mount-id
 d976eddf7575a3464486d92539229146f3df66080a3265195791ebb0d24b24dd
 # parent 里面包含的是 image 的最上 layer 的 chainID
 # 表示这个容器的 init layer 的父 layer 是 image 的最顶层 layer
-[root@desistdaydream 28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10]# cat parent
+28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10]# cat parent
 sha256:8a8d1f0b34041a66f09e49bdc03e75c2190f606b0db7e08b75eb6747f7b49e11
 ```
 
@@ -72,7 +72,7 @@ Note:
 1. mount layer # 供容器写数据的层，如果容器仅创建而没运行的话，那么该层的目录中，没有 merged 目录，并且其余目录也是空的
 
 ```bash
-[root@desistdaydream d976eddf7575a3464486d92539229146f3df66080a3265195791ebb0d24b24dd]# tree
+d976eddf7575a3464486d92539229146f3df66080a3265195791ebb0d24b24dd]# tree
 .
 ├── diff
 ├── link
@@ -84,7 +84,7 @@ Note:
 1. init layer # 包含了 docker 为容器所预先准备的文件
 
 ```bash
-[root@desistdaydream d976eddf7575a3464486d92539229146f3df66080a3265195791ebb0d24b24dd-init]# tree
+d976eddf7575a3464486d92539229146f3df66080a3265195791ebb0d24b24dd-init]# tree
 .
 ├── committed
 ├── diff
@@ -119,11 +119,11 @@ init layer 里面的文件有什么作用呢？从下面的结果可以看出，
 
 Note：容器启动后，该目录还会有新的文件产生。
 
-    [root@desistdaydream containers]# pwd
+    containers]# pwd
     /var/lib/docker/containers
-    [root@desistdaydream containers]# ls
+    containers]# ls
     28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10
-    [root@desistdaydream containers]# tree
+    containers]# tree
     .
     ├── checkpoints
     ├── config.v2.json # 通用的配置，如容器名称、启动后要执行的命令等等
@@ -148,7 +148,7 @@ Note：容器启动后，该目录还会有新的文件产生。
 Note：这些目录在容器停止后，会自动删除
 
 ```bash
-[root@desistdaydream containerd]# find / -name "28f5bed704dc*"
+containerd]# find / -name "28f5bed704dc*"
 /run/docker/runtime-runc/moby/28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10
 /run/docker/containerd/28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10
 /run/containerd/io.containerd.runtime.v1.linux/moby/28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10
@@ -156,9 +156,9 @@ Note：这些目录在容器停止后，会自动删除
 /var/lib/docker/containers/28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10
 /var/lib/docker/containers/28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10/28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10-json.log
 /var/lib/docker/image/overlay2/layerdb/mounts/28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10
-[root@desistdaydream docker]# docker stop docker_runtime_test
+docker]# docker stop docker_runtime_test
 docker_runtime_test
-[root@desistdaydream docker]# find / -name "28f5bed704dc*"
+docker]# find / -name "28f5bed704dc*"
 /var/lib/docker/containers/28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10
 /var/lib/docker/containers/28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10/28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10-json.log
 /var/lib/docker/image/overlay2/layerdb/mounts/28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10
@@ -169,25 +169,25 @@ docker_runtime_test
 ```bash
 # 容器运行后，在没有 mount layer 中，会多出来一个 merged 的目录，这就是当前已经启动容器的可读写层，所有变化都会在这里。
 # 并且当容器停止后，merged 目录也会随之消失
-[root@desistdaydream overlay2]# ls d976eddf7575a3464486d92539229146f3df66080a3265195791ebb0d24b24dd
+overlay2]# ls d976eddf7575a3464486d92539229146f3df66080a3265195791ebb0d24b24dd
 diff  link  lower  merged  work
-[root@desistdaydream overlay2]# ls d976eddf7575a3464486d92539229146f3df66080a3265195791ebb0d24b24dd-init/
+overlay2]# ls d976eddf7575a3464486d92539229146f3df66080a3265195791ebb0d24b24dd-init/
 committed  diff  link  lower  work
 
 # 当在容器中创建一个文件时，该变化会同时应用到 mount layer 的 diff 和 merged 目录
-[root@desistdaydream overlay2]# docker start docker_runtime_test
+overlay2]# docker start docker_runtime_test
 docker_runtime_test
-[root@desistdaydream overlay2]# docker exec -it docker_runtime_test /bin/bash
+overlay2]# docker exec -it docker_runtime_test /bin/bash
 root@28f5bed704dc:/# ls
 bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
 root@28f5bed704dc:/# touch home/desistdaydream
 
-[root@desistdaydream overlay2]# tree d976eddf7575a3464486d92539229146f3df66080a3265195791ebb0d24b24dd/diff/
+overlay2]# tree d976eddf7575a3464486d92539229146f3df66080a3265195791ebb0d24b24dd/diff/
 d976eddf7575a3464486d92539229146f3df66080a3265195791ebb0d24b24dd/diff/
 ├── home
 │   └── desistdaydream
 └── root
-[root@desistdaydream overlay2]# tree d976eddf7575a3464486d92539229146f3df66080a3265195791ebb0d24b24dd/merged/home/
+overlay2]# tree d976eddf7575a3464486d92539229146f3df66080a3265195791ebb0d24b24dd/merged/home/
 d976eddf7575a3464486d92539229146f3df66080a3265195791ebb0d24b24dd/merged/home/
 └── desistdaydream
 # 容器停止后，merged 的目录消失，但是 diff 目录还在，所有对容器的操作产生的变化，都会在diff目录中永久保存，直到该容器被删除。
@@ -219,7 +219,7 @@ workdir=/var/lib/docker/overlay2/d976eddf7575a3464486d92539229146f3df66080a32651
 rootfs 准备好之后，dockerd 接着会准备一些容器里面需要用的配置文件，下面是容器元数据目录的变化
 
 ```bash
-[root@desistdaydream 28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10]# tree
+28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10]# tree
 .
 ├── 28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10-json.log
 ├── checkpoints
@@ -246,9 +246,9 @@ Note：除了日志文件外，其它文件在每次容器启动的时候都会�
 bundle 被 docker 放在 /run/containerd/ 目录下，展示如下：
 
 ```bash
-[root@desistdaydream containerd]# pwd
+containerd]# pwd
 /run/containerd
-[root@desistdaydream containerd]# tree
+containerd]# tree
 .
 ├── containerd.sock
 ├── io.containerd.runtime.v1.linux
@@ -266,9 +266,9 @@ bundle 被 docker 放在 /run/containerd/ 目录下，展示如下：
 容器运行所需的 IO 文件被 docker 放在 /run/docker/containerd/\* 目录下
 
 ```bash
-[root@desistdaydream containerd]# pwd
+containerd]# pwd
 /run/docker/containerd
-[root@desistdaydream containerd]#  tree
+containerd]#  tree
 .
 └── 28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10
     ├── init-stdin
@@ -285,15 +285,15 @@ docker exec 命令就是通过这两个文件，来让宿主机与容器进行�
 容器正常启动后，会在 /run/docker/runtime-runc/moby/\* 目录中创建该容器的状态文件 state.json 。该文件包含当前容器详细的配置及状态信息。其中也包括 bundle 路径等等。
 
 ```bash
-[root@desistdaydream moby]# pwd
+moby]# pwd
 /run/docker/runtime-runc/moby
-[root@desistdaydream moby]# tree
+moby]# tree
 .
 └── 28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10
     └── state.json
 
 
-[root@desistdaydream moby]# cat 28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10/state.json  | jq .
+moby]# cat 28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10/state.json  | jq .
 {
   "id": "28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10",
   "init_process_pid": 32221,

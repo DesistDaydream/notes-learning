@@ -135,7 +135,7 @@ total 0
 lrwxrwxrwx 1 root root 11 Nov 21 00:41 com.redhat.spice.0 -> ../vport1p2
 lrwxrwxrwx 1 root root 11 Nov 21 00:41 org.qemu.guest_agent.0 -> ../vport1p1
 lrwxrwxrwx 1 root root 11 Nov 21 00:41 org.qemu.guest_agent.1 -> ../vport1p3
-[root@desistdaydream ~]# systemctl status qemu-guest-agent.service
+~]# systemctl status qemu-guest-agent.service
 ● qemu-guest-agent.service - QEMU Guest Agent
 Loaded: loaded (/usr/lib/systemd/system/qemu-guest-agent.service; disabled; vendor preset: enabled)
 Active: active (running) since Fri 2020-11-20 23:40:33 CST; 44min ago

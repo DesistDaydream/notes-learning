@@ -30,7 +30,7 @@ chmod 755 test-fd.sh
 
 bash test-fd.sh
 # 查看该进程的 fd 目录可以看到有如下几个文件
-[root@desistdaydream ~]# ll /proc/4082/fd
+~]# ll /proc/4082/fd
 total 0
 lrwx------ 1 root root 64 Nov 22 18:27 0 -> /dev/pts/0
 lrwx------ 1 root root 64 Nov 22 18:27 1 -> /dev/pts/0

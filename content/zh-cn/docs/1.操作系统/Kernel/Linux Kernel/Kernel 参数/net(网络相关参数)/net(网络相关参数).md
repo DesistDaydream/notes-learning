@@ -10,7 +10,7 @@ weight: 1
 > 参考：
 >
 > - [Manual(手册)，/proc/sys 部分](https://man7.org/linux/man-pages/man5/proc.5.html#DESCRIPTION)
-> - [官方文档，Linux 内核用户和管理员指南-/proc/sys 文档-/proc/sys/net 文档](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/net.html)
+> - [Linux Kernel 文档，管理员指南 - /proc/sys 文档 - /proc/sys/net 文档](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/net.html)
 > - [官方文档，内核子系统文档-Networking-IP Sysctl](https://www.kernel.org/doc/html/latest/networking/ip-sysctl.html)
 >   - 这里包含 net 下的 ipv4、ipv6、bridge 等相关参数，但是没有 netfilter 等的相关参数
 

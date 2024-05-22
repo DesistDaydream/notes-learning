@@ -13,6 +13,10 @@ weight: 1
 
 **Operating system(操作系统，简称 OS)** 也是一种软件，用来管理计算机硬件和其他以及自身软件资源的。
 
+## 学习
+
+《操作系统导论》
+
 # Time Sharing System(分时系统)
 
 ## 概述

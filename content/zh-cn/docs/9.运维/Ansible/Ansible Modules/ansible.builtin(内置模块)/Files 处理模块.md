@@ -50,7 +50,7 @@ blockinfile 模块使用示例：
 添加结果
 
 ```shell
-[root@desistdaydream ~]# cat /etc/hosts
+~]# cat /etc/hosts
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
 # BEGIN ANSIBLE MANAGED BLOCK

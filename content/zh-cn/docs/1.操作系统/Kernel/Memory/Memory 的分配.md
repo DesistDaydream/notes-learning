@@ -18,6 +18,7 @@ weight: 2
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/qcafxw/1647849537444-83cb3179-0921-484f-942a-7b6d033ae1dc.jpeg)
 
 通过这张图你可以看到，用户空间内存从**低到高**分别是 6 种不同的内存段：
+
 通过这里可以看出：
 
 - 32 位系统的内核空间占用 1G，位于最高处，剩下的 3G 是用户空间；

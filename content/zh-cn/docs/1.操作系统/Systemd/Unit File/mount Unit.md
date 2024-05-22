@@ -78,64 +78,72 @@ tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,size=201784k,mode=700)
 
 其实是已经被 systemd 挂载了，我们可以查看 systemd 的挂载单元 tmp
 
-    [root@CentOS76 ~]# systemctl cat tmp.mount
-    # /usr/lib/systemd/system/tmp.mount
-    #  This file is part of systemd.
-    #
-    #  systemd is free software; you can redistribute it and/or modify it
-    #  under the terms of the GNU Lesser General Public License as published by
-    #  the Free Software Foundation; either version 2.1 of the License, or
-    #  (at your option) any later version.
-    [Unit]
-    Description=Temporary Directory
-    Documentation=man:hier(7)
-    Documentation=http://www.freedesktop.org/wiki/Software/systemd/APIFileSystems
-    ConditionPathIsSymbolicLink=!/tmp
-    DefaultDependencies=no
-    Conflicts=umount.target
-    Before=local-fs.target umount.target
-    [Mount]
-    What=tmpfs
-    Where=/tmp
-    Type=tmpfs
-    Options=mode=1777,strictatime
-    # Make 'systemctl enable tmp.mount' work:
-    [Install]
-    WantedBy=local-fs.target
+```bash
+~]# systemctl cat tmp.mount
+# /usr/lib/systemd/system/tmp.mount
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+[Unit]
+Description=Temporary Directory
+Documentation=man:hier(7)
+Documentation=http://www.freedesktop.org/wiki/Software/systemd/APIFileSystems
+ConditionPathIsSymbolicLink=!/tmp
+DefaultDependencies=no
+Conflicts=umount.target
+Before=local-fs.target umount.target
+[Mount]
+What=tmpfs
+Where=/tmp
+Type=tmpfs
+Options=mode=1777,strictatime
+# Make 'systemctl enable tmp.mount' work:
+[Install]
+WantedBy=local-fs.target
+```
 
 内容也很好看懂。Requires、After 这和 systemd service 的写法基本一致，\[Mount] 下就是挂载的说明了，What 后是要挂载的文件系统，Where 是挂载到的地方，Type 是文件系统类型，Options 是挂载参数。相当于：
 
-    mount -t <Type> -o <Options> <What> <Where>
+```bash
+mount -t <Type> -o <Options> <What> <Where>
+```
 
 我们看看目录下的挂载单元
 
-    $ ll /usr/lib/systemd/system/*.mount
-    -rw-r--r--. 1 root root 670 Oct 31 07:31 /usr/lib/systemd/system/dev-hugepages.mount
-    -rw-r--r--. 1 root root 590 Oct 31 07:31 /usr/lib/systemd/system/dev-mqueue.mount
-    -rw-r--r--. 1 root root 615 Oct 31 07:31 /usr/lib/systemd/system/proc-sys-fs-binfmt_misc.mount
-    -rw-r--r--. 1 root root 681 Oct 31 07:31 /usr/lib/systemd/system/sys-fs-fuse-connections.mount
-    -rw-r--r--. 1 root root 719 Oct 31 07:31 /usr/lib/systemd/system/sys-kernel-config.mount
-    -rw-r--r--. 1 root root 662 Oct 31 07:31 /usr/lib/systemd/system/sys-kernel-debug.mount
-    -rw-r--r--. 1 root root 703 Oct 31 07:31 /usr/lib/systemd/system/tmp.mount
+```bash
+$ ll /usr/lib/systemd/system/*.mount
+-rw-r--r--. 1 root root 670 Oct 31 07:31 /usr/lib/systemd/system/dev-hugepages.mount
+-rw-r--r--. 1 root root 590 Oct 31 07:31 /usr/lib/systemd/system/dev-mqueue.mount
+-rw-r--r--. 1 root root 615 Oct 31 07:31 /usr/lib/systemd/system/proc-sys-fs-binfmt_misc.mount
+-rw-r--r--. 1 root root 681 Oct 31 07:31 /usr/lib/systemd/system/sys-fs-fuse-connections.mount
+-rw-r--r--. 1 root root 719 Oct 31 07:31 /usr/lib/systemd/system/sys-kernel-config.mount
+-rw-r--r--. 1 root root 662 Oct 31 07:31 /usr/lib/systemd/system/sys-kernel-debug.mount
+-rw-r--r--. 1 root root 703 Oct 31 07:31 /usr/lib/systemd/system/tmp.mount
+```
 
 我们看一个文件
 
-    $ cat  /usr/lib/systemd/system/proc-sys-fs-binfmt_misc.mount
-    #  This file is part of systemd.
-    #
-    #  systemd is free software; you can redistribute it and/or modify it
-    #  under the terms of the GNU Lesser General Public License as published by
-    #  the Free Software Foundation; either version 2.1 of the License, or
-    #  (at your option) any later version.
-    [Unit]
-    Description=Arbitrary Executable File Formats File System
-    Documentation=https://www.kernel.org/doc/Documentation/admin-guide/binfmt-misc.rst
-    Documentation=http://www.freedesktop.org/wiki/Software/systemd/APIFileSystems
-    DefaultDependencies=no
-    [Mount]
-    What=binfmt_misc
-    Where=/proc/sys/fs/binfmt_misc
-    Type=binfmt_misc
+```bash
+~]# /usr/lib/systemd/system/proc-sys-fs-binfmt_misc.mount
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+[Unit]
+Description=Arbitrary Executable File Formats File System
+Documentation=https://www.kernel.org/doc/Documentation/admin-guide/binfmt-misc.rst
+Documentation=http://www.freedesktop.org/wiki/Software/systemd/APIFileSystems
+DefaultDependencies=no
+[Mount]
+What=binfmt_misc
+Where=/proc/sys/fs/binfmt_misc
+Type=binfmt_misc
+```
 
 实际上挂载单元的文件名和挂载点是关联的，挂载点路径转换为去掉以一个斜线，所有斜线转成横线
 
@@ -193,60 +201,68 @@ mount 单元既可以通过单元文件进行配置， 也可以通过 /etc/fsta
 
 按照我找的实际观察下,开机后
 
-    $ grep mnt /etc/fstab
-    //10.0.23.85/test  /mnt  cifs  x-systemd.automount,noauto,username=zhangguanzhang@xxxx.com,password=xxxxx,iocharset=utf8,x-systemd.device-timeout=20s   0       0
-    $ mount | grep mnt
-    systemd-1 on /mnt type autofs (rw,relatime,fd=26,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=21338)
-    $ ll /mnt
-    total 51288
-    -rwxr-xr-x 1 root root 52517368 Jul 23  2018 XshellPlus-6.0.0006r.exe
-    $ mount | grep mnt
-    systemd-1 on /mnt type autofs (rw,relatime,fd=26,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=21338)
-    //10.0.23.85/test on /mnt type cifs (rw,relatime,vers=default,cache=strict,username=zhangguanzhang@xxxx.com,domain=,uid=0,noforceuid,gid=0,noforcegid,addr=10.0.23.85,file_mode=0755,dir_mode=0755,soft,nounix,serverino,mapposix,rsize=1048576,wsize=1048576,echo_interval=60,actimeo=1)
+```bash
+$ grep mnt /etc/fstab
+//10.0.23.85/test  /mnt  cifs  x-systemd.automount,noauto,username=zhangguanzhang@xxxx.com,password=xxxxx,iocharset=utf8,x-systemd.device-timeout=20s   0       0
+$ mount | grep mnt
+systemd-1 on /mnt type autofs (rw,relatime,fd=26,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=21338)
+$ ll /mnt
+total 51288
+-rwxr-xr-x 1 root root 52517368 Jul 23  2018 XshellPlus-6.0.0006r.exe
+$ mount | grep mnt
+systemd-1 on /mnt type autofs (rw,relatime,fd=26,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=21338)
+//10.0.23.85/test on /mnt type cifs (rw,relatime,vers=default,cache=strict,username=zhangguanzhang@xxxx.com,domain=,uid=0,noforceuid,gid=0,noforcegid,addr=10.0.23.85,file_mode=0755,dir_mode=0755,soft,nounix,serverino,mapposix,rsize=1048576,wsize=1048576,echo_interval=60,actimeo=1)
+```
 
 从上面可以看出只有我们访问的时候 systemd 收到了访问的请求才会去挂载的，也就是下面选项生效了
 
-    noauto,x-systemd.automount
+```bash
+noauto,x-systemd.automount
+```
 
 我们看下生成的挂载单元
 
-    systemctl cat mnt.mount
-    # /run/systemd/generator/mnt.mount
-    # Automatically generated by systemd-fstab-generator
-    [Unit]
-    SourcePath=/etc/fstab
-    Documentation=man:fstab(5) man:systemd-fstab-generator(8)
-    [Mount]
-    What=//10.0.23.85/test
-    Where=/mnt
-    Type=cifs
-    Options=x-systemd.automount,noauto,username=zhangguanzhang@xxxx.com,password=xxxxxx,iocharset=utf8
+```bash
+systemctl cat mnt.mount
+# /run/systemd/generator/mnt.mount
+# Automatically generated by systemd-fstab-generator
+[Unit]
+SourcePath=/etc/fstab
+Documentation=man:fstab(5) man:systemd-fstab-generator(8)
+[Mount]
+What=//10.0.23.85/test
+Where=/mnt
+Type=cifs
+Options=x-systemd.automount,noauto,username=zhangguanzhang@xxxx.com,password=xxxxxx,iocharset=utf8
+```
 
 我们还可以通过`systemctl status mnt.mount`查看啥时候挂载的，可以查看`systemctl status mnt.automount`查看是被哪个进程 pid 触发的挂载
 
-    [root@CentOS76 ~]# systemctl status  mnt.mount
-    ● mnt.mount - /mnt
-       Loaded: loaded (/etc/fstab; bad; vendor preset: disabled)
-       Active: active (mounted) since Wed 2019-04-24 18:46:19 CST; 3min 7s ago
-        Where: /mnt
-         What: //10.0.23.85/test
-         Docs: man:fstab(5)
-               man:systemd-fstab-generator(8)
-      Process: 6901 ExecMount=/bin/mount //10.0.23.85/test /mnt -t cifs -o x-systemd.automount,username=zhangguanzhang@outlook.com,password=hj945417,_netdev,iocharset=utf8 (code=exited, status=0/SUCCESS)
-        Tasks: 0
-       Memory: 580.0K
-    Apr 24 18:46:19 CentOS76 systemd[1]: Mounting /mnt...
-    Apr 24 18:46:19 CentOS76 systemd[1]: Mounted /mnt.
-    [root@CentOS76 ~]# date
-    Wed Apr 24 18:49:33 CST 2019
-    [root@CentOS76 ~]# systemctl status  mnt.automount
-    ● mnt.automount
-       Loaded: loaded (/etc/fstab; bad; vendor preset: disabled)
-       Active: active (running) since Wed 2019-04-24 18:44:43 CST; 5min ago
-        Where: /mnt
-         Docs: man:fstab(5)
-               man:systemd-fstab-generator(8)
-    Apr 24 18:46:19 CentOS76 systemd[1]: Got automount request for /mnt, triggered by 6900 (ls)
+```bash
+[root@CentOS76 ~]# systemctl status  mnt.mount
+● mnt.mount - /mnt
+   Loaded: loaded (/etc/fstab; bad; vendor preset: disabled)
+   Active: active (mounted) since Wed 2019-04-24 18:46:19 CST; 3min 7s ago
+    Where: /mnt
+     What: //10.0.23.85/test
+     Docs: man:fstab(5)
+           man:systemd-fstab-generator(8)
+  Process: 6901 ExecMount=/bin/mount //10.0.23.85/test /mnt -t cifs -o x-systemd.automount,username=zhangguanzhang@outlook.com,password=hj945417,_netdev,iocharset=utf8 (code=exited, status=0/SUCCESS)
+    Tasks: 0
+   Memory: 580.0K
+Apr 24 18:46:19 CentOS76 systemd[1]: Mounting /mnt...
+Apr 24 18:46:19 CentOS76 systemd[1]: Mounted /mnt.
+[root@CentOS76 ~]# date
+Wed Apr 24 18:49:33 CST 2019
+[root@CentOS76 ~]# systemctl status  mnt.automount
+● mnt.automount
+   Loaded: loaded (/etc/fstab; bad; vendor preset: disabled)
+   Active: active (running) since Wed 2019-04-24 18:44:43 CST; 5min ago
+    Where: /mnt
+     Docs: man:fstab(5)
+           man:systemd-fstab-generator(8)
+Apr 24 18:46:19 CentOS76 systemd[1]: Got automount request for /mnt, triggered by 6900 (ls)
+```
 
 参考
 <http://www.jinbuguo.com/systemd/systemd.mount.html>

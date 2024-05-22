@@ -12,6 +12,7 @@ weight: 1
 > - [GitHub 项目，DPDK/dpdk](https://github.com/DPDK/dpdk)
 > - [官网](https://www.dpdk.org/)
 > - [Wiki，Data Plane Development Kit](https://en.wikipedia.org/wiki/Data_Plane_Development_Kit)
+> - [DPDK 开发中文网](https://sdn.0voice.com/)
 
 **Data Plane Development Kit(数据平面开发套件，简称 DPDK)** 是一个由 [Linux 基金会](/docs/Standard/Foundation/Linux%20Foundation.md) 管理的开源软件项目。用于将 TCP 数据包的处理能力从内核空间移动到用户空间中的进程。主要是跳过了内核的 [Interrupts(中断)](/docs/1.操作系统/Kernel/CPU/Interrupts(中断)/Interrupts(中断).md) 逻辑。
 
@@ -138,6 +139,14 @@ Network devices using kernel driver
 对我们来说，只要知道可以`DPDK`可以运行在多个`lcore`上就足够了.
 
 `DPDK` 如何知道有多少个`lcore`呢 ? 在启动时解析文件系统中的特定文件就可以了, 参考函数`eal_cpu_detected`
+
+## 内存的使用
+
+TODO: https://xie.infoq.cn/article/a7c83189a19387018b8595e98
+
+调用 DPDK 的程序自己管理如何使用内存，需要提前预留一块空间给 DPDK 程序自身，并保证不被其他程序使用，通常这块内存空间的的分页是 1GiB、512MiB 等大小的 [Huge Pages](docs/1.操作系统/Kernel/Memory/Huge%20Pages.md)。
+
+e.g. 一个 256 GiB 的系统，可以留出来 192 个 1GiB 页大小的内存空间，总计 192 GiB，这一部分内存空间就是大页空间，因为每个分页的大小高达 1GiB
 
 # DPDK 工具
 

@@ -1,15 +1,18 @@
 ---
 title: C
+linkTitle: C
+date: 2024-05-22T19:50
 weight: 1
 ---
 
 # 概述
 
 > 参考：
-> - [Wiki，C Programming Language](<https://en.wikipedia.org/wiki/C_(programming_language)>)
+>
 > - [ISO C 工作组官网](http://www.open-std.org/jtc1/sc22/wg14/)
-> - [网道，C](https://wangdoc.com/clang/)
 > - <https://www.learn-c.org/>
+> - [Wiki，C Programming Language](<https://en.wikipedia.org/wiki/C_(programming_language)>)
+> - [网道，C](https://wangdoc.com/clang/)
 
 # Hello World
 
