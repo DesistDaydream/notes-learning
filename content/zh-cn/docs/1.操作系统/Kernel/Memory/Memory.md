@@ -16,20 +16,20 @@ weight: 1
 >   - 该文是对《操作系统导论》一书中内存部分的提炼与总结。
 > - [公众号-码农的荒岛求生，神秘！申请内存时底层发生了什么？](https://mp.weixin.qq.com/s/0g3sS63yM2qbBja-blw5Dw)(malloc 简介)
 
-**Linux Memory Management Subsystem(Linux 内存管理子系统)** 负责管理系统中的内存。这包括 **virtual memory(虚拟内存)** 和 **demand paging(请求分页)** 的实现、[Linux Kernel](docs/1.操作系统/Kernel/Linux%20Kernel/Linux%20Kernel.md)内部结构和用户空间程序的内存分配、将文件映射到进程地址空间、etc.
+**Linux Memory Management Subsystem(Linux 内存管理子系统)** 负责管理系统中的内存。这包括 **virtual memory(虚拟内存)** 和 **demand paging(请求分页)** 的实现、[Linux Kernel](/docs/1.操作系统/Kernel/Linux%20Kernel/Linux%20Kernel.md)内部结构和用户空间程序的内存分配、将文件映射到进程地址空间、etc.
 
-Linux 内存管理是一个非常复杂系统，有很多可以配置的设置，这些设置可以通过 [Proc File System](docs/1.操作系统/Kernel/Filesystem/特殊文件系统/Proc%20File%20System.md) 修改，还可以使用 [sysctl](docs/1.操作系统/Linux%20管理/Linux%20内核管理工具/sysctl.md) 程序进行查询和调整，具体参数详见 Kernel 参数中的 [vm(内存相关参数)](docs/1.操作系统/Kernel/Linux%20Kernel/Kernel%20参数/vm(内存相关参数).md)。
+Linux 内存管理是一个非常复杂系统，有很多可以配置的设置，这些设置可以通过 [Proc File System](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/Proc%20File%20System.md) 修改，还可以使用 [sysctl](/docs/1.操作系统/Linux%20管理/Linux%20内核管理工具/sysctl.md) 程序进行查询和调整，具体参数详见 Kernel 参数中的 [vm(内存相关参数)](/docs/1.操作系统/Kernel/Linux%20Kernel/Kernel%20参数/vm(内存相关参数).md)。
 
 ## 基础概念
 
 Linux 中的内存管理是一个经过多年发展的复杂系统，包含越来越多的功能来支持从 *微控制器(nommu)* 到 *超级计算机* 的各种系统，下面是一些常见的内存管理中的概念和术语
 
-> 没有 **Memory management unit(内存管理单元，简称 [MMU](docs/0.计算机/Memory/MMU.md))** 的系统的内存管理称为 nommu，它绝对值得一个专门的文档。然而，随着时代的发展，nommu 的系统或设备已经基本不存在了，这里我们假设 MMU 可用并且 CPU 可以将虚拟地址转换为物理地址。
+> 没有 **Memory management unit(内存管理单元，简称 [MMU](/docs/0.计算机/Memory/MMU.md))** 的系统的内存管理称为 nommu，它绝对值得一个专门的文档。然而，随着时代的发展，nommu 的系统或设备已经基本不存在了，这里我们假设 MMU 可用并且 CPU 可以将虚拟地址转换为物理地址。
 
 - **Virtual Memory(虚拟内存)**
-- **Huge Pages(大页)** # [Huge Pages](docs/1.操作系统/Kernel/Memory/Huge%20Pages.md) 是一种解决 Page table 过大、TLB 未命中过多、etc. 问题的最简单和基本的方式。
+- **Huge Pages(大页)** # [Huge Pages](/docs/1.操作系统/Kernel/Memory/Huge%20Pages.md) 是一种解决 Page table 过大、TLB 未命中过多、etc. 问题的最简单和基本的方式。
 - **Zones(区域)**
-- **Nodes(节点)** # [NUMA](docs/1.操作系统/Kernel/Memory/NUMA.md) 架构中的一个存储体称为一个 Node。
+- **Nodes(节点)** # [NUMA](/docs/1.操作系统/Kernel/Memory/NUMA.md) 架构中的一个存储体称为一个 Node。
 - **Page cache(页缓存)**
 - **Anonymous Memory(匿名内存)**
 - **Reclaim(回收)**
@@ -247,7 +247,7 @@ Linux 中的内存管理是一个经过多年发展的复杂系统，包含越�
 
 ![程序的局部性](https://notes-learning.oss-cn-beijing.aliyuncs.com/odexpg/1616167919150-0d7ed5fb-19de-4398-84ca-e77a4c67ab46.jpeg)
 
-我们就可以利用这一特性，把最常访问的几个页表项存储到访问速度更快的硬件，于是计算机科学家们，就在 CPU 芯片中，加入了一个专门存放程序最常访问的页表项的 Cache，这个 Cache 就是 Translation Lookaside Buffer(转译后备缓冲器，简称 [TLB](docs/0.计算机/Memory/TLB.md)、缓存、快表)等。
+我们就可以利用这一特性，把最常访问的几个页表项存储到访问速度更快的硬件，于是计算机科学家们，就在 CPU 芯片中，加入了一个专门存放程序最常访问的页表项的 Cache，这个 Cache 就是 Translation Lookaside Buffer(转译后备缓冲器，简称 [TLB](/docs/0.计算机/Memory/TLB.md)、缓存、快表)等。
 
 ![地址转换](https://notes-learning.oss-cn-beijing.aliyuncs.com/odexpg/1616167919151-684032a9-151a-4c86-be9a-7535abfc6444.jpeg)
 
@@ -261,7 +261,7 @@ TLB 的命中率其实是很高的，因为程序最常访问的页就那么几�
 
 ## Huge pages
 
-提高每个 Page 的容量。这是最简单直接的减小页表并提高 TLB 命中的方式。这些比默认 Page 容量大的 Pages 称为 [Huge Pages](docs/1.操作系统/Kernel/Memory/Huge%20Pages.md)(大页)
+提高每个 Page 的容量。这是最简单直接的减小页表并提高 TLB 命中的方式。这些比默认 Page 容量大的 Pages 称为 [Huge Pages](/docs/1.操作系统/Kernel/Memory/Huge%20Pages.md)(大页)
 
 Linux 中可以在改变原始 Page 容量的情况下，让一块内存空间使用另一个 PageSize，这个使用了更大 PageSize 的地方称为 HugePage Memory
 

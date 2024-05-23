@@ -63,7 +63,7 @@ https://www.kernel.org/doc/html/latest/subsystem-apis.html
 
 核心子系统
 
-- [Memory](docs/1.操作系统/Kernel/Memory/Memory.md) 管理子系统
+- [Memory](/docs/1.操作系统/Kernel/Memory/Memory.md) 管理子系统
 - TODO
 
 网络接口

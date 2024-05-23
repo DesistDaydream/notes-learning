@@ -21,7 +21,7 @@ HugePages 可以减少页表开销、减轻 TLB 压力并提高 TLB 的命中率
 > [!Notes] 为什么已经分页了还要用大页？
 > 如果一个程序（比如数据库），把大量数据加载到内存中，这时候其查询的数据量一定远超 TLB 的容量，这必然会导致 TLB 的未命中急速上升，严重影响性能。还有很多其他的方面就不一一举例了。
 >
-> 所以大页并不是所有程序都适用的，而是针对特定场景，需要处理大量数据，亲自管理内存的程序，才要配置大页。比如 [DPDK](docs/4.数据通信/DPDK/DPDK.md) 处理流量也需要使用大页的内存空间
+> 所以大页并不是所有程序都适用的，而是针对特定场景，需要处理大量数据，亲自管理内存的程序，才要配置大页。比如 [DPDK](/docs/4.数据通信/DPDK/DPDK.md) 处理流量也需要使用大页的内存空间
 
 Linux Kernel 中有两种机制可以实现 物理内存 与 Huge Pages 的映射
 
@@ -36,13 +36,13 @@ Linux Kernel 中有两种机制可以实现 物理内存 与 Huge Pages 的映�
 >
 > - [Linux Kernel 文档，管理员指南 - 内存管理 - HugeTLB Pages](https://www.kernel.org/doc/html/latest/admin-guide/mm/hugetlbpage.html)
 
-HugeTLB Filesystem 是一种特殊的 [Filesystem](docs/1.操作系统/Kernel/Filesystem/Filesystem.md)
+HugeTLB Filesystem 是一种特殊的 [Filesystem](/docs/1.操作系统/Kernel/Filesystem/Filesystem.md)
 
 ```bash
 ~]# mount -t hugetlbfs
 hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,pagesize=1024M)
 ~]# ls /dev/hugepages/
-libvirt       rtemap_16388  rtemap_16402  rtemap_17  rtemap_3      rtemap_65544  rtemap_65558  rtemap_73731  rtemap_73745  rtemap_8202  
+libvirt       rtemap_16388  rtemap_16402  rtemap_17  rtemap_3      rtemap_65544  rtemap_65558  rtemap_73731  rtemap_73745  rtemap_8202
 ......略
 ~]# cat /proc/filesystems | grep huge
 nodev   hugetlbfs

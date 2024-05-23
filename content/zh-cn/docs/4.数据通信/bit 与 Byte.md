@@ -84,7 +84,7 @@ Byte 可以说是计算机中存储容量的基本单位。我们在属性里查
 > - [Wiki，Byte](https://en.wikipedia.org/wiki/Byte)
 > - [Wiki-zh，千字节](https://zh.wikipedia.org/wiki/%E5%8D%83%E5%AD%97%E8%8A%82)
 
-**International System of Units(国际制度单位，简称 SI)** 这种规范就是为了照顾到计算机外的行业，除了之前提到以 1024 的换算，还可以使用十进制来进行换算。这种制度其实很早很早就有了，比如距离单位(100cm=1m)、重量单位(1kg=1000g)、时间单位(1s=1000ms) 等等。
+**International System of Units(国际单位制，简称 SI)** 这种规范就是为了照顾到计算机外的行业，除了之前提到以 1024 的换算，还可以使用十进制来进行换算。这种制度其实很早很早就有了，比如距离单位(100cm=1m)、重量单位(1kg=1000g)、时间单位(1s=1000ms) 等等。
 
 **International Electrotechnical Commission(国际电工委员会，简称 IEC)** 的规范中提到，用于二进制存储单位的标准命名建议在中间"加个 i"(其实是更改了命名)以示区分
 

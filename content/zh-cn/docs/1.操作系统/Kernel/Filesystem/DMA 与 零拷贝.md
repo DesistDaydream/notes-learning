@@ -1,24 +1,15 @@
 ---
 title: DMA 与 零拷贝
-weight: 20
 linkTitle: DMA 与 零拷贝
 date: 2024-03-18T17:58
+weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
-> -
-
-[公众号，原来 8 张图，就可以搞懂「零拷贝」了](https://mp.weixin.qq.com/s/P0IP6c_qFhuebwdwD8HM7w)
-
-# 概述
-
-> 参考：
-> 
-> -
-
+>
+> - [公众号，原来 8 张图，就可以搞懂「零拷贝」了](https://mp.weixin.qq.com/s/P0IP6c_qFhuebwdwD8HM7w)
 
 ## 前言
 
@@ -46,7 +37,7 @@ date: 2024-03-18T17:58
 
 简单的搬运几个字符数据那没问题，但是如果我们用千兆网卡或者硬盘传输大量数据的时候，都用 CPU 来搬运的话，肯定忙不过来。
 
-计算机科学家们发现了事情的严重性后，于是就发明了 DMA 技术，也就是**直接内存访问（\*\*\***Direct Memory Access**\***）\*\* 技术。
+计算机科学家们发现了事情的严重性后，于是就发明了 DMA 技术，也就是 **Direct Memory Access(直接内存访问，简称 DMA)** 技术。
 
 什么是 DMA 技术？简单理解就是，**在进行 I/O 设备和内存的数据传输的时候，数据搬运的工作全部交给 DMA 控制器，而 CPU 不再参与任何与数据搬运相关的事情，这样 CPU 就可以去处理别的事务**。
 
@@ -79,9 +70,6 @@ date: 2024-03-18T17:58
 代码通常如下，一般会需要两个系统调用：
 
     read(file, tmp_buf, len);write(socket, tmp_buf, len);
-
-1
-Plain Text
 
 代码很简单，虽然就两行代码，但是这里面发生了不少的事情。
 
@@ -139,9 +127,6 @@ mmap + write
 
     buf = mmap(file, len);write(sockfd, buf, len);
 
-1
-Plain Text
-
 `mmap()` 系统调用函数会直接把内核缓冲区里的数据「**映射**」到用户空间，这样，操作系统内核与用户空间就不需要再进行任何的数据拷贝操作。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/zl0fv1/1616167581773-7d9df0ea-5e23-48c7-9e90-5575bf286553.png)
@@ -162,9 +147,6 @@ sendfile
 
     #include <sys/socket.h>ssize_t sendfile(int out_fd, int in_fd, off_t *offset, size_t count);
 
-1
-Plain Text
-
 它的前两个参数分别是目的端和源端的文件描述符，后面两个参数是源端的偏移量和复制数据的长度，返回值是实际复制数据的长度。
 
 首先，它可以替代前面的 `read()` 和 `write()` 这两个系统调用，这样就可以减少一次系统调用，也就减少了 2 次上下文切换的开销。
@@ -179,9 +161,6 @@ Plain Text
 
     $ ethtool -k eth0 | grep scatter-gatherscatter-gather: on
 
-1
-Plain Text
-
 于是，从 Linux 内核 `2.4` 版本开始起，对于支持网卡支持 SG-DMA 技术的情况下， `sendfile()` 系统调用的过程发生了点变化，具体过程如下：
 
 - 第一步，通过 DMA 将磁盘上的数据拷贝到内核缓冲区里；
@@ -191,7 +170,7 @@ Plain Text
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/zl0fv1/1616167581761-cd2da78d-0ce1-4048-ae1c-ec5d19830fc6.png)
 
-这就是所谓的**零拷贝（\*\*\***Zero-copy**\***）技术，因为我们没有在内存层面去拷贝数据，也就是说全程没有通过 CPU 来搬运数据，所有的数据都是通过 DMA 来进行传输的。\*\*。
+这就是所谓的 **零拷贝（Zero-copy）** 技术，因为我们没有在内存层面去拷贝数据，也就是说全程没有通过 CPU 来搬运数据，所有的数据都是通过 DMA 来进行传输的。
 
 零拷贝技术的文件传输方式相比传统文件传输的方式，减少了 2 次上下文切换和数据拷贝次数，**只需要 2 次上下文切换和数据拷贝次数，就可以完成文件的传输，而且 2 次的数据拷贝过程，都不需要通过 CPU，2 次都是由 DMA 来搬运。**
 
@@ -205,9 +184,6 @@ Plain Text
 
     @Overridepublic long transferFrom(FileChannel fileChannel, long position, long count) throws IOException {     return fileChannel.transferTo(position, count, socketChannel);}
 
-1
-Plain Text
-
 如果 Linux 系统支持 `sendfile()` 系统调用，那么 `transferTo()` 实际上最后就会使用到 `sendfile()` 系统调用函数。曾经有大佬专门写过程序测试过，在同样的硬件条件下，传统文件传输和零拷拷贝文件传输的性能差异，你可以看到下面这张测试数据图，使用了零拷贝能够缩短 `65%` 的时间，大幅度提升了机器传输数据的吞吐量。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/zl0fv1/1616167581773-3ca39dfc-4c62-4827-a5f8-1ccd96ce7a88.png)
@@ -217,9 +193,6 @@ Plain Text
 另外，Nginx 也支持零拷贝技术，一般默认是开启零拷贝技术，这样有利于提高文件传输的效率，是否开启零拷贝技术的配置如下：
 
     http {...    sendfile on...}
-
-1
-Plain Text
 
 sendfile 配置的具体意思:
 
@@ -321,9 +294,6 @@ sendfile 配置的具体意思:
 在 nginx 中，我们可以用如下配置，来根据文件的大小来使用不同的方式：
 
     location /video/ {     sendfile on;     aio on;     directio 1024m; }
-
-1
-Plain Text
 
 当文件大小大于 `directio` 值后，使用「异步 I/O + 直接 I/O」，否则使用「零拷贝技术」。
 

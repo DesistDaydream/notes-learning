@@ -53,6 +53,12 @@ Obsidian 扩展了 Markdown 的 **Callouts(标注)** 效果。
 > [!note]
 > Lorem ipsum dolor sit amet
 
+> [!tip]
+> Lorem ipsum dolor sit amet
+
+> [!success]
+> Lorem ipsum dolor sit amet
+
 > [!warning]
 > Lorem ipsum dolor sit amet
 

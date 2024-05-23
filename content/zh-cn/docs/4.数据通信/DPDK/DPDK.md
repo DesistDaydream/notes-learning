@@ -41,7 +41,7 @@ https://doc.dpdk.org/guides/prog_guide/env_abstraction_layer.html
 
 TODO: 好多好多的库，功能非常全。
 
-[Graph Library](docs/4.数据通信/DPDK/Graph%20Library.md)
+[Graph Library](/docs/4.数据通信/DPDK/Graph%20Library.md)
 
 ## Driver
 
@@ -51,6 +51,10 @@ Linux 驱动
 - **vfio** # 使用 [VFIO](/docs/1.操作系统/Kernel/VFIO.md) 功能的驱动。依赖 `vfio-pci` 模块。[官方文档](https://doc.dpdk.org/guides/linux_gsg/linux_drivers.html#binding-and-unbinding-network-ports-to-from-the-kernel-modules)建议所有情况下都是用 vfio-pci 作为 DPDK 绑定端口的内核模块
 
 TODO: 好多好多驱动。
+
+## DPDK APP
+
+https://doc.dpdk.org/guides/tools/index.html
 
 # DPDK 部署
 
@@ -97,7 +101,7 @@ Network devices using kernel driver
 
 可以看到机器上有 4 个 Ethernet，但是通过 ip 命令仅能看到 2 个（ip 这类命令只能看到内核管理的），另外 2 个被 DPDK 使用了，只有使用 DPDK 提供的程序才能获取到非内核管理的网卡信息。
 
-当我们让 DPDK 接管了网卡后，想要查看网卡当前所使用的驱动，可以使用 [lspci](/docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/Linux%20硬件管理工具.md#lspci) 命令查看到当前网卡所使用的驱动程序。（虽然其中显示的是 Kernel driver in use，但是实际上，驱动是 vfio-pci 的网卡已经被 DPDK 接管了）
+此时想要查看网卡当前所使用的驱动，可以使用 [Linux 硬件管理工具](/docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/Linux%20硬件管理工具.md) 查看到当前网卡所使用的驱动程序（lspci、lshw、etc.）。（虽然其中显示的是 Kernel driver in use，但是实际上，驱动是 vfio-pci 的网卡已经被 DPDK 接管了）
 
 ```bash
 ]# lspci -k | grep -i "Ethernet controller" -A 3
@@ -144,7 +148,7 @@ Network devices using kernel driver
 
 TODO: https://xie.infoq.cn/article/a7c83189a19387018b8595e98
 
-调用 DPDK 的程序自己管理如何使用内存，需要提前预留一块空间给 DPDK 程序自身，并保证不被其他程序使用，通常这块内存空间的的分页是 1GiB、512MiB 等大小的 [Huge Pages](docs/1.操作系统/Kernel/Memory/Huge%20Pages.md)。
+调用 DPDK 的程序自己管理如何使用内存，需要提前预留一块空间给 DPDK 程序自身，并保证不被其他程序使用，通常这块内存空间的的分页是 1GiB、512MiB 等大小的 [Huge Pages](/docs/1.操作系统/Kernel/Memory/Huge%20Pages.md)。
 
 e.g. 一个 256 GiB 的系统，可以留出来 192 个 1GiB 页大小的内存空间，总计 192 GiB，这一部分内存空间就是大页空间，因为每个分页的大小高达 1GiB
 

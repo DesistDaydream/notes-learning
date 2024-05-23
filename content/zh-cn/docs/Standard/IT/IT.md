@@ -8,22 +8,22 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [Wiki-类别，计算机标准](https://en.wikipedia.org/wiki/Category:Computer_standards)
 > - [Wiki-类别，信息技术](https://en.wikipedia.org/wiki/Category:Information_technology)
 
 IT 技术的基础
 
-- [Operating system](docs/1.操作系统/Operating%20system/Operating%20system.md)
+- [Operating system](/docs/1.操作系统/Operating%20system/Operating%20system.md)
 - 数据结构
-- [数据通信](docs/4.数据通信/数据通信/数据通信.md)
+- [数据通信](/docs/4.数据通信/数据通信/数据通信.md)
 
 
 
 # PICMG
 
 > 参考：
-> 
+>
 > - [官网](https://www.picmg.org/)
 > - [Wiki，PICMG](https://en.wikipedia.org/wiki/PICMG)
 

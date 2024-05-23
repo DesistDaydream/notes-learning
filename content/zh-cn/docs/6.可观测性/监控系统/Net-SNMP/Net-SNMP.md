@@ -8,10 +8,10 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [官网](http://net-snmp.sourceforge.net/)
 
-Net-SNMP 是实现 [SNMP(传统监控标准)](docs/6.可观测性/监控系统/监控系统概述/SNMP(传统监控标准).md) 的工具和库的集合。包含如下内容：
+Net-SNMP 是实现 [SNMP(传统监控标准)](/docs/6.可观测性/监控系统/监控系统概述/SNMP(传统监控标准).md) 的工具和库的集合。包含如下内容：
 
 - **net-snmp** # SNMP 代理，用于采集设备的 SNMP 信息。包含两个守护程序。
 - **net-snmp-utils** # 是一组工具的集合，包括下面这些命令行工具：
@@ -49,6 +49,6 @@ apt-get install snmp snmp-mibs-downloader
 
 **/etc/snmp/snmpd.conf** # snmpd 根据该文件定义运行时行为
 
-**/etc/snmp/snmp.conf** # [net-snmp-utils](docs/6.可观测性/监控系统/Net-SNMP/net-snmp-utils.md) 包中的相关工具所用的配置文件。snmpd 也会从这个文件中指定的 MIB 路径中加载 MIB 信息
+**/etc/snmp/snmp.conf** # [net-snmp-utils](/docs/6.可观测性/监控系统/Net-SNMP/net-snmp-utils.md) 包中的相关工具所用的配置文件。snmpd 也会从这个文件中指定的 MIB 路径中加载 MIB 信息
 
 **/etc/snmp/snmptrapd.conf** # snmptrapd 运行时配置文件

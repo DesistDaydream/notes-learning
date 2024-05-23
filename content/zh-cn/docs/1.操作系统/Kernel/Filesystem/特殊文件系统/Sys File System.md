@@ -7,8 +7,8 @@ title: Sys File System
 > 参考：
 >
 > - [Manual(手册)，sysfs(5)](https://man7.org/linux/man-pages/man5/sysfs.5.html)
-> - [Kernel 文档，用户与管理员指南-Linux ABI 描述](https://www.kernel.org/doc/html/latest/admin-guide/abi.html)
->   - [Linux Kernel 官方文档,Block-Queue sysfs files](https://www.kernel.org/doc/html/latest/block/queue-sysfs.html)（这个 404 了。。。o(╯□╰)o。。。官方目录结构改了。。）
+> - [Kernel 文档，管理员指南 - Linux ABI 描述](https://www.kernel.org/doc/html/latest/admin-guide/abi.html)
+> - [Kernel 文档，管理员指南 - 关于如何访问 sysfs 中信息的规则](https://www.kernel.org/doc/html/latest/admin-guide/sysfs-rules.html)
 > - [Wiki，Sysfs](https://en.wikipedia.org/wiki/Sysfs)
 
 用于导出内核对象的文件系统
@@ -49,8 +49,8 @@ sysfs（或 /sys 文件系统）旨在为这种混乱增加结构，并提供一
 
 > 参考：
 >
-> - [Kernel 文档，Linux 内核用户与管理员指南-Linux ABI 描述-ABI 稳定 链接-/sys/block 链接](https://www.kernel.org/doc/html/latest/admin-guide/abi-stable.html#symbols-under-sys-block)
-> - [Kernel 文档，内核子系统文档-Block](https://www.kernel.org/doc/html/latest/block/index.html)
+> - [Kernel 文档，管理员指南 - ABI stable 符号链接 - /sys/block 下的符号链接](https://www.kernel.org/doc/html/latest/admin-guide/abi-stable.html#symbols-under-sys-block)
+> - [Kernel 文档，Block](https://www.kernel.org/doc/html/latest/block/index.html)
 
 该目录下的所有子目录代表着系统中当前被发现的所有块设备。按照功能来说放置在 /sys/class/ 下会更合适，但由于历史遗留因素而一直存在于 /sys/block，但从 linux2.6.22 内核开始这部分就已经标记为过去时，只有打开了 CONFIG_SYSFS_DEPRECATED 配置编译才会有 这个目录存在，并且其中的内容在从 linux2.6.26 版本开始已经正式移到了 /sys/class/block/，旧的接口 /sys/block/ 为了向后兼容而保留存在，但其中的内容已经变为了指向它们在 `/sys/devices/` 中真实设备的**符号链接**文件。
 
@@ -133,7 +133,9 @@ lrwxrwxrwx  1 root root 0 9月   1 10:50 wg0 -> ../../devices/virtual/net/wg0/
 
 **/sys/class/block/DEVICE/** # 块设备信息，DEVICE 是块设备的名称，用来顶替 [/sys/block/](#/sys/block) 目录，软链接到 **/sys/device/** 中的某个目录。
 
-**/sys/class/net/DEVICE** # 网络设备信息，DEVICE 是网络设备的名称。目录中的信息详见 [Linux 网络设备详解](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Linux%20网络设备详解/Linux%20网络设备详解.md)
+**/sys/class/net/DEVICE/** # 网络设备信息，DEVICE 是网络设备的名称。绝大部分文件都软链接到 `/sys/devices/XXX/TO/XXX/net/` 目录下与网络设备同名的目录。XXX 一般以 pci 开头或 virtual 为名。
+
+- 目录中的信息详见 [Linux 网络设备详解](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Linux%20网络设备详解/Linux%20网络设备详解.md)。
 
 # /sys/dev/
 
@@ -141,9 +143,11 @@ lrwxrwxrwx  1 root root 0 9月   1 10:50 wg0 -> ../../devices/virtual/net/wg0/
 
 # /sys/devices/
 
-该目录下是**全局设备结构体系**，包含所有被发现的注册在各种总线上的各种物理设备。**/sys/ 目录中，只要有关于设备信息的目录，都会是指向 /sys/devices/ 目录中的软链接**。由于 /sys/devices/ 目录结构对设备的分类是按照总线拓扑结构分的，那么对于设备类型来说，就缺乏分类了，所以至今还保留了 /sys/block/ 之类的目录，将设备以类型进行区分。这些区分设备类型的目录下存放的，实际上是指向 /sys/devices/ 目录的**软连接**。
+这是一个包含内核设备树的文件系统表示的目录，内核设备树是内核内设备结构的层次结构。
 
-就用下面的 /sys/block/ 目录举例的话，其中的软连接分别会指向 /sys/devices/ 下的不用目录，这就更加说明了 /sys/devices/ 目录对设备的划分并不是按照类型来的。
+该目录下是**全局设备结构体系**，包含所有被发现的注册在各种总线上的各种物理设备。**/sys/ 目录中，只要有关于设备信息的目录，都会是指向 /sys/devices/ 目录中的软链接**。由于 /sys/devices/ 目录结构对设备的分类是按照总线拓扑结构分的，那么对于设备类型来说，就缺乏分类了，所以至今还保留了 /sys/block/ 之类的目录，将设备以类型进行区分。这些区分设备类型的目录下存放的，实际上是指向 `/sys/devices/` 目录的 [Symbolic link](docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)(符号链接)。
+
+就用下面的 /sys/block/ 目录举例的话，其中的软连接分别会指向 /sys/devices/ 下的不同目录，这就更加说明了 /sys/devices/ 目录对设备的划分并不是按照类型来的。
 
 ```bash
 ]# ll /sys/block/

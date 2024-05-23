@@ -39,7 +39,7 @@ weight: 1
 - **./debug/** # 空
 - **./dev/** # device specific information (eg dev/cdrom/info)
 - **./fs/** # specific filesystems filehandle, inode, dentry and quota tuning binfmt_misc \<Kernel Support for miscellaneous Binary Formats (binfmt_misc)>
-  - 详见 [fs(文件系统相关参数)](docs/1.操作系统/Kernel/Linux%20Kernel/Kernel%20参数/fs(文件系统相关参数).md)
+  - 详见 [fs(文件系统相关参数)](/docs/1.操作系统/Kernel/Linux%20Kernel/Kernel%20参数/fs(文件系统相关参数).md)
 - **./kernel/** # global kernel info / tuning miscellaneous stuff
   - [Documentation for /proc/sys/kernel/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/kernel.html)
 - **./net/** # 网络相关的内核参数
@@ -48,7 +48,7 @@ weight: 1
 - **./sunrpc/** # SUN Remote Procedure Call (NFS)
   - [Documentation for /proc/sys/sunrpc/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/sunrpc.html)
 - **./vm/** # 内存管理调整缓冲区和高速缓存管理。memory management tuning buffer and cache management
-  - 详见 [vm(内存相关参数)](docs/1.操作系统/Kernel/Linux%20Kernel/Kernel%20参数/vm(内存相关参数).md)
+  - 详见 [vm(内存相关参数)](/docs/1.操作系统/Kernel/Linux%20Kernel/Kernel%20参数/vm(内存相关参数).md)
 - **./user/** # Per user per user namespace limits
   - [Documentation for /proc/sys/user/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/user.html)
 
