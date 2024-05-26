@@ -11,6 +11,7 @@ title: Prometheus 规则处理逻辑
 # 接口
 
 代码：`./rules/manager.go` —— `Rule{}`
+
 Rule 接口封装了一个向量表达式，在指定的时间间隔评估规则。Prometheus 将规则分为两类：**Recording Rule(记录规则)** 与 **Alerting Rule(告警规则)**，所以将处理这两种规则的方法统一成一个接口，如下两个结构体实现了该接口：
 
 - `./rules/alerting.go` —— `AlertingRule{}`
@@ -57,6 +58,7 @@ type Rule interface {
 ## 规则
 
 代码：`./rules/manager.go` — `Group{}`
+
 这是一组具有逻辑关系的规则。`Manager.LoadGroups()` 方法将会读取配置文件中的每组规则，解析后，返回一个 `map[string]*Group`(也就是说)，以供后续代码使用。
 
 ```go
@@ -89,6 +91,7 @@ type Group struct {
 ## 规则管理器
 
 代码：`./rules/manager.go` — `Manager{}`
+
 Manager 结构体是规则管理器。负责管理 记录规则 与 告警规则。
 
 ```go
@@ -112,6 +115,7 @@ type Manager struct {
 ## 管理器选项
 
 `./rules/manager.go` —— `ManagerOptions{}`
+
 在 `main()` 中实例化 `Manager{}` 时，会将该结构体作为实参传递到 `NewManager()` 函数中。
 
 ```go
@@ -137,8 +141,11 @@ type ManagerOptions struct {
 # 加载并运行规则
 
 `./rules/manager.go` — `Manager.Updata()`
+
 在 Prometheus Server 启动时会调用 `Manager.Updata()` 方法加载规则配置文件并解析。在配置热更新时。如果加载新规则失败，则将恢复旧规则。
+
 这个更新规则是这么个逻辑：比较每一个规则组，若一样，则将老的复制成新的，然后再加上原来没有的，若不一样，则规则组处理完成后，删除这些剩余的。
+
 这里面最重要部分有两个
 
 - `Manager.LoadGroups()` 方法。从配置文件中读取内容，并解析规则，实例化一个规则组(即 `Group{}` 结构体)
@@ -193,6 +200,7 @@ func (m *Manager) Update(interval time.Duration, files []string, externalLabels 
 # 加载规则
 
 `./rules/manager.go` —— `Manager.LoadGroups()`
+
 在这里，会使用 `GroupOptions{}` 实例化 `Group{}`。
 
 ```go
@@ -227,6 +235,7 @@ func (m *Manager) LoadGroups(interval time.Duration, externalLabels labels.Label
 # 运行规则
 
 `./rules/manager.go` — `Group.run()`
+
 上面的 `Manager.LoadGroups()` 中获得了实例化的 Group{}，通过规则组，定期执行评估行为。这里面最重要的是定期执行的 `Group.Eval()` 方法。
 
 ```go
@@ -258,6 +267,7 @@ func (g *Group) run(ctx context.Context) {
 ## 评估规则
 
 `./rules/manager.go` — `Group.Eval()`
+
 规则评估，在 `Group.run()` 方法中定期调用本方法来评估所有规则组。
 
 ```go
@@ -363,6 +373,7 @@ func (r *AlertingRule) Eval(ctx context.Context, ts time.Time, query QueryFunc, 
 ### 评估记录规则
 
 `./rules/recording.go` —— `RecordingRule.Eval()`
+
 评估记录规则，然后相应地覆盖指标名称和标签。
 
 ```go

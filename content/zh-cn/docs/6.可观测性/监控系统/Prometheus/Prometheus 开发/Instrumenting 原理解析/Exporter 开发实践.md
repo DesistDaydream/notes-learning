@@ -126,11 +126,13 @@ func main() {
 
 `promhttp.Handler()` 使用默认的 [promhttp.HandlerOpts](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus/promhttp?utm_source=gopls#HandlerOpts) 为 [prometheus.DefaultGatherer](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus?utm_source=gopls#pkg-variables) 返回一个[http.Handler](https://pkg.go.dev/net/http#Handler)。
 
-    func Handler() http.Handler {
-     return InstrumentMetricHandler(
-      prometheus.DefaultRegisterer, HandlerFor(prometheus.DefaultGatherer, HandlerOpts{}),
-     )
-    }
+```go
+func Handler() http.Handler {
+  return InstrumentMetricHandler(
+    prometheus.DefaultRegisterer, HandlerFor(prometheus.DefaultGatherer, HandlerOpts{}),
+  )
+}
+```
 
 `promhttp.Handler()` 会注册默认采集器并采集一些默认指标。
 
@@ -138,13 +140,13 @@ DefaultGatherer 是 [Gatherer](https://pkg.go.dev/github.com/prometheus/client_g
 
 ```go
 var (
- defaultRegistry              = NewRegistry()
- DefaultRegisterer Registerer = defaultRegistry
- DefaultGatherer   Gatherer   = defaultRegistry
+  defaultRegistry              = NewRegistry()
+  DefaultRegisterer Registerer = defaultRegistry
+  DefaultGatherer   Gatherer   = defaultRegistry
 )
 func init() {
- MustRegister(NewProcessCollector(ProcessCollectorOpts{}))
- MustRegister(NewGoCollector())
+  MustRegister(NewProcessCollector(ProcessCollectorOpts{}))
+  MustRegister(NewGoCollector())
 }
 ```
 
@@ -189,10 +191,9 @@ func InstrumentMetricHandler(reg prometheus.Registerer, handler http.Handler) ht
 }
 ```
 
-    registry.MustRegister(metrics)
-
-1
-Plain Text
+```go
+registry.MustRegister(metrics)
+```
 
 这个 Collector 接口又代表什么意思呢
 

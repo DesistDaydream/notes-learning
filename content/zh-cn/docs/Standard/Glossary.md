@@ -33,9 +33,9 @@ https://en.wikipedia.org/wiki/Internet_service_provider
 
 # 版本信息
 
-| 英文     | 中文           | 缩写 | 说明                                                                |
-| -------- | -------------- | ---- | ------------------------------------------------------------------- |
-| Portable | 便携式、可移植 |      | 一个程序如果不需要安装，直接使用二进制文件运行，通常称为 Portable。 |
+| 英文       | 中文      | 缩写  | 说明                                     |
+| -------- | ------- | --- | -------------------------------------- |
+| Portable | 便携式、可移植 |     | 一个程序如果不需要安装，直接使用二进制文件运行，通常称为 Portable。 |
 
 # 全部
 
@@ -46,7 +46,7 @@ https://en.wikipedia.org/wiki/Internet_service_provider
 | Architecture                                       | 架构             | arch    |                                                                                          |                                                                                                          |
 | Broadband Remote Access Server                     | 宽带远程接入服务器      | BRAS    | [Wiki](https://en.wikipedia.org/wiki/Broadband_remote_access_server)                     | 是一种用于管理和控制带宽接入用户的网络设备                                                                                    |
 | Call detail record                                 | 通话详细记录         | CDR     | [Wiki](https://en.wikipedia.org/wiki/Call_detail_record)                                 | 中文常简称为 "话单"。随着发展，话单的含义也逐步扩展，包含了不止是通话的详细信息。有时候也用 xDR 描述。                                                  |
-| Data Plane Development Kit                         | 数据平面开发套件       | DPDK    | [DPDK](/docs/4.数据通信/DPDK/DPDK.md)                                                             |                                                                                                          |
+| Data Plane Development Kit                         | 数据平面开发套件       | DPDK    | [DPDK](/docs/4.数据通信/DPDK/DPDK.md)                                                        |                                                                                                          |
 | Deep packet inspection                             | 深度数据包检测        | DPI     | [DPI](/docs/7.信息安全/Network%20analysis/DPI.md)                                            |                                                                                                          |
 | Call Detail Record                                 | 通话详细记录         | CDR(话单) | [CDR](https://en.wikipedia.org/wiki/Call_detail_record)                                  | 后期随着发展该名词逐渐包含了 网络、等 通信之间的详细记录，而不是单指通话。可以写为 **xDR**(wiki 上没有 xDR，自己造的)                                    |
 | Cyberspace Situation Awareness                     | 网络态势感知         | CSA     |                                                                                          |                                                                                                          |

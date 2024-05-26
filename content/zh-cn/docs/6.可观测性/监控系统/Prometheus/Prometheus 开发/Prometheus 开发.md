@@ -6,38 +6,39 @@ title: Prometheus 开发
 
 > 参考：
 >
-> - [GitHub 组织](https://github.com/prometheus)
+> - [GitHub 组织，prometheus](https://github.com/prometheus)
 
 # Prometheus 源码目录结构
 
 > 更新日期：
+>
 > Prometheus 的源码目录随着更新迭代，也在不断变化中
 
-cmd/ #
-config/ # 用于处理 yaml 格式的配置文件，包含与配置文件对应内容的 struct。
-console_libraries/
-consoles/
-discovery/
-docs/
-documentation/
-notifier/
-pkg/
-prompb/
-promql/
-rules/
-scrape/
-scripts/
-storage/
-template/
-tsdb/
-util/
-web/
+- cmd/ #
+- config/ # 用于处理 yaml 格式的配置文件，包含与配置文件对应内容的 struct。
+- console_libraries/
+- consoles/
+- discovery/
+- docs/
+- documentation/
+- notifier/
+- pkg/
+- prompb/
+- promql/
+- rules/
+- scrape/
+- scripts/
+- storage/
+- template/
+- tsdb/
+- util/
+- web/
 
 # Prometheus 通用包
 
 > 参考：
 >
-> - [GitHub,prometheus/common](https://github.com/prometheus/common)
+> - [GitHub, prometheus/common](https://github.com/prometheus/common)
 
 该存储库包含在 Prometheus 组件和库之间共享的 Go 库。它们被认为是 Prometheus 内部的，外部使用没有任何稳定性保证。
 

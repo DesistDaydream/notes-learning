@@ -2679,6 +2679,11 @@
       "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具/fio 磁盘性能测试工具/_index.md",
       "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具/fio 磁盘性能测试工具/fio 磁盘性能测试工具.md",
       "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具/fio 磁盘性能测试工具/fio 参数详解.md"
+    ],
+    "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Instrumenting 原理解析": [
+      "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Instrumenting 原理解析/_index.md",
+      "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Instrumenting 原理解析/Instrumenting 原理解析.md",
+      "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Instrumenting 原理解析/Exporter 开发实践.md"
     ]
   },
   "actionBarOrder": {},

@@ -94,6 +94,7 @@ KVM 使用 VMCS 结构来保存 VM Exit 和 VM Entry
 QEMU 初始化时调用 KVM 接口告知 KVM，虚拟机所需要的物理内存，通过 mmap 分配宿主机的虚拟内存空间作为虚拟机的物理内存，QEMU 在更新内存布局时会持续调用 KVM 通知内核 KVM 模块虚拟机的内存分布。
 
 在 CPU 支持 EPT（拓展页表）后，CPU 会自动完成**虚拟机物理地址**到**宿主机物理地址**的转换。虚拟机第一次访问内存的时候会陷入 KVM，KVM 逐渐建立起 EPT 页面。这样后续的虚拟机的虚拟 CPU 访问虚拟机**虚拟内存地址**时，会先被转换为**虚拟机物理地址**，接着查找 EPT 表，获取宿主机物理地址
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/zuowkm/1616124035074-4de2d638-b8fb-499c-a1de-92ce5e6a10b3.png)
 
 ## Paravirtualized Devices(半虚拟化设备)
@@ -117,7 +118,9 @@ QEMU 初始化时调用 KVM 接口告知 KVM，虚拟机所需要的物理内存
   - 也称为 **Device Front End(前端设备)**
 
 Paravirtualizd device driver(半虚拟化设备驱动) 可以让 VM 直接访问宿主机上的物理硬件设备。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/zuowkm/1616124035106-08438d88-b937-43b9-af1c-01ddb6771941.jpeg)
+
 现阶段有多种半虚拟化设备可供使用
 
 - virtio-net(半虚拟化网络设备) # 半虚拟化网络设备是一种虚拟网络设备，可通过增加的 I/O 性能和较低的延迟为虚拟机提供网络访问。

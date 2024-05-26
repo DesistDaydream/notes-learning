@@ -28,6 +28,7 @@ Hypervisor 是用来创建与运行虚拟机的软件、固件或硬件。被 Hy
 # 虚拟化技术的分类
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ihdpea/1616124416735-5e89f29f-21cd-4fed-af5e-194227de3048.png)
+
 根据 Hypervisor 的实现方式和所处的位置，虚拟化又分为两种：1 型虚拟化和 2 型虚拟化
 
 1. 半虚拟化（para-virtualization）：TYPE1，也叫裸金属虚拟化比如 Vmware ESXi、Xen 等是一款类似于操作系统的 Hypervisor，直接运行在硬件之上，需要修改 Guest OS 的内核，让 VM 知道自己是虚拟机
@@ -35,7 +36,7 @@ Hypervisor 是用来创建与运行虚拟机的软件、固件或硬件。被 Hy
    1. BT：软件，二进制翻译。性能很差
    2. HVM：硬件，硬件辅助的虚拟化。性能很好。现阶段 KVM 主要基于硬件辅助进行虚拟化
       1. **硬件辅助全虚拟化主要使用了支持虚拟化功能的 CPU 进行支撑，CPU 可以明确的分辨出来自 GuestOS 的特权指令，并针对 GuestOS 进行特权操作，而不会影响到 HostOS。**
-      2. 从更深入的层次来说，虚拟化 CPU 形成了新的 CPU 执行状态 —— _ Non-Root Mode& Root Mode_ 。从上图中可以看见，GuestOS 运行在 Non-Root Mode 的 Ring 0 核心态中，这表明 GuestOS 能够直接执行特却指令而不再需要 _特权解除_ 和 _陷入模拟_ 机制。并且在硬件层上面紧接的就是虚拟化层的 VMM，而不需要 HostOS。这是因为在硬件辅助全虚拟化的 VMM 会以一种更具协作性的方式来实现虚拟化 —— _将虚拟化模块加载到 HostOS 的内核中_，例如：KVM，KVM 通过在 HostOS 内核中加载**KVM Kernel Module**来将 HostOS 转换成为一个 VMM。所以此时 VMM 可以看作是 HostOS，反之亦然。这种虚拟化方式创建的 GuestOS 知道自己是正在虚拟化模式中运行的 GuestOS，KVM 就是这样的一种虚拟化实现解决方案。
+      2. 从更深入的层次来说，虚拟化 CPU 形成了新的 CPU 执行状态 —— `Non-Root Mode& Root Mode`。从上图中可以看见，GuestOS 运行在 Non-Root Mode 的 Ring 0 核心态中，这表明 GuestOS 能够直接执行特却指令而不再需要 _特权解除_ 和 _陷入模拟_ 机制。并且在硬件层上面紧接的就是虚拟化层的 VMM，而不需要 HostOS。这是因为在硬件辅助全虚拟化的 VMM 会以一种更具协作性的方式来实现虚拟化 —— _将虚拟化模块加载到 HostOS 的内核中_，例如：KVM，KVM 通过在 HostOS 内核中加载 **KVM Kernel Module** 来将 HostOS 转换成为一个 VMM。所以此时 VMM 可以看作是 HostOS，反之亦然。这种虚拟化方式创建的 GuestOS 知道自己是正在虚拟化模式中运行的 GuestOS，KVM 就是这样的一种虚拟化实现解决方案。
 3. OS 级别虚拟化：容器级虚拟化，准确来说不能叫虚拟化了，只能叫容器技术无 Hypervisor，将用户空间分隔为多个，彼此互相隔离，每个 VM 中没有独立内核，OpenVZ、LXC(Linux container)、libcontainer 等，比如 Docker，Docker 的基础是 LXC。
 4. 模拟(Emulation)：比如 QEMU，PearPC，Bochs
 5. 库虚拟化：WINE

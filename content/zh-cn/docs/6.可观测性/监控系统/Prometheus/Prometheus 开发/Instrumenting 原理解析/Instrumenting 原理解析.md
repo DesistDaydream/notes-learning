@@ -19,7 +19,9 @@ Instrumenting 的实现主要依靠以下几种类型：
 
 其中 Collector(采集器) 就像其名字一样，是定义采集 Metrics 的主要行为。在代码中，Collector(采集器) 表现为一个接口。这个接口有两个方法，`Describe()` 与 `Collect()`，其中在 `**Collect()**`** 这个方法中，定义主要的采集 Metrics 行为**
 
-# [Desc](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus#Desc)(描述符) # 用来描述 Metric 的结构体
+# Desc(描述符) - 用来描述 Metric 的结构体
+
+https://pkg.go.dev/github.com/prometheus/client_golang/prometheus#Desc
 
 在 Prometheus 中，使用 **Desc 结构体** 来描述一个 Metric。Desc 是所有事物的基础，没有 Desc 也就无从采集 Metric，同时管理 Metric 也是通过 Desc
 
@@ -171,7 +173,9 @@ func NewMetrics() *Metrics {
 }
 ```
 
-# [Collector](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus#Collector)(采集器)
+# Collector(采集器)
+
+https://pkg.go.dev/github.com/prometheus/client_golang/prometheus#Collector
 
 在上文 Metric 部分，我们定义个了一个 Metric，下一步就是要为这个 Metric 采集值、设置标签值、设置值类型。此时就要使用一个名为 Collector 的接口，只要让这个 Metric 实现该接口，即可实现采集行为。
 
@@ -229,7 +233,9 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 }
 ```
 
-# [Registerer](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus#Registerer)(注册器)
+# Registerer(注册器)
+
+https://pkg.go.dev/github.com/prometheus/client_golang/prometheus#Registerer
 
 Registerer is the interface for the part of a registry in charge of registering and unregistering. Users of custom registries should use Registerer as type for registration purposes (rather than the Registry type directly). In that way, they are free to use custom Registerer implementation(e.g. for testing purposes).
 
@@ -262,9 +268,12 @@ Unregister unregisters the Collector that equals the Collector passed in as an a
 
 Note that even after unregistering, it will not be possible to register a new Collector that is inconsistent with the unregistered Collector, e.g. a Collector collecting metrics with the same name but a different help string. The rationale here is that the same registry instance must only collect consistent metrics throughout its lifetime.
 
-# [Gatherer](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus#Gatherer)(聚集器)
+# Gatherer(聚集器)
+
+https://pkg.go.dev/github.com/prometheus/client_golang/prometheus#Gatherer
 
 参考：[Gatherer 接口代码注释](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus?utm_source=gopls#Gatherer)
+
 Gatherer is the interface for the part of a registry in charge of gathering the collected metrics into a number of MetricFamilies. The Gatherer interface comes with the same general implication as described for the Registerer interface.
 
 ## Gather()
