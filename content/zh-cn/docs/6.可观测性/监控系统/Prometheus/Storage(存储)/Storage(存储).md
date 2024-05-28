@@ -198,7 +198,9 @@ Prometheus 通过下面几种方式与远程存储系统集成：
 
 - Prometheus 可以以标准格式将其采集到的样本数据写入到指定的远程 URL。
 - Prometheus 可以以标准格式从指定的远程 URL 读取(返回)样本数据。
-- Prometheus 可以以标准格式从其他 Prometheus 接收样本。![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lh6032/1616069469195-edb3fcc9-e672-43be-b6b9-fcc52d6ed497.jpeg)
+- Prometheus 可以以标准格式从其他 Prometheus 接收样本。
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lh6032/1616069469195-edb3fcc9-e672-43be-b6b9-fcc52d6ed497.jpeg)
 
 说白了，Prometheus 规定了一种标准格式，可以将采集到的指标数据实时发送给 Adapter，然后由 Adapter 处理后，在存储在第三方存储中(比如 InfluxDB、OpenTSDB 等等)。
 

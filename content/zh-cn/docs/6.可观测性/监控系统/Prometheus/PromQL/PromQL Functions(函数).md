@@ -10,7 +10,7 @@ title: PromQL Functions(函数)
 > - [公众号,k8s 技术圈-PromQL 查询之 rate 函数的使用](https://mp.weixin.qq.com/s/7z8n3abX9k39YL5kCopJqQ)
 > - [Prometheus Extrapolation 原理解析，delta、increase 函数的解析](https://ihac.xyz/2018/12/11/Prometheus-Extrapolation%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/)
 
-Prometheus 提供了其它大量的内置函数，可以对时序数据进行丰富的处理。在代码 `[promql/functions.go](https://github.com/prometheus/prometheus/blob/release-2.39/promql/functions.go#L1078)` 中可以看到当前所有可用的 PromQL 函数。
+Prometheus 提供了其它大量的内置函数，可以对时序数据进行丰富的处理。在代码 [promql/functions.go](https://github.com/prometheus/prometheus/blob/release-2.39/promql/functions.go#L1078) 中可以看到当前所有可用的 PromQL 函数。
 
 ## 函数的语法
 
@@ -37,7 +37,9 @@ Prometheus 提供了其它大量的内置函数，可以对时序数据进行丰
 - **1** # 如果传递的向量参数没有样本数据，则返回不带度量指标名称且带有标签的时间序列，且样本值为 1。
 
 效果如下：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hdmkl5/1617374161523-a63251fa-c9cc-4f90-ba6d-1eb30bc48a07.png)
+
 absent() 函数特别适用于告警，比如当采集器出现问题时，无法采集到数据了，那么可以通过该函数进行判断，如果值为 1，就产生告警。
 
 ```bash
@@ -92,6 +94,7 @@ clamp_min(node_load5{instance="192.168.1.75:9100"}, 3) # 结果为 3
 ## 变化量相关
 
 下面三个函数，在代码中的实现逻辑都是由同一个方法实现的
+
 `./prometheus/promql/functions.go`
 
 ```go
@@ -134,6 +137,7 @@ func funcIncrease(vals []parser.Value, args parser.Expressions, enh *EvalNodeHel
 注意：该函数只能用于 Gauges 类型的时间序列数据。
 
 例如，下面的例子返回过去两小时的 CPU 温度差：
+
 `delta(cpu_temp_celsius{host="zeus"}[2h])`
 
 ### increase()
@@ -143,6 +147,7 @@ func funcIncrease(vals []parser.Value, args parser.Expressions, enh *EvalNodeHel
 - 函数返回值：类型只能是计数器类型，主要作用是增加图表和数据的可读性。使用 rate 函数记录规则的使用率，以便持续跟踪数据样本值的变化。
 
 例如，以下表达式返回区间向量中每个时间序列过去 5 分钟内 HTTP 请求数的增长数：
+
 `increase(http_requests_total{job="apiserver"}[5m])`
 
 ### rate()

@@ -2159,8 +2159,8 @@
     "docs/6.可观测性/监控系统/Alertmanager": [
       "docs/6.可观测性/监控系统/Alertmanager/_index.md",
       "docs/6.可观测性/监控系统/Alertmanager/Alertmanager.md",
-      "docs/6.可观测性/监控系统/Alertmanager/Alertmanager 数据结构.md",
       "docs/6.可观测性/监控系统/Alertmanager/Alertmanager 配置.md",
+      "docs/6.可观测性/监控系统/Alertmanager/Alertmanager 数据结构.md",
       "docs/6.可观测性/监控系统/Alertmanager/告警模板详解.md",
       "docs/6.可观测性/监控系统/Alertmanager/Alertmanager 扩展.md"
     ],

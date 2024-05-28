@@ -87,8 +87,13 @@ quantile 用于计算当前样本数据值的分布情况 quantile(φ, express)�
 # 效果示例图
 
 不进行聚合运算的数据
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fybu67/1616069162982-ceaed866-8e18-4a11-ba5b-a248b397ef1d.jpeg)
+
 不使用 by 或者 without，聚合运算所有数据，得出唯一一个值
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fybu67/1616069162971-82c3f7c8-4fd3-4e75-be31-b7c41e43b2d5.jpeg)
+
 使用 by，聚合具有相同 namespace 的样本值，得出一个或多个值
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/fybu67/1660618023658-45664731-5ddb-455f-8a7b-42ad1c3c3dfa.png)

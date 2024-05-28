@@ -69,9 +69,9 @@ HEAD is now at 8251ddb Update e37-exporter-workflows.yml
 强制推送，覆盖远端的版本信息
 
 ```bash
-~]# export REPO="origin"
+~]# export REMOTE="origin"
 ~]# export BRANCH="main"
-~]# git push ${REPO} ${BRANCH} --force
+~]# git push ${REMOTE} ${BRANCH} --force
 Total 0 (delta 0), reused 0 (delta 0)
 To https://github.com/DesistDaydream/e37-exporter.git
  + 3c15aad...8251ddb main -> main (forced update)

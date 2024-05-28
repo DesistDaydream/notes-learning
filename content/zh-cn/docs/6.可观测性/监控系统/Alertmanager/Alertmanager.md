@@ -18,8 +18,11 @@ Alertmanager 处理由客户端应用程序（例如 Prometheus 服务器）发�
 Prometheus 发送过来的每一个告警，都会由 Alertmanager 进行重复数据删除、分组、路由到正确的接收者(e.g.邮件、钉钉等)上。
 
 Alertmanager 除了提供基本的告警通知能力以外，还主要提供了如：分组、抑制以及静默等告警特性：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fesx4v/1616068406984-251af31d-3e59-4621-bb62-d5228da42408.jpeg)
+
 **分组**
+
 分组机制可以将详细的告警信息合并成一个通知。在某些情况下，比如由于系统宕机导致大量的告警被同时触发，在这种情况下分组机制可以将这些被触发的告警合并为一个告警通知，避免一次性接受大量的告警通知，而无法对问题进行快速定位。
 
 例如，当集群中有数百个正在运行的服务实例，并且为每一个实例设置了告警规则。假如此时发生了网络故障，可能导致大量的服务实例无法连接到数据库，结果就会有数百个告警被发送到 Alertmanager。
@@ -29,6 +32,7 @@ Alertmanager 除了提供基本的告警通知能力以外，还主要提供了�
 告警分组，告警时间，以及告警的接受方式可以通过 Alertmanager 的配置文件进行配置。
 
 **抑制**
+
 抑制是指当某一告警发出后，可以停止重复发送由此告警引发的其它告警的机制。
 
 例如，当集群不可访问时触发了一次告警，通过配置 Alertmanager 可以忽略与该集群有关的其它所有告警。这样可以避免接收到大量与实际问题无关的告警通知。
@@ -36,6 +40,7 @@ Alertmanager 除了提供基本的告警通知能力以外，还主要提供了�
 抑制机制同样通过 Alertmanager 的配置文件进行设置。
 
 **静默**
+
 静默提供了一个简单的机制可以快速根据标签对告警进行静默处理。如果接收到的告警符合静默的配置，Alertmanager 则不会发送告警通知。
 
 静默设置需要在 Alertmanager 的 Werb 页面上进行设置。
@@ -64,33 +69,41 @@ Alertmanager 除了提供基本的告警通知能力以外，还主要提供了�
 
 第一种，基于模板字符串。用户可以直接在 Alertmanager 的配置文件中使用模板字符串，例如:
 
-    receivers:
-    - name: 'slack-notifications'
-      slack_configs:
-      - channel: '#alerts'
-        text: 'https://internal.myorg.net/wiki/alerts/{{ .GroupLabels.app }}/{{ .GroupLabels.alertname }}'
+```yaml
+receivers:
+- name: 'slack-notifications'
+  slack_configs:
+  - channel: '#alerts'
+    text: 'https://internal.myorg.net/wiki/alerts/{{ .GroupLabels.app }}/{{ .GroupLabels.alertname }}'
+```
 
 第二种方式，自定义可复用的模板文件。例如，可以创建自定义模板文件 custom-template.tmpl，如下所示：
 
-    {{ define "slack.myorg.text" }}https://internal.myorg.net/wiki/alerts/{{ .GroupLabels.app }}/{{ .GroupLabels.alertname }}{{ end}}
+```go
+{{ define "slack.myorg.text" }}https://internal.myorg.net/wiki/alerts/{{ .GroupLabels.app }}/{{ .GroupLabels.alertname }}{{ end}}
+```
 
 通过在 Alertmanager 的全局设置中定义 templates 配置来指定自定义模板的访问路径:
 
-    # Files from which custom notification template definitions are read.
-    # The last component may use a wildcard matcher, e.g. 'templates/*.tmpl'.
-    templates:
-      [ - <filepath> ... ]
+```yaml
+# Files from which custom notification template definitions are read.
+# The last component may use a wildcard matcher, e.g. 'templates/*.tmpl'.
+templates:
+  [ - <filepath> ... ]
+```
 
 在设置了自定义模板的访问路径后，用户则可以直接在配置中使用该模板：
 
-    receivers:
-    - name: 'slack-notifications'
-      slack_configs:
-      - channel: '#alerts'
-        text: '{{ template "slack.myorg.text" . }}'
+```yaml
+receivers:
+- name: 'slack-notifications'
+  slack_configs:
+  - channel: '#alerts'
+    text: '{{ template "slack.myorg.text" . }}'
 
-    templates:
-    - '/etc/alertmanager/templates/myorg.tmpl'
+templates:
+- '/etc/alertmanager/templates/myorg.tmpl'
+```
 
 # Alertmanager 部署
 
@@ -119,7 +132,9 @@ docker run -d --name alertmanager \
 ```
 
 部署完成后，Alertmanager 默认监听在 9093 端口上，通过浏览器打开 http://localhost:9093 可以看到如下示例的画面
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fesx4v/1616068406956-f10fe3df-d57f-4602-a6ab-e4aab90c89f1.jpeg)
+
 首页 Alerts 标签上显示了从 Prometheus Server 推送过来的每一条告警，可以通过点击告警信息中的 Silence 来让该告警静音(i.e.不再发送告警邮件)
 
 ## Alertmanager 运行时的标志(Flags)说明
@@ -220,7 +235,9 @@ inhibit_rules:
 ### 使用腾讯企业邮箱的配置样例
 
 Note：如果要使用腾讯企业邮箱，则需要生成客户端密码，位置如下图
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fesx4v/1616068406969-84d8a216-cd2b-4438-a0e6-a6a85c64318a.jpeg)
+
 下面的配置默认会将所有告警都发送给desistdaydream@wisetv.com.cn。其中具有 network_device: interface-state 标签名和值的告警会发送给wangpeng@wisetv.com.cn
 
 ```yaml

@@ -22,104 +22,94 @@ title: Alertmanager 配置
 - \<tmpl_string> # a string which is template-expanded before usage
 - \<tmpl_secret> # a string which is template-expanded before usage that is a secret
 
-下面是一个配置文件的基本结构
+## 顶层字段
 
-```yaml
-# 全局配置，所有内容作用于所有配置环境中,若其余配置环境中不再指定同样的配置，则global中的配置作为默认配置
-global:
-  # The default SMTP From header field.
-  [ smtp_from: <tmpl_string> ]
-  # The default SMTP smarthost used for sending emails, including port number.
-  # Port number usually is 25, or 587 for SMTP over TLS (sometimes referred to as STARTTLS).
-  # Example: smtp.example.org:587
-  [ smtp_smarthost: <string> ]
-  # The default hostname to identify to the SMTP server.
-  [ smtp_hello: <string> | default = "localhost" ]
-  # SMTP Auth using CRAM-MD5, LOGIN and PLAIN. If empty, Alertmanager doesn't authenticate to the SMTP server.
-  [ smtp_auth_username: <string> ]
-  # SMTP Auth using LOGIN and PLAIN.
-  [ smtp_auth_password: <secret> ]
-  # SMTP Auth using PLAIN.
-  [ smtp_auth_identity: <string> ]
-  # SMTP Auth using CRAM-MD5.
-  [ smtp_auth_secret: <secret> ]
-  # The default SMTP TLS requirement.
-  # Note that Go does not support unencrypted connections to remote SMTP endpoints.
-  [ smtp_require_tls: <bool> | default = true ]
+- **global**([global](#global)) # 全局配置，所有内容作用于所有配置环境中,若其余配置环境中不再指定同样的配置，则 global 中的配置作为默认配置
+- **templates**(\[][templates](#templates)) # 指定告警模板文件的路径。若不指定则使用默认模板。可以使用通配符，e.g. 'templates/*.tmpl'
+- **route**([route](#route)) # 路由树的节点(Alertmanager 的主要配置)
+- **receivers**(\[][receivers](#receivers)) # 告警的接收者列表(Alertmanager 的主要配置)
+- **inhibit_rules**([inhibit_rules](#inhibit_rules)) # 抑制规则列表
 
-  # The API URL to use for Slack notifications.
-  [ slack_api_url: <secret> ]
-  [ victorops_api_key: <secret> ]
-  [ victorops_api_url: <string> | default = "https://alert.victorops.com/integrations/generic/20131114/alert/" ]
-  [ pagerduty_url: <string> | default = "https://events.pagerduty.com/v2/enqueue" ]
-  [ opsgenie_api_key: <secret> ]
-  [ opsgenie_api_url: <string> | default = "https://api.opsgenie.com/" ]
-  [ hipchat_api_url: <string> | default = "https://api.hipchat.com/" ]
-  [ hipchat_auth_token: <secret> ]
-  [ wechat_api_url: <string> | default = "https://qyapi.weixin.qq.com/cgi-bin/" ]
-  [ wechat_api_secret: <secret> ]
-  [ wechat_api_corp_id: <string> ]
-
-  # The default HTTP client configuration
-  [ http_config: <http_config> ]
-
-  # 如果接收到的告警不包括 EndsAt 字段，那么经过 resolve_timeout 时间后，如果没有重复收到告警，则认为该告警已解决。默认5m。
-  resolve_timeout: <DURATION>
-
-# 指定告警模板文件的路径。若不指定则使用默认模板。可以使用通配符，e.g. 'templates/*.tmpl'
-templates:
-  [ - <filepath> ... ]
-
-# 路由树的节点(Alertmanager 的主要配置)
-route:
-  详见下文单独章节
-  routes:
-  - 详见下文单独章节
-
-# 告警的接收者列表(Alertmanager 的主要配置)
-receivers:
-- <receiver> ...
-
-# 抑制规则列表
-inhibit_rules:
-  [ - <inhibit_rule> ... ]
-```
-
-## global(OBJECT)
+## global
 
 全局配置，其内的内容作用于所有配置环境中,若其余配置环境中不再指定同样的配置，则 global 中的配置作为默认配置。在这里可以定义告警发送者的信息，比如通过邮件发送告警，那么可以定义全局的 SMTP 配置。
 
-## templates([]OBJECT)
+**resolve_timeout**(DURATION) # 如果接收到的告警不包括 EndsAt 字段，那么经过 resolve_timeout 时间后，如果没有重复收到告警，则认为该告警已解决。默认5m。
+
+**http_config**(http_config) # The default HTTP client configuration
+
+### SMTP 相关配置
+
+**smtp_from**: <tmpl_string> # The default SMTP From header field.
+
+**smtp_smarthost**(STRING) # The default SMTP smarthost used for sending emails, including port number.Port number usually is 25, or 587 for SMTP over TLS (sometimes referred to as STARTTLS).
+
+- Example: smtp.example.org:587
+ 
+**smtp_hello**(STRING) # The default hostname to identify to the SMTP server. `默认值: localhost`
+
+**smtp_auth_username**(STRING) # SMTP Auth using CRAM-MD5, LOGIN and PLAIN. If empty, Alertmanager doesn't authenticate to the SMTP server.
+
+**smtp_auth_password**(STRING) # SMTP Auth using LOGIN and PLAIN.
+
+**smtp_auth_identity**(STRING) # SMTP Auth using PLAIN.
+
+**smtp_auth_secret**(STRING) # SMTP Auth using CRAM-MD5.
+
+**smtp_require_tls**(BOOLEAN) # The default SMTP TLS requirement. Note that Go does not support unencrypted connections to remote SMTP endpoints. `默认值: true`
+
+### 用于 Slack 通知的 API URL
+
+**slack_api_url**(secret)
+
+**victorops_api_key**(secret)
+
+**victorops_api_url**(string) | default = "https://alert.victorops.com/integrations/generic/20131114/alert/"
+
+**pagerduty_url**(string) | default = "https://events.pagerduty.com/v2/enqueue"
+
+**opsgenie_api_key**(secret)
+
+**opsgenie_api_url**(string) | default = "https://api.opsgenie.com/"
+
+**hipchat_api_url**(string) | default = "https://api.hipchat.com/"
+
+**hipchat_auth_token**(secret)
+
+**wechat_api_url**(string) | default = "https://qyapi.weixin.qq.com/cgi-bin/"
+
+**wechat_api_secret**(secret)
+
+**wechat_api_corp_id**(string)
+
+## templates
 
 用于定义接收人收到的告警的样式。如 HTML 模板、邮件模板等等。
 
-### 配置示例
-
-```yaml
-templates: [- <filepath> ...]
-```
-
-## route(OBJECT)
+## route
 
 该字段中，可以配置多个相同接收者的子路由。在一个路由树中，将每个被路由的目标称为 **Node(节点)。**
-**group_by([]STRING)** # 告警分组策略，凡是具有 \[]STRING 指定的标签名的告警都分为同一个组。
+
+**group_by**(\[]STRING) # 告警分组策略，凡是具有 \[]STRING 指定的标签名的告警都分为同一个组。
 
 - 可以使用 `group_by: ['...']` 配置禁用聚合功能。
 
-**group_interval(DURATION)** # 发送告警的间隔时间。`默认值：5m`。
-**group_wait(DURATION)** # 发送告警前，需要等待分组行为的时间。`默认值：30s`
+**group_interval**(DURATION) # 发送告警的间隔时间。`默认值：5m`。
+
+**group_wait**(DURATION) # 发送告警前，需要等待分组行为的时间。`默认值：30s`
 
 - 新收到的告警会进行分组聚合，并以组的形式发送，为了方式大量告警频繁触发告警发送，所以有一个等待期，等到多个告警聚合在一个组时，统一发送
 
-**matchers([]OBJECT)** # 匹配规则，凡是符合该规则的告警，将会进入当前节点。说白了，只有匹配上了，才会将告警发出去。
+**matchers**(\[]OBJECT) # 匹配规则，凡是符合该规则的告警，将会进入当前节点。说白了，只有匹配上了，才会将告警发出去。
 
 > 注意：
 >
 > - 如果多个 Label 是“或”的关系，那就只能配置多个相同接收者的路由，每个路由的 matchers 不同。
 > - `matchers` 字段代替了在 0.22.0 版本开始被弃用的 `match` 与 `match_re` 字段
 
-**recevier(STRING)** # 当前路由匹配到的告警的接收者。如果 recevier 是整个路由树的根，则就是默认接收者
-**routes: []OBJECT** # 子路由配置。`routes` 字段的中的每个元素其实就是 `route: <OBJECT>`。
+**recevier**(STRING) # 当前路由匹配到的告警的接收者。如果 recevier 是整个路由树的根，则就是默认接收者
+
+**routes**(\[]OBJECT) # 子路由配置。`routes` 字段的中的每个元素其实就是 `route: <OBJECT>`。
 
 - 也就是说，`routes: <[]OBJECT>` 下每个元素的字段，与 `route: <OBJECT>` 下的字段相同，这是一个嵌套循环~~
 
@@ -150,47 +140,53 @@ route:
         job: "snmp-metrics"
 ```
 
-## receivers([]OBJECT)
+## receivers
 
 **receivers(接收者)** 是一个抽象的概念，可以是一个邮箱，也可以是微信、Slack、Webhook 等等。receivers 与 route 配置，根据路由规则将告警发送给指定的接收人。
 
-    # 指定接收者的名称，用于在 route 配置环境中根据路由规则指定具体的接收者。
-    name(STRING)
-    # 不同的接收者有不同的配置环境。
-    XXXXX_configs:
-    - \<详见下文对应配置环境>, ...
+```yaml
+# 指定接收者的名称，用于在 route 配置环境中根据路由规则指定具体的接收者。
+name(STRING)
+# 不同的接收者有不同的配置环境。
+XXXXX_configs:
+- <详见下文对应配置环境>, ...
+```
 
 现阶段 alertmanager 支持的 XXXX_configs 有 email_configs、pagerduty_configs、pushover_configs、slack_configs、opsgenie_configs、webhook_configs、victorops_configs、wechat_configs。
 
-### email_configs 字段。邮件 接收者
+### email_configs - 邮件 接收者
 
 配置示例
 
-    receivers:
-    - name: "default"
-      email_configs:
-      - to: "desistdaydream@wisetv.com.cn"
-        send_resolved: true
+```yaml
+receivers:
+- name: "default"
+  email_configs:
+  - to: "desistdaydream@wisetv.com.cn"
+    send_resolved: true
+```
 
-### webhook_configs 字段。webhook 接收者
+### webhook_configs - webhook 接收者
 
 webhook 类型的接收者是一种通用的接收者，不像其他类型的接收者，只能发送给特定的服务。而 webhook 只需要指定接收消息的 IP:PORT 即可。Alertmanager 会将指定的消息体已 POST 方法发送给对方，不管对方是什么，只要能处理 Alertamanger 发过去的 JSON 结构的数据即可。
 
-    # Whether or not to notify about resolved alerts.
-    [ send_resolved: <boolean> | default = true ]
+```yaml
+# Whether or not to notify about resolved alerts.
+[ send_resolved: <boolean> | default = true ]
 
-    # The endpoint to send HTTP POST requests to.
-    url: <string>
+# The endpoint to send HTTP POST requests to.
+url: <string>
 
-    # The HTTP client's configuration.
-    [ http_config: <http_config> | default = global.http_config ]
+# The HTTP client's configuration.
+[ http_config: <http_config> | default = global.http_config ]
 
-    # The maximum number of alerts to include in a single webhook message. Alerts
-    # above this threshold are truncated. When leaving this at its default value of
-    # 0, all alerts are included.
-    [ max_alerts: <int> | default = 0 ]
+# The maximum number of alerts to include in a single webhook message. Alerts
+# above this threshold are truncated. When leaving this at its default value of
+# 0, all alerts are included.
+[ max_alerts: <int> | default = 0 ]
+```
 
-## inhibit_rules: <OBJECT>
+## inhibit_rules
 
 抑制规则配置
 

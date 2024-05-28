@@ -5,7 +5,7 @@ title: Linux 代理配置
 
 # 概述
 
-在 Linux 中，很多程序都会读取某些变量来读取代理信息
+在 [Unix-like OS](docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 中，很多程序都会读取 [Terminal 与 Shell](docs/1.操作系统/Terminal%20与%20Shell/Terminal%20与%20Shell.md) 中的某些变量来读取代理信息
 
 > TODO: 这些变量到底应该大写还是小写？wget 命令无法识别到大写的变量。
 
@@ -25,10 +25,9 @@ EXAMPLE
 - http_proxy="http://tom:secret@10.23.42.11:8080/" # 设置本机的 http 代理服务器为 10.23.42.11:8080，用户名是 tom，密码是 secret
 
 - 同时设置 3 种类型代理，没有用户名和密码，代理服务器是 192.168.19.79:1080
-  - export {https,ftp,http}\_proxy="127.0.0.1:8889"
-- all_proxy="socks5://localhost:10808" # 使用本地 10808 端口的 socks 协议代理所有流量(e.g.安装完 v2ray 客户端并配置好启动后，即可使用该变量来让设备使用代理进行翻墙)
-
-- no_proxy="10._._._,192.168._._,_.local,localhost,127.0.0.1" # 忽略指定 ip 的代理
+  - `export {https,ftp,http}_proxy="127.0.0.1:8889"`
+- `all_proxy="socks5://localhost:10808"` # 使用本地 10808 端口的 socks 协议代理所有流量(e.g.安装完 v2ray 客户端并配置好启动后，即可使用该变量来让设备使用代理进行翻墙)
+- `no_proxy="10._._._,192.168._._,_.local,localhost,127.0.0.1`" # 忽略指定 ip 的代理
 
 **注意：通过 Systemd 启动的进程，无法识别这些环境变量，只能通过 Unit File 中的 \[Service] 部分的 Environment 指令指定代理信息。**
 
@@ -87,18 +86,6 @@ export ALL_PROXY="sock5://${hostip}:7890"
 ```
 
 
-# proxychains
+# 可用的代理程序
 
-项目地址：<https://github.com/haad/proxychains>
-
-凡是通过 proxychains 程序运行的程序都会通过 proxychains 配置文件中设置的代理配置来发送数据包。
-
-apt install proxychains 即可
-
-修改配置文件
-
-sock5 127.0.0.1 10808 # 指定本地代理服务所监听的地址
-
-proxychains /opt/google/chrome/chrome # 即可通过代理打开 chrome 浏览器
-
-`proxychains curl -I https://www.google.com` 会成功
+参考 [代理](docs/Web/代理.md)

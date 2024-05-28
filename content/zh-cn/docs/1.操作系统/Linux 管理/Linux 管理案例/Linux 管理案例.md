@@ -7,7 +7,7 @@ weight: 1
 
 ## 进入紧急模式
 
-详见《[Linux 的紧急模式或救援模式](/docs/1.操作系统/X.Linux%20 管理/性能优化%20 与%20 故障处理/Linux%20 的紧急模式或救援模式.md 与 故障处理/Linux 的紧急模式或救援模式.md)》
+详见 [紧急模式或救援模式](docs/1.操作系统/Linux%20管理/性能评估与故障处理/故障处理/紧急模式或救援模式.md)
 
 ## 修改密码
 
@@ -43,4 +43,3 @@ ubuntu 系统
 - 修改网络配置 ens32 为 eth0
   - vim /etc/netplan/01-netcfg.yaml
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gvagsg/1616163849544-f4eac668-9a60-40ef-b291-c28f82e1e661.jpeg)

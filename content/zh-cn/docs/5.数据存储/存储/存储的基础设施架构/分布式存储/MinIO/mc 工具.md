@@ -5,7 +5,8 @@ title: mc 工具
 # 概述
 
 > 参考：
-> - [官方文档,MinIO 客户端](https://docs.min.io/minio/baremetal/reference/minio-cli/minio-mc.html)
+>
+> - [官方文档，MinIO 客户端](https://docs.min.io/minio/baremetal/reference/minio-cli/minio-mc.html)
 
 # 配置
 
@@ -136,7 +137,7 @@ EXAMPLE
 列出设置在一个 bucket 上的生命周期配置规则集，效果如下：
 
 ```bash
-[root@nfs-1 ~]# mc ilm ls local/loki-bj-net
+~]# mc ilm ls local/loki-bj-net
           ID          |     Prefix     |  Enabled   | Expiry |  Date/Days   |  Transition  |    Date/Days     |  Storage-Class   |          Tags
 ----------------------|----------------|------------|--------|--------------|--------------|------------------|------------------|------------------------
  c36rknaqqqm9ds69f5fg |                |    ✓       |  ✓     |   7 day(s)   |     ✗        |                  |                  |
