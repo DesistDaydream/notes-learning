@@ -27,7 +27,7 @@ PromQL 支持以下算术二元运算符：
 算术二元运算符可以实现如下三种类型的运算：
 
 - **Between two scalars(标量与标量)**
-- **Between an instant vector and a scalar(即时向量与标量) **
+- **Between an instant vector and a scalar(即时向量与标量)**
 - **Between two instant vectors(即时向量与即时向量)**
 
 ## Between two scalars(标量与标量)
@@ -37,18 +37,25 @@ PromQL 支持以下算术二元运算符：
 ## Between an instant vector and a scalar(即时向量与标量)
 
 当瞬时向量与标量之间进行数学运算时，数学运算符会依次作用域瞬时向量中的每一个样本值，从而得到一组新的时间序列。
+
 与 标量之间 的二元运算一样，只不过将即时向量表达式获取到的所有时间序列的值与标量进行运算，效果如下：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/zpuhbm/1626438137638-8b462402-4042-4c0d-b030-fc186973d5ab.png)
+
 经过运算后：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/zpuhbm/1626438160237-51de2eda-a03a-494a-8b86-16ffdaeb0551.png)
 
 ## Between two instant vectors(即时向量与即时向量)
 
 如果是即时向量与即时向量之间进行数学运算时，过程会相对复杂一点。 例如，如果我们想根据 node_disk_bytes_written 和 node_disk_bytes_read 获取主机磁盘 IO 的总量，可以使用如下表达式：
 
-    node_disk_read_bytes_total + node_disk_written_bytes_total
+```promql
+node_disk_read_bytes_total + node_disk_written_bytes_total
+```
 
 那这个表达式是如何工作的呢？依次找到与左边向量表达式的标签完全匹配的右边向量表示，并将两者进行进行运算。同时新的时间序列将不会包含指标名称。 该表达式返回结果的示例如下所示：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/zpuhbm/1626440024200-621fc788-29f8-4455-b933-4dbc3fa3a881.png)
 如果运算符左右两边的向量表达式没有匹配到，则直接丢弃，效果如下：
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/zpuhbm/1626440170722-a5bee3be-4df9-4553-9525-3aadd8c193f0.png)
@@ -114,7 +121,9 @@ vector1 unless vector2 会产生一个新的向量，新向量中的元素由 ve
 
 例如，查询主机的 CPU 使用率，可以使用表达式：
 
-    100 * (1 - avg (irate(node_cpu{mode='idle'}[5m])) by(job) )
+```promql
+100 * (1 - avg (irate(node_cpu{mode='idle'}[5m])) by(job) )
+```
 
 其中 irate 是 PromQL 中的内置函数，用于计算区间向量中时间序列每秒的即时增长率。关于内置函数的部分，会在下一节详细介绍。
 

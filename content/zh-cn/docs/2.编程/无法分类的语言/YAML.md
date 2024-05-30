@@ -513,12 +513,16 @@ defaults: adapter: postgres host: localhostdevelopment: database: myapp_developm
 
 可以使用竖线 | 指令在你的文本中保留新行，如：
 
-                text: |   This is a really long text   that spans multiple lines (but preserves new lines).   It does not need to be escaped with special brackets,   CDATA tags, or anything like that
+```yaml
+text: |   This is a really long text   that spans multiple lines (but preserves new lines).   It does not need to be escaped with special brackets,   CDATA tags, or anything like that
+```
 
 YAML 编译器将会从第一行的第一个文本字符开始编译（并丢掉所有的缩进空格），但是会在你的文本中保留新行。
 
 另外，你还可以使用大于符号（>）告诉 YAML 编译器给所有新行加上条纹，并将输入的文本作为一个长行处理：
 
-                text: >   This is a really long text   that spans multiple lines (but preserves new lines).   It does not need to be escaped with special brackets,   CDATA tags, or anything like that
+```yaml
+text: >   This is a really long text   that spans multiple lines (but preserves new lines).   It does not need to be escaped with special brackets,   CDATA tags, or anything like that
+```
 
 除了这两个指令之外，你还可以使用竖线和加号 |+ ，它给位于前面的空格加上条纹，保留新行和末尾的空格。还可以使用大于号和减号 >- ，它给所有的空格加上条纹。|- 用于删除字符串末尾的换行

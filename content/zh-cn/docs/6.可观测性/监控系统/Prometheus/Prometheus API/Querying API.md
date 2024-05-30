@@ -5,6 +5,7 @@ title: Querying API
 # 概述
 
 > 参考：
+>
 > - [官方文档，Prometheus-查询-HTTP API](https://prometheus.io/docs/prometheus/latest/querying/api/)
 > - [OpenAPI](https://app.swaggerhub.com/apis/DesistDaydream/PrometheusAPI/v1)
 
@@ -102,13 +103,15 @@ curl -X POST 'http://localhost:9090/api/v1/query' \
 
 此外，该功能对于使用 curl 调试也非常有用。比如该示例的符号，都进行了编码，而通过 POST 请求，则不必编码，即可使用
 
-    curl 'http://localhost:9090/api/v1/series?match[]=up&match[]=process_start_time_seconds%7Bjob%3D%22prometheus%22%7D'
+```bash
+curl 'http://localhost:9090/api/v1/series?match[]=up&match[]=process_start_time_seconds%7Bjob%3D%22prometheus%22%7D'
 
-    # 上述语句可以替换为
-    curl -X POST 'http://localhost:9090/api/v1/series' \
-    --header 'Content-Type: application/x-www-form-urlencoded' \
-    --data-urlencode 'match[]=up' \
-    --data-urlencode 'match[]=process_start_time_seconds{job="prometheus"}'
+# 上述语句可以替换为
+curl -X POST 'http://localhost:9090/api/v1/series' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'match[]=up' \
+--data-urlencode 'match[]=process_start_time_seconds{job="prometheus"}'
+```
 
 # Expression Queries(表达式查询)
 
@@ -116,14 +119,16 @@ curl -X POST 'http://localhost:9090/api/v1/query' \
 
 ## Instant Queries(即时查询)
 
-    GET /api/v1/query
-    POST /api/v1/query
+```text
+GET /api/v1/query
+POST /api/v1/query
+```
 
 URL 请求参数：
 
-- **query=<STRING>** # PromQL 表达式。
-- **time=<TIMESTAMP>** # (可选参数)用于指定用于计算 PromQL 的时间戳。默认情况下使用当前系统时间。
-- **timeout=<DURATION>** # 超时设置。可选参数，默认情况下使用-query,timeout 的全局设置。
+- **query=\<STRING>** # PromQL 表达式。
+- **time=\<TIMESTAMP>** # (可选参数)用于指定用于计算 PromQL 的时间戳。默认情况下使用当前系统时间。
+- **timeout=\<DURATION>** # 超时设置。可选参数，默认情况下使用-query,timeout 的全局设置。
 
 例如使用以下表达式查询表达式 up 在时间点 2015-07-01T20:10:51.781Z 的计算结果：
 
@@ -161,17 +166,19 @@ $ curl 'http://localhost:9090/api/v1/query?query=up&time=2021-02-28T6:23:51.781Z
 
 ## Range Queries(范围查询)
 
-    GET /api/v1/query_range
-    POST /api/v1/query_range
+```text
+GET /api/v1/query_range
+POST /api/v1/query_range
+```
 
 URL 请求参数：
 
-- **query=<STRING>** # PromQL 表达式。
+- **query=\<STRING>** # PromQL 表达式。
 - **start=\<rfc3339 | unix_timestamp>** # 起始时间
 - **end=\<rfc3339 | unix_timestamp>** # 结束时间
 - **step=\<duration | float>** # 步长。起始时间与结束时间之间获取的所有数据的间隔时间。假如 step=10 则每隔 10 秒获取一次样本值。
   - 就好像人走路，一步迈多长，这里就是返回样本值时，每隔多久返回一次。
-- **timeout=<duration>** # 超时设置。可选参数，默认情况下使用-query,timeout 的全局设置。Evaluation timeout. Optional. Defaults to and is capped by the value of the -query.timeout flag.
+- **timeout=\<duration>** # 超时设置。可选参数，默认情况下使用-query,timeout 的全局设置。Evaluation timeout. Optional. Defaults to and is capped by the value of the -query.timeout flag.
 
 例如使用以下表达式查询表达式 up 在 30 秒范围内以 15 秒为间隔计算 PromQL 表达式的结果。
 
@@ -223,12 +230,12 @@ $ curl 'http://localhost:9090/api/v1/query_range?query=up&start=2015-07-01T20:10
 
 `**resultType**`** 字段**表示该时间序列的值类型：
 
-- **matrix(矩阵) **# 范围向量表达式查询结果
-- **vector(向量) **# 即时向量表达式查询结果
+- **matrix(矩阵)** # 范围向量表达式查询结果
+- **vector(向量)** # 即时向量表达式查询结果
 - **scalar(标量)** # 标量表达式查询结果
 - **string(字符串)** # 字符串表达式查询结果
 
-`**result **`**字段**就是查询结果，该字段的值将会随 resultType 字段值的变化而不尽相同。这与 PromQL 章节描述的概念保持一致
+**`result` 字段** 就是查询结果，该字段的值将会随 resultType 字段值的变化而不尽相同。这与 PromQL 章节描述的概念保持一致
 
 ### matrix
 
@@ -266,7 +273,9 @@ $ curl 'http://localhost:9090/api/v1/query_range?query=up&start=2015-07-01T20:10
 
 当返回数据类型 resultType 字段值为 scalar 时，result 字段格式如下：
 
-    [ <unix_time>, "<scalar_value>" ]
+```text
+[ <unix_time>, "<scalar_value>" ]
+```
 
 由于标量不存在时间序列一说，因此 result 表示为当前系统时间一个标量的值。
 
@@ -274,7 +283,9 @@ $ curl 'http://localhost:9090/api/v1/query_range?query=up&start=2015-07-01T20:10
 
 当返回数据类型 resultType 字段值为 string 时，result 字段格式如下：
 
-    [ <unix_time>, "<string_value>" ]
+```text
+[ <unix_time>, "<string_value>" ]
+```
 
 字符串类型的响应内容格式和标量相同。
 
@@ -284,8 +295,10 @@ $ curl 'http://localhost:9090/api/v1/query_range?query=up&start=2015-07-01T20:10
 
 ## 获取 Series，仅获取序列，不包含该序列的值
 
-    GET /api/v1/series
-    POST /api/v1/series
+```text
+GET /api/v1/series
+POST /api/v1/series
+```
 
 URL 请求参数：
 
@@ -325,8 +338,10 @@ $ curl 'http://localhost:9090/api/v1/series?match[]=up&match[]=process_start_tim
 
 根据匹配规则，获取匹配到的所有序列中包含的所有标签。若是不加参数，则返回所有的 Labels
 
-    GET /api/v1/labels
-    POST /api/v1/labels
+```text
+GET /api/v1/labels
+POST /api/v1/labels
+```
 
 URL 请求参数：
 
@@ -374,7 +389,9 @@ curl --location --request GET 'http://test-prometheus.desistdaydream.ltd/api/v1/
 
 根据匹配规则获取指定标签名称的标签值的列表
 
-    GET /api/v1/label/<label_name>/values
+```text
+GET /api/v1/label/<label_name>/values
+```
 
 URL 请求参数:
 
@@ -384,39 +401,55 @@ URL 请求参数:
 
 This example queries for all label values for the `job` label:
 
-    $ curl http://localhost:9090/api/v1/label/job/values
-    {
-       "status" : "success",
-       "data" : [
-          "node",
-          "prometheus"
-       ]
-    }
+```json
+$ curl http://localhost:9090/api/v1/label/job/values
+{
+   "status" : "success",
+   "data" : [
+      "node",
+      "prometheus"
+   ]
+}
+```
 
 # Targets
 
-    GET /api/v1/targets
+```
+GET /api/v1/targets
+```
 
 # Rules
 
-    GET /api/v1/rules
+```
+GET /api/v1/rules
+```
 
 # Alerts
 
-    GET /api/v1/alerts
+```
+GET /api/v1/alerts
+```
 
 # Querying Target Metadata
 
-    GET /api/v1/targets/metadata
+```
+GET /api/v1/targets/metadata
+```
 
 # Querying Metric Metadata
 
-    GET /api/v1/metadata
+```
+GET /api/v1/metadata
+```
 
 # Alertmanagers
 
-    GET /api/v1/alertmanagers
+```
+GET /api/v1/alertmanagers
+```
 
 # Status
 
-    GET /api/v1/status/config
+```
+GET /api/v1/status/config
+```

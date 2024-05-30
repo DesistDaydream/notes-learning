@@ -9,9 +9,9 @@ weight: 2
 
 Prometheus 规则分为两种：
 
-1. **Recording Rule(记录规则)** #
-2. **Alerting Rule(告警规则)** #
-   1. ！！！！注意编写告警规则的逻辑，由于 Prometheus 会定期评估告警，所以会定期读取数据，尽相避免读取大范围的数据，以免造成性能问题
+- **Recording Rule(记录规则)** #
+- **Alerting Rule(告警规则)** #
+   - ！！！！注意编写告警规则的逻辑，由于 Prometheus 会定期评估告警，所以会定期读取数据，尽相避免读取大范围的数据，以免造成性能问题
 
 Prometheus 规则配置文件需要在 Prometheus 主配置文件中的 rule_files 配置环境中指定，让 Prometheus 加载指定的文件并读取其配置(这个过程称为评估 evaluation)。
 

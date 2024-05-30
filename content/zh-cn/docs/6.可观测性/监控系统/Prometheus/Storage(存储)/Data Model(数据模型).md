@@ -35,15 +35,16 @@ Prometheus 从根本上将所有数据存储为 [Time Series(时间序列)](http
 - **Sample(样本)** # 针对监测对象的某项指标(由 Metric 和 Tag 定义)按特定时间间隔采集到的每个 Metric 值就是一个 Sample(样本)。类似关系型数据库中的一行。
 
 首先需要明确一个概念：
+
 **Vector(向量)(也称为欧几里得向量、几何向量、矢量)**，指具有大小和方向的 **Magnitude(量)**。它可以形象化地表示为带箭头的线段。箭头所指：代表向量的方向；线段长度：代表向量的大小。与向量对应的量叫做数量（物理学中称[标量](https://baike.baidu.com/item/%E6%A0%87%E9%87%8F/1530843)），数量（或标量）只有大小，没有方向。
 
 Prometheus 会将所有采集到的样本数据以 **TimeSeries(时间序列)** 的方式保存在内存数据库中，并且定时保存到硬盘上。TimeSeriesData 是按照**时间戳**和**值**的序列顺序存放的一条不规则有方向的线段，我们称之为 **Vector(向量)**。每条 TimeSeriesData 通过 **MetricsName(指标名称)** 和一组 **LabelSet(标签集)** 作为唯一标识符。如下所示，可以将 TimeSeries 理解为一个以时间为 x 轴、值为 y 轴的数字矩阵；而这个矩阵中的每一个点都是一个 **Sample(样本)**，相同 MetricName 和 LabelSet 的多个样本之间连成的线段就是时间序列数据。
 
 ```bash
   ^
-  │   . . . . . . . . . . . . . . . . . . - >   node_cpu{cpu="cpu0",mode="idle"}
-  │     . . . . . . . . . . . . . . . . . - >   node_cpu{cpu="cpu0",mode="system"}
-  值    . . . . . . . . . . . . . . . . . - >   node_load1{}
+  │   . . . . . . . . . . . . . . . . . . - >   node_cpu{cpu="cpu0",mode="idle"} # node_cpu 是 MetricsName(指标名称)
+  │     . . . . . . . . . . . . . . . . . - >   node_cpu{cpu="cpu0",mode="system"} # {cpu="cpu0",mode="system"} 是 LabelSet(标签集)
+  值    . . . . . . . . . . . . . . . . . - >   node_load1{} # 这个时间序列只有指标名称，没有标签集
   │     . . . . . . . . . . . . . . . . . - >
   v   . . . . . . . . . . . . . . . . . . - >
     <------------------ 时间 ---------------->
@@ -131,10 +132,12 @@ api_http_requests_total{method="POST", handler="/messages"}
 
 在 Prometheus 的源码中也可以看到指标(Metric)对应的数据结构，如下所示：
 
-    type Metric LabelSet
-    type LabelSet map[LabelName]LabelValue
-    type LabelName string
-    type LabelValue string
+```
+type Metric LabelSet
+type LabelSet map[LabelName]LabelValue
+type LabelName string
+type LabelValue string
+```
 
 ## 白话说
 
@@ -223,15 +226,16 @@ Histogram 在**一段时间范围内**观察某指标(通常是 请求的持续�
 **Prometheus 中的直方图**
 
 Prometheus 中的直方图与传统意义的直方图有一些差别，准确描述，应该称为 **累计直方图**。主要差别在 bucket 的定义，在 Prometheus 的累计直方图中，还是假设 bucket 的宽度为 0.2s，那么第一个 bucket 表示响应时间小于等于 0.2s 的样本数量，第二个 bucket 表示响应时间小于等于 0.4s 的样本数量，以此类推。也就是说，**每一个 bucket 中的样本都包含了卡面所有 bucket 中的样本**，所以称为 累计直方图。而每个 bucket 范围中的最大值，称为 **upper inclusive bound(上边界)**。效果如图：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gnzmdt/1617543132157-1f35ddae-ef51-4ca7-9ece-72886154cc1f.jpeg)
 
 Histogram 类型的指标在同一时间具有多条时间序列(假设指标名称为 <basename)：(这些时间序列大体分为 3 种)
 
-- **\<basename>\_bucket{le="<上边界>"}**# 要观察的样本分布在 bucket 中的数量。解释的更通俗易懂一点，这个值表示 要观察的样本的值 小于等于 上边界的值 的所有样本数量。
+- **`<basename>_bucket{le="<上边界>"}`**# 要观察的样本分布在 bucket 中的数量。解释的更通俗易懂一点，这个值表示 要观察的样本的值 小于等于 上边界的值 的所有样本数量。
   - le 通常用来表示该 bucket 的上限。le 这俩字符按照关系运算符来理解，就是“小于或等于”的意思。。。。。。。
   - 用白话说就是，le 是 bucket 的标识符，比如下面的示例，就可以这么描述：0 到 0.00025 储存区，含有 332 个样本；0 到 0.0005 储存区，含有 336 个样本。
-- **\<basename>\_sum** # 所有 被观察样本的值 的总和。
-- **\<basename>\_count** # 观察次数。(该值和上面的 \<basename>\_bucket{le="+Inf"} 相同)
+- **`<basename>_sum`** # 所有 被观察样本的值 的总和。
+- **`<basename>_count`** # 观察次数。(该值和上面的 \<basename>\_bucket{le="+Inf"} 相同)
   - 本质上是一个 Counter 类型的指标。
 
 在 coredns 的样本数据中，我们能找到类型为 Histogram 的监控指标 `coredns_dns_request_duration_seconds`

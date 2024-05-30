@@ -36,9 +36,9 @@ PromQL 支持基本的 逻辑 和 算术 运算符。 对于两个即时向量�
 
 #### Syntax(语法)
 
-```
-**<VectorExpr1> <BinaryOperators> ignoring(LabelList) <VectorExpr2>**
-**<VectorExpr1> <BinaryOperators> on(LabelList) <VectorExpr2>**
+```promql
+<VectorExpr1> <BinaryOperators> ignoring(LabelList) <VectorExpr2>
+<VectorExpr1> <BinaryOperators> on(LabelList) <VectorExpr2>
 ```
 
 on 与 ignoring 关键字会将其左右两侧表达式中标签进行匹配，根据其指定的 LabelList 来匹配标签，匹配到的序列将会执行二元运算
@@ -48,28 +48,34 @@ on 与 ignoring 关键字会将其左右两侧表达式中标签进行匹配，�
 
 例如当存在样本：
 
-    method_code:http_errors:rate5m{method="get", code="500"}  24
-    method_code:http_errors:rate5m{method="get", code="404"}  30
-    method_code:http_errors:rate5m{method="put", code="501"}  3
-    method_code:http_errors:rate5m{method="post", code="500"} 6
-    method_code:http_errors:rate5m{method="post", code="404"} 21
+```text
+method_code:http_errors:rate5m{method="get", code="500"}  24
+method_code:http_errors:rate5m{method="get", code="404"}  30
+method_code:http_errors:rate5m{method="put", code="501"}  3
+method_code:http_errors:rate5m{method="post", code="500"} 6
+method_code:http_errors:rate5m{method="post", code="404"} 21
 
-    method:http_requests:rate5m{method="get"}  600
-    method:http_requests:rate5m{method="del"}  34
-    method:http_requests:rate5m{method="post"} 120
+method:http_requests:rate5m{method="get"}  600
+method:http_requests:rate5m{method="del"}  34
+method:http_requests:rate5m{method="post"} 120
+```
 
 使用 PromQL 表达式：
 
-    method_code:http_errors:rate5m{code="500"} / ignoring(code) method:http_requests:rate5m
-    或者
-    method_code:http_errors:rate5m{code="500"} / on(method) method:http_requests:rate5m
+```promql
+method_code:http_errors:rate5m{code="500"} / ignoring(code) method:http_requests:rate5m
+或者
+method_code:http_errors:rate5m{code="500"} / on(method) method:http_requests:rate5m
+```
 
 该表达式会返回在过去 5 分钟内，HTTP 请求状态码为 500 的在所有请求中的比例。如果没有使用 ignoring(code)，操作符两边表达式返回的瞬时向量中将找不到任何一个标签完全相同的匹配项。
 
 因此结果如下：
 
-    {method="get"}  0.04            //  值就是 24 / 600 得到的结果
-    {method="post"} 0.05            //  值就是 6 / 120 得到的结果
+```promql
+{method="get"}  0.04            //  值就是 24 / 600 得到的结果
+{method="post"} 0.05            //  值就是 6 / 120 得到的结果
+```
 
 同时由于 method 为 put 和 del 的样本找不到匹配项，因此不会出现在结果当中。
 
@@ -81,11 +87,11 @@ on 与 ignoring 关键字会将其左右两侧表达式中标签进行匹配，�
 
 #### Syntax(语法)
 
-```
-**<VectorExpr1> <BinaryOperators> ignoring(LabelList) group_left(LabelList) <VectorExpr2>**
-**<VectorExpr1> <BinaryOperators> ignoring(LabelList) group_right(LabelList) <VectorExpr2>**
-**<VectorExpr1> <BinaryOperators> on(LabelList) group_left(LabelList) <VectorExpr2>**
-**<VectorExpr1> <BinaryOperators> on(LabelList) group_right(LabelList) <VectorExpr2>**
+```promql
+<VectorExpr1> <BinaryOperators> ignoring(LabelList) group_left(LabelList) <VectorExpr2>
+<VectorExpr1> <BinaryOperators> ignoring(LabelList) group_right(LabelList) <VectorExpr2>
+<VectorExpr1> <BinaryOperators> on(LabelList) group_left(LabelList) <VectorExpr2>
+<VectorExpr1> <BinaryOperators> on(LabelList) group_right(LabelList) <VectorExpr2>
 ```
 
 group_left 与 group_right 修饰符用来指定以左边或右边的向量表达式为主：
@@ -95,16 +101,20 @@ group_left 与 group_right 修饰符用来指定以左边或右边的向量表�
 
 例如,使用表达式：
 
-    method_code:http_errors:rate5m / on(method) group_left method:http_requests:rate5m
+```promql
+method_code:http_errors:rate5m / on(method) group_left method:http_requests:rate5m
+```
 
 该表达式中，左向量 method_code:http_errors:rate5m 包含两个标签 method 和 code。而右向量 method:http_requests:rate5m 中只包含一个标签 method，因此匹配时需要使用 ignoring 限定匹配的标签为 method。 在限定匹配标签后，右向量中的元素可能匹配到多个左向量中的元素 因此该表达式的匹配模式为多对一，需要使用 group_left 修饰符指定左向量具有更好的基数。
 
 最终的运算结果如下：
 
-    {method="get", code="500"}  0.04            //  24 / 600
-    {method="get", code="404"}  0.05            //  30 / 600
-    {method="post", code="500"} 0.05            //   6 / 120
-    {method="post", code="404"} 0.175           //  21 / 120
+```promql
+{method="get", code="500"}  0.04            //  24 / 600
+{method="get", code="404"}  0.05            //  30 / 600
+{method="post", code="500"} 0.05            //   6 / 120
+{method="post", code="404"} 0.175           //  21 / 120
+```
 
 提醒：group 修饰符只能在比较和数学运算符中使用。在逻辑运算 and,unless 和 or 才注意操作中默认与右向量中的所有元素进行匹配。
 
