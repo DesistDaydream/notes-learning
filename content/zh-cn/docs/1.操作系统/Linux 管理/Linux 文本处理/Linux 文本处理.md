@@ -267,7 +267,7 @@ EXAMPLE
 
 Linux 中查看换行符
 
-第一种使用 `cat  -A FILE` 查看，如下图所示，看到的为一个 Windows 形式的换行符，`\r` 对应符号 `^M`，`\n`对应符号 `$`
+第一种使用 `cat -A FILE` 查看，如下图所示，看到的为一个 Windows 形式的换行符，`\r` 对应符号 `^M`，`\n`对应符号 `$`
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/dpdq7l/1616166269671-c8b5ded5-c271-40cf-b020-da3982fe0e6a.jpeg)
 

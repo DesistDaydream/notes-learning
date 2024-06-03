@@ -165,5 +165,13 @@
     }
   ],
   "file-explorer:new-file-in-new-pane": [],
-  "graph:open": []
+  "graph:open": [],
+  "window:reset-zoom": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "Backspace"
+    }
+  ]
 }
