@@ -15,6 +15,8 @@ weight: 20
 > - [GitHub 项目，PCRE2Project/pcre2](https://github.com/PCRE2Project/pcre2)
 >   - [PCRE 官网](https://www.pcre.org/)
 >   - [PCRE Man page](https://www.pcre.org/original/doc/html/pcrepattern.html)
+> - [GitHub 项目，google/re2](https://github.com/google/re2)
+>   - RE2 是一种快速、安全、线程友好的替代方案，可替代 PCRE、Perl 和 Python 中使用的回溯正则表达式引擎。它是一个 C++ 库
 
 **记于 2023 年 2 月10 日：有了 ChatGPT，这正则表达式。。。我想。。。应该再也不用背了。。。。**
 

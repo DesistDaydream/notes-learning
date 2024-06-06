@@ -245,7 +245,7 @@ Prometheus 将会根据这里的字段配置，以发现需要 Scrape 指标的�
 
 **static_configs**([static_configs](#static_configs)) # 静态配置。直接指定需要抓去 Metrics 的 Targets。
 
-- 具体配置详见下文[静态目标发现](#J021o)
+- 具体配置详见下文[静态目标发现](#静态目标发现)
 
 **XX_sd_configs**(\[]OBJECT) # 动态配置。动态需要抓去 Metrics 的 Targets。XXX_sd_configs 中的 sd 全称为 Service Discovery(服务发现)
 
@@ -353,11 +353,11 @@ https://prometheus.io/docs/prometheus/latest/configuration/configuration/#static
 
 静态配置。指定用户抓取 metrics 的 targets。静态配置与动态配置就好比主机获取 IP 时是 DHCP 还是 STATIC。动态配置可以动态获取要抓取的 targets、静态就是指定哪个 target 就去哪个 target 抓取 metrics
 
-**targets([]STRING)** # 指定要抓取 metrics 的 targets 的 IP:PORT
+**targets**(\[]STRING) # 指定要抓取 metrics 的 targets 的 IP:PORT
 
 - **HOST**
 
-**labels(map\[STRING]STRING)** # 指定该 targets 的标签，可以随意添加任意多个
+**labels**(map\[STRING]STRING) # 指定该 targets 的标签，可以随意添加任意多个
 
 - **KEY: VAL** # 比如该键值可以是 run: httpd，标签名是 run，run 的值是 httpd，key 与 val 使用字母，数字，\_，-，.这几个字符且以字母或数字开头；val 可以为空。
 - ......

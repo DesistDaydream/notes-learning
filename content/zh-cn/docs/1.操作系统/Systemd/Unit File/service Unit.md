@@ -29,11 +29,11 @@ service Unit 是 systemd 使用数量最多，使用频率最高的单元。
 
 **RemainAfterExit=** # 即是 Service 启动的所有进程都退出了，该 Service 是否应该被视为活动状态。`默认值：no`
 
-**RestartSec=INT** # 自动重启当前服务间隔的时间，单位为秒。`默认值：100ms`
+**RestartSec=INT** # 自动重启当前服务间隔的时间，单位为秒（也可以用 `5min 20s` 这种写法）。`默认值：100ms`
 
 **Restart=STRING** # 定义何种情况 Systemd 会自动重启当前服务。`默认值：no`
 
-可用的值有：no(永不重启)、always(无条件重启)、on-success(仅在服务正常退出时重启)、on-failure()、on-abnormal、on-abort、on-watchdog。
+可用的值有：no(永不重启)、always(无条件重启)、on-success(仅在服务正常退出时重启)、on-failure(在服务异常退出时)、on-abnormal、on-abort、on-watchdog。
 
 下表描述了当由于何种原因退出时，将会执行重启操作的配置。表中有 X 的表示第一行 Restart 的值在第一列列出的退出原因时，将会重启
 

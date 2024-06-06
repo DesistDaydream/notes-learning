@@ -169,6 +169,7 @@
   "window:reset-zoom": [
     {
       "modifiers": [
+        "Alt",
         "Mod"
       ],
       "key": "Backspace"
