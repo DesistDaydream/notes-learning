@@ -5,7 +5,8 @@ title: Binary Operators(二元运算符)
 # 概述
 
 > 参考：
-> - [官方文档](https://prometheus.io/docs/prometheus/latest/querying/operators/#binary-operators)
+>
+> - [官方文档，查询 - 运算符](https://prometheus.io/docs/prometheus/latest/querying/operators/#binary-operators)
 
 PromQL 支持基本的 逻辑 和 算术 运算符。 对于两个即时向量之间的运算，可以修改匹配行为。
 

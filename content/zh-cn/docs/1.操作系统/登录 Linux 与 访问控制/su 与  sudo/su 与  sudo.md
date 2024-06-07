@@ -1,16 +1,22 @@
 ---
 title: su 与  sudo
+linkTitle: su 与  sudo
+date: 2024-06-07T08:20
+weight: 20
 ---
 
 # 概述
 
+> 参考：
 >
+> -
+
 
 # su
 
 > 参考：
 >
-> - [Manual(手册),su(1)](https://man7.org/linux/man-pages/man1/su.1.html)
+> - [Manual(手册), su(1)](https://man7.org/linux/man-pages/man1/su.1.html)
 
 ## 总结
 
@@ -24,16 +30,19 @@ title: su 与  sudo
 # su 配置
 
 /etc/pam.d/su #
+
 /etc/pam.d/su-l #
+
 /etc/default/su #
+
 /etc/login.defs #
 
 # sudo
 
 > 参考：
 >
-> - [Manual(手册),sudo(8)](https://man7.org/linux/man-pages/man8/sudo.8.html)
-> - [Manual(手册),sudoers(5)](https://man7.org/linux/man-pages/man5/sudoers.5.html)
+> - [Manual(手册), sudo(8)](https://man7.org/linux/man-pages/man8/sudo.8.html)
+> - [Manual(手册), sudoers(5)](https://man7.org/linux/man-pages/man5/sudoers.5.html)
 > - [如何改变 sudo 日志文件](https://ostechnix.com/how-to-change-default-sudo-log-file-in-linux/)
 
 **sudo(substitute user \[或 superuser] do)** 程序可以让当前用户使用其他的用户的权限来执行指定的命令
@@ -59,7 +68,7 @@ sudo 通过各种插件实现功能。默认插件为 sudoers，用来确定用�
 - sudo # 可以让普通用户拥有 root 权限去执行命令，sudo 的配置文件是/etc/sudoers。
 - visudo # 通过 visudo 编辑/etc/sudoers，可以检查语法。
 
-## sudu # 使用其余用户的权限执行指定的命令
+## sudu - 使用其余用户的权限执行指定的命令
 
 **sudo \[OPTIONS] \[COMMAND]**
 
@@ -67,7 +76,7 @@ OPTIONS
 
 - **-l, --list** # 查看授权情况，列出用户在主机上可用的和被禁止的命令
 - **-k, --reset-timestamp** # 删除时间戳，时间戳默认 5 分钟也会失效
-- **-u，--user=<STRING>** # 以指定用户执行命令。STRING 可以 用户名 或 用户 ID
+- **-u，--user=\<STRING>** # 以指定用户执行命令。STRING 可以 用户名 或 用户 ID
 - **-s, --shell** # 以目标用户运行 shell。
   - 若直接使用 `sudo -s` 命令，相当于以 root 用户运行 shell，省去了 su - root 再输入密码的操作
 
@@ -75,18 +84,20 @@ EXAMPLE
 
 - sudo -u desistdaydream whoami # 使用用户 desistdaydream 来执行 whoami 命令
 
-    [root@master ~]# whoami
-    root
-    [root@master ~]# sudo -u desistdaydream whoami
-    desistdaydream
+```
+~]# whoami
+root
+~]# sudo -u desistdaydream whoami
+desistdaydream
+```
 
-## visudo # 编辑/etc/sudoers 文件
+## visudo - 编辑/etc/sudoers 文件
 
 使用 visudo 命令可直接进入编辑模式开始配置 /etc/sudoers 文件，配置 visudo 后，使用 sudo 命令，可以让非 root 用户在执行某些命令时不用 root 密码
 
 OPTIONS：
 
-- **-c**# 检查 /etc/sudoers 文件的语法
+- **-c** # 检查 /etc/sudoers 文件的语法
 - **-f, --file=sudoers** # 指定 sudoers 文件的路径
 - **-q, --quiet** # less verbose (quiet) syntax error messages
 - **-s, --strict** # 严格的语法检查，在编辑 sudoers 文件并保存退出后，如果语法错误，则会弹出提示

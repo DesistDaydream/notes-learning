@@ -7,16 +7,17 @@ weight: 1
 
 > 参考：
 >
-> - [红帽官方文档,RedHat7-管理用户账户的基础知识](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-getting_started#sec-Managing_User_Accounts)
-> - [红帽官方文档,RedHat7-系统管理员指南-第四章-管理用户和组](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-managing_users_and_groups)
-> - [红帽官方文档,RedHat7-安全指南](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/index)
+> - [红帽官方文档, RedHat7 - 管理用户账户的基础知识](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-getting_started#sec-Managing_User_Accounts)
+> - [红帽官方文档, RedHat7 - 系统管理员指南-第四章-管理用户和组](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-managing_users_and_groups)
+> - [红帽官方文档, RedHat7 - 安全指南](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/index)
 
 Linux 操作系统是一个多用户操作系统，所以除了 **Terminal(终端)** 以外，还需 **Account(账户)** 才可以登录上去，Linux 操作系统允许多个用户访问安装在一台机器上的单个系统。每个 User(用户) 都在自己的 Account(账户) 下操作。因此，Account Manager 代表了 Linux 系统管理的核心要素。
 
-> User 与 Account 傻傻分不清楚，在 Linux 操作系统中，通常都会将 Account 称为 User，但是，这个称呼实际上并不准确。因为一个 User，比如 root，可以被多个现实世界中多个人使用，那么 root 这个 User 就会对应多个真实的 User~这种描述是非常矛盾的~~~~
+> User 与 Account 傻傻分不清楚，在 Linux 操作系统中，通常都会将 Account 称为 User，但是，这个称呼实际上并不准确。因为一个 User，比如 root，可以被多个现实世界中多个人使用，那么 root 这个 User 就会对应多个真实的 User。这种描述是非常矛盾的。。。
+>
 > 只不过，随着时间的推移，人们慢慢叫习惯了，各种文档和源码也都一直使用 UID 这种名称，也就不再特别区分 Account 和 User 了。只需要知道，UID 更准确的描述应该是 AID。
 
-同时，一个 Linux Account 也可以不代表一个真实的 User，这样的 Account 只被应用程序使用，一个应用程序使用某个 Account 运行，以便让系统更方便得对程序进行精细化控制。这种控制方式称为 **Access Control(访问控制)**，所以，从这种角度看，Account 也可以称为 **Role(角色)**，详见 [访问控制](/docs/1.操作系统/5.登录%20Linux%20 与%20 访问控制/Access%20Control(访问控制).md Control(访问控制).md) 章节。
+同时，一个 Linux Account 也可以不代表一个真实的 User，这样的 Account 只被应用程序使用，一个应用程序使用某个 Account 运行，以便让系统更方便得对程序进行精细化控制。这种控制方式称为 **Access Control(访问控制)**，所以，从这种角度看，Account 也可以称为 **Role(角色)**，详见 [Access Control(访问控制)](docs/1.操作系统/登录%20Linux%20与%20访问控制/Access%20Control(访问控制)/Access%20Control(访问控制).md) 章节。
 
 为了方便得对多个 Account 管理，可以将多个 Account 组合起来，称为 **Group(组)**，一个 Group 就是一个或多个 Account 的集合。
 
@@ -36,7 +37,7 @@ Linux 操作系统是一个多用户操作系统，所以除了 **Terminal(终�
 
 **Password(密码)** 是用来验证用户身份的最主要方法。当用户使用一个账户登录 Linux 操作系统时，密码是用来证明账户属于该用户的一种非常高效的方式。
 
-Linux 系统使用 **Secure Hash Algorithm 512(SHA512)**和 **shadow passwords**。默认情况下，账户信息保存在 /etc/passwd 文件中，对应的密码信息经过哈希后保存在 /etc/shadow 文件中。
+Linux 系统使用 **Secure Hash Algorithm 512(SHA512)** 和 **shadow passwords**。默认情况下，账户信息保存在 /etc/passwd 文件中，对应的密码信息经过哈希后保存在 /etc/shadow 文件中。
 
 # 关联文件
 
@@ -80,13 +81,13 @@ Linux 系统的账户管理功能，通常由 **shadow-utils 包** 或 **passwd 
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/oib9pm/1635476577308-bd0e79ab-ffc9-41f8-ba65-471f0a3e2918.png)
 
-## useradd # 添加用户
+## useradd - 添加用户
 
 > 参考：
 >
-> - [Manual(手册),useradd(8)](https://man7.org/linux/man-pages/man8/useradd.8.html)
+> - [Manual(手册), useradd(8)](https://man7.org/linux/man-pages/man8/useradd.8.html)
 
-useradd 程序在添加用户时，会读取 /etc/login.defs 文件中的 PASS_MAX_DAYS、PASS_MIN_DAYS、PASS_WARN_AGE 等参数，并将参数的值写入到 /etc/shadow 文件中的对应字段
+useradd 程序在添加用户时，会读取 [账户配置文件](docs/1.操作系统/登录%20Linux%20与%20访问控制/Account%20Manager(账户管理)/账户配置文件.md) 中提到的 /etc/login.defs 文件中的 PASS_MAX_DAYS、PASS_MIN_DAYS、etc. 参数，并将参数的值写入到 /etc/shadow 文件中的对应字段
 
 ### Syntax(语法)
 
@@ -122,7 +123,7 @@ EXAMPLE：
 - 新增一个 FTP 用户：ftp2018 （无需登录系统）
   - useradd -g ftp -s /sbin/nologin ftp2018
 
-## userdel # 删除用户
+## userdel - 删除用户
 
 ### Syntax(语法)
 
@@ -139,7 +140,7 @@ EXAMPLE
 
 - userdel -r user # 删除名为 user 的用户，同时删除该用户的家目录和邮件池文件
 
-## usermod # 修改用户
+## usermod - 修改用户
 
 ### Syntax(语法)
 
@@ -175,7 +176,7 @@ EXAMPLE
 - -a 追加用户到新的用户组，保留原来的组
   - usermod -aG happy newname
 
-## groupadd、groupdel、groupmod、gpasswd # 用户组管理相关命令
+## groupadd、groupdel、groupmod、gpasswd - 用户组管理相关命令
 
 OPTIONS：
 
@@ -200,7 +201,7 @@ EXAMPLE
 - 查看 testnewuser 所在的组
   - groups testnewuser
 
-## who # 显示当前登录用户的相关信息
+## who - 显示当前登录用户的相关信息
 
 ### Syntax(语法)
 

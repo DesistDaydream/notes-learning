@@ -1,5 +1,8 @@
 ---
 title: Access Control(访问控制)
+linkTitle: Access Control(访问控制)
+date: 2024-06-07T08:08
+weight: 1
 ---
 
 # 概述
@@ -72,7 +75,7 @@ drwxr-xr-x.  82 root root 8.0K Jun 21 19:42 etc
 
 Linux 所说的权限，就是用户和组的权限。这是最基本的权限。后面的文章中还会介绍高级权限。
 
-## chmod # 修改文件的访问权限命令
+## chmod - 修改文件的访问权限命令
 
 Linux/Unix 的文件权限分为三级 : 文件拥有者、文件所属组、其他。利用 chmod 可以控制文件如何被他人所调用。
 
@@ -121,7 +124,7 @@ MODE 格式如下 : `[ugoa][[+-=][rwxX]…][,…]`，其中
 - 递归执行赋权，设置 newname 文件夹权限
   - chmod -R 700 /home/newname
 
-## chown # 改变文件的所有者命令
+## chown - 改变文件的所有者命令
 
 ### Syntax(语法)
 

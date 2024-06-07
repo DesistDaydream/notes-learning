@@ -1,5 +1,8 @@
 ---
 title: ACL
+linkTitle: ACL
+date: 2024-06-07T08:08
+weight: 2
 ---
 
 # 概述
@@ -71,7 +74,7 @@ Linux 服务器供多个人登录使用，要是没有权限管理就乱了，�
 
 # ACL 命令行工具
 
-## setfacl # 设定指定文件的 ACL 权限
+## setfacl - 设定指定文件的 ACL 权限
 
 **setfacl \[-bkndRLPvh] \[{-m|-x} acl_spec] \[{-M|-X} acl_file] file ...**
 
@@ -108,7 +111,7 @@ EXAMPLE
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/wwngi2/1616166788286-6baf14f4-02bd-4091-ab64-13c00e9040d3.png)
 
-## getfacl # 查看 ACL 权限
+## getfacl - 查看 ACL 权限
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/wwngi2/1616166788267-41d4fa26-0894-482f-8caa-90ad69c61a69.png)
 

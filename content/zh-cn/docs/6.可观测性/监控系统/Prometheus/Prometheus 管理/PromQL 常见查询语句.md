@@ -22,7 +22,72 @@ title: PromQL 常见查询语句
 
 # SLO/SLI
 
-## 在过去一段时间内内，服务中断了多少时间
+## 根据过去一段时间的统计数据监测异常值
+
+参考 https://cloud.tencent.com/developer/article/2015850 中 **Z-Score法**，通过 `Z score = (x -mean) / std. deviation` 公式实现
+
+### 网卡收/发流量速率变化异常
+
+为了使用 Z-score 方法来检测网卡流量的异常情况，你需要完成以下几个步骤：
+
+1. **计算过去 n 小时的平均值和标准差**。
+2. **计算当前值与平均值的差异，并标准化**。
+3. **根据标准化的值（Z-score）来判断是否异常**。
+
+Prometheus 的 PromQL 可以用来完成这些步骤。下面是一个例子，假设你想计算过去 1 小时的平均值和标准差，并与当前值进行对比：
+
+```promql
+# 计算过去 1 小时的平均值
+avg_over_time(hdf_hdf_network_receive_bytes_total[1h])
+
+# 计算过去 1 小时的标准差
+stddev_over_time(hdf_hdf_network_receive_bytes_total[1h])
+
+# 计算当前值
+current_value = hdf_hdf_network_receive_bytes_total
+
+# 计算 Z-score
+z_score = (current_value - avg_over_time(hdf_hdf_network_receive_bytes_total[1h])) / stddev_over_time(hdf_hdf_network_receive_bytes_total[1h])
+
+```
+
+为了判断是否异常，你需要设定一个阈值。比如，通常 Z-score 大于 3 或小于 -3 被认为是异常的：
+
+```promql
+z_score > 3 or z_score < -3
+```
+
+把这些步骤结合起来，你可以创建一个完整的 PromQL 查询：
+
+```promql
+(
+  hdf_hdf_network_receive_bytes_total
+  -
+  avg_over_time(hdf_hdf_network_receive_bytes_total[1h])
+)
+/
+stddev_over_time(hdf_hdf_network_receive_bytes_total[1h])
+> 3
+```
+
+或
+
+```promql
+(
+  hdf_hdf_network_receive_bytes_total 
+  -
+  avg_over_time(hdf_hdf_network_receive_bytes_total[1h])
+)
+/
+stddev_over_time(hdf_hdf_network_receive_bytes_total[1h])
+< -3
+```
+
+这个查询将返回当前网卡流量接收字节数是否与过去 1 小时的平均值相比存在显著异常。如果你想使用不同的时间窗口，只需调整 `[1h]` 为你需要的时间窗口，比如 `[2h]` 或 `[30m]`。
+
+# 通用
+
+### 服务中断了多少时间
 
 这个前提是，服务状态为 0 或者 1。
 
@@ -54,16 +119,22 @@ irate(ifHCOutOctets{instance="IP.IP.IP.IP",ifAlias="XXXX"}[6m]) * 8
 
 显示 cpu 的每个逻辑 core 的使用率
 
-    avg(irate(node_cpu_seconds_total{mode="idle"}[5m])) by(instance,job)
-    * 100 < 20
+```text
+avg(irate(node_cpu_seconds_total{mode="idle"}[5m])) by(instance,job)
+* 100 < 20
+```
 
 查询物理机 CPU 的使用率，显示总体使用率
 
-    100 - avg (irate(node_cpu_seconds_total{instance="XXXX",mode="idle"}[5m])) by (instance) * 100
+```text
+100 - avg (irate(node_cpu_seconds_total{instance="XXXX",mode="idle"}[5m])) by (instance) * 100
+```
 
 ### 上下文切换越来越多
 
-    (rate(node_context_switches_total[5m])) / (count (node_cpu_seconds_total{mode="idle"}) without(cpu, mode)) > 1000
+```text
+(rate(node_context_switches_total[5m])) / (count (node_cpu_seconds_total{mode="idle"}) without(cpu, mode)) > 1000
+```
 
 - `rate(node_context_switches_total[5m]` # 设备上下文切换在 5 分钟之间的变化量
 - `(count (node_cpu_seconds_total{mode="idle"}) without(cpu, mode))` # 获取 instance 的 CPU 总核数
@@ -73,16 +144,20 @@ irate(ifHCOutOctets{instance="IP.IP.IP.IP",ifAlias="XXXX"}[6m]) * 8
 
 ### 内存使用率
 
-    node_memory_MemAvailable_bytes{}
-    /
-    node_memory_MemTotal_bytes{}
-    * 100 < 10
+```text
+node_memory_MemAvailable_bytes{}
+/
+node_memory_MemTotal_bytes{}
+* 100 < 10
+```
 
 ### OOM
 
 检测主机是否发生了 oom
 
-    increase(node_vmstat_oom_kill[5m]) > 0
+```text
+increase(node_vmstat_oom_kill[5m]) > 0
+```
 
 ## 磁盘
 
@@ -90,11 +165,13 @@ irate(ifHCOutOctets{instance="IP.IP.IP.IP",ifAlias="XXXX"}[6m]) * 8
 
 **使用率过高**
 
-    (node_filesystem_avail_bytes{fstype=~"ext4|xfs"}
-    /
-    node_filesystem_size_bytes {fstype=~"ext4|xfs"}
-    * 100)
-    < 20
+```text
+(node_filesystem_avail_bytes{fstype=~"ext4|xfs"}
+/
+node_filesystem_size_bytes {fstype=~"ext4|xfs"}
+* 100)
+< 20
+```
 
 **磁盘将满**
 
@@ -104,22 +181,28 @@ irate(ifHCOutOctets{instance="IP.IP.IP.IP",ifAlias="XXXX"}[6m]) * 8
 
 ### IO 使用率
 
-    100
-    -
-    (avg(irate(node_disk_io_time_seconds_total[5m])) by(instance,job))
-    * 100 < 20
+```text
+100
+-
+(avg(irate(node_disk_io_time_seconds_total[5m])) by(instance,job))
+* 100 < 20
+```
 
 ### 读写速率
 
 读取速率
 
-    sum (irate(node_disk_read_bytes_total[2m])) by (instance)
-    / 1024 / 1024 > 200
+```text
+sum (irate(node_disk_read_bytes_total[2m])) by (instance)
+/ 1024 / 1024 > 200
+```
 
 写入速率
 
-    sum (irate(node_disk_written_bytes_total[2m])) by (instance)
-    / 1024 / 1024 > 200
+```text
+sum (irate(node_disk_written_bytes_total[2m])) by (instance)
+/ 1024 / 1024 > 200
+```
 
 ### 读写延迟
 
@@ -135,11 +218,13 @@ rate(node_disk_reads_completed_total[1m])
 
 写入延迟
 
-    rate(node_disk_write_time_seconds_total[1m])
-    /
-    rate(node_disk_writes_completed_total[1m])
-    > 0.1 and rate(node_disk_writes_completed_total[1m])
-    > 0
+```text
+rate(node_disk_write_time_seconds_total[1m])
+/
+rate(node_disk_writes_completed_total[1m])
+> 0.1 and rate(node_disk_writes_completed_total[1m])
+> 0
+```
 
 ## 网络
 
@@ -251,8 +336,6 @@ node_netstat_Tcp_CurrEstab > 50000
 
 #### 主机网络接收错误
 
-{{ \Extra close brace or missing open bracelabels.device }}在过去5分钟内遇到{{ printf "%.0f"
-
 ```yaml
   - alert: HostNetworkReceiveErrors
     expr: increase(node_network_receive_errs_total[5m]) > 0
@@ -265,8 +348,6 @@ node_netstat_Tcp_CurrEstab > 50000
 ```
 
 #### 主机网络传输错误
-
-{{ \Extra close brace or missing open bracelabels.device }} 在过去五分钟内遇到 {{ printf "%.0f"
 
 ```yaml
   - alert: HostNetworkTransmitErrors

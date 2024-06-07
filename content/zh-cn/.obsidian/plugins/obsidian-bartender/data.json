@@ -573,9 +573,8 @@
       "docs/1.操作系统/登录 Linux 与 访问控制/PAM",
       "docs/1.操作系统/登录 Linux 与 访问控制/SELinux",
       "docs/1.操作系统/登录 Linux 与 访问控制/su 与  sudo",
-      "docs/1.操作系统/登录 Linux 与 访问控制/登录与登录信息工具",
-      "docs/1.操作系统/登录 Linux 与 访问控制/TCP Wrappers.md",
-      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control(访问控制)"
+      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control(访问控制)",
+      "docs/1.操作系统/登录 Linux 与 访问控制/TCP Wrappers.md"
     ],
     "docs/1.操作系统/登录 Linux 与 访问控制/Account Manager(账户管理)": [
       "docs/1.操作系统/登录 Linux 与 访问控制/Account Manager(账户管理)/_index.md",

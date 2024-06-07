@@ -38,7 +38,9 @@ SRE 通常通过这两个指标来衡量系统的稳定性，其主要思路就�
 - E：Error，错误率，请求错误率是多少
 - T：Ticket，人工介入，是否需要人工介入
 
-这就是谷歌使用 VALET 方法给的样例。![](https://notes-learning.oss-cn-beijing.aliyuncs.com/imm2o7/1663932362954-63a8386d-a582-49ab-b09a-499746bbb043.png)
+这就是谷歌使用 VALET 方法给的样例。
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/imm2o7/1663932362954-63a8386d-a582-49ab-b09a-499746bbb043.png)
 
 上面仅仅是简单的介绍了一下 SLI/SLO，更多的知识可以学习《SRE：Google 运维解密》和赵成老师的极客时间课程《SRE 实践手册》。下面来简单介绍如何使用 Prometheus 来进行 SLI/SLO 监控。
 
@@ -174,18 +176,3 @@ roleRef:
 \[2] 《SRE：Google 运维解密》
 \[3]  <https://github.com/spotahome/service-level-operator>
 
-**公众号：运维开发故事**
-
-**github：**[**https://github.com/orgs/sunsharing-note/dashboard**](https://github.com/orgs/sunsharing-note/dashboard)
-
-**爱生活，爱运维**
-
-如果你觉得文章还不错，就请点击右上角选择发送给朋友或者转发到朋友圈。您的支持和鼓励是我最大的动力。喜欢就请关注我吧~
-
-扫码二维码
-
-关注我，不定期维护优质内容
-
-**温馨提示**
-
-如果你喜欢本文，请分享到朋友圈，想要获得更多信息，请关注我。
