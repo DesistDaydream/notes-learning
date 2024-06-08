@@ -38,6 +38,10 @@ Obsidian 本身的运行时数据保存路径（我们假定设为 `${ObsidianDa
 
 [https://www.bilibili.com/video/BV1Dy4y1375P](https://www.bilibili.com/video/BV1Dy4y1375P)
 
+# Vault
+
+Obsidian 将本地仓库称为 **vault**，一个 vault 就是文件系统上的一个文件夹。这个 vault 中保存了所有记录的 文档、附件、插件、etc. 。
+
 # 编辑与格式
 
 https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax

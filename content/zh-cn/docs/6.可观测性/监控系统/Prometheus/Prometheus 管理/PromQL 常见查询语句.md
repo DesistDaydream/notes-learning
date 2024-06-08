@@ -1,5 +1,8 @@
 ---
 title: PromQL 常见查询语句
+linkTitle: PromQL 常见查询语句
+date: 2024-06-08T09:46
+weight: 2
 ---
 
 # 概述
@@ -24,66 +27,74 @@ title: PromQL 常见查询语句
 
 ## 根据过去一段时间的统计数据监测异常值
 
-参考 https://cloud.tencent.com/developer/article/2015850 中 **Z-Score法**，通过 `Z score = (x -mean) / std. deviation` 公式实现
+参考 [Statistics](docs/5.数据存储/Statistics/Statistics.md) 中的 “检测和处理异常值”，使用 **Z-Score** 法，通过下面的公式实现
 
-### 网卡收/发流量速率变化异常
+$$
+Z-score = \frac{x - \mu}{\sigma}
+$$
 
-为了使用 Z-score 方法来检测网卡流量的异常情况，你需要完成以下几个步骤：
+- **x** 是当前值
+- **μ** 是总体的 **mean(平均值)**
+- **σ** 是总体的 **standard deviation(标准差O)**。
+
+> Tips: 这里的 population(总体) 的意思对应到 Prometheus 中就是指 **范围向量**
+
+这里使用网卡流量速率举例说明
+
+为了使用 Z-score 方法来检测网卡流量的异常情况，需要完成以下几个步骤：
 
 1. **计算过去 n 小时的平均值和标准差**。
 2. **计算当前值与平均值的差异，并标准化**。
+  1. Notes: 在统计学中，“标准化” 通常指的是将数据转换为具有特定性质的标准形式，以便进行比较或进一步分析。具体来说，标准化数据意味着将数据调整为均值为 0、标准差为 1 的形式。这通常是通过计算 Z-score 来实现的
 3. **根据标准化的值（Z-score）来判断是否异常**。
 
-Prometheus 的 PromQL 可以用来完成这些步骤。下面是一个例子，假设你想计算过去 1 小时的平均值和标准差，并与当前值进行对比：
+下面是一个 PromQL 示例，假设想计算过去 1 小时的平均值和标准差，并与当前值进行对比：
 
 ```promql
+# 计算当前值
+current_value = hdf_hdf_network_receive_bytes_total
+
 # 计算过去 1 小时的平均值
 avg_over_time(hdf_hdf_network_receive_bytes_total[1h])
 
 # 计算过去 1 小时的标准差
 stddev_over_time(hdf_hdf_network_receive_bytes_total[1h])
 
-# 计算当前值
-current_value = hdf_hdf_network_receive_bytes_total
-
 # 计算 Z-score
 z_score = (current_value - avg_over_time(hdf_hdf_network_receive_bytes_total[1h])) / stddev_over_time(hdf_hdf_network_receive_bytes_total[1h])
-
 ```
 
-为了判断是否异常，你需要设定一个阈值。比如，通常 Z-score 大于 3 或小于 -3 被认为是异常的：
+为了判断是否异常，需要设定一个阈值，通常 Z-score 大于 3 或小于 -3 被认为是异常的（下面使用 abs 取绝对值）
 
 ```promql
-z_score > 3 or z_score < -3
-```
-
-把这些步骤结合起来，你可以创建一个完整的 PromQL 查询：
-
-```promql
-(
-  hdf_hdf_network_receive_bytes_total
-  -
-  avg_over_time(hdf_hdf_network_receive_bytes_total[1h])
+abs(
+  (
+    hdf_hdf_network_receive_bytes_total
+    -
+    avg_over_time(hdf_hdf_network_receive_bytes_total[1h])
+  )
+  /
+  stddev_over_time(hdf_hdf_network_receive_bytes_total[1h])
 )
-/
-stddev_over_time(hdf_hdf_network_receive_bytes_total[1h])
 > 3
 ```
 
-或
+这个查询将返回当前网卡流量接收字节数是否与过去 1 小时的平均值相比存在显著异常。如果想使用不同的时间窗口，只需调整 `[1h]` 为需要的值，比如 `[2h]` 或 `[30m]`。
+
+### 网卡收/发流量速率变化异常
 
 ```promql
-(
-  hdf_hdf_network_receive_bytes_total 
-  -
-  avg_over_time(hdf_hdf_network_receive_bytes_total[1h])
+abs(
+  (
+    hdf_hdf_network_receive_bytes_total
+    -
+    avg_over_time(hdf_hdf_network_receive_bytes_total[6h])
+  )
+  /
+  stddev_over_time(hdf_hdf_network_receive_bytes_total[6h])
 )
-/
-stddev_over_time(hdf_hdf_network_receive_bytes_total[1h])
-< -3
+> 3
 ```
-
-这个查询将返回当前网卡流量接收字节数是否与过去 1 小时的平均值相比存在显著异常。如果你想使用不同的时间窗口，只需调整 `[1h]` 为你需要的时间窗口，比如 `[2h]` 或 `[30m]`。
 
 # 通用
 

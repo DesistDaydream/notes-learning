@@ -10,5 +10,6 @@
   "useTab": false,
   "smartIndentList": true,
   "showLineNumber": false,
-  "strictLineBreaks": true
+  "strictLineBreaks": true,
+  "vimMode": false
 }
