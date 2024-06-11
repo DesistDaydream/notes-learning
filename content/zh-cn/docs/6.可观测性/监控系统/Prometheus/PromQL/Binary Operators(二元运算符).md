@@ -77,24 +77,36 @@ node_disk_read_bytes_total + node_disk_written_bytes_total
 比如有这么一种场景：
 
 - 通过数学运算符我们可以很方便的计算出，当前所有主机节点的内存使用率：
-  - (node_memory_bytes_total - node_memory_free_bytes_total) / node_memory_bytes_total
+  - (node_memory_MemTotal_bytes - node_memory_MemFree_bytes) / node_memory_MemTotal_bytes
 - 而系统管理员在排查问题的时候可能只想知道当前内存使用率超过 95%的主机呢？通过使用比较运算，就可以方便的获取到该结果：
-  - (node_memory_bytes_total - node_memory_free_bytes_total) / node_memory_bytes_total > 0.95
+  - (node_memory_MemTotal_bytes - node_memory_MemFree_bytes) / node_memory_MemTotal_bytes  > 0.95
 
 即时向量与标量进行布尔运算时，PromQL 依次比较向量中的所有时间序列样本的值，如果比较结果为 true 则保留，反之丢弃。
 
 即时向量与即时向量直接进行布尔运算时，同样遵循默认的匹配模式：依次找到与左边向量元素匹配（标签完全一致）的右边向量元素进行相应的运算，如果没找到匹配元素，则直接丢弃。
 
+<font color="#ff0000">Notes</font>: 使用比较运算符的 PromQL 在 Prometheus 的 Web 中，可以输出值，这个输出的值是运算符**左侧**的 PromQL 的执行结果
+
+```promql
+rate(node_network_receive_bytes_total[30m])
+<
+0.5 * avg_over_time(rate(node_network_receive_bytes_total[30m])[6h:30m])
+```
+
 ## 使用 bool 修饰符改变比较运算符的行为
 
 布尔运算符的默认行为是对时序数据进行过滤。而在其它的情况下我们可能需要的是真正的布尔结果。例如，只需要知道当前模块的 HTTP 请求量是否>=1000，如果大于等于 1000 则返回 1（true）否则返回 0（false）。这时可以使用 bool 修饰符改变布尔运算的默认行为。 例如：
 
-    http_requests_total > bool 1000
+```promql
+http_requests_total > bool 1000
+```
 
 使用 bool 修改符后，布尔运算不会对时间序列进行过滤，而是直接依次瞬时向量中的各个样本数据与标量的比较结果 0 或者 1。从而形成一条新的时间序列。
 
-    http_requests_total{code="200",handler="query",instance="localhost:9090",job="prometheus",method="get"}  1
-    http_requests_total{code="200",handler="query_range",instance="localhost:9090",job="prometheus",method="get"}  0
+```text
+http_requests_total{code="200",handler="query",instance="localhost:9090",job="prometheus",method="get"}  1
+http_requests_total{code="200",handler="query_range",instance="localhost:9090",job="prometheus",method="get"}  0
+```
 
 同时需要注意的是，如果是在两个标量之间使用布尔运算，则必须使用 bool 修饰符
 
@@ -130,9 +142,9 @@ vector1 unless vector2 会产生一个新的向量，新向量中的元素由 ve
 
 在 PromQL 操作符中优先级由高到低依次为：
 
-1. ^
-2. \*, /, %
-3. +, -
-4. \==, !=, <=, <, >=, >
-5. and, unless
-6. or
+1. `^`
+2. `*, /, %`
+3. `+, -`
+4. `==, !=, <=, <, >=, >`
+5. `and, unless`
+6. `or`

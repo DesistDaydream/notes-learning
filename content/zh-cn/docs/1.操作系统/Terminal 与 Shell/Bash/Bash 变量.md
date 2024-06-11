@@ -131,7 +131,7 @@ hello Desist Daydream!
 
 > 参考：
 >
-> - [Manual(手册),bash(1)，形参-](https://www.man7.org/linux/man-pages/man1/bash.1.html#PARAMETERS)Shell 变量
+> - [Manual(手册)，bash(1) - 形参-](https://www.man7.org/linux/man-pages/man1/bash.1.html#PARAMETERS)Shell 变量
 
 **EDITOR=STRING** # 当 Bash 需要调用编辑器时，使用该变量指定的编辑器。
 

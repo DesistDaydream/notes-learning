@@ -103,7 +103,7 @@ string str = "hello world！"
 | - 成员（X，空）= 假                                  |
 | - 成员(X,append(A,B)) = or(member(X,A), member(X,B)) |
 
-### Associative array(关联数组，也称为 map)
+详见 [抽象数据类型](docs/2.编程/计算机科学/Data%20Type%20AND%20Literal/抽象数据类型/抽象数据类型.md)
 
 ## 其他类型
 

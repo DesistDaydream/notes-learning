@@ -103,7 +103,7 @@ https://forum.obsidian.md/t/file-explorer-custom-sort/1602/212
 
 - 主要是想用 Bartender 插件解决，而安装 Bartender 插件需要使用 Brat 插件（也可以直接下载文件放到 plugin/ 目录中）
 - Install BRAT from community plugin panel and then install Bartender beta plugin using BRAT
-  - [https://github.com/nothingislost/obsidian-bartender 2](https://github.com/nothingislost/obsidian-bartender)
+  - [https://github.com/nothingislost/obsidian-bartender](https://github.com/nothingislost/obsidian-bartender)
   - [https://github.com/TfTHacker/obsidian42-brat](https://github.com/TfTHacker/obsidian42-brat)
 - then, step 1-2-3
   - ![image](https://forum.obsidian.md/uploads/default/original/3X/9/1/9150dde8b90e4a93b6edc58cd4cc51c9f4f61abb.png)
@@ -111,6 +111,10 @@ https://forum.obsidian.md/t/file-explorer-custom-sort/1602/212
 - ![image](https://forum.obsidian.md/uploads/default/original/3X/2/d/2d251736195adb913c336f7d309be7ab7c4f25ef.png)
 
 then you can drag as you like
+
+nothingislost/obsidian-bartender 不维护之后其他开发者的 fork
+
+- https://github.com/Mara-Li/obsidian-bartender
 
 ## Templater
 

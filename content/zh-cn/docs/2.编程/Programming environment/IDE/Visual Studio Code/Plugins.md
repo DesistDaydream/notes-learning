@@ -56,6 +56,8 @@ args # 运行程序的参数
 
 https://github.com/liximomo/vscode-sftp#connection-hopping
 
+- 新的 SFTP 插件，上面的已不更新。 https://github.com/Natizyskunk/vscode-sftp
+
 ```json
 {
   "name": "ansible",
@@ -70,3 +72,30 @@ https://github.com/liximomo/vscode-sftp#connection-hopping
 }
 ```
 
+跳转服务器配置
+
+```json
+{
+    "name": "DesistDaydream",
+    "remotePath": "/root/projects",
+	// 用于作为代理的服务器信息
+    "host": "202.43.145.163",
+    "protocol": "sftp",
+    "port": 42203,
+    "username": "root",
+    "password": "XXXXX",
+	// 最终目标服务器信息
+    "hop": {
+        "host": "172.19.42.248",
+        "port": 22,
+        "username": "root",
+        "password": "XXXXX"
+    },
+    "uploadOnSave": true,
+	"ignore": [
+        ".vscode",
+        ".git",
+        ".DS_Store"
+    ]
+}
+```

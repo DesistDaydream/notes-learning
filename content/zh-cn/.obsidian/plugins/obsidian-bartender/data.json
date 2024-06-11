@@ -10,16 +10,16 @@
     "3856008753446912907088109"
   ],
   "fileExplorerOrder": {
-    "/": [
+    "": [
       "_index.md",
       "about",
       "blog",
       "docs",
-      "Excalidraw",
-      "search.md",
-      "featured-background.jpg",
       "obsidian_template",
-      "files"
+      "Excalidraw",
+      "files",
+      "search.md",
+      "featured-background.jpg"
     ],
     "blog/copy": [
       "blog/copy/_index.md",
