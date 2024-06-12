@@ -14,7 +14,7 @@ PromQL 支持基本的 逻辑 和 算术 运算符。 对于两个即时向量�
 
 使用 PromQL 除了能够方便的按照查询和过滤时间序列以外，PromQL 还支持丰富的运算符，用户可以使用这些运算符对进一步的对事件序列进行二次加工。这些运算符包括：数学运算符，逻辑运算符，布尔运算符等等。
 
-详见《[Binary Operators(二元运算符)](docs/6.可观测性/监控系统/Prometheus/PromQL/Binary%20Operators(二元运算符).md)》章节
+详见《[Binary Operators(二元运算符)](/docs/6.可观测性/监控系统/Prometheus/PromQL/Binary%20Operators(二元运算符).md)》章节
 
 ## Vector Matching(向量匹配)
 

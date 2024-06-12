@@ -1,16 +1,23 @@
 ---
-title: "复合数据类型"
-linkTitle: "复合数据类型"
+title: Array
+linkTitle: Array
+date: 2024-06-12T09:00
 weight: 20
 ---
 
 # 概述
+
 > 参考：
-> - [Wiki，Composite_data_type](https://en.wikipedia.org/wiki/Composite_data_type)
+>
+> - [Wiki, Array_data_type](https://en.wikipedia.org/wiki/Array_data_type)
 
-原子类型的值是不能分解为组成部分的单个数据项。复合类型 或 聚合类型 的值是可以单独访问的数据项的集合。例如，一个整数通常被认为是原子的，尽管它由一系列位组成，而整数数组肯定是复合的。
+**Array(数组)** 通常默认说的都是 Index array(索引数组)
 
-# Array(数组)
+# Index array(索引数组)
+
+> 参考:
+>
+> - [Wiki, Array](https://en.wikipedia.org/wiki/Array_(data_type))
 
 **为什么很多编程语言要把 0 作为第一个下标索引，而不是直观的 1 呢？**
 
@@ -37,6 +44,7 @@ Dijkstra 说有的，选 1 和 2，因为这俩不等式有个很突出的有点
 这里可以排除掉 3 和 4，那么 1 和 2 该如何选出最优的表示？
 
 1 和 2 不等式的区别就在于：
+
 *   1 不等式左边（下界）等于序列中的最小值，不等式右边（上界）大于序列中的最大值
 *   2 不等式左边（下界）小于序列中的最小值，不等式右边（上界）等于序列中的最大值
 
@@ -49,6 +57,7 @@ Dijkstra 说有的，选 1 和 2，因为这俩不等式有个很突出的有点
 那么，选出一个看着非常顺眼的不等式来表达长度为 N 的连续序列之后，下一个令人烦恼的问题是该为起始元素分配什么下标值？
 
 遵循不等式 1 的规则：
+
 *   当从下标 1 开始时，下标范围 `1 ≤ i < N+1`
 *   当从下标 0 开始时，下标范围 `0 ≤ i < N`
 
@@ -56,3 +65,11 @@ Dijkstra 说有的，选 1 和 2，因为这俩不等式有个很突出的有点
 
 Dijkstra 是这样解释的：从下标 0 开始能够给出更好的不等式，因为元素的下标就等于序列中它前面的元素数（或者说 “偏移量”）。
 
+# Associative array(关联数组，也称为 map)
+
+> 参考:
+>
+> - [Wiki, Associative Array](https://en.wikipedia.org/wiki/Associative_array)(关联数组)
+>   - [Wiki, Map](<https://en.wikipedia.org/wiki/Map_(computer_science)>) 被合并到关联数组
+
+**Associative array(关联数组，也称为 map)**

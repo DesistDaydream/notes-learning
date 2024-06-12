@@ -27,7 +27,7 @@ weight: 2
 
 ## 根据过去一段时间的统计数据监测异常值
 
-参考 [Statistics](docs/5.数据存储/Statistics/Statistics.md) 中的 “检测和处理异常值”，使用 **Z-Score** 法，通过下面的公式实现
+参考 [Statistics](/docs/5.数据存储/Statistics/Statistics.md) 中的 “检测和处理异常值”，使用 **Z-Score** 法，通过下面的公式实现
 
 $$
 Z-score = \frac{x - \mu}{\sigma}

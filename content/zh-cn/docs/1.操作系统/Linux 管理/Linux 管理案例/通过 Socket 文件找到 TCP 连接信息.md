@@ -8,7 +8,7 @@ title: 通过 Socket 文件找到 TCP 连接信息
 
 # 进程的打开文件描述符表
 
-[Linux Kernel](docs/1.操作系统/Kernel/Linux%20Kernel/Linux%20Kernel.md) 的三个系统调用：open，socket，pipe 返回的都是一个描述符。不同的进程中，他们返回的描述符可以相同。那么，在同一个进程中，他们可以相同吗？或者说，普通文件、套接字和管道，这三者的描述符属于同一个集合吗？
+[Linux Kernel](/docs/1.操作系统/Kernel/Linux%20Kernel/Linux%20Kernel.md) 的三个系统调用：open，socket，pipe 返回的都是一个描述符。不同的进程中，他们返回的描述符可以相同。那么，在同一个进程中，他们可以相同吗？或者说，普通文件、套接字和管道，这三者的描述符属于同一个集合吗？
 
 在内核源码中，三个系统调用声明如下：
 

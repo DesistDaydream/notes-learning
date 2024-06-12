@@ -5,7 +5,7 @@ title: Linux 代理配置
 
 # 概述
 
-在 [Unix-like OS](docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 中，很多程序都会读取 [Terminal 与 Shell](docs/1.操作系统/Terminal%20与%20Shell/Terminal%20与%20Shell.md) 中的某些变量来读取代理信息
+在 [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 中，很多程序都会读取 [Terminal 与 Shell](/docs/1.操作系统/Terminal%20与%20Shell/Terminal%20与%20Shell.md) 中的某些变量来读取代理信息
 
 > TODO: 这些变量到底应该大写还是小写？wget 命令无法识别到大写的变量。
 
@@ -88,4 +88,4 @@ export ALL_PROXY="sock5://${hostip}:7890"
 
 # 可用的代理程序
 
-参考 [代理](docs/Web/代理.md)
+参考 [代理](/docs/Web/代理.md)

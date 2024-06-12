@@ -1419,7 +1419,7 @@
     "docs/2.编程/计算机科学": [
       "docs/2.编程/计算机科学/_index.md",
       "docs/2.编程/计算机科学/计算机科学.md",
-      "docs/2.编程/计算机科学/Data Type AND Literal",
+      "docs/2.编程/计算机科学/Data type",
       "docs/2.编程/计算机科学/Operator.md",
       "docs/2.编程/计算机科学/Variable.md",
       "docs/2.编程/计算机科学/Control structure.md",
@@ -1428,13 +1428,6 @@
       "docs/2.编程/计算机科学/假如你来发明编程语言",
       "docs/2.编程/计算机科学/Heap and Stack.md",
       "docs/2.编程/计算机科学/I_O 模型.md"
-    ],
-    "docs/2.编程/计算机科学/Data Type AND Literal": [
-      "docs/2.编程/计算机科学/Data Type AND Literal/_index.md",
-      "docs/2.编程/计算机科学/Data Type AND Literal/Data type AND Literal.md",
-      "docs/2.编程/计算机科学/Data Type AND Literal/抽象数据类型",
-      "docs/2.编程/计算机科学/Data Type AND Literal/复合数据类型",
-      "docs/2.编程/计算机科学/Data Type AND Literal/进制表示法.md"
     ],
     "docs/2.编程/计算机科学/Function": [
       "docs/2.编程/计算机科学/Function/_index.md",
@@ -2683,6 +2676,21 @@
       "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Instrumenting 原理解析/_index.md",
       "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Instrumenting 原理解析/Instrumenting 原理解析.md",
       "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Instrumenting 原理解析/Exporter 开发实践.md"
+    ],
+    "docs/2.编程/计算机科学/Data Type": [
+      "docs/2.编程/计算机科学/Data Type/_index.md",
+      "docs/2.编程/计算机科学/Data Type/Data type AND Literal.md",
+      "docs/2.编程/计算机科学/Data Type/复合数据类型",
+      "docs/2.编程/计算机科学/Data Type/抽象数据类型",
+      "docs/2.编程/计算机科学/Data Type/进制表示法.md"
+    ],
+    "docs/2.编程/计算机科学/Data type": [
+      "docs/2.编程/计算机科学/Data type/_index.md",
+      "docs/2.编程/计算机科学/Data type/Data type.md",
+      "docs/2.编程/计算机科学/Data type/Literal.md",
+      "docs/2.编程/计算机科学/Data type/复合数据类型",
+      "docs/2.编程/计算机科学/Data type/抽象数据类型",
+      "docs/2.编程/计算机科学/Data type/进制表示法.md"
     ]
   },
   "actionBarOrder": {},

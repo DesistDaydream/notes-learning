@@ -55,8 +55,8 @@ PromQL 没有绝对通用的语法，在不同场景查询条件下，语法也�
 
 - Instant Vector Selectors 和 Range Vector Selectors 统称为 **TimeSeries Selectors(时间序列选择器)**
   - 这种表达式会根据 Metrics 来获取指定的时间序列。
-- String 和 Scalar 统称为 [**Literals(字面量)**](https://en.wikipedia.org/wiki/Literal_(computer_programming))
-  - 给定不同类型的 [Literals](https://en.wikipedia.org/wiki/Literal_(computer_programming))，就返回对应类型的的值，Prom 里只支持 string 和 scalar 这两种类型
+- String 和 Scalar 统称为 [**Literal(字面量)**](/docs/2.编程/计算机科学/Data%20type/Literal.md)
+  - 给定不同类型的 Literal，就返回对应类型的的值，Prom 里只支持 string 和 scalar 这两种类型
 
 # Expression(表达式)
 
@@ -157,9 +157,9 @@ promhttp_metric_handler_requests_total{code="200", instance="172.38.40.250:9090"
 
 30s 就是 Resolution，表示在 4m 的时间范围中，每隔 30 秒取一个样本值。
 
-Resolution 通常是可省略的，默认值为 [Server 配置](docs/6.可观测性/监控系统/Prometheus/Server%20配置.md) 的 `.global.evaluation_interval`
+Resolution 通常是可省略的，默认值为 [Server 配置](/docs/6.可观测性/监控系统/Prometheus/Server%20配置.md) 的 `.global.evaluation_interval`
 
-子查询之所以叫子查询，通常用在多个 [PromQL Functions(函数)](docs/6.可观测性/监控系统/Prometheus/PromQL/PromQL%20Functions(函数).md) 的场景，比如
+子查询之所以叫子查询，通常用在多个 [PromQL Functions(函数)](/docs/6.可观测性/监控系统/Prometheus/PromQL/PromQL%20Functions(函数).md) 的场景，比如
 
 `rate(avg_over_time(node_network_receive_bytes_total{device="eth0"}[5m])[6h:5m])`是合法的
 
