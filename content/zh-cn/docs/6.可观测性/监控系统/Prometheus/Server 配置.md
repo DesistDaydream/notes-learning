@@ -83,7 +83,7 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 
 - \<BOOLEAN> # 可以采用 true 或 false 值的布尔值
 - \<DURATION> # 持续时间。可以使用正则表达式
-  - (((\[0-9]+)y)?((\[0-9]+)w)?((\[0-9]+)d)?((\[0-9]+)h)?(((\[0-9]+)m)?(((\[0-9]+)s)?(((\[0-9]+)ms)?|0)，例如：1d、1h30m、5m、10s。
+  - `((([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?((([0-9]+)m)?((([0-9]+)s)?((([0-9]+)ms)?|0)`，例如：1d、1h30m、5m、10s。
 - \<FILENAME> # 当前工作目录中的有效路径
 - \<HOST> # 由主机名或 IP 后跟可选端口号组成的有效字符串。
 - \<INT> # 一个整数值
@@ -95,9 +95,7 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 - \<STRING> # 常规字符串
 - \<TMPL_STRING> # 使用前已模板扩展的字符串
 
-每个字段下
-
-## 顶层字段
+**顶层字段**
 
 - **global**([global](#global)) # 全局配置，所有内容作用于所有配置环境中,若其余配置环境中不再指定同样的配置，则global中的配置作为默认配置
 - **rule_files**([rule_files](#rule_files)) #
@@ -166,13 +164,13 @@ scrape_configs 是 Prometheus 采集指标的最重要也是最基本的配置�
 
 **metrics_path: PATH** # 从 targets 获取 metrics 时 http 请求的路径。默认为/metrics
 
-**honor_labels(BOOLEAN)** # 控制 Prometheus 如何处理标间之间的冲突。`默认值：false`
+**honor_labels(BOOLEAN)** # 控制 Prometheus 是否尊重抓取到的数据中的标签，i.e. 如何处理标间之间的冲突。`默认值：false`
 
 - 获取 targets 的 metrics 时(e.g.snmp_exporter|Federate|pushgateway 等)，其中的标签有可能会与本身的标签存在冲突
   - 该参数的值为 true 时，则以抓取数据中的标签为准
   - 值为 false 时，就会重新命名表桥为 exported 形式，然后添加配置文件中的标签。
 
-**honor_timestamps(BOOLEAN)** # 控制 Prometheus 是否尊重抓去到的数据中的时间戳 `默认值：true`
+**honor_timestamps(BOOLEAN)** # 控制 Prometheus 是否尊重抓取到的数据中的时间戳。`默认值：true`
 
 - 比如从 federate、pushgateway 等地方获取指标时，指标中都是带着时间戳的，
   - 若设置为 false，则会忽略这些采集到的时间戳，在入库时加上采集时的时间戳。
@@ -529,23 +527,23 @@ relabel_configs:
 > 参考：
 >
 > - [官方文档，配置-配置-relabel_config](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config)
-> - [Label 与 Relabeling](/docs/6.可观测性/监控系统/Prometheus/Target(目标)%20与%20Relabeling(重新标记).md)
+> - [Target 与 Relabeling](/docs/6.可观测性/监控系统/Prometheus/Target(目标)%20与%20Relabeling(重新标记).md)
 
 relabel 重设标签功能，用于将抓取到的样本中的原始 label 进行重新标记以生成新的 label。
 
-**source_labels(LabelName, ... )** # 从现有的标签中选择将要获取值的标签作为 source_labels。source_labels 可以有多个。
+**source_labels**(\[]STRING) # 从现有的标签中选择将要获取值的标签作为 source_labels。source_labels 可以有多个。
 
-**separator(STRING)** # 指定 source_labels 中所有值之间的分隔符。`默认值: ;`。
+**separator**(STRING) # 指定 source_labels 中所有值之间的分隔符。`默认值: ;`。
 
-**target_label(STRING)** # 通过 regex 字段匹配到的值写入的指定的 target_label 中
+**target_label**(STRING) # 通过 regex 字段匹配到的值写入的指定的 target_label 中
 
-**regex(REGEX)** # 从 source_label 获取的值进行正则匹配，匹配到的值写入到 target_label 中。`默认正则表达式为(.*)`。i.e.匹配所有值
+**regex**(REGEX) # 从 source_label 获取的值进行正则匹配，匹配到的值写入到 target_label 中。`默认正则表达式为(.*)`。i.e.匹配所有值
 
-**modulus(UINT64)** # 去 source_labels 值的哈希值的模数
+**modulus**(UINT64) # 去 source_labels 值的哈希值的模数
 
-**replacement(STRING)** # 替换。指定要写入 target_label 的值，STRING 中可以引用 regex 字段的值，使用正则表达式方式引用。`默认值：$1`。与 action 字段的 replace 值配合使用。
+**replacement**(STRING) # 替换。指定要写入 target_label 的值，STRING 中可以引用 regex 字段的值，使用正则表达式方式引用。`默认值：$1`。与 action 字段的 replace 值配合使用。
 
-**action(Relabel_Action)** # 对匹配到的标签要执行的动作。`默认值: replace`。
+**action**(Relabel_Action) # 对匹配到的标签要执行的动作。`默认值: replace`。
 
 ## 其他
 
@@ -555,12 +553,12 @@ https://prometheus.io/docs/prometheus/latest/configuration/configuration/#tls_co
 
 tls_config 字段用来配置 TLS 连接信息。下面描述客户端就是 Prometheus Server，服务端就是要抓取 Metrics 的目标。
 
-**ca_file(FileName)** # CA 证书，用于验证服务端证书
+**ca_file**(FileName) # CA 证书，用于验证服务端证书
 
-**cert_file(FileName)** # 证书文件，用于客户端对服务器的证书认证。
+**cert_file**(FileName) # 证书文件，用于客户端对服务器的证书认证。
 
-**key_file(FileName)** # 密钥文件，用于客户端对服务器的证书认证。
+**key_file**(FileName) # 密钥文件，用于客户端对服务器的证书认证。
 
-**server_name(STRING>** # ServerName 扩展名，用于指示服务器的名称。ServerName extension to indicate the name of the server. ServerName 概念参考：<https://tools.ietf.org/html/rfc4366#section-3.1)
+**server_name**(STRING) # ServerName 扩展名，用于指示服务器的名称。ServerName extension to indicate the name of the server. ServerName 概念参考：<https://tools.ietf.org/html/rfc4366#section-3.1)
 
-**insecure_skip_verify(BOOLEAN)** # 禁用服务端对证书的验证。类似于 curl 的 -k 选项
+**insecure_skip_verify**(BOOLEAN) # 禁用服务端对证书的验证。类似于 curl 的 -k 选项

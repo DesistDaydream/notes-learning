@@ -9,7 +9,7 @@ weight: 3
 
 > 参考：
 > 
-> - [官方文档，配置-配置](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config)
+> - [官方文档，配置 - 配置](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config)
 > - [简书大佬](https://www.jianshu.com/p/c21d399c140a)
 
 **Targets(目标)** 是 Prometheus 核心概念的其中之一，Targets 是**一组 Label(标签) 的集合。**
@@ -80,7 +80,7 @@ weight: 3
 - 根据配置中的 Relabeling 配置，生成 **Target Labels(目标标签)**
   - 默认生成的 Target Labels 中将会删除 \_\_ 开头的标签，并将其他标签原封不动得映射到 Target Labels。
 - 然后根据 Discovered Labels 的信息，从目标开始采集 Metrics，采集到 Metrics 后，将 Target Labels 附加到这些 Metrics 中。
-- **<font color="#ff0000">从某种程度上来说，Prometheus 中一切介标签</font>**
+- **<font color="#ff0000">从某种程度上来说，Prometheus 中一切皆标签</font>**
 
 ## Discovered Labels(已发现标签)
 
@@ -100,7 +100,7 @@ weight: 3
 - **用户自定的标签**
   - 一般都是写在配置文件中的 labels 字段下的内容，这些内容经过 Relabels 之后，不会从 Discovered Labels 中删除。
 
-Discovered Labels 中的 **系统标签**会告诉 Prometheus Server 如何从 Target 中获取时间序列数据(e.g.使用什么协议、从哪个 IP 上的主机哪个路径获取、等等类似的信息)。比如 `__address__`、`__metrics_path__`、`__scheme__` 这三个标签就表明，Prometheus 采集目标为 http://localhost:9090/metrics。相当于执行了 curl -XGET http://localhost:9090/metrics 这个命令。如果还有 __param_XX 标签，则该标签的值，就是这次请求 URL 中的参数部分
+Discovered Labels 中的 **系统标签**会告诉 Prometheus Server 如何从 Target 中获取时间序列数据(e.g.使用什么协议、从哪个 IP 上的主机哪个路径获取、等等类似的信息)。比如 `__address__`、`__metrics_path__`、`__scheme__` 这三个标签就表明，Prometheus 采集目标为 http://localhost:9090/metrics, 相当于执行了 `curl -XGET http://localhost:9090/metrics` 这个命令。如果还有 __param_XX 标签，则该标签的值，就是这次请求 URL 中的参数部分
 
 > 默认情况下，Prometheus 会将 `__address__` 标签重新标记为 instance 标签，job 标签原封不同。如果想要其他的 Target Labels，则需要使用配置文件中的 relabel 以及 labels 字段来定义了。
 >
@@ -138,7 +138,7 @@ Target Labels 中的所有标签都是 Relabeling 之后的标签。Target Label
 
 注意：
 
-- **relabel_cofigs** 是 Prometheus 在发现**待采集的 Target(目标)** 之后，从目标采集指标之前，这两个行为之间发生的 Relabeling 行为配置。所以主要是针对 **待采集的 Target(目标) 及其标签**进行操作，而不是针对采集后的指标或其标签进行操作。<font color="#ff0000">所以，就如前文描述的一样，Relabeling 行为是针对待采集目标的 Discovered Label 的一种行为，经过 Relabeling 后，待采集目标就会生成 Target Labels</font>。
+- **relabel_configs** 是 Prometheus 在发现**待采集的 Target(目标)** 之后，从目标采集指标之前，这两个行为之间发生的 Relabeling 行为配置。所以主要是针对 **待采集的 Target(目标) 及其标签**进行操作，而不是针对采集后的指标或其标签进行操作。<font color="#ff0000">所以，就如前文描述的一样，Relabeling 行为是针对待采集目标的 Discovered Label 的一种行为，经过 Relabeling 后，待采集目标就会生成 Target Labels</font>。
 - **metrics_relabel_configs** 是 Prometheus 在采集到 Target(目标) 的指标之后，并存储到时序数据库之前，这两个行为之间发生的 Relabeling 行为配置。所以主要是针对**采集到的指标**进行操作。
   - 该配置不适用于自动生成的指标，比如 `up` 这类。因为这类指标在启动时就存在了，不用任何目标即可获取。
 - 这两个配置的配置格式一摸一样。
@@ -147,23 +147,31 @@ Target Labels 中的所有标签都是 Relabeling 之后的标签。Target Label
 
 ## relabel_configs 字段详解
 
-通常可用的字段如下：
+**[source_labels](#source_labels)**([]STRING) # 从现有的标签中选择将要获取值的标签作为 source_labels。source_labels 可以有多个。
 
-- **source_labels([]STRING )** # 从现有的标签中选择将要获取值的标签作为 source_labels。source_labels 可以有多个。
-- **separator(STRING)** # 指定 source_labels 中所有值之间的分隔符。`默认值: ;`。
-- **target_label(STRING)** # 通过 regex 字段匹配到的值写入的指定的 target_label 中
-- **regex(REGEX)** # 从 source_label 获取的值进行正则匹配，匹配到的值写入到 target_label 中。`默认正则表达式为(.*)`。i.e.匹配所有值
-- **modulus(UINT64)** # 去 source_labels 值的哈希值的模数
-- **replacement(STRING)** # 替换。指定要写入 target_label 的值，STRING 中可以引用 regex 字段的值，使用正则表达式方式引用。`默认值：$1`。与 action 字段的 replace 值配合使用。
-- **action(STRING)** # 对匹配到的标签要执行的动作。`默认值: replace`。
+**[separator](#separator)**(STRING) # 指定 source_labels 中所有值之间的分隔符。`默认值: ;`。
 
-### action(STRING)
+**[target_label](#target_label)**(STRING) # 指定一个新标签名。replacement 字段的值会作为 target_label 指定的标签的标签值。
+
+- 通过 regex 字段匹配到的值写入的指定的 target_label 中
+
+**[regex](#regex)**(REGEX) # 从 source_label 获取的值进行正则匹配，匹配到的值写入到 target_label 中。`默认值: (.*)`，i.e.匹配所有值
+
+**[modulus](#modulus)**(UINT64) # 去 source_labels 值的哈希值的模数
+
+**[replacement](#replacement)**(STRING) # 替换。指定要写入 target_label 的值，STRING 中可以引用 regex 字段的值，使用正则表达式方式引用。`默认值：$1`。
+
+- 与 action 字段的 replace 值配合使用。
+  
+**[action](#action)**(STRING) # 对匹配到的标签要执行的动作。`默认值: replace`。
+
+### action
 
 指定本次 Relabeling 的具体行为。`默认值：replace`。
 
 Relabeling 的行为主要是围绕着 **Extracted Value(提取的值)** 进行的。Relabeling 行为将会对已提取的值进行正则匹配以获取匹配结果，再根据匹配结果生成新的标签。
 
-这些提取出来的待匹配的值，其实本质上就分为两类：**标签名称** 与 **标签值**。而正则匹配中，正则表达式的内容，则是由 **regex 字段**指定的。根据这些不同类型的待匹配的值，我们可以将 Relabeling 的具体行为分类，当前 Promethus 支持如下几种 Relabeling 行为：
+这些**提取出来**的**待匹配的值**，其实本质上就分为两类：**标签名称** 与 **标签值**。而正则匹配中，正则表达式的内容，则是由 **regex 字段**指定的。根据这些不同类型的待匹配的值，我们可以将 Relabeling 的具体行为分类，当前 Promethus 支持如下几种 Relabeling 行为：
 
 - **提取标签值进行匹配的行为**。从 `source_labels` 字段指定的标签名中提取所有的标签值，作为待匹配的值。
   - <font color="#ff0000">注意</font>：只有目标的 Discovered Labels 中包含 source_labels 字段中指定的标签，且这些标签的值能被 regex 字段的正则表达式匹配上，那么这些目标才会受到下列行为的影响。
@@ -187,31 +195,31 @@ Relabeling 的行为主要是围绕着 **Extracted Value(提取的值)** 进行�
 - action 不同的值代表不同的行为，而不同的行为也决定 relabel_configs 下可用的字段也不同。比如 labelkeep 行为，就无需 source_labels 等字段。
 - 当 action 字段的值为 `replace`, `keep`, `drop`, `labelmap`,`labeldrop`、`labelkeep` 时，regex 字段是必须存在的。The regex is anchored on both ends. To un-anchor the regex, use `.*<regex>.*`。
 
-### source_labels(LabelName, ... )
+### source_labels
 
 指定一个或多个标签，提取这些标签的值作为待匹配的值。
 
 - source_labels 可以有多个，<font color="#ff0000">若指定多个标签，则多个标签的值将会组合在一起作为待匹配的值，并以 `separator` 字段指定的分隔符分隔</font>。
 
-### separator(STRING)
+### separator
 
 指定 `source_labels` 字段提取出来的所有标签值之间的分隔符。`默认值： ;`。
 
-### regex(REGEX)
+### regex
 
 针对提取出来的值进行正则表达式的匹配。`默认值：(.*)`，i.e.匹配提取出来的所有值，并将这些值放入一个组里。
 
-### replacement(STRING)
+### replacement
 
 指定要写入新标签的标签值。`默认值：$1`。
 
 - STRING 中可以引用 regex 字段的值，引用方式是正则表达式中的组引用。i.e.regex 字段中的第一个 ()，与正则表达式对 () 引用的概念相同，${0} 表示所有()中的值。
 
-### modulus(UINT64)
+### modulus
 
 去 source_labels 值的哈希值的模数
 
-### target_label(STRING)
+### target_label
 
 指定一个新标签名。replacement 字段的值会作为名为 STRING 这个标签的标签值。
 
@@ -235,8 +243,8 @@ Relabeling 的行为主要是围绕着 **Extracted Value(提取的值)** 进行�
 
 1. 根据 action 字段指定的 Relabeling 行为，来提取待匹配的值。
 2. 使用 regex 字段指定的正则表达式对这些提取出来的值进行匹配，匹配结果将会根据不同的行为，而作用在不用的地方。
-3. relabel 机制是在抓取时间序列数据与存储时间序列数据之间发生的，一般情况，每个 target 刚创建完，Prometheus 都会自动将 **address** 标签的值写入到 instance 标签中。
-4. 其实，没有 source_label 也是可以的，relabel 本质是定义一个标签，而不是纯粹的替换，比如我不指定 source_label 字段，只指定 target_label 和 replacement 字段，就相当于是为这个 Metric 添加了一个标签
+3. relabel 机制中对于发现目标之后与采集目标之间发生的场景中，一般情况，每个 target 刚创建完，Prometheus 都会自动将 **address** 标签的值写入到 instance 标签中。
+4. 其实，<font color="#ff0000">没有 source_label 也是可以的</font>，<font color="#ff0000">relabel 本质是定义一个标签</font>，而不是纯粹的替换，比如我不指定 source_label 字段，只指定 target_label 和 replacement 字段，就相当于是为这个 Metric 添加了一个标签
 5. 所谓的 relabel，并不是绝对的替换，更像是定义 label
 6. <font color="#ff0000">所以</font>，当我们在使用 Relabeling 功能时，首先应该先想自己到底要干什么，然后先决定 action 的值，再写其他的。
    1. 比如我想修改标签名，那么可用的 action 就是 replace 或者 labelmap，选择好具体的行为，再根据改行为支持的字段，写其它的。

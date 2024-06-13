@@ -4,7 +4,8 @@ title: CNCF
 
 # 概述
 
-> 参考：
+> 参考:
+>
 > - [CNCF 官网](https://www.cncf.io/)
 > - [云原生全景图](https://landscape.cncf.io/)
 > - [jimmysong](https://jimmysong.io/kubernetes-handbook/cloud-native/cncf.html)
@@ -13,7 +14,8 @@ title: CNCF
 
 # CNCF 项目治理
 
-> 参考：
+> 参考:
+>
 > - [官方文档](https://www.cncf.io/projects/)
 > - [jimmysong](https://jimmysong.io/kubernetes-handbook/cloud-native/cncf-project-governing.html)
 
