@@ -7,6 +7,7 @@ title: kubeadm 命令详解
 # Syntax(语法)
 
 **kubeadm \[command]**
+
 Command 包括：
 
 - alpha Kubeadm experimental sub-commands

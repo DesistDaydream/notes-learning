@@ -46,15 +46,21 @@ vim cmd/kubeadm/app/constants/constants.go
 
 在项目根目录执行 make 命令编译 kubeadm
 
-    make WHAT=cmd/kubeadm GOFLAGS=-v
-    # 生成的二进制在 _output/bin/ 目录下
+```bash
+make WHAT=cmd/kubeadm GOFLAGS=-v
+# 生成的二进制在 _output/bin/ 目录下
+```
 
 替换 kubeadm 文件
 先备份
 
-    cp /usr/bin/kubeadm /usr/bin/kubeadm.backup
-    cp _output/bin/kubeadm /usr/bin/kubeadm
+```bash
+cp /usr/bin/kubeadm /usr/bin/kubeadm.backup
+cp _output/bin/kubeadm /usr/bin/kubeadm
+```
 
 参考
-<http://blog.sina.com.cn/s/blog_537517170102za73.html>
-<https://bbs.huaweicloud.com/blogs/168848>
+
+http://blog.sina.com.cn/s/blog_537517170102za73.html
+
+https://bbs.huaweicloud.com/blogs/168848

@@ -1,5 +1,7 @@
 ---
 title: API Server
+linkTitle: API Server
+date: 2024-06-14T09:25
 weight: 1
 ---
 
@@ -7,12 +9,12 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档，概念-概述-Kubernetes 组件-kube-apiserver](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)
-> - [官方文档，参考-通用组件-kube-apiserver](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/)
+> - [官方文档，概念 - 概述 - Kubernetes 组件 - kube-apiserver](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver)
+> - [官方文档，参考 - 通用组件 - kube-apiserver](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/)
 
 **API Server 是实现 kubernetes API 的应用程序，它是 Kubernetes 控制平面的一个组件，用以对外暴露 Kubernetes API**。Kubernetes API Server 验证和配置 API 对象的数据，包括 pod、service、replicationcontroller 等。 API Server 为 REST 操作提供服务，并为集群的共享状态提供前端，所有其他组件通过该前端进行交互。
 
-如果是通过 kubeadm 安装的 k8s 集群，那么 API Server 的表现形式就是一个名为 **kube-apiserver 的静态 pod**。kube-apiserver 可以水平扩展，i.e.部署多个 kube-apiserver 以实现高可用，应对高并发请求，到达 kube-apiserver 的流量可以在这些实例之间平衡。
+如果是通过 kubeadm 安装的 k8s 集群，那么 API Server 的表现形式就是一个名为 **kube-apiserver 的静态 pod**。kube-apiserver 可以水平扩展，i.e. 部署多个 kube-apiserver 以实现高可用，应对高并发请求，到达 kube-apiserver 的流量可以在这些实例之间平衡。
 
 API Server 启动后，默认监听在 6443 端口(http 默认监听在 8080 上)。API Server 是 Kubernetes 集群的前端接口 ，各种客户端工具（CLI 或 UI）以及 Kubernetes 其他组件可以通过它管理集群的各种资源。kubectl 就是 API Server 的客户端程序，实现对 k8s 各种资源的增删改查的功能。各个 node 节点的 kubelet 也通过 master 节点的 API Server 来上报本节点的 Pod 状态。
 
@@ -27,8 +29,8 @@ API Server 启动后，默认监听在 6443 端口(http 默认监听在 8080 上
 
 注意：
 
-1. API Server 默认是安全的，在访问时，应使用 https 协议来操作。
-2. 参考 [K8S 认证与授权介绍](7.API%20 访问控制.md 访问控制.md) 文章，学习在访问 API Server 时所遇到的验证问题。
+- API Server 默认是安全的，在访问时，应使用 https 协议来操作。
+- 参考 [K8S 认证与授权介绍](7.API%20 访问控制.md 访问控制.md) 文章，学习在访问 API Server 时所遇到的验证问题。
 
 ## 使用 kubectl 访问 API
 
@@ -83,8 +85,8 @@ Note：也可以从一个具有权限的 ServiceAccount 下的 secret 获取，�
    2. Unauthorized
 2. TOKEN=$(kubectl get secrets -n monitoring prometheus-k8s-token-q5hm4 --template={{.data.token}} | base64 -d)
 
-**方法三：官方推荐，类似方法二
-**
+**方法三：官方推荐，类似方法二**
+
 官方文档：<https://kubernetes.io/docs/tasks/administer-cluster/access-cluster-api/>
 
 ```bash
@@ -102,17 +104,17 @@ curl -X GET $APISERVER/api --header "Authorization: Bearer $TOKEN" --insecure
 
 ### 访问 API Server
 
-1. 执行访问 https 前准备方法一
-   1. 通过证书与私钥访问
-      1. curl --cacert ${CAPATH} --cert /root/certs/admin.crt --key  /root/certs/admin.key  https://${IP}:6443/
-2. 执行访问 https 前准备方法二
-   1. 通过 https 的方式访问 API
-      1. curl --cacert ${CAPATH} -H "Authorization: Bearer ${TOKEN}"  https://${IP}:6443/
-3. kubeclt
-   1. kubectl get --raw / # 让 kubectl 不再输出标准格式的数据，而是直接向 api server 请求原始数据
-4. kubectl proxy，一般监听在 6443 端口的 api server 使用该方式，监听在 8080 上的为 http，可直接访问
-   1. kubectl proxy --port=8080 --accept-hosts='^localhost$,^127.0.0.1$,^\[::1]$,10.10.100.151' --address='0.0.0.0' # 在本地 8080 端口上启动 API Server 的一个代理网关，以便使用 curl 直接访问 api server 并使用命令 curl localhost:8080/获取数据
-      1. 直接访问本地 8080 端口，即可通过 API Server 获取集群所有数据
+- 执行访问 https 前准备方法一
+   - 通过证书与私钥访问
+      - `curl --cacert ${CAPATH} --cert /root/certs/admin.crt --key  /root/certs/admin.key  https://${IP}:6443/`
+- 执行访问 https 前准备方法二
+   - 通过 https 的方式访问 API
+      - `curl --cacert ${CAPATH} -H "Authorization: Bearer ${TOKEN}"  https://${IP}:6443/`
+- kubectl
+   - `kubectl get --raw /` # 让 kubectl 不再输出标准格式的数据，而是直接向 api server 请求原始数据
+- kubectl proxy，一般监听在 6443 端口的 api server 使用该方式，监听在 8080 上的为 http，可直接访问
+   - `kubectl proxy --port=8080 --accept-hosts='^localhost$,^127.0.0.1$,^\[::1]$,10.10.100.151' --address='0.0.0.0'` # 在本地 8080 端口上启动 API Server 的一个代理网关，以便使用 curl 直接访问 api server 并使用命令 curl localhost:8080/获取数据
+      - 直接访问本地 8080 端口，即可通过 API Server 获取集群所有数据
 
 ## 编程方式访问 API
 
@@ -130,8 +132,10 @@ Kubernetes 官方支持  [Go](https://kubernetes.io/zh/docs/tasks/administer-cl
 使用前注意事项：
 使用 client-go 之前，需要手动获取对应版本的的 client-go 库。根据版本控制策略，使用如下命令进行初始化
 
-    go mod init client-go-test
-    go get k8s.io/client-go@kubernetes-1.19.2
+```bash
+go mod init client-go-test
+go get k8s.io/client-go@kubernetes-1.19.2
+```
 
 这是一个使用 client-go 访问 API 的基本示例
 
@@ -231,7 +235,9 @@ curl --cacert ${CACERT} --header "Authorization: Bearer ${TOKEN}" -X GET ${APISE
 
 # API Server 健康检查点
 
-> 参考：[官方文档](https://kubernetes.io/docs/reference/using-api/health-checks/)
+> 参考:
+>
+> - [官方文档](https://kubernetes.io/docs/reference/using-api/health-checks/)
 
 Kubernetes API 服务器 提供 API 端点以指示 API 服务器的当前状态。 本文描述了这些 API 端点，并说明如何使用。
 
@@ -243,66 +249,78 @@ Kubernetes API 服务器提供 3 个 API 端点（`healthz`、`livez` 和 `ready
 
 对于所有端点，都可以使用 `verbose` 参数来打印检查项以及检查状态。 这对于操作人员调试 API 服务器的当前状态很有用，这些不打算给机器使用：
 
-    curl -k https://localhost:6443/livez?verbose
+```bash
+curl -k https://localhost:6443/livez?verbose
+```
 
 或从具有身份验证的远程主机：
 
-    kubectl get --raw='/readyz?verbose'
+```bash
+kubectl get --raw='/readyz?verbose'
+```
 
 输出将如下所示：
 
-    [+]ping ok
-    [+]log ok
-    [+]etcd ok
-    [+]poststarthook/start-kube-apiserver-admission-initializer ok
-    [+]poststarthook/generic-apiserver-start-informers ok
-    [+]poststarthook/start-apiextensions-informers ok
-    [+]poststarthook/start-apiextensions-controllers ok
-    [+]poststarthook/crd-informer-synced ok
-    [+]poststarthook/bootstrap-controller ok
-    [+]poststarthook/rbac/bootstrap-roles ok
-    [+]poststarthook/scheduling/bootstrap-system-priority-classes ok
-    [+]poststarthook/start-cluster-authentication-info-controller ok
-    [+]poststarthook/start-kube-aggregator-informers ok
-    [+]poststarthook/apiservice-registration-controller ok
-    [+]poststarthook/apiservice-status-available-controller ok
-    [+]poststarthook/kube-apiserver-autoregistration ok
-    [+]autoregister-completion ok
-    [+]poststarthook/apiservice-openapi-controller ok
-    healthz check passed
+```bash
+[+]ping ok
+[+]log ok
+[+]etcd ok
+[+]poststarthook/start-kube-apiserver-admission-initializer ok
+[+]poststarthook/generic-apiserver-start-informers ok
+[+]poststarthook/start-apiextensions-informers ok
+[+]poststarthook/start-apiextensions-controllers ok
+[+]poststarthook/crd-informer-synced ok
+[+]poststarthook/bootstrap-controller ok
+[+]poststarthook/rbac/bootstrap-roles ok
+[+]poststarthook/scheduling/bootstrap-system-priority-classes ok
+[+]poststarthook/start-cluster-authentication-info-controller ok
+[+]poststarthook/start-kube-aggregator-informers ok
+[+]poststarthook/apiservice-registration-controller ok
+[+]poststarthook/apiservice-status-available-controller ok
+[+]poststarthook/kube-apiserver-autoregistration ok
+[+]autoregister-completion ok
+[+]poststarthook/apiservice-openapi-controller ok
+healthz check passed
+```
 
 Kubernetes API 服务器也支持排除特定的检查项。 查询参数也可以像以下示例一样进行组合：
 
-    curl -k 'https://localhost:6443/readyz?verbose&exclude=etcd'
+```bash
+curl -k 'https://localhost:6443/readyz?verbose&exclude=etcd'
+```
 
 输出显示排除了 `etcd` 检查：
 
-    [+]ping ok
-    [+]log ok
-    [+]etcd excluded: ok
-    [+]poststarthook/start-kube-apiserver-admission-initializer ok
-    [+]poststarthook/generic-apiserver-start-informers ok
-    [+]poststarthook/start-apiextensions-informers ok
-    [+]poststarthook/start-apiextensions-controllers ok
-    [+]poststarthook/crd-informer-synced ok
-    [+]poststarthook/bootstrap-controller ok
-    [+]poststarthook/rbac/bootstrap-roles ok
-    [+]poststarthook/scheduling/bootstrap-system-priority-classes ok
-    [+]poststarthook/start-cluster-authentication-info-controller ok
-    [+]poststarthook/start-kube-aggregator-informers ok
-    [+]poststarthook/apiservice-registration-controller ok
-    [+]poststarthook/apiservice-status-available-controller ok
-    [+]poststarthook/kube-apiserver-autoregistration ok
-    [+]autoregister-completion ok
-    [+]poststarthook/apiservice-openapi-controller ok
-    [+]shutdown ok
-    healthz check passed
+```bash
+[+]ping ok
+[+]log ok
+[+]etcd excluded: ok
+[+]poststarthook/start-kube-apiserver-admission-initializer ok
+[+]poststarthook/generic-apiserver-start-informers ok
+[+]poststarthook/start-apiextensions-informers ok
+[+]poststarthook/start-apiextensions-controllers ok
+[+]poststarthook/crd-informer-synced ok
+[+]poststarthook/bootstrap-controller ok
+[+]poststarthook/rbac/bootstrap-roles ok
+[+]poststarthook/scheduling/bootstrap-system-priority-classes ok
+[+]poststarthook/start-cluster-authentication-info-controller ok
+[+]poststarthook/start-kube-aggregator-informers ok
+[+]poststarthook/apiservice-registration-controller ok
+[+]poststarthook/apiservice-status-available-controller ok
+[+]poststarthook/kube-apiserver-autoregistration ok
+[+]autoregister-completion ok
+[+]poststarthook/apiservice-openapi-controller ok
+[+]shutdown ok
+healthz check passed
+```
 
 ### 独立健康检查
 
 **FEATURE STATE:** `Kubernetes v1.19 [alpha]`每个单独的健康检查都会公开一个 http 端点，并且可以单独检查。 单个运行状况检查的模式为 `/livez/<healthcheck-name>`，其中 `livez` 和 `readyz` 表明你要检查的是 API 服务器是否存活或就绪。 `<healthcheck-name>` 的路径可以通过上面的 `verbose` 参数发现 ，并采用 `[+]` 和 `ok` 之间的路径。 这些单独的健康检查不应由机器使用，但对于操作人员调试系统而言，是有帮助的：
 
-    curl -k https://localhost:6443/livez/etcd
+```bash
+curl -k https://localhost:6443/livez/etcd
+```
 
 # API Server 与 Etcd 的交互方式
 

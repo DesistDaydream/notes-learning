@@ -781,10 +781,10 @@
     "docs/10.云原生/Kubernetes/API Resource 与 Object/API 参考/工作负载资源": [
       "docs/10.云原生/Kubernetes/API Resource 与 Object/API 参考/工作负载资源/_index.md",
       "docs/10.云原生/Kubernetes/API Resource 与 Object/API 参考/工作负载资源/工作负载资源.md",
-      "docs/10.云原生/Kubernetes/API Resource 与 Object/API 参考/工作负载资源/Pod Manifest 详解.md",
-      "docs/10.云原生/Kubernetes/API Resource 与 Object/API 参考/工作负载资源/Deployment Manifest 详解.md",
-      "docs/10.云原生/Kubernetes/API Resource 与 Object/API 参考/工作负载资源/Statefulset Manifest 详解.md",
-      "docs/10.云原生/Kubernetes/API Resource 与 Object/API 参考/工作负载资源/CronJab Manifests 详解.md"
+      "docs/10.云原生/Kubernetes/API Resource 与 Object/API 参考/工作负载资源/Pod Manifest.md",
+      "docs/10.云原生/Kubernetes/API Resource 与 Object/API 参考/工作负载资源/Deployment Manifest.md",
+      "docs/10.云原生/Kubernetes/API Resource 与 Object/API 参考/工作负载资源/Statefulset Manifest.md",
+      "docs/10.云原生/Kubernetes/API Resource 与 Object/API 参考/工作负载资源/CronJab Manifests.md"
     ],
     "docs/10.云原生/Kubernetes/API Resource 与 Object/API 参考/服务资源": [
       "docs/10.云原生/Kubernetes/API Resource 与 Object/API 参考/服务资源/_index.md",
@@ -910,7 +910,7 @@
       "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/kubeadm 命令行工具.md",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/kubeadm 命令详解.md",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/kubeadm 配置详解.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/kubeadm 实现细节详解.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/kubeadm 实现细节.md",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/最佳实践.md",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/编译 kubeadm 修改证书过期时间.md"
     ],
@@ -1057,7 +1057,7 @@
     ],
     "docs/10.云原生/Kubernetes/Kuberntes 介绍": [
       "docs/10.云原生/Kubernetes/Kuberntes 介绍/_index.md",
-      "docs/10.云原生/Kubernetes/Kuberntes 介绍/Kuberntes.md",
+      "docs/10.云原生/Kubernetes/Kuberntes 介绍/Kubernetes.md",
       "docs/10.云原生/Kubernetes/Kuberntes 介绍/Glossary.md",
       "docs/10.云原生/Kubernetes/Kuberntes 介绍/Kubernetes Runtime.md",
       "docs/10.云原生/Kubernetes/Kuberntes 介绍/Kubernetes 开源社区指南.md"
@@ -2001,6 +2001,7 @@
       "docs/5.数据存储/数据库/键值数据/Redis/_index.md",
       "docs/5.数据存储/数据库/键值数据/Redis/Redis.md",
       "docs/5.数据存储/数据库/键值数据/Redis/Redis 配置详解.md",
+      "docs/5.数据存储/数据库/键值数据/Redis/Redis 数据类型.md",
       "docs/5.数据存储/数据库/键值数据/Redis/Pub_Sub(发布_订阅).md",
       "docs/5.数据存储/数据库/键值数据/Redis/Redis 高可用",
       "docs/5.数据存储/数据库/键值数据/Redis/Redis 管理",
@@ -2010,11 +2011,11 @@
     "docs/5.数据存储/数据库/键值数据/Redis/Redis 命令行工具": [
       "docs/5.数据存储/数据库/键值数据/Redis/Redis 命令行工具/_index.md",
       "docs/5.数据存储/数据库/键值数据/Redis/Redis 命令行工具/Redis 命令行工具.md",
-      "docs/5.数据存储/数据库/键值数据/Redis/Redis 命令行工具/cluster 命令.md",
       "docs/5.数据存储/数据库/键值数据/Redis/Redis 命令行工具/generic 组.md",
-      "docs/5.数据存储/数据库/键值数据/Redis/Redis 命令行工具/Sentinel 命令.md",
       "docs/5.数据存储/数据库/键值数据/Redis/Redis 命令行工具/server 组.md",
-      "docs/5.数据存储/数据库/键值数据/Redis/Redis 命令行工具/string 组.md"
+      "docs/5.数据存储/数据库/键值数据/Redis/Redis 命令行工具/string 组.md",
+      "docs/5.数据存储/数据库/键值数据/Redis/Redis 命令行工具/Cluster 命令.md",
+      "docs/5.数据存储/数据库/键值数据/Redis/Redis 命令行工具/Sentinel 命令.md"
     ],
     "docs/5.数据存储/数据管理工具": [
       "docs/5.数据存储/数据管理工具/_index.md",

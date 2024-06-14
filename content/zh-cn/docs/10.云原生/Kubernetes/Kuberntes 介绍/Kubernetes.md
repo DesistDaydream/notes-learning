@@ -1,8 +1,8 @@
 ---
-title: Kuberntes
-linkTitle: Kuberntes
-date: 2024-04-20T12:01
-weight: 20
+title: Kubernetes
+linkTitle: Kubernetes
+date: 2024-06-14T09:28
+weight: 1
 ---
 
 # 概述

@@ -1,28 +1,37 @@
 ---
 title: Sentinel 命令
+linkTitle: Sentinel 命令
+date: 2024-06-14T10:20
+weight: 20
 ---
 
-参考：[官方文档](https://redis.io/topics/sentinel#sentinel-api)、[博客园大佬](https://www.cnblogs.com/biglittleant/p/7770960.html)
+# 概述
+
+> 参考：
+>
+> - [官方文档](https://redis.io/topics/sentinel#sentinel-api)
+>   - https://redis.io/docs/latest/operate/oss_and_stack/management/sentinel/#sentinel-api
+> - [博客园大佬](https://www.cnblogs.com/biglittleant/p/7770960.html)
 
 ## 基本命令
 
-### **PING** # 健康检查
+### PING - 健康检查
 
-### **sentinel masters** # 显示被监控的所有 master 以及它们的状态.
+### sentinel masters - 显示被监控的所有 master 以及它们的状态.
 
-### **sentinel master <MASTER>** # 显示指定 MASTER 的信息和状态；
+### sentinel master \<MASTER> - 显示指定 MASTER 的信息和状态；
 
-### **sentinel slaves <MASTER>** # 显示指定 MASTER 的所有 slave 以及它们的状态；
+### sentinel slaves \<MASTER> - 显示指定 MASTER 的所有 slave 以及它们的状态；
 
-### **sentinel get-master-addr-by-name <MASTER> **# 返回指定 MASTER 的 ip 和端口
+### sentinel get-master-addr-by-name \<MASTER> - 返回指定 MASTER 的 ip 和端口
 
 如果正在进行 failover 或者 failover 已经完成，将会显示被提升为 master 的 slave 的 ip 和端口。
 
-### **sentinel reset <pattern>** # 重置名字匹配该正则表达式的所有的 master 的状态信息
+### sentinel reset \<pattern> - 重置名字匹配该正则表达式的所有的 master 的状态信息
 
 清楚其之前的状态信息，以及 slaves 信息。
 
-### **sentinel failover <MASTER>** # 强制 sentinel 为指定的 MASTER 执行 failover
+### sentinel failover \<MASTER> - 强制 sentinel 为指定的 MASTER 执行 failover
 
 执行该操作的 Sentinel 节点并不需要得到其他 Sentinel 的同意。但是 failover 后会将最新的配置发送给其他 sentinel。
 
@@ -30,15 +39,15 @@ title: Sentinel 命令
 
 注意：如果你通过 API 修改了一个 sentinel 的配置，sentinel 不会把修改的配置告诉其他 sentinel。你需要自己手动地对多个 sentinel 发送修改配置的命令。
 
-### **sentinel flushconfig** # 重写运行 Sentinel 时指定的配置文件内容。
+### sentinel flushconfig - 重写运行 Sentinel 时指定的配置文件内容。
 
 与 Redis 的 config rewrite 命令效果一样。也就是将内存中的配置，写入到文件中。
 
-### **SENTINEL MONITOR <MASTER> <IP> <PORT> <QUORUM>** # 让 sentinel 监听指定 MASTER
+### SENTINEL MONITOR \<MASTER> \<IP> \<PORT> \<QUORUM> - 让 sentinel 监听指定 MASTER
 
-### **sentinel remove <MASTER>** # 让 sentinel 放弃对指定 MASTER 的监听
+### sentinel remove \<MASTER> - 让 sentinel 放弃对指定 MASTER 的监听
 
-### **SENTINEL SET <name> <option> <value>** # 这个命令很像 Redis 的 CONFIG SET 命令，用来改变指定 master 的配置。支持多个<option><value>。
+### SENTINEL SET \<name> \<option> \<value> - 这个命令很像 Redis 的 CONFIG SET 命令，用来改变指定 master 的配置。支持多个\<option>\<value>。
 
 只要是配置文件中存在的配置项，都可以用`SENTINEL SET`命令来设置。
 
@@ -82,35 +91,37 @@ sentinel 永远会记录好一个 Master 的 slaves，即使 slave 已经与组�
 
 注意：以下的 instance details 的格式是：
 
-<instance-type> <name> <ip> <port> @ <master-name> <master-ip> <master-port>
+`<instance-type> <name> <ip> <port> @ <master-name> <master-ip> <master-port>`
 
 如果这个 redis 实例是一个 master，那么@之后的消息就不会显示。
 
-      +reset-master <instance details> -- 当master被重置时.
-        +slave <instance details> -- 当检测到一个slave并添加进slave列表时.
-        +failover-state-reconf-slaves <instance details> -- Failover状态变为reconf-slaves状态时
-        +failover-detected <instance details> -- 当failover发生时
-        +slave-reconf-sent <instance details> -- sentinel发送SLAVEOF命令把它重新配置时
-        +slave-reconf-inprog <instance details> -- slave被重新配置为另外一个master的slave，但数据复制还未发生时。
-        +slave-reconf-done <instance details> -- slave被重新配置为另外一个master的slave并且数据复制已经与master同步时。
-        -dup-sentinel <instance details> -- 删除指定master上的冗余sentinel时 (当一个sentinel重新启动时，可能会发生这个事件).
-        +sentinel <instance details> -- 当master增加了一个sentinel时。
-        +sdown <instance details> -- 进入SDOWN状态时;
-        -sdown <instance details> -- 离开SDOWN状态时。
-        +odown <instance details> -- 进入ODOWN状态时。
-        -odown <instance details> -- 离开ODOWN状态时。
-        +new-epoch <instance details> -- 当前配置版本被更新时。
-        +try-failover <instance details> -- 达到failover条件，正等待其他sentinel的选举。
-        +elected-leader <instance details> -- 被选举为去执行failover的时候。
-        +failover-state-select-slave <instance details> -- 开始要选择一个slave当选新master时。
-        no-good-slave <instance details> -- 没有合适的slave来担当新master
-        selected-slave <instance details> -- 找到了一个适合的slave来担当新master
-        failover-state-send-slaveof-noone <instance details> -- 当把选择为新master的slave的身份进行切换的时候。
-        failover-end-for-timeout <instance details> -- failover由于超时而失败时。
-        failover-end <instance details> -- failover成功完成时。
-        switch-master <master name> <oldip> <oldport> <newip> <newport> -- 当master的地址发生变化时。通常这是客户端最感兴趣的消息了。
-        +tilt -- 进入Tilt模式。
-        -tilt -- 退出Tilt模式。
+```bash
++reset-master <instance details> -- 当master被重置时.
+  +slave <instance details> -- 当检测到一个slave并添加进slave列表时.
+  +failover-state-reconf-slaves <instance details> -- Failover状态变为reconf-slaves状态时
+  +failover-detected <instance details> -- 当failover发生时
+  +slave-reconf-sent <instance details> -- sentinel发送SLAVEOF命令把它重新配置时
+  +slave-reconf-inprog <instance details> -- slave被重新配置为另外一个master的slave，但数据复制还未发生时。
+  +slave-reconf-done <instance details> -- slave被重新配置为另外一个master的slave并且数据复制已经与master同步时。
+  -dup-sentinel <instance details> -- 删除指定master上的冗余sentinel时 (当一个sentinel重新启动时，可能会发生这个事件).
+  +sentinel <instance details> -- 当master增加了一个sentinel时。
+  +sdown <instance details> -- 进入SDOWN状态时;
+  -sdown <instance details> -- 离开SDOWN状态时。
+  +odown <instance details> -- 进入ODOWN状态时。
+  -odown <instance details> -- 离开ODOWN状态时。
+  +new-epoch <instance details> -- 当前配置版本被更新时。
+  +try-failover <instance details> -- 达到failover条件，正等待其他sentinel的选举。
+  +elected-leader <instance details> -- 被选举为去执行failover的时候。
+  +failover-state-select-slave <instance details> -- 开始要选择一个slave当选新master时。
+  no-good-slave <instance details> -- 没有合适的slave来担当新master
+  selected-slave <instance details> -- 找到了一个适合的slave来担当新master
+  failover-state-send-slaveof-noone <instance details> -- 当把选择为新master的slave的身份进行切换的时候。
+  failover-end-for-timeout <instance details> -- failover由于超时而失败时。
+  failover-end <instance details> -- failover成功完成时。
+  switch-master <master name> <oldip> <oldport> <newip> <newport> -- 当master的地址发生变化时。通常这是客户端最感兴趣的消息了。
+  +tilt -- 进入Tilt模式。
+  -tilt -- 退出Tilt模式。
+```
 
 TILT 模式
 

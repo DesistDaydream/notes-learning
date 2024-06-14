@@ -1,5 +1,8 @@
 ---
-title: Pod Manifest 详解
+title: Pod Manifest
+linkTitle: Pod Manifest
+date: 2024-06-14T08:36
+weight: 20
 ---
 
 # 概述
@@ -33,16 +36,16 @@ Pod 是可以在主机上运行的容器的集合。此资源由客户端创建�
 
 **spec** 字段用来描述一个 Pod 应该具有的属性。Pod 中的 spec 字段大体分为如下几类
 
-- Containers # 用来描述 Pod 中容器的属性
-- Volumes # 用来描述 Pod 所用卷，以及容器如何使用这些卷
-- Scheduling # Pod 如何被调度到 node
-- Lifecycle # Pod 的生命周期
-- Hostname and Name resolution # 容器的主机名和域名解析
-- Hosts namespaces # Pod 使用主机上名称空间的方法
-- Service account # Pod 的服务账户
-- Security context # Pod 安全相关
+- [Containers(容器)](#Containers%20相关字段) # 用来描述 Pod 中容器的属性
+- [Volumes(卷)](#Volumes%20相关字段) # 用来描述 Pod 所用卷，以及容器如何使用这些卷
+- [Scheduling(调度)](Scheduling%20相关字段) # Pod 如何被调度到 node
+- [Lifecycle(生命周期)](Lifecycle%20相关字段) # Pod 的生命周期
+- [Hostname and Name resolution(主机名和域名解析)](#Hostname%20and%20Name%20resolution%20相关字段) # 容器的主机名和域名解析
+- [Hosts namespaces(容器如何使用宿主机中的名称空间)](#Hosts%20namespaces%20相关字段) # Pod 使用主机上名称空间的方法
+- [Service account(服务账户)](#Service%20account%20相关字段) # Pod 的服务账户
+- [Security context(容器安全环境)](Security%20context%20相关字段) # Pod 安全相关
 
-## Containers(容器) 相关字段
+## Containers 相关字段
 
 **containers**(\[][containers](#containers)) # 属于该 Pod 的 Containers 列表。[containers](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#container-v1-core) 字段**只会在 Pod 环境**中创建
 
@@ -52,7 +55,7 @@ Pod 是可以在主机上运行的容器的集合。此资源由客户端创建�
 
 拉取镜像时，如果是私有仓库，则使用该字段指定的 secret 中的信息。实际上就是代替 docker login 命令。 更多信息见官网：[Specifying imagePullSecrets on a Pod()章节](https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod)
 
-## Volumes(卷) 相关字段
+## Volumes 相关字段
 
 **volumes([]Object)** # 给 pod 创建一个 Volume
 
@@ -60,7 +63,7 @@ Pod 是可以在主机上运行的容器的集合。此资源由客户端创建�
   - ...... # 定义该类型的 volume 相关参数
 - **name(STRING)** # **必须的**。自定义该存储卷的名称
 
-## Scheduling(调度) 相关字段
+## Scheduling 相关字段
 
 **nodeSelector**(map[string]string) # 指明 Node 标签选择器，该 Pod 会运行在具有相同标签的 Node 上
 
@@ -74,13 +77,13 @@ Pod 是可以在主机上运行的容器的集合。此资源由客户端创建�
 
 **tolerations([]Object)** # 定义 Pod 容忍污点的容忍度。用法详见[调度器章节](/docs/10.云原生/Kubernetes/Scheduling/让%20Pod%20运行在指定%20Node%20上.md)
 
-## Lifecycle(生命周期) 相关字段
+## Lifecycle 相关字段
 
 **restartPolicy(STRING)** # Pod 中容器失败后的重启策略，`默认值：Always`
 
 - STRING 可用的值有：Always、OnFailure、Never
 
-## Hostname and Name resolution(主机名和域名解析) 相关字段
+## Hostname and Name resolution 相关字段
 
 **dnsConfig(OBJECT)** #
 
@@ -91,11 +94,11 @@ Pod 是可以在主机上运行的容器的集合。此资源由客户端创建�
   - ClusterFirst
   - None
 
-## Hosts namespaces(容器如何使用宿主机中的名称空间) 相关配置
+## Hosts namespaces 相关字段
 
 **hostNetwork(BOOLEAN)** # 是否让 Pod 中的容器使用主机的网络名称空间。`默认值：false`
 
-## Service account(服务账户) 相关字段
+## Service account 相关字段
 
 **serviceAccountName(STRING)** # 容器所使用 ServiceAccount。
 

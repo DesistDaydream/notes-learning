@@ -1,13 +1,25 @@
 ---
-title: kubeadm 实现细节详解
+title: kubeadm 实现细节
+linkTitle: kubeadm 实现细节
+date: 2024-06-14T08:56
+weight: 20
 ---
+
+# 概述
+
+> 参考：
+>
+> -
+
 
 # kubeadm 核心设计原则
 
 > 参考：
-> - [**官方文档**](https://kubernetes.io/docs/reference/setup-tools/kubeadm/implementation-details/)
+>
+> - [官方文档，参考 - kubeadm - 实现细节](https://kubernetes.io/docs/reference/setup-tools/kubeadm/implementation-details/)
 
 `kubeadm init` 和 `kubeadm join` 结合在一起提供了良好的用户体验。`kubeadm init` 和 `kubeadm join` 设置的集群应为：
+
 - Secure 安全——应采用最新的最佳做法
   - 加强 RBAC
   - 使用节点授权器
@@ -31,21 +43,21 @@ title: kubeadm 实现细节详解
 
 Kubernetes 目录 /etc/kubernetes 在应用程序中是一个常量，因为在大多数情况下，它显然是给定的路径，并且是最直观的位置；其他常量路径和文件名是：
 
-/etc/kubernetes/manifests/\* # 作为 kubelet 在其中查找静态 Pod 清单的路径。静态 Pod 清单的名称为：
+**/etc/kubernetes/manifests/** # 作为 kubelet 在其中查找静态 Pod 清单的路径。静态 Pod 清单的名称为：
 
 - etcd.yaml
 - kube-apiserver.yaml
 - kube-controller-manager.yaml
 - kube-scheduler.yaml
 
-/etc/kubernetes/\* # 作为存储带有控制平面组件标识的 kubeconfig 文件的路径。kubeconfig 文件的名称为：
+**/etc/kubernetes/** # 作为存储带有控制平面组件标识的 kubeconfig 文件的路径。kubeconfig 文件的名称为：
 
 - kubelet.conf（bootstrap-kubelet.conf 在 TLS 引导期间）
 - controller-manager.conf
 - scheduler.conf
 - admin.conf 用于集群管理员和 kubeadm 本身
 
-/etc/kubernetes/pki/\* # 证书和密钥文件的名称：
+**/etc/kubernetes/pki/** # 证书和密钥文件的名称：
 
 - ca.crt，ca.key # 用于 Kubernetes 证书颁发机构
 - apiserver.crt，apiserver.key # 用于 API 服务器证书
@@ -106,7 +118,7 @@ Kubeadm 在启动 init 之前执行一组 prefight checks(预检检查)，目的
 
 请注意：
 
-1. 可以使用以下 [kubeadm init phase preflight](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init-phase/#cmd-phase-preflight) 命令分别调用预检检查
+- 可以使用以下 [kubeadm init phase preflight](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init-phase/#cmd-phase-preflight) 命令分别调用预检检查
 
 ## 生成必要的证书
 
@@ -251,7 +263,7 @@ API 服务器的静态 Pod 清单受用户提供的以下参数影响：
 请注意：
 
 1. k8s.gcr.io 默认情况下，etcd 图像将被拉出。请参阅[使用自定义图像](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/#custom-images)自定义图像存储库
-2. 如果在该--dry-run 模式下执行 kubeadm ，则将 etcd 静态 Pod 清单写入一个临时文件夹中
+2. 如果在该 --dry-run 模式下执行 kubeadm ，则将 etcd 静态 Pod 清单写入一个临时文件夹中
 3. 可以使用以下[kubeadm init phase etcd local](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init-phase/#cmd-phase-etcd)命令分别调用本地 etcd 的静态 Pod 清单生成
 
 ### 可选的动态 Kubelet 配置
@@ -300,7 +312,7 @@ kubeadm 节约传递给配置 kubeadm init 在一个名为 ConfigMap kubeadm-con
 
 请注意：
 
-1. 标记控制平面相位可以通过以下[kubeadm init phase mark-control-plane](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init-phase/#cmd-phase-mark-master)命令单独调用
+- 标记控制平面相位可以通过以下[kubeadm init phase mark-control-plane](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init-phase/#cmd-phase-mark-master)命令单独调用
 
 ## 为节点加入配置 TLS 引导
 
@@ -308,15 +320,15 @@ Kubeadm 使用[Bootstrap Token](https://kubernetes.io/docs/reference/access-auth
 
 kubeadm init 确保为该过程正确配置所有内容，这包括以下步骤以及设置 API 服务器和控制器标志，如前几段所述。请注意：
 
-1. 可以使用以下[kubeadm init phase bootstrap-token](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init-phase/#cmd-phase-bootstrap-token) 命令配置用于节点的 TLS 引导，执行以下各段中描述的所有配置步骤；或者，每个步骤都可以单独调用
+- 可以使用以下[kubeadm init phase bootstrap-token](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init-phase/#cmd-phase-bootstrap-token) 命令配置用于节点的 TLS 引导，执行以下各段中描述的所有配置步骤；或者，每个步骤都可以单独调用
 
 ### 创建一个引导令牌
 
 kubeadm init 创建第一个引导令牌，该令牌是自动生成的或由用户提供的带有--token 标志的；如引导令牌规范中所述，令牌应另存为名称空间 bootstrap-token-下的秘密 kube-system。请注意：
 
-1. 创建的默认令牌 kubeadm init 将在 TLS 引导过程中用于验证临时用户；这些用户将成为该 system:bootstrappers:kubeadm:default-node-token 组的成员
-2. 令牌的有效期有限，默认为 24 小时（该间隔可以用—token-ttl 标志更改）
-3. 可以使用该[kubeadm token](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/)命令创建其他令牌，这些令牌还提供了其他有用的令牌管理功能
+- 创建的默认令牌 kubeadm init 将在 TLS 引导过程中用于验证临时用户；这些用户将成为该 system:bootstrappers:kubeadm:default-node-token 组的成员
+- 令牌的有效期有限，默认为 24 小时（该间隔可以用—token-ttl 标志更改）
+- 可以使用该[kubeadm token](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/)命令创建其他令牌，这些令牌还提供了其他有用的令牌管理功能
 
 ### 允许加入节点调用 CSR API
 
@@ -346,7 +358,7 @@ Kubeadm 确保为节点启用证书轮换，并且对节点的新证书请求将
 
 注意：
 
-1. 对 cluster-infoConfigMap 的访问没有速率限制。如果您将母版暴露在互联网上，则可能会或可能不会出现问题。最糟糕的情况是 DoS 攻击，攻击者使用 kube-apiserver 可以处理的所有运行中请求来为 cluster-info ConfigMap 提供服务
+- 对 cluster-infoConfigMap 的访问没有速率限制。如果您将母版暴露在互联网上，则可能会或可能不会出现问题。最糟糕的情况是 DoS 攻击，攻击者使用 kube-apiserver 可以处理的所有运行中请求来为 cluster-info ConfigMap 提供服务
 
 对 kube-public 存在的解释详见官方文档：<https://github.com/kubernetes/community/blob/master/contributors/design-proposals/cluster-lifecycle/bootstrap-discovery.md#new-kube-public-namespace>
 
@@ -354,7 +366,7 @@ Kubeadm 确保为节点启用证书轮换，并且对节点的新证书请求将
 
 Kubeadm 通过 API 服务器安装内部 DNS 服务器和 kube-proxy 附加组件。请注意：
 
-1. 此阶段可以使用[kubeadm init phase addon all](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init-phase/#cmd-phase-addon)命令单独调用。
+- 此阶段可以使用[kubeadm init phase addon all](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init-phase/#cmd-phase-addon)命令单独调用。
 
 ### Proxy
 

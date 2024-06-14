@@ -1,10 +1,22 @@
 ---
 title: generic 组
+linkTitle: generic 组
+date: 2024-06-14T10:21
+weight: 20
 ---
 
-## DEL key \[key ...] # 删除一个 key
+# 概述
+
+> 参考：
+>
+> - https://redis.io/docs/latest/commands/?group=generic
+
+
+# DEL - 删除一个 key
 
 since: 1.0.0
+
+**DEL key \[key ...]**
 
 EXAMPLE
 
@@ -14,9 +26,11 @@ summary: Return a serialized version of the value stored at the specified key.
 
 since: 2.6.0
 
-## EXISTS key \[key ...] # 判断指定的 key 是否存在
+# EXISTS - 判断指定的 key 是否存在
 
 since: 1.0.0
+
+**EXISTS key \[key ...]**
 
 EXPIRE key seconds
 
@@ -30,11 +44,13 @@ summary: Set the expiration for a key as a UNIX timestamp
 
 since: 1.2.0
 
-## KEYS pattern - 查找与指定 pattern 匹配到的所有 keys。
+# KEYS - 查找与指定 pattern 匹配到的所有 keys。
 
 since: 1.0.0
 
-EXAMPLE
+**KEYS pattern**
+
+**EXAMPLE**
 
 - `keys *` # 获取所有的键
 
@@ -104,11 +120,14 @@ summary: Create a key using the provided serialized value, previously obtained u
 
 since: 2.6.0
 
-SCAN cursor \[MATCH pattern] \[COUNT count]
-
-summary: Incrementally iterate the keys space
+# SCAN - 增量迭代 keys 空间(类似 KEYS 指令可以遍历所有 key)
 
 since: 2.8.0
+
+## Syntax(语法)
+
+**SCAN cursor \[MATCH pattern] \[COUNT count] \[TYPE type]**
+
 
 SORT key \[BY pattern] \[LIMIT offset count] \[GET pattern \[GET pattern ...]] \[ASC|DESC] \[ALPHA] \[STORE destination]
 
@@ -122,11 +141,16 @@ summary: Get the time to live for a key
 
 since: 1.0.0
 
-TYPE key
-
-summary: Determine the type stored at key
+# TYPE - 确定已存储的 key 的类型
 
 since: 1.0.0
+
+TYPE 命令可以确定指定 key 的 [Redis 数据类型](/docs/5.数据存储/数据库/键值数据/Redis/Redis%20数据类型.md)
+
+## Syntax(语法)
+
+**TYPE key**
+
 
 WAIT numslaves timeout
 

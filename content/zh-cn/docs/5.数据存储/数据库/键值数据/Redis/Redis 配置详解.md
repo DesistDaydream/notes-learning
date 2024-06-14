@@ -4,8 +4,10 @@ title: Redis 配置详解
 
 # 概述
 
-> 参考：
+> 参考:
+>
 > - [官方文档](https://redis.io/topics/config)
+>   - https://redis.io/docs/latest/operate/oss_and_stack/management/config/
 
 Redis 可以在不使用配置文件的情况下使用内置的默认配置启动。但是一般情况，都会使用一个 Redis 的配置文件(文件名通常是 redis.conf)来启动 Redis。Redis 启动后，会将 redis.conf 文件的内容加载到内存中，通过 Redis 客户端的 **config get \*** 命令，即可获取当前已经加载到内存中的配置。
 

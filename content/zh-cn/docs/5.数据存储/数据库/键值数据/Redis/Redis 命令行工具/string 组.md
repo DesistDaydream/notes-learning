@@ -1,10 +1,25 @@
 ---
 title: string 组
+linkTitle: string 组
+date: 2024-06-14T10:20
+weight: 20
 ---
 
-## APPEND key value # 附加一个 value 到指定的 key
+# 概述
+
+> 参考：
+>
+> - https://redis.io/docs/latest/commands/?group=string
+
+
+# APPEND - 附加一个 value 到指定的 key
 
 since: 2.0.0
+
+## Syntax(语法)
+
+**APPEND key value**
+
 
 BITCOUNT key \[start end]
 
@@ -42,9 +57,13 @@ summary: Decrement the integer value of a key by the given number
 
 since: 1.0.0
 
-## GET key # summary: 获取指定 key 的 value
+# GET key - 获取指定 key 的 value
 
 since: 1.0.0
+
+## Syntax(语法)
+
+**GET key**
 
 GETBIT key offset
 
@@ -106,7 +125,9 @@ summary: Set the value and expiration in milliseconds of a key
 
 since: 2.6.0
 
-## SET key value \[EX seconds] \[PX milliseconds] \[NX|XX] # 设置指定 key 的 字符串类型的 value
+# SET - 设置指定 key 的 字符串类型的 value
+
+**SET key value \[EX seconds] \[PX milliseconds] \[NX|XX]**
 
 since: 1.0.0
 

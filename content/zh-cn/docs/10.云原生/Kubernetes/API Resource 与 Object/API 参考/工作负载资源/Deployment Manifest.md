@@ -1,5 +1,8 @@
 ---
-title: Deployment Manifest 详解
+title: Deployment Manifest
+linkTitle: Deployment Manifest
+date: 2024-06-14T08:36
+weight: 20
 ---
 
 # 概述
@@ -54,8 +57,8 @@ spec 用来描述一个 Deployment 应该具有的属性。也就是用来定义
 
 **template(Ojbect) # 必须的**。定义 Pod 的模板,使用 Pod 类型的 metadata 和 spec 字段。
 
-- **metadata**([PodMetadata](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/工作负载资源/Pod%20Manifest%20详解.md#metadata)) # 与 pod 资源定义的内容基本一致
-- **spec**([PodSpec](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/工作负载资源/Pod%20Manifest%20详解.md#spec)) # 与 pod 资源定义的内容基本一致
+- **metadata**([PodMetadata](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/工作负载资源/Pod%20Manifest.md#metadata)) # 与 pod 资源定义的内容基本一致
+- **spec**([PodSpec](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/工作负载资源/Pod%20Manifest.md#spec)) # 与 pod 资源定义的内容基本一致
 
 # status
 

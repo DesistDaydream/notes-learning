@@ -1,6 +1,16 @@
 ---
-title: cluster 命令
+title: Cluster 命令
+linkTitle: Cluster 命令
+date: 2024-06-14T15:28
+weight: 20
 ---
+
+# 概述
+
+> 参考：
+>
+> - https://redis.io/docs/latest/commands/?group=cluster
+
 
 一、以下命令是Redis Cluster集群所独有的，执行下面命令需要先登录redis：
 

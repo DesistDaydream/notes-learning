@@ -13,7 +13,7 @@ weight: 20
 
 在计算机科学和计算机编程中，**Data Type(数据类型，有时也简称 Type)** 是数据的一个属性，这些属性将会让编译器知道程序员想要如何使用数据。
 
-[Literal(字面量)](docs/2.编程/计算机科学/Data%20type/Literal.md) 与 [Variable(变量)](/docs/2.编程/计算机科学/Variable.md) 相关，是用于初始化变量时指定的一个值。
+[Literal(字面量)](/docs/2.编程/计算机科学/Data%20type/Literal.md) 与 [Variable(变量)](/docs/2.编程/计算机科学/Variable.md) 相关，是用于初始化变量时指定的一个值。
 
 ## 数据类型的分类
 

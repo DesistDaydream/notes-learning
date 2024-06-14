@@ -14,7 +14,8 @@ date: 2024-03-29T15:35
 > - [GitHub 项目，valkey-io/valkey](https://github.com/valkey-io/valkey) # [Linux Foundation](/docs/Standard/Foundation/Linux%20Foundation.md) 基于 7.2.4 版本分叉的项目，保持原有 License
 > - [官网](https://redis.io/)
 
-Notes: [3 月 30 日 Redis 发布博客改变 License](https://redis.com/blog/redis-adopts-dual-source-available-licensing/)，后续 Linux 基金会基于 7.2.4 版本分叉，保持原有 License。
+> [!Warning]
+> [3 月 30 日 Redis 发布博客改变 License](https://redis.com/blog/redis-adopts-dual-source-available-licensing/)，后续 Linux 基金会基于 7.2.4 版本分叉，保持原有 License。开源版本改名称为 Redis OSS（open source）
 
 Redis 是一个开源的、网络化的、内存中的、具有持久化的键值数据存储。(是否持久化根据配置决定)
 
@@ -29,13 +30,7 @@ Redis 是一个内存数据库, 所有数据默认都存在于内存当中,可�
 
 ## Redis 的数据类型
 
-string(字符串)，hash(哈希)，list(列表)，set(集合) 及 zset(sorted set：有序集合)。
-
-后面增加了：
-
-Bit arrays (或者说 simply bitmaps)
-
-在 2.8.9 版本添加了 HyperLogLog 结构
+[Redis 数据类型](/docs/5.数据存储/数据库/键值数据/Redis/Redis%20数据类型.md)
 
 # Redis 部署
 

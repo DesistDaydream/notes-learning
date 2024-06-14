@@ -71,17 +71,27 @@ drwxr-sr-x+ 3 root systemd-journal   46 Dec  9 17:19  ../
 - **-p UNM** # 指定要显示的日志级别(NUM 为 0-7 级)
 - **-u UNIT** # 显示指定的 unit 的日志信息
 
-格式选项
+**页面控制选项**
 
-- **--no-pager** # 在单一页面显示信息，不分页。默认情况下，若日志过长，需要使用 → 方向键翻页才能查看后面的日志内容。
-- **-o, --output=\<STRING>** # 指定输出格式。`默认值：short`
-  - 可用的格式有：json、json-pretty、verbose、export、with-unit 等等
+https://man7.org/linux/man-pages/man1/journalctl.1.html#PAGER_CONTROL_OPTIONS
 
-过滤选项
+- **--no-pager** # 在单一页面显示信息，不分页。默认情况下，若日志过长，需要使用 → 方向键翻页才能查看后面的日志内容。、
+
+**过滤选项**
+
+https://man7.org/linux/man-pages/man1/journalctl.1.html#FILTERING_OPTIONS
 
 - **--output-fields=FIELD** # 显示指定字段的日志，多个字段以 `,` 分割。
   - 字段筛选仅对 -o 选项指定的 verbose、export、json、json-pretty、json-sse、json-seq 这几个输出格式有效
 - **-S, --since TIME** 与 **-U, --unitl TIME** # 设置输出日志信息的开始与结束时间
+
+**输出选项**
+
+https://man7.org/linux/man-pages/man1/journalctl.1.html#OUTPUT_OPTIONS
+
+- **-n NUM, --lines=NUM** # 显示最近 n 行的日志
+- **-o, --output=\<STRING>** # 指定输出格式。`默认值：short`
+  - 可用的格式有：json、json-pretty、verbose、export、with-unit、etc.
 
 ## EXAMPLE
 

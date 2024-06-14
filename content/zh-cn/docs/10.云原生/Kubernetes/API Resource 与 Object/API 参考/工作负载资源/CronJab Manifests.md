@@ -1,5 +1,8 @@
 ---
-title: CronJab Manifests 详解
+title: CronJab Manifests
+linkTitle: CronJab Manifests
+date: 2024-06-14T08:37
+weight: 20
 ---
 
 # 概述

@@ -150,9 +150,11 @@ Prometheus 将所有当前使用的块保留在内存中。此外，它将最新
 
 在一般情况下，Prometheus 中存储的每一个样本大概占用 1-2 字节大小。如果需要对 Prometheus Server 的本地磁盘空间做容量规划时，可以通过以下公式计算：
 
-    磁盘大小 = 保留时间 * 每秒获取样本数 * 样本大小
+```
+磁盘大小 = 保留时间(秒) * 每秒获取样本数 * 样本大小
+```
 
-**保留时间(retention_time_seconds)**和 **样本大小(bytes_per_sample)** 不变的情况下，如果想减少本地磁盘的容量需求，只能通过减少每秒获取样本数(ingested_samples_per_second)的方式。
+**保留时间(retention_time_seconds)** 和 **样本大小(bytes_per_sample)** 不变的情况下，如果想减少本地磁盘的容量需求，只能通过减少每秒获取样本数(ingested_samples_per_second)的方式。
 
 因此有两种手段，一是减少时间序列的数量，二是增加采集样本的时间间隔。
 
@@ -160,11 +162,13 @@ Prometheus 将所有当前使用的块保留在内存中。此外，它将最新
 
 Prometheus 每 2 小时将已缓冲在内存中的数据压缩到磁盘上的块中。包括 Chunks、Indexes、Tombstones、Metadata，这些占用了一部分存储空间。一般情况下，Prometheus 中存储的每一个样本大概占用 1-2 字节大小（1.7Byte）。可以通过 PromQL 来查看每个样本平均占用多少空间：
 
-    rate(prometheus_tsdb_compaction_chunk_size_bytes_sum[2h])
-    /
-    rate(prometheus_tsdb_compaction_chunk_samples_sum[2h])
+```promql
+rate(prometheus_tsdb_compaction_chunk_size_bytes_sum[2h])
+/
+rate(prometheus_tsdb_compaction_chunk_samples_sum[2h])
+```
 
-     {instance="0.0.0.0:8890", job="prometheus"}  1.252747585939941
+{instance="0.0.0.0:8890", job="prometheus"}  1.252747585939941
 
 查看当前每秒获取的样本数：
 
@@ -184,6 +188,17 @@ rate(prometheus_tsdb_head_samples_appended_total[1h])
 因为我们使用了 Thanos 的方案，所以本地磁盘只保留 2H 热数据。Wal 每 2 小时生成一份 Block 文件，Block 文件每 2 小时上传对象存储，本地磁盘基本没有压力。
 
 关于 Prometheus 存储机制，可以看[这篇](http://www.xuyasong.com/?p=1601)。
+
+假如需要存储 7 天的数据
+
+```promql
+(rate(prometheus_tsdb_compaction_chunk_size_bytes_sum[2h])
+/
+rate(prometheus_tsdb_compaction_chunk_samples_sum[2h]))
+*
+rate(prometheus_tsdb_head_samples_appended_total[1h])
+* 7 * 24 * 3600 / 1024 / 1024 / 1024
+```
 
 ## 故障恢复
 
