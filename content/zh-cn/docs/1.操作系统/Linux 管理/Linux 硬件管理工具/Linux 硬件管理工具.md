@@ -10,6 +10,8 @@ weight: 1
 >
 > -
 
+[dmidecode](docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/dmidecode.md)
+
 # lshw
 
 > 参考：
@@ -48,7 +50,7 @@ H/W path        Device      Class          Description
 /0/100/1.2                  bus            82371SB PIIX3 USB [Natoma/Triton II]
 ......略
 ```
-- **-businfo** # 打印 bus(总线) 的信息
+- **-businfo** # 打印 [Bus(总线)](docs/0.计算机/Motherboard/Bus.md) 的信息
 ```bash
 Bus info          Device      Class          Description
 ========================================================
@@ -227,34 +229,7 @@ OPTIONS
 
 # lspci
 
-> 参考：
->
-> - [Manual(手册)，lspci(8)](https://man7.org/linux/man-pages/man8/lspci.8.html)
-> - [GitHub 项目，pciutils/pciutils](https://github.com/pciutils/pciutils)
-> - [官网](https://mj.ucw.cz/sw/pciutils/)
-
-列出所有 PCI 设备。
-
-CentOS 包：pciutils
-
-Ubuntu 包：pciutils
-
-其中还有 setpci 工具用来配置 PCI 设备。
-
-## Syntax(语法)
-
-**lspci [OPTIONS]**
-
-### OPTIONS
-
-展示内容相关选项
-
-- **-k** # 显示处理每个设备的内核驱动程序以及能够处理它的内核模块。在正常输出模式下给出 -v 时默认打开。 （目前仅适用于内核为 2.6 或更新版本的 Linux。）
-
-选择指定设备选项
-
-- **`-s [[[[<DOMAIN>]:]<BUS>]:][<DEVICE>][.[<FUNC>]]`** # 仅显示指定域中的设备（如果您的机器有多个主机桥，它们可以共享一个公共总线编号空间，或者它们中的每一个都可以寻址自己的 PCI 域；域编号从 0 到 ffff），bus （0 到 ff）、设备（0 到 1f）和功能（0 到 7）。设备地址的每个组成部分都可以省略或设置为“*”，均表示“任意值”。所有数字都是十六进制的。例如，“0：”表示总线 0 上的所有设备，“0”表示任何总线上设备 0 的所有功能，“0.3”选择所有总线上设备 0 的第三个功能，“.4”仅显示每个总线上的第四个功能设备。
-  - 注意：-s 的值可以通过 uevent 文件中的 PCI_SLOT_NAME 字段的值获取
+详见: [lspci](docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/lspci.md)
 
 # smartctl
 

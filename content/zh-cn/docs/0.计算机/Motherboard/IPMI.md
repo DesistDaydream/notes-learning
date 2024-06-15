@@ -23,7 +23,11 @@ IPMI 定义了系统管理员使用的一组接口，用于计算机系统的带
 ## IMPI 的实现
 
 Dell iDrac
+
 HuaWei iBmc
+
 H3C HDM
+
 浪潮 未知
+
 HP iLO

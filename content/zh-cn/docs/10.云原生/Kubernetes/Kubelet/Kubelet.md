@@ -73,7 +73,7 @@ kubelet 可以通过多个地方读取其自身的配置并更改自己的行为
     - 如果想要在 kubelet 运行时动态得更改其配置，则可以修改 configmap 中的内容，详见：<https://kubernetes.io/docs/tasks/administer-cluster/reconfigure-kubelet/>
 - **./kubeadm-flags.env** # 该文件将内容作为 kubelet 参数，在 kubelet 启动时加载，常用来在 kubeadm 初始化时使用
 - **./pods/** # kubelet 启动的 Pod 的数据保存路径，其内目录名为 Pod 的 uid 。
-  - ./${POD_UID}/volumes/\* # 对应 pod 挂载的 volume 保存路径，其内目录为 kubernetes.io~TYPE ，其中 TYPE 为 volume 的类型。
+  - ./${POD_UID}/volumes/ # 对应 pod 挂载的 volume 保存路径，其内目录为 `kubernetes.io~TYPE/` ，其中 TYPE 为 volume 的类型。
 - **./pki/** # kubelet 与 apiserver 交互时所用到的证书存放目录。
   - ./kubelet.crt # 在 kubelet 完成 TLS bootstrapping 后并且没有配置 --feature-gates=RotateKubeletServerCertificate=true 时生成；这种情况下该文件为一个独立于 apiserver CA 的自签 CA 证书，有效期为 1 年；被用作 kubelet 10250 api 端口。当其他东西需要访问 kubelet 的 api 时，需要使用该证书作为认证。
   - ./kubelet-client-current.pem # 与 API server 通讯所用到的证书，与 apiserver 交互后生成。

@@ -64,9 +64,9 @@
       "docs/0.计算机/CPU",
       "docs/0.计算机/Memory",
       "docs/0.计算机/Disk",
+      "docs/0.计算机/Peripheral",
+      "docs/0.计算机/GPU",
       "docs/0.计算机/小型机器.md",
-      "docs/0.计算机/扩展与外设.md",
-      "docs/0.计算机/Computer Peripheral.md",
       "docs/0.计算机/计算机厂家信息.md",
       "docs/0.计算机/Rack.md"
     ],
@@ -366,7 +366,7 @@
       "docs/1.操作系统/Linux 管理/Linux 硬件管理工具/_index.md",
       "docs/1.操作系统/Linux 管理/Linux 硬件管理工具/Linux 硬件管理工具.md",
       "docs/1.操作系统/Linux 管理/Linux 硬件管理工具/dmidecode.md",
-      "docs/1.操作系统/Linux 管理/Linux 硬件管理工具/Memory 硬件管理工具.md",
+      "docs/1.操作系统/Linux 管理/Linux 硬件管理工具/lspci.md",
       "docs/1.操作系统/Linux 管理/Linux 硬件管理工具/从文件中获取 Linux 硬件信息获取.md"
     ],
     "docs/1.操作系统/Linux 管理/Linux 管理案例": [
@@ -830,11 +830,11 @@
     ],
     "docs/10.云原生/Kubernetes/Kubelet": [
       "docs/10.云原生/Kubernetes/Kubelet/_index.md",
-      "docs/10.云原生/Kubernetes/Kubelet/Kubelet 节点代理.md",
+      "docs/10.云原生/Kubernetes/Kubelet/Kubelet.md",
       "docs/10.云原生/Kubernetes/Kubelet/Kubelet 配置详解.md",
       "docs/10.云原生/Kubernetes/Kubelet/CRI 对比.md",
-      "docs/10.云原生/Kubernetes/Kubelet/crictl 命令行工具.md",
-      "docs/10.云原生/Kubernetes/Kubelet/Kubelet 特性"
+      "docs/10.云原生/Kubernetes/Kubelet/Kubelet 特性",
+      "docs/10.云原生/Kubernetes/Kubelet/crictl 命令行工具.md"
     ],
     "docs/10.云原生/Kubernetes/Kubelet/Kubelet 特性": [
       "docs/10.云原生/Kubernetes/Kubelet/Kubelet 特性/_index.md",
@@ -2692,6 +2692,12 @@
       "docs/2.编程/计算机科学/Data type/复合数据类型",
       "docs/2.编程/计算机科学/Data type/抽象数据类型",
       "docs/2.编程/计算机科学/Data type/进制表示法.md"
+    ],
+    "docs/0.计算机/Peripheral": [
+      "docs/0.计算机/Peripheral/_index.md",
+      "docs/0.计算机/Peripheral/Peripheral.md",
+      "docs/0.计算机/Peripheral/Computer monitor.md",
+      "docs/0.计算机/Peripheral/Printer.md"
     ]
   },
   "actionBarOrder": {},

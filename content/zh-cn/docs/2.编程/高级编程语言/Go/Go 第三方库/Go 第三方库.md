@@ -64,3 +64,6 @@ https://github.com/scrapli/scrapligo # 专注于通过 SSH 和 NETCONF 连接到
 - [知乎，浅谈如何使用Scrapligo控制网络设备](https://zhuanlan.zhihu.com/p/641358349)
 
 
+# 其他
+
+https://github.com/u-root/u-root # 带有 Linux 引导加载程序的完全 Go 用户区！ u-root 可以创建一个单二进制根文件系统 (initramfs)，其中包含一组用 Go 编写的类似 busybox 的工具。

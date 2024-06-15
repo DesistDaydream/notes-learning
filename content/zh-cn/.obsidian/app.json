@@ -11,5 +11,6 @@
   "smartIndentList": true,
   "showLineNumber": false,
   "strictLineBreaks": true,
-  "vimMode": false
+  "vimMode": false,
+  "userIgnoreFilters": null
 }

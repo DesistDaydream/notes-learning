@@ -1,7 +1,7 @@
 ---
-title: Display device
-linkTitle: Display device
-date: 2024-04-18T09:38
+title: Computer monitor
+linkTitle: Computer monitor
+date: 2024-06-15T16:31
 weight: 20
 ---
 
@@ -9,7 +9,12 @@ weight: 20
 
 > 参考：
 >
+> - [Wiki，Computer monitor](https://en.wikipedia.org/wiki/Computer_monitor)
 > - [Wiki，Display device](https://en.wikipedia.org/wiki/Display_device)
+
+**Computer monitor(计算机显示器)** 是一种 Display device(显示设备)
+
+# 屏幕
 
 [为什么部分人能接受厂商对ips屏幕漏光属正常现象不在昏暗环境和纯黑界面下不影响正常使用这一说法?](https://www.zhihu.com/question/365405717)
 

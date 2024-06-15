@@ -1,8 +1,8 @@
 ---
-title: Computer Peripheral
-linkTitle: Computer Peripheral
-weight: 20
-date: 2024-01-20T11:22
+title: Peripheral
+linkTitle: Peripheral
+date: 2024-06-15T16:12
+weight: 1
 ---
 
 # 概述
@@ -10,6 +10,11 @@ date: 2024-01-20T11:22
 > 参考：
 > 
 > - [Wiki，Peripheral](https://en.wikipedia.org/wiki/Peripheral)
+
+**Computer peripherals(计算机外围设备)** 可以根据信息对于计算机的流动方向进行分类:
+
+- **Input device(输入设备)** # e.g.
+- **Output device(输出设备)** # e.g. [Computer monitor](docs/0.计算机/Peripheral/Computer%20monitor.md)
 
 # 鼠标
 
@@ -32,3 +37,7 @@ Cheey(樱桃) 键盘一按 F1 就是静音该如何解决？
 # 攀升兄弟，名龙堂，宁美国度，京天华盛这四个哪个的主机好一些，自己不会组装，懒得组装，买个便宜的玩玩？
 
 原文: https://www.zhihu.com/question/435429789
+
+# SAS 卡
+
+SAS 的全称是 **串行附加SCSI**（Serial Attached SCSI）。它是一种用于连接硬盘驱动器、光盘驱动器等设备的接口标准。SAS卡提供了高速、高性能、高可靠性和高灵活性的数据传输解决方案。

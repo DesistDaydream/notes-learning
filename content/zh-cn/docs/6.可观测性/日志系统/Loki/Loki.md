@@ -230,12 +230,15 @@ Query Frontend(查询前端) 是一个可选的组件。当 Loki 以微服务架
 # Loki 关联文件与配置
 
 **/etc/loki/local-config.yaml** # loki 程序运行时默认配置文件
-**/StorageConfig/PATH/TO/index** # loki 的 BoltDB 中存储索引数据保存路径，无默认值，根据配置文件中 `.strorage_confg.boltdb.directory` 字段指定。
-**/StorageConfig/PATH/TO/chunks** # loki 的 chunks(块) 存储数据保存路径，无默认值，根据配置文件中 `.strorage_confg.filesystem.directory` 字段指定。
+
+**${StorageConfig}/index** # loki 的 BoltDB 中存储索引数据保存路径，无默认值，根据配置文件中 `.strorage_confg.boltdb.directory` 字段指定。
+
+**${StorageConfig}/chunks** # loki 的 chunks(块) 存储数据保存路径，无默认值，根据配置文件中 `.strorage_confg.filesystem.directory` 字段指定。
 
 # Loki 与其他日志系统相比
 
 官方文档：<https://grafana.com/docs/loki/latest/fundamentals/overview/comparisons/>
+
 Loki / Promtail / Grafana vs EFK
 
 EFK（Elasticsearch，Fluentd，Kibana）堆栈用于从各种来源提取，可视化和查询日志。

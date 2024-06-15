@@ -31,3 +31,5 @@ RocketMQ
 [RabbitMQ](/docs/8.通用技术/Message%20Queue(消息队列)/RabbitMQ/RabbitMQ.md)
 
 [Kafka](/docs/8.通用技术/Message%20Queue(消息队列)/Kafka.md)
+
+ZeroMQ
