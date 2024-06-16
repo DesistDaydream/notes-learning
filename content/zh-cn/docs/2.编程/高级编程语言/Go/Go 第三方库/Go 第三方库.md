@@ -63,6 +63,11 @@ https://github.com/scrapli/scrapligo # 专注于通过 SSH 和 NETCONF 连接到
 - [知乎，请问golang有没有类似netmiko，paramiko这样高度集成的第三方库？](https://www.zhihu.com/question/498240883/answer/2238301649)
 - [知乎，浅谈如何使用Scrapligo控制网络设备](https://zhuanlan.zhihu.com/p/641358349)
 
+# 自动化
+
+https://github.com/go-vgo/robotgo
+
+- Go 语言原生的跨平台 RPA 和 GUI 自动化
 
 # 其他
 

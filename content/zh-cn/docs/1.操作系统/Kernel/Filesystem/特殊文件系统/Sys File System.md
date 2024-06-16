@@ -14,11 +14,12 @@ weight: 20
 >   - https://github.com/torvalds/linux/blob/master/Documentation/filesystems/sysfs.rst
 >   - `Documentation/ABI`
 >   - `Documentation/*/sysfs.txt`
+>   - 基于此，可以通过在 Linux 仓库的 go to file 搜索框中，输入 `Documentation/sysfs` 这种关键字，找到很多与 sysfs 相关的文件。TODO: 如何利用 path 关键字使用统配或正则在 github 全局搜索文件？
 > - [Kernel 文档，管理员指南 - 关于如何访问 sysfs 中信息的规则](https://www.kernel.org/doc/html/latest/admin-guide/sysfs-rules.html)
 > - [Kernel 文档，管理员指南 - Linux ABI 描述](https://www.kernel.org/doc/html/latest/admin-guide/abi.html)
 > - [Wiki，Sysfs](https://en.wikipedia.org/wiki/Sysfs)
 
-用于导出内核对象(kobject)的文件系统。对于在系统中注册的每个 kobject，都会在 sysfs 中为其创建一个目录。该目录被创建为 kobject 父目录的子目录，向用户空间表达内部对象层次结构。 sysfs 中的顶级目录代表对象层次结构的共同祖先；即对象所属的子系统。
+用于导出 **kernel objects(内核对象，简称 kobject**) 的文件系统。对于在系统中注册的每个 kobject，都会在 sysfs 中为其创建一个目录。该目录被创建为 kobject 父目录的子目录，向用户空间表达内部对象层次结构。 sysfs 中的顶级目录代表对象层次结构的共同祖先；即对象所属的子系统。
 
 **Sys File System(sys 文件系统，简称 sysfs)** 是一个 pseudo-filesystem(伪文件系统)，提供内核数据结构的接口(更准确地说，sysfs 中的文件和目录提供了内核内部定义的 kobject 结构的视图)。sysfs 下的文件提供关于设备、内核模块、文件系统和其他内核组件的信息。`sysfs 一般挂载到 /sys 目录`。通常情况下，系统会自动挂载它，但也可以使用 `mount -t sysfs sysfs /sys` 命令手动挂载
 

@@ -33,7 +33,7 @@ https://juejin.cn/post/6951642072935825439
 
 **assignee:USERNAME** # 搜索分配给 USERNAME 的 ISSUE 和 PR。
 
-# 明确搜索仓库标题、仓库描述、README
+# 搜索仓库标题、仓库描述、README
 
 GitHub 提供了便捷的搜索方式，可以限定只搜索仓库的标题、或者描述、README 等。
 
@@ -59,7 +59,7 @@ in:descripton 关键词
 
 in:readme 关键词
 
-# 明确搜索 star、fork 数大于多少的
+# 搜索 star、fork 数大于或小于多少的
 
 一个项目 star 数的多少，一般代表该项目有受欢迎程度。虽然现在也有垃圾项目刷 star ，但毕竟是少数， star 依然是个不错的衡量标准。
 
@@ -91,7 +91,7 @@ size:>=5000 关键词
 
 这里注意下，这个数字代表 K, 5000 代表着 5M。
 
-# 明确仓库是否还在更新维护
+# 搜索仓库是否还在更新维护
 
 我们在确认是否要使用一些开源产品，框架的时候，是否继续维护是很重要的一点。如果已经过时没人维护的东西，踩了坑就不好办了。而在 GitHub 上找项目的时候，不再需要每个都点到项目里看看最近 push 的时间，直接在搜索框即可完成。
 
@@ -105,7 +105,7 @@ size:>=5000 关键词
 
 你是想找指定时间之前或之后创建的仓库也是可以的，把 pushed 改成 created 就行。
 
-# 明确搜索仓库的 LICENSE
+# 搜索仓库的 LICENSE
 
 咱们经常使用开源软件，一定都知道，开源软件也是分不同的「门派」不同的 LICENSE。开源不等于一切免费，不同的许可证要求也大不相同。 2018 年就出现了 Facebook 修改 React 的许可协议导致各个公司纷纷修改自己的代码，寻找替换的框架。
 
@@ -117,7 +117,7 @@ license:apache-2.0 spring cloud
 
 其它协议就把 apache-2.0 替换一下即可，比如换成 mit 之类的。
 
-# 明确搜索仓库的语言
+# 搜索仓库的语言
 
 比如咱们就找 Java 的库， 除了像上面在左侧点击选择之外，还可以在搜索中过滤。像这样：
 
@@ -142,3 +142,14 @@ user:joshlong language:java
 org:spring-cloud 就可以列出具体 org 的仓库。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cplu4a/1616903574593-1a151f42-a735-49ae-8372-5e17bfd2a519.jpeg)
+
+# 搜索文件
+
+https://docs.github.com/en/search-github/searching-on-github/finding-files-on-github
+
+https://docs.github.com/en/search-github/github-code-search/understanding-github-code-search-syntax#path-qualifier
+
+使用 path 关键字
+
+`repo:torvalds/linux path:Documentation/**/*sysfs*` 搜索 torvalds/linux 仓库中，所有 Documentation/ 目录下所有递归子目录中，包含 sysfs 的文件。
+
