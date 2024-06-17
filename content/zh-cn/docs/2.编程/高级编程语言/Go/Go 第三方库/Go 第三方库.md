@@ -7,6 +7,7 @@ title: Go 第三方库
 > 参考：
 
 第三方库一般属于由个人开发，实现更多丰富功能的库。在 [Go.dev ](https://pkg.go.dev/)可以搜索自己想要使用的所有库。
+
 # 日志
 
 ## logrus
@@ -62,6 +63,10 @@ https://github.com/scrapli/scrapligo # 专注于通过 SSH 和 NETCONF 连接到
 
 - [知乎，请问golang有没有类似netmiko，paramiko这样高度集成的第三方库？](https://www.zhihu.com/question/498240883/answer/2238301649)
 - [知乎，浅谈如何使用Scrapligo控制网络设备](https://zhuanlan.zhihu.com/p/641358349)
+
+## 路由
+
+https://github.com/gorilla/mux # 一个强大的 HTTP 路由器和 URL 匹配器，用于构建 Go Web 服务器
 
 # 自动化
 

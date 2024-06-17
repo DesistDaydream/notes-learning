@@ -16,6 +16,12 @@ weight: 1
 
 [Yara](#yara)
 
+Suricata
+
+- Suricata 是由 OISF 和 Suricata 社区开发的网络入侵检测系统、入侵防御系统和网络安全监控引擎。
+- https://github.com/OISF/suricata
+- 可以把 Snort 规则转成 Suricata 规则，把相同的流量交给 Suricata 和 Snort 分别处理看看结果
+
 # Yara
 
 > 参考：

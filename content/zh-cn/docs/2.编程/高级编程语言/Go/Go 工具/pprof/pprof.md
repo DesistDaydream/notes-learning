@@ -47,21 +47,21 @@ func main() {
 package main
 
 import (
- "log"
- "net/http"
- _ "net/http/pprof"
+    "log"
+    "net/http"
+    _ "net/http/pprof"
 )
 
 func main() {
     mux := http.NewServeMux()
- mux.Handle("/debug/pprof/", http.HandlerFunc(pprof.Index))
- mux.Handle("/debug/pprof/cmdline", http.HandlerFunc(pprof.Cmdline))
- mux.Handle("/debug/pprof/profile", http.HandlerFunc(pprof.Profile))
- mux.Handle("/debug/pprof/symbol", http.HandlerFunc(pprof.Symbol))
- mux.Handle("/debug/pprof/trace", http.HandlerFunc(pprof.Trace))
- if err := http.ListenAndServe("localhost:18080", nil); err != nil {
-  log.Fatal("ListenAndServe: ", err)
- }
+    mux.Handle("/debug/pprof/", http.HandlerFunc(pprof.Index))
+    mux.Handle("/debug/pprof/cmdline", http.HandlerFunc(pprof.Cmdline))
+    mux.Handle("/debug/pprof/profile", http.HandlerFunc(pprof.Profile))
+    mux.Handle("/debug/pprof/symbol", http.HandlerFunc(pprof.Symbol))
+    mux.Handle("/debug/pprof/trace", http.HandlerFunc(pprof.Trace))
+    if err := http.ListenAndServe("localhost:18080", nil); err != nil {
+        log.Fatal("ListenAndServe: ", err)
+    }
 }
 ```
 

@@ -8,13 +8,13 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [Wiki，Peripheral](https://en.wikipedia.org/wiki/Peripheral)
 
 **Computer peripherals(计算机外围设备)** 可以根据信息对于计算机的流动方向进行分类:
 
 - **Input device(输入设备)** # e.g.
-- **Output device(输出设备)** # e.g. [Computer monitor](docs/0.计算机/Peripheral/Computer%20monitor.md)
+- **Output device(输出设备)** # e.g. [Computer monitor](/docs/0.计算机/Peripheral/Computer%20monitor.md)
 
 # 鼠标
 

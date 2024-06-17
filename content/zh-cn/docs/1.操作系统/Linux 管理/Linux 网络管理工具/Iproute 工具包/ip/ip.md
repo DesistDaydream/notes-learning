@@ -216,7 +216,7 @@ monitor
 
 ## 第三部分
 
-`< >` 中的信息描述了网路设备的状态，这些状态的的含义可以从 [iproute2 的源码 include/uapi/linux/if.h](https://github.com/iproute2/iproute2/blob/main/include/uapi/linux/if.h) 出查到（这部分源码与 Linux 的 [if.h](https://github.com/torvalds/linux/blob/master/include/uapi/linux/if.h) 源码相同，从 [Linux 网络设备详解](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Linux%20网络设备详解/Linux%20网络设备详解.md) 中可以看到相关介绍）。
+`< >` 中的信息描述了网路设备的状态，这些状态的的含义可以从 [iproute2 的源码 include/uapi/linux/if.h](https://github.com/iproute2/iproute2/blob/main/include/uapi/linux/if.h) 出查到（这部分源码与 Linux 的 [if.h](https://github.com/torvalds/linux/blob/master/include/uapi/linux/if.h) 源码相同，从 [Linux 网络设备](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Linux%20网络设备/Linux%20网络设备.md) 中可以看到相关介绍）。
 
 - **BROADCAST** # 表示该网络接口支持广播通信，也就是可以向同一网络中的所有设备广播信息。
 - **MULTICAST** # 表示该网络接口支持多播通信，也就是可以向同一网络中的一组设备广播信息。

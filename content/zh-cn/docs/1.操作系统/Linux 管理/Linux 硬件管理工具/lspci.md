@@ -13,7 +13,7 @@ weight: 20
 > - [GitHub 项目，pciutils/pciutils](https://github.com/pciutils/pciutils)
 > - [官网](https://mj.ucw.cz/sw/pciutils/)
 
-列出所有 [PCI](docs/0.计算机/Motherboard/PCI.md) 设备。在列出的设备信息中，包含了一些供应商的名称、分类名称、etc. 信息。这些信息统一从 [pci.dis](https://pci-ids.ucw.cz/) 文件中获取。
+列出所有 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md) 设备。在列出的设备信息中，包含了一些供应商的名称、分类名称、etc. 信息。这些信息统一从 [pci.dis](https://pci-ids.ucw.cz/) 文件中获取。
 
 CentOS 包：pciutils
 
@@ -42,7 +42,7 @@ TODO: lspci 是如何从 Linux 中拿到 PCI 设备列表的？
 
 **选择指定设备选项**
 
-- **`-s [[[[<DOMAIN>]:]<BUS>]:][<DEVICE>][.[<FUNC>]]`** # 仅显示指定域中的设备（如果您的机器有多个主机桥，它们可以共享一个 [Bus](docs/0.计算机/Motherboard/Bus.md) 编号空间，或者它们中的每一个都可以寻址自己的 PCI 域；域编号从 0 到 ffff），bus （0 到 ff）、设备（0 到 1f）和功能（0 到 7）。设备地址的每个组成部分都可以省略或设置为 `*`，均表示“任意值”。所有数字都是十六进制的。例如，“0：”表示总线 0 上的所有设备，“0”表示任何总线上设备 0 的所有功能，“0.3”选择所有总线上设备 0 的第三个功能，“.4”仅显示每个总线上的第四个功能设备。
+- **`-s [[[[<DOMAIN>]:]<BUS>]:][<DEVICE>][.[<FUNC>]]`** # 仅显示指定域中的设备（如果您的机器有多个主机桥，它们可以共享一个 [Bus](/docs/0.计算机/Motherboard/Bus.md) 编号空间，或者它们中的每一个都可以寻址自己的 PCI 域；域编号从 0 到 ffff），bus （0 到 ff）、设备（0 到 1f）和功能（0 到 7）。设备地址的每个组成部分都可以省略或设置为 `*`，均表示“任意值”。所有数字都是十六进制的。例如，“0：”表示总线 0 上的所有设备，“0”表示任何总线上设备 0 的所有功能，“0.3”选择所有总线上设备 0 的第三个功能，“.4”仅显示每个总线上的第四个功能设备。
   - 注意：-s 的值可以通过 uevent 文件中的 PCI_SLOT_NAME 字段的值获取
 - **`-d [<VENDOR>]:[<DEVICE>][:<CLASS>[:<PROG-IF>]]`**
 
@@ -113,7 +113,7 @@ NUMANode:       0
 ......略
 ```
 
--vmm 输出的格式是由**空行**分隔的 PCI 设备信息。每个 PCI 设备信息称为 record(记录)，每条有多行，每行是一个 `TAG: VALUE` 对。标记和值由单个制表符分隔。  
+-vmm 输出的格式是由**空行**分隔的 PCI 设备信息。每个 PCI 设备信息称为 record(记录)，每条有多行，每行是一个 `TAG: VALUE` 对。标记和值由单个制表符分隔。
 
 有如下 TAG 可用
 

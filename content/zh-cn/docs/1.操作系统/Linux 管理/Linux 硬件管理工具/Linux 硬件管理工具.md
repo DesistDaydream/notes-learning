@@ -10,7 +10,7 @@ weight: 1
 >
 > -
 
-[dmidecode](docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/dmidecode.md)
+[dmidecode](/docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/dmidecode.md)
 
 # lshw
 
@@ -50,7 +50,7 @@ H/W path        Device      Class          Description
 /0/100/1.2                  bus            82371SB PIIX3 USB [Natoma/Triton II]
 ......略
 ```
-- **-businfo** # 打印 [Bus(总线)](docs/0.计算机/Motherboard/Bus.md) 的信息
+- **-businfo** # 打印 [Bus(总线)](/docs/0.计算机/Motherboard/Bus.md) 的信息
 ```bash
 Bus info          Device      Class          Description
 ========================================================
@@ -229,7 +229,7 @@ OPTIONS
 
 # lspci
 
-详见: [lspci](docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/lspci.md)
+详见: [lspci](/docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/lspci.md)
 
 # smartctl
 

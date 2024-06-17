@@ -27,10 +27,8 @@
       "blog/copy/硬核致敬Linux ！30岁生日快乐！.md",
       "blog/copy/程序员的酒后真言.md",
       "blog/copy/调度系统设计精要.md",
-      "blog/copy/多CPU架构问题",
       "blog/copy/二十年老程序员的二十条心得：面试几乎没用，警惕很久没写过代码的“大牛”.md",
       "blog/copy/公众号,码农的荒岛求生-操作系统话题系列文章",
-      "blog/copy/你天天关注这些新闻有什么用.md",
       "blog/copy/云原生",
       "blog/copy/BPF 文章.md",
       "blog/copy/ext 文件系统机制原理剖析.md"
@@ -130,8 +128,10 @@
       "docs/1.操作系统/Kernel/Filesystem",
       "docs/1.操作系统/Kernel/Process",
       "docs/1.操作系统/Kernel/Network",
+      "docs/1.操作系统/Kernel/Hardware",
       "docs/1.操作系统/Kernel/微内核",
-      "docs/1.操作系统/Kernel/BPF"
+      "docs/1.操作系统/Kernel/BPF",
+      "docs/1.操作系统/Kernel/VFIO.md"
     ],
     "docs/1.操作系统/Kernel/BPF": [
       "docs/1.操作系统/Kernel/BPF/_index.md",
@@ -239,7 +239,7 @@
     "docs/1.操作系统/Kernel/Network/Linux 网络栈管理": [
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/_index.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络栈管理.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络包发送过程.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/数据包接收过程详解.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/数据包发送过程详解.md",
@@ -248,12 +248,6 @@
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/systemd-networkd.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/NetworkManager",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netplan"
-    ],
-    "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解": [
-      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解/_index.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解/Linux 网络设备详解.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解/Bond 与 Team.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备详解/Bridge.md"
     ],
     "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netlink": [
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netlink/_index.md",
@@ -1542,7 +1536,7 @@
     "docs/2.编程/高级编程语言/Go/Go 第三方库": [
       "docs/2.编程/高级编程语言/Go/Go 第三方库/_index.md",
       "docs/2.编程/高级编程语言/Go/Go 第三方库/Go 第三方库.md",
-      "docs/2.编程/高级编程语言/Go/Go 第三方库/配置文件解析库_管理工具.md",
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/配置文件管理.md",
       "docs/2.编程/高级编程语言/Go/Go 第三方库/GUI",
       "docs/2.编程/高级编程语言/Go/Go 第三方库/CLI",
       "docs/2.编程/高级编程语言/Go/Go 第三方库/数据库.md",
@@ -2698,6 +2692,12 @@
       "docs/0.计算机/Peripheral/Peripheral.md",
       "docs/0.计算机/Peripheral/Computer monitor.md",
       "docs/0.计算机/Peripheral/Printer.md"
+    ],
+    "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备/Linux 网络设备.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备/Bond 与 Team.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备/Bridge.md"
     ]
   },
   "actionBarOrder": {},
