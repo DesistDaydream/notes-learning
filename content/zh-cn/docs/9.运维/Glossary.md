@@ -174,6 +174,3 @@ e. 主机功能编号
 [10. 对服务器 rDNS/Hostname 命名的一次探索](https://nova.moe/explore-in-server-rdns-and-hostname/)
 [11. 主机名命名规范](https://www.cnblogs.com/kaishirenshi/p/10249072.html)
 [12. 创建使用自定义主机名的虚拟机实例](https://cloud.google.com/compute/docs/instances/custom-hostname-vm#limitations)
-
-
-原

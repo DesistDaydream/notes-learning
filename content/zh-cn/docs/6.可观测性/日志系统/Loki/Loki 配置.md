@@ -110,7 +110,7 @@ https://grafana.com/docs/loki/next/configuration/#common
 
 **replication_factor**(INT) # How many times incoming data should be replicated to the ingester component。`默认值: 3`
 
-**ring**(OBJECT) # 所有使用哈希环的组件的通用哈希环配置。. If a common ring is given, its values are used to define any undefined ring values. For instance, you can expect the `heartbeat_period` defined in the common section to be used by the distributor's ring, but only if the distributor's ring itself # doesn't have a `heartbeat_period` set.
+**ring**(OBJECT) # 所有使用哈希环的组件的通用哈希环配置。`heartbeat_period`?
 
 - **kvstore(OBJECT)** #
   - **store(STRING)** # 用于保存哈希环的存储。`默认值：memberlist`
@@ -199,13 +199,13 @@ common:
 
 > 比如，在 schema_config.configs.store 中使用 aws，那么 storage_config 中就可以使用 aws 配置
 
-#### boltdb(Object) # boltdb 存储类型的配置
+#### boltdb(Object) - boltdb 存储类型的配置
 
 仅当 schema_config.configs.store 为 boltdb 时，才配置该字段
 
 - **directory(STRING)** # 存放 BoltDB 索引数据的绝对路径
 
-#### boltdb_shipper(Ojbect) # boltdb_shipper 存储类型的配置
+#### boltdb_shipper(Ojbect) - boltdb_shipper 存储类型的配置
 
 仅当 schema_config.configs.store 为 boltdb_shipper 时，才配置该字段
 
@@ -215,13 +215,13 @@ common:
 - **shared_store(STRING)** # 用于保存 BoltDB 文件的存储。
   - 在 2.4 版本之后，若 `common.storage` 定义了 s3，且 `schema_config.object_storage` 定义为 s3，则这个字段的值也为 s3。也就是说，Index 数据也会存到 S3。这个说法待验证。
 
-#### filesystem(Object) # filesystem 存储类型的配置
+#### filesystem(Object) - filesystem 存储类型的配置
 
 仅当 schema_config.configs.object_store 为 filesystem 时，才配置该字段
 
 - **directory(STRING)** # 存放 chunks 数据的绝对路径
 
-#### aws(Object) # S3 配置
+#### aws(Object) - S3 配置
 
 仅当 schema_config.configs.object_store 为 aws 时，才配置该字段。该字段配置与通用存储配置中的 [s3](#S3%20存储配置) 字段相同
 
@@ -333,7 +333,7 @@ Table Manager(表管理器) 组件配置，以规定数据保留的行为。该�
 
 **creation_grace_period(DURATION)** # 提前 DURATION 时间创建新表。`默认值：10m`
 
-## limits_config(Object) # 配置各个组件处理数据的最大值
+## limits_config(Object) - 配置各个组件处理数据的最大值
 
 **ingestrion_rate_mb(FLOAT)** # 每秒可以摄取日志量的大小，单位 MB。`默认值：4`
 **enforce_metric_name(BOOLEAN)**# 强制每个样本都有一个 metric 名称。`默认值：true`

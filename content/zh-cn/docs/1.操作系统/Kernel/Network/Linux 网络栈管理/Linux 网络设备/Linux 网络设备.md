@@ -31,8 +31,8 @@ Linux 中对于每个网络设备，在 [Sys File System](/docs/1.操作系统/K
 **./flags** # 网络设备的 Flags(标志)。常用来描述设备的状态和基本功能。从 [GitHub 项目，torvalds/linux - include/uapi/linux/if.sh](https://github.com/torvalds/linux/blob/master/include/uapi/linux/if.h) 文件中找到这些 Flags 的含义
 
 - Notes: [ip](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ip/ip.md) 工具下的 link 和 address 子命令通过 show 显示的网络设备信息中，第三部分由 `< >` 包裹起来的就是网络设备的 Flags
-  
-**./device/** # [PCI](docs/1.操作系统/Kernel/Hardware/PCI.md) 资源信息（包括设备供应商、设备类别、），该目录软链接到 /sys/devices/ 下的 PCI 相关目录，可以从 PCI 文章中查看各文件的含义。
+
+**./device/** # [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md) 资源信息（包括设备供应商、设备类别、），该目录软链接到 /sys/devices/ 下的 PCI 相关目录，可以从 PCI 文章中查看各文件的含义。
 
 - **./uevent** # 用户空间事件，物理机中该文件中包含 网络设备的驱动与 PCI 信息。
   - PCI_SLOT_NAME # 网络设备所在的总线信息，与 [ethtool](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/ethtool.md) 命令的 -i 选项输出的 bus-info 信息相同；与 [lspci](/docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/lspci.md) 的第一列信息相同；与 lshw -C net -businfo 的第一列信息相同

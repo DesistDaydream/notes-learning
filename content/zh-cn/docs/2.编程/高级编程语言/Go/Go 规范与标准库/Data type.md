@@ -7,7 +7,7 @@ weight: 2
 
 > 参考：
 >
-> - [官方文档，参考-规范-类型](https://go.dev/ref/spec#Types)
+> - [官方文档，参考 - 规范 - 类型](https://go.dev/ref/spec#Types)
 
 **Data Type(数据类型)** 用来对一组相关值进行分类，描述可对其执行的操作并定义它们的存储方式。 
 

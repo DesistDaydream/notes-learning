@@ -9,7 +9,7 @@ weight: 7
 
 > 参考：
 >
-> - [Go 官方文档，参考-指针类型](https://go.dev/ref/spec#Pointer_types)
+> - [Go 官方文档，参考 - 指针类型](https://go.dev/ref/spec#Pointer_types)
 
 在 Go 语言中，**Pointer(指针)** 可以有两种含义：
 
