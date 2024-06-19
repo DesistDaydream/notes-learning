@@ -18,7 +18,6 @@
       "obsidian_template",
       "Excalidraw",
       "files",
-      "search.md",
       "featured-background.jpg"
     ],
     "blog/copy": [
@@ -2277,13 +2276,13 @@
       "docs/7.信息安全/Access Control",
       "docs/7.信息安全/Network analysis",
       "docs/7.信息安全/Packet analyzer",
+      "docs/7.信息安全/Security software",
+      "docs/7.信息安全/Vulnerable.md",
       "docs/7.信息安全/Reverse engineering",
       "docs/7.信息安全/Crawler",
-      "docs/7.信息安全/中间人攻击与HTTPS抓包.md",
       "docs/7.信息安全/Hacking.md",
-      "docs/7.信息安全/Vulnerable.md",
       "docs/7.信息安全/Bastion Host.md",
-      "docs/7.信息安全/安全系统.md"
+      "docs/7.信息安全/中间人攻击与HTTPS抓包.md"
     ],
     "docs/7.信息安全/Crawler": [
       "docs/7.信息安全/Crawler/_index.md",
@@ -2371,6 +2370,7 @@
     "docs/7.信息安全/Security software": [
       "docs/7.信息安全/Security software/_index.md",
       "docs/7.信息安全/Security software/Security software.md",
+      "docs/7.信息安全/Security software/IDS_IPS.md",
       "docs/7.信息安全/Security software/Snort.md",
       "docs/7.信息安全/Security software/Snort Rule body.md"
     ],

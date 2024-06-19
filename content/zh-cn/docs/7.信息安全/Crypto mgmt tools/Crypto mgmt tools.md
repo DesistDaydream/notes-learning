@@ -162,7 +162,6 @@ export Namecom_Token="XXXXX"
 注意：这俩变量要使用 PRODUCTION(生产)环境的。Name.com 创建完 Token 后会有两个~一个用于生产，一个用于测试，对应不用的 API
 
 ```bash
-# 生成到 Nginx 目录
 acme.sh --issue --dns dns_namecom -d 102205.xyz -d *.102205.xyz
 ```
 
