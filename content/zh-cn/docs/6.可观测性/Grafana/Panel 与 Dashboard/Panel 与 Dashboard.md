@@ -45,13 +45,13 @@ weight: 1
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/pkl4xq/1616067984690-0e8784ba-2105-4902-8bf9-e279372d17d8.png)
 
-### Graph # 最常用的面板
+### Time series - 最常用的面板
 
 该可视化是 Grafana 生态系统中最常用的。它可以渲染为一条线，一条点的路径或一系列条形图。这种类型的图具有足够的通用性，几乎可以显示任何时间序列数据。
 
-详见：[(弃用)Graph 类型面板详解](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Time%20series%20类型面板/(弃用)Graph%20类型面板详解.md)
+详见: [Time series 类型面板](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Time%20series%20类型面板/Time%20series%20类型面板.md)
 
-改用 [Time series 类型面板](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Time%20series%20类型面板/Time%20series%20类型面板.md)
+老版本称为 Graph
 
 ### Heatmap
 
@@ -88,22 +88,3 @@ weight: 1
 文本面板使您可以为仪表板制作信息和描述面板。
 
 在“模式”下，选择要使用 markdown 还是 HTML 设置文本样式，然后在下面的框中输入内容。 Grafana 包含标题和段落以帮助您入门，或者您可以从其他编辑器粘贴内容。
-
-# 常用 Dashboard 推荐
-
-Kubernetes
-
-- [13105](https://grafana.com/grafana/dashboards/13105-k8s-dashboard-cn-20240513-starsl-cn/)
-
-Node exporter
-
-- 1860
-  - https://github.com/rfmoz/grafana-dashboards
-- [8919](https://grafana.com/grafana/dashboards/8919-1-node-exporter-for-prometheus-dashboard-cn-0413-consulmanager/)
-  - 国人出的，22 年4月12日之后不维护了
-  - [16098](https://grafana.com/grafana/dashboards/16098-1-node-exporter-for-prometheus-dashboard-cn-0417-job/) 新的，代替 8919
-
-Nginx
-
-- [9614](https://grafana.com/grafana/dashboards/9614-nginx-ingress-controller/)
-

@@ -44,10 +44,12 @@ Flask 和 Django 都是出色的 web 框架，可以帮助您快速构建 web �
 
 # Flask 框架
 
-> 参考：
+> 参考:
+>
 > - [GitHub 项目，pallets/flask](https://github.com/pallets/flask)
 
 # Django 框架
 
-> 参考：
+> 参考:
+>
 > - [GitHub 项目，django/django](https://github.com/django/django)

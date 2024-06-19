@@ -58,6 +58,12 @@ PCI_SLOT_NAME=0000:61:00.0
 
 # 通过 PCI 识别网络设备
 
+```bash
+for i in $(realpath $(ls /sys/bus/pci/devices/)); do cat $i/class | grep 0x0200; done
+```
+
+命令原理见下面的描述，我们首先观察物理机和虚拟机的一些 class 信息
+
 物理机
 
 ```bash

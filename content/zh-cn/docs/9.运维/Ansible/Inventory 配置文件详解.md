@@ -16,7 +16,7 @@ Ansible 可同时操作属于一个组的多台主机,组和主机之间的关�
 
 ## Inventory文件格式
 
-最常见的格式是 INI 和 YAML 格式，下面这是一个 INI 格式的 Inventory 示例
+最常见的格式是 [INI](/docs/2.编程/无法分类的语言/INI.md) 和 [YAML](/docs/2.编程/无法分类的语言/YAML.md) 格式，下面这是一个 INI 格式的 Inventory 示例
 
 ```ini
 # 例1:定义一个单独的主机。未分组的机器。Note:需要在“例2”中中括号定义组之前指定

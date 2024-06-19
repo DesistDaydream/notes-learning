@@ -8,9 +8,10 @@ weight: 4
 
 > 参考：
 > 
-> - 官方文档，使用 Ansible collections
+> - [官方文档，使用 Ansible collections](https://docs.ansible.com/ansible/latest/collections_guide/index.html)
 > - [官方文档，参考-Collection 索引](https://docs.ansible.com/ansible/latest/collections/index.html)
 
+**Collection(集合)**
 
 # 关联文件与配置
 

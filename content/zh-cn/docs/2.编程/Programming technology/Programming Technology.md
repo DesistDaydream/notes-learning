@@ -1,8 +1,8 @@
 ---
-title: 编程技术
-linkTitle: 编程技术
-date: 2023-11-18T11:57
-weight: 1
+title: Programming Technology
+linkTitle: Programming Technology
+date: 2024-06-20T11:00
+weight: 20
 ---
 
 # 概述
@@ -10,6 +10,8 @@ weight: 1
 > 参考：
 >
 > -
+
+**Programming Technology(编程技术)** 包含 XX、YY、etc.
 
 # CRUD(增删改查)
 

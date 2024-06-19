@@ -1282,7 +1282,7 @@
       "docs/2.编程/标记语言",
       "docs/2.编程/无法分类的语言",
       "docs/2.编程/Framework",
-      "docs/2.编程/编程技术",
+      "docs/2.编程/Programming technology",
       "docs/2.编程/Programming tools",
       "docs/2.编程/Programming environment",
       "docs/2.编程/项目实战"
@@ -1399,16 +1399,6 @@
       "docs/2.编程/标记语言/CSS.md",
       "docs/2.编程/标记语言/XML.md",
       "docs/2.编程/标记语言/Markdown.md"
-    ],
-    "docs/2.编程/编程技术": [
-      "docs/2.编程/编程技术/_index.md",
-      "docs/2.编程/编程技术/编程技术.md",
-      "docs/2.编程/编程技术/编程范式.md",
-      "docs/2.编程/编程技术/MIT  开源许可证.md",
-      "docs/2.编程/编程技术/排序.md",
-      "docs/2.编程/编程技术/ORM.md",
-      "docs/2.编程/编程技术/SDK 开发.md",
-      "docs/2.编程/编程技术/开发框架"
     ],
     "docs/2.编程/计算机科学": [
       "docs/2.编程/计算机科学/_index.md",
@@ -2062,8 +2052,7 @@
     ],
     "docs/6.可观测性/Grafana/Panel 与 Dashboard/Time series 类型面板": [
       "docs/6.可观测性/Grafana/Panel 与 Dashboard/Time series 类型面板/_index.md",
-      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Time series 类型面板/Time series 类型面板.md",
-      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Time series 类型面板/(弃用)Graph 类型面板详解.md"
+      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Time series 类型面板/Time series 类型面板.md"
     ],
     "docs/6.可观测性/Observability": [
       "docs/6.可观测性/Observability/_index.md",
@@ -2712,6 +2701,26 @@
       "docs/12.AI/Automation/Automation.md",
       "docs/12.AI/Automation/按键精灵",
       "docs/12.AI/Automation/RPA.md"
+    ],
+    "docs/2.编程/Programming technology": [
+      "docs/2.编程/Programming technology/_index.md",
+      "docs/2.编程/Programming technology/Programming Technology.md",
+      "docs/2.编程/Programming technology/编程范式.md",
+      "docs/2.编程/编程技术/MIT  开源许可证.md",
+      "docs/2.编程/Programming technology/排序.md",
+      "docs/2.编程/Programming technology/ORM.md",
+      "docs/2.编程/Programming technology/SDK 开发.md",
+      "docs/2.编程/编程技术/开发框架"
+    ],
+    "docs/2.编程/编程技术": [
+      "docs/2.编程/Programming technology/_index.md",
+      "docs/2.编程/Programming technology/Programming Technology.md",
+      "docs/2.编程/Programming technology/Library.md",
+      "docs/2.编程/Programming technology/编程范式.md",
+      "docs/2.编程/Programming technology/排序.md",
+      "docs/2.编程/Programming technology/ORM.md",
+      "docs/2.编程/Programming technology/SDK 开发.md",
+      "docs/2.编程/Programming technology/代码提交规范.md"
     ]
   },
   "actionBarOrder": {},

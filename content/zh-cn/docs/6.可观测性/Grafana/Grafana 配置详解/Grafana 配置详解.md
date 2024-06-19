@@ -22,7 +22,7 @@ Grafna 可以通过 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的
 
 假如现在的配置文件内容如下：
 
-```git
+```ini
 # default section
 instance_name = ${HOSTNAME}
 [security]
@@ -117,20 +117,20 @@ Grafana 的 Email 服务端配置。通过 smtp 部分的配置，Grafana 可以
 smtp:
   enabled: true
   host: "smtp.263.net:25"
-  user: "lich_wb@ehualu.com"
+  user: "desistdaydream@263.com"
   password: "邮箱密码"
-  from_address: "lich_wb@ehualu.com"
+  from_address: "desistdaydream@263.com"
   from_name: Grafana
 ```
 
 ```ini
 [smtp]
 enabled = true
-from_address = lich_wb@ehualu.com
+from_address = desistdaydream@263.com
 from_name = Grafana
 host = smtp.263.net:25
 password = 邮箱密码
-user = lich_wb@ehualu.com
+user = desistdaydream@263.com
 ```
 
 # grafana.ini 配置示例

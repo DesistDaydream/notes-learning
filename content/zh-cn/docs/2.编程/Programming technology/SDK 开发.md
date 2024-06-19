@@ -14,7 +14,7 @@ title: SDK 开发
 目录结构示例
 
 ```bash
-pkg/yuquesdk/
+pkg/my_sdk/
 ├── README.md
 ├── core
 │   ├── v1
@@ -62,6 +62,7 @@ func (c Client) RequestObj(api string, container interface{}, options *RequestOp
 ```
 
 这里面的示例，是把将要响应的数据当做 container，作为参数传入，然后通过 HTTP 请求获取到的返回值填到 container，最后返回 container。
+
 在华为云的 SDK 中，是另一种用法
 
 ```go

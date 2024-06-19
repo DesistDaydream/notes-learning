@@ -12,7 +12,7 @@ weight: 1
 
 **Modules(模块)** 也被称为 **Task Plugins(任务插件)** 或 **Library Plugins(插件库)**，Modules 是可以从 Ansible 的命令行或 Playbook 的任务中使用的代码块。Ansible 通常在受管理节点上执行每个模块以完成任务，并收集返回值。
 
-> 注意：在 Ansible 2.10 及以上的版本中，大多数模块都被托管到 **Collections(集合)** 中。
+> 注意：在 Ansible 2.10 及以上的版本中，大多数模块都被托管到 [**Collection(集合)**](/docs/9.运维/Ansible/Ansible%20Collection.md) 中。
 
 我们可以通过命令行使用模块执行任务，比如
 
@@ -97,6 +97,7 @@ hw-cloud-xngy-jump-server-linux-2 : ok=2    changed=1    unreachable=0    failed
 ```
 
 我们对比[官方文档中 command 模块的返回值](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html#return-values)，可以看到，与文档中的返回值保持一致。
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/shqrrv/1633792369531-e531b4d1-5c2b-427c-ade8-6207d5d6020b.png)
 
 ## 总结
@@ -104,7 +105,8 @@ hw-cloud-xngy-jump-server-linux-2 : ok=2    changed=1    unreachable=0    failed
 所以，这也是为什么将 Moduels 称为代码的原因，**所谓的 Modules，本质上就是代码写出来的程序，就像 Functions**，具有形参，可以接受实参，执行完成后，还会有返回值。Ansible 通过模块执行完一个任务之后，就会处理这些返回值，将其 或保存、或展示、或丢弃 等等。同时，在 Playbooks 中，还可以通过判断语句，根据返回值的内容，决定下一个任务的运行模式。
 
 我们可以通过 `ansible-doc -l` 命令查看所有可用的模块，或者从[官方文档-Collections 文档](https://docs.ansible.com/ansible/latest/collections/index.html#list-of-collections)中查看所有模块
-还可以使用`ansible-doc MODULE` 命令查看指定模块的文档
+
+还可以使用 `ansible-doc MODULE` 命令查看指定模块的文档
 
 # 模块分类
 

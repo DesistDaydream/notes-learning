@@ -11,8 +11,13 @@ weight: 20
 
 这是一个初始的 Time series 面板，有两条查询语句，更改了序列的名称。
 
-    sum(node_memory_MemTotal_bytes)
-    (sum(node_memory_MemTotal_bytes{} - node_memory_MemAvailable_bytes{}) / sum(node_memory_MemTotal_bytes{}))*100
+```promql
+sum(node_memory_MemTotal_bytes)
+```
+
+```promql
+(sum(node_memory_MemTotal_bytes{} - node_memory_MemAvailable_bytes{}) / sum(node_memory_MemTotal_bytes{}))*100
+```
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ab3yvw/1616067957167-730a2679-0ad0-488a-9c4c-8f3ba5ace79d.png)
 
