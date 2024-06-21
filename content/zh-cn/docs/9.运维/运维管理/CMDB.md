@@ -16,7 +16,7 @@ weight: 20
 CMDB 项目推荐
 
 - https://github.com/Combodo/iTop
-    - https://github.com/vbkunin/itop-docker
+  - https://github.com/vbkunin/itop-docker
 - https://github.com/TencentBlueKing/bk-cmdb
 - https://github.com/veops/cmdb 维易 CMDB
   - 文章: https://mp.weixin.qq.com/s/6W8DaDb3Y4NmK3rb9NGKAQ
@@ -26,7 +26,7 @@ CMDB 项目推荐
 # fiy
 
 > 参考：
-> 
+>
 > - [GitHub 项目，lanyulei/fiy](https://github.com/lanyulei/fiy)
 
 部署问题：
@@ -50,7 +50,7 @@ CMDB 项目推荐
 ## 蓝鲸 CMDB
 
 > 参考：
-> 
+>
 > - [GitHub 项目，TencentBlueKing/bk-cmdb](https://github.com/TencentBlueKing/bk-cmdb)
 
 ```bash

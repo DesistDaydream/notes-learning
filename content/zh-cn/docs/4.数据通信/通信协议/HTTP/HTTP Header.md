@@ -176,7 +176,14 @@ RFC 7231 中 HTTP Header 分类方式好像并不是特别好的方式，在 RFC
 
 [RFC 6265](https://datatracker.ietf.org/doc/html/rfc6265)
 
-| Header         | Header 分类 | Herader 用途                                               |
-| -------------- | ----------- | ---------------------------------------------------------- |
-| **Cookie**     | 请求头      | 客户端将存储的 cookie 在 Cookie 标头中发送到源服务器。     |
-| **Set-Cookie** | 响应头      | Set-Cookie HTTP 响应头用于将 cookie 从服务器发送到客户端。 |
+| Header         | Header 分类 | Herader 用途                                                                        |
+| -------------- | --------- | --------------------------------------------------------------------------------- |
+| **Cookie**     | 请求头       | 客户端将存储的 cookie 在 Cookie 标头中发送到源服务器。                                               |
+| **Set-Cookie** | 响应头       | Set-Cookie HTTP 响应头用于将 cookie 从服务器发送到客户端。客户端接收到 Set-Cookie 响应头后，将会咱自身内部设置 cookie。 |
+
+Notes: 如果想要设置 Cookie，服务端必须使用 Set-Cookie 将 cookie 的 key 和 value 发送给服务端。如果想要在登录时获取某些 Cookie 信息，也可以从 Set-Cookie 响应头中查找
+
+比如登录京东
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/http/202406211748714.png)
+
