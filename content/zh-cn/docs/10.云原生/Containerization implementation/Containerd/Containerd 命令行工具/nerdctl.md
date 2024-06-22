@@ -8,6 +8,7 @@ title: nerdctl
 >
 > - [GitHub 项目，containerd/nerdctl](https://github.com/containerd/nerdctl)
 > - [官方文档，命令参考](https://github.com/containerd/nerdctl#command-reference)
+>   - https://github.com/containerd/nerdctl/blob/main/docs/command-reference.md
 
 ## Network
 
@@ -81,6 +82,10 @@ NETWORK ID    NAME              FILE
 然后运行容器时，使用 `--net=containerd-net` 参数指定该网络，所有运行的容器，即可关联到指定的 containerd-net 网桥上。
 
 注意：nerdctl 默认的网络是无法修改的
+
+## Build
+
+nerdctl 构建镜像依赖 [BuildKit 构建工具](docs/10.云原生/Containerization%20implementation/构建%20OCI%20Image/BuildKit%20构建工具.md)
 
 # nerdctl 关联文件与配置
 

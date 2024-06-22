@@ -54,6 +54,7 @@ Note：目录名中的 overlay2 指的是 docker 当前 Storage Driver 类型，
 ## dockerd 程序关联文件
 
 **/etc/docker/daemon.json** # dockerd 服务运行时配置文件。该目录与文件需要自行创建，默认不存在，以 JSON 格式为守护程序设置任何配置选项。
+
 **/run/docker/** # container 的状态文件(state.json)、IO 文件 、netns 文件保存路径。
 
 - **./containerd/** # container 的 IO 文件(init-stdin、init-stdout)保存路径。其内目录名为 **ContainerID**。
@@ -84,6 +85,10 @@ Note：目录名中的 overlay2 指的是 docker 当前 Storage Driver 类型，
 
 - **./config.json** # docker login 后的信息都保存在此处，用户名和密码通过 base64 格式保存在其中。
 - **./cli-plugins/** # docker 命令行工具插件的保存路径。
+
+# Docker 安装
+
+[Docker 部署](docs/10.云原生/Containerization%20implementation/Docker/Docker%20部署.md)
 
 # Docker 日志介绍
 

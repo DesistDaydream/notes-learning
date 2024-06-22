@@ -25,7 +25,6 @@
       "blog/copy/Linux Torvalds 采访.md",
       "blog/copy/硬核致敬Linux ！30岁生日快乐！.md",
       "blog/copy/程序员的酒后真言.md",
-      "blog/copy/调度系统设计精要.md",
       "blog/copy/二十年老程序员的二十条心得：面试几乎没用，警惕很久没写过代码的“大牛”.md",
       "blog/copy/公众号,码农的荒岛求生-操作系统话题系列文章",
       "blog/copy/云原生",
@@ -1293,7 +1292,7 @@
       "docs/2.编程/API/Webservice And REST.md",
       "docs/2.编程/API/Swagger 介绍.md",
       "docs/2.编程/API/Swagger 工具.md",
-      "docs/2.编程/API/OpenAPI 介绍.md",
+      "docs/2.编程/API/OpenAPI.md",
       "docs/2.编程/API/OpenAPI 格式.md",
       "docs/2.编程/API/OpenAPI Tools.md",
       "docs/2.编程/API/Mock API.md",
@@ -1439,8 +1438,7 @@
       "docs/2.编程/高级编程语言/Rust",
       "docs/2.编程/高级编程语言/Java",
       "docs/2.编程/高级编程语言/HTML与CSS",
-      "docs/2.编程/高级编程语言/ECMAScript",
-      "docs/2.编程/高级编程语言/Perl.md"
+      "docs/2.编程/高级编程语言/ECMAScript"
     ],
     "docs/2.编程/高级编程语言/C": [
       "docs/2.编程/高级编程语言/C/_index.md",
@@ -1513,8 +1511,7 @@
     "docs/2.编程/高级编程语言/Go/Go 扩展": [
       "docs/2.编程/高级编程语言/Go/Go 扩展/_index.md",
       "docs/2.编程/高级编程语言/Go/Go 扩展/Go 扩展.md",
-      "docs/2.编程/高级编程语言/Go/Go 扩展/Go OpenAPI.md",
-      "docs/2.编程/高级编程语言/Go/Go 扩展/Go 语言现状.md"
+      "docs/2.编程/高级编程语言/Go/Go 扩展/Go OpenAPI.md"
     ],
     "docs/2.编程/高级编程语言/Go/Go 环境安装与使用": [
       "docs/2.编程/高级编程语言/Go/Go 环境安装与使用/_index.md",
@@ -2265,7 +2262,7 @@
       "docs/7.信息安全/Network analysis",
       "docs/7.信息安全/Packet analyzer",
       "docs/7.信息安全/Security software",
-      "docs/7.信息安全/Vulnerable.md",
+      "docs/7.信息安全/Security software/Vulnerable.md",
       "docs/7.信息安全/Reverse engineering",
       "docs/7.信息安全/Crawler",
       "docs/7.信息安全/Hacking.md",
@@ -2360,7 +2357,9 @@
       "docs/7.信息安全/Security software/Security software.md",
       "docs/7.信息安全/Security software/IDS_IPS.md",
       "docs/7.信息安全/Security software/Snort.md",
-      "docs/7.信息安全/Security software/Snort Rule body.md"
+      "docs/7.信息安全/Security software/Snort Rule body.md",
+      "docs/7.信息安全/Security software/Vulnerable.md",
+      "docs/7.信息安全/Security software/Utilities.md"
     ],
     "docs/8.通用技术": [
       "docs/8.通用技术/_index.md",

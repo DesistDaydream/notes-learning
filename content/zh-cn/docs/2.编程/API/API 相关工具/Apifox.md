@@ -143,6 +143,11 @@ try {
 }
 ```
 
-# 当响应数据经过编码或加密，如何在 Apifox 中处理？
+# 处理经过编码或加密的数据？
 
 https://mp.weixin.qq.com/s/xKqvbtLgTnKz1OXaey7kMQ
+
+# 在 Apifox 中调用其他编程语言
+
+https://mp.weixin.qq.com/s/wr5Tf0fXgRYV9RQeLRRlvw
+

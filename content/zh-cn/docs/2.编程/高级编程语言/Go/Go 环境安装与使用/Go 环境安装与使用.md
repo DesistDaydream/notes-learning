@@ -1,5 +1,7 @@
 ---
 title: Go 环境安装与使用
+linkTitle: Go 环境安装与使用
+date: 2024-06-21T20:38
 weight: 1
 ---
 
@@ -10,7 +12,7 @@ weight: 1
 > - [官方文档，下载并安装 Go](https://golang.org/doc/install)
 > - [官方文档，安装多个版本的 Go](https://golang.org/doc/manage-install)
 > - [Go 包，标准库-cmd-go](https://pkg.go.dev/cmd/go)
-> - [GitHub 项目-goproxy-goproxy.io 与 goproxy.cn 说明](https://github.com/goproxy/goproxy.cn/issues/61)
+> - [GitHub 项目 - goproxy-goproxy.io 与 goproxy.cn 说明](https://github.com/goproxy/goproxy.cn/issues/61)
 
 我们可以通过一个名为 go 的二进制文件实现绝大部分日常的 编码、编译 等工作，只要安装好 Go 的环境即可。
 

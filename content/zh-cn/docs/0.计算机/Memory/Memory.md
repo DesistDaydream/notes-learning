@@ -22,3 +22,7 @@ RAM包含多路复用和多路分解电路，用于将数据线连接到寻址�
 
 # Error-Correcting Code memory
 
+# Rank, 位宽, 颗粒
+
+[公众号 - 开发内功修炼，理解内存的Rank、位宽以及内存颗粒内部结构](https://mp.weixin.qq.com/s/wCzeFhTE8OEWaZmMhc0iUw)
+

@@ -137,11 +137,12 @@ pkg 中存放的是可供项目内部/外部所使用的公共性代码，例如
 ### internal
 
 internal 包主要用处在于提供一个项目级别的代码保护方式，存放在其中的代码仅供项目内部使用。具体使用的规则是：.../a/b/c/internal/d/e/f 仅仅可以被.../a/b/c 下的目录导入，.../a/b/g 则不允许。internal 是 Go 1.4 版本中引入的特性，更多信息可以参考[这里](https://link.zhihu.com/?target=https%3A//golang.org/doc/go1.4%23internalpackages)。
+
 在 internal 内部可以继续通过命名对目录的共享范围做区分，例如 internal/myapp 表示该目录下的代码是供 myapp 应用使用的；internal/pkg 表示该目录下的代码是可以供项目内多个应用使用的。
 
 ### go.mod && go.sum
 
-go.mod 与 go.sum 是采用 go modules 进行依赖管理所生成的配置文件。go modules 是 Go 1.11 版本中引入的版本管理功能，目前已经是 go 依赖管理的主流方式，所以此处不再讨论 vendor，dep 等依赖管理方式所生成的目录。
+go.mod 与 go.sum 是采用 [Go Module](docs/2.编程/高级编程语言/Go/Go%20环境安装与使用/Go%20Module.md) 进行依赖管理所生成的配置文件。Go Modules 是 Go 1.11 版本中引入的版本管理功能，目前已经是 go 依赖管理的主流方式，所以此处不再讨论 vendor，dep 等依赖管理方式所生成的目录。
 
 ### Makefile
 
@@ -255,7 +256,7 @@ Git 钩子。
 
 项目中不应该包含 src 目录
 
-在 Java 项目中，会常见 src 目录，但在 Go 项目中，并不推荐这么做。在 Go 1.11 之前，Go 项目是放在 $GOPATH/src 下，如果项目中再包含 src 目录，那么代码结构就会类似： `$GOPATH/src/my-project/src/app.go`的结构，容易造成混淆。在 Go 引入 modules 之后，项目可以不用写在 $GOPATH 下，但是依然不推荐项目中采用`src` 来命名目录。
+在 Java 项目中，会常见 src 目录，但在 Go 项目中，并不推荐这么做。在 Go 1.11 之前，Go 项目是放在 `$GOPATH/src` 下，如果项目中再包含 src 目录，那么代码结构就会类似： `$GOPATH/src/my-project/src/app.go`的结构，容易造成混淆。在 Go 引入 modules 之后，项目可以不用写在 `$GOPATH` 下，但是依然不推荐项目中采用`src` 来命名目录。
 
 ## 命名规范
 
@@ -301,18 +302,22 @@ gopher 第五条：请学会约定
 
 多变量声明
 
-    var (
-        name string
-        age int
-    )
+```gp
+var (
+    name string
+    age int
+)
+```
 
 注释规范
 
-    // Add 两数相加
-    // 两个整数相加，并返回和。
-    func Add(n1, n2 int)int{
-        return n1 + n2
-    }
+```go
+// Add 两数相加
+// 两个整数相加，并返回和。
+func Add(n1, n2 int)int{
+    return n1 + n2
+}
+```
 
 ## 依赖管理
 
@@ -353,5 +358,7 @@ CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build main.go
 ```
 
 # 版本变化
+
+[Go 语言现状调查报告](https://blog.jetbrains.com/zh-hans/go/2021/02/19/the-state-of-go/)
 
 Go 1.16 将会弃用 io/ioutil 包，ioutil 包中的功能将会由 io 及 os 包所替代。详见：[#40025](https://github.com/golang/go/issues/40025)、[Go 1.16 Release Notes](https://golang.org/doc/go1.16#ioutil)

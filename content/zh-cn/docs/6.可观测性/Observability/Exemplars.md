@@ -9,7 +9,7 @@ title: Exemplars
 > - <https://prometheus.io/docs/prometheus/latest/feature_flags/#exemplars-storage>
 > - <https://grafana.com/docs/grafana/latest/basics/exemplars/>
 
-这是啥？~CNCF 可观测性白皮书最后提到了这个
+这是啥？CNCF 可观测性白皮书最后提到了这个
 
 ### Trace ID 实际应用
 
