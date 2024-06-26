@@ -631,6 +631,7 @@
       "docs/10.云原生/Containerization implementation/Docker/_index.md",
       "docs/10.云原生/Containerization implementation/Docker/Docker 介绍",
       "docs/10.云原生/Containerization implementation/Docker/Docker 部署.md",
+      "docs/10.云原生/Containerization implementation/Docker/Docker 配置详解.md",
       "docs/10.云原生/Containerization implementation/Docker/Docker Image.md",
       "docs/10.云原生/Containerization implementation/Docker/Docker Runtime.md",
       "docs/10.云原生/Containerization implementation/Docker/Docker 存储.md",
@@ -1419,7 +1420,7 @@
     "docs/2.编程/计算机科学/Object-oriented Programming": [
       "docs/2.编程/计算机科学/Object-oriented Programming/_index.md",
       "docs/2.编程/计算机科学/Object-oriented Programming/OOP.md",
-      "docs/2.编程/计算机科学/Object-oriented Programming/设计模式.md"
+      "docs/2.编程/Programming technology/设计模式.md"
     ],
     "docs/2.编程/计算机科学/假如你来发明编程语言": [
       "docs/2.编程/计算机科学/假如你来发明编程语言/_index.md",
@@ -2171,8 +2172,8 @@
       "docs/6.可观测性/监控系统/Prometheus/HTTPS 和 Authentication(认证).md",
       "docs/6.可观测性/监控系统/Prometheus/PromQL",
       "docs/6.可观测性/监控系统/Prometheus/Prometheus API",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 管理",
       "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发",
+      "docs/6.可观测性/监控系统/Prometheus/Prometheus 管理",
       "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品"
     ],
     "docs/6.可观测性/监控系统/Prometheus/PromQL": [
@@ -2195,9 +2196,9 @@
       "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Prometheus 开发.md",
       "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/PromQL 查询逻辑.md",
       "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Instrumenting 原理解析",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Exporter 开发问题.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/使用 Go 开发 Prometheus Exporter.md"
+      "docs/6.可观测性/监控系统/Instrumenting/Instrumenting 开发",
+      "docs/6.可观测性/监控系统/Instrumenting/Instrumenting 开发/Exporter 开发问题.md",
+      "docs/6.可观测性/监控系统/Instrumenting/Instrumenting 开发/使用 Go 开发 Prometheus Exporter.md"
     ],
     "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑": [
       "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑/_index.md",
@@ -2655,11 +2656,6 @@
       "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具/fio 磁盘性能测试工具/fio 磁盘性能测试工具.md",
       "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具/fio 磁盘性能测试工具/fio 参数详解.md"
     ],
-    "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Instrumenting 原理解析": [
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Instrumenting 原理解析/_index.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Instrumenting 原理解析/Instrumenting 原理解析.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Instrumenting 原理解析/Exporter 开发实践.md"
-    ],
     "docs/2.编程/计算机科学/Data Type": [
       "docs/2.编程/计算机科学/Data Type/_index.md",
       "docs/2.编程/计算机科学/Data Type/Data type AND Literal.md",
@@ -2703,12 +2699,13 @@
     "docs/2.编程/Programming technology": [
       "docs/2.编程/Programming technology/_index.md",
       "docs/2.编程/Programming technology/Programming Technology.md",
+      "docs/2.编程/Programming technology/Library.md",
       "docs/2.编程/Programming technology/编程范式.md",
-      "docs/2.编程/编程技术/MIT  开源许可证.md",
       "docs/2.编程/Programming technology/排序.md",
       "docs/2.编程/Programming technology/ORM.md",
       "docs/2.编程/Programming technology/SDK 开发.md",
-      "docs/2.编程/编程技术/开发框架"
+      "docs/2.编程/Programming technology/设计模式.md",
+      "docs/2.编程/Programming technology/代码提交规范.md"
     ],
     "docs/2.编程/编程技术": [
       "docs/2.编程/Programming technology/_index.md",
@@ -2719,6 +2716,11 @@
       "docs/2.编程/Programming technology/ORM.md",
       "docs/2.编程/Programming technology/SDK 开发.md",
       "docs/2.编程/Programming technology/代码提交规范.md"
+    ],
+    "docs/6.可观测性/监控系统/Instrumenting/Instrumenting 开发": [
+      "docs/6.可观测性/监控系统/Instrumenting/Instrumenting 开发/_index.md",
+      "docs/6.可观测性/监控系统/Instrumenting/Instrumenting 开发/Instrumenting 原理解析.md",
+      "docs/6.可观测性/监控系统/Instrumenting/Instrumenting 开发/Exporter 开发实践.md"
     ]
   },
   "actionBarOrder": {},

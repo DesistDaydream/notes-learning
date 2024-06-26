@@ -6,7 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，golang/go](https://github.com/golang/go)
 > - [官网](https://golang.org/)
 > - [Google 开放源代码](https://cs.opensource.google/go)
@@ -71,7 +71,7 @@ Hello World
 # Go 范儿
 
 > 参考：
-> 
+>
 > - [GitHub 项目 Wiki，golang/go-Wiki-Go 代码审查](https://github.com/golang/go/wiki/CodeReviewComments)
 > - [官方文档，有效的 Go-名称](https://go.dev/doc/effective_go#names)
 >     - [MakeOptim 博客，Effective Go 中文](https://makeoptim.com/golang/effective-go)(官方文档的中文翻译)
@@ -142,7 +142,7 @@ internal 包主要用处在于提供一个项目级别的代码保护方式，�
 
 ### go.mod && go.sum
 
-go.mod 与 go.sum 是采用 [Go Module](docs/2.编程/高级编程语言/Go/Go%20环境安装与使用/Go%20Module.md) 进行依赖管理所生成的配置文件。Go Modules 是 Go 1.11 版本中引入的版本管理功能，目前已经是 go 依赖管理的主流方式，所以此处不再讨论 vendor，dep 等依赖管理方式所生成的目录。
+go.mod 与 go.sum 是采用 [Go Module](/docs/2.编程/高级编程语言/Go/Go%20环境安装与使用/Go%20Module.md) 进行依赖管理所生成的配置文件。Go Modules 是 Go 1.11 版本中引入的版本管理功能，目前已经是 go 依赖管理的主流方式，所以此处不再讨论 vendor，dep 等依赖管理方式所生成的目录。
 
 ### Makefile
 

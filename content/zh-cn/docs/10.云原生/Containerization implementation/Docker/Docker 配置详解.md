@@ -8,7 +8,7 @@ weight: 3
 
 > 参考：
 >
-> - [官方文档，参考-命令行参考-Daemon CLI](https://docs.docker.com/engine/reference/commandline/dockerd/)
+> - [官方文档，参考 - 命令行参考 - Daemon CLI](https://docs.docker.com/engine/reference/commandline/dockerd/)
 > - https://blog.csdn.net/u013948858/article/details/79974796
 
 Docker 的守护进程为 dockerd，dockerd 可以通过两种方式配置运行时行为
@@ -16,7 +16,7 @@ Docker 的守护进程为 dockerd，dockerd 可以通过两种方式配置运行
 - 通过配置文件 /etc/docker/daemon.json 进行配置
 - 使用 dockerd 命令的 flags 进行配置，可以将 flags 添加到 dockerd.service 中。
 
-> Note：
+> [!Note]
 > 配置文件中的配置，也可以通过 dockerd 的命令行参数(也就是 flags)指定，比如配置文件中的 data-root 字段，对应的 dockerd flags 为 --data-root STRING。
 
 ## 配置文件示例
@@ -203,7 +203,7 @@ https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configurati
   "proxies": {
     "http-proxy": "http://192.168.254.254:7890",
     "https-proxy": "http://192.168.254.254:7890",
-    "no-proxy": "*.test.example.com,.example.org,127.0.0.0/8,docker.io"
+    "no-proxy": "*.test.example.com,.example.org,127.0.0.0/8"
   }
 }
 ```

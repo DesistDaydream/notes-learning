@@ -150,7 +150,7 @@ Prometheus 将所有当前使用的块保留在内存中。此外，它将最新
 
 在一般情况下，Prometheus 中存储的每一个样本大概占用 1-2 字节大小。如果需要对 Prometheus Server 的本地磁盘空间做容量规划时，可以通过以下公式计算：
 
-```
+```text
 磁盘大小 = 保留时间(秒) * 每秒获取样本数 * 样本大小
 ```
 
@@ -167,8 +167,6 @@ rate(prometheus_tsdb_compaction_chunk_size_bytes_sum[2h])
 /
 rate(prometheus_tsdb_compaction_chunk_samples_sum[2h])
 ```
-
-{instance="0.0.0.0:8890", job="prometheus"}  1.252747585939941
 
 查看当前每秒获取的样本数：
 
@@ -200,9 +198,12 @@ rate(prometheus_tsdb_head_samples_appended_total[1h])
 * 7 * 24 * 3600 / 1024 / 1024 / 1024
 ```
 
+> 由于单位是 Bytes，所以上面例子除了 3 个 1024 后结果是 GiB。
+
 ## 故障恢复
 
 如果怀疑数据库中的损坏引起的问题，则可以通过使用 storage.local.dirtyflag 配置，来启动服务器来强制执行崩溃恢复。
+
 如果没有帮助，或者如果您只想删除现有的数据库，可以通过删除存储目录的内容轻松地启动
 
 # Remote Storage(远程存储)

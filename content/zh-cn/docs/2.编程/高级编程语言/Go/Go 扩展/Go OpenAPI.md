@@ -2,7 +2,7 @@
 title: Go OpenAPI
 ---
 
-# 自动为 Go 代码生成 [OpenAPI](docs/2.编程/API/OpenAPI.md) 格式文档
+# 自动为 Go 代码生成 [OpenAPI](/docs/2.编程/API/OpenAPI.md) 格式文档
 
 可选项目：[go-swagger](https://github.com/go-swagger/go-swagger)、[swaggo](https://github.com/swaggo/swag)
 

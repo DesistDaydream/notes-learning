@@ -269,23 +269,33 @@ Prometheus 将会根据这里的字段配置，以发现需要 Scrape 指标的�
 
 适用于推送告警时的 Relabel 功能，配置与 [relabel_configs](#PGKul) 相同
 
-**alertmanager**(\[]OBJECT)
+**alertmanager**(\[][alertmanager](#alertmanager)) # 该字段配置方式与 scrape_config 字段的配置非常相似，只不过不是配置抓取目标，而是配置推送告警的目标
+
+### alertmanager
 
 https://prometheus.io/docs/prometheus/latest/configuration/configuration/#alertmanager_config
 
-> 该字段配置方式与 scrape_config 字段的配置非常相似，只不过不是配置抓取目标，而是配置推送告警的目标
-
 alertmanager 字段指定了 Prometheus Server 发送警报的目标 Alertmanager，还提供了参数来配置如何与这些 Alertmanager 通信。此外，relabel_configs 允许从已发现的实体中选择 Alertmanagers，并对使用的 API 路径进行高级修改，该路径通过 **alerts_path** 标签暴露。
 
-**alerts.timeout(DURATION)** # 推送警报时，每个目标 Alertmanager 超时，单位：秒。`默认值: 10`。
-
-**timeout(DURATION)** # 推送告警时的超时时间。
+**timeout(DURATION)** # 推送警报时，每个目标 Alertmanager 超时，单位：秒。`默认值: 10`。
 
 **api_version(STRING)** # 推送告警时，应该使用哪个版本的 Alertmanager 路径。`默认值：v2`。
 
 **path_prefix(PATH)** # 推送告警时的，目标路径前缀。`默认值：/`。
 
 - 注意：就算指定了其他路径，也会默认在末尾添加 `/api/v2/alerts`
+
+#### Alerts 推送目标的配置
+
+Prometheus 根据这部分配置来推送需要
+
+**static_configs**([static_configs](#static_configs)) # 静态配置。指定推送告警时的目标。
+
+- 具体配置详见下文 [静态目标发现](#静态目标发现)
+
+**XXX_sd_configs**([]OBJECT) # 动态配置。动态发现可供推送告警的 alertmanager-XXXX。不同的服务发现，有不同的配置方式。与 scrape_configs 字段中的 XXX_sd_configs 配置类似。
+
+- 具体配置详见下文 [动态目标发现](#动态目标发现)
 
 #### HTTP 配置
 
@@ -308,18 +318,6 @@ alertmanager 字段指定了 Prometheus Server 发送警报的目标 Alertmanage
 **oauth2(Object)** # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
 
 **tls_config(Object)** # 指定推送告警时的 TLS 设定
-
-#### Alerts 推送目标的配置
-
-Prometheus 根据这部分配置来推送需要
-
-**static_configs**([static_configs](#static_configs)) # 静态配置。指定推送告警时的目标。
-
-- 具体配置详见下文 [静态目标发现](#静态目标发现)
-
-**XXX_sd_configs**([]OBJECT) # 动态配置。动态发现可供推送告警的 alertmanager- XXXX # 不同的服务发现，有不同的配置方式。与 scrape_configs 字段中的 XXX_sd_configs 配置类似。
-
-- 具体配置详见下文 [动态目标发现](#IWvg5)
 
 #### Relabel 配置
 

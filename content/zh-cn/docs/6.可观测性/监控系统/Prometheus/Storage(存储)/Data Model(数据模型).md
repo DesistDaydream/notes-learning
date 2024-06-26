@@ -167,7 +167,7 @@ type LabelValue string
 node_cpu{cpu="cpu0",mode="idle"} 362812.789625
 ```
 
-## Counter(计数器) # 只增不减的计数器
+## Counter(计数器) - 只增不减的计数器
 
 Counter 类型的指标其工作方式和计数器一样，只增不减（除非系统发生重置）。常见的监控指标，如 http_requests_total，node_cpu 都是 Counter 类型的监控指标。 一般在定义 Counter 类型指标的名称时推荐使用\_total 作为后缀。
 
@@ -181,7 +181,7 @@ rate(http_requests_total\[5m])
 
 topk(10, http_requests_total)
 
-## Gauge(仪表盘) # 可增可减的 Gauge
+## Gauge(仪表盘) - 可增可减的 Gauge
 
 与 Counter 不同，Gauge 类型的指标侧重于反应系统的当前状态。因此这类指标的样本数据可增可减。常见指标如：node_memory_MemFree(主机当前空闲的内容大小)、node_memory_MemAvailable(可用内存大小)都是 Gauge 类型的监控指标。
 

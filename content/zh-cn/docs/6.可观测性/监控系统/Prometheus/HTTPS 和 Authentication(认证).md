@@ -9,9 +9,9 @@ weight: 7
 
 > 参考：
 >
-> - [官方文档,Prometheus-配置-HTTPS 和 认证](https://prometheus.io/docs/prometheus/latest/configuration/https/)
-> - [官方文档,指南-基础认证](https://prometheus.io/docs/guides/basic-auth/)
-> - [Ngxin Ingress Controller 官方文档,认证-基础认证](https://kubernetes.github.io/ingress-nginx/examples/auth/basic/)
+> - [官方文档，Prometheus - 配置 - HTTPS 和 认证](https://prometheus.io/docs/prometheus/latest/configuration/https/)
+> - [官方文档，指南 - 基础认证](https://prometheus.io/docs/guides/basic-auth/)
+> - [Ngxin Ingress Controller 官方文档，认证-基础认证](https://kubernetes.github.io/ingress-nginx/examples/auth/basic/)
 > - [知乎](https://www.jianshu.com/p/4d5aa1995de3)
 
 认证功能的发展：
@@ -30,12 +30,12 @@ weight: 7
 **通过 htpasswd 生成一个“auth”文件;用来存取我们创建的用户及加密之后的密码**
 
 ```bash
-root@desistdaydream:~# htpasswd -c auth admin
+~]# htpasswd -c auth admin
 New password:
 Re-type new password:
 Adding password for user admin
 # 查看这个文件，可以看到密码是加密之后的字符串
-root@desistdaydream:~# cat auth
+~]# cat auth
 admin:$apr1$8NSwCSR3$s5G25cvkaUDAoxEFtaGZ11
 # 密码：ehl1234
 ```
@@ -43,10 +43,10 @@ admin:$apr1$8NSwCSR3$s5G25cvkaUDAoxEFtaGZ11
 **创建 kubernetes secret 来存储 auth 文件中的用户名和密码**
 
 ```yaml
-root@desistdaydream:~# kubectl create -n monitoring secret generic basic-auth --from-file=auth
+~]# kubectl create -n monitoring secret generic basic-auth --from-file=auth
 secret "basic-auth" created
 
-root@desistdaydream:~# kubectl get secrets -n monitoring basic-auth -oyaml | neat
+~]# kubectl get secrets -n monitoring basic-auth -oyaml | neat
 apiVersion: v1
 data:
   auth: YWRtaW46JGFwcjEkOE5Td0NTUjMkczVHMjVjdmthVURBb3hFRnRhR1oxMQo=
@@ -65,7 +65,7 @@ type: Opaque
 **在 ingress 资源中添加注释**
 
 ```yaml
-root@desistdaydream:~# kubectl get ingress -n monitoring  monitor-bj-net-k8s-prometheus -oyaml | neat
+~]# kubectl get ingress -n monitoring  monitor-bj-net-k8s-prometheus -oyaml | neat
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -108,13 +108,13 @@ Prometheus 通过 `--web.config.file` 命令行标志来开启 **TLS** 或者 **
 
 该文件有 3 个主要字段
 
-- tls_server_config
-- http_server_config
-- basic_auth_users
+- **tls_server_config**([tls_server_config](#tls_server_config)) # 为 Prometheus 开启 TLS
+- **http_server_config**([http_server_config](#http_server_config)) # 为 Prometheus 开启 HTTP/2。注意，HTTP/2 仅支持 TLS
+- **basic_auth_users**(map[STRING]STRING) # 为 Prometheus Server 开启基本认证
+  - KEY 是用户名，VALUE 是密码
+  - 注意：密码必须是经过 hash 的字符串，可以通过[这个网站](https://bcrypt-generator.com/)在线获取 hash 过的字符串。如果没有任何配置，则不开启任何 TLS 或 认证，只要配置了某个字段，就默认开启相关功能。
 
-如果没有任何配置，则不开启任何 TLS 或 认证，只要配置了某个字段，就默认开启相关功能。
-
-### tls_server_config(Object) # 为 Prometheus 开启 TLS
+### tls_server_config
 
 - **cert_file(FileName)** # TLS 所需的证书文件
 - **key_file(FileName)** # TLS 所需的私钥文件
@@ -160,18 +160,13 @@ Elliptic curves that will be used in an ECDHE handshake, in preference
 
   ==========================
 
-### http_server_config(Object) # 为 Prometheus 开启 HTTP/2。注意，HTTP/2 仅支持 TLS
+### http_server_config
 
-- **http2(BOOLEAN)** # `默认值：true`
+**http2(BOOLEAN)** # `默认值：true`
 
 Usernames and hashed passwords that have full access to the web
 \# server via basic authentication. If empty, no basic authentication is
 \# required. Passwords are hashed with bcrypt.
-
-### basic_auth_users(map\[STRING]STRING) # 为 Prometheus Server 开启基本认证
-
-- **\<KEY>(VALUE)** # KEY 是用户名，VALUE 是密码
-  - 注意：密码必须是经过 hash 的字符串，可以通过[这个网站](https://bcrypt-generator.com/)在线获取 hash 过的字符串
 
 ## 配置示例
 
@@ -189,3 +184,4 @@ basic_auth_users:
 启动 Prometheus 后，将会需要认证信息，效果如下：
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/bx144g/1628063307526-21ac3e4b-150d-4e77-9a7c-5069ad006369.png)
+

@@ -37,7 +37,7 @@ Canoo 公司有一项核心技术专利，这就是它们的通用电动底盘�
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/egzxwb/1624588718509-9945a71c-556e-4b5a-be9f-8a123c68473c.png)
 
-在 [Windows](docs/1.操作系统/Operating%20system/Microsoft%20OS/Microsoft%20OS.md) 平台就是给程序员提供编程接口的是 Windows API，这层 API 包罗万象，不但包括上文提到对系统调用的封装，还包括其它功能，像创建带有图形界面的应用程序等等。**但在 [Linux](docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 世界你找不到一种类似 Windows API 的东西**，毕竟 Windows 是微软自家产品，什么都可以打包起来，Linux 只是一个开源的内核，如果一定要找一个类似的东西话那就是 libc，也就是 C 标准库，这里同样包括了对系统调用的封装以及一些库函数，但 libc 不包含创建带有图形界面应用程序的功能。现在我们知道了，操作系统需要提供两种接口：
+在 [Windows](/docs/1.操作系统/Operating%20system/Microsoft%20OS/Microsoft%20OS.md) 平台就是给程序员提供编程接口的是 Windows API，这层 API 包罗万象，不但包括上文提到对系统调用的封装，还包括其它功能，像创建带有图形界面的应用程序等等。**但在 [Linux](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 世界你找不到一种类似 Windows API 的东西**，毕竟 Windows 是微软自家产品，什么都可以打包起来，Linux 只是一个开源的内核，如果一定要找一个类似的东西话那就是 libc，也就是 C 标准库，这里同样包括了对系统调用的封装以及一些库函数，但 libc 不包含创建带有图形界面应用程序的功能。现在我们知道了，操作系统需要提供两种接口：
 
 - 给用户提供操作接口。
 - 给程序员提供编程接口。

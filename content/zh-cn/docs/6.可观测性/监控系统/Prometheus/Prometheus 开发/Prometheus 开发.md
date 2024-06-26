@@ -1,5 +1,8 @@
 ---
 title: Prometheus 开发
+linkTitle: Prometheus 开发
+date: 2024-06-26T17:15
+weight: 1
 ---
 
 # 概述
@@ -58,4 +61,7 @@ title: Prometheus 开发
 > - [prometheus/client_golang](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus?utm_source=gopls#section-documentation)
 > - <https://github.com/SongLee24/prometheus-exporter>
 
-prometheus 包是一个 Core Instrumentation(核心仪器化) 的包。这个包为监控提供了用来仪器代码的 metrics 原语
+prometheus 包是一个 Core Instrumentation(核心仪器化) 的包。这个包为监控提供了用来编写 Exporter 代码的 metrics 原语
+
+https://github.com/prometheus/exporter-toolkit/blob/master/docs/introduction.md
+

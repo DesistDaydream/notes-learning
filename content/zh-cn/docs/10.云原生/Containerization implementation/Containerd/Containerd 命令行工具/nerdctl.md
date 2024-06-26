@@ -85,7 +85,7 @@ NETWORK ID    NAME              FILE
 
 ## Build
 
-nerdctl 构建镜像依赖 [BuildKit 构建工具](docs/10.云原生/Containerization%20implementation/构建%20OCI%20Image/BuildKit%20构建工具.md)
+nerdctl 构建镜像依赖 [BuildKit 构建工具](/docs/10.云原生/Containerization%20implementation/构建%20OCI%20Image/BuildKit%20构建工具.md)
 
 # nerdctl 关联文件与配置
 
@@ -161,6 +161,6 @@ v0.12.1 版本
 ## 创建容器后无法替换 nerdctl 二进制文件
 
 ```bash
-~]# cp nerdctl /usr/local/bin/nerdctl 
+~]# cp nerdctl /usr/local/bin/nerdctl
 cp: cannot create regular file '/usr/local/bin/nerdctl': Text file busy
 ```

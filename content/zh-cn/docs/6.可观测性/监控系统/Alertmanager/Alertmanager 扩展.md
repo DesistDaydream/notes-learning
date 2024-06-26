@@ -5,16 +5,28 @@ title: Alertmanager 扩展
 # 概述
 
 > 参考：
->
-> - [GitHub 项目，prymitive/karma](https://github.com/prymitive/karma)
-> - [公众号-k8s 技术圈，超漂亮的 Alertmanager 可视化面板 - karma](https://mp.weixin.qq.com/s/uHSlzuVBb51-qgX92pEnLQ)
-> - [GitHub 项目，feiyu563/PrometheusAlert](https://github.com/feiyu563/PrometheusAlert)
-> - [GitHub 项目，kubesphere/notification-manager](https://github.com/kubesphere/notification-manager)
-> - [GitHub 项目，timonwong/prometheus-webhook-dingtalk](https://github.com/timonwong/prometheus-webhook-dingtalk)
 
-Alertmanager 自带一个 UI 界面，可以用来查看报警和静默管理，但是还缺乏一个 Dashboard 必要的一些功能，比如报警历史记录等等，karma 这个工具就可以来帮助增强 Alertmanager 的可视化功能。
+Alertmanager 自带一个 UI 界面，可以用来查看报警和静默管理。但是告警发送目标、历史告警、etc. 个性化功能还比较缺，有很多项目可以补充这些能力。
 
-feiyu563/PrometheusAlert 可以提供更多的通知功能，将告警发送到各种地方。
+[GitHub 项目，prymitive/karma](https://github.com/prymitive/karma)
+
+- [公众号-k8s 技术圈，超漂亮的 Alertmanager 可视化面板 - karma](https://mp.weixin.qq.com/s/uHSlzuVBb51-qgX92pEnLQ)
+- 比如报警历史记录等等
+
+[GitHub 项目，feiyu563/PrometheusAlert](https://github.com/feiyu563/PrometheusAlert) # 可以提供更多的通知功能，将告警发送到各种地方。
+
+- 利用 template.FuncMap 函数在 go tmpl 中加入了一些自定义函数，e.g. toUpper、etc.
+- 该程序在使用 [Alertmanager 数据结构](/docs/6.可观测性/监控系统/Alertmanager/Alertmanager%20数据结构.md) 中的 webhook 推送的数据结构时，虽然设计了 struct，但是在模板中调用 struct 中的属性时，开头字母要是小写，<font color="#ff0000">这种模板跟很多扩展都不通用</font>。
+
+[GitHub 项目，kubesphere/notification-manager](https://github.com/kubesphere/notification-manager) # kubesphere 出的，只有 k8s 的。
+
+[GitHub 项目，timonwong/prometheus-webhook-dingtalk](https://github.com/timonwong/prometheus-webhook-dingtalk) # 对接钉钉。提供 pr，增加过 feature
+
+- 利用 template.FuncMap 函数在 go tmpl 中加入了一些自定义函数，e.g. upper、etc.
+
+https://github.com/rea1shane/a2w # 对接企业微信
+
+- 利用 template.FuncMap 函数在 go tmpl 中加入了一些自定义函数，e.g. timeFormat、etc.
 
 # notification-manager
 
@@ -36,9 +48,9 @@ curl -XPOST http://localhost:19093/api/v2/alerts -d @./alerts.json
 **receivers(OBJECT)** #
 
 - **globalReceiverSelector(OBJECT)** #
-  - 该字段内容详见[ LabelSelector](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/LabelSelector 详解.md)。
+  - 该字段内容详见 [LabelSelector](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
 - **tenantReceiverSelector(OBJECT)** #
-  - 该字段内容详见[ LabelSelector](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/1.API、Resource(资源)、Object(对象)/API%20 参考/Common%20Definitions(通用定义)/LabelSelector%20 详解.md 容器编排系统/1.API、Resource(资源)、Object(对象)/API 参考/Common Definitions(通用定义)/LabelSelector 详解.md)。
+  - 该字段内容详见 [LabelSelector](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
 - **tenantKey(STRING)** #
 
 示例:
@@ -60,7 +72,9 @@ receivers:
 ### 通知管理器的 Webhook 与 Dispatcher 相关字段
 
 **args([]TYPE)** # 设定 NotificationManager Webhook 的启动参数。
+
 **batchMaxSize(INT)** # 从缓存中获取数据时最大的告警数量。`默认值：100`
+
 **batchMaxWait(DURATION)** # 从缓存中获取数据的等待时间。`默认值：1m`。即每隔一分钟获取一次数据
 
 > batchMaxSize 与 batchMaxWait 说明：Notification-Manager 接收到的告警数据首先会被推送到缓存中，再从缓存中批量取出数据并行处理。所以可以通过 `batchMaxSize` 与 `batchMaxWait` 两个字段来配置每次从缓存中取出多少数据与时间间隔。详见 从[缓存中获取告警](#moaPC)的代码。所以我们会发现，每次 Notification-Manager 收到告警后，将会等待 1 分钟之后才会开始处理这些告警。

@@ -10,7 +10,7 @@ title: Exporter 开发实践
 > - [默认自带的 Metrics 的实现方式](https://github.com/prometheus/client_golang/blob/master/prometheus/go_collector.go)
 > - [公众号,k8s 技术圈-使用 Go 开发 Prometheus Exporter](https://mp.weixin.qq.com/s/s1nSaC-8ejvM342v5KPdxA)
 
-在 [Instrumenting 原理解析](/docs/6.可观测性/监控系统/Prometheus/Prometheus%20开发/Instrumenting%20原理解析/Instrumenting%20原理解析.md) 中，逐一了解了实现 Exporter 的方法
+在 [Instrumenting 原理解析](/docs/6.可观测性/监控系统/Instrumenting/Instrumenting%20开发/Instrumenting%20原理解析.md) 中，逐一了解了实现 Exporter 的方法
 
 - 首先，定义了一个包含 Metrics 描述符的结构体。以及实例化结构体的函数(也就是自定义一些 Metrics 的基本信息)
 - 然后让该 结构体 实现 Collector 接口(i.e.为这个结构体添加 `Describe()` 与 `Collect()` 方法)

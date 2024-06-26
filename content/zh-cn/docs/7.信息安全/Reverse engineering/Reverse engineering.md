@@ -176,7 +176,7 @@ Unveilr # 反编译解密后的 `*.wxapkg` 文件得到源码。
 
 很多时候我们无法用其他语言实现找到的 js 代码，但是又想要使用 Python 怎么办呢，可以使用一些第三方库，以便让 Python 可以执行 JS 代码（e.g. pyexecjs、js2py）
 
-在 [Programming Technology](docs/2.编程/Programming%20technology/Programming%20Technology.md) 可以知道网站的数据有动态和静态两种。
+在 [Programming Technology](/docs/2.编程/Programming%20technology/Programming%20Technology.md) 可以知道网站的数据有动态和静态两种。
 
 - 若是静态的数据，在 “[DevTools](/docs/Web/Browser/DevTools.md) - 网络 - 文档” 中查看数据资源
   - 静态数据通常是直接返回 HTML 页面，此时我们可以直接使用各种语言的 DOM 树管理库，通过 XPath 等方式定位元素，以获取其中的数据

@@ -17,7 +17,9 @@ Prometheus Federate 还可以充当代理功能，让 Prometheus Server 获取�
 # 使用联邦集群
 
 对于大部分监控规模而言，我们只需要在每一个数据中心(例如：EC2 可用区，Kubernetes 集群)安装一个 Prometheus Server 实例，就可以在各个数据中心处理上千规模的集群。同时将 Prometheus Server 部署到不同的数据中心可以避免网络配置的复杂性。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gx0oz1/1616069518476-78bbd4f5-fc64-4a96-bde6-2309bd716812.jpeg)
+
 如上图所示，在每个数据中心部署单独的 Prometheus Server，用于采集当前数据中心监控数据。并由一个中心的 Prometheus Server 负责聚合多个数据中心的监控数据。这一特性在 Promthues 中称为联邦集群。
 
 联邦集群的核心在于每一个 Prometheus Server 都包含额一个用于获取当前实例中监控样本的接口/federate(用于 web 打开 localhost:9090/federate 即可，初始是空白的，需要详细指明要匹配的内容，才可以获取 metrics)。对于中心 Prometheus Server 而言，无论是从其他的 Prometheus 实例还是 Exporter 实例中获取数据实际上并没有任何差异。其实其他的 promeheus 就相当于中心 prometheus 的一个 exporter
@@ -55,5 +57,9 @@ scrape_configs:
       1. {job=~"prometheus"}
 
 功能分区
-联邦集群的特性可以帮助用户根据不同的监控规模对 Promthues 部署架构进行调整。例如如下所示，可以在各个数据中心中部署多个 Prometheus Server 实例。每一个 Prometheus Server 实例只负责采集当前数据中心中的一部分任务(Job)，例如可以将不同的监控任务分离到不同的 Prometheus 实例当中，再有中心 Prometheus 实例进行聚合。![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gx0oz1/1616069518457-5ea7fc2c-1edc-4ce8-acc4-b5bd7534e556.jpeg)
+
+联邦集群的特性可以帮助用户根据不同的监控规模对 Promthues 部署架构进行调整。例如如下所示，可以在各个数据中心中部署多个 Prometheus Server 实例。每一个 Prometheus Server 实例只负责采集当前数据中心中的一部分任务(Job)，例如可以将不同的监控任务分离到不同的 Prometheus 实例当中，再有中心 Prometheus 实例进行聚合。
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gx0oz1/1616069518457-5ea7fc2c-1edc-4ce8-acc4-b5bd7534e556.jpeg)
+
 功能分区，即通过联邦集群的特性在任务级别对 Prometheus 采集任务进行划分，以支持规模的扩展。

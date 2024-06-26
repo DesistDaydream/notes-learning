@@ -107,6 +107,7 @@ Prometheus 产生告警后，会通过 POST 请求将下列 JSON 格式内容向
 ## labels 与 annotations 字段
 
 **labels(标签)** 是告警的唯一标识符。具有相同标签的告警，则称为重复数据，重复数据只会保留最新的一个。
+
 **annotations(注释)** 顾名思义，就是用来注释一个告警
 
 labels 包含如下内容：
@@ -119,6 +120,7 @@ labels 包含如下内容：
 ## startsAt 与 endsAt 字段
 
 **startsAt** # 告警的开始时间
+
 **endsAt** # 告警的结束时间
 
 - 结束时间可以这么理解：从开始时间到结束时间，如果 Alertmanager 没有再收到相同的告警，则认为告警已经处理
@@ -161,4 +163,5 @@ groups:
 ```
 
 抓包内容如下：
+
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/sw6o6t/1621754366379-909c188e-f854-4c8e-8a9d-e75b6e671d2c.png)

@@ -8,7 +8,7 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档](https://docs.docker.com/compose/)
 > - [菜鸟教程](https://compose-spec.io/)
 > - [Compose 规范](https://compose-spec.io/)
@@ -49,6 +49,8 @@ volumes:
 # Compose 安装
 
 ## 安装 Docker 的 Compose 插件
+
+官方推荐以 [Docker CLI Plugin](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20命令行工具/Docker%20CLI%20Plugin.md) 的方式使用 Compose
 
 ```bash
 export COMPOSE_VERSION="2.24.2"

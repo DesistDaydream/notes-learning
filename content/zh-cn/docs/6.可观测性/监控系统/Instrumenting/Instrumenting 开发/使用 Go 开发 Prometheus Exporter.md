@@ -2,8 +2,6 @@
 title: 使用 Go 开发 Prometheus Exporter
 ---
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/xszbff/1616068457618-e2c7ec21-1371-41db-8d37-3437f5eacf3f.png)
-
 Exporter 是 Prometheus 监控的核心，如果你遇到一些应用不存在相应的 Exporter，那么我们可以自己去编写 Exporter。下面我们简单介绍如何使用 Golang 来快速编写一个 Exporter。
 
 **1. 安装 GO 和依赖包**

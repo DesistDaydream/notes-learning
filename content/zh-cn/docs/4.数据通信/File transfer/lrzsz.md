@@ -29,3 +29,18 @@ lrzsz 中包含如下程序
 - sb
 - sx
 - sz
+
+# Syntax(语法)
+
+> 参考:
+>
+> - [Ubuntu 官网 Manual(手册)，rz(1)](https://manpages.ubuntu.com/manpages/focal/man1/rz.1.html)
+
+**OPTIONS**
+
+- **-b,** **--binary** # 二进制（按原样告诉它）文件传输覆盖。
+- **-e, --escape** # 强制发送者转义所有控制字符；通常 XON、XOFF、DLE、CR-@-CR 和 Ctrl-X 会被转义。
+
+# EXAMPLE
+
+`rz -be`

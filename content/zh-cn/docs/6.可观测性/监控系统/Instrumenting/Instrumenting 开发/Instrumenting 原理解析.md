@@ -7,7 +7,7 @@ title: Instrumenting 原理解析
 > 参考：
 > - 根据源码一步一步推到自学
 > - [prometheus 默认自带的 Metrics 的实现方式](https://github.com/prometheus/client_golang/blob/master/prometheus/go_collector.go)
-> - [prometheus 库](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus)
+> - [Go 语言 Library](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus)
 > - [prometheus/promhttp 库](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus/promhttp)
 
 Instrumenting 的实现主要依靠以下几种类型：
@@ -17,7 +17,7 @@ Instrumenting 的实现主要依靠以下几种类型：
 - **Collector(采集器)** # 接口。采集 Metrics 的具体实现
 - **Gatherer(聚集器)** # 接口。将采集到的 Metrics 聚集在一起
 
-其中 Collector(采集器) 就像其名字一样，是定义采集 Metrics 的主要行为。在代码中，Collector(采集器) 表现为一个接口。这个接口有两个方法，`Describe()` 与 `Collect()`，其中在 `**Collect()**`** 这个方法中，定义主要的采集 Metrics 行为**
+其中 Collector(采集器) 就像其名字一样，是定义采集 Metrics 的主要行为。在代码中，Collector(采集器) 表现为一个接口。这个接口有两个方法，`Describe()` 与 `Collect()`，其中在 **`Collect()` 这个方法中，定义主要的采集 Metrics 行为**
 
 # Desc(描述符) - 用来描述 Metric 的结构体
 

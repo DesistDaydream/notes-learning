@@ -1,6 +1,23 @@
 ---
 title: Prometheus 管理
+linkTitle: Prometheus 管理
+date: 2024-06-28T17:16
+weight: 20
 ---
+
+# 概述
+
+> 参考：
+>
+> - [官方文档，介绍 - FAQ](https://prometheus.io/docs/introduction/faq/)
+
+## Prometheus UTS 时区问题
+
+https://prometheus.io/docs/introduction/faq/#can-i-change-the-timezone-why-is-everything-in-utc
+
+官方表示为了避免夏令时问题，将 UTS 时区写入代码中，任何外部的配置都无法生效。
+
+更多讨论在 [issue 500](https://github.com/prometheus/prometheus/issues/500)
 
 # 重大变化
 

@@ -207,7 +207,7 @@ Headscale 只是实现了 Tailscale 的控制台，想要接入，依然需要�
 在 Tailscale 部署的节点准备环境变量
 
 ```bash
-export TailscaleVersion="1.26.1"
+export TailscaleVersion="1.66.1"
 export TailscaleArch="amd64"
 export HeadscaleIP="X.X.X.X"
 ```

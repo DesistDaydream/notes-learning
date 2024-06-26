@@ -88,7 +88,7 @@ Note：目录名中的 overlay2 指的是 docker 当前 Storage Driver 类型，
 
 # Docker 安装
 
-[Docker 部署](docs/10.云原生/Containerization%20implementation/Docker/Docker%20部署.md)
+[Docker 部署](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20部署.md)
 
 # Docker 日志介绍
 

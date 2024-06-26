@@ -39,6 +39,10 @@ Xshell 没有自带的 x11 能力
 
 SecureCRT 是 VanDyke Software 开发的商业终端产品。初始发行于 1995 年 10 月 4 日，没有任何免费版可用，且界面样式非常老旧。
 
+问题
+
+- ctrl + +/- 无法调整大小
+
 ## MobaXterm
 
 > 参考：

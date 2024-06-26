@@ -6,12 +6,11 @@ title: Alertmanager 数据结构
 
 > 参考：
 >
-> - [官方文档，告警-客户端](https://prometheus.io/docs/alerting/latest/clients/)(接收告警的数据结构)
-> - [官方文档，告警-配置-webhook_config](https://prometheus.io/docs/alerting/latest/configuration/#webhook_config)(通过 Webhook 推送告警的数据结构)
+> - [官方文档，告警 - 客户端](https://prometheus.io/docs/alerting/latest/clients/)(接收告警的数据结构)
 
 ## AlertManager 接收告警的数据结构
 
-这个数据结构，其实就是 Prometheus 推送告警的数据结构~~~详见 [《Prometheus Alerting》](/docs/6.可观测性/监控系统/Prometheus/Alerting(告警).md)章节
+这个数据结构，其实就是 Prometheus 推送告警的数据结构.。。。详见 [Prometheus Alerting](/docs/6.可观测性/监控系统/Prometheus/Alerting(告警).md) 章节
 
 ```json
 [
@@ -33,6 +32,10 @@ title: Alertmanager 数据结构
 ```
 
 ## Alertmanager 通过 Webhook 推送告警的数据结构
+
+> 参考:
+>
+> - [官方文档，告警 - 配置 - webhook_config](https://prometheus.io/docs/alerting/latest/configuration/#webhook_config)(通过 Webhook 推送告警的数据结构)
 
 下面就是 Alertmanager 在 Webhook 配置中，以 POST 请求发送的 JSON 结构的数据格式：
 
@@ -160,5 +163,50 @@ title: Alertmanager 数据结构
   "version": "4",
   "groupKey": "{}:{}",
   "truncatedAlerts": 0
+}
+```
+
+```json
+{
+	"receiver": "webhook",
+	"status": "resolved",
+	"alerts": [{
+		"status": "resolved",
+		"labels": {
+			"alert_event": "内存",
+			"alert_target": "node",
+			"alertname": "内存使用率过高！",
+			"instance": "localhost:9100",
+			"job": "node-exporter",
+			"severity": "minor"
+		},
+		"annotations": {
+			"description": "localhost:9100 内存持续一小时使用率大于 95% (目前可用:90.1%)",
+			"summary": "内存使用率过高！"
+		},
+		"startsAt": "2024-06-28T03:42:37.186Z",
+		"endsAt": "2024-06-28T03:43:22.186Z",
+		"generatorURL": "http://bj-test-lichenhao-1:9090/graph?g0.expr=node_memory_MemAvailable_bytes+%2F+node_memory_MemTotal_bytes+%2A+100+%3C+0.5\u0026g0.tab=1",
+		"fingerprint": "4a2564565982cb6d"
+	}],
+	"groupLabels": {
+		"instance": "localhost:9100"
+	},
+	"commonLabels": {
+		"alert_event": "内存",
+		"alert_target": "node",
+		"alertname": "内存使用率过高！",
+		"instance": "localhost:9100",
+		"job": "node-exporter",
+		"severity": "minor"
+	},
+	"commonAnnotations": {
+		"description": "localhost:9100 内存持续一小时使用率大于 95% (目前可用:90.1%)",
+		"summary": "内存使用率过高！"
+	},
+	"externalURL": "http://bj-test-lichenhao-1:9093",
+	"version": "4",
+	"groupKey": "{}:{instance=\"localhost:9100\"}",
+	"truncatedAlerts": 0
 }
 ```
