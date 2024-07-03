@@ -83,12 +83,12 @@ Go 语言将数据类型分为四类：基础类型、复合类型、引用类�
 ## \[]byte 与 String 互相转换
 
 ```go
-	// string 转 []byte
-	str := "hello"
-	bytes := []byte(str)
+// string 转 []byte
+str := "hello"
+bytes := []byte(str)
 
-	// []byte 转 string
-	str2 := string(bytes)
+// []byte 转 string
+str2 := string(bytes)
 ```
 
 ## strconv

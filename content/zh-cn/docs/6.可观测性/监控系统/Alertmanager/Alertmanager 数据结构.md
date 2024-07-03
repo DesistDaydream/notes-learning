@@ -50,8 +50,10 @@ title: Alertmanager 数据结构
   // 根据 AlertManager 配置中 group_by 字段获取。
   // 也就是说通过某个标签分组，那么这个标签的名和值都会被写到这个字段中
   "groupLabels": <object>,
+  // 这一组告警中，相同的 Labels 和 Annotations
   "commonLabels": <object>,
   "commonAnnotations": <object>,
+  // 反向连接到 Alertmanager，
   "externalURL": <string>,           // backlink to the Alertmanager.
   "alerts": [
     {
@@ -59,12 +61,15 @@ title: Alertmanager 数据结构
       "labels": {
         "alertname": "<RequiredAlertName>",
         "<labelname>": "<labelvalue>",
-     ......
-   },
+        ......
+      },
       "annotations": <object>,
+      // 告警的触发时间
       "startsAt": "<rfc3339>",
+      // 若 status 字段的值为 resolved，则会显示该告警的结束时间
       "endsAt": "<rfc3339>",
-      "generatorURL": <string>       // identifies the entity that caused the alert
+      // prometheus 域名和由生成告警的 promQL 语句。通过该连接，可以直接在 prometheus web 中打开使用指定 promql 查询。 
+      "generatorURL": <string>
     },
     ...
   ]
