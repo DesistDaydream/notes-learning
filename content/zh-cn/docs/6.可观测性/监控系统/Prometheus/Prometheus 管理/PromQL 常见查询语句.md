@@ -176,7 +176,7 @@ increase(node_vmstat_oom_kill[5m]) > 0
 
 **使用率过高**
 
-```text
+```promql
 (node_filesystem_avail_bytes{fstype=~"ext4|xfs"}
 /
 node_filesystem_size_bytes {fstype=~"ext4|xfs"}
@@ -188,7 +188,9 @@ node_filesystem_size_bytes {fstype=~"ext4|xfs"}
 
 - 根据磁盘 1 小时的变化速率，预测 4 小时内会不会被写满
 
-    predict_linear(node_filesystem_free_bytes{fstype!~"tmpfs"}[1h], 4 * 3600) < 0
+```promql
+predict_linear(node_filesystem_free_bytes{fstype!~"tmpfs"}[1h], 4 * 3600) < 0
+```
 
 ### IO 使用率
 
@@ -235,6 +237,16 @@ rate(node_disk_write_time_seconds_total[1m])
 rate(node_disk_writes_completed_total[1m])
 > 0.1 and rate(node_disk_writes_completed_total[1m])
 > 0
+```
+
+### inode
+
+```promql
+(
+1 - node_filesystem_files_free{fstype=~"ext4|xfs"}
+/
+node_filesystem_files{fstype=~"ext4|xfs"}
+) * 100
 ```
 
 ## 网络
@@ -431,21 +443,6 @@ node_netstat_Tcp_CurrEstab > 50000
     annotations:
       summary: Host disk will fill in 4 hours (instance {{ $labels.instance }})
       description: Disk will fill in 4 hours at current write rate\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
-```
-
-#### 主机中inode 文件句柄报警
-
-磁盘可用的inode快用完了（<10%）。
-
-```yaml
-  - alert: HostOutOfInodes
-    expr: node_filesystem_files_free{mountpoint ="/rootfs"} / node_filesystem_files{mountpoint ="/rootfs"} * 100 < 10
-    for: 5m
-    labels:
-      severity: warning
-    annotations:
-      summary: Host out of inodes (instance {{ $labels.instance }})
-      description: Disk is almost running out of available inodes (< 10% left)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
 ```
 
 #### 磁盘读延迟

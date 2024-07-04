@@ -12,6 +12,8 @@ weight: 2
 > - [官方文档](https://docs.docker.com/compose/compose-file/)
 > - [v3 版本规范](https://docs.docker.com/compose/compose-file/compose-file-v3/)
 
+Compose 文件将每个容器抽象为一个 service。顶层字段 service 的下级字段，用来定义该容器的名称。
+
 一个 Docker Compose 文件中通常包含如下顶级字段：
 
 - **version** # **必须的**。
@@ -25,6 +27,8 @@ weight: 2
 指定本 yaml 依从的 compose 哪个版本制定的。
 
 # services
+
+https://docs.docker.com/compose/compose-file/05-services/
 
 ## build
 
@@ -292,19 +296,21 @@ logging:
 
 ## network_mode
 
-设置网络模式。
+设置容器的网络模式，可用的值有如下几种
 
-```yaml
-network_mode: "bridge"
-network_mode: "host"
-network_mode: "none"
-network_mode: "service:[service name]"
-network_mode: "container:[container name/id]"
-```
+- **host** # 使用宿主机网络。i.e. 让容器加入 1 号进程的网络名称空间
+- **none** # 关闭所有容器网络。
+- **service:${ServiceName}** # 让该容器加入其他容器的网络，让两个容器共享 network namespace。
+  - Notes: ServiceName 就是顶层字段 services 的下级字段的名称
+
+> [!Warning]
+> network_mode 与 [networks](#networks) 字段互斥，若使用了 networks 字段，则相当于之前老版本将 network_mode 设置为 bridge
 
 ## networks
 
 配置容器连接的网络，引用顶级 networks 下的条目 。
+
+> Tips: 配置该字段后，相当于让该容器使用 bridge 模式网络。
 
 ```yaml
 services:
@@ -453,6 +459,8 @@ services:
 ```
 
 # networks
+
+https://docs.docker.com/compose/compose-file/06-networks/
 
 **attachable: BOOLEAN** # 该网络是否可以被其他容器加入
 

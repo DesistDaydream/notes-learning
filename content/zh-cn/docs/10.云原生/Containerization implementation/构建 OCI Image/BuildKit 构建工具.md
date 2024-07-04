@@ -93,14 +93,14 @@ DEPRECATED: The legacy builder is deprecated and will be removed in a future rel
             https://docs.docker.com/go/buildx/
 ```
 
-从 [buildx 的 Release 页面](https://github.com/docker/buildx/releases)下载二进制文件，添加可执行权限，并放到 `$HOME/.docker/cli-plugins/` 目录中。
+从 [buildx 的 Release 页面](https://github.com/docker/buildx/releases)下载二进制文件，添加可执行权限，并放到 `/usr/local/lib/docker/cli-plugins/` 目录中。
 
 ```bash
 export BuildxVersion="0.11.2"
 wget https://github.com/docker/buildx/releases/download/v${BuildxVersion}/buildx-v${BuildxVersion}.linux-amd64
 mkdir -p $HOME/.docker/cli-plugins
-mv buildx-v${BuildxVersion}.linux-amd64 $HOME/.docker/cli-plugins/docker-buildx
-chmod 755 $HOME/.docker/cli-plugins/docker-buildx
+mv buildx-v${BuildxVersion}.linux-amd64 /usr/local/lib/docker/cli-plugins/docker-buildx
+chmod 755 /usr/local/lib/docker/cli-plugins/docker-buildx
 ```
 
 若是 Docker 23.0 版本之前，则还需要通过两种方式启用 Buildkit 功能

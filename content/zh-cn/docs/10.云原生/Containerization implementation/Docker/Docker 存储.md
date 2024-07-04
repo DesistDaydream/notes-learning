@@ -26,7 +26,9 @@ title: Docker 存储
 无论使用哪种方式，目的都是让宿主机上的某个“目录或者文件”绕过联合文件系统，与 Container 中的一个或多个“目录或文件”绑定，对目录中的操作，在 Container 和 Host 中都能看到(i.e.在宿主机目录中创建一个文件，Container 中对应的目录也会看到这个文件)，一个 Volume 可以绑定到多个 Container 上去。
 
 这三种方式唯一的差异就是数据在 docker 宿主机上的位置，bind mount 和 volume 会在宿主机的文件系统中、而 tmpfs mount 则在宿主机的内存中。如下图所示：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/tg0ypk/1616121977852-96ae1080-9144-4e1d-9e6a-1f06b7f5a73c.png)
+
 Note：merged(可读写层) 的目录内无法看到这三种存储方式关联到容器中的任何数据，只能从这些存储类型的源目录看到。
 
 数据卷挂载之后的可见性

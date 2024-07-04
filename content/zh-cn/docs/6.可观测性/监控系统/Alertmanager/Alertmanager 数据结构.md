@@ -54,7 +54,7 @@ title: Alertmanager 数据结构
   "commonLabels": <object>,
   "commonAnnotations": <object>,
   // 反向连接到 Alertmanager，
-  "externalURL": <string>,           // backlink to the Alertmanager.
+  "externalURL": <string>,
   "alerts": [
     {
       "status": "<resolved|firing>",
@@ -68,7 +68,8 @@ title: Alertmanager 数据结构
       "startsAt": "<rfc3339>",
       // 若 status 字段的值为 resolved，则会显示该告警的结束时间
       "endsAt": "<rfc3339>",
-      // prometheus 域名和由生成告警的 promQL 语句。通过该连接，可以直接在 prometheus web 中打开使用指定 promql 查询。 
+      // 反向链接到 Prometheus
+      // URL 包括 prometheus 域名和由生成告警的 promQL 语句。通过该连接，可以直接在 prometheus web 中打开使用指定 promql 查询。 
       "generatorURL": <string>
     },
     ...
