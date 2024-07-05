@@ -1,6 +1,6 @@
 ---
-title: Docker 命令行工具
-linkTitle: Docker 命令行工具
+title: Docker CLI
+linkTitle: Docker CLI
 date: 2023-11-03T22:25
 weight: 1
 ---
@@ -55,11 +55,11 @@ EXAMPLE
 
 ## image - Docker 镜像的管理命令
 
-详见 [image](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20命令行工具/image.md)
+详见 [image](docs/10.云原生/Containerization%20implementation/Docker/Docker%20CLI/image.md)
 
 ## network - Docker 网络的管理命令
 
-详见 [network](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20命令行工具/network.md)
+详见 [network](docs/10.云原生/Containerization%20implementation/Docker/Docker%20CLI/network.md)
 
 ## plugin Manage plugins
 
@@ -269,7 +269,7 @@ Notes: 无容器使用该镜像才可以删除，否则需要删除相关容器�
 
 ## run - 创建一个新的容器并运行一个命令
 
-详见：[docker run 运行容器](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20命令行工具/run.md)
+详见：[docker run 运行容器](docs/10.云原生/Containerization%20implementation/Docker/Docker%20CLI/run.md)
 
 ## save - 保存一个或多个镜像为一个 tar 包(对应 load)
 

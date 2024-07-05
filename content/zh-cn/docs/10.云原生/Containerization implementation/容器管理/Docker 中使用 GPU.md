@@ -1,6 +1,15 @@
 ---
-title: 在Docker中使用GPU
+title: Docker 中使用 GPU
+linkTitle: Docker 中使用 GPU
+date: 2024-07-05T08:42
+weight: 20
 ---
+
+# 概述
+
+> 参考：
+>
+> -
 
 ### Docker 19.03，增加了对--gpus 选项的支持，我们在 docker 里面想读取 nvidia 显卡再也不需要额外的安装 nvidia-docker 了，下面开始实战
 
