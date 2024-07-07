@@ -484,15 +484,17 @@
       "docs/1.操作系统/Terminal 与 Shell/Bash/Bash.md",
       "docs/1.操作系统/Terminal 与 Shell/Bash/特殊符号.md",
       "docs/1.操作系统/Terminal 与 Shell/Bash/数据类型.md",
-      "docs/1.操作系统/Terminal 与 Shell/Bash/数组.md",
       "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 变量.md",
       "docs/1.操作系统/Terminal 与 Shell/Bash/控制结构",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/数组.md",
       "docs/1.操作系统/Terminal 与 Shell/Bash/函数.md",
       "docs/1.操作系统/Terminal 与 Shell/Bash/重定向.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/exec,xargs,管道符等组合命令.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/set 命令.md",
       "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 命令行参数处理.md",
       "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 操作历史记录.md",
-      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 快捷键.md",
-      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令"
+      "docs/1.操作系统/Terminal 与 Shell/Bash/Job(任务)控制.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 快捷键.md"
     ],
     "docs/1.操作系统/Terminal 与 Shell/Bash/控制结构": [
       "docs/1.操作系统/Terminal 与 Shell/Bash/控制结构/_index.md",
@@ -632,12 +634,8 @@
       "docs/10.云原生/Containerization implementation/Docker/Docker 配置详解.md",
       "docs/10.云原生/Containerization implementation/Docker/Docker Image.md",
       "docs/10.云原生/Containerization implementation/Docker/Docker Runtime.md",
-      "docs/10.云原生/Containerization implementation/Docker/Docker Storage.md",
-      "docs/10.云原生/Containerization implementation/Docker/Docker Network.md",
       "docs/10.云原生/Containerization implementation/Docker/Docker 权限管理.md",
-      "docs/10.云原生/Containerization implementation/Docker/Docker CLI",
       "docs/10.云原生/Containerization implementation/Docker/Docker API.md",
-      "docs/10.云原生/Containerization implementation/容器管理/Docker 中使用 GPU.md",
       "docs/10.云原生/Containerization implementation/Docker/Docker Compose"
     ],
     "docs/10.云原生/Containerization implementation/Docker/Docker Compose": [

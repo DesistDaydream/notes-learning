@@ -184,8 +184,8 @@ acme.sh --issue --dns dns_dp -d 102205.xyz -d *.102205.xyz
 
 ```bash
 acme.sh --install-cert -d 102205.xyz \
---key-file ~/projects/DesistDaydream/cloud-native-apps/compose/nginx-lch/config/certs/102205.key \
---fullchain-file ~/projects/DesistDaydream/cloud-native-apps/compose/nginx-lch/config/certs/102205.pem \
+--key-file ~/projects/DesistDaydream/cloud-native-apps/compose/nginx-myself/config/certs/102205.key \
+--fullchain-file ~/projects/DesistDaydream/cloud-native-apps/compose/nginx-myself/config/certs/102205.pem \
 --reloadcmd "docker exec -it nginx-geoip2 nginx -c /etc/nginx/nginx/nginx.conf -s reload"
 ```
 

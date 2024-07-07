@@ -23,6 +23,7 @@ geo 与 geoip 模块会根据 客户端的 IP 地址 来创建新的变量。这
 # http 模块下的 geo 模块指令
 
 [geo \[ADDRESS\] $VARIABLE {}](http://nginx.org/en/docs/http/ngx_http_geo_module.html#geo) # 根据 ADDRESS 定义新的变量
+
 ADDRESS 用来指定要设置变量的 IP 地址。默认来自于 `$remote_addr` 变量，也可以自定义为另一个变量。
 
 假如现在有这么一个配置：
@@ -42,7 +43,7 @@ geo $country {
 }
 ```
 
-表示 Nginx 将会默认根据 $remote\_addr 变量的值设置一个 `$country` 变量，也就是根据当前请求的 客户端 IP 地址 来这设置一个 $country 变量。
+表示 Nginx 将会默认根据 `$remote_addr` 变量的值设置一个 `$country` 变量，也就是根据当前请求的 客户端 IP 地址 来这设置一个 `$country` 变量。
 
 - default # 默认情况下，所有 IP 地址的 `$country` 变量的值为 ZZ
 - include # 将指令写在其他文件中，并通过 include 包含进来
@@ -52,11 +53,22 @@ geo $country {
 
 # http 模块下的 geoip 模块指令
 
+> [!Warning]
+> 由于隐私的原因，[MaxMind 在 2019 年 12 月份对数据库进行重大变更](https://blog.maxmind.com/2019/12/18/significant-changes-to-accessing-and-using-geolite2-databases/)，所以，老式的 geo/geoip 模块不再适用于新的 MaxMind 数据库，所以，[geoip2 模块](/docs/Web/Nginx/Nginx%20配置详解/多用途模块的指令/geoip2%20模块.md)诞生了。
+>
+> 其他人维护的 geoip 数据库
+>
+> - https://www.miyuru.lk/geoiplegacy
+
 geoip 模块并不需要手动设定想要创建的变量，由于 geoip 模块是基于 MaxMind 数据库，所以会根据 geoip 中的指令来创建对应的变量。
 
 geoip 模块会从 Nginx 获取客户端的 IP 地址(一般都是 $remote_addr 变量中的值)，然后根据 IP 地址从 MaxMind 数据库查找对应的 IP，并将与该 IP 关联的信息写入到新的变量中。
 
-[geoip_country FILE; ](http://nginx.org/en/docs/http/ngx_http_geoip_module.html#geoip_country) # 围绕国家创建相关变量
+## geoip_country FILE
+
+http://nginx.org/en/docs/http/ngx_http_geoip_module.html#geoip_country
+
+围绕国家创建相关变量
 
 该指令一般情况下，将会根据 MaxMind 中的 GeoIP.dat 文件，为每个 IP 地址创建如下变量：
 
@@ -64,7 +76,11 @@ geoip 模块会从 Nginx 获取客户端的 IP 地址(一般都是 $remote_addr 
 - **$geoip_country_code3** # 三个字母的国家代码，比如 CHN、USA
 - **$geoip_country_name** # 国家名称，比如 China、United States
 
-[**geoip_city FILE;**](http://nginx.org/en/docs/http/ngx_http_geoip_module.html#geoip_city) # 围绕城市创建相关变量。最常用指令
+## geoip_city FILE
+
+http://nginx.org/en/docs/http/ngx_http_geoip_module.html#geoip_city
+
+围绕城市创建相关变量。最常用指令
 
 该指令一般情况下，将会根据 MaxMind 中的 GeoLiteCity.dat 文件，为每个 IP 地址创建如下变量：
 
@@ -85,7 +101,10 @@ geoip 模块会从 Nginx 获取客户端的 IP 地址(一般都是 $remote_addr 
 
 这些变量是最常用的，用来描述 IP 地址关于城市相关的信息，比如客户端的 IP 地址为 111.33.112.94，那么这个 IP 就属于天津市，并且还会有关于该城市的相关信息。比如城市所属国家、所属大洲、所在经纬度、邮编、城市代码 等等信息。
 
-[**geoip_org FILE;**](http://nginx.org/en/docs/http/ngx_http_geoip_module.html#geoip_org) #
+## geoip_org FILE;
+
+- http://nginx.org/en/docs/http/ngx_http_geoip_module.html#geoip_org
+
 该指令一般情况下，将会根据 MaxMind 中的 GeoLiteCity.dat 文件创建如下变量：
 
-- **$geoip_org**# 组织名称，比如 The University of Melbourne
+- **$geoip_org** # 组织名称，比如 The University of Melbourne

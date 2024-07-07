@@ -400,48 +400,43 @@ func process(w http.ResponseWriter, r *http.Request) {
 
 上面将输出`xx`，因为"."已经设置为"xx"。
 
-## 内置函数和自定义函数
+## 函数
 
-template 定义了一些内置函数，也支持自定义函数。关于如何自定义函数，见[深入剖析 Go template](https://www.cnblogs.com/f-ck-need-u/p/10035768.html)。
-以下是内置的函数列表：
-and
- 返回第一个为空的参数或最后一个参数。可以有任意多个参数。
- and x y 等价于 if x then y else x
-not
- 布尔取反。只能一个参数。
-or
- 返回第一个不为空的参数或最后一个参数。可以有任意多个参数。
- "or x y"等价于"if x then x else y"。
-print
-printf
-println
- 分别等价于 fmt 包中的 Sprint、Sprintf、Sprintln
-len
- 返回参数的 length。
-index
- 对可索引对象进行索引取值。第一个参数是索引对象，后面的参数是索引位。
- "index x 1 2 3"代表的是 x\[1]\[2]\[3]。
- 可索引对象包括 map、slice、array。
-call
- 显式调用函数。第一个参数必须是函数类型，且不是 template 中的函数，而是外部函数。
- 例如一个 struct 中的某个字段是 func 类型的。
- "call .X.Y 1 2"表示调用 dot.X.Y(1, 2)，Y 必须是 func 类型，函数参数是 1 和 2。
- 函数必须只能有一个或 2 个返回值，如果有第二个返回值，则必须为 error 类型。
+https://pkg.go.dev/text/template#hdr-Functions
+
+> Notes: template 定义了一些内置函数，也支持自定义函数。关于如何自定义函数，见[深入剖析 Go template](https://www.cnblogs.com/f-ck-need-u/p/10035768.html)。
+
+示例详见
+
+现阶段有如下内置函数
+
+- and
+- call
+- html
+- index
+- slice
+- js
+- len
+- not
+- or
+- print | printf | println
+- urlquery
+
 除此之外，还内置一些用于比较的函数：
 
 ```go
 eq arg1 arg2：
-    arg1 == arg2时为true
+    arg1 == arg2 时为 true
 ne arg1 arg2：
-    arg1 != arg2时为true
+    arg1 != arg2 时为 true
 lt arg1 arg2：
-    arg1 < arg2时为true
+    arg1 < arg2 时为 true
 le arg1 arg2：
-    arg1 <= arg2时为true
+    arg1 <= arg2 时为 true
 gt arg1 arg2：
-    arg1 > arg2时为true
+    arg1 > arg2 时为 true
 ge arg1 arg2：
-    arg1 >= arg2时为true
+    arg1 >= arg2 时为 true
 ```
 
 对于 eq 函数，支持多个参数：

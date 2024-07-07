@@ -8,8 +8,6 @@ title: geoip2 模块
 >
 > - [GitHub 项目，leev/ngx_http_geoip2_module](https://github.com/leev/ngx_http_geoip2_module)
 
-由于隐私的原因，[MaxMind 在 2019 年 12 月份对数据库进行重大变更](https://blog.maxmind.com/2019/12/18/significant-changes-to-accessing-and-using-geolite2-databases/)，所以，老式的 geo/geoip 模块不再适用于新的 MaxMind 数据库，所以，geoip2 模块诞生了。
-
 从[这个页面可](https://www.maxmind.com/en/accounts/545756/geoip/downloads)以下载 GeoIP2 和 旧版的 GeoIP 数据库
 
 geoip2 模块与 geo/geoip 模块的功能类似。geoip2 模块根据 客户端的 IP 信息，使用 MaxMind 的 geoip2 数据库中的值创建变量。只不过指令用法稍有不同。
@@ -19,7 +17,7 @@ geoip2 模块与 geo/geoip 模块的功能类似。geoip2 模块根据 客户端
 ### 首先通过 [mmdblookup](https://maxmind.github.io/libmaxminddb/mmdblookup.html) 工具查看数据库中的内容
 
 ```json
-root@desistdaydream:~/test_dir/downloads# mmdblookup --file ./GeoLite2-City.mmdb --ip 59.46.138.226
+~]# mmdblookup --file ./GeoLite2-City.mmdb --ip 59.46.138.226
 
   {
     "city":
@@ -189,19 +187,23 @@ stream {
 
 # 部署并启用模块
 
-首先按照其[README.md 文件](https://github.com/maxmind/libmaxminddb/blob/master/README.md#installing-from-a-tarball)中的[说明](https://github.com/maxmind/libmaxminddb/blob/master/README.md#installing-from-a-tarball)安装[libmaxminddb](https://github.com/maxmind/libmaxminddb)。
+首先按照其 [README.md 文件](https://github.com/maxmind/libmaxminddb/blob/master/README.md#installing-from-a-tarball)中的[说明](https://github.com/maxmind/libmaxminddb/blob/master/README.md#installing-from-a-tarball)安装 [libmaxminddb](https://github.com/maxmind/libmaxminddb)。
 
 **下载 nginx 源**
 
-    wget http://nginx.org/download/nginx-VERSION.tar.gz
-    tar zxvf nginx-VERSION.tar.gz
-    cd nginx-VERSION
+```bash
+wget http://nginx.org/download/nginx-VERSION.tar.gz
+tar zxvf nginx-VERSION.tar.gz
+cd nginx-VERSION
+```
 
 **要构建为动态模块（nginx 1.9.11+）：**
 
-    ./configure --add-dynamic-module=/path/to/ngx_http_geoip2_module
-    make
-    make install
+```bash
+./configure --add-dynamic-module=/path/to/ngx_http_geoip2_module
+make
+make install
+```
 
 这将产生 `objs/ngx_http_geoip2_module.so`。可以将其手动复制到 nginx 的模块存储路径(比如 /etc/nginx/modules 路径下)。
 将以下行添加到您的 nginx.conf 中的 main 配置环境中：
