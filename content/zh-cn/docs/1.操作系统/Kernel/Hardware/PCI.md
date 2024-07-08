@@ -14,7 +14,7 @@ weight: 20
 >   - [博客园，如何编写Linux PCI驱动程序](https://www.cnblogs.com/wanglouxiaozi/p/15525726.html)
 > - https://www.makelinux.net/ldd3/ - [12.1. The PCI Interface](https://www.makelinux.net/ldd3/chp-12-sect-1.shtml)
 
-**[PCI](/docs/0.计算机/Motherboard/PCI.md)  device resources(PCI 设备资源)** 由 Kernel 注册在 [Sys File System](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/Sys%20File%20System.md) 的 `/sys/devices/pci${DOMAIN:BUS}/` 目录。每个 PCI 设备资源在该目录下都有一个以 **唯一标识符(有的时候也称为 PCI Address)** 命名的目录，格式为: **`DOMAIN:BUS:SLOT.FUNC`**（e.g. 0000:17:00.0）
+**[PCI](/docs/0.计算机/Motherboard/PCI.md)  device resources(PCI 设备资源)** 由 Kernel 注册在 [sysfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/sysfs.md) 的 `/sys/devices/pci${DOMAIN:BUS}/` 目录。每个 PCI 设备资源在该目录下都有一个以 **唯一标识符(有的时候也称为 PCI Address)** 命名的目录，格式为: **`DOMAIN:BUS:SLOT.FUNC`**（e.g. 0000:17:00.0）
 
 - **DOMAIN(域)** # 表示 PCI 域编号。用于识别主机系统中的不同 PCI 主机桥。在较早期的系统中，只有一个域编号为 0。随着系统规模扩大，可能存在多个 PCI 域。
 - **BUS(总线)** # 表示 PCI 总线编号（16 进制）。一个 PCI 域中可能包含多条 PCI 总线，每条总线都有一个唯一编号。

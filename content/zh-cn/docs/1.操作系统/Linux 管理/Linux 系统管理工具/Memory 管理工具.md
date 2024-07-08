@@ -17,7 +17,7 @@ weight: 2
 >
 > - [RedHat 官方给的解释](https://access.redhat.com/solutions/406773)
 
-该文件报告有关系统上内存使用情况的统计信息。 free 命令使用该文件来报告系统上的可用内存和已使用内存（物理内存和交换内存）以及内核使用的共享内存和缓冲区的数量。该文件是以 `:` 符号分割的 **Key/Value pair(键/值对)** 格式。可用参数及其详解如下：
+该文件报告有关系统上 [Memory](/docs/1.操作系统/Kernel/Memory/Memory.md) 使用情况的统计信息。 free 命令使用该文件来报告系统上的可用内存和已使用内存（物理内存和交换内存）以及内核使用的共享内存和缓冲区的数量。该文件是以 `:` 符号分割的 **Key/Value pair(键/值对)** 格式。可用参数及其详解如下：
 
 ### MemTotal
 
@@ -60,6 +60,7 @@ Slab UnReclaim。Slab 的一部分，不可以被 reclaimed(回收)。即使内�
 提交限制。当前可以分配的内存上限。只有当 [/proc/sys/vm/overcommit_memory](net(网络相关参数).md Kernel/Kernel 参数/net(网络相关参数).md) 的参数值为 2 的时候，该限制才生效。这个上限是指当程序向系统申请内存时，如果申请的内存加上现在已经分配的内存，超过了 commitlimit 的值，则该申请将会失败。
 
 该值通过如下公式：
+
 `CommitLimit = (total_RAM - total_huge_TLB) * overcommit_ratio / 100 + total_swap`
 
 - totaol_RAM # 系统内存总量(就是物理内存)
@@ -97,6 +98,8 @@ Slab UnReclaim。Slab 的一部分，不可以被 reclaimed(回收)。即使内�
 - CmaFree
 
 ### HugePagesXXX
+
+[Huge Pages](docs/1.操作系统/Kernel/Memory/Huge%20Pages.md) 相关信息
 
 - HugePages_Total
 - HugePages_Free

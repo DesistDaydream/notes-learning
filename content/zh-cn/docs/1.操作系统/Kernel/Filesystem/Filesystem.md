@@ -9,9 +9,9 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki-Category，Computer file systems](https://en.wikipedia.org/wiki/Category:Computer_file_systems)
-> - [Linux 性能优化实践-文件系统](https://time.geekbang.org/column/article/76876)
-> - [公众号，小林 coding-一口气搞懂「文件系统」，就靠这 25 张图了](https://mp.weixin.qq.com/s/qJdoXTv_XS_4ts9YuzMNIw)
+> - [Wiki - Category，Computer file systems](https://en.wikipedia.org/wiki/Category:Computer_file_systems)
+> - [Linux 性能优化实践 - 文件系统](https://time.geekbang.org/column/article/76876)
+> - [公众号，小林 coding - 一口气搞懂「文件系统」，就靠这 25 张图了](https://mp.weixin.qq.com/s/qJdoXTv_XS_4ts9YuzMNIw)
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/filesystem/the_linux_storage_stack_diagram_1.png)
 
@@ -147,14 +147,14 @@ int ret = write(fd, buf, len);
 
 > 参考：
 >
-> - [Wiki，File system-Types_of_file_systems](https://en.wikipedia.org/wiki/File_system#Types_of_file_systems)
+> - [Wiki，File system - Types_of_file_systems](https://en.wikipedia.org/wiki/File_system#Types_of_file_systems)
 
 可以通过 **/proc/filesystems** 文件查看当前内核所支持的文件系统类型
 
 ```bash
 ~]# cat /proc/filesystems
 nodev sysfs
-...
+nodev tmpfs
 nodev proc
 ...
 nodev cgroup2
@@ -182,9 +182,9 @@ nodev configfs
   - 网络文件系统是充当远程文件访问协议的客户端的文件系统，提供对服务器上文件的访问。 使用本地接口的程序可以透明地创建，管理和访问远程网络连接计算机中的分层目录和文件。 网络文件系统的示例包括 NFS，AFS，SMB 协议的客户端，以及 FTP 和 WebDAV 的类似于文件系统的客户端。
 - **Distributed File System(分布式文件系统)** # 使用网络协议的分布式文件系统也属于网络文件系统的一种。
 - **Special-purpose File Systems(特殊目的文件系统)** # 特殊的文件系统将操作系统的非文件元素显示为文件，以便可以使用文件系统 API 对其进行操作。 这种文件系统一般都是基于内存的，不需要任何磁盘为其分配存储空间，但会占用内存。
-  - **device file system(设备文件系统)** # 简称 devfs，设备文件系统将 I/O 设备和伪设备表示为文件，称为设备文件。 默认挂载到`/dev`目录下。
-  - **Proc File System(进程文件系统)** # 简称\_ \_procfs，将进程以及 Linux 上的其他操作系统结构映射到文件空间。默认挂载到`/proc`目录下。
-  - **configfs** 和 **sysfs** 提供了可用于向内核查询信息并在内核中配置实体的文件。
+  - **device file system(设备文件系统)** # 简称 [devfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/devfs.md)，设备文件系统将 I/O 设备和伪设备表示为文件，称为设备文件。 默认挂载到`/dev`目录下。
+  - **Proc File System(进程文件系统)** # 简称 [proc](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/proc.md)，将进程以及 Linux 上的其他操作系统结构映射到文件空间。默认挂载到`/proc`目录下。
+  - **configfs** 和 **[sysfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/sysfs.md)** 提供了可用于向内核查询信息并在内核中配置实体的文件。
   - 等等
 
 # 文件系统的使用

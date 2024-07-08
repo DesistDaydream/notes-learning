@@ -131,7 +131,7 @@ Unix（包含 Linux）的初学者，常常会很困惑，不明白目录结构�
 
 **process information pseudo-filesystem(进程信息伪文件系统，简称 proc)**， 提供了内核数据结构的接口。默认被挂载到 /proc 目录上。一般情况是由操作系统自动挂载的，也可以通过`mount -t proc proc /proc`命令手动挂载。proc 文件系统中的大多数文件都是只读的，但是有些文件是可写的，用于改变内核参数。
 
-详见：[Proc File System](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/Proc%20File%20System.md)
+详见：[proc](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/proc.md)
 
 ## /root - 系统管理员的家目录
 

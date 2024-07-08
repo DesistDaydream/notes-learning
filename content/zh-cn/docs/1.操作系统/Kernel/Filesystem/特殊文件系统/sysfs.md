@@ -1,7 +1,7 @@
 ---
-title: Sys File System
-linkTitle: Sys File System
-date: 2024-06-15T20:46
+title: sysfs
+linkTitle: sysfs
+date: 2024-07-08T09:34
 weight: 20
 ---
 
@@ -31,7 +31,7 @@ sysfs 文件系统中的许多文件都是只读的，但是某些文件是可�
 
 ## sysfs 背景
 
-Sysfs 文件系统是一个类似于 [Proc File System](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/Proc%20File%20System.md) 的特殊文件系统，用于将系统中的设备组织成层次结构，并向用户模式程序提供详细的内核数据结构信息。
+Sysfs 文件系统是一个类似于 [proc](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/proc.md) 的特殊文件系统，用于将系统中的设备组织成层次结构，并向用户模式程序提供详细的内核数据结构信息。
 
 在 2.5 开发周期中，引入了 Linux 驱动程序模型来修复版本 2.4 的以下缺陷：
 

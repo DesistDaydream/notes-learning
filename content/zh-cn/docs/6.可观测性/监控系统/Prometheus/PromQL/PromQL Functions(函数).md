@@ -265,8 +265,7 @@ timestamp(v instant-vector) 函数返回向量 v 中的每个样本的时间戳�
 
 year(v=vector(time()) instant-vector) 函数返回被给定 UTC 时间的当前年份。
 
-37. vector()
-    vector(s scalar) 函数将标量 s 作为没有标签的向量返回，即返回结果为：key: value= {}, s。
+1. vector()    vector(s scalar) 函数将标量 s 作为没有标签的向量返回，即返回结果为：key: value= {}, s。
 
 ## 范围向量
 

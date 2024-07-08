@@ -1,15 +1,20 @@
 ---
-title: Device File System
+title: devfs
+linkTitle: devfs
+date: 2024-07-08T09:33
+weight: 20
 ---
 
 # 概述
 
 > 参考：
 >
-> - [Manual(手册)，devfs(5)](https://man.cx/devfs)
-> - [IBM，开发工作-Linux-DM 机制](https://www.ibm.com/developerworks/cn/linux/l-devmapper/index.html)
+> - [非官方 Manual(手册)，devfs(5)](https://man.cx/devfs)
 
 **Device File System(设备文件系统，简称 devfs)**，提供对全局文件系统名称空间中内核设备名称空间的访问。`一般挂载到 /dev 目录`。
+
+> [!Notes]
+> 现在设备文件系统称为 devtmpfs 。devfs 的发展过程中有很多名字，udev、devtmpfs。参考 [Linux设备节点创建方式的演变历史](https://www.cnblogs.com/watsondd/p/17337992.html) 文章。
 
 这个文件系统包含一些目录、链接、符号链接和设备，其中一些是可写的。在 [Chroot](/docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/Chroot.md) 环境中，可以使用 devfs 创建一个新的 /dev 挂载点。
 
@@ -51,6 +56,8 @@ tun 驱动程序提供网络接口伪设备。发送到此接口的数据包可�
 >
 > - https://www.cnblogs.com/oloroso/p/5405113.html
 > - https://superuser.com/questions/45342/when-should-i-use-dev-shm-and-when-should-i-use-tmp
+> - [Wiki，Shared memory - Support on Unix-like systems](https://en.wikipedia.org/wiki/Shared_memory#Support_on_Unix-like_systems)
 
-/dev/shm/ 目录时一个 [tmpfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/tmpfs.md)
+/dev/shm/ 目录是一个 [tmpfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/tmpfs.md)，用来 shared memory(分享内存，简称 shm) 的。
+
 

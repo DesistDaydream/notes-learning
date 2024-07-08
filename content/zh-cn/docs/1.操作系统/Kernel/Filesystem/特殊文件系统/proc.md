@@ -1,5 +1,8 @@
 ---
-title: Proc File System
+title: proc
+linkTitle: proc
+date: 2024-07-08T09:33
+weight: 20
 ---
 
 # 概述
@@ -7,6 +10,8 @@ title: Proc File System
 > 参考：
 >
 > - [Manual(手册)，proc(5)](https://man7.org/linux/man-pages/man5/proc.5.html)
+> - [GitHub 项目，torvalds/linux - Documentation/filesystems/proc.rst](https://github.com/torvalds/linux/blob/master/Documentation/filesystems/proc.rst)
+>   - https://www.kernel.org/doc/html/latest/filesystems/proc.html
 
 **process information pseudo-filesystem(进程信息伪文件系统，简称 proc)**， 提供了内核数据结构的接口。`一般挂载到 /proc 目录`。一般情况是由操作系统自动挂载的，也可以通过`mount -t proc proc /proc`命令手动挂载。proc 文件系统中的大多数文件都是只读的，但是有些文件是可写的，用于改变内核参数。
 
@@ -38,7 +43,7 @@ proc 文件系统不用于存储。其主要目的是为硬件，内存，运行
 ## ./maps - 进程的内存映射信息
 
 ```bash
-> cat /proc/1751/maps
+~]# cat /proc/1751/maps
 00400000-00401000 r-xp 00000000 fd:01 100897359                          /opt/java/jdk1.8.0_231/bin/java
 00600000-00601000 r--p 00000000 fd:01 100897359                          /opt/java/jdk1.8.0_231/bin/java
 00601000-00602000 rw-p 00001000 fd:01 100897359                          /opt/java/jdk1.8.0_231/bin/java
@@ -212,7 +217,7 @@ Rss:               21304 kB
 
 # /proc/dma - 显示当前使用的 dma 通道
 
-# /proc/filesystems - 内核可用的文件系统信息
+# /proc/filesystems - 内核可以支持的文件系统列表
 
 # /proc/interrupts - 系统中断统计信息
 
@@ -364,7 +369,7 @@ cpu47  200     0     134       4147222     10       0     0        0     0      
 1. 系统的正常运行时间（秒）
 2. 空闲进程所花费的时间（秒）
 
-# /proc/version # 内核**版本信息**
+# /proc/version - 内核**版本信息**
 
 # 应用实例
 

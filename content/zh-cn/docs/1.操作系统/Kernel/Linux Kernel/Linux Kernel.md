@@ -180,4 +180,4 @@ bin  dev  early_cpio  etc  init  kernel  lib  lib64  proc  root  run  sbin  shut
 
 **/usr/lib/sysctl.d/** #
 
-**/proc/sys/** # 内核参数(也称为内核变量)所在路径。该目录(从 1.3.57 版本开始)包含许多与内核变量相对应的文件和子目录。 可以使用 [Proc File System](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/Proc%20File%20System.md) 以及 sysctl(2) 系统读取或加载这些变量，有时可以对其进行修改。
+**/proc/sys/** # 内核参数(也称为内核变量)所在路径。该目录(从 1.3.57 版本开始)包含许多与内核变量相对应的文件和子目录。 可以使用 [proc](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/proc.md) 以及 sysctl(2) 系统读取或加载这些变量，有时可以对其进行修改。

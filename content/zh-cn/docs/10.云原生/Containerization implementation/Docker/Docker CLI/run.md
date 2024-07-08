@@ -43,7 +43,7 @@ run 命令可以启动容器
 - **-u, --user**(STRING) # 为容器进程指定运行的用户名/UID
   - STRING 格式：`<NAME|UID>[:<GROUP|GID>])`
 - **-v, --volume \[SRC:]DST** # 为容器创建一个 Volume 并挂载到其中的目录上。若指定的 host 上的路径不存在，则自动创建这个目录；若不指定 SRC 则 docker 会自动创建一个。默认在 /var/lib/docker/volumes/ 目录下创建 volume 所用的目录
-  - Note：使用 /HOST/PATH 与 VolumeName 的区别详见：《[Docker Storage](docs/10.云原生/Containerization%20implementation/Docker/Docker%20Storage.md)》
+  - Note：使用 /HOST/PATH 与 VolumeName 的区别详见：《[Docker Storage](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20Storage.md)》
 - --volume-driver string Optional volume driver for the container
 - **--volumes-from \<ContainerName>** # 运行的新容器从 ContainerName 这个容器复制存储卷来使用
 - **-w, --workdir \<STRING>** # 指定容器内的工作目录，让指定的目录执行当前命令

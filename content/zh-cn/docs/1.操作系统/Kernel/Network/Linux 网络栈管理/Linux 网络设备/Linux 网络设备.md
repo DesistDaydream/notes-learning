@@ -18,7 +18,7 @@ weight: 1
 
 ## sysfs 中的网络设备信息
 
-Linux 中对于每个网络设备，在 [Sys File System](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/Sys%20File%20System.md) 中都有一系列文件用来描述或定义这些网络设备
+Linux 中对于每个网络设备，在 [sysfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/sysfs.md) 中都有一系列文件用来描述或定义这些网络设备
 
 在 `/sys/class/net/${NetDeviceName}/` 目录下可以找到已在内核注册的关于网络设备的信息
 

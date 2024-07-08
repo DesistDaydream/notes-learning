@@ -8,11 +8,13 @@ title: procps 工具集
 >
 > - [GitLab 项目，procps-ng/procps](https://gitlab.com/procps-ng/procps)
 
-procps 是一组命令行和全屏实用程序，它们主要从 [Proc 文件系统](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/Proc%20File%20System.md) 中获取信心，该文件系统为内核数据结构提供了一个简单的接口。procps 程序通常集中在描述系统上运行的进程的结构上。包括以下程序(每个标题都是一个程序)
+procps 是一组命令行和全屏实用程序，它们主要从 [Proc 文件系统](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/proc.md) 中获取信心，该文件系统为内核数据结构提供了一个简单的接口。procps 程序通常集中在描述系统上运行的进程的结构上。包括以下程序(每个标题都是一个程序)
 
 Note：该工具集就算是最小化安装的 linux 发行版系统也是默认包含的~
 
 # free - 显示系统中可用和已用的内存量
+
+详见 [Memory 管理工具](docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/Memory%20管理工具.md)
 
 # kill - 向指定PID的进程发送信号
 

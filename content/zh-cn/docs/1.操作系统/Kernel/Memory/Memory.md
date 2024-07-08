@@ -18,7 +18,7 @@ weight: 1
 
 **Linux Memory Management Subsystem(Linux 内存管理子系统)** 负责管理系统中的内存。这包括 **virtual memory(虚拟内存)** 和 **demand paging(请求分页)** 的实现、[Linux Kernel](/docs/1.操作系统/Kernel/Linux%20Kernel/Linux%20Kernel.md)内部结构和用户空间程序的内存分配、将文件映射到进程地址空间、etc.
 
-Linux 内存管理是一个非常复杂系统，有很多可以配置的设置，这些设置可以通过 [Proc File System](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/Proc%20File%20System.md) 修改，还可以使用 [sysctl](/docs/1.操作系统/Linux%20管理/Linux%20内核管理工具/sysctl.md) 程序进行查询和调整，具体参数详见 Kernel 参数中的 [vm(内存相关参数)](/docs/1.操作系统/Kernel/Linux%20Kernel/Kernel%20参数/vm(内存相关参数).md)。
+Linux 内存管理是一个非常复杂系统，有很多可以配置的设置，这些设置可以通过 [proc](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/proc.md) 修改，还可以使用 [sysctl](/docs/1.操作系统/Linux%20管理/Linux%20内核管理工具/sysctl.md) 程序进行查询和调整，具体参数详见 Kernel 参数中的 [vm(内存相关参数)](/docs/1.操作系统/Kernel/Linux%20Kernel/Kernel%20参数/vm(内存相关参数).md)。
 
 ## 基础概念
 

@@ -1,6 +1,6 @@
 ---
-title: docker-compose 命令行工具
-linkTitle: docker-compose 命令行工具
+title: compose CLI
+linkTitle: compose CLI
 date: 2023-11-03T22:24
 weight: 3
 ---
