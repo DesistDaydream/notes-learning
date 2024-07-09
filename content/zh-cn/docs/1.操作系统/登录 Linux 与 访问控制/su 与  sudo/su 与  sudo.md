@@ -52,9 +52,10 @@ weight: 20
 
 sudo 通过各种插件实现功能。默认插件为 sudoers，用来确定用户的 sudo 权限，sudoers 的策略，通过 /etc/sudoers 文件进行配置，或者在 LDAP 中进行配置。
 
-# sudo 配置
+# sudo 关联文件与配置
 
-**/etc/sudo.conf**# sudo 程序的配置文件
+**/etc/sudo.conf** # sudo 程序的配置文件
+
 **/etc/sudoers** # suders 插件的配置文件，可以配置哪些用户可以拥有哪些权限。注意：该文件是只读的，只能通过 visudo 命令进行编辑
 
 - **/etc/sudoers.d/**# /etc/sudoers 的 include 配置的默认目录

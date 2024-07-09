@@ -124,8 +124,11 @@ scrape_configs:
 ### 具有 node_exporter 的配置简单文件
 
 抓取部署了 node_exporter 设备的监控数据的方式及 prometheus.yml 配置文件说明
+
 prometheus 会从 Node Exporter 所在服务器的 http://IP:9100/metrics 这个地址里的内容来获取该设备的监控数据
+
 所以需要给 prometheus 创建一个工作(i.e.job)。一个 job 就是一个抓取监控数据的工作，其中包括要抓取目标的 ip 和 port，还可以设置标签进行分类，还能进行抓取筛选等等，下面提供一个基本的配置
+
 修改 prometheus.yml，加入下面的监控目标，以便让 prometheus 监控这个已经安装了 node_exporter 的设备
 
 ```yaml

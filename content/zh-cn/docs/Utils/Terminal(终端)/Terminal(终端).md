@@ -13,6 +13,14 @@ weight: 1
 
 这里说的 Terminal(终端) 工具是一种可以连接 [Shell](/docs/1.操作系统/Terminal%20与%20Shell/Terminal%20与%20Shell.md) 的图形话工具。
 
+
+TODO: xterm 是什么？
+
+- TODO
+- 各种 GUI 终端工具都可以配置连接后要使用的终端，用 xterm 或者其他的，操作起来和样式都不一样。
+  - 比如使用 vim 的时候。选名为 linux 的 
+- 这是啥玩意？
+
 # Terminal 增强工具
 
 ## tmux
@@ -42,6 +50,29 @@ SecureCRT 是 VanDyke Software 开发的商业终端产品。初始发行于 199
 问题
 
 - ctrl + +/- 无法调整大小
+
+### 配置
+
+Options - Configure - Default Seession # 可修改默认的会话配置，针对所有会话的
+
+Options - Global Options # 可修改主题颜色
+
+#### 主题配色
+
+TODO: 有些对配色设置没效果？
+
+Normal colors(标准颜色) # 影响背景和背景字体？比如 ls -al 里显示的除文件名以外的字体。TODO
+
+
+|  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| 背景色 |     |     |     |     |     |     | 字体  |
+
+Bold colors(加粗颜色) # 影响文件名之类的？TODO
+
+|  1  |  2  |   3   |  4  |  5  |  6  |  7  |  8  |
+| :-: | :-: | :---: | :-: | :-: | :-: | :-: | :-: |
+|     |     | 可执行文件 |     | 目录  |     | 软链接 |     |
 
 ## MobaXterm
 

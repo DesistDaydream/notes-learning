@@ -343,7 +343,7 @@ Swap: 32764556k total,        0k used, 32764556k free,  3612636k cached
 - **si** # software irq，软中断（Software Interrupts）花费的时间
 - **st** # steal time，使用 hypervisor 管理的虚拟机偷取的时间
 
-第四行解析：内存状态，具体信息如下：
+第四行解析：[Memory](/docs/1.操作系统/Kernel/Memory/Memory.md) 状态，具体信息如下：
 
 - **total** — 物理内存总量（32GB）
 - **used** — 使用中的内存总量（14GB）

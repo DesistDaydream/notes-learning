@@ -154,16 +154,23 @@ flamegraph.pl 支持一些用户选项，比如说更改火焰图的 title。
 ### Interpretation Example
 
 为了更直观的让大家理解火焰图的含义，下面以图六作为例子。这是使用 cpu profile 生成的一张火焰图。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hxnw7s/1619535684422-6c4e4abe-767b-4f3c-b725-b0380038f19a.jpg)
+
 图片顶部显示说明`g()`使用 cpu 最频繁；虽然`d()`很宽，但是该方法直接使用 cpu 最少。`b()`和`c()`并不直接使用 cpu 资源，而他们的子方法使用。
+
 `g()`底部的方法显示了调用关系：`g()`被`f()`调用,`f()`被 `d()`调用,以此类推。
+
 对比`b()` 和`h()`的宽度可以发现，`b()`对 cpu 的使用率是`h()`的 4 倍。真正在 cpu 上执行的是他们的子方法。
+
 该图的主分支是`a()` 调用了 `b()` 和 `h()`,原因有可能是`a()`中存在条件分支（比如一个 if 语句，如果为 true 执行`b()`,反之执行`h()`）,也有可能`a()`分成了两个步骤`b()`和`h()`。
 
 ### Other Code-Path Visualizations
 
 正如图一所示，**Linux perf_events** 使用树形结构展示 cpu 使用率，这是另一种层级可视化方式。与火焰图相比，该方法并不能提供直观的全局视图。
+
 **KCacheGrind** 使用有向无环图实现可视化，使用宽度自适应的 box 表示方法，使用箭头表示调用关系，box 和箭头上都标注了百分比。与 Linux perf_events 一样，图片缩小以后，也很难提供全局信息。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hxnw7s/1619535684440-0ff268f5-3021-473d-aeaf-6fa1d4b5c051.jpeg)
 **sunburst**布局跟火焰图的冰锥布局很像。不同的是 sunburst 使用了极坐标。sunburst 生成的图形很漂亮，但是却并不利于理解。与角度大小相比，人们更容易区分宽度。所以在直观性上火焰图更胜一筹 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hxnw7s/1619535684460-0fa7cc81-0b41-49df-9df3-c52c3dc2c7a9.svg) 。
 **Flame charts**灵感来源于火焰图，是跟火焰图相似的可视化方式。区别是，x 轴并不是按照字母表的顺序排列，而是按照时间百分比排序。这样做的优势是：很容易发现时间相关的问题。但同时，缺点也很明显，这种排序减少了方法的合并，当分析多个线程时，劣势更加明显。Flame charts 跟火焰图一起使用应该会更有用。

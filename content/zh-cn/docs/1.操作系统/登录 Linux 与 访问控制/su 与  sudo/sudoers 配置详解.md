@@ -31,6 +31,7 @@ sudoers 中可以设置 4 种别名：
 - Cmnd_Alias(命令别名)
 
 别名语法：
+
 在别名的设置中，可以使用 `*` 这种通配符来匹配所有
 
 - User_Alias 别名名称 = 用户名,...
@@ -187,14 +188,16 @@ Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
 
 ## 日志相关
 
-**logfile = <FILE>** # 使用本地文件记录日志，并指定文件的绝对路径。默认情况下，sudo 使用 syslog 记录日志。
-**syslog = <FACILITY>** # 使用 syslog 记录日志，并指定 syslog 的日志设施。`默认值：authpriv`。
+**logfile = \<FILE>** # 使用本地文件记录日志，并指定文件的绝对路径。默认情况下，sudo 使用 syslog 记录日志。
+
+**syslog = \<FACILITY>** # 使用 syslog 记录日志，并指定 syslog 的日志设施。`默认值：authpriv`。
 
 - 可用的设施有：**authpriv**(if your OS supports it), **auth**, **daemon**,**user**, **local0**, **local1**, **local2**, **local3**, **local4**, **local5**,**local6**, and **local7**.
 
 ## 其他
 
 **secure_path = <PATH:PATH:...>** # 如果设置了该选项，则通过 sudo 运行命令时，将会用该选项的值替代用户设置的 `$PATH` 变量。
+
 **visiblewp** # 默认情况下，如果用户必须输入密码，但无法在终端上禁用 echo，sudo 将拒绝运行。如果设置了 visiblepw 标志，即使在屏幕上可见，sudo 也会提示输入密码。这使得运行 “ssh somehost sudo ls” 之类的东西成为可能，因为默认情况下，ssh(1) 在运行命令时不分配 tty。默认情况下，此标志处于关闭状态。
 
 # 用户赋权的实用案例
