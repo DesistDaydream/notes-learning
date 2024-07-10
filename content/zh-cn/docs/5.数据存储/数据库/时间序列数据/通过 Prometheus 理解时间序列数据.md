@@ -1,8 +1,18 @@
 ---
 title: 通过 Prometheus 理解时间序列数据
+linkTitle: 通过 Prometheus 理解时间序列数据
+date: 2024-07-10T09:44
+weight: 20
 ---
 
-## 时间序列(Time Series,简称 series) # 有序列、系列的意思
+# 概述
+
+> 参考：
+>
+> -
+
+
+## 时间序列(Time Series, 简称 series) - 有序列、系列的意思
 
 比如有这么几种描述：一系列的书、这一系列操作、等等。可以通过这种语境来理解 series(比如可以这么描述：这一系列数据)。
 
@@ -81,11 +91,15 @@ http_request_total{status="200", method="POST"}=1434417561287 => 4785
 
 指标的样式一：在形式上(输出到某个程序供人阅读)，指标(Metrics)都通过如下格式标识(指标名称(metrics name)和一组标签集(LabelSet))
 
-    <Metrics Name>{<Label Name>=<Label Value>, ...}
+```text
+<Metrics Name>{<Label Name>=<Label Value>, ...}
+```
 
 指标的样式二：在时间序列数据库中，指标(Metrics)则是使用下面的格式标识
 
-    {__name__=<Metrics Name>, <Label Name>=<Label Value>, ...}
+```text
+{__name__=<Metrics Name>, <Label Name>=<Label Value>, ...}
+```
 
 1. **Metrics Name(指标的名称)** #  可以反映被监控数据的含义（比如，http_request_total - 表示当前系统接收到的 HTTP 请求总量）。指标名称只能由 ASCII 字符、数字、下划线以及冒号组成并必须符合正则表达式\[a-zA-Z\_:]\[a-zA-Z0-9\_:]\*。
 2. **LabelSet(标签集)** # 反映了当前样本的特征维度，通过这些维度 Prometheus 可以对样本数据进行过滤，聚合等。标签的名称只能由 ASCII 字符、数字以及下划线组成并满足正则表达式\[a-zA-Z\_]\[a-zA-Z0-9\_]\*。
@@ -93,16 +107,20 @@ http_request_total{status="200", method="POST"}=1434417561287 => 4785
 
 因此以下两种方式均表示的同一条 time-series ：
 
-    api_http_requests_total{method="POST", handler="/messages"}
-    等同于：
-    {__name__="api_http_requests_total", method="POST", handler="/messages"}
+```text
+api_http_requests_total{method="POST", handler="/messages"}
+等同于：
+{__name__="api_http_requests_total", method="POST", handler="/messages"}
+```
 
 在 Prometheus 的源码中也可以看到指标(Metric)对应的数据结构，如下所示：
 
-    type Metric LabelSet
-    type LabelSet map[LabelName]LabelValue
-    type LabelName string
-    type LabelValue string
+```text
+type Metric LabelSet
+type LabelSet map[LabelName]LabelValue
+type LabelName string
+type LabelValue string
+```
 
 ## 白话说
 

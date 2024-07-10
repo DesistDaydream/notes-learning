@@ -16,7 +16,7 @@ weight: 1
 >   - [YouTube](https://www.youtube.com/watch?v=rT4fJNbfe14)
 >   - [B 站翻译](https://www.bilibili.com/video/BV1aW4y147GX)
 
-Prometheus 是由 SoundCloud 开发的 开源监控报警系统 和 时间序列数据库(TSDB) 。**Time Series(时间序列)** 概念详见：[Data Model(数据模型)](/docs/6.可观测性/监控系统/Prometheus/Storage(存储)/Data%20Model(数据模型).md)。使用 Go 语言开发，是 Google BorgMon 监控系统的开源版本。
+Prometheus 是由 SoundCloud 开发的 开源监控报警系统 和 [时间序列数据库](docs/5.数据存储/数据库/时间序列数据/时间序列数据.md)(TSDB) 。**Time Series(时间序列)** 概念详见：[Data Model(数据模型)](/docs/6.可观测性/监控系统/Prometheus/Storage(存储)/Data%20Model(数据模型).md)。使用 Go 语言开发，是 Google BorgMon 监控系统的开源版本。
 
 > 题外话：Google 的 Borg 诞生了 kuberntes、Google 的 Borgmon 诞生了 Prometheus
 
@@ -28,7 +28,7 @@ Prometheus 的基本原理是通过 HTTP 协议周期性抓取被监控组件的
 
 下面这张图说明了 Prometheus 的整体架构，以及生态中的一些组件作用：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/usvgfl/1616041189523-5ca97287-5886-4ab9-a4f8-6c249117e314.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616041189523-5ca97287-5886-4ab9-a4f8-6c249117e314.jpeg)
 
 Prometheus 生态圈中包含了多个组件，其中许多组件是可选的，多数 Prometheus 组件是 Go 语言写的，使得这些组件很容易编译和部署：
 
@@ -53,7 +53,7 @@ Prometheus 不适用的场景
 
 - Prometheus 它的价值在于可靠性，甚至在很恶劣的环境下，你都可以随时访问它和查看系统服务各种指标的统计信息。 如果你对统计数据需要 100%的精确，它并不适用，例如：它不适用于实时计费系统。
 
-### 总结：prometheus 从 Instrumenting 那里抓取监控数据，储存。完了~哈哈哈哈哈。
+## 总结：prometheus 从 Instrumenting 那里抓取监控数据，储存。完了~哈哈哈哈哈
 
 其他程序（e.g. Grafana） 通过 PromQL 从 Prometheus 存储中查询数据后拿着查询数据干啥都行
 
@@ -155,7 +155,7 @@ scrape_configs:
 
 访问 Prometheus Web，在 Status->Targets 页面下，我们可以看到我们配置的两个 Target，它们的 State 为 UP
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/usvgfl/1616041189541-1dfdddd7-ee74-4f32-8df6-8821cf415a14.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616041189541-1dfdddd7-ee74-4f32-8df6-8821cf415a14.jpeg)
 
 # Prometheus 部署
 
@@ -241,12 +241,12 @@ docker run -d --name prometheus --restart=always \
 
 Prometheus 运行后默认会监听在 9090 端口，可以通过访问 9090 端口来打开 Prometheus 的 web 界面
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/usvgfl/1616041189523-861a164c-3f79-42af-bd88-44c4baf2e349.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616041189523-861a164c-3f79-42af-bd88-44c4baf2e349.jpeg)
 
 Prometheus 本身也是自带 exporter 的,我们通过请求 http://ip:9090/metrics 可以查看从 exporter 中能具体抓到哪些 metrics。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/usvgfl/1616041189563-4125f137-160f-48dd-b4f6-dfd6af94aed0.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616041189563-4125f137-160f-48dd-b4f6-dfd6af94aed0.jpeg)
 
 这里以 Prometheus 本身数据为例，简单演示下在 Web 中查询指定表达式及图形化显示查询结果。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/usvgfl/1616041189526-ee545ef0-965e-499c-b80f-b6cdaf05c974.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616041189526-ee545ef0-965e-499c-b80f-b6cdaf05c974.jpeg)

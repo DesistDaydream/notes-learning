@@ -219,15 +219,16 @@ topk(10, http_requests_total)
 Histogram 在**一段时间范围内**观察某指标(通常是 请求的持续时间 或 响应时间的长短 等)，并对该指标的样本进行采样，将其计入可配置的 **bucket(储存区)** 中。Histogram 还提供所有 observed(被观察指标) 的样本在这一段时间范围内的总和。
 
 **传统意义上的直方图**
+
 假设我们想获取某个应用在不同响应时间的次数，则首先需要获取该应用在一段时间内的响应时间，收集这些样本。假设最后得到的所有样本的响应时间范围是 0s~10s。那么我们将样本的值划分为不同的区间，这个区间就是 **bucket(存储区)**，假设每个 bucket 的宽度是 0.2s，那么第一个 bucket 则表示响应时间小于 0.2s 的所有样本数量；第二个 bucket 表示响应时间大于 0.2s 且小于 0.4s 的样本数量；以此类推。效果如图：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gnzmdt/1617542272313-06f1c876-f41b-431b-99ed-e1e14b152761.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/storage/1617542272313-06f1c876-f41b-431b-99ed-e1e14b152761.jpeg)
 
 **Prometheus 中的直方图**
 
 Prometheus 中的直方图与传统意义的直方图有一些差别，准确描述，应该称为 **累计直方图**。主要差别在 bucket 的定义，在 Prometheus 的累计直方图中，还是假设 bucket 的宽度为 0.2s，那么第一个 bucket 表示响应时间小于等于 0.2s 的样本数量，第二个 bucket 表示响应时间小于等于 0.4s 的样本数量，以此类推。也就是说，**每一个 bucket 中的样本都包含了卡面所有 bucket 中的样本**，所以称为 累计直方图。而每个 bucket 范围中的最大值，称为 **upper inclusive bound(上边界)**。效果如图：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gnzmdt/1617543132157-1f35ddae-ef51-4ca7-9ece-72886154cc1f.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/storage/1617543132157-1f35ddae-ef51-4ca7-9ece-72886154cc1f.jpeg)
 
 Histogram 类型的指标在同一时间具有多条时间序列(假设指标名称为 <basename)：(这些时间序列大体分为 3 种)
 
@@ -303,7 +304,7 @@ prometheus_tsdb_wal_fsync_duration_seconds_count 216
 
 下面红框的地方就是
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gnzmdt/1616069604244-2f845e27-61ec-4a5b-ab9a-0634bf8907b2.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/storage/1616069604244-2f845e27-61ec-4a5b-ab9a-0634bf8907b2.jpeg)
 
 # Prometheus 格式的 Metrics 详解
 

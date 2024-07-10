@@ -503,7 +503,7 @@ scrape_configs:
 
 > 注意：这里可以发现，我们是可以访问集群内部的 10.244.0.243，这是因为我加了静态路由配置(`ip route add 10.244.0.0/16 dev ens3 via 172.19.42.231`)，否则，集群外部的 Prometheus 是无法抓取访问不到的目标的。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hzhbid/1616049623195-79b06041-01c2-4b81-bcb5-d4efd06de281.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616049623195-79b06041-01c2-4b81-bcb5-d4efd06de281.png)
 
 可以看到，coredns 的两个端口都发现了，由于我们不需要 53 端口，所以还需要进一步过滤，就是把 53 端口过滤调。可以使用 Relabeling 功能，在配置后面添加如下内容：
 
@@ -516,7 +516,7 @@ relabel_configs:
 
 此时，我们删除了 `__meta_kubernetes_pod_container_port_number` 这个标签的值为 53 的所有指标。这样我们就可以看到，只剩下 9153 端口的指标了
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hzhbid/1616049623219-a5447656-6c61-40f1-acfe-df6218904b3a.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616049623219-a5447656-6c61-40f1-acfe-df6218904b3a.png)
 
 ## 重设标签
 

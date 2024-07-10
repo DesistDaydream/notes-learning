@@ -84,7 +84,7 @@ groups:
 
 ## 告警规则配置进阶
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/am4r43/1616069617782-d847748c-9878-4e48-abbb-413799232424.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616069617782-d847748c-9878-4e48-abbb-413799232424.jpeg)
 如图所示，在一个告警产生时，会有其自身的 Labels，这些 Labels 信息可以填写进告警规则配置文件中，引用这些 Labels，就相当于把这些 Labels 中的值当做文件内容进行输出。(类似于引用变量)
 引用语法：
 
@@ -170,6 +170,9 @@ groups:
 ```
 
 如图所示 expr 字段写的表达式与 record 指定的表达式查询结果相同
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/am4r43/1616069617793-9bf3f46e-a10f-4b18-9555-369ba0d8d17f.jpeg)
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616069617793-9bf3f46e-a10f-4b18-9555-369ba0d8d17f.jpeg)
+
 等同于
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/am4r43/1616069617804-82e7c2f5-8bd7-4932-a5aa-9b702e780e59.jpeg)
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616069617804-82e7c2f5-8bd7-4932-a5aa-9b702e780e59.jpeg)

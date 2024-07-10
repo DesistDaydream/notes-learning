@@ -9,11 +9,11 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档,存储](https://prometheus.io/docs/prometheus/latest/storage/)
-> - [GitHub,TSDB](https://github.com/prometheus/prometheus/tree/main/tsdb)
-> - [GitHub 文档,TSDB format](https://github.com/prometheus/prometheus/blob/main/tsdb/docs/format/README.md)
-> - [简书,Prometheus 存储机制](https://www.jianshu.com/p/ef9879dfb9ef)
-> - [公众号,Prometheus 存储流向](https://mp.weixin.qq.com/s/J3oK0idEFbvErOwBEBrNSg)
+> - [官方文档，存储](https://prometheus.io/docs/prometheus/latest/storage/)
+> - [GitHub 项目 prometheus/prometheus，tsdb](https://github.com/prometheus/prometheus/tree/main/tsdb)
+> - [GitHub 文档，TSDB format](https://github.com/prometheus/prometheus/blob/main/tsdb/docs/format/README.md)
+> - [简书，Prometheus 存储机制](https://www.jianshu.com/p/ef9879dfb9ef)
+> - [公众号，Prometheus 存储流向](https://mp.weixin.qq.com/s/J3oK0idEFbvErOwBEBrNSg)
 > - 以下所有内容均基于 Prometheus 2.27+ 版本
 
 Prometheus 自身就包含一个 **Time Series Database(时间序列数据库)**，所以 Prometheus 采集完指标数据后，可以保存在本地，由 Prometheus 自身来管理这些数据。当然，Prometheus 也可以通过一种称为 **Remote Write** 的技术，将数据存储到 **Remote Storage Systems(远程存储系统)**。
@@ -24,7 +24,7 @@ Prometheus 自身就包含一个 **Time Series Database(时间序列数据库)**
 
 **注意：** Prometheus 的本地存储不支持不兼容 POSIX 的文件系统，因为可能会发生不可恢复的损坏。不支持 NFS 文件系统（包括 AWS 的 EFS）。NFS 可能符合 POSIX，但大多数实现均不符合。强烈建议使用本地文件系统以提高可靠性。Prometheus 启动时会有如下 warn：
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/lh6032/1623820971678-3d263b32-2760-4e77-9a22-b2c438bc62d5.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/storage/1623820971678-3d263b32-2760-4e77-9a22-b2c438bc62d5.png)
 
 并且，经过实践，在数据量足够多时，当 Prometheus 压缩数据时，有不小的概率会丢失某个 Block 中的 meta.json 文件。进而导致压缩失败，并频繁产生告警，详见故障：[compaction failed](/docs/6.可观测性/监控系统/Prometheus/Prometheus%20管理/故障处理/故障处理.md#compaction%20failed)
 
@@ -34,40 +34,42 @@ Prometheus 的本地时间序列数据库将数据以自定义的高效格式存
 
 本地存储的目录看起来应该是下面这个样子：
 
-    ./data
-    ├── 01F5JX01DJSHFY98CREKE3F2FX
-    │   ├── chunks
-    │   │   └── 000001
-    │   ├── index
-    │   ├── meta.json
-    │   └── tombstones
-    ├── 01F5MQ3BR42QWB0JVKA1T4BBHP
-    │   ├── chunks
-    │   │   └── 000001
-    │   ├── index
-    │   ├── meta.json
-    │   └── tombstones
-    ├── 01F5MXZ46MQYP9QH0G0XVTQF0D
-    │   ├── chunks
-    │   │   └── 000001
-    │   ├── index
-    │   ├── meta.json
-    │   └── tombstones
-    ├── chunks_head
-    │   ├── 000009
-    │   └── 000010
-    ├── queries.active
-    └── wal
-        ├── 00000008
-        ├── 00000009
-        ├── 00000010
-        └── checkpoint.00000007
-            └── 00000000
+```bash
+./data
+├── 01F5JX01DJSHFY98CREKE3F2FX
+│   ├── chunks
+│   │   └── 000001
+│   ├── index
+│   ├── meta.json
+│   └── tombstones
+├── 01F5MQ3BR42QWB0JVKA1T4BBHP
+│   ├── chunks
+│   │   └── 000001
+│   ├── index
+│   ├── meta.json
+│   └── tombstones
+├── 01F5MXZ46MQYP9QH0G0XVTQF0D
+│   ├── chunks
+│   │   └── 000001
+│   ├── index
+│   ├── meta.json
+│   └── tombstones
+├── chunks_head
+│   ├── 000009
+│   └── 000010
+├── queries.active
+└── wal
+    ├── 00000008
+    ├── 00000009
+    ├── 00000010
+    └── checkpoint.00000007
+        └── 00000000
+```
 
 Prometheus 的存储大致可以分为两类
 
-- Block(块) # 以 01 开头的那些目录。根据 [ULID](https://github.com/ulid/spec) 原理命名。
-- Wal(预写日志) # wal 目录部分
+- **Block(块)** # 以 01 开头的那些目录。根据 [ULID](https://github.com/ulid/spec) 原理命名。
+- **Wal(预写日志)** # wal 目录部分
 
 注意：虽然持久化后的 Block 数据都是上述结构，但是在持久化之前，时序数据是保存在内存中，并且实现了 WAL 机制。
 
@@ -77,7 +79,7 @@ Prometheus 的存储大致可以分为两类
 
 ### Block(块)
 
-Prometheus 存储在本地的时间序列数据，被抽象为一个一个的 **Block(块)。**每个 Block 都是一个单独的目录，Block 由 4 个部分组成：
+Prometheus 存储在本地的时间序列数据，被抽象为一个一个的 **Block(块)**。每个 Block 都是一个单独的目录，Block 由 4 个部分组成：
 
 - **chunks/** # Block(块) 中的所有时序数据所在的子目录。
   - chunks 目录中的时序数据被分组为一个或多个分段文件，默认情况下，每个文件的最大容量为 512MiB。
@@ -92,7 +94,7 @@ Prometheus 存储在本地的时间序列数据，被抽象为一个一个的 **
 - --storage.tsdb.max-block-duration # 一个存储 Block 的最大时间
   - 每隔一段时间，这些 2 小时的 Block 将会通过 Compaction 机制，压缩成时间周期更长的 Block，以节省存储空间。通常这个时间周期是 --storage.tsdb.retention 标志指定的时间的 10%，若是 10% 的结果小于 31 天，则默认最大时间为 31 天。
 - --storage.tsdb.retention # 块的过期时间.
-- **举个栗子**:
+- **举个例子**:
 - 假设有如下设置:
   - --storage.tsdb.max-block-duration=1h
   - --storage.tsdb.max-block-duration=15m
@@ -100,10 +102,14 @@ Prometheus 存储在本地的时间序列数据，被抽象为一个一个的 **
 - 再假设你在今天的 16:00 搜索了数据,那么你最多可以搜索到今天 13:00(即 16-(2-1))的数据.而最少也可以搜索到 14:45(如果期间数据在产生)往后的数据。
 
 我们将存储层划分为一个一个的 Block(块)，每个块在一段时间内保存所有序列。每个块充当独立数据库。
-![1889435-999d351beafab3c6.jpg](https://notes-learning.oss-cn-beijing.aliyuncs.com/lh6032/1620917933638-6655ade5-1636-43c7-8c72-20889f3218ed.jpeg)
+
+![1889435-999d351beafab3c6.jpg](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/storage/1620917933638-6655ade5-1636-43c7-8c72-20889f3218ed.jpeg)
+
 这样每次查询，仅检查所请求的时间范围内的块子集，查询执行时间自然会减少。
+
 这种布局也使删除旧数据变得非常容易，一旦块的时间范围完全落后于配置的保留边界，它就可以完全丢弃。
-![1889435-af09c18b8bbeb5fc.jpg](https://notes-learning.oss-cn-beijing.aliyuncs.com/lh6032/1620917933635-d92e1ace-518f-4c73-b33e-03688b64b9ec.jpeg)
+
+![1889435-af09c18b8bbeb5fc.jpg](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/storage/1620917933635-d92e1ace-518f-4c73-b33e-03688b64b9ec.jpeg)
 
 ### Index(索引)
 
@@ -121,7 +127,7 @@ Prometheus 存储在本地的时间序列数据，被抽象为一个一个的 **
 
 这个和 leveldb、rocksdb 等 LSM 树的思路一致。这些设计和 Gorilla 的设计高度相似，所以 Prometheus 几乎就是等于一个缓存 TSDB。它本地存储的特点决定了它不能用于 long-term 数据存储，只能用于短期窗口的 timeseries 数据保存和查询，并且不具有高可用性（宕机会导致历史数据无法读取）。
 
-所以，Prometheus 实现了下文的 [Remote Storage 功能](#Remote%20Storage(远程存储))，可以通过该功能，将数据通过网络转存到其他存储中。但是，需要仔细评估它们，性能和效率方面会产生很大的变化。
+所以，Prometheus 实现了下文的 [Remote Storage 功能](#RemoteStorage(远程存储))，可以通过该功能，将数据通过网络转存到其他存储中。但是，需要仔细评估它们，性能和效率方面会产生很大的变化。
 
 现有存储层的样本压缩功能在 Prometheus 的早期版本中发挥了重要作用。单个原始数据点占用 16 个字节的存储空间。但当普罗米修斯每秒收集数十万个数据点时，可以快速填满硬盘。但，同一系列中的样本往往非常相似，我们可以利用这一类样品（同样 label）进行有效的压缩。批量压缩一系列的许多样本的块，在内存中，将每个数据点压缩到平均 1.37 字节的存储。这种压缩方案运行良好，也保留在新版本 2 存储层的设计中。具体压缩算法可以参考：[Facebook 的“Gorilla”论文中](http://www.vldb.org/pvldb/vol8/p1816-teller.pdf)
 
@@ -212,21 +218,24 @@ Prometheus 的本地存储在可伸缩性和持久性方面受到单个节点的
 
 Prometheus 通过下面几种方式与远程存储系统集成：
 
-- Prometheus 可以以标准格式将其采集到的样本数据写入到指定的远程 URL。
-- Prometheus 可以以标准格式从指定的远程 URL 读取(返回)样本数据。
-- Prometheus 可以以标准格式从其他 Prometheus 接收样本。
+- Prometheus 以标准格式将其采集到的样本数据写入到指定的远程 URL。
+- Prometheus 以标准格式从指定的远程 URL 读取(返回)样本数据。
+- Prometheus 以标准格式从其他 Prometheus 接收样本。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lh6032/1616069469195-edb3fcc9-e672-43be-b6b9-fcc52d6ed497.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/storage/1616069469195-edb3fcc9-e672-43be-b6b9-fcc52d6ed497.jpeg)
 
-说白了，Prometheus 规定了一种标准格式，可以将采集到的指标数据实时发送给 Adapter，然后由 Adapter 处理后，在存储在第三方存储中(比如 InfluxDB、OpenTSDB 等等)。
+说白了，Prometheus 规定了一种标准格式，可以将采集到的指标数据实时发送给 Adapter，然后由 Adapter 处理后，再存储在第三方存储中(比如 InfluxDB、OpenTSDB 等等)。
+
+> [!Tips]
+> 有的第三放存储内部自己实现了与 Adapter 相同的能力，通过 HTTP 暴露了 read 和 write 的 API，以供 Prometheus 通过 remote_read 和 remote_write 配置将数据直接写入目标或从目标读取数据，e.g. [InfluxDB](https://docs.influxdata.com/influxdb/v1/supported_protocols/prometheus/)、[OpenGemini](https://docs.opengemini.org/zh/guide/write_data/prometheus.html#prometheus%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE)、etc.
+>
+> 在 [官方文档，集成方式 - 远程端点和存储](https://prometheus.io/docs/operating/integrations/#remote-endpoints-and-storage) 章节中可以看到现阶段所有可以实现 Remote Read/Write API 的 Adapter 以及 第三方存储。
 
 同时，Prometheus 自身也自带了一个 Adapter，可以在启动程序时，指定 `--web.enable-remote-write-receiver` 标志即可，此时，Prometheus 会在 `/api/v1/write` 端点上暴露 Remote Write API，其他 Prometheus 可以将采集到的指标数据发送到 `http://PrometheusIP:PORT:9090/api/v1/write` 上，这与 Federate(联邦) 功能有点类似，都可以用来汇总数据的。此时，这个开启了 Remote Write API 的 Prometheus 通常被称为 **Receiver(接收器)**，象征着这个 Prometheus 可以接收其他符合 Prometheus 标准格式的指标数据。
 
-其他的集成在 Adapter 要么可以自己实现，要么就继承在第三方存储中，在 [官方文档,集成方式-远程端点和存储](https://prometheus.io/docs/operating/integrations/#remote-endpoints-and-storage) 章节中可以看到现阶段所有可以实现 Remote Write API 的 Adapter 以及 第三方存储。
-
 有关在 Prometheus 中配置远程存储集成的详细信息，请参阅 Prometheus 配置文档的 [远程写入](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_write) 和[远程读取](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_read) 部分。
 
-有关请求和响应消息的详细信息，请参阅[远程存储协议缓冲区定义](https://github.com/prometheus/prometheus/blob/master/prompb/remote.proto)。
+有关请求和响应消息的详细信息，请参阅[远程存储协议缓冲区定义](https://github.com/prometheus/prometheus/blob/main/prompb/remote.proto)。
 
 注意：
 
@@ -236,6 +245,7 @@ Prometheus 通过下面几种方式与远程存储系统集成：
 ## 远程读
 
 在远程读的流程当中，当用户发起查询请求后，Promthues 将向 remote_read 中配置的 URL 发起查询请求(matchers,ranges)，Adaptor 根据请求条件从第三方存储服务中获取响应的数据。同时将数据转换为 Promthues 的原始样本数据返回给 Prometheus Server。
+
 当获取到样本数据后，Promthues 在本地使用 PromQL 对样本数据进行二次处理。
 
 ## 远程写
@@ -246,15 +256,29 @@ Prometheus 通过下面几种方式与远程存储系统集成：
 
 配置非常简单，只需要将对应的地址配置下就行
 
-    remote_write:
-      - url: "http://localhost:9201/write"
-    remote_read:
-      - url: "http://localhost:9201/read"
+```yaml
+remote_write:
+  - url: "http://localhost:9201/write"
+remote_read:
+  - url: "http://localhost:9201/read"
+```
+
+用 [InfluxDB](https://docs.influxdata.com/influxdb/v1/supported_protocols/prometheus/) 作为示例的话，可以进行如下配置
+
+```yaml
+remote_write:
+  - url: "http://localhost:8086/api/v1/prom/write?db=prometheus"
+
+remote_read:
+  - url: "http://localhost:8086/api/v1/prom/read?db=prometheus"
+```
+
+此时 Prometheus 所有采集到的 Metrics 都会通过远程写，写入到 http://localhost:8086/api/v1/prom/write?db=prometheus ；所有向 Prometheus 发送的 PromeQL 查询请求都会从 http://localhost:8086/api/v1/prom/read?db=prometheus 处查询并返回结果。
 
 # 压缩示例
 
 ```bash
-[root@hw-cloud-xngy-jump-server-linux-2 /mnt/sfs_turbo/monitoring-prometheus-prometheus-monitor-hw-cloud-k8s-prometheus-0-pvc-9ca02cc7-33f2-4059-807d-196c78a1e728/prometheus-db]# ll
+prometheus-db]# ll
 total 180
 drwxrwxrwx 40 root      root  4096 Oct 11 09:00 ./
 drwxrwxrwx  3 root      root  4096 Aug 17 09:40 ../
@@ -298,11 +322,10 @@ drwxr-xr-x  2 desistdaydream 2000  4096 Oct 11 09:00 chunks_head/
 -rw-r--r--  1 desistdaydream 2000     0 Sep 27 21:49 lock
 -rw-r--r--  1 desistdaydream 2000 20001 Oct 11 10:09 queries.active
 drwxr-xr-x  3 desistdaydream 2000  4096 Oct 11 09:00 wal/
-[root@hw-cloud-xngy-jump-server-linux-2 /mnt/sfs_turbo/monitoring-prometheus-prometheus-monitor-hw-cloud-k8s-prometheus-0-pvc-9ca02cc7-33f2-4059-807d-196c78a1e728/prometheus-db]# mv 01FHHPS3NR7M2E8MAV37S61ME6 /root/backup/
 
-[root@hw-cloud-xngy-jump-server-linux-2 /mnt/sfs_turbo/monitoring-prometheus-prometheus-monitor-hw-cloud-k8s-prometheus-0-pvc-9ca02cc7-33f2-4059-807d-196c78a1e728/prometheus-db]# [root@hw-cloud-xngy-jump-server-linux-2 /mnt/sfs_turbo/monitoring-prometheus-prometheus-monitor-hw-cloud-k8s-prometheus-0-pvc-9ca02cc7-33f2-4059-807d-196c78a1e728/prometheus-db]#
-[root@hw-cloud-xngy-jump-server-linux-2 /mnt/sfs_turbo/monitoring-prometheus-prometheus-monitor-hw-cloud-k8s-prometheus-0-pvc-9ca02cc7-33f2-4059-807d-196c78a1e728/prometheus-db]#
-[root@hw-cloud-xngy-jump-server-linux-2 /mnt/sfs_turbo/monitoring-prometheus-prometheus-monitor-hw-cloud-k8s-prometheus-0-pvc-9ca02cc7-33f2-4059-807d-196c78a1e728/prometheus-db]# ll
+prometheus-db]# mv 01FHHPS3NR7M2E8MAV37S61ME6 /root/backup/
+
+prometheus-db]# ll
 total 176
 drwxrwxrwx 39 root      root  4096 Oct 11 10:09 ./
 drwxrwxrwx  3 root      root  4096 Aug 17 09:40 ../
@@ -345,9 +368,11 @@ drwxr-xr-x  2 desistdaydream 2000  4096 Oct 11 09:00 chunks_head/
 -rw-r--r--  1 desistdaydream 2000     0 Sep 27 21:49 lock
 -rw-r--r--  1 desistdaydream 2000 20001 Oct 11 10:09 queries.active
 drwxr-xr-x  3 desistdaydream 2000  4096 Oct 11 10:09 wal/
-[root@hw-cloud-xngy-jump-server-linux-2 /mnt/sfs_turbo/monitoring-prometheus-prometheus-monitor-hw-cloud-k8s-prometheus-0-pvc-9ca02cc7-33f2-4059-807d-196c78a1e728/prometheus-db]# ll 01FHHPS3NR7M2E8MAV37S61ME6
+
+prometheus-db]# ll 01FHHPS3NR7M2E8MAV37S61ME6
 ls: cannot access '01FHHPS3NR7M2E8MAV37S61ME6': No such file or directory
-[root@hw-cloud-xngy-jump-server-linux-2 /mnt/sfs_turbo/monitoring-prometheus-prometheus-monitor-hw-cloud-k8s-prometheus-0-pvc-9ca02cc7-33f2-4059-807d-196c78a1e728/prometheus-db]# ll
+
+prometheus-db]# ll
 total 136
 drwxrwxrwx 29 root      root  4096 Oct 11 10:35 ./
 drwxrwxrwx  3 root      root  4096 Aug 17 09:40 ../
@@ -380,7 +405,8 @@ drwxr-xr-x  2 desistdaydream 2000  4096 Oct 11 10:32 chunks_head/
 -rw-r--r--  1 desistdaydream 2000     0 Oct 11 10:31 lock
 -rw-r--r--  1 desistdaydream 2000 20001 Oct 11 10:35 queries.active
 drwxr-xr-x  3 desistdaydream 2000  4096 Oct 11 10:32 wal/
-[root@hw-cloud-xngy-jump-server-linux-2 /mnt/sfs_turbo/monitoring-prometheus-prometheus-monitor-hw-cloud-k8s-prometheus-0-pvc-9ca02cc7-33f2-4059-807d-196c78a1e728/prometheus-db]# ll
+
+prometheus-db]# ll
 total 96
 drwxrwxrwx 19 root      root  4096 Oct 11 10:36 ./
 drwxrwxrwx  3 root      root  4096 Aug 17 09:40 ../
@@ -403,7 +429,6 @@ drwxr-xr-x  2 desistdaydream 2000  4096 Oct 11 10:32 chunks_head/
 -rw-r--r--  1 desistdaydream 2000     0 Oct 11 10:31 lock
 -rw-r--r--  1 desistdaydream 2000 20001 Oct 11 10:37 queries.active
 drwxr-xr-x  3 desistdaydream 2000  4096 Oct 11 10:32 wal/
-[root@hw-cloud-xngy-jump-server-linux-2 /mnt/sfs_turbo/monitoring-prometheus-prometheus-monitor-hw-cloud-k8s-prometheus-0-pvc-9ca02cc7-33f2-4059-807d-196c78a1e728/prometheus-db]#
 ```
 
 可以看到，Prometheus 逐步压缩一天的所有 Block，并逐步压缩到单一的 Block 中。10 月 9 日 与 10 日的 Block 逐步压缩，统一到了 10 月 7 日的 Block 中。

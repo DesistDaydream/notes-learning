@@ -8,7 +8,7 @@ weight: 3
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，配置 - 配置](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config)
 > - [简书大佬](https://www.jianshu.com/p/c21d399c140a)
 
@@ -16,11 +16,16 @@ weight: 3
 
 **Prometheus 在采集 Targets(目标) 的指标时，会自动将 Target 的标签附加到采集到的每条时间序列上**才存储，这样是为了更好的对数据进行筛选过滤，而这些附加的新标签是怎么来的呢？。。。这就是本文所要描述的东西。
 
-如下面两张图所示，随便找一条时间序列，就可以看到，原始的指标中没有下图红框中的标签，而通过 Prometheus Server 采集后，就附加了两个新的标签上去。
+如下所示，随便找一条时间序列，就可以看到，原始的指标中没有下图红框中的标签，而通过 Prometheus Server 采集后，就附加了两个新的标签上去。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iyi5xg/1616045780719-65995290-1f02-4fc9-b1ac-d26b80601eaa.png)
+```bash
+]# curl -s localhost:9090/metrics | grep build_info
+# HELP prometheus_build_info A metric with a constant '1' value labeled by version, revision, branch, and goversion from which prometheus was built.
+# TYPE prometheus_build_info gauge
+prometheus_build_info{branch="HEAD",goversion="go1.18.6",revision="1ce2197e7f9e95089bfb95cb61762b5a89a8c0da",version="2.37.1"} 1
+```
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iyi5xg/1616045780717-62e9699b-0064-4ea8-93d2-c741437d0a7f.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616045780717-62e9699b-0064-4ea8-93d2-c741437d0a7f.png)
 
 这里为什么会多出来两个标签呢，这种现象又是什么功能来实现的呢？~
 
@@ -29,7 +34,7 @@ weight: 3
 - Discovered Labels(已发现的标签)
 - Target Labels(目标标签)
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iyi5xg/1616045780732-4d75ae11-3fe5-4eb3-9866-ec9e55506a49.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616045780732-4d75ae11-3fe5-4eb3-9866-ec9e55506a49.png)
 
 从 Prometheus [Data Model(数据模型)](/docs/6.可观测性/监控系统/Prometheus/Storage(存储)/Data%20Model(数据模型).md) 中，可以知道 Label 的作用就是用来标识一条唯一的时间序列。那么 Prometheus 为什么会分为 Discovered Labels 和 Target Labels 呢？
 
@@ -113,7 +118,7 @@ Discovered Labels 中的 **系统标签**会告诉 Prometheus Server 如何从 T
 当 Prometheus 根据其自动发现机制，来自动发现待抓取目标时，会附带一些原始标签，这些标签以 `__meta_XX` 开头。
 不同的服务发现配置发现标签不同，具体详见各种各种服务发现配置的官方文档(比如[这里就是 kubernetes_sd_configs 配置](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#kubernetes_sd_config)中，所有自动发现的标签)，效果如下：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iyi5xg/1616049623207-f0fb653e-75ef-4e86-8c15-21bcb2292f02.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616049623207-f0fb653e-75ef-4e86-8c15-21bcb2292f02.png)
 
 > 像 static_configs 这种直接指定抓取目标的配置，只会发现最基本的 **address**、**schem** 等标签。
 >
@@ -162,7 +167,7 @@ Target Labels 中的所有标签都是 Relabeling 之后的标签。Target Label
 **[replacement](#replacement)**(STRING) # 替换。指定要写入 target_label 的值，STRING 中可以引用 regex 字段的值，使用正则表达式方式引用。`默认值：$1`。
 
 - 与 action 字段的 replace 值配合使用。
-  
+
 **[action](#action)**(STRING) # 对匹配到的标签要执行的动作。`默认值: replace`。
 
 ### action
@@ -233,7 +238,7 @@ Relabeling 的行为主要是围绕着 **Extracted Value(提取的值)** 进行�
   replacement: $1
 ```
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iyi5xg/1616045780763-37c765c1-bf4b-49db-8b05-e469a00618f8.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616045780763-37c765c1-bf4b-49db-8b05-e469a00618f8.png)
 
 这个行为跟映射这个词特别搭，就是将通过正则表达式匹配到的标签，生成新的标签。
 
@@ -273,11 +278,11 @@ scrape_configs:
 
 下图的示例，就是将原始的 **metrics_path** 标签重新配置为新的 metricsPath 标签，新标签的值就是原始标签的值
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iyi5xg/1616045780743-579762c3-abaa-4adf-99f8-3574b88460c2.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616045780743-579762c3-abaa-4adf-99f8-3574b88460c2.jpeg)
 
 ## 高级样例
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iyi5xg/1616045780735-c4c388d8-5602-4ffa-8c95-c78a4ff338d1.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616045780735-c4c388d8-5602-4ffa-8c95-c78a4ff338d1.jpeg)
 
 ### 过滤 target
 
@@ -296,7 +301,7 @@ scrape_configs:
 
 relabel 结果可以在 Prometheus 网页的 status/ Service Discovery 中查看
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iyi5xg/1616045780731-a742cbc1-1a16-445a-8b17-1b0561db43e7.webp)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616045780731-a742cbc1-1a16-445a-8b17-1b0561db43e7.webp)
 
 #### 使用 drop 行为，丢弃匹配 regex 的 Targets
 
@@ -312,7 +317,7 @@ scrape_configs:
 
 ```
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iyi5xg/1616045780860-e6406a1b-4bc1-4ba8-921e-39949436a028.webp)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616045780860-e6406a1b-4bc1-4ba8-921e-39949436a028.webp)
 
 ### 删除标签
 
@@ -327,7 +332,7 @@ scrape_configs:
         action: labeldrop
 ```
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iyi5xg/1616045780745-ad5eb6aa-c37b-431c-8593-ffb5ab8ff40e.webp)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616045780745-ad5eb6aa-c37b-431c-8593-ffb5ab8ff40e.webp)
 
 labelKeep 和 labeldrop 不操作 \_\_ 开头的标签，要操作需要先改名
 
@@ -347,7 +352,7 @@ scrape_configs:
         target_label: procotol
 ```
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iyi5xg/1616045780754-bd537921-de9b-4cf6-b665-6951e6a4329c.webp)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616045780754-bd537921-de9b-4cf6-b665-6951e6a4329c.webp)
 
 这里可以是多个 source_labels，只有值匹配到 regex，才会进行替换
 
@@ -367,7 +372,7 @@ scrape_configs:
         replacement: ${2}
 ```
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iyi5xg/1616045780764-cc349a0e-af4b-4b83-b39d-6188ca93da4f.webp)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616045780764-cc349a0e-af4b-4b83-b39d-6188ca93da4f.webp)
 
 ### 修改 label 值
 
@@ -399,13 +404,13 @@ relabel_configs:
     target_label: __address__
 ```
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iyi5xg/1616045780766-2db0040a-e0ba-4b36-81e7-c1e1ed4a81cd.webp)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616045780766-2db0040a-e0ba-4b36-81e7-c1e1ed4a81cd.webp)
 
 ### 多标签合并
 
 标签合并，可以将多个源标签合并为一个目标标签，可以取源标签的值，也可以进行 hash，用户 target 分组
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iyi5xg/1616045780757-35f7df16-b3a1-4666-8b4a-ee755a1d6115.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616045780757-35f7df16-b3a1-4666-8b4a-ee755a1d6115.jpeg)
 
 - 将多个标签的值进行 hash，形成一个 target 标签，只要 target 标签一致，则表示源标签一致，可以用来实现 prometheus 的负载均衡
 
@@ -426,7 +431,7 @@ scrape_configs:
         target_label: hash_id
 ```
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iyi5xg/1616045780783-56416a5f-6ee9-4c58-97b8-d99731d0fc9b.webp)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616045780783-56416a5f-6ee9-4c58-97b8-d99731d0fc9b.webp)
 
 ## 完整案例
 
@@ -439,4 +444,4 @@ scrape_configs:
 
 这个案例说明源标签是可以重复使用的
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iyi5xg/1616045780790-516771ee-6fe1-49bf-aeb5-ee033ba1f35f.webp)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616045780790-516771ee-6fe1-49bf-aeb5-ee033ba1f35f.webp)

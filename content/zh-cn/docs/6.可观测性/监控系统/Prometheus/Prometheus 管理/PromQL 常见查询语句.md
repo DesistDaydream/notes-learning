@@ -15,11 +15,11 @@ weight: 2
 
 # 问题
 
-如何获取范围向量中的第一个和最后一个值。<https://stackoverflow.com/questions/68895729/how-to-get-the-first-and-last-element-of-a-range-vector-in-promql>
+如何获取范围向量中的第一个和最后一个值。 https://stackoverflow.com/questions/68895729/how-to-get-the-first-and-last-element-of-a-range-vector-in-promql
 
 - MetricsQS 中有 `first_over_time()` 函数
 
-如何获取范围向量中，指定的值。<https://stackoverflow.com/questions/45213745/prometheus-how-to-calculate-proportion-of-single-value-over-time>，比如 `count_over_time(my_metric[1m] != 0)`获取 1 分钟内所有值中不为 0 的值
+如何获取范围向量中，指定的值。 https://stackoverflow.com/questions/45213745/prometheus-how-to-calculate-proportion-of-single-value-over-time ，比如 `count_over_time(my_metric[1m] != 0)`获取 1 分钟内所有值中不为 0 的值
 
 - MetricsQL 中有 `count_ne_over_time(my_metric[1h], 0)` 函数
 

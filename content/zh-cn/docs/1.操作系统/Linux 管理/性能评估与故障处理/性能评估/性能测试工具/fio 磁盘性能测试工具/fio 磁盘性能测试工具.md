@@ -74,52 +74,62 @@ Job file 参数详见：fio 参数详解
 
 因此，让我们看一个非常简单的作业文件，该文件定义了两个过程，每个过程都随机读取 128MiB 文件：
 
-    ; -- start job file --
-    [global]
-    rw=randread
-    size=128m
-    [job1]
-    [job2]
-    ; -- end job file --
+```ini
+; -- start job file --
+[global]
+rw=randread
+size=128m
+[job1]
+[job2]
+; -- end job file --
+```
 
 如您所见，作业文件部分本身为空，因为所有描述的参数都是共享的。由于未提供文件名选项，因此，fio 会为每个作业组成一个合适的文件名。在命令行上，此作业如下所示：
 
-    $ fio --name=global --rw=randread --size=128m --name=job1 --name=job2
+```bash
+$ fio --name=global --rw=randread --size=128m --name=job1 --name=job2
+```
 
 让我们看一个示例，其中有许多进程随机写入文件：
 
-    ; -- start job file --
-    [random-writers]
-    ioengine=libaio
-    iodepth=4
-    rw=randwrite
-    bs=32k
-    direct=0
-    size=64m
-    numjobs=4
-    ; -- end job file --
+```ini
+; -- start job file --
+[random-writers]
+ioengine=libaio
+iodepth=4
+rw=randwrite
+bs=32k
+direct=0
+size=64m
+numjobs=4
+; -- end job file --
+```
 
 这里我们没有全局部分，因为我们只定义了一项工作。我们想在这里使用异步 I / O，每个文件的深度为 4。我们还将缓冲区大小增加到 32KiB，并将 numjobs 定义为 4，以分叉 4 个相同的作业。结果是 4 个进程，每个进程随机写入其自己的 64MiB 文件。您可以在命令行上指定参数，而不使用上面的作业文件。对于这种情况，您可以指定：
 
-    $ fio --name=random-writers --ioengine=libaio --iodepth=4 --rw=randwrite --bs=32k --direct=0 --size=64m --numjobs=4
+```bash
+$ fio --name=random-writers --ioengine=libaio --iodepth=4 --rw=randwrite --bs=32k --direct=0 --size=64m --numjobs=4
+```
 
 # fio 命令行工具
 
-## fio \[OPTIONS] \[JOB OPTIONS] \[job file(s)]
+## Syntax(语法)
+
+**fio \[OPTIONS] \[JOB OPTIONS] \[job file(s)]**
 
 OPTIONS
 
 JOB OPTIONS
 
-1. 由于 Jobfile 中的参数与命令行选项基本保持一一对应的关系，所以对于 fio 的命令行参数，参考 Job file 参数即可 fio 参数详解
+- 由于 Jobfile 中的参数与命令行选项基本保持一一对应的关系，所以对于 fio 的命令行参数，参考 Job file 参数即可 fio 参数详解
 
 EXAMPLE
 
-1. 注意，下面两条命令直接对整块磁盘进行写操作，会破坏文件，谨慎操作
-   1. fio -filename=/dev/vdb1 -direct=1 -iodepth 64 -thread -rw=randwrite -ioengine=libaio -bs=4K -numjobs=8 -runtime=60 -group_reporting -name=test1
-   2. fio -filename=/dev/vdb3 -direct=1 -iodepth 64 -thread -rw=write -ioengine=libaio -bs=512K -numjobs=8 -runtime=60 -group_reporting -name=test2
-2. **fio --rw=write --ioengine=sync --fdatasync=1 --directory=/var/lib/etcd --size=22m --bs=2300 --name="fioEtcdTest" --time_based --runtime=2m**
-3. **fio --rw=write --ioengine=libaio --iodepth=4 --direct=1 --filename=fiotest --size=2G --bs=4k --name="Max throughput" --time_based --runtime=60**
+- 注意，下面两条命令直接对整块磁盘进行写操作，会破坏文件，谨慎操作
+   - fio -filename=/dev/vdb1 -direct=1 -iodepth 64 -thread -rw=randwrite -ioengine=libaio -bs=4K -numjobs=8 -runtime=60 -group_reporting -name=test1
+   - fio -filename=/dev/vdb3 -direct=1 -iodepth 64 -thread -rw=write -ioengine=libaio -bs=512K -numjobs=8 -runtime=60 -group_reporting -name=test2
+- **fio --rw=write --ioengine=sync --fdatasync=1 --directory=/var/lib/etcd --size=22m --bs=2300 --name="fioEtcdTest" --time_based --runtime=2m**
+- **fio --rw=write --ioengine=libaio --iodepth=4 --direct=1 --filename=fiotest --size=2G --bs=4k --name="Max throughput" --time_based --runtime=60**
 
 ## 结果分析
 

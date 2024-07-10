@@ -28,9 +28,13 @@ SQL 在 1986 年成为 [ANSI](/docs/Standard/IT/ANSI.md) 的一项标准，在 1
 > - [MySQL 官方文档，语言结构-关键字和保留字](https://dev.mysql.com/doc/refman/8.0/en/keywords.html)
 
 SELECT
+
 FROM
+
 ORDER BY
+
 GROUP BY
+
 WHERE
 
 # SQL 标准
