@@ -58,31 +58,39 @@ Git 默认行为会在提交时自动地把 CRLF(回车换行) 转换成 LF(换�
 
 你可以用 git config --global core.autocrlf true 来打开此项功能。 如果是在 Windows 系统上，把它设置成 true，这样在检出代码时，换行会被转换成回车和换行：
 
-    #提交时转换为LF，检出时转换为CRLF
-    $ git config --global core.autocrlf true
+```bash
+# 提交时转换为LF，检出时转换为CRLF
+$ git config --global core.autocrlf true
+```
 
 情况二：
 
 如果使用以换行（LF）作为行结束符的 Linux 或 Mac，你不需要 Git 在检出文件时进行自动的转换。然而当一个以回车（CR）和换行（LF）作为行结束符的文件不小心被引入时，你肯定想让 Git 修正。 所以，你可以把 core.autocrlf 设置成 input 来告诉 Git 在提交时把回车和换行转换成换行，检出时不转换：（这样在 Windows 上的检出文件中会保留回车和换行，而在 Mac 和 Linux 上，以及版本库中会保留换行。）
 
-    #提交时转换为LF，检出时不转换
-    $ git config --global core.autocrlf input
+```bash
+# 提交时转换为LF，检出时不转换
+$ git config --global core.autocrlf input
+```
 
 情况三：
 
 如果你是 Windows 程序员，且正在开发仅运行在 Windows 上的项目，可以设置 false 取消此功能，把回车保留在版本库中：
 
-    #提交检出均不转换
-    $ git config --global core.autocrlf false
+```bash
+# 提交检出均不转换
+$ git config --global core.autocrlf false
+```
 
 你也可以在文件提交时进行 safecrlf 检查
 
-    #拒绝提交包含混合换行符的文件
-    git config --global core.safecrlf true
-    # 允许提交包含混合换行符的文件
-    git config --global core.safecrlf false
-    #提交包含混合换行符的文件时给出警告
-    git config --global core.safecrlf warn
+```bash
+# 拒绝提交包含混合换行符的文件
+git config --global core.safecrlf true
+# 允许提交包含混合换行符的文件
+git config --global core.safecrlf false
+# 提交包含混合换行符的文件时给出警告
+git config --global core.safecrlf warn
+```
 
 ## 通俗解释
 

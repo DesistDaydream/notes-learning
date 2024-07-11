@@ -137,5 +137,14 @@ https://git-scm.com/docs/git-push
 
 https://git-scm.com/docs/git-remote/en
 
-可以在一个项目中添加多个远程仓库，将代码推送到多个远程仓库中。
+可以在本地项目中添加多个远程仓库（称为 Remote），将代码推送到多个远程仓库中，或者从远程仓库拉取代码。
+
+COMMAND
+
+- **add** # 为本地存储库添加一个远程存储库
+- **set-url** # 更改 Remote 的 URL
+
+`git remote add [-t <branch>] [-m <master>] [-f] [--[no-]tags] [--mirror=(fetch|push)] <name> <URL>`
+
+`git remote set-head <name> (-a | --auto | -d | --delete | <branch>)`
 

@@ -42,7 +42,7 @@ docker run --detach \
 
 # 最佳实践
 
-## git 仓库导入并同步到 GitLab 仓库
+## 从 GitHub 导入仓库到 GitLab 并定时同步
 
 https://www.jianshu.com/p/0959d021c281
 
