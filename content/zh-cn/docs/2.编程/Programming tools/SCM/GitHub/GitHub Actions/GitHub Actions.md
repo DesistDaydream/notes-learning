@@ -10,7 +10,8 @@ weight: 1
 > 参考：
 >
 > - [官方文档](https://docs.github.com/cn/actions)
-> - [官方文档,学习 GitHub Actions-GitHub Actions 简介](https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions)
+> - [官方文档，学习 GitHub Actions - GitHub Actions 简介](https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions)
+>   - 域名中的路径改成 [理解 GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)
 > - GitHub Actions 官方市场：[Actions Marketplace](https://github.com/marketplace?type=actions)
 > - 阮一峰老师的一篇文章：[GitHub Actions 入门教程](http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html)
 > - <https://blog.csdn.net/sculpta/article/details/104142607>
@@ -25,7 +26,7 @@ GitHub 会提供一个以下配置的服务器做为 runner：
 
 （免费额度最多可以同时运行 20 个作业，心动了有木有 💘）
 
-GitHub Actions 是一个 `CI/CD（持续集成/持续部署）`工具，持续集成由很多操作组成，比如 **抓取代码**、**运行测试**、**登录远程服务器**、**发布到第三方服务** 等等。GitHub 把这些操作统称为 `**Actions(操作、行为)**`。
+GitHub Actions 是一个 `CI/CD（持续集成/持续部署）`工具，持续集成由很多操作组成，比如 **抓取代码**、**运行测试**、**登录远程服务器**、**发布到第三方服务** 等等。GitHub 把这些操作统称为 **`Actions(操作、行为)`**。
 
 Actions 是 GitHub Actions 的核心，简单来说，它其实就是一段可以执行的代码，可以用来做很多事情。
 
@@ -51,12 +52,12 @@ actions/setup-node@master  # 指向一个分支
 
 ## Actions 基本概念
 
-- **Workflow(工作流程)** # 持续集成一次运行的过程，就是一个 workflow。
-  - **Job(任务)** # 一个 Workflow 由一个或多个 Jobs 构成，含义是一次持续集成的运行，可以完成多个任务。
+- **Workflow(工作流程)** # 持续集成一次运行的过程，就是一个 workflow。定义了由 Event 触发的执行流程。
+  - **Job(任务)** # 一个 Workflow 由一个或多个 Jobs 构成，每个 Job 都是在 runner 中运行的程序，并且该程序具有一个或多个 Setp(步骤) 以完成 Job。
+    - **Runner(运行器)** # 运行 JOB 的环境，可以是 [虚拟机](docs/10.云原生/Virtualization/Virtualization.md) 或 [容器](docs/10.云原生/Containerization/Containerization.md)。通常由 Workflow 文件中的 `.jobs.JOB_ID.runs-on` 字段指定。
     - **Step(步骤)** # 每个 job 由多个 Step 构成，一步步完成。
       - **Action(动作)** # 每个 step 可以依次执行一个或多个命令（action）。
-    - **runner(运行器)** # 运行 Workflow 中 JOB 的环境。通常由 Workflow 文件中的 `.jobs.JOB_ID.runs-on` 字段指定。
-- **Event(事件)** # 触发 Workflow 的特定活动。比如，推送新的提交到仓库或者创建 PR，甚至可以配置 cron 定时触发 Workflow
+- **Event(事件)** # 触发 Workflow 的特定活动。比如，推送新的提交到仓库或者创建 PR，甚至可以配置 cron 定时触发 Workflow，也可以设定只由手动惦记某个按钮触发。
 
 ### Workflow
 
@@ -78,13 +79,18 @@ Workflow 文件是 YAML 格式，后缀名必须统一为 `.yml`。一个代码�
 - 将以下 YAML 内容复制到 github-actions-demo.yml 文件中：
 
 ```yaml
+# 定义了 Workflow 名称
 name: GitHub Actions Demo
+# 定义了触发 Workflow 的 Event
 on: [push]
+# 定义了 Workflow 中包含的 Job
 jobs:
   Explore-GitHub-Actions:
-    # 指定这个运行这个 job 的操作系统，类似 Dockerfile 中的 FORM 指令。
+    # 定义运行这个 job 的 Runner。类似 Dockerfile 中的 FORM 指令。
     runs-on: ubuntu-latest
+    # 定义运行该 Job 应该执行的 Step
     steps:
+      # 定义了该 Step 的 Action
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
@@ -101,7 +107,7 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
 ```
 
-3. 滚动到页面底部，然后选择 Create a new branch for this commit and start a pull request（为此提交创建一个新分支并开始拉取请求）。 然后，若要创建拉取请求，请单击 Propose new file（提议新文件）。![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/github_action/1627537717320-0a2fe106-9eda-4c6f-a81b-6a5837803589.png)
+- 滚动到页面底部，然后选择 Create a new branch for this commit and start a pull request（为此提交创建一个新分支并开始拉取请求）。 然后，若要创建拉取请求，请单击 Propose new file（提议新文件）。![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/github_action/1627537717320-0a2fe106-9eda-4c6f-a81b-6a5837803589.png)
 
 向仓库的分支提交工作流程文件会触发 push 事件并运行工作流程。
 

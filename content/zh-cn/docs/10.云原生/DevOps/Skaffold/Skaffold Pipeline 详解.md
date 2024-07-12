@@ -12,7 +12,7 @@ Skaffold 默认通过 yaml 格式的名为 skaffold.yaml 的文件来指定 Pipe
 
 ## Skaffold Pipeline 的工作流程
 
-参考：[官方文档](https://skaffold.dev/docs/pipeline-stages/)
+参考：[官方文档，pipeline 阶段](https://skaffold.dev/docs/pipeline-stages/)
 
 Skafflod 在执行 Pipeline 时，会经过 **5 个 stages(阶段)**。
 
@@ -46,11 +46,11 @@ Cleanup # 清理执行 pipeline 中生成的 manifests 文件和 images。
 
 skaffold.yaml 文件由下面几个主要字段组成：
 
-## apiVersion: skaffold/v2beta10 # 要使用的 Skaffold API 版本。当前的 API 版本是 skaffold/v2beta10
+## apiVersion: skaffold/v2beta10 - 要使用的 Skaffold API 版本。当前的 API 版本是 skaffold/v2beta10
 
-## kind: Config # kind(类型) 始终为 Config
+## kind: Config - kind(类型) 始终为 Config
 
-## build # 指定 Skaffold 使用何种方式构建工件、标记工件以及推送工件来进行 Pipeline 任务
+## build - 指定 Skaffold 使用何种方式构建工件、标记工件以及推送工件来进行 Pipeline 任务
 
 Skaffold 支持使用本地 Docker 守护程序，Google Cloud Build，Kaniko 或 Bazel 来构建工件。
 
@@ -69,14 +69,14 @@ local: # 描述如何在本地 docker 守护程序上进行构建以及如何选
 
 - useBuildkit: BOOL # 是否使用 BuildKit 构建 Docker 映像。`默认值：false`
 
-## test # 指定 Skaffold 如何测试工件
+## test - 指定 Skaffold 如何测试工件
 
 Skaffold 支持容器结构测试以测试构建的工件。有关更多信息，请参见测试人员。
 
-## deploy # 指定 Skaffold 如何部署工件
+## deploy - 指定 Skaffold 如何部署工件
 
 Skaffold 支持使用 kubectl，helm 或 kustomize 部署工件。有关更多信息，请参见部署者。
 
-## profiles # 配置文件是一组设置，激活这些设置后，它们将覆盖当前配置
+## profiles - 配置文件是一组设置，激活这些设置后，它们将覆盖当前配置
 
 您可以使用配置文件来覆盖 build，test 而 deploy 部分。
