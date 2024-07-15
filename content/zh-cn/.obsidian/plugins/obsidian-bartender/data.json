@@ -2729,6 +2729,11 @@
       "docs/10.云原生/Containerization implementation/Docker/Compose/Compose.md",
       "docs/10.云原生/Containerization implementation/Docker/Compose/Compose 文件规范.md",
       "docs/10.云原生/Containerization implementation/Docker/Compose/compose CLI.md"
+    ],
+    "docs/11.多媒体/音频处理": [
+      "docs/11.多媒体/音频处理/_index.md",
+      "docs/11.多媒体/音频处理/音频处理.md",
+      "docs/11.多媒体/音频处理/把喜马拉雅音频下载到电脑.md"
     ]
   },
   "actionBarOrder": {},
