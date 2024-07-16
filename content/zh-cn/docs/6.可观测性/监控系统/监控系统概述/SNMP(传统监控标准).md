@@ -251,7 +251,7 @@ END
 
 **IF-MIB**
 
-### 常见的 **MACRO(宏指令)**
+### 常见的 MACRO(宏指令)
 
 经过了这么多年的发展，现在有很多常用的 MACRO 作为默认自带的。比如其中 MODULE-IDENTITY 这个宏，就是对 Object 的一个抽象，其实也可以当作 Object 的一种。
 

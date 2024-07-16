@@ -42,6 +42,7 @@ docker run --detach \
 
 # 最佳实践
 
+
 ## 从 GitHub 导入仓库到 GitLab 并定时同步
 
 https://www.jianshu.com/p/0959d021c281
@@ -87,68 +88,4 @@ origin  git@gitlab.com:DesistDaydream/net_tool.git (push)
 ```bash
 ~]# git pull github main
 ~]# git push origin main  --force
-```
-
-# GitLab CI
-
-> 参考:
->
-> - [官方文档，主题 - 使用 CI/CD 构建你的应用](https://docs.gitlab.com/ee/topics/build_your_application.html)
-
-## .gitlab-ci.yml
-
-> 参考:
->
-> - [官方文档，CI/CD YAML 语法参考](https://docs.gitlab.com/ee/ci/yaml/)
-
-顶层字段
-
-- **stages**(\[]STRING)
-- **${JOB_NAME}**(OBJECT) # 
-
-```yaml
-stages:
-  - build
-  - release
-
-build-job:
-  tags:
-    - instance-runner-tc
-  stage: build
-  script:
-    - bash observability/monitoring/packaging_server.sh
-  artifacts:
-    paths:
-      - server.tar.gz
-
-release-job:
-  tags:
-    - instance-runner-tc
-  stage: release
-  image: registry.gitlab.com/gitlab-org/release-cli:latest
-  # 解决 release-cli 无法信任自建 CA 问题。https://gitlab.com/gitlab-org/release-cli/-/issues/47
-  before_script:
-    - sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
-    - apk --no-cache add openssl ca-certificates
-    - mkdir -p /usr/local/share/ca-certificates/extra
-    - openssl s_client -connect ${CI_SERVER_HOST}:${CI_SERVER_PORT} -servername ${CI_SERVER_HOST} -showcerts </dev/null 2>/dev/null | sed -e '/-----BEGIN/,/-----END/!d' | tee "/usr/local/share/ca-certificates/${CI_SERVER_HOST}.crt" >/dev/null
-    - update-ca-certificates
-  script:
-    - echo "检查 CI_COMMIT_TAG ${CI_COMMIT_TAG}"
-    - ls -l
-    - test -f server.tar.gz && echo "server.tar.gz exists" || echo "server.tar.gz does not exist"
-  release:
-    name: "Release $CI_COMMIT_TAG"
-    # tag_name: $CI_COMMIT_TAG
-    tag_name: "v1.0.0"
-    description: "Release created by GitLab CI"
-    assets:
-      links:
-        - name: "server.tar.gz"
-          url: "${CI_PROJECT_URL}/-/jobs/artifacts/${CI_COMMIT_REF_NAME}/raw/server.tar.gz?job=build-job"
-          link_type: "package"
-  needs:
-    - job: build-job
-      artifacts: true
-
 ```

@@ -8,11 +8,11 @@ weight: 3
 
 > 参考：
 >
-> - [官方文档,用户指南-如何建立你的 Inventory](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html)
+> - [官方文档，用户指南 - 如何建立你的 Inventory](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html)
 
-Ansible 可同时操作属于一个组的多台主机,组和主机之间的关系通过 Inventory 文件配置。默认的文件路径为 /etc/ansible/hosts，也可以在 `ansible`、`ansible-playbook` 命令中使用 -i 选项指定其他的 Inventory 文件。
+Ansible 可同时操作属于一个组的多台主机，组和主机之间的关系通过 Inventory 文件配置。默认的文件路径为 /etc/ansible/hosts，也可以在 `ansible`、`ansible-playbook` 命令中使用 -i 选项指定其他的 Inventory 文件。
 
-除默认文件外,你还可以同时使用多个 inventory 文件(后面会讲到),也可以从动态源,或云上拉取 inventory 配置信息.详见 动态 Inventory.
+除默认文件外，还可以同时使用多个 inventory 文件，也可以从动态源，或云上拉取 inventory 配置信息。详见[ 动态 Inventory](https://docs.ansible.com/ansible/latest/inventory_guide/intro_dynamic_inventory.html#intro-dynamic-inventory)。
 
 ## Inventory文件格式
 

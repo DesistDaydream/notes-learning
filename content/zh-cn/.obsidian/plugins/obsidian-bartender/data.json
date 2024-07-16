@@ -2734,6 +2734,12 @@
       "docs/11.多媒体/音频处理/_index.md",
       "docs/11.多媒体/音频处理/音频处理.md",
       "docs/11.多媒体/音频处理/把喜马拉雅音频下载到电脑.md"
+    ],
+    "docs/2.编程/Programming tools/SCM/GitLab": [
+      "docs/2.编程/Programming tools/SCM/GitLab/_index.md",
+      "docs/2.编程/Programming tools/SCM/GitLab/GitLab.md",
+      "docs/2.编程/Programming tools/SCM/GitLab/Packages AND Registries.md",
+      "docs/2.编程/Programming tools/SCM/GitLab/GitLab CI.md"
     ]
   },
   "actionBarOrder": {},
