@@ -54,7 +54,7 @@ actions/setup-node@master  # 指向一个分支
 
 - **Workflow(工作流程)** # 持续集成一次运行的过程，就是一个 workflow。定义了由 Event 触发的执行流程。
   - **Job(任务)** # 一个 Workflow 由一个或多个 Jobs 构成，每个 Job 都是在 runner 中运行的程序，并且该程序具有一个或多个 Setp(步骤) 以完成 Job。
-    - **Runner(运行器)** # 运行 JOB 的环境，可以是 [虚拟机](docs/10.云原生/Virtualization/Virtualization.md) 或 [容器](docs/10.云原生/Containerization/Containerization.md)。通常由 Workflow 文件中的 `.jobs.JOB_ID.runs-on` 字段指定。
+    - **Runner(运行器)** # 运行 JOB 的环境，可以是 [虚拟机](/docs/10.云原生/Virtualization/Virtualization.md) 或 [容器](/docs/10.云原生/Containerization/Containerization.md)。通常由 Workflow 文件中的 `.jobs.JOB_ID.runs-on` 字段指定。
     - **Step(步骤)** # 每个 job 由多个 Step 构成，一步步完成。
       - **Action(动作)** # 每个 step 可以依次执行一个或多个命令（action）。
 - **Event(事件)** # 触发 Workflow 的特定活动。比如，推送新的提交到仓库或者创建 PR，甚至可以配置 cron 定时触发 Workflow，也可以设定只由手动惦记某个按钮触发。

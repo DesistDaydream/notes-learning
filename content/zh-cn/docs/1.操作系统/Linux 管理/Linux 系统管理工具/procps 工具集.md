@@ -14,7 +14,7 @@ Note：该工具集就算是最小化安装的 linux 发行版系统也是默认
 
 # free - 显示系统中可用和已用的内存量
 
-详见 [Memory 管理工具](docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/Memory%20管理工具.md)
+详见 [Memory 管理工具](/docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/Memory%20管理工具.md)
 
 # kill - 向指定PID的进程发送信号
 

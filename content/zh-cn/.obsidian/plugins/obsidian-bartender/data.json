@@ -2739,7 +2739,13 @@
       "docs/2.编程/Programming tools/SCM/GitLab/_index.md",
       "docs/2.编程/Programming tools/SCM/GitLab/GitLab.md",
       "docs/2.编程/Programming tools/SCM/GitLab/Packages AND Registries.md",
-      "docs/2.编程/Programming tools/SCM/GitLab/GitLab CI.md"
+      "docs/2.编程/Programming tools/SCM/GitLab/GitLab CI/GitLab CI.md"
+    ],
+    "docs/2.编程/Programming tools/SCM/GitLab/GitLab CI": [
+      "docs/2.编程/Programming tools/SCM/GitLab/GitLab CI/_index.md",
+      "docs/2.编程/Programming tools/SCM/GitLab/GitLab CI/GitLab CI.md",
+      "docs/2.编程/Programming tools/SCM/GitLab/GitLab CI/gitlab-ci.yml.md",
+      "docs/2.编程/Programming tools/SCM/GitLab/GitLab CI/Artifacts.md"
     ]
   },
   "actionBarOrder": {},

@@ -37,7 +37,7 @@ GitLab 将如下的实体抽象为 Package:
 >
 > - [官方文档，通用 Packages](https://docs.gitlab.com/ee/user/packages/generic_packages)
 
-使用 [GitLab CI](docs/2.编程/Programming%20tools/SCM/GitLab/GitLab%20CI.md) 推送通用的 Package
+使用 [GitLab CI](/docs/2.编程/Programming%20tools/SCM/GitLab/GitLab%20CI/GitLab%20CI.md) 推送通用的 Package
 
 - https://docs.gitlab.com/ee/user/packages/generic_packages/#publish-a-generic-package-by-using-cicd
 

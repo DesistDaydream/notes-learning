@@ -99,7 +99,7 @@ Slab UnReclaim。Slab 的一部分，不可以被 reclaimed(回收)。即使内�
 
 ### HugePagesXXX
 
-[Huge Pages](docs/1.操作系统/Kernel/Memory/Huge%20Pages.md) 相关信息
+[Huge Pages](/docs/1.操作系统/Kernel/Memory/Huge%20Pages.md) 相关信息
 
 - HugePages_Total
 - HugePages_Free
