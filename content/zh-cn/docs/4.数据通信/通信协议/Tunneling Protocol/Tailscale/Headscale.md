@@ -37,7 +37,7 @@ Headscale 部署很简单，推荐直接在 Linux 主机上安装。
 ## 准备一些环境变量
 
 ```bash
-export HeadscaleVersion="0.15.0"
+export HeadscaleVersion="0.22.3"
 export HeadscaleArch="amd64"
 # Headscale 用于与各个节点通信的 IP
 export HeadscaleIP="X.X.X.X"
@@ -76,6 +76,8 @@ chown -R headscale:headscale /var/lib/headscale
 - 下载文件后修改内容
 - 直接按照自己的要求创建
 
+---
+
 下载配置文件
 
 ```bash
@@ -87,6 +89,8 @@ wget https://raw.githubusercontent.com/juanfont/headscale/v${HeadscaleVersion}/c
   - **magic_dns** # 如果暂时用不到 DNS 功能，该值设为 false
   - **unix_socket** # unix_socket: /var/run/headscale/headscale.sock
   - **ip_prefixes** # 可自定义私有网段
+
+---
 
 直接创建配置
 
@@ -142,6 +146,10 @@ EOF
 ## 创建 Systemd Unit 文件
 
 https://github.com/juanfont/headscale/blob/main/docs/packaging/headscale.systemd.service
+
+```bash
+curl -o /usr/lib/systemd/system/headscale.service -LO https://github.com/juanfont/headscale/raw/main/docs/packaging/headscale.systemd.service
+```
 
 ## 启动 Headscale 服务
 

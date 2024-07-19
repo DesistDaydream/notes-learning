@@ -24,7 +24,6 @@ sysctl -p /etc/sysctl.conf
 
 ## CentOS 7
 
-
 ```bash
 yum install epel-release.noarch elrepo-release.noarch -y
 yum install --enablerepo=elrepo-kernel kmod-wireguard wireguard-tools -y
@@ -70,7 +69,7 @@ https://download.wireguard.com/windows-client/wireguard-amd64-0.1.1.msi
 
 ```bash
 # 生成中继服务器 Peer 的公钥与私钥
-wg genkey | tee /etc/wireguard/key/gw-privatekey | wg pubkey > /etc/wireguard/key/gw-publickey
+wg genkey | tee /etc/wireguard/key/relay-privatekey | wg pubkey > /etc/wireguard/key/relay-publickey
 # 生成其他 Peer 的公钥与私钥
 wg genkey | tee /etc/wireguard/key/peer-client-privatekey | wg pubkey > /etc/wireguard/key/peer-client-publickey
 wg genkey | tee /etc/wireguard/key/peer-company-privatekey | wg pubkey > /etc/wireguard/key/peer-company-publickey
@@ -85,7 +84,7 @@ cat > /etc/wireguard/wg-company.conf <<EOF
 [Interface]
 ListenPort = 16000
 Address = 10.1.0.254/24
-PrivateKey = $(cat /etc/wireguard/key/gw-privatekey)
+PrivateKey = $(cat /etc/wireguard/key/relay-privatekey)
 PostUp   = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o ens3 -j MASQUERADE
 PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o ens3 -j MASQUERADE
 
@@ -112,7 +111,7 @@ PrivateKey = $(cat /etc/wireguard/key/peer-client-privatekey)
 Address = 10.1.0.253/24
 
 [Peer]
-PublicKey = $(cat /etc/wireguard/key/gw-publickey)
+PublicKey = $(cat /etc/wireguard/key/relay-publickey)
 AllowedIPs = 10.1.0.0/24, 10.20.5.0/24, 172.38.0.0/16
 Endpoint = $(curl -4 -s ip.sb):16000
 PersistentKeepalive = 30
@@ -129,7 +128,7 @@ PostUp   = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACC
 PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o ens33 -j MASQUERADE
 
 [Peer]
-PublicKey = $(cat /etc/wireguard/key/gw-publickey)
+PublicKey = $(cat /etc/wireguard/key/relay-publickey)
 AllowedIPs = 10.1.0.0/24, 192.168.0.0/24
 Endpoint = $(curl -4 -s ip.sb):16000
 PersistentKeepalive = 30

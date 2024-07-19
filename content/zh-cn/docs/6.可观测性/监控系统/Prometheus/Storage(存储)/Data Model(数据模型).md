@@ -1,5 +1,10 @@
 ---
 title: Data Model(数据模型)
+linkTitle: Data Model(数据模型)
+date: 2024-07-19T09:21
+weight: 20
+tags:
+  - 时间序列数据
 ---
 
 # 概述
@@ -9,7 +14,7 @@ title: Data Model(数据模型)
 > - [官方文档，概念-数据模型](https://prometheus.io/docs/concepts/data_model/)
 > - [yunlzheng 文档](https://yunlzheng.gitbook.io/prometheus-book/parti-prometheus-ji-chu/promql)
 
-Prometheus 从根本上将所有数据存储为 [Time Series(时间序列)](https://en.wikipedia.org/wiki/Time_series)：属于同一度量标准和同一组标注维的带有时间戳的值流。除了存储的时间序列外，Prometheus 可能会生成临时派生的时间序列作为查询的结果。
+Prometheus 从根本上将所有数据存储为 [时间序列数据](docs/5.数据存储/数据库/时间序列数据/时间序列数据.md)：属于同一度量标准和同一组标注维度的带有时间戳的值流。除了存储的时间序列外，Prometheus 可能会生成临时派生的时间序列作为查询的结果。
 
 ## Time-Series Data(时间序列数据) 概念
 

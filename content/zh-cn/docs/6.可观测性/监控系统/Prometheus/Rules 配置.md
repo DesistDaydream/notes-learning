@@ -7,13 +7,17 @@ weight: 2
 
 # 概述
 
+> 参考:
+>
+> - 
+
 Prometheus 规则分为两种：
 
 - **Recording Rule(记录规则)** #
 - **Alerting Rule(告警规则)** #
-   - ！！！！注意编写告警规则的逻辑，由于 Prometheus 会定期评估告警，所以会定期读取数据，尽相避免读取大范围的数据，以免造成性能问题
+   - ！！！注意编写告警规则的逻辑，由于 Prometheus 会定期评估告警，所以会定期读取数据，尽相避免读取大范围的数据，以免造成性能问题
 
-Prometheus 规则配置文件需要在 Prometheus 主配置文件中的 rule_files 配置环境中指定，让 Prometheus 加载指定的文件并读取其配置(这个过程称为评估 evaluation)。
+Prometheus 规则配置文件需要在 [Prometheus Server 配置](docs/6.可观测性/监控系统/Prometheus/Server%20配置.md) 文件中的 rule_files 字段中指定，让 Prometheus 加载指定的文件并读取其配置(这个过程称为 **Evaluation(评估)**)。
 
 一个规则封装了一个向量表达式，该向量表达式在指定的时间间隔内进行评估并采取行动（目前要么记录，要么用于报警）。
 
@@ -23,7 +27,7 @@ Prometheus 规则配置文件需要在 Prometheus 主配置文件中的 rule_fil
 
 > 参考：
 >
-> - [官方文档](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/)
+> - [官方文档，配置 - 记录规则](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/)
 
 在我们使用 Prometheus 的过程中，随着时间的推移，存储在 Prometheus 中的监控指标数据越来越多，查询频率也在不断的增加，当我们用 Grafana 添加更多的 Dashboard 的时候，可能会慢慢的体验到 Grafana 已经无法按时渲染图表，并且偶尔还会出现超时的情况，特别是当我们在长时间汇总大量的指标数据的时候，Prometheus 查询超时的情况可能更多了，这时就需要一种能够类似于后排批处理的机制在后台完成这些复杂运算的计算，对于使用者而言只需要查询这些运算结果即可。
 
@@ -47,7 +51,7 @@ groups:
 
 > 参考：
 >
-> - [官方文档](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)
+> - [官方文档，配置 - 告警规则](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)
 
 **Alerting Rules(告警规则)** 可以让我们基于 PromQL 的表达式，定义告警的触发条件，当满足触发条件时，Prometheus Server 会将触发的告警通知发送到指定的服务。这个服务默认是 Prometheus 官方提供的 Alertmanager。详见 Prometheus Alerting 介绍章节
 
@@ -85,6 +89,7 @@ groups:
 ## 告警规则配置进阶
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616069617782-d847748c-9878-4e48-abbb-413799232424.jpeg)
+
 如图所示，在一个告警产生时，会有其自身的 Labels，这些 Labels 信息可以填写进告警规则配置文件中，引用这些 Labels，就相当于把这些 Labels 中的值当做文件内容进行输出。(类似于引用变量)
 引用语法：
 
@@ -111,13 +116,13 @@ groups:
   [- <rule> ...]
 ```
 
-所谓 Evaluated(评估)规则，就是指 PrometheusServer 会检查规则的状态，如果告警规则的状态是 FIRING，则发送告警。
+所谓 Evaluated(评估) 规则，就是指 PrometheusServer 会检查规则的状态，如果告警规则的状态是 FIRING，则发送告警。
 
-interval 字段的值 加上 PrometheusServer 的命令行标志 --rules.alert.resend-delay 的值(默认 1m)，才是真实的评估周期。这个说明在官方文档中没有，请参考 [Prometheus 规则处理逻辑](/docs/6.可观测性/监控系统/Prometheus/Prometheus%20开发/Prometheus%20规则处理逻辑/Prometheus%20规则处理逻辑.md)
+interval 字段的值 加上 PrometheusServer 的命令行标志 --rules.alert.resend-delay 的值(默认 1m)，才是真实的评估周期。这个说明在官方文档中没有，请参考 [Prometheus 规则处理逻辑中的 - 评估告警规则](/docs/6.可观测性/监控系统/Prometheus/Prometheus%20开发/Prometheus%20规则处理逻辑/Prometheus%20规则处理逻辑.md#评估告警规则)
 
 ## rules 字段
 
-> 注意缩进，该环境属于 rule 配置环境的 rules 字段的子字段，是一个数组。
+> Notes: 注意缩进，该环境属于 rule 配置环境的 rules 字段的子字段，是一个数组。
 
 这个配置环境中，不同的字段对应不同的规则。
 

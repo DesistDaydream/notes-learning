@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 > 
-> - <https://mp.weixin.qq.com/s/fwHfKYCy_SKJzaiNy-zh7A>
+> - [公众号 - 运维开发故事，prometheus告警规则管理](https://mp.weixin.qq.com/s/fwHfKYCy_SKJzaiNy-zh7A)
 
 # 接口
 
@@ -296,7 +296,8 @@ func (g *Group) Eval(ctx context.Context, ts time.Time) {
 
 `./rules/alerting.go` —— `AlertingRule.Eval()`
 
-> 注意：这里面有一个常量 `const resolvedRetention = 15 * time.Minute`，这个时间是已触发的警报保存在内存中的时间，在这个保存时间内，Prometheus Server 将会持续发送该警报(即使该警报已解决，此时发送的警报状态为 Resolved)
+> [!Warning]
+> 这里面有一个常量 `const resolvedRetention = 15 * time.Minute`，这个时间是已触发的警报保存在内存中的时间，在这个保存时间内，Prometheus Server 将会持续发送该警报(即使该警报已解决，此时发送的警报状态为 Resolved)。发送间隔取决于 Prometheus 的 --rules.alert.resend-delay 命令行标志配置的值以及配置文件中配置的评估周期 global.evaluation_interval。
 
 评估报警规则表达式，然后创建 pending 状态的报警，若满足条件，则转变为 alerting 状态，或者删除过期的 pending 状态的报警。最后，返回一个向量
 
@@ -416,3 +417,4 @@ func (rule *RecordingRule) Eval(ctx context.Context, ts time.Time, query QueryFu
 	return vector, nil
 }
 ```
+

@@ -44,9 +44,10 @@ EXAMPLE
 
 # quantile 详解
 
-参考：
-<https://cloud.tencent.com/developer/news/319419>
-<https://www.zhihu.com/question/20575291>
+> 参考:
+>
+> - https://cloud.tencent.com/developer/news/319419
+> - https://www.zhihu.com/question/20575291
 
 其实，在 Prometheus 中，把 quantile(分位数)改为 percentile(百分位数)更准确
 

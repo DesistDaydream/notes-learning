@@ -116,7 +116,7 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 
 **evaluation_interval(DURATION)** # 评估规则的周期。`默认值：1m`。
 
-该字段主要用于向规则配置文件传递全局的配置。这个值会被规则配置文件中的 `.groups.interval` 覆盖，详见 interval 字段详解
+该字段主要用于向规则配置文件传递全局的配置。这个值会被 [Rules 配置](docs/6.可观测性/监控系统/Prometheus/Rules%20配置.md)文件中的 `.groups.interval` 覆盖，详见 interval 字段详解
 
 **external_labels(map\[STRING]STRING)** # 与外部系统(federation, remote storage, Alertmanager)通信时添加到任何时间序列或警报的标签。
 

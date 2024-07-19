@@ -238,7 +238,10 @@ NAT 后的任何 Peer 都会将 AllowedIPs 指定网段的数据包，发送到 
 
 ## AllowedIPs
 
-当 Peer 向本 Peer 发送数据包时，只有源地址在该字段指定的地址范围内时，才会处理这些数据包，否则直接丢弃。同时，本 Peer 会根据该字段的地址范围，在路由表中添加路由条目。比如：
+AllowedIPs 有两层含义：
+
+- 其他 Peer 向本 Peer 发送数据包时，只有源地址在该字段指定的地址范围内时，才会处理这些数据包，否则直接丢弃。
+- 本 Peer 会根据该字段的地址范围，在路由表中添加路由条目。比如：
 
 ```bash
 [Interface]
@@ -256,7 +259,9 @@ AllowedIPs = 10.1.0.1/32, 172.16.0.0/24
 
 也就是说，凡是发送给 AllowedIPs 字段中指定的地址范围的数据包，都会通过 WireGuard 生成的网络设备处理后发出去。
 
-**如果 Peer 是常规的客户端，则将其设置为节点本身的单个 IP；如果 Peer 是中继服务器，则将其设置为可路由的子网范围。可以使用 `,` 来指定多个 IP 或子网范围。该字段也可以指定多次。**
+**如果 Peer 是常规的客户端，则将其设置为节点本身的单个 IP；如果 Peer 是 relay(中继) 服务器，则将其设置为可路由的子网范围。可以使用 `,` 来指定多个 IP 或子网范围。该字段也可以指定多次。**
+
+本质上 **Endpoint 与 AllowedIPs 两个字段将会组成路由条目，可以这么描述：`目的地址是 AllowedIPs 的数据包，下一跳是 Endpoint`。也可以不指定 Endpoint，而是仅仅将数据包送入 WireGuard 创建的网络设备中**。
 
 当决定如何对一个数据包进行路由时，系统首先会选择最具体的路由，如果不匹配再选择更宽泛的路由。例如，对于一个发往 `192.0.2.3` 的数据包，系统首先会寻找地址为 `192.0.2.3/32` 的对等节点（peer），如果没有再寻找地址为 `192.0.2.1/24` 的对等节点（peer），以此类推。
 
@@ -292,12 +297,10 @@ AllowedIPs = 192.0.2.3/32,192.0.2.4/32
 AllowedIPs = 192.0.2.3/32,192.168.1.1/24
 ```
 
-本质上 **Endpoint 与 AllowedIPs 两个字段将会组成路由条目，可以这么描述：`目的地址是 AllowedIPs 的数据包，下一跳是 Endpoint`。也可以不指定 Endpoint，而是仅仅将数据包送入 WireGuard 创建的网络设备中。**
-
 ## PublicKey
 
 Peer 的公钥，所有节点（包括中继服务器）都必须设置。可与其他对等节点（peer）共用同一个公钥。
-公钥可通过命令 `wg pubkey < example.key > example.key.pub` 来生成，其中 `example.key` 是上面生成的私钥。
+公钥可通过命令 `wg pubkey <example.key> example.key.pub` 来生成，其中 `example.key` 是上面生成的私钥。
 例如：`PublicKey = somePublicKeyAbcdAbcdAbcdAbcd=`
 
 ## PersistentKeepalive

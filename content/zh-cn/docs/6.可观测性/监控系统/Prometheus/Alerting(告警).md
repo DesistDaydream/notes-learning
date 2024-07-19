@@ -9,13 +9,13 @@ weight: 5
 
 > 参考：
 >
-> - [官方文档,告警-告警概述](https://prometheus.io/docs/alerting/latest/overview/)
-> - [官方文档,告警-客户端](https://prometheus.io/docs/alerting/latest/clients/)
+> - [官方文档，告警 - 告警概述](https://prometheus.io/docs/alerting/latest/overview/)
+> - [官方文档，告警 - 客户端](https://prometheus.io/docs/alerting/latest/clients/)
 > - [OpenAPI](https://github.com/prometheus/alertmanager/blob/main/api/v2/openapi.yaml)
 
 Prometheus 本身不提告警的通知的功能！告警能力在 Prometheus 的架构中被划分成两个独立的部分。如下所示，通过在 Prometheus 中定义 AlertRule（告警规则），Prometheus 会周期性的对告警规则进行 **Evaluate(评估)**，如果满足告警触发条件就会向 Alertmanager 发送告警信息。
 
-**Evaluate(评估)** 就是指，Prometheus Server 会定期执行规则配置文件中的 PromQL，获得结果并与阈值进行匹配，当超过设置的阈值时，会产生告警。这个过程，就称为 **Evaluate(评估)。**在代码中，通过 Eval() 方法来评估规则。
+**Evaluate(评估)** 就是指，Prometheus Server 会定期执行规则配置文件中的 PromQL，获得结果并与阈值进行匹配，当超过设置的阈值时，会产生告警。这个过程，就称为 **Evaluate(评估)**。在代码中，通过 Eval() 方法来评估规则。
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/sw6o6t/1616069590594-41190e69-d023-4ef4-87ad-fdc1a7cf8b6f.png)
 
 Alertmanager 处理客户端应用程序(如 Prometheus Server)发送的警报。它负责对它们进行重复数据删除，分组和路由，以及正确的接收器集成，例如 email，PagerDuty 或 OpsGenie。它还负责警报的静音和抑制。
@@ -49,13 +49,14 @@ rule_files:
 
 ### Prometheus 推出的 Alertmanager 程序简介
 
-> 详见：[Alertmanager](/docs/6.可观测性/监控系统/Alertmanager/Alertmanager.md)
+详见：[Alertmanager](/docs/6.可观测性/监控系统/Alertmanager/Alertmanager.md)
 
 Prometheus 推出的 Alertmanager 作为一个独立的组件，可以实现告警管理功能，负责接收并处理来自 Prometheus Server(也可以是其它的客户端程序)的告警信息。Alertmanager 可以对这些告警信息进行进一步的处理，比如当接收到大量重复告警时能够消除重复的告警信息，同时对告警信息进行分组并且路由到正确的通知方，Alertmanager 内置了对邮件，Slack 等多种通知方式的支持。同时 AlertManager 还提供了静默和告警抑制机制来对告警通知行为进行优化。
 
 ## 查看告警的状态
 
 在 prometheus server 的 web 页面中的 `Alerts` 标签查看到所有其所配置和产生的告警信息，效果如图：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/sw6o6t/1616069590604-e9eaacdf-e275-4662-b8f1-8d1739a63fc4.jpeg)
 
 其中每行都是一条告警规则，绿色表示没有达到设定的阈值，不会产生告警；红色的表示达到设定的阈值并已经持续了一段时间，所以产生了告警，并推送给 alermanager。在绿条或者红条中间的位置是“路径>组名”这里表示其下的所有告警都是这个组里的。点开一个告警，就能看到其中的配置，包括告警规则的名称、告警触发条件、等待时长等等信息
@@ -68,7 +69,7 @@ Prometheus 推出的 Alertmanager 作为一个独立的组件，可以实现告�
 
 # Prometheus 告警规则配置
 
-> 详见：[Rules 配置](/docs/6.可观测性/监控系统/Prometheus/Rules%20配置.md)
+详见：[Rules 配置](/docs/6.可观测性/监控系统/Prometheus/Rules%20配置.md)
 
 # 告警数据结构
 
