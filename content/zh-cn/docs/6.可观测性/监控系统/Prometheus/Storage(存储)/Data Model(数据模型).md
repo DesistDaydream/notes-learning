@@ -14,7 +14,7 @@ tags:
 > - [官方文档，概念-数据模型](https://prometheus.io/docs/concepts/data_model/)
 > - [yunlzheng 文档](https://yunlzheng.gitbook.io/prometheus-book/parti-prometheus-ji-chu/promql)
 
-Prometheus 从根本上将所有数据存储为 [时间序列数据](docs/5.数据存储/数据库/时间序列数据/时间序列数据.md)：属于同一度量标准和同一组标注维度的带有时间戳的值流。除了存储的时间序列外，Prometheus 可能会生成临时派生的时间序列作为查询的结果。
+Prometheus 从根本上将所有数据存储为 [时间序列数据](/docs/5.数据存储/数据库/时间序列数据/时间序列数据.md)：属于同一度量标准和同一组标注维度的带有时间戳的值流。除了存储的时间序列外，Prometheus 可能会生成临时派生的时间序列作为查询的结果。
 
 ## Time-Series Data(时间序列数据) 概念
 
@@ -153,7 +153,7 @@ type LabelValue string
 # Metrics(指标) 的类型
 
 > 参考：
-> 
+>
 > [官网文档，概念-metric 类型](https://prometheus.io/docs/concepts/metric_types/)
 
 在 Prometheus 的存储实现上所有的监控样本都是以 time-series 的形式保存在 Prometheus 的 TSDB(时序数据库) 中，而 TimeSeries 所对应的 Metric(监控指标) 也是通过 LabelSet 进行唯一命名的。

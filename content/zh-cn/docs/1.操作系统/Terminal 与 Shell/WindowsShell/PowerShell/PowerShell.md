@@ -13,13 +13,13 @@ weight: 1
 
 PowerShell 是一种跨平台的任务自动化解决方案，由命令行 shell、脚本语言和配置管理框架组成。 PowerShell 在 Windows、Linux 和 macOS 上运行。
 
-PowerShell 的独特之处在于，它接受并返回 .NET 对象，而非纯文本。这个特点让 PowerShell 可以更轻松地在一个管道中串联不通的命令。
+PowerShell 的独特之处在于，它<font color="#ff0000">接受并返回 .NET 对象</font>，而<font color="#ff0000">非纯文本</font>。这个特点让 PowerShell 可以更轻松地在一个管道中串联不通的命令。
 
-> 这里面所说的对象，就是面向对象编程中常说的“对象”，就像 Go 语言中的 Struct 类似的东西，只不过是 .NET 语言中的对象。
+> Notes: 这里面所说的对象，就是[面向对象编程](/docs/2.编程/计算机科学/Object-oriented%20Programming/OOP.md)中常说的“对象”，就像 Go 语言中的 Struct 类似的东西，只不过是 .NET 语言中的对象。
 
 这些对象在被接收后，再交给格式化函数处理，以人类可读的方式，输出出来。
 
-我们可以在 [PowerShell 官方文档的参考-关于](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about)部分找到对 PowerShell 的基本概念的描述。
+我们可以在 [PowerShell 官方文档的参考 - 关于](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about)部分找到对 PowerShell 的基本概念的描述。
 
 ## PowerShell 变量
 

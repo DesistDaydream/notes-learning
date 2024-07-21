@@ -23,7 +23,7 @@ weight: 3
 
 ## ADB
 
-详见 [ADB](/docs/Mobile%20device/ADB.md)
+详见 [ADB](/docs/Mobile%20device/Android%20MGMT/ADB.md)
 
 # 最佳实践
 

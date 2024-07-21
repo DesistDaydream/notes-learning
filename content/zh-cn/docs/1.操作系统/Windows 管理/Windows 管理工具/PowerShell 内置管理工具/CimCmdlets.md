@@ -8,12 +8,12 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档 - PowerShell，模块 - CimCmdlets](https://learn.microsoft.com/en-us/powershell/module/cimcmdlets)
 
 https://learn.microsoft.com/zh-cn/powershell/scripting/learn/ps101/07-working-with-wmi
 
-PowerShell 早期使用 WMI cmdlet，后改用 CIM cmdlet。可以使用 `Get-Command -Module CimCmdlets` 命令查看所有可用的 CimCmdlets
+PowerShell 早期使用 [Windows Management Instrumentation(简称 WMI)](/docs/1.操作系统/Windows%20管理/Windows%20Management%20Instrumentation.md) cmdlet，后改用 CIM cmdlet。可以使用 `Get-Command -Module CimCmdlets` 命令查看所有可用的 CimCmdlets
 
 ```powershell
 CommandType     Name                                               Version    Source

@@ -12,7 +12,8 @@ weight: 20
 > - [GitHub 项目，microsoft/WSA](https://github.com/microsoft/WSA)
 > - [官方文档，windows-android-wsa](https://learn.microsoft.com/zh-cn/windows/android/wsa/)
 
-:warning: 微软将在 三月2025 年 3 月 5 日停止支持 WSA。[Learn more](https://learn.microsoft.com/en-us/windows/android/wsa/).
+> [!Warning]
+> 微软将在 2025 年 3 月 5 日停止支持 WSA。[Learn more](https://learn.microsoft.com/en-us/windows/android/wsa/).
 
 Windows Subsystem for Android with Amazon Appsotre
 
@@ -69,7 +70,7 @@ Magisk 安装完模块后，重启 WSA 后模块不显示
 
 [秋风于渭水，Windows Android 子系统 WSA 代理设置方法教程](https://www.tjsky.net/tutorial/391)
 
-方法一、通过 [ADB](/docs/Mobile%20device/ADB.md) 进入 shell 使用 settings 设置代理。
+方法一、通过 [ADB](/docs/Mobile%20device/Android%20MGMT/ADB.md) 进入 shell 使用 settings 设置代理。
 
 - 有局限性，有些 APP 的包在 Windows 的 Charles 上收不到包，WSA 中浏览器访问的包很全。
 

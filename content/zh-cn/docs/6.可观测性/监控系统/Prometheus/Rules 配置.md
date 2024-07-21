@@ -9,7 +9,7 @@ weight: 2
 
 > 参考:
 >
-> - 
+> -
 
 Prometheus 规则分为两种：
 
@@ -17,7 +17,7 @@ Prometheus 规则分为两种：
 - **Alerting Rule(告警规则)** #
    - ！！！注意编写告警规则的逻辑，由于 Prometheus 会定期评估告警，所以会定期读取数据，尽相避免读取大范围的数据，以免造成性能问题
 
-Prometheus 规则配置文件需要在 [Prometheus Server 配置](docs/6.可观测性/监控系统/Prometheus/Server%20配置.md) 文件中的 rule_files 字段中指定，让 Prometheus 加载指定的文件并读取其配置(这个过程称为 **Evaluation(评估)**)。
+Prometheus 规则配置文件需要在 [Prometheus Server 配置](/docs/6.可观测性/监控系统/Prometheus/Server%20配置.md) 文件中的 rule_files 字段中指定，让 Prometheus 加载指定的文件并读取其配置(这个过程称为 **Evaluation(评估)**)。
 
 一个规则封装了一个向量表达式，该向量表达式在指定的时间间隔内进行评估并采取行动（目前要么记录，要么用于报警）。
 

@@ -20,7 +20,7 @@ https://www.syscom.com.tw/ePaper_Content_EPArticledetail.aspx?id=76&EPID=159&j=4
 
 https://learn.microsoft.com/zh-cn/powershell/scripting/learn/ps101/07-working-with-wmi
 
-Windows PowerShell 早期 WMI cmdlet 已弃用，在 PowerShell 6+ 中不可用，请改用 CIM cmdlet。
+Windows [PowerShell](/docs/1.操作系统/Terminal%20与%20Shell/WindowsShell/PowerShell/PowerShell.md) 早期 WMI cmdlet 已弃用，在 PowerShell 6+ 中不可用，请改用 CIM cmdlet。
 
 PowerShell 中存在多个本机 WMI cmdlet，且无需安装任何其他软件或模块。 `Get-Command` 可用于确定 Windows PowerShell 中存在哪些 WMI cmdlet。 以下结果来自运行 5.1 版 PowerShell 的 Windows 10 实验环境计算机。 结果因运行的 PowerShell 版本而异。
 
