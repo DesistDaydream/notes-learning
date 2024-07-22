@@ -65,7 +65,6 @@ ADDRESS 类似于一个文件描述符，socat 所做的工作就是在 2 个 AD
 - tcp-listen:PORT # 建立 TCP 监听端口
 - EXEC # 指定一个程序作为数据流
 - unix #
--
 
 ### AddressOPTIONS
 
@@ -187,10 +186,9 @@ socat 启动监听模式会在前端占用一个 shell，因此需使其在后�
 
 socat 还具有一个独特的读写分流功能，比如：
 
-    socat open:read.txt!!open:write.txt,create,append tcp-listen:80,reuseaddr,fork
-
-1
-Plain Text
+```bash
+socat open:read.txt!!open:write.txt,create,append tcp-listen:80,reuseaddr,fork
+```
 
 这个命令实现一个假的 web server，客户端连过来之后，就把 read.txt 里面的内容发过去，同时把客户的数据保存到 write.txt 里面。”！！”符号用户合并读写流，前面的用于读，后面的用于写。
 
@@ -198,15 +196,11 @@ Plain Text
 
 证书生成
 
-    FILENAME=60.*.*.*
-    openssl genrsa -out $FILENAME.key 1024
-    openssl req -new -key $FILENAME.key -x509 -days 3653 -out $FILENAME.crtcat $FILENAME.key $FILENAME.crt >$FILENAME.pem
-
-1
-2
-3
-Plain Text
-
+```bash
+FILENAME=60.*.*.*
+openssl genrsa -out $FILENAME.key 1024
+openssl req -new -key $FILENAME.key -x509 -days 3653 -out $FILENAME.crtcat $FILENAME.key $FILENAME.crt >$FILENAME.pem
+```
 在当前目录下生成 `server.pem 、server.crt`
 
 使用

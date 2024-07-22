@@ -6,7 +6,7 @@ title: Alertmanager 配置
 
 > 参考：
 >
-> - [官方文档，告警-配置](https://prometheus.io/docs/alerting/latest/configuration/)
+> - [官方文档，告警 - 配置](https://prometheus.io/docs/alerting/latest/configuration/)
 
 # Alertmanager 配置文件
 
@@ -102,16 +102,15 @@ title: Alertmanager 配置
 
 **matchers**(\[]OBJECT) # 匹配规则，凡是符合该规则的告警，将会进入当前节点。说白了，只有匹配上了，才会将告警发出去。
 
-> 注意：
->
+> [!Tip]
 > - 如果多个 Label 是“或”的关系，那就只能配置多个相同接收者的路由，每个路由的 matchers 不同。
 > - `matchers` 字段代替了在 0.22.0 版本开始被弃用的 `match` 与 `match_re` 字段
 
 **recevier**(STRING) # 当前路由匹配到的告警的接收者。如果 recevier 是整个路由树的根，则就是默认接收者
 
-**routes**(\[]OBJECT) # 子路由配置。`routes` 字段的中的每个元素其实就是 `route: <OBJECT>`。
+**routes**(\[][route](#route)) # 子路由配置。`routes` 字段的中的每个元素都是 `route` 字段 。
 
-- 也就是说，`routes: <[]OBJECT>` 下每个元素的字段，与 `route: <OBJECT>` 下的字段相同，这是一个嵌套循环~~
+- 也就是说，`routes` 下每个元素的字段，与 `route` 下的字段相同，这是一个嵌套循环~~
 
 ### 配置示例
 
@@ -128,16 +127,16 @@ route:
   routes:
     - receiver: "network-group"
       group_wait: "10s"
-      match:
-        network_device: "interface-state"
+      matchers:
+        - network_device = "interface-state"
     - receiver: "dev-phone-group"
       group_wait: "10s"
-      match_re:
-        instance: "dev-phone.*"
+      matchers:
+        - instance =~ "dev-phone.*"
     - receiver: "dev-phone-group"
       group_wait: "10s"
-      match_re:
-        job: "snmp-metrics"
+      matchers:
+        - job =~ "snmp-metrics"
 ```
 
 ## receivers

@@ -13,8 +13,6 @@ WireGuard 使用 [INI](/docs/2.编程/无法分类的语言/INI.md) 作为其配
 
 配置文件的命名形式必须为 `${WireGuard_Interface_Name}.conf`。通常情况下 WireGuard 接口名称以 `wg` 为前缀，并从 `0` 开始编号，但你也可以使用其他名称，只要符合正则表达式 `^[a-zA-Z0-9_=+.-]{1,15}$` 就行。当启动时，如果配置文件中有 wg0.conf 文件，则会创建一个名为 wg0 的网络设备。效果如下
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/opfrn4/1630110240584-d9fccfed-8434-4ed6-a7b7-d42796fed26c.png)
-
 注意：`${WireGuard_Interface_Name}` 不能过长，否则将会报错：`wg-quick: The config file must be a valid interface name, followed by .conf`
 
 ## 基本配置示例
@@ -32,6 +30,7 @@ PreUp = /bin/example arg1 arg2 %i
 PostUp = /bin/example arg1 arg2 %i
 PreDown = /bin/example arg1 arg2 %i
 PostDown = /bin/example arg1 arg2 %i
+
 [Peer]
 # Name = node2-node.example.tld
 AllowedIPs = 192.0.2.1/24
@@ -80,6 +79,7 @@ DNS = 1.1.1.1
 ## PrivateKey
 
 本地节点的私钥，所有节点（包括中继服务器）都必须设置。不可与其他服务器共用。
+
 私钥可通过命令 `wg genkey > example.key` 来生成。
 
 ## DNS
@@ -113,31 +113,21 @@ DNS = 1.1.1.1
 ## PostUp
 
 启动 VPN 接口之后运行的命令。这个选项可以指定多次，按顺序执行。
+
 例如：
 
 - 从文件或某个命令的输出中读取配置值：
-
-    PostUp = wg set %i private-key /etc/wireguard/wg0.key <(some command here)
-
+  - PostUp = wg set %i private-key /etc/wireguard/wg0.key <(some command here)
 - 添加一行日志到文件中：
-
-    PostUp = echo "$(date +%s) WireGuard Started" >> /var/log/wireguard.log
-
+  - PostUp = echo "$(date +%s) WireGuard Started" >> /var/log/wireguard.log
 - 调用 WebHook：
-
-    PostUp = curl https://events.example.dev/wireguard/started/?key=abcdefg
-
+  - PostUp = curl https://events.example.dev/wireguard/started/?key=abcdefg
 - 添加路由：
-
-    PostUp = ip rule add ipproto tcp dport 22 table 1234
-
+  - PostUp = ip rule add ipproto tcp dport 22 table 1234
 - 添加 iptables 规则，启用数据包转发：
-
-    PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-
+  - PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 - 强制 WireGuard 重新解析对端域名的 IP 地址：
-
-    PostUp = resolvectl domain %i "~."; resolvectl dns %i 192.0.2.1; resolvectl dnssec %i yes
+  - PostUp = resolvectl domain %i "~."; resolvectl dns %i 192.0.2.1; resolvectl dnssec %i yes
 
 ## PreDown
 
@@ -145,12 +135,9 @@ DNS = 1.1.1.1
 例如：
 
 - 添加一行日志到文件中：
-
-    PreDown = echo "$(date +%s) WireGuard Going Down" >> /var/log/wireguard.log
-
+  - PreDown = echo "$(date +%s) WireGuard Going Down" >> /var/log/wireguard.log
 - 调用 WebHook：
-
-    PreDown = curl https://events.example.dev/wireguard/stopping/?key=abcdefg
+  - PreDown = curl https://events.example.dev/wireguard/stopping/?key=abcdefg
 
 ## PostDown
 
@@ -158,20 +145,15 @@ DNS = 1.1.1.1
 例如：
 
 - 添加一行日志到文件中：
-
-    PostDown = echo "$(date +%s) WireGuard Going Down" >> /var/log/wireguard.log
-
+  - PostDown = echo "$(date +%s) WireGuard Going Down" >> /var/log/wireguard.log
 - 调用 WebHook：
-
-    PostDown = curl https://events.example.dev/wireguard/stopping/?key=abcdefg
-
+  - PostDown = curl https://events.example.dev/wireguard/stopping/?key=abcdefg
 - 删除 iptables 规则，关闭数据包转发：
-
-    PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+  - PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
 
 # \[Peer]
 
-定义能够为一个或多个地址路由流量的 Peer 的 VPN 设置。Peer 可以是将流量转发到其他 Peer 的中继服务器，也可以是通过公网或内网直连的客户端。
+定义 Peer，用来将一个或多个地址路由流量的 Peer。Peer 可以是将流量转发到其他 Peer 的中继服务器，也可以是通过公网或内网直连的客户端。
 
 中继服务器必须将所有的客户端定义为对等节点（peer），除了中继服务器之外，其他客户端都不能将位于 NAT 后面的节点定义为对等节点（peer），因为路由不可达。对于那些只为自己路由流量的客户端，只需将中继服务器作为对等节点（peer），以及其他需要直接访问的节点。
 
@@ -222,6 +204,14 @@ AllowedIPs = 192.0.2.1/24
 PersistentKeepalive = 25
 ```
 
+## PublicKey
+
+Peer 的公钥，所有节点（包括中继服务器）都必须设置。可与其他对等节点（peer）共用同一个公钥。
+
+公钥可通过命令 `wg pubkey <example.key> example.key.pub` 来生成，其中 `example.key` 是上面生成的私钥。
+
+例如：`PublicKey = somePublicKeyAbcdAbcdAbcdAbcd=`
+
 ## Endpoint
 
 指定 其他 Peer 的公网地址。如果 Peer 位于 NAT 后面或者没有稳定的公网访问地址，则忽略这个字段。通常只需要指定**中继服务器**的 `Endpoint`，当然有稳定公网 IP 的节点也可以指定。例如：
@@ -238,10 +228,12 @@ NAT 后的任何 Peer 都会将 AllowedIPs 指定网段的数据包，发送到 
 
 ## AllowedIPs
 
+<font color="#ff0000">核心配置</font>
+
 AllowedIPs 有两层含义：
 
 - 其他 Peer 向本 Peer 发送数据包时，只有源地址在该字段指定的地址范围内时，才会处理这些数据包，否则直接丢弃。
-- 本 Peer 会根据该字段的地址范围，在路由表中添加路由条目。比如：
+- 本 Peer 会根据该字段的地址范围，在路由表中添加路由条目。凡是发送给 AllowedIPs 字段中指定地址的数据包，都会通过 WireGuard 管理的网络设备处理后发往该 Peer。比如：
 
 ```bash
 [Interface]
@@ -257,9 +249,7 @@ AllowedIPs = 10.1.0.1/32, 172.16.0.0/24
 172.16.0.0/24 dev wg0 scope link
 ```
 
-也就是说，凡是发送给 AllowedIPs 字段中指定的地址范围的数据包，都会通过 WireGuard 生成的网络设备处理后发出去。
-
-**如果 Peer 是常规的客户端，则将其设置为节点本身的单个 IP；如果 Peer 是 relay(中继) 服务器，则将其设置为可路由的子网范围。可以使用 `,` 来指定多个 IP 或子网范围。该字段也可以指定多次。**
+**如果 Peer 是常规的客户端，则 AllowedIPs 其设置为节点本身的单个 IP；如果 Peer 是 relay(中继) 服务器，则将 AllowedIPs 设置为可路由的子网范围。可以使用 `,` 来指定多个 IP 或子网范围。该字段也可以指定多次。**
 
 本质上 **Endpoint 与 AllowedIPs 两个字段将会组成路由条目，可以这么描述：`目的地址是 AllowedIPs 的数据包，下一跳是 Endpoint`。也可以不指定 Endpoint，而是仅仅将数据包送入 WireGuard 创建的网络设备中**。
 
@@ -296,12 +286,6 @@ AllowedIPs = 192.0.2.3/32,192.0.2.4/32
 ```ini
 AllowedIPs = 192.0.2.3/32,192.168.1.1/24
 ```
-
-## PublicKey
-
-Peer 的公钥，所有节点（包括中继服务器）都必须设置。可与其他对等节点（peer）共用同一个公钥。
-公钥可通过命令 `wg pubkey <example.key> example.key.pub` 来生成，其中 `example.key` 是上面生成的私钥。
-例如：`PublicKey = somePublicKeyAbcdAbcdAbcdAbcd=`
 
 ## PersistentKeepalive
 
@@ -341,6 +325,7 @@ PrivateKey = $(cat gw-privatekey)
 PostUp   = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
 
+# 定义一些 Peer，用来定义将目的地址是哪些的数据包发给哪个 Peer（AllowedIPs 决定的）。
 # peer1
 [Peer]
 PublicKey = $(cat peer1-publickey)
@@ -367,13 +352,15 @@ PrivateKey = $(cat peer1-privatekey)
 # 用来表示 WireGuard 在本 Peer 上创建的网络设备的 IP，每个 Peer 都是独立的
 Address = 10.1.0.1/24
 
+# 定义一个 Peer（i.e.公网的 Peer）。
 [Peer]
-# gateway的公钥
+# 该 Peer 的公钥
 PublicKey = $(cat gw-publickey)
+# 目的地址是下面这些 IP 或 IP 段的请求发给这个 Peer
 AllowedIPs = 10.1.0.0/24, 172.19.42.0/24, 192.168.31.0/24
-# gateway 公网ip和端口
+# 该 Peer 的公网 IP 和 PORT
 Endpoint = $(curl -s ip.sb):16000
-PersistentKeepalive = 10
+PersistentKeepalive = 60
 EOF
 ```
 
