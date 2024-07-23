@@ -85,6 +85,12 @@
       "docs/0.计算机/Motherboard/BIOS.md",
       "docs/0.计算机/Motherboard/IPMI.md"
     ],
+    "docs/0.计算机/Peripheral": [
+      "docs/0.计算机/Peripheral/_index.md",
+      "docs/0.计算机/Peripheral/Peripheral.md",
+      "docs/0.计算机/Peripheral/Computer monitor.md",
+      "docs/0.计算机/Peripheral/Printer.md"
+    ],
     "docs/1.操作系统": [
       "docs/1.操作系统/_index.md",
       "docs/1.操作系统/Operating system",
@@ -187,6 +193,14 @@
       "docs/1.操作系统/Kernel/Filesystem/文件管理/File Descriptor(文件描述符).md",
       "docs/1.操作系统/Kernel/Filesystem/文件管理/Archive File(归档文件).md"
     ],
+    "docs/1.操作系统/Kernel/Filesystem/特殊文件系统": [
+      "docs/1.操作系统/Kernel/Filesystem/特殊文件系统/_index.md",
+      "docs/1.操作系统/Kernel/Filesystem/特殊文件系统/proc.md",
+      "docs/1.操作系统/Kernel/Filesystem/特殊文件系统/sysfs.md",
+      "docs/1.操作系统/Kernel/Filesystem/特殊文件系统/devfs.md",
+      "docs/1.操作系统/Kernel/Filesystem/特殊文件系统/OverlayFS.md",
+      "docs/1.操作系统/Kernel/Filesystem/特殊文件系统/tmpfs.md"
+    ],
     "docs/1.操作系统/Kernel/Filesystem/磁盘文件系统": [
       "docs/1.操作系统/Kernel/Filesystem/磁盘文件系统/_index.md",
       "docs/1.操作系统/Kernel/Filesystem/磁盘文件系统/EXT FileSystem.md",
@@ -247,6 +261,12 @@
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/systemd-networkd.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/NetworkManager",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netplan"
+    ],
+    "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备/Linux 网络设备.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备/Bond 与 Team.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备/Bridge.md"
     ],
     "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netlink": [
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netlink/_index.md",
@@ -427,6 +447,11 @@
       "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能评估.md",
       "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具",
       "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/Redhat 优化.md"
+    ],
+    "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具/fio 磁盘性能测试工具": [
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具/fio 磁盘性能测试工具/_index.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具/fio 磁盘性能测试工具/fio 磁盘性能测试工具.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具/fio 磁盘性能测试工具/fio 参数详解.md"
     ],
     "docs/1.操作系统/Operating system": [
       "docs/1.操作系统/Operating system/_index.md",
@@ -640,6 +665,12 @@
       "docs/10.云原生/Containerization implementation/Docker/Docker CLI",
       "docs/10.云原生/Containerization implementation/Docker/Docker API.md",
       "docs/10.云原生/Containerization implementation/Docker/Compose"
+    ],
+    "docs/10.云原生/Containerization implementation/Docker/Compose": [
+      "docs/10.云原生/Containerization implementation/Docker/Compose/_index.md",
+      "docs/10.云原生/Containerization implementation/Docker/Compose/Compose.md",
+      "docs/10.云原生/Containerization implementation/Docker/Compose/Compose 文件规范.md",
+      "docs/10.云原生/Containerization implementation/Docker/Compose/compose CLI.md"
     ],
     "docs/10.云原生/Containerization implementation/Docker/Docker 介绍": [
       "docs/10.云原生/Containerization implementation/Docker/Docker 介绍/_index.md",
@@ -1229,6 +1260,11 @@
       "docs/11.多媒体/音频处理",
       "docs/11.多媒体/多媒体处理工具"
     ],
+    "docs/11.多媒体/音频处理": [
+      "docs/11.多媒体/音频处理/_index.md",
+      "docs/11.多媒体/音频处理/音频处理.md",
+      "docs/11.多媒体/音频处理/把喜马拉雅音频下载到电脑.md"
+    ],
     "docs/12.AI": [
       "docs/12.AI/_index.md",
       "docs/12.AI/12.AI.md",
@@ -1243,6 +1279,12 @@
       "docs/12.AI/AI 项目.md",
       "docs/12.AI/为什么需要 AI.md",
       "docs/12.AI/待总结与分类"
+    ],
+    "docs/12.AI/Automation": [
+      "docs/12.AI/Automation/_index.md",
+      "docs/12.AI/Automation/Automation.md",
+      "docs/12.AI/Automation/按键精灵",
+      "docs/12.AI/Automation/RPA.md"
     ],
     "docs/12.AI/OpenAI": [
       "docs/12.AI/OpenAI/_index.md",
@@ -1329,6 +1371,17 @@
       "docs/2.编程/Programming environment/IDE/Visual Studio Code/Plugins.md",
       "docs/2.编程/Programming environment/IDE/Visual Studio Code/code-server.md"
     ],
+    "docs/2.编程/Programming technology": [
+      "docs/2.编程/Programming technology/_index.md",
+      "docs/2.编程/Programming technology/Programming Technology.md",
+      "docs/2.编程/Programming technology/Library.md",
+      "docs/2.编程/Programming technology/编程范式.md",
+      "docs/2.编程/Programming technology/排序.md",
+      "docs/2.编程/Programming technology/ORM.md",
+      "docs/2.编程/Programming technology/SDK 开发.md",
+      "docs/2.编程/Programming technology/设计模式.md",
+      "docs/2.编程/Programming technology/代码提交规范.md"
+    ],
     "docs/2.编程/Programming tools": [
       "docs/2.编程/Programming tools/_index.md",
       "docs/2.编程/Programming tools/Programming tools.md",
@@ -1373,6 +1426,18 @@
       "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/Workflow 文件详解/Workflow 文件详解.md",
       "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/Workflow 文件详解/Workflow 命令.md"
     ],
+    "docs/2.编程/Programming tools/SCM/GitLab": [
+      "docs/2.编程/Programming tools/SCM/GitLab/_index.md",
+      "docs/2.编程/Programming tools/SCM/GitLab/GitLab.md",
+      "docs/2.编程/Programming tools/SCM/GitLab/Packages AND Registries.md",
+      "docs/2.编程/Programming tools/SCM/GitLab/GitLab CI/GitLab CI.md"
+    ],
+    "docs/2.编程/Programming tools/SCM/GitLab/GitLab CI": [
+      "docs/2.编程/Programming tools/SCM/GitLab/GitLab CI/_index.md",
+      "docs/2.编程/Programming tools/SCM/GitLab/GitLab CI/GitLab CI.md",
+      "docs/2.编程/Programming tools/SCM/GitLab/GitLab CI/gitlab-ci.yml.md",
+      "docs/2.编程/Programming tools/SCM/GitLab/GitLab CI/Artifacts.md"
+    ],
     "docs/2.编程/无法分类的语言": [
       "docs/2.编程/无法分类的语言/_index.md",
       "docs/2.编程/无法分类的语言/ASN.1.md",
@@ -1393,6 +1458,16 @@
       "docs/2.编程/标记语言/XML.md",
       "docs/2.编程/标记语言/Markdown.md"
     ],
+    "docs/2.编程/编程技术": [
+      "docs/2.编程/Programming technology/_index.md",
+      "docs/2.编程/Programming technology/Programming Technology.md",
+      "docs/2.编程/Programming technology/Library.md",
+      "docs/2.编程/Programming technology/编程范式.md",
+      "docs/2.编程/Programming technology/排序.md",
+      "docs/2.编程/Programming technology/ORM.md",
+      "docs/2.编程/Programming technology/SDK 开发.md",
+      "docs/2.编程/Programming technology/代码提交规范.md"
+    ],
     "docs/2.编程/计算机科学": [
       "docs/2.编程/计算机科学/_index.md",
       "docs/2.编程/计算机科学/计算机科学.md",
@@ -1405,6 +1480,21 @@
       "docs/2.编程/计算机科学/假如你来发明编程语言",
       "docs/2.编程/计算机科学/Heap and Stack.md",
       "docs/2.编程/计算机科学/I_O 模型.md"
+    ],
+    "docs/2.编程/计算机科学/Data Type": [
+      "docs/2.编程/计算机科学/Data Type/_index.md",
+      "docs/2.编程/计算机科学/Data Type/Data type AND Literal.md",
+      "docs/2.编程/计算机科学/Data Type/复合数据类型",
+      "docs/2.编程/计算机科学/Data Type/抽象数据类型",
+      "docs/2.编程/计算机科学/Data Type/进制表示法.md"
+    ],
+    "docs/2.编程/计算机科学/Data type": [
+      "docs/2.编程/计算机科学/Data type/_index.md",
+      "docs/2.编程/计算机科学/Data type/Data type.md",
+      "docs/2.编程/计算机科学/Data type/Literal.md",
+      "docs/2.编程/计算机科学/Data type/复合数据类型",
+      "docs/2.编程/计算机科学/Data type/抽象数据类型",
+      "docs/2.编程/计算机科学/Data type/进制表示法.md"
     ],
     "docs/2.编程/计算机科学/Function": [
       "docs/2.编程/计算机科学/Function/_index.md",
@@ -1502,6 +1592,13 @@
       "docs/2.编程/高级编程语言/Go/Go 工具/pprof/pprof.md",
       "docs/2.编程/高级编程语言/Go/Go 工具/pprof/通过pprof监控docker.md",
       "docs/2.编程/高级编程语言/Go/Go 工具/pprof/Go Profiling 详解.md"
+    ],
+    "docs/2.编程/高级编程语言/Go/Go 常见问题": [
+      "docs/2.编程/高级编程语言/Go/Go 常见问题/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 常见问题/Go 常见问题.md",
+      "docs/2.编程/高级编程语言/Go/Go 常见问题/内存逃逸.md",
+      "docs/2.编程/高级编程语言/Go/Go 常见问题/如何避免 Go 命令行执行产生“孤儿”进程？.md",
+      "docs/2.编程/高级编程语言/Go/Go 常见问题/Go 在容器运行时要注意的细节.md"
     ],
     "docs/2.编程/高级编程语言/Go/Go 扩展": [
       "docs/2.编程/高级编程语言/Go/Go 扩展/_index.md",
@@ -2015,9 +2112,9 @@
       "docs/6.可观测性/_index.md",
       "docs/6.可观测性/Observability",
       "docs/6.可观测性/OpenTelemetry.md",
-      "docs/6.可观测性/日志系统",
-      "docs/6.可观测性/监控系统",
-      "docs/6.可观测性/追踪系统",
+      "docs/6.可观测性/Logs",
+      "docs/6.可观测性/Metrics",
+      "docs/6.可观测性/Traces",
       "docs/6.可观测性/混沌工程系统",
       "docs/6.可观测性/Grafana",
       "docs/6.可观测性/性能优化",
@@ -2045,6 +2142,195 @@
       "docs/6.可观测性/Grafana/Panel 与 Dashboard/Time series 类型面板/_index.md",
       "docs/6.可观测性/Grafana/Panel 与 Dashboard/Time series 类型面板/Time series 类型面板.md"
     ],
+    "docs/6.可观测性/Logs": [
+      "docs/6.可观测性/Logs/_index.md",
+      "docs/6.可观测性/Logs/日志系统.md",
+      "docs/6.可观测性/Logs/Rsyslog",
+      "docs/6.可观测性/Logs/LogRotate(日志轮替).md",
+      "docs/6.可观测性/Logs/Journal.md",
+      "docs/6.可观测性/Logs/ELK _ EFK",
+      "docs/6.可观测性/Logs/Log Clients",
+      "docs/6.可观测性/Logs/Loki"
+    ],
+    "docs/6.可观测性/Logs/Log Clients": [
+      "docs/6.可观测性/Logs/Log Clients/_index.md",
+      "docs/6.可观测性/Logs/Log Clients/Promtail",
+      "docs/6.可观测性/Logs/Log Clients/Promtail.md"
+    ],
+    "docs/6.可观测性/Logs/Log Clients/Promtail": [
+      "docs/6.可观测性/Logs/Log Clients/Promtail/_index.md",
+      "docs/6.可观测性/Logs/Log Clients/Promtail/Promtail.md",
+      "docs/6.可观测性/Logs/Log Clients/Promtail/Promtail 部署.md",
+      "docs/6.可观测性/Logs/Log Clients/Promtail/Promtail 配置详解.md",
+      "docs/6.可观测性/Logs/Log Clients/Promtail/Label 与 Relabeling.md",
+      "docs/6.可观测性/Logs/Log Clients/Promtail/Pipeline 概念",
+      "docs/6.可观测性/Logs/Log Clients/Promtail/Pipeline 概念.md"
+    ],
+    "docs/6.可观测性/Logs/Loki": [
+      "docs/6.可观测性/Logs/Loki/_index.md",
+      "docs/6.可观测性/Logs/Loki/Loki.md",
+      "docs/6.可观测性/Logs/Loki/Loki 部署.md",
+      "docs/6.可观测性/Logs/Loki/Loki 配置.md",
+      "docs/6.可观测性/Logs/Loki/Loki Rules 配置.md",
+      "docs/6.可观测性/Logs/Loki/组件详解.md",
+      "docs/6.可观测性/Logs/Loki/Storage(存储)",
+      "docs/6.可观测性/Logs/Loki/Authentication(认证).md",
+      "docs/6.可观测性/Logs/Loki/LogQL.md",
+      "docs/6.可观测性/Logs/Loki/Loki API.md",
+      "docs/6.可观测性/Logs/Loki/Loki 管理",
+      "docs/6.可观测性/Logs/Loki/Loki 开发",
+      "docs/6.可观测性/Logs/Loki/Loki 衍生品",
+      "docs/6.可观测性/Logs/Loki/Grafana 面板示例.md"
+    ],
+    "docs/6.可观测性/Logs/Loki/Loki 管理": [
+      "docs/6.可观测性/Logs/Loki/Loki 管理/_index.md",
+      "docs/6.可观测性/Logs/Loki/Loki 管理/Loki 管理.md",
+      "docs/6.可观测性/Logs/Loki/Loki 管理/logcli 命令行工具.md",
+      "docs/6.可观测性/Logs/Loki/Loki 管理/性能优化.md",
+      "docs/6.可观测性/Logs/Loki/Loki 管理/故障处理.md"
+    ],
+    "docs/6.可观测性/Logs/Loki/Storage(存储)": [
+      "docs/6.可观测性/Logs/Loki/Storage(存储)/_index.md",
+      "docs/6.可观测性/Logs/Loki/Storage(存储)/Storage(存储).md",
+      "docs/6.可观测性/Logs/Loki/Storage(存储)/Data Model(数据模型).md"
+    ],
+    "docs/6.可观测性/Logs/Rsyslog": [
+      "docs/6.可观测性/Logs/Rsyslog/_index.md",
+      "docs/6.可观测性/Logs/Rsyslog/Rsyslog.md",
+      "docs/6.可观测性/Logs/Rsyslog/RsysLog 配置详解.md"
+    ],
+    "docs/6.可观测性/Metrics": [
+      "docs/6.可观测性/Metrics/_index.md",
+      "docs/6.可观测性/Metrics/监控系统概述",
+      "docs/6.可观测性/Metrics/Net-SNMP",
+      "docs/6.可观测性/Metrics/Prometheus",
+      "docs/6.可观测性/Metrics/Instrumenting",
+      "docs/6.可观测性/Metrics/Alertmanager",
+      "docs/6.可观测性/Metrics/dell硬件监控OMSA.md"
+    ],
+    "docs/6.可观测性/Metrics/Alertmanager": [
+      "docs/6.可观测性/Metrics/Alertmanager/_index.md",
+      "docs/6.可观测性/Metrics/Alertmanager/Alertmanager.md",
+      "docs/6.可观测性/Metrics/Alertmanager/Alertmanager 配置.md",
+      "docs/6.可观测性/Metrics/Alertmanager/Alertmanager 数据结构.md",
+      "docs/6.可观测性/Metrics/Alertmanager/告警模板详解.md",
+      "docs/6.可观测性/Metrics/Alertmanager/Alertmanager 扩展.md"
+    ],
+    "docs/6.可观测性/Metrics/Instrumenting": [
+      "docs/6.可观测性/Metrics/Instrumenting/_index.md",
+      "docs/6.可观测性/Metrics/Instrumenting/Instrumenting.md",
+      "docs/6.可观测性/Metrics/Instrumenting/Push Gateway.md",
+      "docs/6.可观测性/Metrics/Instrumenting/Node Exporter.md",
+      "docs/6.可观测性/Metrics/Instrumenting/SNMP Exporter",
+      "docs/6.可观测性/Metrics/Instrumenting/Blackbox Exporter.md",
+      "docs/6.可观测性/Metrics/Instrumenting/Other Exporter.md"
+    ],
+    "docs/6.可观测性/Metrics/Instrumenting/Instrumenting 开发": [
+      "docs/6.可观测性/Metrics/Instrumenting/Instrumenting 开发/_index.md",
+      "docs/6.可观测性/Metrics/Instrumenting/Instrumenting 开发/Instrumenting 原理解析.md",
+      "docs/6.可观测性/Metrics/Instrumenting/Instrumenting 开发/Exporter 开发实践.md"
+    ],
+    "docs/6.可观测性/Metrics/Instrumenting/SNMP Exporter": [
+      "docs/6.可观测性/Metrics/Instrumenting/SNMP Exporter/_index.md",
+      "docs/6.可观测性/Metrics/Instrumenting/SNMP Exporter/SNMP Exporter.md",
+      "docs/6.可观测性/Metrics/Instrumenting/SNMP Exporter/配置详解.md",
+      "docs/6.可观测性/Metrics/Instrumenting/SNMP Exporter/应用实例.md"
+    ],
+    "docs/6.可观测性/Metrics/Metrics概述": [
+      "docs/6.可观测性/Metrics/Metrics概述/_index.md",
+      "docs/6.可观测性/Metrics/Metrics概述/Metrics概述.md",
+      "docs/6.可观测性/Metrics/Metrics概述/SNMP(传统监控标准).md",
+      "docs/6.可观测性/Metrics/Metrics概述/HTTP(新监控标准).md",
+      "docs/6.可观测性/Metrics/Metrics概述/常用告警级别.md"
+    ],
+    "docs/6.可观测性/Metrics/Net-SNMP": [
+      "docs/6.可观测性/Metrics/Net-SNMP/_index.md",
+      "docs/6.可观测性/Metrics/Net-SNMP/Net-SNMP.md",
+      "docs/6.可观测性/Metrics/Net-SNMP/Net-SNMP 配置详解.md",
+      "docs/6.可观测性/Metrics/Net-SNMP/net-snmp-utils.md",
+      "docs/6.可观测性/Metrics/Net-SNMP/SNMP 采集第三方 MIB 文件定义的设备信息.md",
+      "docs/6.可观测性/Metrics/Net-SNMP/问题实例.md"
+    ],
+    "docs/6.可观测性/Metrics/Prometheus": [
+      "docs/6.可观测性/Metrics/Prometheus/_index.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus.md",
+      "docs/6.可观测性/Metrics/Prometheus/Server 配置.md",
+      "docs/6.可观测性/Metrics/Prometheus/Rules 配置.md",
+      "docs/6.可观测性/Metrics/Prometheus/Target(目标) 与 Relabeling(重新标记).md",
+      "docs/6.可观测性/Metrics/Prometheus/Storage(存储)",
+      "docs/6.可观测性/Metrics/Prometheus/Alerting(告警).md",
+      "docs/6.可观测性/Metrics/Prometheus/Federate(集群联邦).md",
+      "docs/6.可观测性/Metrics/Prometheus/HTTPS 和 Authentication(认证).md",
+      "docs/6.可观测性/Metrics/Prometheus/PromQL",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus API",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 开发",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 管理",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品"
+    ],
+    "docs/6.可观测性/Metrics/Prometheus/PromQL": [
+      "docs/6.可观测性/Metrics/Prometheus/PromQL/_index.md",
+      "docs/6.可观测性/Metrics/Prometheus/PromQL/PromQL.md",
+      "docs/6.可观测性/Metrics/Prometheus/PromQL/PromQL Operators(运算符).md",
+      "docs/6.可观测性/Metrics/Prometheus/PromQL/Binary Operators(二元运算符).md",
+      "docs/6.可观测性/Metrics/Prometheus/PromQL/Aggregation Operators(聚合运算符).md",
+      "docs/6.可观测性/Metrics/Prometheus/PromQL/PromQL Functions(函数).md"
+    ],
+    "docs/6.可观测性/Metrics/Prometheus/Prometheus API": [
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus API/_index.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus API/Prometheus API.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus API/Querying API.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus API/TSDB Admin APIs.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus API/Management API.md"
+    ],
+    "docs/6.可观测性/Metrics/Prometheus/Prometheus 开发": [
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 开发/_index.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 开发/Prometheus 开发.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 开发/PromQL 查询逻辑.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑",
+      "docs/6.可观测性/Metrics/Instrumenting/Instrumenting 开发",
+      "docs/6.可观测性/Metrics/Instrumenting/Instrumenting 开发/Exporter 开发问题.md",
+      "docs/6.可观测性/Metrics/Instrumenting/Instrumenting 开发/使用 Go 开发 Prometheus Exporter.md"
+    ],
+    "docs/6.可观测性/Metrics/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑": [
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑/_index.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑/Prometheus 规则处理逻辑.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑/从配置文件入手寻找代码逻辑.md"
+    ],
+    "docs/6.可观测性/Metrics/Prometheus/Prometheus 管理": [
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 管理/_index.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 管理/Prometheus 管理.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 管理/PromQL 常见查询语句.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 管理/常见问题 及 最佳实践.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 管理/故障处理"
+    ],
+    "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品": [
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/_index.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus 衍生品.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus 配置自动管理.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Thanos",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/VictoriaMetrics.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Mimir.md"
+    ],
+    "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Thanos": [
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Thanos/_index.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Thanos/Thanos.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Thanos/Thanos 部署.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Thanos/Thanos 配置详解.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Thanos/Thanos 管理.md"
+    ],
+    "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解": [
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解/_index.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解/Thanos 组件详解.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解/使用 Thanos 查询前端优化查询性能.md"
+    ],
+    "docs/6.可观测性/Metrics/Prometheus/Storage(存储)": [
+      "docs/6.可观测性/Metrics/Prometheus/Storage(存储)/_index.md",
+      "docs/6.可观测性/Metrics/Prometheus/Storage(存储)/Storage(存储).md",
+      "docs/6.可观测性/Metrics/Prometheus/Storage(存储)/Data Model(数据模型).md"
+    ],
     "docs/6.可观测性/Observability": [
       "docs/6.可观测性/Observability/_index.md",
       "docs/6.可观测性/Observability/Observability.md",
@@ -2057,189 +2343,11 @@
       "docs/6.可观测性/Observability(可观测性)/可观测性之数据模型.md",
       "docs/6.可观测性/Observability(可观测性)/Exemplars.md"
     ],
-    "docs/6.可观测性/日志系统": [
-      "docs/6.可观测性/日志系统/_index.md",
-      "docs/6.可观测性/日志系统/日志系统.md",
-      "docs/6.可观测性/日志系统/Rsyslog",
-      "docs/6.可观测性/日志系统/LogRotate(日志轮替).md",
-      "docs/6.可观测性/日志系统/Journal.md",
-      "docs/6.可观测性/日志系统/ELK _ EFK",
-      "docs/6.可观测性/日志系统/Log Clients",
-      "docs/6.可观测性/日志系统/Loki"
-    ],
-    "docs/6.可观测性/日志系统/Log Clients": [
-      "docs/6.可观测性/日志系统/Log Clients/_index.md",
-      "docs/6.可观测性/日志系统/Log Clients/Promtail",
-      "docs/6.可观测性/日志系统/Log Clients/Promtail.md"
-    ],
-    "docs/6.可观测性/日志系统/Log Clients/Promtail": [
-      "docs/6.可观测性/日志系统/Log Clients/Promtail/_index.md",
-      "docs/6.可观测性/日志系统/Log Clients/Promtail/Promtail.md",
-      "docs/6.可观测性/日志系统/Log Clients/Promtail/Promtail 部署.md",
-      "docs/6.可观测性/日志系统/Log Clients/Promtail/Promtail 配置详解.md",
-      "docs/6.可观测性/日志系统/Log Clients/Promtail/Label 与 Relabeling.md",
-      "docs/6.可观测性/日志系统/Log Clients/Promtail/Pipeline 概念",
-      "docs/6.可观测性/日志系统/Log Clients/Promtail/Pipeline 概念.md"
-    ],
-    "docs/6.可观测性/日志系统/Loki": [
-      "docs/6.可观测性/日志系统/Loki/_index.md",
-      "docs/6.可观测性/日志系统/Loki/Loki.md",
-      "docs/6.可观测性/日志系统/Loki/Loki 部署.md",
-      "docs/6.可观测性/日志系统/Loki/Loki 配置.md",
-      "docs/6.可观测性/日志系统/Loki/Loki Rules 配置.md",
-      "docs/6.可观测性/日志系统/Loki/组件详解.md",
-      "docs/6.可观测性/日志系统/Loki/Storage(存储)",
-      "docs/6.可观测性/日志系统/Loki/Authentication(认证).md",
-      "docs/6.可观测性/日志系统/Loki/LogQL.md",
-      "docs/6.可观测性/日志系统/Loki/Loki API.md",
-      "docs/6.可观测性/日志系统/Loki/Loki 管理",
-      "docs/6.可观测性/日志系统/Loki/Loki 开发",
-      "docs/6.可观测性/日志系统/Loki/Loki 衍生品",
-      "docs/6.可观测性/日志系统/Loki/Grafana 面板示例.md"
-    ],
-    "docs/6.可观测性/日志系统/Loki/Loki 管理": [
-      "docs/6.可观测性/日志系统/Loki/Loki 管理/_index.md",
-      "docs/6.可观测性/日志系统/Loki/Loki 管理/Loki 管理.md",
-      "docs/6.可观测性/日志系统/Loki/Loki 管理/logcli 命令行工具.md",
-      "docs/6.可观测性/日志系统/Loki/Loki 管理/性能优化.md",
-      "docs/6.可观测性/日志系统/Loki/Loki 管理/故障处理.md"
-    ],
-    "docs/6.可观测性/日志系统/Loki/Storage(存储)": [
-      "docs/6.可观测性/日志系统/Loki/Storage(存储)/_index.md",
-      "docs/6.可观测性/日志系统/Loki/Storage(存储)/Storage(存储).md",
-      "docs/6.可观测性/日志系统/Loki/Storage(存储)/Data Model(数据模型).md"
-    ],
-    "docs/6.可观测性/日志系统/Rsyslog": [
-      "docs/6.可观测性/日志系统/Rsyslog/_index.md",
-      "docs/6.可观测性/日志系统/Rsyslog/Rsyslog.md",
-      "docs/6.可观测性/日志系统/Rsyslog/RsysLog 配置详解.md"
-    ],
-    "docs/6.可观测性/监控系统": [
-      "docs/6.可观测性/监控系统/_index.md",
-      "docs/6.可观测性/监控系统/监控系统概述",
-      "docs/6.可观测性/监控系统/Net-SNMP",
-      "docs/6.可观测性/监控系统/Prometheus",
-      "docs/6.可观测性/监控系统/Instrumenting",
-      "docs/6.可观测性/监控系统/Alertmanager",
-      "docs/6.可观测性/监控系统/dell硬件监控OMSA.md"
-    ],
-    "docs/6.可观测性/监控系统/Alertmanager": [
-      "docs/6.可观测性/监控系统/Alertmanager/_index.md",
-      "docs/6.可观测性/监控系统/Alertmanager/Alertmanager.md",
-      "docs/6.可观测性/监控系统/Alertmanager/Alertmanager 配置.md",
-      "docs/6.可观测性/监控系统/Alertmanager/Alertmanager 数据结构.md",
-      "docs/6.可观测性/监控系统/Alertmanager/告警模板详解.md",
-      "docs/6.可观测性/监控系统/Alertmanager/Alertmanager 扩展.md"
-    ],
-    "docs/6.可观测性/监控系统/Instrumenting": [
-      "docs/6.可观测性/监控系统/Instrumenting/_index.md",
-      "docs/6.可观测性/监控系统/Instrumenting/Instrumenting.md",
-      "docs/6.可观测性/监控系统/Instrumenting/Push Gateway.md",
-      "docs/6.可观测性/监控系统/Instrumenting/Node Exporter.md",
-      "docs/6.可观测性/监控系统/Instrumenting/SNMP Exporter",
-      "docs/6.可观测性/监控系统/Instrumenting/Blackbox Exporter.md",
-      "docs/6.可观测性/监控系统/Instrumenting/Other Exporter.md"
-    ],
-    "docs/6.可观测性/监控系统/Instrumenting/SNMP Exporter": [
-      "docs/6.可观测性/监控系统/Instrumenting/SNMP Exporter/_index.md",
-      "docs/6.可观测性/监控系统/Instrumenting/SNMP Exporter/SNMP Exporter.md",
-      "docs/6.可观测性/监控系统/Instrumenting/SNMP Exporter/配置详解.md",
-      "docs/6.可观测性/监控系统/Instrumenting/SNMP Exporter/应用实例.md"
-    ],
-    "docs/6.可观测性/监控系统/Net-SNMP": [
-      "docs/6.可观测性/监控系统/Net-SNMP/_index.md",
-      "docs/6.可观测性/监控系统/Net-SNMP/Net-SNMP.md",
-      "docs/6.可观测性/监控系统/Net-SNMP/Net-SNMP 配置详解.md",
-      "docs/6.可观测性/监控系统/Net-SNMP/net-snmp-utils.md",
-      "docs/6.可观测性/监控系统/Net-SNMP/SNMP 采集第三方 MIB 文件定义的设备信息.md",
-      "docs/6.可观测性/监控系统/Net-SNMP/问题实例.md"
-    ],
-    "docs/6.可观测性/监控系统/Prometheus": [
-      "docs/6.可观测性/监控系统/Prometheus/_index.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus.md",
-      "docs/6.可观测性/监控系统/Prometheus/Server 配置.md",
-      "docs/6.可观测性/监控系统/Prometheus/Rules 配置.md",
-      "docs/6.可观测性/监控系统/Prometheus/Target(目标) 与 Relabeling(重新标记).md",
-      "docs/6.可观测性/监控系统/Prometheus/Storage(存储)",
-      "docs/6.可观测性/监控系统/Prometheus/Alerting(告警).md",
-      "docs/6.可观测性/监控系统/Prometheus/Federate(集群联邦).md",
-      "docs/6.可观测性/监控系统/Prometheus/HTTPS 和 Authentication(认证).md",
-      "docs/6.可观测性/监控系统/Prometheus/PromQL",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus API",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 管理",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品"
-    ],
-    "docs/6.可观测性/监控系统/Prometheus/PromQL": [
-      "docs/6.可观测性/监控系统/Prometheus/PromQL/_index.md",
-      "docs/6.可观测性/监控系统/Prometheus/PromQL/PromQL.md",
-      "docs/6.可观测性/监控系统/Prometheus/PromQL/PromQL Operators(运算符).md",
-      "docs/6.可观测性/监控系统/Prometheus/PromQL/Binary Operators(二元运算符).md",
-      "docs/6.可观测性/监控系统/Prometheus/PromQL/Aggregation Operators(聚合运算符).md",
-      "docs/6.可观测性/监控系统/Prometheus/PromQL/PromQL Functions(函数).md"
-    ],
-    "docs/6.可观测性/监控系统/Prometheus/Prometheus API": [
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus API/_index.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus API/Prometheus API.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus API/Querying API.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus API/TSDB Admin APIs.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus API/Management API.md"
-    ],
-    "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发": [
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/_index.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Prometheus 开发.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/PromQL 查询逻辑.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑",
-      "docs/6.可观测性/监控系统/Instrumenting/Instrumenting 开发",
-      "docs/6.可观测性/监控系统/Instrumenting/Instrumenting 开发/Exporter 开发问题.md",
-      "docs/6.可观测性/监控系统/Instrumenting/Instrumenting 开发/使用 Go 开发 Prometheus Exporter.md"
-    ],
-    "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑": [
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑/_index.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑/Prometheus 规则处理逻辑.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑/从配置文件入手寻找代码逻辑.md"
-    ],
-    "docs/6.可观测性/监控系统/Prometheus/Prometheus 管理": [
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 管理/_index.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 管理/Prometheus 管理.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 管理/PromQL 常见查询语句.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 管理/常见问题 及 最佳实践.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 管理/故障处理"
-    ],
-    "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品": [
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/_index.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Prometheus 衍生品.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Prometheus 配置自动管理.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Prometheus Operator",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/VictoriaMetrics.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Mimir.md"
-    ],
-    "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos": [
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/_index.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 部署.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 配置详解.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 管理.md"
-    ],
-    "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解": [
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解/_index.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解/Thanos 组件详解.md",
-      "docs/6.可观测性/监控系统/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解/使用 Thanos 查询前端优化查询性能.md"
-    ],
-    "docs/6.可观测性/监控系统/Prometheus/Storage(存储)": [
-      "docs/6.可观测性/监控系统/Prometheus/Storage(存储)/_index.md",
-      "docs/6.可观测性/监控系统/Prometheus/Storage(存储)/Storage(存储).md",
-      "docs/6.可观测性/监控系统/Prometheus/Storage(存储)/Data Model(数据模型).md"
-    ],
-    "docs/6.可观测性/监控系统/监控系统概述": [
-      "docs/6.可观测性/监控系统/监控系统概述/_index.md",
-      "docs/6.可观测性/监控系统/监控系统概述/监控系统概述.md",
-      "docs/6.可观测性/监控系统/监控系统概述/SNMP(传统监控标准).md",
-      "docs/6.可观测性/监控系统/监控系统概述/HTTP(新监控标准).md",
-      "docs/6.可观测性/监控系统/监控系统概述/常用告警级别.md"
+    "docs/6.可观测性/Traces": [
+      "docs/6.可观测性/Traces/_index.md",
+      "docs/6.可观测性/Traces/追踪系统.md",
+      "docs/6.可观测性/Traces/动态追踪.md",
+      "docs/6.可观测性/追踪系统/Tempo - 分布式Loki链路追踪利器.md"
     ],
     "docs/6.可观测性/追踪系统": [
       "docs/6.可观测性/追踪系统/_index.md",
@@ -2645,107 +2753,12 @@
       "docs/学习/PKM/Obsidian.md",
       "docs/学习/PKM/WPS.md"
     ],
-    "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具/fio 磁盘性能测试工具": [
-      "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具/fio 磁盘性能测试工具/_index.md",
-      "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具/fio 磁盘性能测试工具/fio 磁盘性能测试工具.md",
-      "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具/fio 磁盘性能测试工具/fio 参数详解.md"
-    ],
-    "docs/2.编程/计算机科学/Data Type": [
-      "docs/2.编程/计算机科学/Data Type/_index.md",
-      "docs/2.编程/计算机科学/Data Type/Data type AND Literal.md",
-      "docs/2.编程/计算机科学/Data Type/复合数据类型",
-      "docs/2.编程/计算机科学/Data Type/抽象数据类型",
-      "docs/2.编程/计算机科学/Data Type/进制表示法.md"
-    ],
-    "docs/2.编程/计算机科学/Data type": [
-      "docs/2.编程/计算机科学/Data type/_index.md",
-      "docs/2.编程/计算机科学/Data type/Data type.md",
-      "docs/2.编程/计算机科学/Data type/Literal.md",
-      "docs/2.编程/计算机科学/Data type/复合数据类型",
-      "docs/2.编程/计算机科学/Data type/抽象数据类型",
-      "docs/2.编程/计算机科学/Data type/进制表示法.md"
-    ],
-    "docs/0.计算机/Peripheral": [
-      "docs/0.计算机/Peripheral/_index.md",
-      "docs/0.计算机/Peripheral/Peripheral.md",
-      "docs/0.计算机/Peripheral/Computer monitor.md",
-      "docs/0.计算机/Peripheral/Printer.md"
-    ],
-    "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备": [
-      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备/_index.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备/Linux 网络设备.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备/Bond 与 Team.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备/Bridge.md"
-    ],
-    "docs/2.编程/高级编程语言/Go/Go 常见问题": [
-      "docs/2.编程/高级编程语言/Go/Go 常见问题/_index.md",
-      "docs/2.编程/高级编程语言/Go/Go 常见问题/Go 常见问题.md",
-      "docs/2.编程/高级编程语言/Go/Go 常见问题/内存逃逸.md",
-      "docs/2.编程/高级编程语言/Go/Go 常见问题/如何避免 Go 命令行执行产生“孤儿”进程？.md",
-      "docs/2.编程/高级编程语言/Go/Go 常见问题/Go 在容器运行时要注意的细节.md"
-    ],
-    "docs/12.AI/Automation": [
-      "docs/12.AI/Automation/_index.md",
-      "docs/12.AI/Automation/Automation.md",
-      "docs/12.AI/Automation/按键精灵",
-      "docs/12.AI/Automation/RPA.md"
-    ],
-    "docs/2.编程/Programming technology": [
-      "docs/2.编程/Programming technology/_index.md",
-      "docs/2.编程/Programming technology/Programming Technology.md",
-      "docs/2.编程/Programming technology/Library.md",
-      "docs/2.编程/Programming technology/编程范式.md",
-      "docs/2.编程/Programming technology/排序.md",
-      "docs/2.编程/Programming technology/ORM.md",
-      "docs/2.编程/Programming technology/SDK 开发.md",
-      "docs/2.编程/Programming technology/设计模式.md",
-      "docs/2.编程/Programming technology/代码提交规范.md"
-    ],
-    "docs/2.编程/编程技术": [
-      "docs/2.编程/Programming technology/_index.md",
-      "docs/2.编程/Programming technology/Programming Technology.md",
-      "docs/2.编程/Programming technology/Library.md",
-      "docs/2.编程/Programming technology/编程范式.md",
-      "docs/2.编程/Programming technology/排序.md",
-      "docs/2.编程/Programming technology/ORM.md",
-      "docs/2.编程/Programming technology/SDK 开发.md",
-      "docs/2.编程/Programming technology/代码提交规范.md"
-    ],
-    "docs/6.可观测性/监控系统/Instrumenting/Instrumenting 开发": [
-      "docs/6.可观测性/监控系统/Instrumenting/Instrumenting 开发/_index.md",
-      "docs/6.可观测性/监控系统/Instrumenting/Instrumenting 开发/Instrumenting 原理解析.md",
-      "docs/6.可观测性/监控系统/Instrumenting/Instrumenting 开发/Exporter 开发实践.md"
-    ],
-    "docs/1.操作系统/Kernel/Filesystem/特殊文件系统": [
-      "docs/1.操作系统/Kernel/Filesystem/特殊文件系统/_index.md",
-      "docs/1.操作系统/Kernel/Filesystem/特殊文件系统/proc.md",
-      "docs/1.操作系统/Kernel/Filesystem/特殊文件系统/sysfs.md",
-      "docs/1.操作系统/Kernel/Filesystem/特殊文件系统/devfs.md",
-      "docs/1.操作系统/Kernel/Filesystem/特殊文件系统/OverlayFS.md",
-      "docs/1.操作系统/Kernel/Filesystem/特殊文件系统/tmpfs.md"
-    ],
-    "docs/10.云原生/Containerization implementation/Docker/Compose": [
-      "docs/10.云原生/Containerization implementation/Docker/Compose/_index.md",
-      "docs/10.云原生/Containerization implementation/Docker/Compose/Compose.md",
-      "docs/10.云原生/Containerization implementation/Docker/Compose/Compose 文件规范.md",
-      "docs/10.云原生/Containerization implementation/Docker/Compose/compose CLI.md"
-    ],
-    "docs/11.多媒体/音频处理": [
-      "docs/11.多媒体/音频处理/_index.md",
-      "docs/11.多媒体/音频处理/音频处理.md",
-      "docs/11.多媒体/音频处理/把喜马拉雅音频下载到电脑.md"
-    ],
-    "docs/2.编程/Programming tools/SCM/GitLab": [
-      "docs/2.编程/Programming tools/SCM/GitLab/_index.md",
-      "docs/2.编程/Programming tools/SCM/GitLab/GitLab.md",
-      "docs/2.编程/Programming tools/SCM/GitLab/Packages AND Registries.md",
-      "docs/2.编程/Programming tools/SCM/GitLab/GitLab CI/GitLab CI.md"
-    ],
-    "docs/2.编程/Programming tools/SCM/GitLab/GitLab CI": [
-      "docs/2.编程/Programming tools/SCM/GitLab/GitLab CI/_index.md",
-      "docs/2.编程/Programming tools/SCM/GitLab/GitLab CI/GitLab CI.md",
-      "docs/2.编程/Programming tools/SCM/GitLab/GitLab CI/gitlab-ci.yml.md",
-      "docs/2.编程/Programming tools/SCM/GitLab/GitLab CI/Artifacts.md"
+    "docs/6.可观测性/Metrics/监控系统概述": [
+      "docs/6.可观测性/Metrics/监控系统概述/_index.md",
+      "docs/6.可观测性/Metrics/监控系统概述/监控系统概述.md",
+      "docs/6.可观测性/Metrics/监控系统概述/SNMP(传统监控标准).md",
+      "docs/6.可观测性/Metrics/监控系统概述/HTTP(新监控标准).md",
+      "docs/6.可观测性/Metrics/监控系统概述/常用告警级别.md"
     ]
   },
   "actionBarOrder": {},

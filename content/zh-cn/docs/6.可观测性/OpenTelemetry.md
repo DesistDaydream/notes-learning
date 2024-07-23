@@ -15,7 +15,12 @@ weight: 2
 
 **OpenTelemetry(开放式遥测技术，简称 OTel)** 于 2019 年 5 月由 [OpenTracing](https://opentracing.io/) 与 OpenCensus 合并而成([Google Open Source](https://opensource.googleblog.com/2019/05/opentelemetry-merger-of-opencensus-and.html))，是一组 **API、SDK、工具、更是一种遥测标准**，旨在创建和管理 **Telemetry Data(遥测数据)**。通过 OpenTelemetry 标准创建的程序，可以采集 OpenTelemetry 标准的遥测数据，并发送到我们指定的后端中。OpenTelemetry 支持各种流行的开源后端项目，比如 Prometheus、Jaeger 等。
 
-> 遥测数据包括：Traces(链路追踪数据)、Metrics(指标数据)、logs(日志数据)
+遥测数据包括
+
+- **Logs(日志数据)** # [日志系统](/docs/6.可观测性/Logs/日志系统.md)
+- **Metrics(指标数据)** # [监控系统](/docs/6.可观测性/Metrics/监控系统概述/监控系统概述.md)
+- **Traces(链路追踪数据)** # [追踪系统](/docs/6.可观测性/Traces/追踪系统.md)
+- Baggage TODO: 这是啥
 
 注意：OpenTelemetry 不是像 Prometheus、Jaeger 那样的可观察性后端。相反，OpenTelemetry 支持将数据导出到各种开源和商业的后端产品中，它提供了一个可插拔的架构，因此可以轻松添加其他技术协议和格式。
 

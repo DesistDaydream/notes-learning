@@ -67,7 +67,7 @@ https://en.wikipedia.org/wiki/Internet_service_provider
 
 **Compaction(压实)** # 数据分散在一大片区域中，将这些数据压实到某一块，以便留出来非碎片的，完整的空白区域
 
-- [Thanos](/docs/6.可观测性/监控系统/Prometheus/Prometheus%20衍生品/Thanos/Thanos.md) 的 Compactor 组件就是一个实现类似 Compaction 的行为
+- [Thanos](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20衍生品/Thanos/Thanos.md) 的 Compactor 组件就是一个实现类似 Compaction 的行为
 
 **Compression(压缩)** # 将数据通过算法进行压缩，比如把 1MiB 的数据压缩成 500KiB
 
