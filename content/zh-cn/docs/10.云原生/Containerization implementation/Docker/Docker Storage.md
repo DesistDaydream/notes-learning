@@ -30,7 +30,7 @@ weight: 20
 
 这三种方式唯一的差异就是数据在 docker 宿主机上的位置，bind mount 和 volume 会在宿主机的文件系统中、而 tmpfs mount 则在宿主机的内存中。如下图所示：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/tg0ypk/1616121977852-96ae1080-9144-4e1d-9e6a-1f06b7f5a73c.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/docker/storage/202407241948752.png)
 
 Note：merged(可读写层) 的目录内无法看到这三种存储方式关联到容器中的任何数据，只能从这些存储类型的源目录看到。
 
@@ -42,13 +42,14 @@ Note：merged(可读写层) 的目录内无法看到这三种存储方式关联�
 >
 > - [官方文档，在生产环境运行你的应用-管理应用数据-卷](https://docs.docker.com/storage/volumes/)
 
-卷是一个逻辑概念，需要手动创建出来之后才能使用，创建出来的卷会关联到一个目录上，对卷的操作就是对该目录的操作，创建出来的卷数据保存在 /var/lib/docker/volumes/\* 路径下，其内目录目录名为卷的名字。
+卷是一个逻辑概念，需要手动创建出来之后才能使用，创建出来的卷会关联到一个目录上，对卷的操作就是对该目录的操作，创建出来的卷数据保存在 `/var/lib/docker/volumes/` 路径下，其内目录目录名为卷的名字。
 
 我们可以通过 docker volume 子命令创建卷
 
 ### Syntax(语法)
 
 **docker volume COMMAND \[OPTIONS]**
+
 COMMAND：
 
 - create # 创建一个 volume,若不指定 VolumeName，则会自动生成一串一堆字符为名的 volume name

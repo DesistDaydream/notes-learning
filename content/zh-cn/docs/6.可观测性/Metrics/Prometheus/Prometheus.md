@@ -33,14 +33,16 @@ Prometheus 的基本原理是通过 HTTP 协议周期性抓取被监控组件的
 Prometheus 生态圈中包含了多个组件，其中许多组件是可选的，多数 Prometheus 组件是 Go 语言写的，使得这些组件很容易编译和部署：
 
 - **Prometheus Server** # 主要负责数据抓取和存储，提供 PromQL 查询语言的支持。用于收集和存储时间序列数据。
-  - 定期从配置好的 Jobs 中**拉取**Exporters 采集的**Metrics(指标)** 数据；或者**接收**来自 **Pushgateway**(类似 zabbix 的 proxy) 发过来的 Metrics；或者从其他的 Prometheus Server 中拉取 Metrics。
-  - Prometheus Server 在本地存储收集到的 Metrics，并通过一定 **RecordingRule(记录规则)** 进行清理和整理数据，并把得到的结果存储到新的时间序列中。还会运行已定义好的 **AlertingRule(告警规则)**，记录新的时间序列或者向 Alertmanager 推送警报。
+  - 定期从配置好的 Jobs 中**拉取** Exporters 采集的 **Metrics(指标)** 数据；或者**接收**来自 **Pushgateway**(类似 Zabbix 的 proxy) 发过来的 Metrics；或者从其他的 Prometheus Server 中拉取 Metrics。
+  - Prometheus Server 在本地存储收集到的 Metrics，通过一定 **RecordingRule(记录规则)** 进行清理和整理数据，并把得到的结果存储到新的时间序列中。还会运行已定义好的 **AlertingRule(告警规则)**，记录新的时间序列或者向 Alertmanager 推送警报。
   - 由于 Metrics 都是通过 HTTP 或者 HTTPS 协议提供的，所以 Prometheus Server 在抓取 Metrics 时，也就是发起一次 HTTP 或者 HTTPS 的 GET 请求
-- **Instrumenting** # 为 Prometheus 提供指标的工具或代码
+- **Instrumenting** # 为 Prometheus 提供 Metrics 的工具或代码。详见 [**Instrumenting**](/docs/6.可观测性/Metrics/Instrumenting/Instrumenting.md)
   - **Exporters**# 导出器。Exporter 是 Prometheus 的一类数据采集组件的总称。它负责从设备上搜集数据，并将其转化为 Prometheus 支持的格式(一般情况下 exporter 是安装在需要采集数据的设备上的程序，并监听某个 port。但是如果想要收集 snmp 信息的话，则有专门的 snmp-exporter 安装在某个地方；再收集指定设备的 snmp 信息，然后 prometheus 再找 snmp-exporter 去收集数据)。与传统的数据采集组件不同的是，它并不向中央服务器发送数据，而是等待中央服务器主动前来抓取。Prometheus 提供多种类型的 Exporter 用于采集各种不同服务的运行状态。目前支持的有数据库、硬件、消息中间件、存储系统、HTTP 服务器、JMX 等。
-  - **Client Library** # 客户端库(客户端 SDK)，官方提供的客户端类库有 go、java、scala、python、ruby，其他还有很多第三方开发的类库，支持 nodejs、php、erlang 等。为需要监控的服务生成相应的 Metrics 并暴露给 Prometheus server。当 Prometheus server 来 pull 时，直接返回实时状态的 Metrics。
+  - **Client Library** # 客户端库，官方提供的客户端类库有 go、java、scala、python、ruby，其他还有很多第三方开发的类库，支持 nodejs、php、erlang 等。为需要监控的服务生成相应的 Metrics 并暴露给 Prometheus server。当 Prometheus server 来 pull 时，直接返回实时状态的 Metrics。
   - **Push Gateway**# 支持 Client 主动推送 Metrics 到 PushGateway，而 PrometheusServer 只是定时去 Gateway 上抓取数据。
-- **Alertmanager** # 警告管理器，用来进行报警。从 Prometheus server 端接收到 alerts 后，会进行去除重复数据，分组，并路由到对收的接受方式，发出报警。常见的接收方式有：电子邮件，pagerduty，OpsGenie, webhook 等。
+- **Alertmanager** # 警告管理器，用来进行报警。从 Prometheus server 端接收到 alerts 后，会进行去除重复数据，分组，并路由到对应的接受方式，发出报警。
+  - 常见的接收方式有：电子邮件，pagerduty，OpsGenie, webhook 等。
+  - 详见 [**Alertmanager**](/docs/6.可观测性/Metrics/Alertmanager/Alertmanager.md)
 - **prometheus_cli** # 命令行工具。
 - **其他辅助性工具**
   - Prometheus 通过 PromQL 和其他 API 可视化地展示收集的数据。Prometheus 支持很多方式的图表可视化，例如 Grafana、自带的 PrometheusDashboard 以及自身提供的模版引擎等等。Prometheus 还提供 HTTP API 的查询方式，自定义所需要的输出。

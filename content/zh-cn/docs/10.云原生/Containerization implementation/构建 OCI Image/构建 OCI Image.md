@@ -1,5 +1,8 @@
 ---
 title: 构建 OCI Image
+linkTitle: 构建 OCI Image
+date: 2024-07-24T20:03
+weight: 1
 ---
 
 # 概述

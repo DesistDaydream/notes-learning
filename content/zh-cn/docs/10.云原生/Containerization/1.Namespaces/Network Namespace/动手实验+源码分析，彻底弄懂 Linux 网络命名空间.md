@@ -10,8 +10,6 @@ title: 动手实验+源码分析，彻底弄懂 Linux 网络命名空间
 
 在 Linux 上实现隔离的技术手段就是 namespace。通过 namespace 可以隔离容器的进程 PID、文件系统挂载点、主机名等多种资源。不过我们今天重点要介绍的是网络 namespace，简称 netns。它可以为不同的命名空间从**逻辑上**提供独立的网络协议栈，具体包括网络设备、路由表、arp 表、iptables、以及套接字（socket）等。使得不同的网络空间就都好像运行在独立的网络中一样。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/5447552d-f2d4-4b10-b52b-10e331535241/640)
-
 你是不是和飞哥一样，也很好奇 Linux 底层到底是如何实现网络隔离的？我们今天来好好挖一挖 netns 的内部实现。
 
 ## 一、如何使用 netns

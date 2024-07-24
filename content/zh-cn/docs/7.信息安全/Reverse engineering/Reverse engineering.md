@@ -64,15 +64,35 @@ APP 加壳
 
 http://www.cnlans.com/lx/tools 李玺的爬虫逆向工具
 
+## 反编译
+
+[IDA Pro](https://hex-rays.com/ida-pro/) # Interactive Disassembler Professional
+
+- [百度网盘，IDAPro7.0 调试工具Windows版本](https://pan.baidu.com/s/1_-PorRCwHDMpmUI1t_cKcQ?pwd=t39m)
+
+capstone
+
+- [GitHub 项目，capstone-engine/capstone](https://github.com/capstone-engine/capstone)
+
+## Hook 工具
+
+Frida
+
+- [GitHub 项目，frida/frida](https://github.com/frida/frida)
+
+## chrome插件
+
+- [request-hook](https://pan.baidu.com/s/1OmMiE4rJrTNwarw3EJbz0A?pwd=thyl)
+- [Trace-dist](https://github.com/L018/Trace)
+
+### 微信小程序
+
+- [UnpackMiniApp](https://pan.baidu.com/s/1dwUehOAnPka9eHjXN6Y-Lg?pwd=unp7)
+- [CrackMinApp](https://github.com/Cherrison/CrackMinApp)
+
 ## 待整理工具
 
 ### 反编译
-
-- [IDA Pro](https://hex-rays.com/ida-pro/) # Interactive Disassembler Professional
-  - [百度网盘，IDAPro7.0 调试工具Windows版本](https://pan.baidu.com/s/1_-PorRCwHDMpmUI1t_cKcQ?pwd=t39m)
-- [GitHub 项目，capstone-engine/capstone](https://github.com/capstone-engine/capstone)
-
-其他
 
 - [AndroidKiller](https://down.52pojie.cn/Tools/Android_Tools/)
 - [Apktools2.5.0](https://pan.baidu.com/s/12qB4N_2Fg-IsTB2BcQuiDw?pwd=gjqs)
@@ -93,8 +113,6 @@ http://www.cnlans.com/lx/tools 李玺的爬虫逆向工具
 
 ### HOOK工具
 
-- Frida
-  - [GitHub 项目，frida/frida](https://github.com/frida/frida)
 - [Xposed](https://pan.baidu.com/s/15WnJD8qj9UzSss55DWLNfA?pwd=7sgb)
 - [VAExposed](https://pan.baidu.com/s/1fd0r2fy4mm4jUArGE4MZvA?pwd=mu9q)
 - [Inspeckage](https://pan.baidu.com/s/1WfnVM7hKE76jNpQc3FnKWg?pwd=pvcs)
@@ -108,16 +126,6 @@ http://www.cnlans.com/lx/tools 李玺的爬虫逆向工具
 - [HttpAnalyzerStd V7](https://pan.baidu.com/s/1p3ThL5yqqc5XwTrDdmmGCg?pwd=x9hg)
 - [fridaManager](https://pan.baidu.com/s/1u_P2P_kd_H2n2SYTaLB0hA?pwd=jovi)
 - [AppSignGet](https://pan.baidu.com/s/1_j2QTVFD6qHP3FKp_FVeCw?pwd=6qmu)
-
-## chrome插件
-
-- [request-hook](https://pan.baidu.com/s/1OmMiE4rJrTNwarw3EJbz0A?pwd=thyl)
-- [Trace-dist](https://github.com/L018/Trace)
-
-### 微信小程序
-
-- [UnpackMiniApp](https://pan.baidu.com/s/1dwUehOAnPka9eHjXN6Y-Lg?pwd=unp7)
-- [CrackMinApp](https://github.com/Cherrison/CrackMinApp)
 
 # 其他常用工具
 

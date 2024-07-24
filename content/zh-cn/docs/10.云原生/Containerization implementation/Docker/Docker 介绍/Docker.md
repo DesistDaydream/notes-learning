@@ -1,34 +1,34 @@
 ---
-title: Docker 介绍
-linkTitle: Docker 介绍
-date: 2023-10-15T21:18
+title: Docker
+linkTitle: Docker
+date: 2024-07-24T16:43
 weight: 1
 ---
+
 # 概述
 
 > 参考：
 >
 > - [官方文档](https://docs.docker.com/get-started/overview/)
 
-Docker 是一个基于容器技术的开放式平台，可以 开发、分享、运行应用程序。Docker 分为两个版本
+Docker 是一个基于 [Containerization(容器化)](/docs/10.云原生/Containerization/Containerization.md) 的开放式平台，可以 开发、分享、运行应用程序。Docker 分为两个版本
 
 - Docker-CE # 社区版
 - Docker-EE # 商业版
 
-Docker 为了解决 LXC 无法批量管理、复刻容器等问题应运而生，简化用户对容器的应用。Docker 是 Docker.inc 公司开源的一个基于 LXC 技术之上构建的 Container 容器引擎，不再使用模板技术，而是使用了 image 文件的方式来创建。image 是放在统一的互联网仓库中，当需要使用 Container 的时候，直接 run 或者 creat 等即可从仓库中下载到该 image，然后基于该 image 再运行 Container。
+Docker 为了解决 LXC 无法批量管理、复刻容器等问题应运而生，简化用户对容器的应用。Docker 是 Docker.inc 公司开源的一个基于 LXC 技术之上构建的 Container 引擎，不再使用模板技术，而是使用了 [Docker Image](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20Image.md) 文件的方式来创建。Image 是放在统一的互联网仓库中，当需要使用 Container 的时候，直接 run 或者 creat 等即可从仓库中下载到该 Image，然后基于该 Image 再运行 Container。
 
 Note：一开始，docker 在 linux 上实现容器技术的后端使用的是 lxc，后来使用 runc 来代替。
 
-# Docker 的工作模式
+# Docker 架构
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/qqh0gm/1616122015472-3e6bcce1-e878-485c-859b-057a2eaf98c6.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/docker/202407241618409.png)
 
-Docker 对使用者来讲是一个 C/S 模式的架构，而 Docker 的后端是一个非常松耦合的架构，模块各司其职，并有机组合，支撑 Docker 的运行。
+Docker 对使用者来讲是一个 C/S 模式的架构，Client 和 Server 使用 REST API 通过 UNIX [Socket](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication(进程间通信)/Socket(套接字)/Socket(套接字).md) 或者网络进行通信。[Compose](docs/10.云原生/Containerization%20implementation/Docker/Compose/Compose.md) 同样也可以作为客户端。
 
-用户是使用 Docker Client 与 Docker Daemon 建立通信，并发送请求给后者。
+Docker Server 通常以 Daemon(守护进程) 形式运行，作为 Docker 架构中的主体部分，Server 接受 Docker Client 的请求，并交给内部的 **Docker Engine(引擎)** 处理请求执行一系列工作。Docker Engine 默认是使用 [Containerd](/docs/10.云原生/Containerization%20implementation/Containerd/Containerd.md) 来管理容器生命周期，包括创建、启动和停止容器。Containerd 默认使用 runc 作为其容器运行时。
 
-而 Docker Daemon 作为 Docker 架构中的主体部分，首先提供 Server 的功能使其可以接受 Docker Client 的请求；而后 Engine 执行 Docker 内部的一系列工作，每一项工作都是以一个 Job 的形式的存在。
-
+## 运行逻辑概述
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/qqh0gm/1616122015445-eda7a719-b2a0-4fd6-8c61-b8d450d2dc3d.png)
 
 当利用 docker run 来创建容器时，Docker 在后台运行的标准操作包括：
@@ -65,7 +65,7 @@ Note：目录名中的 overlay2 指的是 docker 当前 Storage Driver 类型，
 
 - **./io.containerd.runtime.v1.linux/moby/** # 容器启动后生成的 bundle 文件保存路径，其内目录名为 **ContainerID**。
 
-**/var/lib/docker/** # docker 管理的 网络、镜像、容器 等信息的保存路径。该路径为默认路径，可以通过配置修改。
+**/var/lib/docker/** # Docker 管理的 网络、镜像、容器 等信息的保存路径。该路径为默认路径，可以通过配置修改。
 
 - **./containers/** # 所有 container 的元数据保存路径(其中包括容器日志文件、容器运行配置等)。其内目录名为 **ContainerID**
 - **./image/overlay2/** # docker images 以及 所有 layers 的元数据保存路径。
@@ -116,21 +116,29 @@ Dokcer 默认的日志日志驱动是 json-file，该驱动将将来自容器的
 
 - 查看 Docker 当前的日志驱动配置
 
-    $ docker  info |grep  "Logging Driver"
+```bash
+$ docker info |grep "Logging Driver"
+```
 
 - 查看单个容器的设置的日志驱动
 
-    $ docker inspect  -f '{{.HostConfig.LogConfig.Type}}'   容器id
+```bash
+$ docker inspect  -f '{{.HostConfig.LogConfig.Type}}' 容器id
+```
 
 - Docker 日志驱动全局配置，全局配置意味所有容器都生效，编辑 /etc/docker/daemon.json 文件（如果文件不存在新建一个），添加日志驱动配置。示例：配置 Docker 引擎日志驱动为 syslog
 
-    {
-      "log-driver": "syslog"
-    }
+```json
+{
+  "log-driver": "syslog"
+}
+```
 
 - 给特定容器配置日志驱动，在启动容器时指定日志驱动 --log-driver 参数。示例：启动 nginx 容器，日志驱动指定为 journald
 
-    $ docker  run --name nginx -d --log-driver journald nginx
+```bash
+$ docker  run --name nginx -d --log-driver journald nginx
+```
 
 ## Docker 默认的日志驱动 json-file
 

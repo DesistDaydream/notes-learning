@@ -20,18 +20,20 @@ Docker 由两个主要组件组成，一个供用户使用的命令行应用程�
 
 Docker 命令行应用程序是管理你的 Docker 运行副本已知的所有镜像和容器的人工界面。它相对简单，因为所有的管理都是由守护进程完成的。应用程序开始于一个 main 函数：
 
-    funcmain() {
-    var err error
-        ...
-    // Example:              "/var/run/docker.sock", "run"
-        conn, err := rcli.CallTCP(os.Getenv("DOCKER"), os.Args[1:]...)
-        ...
-        receive_stdout := future.Go(func()error {
-            _, err := io.Copy(os.Stdout, conn)
-    return err
-        })
-        ...
-    }
+```go
+funcmain() {
+var err error
+    ...
+// Example:              "/var/run/docker.sock", "run"
+    conn, err := rcli.CallTCP(os.Getenv("DOCKER"), os.Args[1:]...)
+    ...
+    receive_stdout := future.Go(func()error {
+        _, err := io.Copy(os.Stdout, conn)
+return err
+    })
+    ...
+}
+```
 
 它会立即建立一个 TCP 连接，指向存储在 DOCKER 这个环境变量中的地址，这是 Docker 守护进程的地址。用户提供的参数发送给守护进程，然后命令行应用程序等待打印成功答复的结果。
 
@@ -39,20 +41,22 @@ Docker 命令行应用程序是管理你的 Docker 运行副本已知的所有�
 
 Docker 守护进程的代码存放在同一个代码库中，这个进程称为 dockerd。它运行在后台来处理用户请求和容器清理工作。启动后，dockerd 将监听在 8080 端口上传入的 HTTP 连接和在 4242 端口上的 TCP 连接。
 
-    func main() {    ...    // d is the server, it will process requests made by the user    d, err := New()    ...    go func() {        if err := rcli.ListenAndServeHTTP(":8080", d); err != nil {            log.Fatal(err)        }    }()    if err := rcli.ListenAndServeTCP(":4242", d); err != nil {        log.Fatal(err)    }}
-        ...
-        // d is the server, it will process requests made by the user
-        d, err := New()
-        ...
-        go func() {
-            if err := rcli.ListenAndServeHTTP(":8080", d); err != nil {
-                log.Fatal(err)
-            }
-        }()
-        if err := rcli.ListenAndServeTCP(":4242", d); err != nil {
+```go
+func main() {    ...    // d is the server, it will process requests made by the user    d, err := New()    ...    go func() {        if err := rcli.ListenAndServeHTTP(":8080", d); err != nil {            log.Fatal(err)        }    }()    if err := rcli.ListenAndServeTCP(":4242", d); err != nil {        log.Fatal(err)    }}
+    ...
+    // d is the server, it will process requests made by the user
+    d, err := New()
+    ...
+    go func() {
+        if err := rcli.ListenAndServeHTTP(":8080", d); err != nil {
             log.Fatal(err)
         }
+    }()
+    if err := rcli.ListenAndServeTCP(":4242", d); err != nil {
+        log.Fatal(err)
     }
+}
+```
 
 一旦命令接收到后，dockerd 将使用反射机制查找并调用要运行的函数。
 

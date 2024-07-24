@@ -8,13 +8,13 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > -
 
 # OCI Runtime 规范的实现
 
 > 参考：
-> 
+>
 > - [公众号-k8s 技术圈，Containerd 深度剖析-runtime 篇](https://mp.weixin.qq.com/s/NPxLLhRkpNdTgVcKQSLcFA)
 
 当人们想到容器运行时，可能会想到一连串的相关概念；runc、runv、lxc、lmctfy、Docker（containerd）、rkt、cri-o。每一个都是基于不同的场景而实现的，均实现了不同的功能。如 containerd 和 cri-o，实际均可使用 runc 来运行容器，但其实现了如镜像管理、容器 API 等功能，可以将这些看作是比 runc 具备的更高级的功能。
@@ -42,7 +42,7 @@ weight: 1
 ### RunC
 
 > 参考：
-> 
+>
 > - [GitHub 项目，opencontainers/runc](https://github.com/opencontainers/runc)
 
 runc 是一个 CLI 工具，用于根据 OCI 规范生成和运行容器。
@@ -50,7 +50,7 @@ runc 是一个 CLI 工具，用于根据 OCI 规范生成和运行容器。
 ### youki
 
 > 参考：
-> 
+>
 > - [GitHub 项目，containers/youki](https://github.com/containers/youki)
 
 使用 Rust 语言写的，类似于 Runc 的容器运行时，
@@ -58,7 +58,7 @@ runc 是一个 CLI 工具，用于根据 OCI 规范生成和运行容器。
 ### Sysbox
 
 > 参考：
-> 
+>
 > - [GitHub 项目，nestybox/sysbox](https://github.com/nestybox/sysbox)
 
 Sysbox 是一个新型的 OCI 容器运行时，对标 runc。相比于 runc，Sysbox 在以下两个方面做了增强：
@@ -71,7 +71,7 @@ Sysbox 是一个新型的 OCI 容器运行时，对标 runc。相比于 runc，S
 ### Kata Container
 
 > 参考：
-> 
+>
 > - [GitHub 项目，kata-containers/kata-containers](https://github.com/kata-containers/kata-containers)
 
 Kata Containers 是一个开源项目和社区，致力于构建轻量级虚拟机 (vm) 的标准实现，该虚拟机感觉和性能类似于容器，但提供 vm 的工作负载隔离和安全性优势。
@@ -90,4 +90,8 @@ Kata Containers 是一个开源项目和社区，致力于构建轻量级虚拟�
 
 ### Docker
 
+[Docker](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20介绍/Docker.md)
+
 ### Containerd
+
+[Containerd](/docs/10.云原生/Containerization%20implementation/Containerd/Containerd.md)

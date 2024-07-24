@@ -119,15 +119,17 @@ init layer 里面的文件有什么作用呢？从下面的结果可以看出，
 
 Note：容器启动后，该目录还会有新的文件产生。
 
-    containers]# pwd
-    /var/lib/docker/containers
-    containers]# ls
-    28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10
-    containers]# tree
-    .
-    ├── checkpoints
-    ├── config.v2.json # 通用的配置，如容器名称、启动后要执行的命令等等
-    └── hostconfig.json # 该容器关于docker 宿主机的配置，日志驱动、是否自动删除、cgroup的配置等等
+```bash
+containers]# pwd
+/var/lib/docker/containers
+containers]# ls
+28f5bed704dc80bed6dbaa8af514d2191d8d4ab0339bb3a663e66609ccd34c10
+containers]# tree
+.
+├── checkpoints
+├── config.v2.json # 通用的配置，如容器名称、启动后要执行的命令等等
+└── hostconfig.json # 该容器关于docker 宿主机的配置，日志驱动、是否自动删除、cgroup的配置等等
+```
 
 # Docker start
 
@@ -278,6 +280,7 @@ containerd]#  tree
 init-stdin 文件用来向容器的 stdin 中写数据，init-stdout 用来接受容器的 stdout。如果使用 echo "XXX" > init-stdin 向容器的标准输入写入内容，则容器会接收该命令，并返回执行结果给 init-stdout。与此同时 cat init-stdout 的话，在宿主机就可以显示容器内在标准输出的内容。
 
 docker exec 命令就是通过这两个文件，来让宿主机与容器进行交互，效果如下：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/xgxt2w/1616121764249-a0867491-440e-4f2d-a52d-186aceee3136.png)
 
 ## 正常启动容器

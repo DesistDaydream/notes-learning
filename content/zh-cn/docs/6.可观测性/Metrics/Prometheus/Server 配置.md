@@ -9,7 +9,8 @@ weight: 2
 
 > 参考：
 >
-> - [官方文档，配置-配置](https://prometheus.io/docs/prometheus/latest/configuration/configuration/)
+> - [官方文档，配置 - 配置](https://prometheus.io/docs/prometheus/latest/configuration/configuration/)
+> - [官方文档，配置 - 命令行 -prometheus](https://prometheus.io/docs/prometheus/latest/command-line/prometheus/)
 
 Prometheus Server 可通过两种方式来改变运行时行为
 

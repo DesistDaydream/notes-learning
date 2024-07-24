@@ -9,7 +9,7 @@ weight: 4
 
 > 参考：
 >
-> - <https://segmentfault.com/a/1190000009309347>
+> - [思否，走进docker(02)：image(镜像)是什么？](https://segmentfault.com/a/1190000009309347)
 
 在虚拟化中，运行程序的地方是一个虚拟的操作系统。而容器技术中，运行程序的地方是一个容器 image(镜像)。
 
