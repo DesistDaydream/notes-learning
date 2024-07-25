@@ -20,15 +20,15 @@ Containerd 是行业标准的容器运行时，着重于简单性，健壮性和
 
 ## Containerd 的前世今生
 
-很久以前，[Docker](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20介绍/Docker.md) 强势崛起，以“镜像”这个大招席卷全球，对其他容器技术进行致命的降维打击，使其毫无招架之力，就连 Google 也不例外。Google 为了不被拍死在沙滩上，被迫拉下脸面（当然，跪舔是不可能的），希望 Docker 公司和自己联合推进一个开源的容器运行时作为 Docker 的核心依赖，不然就走着瞧。Docker 公司觉得自己的智商被侮辱了，走着瞧就走着瞧，谁怕谁啊！
+很久以前，[Docker](docs/10.云原生/Containerization%20implementation/Docker/Docker.md) 强势崛起，以“镜像”这个大招席卷全球，对其他容器技术进行致命的降维打击，使其毫无招架之力，就连 Google 也不例外。Google 为了不被拍死在沙滩上，被迫拉下脸面（当然，跪舔是不可能的），希望 Docker 公司和自己联合推进一个开源的容器运行时作为 Docker 的核心依赖，不然就走着瞧。Docker 公司觉得自己的智商被侮辱了，走着瞧就走着瞧，谁怕谁啊！
 
 很明显，Docker 公司的这个决策断送了自己的大好前程，造成了今天的悲剧。
 
-紧接着，Google 联合 Red Hat、IBM 等几位巨佬连哄带骗忽悠 Docker 公司将 `libcontainer` 捐给中立的社区（OCI，Open Container Intiative），并改名为 `runc`，不留一点 Docker 公司的痕迹。。。这还不够，为了彻底扭转 Docker 一家独大的局面，几位大佬又合伙成立了一个基金会叫 [CNCF](/docs/10.云原生/云原生/CNCF.md)（Cloud Native Computing Fundation），这个名字想必大家都很熟了，我就不详细介绍了。CNCF 的目标很明确，既然在当前的维度上干不过 Docker，干脆往上爬，升级到大规模容器编排的维度，以此来击败 Docker。Docker 公司当然不甘示弱，搬出了 Swarm 和 [Kubernetes](/docs/10.云原生/Kubernetes/Kuberntes%20介绍/Kubernetes.md) 进行 PK，最后的结局大家都知道了，Swarm 战败。然后 Docker 公司耍了个小聪明，将自己的核心依赖 `Containerd` 捐给了 CNCF，以此来标榜 Docker 是一个 PaaS 平台。
+紧接着，Google 联合 Red Hat、IBM 等几位巨佬连哄带骗忽悠 Docker 公司将 `libcontainer` 捐给中立的社区（OCI，Open Container Intiative），并改名为 `runc`，不留一点 Docker 公司的痕迹。。。这还不够，为了彻底扭转 Docker 一家独大的局面，几位大佬又合伙成立了一个基金会叫 [CNCF](/docs/10.云原生/云原生/CNCF.md)（Cloud Native Computing Fundation），这个名字想必大家都很熟了，我就不详细介绍了。CNCF 的目标很明确，既然在当前的维度上干不过 Docker，干脆往上爬，升级到大规模容器编排的维度，以此来击败 Docker。Docker 公司当然不甘示弱，搬出了 Swarm 和 [Kubernetes](docs/10.云原生/Kubernetes/Kubernetes.md) 进行 PK，最后的结局大家都知道了，Swarm 战败。然后 Docker 公司耍了个小聪明，将自己的核心依赖 `Containerd` 捐给了 CNCF，以此来标榜 Docker 是一个 PaaS 平台。
 
 很明显，这个小聪明又大大加速了自己的灭亡。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ox2yd7/1616122481377-1a01b919-efe6-450a-a439-5493a17e6d70.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/containerd/1616122481377-1a01b919-efe6-450a-a439-5493a17e6d70.png)
 
 巨佬们心想，想当初想和你合作搞个中立的核心运行时，你死要面子活受罪，就是不同意，好家伙，现在自己搞了一个，还捐出来了，马老师，发生甚莫事了？
 
@@ -52,7 +52,7 @@ Docker 这门技术成功了，Docker 这个公司却失败了。
 
 先来看看 Containerd 的架构：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ox2yd7/1616122481393-e3bb2fce-f18d-40ec-ac46-4c6d6a664cd6.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/containerd/1616122481393-e3bb2fce-f18d-40ec-ac46-4c6d6a664cd6.png)
 
 可以看到 Containerd 仍然采用标准的 C/S 架构，服务端通过 [gRPC](/docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication(进程间通信)/RPC/gRPC.md) 协议提供稳定的 API，客户端通过调用服务端的 API 进行高级的操作。
 
@@ -65,7 +65,7 @@ Docker 这门技术成功了，Docker 这个公司却失败了。
 
 其中，每一个子系统的行为都由一个或多个**模块**协作完成（架构图中的 `Core` 部分）。每一种类型的模块都以 **Plugin(插件)** 的形式集成到 Containerd 中，而且插件之间是相互依赖的。例如，上图中的每一个长虚线的方框都表示一种类型的插件，包括 `Service Plugin`、`Metadata Plugin`、`GC Plugin`、`Runtime Plugin` 等，其中 `Service Plugin` 又会依赖 Metadata Plugin、GC Plugin 和 Runtime Plugin。每一个小方框都表示一个细分的插件，例如 `Metadata Plugin` 依赖 Containers Plugin、Content Plugin 等。总之，万物皆插件，插件就是模块，模块就是插件。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ox2yd7/1616122481388-5272b6c1-efb6-49f4-a180-5425bef8ed64.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/containerd/1616122481388-5272b6c1-efb6-49f4-a180-5425bef8ed64.png)
 
 这里介绍几个常用的插件：
 
@@ -74,12 +74,12 @@ Docker 这门技术成功了，Docker 这个公司却失败了。
 - **Metrics** : 暴露各个组件的监控指标。
 
 从总体来看，Containerd 被分为三个大块：`Storage`、`Metadata` 和 `Runtime`，可以将上面的架构图提炼一下
-：
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ox2yd7/1616122481410-b77c18a6-2bcd-48be-b676-1b285bf1c862.png)
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/containerd/1616122481410-b77c18a6-2bcd-48be-b676-1b285bf1c862.png)
 
 这是使用 **bucketbench** 对 `Docker`、`crio` 和 `Containerd` 的性能测试结果，包括启动、停止和删除容器，以比较它们所耗的时间：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ox2yd7/1616122481422-8a56805f-3ef0-46a4-be19-a0a5b1eef44f.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/containerd/1616122481422-8a56805f-3ef0-46a4-be19-a0a5b1eef44f.png)
 
 可以看到 Containerd 在各个方面都表现良好，总体性能还是优越于 `Docker` 和 `crio` 的。
 

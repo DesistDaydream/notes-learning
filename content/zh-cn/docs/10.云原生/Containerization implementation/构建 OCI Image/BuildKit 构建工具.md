@@ -10,7 +10,7 @@ title: BuildKit 构建工具
 > - [官方文档](https://docs.docker.com/develop/develop-images/build_enhancements/)
 > - [知乎，官方下一代Docker镜像构建神器 -- BuildKit](https://zhuanlan.zhihu.com/p/137261919)
 
-BuildKit 是 [Docker](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20介绍/Docker.md) 上游社区(Moby)推出的下一代镜像构建神器，可以更加快速，有效，安全地构建容器镜像。Docker v18.06 已经集成了该组件。BuildKit 可用于多种导出格式（例如 OCI 或 Docker）以及前端支持（Dockerfile），并提供高效缓存和运行并行构建操作等功能。BuildKit 仅需要容器运行时就能执行，当前受支持的运行时包括 Containerd 和 Runc。
+BuildKit 是 [Docker](docs/10.云原生/Containerization%20implementation/Docker/Docker.md) 上游社区(Moby)推出的下一代镜像构建神器，可以更加快速，有效，安全地构建容器镜像。Docker v18.06 已经集成了该组件。BuildKit 可用于多种导出格式（例如 OCI 或 Docker）以及前端支持（Dockerfile），并提供高效缓存和运行并行构建操作等功能。BuildKit 仅需要容器运行时就能执行，当前受支持的运行时包括 Containerd 和 Runc。
 
 ## 构建步骤优化
 

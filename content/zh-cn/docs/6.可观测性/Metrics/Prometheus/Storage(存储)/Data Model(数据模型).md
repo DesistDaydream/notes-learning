@@ -154,13 +154,18 @@ type LabelValue string
 
 > 参考：
 >
-> [官网文档，概念-metric 类型](https://prometheus.io/docs/concepts/metric_types/)
+> - [官网文档，概念 - metric 类型](https://prometheus.io/docs/concepts/metric_types/)
 
 在 Prometheus 的存储实现上所有的监控样本都是以 time-series 的形式保存在 Prometheus 的 TSDB(时序数据库) 中，而 TimeSeries 所对应的 Metric(监控指标) 也是通过 LabelSet 进行唯一命名的。
 
 从存储上来讲所有的 Metrics 都是相同的，但是在不同的场景下这些 Metrics 又有一些细微的差异。 例如，在 Node Exporter 返回的样本中指标 node_load1 反应的是当前系统的负载状态，随着时间的变化这个指标返回的样本数据是在不断变化的。而指标 node_cpu 所获取到的样本数据却不同，它是一个持续增大的值，因为其反应的是 CPU 的累积使用时间，从理论上讲只要系统不关机，这个值是会无限变大的。
 
-为了能够帮助用户理解和区分这些不同监控指标之间的差异，Prometheus 定义了 4 中不同的 **Metric Type(指标类型)**：Counter(计数器)、Gauge(计量器)、Histogram(直方图)、Summary(摘要)。
+为了能够帮助用户理解和区分这些不同监控指标之间的差异，Prometheus 定义了 4 中不同的 **Metric Type(指标类型)**：
+
+- Counter(计数器)
+- Gauge(计量器)
+- Histogram(直方图)
+- Summary(摘要)
 
 在 Exporter 返回的样本数据中，其注释中也包含了该样本的类型。例如：
 
@@ -174,17 +179,17 @@ node_cpu{cpu="cpu0",mode="idle"} 362812.789625
 
 ## Counter(计数器) - 只增不减的计数器
 
-Counter 类型的指标其工作方式和计数器一样，只增不减（除非系统发生重置）。常见的监控指标，如 http_requests_total，node_cpu 都是 Counter 类型的监控指标。 一般在定义 Counter 类型指标的名称时推荐使用\_total 作为后缀。
+Counter 类型的指标其工作方式和计数器一样，只增不减（除非系统发生重置）。常见的监控指标，如 http_requests_total，node_cpu 都是 Counter 类型的监控指标。 一般在定义 Counter 类型指标的名称时推荐使用 `_total` 作为后缀。
 
 Counter 是一个简单但有强大的工具，例如我们可以在应用程序中记录某些事件发生的次数，通过以时序的形式存储这些数据，我们可以轻松的了解该事件产生速率的变化。 PromQL 内置的聚合操作和函数可以让用户对这些数据进行进一步的分析：
 
-例如，通过 rate()函数获取 HTTP 请求量的增长率：
+例如，通过 rate() 函数获取 HTTP 请求量的增长率：
 
-rate(http_requests_total\[5m])
+`rate(http_requests_total[5m])`
 
 查询当前系统中，访问量前 10 的 HTTP 地址：
 
-topk(10, http_requests_total)
+`topk(10, http_requests_total)`
 
 ## Gauge(仪表盘) - 可增可减的 Gauge
 

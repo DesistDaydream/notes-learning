@@ -9,7 +9,9 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档](https://docs.docker.com/get-started/overview/)
+> - [官方文档，指南](https://docs.docker.com/guides/)
+> - [官方文档，手册](https://docs.docker.com/manuals/)
+> - [官方文档，参考](https://docs.docker.com/reference/)
 
 Docker 是一个基于 [Containerization(容器化)](/docs/10.云原生/Containerization/Containerization.md) 的开放式平台，可以 开发、分享、运行应用程序。Docker 分为两个版本
 
@@ -24,11 +26,18 @@ Note：一开始，docker 在 linux 上实现容器技术的后端使用的是 l
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/docker/202407241618409.png)
 
-Docker 对使用者来讲是一个 C/S 模式的架构，Client 和 Server 使用 REST API 通过 UNIX [Socket](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication(进程间通信)/Socket(套接字)/Socket(套接字).md) 或者网络进行通信。[Compose](docs/10.云原生/Containerization%20implementation/Docker/Compose/Compose.md) 同样也可以作为客户端。
+Docker 对使用者来讲是一个 [C/S](/docs/Standard/B_S%20和%20C_S%20架构.md) 模式的架构，Client 和 Server 使用 REST API 通过 UNIX [Socket](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication(进程间通信)/Socket(套接字)/Socket(套接字).md) 或者网络进行通信。[Compose](docs/10.云原生/Containerization%20implementation/Docker/Compose/Compose.md) 同样也可以作为客户端。
 
-Docker Server 通常以 Daemon(守护进程) 形式运行，作为 Docker 架构中的主体部分，Server 接受 Docker Client 的请求，并交给内部的 **Docker Engine(引擎)** 处理请求执行一系列工作。Docker Engine 默认是使用 [Containerd](/docs/10.云原生/Containerization%20implementation/Containerd/Containerd.md) 来管理容器生命周期，包括创建、启动和停止容器。Containerd 默认使用 runc 作为其容器运行时。
+官方将这种架构称为 [**Docker Engine(引擎)**](https://docs.docker.com/engine/)，通常这个引擎具有：
+
+- 一个 Server 进程 dockerd，长时间以 Daemon 形式运行
+- 与 dockerd 通信的 API
+- 一个 CLI 程序 docker
+
+dockerd 是实现容器能力的核心，用来管理 **Docker Objects(Docker 对象)**，e.g. [Docker Image](docs/10.云原生/Containerization%20implementation/Docker/Docker%20Image.md)、[Docker Runtime](docs/10.云原生/Containerization%20implementation/Docker/Docker%20Runtime.md)、[Docker Network](docs/10.云原生/Containerization%20implementation/Docker/Docker%20Network.md)、[Docker Storage](docs/10.云原生/Containerization%20implementation/Docker/Docker%20Storage.md)
 
 ## 运行逻辑概述
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/qqh0gm/1616122015445-eda7a719-b2a0-4fd6-8c61-b8d450d2dc3d.png)
 
 当利用 docker run 来创建容器时，Docker 在后台运行的标准操作包括：
@@ -42,6 +51,7 @@ Docker Server 通常以 Daemon(守护进程) 形式运行，作为 Docker 架构
 7. 执行完毕后 Container 被终止
 8. docker 容器默认会把容器内部第一个进程，也就是 pid=1 的程序作为 docker 容器是否正在运行的依据，如果 docker 容器 pid 挂了，那么 docker 容器便会直接退出。
 9. 如果不想让 Container 运行完程序就终止，那么需要让 PID 为 1 的程序始终运行，比如 nginx 使用 daemon off 选项，或者其余任何可以让程序运行在前台的方法
+
 
 # Docker 关联文件
 
@@ -86,7 +96,7 @@ Note：目录名中的 overlay2 指的是 docker 当前 Storage Driver 类型，
 - **./config.json** # docker login 后的信息都保存在此处，用户名和密码通过 base64 格式保存在其中。
 - **./cli-plugins/** # docker 命令行工具插件的保存路径。
 
-# Docker 安装
+# Docker 部署
 
 [Docker 部署](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20部署.md)
 

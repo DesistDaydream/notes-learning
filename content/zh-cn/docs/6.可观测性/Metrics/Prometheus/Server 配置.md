@@ -248,7 +248,7 @@ Prometheus 将会根据这里的字段配置，以发现需要 Scrape 指标的�
 
 **XX_sd_configs**(\[]OBJECT) # 动态配置。动态需要抓去 Metrics 的 Targets。XXX_sd_configs 中的 sd 全称为 Service Discovery(服务发现)
 
-- 具体配置详见下文[动态目标发现](#IWvg5)
+- 具体配置详见下文[动态目标发现](#动态目标发现)
 - 不同的服务发现，有不同的配置方式。比如 `kubernetes_sd_configs`、`file_sd_configs` 等等。
 - 注意：当 Prometheus 自动发现这些待抓取目标时，会附带一些原始标签，这些标签以 `__meta_XX` 开头，不同的服务发现配置发现标签不同，具体说明详见[《Label 与 Relabel》文章中的 Discovered Labels 章节](/docs/6.可观测性/Metrics/Prometheus/Target(目标)%20与%20Relabeling(重新标记).md) 的说明
 

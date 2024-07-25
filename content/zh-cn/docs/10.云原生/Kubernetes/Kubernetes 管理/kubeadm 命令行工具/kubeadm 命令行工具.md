@@ -10,7 +10,7 @@ title: kubeadm 命令行工具
 > - [kubeadm 库](https://pkg.go.dev/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm)
 > - [v1beta2 版本的 kubeadm 包的配置文件字段详解](https://pkg.go.dev/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2)
 
-Kubeadm 是一个工具，它提供了 kubeadm init 以及 kubeadm join 这两个命令作为快速创建 [Kubernetes](/docs/10.云原生/Kubernetes/Kuberntes%20介绍/Kubernetes.md) 集群的最佳实践。
+Kubeadm 是一个工具，它提供了 kubeadm init 以及 kubeadm join 这两个命令作为快速创建 [Kubernetes](docs/10.云原生/Kubernetes/Kubernetes.md) 集群的最佳实践。
 
 kubeadm 通过执行必要的操作来启动和运行一个最小可用的集群。它被故意设计为只关心启动集群，而不是准备节点环境的工作。同样的，诸如安装各种各样的可有可无的插件，例如 Kubernetes 控制面板、监控解决方案以及特定云提供商的插件，这些都不在它负责的范围。
 

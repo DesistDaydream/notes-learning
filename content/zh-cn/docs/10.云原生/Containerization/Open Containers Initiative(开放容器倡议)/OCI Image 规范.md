@@ -6,7 +6,7 @@ title: OCI Image 规范
 
 > 参考：
 >
-> - [GitHub 项目,opencontainers/image-spec/spec.md](https://github.com/opencontainers/image-spec/blob/main/spec.md)
+> - [GitHub 项目，opencontainers/image-spec/spec.md](https://github.com/opencontainers/image-spec/blob/main/spec.md)
 > - [思否大佬](https://segmentfault.com/a/1190000009309347)
 > - <https://mp.weixin.qq.com/s/8wAv87DkJjE6fVEEmoQ60Q>
 > - <https://blog.k8s.li/Exploring-container-image.html>

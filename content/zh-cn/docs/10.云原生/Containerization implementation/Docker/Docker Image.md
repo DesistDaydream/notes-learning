@@ -95,7 +95,7 @@ OCI 规范详见：[OCI Image 规范](/docs/10.云原生/Containerization/Open%2
 
 ## docker pull 命令的大概过程
 
-如果对 Image manifest，Image Config 和 Filesystem Layers 等概念不是很了解，请先参考 image(镜像)是什么。
+如果对 Image manifest，Image Config 和 Filesystem Layers 等概念不是很了解，请先参考 image(镜像) 是什么。
 
 拉取 image 的大概过程如下：
 

@@ -1,6 +1,16 @@
 ---
-title: B/S 和 C/S 架构
+title: B_S 和 C_S 架构
+linkTitle: B_S 和 C_S 架构
+date: 2024-07-25T09:42
+weight: 20
 ---
+
+# 概述
+
+> 参考：
+>
+> -
+
 
 # Service Side 与 Client Side
 

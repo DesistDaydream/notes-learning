@@ -6,8 +6,8 @@ title: OCI Runtime 规范
 
 > 参考：
 >
-> - [GitHub 项目,opencontainers/runtime-spec/spec.md](https://github.com/opencontainers/runtime-spec/blob/main/spec.md)
-> - [GitHub 项目,opencontainers/runtime-tools](https://github.com/opencontainers/runtime-tools)
+> - [GitHub 项目，opencontainers/runtime-spec/spec.md](https://github.com/opencontainers/runtime-spec/blob/main/spec.md)
+> - [GitHub 项目，opencontainers/runtime-tools](https://github.com/opencontainers/runtime-tools)
 > - [思否大佬](https://segmentfault.com/a/1190000009583199)
 
 OCI Runtime 规范用来指定一个 Container 的配置、执行环境和生命周期。
@@ -16,10 +16,10 @@ OCI Runtime 规范用来指定一个 Container 的配置、执行环境和生命
 
 由于容器运行起来，需要一个运行环境，比如是运行在 linux 上、还是 windows 上；所以，OCI Runtime 标准，会根据不同的平台，制定不同的规范。现阶段有 4 中平台规范。这点是根 OCI Image 规范不太一样的地方。
 
-- linux：[runtime.md](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md)，[config.md](https://github.com/opencontainers/runtime-spec/blob/master/config.md)，[config-linux.md](https://github.com/opencontainers/runtime-spec/blob/master/config-linux.md)和[runtime-linux.md](https://github.com/opencontainers/runtime-spec/blob/master/runtime-linux.md)。
-- solaris：[runtime.md](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md)，[config.md](https://github.com/opencontainers/runtime-spec/blob/master/config.md)和[config-solaris.md](https://github.com/opencontainers/runtime-spec/blob/master/config-solaris.md)。
-- windows：[runtime.md](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md)，[config.md](https://github.com/opencontainers/runtime-spec/blob/master/config.md)和[config-windows.md](https://github.com/opencontainers/runtime-spec/blob/master/config-windows.md)。
-- vm：[runtime.md](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md)，[config.md](https://github.com/opencontainers/runtime-spec/blob/master/config.md)和[config-vm.md](https://github.com/opencontainers/runtime-spec/blob/master/config-vm.md)。
+- linux：[runtime.md](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md)，[config.md](https://github.com/opencontainers/runtime-spec/blob/master/config.md)，[config-linux.md](https://github.com/opencontainers/runtime-spec/blob/master/config-linux.md) 和 [runtime-linux.md](https://github.com/opencontainers/runtime-spec/blob/master/runtime-linux.md)。
+- solaris：[runtime.md](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md)，[config.md](https://github.com/opencontainers/runtime-spec/blob/master/config.md) 和 [config-solaris.md](https://github.com/opencontainers/runtime-spec/blob/master/config-solaris.md)。
+- windows：[runtime.md](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md)，[config.md](https://github.com/opencontainers/runtime-spec/blob/master/config.md) 和 [config-windows.md](https://github.com/opencontainers/runtime-spec/blob/master/config-windows.md)。
+- vm：[runtime.md](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md)，[config.md](https://github.com/opencontainers/runtime-spec/blob/master/config.md) 和 [config-vm.md](https://github.com/opencontainers/runtime-spec/blob/master/config-vm.md)。
 
 由于我们日常使用 linux，所以下面就只研究 linux 平台的 OCI Runtime 规范
 
@@ -47,7 +47,8 @@ bundle 中包含了运行容器所需要的所有信息，有了这个 bundle �
 rootfs OCI 镜像规范中，blobs 目录下的镜像层文件。config.json 可以通过 OCI 官方提供的 [runtime-tools](https://github.com/opencontainers/runtime-tools) 工具生成，现在我们操作一下:
 
 > 也可以使用 `runc spec` 命令生成 config.json 文件
-> 这里接着 [OCI Image 规范中的实验](/docs/10.云原生/2.1.容器/Open%20Containers%20Initiative(开放容器倡议)/OCI%20Image%20 规范.md Image 规范.md)中的 [Layers 文件](/docs/10.云原生/2.1.容器/Open%20Containers%20Initiative(开放容器倡议)/OCI%20Image%20 规范.md Image 规范.md)章节，使用 lchdzh/k8s-debug 镜像。
+>
+> 这里接着 [OCI Image 规范](docs/10.云原生/Containerization/Open%20Containers%20Initiative(开放容器倡议)/OCI%20Image%20规范.md) 中的 Layers 文件章节，使用 lchdzh/k8s-debug 镜像。
 
 ```bash
 ~]# cd /root/test_dir/k8s-debug/layers
