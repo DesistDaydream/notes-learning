@@ -8,8 +8,7 @@ title: Blackbox Exporter
 >
 > - [GitHub 项目，prometheus/blackbox_exporter](https://github.com/prometheus/blackbox_exporter)
 > - [官方文档](https://prometheus.io/docs/guides/multi-target-exporter/#configuring-modules)
-> - 个人文章参考：
->   - <https://mp.weixin.qq.com/s/gBdOMob_GZ5t44evAHFVOA>
+> - [公众号 - 云原生小白，Prometheus Operator中探针的使用](<https://mp.weixin.qq.com/s/gBdOMob_GZ5t44evAHFVOA>)
 
 我们可以使用如下几种协议来对目标进行探测
 
@@ -26,7 +25,7 @@ curl 'http://10.244.1.26:19115/probe?module=http_2xx&target=www.baidu.com'
 
 ## Prometheus 使用 Blackbox Exporter 的配置示例
 
-与一般 Exporter 配置不同， Blackbox Exporter 的配置方式与 [SNMP Exporter](/docs/6.可观测性/监控系统/Instrumenting/SNMP%20Exporter.md Exporter.md) 更像，每一个待探测的目标将会作为 Blackbox Exporter 程序的参数。可以通过 Relabel 机制，设置目标的 instance 标签。
+与一般 Exporter 配置不同， Blackbox Exporter 的配置方式与 [SNMP Exporter](docs/6.可观测性/Metrics/Instrumenting/SNMP%20Exporter/SNMP%20Exporter.md) 更像，每一个待探测的目标将会作为 Blackbox Exporter 程序的参数。可以通过 Relabel 机制，设置目标的 instance 标签。
 
 ```yaml
 scrape_configs:
@@ -52,7 +51,7 @@ scrape_configs:
 
 > 参考：
 >
-> - [GitHub,CONFIGURATION.md](https://github.com/prometheus/blackbox_exporter/blob/master/CONFIGURATION.md)
+> - [GitHub 项目，prometheus/blackbox_exporter - CONFIGURATION.md](https://github.com/prometheus/blackbox_exporter/blob/master/CONFIGURATION.md)
 
 Blackbox Exporter 的配置以模块区分，每个模块都有其独立的配置字段。一个模块就代表了一种探针类型及其探测行为。
 
@@ -70,47 +69,60 @@ modules:
 
 ## http 协议探针
 
-**valid_status_codes([]INT)** # 此探针可以接受的响应状态码。`默认值：2xx`。注:2xx 表示所有 2xx 状态码，这个字段的值如果要手动指定，必须是 int 类型。
+**valid_status_codes**([]INT) # 此探针可以接受的响应状态码。`默认值：2xx`。注:2xx 表示所有 2xx 状态码，这个字段的值如果要手动指定，必须是 int 类型。
 
 - 若响应码不在该字段指定的范围内，则探测失败
 
-**valid_http_versions: <STRING>** # 探针接受的 HTTP 版本。
+**valid_http_versions**(STRING) # 探针接受的 HTTP 版本。
 
 - 若 HTTP 版本不在字段指定的范围内，则探测失败
 
-**method: <STRING>** # 探针探测是要使用的 HTTP Method。`默认值：GET`
-**headers(map\[STGRING]STRING)** # 设置探测时要使用的 Header，每行都是一个请求头的键值对。
-**compression: <STRING>**#
-**follow_redirects: <BOOLEAN>** #
-**fail_if_ssl: <BOOLEAN>** # 如果 SSL 存在，则探针失败。`默认值：false`
-**fail_if_not_ssl: <BOOLEAN>** # 如果 SSL 不存在，则探针失败。`默认值：false`
+**method**(STRING) # 探针探测是要使用的 HTTP Method。`默认值：GET`
+
+**headers**(map\[STGRING]STRING) # 设置探测时要使用的 Header，每行都是一个请求头的键值对。
+
+**compression**(STRING) #
+
+**follow_redirects**(BOOLEAN) #
+
+**fail_if_ssl**(BOOLEAN) # 如果 SSL 存在，则探针失败。`默认值：false`
+
+**fail_if_not_ssl**(BOOLEAN) # 如果 SSL 不存在，则探针失败。`默认值：false`
+
 **fail_if_body_matches_regexp:** # Probe fails if response body matches regex.
-\[ - <regex>, ... ]
+
 **fail_if_body_not_matches_regexp:**# Probe fails if response body does not match regex.
-\[ - <regex>, ... ]
+
 **fail_if_header_matches:**# Probe fails if response header matches regex. For headers with multiple values, fails if _at least one_ matches.
-\[ - \<http*header_match_spec>, ... ]
+
 **fail_if_header_not_matches:** # Probe fails if response header does not match regex. For headers with multiple values, fails if \_none* match.
-\[ - \<http_header_match_spec>, ... ]
 
 \######## Prometheus [共享库中的通用 HTTP 客户端配置](https://github.com/prometheus/common/blob/v0.30.0/config/http_config.go#L159) ########
-**basic_auth: <OBJECT>** # 配置 HTTP 的基础认证信息。
+**basic_auth**(OBJECT) # 配置 HTTP 的基础认证信息。
 
-- **username: <STRING>** #
-- **password: <STRING>** #
-- **password_file: <STRING>** #
+- **username**(STRING) #
+- **password**(STRING) #
+- **password_file**(STRING) #
 
-**bearer_token: <SECRET>** # 探测目标时要使用的 bearer 令牌
-**bearer_token_file: <filename>** # 探测目标时要使用的 bearer 令牌文件
-**oauth2: <Object>** # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
-**proxy_url: <STRING>** # HTTP proxy server to use to connect to the targets.
-**tls_config: <OBJECT>** # 发起 HTTP 请求时的 TLS 配置，即发起 HTTPS 请求。
+**bearer_token**(SECRET) # 探测目标时要使用的 bearer 令牌
+
+**bearer_token_file**(STRING) # 探测目标时要使用的 bearer 令牌文件
+
+**oauth2**(OBJECT) # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
+
+**proxy_url**(STRING) # HTTP proxy server to use to connect to the targets.
+
+**tls_config**(OBJECT) # 发起 HTTP 请求时的 TLS 配置，即发起 HTTPS 请求。
+
  详见 [tls 配置段](#b9c06c74)
+ 
 \######## Prometheus [共享库中的通用 HTTP 客户端配置](https://github.com/prometheus/common/blob/v0.30.0/config/http_config.go#L159)结束 ########
 
-**preferred_ip_protocol: <STRING>** # 探针首选的 IP 协议版本。`默认值：ip6`
-**ip_protocol_fallback: <BOOLEAN>** # 。`默认值：true`
-**body: <STRING>** # 探测时要携带的 HTTP Body
+**preferred_ip_protocol**(STRING) # 探针首选的 IP 协议版本。`默认值：ip6`
+
+**ip_protocol_fallback**(BOOLEAN) # 。`默认值：true`
+
+**body**(STRING) # 探测时要携带的 HTTP Body
 
 ## tcp 协议探针
 

@@ -13,7 +13,9 @@ weight: 5
 > - [官方文档，告警 - 客户端](https://prometheus.io/docs/alerting/latest/clients/)
 > - [OpenAPI](https://github.com/prometheus/alertmanager/blob/main/api/v2/openapi.yaml)
 
-Prometheus 本身不提告警的通知的功能！告警能力在 Prometheus 的架构中被划分成两个独立的部分。如下所示，通过在 Prometheus 中定义 AlertRule（告警规则），Prometheus 会周期性的对告警规则进行 **Evaluate(评估)**，如果满足告警触发条件就会向 Alertmanager 发送告警信息。
+Prometheus 本身不提告警的通知的功能！告警能力在 Prometheus 的架构中被划分成两个独立的部分。如下所示，通过在 Prometheus 中定义 AlertRule（告警规则），Prometheus 会周期性的对告警规则进行 **Evaluate(评估)**，如果满足告警触发条件就会向 [Alertmanager](docs/6.可观测性/Metrics/Alertmanager/Alertmanager.md) 发送告警信息。
+
+> Prometheus 推出的 Alertmanager 作为一个独立的组件，可以实现告警管理功能，负责接收并处理来自 Prometheus Server(也可以是其它的客户端程序) 的告警信息。Alertmanager 可以对这些告警信息进行进一步的处理，比如当接收到大量重复告警时能够消除重复的告警信息，同时对告警信息进行分组并且路由到正确的通知方，Alertmanager 内置了对邮件，Slack 等多种通知方式的支持。同时 AlertManager 还提供了静默和告警抑制机制来对告警通知行为进行优化。
 
 **Evaluate(评估)** 就是指，Prometheus Server 会定期执行规则配置文件中的 PromQL，获得结果并与阈值进行匹配，当超过设置的阈值时，会产生告警。这个过程，就称为 **Evaluate(评估)**。在代码中，通过 Eval() 方法来评估规则。
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/sw6o6t/1616069590594-41190e69-d023-4ef4-87ad-fdc1a7cf8b6f.png)
@@ -47,12 +49,6 @@ rule_files:
 
 下文会介绍配置文件的详细用法
 
-### Prometheus 推出的 Alertmanager 程序简介
-
-详见：[Alertmanager](/docs/6.可观测性/Metrics/Alertmanager/Alertmanager.md)
-
-Prometheus 推出的 Alertmanager 作为一个独立的组件，可以实现告警管理功能，负责接收并处理来自 Prometheus Server(也可以是其它的客户端程序)的告警信息。Alertmanager 可以对这些告警信息进行进一步的处理，比如当接收到大量重复告警时能够消除重复的告警信息，同时对告警信息进行分组并且路由到正确的通知方，Alertmanager 内置了对邮件，Slack 等多种通知方式的支持。同时 AlertManager 还提供了静默和告警抑制机制来对告警通知行为进行优化。
-
 ## 查看告警的状态
 
 在 prometheus server 的 web 页面中的 `Alerts` 标签查看到所有其所配置和产生的告警信息，效果如图：
@@ -73,9 +69,10 @@ Prometheus 推出的 Alertmanager 作为一个独立的组件，可以实现告�
 
 # 告警数据结构
 
-免责声明：Prometheus 会自动负责发送由其配置的 **[警报规则](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)** 生成的 **[警报](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)**。强烈建议在 Prometheus 中根据时间序列数据配置警报规则，而不是实现直接客户端。
-
-**<font color="#ff0000">也就是说，不要自己写一个程序，频繁对 Prometheus 发起 PromQL 查询请求，来生成告警。</font>**
+> [!Tip] 免责声明
+> Prometheus 会自动负责发送由其配置的 **[警报规则](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)** 生成的 **[警报](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)**。强烈建议在 Prometheus 中根据时间序列数据配置警报规则，而不是直接实现客户端。
+>
+> **<font color="#ff0000">也就是说，不要自己写一个程序，频繁对 Prometheus 发起 PromQL 查询请求，来生成告警。</font>**
 
 Alertmanager 现阶段有两个 API，v1 和 v2，这两个 API 都是用来监听发送到自身的告警。
 
@@ -101,7 +98,7 @@ Prometheus 产生告警后，会通过 POST 请求将下列 JSON 格式内容向
 ]
 ```
 
-推送路径根据 Prometheus Server 配置文件中 `alerting.alertmanagers.api_version` 和 `alerting.alertmanagers.path_prefix` 这两个字段决定。
+推送路径根据 Prometheus [Server 配置](docs/6.可观测性/Metrics/Prometheus/Server%20配置.md)文件中 `alerting.alertmanagers.api_version` 和 `alerting.alertmanagers.path_prefix` 这两个字段决定。
 
 默认推送路径为 /api/v2/alerts。如果 api_version 为 v2，path_prefix 值为 /test，最终的路径就是 /test/api/v2/alerts
 
@@ -125,6 +122,7 @@ labels 包含如下内容：
 **endsAt** # 告警的结束时间
 
 - 结束时间可以这么理解：从开始时间到结束时间，如果 Alertmanager 没有再收到相同的告警，则认为告警已经处理
+- 在上文[告警发送过程](#告警发送过程)中，隐藏的 15 分钟会用在 startsAt 和 endsAt 的值中，endsAt 的值就是 startsAt 的值加 15 分钟。
 
 > 注意：对于 Prometheus 官方的 Alertmanager 来说，startsAt 和 endsAt 时间戳都是可选的。如果省略了 startAt，则由 Alertmanager 分配当前时间。 endsAt 只有在已知警报的结束时间时才会设置。否则，它将被设置为从最后一次收到警报的时间开始的一个可配置的超时时间段。
 

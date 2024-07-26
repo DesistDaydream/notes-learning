@@ -10,7 +10,7 @@ weight: 2
 > 参考：
 >
 > - [GitHub 项目，juanfont/headscale](https://github.com/juanfont/headscale)
-> - [公众号，云原声实验室-Tailscal 开源版本让你的 WireGuard 直接起飞](https://mp.weixin.qq.com/s/Y3z5RzuapZc8jS0UuHLhBw)
+> - [公众号，云原声实验室 - Tailscal 开源版本让你的 WireGuard 直接起飞](https://mp.weixin.qq.com/s/Y3z5RzuapZc8jS0UuHLhBw)
 
 Tailscale 的控制服务器是不开源的，而且对免费用户有诸多限制，这是人家的摇钱树，可以理解。好在目前有一款开源的实现叫 Headscale，这也是唯一的一款，希望能发展壮大。
 
@@ -301,7 +301,7 @@ New-ItemProperty -Path 'HKLM:\Software\Tailscale IPN' -Name LoginURL -PropertyTy
 - 右键点击任务栏中的 Tailscale 图标，再点击 `Log in` 获取接入 Headscale 的命令
 - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/headscale/1648104111282-99d562e1-d7d9-4ea5-9943-f16861efe87e.png)
 - 此时会自动在浏览器中出现接入 Headscale 的页面，记录下注册命令，去 Headscale 所在设备上执行命令添加节点。
-- 注册命令示例: `headscale nodes register --user USERNAME --key nodekey:75b424a753067b906fee373411743bf34264a9c40a4f7798836bf28bb24d2467`
+- 注册命令示例：`headscale nodes register --user USERNAME --key nodekey:75b424a753067b906fee373411743bf34264a9c40a4f7798836bf28bb24d2467`
 - 根据 [在 Headscale 中添加节点](#Headscale%20中添加节点) 部分的文档，使用注册命令将节点接入到 Headscale 中。
 
 ### 其他 Linux 发行版
@@ -460,3 +460,25 @@ tls_key_path: "/PATH/TO/FILE"
 ```
 
 多监听 3478 端口，且可以通过 https 访问
+
+# Headscale 关联文件与配置
+
+**config.{yaml,json}** # Headscale 配置文件。Headscale 启动时从 /etc/headscale/、~/.headscale/、当前工作目录 这三个地方查找文件以加载配置。
+
+- [GitHub 项目，juanfont/headscale - config-example.yaml](https://github.com/juanfont/headscale/blob/main/config-example.yaml) 中是配置文件的示例
+
+## 配置详解
+
+**tls_cert_path**(STRING) # 证书路径
+
+**tls_key_path**(STRING) # 证书私钥路径
+
+### derp
+
+**server**(OBJECT)
+
+- **enable**(BOOLEAN) # 是否开启 Headscale 的内嵌 DERP。`默认值: false`
+
+**url**(\[]STRING) # 下发给 tailscale 的 DERP 节点。`默认值: https://controlplane.tailscale.com/derpmap/default`
+
+**paths**(\[]STRING) # 与 URL 类似。不过是以文件形式定义要使用的 DERP。 `默认值: 空`。文件格式详见: https://tailscale.com/kb/1118/custom-derp-servers

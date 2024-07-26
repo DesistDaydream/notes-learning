@@ -23,6 +23,9 @@ Prometheus 规则配置文件需要在 [Prometheus Server 配置](/docs/6.可观
 
 可以通过发送 SIGHUP 到 Prometheus 进程在运行时重新加载规则文件。仅当所有规则文件格式正确时，才会应用更改。
 
+> [!Tip] 规则语法检查
+> 可以使用 [promtool](docs/6.可观测性/Metrics/Prometheus/Prometheus%20管理/promtool.md) 程序在不启动 Prometheus Server 的情况下检查文件中的语法是否正确。.e.g. `promtool check rules /path/to/example.rules.yml`
+
 # Recording Rule(记录规则)
 
 > 参考：
@@ -31,7 +34,7 @@ Prometheus 规则配置文件需要在 [Prometheus Server 配置](/docs/6.可观
 
 在我们使用 Prometheus 的过程中，随着时间的推移，存储在 Prometheus 中的监控指标数据越来越多，查询频率也在不断的增加，当我们用 Grafana 添加更多的 Dashboard 的时候，可能会慢慢的体验到 Grafana 已经无法按时渲染图表，并且偶尔还会出现超时的情况，特别是当我们在长时间汇总大量的指标数据的时候，Prometheus 查询超时的情况可能更多了，这时就需要一种能够类似于后排批处理的机制在后台完成这些复杂运算的计算，对于使用者而言只需要查询这些运算结果即可。
 
-当我们有频繁使用的复杂查询时，如果直接将语句写在 grafana 的 query 中，grafana 每次刷新都对 promethus 提交实时查询，会增加 prometheus 的性能消耗并且降低了响应速度。 这时候我们就可以用到 Recoding rules 了。
+当我们有频繁使用的复杂查询时，如果直接将语句写在 Grafana 的 query 中，Grafana 每次刷新都对 Promethus 提交实时查询，会增加 Prometheus 的性能消耗并且降低了响应速度。 这时候我们就可以用到 Recoding rules 了。
 
 记录规则允许我们预先计算经常使用或计算成本高的表达式，并将其结果保存为一组新的时间序列。因此，查询预先计算的结果通常比每次需要时执行原始表达式快得多。
 
@@ -53,7 +56,7 @@ groups:
 >
 > - [官方文档，配置 - 告警规则](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)
 
-**Alerting Rules(告警规则)** 可以让我们基于 PromQL 的表达式，定义告警的触发条件，当满足触发条件时，Prometheus Server 会将触发的告警通知发送到指定的服务。这个服务默认是 Prometheus 官方提供的 Alertmanager。详见 Prometheus Alerting 介绍章节
+**Alerting Rules(告警规则)** 可以让我们基于 PromQL 的表达式，定义告警的触发条件，当满足触发条件时，Prometheus Server 会将触发的告警通知发送到指定的服务。这个服务默认是 Prometheus 官方提供的 [Alertmanager](docs/6.可观测性/Metrics/Alertmanager/Alertmanager.md)。详见 [Alerting(告警)](docs/6.可观测性/Metrics/Prometheus/Alerting(告警).md)
 
 在 Prometheus 中一条告警规则主要由以下几部分组成：
 
@@ -98,67 +101,54 @@ groups:
 
 # 配置文件详解
 
-## groups 字段
+**顶层字段**
 
+**groups**(\[]OBJECT)
+
+- **name**(STRING) # group 的名称，在一个文件中必须是唯一的
+- **interval**(DURATION) # 对这个组中的规则进行 evaluated(评估) 的频率。`默认值: PrometheusServer 配置文件中的 global.evaluation_interval 的值`
+- **limit**(INT) # 限制警报规则和记录规则可以生成的警报系列的数量。 `默认值: 0`，0 表示没有限制。
+- **rules**([]OBJECT) # 定义 Prometheus Rule 详情。rules 字段下使用不同的子字段会对应不同的规则。
+  - 包含 record 字段时，则该规则为 [Recording Rule](#Recording%20Rule)
+  - 包含 alert 字段时，则该规则为 [Alerting Rule](#Alerting%20Rule)
+ 
 Recording Rule 与 Alerting Rule 存在于规则组中。组中的规则以规定的时间间隔顺序运行，并具有相同的规则评估时间。Recording Rule 的名称必须是有效的 Metrics 名称。Alerting Rule 名称则比较宽泛，可以随意定义，一般来说，满足有效的标签值即可。
 
 > **注意：**
 > groups 在 recording rule 中并没有实际意义，只是与 alerting rule 同在一个配置文件中，所以两种规则格式要相同罢了，不管在哪个组下定义的记录规则，都可以在任何地方直接使用。
 > 生成新的时间序列后，Prometheus 会以新的时间序列名称保存数据，该数据与原始 expr 中的表达式所得出的值虽然一样，但是存储的指标是不一样的。
 
-```yaml
-groups:
-- name: <string>  # group 的名称，在一个文件中必须是唯一的
-  # 对这个组中的规则进行 evaluated(评估) 的频率。默认是 PrometheusServer 配置文件中的 global.evaluation_interval 的值
-  [ interval: <duration> | default = global.evaluation_interval ]
-  # 该组规则的具体内容
-  rules:
-  [- <rule> ...]
-```
-
 所谓 Evaluated(评估) 规则，就是指 PrometheusServer 会检查规则的状态，如果告警规则的状态是 FIRING，则发送告警。
 
 interval 字段的值 加上 PrometheusServer 的命令行标志 --rules.alert.resend-delay 的值(默认 1m)，才是真实的评估周期。这个说明在官方文档中没有，请参考 [Prometheus 规则处理逻辑中的 - 评估告警规则](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20开发/Prometheus%20规则处理逻辑/Prometheus%20规则处理逻辑.md#评估告警规则)
 
-## rules 字段
+## Recording Rule
 
-> Notes: 注意缩进，该环境属于 rule 配置环境的 rules 字段的子字段，是一个数组。
+**record**(STRING) # 新的时间序列的名字。必须是有效的 Metrics 名称。
 
-这个配置环境中，不同的字段对应不同的规则。
+**expr**(STRING) # PromQL 表达式，用于生成新时间序列的。每个评估周期都会在当前时间进行评估，并将结果记录为一组新的时间序列，该时间序列作为 Metrics 的名称由 record 字段定义。
 
-### 适用于 Recording Rule 的字段
+**labels**(map\[STRING]STRING) # 为新的时间序列添加标签集
 
-```yaml
-rules:
-  # 新的时间序列的名字。必须是一个有效的时间序列的名字
-  record: <string>
-  # 用于生成新时间序列的 PromQL 表达式。
-  # 每个评估周期都会在当前时间进行评估，并将结果记录为一组新的时间序列，其度量标准名称由 record 字段给出。
-  expr: <string>
-  # 为新的时间序列添加标签集
-  labels: [<labelname>: <labelvalue>]
-```
+## Alerting Rule
 
-### 适用于 Alerting Rule 的字段
+**alert**(STRING) # 告警名称。
 
-```yaml
-rules:
-  # 告警的名字
-  alert: <string>
-  # 用于产生告警的 PromQL 表达式。 每个评估周期都会在当前时间进行评估，所有结果时间序列都会变为待处理/触发警报。
-  expr: <string>
-  # 发送告警的等待时间。默认0s，即没有等待期。告警产生后，默认是立刻发送的。配置该字段，可以指定在产生告警后的多长时间再发送告警。
-  # 在等待期的告警状态为 Pending，超过等待期后，变为 Firing。
-  for: <duration>
-  # 为该告警添加或覆盖标签
-  labels:
-    <LabelName>: <tmpl_string>
-  # 为该告警添加注释。
-  annotations:
-    <LabelName>: <tmpl_string>
-```
+**expr**(STRING) # PromQL 表达式，用于产生告警的。 每个评估周期都会在当前时间进行评估，所有结果时间序列都会变为待处理/触发警报。
 
-# 配置文件示例
+**for**(DURATION) # 发送告警的等待时间。`默认值: 0s`，即没有等待期。告警产生后，默认是立刻发送的。配置该字段，可以指定在产生告警后的多长时间再发送告警。
+
+- 在等待期的告警状态为 Pending，超过等待期后，变为 Firing。
+
+**labels**(map\[STRING]STRING) # 为该告警添加或覆盖标签
+
+**annotations**(map\[STRING]STRING) # 为该告警添加注释。
+
+# 最佳实践
+
+> 参考：
+>
+> - [官方文档，最佳实践 - 记录规则](https://prometheus.io/docs/practices/rules/#recording-rules)
 
 ## 高级记录规则配置
 
