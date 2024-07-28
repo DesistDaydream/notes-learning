@@ -15,9 +15,16 @@ weight: 20
 
 https://prometheus.io/docs/introduction/faq/#can-i-change-the-timezone-why-is-everything-in-utc
 
-官方表示为了避免夏令时问题，将 UTS 时区写入代码中，任何外部的配置都无法生效。
+官方表示为了避免夏令时问题，将 UTS 时区写入代码中，任何外部的配置都无法生效（e.g. 配置 /etc/timezone 无效）。
 
 更多讨论在 [issue 500](https://github.com/prometheus/prometheus/issues/500)
+
+其实这个限制是不影响使用的：
+
+- 如果做可视化，Grafana 是可以做时区转换的。
+- 如果是调接口，拿到了数据中的时间戳，想怎么处理都可以。
+- 如果因为 Prometheus 自带的 UI 不是本地时间，看着不舒服，[2.16 版本](https://github.com/prometheus/prometheus/commit/d996ba20ec9c7f1808823a047ed9d5ce96be3d8f)的新版 Web UI 已经引入了 Local Timezone 的选项
+- 如果仍然想改 Prometheus 代码来适应自己的时区，可以参考[这篇文章](https://zhangguanzhang.github.io/2019/09/05/prometheus-change-timezone/)。
 
 # 重大变化
 

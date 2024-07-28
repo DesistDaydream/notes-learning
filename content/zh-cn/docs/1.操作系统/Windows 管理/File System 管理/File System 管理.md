@@ -10,7 +10,9 @@ weight: 1
 >
 > - <https://www.howtogeek.com/318177/what-is-the-appdata-folder-in-windows/>
 
-**$USERPROFILE/AppData/** #
+# APPDATA
+
+**${USERPROFILE}/AppData/** #
 
 - **./Local/** #
 - **./LocalLow/** #
@@ -35,6 +37,12 @@ $USERPROFILE/AppData/Roaming/Microsoft
 ```
 
 最主要的是这三个目录下的 Microsfot 目录，还有 Packages 目录。在整理 AppData 时，不要误删了。
+
+## LocalAppData
+
+`${LocalAppData}` 在 `${UserProfile}/AppData/Local/`
+
+**IconCache.db** # 图标缓存数据。若图标变白板，可删除缓存，并重启资源管理。
 
 # Program Files
 
