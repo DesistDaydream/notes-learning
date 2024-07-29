@@ -11,6 +11,27 @@ title: WireGuard 部署
 
 # 安装 WireGuard
 
+## Unix-like OS
+
+安装 WireGuard 本质是安装如下几个程序：
+
+- **wireguard** # WireGuard 的实现。wireguard 程序分为**用户态的实现**与**内核态的实现**。
+- CLI
+  - **wg** # 管理 WireGuard 网络。生成密钥、设置网络设备信息、查看状态、etc.
+  - **wg-quick** # 用户友好的命令行工具，可以通过配置文件管理调用 wg 程序以启动或停止 WireGuard
+
+> [!Tip] wireguard 用户态与内核态的实现
+>
+> 绝大多数 [Unix-like OS](docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 发行版的内核版本（[Linux Kernel 5.6 版本](https://github.com/torvalds/linux/blob/v5.6/drivers/net/wireguard/version.h)开始）通常都内置了 wireguard 模块。
+> 
+> 有些设备内核没有 wireguard 模块，加载时报错 `modprobe: FATAL: Module wireguard not found in directory /lib/modules/$(uanme -r)`，此时可以利用用户态的 Wireguard 程序实现 Wireguard 互联。
+>
+> - https://github.com/WireGuard/wireguard-go 是使用 Go 语言在用户态实现的 Wireguard
+> - https://github.com/cloudflare/boringtun 是使用 Rust 语言在用户态实现的 Wireguard
+> - etc.
+>
+> 当系统中存在多种 Wireguard 时，内核态优先级高，用户态优先级低。例如数据包发过来都是先让内核简单 hook 下 iptables 几个链，最后再发给进程。
+
 在中继服务器上开启 IP 地址转发：
 
 ```bash
@@ -22,7 +43,7 @@ EOF
 sysctl -p /etc/sysctl.conf
 ```
 
-## CentOS 7
+### CentOS 7
 
 ```bash
 yum install epel-release.noarch elrepo-release.noarch -y
@@ -40,19 +61,40 @@ yum install epel-release.noarch elrepo-release.noarch -y
 yum install --enablerepo=elrepo-kernel kmod-wireguard wireguard-tools
 ```
 
-## Ubuntu
+### Ubuntu
 
 ```bash
 # Ubuntu ≥ 18.04
 apt install wireguard
 ```
 
-## MacOS
+### 其他
+
+对于不支持内核模块的系统，可以使用用户态的实现，这里用 wireguard-go 举例
 
 ```bash
-# MacOS
-brew install wireguard-tools
+$ git clone https://git.zx2c4.com/wireguard-go
+$ cd wireguard-go
+$ make
 ```
+
+在任意一台机器构建好二进制包，拷贝到需要运行 WireGuard 的机器放到 $PATH 下即可
+
+安装 WireGuard 工具
+
+```bash
+git clone https://github.com/WireGuard/wireguard-tools.git
+cd src
+make install
+```
+
+wg 工具会自动找到 wireguard-go 程序。正常使用 wg 和 wg-quick 即可
+
+### 利用 DKMS
+
+对于默认不支持内核模块的系统，除了使用用户态的实现外，还可以通过 DKMS 动态加载模块。
+
+略
 
 ## MicrosoftOS
 
@@ -60,6 +102,8 @@ brew install wireguard-tools
 # Windows 客户端下载地址：
 https://download.wireguard.com/windows-client/wireguard-amd64-0.1.1.msi
 ```
+
+GUI 的程序，直接使用即可。
 
 # 编写配置文件
 

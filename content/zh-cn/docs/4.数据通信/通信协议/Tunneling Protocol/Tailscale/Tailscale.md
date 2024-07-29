@@ -44,7 +44,7 @@ Tailscale 是一款商业产品，但个人用户是可以白嫖的，个人用�
 
 - **Tailscale 控制台** # 管理 Tailscale 客户端，向 Tailscale 客户端下发规则。
   - 可以通过 [Headscale](/docs/4.数据通信/通信协议/Tunneling%20Protocol/Tailscale/Headscale.md) 开源实现
-- **Tailscale 客户端** # 主要是 [tailscale 命令行工具](/docs/4.数据通信/通信协议/Tunneling%20Protocol/Tailscale/tailscale%20命令行工具.md)。windows 也有调用 tailscale 命令行工具的守护进程以右下角小图标的形式存在
+- **Tailscale 客户端** # 主要是 [tailscale CLI](docs/4.数据通信/通信协议/Tunneling%20Protocol/Tailscale/tailscale%20CLI.md)。windows 也有调用 tailscale 命令行工具的守护进程以右下角小图标的形式存在
   - Tailscale 客户端通常分为两部分，一部分是处理数据包的主程序（平时说的 Tailscale 客户端就是指这个主程序）；一部分类似 CLI 用以控制主程序。
   - e.g. Linux 的 Tailscale 客户端由两个程序组成: tailscale 和 tailscaled，tailscale 是 CLI，tailscaled 是守护程序用以处理数据包的路由。有点类似 docker 与 dockerd 的感觉
 - **Tailscale DERP** # 当两个节点第一次连接以及两个节点直连失败时，会切换到通过 DERP 来连接。DERP 是 Tailscale 自研的协议，也是一个中继程序，用以代理两个节点的访问请求。
@@ -59,3 +59,8 @@ Tailscale 的 **所有客户端之间的连接都是先选择 DERP 模式（中�
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/tailscale/202403212159148.png)
 
 # Tailscale 关联文件与配置
+
+**/var/lib/tailscale/** # 运行时数据保存路径
+
+- ./tailscaled.state # 文本格式的配置文件。通过 [tailscale CLI](docs/4.数据通信/通信协议/Tunneling%20Protocol/Tailscale/tailscale%20CLI.md) 指定的参数将会保存到该文件中
+- derpmap.cached.json # 可用的 DERP 缓存配置

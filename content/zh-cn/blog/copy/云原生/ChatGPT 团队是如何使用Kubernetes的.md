@@ -58,7 +58,7 @@ iptables -t mangle -A FORWARD ! -d 10.0.0.0/8 -m comment --comment "iptables-exp
 
 一旦标记，iptables 将开始计数以跟踪匹配该规则的字节数和数据包数。你可以使用 `iptables` 本身来查看这些计数器：
 
-```typescript
+```bash
 % iptables -t mangle -L -v
 Chain FORWARD (policy ACCEPT 50M packets, 334G bytes)
  pkts bytes target     prot opt in     out     source               destination

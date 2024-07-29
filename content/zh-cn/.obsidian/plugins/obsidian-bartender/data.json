@@ -1946,10 +1946,10 @@
     "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale": [
       "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/_index.md",
       "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/Tailscale.md",
-      "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/Headscale.md",
       "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/Tailscale DERP.md",
       "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/Tailscale ACL 访问控制策略.md",
-      "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/tailscale 命令行工具.md"
+      "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/tailscale CLI.md",
+      "docs/4.数据通信/通信协议/Tunneling Protocol/Tailscale/Headscale.md"
     ],
     "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard": [
       "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard/_index.md",
@@ -1957,9 +1957,7 @@
       "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard/WireGuard 部署.md",
       "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard/Wireguard 配置详解.md",
       "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard/Wireguard 流量伪装.md",
-      "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard/应用示例.md",
-      "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard/WireGuard 全互联模式终极指南（上）！.md",
-      "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard/Wireguard 全互联模式（full mesh）权威指南.md"
+      "docs/4.数据通信/通信协议/Tunneling Protocol/WireGuard/应用示例.md"
     ],
     "docs/4.数据通信/通信协议/WebSocket": [
       "docs/4.数据通信/通信协议/WebSocket/_index.md",

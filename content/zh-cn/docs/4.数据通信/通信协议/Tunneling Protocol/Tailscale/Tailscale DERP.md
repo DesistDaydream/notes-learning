@@ -71,17 +71,24 @@ Tailscale 使用的算法很有趣，**所有客户端之间的连接都是先�
 
 因此，DERP 既是 Tailscale 在 NAT 穿透失败时的保底通信方式（此时的角色与 TURN 类似），也是在其他一些场景下帮助我们完成 NAT 穿透的旁路信道。换句话说，它既是我们的保底方式，也是有更好的穿透链路时，帮助我们进行连接升级（upgrade to a peer-to-peer connection）的基础设施。
 
-## 自建私有 DERP server
-
 Tailscale 的私钥只会保存在当前节点，因此 DERP server 无法解密流量，它只能和互联网上的其他路由器一样，呆呆地将加密的流量从一个节点转发到另一个节点，只不过 DERP 使用了一个稍微高级一点的协议来防止滥用。
 
-Tailscale 开源了 DERP 服务器的代码，如果你感兴趣，可以阅读 [DERP 的源代码](https://github.com/tailscale/tailscale/tree/main/derp)。
+# 私有 DERP Server
 
----
+> 参考：
+>
+> - [GitHub 项目，tailscale/tailscale - cmd/derper](https://github.com/tailscale/tailscale/tree/main/cmd/derper) derper 入口
+>   - https://github.com/tailscale/tailscale/tree/main/derp DERP 的实现
 
-Tailscale 官方内置了很多 DERP 服务器，分步在全球各地，**惟独不包含中国大陆**，原因你懂得。这就导致了一旦流量通过 DERP 服务器进行中继，延时就会非常高。而且官方提供的 DERP 服务器是万人骑，存在安全隐患。
+Tailscale 官方[内置了很多 DERP 服务器](https://controlplane.tailscale.com/derpmap/default)，分步在全球各地，**惟独不包含中国大陆**，原因你懂得。这就导致了一旦流量通过 DERP 服务器进行中继，延时就会非常高。而且官方提供的 DERP 服务器是万人骑，存在安全隐患。
 
-为了实现低延迟、高安全性，我们可以参考 [Tailscale 官方文档](https://tailscale.com/kb/1118/custom-derp-servers)自建私有的 DERP 服务器。有两种部署模式，一种是基于域名，另外一种不需要域名，可以直接使用 IP，不过需要一点黑科技。我们先来看最简单的使用域名的方案。
+Tailscale 开源了 DERP Server 的代码，将其称为 **DERPer**。我们可以自己部署 derper 以便让所有流量都通过自己的程序。
+
+> [!Tip] [Headscale](docs/4.数据通信/通信协议/Tunneling%20Protocol/Tailscale/Headscale.md) 包含了内置的 DERPer
+
+## 部署 derper
+
+为了实现低延迟、高安全性，可以参考 [Tailscale 官方文档](https://tailscale.com/kb/1118/custom-derp-servers)自建私有的 DERP 服务器。有两种部署模式，一种是基于域名，另外一种不需要域名，可以直接使用 IP，不过需要一点黑科技。
 
 ### 使用域名
 
@@ -582,7 +589,7 @@ pong from oneplus-8t (10.1.0.8) via DERP(home) in 30ms
 
 第一步需要在 DERP 服务所在的主机上安装 Tailscale 客户端，**启动 tailscaled 进程**。
 
-**2、derper 启动时加上参数 **`**--verify-clients**`**。**
+**2、derper 启动时加上参数 **`--verify-clients`**。**
 
 本文推荐的是通过容器启动，Dockerfile 内容\[5]如下：
 
@@ -632,16 +639,12 @@ docker run --restart always \
 
 这样就大功告成了，别人即使知道了你的 DERP 服务器地址也无法使用，但还是要说明一点，即便如此，你也应该尽量不让别人知道你的服务器地址，防止别人有可趁之机。
 
-## 总结
-
-本文给大家介绍了 STUN 对于辅助 NAT 穿透的意义，科普了几种常见的中继协议，包含 Tailscale 自研的 DERP 协议。最后手把手教大家如何自建私有的 DERP 服务器，并让 Tailscale 使用我们自建的 DERP 服务器。
-
-## 参考资料
+# 参考资料
 
 - NAT 穿透是如何工作的：技术原理及企业级实践\[6]
 - Encrypted TCP relays (DERP)\[8]
 
-### 引用链接
+## 引用链接
 
 \[4]我的 GitHub 仓库: [_https://github.com/yangchuansheng/ip_derper_](https://github.com/yangchuansheng/ip_derper)
 

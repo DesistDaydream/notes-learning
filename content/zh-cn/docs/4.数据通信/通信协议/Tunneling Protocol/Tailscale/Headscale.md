@@ -11,6 +11,7 @@ weight: 2
 >
 > - [GitHub 项目，juanfont/headscale](https://github.com/juanfont/headscale)
 > - [公众号，云原声实验室 - Tailscal 开源版本让你的 WireGuard 直接起飞](https://mp.weixin.qq.com/s/Y3z5RzuapZc8jS0UuHLhBw)
+> - [馆长博客，headscale 搭建和应用场景](https://zhangguanzhang.github.io/2024/07/25/headscale/)
 
 Tailscale 的控制服务器是不开源的，而且对免费用户有诸多限制，这是人家的摇钱树，可以理解。好在目前有一款开源的实现叫 Headscale，这也是唯一的一款，希望能发展壮大。
 
@@ -297,11 +298,17 @@ New-ItemProperty -Path 'HKLM:\Software\Tailscale IPN' -Name LoginURL -PropertyTy
 ```
 
 - 在[这里](https://pkgs.tailscale.com/stable/#windows)下载 Windows 版的 Tailscale 客户端并安装
-- 在 Powershell 执行 `tailscale login --login-server=http://${headscale_server} --accept-routes=true --accept-dns=false`
+- 在 Powershell 执行
+```bash
+tailscale up --login-server=http://${headscale_server} --accept-routes=true --accept-dns=false
+```
 - 右键点击任务栏中的 Tailscale 图标，再点击 `Log in` 获取接入 Headscale 的命令
 - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/headscale/1648104111282-99d562e1-d7d9-4ea5-9943-f16861efe87e.png)
 - 此时会自动在浏览器中出现接入 Headscale 的页面，记录下注册命令，去 Headscale 所在设备上执行命令添加节点。
-- 注册命令示例：`headscale nodes register --user USERNAME --key nodekey:75b424a753067b906fee373411743bf34264a9c40a4f7798836bf28bb24d2467`
+  - 注册命令示例：
+```bash
+headscale nodes register --user USERNAME --key nodekey:75b424a753067b906fee373411743bf34264a9c40a4f7798836bf28bb24d2467
+```
 - 根据 [在 Headscale 中添加节点](#Headscale%20中添加节点) 部分的文档，使用注册命令将节点接入到 Headscale 中。
 
 ### 其他 Linux 发行版
@@ -403,12 +410,16 @@ EOF
 sysctl -p /etc/sysctl.d/ipforwarding.conf
 ```
 
-客户端修改注册节点的命令，在原来命令的基础上加上参数 `--advertise-routes=192.168.100.0/24`。
-
-- 多个 CIDR 以 `,` 分割
+客户端修改注册节点的命令，在原来命令的基础上加上参数 `--advertise-routes=192.168.100.0/24`。多个 CIDR 以 `,` 分割
 
 ```bash
 tailscale up --login-server=http://${HeadscaleIP}:8080 --accept-routes=true --accept-dns=false  --advertise-routes=172.38.40.0/24,192.168.88.0/24
+```
+
+或通过 tailscale set 命令直接增加路由
+
+```bash
+tailscale set --advertise-routes=172.38.40.0/24,192.168.88.0/24
 ```
 
 在 Headscale 端查看路由，可以看到相关路由是关闭的。
@@ -443,7 +454,7 @@ ID | Machine         | Prefix           | Advertised | Enabled | Primary
 
 目前从稳定性来看，Tailscale 比 Netmaker 略胜一筹，基本上不会像 Netmaker 一样时不时出现 ping 不通的情况，这取决于 Tailscale 在用户态对 NAT 穿透所做的种种优化，他们还专门写了一篇文章介绍 NAT 穿透的原理，中文版由国内的 eBPF 大佬赵亚楠翻译：[NAT 穿透是如何工作的：技术原理及企业级实践](/docs/4.数据通信/NAT/NAT%20穿透是如何工作的：技术原理及企业级实践.md)
 
-# Headscale 内嵌 DERP
+# Headscale 内嵌 DERPer
 
 https://github.com/juanfont/headscale/issues/1326
 
@@ -467,11 +478,18 @@ tls_key_path: "/PATH/TO/FILE"
 
 - [GitHub 项目，juanfont/headscale - config-example.yaml](https://github.com/juanfont/headscale/blob/main/config-example.yaml) 中是配置文件的示例
 
+**/var/lib/headscale/** # Headscale 运行时数据保存路径
+
+- **./db.sqlite** # Headscale 运行后数据持久化的 Sqlite3 存储
+- **./private.key** # 用于加密 Headscale 和 Tailscale 客户端之间流量的私钥。如果私钥文件丢失，将自动生成。
+
 ## 配置详解
 
 **tls_cert_path**(STRING) # 证书路径
 
 **tls_key_path**(STRING) # 证书私钥路径
+
+**randomize_client_port**(BOOLEAN) # 启用此选项使设备使用随机端口来传输 WireGuard 流量，而不是默认 41641 端口。`默认值: false`。此选项旨在作为某些有缺陷的防火墙设备的解决方法，详见: https://tailscale.com/kb/1181/firewalls
 
 ### derp
 

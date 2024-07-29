@@ -171,3 +171,13 @@ EXAMPLE
 - **options \<ModuleName> \<OPTION>...** #
 - **remove \<ModuleName> \<COMMAND>...**#
 - **softdep** **\<ModuleName> pre: modules... post: modules...** #
+
+# Dynamic Kernel Module Support
+
+> 参考：
+>
+> - [GitHub 项目，dell/dkms](https://github.com/dell/dkms)
+> - [Wiki, Dynamic Kernel Module Support](https://en.wikipedia.org/wiki/Dynamic_Kernel_Module_Support)
+
+**Dynamic Kernel Module Support(动态内核模块支持，简称 DKMS)**
+

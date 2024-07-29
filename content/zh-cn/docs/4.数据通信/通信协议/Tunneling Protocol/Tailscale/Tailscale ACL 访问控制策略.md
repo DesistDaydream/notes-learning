@@ -48,7 +48,18 @@ acls 部分是 ACL 规则主体，每个规则都是一个 HuJSON 对象，它�
 
 每一个 ACL 访问规则长这个样子：
 
-`- action: accept     src:       - xxx       - xxx       - ...     dst:       - xxx       - xxx       - ...     proto: protocol # 可选参数`
+```yaml
+  - action: accept
+    src:
+      - xxx
+      - xxx
+      - ...
+    dst:
+      - xxx
+      - xxx
+      - ...
+    proto: protocol # 可选参数
+```
 
 Tailscale/Headscale 的默认访问规则是 `default deny`，也就是黑名单模式，只有在访问规则明确允许的情况下设备之间才能通信。所以 ACL 规则中的 `action` 值一般都写 `accept`，毕竟默认是 deny 嘛。
 
@@ -168,7 +179,12 @@ autoApprovers 示例配置：
 
 要想在 Headscale 中配置 ACL，只需使用 HuJSON 或者 YAML 编写相应的 ACL 规则（HuJSON 格式的文件名后缀为 hujson），然后在 Headscale 的配置文件中引用 ACL 规则文件即可。
 
-`# Path to a file containg ACL policies. # ACLs can be defined as YAML or HUJSON. # https://tailscale.com/kb/1018/acls/ acl_policy_path: "./acl.yaml"`
+```yaml
+# Path to a file containg ACL policies.  
+# ACLs can be defined as YAML or HUJSON.  
+# https://tailscale.com/kb/1018/acls/  
+acl_policy_path: "./acl.yaml"
+```
 
 ## ACL 规则示例
 
@@ -268,16 +284,16 @@ Tailscale/Headscale 的 ACL 非常强大，你可以基于 ACL 实现各种各�
 ### 引用链接
 
 ```
-\[1]基于角色的访问控制（RBAC）：演进历史、设计理念及简洁实现: [_http://arthurchiao.art/blog/rbac-as-it-meant-to-be-zh/_](http://arthurchiao.art/blog/rbac-as-it-meant-to-be-zh/)
-\[2]human JSON: [_https://github.com/tailscale/hujson_](https://github.com/tailscale/hujson)
-[3](ref): [_https://tailscale.com/kb/1018/acls/#groups_](https://tailscale.com/kb/1018/acls/#groups)
-[4](ref): [_https://tailscale.com/kb/1019/subnets_](https://tailscale.com/kb/1019/subnets)
-[5](ref): [_https://tailscale.com/kb/1018/acls/#hosts_](https://tailscale.com/kb/1018/acls/#hosts)
-[6](ref): [_https://tailscale.com/kb/1068/acl-tags_](https://tailscale.com/kb/1068/acl-tags)
-\[7]IANA IP 协议编号: [_https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml_](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)
-[8](ref): [_https://tailscale.com/kb/1018/acls/#groups_](https://tailscale.com/kb/1018/acls/#groups)
-[9](ref): [_https://tailscale.com/kb/1018/acls/#hosts_](https://tailscale.com/kb/1018/acls/#hosts)
-[10](ref): [_https://tailscale.com/kb/1019/subnets_](https://tailscale.com/kb/1019/subnets)
-[11](ref): [_https://tailscale.com/kb/1068/acl-tags_](https://tailscale.com/kb/1068/acl-tags)
-[12](ref): [_https://tailscale.com/kb/1103/exit-nodes_](https://tailscale.com/kb/1103/exit-nodes)
+[1]基于角色的访问控制（RBAC）：演进历史、设计理念及简洁实现: [http://arthurchiao.art/blog/rbac-as-it-meant-to-be-zh/_](http://arthurchiao.art/blog/rbac-as-it-meant-to-be-zh/)
+[2]human JSON: [https://github.com/tailscale/hujson_](https://github.com/tailscale/hujson)
+[3](ref): [https://tailscale.com/kb/1018/acls/#groups_](https://tailscale.com/kb/1018/acls/#groups)
+[4](ref): [https://tailscale.com/kb/1019/subnets_](https://tailscale.com/kb/1019/subnets)
+[5](ref): [https://tailscale.com/kb/1018/acls/#hosts_](https://tailscale.com/kb/1018/acls/#hosts)
+[6](ref): [https://tailscale.com/kb/1068/acl-tags_](https://tailscale.com/kb/1068/acl-tags)
+[7]IANA IP 协议编号: [https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml_](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)
+[8](ref): [https://tailscale.com/kb/1018/acls/#groups_](https://tailscale.com/kb/1018/acls/#groups)
+[9](ref): [https://tailscale.com/kb/1018/acls/#hosts_](https://tailscale.com/kb/1018/acls/#hosts)
+[10](ref): [https://tailscale.com/kb/1019/subnets_](https://tailscale.com/kb/1019/subnets)
+[11](ref): [https://tailscale.com/kb/1068/acl-tags_](https://tailscale.com/kb/1068/acl-tags)
+[12](ref): [https://tailscale.com/kb/1103/exit-nodes_](https://tailscale.com/kb/1103/exit-nodes)
 ```

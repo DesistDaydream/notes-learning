@@ -37,6 +37,7 @@ table       memos       memos       2           CREATE TABLE memos(text, priorit
 ## Syntax(语法)
 
 **sqlite3 \[OPTIONS] \[DatabaseFile] \[SQL]**
+
 SQLite 与 MySQL 不太一样，一个文件是一个数据库。
 
 ## 命令行模式
@@ -52,6 +53,7 @@ lunch with Christine         100
 ```
 
 **OPTIONS**
+
 sqlite3 的很多选项与交互模式中的点命令具有相同的效果
 
 - **-column** # 以列模式输出查询结果
