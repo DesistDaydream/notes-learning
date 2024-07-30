@@ -36,6 +36,8 @@ Docker 对使用者来讲是一个 [C/S](/docs/Standard/B_S%20和%20C_S%20架构
 
 dockerd 是实现容器能力的核心，用来管理 **Docker Objects(Docker 对象)**，e.g. [Docker Image](docs/10.云原生/Containerization%20implementation/Docker/Docker%20Image.md)、[Docker Runtime](docs/10.云原生/Containerization%20implementation/Docker/Docker%20Runtime.md)、[Docker Network](docs/10.云原生/Containerization%20implementation/Docker/Docker%20Network.md)、[Docker Storage](docs/10.云原生/Containerization%20implementation/Docker/Docker%20Storage.md)
 
+![Docker Architecture](https://notes-learning.oss-cn-beijing.aliyuncs.com/docker/202407301251102.png "https://newsletter.iximiuz.com/posts/ivan-on-the-server-side-1")
+
 ## 运行逻辑概述
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/qqh0gm/1616122015445-eda7a719-b2a0-4fd6-8c61-b8d450d2dc3d.png)
@@ -51,7 +53,6 @@ dockerd 是实现容器能力的核心，用来管理 **Docker Objects(Docker �
 7. 执行完毕后 Container 被终止
 8. docker 容器默认会把容器内部第一个进程，也就是 pid=1 的程序作为 docker 容器是否正在运行的依据，如果 docker 容器 pid 挂了，那么 docker 容器便会直接退出。
 9. 如果不想让 Container 运行完程序就终止，那么需要让 PID 为 1 的程序始终运行，比如 nginx 使用 daemon off 选项，或者其余任何可以让程序运行在前台的方法
-
 
 # Docker 关联文件
 

@@ -159,10 +159,13 @@ func main() {
 }
 ```
 
-## 将一个结构体中的值拷贝到另一个相似的结构体中
+## 最佳实践
+### 将一个结构体中的值拷贝到另一个相似的结构体中
 
 > 参考：
+>
 > - [GitHub 项目，jinzhu/copier](https://github.com/jinzhu/copier)
 > - [知乎，Golang 如何优雅得转换两个相似的结构体](https://www.zhihu.com/question/449267385)
+> - [公众号，使用copier提高你的工作效率](https://mp.weixin.qq.com/s/yCI7pKSw0wRlT80k8Bd2vQ)
 
 使用 jinzhu/copier 项目即可轻松得将一个结构体中的值复制到另一个结构体中

@@ -5,7 +5,7 @@ title: WireGuard 部署
 # 概述
 
 > 参考：
-> 
+>
 > - 原文链接：<https://mp.weixin.qq.com/s/vbt30eEGcp5JP5sHAPkwhw>
 > - 英文原文链接：<https://github.com/pirate/wireguard-docs>
 
@@ -15,7 +15,7 @@ title: WireGuard 部署
 
 安装 WireGuard 本质是安装如下几个程序：
 
-- **wireguard** # WireGuard 的实现。wireguard 程序分为**用户态的实现**与**内核态的实现**。
+- **wireguard** # WireGuard 的实现。wireguard 程序有两种实现方式，分为是**用户态的实现**与**内核态的实现**。
 - CLI
   - **wg** # 管理 WireGuard 网络。生成密钥、设置网络设备信息、查看状态、etc.
   - **wg-quick** # 用户友好的命令行工具，可以通过配置文件管理调用 wg 程序以启动或停止 WireGuard
@@ -23,8 +23,8 @@ title: WireGuard 部署
 > [!Tip] wireguard 用户态与内核态的实现
 >
 > 绝大多数 [Unix-like OS](docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 发行版的内核版本（[Linux Kernel 5.6 版本](https://github.com/torvalds/linux/blob/v5.6/drivers/net/wireguard/version.h)开始）通常都内置了 wireguard 模块。
-> 
-> 有些设备内核没有 wireguard 模块，加载时报错 `modprobe: FATAL: Module wireguard not found in directory /lib/modules/$(uanme -r)`，此时可以利用用户态的 Wireguard 程序实现 Wireguard 互联。
+>
+> 有些设备内核没有 wireguard 模块，使用 `modprob wireguard` 命令加载模块时报错 `modprobe: FATAL: Module wireguard not found in directory /lib/modules/$(uanme -r)`，此时可以利用用户态的 Wireguard 程序实现 Wireguard 互联。
 >
 > - https://github.com/WireGuard/wireguard-go 是使用 Go 语言在用户态实现的 Wireguard
 > - https://github.com/cloudflare/boringtun 是使用 Rust 语言在用户态实现的 Wireguard

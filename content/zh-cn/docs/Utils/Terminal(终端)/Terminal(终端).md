@@ -55,7 +55,11 @@ SecureCRT 是 VanDyke Software 开发的商业终端产品。初始发行于 199
 
 Options - Configure - Default Seession # 可修改默认的会话配置，针对所有会话的
 
+- 快捷键 # Terminal - Emulation - Mapped Keys
+- 标签样式 # Terminal - Emulation - Advanced - Ignore window title change requests（忽略窗口的标题名称根据实际情况而变化）
+
 Options - Global Options # 可修改主题颜色
+
 
 #### 主题配色
 
