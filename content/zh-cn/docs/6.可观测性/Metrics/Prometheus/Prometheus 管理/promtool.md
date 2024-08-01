@@ -27,6 +27,37 @@ promtool 是 Prometheus 一个命令行工具，用以管理、检查 Promethus�
 | test    | 单元测试                         |
 | tsdb    | Run tsdb commands.           |
 | promql  | PromQL 格式化与编辑器               |
+|         |                              |
+
+> [!Notes]
+> 截至 2024-08-01，--http.config.file 选项的格式在 https://github.com/prometheus/common/blob/v0.55.0/config/http_config.go#L299 ，与 prometheus 的 --web.config.file 配置格式并不一致
+
+# query
+
+- **instant** # 即时向量查询
+- **range** # 范围向量查询
+
+## range
+
+范围向量查询。默认返回 302 个样本，当前时间为结束时间，当前时间的前 5 分钟是开始时间，每秒 1 个样本。
+
+> Notes: 若采集周期超过 1 秒，那不在采集时间点的数据，用上一个采集时间点的数据补充，保持一致。
+
+OPTIONS
+
+- **--step** # 查询步长（持续时间）。i.e. 每隔 step 时间返回一个数据。
+
+## EXAMPLE
+
+范围向量查询，步长 3 分钟
+
+```
+promtool query \
+  --http.config.file=http.conf \
+  range http://localhost:9090 \
+  'hdf_jmr_24_hour_security_log_files{security_data_code="3002"}' \
+  --step=3m
+```
 
 # debug
 
