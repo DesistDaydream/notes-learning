@@ -13,6 +13,10 @@ weight: 20
 
 **Statistics(统计学)**
 
+# 方差、标准差、标准误、离差
+
+[理顺这个逻辑，方差、标准差、标准误、离差的关系，就清楚了](https://mp.weixin.qq.com/s/irCjafuCX-whtJf9WqRkfQ)
+
 # 检测和处理异常值
 
 > 参考:
@@ -87,7 +91,7 @@ Z-Score法
 Z-Score也称为标准分数。该分数有助于了解数据点与平均值之间的标准差。Z-Score是测量单位，它告诉我们数据点与平均值的距离。例如：数据点 A 与平均值相差 2 个标准差。这个 2 就是Z-Score。
 
 ```
-Z score = (x -mean) / std. deviation
+Z score = (x -mean) / std.deviation
 ```
 
 那么如何确定异常值的阈值呢？

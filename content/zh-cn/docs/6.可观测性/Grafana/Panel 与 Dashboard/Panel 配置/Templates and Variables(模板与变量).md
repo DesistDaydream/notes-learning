@@ -6,7 +6,7 @@ title: Templates and Variables(模板与变量)
 
 > 参考：
 >
-> - [官方文档,模板与变量](https://grafana.com/docs/grafana/latest/variables/)
+> - [官方文档，模板与变量](https://grafana.com/docs/grafana/latest/variables/)
 > - [Prometheus 天降奇兵文章](https://yunlzheng.gitbook.io/prometheus-book/part-ii-prometheus-jin-jie/grafana/templating)
 
 在前面的小节中介绍了 Grafana 中 4 中常用的可视化面板的使用，通过在面板中使用 PromQL 表达式，Grafana 能够方便的将 Prometheus 返回的数据进行可视化展示。例如，在展示主机 CPU 使用率时，我们使用了如下表达式：

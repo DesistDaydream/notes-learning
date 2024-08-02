@@ -22,7 +22,7 @@ title: WireGuard 部署
 
 > [!Tip] wireguard 用户态与内核态的实现
 >
-> 绝大多数 [Unix-like OS](docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 发行版的内核版本（[Linux Kernel 5.6 版本](https://github.com/torvalds/linux/blob/v5.6/drivers/net/wireguard/version.h)开始）通常都内置了 wireguard 模块。
+> 绝大多数 [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 发行版的内核版本（[Linux Kernel 5.6 版本](https://github.com/torvalds/linux/blob/v5.6/drivers/net/wireguard/version.h)开始）通常都内置了 wireguard 模块。
 >
 > 有些设备内核没有 wireguard 模块，使用 `modprob wireguard` 命令加载模块时报错 `modprobe: FATAL: Module wireguard not found in directory /lib/modules/$(uanme -r)`，此时可以利用用户态的 Wireguard 程序实现 Wireguard 互联。
 >
@@ -73,9 +73,9 @@ apt install wireguard
 对于不支持内核模块的系统，可以使用用户态的实现，这里用 wireguard-go 举例
 
 ```bash
-$ git clone https://git.zx2c4.com/wireguard-go
-$ cd wireguard-go
-$ make
+git clone https://git.zx2c4.com/wireguard-go
+cd wireguard-go
+make
 ```
 
 在任意一台机器构建好二进制包，拷贝到需要运行 WireGuard 的机器放到 $PATH 下即可
@@ -293,4 +293,3 @@ $ ip route show table local
 # 获取到特定 IP 的路由
 $ ip route get 192.0.2.3
 ```
-

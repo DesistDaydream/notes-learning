@@ -15,7 +15,7 @@ Prometheus 规则分为两种：
 
 - **Recording Rule(记录规则)** #
 - **Alerting Rule(告警规则)** #
-   - ！！！注意编写告警规则的逻辑，由于 Prometheus 会定期评估告警，所以会定期读取数据，尽相避免读取大范围的数据，以免造成性能问题
+  - ！！！注意编写告警规则的逻辑，由于 Prometheus 会定期评估告警，所以会定期读取数据，尽相避免读取大范围的数据，以免造成性能问题
 
 Prometheus 规则配置文件需要在 [Prometheus Server 配置](/docs/6.可观测性/Metrics/Prometheus/Server%20配置.md) 文件中的 rule_files 字段中指定，让 Prometheus 加载指定的文件并读取其配置(这个过程称为 **Evaluation(评估)**)。
 
@@ -24,7 +24,7 @@ Prometheus 规则配置文件需要在 [Prometheus Server 配置](/docs/6.可观
 可以通过发送 SIGHUP 到 Prometheus 进程在运行时重新加载规则文件。仅当所有规则文件格式正确时，才会应用更改。
 
 > [!Tip] 规则语法检查
-> 可以使用 [promtool](docs/6.可观测性/Metrics/Prometheus/Prometheus%20管理/promtool.md) 程序在不启动 Prometheus Server 的情况下检查文件中的语法是否正确。.e.g. `promtool check rules /path/to/example.rules.yml`
+> 可以使用 [promtool](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20管理/promtool.md) 程序在不启动 Prometheus Server 的情况下检查文件中的语法是否正确。.e.g. `promtool check rules /path/to/example.rules.yml`
 
 # Recording Rule(记录规则)
 
@@ -56,7 +56,7 @@ groups:
 >
 > - [官方文档，配置 - 告警规则](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)
 
-**Alerting Rules(告警规则)** 可以让我们基于 PromQL 的表达式，定义告警的触发条件，当满足触发条件时，Prometheus Server 会将触发的告警通知发送到指定的服务。这个服务默认是 Prometheus 官方提供的 [Alertmanager](docs/6.可观测性/Metrics/Alertmanager/Alertmanager.md)。详见 [Alerting(告警)](docs/6.可观测性/Metrics/Prometheus/Alerting(告警).md)
+**Alerting Rules(告警规则)** 可以让我们基于 PromQL 的表达式，定义告警的触发条件，当满足触发条件时，Prometheus Server 会将触发的告警通知发送到指定的服务。这个服务默认是 Prometheus 官方提供的 [Alertmanager](/docs/6.可观测性/Metrics/Alertmanager/Alertmanager.md)。详见 [Alerting(告警)](/docs/6.可观测性/Metrics/Prometheus/Alerting(告警).md)
 
 在 Prometheus 中一条告警规则主要由以下几部分组成：
 
@@ -111,7 +111,7 @@ groups:
 - **rules**([]OBJECT) # 定义 Prometheus Rule 详情。rules 字段下使用不同的子字段会对应不同的规则。
   - 包含 record 字段时，则该规则为 [Recording Rule](#Recording%20Rule)
   - 包含 alert 字段时，则该规则为 [Alerting Rule](#Alerting%20Rule)
- 
+
 Recording Rule 与 Alerting Rule 存在于规则组中。组中的规则以规定的时间间隔顺序运行，并具有相同的规则评估时间。Recording Rule 的名称必须是有效的 Metrics 名称。Alerting Rule 名称则比较宽泛，可以随意定义，一般来说，满足有效的标签值即可。
 
 > **注意：**

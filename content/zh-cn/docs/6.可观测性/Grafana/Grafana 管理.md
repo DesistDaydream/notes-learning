@@ -61,4 +61,5 @@ Node exporter
 Nginx
 
 - [9614](https://grafana.com/grafana/dashboards/9614-nginx-ingress-controller/)
+- [12559](https://grafana.com/grafana/dashboards/12559-loki-nginx-service-mesh-json-version/) # Loki NGINX Service Mesh - JSON version
 

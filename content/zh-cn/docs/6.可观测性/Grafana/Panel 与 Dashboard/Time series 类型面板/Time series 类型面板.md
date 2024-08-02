@@ -23,7 +23,7 @@ sum(node_memory_MemTotal_bytes)
 
 Time series 是一个二维的，具有 x/y Axes(轴) 的面板。x 轴(横轴) 以时间分布、y 轴(纵轴) 以样本值分布
 
-下面的文章将只介绍 Time series 面板的独有配置，有很多共有配置详见[Panel 配置详解](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Panel%20配置详解/Panel%20配置详解.md)
+下面的文章将只介绍 Time series 面板的独有配置，有很多共有配置详见[Panel 配置](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Panel%20配置/Panel%20配置.md)
 
 # Panel # 面板配置
 

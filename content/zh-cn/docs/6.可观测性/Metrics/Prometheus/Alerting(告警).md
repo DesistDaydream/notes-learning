@@ -13,7 +13,7 @@ weight: 5
 > - [官方文档，告警 - 客户端](https://prometheus.io/docs/alerting/latest/clients/)
 > - [OpenAPI](https://github.com/prometheus/alertmanager/blob/main/api/v2/openapi.yaml)
 
-Prometheus 本身不提告警的通知的功能！告警能力在 Prometheus 的架构中被划分成两个独立的部分。如下所示，通过在 Prometheus 中定义 AlertRule（告警规则），Prometheus 会周期性的对告警规则进行 **Evaluate(评估)**，如果满足告警触发条件就会向 [Alertmanager](docs/6.可观测性/Metrics/Alertmanager/Alertmanager.md) 发送告警信息。
+Prometheus 本身不提告警的通知的功能！告警能力在 Prometheus 的架构中被划分成两个独立的部分。如下所示，通过在 Prometheus 中定义 AlertRule（告警规则），Prometheus 会周期性的对告警规则进行 **Evaluate(评估)**，如果满足告警触发条件就会向 [Alertmanager](/docs/6.可观测性/Metrics/Alertmanager/Alertmanager.md) 发送告警信息。
 
 > Prometheus 推出的 Alertmanager 作为一个独立的组件，可以实现告警管理功能，负责接收并处理来自 Prometheus Server(也可以是其它的客户端程序) 的告警信息。Alertmanager 可以对这些告警信息进行进一步的处理，比如当接收到大量重复告警时能够消除重复的告警信息，同时对告警信息进行分组并且路由到正确的通知方，Alertmanager 内置了对邮件，Slack 等多种通知方式的支持。同时 AlertManager 还提供了静默和告警抑制机制来对告警通知行为进行优化。
 
@@ -98,7 +98,7 @@ Prometheus 产生告警后，会通过 POST 请求将下列 JSON 格式内容向
 ]
 ```
 
-推送路径根据 Prometheus [Server 配置](docs/6.可观测性/Metrics/Prometheus/Server%20配置.md)文件中 `alerting.alertmanagers.api_version` 和 `alerting.alertmanagers.path_prefix` 这两个字段决定。
+推送路径根据 Prometheus [Server 配置](/docs/6.可观测性/Metrics/Prometheus/Server%20配置.md)文件中 `alerting.alertmanagers.api_version` 和 `alerting.alertmanagers.path_prefix` 这两个字段决定。
 
 默认推送路径为 /api/v2/alerts。如果 api_version 为 v2，path_prefix 值为 /test，最终的路径就是 /test/api/v2/alerts
 

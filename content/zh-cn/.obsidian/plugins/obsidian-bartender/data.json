@@ -2134,7 +2134,7 @@
     "docs/6.可观测性/Grafana/Panel 与 Dashboard": [
       "docs/6.可观测性/Grafana/Panel 与 Dashboard/_index.md",
       "docs/6.可观测性/Grafana/Panel 与 Dashboard/Panel 与 Dashboard.md",
-      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Panel 配置详解",
+      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Panel 配置",
       "docs/6.可观测性/Grafana/Panel 与 Dashboard/Time series 类型面板",
       "docs/6.可观测性/Grafana/Panel 与 Dashboard/Table 类型面板.md"
     ],

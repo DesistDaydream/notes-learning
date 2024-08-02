@@ -5,7 +5,7 @@ title: Open Containers Initiative(开放容器倡议)
 # 概述
 
 > 参考：
-> 
+>
 > - [OCI 官网](https://opencontainers.org/)
 > - [GitHub 组织，OpenContainers](https://github.com/opencontainers)
 > - [segmentfault，《走进 docker》系列文章](https://segmentfault.com/u/public0821/articles)
@@ -17,9 +17,9 @@ OCI 公有如下几个个规范：
 一开始有两个
 
 - **Image-spec(镜像规范)** # 容器镜像所包含的内容以及格式都遵循统一的格式标准，由 OCI 负责维护
-  - [OCI Image 规范](docs/10.云原生/Containerization/Open%20Containers%20Initiative(开放容器倡议)/OCI%20Image%20规范.md)
+  - [OCI Image 规范](/docs/10.云原生/Containerization/Open%20Containers%20Initiative(开放容器倡议)/OCI%20Image%20规范.md)
 - **Runtime-spec(运行时规范)** # 容器运行时的内容以及格式都遵循统一的格式标准，由 OCI 负责维护
-  - [OCI Runtime 规范](docs/10.云原生/Containerization/Open%20Containers%20Initiative(开放容器倡议)/OCI%20Runtime%20规范.md)
+  - [OCI Runtime 规范](/docs/10.云原生/Containerization/Open%20Containers%20Initiative(开放容器倡议)/OCI%20Runtime%20规范.md)
 
 后来新加的一个
 

@@ -11,7 +11,7 @@ weight: 5
 >
 > - [官方文档，引擎 - 替换 runtime](https://docs.docker.com/engine/alternative-runtimes/)
 
-Docker Runtime 和 [Docker Image](docs/10.云原生/Containerization%20implementation/Docker/Docker%20Image.md) 一样，也有标准，也由 [OCI](docs/10.云原生/Containerization/Open%20Containers%20Initiative(开放容器倡议)/OCI%20Runtime%20规范.md) 维护，官方详解地址为：runtime-spec。Docker 默认使用 [Containerd](/docs/10.云原生/Containerization%20implementation/Containerd/Containerd.md) 来控制 Container 的配置、执行环境和生命周期，包括创建、启动和停止容器。Containerd 默认使用 runc 作为其容器运行时。
+Docker Runtime 和 [Docker Image](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20Image.md) 一样，也有标准，也由 [OCI](/docs/10.云原生/Containerization/Open%20Containers%20Initiative(开放容器倡议)/OCI%20Runtime%20规范.md) 维护，官方详解地址为：runtime-spec。Docker 默认使用 [Containerd](/docs/10.云原生/Containerization%20implementation/Containerd/Containerd.md) 来控制 Container 的配置、执行环境和生命周期，包括创建、启动和停止容器。Containerd 默认使用 runc 作为其容器运行时。
 
 容器的配置被指定为 config.json ，并详细说明了可以创建容器的字段。指定执行环境是为了确保容器内运行的应用程序在运行时之间具有一致的环境，以及为容器的生命周期定义的常见操作。
 

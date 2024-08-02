@@ -151,7 +151,7 @@ promhttp_metric_handler_requests_total{code="200", instance="172.38.40.250:9090"
 
 ### Subquery(子查询)
 
-在 `[ ]` 符号表示的 时间范围选择器 中，可以使用 **Subquery(子查询)** 功能为时间范围添加 **Resolution(分辨率)**，比如：
+在 `[ ]` 符号表示的 时间范围选择器 中，可以使用 **Subquery(子查询)** 功能为时间范围添加 **Resolution(分辨率)**（有时候也成为 **Step(步长)**），比如：
 
 `promhttp_metric_handler_requests_total{}[4m:30s]`
 

@@ -10,6 +10,7 @@ weight: 20
 > 参考：
 >
 > - [官方文档，命令行工具 - promtool](https://prometheus.io/docs/prometheus/latest/command-line/promtool)
+> - https://blog.51cto.com/u_13236892/5968043
 
 promtool 是 Prometheus 一个命令行工具，用以管理、检查 Promethus，包括 规则配置、etc. 。
 
@@ -27,7 +28,6 @@ promtool 是 Prometheus 一个命令行工具，用以管理、检查 Promethus�
 | test    | 单元测试                         |
 | tsdb    | Run tsdb commands.           |
 | promql  | PromQL 格式化与编辑器               |
-|         |                              |
 
 > [!Notes]
 > 截至 2024-08-01，--http.config.file 选项的格式在 https://github.com/prometheus/common/blob/v0.55.0/config/http_config.go#L299 ，与 prometheus 的 --web.config.file 配置格式并不一致
@@ -45,20 +45,24 @@ promtool 是 Prometheus 一个命令行工具，用以管理、检查 Promethus�
 
 OPTIONS
 
-- **--step** # 查询步长（持续时间）。i.e. 每隔 step 时间返回一个数据。
+- **--start**(RFC3339 or Unix-time) # 范围查询的开始时间
+- **--end**(RFC3339 or Unix-time) # 范围查询的结束时间
+- **--step**(DURATION) # 查询步长（持续时间）。i.e. 每隔 step 时间取一个样本数据。
 
 ## EXAMPLE
 
-范围向量查询，步长 3 分钟
+范围向量查询，查询从 2024-08-01T08:01:01Z 开始到现在的所有数据，每隔 3 分钟取一个样本
 
-```
+```bash
 promtool query \
   --http.config.file=http.conf \
   range http://localhost:9090 \
   'hdf_jmr_24_hour_security_log_files{security_data_code="3002"}' \
+  --start=2024-08-01T08:01:01Z \
   --step=3m
 ```
 
 # debug
 
 可以生成 [pprof](/docs/2.编程/高级编程语言/Go/Go%20工具/pprof/pprof.md) 的 Profile 文件
+

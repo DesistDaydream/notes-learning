@@ -25,7 +25,7 @@ curl 'http://10.244.1.26:19115/probe?module=http_2xx&target=www.baidu.com'
 
 ## Prometheus 使用 Blackbox Exporter 的配置示例
 
-与一般 Exporter 配置不同， Blackbox Exporter 的配置方式与 [SNMP Exporter](docs/6.可观测性/Metrics/Instrumenting/SNMP%20Exporter/SNMP%20Exporter.md) 更像，每一个待探测的目标将会作为 Blackbox Exporter 程序的参数。可以通过 Relabel 机制，设置目标的 instance 标签。
+与一般 Exporter 配置不同， Blackbox Exporter 的配置方式与 [SNMP Exporter](/docs/6.可观测性/Metrics/Instrumenting/SNMP%20Exporter/SNMP%20Exporter.md) 更像，每一个待探测的目标将会作为 Blackbox Exporter 程序的参数。可以通过 Relabel 机制，设置目标的 instance 标签。
 
 ```yaml
 scrape_configs:
@@ -115,7 +115,7 @@ modules:
 **tls_config**(OBJECT) # 发起 HTTP 请求时的 TLS 配置，即发起 HTTPS 请求。
 
  详见 [tls 配置段](#b9c06c74)
- 
+
 \######## Prometheus [共享库中的通用 HTTP 客户端配置](https://github.com/prometheus/common/blob/v0.30.0/config/http_config.go#L159)结束 ########
 
 **preferred_ip_protocol**(STRING) # 探针首选的 IP 协议版本。`默认值：ip6`

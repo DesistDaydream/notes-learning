@@ -10,10 +10,12 @@ weight: 1
 > 参考：
 >
 > - [官方文档，面板](https://grafana.com/docs/grafana/latest/panels/)
+> - 借助 [Grafana Play](https://play.grafana.org/d/000000041/)，您可以探索并了解 Grafana 的各种 Panel 工作原理，从实际示例中学习以加速您的开发
+>   - https://play.grafana.org/dashboards/f/PGJ1Fr4Zz/demo3a-grafana-features 这是各种 Panel 的 Demo 集合。
 
 **Panel(面板)** 与 **Dashboard(仪表盘)**
 
-**Panel(面板)** 是 Grafana 用于展示的基本可视化模块。多个 Panel(面板) 组成了一个 **Dashboard(仪表盘)**。每个面板都有各种各样的样式和格式设置选项。 面板可以在仪表板上拖放和重新排列。 它们也可以调整大小
+**Panel(面板)** 是 Grafana 用于展示的基本 **Visualization(可视化)** 模块。多个 Panel(面板) 组成了一个 **Dashboard(仪表盘)**。每个面板都有各种各样的样式和格式设置选项。 面板可以在仪表板上拖放和重新排列。 它们也可以调整大小
 
 对于 Grafana 来说，页面处理的数据实际上是一个一个的 **Field(字段)**。从 Grafana 数据模型 章节，可以发现，Grafana 从数据源拿到的数据都是统一的格式，Grafana 在面板处理数据时，其实就是对一堆 Field(字段) 来操作。从各个数据源获取到的数据，统一被放在 Field 中了。
 

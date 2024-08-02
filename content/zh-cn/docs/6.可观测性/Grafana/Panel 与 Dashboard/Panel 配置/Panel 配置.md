@@ -1,23 +1,24 @@
 ---
-title: "Panel 配置详解"
-linkTitle: "Panel 配置详解"
+title: Panel 配置
+linkTitle: Panel 配置
 weight: 1
+date: 2024-08-02T13:16
 ---
 
 # 概述
 
 > 参考：
 >
-> - [官方文档,面板-面板编辑器](https://grafana.com/docs/grafana/latest/panels/panel-editor/)
+> - [官方文档，面板 - 面板编辑器](https://grafana.com/docs/grafana/latest/panels/panel-editor/)
 
 当我们开始创建一个新的 Panel 时，可以看到下图所示的界面，这个界面分为三大部分，分别用三种颜色的框体括起来
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636261571312-2e5d4a25-2009-495d-919a-973f3d2cd178.png)
 
-- [**Header(标题)**](https://grafana.com/docs/grafana/latest/panels/panel-editor/#header)**,绿色部分** # 左边是面板的名称，右侧有 4 个按钮，分别是 设置整个 Dashboard、放弃、保存、应用
-- [**Visualization preview(可视化的预览)**](https://grafana.com/docs/grafana/latest/panels/panel-editor/#visualization-preview)**,蓝色部分** # 在 数据处理 与 面板样式处理 两部分设置的内容将会反应在这个预览部分
-- [**Data section(数据处理)**](https://grafana.com/docs/grafana/latest/panels/panel-editor/#data-section-bottom-pane)**,红色部分** #[](https://grafana.com/docs/grafana/latest/panels/panel-editor/#data-section-bottom-pane)通过数据查询语句来获取数据，以便在面板展示
-- [**Panel dispaly options(面板显示选项)**](https://grafana.com/docs/grafana/latest/panels/panel-editor/#panel-display-options-side-pane)**,黄色部分** # 用来配置面板的信息。包括 面板类型、面板名称、展示效果 等等
+- [**Header(标题)**](https://grafana.com/docs/grafana/latest/panels/panel-editor/#header)**, 绿色部分** # 左边是面板的名称，右侧有 4 个按钮，分别是 设置整个 Dashboard、放弃、保存、应用
+- [**Visualization preview(可视化的预览)**](https://grafana.com/docs/grafana/latest/panels/panel-editor/#visualization-preview)**, 蓝色部分** # 在 数据处理 与 面板样式处理 两部分设置的内容将会反应在这个预览部分
+- [**Data section(数据处理)**](#Data%20section(数据处理))**, 红色部分** #[](https://grafana.com/docs/grafana/latest/panels/panel-editor/#data-section-bottom-pane)通过数据查询语句来获取数据，以便在面板展示
+- [**Panel dispaly options(面板显示选项)**](https://grafana.com/docs/grafana/latest/panels/panel-editor/#panel-display-options-side-pane)**, 黄色部分** # 用来配置面板的信息。包括 面板类型、面板名称、展示效果 等等
 
 # Header(标题)
 
@@ -59,6 +60,8 @@ weight: 1
 
 # Data section(数据处理)
 
+https://grafana.com/docs/grafana/latest/panels/panel-editor/#data-section-bottom-pane
+
 该部分包含一些 tab(标签)，可以在其中 输入查询，转换数据 以及 创建警报规则(如果适用)。
 
 - **Query tab(查询标签)** # 选择数据源并通过查询语句获取数据。参考：[Queries](https://grafana.com/docs/grafana/latest/panels/queries/).
@@ -84,7 +87,7 @@ Query 标签的页面由一下几个元素组成
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636274684211-5c3cddae-a4f0-4fc1-b10b-0c43417df8dc.png)
 
-Query 详解见 [Query(查询)](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Panel%20配置详解/Query(查询).md)
+Query 详解见 [Query(查询)](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Panel%20配置/Query(查询).md)
 
 ## Transform(转换)
 
@@ -98,7 +101,7 @@ Transformations process the result set of a query before it’s passed on for vi
 
 Transformations sometimes result in data that cannot be graphed. When that happens, Grafana displays a suggestion on the visualization that you can click to switch to table visualization. This often helps you better understand what the transformation is doing to your data
 
-Transform 的用法详见：[Transformations(转换)](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Panel%20配置详解/Transformations(转换).md)
+Transform 的用法详见：[Transformations(转换)](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Panel%20配置/Transformations(转换).md)
 
 ## Alert(告警)
 
@@ -121,7 +124,7 @@ Transform 的用法详见：[Transformations(转换)](/docs/6.可观测性/Grafa
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636262106569-8229fbdc-eca7-4e02-85cf-992099d794d1.png)
 
-## Panel # 面板配置
+## Panel - 面板配置
 
 > 参考：
 >
@@ -134,7 +137,7 @@ Grafna 中使用的 [数据模型][/docs/6.可观测性/Grafana/Grafana%20数据
 
 这里只介绍所有面板的通用配置，不同的面板，这部分的可配置的项目不同
 
-### Panel options(面板选项) - 面板的基本信息。名字、描述、透明度。
+### Panel options(面板选项) - 面板的基本信息。名字、描述、透明度
 
 参考[此处](https://grafana.com/docs/grafana/latest/panels/add-a-panel/)
 

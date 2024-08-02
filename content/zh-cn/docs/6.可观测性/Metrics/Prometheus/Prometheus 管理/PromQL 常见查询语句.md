@@ -35,7 +35,7 @@ $$
 
 - **x** 是当前值
 - **μ** 是总体的 **mean(平均值)**
-- **σ** 是总体的 **standard deviation(标准差O)**。
+- **σ** 是总体的 **standard deviation(标准差)**。
 
 > Tips: 这里的 population(总体) 的意思对应到 Prometheus 中就是指 **范围向量**
 
@@ -52,16 +52,16 @@ $$
 
 ```promql
 # 计算当前值
-current_value = hdf_hdf_network_receive_bytes_total
+current_value = irate(hdf_hdf_network_receive_bytes_total[15m])
 
 # 计算过去 1 小时的平均值
-avg_over_time(hdf_hdf_network_receive_bytes_total[1h])
+avg_over_time(irate(hdf_hdf_network_receive_bytes_total[15m])[1h:])
 
 # 计算过去 1 小时的标准差
-stddev_over_time(hdf_hdf_network_receive_bytes_total[1h])
+stddev_over_time(irate(hdf_hdf_network_receive_bytes_total[15m])[1h:])
 
 # 计算 Z-score
-z_score = (current_value - avg_over_time(hdf_hdf_network_receive_bytes_total[1h])) / stddev_over_time(hdf_hdf_network_receive_bytes_total[1h])
+z_score = (current_value - avg_over_time(irate(hdf_hdf_network_receive_bytes_total[15m])[1h:])) / stddev_over_time(irate(hdf_hdf_network_receive_bytes_total[15m])[1h:])
 ```
 
 为了判断是否异常，需要设定一个阈值，通常 Z-score 大于 3 或小于 -3 被认为是异常的（下面使用 abs 取绝对值）
@@ -69,12 +69,12 @@ z_score = (current_value - avg_over_time(hdf_hdf_network_receive_bytes_total[1h]
 ```promql
 abs(
   (
-    hdf_hdf_network_receive_bytes_total
+    irate(hdf_hdf_network_receive_bytes_total[15m])
     -
-    avg_over_time(hdf_hdf_network_receive_bytes_total[1h])
+    avg_over_time(irate(hdf_hdf_network_receive_bytes_total[15m])[1h:])
   )
   /
-  stddev_over_time(hdf_hdf_network_receive_bytes_total[1h])
+  stddev_over_time(irate(hdf_hdf_network_receive_bytes_total[15m])[1h:])
 )
 > 3
 ```
@@ -86,12 +86,12 @@ abs(
 ```promql
 abs(
   (
-    hdf_hdf_network_receive_bytes_total
+    irate(hdf_hdf_network_receive_bytes_total[15m])
     -
-    avg_over_time(hdf_hdf_network_receive_bytes_total[6h])
+    avg_over_time(irate(hdf_hdf_network_receive_bytes_total[15m])[6h:])
   )
   /
-  stddev_over_time(hdf_hdf_network_receive_bytes_total[6h])
+  stddev_over_time(irate(hdf_hdf_network_receive_bytes_total[15m])[6h:])
 )
 > 3
 ```
@@ -174,19 +174,29 @@ increase(node_vmstat_oom_kill[5m]) > 0
 
 ### 磁盘使用率
 
-**使用率过高**
+不能直接用 node_filesystem_avail_bytes / node_filesystem_size_bytes，需要通过 node_filesystem_free_bytes 作为中转，把 inode 等系统占用的磁盘空间也算上。否则告警不准。
 
 ```promql
-(node_filesystem_avail_bytes{fstype=~"ext4|xfs"}
+(
+  node_filesystem_size_bytes{fstype=~"ext.*|xfs|nfs",mountpoint!~".*pod.*"}
+  -
+  node_filesystem_free_bytes{fstype=~"ext.*|xfs|nfs",mountpoint!~".*pod.*"}
+)
 /
-node_filesystem_size_bytes {fstype=~"ext4|xfs"}
-* 100)
-< 20
+(
+  node_filesystem_avail_bytes{fstype=~"ext.*|xfs|nfs",mountpoint!~".*pod.*"}
+  +
+  (
+    node_filesystem_size_bytes{fstype=~"ext.*|xfs|nfs",mountpoint!~".*pod.*"}
+    -
+    node_filesystem_free_bytes{fstype=~"ext.*|xfs|nfs",mountpoint!~".*pod.*"}
+  )
+) * 100
 ```
 
-**磁盘将满**
+### 磁盘将满
 
-- 根据磁盘 1 小时的变化速率，预测 4 小时内会不会被写满
+根据磁盘 1 小时的变化速率，预测 4 小时内会不会被写满
 
 ```promql
 predict_linear(node_filesystem_free_bytes{fstype!~"tmpfs"}[1h], 4 * 3600) < 0
@@ -411,38 +421,6 @@ node_netstat_Tcp_CurrEstab > 50000
     annotations:
       summary: Host unusual disk write rate (instance {{ $labels.instance }})
       description: Disk is probably writing too much data (> 50 MB/s)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
-```
-
-#### 主机磁盘剩余空间
-
-磁盘可用空间（<10% left）
-
-```yaml
- # please add ignored mountpoints in node_exporter parameters like
-  # "--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|run)($|/)"
-  - alert: HostOutOfDiskSpace
-    expr: (node_filesystem_avail_bytes * 100) / node_filesystem_size_bytes < 10
-    for: 5m
-    labels:
-      severity: warning
-    annotations:
-      summary: Host out of disk space (instance {{ $labels.instance }})
-      description: Disk is almost full (< 10% left)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
-```
-
-#### 根据磁盘目前的增长速度，在几个小时内是否会写满
-
-根据当前一小时内磁盘增长量，判断磁盘在 4 个小时内会不会被写满
-
-```yaml
-  - alert: HostDiskWillFillIn4Hours
-    expr: predict_linear(node_filesystem_free_bytes{fstype!~"tmpfs"}[1h], 4 * 3600) < 0
-    for: 5m
-    labels:
-      severity: warning
-    annotations:
-      summary: Host disk will fill in 4 hours (instance {{ $labels.instance }})
-      description: Disk will fill in 4 hours at current write rate\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
 ```
 
 #### 磁盘读延迟

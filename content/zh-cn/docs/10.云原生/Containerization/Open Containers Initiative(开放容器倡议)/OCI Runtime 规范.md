@@ -48,7 +48,7 @@ rootfs OCI 镜像规范中，blobs 目录下的镜像层文件。config.json 可
 
 > 也可以使用 `runc spec` 命令生成 config.json 文件
 >
-> 这里接着 [OCI Image 规范](docs/10.云原生/Containerization/Open%20Containers%20Initiative(开放容器倡议)/OCI%20Image%20规范.md) 中的 Layers 文件章节，使用 lchdzh/k8s-debug 镜像。
+> 这里接着 [OCI Image 规范](/docs/10.云原生/Containerization/Open%20Containers%20Initiative(开放容器倡议)/OCI%20Image%20规范.md) 中的 Layers 文件章节，使用 lchdzh/k8s-debug 镜像。
 
 ```bash
 ~]# cd /root/test_dir/k8s-debug/layers

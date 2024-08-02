@@ -66,6 +66,7 @@ FRAG   0         0         0
 ## FILTER
 
 **FILTER = \[ state STATE-FILTER ] \[ EXPRESSION ]**
+
 **STATE-FILTER(状态过滤)** # 指定要过滤的连接状态，可用的状态有 established, syn-sent, syn-recv, fin-wait-1, fin-wait-2, time-wait, closed, close-wait, last-ack, listen 和 closing.
 
 - 除了以上状态，还可以用其他描述方式代替一个或多个状态

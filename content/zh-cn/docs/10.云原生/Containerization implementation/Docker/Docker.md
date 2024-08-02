@@ -26,7 +26,7 @@ Note：一开始，docker 在 linux 上实现容器技术的后端使用的是 l
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/docker/202407241618409.png)
 
-Docker 对使用者来讲是一个 [C/S](/docs/Standard/B_S%20和%20C_S%20架构.md) 模式的架构，Client 和 Server 使用 REST API 通过 UNIX [Socket](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication(进程间通信)/Socket(套接字)/Socket(套接字).md) 或者网络进行通信。[Compose](docs/10.云原生/Containerization%20implementation/Docker/Compose/Compose.md) 同样也可以作为客户端。
+Docker 对使用者来讲是一个 [C/S](/docs/Standard/B_S%20和%20C_S%20架构.md) 模式的架构，Client 和 Server 使用 REST API 通过 UNIX [Socket](/docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication(进程间通信)/Socket(套接字)/Socket(套接字).md) 或者网络进行通信。[Compose](/docs/10.云原生/Containerization%20implementation/Docker/Compose/Compose.md) 同样也可以作为客户端。
 
 官方将这种架构称为 [**Docker Engine(引擎)**](https://docs.docker.com/engine/)，通常这个引擎具有：
 
@@ -34,7 +34,7 @@ Docker 对使用者来讲是一个 [C/S](/docs/Standard/B_S%20和%20C_S%20架构
 - 与 dockerd 通信的 API
 - 一个 CLI 程序 docker
 
-dockerd 是实现容器能力的核心，用来管理 **Docker Objects(Docker 对象)**，e.g. [Docker Image](docs/10.云原生/Containerization%20implementation/Docker/Docker%20Image.md)、[Docker Runtime](docs/10.云原生/Containerization%20implementation/Docker/Docker%20Runtime.md)、[Docker Network](docs/10.云原生/Containerization%20implementation/Docker/Docker%20Network.md)、[Docker Storage](docs/10.云原生/Containerization%20implementation/Docker/Docker%20Storage.md)
+dockerd 是实现容器能力的核心，用来管理 **Docker Objects(Docker 对象)**，e.g. [Docker Image](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20Image.md)、[Docker Runtime](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20Runtime.md)、[Docker Network](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20Network.md)、[Docker Storage](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20Storage.md)
 
 ![Docker Architecture](https://notes-learning.oss-cn-beijing.aliyuncs.com/docker/202407301251102.png "https://newsletter.iximiuz.com/posts/ivan-on-the-server-side-1")
 
@@ -128,13 +128,13 @@ Dokcer 默认的日志日志驱动是 json-file，该驱动将将来自容器的
 - 查看 Docker 当前的日志驱动配置
 
 ```bash
-$ docker info |grep "Logging Driver"
+docker info |grep "Logging Driver"
 ```
 
 - 查看单个容器的设置的日志驱动
 
 ```bash
-$ docker inspect  -f '{{.HostConfig.LogConfig.Type}}' 容器id
+docker inspect  -f '{{.HostConfig.LogConfig.Type}}' 容器id
 ```
 
 - Docker 日志驱动全局配置，全局配置意味所有容器都生效，编辑 /etc/docker/daemon.json 文件（如果文件不存在新建一个），添加日志驱动配置。示例：配置 Docker 引擎日志驱动为 syslog
@@ -148,7 +148,7 @@ $ docker inspect  -f '{{.HostConfig.LogConfig.Type}}' 容器id
 - 给特定容器配置日志驱动，在启动容器时指定日志驱动 --log-driver 参数。示例：启动 nginx 容器，日志驱动指定为 journald
 
 ```bash
-$ docker  run --name nginx -d --log-driver journald nginx
+docker  run --name nginx -d --log-driver journald nginx
 ```
 
 ## Docker 默认的日志驱动 json-file

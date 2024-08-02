@@ -18,7 +18,14 @@ weight: 20
 
 1967 年，国际计量大会定义：1 秒是铯 133 原子基态的两个超精细能量间跃迁对应辐射的 9192631770 个周期的持续时间。
 
-## 时间格式
+# Timestamps
+
+> 参考：
+>
+> - [RFC 3339，Date and Time on the Internet: Timestamps](https://tools.ietf.org/html/rfc3339)
+> - [Wiki，Timestamp](https://en.wikipedia.org/wiki/Timestamp)
+
+**Timestamps(时间戳)** 是识别特定事件发生时间的字符序列或编码信息，通常给出 date(日期) 和 time(时间)，有时精确到一秒的一小部分。然而，时间戳不必基于某种绝对的时间概念。它们可以具有任何纪元，可以相对于任何任意时间，例如系统的开机时间，或相对于过去的某个任意时间。
 
 **日期**
 
@@ -30,35 +37,22 @@ weight: 20
 
 **日期和时间的组合表示法**
 
-合并表示时，要在时间前面加一大写字母T，如要表示北京时间2004年5月3日下午5点30分8秒，可以写成2004-05-03T17:30:08+08:00或20040503T173008+08。
+合并表示时，要在时间前面加一大写字母 T，如要表示北京时间 2004 年 5 月 3 日下午 5 点 30 分 8 秒，可以写成 `2004-05-03T17:30:08+08:00` 或 `20040503T173008+08`。
 
-# Timestamps
+# Unix time
 
 > 参考：
 >
-> - [RFC 3339](https://tools.ietf.org/html/rfc3339)
+> - [Wiki，Unix_time](https://en.wikipedia.org/wiki/Unix_time)
 > - [时间戳在线转换](https://www.bejson.com/convert/unix/)
 
-**Timestamps(时间戳)**
+**Unix time** 也叫做 **POSIX 时间** 或 **Epoch Time(纪元时间)**，是计算中广泛使用的日期和时间表示形式。它通过自 1970 年 1 月 1 日 Unix 纪元 00:00:00 UTC 以来经过的非闰秒数来测量时间。在现代计算中，值有时以更高的粒度存储，例如微秒或纳秒。
 
 <https://baike.baidu.com/item/unix> 时间戳
 
 <https://baike.baidu.com/item/2038> 年问题
 
-时间戳转换工具，可以把浮点型的毫秒数字串转换成真实时间
+时间戳转换工具，可以在 Unix-time 与 Timestamps 之间相互转换。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/vym7ql/1616165162261-f89b406f-0967-44d2-b496-baa6ebe57434.png)
 
-时间戳有两种格式
-
-以秒为单位的当前 UNIX 时间戳 # 1562757107, 1562757108, 1562757109
-
-$timestamp
-
-ISO 格式(zero UTC)当前时间戳 # 2019-10-21T06:05:50.000Z
-
-$isoTimestamp
-
-Epoch Time
-
-**Unix 时间(Unix Time)** 也叫做 **POSIX 时间** 或 **Epoch Time(纪元时间)**，是用来记录时间的流逝，定义为从 UTC 时间 1970 年 1 月 1 日 00:00 开始流逝的秒数，不考虑闰秒。

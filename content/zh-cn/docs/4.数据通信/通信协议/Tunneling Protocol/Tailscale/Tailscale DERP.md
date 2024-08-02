@@ -8,7 +8,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [公众号，自建 DERP 中继服务器，从此 Tailscale 畅通无阻](https://mp.weixin.qq.com/s/r5OQi9YreI-BFnClKhBR0w)
 > - [官方文档，自定义 DERP 服务器](https://tailscale.com/kb/1118/custom-derp-servers)
 
@@ -84,7 +84,7 @@ Tailscale 官方[内置了很多 DERP 服务器](https://controlplane.tailscale.
 
 Tailscale 开源了 DERP Server 的代码，将其称为 **DERPer**。我们可以自己部署 derper 以便让所有流量都通过自己的程序。
 
-> [!Tip] [Headscale](docs/4.数据通信/通信协议/Tunneling%20Protocol/Tailscale/Headscale.md) 包含了内置的 DERPer
+> [!Tip] [Headscale](/docs/4.数据通信/通信协议/Tunneling%20Protocol/Tailscale/Headscale.md) 包含了内置的 DERPer
 
 ## 部署 derper
 
@@ -104,12 +104,12 @@ Tailscale 开源了 DERP Server 的代码，将其称为 **DERPer**。我们可�
 推荐直接使用 Docker 来部署，我已经构建好了 Docker 镜像，直接部署就可以了：
 
 ```
-docker run --restart always \  
-  --name derper -p 12345:12345 -p 3478:3478/udp \  
-  -v /root/.acme.sh/xxxx/:/app/certs \  
-  -e DERP_CERT_MODE=manual \  
-  -e DERP_ADDR=12345 \  
-  -e DERP_DOMAIN=xxxx \  
+docker run --restart always \
+  --name derper -p 12345:12345 -p 3478:3478/udp \
+  -v /root/.acme.sh/xxxx/:/app/certs \
+  -e DERP_CERT_MODE=manual \
+  -e DERP_ADDR=12345 \
+  -e DERP_DOMAIN=xxxx \
   -d ghcr.io/yangchuansheng/derper:latest
 ```
 
@@ -126,9 +126,9 @@ docker run --restart always \
 查看容器日志：
 
 ```bash
-🐳  → docker logs -f derper  
-2022/03/26 11:36:28 no config path specified; using /var/lib/derper/derper.key  
-2022/03/26 11:36:28 derper: serving on :12345 with TLS  
+🐳  → docker logs -f derper
+2022/03/26 11:36:28 no config path specified; using /var/lib/derper/derper.key
+2022/03/26 11:36:28 derper: serving on :12345 with TLS
 2022/03/26 11:36:28 running STUN server on [::]:3478
 ```
 
@@ -150,38 +150,38 @@ docker run --restart always \
 我们可以直接使用本地的 YAML 配置文件，内容如下：
 
 ```yaml
-# /etc/headscale/derp.yaml  
-regions:  
-  900:  
-    regionid: 900  
-    regioncode: thk   
-    regionname: Tencent Hongkong   
-    nodes:  
-      - name: 900a  
-        regionid: 900  
-        hostname: xxxx  
-        ipv4: xxxx  
-        stunport: 3478  
-        stunonly: false  
-        derpport: 12345  
-      - name: 900b  
-        regionid: 900  
-        hostname: xxxx  
-        ipv4: xxxx  
-        stunport: 3478  
-        stunonly: false  
-        derpport: 12345  
-  901:  
-    regionid: 901  
-    regioncode: hs   
-    regionname: Huawei Shanghai   
-    nodes:  
-      - name: 901a  
-        regionid: 901  
-        hostname: xxxx  
-        ipv4: xxxx  
-        stunport: 3478  
-        stunonly: false  
+# /etc/headscale/derp.yaml
+regions:
+  900:
+    regionid: 900
+    regioncode: thk 
+    regionname: Tencent Hongkong 
+    nodes:
+      - name: 900a
+        regionid: 900
+        hostname: xxxx
+        ipv4: xxxx
+        stunport: 3478
+        stunonly: false
+        derpport: 12345
+      - name: 900b
+        regionid: 900
+        hostname: xxxx
+        ipv4: xxxx
+        stunport: 3478
+        stunonly: false
+        derpport: 12345
+  901:
+    regionid: 901
+    regioncode: hs 
+    regionname: Huawei Shanghai 
+    nodes:
+      - name: 901a
+        regionid: 901
+        hostname: xxxx
+        ipv4: xxxx
+        stunport: 3478
+        stunonly: false
         derpport: 12345
 ```
 
@@ -198,29 +198,29 @@ regions:
 接下来还需要修改 Headscale 的配置文件，引用上面的自定义 DERP 配置文件。需要修改的配置项如下：
 
 ```yaml
-# /etc/headscale/config.yaml  
-derp:  
-  # List of externally available DERP maps encoded in JSON  
-  urls:  
-  #  - https://controlplane.tailscale.com/derpmap/default  
-  
-  # Locally available DERP map files encoded in YAML  
-  #  
-  # This option is mostly interesting for people hosting  
-  # their own DERP servers:  
-  # https://tailscale.com/kb/1118/custom-derp-servers/  
-  #  
-  # paths:  
-  #   - /etc/headscale/derp-example.yaml  
-  paths:  
-    - /etc/headscale/derp.yaml  
-  
-  # If enabled, a worker will be set up to periodically  
-  # refresh the given sources and update the derpmap  
-  # will be set up.  
-  auto_update_enabled: true  
-  
-  # How often should we check for DERP updates?  
+# /etc/headscale/config.yaml
+derp:
+  # List of externally available DERP maps encoded in JSON
+  urls:
+  #  - https://controlplane.tailscale.com/derpmap/default
+
+  # Locally available DERP map files encoded in YAML
+  #
+  # This option is mostly interesting for people hosting
+  # their own DERP servers:
+  # https://tailscale.com/kb/1118/custom-derp-servers/
+  #
+  # paths:
+  #   - /etc/headscale/derp-example.yaml
+  paths:
+    - /etc/headscale/derp.yaml
+
+  # If enabled, a worker will be set up to periodically
+  # refresh the given sources and update the derpmap
+  # will be set up.
+  auto_update_enabled: true
+
+  # How often should we check for DERP updates?
   update_frequency: 24h
 ```
 
@@ -229,23 +229,23 @@ derp:
 修改完配置后，重启 headscale 服务：
 
 ```
-$ systemctl restart headscale
+systemctl restart headscale
 ```
 
 在 Tailscale 客户端上使用以下命令查看目前可以使用的 DERP 服务器：
 
 ```bash
-$ tailscale netcheck  
-  
-Report:  
-        * UDP: true  
-        * IPv4: yes, xxxxx:57068  
-        * IPv6: no  
-        * MappingVariesByDestIP: false  
-        * HairPinning: false  
-        * PortMapping:   
-        * Nearest DERP: Tencent Hongkong  
-        * DERP latency:  
+$ tailscale netcheck
+
+Report:
+        * UDP: true
+        * IPv4: yes, xxxxx:57068
+        * IPv6: no
+        * MappingVariesByDestIP: false
+        * HairPinning: false
+        * PortMapping: 
+        * Nearest DERP: Tencent Hongkong
+        * DERP latency:
                 - thk: 39.7ms (Tencent Hongkong)
 ```
 
@@ -256,36 +256,36 @@ Report:
 查看与通信对端的连接方式：
 
 ```bash
-$ tailscale status  
-10.1.0.5        coredns              default      linux   -  
-                carsondemacbook-pro  default      macOS   active; direct xxxx:2756; offline, tx 50424 rx 34056  
-                oneplus-8t           default      android active; relay "thk"; offline, tx 1608 rx 1552  
+$ tailscale status
+10.1.0.5        coredns              default      linux   -
+                carsondemacbook-pro  default      macOS   active; direct xxxx:2756; offline, tx 50424 rx 34056
+                oneplus-8t           default      android active; relay "thk"; offline, tx 1608 rx 1552
                 openwrt              default      linux   active; direct xxxx:2834; offline, tx 1403688 rx 1217620
 ```
 
 这个客户端是一台云主机，有 3 个通信对端，分别是 macOS、OpenWRT 与 Android 手机，macOS 和 OpenWRT 都处于电信家庭内网中，Android 手机使用的是电信流量。可以看到只有 Android 手机是通过自定义的 DERP 服务器来中继流量的，打洞成功率相当高。使用 ping 来测试连通性：
 
 ```bash
-$ ping 10.1.0.8  
-PING 10.1.0.8 (10.1.0.8) 56(84) bytes of data.  
-64 bytes from 10.1.0.8: icmp_seq=1 ttl=64 time=150 ms  
-64 bytes from 10.1.0.8: icmp_seq=2 ttl=64 time=131 ms  
-64 bytes from 10.1.0.8: icmp_seq=3 ttl=64 time=161 ms  
-64 bytes from 10.1.0.8: icmp_seq=4 ttl=64 time=137 ms  
-64 bytes from 10.1.0.8: icmp_seq=5 ttl=64 time=156 ms  
-64 bytes from 10.1.0.8: icmp_seq=6 ttl=64 time=169 ms  
-^C  
---- 10.1.0.8 ping statistics ---  
-6 packets transmitted, 6 received, 0% packet loss, time 5005ms  
+$ ping 10.1.0.8
+PING 10.1.0.8 (10.1.0.8) 56(84) bytes of data.
+64 bytes from 10.1.0.8: icmp_seq=1 ttl=64 time=150 ms
+64 bytes from 10.1.0.8: icmp_seq=2 ttl=64 time=131 ms
+64 bytes from 10.1.0.8: icmp_seq=3 ttl=64 time=161 ms
+64 bytes from 10.1.0.8: icmp_seq=4 ttl=64 time=137 ms
+64 bytes from 10.1.0.8: icmp_seq=5 ttl=64 time=156 ms
+64 bytes from 10.1.0.8: icmp_seq=6 ttl=64 time=169 ms
+^C
+--- 10.1.0.8 ping statistics ---
+6 packets transmitted, 6 received, 0% packet loss, time 5005ms
 rtt min/avg/max/mdev = 131.728/151.154/169.627/13.193 ms
 ```
 
 也可以使用 Tailscale 命令行工具来测试：
 
 ```bash
-$ tailscale ping 10.1.0.8  
-pong from oneplus-8t (10.1.0.8) via DERP(thk) in 104ms  
-pong from oneplus-8t (10.1.0.8) via DERP(thk) in 111ms  
+$ tailscale ping 10.1.0.8
+pong from oneplus-8t (10.1.0.8) via DERP(thk) in 104ms
+pong from oneplus-8t (10.1.0.8) via DERP(thk) in 111ms
 pong from oneplus-8t (10.1.0.8) via DERP(thk) in 105ms
 ```
 
@@ -294,12 +294,12 @@ pong from oneplus-8t (10.1.0.8) via DERP(thk) in 105ms
 如果当前 Tailscale 客户端所在主机开启了 IPv6，那么与手机便可以直接通过 IPv6 点对点连接：
 
 ```bash
-$ /Applications/Tailscale.app/Contents/MacOS/Tailscale status  
-                coredns              default      linux   active; direct xxxx:45986; offline, tx 124352 rx 185736  
-                oneplus-8t           default      android active; direct [240e:472:da0:24a2:a07f:2a67:2a1e:4475]:37237; offline, tx 125216 rx 20052  
-                openwrt              default      linux   active; direct [240e:390:caf:1870:c02c:e8ff:feb9:b0b]:41641; offline, tx 181992 rx 3910120  
-  
-$ /Applications/Tailscale.app/Contents/MacOS/Tailscale ping 10.1.0.8  
+$ /Applications/Tailscale.app/Contents/MacOS/Tailscale status
+                coredns              default      linux   active; direct xxxx:45986; offline, tx 124352 rx 185736
+                oneplus-8t           default      android active; direct [240e:472:da0:24a2:a07f:2a67:2a1e:4475]:37237; offline, tx 125216 rx 20052
+                openwrt              default      linux   active; direct [240e:390:caf:1870:c02c:e8ff:feb9:b0b]:41641; offline, tx 181992 rx 3910120
+
+$ /Applications/Tailscale.app/Contents/MacOS/Tailscale ping 10.1.0.8
 pong from oneplus-8t (10.1.0.8) via [240e:472:da0:24a2:a07f:2a67:2a1e:4475]:37237 in 62ms
 ```
 
@@ -312,97 +312,97 @@ pong from oneplus-8t (10.1.0.8) via [240e:472:da0:24a2:a07f:2a67:2a1e:4475]
 这个时候我们就只能从 derper 源码上动手脚了，找到 tailscale 仓库中的 `cmd/derper/cert.go` 文件，将与域名验证相关的内容删除或注释：
 
 ```go
-func (m *manualCertManager) getCertificate(hi *tls.ClientHelloInfo) (*tls.Certificate, error) {  
- //if hi.ServerName != m.hostname {  
- // return nil, fmt.Errorf("cert mismatch with hostname: %q", hi.ServerName)  
- //}  
- return m.cert, nil  
+func (m *manualCertManager) getCertificate(hi *tls.ClientHelloInfo) (*tls.Certificate, error) {
+ //if hi.ServerName != m.hostname {
+ // return nil, fmt.Errorf("cert mismatch with hostname: %q", hi.ServerName)
+ //}
+ return m.cert, nil
 }
 ```
 
 还需要创建自签名证书，可以通过脚本来创建：
 
 ```bash
-# build_cert.sh  
-  
-#!/bin/bash  
-  
-CERT_HOST=$1  
-CERT_DIR=$2  
-CONF_FILE=$3  
-  
-echo "[req]  
-default_bits  = 2048  
-distinguished_name = req_distinguished_name  
-req_extensions = req_ext  
-x509_extensions = v3_req  
-prompt = no  
-  
-[req_distinguished_name]  
-countryName = XX  
-stateOrProvinceName = N/A  
-localityName = N/A  
-organizationName = Self-signed certificate  
-commonName = $CERT_HOST: Self-signed certificate  
-  
-[req_ext]  
-subjectAltName = @alt_names  
-  
-[v3_req]  
-subjectAltName = @alt_names  
-  
-[alt_names]  
-IP.1 = $CERT_HOST  
-" > "$CONF_FILE"  
-  
-mkdir -p "$CERT_DIR"  
+# build_cert.sh
+
+#!/bin/bash
+
+CERT_HOST=$1
+CERT_DIR=$2
+CONF_FILE=$3
+
+echo "[req]
+default_bits  = 2048
+distinguished_name = req_distinguished_name
+req_extensions = req_ext
+x509_extensions = v3_req
+prompt = no
+
+[req_distinguished_name]
+countryName = XX
+stateOrProvinceName = N/A
+localityName = N/A
+organizationName = Self-signed certificate
+commonName = $CERT_HOST: Self-signed certificate
+
+[req_ext]
+subjectAltName = @alt_names
+
+[v3_req]
+subjectAltName = @alt_names
+
+[alt_names]
+IP.1 = $CERT_HOST
+" > "$CONF_FILE"
+
+mkdir -p "$CERT_DIR"
 openssl req -x509 -nodes -days 730 -newkey rsa:2048 -keyout "$CERT_DIR/$CERT_HOST.key" -out "$CERT_DIR/$CERT_HOST.crt" -config "$CONF_FILE"
 ```
 
 重新编写 Dockerfile，将 derper 的域名设置为 `127.0.0.1`：
 
 ```dockerfile
-FROM golang:latest AS builder  
-  
-WORKDIR /app  
-  
-# ========= CONFIG =========  
-# - download links  
-ENV MODIFIED_DERPER_GIT=https://github.com/yangchuansheng/ip_derper.git  
-ENV BRANCH=ip_derper  
-# ==========================  
-  
-# build modified derper  
-RUN git clone -b $BRANCH $MODIFIED_DERPER_GIT tailscale --depth 1 && \  
-    cd /app/tailscale/cmd/derper && \  
-    /usr/local/go/bin/go build -ldflags "-s -w" -o /app/derper && \  
-    cd /app && \  
-    rm -rf /app/tailscale  
-  
-FROM ubuntu:20.04  
-WORKDIR /app  
-  
-# ========= CONFIG =========  
-# - derper args  
-ENV DERP_HOST=127.0.0.1  
-ENV DERP_CERTS=/app/certs/  
-ENV DERP_STUN true  
-ENV DERP_VERIFY_CLIENTS false  
-# ==========================  
-  
-# apt  
-RUN apt-get update && \  
-    apt-get install -y openssl curl  
-  
-COPY build_cert.sh /app/  
-COPY --from=builder /app/derper /app/derper  
-  
-# build self-signed certs && start derper  
-CMD bash /app/build_cert.sh $DERP_HOST $DERP_CERTS /app/san.conf && \  
-    /app/derper --hostname=$DERP_HOST \  
-    --certmode=manual \  
-    --certdir=$DERP_CERTS \  
-    --stun=$DERP_STUN  \  
+FROM golang:latest AS builder
+
+WORKDIR /app
+
+# ========= CONFIG =========
+# - download links
+ENV MODIFIED_DERPER_GIT=https://github.com/yangchuansheng/ip_derper.git
+ENV BRANCH=ip_derper
+# ==========================
+
+# build modified derper
+RUN git clone -b $BRANCH $MODIFIED_DERPER_GIT tailscale --depth 1 && \
+    cd /app/tailscale/cmd/derper && \
+    /usr/local/go/bin/go build -ldflags "-s -w" -o /app/derper && \
+    cd /app && \
+    rm -rf /app/tailscale
+
+FROM ubuntu:20.04
+WORKDIR /app
+
+# ========= CONFIG =========
+# - derper args
+ENV DERP_HOST=127.0.0.1
+ENV DERP_CERTS=/app/certs/
+ENV DERP_STUN true
+ENV DERP_VERIFY_CLIENTS false
+# ==========================
+
+# apt
+RUN apt-get update && \
+    apt-get install -y openssl curl
+
+COPY build_cert.sh /app/
+COPY --from=builder /app/derper /app/derper
+
+# build self-signed certs && start derper
+CMD bash /app/build_cert.sh $DERP_HOST $DERP_CERTS /app/san.conf && \
+    /app/derper --hostname=$DERP_HOST \
+    --certmode=manual \
+    --certdir=$DERP_CERTS \
+    --stun=$DERP_STUN  \
     --verify-clients=$DERP_VERIFY_CLIENTS
 ```
 
@@ -417,14 +417,14 @@ CMD bash /app/build_cert.sh $DERP_HOST $DERP_CERTS /app/san.conf && \
 查看容器日志：
 
 ```bash
-🐳  → docker logs -f derper  
-Generating a RSA private key  
-.......................................+++++  
-..............+++++  
-writing new private key to '/app/certs//127.0.0.1.key'  
------  
-2022/03/26 14:30:31 no config path specified; using /var/lib/derper/derper.key  
-2022/03/26 14:30:31 derper: serving on :443 with TLS  
+🐳  → docker logs -f derper
+Generating a RSA private key
+.......................................+++++
+..............+++++
+writing new private key to '/app/certs//127.0.0.1.key'
+-----
+2022/03/26 14:30:31 no config path specified; using /var/lib/derper/derper.key
+2022/03/26 14:30:31 derper: serving on :443 with TLS
 2022/03/26 14:30:31 running STUN server on [::]:3478
 ```
 
@@ -437,24 +437,24 @@ writing new private key to '/app/certs//127.0.0.1.key'
 除了 derper 之外，Tailscale 客户端还需要**跳过域名验证**，这个需要在 DERP 的配置中设置。而 Headscale 的本地 YAML 文件目前还不支持这个配置项，所以没办法，咱只能使用在线 URL 了。JSON 配置内容如下：
 
 ```
-{  
-  "Regions": {  
-    "901": {  
-      "RegionID": 901,  
-      "RegionCode": "ali-sh",  
-      "RegionName": "Aliyun Shanghai",  
-      "Nodes": [  
-        {  
-          "Name": "901a",  
-          "RegionID": 901,  
-          "DERPPort": 443,  
-          "HostName": "xxxx",  
-          "IPv4": "xxxx",  
-          "InsecureForTests": true  
-        }  
-      ]  
-    }  
-  }  
+{
+  "Regions": {
+    "901": {
+      "RegionID": 901,
+      "RegionCode": "ali-sh",
+      "RegionName": "Aliyun Shanghai",
+      "Nodes": [
+        {
+          "Name": "901a",
+          "RegionID": 901,
+          "DERPPort": 443,
+          "HostName": "xxxx",
+          "IPv4": "xxxx",
+          "InsecureForTests": true
+        }
+      ]
+    }
+  }
 }
 ```
 
@@ -468,30 +468,30 @@ writing new private key to '/app/certs//127.0.0.1.key'
 接下来还需要修改 Headscale 的配置文件，引用上面的自定义 DERP 的 URL。需要修改的配置项如下：
 
 ```bash
-# /etc/headscale/config.yaml  
-derp:  
-  # List of externally available DERP maps encoded in JSON  
-  urls:  
-  #  - https://controlplane.tailscale.com/derpmap/default  
-    - https://xxxxx/derp.json  
-  
-  # Locally available DERP map files encoded in YAML  
-  #  
-  # This option is mostly interesting for people hosting  
-  # their own DERP servers:  
-  # https://tailscale.com/kb/1118/custom-derp-servers/  
-  #  
-  # paths:  
-  #   - /etc/headscale/derp-example.yaml  
-  paths:  
-    - /etc/headscale/derp.yaml  
-  
-  # If enabled, a worker will be set up to periodically  
-  # refresh the given sources and update the derpmap  
-  # will be set up.  
-  auto_update_enabled: true  
-  
-  # How often should we check for DERP updates?  
+# /etc/headscale/config.yaml
+derp:
+  # List of externally available DERP maps encoded in JSON
+  urls:
+  #  - https://controlplane.tailscale.com/derpmap/default
+    - https://xxxxx/derp.json
+
+  # Locally available DERP map files encoded in YAML
+  #
+  # This option is mostly interesting for people hosting
+  # their own DERP servers:
+  # https://tailscale.com/kb/1118/custom-derp-servers/
+  #
+  # paths:
+  #   - /etc/headscale/derp-example.yaml
+  paths:
+    - /etc/headscale/derp.yaml
+
+  # If enabled, a worker will be set up to periodically
+  # refresh the given sources and update the derpmap
+  # will be set up.
+  auto_update_enabled: true
+
+  # How often should we check for DERP updates?
   update_frequency: 24h
 ```
 
@@ -502,76 +502,78 @@ derp:
 在 Tailscale 客户端上使用以下命令查看目前可以使用的 DERP 服务器：
 
 ```bash
-$ tailscale netcheck  
-  
-Report:  
- * UDP: true  
- * IPv4: yes, 192.168.100.1:49656  
- * IPv6: no  
- * MappingVariesByDestIP: true  
- * HairPinning: false  
- * PortMapping: UPnP  
- * Nearest DERP: Home Hangzhou  
- * DERP latency:  
-  - home: 9.7ms   (Home Hangzhou)  
-  -  hs: 25.2ms  (Huawei Shanghai)  
+$ tailscale netcheck
+
+Report:
+ * UDP: true
+ * IPv4: yes, 192.168.100.1:49656
+ * IPv6: no
+ * MappingVariesByDestIP: true
+ * HairPinning: false
+ * PortMapping: UPnP
+ * Nearest DERP: Home Hangzhou
+ * DERP latency:
+  - home: 9.7ms   (Home Hangzhou)
+  -  hs: 25.2ms  (Huawei Shanghai)
   - thk: 43.5ms  (Tencent Hongkong)
 ```
 
 再次查看与通信对端的连接方式：
 
 ```bash
-$ tailscale status  
-                coredns              default      linux   active; direct xxxx:45986; offline, tx 131012 rx 196020  
-                oneplus-8t           default      android active; relay "home"; offline, tx 211900 rx 22780  
+$ tailscale status
+                coredns              default      linux   active; direct xxxx:45986; offline, tx 131012 rx 196020
+                oneplus-8t           default      android active; relay "home"; offline, tx 211900 rx 22780
                 openwrt              default      linux   active; direct 192.168.100.254:41641; offline, tx 189868 rx 4074772
 ```
 
 可以看到这一次 Tailscale 自动选择了一个线路最优的**国内的** DERP 服务器作为中继，可以测试一下延迟：
 
 ```bash
-$ tailscale ping 10.1.0.8  
-pong from oneplus-8t (10.1.0.8) via DERP(home) in 30ms  
-pong from oneplus-8t (10.1.0.8) via DERP(home) in 45ms  
+$ tailscale ping 10.1.0.8
+pong from oneplus-8t (10.1.0.8) via DERP(home) in 30ms
+pong from oneplus-8t (10.1.0.8) via DERP(home) in 45ms
 pong from oneplus-8t (10.1.0.8) via DERP(home) in 30ms
 ```
 
 完美！这里的 home 当然是我的家庭宽带，部署方式与上面所说的国内云主机类似，你需要额外开启公网的端口映射（12345/tcp, 3478/udp）。还有一点需要注意的是配置内容：
+
 ```json
-{  
-  "Regions": {  
-    "901": {  
-      "RegionID": 901,  
-      "RegionCode": "ali-sh",  
-      "RegionName": "Aliyun Shanghai",  
-      "Nodes": [  
-        {  
-          "Name": "901a",  
-          "RegionID": 901,  
-          "DERPPort": 443,  
-          "HostName": "xxxx",  
-          "IPv4": "xxxx",  
-          "InsecureForTests": true  
-        }  
-      ]  
-    },  
-    "902": {  
-      "RegionID": 902,  
-      "RegionCode": "home",  
-      "RegionName": "Home Hangzhou",  
-      "Nodes": [  
-        {  
-          "Name": "902a",  
-          "RegionID": 902,  
-          "DERPPort": 12345,  
-          "HostName": "xxxx",  
-          "InsecureForTests": true  
-        }  
-      ]  
-    }  
-  }  
+{
+  "Regions": {
+    "901": {
+      "RegionID": 901,
+      "RegionCode": "ali-sh",
+      "RegionName": "Aliyun Shanghai",
+      "Nodes": [
+        {
+          "Name": "901a",
+          "RegionID": 901,
+          "DERPPort": 443,
+          "HostName": "xxxx",
+          "IPv4": "xxxx",
+          "InsecureForTests": true
+        }
+      ]
+    },
+    "902": {
+      "RegionID": 902,
+      "RegionCode": "home",
+      "RegionName": "Home Hangzhou",
+      "Nodes": [
+        {
+          "Name": "902a",
+          "RegionID": 902,
+          "DERPPort": 12345,
+          "HostName": "xxxx",
+          "InsecureForTests": true
+        }
+      ]
+    }
+  }
 }
 ```
+
 与国内云主机相比，家庭宽带的配置有两点不同：
 
 - 需要删除 `IPv4` 配置项。因为家用宽带的公网 IP 是动态变化的，所以你需要使用 **DDNS** 来动态解析公网 IP。
@@ -627,13 +629,13 @@ CMD /app/derper --hostname=![](https://notes-learning.oss-cn-beijing.aliyuncs.
 默认情况下 `--verify-clients` 参数设置的是 `false`。我们不需要对 Dockerfile 内容做任何改动，只需在容器启动时加上环境变量即可，将之前的启动命令修改一下：
 
 ```bash
-docker run --restart always \  
-  --name derper -p 12345:12345 -p 3478:3478/udp \  
-  -v /root/.acme.sh/xxxx/:/app/certs \  
-  -e DERP_CERT_MODE=manual \  
-  -e DERP_ADDR=12345 \  
-  -e DERP_DOMAIN=xxxx \  
-  -e DERP_VERIFY_CLIENTS=true \  
+docker run --restart always \
+  --name derper -p 12345:12345 -p 3478:3478/udp \
+  -v /root/.acme.sh/xxxx/:/app/certs \
+  -e DERP_CERT_MODE=manual \
+  -e DERP_ADDR=12345 \
+  -e DERP_DOMAIN=xxxx \
+  -e DERP_VERIFY_CLIENTS=true \
   -d ghcr.io/yangchuansheng/derper:latest
 ```
 
