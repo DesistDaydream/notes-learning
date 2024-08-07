@@ -73,7 +73,7 @@ title: VS Code 配置详解
 
 **configurations**
 
-- **env**(STRING) # 指定调试时的工作目录。
+- **cwd**(STRING) # 指定调试时的工作目录。
   - 在程序中指定某个需要读取的文件路径时，若 env 为空则读取文件可能会失败。因为调试程序默认以运行文件为当前工作目录。
   - 可以设置为 `${workspaceFolder}` 则让调试程序以当前工作空间目录作为调试时的工作目录。
 
@@ -90,6 +90,7 @@ title: VS Code 配置详解
       "env": {
         "NAMESPACE": "default"
       },
+      "cwd": "${workspaceRoot}"
       "args": [
         "alidns",
         "-d",
