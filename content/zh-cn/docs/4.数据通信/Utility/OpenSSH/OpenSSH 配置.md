@@ -9,8 +9,8 @@ weight: 2
 
 > 参考：
 >
-> - [官方文档，手册-sshd_config](https://man.openbsd.org/sshd_config)
-> - [官方文档，手册-ssh_config](https://man.openbsd.org/ssh_config)
+> - [官方文档，手册 - sshd_config](https://man.openbsd.org/sshd_config)
+> - [官方文档，手册 - ssh_config](https://man.openbsd.org/ssh_config)
 
 # sshd_config 文件
 
@@ -33,6 +33,8 @@ weight: 2
 **PermitTunnel**(STRING) # 指定是否允许 tun 设备转发。可用的值有 yes、point-to-point、ethernet、no。`默认值: no`
 
 - https://man.openbsd.org/sshd_config#PermitTunnel
+
+**GatewayPorts** # 指定是否允许远程主机连接到为客户端转发的端口。
 
 # ssh_config 文件
 

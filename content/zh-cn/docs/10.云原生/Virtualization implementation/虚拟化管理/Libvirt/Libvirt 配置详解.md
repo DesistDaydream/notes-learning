@@ -18,7 +18,7 @@ uri_aliases = [
 virsh -c vs-1 list
 ```
 
-
+**log_level**(INT) # 程序运行日志的输出级别。`默认值: 2`。1 debug, 2 information, 3 warnings, 4 errors
 
 
 
