@@ -15,6 +15,10 @@ weight: 20
 
 在 https://apifox.com/help/pre-post-processors-and-scripts/scripts/api-references/pm-reference#pm 可以看到 Apifox 对 pm 对象的描述文档
 
+# 脚本读取/修改接口请求信息
+
+https://apifox.com/help/pre-post-processors-and-scripts/scripts/examples/handling-request
+
 # 自带的动态变量
 
 > 参考：
