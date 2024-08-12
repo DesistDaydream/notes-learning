@@ -11,6 +11,7 @@ weight: 1
 >
 > - [Manual(手册)，iptables(8)](https://man7.org/linux/man-pages/man8/iptables.8.html)
 > - [Netfilter 官方文档，iptables 教程](https://www.frozentux.net/iptables-tutorial/iptables-tutorial.html)
+> - https://www.zsythink.net/archives/1199
 
 iptables 是 Netfilter 团队开发的一组用于与 netfilter 模块进行交互的 CLI 工具，其中包括 iptables、ip6tables、arptables、ebtables 等。
 

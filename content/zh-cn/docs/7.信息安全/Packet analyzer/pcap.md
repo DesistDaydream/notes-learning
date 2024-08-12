@@ -43,3 +43,11 @@ libpcap 是 [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20O
   - `yum install libpcap-devel`
 
 libpcap 与 [TCPDump](/docs/7.信息安全/Packet%20analyzer/TCPDump/TCPDump.md) 项目一起进行维护
+
+# 其它抓包工具
+
+**netcap** # 一个基于 [BCC 工具集](/docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/BCC%20工具集.md)，可对含skb作为参数的系统函数，或者基于 [DPDK](/docs/4.数据通信/DPDK/DPDK.md) 的mbuf抓包分析的工具。
+
+- https://github.com/bytedance/netcap
+- [公众号 - 深入浅出BPF，字节跳动开源Linux内核网络抓包工具netcap](https://mp.weixin.qq.com/s/ezMEjx3mzHOaxvfMQwkn9g)
+

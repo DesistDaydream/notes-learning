@@ -11,7 +11,7 @@ tags:
 
 > 参考：
 >
-> - [官方文档，概念-数据模型](https://prometheus.io/docs/concepts/data_model/)
+> - [官方文档，概念 - 数据模型](https://prometheus.io/docs/concepts/data_model/)
 > - [yunlzheng 文档](https://yunlzheng.gitbook.io/prometheus-book/parti-prometheus-ji-chu/promql)
 
 Prometheus 从根本上将所有数据存储为 [时间序列数据](/docs/5.数据存储/数据库/时间序列数据/时间序列数据.md)：属于同一度量标准和同一组标注维度的带有时间戳的值流。除了存储的时间序列外，Prometheus 可能会生成临时派生的时间序列作为查询的结果。
@@ -20,7 +20,7 @@ Prometheus 从根本上将所有数据存储为 [时间序列数据](/docs/5.数
 
 > 参考：
 >
-> - [Wiki](https://en.wikipedia.org/wiki/Time_series)
+> - [Wiki, Time series](https://en.wikipedia.org/wiki/Time_series)
 > - [InfluxDB 对时间序列数据的定义](https://www.influxdata.com/what-is-time-series-data/)
 > - [这是论文](http://get.influxdata.com/rs/972-GDU-533/images/why%20time%20series.pdf)
 
@@ -55,14 +55,16 @@ Prometheus 会将所有采集到的样本数据以 **TimeSeries(时间序列)** 
     <------------------ 时间 ---------------->
 ```
 
-在 TimeSeries(时间序列) 中的每一个点称为一个 Sample(样本)，**Sample(样本)** 与 **Metric(指标) 构成了时间序列数据**，每条时间序列数据由这两部分组成：
+在 TimeSeries(时间序列) 中的每一个点称为一个 Sample(样本)，**Sample(样本)** 与 **Metric(指标)** 构成了**时间序列数据**，每条时间序列数据由这两部分组成：
 
 > 下面这个例子可以看到，Prometheus 返回的时间序列数据主要有两个字段，resultType(结果类型) 与 result(结果)。result 就是这条时间序列的数据内容
-> 而 result 又分为 metric 和 value。其中 value 就是指的 sample
+> 而 result 又分为 metric 和 value。其中 value 就是指的 sample.
+> 
+> 可以在 [Querying API](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20API/Querying%20API.md) 找到更多 Prometheus 返回的数据格式信息
 
 ```json
 // 获取 prometheus_http_requests_total 指标。发送GET请求
-// http://172.38.40.244:30001/api/v1/query?query=prometheus_http_requests_total
+// http://localhost:9090/api/v1/query?query=prometheus_http_requests_total
 // 获取如下结果
 {
   "status": "success",
@@ -123,9 +125,9 @@ http_request_total{status="200", method="POST"}=1434417561287 => 4785
 {__name__=<Metrics Name>, <Label Name>=<Label Value>, ...}
 ```
 
-1. **Metrics Name(指标的名称)** # 可以反映被监控数据的含义（比如，http_request_total - 表示当前系统接收到的 HTTP 请求总量）。指标名称只能由 ASCII 字符、数字、下划线以及冒号组成并必须符合正则表达式\[a-zA-Z\_:]\[a-zA-Z0-9\_:]\*。
-2. **LabelSet(标签集)** # 反映了当前样本的特征维度，通过这些维度 Prometheus 可以对样本数据进行过滤，聚合等。标签的名称只能由 ASCII 字符、数字以及下划线组成并满足正则表达式\[a-zA-Z\_]\[a-zA-Z0-9\_]\*。
-3. 其中以\_\_作为前缀的标签(两个\_)，是获取到 metrics 后自动生成的原始标签。标签的值则可以包含任何 Unicode 编码的字符。在 Prometheus 的底层实现中指标名称实际上是以\_\_name\_\_=的形式保存在数据库中的，详见文章最后的图例
+1. **Metrics Name(指标的名称)** # 可以反映被监控数据的含义（比如，http_request_total - 表示当前系统接收到的 HTTP 请求总量）。指标名称只能由 ASCII 字符、数字、下划线以及冒号组成并必须符合正则表达式 `[a-zA-Z_:][a-zA-Z0-9_:]*`。
+2. **LabelSet(标签集)** # 反映了当前样本的特征维度，通过这些维度 Prometheus 可以对样本数据进行过滤，聚合等。标签的名称只能由 ASCII 字符、数字以及下划线组成并满足正则表达式 `[a-zA-Z_][a-zA-Z0-9_]*`。
+3. 其中以 `__` 作为前缀的标签(两个 `_`)，是获取到 metrics 后自动生成的原始标签。标签的值则可以包含任何 Unicode 编码的字符。在 Prometheus 的底层实现中指标名称实际上是以 `__name__=` 的形式保存在数据库中的，详见文章最后的图例
 
 因此以下两种方式均表示的同一条 time-series ：
 
@@ -143,6 +145,26 @@ type LabelSet map[LabelName]LabelValue
 type LabelName string
 type LabelValue string
 ```
+
+### Metric 与 Label 的命名
+
+> 参考：
+>
+> - [官方文档，最佳实践 - Metric 与 Label 的命名](https://prometheus.io/docs/practices/naming/)
+
+> [!Warning]
+> 由于 Label 的每一个唯一组合都代表一条新的实践序列，这会显著增加储存的数据量。不要使用 Label 储存具有 high cardinalit(高基数) 的维度，e.g. 用户 ID、电子邮件地址、etc. 其他任何可能具有无限的值。
+>
+> 官方原文：**CAUTION:** Remember that every unique combination of key-value label pairs represents a new time series, which can dramatically increase the amount of data stored. Do not use labels to store dimensions with high cardinality (many different label values), such as user IDs, email addresses, or other unbounded sets of values.
+
+不同类型的 Metrics 通常有各自命名建议，可以在下文 Metrics 的类型中找到描述。简单来说 Counter 类型一般以 `_total` 或 `_count` 结尾。
+
+Label 用来区分被测量目标的特征，比如
+
+- api_http_requests_total 根据请求的类型设计标签: `operation="create|update|delete|... etc."`
+- api_request_duration_seconds 根据请求的阶段设计标签: `stage="extract|transform|load|... etc."`
+
+> Notes: 标签名称的设计不应该放在指标名称中
 
 ## 白话说
 
@@ -191,7 +213,7 @@ Counter 是一个简单但有强大的工具，例如我们可以在应用程序
 
 `topk(10, http_requests_total)`
 
-## Gauge(仪表盘) - 可增可减的 Gauge
+## Gauge(计量器) - 可增可减的 Gauge
 
 与 Counter 不同，Gauge 类型的指标侧重于反应系统的当前状态。因此这类指标的样本数据可增可减。常见指标如：node_memory_MemFree(主机当前空闲的内容大小)、node_memory_MemAvailable(可用内存大小)都是 Gauge 类型的监控指标。
 
@@ -211,7 +233,7 @@ Counter 是一个简单但有强大的工具，例如我们可以在应用程序
 
 > 参考：
 >
-> - [官方文档](https://prometheus.io/docs/practices/histograms/)
+> - [官方文档，最佳实践 - 直方图](https://prometheus.io/docs/practices/histograms/)
 > - [云原生实验室](https://fuckcloudnative.io/posts/prometheus-histograms/)
 
 除了 Counter 和 Gauge 类型的监控指标以外，Prometheus 还定义了 Histogram 和 Summary 的指标类型。Histogram 和 Summary 主用用于统计和分析样本的分布情况。
@@ -287,7 +309,7 @@ bucket 可以理解为是对数据指标值域的一个划分，划分的依据�
 
 与 Histogram 类型类似，用于表示一段时间内的数据采样结果（通常是请求持续时间或响应大小等），但它 bucket 表示分位数（通过客户端计算，然后展示出来），而不是通过区间来计算。
 
-例如，指标 prometheus_tsdb_wal_fsync_duration_seconds 的指标类型为 Summary。 它记录了 Prometheus Server 中 wal_fsync 处理的处理时间，通过访问 Prometheus Serve r 的 /metrics 地址，可以获取到以下监控样本数据：
+例如，指标 prometheus_tsdb_wal_fsync_duration_seconds 的指标类型为 Summary。 它记录了 Prometheus Server 中 wal_fsync 处理的处理时间，通过访问 Prometheus Server 的 /metrics 地址，可以获取到以下监控样本数据：
 
 ```text
 # HELP prometheus_tsdb_wal_fsync_duration_seconds Duration of WAL fsync.
@@ -303,24 +325,18 @@ prometheus_tsdb_wal_fsync_duration_seconds_count 216
 
 ### Summary 类型 与 Histogram 类型 的异同
 
-1. 两类样本同样会反应当前指标的记录的总数(以\_count 作为后缀)以及其值的总量（以\_sum 作为后缀）
+1. 两类样本同样会反应当前指标的记录的总数(以 `_count` 作为后缀)以及其值的总量（以 `_sum` 作为后缀）
 2. 不同在于 Histogram 指标直接反应了在不同区间内样本的个数，区间通过标签 len 进行定义。
 3. 对于分位数的计算而言，Histogram 通过 histogram_quantile 函数是在服务器端计算的分位数。 而 Sumamry 的分位数则是直接在客户端计算完成。
 4. Summary 在通过 PromQL 进行查询时有更好的性能表现，而 Histogram 则会消耗更多的资源。反之对于提供指标的服务而言，Histogram 消耗的资源更少。在选择这两种方式时用户应该按照自己的实际场景进行选择。
 
-# Prometheus 底层保存的时间序列数据的样例
-
-详见 [Querying API](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20API/Querying%20API.md)
-
-下面红框的地方就是
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/storage/1616069604244-2f845e27-61ec-4a5b-ab9a-0634bf8907b2.jpeg)
-
-# Prometheus 格式的 Metrics 详解
+# Prometheus 的 Metrics 格式详解
 
 > 参考：
 >
-> - [官方文档](https://prometheus.io/docs/instrumenting/exposition_formats/)
+> - [官方文档，instrumenting - exposition_formats](https://prometheus.io/docs/instrumenting/exposition_formats/)
+
+## 原生文本格式
 
 通过各种 Exporter 暴露的 HTTP 服务，Prometheus 可以采集到 当前时间 主机所有监控指标的样本数据。数据格式示例如下：
 
@@ -341,22 +357,22 @@ Note：上面通过 http 采集到的数据就是文本格式的 Metrics，格�
 
 1. `# HELP` 时间序列名称 时间序列描述
 2. `# TYPE` 时间序列名称 时间序列类型
-3. 非#开头的每一行表示当前 Node Exporter 采集到的一个监控样本：node_cpu 和 node_load1 表明了当前指标的名称、大括号中的标签则反映了当前样本的一些特征和维度、浮点数则是该监控样本的具体值。
+3. 非 `#` 开头的每一行表示当前 Node Exporter 采集到的一个监控样本：node_cpu 和 node_load1 表明了当前指标的名称、大括号中的标签则反映了当前样本的一些特征和维度、浮点数则是该监控样本的具体值。
    1. 如果有多个 Metrics 的项目，则会有多行
 
 主要由三个部分组成：样本的一般注释信息（HELP），样本的类型注释信息（TYPE）和样本。Prometheus 会对 Exporter 响应的内容逐行解析：
 
 如果当前行以 `# HELP` 开始，Prometheus 将会按照以下规则对内容进行解析，得到当前的指标名称以及相应的说明信息：
 
-## # HELP
+### \# HELP
 
 如果当前行以 `# TYPE` 开始，Prometheus 会按照以下规则对内容进行解析，得到当前的指标名称以及指标类型:
 
-## # TYPE
+### \# TYPE
 
 TYPE 注释行必须出现在指标的第一个样本之前。如果没有明确的指标类型需要返回为 untyped。
 
-## MetricsName 与 Metrics 的值
+### MetricsName 与 Metrics 的值
 
 除了 `#` 开头的所有行都会被视为是监控样本数据。 每一行样本需要满足以下格式规范:
 
@@ -365,3 +381,14 @@ metric_name [{ label_name = "label_value" { , label_name = "label_value" } [ ,..
 ```
 
 其中 metric_name 和 label_name 必须遵循 PromQL 的格式规范要求。value 是一个 float 格式的数据，timestamp 的类型为 int64（从 1970-01-01 00:00:00 以来的毫秒数），timestamp 为可选默认为当前时间。具有相同 metric_name 的样本必须按照一个组的形式排列，并且每一行必须是唯一的指标名称和标签键值对组合。
+
+## OpemMetrics 文本格式
+
+
+## Protobuf 格式
+
+期版本的 Prometheus 还支持基于 Protocol Buffers（又名 Protobuf）的展示格式。在 Prometheus 2.0 中，Protobuf 格式被标记为已弃用，并且 Prometheus 停止从所述公开格式中摄取样本。
+
+然而，Prometheus 添加了新的实验功能（v2.40.0 与 v2.50.0 开始），其中 Protobuf 格式被认为是最可行的选择。让 Prometheus 再次接受 Protocol Buffers。
+
+

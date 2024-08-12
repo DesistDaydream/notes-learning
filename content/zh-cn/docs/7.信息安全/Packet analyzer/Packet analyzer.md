@@ -15,10 +15,10 @@ weight: 1
 
 ## Packet Analyzer 的实现
 
-各种实现的对比：<https://en.wikipedia.org/wiki/Comparison_of_packet_analyzers>
+各种实现的对比: https://en.wikipedia.org/wiki/Comparison_of_packet_analyzers
 
-- tcpdump
-- Wireshark
+- [TCPDump](/docs/7.信息安全/Packet%20analyzer/TCPDump/TCPDump.md)
+- [WireShark](/docs/7.信息安全/Packet%20analyzer/WireShark/WireShark.md)
 - ......等等
 
 # 抓包工具
