@@ -1,5 +1,8 @@
 ---
 title: MinIO
+linkTitle: MinIO
+date: 2024-08-13T14:23
+weight: 1
 ---
 
 # 概述
@@ -9,6 +12,14 @@ title: MinIO
 > - [官网](https://min.io/)
 > - [GitHub 项目，minio/minio](https://github.com/minio/minio)
 > - <https://mp.weixin.qq.com/s/aRTE_UUQ0GMXhqiemxQnsg>
+
+采集指标
+
+```bash
+curl -H "Authorization: Bearer ${TOKEN}" http://localhost:9000/minio/v2/metrics/cluster
+```
+
+> Notes: TOKEN 通过 `mc admin prometheus generate ${REMOTE}` 命令生成
 
 # MinIO 部署
 

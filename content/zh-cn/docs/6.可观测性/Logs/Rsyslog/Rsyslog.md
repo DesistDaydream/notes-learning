@@ -14,7 +14,7 @@ title: Rsyslog
 > - [Manual(手册),rsyslogd(8)](https://man7.org/linux/man-pages/man8/rsyslogd.8.html)
 > - [Arch 文档,Systemd-Journal-配合 syslog 使用](<https://wiki.archlinux.org/title/Systemd_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)/Journal_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)>)
 
-**Rocket-fast system for log processing(像火箭一样快的日志处理系统，简称 rsyslog)**是一款开源应用程序，用于 UNIX 和 类 Unix 操作系统，可以在 IP 网络中转发日志消息。Rsyslog 实现了基本的 Syslog 协议，并扩展了丰富的功能，比如基于内容的过滤、排队处理离线输出、支持模块、灵活的配置、使用 TCP 传输 等等.
+**Rocket-fast system for log processing(像火箭一样快的日志处理系统，简称 rsyslog)** 是一款开源应用程序，用于 UNIX 和 类 Unix 操作系统，可以在 IP 网络中转发日志消息。Rsyslog 实现了基本的 Syslog 协议，并扩展了丰富的功能，比如基于内容的过滤、排队处理离线输出、支持模块、灵活的配置、使用 TCP 传输 等等.
 
 RsysLog 是一个日志统一管理的程序。通过 rsyslogd 这个守护进程提供服务，rsyslogd 程序是对 syslogd 的扩展，提供了更多的功能和可靠性。
 
@@ -195,6 +195,7 @@ Linux 相关的日志格式一般为：
 - **/etc/rsyslog.d/\*.conf** # rsyslog.conf 可以包含该目录下的配置文件。常用于定义单独程序的日志配置，以便日后方便管理
 
 **/etc/sysconfig/rsyslog** # rsyslogd 运行时参数配置
+
 **/dev/log** # 一个 Unix Domain Socket，rsyslogd 从这个 Socket 中读取日志消息。这是传统的日志服务 Socket。在 CentOS 8 及以后的版本中，该文件是一个指向 /run/systemd/journal/syslog 文件的软链接
 
 - **/run/systemd/journal/syslog** # rsyslogd 会持续监听该 Socket，当有数据传入时，使用 recvmsg() 调用获取日志数据。

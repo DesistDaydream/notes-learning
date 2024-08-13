@@ -125,7 +125,7 @@ COMMAND
 
 FLAGS
 
-- **--expiry-days VALUE **# 创建对象后保留的天数。MinIO 在经过指定的天数后标记要删除的对象
+- **--expiry-days VALUE** # 创建对象后保留的天数。MinIO 在经过指定的天数后标记要删除的对象
 
 EXAMPLE
 
@@ -150,7 +150,7 @@ EXAMPLE
 
 **FLAGS**
 
-- **--id VALUE **# 指定要删除的生命周期规则的 ID
+- **--id VALUE** # 指定要删除的生命周期规则的 ID
 
 EXAMPLE
 
