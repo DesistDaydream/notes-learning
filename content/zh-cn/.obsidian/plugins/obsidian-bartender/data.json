@@ -2254,8 +2254,9 @@
     "docs/6.可观测性/Metrics/Prometheus": [
       "docs/6.可观测性/Metrics/Prometheus/_index.md",
       "docs/6.可观测性/Metrics/Prometheus/Prometheus.md",
-      "docs/6.可观测性/Metrics/Prometheus/Server 配置.md",
-      "docs/6.可观测性/Metrics/Prometheus/Rules 配置.md",
+      "docs/6.可观测性/Metrics/Prometheus/Configuration",
+      "docs/6.可观测性/Metrics/Prometheus/Configuration/Promethesu Server.md",
+      "docs/6.可观测性/Metrics/Prometheus/Configuration/Rules.md",
       "docs/6.可观测性/Metrics/Prometheus/Target(目标) 与 Relabeling(重新标记).md",
       "docs/6.可观测性/Metrics/Prometheus/Storage(存储)",
       "docs/6.可观测性/Metrics/Prometheus/Alerting(告警).md",

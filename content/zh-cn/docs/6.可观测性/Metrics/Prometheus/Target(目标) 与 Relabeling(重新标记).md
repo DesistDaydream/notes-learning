@@ -135,7 +135,7 @@ Target Labels 中的所有标签都是 Relabeling 之后的标签。Target Label
 
 # Relabeling 配置
 
-在 [Prometheus Server 配置](/docs/6.可观测性/Metrics/Prometheus/Server%20配置.md)中，Relabeling 行为的配置通常写在在 **relabel_configs** 和 **metrics_relabel_configs** 字段下。在很多地方都可以编写 **relabel_configs** 字段下的内容，以便为各种数据实现 relabel 功能
+在 [Prometheus Server 配置](/docs/6.可观测性/Metrics/Prometheus/Configuration/Promethesu%20Server.md)中，Relabeling 行为的配置通常写在在 **relabel_configs** 和 **metrics_relabel_configs** 字段下。在很多地方都可以编写 **relabel_configs** 字段下的内容，以便为各种数据实现 relabel 功能
 
 - `scrape_config.relabel_configs` 字段中 # Prometheus Relabeling 功能体现最主要的地方
 - `alert_relabel_configs` 字段中 # 用于为告警内容实现 Relabeling 功能

@@ -157,7 +157,7 @@ promhttp_metric_handler_requests_total{code="200", instance="172.38.40.250:9090"
 
 30s 就是 Resolution，表示在 4m 的时间范围中，每隔 30 秒取一个样本值。
 
-Resolution 通常是可省略的，默认值为 [Server 配置](/docs/6.可观测性/Metrics/Prometheus/Server%20配置.md) 的 `.global.evaluation_interval`
+Resolution 通常是可省略的，默认值为 [Promethesu Server](/docs/6.可观测性/Metrics/Prometheus/Configuration/Promethesu%20Server.md) 的 `.global.evaluation_interval`
 
 子查询之所以叫子查询，通常用在多个 [PromQL Functions(函数)](/docs/6.可观测性/Metrics/Prometheus/PromQL/PromQL%20Functions(函数).md) 的场景，比如
 

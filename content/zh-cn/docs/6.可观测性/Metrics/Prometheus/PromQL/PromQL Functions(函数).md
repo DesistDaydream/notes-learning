@@ -6,7 +6,7 @@ title: PromQL Functions(函数)
 
 > 参考：
 >
-> - [官方文档, Prometheus-查询-函数](https://prometheus.io/docs/prometheus/latest/querying/functions/)
+> - [官方文档, Prometheus - 查询 - 函数](https://prometheus.io/docs/prometheus/latest/querying/functions/)
 > - [fuckcloudnative.io](https://fuckcloudnative.io/prometheus/3-prometheus/functions.html)
 > - [公众号 - k8s 技术圈，PromQL 查询之 rate 函数的使用](https://mp.weixin.qq.com/s/7z8n3abX9k39YL5kCopJqQ)
 > - [Prometheus Extrapolation 原理解析，delta、increase 函数的解析](https://ihac.xyz/2018/12/11/Prometheus-Extrapolation%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/)

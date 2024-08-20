@@ -61,7 +61,7 @@ func main() {
 
 ## 关于点 `.` 和作用域
 
-在写 template 的时候，会经常用到"."。比如 `{{.}}`、`{{len .}}`、`{{.Name}}`、`{{$x.Name}}` 等等。
+在写 template 的时候，会经常用到 `.`。比如 `{{.}}`、`{{len .}}`、`{{.Name}}`、`{{$x.Name}}` 等等。
 
 在 template 中，点 `.` 代表**当前作用域的当前对象**。它类似于 java/c++的 this 关键字，类似于 perl/python 的 self。如果了解 perl，它更可以简单地理解为默认变量 `$_`。
 
@@ -74,6 +74,7 @@ type Person struct {
     Name string
     Age  int
 }
+
 func main(){
     p := Person{"longshuai",23}
     tmpl, _ := template.New("test").Parse("Name: {{.Name}}, Age: {{.Age}}")
@@ -177,7 +178,8 @@ my friend name is {{.Fname}}
 
 ## 注释
 
-注释方式：`{{/* a comment */}}`。
+注释方式：`{{/* a comment */}}`
+
 注释后的内容不会被引擎进行替换。但需要注意，注释行在替换的时候也会占用行，所以应该去除前缀和后缀空白，否则会多一空行。
 
 ```go
@@ -200,7 +202,9 @@ an email {{ . }}
 ## pipeline(管道)
 
 pipeline 是指产生数据的操作。比如`{{.}}`、`{{.Name}}`、`funcname args`等。
+
 可以使用管道符号`|`链接多个命令，用法和 unix 下的管道类似：`|`前面的命令将运算结果(或返回值)传递给后一个命令的最后一个位置。
+
 例如：
 
 ```go
@@ -208,8 +212,11 @@ pipeline 是指产生数据的操作。比如`{{.}}`、`{{.Name}}`、`funcname a
 ```
 
 `{{.}}`的结果将传递给 printf，且传递的参数位置是"abcd"之后。
+
 命令可以有超过 1 个的返回值，这时第二个返回值必须为 err 类型。
+
 需要注意的是，并非只有使用了`|`才是 pipeline。Go template 中，pipeline 的概念是传递数据，只要能产生数据的，都是 pipeline。这使得某些操作可以作为另一些操作内部的表达式先运行得到结果，就像是 Unix 下的命令替换一样。
+
 例如，下面的`(len "output")`是 pipeline，它整体先运行。
 
 ```go
@@ -266,6 +273,7 @@ _ = tx.Execute(os.Stdout, s)
 ```
 
 上面的示例中，使用 range 迭代 slice，每个元素都被赋值给变量`$x`，每次迭代过程中，都新设置一个变量`$y`，在内层嵌套的 if 结构中，可以使用这个两个外层的变量。在 if 的条件表达式中，使用了一个内置的比较函数 gt，如果`$x`大于 33，则为 true。在 println 的参数中还定义了一个`$z`，之所以能定义，是因为`($z := 444)`的过程是一个 Pipeline，可以先运行。
+
 需要注意三点：
 
 1. **变量有作用域，只要出现 end，则当前层次的作用域结束。内层可以访问外层变量，但外层不能访问内层变量**。
@@ -288,7 +296,9 @@ func main() {
 ```
 
 上面使用 define 额外定义了 T1 和 T2 两个模板，T2 中嵌套了 T1。`{{template "T2" .}}`的点代表顶级作用域的"hello world"对象。在 T2 中使用了特殊变量`$`，这个`$`的范围是 T2 的，不会继承顶级作用域"hello world"。但因为执行 T2 的时候，传递的是"."，所以这里的`$`的值仍然是"hello world"。
+
 不仅`$`不会在模板之间继承，`.`也不会在模板之间继承(其它所有变量都不会继承)。实际上，template 可以看作是一个函数，它的执行过程是`template("T2",.)`。如果把上面的`$`换成"."，结果是一样的。如果换成`{{template "T2"}}`，则`$=nil`
+
 如果看不懂这些，后文有解释。
 
 ## 条件判断
@@ -314,6 +324,7 @@ func main() {
 ```
 
 range 可以迭代 slice、数组、map 或 channel。迭代的时候，会设置"."为当前正在迭代的元素。
+
 对于第一个表达式，当迭代对象的值为 0 值时，则 range 直接跳过，就像 if 一样。对于第二个表达式，则在迭代到 0 值时执行 else 语句。
 
 ```go
@@ -334,6 +345,7 @@ _ = tx.Execute(os.Stdout, s)
 ```
 
 如果 range 中只赋值给一个变量，则这个变量是当前正在迭代元素的值。如果赋值给两个变量，则第一个变量是索引值(map/slice 是数值，map 是 key)，第二个变量是当前正在迭代元素的值。
+
 下面是在 html 中使用 range 的一个示例。test.html 文件内容如下：
 
 ```go
@@ -384,7 +396,7 @@ func process(w http.ResponseWriter, r *http.Request) {
 ```
 ## with...end
 
-**with 用来设置"."的值**。两种格式：
+**with 用来设置 `.` 的值**。两种格式：
 
 ```go
 {{with pipeline}} T1 {{end}}
@@ -392,6 +404,7 @@ func process(w http.ResponseWriter, r *http.Request) {
 ```
 
 对于第一种格式，当 pipeline 不为 0 值的时候，点"."设置为 pipeline 运算的值，否则跳过。对于第二种格式，当 pipeline 为 0 值时，执行 else 语句块，否则"."设置为 pipeline 运算的值，并执行 T1。
+
 例如：
 
 ```go
@@ -622,6 +635,7 @@ home.html 文件内容如下：
 ```
 
 在此文件中指定了要执行一个名为"content"的模板，但此文件中没有使用 define 定义该模板，所以需要在其它文件中定义名为 content 的模板。现在分别在两个文件中定义两个 content 模板：
+
 red.html 文件内容如下：
 
 ```go
@@ -707,6 +721,7 @@ func process(w http.ResponseWriter, r *http.Request) {
 ```
 
 上面 content 是 Execute 的第二个参数，它的内容是包含了特殊符号的字符串。
+
 下面是 test.html 文件的内容：
 
 ```html
@@ -756,6 +771,7 @@ func process(w http.ResponseWriter, r *http.Request) {
 ### 不转义
 
 上下文感知的自动转义能让程序更加安全，比如防止 XSS 攻击(例如在表单中输入带有`<script>...</script>`的内容并提交，会使得用户提交的这部分 script 被执行)。
+
 如果确实不想转义，可以进行类型转换。
 
 ```
@@ -766,6 +782,7 @@ type URL
 ```
 
 转换成指定个时候，字符都将是字面意义。
+
 例如：
 
 ```go
@@ -774,3 +791,4 @@ func process(w http.ResponseWriter, r *http.Request) {
   t.Execute(w, template.HTML(r.FormValue("comment")))
 }
 ```
+

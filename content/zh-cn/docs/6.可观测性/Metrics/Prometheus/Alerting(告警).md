@@ -65,7 +65,7 @@ rule_files:
 
 # Prometheus 告警规则配置
 
-详见：[Rules 配置](/docs/6.可观测性/Metrics/Prometheus/Rules%20配置.md)
+详见：[Rules](/docs/6.可观测性/Metrics/Prometheus/Configuration/Rules.md)
 
 # 告警数据结构
 
@@ -98,7 +98,7 @@ Prometheus 产生告警后，会通过 POST 请求将下列 JSON 格式内容向
 ]
 ```
 
-推送路径根据 Prometheus [Server 配置](/docs/6.可观测性/Metrics/Prometheus/Server%20配置.md)文件中 `alerting.alertmanagers.api_version` 和 `alerting.alertmanagers.path_prefix` 这两个字段决定。
+推送路径根据 Prometheus [Promethesu Server](/docs/6.可观测性/Metrics/Prometheus/Configuration/Promethesu%20Server.md)文件中 `alerting.alertmanagers.api_version` 和 `alerting.alertmanagers.path_prefix` 这两个字段决定。
 
 默认推送路径为 /api/v2/alerts。如果 api_version 为 v2，path_prefix 值为 /test，最终的路径就是 /test/api/v2/alerts
 

@@ -1,8 +1,8 @@
 ---
-title: Server 配置
-linkTitle: Server 配置
+title: Promethesu Server
+linkTitle: Promethesu Server
 date: 2023-10-31T22:24
-weight: 2
+weight: 1
 ---
 
 # 概述
@@ -117,7 +117,7 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 
 **evaluation_interval(DURATION)** # 评估规则的周期。`默认值：1m`。
 
-该字段主要用于向规则配置文件传递全局的配置。这个值会被 [Rules 配置](/docs/6.可观测性/Metrics/Prometheus/Rules%20配置.md)文件中的 `.groups.interval` 覆盖，详见 interval 字段详解
+该字段主要用于向规则配置文件传递全局的配置。这个值会被 [Rules](/docs/6.可观测性/Metrics/Prometheus/Configuration/Rules.md)文件中的 `.groups.interval` 覆盖，详见 interval 字段详解
 
 **external_labels(map\[STRING]STRING)** # 与外部系统(federation, remote storage, Alertmanager)通信时添加到任何时间序列或警报的标签。
 
@@ -126,7 +126,7 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 
 ## rule_files
 
-[规则文件配置](/docs/6.可观测性/Metrics/Prometheus/Rules%20配置.md)列表，从所有匹配到的文件中读取配置内容。可以使用正则表达式匹配多个符合的文件。Prometheus 支持两种规则
+[规则文件配置](/docs/6.可观测性/Metrics/Prometheus/Configuration/Rules.md)列表，从所有匹配到的文件中读取配置内容。可以使用正则表达式匹配多个符合的文件。Prometheus 支持两种规则
 
 - recording rules(记录规则)
 - alerting rules(告警规则)

@@ -229,7 +229,7 @@ https://grafana.com/docs/loki/latest/clients/promtail/configuration/#kubernetes_
 
 与 Prometheus 中的 kubernetes 的服务发现机制基本一致。与 Prometheus 配置的不同点在于，Promtail 的 kubernetes 服务发现配置一般都会使用 Relabeling 机制弄出来一个 `__path__` 标签
 
-具体字段内容详见《[Prometheus Server 配置](/docs/6.可观测性/Metrics/Prometheus/Server%20配置.md)》文章中 [kubernetes_sd_configs](/docs/6.可观测性/Metrics/Prometheus/Server%20配置.md#kubernetes_sd_configs) 章节
+具体字段内容详见《[Prometheus Server 配置](/docs/6.可观测性/Metrics/Prometheus/Configuration/Promethesu%20Server.md)》文章中 [kubernetes_sd_configs](/docs/6.可观测性/Metrics/Prometheus/Configuration/Promethesu%20Server.md#kubernetes_sd_configs) 章节
 
 #### 配置示例
 

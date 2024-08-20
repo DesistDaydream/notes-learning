@@ -1,6 +1,6 @@
 ---
-title: Rules 配置
-linkTitle: Rules 配置
+title: Rules
+linkTitle: Rules
 date: 2023-10-31T22:24
 weight: 2
 ---
@@ -17,7 +17,7 @@ Prometheus 规则分为两种：
 - **Alerting Rule(告警规则)** #
   - ！！！注意编写告警规则的逻辑，由于 Prometheus 会定期评估告警，所以会定期读取数据，尽相避免读取大范围的数据，以免造成性能问题
 
-Prometheus 规则配置文件需要在 [Prometheus Server 配置](/docs/6.可观测性/Metrics/Prometheus/Server%20配置.md) 文件中的 rule_files 字段中指定，让 Prometheus 加载指定的文件并读取其配置(这个过程称为 **Evaluation(评估)**)。
+Prometheus 规则配置文件需要在 [Prometheus Server 配置](/docs/6.可观测性/Metrics/Prometheus/Configuration/Promethesu%20Server.md) 文件中的 rule_files 字段中指定，让 Prometheus 加载指定的文件并读取其配置(这个过程称为 **Evaluation(评估)**)。
 
 一个规则封装了一个向量表达式，该向量表达式在指定的时间间隔内进行评估并采取行动（目前要么记录，要么用于报警）。
 
@@ -114,8 +114,9 @@ groups:
 
 Recording Rule 与 Alerting Rule 存在于规则组中。组中的规则以规定的时间间隔顺序运行，并具有相同的规则评估时间。Recording Rule 的名称必须是有效的 Metrics 名称。Alerting Rule 名称则比较宽泛，可以随意定义，一般来说，满足有效的标签值即可。
 
-> **注意：**
+> [!Notes]
 > groups 在 recording rule 中并没有实际意义，只是与 alerting rule 同在一个配置文件中，所以两种规则格式要相同罢了，不管在哪个组下定义的记录规则，都可以在任何地方直接使用。
+>
 > 生成新的时间序列后，Prometheus 会以新的时间序列名称保存数据，该数据与原始 expr 中的表达式所得出的值虽然一样，但是存储的指标是不一样的。
 
 所谓 Evaluated(评估) 规则，就是指 PrometheusServer 会检查规则的状态，如果告警规则的状态是 FIRING，则发送告警。
