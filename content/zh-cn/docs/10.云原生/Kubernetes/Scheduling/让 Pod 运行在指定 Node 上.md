@@ -6,10 +6,10 @@ title: 让 Pod 运行在指定 Node 上
 
 > 参考：
 >
-> - [官方文档,概念-调度、抢占、驱逐-让 Pod 运行在指定节点上](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
-> - [官方文档,概念-调度、抢占、驱逐-污点与容忍度](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
+> - [官方文档, 概念 - 调度、抢占、驱逐 - 让 Pod 运行在指定节点上](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
+> - [官方文档, 概念 - 调度、抢占、驱逐 - 污点与容忍度](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
 > - [Kubernetes 内置的 标签、注释、污点](https://kubernetes.io/docs/reference/labels-annotations-taints/)
-> - [CSDN,k8s 之 pod 亲和与反亲和的 topologyKey](https://blog.csdn.net/asdfsadfasdfsa/article/details/106027367)
+> - [CSDN, k8s 之 pod 亲和与反亲和的 topologyKey](https://blog.csdn.net/asdfsadfasdfsa/article/details/106027367)
 
 通常情况下 Scheduler(调度器) 将自动进行合理的分配(例如，将 Pods 分散到所有节点上，以防止单独节点上资源使用率远高于其他节点)。但是在某些情况下我们需要更多控制 Pods 落在某个指定的节点上，例如确保一个 Pod 部署在装有 SSD 的机器上，或者将两个不同服务中的 Pods 共同定位到同一可用区域。
 
@@ -59,10 +59,10 @@ nodeSelector(节点选择器) 是最简单的约束行为。在 Pod 的 manifest
 
 ```bash
 # 设置标签
-root@desistdaydream:~# kubectl label nodes master-3.bj-test disktype=ssd
+~]# kubectl label nodes master-3.bj-test disktype=ssd
 node/master-3.bj-test labeled
 # 查看该节点标签
-root@desistdaydream:~# kubectl get nodes master-3.bj-test --show-labels
+~]# kubectl get nodes master-3.bj-test --show-labels
 NAME               STATUS   ROLES         AGE    VERSION   LABELS
 master-3.bj-test   Ready    master,work   183d   v1.19.2   ....,disktype=ssd...这里省略了很多其他标签
 ```
@@ -89,7 +89,7 @@ spec:
 
 # Affinity(亲和性)
 
-**Affinity(亲和性)** 可以提供比 NodeSelector 更丰富的调度规则。亲和性主要就是只两个事物之间的 **Affinity(亲和)** 和 **Anti-Affinity(反亲和)。**当两个事物比较亲和，则更愿意在一起，比如 Pod A 和 Node A 亲和，则 Pod 会运行在 Node A 上；而当两个事物反亲和时，则不会在一起，比如 Pod A 和 Pod B 反亲和，则 Pod A 和 Pod B 不会在同一个 Node 上运行。
+**Affinity(亲和性)** 可以提供比 NodeSelector 更丰富的调度规则。亲和性主要就是只两个事物之间的 **Affinity(亲和)** 和 **Anti-Affinity(反亲和)**。当两个事物比较亲和，则更愿意在一起，比如 Pod A 和 Node A 亲和，则 Pod 会运行在 Node A 上；而当两个事物反亲和时，则不会在一起，比如 Pod A 和 Pod B 反亲和，则 Pod A 和 Pod B 不会在同一个 Node 上运行。
 
 亲和性调度规则分为 Pod 和 Node 两类：
 
@@ -101,8 +101,8 @@ spec:
 
 每种调度规则有 hard 和 soft 两种强度。通过如下两个字段
 
-- **requiredDuringSchedulingIgnoredDuringExecution # 硬。**表示必须遵守调度规则，如果节点不存在或者其他原因导致调度失败，则 Pod 不会创建
-- **preferredDuringSchedulingIgnoredDuringExecution # 软。**表示倾向于遵守调度规则，如果节点不存在或其他原因导致调度失败，则 Pod 会在其他不满足调度规则的节点上创建。
+- **requiredDuringSchedulingIgnoredDuringExecution # 硬**。表示必须遵守调度规则，如果节点不存在或者其他原因导致调度失败，则 Pod 不会创建
+- **preferredDuringSchedulingIgnoredDuringExecution # 软**。表示倾向于遵守调度规则，如果节点不存在或其他原因导致调度失败，则 Pod 会在其他不满足调度规则的节点上创建。
 
 Pod Manifest 的 `spec.affinity` 字段可以配置 亲和/反亲和 的调度规则。效果如下：
 

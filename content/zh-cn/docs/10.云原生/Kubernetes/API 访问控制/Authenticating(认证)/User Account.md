@@ -1,13 +1,16 @@
 ---
-title: User Account 详解
+title: User Account
+linkTitle: User Account
+date: 2024-08-22T12:10
+weight: 2
 ---
 
 # 概述
 
 > 参考：
 >
-> - [官方文档,概念-配置-使用 kubeconfig 文件访问集群](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
-> - [官方文档,任务-访问集群中的应用程序-配置多集群访问](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)
+> - [官方文档, 概念 - 配置 - 使用 kubeconfig 文件访问集群](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
+> - [官方文档, 任务 - 访问集群中的应用程序 - 配置多集群访问](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)
 
 **User Account(用户账户，简称 UA)** 使用 KubeConfig 文件进行认证。KubeConfig 是一个允许各个客户端与集群通信时所用到的认证配置文件，由于与 kubernetes 交互的途径只有通过 API Server 这一条途径，所以就相当于 API Server 的各客户端(kubelet、scheduler、controller-manager、kube-proxy 等)与其进行通信时使用的认证、配置文件。
 

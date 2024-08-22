@@ -1,14 +1,17 @@
 ---
-title: 2.Authorization(授权)
+title: Authorization(授权)
+linkTitle: Authorization(授权)
+date: 2024-08-22T12:12
+weight: 1
 ---
 
 # 概述
 
 > 参考：
 >
-> - [官方文档,参考-API 访问控制-授权](https://kubernetes.io/docs/reference/access-authn-authz/authorization/)
+> - [官方文档, 参考 - API 访问控制 - 授权](https://kubernetes.io/docs/reference/access-authn-authz/authorization/)
 
-在 Kubernetes 中，在 **Authorization(i.e.授予访问权限，简称：授权)** 之前必须进行过 [1.Authenticating(认证)](/docs/10.云原生/Kubernetes/API%20访问控制/1.Authenticating(认证)/1.Authenticating(认证).md)
+在 Kubernetes 中，在 **Authorization(i.e.授予访问权限，简称：授权)** 之前必须进行过 [Authenticating(认证)](docs/10.云原生/Kubernetes/API%20访问控制/Authenticating(认证)/Authenticating(认证).md)
 
 ## 授权流程
 
@@ -70,7 +73,7 @@ Kubernetes 有时使用专门的动词检查授权以获得额外的权限。例
 - 当指定的 RBAC（基于角色的访问控制）使用 rbac.authorization.k8s.io API 组来驱动授权决策时，允许管理员通过 Kubernetes API 动态配置权限策略。
 - 要启用 RBAC，请使用 --authorization-mode = RBAC 启动 apiserver 。
 
-详见 ：[RBAC 授权](/docs/10.云原生/Kubernetes/API%20访问控制/2.Authorization(授权)/RBAC%20授权.md)
+详见 ：[RBAC 授权](docs/10.云原生/Kubernetes/API%20访问控制/Authorization(授权)/RBAC%20授权.md)
 
 ## ABAC 授权
 

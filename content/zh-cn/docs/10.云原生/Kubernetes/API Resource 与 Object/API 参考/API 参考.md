@@ -7,11 +7,12 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档，参考-API 概述-API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23)(这里是通过单一页面显示 API 资源各字段详解)
+> - [官方文档，参考 - API 概述 - API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23)(这里是通过单一页面显示 API 资源各字段详解)
 >   - 链接里是 1.23 的，想查看其他版本 API，改变 URL 中的版本即可。随着版本更新，老版本的页面会删除。
 >   - 该页面的原始文件是符合 OpenAPI 格式的 swagger.json，位置在 kubernetes/kubernetes 仓库的 [kubernetes/api/openapi-spec/swagger.json](https://github.com/kubernetes/kubernetes/blob/master/api/openapi-spec/swagger.json)
-> - [官方文档，参考-KubernetesAPI](https://kubernetes.io/docs/reference/kubernetes-api/)(这里是通过多级页面显示 API 资源各字段详解)
+> - [官方文档，参考 - KubernetesAPI](https://kubernetes.io/docs/reference/kubernetes-api/)(这里是通过多级页面显示 API 资源各字段详解)
 >   - 这些连接的内容，其实是 `kubectl explain` 命令的内容显示在浏览器中了。
+> - [GitHub 项目，kubernetes/api - core/v1/types.go](https://github.com/kubernetes/api/blob/master/core/v1/types.go)
 
 在本部分笔记后面的章节，各资源 Manifest 详解，其实已经描述了 API 中各个字段的含义。所以本篇文章不会详解每个 API，而是记录一下如何通过 Kubernetes 官网来查找 API 详解，以及如何使用官方文档查看 API 详解。
 
@@ -271,7 +272,7 @@ ComponentStatus (and ComponentStatusList) holds the cluster validation info.
 
 > 参考：
 >
-> - [官方文档，参考-API 概述-Kubernetes 弃用策略](https://kubernetes.io/docs/reference/using-api/deprecation-policy/)
+> - [官方文档，参考 - API 概述 - Kubernetes 弃用策略](https://kubernetes.io/docs/reference/using-api/deprecation-policy/)
 
 Kubernetes 项目有一个记录良好的特性弃用策略\[1]。该策略规定，只有当同一 API 的更新的、稳定的版本可用时，才可以弃用稳定的 API，并且 API 对于每个稳定性级别都有一个最短的生存期。给弃用的 API，是在未来的 Kubernetes 版本中被标记为删除的 API；它将继续运行，直到给删除（从弃用至少一年），但使用将导致显示警告。删除的 API 在当前版本中不再可用，此时你必须迁移到使用替换的 API。
 

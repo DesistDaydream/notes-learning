@@ -5,9 +5,10 @@ title: API 源码
 # 概述
 
 > 参考：
+>
 > - [公众号-云原生实验室，深入 Kubernetes API 的源码实现](https://mp.weixin.qq.com/s/f31GkTs9j8V-OUYFtYzTLg)
 
-Kubernetes API 代码在 [k8s.io/api ](https://github.com/kubernetes/api)仓库中，该仓库的代码来源于 <https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/api> 这个核心仓库的目录中。
+Kubernetes API 代码在 [k8s.io/api ](https://github.com/kubernetes/api) 仓库中，该仓库的代码来源于 <https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/api> 这个核心仓库的目录中。
 
 在 k8s.io/api 仓库定义的 kubernetes API 规范中，Pod 作为最基础的资源类型，一个典型的 YAML 形式的序列化 pod 对象如下所示：
 

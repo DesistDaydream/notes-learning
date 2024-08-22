@@ -1,5 +1,8 @@
 ---
-title: 1.Authenticating(认证)
+title: Authenticating(认证)
+linkTitle: Authenticating(认证)
+date: 2024-08-22T12:11
+weight: 1
 ---
 
 # 概述
@@ -12,7 +15,7 @@ Authenticating(动词) 也称为 Authentication(名词) 身份验证。指明客
 
 就好比我们在登录一个网站时，需要输入账户和密码的概念类似。在使用 API Server 时，也是通过类似的方式，使用账户来登录 API server(虽然不是真的登录)。
 
-## Accounts # Kubernetes 集群中的账号
+## Accounts - Kubernetes 集群中的账号
 
 Accounts 是一个在认证授权系统里的逻辑概念。Accounts 需要通过认证概念中的东西(比如证书、token、或者用户名和密码等)来建立。类似于登陆系统的账户。而在 Kubernetes 中，Accounts 分为如下两类
 
@@ -21,7 +24,7 @@ Accounts 是一个在认证授权系统里的逻辑概念。Accounts 需要通�
 
 ### User Account 用户账号
 
-详见：[User Account 详解](/docs/10.云原生/Kubernetes/API%20访问控制/1.Authenticating(认证)/User%20Account%20详解.md)
+详见：[User Account](docs/10.云原生/Kubernetes/API%20访问控制/Authenticating(认证)/User%20Account.md)
 
 User 不属于 K8S 中的一个资源。这类 Account 适用于：客户端访问集群时使用(比如使用 kubectl、scheduler 等访问 api)
 
@@ -42,7 +45,7 @@ openssl req -new -key lch.key -out lch.csr -subj "/CN=lch"
 
 ### Service Account 服务账号
 
-> 详见：[Service Account 详解](/docs/10.云原生/Kubernetes/API%20访问控制/1.Authenticating(认证)/Service%20Account%20详解.md)
+> 详见：[Service Account](docs/10.云原生/Kubernetes/API%20访问控制/Authenticating(认证)/Service%20Account.md)
 
 SA 属于 K8S 中的一个资源。这类 Account 适用于：Pod 访问集群时使用。
 

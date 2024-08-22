@@ -1,5 +1,8 @@
 ---
 title: Finalizers
+linkTitle: Finalizers
+date: 2024-08-22T09:47
+weight: 20
 ---
 
 # 概述

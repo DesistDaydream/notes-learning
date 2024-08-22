@@ -134,6 +134,7 @@ func newCmdInit(out io.Writer, initOptions *initOptions) *cobra.Command {
 certs 阶段用来生成集群证书
 
 certs 阶段入口：
+
 源码：`[cmd/kubeadm/app/cmd/phases/init/certs.go](https://github.com/kubernetes/kubernetes/blob/master/cmd/kubeadm/app/cmd/phases/init/certs.go)`
 
 ```go
@@ -214,6 +215,7 @@ type InitConfiguration struct {
 ### 待创建证书的列表
 
 源码：`cmd/kubeadm/app/phases/certs/certlist.go`
+
 为入口返回 kubeadm 需要创建的所有证书，该代码中还有所有证书的基本信息(比如 DN)。
 
 ```go
@@ -238,6 +240,7 @@ func GetDefaultCertList() Certificates {
 ### 生成 CA 证书与私钥
 
 源码：`cmd/kubeadm/app/phases/certs/certs.go`
+
 生成 CA 证书和私钥，并写入到默认的 /etc/kubernetes/pki/ 目录中
 
 ```go
@@ -303,6 +306,7 @@ func NewSelfSignedCACert(cfg Config, key crypto.Signer) (*x509.Certificate, erro
 ### 使用 CA 签其他证书
 
 源码：`cmd/kubeadm/app/phases/certs/certs.go`
+
 从磁盘中加载指定的 CA 证书，然后使用该 CA 生成指定的证书
 
 ```go

@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档,概念-集群架构-控制器](https://kubernetes.io/docs/concepts/architecture/controller/)
+> - [官方文档，概念 - 集群架构 - 控制器](https://kubernetes.io/docs/concepts/architecture/controller/)
 
 **Controller(控制器)** 是 Kubernetes 的大脑
 
@@ -43,7 +43,7 @@ for {
 
 这个对比的操作通常被叫作 **Reconcile(调和)**。这个调谐的过程，则被称作 **Reconcile Loop(调和循环)** 或者 **Sync Loop(同步循环)**。这些词其实都代表一个东西：**控制循环**。
 
-> Reconcile 这词儿用的还挺有意思，Reconcile 是调和、使协调一致的概念，就是让具有矛盾的两方和解~这就好比控制器和被控制者，当被控制者不符合控制者预期状态时，这就相当于两者有矛盾了~~Reconcile 就会让矛盾消失
+> Reconcile 这词儿用的还挺有意思，Reconcile 是调和、使协调一致的概念，就是让具有矛盾的两方和解~这就好比控制器和被控制者，当被控制者不符合控制者预期状态时，这就相当于两者有矛盾了。。。Reconcile 就会让矛盾消失
 > Reconcile 是一个动词，表示一个过程，在 k8s 中还有一个对应的名词 Reconciliation，用以表示“确保系统的实际状态与期望状态一致”
 
 也可以这么说：控制器，使用一种 API 对象管理另一种 API 对象的工具。控制器这个对象本身负责定义被管理对象的期望状态(e.g.deployment 里的 replicas: 2 这个字段)；而被控制对象的定义，则来自于一个“模板”(e.g.deployment 里的 template 字段)。
@@ -79,7 +79,7 @@ kubernetes 有各种各样的资源，每个资源都有其自己的各种定义
 
 [kube-controller-manager](/docs/10.云原生/Kubernetes/Controller/kube-controller-manager%20实现控制器的程序.md) 是实现 Kubernetes 控制器功能的程序。
 
-可以在 [Controller 代码](https://github.com/kubernetes/kubernetes/tree/master/pkg/controller)中，找到所有可用的控制器。所以，从逻辑上来说，每个控制器都应该是一个单独的进程，但是为了降低复杂性，这些控制器都被编译到同一个执行文件中，并在同一个进程中运行。所以，这些控制器的集合体，就称为 **Controller Manager(控制器管理器)，**所以实现控制器功能的组件的名称就叫 **kube-controller-manager**。
+可以在 [Controller 代码](https://github.com/kubernetes/kubernetes/tree/master/pkg/controller)中，找到所有可用的控制器。所以，从逻辑上来说，每个控制器都应该是一个单独的进程，但是为了降低复杂性，这些控制器都被编译到同一个执行文件中，并在同一个进程中运行。所以，这些控制器的集合体，就称为 **Controller Manager(控制器管理器)**，所以实现控制器功能的组件的名称就叫 **kube-controller-manager**。
 
 # 各种控制器介绍
 
@@ -107,7 +107,7 @@ Controller 包括以下这些：不同的 controller 管理不同的资源。
 - Volume Controller # 卷控制器
 - Resource quota Controller
 
-## Deployment # 管理 Pod 的多个副本，并确保 Pod 按照期望的状态运行
+## Deployment - 管理 Pod 的多个副本，并确保 Pod 按照期望的状态运行
 
 > 官方文档：<https://kubernetes.io/docs/concepts/workloads/controllers/deployment/>
 
@@ -119,7 +119,7 @@ Controller 包括以下这些：不同的 controller 管理不同的资源。
    3. Pod 资源模板，新建 Pod 资源
 2. Deployment 的滚动更新可以进行定制化配置，比如仅更新一个 pod 到新版，观察其稳定情况几天后决定是否更新现网其余 pod，使用的方式详见 kubectl set image 命令的内容
 
-## StatefulSet # StatefulSet 表示对 Pod 设定一致性身份(consistent identities)
+## StatefulSet - StatefulSet 表示对 Pod 设定一致性身份(consistent identities)
 
 > 官方文档：<https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/>
 
@@ -133,13 +133,13 @@ StatefulSet 能够保证 Pod 的每个副本在整个生命周期中名称是不
 1. 当需要保持 Pod 不变，比如数据库类型的服务，则使用该类型
 2. 当一个有状态的应用失败需要重启的时候，比如主从结构的数据库，其中需要进行的操作时非常复杂的，这时候需要通过一个脚本来定义 statefulset 的功能，如果以后的研发人员可以基于 kubernetes 来开发有状态的应用(比如数据库等)，让新的应用在开发的时候就想着要放在云上运行，这种云原生的应用，则可以让 statefulset 更好的支持他
 
-## DaemonSet # 用于每个 Node 最多只运行一个 Pod 副本的场景。正如其名称所揭示的，DaemonSet 通常用于运行 daemon
+## DaemonSet - 用于每个 Node 最多只运行一个 Pod 副本的场景。正如其名称所揭示的，DaemonSet 通常用于运行 daemon
 
 > 官方文档：<https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/>
 
 当一个服务可以想象成守护进程的时候，使用该类型
 
-## CronJob 与 Job # 用于运行结束就删除的应用。而其他 Controller 中的 Pod 通常是长期持续运行
+## CronJob 与 Job - 用于运行结束就删除的应用。而其他 Controller 中的 Pod 通常是长期持续运行
 
 > 官方文档：
 >
@@ -171,6 +171,6 @@ Kubernetes 垃圾收集器的作用是删除某些对象。曾经有一个所有
 
 详见：[Garbage Collection(垃圾收集)](/docs/10.云原生/Kubernetes/Controller/Garbage%20Collection(垃圾收集)/Garbage%20Collection(垃圾收集).md)
 
-## HPA # Horizontal Pod Autoscaler
+## HPA - Horizontal Pod Autoscaler
 
 > 官方文档：<https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/>

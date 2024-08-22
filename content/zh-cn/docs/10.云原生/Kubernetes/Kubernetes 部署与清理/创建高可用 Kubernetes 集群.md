@@ -5,6 +5,7 @@ title: 创建高可用 Kubernetes 集群
 # 概述
 
 > 参考：
+>
 > - [官方文档，入门-生产环境-使用部署工具安装 Kubernetes-使用 kubeadm 引导集群-使用 kubeadm 创建高可用集群](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/)
 >   - <https://kubernetes.io/docs/setup/independent/high-availability/>
 > - [Kubeadm GitHub 项目,高科用性注意事项](https://github.com/kubernetes/kubeadm/blob/master/docs/ha-considerations.md)
@@ -13,6 +14,7 @@ title: 创建高可用 Kubernetes 集群
 > - [kube-vip 官网](https://kube-vip.io/)
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kc2p8h/1616120692032-ff2748b8-3aa5-4f51-a71c-3c00aa017184.png)
+
 想要让 Kubernets 的 Master 可以高可用，本质上就是让 API Server 高可用，也就是为 API Server 创建负载均衡，通过 VIP 来访问 API Server。
 
 有多种方式可以实现 Kubernetes Master 节点的高可用
@@ -29,38 +31,40 @@ title: 创建高可用 Kubernetes 集群
 
 官方推荐版本的 keepalived 的配置
 
-    /etc/keepalived/keepalived.conf在所有主节点上创建以下配置文件：
-    ! Configuration File for keepalived
-    global_defs {
-      router_id k8s-master-dr
-      script_user root
-      enable_script_security
-    }
+```conf
+/etc/keepalived/keepalived.conf 在所有主节点上创建以下配置文件：
+! Configuration File for keepalived
+global_defs {
+  router_id k8s-master-dr
+  script_user root
+  enable_script_security
+}
 
-    vrrp_script check_apiserver {
-      script "/etc/keepalived/check_apiserver.sh"
-      interval 3
-      weight -2
-      fall 10
-      rise 2
-    }
+vrrp_script check_apiserver {
+  script "/etc/keepalived/check_apiserver.sh"
+  interval 3
+  weight -2
+  fall 10
+  rise 2
+}
 
-    vrrp_instance VI_1 {
-      state ${STATE}
-      interface ${INTERFACE}
-      virtual_router_id ${ROUTER_ID}
-      priority ${PRIORITY}
-      authentication {
-        auth_type PASS
-        auth_pass 4be37dc3b4c90194d1600c483e10ad1d
-      }
-      virtual_ipaddress {
-        ${VIP}
-      }
-      track_script {
-        check_apiserver
-      }
-    }
+vrrp_instance VI_1 {
+  state ${STATE}
+  interface ${INTERFACE}
+  virtual_router_id ${ROUTER_ID}
+  priority ${PRIORITY}
+  authentication {
+    auth_type PASS
+    auth_pass 4be37dc3b4c90194d1600c483e10ad1d
+  }
+  virtual_ipaddress {
+    ${VIP}
+  }
+  track_script {
+    check_apiserver
+  }
+}
+```
 
 - 在该部分中 vrrp_instance VI_1，根据自身情况更改：
   - STATE # 改为是 MASTER（第一主节点上）或 BACKUP（另一主节点）。
@@ -120,6 +124,7 @@ manifest pod \
 ### Sealos
 
 > 参考：
+>
 > - [GitHub 项目，fanux/sealos](https://github.com/fanux/sealos)
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/kc2p8h/1659603459394-80959a05-8f38-490d-818e-8e3f6d4070cf.png)

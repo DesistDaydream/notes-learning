@@ -825,17 +825,11 @@
     "docs/10.云原生/Kubernetes/API 访问控制": [
       "docs/10.云原生/Kubernetes/API 访问控制/_index.md",
       "docs/10.云原生/Kubernetes/API 访问控制/API 访问控制.md",
-      "docs/10.云原生/Kubernetes/API 访问控制/1.Authenticating(认证)",
-      "docs/10.云原生/Kubernetes/API 访问控制/2.Authorization(授权)",
-      "docs/10.云原生/Kubernetes/API 访问控制/3.Admission Controllers 准入控制器.md",
+      "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)",
+      "docs/10.云原生/Kubernetes/API 访问控制/Authorization(授权)",
+      "docs/10.云原生/Kubernetes/API 访问控制/Admission Controllers 准入控制器.md",
       "docs/10.云原生/Kubernetes/API 访问控制/Kubernetes 证书管理",
       "docs/10.云原生/Kubernetes/API 访问控制/最佳实践.md"
-    ],
-    "docs/10.云原生/Kubernetes/API 访问控制/1.Authenticating(认证)": [
-      "docs/10.云原生/Kubernetes/API 访问控制/1.Authenticating(认证)/_index.md",
-      "docs/10.云原生/Kubernetes/API 访问控制/1.Authenticating(认证)/1.Authenticating(认证).md",
-      "docs/10.云原生/Kubernetes/API 访问控制/1.Authenticating(认证)/User Account 详解.md",
-      "docs/10.云原生/Kubernetes/API 访问控制/1.Authenticating(认证)/Service Account 详解.md"
     ],
     "docs/10.云原生/Kubernetes/API 访问控制/Kubernetes 证书管理": [
       "docs/10.云原生/Kubernetes/API 访问控制/Kubernetes 证书管理/_index.md",
@@ -2761,6 +2755,29 @@
       "docs/6.可观测性/Metrics/监控系统概述/SNMP(传统监控标准).md",
       "docs/6.可观测性/Metrics/监控系统概述/HTTP(新监控标准).md",
       "docs/6.可观测性/Metrics/监控系统概述/常用告警级别.md"
+    ],
+    "docs/10.云原生/Kubernetes/Kubernetes 开发/Operator 开发": [
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Operator 开发/_index.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Operator 开发/初识 Operator.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Operator 开发/深入理解Kubernetes Operator.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Operator 开发/Kubebuilder.md"
+    ],
+    "docs/10.云原生/Kubernetes/Controller/Garbage Collection(垃圾收集)": [
+      "docs/10.云原生/Kubernetes/Controller/Garbage Collection(垃圾收集)/_index.md",
+      "docs/10.云原生/Kubernetes/Controller/Garbage Collection(垃圾收集)/Garbage Collection(垃圾收集).md",
+      "docs/10.云原生/Kubernetes/Controller/Garbage Collection(垃圾收集)/Finalizers.md"
+    ],
+    "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)": [
+      "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)/_index.md",
+      "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)/Authenticating(认证).md",
+      "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)/User Account.md",
+      "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)/Service Account.md"
+    ],
+    "docs/10.云原生/Kubernetes/Kubernetes 部署与清理": [
+      "docs/10.云原生/Kubernetes/Kubernetes 部署与清理/_index.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 部署与清理/Kubernetes 部署与清理.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 部署与清理/创建高可用 Kubernetes 集群.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 部署与清理/kubernetes 二进制方式安装说明.md"
     ]
   },
   "actionBarOrder": {},

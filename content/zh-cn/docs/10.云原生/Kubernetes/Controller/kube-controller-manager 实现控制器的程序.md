@@ -107,28 +107,28 @@ spec:
 
 kube-controller-manager 主要通过命令行标志来控制运行时行为
 
-- **--bind-address=<IP>** # 指定监听在 --secure-port 参数设定的端口的 IP。集群的其余部分以及 CLI 或者 web 客户端必须可以访问关联的接口。
-- **--cluster-cidr=<STRING>** # 集群中 Pod 的 CIDR 范围。
+- **--bind-address**(STRING) # 指定监听在 --secure-port 参数设定的端口的 IP。集群的其余部分以及 CLI 或者 web 客户端必须可以访问关联的接口。
+- **--cluster-cidr**(STRING) # 集群中 Pod 的 CIDR 范围。
   - 用白话说：可以给 Pod 分配的 IP 范围。
-- **--controllers=<STRING>** # 要启动的控制器列表。`默认值：*`。
+- **--controllers**(STRING) # 要启动的控制器列表。`默认值：*`。
   - `*` 表示默认的控制器，比如 deployment 等。
-- **--leader-elect=<BOOLEAN>** # 在程序开始循环监控之前，是否要启用领导者选举功能。`默认值：true`。
+- **--leader-elect**(BOOLEAN) # 在程序开始循环监控之前，是否要启用领导者选举功能。`默认值：true`。
   - 若集群中有多个 kube-controller-manager，则必须要启用领导者选举功能。
-- **--leader-elect-resource-lock=<STRING>** # 在领导者选举期间用于获取锁的资源。`默认值：leases`。
+- **--leader-elect-resource-lock**(STRING) # 在领导者选举期间用于获取锁的资源。`默认值：leases`。
   - 其他可以获取锁的资源有 endpoints 和 configmaps。
-- **--node-cidr-mask-size=<INT32>** # 集群中 Node 的 CIDR 的掩码。`IPv4 的默认值：24`。`IPv6的默认值：64`。
+- **--node-cidr-mask-size**(INT32) # 集群中 Node 的 CIDR 的掩码。`IPv4 的默认值：24`。`IPv6的默认值：64`。
   - 用白话说：与 --cluster-cidr 标志互相配合，以确定 CNI 可以为每个节点分配的 IP 范围。该标志的值必须要大于 --cluster-cidr 中掩码的值。
-- **--node-monitor-grace-period=<DURATION>** # 将一个 Running 状态节点标记为不健康(NotReady、Unkonw 等)状态之前，允许节点处于不健康状态的时间上限。
-- **--node-monitor-period=<DURATION>** # 节点控制器同步节点状态的周期。`默认值：5s`。
+- **--node-monitor-grace-period**(DURATION) # 将一个 Running 状态节点标记为不健康(NotReady、Unkonw 等)状态之前，允许节点处于不健康状态的时间上限。
+- **--node-monitor-period**(DURATION) # 节点控制器同步节点状态的周期。`默认值：5s`。
   - kube-controller-manager 每隔 --node-monitor-period 时间就会去检查所有节点上 kubelet 的状态。如果持续 --node-monitor-grace-period 时间之后，被检查的节点依然不健康，则会将该节点标记为不健康
   - 并且，当节点被标记为不健康时，所有节点的 Pod 都会从 Endpoint 中踢出。
-- **--node-startup-grace-period=<DURATION>** # 节点启动期间可以处于无响应状态，但是超出 --node-startup-grace-period 时间后依然无响应，则将节点标记为不健康(NotRead、Unknow 等)状态。
-- **--pod-eviction-timeout=<DURATION>** # 节点被标记为不健康状态(NotReady、Unkonw 等)后，等待 DURATION 时间后驱逐故障节点上所有 Pod。`默认值：5m0s`
+- **--node-startup-grace-period**(DURATION) # 节点启动期间可以处于无响应状态，但是超出 --node-startup-grace-period 时间后依然无响应，则将节点标记为不健康(NotRead、Unknow 等)状态。
+- **--pod-eviction-timeout**(DURATION) # 节点被标记为不健康状态(NotReady、Unkonw 等)后，等待 DURATION 时间后驱逐故障节点上所有 Pod。`默认值：5m0s`
   - 这个标志的用法，可以通过[官方文档,概念-集群架构-节点 章节中节点状态](https://kubernetes.io/docs/concepts/architecture/nodes/#condition)小节获得更详细的说明。
   - 其实，由于节点不可用，kubelet 无法接收到消息，说是删除 Pod，其实故障节点上 Pod 只会一直处于 Terminating 状态，因为故障节点的 kubelet 不可用，无法真正完成删除操作。
   - 但是在驱逐之前，如果节点状态不健康，则 service 管理的 endpoint 中，所有属于该节点的 Pod 都会被踢出，防止异常节点上的 Pod 处理请求。
-- **--secure-port=<NUM>** # 指定通过身份验证和授权为 HTTPS 服务的端口。`默认值：10257`。
-- **--use-service-account-credentials=<BOOLEAN>** # 是否为每个控制器使用单独的 service account。`默认值：无`。
+- **--secure-port**(INT) # 指定通过身份验证和授权为 HTTPS 服务的端口。`默认值：10257`。
+- **--use-service-account-credentials**(BOOLEAN) # 是否为每个控制器使用单独的 service account。`默认值：无`。
 
 ## 默认的 manifest 示例
 

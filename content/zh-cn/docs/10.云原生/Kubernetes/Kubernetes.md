@@ -72,12 +72,14 @@ Dashboard 提供 web 界面的
 
 # Kuberntes API 接口
 
-官方文档：<https://kubernetes.io/docs/concepts/overview/kubernetes-api/>
+官方文档: https://kubernetes.io/docs/concepts/overview/kubernetes-api/
+
 Kubernetes API 使您可以查询和操纵 Kubernetes 中对象的状态。 Kubernetes 控制平面的核心是 API 服务器和它公开的 HTTP API。用户，集群的不同部分以及外部组件都通过 API 服务器相互通信。
 
 # Kubernetes Objects(对象)
 
-官方文档：<https://kubernetes.io/docs/concepts/overview/working-with-objects/>
+官方文档: https://kubernetes.io/docs/concepts/overview/working-with-objects/
+
 Kubernetes 对象是 Kubernetes 系统中的持久实体。 Kubernetes 使用这些实体来表示您的集群状态。了解 Kubernetes 对象模型以及如何使用这些对象。
 
 ## kubernetes 所有用 kubectl creat 出来的都可以理解为是一种对象
@@ -131,9 +133,11 @@ Pods 有两种使用方式：
 - Scheduler 负责决定将 Pod 放在哪个 Node 上运行。Scheduler 在调度时会充分考虑 Cluster 的拓扑结构，当前各个节点的负载，以及应用对高可用、性能、数据亲和性的需求。
 
 **Controller：执行运行 POD 的任务**
+
 控制器，Kubernetes 一般情况人们不会直接创建 Pod，而是通过创建 Controller 来管理 Pod 的。Controller 中定义了 Pod 的部署特性，比如有几个副本，在什么样的 Node 上运行等。为了满足不同的业务场景，Kubernetes 提供了多种 Controller，包括 Deployment、ReplicaSet、DaemonSet、StatefuleSet、Job 等，我们逐一讨论。一般创建 POD，都是直接创建 Deployment 的 kind，然后定义该 Deployment 下有几个 pod 的副本，一般情况至少有俩，保证 pod 的高可用。注意：deployment 下创建的多个 pod 的功能和内容是一模一样的，多个 pod 被分配到多个节点，以便实现负载均衡和高可用，pod 比较轻量，就算挂了一个，还可以自动销毁后再自动启动一个，所以，不要把一个 deployment 下的多个 pod 分开理解，他们是一个整体
 
 **label selector：标签选择器，简称 selector**
+
 可以给 kubernetes 中所有 node，resource 等等打上标签，然后让某个资源使用 selector 来选择具有相同标签的 Node 或 resource 成为同一组来协调工作或者进行各种限定
 
 比如具有相同标签的 Pod 和 Node，该 Pod 会使用 selector 选择在该 Node 上运行，该 Pod 对该 Node 具有倾向性；或者把具有相同标签的 Service 和 Pod 关联起来，使 Service 使用 selector 知道可以选择哪些 Pod 来进行调度
@@ -152,6 +156,7 @@ Pods 有两种使用方式：
 - 每个 Service 的变动(创建，改动，摧毁)都会通知 proxy，在 proxy 所在的本节点创建响应的 iptables 规则，如果 Service 后端的 Pod 摧毁后重新建立了，那么就是靠 proxy 来把 pod 信息提供给 Service。
 
 **Kubernetes 的网络**
+
 kubernetes 的整体网络分为以下三类
 
 - Node IP，各节点网络
@@ -211,15 +216,16 @@ etcd 内部，etcd 与 apiservice，apiservice-客户端，apiservice 与 kubect
 
 ## 简单流程
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/te78l0/1616120984034-51654ec9-735a-4eb1-b033-c4dd648cd2d7.png)
+![800](https://notes-learning.oss-cn-beijing.aliyuncs.com/te78l0/1616120984034-51654ec9-735a-4eb1-b033-c4dd648cd2d7.png)
 
 - kubectl 发送部署请求到 API Server。
 - API Server 通知 Controller Manager 创建一个 deployment 资源。
-- Scheduler 执行调度任务，将两个副本 Pod 分发到 k8s-node1 和 k8s-node2。
-- k8s-node1 和 k8s-node2 上的 kubelet 在各自的节点上创建并运行 Pod。
+- API Server 通知 Scheduler 执行调度任务，将两个副本 Pod 分发到 k8s-node1 和 k8s-node2。
+- API Server 通知 k8s-node1 和 k8s-node2 上的 kubelet 在各自的节点上创建并运行 Pod。
 - 补充两点：
-- 应用的配置和当前状态信息保存在 etcd 中，执行 kubectl get pod 时 API Server 会从 etcd 中读取这些数据。
-- flannel 会为每个 Pod 都分配 IP。因为没有创建 service，目前 kube-proxy 还没参与进来。
+  - API Server 的通知是利用 Watch 机制实现的，这些程序都通过 TCP 长连接于 API Server 相连
+  - 应用的配置和当前状态信息保存在 etcd 中，执行 kubectl get pod 时 API Server 会从 etcd 中读取这些数据。
+  - flannel 会为每个 Pod 都分配 IP。因为没有创建 service，目前 kube-proxy 还没参与进来。
 
 # Kubernetes 架构
 
@@ -276,6 +282,7 @@ SSH 隧道目前已被废弃。除非你了解个中细节，否则不应使用�
 Konnectivity 服务
 
 FEATURE STATE: Kubernetes v1.18 \[beta]
+
 作为 SSH 隧道的替代方案，Konnectivity 服务提供 TCP 层的代理，以便支持从控制面到集群的通信。 Konnectivity 服务包含两个部分：Konnectivity 服务器和 Konnectivity 代理，分别运行在 控制面网络和节点网络中。Konnectivity 代理建立并维持到 Konnectivity 服务器的网络连接。 启用 Konnectivity 服务之后，所有控制面到节点的通信都通过这些连接传输。
 
 请浏览 Konnectivity 服务任务 在你的集群中配置 Konnectivity 服务。
@@ -295,6 +302,7 @@ FEATURE STATE: Kubernetes v1.18 \[beta]
 控制器通过 apiserver 监控集群的公共状态，并致力于将当前状态转变为期望的状态。
 
 **控制器模式**
+
 一个控制器至少追踪一种类型的 Kubernetes 资源。这些 对象 有一个代表期望状态的 spec 字段。 该资源的控制器负责确保其当前状态接近期望状态。
 
 控制器可能会自行执行操作；在 Kubernetes 中更常见的是一个控制器会发送信息给 API 服务器，这会有副作用。 具体可参看后文的例子。

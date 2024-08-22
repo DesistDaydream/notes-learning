@@ -10,7 +10,9 @@ weight: 20
 > 参考：
 >
 > - [API 文档，单页](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#pod-v1-core)
-> - [官方文档，参考-Kubernetes API-工作负载资源-Pod](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/)
+> - [官方文档，参考 - Kubernetes API - 工作负载资源 - Pod](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/)
+> - [GitHub 项目，kubernetes/api - 1.31 - core/v1/types.go]([https://github.com/kubernetes/api/blob/master/core/v1/types.go](https://github.com/kubernetes/api/blob/release-1.31/core/v1/types.go#L4875))
+
 
 Pod 是可以在主机上运行的容器的集合。此资源由客户端创建并调度到主机上。
 
@@ -57,7 +59,7 @@ Pod 是可以在主机上运行的容器的集合。此资源由客户端创建�
 
 ## Volumes 相关字段
 
-**volumes([]Object)** # 给 pod 创建一个 Volume
+**volumes(\[]Object)** # 给 pod 创建一个 Volume
 
 - **TYPE:** # 选择要创建的 volume 的类型，具体支持的类型可以使用 kubectl explain pod.spec.volumes 命令查看
   - ...... # 定义该类型的 volume 相关参数

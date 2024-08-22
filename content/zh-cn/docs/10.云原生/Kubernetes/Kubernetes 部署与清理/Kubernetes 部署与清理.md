@@ -1,5 +1,8 @@
 ---
 title: Kubernetes 部署与清理
+linkTitle: Kubernetes 部署与清理
+date: 2024-08-22T17:29
+weight: 1
 ---
 
 # 概述
@@ -19,9 +22,13 @@ title: Kubernetes 部署与清理
 ## Kubernetes 关联文件
 
 下面这些是逐步总结的，应该是准确的，但是没有官方说明
+
 **/etc/kubernetes/** # 系统组件运行时配置
+
 **/var/lib/etcd/** # Etcd 数据目录
+
 **/var/lib/kubelet/** # Kubelet 运行时配置及数据持久化目录
+
 CNI 目录
 
 - **/etc/cni/net.d/**# 默认配置文件保存目录
@@ -226,20 +233,22 @@ curl -sSL "https://raw.githubusercontent.com/kubernetes/release/${RELEASE_VERSIO
 >
 > - [官方文档](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
 
-- 准备初始化所需镜像
+准备初始化所需镜像
+
   - 由于国内没法访问国际，镜像又都在谷歌上，所以需要翻墙或者提前以某些方式下载下来。如果不知道要用哪些镜像，可以直接使用 **kubeadm config images list** 命令查看初始化时所需镜像，然后从其他镜像仓库下载下来，并使用 docker tag 命令更改镜像。可以使用阿里云的镜像仓库，地址如下：
     - registry.aliyuncs.com/k8sxio # XXX 为镜像名与版本号，zhangguanzhang 在阿里云创建的仓库
-- 初始化集群的 master 节点
-  - 使用该命令进行初始化并对初始化的内容进行一些设定，如果可以没法翻墙，那么就会卡在 pull 的位置，从 google 拉不到 images(注意 IP 位置需要自己改成自己所需的 IP)
 
-    kubeadm init --kubernetes-version=v1.18.8 --pod-network-cidr=10.244.0.0/16 --image-repository="registry.aliyuncs.com/k8sxio"
+初始化集群的 master 节点
 
+- 使用该命令进行初始化并对初始化的内容进行一些设定，如果可以没法翻墙，那么就会卡在 pull 的位置，从 google 拉不到 images(注意 IP 位置需要自己改成自己所需的 IP)
+```bash
+kubeadm init --kubernetes-version=v1.18.8 --pod-network-cidr=10.244.0.0/16 --image-repository="registry.aliyuncs.com/k8sxio"
+```
 - kubeadm 也可通过配置文件加载配置，以定制更丰富的部署选项，kubeadm-config.yaml 文件配置详见 《[kubeadm 命令行工具](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubeadm%20 命令行工具.md 管理/kubeadm 命令行工具.md)》
-
-    kubeadm init --config kubeadm-config.yaml
-
+```bash
+kubeadm init --config kubeadm-config.yaml
+```
 - 安装完成后如下所示，并获取到后续 node 加入集群的启动命令(注意保存该命令以便 node 节点加入 cluster 集群)
-
 ```bash
 Your Kubernetes control-plane has initialized successfully!
 
@@ -269,33 +278,40 @@ kubeadm join 10.10.100.104:6443 --token 5b5a14.11sdexxuycp4rocs \
     --discovery-token-ca-cert-hash sha256:52431bdd96837cf25621123e90d3f97619715f08fec18f1f658ec4bacf8cd7ef
 ```
 
-- (测试环境功能)删除 master 节点的污点
-  - kubectl taint nodes --all node-role.kubernetes.io/master-
+(测试环境功能)删除 master 节点的污点
+
+- kubectl taint nodes --all node-role.kubernetes.io/master-
 
 ## 配置 kubectl 命令
 
-不配置 kubectl 的话，在 master 节点执行 kubectl get nodes 命令，会反馈 localhost:8080 connection refused 错误,配置方法如下：
+不配置 kubectl 的话，在 master 节点执行 `kubectl get nodes` 命令，会反馈 `localhost:8080 connection refused` 错误,配置方法如下：
 
 - 配置 kubectl 配置信息，并让 kubectl 支持 tab 补全命令功能
-  - mkdir -p $HOME/.kube
-  - cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-  - echo 'source <(kubectl completion bash)' >> ~/.bashrc
+
+```bash
+mkdir -p $HOME/.kube
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+echo 'source <(kubectl completion bash)' >> ~/.bashrc
+```
 
 ## 部署附加组件
 
 安装网络组件 flannel
 
-- kubectl apply -f <https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml>
-
+- `kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml`
 ## 添加节点 node
 
-- 执行前面的 1,2,3 步配置环境，安装 docker 以及 k8s 相关组件。
-  - kubeadm join 10.10.100.104:6443 --token 5b5a14.11sdexxuycp4rocs \\
-  - --discovery-token-ca-cert-hash sha256:52431bdd96837cf25621123e90d3f97619715f08fec18f1f658ec4bacf8cd7ef
+执行前面的 1,2,3 步配置环境，安装 docker 以及 k8s 相关组件。
 
-Note：
-若是手动安装 node，则需要在 master 上查看 csr kubectl get csr
-然后再接受该请求，即可将 node 加入集群 kubectl certificate approve node-csr-An1VRgJ7FEMMF_uyy6iPjyF5ahuLx6tJMbk2SMthwLs
+```bash
+kubeadm join 10.10.100.104:6443 --token 5b5a14.11sdexxuycp4rocs \
+  --discovery-token-ca-cert-hash sha256:52431bdd96837cf25621123e90d3f97619715f08fec18f1f658ec4bacf8cd7ef
+```
+
+> [!Note]
+> 若是手动安装 node，则需要在 master 上查看 csr kubectl get csr
+>
+> 然后再接受该请求，即可将 node 加入集群 kubectl certificate approve node-csr-An1VRgJ7FEMMF_uyy6iPjyF5ahuLx6tJMbk2SMthwLs
 
 # 清理 Kubernetes 集群
 
@@ -327,13 +343,13 @@ rm -rf /opt/cni
 1. 确认版本信息是否为升级目标版本
    1. kubeadm version
 2. 排空当前节点
-   1. kubectl drain --ignore-daemonsets <Node-Name>
+   1. kubectl drain --ignore-daemonsets \<Node-Name>
 3. 开始升级
    1. kubeadm upgrade apply v1.19.x
       1. 若想更新 kubedm-config 配置，指定 --config 参数
          1. kubeadm upgrade apply 1.19.2 --config=kubeadm-config.yaml
 4. 取消不可调度转台
-   1. kubectl uncordon <Node-Name>
+   1. kubectl uncordon \<Node-Name>
 
 升级其他 master 节点
 
@@ -349,7 +365,7 @@ rm -rf /opt/cni
 
 排空节点
 
-1. kubectl drain <Node-Name> --ignore-daemonsets
+1. kubectl drain \<Node-Name> --ignore-daemonsets
 
 升级 kubelet 配置
 
@@ -363,7 +379,7 @@ rm -rf /opt/cni
 
 取消不可调度转台
 
-1. kubectl uncordon <Node-Name>
+1. kubectl uncordon \<Node-Name>
 
 # Dual-stack(双栈)
 
