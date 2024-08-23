@@ -5,6 +5,7 @@ title: 访问 Pod
 # 概述
 
 > 参考：
+>
 > - [原文，jimmysong.io kubernetes 手书，指南-从集群外部访问 Pod ](https://jimmysong.io/kubernetes-handbook/guide/accessing-kubernetes-pods-from-outside-of-the-cluster.html)
 
 本文主要讲解访问 kubenretes 中的 Pod 和 Serivce 的集中方式，包括如下几种：

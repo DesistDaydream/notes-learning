@@ -5,6 +5,7 @@ title: EvictionManager 模块
 # 概述
 
 > 参考：
+>
 > - [公众号-云原生实验室，Kubernetes 单机侧的驱逐策略总结](https://mp.weixin.qq.com/s/ehECtQiXSHLpCrH5vuBX_w)
 >   - 本文转自 Edwardesire 的博客，原文：[**https://edwardesire.com/posts/process-eviction-under-k8s/**](https://edwardesire.com/posts/process-eviction-under-k8s/)
 
@@ -229,7 +230,7 @@ OOM killer 不对非 IO 的回收进行补偿，所以分配的 gfp_mask 是非 
 
 sysctl_oom_kill_allocating_task 来自 `/proc/sys/vm/oom_kill_allocating_task`。当参数为 true 的时候，调用 oom_kill_process 直接 kill 掉当前想要分配内存的进程。
 
-##### select_bad_process：选择最 “坏” 的进程
+##### select_bad_process - 选择最 “坏” 的进程
 
 普通场景下通过 oom_evaluate_task 函数，评估进程分数选择需要终止的进程。如果是 memory cgroup 的情况调用 mem_cgroup_scan_tasks 来选择。先看看 oom_evaluate_task 的逻辑
 

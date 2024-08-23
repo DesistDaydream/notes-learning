@@ -5,9 +5,10 @@ title: Pod 生命周期与探针
 # 概述
 
 > 参考：
-> - [官方文档,概念-工作负载-Pods-Pod 的生命周期](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/)
-> - [官方文档,任务-配置 Pods 与 容器-配置 Liveness、Readiness、Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
-> - [公众号,YP 小站-怎么使用 Pod 的 liveness 和 readiness 与 startupProbe](https://mp.weixin.qq.com/s/jPkAj2C0ZNHbaSZRwTOk9g)
+>
+> - [官方文档, 概念 - 工作负载 - Pods - Pod 的生命周期](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/)
+> - [官方文档, 任务 - 配置 Pods 与 容器 - 配置 Liveness、Readiness、Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
+> - [公众号, YP 小站-怎么使用 Pod 的 liveness 和 readiness 与 startupProbe](https://mp.weixin.qq.com/s/jPkAj2C0ZNHbaSZRwTOk9g)
 
 ## Pod 从开始到结束，会有以下几个 phase(阶段)
 
@@ -137,7 +138,8 @@ spec:
 # Pod 创建流程
 
 > 参考：
-> - [公众号,万字长文：K8S 创建 Pod 时，背后到底发生了什么](https://mp.weixin.qq.com/s/HjoU_RKBQKPCQPEQZ_fBNA)
+>
+> - [公众号, 万字长文：K8S 创建 Pod 时，背后到底发生了什么](https://mp.weixin.qq.com/s/HjoU_RKBQKPCQPEQZ_fBNA)
 
 典型的创建 Pod 的流程为
 

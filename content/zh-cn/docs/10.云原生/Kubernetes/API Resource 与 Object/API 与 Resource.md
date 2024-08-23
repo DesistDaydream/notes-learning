@@ -12,7 +12,7 @@ weight: 1
 
 Kubernetes API 使我们可以查询和操纵 Kubernetes API 中资源的状态。Kubernetes API 符合 RESTful 规范。
 
-Kubernetes 把自身一切抽象理解为 **Resource(资源)**，也叫 **API Resource**(有地方也叫 Group Resource)。对集群的所有操作都是通过对 Kubernetes API 的 HTTP(s) 请求来实现的。可以使用命令 kubectl api-resources 命令查看所有支持的资源。
+Kubernetes 把自身一切抽象理解为 **Resource(资源)**，也叫 **API Resource**(有地方也叫 Group Resource)。对集群的所有操作都是通过对 Kubernetes API 的 HTTP(s) 请求来实现的。可以使用命令 `kubectl api-resources` 命令查看所有支持的资源。
 
 kubernetes 控制平面的核心是 **API Server**。API Server 是实现了 Kubernets API 的应用程序，并为 Kubernetes 公开了一个 HTTP(s) 的 API，以供用户、集群中的不同部分和集群外部组件相互通信。
 
@@ -29,6 +29,7 @@ Kubernetes 中各种资源(对象)的数据都通过 API 接口被提交到后�
 ## API Resource(资源) 分类
 
 > 参考：
+>
 > - [官方文档，参考-kubernetes API](https://kubernetes.io/docs/reference/kubernetes-api/)
 > - [1.19 版本 API 参考(一页模式)](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/)(要查看其他版本，修改 URL 最后的版本号即可)。
 

@@ -5,6 +5,7 @@ title: Go Client
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，kubernetes/client-go](https://github.com/kubernetes/client-go)
 > - [Danielhu 博客](https://www.danielhu.cn/tags/client-go/)
 > - [公众号-KubeSphere 云原生，Client-go 源码分析之 SharedInformer](https://mp.weixin.qq.com/s/13enj17ifaD-mSrjVzAQKw)
@@ -35,7 +36,7 @@ go mod tidy
 
 # Hello World 示例
 
-参考：[阳明大佬](https://www.notion.so/K8S-b33520bf4f2c4005adb66f5ee1785502)
+参考：[阳明的文章](https://www.notion.so/cnych/K8S-b33520bf4f2c4005adb66f5ee1785502)
 
 ```go
 package main

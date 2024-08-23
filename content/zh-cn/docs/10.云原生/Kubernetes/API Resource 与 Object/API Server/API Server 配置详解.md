@@ -6,7 +6,7 @@ title: API Server 配置详解
 
 > 参考：
 >
-> - [官方文档,参考-组件工具-kube-apiserver](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/)
+> - [官方文档, 参考 - 组件工具 - kube-apiserver](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/)
 
 API Server 现阶段只能通过命令行标志才可以改变运行时行为。暂无配置文件可用。
 

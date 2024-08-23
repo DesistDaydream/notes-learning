@@ -20,7 +20,7 @@ Note：注意 14，,15 步，kubelet 会先将生成配置(volume 挂载、配�
 
 # 同步循环
 
-## kubelet.syncLoop() # 同步循环入口
+## kubelet.syncLoop() - 同步循环入口
 
 syncLoop 中首先定义了一个 syncTicker 和 housekeepingTicker，即使没有需要更新的 pod 配置，kubelet 也会定时去做同步和清理 pod 的工作。然后在 for 循环中一直调用 syncLoopIteration，如果在每次循环过程中出现比较严重的错误，kubelet 会记录到 runtimeState 中，遇到错误就等待 5 秒中继续循环。
 
@@ -75,7 +75,7 @@ func (kl *Kubelet) syncLoop(updates <-chan kubetypes.PodUpdate, handler SyncHand
 }
 ```
 
-## kubelet.syncLoopIteration() # 监听 Pod 变化
+## kubelet.syncLoopIteration() - 监听 Pod 变化
 
 syncLoopIteration 这个方法就会对多个管道进行遍历，发现任何一个管道有消息就交给 handler 去处理。它会从以下管道中获取消息：
 
@@ -93,15 +93,15 @@ kubelet.syncLoopIteration() 中的 SyncHandler 参数是一个接口，kubelet �
 
 所以 `kubelet.HandlePodXXX()` 就是 `SyncHandler.HandlePodXXX()`，在这些处理 Pod 的方法中，都会调用 `kubelet.dispatchWork()` 方法，把对 Pod 的操作下发给 podWorkers()。
 
-### kubelet.HandlePodAdditions() # 处理新增 Pod
+### kubelet.HandlePodAdditions() - 处理新增 Pod
 
-### kubelet.HandlePodUpdates() # 处理更新 Pod
+### kubelet.HandlePodUpdates() - 处理更新 Pod
 
-### kubelet.HandlePodRemoves() # 处理删除 Pod
+### kubelet.HandlePodRemoves() - 处理删除 Pod
 
-### kubelet.HandlePodReconcile() # 处理调谐 Pod
+### kubelet.HandlePodReconcile() - 处理调谐 Pod
 
-## kubelet.dispatchWork() # 下发工作
+## kubelet.dispatchWork() - 下发工作
 
 `kubelet.dispatchWorker()` 的主要作用是把某个对 Pod 的操作（创建/更新/删除）下发给 PodWorkers 模块。这里面说的对 Pod 的操作，就是上面 SyncHandler 接口下的几个方法。
 

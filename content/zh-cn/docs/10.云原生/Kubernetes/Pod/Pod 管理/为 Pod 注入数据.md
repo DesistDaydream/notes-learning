@@ -5,7 +5,8 @@ title: 为 Pod 注入数据
 # 概述
 
 > 参考：
-> - [官方文档,任务-给应用注入数据](https://kubernetes.io/docs/tasks/inject-data-application/)
+>
+> - [官方文档, 任务 - 给应用注入数据](https://kubernetes.io/docs/tasks/inject-data-application/)
 
 # 将 Pod 的 Manifests 信息映射到容器中的环境变量上
 

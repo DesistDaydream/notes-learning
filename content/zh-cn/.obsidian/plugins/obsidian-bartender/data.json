@@ -769,7 +769,7 @@
       "docs/10.云原生/Kubernetes/API 访问控制",
       "docs/10.云原生/Kubernetes/Kubernetes 网络",
       "docs/10.云原生/Kubernetes/Kubernetes 存储",
-      "docs/10.云原生/Kubernetes/Kubernetes 其他特性",
+      "docs/10.云原生/Kubernetes/Kubernetes 机制与特性",
       "docs/10.云原生/Kubernetes/Kubernetes 扩展",
       "docs/10.云原生/Kubernetes/Kubernetes 管理",
       "docs/10.云原生/Kubernetes/Kubernetes 开发",
@@ -2770,7 +2770,7 @@
     "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)": [
       "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)/_index.md",
       "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)/Authenticating(认证).md",
-      "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)/User Account.md",
+      "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)/User Account(KubeConfig).md",
       "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)/Service Account.md"
     ],
     "docs/10.云原生/Kubernetes/Kubernetes 部署与清理": [
@@ -2778,6 +2778,38 @@
       "docs/10.云原生/Kubernetes/Kubernetes 部署与清理/Kubernetes 部署与清理.md",
       "docs/10.云原生/Kubernetes/Kubernetes 部署与清理/创建高可用 Kubernetes 集群.md",
       "docs/10.云原生/Kubernetes/Kubernetes 部署与清理/kubernetes 二进制方式安装说明.md"
+    ],
+    "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)": [
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/_index.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/Client Libraries(客户端库).md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/Go Client.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/client-go连接K8s集群进行pod的增删改查.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/示例"
+    ],
+    "docs/10.云原生/Kubernetes/Pod/Pod 的资源管理": [
+      "docs/10.云原生/Kubernetes/Pod/Pod 的资源管理/_index.md",
+      "docs/10.云原生/Kubernetes/Pod/Pod 的资源管理/Pod 的资源管理.md",
+      "docs/10.云原生/Kubernetes/Pod/Pod 的资源管理/CPU资源的调度和管理(CFS).md"
+    ],
+    "docs/10.云原生/Kubernetes/Etcd": [
+      "docs/10.云原生/Kubernetes/Etcd/_index.md",
+      "docs/10.云原生/Kubernetes/Etcd/Etcd.md",
+      "docs/10.云原生/Kubernetes/Etcd/Etcd 中存储的数据之探究.md"
+    ],
+    "docs/10.云原生/Kubernetes/Kubernetes 扩展": [
+      "docs/10.云原生/Kubernetes/Kubernetes 扩展/_index.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 扩展/Kubernetes 扩展.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 扩展/API 扩展.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 扩展/API Aggregation(聚合) Layer.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 扩展/Custom Resource Definitions(CRD).md",
+      "docs/10.云原生/Kubernetes/Kubernetes 扩展/Operator 模式.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 扩展/Service Catalog 服务目录.md"
+    ],
+    "docs/10.云原生/Kubernetes/Kubernetes 其他特性": [
+      "docs/10.云原生/Kubernetes/Kubernetes 机制与特性/_index.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 机制与特性/Pod 是如何出现的.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 机制与特性/Leader Election(领导人选举).md",
+      "docs/10.云原生/Kubernetes/Kubernetes 机制与特性/Watch and Informer.md"
     ]
   },
   "actionBarOrder": {},

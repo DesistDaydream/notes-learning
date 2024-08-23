@@ -18,7 +18,7 @@ title: Kubelet 启动流程
 - 初始化 kubeletDeps，kubeletDeps 包含 kubelet 运行所必须的配置，是为了实现 dependency injection，其目的是为了把 kubelet 依赖的组件对象作为参数传进来，这样可以控制 kubelet 的行为；
 - 调用 `Run()` 函数；
 
-## main() # 入口
+## main() - 入口
 
 源码：`[cmd/kubelet/kubelet.go](https://github.com/kubernetes/kubernetes/blob/master/cmd/kubelet/kubelet.go)`
 
@@ -44,7 +44,7 @@ func run(command *cobra.Command) int {
 }
 ```
 
-## NewKubeletCommand() # Cobra 库的基本逻辑
+## NewKubeletCommand() - Cobra 库的基本逻辑
 
 源码：`[cmd/kubelet/app/server.go](https://github.com/kubernetes/kubernetes/blob/master/cmd/kubelet/app/server.go)`
 
@@ -167,7 +167,7 @@ func NewContainerRuntimeOptions() *config.ContainerRuntimeOptions {
 }
 ```
 
-## Run() # 启动 kubelet
+## Run() - 启动 kubelet
 
 `Run()` 函数仅仅调用 `run()` 函数以执行启动逻辑。
 
@@ -187,7 +187,7 @@ func Run(ctx context.Context, s *options.KubeletServer, kubeDeps *kubelet.Depend
 }
 ```
 
-## run() # 运行 kubelet 前配置及检查
+## run() - 运行 kubelet 前配置及检查
 
 `run()` 函数中主要是为 kubelet 的启动做一些基本的配置及检查工作，主要逻辑为：
 
@@ -310,12 +310,12 @@ func run(ctx context.Context, s *options.KubeletServer, kubeDeps *kubelet.Depend
 }
 ```
 
-## PreInitRuntimeService() # 初始化 runtime
+## PreInitRuntimeService() - 初始化 runtime
 
 源码：`[pkg/kubelet/kubelet.go](https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/kubelet.go)`
 PreInitRuntimeService()
 
-## RunKubelet() # 运行 kubelet
+## RunKubelet() - 运行 kubelet
 
 `RunKubelet()` 中主要是两个行为
 
@@ -435,7 +435,7 @@ func RunKubelet(kubeServer *options.KubeletServer, kubeDeps *kubelet.Dependencie
 }
 ```
 
-## createAndInitKubelet() # 初始化 kubelet
+## createAndInitKubelet() - 初始化 kubelet
 
 `createAndInitKubelet()` 中主要调用了 一个函数，两个方法 来完成 kubelet 的初始化：
 
@@ -445,7 +445,7 @@ func RunKubelet(kubeServer *options.KubeletServer, kubeDeps *kubelet.Dependencie
 
 代码：`cmd/kubelet/app/server.go`
 
-### NewMainKubelet() # 实例化 kubelet
+### NewMainKubelet() - 实例化 kubelet
 
 `NewMainKubelet()` 是初始化 kubelet 的一个函数，主要逻辑为：
 
@@ -467,7 +467,7 @@ func RunKubelet(kubeServer *options.KubeletServer, kubeDeps *kubelet.Dependencie
 
 源码：`pkg/kubelet/kubelet.go`
 
-## startKubelet() # 开始运行 kubelet，并监听端口
+## startKubelet() - 开始运行 kubelet，并监听端口
 
 在 `startKubelet()` 中通过调用 `k.Run()` 来启动 kubelet 中的所有模块以及主流程，然后启动 kubelet 所需要的 http server，在 v1.16 中，kubelet 默认仅启动健康检查端口 10248 和 kubelet server 的端口 10250。
 
@@ -570,7 +570,7 @@ func (kl *Kubelet) Run(updates <-chan kubetypes.PodUpdate) {
 }
 ```
 
-### kubelet.initializeModules() # 启动不依赖容器 Runtime 的模块
+### kubelet.initializeModules() - 启动不依赖容器 Runtime 的模块
 
 `initializeModules()` 中启动的模块是不依赖于容器 Runtime 的，并且不依赖于尚未初始化的模块，其主要逻辑为：
 
@@ -585,7 +585,7 @@ func (kl *Kubelet) Run(updates <-chan kubetypes.PodUpdate) {
 
 `fastStatusUpdateOnce()` 会不断尝试更新 pod CIDR，一旦更新成功会立即执行 updateRuntimeUp 和 syncNodeStatus 来进行运行时的更新和节点状态更新。此方法只在 kubelet 启动时执行一次，目的是为了通过更新 pod CIDR，减少节点达到 ready 状态的时延，尽可能快的进行 runtime update 和 node status update。
 
-### kubelet.updateRuntimeUp() # 启动依赖容器 Runtime 的模块
+### kubelet.updateRuntimeUp() - 启动依赖容器 Runtime 的模块
 
 `updateRuntimeUp()` 方法在容器运行时首次启动过程中初始化运行时依赖的模块，并在 kubelet 的 runtimeState 中更新容器运行时的启动时间。updateRuntimeUp() 方法主要逻辑：
 
@@ -594,7 +594,7 @@ func (kl *Kubelet) Run(updates <-chan kubetypes.PodUpdate) {
 - 如果 network 以及 runtime 都处于 ready 状态，则调用 `kubelet.initializeRuntimeDependentModules()` 初始化依赖容器 Runtime 的模块：
   - 包括 cadvisor、containerManager、evictionManager、containerLogManager、pluginManage 等。
 
-### kubelet.initializeRuntimeDependentModules() # 启动依赖容器 Runtime 的模块
+### kubelet.initializeRuntimeDependentModules() - 启动依赖容器 Runtime 的模块
 
 该方法的主要逻辑为：
 
@@ -603,6 +603,6 @@ func (kl *Kubelet) Run(updates <-chan kubetypes.PodUpdate) {
 - 启动 containerManager、evictionManager、containerLogManager；
 - 将 CSI Driver 和 Device Manager 注册到 pluginManager，然后启动 pluginManager；
 
-# kubelet.syncLoop() # 同步循环，Kubelet 开始运行
+# kubelet.syncLoop() - 同步循环，Kubelet 开始运行
 
 相见[《Kubelet 同步循环》](SyncLoop 模块 # Kubelet 同步循环.md)章节

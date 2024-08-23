@@ -85,7 +85,9 @@ spec:
 ```
 
 当升级应用时（修改镜像版本），修改配置文件中的 image 字段，再次执行 kubectl apply。此时 kubectl apply 只会影响镜像版本(因为他是“我”管理的字段)，而不会影响 HPA 控制器设置的副本数。在这个例子中，replicas 字段不是 kubectl apply 管理的字段，因此更新镜像时不会被删除，避免了每次应用升级时，副本数都会被重置。
+
 在上述例子中，为了能识别出 replicas 不是 kubectl 管理的字段，kubectl 需要一个标识，用来追踪对象中哪些字段是由 kubectl apply 管理的，而这个标识就是 last-applied-configuration。 该 annotation 是在 kubectl apply 时，由 kubectl 客户端自行填充——每次执行 kubectl apply 时（未启用 SSA），kubectl 会将本次 apply 的配置文件全量的记录在 last-applied-configurationannotation 中，用于追踪哪些字段由 kubectl apply 管理。
+
 CSA 的工作工作机制大致如下：当 apply 一个对象，如果该对象不存在，则创建它（同时写入 last-applied-configuration）。如果对象已经存在，则 kubectl 需要根据以下三个状态：
 
 - 当前配置文件所表示的对象在集群中的真实状态。（修改对象前先 Get 一次）
@@ -99,6 +101,7 @@ CSA 的工作工作机制大致如下：当 apply 一个对象，如果该对象
 - 特别的，对于那些 last-applied-configuration 中不存在的字段，不要修改它们（例如上述示例中的 replicas 字段）
 
 详细的 patch 计算示例可参考 [K8S 文档中给出的详细示例](https://link.juejin.cn?target=https%3A%2F%2Fkubernetes.io%2Fzh-cn%2Fdocs%2Ftasks%2Fmanage-kubernetes-objects%2Fdeclarative-config%2F%23apply-%25E6%2593%258D%25E4%25BD%259C%25E6%2598%25AF%25E5%25A6%2582%25E4%25BD%2595%25E8%25AE%25A1%25E7%25AE%2597%25E9%2585%258D%25E7%25BD%25AE%25E5%25B7%25AE%25E5%25BC%2582%25E5%25B9%25B6%25E5%2590%2588%25E5%25B9%25B6%25E5%258F%2598%25E6%259B%25B4%25E7%259A%2584)。
+
 由此可见，last-applied-configuration 体现的是一种 ownership 的关系，表示哪些字段是由 kubectl 管理，它是 kubectl apply 时，计算 patch 报文的依据。
 
 ## Server-Side Apply(服务端应用)

@@ -9,8 +9,8 @@ title: Kubelet 源码
 > - [田飞雨博客，源码阅读笔记-kubernetes-kubelet](https://blog.tianfeiyu.com/source-code-reading-notes/kubernetes/kubelet-modules.html)
 > - [公众号，CNCF-Kubernetes 源码分析之 kubelet(一)](https://mp.weixin.qq.com/s/j8CzMm3JeNnTgkaZxAjIdw)
 >   - <https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&__biz=Mzk0NTE4OTU0Ng==&scene=1&album_id=1632443286688677893&count=3#wechat_redirect>
-> - [博客-一直肥羊的思考，kubelet 内部实现解析](https://fatsheep9146.github.io/2018/07/08/kubelet%E5%86%85%E9%83%A8%E5%AE%9E%E7%8E%B0%E8%A7%A3%E6%9E%90/)
-> - [博客-ljchen's Notes，Kubelet 源码结构简介](http://ljchen.net/2018/10/28/kubelet%E6%BA%90%E7%A0%81%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B/)
+> - [博客 - 一直肥羊的思考，kubelet 内部实现解析](https://fatsheep9146.github.io/2018/07/08/kubelet%E5%86%85%E9%83%A8%E5%AE%9E%E7%8E%B0%E8%A7%A3%E6%9E%90/)
+> - [博客 - ljchen's Notes，Kubelet 源码结构简介](http://ljchen.net/2018/10/28/kubelet%E6%BA%90%E7%A0%81%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B/)
 
 更新时间：2022 年 2 月 23 日，Kubernetes 的源码目录随着更新迭代，也在不断变化中
 

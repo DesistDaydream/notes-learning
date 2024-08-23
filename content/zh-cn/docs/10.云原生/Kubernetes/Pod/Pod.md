@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档,概念-工作负载-Pods](https://kubernetes.io/docs/concepts/workloads/pods/)
+> - [官方文档, 概念 - 工作负载 - Pods](https://kubernetes.io/docs/concepts/workloads/pods/)
 
 Pod 是 Kubernetes 集群内**最小的工作单元**，是一个逻辑概念。Kubernetes 真正处理的，还是通过 CRI 在 HostOS 上的 Namespace 和 Cgroups。所谓的 Pod 只是一组共享了某些资源的 Container，这一组 Container 共享同一个 NetworkNamespace 并且可以声明共享同一个 Volume。
 
@@ -65,8 +65,8 @@ Pod 是 Kubernetes 集群内**最小的工作单元**，是一个逻辑概念。
 
 > 参考：
 >
-> - [官方文档，概念-工作敷在-Pod-初始化容器](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)
-> - [官方文档，概念-工作负载-Pod-临时容器](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/)
+> - [官方文档, 概念 - 工作负载 - Pod - 初始化容器](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)
+> - [官方文档, 概念 - 工作负载 - Pod - 临时容器](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/)
 
 - 运行单一 Container。
   - one-container-per-Pod 是 Kubernetes 最常见的模型，这种情况下，只是将单个 Container 简单封装成 Pod。
@@ -80,7 +80,7 @@ Pod 是 Kubernetes 集群内**最小的工作单元**，是一个逻辑概念。
 - **init_container(初始化容器)** # 在应用容器启动前运行一次就结束的，常用来为容器运行初始化运行环境，比如设置权限等等
 - **application_container(应用容器)** # 真正运行业务的容器。
 
-这三类容器，可以在 kubelet 代码中找到运行逻辑，详见 [《kubelet 源码解析-PodWorker 模块》](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 开发/源码解析/Kubelet%20 源码/PodWorker%20 模块.md 开发/源码解析/Kubelet 源码/PodWorker 模块.md)
+这三类容器，可以在 kubelet 代码中找到运行逻辑，详见 kubelet 源码解析 中的 [PodWorker 模块](docs/10.云原生/Kubernetes/Kubernetes%20开发/源码解析/Kubelet%20源码/PodWorker%20模块.md)
 
 ## ephemeral_container(临时容器)
 
@@ -142,7 +142,7 @@ Init 容器的重启策略：
 - 如果 Init 容器执行失败，Pod 设置的 restartPolicy 为 Never，则 pod 将处于 fail 状态。否则 Pod 将一直重新执行每一个 Init 容器直到所有的 Init 容器都成功。
 - 如果 Pod 异常退出，重新拉取 Pod 后，Init 容器也会被重新执行。所以在 Init 容器中执行的任务，需要保证是幂等的。
 
-## container(容器) # 也称为 application_container(应用容器)
+## container(容器) - 也称为 application_container(应用容器)
 
 # Pod 名字的命名规范
 

@@ -1,14 +1,14 @@
 ---
-title: "Pod 的资源管理"
-linkTitle: "Pod 的资源管理"
-weight: 20
+title: Pod 的资源管理
+linkTitle: Pod 的资源管理
+weight: 1
 ---
 
 # 概述
 
 > 参考：
-> 
-> - [官方文档，概念-配置-Pod 和容器的资源管理](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+>
+> - [官方文档, 概念 - 配置 - Pod 和容器的资源管理](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 
 # Pod 中 Container 的资源需求与资源限制
 
@@ -28,9 +28,7 @@ weight: 20
 关于在 yaml 中如何写资源限制中数值的说明：
 
 - kubernetes 中的一个 CPU 是一个逻辑 CPU，1CPU 的核心数=1000millicores 毫核心(也就是说 500m 相当于 0.5 个 CPU)
-
 - 限制 cpu 可以用整数写，1 就是 1 个 cpu、0.5 就是 0.5 个 cpu。也可以带单位，1000m 就是 1 个 cpu，500m 就是 0.5 个 cpu。
-
 - 限制内存需要使用单位(IEC 标准、公制标准都可以)，即 Mi、Gi 或者 M、G 等。例如 1024Mi、1Gi 等
 
 Note：polinux/stress 这是一个非常好用的压测容器，可以对容器指定其所使用的内存和 cpu 等资源的大小。当创建完资源配合等资源限制的对象后，可以通过该容器来测试资源限制是否生效。

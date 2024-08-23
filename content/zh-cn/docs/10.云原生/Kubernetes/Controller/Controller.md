@@ -81,6 +81,9 @@ kubernetes 有各种各样的资源，每个资源都有其自己的各种定义
 
 可以在 [Controller 代码](https://github.com/kubernetes/kubernetes/tree/master/pkg/controller)中，找到所有可用的控制器。所以，从逻辑上来说，每个控制器都应该是一个单独的进程，但是为了降低复杂性，这些控制器都被编译到同一个执行文件中，并在同一个进程中运行。所以，这些控制器的集合体，就称为 **Controller Manager(控制器管理器)**，所以实现控制器功能的组件的名称就叫 **kube-controller-manager**。
 
+> [!Example]
+> Controller Manager 管理 Deployment 资源，连接到 API Server 监听到了 Depoyment 资源的变化，开始根据 Deployment 的定义创建 Replication，Replication 又创建 Pod
+
 # 各种控制器介绍
 
 > 参考：
@@ -153,6 +156,7 @@ job 对象可以 通过 cronjob 对象来创建。cronjob 可以按照重复计�
 其实，cronjob 与 job 的关系，有点像 deployment 之类的控制器与 pod 之间的关系。在编写 yaml 时，deployment 需要指定 pod 的 template，而 cronjob 则需要指定 jobTemplate。
 
 CronJob 的行为可以通过其 yaml 中的 spec 字段中的相关字段来指定
+
 官方文档：<https://kubernetes.io/docs/tasks/job/automated-tasks-with-cron-jobs/#writing-a-cron-job-spec>
 
 - concurrencyPolicy \<string> # 指定如何处理作业的并发执行。有效值为：-“允许”（默认）：允许 CronJobs 同时运行； -“禁止”：禁止并行运行，如果前一个运行尚未完成，则跳过下一个运行； -“替换”：取消当前正在运行的作业，并将其替换为新作业

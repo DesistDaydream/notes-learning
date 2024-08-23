@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档,参考-API 访问控制-认证](https://kubernetes.io/docs/reference/access-authn-authz/authentication/)
+> - [官方文档, 参考 - API 访问控制 - 认证](https://kubernetes.io/docs/reference/access-authn-authz/authentication/)
 
 Authenticating(动词) 也称为 Authentication(名词) 身份验证。指明客户端是否有权限访问 API Server。
 
@@ -19,12 +19,19 @@ Authenticating(动词) 也称为 Authentication(名词) 身份验证。指明客
 
 Accounts 是一个在认证授权系统里的逻辑概念。Accounts 需要通过认证概念中的东西(比如证书、token、或者用户名和密码等)来建立。类似于登陆系统的账户。而在 Kubernetes 中，Accounts 分为如下两类
 
-1. UserAccoun(用户账户，简称 User)
-2. ServiceAccount(服务账户，简称 SA)
+1. **UserAccount(用户账户，简称 User)**
+2. **ServiceAccount(服务账户，简称 SA)**
 
-### User Account 用户账号
+> [!Tip]
+> UA 与 SA 的对比在 [官方文档, 参考 - API 访问控制 - 管理服务账号, User accounts 与 Service accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#user-accounts-versus-service-accounts) 有提到，官方并没有对 UserAccount 进行明确的定义，偏向于一个没有实体的抽象概念，更多的时候是用 **KubeConfig** 这个词来作为 UserAccount 功能的实现。
+>
+> - UA 用来给人。SA 用来给运行在 pod 中的进程
+> - UA 作用于全局，UA 的名字在集群的所有 namespace 中必须是唯一的。SA 作用于 namespace
+> - UA 于 SA 的账户审核注意事项是不同的，UA 的凭证信息需要在使用 kubectl config 命令时候的手动指定；SA 的凭证信息在创建 SA 后会自动生成对应的 secret 并把凭证信息保存其中。
 
-详见：[User Account](docs/10.云原生/Kubernetes/API%20访问控制/Authenticating(认证)/User%20Account.md)
+### User Account(用户账号)
+
+详见：[User Account(KubeConfig)](/docs/10.云原生/Kubernetes/API%20访问控制/Authenticating(认证)/User%20Account(KubeConfig).md)
 
 User 不属于 K8S 中的一个资源。这类 Account 适用于：客户端访问集群时使用(比如使用 kubectl、scheduler 等访问 api)
 
@@ -43,25 +50,17 @@ openssl req -new -key lch.key -out lch.csr -subj "/CN=lch"
 
 进一步的细节可参阅 [证书请求](https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/#normal-user) 下普通用户主题。
 
-### Service Account 服务账号
+### Service Account(服务账号)
 
-> 详见：[Service Account](docs/10.云原生/Kubernetes/API%20访问控制/Authenticating(认证)/Service%20Account.md)
+详见：[Service Account](/docs/10.云原生/Kubernetes/API%20访问控制/Authenticating(认证)/Service%20Account.md)
 
-SA 属于 K8S 中的一个资源。这类 Account 适用于：Pod 访问集群时使用。
+**Service Account(服务账号，简称 SA)** 属于 K8S 中的一个资源。这类 Account 适用于：Pod 访问集群时使用。
 
 为什么需要 Service Account 呢？
 
-Service Account(服务账户) 概念的引入是基于这样的使用场景：运行在 pod 里的进程需要调用 Kubernetes API 以及非 Kubernetes API 的其它服务。Service Account 是给 pod 里面 Container 中的进程使用的，它为 pod 提供必要的身份认证。(与用户控制 kubectl 去调用 API 一样，这里相当于 Pod 中 Container 在调用 API 的时候需要的认证)
+SA 概念的引入是基于这样的使用场景：运行在 pod 里的进程需要调用 Kubernetes API 以及非 Kubernetes API 的其它服务。Service Account 是给 pod 里面 Container 中的进程使用的，它为 pod 提供必要的身份认证。(与用户控制 kubectl 去调用 API 一样，这里相当于 Pod 中 Container 在调用 API 的时候需要的认证)
 
-### UserAccount 与 ServiceAccount 的区别
-
-https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#user-accounts-versus-service-accounts
-
-- UA 用来给人。SA 用来给运行在 pod 中的进程
-- UA 作用于全局，UA 的名字在集群的所有 namespace 中必须是唯一的。SA 作用于 namespace
-- UA 于 SA 的账户审核注意事项是不同的，UA 的凭证信息需要在使用 kubectl config 命令时候的手动指定；SA 的凭证信息在创建 SA 后会自动生成对应的 secret 并把凭证信息保存其中。
-
-## Accounts Group # 账户组，UserAccount 与 ServiceAccount 都有 Group
+## Accounts Group(账户组) - UserAccount 与 ServiceAccount 都有 Group
 
 UA 与 SA 都可以属于一个或多个 Group
 
@@ -72,7 +71,7 @@ Group 是 Account 的集合，本身并没有操作权限，但附加于 Group �
 3. system:serviceaccounts
 4. system:serviceaccounts:\<NameSpace>
 
-kubeconfig 会给 UserAccount 提供与 APIServer 交互时所用的证书
+KubeConfig 会给 UserAccount 提供与 APIServer 交互时所用的证书
 
 Secret 会给 ServiceAccount 提供与 APIServer 交互时所用的证书
 
@@ -117,12 +116,16 @@ https://kubernetes.io/docs/reference/access-authn-authz/authentication/#static-t
 
 如果要设置的组名不止一个，则对应的列必须用双引号括起来，例如
 
-    token,user,uid,"group1,group2,group3"
+```bash
+token,user,uid,"group1,group2,group3"
+```
 
 在请求中放入持有者令牌
 
 当使用持有者令牌来对某 HTTP 客户端执行身份认证时，API 服务器希望看到 一个名为 Authorization 的 HTTP 头，其值格式为 Bearer THETOKEN。 持有者令牌必须是一个可以放入 HTTP 头部值字段的字符序列，至多可使用 HTTP 的编码和引用机制。 例如：如果持有者令牌为 31ada4fd-adec-460c-809a-9e56ceb75269，则其 出现在 HTTP 头部时如下所示：
 
-    Authorization: Bearer 31ada4fd-adec-460c-809a-9e56ceb75269
-    # 比如一个 curl 请求中，可以通过 -H 参数加入请求头
-    curl --cacert ${CAPATH} -H "Authorization: Bearer ${TOKEN}"  https://${IP}:6443/
+```bash
+Authorization: Bearer 31ada4fd-adec-460c-809a-9e56ceb75269
+# 比如一个 curl 请求中，可以通过 -H 参数加入请求头
+curl --cacert ${CAPATH} -H "Authorization: Bearer ${TOKEN}"  https://${IP}:6443/
+```

@@ -20,7 +20,7 @@ title: RBAC 授权
     - 其中 User 就是 认证里的 User Account。User 的名字可以是字符串，也可以是邮件风格的名称，或者以字符串形式表达的数字 ID。
     - Group 的概念是什么还不知道，也没找到参考文档。不过有一个可能应该是这样描述的：
       - Group 与 User 有关系，在创建 User 的证书时，在 subjct 中，O 的值就是表示 Kubernetes RBAC 机制中 Group 的概念。这么看，其实这个 User 与 Group 的概念与 Linux 中用户与组的概念一样。
-    - ServiceAccount 详见 [Service Account](docs/10.云原生/Kubernetes/API%20访问控制/Authenticating(认证)/Service%20Account.md)
+    - ServiceAccount 详见 [Service Account](/docs/10.云原生/Kubernetes/API%20访问控制/Authenticating(认证)/Service%20Account.md)
 - **RoleBinding**：定义了 Role 与 Subject 的绑定关系
   - **rules**# 规则，i.e.当前 role 所拥有的权限，其中有 3 个关键字。
   - **apiGroups** # 指定该 role 可以操作那些 api 组。使用 '\*' 表示对所有组具有操作权限

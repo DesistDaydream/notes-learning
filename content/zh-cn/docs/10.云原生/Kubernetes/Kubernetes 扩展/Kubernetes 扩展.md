@@ -1,14 +1,21 @@
 ---
 title: Kubernetes 扩展
+linkTitle: Kubernetes 扩展
+date: 2024-08-23T14:59
+weight: 20
 ---
 
-# 扩展 Kubernetes 集群概述
+
+# 概述
 
 > 参考：
-> - 概念：<https://kubernetes.io/docs/concepts/extend-kubernetes/extend-cluster/>
+> - [官方文档，概念 - 扩展 Kubernetes - 扩展集群](https://kubernetes.io/docs/concepts/extend-kubernetes/extend-cluster/)
+> - 概念：
 > - 任务：<https://kubernetes.io/docs/tasks/extend-kubernetes/>
 
-这里引用张磊大佬的一张图来开篇![](https://notes-learning.oss-cn-beijing.aliyuncs.com/eo9qpz/1619144340194-3bfc699a-f6ca-4732-b4f2-0d49c7512b1a.jpeg)
+这里引用张磊大佬的一张图来开篇
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/eo9qpz/1619144340194-3bfc699a-f6ca-4732-b4f2-0d49c7512b1a.jpeg)
 
 Kubernetes 是高度可配置和可扩展的。因此，极少需要分发或提交补丁代码给 Kubernetes 项目。通过对 Kubernetes 的扩展，可以将中间狭窄的部分扩大。
 
@@ -48,9 +55,9 @@ Kubernetes 的设计是通过编写客户端程序来实现自动化的。 任�
 
 ## Kubernetes API 扩展
 
-1. [**Custom Resources Definitions(自定义资源定义)**](https://www.teambition.com/project/5f90e312755d8a00446050eb/app/5eba5fba6a92214d420a3219/workspaces/5f90e312c800160016ea22fb/docs/5f9a605812d5ba00014a7368)
-2. [**Aggregation API(聚合 API)**](https://www.teambition.com/project/5f90e312755d8a00446050eb/app/5eba5fba6a92214d420a3219/workspaces/5f90e312c800160016ea22fb/docs/5f9a602837398300016bc061)
-3. [**Operator 模式**](https://www.teambition.com/project/5f90e312755d8a00446050eb/app/5eba5fba6a92214d420a3219/workspaces/5f90e312c800160016ea22fb/docs/5f9a5fe537398300016bbb9a)
+1. [Custom Resource Definitions(自定义资源定义)](docs/10.云原生/Kubernetes/Kubernetes%20扩展/Custom%20Resource%20Definitions(CRD).md)
+2. [API Aggregation(聚合) Layer](docs/10.云原生/Kubernetes/Kubernetes%20扩展/API%20Aggregation(聚合)%20Layer.md)
+3. [Operator 模式](docs/10.云原生/Kubernetes/Kubernetes%20扩展/Operator%20模式.md)
 
 ## 计算、存储、网络扩展。
 

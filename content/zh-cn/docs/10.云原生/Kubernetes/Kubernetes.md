@@ -214,18 +214,21 @@ etcd 内部，etcd 与 apiservice，apiservice-客户端，apiservice 与 kubect
 
 谁向谁发请求，前者就是客户端，所在在这里，客户端与服务端没有绝对，一个服务既可以是客户端也可以是服务端
 
-## 简单流程
+## Pod 被创建的简单流程
 
 ![800](https://notes-learning.oss-cn-beijing.aliyuncs.com/te78l0/1616120984034-51654ec9-735a-4eb1-b033-c4dd648cd2d7.png)
 
-- kubectl 发送部署请求到 API Server。
-- API Server 通知 Controller Manager 创建一个 deployment 资源。
-- API Server 通知 Scheduler 执行调度任务，将两个副本 Pod 分发到 k8s-node1 和 k8s-node2。
-- API Server 通知 k8s-node1 和 k8s-node2 上的 kubelet 在各自的节点上创建并运行 Pod。
-- 补充两点：
-  - API Server 的通知是利用 Watch 机制实现的，这些程序都通过 TCP 长连接于 API Server 相连
-  - 应用的配置和当前状态信息保存在 etcd 中，执行 kubectl get pod 时 API Server 会从 etcd 中读取这些数据。
-  - flannel 会为每个 Pod 都分配 IP。因为没有创建 service，目前 kube-proxy 还没参与进来。
+1. kubectl 发送部署 Deployment 资源的请求到 API Server。
+2. API Server 通知 Controller Manager 创建一个 Deployment 资源。
+3. API Server 通知 Scheduler 执行调度任务，将两个副本 Pod 分发到 k8s-node1 和 k8s-node2。
+4. API Server 通知 k8s-node1 和 k8s-node2 上的 kubelet 在各自的节点上创建并运行 Pod。
+
+补充几点：
+
+- 更详细的流程详见 [Pod 是如何出现的](docs/10.云原生/Kubernetes/Kubernetes%20机制与特性/Pod%20是如何出现的.md)
+- API Server 的通知是利用 [Watch and Informer](docs/10.云原生/Kubernetes/Kubernetes%20机制与特性/Watch%20and%20Informer.md) 机制实现的。各个组件主动与 API Server 建立长连接，接收 API Server 的通知
+- 应用的配置和当前状态信息保存在 Etcd 中，每一步操作完的结果都会经由 API Server 将信息更新到 Etcd 中。最后执行 `kubectl get pod` 时 API Server 会从 etcd 中读取这些数据。
+- flannel 会为每个 Pod 都分配 IP。因为没有创建 service，目前 kube-proxy 还没参与进来。
 
 # Kubernetes 架构
 

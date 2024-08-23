@@ -20,7 +20,7 @@ kube-controller-manager 启动后监听两个端口。
 
 ## kube-controller-manager 高可用
 
-> 参考：[Leader Election(领导人选举)](/docs/10.云原生/Kubernetes/Kubernetes%20其他特性/Leader%20Election(领导人选举).md)
+> 参考：[Leader Election(领导人选举)](docs/10.云原生/Kubernetes/Kubernetes%20机制与特性/Leader%20Election(领导人选举).md)
 
 我们都知道 k8s 核心组件，其中 apiserver 只用于接收 api 请求，不会主动进行各种动作，所以他们在每个节点都运行并且都可以接收请求，不会造成异常；kube-proxy 也是一样，只用于做端口转发，不会主动进行动作执行。
 但是 scheduler, controller-manager 不同，他们参与了 Pod 的调度及具体的各种资源的管控，如果同时有多个 controller-manager 来对 Pod 资源进行调度，结果太美不敢看，那么 k8s 是如何做到正确运转的呢？
@@ -53,11 +53,11 @@ Events:
 其实，kube-controller-manager 默认使用 leases 资源来实现领导者选举功能：
 
 ```bash
-root@desistdaydream:~# kubectl get leases.coordination.k8s.io -n kube-system
+~]# kubectl get leases.coordination.k8s.io -n kube-system
 NAME                      HOLDER                                                 AGE
 kube-controller-manager   master-2.bj-net_62b724de-66a3-4aff-9a7c-e7c3d66555d1   176d
 kube-scheduler            master-2.bj-net_50df0a21-f59a-48de-98a5-93ab4a0ddf3b   176d
-root@desistdaydream:~# kubectl get leases.coordination.k8s.io -n kube-system kube-controller-manager -oyaml  | neat
+~]# kubectl get leases.coordination.k8s.io -n kube-system kube-controller-manager -oyaml  | neat
 apiVersion: coordination.k8s.io/v1
 kind: Lease
 metadata:
@@ -111,7 +111,7 @@ kube-controller-manager 主要通过命令行标志来控制运行时行为
 - **--cluster-cidr**(STRING) # 集群中 Pod 的 CIDR 范围。
   - 用白话说：可以给 Pod 分配的 IP 范围。
 - **--controllers**(STRING) # 要启动的控制器列表。`默认值：*`。
-  - `*` 表示默认的控制器，比如 deployment 等。
+  - `*` 表示默认的控制器，比如 deployment、etc. 。
 - **--leader-elect**(BOOLEAN) # 在程序开始循环监控之前，是否要启用领导者选举功能。`默认值：true`。
   - 若集群中有多个 kube-controller-manager，则必须要启用领导者选举功能。
 - **--leader-elect-resource-lock**(STRING) # 在领导者选举期间用于获取锁的资源。`默认值：leases`。
@@ -124,7 +124,7 @@ kube-controller-manager 主要通过命令行标志来控制运行时行为
   - 并且，当节点被标记为不健康时，所有节点的 Pod 都会从 Endpoint 中踢出。
 - **--node-startup-grace-period**(DURATION) # 节点启动期间可以处于无响应状态，但是超出 --node-startup-grace-period 时间后依然无响应，则将节点标记为不健康(NotRead、Unknow 等)状态。
 - **--pod-eviction-timeout**(DURATION) # 节点被标记为不健康状态(NotReady、Unkonw 等)后，等待 DURATION 时间后驱逐故障节点上所有 Pod。`默认值：5m0s`
-  - 这个标志的用法，可以通过[官方文档,概念-集群架构-节点 章节中节点状态](https://kubernetes.io/docs/concepts/architecture/nodes/#condition)小节获得更详细的说明。
+  - 这个标志的用法，可以通过[官方文档, 概念 - 集群架构 - 节点 章节中节点状态](https://kubernetes.io/docs/concepts/architecture/nodes/#condition)小节获得更详细的说明。
   - 其实，由于节点不可用，kubelet 无法接收到消息，说是删除 Pod，其实故障节点上 Pod 只会一直处于 Terminating 状态，因为故障节点的 kubelet 不可用，无法真正完成删除操作。
   - 但是在驱逐之前，如果节点状态不健康，则 service 管理的 endpoint 中，所有属于该节点的 Pod 都会被踢出，防止异常节点上的 Pod 处理请求。
 - **--secure-port**(INT) # 指定通过身份验证和授权为 HTTPS 服务的端口。`默认值：10257`。

@@ -6,7 +6,7 @@ title: RBAC 相关 Manifests 详解
 
 > 参考：
 > 
-> - [官方文档,参考-Kubernetes API-认证资源](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/)
+> - [官方文档, 参考 - Kubernetes API - 认证资源](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/)
 
 # Role
 

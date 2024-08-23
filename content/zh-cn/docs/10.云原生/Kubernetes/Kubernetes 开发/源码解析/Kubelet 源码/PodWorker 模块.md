@@ -8,7 +8,7 @@ PodWorkers 子模块主要的作用就是处理针对每一个的 Pod 的更新�
 
 # 准备运行 Pod
 
-## podWorkers.UpdatePod() # 更新事件的 channel
+## podWorkers.UpdatePod() - 更新事件的 channel
 
 updatePod 将配置更改或终止状态传递到 POD。 POD 可以是可变的，终止或终止，并且如果在 APIServer 上删除，则将转换为终止，它被发现具有终端阶段（成功或失败），或者如果它被 kubelet 驱逐。
 
@@ -237,7 +237,7 @@ func (p *podWorkers) UpdatePod(options UpdatePodOptions) {
 }
 ```
 
-## podWorkers.managePodLoop() # 调用 podWorkers.syncPodFn() 方法同步 Pod
+## podWorkers.managePodLoop() - 调用 podWorkers.syncPodFn() 方法同步 Pod
 
 managePodLoop 调用 `podWorkers.syncPodFn()` 方法去同步 pod。在完成这次 sync 动作之后，会调用 wrapUp 函数，这个函数将会做几件事情:
 
@@ -289,7 +289,7 @@ func newPodWorkers(syncPodFn syncPodFnType,......) PodWorkers {
 }
 ```
 
-## kubelet.syncPod() # 完成创建容器前的准备工作
+## kubelet.syncPod() - 完成创建容器前的准备工作
 
 在这个方法中，主要完成以下几件事情：
 
@@ -423,7 +423,7 @@ KubeRuntimeManager(pkg/kubelet/kuberuntime) 子模块的 SyncPod() 方法是真�
 
 `kubeGenericRuntimeManager.runtimeService` **就是 CRI**，都是由第三方对接的，具体时间逻辑也在第三方，比如 Containerd，Docker 等。该结构体中的很多方法都调用了 runtimeService 接口中的方法，以控制 Pod 和 容器。
 
-## kubeGenericRuntimeManager.SyncPod() # 创建容器
+## kubeGenericRuntimeManager.SyncPod() - 创建容器
 
 syncPod 主要执行以下几个操作：
 
@@ -547,7 +547,7 @@ func (m *kubeGenericRuntimeManager) SyncPod(pod *v1.Pod, podStatus *kubecontaine
 }
 ```
 
-## kubeGenericRuntimeManager.startContainer() # 启动容器
+## kubeGenericRuntimeManager.startContainer() - 启动容器
 
 最终由 `kubeGenericRuntimeManager.startContainer()` 完成容器的启动，其主要有以下几个步骤：
 
