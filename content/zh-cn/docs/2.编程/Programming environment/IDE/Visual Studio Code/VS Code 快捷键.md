@@ -55,7 +55,7 @@ Ctrl+k,Ctrl+s 打开键盘快捷方式列表
 
 - 折叠
   - **Ctrl+k,Ctrl+0** 折叠所有代码全部层
-  - **Ctrl+k,Ctrl+NUM **折叠所有代码的 NUM 层
+  - **Ctrl+k,Ctrl+${NUM}** 折叠所有代码的 NUM 层
   - **Ctrl+k,Ctrl+/** 折叠所有代码的注释
 - 展开
   - **Ctrl+k,Ctrl+j** 展开所有代码的全部层

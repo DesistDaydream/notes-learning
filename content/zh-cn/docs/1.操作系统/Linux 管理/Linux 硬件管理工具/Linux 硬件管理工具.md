@@ -222,8 +222,6 @@ bj-test-desistdaydream-1
 
 OPTIONS
 
-- `-enable` TEST to enable a test
-- `-disable` TEST to disable a test
 - **-C, -class CLASS** # 只输出指定 CLASS 的信息。
     - 所有可用的 CLASS 列表见：<https://ezix.org/project/wiki/HardwareLiSter#Deviceclasses>
 

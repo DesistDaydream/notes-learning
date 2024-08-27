@@ -42,6 +42,18 @@ git 回滚到之前某一 commit
 
 - git push -f
 
+## 修改历史的 git commit message
+
+`git rebase -i HEAD~4` 修改前 4 条 commit 信息
+
+> Notes: 只能这样，如果要求改第 前 100 条，就必须要 HEAD~100
+
+此时会进入交互模式，将期望修改的 commit 前的 `pick` 改为 `reword`，然后输入 `:wq` 保存退出
+
+此时会再次进入交互模式，修改 commit 的信息即可，然后输入 `:wq` 保存退出
+
+最后将修改的内容强制推送 `git push --force`
+
 ## 撤销已 push 的 commit
 
 查看所有 commit 记录

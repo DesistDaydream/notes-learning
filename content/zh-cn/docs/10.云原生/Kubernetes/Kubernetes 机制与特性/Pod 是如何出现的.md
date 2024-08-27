@@ -18,10 +18,10 @@ weight: 20
 
 1. 通过 kubectl 命名发起请求。
 2. apiserver 通过对应的 kubeconfig 进行认证，认证通过后将 yaml 中的 pod 信息存到 etcd。
-3. Controller-Manager 通过 apiserver 的 watch 接口发现了pod信息的更新，执行该资源所依赖的拓扑结构整合，整合后将对应的信息交给apiserver，apiserver写到etcd。
-4. Scheduler同样通过apiserver的watch接口更新到pod可以被调度，通过算法给pod分配节点，并将pod和对应节点绑定的信息交给apiserver，apiserver写到etcd。
-5. kubelet从apiserver获取需要创建的pod信息，调用CNI接口给pod创建pod网络，调用CRI接口去启动容器，调用CSI进行存储卷的挂载。
-6. 网络，容器，存储创建完成后pod创建完成，等业务进程启动后，pod运行成功。
+3. Controller-Manager 通过 apiserver 的 [Watch](/docs/10.云原生/Kubernetes/Kubernetes%20机制与特性/Watch%20and%20Informer.md) 接口发现了pod信息的更新，执行该资源所依赖的拓扑结构整合，整合后将对应的信息交给 apiserver，apiserver 写到 etcd。
+4. Scheduler 同样通过 apiserver 的 watch 接口更新到 pod 可以被调度，通过算法给 pod 分配节点，并将 pod 和对应节点绑定的信息交给 apiserver，apiserver 写到 etcd。
+5. kubelet 从 apiserver 获取需要创建的 pod 信息，调用 CNI 接口给 pod 创建 pod 网络，调用 CRI 接口去启动容器，调用 CSI 进行存储卷的挂载。
+6. 网络，容器，存储创建完成后 pod 创建完成，等业务进程启动后，pod 运行成功。
 
 # 输入 kubectl run 时会发生什么?
 
