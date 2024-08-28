@@ -380,7 +380,7 @@
       "docs/1.操作系统/Linux 管理/Linux 硬件管理工具/Linux 硬件管理工具.md",
       "docs/1.操作系统/Linux 管理/Linux 硬件管理工具/dmidecode.md",
       "docs/1.操作系统/Linux 管理/Linux 硬件管理工具/lspci.md",
-      "docs/1.操作系统/Linux 管理/Linux 硬件管理工具/从文件中获取 Linux 硬件信息获取.md"
+      "docs/1.操作系统/Linux 管理/Linux 硬件管理工具/lshw.md"
     ],
     "docs/1.操作系统/Linux 管理/Linux 管理案例": [
       "docs/1.操作系统/Linux 管理/Linux 管理案例/_index.md",

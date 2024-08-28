@@ -98,7 +98,7 @@ Type   Information
 
 # Syntax(语法)
 
-**dmidecode [OPTIONS]**
+**dmidecode \[OPTIONS]**
 
 **OPTIONS**
 
@@ -176,7 +176,7 @@ Size: No Module Installed       //此插槽未使用
 ```
 
 ```bash
-  # dmidecode -t 17        //数字17是dmidecode的参数，本文最后有其他数字参数
+  ~]# dmidecode -t 17        //数字17是dmidecode的参数，本文最后有其他数字参数
     # dmidecode 2.7
     SMBIOS 2.4 present.
     Handle 0x0015, DMI type 17, 27 bytes.

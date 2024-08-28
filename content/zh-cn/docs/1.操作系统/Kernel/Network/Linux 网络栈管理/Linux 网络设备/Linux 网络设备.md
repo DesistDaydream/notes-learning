@@ -3,6 +3,8 @@ title: Linux 网络设备
 linkTitle: Linux 网络设备
 date: 2024-06-17T16:23
 weight: 1
+tags:
+  - PCI
 ---
 
 # 概述
@@ -13,29 +15,32 @@ weight: 1
 > - [IANA，Address Resolution Protocol (ARP) Parameters，Hardware Types](https://www.iana.org/assignments/arp-parameters/arp-parameters.xhtml#arp-parameters-2)
 > - https://stackoverflow.com/questions/18598283/the-meaning-of-the-sys-class-net-interface-type-value
 
+Linux 网络设备归属于 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md) 总线类型。
 
 # 关联文件
 
 ## sysfs 中的网络设备信息
 
-Linux 中对于每个网络设备，在 [sysfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/sysfs.md) 中都有一系列文件用来描述或定义这些网络设备
+每个网络设备，都会在 [sysfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/sysfs.md) 中注册（主要是与 PCI 相关），有一系列文件用来描述或定义这些网络设备。
 
 在 `/sys/class/net/${NetDeviceName}/` 目录下可以找到已在内核注册的关于网络设备的信息
 
+> Note: `${NetDeviceName}` 是指向 `/sys/devices/pciXXX/XXX/.../XXX/${NetDeviceName}/` 的 [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)
+
 **./type** # 网络设备的类型。文件内容是数字。从 [GitHub 项目，torvalds/linux - include/uapi/linux/if_arp.h](https://github.com/torvalds/linux/blob/master/include/uapi/linux/if_arp.h) 文件中找到数字对应的设备类型表和该设备的定义（e.g. 1 表示 ARPHRD_ETHER），这个 C 的头文件将网络设备分为如下几大块
 
-- ARP 协议硬件定义 # [ARP](/docs/4.数据通信/通信协议/ARP%20与%20NDP.md) 的 RFC 标准中，定义了这些，并且 IANA 中也维护了这些注册信息。
-- 非 ARP 硬件的虚拟网络设备 # Linux 自身实现的一些虚拟网络设备
-- TODO: 其他信息待整理
+- **ARP 协议硬件定义** # [ARP](/docs/4.数据通信/通信协议/ARP%20与%20NDP.md) 的 RFC 标准中，定义了这些，并且 IANA 中也维护了这些注册信息。
+- **非 ARP 硬件的虚拟网络设备** # Linux 自身实现的一些虚拟网络设备
+- **TODO**: 其他信息待整理
 
 **./flags** # 网络设备的 Flags(标志)。常用来描述设备的状态和基本功能。从 [GitHub 项目，torvalds/linux - include/uapi/linux/if.sh](https://github.com/torvalds/linux/blob/master/include/uapi/linux/if.h) 文件中找到这些 Flags 的含义
 
 - Notes: [ip](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ip/ip.md) 工具下的 link 和 address 子命令通过 show 显示的网络设备信息中，第三部分由 `< >` 包裹起来的就是网络设备的 Flags
 
-**./device/** # [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md) 资源信息（包括设备供应商、设备类别、），该目录软链接到 /sys/devices/ 下的 PCI 相关目录，可以从 PCI 文章中查看各文件的含义。
+**./device/** # [PCI 设备资源信息](/docs/1.操作系统/Kernel/Hardware/PCI.md#PCI%20设备资源信息)（包括设备供应商、设备类别、etc.），该目录是 `/sys/devices/pciXXXX:XX/.../XXX` 下的 PCI 相关目录的软链接，可以从 PCI 文章中查看各文件的含义。
 
 - **./uevent** # 用户空间事件，物理机中该文件中包含 网络设备的驱动与 PCI 信息。
-  - PCI_SLOT_NAME # 网络设备所在的总线信息，与 [ethtool](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/ethtool.md) 命令的 -i 选项输出的 bus-info 信息相同；与 [lspci](/docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/lspci.md) 的第一列信息相同；与 lshw -C net -businfo 的第一列信息相同
+  - PCI_SLOT_NAME # 网络设备所在的总线信息，与 [ethtool](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/ethtool.md) 命令的 -i 选项输出的 bus-info 信息相同；与 [lspci](/docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/lspci.md) 的第一列信息相同；与 `lshw -C net -businfo` 的第一列信息相同
     - Notes: 虚拟机中，该文件没有 PCI_SLOT_NAME 的信息。
     - https://stackoverflow.com/questions/78497110/how-to-get-bus-info-in-a-generic-way
     - https://askubuntu.com/questions/654820/how-to-find-pci-address-of-an-ethernet-interface
@@ -56,10 +61,18 @@ bus-info: 0000:61:00.0
 PCI_SLOT_NAME=0000:61:00.0
 ```
 
+# 网卡驱动
+
+可以在 [Driver](/docs/1.操作系统/Kernel/Hardware/Driver.md#PCI) 的 PCI 部分找到 Linux 是如何管理网卡驱动的
+
 # 通过 PCI 识别网络设备
 
+下面示例中的 16 进制数值的 PCI 信息如何解读可以参考 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md)
+
 ```bash
-for i in $(realpath $(ls /sys/bus/pci/devices/)); do cat $i/class | grep 0x0200; done
+for i in $(realpath /sys/bus/pci/devices/*); do cat $i/class | grep 0x0200; done
+# 下面这个命令可以显示筛选出来的 0x0200 对应的文件名
+realpath /sys/bus/pci/devices/* | xargs -I {} sh -c 'grep "0x0200" {}/class 2>/dev/null | sed "s|^|{}/class:|"'
 ```
 
 命令原理见下面的描述，我们首先观察物理机和虚拟机的一些 class 信息
@@ -172,7 +185,9 @@ ip link set veth1 master br0
 ## Bond
 
 The Linux bonding driver provides a method for aggregating multiple network interfaces into a single logical "bonded" interface. The behavior of the bonded interface depends on the mode; generally speaking, modes provide either hot standby or load balancing services.
-[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493495394-4aaea4bd-34d9-4987-9873-38af16247d1b.png)](https://developers.redhat.com/blog/wp-content/uploads/2018/10/bond.png)
+
+![https://developers.redhat.com/blog/wp-content/uploads/2018/10/bond.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/figk4l/1630493495394-4aaea4bd-34d9-4987-9873-38af16247d1b.png)
+
 Use a bonded interface when you want to increase your link speed or do a failover on your server.
 Here's how to create a bonded interface:
 ip link add bond1 type bond miimon 100 mode active-backup ip link set eth0 master bond1 ip link set eth1 master bond1

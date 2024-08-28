@@ -27,7 +27,8 @@ sysfs 文件系统中的许多文件都是只读的，但是某些文件是可�
 
 在 sysfs 中，不管是 pci、usb、bus、etc. 硬件都抽象为 devices(设备)
 
-**Tips: 其中 [/sys/devices/](#/sys/devices/) 目录是非常重要且关键的目录，/sys/ 下的其他目录中的内容，有很多都是指向 /sys/devices/ 目录中的软链接**。
+> [!Attention] 重要
+> **sysfs 中的 [/sys/devices/](#/sys/devices/) 目录是非常重要且关键的目录，/sys/ 下的其他目录中的内容，有很多都是指向 /sys/devices/ 目录中的软链接**。
 
 ## sysfs 背景
 
@@ -63,23 +64,25 @@ sysfs（或 /sys 文件系统）旨在为这种混乱增加结构，并提供一
 - [/sys/class/](#/sys/class/)
 - [/sys/bus/](#/sys/bus/)
 
-上面三个目录的分类目录下的目录实际上都是指向 `/sys/devices/` 目录的 [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)(符号链接)。
+上面三个目录的分类目录下的目录实际上都是指向 [/sys/devices/](#/sys/devices/) 目录的 [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)(符号链接)。
 
 ```bash
 ~]# ls /sys/block/ -l
-总用量 0
+total 0
 lrwxrwxrwx 1 root root 0  6月 14 16:55 sda -> ../devices/pci0000:00/0000:00:1c.4/0000:0a:00.0/host0/target0:2:0/0:2:0:0/block/sda
 lrwxrwxrwx 1 root root 0  6月 14 16:55 sdb -> ../devices/pci0000:00/0000:00:1c.4/0000:0a:00.0/host0/target0:2:1/0:2:1:0/block/sdb
+
 ~]# ls /sys/class/net/ -l
-总用量 0
+total 0
 lrwxrwxrwx 1 root root 0  6月 14 16:55 br0 -> ../../devices/virtual/net/br0
 lrwxrwxrwx 1 root root 0  6月 14 16:55 eno3 -> ../../devices/pci0000:00/0000:00:1c.3/0000:01:00.0/net/eno3
 lrwxrwxrwx 1 root root 0  6月 14 16:55 eno4 -> ../../devices/pci0000:00/0000:00:1c.3/0000:01:00.1/net/eno4
 lrwxrwxrwx 1 root root 0  6月 14 16:55 lo -> ../../devices/virtual/net/lo
 lrwxrwxrwx 1 root root 0  6月 14 16:55 virbr0 -> ../../devices/virtual/net/virbr0
 lrwxrwxrwx 1 root root 0  6月 14 16:55 virbr0-nic -> ../../devices/virtual/net/virbr0-nic
+
 ~]# ls /sys/bus/memory/devices/ -l
-总用量 0
+total 0
 lrwxrwxrwx 1 root root 0  6月 14 16:55 memory0 -> ../../../devices/system/memory/memory0
 lrwxrwxrwx 1 root root 0  6月 14 16:55 memory10 -> ../../../devices/system/memory/memory10
 lrwxrwxrwx 1 root root 0  6月 14 16:55 memory100 -> ../../../devices/system/memory/memory100
@@ -93,7 +96,9 @@ lrwxrwxrwx 1 root root 0  6月 14 16:55 memory100 -> ../../../devices/system/mem
 > - [Kernel 文档，管理员指南 - ABI stable 符号链接 - /sys/block 下的符号链接](https://www.kernel.org/doc/html/latest/admin-guide/abi-stable.html#symbols-under-sys-block)
 > - [Kernel 文档，Block](https://www.kernel.org/doc/html/latest/block/index.html)
 
-该目录下的所有子目录代表着系统中当前被发现的所有块设备。按照功能来说放置在 /sys/class/ 下会更合适，但由于历史遗留因素而一直存在于 /sys/block，但从 linux2.6.22 内核开始这部分就已经标记为过去时，只有打开了 CONFIG_SYSFS_DEPRECATED 配置编译才会有 这个目录存在，并且其中的内容在从 linux2.6.26 版本开始已经正式移到了 /sys/class/block/，旧的接口 /sys/block/ 为了向后兼容而保留存在，但其中的内容已经变为了指向它们在 `/sys/devices/` 中真实设备的**符号链接**文件。
+该目录下的所有子目录代表着系统中当前被发现的所有块设备。
+
+按照功能来说放置在 /sys/class/ 下会更合适，但由于历史遗留因素而一直存在于 /sys/block，但从 linux2.6.22 内核开始这部分就已经标记为过去时，只有打开了 CONFIG_SYSFS_DEPRECATED 配置编译才会有 这个目录存在，并且其中的内容在从 linux2.6.26 版本开始已经正式移到了 /sys/class/block/，旧的接口 /sys/block/ 为了向后兼容而保留存在，但其中的内容已经变为了指向它们在 `/sys/devices/` 中真实设备的**符号链接**文件。
 
 ```bash
 ~]# ll /sys/block/
@@ -126,7 +131,7 @@ lrwxrwxrwx  1 root root 0 Apr  1 14:36 vda -> ../devices/pci0000:00/0000:00:07.0
 一般来说每个 BUS_TYPE 子目录至少包含两个子目录
 
 - **./devices/** # 在此种总线上发现的设备，该目录下的子目录**都是指向 /sys/devices/ 的符号链接**
-- **./drivers/** # 加载到此种总线上的设备的驱动程序，每个 driver/ 子目录下是一些可以观察和修改的 driver 参数。
+- **./drivers/** # 加载到此种总线上的设备的 [Driver](/docs/1.操作系统/Kernel/Hardware/Driver.md)(驱动程序)，每个 driver/ 子目录下是一些可以观察和修改的 driver 参数。
 
 ```bash
 ./
@@ -193,7 +198,15 @@ echo 20 > /sys/bus/platform/devices/pwm-backlight/backlight/pwm-backlight/bright
 
 # /sys/class/
 
-该目录下包含已在系统种注册的每个设备，子目录按照**设备功能**分类。**`/sys/class/${DEVICE_TYPE}/`**，terminal(终端)、network(网络)、block(磁盘)、graphic(图形)、sound(声音)、etc. 都属于一种 DEVICE_TYPE。每个 `DEVICE_TYPE/` 下都是这种设备类型的各种具体设备的 **[Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)(符号链接)，这些链接指向 /sys/devices/ 下的具体设备**。 设备类型和设备并没有一一对应的关系，一个物理设备可能具备多种设备类型；一个设备类型只表达具有一种功能的设备，e.g. 系统所有输入设备都会出现在 /sys/class/input/ 目录中，而不论它们是以何种总线连接到系统的。
+该目录下包含已在系统种注册的每个设备，子目录按照**设备功能**分类，目录结构如下
+
+**`/sys/class/${DEVICE_TYPE}/${DEVICE}/`**
+ 
+ - terminal(终端)、network(网络)、block(磁盘)、graphic(图形)、sound(声音)、etc. 都属于一种 DEVICE_TYPE。不同机器可能并不一定包含所有类型，这个取决于系统启动时加载了哪些类型的设备。
+
+`/sys/class/${DEVICE_TYPE}/${DEVICE}/` 目录下的文件是**指向 /sys/devices/ [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)(符号链接)**。这些文件通常都是以人类可读的名字命名。 
+
+> Tip: 设备类型和设备并没有一一对应的关系，一个物理设备可能具备多种设备类型；一个设备类型只表达具有一种功能的设备，e.g. 系统所有输入设备都会出现在 /sys/class/input/ 目录中，而不论它们是以何种总线连接到系统的。
 
 ```bash
 ~]# ls /sys/class/
@@ -209,7 +222,7 @@ devcoredump    hidraw          nd        rapidio_port  spi_slave
 devfreq        hwmon           net       regulator     thermal
 devfreq-event  i2c-adapter     pci_bus   remoteproc    tpm
 
-# 从 /sys/class/net 可以看到，所有网络设备信息，其中包括网络设备的各种状态，比如传输的总字节数等等。
+# 从 /sys/class/net 可以看到所有网络设备，通过软链接进入目录，可以看到包括网络设备的各种状态(传输的总字节数、etc.)、网络设备的信息(品牌、型号、etc.)、etc.。
 ~]# ls -l /sys/class/net
 总用量 0
 drwxr-xr-x  2 root root 0 9月   1 10:35 ./
@@ -235,7 +248,7 @@ TODO: etc.
 
 这是一个包含内核设备树的文件系统表示的目录，内核设备树是内核内设备结构的层次结构。
 
-该目录下是**全局设备结构体系**，包含所有被发现的注册在各种总线上的各种物理设备。**/sys/ 目录中，只要有关于设备信息的目录，都会是指向 /sys/devices/ 目录中的软链接**。由于 /sys/devices/ 目录结构对设备的分类是按照总线拓扑结构分的，那么对于设备类型来说，就缺乏分类了，所以至今还保留了 /sys/block/ 之类的目录，将设备以类型进行区分。这些区分设备类型的目录下存放的，实际上是指向 `/sys/devices/` 目录的 [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)(符号链接)。
+该目录下是<font color="#ff0000">**全局设备结构体系**</font>，包含所有被发现的注册在各种总线上的各种物理设备。**/sys/ 目录中，只要有关于设备信息的目录，都会是指向 /sys/devices/ 目录下某个目录的软链接**。由于 /sys/devices/ 目录结构对设备的分类是按照总线拓扑结构分的，那么对于设备类型来说，就缺乏分类了，所以至今还保留了 /sys/block/、/sys/class/、etc. 之类的目录，将设备以类型进行区分。这些区分设备类型的目录下存放的，实际上是指向 `/sys/devices/` 目录的 [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)(符号链接)。
 
 一般来说，所有的物理设备都按其在总线上的拓扑结构来显示，但有两个例外即 platform devices 和 system devices。
 
@@ -279,6 +292,6 @@ clockevents  clocksource  container  cpu  edac  machinecheck  memory  node
 该目录是系统中的电源选项，对正在使用的 power 子系统的描述。这个目录下有几个属性文件可以用于控制整个机器的电源状态，如可以向其中写入控制命令让机器关机/重启等等。
 
 ```bash
-root@RPM /sys$ ls power/
+~]# ls /sys/power/
 pm_async      pm_test       state         wakeup_count
 ```

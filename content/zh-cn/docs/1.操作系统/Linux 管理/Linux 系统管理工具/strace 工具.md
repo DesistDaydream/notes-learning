@@ -118,7 +118,6 @@ Note：
   - 可用的值有：attach,personality,exit,all。这些可用的值只在 --quiet 选项时可用，我们还可以使用 -q、-qq、-qqq 以添加不同的抑制信息，q 越多，抑制的信息就越多。
 - **-s, --string-limit \<STRSIZE>** # 设定要输出的最大字符串长度为 STRSIZE。`默认值：32`。Note:文件名不作为字符串，并始终完整打印。
   - 示例如下，在 sendto 和 read 系统调用中，参数只显示了 32 个字符。当指定 -s 选项后，可以输出更多字符。
-
 ```bash
 ~]# strace -p 22863 -e trace=sendto,read
 sendto(6, "GET / HTTP/1.0\r\nUser-Agent: Keep"..., 71, 0, NULL, 0) = 71
@@ -128,11 +127,9 @@ strace: Process 22863 attached
 sendto(7, "GET / HTTP/1.0\r\nUser-Agent: KeepAliveClient\r\nHost: 10.0.9.213:50080\r\n\r\n", 71, 0, NULL, 0) = 71
 read(7, "HTTP/1.1 426 Upgrade Required\r\ndate: Fri, 24 Jul 2020 07:53:01 GMT\r\nserver: istio-envoy\r\nconnection: close\r\ncontent-length: 0\r\n\r\n", 4096) = 129
 ```
-
 - **-t, -tt, -ttt** # 显示追踪时间(在输出的行开头显示)。2 个 t 显示微秒，3 个 t 显示时间戳
 - **-T** # 显示追踪花费的时间(在输出的行末尾显示)
 - **-y, -yy** # 打印与文件描述符参数相关联的路径。2 个 y，打印与套接字文件描述符相关的特定协议信息，以及与设备文件描述符相关的块/字符设备号。
-
 ```bash
 # 这是一个建立 http 连接的系统调用追踪
 # 不加 -y，只显示数字 3，表示当前文件描述符的编号为3

@@ -55,9 +55,9 @@ Kubernetes 的设计是通过编写客户端程序来实现自动化的。 任�
 
 ## Kubernetes API 扩展
 
-1. [Custom Resource Definitions(自定义资源定义)](docs/10.云原生/Kubernetes/Kubernetes%20扩展/Custom%20Resource%20Definitions(CRD).md)
-2. [API Aggregation(聚合) Layer](docs/10.云原生/Kubernetes/Kubernetes%20扩展/API%20Aggregation(聚合)%20Layer.md)
-3. [Operator 模式](docs/10.云原生/Kubernetes/Kubernetes%20扩展/Operator%20模式.md)
+1. [Custom Resource Definitions(自定义资源定义)](/docs/10.云原生/Kubernetes/Kubernetes%20扩展/Custom%20Resource%20Definitions(CRD).md)
+2. [API Aggregation(聚合) Layer](/docs/10.云原生/Kubernetes/Kubernetes%20扩展/API%20Aggregation(聚合)%20Layer.md)
+3. [Operator 模式](/docs/10.云原生/Kubernetes/Kubernetes%20扩展/Operator%20模式.md)
 
 ## 计算、存储、网络扩展。
 

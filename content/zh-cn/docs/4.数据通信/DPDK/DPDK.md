@@ -158,16 +158,31 @@ https://doc.dpdk.org/guides/tools/index.html
 
 ## dpdk-devbind - 绑定和取消绑定设备与驱动程序，检查他们的状态
 
+https://github.com/DPDK/dpdk/blob/main/usertools/dpdk-devbind.py
+
+https://doc.dpdk.org/guides/tools/devbind.html
+
+### Syntax(语法)
+
 **dpdk-devbind \[OPTIONS] DEVICE1 DEVICE2 ....**
 
 **OPTIONS**
 
-- **-s, --status** # 打印所有已知网络接口的当前状态。对于每个设备，它显示 PCI 域、总线、插槽和功能，以及设备的文本描述。根据设备是否由内核驱动程序、vfio-pci 驱动程序或无驱动程序使用，将显示其他相关信息： - Linux 接口名称，例如if=eth0 - 正在使用的驱动程序，例如drv=vfio-pci - 当前未使用该设备的任何合适的驱动程序，例如used=vfio-pci 注意：如果此标志与绑定/取消绑定选项一起传递，则状态显示将始终在其他操作发生后发生。
+- **-s, --status** # 打印所有已知网络接口的当前状态。对于每个设备，它显示 PCI 域、总线、插槽和功能，以及设备的文本描述。根据设备是否由内核驱动程序、vfio-pci 驱动程序或无驱动程序使用，将显示其他相关信息：
+  - Linux 接口名称，例如 if=eth0
+  - 正在使用的驱动程序，例如drv=vfio-pci
+  - 当前未使用该设备的任何合适的驱动程序，例如used=vfio-pci 注意：如果此标志与绑定/取消绑定选项一起传递，则状态显示将始终在其他操作发生后发生。
 - **-b, --bind DRIVER** # 选择绑定网卡要使用的驱动程序。可以使用 none 以解除绑定
 - **-u, --unbind** # 接触网卡设备绑定。等价于 `-b none`
 - **--force** # 强制绑定。默认情况下，若目标网卡已被内核启用（通常表现为已在路由表条目中），则无法被 DPDK 绑定。
 
-EXAMPLE
+-s 选项输出内容说明，包含如下几部分
+
+- Network devices using DPDK-compatible driver # 由 DPDK 管理的网卡
+- Network devices using kernel driver # 由内核管理的网卡
+- Other Network devices # 既不由 DPDK 管理也不由内核管理的网卡。（使用 -u 解绑后的网卡）
+
+### EXAMPLE
 
 从当前驱动程序绑定 eth1 并转而使用 vfio-pci：
 
@@ -180,3 +195,33 @@ TODO
 # FAQ
 
 https://doc.dpdk.org/guides/faq/index.html
+
+## 将 DPDK 管理的网卡还给内核
+
+一、查看绑定的网卡
+
+```bash
+dpdk-devbind.py -s
+```
+
+二、将 `Network devices using DPDK-compatible driver` 部分的网卡从 DPDK 中解绑
+
+> Note: 多个网卡以空格分割。同时记录下
+
+```bash
+dpdk-devbind.py -u 0000:21:00.0 0000:21:00.1
+```
+
+解绑后，通过 `dpdk-devbind.py -s` 可以在 `Other Network devices` 部分查看到未被 Kernel 和 DPDK 管理的网卡。其中最后一部分 `unused=i40e,igb_uio,vfio-pci` unused 的值的第一段（逗号分割）可以作为内核所使用的驱动（e.g. i40e）
+
+三、将 `Other Network devices` 部分的网卡绑定给内核
+
+> Note: 这里使用上面查看到的 i40e 作为驱动示例
+
+```bash
+dpdk-devbind.py -b i40e 0000:21:00.0 0000:21:00.1
+```
+
+四、总结
+
+这里面的绑定与解绑从 dpdk-devbind.py 源码中可以看到，主要依赖于 [sysfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/sysfs.md) 中 PCI 的 [Driver](/docs/1.操作系统/Kernel/Hardware/Driver.md#PCI) 管理能力。i.e. /sys/bus/pci/drivers/.../bind 与 /sys/bus/pci/drivers/.../unbind 文件

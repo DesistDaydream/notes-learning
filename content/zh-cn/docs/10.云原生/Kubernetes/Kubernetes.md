@@ -225,8 +225,8 @@ etcd 内部，etcd 与 apiservice，apiservice-客户端，apiservice 与 kubect
 
 补充几点：
 
-- 更详细的流程详见 [Pod 是如何出现的](docs/10.云原生/Kubernetes/Kubernetes%20机制与特性/Pod%20是如何出现的.md)
-- API Server 的通知是利用 [Watch and Informer](docs/10.云原生/Kubernetes/Kubernetes%20机制与特性/Watch%20and%20Informer.md) 机制实现的。各个组件主动与 API Server 建立长连接，接收 API Server 的通知
+- 更详细的流程详见 [Pod 是如何出现的](/docs/10.云原生/Kubernetes/Kubernetes%20机制与特性/Pod%20是如何出现的.md)
+- API Server 的通知是利用 [Watch and Informer](/docs/10.云原生/Kubernetes/Kubernetes%20机制与特性/Watch%20and%20Informer.md) 机制实现的。各个组件主动与 API Server 建立长连接，接收 API Server 的通知
 - 应用的配置和当前状态信息保存在 Etcd 中，每一步操作完的结果都会经由 API Server 将信息更新到 Etcd 中。最后执行 `kubectl get pod` 时 API Server 会从 etcd 中读取这些数据。
 - flannel 会为每个 Pod 都分配 IP。因为没有创建 service，目前 kube-proxy 还没参与进来。
 

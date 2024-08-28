@@ -63,7 +63,9 @@ absent(sum(nonexistent{job="myjob"}))  => {}  1
 
 ```bash
 node_load5{instance="192.168.1.75:9100"}
-# 结果为 2.79ceil(node_load5{instance="192.168.1.75:9100"})# 结果为 3
+# 结果为 2.79
+ceil(node_load5{instance="192.168.1.75:9100"})
+# 结果为 3
 ```
 
 ## changes()
