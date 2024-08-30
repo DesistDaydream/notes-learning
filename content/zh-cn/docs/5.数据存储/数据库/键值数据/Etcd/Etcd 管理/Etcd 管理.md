@@ -10,7 +10,7 @@ title: Etcd 管理
 >   - https://github.com/etcd-io/website/blob/main/content/en/docs/v3.5/op-guide/maintenance.md
 > - [官方文档,-运维指南-维护](https://etcd.io/docs/latest/op-guide/maintenance/)
 
-Etcd 集群需要定期 **Maintenacne(维护)** 才能保持可靠性。根据 etcd 应用程序的需求，通常可以自动执行该维护，而无需停机或性能显着降低。
+[Etcd](docs/5.数据存储/数据库/键值数据/Etcd/Etcd.md) 集群需要定期 **Maintenacne(维护)** 才能保持可靠性。根据 etcd 应用程序的需求，通常可以自动执行该维护，而无需停机或性能显着降低。
 
 所有 etcd 维护都管理 etcd 键空间消耗的存储资源。存储空间配额可以防止无法充分控制键空间大小；如果 etcd 成员的空间不足，则配额将触发群集范围的警报，这将使系统进入有限操作维护模式。为了避免空间不足以写入键空间，必须压缩 etcd 键空间历史记录。可以通过对 etcd 成员进行碎片整理来回收存储空间本身。最后，etcd 成员状态的定期快照备份使恢复由于操作错误引起的意外逻辑数据丢失或损坏成为可能。
 

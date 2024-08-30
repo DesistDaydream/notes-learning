@@ -1,8 +1,8 @@
 ---
-title: AI 项目
-linkTitle: AI 项目
+title: AI Projects
+linkTitle: AI Projects
 date: 2023-11-11T16:58
-weight: 20
+weight: 1
 ---
 
 # 概述
@@ -42,3 +42,13 @@ https://blog.x-agent.net/blog/xagent/
 [GitHub 项目，OpenBMB/XAgent](https://github.com/OpenBMB/XAgent)
 
 - OpenBMB开源社区由清华大学自然语言处理实验室和[面壁智能](https://modelbest.cn/)共同支持发起
+
+# Claude
+
+> 参考：
+>
+> - [公众号-OSC 开源社区，Anthropic推出 “更理性的 Claude”，正面硬刚ChatGPT](https://mp.weixin.qq.com/s/7YJ7B6JTV7U1gXeLOiZsLw)
+
+Anthropic 公司推出的
+
+Claude 早期可以作为 [Slack](/docs/Utils/即时通信/Slack.md) 的应用被添加到 Workspace 中并无条件使用。

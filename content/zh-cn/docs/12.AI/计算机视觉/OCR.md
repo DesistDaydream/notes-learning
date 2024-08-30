@@ -67,7 +67,7 @@ OCR 识别算法的输入数据一般是文本行，背景信息不多，文字�
 
 > 参考：
 > - [GitHub 项目，PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
->     - <https://www.bilibili.com/video/BV1iY4y1s7fx>
+>   - https://www.bilibili.com/video/BV1iY4y1s7fx
 
 PaddleOCR 是百度开源的 OCR 工具。旨在打造一套丰富、领先、且实用的OCR工具库，助力开发者训练出更好的模型，并应用落地。
 
