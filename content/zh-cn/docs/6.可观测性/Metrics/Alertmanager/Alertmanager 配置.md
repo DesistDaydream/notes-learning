@@ -12,15 +12,19 @@ title: Alertmanager 配置
 
 下文用到的占位符说明：
 
-- \<DURATION> # 与正则表达式匹配的持续时间  \[0-9]+(ms|\[smhdwy])
-- \<LabelName> # 与正则表达式匹配的字符串  \[a-zA-Z\_]\[a-zA-Z0-9\_]\*
-- \<LabelValue> # 一串 unicode 字符
-- \<FilePath> # 当前工作目录中的有效路径
-- \<BOOLEAN> # 可以接受值的布尔值，true 或 false
-- \<STRING> # 一个普通的字符串
-- \<SECRET> # 是秘密的常规字符串，例如密码
-- \<tmpl_string> # a string which is template-expanded before usage
-- \<tmpl_secret> # a string which is template-expanded before usage that is a secret
+- BOOLEAN # 可以采用 true 或 false 值的布尔值
+- DURATION # 持续时间。可以使用正则表达式
+  - `((([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?((([0-9]+)m)?((([0-9]+)s)?((([0-9]+)ms)?|0)`，例如：1d、1h30m、5m、10s。
+- FILENAME # 当前工作目录中的有效路径
+- HOST # 由主机名或 IP 后跟可选端口号组成的有效字符串。
+- INT # 一个整数值
+- LABELNAME # 与正则表达式 `[a-zA-Z _] [a-zA-Z0-9 _] *` 匹配的字符串
+- LABELVALUE # 一串 unicode 字符
+- PATH # 有效的 URL 路径
+- SCHEME # 一个字符串，可以使用值 http 或 https
+- SECRET # 作为机密的常规字符串，例如密码
+- STRING # 常规字符串
+- TMPL_STRING # 使用前已模板扩展的字符串
 
 ## 顶层字段
 
@@ -100,7 +104,7 @@ title: Alertmanager 配置
 
 - 新收到的告警会进行分组聚合，并以组的形式发送，为了方式大量告警频繁触发告警发送，所以有一个等待期，等到多个告警聚合在一个组时，统一发送
 
-**matchers**(\[]OBJECT) # 匹配规则，凡是符合该规则的告警，将会进入当前节点。说白了，只有匹配上了，才会将告警发出去。
+**matchers**(\[][matcher](#matcher)) # 匹配规则，凡是符合该规则的告警，将会进入当前节点。说白了，只有匹配上了，才会将告警发出去。
 
 > [!Tip]
 > - 如果多个 Label 是“或”的关系，那就只能配置多个相同接收者的路由，每个路由的 matchers 不同。
@@ -188,6 +192,45 @@ url: <string>
 ## inhibit_rules
 
 抑制规则配置
+
+**target_matchers**(\[][matcher](#matcher)) # 要静音的目标警报必须满足的匹配器列表。
+
+
+# 配置文件中的通用配置字段
+
+## matcher
+
+https://prometheus.io/docs/alerting/latest/configuration/#matcher
+
+matcher 部分的配置实现了 [Label matchers](docs/6.可观测性/Metrics/Prometheus/Label%20matchers.md)(标签匹配器) 的功能，根据这部分字段定义的 Label，正确匹配到目标（目标通常指一条告警）。
+
+matcher(匹配器) 的逻辑类似 [PromQL](docs/6.可观测性/Metrics/Prometheus/PromQL/PromQL.md) 的各种 Selectors(选择器)，语法也是类似的，由 3 部分组成
+
+- KEY
+- `=`, `!=`, `=~` 三者之一
+- VALUE
+
+比如
+
+```yaml
+alert_target="test"
+```
+
+表示要匹配 KEY 为 alert_tagert；VALUE 为 test 的所有告警。
+
+```yaml
+# routes 字段下的 matcher 用法，将 KEY 为 severity，VALUE 为 warning 的告警交给 webhook-warn 这个接收者处理
+  routes:
+    - matchers:
+        - severity = warning
+      receiver: "webhook-warn"
+# inhibit_rules 字段下 matcher 用法，将 KEY 为 alert_target，VALUE 为 test 的告警静音
+inhibit_rules:
+  - target_matchers:
+      - alert_target="test"
+```
+
+TODO: matchers 下多个元素是和还是或的关系？
 
 # 配置文件示例
 

@@ -82,19 +82,19 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 
 下文用到的字段值的占位符说明
 
-- \<BOOLEAN> # 可以采用 true 或 false 值的布尔值
-- \<DURATION> # 持续时间。可以使用正则表达式
+- BOOLEAN # 可以采用 true 或 false 值的布尔值
+- DURATION # 持续时间。可以使用正则表达式
   - `((([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?((([0-9]+)m)?((([0-9]+)s)?((([0-9]+)ms)?|0)`，例如：1d、1h30m、5m、10s。
-- \<FILENAME> # 当前工作目录中的有效路径
-- \<HOST> # 由主机名或 IP 后跟可选端口号组成的有效字符串。
-- \<INT> # 一个整数值
-- \<LABELNAME> # 与正则表达式\[a-zA-Z \_] \[a-zA-Z0-9 \_] \*匹配的字符串
-- \<LABELVALUE> # 一串 unicode 字符
-- \<PATH> # 有效的 URL 路径
-- \<SCHEME> # 一个字符串，可以使用值 http 或 https
-- \<SECRET> # 作为机密的常规字符串，例如密码
-- \<STRING> # 常规字符串
-- \<TMPL_STRING> # 使用前已模板扩展的字符串
+- FILENAME # 当前工作目录中的有效路径
+- HOST # 由主机名或 IP 后跟可选端口号组成的有效字符串。
+- INT # 一个整数值
+- LABELNAME #  与正则表达式 `[a-zA-Z _] [a-zA-Z0-9 _] *` 匹配的字符串
+- LABELVALUE # 一串 unicode 字符
+- PATH # 有效的 URL 路径
+- SCHEME # 一个字符串，可以使用值 http 或 https
+- SECRET # 作为机密的常规字符串，例如密码
+- STRING # 常规字符串
+- TMPL_STRING # 使用前已模板扩展的字符串
 
 **顶层字段**
 
