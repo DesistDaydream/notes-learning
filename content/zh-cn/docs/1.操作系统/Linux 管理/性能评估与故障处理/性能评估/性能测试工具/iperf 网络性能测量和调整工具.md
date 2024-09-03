@@ -1,10 +1,14 @@
 ---
 title: iperf 网络性能测量和调整工具
+linkTitle: iperf 网络性能测量和调整工具
+date: 2024-03-02
+weight: 20
 ---
 
 # 概述
 
 > 参考：
+>
 > - [官网](https://iperf.fr/)
 
 在 server 端监听某个端口，然后 client 用同样的 iperf 访问服务端，来进行性能测试
@@ -77,6 +81,7 @@ title: iperf 网络性能测量和调整工具
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fdemaq/1616164267994-3d8e4e2d-0c26-4b52-8054-12aeac917398.png)
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fdemaq/1616164268013-f44eee21-25f2-48a5-acad-07b32cf7af7a.png)
+
 客户端每秒会往服务端发送一次数据，Interval 表示时间间隔，Transfer 表示传输的数据量，Bandwidth 表示带宽的大小，Retr 表示重传次数
 
 在客户端的最后两行表示 10 秒钟的传送的总数据量，以及平均带宽，第一行是发送的，第二行是接收的。这次测试结果就是两台服务器之间最大带宽是 20G
@@ -84,21 +89,27 @@ title: iperf 网络性能测量和调整工具
 ## 查看网络丢包率和延迟
 
 服务端命令：iperf3 -s
+
 客户端命令：iperf3 -c 10.10.100.250 -u -b 10M -t 10 -i 1 -P 100
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fdemaq/1616164268023-89190ba4-c7a7-4587-b4f7-389086f5d465.png)
+
 Jitter 表示抖动 i.e.数据包延迟时间。Lost/Total Datagrams 表示“丢失/总数据包”的数量，扩内的百分比为丢包率。
 
 ## 吞吐测试
 
 服务端命令：iperf3 -s -i 1 -p 10000
+
 客户端命令：iperf3 -c 172.19.42.221 -p 10000 -b 1G -t 15 -P 2
 
-    [ ID] Interval           Transfer     Bandwidth       Retr
-    [  4]   0.00-15.00  sec   781 MBytes   437 Mbits/sec  4856             sender
-    [  4]   0.00-15.00  sec   779 MBytes   436 Mbits/sec                  receiver
-    [  6]   0.00-15.00  sec   876 MBytes   490 Mbits/sec  7074             sender
-    [  6]   0.00-15.00  sec   874 MBytes   489 Mbits/sec                  receiver
-    [SUM]   0.00-15.00  sec  1.62 GBytes   927 Mbits/sec  11930             sender
-    [SUM]   0.00-15.00  sec  1.61 GBytes   925 Mbits/sec                  receiver
+```bash
+[ ID] Interval           Transfer     Bandwidth       Retr
+[  4]   0.00-15.00  sec   781 MBytes   437 Mbits/sec  4856             sender
+[  4]   0.00-15.00  sec   779 MBytes   436 Mbits/sec                  receiver
+[  6]   0.00-15.00  sec   876 MBytes   490 Mbits/sec  7074             sender
+[  6]   0.00-15.00  sec   874 MBytes   489 Mbits/sec                  receiver
+[SUM]   0.00-15.00  sec  1.62 GBytes   927 Mbits/sec  11930             sender
+[SUM]   0.00-15.00  sec  1.61 GBytes   925 Mbits/sec                  receiver
+```
 
 TCP 吞吐(带宽)大概为 900+M，也就是千兆基本 能跑慢

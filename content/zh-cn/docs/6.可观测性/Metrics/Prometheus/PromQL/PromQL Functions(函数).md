@@ -43,7 +43,7 @@ Prometheus 提供了其它大量的内置函数，可以对时序数据进行丰
 
 absent() 函数特别适用于告警，比如当采集器出现问题时，无法采集到数据了，那么可以通过该函数进行判断，如果值为 1，就产生告警。
 
-```bash
+```promql
 # 这里提供的向量有样本数据
 absent(http_requests_total{method="get"})  => no data
 absent(sum(http_requests_total{method="get"}))  => no data
@@ -57,23 +57,23 @@ absent(nonexistent{job="myjob",instance=~".*"})  => {job="myjob"}  1
 absent(sum(nonexistent{job="myjob"}))  => {}  1
 ```
 
-## ceil()
+## ceil() - 向上四舍五入取整
 
 `ceil(v instant-vector)` 将 v 中所有元素的样本值向上四舍五入到最接近的整数。例如：
 
-```bash
+```promql
 node_load5{instance="192.168.1.75:9100"}
 # 结果为 2.79
 ceil(node_load5{instance="192.168.1.75:9100"})
 # 结果为 3
 ```
 
-## changes()
+## changes() - 范围向量内每个样本数值的变化次数
 
 changes(v range-vector) 输入一个区间向量， 返回这个区间向量内每个样本数据值变化的次数（瞬时向量）。例如：
 
-```bash
-# 如果样本数据值没有发生变化，则返回结果为 1
+```promql
+# 如果样本数据值没有发生变化，则返回结果为 1；若 10 秒采集一次，共 6 个样本，6 个样本中每个值都不一样的话，则结果为 6
 changes(node_load5{instance="192.168.1.75:9100"}[1m]) # 结果为 1
 ```
 
@@ -81,7 +81,7 @@ changes(node_load5{instance="192.168.1.75:9100"}[1m]) # 结果为 1
 
 clamp_max(v instant-vector, max scalar) 函数，输入一个瞬时向量和最大值，样本数据值若大于 max，则改为 max，否则不变。例如：
 
-```bash
+```promql
 node_load5{instance="192.168.1.75:9100"} # 结果为 2.79
 clamp_max(node_load5{instance="192.168.1.75:9100"}, 2) # 结果为 2
 ```
@@ -90,7 +90,7 @@ clamp_max(node_load5{instance="192.168.1.75:9100"}, 2) # 结果为 2
 
 clamp_min(v instant-vector, min scalar) 函数，输入一个瞬时向量和最小值，样本数据值若小于 min，则改为 min，否则不变。例如：
 
-```bash
+```promql
 node_load5{instance="192.168.1.75:9100"} # 结果为 2.79
 clamp_min(node_load5{instance="192.168.1.75:9100"}, 3) # 结果为 3
 ```
@@ -142,7 +142,9 @@ func funcIncrease(vals []parser.Value, args parser.Expressions, enh *EvalNodeHel
 
 例如，下面的例子返回过去两小时的 CPU 温度差：
 
-`delta(cpu_temp_celsius{host="zeus"}[2h])`
+```promql
+delta(cpu_temp_celsius{host="zeus"}[2h])
+```
 
 ### increase()
 
@@ -152,9 +154,13 @@ func funcIncrease(vals []parser.Value, args parser.Expressions, enh *EvalNodeHel
 
 例如，以下表达式返回区间向量中每个时间序列过去 5 分钟内 HTTP 请求数的增长数：
 
-`increase(http_requests_total{job="apiserver"}[5m])`
+```promql
+increase(http_requests_total{job="apiserver"}[5m])
+```
 
-### rate()
+### rate() 与 irate()
+
+> [!Tip] rate() 与 irate() 更推荐用在 Counter 类型的 Metrics 上，在长期趋势分析或者告警中推荐使用这个函数。
 
 `rate(v range-vector)` 函数可以直接计算区间向量 v 在时间窗口内平均增长速率，它会在单调性发生变化时(如由于采样目标重启引起的计数器复位)自动中断。该函数的返回结果不带有度量指标，只有标签列表。
 
@@ -169,25 +175,19 @@ rate(http_requests_total[5m])
 ...
 ```
 
-rate() 函数返回值类型只能用计数器，在长期趋势分析或者告警中推荐使用这个函数。
-
-注意
-
-当将 rate() 函数与聚合运算符（例如 sum()）或随时间聚合的函数（任何以 \_over_time 结尾的函数）一起使用时，必须先执行 rate 函数，然后再进行聚合操作，否则当采样目标重新启动时 rate() 无法检测到计数器是否被重置。
-
-### irate()
-
-irate(v range-vector) 函数用于计算区间向量的增长率，但是其反应出的是瞬时增长率。irate 函数是通过区间向量中最后两个两本数据来计算区间向量的增长速率，它会在单调性发生变化时(如由于采样目标重启引起的计数器复位)自动中断。这种方式可以避免在时间窗口范围内的“长尾问题”，并且体现出更好的灵敏度，通过 irate 函数绘制的图标能够更好的反应样本数据的瞬时变化状态。
+`irate(v range-vector)` 函数用于计算区间向量的增长率，但是其反应出的是瞬时增长率。irate 函数是通过区间向量中最后两个两本数据来计算区间向量的增长速率，它会在单调性发生变化时(如由于采样目标重启引起的计数器复位)自动中断。这种方式可以避免在时间窗口范围内的“长尾问题”，并且体现出更好的灵敏度，通过 irate 函数绘制的图标能够更好的反应样本数据的瞬时变化状态。
 
 例如，以下表达式返回区间向量中每个时间序列过去 5 分钟内最后两个样本数据的 HTTP 请求数的增长率：
 
-`irate(http_requests_total{job="api-server"}[5m])`
+```promql
+irate(http_requests_total{job="api-server"}[5m])
+```
+
+> [!Warning]
+> 当将 rate() 函数与聚合运算符（例如 sum()）或随时间聚合的函数（任何 `XXX_over_time` 的函数）一起使用时，必须先执行 rate 函数，然后再进行聚合操作，否则当采样目标重新启动时 irate() 无法检测到计数器是否被重置。
 
 > [!Tip]
 > irate 只能用于绘制快速变化的计数器，在长期趋势分析或者告警中更推荐使用 rate 函数。因为使用 irate 函数时，速率的简短变化会重置 FOR 语句，形成的图形有很多波峰，难以阅读。
-
-> [!Warning]
-> 当将 irate() 函数与聚合运算符（例如 sum()）或随时间聚合的函数（任何 XXX_over_time 的函数）一起使用时，必须先执行 irate 函数，然后再进行聚合操作，否则当采样目标重新启动时 irate() 无法检测到计数器是否被重置。
 
 ## holt_winters()
 
@@ -201,13 +201,13 @@ holt_winters 仅适用于 Gauge 类型的时间序列。
 
 例如，基于 2 小时的样本数据，来预测主机可用磁盘空间的是否在 4 个小时候被占满，可以使用如下表达式：
 
-```bash
-predict_linear(node_filesystem_free{job="node"}[2h], 4 * 3600)< 0
+```promql
+predict_linear(node_filesystem_free{job="node"}[2h], 4 * 3600) < 0
 ```
 
 通过下面的例子来观察返回值：
 
-```bash
+```promql
 predict_linear(http_requests_total{code="200",instance="120.77.65.193:9090",job="prometheus",method="get"}[5m], 5)
 结果：
 {code="200",handler="query_range",instance="120.77.65.193:9090",job="prometheus",method="get"}  1
@@ -267,9 +267,7 @@ timestamp(v instant-vector) 函数返回向量 v 中的每个样本的时间戳�
 
 year(v=vector(time()) instant-vector) 函数返回被给定 UTC 时间的当前年份。
 
-1. vector()    vector(s scalar) 函数将标量 s 作为没有标签的向量返回，即返回结果为：key: value= {}, s。
-
-## 范围向量
+## 聚合范围向量
 
 ### XXX_over_time()
 
@@ -288,7 +286,83 @@ year(v=vector(time()) instant-vector) 函数返回被给定 UTC 时间的当前�
 
 注意: 即使范围向量内的值分布不均匀，它们在聚合时的权重也是相同的。
 
+## Label 变化
+
+### label_join()
+
+```promql
+label_join(
+  v instant-vector,
+  dst_label string,
+  separator string,
+  src_label_1 string,
+  src_label_2 string,
+  ...
+)
+```
+
+函数可以将时间序列 v 中多个标签 `src_label` 的值，通过 `separator` 作为连接符写入到一个新的标签 `dst_label` 中。Note: 可以有多个 src_label 标签。非常类似 [Relabeling(重新标记)](docs/6.可观测性/Metrics/Prometheus/Target(目标)%20与%20Relabeling(重新标记).md) 的某个功能。
+
+例如，以下表达式返回的时间序列多了一个 `foo` 标签，标签值为 `etcd,etcd-k8s`：
+
+```promql
+up{endpoint="api",instance="192.168.123.248:2379",job="etcd",namespace="monitoring",service="etcd-k8s"}
+=> up{endpoint="api",instance="192.168.123.248:2379",job="etcd",namespace="monitoring",service="etcd-k8s"}  1
+
+label_join(up{endpoint="api",instance="192.168.123.248:2379",job="etcd",namespace="monitoring",service="etcd-k8s"}, "foo", ",", "job", "service")
+=> up{endpoint="api",foo="etcd,etcd-k8s",instance="192.168.123.248:2379",job="etcd",namespace="monitoring",service=
+```
+
+### label_replace()
+
+为了能够让客户端的图表更具有可读性（比如 Grafana 的 表格面板），可以通过 `label_replace` 函数为时间序列添加额外的标签、更改已有标签的值。label_replace 的具体参数如下：
+
+```promql
+label_replace(
+  v instant-vector,
+  dst_label string,
+  replacement string,
+  src_label string,
+  regex string
+)
+```
+
+该函数会依次对 v 中的每一条时间序列进行处理，通过 `regex` 匹配 src_label 的值，并将匹配部分 `relacement` 写入到 dst_label 标签中。
+
+下面的是一个新增 Label 的例子
+
+```promql
+label_replace(
+  up,
+  "host",
+  "$1",
+  "instance",
+  "(.*):.*"
+)
+```
+
+函数处理后，时间序列将多一个 `host` 标签，值为 Exporter 实例的 IP 地址：
+
+```promql
+up{host="localhost",instance="localhost:9090",job="prometheus"}   1
+up{host="localhost",instance="localhost:9100",job="node"}   1
+```
+
+下面的是一个修改 Label 的值的例子。将 node_uname_info 指标内，instance 标签的值中的 9100 去掉，只保留 IP
+
+```promql
+label_replace(
+  node_uname_info{},
+  "instance",
+  "$1",
+  "instance",
+  "(.*):9100"
+)
+```
+
 ## 其他
+
+vector()    vector(s scalar) 函数将标量 s 作为没有标签的向量返回，即返回结果为：key: value= {}, s
 
 idelta()
 
@@ -296,22 +370,24 @@ idelta(v range-vector) 的参数是一个区间向量, 返回一个瞬时向量�
 
 这个函数一般只用在 Gauge 类型的时间序列上。
 
+deriv()
 
-11. deriv()
-    deriv(v range-vector) 的参数是一个区间向量,返回一个瞬时向量。它使用简单的线性回归计算区间向量 v 中各个时间序列的导数。
+deriv(v range-vector) 的参数是一个区间向量,返回一个瞬时向量。它使用简单的线性回归计算区间向量 v 中各个时间序列的导数。
 
 这个函数一般只用在 Gauge 类型的时间序列上。
 
-12. exp()
-    exp(v instant-vector) 函数，输入一个瞬时向量，返回各个样本值的 e 的指数值，即 e 的 N 次方。当 N 的值足够大时会返回 +Inf。特殊情况为：
+exp()
+
+exp(v instant-vector) 函数，输入一个瞬时向量，返回各个样本值的 e 的指数值，即 e 的 N 次方。当 N 的值足够大时会返回 +Inf。特殊情况为：
 
 - Exp(+Inf) = +Inf
 - Exp(NaN) = NaN
 
-13. floor()
-    floor(v instant-vector) 函数与 ceil() 函数相反，将 v 中所有元素的样本值向下四舍五入到最接近的整数。
+floor()
 
-14. histogram_quantile()
+floor(v instant-vector) 函数与 ceil() 函数相反，将 v 中所有元素的样本值向下四舍五入到最接近的整数。
+
+histogram_quantile()
 
 histogram_quantile(φ float, b instant-vector) 从 bucket 类型的向量 b 中计算 φ (0 ≤ φ ≤ 1) 分位数（百分位数的一般形式）的样本的最大值。（有关 φ 分位数的详细说明以及直方图指标类型的使用，请参阅直方图和摘要）。向量 b 中的样本是每个 bucket 的采样点数量。每个样本的 labels 中必须要有 le 这个 label 来表示每个 bucket 的上边界，没有 le 标签的样本会被忽略。直方图指标类型自动提供带有 \_bucket 后缀和相应标签的时间序列。
 
@@ -344,26 +420,6 @@ histogram_quantile 这个函数是根据假定每个区间内的样本分布是�
 如果分位数位于最低的 bucket 中，则返回最低 bucket 的上边界。
 
 如果 b 含有少于 2 个 buckets，那么会返回 NaN，如果 φ < 0 会返回 -Inf，如果 φ > 1 会返回 +Inf。
-
-20. label_join()
-    label_join(v instant-vector, dst_label string, separator string, src_label_1 string, src_label_2 string, ...) 函数可以将时间序列 v 中多个标签 src_label 的值，通过 separator 作为连接符写入到一个新的标签 dst_label 中。可以有多个 src_label 标签。
-
-例如，以下表达式返回的时间序列多了一个 foo 标签，标签值为 etcd,etcd-k8s：
-
-up{endpoint="api",instance="192.168.123.248:2379",job="etcd",namespace="monitoring",service="etcd-k8s"}=> up{endpoint="api",instance="192.168.123.248:2379",job="etcd",namespace="monitoring",service="etcd-k8s"} 1label_join(up{endpoint="api",instance="192.168.123.248:2379",job="etcd",namespace="monitoring",service="etcd-k8s"}, "foo", ",", "job", "service")=> up{endpoint="api",foo="etcd,etcd-k8s",instance="192.168.123.248:2379",job="etcd",namespace="monitoring",service="etcd-k8s"} 1
-
-21. label_replace()
-    为了能够让客户端的图标更具有可读性，可以通过 label_replace 函数为时间序列添加额外的标签。label_replace 的具体参数如下：
-
-label_replace(v instant-vector, dst_label string, replacement string, src_label string, regex string)
-
-该函数会依次对 v 中的每一条时间序列进行处理，通过 regex 匹配 src_label 的值，并将匹配部分 relacement 写入到 dst_label 标签中。如下所示：
-
-label*replace(up, "host", "$1", "instance", "(.*):.\_")
-
-函数处理后，时间序列将包含一个 host 标签，host 标签的值为 Exporter 实例的 IP 地址：
-
-up{host="localhost",instance="localhost:8080",job="cadvisor"} 1up{host="localhost",instance="localhost:9090",job="prometheus"} 1up{host="localhost",instance="localhost:9100",job="node"} 1
 
 22. ln()
     ln(v instant-vector) 计算瞬时向量 v 中所有样本数据的自然对数。特殊情况：

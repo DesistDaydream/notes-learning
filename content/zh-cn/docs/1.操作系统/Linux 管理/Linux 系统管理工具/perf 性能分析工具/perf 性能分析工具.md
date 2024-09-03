@@ -97,7 +97,8 @@ OPTIONS
 
 EXAMPLE
 
-# 生成火焰图
+# 最佳实践
+## 生成火焰图
 
 获取火焰图生成工具
 
@@ -123,3 +124,32 @@ cd FlameGraph
 ```bash
 perf script -i /root/tmp/perf.data | ./stackcollapse-perf.pl --all | ./flamegraph.pl > /root/tmp/flame.svg
 ```
+
+## 追踪中断
+
+`perf top -e irq:irq_handler_entry`
+
+输出效果类似下面这样
+
+```bash
+Samples: 51K of event 'irq:irq_handler_entry', 1 Hz, Event count (approx.): 1436 lost: 0/0 drop: 0/0                                                                                                                         
+Overhead  Trace output                                                                                                                                                                                                       
+  94.01%  irq=16 name=enp0s8
+   1.88%  irq=19 name=ehci_hcd:usb1
+   1.88%  irq=19 name=enp0s3
+   1.11%  irq=21 name=ahci[0000:00:0d.0]
+   1.11%  irq=21 name=snd_intel8x0
+```
+
+```bash
+Samples: 6K of event 'irq:irq_handler_entry', 1 Hz, Event count (approx.): 303 lost: 0/0 drop: 0/0                                                                                                                           
+Overhead  Trace output                                                                                                                                                                                                       
+  15.84%  irq=53 name=ahci[0000:00:1f.2]
+  10.23%  irq=44 name=enp9s0-TxRx-1
+   8.58%  irq=43 name=enp9s0-TxRx-0
+   7.59%  irq=45 name=enp9s0-TxRx-2
+   2.97%  irq=46 name=enp9s0-TxRx-3
+   0.99%  irq=48 name=enp12s0-TxRx-0
+```
+
+
