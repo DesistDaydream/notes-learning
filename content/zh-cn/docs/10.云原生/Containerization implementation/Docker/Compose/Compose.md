@@ -54,7 +54,7 @@ Compose 安装就是 [compose CLI](/docs/10.云原生/Containerization%20impleme
 
 ```bash
 export COMPOSE_VERSION="2.24.2"
-export DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+export DOCKER_CONFIG=${DOCKER_CONFIG:-/usr/local/lib/docker}
 mkdir -p $DOCKER_CONFIG/cli-plugins
 curl -SL https://github.com/docker/compose/releases/download/v${COMPOSE_VERSION}/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
 chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose

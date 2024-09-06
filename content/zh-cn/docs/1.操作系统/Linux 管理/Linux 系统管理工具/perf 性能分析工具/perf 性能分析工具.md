@@ -31,7 +31,10 @@ sudo apt install -y linux-tools-generic linux-tools-$(uname -r)
 yum install -y perf
 ```
 
-# perf 工具使用详解
+# Syntax(语法)
+
+> 参考：
+> - [Manual(手册), perf(1)](https://www.man7.org/linux/man-pages/man1/perf.1.html)
 
 **perf \[OPTIONS] COMMAND \[ARGS]**
 

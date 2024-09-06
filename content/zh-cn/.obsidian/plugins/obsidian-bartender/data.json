@@ -2463,8 +2463,8 @@
       "docs/8.通用技术/Job",
       "docs/8.通用技术/CDN",
       "docs/8.通用技术/Message Queue(消息队列)",
+      "docs/8.通用技术/ServiceDiscovery",
       "docs/8.通用技术/Regular Expression(正则表达式).md",
-      "docs/8.通用技术/Service Discovery(服务发现).md",
       "docs/8.通用技术/UUID 与 ULID.md",
       "docs/8.通用技术/Time.md"
     ],

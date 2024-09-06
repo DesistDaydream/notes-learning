@@ -85,7 +85,7 @@ export all_proxy="sock5://${hostip}:7890"
 export ALL_PROXY="sock5://${hostip}:7890"
 ```
 
-
 # 可用的代理程序
 
 参考 [代理](/docs/Web/代理.md)
+

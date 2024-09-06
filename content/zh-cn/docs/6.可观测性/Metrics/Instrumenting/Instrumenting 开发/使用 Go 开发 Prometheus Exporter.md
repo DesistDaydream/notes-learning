@@ -14,13 +14,6 @@ Exporter 是 Prometheus 监控的核心，如果你遇到一些应用不存在�
     --> creates go.mod file
     --> Installs dependency into the go.mod file
 
-1
-2
-3
-4
-5
-Go
-
 **2. 创建入口点和导入依赖包**
 
     package main
@@ -30,21 +23,9 @@ Go
      "github.com/prometheus/client_golang/prometheus/promhttp"
     )
 
-1
-2
-3
-4
-5
-6
-7
-Go
-
 **3. 创建 main() 函数**
 
     func main()
-
-1
-Go
 
 **4. 添加 prometheus metrics 端点，并在某个服务端口上监听**
 
@@ -52,12 +33,6 @@ Go
        http.Handle("/metrics", promhttp.Handler())
        log.Fatal(http.ListenAndServe(":9101", nil))
     }
-
-1
-2
-3
-4
-Go
 
 **5. 使用 curl 请求外部服务接口**
 
@@ -72,15 +47,6 @@ Go
     --user admin:admin
     curl -k --location --request GET '<https://apihost/api/channels/idsAndNames>' \\
     --user admin:admin
-
-1
-2
-3
-4
-5
-6
-7
-Go
 
 **6. 将 curl 调用转换为 go http 调用，并解析结果**
 
@@ -97,16 +63,6 @@ Go
     promhttp_metric_handler_requests_total{code=”500"} 0
     promhttp_metric_handler_requests_total{code=”503"} 0
 
-1
-2
-3
-4
-5
-6
-7
-8
-Go
-
 对于应用 scrapers，我们将定义 Prometheus metrics 描述信息，其中包括 metric 名称、metric label 标签以及 metric 帮助信息。
 
     messagesReceived = prometheus.NewDesc(
@@ -114,13 +70,6 @@ Go
      "How many messages have been received (per channel).",
      []string{"channel"}, nil,
     )
-
-1
-2
-3
-4
-5
-Go
 
 **8. 定义一个结构体实现 Prometheus 的 Collector 接口**
 
