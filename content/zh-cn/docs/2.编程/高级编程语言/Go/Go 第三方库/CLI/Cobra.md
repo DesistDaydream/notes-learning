@@ -593,7 +593,7 @@ RunE 功能的执行先后顺序如下：
   - args
 - del
 
-如果在 cobra 和 add 中都使用了 PersistentPreRun() 函数的话，只会有第一个执行，并且是子命令的方法优先，参考 Issue：
+如果在 cobra 和 add 中都使用了 PersistentPreRun() 函数的话，只会有一个执行，并且是子命令的方法优先，参考 Issue：
 
 - https://github.com/spf13/cobra/issues/216
 - https://github.com/spf13/cobra/issues/252
@@ -632,5 +632,9 @@ func subPersistentPreRun(cmd *cobra.Command, args []string) {
 - `OnFinalize()` 函数则会在**完成**每个命令的 `Execute()` 方法时运行。
 
 `OnInitialize()` 会将其参数赋值给 initializers 变量(这个变量的类型是一个函数)，该变量会在 Command.preRun() 函数中被执行
-> 注意，这个 Command.preRun() 与 Command.PreRun() 不同。前者是 Command 结构体的方法，后者是 Command 的一个属性。
+
+> Notes: 这个 Command.preRun() 与 Command.PreRun() 不同。前者是 Command 结构体的方法，后者是 Command 的一个属性。
+>
 > 在 execute() 中，preRun 在 PreRun 之前执行。
+
+但是，在任何子命令中使用了 `cobra.OnInitialize()`，那么执行其他子命令时，同样会执行 `cobra.OnInitialize()` 的逻辑。

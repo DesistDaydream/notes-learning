@@ -1,10 +1,14 @@
 ---
-title: 常见 Syscalls
+title: Syscalls 列表
+linkTitle: Syscalls 列表
+date: 2023-09-09
+weight: 20
 ---
 
 # 概述
 
 > 参考：
+>
 > - [Manual(手册)，syscall(2)- System call 列表](https://man7.org/linux/man-pages/man2/syscalls.2.html#DESCRIPTION)
 
 # 一、进程控制
