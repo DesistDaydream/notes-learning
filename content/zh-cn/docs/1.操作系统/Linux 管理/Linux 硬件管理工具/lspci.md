@@ -13,7 +13,7 @@ weight: 20
 > - [GitHub 项目，pciutils/pciutils](https://github.com/pciutils/pciutils)
 > - [官网](https://mj.ucw.cz/sw/pciutils/)
 
-列出所有 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md) 设备。在列出的设备信息中，包含了一些供应商的名称、分类名称、etc. 信息。这些信息统一从 [pci.ids 文件](docs/1.操作系统/Kernel/Hardware/PCI.md#pci.ids%20文件) 文件中获取。
+列出所有 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md) 设备。在列出的设备信息中，包含了一些供应商的名称、分类名称、etc. 信息。这些信息统一从 [pci.ids 文件](/docs/1.操作系统/Kernel/Hardware/PCI.md#pci.ids%20文件) 文件中获取。
 
 CentOS 包：pciutils
 

@@ -12,7 +12,7 @@ weight: 2
 > - [官网](https://ebpf.io/)
 > - [Kernel 官方文档，BPF](https://www.kernel.org/doc/html/latest/bpf/)
 >  	- [Kernel 官方文档](https://www.infradead.org/~mchehab/kernel_docs/bpf/index.html)
->  	- [Cilium 官方文档，BPF](https://docs.cilium.io/en/latest/bpf/) Kernel 官方文档中指向的另一个文档
+> - [Cilium 官方文档，BPF](https://docs.cilium.io/en/latest/bpf/) Kernel 官方文档中指向的另一个文档，BPF 官方文档什么是 eBPF 最下面也有链接指向这里
 > - [GitHub 项目，torvalds/linux/tools/lib/bpf](https://github.com/torvalds/linux/tree/master/tools/lib/bpf)(libbpf 库)
 
 # 学习资料
@@ -37,10 +37,25 @@ weight: 2
 
 https://coolshell.cn/articles/22320.html
 
-# 为什么要使用 eBPF
+### eBPF 为什么高效
+
+[公众号，云原生实验室，为什么 eBPF 如此受欢迎](https://mp.weixin.qq.com/s/K5bVHjJeOm8KpluPW1iyvw)
+
+eBPF 程序比传统程序“跑得”更快，因为它的代码是直接在内核空间中执行的。
+
+设想这样一个场景，假设一个程序想要统计其从 Linux 系统上发送出去的字节数，需要经过哪些步骤？
+
+首先，网络活动发生时，内核会生成原始数据，这些原始数据包含了大量的信息，而且大部分信息都与“字节数”这个信息无关。所以，无论生成的原始数据是个啥，只要你想统计发送出去的字节数，就必须反复过滤，并对其进行数学计算。这个过程每分钟要重复数百次（甚至更多）。
+
+传统的监控程序都运行在用户空间，内核生成的所有原始数据都必须从内核空间复制到用户空间，这种数据复制和过滤的操作会对 CPU 造成极大的负担。这就是为什么 ptrace 很“慢”，而 bpftrace 很”快“。
+
+eBPF 无需将数据从内核空间复制到用户空间，你可以直接在内核空间运行监控程序来聚合可观测性数据，并将其发送到用户空间。eBPF 也可以直接在内核空间过滤数据以及创建 Histogram，这比在用户空间和内核空间之间交换大量数据要快得多。
+
+# eBPF 架构与原理简述
 
 > 参考：
 >
+> - [官方文档，什么是 eBPF？](https://ebpf.io/what-is-ebpf/)
 > - [公众号，云原生实验室，为什么 eBPF 如此受欢迎](https://mp.weixin.qq.com/s/K5bVHjJeOm8KpluPW1iyvw)
 
 eBPF 是一项革命性的技术，起源于 Linux 内核，可以在操作系统内核中运行 **Sandbox Programs(沙箱程序)** 而无需修改内核源代码或加载内核模块。
@@ -49,47 +64,109 @@ eBPF 是一项革命性的技术，起源于 Linux 内核，可以在操作系�
 
 eBPF 从根本上改变了这个套路。通过允许在操作系统中运行沙盒程序，应用程序开发人员可以运行 eBPF 程序以在运行时向操作系统添加额外的功能。然后，操作系统保证安全性和执行效率，就像借助 **Just-In-Time(即时，简称 JIT)** 编译器和验证引擎进行本地编译一样。这引发了一波基于 eBPF 的项目，涵盖了广泛的用例，包括下一代网络、可观察性和安全功能。
 
-## eBPF 为什么高效
+![https://ebpf.io/what-is-ebpf/|800](https://notes-learning.oss-cn-beijing.aliyuncs.com/ebpf/overview.png)
 
-eBPF 程序比传统程序“跑得”更快，因为它的代码是直接在内核空间中执行的。
+## Hook(钩子)
 
-设想这样一个场景，假设一个程序想要统计其从 Linux 系统上发送出去的字节数，需要经过哪些步骤？
+众所周知，Linux 内核是一个事件驱动的系统设计，这意味着所有的操作都是基于事件来描述和执行的。比如打开文件是一种事件、CPU 执行指令是一种事件、接收网络数据包是一种事件等等。eBPF 作为内核中的一个子系统，可以检查这些基于事件的信息源，并且允许开发者编写并运行在内核触发任何事件时安全执行的 BPF 程序。
 
-首先，网络活动发生时，内核会生成原始数据，这些原始数据包含了大量的信息，而且大部分信息都与“字节数”这个信息无关。所以，无论生成的原始数据是个啥，只要你想统计发送出去的字节数，就必须反复过滤，并对其进行数学计算。这个过程每分钟要重复数百次（甚至更多）。
+eBPF 程序也是事件驱动的，当内核或应用程序通过某个 Hook(钩子) 点时会运行这个 eBPF 程序。预定义的 Hook 包括 [System Call](/docs/1.操作系统/Kernel/System%20Call/System%20Call.md)、函数入口/出口、内核的 Tracepoints、网络事件、etc.
 
-传统的监控程序都运行在用户空间，内核生成的所有原始数据都必须从内核空间复制到用户空间，这种数据复制和过滤的操作会对 CPU 造成极大的负担。这就是为什么 ptrace 很“慢”，而 bpftrace\[6] 很”快“。
+![https://ebpf.io/what-is-ebpf](https://notes-learning.oss-cn-beijing.aliyuncs.com/ebpf/syscall-hook.png)
 
-eBPF 无需将数据从内核空间复制到用户空间，你可以直接在内核空间运行监控程序来聚合可观测性数据，并将其发送到用户空间。eBPF 也可以直接在内核空间过滤数据以及创建 Histogram，这比在用户空间和内核空间之间交换大量数据要快得多。
+```c
+int syscall__ret_execve(struct pt_regs *ctx)
+{
+  struct comm_event event = {
+    .pid = bpf_get_current_pid_tgid() >> 32,
+    .type = TYPE_RETURN,
+  };
 
-# eBPF Map
+  bpf_get_current_comm(&event.comm, sizeof(event.comm));
+  comm_events.perf_submit(ctx, &event, sizeof(event));
+
+  return 0;
+}
+```
+
+如果预定义的 Hook 不能满足自己的需求，还可以创建 kprobe(内核探针)、uprobe(用户探针)，以便在内核或用户应用程序的几乎任何位置附加 eBPF 程序。
+
+![https://ebpf.io/what-is-ebpf|800](https://notes-learning.oss-cn-beijing.aliyuncs.com/ebpf/hook-overview.png)
+
+## 工作流程简述
+
+这是官方的流程图，里面的 eBPF 程序是使用 Go 语言的 eBPF 库编写的
+
+![https://ebpf.io/what-is-ebpf|700](https://notes-learning.oss-cn-beijing.aliyuncs.com/ebpf/go.png)
+
+- **编写** # 首先，开发者可以使用 C 语言（或者 Go 等其他高级程序语言）编写自己的 eBPF 程序，然后通过 LLVM、GNU、[Clang](/docs/2.编程/高级编程语言/C/C%20环境安装与使用/Clang.md) 等编译器，将其编译成 eBPF 字节码。
+  - 本质上还是可执行的二进制程序，只不过内部有 eBPF 字节码。
+- **加载** # 运行编译好的 eBPF 程序，通过 bpf() 系统调用，将程序中的字节码传入内核空间，以加载 eBPF 程序。
+  - 当 eBPF 程序被加载到 Linux 内核中时，它在被附加到所请求的 Hook 之前还需要经过 验证 与 JIT 这两个步骤。
+- **验证** # 传入内核空间之后的 eBPF 程序，并不是直接就在其指定的内核跟踪点上开始执行，而是先通过 Verifier 这个组件，来保证我们传入的这个 BPF 程序可以在内核中安全的运行。
+- **JIT** # 经过安全检测之后，Linux 内核 还为 eBPF 字节码提供了一个实时的编译器（Just-In-Time，JIT），JIT 将确认后的 eBPF 字节码编译为对应的机器码。这样就可以在 eBPF 指定的跟踪点上执行我们的操作逻辑了。
+- **Maps** # 那么，用户空间的应用程序怎么样拿到我们插入到内核中的 eBPF 程序产生的数据呢？eBPF 是通过一种 MAP 的数据结构来进行数据的存储和管理的，eBPF 将产生的数据，通过指定的 MAP 数据类型进行存储，用户空间的应用程序，作为消费者，通过 bpf() 系统调用，从 MAP 数据结构中读取数据并进行相应的存储和处理。这样一个完整 eBPF 程序的流程就完成了。
+
+一个 eBPF 程序从某种角度来说，其实可以<font color="#ff0000">分为两部分看</font>：
+
+- 一部分字节码被加载进内核并 Hook 到某个或某些地方；
+- 另一部分是当前一部分被加载的字节码触发时，对产生的数据进行处理的逻辑。
+
+![300](https://notes-learning.oss-cn-beijing.aliyuncs.com/ebpf/workflow.png)
+
+### 编写 eBPF 程序
+
+在很多情况下，eBPF 不是直接使用，而是通过像 [Cilium](https://ebpf.io/projects/#cilium)、[bcc](https://ebpf.io/projects/#bcc) 或 [bpftrace](https://ebpf.io/projects/#bpftrace) 这样的项目间接使用，这些项目提供了 eBPF 之上的抽象，不需要直接编写程序，而是提供了指定基于意图的来定义实现的能力，然后用 eBPF 实现。
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ebpf/clang.png)
+
+如果不存在更高层次的抽象（i.e. 满足某些意图的 eBPF 程序），则需要直接编写程序。Linux 内核期望 eBPF 程序以字节码的形式加载。虽然直接编写字节码也是可以的，<font color="#ff0000">但更常见的开发实践是利用像 [LLVM](https://llvm.org/) 这样的编译器套件将伪 c 代码编译成 eBPF 字节码</font>。
+
+### 加载器
+
+运行 eBPF 程序后，会识别出 Hook，利用 bpf() 系统调用将 eBPF 程序加载到 Linux 内核中。
+
+> Notes: 这通常是利用 eBPF 库来实现的，加载的是程序中的 eBPF 字节码
+
+![https://ebpf.io/what-is-ebpf](https://notes-learning.oss-cn-beijing.aliyuncs.com/ebpf/loader.png)
+
+> Notes: 图里最上面两个 Process 是分开的，本质是两个不同的程序。整个图也应该左右分开看。左半部分是 eBPF 程序编译和加载的过程；右半部分是用户空间应用程序运行时的过程。
+>
+> 其中 JIT 到后边的过程是指：eBPF 程序进入内核，被附加到 Syscall 上。右边的 Process 在运行时调用的 Syscall 会触发已经 Hook 了某个点的 eBPF 程序进行工作。
+
+当 eBPF 程序被加载到 Linux 内核中时，它在被附加到所请求的 Hook 之前还需要经过 “验证” 与 “JIT编译” 这两个步骤。
+
+### 验证与 JIT 编译
+
+验证步骤确保 eBPF 程序可以安全运行。它验证程序是否满足多个条件，例如：
+
+- 加载 eBPF 程序的进程必须有所需的能力（特权）。除非启用非特权 eBPF，否则只有特权进程可以加载 eBPF 程序。
+- eBPF 程序不会崩溃或者对系统造成损害。
+- eBPF 程序一定会运行至结束（即程序不会处于循环状态中，否则会阻塞进一步的处理）。
+
+**Just-in-Time(即时，简称 JIT)**，JIT 编译步骤将第一步编写代码后生成的字节码转换为机器特定的指令集，用以优化程序的执行速度。这使得 eBPF 程序可以像本地编译的内核代码或作为内核模块加载的代码一样高效地运行。
+
+JIT 后，加载到内核 eBPF 程序将会运行并产生数据，作为用户，如何拿到这些数据？依靠 eBPF Maps
+
+### Map
 
 eBPF 有一个黑科技，它会使用 **eBPF Map(eBPF 映射)** 来允许用户空间和内核空间之间进行双向数据交换。在 Linux 中，映射（Map）是一种通用的存储类型，用于在用户空间和内核空间之间共享数据，它们是驻留在内核中的键值存储。
 
 对于可观测性这种应用场景，eBPF 程序会直接在内核空间进行计算，并将结果写入用户空间应用程序可以读取/写入的 eBPF 映射中。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kqvmni/1656471724028-9a437fff-c998-434e-a75d-808c9e309295.jpeg)
+eBPF 的高效主要还是：**eBPF 提供了一种直接在内核空间运行自定义程序，并且避免了在内核空间和用户空间之间复制无关数据的方法。**
 
-eBPF 的高效主要还是 **eBPF 提供了一种直接在内核空间运行自定义程序，并且避免了在内核空间和用户空间之间复制无关数据的方法。**
+![https://ebpf.io/what-is-ebpf](https://notes-learning.oss-cn-beijing.aliyuncs.com/ebpf/map-architecture.png)
 
-# eBPF 原理与架构简述
+eBPF 程序的一个重要方面是共享收集的信息和存储状态的能力。为此，eBPF 程序可以利用 eBPF Maps 的概念来存储和检索各种数据结构中的数据。 eBPF Maps 可以通过系统调用从 eBPF 程序以及用户空间中的应用程序访问。
 
-![image.png|800](https://notes-learning.oss-cn-beijing.aliyuncs.com/kqvmni/1649300475763-25ddd536-5730-4065-a33c-5fb8fdd1c097.png)
+## 其他
 
-众所周知，Linux 内核是一个事件驱动的系统设计，这意味着所有的操作都是基于事件来描述和执行的。比如打开文件是一种事件、CPU 执行指令是一种事件、接收网络数据包是一种事件等等。eBPF 作为内核中的一个子系统，可以检查这些基于事件的信息源，并且允许开发者编写并运行在内核触发任何事件时安全执行的 BPF 程序。
+### Helper Calls
 
-![800](https://notes-learning.oss-cn-beijing.aliyuncs.com/kqvmni/1619101127228-9138d591-82c8-4ce2-9f45-c431a34d3189.png)
 
-下图简要描述了 eBPF 的架构及基本的工作流程。
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/bpf/20230206115723.png)
-
-首先，开发者可以使用 C 语言（或者 Python 等其他高级程序语言）编写自己的 eBPF 程序，然后通过 LLVM 或者 GNU、Clang 等编译器，将其编译成 eBPF 字节码。Linux 提供了一个 bpf() 系统调用，通过 bpf() 系统调用，将这段编译之后的字节码传入内核空间。
-
-传入内核空间之后的 BPF 程序，并不是直接就在其指定的内核跟踪点上开始执行，而是先通过 Verifier 这个组件，来保证我们传入的这个 BPF 程序可以在内核中安全的运行。经过安全检测之后，Linux 内核 还为 eBPF 字节码提供了一个实时的编译器（Just-In-Time，JIT），JIT 将确认后的 eBPF 字节码编译为对应的机器码。这样就可以在 eBPF 指定的跟踪点上执行我们的操作逻辑了。
-
-那么，用户空间的应用程序怎么样拿到我们插入到内核中的 BPF 程序产生的数据呢？BPF 是通过一种 MAP 的数据结构来进行数据的存储和管理的，BPF 将产生的数据，通过指定的 MAP 数据类型进行存储，用户空间的应用程序，作为消费者，通过 bpf() 系统调用，从 MAP 数据结构中读取数据并进行相应的存储和处理。这样一个完整 BPF 程序的流程就完成了。
-
-## 5 个模块
+### 5 个模块
 
 eBPF 在内核主要由 5 个模块协作：
 
@@ -121,7 +198,7 @@ bpftool feature probe | grep map_type
 
 通过以上命令可以看到系统支持哪些类型的 map。
 
-## 3 个动作
+### 3 个动作
 
 先说下重要的系统调用 bpf：
 
@@ -163,14 +240,51 @@ b.attach_kprobe(event="xxx", fn_name="yyy")
 
 通过 MAP 相关的 cmd，控制 MAP 增删，然后用户态基于该 MAP 与内核状态进行交互。
 
-# 基于 eBPF 的实现
+# 为什么使用 eBPF
+
+https://ebpf.io/what-is-ebpf/#why-ebpf
+
+### 可编程性的力量
+
+让我们从一个类比开始。你还记得 GeoCities 吗? 20 年前，网页几乎完全由静态标记语言（HTML）编写。网页基本上是一个文档，有一个应用程序（浏览器）可以显示它。看看今天的网页，网页已经成为成熟的应用程序，基于 web 的技术已经取代了绝大多数用需要编译的语言所编写的应用程序。是什么促成了这种演进 ？
+
+[![Geocities](https://ebpf.io/static/be6480b07c9214966e71cf5181a19070/b14d5/geocities.png)](https://ebpf.io/static/be6480b07c9214966e71cf5181a19070/26963/geocities.png)
+
+简短的回答是通过引入 JavaScript 实现可编程性。它开启了一场巨大的革命，导致浏览器几乎演变成一个独立的操作系统。
+
+为什么会发生这个演进 ？程序员不再受制于运行特定浏览器版本的用户。提升必要构建模块的可用性，将底层浏览器的创新速度与运行在其上的应用程序解耦开来，而不是去说服标准机构需要一个新的 HTML 标签。这当然有点过于简化这个过程中的变化了，因为 HTML 确实随着时间的推移而一直发展，并对这个演进的成功做出了贡献，但 HTML 本身的发展还不足够满足需求。
+
+在将这个示例应用于 eBPF 之前，让我们先看一下在引入 JavaScript 过程中的几个关键方面：
+
+- **安全**：不受信任的代码在用户的浏览器中运行。这个问题通过沙箱 JavaScript 程序和抽象对浏览器数据的访问来解决。
+- **持续交付**：程序逻辑的演进必须能够在不需要不断发布新浏览器版本的情况下实现。通过提供适当的底层构建模块来构建任意逻辑，解决了这个问题。
+- **性能**：必须以最小的开销提供可编程性。这个问题通过引入即时（JIT）编译器得到了解决。由于同样的原因，上述所有方面都可以在 eBPF 中找到完全对应的内容。
+
+### eBPF 对 Linux 内核的影响
+
+现在让我们回到 eBPF。为了理解 eBPF 对 Linux 内核的可编程性的影响，有必要对 Linux 内核的体系结构及其与应用程序和硬件的交互方式有一个高层次的了解。
+
+[![Kernel architecture](https://ebpf.io/static/560d57883f7df9beafb47eee1d790247/b14d5/kernel-arch.png)](https://ebpf.io/static/560d57883f7df9beafb47eee1d790247/01295/kernel-arch.png)
+
+Linux 内核的主要目的是对硬件或虚拟硬件进行抽象，并提供一致的 API（系统调用），允许应用程序运行和共享资源。为了实现这一点，内核维护了一组广泛的子系统和层来分配这些职责。每个子系统通常允许某种级别的配置，以满足用户的不同需求。如果无法配置所需的行为，则需要更改内核，从历史上看，只剩下两个选项：
+
+| 原生支持                                                          | 内核模块                                                                 |
+| ------------------------------------------------------------- | -------------------------------------------------------------------- |
+| 1. 更改内核源代码并使 Linux 内核社区相信改动是有必要的。<br>2. 等待几年后，新的内核才会成为一个通用版本。 | 1. 编写一个内核模块<br>2. 定期修复它，因为每个内核版本都可能破坏它<br>3. 由于缺乏安全边界，有可能损坏 Linux 内核 |
+
+有了 eBPF，就有了一个新的选项，它允许重新编程 Linux 内核的行为，而不需要更改内核源代码或加载内核模块。在许多方面，这与 JavaScript 和其他脚本语言解锁系统演进的方式非常相像，对这些系统进行改动的原有方式已经变得困难或昂贵。
+
+# eBPF 项目路线图
+
+## 基于 eBPF 的实现
 
 > 参考：
 >
-> - [官方文档，项目](https://ebpf.io/projects)
+> - [官方文档，应用程序](https://ebpf.io/applications/)
+> - https://ebpf.io/what-is-ebpf/#development-toolchains
 
-- bcc # 高效的基于 BPF 的内核跟踪的工具包和库
-- bpftrace # Linux eBPF 的高级跟踪语言
+- [BCC](/docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/BCC%20工具集.md) # 高效的基于 BPF 的内核跟踪的工具包和库
+- [bpftrace](/docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/bpftrace%20工具.md) # Linux eBPF 的高级跟踪语言
 
 [BPF 在网络领域的实现](/docs/1.操作系统/Kernel/BPF/BPF%20流量控制机制/BPF%20在网络领域的实现.md)
 
@@ -178,6 +292,27 @@ b.attach_kprobe(event="xxx", fn_name="yyy")
 - TC eBPF # 作用在传统 TC 模块的 eBPF
 - XDP eBPF # 各种 eBPF 程序新增加的 DataPath 通常都称为 XDP。
 - Cilium #
+
+## eBPF 库
+
+> 参考：
+>
+> - [官方文档，基础设施， eBPF 库](https://ebpf.io/infrastructure/#ebpf-libraries)
+
+C/C++ 库
+
+- [github.com/libpf/libbpf](https://github.com/libbpf/libbpf) # 作为上游 Linux 内核的一部分进行维护。
+  - 上游代码在 [GitHub 项目，torvalds/linux/tools/lib/bpf](https://github.com/torvalds/linux/tree/master/tools/lib/bpf)
+
+Go 库
+
+- [github.com/cilium/ebpf](https://github.com/cilium/ebpf) # Cilium 维护的纯 Go 语言的 eBPF 库
+- [github.com/aquasecurity/libbpfgo](https://github.com/aquasecurity/libbpfgo) # Aqua 维护的围绕 libbpf 的 Go 语言 eBPF 库。支持 CO-RE。使用 CGo 调用 libbpf 的链接版本。
+
+Rust 库
+
+- https://github.com/aya-rs/aya
+- https://github.com/libbpf/libbpf-rs
 
 # BPF 程序示例
 
@@ -203,19 +338,11 @@ b.trace_print()
 
 > 如果运行报错，可能是缺少头文件，一般安装 kernel-devel 包即可。
 
-# eBPF 库
+# BPF 项目介绍
 
-> 参考：
->
-> - [官方文档，项目-eBPF 库](https://ebpf.io/projects/#ebpf-libraries)
+[GitHub 项目，ehids/ecapture](https://github.com/ehids/ecapture) #
 
-[github.com/libpf/libbpf](https://github.com/libbpf/libbpf) # 基于 C/C++ 的库，作为上游 Linux 内核的一部分进行维护。
-
-- 上游代码在 [GitHub 项目，torvalds/linux/tools/lib/bpf](https://github.com/torvalds/linux/tree/master/tools/lib/bpf)
-
-[github.com/cilium/ebpf](https://github.com/cilium/ebpf) # Cilium 维护的纯 Go 语言的 eBPF 库
-
-[github.com/aquasecurity/libbpfgo](https://github.com/aquasecurity/libbpfgo) # Aqua 维护的围绕 libbpf 的 Go 语言 eBPF 库。支持 CO-RE。使用 CGo 调用 libbpf 的链接版本。
+- [基于 eBPF 的开源项目 eCapture 介绍：无需 CA 证书抓 https 网络明文通讯](https://mp.weixin.qq.com/s/PHYR-E02A6nR0N4aim26pg)
 
 # 其他
 
@@ -226,8 +353,3 @@ b.trace_print()
 
 eBPF 提供的是 **基本功能模块(building blocks)** 和 **attachment points(程序附着点)**。 我们可以编写 eBPF 程序来 attach 到这些 points 点完成某些高级功能。
 
-# BPF 项目介绍
-
-[GitHub 项目，ehids/ecapture](https://github.com/ehids/ecapture) #
-
-- [基于 eBPF 的开源项目 eCapture 介绍：无需 CA 证书抓 https 网络明文通讯](https://mp.weixin.qq.com/s/PHYR-E02A6nR0N4aim26pg)

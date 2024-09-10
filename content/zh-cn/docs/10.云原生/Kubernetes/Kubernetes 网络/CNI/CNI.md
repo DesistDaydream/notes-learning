@@ -1,5 +1,8 @@
 ---
 title: CNI
+linkTitle: CNI
+date: 2023-09-10T10:00
+weight: 1
 ---
 
 # 概述
@@ -94,6 +97,7 @@ kubelet 配置 pod 网络时，首先会读取下 /etc/cni/net.d/_目录下的�
 下面仅列出由 CNI 团队维护的一些参考和示例插件。CNI 的基础可执行文件一般分为三类：
 
 第一类：Main 插件，用于创建具体的网络设备。
+
 比如，bridge、ipvlan、loopback、macvlan、ptp(Veth Pair)、vlan 等。都属于“网桥”类型的 CNI 插件，所以在具体实现中，往往会调用 bridge 这个二进制文件。
 
 - **bridge** # 创建一个桥设备，向其中添加主机和容器。
@@ -105,12 +109,14 @@ kubelet 配置 pod 网络时，首先会读取下 /etc/cni/net.d/_目录下的�
 - **host-device** # Move an already-existing device into a container.
 
 第二类：IPAM 插件(IP Address Management)，用于负责分配 IP 地址。
+
 比如，dchp、host-local
 
 - dhcp：这个文件会向 DHCP 服务器发起请求；
 - host-local，会使用预先配置的 IP 地址段来进行分配
 
 第三类：其他插件
+
 比如 flannel、tuning、portmap、bandwidth
 
 - flannel：专门为 Flannel 项目提供的 CNI 插件。早期的默认插件，叠加网络，不支持网络策略(即定义哪个 Pod 访问哪个 Pod 等策略)
@@ -124,8 +130,8 @@ kubelet 配置 pod 网络时，首先会读取下 /etc/cni/net.d/_目录下的�
 
 下面是一些常用的第三方 CNI 简介
 
-- **calico** # 三层隧道网络，基于 BGP 协议，即支持网络配置也支持网络策略
-- **Cilium - BPF & XDP for containers**# 基于 eBPF 实现的，性能很好
+- **Calico** # 三层隧道网络，基于 BGP 协议，即支持网络配置也支持网络策略
+- **Cilium** # 基于 eBPF 实现的，性能很好
 - 等
 
 ## 各种 CNI 的对比
@@ -135,5 +141,7 @@ kubelet 配置 pod 网络时，首先会读取下 /etc/cni/net.d/_目录下的�
 # CNI 关联文件
 
 **/etc/cni/net.d/**# 默认配置文件保存目录
+
 **/opt/cni/bin/** # 默认 CNI 插件保存目录
+
 **/var/lib/cni/** # 默认 CNI 运行时产生的数据目录

@@ -2801,6 +2801,12 @@
       "docs/10.云原生/Kubernetes/Kubernetes 机制与特性/Pod 是如何出现的.md",
       "docs/10.云原生/Kubernetes/Kubernetes 机制与特性/Leader Election(领导人选举).md",
       "docs/10.云原生/Kubernetes/Kubernetes 机制与特性/Watch and Informer.md"
+    ],
+    "docs/2.编程/高级编程语言/C/C 环境安装与使用": [
+      "docs/2.编程/高级编程语言/C/C 环境安装与使用/_index.md",
+      "docs/2.编程/高级编程语言/C/C 环境安装与使用/C 环境安装与使用.md",
+      "docs/2.编程/高级编程语言/C/C 环境安装与使用/GCC.md",
+      "docs/2.编程/高级编程语言/C/C 环境安装与使用/Clang.md"
     ]
   },
   "actionBarOrder": {},

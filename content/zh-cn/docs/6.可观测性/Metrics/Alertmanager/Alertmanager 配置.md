@@ -49,7 +49,7 @@ title: Alertmanager 配置
 **smtp_smarthost**(STRING) # The default SMTP smarthost used for sending emails, including port number.Port number usually is 25, or 587 for SMTP over TLS (sometimes referred to as STARTTLS).
 
 - Example: smtp.example.org:587
- 
+
 **smtp_hello**(STRING) # The default hostname to identify to the SMTP server. `默认值: localhost`
 
 **smtp_auth_username**(STRING) # SMTP Auth using CRAM-MD5, LOGIN and PLAIN. If empty, Alertmanager doesn't authenticate to the SMTP server.
@@ -202,9 +202,9 @@ url: <string>
 
 https://prometheus.io/docs/alerting/latest/configuration/#matcher
 
-matcher 部分的配置实现了 [Label matchers](docs/6.可观测性/Metrics/Prometheus/Label%20matchers.md)(标签匹配器) 的功能，根据这部分字段定义的 Label，正确匹配到目标（目标通常指一条告警）。
+matcher 部分的配置实现了 [Label matchers](/docs/6.可观测性/Metrics/Prometheus/Label%20matchers.md)(标签匹配器) 的功能，根据这部分字段定义的 Label，正确匹配到目标（目标通常指一条告警）。
 
-matcher(匹配器) 的逻辑类似 [PromQL](docs/6.可观测性/Metrics/Prometheus/PromQL/PromQL.md) 的各种 Selectors(选择器)，语法也是类似的，由 3 部分组成
+matcher(匹配器) 的逻辑类似 [PromQL](/docs/6.可观测性/Metrics/Prometheus/PromQL/PromQL.md) 的各种 Selectors(选择器)，语法也是类似的，由 3 部分组成
 
 - KEY
 - `=`, `!=`, `=~` 三者之一

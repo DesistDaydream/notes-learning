@@ -12,16 +12,16 @@ weight: 1
 > - perf 事件列表中的内核 pmu 事件是什么
 >   - https://unix.stackexchange.com/questions/326621/what-are-kernel-pmu-event-s-in-perf-events-list
 >   - https://qastack.cn/unix/326621/what-are-kernel-pmu-event-s-in-perf-events-list
-> - [brendangregg 博客，perf Examples](https://www.brendangregg.com/perf.html)
+> - [brendangregg 博客，perf](https://www.brendangregg.com/perf.html)
 
-**Linux Performance Events(Linux 性能事件，简称 LPE)** 是用来分析 [Linux Kernel](docs/1.操作系统/Kernel/Linux%20Kernel/Linux%20Kernel.md) 性能的工具，通常称为 **perf**。perf 随 Kernel 2.6+ 一同发布。通过它，应用程序可以利用 PMU，tracepoint 和内核中的特殊计数器来进行性能统计。它不但可以分析指定应用程序的性能问题 (per thread)，也可以用来分析内核的性能问题，当然也可以同时分析应用代码和内核，从而全面理解应用程序中的性能瓶颈。
+**Linux Performance Events(Linux 性能事件，简称 LPE)** 是用来分析 [Linux Kernel](/docs/1.操作系统/Kernel/Linux%20Kernel/Linux%20Kernel.md) 性能的工具，通常称为 **perf**。perf 随 Kernel 2.6+ 一同发布。通过它，应用程序可以利用 PMU，tracepoint 和内核中的特殊计数器来进行性能统计。它不但可以分析指定应用程序的性能问题 (per thread)，也可以用来分析内核的性能问题，当然也可以同时分析应用代码和内核，从而全面理解应用程序中的性能瓶颈。
 
 perf 主要是通过 **Tracing(追踪)** 的方式来实现性能数据的采集。
 
 perf 和其他调试工具一样，需要 **symbol(符号信息)**。它们用于将内存地址转换为函数和变量名称，以便我们人类可以读取它们。如果没有符号，您将看到代表所分析的内存地址的十六进制数字。
 
 > [!Note]
-> perf 命令甚至有时候可以跟 [strace 工具](docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/strace%20工具.md) 实现类似的效果，比如 `perf stat -e syscalls:*` 统计系统调用的计数，就很像 `strace -c XX`
+> perf 命令甚至有时候可以跟 [strace 工具](/docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/strace%20工具.md) 实现类似的效果，比如 `perf stat -e syscalls:*` 统计系统调用的计数，就很像 `strace -c XX`
 
 ## Events
 
@@ -33,7 +33,7 @@ TODO: perf 可用的 Events 列表是从如何获取到的？
 - /sys/kernel/debug/tracing/events/ 目录？是特定于 tracepoint 类型事件的？
 - 由于 perf 本身就是与 Linux 内核强耦合的工具，所以获取 Events 应该也是通过某种方式动态获取的？
 
-perf_event_open [系统调用](docs/1.操作系统/Kernel/System%20Call/System%20Call.md)用以设置性能监控，其中 **perf_event_attr** 参数（源码: [include/uapi/linux/perf_event.h - struct perf_event_attr {}](https://github.com/torvalds/linux/blob/v6.10/include/uapi/linux/perf_event.h#L389)） 是一个结构体，为正在创建的 Event 提供详细的配置信息，[perf_event_open 的 Manual]([perf_event_open](https://man7.org/linux/man-pages/man2/perf_event_open.2.html)) 中列出了所有 Events 的类型：
+perf_event_open [系统调用](/docs/1.操作系统/Kernel/System%20Call/System%20Call.md)用以设置性能监控，其中 **perf_event_attr** 参数（源码: [include/uapi/linux/perf_event.h - struct perf_event_attr {}](https://github.com/torvalds/linux/blob/v6.10/include/uapi/linux/perf_event.h#L389)） 是一个结构体，为正在创建的 Event 提供详细的配置信息，[perf_event_open 的 Manual]([perf_event_open](https://man7.org/linux/man-pages/man2/perf_event_open.2.html)) 中列出了所有 Events 的类型：
 
 - PERF_TYPE_HARDWARE
 - PERF_TYPE_SOFTWARE
@@ -207,6 +207,7 @@ EXAMPLE
 
 > 参考：
 >
+> - [brendangregg 博客，perf - 例子](https://www.brendangregg.com/perf.html#Examples)
 
 ## 生成火焰图
 
@@ -217,7 +218,7 @@ git clone https://github.com/brendangregg/FlameGraph
 cd FlameGraph
 ```
 
-将 perf record 抓到的记录转换成可读的采样记录
+将 `perf record XXX` 命令抓到的 perf.data 文件中的记录转换成可读的采样记录
 
 `perf script -i /root/tmp/perf.data`
 
@@ -242,8 +243,8 @@ perf script -i /root/tmp/perf.data | ./stackcollapse-perf.pl --all | ./flamegrap
 输出效果类似下面这样
 
 ```bash
-Samples: 51K of event 'irq:irq_handler_entry', 1 Hz, Event count (approx.): 1436 lost: 0/0 drop: 0/0                                                                                                                         
-Overhead  Trace output                                                                                                                                                                                                       
+Samples: 51K of event 'irq:irq_handler_entry', 1 Hz, Event count (approx.): 1436 lost: 0/0 drop: 0/0
+Overhead  Trace output
   94.01%  irq=16 name=enp0s8
    1.88%  irq=19 name=ehci_hcd:usb1
    1.88%  irq=19 name=enp0s3
@@ -252,8 +253,8 @@ Overhead  Trace output
 ```
 
 ```bash
-Samples: 6K of event 'irq:irq_handler_entry', 1 Hz, Event count (approx.): 303 lost: 0/0 drop: 0/0                                                                                                                           
-Overhead  Trace output                                                                                                                                                                                                       
+Samples: 6K of event 'irq:irq_handler_entry', 1 Hz, Event count (approx.): 303 lost: 0/0 drop: 0/0
+Overhead  Trace output
   15.84%  irq=53 name=ahci[0000:00:1f.2]
   10.23%  irq=44 name=enp9s0-TxRx-1
    8.58%  irq=43 name=enp9s0-TxRx-0

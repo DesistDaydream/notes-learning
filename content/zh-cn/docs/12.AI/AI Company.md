@@ -19,7 +19,7 @@ weight: 20
 
 ## 产品
 
-[ChatGPT](docs/12.AI/AI%20Projects/ChatGPT.md)
+[ChatGPT](/docs/12.AI/AI%20Projects/ChatGPT.md)
 ## API
 
 > 参考：

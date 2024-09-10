@@ -339,8 +339,8 @@ Swap: 32764556k total,        0k used, 32764556k free,  3612636k cached
 - **ni** # user nice cpu time，已改变过 nice 值的用户空间进程的运行时间
 - **id** # idle cpu time，CPU 空闲时间。
 - **wa** # io wait cpu time，等待磁盘写入完成的时间。该值较高时，说明 IO 等待比较严重，这可能磁盘大量作随机访问造成的，也可能是磁盘性能出现了瓶颈。
-- **hi** # hardware irq，硬[中断](docs/1.操作系统/Kernel/CPU/Interrupts(中断)/Interrupts(中断).md)（Hardware Interrupts）花费的时间
-- **si** # software irq，软[中断](docs/1.操作系统/Kernel/CPU/Interrupts(中断)/Interrupts(中断).md)（Software Interrupts）花费的时间
+- **hi** # hardware irq，硬[中断](/docs/1.操作系统/Kernel/CPU/Interrupts(中断)/Interrupts(中断).md)（Hardware Interrupts）花费的时间
+- **si** # software irq，软[中断](/docs/1.操作系统/Kernel/CPU/Interrupts(中断)/Interrupts(中断).md)（Software Interrupts）花费的时间
 - **st** # steal time，使用 hypervisor 管理的虚拟机偷取的时间
 
 第四行解析：[Memory](/docs/1.操作系统/Kernel/Memory/Memory.md) 状态，具体信息如下：

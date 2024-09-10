@@ -7,7 +7,7 @@ title: BCC 工具集
 > 参考：
 >
 > - [官网](https://iovisor.github.io/bcc/)
-> - [GitHub 项目,iovisor/bcc](https://github.com/iovisor/bcc)
+> - [GitHub 项目, iovisor/bcc](https://github.com/iovisor/bcc)
 
 **BPF Compiler Collection(BPF 编译器合集，简称 BCC)** 是用于创建有效的内核跟踪和操作程序的工具包。BCC 是 Linux 基金会旗下的 IO Visor 项目组做出来的基于 eBPF 的产品。BBC 主要用来为 Linux 提供 **Dynamic Tracing(动态追踪)** 功能的实现。
 

@@ -2,7 +2,7 @@
   "obsidian-image-auto-upload-plugin",
   "templater-obsidian",
   "obsidian-excalidraw-plugin",
-  "obsidian-image-toolkit",
   "editing-toolbar",
-  "obsidian-bartender"
+  "obsidian-bartender",
+  "obsidian-image-toolkit"
 ]
