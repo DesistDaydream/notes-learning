@@ -70,7 +70,7 @@ eBPF 从根本上改变了这个套路。通过允许在操作系统中运行沙
 
 众所周知，Linux 内核是一个事件驱动的系统设计，这意味着所有的操作都是基于事件来描述和执行的。比如打开文件是一种事件、CPU 执行指令是一种事件、接收网络数据包是一种事件等等。eBPF 作为内核中的一个子系统，可以检查这些基于事件的信息源，并且允许开发者编写并运行在内核触发任何事件时安全执行的 BPF 程序。
 
-eBPF 程序也是事件驱动的，当内核或应用程序通过某个 Hook(钩子) 点时会运行这个 eBPF 程序。预定义的 Hook 包括 [System Call](/docs/1.操作系统/Kernel/System%20Call/System%20Call.md)、函数入口/出口、内核的 Tracepoints、网络事件、etc.
+eBPF 程序也是事件驱动的，当内核或应用程序通过某个 Hook(钩子) 点时会运行这个 eBPF 程序。预定义的 Hook 包括 [System Call](/docs/1.操作系统/Kernel/System%20Call/System%20Call.md)、函数入口/出口、内核的 Tracepoints、网络事件、etc. ，这些 Hook也可以称为 **内核中特定的代码路径**。
 
 ![https://ebpf.io/what-is-ebpf](https://notes-learning.oss-cn-beijing.aliyuncs.com/ebpf/syscall-hook.png)
 
@@ -118,7 +118,7 @@ int syscall__ret_execve(struct pt_regs *ctx)
 
 在很多情况下，eBPF 不是直接使用，而是通过像 [Cilium](https://ebpf.io/projects/#cilium)、[bcc](https://ebpf.io/projects/#bcc) 或 [bpftrace](https://ebpf.io/projects/#bpftrace) 这样的项目间接使用，这些项目提供了 eBPF 之上的抽象，不需要直接编写程序，而是提供了指定基于意图的来定义实现的能力，然后用 eBPF 实现。
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ebpf/clang.png)
+![image.png|600](https://notes-learning.oss-cn-beijing.aliyuncs.com/ebpf/clang.png)
 
 如果不存在更高层次的抽象（i.e. 满足某些意图的 eBPF 程序），则需要直接编写程序。Linux 内核期望 eBPF 程序以字节码的形式加载。虽然直接编写字节码也是可以的，<font color="#ff0000">但更常见的开发实践是利用像 [LLVM](https://llvm.org/) 这样的编译器套件将伪 c 代码编译成 eBPF 字节码</font>。
 
@@ -337,6 +337,12 @@ b.trace_print()
 运行程序前需要安装过 bcc 相关工具包，正常运行后，每当系统中发生 `sys_clone()` 系统调用时，运行的控制台上就会打印 “Hello, World!”，在打印文字前面还包含了调用程序的进程名称，进程 ID 等信息；
 
 > 如果运行报错，可能是缺少头文件，一般安装 kernel-devel 包即可。
+
+## Go 语言示例
+
+https://ebpf-go.dev/guides/getting-started/
+
+[公众号 - 幻想发生器，使用 Golang 开发 eBPF 的应用](https://mp.weixin.qq.com/s/ceaTR9tEivG3MeW9I9hErw)
 
 # BPF 项目介绍
 
