@@ -99,7 +99,7 @@ int syscall__ret_execve(struct pt_regs *ctx)
 
 ![https://ebpf.io/what-is-ebpf|700](https://notes-learning.oss-cn-beijing.aliyuncs.com/ebpf/go.png)
 
-- **编写** # 首先，开发者可以使用 C 语言（或者 Go 等其他高级程序语言）编写自己的 eBPF 程序，然后通过 LLVM、GNU、[Clang](/docs/2.编程/高级编程语言/C/C%20环境安装与使用/Clang.md) 等编译器，将其编译成 eBPF 字节码。
+- **编写** # 首先，开发者可以使用 C 语言（或者 Go 等其他高级程序语言）编写自己的 eBPF 程序，然后通过 LLVM、GNU、[Clang](docs/2.编程/Programming%20tools/Clang.md) 等编译器，将其编译成 eBPF 字节码。
   - 本质上还是可执行的二进制程序，只不过内部有 eBPF 字节码。
 - **加载** # 运行编译好的 eBPF 程序，通过 bpf() 系统调用，将程序中的字节码传入内核空间，以加载 eBPF 程序。
   - 当 eBPF 程序被加载到 Linux 内核中时，它在被附加到所请求的 Hook 之前还需要经过 验证 与 JIT 这两个步骤。

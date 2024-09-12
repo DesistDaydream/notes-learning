@@ -1,6 +1,6 @@
 ---
-title: Crypto mgmt tools
-linkTitle: Crypto mgmt tools
+title: ACME
+linkTitle: ACME
 date: 2024-03-27T10:24
 weight: 1
 ---
@@ -8,14 +8,10 @@ weight: 1
 # 概述
 
 > 参考：
-> 
-> -
-
-# ACME
-
-> 参考：
 >
-> - [RFC-8555](https://datatracker.ietf.org/doc/html/rfc8555)
+> - [RFC 8555, Automatic Certificate Management Environment (ACME)](https://datatracker.ietf.org/doc/html/rfc8555/)
+> - [RFC 8737, Automated Certificate Management Environment (ACME) TLS Application‑Layer Protocol Negotiation (ALPN) Challenge Extension](https://www.rfc-editor.org/rfc/rfc8737.html)
+> - [RFC 8738, Automated Certificate Management Environment (ACME) IP Identifier Validation Extension](https://www.rfc-editor.org/rfc/rfc8738.html)
 > - [Wiki，ACME](https://en.wikipedia.org/wiki/Automatic_Certificate_Management_Environment)
 
 **Automatic Certificate Management Environment(自动证书管理环境，简称 ACME)** 是一种通信协议，用于自动化证书颁发机构与其用户的 Web 服务器之间的交互，允许以非常低的成本自动部署 PKI。它是由 ISRG 为他们的 Let's Encrypt 服务设计的。
@@ -32,6 +28,10 @@ weight: 1
   - **DNS 验证** # 通过提供域名注册商的认证信息(比如 ak、sk)，ACME 程序将会从域名注册商处验证域名属于我的
   - **Web 验证** # 通过域名访问 Web 服务。由于自己可以配置域名解析，所以只要域名可以解析到运行 ACME 程序的设备上，那么 ACME 程序就认为这个域名是属于我的。
     - 这种方式有个弊端：首先要保证自己的域名可以解析到运行 ACME 程序的设备上；然后还要保证 ACME 程序可以通过域名访问到自己。这在国内没有备案的域名是不方便的
+
+[GitHub 项目，go-acme/lego](https://github.com/go-acme/lego) # 用 [Go](docs/2.编程/高级编程语言/Go/Go.md) 语言实现的 ACME 库 和 Let's Encrypt 客户端
+
+- https://github.com/rea1shane/lego-docker-helper 这是？
 
 # Let's Encrypt
 

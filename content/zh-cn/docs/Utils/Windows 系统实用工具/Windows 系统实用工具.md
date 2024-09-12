@@ -50,6 +50,12 @@ Geek Uninstaller #
 - https://www.nirsoft.net/utils/app_read_write_counter.html
 - 监控每个程序对磁盘读/写的工具，NirSoft 开发的
 
+## 自启动管理
+
+**Autoruns**
+
+- https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns
+
 ## 内存管理
 
 **MemReduct**
@@ -57,7 +63,9 @@ Geek Uninstaller #
 - https://github.com/henrypp/memreduct
 - 轻量级实时内存管理应用程序，用于监视和清理计算机上的系统内存。
 
-## Everything
+## 搜索
+
+### Everything
 
 > 参考：
 > 

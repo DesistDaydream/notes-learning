@@ -5,7 +5,8 @@ title: SLI/SLO
 # 概述
 
 > 参考：
-> - [公众号,通过 Prometheus 来做 SLI/SLO 监控展示](https://mp.weixin.qq.com/s/GNx0a0IKwvtDQ4QzEro2cA)
+>
+> - [公众号，通过 Prometheus 来做 SLI/SLO 监控展示](https://mp.weixin.qq.com/s/GNx0a0IKwvtDQ4QzEro2cA)
 
 ## 什么是 SLI/SLO
 

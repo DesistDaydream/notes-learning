@@ -93,3 +93,8 @@ CNCF 将 可观测性 和 数据分析 归类为一个单独的类别，且划�
 https://flashcat.cloud/blog/beyond-the-3-pillars-of-observability/
 
 NoSQL 随着发展也出现了一种新的概念，称为 **Schemaless**，在 [Redis](https://redis.io/blog/schemaless-databases/)、[MongoDB](https://www.mongodb.com/resources/basics/unstructured-data/schemaless)、etc. 的官网文章中都有提到 Schemaless Database。可观测三大支柱是否过于强调底层数据的结构？
+
+# 最佳实践
+
+[公众号 - 哔哩哔哩技术，B站监控2.0架构落地实践](https://mp.weixin.qq.com/s/gTB_hEXJQ2gz_oP7VN3-dg)
+

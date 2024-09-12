@@ -1,8 +1,15 @@
 ---
 title: 自建CA脚本
+linkTitle: 自建CA脚本
+date: 2023-09-12T08:12
+weight: 20
 ---
 
-> 参考：<https://rancher2.docs.rancher.cn/docs/installation/options/self-signed-ssl/_index>
+# 概述
+
+> 参考：
+>
+> 参考: https://rancher2.docs.rancher.cn/docs/installation/options/self-signed-ssl/_index
 
 ```bash
 #!/bin/bash -e

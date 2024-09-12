@@ -54,7 +54,7 @@ Perference->Setting-User 中加入配置 "default_line_ending": "unix"
 
 通过翻墙提前把该连接下的 channel_v3.json 文件下载下来保存在本地
 
-然后在 首选项—Package Settings—Package Control—Settings-User 的配置中添加如下内容
+然后在 首选项 — Package Settings — Package Control — Settings-User 的配置中添加如下内容
 
 ```json
 {
