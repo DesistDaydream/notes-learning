@@ -64,7 +64,7 @@ Obsidian 扩展了 Markdown 的 **Callouts(标注)** 效果。
 > Lorem ipsum dolor sit amet
 
 > [!warning]
-> Lorem ipsum dolor sit amet
+> Lorem ipsum dolor sit amet. 还可以用 `caution`, `attention` 这俩关键字
 
 > [!bug]
 > Lorem ipsum dolor sit amet

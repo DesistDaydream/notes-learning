@@ -104,6 +104,7 @@ Frida
 
 ### 脱壳工具
 
+- [GitHub 项目，moyuwa/ApkCheckPack](https://github.com/moyuwa/ApkCheckPack)
 - [查壳小工具](https://pan.baidu.com/s/1s1BoElAyQCnPaxb2T3QpEw?pwd=tmbs)
 - [FDex2](https://pan.baidu.com/s/1e0zcp1IzA-u7UC-A3gaj8g?pwd=yds2)
 - [反射大师](https://pan.baidu.com/s/170oS04qoFdd-Btu9DanHfg?pwd=an39)
