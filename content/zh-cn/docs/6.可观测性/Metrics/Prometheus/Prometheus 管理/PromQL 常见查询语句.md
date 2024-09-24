@@ -216,14 +216,14 @@ predict_linear(node_filesystem_free_bytes{fstype!~"tmpfs"}[1h], 4 * 3600) < 0
 读取速率
 
 ```text
-sum (irate(node_disk_read_bytes_total[2m])) by (instance)
+sum by (instance) (irate(node_disk_read_bytes_total[2m]))
 / 1024 / 1024 > 200
 ```
 
 写入速率
 
 ```text
-sum (irate(node_disk_written_bytes_total[2m])) by (instance)
+sum by (instance) (irate(node_disk_written_bytes_total[2m]))
 / 1024 / 1024 > 200
 ```
 
@@ -307,21 +307,6 @@ node_netstat_Tcp_CurrEstab > 50000
 
 ### 主机和硬件监控
 
-#### 可用内存指标
-
-主机中可用内存容量不足 10%
-
-```yaml
-  - alert: HostOutOfMemory
-    expr: node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100 < 10
-    for: 5m
-    labels:
-      severity: warning
-    annotations:
-      summary: Host out of memory (instance {{ $labels.instance }})
-      description: Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
-```
-
 #### 内存
 
 节点内存压力大。主要页面故障率高
@@ -366,126 +351,7 @@ node_netstat_Tcp_CurrEstab > 50000
       summary: Host unusual network throughput out (instance {{ $labels.instance }})
       description: Host network interfaces are probably sending too much data (> 100 MB/s)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
 ```
-
-#### 主机网络接收错误
-
-```yaml
-  - alert: HostNetworkReceiveErrors
-    expr: increase(node_network_receive_errs_total[5m]) > 0
-    for: 5m
-    labels:
-      severity: warning
-    annotations:
-      summary: Host Network Receive Errors (instance {{ $labels.instance }})
-      description: {{ $labels.instance }} interface {{ $labels.device }} has encountered {{ printf "%.0f" $value }} receive errors in the last five minutes.\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
-```
-
-#### 主机网络传输错误
-
-```yaml
-  - alert: HostNetworkTransmitErrors
-    expr: increase(node_network_transmit_errs_total[5m]) > 0
-    for: 5m
-    labels:
-      severity: warning
-    annotations:
-      summary: Host Network Transmit Errors (instance {{ $labels.instance }})
-      description: {{ $labels.instance }} interface {{ $labels.device }} has encountered {{ printf "%.0f" $value }} transmit errors in the last five minutes.\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
-```
-
-#### 主机磁盘读速率
-
-磁盘每秒读数据（\> 50 MB/s）。
-
-```yaml
-  - alert: HostUnusualDiskReadRate
-    expr: sum by (instance) (rate(node_disk_read_bytes_total[2m])) / 1024 / 1024 > 50
-    for: 5m
-    labels:
-      severity: warning
-    annotations:
-      summary: Host unusual disk read rate (instance {{ $labels.instance }})
-      description: Disk is probably reading too much data (> 50 MB/s)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
-```
-
-#### 主机磁盘写速率
-
-磁盘每秒写数据
-
-```yaml
-  - alert: HostUnusualDiskWriteRate
-    expr: sum by (instance) (rate(node_disk_written_bytes_total[2m])) / 1024 / 1024 > 50
-    for: 5m
-    labels:
-      severity: warning
-    annotations:
-      summary: Host unusual disk write rate (instance {{ $labels.instance }})
-      description: Disk is probably writing too much data (> 50 MB/s)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
-```
-
-#### 磁盘读延迟
-
-磁盘读取延迟大（读取操作>100ms）
-
-```yaml
-  - alert: HostUnusualDiskReadLatency
-    expr: rate(node_disk_read_time_seconds_total[1m]) / rate(node_disk_reads_completed_total[1m]) > 0.1 and rate(node_disk_reads_completed_total[1m]) > 0
-    for: 5m
-    labels:
-      severity: warning
-    annotations:
-      summary: Host unusual disk read latency (instance {{ $labels.instance }})
-      description: Disk latency is growing (read operations > 100ms)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
-```
-
-#### 磁盘写入延迟大
-
-磁盘写入延迟大（写操作>100ms）
-
-```yaml
-  - alert: HostUnusualDiskWriteLatency
-    expr: rate(node_disk_write_time_seconds_total[1m]) / rate(node_disk_writes_completed_total[1m]) > 0.1 and rate(node_disk_writes_completed_total[1m]) > 0
-    for: 5m
-    labels:
-      severity: warning
-    annotations:
-      summary: Host unusual disk write latency (instance {{ $labels.instance }})
-      description: Disk latency is growing (write operations > 100ms)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
-```
-
-#### 主机 cpu 负载高
-
-cpu 负载大于 > 80%
-
-```yaml
-  - alert: HostHighCpuLoad
-    expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
-    for: 5m
-    labels:
-      severity: warning
-    annotations:
-      summary: Host high CPU load (instance {{ $labels.instance }})
-      description: CPU load is > 80%\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
-```
-
-#### 主机上下文切换
-
-上下文切换的节点越来越多(>1000/s)
-
-```yaml
- # 1000 context switches is an arbitrary number.
-  # Alert threshold depends on nature of application.
-  # Please read: https://github.com/samber/awesome-prometheus-alerts/issues/58
-  - alert: HostContextSwitching
-    expr: (rate(node_context_switches_total[5m])) / (count without(cpu, mode) (node_cpu_seconds_total{mode="idle"})) > 1000
-    for: 5m
-    labels:
-      severity: warning
-    annotations:
-      summary: Host context switching (instance {{ $labels.instance }})
-      description: Context switching is growing on node (> 1000 / s)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
-```
-
+ 
 #### 主机 swap 分区使用
 
 主机 swap 交换分区使用情况 (> 80%)

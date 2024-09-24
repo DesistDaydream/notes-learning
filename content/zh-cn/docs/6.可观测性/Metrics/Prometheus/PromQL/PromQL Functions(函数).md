@@ -39,23 +39,17 @@ Prometheus 提供了其它大量的内置函数，可以对时序数据进行丰
 
 效果如下：
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hdmkl5/1617374161523-a63251fa-c9cc-4f90-ba6d-1eb30bc48a07.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/promql/function_absent_1.png)
 
-absent() 函数特别适用于告警，比如当采集器出现问题时，无法采集到数据了，那么可以通过该函数进行判断，如果值为 1，就产生告警。
+absent() 函数特别适用于告警，用于判断**单条时间序列**（给定 Name 与 Label 组合成的 Metrics）是否存在。
 
-```promql
-# 这里提供的向量有样本数据
-absent(http_requests_total{method="get"})  => no data
-absent(sum(http_requests_total{method="get"}))  => no data
+比如，现在有如下两条时间序列
 
-# 由于不存在指标 nonexistent，所以 返回不带度量指标名称且带有标签的时间序列，且样本值为1
-absent(nonexistent{job="myjob"})  => {job="myjob"}  1
-# 正则匹配的 instance 不作为返回 labels 中的部分
-absent(nonexistent{job="myjob",instance=~".*"})  => {job="myjob"}  1
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/promql/function_202409241131390.png)
 
-# sum 函数返回的时间序列不带有标签，且没有样本数据
-absent(sum(nonexistent{job="myjob"}))  => {}  1
-```
+从图中前两个 promql 的结果可以看出来，只有<font color="#ff0000">对具体的单一的时间序列进行 absent 的判断，才可以触发</font>。若一个 Metrics Name 下有多条时间序列，那么就算其中一条没数据了，通过 absent() 也无法判断 up 中所有时间序列是否存在，而是对 up 本身是否存在进行判断。
+
+> Tip: 若想判断一个 Metrics Name 具体有哪条时间序列缺了数据，可以尝试使用 count_over_time()，基于一段时间的样本总数进行判断。e.g. `delta(count_over_time(up[1d])[15m:]) < 0` 判断一下 1 天中获取的样本数量，通过样本数量的下降来判断是否数据丢失。
 
 ## ceil() - 向上四舍五入取整
 
@@ -458,7 +452,7 @@ histogram_quantile 这个函数是根据假定每个区间内的样本分布是�
 
 如下图所示，样本增长率反映出了样本变化的剧烈程度：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hdmkl5/1616069150695-27301a07-484c-4875-80c5-b2c095f8f707.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/promql/1616069150695-27301a07-484c-4875-80c5-b2c095f8f707.jpeg)
 
 通过增长率表示样本的变化情况
 
@@ -515,7 +509,7 @@ histogram_quantile(0.5, http_request_duration_seconds_bucket)
 
 通过对 Histogram 类型的监控指标，用户可以轻松获取样本数据的分布情况。同时分位数的计算，也可以非常方便的用于评判当前监控指标的服务水平。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hdmkl5/1616069150712-8975307f-3088-43f4-940f-4589d86af58a.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/promql/1616069150712-8975307f-3088-43f4-940f-4589d86af58a.jpeg)
 
 获取分布直方图的中位数
 

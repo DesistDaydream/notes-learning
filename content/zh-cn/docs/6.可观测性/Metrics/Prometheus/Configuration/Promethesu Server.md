@@ -117,7 +117,7 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 
 **evaluation_interval(DURATION)** # 评估规则的周期。`默认值：1m`。
 
-该字段主要用于向规则配置文件传递全局的配置。这个值会被 [Rules](/docs/6.可观测性/Metrics/Prometheus/Configuration/Rules.md)文件中的 `.groups.interval` 覆盖，详见 interval 字段详解
+> 该字段主要用于向规则配置文件传递全局的配置。这个值会被 [Rules](/docs/6.可观测性/Metrics/Prometheus/Configuration/Rules.md)文件中的 `.groups.interval` 覆盖，详见 interval 字段详解
 
 **external_labels(map\[STRING]STRING)** # 与外部系统(federation, remote storage, Alertmanager)通信时添加到任何时间序列或警报的标签。
 
@@ -213,28 +213,28 @@ type HTTPClientConfig struct {
 }
 ```
 
-**scheme(STRING)** # 指定用于抓取 Metrics 时使用的协议。`默认值：http`
+**scheme**(STRING) # 指定用于抓取 Metrics 时使用的协议。`默认值：http`
 
-**params: <>** # 发起 http 请求时，URL 里的参数(以键值对的方式表示)。
+**params**(map\[STRING]STRING) # 发起 http 请求时，URL 里的参数(以键值对的方式表示)。
 常用于 snmp_exporter，比如 <http://10.10.100.12:9116/snmp?module=if_mib&target=10.10.100.254>，问号后面就是参数的 key 与 value)
 
 - STRING: STRING
 
-**basic_auth(Object)**# 配置 HTTP 的基础认证信息。
+**basic_auth**(Object) # 配置 HTTP 的基础认证信息。
 
-- **username(STRING)** #
-- **password(SECRET)** #
-- **password_file(STRING)** #
+- **username**(STRING) #
+- **password**(SECRET) #
+- **password_file**(STRING) #
 
-**authorization(Object)** #
+**authorization**(Object) #
 
-- **type(STRING)** # 发起抓取请求时的身份验证类型。`默认值：Bearer`
-- **credentials(SECRET)** # 用于身份验证的信息。与 credentials_file 字段互斥。如果是 type 字段是 Bearer，那么这里的值就用 Token 即可。
-- **credentials_file(FileName)** # 从文件中读取用于身份验证的信息。与 credentials 字段互斥
+- **type**(STRING) # 发起抓取请求时的身份验证类型。`默认值：Bearer`
+- **credentials**(SECRET) # 用于身份验证的信息。与 credentials_file 字段互斥。如果是 type 字段是 Bearer，那么这里的值就用 Token 即可。
+- **credentials_file**(FileName) # 从文件中读取用于身份验证的信息。与 credentials 字段互斥
 
-**oauth2(Object)** # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
+**oauth2**(Object) # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
 
-**proxy_url(STRING)** # 指定代理的 URL
+**proxy_url**(STRING) # 指定代理的 URL
 
 **tls_config**([tls_config](#tls_config)) # 指定抓取 metrics 请求时的 TLS 设定
 

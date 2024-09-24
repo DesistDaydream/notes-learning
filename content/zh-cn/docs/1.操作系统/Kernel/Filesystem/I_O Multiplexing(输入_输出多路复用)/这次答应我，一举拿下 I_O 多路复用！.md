@@ -3,10 +3,8 @@ title: 这次答应我，一举拿下 I/O 多路复用！
 ---
 
 参考：[原文链接](https://mp.weixin.qq.com/s/Qpa0qXxuIM8jrBqDaXmVNA)
+
 这次，我们以最简单 socket 网络模型，一步一步的过度到 I/O 多路复用。
-但我不会具体细节说到每个系统调用的参数，这方面书上肯定比我说的详细。
-好了，**发车！**
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iobvql/1616990621920-d7609fbc-f5b6-4459-8d6e-8b9611df8b46.png)
 
 ---
 

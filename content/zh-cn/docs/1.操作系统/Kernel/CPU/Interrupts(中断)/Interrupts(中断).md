@@ -20,7 +20,8 @@ Linux 内核对计算机上所有的设备进行管理，进行管理的方式�
 2. 中断。中断是指在设备需要 CPU 的时候主动发起通信
 
 从物理学的角度看，中断是一种电信号，由硬件设备产生，并直接送入中断控制器（如 8259A）的输入引脚上，然后再由中断控制器向处理器发送相应的信号。处理器一经检测到该信号，便中断自己当前正在处理的工作，转而去处理中断。此后，处理器会通知 OS 已经产生中断。这样，OS 就可以对这个中断进行适当的处理。不同的设备对应的中断不同，而每个中断都通过一个唯一的数字标识，这些值通常被称为中断线。
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gw3w7b/1616168186714-4fa3beb1-a385-452f-a110-10b7291a875f.jpeg)
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/os/kernel/cpu/interrupts/1616168186714-4fa3beb1-a385-452f-a110-10b7291a875f.jpeg)
 
 中断可以分为 NMI(不可屏蔽中断) 和 INTR(可屏蔽中断)。其中 NMI 通常用于电源掉电和物理存储器奇偶校验；INTR 是可屏蔽中断，可以通过设置中断屏蔽位来进行中断屏蔽，它主要用于接受外部硬件的中断信号，这些信号由中断控制器传递给 CPU。
 
@@ -78,7 +79,8 @@ enum {
 `/proc/softirqs` 文件中显示的内容，即是这一段代码的实例化。
 
 优先级自上而下，HI_SOFTIRQ 的优先级最高。其中 `NET_TX_SOFTIRQ` 对应于网络数据包的发送， `NET_RX_SOFTIRQ` 对应于网络数据包接受，两者共同完成网络数据包的发送和接收。网络相关的中断程序在网络子系统初始化的时候进行注册， `NET_RX_SOFTIRQ` 的对应函数为 `net_rx_action()` ，在 `net_rx_action()` 函数中会调用网卡设备设置的 `poll` 函数，批量收取网络数据包并调用上层注册的协议函数进行处理，如果是为 ip 协议，则会调用 `ip_rcv`，上层协议为 icmp 的话，继续调用 `icmp_rcv` 函数进行后续的处理。
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gw3w7b/1616168186704-b346f542-96a8-4a50-a268-031938aadb86.png)
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/os/kernel/cpu/interrupts/1616168186704-b346f542-96a8-4a50-a268-031938aadb86.png)
 
 ## 硬中断与软中断之区别与联系？
 
@@ -99,7 +101,7 @@ enum {
 
 ```bash
 # 从左至右依次显示IRQ编号，每个cpu对该IRQ的处理次数(每个CPU占一列)，中断控制器的名字，IRQ的名字以及驱动程序注册该IRQ时使用的名字
-[root@host-3 ~]# cat /proc/interrupts
+~]# cat /proc/interrupts
            CPU0       CPU1       CPU2       CPU3
   0:        620          0          0          0  IR-IO-APIC-edge      timer
   8:          1          0          0          0  IR-IO-APIC-edge      rtc0
@@ -134,15 +136,17 @@ MIS:          0
 这些信息在不同环境下，内容不同。比如对于网卡来说，物理机上一般是以 网卡名表示，比如上面的 eth2-q0 等等。而对于 kvm 虚拟机，一般是 virtio0-input.0 、 virtio0-output.0、virtio0-input.1、virtio0-output.1 等等，virtio0 这网卡有几个队列，就有几个对应的 input 和 output，input 和 output 分别表示该网卡队列的输出和输出的中断情况。
 
 在 CPU 数量过多时，输出的信息非常杂乱，通常有这么几种方式可以简化输出
-**cat /proc/interrupts | tr -s " "** # 让数据更紧凑，逐行查看
-**for i in $(egrep "-input."  /proc/interrupts |awk -F ":" '{print $1}');do cat /proc/irq/$i/smp_affinity_list;done** # 从 KVM 虚拟机中找到处理 IRQ 的 CPU。
+
+**`cat /proc/interrupts | tr -s " "`** # 让数据更紧凑，逐行查看
+
+**`for i in $(egrep "-input."  /proc/interrupts |awk -F ":" '{print $1}');do cat /proc/irq/$i/smp_affinity_list;done`** # 从 KVM 虚拟机中找到处理 IRQ 的 CPU。
 
 > 如果是物理机的话，把 grep 筛选的 -input. 这段内容改为物理机里网络设备名称即可
 
 ### cat /proc/softirqs 命令查看软中断请求信息
 
 ```bash
-[root@master-1 ~]# cat /proc/softirqs
+~]# cat /proc/softirqs
                     CPU0       CPU1       CPU2       CPU3
           HI:          0          0          0          1
        TIMER:   64617617   68513491   69044942   72115635
@@ -157,6 +161,7 @@ BLOCK_IOPOLL:          0          0          0          0
 ```
 
 在 CPU 数量过多时，输出的信息非常杂乱，通常有这么几种方式可以简化输出
+
 awk 脚本：
 
 ```bash
@@ -267,7 +272,9 @@ root@geekwolf:~# mpstat -P ALL 2
 ## 查看软中断和内核线程
 
 运行下面的命令，查看 /proc/softirqs 文件的内容，你就可以看到各种类型软中断在不同 CPU 上的累积运行次数：
+
 /proc/softirqs 提供了软中断的运行情况；
+
 /proc/interrupts 提供了硬中断的运行情况
 
 ```bash
@@ -309,6 +316,7 @@ root        24  0.2  0.0      0     0 ?        S    Sep25  13:36 [ksoftirqd/3]
 注意，这些线程的名字外面都有中括号，这说明 ps 无法获取它们的命令行参数（cmline）。一般来说，ps 的输出中，名字括在中括号里的，一般都是内核线程。
 
 小结
+
 Linux 中的中断处理程序分为上半部和下半部：
 
 1. 上半部对应硬件中断，用来快速处理中断。

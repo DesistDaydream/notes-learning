@@ -19,11 +19,12 @@ weight: 1
 Node：在这里时间片只是一种描述，理解 CPU 的并行与并发概念就好
 
 1、CPU 时间分片、多线程？
+
 如果线程数不多于 CPU 核心数，会把各个线程都分配一个核心，不需分片，而当线程数多于 CPU 核心数时才会分片。
 
 2、并发和并行的区别
 
-- 并发：当有多个线程在操作时,如果系统只有一个 CPU,把 CPU 运行时间划分成若干个时间片,分配给各个线程执行，在一个时间段的线程代码运行时，其它线程处于挂起状态。这种方式我们称之为 **Concurrent(并发)**。并发=间隔发生
+- 并发：当有多个线程在操作时,如果系统只有一个 CPU，把 CPU 运行时间划分成若干个时间片,分配给各个线程执行，在一个时间段的线程代码运行时，其它线程处于挂起状态。这种方式我们称之为 **Concurrent(并发)**。并发=间隔发生
 - 并行：当系统有一个以上 CPU 时,则线程的操作有可能非并发。当一个 CPU 执行一个线程时，另一个 CPU 可以执行另一个线程，两个线程互不抢占 CPU 资源，可以同时进行，这种方式我们称之为 **Parallel(并行)**。 并行=同时进行
 
 区别：并行是指两个或者多个事件在同一时刻发生；而并发是指两个或多个事件在同一时间间隔内发生。
@@ -50,7 +51,7 @@ The period of time for which a process is allowed to run in a preemptive multita
 
 ## CPU 使用率概念
 
-CPU 不像硬盘、内存，并不具备逻辑上数量、大小、空间之类的概念。只要使用 CPU，就是使用了这个 CPU 的全部，也就无法通过大小之类的概念来衡量一个 CPU，所以我们日常所说的 CPU 的使用率 ，实际上是指的在一段时间范围内，CPU 执行 **Tasks(任务)** 花费时间的百分比。比如 60 分钟内，一颗 CPU 执行各种任务花费了 6 分钟，则 CPU 在这一小时时间内的使用率为 10%。
+CPU 不像硬盘、内存，并不具备逻辑上数量、大小、空间之类的概念。只要使用 CPU，就是使用了这个 CPU 的全部，也就无法通过大小之类的概念来衡量一个 CPU，所以我们日常所说的 CPU 的使用率 ，实际上是指的在一段时间范围内，CPU 执行 **Tasks(任务)** 时，<font color="#ff0000">**花费时间的百分比**</font>。比如 60 分钟内，一颗 CPU 执行各种任务花费了 6 分钟，则 CPU 在这一小时时间内的使用率为 10%。
 
 > 上文说的 **Tasks(任务)**，即会指系统中的进程、线程，也代表各种硬件去请求 CPU 执行的各种事情，比如网卡接收到数据，就会告诉 CPU 需要处理(i.e.中断)。
 
@@ -61,20 +62,23 @@ CPU 不像硬盘、内存，并不具备逻辑上数量、大小、空间之类�
 3. Idle Time(空闲时间)
 4. Steal Time(被抢占时间)
 
-除了 Idle Time 外，CPU 在其余时间都处于工作运行状态。
+除了 Idle Time 外，CPU 在其余时间都处于工作运行状态
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/srucoz/1616168021555-68fba1de-f5d5-462d-bef6-a78b476521ad.png)
 
 通常而言，我们泛指的整体 CPU 使用率为 User Time 和 Systime 占比之和(例如 tsar 中 CPU util)，即：
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/srucoz/1616168021559-394ecaa6-59db-453a-b5b1-c5ab88193f49.png)
+
+$$CPUutil = \frac{(UserTime + SystemTime)}{UserTime + SystemTime + IdleTime + StealTime}$$
 
 为了便于定位问题，大多数性能统计工具都将这 4 类时间片进一步扩展成了 8 类，如下图，是在 top 命令的 man 手册中对 CPU 使用率的分类。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/srucoz/1616168021546-ebe53556-f50b-49f2-8477-c10cf2b8f2f5.png)
 
 - us：用户进程空间中未改变过优先级的进程占用 CPU 百分比
 - sy：内核空间占用 CPU 百分比
 - ni：用户进程空间内改变过优先级的进程占用 CPU 百分比
 - id：空闲时间百分比
-- wa：等待 I/O 的时间百分比
+- wa：等待磁盘 I/O 操作的时间百分比
 - hi：硬中断时间百分比
 - si：软中断时间百分比
 - st：虚拟化时被其余 VM 窃取时间百分比
