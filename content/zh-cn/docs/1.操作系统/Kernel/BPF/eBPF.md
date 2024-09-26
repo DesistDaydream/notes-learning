@@ -11,7 +11,7 @@ weight: 2
 >
 > - [官网](https://ebpf.io/)
 > - [Kernel 官方文档，BPF](https://www.kernel.org/doc/html/latest/bpf/)
->  	- [Kernel 官方文档](https://www.infradead.org/~mchehab/kernel_docs/bpf/index.html)
+>   - [Kernel 官方文档](https://www.infradead.org/~mchehab/kernel_docs/bpf/index.html)
 > - [Cilium 官方文档，BPF](https://docs.cilium.io/en/latest/bpf/) Kernel 官方文档中指向的另一个文档，BPF 官方文档什么是 eBPF 最下面也有链接指向这里
 > - [GitHub 项目，torvalds/linux/tools/lib/bpf](https://github.com/torvalds/linux/tree/master/tools/lib/bpf)(libbpf 库)
 
@@ -99,7 +99,7 @@ int syscall__ret_execve(struct pt_regs *ctx)
 
 ![https://ebpf.io/what-is-ebpf|700](https://notes-learning.oss-cn-beijing.aliyuncs.com/ebpf/go.png)
 
-- **编写** # 首先，开发者可以使用 C 语言（或者 Go 等其他高级程序语言）编写自己的 eBPF 程序，然后通过 LLVM、GNU、[Clang](docs/2.编程/Programming%20tools/Clang.md) 等编译器，将其编译成 eBPF 字节码。
+- **编写** # 首先，开发者可以使用 C 语言（或者 Go 等其他高级程序语言）编写自己的 eBPF 程序，然后通过 LLVM、GNU、[Clang](/docs/2.编程/Programming%20tools/Clang.md) 等编译器，将其编译成 eBPF 字节码。
   - 本质上还是可执行的二进制程序，只不过内部有 eBPF 字节码。
 - **加载** # 运行编译好的 eBPF 程序，通过 bpf() 系统调用，将程序中的字节码传入内核空间，以加载 eBPF 程序。
   - 当 eBPF 程序被加载到 Linux 内核中时，它在被附加到所请求的 Hook 之前还需要经过 验证 与 JIT 这两个步骤。
@@ -163,8 +163,6 @@ eBPF 程序的一个重要方面是共享收集的信息和存储状态的能力
 ## 其他
 
 ### Helper Calls
-
-
 
 ### 5 个模块
 
@@ -358,4 +356,3 @@ https://ebpf-go.dev/guides/getting-started/
 2. 内核在加载 eBPF 代码时要能验证代码的安全性 —— 这也是为什么我们一 直将其限制为一个最小指令集，因为这样才能确保它是可验证的（进而是安全的）。很多人像我一样，在过去很长时间都在开发**内核模块**（kernel module）。 但**内核模块中引入 bug 是一件极度危险的事情 —— 它会导致内核 crash**。 此时 **BPF 的优势**就体现出来了：校验器（verifier）会检查是否有越界内存访问 、无限循环等问题，一旦发现就会拒绝加载，而非将这些问题留到运行时（导致 内核 crash 等破坏系统稳定性的行为）。所以出于安全方面的原因，很多内核开发者开始用 eBPF 编写程序，而不再使用传统的内核模块方式。
 
 eBPF 提供的是 **基本功能模块(building blocks)** 和 **attachment points(程序附着点)**。 我们可以编写 eBPF 程序来 attach 到这些 points 点完成某些高级功能。
-

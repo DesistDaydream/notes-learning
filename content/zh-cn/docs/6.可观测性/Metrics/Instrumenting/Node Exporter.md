@@ -124,5 +124,8 @@ node-exporter 程序使用 `--web.config` 命令行标志来指定 web-config �
 
 # 源码解析
 
-其中 [这部分](https://github.com/prometheus/node_exporter/blob/v1.8.1/node_exporter.go#L78) `filters := r.URL.Query()["collect[]"]` 代码是用来可以让服务端在向 node-exporter 发起的 HTTP 请求中，在 [URL](/docs/4.数据通信/通信协议/HTTP/URL%20与%20URI.md) 的 QUERY 部分加入一些内容，以决定采集哪些 Metrics，而不必强制通过本身的 CLI 参数决定。参考 README 的 [Filtering enabled collectors](https://github.com/prometheus/node_exporter#filtering-enabled-collectors)
+其中 [这部分](https://github.com/prometheus/node_exporter/blob/v1.8.1/node_exporter.go#L78) `filters := r.URL.Query()["collect[]"]` 代码是用来可以让服务端在向 node-exporter 发起的 HTTP 请求中，在 [URL](/docs/4.数据通信/通信协议/HTTP/URL%20与%20URI.md) 的 QUERY 部分加入一些内容，以决定采集哪些 Metrics，而不必强制通过本身的 CLI 参数决定。参考 README 的 [Filtering enabled collectors](https://github.com/prometheus/node_exporter#filtering-enabled-collectors)。
+
+> [!Note]
+> URL Query 中填写的内容是指采集的，只要使用了 URL Query，那么 node-exporter 则只采集 Query 中指定的指标，其余的全都不采集
 

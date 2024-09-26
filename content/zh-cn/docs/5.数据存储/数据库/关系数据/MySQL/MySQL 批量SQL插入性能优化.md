@@ -10,15 +10,19 @@ title: MySQL 批量SQL插入性能优化
 
 常用的插入语句如：
 
-    INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
-        VALUES ('0', 'userid_0', 'content_0', 0);
-    INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
-        VALUES ('1', 'userid_1', 'content_1', 1);
+```sql
+INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
+    VALUES ('0', 'userid_0', 'content_0', 0);
+INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
+    VALUES ('1', 'userid_1', 'content_1', 1);
+```
 
 修改成：
 
-    INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
-        VALUES ('0', 'userid_0', 'content_0', 0), ('1', 'userid_1', 'content_1', 1);
+```sql
+INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
+    VALUES ('0', 'userid_0', 'content_0', 0), ('1', 'userid_1', 'content_1', 1);
+```
 
 修改后的插入操作能够提高程序的插入效率。这里第二种 SQL 执行效率高的主要原因是合并后日志量（MySQL 的 binlog 和 innodb 的事务让日志）减少了，**降低日志刷盘的数据量和频率，从而提高效率。通过合并 SQL 语句，同时也能减少 SQL 语句解析的次数，减少网络传输的 IO**。
 
@@ -30,13 +34,15 @@ title: MySQL 批量SQL插入性能优化
 
 把插入修改成：
 
-    START TRANSACTION;
-    INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
-        VALUES ('0', 'userid_0', 'content_0', 0);
-    INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
-        VALUES ('1', 'userid_1', 'content_1', 1);
-    ...
-    COMMIT;
+```sql
+START TRANSACTION;
+INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
+    VALUES ('0', 'userid_0', 'content_0', 0);
+INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
+    VALUES ('1', 'userid_1', 'content_1', 1);
+...
+COMMIT;
+```
 
 使用事务可以提高数据的插入效率，这是因为进行一个 INSERT 操作时，MySQL 内部会建立一个事务，在事务内才进行真正插入处理操作。通过使用事务可以减少创建事务的消耗，`所有插入都在执行后才进行提交操作`。
 
@@ -48,21 +54,25 @@ title: MySQL 批量SQL插入性能优化
 
 数据有序的插入是指插入记录在主键上是有序排列，例如 datetime 是记录的主键：
 
-    INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
-        VALUES ('1', 'userid_1', 'content_1', 1);
-    INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
-        VALUES ('0', 'userid_0', 'content_0', 0);
-    INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
-        VALUES ('2', 'userid_2', 'content_2',2);
+```sql
+INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
+    VALUES ('1', 'userid_1', 'content_1', 1);
+INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
+    VALUES ('0', 'userid_0', 'content_0', 0);
+INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
+    VALUES ('2', 'userid_2', 'content_2',2);
+```
 
 修改成：
 
-    INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
-        VALUES ('0', 'userid_0', 'content_0', 0);
-    INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
-        VALUES ('1', 'userid_1', 'content_1', 1);
-    INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
-        VALUES ('2', 'userid_2', 'content_2',2);
+```sql
+INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
+    VALUES ('0', 'userid_0', 'content_0', 0);
+INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
+    VALUES ('1', 'userid_1', 'content_1', 1);
+INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
+    VALUES ('2', 'userid_2', 'content_2',2);
+```
 
 由于数据库插入时，需要维护索引数据，`无序的记录会增大维护索引的成本`。我们可以参照 InnoDB 使用的 B+tree 索引，如果每次插入记录都在索引的最后面，索引的定位效率很高，并且对索引调整较小；如果插入的记录在索引中间，需要 B+tree 进行分裂合并等处理，会消耗比较多计算资源，并且插入记录的索引定位效率会下降，数据量较大时会有频繁的磁盘操作。
 
@@ -83,7 +93,6 @@ title: MySQL 批量SQL插入性能优化
 **注意事项：**
 
 1. `SQL语句是有长度限制`，在进行数据合并在同一 SQL 中务必不能超过 SQL 长度限制，通过 max_allowed_packet 配置可以修改，默认是 1M，测试时修改为 8M。
-
 2. `事务需要控制大小`，事务太大可能会影响执行的效率。MySQL 有 innodb_log_buffer_size 配置项，超过这个值会把 innodb 的数据刷到磁盘中，这时，效率会有所下降。所以比较好的做法是，在数据达到这个这个值前进行事务提交。
 
 参考文档：MySQL 批量 SQL 插入性能优化

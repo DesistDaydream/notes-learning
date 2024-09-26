@@ -1,6 +1,8 @@
 ---
 title: OpenTelemetry
-weight: 2
+linkTitle: OpenTelemetry
+date: 2023-09-26T08:34:00
+weight: 1
 ---
 
 # 概述
@@ -36,6 +38,7 @@ OTEL 之于可观测性，类似 OCI 之于容器。
 - **自动 instrumentation 和 贡献包** # 没搞懂这是什么？
 
 ## OpenTelemetry 历史
+
 
 # OpenTelemetry 实现
 

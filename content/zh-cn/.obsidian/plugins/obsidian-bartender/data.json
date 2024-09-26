@@ -57,6 +57,7 @@
     "docs/0.计算机": [
       "docs/0.计算机/_index.md",
       "docs/0.计算机/Computer.md",
+      "docs/0.计算机/I_O.md",
       "docs/0.计算机/Motherboard",
       "docs/0.计算机/CPU",
       "docs/0.计算机/Memory",
@@ -181,9 +182,9 @@
       "docs/1.操作系统/Kernel/Filesystem/磁盘文件系统",
       "docs/1.操作系统/Kernel/Filesystem/特殊文件系统",
       "docs/1.操作系统/Kernel/Filesystem/文件管理",
-      "docs/1.操作系统/Kernel/Filesystem/零拷贝.md",
-      "docs/1.操作系统/Kernel/Filesystem/读取文件时，程序经历了什么？.md",
-      "docs/1.操作系统/Kernel/Filesystem/I_O Multiplexing(输入_输出多路复用)"
+      "docs/1.操作系统/Kernel/Filesystem/I_O",
+      "docs/1.操作系统/Kernel/Filesystem/I_O/I_O.md",
+      "docs/1.操作系统/Kernel/Filesystem/DMA 与 零拷贝.md"
     ],
     "docs/1.操作系统/Kernel/Filesystem/文件管理": [
       "docs/1.操作系统/Kernel/Filesystem/文件管理/_index.md",
@@ -1961,9 +1962,9 @@
       "docs/5.数据存储/数据库",
       "docs/5.数据存储/大数据",
       "docs/5.数据存储/数据管理工具",
-      "docs/5.数据存储/其他",
-      "docs/5.数据存储/索引为什么能提高查询性能.md",
-      "docs/5.数据存储/Retrieval"
+      "docs/5.数据存储/Retrieval",
+      "docs/5.数据存储/Statistics",
+      "docs/5.数据存储/其他"
     ],
     "docs/5.数据存储/Retrieval": [
       "docs/5.数据存储/Retrieval/_index.md",
@@ -2041,7 +2042,7 @@
       "docs/5.数据存储/数据库/键值数据/Etcd/Etcd 数据模型.md",
       "docs/5.数据存储/数据库/键值数据/Etcd/Etcd 高可用.md",
       "docs/5.数据存储/数据库/键值数据/Etcd/Etcd 基于 RAFT 的一致性.md",
-      "docs/5.数据存储/数据库/键值数据/Etcd/revision概念.md",
+      "docs/5.数据存储/数据库/键值数据/Etcd/revision 概念.md",
       "docs/5.数据存储/数据库/键值数据/Etcd/Etcd 命令行工具",
       "docs/5.数据存储/数据库/键值数据/Etcd/Etcd 管理",
       "docs/5.数据存储/数据库/键值数据/Etcd/Etcd API 文档.md"
@@ -2101,14 +2102,13 @@
     "docs/6.可观测性": [
       "docs/6.可观测性/_index.md",
       "docs/6.可观测性/Observability",
-      "docs/6.可观测性/OpenTelemetry.md",
+      "docs/6.可观测性/OpenTelemetry",
       "docs/6.可观测性/Logs",
       "docs/6.可观测性/Metrics",
       "docs/6.可观测性/Traces",
       "docs/6.可观测性/混沌工程系统",
       "docs/6.可观测性/Grafana",
-      "docs/6.可观测性/性能优化",
-      "docs/6.可观测性/搜索引擎"
+      "docs/6.可观测性/性能优化"
     ],
     "docs/6.可观测性/Grafana": [
       "docs/6.可观测性/Grafana/_index.md",
@@ -2139,8 +2139,8 @@
       "docs/6.可观测性/Logs/LogRotate(日志轮替).md",
       "docs/6.可观测性/Logs/Journal.md",
       "docs/6.可观测性/Logs/ELK _ EFK",
-      "docs/6.可观测性/Logs/Log Clients",
-      "docs/6.可观测性/Logs/Loki"
+      "docs/6.可观测性/Logs/Loki",
+      "docs/6.可观测性/Logs/Log Clients"
     ],
     "docs/6.可观测性/Logs/Log Clients": [
       "docs/6.可观测性/Logs/Log Clients/_index.md",
@@ -2817,6 +2817,17 @@
       "docs/7.信息安全/Crypto mgmt/OpenSSL/OpenSSL.md",
       "docs/7.信息安全/Crypto mgmt/OpenSSL/OpenSSL 配置详解.md",
       "docs/7.信息安全/Crypto mgmt/OpenSSL/Standard commands.md"
+    ],
+    "docs/5.数据存储/存储/存储的能力/对象存储": [
+      "docs/5.数据存储/存储/存储的能力/对象存储/_index.md",
+      "docs/5.数据存储/存储/存储的能力/对象存储/对象存储.md",
+      "docs/5.数据存储/存储/存储的能力/对象存储/对象存储，为什么那么火？.md"
+    ],
+    "docs/1.操作系统/Kernel/Filesystem/I_O": [
+      "docs/1.操作系统/Kernel/Filesystem/I_O/_index.md",
+      "docs/1.操作系统/Kernel/Filesystem/I_O/I_O.md",
+      "docs/1.操作系统/Kernel/Filesystem/I_O/这次答应我，一举拿下 I_O 多路复用！.md",
+      "docs/1.操作系统/Kernel/Filesystem/I_O/I_O Multiplexing(输入_输出多路复用).md"
     ]
   },
   "actionBarOrder": {},

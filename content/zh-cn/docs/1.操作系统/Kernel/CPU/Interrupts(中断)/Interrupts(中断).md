@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，Interrupt](https://en.wikipedia.org/wiki/Interrupt)
+> - [Wiki, Interrupt](https://en.wikipedia.org/wiki/Interrupt)
 > - [公众号-云原生实验室，Linux 中断（IRQ/softirq）基础：原理及内核实现](https://mp.weixin.qq.com/s/RPF-0e0oTYsUDefIEhgH_A)
 
 **Interrupte Request(终端请求，简称 IRQ)**，是一种信号，该信号来源于外围硬件(相对于 CPU 和内存)的异步信号或者来自软件的同步信号，收到该信号后进行相应的硬件、软件处理。中断其实是一种异步的事件处理机制，可以提高系统的并发处理能力。

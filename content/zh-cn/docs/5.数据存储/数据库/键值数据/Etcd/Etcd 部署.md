@@ -8,7 +8,7 @@ title: Etcd 部署
 >
 > - [官方文档](https://etcd.io/docs/latest/op-guide/container/)
 
-etcd 可以通过多种方式部署。如果要启动 etcd 集群，则每种部署方式，都需要配置最基本标志为以下几个：
+Etcd 可以通过多种方式部署。如果要启动 etcd 集群，则每种部署方式，都需要配置最基本标志为以下几个：
 
 - --name # etcd 集群中的节点名，这里可以随意，可区分且不重复就行
 - --listen-peer-urls # 监听的用于节点之间通信的 url，可监听多个，集群内部将通过这些 url 进行数据交互(如选举，数据同步等)

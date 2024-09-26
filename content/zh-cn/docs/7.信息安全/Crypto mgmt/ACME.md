@@ -29,7 +29,7 @@ weight: 1
   - **Web 验证** # 通过域名访问 Web 服务。由于自己可以配置域名解析，所以只要域名可以解析到运行 ACME 程序的设备上，那么 ACME 程序就认为这个域名是属于我的。
     - 这种方式有个弊端：首先要保证自己的域名可以解析到运行 ACME 程序的设备上；然后还要保证 ACME 程序可以通过域名访问到自己。这在国内没有备案的域名是不方便的
 
-[GitHub 项目，go-acme/lego](https://github.com/go-acme/lego) # 用 [Go](docs/2.编程/高级编程语言/Go/Go.md) 语言实现的 ACME 库 和 Let's Encrypt 客户端
+[GitHub 项目，go-acme/lego](https://github.com/go-acme/lego) # 用 [Go](/docs/2.编程/高级编程语言/Go/Go.md) 语言实现的 ACME 库 和 Let's Encrypt 客户端
 
 - https://github.com/rea1shane/lego-docker-helper 这是？
 

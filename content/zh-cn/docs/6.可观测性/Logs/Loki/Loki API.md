@@ -1,11 +1,15 @@
 ---
 title: Loki API
+linkTitle: Loki API
+date: 2024-09-26T08:37
+weight: 20
 ---
 
 # 概述
 
 > 参考：
-> - [官方文档,HTTP API](https://grafana.com/docs/loki/latest/api/)
+>
+> - [官方文档, HTTP API](https://grafana.com/docs/loki/latest/api/)
 
 每个组件都会暴露一些基本的 API
 

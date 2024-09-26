@@ -11,7 +11,7 @@ weight: 1
 >
 > - [Wiki，Filesystem](https://en.wikipedia.org/wiki/File_system)
 
-**Filesystem(简称 FS)** 是操作系统用来控制数据存储和检索方式的方法，也是一种数据结构。
+**Filesystem(文件系统，简称 FS)** 是操作系统用来控制数据存储和检索方式的方法，也是一种数据结构。
 
 不同的操作系统类型，使用的文件系统各不相同
 

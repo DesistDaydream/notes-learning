@@ -9,6 +9,7 @@ title: MySQL 命令行工具
 # mysql
 
 > 参考：
+>
 > - [官方文档，MySQL 程序-客户端程序-mysql](https://dev.mysql.com/doc/refman/8.0/en/mysql.html)
 
 mysql 是一个简单的 SQL Shell。 它支持交互和非交互使用。 交互使用时，查询结果以 ASCII 表格式显示。 非交互使用（例如，用作过滤器）时，结果以制表符分隔的格式显示。 可以使用命令选项更改输出格式。
@@ -16,6 +17,7 @@ mysql 是一个简单的 SQL Shell。 它支持交互和非交互使用。 交�
 ## Syntax(语法)
 
 **mysql \[OPTIONS] \[DATABASE]**
+
 **DATABASE** # 指定连接 mysql 后要操作的数据库。若不指定，则需要在交互模式下使用 `use` 指令选择数据库，否则对数据库的操作将会报 `No database selected` 错误：
 
 ```bash

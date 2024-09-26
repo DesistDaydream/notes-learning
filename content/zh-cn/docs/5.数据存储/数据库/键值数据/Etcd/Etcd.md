@@ -1,10 +1,14 @@
 ---
 title: Etcd
+linkTitle: Etcd
+date: 2022-09-26T08:55:00
+weight: 1
 ---
 
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，etcd-io/etcd](https://github.com/etcd-io/etcd)
 > - [GitHub 项目，etcd-io/website](https://github.com/etcd-io/website)
 > - [官网](https://etcd.io/)
@@ -18,7 +22,7 @@ Etcd 是 CoreOS 基于[Raft 共识算法](/docs/3.集群与分布式/分布式�
 - 监听机制
 - key 的过期及续约机制，用于监控和服务发现
 - 原子 CAS 和 CAD，用于分布式锁和 leader 选举
-  - 选举机制详见：[Etcd 基于 RAFT 的一致性](/docs/5.数据存储/2.数据库/键值数据/Etcd/Etcd%20 基于%20RAFT%20 的一致性.md 基于 RAFT 的一致性.md)
+  - 选举机制详见：[Etcd 基于 RAFT 的一致性](/docs/5.数据存储/数据库/键值数据/Etcd/Etcd%20基于%20RAFT%20的一致性.md)
 
 # Glossary(术语)
 
@@ -30,7 +34,7 @@ Etcd 是 CoreOS 基于[Raft 共识算法](/docs/3.集群与分布式/分布式�
 - **Endpoint(端点)**# 指向 etcd 服务或资源的 URL 。比如 <http://172.38.40.212:2379> 就是 etcd 中的一个 endpoint ，这个 endpoint 指向了 172.38.40.212 设备的 2379 端口上的 etcd
 - **Node** # 一个 Raft 状态机实例。
 - **Member(成员)** # 一个 etcd 实例。它管理着一个 Node，并且可以为客户端请求提供服务。
-    - Member 是组成 etcd cluster 的一部分。一个逻辑概念，是集群中提供服务的 etcd 服务器。可以为一个 member 单独定义一个名字和描述等信息。
+  - Member 是组成 etcd cluster 的一部分。一个逻辑概念，是集群中提供服务的 etcd 服务器。可以为一个 member 单独定义一个名字和描述等信息。
 - **Cluster(集群)** # 由多个 Member 构成可以协同工作的 etcd 集群。
 - **Peer** # 对同一个 etcd 集群中另外一个 Member 的称呼。
 - **Client** # 向 etcd 集群发送 HTTP 请求的客户端。
@@ -96,7 +100,9 @@ etcd_disk_backend_commit_duration_seconds_bucket{le="0.016"} 406464
 # Etcd 关联文件与配置
 
 **/var/lib/etcd/** # Etcd 数据存储目录。该目录为默认目录，可以在配置文件的 ETCD_DATA_DIR 字段中修改路径
+
 **/etc/etcd/etcd.conf** # 基本配置文件
+
 **/etc/etcd/etcd.conf.yaml** # 与基本配置文件类似，可以已 yaml 的形式写配置文件。
 
 下面是基本配置文件的示例

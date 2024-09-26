@@ -2,7 +2,7 @@
 title: Observability
 linkTitle: Observability
 date: 2024-03-15T20:56
-weight: 20
+weight: 1
 ---
 
 # 概述
@@ -11,7 +11,7 @@ weight: 20
 >
 > - [CNCF 可观测性白皮书](https://mp.weixin.qq.com/s/2xt1kHqJ2Sj2c4u08d1ejA)(中文)
 > - [CNCF 全景图](https://landscape.cncf.io/)
-> - [Wiki，Observability](https://en.wikipedia.org/wiki/Observability#Observability_in_software_systems)
+> - [Wiki, Observability](https://en.wikipedia.org/wiki/Observability#Observability_in_software_systems)
 > - [宋净超-云原生资料库-OpenTelemetry 可观测性的未来](https://jimmysong.io/docs/opentelemetry-obervability/)
 > - [公众号，云原生技术爱好者社区-什么是可观测性](https://mp.weixin.qq.com/s/bO82iVKO0O8PTiYSHS-gag)(是对[ CNCF 中的一篇 Blog ](https://www.cncf.io/blog/2021/03/02/what-was-observability-again/)的翻译)
 > - [Goole 文章](https://cloud.google.com/architecture/integrating-monitoring-logging-trace-observability-and-alerting)
@@ -60,7 +60,7 @@ CNCF 将 可观测性 和 数据分析 归类为一个单独的类别，且划�
 
 ## Logging(日志)
 
-在编写应用程序时，您的团队通常会添加`日志`代码。当代码执行经过一个主要事件时，这些显式的指令将产生一个日志行，即一堆有意义的文本。例如，`用户X已登录`或`用户Y身份验证失败`，等等。这几行是问你的客户他们`是否尝试清理浏览器缓存`并重新加载或实际监控他们之间的区别。日志记录是非常明确的:您的团队需要添加日志记录代码，并且需要预见要记录什么。经验法则是，所有主要的边界事件都需要被记录。有些应用程序错误只在生产环境中出现，所以您应该选择`日志过多`而不是`日志不足`。否则，大量时间就会浪费在寻找所谓的`海森堡bug`(heisenbug)上:这种 bug 很难复现，但却会引起用户的不满。日志记录会产生大量的数据。为了节省成本，最好考虑短期和长期日志。短期日志-例如，最近 7 天-应该是`可搜索的`，也就是说，你应该能够在几秒钟内执行全文搜索。像 Elasticsearch/Kibana 和 Loki 这样的项目最适合这个目的。长期日志可以以最便宜的形式存储，通常是对象存储。它们不能立即`搜索`，因此，需要通过它们进行搜索的可能性也很小。事实上，如果您希望在隐私方面犯错，最好避免长期日志。
+在编写应用程序时，您的团队通常会添加`日志`代码。当代码执行经过一个主要事件时，这些显式的指令将产生一个日志行，即一堆有意义的文本。例如，`用户X已登录`或`用户Y身份验证失败`，等等。这几行是问你的客户他们`是否尝试清理浏览器缓存`并重新加载或实际监控他们之间的区别。日志记录是非常明确的:您的团队需要添加日志记录代码，并且需要预见要记录什么。经验法则是，所有主要的边界事件都需要被记录。有些应用程序错误只在生产环境中出现，所以您应该选择 `日志过多` 而不是 `日志不足`。否则，大量时间就会浪费在寻找所谓的 `海森堡bug`(heisenbug) 上: 这种 bug 很难复现，但却会引起用户的不满。日志记录会产生大量的数据。为了节省成本，最好考虑短期和长期日志。短期日志-例如，最近 7 天-应该是 `可搜索的`，也就是说，你应该能够在几秒钟内执行全文搜索。像 Elasticsearch/Kibana 和 Loki 这样的项目最适合这个目的。长期日志可以以最便宜的形式存储，通常是对象存储。它们不能立即`搜索`，因此，需要通过它们进行搜索的可能性也很小。事实上，如果您希望在隐私方面犯错，最好避免长期日志。
 
 有时，您并不关心确切的日志行，而是关心特定事件发生的次数。这些信息可以从日志中提取，但是有一种更有效的方法:指标。
 

@@ -60,7 +60,7 @@ openssl 程序提供了丰富的子命令，以实现 TLS/SSL 网络协议以及
 
 ## Standard commands(标准命令)
 
-[Standard commands](docs/7.信息安全/Crypto%20mgmt/OpenSSL/Standard%20commands.md)
+[Standard commands](/docs/7.信息安全/Crypto%20mgmt/OpenSSL/Standard%20commands.md)
 
 ## Message Digest commands(消息摘要命令)
 

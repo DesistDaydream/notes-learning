@@ -1,13 +1,21 @@
 ---
-title: 读取文件时，程序经历了什么？
+title: I_O
+linkTitle: I_O
+date: 2024-09-26T11:14
 weight: 20
 ---
 
-<https://mp.weixin.qq.com/s?__biz=Mzg4OTYzODM4Mw==&mid=2247485706&idx=1&sn=bc5d6e4bf9ee5dccef520e5b2051d943&source=41#wechat_redirect>
+# 概述
+
+> 参考：
+>
+> - [公众号 - 码农的荒岛求生，读取文件时，程序经历了什么？](https://mp.weixin.qq.com/s/EYc7PcxukBKOx8U5X8Sh8w)
+> - [极客时间 - Linux 性能优化实战，24 | 基础篇：Linux 磁盘I/O是怎么工作的（上）](https://time.geekbang.org/column/article/77010)
+> - [极客时间 - Linux 性能优化实战，25 | 基础篇：Linux 磁盘I/O是怎么工作的（下）](https://time.geekbang.org/column/article/77511)
 
 承接上文《看完这篇还不懂高并发中的线程与线程池你来打我》，这是高性能、高并发系列的第二篇文章，在这里我们来到了 I/O 这一话题。
 
-码农的荒岛求生：图解 | 看完这篇还不懂高并发中的线程与线程池你来打我 zhuanlan.zhihu.com
+码农的荒岛求生：图解 | 看完这篇还不懂高并发中的线程与线程池你来打我
 
 你有没有想过当我们执行 I/O 操作时计算机底层都发生了些什么？
 
@@ -21,27 +29,11 @@ weight: 20
 
 想一想，如果没有 I/O 计算机该是一种多么枯燥的设备，不能看电影、不能玩游戏，也不能上网，这样的计算机最多就是一个大号的计算器。
 
-既然 I/O 这么重要，那么到底什么才是 I/O 呢？
+既然 I/O 这么重要，那么到底什么才是 I/O 呢？详见  [I/O](/docs/0.计算机/I_O.md) 中的 “什么是 I/O”
 
-## **什么是 I/O**
+## I/O 与 CPU
 
-I/O 就是简单的**数据 Copy**，仅此而已。
-
-这一点很重要，为了加深大家的印象，来，Everybody，Follow me，那边树上的朋友，还有那边墙上的朋友们，举起你们的双手，跟我唱，苍茫的天涯是。。。Sorry，I/O 仅仅就是数据 copy、I/O 仅仅就是数据 copy。
-
-让我们先把演唱会的事情放在一边，既然是 copy 数据，又是从哪里 copy 到哪里呢？
-
-如果数据是从外部设备 copy 到内存中，这就是 Input。
-
-如果数据是从内存 copy 到外部设备，这就是 Output。
-
-**内存与外部设备之间不嫌麻烦的来回 copy 数据就是 Input and Output，简称 I/O**（Input/Output），仅此而已。
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/funqnh/1616167569957-0700ad3d-4f0a-4f25-a308-bf8fa3bc9259.jpeg)
-
-## **I/O 与 CPU**
-
-现在我们知道了什么是 I/O，接下来就是重点部分了，大家注意，坐稳了。
+现在我们知道了什么是 I/O，接下来就是重点部分了。
 
 我们知道现在的 CPU 其主频都是数 GHz 起步，这是什么意思呢？简单说就是 CPU 执行机器指令的速度是纳秒级别的，而通常的 I/O 比如磁盘操作，一次磁盘 seek 大概在毫秒级别，**因此如果我们把 CPU 的速度比作战斗机的话，那么 I/O 操作的速度就是肯德鸡**。
 
@@ -57,6 +49,25 @@ I/O 就是简单的**数据 Copy**，仅此而已。
 
 **因此这里的关键点就是快递没到前手头上的事情可以先暂停，切换到其它任务，等快递过来了再切换回来**。
 
+### 磁盘 I/O 时间
+
+https://github.com/torvalds/linux/blob/master/Documentation/block/stat.rst
+
+在 `/sys/block/<DEV>/stat` 文件中 io_ticks 字段描述了磁盘处于活跃状态的总时间。
+
+> [!Note]
+> 在 [Node Exporter](docs/6.可观测性/Metrics/Instrumenting/Node%20Exporter.md) 源码中，[这里](https://github.com/prometheus/node_exporter/blob/v1.6.1/collector/diskstats_linux.go#L320) 可以看到 `stats.IOsTotalTicks` 对应 `diskstatsCollector.descs[10]`(i.e. node_disk_io_time_seconds_total 指标)。而 IOsTotalTics 对应到 [prometheus/procfs 项目，blockdevice/stats.go 中的 IOStats 结构体得 IOsTotalTicks 属性](https://github.com/prometheus/procfs/blob/v0.15.1/blockdevice/stats.go#L61)。这些结构体的信息来源遵循如下几个内核文档的说明
+>
+> - https://www.kernel.org/doc/Documentation/iostats.txt,
+> - https://www.kernel.org/doc/Documentation/block/stat.txt
+> - https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats
+
+该时间表示磁盘执行 I/O 操作的总时间（单位: milliseconds）。
+
+如果磁盘在 1 秒内持续执行 I/O 操作，那么在 1 分钟后，io_ticks 的值是 60；如果 1 秒内磁盘一直空闲，那么 io_ticks 的值是 0。也就是说，io_ticks 的值每秒最多增加 1000。
+
+一般情况下，io_ticks 的值可以当作磁盘的使用率，比如计算某区间时间中，io_ticks 每秒的变化率（基于上面的逻辑，这个变化率一定是 0 到 1 之间的小数）。比如我们统计 1 分钟时间 io_ticks 增加了 60，那说明这一分钟的时间中，磁盘一直在执行 I/O，i.e. 使用率是 100%
+
 理解了这一点你就能明白执行 I/O 操作时底层都发生了什么。
 
 接下来让我们以读取磁盘文件为例来讲解这一过程。
@@ -67,7 +78,7 @@ I/O 就是简单的**数据 Copy**，仅此而已。
 
 现在内存中有两个进程，进程 A 和进程 B，当前进程 A 正在运行，如图所示：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/funqnh/1616167569940-d2d3bdbc-c805-4f6e-bdbc-2b7a04cdecb6.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/os/kernel/filesystem/io/1616167569940-d2d3bdbc-c805-4f6e-bdbc-2b7a04cdecb6.jpeg)
 
 进程 A 中有一段读取文件的代码，不管在什么语言中通常我们定义一个用来装数据的 buff，然后调用 read 之类的函数，像这样：
 
@@ -79,11 +90,11 @@ I/O 就是简单的**数据 Copy**，仅此而已。
 
 进程有暂停就会有继续执行，因此操作系统必须保存被暂停的进程以备后续继续执行，显然我们可以用队列来保存被暂停执行的进程，如图所示，进程 A 被暂停执行并被放到阻塞队列中(注意，不同的操作系统会有不同的实现，可能每个 I/O 设备都有一个对应的阻塞队列，但这种实现细节上的差异不影响我们的讨论)。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/funqnh/1616167569940-4c41239e-bb6f-42a4-9111-8ca9b2ed634d.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/os/kernel/filesystem/io/1616167569940-4c41239e-bb6f-42a4-9111-8ca9b2ed634d.jpeg)
 
 这时操作系统已经向磁盘发送了 I/O 请求，因此磁盘 driver 开始将磁盘中的数据 copy 到进程 A 的 buff 中，虽然这时进程 A 已经被暂停执行了，但这并不妨碍磁盘向内存中 copy 数据。注意，现代磁盘向内存 copy 数据时无需借助 CPU 的帮助，这就是所谓的 DMA(Direct Memory Access)，这个过程如图所示：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/funqnh/1616167569921-5b8dc049-61a5-498e-ae21-4adb68bd49e5.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/os/kernel/filesystem/io/1616167569921-5b8dc049-61a5-498e-ae21-4adb68bd49e5.jpeg)
 
 让磁盘先 copy 着数据，我们接着聊。
 
@@ -91,13 +102,13 @@ I/O 就是简单的**数据 Copy**，仅此而已。
 
 现在进程 B 就位于就绪队列，万事俱备只欠 CPU，如图所示：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/funqnh/1616167569959-d7bf4862-5f3a-402f-94f3-ec2d8e31e121.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/os/kernel/filesystem/io/1616167569959-d7bf4862-5f3a-402f-94f3-ec2d8e31e121.jpeg)
 
 当进程 A 被暂停执行后 CPU 是不可以闲下来的，因为就绪队列中还有嗷嗷待哺的进程 B，这时操作系统开始在就绪队列中找下一个可以执行的进程，也就是这里的进程 B。
 
 此时操作系统将进程 B 从就绪队列中取出，找出进程 B 被暂停时执行到的机器指令的位置，然后将 CPU 的 PC 寄存器指向该位置，这样进程 B 就开始运行啦，如图所示：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/funqnh/1616167569941-4a2d092b-f747-43b4-abbc-6a8e238b4cbe.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/os/kernel/filesystem/io/1616167569941-4a2d092b-f747-43b4-abbc-6a8e238b4cbe.jpeg)
 
 注意，注意，接下来的这段是重点中的重点。
 
@@ -109,7 +120,7 @@ I/O 就是简单的**数据 Copy**，仅此而已。
 
 操作系统接收到磁盘中断后发现数据 copy 完毕，进程 A 重新获得继续运行的资格，这时操作系统小心翼翼的把进程 A 从阻塞队列放到了就绪队列当中，如图所示：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/funqnh/1616167569942-ce92b9c9-06b3-4c3e-99e7-bc5d7777795b.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/os/kernel/filesystem/io/1616167569942-ce92b9c9-06b3-4c3e-99e7-bc5d7777795b.jpeg)
 
 注意，从前面关于就绪状态的讨论中我们知道，操作系统是不会直接运行进程 A 的，进程 A 必须被放到就绪队列中等待，这样对大家都公平。
 
@@ -117,7 +128,7 @@ I/O 就是简单的**数据 Copy**，仅此而已。
 
 注意操作系统把进程 B 放到的是就绪队列，因此进程 B 被暂停运行仅仅是因为时间片到了而不是因为发起 I/O 请求被阻塞，如图所示：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/funqnh/1616167569968-658743aa-149f-402d-a608-676638aa4868.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/os/kernel/filesystem/io/1616167569968-658743aa-149f-402d-a608-676638aa4868.jpeg)
 
 进程 A 继续执行，**此时 buff 中已经装满了想要的数据，进程 A 就这样愉快的运行下去了，就好像从来没有被暂停过一样，进程对于自己被暂停一事一无所知，这就是操作系统的魔法**。
 

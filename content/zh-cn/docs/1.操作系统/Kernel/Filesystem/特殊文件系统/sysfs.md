@@ -119,10 +119,7 @@ lrwxrwxrwx  1 root root 0 Apr  1 14:36 sr0 -> ../devices/pci0000:00/0000:00:01.1
 lrwxrwxrwx  1 root root 0 Apr  1 14:36 vda -> ../devices/pci0000:00/0000:00:07.0/virtio2/block/vda/
 ```
 
-**/sys/block/\<BLOCK>/queue/**
-
-- **./rotational** # 块设备旋转的类型，旋转就是 HHD，不旋转就是 SSD，非常形象生动得比喻磁盘使用的情况~哈哈。`0 表示 SSD`，`1 表示 HDD`
-  - 注意：如果磁盘已经被做了 Raid，那么这个值将会一直都是 1。这个说法忘记了出处，找到后补充。
+[Block](docs/1.操作系统/Kernel/Hardware/Block.md)
 
 # /sys/bus/
 
