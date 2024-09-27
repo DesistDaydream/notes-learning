@@ -9,8 +9,9 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Input/output](https://en.wikipedia.org/wiki/Input/output)
 > - [Wiki，Asynchronous_I/O](https://en.wikipedia.org/wiki/Asynchronous_I/O)
+
+编程中的 [I_O](docs/0.计算机/I_O.md)
 
 同步/异步：关注的是消息通信机制，被调用者在收到调用请求后，是否立即返回，还是得到最终结果后才返回,立即返回为异步，等待结果再返回为同步，异步不会影响调用者处理后续
 

@@ -1,10 +1,14 @@
 ---
 title: Helm
+linkTitle: Helm
+date: 2022-09-27T10:49:00
+weight: 1
 ---
 
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，helm/helm](https://github.com/helm/helm)
 > - [官方文档](https://helm.sh/docs/)
 > - 其他后期发现的文章
@@ -15,6 +19,7 @@ title: Helm
 ## 主要概念
 
 > 参考：
+>
 > - [官方文档，介绍-使用 Helm](https://helm.sh/docs/intro/using_helm/)
 
 Helm 与 Kubernetes 的关系，就好比 yum 与 RedHat，apt 与 Ubuntu 一样，是一个 Kubernetes 专用的包管理器，安装专用于 k8s 集群之上的软件包。Helm 使用 Chart 帮助我们管理应用，Chart 就像 RPM 一样，里面描述了应用及其依赖关系。
@@ -35,7 +40,9 @@ chart 与 release 的关系就像 windows 中的 .exe 的安装文件与安装�
 
 基于上述概念，可以这么描述他们：Helm 安装 Charts 到 kubernetes 中，并为每个安装创建一个新的 Release。如果想要找到新的 Charts，可以使用 Helm 搜索 Repository
 
-### [**在安装前自定义 Chart**](https://helm.sh/docs/intro/using_helm/#customizing-the-chart-before-installing)
+### 在安装前自定义 Chart
+
+https://helm.sh/docs/intro/using_helm/#customizing-the-chart-before-installing
 
 在我们使用 yum 安装应用时，一般都是安装完成后，再对配置文件进行编辑，以改变应用的运行行为。
 

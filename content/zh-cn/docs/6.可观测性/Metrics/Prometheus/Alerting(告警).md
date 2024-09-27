@@ -59,9 +59,9 @@ rule_files:
 
 ## 告警发送过程
 
-在 State 中，有两种状态，一个是 PENDING，一个是 FIRING。当告警刚刚出发时，处于 PENDING 状态，此时告警并不会推送到 Alertmanager，当该状态无法恢复且持续配置中定义一段时间后，则变为 FIRING，并向 Alertmanager 推送告警。
+在 State 中，有两种状态，一个是 PENDING，一个是 FIRING。当告警刚刚出发时，处于 PENDING 状态，此时告警并不会推送到 Alertmanager，当该状态无法恢复且持续一段时间（配置中定义）后，变为 FIRING，并向 Alertmanager 推送告警。
 
-当一个告警解决后，会具有一个隐藏的 Pending 状态，持续 15 分钟，在这 15 分钟之内，依然会重复发送告警，只不过发送的每个告警的结束时间，都是同一个，就是解决告警的时间。这个 15 分钟是不可变的，在代码 github.com/prometheus/prometheus/rules/alerting.go 这个里，有一个常量 `resolvedRetention` 就是用来判断何时删除一个未激活告警的条件之一。
+当一个告警解决后，会具有一个隐藏的 Pending 状态，持续 15 分钟，在这 15 分钟之内，依然会重复发送告警，只不过发送的每个告警的结束时间，都是同一个，就是解决告警的时间。这个 15 分钟是不可变的，在代码 [prometheus/prometheus/rules/alerting.go](https://github.com/prometheus/prometheus/blob/v2.54.1/rules/alerting.go#L337) 里，有一个常量 `resolvedRetention` 就是用来判断何时删除一个未激活告警的条件之一。
 
 # Prometheus 告警规则配置
 

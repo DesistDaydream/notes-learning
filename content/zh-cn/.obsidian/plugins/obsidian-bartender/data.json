@@ -1227,7 +1227,7 @@
       "docs/10.云原生/云原生应用管理/Helm/Helm.md",
       "docs/10.云原生/云原生应用管理/Helm/Charts",
       "docs/10.云原生/云原生应用管理/Helm/Helm Template",
-      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具"
+      "docs/10.云原生/云原生应用管理/Helm/Helm CLI"
     ],
     "docs/10.云原生/云原生应用管理/Helm/Helm Template": [
       "docs/10.云原生/云原生应用管理/Helm/Helm Template/_index.md",
@@ -1237,13 +1237,6 @@
       "docs/10.云原生/云原生应用管理/Helm/Helm Template/Subcharts 与 Global Values.md",
       "docs/10.云原生/云原生应用管理/Helm/Helm Template/Named Templates(命名模板).md",
       "docs/10.云原生/云原生应用管理/Helm/Helm Template/关于 Template 的其他说明.md"
-    ],
-    "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具": [
-      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/_index.md",
-      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/Helm 命令行工具.md",
-      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/install、upgrade 子命令.md",
-      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/helm 查询相关命令.md",
-      "docs/10.云原生/云原生应用管理/Helm/Helm 命令行工具/helm template 模板相关命令.md"
     ],
     "docs/10.云原生/云原生应用管理/Kustomize": [
       "docs/10.云原生/云原生应用管理/Kustomize/_index.md",
@@ -2828,6 +2821,13 @@
       "docs/1.操作系统/Kernel/Filesystem/I_O/I_O.md",
       "docs/1.操作系统/Kernel/Filesystem/I_O/这次答应我，一举拿下 I_O 多路复用！.md",
       "docs/1.操作系统/Kernel/Filesystem/I_O/I_O Multiplexing(输入_输出多路复用).md"
+    ],
+    "docs/10.云原生/云原生应用管理/Helm/Helm CLI": [
+      "docs/10.云原生/云原生应用管理/Helm/Helm CLI/_index.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm CLI/Helm CLI.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm CLI/install、upgrade 子命令.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm CLI/helm 查询相关命令.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm CLI/helm template 模板相关命令.md"
     ]
   },
   "actionBarOrder": {},

@@ -37,5 +37,6 @@ Wayland is also superior when it comes to security. With X11, it’s possible to
 
 ### Conclusion
 
-However, the X Window System still has many advantages over Wayland. Even though Wayland eliminates most of the design flaws of the Xorg it has its own issues. Even though the Wayland project has been up for more than ten years things are not 100% stable. As of 2020, the majority of video games and graphics-intensive applications for Linux are still written for X11. Also, many closed-source graphics drivers, such as those for NVIDIA GPUs, do not yet offer complete support for Wayland.
-X cannot last and Wayland, in many ways, is an improvement. But for now the vast majority of native applications that exist were written for Xorg. Until those apps are all ported, Xorg needs to be maintained. Wayland is not very stable yet, compared to Xorg.
+不过，X Window 系统相对于 Wayland 仍然有很多优点。尽管 Wayland 消除了 Xorg 的大部分设计缺陷，但它也有自己的问题。尽管 Wayland 项目已经运行了十多年，但并不是 100% 稳定。截至 2020 年，大多数 Linux 视频游戏和图形密集型应用程序仍然是为 X11 编写的。此外，许多闭源图形驱动程序（例如 NVIDIA GPU 的驱动程序）尚未提供对 Wayland 的完整支持。
+
+X 无法持续，而 Wayland 在很多方面是一个改进。但目前绝大多数现有的原生应用程序都是为 Xorg 编写的。在这些应用程序全部移植之前，Xorg 需要继续维护。与 Xorg 相比，Wayland 目前还不太稳定。

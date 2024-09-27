@@ -15,13 +15,11 @@ weight: 20
 
 承接上文《看完这篇还不懂高并发中的线程与线程池你来打我》，这是高性能、高并发系列的第二篇文章，在这里我们来到了 I/O 这一话题。
 
-码农的荒岛求生：图解 | 看完这篇还不懂高并发中的线程与线程池你来打我
-
 你有没有想过当我们执行 I/O 操作时计算机底层都发生了些什么？
 
 在回答这个问题之前，我们先来看下为什么对于计算机来说 I/O 是极其重要的。
 
-## **不能执行 I/O 的计算机是什么？**
+## 不能执行 I/O 的计算机是什么？
 
 相信对于程序员来说 I/O 操作是最为熟悉不过的了：
 
@@ -33,7 +31,7 @@ weight: 20
 
 ## I/O 与 CPU
 
-现在我们知道了什么是 I/O，接下来就是重点部分了。
+本文主要说的是 [Disk](docs/0.计算机/Disk/Disk.md)(磁盘) 的 I/O，更多关于磁盘 I/O 的基础概念详见 [Block](docs/1.操作系统/Kernel/Hardware/Block.md)
 
 我们知道现在的 CPU 其主频都是数 GHz 起步，这是什么意思呢？简单说就是 CPU 执行机器指令的速度是纳秒级别的，而通常的 I/O 比如磁盘操作，一次磁盘 seek 大概在毫秒级别，**因此如果我们把 CPU 的速度比作战斗机的话，那么 I/O 操作的速度就是肯德鸡**。
 
@@ -49,30 +47,11 @@ weight: 20
 
 **因此这里的关键点就是快递没到前手头上的事情可以先暂停，切换到其它任务，等快递过来了再切换回来**。
 
-### 磁盘 I/O 时间
-
-https://github.com/torvalds/linux/blob/master/Documentation/block/stat.rst
-
-在 `/sys/block/<DEV>/stat` 文件中 io_ticks 字段描述了磁盘处于活跃状态的总时间。
-
-> [!Note]
-> 在 [Node Exporter](docs/6.可观测性/Metrics/Instrumenting/Node%20Exporter.md) 源码中，[这里](https://github.com/prometheus/node_exporter/blob/v1.6.1/collector/diskstats_linux.go#L320) 可以看到 `stats.IOsTotalTicks` 对应 `diskstatsCollector.descs[10]`(i.e. node_disk_io_time_seconds_total 指标)。而 IOsTotalTics 对应到 [prometheus/procfs 项目，blockdevice/stats.go 中的 IOStats 结构体得 IOsTotalTicks 属性](https://github.com/prometheus/procfs/blob/v0.15.1/blockdevice/stats.go#L61)。这些结构体的信息来源遵循如下几个内核文档的说明
->
-> - https://www.kernel.org/doc/Documentation/iostats.txt,
-> - https://www.kernel.org/doc/Documentation/block/stat.txt
-> - https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats
-
-该时间表示磁盘执行 I/O 操作的总时间（单位: milliseconds）。
-
-如果磁盘在 1 秒内持续执行 I/O 操作，那么在 1 分钟后，io_ticks 的值是 60；如果 1 秒内磁盘一直空闲，那么 io_ticks 的值是 0。也就是说，io_ticks 的值每秒最多增加 1000。
-
-一般情况下，io_ticks 的值可以当作磁盘的使用率，比如计算某区间时间中，io_ticks 每秒的变化率（基于上面的逻辑，这个变化率一定是 0 到 1 之间的小数）。比如我们统计 1 分钟时间 io_ticks 增加了 60，那说明这一分钟的时间中，磁盘一直在执行 I/O，i.e. 使用率是 100%
-
 理解了这一点你就能明白执行 I/O 操作时底层都发生了什么。
 
 接下来让我们以读取磁盘文件为例来讲解这一过程。
 
-## **执行 I/O 时底层都发生了什么**
+## 执行 I/O 时底层都发生了什么
 
 在上一篇《一文彻底理解高并发高性能中的线程与线程池》中，我们引入了进程和线程的概念，在支持线程的操作系统中，实际上被调度的是线程而不是进程，为了更加清晰的理解 I/O 过程，我们暂时假设操作系统只有进程这样的概念，先不去考虑线程，这并不会影响我们的讨论。
 
@@ -82,7 +61,9 @@ https://github.com/torvalds/linux/blob/master/Documentation/block/stat.rst
 
 进程 A 中有一段读取文件的代码，不管在什么语言中通常我们定义一个用来装数据的 buff，然后调用 read 之类的函数，像这样：
 
-    read(buff);
+```c
+read(buff);
+```
 
 这就是一种典型的 I/O 操作，当 CPU 执行到这段代码的时候会向磁盘发送读取请求，注意与 CPU 执行指令的速度相比，I/O 操作操作是非常慢的，因此操作系统是不可能把宝贵的 CPU 计算资源浪费在无谓的等待上的，这时重点来了，注意接下来是重点哦。
 

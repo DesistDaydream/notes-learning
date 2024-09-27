@@ -1,9 +1,15 @@
 ---
-title: Helm 命令行工具
+title: Helm CLI
+linkTitle: Helm CLI
+date: 2022-09-27T10:54:00
 weight: 1
 ---
 
 # 概述
+
+> 参考：
+>
+> - [官方文档，Helm 命令 - Helm](https://helm.sh/docs/helm/helm/)
 
 # Syntax(语法)
 
@@ -59,13 +65,13 @@ env # Helm client environment information
 
 ## get - 获取指定 release 的扩展信息
 
-详见：[helm 查询相关命令](/docs/10.云原生/云原生应用管理/Helm/Helm%20命令行工具/helm%20查询相关命令.md)
+详见：[helm 查询相关命令](docs/10.云原生/云原生应用管理/Helm/Helm%20CLI/helm%20查询相关命令.md)
 
 ## history - 获取 release 的历史版本
 
 ## install - 安装一个 chart archive(可以创建出来一个 release)
 
-详见：[install、upgrade 子命令](/docs/10.云原生/云原生应用管理/Helm/Helm%20命令行工具/install、upgrade%20子命令.md)
+详见：[install、upgrade 子命令](docs/10.云原生/云原生应用管理/Helm/Helm%20CLI/install、upgrade%20子命令.md)
 
 ## lint - 检查一个 chart，看看可能出现的问题。examines a chart for possible issues
 
@@ -112,13 +118,13 @@ SubCommand
 - remove      remove a chart repository
 - update      update information of available charts locally from chart repositories
 
-## rollback # 回滚一个 release 到以前的版本
+## rollback - 回滚一个 release 到以前的版本
 
-## search # 在可以存储 Helm 图表的各种地方进行搜索，以显示可用的 helm charts
+## search - 在可以存储 Helm 图表的各种地方进行搜索，以显示可用的 helm charts
 
 **helm search [COMMAND]**
 
-### hub # 在 helm hub 或 Monocular 实例中搜索 charts
+### hub - 在 helm hub 或 Monocular 实例中搜索 charts
 
 FLAGS
 
@@ -126,7 +132,7 @@ FLAGS
 - --max-col-width uint   maximum column width for output table (default 50)
 - -o, --output format        prints the output in the specified format. Allowed values: table, json, yaml (default table)
 
-### repo # 在已添加的所有 repoistories 中搜索 charts
+### repo - 在已添加的所有 repoistories 中搜索 charts
 
 **helm search repo \[KEYWORD] \[FLAGS]**
 
@@ -141,9 +147,9 @@ FLAGS
 - **--version STRING** #        search using semantic versioning constraints on repositories you have added
 - **-l, --versions** # 显示 Chart 的所有版本，而不仅仅显示最后一个版本。
 
-## show # 显示一个 chart 的信息多种信息，可以使用子命令来控制要输出的 chart 信息
+## show - 显示一个 chart 的信息多种信息，可以使用子命令来控制要输出的 chart 信息
 
-## status # 显示指定名字的 release 状态信息
+## status - 显示指定名字的 release 状态信息
 
 **helm status ReleaseName [FLAGS]**
 
@@ -153,13 +159,13 @@ FLAGS
   - 注意：yaml 格式可以显示该 release 的所有资源
 - --revision INT # 显示指定历史版本的信息
 
-## template # 在本地渲染 chart 模板，并展示输出
+## template - 在本地渲染 chart 模板，并展示输出
 
-详见：[helm template 模板相关命令](/docs/10.云原生/云原生应用管理/Helm/Helm%20命令行工具/helm%20template%20模板相关命令.md)
+详见：[helm template 模板相关命令](docs/10.云原生/云原生应用管理/Helm/Helm%20CLI/helm%20template%20模板相关命令.md)
 
-## test # test a release
+## test - test a release
 
-## uninstall # 卸载指定的 release
+## uninstall - 卸载指定的 release
 
 helm uninstall \[FLAGS] RELEASE_NAME \[...]
 
@@ -169,8 +175,8 @@ FLAGS
 
 EXAMPLE
 
-## upgrade # 升级一个 release
+## upgrade - 升级一个 release
 
-## verify # verify that a chart at the given path has been signed and is valid
+## verify - verify that a chart at the given path has been signed and is valid
 
-## version # 打印 helm 的客户端和服务端的版本信息
+

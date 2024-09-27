@@ -78,7 +78,7 @@ Objects 可以很简单，只有一个值。也可以包含其他对象或者功
    4. Files.Lines is a function that reads a file line-by-line. This is useful for iterating over each line in a file.
    5. Files.AsSecrets is a function that returns the file bodies as Base 64 encoded strings.
    6. Files.AsConfig is a function that returns file bodies as a YAML map.
-5. Capabilities # 这提供了有关 Kubernetes 集群支持的能力信息。This provides information about what capabilities the Kubernetes cluster supports.
+5. Capabilities # 提供了有关 Kubernetes 集群支持的能力信息。
    1. Capabilities.APIVersions is a set of versions.
    2. Capabilities.APIVersions.Has $version indicates whether a version (e.g., batch/v1) or resource (e.g., apps/v1/Deployment) is available on the cluster.
    3. Capabilities.KubeVersion and Capabilities.KubeVersion.Version is the Kubernetes version.

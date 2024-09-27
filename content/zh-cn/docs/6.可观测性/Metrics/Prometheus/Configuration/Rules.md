@@ -121,7 +121,7 @@ Recording Rule 与 Alerting Rule 存在于规则组中。组中的规则以规�
 
 所谓 Evaluated(评估) 规则，就是指 PrometheusServer 会检查规则的状态，如果告警规则的状态是 FIRING，则发送告警。
 
-interval 字段的值 加上 PrometheusServer 的命令行标志 --rules.alert.resend-delay 的值(默认 1m)，才是真实的评估周期。这个说明在官方文档中没有，请参考 [Prometheus 规则处理逻辑中的 - 评估告警规则](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20开发/Prometheus%20规则处理逻辑/Prometheus%20规则处理逻辑.md#评估告警规则)
+interval 字段的值 加上 PrometheusServer 的命令行标志 --rules.alert.resend-delay 的值(默认 1m)，才是<font color="#ff0000">**真实的评估周期**</font>。这个说明在官方文档中没有，请参考 [Prometheus 规则处理逻辑中的 - 评估告警规则](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20开发/Prometheus%20规则处理逻辑/Prometheus%20规则处理逻辑.md#评估告警规则)
 
 ## Recording Rule
 
@@ -151,7 +151,21 @@ interval 字段的值 加上 PrometheusServer 的命令行标志 --rules.alert.r
 >
 > - [官方文档，最佳实践 - 记录规则](https://prometheus.io/docs/practices/rules/#recording-rules)
 
-## 高级记录规则配置
+## Recording Rule 命名
+
+Recording 规则名称一般采用 `level:metric:operations` 形式
+
+- **level** # 表示聚合级别和标签，比如 by (instance)，则 level 是 instance
+- **metric** # 指标名称，除了在使用 rate() 或 irate() 函数时，需要将指标名称的 `_total` 之外，整体名称应该保持不变
+- **operations** # 应用于指标的操作列表
+
+比如
+
+```promql
+rate(node_disk_io_time_seconds_total{job="node-exporter", device=~"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)"}[5m])
+```
+
+生成的时间序列数据可以命名为： `record: instance_device:node_disk_io_time_seconds:rate5m`
 
 ```yaml
 groups:
