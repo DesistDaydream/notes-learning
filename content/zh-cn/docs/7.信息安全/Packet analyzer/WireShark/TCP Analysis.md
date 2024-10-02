@@ -123,13 +123,13 @@ WireShark 的 Info 列会根据包的前后文和内容分析该包的状态，�
 
 ## TCP Dup ACK(重复确认) 和 TCP Fast Retransmission(快速重传)
 
-TCP Dup ACK \<frame>#\<acknowledgment number> 表示第几次重新请求某一个包，frame 表示第几个包（不是 Seq），acknowledgment number 表示第几次请求。
+`TCP Dup ACK <frame>#<acknowledgment number>` 表示第几次重新请求某一个包，frame 表示第几个包（不是 Seq），acknowledgment number 表示第几次请求。
 
 > TODO: 细节说法待确认
 
 **丢包**或者**乱序**的情况下，会出现该标志。
 
-一般快速重传算法在收到**三次冗余的 Ack**，即三次 TCP Dup ACK \<frame>#\<acknowledgment number> 后，**发送端**进行快速重传。
+一般快速重传算法在收到**三次冗余的 Ack**，即三次 `TCP Dup ACK <frame>#<acknowledgment number>` 后，**发送端**进行快速重传。
 
 为什么是三次呢？因为**两次 duplicated ACK** 肯定是**乱序**造成的，**丢包**肯定会造成**三次 duplicated ACK**。
 

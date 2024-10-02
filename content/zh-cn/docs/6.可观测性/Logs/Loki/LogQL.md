@@ -27,8 +27,8 @@ title: LogQL
 
 基本的日志查询由两部分组成：
 
-- **Log Stream Selector(日志流选择器)**#
-- **Log Pipeline(日志管道)**#
+- **Log Stream Selector(日志流选择器)** #
+- **Log Pipeline(日志管道)** #
 
 注意：由于 Loki 的设计原则，所有的 LogQL 查询必须包含 Log Stream Selector(日志流选择器)
 

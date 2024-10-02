@@ -119,7 +119,7 @@ lrwxrwxrwx  1 root root 0 Apr  1 14:36 sr0 -> ../devices/pci0000:00/0000:00:01.1
 lrwxrwxrwx  1 root root 0 Apr  1 14:36 vda -> ../devices/pci0000:00/0000:00:07.0/virtio2/block/vda/
 ```
 
-[Block](docs/1.操作系统/Kernel/Hardware/Block.md)
+目录下的文件说明详见 [Block](docs/1.操作系统/Kernel/Hardware/Block.md)
 
 # /sys/bus/
 
@@ -201,7 +201,7 @@ echo 20 > /sys/bus/platform/devices/pwm-backlight/backlight/pwm-backlight/bright
  
  - terminal(终端)、network(网络)、block(磁盘)、graphic(图形)、sound(声音)、etc. 都属于一种 DEVICE_TYPE。不同机器可能并不一定包含所有类型，这个取决于系统启动时加载了哪些类型的设备。
 
-`/sys/class/${DEVICE_TYPE}/${DEVICE}/` 目录下的文件是**指向 /sys/devices/ [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)(符号链接)**。这些文件通常都是以人类可读的名字命名。 
+`/sys/class/${DEVICE_TYPE}/${DEVICE}/` 目录下的文件是**指向 /sys/devices/ 的 [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)(符号链接)**。这些文件通常都是以人类可读的名字命名。 
 
 > Tip: 设备类型和设备并没有一一对应的关系，一个物理设备可能具备多种设备类型；一个设备类型只表达具有一种功能的设备，e.g. 系统所有输入设备都会出现在 /sys/class/input/ 目录中，而不论它们是以何种总线连接到系统的。
 

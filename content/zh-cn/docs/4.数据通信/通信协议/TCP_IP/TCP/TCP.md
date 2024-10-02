@@ -7,9 +7,9 @@ weight: 1
 
 > 参考：
 >
-> - [RFC 675](https://datatracker.ietf.org/doc/html/rfc675)
-> - [RFC 793](https://datatracker.ietf.org/doc/html/rfc793)
->   - [RFC 9293](https://datatracker.ietf.org/doc/html/rfc9293)
+> - [RFC 675, ](https://datatracker.ietf.org/doc/html/rfc675)
+> - [RFC 793, TRANSMISSION CONTROL PROTOCOL - DARPA INTERNET PROGRAM PROTOCOL SPECIFICATION](https://datatracker.ietf.org/doc/html/rfc793)
+>   - [RFC 9293, Transmission Control Protocol (TCP)](https://datatracker.ietf.org/doc/html/rfc9293)
 > - [Wiki，TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol)
 > - [极客时间,趣谈网络协议](https://time.geekbang.org/column/intro/100007101)
 > - <https://www.jianshu.com/p/1118f497a425>
@@ -64,7 +64,6 @@ TCP 天然认为网络环境是恶劣的，丢包、乱序、重传，拥塞都�
 # TCP 行为的过程
 
 ![image.png|500](https://notes-learning.oss-cn-beijing.aliyuncs.com/tcp/tcp-three-way-handshake-and-four-way-wave.png)
-
 
 ## TCP 三次握手
 
