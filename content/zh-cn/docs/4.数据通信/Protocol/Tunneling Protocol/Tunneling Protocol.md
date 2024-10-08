@@ -12,7 +12,7 @@ weight: 1
 > - [Wiki，Tunneling Protocol](https://en.wikipedia.org/wiki/Tunneling_protocol)
 > - [Wiki，Overlay Network](https://en.wikipedia.org/wiki/Overlay_network)
 
-**Tunneling Protocol(隧道协议)** 是一种通信协议，允许数据从一个网络移动到另一个网络。该协议通过 [通信协议](/docs/4.数据通信/通信协议/通信协议.md) 中 [Encapsulation(封装)](/docs/4.数据通信/通信协议/通信协议.md#Encapsulation(封装)) 的过程跨公共网络发送专用网络通信。因为隧道涉及将流量数据重新打包为不同的形式，可能以加密为标准，它可以隐藏通过隧道运行的流量的性质。隧道协议通过使用数据包的 Payload(数据部分) 来承载实际提供服务的数据包。隧道使用分层协议模型，例如 OSI 或 TCP/IP 协议套件中的那些，但在使用有效载荷承载网络通常不提供的服务时通常会违反分层。通常，在分层模型中，传送协议在与有效载荷协议相同或更高的级别上运行。
+**Tunneling Protocol(隧道协议)** 是一种通信协议，允许数据从一个网络移动到另一个网络。该协议通过 [通信协议](/docs/4.数据通信/Protocol/通信协议.md) 中 [Encapsulation(封装)](/docs/4.数据通信/Protocol/通信协议.md#Encapsulation(封装)) 的过程跨公共网络发送专用网络通信。因为隧道涉及将流量数据重新打包为不同的形式，可能以加密为标准，它可以隐藏通过隧道运行的流量的性质。隧道协议通过使用数据包的 Payload(数据部分) 来承载实际提供服务的数据包。隧道使用分层协议模型，例如 OSI 或 TCP/IP 协议套件中的那些，但在使用有效载荷承载网络通常不提供的服务时通常会违反分层。通常，在分层模型中，传送协议在与有效载荷协议相同或更高的级别上运行。
 
 隧道技术是一种通过使用互联网络的基础设施在网络之间传递数据的方式。使用隧道传递的数据（或负载）可以是不同协议的数据帧或包。隧道协议将其它协议的数据帧或包重新封装然后通过隧道发送。新的帧头提供路由信息，以便通过互联网传递被封装的负载数据。
 
@@ -49,11 +49,11 @@ Tunnel 技术的实现方式：
 
 - 基于数据包:
   - IP in IP，比 GRE 更小的负载头，并且适合只有负载一个 IP 流的情况。
-  - [GRE](/docs/4.数据通信/通信协议/Tunneling%20Protocol/GRE.md)，支持多种网络层协议和多路技术
-  - [PPTP](/docs/4.数据通信/通信协议/Tunneling%20Protocol/PPTP.md)（点对点隧道协议）
+  - [GRE](/docs/4.数据通信/Protocol/Tunneling%20Protocol/GRE.md)，支持多种网络层协议和多路技术
+  - [PPTP](/docs/4.数据通信/Protocol/Tunneling%20Protocol/PPTP.md)（点对点隧道协议）
   - SSTP 安全的 PPTP
   - IPsec/L2TP（数据链接层隧道协议）
-  - [WireGuard](/docs/4.数据通信/通信协议/Tunneling%20Protocol/WireGuard/WireGuard.md)
+  - [WireGuard](/docs/4.数据通信/Protocol/Tunneling%20Protocol/WireGuard/WireGuard.md)
   - 依赖其他协议实现的隧道功能
     - SSL
     - SSH
@@ -66,7 +66,7 @@ Tunnel 技术的实现方式：
 
 [xl2tpd](https://github.com/xelerance/xl2tpd) # L2TP 提供者
 
-[WireGuard](/docs/4.数据通信/通信协议/Tunneling%20Protocol/WireGuard/WireGuard.md)
+[WireGuard](/docs/4.数据通信/Protocol/Tunneling%20Protocol/WireGuard/WireGuard.md)
 
 OpenVPN # 基于 SSL 的 VPN 系统，广泛使用 OpenSSL 加密库和 TLS 协议。
 

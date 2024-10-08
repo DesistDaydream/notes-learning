@@ -6,7 +6,7 @@ title: IETF
 
 > 参考：
 >
-> - [WIki，IETF](https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force)
+> - [WIki, IETF](https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force)
 > - [官网](https://www.ietf.org/)
 > - [IETF 存储库搜索页](https://datatracker.ietf.org/)
 

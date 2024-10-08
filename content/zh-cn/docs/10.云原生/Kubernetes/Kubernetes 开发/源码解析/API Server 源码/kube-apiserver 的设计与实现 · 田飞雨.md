@@ -4,53 +4,6 @@ title: kube-apiserver 的设计与实现 · 田飞雨
 
 [kube-apiserver 的设计与实现 · 田飞雨](https://blog.tianfeiyu.com/source-code-reading-notes/kubernetes/kube_apiserver.html)
 
-- [kube-apiserver 处理流程](#kube-apiserver-%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B)
-- [kube-apiserver 中的组件](#kube-apiserver--%E4%B8%AD%E7%9A%84%E7%BB%84%E4%BB%B6)
-
-  - [Aggregator](#aggregator)
-
-    - [启用 API Aggregation](#%E5%90%AF%E7%94%A8-api-aggregation)
-
-  - [KubeAPIServer](#kubeapiserver)
-  - [APIExtensionServer](#apiextensionserver)
-
-- [kube-apiserver 启动流程分析](#kube-apiserver-%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90)
-
-  - [Run](#run)
-  - [CreateServerChain](#createserverchain)
-
-    - [CreateKubeAPIServerConfig](#createkubeapiserverconfig)
-    - [buildGenericConfig](#buildgenericconfig)
-    - [createAPIExtensionsServer](#createapiextensionsserver)
-    - [CreateKubeAPIServer](#createkubeapiserver)
-    - [kubeAPIServerConfig.Complete().New](#kubeapiserverconfigcompletenew)
-    - [m.InstallLegacyAPI](#minstalllegacyapi)
-
-  - [createAggregatorServer](#createaggregatorserver)
-
-    - [aggregatorConfig.Complete().NewWithDelegate](#aggregatorconfigcompletenewwithdelegate)
-
-  - [prepared.Run](#preparedrun)
-
-    - [s.NonBlockingRun](#snonblockingrun)
-
-- [storageFactory 的构建](#storagefactory-%E7%9A%84%E6%9E%84%E5%BB%BA)
-
-  - [NewLegacyRESTStorage](#newlegacyreststorage)
-
-    - [podstore.NewStorage](#podstorenewstorage)
-    - [store.CompleteWithOptions](#storecompletewithoptions)
-
-      - [newETCD3Storage](#newetcd3storage)
-
-  - [路由注册](#%E8%B7%AF%E7%94%B1%E6%B3%A8%E5%86%8C)
-
-    - [a.registerResourceHandlers](#aregisterresourcehandlers)
-    - [restfulCreateNamedResource](#restfulcreatenamedresource)
-    - [createHandler](#createhandler)
-
-- [总结](#%E6%80%BB%E7%BB%93)
-
 kube-apiserver 是 kubernetes 中与 etcd 直接交互的一个组件，其控制着 kubernetes 中核心资源的变化。它主要提供了以下几个功能：
 
 - 提供 [Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/)，包括认证授权、数据校验以及集群状态变更等，供客户端及其他组件调用；
@@ -68,15 +21,15 @@ kube-apiserver 主要通过对外提供 API 的方式与其他组件进行交互
 
 API 的 URL 大致以 `/apis/group/version/namespaces/my-ns/myresource` 组成，其中 API 的结构大致如下图所示：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/21d11c56-5813-47dd-b77c-03faddb69a0d/API-server-space-1.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kubernetes/source/apiserver/API-server-space-1.png)
 
 了解了 kube-apiserver 的 API 后，下面会介绍 kube-apiserver 如何处理一个 API 请求，一个请求完整的流程如下图所示：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/21d11c56-5813-47dd-b77c-03faddb69a0d/API-server-flow-2.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kubernetes/source/apiserver/API-server-flow-2.png)
 
 此处以一次 POST 请求示例说明，当请求到达 kube-apiserver 时，kube-apiserver 首先会执行在 http filter chain 中注册的过滤器链，该过滤器对其执行一系列过滤操作，主要有认证、鉴权等检查操作。当 filter chain 处理完成后，请求会通过 route 进入到对应的 handler 中，handler 中的操作主要是与 etcd 的交互，在 handler 中的主要的操作如下所示：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/21d11c56-5813-47dd-b77c-03faddb69a0d/API-server-storage-flow-2.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kubernetes/source/apiserver/API-server-storage-flow-2.png)
 
 **Decoder**
 
@@ -94,8 +47,10 @@ kubernetes 中的多数 resource 都会有一个 `internal version`，因为在�
 
 在 handler 中执行完以上操作后最后会执行与 etcd 相关的操作，POST 操作会将数据写入到 etcd 中，以上在 handler 中的主要处理流程如下所示：
 
-    v1beta1 ⇒ internal ⇒    |    ⇒       |    ⇒  v1  ⇒ json/yaml ⇒ etcd
-                         admission    validation
+```
+v1beta1 ⇒ internal ⇒    |    ⇒       |    ⇒  v1  ⇒ json/yaml ⇒ etcd
+                     admission    validation
+```
 
 ### kube-apiserver 中的组件
 
@@ -125,13 +80,15 @@ kubernetes 中的一些附加组件，比如 metrics-server 就是通过 Aggrega
 
 在 kube-apiserver 中需要增加以下配置来开启 API Aggregation：
 
-    --proxy-client-cert-file=/etc/kubernetes/certs/proxy.crt
-    --proxy-client-key-file=/etc/kubernetes/certs/proxy.key
-    --requestheader-client-ca-file=/etc/kubernetes/certs/proxy-ca.crt
-    --requestheader-allowed-names=aggregator
-    --requestheader-extra-headers-prefix=X-Remote-Extra-
-    --requestheader-group-headers=X-Remote-Group
-    --requestheader-username-headers=X-Remote-User
+```bash
+--proxy-client-cert-file=/etc/kubernetes/certs/proxy.crt
+--proxy-client-key-file=/etc/kubernetes/certs/proxy.key
+--requestheader-client-ca-file=/etc/kubernetes/certs/proxy-ca.crt
+--requestheader-allowed-names=aggregator
+--requestheader-extra-headers-prefix=X-Remote-Extra-
+--requestheader-group-headers=X-Remote-Group
+--requestheader-username-headers=X-Remote-User
+```
 
 #### KubeAPIServer
 
@@ -169,19 +126,21 @@ server 的初始化使用委托模式，通过 DelegationTarget 接口，把基�
 
 `k8s.io/kubernetes/cmd/kube-apiserver/app/server.go:147`
 
-    func Run(completeOptions completedServerRunOptions, stopCh <-chan struct{}) error {
-        server, err := CreateServerChain(completeOptions, stopCh)
-        if err != nil {
-            return err
-        }
-
-        prepared, err := server.PrepareRun()
-        if err != nil {
-            return err
-        }
-
-        return prepared.Run(stopCh)
+```go
+func Run(completeOptions completedServerRunOptions, stopCh <-chan struct{}) error {
+    server, err := CreateServerChain(completeOptions, stopCh)
+    if err != nil {
+        return err
     }
+
+    prepared, err := server.PrepareRun()
+    if err != nil {
+        return err
+    }
+
+    return prepared.Run(stopCh)
+}
+```
 
 #### CreateServerChain
 
@@ -196,57 +155,59 @@ server 的初始化使用委托模式，通过 DelegationTarget 接口，把基�
 
 `k8s.io/kubernetes/cmd/kube-apiserver/app/server.go:165`
 
-    func CreateServerChain(completedOptions completedServerRunOptions, stopCh <-chan struct{}) (*aggregatorapiserver.APIAggregator, error) {
-        nodeTunneler, proxyTransport, err := CreateNodeDialer(completedOptions)
-        if err != nil {
-            return nil, err
-        }
-        // 1、为 kubeAPIServer 创建配置
-        kubeAPIServerConfig, insecureServingInfo, serviceResolver, pluginInitializer, admissionPostStartHook, err :=                                         CreateKubeAPIServerConfig(completedOptions, nodeTunneler, proxyTransport)
-        if err != nil {
-            return nil, err
-        }
-
-        // 2、判断是否配置了 APIExtensionsServer，创建 apiExtensionsConfig
-        apiExtensionsConfig, err := createAPIExtensionsConfig(*kubeAPIServerConfig.GenericConfig, kubeAPIServerConfig.ExtraConfig.VersionedInformers,        pluginInitializer, completedOptions.ServerRunOptions, completedOptions.MasterCount,
-            serviceResolver, webhook.NewDefaultAuthenticationInfoResolverWrapper(proxyTransport, kubeAPIServerConfig.GenericConfig.LoopbackClientConfig))
-        if err != nil {
-            return nil, err
-        }
-
-        // 3、初始化 APIExtensionsServer
-        apiExtensionsServer, err := createAPIExtensionsServer(apiExtensionsConfig, genericapiserver.NewEmptyDelegate())
-        if err != nil {
-            return nil, err
-        }
-
-        // 4、初始化 KubeAPIServer
-        kubeAPIServer, err := CreateKubeAPIServer(kubeAPIServerConfig, apiExtensionsServer.GenericAPIServer, admissionPostStartHook)
-        if err != nil {
-            return nil, err
-        }
-
-        // 5、创建 AggregatorConfig
-        aggregatorConfig, err := createAggregatorConfig(*kubeAPIServerConfig.GenericConfig, completedOptions.ServerRunOptions, kubeAPIServerConfig.          ExtraConfig.VersionedInformers, serviceResolver, proxyTransport, pluginInitializer)
-        if err != nil {
-            return nil, err
-        }
-
-        // 6、初始化 AggregatorServer
-        aggregatorServer, err := createAggregatorServer(aggregatorConfig, kubeAPIServer.GenericAPIServer, apiExtensionsServer.Informers)
-        if err != nil {
-            return nil, err
-        }
-
-        // 7、判断是否启动非安全端口的 http server
-        if insecureServingInfo != nil {
-            insecureHandlerChain := kubeserver.BuildInsecureHandlerChain(aggregatorServer.GenericAPIServer.UnprotectedHandler(), kubeAPIServerConfig.GenericConfig)
-            if err := insecureServingInfo.Serve(insecureHandlerChain, kubeAPIServerConfig.GenericConfig.RequestTimeout, stopCh); err != nil {
-                return nil, err
-            }
-        }
-        return aggregatorServer, nil
+```go
+func CreateServerChain(completedOptions completedServerRunOptions, stopCh <-chan struct{}) (*aggregatorapiserver.APIAggregator, error) {
+    nodeTunneler, proxyTransport, err := CreateNodeDialer(completedOptions)
+    if err != nil {
+        return nil, err
     }
+    // 1、为 kubeAPIServer 创建配置
+    kubeAPIServerConfig, insecureServingInfo, serviceResolver, pluginInitializer, admissionPostStartHook, err :=                                         CreateKubeAPIServerConfig(completedOptions, nodeTunneler, proxyTransport)
+    if err != nil {
+        return nil, err
+    }
+
+    // 2、判断是否配置了 APIExtensionsServer，创建 apiExtensionsConfig
+    apiExtensionsConfig, err := createAPIExtensionsConfig(*kubeAPIServerConfig.GenericConfig, kubeAPIServerConfig.ExtraConfig.VersionedInformers,        pluginInitializer, completedOptions.ServerRunOptions, completedOptions.MasterCount,
+        serviceResolver, webhook.NewDefaultAuthenticationInfoResolverWrapper(proxyTransport, kubeAPIServerConfig.GenericConfig.LoopbackClientConfig))
+    if err != nil {
+        return nil, err
+    }
+
+    // 3、初始化 APIExtensionsServer
+    apiExtensionsServer, err := createAPIExtensionsServer(apiExtensionsConfig, genericapiserver.NewEmptyDelegate())
+    if err != nil {
+        return nil, err
+    }
+
+    // 4、初始化 KubeAPIServer
+    kubeAPIServer, err := CreateKubeAPIServer(kubeAPIServerConfig, apiExtensionsServer.GenericAPIServer, admissionPostStartHook)
+    if err != nil {
+        return nil, err
+    }
+
+    // 5、创建 AggregatorConfig
+    aggregatorConfig, err := createAggregatorConfig(*kubeAPIServerConfig.GenericConfig, completedOptions.ServerRunOptions, kubeAPIServerConfig.          ExtraConfig.VersionedInformers, serviceResolver, proxyTransport, pluginInitializer)
+    if err != nil {
+        return nil, err
+    }
+
+    // 6、初始化 AggregatorServer
+    aggregatorServer, err := createAggregatorServer(aggregatorConfig, kubeAPIServer.GenericAPIServer, apiExtensionsServer.Informers)
+    if err != nil {
+        return nil, err
+    }
+
+    // 7、判断是否启动非安全端口的 http server
+    if insecureServingInfo != nil {
+        insecureHandlerChain := kubeserver.BuildInsecureHandlerChain(aggregatorServer.GenericAPIServer.UnprotectedHandler(), kubeAPIServerConfig.GenericConfig)
+        if err := insecureServingInfo.Serve(insecureHandlerChain, kubeAPIServerConfig.GenericConfig.RequestTimeout, stopCh); err != nil {
+            return nil, err
+        }
+    }
+    return aggregatorServer, nil
+}
+```
 
 ##### CreateKubeAPIServerConfig
 
@@ -254,51 +215,53 @@ server 的初始化使用委托模式，通过 DelegationTarget 接口，把基�
 
 `k8s.io/kubernetes/cmd/kube-apiserver/app/server.go:271`
 
-    func CreateKubeAPIServerConfig(
-        s completedServerRunOptions,
-        nodeTunneler tunneler.Tunneler,
-        proxyTransport *http.Transport,
-    ) (......) {
+```go
+func CreateKubeAPIServerConfig(
+    s completedServerRunOptions,
+    nodeTunneler tunneler.Tunneler,
+    proxyTransport *http.Transport,
+) (......) {
 
-        // 1、构建 genericConfig
-        genericConfig, versionedInformers, insecureServingInfo, serviceResolver, pluginInitializers, admissionPostStartHook, storageFactory,    lastErr = buildGenericConfig(s.ServerRunOptions, proxyTransport)
-        if lastErr != nil {
-            return
-        }
-
-        ......
-
-        // 2、初始化所支持的 capabilities
-        capabilities.Initialize(capabilities.Capabilities{
-            AllowPrivileged: s.AllowPrivileged,
-            PrivilegedSources: capabilities.PrivilegedSources{
-                HostNetworkSources: []string{},
-                HostPIDSources:     []string{},
-                HostIPCSources:     []string{},
-            },
-            PerConnectionBandwidthLimitBytesPerSec: s.MaxConnectionBytesPerSec,
-        })
-
-        // 3、获取 service ip range 以及 api server service IP
-        serviceIPRange, apiServerServiceIP, lastErr := master.DefaultServiceIPRange(s.PrimaryServiceClusterIPRange)
-        if lastErr != nil {
-            return
-        }
-
-        ......
-
-        // 4、构建 master.Config 对象
-        config = &master.Config{......}
-
-        if nodeTunneler != nil {
-            config.ExtraConfig.KubeletClientConfig.Dial = nodeTunneler.Dial
-        }
-        if config.GenericConfig.EgressSelector != nil {
-            config.ExtraConfig.KubeletClientConfig.Lookup = config.GenericConfig.EgressSelector.Lookup
-        }
-
+    // 1、构建 genericConfig
+    genericConfig, versionedInformers, insecureServingInfo, serviceResolver, pluginInitializers, admissionPostStartHook, storageFactory,    lastErr = buildGenericConfig(s.ServerRunOptions, proxyTransport)
+    if lastErr != nil {
         return
     }
+
+    ......
+
+    // 2、初始化所支持的 capabilities
+    capabilities.Initialize(capabilities.Capabilities{
+        AllowPrivileged: s.AllowPrivileged,
+        PrivilegedSources: capabilities.PrivilegedSources{
+            HostNetworkSources: []string{},
+            HostPIDSources:     []string{},
+            HostIPCSources:     []string{},
+        },
+        PerConnectionBandwidthLimitBytesPerSec: s.MaxConnectionBytesPerSec,
+    })
+
+    // 3、获取 service ip range 以及 api server service IP
+    serviceIPRange, apiServerServiceIP, lastErr := master.DefaultServiceIPRange(s.PrimaryServiceClusterIPRange)
+    if lastErr != nil {
+        return
+    }
+
+    ......
+
+    // 4、构建 master.Config 对象
+    config = &master.Config{......}
+
+    if nodeTunneler != nil {
+        config.ExtraConfig.KubeletClientConfig.Dial = nodeTunneler.Dial
+    }
+    if config.GenericConfig.EgressSelector != nil {
+        config.ExtraConfig.KubeletClientConfig.Lookup = config.GenericConfig.EgressSelector.Lookup
+    }
+
+    return
+}
+```
 
 ##### buildGenericConfig
 
@@ -311,99 +274,101 @@ server 的初始化使用委托模式，通过 DelegationTarget 接口，把基�
 
 `k8s.io/kubernetes/cmd/kube-apiserver/app/server.go:386`
 
-    func buildGenericConfig(
-        s *options.ServerRunOptions,
-        proxyTransport *http.Transport,
-    ) (......) {
-        // 1、为 genericConfig 设置默认值
-        genericConfig = genericapiserver.NewConfig(legacyscheme.Codecs)
-        genericConfig.MergedResourceConfig = master.DefaultAPIResourceConfigSource()
+```go
+func buildGenericConfig(
+    s *options.ServerRunOptions,
+    proxyTransport *http.Transport,
+) (......) {
+    // 1、为 genericConfig 设置默认值
+    genericConfig = genericapiserver.NewConfig(legacyscheme.Codecs)
+    genericConfig.MergedResourceConfig = master.DefaultAPIResourceConfigSource()
 
-        if lastErr = s.GenericServerRunOptions.ApplyTo(genericConfig); lastErr != nil {
-            return
-        }
-        ......
-
-        genericConfig.OpenAPIConfig = genericapiserver.DefaultOpenAPIConfig(......)
-        genericConfig.OpenAPIConfig.Info.Title = "Kubernetes"
-        genericConfig.LongRunningFunc = filters.BasicLongRunningRequestCheck(
-            sets.NewString("watch", "proxy"),
-            sets.NewString("attach", "exec", "proxy", "log", "portforward"),
-        )
-
-        kubeVersion := version.Get()
-        genericConfig.Version = &kubeVersion
-
-        storageFactoryConfig := kubeapiserver.NewStorageFactoryConfig()
-        storageFactoryConfig.ApiResourceConfig = genericConfig.MergedResourceConfig
-        completedStorageFactoryConfig, err := storageFactoryConfig.Complete(s.Etcd)
-        if err != nil {
-            lastErr = err
-            return
-        }
-        // 初始化 storageFactory
-        storageFactory, lastErr = completedStorageFactoryConfig.New()
-        if lastErr != nil {
-            return
-        }
-        if genericConfig.EgressSelector != nil {
-            storageFactory.StorageConfig.Transport.EgressLookup = genericConfig.EgressSelector.Lookup
-        }
-
-        // 2、初始化 RESTOptionsGetter，后期根据其获取操作 Etcd 的句柄，同时添加 etcd 的健康检查方法
-        if lastErr = s.Etcd.ApplyWithStorageFactoryTo(storageFactory, genericConfig); lastErr != nil {
-            return
-        }
-
-        // 3、设置使用 protobufs 用来内部交互，并且禁用压缩功能
-        genericConfig.LoopbackClientConfig.ContentConfig.ContentType = "application/vnd.kubernetes.protobuf"
-
-        genericConfig.LoopbackClientConfig.DisableCompression = true
-
-        // 4、创建 clientset
-        kubeClientConfig := genericConfig.LoopbackClientConfig
-        clientgoExternalClient, err := clientgoclientset.NewForConfig(kubeClientConfig)
-        if err != nil {
-            lastErr = fmt.Errorf("failed to create real external clientset: %v", err)
-            return
-        }
-        versionedInformers = clientgoinformers.NewSharedInformerFactory(clientgoExternalClient, 10*time.Minute)
-
-        // 5、创建认证实例，支持多种认证方式：请求 Header 认证、Auth 文件认证、CA 证书认证、Bearer token 认证、
-        // ServiceAccount 认证、BootstrapToken 认证、WebhookToken 认证等
-        genericConfig.Authentication.Authenticator, genericConfig.OpenAPIConfig.SecurityDefinitions, err = BuildAuthenticator(s,                 clientgoExternalClient, versionedInformers)
-        if err != nil {
-            lastErr = fmt.Errorf("invalid authentication config: %v", err)
-            return
-        }
-
-        // 6、创建鉴权实例，包含：Node、RBAC、Webhook、ABAC、AlwaysAllow、AlwaysDeny
-        genericConfig.Authorization.Authorizer, genericConfig.RuleResolver, err = BuildAuthorizer(s, versionedInformers)
-        ......
-
-        serviceResolver = buildServiceResolver(s.EnableAggregatorRouting, genericConfig.LoopbackClientConfig.Host, versionedInformers)
-
-        authInfoResolverWrapper := webhook.NewDefaultAuthenticationInfoResolverWrapper(proxyTransport, genericConfig.LoopbackClientConfig)
-
-        // 7、审计插件的初始化
-        lastErr = s.Audit.ApplyTo(......)
-        if lastErr != nil {
-            return
-        }
-
-        // 8、准入插件的初始化
-        pluginInitializers, admissionPostStartHook, err = admissionConfig.New(proxyTransport, serviceResolver)
-        if err != nil {
-            lastErr = fmt.Errorf("failed to create admission plugin initializer: %v", err)
-            return
-        }
-        err = s.Admission.ApplyTo(......)
-        if err != nil {
-            lastErr = fmt.Errorf("failed to initialize admission: %v", err)
-        }
-
+    if lastErr = s.GenericServerRunOptions.ApplyTo(genericConfig); lastErr != nil {
         return
     }
+    ......
+
+    genericConfig.OpenAPIConfig = genericapiserver.DefaultOpenAPIConfig(......)
+    genericConfig.OpenAPIConfig.Info.Title = "Kubernetes"
+    genericConfig.LongRunningFunc = filters.BasicLongRunningRequestCheck(
+        sets.NewString("watch", "proxy"),
+        sets.NewString("attach", "exec", "proxy", "log", "portforward"),
+    )
+
+    kubeVersion := version.Get()
+    genericConfig.Version = &kubeVersion
+
+    storageFactoryConfig := kubeapiserver.NewStorageFactoryConfig()
+    storageFactoryConfig.ApiResourceConfig = genericConfig.MergedResourceConfig
+    completedStorageFactoryConfig, err := storageFactoryConfig.Complete(s.Etcd)
+    if err != nil {
+        lastErr = err
+        return
+    }
+    // 初始化 storageFactory
+    storageFactory, lastErr = completedStorageFactoryConfig.New()
+    if lastErr != nil {
+        return
+    }
+    if genericConfig.EgressSelector != nil {
+        storageFactory.StorageConfig.Transport.EgressLookup = genericConfig.EgressSelector.Lookup
+    }
+
+    // 2、初始化 RESTOptionsGetter，后期根据其获取操作 Etcd 的句柄，同时添加 etcd 的健康检查方法
+    if lastErr = s.Etcd.ApplyWithStorageFactoryTo(storageFactory, genericConfig); lastErr != nil {
+        return
+    }
+
+    // 3、设置使用 protobufs 用来内部交互，并且禁用压缩功能
+    genericConfig.LoopbackClientConfig.ContentConfig.ContentType = "application/vnd.kubernetes.protobuf"
+
+    genericConfig.LoopbackClientConfig.DisableCompression = true
+
+    // 4、创建 clientset
+    kubeClientConfig := genericConfig.LoopbackClientConfig
+    clientgoExternalClient, err := clientgoclientset.NewForConfig(kubeClientConfig)
+    if err != nil {
+        lastErr = fmt.Errorf("failed to create real external clientset: %v", err)
+        return
+    }
+    versionedInformers = clientgoinformers.NewSharedInformerFactory(clientgoExternalClient, 10*time.Minute)
+
+    // 5、创建认证实例，支持多种认证方式：请求 Header 认证、Auth 文件认证、CA 证书认证、Bearer token 认证、
+    // ServiceAccount 认证、BootstrapToken 认证、WebhookToken 认证等
+    genericConfig.Authentication.Authenticator, genericConfig.OpenAPIConfig.SecurityDefinitions, err = BuildAuthenticator(s,                 clientgoExternalClient, versionedInformers)
+    if err != nil {
+        lastErr = fmt.Errorf("invalid authentication config: %v", err)
+        return
+    }
+
+    // 6、创建鉴权实例，包含：Node、RBAC、Webhook、ABAC、AlwaysAllow、AlwaysDeny
+    genericConfig.Authorization.Authorizer, genericConfig.RuleResolver, err = BuildAuthorizer(s, versionedInformers)
+    ......
+
+    serviceResolver = buildServiceResolver(s.EnableAggregatorRouting, genericConfig.LoopbackClientConfig.Host, versionedInformers)
+
+    authInfoResolverWrapper := webhook.NewDefaultAuthenticationInfoResolverWrapper(proxyTransport, genericConfig.LoopbackClientConfig)
+
+    // 7、审计插件的初始化
+    lastErr = s.Audit.ApplyTo(......)
+    if lastErr != nil {
+        return
+    }
+
+    // 8、准入插件的初始化
+    pluginInitializers, admissionPostStartHook, err = admissionConfig.New(proxyTransport, serviceResolver)
+    if err != nil {
+        lastErr = fmt.Errorf("failed to create admission plugin initializer: %v", err)
+        return
+    }
+    err = s.Admission.ApplyTo(......)
+    if err != nil {
+        lastErr = fmt.Errorf("failed to initialize admission: %v", err)
+    }
+
+    return
+}
+```
 
 以上主要分析 KubeAPIServerConfig 的初始化，其他两个 server config 的初始化暂且不详细分析，下面接着继续分析 server 的初始化。
 

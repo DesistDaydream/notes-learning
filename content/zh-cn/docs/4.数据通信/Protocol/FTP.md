@@ -85,7 +85,7 @@ ftp \[\[UserName@]目标 IP] # 可以使用 UserName 用户来登录目标 IP �
 >
 > - [Wiki，SSH_File_Transfer_Protocol](https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol)
 
-**SSH File Transfer Protocol(SSH 文件传输协议，简称 SFTP)** 也称为 **Secure File Transfer Protocol(安全文件传输协议)**，是一种网络协议，可通过任何可靠的数据流提供文件访问、文件传输和文件管理。它由 [IETF](/docs/Standard/Internet/IETF.md) 设计，作为 [Secure Shell Protocol](/docs/4.数据通信/通信协议/Secure%20Shell%20Protocol.md)(SSH) 2.0 版的扩展，提供安全文件传输功能，并且由于卓越的安全性而被视为文件传输协议 (FTP) 的替代品。
+**SSH File Transfer Protocol(SSH 文件传输协议，简称 SFTP)** 也称为 **Secure File Transfer Protocol(安全文件传输协议)**，是一种网络协议，可通过任何可靠的数据流提供文件访问、文件传输和文件管理。它由 [IETF](/docs/Standard/Internet/IETF.md) 设计，作为 [Secure Shell Protocol](/docs/4.数据通信/Protocol/Secure%20Shell%20Protocol.md)(SSH) 2.0 版的扩展，提供安全文件传输功能，并且由于卓越的安全性而被视为文件传输协议 (FTP) 的替代品。
 
 IETF 互联网草案指出，尽管该协议是在 SSH-2 协议的上下文中描述的，但它可以用于许多不同的应用程序，例如通过传输层安全性 (TLS) 进行安全文件传输和管理传输VPN 应用程序中的信息。
 

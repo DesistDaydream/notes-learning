@@ -63,3 +63,4 @@ Nginx
 - [9614](https://grafana.com/grafana/dashboards/9614-nginx-ingress-controller/)
 - [12559](https://grafana.com/grafana/dashboards/12559-loki-nginx-service-mesh-json-version/) # Loki NGINX Service Mesh - JSON version
 
+[如何用 Loki 来绘制 Ingress Nginx 监控大屏](https://mp.weixin.qq.com/s/zcY_8c_7eVcRpKh9IHasLg)

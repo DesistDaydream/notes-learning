@@ -65,13 +65,13 @@ env # Helm client environment information
 
 ## get - 获取指定 release 的扩展信息
 
-详见：[helm 查询相关命令](docs/10.云原生/云原生应用管理/Helm/Helm%20CLI/helm%20查询相关命令.md)
+详见：[helm 查询相关命令](/docs/10.云原生/云原生应用管理/Helm/Helm%20CLI/helm%20查询相关命令.md)
 
 ## history - 获取 release 的历史版本
 
 ## install - 安装一个 chart archive(可以创建出来一个 release)
 
-详见：[install、upgrade 子命令](docs/10.云原生/云原生应用管理/Helm/Helm%20CLI/install、upgrade%20子命令.md)
+详见：[install、upgrade 子命令](/docs/10.云原生/云原生应用管理/Helm/Helm%20CLI/install、upgrade%20子命令.md)
 
 ## lint - 检查一个 chart，看看可能出现的问题。examines a chart for possible issues
 
@@ -161,7 +161,7 @@ FLAGS
 
 ## template - 在本地渲染 chart 模板，并展示输出
 
-详见：[helm template 模板相关命令](docs/10.云原生/云原生应用管理/Helm/Helm%20CLI/helm%20template%20模板相关命令.md)
+详见：[helm template 模板相关命令](/docs/10.云原生/云原生应用管理/Helm/Helm%20CLI/helm%20template%20模板相关命令.md)
 
 ## test - test a release
 

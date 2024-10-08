@@ -139,7 +139,7 @@ Target Labels 中的所有标签都是 Relabeling 之后的标签。Target Label
 
 - `scrape_config.relabel_configs` 字段中 # Prometheus Relabeling 功能体现最主要的地方
 - `alert_relabel_configs` 字段中 # 用于为告警内容实现 Relabeling 功能
-- 等等等等，有很多地方都可以配置 Relabeling，还包括 Loki 日志套件中 [Promtail](/docs/6.可观测性/Logs/Log%20Clients/Promtail/Promtail.md) 程序，也可以对日志流执行同样效果的 Relabeling 功能。因为 Relabeling 功能是 Prometheus 设计哲学 “**标签即一切**” 的必备功能
+- 等等等等，有很多地方都可以配置 Relabeling，还包括 Loki 日志套件中 [Promtail](/docs/6.可观测性/Logs/Loki/Promtail/Promtail.md) 程序，也可以对日志流执行同样效果的 Relabeling 功能。因为 Relabeling 功能是 Prometheus 设计哲学 “**标签即一切**” 的必备功能
 
 注意：
 

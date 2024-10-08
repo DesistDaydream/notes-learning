@@ -9,8 +9,8 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档，Instrumenting-Exporter](https://prometheus.io/docs/instrumenting/exporters/)
-> - [官方文档，最佳实践-Instrumentation](https://prometheus.io/docs/practices/instrumentation/)
+> - [官方文档，Instrumenting - Exporter](https://prometheus.io/docs/instrumenting/exporters/)
+> - [官方文档，最佳实践 - Instrumentation](https://prometheus.io/docs/practices/instrumentation/)
 
 Prometheus 可以从如下几类 Intrumenting 中 Scrape(抓取) 指标：
 

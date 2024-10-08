@@ -9,20 +9,21 @@ weight: 1
 
 > 参考：
 >
-> - [CNCF 可观测性白皮书](https://mp.weixin.qq.com/s/2xt1kHqJ2Sj2c4u08d1ejA)(中文)
+> - [CNCF 博客，What was observability again?](https://www.cncf.io/blog/2021/03/02/what-was-observability-again/)
+>   - 中文翻译：[公众号，云原生技术爱好者社区-什么是可观测性](https://mp.weixin.qq.com/s/bO82iVKO0O8PTiYSHS-gag)
+> - [CNCF 可观测性白皮书](https://mp.weixin.qq.com/s/c0xLTU1x-gVODl7eRU-xvA)(中文)
 > - [CNCF 全景图](https://landscape.cncf.io/)
 > - [Wiki, Observability](https://en.wikipedia.org/wiki/Observability#Observability_in_software_systems)
 > - [宋净超-云原生资料库-OpenTelemetry 可观测性的未来](https://jimmysong.io/docs/opentelemetry-obervability/)
-> - [公众号，云原生技术爱好者社区-什么是可观测性](https://mp.weixin.qq.com/s/bO82iVKO0O8PTiYSHS-gag)(是对[ CNCF 中的一篇 Blog ](https://www.cncf.io/blog/2021/03/02/what-was-observability-again/)的翻译)
+> - [公众号，云原生社区-构建适合组织的云原生可观测性能力](https://mp.weixin.qq.com/s/ytMHlSKIvqsr6VsPvNz4BQ)
 > - [Goole 文章](https://cloud.google.com/architecture/integrating-monitoring-logging-trace-observability-and-alerting)
-> - [公众号，云原生社区-构建适合组织的云原生可观测性能力](https://mp.weixin.qq.com/s/tlmJawfJTAItIpjLuG34wg)
 
 想象一下，在没有财务预测的情况下经营企业，甚至不知道银行剩下多少钱。您怎么知道您是在巨大的现金缓冲中游泳还是由于资金不足而需要跳过客户午餐？如果不注意自己的财务状况，根本就不可能开展健康的业务。同样，如果不观察您的计算基础架构，就不可能保持应用程序运行正常。
 
 事实上，**Observability(可观测性)** 非常重要，到 2021 年 2 月，云原生计算基金会(CNCF)列出了 102 个可观察性项目。可观测性不仅重要，而且昂贵。Netflix 被戏称为`一个产生大量日志的平台，同时也是一个流视频平台`。可观测性之所以昂贵，有两个原因:
 
-- 可观测性比被观测系统至少可靠一个数量级。否则，你将继续调试你的可观察性堆栈，而不是使用它来保持你的应用程序运行。
-- 因为你永远不知道要观察什么，直到事件发生后，观察多于需要的东西是很常见的。一个好的汽车司机不仅要向前看，而且还要不断扫视周围以避免事故。
+- **可观测性比被观测系统至少可靠一个数量级。否则，你将继续调试你的可观察性堆栈，而不是使用它来保持你的应用程序运行。**
+- **因为你永远不知道要观察什么，直到事件发生后，观察多于需要的东西是很常见的。一个好的汽车司机不仅要向前看，而且还要不断扫视周围以避免事故。**
 
 # 什么是可观测性
 
@@ -76,9 +77,9 @@ CNCF 将 可观测性 和 数据分析 归类为一个单独的类别，且划�
 
 # 总结
 
-缺乏可观测性就像闭着眼睛开车:你不知道离灾难有多近。你开得越快，路越忙，你就越要小心。
+缺乏可观测性就像闭着眼睛开车：你不知道离灾难有多近。你开得越快，路越忙，你就越要小心。
 
-可观测性也是一样:你越想让你的团队越快地添加功能，你就越应该在可观测性上投资。而且，虽然在可观测性上节省一些钱可能很诱人，但这些节省将在下一次缓慢修复事件中迅速消失。
+可观测性也是一样：你越想让你的团队越快地添加功能，你就越应该在可观测性上投资。而且，虽然在可观测性上节省一些钱可能很诱人，但这些节省将在下一次缓慢修复事件中迅速消失。
 
 # SLA
 

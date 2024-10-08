@@ -12,7 +12,7 @@ weight: 20
 > - [官方文档，TCP Analysis](https://www.wireshark.org/docs/wsug_html_chunked/ChAdvTCPAnalysis.html)
 > - [公众号-小林 coding，一文搞定 Wireshark 网络数据包分析](https://mp.weixin.qq.com/s/hL96imOvuodILIhI70fbTg)
 
-使用 Wireshark 分析 [TCP](/docs/4.数据通信/通信协议/TCP_IP/TCP/TCP.md)。
+使用 Wireshark 分析 [TCP](/docs/4.数据通信/Protocol/TCP_IP/TCP/TCP.md)。
 
 ## 通过 WireShark 理解三次握手和四次挥手
 

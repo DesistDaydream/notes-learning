@@ -264,7 +264,7 @@ ND 不是一个具体协议，而是用来描述多个相关功能的协议的**
 - ping：发送 icmp 的 echo request 报文，对端响应 icmp 的 echo reply 报文
 - 地址解析：发送 icmp 的 ns 报文，对端响应 icmp 的 na 报文
 
-更多详情见《[ARP 与 NDP](/docs/4.数据通信/通信协议/ARP%20与%20NDP.md)》
+更多详情见《[ARP 与 NDP](/docs/4.数据通信/Protocol/ARP%20与%20NDP.md)》
 
 ### Router Advertisement(路由通告)
 
@@ -347,7 +347,7 @@ net.ipv6.conf.default.use_tempaddr = 0
 
 网络前缀由 IANA 一层层分配。[IPv6 地址空间](https://www.iana.org/assignments/ipv6-address-space/ipv6-address-space.xhtml) 中包含了当前 IPv6 地址的总体分配情况，[IPv6 全局单播地址分配](https://www.iana.org/assignments/ipv6-unicast-address-assignments/ipv6-unicast-address-assignments.xhtml)中，则是单播地址的分配情况。
 
-详见[《IP》章节的 Ip 地址分配机制](/docs/4.数据通信/通信协议/TCP_IP/IP/IP.md#IP%20地址分配机制)部分
+详见[《IP》章节的 Ip 地址分配机制](/docs/4.数据通信/Protocol/TCP_IP/IP/IP.md#IP%20地址分配机制)部分
 
 ## ISP 分配机制
 

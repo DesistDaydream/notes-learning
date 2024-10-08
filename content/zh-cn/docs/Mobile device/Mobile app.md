@@ -82,7 +82,7 @@ Kotlin是一种在Java虚拟机上运行的静态类型编程语言，被称之�
 
 ![](https://pic2.zhimg.com/v2-b6697b88d959003af2515ab4bc2092e9_b.jpg)
 
-### 2、开发IOS的：Swift和Object-C**
+### 2、开发IOS的：Swift和Object-C
 
 Swift 结合了 C 和 Objective-C 的优点并且不受 C 兼容性的限制。
 
@@ -104,7 +104,7 @@ Flutter的热重载可帮助您快速地进行测试、构建UI、添加功能�
 
 ![](https://pic4.zhimg.com/v2-3363e67d08bc43662392a39a0d18ca1b_b.jpg)
 
-### 2、第二种是Uni-app框架
+### 2、第二种是 Uni-app 框架
 
 基于 Vue.js。俗称一套代码编到8个平台上。
 

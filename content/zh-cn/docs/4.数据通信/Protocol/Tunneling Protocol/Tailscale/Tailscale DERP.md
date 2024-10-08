@@ -84,7 +84,7 @@ Tailscale 官方[内置了很多 DERP 服务器](https://controlplane.tailscale.
 
 Tailscale 开源了 DERP Server 的代码，将其称为 **DERPer**。我们可以自己部署 derper 以便让所有流量都通过自己的程序。
 
-> [!Tip] [Headscale](/docs/4.数据通信/通信协议/Tunneling%20Protocol/Tailscale/Headscale.md) 包含了内置的 DERPer
+> [!Tip] [Headscale](/docs/4.数据通信/Protocol/Tunneling%20Protocol/Tailscale/Headscale.md) 包含了内置的 DERPer
 
 ## 部署 derper
 

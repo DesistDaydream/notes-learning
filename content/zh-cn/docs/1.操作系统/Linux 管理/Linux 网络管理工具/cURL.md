@@ -13,7 +13,7 @@ weight: 20
 > - [官网](https://curl.se/)
 > - [Manual(手册)](https://man.cx/curl)
 
-cURL 是一个用于 [URL 与 URI](/docs/4.数据通信/通信协议/HTTP/URL%20与%20URI.md)s 传输的命令行工具和库，始于 1998 年。
+cURL 是一个用于 [URL 与 URI](/docs/4.数据通信/Protocol/HTTP/URL%20与%20URI.md)s 传输的命令行工具和库，始于 1998 年。
 
 早在 20 世纪 90 年代中期，当时互联网还处于萌芽阶段，瑞典程序员 Daniel Stenberg 开始了一个项目，这个项目最终发展成了我们今天所知道的 curl 程序。
 

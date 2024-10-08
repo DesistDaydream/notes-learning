@@ -7,7 +7,7 @@ weight: 1
 
 > 参考：
 >
-> - [RFC 675, ](https://datatracker.ietf.org/doc/html/rfc675)
+> - [RFC 675,](https://datatracker.ietf.org/doc/html/rfc675)
 > - [RFC 793, TRANSMISSION CONTROL PROTOCOL - DARPA INTERNET PROGRAM PROTOCOL SPECIFICATION](https://datatracker.ietf.org/doc/html/rfc793)
 >   - [RFC 9293, Transmission Control Protocol (TCP)](https://datatracker.ietf.org/doc/html/rfc9293)
 > - [Wiki，TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol)
@@ -40,7 +40,7 @@ TCP 天然认为网络环境是恶劣的，丢包、乱序、重传，拥塞都�
 
 # TCP Segment 结构
 
-详见 [TCP Header](/docs/4.数据通信/通信协议/TCP_IP/TCP/TCP%20Header.md)
+详见 [TCP Header](/docs/4.数据通信/Protocol/TCP_IP/TCP/TCP%20Header.md)
 
 # TCP 状态
 
@@ -78,24 +78,24 @@ TCP 天然认为网络环境是恶劣的，丢包、乱序、重传，拥塞都�
 在 socket 编程中，客户端执行 connect() 时。将触发三次握手：
 
 - **第一次握手(SYN，SeqNum=client_isn)** # 客户端请求同步，发送 SYN 报文段
-    - 客户端生成一个随机数 client_isn
-    - 设置 TCP 首部字段
-        - 将 client_isn 填入到 Sequence Number 字段中。
-        - 将 TCP 标志中 SYN 的值设为 1。
-    - 发送完毕后，客户端进入 SYN_SEND 状态。
+  - 客户端生成一个随机数 client_isn
+  - 设置 TCP 首部字段
+    - 将 client_isn 填入到 Sequence Number 字段中。
+    - 将 TCP 标志中 SYN 的值设为 1。
+  - 发送完毕后，客户端进入 SYN_SEND 状态。
 - **第二次握手(SYN,ACK，SeqNum=server_isn，AckNum=client_isn+1)** # 服务端回应并请求同步，发送 SYN + ACK 报文段
-    - 服务端收到客户端的 SYN 报文段后，生成一个随机数 server_isn
-    - 设置 TCP 首部字段
-        - 将 server_isn 填入 Sequence Number 字段中
-        - 将 client_isn+1 填入 Acknowledgement Number 字段中。
-        - 将 TCP 标志中的 SYN 和 ACK 的值设为 1。
-    - 发送完毕后，服务器端进入 SYN_RCVD 状态。
+  - 服务端收到客户端的 SYN 报文段后，生成一个随机数 server_isn
+  - 设置 TCP 首部字段
+    - 将 server_isn 填入 Sequence Number 字段中
+    - 将 client_isn+1 填入 Acknowledgement Number 字段中。
+    - 将 TCP 标志中的 SYN 和 ACK 的值设为 1。
+  - 发送完毕后，服务器端进入 SYN_RCVD 状态。
 - **第三次握手(ACK，SeqNum=client_isn+1，AckNum=server_isn+1)** # 客户端回应确认，建立连接。发送 ACK 报文段
-    - 客户端收到服务端报文后，还需要向服务端回应最后一个 ACK 报文段
-    - 设置 TCP 首部字段
-        - 将 server_isn+1 填入 Acknowledgement Number 字段中。
-        - 将 TCP 标志中的 ACK 的值设为 1。
-    - 发送完毕后，客户端进入 ESTABLISHED 状态，当服务器端接收到这个包时，也进入 ESTABLISHED 状态，TCP 握手结束。
+  - 客户端收到服务端报文后，还需要向服务端回应最后一个 ACK 报文段
+  - 设置 TCP 首部字段
+    - 将 server_isn+1 填入 Acknowledgement Number 字段中。
+    - 将 TCP 标志中的 ACK 的值设为 1。
+  - 发送完毕后，客户端进入 ESTABLISHED 状态，当服务器端接收到这个包时，也进入 ESTABLISHED 状态，TCP 握手结束。
 
 注意：
 
@@ -147,7 +147,6 @@ TCP 的连接的拆除需要发送四个包，因此称为四次挥手(Four-way 
 >
 > - 原文：[程序员宅基地，TCP报文（ tcp dup ack 、TCP Retransmission）](https://www.cxyzjd.com/article/ynchyong/109110028)
 >   - [CSDN，TCP报文（ tcp dup ack 、TCP Retransmission）](https://blog.csdn.net/ynchyong/article/details/109110028)
-
 
 ## TCP 慢启动
 

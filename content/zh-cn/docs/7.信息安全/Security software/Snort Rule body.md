@@ -73,4 +73,4 @@ pcre 选项可以根据 Perl 兼容的 [Regular Expression(正则表达式)](/do
 
 ## flags
 
-flags 选项用于检查 [TCP Header](/docs/4.数据通信/通信协议/TCP_IP/TCP/TCP%20Header.md) 中是否设置了指定的 Flag
+flags 选项用于检查 [TCP Header](/docs/4.数据通信/Protocol/TCP_IP/TCP/TCP%20Header.md) 中是否设置了指定的 Flag

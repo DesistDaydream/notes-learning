@@ -464,7 +464,7 @@ https://github.com/WireGuard/wireguard-tools 包含如下两个工具
 
 # WireGuard 衍生品
 
-[Tailscale](/docs/4.数据通信/通信协议/Tunneling%20Protocol/Tailscale/Tailscale.md)
+[Tailscale](/docs/4.数据通信/Protocol/Tunneling%20Protocol/Tailscale/Tailscale.md)
 
 - 自研 DERP 协议
 - 一种基于 WireGuard 的虚拟组网工具

@@ -29,7 +29,7 @@ Linux 网络设备归属于 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md) �
 
 **./type** # 网络设备的类型。文件内容是数字。从 [GitHub 项目，torvalds/linux - include/uapi/linux/if_arp.h](https://github.com/torvalds/linux/blob/master/include/uapi/linux/if_arp.h) 文件中找到数字对应的设备类型表和该设备的定义（e.g. 1 表示 ARPHRD_ETHER），这个 C 的头文件将网络设备分为如下几大块
 
-- **ARP 协议硬件定义** # [ARP](/docs/4.数据通信/通信协议/ARP%20与%20NDP.md) 的 RFC 标准中，定义了这些，并且 IANA 中也维护了这些注册信息。
+- **ARP 协议硬件定义** # [ARP](/docs/4.数据通信/Protocol/ARP%20与%20NDP.md) 的 RFC 标准中，定义了这些，并且 IANA 中也维护了这些注册信息。
 - **非 ARP 硬件的虚拟网络设备** # Linux 自身实现的一些虚拟网络设备
 - **TODO**: 其他信息待整理
 

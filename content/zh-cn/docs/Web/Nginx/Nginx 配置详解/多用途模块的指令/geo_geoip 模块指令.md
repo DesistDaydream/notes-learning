@@ -9,7 +9,7 @@ title: geo/geoip 模块指令
 > - [http 模块下的 geo 模块](http://nginx.org/en/docs/http/ngx_http_geo_module.html)、[geoip 模块](http://nginx.org/en/docs/http/ngx_http_geoip_module.html)
 > - [stream 模块下的 geo 模块](http://nginx.org/en/docs/stream/ngx_stream_geo_module.html)、[geoip 模块](http://nginx.org/en/docs/stream/ngx_stream_geoip_module.html)
 
-geo 与 geoip 模块会根据 客户端的 IP 地址 来创建新的变量。这些变量用来表示 IP 地址所属国际、所属城市、所在经/纬度 等等。
+geo 与 geoip 模块实现了 [GeoIP](docs/4.数据通信/Protocol/TCP_IP/IP/GeoIP.md) 的能力，可以根据 客户端的 IP 地址 来创建新的变量。这些变量用来表示 IP 地址所属国际、所属城市、所在经/纬度 等等。
 
 不同之处在于：
 

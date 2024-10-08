@@ -196,55 +196,57 @@ Kubernetes 对象的创建流程如下：
 6. 返回存储好的数据，并将 ETCD 中更新后的 Reversion 设置为 resourceVersion
 
 
-    func (s *store) Create(ctx context.Context, key string, obj, out runtime.Object, ttl uint64) error {
+```go
+func (s *store) Create(ctx context.Context, key string, obj, out runtime.Object, ttl uint64) error {
 
-        if version, err := s.versioner.ObjectResourceVersion(obj); err == nil && version != 0 {
-            return errors.New("resourceVersion should not be set on objects to be created")
-        }
-
-        if err := s.versioner.PrepareObjectForStorage(obj); err != nil {
-            return fmt.Errorf("PrepareObjectForStorage failed: %v", err)
-        }
-
-        data, err := runtime.Encode(s.codec, obj)
-        if err != nil {
-            return err
-        }
-
-        key = path.Join(s.pathPrefix, key)
-
-        opts, err := s.ttlOpts(ctx, int64(ttl))
-        if err != nil {
-            return err
-        }
-
-        newData, err := s.transformer.TransformToStorage(data, authenticatedDataString(key))
-        if err != nil {
-            return storage.NewInternalError(err.Error())
-        }
-
-        startTime := time.Now()
-        txnResp, err := s.client.KV.Txn(ctx).If(
-            notFound(key),
-        ).Then(
-            clientv3.OpPut(key, string(newData), opts...),
-        ).Commit()
-
-        metrics.RecordEtcdRequestLatency("create", getTypeName(obj), startTime)
-        if err != nil {
-            return err
-        }
-        if !txnResp.Succeeded {
-            return storage.NewKeyExistsError(key, 0)
-        }
-
-        if out != nil {
-
-            putResp := txnResp.Responses[0].GetResponsePut()
-            return decode(s.codec, s.versioner, data, out, putResp.Header.Revision)
-        }
-        return nil
+    if version, err := s.versioner.ObjectResourceVersion(obj); err == nil && version != 0 {
+        return errors.New("resourceVersion should not be set on objects to be created")
     }
+
+    if err := s.versioner.PrepareObjectForStorage(obj); err != nil {
+        return fmt.Errorf("PrepareObjectForStorage failed: %v", err)
+    }
+
+    data, err := runtime.Encode(s.codec, obj)
+    if err != nil {
+        return err
+    }
+
+    key = path.Join(s.pathPrefix, key)
+
+    opts, err := s.ttlOpts(ctx, int64(ttl))
+    if err != nil {
+        return err
+    }
+
+    newData, err := s.transformer.TransformToStorage(data, authenticatedDataString(key))
+    if err != nil {
+        return storage.NewInternalError(err.Error())
+    }
+
+    startTime := time.Now()
+    txnResp, err := s.client.KV.Txn(ctx).If(
+        notFound(key),
+    ).Then(
+        clientv3.OpPut(key, string(newData), opts...),
+    ).Commit()
+
+    metrics.RecordEtcdRequestLatency("create", getTypeName(obj), startTime)
+    if err != nil {
+        return err
+    }
+    if !txnResp.Succeeded {
+        return storage.NewKeyExistsError(key, 0)
+    }
+
+    if out != nil {
+
+        putResp := txnResp.Responses[0].GetResponsePut()
+        return decode(s.codec, s.versioner, data, out, putResp.Header.Revision)
+    }
+    return nil
+}
+```
 
 ### Update
 
@@ -266,7 +268,8 @@ Kubernetes 对象的更新流程如下：
 
 Update 流程相关代码实现如下：
 
-    func (s *store) GuaranteedUpdate(
+```go
+func (s *store) GuaranteedUpdate(
         ctx context.Context, key string, out runtime.Object, ignoreNotFound bool,
         preconditions *storage.Preconditions, tryUpdate storage.UpdateFunc, suggestion ...runtime.Object) error {
         trace := utiltrace.New("GuaranteedUpdate etcd3", utiltrace.Field{"type", getTypeName(out)})
@@ -311,33 +314,24 @@ Update 流程相关代码实现如下：
                 if !mustCheckData {
                     return err
                 }
-
-
-
                 origState, err = getCurrentState()
                 if err != nil {
                     return err
                 }
                 mustCheckData = false
-
                 continue
             }
 
             ret, ttl, err := s.updateState(origState, tryUpdate)
             if err != nil {
-
                 if !mustCheckData {
                     return err
                 }
-
-
-
                 origState, err = getCurrentState()
                 if err != nil {
                     return err
                 }
                 mustCheckData = false
-
                 continue
             }
 
@@ -346,9 +340,6 @@ Update 流程相关代码实现如下：
                 return err
             }
             if !origState.stale && bytes.Equal(data, origState.data) {
-
-
-
                 if mustCheckData {
                     origState, err = getCurrentState()
                     if err != nil {
@@ -356,7 +347,6 @@ Update 流程相关代码实现如下：
                     }
                     mustCheckData = false
                     if !bytes.Equal(data, origState.data) {
-
                         continue
                     }
                 }
@@ -406,6 +396,7 @@ Update 流程相关代码实现如下：
             return decode(s.codec, s.versioner, data, out, putResp.Header.Revision)
         }
     }
+```
 
 ### Patch
 
@@ -422,49 +413,51 @@ Kubernetes 对象的 Patch 更新流程如下：
 3. 最终还是调用上述 Update 方法执行更新操作
 
 
-     func (p *patcher) patchResource(ctx context.Context, scope *RequestScope) (runtime.Object, bool, error) {
-        p.namespace = request.NamespaceValue(ctx)
-        switch p.patchType {
-        case types.JSONPatchType, types.MergePatchType:
-            p.mechanism = &jsonPatcher{
-                patcher:      p,
-                fieldManager: scope.FieldManager,
-            }
-        case types.StrategicMergePatchType:
-            schemaReferenceObj, err := p.unsafeConvertor.ConvertToVersion(p.restPatcher.New(), p.kind.GroupVersion())
-            if err != nil {
-                return nil, false, err
-            }
-            p.mechanism = &smpPatcher{
-                patcher:            p,
-                schemaReferenceObj: schemaReferenceObj,
-                fieldManager:       scope.FieldManager,
-            }
+```go
+func (p *patcher) patchResource(ctx context.Context, scope *RequestScope) (runtime.Object, bool, error) {
+  p.namespace = request.NamespaceValue(ctx)
+  switch p.patchType {
+  case types.JSONPatchType, types.MergePatchType:
+      p.mechanism = &jsonPatcher{
+          patcher:      p,
+          fieldManager: scope.FieldManager,
+      }
+  case types.StrategicMergePatchType:
+      schemaReferenceObj, err := p.unsafeConvertor.ConvertToVersion(p.restPatcher.New(), p.kind.GroupVersion())
+      if err != nil {
+          return nil, false, err
+      }
+      p.mechanism = &smpPatcher{
+          patcher:            p,
+          schemaReferenceObj: schemaReferenceObj,
+          fieldManager:       scope.FieldManager,
+      }
 
-        case types.ApplyPatchType:
-            p.mechanism = &applyPatcher{
-                fieldManager: scope.FieldManager,
-                patch:        p.patchBytes,
-                options:      p.options,
-                creater:      p.creater,
-                kind:         p.kind,
-            }
-            p.forceAllowCreate = true
-        default:
-            return nil, false, fmt.Errorf("%v: unimplemented patch type", p.patchType)
-        }
+  case types.ApplyPatchType:
+      p.mechanism = &applyPatcher{
+          fieldManager: scope.FieldManager,
+          patch:        p.patchBytes,
+          options:      p.options,
+          creater:      p.creater,
+          kind:         p.kind,
+      }
+      p.forceAllowCreate = true
+  default:
+      return nil, false, fmt.Errorf("%v: unimplemented patch type", p.patchType)
+  }
 
-        wasCreated := false
-        p.updatedObjectInfo = rest.DefaultUpdatedObjectInfo(nil, p.applyPatch, p.applyAdmission)
-        result, err := finishRequest(p.timeout, func() (runtime.Object, error) {
+  wasCreated := false
+  p.updatedObjectInfo = rest.DefaultUpdatedObjectInfo(nil, p.applyPatch, p.applyAdmission)
+  result, err := finishRequest(p.timeout, func() (runtime.Object, error) {
 
-            options := patchToUpdateOptions(p.options)
-            updateObject, created, updateErr := p.restPatcher.Update(ctx, p.name, p.updatedObjectInfo, p.createValidation, p.updateValidation, p.forceAllowCreate, options)
-            wasCreated = created
-            return updateObject, updateErr
-        })
-        return result, wasCreated, err
-    }
+      options := patchToUpdateOptions(p.options)
+      updateObject, created, updateErr := p.restPatcher.Update(ctx, p.name, p.updatedObjectInfo, p.createValidation, p.updateValidation, p.forceAllowCreate, options)
+      wasCreated = created
+      return updateObject, updateErr
+  })
+  return result, wasCreated, err
+}
+```
 
 相比 Update，Patch 的主要优势在于客户端**不必提供全量的 obj 对象信息**。客户端只需以 patch 的方式提交要修改的字段信息，服务器端会将该 patch 数据应用到最新获取的 obj 中。省略了 Client 端获取、修改再提交全量 obj 的步骤，降低了数据被修改的风险，更大大减小了冲突概率。 由于 Patch 方法在传输效率及冲突概率上都占有绝对优势，目前 Kubernetes 中几乎所有更新操作都采用了 Patch 方法，我们在编写代码时也应该注意使用 Patch 方法。
 

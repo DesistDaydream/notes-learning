@@ -10,7 +10,7 @@ title: Chrony
 > - [官网](https://chrony.tuxfamily.org/index.html)
 > - [官方文档](https://chrony.tuxfamily.org/documentation.html)
 
-Chrony 是 [NTP](/docs/4.数据通信/通信协议/NTP.md)(网络时间协议) 的通用实现。它可以将系统时钟与 NTP 服务器，参考时钟（例如 GPS 接收器）以及使用手表和键盘进行的手动输入进行同步。它还可以充当 NTPv4（RFC 5905）服务器并与之对等，以向网络中的其他计算机提供时间服务。
+Chrony 是 [NTP](/docs/4.数据通信/Protocol/NTP.md)(网络时间协议) 的通用实现。它可以将系统时钟与 NTP 服务器，参考时钟（例如 GPS 接收器）以及使用手表和键盘进行的手动输入进行同步。它还可以充当 NTPv4（RFC 5905）服务器并与之对等，以向网络中的其他计算机提供时间服务。
 
 `yum install chrony` 即可安装该工具
 

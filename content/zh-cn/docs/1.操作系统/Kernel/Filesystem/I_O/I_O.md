@@ -31,7 +31,7 @@ weight: 20
 
 ## I/O 与 CPU
 
-本文主要说的是 [Disk](docs/0.计算机/Disk/Disk.md)(磁盘) 的 I/O，更多关于磁盘 I/O 的基础概念详见 [Block](docs/1.操作系统/Kernel/Hardware/Block.md)
+本文主要说的是 [Disk](/docs/0.计算机/Disk/Disk.md)(磁盘) 的 I/O，更多关于磁盘 I/O 的基础概念详见 [Block](/docs/1.操作系统/Kernel/Hardware/Block.md)
 
 我们知道现在的 CPU 其主频都是数 GHz 起步，这是什么意思呢？简单说就是 CPU 执行机器指令的速度是纳秒级别的，而通常的 I/O 比如磁盘操作，一次磁盘 seek 大概在毫秒级别，**因此如果我们把 CPU 的速度比作战斗机的话，那么 I/O 操作的速度就是肯德鸡**。
 

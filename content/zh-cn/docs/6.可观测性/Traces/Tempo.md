@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 > 
-> - 原文链接：<https://cloud.tencent.com/developer/article/1759966>
+> - 原文链接：<https://cloud.tencent.com/developr/article/1759966>
 
 `Tempo`是 Grafana Labs 在`ObservabilityCON 2020`大会上新开源的一个用于做分布式式追踪的后端服务。它和 Cortex、Loki 一样，Tempo 也是一个兼备`高扩展`和`低成本`效应的系统。
 
