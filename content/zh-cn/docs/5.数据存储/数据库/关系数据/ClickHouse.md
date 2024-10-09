@@ -51,3 +51,7 @@ https://clickhouse.com/docs/en/integrations/sql-clients/cli
 # 其他
 
 Grafana 数据源插件 https://github.com/grafana/clickhouse-datasource
+
+https://github.com/clickvisual/clickvisual 一个基于 clickhouse 构建的轻量级日志分析和数据可视化 Web 平台。
+
+https://github.com/metrico/promcasa 通过 ClickHouse 的 SQL，将查询结果转为 OpenMetrics 格式数据。

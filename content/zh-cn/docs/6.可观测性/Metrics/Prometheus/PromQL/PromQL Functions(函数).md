@@ -26,10 +26,6 @@ Prometheus 提供了其它大量的内置函数，可以对时序数据进行丰
 
 # Prometheus 内置函数
 
-## abs() - 绝对值
-
-`abs(v instant-vector)` 返回输入向量的所有样本的 **Absolute Value(绝对值)**。
-
 ## absent() - 判断表达式是否可以获取到序列
 
 `absent(v instant-vector)` 返回值有两种
@@ -50,17 +46,6 @@ absent() 函数特别适用于告警，用于判断**单条时间序列**（给�
 从图中前两个 promql 的结果可以看出来，只有<font color="#ff0000">对具体的单一的时间序列进行 absent 的判断，才可以触发</font>。若一个 Metrics Name 下有多条时间序列，那么就算其中一条没数据了，通过 absent() 也无法判断 up 中所有时间序列是否存在，而是对 up 本身是否存在进行判断。
 
 > Tip: 若想判断一个 Metrics Name 具体有哪条时间序列缺了数据，可以尝试使用 count_over_time()，基于一段时间的样本总数进行判断。e.g. `delta(count_over_time(up[1d])[15m:]) < 0` 判断一下 1 天中获取的样本数量，通过样本数量的下降来判断是否数据丢失。
-
-## ceil() - 向上四舍五入取整
-
-`ceil(v instant-vector)` 将 v 中所有元素的样本值向上四舍五入到最接近的整数。例如：
-
-```promql
-node_load5{instance="192.168.1.75:9100"}
-# 结果为 2.79
-ceil(node_load5{instance="192.168.1.75:9100"})
-# 结果为 3
-```
 
 ## changes() - 范围向量内每个样本数值的变化次数
 
@@ -88,6 +73,61 @@ clamp_min(v instant-vector, min scalar) 函数，输入一个瞬时向量和最�
 node_load5{instance="192.168.1.75:9100"} # 结果为 2.79
 clamp_min(node_load5{instance="192.168.1.75:9100"}, 3) # 结果为 3
 ```
+
+## holt_winters()
+
+`holt_winters(v range-vector, sf scalar, tf scalar)` 函数基于区间向量 v，生成时间序列数据平滑值。平滑因子 sf 越低, 对旧数据的重视程度越高。趋势因子 tf 越高，对数据的趋势的考虑就越多。其中，0 < sf, tf <= 1。
+
+holt_winters 仅适用于 Gauge 类型的时间序列。
+
+## predict_linear() - 线性预测
+
+`predict_linear(v range-vector, t scalar)` 预测时间序列 v 在 t 秒后的值。它基于简单线性回归的方式，对时间窗口内的样本数据进行统计，从而可以对时间序列的变化趋势做出预测。该函数的返回结果不带有度量指标，只有标签列表。
+
+例如，基于 2 小时的样本数据，来预测主机可用磁盘空间的是否在 4 个小时候被占满，可以使用如下表达式：
+
+```promql
+predict_linear(node_filesystem_free{job="node"}[2h], 4 * 3600) < 0
+```
+
+通过下面的例子来观察返回值：
+
+```promql
+predict_linear(http_requests_total{code="200",instance="120.77.65.193:9090",job="prometheus",method="get"}[5m], 5)
+结果：
+{code="200",handler="query_range",instance="120.77.65.193:9090",job="prometheus",method="get"}  1
+{code="200",handler="prometheus",instance="120.77.65.193:9090",job="prometheus",method="get"}   4283.449995397104
+{code="200",handler="static",instance="120.77.65.193:9090",job="prometheus",method="get"}   22.99999999999999
+...
+```
+
+这个函数一般只用在 Gauge 类型的时间序列上。
+
+## resets()
+
+resets(v range-vector) 的参数是一个区间向量。对于每个时间序列，它都返回一个计数器重置的次数。两个连续样本之间的值的减少被认为是一次计数器重置。
+
+这个函数一般只用在计数器类型的时间序列上。
+
+
+## 数值计算
+
+### abs() - 绝对值
+
+`abs(v instant-vector)` 返回输入向量的所有样本的 **Absolute Value(绝对值)**。
+
+### ceil()/floor() - 向上/下四舍五入取整
+
+`ceil(v instant-vector)` 将 v 中所有元素的样本值向上四舍五入到最接近的整数。例如：
+
+```promql
+node_load5{instance="192.168.1.75:9100"}
+# 结果为 2.79
+ceil(node_load5{instance="192.168.1.75:9100"})
+# 结果为 3
+```
+
+`floor(v instant-vector)` 函数与 ceil() 函数相反，将 v 中所有元素的样本值向下四舍五入到最接近的整数。
 
 ## 变化量相关
 
@@ -158,7 +198,7 @@ increase(http_requests_total{job="apiserver"}[5m])
 
 `rate(v range-vector)` 函数可以直接计算区间向量 v 在时间窗口内平均增长速率，它会在单调性发生变化时(如由于采样目标重启引起的计数器复位)自动中断。该函数的返回结果不带有度量指标，只有标签列表。
 
-例如，以下表达式返回区间向量中每个时间序列过去 5 分钟内 HTTP 请求数的每秒增长率：
+例如，以下表达式返回区间向量中每个时间序列过去 5 分钟内 HTTP 请求数的每秒增长速率：
 
 ```bash
 rate(http_requests_total[5m])
@@ -169,9 +209,9 @@ rate(http_requests_total[5m])
 ...
 ```
 
-`irate(v range-vector)` 函数用于计算区间向量的增长率，但是其反应出的是瞬时增长率。irate 函数是通过区间向量中最后两个两本数据来计算区间向量的增长速率，它会在单调性发生变化时(如由于采样目标重启引起的计数器复位)自动中断。这种方式可以避免在时间窗口范围内的“长尾问题”，并且体现出更好的灵敏度，通过 irate 函数绘制的图标能够更好的反应样本数据的瞬时变化状态。
+`irate(v range-vector)` 函数用于计算区间向量的增长率，但是其反应出的是瞬时增长速率。irate 函数是通过区间向量中最后两个两本数据来计算区间向量的增长速率，它会在单调性发生变化时(如由于采样目标重启引起的计数器复位)自动中断。这种方式可以避免在时间窗口范围内的“长尾问题”，并且体现出更好的灵敏度，通过 irate 函数绘制的图标能够更好的反应样本数据的瞬时变化状态。
 
-例如，以下表达式返回区间向量中每个时间序列过去 5 分钟内最后两个样本数据的 HTTP 请求数的增长率：
+例如，以下表达式返回区间向量中每个时间序列过去 5 分钟内最后两个样本数据的 HTTP 请求数的增长速率：
 
 ```promql
 irate(http_requests_total{job="api-server"}[5m])
@@ -183,68 +223,23 @@ irate(http_requests_total{job="api-server"}[5m])
 > [!Tip]
 > irate 只能用于绘制快速变化的计数器，在长期趋势分析或者告警中更推荐使用 rate 函数。因为使用 irate 函数时，速率的简短变化会重置 FOR 语句，形成的图形有很多波峰，难以阅读。
 
-## holt_winters()
-
-holt_winters(v range-vector, sf scalar, tf scalar) 函数基于区间向量 v，生成时间序列数据平滑值。平滑因子 sf 越低, 对旧数据的重视程度越高。趋势因子 tf 越高，对数据的趋势的考虑就越多。其中，0< sf, tf <=1。
-
-holt_winters 仅适用于 Gauge 类型的时间序列。
-
-## predict_linear() - 线性预测
-
-`predict_linear(v range-vector, t scalar)` 预测时间序列 v 在 t 秒后的值。它基于简单线性回归的方式，对时间窗口内的样本数据进行统计，从而可以对时间序列的变化趋势做出预测。该函数的返回结果不带有度量指标，只有标签列表。
-
-例如，基于 2 小时的样本数据，来预测主机可用磁盘空间的是否在 4 个小时候被占满，可以使用如下表达式：
-
-```promql
-predict_linear(node_filesystem_free{job="node"}[2h], 4 * 3600) < 0
-```
-
-通过下面的例子来观察返回值：
-
-```promql
-predict_linear(http_requests_total{code="200",instance="120.77.65.193:9090",job="prometheus",method="get"}[5m], 5)
-结果：
-{code="200",handler="query_range",instance="120.77.65.193:9090",job="prometheus",method="get"}  1
-{code="200",handler="prometheus",instance="120.77.65.193:9090",job="prometheus",method="get"}   4283.449995397104
-{code="200",handler="static",instance="120.77.65.193:9090",job="prometheus",method="get"}   22.99999999999999
-...
-```
-
-这个函数一般只用在 Gauge 类型的时间序列上。
-
-## resets()
-
-resets(v range-vector) 的参数是一个区间向量。对于每个时间序列，它都返回一个计数器重置的次数。两个连续样本之间的值的减少被认为是一次计数器重置。
-
-这个函数一般只用在计数器类型的时间序列上。
-
-
 ## 时间相关
 
-### day_of_month()
+时间相关的函数都有一个通用的格式 `FUNCTION_NAME(v=vector(time()) instant-vector)`。FUNCTION_NAME 有如下几个
 
-day_of_month(v=vector(time()) instant-vector) 函数，返回被给定 UTC 时间所在月的第几天。返回值范围：1~31。
+- **day_of_month()** # 返回被给定 UTC 时间所在月的第 N 天。返回值范围：1~31
+- **day_of_week()** # 返回被给定 UTC 时间所在周的第 N 天。返回值范围：0~6，0 表示星期天。
+- **days_in_month()** # 返回当月一共有多少天。返回值范围：28~31
+- **minute()** # 返回给定 UTC 时间当前小时的第 N 分钟。结果范围：0~59。、
+- **hour()** # 返回给定 UTC 时间的当前第 N 小时。时间范围：0~23
+- **month()** 返回给定 UTC 时间当前属于第 N 月，结果范围：0~12。
+- **year()** # 函数返回被给定 UTC 时间的当前年份。
 
-### day_of_week()
+这些函数的参数是给定的 UTC 时间 Unix 时间戳，可以通过即时向量获取指定时序数据中样本的时间作为参数
 
-day_of_week(v=vector(time()) instant-vector) 函数，返回被给定 UTC 时间所在周的第几天。返回值范围：0~6，0 表示星期天。
+参数也可以省略，省略时，默认为当前 UTC 时间
 
-### days_in_month()
-
-days_in_month(v=vector(time()) instant-vector) 函数，返回当月一共有多少天。返回值范围：28~31。
-
-### hour()
-
-hour(v=vector(time()) instant-vector) 函数返回被给定 UTC 时间的当前第几个小时，时间范围：0~23。
-
-### minute()
-
-minute(v=vector(time()) instant-vector) 函数返回给定 UTC 时间当前小时的第多少分钟。结果范围：0~59。
-
-### month()
-
-month(v=vector(time()) instant-vector) 函数返回给定 UTC 时间当前属于第几个月，结果范围：0~12。
-
+除了上面这些有通用格式的，下面还有两个比较特殊的
 ### time()
 
 time() 函数返回从 1970-01-01 到现在的秒数。注意：它不是直接返回当前时间，而是时间戳。
@@ -257,9 +252,18 @@ time() 函数返回从 1970-01-01 到现在的秒数。注意：它不是直接�
 
 timestamp(v instant-vector) 函数返回向量 v 中的每个样本的时间戳（从 1970-01-01 到现在的秒数）。
 
-### year()
+> [!Tip]
+> 若想获取非 UTC 的时间，有一个通用的解决方案，就是将 Unix 时间戳加上对应时区的秒数
+> 
+> 比如东八区的时间，就是需要加上 $8*3600$ 秒，`FUNC(vector(time() + 8 * 3600))`；然后各种函数使用运算结果后的 Unix 时间戳作为参数输出结果。
+>
+> - e.g. 获取当前东八区的第 N 小时: `hour(vector(time() + 8 * 3600))` ；第 N 月: `month(vector(time() + 8 * 3600))`。利用时间戳的秒数，可以规避很多复杂的问题。
 
-year(v=vector(time()) instant-vector) 函数返回被给定 UTC 时间的当前年份。
+---
+
+**最佳实践**
+
+`(hour() + 8) % 24` 获取东八区的第 N 个小时。通过对 24 取余，确保结果始终在 0-23 的范围内。当 UTC 时间在 16:00 到 23:59 之间时，简单地 +8 会导致结果超过 23，这就是为什么我们需要 `% 24` 操作。当 UTC 时间是 23:00 时，`(23 + 8) % 24 = 7`，正确显示东八区的 7:00。
 
 ## 聚合范围向量
 
@@ -356,7 +360,7 @@ label_replace(
 
 ## 其他
 
-vector()    vector(s scalar) 函数将标量 s 作为没有标签的向量返回，即返回结果为：key: value= {}, s
+**vector()** # vector(s scalar) 函数将标量 s 作为没有标签的即时向量返回，即返回结果为：key: value= {}, s
 
 idelta()
 
@@ -376,10 +380,6 @@ exp(v instant-vector) 函数，输入一个瞬时向量，返回各个样本值�
 
 - Exp(+Inf) = +Inf
 - Exp(NaN) = NaN
-
-floor()
-
-floor(v instant-vector) 函数与 ceil() 函数相反，将 v 中所有元素的样本值向下四舍五入到最接近的整数。
 
 histogram_quantile()
 

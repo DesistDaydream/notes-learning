@@ -95,7 +95,7 @@ https://rclone.org/commands/rclone_sync/
 
 ## EXAMPLE
 
-  将 SRC_REMOTE 中的 SRC_PATH 路径下的文件同步到 DST_REMOTE 中的 DST_PATH 路径下
+将 SRC_REMOTE 中的 SRC_PATH 路径下的文件同步到 DST_REMOTE 中的 DST_PATH 路径下
 
 ```bash
 export SRC_REMOTE="ali-oss"

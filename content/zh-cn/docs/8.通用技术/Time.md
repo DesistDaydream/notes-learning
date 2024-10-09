@@ -14,7 +14,7 @@ weight: 20
 > - https://baike.baidu.com/item/ISO%208601/3910715?fr=aladdin
 > - [中国计量科学研究院，SI 基本单位](https://www.nim.ac.cn/520/node/4.html)
 
-1983 年，国际计量打会讨论决定，把 1 米的定义修改为光在 1/299792458 秒内走过的距离
+1983 年，国际计量大会讨论决定，把 1 米的定义修改为光在 1/299792458 秒内走过的距离
 
 1967 年，国际计量大会定义：1 秒是铯 133 原子基态的两个超精细能量间跃迁对应辐射的 9192631770 个周期的持续时间。
 
@@ -52,7 +52,8 @@ weight: 20
 
 <https://baike.baidu.com/item/2038> 年问题
 
-时间戳转换工具，可以在 Unix-time 与 Timestamps 之间相互转换。
+时间戳转换工具，e.g. https://it-tools.tech/date-converter 、etc. 。可以在 Unix-time 与 Timestamps 之间相互转换。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/vym7ql/1616165162261-f89b406f-0967-44d2-b496-baa6ebe57434.png)
+![600](https://notes-learning.oss-cn-beijing.aliyuncs.com/time/time_converter.png)
+
 

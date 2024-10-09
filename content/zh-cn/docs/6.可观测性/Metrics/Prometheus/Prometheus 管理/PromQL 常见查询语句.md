@@ -13,6 +13,7 @@ weight: 2
 >   - https://samber.github.io/awesome-prometheus-alerts/
 > - [腾讯云+社区，prometheus 告警指标](https://cloud.tencent.com/developer/article/1758801)
 > - [公众号，云原生小白-监控容器 OOMKill 的正确指标](https://mp.weixin.qq.com/s/rPxTBYmwG_7HnZRpRXMFuQ)
+> - https://panzhongxian.cn/cn/2023/09/grafana-pannel-skills/ Grafana 常用但难配的图表。一些真实场景的查询语句写法以及对应 Grafana 图标如何用
 
 # 问题
 

@@ -91,7 +91,7 @@ PATTERN(模式) 代指正则表达式的匹配模式。比如 pgrep 根据 PATTE
 >
 > - [Manual(手册)，ps(1)](https://man7.org/linux/man-pages/man1/ps.1.html)
 
-ps 是 **process status(进程状态)** 的简称~
+ps 是 **process status(进程状态)** 的简称
 
 Note：该命令显示出来的带 `[]` 的进程为内核线程，一般不用关注。出现这种情况一般是因为 ps 命令无法获取进程的命令参数，所以会将命令名称放入括号中。毕竟用户态的 ps 命令怎么可能会获得内核内部程序的参数呢~~~
 

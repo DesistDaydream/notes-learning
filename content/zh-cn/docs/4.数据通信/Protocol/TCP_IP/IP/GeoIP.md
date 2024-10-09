@@ -12,7 +12,7 @@ weight: 20
 > - [Wiki, GeoIP](https://en.wikipedia.org/wiki/GeoIP)
 >   - 重定向到 [Internet geolocation](https://en.wikipedia.org/wiki/Internet_geolocation)
 
-在计算中，**Internet geolocation(互联网地理定位，简称 GeoIP)** 是能够推断连接到互联网的设备的地理位置的软件。例如，设备的 IP 地址可用于确定国家、城市或邮政编码，从而确定其地理位置。其他方法包括检查 Wi-Fi 热点、
+在 IT 中，**Internet geolocation(互联网地理定位，简称 GeoIP)** 是能够推断连接到互联网的设备的地理位置的软件。例如，设备的 IP 地址可用于确定国家、城市或邮政编码，从而确定其地理位置。其他方法包括检查 Wi-Fi 热点、
 
 # IP 地址分配机制
 
@@ -169,3 +169,4 @@ apnic|CN|ipv4|223.255.252.0|512|20110414|allocated
 [GitHub 项目，lionsoul2014/ip2region](https://github.com/lionsoul2014/ip2region) # 一个离线IP地址定位库和IP定位数据管理框架，10微秒级别的查询效率，提供了众多主流编程语言的 `xdb` 数据生成和查询客户端实现。
 
 https://github.com/Loyalsoldier/geoip # GeoIP 规则文件加强版，支持自行定制 V2Ray dat 格式文件 geoip.dat、MaxMind mmdb 格式文件、sing-box SRS 格式文件、mihomo MRS 格式文件、Clash ruleset、Surge ruleset 等。
+
