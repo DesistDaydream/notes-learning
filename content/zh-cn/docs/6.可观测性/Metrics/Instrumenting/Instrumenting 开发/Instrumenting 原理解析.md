@@ -181,7 +181,7 @@ https://pkg.go.dev/github.com/prometheus/client_golang/prometheus#Collector
 
 **Collector(采集器**) 是由 Prometheus 可以用来采集 Metrics 的任何东西实现的接口。 一个 Collector(采集器) 必须使用 [Registerer.Register()](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus?utm_source=gopls#Registerer) 进行注册后，才可以进行采集 Metric 的工作。
 
-> Registerer.Register() 指的是 [Registerer](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus?utm_source=gopls#Registerer) 接口中的 Register() 方法
+> Registerer.Register() 指的是 [Registerer](#Registerer(注册器)) 接口中的 Register() 方法
 
 也就是说，任何实现了 Collector 接口的代码，都可以通过 Registerer 注册进来，并在监听的端口上暴露出采集到的 Metrics 数据。
 

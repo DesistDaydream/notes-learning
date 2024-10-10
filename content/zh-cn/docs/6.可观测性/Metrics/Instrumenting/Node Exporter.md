@@ -8,7 +8,7 @@ title: Node Exporter
 >
 > - [GitHub 项目，prometheus/node_exporter](https://github.com/prometheus/node_exporter)
 
-node_exporter 用于收集服务器的 metrics，比如内存、cpu、磁盘、I/O、电源等
+Node Exporter 用于收集服务器的 metrics，比如 内存、cpu、磁盘、I/O、电源、etc. 。Node Exporter 将采集各种指标的代码逻辑抽象称为 Node 的 Collector(采集器)。每类指标都对应一个 Collector，比如 cpu 采集器、meminfo 采集器、etc. 这些名称通常都能直观得看到想要采集的指标是什么
 
 node_exporter 默认监听在 9100 端口上。
 
@@ -81,14 +81,23 @@ docker run -d --name node-exporter --restart=always \
 
 https://github.com/prometheus/node_exporter?tab=readme-ov-file#collectors
 
-[这里](https://github.com/prometheus/node_exporter#enabled-by-default)有 node_exporter 默认采集的数据，name 就是要采集的数据名称
+[这里](https://github.com/prometheus/node_exporter#enabled-by-default)有 node_exporter 默认启用的采集器，name 就是采集器名称
 
-[这里](https://github.com/prometheus/node_exporter#disabled-by-default)有 node_exporter 默认不采集的数据
+[这里](https://github.com/prometheus/node_exporter#disabled-by-default)有 node_exporter 默认禁用的采集器，name 就是采集器名称
 
 如果想要让 node_exporter 采集或者不采集某些数据，可以在启动 node_exporter 程序时，向该程序传递参数。参数中的 NAME 为上面两个连接中，表格中的 name 列
 
 - `--collector.<NAME>` # 标志来启用采集目标。
 - `--no-collector.<NAME>` # 标志来禁用采集目标。
+
+## 只让部分已启用的采集器采集指标
+
+[这部分](https://github.com/prometheus/node_exporter/blob/v1.8.1/node_exporter.go#L78) `filters := r.URL.Query()["collect[]"]` 代码是用来可以让服务端在向 node-exporter 发起的 HTTP 请求中，在 [URL](/docs/4.数据通信/通信协议/HTTP/URL%20与%20URI.md) 的 QUERY 部分加入一些内容，以决定采集哪些 Metrics，而不必强制通过本身的 CLI 参数决定。参考 README 的 [Filtering enabled collectors](https://github.com/prometheus/node_exporter#filtering-enabled-collectors)。
+
+> [!Note]
+> URL Query 中填写的内容是指采集的，只要使用了 URL Query，那么 node-exporter 则只采集 Query 中指定的指标，其余的全都不采集
+
+若是用 curl 发起请求，就是这样的: `curl 'localhost:9100/metrics?collect[]=cpu&collect[]=meminfo'`。这个表示只让 cpu 和 meminfo 这两个采集器工作采集 cpu 和 内存 的指标。
 
 # Textfile Collector 文本文件采集器
 
@@ -126,7 +135,20 @@ node-exporter 程序使用 `--web.config` 命令行标志来指定 web-config �
 
 # 源码解析
 
-其中 [这部分](https://github.com/prometheus/node_exporter/blob/v1.8.1/node_exporter.go#L78) `filters := r.URL.Query()["collect[]"]` 代码是用来可以让服务端在向 node-exporter 发起的 HTTP 请求中，在 [URL](/docs/4.数据通信/Protocol/HTTP/URL%20与%20URI.md) 的 QUERY 部分加入一些内容，以决定采集哪些 Metrics，而不必强制通过本身的 CLI 参数决定。参考 README 的 [Filtering enabled collectors](https://github.com/prometheus/node_exporter#filtering-enabled-collectors)。
+node_exporter.go 中的 `handler.innerHandler()` 方法用于创建 Node 采集器，i.e. 决定要启用哪些 Node 的 Collector
 
-> [!Note]
-> URL Query 中填写的内容是指采集的，只要使用了 URL Query，那么 node-exporter 则只采集 Query 中指定的指标，其余的全都不采集
+```go
+func (h *handler) innerHandler(filters ...string) (http.Handler, error) {
+    // NewNodeCollector()` 方法决定启用哪些 Collector 的主要逻辑，该方法实例化了一个实现了 prometheus.Collector{} 接口的 NodeCollector{} 结构体
+	nc, err := collector.NewNodeCollector(h.logger, filters...)
+
+    // ......输出一些信息
+
+	r := prometheus.NewRegistry()
+	// 实例化后的 NodeCollector{} 使用 `prometheus.NewRegistry().Register()` 进行注册
+	err := r.Register(nc)
+	
+  	// ......最后就是标准的利用 promhttp.HandlerFor 或 promhttp.InstrumentMetricHandler 返回 http.Handler。具体用哪个以及其中的具体逻辑，与开启哪些 Node 的采集器没有强关联。
+}
+```
+

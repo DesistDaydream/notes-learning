@@ -2256,8 +2256,7 @@
       "docs/6.可观测性/Metrics/Prometheus/Prometheus 开发/PromQL 查询逻辑.md",
       "docs/6.可观测性/Metrics/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑",
       "docs/6.可观测性/Metrics/Instrumenting/Instrumenting 开发",
-      "docs/6.可观测性/Metrics/Instrumenting/Instrumenting 开发/Exporter 开发问题.md",
-      "docs/6.可观测性/Metrics/Instrumenting/Instrumenting 开发/使用 Go 开发 Prometheus Exporter.md"
+      "docs/6.可观测性/Metrics/Instrumenting/Instrumenting 开发/Exporter 开发问题.md"
     ],
     "docs/6.可观测性/Metrics/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑": [
       "docs/6.可观测性/Metrics/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑/_index.md",

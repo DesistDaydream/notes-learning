@@ -8,7 +8,8 @@ title: Exporter 开发实践
 >
 > - [GitHub 自学代码](https://github.com/DesistDaydream/prometheus-instrumenting)
 > - [默认自带的 Metrics 的实现方式](https://github.com/prometheus/client_golang/blob/master/prometheus/go_collector.go)
-> - [公众号,k8s 技术圈-使用 Go 开发 Prometheus Exporter](https://mp.weixin.qq.com/s/s1nSaC-8ejvM342v5KPdxA)
+> - [公众号，k8s 技术圈-使用 Go 开发 Prometheus Exporter](https://mp.weixin.qq.com/s/s1nSaC-8ejvM342v5KPdxA)
+> - https://medium.com/teamzerolabs/15-steps-to-write-an-application-prometheus-exporter-in-go-9746b4520e26
 
 在 [Instrumenting 原理解析](/docs/6.可观测性/Metrics/Instrumenting/Instrumenting%20开发/Instrumenting%20原理解析.md) 中，逐一了解了实现 Exporter 的方法
 
@@ -23,61 +24,56 @@ title: Exporter 开发实践
 现在我将前面学习过程中零散的代码合并起来
 
 ```go
-package main
-import (
- "math/rand"
- "net/http"
- "sync"
- "github.com/prometheus/client_golang/prometheus"
- "github.com/prometheus/client_golang/prometheus/promhttp"
-)
 // HelloWorldMetrics 用来保存所有 Metrics
 type HelloWorldMetrics struct {
- HelloWorldDesc *prometheus.Desc
- mutex          sync.Mutex
- // 加锁用，与主要处理逻辑无关
+	HelloWorldDesc *prometheus.Desc
+	mutex          sync.Mutex
+	// 加锁用，与主要处理逻辑无关
 }
 // NewHelloWorldMetrics 实例化 HelloWorldMetrics，就是为所有 Mestirs 设定一些基本信息
 func NewHelloWorldMetrics() *HelloWorldMetrics {
- return &HelloWorldMetrics{
-  HelloWorldDesc: prometheus.NewDesc(
-   "a_hello_world_exporter",              // Metric 名称
-   "Help Info for Hello World Exporter ", // Metric 的帮助信息
-   []string{"name"}, nil,                 // Metric 的可变标签值的标签 与 不可变标签值的标签
-  ),
- }
+	return &HelloWorldMetrics{
+		HelloWorldDesc: prometheus.NewDesc(
+			"a_hello_world_exporter",              // Metric 名称
+			"Help Info for Hello World Exporter ", // Metric 的帮助信息
+			[]string{"name"}, nil,                 // Metric 的可变标签值的标签 与 不可变标签值的标签
+		),
+	}
 }
+
 // Describe 让 HelloWorldMetrics 实现 Collector 接口。将 Metrics 的描述符传到 channel 中
 func (ms *HelloWorldMetrics) Describe(ch chan<- *prometheus.Desc) {
- ch <- ms.HelloWorldDesc
+	ch <- ms.HelloWorldDesc
 }
+
 // Collect 让 HelloWorldMetrics 实现 Collector 接口。采集 Metrics 的具体行为并设置 Metrics 的值类型,将 Metrics 的信息传到 channel 中
 func (ms *HelloWorldMetrics) Collect(ch chan<- prometheus.Metric) {
- ms.mutex.Lock() // 加锁
- defer ms.mutex.Unlock()
- // 为 ms.HelloWorldDesc 这个 Metric 设置其属性的值
- // 该 Metric 值的类型为 Gauge，name 标签值为 haohao 时，Metric 的值为 1000 以内的随机数
- ch <- prometheus.MustNewConstMetric(ms.HelloWorldDesc, prometheus.GaugeValue, float64(rand.Int31n(1000)), "haohao")
- // 该 Metric 值的类型为 Gauge，name 标签值为 nana 时，Metric 的值为 100 以内的随机数
- ch <- prometheus.MustNewConstMetric(ms.HelloWorldDesc, prometheus.GaugeValue, float64(rand.Int31n(100)), "nana")
+	ms.mutex.Lock() // 加锁
+	defer ms.mutex.Unlock()
+	// 为 ms.HelloWorldDesc 这个 Metric 设置其属性的值
+	// 该 Metric 值的类型为 Gauge，name 标签值为 haohao 时，Metric 的值为 1000 以内的随机数
+	ch <- prometheus.MustNewConstMetric(ms.HelloWorldDesc, prometheus.GaugeValue, float64(rand.Int31n(1000)), "haohao")
+	// 该 Metric 值的类型为 Gauge，name 标签值为 nana 时，Metric 的值为 100 以内的随机数
+	ch <- prometheus.MustNewConstMetric(ms.HelloWorldDesc, prometheus.GaugeValue, float64(rand.Int31n(100)), "nana")
 }
 func main() {
- // 实例化自己定义的所有 Metrics
- m := NewHelloWorldMetrics()
- // 两种注册 Metrics 的方式
- //
- // 第一种：实例化一个新注册器，用来注册 自定义Metrics
- // 使用 HandlerFor 将自己定义的已注册的 Metrics 作为参数，以便可以通过 http 获取 metric 信息
- reg := prometheus.NewRegistry()
- reg.MustRegister(m)
- http.Handle("/metrics", promhttp.HandlerFor(reg, promhttp.HandlerOpts{}))
- //
- // 第二种：使用自带的默认注册器，用来注册 自定义Metrics
- // prometheus.MustRegister(m)
- // http.Handle("/metrics", promhttp.Handler())
- // 让该 exporter 监听在8080 上
- http.ListenAndServe(":8080", nil)
+	// 实例化自己定义的所有 Metrics
+	m := NewHelloWorldMetrics()
+	// 两种注册 Metrics 的方式
+	//
+	// 第一种：实例化一个新注册器，用来注册 自定义Metrics
+	// 使用 HandlerFor 将自己定义的已注册的 Metrics 作为参数，以便可以通过 http 获取 metric 信息
+	reg := prometheus.NewRegistry()
+	reg.MustRegister(m)
+	http.Handle("/metrics", promhttp.HandlerFor(reg, promhttp.HandlerOpts{}))
+	//
+	// 第二种：使用自带的默认注册器，用来注册 自定义Metrics
+	// prometheus.MustRegister(m)
+	// http.Handle("/metrics", promhttp.Handler())
+	// 让该 exporter 监听在8080 上
+	http.ListenAndServe(":8080", nil)
 }
+
 /*
 Export 暴露结果：
 # HELP a_hello_world_exporter Help Info for Hello World Exporter
