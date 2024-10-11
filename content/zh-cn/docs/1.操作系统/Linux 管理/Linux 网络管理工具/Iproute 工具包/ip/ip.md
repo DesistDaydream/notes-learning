@@ -19,13 +19,13 @@ ip 命令行工具可以控制各种 **Object(对象)**，这些对象包括：�
 
 ip 程序的语法有点复杂，对 Object 控制的命令中，有非常多的参数，不像普通命令一样，把参数称为 FLAGS 或 OPTIONS，且都是以 `-` 或者 `--` 符号开头的。
 
-这里我们使用 **大写字母** 来描述 **一个参数** 或 **一个具体的值**。参数中还可以包含一个或多个其他参数，每个参数的值，同样使用大写字母表示。
+ip 的手册中使用 **大写字符串** 来描述 **一个参数** 或 **一个具体的值**。参数中还可以包含一个或多个其他参数，每个参数的值，同样使用大写字母表示。
 
-在后面的文章中，凡是这种复杂的参数，都使用这类格式表示：`参数 := 参数 | 值`，这就有点像编程中初始化**变量**一样。在这里就是等于是定义一个参数，并为参数赋值。比如 `ip link` 命令中，就有这种样子的写法：
+在后面的文章中，凡是这种复杂的参数，都使用这类格式表示：`参数 := 参数 | 值`，这就有点像编程中初始化**变量**一样。在这里就是等于是定义一个参数，并为参数赋值。比如 `ip address` 命令中，就有这种样子的写法：
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/iproute/ip_1.png)
 
-这里面有一个 IFADDR 表示一个参数，IFADDR 参数又是由 PREFIX、SCOPE-ID 等参数组成，而 SCOPE-ID 则表示有具体含义的值。其实，本质上，命令行工具的参数，就是要传入代码的 Function 中的的实际参数。
+这里面有一个 IFADDR （<font color="#ff0000">红框</font>）表示一个参数，IFADDR 参数又是由 PREFIX、SCOPE-ID 等参数组成，而 SCOPE-ID 则表示有具体含义的值。其实，本质上，命令行工具的参数，就是要传入代码内 Function 的实际参数。
 
 ## Global OPITONS
 
@@ -183,7 +183,6 @@ monitor
 >
 > - [Manual(手册)，netdevice(7)](https://man7.org/linux/man-pages/man7/netdevice.7.html) - Ioctls - SIOCGIFFLAGS, SIOCSIFFLAGS
 > - [GitHub 项目，iproute2/iproute2 - include/uapi/linux/if.h](https://github.com/iproute2/iproute2/blob/main/include/uapi/linux/if.h)
-> - https://stackoverflow.com/questions/36715664/using-ip-what-does-lower-up-mean
 
 通过 ip link、ip address 等命令通过 show 子命令获取的网络信息的大体结构如下:
 
@@ -216,7 +215,9 @@ monitor
 
 ## 第三部分
 
-`< >` 中的信息描述了网路设备的状态，这些状态的的含义可以从 [iproute2 的源码 include/uapi/linux/if.h](https://github.com/iproute2/iproute2/blob/main/include/uapi/linux/if.h) 出查到（这部分源码与 Linux 的 [if.h](https://github.com/torvalds/linux/blob/master/include/uapi/linux/if.h) 源码相同，从 [Linux 网络设备](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Linux%20网络设备/Linux%20网络设备.md) 中可以看到相关介绍）。
+https://stackoverflow.com/questions/36715664/using-ip-what-does-lower-up-mean
+
+`< >` 中的信息描述了网路设备的 Flags(标志)，这些 Flags 的含义可以从 [iproute2 的源码 include/uapi/linux/if.h](https://github.com/iproute2/iproute2/blob/main/include/uapi/linux/if.h) 出查到（这部分源码与 [Linux 的 if.h](https://github.com/torvalds/linux/blob/v6.11/include/uapi/linux/if.h) 源码相同，在 [Linux 网络设备](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Linux%20网络设备/Linux%20网络设备.md) 笔记中可以看到相关介绍）。
 
 - **BROADCAST** # 表示该网络接口支持广播通信，也就是可以向同一网络中的所有设备广播信息。
 - **MULTICAST** # 表示该网络接口支持多播通信，也就是可以向同一网络中的一组设备广播信息。

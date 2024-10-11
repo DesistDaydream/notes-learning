@@ -1661,6 +1661,7 @@
     "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Control structure": [
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Control structure/_index.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Control structure/Control structure.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Control structure/Operators.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Control structure/错误处理.md"
     ],
     "docs/2.编程/高级编程语言/Go/Go 规范与标准库/Goroutine AND Channel": [

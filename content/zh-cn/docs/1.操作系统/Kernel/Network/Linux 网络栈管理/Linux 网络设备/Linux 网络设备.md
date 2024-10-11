@@ -11,9 +11,18 @@ tags:
 
 > 参考：
 >
-> - [GitHub 项目，torvalds/linux - include/uapi/linux/if_arp.h](https://github.com/torvalds/linux/blob/master/include/uapi/linux/if_arp.h)
-> - [IANA，Address Resolution Protocol (ARP) Parameters，Hardware Types](https://www.iana.org/assignments/arp-parameters/arp-parameters.xhtml#arp-parameters-2)
-> - https://stackoverflow.com/questions/18598283/the-meaning-of-the-sys-class-net-interface-type-value
+> - [Linux 内核文档，管理员指南 - ABI -sysfs-class-net](https://www.kernel.org/doc/html/latest/admin-guide/abi-testing.html#file-testing-sysfs-class-net)
+> - [Manual(手册)，netdevice(7)](https://man7.org/linux/man-pages/man7/netdevice.7.html)
+>
+> 脚注在文末
+>
+> [^if_arp.h]: [GitHub 项目，torvalds/linux - include/uapi/linux/if_arp.h](https://github.com/torvalds/linux/blob/v6.11/include/uapi/linux/if_arp.h#L28)
+>
+> [^if.h]: [GitHub 项目，torvalds/linux - include/uapi/linux/if.sh](https://github.com/torvalds/linux/blob/v6.11/include/uapi/linux/if.h)
+>
+> [^glibc_if.h]: [GitHub 项目，bminor/glibc - sysdeps/gnu/net/if.h](https://github.com/bminor/glibc/blob/glibc-2.40/sysdeps/gnu/net/if.h)
+>
+> [^IANA]:[IANA，Address Resolution Protocol (ARP) Parameters，Hardware Types](https://www.iana.org/assignments/arp-parameters/arp-parameters.xhtml#arp-parameters-2)
 
 Linux 网络设备归属于 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md) 总线类型。
 
@@ -27,15 +36,21 @@ Linux 网络设备归属于 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md) �
 
 > Note: `${NetDeviceName}` 是指向 `/sys/devices/pciXXX/XXX/.../XXX/${NetDeviceName}/` 的 [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)
 
-**./type** # 网络设备的类型。文件内容是数字。从 [GitHub 项目，torvalds/linux - include/uapi/linux/if_arp.h](https://github.com/torvalds/linux/blob/master/include/uapi/linux/if_arp.h) 文件中找到数字对应的设备类型表和该设备的定义（e.g. 1 表示 ARPHRD_ETHER），这个 C 的头文件将网络设备分为如下几大块
+**./type** # 网络设备的类型。文件内容是 10 进制数字。从 if_arp.h[^if_arp.h] 代码中（[stackoverflow](https://stackoverflow.com/questions/18598283/the-meaning-of-the-sys-class-net-interface-type-value) 也有相关问题）找到数字对应的设备类型表和该设备的定义（e.g. 1 表示 ARPHRD_ETHER），这个 C 的头文件将网络设备分为如下几大块
 
-- **ARP 协议硬件定义** # [ARP](/docs/4.数据通信/Protocol/ARP%20与%20NDP.md) 的 RFC 标准中，定义了这些，并且 IANA 中也维护了这些注册信息。
+- **ARP 协议硬件定义** # [ARP](/docs/4.数据通信/Protocol/ARP%20与%20NDP.md) 的 RFC 标准中，定义了这些，并且 IANA[^IANA] 中也维护了这些注册信息。
+  - 比如 `#define ARPHRD_ETHER 1` 这行代码意味着，type 文件的内容为 1 的话，表示该网络设备是 ARPHRD_ETHER（也就是常见的网卡设备）
 - **非 ARP 硬件的虚拟网络设备** # Linux 自身实现的一些虚拟网络设备
 - **TODO**: 其他信息待整理
 
-**./flags** # 网络设备的 Flags(标志)。常用来描述设备的状态和基本功能。从 [GitHub 项目，torvalds/linux - include/uapi/linux/if.sh](https://github.com/torvalds/linux/blob/master/include/uapi/linux/if.h) 文件中找到这些 Flags 的含义
+**./flags** # 网络设备的 Flags(标志)。文件内容是 16 进制数字。常用来描述设备的状态和基本功能。[Linux 内核文档中的 ABI](https://www.kernel.org/doc/html/latest/admin-guide/abi-testing.html#abi-sys-class-net-iface-flags) 部分提到了可以从 if.h[^if.h] 代码中 `enum net_device_flags` 这部分及之下的内容，找到这些 Flags 的含义。代码中的含义与 flags 文件中的 16 进制数字应该如何理解详见下文 [flags 文件详解](#flags%20文件详解)
 
-- Notes: [ip](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ip/ip.md) 工具下的 link 和 address 子命令通过 show 显示的网络设备信息中，第三部分由 `< >` 包裹起来的就是网络设备的 Flags
+- Notes: [ip](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ip/ip.md) 程序的 link 和 address 子命令通过 show 显示的网络设备信息中，第三部分由 `< >` 包裹起来的就是网络设备的 Flags
+- [stackoverflow](https://stackoverflow.com/questions/36715664/using-ip-what-does-lower-up-mean) 可以找到相关提问
+
+**./carrier** # 网络设备的物理链路状态。0 表示 down；1 表示 up
+
+**./carrier_changes** # 网络设备的物理链路状态变化的次数，从 up 变为 down 以及 从 down 变为 up 的总次数。
 
 **./device/** # [PCI 设备资源信息](/docs/1.操作系统/Kernel/Hardware/PCI.md#PCI%20设备资源信息)（包括设备供应商、设备类别、etc.），该目录是 `/sys/devices/pciXXXX:XX/.../XXX` 下的 PCI 相关目录的软链接，可以从 PCI 文章中查看各文件的含义。
 
@@ -60,6 +75,101 @@ bus-info: 0000:61:00.0
 ~]# cat /sys/class/net/eno1/device/uevent | grep PCI_SLOT_NAME
 PCI_SLOT_NAME=0000:61:00.0
 ```
+
+### flags 文件详解
+
+在 `/sys/class/net/${NetDeviceName}/flags` 文件中，通常是 16 进制的数字，e.g. `0x1303`、`0x1003`。想要理解这些数字，需要配合 if.h[^if.h] 代码中的内容才行，在代码中可以看到如下对 网络设备的 Flags 声明（源码中还有注释，解释了每个 Flag 的含义）：
+
+```c
+/* 声明了一个枚举类型 net_device_flags，为这些 Flags 定义了变量与数字的对应关系 */
+enum net_device_flags {
+/* for compatibility with glibc net/if.h */
+    IFF_UP				    = 1<<0,  /* sysfs */
+    IFF_BROADCAST			= 1<<1,  /* volatile */
+    IFF_DEBUG			    = 1<<2,  /* sysfs */
+    IFF_LOOPBACK			= 1<<3,  /* volatile */
+    IFF_POINTOPOINT		= 1<<4,  /* volatile */
+    IFF_NOTRAILERS		= 1<<5,  /* sysfs */
+    IFF_RUNNING			  = 1<<6,  /* volatile */
+    IFF_NOARP			    = 1<<7,  /* sysfs */
+    IFF_PROMISC			  = 1<<8,  /* sysfs */
+    IFF_ALLMULTI			= 1<<9,  /* sysfs */
+    IFF_MASTER			  = 1<<10, /* volatile */
+    IFF_SLAVE			    = 1<<11, /* volatile */
+    IFF_MULTICAST			= 1<<12, /* sysfs */
+    IFF_PORTSEL			  = 1<<13, /* sysfs */
+    IFF_AUTOMEDIA			= 1<<14, /* sysfs */
+    IFF_DYNAMIC			  = 1<<15, /* sysfs */
+    ......略
+}
+```
+
+这些代码利用了 [C 规范与标准库](/docs/2.编程/高级编程语言/C/C%20规范与标准库.md#位移操作符) 的位移运算符以为每个 Flags 设置了一个在二进制形式下的**标志位**，比如：
+
+- 1<<0 表示二进制的 1，对应 IFF_UP
+- 1<<4 表示二进制的 10000，对应 IFF_POINTOPOINT
+- 1<<12 表示二进制的 1000000000000，对应 IFF_MULTICAST
+- etc.
+
+> Notes: 所谓设置标志位，就是指通过位移让二进制形式的 1 出现在指定位，出现在第几位，第几位就表示某个特定的含义，比如上面 IFF_BROADCAST 1<<1 表示移动了 1 位，那就说明在第 2 位的数字用来表示 IFF_BROADCAST。由于每个位只有 0 和 1 两个数字，那么就可以用 0 表示没设置，1 表示已设置。
+>
+> 但是要注意的是，实际使用时代码中是需要进行计算的，而不是直接判断这个位置是 0 还是 1，这里这么描述只是实际计算结果的一种表现形式。
+
+想要判断一个网络设置了哪些 Flags，需要将 flags 文件中的 16 进制数转为 2 进制数。e.g. 0x1003 转为二进制是 1 0000 0000 0011，然后跟上面声明的 Flags 的二进制数进行 **与** 运算，运算结果为真，则表示设置了；运算结果为假，则表示没设置。此时可知道当前设置了哪些 Flags
+
+> Tip: 用 0x1003 举例的话，比如：
+> - `0x1003 & IFF_MULTICAST` 转为二进制形式的与运算 $\frac{1 0000 0000 0011}{1 0000 0000 0000}$，结果为 1 0000 0000 0000，大于 0，为真
+> - `0x1003 & IFF_DEBUG` 转为二进制形式的与运算 $\frac{1 0000 0000 0011}{0 0000 0000 0100}$，结果为 0 0000 0000 0000，等于 0，为假
+
+比如 [ip 命令中的代码](https://github.com/iproute2/iproute2/blob/v6.11.0/ip/ipaddress.c#L86) 就是这么做的：
+
+```c
+static void print_link_flags(FILE *fp, unsigned int flags, unsigned int mdown)
+{
+	open_json_array(PRINT_ANY, is_json_context() ? "flags" : "<");
+	if (flags & IFF_UP && !(flags & IFF_RUNNING))
+		print_string(PRINT_ANY, NULL,
+			     flags ? "%s," : "%s", "NO-CARRIER");
+	flags &= ~IFF_RUNNING;
+......略
+```
+
+如果是人话简单得理解的话，并不需要真的进行计算，只需要看 0x1003 转为二进制后的 1 0000 0000 0011，1 所在的位置，并找到该位置对应的是哪个 Flag 即可。这里的数从右至左数，第 1，2，13 这 3 个位置的值为 1，对照 if.h 的内容：
+
+- 第 1 个位置是 1<<0（1 移动了 0 位），i.e. IFF_UP
+- 第 2 个位置是 1<<1（1 移动了 1 位），i.e. IFF_BROADCAST
+- 第 13 个位置是 1<<12（1 移动了 12 位），i.e. IFF_MULTICAST
+
+最后可知道该网络设备具有 IFF_UP、IFF_BROADCAST、IFF_MULTICAST 这三个 Flags。
+
+通过这种方式，可以高效地表示多个信息的布尔值（true/false）。这一串声明，可以通过一个简单的 16 进制数表示出一个网络设备都设置了哪些 Flags。
+
+---
+
+在 glibc 的代码中，我们可以看到下面这些定义
+
+```c
+enum{
+    IFF_UP = 0x1,		        /* Interface is up.  */
+    IFF_BROADCAST = 0x2,	  /* Broadcast address valid.  */
+    IFF_DEBUG = 0x4,		    /* Turn on debugging.  */
+    IFF_LOOPBACK = 0x8,		  /* Is a loopback net.  */
+    IFF_POINTOPOINT = 0x10,	/* Interface is point-to-point link.  */
+    IFF_NOTRAILERS = 0x20,	/* Avoid use of trailers.  */
+    IFF_RUNNING = 0x40,		  /* Resources allocated.  */
+    IFF_NOARP = 0x80,		    /* No address resolution protocol.  */
+    IFF_PROMISC = 0x100,	  /* Receive all packets.  */
+    IFF_ALLMULTI = 0x200,	  /* Receive all multicast packets.  */
+    IFF_MASTER = 0x400,		  /* Master of a load balancer.  */
+    IFF_SLAVE = 0x800,		  /* Slave of a load balancer.  */
+    IFF_MULTICAST = 0x1000,	/* Supports multicast.  */
+    IFF_PORTSEL = 0x2000,	  /* Can set media type.  */
+    IFF_AUTOMEDIA = 0x4000,	/* Auto media select active.  */
+    IFF_DYNAMIC = 0x8000	  /* Dialup device with changing addresses.  */
+}
+```
+
+用其中 `IFF_RUNNING = 0x40` 举例，0x40 转为二进制是 1000000，正好对应 1 移动 6 位，i.e. 1<<6，刚好对应 Linux 内核代码 if.h[^if.h] 中的 `IFF_RUNNING = 1<<6`。这也侧面印证了代码中 `/* for compatibility with glibc net/if.h */` 这段注释内容。
 
 # 网卡驱动
 

@@ -40,4 +40,4 @@ Iproute2 基于 Linux 的 [Netlink](/docs/2.编程/高级编程语言/Go/Go%20�
 
 # 关联文件与配置
 
-**/etc/iproute2/**#
+**/etc/iproute2/** #
