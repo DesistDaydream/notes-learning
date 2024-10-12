@@ -38,7 +38,6 @@ Etcd 是 CoreOS 基于[Raft 共识算法](/docs/3.集群与分布式/分布式�
 - **Cluster(集群)** # 由多个 Member 构成可以协同工作的 etcd 集群。
 - **Peer** # 对同一个 etcd 集群中另外一个 Member 的称呼。
 - **Client** # 向 etcd 集群发送 HTTP 请求的客户端。
-- **WAL** # 预写式日志，etcd 用于持久化存储的日志格式。
 - **snapshot** # etcd 防止 WAL 文件过多而设置的快照，存储 etcd 数据状态。
 - **Proxy** # etcd 的一种模式，为 etcd 集群提供反向代理服务。
 - **Leader** # Raft 算法中通过竞选而产生的处理所有数据提交的节点。

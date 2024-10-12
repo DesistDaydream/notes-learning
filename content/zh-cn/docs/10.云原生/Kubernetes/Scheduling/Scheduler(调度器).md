@@ -1,5 +1,8 @@
 ---
 title: Scheduler(调度器)
+linkTitle: Scheduler(调度器)
+date: 2020-10-12T16:21:00
+weight: 20
 ---
 
 # 概述
@@ -7,6 +10,7 @@ title: Scheduler(调度器)
 > 参考：
 >
 > - [官方文档, 概念 - 调度与驱逐](https://kubernetes.io/docs/concepts/scheduling-eviction/)
+> - [公众号 - 云原生社区动态，6 张图带你深入了解 kube-scheduler](https://mp.weixin.qq.com/s/GYmi_5lcG-iEPgZ4-dI1dg)
 
 **Scheduler(调度器)** 负责决定 Pod 与 Node 的匹配关系，并将 Pod 调度到匹配到的 Node 上，以便 Kubelet 可以运行这些 Pod。Scheduler 在调度时会充分考虑 Cluster 的拓扑结构，当前各个节点的负载，以及应用对高可用、性能、数据亲和性的需求。
 

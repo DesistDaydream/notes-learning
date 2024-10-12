@@ -49,14 +49,14 @@ Git 仓库中的声明式配置描述了目标环境当前所需基础设施的�
 
 # CI/CD 工具
 
-- [Jenkins](/docs/10.云原生/DevOps/Jenkins/Jenkins.md)
+- [Jenkins](/docs/9.运维/DevOps/Jenkins/Jenkins.md)
 - Tekton # 云原生推荐
 - Argocd # 云原生推荐
-- [Drone](/docs/10.云原生/DevOps/Drone/Drone.md)
-- [Skaffold](/docs/10.云原生/DevOps/Skaffold/Skaffold.md)(k8s 专属)
+- [Drone](/docs/9.运维/DevOps/Drone/Drone.md)
+- [Skaffold](/docs/9.运维/DevOps/Skaffold/Skaffold.md)(k8s 专属)
 - [GitLab](/docs/2.编程/Programming%20tools/SCM/GitLab/GitLab.md)-ci
 - Dagger # Docker 创始人 Solomon Hykes 推出的产品
-    - [公众号，k8s 技术圈-Docker 创始人的新产品 Dagger 好用吗？](https://mp.weixin.qq.com/s/4hwtgV6WJ-60FL1lGHoAQw)
-    - [公众号，k8s 技术圈-数据约束语言 CUE 是何方神圣？](https://mp.weixin.qq.com/s/J2Hid1dO8ebkWL5UrVBeyA)
+  - [公众号，k8s 技术圈-Docker 创始人的新产品 Dagger 好用吗？](https://mp.weixin.qq.com/s/4hwtgV6WJ-60FL1lGHoAQw)
+  - [公众号，k8s 技术圈-数据约束语言 CUE 是何方神圣？](https://mp.weixin.qq.com/s/J2Hid1dO8ebkWL5UrVBeyA)
 - Zadig # [GitHub 项目，koderover/zadig](https://github.com/koderover/zadig)
-    - 一款面向开发者设计的云原生持续交付(Continuous Delivery)产品，具备高可用 CI/CD 能力，提供云原生运行环境，支持开发者本地联调、微服务并行构建和部署、集成测试等。Zadig 不改变现有流程，无缝集成 Github/Gitlab、Jenkins、多家云厂商等，运维成本极低。我们的目标是通过云原生技术的运用和工程产品赋能，打造极致、高效、愉悦的开发者工作体验，让工程师成为企业创新的核心引擎。
+  - 一款面向开发者设计的云原生持续交付(Continuous Delivery)产品，具备高可用 CI/CD 能力，提供云原生运行环境，支持开发者本地联调、微服务并行构建和部署、集成测试等。Zadig 不改变现有流程，无缝集成 Github/Gitlab、Jenkins、多家云厂商等，运维成本极低。我们的目标是通过云原生技术的运用和工程产品赋能，打造极致、高效、愉悦的开发者工作体验，让工程师成为企业创新的核心引擎。

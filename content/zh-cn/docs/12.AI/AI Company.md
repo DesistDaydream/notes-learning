@@ -20,6 +20,7 @@ weight: 20
 ## 产品
 
 [ChatGPT](/docs/12.AI/AI%20Projects/ChatGPT.md)
+
 ## API
 
 > 参考：
@@ -35,7 +36,6 @@ weight: 20
 > - [官网](https://www.anthropic.com/)
 
 Anthropic 是一家由前 OpenAI 团队成员创立的初创公司，它推出了一款名为 Claude 的 AI 聊天机器人，将其作为 ChatGPT 的竞争对手。
-
 
 ## 产品
 

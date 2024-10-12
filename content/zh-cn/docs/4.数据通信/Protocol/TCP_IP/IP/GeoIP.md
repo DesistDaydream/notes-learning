@@ -35,7 +35,7 @@ IPv4 和 IPv6 地址通常以分层方式分配。**ISP(互联网服务提供商
 | [LACNIC](http://www.lacnic.net/)   | Latin America and some Caribbean Islands(拉丁美洲、一些加勒比岛屿)  |
 | [RIPE NCC](http://www.ripe.net/)   | Europe, the Middle East, and Central Asia(欧洲、中东、中亚)     |
 
-对 IP 地址的主要作用是根据[全球政策](http://www.icann.org/en/general/global-addressing-policies.html)所述的需求将未分配地址池分配给 RIR，并记录 [IETF](docs/Standard/Internet/IETF.md) 所做的协议分配。当 RIR 需要在其区域内分配或分配更多 IP 地址时，我们会向 RIR 进行额外分配。我们不会直接向 ISP 或最终用户进行分配，除非在特定情况下，例如分配多播地址或其他协议特定需求。
+对 IP 地址的主要作用是根据[全球政策](http://www.icann.org/en/general/global-addressing-policies.html)所述的需求将未分配地址池分配给 RIR，并记录 [IETF](/docs/Standard/Internet/IETF.md) 所做的协议分配。当 RIR 需要在其区域内分配或分配更多 IP 地址时，我们会向 RIR 进行额外分配。我们不会直接向 ISP 或最终用户进行分配，除非在特定情况下，例如分配多播地址或其他协议特定需求。
 
 APNIC 是全球 5 个地区级的 Internet 注册机构（RIR）之一，负责亚太地区的以下事务：
 
@@ -57,7 +57,7 @@ HTTP request sent, awaiting response... 200 OK
 Length: 3875233 (3.7M) [text/plain]
 Saving to: ‘delegated-apnic-latest’
 
-delegated-apnic-latest             100%[===============================================================>]   3.70M   550KB/s    in 8.5s    
+delegated-apnic-latest             100%[===============================================================>]   3.70M   550KB/s    in 8.5s
 
 2024-10-08 15:27:42 (448 KB/s) - ‘delegated-apnic-latest’ saved [3875233/3875233]
 
@@ -169,4 +169,3 @@ apnic|CN|ipv4|223.255.252.0|512|20110414|allocated
 [GitHub 项目，lionsoul2014/ip2region](https://github.com/lionsoul2014/ip2region) # 一个离线IP地址定位库和IP定位数据管理框架，10微秒级别的查询效率，提供了众多主流编程语言的 `xdb` 数据生成和查询客户端实现。
 
 https://github.com/Loyalsoldier/geoip # GeoIP 规则文件加强版，支持自行定制 V2Ray dat 格式文件 geoip.dat、MaxMind mmdb 格式文件、sing-box SRS 格式文件、mihomo MRS 格式文件、Clash ruleset、Surge ruleset 等。
-

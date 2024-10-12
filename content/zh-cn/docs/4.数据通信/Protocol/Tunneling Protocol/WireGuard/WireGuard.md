@@ -13,9 +13,8 @@ weight: 1
 > - [zx2c4 源码，wireguard-linux](https://git.zx2c4.com/wireguard-linux)
 >   - [GitHub 项目，WrieGuard/wireguard-linux](https://github.com/WireGuard/wireguard-linux)
 > - [Wiki，WireGuard](https://en.wikipedia.org/wiki/WireGuard)
-> - [IPFire 博客，Why Not WireGuard](https://blog.ipfire.org/post/why-not-wireguard)
-> - [米开朗基杨博客，WireGuard 教程：WireGuard 的工作原理](https://fuckcloudnative.io/posts/wireguard-docs-theory/)
 > - [张馆长博客，个人办公用 wireguard 组网笔记](https://zhangguanzhang.github.io/2020/08/05/wireguard-for-personal/)
+> - [米开朗基杨博客，WireGuard 教程：WireGuard 的工作原理](https://fuckcloudnative.io/posts/wireguard-docs-theory/)
 
 WireGuard 是一种可以实现加密 VPN 的通信协议。通常也表示为实现该通信协议的软件。
 
@@ -26,17 +25,13 @@ WireGuard 是由 Jason Donenfeld 等人用 C 语言编写的一个开源 VPN 协
 
 WireGuard 没有传统的 Server 端、Client 端的概念，在 WireGuard 构建的 VPN 环境中，使用 **Peer** 来描述 VPN 中的每一个网络节点，这个 Peer 可以是 服务器、路由器、etc. 。通常来说，一个具有固定公网 IP 的 Peer，非官方得称为 **Bounce Server/Relay Server(弹跳服务器/中继服务器)**。各个在 NAT 后面的 Peer，可以通过 Bounce Server 这个 Peer 直接互通。
 
-## Wireguard 的不足
+## Wireguard 的优缺点
 
 [公众号-云原生实验室，WireGuard 真的很香吗？香个屁！](https://mp.weixin.qq.com/s/OvqpL9aO6oMSL4GgjE6zbw)
 
-# 待整理文章内容
+- 翻译自: [IPFire 博客，Why Not WireGuard](https://blog.ipfire.org/post/why-not-wireguard)
 
-WireGuard 与其他 VPN 协议的性能测试对比：
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kpbis3/1616160904902-4ab1975e-fa98-4b9e-b63b-775e63fa1828.jpeg)
-
-可以看到 WireGuard 直接碾压其他 VPN 协议。再来说说 OpenVPN，大约有 10 万行代码，而 WireGuard 只有大概 4000 行代码，代码库相当精简，简直就是件艺术品啊。你再看看 OpenVPN 的性能，算了不说了。
+[米开朗基杨博客，WireGuard 教程：WireGuard 的工作原理](https://fuckcloudnative.io/posts/wireguard-docs-theory/)
 
 WireGuard 优点：
 
@@ -59,47 +54,47 @@ WireGuard 不能做的事：
 
 当然，你可以使用 WireGuard 作为底层协议来实现自己想要的功能，从而弥补上述这些缺憾。
 
-本系列 WireGuard 教程分为两个部分，第一部分偏理论，第二部分偏实践。本文是第一部分，下面开始正文教程。
+## WireGuard 的性能
 
-1. WireGuard 术语
+WireGuard 声称其性能比大多数 VPN 协议更好，但这个事情有很多争议，比如某些加密方式支持硬件层面的加速。
 
-Peer/Node/Device
+WireGuard 直接在内核层面处理路由，直接使用系统内核的加密模块来加密数据，和 Linux 原本内置的密码子系统共存，原有的子系统能通过 API 使用 WireGuard 的 Zinc 密码库。WireGuard 使用 UDP 协议传输数据，在不使用的情况下默认不会传输任何 UDP 数据包，所以比常规 VPN 省电很多，可以像 55 一样一直挂着使用，速度相比其他 VPN 也是压倒性优势。
 
-连接到 VPN 并为自己注册一个 VPN 子网地址（如 192.0.2.3）的主机。还可以通过使用逗号分隔的 CIDR 指定子网范围，为其自身地址以外的 IP 地址选择路由。
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kpbis3/1616160904933-319867cc-3391-4d97-bf43-e8c40786c553.jpeg)
 
-中继服务器（Bounce Server）
+关于性能比较的更多信息可以参考下面几篇文档：
 
-一个公网可达的对等节点，可以将流量中继到 NAT 后面的其他对等节点。Bounce Server 并不是特殊的节点，它和其他对等节点一样，唯一的区别是它有公网 IP，并且开启了内核级别的 IP 转发，可以将 VPN 的流量转发到其他客户端。
+- wireguard.com/performance
+- reddit.com/r/linux/comments/9bnowo/wireguard_benchmark_between_two_servers_with_10
+- restoreprivacy.com/openvpn-ipsec-wireguard-l2tp-ikev2-protocols
 
-子网（Subnet）
+# WireGuard 的工作原理
 
-一组私有 IP，例如 192.0.2.1-255 或 192.168.1.1/24，一般在 NAT 后面，例如办公室局域网或家庭网络。
+原文: [米开朗基杨博客，WireGuard 教程：WireGuard 的工作原理](https://fuckcloudnative.io/posts/wireguard-docs-theory/)
 
-CIDR 表示法
+## WireGuard 术语
 
-这是一种使用掩码表示子网大小的方式，这个不用解释了。
+**Peer/Node/Device**
 
-NAT
+连接到 VPN 并为自己注册一个 VPN 子网地址（如 192.0.2.3）的主机。还可以通过使用逗号分隔的 [CIDR 表示法](/docs/4.数据通信/数据通信/CIDR.md) 指定子网范围，为其自身地址以外的 IP 地址选择路由。
 
-子网的私有 IP 地址由路由器提供，通过公网无法直接访问私有子网设备，需要通过 NAT 做网络地址转换。路由器会跟踪发出的连接，并将响应转发到正确的内部 IP。
+**Bounce/Relay Server(中继服务器)**
 
-公开端点（Public Endpoint）
+一个公网可达的对等节点，可以将流量中继到 NAT 后面的其他对等节点。Bounce/Relay Server 并不是特殊的节点，它和其他对等节点一样，唯一的区别是它有公网 IP，并且开启了内核级别的 IP 转发，可以将 VPN 的流量转发到其他客户端。
+
+**Public Endpoint(公开端点)**
 
 节点的公网 IP 地址:端口，例如 123.124.125.126:1234，或者直接使用域名 some.domain.tld:1234。如果对等节点不在同一子网中，那么节点的公开端点必须使用公网 IP 地址。
 
-私钥（Private key）
+**Private key(私钥)**
 
 单个节点的 WireGuard 私钥，生成方法是：wg genkey > example.key。
 
-公钥（Public key）
+**Public key(公钥)**
 
 单个节点的 WireGuard 公钥，生成方式为：wg pubkey < example.key > example.key.pub。
 
-DNS
-
-域名服务器，用于将域名解析为 VPN 客户端的 IP，不让 DNS 请求泄漏到 VPN 之外。
-
-2. WireGuard 工作原理
+## WireGuard 工作原理
 
 中继服务器工作原理
 
@@ -133,7 +128,7 @@ Wireguard 如何路由流量
 
 如果某一端同时连接了多个对端，当它想访问某个 IP 时，如果有具体的路由可用，则优先使用具体的路由，否则就会将流量转发到中继服务器，然后中继服务器再根据系统路由表进行转发。你可以通过测量 ping 的时间来计算每一跳的长度，并通过检查对端的输出（wg show wg0）来找到 WireGuard 对一个给定地址的路由方式。
 
-WireGuard 报文格式
+## WireGuard 报文格式
 
 WireGuard 使用加密的 UDP 报文来封装所有的数据，UDP 不保证数据包一定能送达，也不保证按顺序到达，但隧道内的 TCP 连接可以保证数据有效交付。WireGuard 的报文格式如下图所示：
 
@@ -142,24 +137,10 @@ WireGuard 使用加密的 UDP 报文来封装所有的数据，UDP 不保证数�
 关于 WireGuard 报文的更多信息可以参考下面几篇文档：
 
 - wireshark.org/docs/dfref/w/wg.html
-- Lekensteyn/wireguard-dissector\[2]
+- Lekensteyn/wireguard-dissector
 - nbsoftsolutions.com/blog/viewing-wireguard-traffic-with-tcpdump
 
-WireGuard 的性能
-
-WireGuard 声称其性能比大多数 VPN 协议更好，但这个事情有很多争议，比如某些加密方式支持硬件层面的加速。
-
-WireGuard 直接在内核层面处理路由，直接使用系统内核的加密模块来加密数据，和 Linux 原本内置的密码子系统共存，原有的子系统能通过 API 使用 WireGuard 的 Zinc 密码库。WireGuard 使用 UDP 协议传输数据，在不使用的情况下默认不会传输任何 UDP 数据包，所以比常规 VPN 省电很多，可以像 55 一样一直挂着使用，速度相比其他 VPN 也是压倒性优势。
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kpbis3/1616160904933-319867cc-3391-4d97-bf43-e8c40786c553.jpeg)
-
-关于性能比较的更多信息可以参考下面几篇文档：
-
-- wireguard.com/performance
-- reddit.com/r/linux/comments/9bnowo/wireguard_benchmark_between_two_servers_with_10
-- restoreprivacy.com/openvpn-ipsec-wireguard-l2tp-ikev2-protocols
-
-WireGuard 安全模型
+## WireGuard 安全模型
 
 WireGuard 使用以下加密技术来保障数据的安全：
 
@@ -178,7 +159,7 @@ WireGuard 的加密技术本质上是 Trevor Perrin 的 Noise 框架的实例化
 - wireguard.com/talks/blackhat2018-slides.pdf
 - arstechnica.com/gadgets/2018/08/wireguard-vpn-review-fast-connections-amaze-but-windows-support-needs-to-happen
 
-WireGuard 密钥管理
+## WireGuard 密钥管理
 
 WireGuard 通过为每个对等节点提供简单的公钥和私钥来实现双向认证，每个对等节点在设置阶段生成密钥，且只在对等节点之间共享密钥。每个节点除了公钥和私钥，不再需要其他证书或预共享密钥。
 
@@ -203,7 +184,54 @@ PostUp = wg set %i private-key /etc/wireguard/wg0.key <(cat /some/path/%i/privke
 
 从技术上讲，多个服务端之间可以共享相同的私钥，只要客户端不使用相同的密钥同时连接到两个服务器。但有时客户端会需要同时连接多台服务器，例如，你可以使用 DNS 轮询来均衡两台服务器之间的连接，这两台服务器配置相同。大多数情况下，每个对等节点都应该使用独立的的公钥和私钥，这样每个对等节点都不能读取到对方的流量，保障了安全性。
 
-理论部分就到这里，下篇文章将会手把手教你如何从零开始配置 WireGuard，这里会涉及到很多高级的配置方法，例如动态 IP、NAT 到 NAT、IPv6 等等。
+# WireGuard 关联文件与配置
+
+**/etc/wireguard/** # WireGuard 运行时配置文件的存放路径。
+
+# 命令行工具
+
+https://github.com/WireGuard/wireguard-tools 包含如下两个工具
+
+- wg
+- wg-quick
+
+## wg
+
+> 参考：
+>
+> - [Manual(手册)，wg](https://www.man7.org/linux/man-pages/man8/wg.8.html)
+
+## wg-quick
+
+> 参考：
+>
+> - [Manual(手册)，wg-quick(8)](https://man7.org/linux/man-pages/man8/wg-quick.8.html)
+
+### Syntax(语法)
+
+**wg-quick [ up | down | save | strip ] [ CONFIG_FILE | INTERFACE ]**
+
+# WireGuard 衍生品
+
+[Tailscale](/docs/4.数据通信/Protocol/Tunneling%20Protocol/Tailscale/Tailscale.md)
+
+- 自研 DERP 协议
+- 一种基于 WireGuard 的虚拟组网工具
+
+NetBird
+
+- https://github.com/netbirdio/netbird
+- https://mp.weixin.qq.com/s/amPzZb7NZCtSls0p8k-2HQ
+- 简要来说 NetBird 是一个配置简易的，基于 WireGuard 的 VPN。它与 Tailscale 很像，但是区别也比较明显。**Tailscale 是在用户态实现了 WireGuard 协议**，无法使用 WireGuard 原生的命令行工具来进行管理。而 **NetBird 直接使用了内核态的 WireGuard**，可以使用命令行工具 wg 来查看和管理。
+
+EasyTier
+
+- https://github.com/EasyTier/EasyTier
+- 一个简单、安全、去中心化的内网穿透 VPN 组网方案，使用 Rust 语言和 Tokio 框架实现。
+
+# 待整理内容
+
+原文: [米开朗基杨，WireGuard 教程：WireGuard 的搭建使用与配置详解](https://icloudnative.io/posts/wireguard-docs-practice/)
 
 ## 高级特性
 
@@ -277,7 +305,7 @@ UDP 打洞的原理：
 
 为什么要这样做呢？好吧，我们假装是互联网上的一个 ICMP 跳越点，礼貌地告诉服务器它原来的 **ICMP 回应请求包**无法传递到 `3.3.3.3`。而你的 NAT 是一个聪明的设备，它会注意到 **ICMP 超时数据包**内的数据包与服务器发出 **ICMP 回应请求包**相匹配。然后它将 **ICMP 超时数据包**转发回 NAT 后面的服务器，包括来自客户端的完整 IP 数据包头，从而让服务端知道客户端 IP 地址是什么！
 
-现在这种类似的 UDP 打洞方法受到了很多的限制，详情可以参考[上篇文章](http://mp.weixin.qq.com/s?__biz=MzU1MzY4NzQ1OA==&mid=2247485991&idx=1&sn=b1a79b565e82ca034ae2c2b2bd9e3bcb&chksm=fbee4aeacc99c3fc0cf45c8ae9a84beb44874383cf337e284083cc81abaf23cbcf65ab58ea39&scene=21#wechat_redirect)，这里不过多阐述。除了 UDP 打洞之外，我们仍然可以使用硬编码的方式指定两个对等节点（peer）的公网地址和端口号，这个方法对大多数 NAT 网络都有效。
+现在这种类似的 UDP 打洞方法受到了很多的限制，详情可以参考[上篇文章](https://mp.weixin.qq.com/s/o6OyuFBFanTcp3-XnlYjlw)，这里不过多阐述。除了 UDP 打洞之外，我们仍然可以使用硬编码的方式指定两个对等节点（peer）的公网地址和端口号，这个方法对大多数 NAT 网络都有效。
 
 #### 源端口随机化
 
@@ -293,8 +321,11 @@ UDP 打洞的原理：
 #### 动态 IP 地址
 
 WireGuard 只会在启动时解析域名，如果你使用 `DDNS` 来动态更新域名解析，那么每当 IP 发生变化时，就需要重新启动 WireGuard。目前建议的解决方案是使用 `PostUp` 钩子每隔几分钟或几小时重新启动 WireGuard 来强制解析域名。
+
 总的来说，`NAT-to-NAT` 连接极为不稳定，而且还有一堆其他的限制，所以还是建议通过中继服务器来通信。
+
 NAT-to-NAT 配置示例：
+
 Peer1：
 
 ```ini
@@ -321,14 +352,14 @@ PersistentKeepalive = 25
 
 更多资料：
 
-- **samyk/pwnat**
-- **en.wikipedia.org/wiki/UDP_hole_punching**
-- **stackoverflow.com/questions/8892142/udp-hole-punching-algorithm**
-- **stackoverflow.com/questions/12359502/udp-hole-punching-not-going-through-on-3g**
-- **stackoverflow.com/questions/11819349/udp-hole-punching-not-possible-with-mobile-provider**
-- **WireGuard/WireGuard@`master`/contrib/examples/nat-hole-punching**
-- **staaldraad.github.io/2017/04/17/nat-to-nat-with-wireguard**
-- **golb.hplar.ch/2019/01/expose-server-vpn.html**
+- samyk/pwnat
+- en.wikipedia.org/wiki/UDP_hole_punching
+- stackoverflow.com/questions/8892142/udp-hole-punching-algorithm
+- stackoverflow.com/questions/12359502/udp-hole-punching-not-going-through-on-3g
+- stackoverflow.com/questions/11819349/udp-hole-punching-not-possible-with-mobile-provider
+- WireGuard/WireGuard@master/contrib/examples/nat-hole-punching
+- staaldraad.github.io/2017/04/17/nat-to-nat-with-wireguard
+- golb.hplar.ch/2019/01/expose-server-vpn.html
 
 ### 动态分配子网 IP
 
@@ -363,8 +394,11 @@ WireGuard 也可以从任意命令的输出或文件中读取内容来修改配�
 ### 容器化
 
 WireGuard 也可以跑在容器中，最简单的方式是使用 `--privileged` 和 `--cap-add=all` 参数，让容器可以加载内核模块。
+
 你可以让 WireGuard 跑在容器中，向宿主机暴露一个网络接口；也可以让 WireGuard 运行在宿主机中，向特定的容器暴露一个接口。
+
 下面给出一个具体的示例，本示例中的 `vpn_test` 容器通过 WireGuard 中继服务器来路由所有流量。本示例中给出的容器配置是 `docker-compose` 的配置文件格式。
+
 中继服务器容器配置：
 
 ```yaml
@@ -434,48 +468,3 @@ PublicKey = zJNKewtL3gcHdG62V3GaBkErFtapJWsAx+2um0c0B1s=
 AllowedIPs = 192.0.2.1/24,0.0.0.0/0
 PersistentKeepalive = 21
 ```
-
-# WireGuard 关联文件与配置
-
-**/etc/wireguard/** # WireGuard 运行时配置文件的存放路径。
-
-# 命令行工具
-
-https://github.com/WireGuard/wireguard-tools 包含如下两个工具
-
-- wg
-- wg-quick
-
-## wg
-
-> 参考：
->
-> - [Manual(手册)，wg](https://www.man7.org/linux/man-pages/man8/wg.8.html)
-
-## wg-quick
-
-> 参考：
->
-> - [Manual(手册)，wg-quick(8)](https://man7.org/linux/man-pages/man8/wg-quick.8.html)
-
-### Syntax(语法)
-
-**wg-quick [ up | down | save | strip ] [ CONFIG_FILE | INTERFACE ]**
-
-# WireGuard 衍生品
-
-[Tailscale](/docs/4.数据通信/Protocol/Tunneling%20Protocol/Tailscale/Tailscale.md)
-
-- 自研 DERP 协议
-- 一种基于 WireGuard 的虚拟组网工具
-
-NetBird
-
-- https://github.com/netbirdio/netbird
-- https://mp.weixin.qq.com/s/amPzZb7NZCtSls0p8k-2HQ
-- 简要来说 NetBird 是一个配置简易的，基于 WireGuard 的 VPN。它与 Tailscale 很像，但是区别也比较明显。**Tailscale 是在用户态实现了 WireGuard 协议**，无法使用 WireGuard 原生的命令行工具来进行管理。而 **NetBird 直接使用了内核态的 WireGuard**，可以使用命令行工具 wg 来查看和管理。
-
-EasyTier
-
-- https://github.com/EasyTier/EasyTier
-- 一个简单、安全、去中心化的内网穿透 VPN 组网方案，使用 Rust 语言和 Tokio 框架实现。

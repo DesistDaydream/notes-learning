@@ -12,7 +12,7 @@ weight: 20
 > - [Wiki 类别，Hashing](https://en.wikipedia.org/wiki/Category:Hashing)
 > - [Wiki，Hash function](https://en.wikipedia.org/wiki/Hash_function)
 
-Hashing 是一种实现数据 Retrieval(检索) 的算法，有多种 Hashing 算法，比如
+Hashing 是一种实现数据 **Retrieval(检索)** 的算法，有多种 Hashing 算法，比如
 
 - [Consistent hashing](/docs/5.数据存储/Retrieval/Consistent%20hashing.md)
 

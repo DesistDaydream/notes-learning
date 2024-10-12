@@ -1,11 +1,14 @@
 ---
 title: kube-vip
+linkTitle: kube-vip
+date: 2022-10-12T15:55:00
+weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，kube-vip/kube-vip](https://github.com/kube-vip/kube-vip)
 > - [官网](https://kube-vip.io/)
 > - [官方文档，使用静态 Pod 部署 kube-vip](https://kube-vip.io/hybrid/static/)

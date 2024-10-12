@@ -5,7 +5,7 @@ title: ConfigMap 配置详解
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，用户指南-ConfigMap](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/)
 > - [GitHub 代码中的可用的配置，及其默认值](https://github.com/kubernetes/ingress-nginx/blob/master/internal/ingress/controller/config/config.go)
 
@@ -49,7 +49,7 @@ http {
 - 默认值：`'$remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $request_length $request_time [$proxy_upstream_name] [$proxy_alternative_upstream_name] $upstream_addr $upstream_response_length $upstream_response_time $upstream_status $req_id'`
 - 对应指令：[log_format](http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format)
 
-**use-geoip2(BOOL)** # 是否启用 [geoip2 模块](docs/Web/Nginx/Nginx%20配置详解/多用途模块的指令/geoip2%20模块.md)。
+**use-geoip2(BOOL)** # 是否启用 [geoip2 模块](/docs/Web/Nginx/Nginx%20配置详解/多用途模块的指令/geoip2%20模块.md)。
 
 - 默认值：`false`
 - 对应指令：无

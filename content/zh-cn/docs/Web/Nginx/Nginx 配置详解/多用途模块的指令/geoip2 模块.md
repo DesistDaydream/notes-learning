@@ -8,7 +8,7 @@ title: geoip2 模块
 >
 > - [GitHub 项目，leev/ngx_http_geoip2_module](https://github.com/leev/ngx_http_geoip2_module)
 
-从[这个页面可](https://www.maxmind.com/en/accounts/545756/geoip/downloads)以下载 GeoIP2 和 旧版的 [GeoIP](docs/4.数据通信/Protocol/TCP_IP/IP/GeoIP.md) 数据库
+从[这个页面可](https://www.maxmind.com/en/accounts/545756/geoip/downloads)以下载 GeoIP2 和 旧版的 [GeoIP](/docs/4.数据通信/Protocol/TCP_IP/IP/GeoIP.md) 数据库
 
 geoip2 模块与 geo/geoip 模块的功能类似。geoip2 模块根据 客户端的 IP 信息，使用 MaxMind 的 geoip2 数据库中的值创建变量。只不过指令用法稍有不同。
 

@@ -5,6 +5,7 @@ title: Argo CD
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，argoproj/argo-cd](https://github.com/argoproj/argo-cd)
 > - [Argo CD 保姆级入门教程](https://mp.weixin.qq.com/s/r1DnnHptOTaS_Gp8tpPWdg)
 
@@ -20,7 +21,7 @@ Argo CD 是以 Kubernetes 作为基础设施，遵循声明式 GitOps 理念的�
 
 从上篇文章『👉[GitOps 介绍\[2\]](http://mp.weixin.qq.com/s?__biz=MzU1MzY4NzQ1OA==&mid=2247509873&idx=1&sn=dd6daee66f39a965e4680ecd91f884d7&chksm=fbede7bccc9a6eaa6ddf5d082ed20a31d1956425eb8129428b2e2701fb216ef331a706f6d008&scene=21#wechat_redirect)』可以知道，目前大多数 CI/CD 工具都使用基于 Push 的部署模式，例如 Jenkins、CircleCI 等。这种模式一般都会在 CI 流水线运行完成后执行一个命令（比如 kubectl）将应用部署到目标环境中。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cogrm6/1662076442944-8d47843e-5af5-4d31-ba22-3e8e6194bc88.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/argocd/1662076442944-8d47843e-5af5-4d31-ba22-3e8e6194bc88.jpeg)
 
 这种 CD 模式的缺陷很明显：
 
@@ -37,13 +38,13 @@ Argo CD 是以 Kubernetes 作为基础设施，遵循声明式 GitOps 理念的�
 
 Argo CD 会被部署在 Kubernetes 集群中，使用的是基于 Pull 的部署模式，它会周期性地监控应用的实际状态，也会周期性地拉取 Git 仓库中的配置清单，并将实际状态与期望状态进行比较，如果实际状态不符合期望状态，就会更新应用的实际状态以匹配期望状态。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cogrm6/1662076443010-40f73633-ab15-4158-8e71-f792a2b8fe11.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/argocd/1662076443010-40f73633-ab15-4158-8e71-f792a2b8fe11.png)
 
 无论是通过 CI 流水线触发更新 K8s 编排文件，还是 DevOps 工程师直接修改 K8s 编排文件，Argo CD 都会自动拉取最新的配置并应用到 K8s 集群中。
 
 最终会得到一个相互隔离的 CI 与 CD 流水线，CI 流水线通常由研发人员（或者 DevOps 团队）控制，CD 流水线通常由集群管理员（或者 DevOps 团队）控制。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cogrm6/1662076442866-9f57ee65-a081-468a-8013-cb6319c73a51.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/argocd/1662076442866-9f57ee65-a081-468a-8013-cb6319c73a51.png)
 
 ## Argo CD 的优势
 
@@ -67,7 +68,7 @@ Argo CD 会定期拉取最新配置并应用到集群中，一旦最新的配置
 
 如果你在青云\[3]北京 3 区中的 KubeSphere\[4] 集群出现故障，且短期内不可恢复，可以直接创建一个新集群，然后将 Argo CD 连接到 Git 仓库，这个仓库包含了整个集群的所有配置声明。最终新集群的状态会与之前旧集群的状态一致，完全不需要人工干预。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cogrm6/1662076442877-2851ab43-7392-4cf9-8328-2403d8d2c586.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/argocd/1662076442877-2851ab43-7392-4cf9-8328-2403d8d2c586.png)
 
 ### 使用 Git 实现访问控制
 
@@ -75,7 +76,7 @@ Argo CD 会定期拉取最新配置并应用到集群中，一旦最新的配置
 
 这样做的好处是，除了集群管理员和少数人员之外，其他人不再需要直接访问 Kubernetes 集群，只需访问 Git 仓库即可。对于程序而言也是如此，类似于 Jenkins 这样的 CI 工具也不再需要访问 Kubernetes 的权限，因为只有 Argo CD 才可以 apply 配置清单，而且 Argo CD 已经部署在 Kubernetes 集群中，必要的访问权限已经配置妥当，这样就不需要给集群外的任意人或工具提供访问的证书，可以提供更强大的安全保障。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cogrm6/1662076443389-772dc87a-8c2c-4ba9-aad2-310ec93fcb50.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/argocd/1662076443389-772dc87a-8c2c-4ba9-aad2-310ec93fcb50.png)
 
 ### 扩展 Kubernetes
 
@@ -87,7 +88,7 @@ Argo CD 会定期拉取最新配置并应用到集群中，一旦最新的配置
 
 ## Argo CD 架构
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cogrm6/1662076443403-3ee90747-ee9b-44c4-9990-0ec25bff6e51.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/argocd/1662076443403-3ee90747-ee9b-44c4-9990-0ec25bff6e51.png)
 
 从功能架构来看，Argo CD 主要有三个组件：API Server、Repository Server 和 Application Controller。从 GitOps 工作流的角度来看，总共分为 3 个阶段：检索、调谐和呈现。
 
@@ -184,8 +185,8 @@ Argo CD 的 Helm Chart 目前由社区维护，地址：https://github.com/argop
 接下来开始部署 Argo CD：
 
 ```bash
-$ kubectl create namespace argocd
-$ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 
 查看部署结果：
@@ -230,17 +231,17 @@ Forwarding from [::1]:8080 -> 8080
 初始密码以明文形式存储在 Secret `argocd-initial-admin-secret` 中，可以通过以下命令获取：
 
 ```bash
-$ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
 ```
 
 也可以通过以下命令来修改登录密码：
 
 ```bash
-$ argocd account update-password --account admin --current-password xxxx --new-password xxxx
+argocd account update-password --account admin --current-password xxxx --new-password xxxx
 ```
 
 登录后的界面：
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cogrm6/1662076443531-40c539e0-8797-4c46-b641-f433feeb83b8.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/argocd/1662076443531-40c539e0-8797-4c46-b641-f433feeb83b8.png)
 
 ## Argo CD 核心概念
 
@@ -248,7 +249,7 @@ $ argocd account update-password --account admin --current-password xxxx --new-p
 
 ### Argo CD Application
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cogrm6/1662076443778-4339e877-616e-464e-a6ef-b2f02ff400e6.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/argocd/1662076443778-4339e877-616e-464e-a6ef-b2f02ff400e6.png)
 
 Argo CD 中的 Application 定义了 Kubernetes 资源的**来源**（Source）和**目标**（Destination）。来源指的是 Git 仓库中 Kubernetes 资源配置清单所在的位置，而目标是指资源在 Kubernetes 集群中的部署位置。
 
@@ -260,7 +261,7 @@ Argo CD 中的 Application 定义了 Kubernetes 资源的**来源**（Source）�
 
 Application 的配置清单示例：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cogrm6/1662076443806-967865f5-cc3a-4f10-b687-16c0c479a069.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/argocd/1662076443806-967865f5-cc3a-4f10-b687-16c0c479a069.jpeg)
 
 如果有多个团队，每个团队都要维护大量的应用，就需要用到 Argo CD 的另一个概念：**项目**（Project）。
 
@@ -281,7 +282,7 @@ Argo CD 中的项目（Project）可以用来对 Application 进行分组，不�
 
 在 GitHub 上创建一个项目，取名为 argocd-lab\[13]，为了方便实验将仓库设置为公共仓库。在仓库中新建 dev 目录，在目录中创建两个 YAML 配置清单，分别是 `deployment.yaml` 和 `service.yaml`。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cogrm6/1662076443997-1e374e40-cdf9-49dc-b9a1-68269c22df40.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/argocd/1662076443997-1e374e40-cdf9-49dc-b9a1-68269c22df40.png)
 配置清单内容如下：
 
 ```yaml
@@ -372,9 +373,9 @@ application.argoproj.io/myapp-argo-application created
 ```
 
 在 Argo CD 可视化界面中可以看到应用已经创建成功了。
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cogrm6/1662076444145-4526c86e-f5b5-43c3-8737-ec29479adfdf.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/argocd/1662076444145-4526c86e-f5b5-43c3-8737-ec29479adfdf.png)
 点进去可以看到应用的同步详情和各个资源的健康状况。
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cogrm6/1662076444129-228cbe84-33c0-4d98-ad77-d0e76e9292b5.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/argocd/1662076444129-228cbe84-33c0-4d98-ad77-d0e76e9292b5.png)
 **如果你更新了 deployment.yaml 中的镜像，Argo CD 会自动检测到 Git 仓库中的更新，并且将集群中 Deployment 的镜像更新为 Git 仓库中最新设置的镜像版本。**
 
 ## 总结

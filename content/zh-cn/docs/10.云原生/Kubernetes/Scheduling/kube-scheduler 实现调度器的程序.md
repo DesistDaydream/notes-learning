@@ -1,8 +1,17 @@
 ---
 title: kube-scheduler 实现调度器的程序
+linkTitle: kube-scheduler 实现调度器的程序
+date: 2020-10-12T16:21:00
+weight: 20
 ---
 
-# kube-scheduler 是实现 kuberntes Scheduler 的应用程序
+# 概述
+
+> 参考：
+>
+> -
+
+kube-scheduler 是实现 kuberntes Scheduler 的应用程序
 
 kube-scheduler 启动后监听两个端口：
 

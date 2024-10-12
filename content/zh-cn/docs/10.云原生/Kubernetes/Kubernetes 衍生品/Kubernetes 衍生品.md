@@ -11,7 +11,9 @@ title: Kubernetes 衍生品
 ## 为什么要建立集群 API？
 
 Kubernetes 是一个复杂的系统，它依赖于正确配置的几个组件才能具有正常运行的集群。社区意识到这是用户的潜在绊脚石，因此专注于简化引导过程。如今，已经创建了[100 多个 Kubernetes 发行版和安装程序](https://www.cncf.io/certification/software-conformance/)，每个[发行版和安装程序](https://www.cncf.io/certification/software-conformance/)都为集群和受支持的基础架构提供程序提供了不同的默认配置。SIG 集群生命周期发现需要一种工具来解决一系列常见的重叠安装问题，因此开始使用 kubeadm。
+
 [Kubeadm](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm/)被设计为引导最佳实践 Kubernetes 集群的重点工具。kubeadm 项目背后的核心宗旨是创建其他安装程序可以利用的工具，并最终减轻单个安装程序需要维护的配置量。自开始以来，kubeadm 已成为其他多个应用程序（包括 Kubespray，Minikube，kind 等）的基础自举工具。
+
 但是，尽管 kubeadm 和其他引导程序提供程序降低了安装复杂性，但它们并未解决如何长期管理日常群集或 Kubernetes 环境的问题。在设置生产环境时，您仍然面临几个问题，包括
 
 - 如何在多个基础架构提供商和位置之间一致地配置计算机，负载平衡器，VPC 等？
@@ -45,3 +47,10 @@ CNCF 运行 Kubernetes 认证合格计划。大多数全球领先的企业软件
 # Kubernetes 发行版
 
 [K3S](/docs/10.云原生/Kubernetes/Kubernetes%20衍生品/K3S/K3S.md)
+
+# 虚拟化扩展
+
+**kubevirt**
+
+- https://github.com/kubevirt/kubevirt
+- https://mp.weixin.qq.com/s/jtx8JWno7lYfzT-uug14cA

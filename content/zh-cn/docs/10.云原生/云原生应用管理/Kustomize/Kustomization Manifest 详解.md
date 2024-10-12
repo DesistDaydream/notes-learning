@@ -5,7 +5,9 @@ title: Kustomization Manifest 详解
 # 概述
 
 > 参考：
-> - [官方文档,任务-管理 Kubernetes 对象-使用 Kustomize 声明式得管理 Kubernetes 对象-Kustomize 字段列表](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#kustomize-feature-list)
+>
+> - [官方文档，任务 - 管理 Kubernetes 对象 - 使用 Kustomize 声明式得管理 Kubernetes 对象 - Kustomize 字段列表](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#kustomize-feature-list)
+
 
 # apiVersion: kustomize.config.k8s.io/v1beta1
 
@@ -81,7 +83,8 @@ title: Kustomization Manifest 详解
 
 可以基于文件或者键值偶对来生成 Secret。
 
-<https://github.com/kubernetes-sigs/kustomize/blob/master/api/types/secretargs.go>
+https://github.com/kubernetes-sigs/kustomize/blob/master/api/types/secretargs.go
+
 **name(STRING)** # Secret 对象的名称
 
 **files([]STRING)** # 通过文件生成 Secret。文件名就是 Secret 资源中 data 字段下的键，文件内容就是键对应的值，值是文件内容进行 base64 编码后的结果。
@@ -139,50 +142,60 @@ metadata:
 
 ConfigMap 也可基于字面的键值偶对来生成。要基于键值偶对来生成 ConfigMap， 在 `configMapGenerator` 的 `literals` 列表中添加表项。下面是一个例子，展示 如何使用键值偶对中的数据条目来生成 ConfigMap 对象：
 
-    cat <<EOF >./kustomization.yaml
-    configMapGenerator:
-    - name: example-configmap-2
-      literals:
-      - FOO=Bar
-    EOF
+```yaml
+cat <<EOF >./kustomization.yaml
+configMapGenerator:
+- name: example-configmap-2
+  literals:
+  - FOO=Bar
+EOF
+```
 
 可以用下面的命令检查所生成的 ConfigMap：
 
-    kubectl kustomize ./
+```bash
+kubectl kustomize ./
+```
 
 所生成的 ConfigMap 为：
 
-    apiVersion: v1
-    data:
-      FOO: Bar
-    kind: ConfigMap
-    metadata:
-      name: example-configmap-2-g2hdhfc6tk
+```yaml
+apiVersion: v1
+data:
+  FOO: Bar
+kind: ConfigMap
+metadata:
+  name: example-configmap-2-g2hdhfc6tk
+```
 
 所生成的 ConfigMap 和 Secret 都会包含内容哈希值后缀。 这是为了确保内容发生变化时，所生成的是新的 ConfigMap 或 Secret。 要禁止自动添加后缀的行为，用户可以使用 `generatorOptions`。 除此以外，为生成的 ConfigMap 和 Secret 指定贯穿性选项也是可以的。
 
-    cat <<EOF >./kustomization.yaml
-    configMapGenerator:
-    - name: example-configmap-3
-      literals:
-      - FOO=Bar
-    generatorOptions:
-      disableNameSuffixHash: true
-      labels:
-        type: generated
-      annotations:
-        note: generated
-    EOF
+```yaml
+cat <<EOF >./kustomization.yaml
+configMapGenerator:
+- name: example-configmap-3
+  literals:
+  - FOO=Bar
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    type: generated
+  annotations:
+    note: generated
+EOF
+```
 
 运行 `kubectl kustomize ./` 来查看所生成的 ConfigMap：
 
-    apiVersion: v1
-    data:
-      FOO: Bar
-    kind: ConfigMap
-    metadata:
-      annotations:
-        note: generated
-      labels:
-        type: generated
-      name: example-configmap-3
+```yaml
+apiVersion: v1
+data:
+  FOO: Bar
+kind: ConfigMap
+metadata:
+  annotations:
+    note: generated
+  labels:
+    type: generated
+  name: example-configmap-3
+```

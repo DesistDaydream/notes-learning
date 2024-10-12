@@ -27,7 +27,7 @@ Note：
 
 注意：Drone 的 Server 端会对接多种 SCM，不同的 SCM 使用不同的运行参数来运行 Server 程序。
 
-由于 Server 与 Runner 的部署截图过多(主要是有对接各种 SCM 的参数，SCM 的配置都在 web 页面上完成的)，篇幅太长，所以另开一篇文档单独记录，详见：[Server 与 Runner 部署](/docs/10.云原生/DevOps/Drone/Server%20与%20Runner%20部署.md)
+由于 Server 与 Runner 的部署截图过多(主要是有对接各种 SCM 的参数，SCM 的配置都在 web 页面上完成的)，篇幅太长，所以另开一篇文档单独记录，详见：[Server 与 Runner 部署](/docs/9.运维/DevOps/Drone/Server%20与%20Runner%20部署.md)
 
 # Drone 关联文件
 

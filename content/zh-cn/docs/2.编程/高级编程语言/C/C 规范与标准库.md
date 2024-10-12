@@ -11,10 +11,9 @@ weight: 20
 >
 > -
 
-
 # 位移运算符
 
-可以在 [Linux 网络设备](docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Linux%20网络设备/Linux%20网络设备.md) 中对 /sys/class/net/${NetDeviceName}/flags 文件含义的解释，找到位移运算的典型示例
+可以在 [Linux 网络设备](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Linux%20网络设备/Linux%20网络设备.md) 中对 /sys/class/net/${NetDeviceName}/flags 文件含义的解释，找到位移运算的典型示例
 
 `1<<0`、`1<<1` 等是位移运算符的表达方式，在许多编程语言（如 C、C++、Go、Python 等）中都有使用。它们表示“位移”操作，这个位移操作需要先将 1 转为 二进制，然后让所有数字向左移动指定的位数，移动后空的位置用 0 补齐。
 

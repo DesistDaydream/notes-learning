@@ -186,6 +186,12 @@
       "docs/1.操作系统/Kernel/Filesystem/I_O/I_O.md",
       "docs/1.操作系统/Kernel/Filesystem/DMA 与 零拷贝.md"
     ],
+    "docs/1.操作系统/Kernel/Filesystem/I_O": [
+      "docs/1.操作系统/Kernel/Filesystem/I_O/_index.md",
+      "docs/1.操作系统/Kernel/Filesystem/I_O/I_O.md",
+      "docs/1.操作系统/Kernel/Filesystem/I_O/这次答应我，一举拿下 I_O 多路复用！.md",
+      "docs/1.操作系统/Kernel/Filesystem/I_O/I_O Multiplexing(输入_输出多路复用).md"
+    ],
     "docs/1.操作系统/Kernel/Filesystem/文件管理": [
       "docs/1.操作系统/Kernel/Filesystem/文件管理/_index.md",
       "docs/1.操作系统/Kernel/Filesystem/文件管理/文件管理.md",
@@ -622,9 +628,8 @@
       "docs/10.云原生/Containerization",
       "docs/10.云原生/Containerization implementation",
       "docs/10.云原生/Kubernetes",
-      "docs/10.云原生/DevOps",
+      "docs/9.运维/DevOps",
       "docs/10.云原生/云原生应用管理",
-      "docs/10.云原生/云原生的周边.md",
       "docs/10.云原生/云厂商.md",
       "docs/10.云原生/ProxmoxVE"
     ],
@@ -725,37 +730,6 @@
       "docs/10.云原生/Containerization/Open Containers Initiative(开放容器倡议)/OCI Image 规范.md",
       "docs/10.云原生/Containerization/Open Containers Initiative(开放容器倡议)/OCI Runtime 规范.md"
     ],
-    "docs/10.云原生/DevOps": [
-      "docs/10.云原生/DevOps/_index.md",
-      "docs/10.云原生/DevOps/DevOps.md",
-      "docs/10.云原生/DevOps/ArgoCD",
-      "docs/10.云原生/DevOps/Drone",
-      "docs/10.云原生/DevOps/Jenkins",
-      "docs/10.云原生/DevOps/JenkinsX",
-      "docs/10.云原生/DevOps/Skaffold",
-      "docs/10.云原生/DevOps/Jenkins 与 skaffold 示例.md"
-    ],
-    "docs/10.云原生/DevOps/Drone": [
-      "docs/10.云原生/DevOps/Drone/_index.md",
-      "docs/10.云原生/DevOps/Drone/Drone.md",
-      "docs/10.云原生/DevOps/Drone/Server 与 Runner 部署.md",
-      "docs/10.云原生/DevOps/Drone/Drone Pipelines 详解.md",
-      "docs/10.云原生/DevOps/Drone/drone 命令行工具.md",
-      "docs/10.云原生/DevOps/Drone/Drone 任务示例.md"
-    ],
-    "docs/10.云原生/DevOps/Jenkins": [
-      "docs/10.云原生/DevOps/Jenkins/_index.md",
-      "docs/10.云原生/DevOps/Jenkins/Jenkins.md",
-      "docs/10.云原生/DevOps/Jenkins/Jenkins 任务示例.md",
-      "docs/10.云原生/DevOps/Jenkins/Jenkins 页面详解.md",
-      "docs/10.云原生/DevOps/Jenkins/Jenkins基于k8s的 CICD平台部署.md"
-    ],
-    "docs/10.云原生/DevOps/Skaffold": [
-      "docs/10.云原生/DevOps/Skaffold/_index.md",
-      "docs/10.云原生/DevOps/Skaffold/Skaffold.md",
-      "docs/10.云原生/DevOps/Skaffold/Skaffold Pipeline 详解.md",
-      "docs/10.云原生/DevOps/Skaffold/Skaffold 命令行工具.md"
-    ],
     "docs/10.云原生/Kubernetes": [
       "docs/10.云原生/Kubernetes/_index.md",
       "docs/10.云原生/Kubernetes/Kubernetes.md",
@@ -832,6 +806,12 @@
       "docs/10.云原生/Kubernetes/API 访问控制/Kubernetes 证书管理",
       "docs/10.云原生/Kubernetes/API 访问控制/最佳实践.md"
     ],
+    "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)": [
+      "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)/_index.md",
+      "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)/Authenticating(认证).md",
+      "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)/User Account(KubeConfig).md",
+      "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)/Service Account.md"
+    ],
     "docs/10.云原生/Kubernetes/API 访问控制/Kubernetes 证书管理": [
       "docs/10.云原生/Kubernetes/API 访问控制/Kubernetes 证书管理/_index.md",
       "docs/10.云原生/Kubernetes/API 访问控制/Kubernetes 证书管理/Kubernetes 证书管理.md",
@@ -842,6 +822,16 @@
       "docs/10.云原生/Kubernetes/Controller/Controller.md",
       "docs/10.云原生/Kubernetes/Controller/kube-controller-manager 实现控制器的程序.md",
       "docs/10.云原生/Kubernetes/Controller/Garbage Collection(垃圾收集)"
+    ],
+    "docs/10.云原生/Kubernetes/Controller/Garbage Collection(垃圾收集)": [
+      "docs/10.云原生/Kubernetes/Controller/Garbage Collection(垃圾收集)/_index.md",
+      "docs/10.云原生/Kubernetes/Controller/Garbage Collection(垃圾收集)/Garbage Collection(垃圾收集).md",
+      "docs/10.云原生/Kubernetes/Controller/Garbage Collection(垃圾收集)/Finalizers.md"
+    ],
+    "docs/10.云原生/Kubernetes/Etcd": [
+      "docs/10.云原生/Kubernetes/Etcd/_index.md",
+      "docs/10.云原生/Kubernetes/Etcd/Etcd.md",
+      "docs/10.云原生/Kubernetes/Etcd/Etcd 中存储的数据之探究.md"
     ],
     "docs/10.云原生/Kubernetes/Kubelet": [
       "docs/10.云原生/Kubernetes/Kubelet/_index.md",
@@ -857,6 +847,12 @@
       "docs/10.云原生/Kubernetes/Kubelet/Kubelet 特性/Node 资源预留与 Pod 驱逐.md",
       "docs/10.云原生/Kubernetes/Kubelet/Kubelet 特性/PLEG.md",
       "docs/10.云原生/Kubernetes/Kubelet/Kubelet 特性/10.1.bootstrap 认证配置步骤介绍.md"
+    ],
+    "docs/10.云原生/Kubernetes/Kubernetes 其他特性": [
+      "docs/10.云原生/Kubernetes/Kubernetes 机制与特性/_index.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 机制与特性/Pod 是如何出现的.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 机制与特性/Leader Election(领导人选举).md",
+      "docs/10.云原生/Kubernetes/Kubernetes 机制与特性/Watch and Informer.md"
     ],
     "docs/10.云原生/Kubernetes/Kubernetes 存储": [
       "docs/10.云原生/Kubernetes/Kubernetes 存储/_index.md",
@@ -885,6 +881,19 @@
       "docs/10.云原生/Kubernetes/Kubernetes 存储/Volume/ConfigMap 与 Secret.md",
       "docs/10.云原生/Kubernetes/Kubernetes 存储/Volume/emptyDir、hostPath、local.md"
     ],
+    "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)": [
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/_index.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/Client Libraries(客户端库).md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/Go Client.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/client-go连接K8s集群进行pod的增删改查.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/示例"
+    ],
+    "docs/10.云原生/Kubernetes/Kubernetes 开发/Operator 开发": [
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Operator 开发/_index.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Operator 开发/初识 Operator.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Operator 开发/深入理解Kubernetes Operator.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Operator 开发/Kubebuilder.md"
+    ],
     "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码": [
       "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码/_index.md",
       "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码/Kubelet 源码.md",
@@ -892,6 +901,15 @@
       "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码/PodWorker 模块.md",
       "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码/SyncLoop 模块.md",
       "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码/Kubelet 启动流程.md"
+    ],
+    "docs/10.云原生/Kubernetes/Kubernetes 扩展": [
+      "docs/10.云原生/Kubernetes/Kubernetes 扩展/_index.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 扩展/Kubernetes 扩展.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 扩展/API 扩展.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 扩展/API Aggregation(聚合) Layer.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 扩展/Custom Resource Definitions(CRD).md",
+      "docs/10.云原生/Kubernetes/Kubernetes 扩展/Operator 模式.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 扩展/Service Catalog 服务目录.md"
     ],
     "docs/10.云原生/Kubernetes/Kubernetes 管理": [
       "docs/10.云原生/Kubernetes/Kubernetes 管理/_index.md",
@@ -1070,6 +1088,12 @@
       "docs/10.云原生/Kubernetes/Kubernetes 衍生品/Rancher/RKE.md",
       "docs/10.云原生/Kubernetes/Kubernetes 衍生品/Rancher/问题实例.md"
     ],
+    "docs/10.云原生/Kubernetes/Kubernetes 部署与清理": [
+      "docs/10.云原生/Kubernetes/Kubernetes 部署与清理/_index.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 部署与清理/Kubernetes 部署与清理.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 部署与清理/创建高可用 Kubernetes 集群.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 部署与清理/kubernetes 二进制方式安装说明.md"
+    ],
     "docs/10.云原生/Kubernetes/Kuberntes 介绍": [
       "docs/10.云原生/Kubernetes/Kuberntes 介绍/_index.md",
       "docs/10.云原生/Kubernetes/Kubernetes.md",
@@ -1083,6 +1107,11 @@
       "docs/10.云原生/Kubernetes/Pod/Pod 生命周期",
       "docs/10.云原生/Kubernetes/Pod/Pod 的资源管理",
       "docs/10.云原生/Kubernetes/Pod/Pod 管理"
+    ],
+    "docs/10.云原生/Kubernetes/Pod/Pod 的资源管理": [
+      "docs/10.云原生/Kubernetes/Pod/Pod 的资源管理/_index.md",
+      "docs/10.云原生/Kubernetes/Pod/Pod 的资源管理/Pod 的资源管理.md",
+      "docs/10.云原生/Kubernetes/Pod/Pod 的资源管理/CPU资源的调度和管理(CFS).md"
     ],
     "docs/10.云原生/Kubernetes/Scheduling": [
       "docs/10.云原生/Kubernetes/Scheduling/_index.md",
@@ -1222,12 +1251,27 @@
       "docs/10.云原生/Virtualization/Network Virtualization/Open vSwitch.md",
       "docs/10.云原生/Virtualization/Network Virtualization/TUN 与 TAP设备浅析(一) -- 原理浅析.md"
     ],
+    "docs/10.云原生/云原生应用管理": [
+      "docs/10.云原生/云原生应用管理/_index.md",
+      "docs/10.云原生/云原生应用管理/云原生应用管理.md",
+      "docs/10.云原生/云原生应用管理/Kustomize",
+      "docs/10.云原生/云原生应用管理/Helm",
+      "docs/10.云原生/云原生应用管理/Kubeapps",
+      "docs/10.云原生/云原生应用管理/Repository(容器镜像仓库)"
+    ],
     "docs/10.云原生/云原生应用管理/Helm": [
       "docs/10.云原生/云原生应用管理/Helm/_index.md",
       "docs/10.云原生/云原生应用管理/Helm/Helm.md",
       "docs/10.云原生/云原生应用管理/Helm/Charts",
       "docs/10.云原生/云原生应用管理/Helm/Helm Template",
       "docs/10.云原生/云原生应用管理/Helm/Helm CLI"
+    ],
+    "docs/10.云原生/云原生应用管理/Helm/Helm CLI": [
+      "docs/10.云原生/云原生应用管理/Helm/Helm CLI/_index.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm CLI/Helm CLI.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm CLI/install、upgrade 子命令.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm CLI/helm 查询相关命令.md",
+      "docs/10.云原生/云原生应用管理/Helm/Helm CLI/helm template 模板相关命令.md"
     ],
     "docs/10.云原生/云原生应用管理/Helm/Helm Template": [
       "docs/10.云原生/云原生应用管理/Helm/Helm Template/_index.md",
@@ -1280,6 +1324,11 @@
       "docs/12.AI/机器学习/模型.md",
       "docs/12.AI/机器学习/PyTorch.md",
       "docs/12.AI/机器学习/Transformers.md"
+    ],
+    "docs/12.AI/自然语言处理": [
+      "docs/12.AI/自然语言处理/_index.md",
+      "docs/12.AI/自然语言处理/自然语言处理.md",
+      "docs/12.AI/自然语言处理/不通过数学解释 LLMs 是如何工作的.md"
     ],
     "docs/12.AI/计算机视觉": [
       "docs/12.AI/计算机视觉/_index.md",
@@ -1516,6 +1565,12 @@
       "docs/2.编程/高级编程语言/C/C.md",
       "docs/2.编程/高级编程语言/C/C 环境安装与使用",
       "docs/2.编程/高级编程语言/C/C Library(C库).md"
+    ],
+    "docs/2.编程/高级编程语言/C/C 环境安装与使用": [
+      "docs/2.编程/高级编程语言/C/C 环境安装与使用/_index.md",
+      "docs/2.编程/高级编程语言/C/C 环境安装与使用/C 环境安装与使用.md",
+      "docs/2.编程/高级编程语言/C/C 环境安装与使用/GCC.md",
+      "docs/2.编程/Programming tools/Clang.md"
     ],
     "docs/2.编程/高级编程语言/ECMAScript": [
       "docs/2.编程/高级编程语言/ECMAScript/_index.md",
@@ -1814,23 +1869,6 @@
       "docs/4.数据通信/Networking device/Fiber-optic splitter.md",
       "docs/4.数据通信/Networking device/Optical amplifier.md"
     ],
-    "docs/4.数据通信/Utility/OpenSSH": [
-      "docs/4.数据通信/Utility/OpenSSH/_index.md",
-      "docs/4.数据通信/Utility/OpenSSH/OpenSSH.md",
-      "docs/4.数据通信/Utility/OpenSSH/OpenSSH 配置.md",
-      "docs/4.数据通信/Utility/OpenSSH/OpenSSH Utilities.md",
-      "docs/4.数据通信/Utility/OpenSSH/ssh.md",
-      "docs/4.数据通信/Utility/OpenSSH/sshpass.md",
-      "docs/4.数据通信/Utility/OpenSSH/最佳实践.md"
-    ],
-    "docs/4.数据通信/数据通信": [
-      "docs/4.数据通信/数据通信/_index.md",
-      "docs/4.数据通信/数据通信/数据通信.md",
-      "docs/4.数据通信/数据通信/OSI 模型.md",
-      "docs/4.数据通信/数据通信/Network Socket.md",
-      "docs/4.数据通信/数据通信/CIDR.md",
-      "docs/4.数据通信/数据通信/无线通信.md"
-    ],
     "docs/4.数据通信/Protocol": [
       "docs/4.数据通信/Protocol/_index.md",
       "docs/4.数据通信/Protocol/通信协议.md",
@@ -1841,6 +1879,7 @@
       "docs/4.数据通信/Protocol/ICMP.md",
       "docs/4.数据通信/Protocol/VRRP.md",
       "docs/4.数据通信/Protocol/TCP_IP",
+      "docs/4.数据通信/Protocol/UDP",
       "docs/4.数据通信/Protocol/SSL 与 TLS.md",
       "docs/4.数据通信/Protocol/DHCP.md",
       "docs/4.数据通信/Protocol/FTP.md",
@@ -1901,7 +1940,7 @@
       "docs/4.数据通信/Protocol/TCP_IP/TCP 异常处理.md",
       "docs/4.数据通信/Protocol/TCP_IP/TCP_IP 管理工具.md",
       "docs/4.数据通信/Protocol/TCP_IP/TCP 重置.md",
-      "docs/4.数据通信/Protocol/TCP_IP/UDP.md"
+      "docs/4.数据通信/Protocol/UDP/UDP.md"
     ],
     "docs/4.数据通信/Protocol/TCP_IP/IP": [
       "docs/4.数据通信/Protocol/TCP_IP/IP/_index.md",
@@ -1944,10 +1983,41 @@
       "docs/4.数据通信/Protocol/Tunneling Protocol/WireGuard/Wireguard 流量伪装.md",
       "docs/4.数据通信/Protocol/Tunneling Protocol/WireGuard/应用示例.md"
     ],
+    "docs/4.数据通信/Protocol/UDP": [
+      "docs/4.数据通信/Protocol/UDP/_index.md",
+      "docs/4.数据通信/Protocol/UDP/UDP.md",
+      "docs/4.数据通信/Protocol/UDP/QUIC.md"
+    ],
     "docs/4.数据通信/Protocol/WebSocket": [
       "docs/4.数据通信/Protocol/WebSocket/_index.md",
       "docs/4.数据通信/Protocol/WebSocket/WebSocket.md",
       "docs/4.数据通信/Protocol/WebSocket/有了 HTTP 协议，为什么还要有 websocket 协议？.md"
+    ],
+    "docs/4.数据通信/Utility": [
+      "docs/4.数据通信/Utility/_index.md",
+      "docs/4.数据通信/Utility/hping.md",
+      "docs/4.数据通信/Utility/Netcat.md",
+      "docs/4.数据通信/Utility/Nmap.md",
+      "docs/4.数据通信/Utility/nping.md",
+      "docs/4.数据通信/Utility/OpenSSH",
+      "docs/4.数据通信/Protocol/TCP_IP/IP/GeoIP.md"
+    ],
+    "docs/4.数据通信/Utility/OpenSSH": [
+      "docs/4.数据通信/Utility/OpenSSH/_index.md",
+      "docs/4.数据通信/Utility/OpenSSH/OpenSSH.md",
+      "docs/4.数据通信/Utility/OpenSSH/OpenSSH 配置.md",
+      "docs/4.数据通信/Utility/OpenSSH/OpenSSH Utilities.md",
+      "docs/4.数据通信/Utility/OpenSSH/ssh.md",
+      "docs/4.数据通信/Utility/OpenSSH/sshpass.md",
+      "docs/4.数据通信/Utility/OpenSSH/最佳实践.md"
+    ],
+    "docs/4.数据通信/数据通信": [
+      "docs/4.数据通信/数据通信/_index.md",
+      "docs/4.数据通信/数据通信/数据通信.md",
+      "docs/4.数据通信/数据通信/OSI 模型.md",
+      "docs/4.数据通信/数据通信/Network Socket.md",
+      "docs/4.数据通信/数据通信/CIDR.md",
+      "docs/4.数据通信/数据通信/无线通信.md"
     ],
     "docs/5.数据存储": [
       "docs/5.数据存储/_index.md",
@@ -1999,12 +2069,26 @@
       "docs/5.数据存储/存储/存储的基础设施架构/网络附加存储/Server Message Block/Samba 部署.md",
       "docs/5.数据存储/存储/存储的基础设施架构/网络附加存储/Server Message Block/Samba 配置详解.md"
     ],
+    "docs/5.数据存储/存储/存储的能力/对象存储": [
+      "docs/5.数据存储/存储/存储的能力/对象存储/_index.md",
+      "docs/5.数据存储/存储/存储的能力/对象存储/对象存储.md",
+      "docs/5.数据存储/存储/存储的能力/对象存储/对象存储，为什么那么火？.md"
+    ],
     "docs/5.数据存储/数据库": [
       "docs/5.数据存储/数据库/_index.md",
       "docs/5.数据存储/数据库/数据库.md",
       "docs/5.数据存储/数据库/关系数据",
       "docs/5.数据存储/数据库/键值数据",
       "docs/5.数据存储/数据库/时间序列数据"
+    ],
+    "docs/5.数据存储/数据库/关系数据": [
+      "docs/5.数据存储/数据库/关系数据/_index.md",
+      "docs/5.数据存储/数据库/关系数据/关系数据.md",
+      "docs/5.数据存储/数据库/关系数据/ClickHouse.md",
+      "docs/5.数据存储/数据库/关系数据/MySQL",
+      "docs/5.数据存储/数据库/关系数据/PostgreSQL",
+      "docs/5.数据存储/数据库/关系数据/SQLite",
+      "docs/5.数据存储/数据库/关系数据/SQL"
     ],
     "docs/5.数据存储/数据库/关系数据/MySQL": [
       "docs/5.数据存储/数据库/关系数据/MySQL/_index.md",
@@ -2158,6 +2242,15 @@
       "docs/6.可观测性/Logs/Loki/Loki 管理/性能优化.md",
       "docs/6.可观测性/Logs/Loki/Loki 管理/故障处理.md"
     ],
+    "docs/6.可观测性/Logs/Loki/Promtail": [
+      "docs/6.可观测性/Logs/Loki/Promtail/_index.md",
+      "docs/6.可观测性/Logs/Loki/Promtail/Promtail.md",
+      "docs/6.可观测性/Logs/Loki/Promtail/Promtail 部署.md",
+      "docs/6.可观测性/Logs/Loki/Promtail/Promtail 配置详解.md",
+      "docs/6.可观测性/Logs/Loki/Promtail/Label 与 Relabeling.md",
+      "docs/6.可观测性/Logs/Loki/Promtail/Pipeline 概念",
+      "docs/6.可观测性/Logs/Log Clients/Promtail/Pipeline 概念.md"
+    ],
     "docs/6.可观测性/Logs/Loki/Storage(存储)": [
       "docs/6.可观测性/Logs/Loki/Storage(存储)/_index.md",
       "docs/6.可观测性/Logs/Loki/Storage(存储)/Storage(存储).md",
@@ -2300,6 +2393,13 @@
       "docs/6.可观测性/Metrics/Prometheus/Storage(存储)/Storage(存储).md",
       "docs/6.可观测性/Metrics/Prometheus/Storage(存储)/Data Model(数据模型).md"
     ],
+    "docs/6.可观测性/Metrics/监控系统概述": [
+      "docs/6.可观测性/Metrics/监控系统概述/_index.md",
+      "docs/6.可观测性/Metrics/监控系统概述/监控系统概述.md",
+      "docs/6.可观测性/Metrics/监控系统概述/SNMP(传统监控标准).md",
+      "docs/6.可观测性/Metrics/监控系统概述/HTTP(新监控标准).md",
+      "docs/6.可观测性/Metrics/监控系统概述/常用告警级别.md"
+    ],
     "docs/6.可观测性/Observability": [
       "docs/6.可观测性/Observability/_index.md",
       "docs/6.可观测性/Observability/Observability.md",
@@ -2346,6 +2446,20 @@
       "docs/7.信息安全/Crawler/Crawler.md",
       "docs/7.信息安全/Crawler/最佳实践.md",
       "docs/7.信息安全/Crawler/Python Web 爬虫武器库盘点.md"
+    ],
+    "docs/7.信息安全/Crypto mgmt": [
+      "docs/7.信息安全/Crypto mgmt/_index.md",
+      "docs/7.信息安全/Crypto mgmt/ACME.md",
+      "docs/7.信息安全/Crypto mgmt/CFSSL.md",
+      "docs/7.信息安全/Crypto mgmt/OpenSSL",
+      "docs/7.信息安全/Crypto mgmt/系统证书管理.md",
+      "docs/7.信息安全/Crypto mgmt/自建CA脚本.md"
+    ],
+    "docs/7.信息安全/Crypto mgmt/OpenSSL": [
+      "docs/7.信息安全/Crypto mgmt/OpenSSL/_index.md",
+      "docs/7.信息安全/Crypto mgmt/OpenSSL/OpenSSL.md",
+      "docs/7.信息安全/Crypto mgmt/OpenSSL/OpenSSL 配置详解.md",
+      "docs/7.信息安全/Crypto mgmt/OpenSSL/Standard commands.md"
     ],
     "docs/7.信息安全/Cryptography": [
       "docs/7.信息安全/Cryptography/_index.md",
@@ -2481,6 +2595,7 @@
       "docs/9.运维/运维管理",
       "docs/9.运维/Ansible",
       "docs/9.运维/Cobbler",
+      "docs/9.运维/DevOps",
       "docs/9.运维/应用发布.md"
     ],
     "docs/9.运维/Ansible": [
@@ -2527,6 +2642,37 @@
       "docs/9.运维/Cobbler/Cobbler 部署.md",
       "docs/9.运维/Cobbler/cobbler 命令说明.md",
       "docs/9.运维/Cobbler/kickstart 介绍.md"
+    ],
+    "docs/9.运维/DevOps": [
+      "docs/9.运维/DevOps/_index.md",
+      "docs/9.运维/DevOps/DevOps.md",
+      "docs/9.运维/DevOps/ArgoCD",
+      "docs/9.运维/DevOps/Drone",
+      "docs/9.运维/DevOps/Jenkins",
+      "docs/9.运维/DevOps/JenkinsX",
+      "docs/9.运维/DevOps/Skaffold",
+      "docs/9.运维/DevOps/Jenkins 与 skaffold 示例.md"
+    ],
+    "docs/9.运维/DevOps/Drone": [
+      "docs/9.运维/DevOps/Drone/_index.md",
+      "docs/9.运维/DevOps/Drone/Drone.md",
+      "docs/9.运维/DevOps/Drone/Server 与 Runner 部署.md",
+      "docs/9.运维/DevOps/Drone/Drone Pipelines 详解.md",
+      "docs/9.运维/DevOps/Drone/drone 命令行工具.md",
+      "docs/9.运维/DevOps/Drone/Drone 任务示例.md"
+    ],
+    "docs/9.运维/DevOps/Jenkins": [
+      "docs/9.运维/DevOps/Jenkins/_index.md",
+      "docs/9.运维/DevOps/Jenkins/Jenkins.md",
+      "docs/9.运维/DevOps/Jenkins/Jenkins 任务示例.md",
+      "docs/9.运维/DevOps/Jenkins/Jenkins 页面详解.md",
+      "docs/9.运维/DevOps/Jenkins/Jenkins基于k8s的 CICD平台部署.md"
+    ],
+    "docs/9.运维/DevOps/Skaffold": [
+      "docs/9.运维/DevOps/Skaffold/_index.md",
+      "docs/9.运维/DevOps/Skaffold/Skaffold.md",
+      "docs/9.运维/DevOps/Skaffold/Skaffold Pipeline 详解.md",
+      "docs/9.运维/DevOps/Skaffold/Skaffold 命令行工具.md"
     ],
     "docs/9.运维/Standardized Glossary(标准化术语)": [
       "docs/9.运维/Standardized Glossary(标准化术语)/_index.md",
@@ -2708,138 +2854,6 @@
       "docs/学习/PKM/写作.md",
       "docs/学习/PKM/Obsidian.md",
       "docs/学习/PKM/WPS.md"
-    ],
-    "docs/6.可观测性/Metrics/监控系统概述": [
-      "docs/6.可观测性/Metrics/监控系统概述/_index.md",
-      "docs/6.可观测性/Metrics/监控系统概述/监控系统概述.md",
-      "docs/6.可观测性/Metrics/监控系统概述/SNMP(传统监控标准).md",
-      "docs/6.可观测性/Metrics/监控系统概述/HTTP(新监控标准).md",
-      "docs/6.可观测性/Metrics/监控系统概述/常用告警级别.md"
-    ],
-    "docs/10.云原生/Kubernetes/Kubernetes 开发/Operator 开发": [
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/Operator 开发/_index.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/Operator 开发/初识 Operator.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/Operator 开发/深入理解Kubernetes Operator.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/Operator 开发/Kubebuilder.md"
-    ],
-    "docs/10.云原生/Kubernetes/Controller/Garbage Collection(垃圾收集)": [
-      "docs/10.云原生/Kubernetes/Controller/Garbage Collection(垃圾收集)/_index.md",
-      "docs/10.云原生/Kubernetes/Controller/Garbage Collection(垃圾收集)/Garbage Collection(垃圾收集).md",
-      "docs/10.云原生/Kubernetes/Controller/Garbage Collection(垃圾收集)/Finalizers.md"
-    ],
-    "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)": [
-      "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)/_index.md",
-      "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)/Authenticating(认证).md",
-      "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)/User Account(KubeConfig).md",
-      "docs/10.云原生/Kubernetes/API 访问控制/Authenticating(认证)/Service Account.md"
-    ],
-    "docs/10.云原生/Kubernetes/Kubernetes 部署与清理": [
-      "docs/10.云原生/Kubernetes/Kubernetes 部署与清理/_index.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 部署与清理/Kubernetes 部署与清理.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 部署与清理/创建高可用 Kubernetes 集群.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 部署与清理/kubernetes 二进制方式安装说明.md"
-    ],
-    "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)": [
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/_index.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/Client Libraries(客户端库).md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/Go Client.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/client-go连接K8s集群进行pod的增删改查.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/示例"
-    ],
-    "docs/10.云原生/Kubernetes/Pod/Pod 的资源管理": [
-      "docs/10.云原生/Kubernetes/Pod/Pod 的资源管理/_index.md",
-      "docs/10.云原生/Kubernetes/Pod/Pod 的资源管理/Pod 的资源管理.md",
-      "docs/10.云原生/Kubernetes/Pod/Pod 的资源管理/CPU资源的调度和管理(CFS).md"
-    ],
-    "docs/10.云原生/Kubernetes/Etcd": [
-      "docs/10.云原生/Kubernetes/Etcd/_index.md",
-      "docs/10.云原生/Kubernetes/Etcd/Etcd.md",
-      "docs/10.云原生/Kubernetes/Etcd/Etcd 中存储的数据之探究.md"
-    ],
-    "docs/10.云原生/Kubernetes/Kubernetes 扩展": [
-      "docs/10.云原生/Kubernetes/Kubernetes 扩展/_index.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 扩展/Kubernetes 扩展.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 扩展/API 扩展.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 扩展/API Aggregation(聚合) Layer.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 扩展/Custom Resource Definitions(CRD).md",
-      "docs/10.云原生/Kubernetes/Kubernetes 扩展/Operator 模式.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 扩展/Service Catalog 服务目录.md"
-    ],
-    "docs/10.云原生/Kubernetes/Kubernetes 其他特性": [
-      "docs/10.云原生/Kubernetes/Kubernetes 机制与特性/_index.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 机制与特性/Pod 是如何出现的.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 机制与特性/Leader Election(领导人选举).md",
-      "docs/10.云原生/Kubernetes/Kubernetes 机制与特性/Watch and Informer.md"
-    ],
-    "docs/2.编程/高级编程语言/C/C 环境安装与使用": [
-      "docs/2.编程/高级编程语言/C/C 环境安装与使用/_index.md",
-      "docs/2.编程/高级编程语言/C/C 环境安装与使用/C 环境安装与使用.md",
-      "docs/2.编程/高级编程语言/C/C 环境安装与使用/GCC.md",
-      "docs/2.编程/Programming tools/Clang.md"
-    ],
-    "docs/12.AI/自然语言处理": [
-      "docs/12.AI/自然语言处理/_index.md",
-      "docs/12.AI/自然语言处理/自然语言处理.md",
-      "docs/12.AI/自然语言处理/不通过数学解释 LLMs 是如何工作的.md"
-    ],
-    "docs/7.信息安全/Crypto mgmt": [
-      "docs/7.信息安全/Crypto mgmt/_index.md",
-      "docs/7.信息安全/Crypto mgmt/ACME.md",
-      "docs/7.信息安全/Crypto mgmt/CFSSL.md",
-      "docs/7.信息安全/Crypto mgmt/OpenSSL",
-      "docs/7.信息安全/Crypto mgmt/系统证书管理.md",
-      "docs/7.信息安全/Crypto mgmt/自建CA脚本.md"
-    ],
-    "docs/7.信息安全/Crypto mgmt/OpenSSL": [
-      "docs/7.信息安全/Crypto mgmt/OpenSSL/_index.md",
-      "docs/7.信息安全/Crypto mgmt/OpenSSL/OpenSSL.md",
-      "docs/7.信息安全/Crypto mgmt/OpenSSL/OpenSSL 配置详解.md",
-      "docs/7.信息安全/Crypto mgmt/OpenSSL/Standard commands.md"
-    ],
-    "docs/5.数据存储/存储/存储的能力/对象存储": [
-      "docs/5.数据存储/存储/存储的能力/对象存储/_index.md",
-      "docs/5.数据存储/存储/存储的能力/对象存储/对象存储.md",
-      "docs/5.数据存储/存储/存储的能力/对象存储/对象存储，为什么那么火？.md"
-    ],
-    "docs/1.操作系统/Kernel/Filesystem/I_O": [
-      "docs/1.操作系统/Kernel/Filesystem/I_O/_index.md",
-      "docs/1.操作系统/Kernel/Filesystem/I_O/I_O.md",
-      "docs/1.操作系统/Kernel/Filesystem/I_O/这次答应我，一举拿下 I_O 多路复用！.md",
-      "docs/1.操作系统/Kernel/Filesystem/I_O/I_O Multiplexing(输入_输出多路复用).md"
-    ],
-    "docs/10.云原生/云原生应用管理/Helm/Helm CLI": [
-      "docs/10.云原生/云原生应用管理/Helm/Helm CLI/_index.md",
-      "docs/10.云原生/云原生应用管理/Helm/Helm CLI/Helm CLI.md",
-      "docs/10.云原生/云原生应用管理/Helm/Helm CLI/install、upgrade 子命令.md",
-      "docs/10.云原生/云原生应用管理/Helm/Helm CLI/helm 查询相关命令.md",
-      "docs/10.云原生/云原生应用管理/Helm/Helm CLI/helm template 模板相关命令.md"
-    ],
-    "docs/5.数据存储/数据库/关系数据": [
-      "docs/5.数据存储/数据库/关系数据/_index.md",
-      "docs/5.数据存储/数据库/关系数据/关系数据.md",
-      "docs/5.数据存储/数据库/关系数据/ClickHouse.md",
-      "docs/5.数据存储/数据库/关系数据/MySQL",
-      "docs/5.数据存储/数据库/关系数据/PostgreSQL",
-      "docs/5.数据存储/数据库/关系数据/SQLite",
-      "docs/5.数据存储/数据库/关系数据/SQL"
-    ],
-    "docs/6.可观测性/Logs/Loki/Promtail": [
-      "docs/6.可观测性/Logs/Loki/Promtail/_index.md",
-      "docs/6.可观测性/Logs/Loki/Promtail/Promtail.md",
-      "docs/6.可观测性/Logs/Loki/Promtail/Promtail 部署.md",
-      "docs/6.可观测性/Logs/Loki/Promtail/Promtail 配置详解.md",
-      "docs/6.可观测性/Logs/Loki/Promtail/Label 与 Relabeling.md",
-      "docs/6.可观测性/Logs/Loki/Promtail/Pipeline 概念",
-      "docs/6.可观测性/Logs/Log Clients/Promtail/Pipeline 概念.md"
-    ],
-    "docs/4.数据通信/Utility": [
-      "docs/4.数据通信/Utility/_index.md",
-      "docs/4.数据通信/Utility/hping.md",
-      "docs/4.数据通信/Utility/Netcat.md",
-      "docs/4.数据通信/Utility/Nmap.md",
-      "docs/4.数据通信/Utility/nping.md",
-      "docs/4.数据通信/Utility/OpenSSH",
-      "docs/4.数据通信/Protocol/TCP_IP/IP/GeoIP.md"
     ]
   },
   "actionBarOrder": {},
