@@ -1308,8 +1308,11 @@
       "docs/12.AI/计算机视觉",
       "docs/12.AI/Hugging Face.md",
       "docs/12.AI/LangChain.md",
+      "docs/12.AI/AI Projects",
+      "docs/12.AI/Automation",
+      "docs/12.AI/AI Company.md",
       "docs/12.AI/为什么需要 AI.md",
-      "docs/12.AI/待总结与分类"
+      "docs/12.AI/Other.md"
     ],
     "docs/12.AI/Automation": [
       "docs/12.AI/Automation/_index.md",
@@ -2854,6 +2857,14 @@
       "docs/学习/PKM/写作.md",
       "docs/学习/PKM/Obsidian.md",
       "docs/学习/PKM/WPS.md"
+    ],
+    "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator": [
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/_index.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/Prometheus Operator.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/kube-prometheus 项目.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/CR 详解",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/Operator API.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/Prometheus-adapter.md"
     ]
   },
   "actionBarOrder": {},

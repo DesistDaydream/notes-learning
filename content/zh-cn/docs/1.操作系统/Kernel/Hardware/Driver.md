@@ -83,7 +83,7 @@ echo -n "0000:21:00.1" | sudo tee /sys/bus/pci/drivers/i40e/unbind
 通过 dmesg 过滤 PCI 地址，也可以看到在启动时，系统是如何为网卡分配 IP，以及如何为网卡命名的
 
 ```bash
- ~]# dmesg | grep 0000:0c:00.0
+~]# dmesg | grep 0000:0c:00.0
 [    1.352192] pci 0000:0c:00.0: [8086:1533] type 00 class 0x020000
 [    1.352219] pci 0000:0c:00.0: reg 0x10: [mem 0xc7200000-0xc72fffff]
 [    1.352247] pci 0000:0c:00.0: reg 0x18: [io  0x2000-0x201f]

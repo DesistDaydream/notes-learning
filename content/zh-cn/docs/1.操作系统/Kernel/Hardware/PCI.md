@@ -222,7 +222,6 @@ https://github.com/torvalds/linux/blob/v6.9/include/linux/pci.h#L322 - `struct p
 > - https://github.com/torvalds/linux/blob/master/Documentation/ABI/testing/sysfs-bus-pci
 > - https://www.kernel.org/doc/html/latest/admin-guide/abi-testing.html#abi-file-testing-sysfs-bus-pci
 
-
 **/sys/bus/pci/drivers/** # 管理 PCI 驱动。详见 [Driver](/docs/1.操作系统/Kernel/Hardware/Driver.md#PCI) 的 PCI 章节
 
 **/sys/bus/pci/devices/** # 目录下是所有 PCI 设备指向 /sys/devices/ 的 [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)。
@@ -238,6 +237,5 @@ https://github.com/torvalds/linux/blob/v6.9/include/linux/pci.h#L322 - `struct p
 **/sys/bus/pci/slots/** #
 
 **/sys/bus/pci/uevent** #
-
 
 # TODO: WSL 中的 网卡 PCI 总结

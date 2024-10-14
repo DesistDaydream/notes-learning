@@ -23,3 +23,10 @@ weight: 20
 - [YOLOv9](https://docs.ultralytics.com/models/yolov9/) 引入了可编程梯度信息 （PGI） 和广义高效层聚合网络 （GELAN） 等创新方法。
 - [YOLOv10](https://docs.ultralytics.com/models/yolov10/)是由[清华大学](https://www.tsinghua.edu.cn/en/)的研究人员使用该软件包创建的。 [Ultralytics](https://ultralytics.com/)[Python 软件包](https://pypi.org/project/ultralytics/)创建的。该版本通过引入端到端头（End-to-End head），消除了非最大抑制（NMS）要求，实现了实时[目标检测](https://docs.ultralytics.com/tasks/detect/)的进步。
 
+# 训练
+
+https://docs.ultralytics.com/modes/train/
+
+# CLI
+
+https://docs.ultralytics.com/usage/cli/

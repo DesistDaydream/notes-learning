@@ -8,7 +8,7 @@ title: Node Exporter
 >
 > - [GitHub 项目，prometheus/node_exporter](https://github.com/prometheus/node_exporter)
 
-Node Exporter 用于收集服务器的 metrics，比如 内存、cpu、磁盘、I/O、电源、etc. 。Node Exporter 将采集各种指标的代码逻辑抽象称为 Node 的 Collector(采集器)。每类指标都对应一个 Collector，比如 cpu 采集器、meminfo 采集器、etc. 这些名称通常都能直观得看到想要采集的指标是什么
+Node Exporter 用于收集服务器的 metrics，比如 内存、cpu、磁盘、I/O、电源、etc. 。Node Exporter 将采集各种指标的代码逻辑抽象称为 Node 的 **Collector(采集器)**。每类指标都对应一个 Collector，比如 cpu 采集器、meminfo 采集器、etc. 这些名称通常都能直观得看到想要采集的指标是什么
 
 node_exporter 默认监听在 9100 端口上。
 
@@ -135,7 +135,7 @@ node-exporter 程序使用 `--web.config` 命令行标志来指定 web-config �
 
 # 源码解析
 
-node_exporter.go 中的 `handler.innerHandler()` 方法用于创建 Node 采集器，i.e. 决定要启用哪些 Node 的 Collector
+node_exporter.go 中的 `handler.innerHandler()` 方法用于创建 Node 采集器，i.e. 决定要启用哪些 Collector
 
 ```go
 func (h *handler) innerHandler(filters ...string) (http.Handler, error) {
@@ -152,3 +152,6 @@ func (h *handler) innerHandler(filters ...string) (http.Handler, error) {
 }
 ```
 
+## 日志时区
+
+详见 [Prometheus 管理](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20管理/Prometheus%20管理.md)

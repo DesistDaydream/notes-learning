@@ -120,4 +120,17 @@ clusterrolebinding.rbac.authorization.k8s.io/prometheus-operator                
 为适应 eHualu 生成部署，添加了一个名为 custom 的 subchart 。具体详见 GitHub
 
 **其他**
+
 其他的在安装时使用 -f 参数使用自定义的值文件覆盖即可。
+
+# prometheus-operator 的局限
+
+[Vermouth 博客，高可用 Prometheus 问题集锦](http://www.xuyasong.com/?p=1921)
+
+如果你是在 K8S 集群内部署 Prometheus，那大概率会用到 prometheus-operator，他对 Prometheus 的配置做了 CRD 封装，让用户更方便的扩展 Prometheus 实例，同时 prometheus-operator 还提供了丰富的 Grafana 模板，包括上面提到的 master 组件监控的 Grafana 视图，operator 启动之后就可以直接使用，免去了配置面板的烦恼。
+
+operator 的优点很多，就不一一列举了，只提一下 operator 的局限：
+
+- 因为是 operator，所以依赖 K8S 集群，如果你需要二进制部署你的 Prometheus，如集群外部署，就很难用上 prometheus-operator 了，如多集群场景。当然你也可以在 K8S 集群中部署 operator 去监控其他的 K8S 集群，但这里面坑不少，需要修改一些配置。
+- operator 屏蔽了太多细节，这个对用户是好事，但对于理解 Prometheus 架构就有些 gap 了，比如碰到一些用户一键安装了 operator，但 Grafana 图表异常后完全不知道如何排查，record rule 和 服务发现还不了解的情况下就直接配置，建议在使用 operator 之前，最好熟悉 prometheus 的基础用法。
+- operator 方便了 Prometheus 的扩展和配置，对于 alertmanager 和 exporter 可以很方便的做到多实例高可用，但是没有解决 Prometheus 的高可用问题，因为无法处理数据不一致，operator 目前的定位也还不是这个方向，和 Thanos、Cortex 等方案的定位是不同的，下面会详细解释。
