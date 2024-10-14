@@ -49,23 +49,21 @@ git pull origin master    //下载
 
 <https://github.com/notifications/subscriptions>
 
-# github上fork了别人的项目后，再同步更新别人的提交.github上fork了别人的项目后，再同步更新别人的提交
+# github上fork了别人的项目后，再同步更新别人的提交
 
 我从 github 网站和用 git 命令两种方式说一下。
 
 github 网站上操作
 
 1. 打开自己的仓库，进入 code 下面。
-
 2. 点击 new pull request 创建。
-
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/np6g3g/1616903559723-76f8c4f1-6c02-4145-829f-4b8ddb92de72.jpeg)
 
-1. 选择 base fork
+3. 选择 base fork
 
-2. 选择 head fork
+4. 选择 head fork
 
-3. 点击 Create pull request，并填写创建信息。
+5. 点击 Create pull request，并填写创建信息。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/np6g3g/1616903559704-28a10f3c-1397-40f9-9c67-0d9bc61da316.jpeg)
 

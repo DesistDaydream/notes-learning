@@ -19,6 +19,38 @@ https://juejin.cn/post/6951642072935825439
 
 通过提交记录
 
+# 查看项目第一次 commit 时间
+
+https://www.cnblogs.com/saysmy/p/7292177.html
+
+这个代码库 commits7855 次，点击进入 commits 发现翻页只有两个按钮不能直接点击翻页到最后一页，那如何查看第一条记录呢？
+
+![](https://images2017.cnblogs.com/blog/979473/201708/979473-20170806014238178-1770579061.png)
+
+原来 github为每个commit版本都生成了一个SHA hash值，我们可以通过SHA值来直接搜索到第N次的提交
+
+点击一次 older 发现 url 格式为：
+
+https://github.com/lodash/lodash/commits/master?after=c2616dd4f3ab267d000a2b4f564e1c76fc8b8378+34
+
+后面的 after 即代表展示 SHA 为c2616dd4f3ab267d000a2b4f564e1c76fc8b8378 的后面第35条commit。
+
+那c2616dd4f3ab267d000a2b4f564e1c76fc8b8378 这一串是怎么得到的呢？
+
+![](https://images2017.cnblogs.com/blog/979473/201708/979473-20170806014419709-1997461420.png)
+
+在commits列表内的每一条记录后面都有一个copy图标，这里点击即会成功复制此条commit的SHA
+
+c2616dd4f3ab267d000a2b4f564e1c76fc8b8378正式此代码库的最新一条commit的SHA。
+
+于是如果我们想找到第一条记录，总commits记录是7855次，那么搜索url为：
+
+https://github.com/lodash/lodash/commits/master?after=c2616dd4f3ab267d000a2b4f564e1c76fc8b8378+7853
+
+![](https://images2017.cnblogs.com/blog/979473/201708/979473-20170806014320772-192431232.png)
+
+成功搜索到想要的结果。
+
 # 搜索 Issue 和 PR
 
 ## 纯粹与用户相关的搜索

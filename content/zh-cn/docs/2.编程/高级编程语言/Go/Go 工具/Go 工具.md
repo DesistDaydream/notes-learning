@@ -15,7 +15,7 @@ go 是用来管理 Go 编程语言源代码的工具
 
 > 参考：
 >
-> - [Go 包，标准库-cmd-go](https://pkg.go.dev/cmd/go)
+> - [Go 包，标准库 - cmd - go](https://pkg.go.dev/cmd/go)
 
 go 是一个工具，用来管理 Go 语言编写的代码。该工具由多个子命令组成。每个子命令可以实现不同类型的功能。
 

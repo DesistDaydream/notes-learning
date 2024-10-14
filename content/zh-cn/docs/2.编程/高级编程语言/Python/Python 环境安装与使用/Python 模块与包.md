@@ -7,7 +7,10 @@ weight: 2
 
 > 参考：
 >
-> - [官方文档，教程-6.模块](https://docs.python.org/3/tutorial/modules.html)
+> - [官方文档，教程 - 6.模块](https://docs.python.org/3/tutorial/modules.html)
+> - [GitHub 项目，pypa/packaging.python.org](https://github.com/pypa/packaging.python.org)
+>   - [Python 包管理指南](https://packaging.python.org) “Python Packaging User Guide”(PyPUG) 旨在成为有关如何使用当前工具在 Python 中打包和安装发行版的权威资源。
+>   - [Python Packaging Authority](https://www.pypa.io/en/latest/)
 > - [廖雪峰 Python 教程，模块](https://www.liaoxuefeng.com/wiki/1016959663602400/1017454145014176)
 
 在计算机程序的开发过程中，随着程序代码越写越多，在一个文件里代码就会越来越长，越来越不容易维护。
@@ -144,7 +147,7 @@ if __name__=='__main__':
     test()
 ```
 
-第 1 行和第 2 行是标准注释，第 1 行注释可以让这个`hello.py`文件直接在 Unix/Linux/Mac 上运行，第 2 行注释表示.py 文件本身使用标准 UTF-8 编码；
+第 1 行和第 2 行是标准注释，第 1 行注释可以让这个`hello.py`文件直接在 Unix/Linux/Mac 上运行，第 2 行注释表示 .py 文件本身使用标准 UTF-8 编码；
 
 第 4 行是一个字符串，表示模块的文档注释，任何模块代码的第一个字符串都被视为模块的文档注释；
 
@@ -254,8 +257,8 @@ def greeting(name):
 
 > 参考：
 >
-> - [官方文档，Python 教程-6.模块-模块搜索路径](https://docs.python.org/3/tutorial/modules.html#the-module-search-path)
-> - [官方文档，Python 的安装和使用-命令行工具和环境](https://docs.python.org/3/using/cmdline.html)
+> - [官方文档，Python 教程 - 6.模块 - 模块搜索路径](https://docs.python.org/3/tutorial/modules.html#the-module-search-path)
+> - [官方文档，Python 的安装和使用 - 命令行工具和环境](https://docs.python.org/3/using/cmdline.html)
 >   - [PYTHONPATH](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH)
 >   - [PYTHONHOME](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHOME)
 > - https://stackoverflow.com/questions/59104100/what-is-the-idea-behind-the-installation-dependent-default-directory-layout
@@ -294,8 +297,8 @@ Python 模块通常分两大类
 
 > 参考：
 >
-> - [官方文档，Python 标准库-导入模块-sys.path 模块搜索路径初始化](https://docs.python.org/3/library/sys_path_init.html)
-> - [官方文档，Python 标准库-Python 运行时服务-site—特定于 site 的配置](https://docs.python.org/3/library/site.html)
+> - [官方文档，Python 标准库 - 导入模块 - sys.path 模块搜索路径初始化](https://docs.python.org/3/library/sys_path_init.html)
+> - [官方文档，Python 标准库 - Python 运行时服务 - site—特定于 site 的配置](https://docs.python.org/3/library/site.html)
 > - [源码，Moduels/getpath.py](https://github.com/python/cpython/blob/3.11/Modules/getpath.py)
 
 如果说 `${sys.path}` 是我们使用 Python 模块最重要的东西，那 **prefix(路径的前缀)** 就是 `${sys.path}` 这个变量最重要的东西。prefix 通常表示 `${sys.prefix}` 与 `${sys.exec_prefix}` 这两个变量。**prefix** 的值来源于 **Python 解释器自身**。
@@ -603,59 +606,6 @@ Ubuntu
 
 - **/usr/local/bin/**
 
-## requirements.txt 文件
-
-> 参考：
->
-> - [pip 官方文档，用户指南-Requirements 文件](https://pip.pypa.io/en/latest/user_guide/#requirements-files)
-> - [知乎，Python 中的 requirement.txt](https://zhuanlan.zhihu.com/p/69058584)
-
-Python 也需要维护项目相关的依赖包。通常我们会在项目的根目录下放置一个 requirement.txt 文件，用于记录所有依赖包和它的确切版本号。
-
-requirement.txt 的内容长这样：
-
-```python
-alembic==1.0.10
-appnope==0.1.0
-astroid==2.2.5
-attrs==19.1.0
-backcall==0.1.0
-bcrypt==3.1.6
-bleach==3.1.0
-cffi==1.12.3
-Click==7.0
-decorator==4.4.0
-defusedxml==0.6.0
-entrypoints==0.3
-...
-```
-
-### 如何使用？
-
-那么 requirement.txt 究竟如何使用呢？
-
-当我们拿到一个项目时，首先要在项目运行环境安装 requirement.txt 所包含的依赖：
-
-`pip install -r requirement.txt`
-
-当我们要把环境中的依赖写入 requirement.txt 中时，可以借助 freeze 命令：
-
-`pip freeze > requirements.txt`
-
-### 环境混用怎么办？
-
-在导出依赖到 requirement.txt 文件时会有一种尴尬的情况。你的本地环境不仅包含项目 A 所需要的依赖，也包含着项目 B 所需要的依赖。此时我们要如何做到只把项目 A 的依赖导出呢？
-
-[pipreqs](https://github.com/bndr/pipreqs) 可以通过扫描项目目录，帮助我们仅生成当前项目的依赖清单。
-
-通过以下命令安装：
-
-`pip install pipreqs`
-
-运行：
-
-`pipreqs ./ --encoding utf8`
-
 # 模块管理混乱说明
 
 在 [公众号-OSC开源社区，Flask之父凭一己之力击败各种GPT，称Python包管理比LLM更火热](https://mp.weixin.qq.com/s/i5fWKWs-D9ZphDqhtYoj9Q) 这篇文件中描述了 Flask 框架作者 Armin 画了一张图来描述他对 Python 包管理现状的感受，意思就是由于缺乏统一的标准，因此诞生了满足不同需求和场景的许多不同工具——不过每个抱着“统一”初心的标准最后都是适得其反。
@@ -734,15 +684,19 @@ Rocky 的 site.py
 
 Windows 的 site.py
 
-与 CPython 的原始 [site.py](https://github.com/python/cpython/blob/3.10/Lib/site.py) 代码保持一致
+```python
+# 与 CPython 的原始 [site.py](https://github.com/python/cpython/blob/3.10/Lib/site.py) 代码保持一致
+```
 
 上面的例子中，Ubuntu 的 dist-packages 应该是 site-packages 才对，为啥这么改搞不懂为啥。。。o(╯□╰)o。。。对于 CentOS，则除了 lib，还会有一个 lib64，也是搞不懂为啥。。。o(╯□╰)o。。。
 
 ## 关于 Python 包的在线浏览网站
 
-Python 好像没有像 [Go Package](https://pkg.go.dev/) 类似的网站，PIP 网站只是提供了包的简介、版本、网站连接等信息，内容少的可怜。问了问 NewBing 之后， [Read the Docs](https://readthedocs.org/search/?q=python+package) 这个网站可能还有点好内容，下面是完整的回答：
+Python 好像没有像 [Go Package](https://pkg.go.dev/) 类似的网站
 
-您好，这是必应。😊
+**Python Package Index(PyPI)** 是 Python 编程语言的软件存储库。但是内容非常少，只是提供了包的简介、版本、网站连接等信息。
+
+问了问 NewBing 之后， [Read the Docs](https://readthedocs.org/search/?q=python+package) 这个网站可能还有点好内容，下面是完整的回答：
 
 Python 有很多不同的网站可以查看各种包的信息，比如：
 
@@ -757,8 +711,6 @@ Python 有很多不同的网站可以查看各种包的信息，比如：
 - [Python Module of the Week](https://pymotw.com/3/)：一个网站，可以学习 Python 标准库中的模块的用法和示例。
 - [Awesome Python](https://awesome-python.com/)：一个网站，可以发现一些优秀的 Python 包和资源。
 
-希望这些信息对您有帮助。如果您还有其他问题，请随时提问。😊
-\-
 \[1]: [How do I find the location of my Python site-packages directory?](https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory/)
 \[2]: [What is python's site-packages directory? - Stack Overflow](https://stackoverflow.com/questions/31384639/what-is-pythons-site-packages-directory)
 \[3]: [go-python/gopy - GitHub](https://github.com/go-python/gopy)
@@ -766,39 +718,7 @@ Python 有很多不同的网站可以查看各种包的信息，比如：
 \[5]: [Packaging Python Projects — Python Packaging User Guide](https://packaging.python.org/en/latest/tutorials/packaging-projects/)
 \[6]: [How To Package And Distribute Python Applications](https://www.digitalocean.com/community/tutorials/how-to-package-and-distribute-python-applications)
 
-# 安装 Python 模块
+# 安装 Python 模块/包
 
-> 参考：
->
-> - [官方文档，安装 Python 模块](https://docs.python.org/3.10/installing/index.html)
-> - <https://frostming.com/2019/03-13/where-do-your-packages-go/>
+详见 [Python 工具](docs/2.编程/高级编程语言/Python/Python工具/Python%20工具.md#安装%20Python%20包/模块)
 
-管理 Python 的模块和包所在路径非常乱，不知道是何原因。
-
-[pip](/docs/2.编程/高级编程语言/Python/Python工具/PIP.md) 是首选的安装程序。从 Python 3.4 开始，它默认包含在 Python 二进制安装程序中。就算你是用 pipenv，poetry，底层依然是 pip，一律适用。
-
-运行 pip 有两种方式：
-
-- pip ...
-- python -m pip ...
-
-第一种方式和第二种方式大同小异，区别是第一种方式使用的 Python 解释器是写在 pip 文件的 shebang 里的，一般情况下，如果你的 pip 路径是 $path\_prefix/bin/pip，那么 Python 路径对应的就是 $path\_prefix/bin/python。如果你用的是 Unix 系统则 cat $(which pip) 第一行就包含了 Python 解释器的路径。第二种方式则显式地指定了 Python 的位置。这条规则，对于所有 Python 的可执行程序都是适用的。流程如下图所示。
-
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/loffuc/1669286382022-472bf4de-24cf-4652-bc94-3d52d01f7df1.png)
-
-那么，不加任何自定义配置时，使用 pip 安装包就会自动安装到 `$path_prefix/lib/pythonX.Y/site-packages` 下（$path_prefix 是从上一段里得到的），可执行程序安装到 $path_prefix/bin 下，如果需要在命令行直接使用 my_cmd 运行，记得加到 PATH。
-
-刚刚安装完的 Python 一般只有一个 pip 模块，site-packages 目录下只有如下内容
-
-```
-$ tree -L 1
-.
-├── README.txt
-├── _distutils_hack
-├── distutils-precedence.pth
-├── pip
-├── pip-23.0.1.dist-info
-├── pkg_resources
-├── setuptools
-└── setuptools-65.5.0.dist-info
-```

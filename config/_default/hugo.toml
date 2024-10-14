@@ -21,4 +21,5 @@ uglyURLs = false          # URL 路径中最后不要带 .html 后缀
 ignoreFiles = [
     "/content/zh-cn/obsidian_template/.*",
     "/content/zh-cn/.obsidian/.*",
+    "/content/zh-cn/Excalidraw",
 ]

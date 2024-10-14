@@ -29,12 +29,18 @@ PyTorch 是一个使用 [Torch](/docs/12.AI/科学计算/Torch.md) 构建的 Pyt
 - CPU
   - `pip3 install torch torchvision torchaudio`
 - GPU
-  - `pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118`
+  - `pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121`
 
 GPU 版的 PyTorch 依赖 CUDA
 
 > 如果我们想要使用 GPU 但是却安装的 CPU 版的 PyTorch，将会报错：`Torch not compiled with CUDA enabled`。说白了就是下载的 PyTorch 不是在 CUDA 环境下编译的，无法处理 CUDA 的请求。
 
+可以通过如下代码在 Python 解释器中验证 CUDA 是否可用，若可用，将输出 True
+
+```python
+import torch
+print(torch.cuda.is_available())
+```
 # 学习
 
 [B 站，10分钟入门神经网络 PyTorch 手写数字识别](https://www.bilibili.com/video/BV1GC4y15736)

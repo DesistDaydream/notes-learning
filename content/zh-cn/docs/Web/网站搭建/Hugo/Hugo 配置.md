@@ -9,7 +9,7 @@ data: 2023-01-18
 >
 > 参考：
 >
-> - [官方文档，入门-配置](https://gohugo.io/getting-started/configuration/)
+> - [官方文档，入门 - 配置](https://gohugo.io/getting-started/configuration/)
 
 Hugo 支持 [TOML](/docs/2.编程/无法分类的语言/TOML.md)、[YAML](/docs/2.编程/无法分类的语言/YAML.md)、[JSON](/docs/2.编程/无法分类的语言/JSON.md) 格式的配置文件，默认配置文件名为 **hugo.SUFFIX**。所有的配置指令都可以写在 hugo.SUFFIX 文件中。
 

@@ -163,6 +163,8 @@ https://pip.pypa.io/en/stable/cli/pip_install/
 
 ### EXAMPLE
 
+`pip install .` 即可使用 pyproject.toml 文件安装依赖。不用使用 -r 去依赖 requirement 文件了。
+
 安装 2.6.1.3 版本的 paddleocr
 
 - `pip install paddleocr==2.6.1.3`
@@ -211,7 +213,7 @@ trusted-host = mirrors.aliyun.com
 EOF
 ```
 
-windows 下，直接在 user 目录中创建一个 pip 目录，如：C:/Users/xx/pip，新建文件 pip.ini。内容同上。
+windows 下，在 `%APPDATA%` 目录中创建一个 pip 目录，如：C:/Users/xx/pip，新建文件 pip.ini。内容同上。
 
 ```powershell
 New-Item -ItemType File $env:APPDATA\pip\pip.ini -Force

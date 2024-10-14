@@ -11,8 +11,7 @@ weight: 1
 > 
 > - [官方文档，下载并安装 Go](https://golang.org/doc/install)
 > - [官方文档，安装多个版本的 Go](https://golang.org/doc/manage-install)
-> - [Go 包，标准库-cmd-go](https://pkg.go.dev/cmd/go)
-> - [GitHub 项目 - goproxy-goproxy.io 与 goproxy.cn 说明](https://github.com/goproxy/goproxy.cn/issues/61)
+> - [Go 包，标准库 - cmd - go](https://pkg.go.dev/cmd/go)
 
 我们可以通过一个名为 go 的二进制文件实现绝大部分日常的 编码、编译 等工作，只要安装好 Go 的环境即可。
 
@@ -213,6 +212,10 @@ GO 模块相关
 
 
 ## goproxy 说明
+
+> 参考：
+>
+> - [GitHub 项目 - goproxy-goproxy.io 与 goproxy.cn 说明](https://github.com/goproxy/goproxy.cn/issues/61)
 
 我把老哥的 Issue 转移到这里来了哈，这个项目才是 [goproxy.cn](https://goproxy.cn/) 的源代码。[Goproxy](https://github.com/goproxy/goproxy) 是这个项目所基于的底层 Go module proxy 实现，它针对的不只是国内的开发者，所以既不建议用中文也不适合讨论 [goproxy.cn](https://goproxy.cn/)。这里讨论老哥你的问题才更为合适。
 

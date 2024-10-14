@@ -76,8 +76,8 @@ weight: 1
 > 参考：
 >
 > - [官方文档-3，标准库](https://docs.python.org/3/library/index.html)
-> - [官方文档-3，标准库参考-内置函数](https://docs.python.org/3/library/functions.html)
-> - [官方文档-3，标准库参考-内置常量](https://docs.python.org/3/library/constants.html)
+> - [官方文档-3，标准库参考 - 内置函数](https://docs.python.org/3/library/functions.html)
+> - [官方文档-3，标准库参考 - 内置常量](https://docs.python.org/3/library/constants.html)
 
 **Python Standard Library(Python 标准库)** 是所有 Python 内置 **Package(包)** 或 **Module(模块)** 的集合，每个 package 都可以实现一类功能。
 

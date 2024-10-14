@@ -67,22 +67,25 @@ Python 3.10.6 (main, Nov 14 2022, 16:10:14)
 Python 自动安装 pip 和 setuptools 两个包，这两个包在 site-packages 目录中生成如下目录
 
 - pip 包包含目录
-    - pip
-    - pip-22.3.1.dist-info
-    - 另外还会在 Scripts 目录生成 3 个可执行文件。
+  - pip
+  - pip-22.3.1.dist-info
+  - 另外还会在 Scripts 目录生成 3 个可执行文件。
 - setuptools 包包含目录
-    - _distutils_hack
-    - distutils-precedence.pth
-    - pkg_resources
-    - setuptools-65.5.0.dist-info
-    - setuptools
-
+  - `_distutils_hack`
+  - distutils-precedence.pth
+  - pkg_resources
+  - setuptools-65.5.0.dist-info
+  - setuptools
 
 ## Windows 可嵌入的包
 
 嵌入式分发是一个包含最小 Python 环境的 ZIP 文件。它旨在充当另一个应用程序的一部分，而不是由最终用户直接访问。
 
 ## 安装多个版本的 Python
+
+# 初始化项目
+
+无
 
 # 编译 Python
 
@@ -116,3 +119,80 @@ Python 模块与包的关联文件通常都是在编译 Python 解释器时设�
 
 - **${PYTHONPATH}** # 手动设置的目录列表
 - **site.getsitepackages()** # 这个函数可以列出所有 site 模块生成的存放模块的目录列表
+
+## pyproject.toml
+
+> 参考：
+>
+> - [PEP-518](https://peps.python.org/pep-0518/)
+> - [Python 包管理指南，编写 pyproject.toml](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/)
+
+根据 [PEP-518](https://peps.python.org/pep-0518/)，Python 项目的配置推荐放到项目根目录 pyproject.toml 文件中，这是一个 [TOML](docs/2.编程/无法分类的语言/TOML.md) 格式的配置文件
+
+该文件通常有 3 个 Table
+
+- **build-system** # **强烈推荐使用**。它允许您声明您使用哪个[构建后端](https://packaging.python.org/en/latest/glossary/#term-Build-Backend)以及构建项目所需的其他依赖项。
+- **project** # 大多数构建后端用来指定项目的基本元数据的格式，例如依赖项、您的姓名、etc. 。
+- **tool** # 具有特定于工具的子表，例如 `[tool.hatch]`、`[tool.black]`、`[tool.mypy]`。它的内容是由每个工具定义的。请查阅特定工具的文档以了解它可以包含什么。
+
+### project
+
+**name**(STRING)
+
+**dynamic**(\[]STRING)
+
+**dependencies**(\[]STRING)
+
+## requirements.txt 文件（弃用）
+
+> 参考：
+>
+> - [pip 官方文档，用户指南-Requirements 文件](https://pip.pypa.io/en/latest/user_guide/#requirements-files)
+> - [知乎，Python 中的 requirement.txt](https://zhuanlan.zhihu.com/p/69058584)
+
+Python 也需要维护项目相关的依赖包。通常我们会在项目的根目录下放置一个 requirement.txt 文件，用于记录所有依赖包和它的确切版本号。
+
+requirement.txt 的内容长这样：
+
+```python
+alembic==1.0.10
+appnope==0.1.0
+astroid==2.2.5
+attrs==19.1.0
+backcall==0.1.0
+bcrypt==3.1.6
+bleach==3.1.0
+cffi==1.12.3
+Click==7.0
+decorator==4.4.0
+defusedxml==0.6.0
+entrypoints==0.3
+...
+```
+
+### 如何使用？
+
+那么 requirement.txt 究竟如何使用呢？
+
+当我们拿到一个项目时，首先要在项目运行环境安装 requirement.txt 所包含的依赖：
+
+`pip install -r requirement.txt`
+
+当我们要把环境中的依赖写入 requirement.txt 中时，可以借助 freeze 命令：
+
+`pip freeze > requirements.txt`
+
+### 环境混用怎么办？
+
+在导出依赖到 requirement.txt 文件时会有一种尴尬的情况。你的本地环境不仅包含项目 A 所需要的依赖，也包含着项目 B 所需要的依赖。此时我们要如何做到只把项目 A 的依赖导出呢？
+
+[pipreqs](https://github.com/bndr/pipreqs) 可以通过扫描项目目录，帮助我们仅生成当前项目的依赖清单。
+
+通过以下命令安装：
+
+`pip install pipreqs`
+
+运行：
+
+`pipreqs ./ --encoding utf8`
+

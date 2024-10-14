@@ -1,9 +1,11 @@
 [tableOfContents]
 startLevel = 1
+
 [goldmark]
 [goldmark.parser.attribute]
 block = true
 [goldmark.renderer]
 unsafe = true # 允许渲染 HTML 标签语法
+
 [highlight]
 style = "tango"

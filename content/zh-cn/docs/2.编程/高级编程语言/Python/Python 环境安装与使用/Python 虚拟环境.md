@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [官方文档，Python 教程-虚拟环境和包](https://docs.python.org/3/tutorial/venv.html)
+> - [官方文档，Python 教程 - 虚拟环境和包](https://docs.python.org/3/tutorial/venv.html)
 
 Python 没有 go.mod 与 go.sum 这种文件来管理第三方依赖模块的版本。假如现在只有一个 3.10 版本的 Python，那么所有项目的依赖模块都会被安装到 site-packages 目录中，且 site-packages 目录中保存只能保存唯一一个版本的依赖。若项目 A 需要  模块 C 的 1.0 版本，项目 B 需要 模块 C 的 2.0 的版本，这时候就会产生冲突，若同时运行这两个项目，将有其中一个无法正常运行。因为只要安装 C 1.0，当前环境的 C 2.0 就会被覆盖。
 

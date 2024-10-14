@@ -12,7 +12,7 @@ weight: 1
 > - [GitHub 项目，python/cpython](https://github.com/python/cpython)
 > - [CPython 源码解析](https://realpython.com/cpython-source-code-guide)
 
-Python 编程语言最早由 C 语言实现，称为 CPython
+Python 编程语言最早由 C 语言实现，称为 CPython。还有其它的实现版本，不怎么用就不记了
 
 ## 学习资料
 
@@ -34,7 +34,7 @@ PEP 的结构类似于 [RFC](/docs/Standard/Internet/RFC.md)（Request for Comme
 
 ## 项目结构
 
-在 [PEP518](https://link.zhihu.com/?target=https%3A//peps.python.org/pep-0518/) 中指定了 Python 项目的最低构建系统要求。
+在 [PEP518](https://peps.python.org/pep-0518/) 中指定了 Python 项目的最低构建系统要求。
 
 ## 命名规范
 
@@ -48,7 +48,7 @@ PEP 的结构类似于 [RFC](/docs/Standard/Internet/RFC.md)（Request for Comme
 
 [知乎，代码规范与美观: Python Linter (Ruff) 和 Formatter (Black)](https://zhuanlan.zhihu.com/p/624590679)
 
-根据 [PEP518](https://link.zhihu.com/?target=https%3A//peps.python.org/pep-0518/)，python 项目的配置推荐放到项目根目录 pyproject.toml 文件中，而 Black 和 Ruff 都支持从这个文件中读取配置
+而 Black 和 Ruff 都支持从 [pyproject.toml](docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20环境安装与使用.md#pyproject.toml) 文件中读取配置
 
 ## 编码风格
 

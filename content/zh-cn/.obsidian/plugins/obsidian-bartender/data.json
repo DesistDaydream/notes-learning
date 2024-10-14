@@ -1336,9 +1336,10 @@
     "docs/12.AI/计算机视觉": [
       "docs/12.AI/计算机视觉/_index.md",
       "docs/12.AI/计算机视觉/计算机视觉.md",
-      "docs/12.AI/计算机视觉/OpenCV.md",
-      "docs/12.AI/计算机视觉/图像处理模块.md",
-      "docs/12.AI/计算机视觉/OCR.md"
+      "docs/12.AI/计算机视觉/Object detection.md",
+      "docs/12.AI/计算机视觉/Pose estimation.md",
+      "docs/12.AI/计算机视觉/OCR.md",
+      "docs/12.AI/计算机视觉/OpenCV"
     ],
     "docs/2.编程": [
       "docs/2.编程/_index.md",
@@ -2865,6 +2866,11 @@
       "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/CR 详解",
       "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/Operator API.md",
       "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/Prometheus-adapter.md"
+    ],
+    "docs/12.AI/计算机视觉/OpenCV": [
+      "docs/12.AI/计算机视觉/OpenCV/_index.md",
+      "docs/12.AI/计算机视觉/OpenCV/OpenCV.md",
+      "docs/12.AI/计算机视觉/OpenCV/图像处理模块.md"
     ]
   },
   "actionBarOrder": {},
