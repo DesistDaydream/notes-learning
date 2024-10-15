@@ -137,6 +137,8 @@ pip config edit --editor code # 使用 vscode 打开 pip 配置文件
 
 ## pip download
 
+下载 wheel 格式包到当前目录
+
 **OPTIONS**
 
 - **-d, --dest \<DIR>** # 将 Python 包下载到 DIR 目录中。
@@ -151,6 +153,14 @@ pip config edit --editor code # 使用 vscode 打开 pip 配置文件
 ## pip install
 
 https://pip.pypa.io/en/stable/cli/pip_install/
+
+pip install \[OPTIONS] <URL/PATH>
+
+pip 从以下位置安装包
+
+- PyPI 索引符（i.e. 包名）
+- 本地项目目录。读取 pyproject.toml 文件中
+- 本地或远程 wheel 文件（i.e. 指定 本地 或 网络 上的 .whl 文件）
 
 **OPTIONS**
 

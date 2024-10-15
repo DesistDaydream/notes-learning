@@ -9,6 +9,7 @@ weight: 20
 
 > 参考：
 >
+> - [GitHub 项目，ultralytics/ultralytics](https://github.com/ultralytics/ultralytics)
 > - [ultralytics 官网](https://www.ultralytics.com/)
 > - https://medium.com/@gary.tsai.advantest/yolo-%E7%B3%BB%E5%88%97%E5%A4%A7%E8%A3%9C%E5%B8%96-yolov7-b1ce83a7035
 
@@ -73,7 +74,7 @@ Ultralytics 提供对各类 **Dataset(数据集)** 的支持，以便进行计�
 - **[Pose estimation](#Pose%20estimation)(姿态估计) 数据集** # 在识别到对象后，识别对象的姿态。
 - etc.
 
-上面这些种类的数据集中，有一个名为 **Common Objects in Context(COCO)** 的数据集，COCO 是一个通用的大规模用于 对象检测、实例分割、姿态估计 的数据集，包含 80 个对象类别、超过 200K 个标记图像。
+上面这些种类的数据集中，有一个名为 **Common Objects in Context(COCO)** 的数据集，COCO 是一个通用的大规模用于 对象检测、实例分割、姿态估计 的数据集，包含 80 个对象类别、超过 200K 个已标记的图像。
 
 ## 创建自己的数据集
 
@@ -126,9 +127,11 @@ for f in path.rglob("*.jpg"):
 zip_directory(path)
 ```
 
-### data.yaml
+## data.yaml
 
-Ultralytics YOLO 数据集使用 [YAML](docs/2.编程/无法分类的语言/YAML.md) 格式文件，可以定义数据集所在目录、训练、验证、测试 图像目录、数据集中对象分类的字典。可以在 https://github.com/ultralytics/ultralytics/tree/main/ultralytics/cfg/datasets 这里找到各类数据集的配置文件
+data.yaml 时 Ultralytics YOLO 数据集使用的 [YAML](docs/2.编程/无法分类的语言/YAML.md) 格式文件，可以定义数据集所在目录、训练、验证、测试 图像目录、数据集中对象分类的字典。在  [这里](https://github.com/ultralytics/ultralytics/tree/main/ultralytics/cfg/datasets) 找到各类数据集的 data.yaml。
+
+> Notes: data.yaml 是一种抽象的叫法，本质就是配置文件。各种数据集使用 data.yaml 时，可以指定任意名称但只要符合文件内容格式的 YAML 文件。
 
 e.g. 对象检测 类型的数据集配置通常是下面这样的：
 
@@ -147,9 +150,9 @@ names:
     79: toothbrush
 ```
 
-下图是使用上面示例的 data.yaml 训练后模型识别的结果，可以看到有 person 和 bus，并不是单纯的数字了，在官网[示例图片](https://docs.ultralytics.com/datasets/detect/coco/#sample-images-and-annotations)中，识别出的对象都是用数字注释的。 
+下图是使用上面示例的 data.yaml 训练后模型识别的结果，可以看到有 person 和 bus，并不是单纯的数字了，在右边官网[示例图片](https://docs.ultralytics.com/datasets/detect/coco/#sample-images-and-annotations)中，识别出的对象都是**数字注释**的。
 
-![400](https://notes-learning.oss-cn-beijing.aliyuncs.com/ai/yolo/detected_bus.png)
+![400](https://notes-learning.oss-cn-beijing.aliyuncs.com/ai/yolo/detected_bus.png)![400](https://notes-learning.oss-cn-beijing.aliyuncs.com/ai/yolo/mosaiced-coco-dataset-sample.jpg)
 
 当我们训练模型时，下面代码就会指定要使用的 data.yaml 文件（这示例的 data.yaml 名为 coco.yaml）
 
@@ -183,6 +186,8 @@ datasets/
             ├── 000000000036.txt
             └── 000000000061.txt
 ```
+
+# 数据集种类
 
 ## Object detection
 
@@ -248,6 +253,23 @@ https://docs.ultralytics.com/datasets/pose/
 [Pose estimation](docs/12.AI/计算机视觉/Pose%20estimation.md)(姿态估计)
 
 YAML 格式 https://docs.ultralytics.com/datasets/pose/#dataset-yaml-format
+
+# 模型
+
+> 参考：
+>
+> - [ultralytics 文档，模型](https://docs.ultralytics.com/models/)
+
+https://docs.ultralytics.com/models/yolov10/#model-variants
+
+Ultralytics 的 YOLO 有多种模型规模，以满足不同的应用需求：
+
+- **YOLO-N** # **Nano** 适用于资源极其有限的环境的。适合移动设备和快速测试
+- **YOLO-S** # **Small** 平衡速度和准确性的小型版本。适合嵌入式设备和一般性测试
+- **YOLO-M** # **Medium** 用于通用用途。
+- **YOLO-B** # **Balanced** 增加宽度以提高精度。
+- **YOLO-L** # **Large** 增加计算资源为代价获得更高的精度。
+- **YOLO-X** # **Extra-large** 可实现最大精度和性能。适合服务器处理高精度任务
 
 # 关联文件与配置
 

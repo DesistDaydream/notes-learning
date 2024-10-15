@@ -8,11 +8,11 @@ weight: 20
 
 > 参考：
 >
-> - [官方文档，语言参考-数据模型](https://docs.python.org/3/reference/datamodel.html)
+> - [官方文档，参考 - 数据模型](https://docs.python.org/3/reference/datamodel.html)
 
 **object(对象)** 是 Python 中对数据的抽象。Python 程序中的所有数据都是由对象或对象间关系来表示的。 （从某种意义上说，按照冯·诺依曼的“存储程序计算机”模型，代码本身也是由对象来表示的。）
 
-> Python 中的 object 概念类似于 JS 中的 [object](/docs/2.编程/高级编程语言/ECMAScript/JavaScript%20规范与标准库/Data%20type.md#object(对象)) 概念。但是又不完全一样。
+> Python 中的 object 概念类似于 JS 中的 [object](/docs/2.编程/高级编程语言/ECMAScript/JavaScript%20规范与标准库/object) 概念。但是又不完全一样。
 >
 > Python 变量的本质是对对象的引用
 
@@ -42,13 +42,24 @@ print(s.capitalize())  # 输出 "Hello, world!"
 
 # 特殊方法名
 
+> 参考：
+>
+> - [官方文档，参考 - 数据模型 - 特殊方法名](https://docs.python.org/3.12/reference/datamodel.html#special-method-names)
+
 `__init__`、等
+
+`__call__` # 当对象作为一个函数被调用时，执行 `__call__` 方法中的逻辑。
+
+https://docs.python.org/3.12/reference/datamodel.html#emulating-callable-objects
+
+比如 YOLO 的 `ultralytics.engine.model.Model` 类，若调用本身 Model()，则会触发其 `__call__` 方法，该方法直接返回 `self.predict()`。这里其实相当于让 Model 自身作为函数时默认调用 predict() 方法。
+
 
 # 类型提示
 
 痛点：Python 是动态类型语言，可以在运行时修改变量的类型，若不为函数的参数、变量指定类型，阅读代码会造成障碍，IDE 也无法给出正确的提示。
 
-所以，从 Python 3.5 版本开始，Python 添加了 [typing](https://docs.python.org/3/library/typing.html) 库以支持在 **Type hints(类型提示)**。
+所以，从 Python 3.5 版本开始，Python 添加了 [typing](https://docs.python.org/3/library/typing.html) 库以支持 **Type hints(类型提示)**。
 
 ```python
 # greeting 函数，参数 name 的类型应是 str，返回类型是 str。子类型也可以作为参数。

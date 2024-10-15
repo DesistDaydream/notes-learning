@@ -35,6 +35,8 @@ https://github.com/lixi5338619/lxSpider 爬虫案例合集
 
 # 实用工具
 
+[WebDriver](/docs/Web/WebDriver/WebDriver.md) # 自动控制浏览器
+
 [Easy Scrapper 浏览器插件](https://chromewebstore.google.com/detail/easy-scraper-free-web-scr/ibdncfidcgeammedkdhoopophkkhcbme)
 
 - [Easy Scraper - 可视化网络爬虫，不写代码，鼠标点点获取数据](https://www.bilibili.com/video/BV1jx4y1S75U)
@@ -43,6 +45,6 @@ https://github.com/NanmiCoder/MediaCrawler
 
 - 小红书笔记 | 评论爬虫、抖音视频 | 评论爬虫、快手视频 | 评论爬虫、B 站视频 ｜ 评论爬虫、微博帖子 ｜ 评论爬虫
 
-https://github.com/g1879/DrissionPage
+https://github.com/unclecode/crawl4ai
 
-- 基于python的网页自动化工具。既能控制浏览器，也能收发数据包。可兼顾浏览器自动化的便利性和requests的高效率。功能强大，内置无数人性化设计和便捷功能。语法简洁而优雅，代码量少。
+- Crawl4AI 简化了异步网络爬行和数据提取，使其可供大型语言模型 (LLM) 和 AI 应用程序使用。

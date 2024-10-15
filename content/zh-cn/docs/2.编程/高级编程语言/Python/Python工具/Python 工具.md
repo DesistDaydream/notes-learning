@@ -64,6 +64,10 @@ pdm
 
 hatch
 
+# Wheel 包
+
+Wheel 是一种类似压缩包的 Python 用于分发包的文件，有点类似 .rpm、.deb。
+
 # python
 
 > 参考：

@@ -125,7 +125,8 @@ Python 模块与包的关联文件通常都是在编译 Python 解释器时设�
 > 参考：
 >
 > - [PEP-518](https://peps.python.org/pep-0518/)
-> - [Python 包管理指南，编写 pyproject.toml](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/)
+> - [Python 包用户指南，编写 pyproject.toml](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/)
+> - [Python 包用户指南，规范 - pyproject.tom 规范](https://packaging.python.org/en/latest/specifications/pyproject-toml/)
 
 根据 [PEP-518](https://peps.python.org/pep-0518/)，Python 项目的配置推荐放到项目根目录 pyproject.toml 文件中，这是一个 [TOML](docs/2.编程/无法分类的语言/TOML.md) 格式的配置文件
 
@@ -134,6 +135,7 @@ Python 模块与包的关联文件通常都是在编译 Python 解释器时设�
 - **build-system** # **强烈推荐使用**。它允许您声明您使用哪个[构建后端](https://packaging.python.org/en/latest/glossary/#term-Build-Backend)以及构建项目所需的其他依赖项。
 - **project** # 大多数构建后端用来指定项目的基本元数据的格式，例如依赖项、您的姓名、etc. 。
 - **tool** # 具有特定于工具的子表，例如 `[tool.hatch]`、`[tool.black]`、`[tool.mypy]`。它的内容是由每个工具定义的。请查阅特定工具的文档以了解它可以包含什么。
+### build-system
 
 ### project
 
