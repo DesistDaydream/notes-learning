@@ -8,7 +8,7 @@ title: Netplan 配置详解
 >
 > - [官网，参考](https://netplan.io/reference)
 
-Netplan 的配置文件使用 YAML 格式。`/{lib,etc,run}/netplan/*.yaml` 都是 Netplan 程序读取配置文件的路径。
+Netplan 的配置文件使用 [YAML](docs/2.编程/无法分类的语言/YAML.md) 格式。`/{lib,etc,run}/netplan/*.yaml` 都是 Netplan 程序读取配置文件的路径。
 
 # 配置文件详解
 
@@ -29,10 +29,15 @@ Netplan 的配置文件使用 YAML 格式。`/{lib,etc,run}/netplan/*.yaml` 都�
 ## 所有设备的通用属性
 
 **addresses([]OBJECT)** #
+
 **dtcp4(BOOL)** # 为 IPv4 启用 DHCP。`默认值：false`
+
 **dhcp6(BOOL)** # 为 IPv6 启用 DHCP。`默认值：false`
+
 **gateway4 | gateway6(STRING)** # **已弃用**。使用 `routes` 字段。
+
 **nameservers(OBJECT)** # 设置 DNS 服务器和搜索域，用于手动地址配置
+
 **routes([]OBJECT)** # 为设备配置静态路由；请参阅下面的路由部分。
 
 # 配置示例

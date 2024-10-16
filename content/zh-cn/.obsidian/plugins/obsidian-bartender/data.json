@@ -1324,7 +1324,8 @@
       "docs/12.AI/机器学习/_index.md",
       "docs/12.AI/机器学习/机器学习.md",
       "docs/12.AI/机器学习/深度学习.md",
-      "docs/12.AI/机器学习/模型.md",
+      "docs/12.AI/机器学习/Model.md",
+      "docs/12.AI/机器学习/Dataset.md",
       "docs/12.AI/机器学习/PyTorch.md",
       "docs/12.AI/机器学习/Transformers.md"
     ],
@@ -1336,6 +1337,7 @@
     "docs/12.AI/计算机视觉": [
       "docs/12.AI/计算机视觉/_index.md",
       "docs/12.AI/计算机视觉/计算机视觉.md",
+      "docs/12.AI/计算机视觉/Dataset.md",
       "docs/12.AI/计算机视觉/Object detection.md",
       "docs/12.AI/计算机视觉/Pose estimation.md",
       "docs/12.AI/计算机视觉/OCR.md",
@@ -1750,8 +1752,6 @@
     "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密": [
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密/_index.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密/crypto 库.md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密/crypto 库进阶示例1.md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密/crypto 库进阶示例2.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/加密与解密/第三方库.md"
     ],
     "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理": [

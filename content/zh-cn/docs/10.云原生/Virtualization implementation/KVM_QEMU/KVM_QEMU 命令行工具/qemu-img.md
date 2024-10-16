@@ -1,5 +1,8 @@
 ---
 title: qemu-img
+linkTitle: qemu-img
+date: 2020-10-17T11:02:00
+weight: 20
 ---
 
 # 概述

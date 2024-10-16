@@ -168,17 +168,23 @@ postgres=#
 
 首先，创建数据库用户 dbuser，并指定其为超级用户。
 
-    sudo -u postgres createuser --superuser dbuser
+```bash
+sudo -u postgres createuser --superuser dbuser
+```
 
 然后，登录数据库控制台，设置 dbuser 用户的密码，完成后退出控制台。
 
-    sudo -u postgres psql
-    \password dbuser
-    \q
+```bash
+sudo -u postgres psql
+\password dbuser
+\q
+```
 
 接着，在 shell 命令行下，创建数据库 exampledb，并指定所有者为 dbuser。
 
-    sudo -u postgres createdb -O dbuser exampledb
+```bash
+sudo -u postgres createdb -O dbuser exampledb
+```
 
 ## 登录数据库
 
@@ -200,7 +206,7 @@ psql 命令存在简写形式。如果当前 Linux 系统用户，同时也是 P
 
 另外，如果要恢复外部数据，可以使用下面的命令。
 
-> psql exampledb < exampledb.sql
+> psql exampledb exampledb.sql
 
 # PostgreSQL 关联文件与配置
 

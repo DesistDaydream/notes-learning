@@ -54,7 +54,6 @@ https://docs.python.org/3.12/reference/datamodel.html#emulating-callable-objects
 
 比如 YOLO 的 `ultralytics.engine.model.Model` 类，若调用本身 Model()，则会触发其 `__call__` 方法，该方法直接返回 `self.predict()`。这里其实相当于让 Model 自身作为函数时默认调用 predict() 方法。
 
-
 # 类型提示
 
 痛点：Python 是动态类型语言，可以在运行时修改变量的类型，若不为函数的参数、变量指定类型，阅读代码会造成障碍，IDE 也无法给出正确的提示。

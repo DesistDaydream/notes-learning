@@ -1,10 +1,14 @@
 ---
 title: qemu-system
+linkTitle: qemu-system
+date: 2020-10-17T11:02:00
+weight: 20
 ---
 
 # 概述
 
 > 参考：
+>
 > - [官方 Manual(手册)，qemu-system-x86_64](https://www.qemu.org/docs/master/system/qemu-manpage.html)
 > - [官方文档，系统模拟-调用](https://www.qemu.org/docs/master/system/invocation.html)（这个其实也是 man 手册）
 

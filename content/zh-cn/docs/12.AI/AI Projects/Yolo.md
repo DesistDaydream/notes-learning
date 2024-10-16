@@ -12,6 +12,7 @@ weight: 20
 > - [GitHub 项目，ultralytics/ultralytics](https://github.com/ultralytics/ultralytics)
 > - [ultralytics 官网](https://www.ultralytics.com/)
 > - https://medium.com/@gary.tsai.advantest/yolo-%E7%B3%BB%E5%88%97%E5%A4%A7%E8%A3%9C%E5%B8%96-yolov7-b1ce83a7035
+> - https://www.bilibili.com/video/BV1sCtHewEw7
 
 [YOLO](https://arxiv.org/abs/1506.02640)(You Only Look Once）是一种流行的物体检测和图像分割模型，由华盛顿大学的约瑟夫-雷德蒙（Joseph Redmon）和阿里-法哈迪（Ali Farhadi）开发。YOLO 于 2015 年推出，因其高速度和高精确度而迅速受到欢迎。
 
@@ -24,7 +25,7 @@ weight: 20
 - [**YOLOv3**](https://github.com/ultralytics/yolov3) (2018) Joseph Redmon
   - [YOLOv3: An Incremental Improvement](https://arxiv.org/abs/1804.02767)
 - 突发
-  - 然而，2020 年 *约瑟夫·雷德蒙* 突然投下一枚震撼弹，他受够 YOLO 不断被运用在军事应用以及个人隐私，宣布停止电脑视觉相关的研究。
+  - 然而，2020 年 *约瑟夫·雷德蒙* 突然投下一枚重磅炸弹，他受够 YOLO 不断被运用在军事应用以及个人隐私，宣布停止电脑视觉相关的研究。
   - ![https://x.com/pjreddie/status/1230524770350817280|400](https://notes-learning.oss-cn-beijing.aliyuncs.com/ai/yolo/202410151103187.png)
 - [**YOLOv4**](https://github.com/AlexeyAB/darknet) (2020) Alexey Bochkovskiy
   - [YOLOv4: Optimal Speed and Accuracy of Object Detection](https://arxiv.org/abs/2004.10934)
@@ -56,7 +57,7 @@ https://docs.ultralytics.com/modes/train/
 from ultralytics import YOLO
 # 加载预训练模型（建议用于训练）
 model = YOLO("yolo11n.pt")
-# 训练模型。指定 coco.yaml 为 data.yaml。训练周期 100，TODO: 640 是干什么的？
+# 训练模型。指定 coco.yaml 为 data.yaml。训练周期 100，TODO: 640 是干什么的？好像是图片大小？
 results = model.train(data="coco.yaml", epochs=100, imgsz=640)
 ```
 
@@ -74,7 +75,7 @@ Ultralytics 提供对各类 **Dataset(数据集)** 的支持，以便进行计�
 - **[Pose estimation](#Pose%20estimation)(姿态估计) 数据集** # 在识别到对象后，识别对象的姿态。
 - etc.
 
-上面这些种类的数据集中，有一个名为 **Common Objects in Context(COCO)** 的数据集，COCO 是一个通用的大规模用于 对象检测、实例分割、姿态估计 的数据集，包含 80 个对象类别、超过 200K 个已标记的图像。
+Ultralytics YOLO 的 检测、分段、姿势 模型在 [COCO](docs/12.AI/机器学习/Dataset.md#COCO) 数据集上预训练，而 分类 模型在 [ImageNet](docs/12.AI/机器学习/Dataset.md#ImageNet) 数据集上预训练。
 
 ## 创建自己的数据集
 
@@ -289,3 +290,7 @@ https://docs.ultralytics.com/usage/cli/
 - **predict** # 使用经过训练的 YOLO11n 模型对图像进行 predictions(预测)。
 - **val** # 在 COCO8 数据集上 Validate(验证) 经过训练的 YOLO11n 模型的准确性。不需要参数，因为模型保留其训练数据和参数作为模型属性。
 - **export** # 将 YOLO11n 模型导出为不同的格式，例如 ONNX、CoreML、etc. 。
+
+# 最佳实践
+
+https://www.youtube.com/watch?v=7YRJIAIhMpw
