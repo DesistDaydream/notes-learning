@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Advanced_Encryption_Standard](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
+> - [Wiki, Advanced_Encryption_Standard](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
 
 **Advanced Encryption Standard(高级加密标准，简称 AES)** 原名 **Rijndael**，是一种基于 **[Block cipher](/docs/7.信息安全/Cryptography/Cipher/Block%20cipher.md)(块密码/分组密码)** 变体算法的电子数据加密规范。取代了 1977 年发布的 DES(数据加密标准)
 

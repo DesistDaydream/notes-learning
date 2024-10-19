@@ -9,7 +9,7 @@ weight: 2
 
 > 参考：
 >
-> - [Wiki，X.509](https://en.wikipedia.org/wiki/X.509)
+> - [Wiki, X.509](https://en.wikipedia.org/wiki/X.509)
 > - [RFC，5280](https://datatracker.ietf.org/doc/html/rfc5280)
 > - [Arthurchiao 博客，\[译\] 写给工程师：关于证书（certificate）和公钥基础设施（PKI）的一切（SmallStep, 2018）](https://arthurchiao.art/blog/everything-about-pki-zh/)
 > - [RFC 5280，Internet X.509 PKI 证书和 CRL 配置文件](https://datatracker.ietf.org/doc/html/rfc5280)

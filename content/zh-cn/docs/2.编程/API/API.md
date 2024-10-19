@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，API](https://en.wikipedia.org/wiki/API)
+> - [Wiki, API](https://en.wikipedia.org/wiki/API)
 
 **Application Programming Interface(应用程序接口，简称 API)**。它定义了可以进行的调用或请求的类型，如何进行调用，应使用的数据格式，遵循的约定等。它还可以提供扩展机制，以便用户可以通过各种方式扩展现有功能。在不同程度上。API 可以是完全自定义的，特定于组件的，也可以基于行业标准设计以确保互操作性。通过[信息隐藏](https://en.wikipedia.org/wiki/Information_hiding)，API 支持[模块化编程](https://en.wikipedia.org/wiki/Modular_programming)，从而使用户可以独立于实现使用接口。
 

@@ -8,7 +8,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [阮一峰，RESTful API 设计指南](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)
 > - [思否，REST架构的思考](https://segmentfault.com/a/1190000004311893)
 
@@ -38,8 +38,8 @@ Endpoint 这个词以前经常被用来描述进程间通信。例如
 # Webservice
 
 > 参考：
-> 
-> - [Wiki，Webservice](https://en.wikipedia.org/wiki/Web_service)
+>
+> - [Wiki, Webservice](https://en.wikipedia.org/wiki/Web_service)
 > - https://hygraph.com/blog/web-service-vs-api
 
 Webservice 描述了一种在 Internet 协议主干上使用 XML、SOAP、WSDL 和 UDDI 开放标准集成基于 Web 的应用程序的标准化方法。XML 是用于包含数据并提供围绕数据的元数据的数据格式，SOAP 用于传输数据，WSDL 用于描述可用的服务，UDDI 列出可用的服务。
@@ -66,8 +66,8 @@ API 一词指的是应用程序编程接口，类似于 Web 服务，当两个�
 # REST
 
 > 参考：
-> 
-> - [Wiki，REST](https://en.wikipedia.org/wiki/Representational_state_transfer)
+>
+> - [Wiki, REST](https://en.wikipedia.org/wiki/Representational_state_transfer)
 
 **Representational State Transfer(表述性状态传递，简称 REST)** 是交互式应用程序（通常使用多个 Web 服务实现）的软件架构的事实标准。说白了就是两个应用程序的交互标准。规定了两个程序互相传递数据的格式(JSON、XML 等)、内容、方法(增删改查)等等。这种格式，称为 REST 风格的接口
 

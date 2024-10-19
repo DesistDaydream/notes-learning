@@ -11,7 +11,7 @@ weight: 1
 > - [官方文档-Windowns Server，Windows 命令](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands)
 > - [官方文档，Windows Shell](https://learn.microsoft.com/en-us/windows/win32/shell/shell-entry)
 > - [官方文档，PowerShell](https://learn.microsoft.com/en-us/powershell/)
-> - [Wiki，Windows shell](https://en.wikipedia.org/wiki/Windows_shell)
+> - [Wiki, Windows shell](https://en.wikipedia.org/wiki/Windows_shell)
 
 Windows 有两个 CLI 的 Shell：Command shell 和 PowerShell。每个 Shell 都是一个软件程序，可在我们与操作系统或应用程序之间提供直接通信，从而自动化 IT 操作的环境。
 

@@ -48,7 +48,7 @@ PEP 的结构类似于 [RFC](/docs/Standard/Internet/RFC.md)（Request for Comme
 
 [知乎，代码规范与美观: Python Linter (Ruff) 和 Formatter (Black)](https://zhuanlan.zhihu.com/p/624590679)
 
-而 Black 和 Ruff 都支持从 [pyproject.toml](docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20环境安装与使用.md#pyproject.toml) 文件中读取配置
+而 Black 和 Ruff 都支持从 [pyproject.toml](/docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20环境安装与使用.md#pyproject.toml) 文件中读取配置
 
 ## 编码风格
 

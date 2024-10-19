@@ -6,7 +6,7 @@ title: "Snap"
 
 > 参考：
 > - [官网](https://snapcraft.io/)
-> - [Wiki，Sanp](<https://en.wikipedia.org/wiki/Snap_(software)>)
+> - [Wiki, Sanp](<https://en.wikipedia.org/wiki/Snap_(software)>)
 
 Snap 是 Canonical 为使用 Linux 内核的操作系统开发的用于软件打包、部署的程序
 

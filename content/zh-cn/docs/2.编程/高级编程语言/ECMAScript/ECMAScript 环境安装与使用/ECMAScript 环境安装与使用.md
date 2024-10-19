@@ -65,7 +65,7 @@ Node.js 和 浏览器都无法直接运行 TypeScript 代码，这是因为 TS �
 > - [org 官网](https://nodejs.org/en/)
 > - [dev 官网](https://nodejs.dev/)
 > - [dev 官网中文翻译](http://nodejs.cn/)
-> - [Wiki，Node.js](https://en.wikipedia.org/wiki/Node.js)
+> - [Wiki, Node.js](https://en.wikipedia.org/wiki/Node.js)
 
 Node.js 是基于 Chrome V8 引擎的 ECMAScript 运行时环境，由 RyanDahl 于 2009 年 5 月 27 日发布。转年(i.e.2010 年 1 月)，为 Node.js 环境引入了一个名为 npm 的包管理器。包管理器使程序员更容易发布和共享 Node.js 的源代码，旨在简化包的安装、更新、卸载。
 

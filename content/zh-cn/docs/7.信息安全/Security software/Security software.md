@@ -28,7 +28,7 @@ Suricata
 >
 > - [GitHub 项目，virustotal/yara](https://github.com/virustotal/yara)
 > - [官网](https://virustotal.github.io/yara/)
-> - [Wiki，YARA](https://en.wikipedia.org/wiki/YARA)
+> - [Wiki, YARA](https://en.wikipedia.org/wiki/YARA)
 
 YARA 是一款旨在（但不限于）帮助恶意软件研究人员识别和分类恶意软件样本的工具。使用 YARA，您可以根据 **文本** 或 **二进制** 模式创建恶意软件系列（或您想要描述的任何内容）的描述。每个描述（也称为规则）由一组字符串和一个决定其逻辑的布尔表达式组成。让我们看一个例子：
 

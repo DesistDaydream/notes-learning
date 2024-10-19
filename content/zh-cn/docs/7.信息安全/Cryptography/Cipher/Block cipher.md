@@ -9,8 +9,8 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Block_cipher](https://en.wikipedia.org/wiki/Block_cipher)
-> - [WIki，Block_cipher_mode_of_operation](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation)
+> - [Wiki, Block_cipher](https://en.wikipedia.org/wiki/Block_cipher)
+> - [Wiki, Block_cipher_mode_of_operation](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation)
 > - [B 站，【计算机博物志】DES的生与死](https://www.bilibili.com/video/BV1qW4y1L7tN)
 
 **Block cipher(分组密码)** 是一种确定性算法，对固定长度的 bits（也称为 blcok）进行操作。与 Block cipher 相关的另一种算法，是 [Stream cipher](/docs/7.信息安全/Cryptography/Cipher/Stream%20cipher.md)。

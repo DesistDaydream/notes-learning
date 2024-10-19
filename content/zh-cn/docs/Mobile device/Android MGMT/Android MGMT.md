@@ -27,10 +27,9 @@ Scrcpy 可以显示和控制 Android 设备。
 
 > [!Tip]
 >
-> 使用 Scrcpy 连接运行在 Linux 容器中的 Android 系统，配合 [YOLO](docs/12.AI/AI%20Projects/YOLO.md)。可以实现在电脑上自动玩手机游戏，比如 https://www.bilibili.com/video/BV1mihkeTEDc
+> 使用 Scrcpy 连接运行在 Linux 容器中的 Android 系统，配合 [YOLO](/docs/12.AI/AI%20Projects/YOLO.md)。可以实现在电脑上自动玩手机游戏，比如 https://www.bilibili.com/video/BV1mihkeTEDc
 
 Android 容器镜像
 
 - https://hub.docker.com/r/redroid/redroid
 - https://github.com/budtmo/docker-android 好像跑不起来？
-

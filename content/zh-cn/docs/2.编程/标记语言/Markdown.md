@@ -10,7 +10,7 @@ weight: 20
 >
 > - [官网](https://commonmark.org/)
 > - [官方规范](https://spec.commonmark.org/)
-> - [Wiki，Markdown](https://en.wikipedia.org/wiki/Markdown)
+> - [Wiki, Markdown](https://en.wikipedia.org/wiki/Markdown)
 > - [GitHub 项目，DavidAnson/markdownlint](https://github.com/DavidAnson/markdownlint/tree/main/doc) # 一种 MarkDown 的格式规范
 
 Markdown 是一种轻量级的标记语言

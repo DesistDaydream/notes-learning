@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Video surveillance](https://en.wikipedia.org/wiki/Closed-circuit_television)
+> - [Wiki, Video surveillance](https://en.wikipedia.org/wiki/Closed-circuit_television)
 
 常见的**监控摄像头**（不是那种简单的接电脑用的通用摄像头）自身内部也是一个小型操作系统，具有 认证、网络、等等 相关能力。有的甚至可以提供 Web 服务，通过远程登录到摄像头的 Web，可以查看、更改摄像头相关配置。
 
@@ -19,7 +19,7 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Network_video_recorder](https://en.wikipedia.org/wiki/Network_video_recorder)
+> - [Wiki, Network_video_recorder](https://en.wikipedia.org/wiki/Network_video_recorder)
 
 **Network video recorder(网络视频录像机，简称 NVR)** 是一种专用计算机系统，其中包含软件程序，可将数字格式的视频记录到磁盘驱动器、USB 闪存驱动器、SD 存储卡或其他大容量存储设备上。 NVR 不包含专用的视频捕获硬件。然而，该软件通常在专用设备上运行，通常带有嵌入式操作系统。
 
@@ -37,7 +37,7 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Hikvision](https://en.wikipedia.org/wiki/Hikvision)
+> - [Wiki, Hikvision](https://en.wikipedia.org/wiki/Hikvision)
 
 4008005998
 

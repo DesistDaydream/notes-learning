@@ -11,7 +11,7 @@ tags:
 
 > 参考：
 >
-> - [Wiki，Translation lookaside buffer](https://en.wikipedia.org/wiki/Translation_lookaside_buffer)
+> - [Wiki, Translation lookaside buffer](https://en.wikipedia.org/wiki/Translation_lookaside_buffer)
 
 **translation lookaside buffer(转换后被缓冲区，简称 TLB)** 用于减少访问用户内存位置所需的时间，是 MMU 的一部分
 

@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，Process_(computing)](https://en.wikipedia.org/wiki/Process_(computing))
+> - [Wiki, Process_(computing)](https://en.wikipedia.org/wiki/Process_(computing))
 > - [原文连接](https://blog.csdn.net/ljianhui/article/details/46718835)，本文为 IBM RedBook 的 [Linux Performanceand Tuning Guidelines](http://users.polytech.unice.fr/~bilavarn/fichier/elec5_linux/linux_perf_and_tuning_IBM.pdf) 的 1.1 节的翻译
 > - [阿里技术，CPU 飙高，系统性能问题如何排查？](https://mp.weixin.qq.com/s/fzLcAkYwKhj-9hgoVkTzaw)
 

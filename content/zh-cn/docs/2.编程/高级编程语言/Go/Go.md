@@ -72,7 +72,7 @@ Hello World
 
 > 参考：
 >
-> - [GitHub 项目 Wiki，golang/go-Wiki-Go 代码审查](https://github.com/golang/go/wiki/CodeReviewComments)
+> - [GitHub 项目 Wiki, golang/go-Wiki-Go 代码审查](https://github.com/golang/go/wiki/CodeReviewComments)
 > - [官方文档，有效的 Go-名称](https://go.dev/doc/effective_go#names)
 >     - [MakeOptim 博客，Effective Go 中文](https://makeoptim.com/golang/effective-go)(官方文档的中文翻译)
 > - [Go 博客，Package names](https://go.dev/blog/package-names)
@@ -302,7 +302,7 @@ gopher 第五条：请学会约定
 
 多变量声明
 
-```gp
+```go
 var (
     name string
     age int

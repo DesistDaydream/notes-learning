@@ -8,7 +8,7 @@ weight: 1
 > 参考：
 >
 > - [官方文档](https://wiki.linuxfoundation.org/networking/iproute2)
-> - [Wiki，Iproute2](https://en.wikipedia.org/wiki/Iproute2)
+> - [Wiki, Iproute2](https://en.wikipedia.org/wiki/Iproute2)
 
 Iprtoue2 是一组应用程序的集合，用于管理 Linux 网络栈。可以控制、监控 LInux 内核中网络栈的各个方面，包括路由、网络接口、隧道、流量控制、与网络相关的设备驱动程序。
 

@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，pcap(包捕获)](https://en.wikipedia.org/wiki/Pcap)
+> - [Wiki, pcap(包捕获)](https://en.wikipedia.org/wiki/Pcap)
 
 在计算机网络管理领域，**Packet Capture(包捕获，简称 pcap)** 是一个用于捕获网络流量的 **API**。很多数据包分析器都依赖于 pcap 来运行。所以，pcap 准确来说，应该称为 **PCAP API**
 

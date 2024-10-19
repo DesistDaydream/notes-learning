@@ -9,7 +9,7 @@ weight: 4
 
 > 参考：
 >
-> - [Wiki，Bypass switch](https://en.wikipedia.org/wiki/Bypass_switch)
+> - [Wiki, Bypass switch](https://en.wikipedia.org/wiki/Bypass_switch)
 
 **Bypass switch(旁路交换机)** 是一种硬件设备，可以与安全设备并联并串联到网络链路中，为安全设备提供 **fail-safe access(故障时可安全访问)** 的能力。
 

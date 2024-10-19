@@ -5,8 +5,8 @@ title: SDN(软件定义网路)
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Software-defined networking](https://en.wikipedia.org/wiki/Software-defined_networking)
+>
+> - [Wiki, Software-defined networking](https://en.wikipedia.org/wiki/Software-defined_networking)
 
 **Software Defined Networking(软件定义网络，简称 SDN)** 技术是一种[网络管理](https://en.wikipedia.org/wiki/Network_management)方法，它支持动态的、以编程方式高效的网络配置，以提高网络性能和监控，使其更像[云计算，而](https://en.wikipedia.org/wiki/Cloud_computing)不是传统的网络管理。[\[1\]](https://en.wikipedia.org/wiki/Software-defined_networking#cite_note-ReferenceA-1) SDN 旨在解决传统网络的静态架构分散且复杂的事实，而当前网络需要更多的灵活性和易于故障排除。SDN 试图通过将[网络数据包](https://en.wikipedia.org/wiki/Network_packet)的转发过程（数据平面）与路由过程（控制平面）分离，将网络智能集中在一个网络组件中。[\[2\]](https://en.wikipedia.org/wiki/Software-defined_networking#cite_note-2)该[控制平面](https://en.wikipedia.org/wiki/Control_plane)由一个或多个控制器组成，这些控制器被认为是包含整个智能的 SDN 网络的大脑。然而，智能中心化在安全性、[\[1\]](https://en.wikipedia.org/wiki/Software-defined_networking#cite_note-ReferenceA-1)可扩展性和弹性[\[1\]](https://en.wikipedia.org/wiki/Software-defined_networking#cite_note-ReferenceA-1)方面有其自身的缺点，这是 SDN 的主要问题。
 

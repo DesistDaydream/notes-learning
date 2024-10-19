@@ -124,7 +124,7 @@ StandardizedGlossary(标准化术语)
 
 > 参考：
 >
-> - [Wiki，Bare machine](https://en.wikipedia.org/wiki/Bare_machine)
+> - [Wiki, Bare machine](https://en.wikipedia.org/wiki/Bare_machine)
 
 在计算机科学中，**Bare metal(裸金属)** 也称为 **Bare machine(裸机)**，是指在没有介入操作系统的逻辑硬件上执行指令的计算机。
 

@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，I/O virtualization](https://en.wikipedia.org/wiki/I/O_virtualization)
+> - [Wiki, I/O virtualization](https://en.wikipedia.org/wiki/I/O_virtualization)
 
 **I/O Virtualization(输入/输出虚拟化)** 是一种广义的虚拟化概念。
 

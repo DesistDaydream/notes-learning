@@ -8,12 +8,12 @@ weight: 20
 # 概述
 
 > 参考：
-> 
-> - [Wiki，URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
-> - [Wiki，IRI](https://en.wikipedia.org/wiki/Internationalized_Resource_Identifier)
-> - [Wiki，URL](https://en.wikipedia.org/wiki/URL)
-> - [Wiki，CleanURL-slug](https://en.wikipedia.org/wiki/Clean_URL)
-> - [Wiki，URL encoding](https://en.wikipedia.org/wiki/Percent-encoding)
+>
+> - [Wiki, URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
+> - [Wiki, IRI](https://en.wikipedia.org/wiki/Internationalized_Resource_Identifier)
+> - [Wiki, URL](https://en.wikipedia.org/wiki/URL)
+> - [Wiki, CleanURL-slug](https://en.wikipedia.org/wiki/Clean_URL)
+> - [Wiki, URL encoding](https://en.wikipedia.org/wiki/Percent-encoding)
 > - [RFC 3986，Uniform Resource Identifier(URI): Generic Syntax](https://www.rfc-editor.org/rfc/rfc3986.html)
 > - [RFC 1738，Uniform Resource Locators (URL)](https://www.rfc-editor.org/rfc/rfc1738)
 > - https://www.ruanyifeng.com/blog/2010/02/url_encoding.html

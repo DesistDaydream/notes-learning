@@ -8,8 +8,8 @@ weight: 1
 # 概述
 
 > 参考：
-> 
-> - [Wiki，RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem))
+>
+> - [Wiki, RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem))
 
 RSA 生成的密钥对，私钥用来签名，公钥用来加密。
 

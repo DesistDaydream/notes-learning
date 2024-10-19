@@ -8,8 +8,8 @@ weight: 20
 # 概述
 
 > 参考：
-> 
-> - [Wiki，HTTP_Public_Key_Pinning](https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning)
+>
+> - [Wiki, HTTP_Public_Key_Pinning](https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning)
 > - [OWASP，Certificate and Public Key Pinning](https://owasp.org/www-community/controls/Certificate_and_Public_Key_Pinning)
 > - [知乎，证书锁定SSL Pinning简介及用途](https://zhuanlan.zhihu.com/p/58204817)
 

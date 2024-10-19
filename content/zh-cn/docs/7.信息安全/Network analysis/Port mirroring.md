@@ -9,7 +9,7 @@ weight: 2
 
 > 参考：
 >
-> - [Wiki，Port mirroring](https://en.wikipedia.org/wiki/Port_mirroring)
+> - [Wiki, Port mirroring](https://en.wikipedia.org/wiki/Port_mirroring)
 
 **Port mirroring(端口镜像)** 是交换机上的一个功能，可以将一个端口上经过的所有流量复制一份到另一个端口上。这种方式通常用于需要监控网络流量的环境中，原始流量不受影响，被复制的流量发往后端设备以进一步分析，比如 IDS(入侵监测系统)、etc. 。Cisco 公司生成的交换机上的 Port mirroring 功能称为 **Switched Port Analyzer(简称 SPAN)** 或 **Remote Switched Port Analyzer(简称 RSPAN)**，有时候称为 Span Port。
 

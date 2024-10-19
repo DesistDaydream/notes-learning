@@ -8,7 +8,7 @@ weight: 1
 > 参考：
 >
 > - [GNU 官网](https://www.gnu.org/software/bash/)
-> - [Wiki，Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
+> - [Wiki, Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
 > - [Manual(手册)，bash(1)-Shell 内置命令](https://www.man7.org/linux/man-pages/man1/bash.1.html#SHELL_BUILTIN_COMMANDS)
 > - [网道，Bash 脚本教程](https://wangdoc.com/bash/index.html)
 
@@ -202,7 +202,7 @@ OPTIONS
 
 > 参考：
 >
-> - [Wiki，CommandLineCompletion](https://en.wikipedia.org/wiki/Command-line_completion)
+> - [Wiki, CommandLineCompletion](https://en.wikipedia.org/wiki/Command-line_completion)
 
 **Command Line Completion(命令行补全)** 也称为 **tab completion**，是命令行解释器的常见功能，在命令行中的程序，可以自动填充部分需要手动输入的命令。
 

@@ -8,8 +8,8 @@ weight: 20
 # 概述
 
 > 参考：
-> 
-> - [Wiki，OSI model](https://en.wikipedia.org/wiki/OSI_model)
+>
+> - [Wiki, OSI model](https://en.wikipedia.org/wiki/OSI_model)
 
 # OSI
 

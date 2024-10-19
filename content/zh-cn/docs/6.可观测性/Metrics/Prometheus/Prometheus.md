@@ -163,7 +163,7 @@ scrape_configs:
 
 > 参考：
 >
-> - [官方文档，Prometheus-安装](https://prometheus.io/docs/prometheus/latest/installation/)
+> - [官方文档，Prometheus - 安装](https://prometheus.io/docs/prometheus/latest/installation/)
 
 官方系统版本可在这里下载：<https://prometheus.io/download/>
 

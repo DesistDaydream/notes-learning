@@ -4,8 +4,8 @@ title: ASCII 表
 # 概述
 
 > 参考：
-> 
-> - [Wiki，ASCII](https://en.wikipedia.org/wiki/ASCII)
+>
+> - [Wiki, ASCII](https://en.wikipedia.org/wiki/ASCII)
 
 原文链接：<https://www.middlewareinventory.com/ascii-table/>
 
@@ -271,7 +271,7 @@ title: ASCII 表
 
 ## 前 32 个控制字符的详细解释
 
-| Seq  | 十进 | 十六进 | 缩写 | 字符名                                 | 
+| Seq  | 十进 | 十六进 | 缩写 | 字符名                                 |
 | ---- | ---- | ------ | ---- | -------------------------------------- |
 |      | 00   | 0x00   | NUL  | Null (空)                              |
 | `^A`   | 01   | 0x01   | SOH  | Start of Heading (报头开始)            |

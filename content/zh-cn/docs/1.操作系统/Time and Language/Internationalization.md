@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Internationalization_and_localization](https://en.wikipedia.org/wiki/Internationalization_and_localization)
+> - [Wiki, Internationalization_and_localization](https://en.wikipedia.org/wiki/Internationalization_and_localization)
 
 **Internationalization(国际化，简称 i18n)** 和 **Localization(本地化，简称 L10n)** 是使计算机软件适应不同语言、区域特性和目标语言环境的技术要求的方法。
 
@@ -22,7 +22,7 @@ Debian 系
 ```bash
 ~]# dpkg-query -S /usr/bin/locale
 libc-bin: /usr/bin/locale
-~]# dpkg-query -S /usr/bin/localectl 
+~]# dpkg-query -S /usr/bin/localectl
 systemd: /usr/bin/localectl
 ```
 
@@ -33,7 +33,7 @@ RedHat 系
 ```bash
 ~]# rpm -qf /usr/bin/locale
 glibc-common-2.28-36.oe1.x86_64
-~]# rpm -qf /usr/bin/localectl 
+~]# rpm -qf /usr/bin/localectl
 systemd-243-18.oe1.x86_64
 ```
 

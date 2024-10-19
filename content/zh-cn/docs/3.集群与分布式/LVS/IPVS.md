@@ -9,7 +9,7 @@ weight: 3
 
 > 参考：
 >
-> - [Wiki，IPVS](https://en.wikipedia.org/wiki/IP_Virtual_Server)
+> - [Wiki, IPVS](https://en.wikipedia.org/wiki/IP_Virtual_Server)
 > - [官方文档](http://www.linuxvirtualserver.org/software/ipvs.html)
 
 **IP Virtual Service(IP 虚拟服务，简称 IPVS)** 是基于 [Netfilter](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Netfilter.md) 的 Linux 内核模块，用来实现 [LVS](/docs/3.集群与分布式/LVS/LVS.md) 集群中的 **Scheduler(调度器)** 功能。启动这个模块的 Linux 服务器就变成了 LVS 系统中的 **Director**，此时，这个服务器可以看作是一种高效的 Layer-4(四层) 交换机。在 Director 上运行 IPVS 代码是 LVS 的基本要素。

@@ -18,7 +18,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，GNU Core Utilies](https://en.wikipedia.org/wiki/GNU_Core_Utilities)
+> - [Wiki, GNU Core Utilies](https://en.wikipedia.org/wiki/GNU_Core_Utilities)
 > - [官方文档](https://www.gnu.org/software/coreutils/manual/)
 
 GNU Core Utilities 是 GNU/Linux 操作系统的基本文件、Shell、文本操作的实用程序。同时，也是现在绝大部分 Linux 发行版内置的实用程序。

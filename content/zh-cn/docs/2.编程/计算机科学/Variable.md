@@ -8,7 +8,7 @@ weight: 4
 
 > 参考：
 >
-> - [Wiki，Variable_(computer_science)](https://en.wikipedia.org/wiki/Variable_(computer_science))
+> - [Wiki, Variable_(computer_science)](https://en.wikipedia.org/wiki/Variable_(computer_science))
 
 在计算机编程中，**Variable(编程)** 是一个抽象的存储位置，与一个相关的符号名称配对，变量中包含一些称为 **Value(值)** 的已知或未知数量的信息。或者可以说，变量是一个有名字的容器，用于存放特定 [Data Type(数据类型)](/docs/2.编程/计算机科学/Data%20type/Data%20type.md) 的数据。
 

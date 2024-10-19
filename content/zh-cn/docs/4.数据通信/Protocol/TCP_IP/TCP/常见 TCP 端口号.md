@@ -6,7 +6,7 @@ title: 常见 TCP 端口号
 
 > 参考：
 >
-> - [Wiki，TCP 与 UDP 端口号列表](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers)
+> - [Wiki, TCP 与 UDP 端口号列表](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers)
 > - [IANA，分配-服务名和端口号注册列表](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml)
 
 分类情况：
@@ -46,4 +46,4 @@ https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Dynamic,_private_
 
 49152 - 65535 号端口
 
-根据定义，该段端口属于“动态端口”范围，没有端口可以被正式地注册占用。 
+根据定义，该段端口属于“动态端口”范围，没有端口可以被正式地注册占用。

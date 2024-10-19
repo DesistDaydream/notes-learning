@@ -9,7 +9,7 @@ title: Jinja
 > - [GitHub 项目，pallets/jinja](https://github.com/pallets/jinja)
 > - [官网](https://jinja.palletsprojects.com/)
 >   - [国人翻译官网](http://docs.jinkan.org/docs/jinja2/)
-> - [Wiki，Jinja](https://en.wikipedia.org/wiki/Jinja_(template_engine))
+> - [Wiki, Jinja](https://en.wikipedia.org/wiki/Jinja_(template_engine))
 > - [骏马金龙博客，9. 如虎添翼的力量：解锁强大的 Jinja2 模板](https://www.junmajinlong.com/ansible/9_power_of_jinja2/)
 
 Jinja 是一个用于 Python 变成语言中的 **Template Engine(模板引擎)**。Jinja 通常被用来作为 Python 的 Web 框架(e.g.Flask、Django)的数据渲染的底层调用。

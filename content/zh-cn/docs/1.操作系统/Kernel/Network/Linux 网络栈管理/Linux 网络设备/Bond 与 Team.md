@@ -6,8 +6,8 @@ title: Bond 与 Team
 
 > 参考：
 >
-> - [Wiki，Link Aggregation](https://en.wikipedia.org/wiki/Link_aggregation)
-> - [Wiki，MII](https://en.wikipedia.org/wiki/Media-independent_interface)
+> - [Wiki, Link Aggregation](https://en.wikipedia.org/wiki/Link_aggregation)
+> - [Wiki, MII](https://en.wikipedia.org/wiki/Media-independent_interface)
 > - [Linux 内核文档,Linux 网络文档-Linux 以太网 Bonding 驱动入门指南](https://www.kernel.org/doc/html/latest/networking/bonding.html)(这里可以看到所有 Bonding 参数)
 > - [Linux 基金会 Wiki,网络-bonding](https://wiki.linuxfoundation.org/networking/bonding)
 > - 红帽官方的 bond 说明文档：<https://access.redhat.com/documentation/zh-cn/red_hat_enterprise_linux/7/html/networking_guide/ch-configure_network_bonding>

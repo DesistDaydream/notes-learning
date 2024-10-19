@@ -9,7 +9,7 @@ weight: 1
 >
 > - [官网](https://ceph.io/)
 > - [官方文档](https://docs.ceph.com/en/latest/)
-> - [Wiki，Ceph](<https://en.wikipedia.org/wiki/Ceph_(software)>)
+> - [Wiki, Ceph](<https://en.wikipedia.org/wiki/Ceph_(software)>)
 > - <https://blog.csdn.net/younger_china/article/details/73410727>
 
 Ceph 是一个开源的分布式存储系统，可以提供 对象存储、快存储、文件存储 能力。是一个 Software Defined Storage(软件定义存储) 的代表性产品。

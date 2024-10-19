@@ -9,7 +9,7 @@ weight: 20
 > 参考：
 >
 > - [GitHub 项目，huggingface/transformers](https://github.com/huggingface/transformers)
-> - [Wiki，Transformer_(machine_learning_model)](https://en.wikipedia.org/wiki/Transformer_(machine_learning_model))
+> - [Wiki, Transformer_(machine_learning_model)](https://en.wikipedia.org/wiki/Transformer_(machine_learning_model))
 > - [Hugging Face 创始人亲述：一个 GitHub 史上增长最快的 AI 项目](https://my.oschina.net/oneflow/blog/5525728)
 > - [官方文档](https://huggingface.co/docs/transformers/index)
 

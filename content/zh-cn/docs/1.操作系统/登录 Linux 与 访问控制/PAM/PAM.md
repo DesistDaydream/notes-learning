@@ -12,8 +12,8 @@ weight: 1
 > - [GitHub 项目，linux-pam](https://github.com/linux-pam/linux-pam)
 > - [~~官方文档~~](http://www.linux-pam.org/Linux-PAM-html/)~~已停止更新不再维护~~
 > - [Manual(手册)，PAM(8)](https://man7.org/linux/man-pages/man8/pam.8.html)
-> - [Wiki，PAM](https://en.wikipedia.org/wiki/Pluggable_authentication_module)
-> - [Wiki，Linux PAM](https://en.wikipedia.org/wiki/Linux_PAM)
+> - [Wiki, PAM](https://en.wikipedia.org/wiki/Pluggable_authentication_module)
+> - [Wiki, Linux PAM](https://en.wikipedia.org/wiki/Linux_PAM)
 > - [博客园，Linux 下 PAM 模块学习总结](https://www.cnblogs.com/kevingrace/p/8671964.html)
 > - [博客园，PAM(Pluggable Authentication Modules)认证机制详情](https://www.cnblogs.com/yinzhengjie/p/8395279.html)
 > - <https://www.redhat.com/sysadmin/pluggable-authentication-modules-pam>

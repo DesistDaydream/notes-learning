@@ -17,6 +17,6 @@ weight: 20
 
 > 参考:
 >
-> - [Wiki，Spanning_Tree_Protocol](https://en.wikipedia.org/wiki/Spanning_Tree_Protocol)
+> - [Wiki, Spanning_Tree_Protocol](https://en.wikipedia.org/wiki/Spanning_Tree_Protocol)
 > - [公众号 - K8S 中文社区，图解 STP ：你可能不用，但是不能不懂](https://mp.weixin.qq.com/s/B0jPblDHbCRdRbUlwVIICw)
 

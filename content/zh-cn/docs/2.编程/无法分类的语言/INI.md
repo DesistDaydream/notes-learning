@@ -5,8 +5,8 @@ title: INI
 # 概述
 
 > 参考：
-> 
-> - [Wiki，INI](https://en.wikipedia.org/wiki/INI_file)
+>
+> - [Wiki, INI](https://en.wikipedia.org/wiki/INI_file)
 
 ## INI 格式规范
 

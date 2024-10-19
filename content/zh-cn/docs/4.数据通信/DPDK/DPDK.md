@@ -11,7 +11,7 @@ weight: 1
 >
 > - [GitHub 项目，DPDK/dpdk](https://github.com/DPDK/dpdk)
 > - [官网](https://www.dpdk.org/)
-> - [Wiki，Data Plane Development Kit](https://en.wikipedia.org/wiki/Data_Plane_Development_Kit)
+> - [Wiki, Data Plane Development Kit](https://en.wikipedia.org/wiki/Data_Plane_Development_Kit)
 > - [DPDK 开发中文网](https://sdn.0voice.com/)
 
 **Data Plane Development Kit(数据平面开发套件，简称 DPDK)** 是一个由 [Linux 基金会](/docs/Standard/Foundation/Linux%20Foundation.md) 管理的开源软件项目。用于将 TCP 数据包的处理能力从内核空间移动到用户空间中的进程。主要是跳过了内核的 [Interrupts(中断)](/docs/1.操作系统/Kernel/CPU/Interrupts(中断)/Interrupts(中断).md) 逻辑。

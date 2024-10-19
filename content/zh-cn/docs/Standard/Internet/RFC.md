@@ -1,8 +1,8 @@
 # 概述
 
 > 参考：
-> 
-> - [Wiki，RFC](https://en.wikipedia.org/wiki/Request_for_Comments)
+>
+> - [Wiki, RFC](https://en.wikipedia.org/wiki/Request_for_Comments)
 > - [RFC 存储库搜索](https://www.rfc-editor.org/search/rfc_search.php)
 > - [RFC Editor 存储库搜索](https://www.rfc-editor.org/)
 

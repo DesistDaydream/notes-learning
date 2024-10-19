@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Library(computing)](https://en.wikipedia.org/wiki/Library_(computing))
+> - [Wiki, Library(computing)](https://en.wikipedia.org/wiki/Library_(computing))
 > - [公众号 - 码农的荒岛求生，动态库和静态库有什么区别？](https://mp.weixin.qq.com/s/9pavORd5qjqEaKN7G_NBmw)
 >   - [B 站，动态库和静态库到底有什么区别？](https://www.bilibili.com/video/BV1fb421q7gc)
 > - [公众号 - 码农的荒岛求生，动态链接库的实现原理是什么？](https://mp.weixin.qq.com/s/_-mRDg06AaiKc4-HZ8PgdQ)
@@ -34,6 +34,6 @@ Library 通常分为两大类
 
 > 参考:
 >
-> - [Wiki，Linker_(computing)](https://en.wikipedia.org/wiki/Linker_(computing))
+> - [Wiki, Linker_(computing)](https://en.wikipedia.org/wiki/Linker_(computing))
 
 Library 在程序链接或绑定过程中很重要，它解决了对库模块的称为链接或符号的引用。链接过程通常由 **Linker(链接器)** 或 **Bunder(绑定器)** 程序自动完成，该程序按给定顺序搜索一组库和其他模块。如果在给定的一组库中可以多次找到链接目标，通常不会将其视为错误。链接可以在创建可执行文件时完成（静态链接），也可以在运行时使用程序时完成（动态链接）。

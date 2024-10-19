@@ -88,7 +88,7 @@ OpenSSH 会为用户分配一个 Pseudoterminal(伪终端，即 pts) 以便用�
 
 > 参考：
 >
-> - [Wiki，MOTD](https://en.wikipedia.org/wiki/Motd_(Unix))
+> - [Wiki, MOTD](https://en.wikipedia.org/wiki/Motd_(Unix))
 > - [Manual(手册)，MOTD](https://man7.org/linux/man-pages/man5/motd.5.html)
 
 **Message of the day(每日消息，简称 MOTD)** 是一种比向所有用户发送一个邮件更有效的发送共同的信息的方式

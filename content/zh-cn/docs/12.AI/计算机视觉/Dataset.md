@@ -12,24 +12,24 @@ weight: 20
 > - https://opencv.org/blog/data-annotation/
 
 ![800](https://opencv.org/wp-content/uploads/2024/02/Data-annotation-types-1536x864.png)
+
 # Data annotations
 
 > 参考：
 >
 > - [OpenCV 博客，Data Annotation – A Beginner’s Guide](https://opencv.org/blog/data-annotation/)
 
-用于模型训练的数据中，[已标记的数据](docs/12.AI/机器学习/Dataset.md) 中那些标记称为 **Annotations(注释)**。在使用模型时，在识别出来的对象添加类似数据标记一样的东西，也称为 **Annotations(注释)**
+用于模型训练的数据中，[已标记的数据](/docs/12.AI/机器学习/Dataset.md) 中那些标记称为 **Annotations(注释)**。在使用模型时，在识别出来的对象添加类似数据标记一样的东西，也称为 **Annotations(注释)**
 
-下图中各种颜色的方框都是注释（数字代码是在模型训练时由数据集配置文件中定义其含义），通过 [Object detection](docs/12.AI/计算机视觉/Object%20detection.md) 识别出对象并添加对象注释
+下图中各种颜色的方框都是注释（数字代码是在模型训练时由数据集配置文件中定义其含义），通过 [Object detection](/docs/12.AI/计算机视觉/Object%20detection.md) 识别出对象并添加对象注释
 
 ![https://github.com/ultralytics/docs/releases/download/0/mosaiced-coco-dataset-sample.avif|500](https://notes-learning.oss-cn-beijing.aliyuncs.com/ai/yolo/mosaiced-coco-dataset-sample.jpg)
 
-下图的注释除了有检测到的对象外，还有对象的姿态。识别出对象后，再通过 [Pose estimation](docs/12.AI/计算机视觉/Pose%20estimation.md) 进行姿态估计并添加姿态注释
+下图的注释除了有检测到的对象外，还有对象的姿态。识别出对象后，再通过 [Pose estimation](/docs/12.AI/计算机视觉/Pose%20estimation.md) 进行姿态估计并添加姿态注释
 
 ![https://github.com/ultralytics/docs/releases/download/0/mosaiced-training-batch-6.avif|500](https://notes-learning.oss-cn-beijing.aliyuncs.com/ai/yolo/mosaiced-coco-dataset-sample_pose-estimation.jpg)
 
 上面只是用两种类型举例，还有很多其他的注释类型，这些都属于图像的 **Annotations(注释)**
-
 
 # Bounding box
 
@@ -50,7 +50,7 @@ Bounding box 效果如下图所示，各种矩形框配上数字，以表示出�
 
 ![500](https://notes-learning.oss-cn-beijing.aliyuncs.com/ai/yolo/mosaiced-coco-dataset-sample.jpg)
 
-> Tip: Bounding box 就像 [OpenCV](docs/12.AI/计算机视觉/OpenCV/OpenCV.md) 的 Region Of Interest(感兴趣的区域，简称 ROI)，然后会生成图片对应的 Label，每个 ROI 都有一个数字表示的类别、以及用来定位 ROI 的坐标。
+> Tip: Bounding box 就像 [OpenCV](/docs/12.AI/计算机视觉/OpenCV/OpenCV.md) 的 Region Of Interest(感兴趣的区域，简称 ROI)，然后会生成图片对应的 Label，每个 ROI 都有一个数字表示的类别、以及用来定位 ROI 的坐标。
 
 # 常见公开的数据集
 

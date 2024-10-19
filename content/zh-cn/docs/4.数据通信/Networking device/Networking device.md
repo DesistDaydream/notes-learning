@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，Networking hardware](https://en.wikipedia.org/wiki/Networking_hardware)
+> - [Wiki, Networking hardware](https://en.wikipedia.org/wiki/Networking_hardware)
 
 **Networking device(网络设备)** 也成为 Networking hardware(网络硬件) 是计算机网络上的设备之间进行通信和交互所需的电子设备。具体来说，它们调解计算机网络中的数据传输。最后接收或产生数据的单元称为主机、端系统或数据终端设备。
 
@@ -18,9 +18,9 @@ weight: 1
 # ATCA
 
 > 参考：
-> 
+>
 > - [PICMG 官网，开放标准 - advancedtca](https://www.picmg.org/openstandards/advancedtca/)
-> - [Wiki，Advanced Telecommunications Computing Architecture](https://en.wikipedia.org/wiki/Advanced_Telecommunications_Computing_Architecture)
+> - [Wiki, Advanced Telecommunications Computing Architecture](https://en.wikipedia.org/wiki/Advanced_Telecommunications_Computing_Architecture)
 
 **Advanced Telecommunications Computing Architecture(高级的电信计算架构，简称 ATCA or AdvancedTCA)** 是一系列 PICMG 规范，官方规范名称 PICMG 3.x 被称为 AdvancedTCA。
 
@@ -46,8 +46,8 @@ Blade 也可以称为 **Board(板卡)**，常见的形容有 DPI 板、分流板
 ## 以太网双绞线
 
 > 参考：
-> 
-> - [Wiki，Ethernet over twisted pair](https://en.wikipedia.org/wiki/Ethernet_over_twisted_pair)
+>
+> - [Wiki, Ethernet over twisted pair](https://en.wikipedia.org/wiki/Ethernet_over_twisted_pair)
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/networking_device/202402271413818.png)
 
@@ -55,8 +55,8 @@ Blade 也可以称为 **Board(板卡)**，常见的形容有 DPI 板、分流板
 
 > 参考：
 >
-> - [Wiki，Optical fiber](https://en.wikipedia.org/wiki/Optical_fiber)(光纤)
-> - [Wiki，Fiber-optic communication](https://en.wikipedia.org/wiki/Fiber-optic_communication)(光纤通信)
+> - [Wiki, Optical fiber](https://en.wikipedia.org/wiki/Optical_fiber)(光纤)
+> - [Wiki, Fiber-optic communication](https://en.wikipedia.org/wiki/Fiber-optic_communication)(光纤通信)
 
 ![image.png|300](https://notes-learning.oss-cn-beijing.aliyuncs.com/networking_device/202402271411895.png)
 

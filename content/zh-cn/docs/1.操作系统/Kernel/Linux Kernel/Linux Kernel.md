@@ -16,11 +16,11 @@ weight: 1
 >   - https://www.infradead.org/~mchehab/kernel_docs/index.html 这是哪里的官方文档？
 > - [官方 Manual(手册)](https://www.kernel.org/doc/man-pages/index.html)
 > - [LWN.net](https://lwn.net/) 是一个由读者支持的新闻网站，致力于在 Linux 和 自由软件开发社区 中提供最佳报道。
-> - [Wiki，Kernel](<https://en.wikipedia.org/wiki/Kernel_(operating_system)>)
-> - [Wiki，/boot](https://en.wikipedia.org/wiki//boot/)
-> - [Wiki，vmlinux](https://en.wikipedia.org/wiki/Vmlinux)
-> - [Wiki，Initial ramdisk](https://en.wikipedia.org/wiki/Initial_ramdisk)
-> - [Wiki，System.map](https://en.wikipedia.org/wiki/System.map)
+> - [Wiki, Kernel](<https://en.wikipedia.org/wiki/Kernel_(operating_system)>)
+> - [Wiki, /boot](https://en.wikipedia.org/wiki//boot/)
+> - [Wiki, vmlinux](https://en.wikipedia.org/wiki/Vmlinux)
+> - [Wiki, Initial ramdisk](https://en.wikipedia.org/wiki/Initial_ramdisk)
+> - [Wiki, System.map](https://en.wikipedia.org/wiki/System.map)
 > - [树莓派 Linux](https://github.com/raspberrypi/linux)
 > - [RedHat 官方文档,8-管理、监控和更新内核](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_monitoring_and_updating_the_kernel/index)
 > - <http://www.linfo.org/vmlinuz.html>

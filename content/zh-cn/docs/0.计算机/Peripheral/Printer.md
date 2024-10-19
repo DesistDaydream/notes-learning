@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Printer](https://en.wikipedia.org/wiki/Printer_(computing))
+> - [Wiki, Printer](https://en.wikipedia.org/wiki/Printer_(computing))
 
 **Printer(打印机)**
 

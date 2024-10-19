@@ -8,8 +8,8 @@ weight: 5
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Storage_virtualization](https://en.wikipedia.org/wiki/Storage_virtualization)
+>
+> - [Wiki, Storage_virtualization](https://en.wikipedia.org/wiki/Storage_virtualization)
 
 # 存储虚拟化(I/O)
 

@@ -8,8 +8,8 @@ weight: 20
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Optical_character_recognition](https://en.wikipedia.org/wiki/Optical_character_recognition)
+>
+> - [Wiki, Optical_character_recognition](https://en.wikipedia.org/wiki/Optical_character_recognition)
 > - https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_ch/models.md
 
 **Optical character recognition(光学字符识别，简称 OCR)** 是将图像以电子或机械方式转换为机器编码文本，无论是来自扫描文档、文档照片、场景照片、叠加在图像上的字母文字等。目前是文字识别的统称，已不限于文档或书本文字识别，更包括识别自然场景下的文字，又可以称为 **Scene Text Recognition(场景文字识别，简称 STR)**。
@@ -107,13 +107,13 @@ PaddleOCR 中集成了很多OCR算法，文本检测算法有 DB、EAST、SAST �
 
 ## Python 库
 
-详见：Python 第三方库 [paddleocr](/docs/2.编程/高级编程语言/Python/Python%20第三方库/图像处理/paddleocr.md) 包 
+详见：Python 第三方库 [paddleocr](/docs/2.编程/高级编程语言/Python/Python%20第三方库/图像处理/paddleocr.md) 包
 
 # 实用 OCR工具
 ## Umi-OCR
 
 > 参考：
-> 
+>
 > - [GitHub 项目，hiroi-sora/Umi-OCR](https://github.com/hiroi-sora/Umi-OCR)
 > - [公众号-差评，完全免费，不用联网，这套 OCR 工具比微信的还好用！](https://mp.weixin.qq.com/s/lkoBOAYCdIY8F2Y6FCR-7w)
 

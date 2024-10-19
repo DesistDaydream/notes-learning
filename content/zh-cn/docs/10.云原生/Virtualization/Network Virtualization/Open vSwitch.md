@@ -8,8 +8,8 @@ weight: 20
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Open_vSwitch](https://en.wikipedia.org/wiki/Open_vSwitch)
+>
+> - [Wiki, Open_vSwitch](https://en.wikipedia.org/wiki/Open_vSwitch)
 
 # Open vSwitch # 开放的虚拟交换机
 

@@ -49,7 +49,6 @@
       "docs/12.AI",
       "docs/Web",
       "docs/Mobile device",
-      "docs/12.AI/Automation",
       "docs/Utils",
       "docs/Blockchain",
       "docs/Standard"
@@ -2877,5 +2876,6 @@
   "autoHide": true,
   "autoHideDelay": 2000,
   "dragDelay": 200,
-  "sortOrder": "custom"
+  "sortOrder": "custom",
+  "useCollapse": true
 }

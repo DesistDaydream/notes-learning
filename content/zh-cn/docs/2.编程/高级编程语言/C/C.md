@@ -11,7 +11,7 @@ weight: 1
 >
 > - [ISO C 工作组官网](http://www.open-std.org/jtc1/sc22/wg14/)
 > - <https://www.learn-c.org/>
-> - [Wiki，C Programming Language](<https://en.wikipedia.org/wiki/C_(programming_language)>)
+> - [Wiki, C Programming Language](<https://en.wikipedia.org/wiki/C_(programming_language)>)
 > - [网道，C](https://wangdoc.com/clang/)
 
 # Hello World

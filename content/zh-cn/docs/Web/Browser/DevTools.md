@@ -8,9 +8,9 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [Chrome 开发者工具官方文档](https://developer.chrome.com/docs/devtools/)
-> - [Wiki，Web_development_tools](https://en.wikipedia.org/wiki/Web_development_tools)
+> - [Wiki, Web_development_tools](https://en.wikipedia.org/wiki/Web_development_tools)
 
 Chrome DevTools 是一组内置于 Chrome 浏览器中的 Web 开发者工具（通常使用 F12 快捷键打开；`Ctrl + Shift +i` 也是常见的默认快捷键）。
 
@@ -19,7 +19,7 @@ Chrome DevTools 是一组内置于 Chrome 浏览器中的 Web 开发者工具（
 - **源代码/来源** # HTML、JS、CSS、字体等静态资源文件
 - **网络** # 数据传输内容
 - .....
-- **应用** # 
+- **应用** #
 
 # 元素
 
@@ -37,7 +37,7 @@ Chrome DevTools 是一组内置于 Chrome 浏览器中的 Web 开发者工具（
 # 源代码
 
 > 参考：
-> 
+>
 > - [官方文档，源代码](https://developer.chrome.com/docs/devtools/sources/)
 
 在源代码中可以检查静态资源、打断点、等等。

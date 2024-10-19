@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，Web crawler](https://en.wikipedia.org/wiki/Web_crawler)
+> - [Wiki, Web crawler](https://en.wikipedia.org/wiki/Web_crawler)
 
 **Web crawler(网络爬虫)**，大家习惯性简称 **Crawler(爬虫)**。Web crawler 是一种可以系统浏览互联网的机器人，通常都是被搜索引擎用来抓取网络资源做成搜索索引。
 

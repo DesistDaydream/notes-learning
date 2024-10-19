@@ -64,9 +64,25 @@ Go 语言非常简单，只有 25 个`关键字(Keywords)`可以使用，记住�
 > - [官方文档，参考 - 规范](https://go.dev/ref/spec)
 >   - [官方文档，参考 - 规范 的翻译](https://github.com/bekcpear/mypelicanconfandarticles/blob/master/content/Tech/gospec.rst)
 
+## Lexical elements(词汇元素)
+
+
+### Identifiers(标识符)
+
+**Identifiers(标识符)** 是一个抽象的概念，代表已命名的实体，e.g. [Variable](docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Variable.md)、自定义的 [Data type](docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Data%20type.md)。Identifiers 由一个或多个字母和数字组成，Identifier 的第一个字符必须是字母。
+
+有一些 Indentifiers 是 [predeclared(预先声明的)](https://go.dev/ref/spec#Predeclared_identifiers)，e.g. int int8 int16 int32 int64 rune string etc.
+
 ## Notation(表示法)
 
 Go 语言的语法遵从 [EBNF](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) 表示法
+
+## Declarations and scope(声明与范围)
+
+https://go.dev/ref/spec#Declarations_and_scope
+### exported and unexported(导出与未导出)
+
+**uppercase(大写)** 或 **lowercase(小写)**
 
 # Go 标准库
 
@@ -87,3 +103,4 @@ Go.dev 提供：
 - 关键用例和案例研究
 
 Go.dev 当前处于 MVP 状态。我们为自己的建设感到自豪，并很高兴与社区分享。我们希望您能在使用 go.dev 的过程中找到价值和乐趣。 Go.dev 只有一小部分我们打算构建的功能，我们正在积极寻求反馈。如果您有任何想法，建议或问题，请告诉我们.
+

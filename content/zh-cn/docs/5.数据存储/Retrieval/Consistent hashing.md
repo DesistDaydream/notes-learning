@@ -8,8 +8,8 @@ weight: 20
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Consistent hashing](https://en.wikipedia.org/wiki/Consistent_hashing)
+>
+> - [Wiki, Consistent hashing](https://en.wikipedia.org/wiki/Consistent_hashing)
 > - [朱双印 blog，白话解析：一致性哈希算法 consistent hashing](https://www.zsythink.net/archives/1182)
 
 在了解一致性哈希算法之前，最好先了解一下缓存中的一个应用场景，了解了这个应用场景之后，再来理解一致性哈希算法，就容易多了，也更能体现出一致性哈希算法的优点，那么，我们先来描述一下这个经典的分布式缓存的应用场景。

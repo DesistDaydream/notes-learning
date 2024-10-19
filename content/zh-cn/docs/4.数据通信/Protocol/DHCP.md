@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，DHCP](https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol)
+> - [Wiki, DHCP](https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol)
 
 **Dynamic Host Configuration Protocol(动态主机设置协议，简称 DHCP)** 主要用于由一部主机来自动的分配所有的网络参数给指定网段内的所有设备。
 

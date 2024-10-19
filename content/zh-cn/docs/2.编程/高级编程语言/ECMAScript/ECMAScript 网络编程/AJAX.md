@@ -9,7 +9,7 @@ weight: 2
 
 > 参考：
 >
-> - [Wiki，Ajax](https://en.wikipedia.org/wiki/Ajax_(programming))
+> - [Wiki, Ajax](https://en.wikipedia.org/wiki/Ajax_(programming))
 
 在 Web 应用程序中（比如浏览器），用户可能需要与服务器进行数据交互，但传统的同步方式在发起 HTTP 请求数据时，会让浏览器在接收到响应后刷新整个页面，导致用户体验变差且不利于更多功能的实现。
 
@@ -23,7 +23,7 @@ weight: 2
 >
 > - [MDN，术语 - XMLHttpRequest](https://developer.mozilla.org/zh-CN/docs/Glossary/XMLHttpRequest)
 > - [MDN，Web API - XMLHttpRequest](https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest)
-> - [Wiki，XMLHttpRequest](https://en.wikipedia.org/wiki/XMLHttpRequest)
+> - [Wiki, XMLHttpRequest](https://en.wikipedia.org/wiki/XMLHttpRequest)
 
 **XMLHttpRequest(简称 XHR)** 是一种创建 AJAX 请求的 [JavaScript](/docs/2.编程/高级编程语言/ECMAScript/JavaScript%20规范与标准库/JavaScript%20规范与标准库.md) API，通过 XHR 可以方便得让浏览器发起异步请求到服务器以更新 Web 页面的部分内容。
 

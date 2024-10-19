@@ -8,9 +8,9 @@ weight: 2
 # 概述
 
 > 参考：
-> 
+>
 > - [Manual(手册)，libc(7)](https://man7.org/linux/man-pages/man7/libc.7.html)
-> - [Wiki，glibc](https://en.wikipedia.org/wiki/Glibc)
+> - [Wiki, glibc](https://en.wikipedia.org/wiki/Glibc)
 
 术语 `libc` 通常用作“标准 C 库”的简写，这是所有 C 程序（以及其他语言的程序）可以使用的标准函数库。由于一些历史（见下文），使用术语 `libc` 来指代标准 C 库在 Linux 上是不够严谨的。
 

@@ -5,10 +5,10 @@ title: ASN.1
 # 概述
 
 > 参考：
-> 
-> - [ITU 官网,ITU-T-ASN.1 项目](https://www.itu.int/en/ITU-T/asn1/Pages/asn1_project.aspx)
-> - [Wiki，ASN.1](https://en.wikipedia.org/wiki/ASN.1)
-> - [Wiki，X.690-DER_encoding](https://en.wikipedia.org/wiki/X.690#DER_encoding)
+>
+> - [ITU 官网, ITU-T-ASN.1 项目](https://www.itu.int/en/ITU-T/asn1/Pages/asn1_project.aspx)
+> - [Wiki, ASN.1](https://en.wikipedia.org/wiki/ASN.1)
+> - [Wiki, X.690-DER_encoding](https://en.wikipedia.org/wiki/X.690#DER_encoding)
 > - <http://www.txrzx.com/i4477.html>
 > - <http://threelambda.com/2020/11/08/asn-1/>
 > - <https://lapo.it/asn1js>
@@ -18,7 +18,7 @@ title: ASN.1
 
 **Abstract Syntax Notation One(抽象语法表示法，简称 ASN.1)** 是一个形式化的标准，用于定义抽象数据类型的规范。它广泛用于计算机网络中，用于描述 telecommunications protocols(电信协议) 传输数据时所使用的 **formal notation(正式表示法)**。
 
-通信设备需要相互传输数据，但是设备可能是由不同厂家生产的，其硬件体系结构、程序语言的语法定义和程序功能实现一般是不相同的。例如，在一台设备中，整形数据类型是 16 位表示，而在另一台则可能用 32 位表示。这些差异导致了同一数据对象在不同的设备上被表示为不同的符号串。为了解决以上问题，ISO 组织推出了抽象语法表符号 1（ASN.1，Abstract Syntax Notation One）。ASN.1 通过定义若干简单类型和复合类型，使得各个设备对其间交换消息的数据类型有了一致的认识。系统的消息发送方采用编码规则（BER、PER）将 ASN.1 描述的消息编码成二进制字节流；消息接受方对收到的字节流进行解码，再转化为符合其自身语法的消息格式。这样，经过 ASN.1 处理的消息独立于应用环境，就不会因为系统终端的区别而产生歧义。基于 H.323 协议的视频会议系统的信令消息就是采用 ASN.1 来表示的。
+通信设备需要相互传输数据，但是设备可能是由不同厂家生产的，其硬件体系结构、程序语言的语法定义和程序功能实现一般是不相同的。例如，在一台设备中，整形数据类型是 16 位表示，而在另一台则可能用 32 位表示。这些差异导致了同一数据对象在不同的设备上被表示为不同的符号串。为了解决以上问题，ISO 组织推出了 ASN.1。ASN.1 通过定义若干简单类型和复合类型，使得各个设备对其间交换消息的数据类型有了一致的认识。系统的消息发送方采用编码规则（BER、PER）将 ASN.1 描述的消息编码成二进制字节流；消息接受方对收到的字节流进行解码，再转化为符合其自身语法的消息格式。这样，经过 ASN.1 处理的消息独立于应用环境，就不会因为系统终端的区别而产生歧义。基于 H.323 协议的视频会议系统的信令消息就是采用 ASN.1 来表示的。
 
 80 年代初，当时的国际电报电话咨询委员会（CCITT）将应用于 E-mail MHS 协议的基本记法和解码格式进行了标准化，形成了 X.409 方案，这是 ASN.1 的前身。该标准后来被 ISO 组织采用并将其分为抽象语法记法和传输语法，形成了 ISO/IEC 8824 和 ISO/IEC 8825 两个系列标准，且版本在不断更新之中（目前是 2015 年版本）。CCITT 于 1989 年相应地发布了 X.208（ASN.1）和 X.209（BER）取代了 X.409。但后来由国际电信联盟（ITU）在 1994 年颁布的数据结构基本描述 X.680（Specification of basic notation）、信息对象描述 X.681（Information object specification）、约束描述 X.682（Constraint specification）和规范的参数化 X.683（Parameters of ASN.1 specification）等系列标准代替了 X.208；X.209 也被 ITU 在 1994 年的 X.690~ X.696 所代替。X.680 系列和 X.690 系列又分别于 1997 年、2002 年和 2015 年更新了版本。ITU-T 的 X.680 系列和 X.690 系列分别与 ISO 的 8824 系列和 8825 系列相对应；我国从 1996 年开始也陆续颁布了相应的国家标准。欲进一步了解我国关于 ASN.1 的相关标准索引的[请进入](http://www.txrzx.com/i4748.html)。
 
@@ -47,7 +47,8 @@ ASN.1 已经融入了人们生活的方方面面，当我们使用手机、从 A
 从计算机的角度看 ASN.1 是 abstract(抽象的)，计算机无法理解字符串，所以需要一种 Encodings Rules(编码规则)，将 ASN.1 格式的内容表示为 bits 和 bytes。这些编码规则规范了如何将 ASN.1 数据结构表示为 Bytes。**ASN.1 与 Encoding Rules 的关系有点像 unicode 与 utf-8 的关系**。
 
 > 备注：ASN.1 与 PEM 是完全没有关系的。但是 ASN.1 编码后是二进制的数据，这不利于复制黏贴，所以，通常都需要将二进制数据再转换为便于复制黏贴的字符串，所以通常使用 DER 编码的 ASN.1 数据还会再通过 PEM 标准进行编码。
-> 为什么要套娃？很奇怪，莫名其妙~~~~从 文本——二进制——文本，不累么。。。。。o(╯□╰)o
+>
+> 为什么要套娃？很奇怪，莫名其妙。。。从 文本——二进制——文本，不累么。。。。。o(╯□╰)o
 
 ## ITU X.690 标准
 

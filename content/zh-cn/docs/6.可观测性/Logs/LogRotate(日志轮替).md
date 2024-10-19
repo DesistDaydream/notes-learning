@@ -6,8 +6,8 @@ weight: 3
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Log_rotation](https://en.wikipedia.org/wiki/Log_rotation)
+>
+> - [Wiki, Log_rotation](https://en.wikipedia.org/wiki/Log_rotation)
 > - [公众号-马哥 Linux 运维，\[译\] 理解 logrotate 实用工具](https://mp.weixin.qq.com/s/b_CWt_ycvnbQG9TXPqRoCQ)
 
 为了防止日志文件持续被写入文件导致过于庞大，那么就需要对日志进行拆分，每隔一段时间就把日志文件保存(打包压缩)起来，然后再创建一个新的空文件继续接收日志，来回循环该过程直到通过配置规定的保留日期，来清除存在过久的日志。通过这种方式来进行日志的归档，分类，清理。这就是 LogRotate 所做的事情。是否进行轮替会有一系列的配置，比如文件的大小达到 N 会轮替一次，每隔多少天轮替一次等等。

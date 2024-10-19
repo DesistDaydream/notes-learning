@@ -6,7 +6,7 @@ title: POSIX
 
 > 参考：
 >
-> - [Wiki，POSIX](https://en.wikipedia.org/wiki/POSIX)
+> - [Wiki, POSIX](https://en.wikipedia.org/wiki/POSIX)
 > - [腾讯云，什么是 POSIX](https://cloud.tencent.com/developer/ask/26856)
 
 **Portable Operating System Interface(便携式操作系统接口，POSIX)** 是 [IEEE](/docs/Standard/IT/IEEE.md) 的计算机协会指定的一系列标准，用于维护操作系统之间的兼容性。 POSIX 定义了应用程序编程接口 (API)，以及命令行 shell 和实用程序接口，以实现与 类 Unix 操作系统 和 其他操作系统的软件兼容性。

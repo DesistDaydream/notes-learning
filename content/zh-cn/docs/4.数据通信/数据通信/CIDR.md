@@ -5,8 +5,8 @@ title: CIDR
 # 概述
 
 > 参考：
-> 
-> - [Wiki，CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+>
+> - [Wiki, CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
 
 **Classless Inter-Domain Routing(无类别域间路由，简称 CIDR)** 是一个用于给用户分配[IP 地址](https://zh.wikipedia.org/wiki/IP%E5%9C%B0%E5%9D%80)以及在[互联网](https://zh.wikipedia.org/wiki/%E4%BA%92%E8%81%94%E7%BD%91)上有效地路由 IP[数据包](https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE%E5%8C%85)的对 IP 地址进行归类的方法。
 

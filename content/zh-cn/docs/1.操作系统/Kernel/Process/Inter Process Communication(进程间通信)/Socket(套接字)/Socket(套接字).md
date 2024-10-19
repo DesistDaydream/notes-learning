@@ -6,9 +6,9 @@ title: Socket(套接字)
 
 > 参考：
 >
-> - [Wiki，Socket](https://en.wikipedia.org/wiki/Socket)
-> - [Wiki，Unix domain Socket](https://en.wikipedia.org/wiki/Unix_domain_socket)
-> - [Wiki，Network Scoket](https://en.wikipedia.org/wiki/Network_socket)
+> - [Wiki, Socket](https://en.wikipedia.org/wiki/Socket)
+> - [Wiki, Unix domain Socket](https://en.wikipedia.org/wiki/Unix_domain_socket)
+> - [Wiki, Network Scoket](https://en.wikipedia.org/wiki/Network_socket)
 
 **Socket(套接字)** **是数据通信的基石**。是计算机领域中数据通信的一种约定，或者说是一种方法。通过 Socket 这种方法，计算机内的进程可以互相交互数据，不同计算机之间也可以互相交互数据。
 

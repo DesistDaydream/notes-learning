@@ -8,8 +8,8 @@ weight: 1
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Virtualization](https://en.wikipedia.org/wiki/Virtualization)
+>
+> - [Wiki, Virtualization](https://en.wikipedia.org/wiki/Virtualization)
 > - [RedHat 7 虚拟化入门指南](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/virtualization_getting_started_guide/index)
 > - [Redhat 8 官方对虚拟化的定义](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_virtualization/virtualization-in-rhel-8-an-overview_configuring-and-managing-virtualization#what-is-virtualization-in-rhel-8-virt-overview)
 > - [RedHat 7 对“虚拟化性能不行”这个误区的辟谣](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/virtualization_getting_started_guide/index)

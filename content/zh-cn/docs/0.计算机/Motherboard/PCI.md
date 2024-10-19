@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Peripheral_Component_Interconnect](https://en.wikipedia.org/wiki/Peripheral_Component_Interconnect)
+> - [Wiki, Peripheral_Component_Interconnect](https://en.wikipedia.org/wiki/Peripheral_Component_Interconnect)
 
 **Peripheral Component Interconnect(外围组件互连，简称 PCI)**
 
@@ -17,7 +17,7 @@ weight: 20
 
 > 参考:
 >
-> - [Wiki，PCI_Express](https://en.wikipedia.org/wiki/PCI_Express)
+> - [Wiki, PCI_Express](https://en.wikipedia.org/wiki/PCI_Express)
 
 **Peripheral Component Interconnect Express(简称 PCI-E)**
 

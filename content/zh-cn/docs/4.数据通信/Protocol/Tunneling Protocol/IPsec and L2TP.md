@@ -8,9 +8,9 @@ weight: 2
 # 概述
 
 > 参考：
-> 
-> - [WIki，IPsec](https://en.wikipedia.org/wiki/IPsec)
-> - [Wiki，L2TP](https://en.wikipedia.org/wiki/Layer_2_Tunneling_Protocol)
+>
+> - [Wiki, IPsec](https://en.wikipedia.org/wiki/IPsec)
+> - [Wiki, L2TP](https://en.wikipedia.org/wiki/Layer_2_Tunneling_Protocol)
 
 **Internet Protocol Security(因特网协议安全，简称 IPsec)** 是一种安全网络协议套件，可对数据包进行身份验证和加密，以通过 Internet 协议网络在两台计算机之间提供安全的加密通信。它用于虚拟专用网络 (VPN)。
 
@@ -38,7 +38,7 @@ https://github.com/hwdsl2/setup-ipsec-vpn/blob/master/README-zh.md
 # IKEv2 客户端
 
 > 参考：
-> 
+>
 > - https://github.com/hwdsl2/setup-ipsec-vpn/blob/master/docs/ikev2-howto-zh.md
 
 现代操作系统支持 IKEv2 协议标准。因特网密钥交换（英语：Internet Key Exchange，简称 IKE 或 IKEv2）是一种网络协议，归属于 IPsec 协议族之下，用以创建安全关联 (Security Association, SA)。与 IKE 版本 1 相比较，IKEv2 的 [功能改进](https://en.wikipedia.org/wiki/Internet_Key_Exchange#Improvements_with_IKEv2) 包括比如通过 MOBIKE 实现 Standard Mobility 支持，以及更高的可靠性。

@@ -6,7 +6,7 @@ title: SQL
 
 > 参考：
 >
-> - [Wiki，SQL](https://en.wikipedia.org/wiki/SQL)
+> - [Wiki, SQL](https://en.wikipedia.org/wiki/SQL)
 > - [菜鸟教程，SQL](https://www.runoob.com/sql/sql-tutorial.html)
 
 **Structured Query Language(结构化查询语言，简称 SQL)** 是一种特定领域的编程语言，用于管理 RDBMS(关系数据库管理系统) 中保存的数据。使用 SQL 编写的语句也可以称为 **Expression(表达式)**。

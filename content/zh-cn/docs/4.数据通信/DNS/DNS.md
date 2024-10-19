@@ -6,8 +6,8 @@ title: DNS
 
 > 参考：
 >
-> - [Wiki，DNS](https://en.wikipedia.org/wiki/Domain_Name_System)
-> - [Wiki，Name Server](https://en.wikipedia.org/wiki/Name_server)
+> - [Wiki, DNS](https://en.wikipedia.org/wiki/Domain_Name_System)
+> - [Wiki, Name Server](https://en.wikipedia.org/wiki/Name_server)
 > - 《DNS 与 BIND》(第 5 版)
 
 **Domain Name System(域名系统，简称 DNS)** 是一个分层的和去中心化的命名系统，以便人们可以更方便得访问互联网。DNS 主要用来将更容易让人类记忆的 `域名` 与 `IP地址` 互相映射，以便可以通过域名定位和访问互联网上的服务。自 1985 年以来，域名系统通过提供全球性、分布式的域名服务，已成为 Internet 功能的重要组成部分。
@@ -284,7 +284,7 @@ DNS-Rcode 作为 DNS 应答报文中有效的字段，主要用来说明 DNS 应
 
 > 参考：
 >
-> - [Wiki，Domain name registrar](https://en.wikipedia.org/wiki/Domain_name_registrar)
+> - [Wiki, Domain name registrar](https://en.wikipedia.org/wiki/Domain_name_registrar)
 > - [Name.com](https://www.name.com/)
 > - [eu.org](https://nic.eu.org/arf/en/)
 > - <https://iweec.com/144.html>

@@ -5,9 +5,9 @@ title: EBNF
 # 概述
 
 > 参考：
-> 
-> - [Wiki，EBNF](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form)
-> - [Wiki，Metasyntax](https://en.wikipedia.org/wiki/Metasyntax)
+>
+> - [Wiki, EBNF](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form)
+> - [Wiki, Metasyntax](https://en.wikipedia.org/wiki/Metasyntax)
 
 **Extended Backus-Naur Form(扩展的 Backus-Naur 格式，简称 EBNF)** 是一组 [Metasyntax(元语法)](https://en.wikipedia.org/wiki/Metasyntax) 表示法。EBNF 用于对计算机[编程语言](https://en.wikipedia.org/wiki/Programming_language)等[形式语言](https://en.wikipedia.org/wiki/Formal_language)进行形式化描述。EBNF 是基于 BNF 的扩展。
 

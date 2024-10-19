@@ -5,9 +5,9 @@ title: Make 命令教程
 # 概述
 
 > 参考：
-> 
+>
 > - [Manual(手册)，make(1)](https://man7.org/linux/man-pages/man1/make.1.html)
-> - [Wiki，Make(software)](<https://en.wikipedia.org/wiki/Make_(software)>)
+> - [Wiki, Make(software)](<https://en.wikipedia.org/wiki/Make_(software)>)
 > - [阮一峰博客，Make 命令教程](https://www.ruanyifeng.com/blog/2015/02/make.html)
 
 # Make

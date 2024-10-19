@@ -9,7 +9,7 @@ weight: 20
 >
 > - [GitHub 项目，torch/torch7](https://github.com/torch/torch7)
 > - [官网](http://torch.ch/)
-> - [Wiki，Torch(机器学习)](https://en.wikipedia.org/wiki/Torch_(machine_learning))
+> - [Wiki, Torch(机器学习)](https://en.wikipedia.org/wiki/Torch_(machine_learning))
 
 **Torch** 是一个开源的机器学习库，一个科学计算框架，也是一种基于 Lua 的脚本语言。它为用 C 实现的深度学习算法提供 LuaJIT 接口。它是在 EPFL 的 IDIAP 创建的。 Torch 开发于 2017 年转移到 [PyTorch](/docs/12.AI/机器学习/PyTorch.md)，这是 Python 库的一个端口。
 

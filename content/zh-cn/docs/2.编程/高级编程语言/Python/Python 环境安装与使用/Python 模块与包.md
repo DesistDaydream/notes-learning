@@ -720,5 +720,4 @@ Python 有很多不同的网站可以查看各种包的信息，比如：
 
 # 安装 Python 模块/包
 
-详见 [Python 工具](docs/2.编程/高级编程语言/Python/Python工具/Python%20工具.md#安装%20Python%20包/模块)
-
+详见 [Python 工具](/docs/2.编程/高级编程语言/Python/Python工具/Python%20工具.md#安装%20Python%20包/模块)

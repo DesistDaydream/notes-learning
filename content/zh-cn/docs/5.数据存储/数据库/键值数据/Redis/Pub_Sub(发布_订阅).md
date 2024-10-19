@@ -5,10 +5,10 @@ title: Pub/Sub(发布/订阅)
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档](https://redis.io/topics/pubsub)
 >   - https://redis.io/docs/latest/develop/interact/pubsub/
-> - [Wiki，发布/订阅 模式](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern)
+> - [Wiki, 发布/订阅 模式](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern)
 
 Redis 可以通过 SUBSCRIBE、UNSUBSCRIBE、PUBLISH 这类命令实现 Publish/Subscribe(发布/订阅)模式。
 

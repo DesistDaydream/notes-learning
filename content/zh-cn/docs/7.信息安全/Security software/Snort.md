@@ -11,7 +11,7 @@ weight: 20
 >
 > - [GitHub 项目，snort3/snort3](https://github.com/snort3/snort3)
 > - [官网](https://www.snort.org/)
-> - [Wiki，Snort_(software)](https://en.wikipedia.org/wiki/Snort_(software))
+> - [Wiki, Snort_(software)](https://en.wikipedia.org/wiki/Snort_(software))
 
 Snort 是世界上最重要的开源 Intrusion Prevention System(入侵防御系统，IPS)。 Snort IPS 使用一系列规则来帮助定义恶意网络活动，并使用这些规则来查找与其匹配的数据包并为用户生成警报。
 

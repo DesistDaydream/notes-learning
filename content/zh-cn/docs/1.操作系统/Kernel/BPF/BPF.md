@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，BPF](https://en.wikipedia.org/wiki/Berkeley_Packet_Filter)
+> - [Wiki, BPF](https://en.wikipedia.org/wiki/Berkeley_Packet_Filter)
 > - [GitHub 项目,bcc-BPF 特性与 LInux 内核版本对照表](https://github.com/iovisor/bcc/blob/master/docs/kernel-versions.md)
 
 《Linux 内核观测技术 BPF》

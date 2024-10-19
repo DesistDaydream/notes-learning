@@ -7,8 +7,8 @@ weight: 1
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Central_processing_unit](https://en.wikipedia.org/wiki/Central_processing_unit)
+>
+> - [Wiki, Central_processing_unit](https://en.wikipedia.org/wiki/Central_processing_unit)
 
 **Central Processing Unit(中央处理器，简称 CPU)**。
 

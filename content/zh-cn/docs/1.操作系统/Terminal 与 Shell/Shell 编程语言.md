@@ -7,7 +7,7 @@ weight: 2
 
 > 参考：
 >
-> - [Wiki，Shell_script](https://en.wikipedia.org/wiki/Shell_script)
+> - [Wiki, Shell_script](https://en.wikipedia.org/wiki/Shell_script)
 
 **Shell Programming Language(shell 编程语言)** 不是编译型的语言，而是一种脚本语言，通常称为 **Shell script**。
 

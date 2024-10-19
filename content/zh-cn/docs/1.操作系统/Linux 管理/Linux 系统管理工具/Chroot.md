@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，chroot](https://en.wikipedia.org/wiki/Chroot)
+> - [Wiki, chroot](https://en.wikipedia.org/wiki/Chroot)
 > - [Manual(手册)，chroot(2)](https://man7.org/linux/man-pages/man2/chroot.2.html)
 
 **Change root(改变根，简称 Chroot)** 是 [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 的一种操作，用于更改对当前正在运行的进程及其子进程展现出来的 `/` 目录。在这种修改过的环境中运行的程序无法访问指定目录之外的文件。

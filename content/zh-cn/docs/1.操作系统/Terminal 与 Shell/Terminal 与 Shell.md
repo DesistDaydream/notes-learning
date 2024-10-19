@@ -12,7 +12,7 @@ tags:
 
 > 参考：
 >
-> - [Wiki，Shell](<https://en.wikipedia.org/wiki/Shell_(computing)>)
+> - [Wiki, Shell](<https://en.wikipedia.org/wiki/Shell_(computing)>)
 > - [Manual(手册)，bash](https://www.man7.org/linux/man-pages/man1/bash.1.html)
 > - <https://blog.csdn.net/kangkanglou/article/details/82698177>
 > - <http://feihu.me/blog/2014/env-problem-when-ssh-executing-command-on-remote/>
@@ -54,11 +54,11 @@ Note：
 
 > 参考：
 >
-> - [Wiki，Computer Terminal](https://en.wikipedia.org/wiki/Computer_terminal)
-> - [Wiki，TTY](https://en.wikipedia.org/wiki/Teleprinter)
-> - [Wiki，TTY(Unix)](https://en.wikipedia.org/wiki/Tty_(unix))
-> - [Wiki，Psedoterminal](https://en.wikipedia.org/wiki/Pseudoterminal)
-> - [Wiki，Terminal emulator](https://en.wikipedia.org/wiki/Terminal_emulator)
+> - [Wiki, Computer Terminal](https://en.wikipedia.org/wiki/Computer_terminal)
+> - [Wiki, TTY](https://en.wikipedia.org/wiki/Teleprinter)
+> - [Wiki, TTY(Unix)](https://en.wikipedia.org/wiki/Tty_(unix))
+> - [Wiki, Psedoterminal](https://en.wikipedia.org/wiki/Pseudoterminal)
+> - [Wiki, Terminal emulator](https://en.wikipedia.org/wiki/Terminal_emulator)
 > - [TTY 代表什么](https://askubuntu.com/questions/481906/what-does-tty-stand-for)
 > - [Manual(手册)，pty(7)](https://man7.org/linux/man-pages/man7/pty.7.html)
 > - [Manual(手册)，pts(4)](https://man7.org/linux/man-pages/man4/pts.4.html)
@@ -80,7 +80,7 @@ Note：
 
 > 参考：
 >
-> - [Wiki，ANSI_escape_code](https://en.wikipedia.org/wiki/ANSI_escape_code)
+> - [Wiki, ANSI_escape_code](https://en.wikipedia.org/wiki/ANSI_escape_code)
 > - [Manual(手册)，console_codes(4)](https://man7.org/linux/man-pages/man4/console_codes.4.html)
 > - [<计算机知识>：ANSI转义序列以及输出颜色字符详解](https://www.cnblogs.com/xiaoqiangink/p/12718524.html)
 > - https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797

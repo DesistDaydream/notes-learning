@@ -6,12 +6,12 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 组织，vuejs](https://github.com/vuejs/)
 > - [官网](https://vuejs.org/)
 > - [官网-中文](https://staging-cn.vuejs.org/)
 > - [Vue 互动教程](https://cn.vuejs.org/tutorial/)
-> - [Wiki，Vue.js](https://en.wikipedia.org/wiki/Vue.js)
+> - [Wiki, Vue.js](https://en.wikipedia.org/wiki/Vue.js)
 
 Vue 是一套用于构建用户界面的渐进式 ECMAScript 框架。Vue3 于 2020 年 9 月发布，已全面采用 TypeScript 编写；在 2022 年 2 月份成为默认版本
 

@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，Internet](https://en.wikipedia.org/wiki/Internet)
+> - [Wiki, Internet](https://en.wikipedia.org/wiki/Internet)
 
 **Internet(互联网)**
 
@@ -31,7 +31,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，Internet_Archive](https://en.wikipedia.org/wiki/Internet_Archive)
+> - [Wiki, Internet_Archive](https://en.wikipedia.org/wiki/Internet_Archive)
 > - [官网](https://archive.org/)
 
 Internet Archive(互联网档案馆) 是一个美国数字图书馆，其使命是“普及所有知识”。拥有数百万册免费书籍、电影、软件、音乐、网站等。

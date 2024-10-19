@@ -6,10 +6,10 @@ title: Raid
 
 > 参考：
 >
-> - [Wiki，Raid](https://en.wikipedia.org/wiki/RAID)
+> - [Wiki, Raid](https://en.wikipedia.org/wiki/RAID)
 > - [Wiki 中文，Raid](https://zh.wikipedia.org/wiki/RAID)
-> - [Wiki，Erasure code](https://en.wikipedia.org/wiki/Erasure_code)(纠删码)
-> - [Wiki，Parity bit](https://en.wikipedia.org/wiki/Parity_bit)(奇偶校验)
+> - [Wiki, Erasure code](https://en.wikipedia.org/wiki/Erasure_code)(纠删码)
+> - [Wiki, Parity bit](https://en.wikipedia.org/wiki/Parity_bit)(奇偶校验)
 > - <https://support.huawei.com/enterprise/zh/doc/EDOC1000163568/26751928>
 
 **Redundant array of independent disks(独立磁盘冗余阵列，简称 RAID)** 是一种存储虚拟化技术，可以将多个 [Disk](/docs/0.计算机/Disk/Disk.md)(物理磁盘) 组合成一个或多个 Logical unit(逻辑单元) 以达到数据冗余、提高性能或两者兼得的目的。
@@ -43,7 +43,7 @@ Raid 5 等的奇偶校验机制，是纠删码的最佳实践
 
 > 参考：
 >
-> - [Wiki，Non-RAID_drive_architectures](https://en.wikipedia.org/wiki/Non-RAID_drive_architectures)
+> - [Wiki, Non-RAID_drive_architectures](https://en.wikipedia.org/wiki/Non-RAID_drive_architectures)
 
 **Just a Bunch Of Disks(只是一堆磁盘，简称 JBOD)** 是阵列卡可以提供的一种透传模式，让硬盘可以直接透过阵列卡对系统直接提供本身的存储能力。还可以将多个物理硬盘组成单个逻辑磁盘，但是**这并不是一种 RAID**，也不提供数据冗余，仅仅是将这些硬盘从头到尾串联起来而已。
 

@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，Cryptography](https://en.wikipedia.org/wiki/Cryptography)
+> - [Wiki, Cryptography](https://en.wikipedia.org/wiki/Cryptography)
 
 Cryptography(密码学)。大多数现代密码可以通过多种方式进行分类
 
@@ -38,7 +38,7 @@ Public-key cryptography(公开密钥加密、非对称密钥加密)，以及根�
 
 > 参考：
 >
-> - [Wiki，Symmetir Key Algorithm](https://en.wikipedia.org/wiki/Symmetric-key_algorithm)
+> - [Wiki, Symmetir Key Algorithm](https://en.wikipedia.org/wiki/Symmetric-key_algorithm)
 
 使用相同的密钥来加密明文和解密密文。Symmetric Key Algorithm 也称为 [对称密钥加密](/docs/7.信息安全/Cryptography/对称密钥加密/对称密钥加密.md)
 
@@ -68,11 +68,11 @@ Public-key cryptography(公开密钥加密、非对称密钥加密)，以及根�
 
 > 参考：
 >
-> - [Wiki，PKC 英文](https://en.wikipedia.org/wiki/Public-key_cryptography)
-> - [Wiki，数字签名](https://en.wikipedia.org/wiki/Digital_signature)
+> - [Wiki, PKC 英文](https://en.wikipedia.org/wiki/Public-key_cryptography)
+> - [Wiki, 数字签名](https://en.wikipedia.org/wiki/Digital_signature)
 > - [阮一峰](http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html)
 > - [知乎,RSA 的公钥和私钥到底那个才是用来加密和哪个用来解密](https://www.zhihu.com/question/25912483)
-> - [Wiki， 公开密钥加密 中文](https://zh.wikipedia.org/wiki/%E5%85%AC%E5%BC%80%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86)
+> - [Wiki,  公开密钥加密 中文](https://zh.wikipedia.org/wiki/%E5%85%AC%E5%BC%80%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86)
 
 **Public Key Cryptography(公开密钥密码学)** 也称为 **Asymmetric Key Algorithm(非对称密钥算法)** 或 [公开密钥加密](/docs/7.信息安全/Cryptography/公开密钥加密/公开密钥加密.md)，它是计算机通信安全的基石，保证了加密数据不会被破解。1976 年以前，所有的加密方法都是同一种模式：
 

@@ -8,8 +8,8 @@ weight: 2
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Network interface controller](https://en.wikipedia.org/wiki/Network_interface_controller)
+>
+> - [Wiki, Network interface controller](https://en.wikipedia.org/wiki/Network_interface_controller)
 
 **Network interface controller(网络接口控制器，简称 NIC)** 是将计算机连接到计算机网络的计算机硬件组件。
 

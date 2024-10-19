@@ -9,8 +9,8 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Computer monitor](https://en.wikipedia.org/wiki/Computer_monitor)
-> - [Wiki，Display device](https://en.wikipedia.org/wiki/Display_device)
+> - [Wiki, Computer monitor](https://en.wikipedia.org/wiki/Computer_monitor)
+> - [Wiki, Display device](https://en.wikipedia.org/wiki/Display_device)
 
 **Computer monitor(计算机显示器)** 是一种 Display device(显示设备)
 

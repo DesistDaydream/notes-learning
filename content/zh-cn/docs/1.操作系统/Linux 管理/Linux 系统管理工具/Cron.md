@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Cron](https://en.wikipedia.org/wiki/Cron)
+> - [Wiki, Cron](https://en.wikipedia.org/wiki/Cron)
 
 软件实用程序 Cron 也称为 Cron Job(定时任务)，是类 Unix 计算机操作系统中基于时间的 [Job 调度](/docs/8.通用技术/Job/Job.md) 程序。设置和维护软件环境的用户使用 cron 来调度作业 (命令或 shell 脚本)，以便在固定的时间、日期或时间间隔定期运行。
 

@@ -11,7 +11,7 @@ weight: 20
 >
 > - [GitHub 项目，toml-lang/toml](https://github.com/toml-lang/toml)
 > - [官方文档](https://toml.io/en/latest)
-> - [Wiki，TOML](https://en.wikipedia.org/wiki/TOML)
+> - [Wiki, TOML](https://en.wikipedia.org/wiki/TOML)
 > - [知乎](https://zhuanlan.zhihu.com/p/50412485)
 > - [格式对比](https://www.cnblogs.com/sunsky303/p/9208848.html)
 

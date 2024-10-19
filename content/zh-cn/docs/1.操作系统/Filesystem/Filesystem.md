@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，Filesystem](https://en.wikipedia.org/wiki/File_system)
+> - [Wiki, Filesystem](https://en.wikipedia.org/wiki/File_system)
 
 **Filesystem(文件系统，简称 FS)** 是操作系统用来控制数据存储和检索方式的方法，也是一种数据结构。
 
@@ -23,6 +23,6 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，Filesystem_in_Userspace](https://en.wikipedia.org/wiki/Filesystem_in_Userspace)
+> - [Wiki, Filesystem_in_Userspace](https://en.wikipedia.org/wiki/Filesystem_in_Userspace)
 
 **Filesystem in Userspace(用户空间中的文件系统，简称 FUSE)**

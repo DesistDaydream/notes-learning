@@ -8,7 +8,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [Wiki, Machine_learning - Models](https://en.wikipedia.org/wiki/Machine_learning#Models)
 > - [Wiki, Hyperparameter](https://en.wikipedia.org/wiki/Hyperparameter_(machine_learning))
 
@@ -74,14 +74,14 @@ print(weight)
 # 训练模型
 
 > 参考：
-> 
-> - [Wiki，Machine_learning - Training_models](https://en.wikipedia.org/wiki/Machine_learning#Training_models)
+>
+> - [Wiki, Machine_learning - Training_models](https://en.wikipedia.org/wiki/Machine_learning#Training_models)
 
 训练模型最基本需要如下几样东西
 
 - **原始模型**
 - **Hyperparameter(超参数)**
-- **[Dataset](docs/12.AI/机器学习/Dataset.md)(数据集)**
+- **[Dataset](/docs/12.AI/机器学习/Dataset.md)(数据集)**
 
 加载原始模型，设置超参数，将数据集的数据转为模型可以识别的数值，一遍一遍训练，最后得出一组参数
 
@@ -92,7 +92,7 @@ print(weight)
 > [!Tip]
 > 不同的模型（计算机视觉、自然语言处理、etc.）训练时，可能需要一些特定于该种类模型的东西。
 
-> TODO: 
+> TODO:
 >
 > 注意日常口语化的名词 **调参**，调的是什么参？超参？权重？还是什么？
 >

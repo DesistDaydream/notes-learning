@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，Computer](https://en.wikipedia.org/wiki/Computer)
+> - [Wiki, Computer](https://en.wikipedia.org/wiki/Computer)
 
 冯·诺依曼
 

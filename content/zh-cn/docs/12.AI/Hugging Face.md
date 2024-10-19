@@ -10,7 +10,7 @@ weight: 20
 >
 > - [GitHub 组织，huggingface](https://github.com/huggingface)
 > - [官网](https://huggingface.co/)
-> - [WIki，Hugging_Face](https://en.wikipedia.org/wiki/Hugging_Face)
+> - [Wiki, Hugging_Face](https://en.wikipedia.org/wiki/Hugging_Face)
 > - [知乎，Huggingface 超详细介绍](https://zhuanlan.zhihu.com/p/535100411)
 
 Hugging Face 即是一个工具包的集合，也是一个社区。

@@ -8,8 +8,8 @@ weight: 20
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Journaling file system](https://en.wikipedia.org/wiki/Journaling_file_system)
+>
+> - [Wiki, Journaling file system](https://en.wikipedia.org/wiki/Journaling_file_system)
 
 ## 背景
 

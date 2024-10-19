@@ -8,8 +8,8 @@ weight: 20
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Free Software Foundation](https://en.wikipedia.org/wiki/Free_Software_Foundation)
+>
+> - [Wiki, Free Software Foundation](https://en.wikipedia.org/wiki/Free_Software_Foundation)
 
 **Free Software Foundation(自由软件基金会，简称 FSF)** 是一个[符合 501（c）（3）](<https://en.wikipedia.org/wiki/501(c)#501(c)(3)>) [非营利组织](https://en.wikipedia.org/wiki/Non-profit_organization)所创立[理查德·斯托曼](https://en.wikipedia.org/wiki/Richard_Stallman)在 1985 年 10 月 4 日，支持[自由软件运动](https://en.wikipedia.org/wiki/Free_software_movement)，从而促进普遍自由的学习，分发，创建和修改[计算机软件](https://en.wikipedia.org/wiki/Computer_software)，组织偏爱在[Copyleft](https://en.wikipedia.org/wiki/Copyleft)（“相同方式共享”）条款下分发的软件，例如使用其自己的[GNU 通用公共许可证](https://en.wikipedia.org/wiki/GNU_General_Public_License)。所述的 FSF 在波士顿并入， [马萨诸塞](https://en.wikipedia.org/wiki/Massachusetts)，[美国](https://en.wikipedia.org/wiki/United_States)，它也基于。
 
@@ -20,8 +20,8 @@ weight: 20
 ## GNU
 
 > 参考：
-> 
-> - [Wiki，GNU](https://en.wikipedia.org/wiki/GNU)
+>
+> - [Wiki, GNU](https://en.wikipedia.org/wiki/GNU)
 > - [官网](https://www.gnu.org/)
 
 **GNU** 是一个广泛的[自由软件](https://en.wikipedia.org/wiki/Free_software)集合，它可以作为一个操作系统使用，也可以与其他操作系统一起使用。使用完整的 GNU 工具导致了操作系统家族的诞生，即俗称的[Linux](https://en.wikipedia.org/wiki/Linux)。大部分 GNU 是根据[GNU 项目](https://en.wikipedia.org/wiki/GNU_Project)自己的通用公共许可证 ( [GPL](https://en.wikipedia.org/wiki/GNU_General_Public_License) ) 获得许可的。

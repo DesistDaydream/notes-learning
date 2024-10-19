@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Asynchronous_I/O](https://en.wikipedia.org/wiki/Asynchronous_I/O)
+> - [Wiki, Asynchronous_I/O](https://en.wikipedia.org/wiki/Asynchronous_I/O)
 
 编程中的 [I_O](/docs/0.计算机/I_O.md)
 

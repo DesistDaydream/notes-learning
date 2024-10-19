@@ -6,7 +6,7 @@ title: WebDAV
 
 > 参考：
 >
-> - [Wiki，WebDAV](https://en.wikipedia.org/wiki/WebDAV)
+> - [Wiki, WebDAV](https://en.wikipedia.org/wiki/WebDAV)
 > - [RFC 4918， HTTP Extensions for Web Distributed Authoring and Versioning (WebDAV) ](https://www.rfc-editor.org/rfc/rfc4918.html)
 > - <https://www.zhihu.com/question/30719209>
 

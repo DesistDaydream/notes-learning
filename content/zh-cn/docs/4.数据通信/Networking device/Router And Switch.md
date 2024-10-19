@@ -8,9 +8,9 @@ weight: 3
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Router_(computing)](https://en.wikipedia.org/wiki/Router_(computing))
-> - [Wiki，Network switch](https://en.wikipedia.org/wiki/Network_switch)
+>
+> - [Wiki, Router_(computing)](https://en.wikipedia.org/wiki/Router_(computing))
+> - [Wiki, Network switch](https://en.wikipedia.org/wiki/Network_switch)
 
 **Router(路由器)**
 

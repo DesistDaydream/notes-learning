@@ -8,9 +8,9 @@ weight: 20
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Tar](<https://en.wikipedia.org/wiki/Tar_(computing)>)
-> - [Wiki，Archive_file](https://en.wikipedia.org/wiki/Archive_file)
+>
+> - [Wiki, Tar](<https://en.wikipedia.org/wiki/Tar_(computing)>)
+> - [Wiki, Archive_file](https://en.wikipedia.org/wiki/Archive_file)
 
 在计算机中，**Archive File(归档文件)** 是由一个或多个文件及元数据组成的一个计算机文件。归档文件用于将多个数据文件放在一起收集到一个文件中，以便于移植和存储。归档文件通常存储目录结构、错误检测和纠正信息、任意注释，有时还使用内置加密。
 
@@ -31,5 +31,5 @@ Tar 是一种计算机应用程序，用于将许多文件汇集到一个 **Arch
 # 数据压缩
 
 > 参考：
-> 
-> - [Wiki，Data compression](https://en.wikipedia.org/wiki/Data_compression)(数据压缩)
+>
+> - [Wiki, Data compression](https://en.wikipedia.org/wiki/Data_compression)(数据压缩)

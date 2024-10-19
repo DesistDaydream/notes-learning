@@ -5,8 +5,8 @@ title: Coroutine(协程)
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Coroutine](https://en.wikipedia.org/wiki/Coroutine)
+>
+> - [Wiki, Coroutine](https://en.wikipedia.org/wiki/Coroutine)
 > - [协程，被我玩会了！](https://mp.weixin.qq.com/s/xGe51EVn2qw2Gojh7cZqUg)
 
 **Coroutine(协程)** 是计算机程序组件，通过允许暂停和恢复执行来概括非抢占式多任务处理的子程序。协程非常适合实现熟悉的程序组件，例如协作任务、异常、事件循环、迭代器、无限列表和管道。
@@ -71,16 +71,16 @@ title: Coroutine(协程)
 
 于是，我脑补了COBOL编译器和磁带之间可能的两种multi-pass形式的交互情况：
 
-* **可能情况一**  
+* **可能情况一**
     对于COBOL的编译器来说，要完成词法分析、语法分析就要从磁带上读取程序的源代码，在之前的编译器中词法分析和语法分析是相互独立的，这就意味着：
   *   词法分析时需要将磁带从头到尾过一遍
   *   语法分析时需要将磁带从头到尾过一遍
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/wAkAIFs11qaCDLNh7OoicyuQorqTdwUyGRHpHibJs3xODVA6HmicuiagZK9Q0yJ0HQhAySjuLkakuxkhxicpfAqkXcQ/640?wx_fmt=png)
-    
 
-*   **可能情况二**  
-听过磁带的朋友们一定知道磁带的两个基本操作：倒带和快进。  
+
+*   **可能情况二**
+听过磁带的朋友们一定知道磁带的两个基本操作：倒带和快进。
 
 在完成编译器的词法分析和语法分析两件事情时，需要磁带反复的倒带和快进去寻找两类分析所需的部分，类似于磁盘的寻道，磁头需要反复移动横跳，并且当时的磁带不一定支持随机读写。
 
@@ -94,7 +94,7 @@ title: Coroutine(协程)
 
 *   当词法分析模块基于词素产生足够多的词法单元Token时就控制流转给语法分析
 *   当语法分析模块处理完所有的词法单元Token时将控制流转给词法分析模块
-*   词法分析和语法分析各自维护自身的运行状态，并且具备主动让出和恢复的能力 
+*   词法分析和语法分析各自维护自身的运行状态，并且具备主动让出和恢复的能力
 
 可以看到这个方案的核心思想在于：
 
@@ -142,7 +142,7 @@ C语言就是典型的top-down思想的代表，在main函数作为入口，各�
 协程的雄起
 -----
 
-**我们对于CPU的压榨从未停止。** 
+**我们对于CPU的压榨从未停止。**
 
 对于CPU来说，任务分为两大类：**计算密集型和IO密集型**。
 
@@ -176,7 +176,7 @@ C语言就是典型的top-down思想的代表，在main函数作为入口，各�
 
 协程将IO的处理权交给了程序员，遇到IO被阻塞时就交出控制权给其他协程，等其他协程处理完再把控制权交回来。
 
-**通过yield方式转移执行权的多个协程之间并非调用者和被调用者的关系，而是彼此平等、对称、合作的关系。** 
+**通过yield方式转移执行权的多个协程之间并非调用者和被调用者的关系，而是彼此平等、对称、合作的关系。**
 
 协程一直没有占上风的原因，除了设计思想的矛盾，还有一些其他原因，毕竟协程也不是银弹，来看看协程有什么问题：
 
@@ -214,55 +214,55 @@ Python对协程的支持也经历了多个版本，从部分支持到完善支�
 我们以最新的async/await来说明Python的协程是如何使用的：
 
 ```python
-import asyncio  
-from pathlib import Path  
-import logging  
-from urllib.request import urlopen, Request  
-import os  
-from time import time  
-import aiohttp  
-   
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')  
-logger = logging.getLogger(__name__)  
-   
-   
-CODEFLEX_IMAGES_URLS = ['https://codeflex.co/wp-content/uploads/2021/01/pandas-dataframe-python-1024x512.png',  
-                        'https://codeflex.co/wp-content/uploads/2021/02/github-actions-deployment-to-eks-with-kustomize-1024x536.jpg',  
-                        'https://codeflex.co/wp-content/uploads/2021/02/boto3-s3-multipart-upload-1024x536.jpg',  
-                        'https://codeflex.co/wp-content/uploads/2018/02/kafka-cluster-architecture.jpg',  
-                        'https://codeflex.co/wp-content/uploads/2016/09/redis-cluster-topology.png']  
-   
-   
-async def download_image_async(session, dir, img_url):  
-    download_path = dir / os.path.basename(img_url)  
-    async with session.get(img_url) as response:  
-        with download_path.open('wb') as f:  
-            while True:  
-                chunk = await response.content.read(512)  
-                if not chunk:  
-                    break  
-                f.write(chunk)  
-    logger.info('Downloaded: ' + img_url)  
-   
-   
-async def main():  
-    images_dir = Path("codeflex_images")  
-    Path("codeflex_images").mkdir(parents=False, exist_ok=True)  
-   
-    async with aiohttp.ClientSession() as session:  
-        tasks = [(download_image_async(session, images_dir, img_url)) for img_url in CODEFLEX_IMAGES_URLS]  
-        await asyncio.gather(*tasks, return_exceptions=True)  
-   
-   
-if __name__ == '__main__':  
-    start = time()  
-       
-    event_loop = asyncio.get_event_loop()  
-    try:  
-        event_loop.run_until_complete(main())  
-    finally:  
-        event_loop.close()  
-   
+import asyncio
+from pathlib import Path
+import logging
+from urllib.request import urlopen, Request
+import os
+from time import time
+import aiohttp
+ 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+ 
+ 
+CODEFLEX_IMAGES_URLS = ['https://codeflex.co/wp-content/uploads/2021/01/pandas-dataframe-python-1024x512.png',
+                        'https://codeflex.co/wp-content/uploads/2021/02/github-actions-deployment-to-eks-with-kustomize-1024x536.jpg',
+                        'https://codeflex.co/wp-content/uploads/2021/02/boto3-s3-multipart-upload-1024x536.jpg',
+                        'https://codeflex.co/wp-content/uploads/2018/02/kafka-cluster-architecture.jpg',
+                        'https://codeflex.co/wp-content/uploads/2016/09/redis-cluster-topology.png']
+ 
+ 
+async def download_image_async(session, dir, img_url):
+    download_path = dir / os.path.basename(img_url)
+    async with session.get(img_url) as response:
+        with download_path.open('wb') as f:
+            while True:
+                chunk = await response.content.read(512)
+                if not chunk:
+                    break
+                f.write(chunk)
+    logger.info('Downloaded: ' + img_url)
+ 
+ 
+async def main():
+    images_dir = Path("codeflex_images")
+    Path("codeflex_images").mkdir(parents=False, exist_ok=True)
+ 
+    async with aiohttp.ClientSession() as session:
+        tasks = [(download_image_async(session, images_dir, img_url)) for img_url in CODEFLEX_IMAGES_URLS]
+        await asyncio.gather(*tasks, return_exceptions=True)
+ 
+ 
+if __name__ == '__main__':
+    start = time()
+     
+    event_loop = asyncio.get_event_loop()
+    try:
+        event_loop.run_until_complete(main())
+    finally:
+        event_loop.close()
+ 
     logger.info('Download time: %s seconds', time() - start)
 ```
 

@@ -9,8 +9,8 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，Tunneling Protocol](https://en.wikipedia.org/wiki/Tunneling_protocol)
-> - [Wiki，Overlay Network](https://en.wikipedia.org/wiki/Overlay_network)
+> - [Wiki, Tunneling Protocol](https://en.wikipedia.org/wiki/Tunneling_protocol)
+> - [Wiki, Overlay Network](https://en.wikipedia.org/wiki/Overlay_network)
 
 **Tunneling Protocol(隧道协议)** 是一种通信协议，允许数据从一个网络移动到另一个网络。该协议通过 [通信协议](/docs/4.数据通信/Protocol/通信协议.md) 中 [Encapsulation(封装)](/docs/4.数据通信/Protocol/通信协议.md#Encapsulation(封装)) 的过程跨公共网络发送专用网络通信。因为隧道涉及将流量数据重新打包为不同的形式，可能以加密为标准，它可以隐藏通过隧道运行的流量的性质。隧道协议通过使用数据包的 Payload(数据部分) 来承载实际提供服务的数据包。隧道使用分层协议模型，例如 OSI 或 TCP/IP 协议套件中的那些，但在使用有效载荷承载网络通常不提供的服务时通常会违反分层。通常，在分层模型中，传送协议在与有效载荷协议相同或更高的级别上运行。
 
@@ -31,7 +31,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，VPN](https://en.wikipedia.org/wiki/Virtual_private_network)
+> - [Wiki, VPN](https://en.wikipedia.org/wiki/Virtual_private_network)
 
 **Virtual Private Network(虚拟专用网络，简称 VPN)** 是通过**隧道协议**建立的虚拟点对点连接。可以从逻辑上，让人们将通过 VPN 将两个或多个互不连接的网络打通，组成一个更大型的局域网。
 

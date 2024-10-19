@@ -17,7 +17,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)
+> - [Wiki, CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)
 
 在计算机编程中，**Create、Read、Update、Delete(创建、读取、更新、删除，简称 增删改查(CRUD))** 是持久性存储的四个基本操作。CRUD 有时也用于描述用户界面约定，这些约定便于使用基于计算机的表单和报告查看、搜索和更改信息。这个词很可能是詹姆斯·马丁 (James Martin) 在他的 1983 著作《管理数据库环境》中首次推广的。
 

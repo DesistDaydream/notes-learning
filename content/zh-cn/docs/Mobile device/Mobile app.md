@@ -8,8 +8,8 @@ weight: 20
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Mobile_app](https://en.wikipedia.org/wiki/Mobile_app)
+>
+> - [Wiki, Mobile_app](https://en.wikipedia.org/wiki/Mobile_app)
 
 **Mobile application(移动应用程序，简称 APP)** 是设计用于在手机、平板电脑或手表等移动设备上运行的计算机程序或软件应用程序。移动应用程序通常与设计用于在台式计算机上运行的桌面应用程序以及在移动 Web 浏览器中运行而不是直接在移动设备上运行的 Web 应用程序形成对比。
 
@@ -24,7 +24,7 @@ weight: 20
 # WeChat
 
 > 参考：
-> 
+>
 > - [微信开发者官方文档](https://developers.weixin.qq.com/doc/)
 
 [微信浏览器：简单三步打开调试工具](https://www.cnblogs.com/conne/p/15884968.html)
@@ -32,7 +32,7 @@ weight: 20
 ## 微信开发者工具
 
 > 参考：
-> 
+>
 > - [官方文档](https://developers.weixin.qq.com/miniprogram/dev/devtools/devtools.html)
 
 从 https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html 下载
@@ -72,7 +72,7 @@ weight: 20
 
 https://zhuanlan.zhihu.com/p/444481759
 
-## **第一类：针对单一APP开发的语言，即开发一套代码只能运行在一个平台上。** 
+## **第一类：针对单一APP开发的语言，即开发一套代码只能运行在一个平台上。**
 
 ### 1、开发Android的：Java和Kotlin
 

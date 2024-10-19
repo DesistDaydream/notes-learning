@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Intrusion detection system](https://en.wikipedia.org/wiki/Intrusion_detection_system)
+> - [Wiki, Intrusion detection system](https://en.wikipedia.org/wiki/Intrusion_detection_system)
 
 **Intrusion detection/prevention system(入侵监测系统 与 入侵防御系统，简称 IDS/IPS)** 是一种设备或软件应用程序，用于监视网络或系统是否存在恶意活动或策略违规行为。
 

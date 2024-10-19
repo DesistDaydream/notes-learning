@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，NetFlow](https://en.wikipedia.org/wiki/NetFlow)
+> - [Wiki, NetFlow](https://en.wikipedia.org/wiki/NetFlow)
 
 NetFlow 是 1996 年左右在 Cisco 路由器上引入的一项功能，它能够在 IP 网络流量进入或退出接口时收集该流量。通过分析 NetFlow 提供的数据，网络管理员可以确定流量的来源和目的地、服务类别以及拥塞原因等信息。
 

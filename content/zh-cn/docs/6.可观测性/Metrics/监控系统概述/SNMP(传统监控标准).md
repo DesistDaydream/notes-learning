@@ -8,7 +8,7 @@ title: SNMP(传统监控标准)
 >
 > - [RFC 1157，A Simple Network Management Protocol (SNMP)](https://datatracker.ietf.org/doc/html/rfc1157)
 > - [RFC 1156，Management Information Base for Network Management of TCP/IP-based internets](https://datatracker.ietf.org/doc/html/rfc1156)
-> - [Wiki，SNMP](https://en.wikipedia.org/wiki/Simple_Network_Management_Protocol)
+> - [Wiki, SNMP](https://en.wikipedia.org/wiki/Simple_Network_Management_Protocol)
 
 **Simple Network Management Protocol(简单网络管理协议，简称 SNMP)**。想实现该协议，通常需要由两部分完成(监控端和被监控端)，是在两端的两个进程之间进行通信，该进程都需要占用一个 socket
 

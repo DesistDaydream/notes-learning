@@ -9,8 +9,8 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，File_transfer](https://en.wikipedia.org/wiki/File_transfer)
-> - [Wiki，Protocol for file transfer](https://en.wikipedia.org/wiki/Protocol_for_file_transfer)
+> - [Wiki, File_transfer](https://en.wikipedia.org/wiki/File_transfer)
+> - [Wiki, Protocol for file transfer](https://en.wikipedia.org/wiki/Protocol_for_file_transfer)
 
 **File transfer(文件传输)** 是通过[数据通信](/docs/4.数据通信/数据通信/数据通信.md)的通道将计算机文件从一个计算机系统传输到另一个计算机系统的行为。文件传输是通过[通信协议](/docs/4.数据通信/Protocol/通信协议.md)协调的。许多文件传输协议是针对不同环境而设计的
 
@@ -30,9 +30,9 @@ weight: 1
 
 > 参考:
 >
-> - [Wiki，XMODEM](https://en.wikipedia.org/wiki/XMODEM)
-> - [Wiki，YMODEM](https://en.wikipedia.org/wiki/YMODEM)
-> - [Wiki，ZMODEM](https://en.wikipedia.org/wiki/ZMODEM)
+> - [Wiki, XMODEM](https://en.wikipedia.org/wiki/XMODEM)
+> - [Wiki, YMODEM](https://en.wikipedia.org/wiki/YMODEM)
+> - [Wiki, ZMODEM](https://en.wikipedia.org/wiki/ZMODEM)
 > - https://pauillac.inria.fr/~doligez/zmodem/ymodem.txt
 > - [知乎，Xmodem 协议介绍及应用（基于 ESP-IDF）](https://zhuanlan.zhihu.com/p/349921713)
 

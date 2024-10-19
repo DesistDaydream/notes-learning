@@ -5,7 +5,7 @@ title: Pointer(指针)
 # 概述
 
 > 参考：
-> - [Wiki，Pointer](<https://en.wikipedia.org/wiki/Pointer_(computer_programming)>)
+> - [Wiki, Pointer](<https://en.wikipedia.org/wiki/Pointer_(computer_programming)>)
 > - [公众号,码农的荒岛求生-彻底理解 C 语言中的指针](https://mp.weixin.qq.com/s/8QbRw7oxDaPjyjEDLPRYdw)
 
 **Pointer(指针)** 在计算机科学中，是许多编程语言中存储内存地址的对象。这可以是位于计算机内存中的另一个值，或者在某些情况下，是内存映射计算机硬件的值。指针引用内存中的某个位置，获取存储在该位置的值称为取消引用该指针。打个比方，一本书索引中的页码可以被认为是指向相应页面的指针；将通过翻到具有给定页码的页面并阅读在该页面上找到的文本来取消引用这样的指针。指针变量的实际格式和内容取决于底层计算机体系结构。

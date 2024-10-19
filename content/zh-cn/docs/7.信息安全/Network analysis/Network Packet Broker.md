@@ -9,7 +9,7 @@ weight: 6
 
 > 参考：
 >
-> - [Wiki，Data monitoring switch](https://en.wikipedia.org/wiki/Data_monitoring_switch)
+> - [Wiki, Data monitoring switch](https://en.wikipedia.org/wiki/Data_monitoring_switch)
 > - [知乎，什么是TAP分流器/交换机，有哪些品牌](https://zhuanlan.zhihu.com/p/164828332)
 
 **Network Packet Broker(网络数据包代理，简称 NPB)** 是一种比 [Network tap](/docs/7.信息安全/Network%20analysis/Network%20tap.md) 更强大的流量处置技术，实现了 NPB 的设备接收来自大量链路上的流量，将其汇聚在设备内部处理（e.g. 过滤、etc.）后，再将流量分发给另一侧的其他设备。这种行为也可以称为**汇聚分流**，对应的，实现了 NPB 的设备可以称为 **汇聚分流设备**。

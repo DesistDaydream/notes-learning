@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Robotic_process_automation](https://en.wikipedia.org/wiki/Robotic_process_automation)
+> - [Wiki, Robotic_process_automation](https://en.wikipedia.org/wiki/Robotic_process_automation)
 
 **Robotic process automation(机器人的流程自动化，简称 RPA)** 是一种基于 软件机器人 或 [人工智能](/docs/12.AI/12.AI.md) 的流程自动化形式，这是一种实现自动化的设计思想、概念，并不是特指某个具体的实物。
 

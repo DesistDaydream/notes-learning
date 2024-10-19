@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [WIki，Cache(computing)](https://en.wikipedia.org/wiki/Cache_(computing))
+> - [Wiki, Cache(computing)](https://en.wikipedia.org/wiki/Cache_(computing))
 
 **Cache(缓存)** 在 [Computer](/docs/0.计算机/Computer.md)(计算机) 中，是指一种用于存储数据的软件或硬件，以便可以更快的满足未来对该数据的请求；存储在缓存中的数据可能是早期计算的结果或存储在其他地方的数据的副本。作为缓存的组件的最低要求就是速度够快，避免对存储原始数据的组件产生过大压力。
 

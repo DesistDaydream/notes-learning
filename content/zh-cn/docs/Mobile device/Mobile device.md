@@ -8,8 +8,8 @@ weight: 1
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Mobile_device](https://en.wikipedia.org/wiki/Mobile_device)
+>
+> - [Wiki, Mobile_device](https://en.wikipedia.org/wiki/Mobile_device)
 
 **Mobile device(移动设备)** 也称为 **Handheld computer(掌上电脑)** 是一种足够小的可以手持和操作的计算机
 

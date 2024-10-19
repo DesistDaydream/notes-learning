@@ -12,7 +12,7 @@ weight: 1
 > - [RFC 8555, Automatic Certificate Management Environment (ACME)](https://datatracker.ietf.org/doc/html/rfc8555/)
 > - [RFC 8737, Automated Certificate Management Environment (ACME) TLS Application‑Layer Protocol Negotiation (ALPN) Challenge Extension](https://www.rfc-editor.org/rfc/rfc8737.html)
 > - [RFC 8738, Automated Certificate Management Environment (ACME) IP Identifier Validation Extension](https://www.rfc-editor.org/rfc/rfc8738.html)
-> - [Wiki，ACME](https://en.wikipedia.org/wiki/Automatic_Certificate_Management_Environment)
+> - [Wiki, ACME](https://en.wikipedia.org/wiki/Automatic_Certificate_Management_Environment)
 
 **Automatic Certificate Management Environment(自动证书管理环境，简称 ACME)** 是一种通信协议，用于自动化证书颁发机构与其用户的 Web 服务器之间的交互，允许以非常低的成本自动部署 PKI。它是由 ISRG 为他们的 Let's Encrypt 服务设计的。
 
@@ -38,7 +38,7 @@ weight: 1
 > 参考：
 >
 > - [官网](https://letsencrypt.org/)
-> - [Wiki，Let's Encrypt](https://en.wikipedia.org/wiki/Let%27s_Encrypt)
+> - [Wiki, Let's Encrypt](https://en.wikipedia.org/wiki/Let%27s_Encrypt)
 > - [GitHub 项目，certbot/certbot](https://github.com/certbot/certbot)
 
 ## 使用 certbot 创建证书
@@ -137,7 +137,7 @@ source ~/.bashrc
 
 > 参考：
 >
-> - [GitHub 项目 Wiki，acmesh-official/acme.sh-dnsapi-使用阿里云域名 API 自动颁发证书](https://github.com/acmesh-official/acme.sh/wiki/dnsapi#11-use-aliyun-domain-api-to-automatically-issue-cert)
+> - [GitHub 项目 Wiki, acmesh-official/acme.sh-dnsapi-使用阿里云域名 API 自动颁发证书](https://github.com/acmesh-official/acme.sh/wiki/dnsapi#11-use-aliyun-domain-api-to-automatically-issue-cert)
 
 从 [阿里云控制台-RAM 访问控制-身份管理-用户](https://ram.console.aliyun.com/users) 处创建用户并获取 AK、SK
 
@@ -150,7 +150,7 @@ export Ali_Secret="AccessKeySecret"
 
 > 参考：
 >
-> - [GitHub 项目 Wiki，acmesh-official/acme.sh-dnsapi-使用 Name.com API](https://github.com/acmesh-official/acme.sh/wiki/dnsapi#28-use-namecom-api)
+> - [GitHub 项目 Wiki, acmesh-official/acme.sh-dnsapi-使用 Name.com API](https://github.com/acmesh-official/acme.sh/wiki/dnsapi#28-use-namecom-api)
 
 从 <https://www.name.com/zh-cn/account/settings/api> 创建 Token
 

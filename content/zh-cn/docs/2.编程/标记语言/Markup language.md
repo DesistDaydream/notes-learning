@@ -8,8 +8,8 @@ weight: 20
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Markup_language](https://en.wikipedia.org/wiki/Markup_language)
+>
+> - [Wiki, Markup_language](https://en.wikipedia.org/wiki/Markup_language)
 
 **Markup language(标记语言)** 一种文本编码系统，由插入文本文档中的一组符号组成，用于控制其结构、格式或其各部分之间的关​​系。 标记通常用于控制文档的显示或丰富其内容以方便自动化处理。
 

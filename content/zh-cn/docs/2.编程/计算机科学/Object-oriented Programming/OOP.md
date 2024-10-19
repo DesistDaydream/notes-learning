@@ -12,9 +12,9 @@ weight: 1
 > - [公众号，码农的荒岛求生-为什么抽象在计算机科学中如此重要](https://mp.weixin.qq.com/s/fIHX7Vc4lG3odkhCgzcgsA)
 > - [喜马拉雅,10-万物介对象，编程的关键就是找对象](https://www.ximalaya.com/sound/406805426)(对建模的理解)
 > - [喜马拉雅,13-从程序员到产品经理，产品经理是干什么的？](https://www.ximalaya.com/sound/417004696)(对建模的理解)
-> - [Wiki，Object-oriented programming(面向对象编程)](https://en.wikipedia.org/wiki/Object-oriented_programming)
-> - [Wiki，Object](<https://en.wikipedia.org/wiki/Object_(computer_science)>)(对象)
-> - [Wiki，Instance 与 Instantiate](<https://en.wikipedia.org/wiki/Instance_(computer_science)>)(实例 and 实例化)
+> - [Wiki, Object-oriented programming(面向对象编程)](https://en.wikipedia.org/wiki/Object-oriented_programming)
+> - [Wiki, Object](<https://en.wikipedia.org/wiki/Object_(computer_science)>)(对象)
+> - [Wiki, Instance 与 Instantiate](<https://en.wikipedia.org/wiki/Instance_(computer_science)>)(实例 and 实例化)
 
 **Object-oriented Programming(面向对象编程，简称 OOP)**
 
@@ -79,9 +79,9 @@ _All problems in computer science can be solved by another level of indirection.
   - 在 C++ 中称为 **Member function(成员函数)**，这种叫法在有的地方也会使用
 
 > 这里的“对象类型”如果对应到现实中，就是这类描述：动物类型、房屋类型、汽车类型 等等。动物、房屋、汽车 都是一种对象
-> 
+>
 > 通过“动物类型”创建出来的实例可以是：鼠、牛、虎、兔 等等
-> 
+>
 > - “动物类型”的属性则可以有：姿态、在地球的坐标位置、眼睛的状态 等等
 > - “动物类型”的方法则可以有：睡、跑、眨眼 等等
 

@@ -12,7 +12,7 @@ weight: 20
 > - [Linux Kernel 文档，管理员指南 - 内存管理 - 概念 - Nodes](https://www.kernel.org/doc/html/latest/admin-guide/mm/concepts.html#nodes)
 > - [Linux Kernel 文档，内存管理 - NUMA](https://www.kernel.org/doc/html/latest/mm/numa.html)
 > - [Linux Kernel 文档，管理员指南 - 内存管理 - NUMA 内存策略](https://www.kernel.org/doc/html/latest/admin-guide/mm/numa_memory_policy.html)
-> - [Wiki，Non-uniform memory access](https://en.wikipedia.org/wiki/Non-uniform_memory_access)
+> - [Wiki, Non-uniform memory access](https://en.wikipedia.org/wiki/Non-uniform_memory_access)
 
 **Non-uniform memory access(非均匀内存访问，简称 NUMA)** 是一种用于多处理结构的计算机的内存设计，其中内存访问时间取决于相对于处理器的内存位置。在 NUMA 下，处理器可以比非本地内存（另一个处理器的本地内存或处理器之间共享的内存）更快地访问自己的本地内存。 NUMA 的优势仅限于特定的工作负载，特别是在数据通常与某些任务或用户密切相关的服务器上。
 

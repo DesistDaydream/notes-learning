@@ -9,7 +9,7 @@ weight: 5
 
 > 参考：
 >
-> - [Wiki，Network tap](https://en.wikipedia.org/wiki/Network_tap)
+> - [Wiki, Network tap](https://en.wikipedia.org/wiki/Network_tap)
 
 **Network tap(网络分流器)** 是一种通过类似 [Port mirroring](/docs/7.信息安全/Network%20analysis/Port%20mirroring.md) 技术实现的流量监听方式。实现了 Network tap 能力的硬件设备可以用来监视本地网络上的事件。Network tap 设备一般至少有 3 个端口：A 端口、B 端口、monitor(监听) 端口。Network tap 可以让数据在 A 与 B 之间的传输实时无阻碍得通过，同时还将相同的数据复制到 monitor 端口，从而使得第三方分析数据。
 

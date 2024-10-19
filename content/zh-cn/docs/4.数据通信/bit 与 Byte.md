@@ -8,7 +8,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > -
 
 ## bit（比特）
@@ -81,7 +81,7 @@ Byte 可以说是计算机中存储容量的基本单位。我们在属性里查
 
 > 参考：
 >
-> - [Wiki，Byte](https://en.wikipedia.org/wiki/Byte)
+> - [Wiki, Byte](https://en.wikipedia.org/wiki/Byte)
 > - [Wiki-zh，千字节](https://zh.wikipedia.org/wiki/%E5%8D%83%E5%AD%97%E8%8A%82)
 
 **International System of Units(国际单位制，简称 SI)** 这种规范就是为了照顾到计算机外的行业，除了之前提到以 1024 的换算，还可以使用十进制来进行换算。这种制度其实很早很早就有了，比如距离单位(100cm=1m)、重量单位(1kg=1000g)、时间单位(1s=1000ms) 等等。
@@ -144,11 +144,11 @@ Byte 可以说是计算机中存储容量的基本单位。我们在属性里查
 # bps 与 pps
 
 > 参考：
-> 
-> - [Wiki，Bit_rate](https://en.wikipedia.org/wiki/Bit_rate)
-> - [Wiki，Network_throughput](https://en.wikipedia.org/wiki/Network_throughput)
+>
+> - [Wiki, Bit_rate](https://en.wikipedia.org/wiki/Bit_rate)
+> - [Wiki, Network_throughput](https://en.wikipedia.org/wiki/Network_throughput)
 
-bps 和 pps 作为衡量网络吞吐量的单位，从功能上而言两者没有区别。但是，两者的使用环境截然不同。  
+bps 和 pps 作为衡量网络吞吐量的单位，从功能上而言两者没有区别。但是，两者的使用环境截然不同。
 
 **bit per second(简称 bps)**，也可以表示成 b/s。常用的单位还有 **Bytes per second(简称 Bps)**，速度向上扩展一下就是 KiB/s、MiB/s、etc. ，bps 是此类单位的最小单位 。
 
@@ -158,23 +158,23 @@ bps 和 pps 作为衡量网络吞吐量的单位，从功能上而言两者没�
 
 - pps 用来描述 **Network throughput(网络吞吐量)**
 
-假设有2台带有干兆以太网NIC的PC通过路由器进行文件传输。（不讨论设备的相关设假设文件传输速度可达到最高值，则此例中为1 Gbps，如果以bps类对交换机处理能力进行量，记：此路由器处理能力为1 Gbps.  
+假设有2台带有干兆以太网NIC的PC通过路由器进行文件传输。（不讨论设备的相关设假设文件传输速度可达到最高值，则此例中为1 Gbps，如果以bps类对交换机处理能力进行量，记：此路由器处理能力为1 Gbps.
 
-同样是这台交换机，连接2台带有快速（百兆）以太网NIC的PC进行文件传输，此时传输速率100 Mbps，则记：此路由器处理能力为100 Mbps.  
+同样是这台交换机，连接2台带有快速（百兆）以太网NIC的PC进行文件传输，此时传输速率100 Mbps，则记：此路由器处理能力为100 Mbps.
 
-显然，得出的结论是错误的。处理能力作为网络设备本身的属性不会因为所连接的设备而发生化。而能对其产生相对影响的另有他因。  
+显然，得出的结论是错误的。处理能力作为网络设备本身的属性不会因为所连接的设备而发生化。而能对其产生相对影响的另有他因。
 
-就好像用电脑打游戏，游戏的fps不会因为你的鼠标是USB2.0还是USB3.0还是Bluetooth而改而通常能影响到的一般只有温度，还有其他正在使用显卡（GPU）的进程的使用量。  
+就好像用电脑打游戏，游戏的fps不会因为你的鼠标是USB2.0还是USB3.0还是Bluetooth而改而通常能影响到的一般只有温度，还有其他正在使用显卡（GPU）的进程的使用量。
 
-- bps 用于表示传输速度  
-- pps 用于表示数据包处理速度  
+- bps 用于表示传输速度
+- pps 用于表示数据包处理速度
 
 那么，到底该如何才能相对准确地衡量网络设备对数据包进行处理的能力大小呢？  这个时候就轮到单位pps登场了。
 
-对于一般网络设备，制造商会同时标注设备的传输速度（bps）和数据包处理速度（pps）  
+对于一般网络设备，制造商会同时标注设备的传输速度（bps）和数据包处理速度（pps）
 
 这是经过专门测量后标注的设备标准属性。
 
-例如思科交换机Cisco Catalyst3560G-48Ts，其标注为：传输速度：32Gbps数据包处理速度：38.7M pps此时，例如以每秒38.7M个，长为1500B的数据包进行传输时，一秒所需的bps为: `1500Bytes/packet*38.7M packet/s*8 bit/Byte = 453.5G bps` 可见结果远大于32Gbps，因此使用次交换机进行上述数据包类型传输时会导致严重堵塞。  
+例如思科交换机Cisco Catalyst3560G-48Ts，其标注为：传输速度：32Gbps数据包处理速度：38.7M pps此时，例如以每秒38.7M个，长为1500B的数据包进行传输时，一秒所需的bps为: `1500Bytes/packet*38.7M packet/s*8 bit/Byte = 453.5G bps` 可见结果远大于32Gbps，因此使用次交换机进行上述数据包类型传输时会导致严重堵塞。
 
 同样，如果以 32Gbps 的速度传输长为 64B 的数据包，一秒所需的 pps 为: `（32bps）/（64B/packet）/（8bit/B）=64M pps`显然，由于结果远大于 38.7M pps，此类通信也会导致严重堵塞。

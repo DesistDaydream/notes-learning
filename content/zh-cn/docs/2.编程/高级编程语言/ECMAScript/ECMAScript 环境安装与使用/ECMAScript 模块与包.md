@@ -15,7 +15,7 @@ weight: 2
 
 在 ES6 之前，社区制定了一些模块加载方案，最主要的有 2009 年 1 月发起的 CommonJS 和 AMD 两种，前者用于服务器，后者用于浏览器。
 
-> 2013 年 5 月，npm 的作者宣布 Node.js 已经废弃 CommonJS，详见 [GitHub issue-5132，nodejs/node-v0.x-archive](https://github.com/nodejs/node-v0.x-archive/issues/5132#issuecomment-15432598) > [Wiki，Asynchronous_module_definition](https://en.wikipedia.org/wiki/Asynchronous_module_definition)(异步模块定义，简称 AMD)
+> 2013 年 5 月，npm 的作者宣布 Node.js 已经废弃 CommonJS，详见 [GitHub issue-5132，nodejs/node-v0.x-archive](https://github.com/nodejs/node-v0.x-archive/issues/5132#issuecomment-15432598) > [Wiki, Asynchronous_module_definition](https://en.wikipedia.org/wiki/Asynchronous_module_definition)(异步模块定义，简称 AMD)
 
 比如，CommonJS 模块就是对象，输入时必须查找对象属性。
 

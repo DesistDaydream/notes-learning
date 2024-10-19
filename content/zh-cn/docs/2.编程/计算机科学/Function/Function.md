@@ -7,10 +7,10 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，Subroutine(子程序)](https://en.wikipedia.org/wiki/Subroutine)
->   - [Wiki，Function](<https://en.wikipedia.org/wiki/Function_(computer_science)>) 概念被合并到 Subroutine 中
-> - [Wiki，Parameter(参数)](<https://en.wikipedia.org/wiki/Parameter_(computer_programming)>)
-> - [Wiki，Evaluation strategy(评估策略)](https://en.wikipedia.org/wiki/Evaluation_strategy)
+> - [Wiki, Subroutine(子程序)](https://en.wikipedia.org/wiki/Subroutine)
+>   - [Wiki, Function](<https://en.wikipedia.org/wiki/Function_(computer_science)>) 概念被合并到 Subroutine 中
+> - [Wiki, Parameter(参数)](<https://en.wikipedia.org/wiki/Parameter_(computer_programming)>)
+> - [Wiki, Evaluation strategy(评估策略)](https://en.wikipedia.org/wiki/Evaluation_strategy)
 > - [公众号，码农的荒岛求生-函数调用时底层发生了什么？](https://mp.weixin.qq.com/s/33__rGbvEHUB7nXWPSvz8Q)
 
 在计算机编程中，比 **Function(函数)** 更官方（更早期）的称呼应该是 **Subroutine(子程序)** 是执行特定任务的程序指令序列，打包为一个单元。然后，该单元可用于应执行特定任务的程序中。

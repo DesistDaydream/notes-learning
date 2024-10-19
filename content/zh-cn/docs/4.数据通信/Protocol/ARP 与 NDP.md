@@ -9,8 +9,8 @@ weight: 2
 
 > 参考：
 >
-> - [Wiki，ARP](https://en.wikipedia.org/wiki/Address_Resolution_Protocol)
-> - [Wiki，NDP](https://en.wikipedia.org/wiki/Neighbor_Discovery_Protocol)
+> - [Wiki, ARP](https://en.wikipedia.org/wiki/Address_Resolution_Protocol)
+> - [Wiki, NDP](https://en.wikipedia.org/wiki/Neighbor_Discovery_Protocol)
 > - [RFC 826](https://www.rfc-editor.org/rfc/rfc826.html)
 > - [公众号，36 张图详解 ARP](https://mp.weixin.qq.com/s/_5Wgsx4mEoDZgwv9-yHYEA)
 

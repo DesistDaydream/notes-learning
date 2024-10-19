@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Regular Expression](https://en.wikipedia.org/wiki/Regular_expression)
+> - [Wiki, Regular Expression](https://en.wikipedia.org/wiki/Regular_expression)
 > - [正则表达式在线测试](https://regex101.com/)
 > - https://r2coding.com/#/README?id=%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f
 > - [GitHub 项目，PCRE2Project/pcre2](https://github.com/PCRE2Project/pcre2)

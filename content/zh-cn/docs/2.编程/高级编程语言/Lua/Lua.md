@@ -8,10 +8,10 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，lua/lua](https://github.com/lua/lua)
 > - [官网](https://www.lua.org/about.html)
-> - [Wiki，Lua](https://en.wikipedia.org/wiki/Lua_(programming_language))
+> - [Wiki, Lua](https://en.wikipedia.org/wiki/Lua_(programming_language))
 > - [知乎，Lua 是怎样一门语言？](https://www.zhihu.com/question/19841006)
 
 Lua 是一种强大、高效、轻量级、可嵌入的脚本语言。它支持过程式编程、面向对象编程、函数式编程、数据驱动编程和数据描述。

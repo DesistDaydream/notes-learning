@@ -9,7 +9,7 @@ weight: 2
 
 > 参考：
 >
-> - [Wiki，Load balancing](https://en.wikipedia.org/wiki/Load_balancing_(computing))
+> - [Wiki, Load balancing](https://en.wikipedia.org/wiki/Load_balancing_(computing))
 > - https://www.cnblogs.com/tianyamoon/p/9410697.html
 
 **Load balancing(负载均衡)** 是一种计算机技术，将一组任务分配给一组资源（计算单元）的过程，目的是提高其整体处理效率。

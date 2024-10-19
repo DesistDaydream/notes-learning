@@ -10,7 +10,7 @@ weight: 1
 > - [RFC 675,](https://datatracker.ietf.org/doc/html/rfc675)
 > - [RFC 793, TRANSMISSION CONTROL PROTOCOL - DARPA INTERNET PROGRAM PROTOCOL SPECIFICATION](https://datatracker.ietf.org/doc/html/rfc793)
 >   - [RFC 9293, Transmission Control Protocol (TCP)](https://datatracker.ietf.org/doc/html/rfc9293)
-> - [Wiki，TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol)
+> - [Wiki, TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol)
 > - [极客时间,趣谈网络协议](https://time.geekbang.org/column/intro/100007101)
 > - <https://www.jianshu.com/p/1118f497a425>
 > - <https://www.jianshu.com/p/3c7a0771b67e>

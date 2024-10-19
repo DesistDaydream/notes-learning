@@ -14,7 +14,7 @@ tags:
 > - [GitHub 项目，antirez/hping](https://github.com/antirez/hping)
 >   - https://www.kali.org/tools/hping3/
 >   - https://salsa.debian.org/debian/hping3
-> - [Wiki，Hping](https://en.wikipedia.org/wiki/Hping)
+> - [Wiki, Hping](https://en.wikipedia.org/wiki/Hping)
 
 原始 GitHub 项目截至 2024-04-18 已经有 10 年没更新了。
 

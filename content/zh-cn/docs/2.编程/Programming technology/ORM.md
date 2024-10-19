@@ -6,7 +6,7 @@ title: ORM
 
 > 参考：
 >
-> - [Wiki，Object–relational mapping](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping)
+> - [Wiki, Object–relational mapping](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping)
 > - [C 语言中文网，ORM 是什么](http://c.biancheng.net/hibernate/orm.html)
 > - [B 站-哔哩哔哩技术，如何用 go 实现一个 ORM（为什么需要 ORM）](https://www.bilibili.com/read/cv21943763)
 
@@ -171,8 +171,7 @@ npm install
 
 示例库里面的数据库，是从[网上拷贝](http://www.sqlitetutorial.net/sqlite-sample-database/)的 Sqlite 数据库。它的 Schema 图如下（[PDF](http://www.sqlitetutorial.net/wp-content/uploads/2018/03/sqlite-sample-database-diagram-color.pdf) 大图下载）。
 
-[
-](https://notes-learning.oss-cn-beijing.aliyuncs.com/d1eab7a7-0bbc-41e6-bde2-aa8c6027347f/bg2019021804.jpg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/d1eab7a7-0bbc-41e6-bde2-aa8c6027347f/bg2019021804.jpg)
 
 ## 四、连接数据库
 

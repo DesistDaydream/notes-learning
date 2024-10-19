@@ -9,11 +9,11 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Public Key Certificate](https://en.wikipedia.org/wiki/Public_key_certificate)
-> - [Wiki，PKI](https://en.wikipedia.org/wiki/Public_key_infrastructure)
-> - [Wiki，CSR](https://en.wikipedia.org/wiki/Certificate_signing_request)
-> - [Wiki，CA](https://en.wikipedia.org/wiki/Certificate_authority)
-> - [Wiki，Root Certificate](https://en.wikipedia.org/wiki/Root_certificate)
+> - [Wiki, Public Key Certificate](https://en.wikipedia.org/wiki/Public_key_certificate)
+> - [Wiki, PKI](https://en.wikipedia.org/wiki/Public_key_infrastructure)
+> - [Wiki, CSR](https://en.wikipedia.org/wiki/Certificate_signing_request)
+> - [Wiki, CA](https://en.wikipedia.org/wiki/Certificate_authority)
+> - [Wiki, Root Certificate](https://en.wikipedia.org/wiki/Root_certificate)
 > - [RFC,5280](https://datatracker.ietf.org/doc/html/rfc5280)
 > - [公众号,云原生生态圈-白话文说 CA 原理](https://mp.weixin.qq.com/s/E-aU-lbieGLokDKbjdGc3g)
 > - [Arthurchiao 博客,\[译\] 写给工程师：关于证书（certificate）和公钥基础设施（PKI）的一切（SmallStep, 2018）](https://arthurchiao.art/blog/everything-about-pki-zh/)

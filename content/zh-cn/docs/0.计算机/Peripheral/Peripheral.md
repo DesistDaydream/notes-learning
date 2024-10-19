@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，Peripheral](https://en.wikipedia.org/wiki/Peripheral)
+> - [Wiki, Peripheral](https://en.wikipedia.org/wiki/Peripheral)
 
 **Computer peripherals(计算机外围设备)** 可以根据信息对于计算机的流动方向进行分类:
 

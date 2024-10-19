@@ -8,8 +8,8 @@ weight: 1
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Blockchain](https://en.wikipedia.org/wiki/Blockchain)
+>
+> - [Wiki, Blockchain](https://en.wikipedia.org/wiki/Blockchain)
 > - [B 站，汪杰解惑 NFT-02](https://www.bilibili.com/video/BV1T34y117Y9)
 
 2008 年 10 月 31 日 《Bitconi: A Peer-to-Peer Electronic Cash System 》
@@ -20,7 +20,7 @@ weight: 1
 # 数字加密货币
 
 > 参考：
-> 
+>
 > - 如何把狗狗币|柴犬币 shib|放在 imtoken 钱包和 metamask 狐狸钱包中？
 >   - 这里教如何添加代币，如何添加钱包中的网络
 >   - <https://www.youtube.com/watch?v=Gn4FCh5DEvg>

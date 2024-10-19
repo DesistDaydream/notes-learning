@@ -10,7 +10,7 @@ weight: 2
 > 参考：
 >
 > - [GitHub 项目，util-linux/util-linux](https://github.com/util-linux/util-linux)
-> - [Wiki，Util-linux](https://en.wikipedia.org/wiki/Util-linux)
+> - [Wiki, Util-linux](https://en.wikipedia.org/wiki/Util-linux)
 
 util-linux 是由 Linux 内核组织分发的标准软件包，用作 Linux 操作系统的一部分。一个分支 util-linux-ng（ng 的意思是“下一代”）是在开发停滞时创建的，但截至 2011 年 1 月，它已重命名为 util-linux，并且是该软件包的正式版本。
 

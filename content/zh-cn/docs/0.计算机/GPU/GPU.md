@@ -9,8 +9,8 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，Graphics processing unit](https://en.wikipedia.org/wiki/Graphics_processing_unit)
-> - [Wiki，Graphics card](https://en.wikipedia.org/wiki/Graphics_card)
+> - [Wiki, Graphics processing unit](https://en.wikipedia.org/wiki/Graphics_processing_unit)
+> - [Wiki, Graphics card](https://en.wikipedia.org/wiki/Graphics_card)
 
 **Graphics card** (也称为 **video card**, **display card**, **graphics accelerator**, **graphics adapter**, **VGA card/VGA**, **video adapter**, **display adapter**, 或者通俗的说 **GPU**)
 

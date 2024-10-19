@@ -9,7 +9,7 @@ weight: 3
 
 > 参考：
 >
-> - [Wiki，Deep packet inspection](https://en.wikipedia.org/wiki/Deep_packet_inspection)
+> - [Wiki, Deep packet inspection](https://en.wikipedia.org/wiki/Deep_packet_inspection)
 
 **Deep packet inspection(深度数据包检测，简称 DPI)** 是一种用于 **Network analysis(网络分析)** 的 行为、技术、方法，它详细检查计算机网络上传输的数据包，并可能根据情况采取 发送警报、阻止数据包传输、重新路由、记录(或者说镜像)流量 等行动。DPI 的这些功能通常用于 确定应用程序行为基线、分析网络使用情况、排除网络性能故障、确保数据格式正确、检查恶意代码、窃听和互联网审查、以及其他目的。
 
@@ -45,7 +45,7 @@ DPI 始于 20 世纪 90 年代。早期的 DPI 实现有：
 
 https://www.telecomtrainer.com/dfi-deep-flow-inspection/
 
-**Deep/Dynamic Flow Inspection(深度/动态流量监测，简称 DFI)** 没有 Wiki，也没有什么官方说明。通常是做 DFI 企业内部交流时使用的术语
+**Deep/Dynamic Flow Inspection(深度/动态流量监测，简称 DFI)** 没有 Wiki, 也没有什么官方说明。通常是做 DFI 企业内部交流时使用的术语
 
 由于 DPI 虽然识别精度高，但需要对特定协议的应用层特征被动跟踪，所以对加密或混淆的流量识别比较困难。此时需要使用 DFI。
 

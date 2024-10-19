@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> -[Wiki，Simple_Service_Discovery_Protocol](https://en.wikipedia.org/wiki/Simple_Service_Discovery_Protocol)
+> -[Wiki, Simple_Service_Discovery_Protocol](https://en.wikipedia.org/wiki/Simple_Service_Discovery_Protocol)
 
 **Simple Service Discovery Protocol(简单服务发现协议，简称 SSDP)** 是一种基于 [TCP_IP](/docs/4.数据通信/Protocol/TCP_IP/TCP_IP.md)
 

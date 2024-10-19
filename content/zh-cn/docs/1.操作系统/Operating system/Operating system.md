@@ -8,8 +8,8 @@ weight: 1
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Operating_system](https://en.wikipedia.org/wiki/Operating_system)
+>
+> - [Wiki, Operating_system](https://en.wikipedia.org/wiki/Operating_system)
 
 **Operating system(操作系统，简称 OS)** 也是一种软件，用来管理计算机硬件和其他以及自身软件资源的。
 
@@ -45,7 +45,7 @@ UNIX 就是典型的通用的分时操作系统。
 
 ## 概述
 
-> 参考：[Wiki，Real-time OS](https://en.wikipedia.org/wiki/Real-time_operating_system)
+> 参考：[Wiki, Real-time OS](https://en.wikipedia.org/wiki/Real-time_operating_system)
 
 **Real Time Operating System(实时操作系统，简称 RTOS)** 是一种操作系统 (OS)，旨在为实时应用程序提供服务，这些应用程序通常在没有缓冲区延迟的情况下处理数据。处理时间要求 (包括任何 OS 延迟) 以十分之一秒或更短的时间增量来衡量。实时系统是具有明确定义的固定时间约束的有时限的系统。处理必须在定义的约束条件下完成，否则系统将失败。它们要么是事件驱动的，要么是分时的。事件驱动系统根据任务的优先级在任务之间切换，而分时系统根据时钟中断切换任务。大多数 RTOS 使用先发制人的调度算法。
 

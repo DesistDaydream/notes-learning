@@ -7,8 +7,8 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，IPC](https://en.wikipedia.org/wiki/Inter-process_communication)
-> - [Wiki，LPC](https://en.wikipedia.org/wiki/Local_Inter-Process_Communication)
+> - [Wiki, IPC](https://en.wikipedia.org/wiki/Inter-process_communication)
+> - [Wiki, LPC](https://en.wikipedia.org/wiki/Local_Inter-Process_Communication)
 > - [公众号,小林 Coding-进程间通信](https://mp.weixin.qq.com/s/MnIcTR0KKpgnSoA3xaPUSA)
 
 **Inter Process Communication(进程间通信，简称 IPC)** 是一种允许多个进程共享数据的机制。IPC 的两个应用可以被分为客户端和服务端，客户端进程请求数据，服务端响应客户端的数据请求。有一些应用本身既是服务器又是客户端，这在分布式计算中，时常可以见到。这些进程可以运行在同一计算机上或网络连接的不同计算机上。

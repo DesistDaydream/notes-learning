@@ -25,7 +25,7 @@ weight: 20
 - [**YOLOv3**](https://github.com/ultralytics/yolov3) (2018) Joseph Redmon
   - [YOLOv3: An Incremental Improvement](https://arxiv.org/abs/1804.02767)
 - 突发
-  - 然而，2020 年 *约瑟夫·雷德蒙* 突然投下一枚重磅炸弹，他受够 YOLO 不断被运用在军事应用以及个人隐私，宣布停止电脑视觉相关的研究。
+  - 然而，2020 年 _约瑟夫·雷德蒙_ 突然投下一枚重磅炸弹，他受够 YOLO 不断被运用在军事应用以及个人隐私，宣布停止电脑视觉相关的研究。
   - ![https://x.com/pjreddie/status/1230524770350817280|400](https://notes-learning.oss-cn-beijing.aliyuncs.com/ai/yolo/202410151103187.png)
 - [**YOLOv4**](https://github.com/AlexeyAB/darknet) (2020) Alexey Bochkovskiy
   - [YOLOv4: Optimal Speed and Accuracy of Object Detection](https://arxiv.org/abs/2004.10934)
@@ -40,7 +40,7 @@ weight: 20
   - [YOLOv9: Learning What You Want to Learn Using Programmable Gradient Information](https://arxiv.org/abs/2402.13616)
 - [**YOLOv10**](https://github.com/THU-MIG/yolov10) (2024) 是由清华大学的研究人员使用 Ultralytics Python 包创建的。该版本通过引入消除非极大值抑制 (NMS) 要求的端到端头，提供了实时对象检测方面的改进。
   - [YOLOv10: Real-Time End-to-End Object Detection](https://arxiv.org/abs/2405.14458)
-- YOLO11 
+- YOLO11
 
 # 训练
 
@@ -68,14 +68,14 @@ results = model.train(data="coco.yaml", epochs=100, imgsz=640)
 > - https://docs.ultralytics.com/datasets/
 > - https://docs.ultralytics.com/datasets/#contribute-new-datasets
 
-Ultralytics 提供对各类 **Dataset(数据集)** 的支持，以便进行计算机视觉任务，如 对象检测、实例分割、姿态估计、分类、多目标跟踪、etc. 
+Ultralytics 提供对各类 **Dataset(数据集)** 的支持，以便进行计算机视觉任务，如 对象检测、实例分割、姿态估计、分类、多目标跟踪、etc.
 
 - **[Object detection](#Object%20detection)(对象检测) 数据集** # 通过在每个对象周围绘制边界框来检测和定位图像中的对象。
 - **[Instance segmentation](#Instance%20segmentation)(实例分割) 数据集** # 在像素级别识别和定位图像中的对象。Object detection 在识别到对象后是用矩形框框起来的，而 Instance segmentation 则是在识别到对象的基础上，在像素级别对物体进行染色
 - **[Pose estimation](#Pose%20estimation)(姿态估计) 数据集** # 在识别到对象后，识别对象的姿态。
 - etc.
 
-Ultralytics YOLO 的 检测、分段、姿势 模型在 [COCO](docs/12.AI/机器学习/Dataset.md#COCO) 数据集上预训练，而 分类 模型在 [ImageNet](docs/12.AI/机器学习/Dataset.md#ImageNet) 数据集上预训练。
+Ultralytics YOLO 的 检测、分段、姿势 模型在 [COCO](/docs/12.AI/机器学习/Dataset.md#COCO) 数据集上预训练，而 分类 模型在 [ImageNet](/docs/12.AI/机器学习/Dataset.md#ImageNet) 数据集上预训练。
 
 ## 创建自己的数据集
 
@@ -85,7 +85,8 @@ https://docs.ultralytics.com/datasets/#contribute-new-datasets
 2. **Annotate Images(注释图像)** # 根据想要训练的任务，使用 边界框、片段、关键点 为图像添加注释。人话：**数据标注**
 3. **Export Annotations(导出注释)** # 将这些注释转换为 Ultralytics 支持的 YOLO `*.txt` 文件格式。
 4. **Organize Dataset(组织数据集)** # 将图像、注释以如下目录结构存放。应该有 images/ 和 labels/ 顶级目录，并在每个目录中都有一个 train/ 和 val/ 子目录。 images 存放收集到的图像，labels 存放导出的注释。images/ 下的如果有 000000000009.jpg 文件，那对应的 labels/ 下应该有个同名不同后缀的 000000000009.txt 文件。
-   1. Notes: 这个目录结构在由于实际情况可能有的类型的数据集并不完全相同，基于数据组织的便利性，可能会把 train/ 和 val/ 放在顶级目录，下级目录可能是以对象类型命名。 
+   1. Notes: 这个目录结构在由于实际情况可能有的类型的数据集并不完全相同，基于数据组织的便利性，可能会把 train/ 和 val/ 放在顶级目录，下级目录可能是以对象类型命名。
+
 ```bash
 datasets/
 └── coco8
@@ -104,6 +105,7 @@ datasets/
             ├── 000000000036.txt
             └── 000000000061.txt
 ```
+
 5. **创建 `data.yaml` 文件** # 创建一个描述数据集、类和其他必要信息的 [data.yaml](#data.yaml) 文件。
 6. **Optimize Images(优化图像)(可选的)** # 如果您想减小数据集的大小以提高处理效率，可以使用以下代码优化图像。这不是必需的，但建议用于较小的数据集大小和更快的下载速度。
 7. **压缩数据集** # 将整个数据集文件夹压缩为 zip 文件。
@@ -130,7 +132,7 @@ zip_directory(path)
 
 ## data.yaml
 
-data.yaml 时 Ultralytics YOLO 数据集使用的 [YAML](docs/2.编程/无法分类的语言/YAML.md) 格式文件，可以定义数据集所在目录、训练、验证、测试 图像目录、数据集中对象分类的字典。在  [这里](https://github.com/ultralytics/ultralytics/tree/main/ultralytics/cfg/datasets) 找到各类数据集的 data.yaml。
+data.yaml 时 Ultralytics YOLO 数据集使用的 [YAML](/docs/2.编程/无法分类的语言/YAML.md) 格式文件，可以定义数据集所在目录、训练、验证、测试 图像目录、数据集中对象分类的字典。在  [这里](https://github.com/ultralytics/ultralytics/tree/main/ultralytics/cfg/datasets) 找到各类数据集的 data.yaml。
 
 > Notes: data.yaml 是一种抽象的叫法，本质就是配置文件。各种数据集使用 data.yaml 时，可以指定任意名称但只要符合文件内容格式的 YAML 文件。
 
@@ -194,7 +196,7 @@ datasets/
 
 https://docs.ultralytics.com/datasets/detect/
 
-[Object detection](docs/12.AI/计算机视觉/Object%20detection.md)(对象检测)
+[Object detection](/docs/12.AI/计算机视觉/Object%20detection.md)(对象检测)
 
 images 是图片，labels 图片的标签
 
@@ -251,7 +253,7 @@ https://docs.ultralytics.com/datasets/segment/
 
 https://docs.ultralytics.com/datasets/pose/
 
-[Pose estimation](docs/12.AI/计算机视觉/Pose%20estimation.md)(姿态估计)
+[Pose estimation](/docs/12.AI/计算机视觉/Pose%20estimation.md)(姿态估计)
 
 YAML 格式 https://docs.ultralytics.com/datasets/pose/#dataset-yaml-format
 

@@ -17,7 +17,7 @@ weight: 20
 >   - 基于此，可以通过在 Linux 仓库的 go to file 搜索框中，输入 `Documentation/sysfs` 这种关键字，找到很多与 sysfs 相关的文件。TODO: 如何利用 path 关键字使用统配或正则在 github 全局搜索文件？
 > - [Kernel 文档，管理员指南 - 关于如何访问 sysfs 中信息的规则](https://www.kernel.org/doc/html/latest/admin-guide/sysfs-rules.html)
 > - [Kernel 文档，管理员指南 - Linux ABI 描述](https://www.kernel.org/doc/html/latest/admin-guide/abi.html)
-> - [Wiki，Sysfs](https://en.wikipedia.org/wiki/Sysfs)
+> - [Wiki, Sysfs](https://en.wikipedia.org/wiki/Sysfs)
 
 用于导出 **kernel objects(内核对象，简称 kobject**) 的文件系统。对于在系统中注册的每个 kobject，都会在 sysfs 中为其创建一个目录。该目录被创建为 kobject 父目录的子目录，向用户空间表达内部对象层次结构。 sysfs 中的顶级目录代表对象层次结构的共同祖先；即对象所属的子系统。
 

@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，World_Wide_Web](https://en.wikipedia.org/wiki/World_Wide_Web)
+> - [Wiki, World_Wide_Web](https://en.wikipedia.org/wiki/World_Wide_Web)
 
 Web 有很多种理解
 

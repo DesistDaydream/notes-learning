@@ -9,6 +9,6 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Bus_(computing)](https://en.wikipedia.org/wiki/Bus_(computing))
+> - [Wiki, Bus_(computing)](https://en.wikipedia.org/wiki/Bus_(computing))
 
 **Bus(总线)**

@@ -9,7 +9,7 @@ weight: 20
 > 参考：
 >
 > - [官网](https://slack.com/)
-> - [Wiki，Slack(software)](https://en.wikipedia.org/wiki/Slack_(software))
+> - [Wiki, Slack(software)](https://en.wikipedia.org/wiki/Slack_(software))
 
 Slack 是一个[即时通信](/docs/Utils/即时通信/即时通信.md)程序
 

@@ -8,7 +8,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，Network_virtualization](https://en.wikipedia.org/wiki/Network_virtualization)
+> - [Wiki, Network_virtualization](https://en.wikipedia.org/wiki/Network_virtualization)
 
 在传统网络环境中，一台物理主机包含一个或多个网卡（NIC），要实现与其他物理主机之间的通信，需要通过自身的 NIC 连接到外部的网络设施，如交换机上；为了对应用进行隔离，往往是将一个应用部署在一台物理设备上，这样会存在两个问题：
 

@@ -7,8 +7,8 @@ weight: 20
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Computer memory](https://en.wikipedia.org/wiki/Computer_memory)
+>
+> - [Wiki, Computer memory](https://en.wikipedia.org/wiki/Computer_memory)
 
 **Random Access Memory(随机存取存储器，简称 RAM，也叫主存)，平时大家都叫 Memory(内存)**。
 

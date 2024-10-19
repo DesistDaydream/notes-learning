@@ -5,9 +5,9 @@ title: FIFO与FILO
 # 概述
 
 > 参考：
-> - [Wiki，FIFO](<https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)>)(先进先出)
-> - [Wiki，Heap(堆)](<https://en.wikipedia.org/wiki/Heap_(data_structure)>)
-> - [Wiki，LIFO(后进先出) 与 Wiki,Stack(栈)](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) 两个概念被 Wiki 合并了
+> - [Wiki, FIFO](<https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)>)(先进先出)
+> - [Wiki, Heap(堆)](<https://en.wikipedia.org/wiki/Heap_(data_structure)>)
+> - [Wiki, LIFO(后进先出) 与 Wiki,Stack(栈)](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) 两个概念被 Wiki 合并了
 > - 知乎，<https://www.zhihu.com/question/438782731>
 
 **first in,first out(先进先出，简称 FIFO)** 与 **last in,firtst out(后进先出，简称 LIFO)** 在计算机科学中，是两种有组织得操作结构化数据的方法。很多时候，**FIFO 也称为 Stack(栈)**，**LIFO 也称为 Queue(队列)**。

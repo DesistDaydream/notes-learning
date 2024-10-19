@@ -8,7 +8,7 @@ weight: 1
 > 参考：
 >
 > - [GitHub 项目，torvalds/linux - /tools/perf](https://github.com/torvalds/linux/tree/master/tools/perf)
-> - [Kernel Wiki，perf](https://perf.wiki.kernel.org/index.php/Main_Page)
+> - [Kernel Wiki, perf](https://perf.wiki.kernel.org/index.php/Main_Page)
 > - perf 事件列表中的内核 pmu 事件是什么
 >   - https://unix.stackexchange.com/questions/326621/what-are-kernel-pmu-event-s-in-perf-events-list
 >   - https://qastack.cn/unix/326621/what-are-kernel-pmu-event-s-in-perf-events-list

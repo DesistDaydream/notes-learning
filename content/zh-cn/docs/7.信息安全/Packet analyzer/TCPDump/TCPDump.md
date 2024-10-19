@@ -12,7 +12,7 @@ weight: 1
 > - [官网](https://www.tcpdump.org/)
 > - [Manual(手册)，tcpdump(1)](https://www.tcpdump.org/manpages/tcpdump.1.html)
 > - [Manual(手册)，PCAP-FILTER](https://www.tcpdump.org/manpages/pcap-filter.7.html)，主要描述过滤表达式的语法
-> - [Wiki，tcpdump](https://en.wikipedia.org/wiki/Tcpdump)
+> - [Wiki, tcpdump](https://en.wikipedia.org/wiki/Tcpdump)
 > - <https://www.middlewareinventory.com/blog/tcpdump-capture-http-get-post-requests-apache-weblogic-websphere/>
 
 TCPDump 是一个在命令行界面下的 [Packet analyzer](/docs/7.信息安全/Packet%20analyzer/Packet%20analyzer.md)(数据包分析器)。tcpdump 适用于大多数类 Unix 操作系统，在这些系统中，tcpdump 使用 [libpcap](https://en.wikipedia.org/wiki/Libpcap) 库来捕获数据包。对于 Windows 操作系统来说，tcpdump 使用的 pcap API 是 [WinPcap](https://en.wikipedia.org/wiki/WinPcap)(即 libpcap 的 Windows 版本)。

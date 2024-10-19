@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，DataType](https://en.wikipedia.org/wiki/Data_type)
+> - [Wiki, DataType](https://en.wikipedia.org/wiki/Data_type)
 
 在计算机科学和计算机编程中，**Data Type(数据类型，有时也简称 Type)** 是数据的一个属性，这些属性将会让编译器知道程序员想要如何使用数据。
 

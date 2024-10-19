@@ -34,7 +34,7 @@ weight: 20
 **Data annotation(数据注释)** 是一组数据中的 信息 **Annotation(注释)/Label(标签)**。这些 **信息注释/标签** 在不同的场景下有不同的表示含义，e.g. 一张照片中哪部分是牛，哪部分是马；录音中说了哪些词；视频中正在执行什么类型的动作；新闻文章的主题是什么；推文想要表达的是一种什么情绪；X 光片中的一个点是否是肿瘤；etc. 。
 
 > [!Note]
-> 上面例子中标记照片中的牛、马通常用于 [Object detection](docs/12.AI/计算机视觉/Object%20detection.md)(对象检测) 任务、识别音频中的问题通常用于 语音识别 任务、识别动作通常用于 [Pose estimation](docs/12.AI/计算机视觉/Pose%20estimation.md)(姿态评估) 任务、etc.
+> 上面例子中标记照片中的牛、马通常用于 [Object detection](/docs/12.AI/计算机视觉/Object%20detection.md)(对象检测) 任务、识别音频中的问题通常用于 语音识别 任务、识别动作通常用于 [Pose estimation](/docs/12.AI/计算机视觉/Pose%20estimation.md)(姿态评估) 任务、etc.
 
 人们通过 **Data annotating/Data Labeling(数据标注)** 行为，处理一组未标记的数据，为每一条数据添加数据注释。这些被添加了注释的数据称为 **Labeled data/Annotated data(已标记的数据)**
 
@@ -42,7 +42,7 @@ weight: 20
 >
 > 个人感觉 Annotation 是 Label 的超集，Label 应该是 Annotation 的一种。
 
-由于训练模型使用数据集进行训练，这些已标记数据的质量直接影响[机器学习](docs/12.AI/机器学习/机器学习.md)的效果。
+由于训练模型使用数据集进行训练，这些已标记数据的质量直接影响[机器学习](/docs/12.AI/机器学习/机器学习.md)的效果。
 
 Data annotation 通常可以简单得做如下分类：
 
@@ -59,7 +59,7 @@ Data annotation 通常可以简单得做如下分类：
 - CV 任务
   - **Bounding box(边界框)** # CV 的对象检测任务所需数据的标注方式
 - NLP 任务
-  - **Text Annotation(文字注释)** # 
+  - **Text Annotation(文字注释)** #
   - **Semantic Annotation(语义注释)**
 - etc.
 - TODO
@@ -68,7 +68,7 @@ Data annotation 通常可以简单得做如下分类：
 
 Roboflow
 
--  https://github.com/roboflow
+- https://github.com/roboflow
 - https://roboflow.com/
 - 在线
 - https://www.youtube.com/watch?v=7YRJIAIhMpw 讲了一下基础
@@ -82,12 +82,10 @@ labelme
 
 > 参考：
 >
-> - 
+> -
 
-[计算机视觉](docs/12.AI/计算机视觉/计算机视觉.md) 相关 [Dataset](docs/12.AI/计算机视觉/Dataset.md) 中最常见、最基础的是用于 [Object detection](docs/12.AI/计算机视觉/Object%20detection.md)(对象检测) 训练任务的数据集，需要进行人工标注，以确定让模型识别图片中的哪些对象。
+[计算机视觉](/docs/12.AI/计算机视觉/计算机视觉.md) 相关 [Dataset](/docs/12.AI/计算机视觉/Dataset.md) 中最常见、最基础的是用于 [Object detection](/docs/12.AI/计算机视觉/Object%20detection.md)(对象检测) 训练任务的数据集，需要进行人工标注，以确定让模型识别图片中的哪些对象。
 
 2006年，斯坦福大学以人为中心的人工智能研究所联席主任李飞飞发起研究，通过大幅扩大训练数据来改进图像识别的人工智能模型和算法。研究人员从万维网上下载了数百万张图像，一组本科生开始为每张图像应用对象标签。 2007 年，李将亚马逊 Mechanical Turk（数字计件工作在线市场）上的数据标记工作外包。由 49,000 多名工作人员标记的 320 万张图像构成了 ImageNet 的基础，ImageNet 是最大的物体识别轮廓手工标记数据库之一。[^1]
 
 # NLP 数据集
-
-

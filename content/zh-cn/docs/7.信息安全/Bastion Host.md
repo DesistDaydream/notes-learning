@@ -8,8 +8,8 @@ weight: 20
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Bastion host](https://en.wikipedia.org/wiki/Bastion_host)
+>
+> - [Wiki, Bastion host](https://en.wikipedia.org/wiki/Bastion_host)
 
 **Bastion Host(堡垒机)**
 

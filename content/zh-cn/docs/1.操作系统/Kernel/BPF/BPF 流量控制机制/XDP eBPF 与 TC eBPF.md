@@ -5,8 +5,8 @@ title: XDP eBPF 与 TC eBPF
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Express_Data_Path](https://en.wikipedia.org/wiki/Express_Data_Path)
+>
+> - [Wiki, Express_Data_Path](https://en.wikipedia.org/wiki/Express_Data_Path)
 
 **eXpress Data Path(特快数据路径，简称 XDP)** 是从 4.8 版开始在 Linux 内核中合并的基于 eBPF 的高性能数据路径。
 

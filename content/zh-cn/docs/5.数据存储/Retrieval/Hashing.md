@@ -10,7 +10,7 @@ weight: 20
 > 参考：
 >
 > - [Wiki 类别，Hashing](https://en.wikipedia.org/wiki/Category:Hashing)
-> - [Wiki，Hash function](https://en.wikipedia.org/wiki/Hash_function)
+> - [Wiki, Hash function](https://en.wikipedia.org/wiki/Hash_function)
 
 Hashing 是一种实现数据 **Retrieval(检索)** 的算法，有多种 Hashing 算法，比如
 
@@ -20,7 +20,7 @@ Hashing 是一种实现数据 **Retrieval(检索)** 的算法，有多种 Hashin
 
 > 参考：
 >
-> - [Wiki，Hash table](https://en.wikipedia.org/wiki/Hash_table)
+> - [Wiki, Hash table](https://en.wikipedia.org/wiki/Hash_table)
 
 **Hash table(哈希表)** 也称为 hash map(哈希映射) 或 hash set(哈希集)，是一种实现关联数组的数据结构，也称为 dictionary(字典)，它是一种将键映射到值的抽象数据类型。哈希表使用哈希函数来计算索引（也称为哈希码）到桶或槽数组中，从中可以找到所需的值。在查找过程中，对键进行哈希处理，生成的哈希值指示相应值的存储位置。
 

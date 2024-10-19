@@ -10,7 +10,7 @@ title: HTTP Header
 > - [RFC 7231，第五章-请求头字段](https://tools.ietf.org/html/rfc7231#section-5)
 > - [RFC 7231，第七章-响应头字段](https://datatracker.ietf.org/doc/html/rfc7231#section-7)
 > - [MDN，参考-HTTP-HTTP 头](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) 这是一个全部可用的标准 Header 列表
-> - [Wiki，List of HTTP header fields](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields)
+> - [Wiki, List of HTTP header fields](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields)
 
 一般情况下，在打开浏览器按的开发者工具（一般为 F12 键）后，查看到的首部大部分都是请求和响应首部,这俩首部的信息通常包含了通用首部中的信息
 

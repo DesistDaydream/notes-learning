@@ -10,7 +10,7 @@ weight: 20
 > 参考:
 >
 > - [Linux Kernel 文档，管理员指南 - 内存管理 - 概念 - Huge pages](https://www.kernel.org/doc/html/latest/admin-guide/mm/concepts.html#huge-pages)
-> - [Wiki，Huge pages](https://en.wikipedia.org/wiki/Huge_pages)
+> - [Wiki, Huge pages](https://en.wikipedia.org/wiki/Huge_pages)
 
 **Huge Pages(大页)** 是指每个 Page 的容量都远超默认大小(4 KiB)的 Page。比如 2 MiB、1 GiB、etc. 都是常见的大页内存空间中的每页容量。Huge Pages Memory 则是指每个 Page 的容量都超过 4 KiB 的内存的统称。
 

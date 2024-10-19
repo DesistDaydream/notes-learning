@@ -84,8 +84,8 @@ CNCF 将 可观测性 和 数据分析 归类为一个单独的类别，且划�
 # SLA
 
 > 参考：
-> 
-> - [Wiki，SLA](https://en.wikipedia.org/wiki/Service-level_agreement)
+>
+> - [Wiki, SLA](https://en.wikipedia.org/wiki/Service-level_agreement)
 
 **Service level agreement(服务等级协议，简称 SLA)** 是
 

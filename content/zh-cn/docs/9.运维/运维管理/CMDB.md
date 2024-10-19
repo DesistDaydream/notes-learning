@@ -8,8 +8,8 @@ weight: 20
 # 概述
 
 > 参考：
-> 
-> - [Wiki，CMDB](https://en.wikipedia.org/wiki/Configuration_management_database)
+>
+> - [Wiki, CMDB](https://en.wikipedia.org/wiki/Configuration_management_database)
 
 **[Configuration management](https://en.wikipedia.org/wiki/Configuration_management "Configuration management") database(配置管理数据库，简称 CMDB)** 是一个 ITIL 术语，指的是组织用来存储有关硬件和软件资产（通常称为配置项）信息的数据库。
 

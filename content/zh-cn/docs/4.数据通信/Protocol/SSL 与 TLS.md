@@ -11,7 +11,7 @@ tags:
 
 > 参考：
 >
-> - [Wiki，TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security)
+> - [Wiki, TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security)
 
 为了解决人类在互联网世界信息的安全性，所研究出来的相关技术
 

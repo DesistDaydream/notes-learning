@@ -5,8 +5,8 @@ title: Architecture(架构)
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Computer Architecture](https://en.wikipedia.org/wiki/Computer_architecture)
+>
+> - [Wiki, Computer Architecture](https://en.wikipedia.org/wiki/Computer_architecture)
 
 # 各行各业微服务技术架构图分享
 

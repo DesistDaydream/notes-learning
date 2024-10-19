@@ -8,7 +8,7 @@ title: Context Switch(上下文切换)
 >
 > - [极客时间，Linux 性能优化实战-03 基础篇：经常说的 CPU 上下文切换是什么意思](https://time.geekbang.org/column/article/69859)
 > - [LinuxPerformance 博客，进程切换：自愿与强制](http://linuxperf.com/?p=209)
-> - [Wiki，Context Swtich](https://en.wikipedia.org/wiki/Context_switch)
+> - [Wiki, Context Swtich](https://en.wikipedia.org/wiki/Context_switch)
 > - [简书，进程/线程上下问切换会用掉你多少 CPU](https://www.jianshu.com/p/ebf1f832694c)
 
 我们都知道，Linux 是一个多任务操作系统，它支持远大于 CPU 数量的任务同时运行。当然，这些任务实际上并不是真的在同时运行，而是因为系统在很短的时间内，将 CPU 轮流分配给它们，造成多任务同时运行的错觉。

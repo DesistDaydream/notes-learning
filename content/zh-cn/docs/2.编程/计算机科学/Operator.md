@@ -8,7 +8,7 @@ weight: 3
 
 > 参考：
 >
-> - [Wiki，Operator(运算符)](https://en.wikipedia.org/wiki/Operator_(computer_programming))
+> - [Wiki, Operator(运算符)](https://en.wikipedia.org/wiki/Operator_(computer_programming))
 > - [喜马拉雅，番外篇06：布尔代数](https://www.ximalaya.com/sound/606929143)
 
 编程中通过 **Operator(运算符)** 实现多种 **Operation(运算)**。

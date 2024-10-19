@@ -24,7 +24,7 @@ The [mknod(8)](<https://man.cx/mknod(8)>) 工具可用于恢复 devfs 下已删�
 
 > 参考：
 >
-> - [Wiki，Device mapper](https://en.wikipedia.org/wiki/Device_mapper)
+> - [Wiki, Device mapper](https://en.wikipedia.org/wiki/Device_mapper)
 
 **Device Mapper(设备映射，简称 dm)**，是一个由 Linux 内核提供的框架，用于将物理块设备映射到更高级别的虚拟块设备。dm 是 LVM、软 Raid、dm-crypt 磁盘加密的基础。
 
@@ -56,7 +56,7 @@ tun 驱动程序提供网络接口伪设备。发送到此接口的数据包可�
 >
 > - https://www.cnblogs.com/oloroso/p/5405113.html
 > - https://superuser.com/questions/45342/when-should-i-use-dev-shm-and-when-should-i-use-tmp
-> - [Wiki，Shared memory - Support on Unix-like systems](https://en.wikipedia.org/wiki/Shared_memory#Support_on_Unix-like_systems)
+> - [Wiki, Shared memory - Support on Unix-like systems](https://en.wikipedia.org/wiki/Shared_memory#Support_on_Unix-like_systems)
 
 /dev/shm/ 目录是一个 [tmpfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/tmpfs.md)，用来 shared memory(分享内存，简称 shm) 的。
 

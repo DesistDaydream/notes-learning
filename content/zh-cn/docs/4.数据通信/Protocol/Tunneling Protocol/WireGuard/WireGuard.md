@@ -12,7 +12,7 @@ weight: 1
 > - [官网](https://www.wireguard.com/)
 > - [zx2c4 源码，wireguard-linux](https://git.zx2c4.com/wireguard-linux)
 >   - [GitHub 项目，WrieGuard/wireguard-linux](https://github.com/WireGuard/wireguard-linux)
-> - [Wiki，WireGuard](https://en.wikipedia.org/wiki/WireGuard)
+> - [Wiki, WireGuard](https://en.wikipedia.org/wiki/WireGuard)
 > - [张馆长博客，个人办公用 wireguard 组网笔记](https://zhangguanzhang.github.io/2020/08/05/wireguard-for-personal/)
 > - [米开朗基杨博客，WireGuard 教程：WireGuard 的工作原理](https://fuckcloudnative.io/posts/wireguard-docs-theory/)
 

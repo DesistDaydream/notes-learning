@@ -9,8 +9,8 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，Reverse_engineering](https://en.wikipedia.org/wiki/Reverse_engineering)
-> - [Wiki，Software_cracking](https://en.wikipedia.org/wiki/Software_cracking)
+> - [Wiki, Reverse_engineering](https://en.wikipedia.org/wiki/Reverse_engineering)
+> - [Wiki, Software_cracking](https://en.wikipedia.org/wiki/Software_cracking)
 
 **Reverse engineering(逆向工程)**
 

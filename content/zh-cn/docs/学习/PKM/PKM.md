@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，Personal knowledge management](https://en.wikipedia.org/wiki/Personal_knowledge_management)
+> - [Wiki, Personal knowledge management](https://en.wikipedia.org/wiki/Personal_knowledge_management)
 
 **Personal knowledge management(个人知识管理，简称 PKM)** 是一个收集信息的过程
 

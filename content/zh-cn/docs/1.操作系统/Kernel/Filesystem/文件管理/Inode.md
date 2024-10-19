@@ -9,7 +9,7 @@ weight: 2
 
 > 参考：
 >
-> - [Wiki，Inode](https://en.wikipedia.org/wiki/Inode)
+> - [Wiki, Inode](https://en.wikipedia.org/wiki/Inode)
 > - [知乎，本地文件系统小计（二）：inode](https://zhuanlan.zhihu.com/p/78724124)
 
 **Index node(索引节点，简称 inode)** 是 Unix 风格的文件系统中的一种数据结构。每个索引节点保存了文件系统中的一个文件系统对象(i.e.文件、目录等)的元信息数据，但不包括数据内容或者文件名。

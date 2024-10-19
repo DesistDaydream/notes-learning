@@ -8,7 +8,7 @@ weight: 3
 > 参考：
 >
 > - [Linux 基金会参考标准,文件系统层次标准](https://refspecs.linuxfoundation.org/fhs.shtml)
-> - [Wiki，FHS](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard)
+> - [Wiki, FHS](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard)
 
 **Filesystem Hierarchy Standard(文件系统层次标准，简称 FHS)** 为文件系统的每个区域指定指导原则，指定所需的最少文件和目录
 

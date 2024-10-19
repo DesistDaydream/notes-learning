@@ -10,7 +10,7 @@ weight: 20
 > 参考：
 >
 > - [RFC 959，FILE TRANSFER PROTOCOL (FTP)](https://datatracker.ietf.org/doc/html/rfc959)
-> - [Wiki，File_Transfer_Protocol](https://en.wikipedia.org/wiki/File_Transfer_Protocol)
+> - [Wiki, File_Transfer_Protocol](https://en.wikipedia.org/wiki/File_Transfer_Protocol)
 
 **File Transfer Protocol(文件传输协议，简称 FTP)** 是因特网网络上历史最悠久的网络工具，从 1971 年由 A KBHUSHAN 提出第一个 FTP 的 RFC（RFC114）至今近半个世纪来，FTP 凭借其独特的优势一直都是因特网中最重要、最广泛的服务之一。
 
@@ -83,7 +83,7 @@ ftp \[\[UserName@]目标 IP] # 可以使用 UserName 用户来登录目标 IP �
 
 > 参考：
 >
-> - [Wiki，SSH_File_Transfer_Protocol](https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol)
+> - [Wiki, SSH_File_Transfer_Protocol](https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol)
 
 **SSH File Transfer Protocol(SSH 文件传输协议，简称 SFTP)** 也称为 **Secure File Transfer Protocol(安全文件传输协议)**，是一种网络协议，可通过任何可靠的数据流提供文件访问、文件传输和文件管理。它由 [IETF](/docs/Standard/Internet/IETF.md) 设计，作为 [Secure Shell Protocol](/docs/4.数据通信/Protocol/Secure%20Shell%20Protocol.md)(SSH) 2.0 版的扩展，提供安全文件传输功能，并且由于卓越的安全性而被视为文件传输协议 (FTP) 的替代品。
 

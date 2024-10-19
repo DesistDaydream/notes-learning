@@ -8,8 +8,8 @@ weight: 1
 # 概述
 
 > 参考：
-> 
-> - [Wiki，Microsoft Management Console](https://en.wikipedia.org/wiki/Microsoft_Management_Console)
+>
+> - [Wiki, Microsoft Management Console](https://en.wikipedia.org/wiki/Microsoft_Management_Console)
 
 
 **Microsoft Management Console(微软管理控制台，简称 MMC)** 是 Microsoft Windows 的一个组件，它为系统管理员和高级用户提供了一个用于配置和监控系统的界面。它于 1998 年首次与 Windows NT 4.0 的 Option Pack 一起推出，后来与 Windows 2000 及其后续版本预捆绑在一起。

@@ -8,7 +8,7 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki，Motherboard](https://en.wikipedia.org/wiki/Motherboard)
+> - [Wiki, Motherboard](https://en.wikipedia.org/wiki/Motherboard)
 
 **Motherboard(主板)** 是通用计算机和其他可扩展系统中的 **[Printed circuit board](https://en.wikipedia.org/wiki/Printed_circuit_board)(印刷电路板，简称 PCB)**。主板用于承载一套系统中许多关键电子组件之间的通信，例如 [CPU](/docs/0.计算机/CPU/CPU.md)、[Memory](/docs/0.计算机/Memory/Memory.md)，并为其他外围设备提供连接器。与 **[Backplane](https://en.wikipedia.org/wiki/Backplane)(背板)** 不同，主板通常包含重要的子系统，例如中央处理器、芯片组的输入/输出和内存控制器、接口连接器以及其他为通用应用集成的组件。
 

@@ -10,10 +10,10 @@ weight: 1
 > 参考：
 >
 > - [RFC 791， INTERNET PROTOCOL PROTOCOL SPECIFICATION](https://datatracker.ietf.org/doc/html/rfc791)
-> - [Wiki，Internet Protocol](https://en.wikipedia.org/wiki/Internet_Protocol)
-> - [Wiki，IPv4](https://en.wikipedia.org/wiki/IPv4)
-> - [Wiki，Mask(掩码)](<https://en.wikipedia.org/wiki/Mask_(computing)>)
-> - [Wiki，Classful Network(分类网络)](https://en.wikipedia.org/wiki/Classful_network)
+> - [Wiki, Internet Protocol](https://en.wikipedia.org/wiki/Internet_Protocol)
+> - [Wiki, IPv4](https://en.wikipedia.org/wiki/IPv4)
+> - [Wiki, Mask(掩码)](<https://en.wikipedia.org/wiki/Mask_(computing)>)
+> - [Wiki, Classful Network(分类网络)](https://en.wikipedia.org/wiki/Classful_network)
 > - [IANA,IPv4 地址空间分配情况](https://www.iana.org/assignments/ipv4-address-space/ipv4-address-space.xhtml)
 >   - [APNIC](https://www.apnic.net/)(管理亚太地区的 IP 地址注册机构)
 >     - [APNIC,帮助-FTP 数据库](https://ftp.apnic.net/stats/apnic/)(亚太地区所有分配的 IP 地址信息)

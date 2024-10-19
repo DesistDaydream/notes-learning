@@ -8,7 +8,7 @@ title: Netplan 配置详解
 >
 > - [官网，参考](https://netplan.io/reference)
 
-Netplan 的配置文件使用 [YAML](docs/2.编程/无法分类的语言/YAML.md) 格式。`/{lib,etc,run}/netplan/*.yaml` 都是 Netplan 程序读取配置文件的路径。
+Netplan 的配置文件使用 [YAML](/docs/2.编程/无法分类的语言/YAML.md) 格式。`/{lib,etc,run}/netplan/*.yaml` 都是 Netplan 程序读取配置文件的路径。
 
 # 配置文件详解
 

@@ -7,7 +7,7 @@ title: YAML
 > 参考：
 >
 > - [官方文档，规范 v1.2.2](https://yaml.org/spec/1.2.2/)
-> - [Wiki，YAML](https://en.wikipedia.org/wiki/YAML)
+> - [Wiki, YAML](https://en.wikipedia.org/wiki/YAML)
 
 编程免不了要写配置文件，怎么写配置也是一门学问。
 

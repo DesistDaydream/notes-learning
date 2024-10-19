@@ -9,7 +9,7 @@ title: Rsyslog
 > - [官网](https://www.rsyslog.com/)
 > - [官方文档,配置-模块](https://www.rsyslog.com/doc/v8-stable/configuration/modules/index.html)
 > - [GitHub 项目](https://github.com/rsyslog/rsyslog)
-> - [Wiki，Rsyslog](https://en.wikipedia.org/wiki/Rsyslog)
+> - [Wiki, Rsyslog](https://en.wikipedia.org/wiki/Rsyslog)
 > - [Manual(手册),syslog(3)](https://man7.org/linux/man-pages/man3/syslog.3.html)
 > - [Manual(手册),rsyslogd(8)](https://man7.org/linux/man-pages/man8/rsyslogd.8.html)
 > - [Arch 文档,Systemd-Journal-配合 syslog 使用](<https://wiki.archlinux.org/title/Systemd_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)/Journal_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)>)

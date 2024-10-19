@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [Wiki，Generic proramming](https://en.wikipedia.org/wiki/Generic_programming)(泛型编程)
+> - [Wiki, Generic proramming](https://en.wikipedia.org/wiki/Generic_programming)(泛型编程)
 
 **Generic(泛型)** 编程是一种计算机编程的风格，在这种风格中，程序中的数据类型是不固定的（i.e. 广泛的类型），若想让这种不固定的类型固定下来，需要为其提供 **类型参数**  以便固定成具体的类型。这种编程风格由 1973 年的 ML 编程语言首创，允许编写通用函数或类型，这些函数或类型在使用时仅在操作的类型集上有所不同，从而减少了重复代码。
 
