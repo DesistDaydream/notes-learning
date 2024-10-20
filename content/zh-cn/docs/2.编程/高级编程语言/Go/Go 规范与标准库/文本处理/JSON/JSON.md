@@ -1,7 +1,7 @@
 ---
-title: "JSON 数据格式处理"
-linkTitle: "JSON 数据格式处理"
-date: "2023-06-05T16:13"
+title: JSON
+linkTitle: JSON
+date: 2023-06-05T16:13
 weight: 1
 ---
 
@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - [Go 包，标准库-encoding/json](https://pkg.go.dev/encoding/json)
+> - [Go 包，标准库 - encoding/json](https://pkg.go.dev/encoding/json)
 > - [Go 官方博客《JSON and Go》](https://blog.golang.org/json)
 > - [骏马金龙](https://www.cnblogs.com/f-ck-need-u/p/10080793.html)
 > - [在线 JSON 转 Go Struct](https://transform.tools/json-to-go)
@@ -39,16 +39,15 @@ object  >> map[string]interface{}
 
 在 json 包中，使用 `Marshal()` 和 `Unmarshal()` 函数来执行最基本的 Encoding 与 Decoding 行为。
 
-Marshal: 直译为“编排、整理、排列、序列”，表示整理指定的内容，将内容整理成 json 数据。所以有时候也称此行为叫 **serializable(序列化)**。这种称呼是相对的。在计算机中特指将数据按某种描述格式编排出来。unMarshal 自然是指 Marshal 的逆过程。
-
+> [!Note]
+> Marshal: 直译为“编排、整理、排列、序列”，表示整理指定的内容，将内容整理成 json 数据。所以有时候也称此行为叫 **serializable(序列化)**。这种称呼是相对的。在计算机中特指将数据按某种描述格式编排出来。unMarshal 自然是指 Marshal 的逆过程。
+>
 > 比如在 Web 服务中，我们需要把 go 的 struct 以 JSON 方式表示并在网络间传输，把 go struct 转化成 JSON 的过程就是marshal。
 
 用白话说：
 
 - **Encoding 就是将 struct、slice、array、map 等 转换为 JSON 格式**
 - **Decoding 就是将 JSON 格式转换为 struct、slice、array、map。**
-
-## sturct 结构与 JSON 结构的对应关系
 
 这是一个 JSON 结构的数据
 
@@ -125,7 +124,7 @@ type Comment struct {
 func Marshal(v interface{}) ([]byte, error)
 ```
 
-### 简单示例
+### Example
 
 假如现在有一个名为 `Message` 的 Struct，这个结构体表示一条消息中应该具有的属性。比如发送者、消息内容、发送时间，等等。
 
@@ -249,6 +248,18 @@ err := json.Unmarshal(b, &m)
 
 但是，如果您事先不知道JSON数据的结构怎么办？
 
+# 如何使用 struct Tag
+
+https://pkg.go.dev/encoding/json#Marshal
+
+json 库可以利用 [Struct](docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Map%20AND%20Struct.md) 中的 Tag 控制编码与解码过程中的部分行为。
+
+常见 Tag 关键字
+
+- **json** # 定义 JSON 原始数据中字段的 key 的名称。避免 json 库根据 struct 字段命自动推导的 key 命与原始 JSON 中的 key 命无法对应，导致解析失败。
+- **omitempty** # omitempty 标签指定如果字段具有空值（定义为 false、0、nil 指针、nil 接口值以及任何空数组、切片、映射或字符串），则应从编码中省略该字段。
+- **-** # 作为一种特殊情况，如果字段标记为 “-”，则始终省略该字段。请注意，仍然可以使用标记 “-，” 生成名称为 “-” 的字段。
+
 # 使用 interface{} 存放通用 JSON 数据
 
 的`interface{}`（空接口）类型描述了具有零种方法的接口。每个Go类型至少实现零个方法，因此满足空接口。
@@ -326,10 +337,7 @@ f = map[string]interface{}{
 m := f.(map[string]interface{})
 ```
 
-1
-Plain Text
-
-然后，我们可以使用range语句遍历 map，并使用类型开关将其值作为其具体类型来访问：
+然后，我们可以使用 range 语句遍历 map，并使用类型开关将其值作为其具体类型来访问：
 
 ```go
 for k, v := range m {
@@ -375,7 +383,7 @@ type Foo struct {
 }
 ```
 
-如果`Bar`JSON对象中有一个字段，`Unmarshal`则将分配一个新字段 `Bar`并填充它。如果不是，`Bar`则将其留为`nil`指针。
+如果`Bar` JSON对象中有一个字段，`Unmarshal`则将分配一个新字段 `Bar`并填充它。如果不是，`Bar`则将其留为`nil`指针。
 
 由此产生一种有用的模式：如果您的应用程序接收一些不同的消息类型，则可以定义“接收器”结构，例如
 
@@ -397,7 +405,7 @@ func NewDecoder(r io.Reader) *Decoder
 func NewEncoder(w io.Writer) *Encoder
 ```
 
-这是一个示例程序，该程序从标准输入读取一系列JSON对象，`Name`从每个对象中删除除字段以外的所有内容，然后将这些对象写入标准输出：
+这是一个示例程序，该程序从标准输入读取一系列 JSON 对象，`Name` 从每个对象中删除除字段以外的所有内容，然后将这些对象写入标准输出：
 
 ```go
 package main
@@ -437,7 +445,7 @@ func main() {
 
 下面回答来自 NewBing：
 
-你好，这是必应。我会尽力用中文回答你的问题。😊
+你好，这是必应。我会尽力用中文回答你的问题。
 
 go 中的 Decoder 和 Encoder 是用来实现流式编码和解码的接口，它们可以将数据从一个 io.Reader 或 io.Writer 转换成 go 的数据类型，或者反过来。<sup>1</sup> <sup>4</sup> <sup>5</sup>
 
@@ -510,10 +518,10 @@ func main() {
 
 json.Unmarshal() 和 json.Decode() 的区别主要有:
 
-- Unmarshal() 接收 []byte 类型,Decode() 接收 io.Reader 接口类型,比如 strings.NewReader。
-- Unmarshal() 会把整个 JSON 字符串解析成 Go 结构体,Decode() 采用流式解析,逐行解析 JSON 字符串。
-- 如果 JSON 字符串很大,Unmarshal() 会把整个字符串加载到内存中,然后解析,可能导致 OOM。而 Decode() 采用流式解析,不会出现 OOM 的问题。
-- Unmarshal() 解析失败会返回错误,Decode() 解析失败可以从 err 中获取错误信息,并继续解析其他 JSON 数据。
+- Unmarshal() 接收 []byte 类型；Decode() 接收 io.Reader 接口类型,比如 strings.NewReader。
+- Unmarshal() 会把整个 JSON 字符串解析成 Go 结构体；Decode() 采用流式解析,逐行解析 JSON 字符串。
+- 如果 JSON 字符串很大,Unmarshal() 会把整个字符串加载到内存中,然后解析,可能导致 OOM；而 Decode() 采用流式解析,不会出现 OOM 的问题。
+- Unmarshal() 解析失败会返回错误；Decode() 解析失败可以从 err 中获取错误信息,并继续解析其他 JSON 数据。
 
 所以总的来说:
 

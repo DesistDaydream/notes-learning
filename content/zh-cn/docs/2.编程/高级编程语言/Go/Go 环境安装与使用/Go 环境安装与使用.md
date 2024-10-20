@@ -146,15 +146,20 @@ docker run --rm -it -v /${YourPackageSrc}:/go/work \
 # Go 关联文件与配置
 
 Go 程序的很多关联文件都可以通过 Go 环境变量进行配置，所以绝大部分关联文件都以变量的形式记录。
+
 **$GOPATH** # GOPATH 环境变量列出了寻找 Go 代码的位置。**同时也是存储 Go 模块的目录，即 go mod 相关命令保存数据的目录**。
 
-- **./pkg/mod/** # 存储下载的源代码。
+- **./pkg/mod/** # 存储依赖包的源代码
+  - **./cache/** # 为避免重复下载，已下载过的依赖包会缓存在该目录
 - **./bin/** # 存储编译的命令。下载的依赖包中若包含二进制文件，也会保存在这个目录中
+
+**~/.config/go/env** # 环境变量配置文件。使用 `go env -w XXX=XXX` 命令的时候，会自动创建该文件，并将指定的配置写入。但是该命令无法设置 GOENV 的值。
+
+- Windows 目录: `%APPDATA%/go/env`
 
 ## Go 环境变量
 
 Go 通过环境变量来配置其运行行为，通过 `go env` 命令可以看到当前使用的环境变量，使用 `'go help environment` 命令可以查看 Go 环境变量的说明
-
 
 通用环境变量
 
@@ -165,7 +170,7 @@ Go 通过环境变量来配置其运行行为，通过 `go env` 命令可以看�
   - GOCACHE="/root/.cache/go-build"
   - **GOENV=STRING** # 环境变量配置文件，Go 会使用该文件设置环境变量。`默认值: ~/.config/go/env 或 %APPDATA%/go/env`
     - 可以使用 off 值让 Go 不再使用本地的环境变量配置文件
-    - 使用 `go env -w XXX=XXX` 命令的时候，会自动创建该文件，并将指定的配置写入。但是改命令无法设置 GOENV 的值。
+    - 使用 `go env -w XXX=XXX` 命令的时候，会自动创建该文件，并将指定的配置写入。但是该命令无法设置 GOENV 的值。
   - GOTOOLDIR="/usr/local/go/pkg/tool/linux_amd64"
   - GOTMPDIR=""
   - GOMODCACHE="/root/go/pkg/mod"

@@ -1757,14 +1757,9 @@
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/_index.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/文本处理.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/Template(模板).md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/正则处理.md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON 数据格式处理",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/YAML 数据处理.md"
-    ],
-    "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON 数据格式处理": [
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON 数据格式处理/_index.md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON 数据格式处理/JSON 数据格式处理.md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON 数据格式处理/go-simplejson 库.md"
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/正则.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/YAML.md"
     ],
     "docs/2.编程/高级编程语言/HTML与CSS": [
       "docs/2.编程/高级编程语言/HTML与CSS/_index.md",
@@ -2870,6 +2865,11 @@
       "docs/12.AI/计算机视觉/OpenCV/_index.md",
       "docs/12.AI/计算机视觉/OpenCV/OpenCV.md",
       "docs/12.AI/计算机视觉/OpenCV/图像处理模块.md"
+    ],
+    "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON": [
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON/JSON.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON/go-simplejson 库.md"
     ]
   },
   "actionBarOrder": {},

@@ -7,17 +7,17 @@ weight: 1
 
 > 参考：
 >
-> - [Go 官方文档，参考 - 语言规范](https://go.dev/ref/spec)
-> - [Go 包，标准库](https://pkg.go.dev/std)
->   - [中文文档](https://studygolang.com/pkgdoc)
+> - [官方文档，参考 - 规范](https://go.dev/ref/spec)
+>   - [官方文档，参考 - 规范 的翻译](https://github.com/bekcpear/mypelicanconfandarticles/blob/master/content/Tech/gospec.rst)
 > - [go.dev, Tour(Go 语言之旅，通过在线解析器体验 Go 语言的各种特性)](https://go.dev/tour/list)
+
 
 Go 是一种通用语言，专为系统编程而设计。它是一种强类型且自带垃圾回收功能的语言，并具有显式支持并发编程的能力(称为 goroutine)。Go 程序由 Packages(包) 构建，其属性允许有效得管理依赖关系。
 
 - **Go 语言参考**描述了 Go 语言的具体语法和语义
 - **Go 标准库则**是与 Go 语言一起发行的一些可选功能，以便人们可以从一开始就轻松得使用 Go 进行编程。
 
-# Go 语言关键字
+# Keywords
 
 > 参考：
 >
@@ -57,38 +57,60 @@ Go 语言非常简单，只有 25 个`关键字(Keywords)`可以使用，记住�
     1. 其实所谓的类型的别名，也可以当作一种自定义的类型。
 26. **var** # 用于 Declarations(声明) 变量
 
-# Go 语言规范
+# Lexical elements(词汇元素)
 
-> 参考：
->
-> - [官方文档，参考 - 规范](https://go.dev/ref/spec)
->   - [官方文档，参考 - 规范 的翻译](https://github.com/bekcpear/mypelicanconfandarticles/blob/master/content/Tech/gospec.rst)
+一些 Go 语言中抽象或具象名词，用于描述某些实体或行为。
 
-## Lexical elements(词汇元素)
+## Identifier
 
-
-### Identifiers(标识符)
-
-**Identifiers(标识符)** 是一个抽象的概念，代表已命名的实体，e.g. [Variable](docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Variable.md)、自定义的 [Data type](docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Data%20type.md)。Identifiers 由一个或多个字母和数字组成，Identifier 的第一个字符必须是字母。
+**Identifier(标识符)** 是一个抽象的概念，代表已命名的实体，e.g. [Variable](docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Variable.md)、自定义的 [Data type](docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Data%20type.md)。Identifiers 由一个或多个字母和数字组成，Identifier 的第一个字符必须是字母。
 
 有一些 Indentifiers 是 [predeclared(预先声明的)](https://go.dev/ref/spec#Predeclared_identifiers)，e.g. int int8 int16 int32 int64 rune string etc.
 
-## Notation(表示法)
+# Notation(表示法)
 
 Go 语言的语法遵从 [EBNF](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) 表示法
 
-## Declarations and scope(声明与范围)
+# Block(块)
+
+Block(块) 是由一对 `{}`(大括号) 括起来的一系列声明和语句。Block 可以是空。
+
+除了显式的 Block 外，Go 语言还存在 implicit block(隐式块)
+
+Block 的用法会直接影响 [scoping(作用域)](#Declarations%20and%20scope(声明与范围))
+
+## implicit block(隐式块)
+
+1. **universe block(全域块)** # universe block 代表所有 Go 源代码文本。Notes: 这里的所有指编译时用到的所有 Go 文件。
+2. **package block(包块)** # 每个 Package 有一个 package block，是包含该包的所有 Go 源代码文本
+3. **file block(文件快)** # 每个文件都有一个_文件块_（file block），包含该文件中的所有 Go 源代码文本。
+4. 每个"if"、"for"和"switch"语句都被视为处于其自己的隐式代码块中。
+5. "switch"或"select"语句中的每个子句都作为一个隐式代码块。 代码块可以嵌套，并影响作用域。
+
+# Declarations and scope(声明与范围)
 
 https://go.dev/ref/spec#Declarations_and_scope
-### exported and unexported(导出与未导出)
 
-**uppercase(大写)** 或 **lowercase(小写)**
+这部分是介绍作用域的，用来定义各种 Identifier 是否可以被引用、是否可以被使用
+
+## exported and unexported(导出与未导出)
+
+https://go.dev/ref/spec#Exported_identifiers
+
+> Note: **uppercase(大写)** 或 **lowercase(小写)**
+
+[Identifier](#Identifier) 可以被 **exported(导出)** 以允许其他包访问 ta。当满足以下条件时，Identifier 将被导出：
+
+- Identifier 名称的第一个字符是 **uppercase** letter(大写字母)
+- Identifier 必须在 package block 中声明。在其他地方声明的均不会被导出。
+  - Note: package block 是一种 [implicit block(隐式块)](#implicit%20block(隐式块))
 
 # Go 标准库
 
 > 参考：
 >
 > - [Go 包，标准库](https://pkg.go.dev/std)
+>   - [中文文档](https://studygolang.com/pkgdoc)
 
 **Go Standard Library(Go 标准库)** 是 Go 内置 **Package(包)** 的集合，每个 package 都可以实现一类功能。每个 package 里有他们对应的常量、变量、函数、方法等。每个库就是一类功能，比如 bufio 库，这里面就是关于实现读写功能的各种内容；而 fmt 库则是关于实现格式化输入输出等功能。在[这里](https://pkg.go.dev/std?tab=packages)可以看到 go 语言 原生支持的所有标准库。
 

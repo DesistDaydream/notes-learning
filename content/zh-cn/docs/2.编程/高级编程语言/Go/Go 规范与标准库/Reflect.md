@@ -9,7 +9,7 @@ weight: 10
 
 > 参考：
 > 
-> - [Go 包，标准库-reflect](https://pkg.go.dev/reflect)
+> - [Go 包，标准库 - reflect](https://pkg.go.dev/reflect)
 > - [Go 博客，反射法则](https://go.dev/blog/laws-of-reflection)
 > - [博客园-Stefno，深度解密 Go 语言之反射](https://www.cnblogs.com/qcrao-2018/p/10822655.html)
 
@@ -717,7 +717,14 @@ stefno
 true
 ```
 
-上面的例子中，handsome 字段未导出，可以读取，但不能调用相关 set 方法，否则会 panic。反射用起来一定要小心，调用类型不匹配的方法，会导致各种 panic。
+上面的例子中，handsome 字段未导出，可以读取，但不能调用相关 set 方法，否则会 panic。反射用起来一定要小心，调用类型不匹配的方法，会导致各种 panic。常见得 panic 报错大概有如下几种：
+
+```text
+panic: reflect.Value.Interface: cannot return value obtained from unexported field or method
+panic: reflect: reflect.Value.SetString using value obtained using unexported field
+```
+
+通常包含 [unexported](docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Go%20规范与标准库.md#exported%20and%20unexported(导出与未导出)) 关键字
 
 # 反射的实际应用
 

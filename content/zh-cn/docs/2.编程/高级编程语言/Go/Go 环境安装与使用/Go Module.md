@@ -177,7 +177,7 @@ GOSUMDB 的默认值为：sum.golang.org，在国内也是无法访问的，但�
 
 也可以将其设置为 “off”，也就是禁止 Go 在后续操作中校验模块版本。
 
-### GONOPROXY/GONOSUMDB/GOPRIVATE
+### GOPRIVATE/GONOPROXY/GONOSUMDB
 
 这三个环境变量都是用在当前项目依赖了私有模块，例如像是你公司的私有 git 仓库，又或是 github 中的私有库，都是属于私有模块，都是要进行设置的，否则会拉取失败。
 
@@ -187,13 +187,17 @@ GOSUMDB 的默认值为：sum.golang.org，在国内也是无法访问的，但�
 
 并且它们的值都是一个以英文逗号 “,” 分割的模块路径前缀，也就是可以设置多个，例如：
 
-                go env -w GOPRIVATE="git.example.com,github.com/eddycjy/mquote"
+```bash
+go env -w GOPRIVATE="git.example.com,github.com/eddycjy/mquote"
+```
 
 设置后，前缀为 git.xxx.com 和 github.com/eddycjy/mquote 的模块都会被认为是私有模块。
 
 如果不想每次都重新设置，我们也可以利用通配符，例如：
 
-                go env -w GOPRIVATE="*.example.com"
+```bash
+go env -w GOPRIVATE="*.example.com"
+```
 
 这样子设置的话，所有模块路径为 example.com 的子域名（例如：git.example.com）都将不经过 Go module proxy 和 Go checksum database，需要注意的是不包括 example.com 本身。
 
@@ -354,3 +358,21 @@ go.mod 文件和 go 命令通常使用语义版本作为描述模块版本的标
 - vX.Y.(Z+1)-0.yyyymmddhhmmss-abcdefabcdef，同理，这种情况是当目标版本提交之前的最新版本是 vX.Y.Z。
 
 虚拟版本的生成不需要你去手动操作，go 命令会将接收的 commit 哈希值自动转化为虚拟版本号。
+
+# 最佳实践
+
+## 获取私有仓库包
+
+参考 [GOPRIVATE/GONOPROXY/GONOSUMDB](#GOPRIVATE/GONOPROXY/GONOSUMDB)
+
+TODO: 是否需要改下面的配置文件待确认
+
+修改本地 `.gitconfig` 文件
+
+```ini
+# 添加信息
+[url "ssh://git@github.com/"]
+  insteadOf=https://github.com/
+```
+
+修改后再使用 `go mod download` 或者 `go mod tidy` 就可以正常下载文件了

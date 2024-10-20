@@ -1,6 +1,17 @@
 ---
-title: YAML 数据处理
+title: YAML
+linkTitle: YAML
+date: 2024-10-19T19:17
+weight: 20
 ---
+
+# 概述
+
+> 参考：
+>
+> - [GitHub 项目，go-yaml/yaml](https://github.com/go-yaml/yaml)
+
+[YAML](docs/2.编程/无法分类的语言/YAML.md) 数据解析
 
 YAML解析库 沿用了 JSON解析库 的相关说法。
 
