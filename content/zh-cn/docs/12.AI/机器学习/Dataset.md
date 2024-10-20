@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - Wiki, TODO 没有 Wiki？
+> - TODO: Wiki, 没有 Wiki？
 > - https://docs.lanyingim.com/quest/40_20240615_1_73_1718389635.html
 >
 > [^1]:[Wiki, Labeled data](https://en.wikipedia.org/wiki/Labeled_data)
@@ -20,6 +20,8 @@ weight: 20
 - **Labeled data(已标记数据)** 也称为 Annotated data(已标注的数据)
 
 通过数据标注，将 Unlabeled data 变为 Labeled data 后，将这些 Labeled data 打包成 Dataset 供模型训练。
+
+有时候，训练模型并需要已标记的数据，比如 无监督学习、etc. 。
 
 # Data annotation(数据注释)
 

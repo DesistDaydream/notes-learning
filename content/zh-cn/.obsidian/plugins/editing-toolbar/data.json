@@ -53,7 +53,7 @@
   "appendMethod": "workspace",
   "shouldShowMenuOnSelect": false,
   "cMenuVisibility": true,
-  "cMenuBottomValue": 4.25,
+  "cMenuBottomValue": 5,
   "cMenuNumRows": 4,
   "cMenuWidth": 80,
   "cMenuFontColor": "#ff0000",
