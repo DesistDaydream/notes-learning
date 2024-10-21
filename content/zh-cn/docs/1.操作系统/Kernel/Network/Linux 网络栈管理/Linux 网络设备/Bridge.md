@@ -12,7 +12,15 @@ weight: 20
 >
 > -
 
+在 `/sys/class/net/*/` 目录下，如果有 bridge 目录，则说明这是 Bridge 类型的网络设备。
 
+```bash
+for dev in /sys/class/net/*; do
+    if [ -d "$dev/bridge" ]; then
+        echo "$(basename $dev) is a bridge device"
+    fi
+done
+```
 
 # 聊聊 Linux 上软件实现的 “交换机” - Bridge！
 

@@ -306,12 +306,24 @@ logging:
 
 > [!Warning]
 > network_mode 与 [networks](#networks) 字段互斥，若使用了 networks 字段，则相当于之前老版本将 network_mode 设置为 bridge
+>
+> TODO: 被加入的容器若重启后，加入者无法自动重新加入
 
 ## networks
 
 配置容器连接的网络，引用顶级 networks 下的条目 。
 
-> Tips: 配置该字段后，相当于让该容器使用 bridge 模式网络。
+> Tips: 配置该字段后，相当于让该容器使用 Bridge 驱动的网络。
+
+```yaml
+services:
+  some-service:
+    networks:
+      - some-network
+      - other-network
+```
+
+**aliases**(\[]STRING) # 网络别名。指定的 aliases 会记录到 Docker 内嵌的 DNS Server 中，可以通过别名访问容器。（注意，要想使用内嵌 DNS 需要连接到自定义网络而不是 Docker 的默认网络）
 
 ```yaml
 services:
@@ -332,8 +344,7 @@ networks:
     driver: custom-driver-2
 ```
 
-**aliases** ：同一网络上的其他容器可以使用服务名称或此别名来连接到对应容器的服务。
-
+> [!Note] network 节点下，使用 aliases 与不使用 aliases 的语法是不一样的
 ## ports
 
 配置端口映射，有 3 种语法

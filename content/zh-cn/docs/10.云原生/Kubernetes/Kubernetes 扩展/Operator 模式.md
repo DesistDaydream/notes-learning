@@ -5,8 +5,9 @@ title: Operator 模式
 # 概述
 
 > 参考：
-> - 官方文档：<https://kubernetes.io/docs/concepts/extend-kubernetes/operator/>
-> - 参考：<https://jimmysong.io/kubernetes-handbook/develop/operator.html>
+> 
+> - [官方文档，概念 - 扩展 K8S - Operator 模式](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/)
+> - https://jimmysong.io/kubernetes-handbook/develop/operator.html
 
 **Operator** 是 Kubernetes API 的客户端，充当 Custom Resource 的控制器。作用与 controller-manager 类似。只不过是控制非 k8s 自带资源的控制器
 
@@ -27,11 +28,11 @@ Operator 是由 CoreOS 开发的，用来扩展 Kubernetes API 的特定的应�
 
 而所有的这些正是 Operator 希望解决的问题，本文我们将首先了解到 Operator 是什么，之后逐步了解到 Operator 的生态建设，Operator 的关键组件及其基本的工作原理，下面让我们来一探究竟吧。
 
-### **初识 Operator**
+### 初识 Operator
 
 首先让我们一起来看下什么是 Operator 以及它的诞生和发展历程。
 
-### **1. 什么是 Operator**
+### 1. 什么是 Operator
 
 CoreOS 在 2016 年底提出了 Operator 的概念，当时的一段官方定义如下：
 
@@ -47,7 +48,7 @@ CoreOS 在 2016 年底提出了 Operator 的概念，当时的一段官方定义
 
 进一步讲，Operator 的设计和实现并不是千篇一律的，开发者可以根据自身业务需求，不断演进应用的自定义模型，同时面向具体的自动化场景在控制器中扩展相应的业务逻辑。很多 Operator 的出现都是起源于一些相对简单的部署和配置需求，并在后续演进中不断完善补充对复杂运维需求的自动化处理。
 
-### **2. Operator 的发展**
+### 2. Operator 的发展
 
 时至今日，Kubernetes 已经确立了自己在云原生领域平台层开源软件中的绝对地位，我们可以说 Kubernetes 就是当今容器编排的事实标准；而在 Kubernetes 项目强大的影响力下，越来越多的企业级分布式应用选择拥抱云原生并开始了自己的容器化道路，而 Operator 的出现无疑极大的加速了这些传统的复杂分布式应用的上云过程。无论在生态还是生产领域，Operator 都是容器应用部署上云过程中广受欢迎的实现规范，本小节就让我们来一起回顾下 Operator 的诞生和发展历史。
 
@@ -77,7 +78,7 @@ CoreOS 官方博客也第一时间发出了回应文章指导用户尽快从 TPR
 
 2018 年初，RedHat 完成了对 CoreOS 的收购，并在几个月后发布了 Operator Framework，通过提供 SDK 等管理工具的方式进一步降低了应用开发与 Kubernetes 底层 API 知识体系之间的依赖。至此，Operator 进一步巩固了其在 Kubernetes 应用开发领域的重要地位。
 
-### **3. Operator 的社区与生态**
+### 3. Operator 的社区与生态
 
 Operator 开放式的设计模式使开发者可以根据自身业务自由的定义服务模型和相应的控制逻辑，可以说一经推出就在社区引起了巨大的反响。
 

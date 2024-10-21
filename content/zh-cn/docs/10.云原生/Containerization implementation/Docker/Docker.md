@@ -20,7 +20,7 @@ Docker 是一个基于 [Containerization(容器化)](/docs/10.云原生/Containe
 
 Docker 为了解决 LXC 无法批量管理、复刻容器等问题应运而生，简化用户对容器的应用。Docker 是 Docker.inc 公司开源的一个基于 LXC 技术之上构建的 Container 引擎，不再使用模板技术，而是使用了 [Docker Image](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20Image.md) 文件的方式来创建。Image 是放在统一的互联网仓库中，当需要使用 Container 的时候，直接 run 或者 creat 等即可从仓库中下载到该 Image，然后基于该 Image 再运行 Container。
 
-Note：一开始，docker 在 linux 上实现容器技术的后端使用的是 lxc，后来使用 runc 来代替。
+Note：一开始，Docker 在 linux 上实现容器技术的后端使用的是 lxc，后来使用 runc 来代替。
 
 # Docker 架构
 
