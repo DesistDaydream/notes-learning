@@ -112,7 +112,7 @@ EXAMPLE
       - Note：证书中的 CN 是很重要的标志，CN 可以使用主机名来表示，这样在使用证书来访问的时候，可以使用 CN 来验证域名是否可信。
       - 如果 CN 不使用主机名，则在签发证书的时候，需要 subjectAltName 字段来设定 DNS 别名，否则会报错提示证书对某些域名不可用。
       - 样例详见 harbor 使用私有证书部署：harbor 云原生注册中心.note
-    - Email Address \[]:373406000@qq.com # 指明邮箱地址
+    - Email Address # 指明邮箱地址
 - 使用 httpd.key 这个密钥创建一个证书请求文件 httpd.csr
   - openssl req -new -key httpd.key -days 365 -out httpd.csr
   - 在输入完该命令后，同样需要输入几个身份信息以供 CA 进行验证。由于是私有 CA，所以所有信息应该保持跟 CA 的信息一样，具体信息详见上面那个命令，否则无法签署成功。后面还可以输入密码，当然密码也可以为空，密码主要是对改请求进行加密的。创建完请求后，把该请求文件 XXX.csr 发送给 CA 所在的服务器，然后由 CA 进行签署。

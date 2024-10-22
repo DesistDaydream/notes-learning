@@ -1,5 +1,8 @@
 ---
 title: YAML
+linkTitle: YAML
+date: 2020-10-22T09:20:00
+weight: 20
 ---
 
 # 概述
@@ -210,31 +213,6 @@ YAML 有两种格式
   - 一般作为书面人类可读的格式使用，通过缩进、- 符号来规范格式。一般有多行
 - 非 Document 格式 yaml 数据。也称为 格式化之前的数据、人类不可读数据 等等。这种格式与 JSON 格式基本一致
   - 一般用于在代码中传值使用，使用 {} 和 \[] 之类的符号来规范格式。一般只有一行
-
-# 各种产品官方文档中对 YAML 格式的配置文件的描述
-
-在各种产品的官方文档中，常见如下这种写法
-
-- **global**([global](#global))
-- **target**(STRING)
-- **scrape_configs**(\[][scrape_configs](#scrape_configs(占比最大的字段)))
-- **alerting**([alerting](#alerting))
-- **remote_write**(\[][remote_write](#remote_write))
-- **remote_read**(\[][remote_read](#remote_read))
-
-其中带有链接的描述都是 Object 类型的节点
-
-- 加粗的是 Key
-- 括号中是 Value 的类型，Value 一般是非 Scalar 类型的节点。
-  - 若 Value 的类型是 Object，那么一般类型名称是自定义的。
-    - 由于 Object 类型的节点中，Value 也可以是一个节点，那么 **Value 就有可能是由一个或多个内容**组成，为了可以方便得复用这些内容，所以给**它们起了一个名字**。这就**好像编程中的使用函数**一样。
-  - 为了文档的整洁性，让相同层级的字段在一起，可以一眼看到同级内容，让 Value 与 Key 分开，将 Value 所包含的具体内容放在单独链接中
-
-在我的笔记中，我也会沿用这种写法。一般情况，在笔记中，若 OBJECT 类型的字段下的字段非常多，我会在单独的标题中记录，[Pod Manifest](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/工作负载资源/Pod%20Manifest.md)是典型的例子。不但在单独的标题记录，而且还为这些字段进行了分组。在我们理解时，只有带有 `(XXX)` 这种写法的，才是 YAML 中真正的字段，而标题，通常不作为真正的字段，只是作为该字段的一个指示物，用以记录该字段下还有哪些字段。
-
-当然，如果一个字段虽然只是字符串类型，但是其含义很复杂，也会将该字段作为标题展示。
-
-每一个带有链接的都是 OBJECT 类型，若暂时没有什么可以记录的，那么笔记中就直接用 `OBJCET` 这几个字符表示。
 
 ## 映射
 

@@ -1,7 +1,10 @@
 ---
 title: Loki 配置
+linkTitle: Loki 配置
+date: 2022-10-23T13:43:00
 weight: 3
 ---
+
 
 # 概述
 
@@ -37,7 +40,7 @@ Loki 可以通过两种方式配置 Loki 的运行时行为
 
 文档中包含配置文件关键字与命令行 flag 的对应值，配置文件中的很多配置，都可以通过命令行 flag 来实现。
 
-## 配置文件中的顶层字段
+## 顶层字段
 
 **target**(STRING) # 指定 loki 二进制文件要运行的组件列表。`默认值：all`，即运行所有组件
 
@@ -57,7 +60,7 @@ Loki 可以通过两种方式配置 Loki 的运行时行为
 
 **storage_config**([storage_config](#storage_config)) # 为 schema_config 字段指定的存储类型配置详细信息。比如 数据存储位置、连接存储的方式 等等。
 
--  注意：该字段的配置会根据 schema_config 字段中指定的信息来选择可用的字段。
+- 注意：该字段的配置会根据 schema_config 字段中指定的信息来选择可用的字段。
 - 未来将会逐步被 common.storage 字段代替
 
 **######## 组件配置 ########**
@@ -74,17 +77,17 @@ Loki 可以通过两种方式配置 Loki 的运行时行为
 
 **ruler**([ruler](#ruler)) # Ruler(规则器) 组件的配置
 
-**compactor**(OBJECT) # Compactor(压缩器) 组件的配置
+**compactor**([compactor](#compactor)) # Compactor(压缩器) 组件的配置
 
 **table_manager**([table_manager](#table_manager)) # Table Manager(表管理器) 组件的配置，以规定数据保留的行为
 
 **######## 其他配置 ########**
 
-**query_range**: <queryrange_config> # The queryrange_config configures the query splitting and caching in the Loki query-frontend.
+**query_range**(queryrange_config) # The queryrange_config configures the query splitting and caching in the Loki query-frontend.
 
 **chunk_store_config**([chunk_store_config](#chunk_store_config)) # 配置 Loki 如何将数据存放在指定的存储中
 
-**limits_config**(OBJECT) # 配置每个租户的限制或全局的限制
+**limits_config**([limits_config](#limits_config)) # 配置各个组件处理数据的最大值。也可以说配置每个租户的限制或全局的限制。
 
 **frontend_worker**: <frontend_worker_config> # The frontend_worker_config configures the worker - running within the Loki querier - picking up and executing queries enqueued by the query-frontend.
 
@@ -100,7 +103,7 @@ Loki 可以通过两种方式配置 Loki 的运行时行为
 
 ## common
 
-> 2.4 版本之前并没有这个字段，早期 Loki 的配置文件解读起来非常混乱。但是 2.4 版本之后，可以通过 common 字段统一定义一些之前带有歧义的字段，`common.storage` 可以代替 `storage_config` 以配置后端存储的信息。
+> Notes: 2.4 版本之前并没有这个字段，早期 Loki 的配置文件解读起来非常混乱。但是 2.4 版本之后，可以通过 common 字段统一定义一些之前带有歧义的字段，`common.storage` 可以代替 `storage_config` 以配置后端存储的信息。
 
 https://grafana.com/docs/loki/next/configuration/#common
 
@@ -112,16 +115,16 @@ https://grafana.com/docs/loki/next/configuration/#common
 
 **ring**(OBJECT) # 所有使用哈希环的组件的通用哈希环配置。`heartbeat_period`?
 
-- **kvstore(OBJECT)** #
-  - **store(STRING)** # 用于保存哈希环的存储。`默认值：memberlist`
+- **kvstore**(OBJECT) #
+  - **store**(STRING) # 用于保存哈希环的存储。`默认值：memberlist`
 
 ### 存储配置相关字段
 
 Loki 不同组件共享使用的存储配置。该字段配置存储信息，用以告诉 Loki 如何使用各种类型的存储。
 
-**storage**(OBJECT) # 该字段可以代替 `storage_config` 字段。比如 ruler.storage.type 的值为 s3 的话，就会使用这里的 s3 字段的配置；若值为 local，则会使用这里的 filesystem 字段的配置
+**storage**(OBJECT) # 该字段可以代替 `storage_config` 字段。比如 ruler.storage.type 的值为 s3 的话，就会使用这里的 s3 字段的配置；若值为 local，则会使用这里的 filesystem 字段的配置。但是有些配置暂时还没有，比如 tsdb。尽量先使用下面的 [storage_config](#storage_config)
 
-- **s3([S3 存储配置](#S3%20存储配置))**# S3 类型存储的信息。包括 连接方式、数据要保存的桶 等信息
+- **s3**([s3](#s3)) # S3 类型存储的信息。包括 连接方式、数据要保存的桶 等信息
 - **azure**(Azure_Store_Config)
 - **gcs**(GCS_Store_Config)
 - **swift**(Swift_Store_config)
@@ -150,13 +153,13 @@ common:
       store: memberlist
 ```
 
-## 配置如何存储 chunk 与 index 数据
+## 配置存储 chunk 与 index 数据的方式
 
 影响 chunk 与 index 两类数据如何存储的最重要配置只有两个字段：`schema_config` 和 `storage_config`。其他字段都是对存储方式的补充。
 
-**schema_config**([schema_config](#schema_config)) # 用来定义使用什么储存数据
+**schema_config**([schema_config](#schema_config)) # 定义储存数据的模式，及使用的存储类型
 
-**storage_config**([storage_config](#storage_config)) # 用来定义如何连接存储以及存储储存数据的路径。
+**storage_config**([storage_config](#storage_config)) # 定义各类存储的信息。e.g. 如何连接存储、存储储存数据的路径、etc.
 
 > 不过随着版本的更迭，从 2.4 版本开始，`storage_config` 字段会逐渐被 `common.storage` 字段顶替。
 
@@ -168,25 +171,25 @@ common:
 
 #### configs
 
-**from: 2018-04-15** # 该模式的起始时间
+**from**(STRING) # 该模式的起始时间。时间格式: YYYY-MM-DD
 
 注意：store 与 object_store 字段的配置将会决定 Loki 使用 storage_config 中的哪个字段作为存储数据的地方
 
-**schema(STRING)** # 模式的版本，当前推荐为 v11。
+**schema**(STRING) # 模式的版本，当前推荐为 v13（截至 2024-10-22）。
 
-**store(STRING)** # 存放 Index 数据的存储类型。可用的值有：aws, aws-dynamo, gcp, bigtable, bigtable-hashed,cassandra, boltdb-shipper
+**store**(STRING) # 存放 Index 数据的存储类型。可用的值有：tsdb, boltdb-shipper
 
-**object_store(STRING)** # 存放 Chunks 数据的存储类型。可用的值有：s3、aws、azure、gcp、bigtable、gcs、cassandra、swift、filesystem。`默认值：与 store 字段的值相同`。
+**object_store**(STRING) # 存放 Chunks 数据的存储类型。可用的值有：aws (alias s3), azure, gcs, alibabacloud, bos, cos, swift, filesystem, named_store(refer to named_stores_config)
 
-**index(Object)** # 指定储存 Index 数据的行为。
+**index**(Object) # 指定储存 Index 数据的行为。
 
-- **prefix(STRING)** # 表的前缀，也就是 index 文件的前缀。
-- **period(DURATION)** # 表的周期(在当前期间中，每隔 DURATION 的时间创建一张表)。该值必须为 24h 的倍数。`默认值：168h`
+- **prefix**(STRING) # 表的前缀，也就是 index 文件的前缀。
+- **period**(DURATION) # 表的周期(在当前期间中，每隔 DURATION 的时间创建一张表)。该值必须为 24h 的倍数。`默认值：168h`
 
-**chunks(Ojbect)** # 指定储存 Chunks 数据的行为。`默认值：复制 index 字段的配置`。其内字段含义与 index 字段下的子字段功能一样。
+**chunks**(Ojbect) # 指定储存 Chunks 数据的行为。`默认值: 复制 index 字段的配置`。其内字段含义与 index 字段下的子字段功能一样。
 
-- **prefix(STRING)** #
-- **period(DURATION)** #
+- **prefix**(STRING) #
+- **period**(DURATION) #
 
 注意: `store` 与 `object_store` 字段的值，将会影响 `storage_config` 字段下可以使用的字段。比如 store 为 boltdb-shipper，则 storage_config 中只有 boltdb-shipper 字段可以配置，其他无法配置，配置了就会报错。Loki 2.4 版本之后，推荐使用 `common.storage` 字段。
 
@@ -194,47 +197,34 @@ common:
 
 > Loki 2.4 版本之后，推荐使用 `common.storage` 字段。
 
-对 `schema_config` 字段配置的扩充。主要用来定义储存 index 和 chunks 类型数据的存储的行为。比如 连接存储的方式、存储储存数据的位置 等等信息。
+对 `schema_config` 字段配置的扩充。主要用来定义储存 index 和 chunks 类型数据的存储的行为。比如 连接存储的方式、存储储存数据的位置、etc. 信息。
+
 有多种存储类型可用，该字段中的配置需要根据 `schema_config.configs.store` 与 `schema_config.configs.object_store` 字段的值来编写。
 
-> 比如，在 schema_config.configs.store 中使用 aws，那么 storage_config 中就可以使用 aws 配置
+e.g. 在 schema_config.configs.store 中使用 aws，那么 storage_config 中就要设置 aws 的字段
 
-#### boltdb(Object) - boltdb 存储类型的配置
+**aws**([s3](#s3)) # 仅当 schema_config.configs.object_store 为 aws 时，才配置该字段。
 
-仅当 schema_config.configs.store 为 boltdb 时，才配置该字段
+**boltdb_shipper**(Ojbect) # 仅当 schema_config.configs.store 为 boltdb_shipper 时，才配置该字段
 
-- **directory(STRING)** # 存放 BoltDB 索引数据的绝对路径
-
-#### boltdb_shipper(Ojbect) - boltdb_shipper 存储类型的配置
-
-仅当 schema_config.configs.store 为 boltdb_shipper 时，才配置该字段
-
-- **active_index_directory(STRING)** #
-- **cache_location(STRING)** #
-- **cache_ttl(DURATION)** # `默认值：24h`
-- **shared_store(STRING)** # 用于保存 BoltDB 文件的存储。
+- **active_index_directory**(STRING) #
+- **cache_location**(STRING) #
+- **cache_ttl**(DURATION) # `默认值：24h`
+- **shared_store**(STRING) # 用于保存 BoltDB 文件的存储。
   - 在 2.4 版本之后，若 `common.storage` 定义了 s3，且 `schema_config.object_storage` 定义为 s3，则这个字段的值也为 s3。也就是说，Index 数据也会存到 S3。这个说法待验证。
 
-#### filesystem(Object) - filesystem 存储类型的配置
+**tsdb_shipper**(OBJECT) # 仅当 schema_config.configs.object_store 为 tsdb 时，才配置该字段
 
-仅当 schema_config.configs.object_store 为 filesystem 时，才配置该字段
+- **active_index_directory**(STRING) # Ingester 组件写入索引文件的目录，然后由 shipper 将其上传到配置的存储。目录名通常为: tsdb-shipper-active
+- **cache_location**(STRING) # 用于从存储恢复索引文件以进行查询的缓存位置。目录名通常为: tsdb-shipper-cache
 
-- **directory(STRING)** # 存放 chunks 数据的绝对路径
+**filesystem**(OBJECT) # 仅当 schema_config.configs.object_store 为 filesystem 时，才配置该字段
 
-#### aws(Object) - S3 配置
+- **directory**(STRING) # 存放 chunks 数据的绝对路径。`默认值: ""`
 
-仅当 schema_config.configs.object_store 为 aws 时，才配置该字段。该字段配置与通用存储配置中的 [s3](#S3%20存储配置) 字段相同
+## distributor
 
-- **bucketnames(STRING)** #
-- **endpoint: localhost:9000** #
-- **access_key_id: minioadmin** #
-- **secret_access_key: minioadmin** #
-- **insecure: true** #
-- **s3forcepathstyle: true** #
-
-## Distributor 组件配置
-
-### distributor
+Distributor 组件配置
 
 Loki 的 distributor(分配器) 组件配置。
 
@@ -248,10 +238,10 @@ Loki 的 Ingester(摄取器) 配置，以及配置采集器如何将自己注册
 
 **lifecycler** #
 
-- **address: 127.0.0.1**#
+- **address**(STRING) # 127.0.0.1
 - **ring:** #
   - **kvstore:** #
-    - **store(STRING)** # 用于 ring 的后端存储类型。值为 consul, etcd,inmemory, memberlist
+    - **store**(STRING) # 用于 ring 的后端存储类型。值为 consul, etcd,inmemory, memberlist
   - **replication_factor: 1** #
 - **final_sleep: 0s** #
 
@@ -266,31 +256,32 @@ Loki 的 Ingester(摄取器) 配置，以及配置采集器如何将自己注册
 - **enabled(BOOLEAN)**
 - **dir(/PATH/TO/DIR)** # WAL 存放目录。`默认值: wal`，即默认数据存储目录下的 /wal 目录。
 
-## Querier 组件配置
+## querier
 
-### querier
+Querier 组件配置
 
 https://grafana.com/docs/loki/latest/configuration/#querier
 
-## Query frontend 组件配置
+## frontend
 
-### frontend
+Query frontend 组件配置
 
 https://grafana.com/docs/loki/latest/configuration/#frontend
 
-## Ruler 组件配置
-
-### ruler
+## ruler
 
 Ruler 组件配置。
+
 **storage(Ojbect)** # 根据 type 的值，则会优先默认选择[通用存储](#SJMUR)。可用的值有：azure, gcs, s3, swift, local, bos。若没有通用存储，则使用 storage 字段下对应的字段。
 
 - **type(STRING)**#
 - **s3(OBJECT)** # 配置用于存储规则文件的存储信息
-  - 详见下文通用配置字段 [s3(OBJECT)](#J3m3x)
+  - 详见下文通用配置字段 [s3](#s3)
 
-**rule_path: /loki/tmprules** #
-**alertmanager_url: <http://localhost>** #
+**rule_path**(STRING) # /loki/tmprules
+
+**alertmanager_url**(STRING) # http://localhost
+
 **ring:** #
 
 - **kvstore:** #
@@ -315,9 +306,11 @@ ruler:
     type: local
 ```
 
-## Table manager 组件配置
+## compactor
 
-### table_manager
+Compactor 组件配置
+
+## table_manager
 
 Table Manager(表管理器) 组件配置，以规定数据保留的行为。该配置环境用途详见《[Loki 存储](/docs/6.可观测性/Logs/Loki/Storage(存储)/Storage(存储).md)》
 
@@ -326,6 +319,7 @@ Table Manager(表管理器) 组件配置，以规定数据保留的行为。该�
 > - Table Manager 无法管理存放在对象存储(比如 S3)中的数据，如果要使用对象存储来储存 Index 与 Chunks 数据，则应该自行设置 Bucket 的策略，以删除旧数据。
 
 **retention_deletes_enabled(BOOLEAN)** # 是否开启删除保留数据的行为。`默认值：false`。
+
 **retention_period(DURATION)** # 指定要保留多长时间的表。
 
 - DURATION 的值必须是 schema_config.configs.index(或 chunks).period 字段值的倍数。`默认值：0s`，即保留所有时间的表，不删除
@@ -333,14 +327,16 @@ Table Manager(表管理器) 组件配置，以规定数据保留的行为。该�
 
 **creation_grace_period(DURATION)** # 提前 DURATION 时间创建新表。`默认值：10m`
 
-## limits_config(Object) - 配置各个组件处理数据的最大值
+## limits_config
 
 **ingestrion_rate_mb(FLOAT)** # 每秒可以摄取日志量的大小，单位 MB。`默认值：4`
+
 **enforce_metric_name(BOOLEAN)**# 强制每个样本都有一个 metric 名称。`默认值：true`
 
 - 通常设为 false
 
 **reject_old_samples(BOOLEAN)**# 旧样本是否会被拒绝。`默认值：true`
+
 **reject_old_samples_max_age(DURATION)** # 拒绝前可以接收的最大样本年龄。`默认值：168h`
 
 - 如果拒绝旧样本，那么旧样本不能早于 reject_old_samples_max_age 时间
@@ -350,6 +346,7 @@ Table Manager(表管理器) 组件配置，以规定数据保留的行为。该�
 ### chunk_store_config(Object)
 
 配置 Loki 如何将数据存放在指定存储中。该配置环境用途详见《[Loki 存储](/docs/6.可观测性/Logs/Loki/Storage(存储)/Storage(存储).md)》
+
 **max_look_back_period(DURATION)** # 限制可以查询多长时间的数据。`默认值：0s`，即不做限制。DURATION 必须小于或等于 table_manager.retention_period 字段的值
 
 # 通用字段
@@ -358,9 +355,9 @@ Table Manager(表管理器) 组件配置，以规定数据保留的行为。该�
 
 ## 后端存储信息
 
-用来定义 如何连接存储、数据在存储中的路径 等等
+用来定义 如何连接存储、数据在存储中的路径、etc.
 
-### S3 存储配置
+### S3
 
 https://grafana.com/docs/loki/next/configuration/#s3_storage_config
 
@@ -458,7 +455,7 @@ ruler:
 
 ## Index 与 Chunk 都使用 S3
 
-这里的 S3 使用 Mini
+这里的 S3 使用 Minio
 
 ```yaml
 schema_config:

@@ -251,14 +251,18 @@ at=info method=GET path=/ host=grafana.net fwd="124.133.124.161" service=8ms sta
 
 例如，解析器 `| regexp "(?P<method>\\w+) (?P<path>[\\w|/]+) \\((?P<status>\\d+?)\\) (?P<duration>.*)"` 将从以下行中提取标签：
 
-    POST /api/prom/api/v1/query_range (200) 1.5s
+```text
+POST /api/prom/api/v1/query_range (200) 1.5s
+```
 
 提取的标签为：
 
-    "method" => "POST"
-    "path" => "/api/prom/api/v1/query_range"
-    "status" => "200"
-    "duration" => "1.5s"
+```text
+"method" => "POST"
+"path" => "/api/prom/api/v1/query_range"
+"status" => "200"
+"duration" => "1.5s"
+```
 
 #### unpack
 
@@ -278,7 +282,9 @@ at=info method=GET path=/ host=grafana.net fwd="124.133.124.161" service=8ms sta
 
 > 如果原始嵌入的日志行是特定的格式，你可以将 unpack 与 json 解析器（或其他解析器）相结合使用。
 
-### [Label Filter Expression](https://grafana.com/docs/loki/latest/logql/#label-filter-expression)(标签过滤表达式)
+### Label Filter Expression(标签过滤表达式)
+
+https://grafana.com/docs/loki/latest/logql/#label-filter-expression
 
 标签过滤表达式允许使用其原始和提取的标签来过滤日志行，它可以包含多个谓词。
 
@@ -310,29 +316,39 @@ LogQL 支持从查询输入中自动推断出的多种值类型：
 
 以下所有的表达式都是等价的:
 
-    | duration >= 20ms or size == 20kb and method!~"2.."
-    | duration >= 20ms or size == 20kb | method!~"2.."
-    | duration >= 20ms or size == 20kb,method!~"2.."
-    | duration >= 20ms or size == 20kb method!~"2.."
+```text
+| duration >= 20ms or size == 20kb and method!~"2.."
+| duration >= 20ms or size == 20kb | method!~"2.."
+| duration >= 20ms or size == 20kb,method!~"2.."
+| duration >= 20ms or size == 20kb method!~"2.."
+```
 
 默认情况下，多个谓词的优先级是从右到左，你可以用圆括号包装谓词，强制使用从左到右的不同优先级。
 
 例如，以下内容是等价的：
 
-    | duration >= 20ms or method="GET" and size <= 20KB
-    | ((duration >= 20ms or method="GET") and size <= 20KB)
+```text
+| duration >= 20ms or method="GET" and size <= 20KB
+| ((duration >= 20ms or method="GET") and size <= 20KB)
+```
 
 它将首先评估 `duration>=20ms or method="GET"`，要首先评估 `method="GET" and size<=20KB`，请确保使用适当的括号，如下所示。
 
-    | duration >= 20ms or (method="GET" and size <= 20KB)
+```text
+| duration >= 20ms or (method="GET" and size <= 20KB)
+```
 
-### [Line Format Expression](https://grafana.com/docs/loki/latest/logql/#line-format-expression)(行格式化表达式)
+### Line Format Expression(行格式化表达式)
+
+https://grafana.com/docs/loki/latest/logql/#line-format-expression
 
 日志行格式化表达式可以通过使用 Golang 的 `text/template` 模板格式重写日志行的内容，它需要一个字符串参数 `| line_format "{{.label_name}}"` 作为模板格式，所有的标签都是注入模板的变量，可以用 `{{.label_name}}` 的符号来使用。
 
 例如，下面的表达式：
 
-    {container="frontend"} | logfmt | line_format "{{.query}} {{.duration}}"
+```logql
+{container="frontend"} | logfmt | line_format "{{.query}} {{.duration}}"
+```
 
 将提取并重写日志行，只包含 `query` 和请求的 `duration`。你可以为模板使用双引号字符串或反引号 `{{.label_name}}` 来避免转义特殊字符。
 
@@ -340,11 +356,15 @@ LogQL 支持从查询输入中自动推断出的多种值类型：
 
 如果我们有以下标签 `ip=1.1.1.1`, `status=200` 和 `duration=3000(ms)`, 我们可以用 `duration` 除以 1000 得到以秒为单位的值：
 
-    {container="frontend"} | logfmt | line_format "{{.ip}} {{.status}} {{div .duration 1000}}"
+```logql
+{container="frontend"} | logfmt | line_format "{{.ip}} {{.status}} {{div .duration 1000}}"
+```
 
 上面的查询将得到的日志行内容为`1.1.1.1 200 3`。
 
-### [Labels Format Expression](https://grafana.com/docs/loki/latest/logql/#labels-format-expression)(标签格式化表达式)
+### Labels Format Expression(标签格式化表达式)
+
+https://grafana.com/docs/loki/latest/logql/#labels-format-expression
 
 `| label_format`表达式可以重命名、修改或添加标签，它以逗号分隔的操作列表作为参数，可以同时进行多个操作。
 
@@ -364,17 +384,23 @@ LogQL 支持从查询输入中自动推断出的多种值类型：
 
 过滤应该首先使用标签匹配器，然后是行过滤器，最后使用标签过滤器：
 
-    {cluster="ops-tools1", namespace="loki-dev", job="loki-dev/query-frontend"} |= "metrics.go" !="out of order" | logfmt | duration > 30s or status_code!="200"
+```logql
+{cluster="ops-tools1", namespace="loki-dev", job="loki-dev/query-frontend"} |= "metrics.go" !="out of order" | logfmt | duration > 30s or status_code!="200"
+```
 
 **多解析器**
 
 比如要提取以下格式日志行的方法和路径：
 
-    level=debug ts=2020-10-02T10:10:42.092268913Z caller=logging.go:66 traceID=a9d4d8a928d8db1 msg="POST /api/prom/api/v1/query_range (200) 1.5s"
+```log
+level=debug ts=2020-10-02T10:10:42.092268913Z caller=logging.go:66 traceID=a9d4d8a928d8db1 msg="POST /api/prom/api/v1/query_range (200) 1.5s"
+```
 
 你可以像下面这样使用多个解析器：
 
-    {job="cortex-ops/query-frontend"} | logfmt | line_format "{{.msg}}" | regexp "(?P<method>\\w+) (?P<path>[\\w|/]+) \\((?P<status>\\d+?)\\) (?P<duration>.*)"`
+```logql
+{job="cortex-ops/query-frontend"} | logfmt | line_format "{{.msg}}" | regexp "(?P<method>\\w+) (?P<path>[\\w|/]+) \\((?P<status>\\d+?)\\) (?P<duration>.*)"`
+```
 
 首先通过 `logfmt` 解析器提取日志中的数据，然后使用 `| line_format` 重新将日志格式化为 `POST /api/prom/api/v1/query_range (200) 1.5s`，然后紧接着就是用 `regexp` 解析器通过正则表达式来匹配提前标签了。
 
@@ -382,23 +408,29 @@ LogQL 支持从查询输入中自动推断出的多种值类型：
 
 下面的查询显示了如何重新格式化日志行，使其更容易阅读。
 
-    {cluster="ops-tools1", name="querier", namespace="loki-dev"}
-      |= "metrics.go"
-      |!= "loki-canary"
-      | logfmt
-      | query != ""
-      | label_format query="{{ Replace .query \"\\n\" \"\" -1 }}"
-      | line_format "{{ .ts}}\t{{.duration}}\ttraceID = {{.traceID}}\t{{ printf \"%-100.100s\" .query }} "
+```logql
+{cluster="ops-tools1", name="querier", namespace="loki-dev"}
+  |= "metrics.go"
+  |!= "loki-canary"
+  | logfmt
+  | query != ""
+  | label_format query="{{ Replace .query \"\\n\" \"\" -1 }}"
+  | line_format "{{ .ts}}\t{{.duration}}\ttraceID = {{.traceID}}\t{{ printf \"%-100.100s\" .query }} "
+```
 
 其中的 `label_format` 用于格式化查询，而 `line_format` 则用于减少信息量并创建一个表格化的输出。比如对于下面的日志行数据：
 
-    level=info ts=2020-10-23T20:32:18.094668233Z caller=metrics.go:81 org_id=29 traceID=1980d41501b57b68 latency=fast query="{cluster=\"ops-tools1\", job=\"cortex-ops/query-frontend\"} |= \"query_range\"" query_type=filter range_type=range length=15m0s step=7s duration=650.22401ms status=200 throughput_mb=1.529717 total_bytes_mb=0.994659
-    level=info ts=2020-10-23T20:32:18.068866235Z caller=metrics.go:81 org_id=29 traceID=1980d41501b57b68 latency=fast query="{cluster=\"ops-tools1\", job=\"cortex-ops/query-frontend\"} |= \"query_range\"" query_type=filter range_type=range length=15m0s step=7s duration=624.008132ms status=200 throughput_mb=0.693449 total_bytes_mb=0.432718
+```log
+level=info ts=2020-10-23T20:32:18.094668233Z caller=metrics.go:81 org_id=29 traceID=1980d41501b57b68 latency=fast query="{cluster=\"ops-tools1\", job=\"cortex-ops/query-frontend\"} |= \"query_range\"" query_type=filter range_type=range length=15m0s step=7s duration=650.22401ms status=200 throughput_mb=1.529717 total_bytes_mb=0.994659
+level=info ts=2020-10-23T20:32:18.068866235Z caller=metrics.go:81 org_id=29 traceID=1980d41501b57b68 latency=fast query="{cluster=\"ops-tools1\", job=\"cortex-ops/query-frontend\"} |= \"query_range\"" query_type=filter range_type=range length=15m0s step=7s duration=624.008132ms status=200 throughput_mb=0.693449 total_bytes_mb=0.432718
+```
 
 经过上面的查询过后可以得到如下所示的结果：
 
-    2020-10-23T20:32:18.094668233Z 650.22401ms     traceID = 1980d41501b57b68 {cluster="ops-tools1", job="cortex-ops/query-frontend"} |= "query_range"
-    2020-10-23T20:32:18.068866235Z 624.008132ms traceID = 1980d41501b57b68 {cluster="ops-tool
+```log
+2020-10-23T20:32:18.094668233Z 650.22401ms     traceID = 1980d41501b57b68 {cluster="ops-tools1", job="cortex-ops/query-frontend"} |= "query_range"
+2020-10-23T20:32:18.068866235Z 624.008132ms traceID = 1980d41501b57b68 {cluster="ops-tool
+```
 
 # Metric Queries(指标查询)
 
@@ -419,63 +451,56 @@ LogQL 与 Prometheus 具有相同的范围向量概念，不同之处在于所�
 
 比如计算 nginx 的 qps：
 
-    rate({filename="/var/log/nginx/access.log"}[5m]))
+```logql
+rate({filename="/var/log/nginx/access.log"}[5m]))
+```
 
 计算 kernel 过去 5 分钟发生 oom 的次数：
 
-    count_over_time({filename="/var/log/message"} |~ "oom_kill_process" [5m]))
+```logql
+count_over_time({filename="/var/log/message"} |~ "oom_kill_process" [5m]))
+```
 
 ## 聚合运算符
 
 与 PromQL 一样，LogQL 支持内置聚合运算符的一个子集，可用于聚合单个向量的元素，从而产生一个具有更少元素但具有集合值的新向量：
 
 - sum: Calculate sum over labels
-
 - min: Select minimum over labels
-
 - max: Select maximum over labels
-
 - avg: Calculate the average over labels
-
 - stddev: Calculate the population standard deviation over labels
-
 - stdvar: Calculate the population standard variance over labels
-
 - count: Count number of elements in the vector
-
 - bottomk: Select smallest k elements by sample value
-
 - topk: Select largest k elements by sample value
-
 - sum：求和
-
 - min：最小值
-
 - max：最大值
-
 - avg：平均值
-
 - stddev：标准差
-
 - stdvar：标准方差
-
 - count：计数
-
 - bottomk：最小的 k 个元素
-
 - topk：最大的 k 个元素
 
 聚合函数我们可以用如下表达式描述：
 
-    <aggr-op>([parameter,] <vector expression) [without|by (label list)]
+```logql
+<aggr-op>([parameter,] <vector expression) [without|by (label list)]
+```
 
 对于需要对标签进行分组时，我们可以用 `without` 或者 `by` 来区分。比如计算 nginx 的 qps，并按照 pod 来分组：
 
-    sum(rate({filename="/var/log/nginx/access.log"}[5m])) by (pod)
+```logql
+sum(rate({filename="/var/log/nginx/access.log"}[5m])) by (pod)
+```
 
 只有在使用 `bottomk` 和 `topk` 函数时，我们可以对函数输入相关的参数。比如计算 nginx 的 qps 最大的前 5 个，并按照 pod 来分组：
 
-    topk(5,sum(rate({filename="/var/log/nginx/access.log"}[5m])) by (pod)))
+```logql
+topk(5,sum(rate({filename="/var/log/nginx/access.log"}[5m])) by (pod)))
+```
 
 ## Binary Operators(二元运算符)
 
@@ -492,7 +517,9 @@ Loki 存的是日志，都是文本，怎么计算呢？显然 LogQL 中的数�
 
 比如我们要找到某个业务日志里面的错误率，就可以按照如下方式计算：
 
-    sum(rate({app="foo", level="error"}[1m])) / sum(rate({app="foo"}[1m]))
+```logql
+sum(rate({app="foo", level="error"}[1m])) / sum(rate({app="foo"}[1m]))
+```
 
 ### 逻辑运算
 
@@ -504,7 +531,9 @@ Loki 存的是日志，都是文本，怎么计算呢？显然 LogQL 中的数�
 
 比如：
 
-    rate({app=~"foo|bar"}[1m]) and rate({app="bar"}[1m])
+```logql
+rate({app=~"foo|bar"}[1m]) and rate({app="bar"}[1m])
+```
 
 ### 比较运算
 
@@ -519,24 +548,32 @@ LogQL 支持的比较运算符和 PromQL 一样，包括：
 
 通常我们使用区间向量计算后会做一个阈值的比较，这对应告警是非常有用的，比如统计 5 分钟内 error 级别日志条目大于 10 的情况：
 
-    count_over_time({app="foo", level="error"}[5m]) > 10
+```logql
+count_over_time({app="foo", level="error"}[5m]) > 10
+```
 
 我们也可以通过布尔计算来表达，比如统计 5 分钟内 error 级别日志条目大于 10 为真，反正则为假：
 
-    count_over_time({app="foo", level="error"}[5m]) > bool 10
+```logql
+count_over_time({app="foo", level="error"}[5m]) > bool 10
+```
 
 ## 注释
 
 LogQL 查询可以使用 `#` 字符进行注释，例如：
 
-    {app="foo"} # anything that comes after will not be interpreted in your query
+```logql
+{app="foo"} # anything that comes after will not be interpreted in your query
+```
 
 对于多行 LogQL 查询，可以使用 `#` 排除整个或部分行：
 
-    {app="foo"}
-        | json
-        # this line will be ignored
-        | bar="baz" # this checks if bar = "baz"
+```logql
+{app="foo"}
+    | json
+    # this line will be ignored
+    | bar="baz" # this checks if bar = "baz"
+```
 
 ## Pipeline Errors 管道错误
 
@@ -550,21 +587,24 @@ There are multiple reasons which cause pipeline processing errors, such as:有�
 When those failures happen, Loki won’t filter out those log lines. Instead they are passed into the next stage of the pipeline with a new system label named `__error__`. The only way to filter out errors is by using a label filter expressions. The `__error__` label can’t be renamed via the language.当这些故障发生时，Loki 不会过滤掉这些日志线。相反，它们通过名为\_\_Error\_\_的新系统标签传递到管道的下一个阶段。过滤误差的唯一方法是使用标签过滤表达式。 \_\_Err\_\_标签无法通过语言重命名。
 For example to remove json errors:例如要删除 JSON 错误：
 
-    {cluster="ops-tools1",container="ingress-nginx"}
-        | json
-        | __error__ != "JSONParserErr"
-
+```logql
+{cluster="ops-tools1",container="ingress-nginx"}
+    | json
+    | __error__ != "JSONParserErr"
+```
 Logql
 Alternatively you can remove all error using a catch all matcher such as `__error__ = ""` or even show only errors using `__error__ != ""`.或者，您可以使用捕获器删除所有匹配器，例如\_\_Error\_\_ =“”甚至仅显示使用\_\_Error\_\_！=“”。
 The filter should be placed after the stage that generated this error. This means if you need to remove errors from an unwrap expression it needs to be placed after the unwrap.在生成此错误的阶段后应放置过滤器。这意味着如果您需要从未包装中删除从未包装表达式中删除错误，则需要放置在未包装之后。
 
-    quantile_over_time(
-     0.99,
-     {container="ingress-nginx",service="hosted-grafana"}
-     | json
-     | unwrap response_latency_seconds
-     | __error__=""[1m]
-     ) by (cluster)
+```logql
+quantile_over_time(
+ 0.99,
+ {container="ingress-nginx",service="hosted-grafana"}
+ | json
+ | unwrap response_latency_seconds
+ | __error__=""[1m]
+ ) by (cluster)
+```
 
 Logql
 

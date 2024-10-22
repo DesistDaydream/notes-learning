@@ -54,7 +54,7 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 - --web.cors.origin=".\*" # Regex for CORS origin. It is fully anchored. Example: 'https?://(domain1|domain2).com'
 - --web.enable-remote-write-receiver # 开启 Prometheus [Storage(存储)](/docs/6.可观测性/Metrics/Prometheus/Storage(存储)/Storage(存储).md) 中的 Remote Storage(远程存储) 功能。
 - **--storage.tsdb.path="/PATH/DIR"**# prometheus 存储 metircs 数据的目录(使用绝对路径)
-- **--storage.tsdb.retention.time=TIME** # 数据的存储时间，如果既未设置此标志也未设置 storage.tsdb.retention.size 标志，`默认值：15d`。支持的单位：y，w，d，h，m，s，ms。
+- **--storage.tsdb.retention.time**(DURATION) # 数据的存储时间，如果既未设置此标志也未设置 storage.tsdb.retention.size 标志，`默认值：15d`。支持的单位：y，w，d，h，m，s，ms。
 - --storage.tsdb.retention.size=STORAGE.TSDB.RETENTION.SIZE # [EXPERIMENTAL] Maximum number of bytes that can be stored for blocks. Units supported: KB, MB, GB, TB, PB. This flag is experimental and can be changed in future releases.
 - --storage.tsdb.no-lockfile # 不在数据目录创建锁文件。暂时不理解什么意思，待研究
 - --storage.tsdb.allow-overlapping-blocks # \[EXPERIMENTAL] Allow overlapping blocks, which in turn enables vertical compaction and vertical query merge.
@@ -371,9 +371,9 @@ https://prometheus.io/docs/prometheus/latest/configuration/configuration/#file_s
 
 用户可以通过 JSON 或者 YAML 格式的文件，定义所有的监控目标。同时还可以通过为这些实例添加一些额外的标签信息，这样从这些实例中采集到的样本信息将包含这些标签信息，从而可以为后续按照环境进行监控数据的聚合。
 
-**files(map\[STRING]STRING)** # Prometheus 将要读取的文件路径，将会从该文件发现待采集的 Target。支持正则表达式
+**files**(map\[STRING]STRING) # Prometheus 将要读取的文件路径，将会从该文件发现待采集的 Target。支持正则表达式
 
-**refresh_interval(DURATION)** # 重新读取文件的间隔时间。`默认值：5m`
+**refresh_interval**(DURATION) # 重新读取文件的间隔时间。`默认值：5m`
 
 通过这种方式，Prometheus 会自动的周期性读取文件中的内容。当文件中定义的内容发生变化时，不需要对 Prometheus Server 进行任何的重启操作。
 
@@ -425,43 +425,43 @@ Note：使用该配置进行服务发现，请求都会经过 API Server，集�
 
 #### API Server 配置
 
-**api_server(STRING)** # 指定 k8s 集群中 API Server 的地址。
+**api_server**(STRING) # 指定 k8s 集群中 API Server 的地址。
 
 - 如果该字段为空，则默认 Prometheus 在 k8s 集群内部运行，将自动发现 apiserver，并使用 Pod 中 /var/run/secrets/kubernetes.io/serviceaccount/ 目录下的的 CA 证书 和 Token。
 
-**basic_auth(Object)**# 如果 apiserver 使用基本认证启动，则使用 basic_auth 字段。`authorization` 字段互斥。password 和 password_file 是互斥的。
+**basic_auth**(Object)# 如果 apiserver 使用基本认证启动，则使用 basic_auth 字段。`authorization` 字段互斥。password 和 password_file 是互斥的。
 
-- **username(STRING)** #
-- **password(SECRET)** #
-- **password_file(STRING)** #
+- **username**(STRING) #
+- **password**(SECRET) #
+- **password_file**(STRING) #
 
-**authorization(Object)** # 如果 apiserver 使用证书启动，则使用 authorization 字段。与 `basic_auth` 字段互斥。
+**authorization**(Object) # 如果 apiserver 使用证书启动，则使用 authorization 字段。与 `basic_auth` 字段互斥。
 
-- **type(STRING)** # 发起抓取请求时的身份验证类型。`默认值：Bearer`
-- **credentials(SECRET)** # 用于身份验证的信息。与 credentials_file 字段互斥。如果是 type 字段是 Bearer，那么这里的值就用 Token 即可。该字段就是老版本的 bearer_token 字段
-- **credentials_file(filename)** # 从文件中读取用于身份验证的信息。与 credentials 字段互斥.该字段就是老版本的 bearer_token_file 字段
+- **type**(STRING) # 发起抓取请求时的身份验证类型。`默认值：Bearer`
+- **credentials**(SECRET) # 用于身份验证的信息。与 credentials_file 字段互斥。如果是 type 字段是 Bearer，那么这里的值就用 Token 即可。该字段就是老版本的 bearer_token 字段
+- **credentials_file**(filename) # 从文件中读取用于身份验证的信息。与 credentials 字段互斥.该字段就是老版本的 bearer_token_file 字段
 
-**oauth2(Object)** # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
+**oauth2**(Object) # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
 
-**tls_config(Object)** # 指定抓取 metrics 请求时的 TLS 设定
+**tls_config**(Object) # 指定抓取 metrics 请求时的 TLS 设定
 
-**proxy_url(STRING)** # Optional proxy URL
+**proxy_url**(STRING) # Optional proxy URL
 
 #### 目标发现的规则配置
 
-**role(STRING)** # 根据 STRING 动态发现地 Target。可用的 STRING 为 endpoints, service, pod, node,ingress。
+**role**(STRING) # 根据 STRING 动态发现地 Target。可用的 STRING 为 endpoints, service, pod, node,ingress。
 
 - 比如，Prometheus 可以自动发现 ep、svc 等等对象作为 scrape 地 target
 
-**namespaces(Object)** # 指定动态发现哪个 namesapce 下的 Target ，如果省略，则 Target 将从所有 namespaces 中动态发现
+**namespaces**(OBJECT) # 指定动态发现哪个 namesapce 下的 Target ，如果省略，则 Target 将从所有 namespaces 中动态发现
 
-- **names([]STRING)**
+- **names**(\[]STRING)
 
-**selectors([]Object)** # 可以根据 selectors 中指定地 label 或者 field 来过滤动态发现的 Target 。如果省略，则不进行任何过滤。
+**selectors**(\[]Object) # 可以根据 selectors 中指定地 label 或者 field 来过滤动态发现的 Target 。如果省略，则不进行任何过滤。
 
-- **role(ROLE)** #
-- **label(STRING)** # STRING 使用 key=value 的格式。
-- **field(STRING)** #
+- **role**(ROLE) #
+- **label**(STRING) # STRING 使用 key=value 的格式。
+- **field**(STRING) #
 
 #### 配置样例
 
@@ -558,6 +558,6 @@ tls_config 字段用来配置 TLS 连接信息。下面描述客户端就是 Pro
 
 **key_file**(FileName) # 密钥文件，用于客户端对服务器的证书认证。
 
-**server_name**(STRING) # ServerName 扩展名，用于指示服务器的名称。ServerName extension to indicate the name of the server. ServerName 概念参考：<https://tools.ietf.org/html/rfc4366#section-3.1)
+**server_name**(STRING) # ServerName 扩展名，用于指示服务器的名称。ServerName 概念参考: https://tools.ietf.org/html/rfc4366#section-3.1
 
 **insecure_skip_verify**(BOOLEAN) # 禁用服务端对证书的验证。类似于 curl 的 -k 选项

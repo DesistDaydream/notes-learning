@@ -194,7 +194,7 @@ EXAMPLE
   - **docker inspect snmp_exporter | jq .\[0].GraphDriver.Data.MergedDir | tr -d """**
   - **docker inspect snmp_exporter --format='{{.GraphDriver.Data.MergedDir}}'**
 - 获取容器的 PID
-  - docker inspect mysql-pxc1-1 --format='{{.State.Pid}}'
+  - `docker inspect nginx --format='{{.State.Pid}}'`
 
 ## kill - kill 一个运行中的容器
 

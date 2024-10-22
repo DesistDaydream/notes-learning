@@ -1,12 +1,14 @@
 ---
 title: Loki 部署
+linkTitle: Loki 部署
+date: 2022-10-23T13:44:00
 weight: 2
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，安装](https://grafana.com/docs/loki/latest/installation/)
 > - [官方文档，基础知识-架构-部署模式](https://grafana.com/docs/loki/latest/fundamentals/architecture/deployment-modes)
 

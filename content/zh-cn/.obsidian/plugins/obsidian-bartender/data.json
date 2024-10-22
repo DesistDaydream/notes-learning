@@ -2450,8 +2450,7 @@
       "docs/7.信息安全/Crypto mgmt/ACME.md",
       "docs/7.信息安全/Crypto mgmt/CFSSL.md",
       "docs/7.信息安全/Crypto mgmt/OpenSSL",
-      "docs/7.信息安全/Crypto mgmt/系统证书管理.md",
-      "docs/7.信息安全/Crypto mgmt/自建CA脚本.md"
+      "docs/7.信息安全/Crypto mgmt/系统证书管理.md"
     ],
     "docs/7.信息安全/Crypto mgmt/OpenSSL": [
       "docs/7.信息安全/Crypto mgmt/OpenSSL/_index.md",
@@ -2841,10 +2840,9 @@
     "docs/学习": [
       "docs/学习/_index.md",
       "docs/学习/学习.md",
-      "docs/学习/提问的艺术.md",
-      "docs/学习/信息检索.md",
       "docs/学习/PKM",
-      "docs/学习/学习资源.md"
+      "docs/学习/提问的艺术.md",
+      "docs/学习/信息检索.md"
     ],
     "docs/学习/PKM": [
       "docs/学习/PKM/_index.md",

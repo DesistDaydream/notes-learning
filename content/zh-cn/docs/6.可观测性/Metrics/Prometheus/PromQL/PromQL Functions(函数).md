@@ -271,16 +271,16 @@ timestamp(v instant-vector) 函数返回向量 v 中的每个样本的时间戳�
 
 下面的函数列表允许传入一个区间向量，它们会聚合每个时间序列的范围，并返回一个瞬时向量：
 
-- avg_over_time(range-vector) : 范围向量内所有度量指标的平均值。
-- min_over_time(range-vector) : 范围向量内所有度量指标的最小值。
-- max_over_time(range-vector) : 范围向量内所有度量指标的最大值。
-- sum_over_time(range-vector) : 范围向量内所有度量指标的求和。
-- count_over_time(range-vector) : 范围向量内所有度量指标的样本数据个数。
-- quantile_over_time(scalar, range-vector) : 范围向量内所有度量指标的样本数据值分位数，φ-quantile (0 ≤ φ ≤ 1)。
-- stddev_over_time(range-vector) : 范围向量内所有度量指标的总体标准差。
-- stdvar_over_time(range-vector) : 范围向量内所有度量指标的总体标准方差。
-- last_over_time(RangeVector) # 范围向量内，最新时间点的值
-- present_over_time(RangeVector) # 没懂
+- **avg_over_time(range-vector)** # 范围向量内所有度量指标的平均值。
+- **min_over_time(range-vector)** # 范围向量内所有度量指标的最小值。
+- **max_over_time(range-vector)** # 范围向量内所有度量指标的最大值。
+- **sum_over_time(range-vector)** # 范围向量内所有度量指标的求和。
+- **count_over_time(range-vector)** # 范围向量内所有度量指标的样本数据个数。
+- **quantile_over_time(scalar, range-vector)** # 范围向量内所有度量指标的样本数据值分位数，φ-quantile (0 ≤ φ ≤ 1)。
+- **stddev_over_time(range-vector)** # 范围向量内所有度量指标的总体标准差。
+- **stdvar_over_time(range-vector)** # 范围向量内所有度量指标的总体标准方差。
+- **last_over_time(RangeVector)** # 范围向量内，最新时间点的值
+- **present_over_time(RangeVector)** # 没懂
 
 注意: 即使范围向量内的值分布不均匀，它们在聚合时的权重也是相同的。
 
@@ -362,6 +362,8 @@ label_replace(
 
 **vector()** # vector(s scalar) 函数将标量 s 作为没有标签的即时向量返回，即返回结果为：key: value= {}, s
 
+**scalar()** # scalar(v instant-vector) 函数的参数是一个单元素的瞬时向量,它返回其唯一的时间序列的值作为一个标量。如果度量指标的样本数量大于 1 或者等于 0, 则返回 NaN。
+
 idelta()
 
 idelta(v range-vector) 的参数是一个区间向量, 返回一个瞬时向量。它计算最新的 2 个样本值之间的差值。
@@ -431,9 +433,6 @@ histogram_quantile 这个函数是根据假定每个区间内的样本分布是�
 
 30. round()
     round(v instant-vector, to_nearest=1 scalar) 函数与 ceil 和 floor 函数类似，返回向量中所有样本值的最接近的整数。to_nearest 参数是可选的,默认为 1,表示样本返回的是最接近 1 的整数倍的值。你也可以将该参数指定为任意值（也可以是小数），表示样本返回的是最接近它的整数倍的值。
-
-31. scalar()
-    scalar(v instant-vector) 函数的参数是一个单元素的瞬时向量,它返回其唯一的时间序列的值作为一个标量。如果度量指标的样本数量大于 1 或者等于 0, 则返回 NaN。
 
 32. sort()
     sort(v instant-vector) 函数对向量按元素的值进行升序排序，返回结果：key: value = 度量指标：样本值\[升序排列]。

@@ -1,7 +1,7 @@
 ---
-title: "Loki"
-linkTitle: "Loki"
-date: "2023-06-12T12:01"
+title: Loki
+linkTitle: Loki
+date: 2022-06-12T12:01:00
 weight: 1
 ---
 

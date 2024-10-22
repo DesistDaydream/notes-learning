@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - [官方文档，在生产环境运行你的应用-管理应用数据-存储概述](https://docs.docker.com/storage/)
+> - [官方文档，在生产环境运行你的应用 - 管理应用数据 - 存储概述](https://docs.docker.com/storage/)
 
 当关闭并重启 Container 的时候，其内的数据不受影响；但删除 Docker 容器后，则其内对最上面的可写层操作的内容则全部丢失，这时候会存在几个问题
 

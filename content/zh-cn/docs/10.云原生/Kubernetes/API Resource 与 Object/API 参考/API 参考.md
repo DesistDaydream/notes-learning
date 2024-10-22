@@ -35,7 +35,7 @@ weight: 1
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/kubernetes/api/20230419102123.png)
 
-详见：[YAML](/docs/2.编程/无法分类的语言/YAML.md#各种产品官方文档中对%20YAML%20格式的配置文件的描述) 中关于对各种文档的使用说明示例。
+详见：[PKM](docs/学习/PKM/PKM.md) 中关于对各种文档的使用说明示例。
 
 下面是几种基本的类型介绍：
 

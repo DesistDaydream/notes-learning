@@ -12,15 +12,15 @@ weight: 2
 > - [官方文档](https://docs.docker.com/compose/compose-file/)
 > - [v3 版本规范](https://docs.docker.com/compose/compose-file/compose-file-v3/)
 
-Compose 文件将每个容器抽象为一个 service。顶层字段 service 的下级字段，用来定义该容器的名称。
+Compose 文件是一个 [YAML](docs/2.编程/无法分类的语言/YAML.md) 格式的配置文件，Compose 将每个容器抽象为一个 service。顶层字段 service 的下级字段，用来定义该容器的名称。
 
 一个 Docker Compose 文件中通常包含如下顶级字段：
 
 - **version** # **必须的**。
-- **services**
-- **networks**
-- **volumes**
-- **secrets**
+- **services**(map\[STRING][services](#services)) # services 
+- **networks**([networks](#networks))
+- **volumes**([volumes](#volumes))
+- **secrets**([secrets](#secrets))
 
 # version
 
@@ -300,7 +300,7 @@ logging:
 
 - **host** # 使用宿主机网络。i.e. 让容器加入 1 号进程的网络名称空间
 - **none** # 关闭所有容器网络。
-- **service:${ServiceName}** # 让该容器加入其他容器的网络，让两个容器共享 network namespace。
+- **service:${ServiceName}** # 让该容器加入其他容器的网络，让两个容器共享 Network namespace。
   - Notes: ServiceName 就是顶层字段 services 的下级字段的名称
   - 关于容器网络更详细的内容详见 [Docker Network](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20Network.md)
 
@@ -309,9 +309,19 @@ logging:
 >
 > TODO: 被加入的容器若重启后，加入者无法自动重新加入
 
+e.g. 下面的例子中，other-service 会加入 some-service 的 Network namespace
+
+```yaml
+services:
+  some-service:
+    networks:
+      - some-network
+  other-service:
+    network_mode: service:some-service
+```
 ## networks
 
-配置容器连接的网络，引用顶级 networks 下的条目 。
+配置容器连接的网络，引用顶级 networks 下的条目 。networks 节点有两种语法
 
 > Tips: 配置该字段后，相当于让该容器使用 Bridge 驱动的网络。
 
@@ -327,11 +337,11 @@ services:
 
 ```yaml
 services:
-  some-service:
+  some-service: # 自定义 service 名称
     networks:
-      some-network:
+      some-network: # 让 service 连接到 some-network 网络
         aliases:
-         - alias1
+         - alias1 # 在 some-network 网络中的别名
       other-network:
         aliases:
          - alias2
@@ -345,6 +355,7 @@ networks:
 ```
 
 > [!Note] network 节点下，使用 aliases 与不使用 aliases 的语法是不一样的
+
 ## ports
 
 配置端口映射，有 3 种语法

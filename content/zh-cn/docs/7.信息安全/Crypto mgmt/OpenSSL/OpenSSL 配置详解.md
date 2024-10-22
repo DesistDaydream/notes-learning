@@ -6,9 +6,9 @@ title: OpenSSL 配置详解
 
 > 参考：
 >
-> - [Manual(手册),config(5)](https://www.openssl.org/docs/manmaster/man5/config.html)
-> - [Manual(手册),x509v3_config(5)](https://www.openssl.org/docs/manmaster/man5/x509v3_config.html)
-> - [Manual(),openssl-req(1)](https://www.openssl.org/docs/man3.0/man1/openssl-req.html)-CONFIGURATION FILE FORMAT 部分
+> - [Manual(手册), config(5)](https://www.openssl.org/docs/manmaster/man5/config.html)
+> - [Manual(手册), x509v3_config(5)](https://www.openssl.org/docs/manmaster/man5/x509v3_config.html)
+> - [Manual(手册), openssl-req(1)](https://www.openssl.org/docs/man3.0/man1/openssl-req.html)-CONFIGURATION FILE FORMAT 部分
 > - <https://www.cnblogs.com/f-ck-need-u/p/6091027.html>
 
 OpenSSL 配置文件为 OpenSSL 库及其二进制程序提供运行时参数。这是一个 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的配置文件。
@@ -87,6 +87,7 @@ OpenSSL 配置文件为 INI 格式的配置扩展了很多功能，并规定了�
 # \[req]
 
 **distinguished_name = \<SectionName>** # 生成证书或 CSR 时，如何配置 DN(专有名称)。
+
 **req_extensions = \<SectionName>** # 要添加到 CSR 的扩展信息。
 
 ## \[Distinguished_Name]

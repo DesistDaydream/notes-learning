@@ -1,11 +1,14 @@
 ---
 title: Data Model(数据模型)
+linkTitle: Data Model(数据模型)
+date: 2021-10-22T22:05:00
+weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - 官方文档没有专门讲 Log Stream 的章节，Stream 的概念都是在其他章节提到的
 > - [官方文档，入门-标签](https://grafana.com/docs/loki/latest/getting-started/labels/)
 > - [官方文档，运维-存储](https://grafana.com/docs/loki/latest/operations/storage/)
