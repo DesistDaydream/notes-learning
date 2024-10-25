@@ -11,6 +11,9 @@ title: PostgreSQL
 
 PostgreSQL 是一个功能强大的开源对象关系数据库系统，经过 30 多年的积极开发，在可靠性、特性健壮性和性能方面赢得了很高的声誉。
 
+## Schema
+
+
 # PostgreSQL 部署
 
 ## 部署

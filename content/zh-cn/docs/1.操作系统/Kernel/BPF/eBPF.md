@@ -348,6 +348,10 @@ https://ebpf-go.dev/guides/getting-started/
 
 - [基于 eBPF 的开源项目 eCapture 介绍：无需 CA 证书抓 https 网络明文通讯](https://mp.weixin.qq.com/s/PHYR-E02A6nR0N4aim26pg)
 
+[GitHub 项目，danger-dream/ebpf-firewall](https://github.com/danger-dream/ebpf-firewall)
+
+- 使用 Go 语言调用 Cilium 的 eBPF 库实现的防火墙程序。具有实时入站流量监控、规则过滤和黑名单管理等功能。主要用于在资源有限的 VPS 中进行入站流量监控和过滤。
+
 # 其他
 
 其实，eBPF 是一种设计思想，eBPF 是一个 **General purpose execution Engine(通用目的执行引擎)**。换句话说，eBPF 是一个**最小指令集架构**（a minimal instruction set architecture），在设计时**两个主要考虑**：
