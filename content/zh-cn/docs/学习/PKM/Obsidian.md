@@ -108,6 +108,10 @@ Property 可以在开头的 `---` 包裹的文章元数据中使用 tags 关键�
 
 # 第三方插件
 
+清理没有引用的图片
+
+- 
+
 ## 自定义排序目录
 
 众人的需求: https://forum.obsidian.md/t/file-explorer-custom-sort/1602

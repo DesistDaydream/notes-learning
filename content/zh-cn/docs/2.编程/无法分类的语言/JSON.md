@@ -151,6 +151,35 @@ https://github.com/kaptinlin/jsonschema
 
 https://github.com/invopop/jsonschema
 
+## 参考
+
+https://json-schema.org/understanding-json-schema/reference
+
+基本示例
+
+```json
+{
+  "title": "Match anything",
+  "description": "This is a schema that matches anything.",
+  "default": "Default value",
+  "examples": [
+    "Anything",
+    4035
+  ],
+  "deprecated": true,
+  "readOnly": true,
+  "writeOnly": false
+}
+```
+
+### 字段关键字
+
+#### 通用关键字
+
+#### 特定于类型的关键字
+
+
+
 ## JSON Schema 规范
 
 > 参考：
@@ -167,4 +196,3 @@ https://github.com/invopop/jsonschema
 
 [JSON Schema Validation](https://json-schema.org/draft/2020-12/json-schema-validation.html) 包含各种用于验证功能的关键字及用法
 
-在 https://json-schema.org/understanding-json-schema/reference 也能看到关键字的说明

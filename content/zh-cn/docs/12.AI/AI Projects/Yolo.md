@@ -11,8 +11,8 @@ weight: 20
 >
 > - [GitHub 项目，ultralytics/ultralytics](https://github.com/ultralytics/ultralytics)
 > - [ultralytics 官网](https://www.ultralytics.com/)
-> - https://medium.com/@gary.tsai.advantest/yolo-%E7%B3%BB%E5%88%97%E5%A4%A7%E8%A3%9C%E5%B8%96-yolov7-b1ce83a7035
-> - https://www.bilibili.com/video/BV1sCtHewEw7
+> - [YOLO 的歷史進程！YOLO 大補帖！](https://medium.com/@gary.tsai.advantest/yolo-%E7%B3%BB%E5%88%97%E5%A4%A7%E8%A3%9C%E5%B8%96-yolov7-b1ce83a7035)
+> - https://www.bilibili.com/video/BV1sCtHewEw7 v8 与 v10 的选择，为什么不要用 v10 而是用 v8，为什么 v10 的检测效果不好
 
 [YOLO](https://arxiv.org/abs/1506.02640)(You Only Look Once）是一种流行的物体检测和图像分割模型，由华盛顿大学的约瑟夫-雷德蒙（Joseph Redmon）和阿里-法哈迪（Ali Farhadi）开发。YOLO 于 2015 年推出，因其高速度和高精确度而迅速受到欢迎。
 
