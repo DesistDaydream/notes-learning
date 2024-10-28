@@ -9,7 +9,9 @@ weight: 20
 
 > 参考：
 >
+> - [GitHub 组织，ultralytics](https://github.com/ultralytics)
 > - [GitHub 项目，ultralytics/ultralytics](https://github.com/ultralytics/ultralytics)
+> - [GitHub 项目，ultralytics/assets](https://github.com/ultralytics/assets) Ultralytics 的模型、数据集、etc. 资产
 > - [ultralytics 官网](https://www.ultralytics.com/)
 > - [YOLO 的歷史進程！YOLO 大補帖！](https://medium.com/@gary.tsai.advantest/yolo-%E7%B3%BB%E5%88%97%E5%A4%A7%E8%A3%9C%E5%B8%96-yolov7-b1ce83a7035)
 > - https://www.bilibili.com/video/BV1sCtHewEw7 v8 与 v10 的选择，为什么不要用 v10 而是用 v8，为什么 v10 的检测效果不好

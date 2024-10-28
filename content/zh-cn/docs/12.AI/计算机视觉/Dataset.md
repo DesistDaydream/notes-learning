@@ -19,7 +19,13 @@ weight: 20
 >
 > - [OpenCV 博客，Data Annotation – A Beginner’s Guide](https://opencv.org/blog/data-annotation/)
 
-用于模型训练的数据中，[已标记的数据](/docs/12.AI/机器学习/Dataset.md) 中那些标记称为 **Annotations(注释)**。在使用模型时，在识别出来的对象添加类似数据标记一样的东西，也称为 **Annotations(注释)**
+[计算机视觉](docs/12.AI/计算机视觉/计算机视觉.md) 中的数据注释常见如下几种：
+
+- **Bounding box**
+- Segmentation
+- KeyPoint
+- Lines and Splines
+- etc. TODO
 
 下图中各种颜色的方框都是注释（数字代码是在模型训练时由数据集配置文件中定义其含义），通过 [Object detection](/docs/12.AI/计算机视觉/Object%20detection.md) 识别出对象并添加对象注释
 
@@ -31,7 +37,7 @@ weight: 20
 
 上面只是用两种类型举例，还有很多其他的注释类型，这些都属于图像的 **Annotations(注释)**
 
-# Bounding box
+## Bounding box
 
 > 参考：
 >
@@ -71,6 +77,21 @@ Bounding box 效果如下图所示，各种矩形框配上数字，以表示出�
 - 91 stuff categories
 - 5 captions per image
 - 250,000 people with keypoints
+
+COCO 数据集常见任务类型：
+
+- **[Object detection](docs/12.AI/计算机视觉/Object%20detection.md)(对象监测)** # 简称 Detection
+  - https://cocodataset.org/#detection-2020
+- **DensePose** # COCO DensePose 任务旨在推动在具有挑战性、不受控制的条件下对人体姿势进行密集估计的最先进技术。
+  - https://cocodataset.org/#densepose-2020
+- **Keypoint detection(关键点监测)** # 简称 Keypoints。COCO 关键点检测任务需要在具有挑战性、不受控制的条件下定位人物关键点。关键点任务涉及同时检测人员并定位其关键点（测试时未给出人员位置）。有关此任务的完整详细信息，请参阅[关键点评估](https://cocodataset.org/#keypoints-eval)页面。
+  - https://cocodataset.org/#keypoints-2020
+-  **Stuff Segmentation(东西分割)** # 简称 Stuff。COCO Stuff Segmentation Task 旨在推动 stuff 类语义分割的最新技术。对象检测任务针对的是事物类别（人、汽车、大象），而该任务则侧重于事物类别（草、墙壁、天空）。有关内容分割任务的完整详细信息，请参阅内容评估页面。注意：新引入的全景分割任务同时解决了事物和事物类别的识别。
+  - https://cocodataset.org/#stuff-2019
+- **Panoptic Segmentation(全景分割)** # 简称 Panoptic。全景分割解决了事物和事物类别，统一了通常不同的语义和实例分割任务。其目的是生成丰富且完整的连贯场景分割，这是迈向自动驾驶或增强现实等现实世界视觉系统的重要一步。有关全景分割任务的完整详细信息，请参阅[全景评估](https://cocodataset.org/#panoptic-eval)页面。
+  - https://cocodataset.org/#panoptic-2020
+- **Image Captioning** # 简称 Captions。用文字描述图像
+  - https://cocodataset.org/#captions-2015
 
 ### ImageNet
 

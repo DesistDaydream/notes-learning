@@ -40,7 +40,8 @@ weight: 20
 
 人们通过 **Data annotating/Data Labeling(数据标注)** 行为，处理一组未标记的数据，为每一条数据添加数据注释。这些被添加了注释的数据称为 **Labeled data/Annotated data(已标记的数据)**
 
-> Notes: Data annotation 是非常常见的词，在口语化或各种文章中，通常有多种含义。既可以表示动作，也可以当作形容词描述一个实体，也可以作名词表示一个实体。e.g. 我执行了 Data annotation(数据标注) 行为，添加了 Data annotation(数据注释)，让这些数据变成了 Data annotation(具有注释的数据)。( ╯□╰ )
+> [!Attention]
+> Data annotation 是非常常见的词，在口语化或各种文章中，通常有多种含义。既可以表示动作，也可以当作形容词描述一个实体，也可以作名词表示一个实体。e.g. 我执行了 Data annotation(数据标注) 行为，添加了 Data annotation(数据注释)，让这些数据变成了 Data annotation(具有注释的数据)。( ╯□╰ )
 >
 > 个人感觉 Annotation 是 Label 的超集，Label 应该是 Annotation 的一种。
 
