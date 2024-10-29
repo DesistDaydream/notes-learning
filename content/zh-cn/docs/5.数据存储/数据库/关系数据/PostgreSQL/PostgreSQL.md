@@ -13,6 +13,13 @@ PostgreSQL 是一个功能强大的开源对象关系数据库系统，经过 30
 
 ## Schema
 
+https://www.postgresql.org/docs/current/ddl-schemas.html
+
+PostgreSQL 的数据库中包含 1 个或多个 Schema，所有的 Table 是归属在 Schema 下的。
+
+默认情况下，创建的 Table 自动放入名为 **public** 的 Schema 下。每个数据库都会包含 public Schema。
+
+要访问非 public Schema 下的 Table，使用 `.` 符号。e.g. `SchemaName.TableName`，如果用最简单的 SQL 举例就是： `select * from schema_demo.table_one` 列出名为 schema_demo 模式中的 table_one 表下的所有列。
 
 # PostgreSQL 部署
 

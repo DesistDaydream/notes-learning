@@ -96,13 +96,25 @@ sudo apt install gcc
 
 ## 交叉编译
 
+### 系统交叉编译
+
 想在 Windows 中编译依赖 gcc 的项目，则需要安装适用于 Windows 的 [GCC](/docs/2.编程/高级编程语言/C/C%20环境安装与使用/GCC.md) 编译器 [MinGW-w64](/docs/2.编程/高级编程语言/C/C%20环境安装与使用/GCC.md#MinGW-w64)
 
 想在 Linux 中编译出 Windows 的程序。需要安装 Windows 版的 gcc 工具 [MinGW-w64](/docs/2.编程/高级编程语言/C/C%20环境安装与使用/GCC.md#MinGW-w64)(有的环境还需要安装 gcc-multilib 包)
 
+主要使用 GOOS 环境变量
+
 ```bash
 sudo apt-get install gcc-mingw-w64
 GOOS=windows GOARCH=amd64 CGO_ENABLED=1 CC=x86_64-w64-mingw32-gcc go build
+```
+
+### CPU 架构交叉编译
+
+主要使用 GOARCH 环境变量
+
+```bash
+GOOS=linux GOARCH=arm64 go build
 ```
 
 ## 在容器中编译

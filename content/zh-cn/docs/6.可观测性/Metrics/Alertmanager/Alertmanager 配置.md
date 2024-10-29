@@ -191,10 +191,30 @@ url: <string>
 
 ## inhibit_rules
 
-抑制规则配置
+抑制规则配置。
+
+当 source_matchers 字段的匹配规则匹配到告警后，将 target_matchers 字段的匹配规则匹配到的告警抑制
+
+**source_matchers**(\[][matcher](#matcher)) # 只有当 source_matchers 匹配到告警时，才能让 target_matchers 设置的抑制规则生效。
 
 **target_matchers**(\[][matcher](#matcher)) # 要静音的目标警报必须满足的匹配器列表。
 
+**equal**(\[]STRING) # 添加特殊条件，只有当 source_matchers 与 target_matchers 匹配到的告警都具有 equal 设置的相同的标签时，才让抑制规则生效。
+
+```
+    inhibit_rules:    # 抑制规则
+      - source_matchers:
+          - instance="node13"
+        target_matchers:
+          - project="test-web"   # 当 instance 为 node13 的任何告警触发时，所有 project 为 test-web 的告警将被抑制
+
+      - source_matchers:
+          severity="critical"
+        target_matchers:
+          severity="warning"   # 当 severity 为 critical 的任何告警触发时，所有 severity 为 warning 的告警将被抑制
+        equal:
+        - project             # 作用就是 source 和 target 中都包含名为 project 标签，且标签值一致时，才会抑制
+```
 
 # 配置文件中的通用配置字段
 
@@ -224,10 +244,6 @@ alert_target="test"
     - matchers:
         - severity = warning
       receiver: "webhook-warn"
-# inhibit_rules 字段下 matcher 用法，将 KEY 为 alert_target，VALUE 为 test 的告警静音
-inhibit_rules:
-  - target_matchers:
-      - alert_target="test"
 ```
 
 TODO: matchers 下多个元素是和还是或的关系？
