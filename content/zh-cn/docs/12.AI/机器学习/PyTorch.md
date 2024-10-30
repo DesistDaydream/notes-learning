@@ -48,3 +48,13 @@ print(torch.cuda.is_available())
 # 学习
 
 [B 站，10分钟入门神经网络 PyTorch 手写数字识别](https://www.bilibili.com/video/BV1GC4y15736)
+
+# TorchScript
+
+https://pytorch.org/docs/stable/jit.html
+
+TorchScript 是一种从 PyTorch 代码创建可序列化和可优化模型的方法。任何 TorchScript 程序都可以从 Python 进程保存并加载到不存在 Python 依赖项的进程中。
+
+TorchScript 是 PyTorch 模型（nn.Module 的子类）的中间表示形式，可以在 C++ 等高性能环境中运行。
+
+人话：就是一种读写模型的协议，通常以 .pt、.pth、.torchscript 作为文件后缀

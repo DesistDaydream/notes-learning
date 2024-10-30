@@ -125,3 +125,14 @@ https://www.reddit.com/r/learnmachinelearning/comments/19f04y3/what_is_the_diffe
 
 虽然将训练方式分成了三类，但是本质上，这三种说法其实都是训练模型
 
+# ONNX
+
+> 参考：
+>
+> - [GitHub 项目，onnx/onnx](https://github.com/onnx/onnx)
+
+**Open Neural Network Exchange (开放神经网络交换，简称：ONNX)** 是一个开放的生态系统，使人工智能开发人员能够随着项目的发展选择正确的工具。 ONNX 为人工智能模型（深度学习和传统机器学习）提供开源格式。它定义了可扩展的计算图模型，以及内置运算符和标准数据类型的定义。目前我们重点关注推理（评分）所需的能力。
+
+人话：机器学习互操作性的开放标准，就是协议，也就是定义了模型应该用什么的方式 读/写，用什么格式存储。
+
+绝大部分设计出来的模型，都支持导出成 .onnx 格式。e.g. [Yolo](docs/12.AI/AI%20Projects/Yolo.md) 可以导出成 .onnx，也支持导出成用于 [PyTorch](docs/12.AI/机器学习/PyTorch.md) 的 .torchscript 格式，etc. 
