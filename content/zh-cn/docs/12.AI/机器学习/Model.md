@@ -125,7 +125,13 @@ https://www.reddit.com/r/learnmachinelearning/comments/19f04y3/what_is_the_diffe
 
 虽然将训练方式分成了三类，但是本质上，这三种说法其实都是训练模型
 
-# ONNX
+# 模型文件格式
+
+ONNX 是业界通用的格式，还有很多特定于项目的格式。
+
+绝大部分模型，都支持导出成 .onnx 格式。e.g. [Yolo](docs/12.AI/AI%20Projects/Yolo.md) 可以导出成 .onnx，也支持导出成用于 [PyTorch](docs/12.AI/机器学习/PyTorch.md) 的 torchscript 格式，etc. 
+
+## ONNX
 
 > 参考：
 >
@@ -135,4 +141,15 @@ https://www.reddit.com/r/learnmachinelearning/comments/19f04y3/what_is_the_diffe
 
 人话：机器学习互操作性的开放标准，就是协议，也就是定义了模型应该用什么的方式 读/写，用什么格式存储。
 
-绝大部分设计出来的模型，都支持导出成 .onnx 格式。e.g. [Yolo](docs/12.AI/AI%20Projects/Yolo.md) 可以导出成 .onnx，也支持导出成用于 [PyTorch](docs/12.AI/机器学习/PyTorch.md) 的 .torchscript 格式，etc. 
+# 模型可视化
+
+> 参考：
+>
+> - [GitHub 项目，lutzroeder/netron](https://github.com/lutzroeder/netron)
+> - https://mltalks.medium.com/pytorch%E6%A8%A1%E5%9E%8B%E7%BD%91%E7%BB%9C%E5%8F%AF%E8%A7%86%E5%8C%96%E7%94%BB%E5%9B%BE%E5%B7%A5%E5%85%B7%E5%90%88%E9%9B%86-%E6%96%87%E5%90%8E%E9%99%84%E4%B8%8A%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81-a796ee726a87
+
+Netron 是用于神经网络、深度学习和机器学习模型的可视化工具
+
+下面是 https://netron.app/ 可视化模型的效果，可以显示模型的神经结构以及参数，每个小方框都可以惦记查看具体数据
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ai/model/202410311032939.png)

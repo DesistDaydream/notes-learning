@@ -2869,6 +2869,11 @@
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON/_index.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON/JSON.md",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON/go-simplejson 库.md"
+    ],
+    "docs/6.可观测性/OpenTelemetry": [
+      "docs/6.可观测性/OpenTelemetry/_index.md",
+      "docs/6.可观测性/OpenTelemetry/OpenTelemetry.md",
+      "docs/6.可观测性/OpenTelemetry/Collector.md"
     ]
   },
   "actionBarOrder": {},

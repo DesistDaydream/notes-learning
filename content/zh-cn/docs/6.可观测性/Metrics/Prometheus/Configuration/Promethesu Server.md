@@ -115,6 +115,8 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 
 **scrape_timeout(DURATION)** # 对 targets 发起抓取请求的超时时间。`默认值：10s`。
 
+**scrape_protocols** # 抓取 Targets 的协议。`默认值: OpenMetricsText1.0.0, OpenMetricsText0.0.1, PrometheusText0.0.4`
+
 **evaluation_interval(DURATION)** # 评估规则的周期。`默认值：1m`。
 
 > 该字段主要用于向规则配置文件传递全局的配置。这个值会被 [Rules](/docs/6.可观测性/Metrics/Prometheus/Configuration/Rules.md)文件中的 `.groups.interval` 覆盖，详见 interval 字段详解
