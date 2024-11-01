@@ -6,8 +6,8 @@ title: nmcli connection 子命令
 
 > 参考：
 >
->- [Manual(手册)，nmcli(1)-Connection Management Commands](https://networkmanager.dev/docs/api/latest/nmcli.html#connection_management_commands)
-> - [红帽官方文档,RedHat7-网络指南-使用 nmcli 创建带有 VLAN 的 bond 并作为 Bridge 的从设备](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-vlan_on_bond_and_bridge_using_the_networkmanager_command_line_tool_nmcli)
+>- [Manual(手册)，nmcli(1) - Connection Management Commands](https://networkmanager.dev/docs/api/latest/nmcli.html#connection_management_commands)
+> - [红帽官方文档，RedHat7 - 网络指南 - 使用 nmcli 创建带有 VLAN 的 bond 并作为 Bridge 的从设备](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-vlan_on_bond_and_bridge_using_the_networkmanager_command_line_tool_nmcli)
 
 **nmcli connection {show | up | down | modify | add | edit | clone | delete | monitor | reload | load | import | export} \[ARGUMENTS...]**
 

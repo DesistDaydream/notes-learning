@@ -230,7 +230,7 @@ tar -zxvf tailscale_${TailscaleVersion}_${TailscaleArch}.tgz
 
 这个包里包含如下文件：
 
-```bash
+```text
 tailscale_${TailscaleVersion}_${TailscaleArch}/tailscale
 tailscale_${TailscaleVersion}_${TailscaleArch}/tailscaled
 tailscale_${TailscaleVersion}_${TailscaleArch}/systemd/

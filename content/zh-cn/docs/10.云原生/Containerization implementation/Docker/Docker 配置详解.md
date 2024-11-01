@@ -305,10 +305,6 @@ sudo systemctl restart docker
 sudo systemctl show --property=Environment docker
 ```
 
-6. 从 `docker info` 的结果中查看配置项。
-
-![](https://www.lfhacks.com/tech/pull-docker-images-behind-proxy/dockerproxy.png)
-
 这样配置后，应该可以正常拉取 docker 镜像。
 
 ## 结论
