@@ -2873,7 +2873,9 @@
     "docs/6.可观测性/OpenTelemetry": [
       "docs/6.可观测性/OpenTelemetry/_index.md",
       "docs/6.可观测性/OpenTelemetry/OpenTelemetry.md",
-      "docs/6.可观测性/OpenTelemetry/Collector.md"
+      "docs/6.可观测性/OpenTelemetry/Collector.md",
+      "docs/6.可观测性/OpenTelemetry/Configuration.md",
+      "docs/6.可观测性/OpenTelemetry/Component.md"
     ]
   },
   "actionBarOrder": {},

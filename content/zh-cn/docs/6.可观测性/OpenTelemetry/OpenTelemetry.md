@@ -24,7 +24,7 @@ weight: 1
 - **Traces(链路追踪数据)** # [追踪系统](/docs/6.可观测性/Traces/追踪系统.md)
 - **Baggage** # TODO: 这是啥
 
-注意：OpenTelemetry 不是像 Prometheus、Jaeger 那样的可观察性后端。相反，OpenTelemetry 支持将数据导出到各种开源和商业的后端产品中，它提供了一个可插拔的架构，因此可以轻松添加其他技术协议和格式。
+Notes：OpenTelemetry 不是像 Prometheus、Jaeger 那样的可观测性后端。相反，OpenTelemetry 支持将数据导出到各种开源和商业的后端产品中，它提供了一个可插拔的架构，因此可以轻松添加其他技术协议和格式。
 
 OTel 之于可观测性系统，类似 OCI 之于容器。但是能比 OCI 提供更多。
 
@@ -37,9 +37,15 @@ OTel 之于可观测性系统，类似 OCI 之于容器。但是能比 OCI 提�
 - **SDK** # 用于为各种编程语言提供编写符合 OpenTelemetry 规范的工具
 - **自动 instrumentation 和 贡献包** # TODO: 没搞懂这是什么？
 
-## OpenTelemetry 历史
+## Signals
 
-OTel 于 2019 年 5 月，由 [OpenTracing](https://opentracing.io/) 与 OpenCensus 合并而成([Google Open Source](https://opensource.googleblog.com/2019/05/opentelemetry-merger-of-opencensus-and.html))，
+https://opentelemetry.io/docs/concepts/signals/
+
+OpenTelemetry 创建了一个名词，将 *可观测数据（遥测数据）* 抽象为 Signals。
+
+OpenTelemetry 是围绕 Signals 或 遥测类别 构建的。Metrics、Logs、Traces、Baggage 都是一种 Signals。每个 Signals 代表一组连贯的、独立的功能。每个信号都遵循单独的生命周期，定义其当前的稳定性级别。
+
+OpenTelemetry 的目的是收集、处理和导出 **Signals**。传统定义中，[Signal(信号)](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication(进程间通信)/Signal(信号).md) 是系统输出，描述操作系统和应用程序的底层活动。在 OpenTelemetry 中，Signals 可以是您想要在特定时间点测量的内容，例如温度或内存使用情况，也可以是您想要跟踪的分布式系统组件的事件。您可以将不同的 Signals 组合在一起，从不同角度观察同一项技术的内部运作情况。
 
 # OpenTelemetry 实现
 
@@ -77,6 +83,14 @@ Grafana Agent 适用于希望收集和转发遥测数据以进行分析和待命
 > - https://flashcat.cloud/blog/opentelemetry-demo-step-by-step/
 
 **OpenTelemetry Demo** 是一个由用不同编程语言编写的微服务组成的 Demo 系统，这些微服务通过 gRPC 和 HTTP 相互通信；以及一个使用 [Locust](https: locust.io/) 来伪造用户流量的负载生成器。
+
+这是一个基于微服务的分布式系统，旨在说明 OpenTelemetry 在近乎真实的环境中的实现，这个 demo 中提供了许多的服务，而且包含了几乎所有主流的语言，可以很好的模拟我们实际的使用场景。
+
+- 提供可用于演示 OpenTelemetry 仪器和可观测性的分布式系统的实际示例。
+- 为供应商、工具作者和其他人构建一个基础，以扩展和演示他们的 OpenTelemetry 集成。
+- 为 OpenTelemetry 贡献者创建一个活生生的示例，用于测试新版本的 API、SDK 以及其他组件或增强功能。
+
+架构图来源: https://opentelemetry.io/docs/demo/architecture/
 
 ```mermaid
 graph TD
@@ -250,3 +264,16 @@ end
 ```
 
 Find the **Protocol Buffer Definitions** in the `/pb/` directory.
+
+# OpenTelemetry 历史
+
+OTel 于 2019 年 5 月，由 [OpenTracing](https://opentracing.io/) 与 OpenCensus 合并而成([Google Open Source](https://opensource.googleblog.com/2019/05/opentelemetry-merger-of-opencensus-and.html))，
+
+# OpenTelemetry Protocol
+
+> 参考：
+>
+> - [GitHub 项目，open-telemetry/opentelemetry-proto](https://github.com/open-telemetry/opentelemetry-proto)
+
+**OpenTelemetry Protocol(简称 OTLP)**
+
