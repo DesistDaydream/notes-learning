@@ -16,7 +16,7 @@ weight: 1
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lei5gl/1616122918518-107de7cd-51b4-4427-8281-8e81f7c2383d.png)
 
-自 1979 年，Unix 版本 7 引用 Chroot Jail 以及 [Chroot](/docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/Chroot.md) 系统调用开始，直到 2013 年开源出的 Docker，2014 年开源出来的 Kubernetes，直到现在的云原生生态的火热。容器技术已经逐步成为主流的基础技术之一。
+自 1979 年，Unix 版本 7 引用 Chroot Jail 以及 [Chroot](/docs/1.操作系统/Kernel/Process/Chroot.md) 系统调用开始，直到 2013 年开源出的 Docker，2014 年开源出来的 Kubernetes，直到现在的云原生生态的火热。容器技术已经逐步成为主流的基础技术之一。
 
 ## 一、什么是容器
 

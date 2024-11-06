@@ -16,7 +16,7 @@ weight: 20
 > [!Notes]
 > 现在设备文件系统称为 devtmpfs 。devfs 的发展过程中有很多名字，udev、devtmpfs。参考 [Linux设备节点创建方式的演变历史](https://www.cnblogs.com/watsondd/p/17337992.html) 文章。
 
-这个文件系统包含一些目录、链接、符号链接和设备，其中一些是可写的。在 [Chroot](/docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/Chroot.md) 环境中，可以使用 devfs 创建一个新的 /dev 挂载点。
+这个文件系统包含一些目录、链接、符号链接和设备，其中一些是可写的。在 [Chroot](/docs/1.操作系统/Kernel/Process/Chroot.md) 环境中，可以使用 devfs 创建一个新的 /dev 挂载点。
 
 The [mknod(8)](<https://man.cx/mknod(8)>) 工具可用于恢复 devfs 下已删除的设备。
 

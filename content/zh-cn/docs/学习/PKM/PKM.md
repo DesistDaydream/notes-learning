@@ -44,7 +44,7 @@ weight: 1
 
 这种规范为了文档的整洁性，让相同层级的字段在一起，可以一眼看到同级内容，让 Value 与 Key 分开，将 Value 所包含的具体内容放在单独链接（i.e. 单独章节）中。
 
-不管是 老式的 [INI](docs/2.编程/无法分类的语言/INI.md)、还是新一些的 [JSON](docs/2.编程/无法分类的语言/JSON.md)、[YAML](docs/2.编程/无法分类的语言/YAML.md)、[TOML](docs/2.编程/无法分类的语言/TOML.md)、etc. 都可以使用这套理论来记录
+不管是 老式的 [INI](/docs/2.编程/无法分类的语言/INI.md)、还是新一些的 [JSON](/docs/2.编程/无法分类的语言/JSON.md)、[YAML](/docs/2.编程/无法分类的语言/YAML.md)、[TOML](/docs/2.编程/无法分类的语言/TOML.md)、etc. 都可以使用这套理论来记录
 
 # 知识管理工具
 

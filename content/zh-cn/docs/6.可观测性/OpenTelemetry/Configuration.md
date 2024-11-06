@@ -95,7 +95,7 @@ service:
       exporters: [otlp]
 ```
 
-type 可用的字符串可以参考 Collector [Component](docs/6.可观测性/OpenTelemetry/Component.md)，像下图，在 opentelemetry-collector、opentelemetry-contrib 项目中，在对应的组件目录下，每个目录都是一个可用的 type，目录名的前缀就是 type 的名称，比如 otlpreceiver 是 OTLP Receiver，prometheusreveiver 是 [Prometheus](docs/6.可观测性/Metrics/Prometheus/Prometheus.md) Receiver，以此类推。
+type 可用的字符串可以参考 Collector [Component](/docs/6.可观测性/OpenTelemetry/Component.md)，像下图，在 opentelemetry-collector、opentelemetry-contrib 项目中，在对应的组件目录下，每个目录都是一个可用的 type，目录名的前缀就是 type 的名称，比如 otlpreceiver 是 OTLP Receiver，prometheusreveiver 是 [Prometheus](/docs/6.可观测性/Metrics/Prometheus/Prometheus.md) Receiver，以此类推。
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/otel/config_type_desc.png)
 

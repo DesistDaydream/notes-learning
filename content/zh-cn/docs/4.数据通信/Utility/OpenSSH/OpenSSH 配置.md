@@ -14,17 +14,15 @@ weight: 2
 
 # sshd_config 文件
 
-**Port NUM** # 设定 sshd 服务监听的端口号
+**Port**(NUM) # 设定 sshd 服务监听的端口号
 
-**ListenAddress \<IP>** # 设定 sshd 服务监听的 IP 地址(全 0 为所有 IP)
+**ListenAddress**(IP) # 设定 sshd 服务监听的 IP 地址(全 0 为所有 IP)
 
 **PermitRootLogin \<yes|no>** # 设定是否允许 root 用户通过 ssh 直接登录
 
 **AllowUsers <User1 User2 User3.......>** # 设定允许通过 ssh 登录的用户 User1,2,3 等等
 
 **AllowGroups <Group1 Group2.........>** # 设定允许通过 ssh 登录的组 Group1,2,3,等等等
-
-**UseDNS**(BOOLEAN) # 指定登陆时是否进行 DNS 解析
 
 [KbdInteractiveAuthentication](https://man.openbsd.org/sshd_config#KbdInteractiveAuthentication) #
 
@@ -35,6 +33,29 @@ weight: 2
 - https://man.openbsd.org/sshd_config#PermitTunnel
 
 **GatewayPorts** # 指定是否允许远程主机连接到为客户端转发的端口。
+
+**ForceCommand** #
+
+- https://man.openbsd.org/sshd_config#ForceCommand
+
+**Match** # 创建一个独立的配置块。满足 Match 指定的匹配条件时，Match 所在行下的所有配置都将覆盖
+
+- https://man.openbsd.org/sshd_config#Match
+
+## 连接行为
+
+**ChrootDirectory**(STRING) # 用户登录成功，利用 [Chroot](/docs/1.操作系统/Kernel/Process/Chroot.md) 能力将用户看到的 `/` 目录改为指定的目录。`默认值: none`
+
+> [!attention]
+> ChrootDirectory 关键字指定的目录及其所有上级目录必须是 root 用户拥有，并且不能被组用户或其他用户写入。i.e. 这些目录的属主和属组必须是 root，权限最多设置为 755。
+>
+> 若不满足上述条件，登录将会失败，并产生 `client_loop: send disconnect: Broken pipe` 报错。
+
+**UseDNS**(BOOLEAN) # 指定登陆时是否进行 DNS 解析
+
+## SFTP 子系统相关
+
+**Subsystem** # 配置外部子系统（e.g. [SFTP Subsystem](/docs/4.数据通信/Utility/OpenSSH/SFTP%20Subsystem.md)）。可用参数详见对应子系统中的参数。
 
 # ssh_config 文件
 
@@ -59,11 +80,11 @@ If this flag is set to ’’accept-new’’ then ssh will automatically add ne
 ```bash
 # 严格检查，默认值 ask
 ~]# ssh 172.19.42.248
-The authenticity of host '172.19.42.248 (172.19.42.248)' can't be established.
+The authenticity of host '172.19.42.248 (172.19.42.248)' cant be established.
 ECDSA key fingerprint is SHA256:dugyXVC21RvaDTtRp/cBTsqr0MPtjhBJmtjmzZTXljo.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? ^C
 # 不严格检查，改为 no
-root@desistdaydream:~# ssh -o 'StrictHostKeyChecking=no' 172.19.42.248
+~]# ssh -o 'StrictHostKeyChecking=no' 172.19.42.248
 Warning: Permanently added '172.19.42.248' (ECDSA) to the list of known hosts.
 root@172.19.42.248's password:
 ```

@@ -33,7 +33,7 @@ OTel 之于可观测性系统，类似 OCI 之于容器。但是能比 OCI 提�
 目前，OpenTelemetry 由以下几个主要组件组成：
 
 - **规范** # 与编程语言无关的规范，规定了遥测数据格式等
-- **工具** # 用于 采集/接收、转换、导出 遥测数据的工具。比如官方提供的 [OTel Collector](docs/6.可观测性/OpenTelemetry/Collector.md)
+- **工具** # 用于 采集/接收、转换、导出 遥测数据的工具。比如官方提供的 [OTel Collector](/docs/6.可观测性/OpenTelemetry/Collector.md)
 - **SDK** # 用于为各种编程语言提供编写符合 OpenTelemetry 规范的工具
 - **自动 instrumentation 和 贡献包** # TODO: 没搞懂这是什么？
 
@@ -45,7 +45,7 @@ OpenTelemetry 创建了一个名词，将 *可观测数据（遥测数据）* �
 
 OpenTelemetry 是围绕 Signals 或 遥测类别 构建的。Metrics、Logs、Traces、Baggage 都是一种 Signals。每个 Signals 代表一组连贯的、独立的功能。每个信号都遵循单独的生命周期，定义其当前的稳定性级别。
 
-OpenTelemetry 的目的是收集、处理和导出 **Signals**。传统定义中，[Signal(信号)](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication(进程间通信)/Signal(信号).md) 是系统输出，描述操作系统和应用程序的底层活动。在 OpenTelemetry 中，Signals 可以是您想要在特定时间点测量的内容，例如温度或内存使用情况，也可以是您想要跟踪的分布式系统组件的事件。您可以将不同的 Signals 组合在一起，从不同角度观察同一项技术的内部运作情况。
+OpenTelemetry 的目的是收集、处理和导出 **Signals**。传统定义中，[Signal(信号)](/docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication(进程间通信)/Signal(信号).md) 是系统输出，描述操作系统和应用程序的底层活动。在 OpenTelemetry 中，Signals 可以是您想要在特定时间点测量的内容，例如温度或内存使用情况，也可以是您想要跟踪的分布式系统组件的事件。您可以将不同的 Signals 组合在一起，从不同角度观察同一项技术的内部运作情况。
 
 # OpenTelemetry 实现
 

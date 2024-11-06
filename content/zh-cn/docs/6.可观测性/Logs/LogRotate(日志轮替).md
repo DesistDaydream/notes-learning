@@ -59,6 +59,7 @@ logrotate 只是一个命令行工具，不以守护进程的方式运行在后�
 ```
 
 Note：关于 postrotate
+
 postrotate 后面跟随的是一个命令行，一般是用来重新生成日志文件或者冲定义应用所指向的文件描述符（fd：file description），拿 nginx 和 uwsgi 为例：
 
 完成日志切割后创建新的 nginx 日志文件，此时该文件的 fd 发生改变

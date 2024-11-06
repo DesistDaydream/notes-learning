@@ -69,9 +69,9 @@ JSON 具有以下这些形式：
 > - [官网](https://json-schema.org/)
 > - [官方文档，参考 - 理解 JSON Schema - 什么是 schema](https://json-schema.org/understanding-json-schema/about)
 
-JSON Schema 是一种声明性语言，用于定义 JSON 数据的结构和约束。JSON Schema 有点类似 [ASN.1](docs/2.编程/无法分类的语言/ASN.1.md)、XML Schema、etc. 
+JSON Schema 是一种声明性语言，用于定义 JSON 数据的结构和约束。JSON Schema 有点类似 [ASN.1](/docs/2.编程/无法分类的语言/ASN.1.md)、XML Schema、etc.
 
-人们可以使用 JSON Schema 语法定义一系列的预期目标，然后利用 [Validator](#Validator) 验证 JSON 数据是否符合预期。e.g. 字段是否为数字、长度是否为 64、某个字段是否是必须的、etc. 
+人们可以使用 JSON Schema 语法定义一系列的预期目标，然后利用 [Validator](#Validator) 验证 JSON 数据是否符合预期。e.g. 字段是否为数字、长度是否为 64、某个字段是否是必须的、etc.
 
 JSON Schema 写出来的内容通常长这样：
 
@@ -107,7 +107,7 @@ JSON Schema 写出来的内容通常长这样：
 
 JSON Schema 的验证能力还可以用在如下场景：
 
-- **文档生成** # 为 API 提供清晰的数据格式说明。可以在 [OpenAPI](docs/2.编程/API/OpenAPI.md) 中集成 JSON Schema 的定义
+- **文档生成** # 为 API 提供清晰的数据格式说明。可以在 [OpenAPI](/docs/2.编程/API/OpenAPI.md) 中集成 JSON Schema 的定义
 - **代码生成** # 可以根据 Schema 自动生成相应的数据模型代码
 - **IDE 支持** # 提供自动补全和验证功能
 

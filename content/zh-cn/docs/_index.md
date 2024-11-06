@@ -1,6 +1,7 @@
 ---
-title: "学习笔记"
-linkTitle: "学习笔记"
+title: 学习笔记
+linkTitle: 学习笔记
+data: 2018-04-01
 weight: 20
 menu:
   main:

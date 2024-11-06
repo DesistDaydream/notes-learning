@@ -12,12 +12,12 @@ weight: 2
 > - [官方文档](https://docs.docker.com/compose/compose-file/)
 > - [v3 版本规范](https://docs.docker.com/compose/compose-file/compose-file-v3/)
 
-Compose 文件是一个 [YAML](docs/2.编程/无法分类的语言/YAML.md) 格式的配置文件，Compose 将每个容器抽象为一个 service。顶层字段 service 的下级字段，用来定义该容器的名称。
+Compose 文件是一个 [YAML](/docs/2.编程/无法分类的语言/YAML.md) 格式的配置文件，Compose 将每个容器抽象为一个 service。顶层字段 service 的下级字段，用来定义该容器的名称。
 
 一个 Docker Compose 文件中通常包含如下顶级字段：
 
 - **version** # **必须的**。
-- **services**(map\[STRING][services](#services)) # services 
+- **services**(map\[STRING][services](#services)) # services
 - **networks**([networks](#networks))
 - **volumes**([volumes](#volumes))
 - **secrets**([secrets](#secrets))

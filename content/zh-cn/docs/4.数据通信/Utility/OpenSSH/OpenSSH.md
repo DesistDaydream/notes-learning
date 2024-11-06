@@ -18,9 +18,9 @@ OpenSSH 是 [Secure Shell Protocol](/docs/4.数据通信/Protocol/Secure%20Shell
 
 Note：现在 OpenSSH 一般作为 Linux 发行版的标准远程登录工具默认安装在系统中且开机自启动。
 
-# 安装 OpenSSH
+# OpenSSH 安装
 
-# 关联文件与配置
+# OpenSSH 关联文件与配置
 
 **/var/log/secure** # 登录信息日志所在位置
 

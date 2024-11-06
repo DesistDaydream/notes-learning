@@ -1,21 +1,25 @@
 ---
-title: RsysLog 配置详解
+title: RsysLog 配置
+linkTitle: RsysLog 配置
+date: 2020-11-06T17:32:00
+weight: 20
 ---
 
 # 概述
 
 > 参考：
 >
-> - [Manual(手册),rsyslog.conf(5)](https://man7.org/linux/man-pages/man5/rsyslog.conf.5.html)
+> - [Manual(手册), rsyslog.conf(5)](https://man7.org/linux/man-pages/man5/rsyslog.conf.5.html)
+> - 本笔记中的 Facility 概念见 [日志系统](docs/6.可观测性/Logs/日志系统.md#Facility(设施)) 中 Facility(设施) 的介绍
 
 配置文件新老版本有两种格式，下面这两种写法，都可以表示让 Rsyslog 加载 imuxsock 模块
 
-- **$ModLoad imuxsock # 老版本语法**
-- **module(load="imuxsock") # 新版本语法**
+- **$ModLoad imuxsock** # 老版本语法
+- **module(load="imuxsock")** # 新版本语法
 
 # MODULES 模块配置
 
-**module(load="imuxsock")**# 加载 imuxsock 模块，以便让 Rsyslog 可以监听 /dev/log 这个 Unix Socket 以接收日志消息<br />配置 TCP 协议的 syslog 接收，用于在日志服务器的时候配置
+**module(load="imuxsock")** # 加载 imuxsock 模块，以便让 Rsyslog 可以监听 /dev/log 这个 Unix Socket 以接收日志消息<br />配置 TCP 协议的 syslog 接收，用于在日志服务器的时候配置
 
 - **$ModLoad imtcp** # 使用 tcp 进行传输
 - **$InputTCPServerRun 514** # 监听在 514 端口上
@@ -28,9 +32,11 @@ title: RsysLog 配置详解
 
 该配置用于自定义日志的保存路径，日志格式，可以动态生成文件名等信息。定义后，可以在 RULE 中进行引用，该指令用法详见
 
-    # 定义一个Location字段的模板，第一个是老版本的定义方法，第二个是新版的定义方法
-    $template RemoteLogs,"/var/log/%HOSTNAME%/%PROGRAMNAME%.log" *
-    template (name="RemoteLogs" type="string" string="/var/log/%HOSTNAME%/%PROGRAMNAME%.log")
+```
+# 定义一个Location字段的模板，第一个是老版本的定义方法，第二个是新版的定义方法
+$template RemoteLogs,"/var/log/%HOSTNAME%/%PROGRAMNAME%.log" *
+template (name="RemoteLogs" type="string" string="/var/log/%HOSTNAME%/%PROGRAMNAME%.log")
+```
 
 ## TEMPLATE 模板介绍
 
@@ -44,6 +50,7 @@ template 有两种表示方式：
 ### 语法结构：template(Parameters)
 
 Parameters 必须包含 name 字段且 name 唯一，并指明类型，以及该类型的具体内容
+
 template(NAME TYPE Descriptions)
 
 1. TYPE
@@ -83,7 +90,6 @@ Rules 配置段是 rsyslog 程序得以正常运行的最基础配置。规则�
 多个选择器以 `;` 符号分隔
 
 - **Facility(设施)** # Facility 定义了 rsyslog 可以选择的设施都有哪些(注：该字段用 \* 表示则表示所有支持的 Facility)。多个 Facility 以 `,` 分隔
-  - 可选择设施见上文的对 Facility 的介绍
 - **匹配符号** # 除了 `.` 还可以使用另外两个符号来进行更细致的匹配。
   - `.` # 选择包含且比 Prority 还要严重的优先级
   - `.=` # 仅选择包含 Prority 所定义的优先级
@@ -147,7 +153,7 @@ local2.*   ?RemoteLogs
 :FROMHOST-IP, !isequal, "127.0.0.1"                     -?RemoteLogs
 ```
 
-# outputs # 输出
+# outputs - 输出
 
 # 配置实例
 
@@ -159,11 +165,13 @@ local2.*   ?RemoteLogs
 
 Server 端：
 
-    $ModLoad imtcp
-    $InputTCPServerRun 514
-    $template RemoteLogs,"/var/log/%HOSTNAME%/%PROGRAMNAME%.log" *
-    *.*  ?RemoteLogs
-    & stop
+```bash
+$ModLoad imtcp
+$InputTCPServerRun 514
+$template RemoteLogs,"/var/log/%HOSTNAME%/%PROGRAMNAME%.log" *
+*.*  ?RemoteLogs
+& stop
+```
 
 :FROMHOST-IP, !isequal, "127.0.0.1" -?DynaFile
 
@@ -171,8 +179,10 @@ client 端：
 
 在日志规则的 Location 配置段使用远程主机配置
 
-    *.* @@192.168.10.10 #把所有程序的所有级别的日志发送给192.168.10.10这台机器
-    注意：如果使用UDP进行传输，则使用1个@
+```bash
+*.* @@192.168.10.10 #把所有程序的所有级别的日志发送给192.168.10.10这台机器
+注意：如果使用UDP进行传输，则使用1个@
+```
 
 ## 实例二：配置 keepalived 程序的日志到指定的目录
 
@@ -182,8 +192,10 @@ client 端：
 
 下面的配置表示：如果输出日志的程序为 kubelet，并且日志信息中包含 Setting volume ownership 这种内容，那么所有匹配到的日志全部丢弃，不写入到文件中。
 
-    cat > /etc/rsyslog.d/ignore-kubelet-volume.conf << EOF
-    if (\$programname == "kubelet") and (\$msg contains "Setting volume ownership") then {
-      stop
-    }
-    EOF
+```bash
+cat > /etc/rsyslog.d/ignore-kubelet-volume.conf << EOF
+if (\$programname == "kubelet") and (\$msg contains "Setting volume ownership") then {
+  stop
+}
+EOF
+```

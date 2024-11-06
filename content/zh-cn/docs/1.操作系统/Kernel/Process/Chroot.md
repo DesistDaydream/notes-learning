@@ -14,7 +14,7 @@ weight: 20
 
 **Change root(改变根，简称 Chroot)** 是 [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 的一种操作，用于更改对当前正在运行的进程及其子进程展现出来的 `/` 目录。在这种修改过的环境中运行的程序无法访问指定目录之外的文件。
 
-Chroot 的意思是改变根路径的位置(linux 系统中以 `/` 为根目录位置，但是对于执行 Chroot 的用户或者程序来说，是 Chroot 后 PATH 的位置是新的根目录位置)，比如 Telnet，ssh，如果都定义了 Chroot(PATH)规则，那么远程登录的用户将无法访问到该 linux 系统中除了定义的 PATH 外的其余目录
+Chroot 的意思是改变根路径的位置(Linux 系统中以 `/` 为根目录位置，但是对于执行 Chroot 的用户或者程序来说，是 Chroot 后 PATH 的位置是新的根目录位置)，比如 Telnet，ssh，如果都定义了 Chroot(PATH)规则，那么远程登录的用户将无法访问到该 linux 系统中除了定义的 PATH 外的其余目录
 
 ```bash
 ]# pwd
@@ -34,7 +34,11 @@ backup  downloads  go  nohup.out  p.pcap  projects  scripts  snap  tmp
 
 Chroot 功能主要依赖于 chroot [System Call](/docs/1.操作系统/Kernel/System%20Call/System%20Call.md) 实现
 
-# Syntax(语法)
+# CLI
+
+## chroot
+
+### Syntax(语法)
 
 > 参考：
 >

@@ -8,7 +8,7 @@ title: Rsyslog
 >
 > - [官网](https://www.rsyslog.com/)
 > - [官方文档,配置-模块](https://www.rsyslog.com/doc/v8-stable/configuration/modules/index.html)
-> - [GitHub 项目](https://github.com/rsyslog/rsyslog)
+> - [GitHub 项目，rsyslog/rsyslog](https://github.com/rsyslog/rsyslog)
 > - [Wiki, Rsyslog](https://en.wikipedia.org/wiki/Rsyslog)
 > - [Manual(手册),syslog(3)](https://man7.org/linux/man-pages/man3/syslog.3.html)
 > - [Manual(手册),rsyslogd(8)](https://man7.org/linux/man-pages/man8/rsyslogd.8.html)

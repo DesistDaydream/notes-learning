@@ -252,7 +252,7 @@ err := json.Unmarshal(b, &m)
 
 https://pkg.go.dev/encoding/json#Marshal
 
-json 库可以利用 [Struct](docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Map%20AND%20Struct.md) 中的 Tag 控制编码与解码过程中的部分行为。
+json 库可以利用 [Struct](/docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Map%20AND%20Struct.md) 中的 Tag 控制编码与解码过程中的部分行为。
 
 常见 Tag 关键字
 

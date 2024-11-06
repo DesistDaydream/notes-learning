@@ -8,6 +8,7 @@ weight: 6
 # 概述
 
 > 参考：
+>
 > - [官方文档，Prometheus-联邦](https://prometheus.io/docs/prometheus/latest/federation/)
 
 通过 Remote Storage 可以分离监控样本采集和数据存储，解决 Prometheus 的持久化问题。这一部分会重点讨论如何利用联邦集群特性对 Promthues 进行扩展，以适应不同监控规模的变化。

@@ -2008,6 +2008,7 @@
       "docs/4.数据通信/Utility/OpenSSH/OpenSSH Utilities.md",
       "docs/4.数据通信/Utility/OpenSSH/ssh.md",
       "docs/4.数据通信/Utility/OpenSSH/sshpass.md",
+      "docs/4.数据通信/Utility/OpenSSH/SFTP Subsystem.md",
       "docs/4.数据通信/Utility/OpenSSH/最佳实践.md"
     ],
     "docs/4.数据通信/数据通信": [
@@ -2258,7 +2259,7 @@
     "docs/6.可观测性/Logs/Rsyslog": [
       "docs/6.可观测性/Logs/Rsyslog/_index.md",
       "docs/6.可观测性/Logs/Rsyslog/Rsyslog.md",
-      "docs/6.可观测性/Logs/Rsyslog/RsysLog 配置详解.md"
+      "docs/6.可观测性/Logs/Rsyslog/RsysLog 配置.md"
     ],
     "docs/6.可观测性/Metrics": [
       "docs/6.可观测性/Metrics/_index.md",

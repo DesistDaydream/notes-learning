@@ -35,7 +35,7 @@ weight: 1
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/kubernetes/api/20230419102123.png)
 
-详见：[PKM](docs/学习/PKM/PKM.md) 中关于对各种文档的使用说明示例。
+详见：[PKM](/docs/学习/PKM/PKM.md) 中关于对各种文档的使用说明示例。
 
 下面是几种基本的类型介绍：
 

@@ -19,7 +19,7 @@ weight: 20
 >
 > - [OpenCV 博客，Data Annotation – A Beginner’s Guide](https://opencv.org/blog/data-annotation/)
 
-[计算机视觉](docs/12.AI/计算机视觉/计算机视觉.md) 中的数据注释常见如下几种：
+[计算机视觉](/docs/12.AI/计算机视觉/计算机视觉.md) 中的数据注释常见如下几种：
 
 - **Bounding box**
 - Segmentation
@@ -80,7 +80,7 @@ Bounding box 效果如下图所示，各种矩形框配上数字，以表示出�
 
 COCO 数据集常见任务类型：
 
-- **[Object detection](docs/12.AI/计算机视觉/Object%20detection.md)(对象监测)** # 简称 Detection
+- **[Object detection](/docs/12.AI/计算机视觉/Object%20detection.md)(对象监测)** # 简称 Detection
   - https://cocodataset.org/#detection-2020
 - **DensePose** # COCO DensePose 任务旨在推动在具有挑战性、不受控制的条件下对人体姿势进行密集估计的最先进技术。
   - https://cocodataset.org/#densepose-2020

@@ -129,7 +129,7 @@ https://www.reddit.com/r/learnmachinelearning/comments/19f04y3/what_is_the_diffe
 
 ONNX 是业界通用的格式，还有很多特定于项目的格式。
 
-绝大部分模型，都支持导出成 .onnx 格式。e.g. [Yolo](docs/12.AI/AI%20Projects/Yolo.md) 可以导出成 .onnx，也支持导出成用于 [PyTorch](docs/12.AI/机器学习/PyTorch.md) 的 torchscript 格式，etc. 
+绝大部分模型，都支持导出成 .onnx 格式。e.g. [Yolo](/docs/12.AI/AI%20Projects/Yolo.md) 可以导出成 .onnx，也支持导出成用于 [PyTorch](/docs/12.AI/机器学习/PyTorch.md) 的 torchscript 格式，etc.
 
 ## ONNX
 

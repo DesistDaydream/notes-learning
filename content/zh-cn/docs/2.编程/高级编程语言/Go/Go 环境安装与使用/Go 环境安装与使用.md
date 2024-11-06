@@ -8,7 +8,7 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，下载并安装 Go](https://golang.org/doc/install)
 > - [官方文档，安装多个版本的 Go](https://golang.org/doc/manage-install)
 > - [Go 包，标准库 - cmd - go](https://pkg.go.dev/cmd/go)
@@ -264,7 +264,7 @@ GOPATH 里面一般包含 bin、pkg、src 这 3 个文件夹。
 
 ## 获取私有仓库的第三方库
 
-go 命令会从公共镜像 http://goproxy.io 上下载 [Go 第三方库](docs/2.编程/高级编程语言/Go/Go%20第三方库/Go%20第三方库.md)，并且会对下载的软件包和代码库进行安全校验，当代码库是公开的时候，这些功能都没什么问题。但是如果仓库是私有的怎么办呢？
+go 命令会从公共镜像 http://goproxy.io 上下载 [Go 第三方库](/docs/2.编程/高级编程语言/Go/Go%20第三方库/Go%20第三方库.md)，并且会对下载的软件包和代码库进行安全校验，当代码库是公开的时候，这些功能都没什么问题。但是如果仓库是私有的怎么办呢？
 
 可以使用 GOPRIVATE [环境变量](#Go%20环境变量)可以设置不经过代理的私有仓库。GOPRIVATE 的配置会自动复制到 GONOPOROXY 与 GONOSUMDB 两个环境变量上，让获取私有仓库时 不使用代理、不进行校验。
 
