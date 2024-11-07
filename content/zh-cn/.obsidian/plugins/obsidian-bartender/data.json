@@ -2397,8 +2397,7 @@
       "docs/6.可观测性/Metrics/监控系统概述/_index.md",
       "docs/6.可观测性/Metrics/监控系统概述/监控系统概述.md",
       "docs/6.可观测性/Metrics/监控系统概述/SNMP(传统监控标准).md",
-      "docs/6.可观测性/Metrics/监控系统概述/HTTP(新监控标准).md",
-      "docs/6.可观测性/Metrics/监控系统概述/常用告警级别.md"
+      "docs/6.可观测性/Metrics/监控系统概述/HTTP(新监控标准).md"
     ],
     "docs/6.可观测性/Observability": [
       "docs/6.可观测性/Observability/_index.md",

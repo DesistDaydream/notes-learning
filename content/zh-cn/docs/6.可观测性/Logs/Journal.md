@@ -7,7 +7,7 @@ weight: 4
 
 > 参考：
 >
-> - [Manual,systemd-journald.service(8)](https://man7.org/linux/man-pages/man8/systemd-journald.service.8.html)
+> - [Manual, systemd-journald.service(8)](https://man7.org/linux/man-pages/man8/systemd-journald.service.8.html)
 
 相关服务说明
 

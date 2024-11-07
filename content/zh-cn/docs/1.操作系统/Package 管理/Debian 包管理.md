@@ -6,7 +6,7 @@ title: "Debian 包管理"
 
 > 参考：
 >
-> - [Ubuntu 官方文档，软件-包管理](https://ubuntu.com/server/docs/package-management)
+> - [Ubuntu 官方文档，软件 - 包管理](https://ubuntu.com/server/docs/package-management)
 
 Ubuntu 具有一个全面的包管理系统，用于安装、升级、配置和删除软件。除了为我们的 Ubuntu 系统提供超过 60k 个软件包的有组织访问之外，软件包管理工具还具有依赖性解析功能和软件更新检查功能。
 

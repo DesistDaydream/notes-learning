@@ -76,6 +76,7 @@ Google 搜索关键字：ssh sftp ChrootDirectory can't logging (rsyslog)
 
 - https://serverfault.com/questions/710487/sftp-logging-doesnt-work
 - https://ubuntuforums.org/showthread.php?t=2081637&p=12342713#post12342713
+- https://community.spiceworks.com/t/sftp-logging-rsyslog-for-multiple-chroot-users/811736
 
 原因：chroot 后，用户所在的 `/` 目录缺少 [Rsyslog](/docs/6.可观测性/Logs/Rsyslog/Rsyslog.md) 所需的 Socket 类型的 /dev/log 文件
 

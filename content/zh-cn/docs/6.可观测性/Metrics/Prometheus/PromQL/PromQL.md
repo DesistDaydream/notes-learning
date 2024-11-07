@@ -1,7 +1,7 @@
 ---
 title: PromQL
 linkTitle: PromQL
-date: 2023-12-20T14:51
+date: 2022-10-20T14:51:00
 weight: 1
 ---
 

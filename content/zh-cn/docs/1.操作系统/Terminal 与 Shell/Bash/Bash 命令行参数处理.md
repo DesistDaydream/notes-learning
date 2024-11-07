@@ -106,10 +106,12 @@ getopts 和 getopt 功能相似但又不完全相同，其中 getopt 是独立�
 
 先来看看参数传递的典型用法:
 
-    * ./test.sh -a -b -c  ： 短选项，各选项不需参数
-    * ./test.sh -abc   ： 短选项，和上一种方法的效果一样，只是将所有的选项写在一起。
-    * ./test.sh -a args -b -c ：短选项，其中-a需要参数，而-b -c不需参数。
-    * ./test.sh --a-long=args --b-long ：长选项
+```bash
+* ./test.sh -a -b -c  ： 短选项，各选项不需参数
+* ./test.sh -abc   ： 短选项，和上一种方法的效果一样，只是将所有的选项写在一起。
+* ./test.sh -a args -b -c ：短选项，其中-a需要参数，而-b -c不需参数。
+* ./test.sh --a-long=args --b-long ：长选项
+```
 
 先来看 getopts,它不支持长选项。
 
@@ -150,16 +152,18 @@ done
 ## Syntax(语法)
 
 **getopt optstring parameters**
+
 **getopt \[OPTIONS] \[--] optstring parameters**
+
 **getopt \[OPTIONS] -o|--options optstring \[options] \[--] parameters**
 
 OPTIONS
 
 - -a, --alternative Allow long options starting with single -
 - -h, --help This small usage guide
-- -l, --longoptions \<LongOPTS> # 要被识别的长选项
+- **-l, --longoptions \<LongOPTS>** # 要被识别的长选项
 - -n, --name \<progname> The name under which errors are reported
-- -o, --options \<OPTString> # 要被识别的短选项
+- **-o, --options \<OPTString>** # 要被识别的短选项
 - -q, --quiet Disable error reporting by getopt(3)
 - -Q, --quiet-output No normal output
 - -s, --shell \<shell> Set shell quoting conventions

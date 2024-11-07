@@ -12,17 +12,42 @@ weight: 20
 > - [Manual(手册), rsyslog.conf(5)](https://man7.org/linux/man-pages/man5/rsyslog.conf.5.html)
 > - 本笔记中的 Facility 概念见 [日志系统](docs/6.可观测性/Logs/日志系统.md#Facility(设施)) 中 Facility(设施) 的介绍
 
+Rsyslog 已经发展了几十年。因此有多种不同格式进行配置
+
+- **basic** # 以前称为 sysklogd 格式。这种格式最适合在单独一行上表达基本配置，源于原始的 syslog.conf 格式。最常见的用例是匹配设施/严重性并将匹配消息写入日志文件。
+- **advanced** # 以前称为 RainerScript 格式。这种格式首先在 rsyslog v6 中提供，对于需要多行的重要用例来说是最好、最精确的格式。此格式专为高级用例而设计，例如转发到可能部分离线的远程主机。
+- **obsolete legacy** # 过失的遗留格式。在编写新配置时不应该使用。
+
+## RainerScript
+
+https://www.rsyslog.com/doc/rainerscript/index.html
+
+RainerScript 是一种专门设计的脚本语言，非常适合处理网络事件和配置事件处理器。它是 rsyslog 使用的主要配置语言。请注意，RainerScript 可能不会缩写为 rscript，因为那是别人的商标。
+
+自 rsyslog 3.12.0 起提供了一些有限的 RainerScript 支持（用于表达式支持）。在 v5 中，支持“if .. then”语句。自 rsyslog v6 以来，第一个完整的实现可用。
+
+### Data Types
+
+### Expressions
+
+### Functions
+
+### Control Structures
+
+### Objects
+
+# MODULES 模块配置
+
+> 参考：
+>
+> - https://www.rsyslog.com/doc/configuration/modules/index.html
+
 配置文件新老版本有两种格式，下面这两种写法，都可以表示让 Rsyslog 加载 imuxsock 模块
 
 - **$ModLoad imuxsock** # 老版本语法
 - **module(load="imuxsock")** # 新版本语法
 
-# MODULES 模块配置
-
-**module(load="imuxsock")** # 加载 imuxsock 模块，以便让 Rsyslog 可以监听 /dev/log 这个 Unix Socket 以接收日志消息<br />配置 TCP 协议的 syslog 接收，用于在日志服务器的时候配置
-
-- **$ModLoad imtcp** # 使用 tcp 进行传输
-- **$InputTCPServerRun 514** # 监听在 514 端口上
+更多模块配置详情见 [Module](docs/6.可观测性/Logs/Rsyslog/Module.md)
 
 # GLOBAL DIRECTIVES 全局指令配置
 
@@ -32,7 +57,7 @@ weight: 20
 
 该配置用于自定义日志的保存路径，日志格式，可以动态生成文件名等信息。定义后，可以在 RULE 中进行引用，该指令用法详见
 
-```
+```bash
 # 定义一个Location字段的模板，第一个是老版本的定义方法，第二个是新版的定义方法
 $template RemoteLogs,"/var/log/%HOSTNAME%/%PROGRAMNAME%.log" *
 template (name="RemoteLogs" type="string" string="/var/log/%HOSTNAME%/%PROGRAMNAME%.log")
@@ -94,7 +119,7 @@ Rules 配置段是 rsyslog 程序得以正常运行的最基础配置。规则�
   - `.` # 选择包含且比 Prority 还要严重的优先级
   - `.=` # 仅选择包含 Prority 所定义的优先级
   - `.!` # 选择不包含 Prority 中所定义的优先级的其余优先级
-- **Priority(日志的优先级，也可以叫日志的 Level 级别)** # Priority 定义了每条信息的严重程度，下面以严重程度从高到低进行排序。括号中的数字指级别(注：该字段用\*表示所有级别)
+- **Priority(日志的优先级，也可以叫日志的 Level 级别)** # Priority 定义了每条信息的严重程度，下面以严重程度从高到低进行排序。括号中的数字指级别(注：该字段用 `*` 表示所有级别)
   - emerg(0)：错误信息。最严重日志等级，意味着系统将要宕机
   - alert(1)：错误信息。比 emerg 等级轻
   - crit(2)：错误信息。
@@ -157,7 +182,13 @@ local2.*   ?RemoteLogs
 
 # 配置实例
 
-注意：所有
+## 利用 logger 程序验证配置效果
+
+```bash
+ping 10.10.11.49 | logger -it logger_test -p local4.notice
+```
+
+将 ping 10.10.11.49 命令的输出写入到 local4.notice，只要 Rsyslog 设置了 local4 的接收方式，就可以通过查看对应的文件验证 Rsyslog 是否可以正常处理日志
 
 ## 实例一：设置一台主机为日志服务器，可以收集其余网络上的主机的日志信息
 

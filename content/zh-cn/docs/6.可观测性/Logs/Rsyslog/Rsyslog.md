@@ -7,14 +7,14 @@ title: Rsyslog
 > 参考：
 >
 > - [官网](https://www.rsyslog.com/)
-> - [官方文档,配置-模块](https://www.rsyslog.com/doc/v8-stable/configuration/modules/index.html)
+> - [官方文档，配置 - 模块](https://www.rsyslog.com/doc/v8-stable/configuration/modules/index.html)
 > - [GitHub 项目，rsyslog/rsyslog](https://github.com/rsyslog/rsyslog)
 > - [Wiki, Rsyslog](https://en.wikipedia.org/wiki/Rsyslog)
-> - [Manual(手册),syslog(3)](https://man7.org/linux/man-pages/man3/syslog.3.html)
-> - [Manual(手册),rsyslogd(8)](https://man7.org/linux/man-pages/man8/rsyslogd.8.html)
-> - [Arch 文档,Systemd-Journal-配合 syslog 使用](<https://wiki.archlinux.org/title/Systemd_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)/Journal_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)>)
+> - [Manual(手册), syslog(3)](https://man7.org/linux/man-pages/man3/syslog.3.html)
+> - [Manual(手册), rsyslogd(8)](https://man7.org/linux/man-pages/man8/rsyslogd.8.html)
+> - [Arch 文档，Systemd-Journal-配合 syslog 使用](<https://wiki.archlinux.org/title/Systemd_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)/Journal_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)>)
 
-**Rocket-fast system for log processing(像火箭一样快的日志处理系统，简称 rsyslog)** 是一款开源应用程序，用于 UNIX 和 类 Unix 操作系统，可以在 IP 网络中转发日志消息。Rsyslog 实现了基本的 Syslog 协议，并扩展了丰富的功能，比如基于内容的过滤、排队处理离线输出、支持模块、灵活的配置、使用 TCP 传输 等等.
+**Rocket-fast system for log processing(像火箭一样快的日志处理系统，简称 rsyslog)** 是一款开源应用程序，用于 [Unix-like OS](docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md)，可以在 IP 网络中转发日志消息。Rsyslog 实现了基本的 Syslog 协议，并扩展了丰富的功能，比如基于内容的过滤、排队处理离线输出、支持模块、灵活的配置、使用 TCP 传输 等等.
 
 RsysLog 是一个日志统一管理的程序。通过 rsyslogd 这个守护进程提供服务，rsyslogd 程序是对 syslogd 的扩展，提供了更多的功能和可靠性。
 
@@ -22,18 +22,29 @@ Rsyslog 提供了一个符合 [RFC 5424](https://datatracker.ietf.org/doc/html/r
 
 RsysLog 的特点：
 
-- 可以监听在某个端口上作为日志服务器，来手机多个主机的日志
+- 可以监听在某个端口上作为日志服务器，来收集多个主机的日志
 - RsysLog 自带多个模块，可以通过模块来实现更多的功能。以 im 开头的是在收集日志时候所用到的，以 om 开头的是在输出日志时用到的(比如把收集到的日志保存在某一文件中)。
 
-## Moules(模块)
+Rsyslog 项目始于 2004 年，当时 rsyslog 的主要作者 Rainer Gerhards 决定编写一个新的强大的 syslog 守护进程来与 syslog-ng 竞争，因为根据作者的说法，“一个新的主要参与者将防止单一文化并提供丰富的选择自由。”
+
+# Moules(模块)
 
 Rsyslog 采用模块化设计，可以通过加载模块来动态加载功能，模块也可以由任何第三方编写，只要符合 Rsyslog 规范即可。
 
 每个模块都有参数可以配置。
 
-## Rsyslog 日志处理
+# Rsyslog 日志处理
 
-Rsyslog 使用 [**imuxscok**](https://www.rsyslog.com/doc/v8-stable/configuration/modules/imuxsock.html) 模块监听本地 Unix Socket(`默认为 /dev/log`) 以接收本地系统上运行的应用程序产生的 syslog 格式的日志消息。当该 Socket 收到消息时，会通过 syslog(3) 这里面所描述的系统调用将日志消息传递给 Rsyslog。
+> 参考：
+>
+> - https://www.rsyslog.com/doc/configuration/input.html
+
+Rsyslog 要想处理日志，需要先收到日志才可以对吧？一般情况下，Rsyslog 会监听本地 Unix Socket，凡是将日志推送到该 Unix Socket 的数据都会被 Rsyslog 进行处理，这称之为 **[Input](https://www.rsyslog.com/doc/configuration/input.html)(输入)**。Rsyslog 使用 [input 模块](https://www.rsyslog.com/doc/configuration/modules/idx_input.html) 实现 Input 能力（Tip: 有一个 **input 对象** 可以对各种各样的 Input 模块进行配置。没有 input 则 Rsyslog 也不会进行任何处理，因为没有消息进入 Rsyslog 系统中。在配置时，input 关键字的参数根据其所关联的某个具体 Input 模块决定，只有一个 type 参数来指定要为哪个模块配置 input 行为）。
+
+默认情况下，Rsyslog  使用 input 模块中的 [**imuxscok**](https://www.rsyslog.com/doc/v8-stable/configuration/modules/imuxsock.html) 模块监听本地 Unix Socket(`默认为 /dev/log`) 以接收本地系统上运行的应用程序产生的 syslog 格式的日志消息。当该 Socket 收到消息时，会通过 syslog(3) 这里面所描述的系统调用将日志消息传递给 Rsyslogd。
+
+> [!Attention]
+> 在经过 [Chroot](docs/1.操作系统/Kernel/Process/Chroot.md) 的目录中，需要创建用于 Rsyslog 监听的本地 Unix Socket，否则 Rsyslog 无法获取 Choot 后目录中的各种日志。e.g. [SFTP Subsystem](docs/4.数据通信/Utility/OpenSSH/SFTP%20Subsystem.md) 最佳实践部分的配置
 
 这个模块在 Rsyslog 的配置文件中必须进行配置，因为没有它，本地日志记录将无法进行，因为没有监听任何 Unix Socket，任何程序发往 /dev/log 的消息，也就无法接收了。
 
@@ -43,43 +54,43 @@ Rsyslog 使用 [**imuxscok**](https://www.rsyslog.com/doc/v8-stable/configuratio
 package main
 
 import (
-        "log"
-        "log/syslog"
+    "log"
+    "log/syslog"
 )
 
 func main() {
-        sysLog, err := syslog.Dial("", "",syslog.LOG_ERR, "desistdaydream")
-        if err != nil {
-                log.Fatal(err)
-        }
+    sysLog, err := syslog.Dial("", "",syslog.LOG_ERR, "desistdaydream")
+    if err != nil {
+        log.Fatal(err)
+    }
 
-        sysLog.Emerg("Hello world!")
+    sysLog.Emerg("Hello world!")
 }
 ```
 
 运行一下，查看日志，可以看到，进程名 desistdaydream，输出了一条日志消息
 
 ```bash
-[root@hw-cloud-xngy-jump-server-linux-2 /var/log]# tail -n 1 syslog
+~]# tail -n 1 /var/log/syslog
 Oct 19 23:46:03 hw-cloud-xngy-jump-server-linux-2 desistdaydream[3283]: Hello world!
 ```
 
 此时如果同时在查看 /dev/log 文件，也可以看到同样的内容
 
 ```bash
-[root@hw-cloud-xngy-jump-server-linux-2 /home/desistdaydream/test_dir]# socat - /dev/log
+~]# socat - /dev/log
 
 Broadcast message from systemd-journald@hw-cloud-xngy-jump-server-linux-2 (Tue 2021-10-19 23:49:24 HKT):
 
 desistdaydream[3820]: Hello world!
 ```
 
-### 验证 Rsyslog 接收日志
+## 验证 Rsyslog 接收日志
 
 看一下 rsyslog 进程打开的文件描述符
 
 ```bash
-[root@hw-cloud-xngy-jump-server-linux-2 ~]# ll /proc/$(pgrep rsyslog)/fd
+~]# ll /proc/$(pgrep rsyslog)/fd
 total 0
 dr-x------ 2 root   root    0 Oct 19 21:16 ./
 dr-xr-xr-x 9 syslog syslog  0 Oct 19 21:16 ../
@@ -98,7 +109,7 @@ l-wx------ 1 root   root   64 Oct 19 21:16 9 -> /var/log/auth.log
 追踪一下进程的系统调用(这里是执行了一下 `su - root` 命令产生的日志)
 
 ```bash
-[root@hw-cloud-xngy-jump-server-linux-2 ~]# strace -p 595 -f -e recvmsg -s 1000
+~]# strace -p 595 -f -e recvmsg -s 1000
 strace: Process 595 attached with 4 threads
 [pid   626] recvmsg(3, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="<37>Oct 19 22:01:40 su: (to root) desistdaydream on pts/1", iov_len=8096}], msg_iovlen=1, msg_control=[{cmsg_len=32, cmsg_level=SOL_SOCKET, cmsg_type=SO_TIMESTAMP_OLD, cmsg_data={tv_sec=1634652100, tv_usec=471671}}, {cmsg_len=28, cmsg_level=SOL_SOCKET, cmsg_type=SCM_CREDENTIALS, cmsg_data={pid=2549, uid=0, gid=0}}], msg_controllen=64, msg_flags=0}, MSG_DONTWAIT) = 52
 [pid   626] recvmsg(3, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="<86>Oct 19 22:01:40 su: pam_unix(su-l:session): session opened for user root by desistdaydream(uid=0)", iov_len=8096}], msg_iovlen=1, msg_control=[{cmsg_len=32, cmsg_level=SOL_SOCKET, cmsg_type=SO_TIMESTAMP_OLD, cmsg_data={tv_sec=1634652100, tv_usec=471786}}, {cmsg_len=28, cmsg_level=SOL_SOCKET, cmsg_type=SCM_CREDENTIALS, cmsg_data={pid=2549, uid=0, gid=0}}], msg_controllen=64, msg_flags=0}, MSG_DONTWAIT) = 96
@@ -109,18 +120,18 @@ strace: Process 595 attached with 4 threads
 看看这个文件是个啥
 
 ```bash
-[root@hw-cloud-xngy-jump-server-linux-2 ~]# lsof -p 595 -a -d 3
+~]# lsof -p 595 -a -d 3
 COMMAND  PID   USER   FD   TYPE             DEVICE SIZE/OFF  NODE NAME
 rsyslogd 595 syslog    3u  unix 0xffff99c534a7d800      0t0 15881 /run/systemd/journal/syslog type=DGRAM
 
-[root@hw-cloud-xngy-jump-server-linux-2 ~]# cat /proc/net/unix | grep 15881
+~]# cat /proc/net/unix | grep 15881
 ffff99c534a7d800: 00000002 00000000 00000000 0002 01 15881 /run/systemd/journal/syslog
 ```
 
 两种方式都指向了同一个文件 /run/systemd/journal/syslog
 
 ```bash
-[root@hw-cloud-xngy-jump-server-linux-2 ~]# ll /run/systemd/journal/syslog
+~]# ll /run/systemd/journal/syslog
 srw-rw-rw- 1 root root 0 Oct 19 21:16 /run/systemd/journal/syslog=
 ```
 
@@ -129,13 +140,13 @@ srw-rw-rw- 1 root root 0 Oct 19 21:16 /run/systemd/journal/syslog=
 这个文件替代了传统的 /dev/log 文件，/dev/log 变成了指向 /run/systemd/journal/dev-log 的软链接
 
 ```bash
-[root@hw-cloud-xngy-jump-server-linux-2 ~]# ll /dev/log
+~]# ll /dev/log
 lrwxrwxrwx 1 root root 28 Oct 19 21:16 /dev/log -> /run/systemd/journal/dev-log=
 ```
 
 但是在 CentOS 7 中，Rsyslog 依然直接使用的 /dev/log 这个 Socket。
 
-## RsysLog 的的规范
+# RsysLog 的的规范
 
 RsysLog 使用 **Facility(设施)** 来对各个程序产生的日志进行分类好便于管理，每个 Facility 包含 1 个或多个程序，Facility 用于约束多个程序所产生的日志数据流到同一个管道内，默认有以下几个，括号中的数字与名称相对应
 
@@ -178,17 +189,17 @@ RsysLog 默认把日志保存在 /var/log/ 目录下的文件中，该目录下�
 - lastlog # 记录系统上所有账号最近一次登录系统时的相关信息。lastlog 命令就是利用这个文件记录的信息来展示的
 - wtmp 与 faillog # 记录正确登录系统的账号信息与错误登录时所使用的账号信息。last 命令时读取的 wtmp 中的内容
 
-## 日志的格式
+# 日志的格式
 
 Linux 相关的日志格式一般为：
 
 月 日 时:分:秒 主机名 程序名:事件内容
 
-## 总结
+# 总结
 
-随着时代的发展，各个应用程序大部分都通过各自的日志库，将日志直接写到磁盘上了~~
+随着时代的发展，各个应用程序大部分都通过各自的日志库，将日志直接写到磁盘上了~~ 很少会有程序再去直接利用 Rsyslog 记录日志。部分系统级的程序，e.g. [OpenSSH](docs/4.数据通信/Utility/OpenSSH/OpenSSH.md)、etc. 还会使用 Rsyslog。
 
-# Rsyslog 关联文件
+# Rsyslog 关联文件与配置
 
 **/etc/rsyslog.conf** # rsyslog 程序的基础配置文件
 
@@ -199,7 +210,7 @@ Linux 相关的日志格式一般为：
 **/dev/log** # 一个 Unix Domain Socket，rsyslogd 从这个 Socket 中读取日志消息。这是传统的日志服务 Socket。在 CentOS 8 及以后的版本中，该文件是一个指向 /run/systemd/journal/syslog 文件的软链接
 
 - **/run/systemd/journal/syslog** # rsyslogd 会持续监听该 Socket，当有数据传入时，使用 recvmsg() 调用获取日志数据。
-  - 这个文件是由 Systemd 提供的 Socket 文件，用以兼容传统日志服务。在 /etc/systemd/journald.conf 配置文件中，可以看到默认 ForwardToSyslog=yes 设置，即表示将自己的日志转发到 syslog 中。
+  - 这个文件是由 [Systemd](/docs/1.操作系统/Systemd/Systemd.md) 提供的 Socket 文件，用以兼容传统 [Journal](docs/6.可观测性/Logs/Journal.md) 日志服务，在 /etc/systemd/journald.conf 配置文件中，可以看到默认 ForwardToSyslog=yes 设置，即表示将自己的日志转发到 syslog 中。
 
 **/var/log/** # 日志记录的位置。根据 rsyslog 程序的基础配置文件，各个 Linux 发行版的文件名也许不同，但是大体都差不多
 
