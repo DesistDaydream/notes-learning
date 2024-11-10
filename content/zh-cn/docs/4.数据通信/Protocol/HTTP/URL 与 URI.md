@@ -14,8 +14,8 @@ weight: 20
 > - [Wiki, URL](https://en.wikipedia.org/wiki/URL)
 > - [Wiki, CleanURL-slug](https://en.wikipedia.org/wiki/Clean_URL)
 > - [Wiki, URL encoding](https://en.wikipedia.org/wiki/Percent-encoding)
-> - [RFC 3986，Uniform Resource Identifier(URI): Generic Syntax](https://www.rfc-editor.org/rfc/rfc3986.html)
-> - [RFC 1738，Uniform Resource Locators (URL)](https://www.rfc-editor.org/rfc/rfc1738)
+> - [RFC 3986, Uniform Resource Identifier(URI): Generic Syntax](https://www.rfc-editor.org/rfc/rfc3986.html)
+> - [RFC 1738, Uniform Resource Locators (URL)](https://www.rfc-editor.org/rfc/rfc1738)
 > - https://www.ruanyifeng.com/blog/2010/02/url_encoding.html
 
 既然 HTTP 的本质是是在两点之间传输超文本，那么这个超文本又该如何表示呢？我们应该如何正确得找到这个超文本呢？所以，人们将超文本描述为 **Resource(资源)**，互联网上如此之多得资源，就需要一个唯一标识符来标识每一个资源。URI 就是这么一个用来标识资源的规范。
