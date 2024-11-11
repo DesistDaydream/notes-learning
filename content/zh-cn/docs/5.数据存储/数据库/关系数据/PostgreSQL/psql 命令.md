@@ -57,21 +57,3 @@ psql 中可以执行有多种类型的命令
 
 - `psql -U postgres -h 127.0.0.1 -c "SELECT pg_reload_conf();"`
 
-## Schema 查询
-
-列出所有 Schema
-
-```sql
-SELECT schema_name
-FROM information_schema.schemata;
-```
-
-列出名为 cheat 的 Schema 下的所有表
-
-```sql
-SELECT table_name
-FROM information_schema.tables
-WHERE table_schema = 'cheat'
-  AND table_type = 'BASE TABLE';
-```
-

@@ -1,5 +1,8 @@
 ---
 title: PostgreSQL
+linkTitle: PostgreSQL
+date: 2023-11-11T17:30:00
+weight: 1
 ---
 
 # 概述
@@ -11,15 +14,25 @@ title: PostgreSQL
 
 PostgreSQL 是一个功能强大的开源对象关系数据库系统，经过 30 多年的积极开发，在可靠性、特性健壮性和性能方面赢得了很高的声誉。
 
+一个 Database(库) 中包含多个 Schemas(模式)，一个 Schema(模式) 中包含多个 Tables(表)
+
 ## Schema
 
 https://www.postgresql.org/docs/current/ddl-schemas.html
 
 PostgreSQL 的数据库中包含 1 个或多个 Schema，所有的 Table 是归属在 Schema 下的。
 
+> 可以讲 Schema 理解为 Namespace（PostgreSQL 也是通过 pg_namespace 元表（元数据表）查看所有 Schema）
+
 默认情况下，创建的 Table 自动放入名为 **public** 的 Schema 下。每个数据库都会包含 public Schema。
 
-要访问非 public Schema 下的 Table，使用 `.` 符号。e.g. `SchemaName.TableName`，如果用最简单的 SQL 举例就是： `select * from schema_demo.table_one` 列出名为 schema_demo 模式中的 table_one 表下的所有列。
+要访问非 public Schema 下的 Table，使用 `.` 符号。e.g. `SchemaName.TableName`，如果用最简单的 SQL 举例就是:  `select * from schema_demo.table_one` 列出名为 schema_demo 模式中的 table_one 表下的所有列。
+
+PostgreSQL 内置了如下几个 Schemas
+
+- **public** # 在不指定 Schema 的情况下，新建的 Table 都默认保存在 public Schema 中。
+- **pg_catalog** # System catalogs(系统目录)，保存 PostgreSQL 运行常见的
+- **information_schema** # 与 Schema 相关的内部信息
 
 # PostgreSQL 部署
 
@@ -226,6 +239,40 @@ psql 命令存在简写形式。如果当前 Linux 系统用户，同时也是 P
 
 **postgresql.conf** # 可以改监听地址
 
+# 元数据
+
+## System catalogs
+
+> 参考：
+>
+> - [官方文档，内部 - 51. 系统目录](https://www.postgresql.org/docs/current/catalogs.html)
+
+**System catalogs(系统目录)** 是关系数据库管理系统存储模式元数据的地方，例如有关表和列的信息以及内部簿记信息。 PostgreSQL 的 <font color="#ff0000">System catalogs 是常规表</font>。您可以删除并重新创建表、添加列、插入和更新值，并以这种方式严重扰乱您的系统。通常，不应手动更改系统目录，通常有 SQL 命令可以做到这一点。 （例如，CREATE DATABASE 会在 pg_database 目录中插入一行，并实际上在磁盘上创建数据库。）对于特别深奥的操作有一些例外，但随着时间的推移，其中许多操作已作为 SQL 命令提供，因此需要对系统目录的直接操作正在不断减少。
+
+这些 System catalogs 常规表默认保存在 `pg_catalog` Schema 中，还可以通过 `\dS` 
+
+| Catalog 名称                                                                                                | 用途                                                  |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| [`pg_namespace`](https://www.postgresql.org/docs/current/catalog-pg-namespace.html "51.32. pg_namespace") | 记录 Schems 的基本元信息。包含 oid, nspname, nspowner,nspacl 列 |
+| TODO                                                                                                      |                                                     |
+
+比如 `SELECT * FROM pg_namespace;` 可以查看所有 Schemas 的信息。
+
+## Information Schema
+
+> 参考：
+>
+> - [官方文档，客户端接口](https://www.postgresql.org/docs/current/information-schema.html)
+
+Information Schema 由一组视图组成，这些视图包含有关当前数据库中定义的对象的信息。Information Schema 是在 SQL 标准中定义的，因此可以预期是可移植的并保持稳定，与 System catalogs 不同，Information Schema 特定于 PostgreSQL 并且根据实现问题进行建模。然而，Information Schema 视图不包含有关 PostgreSQL 特定功能的信息；要查询这些信息，您需要查询 System catalogs 或其他 PostgreSQL 特定的视图。
+
+Information Schema 有一个名为 information_schema 的 Schema。该模式自动存在于所有数据库中。该模式的所有者是集群中的初始数据库用户，该用户自然拥有该模式的所有权限，包括删除它的能力（但由此节省的空间微乎其微）。
+
+默认情况下，information_schema 不在模式搜索路径中，因此需要通过限定名称访问其中的所有对象。由于 information_schema 中某些对象的名称是用户应用程序中可能出现的通用名称，因此如果要将信息模式放入路径中，则应小心。
+
+> [!Tip]
+> 在 information_schema.schemate 查看 Schema 信息时，有一列名为 catalog_name，可以从 `SELECT datname FROM pg_catalog.pg_database;` 获取到，这 catalog_name 就是类似 Database(数据库) 的概念。相当于在 psql 中执行 `\l`
+
 # GUI 工具
 
 [数据库管理工具](/docs/5.数据存储/数据管理工具/数据库管理工具.md)
@@ -268,3 +315,29 @@ ALTER TABLE user_tbl RENAME TO backup_tbl;
 # 删除表格
 DROP TABLE IF EXISTS backup_tbl;
 ```
+
+## Schema 查询
+
+列出所有 Schema
+
+```sql
+SELECT *
+FROM pg_namespace;
+```
+
+或
+
+```sql
+SELECT schema_name
+FROM information_schema.schemata;
+```
+
+列出名为 cheat 的 Schema 下的所有表
+
+```sql
+SELECT table_name
+FROM information_schema.tables
+WHERE table_schema = 'cheat'
+  AND table_type = 'BASE TABLE';
+```
+
