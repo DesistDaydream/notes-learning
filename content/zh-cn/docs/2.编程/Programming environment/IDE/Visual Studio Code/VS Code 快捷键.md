@@ -25,7 +25,7 @@ Ctrl+k,Ctrl+s 打开键盘快捷方式列表
 - **Ctrl+Shift+e** # 显示资源管理器
 - **Ctrl+Shift+g** # 显示源代码管理
 
-  - **Ctrl+k,Ctrl+F5** # (自定义)Git 刷新
+- **Ctrl+k,Ctrl+F5** # (自定义)Git 刷新
 
 - **Ctrl+Shift+f** # 显示搜索
 

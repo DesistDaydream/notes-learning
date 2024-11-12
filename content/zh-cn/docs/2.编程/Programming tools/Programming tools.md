@@ -40,6 +40,14 @@ Lint 或 Linter 是一种静态代码分析工具，用于标记 编程错误、
 
 # AI 代码补全
 
+https://github.com/getcursor/cursor # 一种基于 VSCode 的 IDE
+
+https://github.com/cline/cline # IDE 插件+命令行工具
+
+https://github.com/codota/TabNine
+
+https://code.fittentech.com/
+
 ## Copilot
 
 [现在网上卖的 Github Copilot 授权程序是什么原理？](https://www.v2ex.com/t/975443)
@@ -47,8 +55,6 @@ Lint 或 Linter 是一种静态代码分析工具，用于标记 编程错误、
 cocopilot https://zhile.io/2023/09/09/github-got-banned.html
 
 https://gitee.com/Tzeao/share-copilot
-
-## Tabnine
 
 ## CodeGeeX
 
@@ -66,16 +72,4 @@ https://github.com/aws/aws-toolkit-vscode
 
 亚马逊出的 AI 代码补全
 
-## Fitten Code
 
-https://code.fittentech.com/
-
-# 反编译器
-
-## ILSpy
-
-> 参考：
->
-> - [GitHub 项目，icsharpcode/ILSpy](https://github.com/icsharpcode/ILSpy)
-
-ILSpy 是开源的 .NET 程序集浏览器和反编译器

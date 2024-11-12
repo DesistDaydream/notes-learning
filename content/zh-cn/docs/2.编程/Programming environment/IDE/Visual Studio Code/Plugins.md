@@ -19,18 +19,22 @@ weight: 20
 
 > 参考：
 >
-> - [官方文档，用户指南-Debugging](https://code.visualstudio.com/docs/editor/debugging)
+> - [官方文档，用户指南 - Debugging](https://code.visualstudio.com/docs/editor/debugging)
 > - <https://www.barretlee.com/blog/2019/03/18/debugging-in-vscode-tutorial/>
 
 Debug 插件的默认配置文件名为 `launch.json`
 
-cwd # 运行程序的工作路径
+## launch.json
 
-program # 要运行的程序
+https://code.visualstudio.com/docs/editor/debugging#_launchjson-attributes
 
-args # 运行程序的参数
+**cwd** # 运行程序的工作路径
 
-简单示例
+**program** # 启动调试器时要运行的可执行文件或文件
+
+**args** # 运行程序的参数
+
+## 简单示例
 
 ```json
 {
@@ -79,7 +83,7 @@ https://github.com/liximomo/vscode-sftp#connection-hopping
     "name": "DesistDaydream",
     "remotePath": "/root/projects",
 	// 用于作为代理的服务器信息
-    "host": "202.43.145.163",
+    "host": "192.168.1.10",
     "protocol": "sftp",
     "port": 42203,
     "username": "root",

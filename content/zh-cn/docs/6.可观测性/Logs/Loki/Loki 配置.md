@@ -329,7 +329,9 @@ Table Manager(表管理器) 组件配置，以规定数据保留的行为。该�
 
 ## limits_config
 
-**ingestrion_rate_mb(FLOAT)** # 每秒可以摄取日志量的大小，单位 MB。`默认值：4`
+https://grafana.com/docs/loki/latest/configure/#limits_config
+
+**ingestion_rate_mb(FLOAT)** # 每秒可以摄取日志量的大小，单位 MB。`默认值：4`
 
 **enforce_metric_name(BOOLEAN)**# 强制每个样本都有一个 metric 名称。`默认值：true`
 

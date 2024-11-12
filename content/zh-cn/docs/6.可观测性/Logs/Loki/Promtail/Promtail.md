@@ -48,7 +48,7 @@ Promtail 与 Prometheus 的服务发现机制相同，通过配置文件中 `scr
 
 1. 根据元数据添加标签。发现日志流后，会确定元数据(pod 名称、文件名等等)，这些元数据可以作为标签附加到每行日志上。通过 relabel_configs，可以将发现的标签改变为所需的形式。
 2. 解析日志内容并添加或更新标签。Promtail 会通过`scrape_config.pipeline_stages`配置段的内容，解析每行日志内容。根据解析的内容，可以为日志添加新的标签或更新现有标签。这种行为称为 [Pipelines](https://grafana.com/docs/loki/latest/clients/promtail/pipelines/)
-   1. Pipeline 说明详见：[Promtail Pipeline 概念](/docs/6.可观测性/Logs/Loki/Promtail/Pipeline%20概念/Pipeline%20概念.md)
+   1. Pipeline 说明详见：[Promtail Pipeline 概念](docs/6.可观测性/Logs/Loki/Promtail/Pipeline/Pipeline.md)
 
 ## 推送日志
 

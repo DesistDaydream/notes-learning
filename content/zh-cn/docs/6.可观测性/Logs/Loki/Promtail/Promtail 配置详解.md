@@ -13,35 +13,25 @@ title: Promtail 配置详解
 
 Promtail 在 YAML 文件（通常称为 config.yaml）中进行配置，该文件包含 Promtail 运行时信息，抓取到的日志存储位置，以及抓取日志的行为
 
-下面是一个配置文件的基本结构：
+顶级字段
 
-```yaml
-#  配置 promtail 程序运行时行为。如指定监听的ip、port等信息。
-server: <server_config>
+- **server**([server](#server)) #  配置 promtail 程序运行时行为。如指定监听的ip、port等信息。
+- **clients**([clients](#clients)) # 配置 Promtail 如何连接到 Loki 的多个实例，并向每个实例发送日志。
+  - Note：如果其中一台远程Loki服务器无法响应或发生任何可重试的错误，这将影响将日志发送到任何其他已配置的远程Loki服务器。
+  - 发送是在单个线程上完成的！ 如果要发送到多个远程Loki实例，通常建议并行运行多个Promtail客户端。
+- **positions**([positions](#positions)) # positions 文件用于记录 Promtail 发现的目标。该字段用于定义如何保存 postitions.yaml 文件。
+  - Promtail 发现的目标就是指日志文件。
+- **scrape_configs** # 配置 Promtail 如何发现日志文件，以及如何从这些日志文件抓取日志。
 
-# 配置 Promtail 如何连接到 Loki 的多个实例，并向每个实例发送日志。
-# Note：如果其中一台远程Loki服务器无法响应或发生任何可重试的错误，这将影响将日志发送到任何其他已配置的远程Loki服务器。
-# 发送是在单个线程上完成的！ 如果要发送到多个远程Loki实例，通常建议并行运行多个Promtail客户端。
-clients:
-  - <client_config>
-
-# positions 文件用于记录 Promtail 发现的目标。该字段用于定义如何保存 postitions.yaml 文件
-# Promtail 发现的目标就是指日志文件。
-positions: <position_config>
-
-# 配置 Promtail 如何发现日志文件，以及如何从这些日志文件抓取日志。
-scrape_configs:
-  - <scrape_config>
 
 # 配置如何 tail 目标
 target_config: <target_config>
-```
 
-## server(OBJECT)
+## server
 
-## clients(OBJECT)
+## clients
 
-## positions(OBJECT)
+## positions
 
 positions 文件用于记录 Promtail 发现的目标。该字段用于定义如何保存 postitions.yaml 文件。Promtail 发现的目标就是指日志文件。
 
@@ -64,7 +54,7 @@ Promtail 根据 scrape_configs 字段的内容，使用指定的发现方法从�
 
 **job_name(STRING)** # 指定抓取日志的 Job 名字
 
-**pipeline_stages(pipeline_stages)** # 定义从指定的目标抓取日志的行为。`默认值：docker{}`。详见：[Pipeline 概念](/docs/6.可观测性/Logs/Loki/Promtail/Pipeline%20概念/Pipeline%20概念.md) 与 [Stages(阶段) 详解](/docs/6.可观测性/Logs/Loki/Promtail/Pipeline%20概念/Stages(阶段)%20详解.md)
+**pipeline_stages(pipeline_stages)** # 定义从指定的目标抓取日志的行为。`默认值：docker{}`。详见：[Pipeline](docs/6.可观测性/Logs/Loki/Promtail/Pipeline/Pipeline.md) 与 [Stages(阶段) 详解](docs/6.可观测性/Logs/Loki/Promtail/Pipeline/Stages(阶段)%20详解.md)
 
 **loki_push_api(loki_push_api_config)** # 定义日志推送的路径 (e.g. from other Promtails or the Docker Logging Driver)
 
@@ -76,15 +66,15 @@ Promtail 会根据这里的字段的配置，以发现需要 Scrape 日志的目
 
 - 具体配置详见下文[静态目标发现](#静态目标发现)
 
-**XX_sd_configs:**[\<XXXX>](#IWvg5) # 动态配置
+**XX_sd_configs**(OBJECT) # 动态配置
 
 - 具体配置详见下文[动态目标发现](#动态目标发现)
 
-**jounal(OBJECT)** # 动态配置
+**journal**([journal](#journal)) # 动态配置
 
 - 具体配置详见下文[动态目标发现](#动态目标发现)
 
-**syslog(OBJECT)** # 动态配置
+**syslog**([syslog](#syslog)) # 动态配置
 
 - 具体配置详见下文[动态目标发现](#动态目标发现)
 
@@ -126,7 +116,7 @@ Promtail 会根据这里的字段的配置，以发现需要 Scrape 日志的目
 
 ## 动态目标发现
 
-我们可以从 grafana/loki 项目代码 `[clients/pkg/promtail/scrapeconfig/scrapeconfig.go](https://github.com/grafana/loki/blob/v2.6.1/clients/pkg/promtail/scrapeconfig/scrapeconfig.go#L53)` 中找到所有可以动态发现目标的配置。
+我们可以从 grafana/loki 项目代码 [clients/pkg/promtail/scrapeconfig/scrapeconfig.go](https://github.com/grafana/loki/blob/v2.6.1/clients/pkg/promtail/scrapeconfig/scrapeconfig.go#L53) 中找到所有可以动态发现目标的配置。
 
 ### journal(OBJECT)
 

@@ -10,6 +10,7 @@ weight: 20
 > 参考：
 >
 > - [GitHub 项目，vectordotdev/vector](https://github.com/vectordotdev/vector)
+> - [官网](https://vector.dev/)
 > - https://www.cnblogs.com/ulricqin/p/17762086.html
 
 Vector 是一种高性能的用于可观测性的 [DataPipeline](/docs/6.可观测性/DataPipeline/DataPipeline.md)(数据管道)，让用户能够控制其可观测性数据。收集、转换 所有日志、指标和跟踪，并将其路由到任意 Vendor 以及明天可能需要的其他 Vendor。

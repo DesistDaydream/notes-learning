@@ -2248,7 +2248,7 @@
       "docs/6.可观测性/Logs/Loki/Promtail/Promtail 部署.md",
       "docs/6.可观测性/Logs/Loki/Promtail/Promtail 配置详解.md",
       "docs/6.可观测性/Logs/Loki/Promtail/Label 与 Relabeling.md",
-      "docs/6.可观测性/Logs/Loki/Promtail/Pipeline 概念",
+      "docs/6.可观测性/Logs/Loki/Promtail/Pipeline",
       "docs/6.可观测性/Logs/Log Clients/Promtail/Pipeline 概念.md"
     ],
     "docs/6.可观测性/Logs/Loki/Storage(存储)": [
