@@ -732,7 +732,6 @@
     "docs/10.云原生/Kubernetes": [
       "docs/10.云原生/Kubernetes/_index.md",
       "docs/10.云原生/Kubernetes/Kubernetes.md",
-      "docs/10.云原生/Kubernetes/Kuberntes 介绍",
       "docs/10.云原生/Kubernetes/Kubernetes 部署与清理",
       "docs/10.云原生/Kubernetes/API Resource 与 Object",
       "docs/10.云原生/Kubernetes/Kubelet",
@@ -835,9 +834,10 @@
     "docs/10.云原生/Kubernetes/Kubelet": [
       "docs/10.云原生/Kubernetes/Kubelet/_index.md",
       "docs/10.云原生/Kubernetes/Kubelet/Kubelet.md",
-      "docs/10.云原生/Kubernetes/Kubelet/Kubelet 配置详解.md",
-      "docs/10.云原生/Kubernetes/Kubelet/CRI 对比.md",
+      "docs/10.云原生/Kubernetes/Kubelet/Kubelet 配置.md",
       "docs/10.云原生/Kubernetes/Kubelet/Kubelet 特性",
+      "docs/10.云原生/Kubernetes/Kubelet/Runtime.md",
+      "docs/10.云原生/Kubernetes/Kubelet/CRI 对比.md",
       "docs/10.云原生/Kubernetes/Kubelet/crictl 命令行工具.md"
     ],
     "docs/10.云原生/Kubernetes/Kubelet/Kubelet 特性": [
@@ -1092,13 +1092,6 @@
       "docs/10.云原生/Kubernetes/Kubernetes 部署与清理/Kubernetes 部署与清理.md",
       "docs/10.云原生/Kubernetes/Kubernetes 部署与清理/创建高可用 Kubernetes 集群.md",
       "docs/10.云原生/Kubernetes/Kubernetes 部署与清理/kubernetes 二进制方式安装说明.md"
-    ],
-    "docs/10.云原生/Kubernetes/Kuberntes 介绍": [
-      "docs/10.云原生/Kubernetes/Kuberntes 介绍/_index.md",
-      "docs/10.云原生/Kubernetes/Kubernetes.md",
-      "docs/10.云原生/Kubernetes/Kuberntes 介绍/Glossary.md",
-      "docs/10.云原生/Kubernetes/Kuberntes 介绍/Kubernetes Runtime.md",
-      "docs/10.云原生/Kubernetes/Kuberntes 介绍/Kubernetes 开源社区指南.md"
     ],
     "docs/10.云原生/Kubernetes/Pod": [
       "docs/10.云原生/Kubernetes/Pod/_index.md",

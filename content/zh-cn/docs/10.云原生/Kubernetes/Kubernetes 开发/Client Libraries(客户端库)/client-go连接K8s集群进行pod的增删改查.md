@@ -14,9 +14,10 @@ title: client-go连接K8s集群进行pod的增删改查
 2. 导入到`IDE`。
 3. 运行 `examples/create-update-delete-deployment/main.go` 正常情况下会提示如下错误：
 
-
-    panic: CreateFile C:\Users\shj\.kube\config: The system cannot find the path spe
-    cified.
+```
+panic: CreateFile C:\Users\shj\.kube\config: The system cannot find the path spe
+cified.
+```
 
 错误信息提示很清楚，没有找到本地文件夹下的`config`文件，处理方式也很简单，只需要把你`Kubernetes`集群中`$HOME/.kube/config`复制到本地即可；仔细阅读代码可以发现，也可以通过自行配置客户端连接信息（生产环境慎用）。
 

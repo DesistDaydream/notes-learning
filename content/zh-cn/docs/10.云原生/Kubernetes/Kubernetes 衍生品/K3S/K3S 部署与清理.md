@@ -271,10 +271,10 @@ fi
 > 参考： 
 > 
 > - [GitHub 项目，techno-tim/k3s-ansible](https://github.com/techno-tim/k3s-ansible)
->     - 起源于：
->         - https://github.com/k3s-io/k3s-ansible
->         - https://github.com/geerlingguy/turing-pi-cluster
->         - https://github.com/212850a/k3s-ansible
+>   - 起源于：
+>     - https://github.com/k3s-io/k3s-ansible
+>     - https://github.com/geerlingguy/turing-pi-cluster
+>     - https://github.com/212850a/k3s-ansible
 
 ansible-playbook site.yml -i inventory/my-cluster/hosts.ini
 

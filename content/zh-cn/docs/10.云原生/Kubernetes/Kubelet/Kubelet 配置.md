@@ -1,14 +1,14 @@
 ---
-title: Kubelet 配置详解
-linkTitle: Kubelet 配置详解
-date: 2023-11-04T09:09
+title: Kubelet 配置
+linkTitle: Kubelet 配置
+date: 2019-11-04T09:09:00
 weight: 2
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，入门-生产环境-使用工具安装 Kubernetes-使用 kubeadm 引导集群-使用 kubeadm 配置集群中每个 kubelet](https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/kubelet-integration/)
 > - [官方文档，参考-配置 APIs-Kubelet 配置(v1beta1)](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)
 
@@ -36,7 +36,7 @@ weight: 2
 # 命令行标志详解
 
 > 参考：
-> 
+>
 > - [官方文档,参考-组件工具-kubelet](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/)
 
 **--cni-conf-dir \<STRING>** # Warning：Alpha 功能。指定 STRING 目录中搜索 CNI 配置文件。 `默认值：/etc/cni/net.d`
@@ -62,7 +62,7 @@ weight: 2
 # 配置文件详解
 
 > 参考：
-> 
+>
 > - [官方文档,任务-通过配置文件设置 kubelet 参数](https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/)
 > - [官方文档,参考-配置 APIs-Kubelet 配置](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)
 > - [代码](https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/kubelet/config/v1beta1/types.go) # 该代码是 Go 结构体与 JSON 格式的解析对应关系。其中的注释就是配置文件各字段的含义

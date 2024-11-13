@@ -5,6 +5,7 @@ title: Sealer
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，sealerio/sealer](https://github.com/sealerio/sealer)
 
 由 [sealos](https://github.com/labring/sealos) 作者进入阿里后开源的一款工具，用于将应用程序的所以依赖和 Kubernetes 打包成 ClusterImage。然后通过 ClusterImage 将此应用程序分发到任何位置。

@@ -1,11 +1,14 @@
 ---
 title: Operator 模式
+linkTitle: Operator 模式
+date: 2020-05-13T22:41:00
+weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，概念 - 扩展 K8S - Operator 模式](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/)
 > - https://jimmysong.io/kubernetes-handbook/develop/operator.html
 

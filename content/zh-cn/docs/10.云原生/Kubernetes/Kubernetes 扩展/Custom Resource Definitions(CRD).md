@@ -5,11 +5,12 @@ title: Custom Resource Definitions(CRD)
 # 概述
 
 > 参考：
-> - 官方文档：<https://kubernetes.io/zh/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions>
+>
+> - [官方文档，概念 - 扩展 Kubernetes - 扩展 API - 自定义资源，CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions)
 
 **Custom Resource Definitions 自定义资源定义，简称 CRD**。是一个 Kubernetes 的 API 对象。其前身是 Kubernetes1.6 版本中一个叫做 ThirdPartyResource(第三方资源，简称 TPR) 的内建对象，可以用它来创建自定义资源，但该对象在 kubernetes1.7 中版本已被 CRD（CustomResourceDefinition）取代。**CRD 的目的是让 Kubernetes API 能够认识新对象(就是 yaml 中的 kind)**。所以通过 CRD 创建的对象可以跟 kubernetes 中内建对象一样使用 kubectl 操作，就像 kubectl 操作 pod 一样，如果我定义了一个名为 lch 的 crd ，那么我可以使用 kubectl get lch 命令来操作 lch 这个资源
 
-注意：单纯设置了 CRD，并没有什么用，只有跟自定义控制器(controller)结合起来，才能将资源对象中的声明式 API 翻译成用户所期望的状态。自定义控制器可以用来管理任何资源类型，但是一般是跟 CRD 结合使用。自定义控制器称为 operator。[Operator 工作原理解读](https://www.teambition.com/project/5f90e312755d8a00446050eb/app/5eba5fba6a92214d420a3219/workspaces/5f90e312c800160016ea22fb/docs/5f9a5fe537398300016bbb9a?scroll-to-block=5f9a5ff23733593fae962d44)
+注意：单纯设置了 CRD，并没有什么用，只有跟自定义控制器(controller)结合起来，才能将资源对象中的声明式 API 翻译成用户所期望的状态。自定义控制器可以用来管理任何资源类型，但是一般是跟 CRD 结合使用。自定义控制器称为 [Operator](docs/10.云原生/Kubernetes/Kubernetes%20扩展/Operator%20模式.md)。
 
 为什么这么说呢？
 
@@ -29,28 +30,30 @@ CRD 使得你不必编写自己的 API 服务器来处理定制资源，不过�
 
 参考下面的 CRD，resourcedefinition.yaml：
 
-    apiVersion: apiextensions.k8s.io/v1beta1
-    kind: CustomResourceDefinition
-    metadata:
-      # 名称必须符合下面的格式：<plural>.<group>
-      name: crontabs.stable.example.com
-    spec:
-      # REST API使用的组名称：/apis/<group>/<version>
-      group: stable.example.com
-      # REST API使用的版本号：/apis/<group>/<version>
-      version: v1
-      # Namespaced或Cluster
-      scope: Namespaced
-      names:
-        # URL中使用的复数名称: /apis/<group>/<version>/<plural>
-        plural: crontabs
-        # CLI中使用的单数名称
-        singular: crontab
-        # CamelCased格式的单数类型。在清单文件中使用
-        kind: CronTab
-        # CLI中使用的资源简称
-        shortNames:
-        - ct
+```yaml
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  # 名称必须符合下面的格式：<plural>.<group>
+  name: crontabs.stable.example.com
+spec:
+  # REST API使用的组名称：/apis/<group>/<version>
+  group: stable.example.com
+  # REST API使用的版本号：/apis/<group>/<version>
+  version: v1
+  # Namespaced或Cluster
+  scope: Namespaced
+  names:
+    # URL中使用的复数名称: /apis/<group>/<version>/<plural>
+    plural: crontabs
+    # CLI中使用的单数名称
+    singular: crontab
+    # CamelCased格式的单数类型。在清单文件中使用
+    kind: CronTab
+    # CLI中使用的资源简称
+    shortNames:
+    - ct
+```
 
 创建该 CRD：
 
@@ -64,13 +67,15 @@ kubectl create -f resourcedefinition.yaml
 
 如下所示：
 
-    apiVersion: "stable.example.com/v1"
-    kind: CronTab
-    metadata:
-      name: my-new-cron-object
-    spec:
-      cronSpec: "* * * * /5"
-      image: my-awesome-cron-image
+```yaml
+apiVersion: "stable.example.com/v1"
+kind: CronTab
+metadata:
+  name: my-new-cron-object
+spec:
+  cronSpec: "* * * * /5"
+  image: my-awesome-cron-image
+```
 
 引用该自定义资源的 API 创建对象。
 
@@ -78,11 +83,13 @@ kubectl create -f resourcedefinition.yaml
 
 可以为自定义对象添加一个终止器，如下所示：
 
-    apiVersion: "stable.example.com/v1"
-    kind: CronTab
-    metadata:
-      finalizers:
-      - finalizer.stable.example.com
+```yaml
+apiVersion: "stable.example.com/v1"
+kind: CronTab
+metadata:
+  finalizers:
+  - finalizer.stable.example.com
+```
 
 删除自定义对象前，异步执行的钩子。对于具有终止器的一个对象，删除请求仅仅是为 metadata.deletionTimestamp 字段设置一个值，而不是删除它，这将触发监控该对象的控制器执行他们所能处理的任意终止器。
 

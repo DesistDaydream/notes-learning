@@ -1,14 +1,16 @@
 ---
-title: "API 与 Resource"
+title: API 与 Resource
+linkTitle: API 与 Resource
+date: 2019-11-13T21:49:00
 weight: 1
 ---
 
 # 概述
 
 > 参考：
-> 
-> - [官方文档，概念-概述-Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/)
-> - [官方文档，参考-API 概述](https://kubernetes.io/docs/reference/using-api/)
+>
+> - [官方文档，概念 - 概述 - Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/)
+> - [官方文档，参考 - API 概述](https://kubernetes.io/docs/reference/using-api/)
 
 Kubernetes API 使我们可以查询和操纵 Kubernetes API 中资源的状态。Kubernetes API 符合 RESTful 规范。
 
@@ -30,7 +32,7 @@ Kubernetes 中各种资源(对象)的数据都通过 API 接口被提交到后�
 
 > 参考：
 >
-> - [官方文档，参考-kubernetes API](https://kubernetes.io/docs/reference/kubernetes-api/)
+> - [官方文档，参考 - kubernetes API](https://kubernetes.io/docs/reference/kubernetes-api/)
 > - [1.19 版本 API 参考(一页模式)](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/)(要查看其他版本，修改 URL 最后的版本号即可)。
 
 资源大体可以分为下面几类：

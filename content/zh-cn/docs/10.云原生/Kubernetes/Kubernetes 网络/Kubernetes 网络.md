@@ -56,6 +56,5 @@ Kubernetes 的 IP 地址存在于 Pod 范围内 - 容器分享它们的网络命
 
 Kubernetes 中的网络插件有几种类型：
 
-- CNI 插件： 遵守 appc/CNI 规约，为互操作性设计。详见：CNI 介绍
-
+- CNI 插件： 遵守 appc/CNI 规约，为互操作性设计。详见：[CNI](docs/10.云原生/Kubernetes/Kubernetes%20网络/CNI/CNI.md)
 - Kubenet 插件：使用 bridge 和 host-local CNI 插件实现了基本的 cbr0

@@ -28,7 +28,7 @@ weight: 20
 
 1. 在 S1 上，使用 `--cluster-reset` 选项运行 K3s，同时指定 `--cluster-reset-restore-path`：
 
-```
+```bash
 ls /var/lib/rancher/k3s/server/db/snapshots/
 on-demand-ip-172-31-3-36-1688025329
 
@@ -41,20 +41,20 @@ k3s server \
 
 2. 在 `S2` 和 `S3` 上，停止 K3s。然后删除数据目录 `/var/lib/rancher/k3s/server/db/`：
 
-```
+```bash
 systemctl stop k3s
 rm -rf /var/lib/rancher/k3s/server/db/
 ```
 
 3. 在 `S1` 上，再次启动 K3s：
 
-```
+```bash
 systemctl start k3s
 ```
 
 4. `S1` 启动成功后，在 `S2` 和 `S3` 上，再次启动 K3s 以加入恢复后的集群：
 
-```
+```bash
 systemctl start k3s
 ```
 

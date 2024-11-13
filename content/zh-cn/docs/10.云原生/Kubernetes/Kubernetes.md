@@ -9,14 +9,14 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档，概念-概述](https://kubernetes.io/docs/concepts/overview/)
+> - [官方文档，概念 - 概述](https://kubernetes.io/docs/concepts/overview/)
 > - [play with kubernetes](https://labs.play-with-k8s.com/)
 
-Kubernetes 是一套编排系统，编排目标是实现 [Containerization](/docs/10.云原生/Containerization/Containerization.md)(容器化) 的容器。
+Kubernetes 是一套编排系统，编排目标是实现了 [Containerization](/docs/10.云原生/Containerization/Containerization.md)(容器化) 的容器。
 
-Borg 是谷歌内部的容器管理系统，kuberntes 根据 Borg 的思路使用 go 语言重新开发，2015 年 7 月份发布
+Borg 是谷歌内部的容器管理系统，Kuberntes 根据 Borg 的思路使用 [Go](/docs/2.编程/高级编程语言/Go/Go.md) 语言重新开发，2015 年 7 月份发布
 
-特性自动装箱：
+特性：
 
 1. 自我修复：一个 pod 崩了，可以在 1 秒启动，pod 比较轻量，kill 掉崩的容器再启动一个，所以一般情况一个 deployment 会启动多个 pod
 2. 自动实现水平扩展：一个 pod 不够，再起一个
@@ -26,31 +26,55 @@ Borg 是谷歌内部的容器管理系统，kuberntes 根据 Borg 的思路使�
 6. 存储编排
 7. 任务的批量处理执行
 
-google 成立 CNCF，让各大公司共同管理，并把 kubernetes 贡献给 CNCF，所以 Kubernetes 不会闭源。
+Google 成立 CNCF，让各大公司共同管理，并把 Kubernetes 贡献给 [CNCF](/docs/10.云原生/云原生/CNCF.md)，所以 Kubernetes 不会闭源。
 
-# Kubernetes Components(组件)
+# Kubernetes 架构
 
-Kubernetes 集群由代表控制平面和一组称为 nodes 的机器的组件组成。
+> 参考：
+>
+> [官方文档，概念 - 集群架构](https://kubernetes.io/docs/concepts/architecture/)
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/te78l0/1649254728428-ead6f0e0-3d8b-4527-8abf-17bd82533aa8.svg)
+Kubernetes 集群由代表 Control Palne(控制平面) 和 一组 Nodes(节点) 的机器组成。
+
+![k8s-arch.excalidraw|1000](Excalidraw/k8s-arch.excalidraw.md)
 
 ## Control Plane Components(控制平面组件)
 
-### kube-apiserver
+### API Server
 
-### etcd
+实现程序：kube-apiserver
 
-### kube-scheduler
+[API Server](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20Server/API%20Server.md)
 
-### kube-controller-manager
+### Etcd
+
+[Etcd](/docs/10.云原生/Kubernetes/Etcd/Etcd.md)
+
+### Scheduler
+
+实现程序：kube-scheduler
+
+[Scheduling](/docs/10.云原生/Kubernetes/Scheduling/Scheduling.md)
+
+### Controller Manager
+
+实现程序：kube-controller-manager
+
+[Controller](/docs/10.云原生/Kubernetes/Controller/Controller.md)
 
 ## Node Components(节点组件)
 
-### kubelet
+### Kubelet
+
+[Kubelet](/docs/10.云原生/Kubernetes/Kubelet/Kubelet.md)
 
 ### kube-proxy
 
+[kube-proxy](/docs/10.云原生/Kubernetes/Kubernetes%20网络/kube-proxy/kube-proxy.md)
+
 ### Container runtime
+
+[Runtime](/docs/10.云原生/Kubernetes/Kubelet/Runtime.md)
 
 ## Addons(附加组件)
 
@@ -80,7 +104,7 @@ Kubernetes API 使您可以查询和操纵 Kubernetes 中对象的状态。 Kube
 
 官方文档: https://kubernetes.io/docs/concepts/overview/working-with-objects/
 
-Kubernetes 对象是 Kubernetes 系统中的持久实体。 Kubernetes 使用这些实体来表示您的集群状态。了解 Kubernetes 对象模型以及如何使用这些对象。
+Kubernetes [Object](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/Object.md) 是 Kubernetes 系统中的持久实体。 Kubernetes 使用这些实体来表示您的集群状态。了解 Kubernetes 对象模型以及如何使用这些对象。
 
 ## kubernetes 所有用 kubectl creat 出来的都可以理解为是一种对象
 
@@ -230,9 +254,7 @@ etcd 内部，etcd 与 apiservice，apiservice-客户端，apiservice 与 kubect
 - 应用的配置和当前状态信息保存在 Etcd 中，每一步操作完的结果都会经由 API Server 将信息更新到 Etcd 中。最后执行 `kubectl get pod` 时 API Server 会从 etcd 中读取这些数据。
 - flannel 会为每个 Pod 都分配 IP。因为没有创建 service，目前 kube-proxy 还没参与进来。
 
-# Kubernetes 架构
-
-官方文档：<https://kubernetes.io/docs/concepts/architecture/>
+# 待整理文章
 
 ## Node 节点
 

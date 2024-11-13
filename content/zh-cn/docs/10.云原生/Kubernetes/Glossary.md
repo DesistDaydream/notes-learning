@@ -8,8 +8,8 @@ weight: 20
 # 概述
 
 > 参考：
-> 
-> - [官方文档, 参考 - 术语](https://kubernetes.io/docs/reference/glossary/)
+>
+> - [官方文档，参考 - 术语](https://kubernetes.io/docs/reference/glossary/)
 
 ## Declarative Application Management
 

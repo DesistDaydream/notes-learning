@@ -299,6 +299,7 @@ echo 'source <(kubectl completion bash)' >> ~/.bashrc
 安装网络组件 flannel
 
 - `kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml`
+
 ## 添加节点 node
 
 执行前面的 1,2,3 步配置环境，安装 docker 以及 k8s 相关组件。

@@ -6,7 +6,7 @@ title: Kubernetes 日志
 
 > 参考
 >
-> - [官方文档,概念-集群管理-日志架构](https://kubernetes.io/docs/concepts/cluster-administration/logging/)
+> - [官方文档，概念 - 集群管理 - 日志架构](https://kubernetes.io/docs/concepts/cluster-administration/logging/)
 
 集群级日志架构需要一个单独的后端来存储、分析和查询日志。Kubernetes 不提供日志数据的原生存储解决方案。相反，有许多与 Kubernetes 集成的日志记录解决方案。
 
