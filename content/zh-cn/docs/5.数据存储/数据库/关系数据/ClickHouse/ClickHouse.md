@@ -2,7 +2,7 @@
 title: ClickHouse
 linkTitle: ClickHouse
 date: 2024-09-30T15:29
-weight: 20
+weight: 1
 ---
 
 # 概述
@@ -47,8 +47,48 @@ https://clickhouse.com/docs/en/integrations/sql-clients/cli
 
 - clickhouse-client -u default --password 12345678  -m -n --port 9100 -h 127.0.0.1 -d network_security
 
+# Engine
 
-# 其他
+> 参考：
+>
+> - [官方文档，SQL 参考 - 引擎](https://clickhouse.com/docs/en/engines)
+> - [流式数据同步：一种PostgreSQL到ClickHouse的高效数据同步方案](https://juejin.cn/post/7375275474006016011)
+
+- Database Engine(数据库引擎)
+- Table Engine(表引擎)
+
+## Database Engine
+
+
+## Table Engine
+
+Table Engine(表引擎) 本质上是用来定义表的类型。ClickHouse 的表甚至可以通过 Engine 从其他数据库中读取数据（e.g. 直接读取 PostgreSQL 中某个表的数据）
+
+比如用下面找个创建 Table 的语法举例：
+
+```sql
+CREATE TABLE my_database.my_table (
+  `id` UInt64, 
+  `command_source` Nullable(Int64), 
+  `source_system` String, 
+  `version` String, 
+  `command_id` String,
+)
+ENGINE = PostgreSQL('10.53.192.45:5432', 'PG_Database', 'PG_Table', 'PG_Username', 'PG_Password', 'CH_ClusterName')
+```
+
+创建完成后，我们在 CH 中查询的 my_database.my_table 表中的数据实际上是直接获取的 PostgreSQL 中的 PG_Database.PG_Table 表的数据。
+
+Table Engine 可以决定：
+
+- How and where data is stored, where to write it to, and where to read it from.数据如何存储、在何处存储、将其写入何处以及从何处读取。
+- Which queries are supported, and how.支持哪些查询以及如何支持。
+- Concurrent data access.并发数据访问。
+- Use of indexes, if present.使用索引（如果存在）。
+- Whether multithread request execution is possible.是否可以执行多线程请求。
+- Data replication parameters.数据复制参数。
+
+# ClickHouse 生态
 
 Grafana 数据源插件 https://github.com/grafana/clickhouse-datasource
 
@@ -56,63 +96,3 @@ https://github.com/clickvisual/clickvisual 一个基于 clickhouse 构建的轻�
 
 https://github.com/metrico/promcasa 通过 ClickHouse 的 SQL，将查询结果转为 OpenMetrics 格式数据。
 
-# Function
-
-> 参考：
->
-> - [官方文档，SQL 参考 - 函数](https://clickhouse.com/docs/en/sql-reference/functions)
-
-- Regular Functions(常规函数)
-- Aggregate Functions(聚合函数)
-- Table Functions(表函数)
-- Window Functions(窗口函数)
-
-高阶函数与 lambda 函数，形式为 `params -> expr`。箭头左侧是一个形式参数，右侧是一个表达式。整体构成一个函数
-
-```
-onNameFunc(x -> x * 2)
-对应一个下面这种函数
-func onNameFunc(x int) {
-  x * 2
-}
-```
-
-## Regular Functions
-
-https://clickhouse.com/docs/en/sql-reference/functions
-
-### 数组
-
-https://clickhouse.com/docs/en/sql-reference/functions/array-functions
-
-`arrayExists(\[func,] arr1, ...)` # func 是一个高阶函数，可以接受 lambda 函数
-
-- e.g. `arrayExists(x -> x = src_ip, [${example_array}])` # `${example_array}` # 变量是一个数组，作为参数传递给 x，arrayExists 将会逐一一对 x 中的元素，执行 `x = src_ip` 表达式。主要用于判断 变量中的元素是否等于 src_ip
-
-### 日期与时间
-
-https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions
-
-toStartOfXXX
-
-类似 [PostgreSQL](docs/5.数据存储/数据库/关系数据/PostgreSQL/PostgreSQL.md) 的 date_bin 函数，将日期和时间向下舍入到 XXX，主要是用来依据时间进行数据聚合以实现时间序列数据的效果，并可在 Grafana 中绘制时间序列图表。
-
-有很多现成的函数和 1 个通用函数
-
-- [toStartOfWeek](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartofweek)
-- [toLastDayOfWeek](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tolastdayofweek)
-- [toStartOfDay](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartofday)
-  - e.g. `SELECT toStartOfDay(toDateTime('2023-04-21 10:20:30'))` 结果为 `2023-04-21 00:00:00`
-- [toStartOfHour](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartofhour)
-  - e.g. `SELECT toStartOfHour(toDateTime('2023-04-21 10:20:30'))` 结果为 `2023-04-21 10:00:00`
-- [toStartOfMinute](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartofminute)
-- [toStartOfSecond](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartofsecond)
-- [toStartOfMillisecond](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartofmillisecond)
-- [toStartOfMicrosecond](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartofmicrosecond)
-- [toStartOfNanosecond](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartofnanosecond)
-- [toStartOfFiveMinutes](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartoffiveminutes)
-- [toStartOfTenMinutes](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartoftenminutes)
-- [toStartOfFifteenMinutes](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartoffifteenminutes)
-- [toStartOfInterval](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartofinterval) # 通用函数，可以在参数中指定 向上/向下 舍入的具体逻辑。
-  - e.g. `toStartOfInterval(t, INTERVAL 1 YEAR)` 的返回值与 `toStartOfYear(t)` 相同
-  - e.g. `SELECT toStartOfInterval(toDateTime('2023-01-01 14:45:00'), INTERVAL 1 MINUTE, toDateTime('2023-01-01 14:35:30'))` 结果为 `2023-01-01 14:44:30`

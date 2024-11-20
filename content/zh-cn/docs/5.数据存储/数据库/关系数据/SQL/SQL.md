@@ -181,10 +181,12 @@ mysql> select * from pet;
 
 # 数据定义语句
 
-## create # 创建数据库或者表
+## create - 创建数据库或者表
 
 **create database NAME \[ARGS];**
+
 **create table NAME (Column_Name1 Column_Type1 \[ARGS],....,Column_NameN Column_TypeN \[ARGS])\[ARGS];**
+
 其中 Column_Type 可以使用的参数，涉及每种关系型数据库的各自实现方式
 
 ### ARGS
@@ -257,7 +259,7 @@ primary key (`id`)
 )engine=innodb default charset=utf8;
 ```
 
-## drop # 删除数据库或者表
+## drop - 删除数据库或者表
 
 **drop {database|table} NAME;**
 
@@ -267,10 +269,12 @@ EXAMPLE
 
 - truncate table inventory; # 清空 emp 表，这个命令删除上万条记录特别快，因为他不记录日志
 
-## alter # 修改数据库或者数据表
+## alter - 修改数据库或者数据表
 
 **alter database NAME;** # 修改数据库的信息
+
 **alter table NAME;** # 修改数据表的信息
+
 EXAMPLE
 
 - alter table inventory add column `create_time` timestamp; # 修改 inventory 表，添加名为 create_time 的列
@@ -300,7 +304,7 @@ EXAMPLE
 
 # 数据库管理语句
 
-## show # 显示信息
+## show - 显示信息
 
 显示有关数据库、表、列的信息，或有关服务器状态的信息。
 
@@ -326,18 +330,25 @@ EXAMPLE
 # 其他
 
 创建一个 utf8mb4 类型的数据库
+
 create database db2 DEFAULT CHARACTER SET utf8mb4;
+
 创建表
+
 CREATE TABLE students (id int UNSIGNED NOT NULL PRIMARY KEY,name VARCHAR（20）NOT NULL,age tinyint UNSIGNED);
 
 为 emp 表添加记录(有 id，name，sex，age 字段)
+
 insert into emp (id,name,sex,age) values(1,'xiaoming','m',30);
 
 修改 emp 表的内容（第几行第几个字段）
+
 update emp set age=18 where id=4;
 
 批量执行 sql 程序
+
 mysql < hellodb_innodb.sql
 
 备注：也可不进入数据库的情况下查看数据库
+
 mysql -e 'show databases'

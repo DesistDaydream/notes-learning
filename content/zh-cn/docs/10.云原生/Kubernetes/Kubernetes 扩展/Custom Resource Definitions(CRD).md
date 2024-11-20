@@ -10,7 +10,7 @@ title: Custom Resource Definitions(CRD)
 
 **Custom Resource Definitions 自定义资源定义，简称 CRD**。是一个 Kubernetes 的 API 对象。其前身是 Kubernetes1.6 版本中一个叫做 ThirdPartyResource(第三方资源，简称 TPR) 的内建对象，可以用它来创建自定义资源，但该对象在 kubernetes1.7 中版本已被 CRD（CustomResourceDefinition）取代。**CRD 的目的是让 Kubernetes API 能够认识新对象(就是 yaml 中的 kind)**。所以通过 CRD 创建的对象可以跟 kubernetes 中内建对象一样使用 kubectl 操作，就像 kubectl 操作 pod 一样，如果我定义了一个名为 lch 的 crd ，那么我可以使用 kubectl get lch 命令来操作 lch 这个资源
 
-注意：单纯设置了 CRD，并没有什么用，只有跟自定义控制器(controller)结合起来，才能将资源对象中的声明式 API 翻译成用户所期望的状态。自定义控制器可以用来管理任何资源类型，但是一般是跟 CRD 结合使用。自定义控制器称为 [Operator](docs/10.云原生/Kubernetes/Kubernetes%20扩展/Operator%20模式.md)。
+注意：单纯设置了 CRD，并没有什么用，只有跟自定义控制器(controller)结合起来，才能将资源对象中的声明式 API 翻译成用户所期望的状态。自定义控制器可以用来管理任何资源类型，但是一般是跟 CRD 结合使用。自定义控制器称为 [Operator](/docs/10.云原生/Kubernetes/Kubernetes%20扩展/Operator%20模式.md)。
 
 为什么这么说呢？
 

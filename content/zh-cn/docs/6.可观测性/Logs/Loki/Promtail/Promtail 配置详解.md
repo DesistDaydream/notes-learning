@@ -54,7 +54,7 @@ Promtail 根据 scrape_configs 字段的内容，使用指定的发现方法从�
 
 **job_name(STRING)** # 指定抓取日志的 Job 名字
 
-**pipeline_stages(pipeline_stages)** # 定义从指定的目标抓取日志的行为。`默认值：docker{}`。详见：[Pipeline](docs/6.可观测性/Logs/Loki/Promtail/Pipeline/Pipeline.md) 与 [Stages(阶段) 详解](docs/6.可观测性/Logs/Loki/Promtail/Pipeline/Stages(阶段)%20详解.md)
+**pipeline_stages(pipeline_stages)** # 定义从指定的目标抓取日志的行为。`默认值：docker{}`。详见：[Pipeline](/docs/6.可观测性/Logs/Loki/Promtail/Pipeline/Pipeline.md) 与 [Stages(阶段) 详解](/docs/6.可观测性/Logs/Loki/Promtail/Pipeline/Stages(阶段)%20详解.md)
 
 **loki_push_api(loki_push_api_config)** # 定义日志推送的路径 (e.g. from other Promtails or the Docker Logging Driver)
 

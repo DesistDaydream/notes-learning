@@ -14,7 +14,7 @@ title: Rsyslog
 > - [Manual(手册), rsyslogd(8)](https://man7.org/linux/man-pages/man8/rsyslogd.8.html)
 > - [Arch 文档，Systemd-Journal-配合 syslog 使用](<https://wiki.archlinux.org/title/Systemd_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)/Journal_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)>)
 
-**Rocket-fast system for log processing(像火箭一样快的日志处理系统，简称 rsyslog)** 是一款开源应用程序，用于 [Unix-like OS](docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md)，可以在 IP 网络中转发日志消息。Rsyslog 实现了基本的 Syslog 协议，并扩展了丰富的功能，比如基于内容的过滤、排队处理离线输出、支持模块、灵活的配置、使用 TCP 传输 等等.
+**Rocket-fast system for log processing(像火箭一样快的日志处理系统，简称 rsyslog)** 是一款开源应用程序，用于 [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md)，可以在 IP 网络中转发日志消息。Rsyslog 实现了基本的 Syslog 协议，并扩展了丰富的功能，比如基于内容的过滤、排队处理离线输出、支持模块、灵活的配置、使用 TCP 传输 等等.
 
 RsysLog 是一个日志统一管理的程序。通过 rsyslogd 这个守护进程提供服务，rsyslogd 程序是对 syslogd 的扩展，提供了更多的功能和可靠性。
 
@@ -44,7 +44,7 @@ Rsyslog 要想处理日志，需要先收到日志才可以对吧？一般情况
 默认情况下，Rsyslog  使用 input 模块中的 [**imuxscok**](https://www.rsyslog.com/doc/v8-stable/configuration/modules/imuxsock.html) 模块监听本地 Unix Socket(`默认为 /dev/log`) 以接收本地系统上运行的应用程序产生的 syslog 格式的日志消息。当该 Socket 收到消息时，会通过 syslog(3) 这里面所描述的系统调用将日志消息传递给 Rsyslogd。
 
 > [!Attention]
-> 在经过 [Chroot](docs/1.操作系统/Kernel/Process/Chroot.md) 的目录中，需要创建用于 Rsyslog 监听的本地 Unix Socket，否则 Rsyslog 无法获取 Choot 后目录中的各种日志。e.g. [SFTP Subsystem](docs/4.数据通信/Utility/OpenSSH/SFTP%20Subsystem.md) 最佳实践部分的配置
+> 在经过 [Chroot](/docs/1.操作系统/Kernel/Process/Chroot.md) 的目录中，需要创建用于 Rsyslog 监听的本地 Unix Socket，否则 Rsyslog 无法获取 Choot 后目录中的各种日志。e.g. [SFTP Subsystem](/docs/4.数据通信/Utility/OpenSSH/SFTP%20Subsystem.md) 最佳实践部分的配置
 
 这个模块在 Rsyslog 的配置文件中必须进行配置，因为没有它，本地日志记录将无法进行，因为没有监听任何 Unix Socket，任何程序发往 /dev/log 的消息，也就无法接收了。
 
@@ -197,7 +197,7 @@ Linux 相关的日志格式一般为：
 
 # 总结
 
-随着时代的发展，各个应用程序大部分都通过各自的日志库，将日志直接写到磁盘上了~~ 很少会有程序再去直接利用 Rsyslog 记录日志。部分系统级的程序，e.g. [OpenSSH](docs/4.数据通信/Utility/OpenSSH/OpenSSH.md)、etc. 还会使用 Rsyslog。
+随着时代的发展，各个应用程序大部分都通过各自的日志库，将日志直接写到磁盘上了~~ 很少会有程序再去直接利用 Rsyslog 记录日志。部分系统级的程序，e.g. [OpenSSH](/docs/4.数据通信/Utility/OpenSSH/OpenSSH.md)、etc. 还会使用 Rsyslog。
 
 # Rsyslog 关联文件与配置
 
@@ -210,7 +210,7 @@ Linux 相关的日志格式一般为：
 **/dev/log** # 一个 Unix Domain Socket，rsyslogd 从这个 Socket 中读取日志消息。这是传统的日志服务 Socket。在 CentOS 8 及以后的版本中，该文件是一个指向 /run/systemd/journal/syslog 文件的软链接
 
 - **/run/systemd/journal/syslog** # rsyslogd 会持续监听该 Socket，当有数据传入时，使用 recvmsg() 调用获取日志数据。
-  - 这个文件是由 [Systemd](/docs/1.操作系统/Systemd/Systemd.md) 提供的 Socket 文件，用以兼容传统 [Journal](docs/6.可观测性/Logs/Journal.md) 日志服务，在 /etc/systemd/journald.conf 配置文件中，可以看到默认 ForwardToSyslog=yes 设置，即表示将自己的日志转发到 syslog 中。
+  - 这个文件是由 [Systemd](/docs/1.操作系统/Systemd/Systemd.md) 提供的 Socket 文件，用以兼容传统 [Journal](/docs/6.可观测性/Logs/Journal.md) 日志服务，在 /etc/systemd/journald.conf 配置文件中，可以看到默认 ForwardToSyslog=yes 设置，即表示将自己的日志转发到 syslog 中。
 
 **/var/log/** # 日志记录的位置。根据 rsyslog 程序的基础配置文件，各个 Linux 发行版的文件名也许不同，但是大体都差不多
 

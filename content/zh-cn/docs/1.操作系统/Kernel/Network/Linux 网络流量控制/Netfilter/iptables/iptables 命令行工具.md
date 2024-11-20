@@ -302,6 +302,8 @@ state 模块是 conntrack 模块的子集，属于老式用法，慢慢会被淘
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fadrg5/1616165483878-a0be9032-9c98-4971-922e-592c61529d86.jpeg)
 
+> `[:]` 中的内容，冒号左侧是该表处理的总 Packet 数，冒号右侧是该表处理的总 Bytes；使用 iptables 的 -v 选项可以看到每个链上有 `policy ACCEPT 71326 packets, 4156K bytes)` 这样的描述，这个数对应 `[:]` 中的内容。
+
 **Syntax(语法)**
 
 iptables-save \[-M,--modprobe modprobe] \[-c] \[-t table]

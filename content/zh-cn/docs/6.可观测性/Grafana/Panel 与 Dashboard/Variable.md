@@ -23,3 +23,4 @@ weight: 20
 https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#global-variables
 
 
+## `$timeFilter` 或 `$__timeFilter`

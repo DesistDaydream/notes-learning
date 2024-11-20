@@ -19,7 +19,7 @@ Vector 是一种高性能的用于可观测性的 [DataPipeline](/docs/6.可观�
 
 Datadog 在 2021 年左右收购了 Vector。Vector 通常用作 ELK 生态中 logstash 的替代品。
 
-Vector 开箱即用，默认支持 [ClickHouse](/docs/5.数据存储/数据库/关系数据/ClickHouse.md)、etc.
+Vector 开箱即用，默认支持 [ClickHouse](/docs/5.数据存储/数据库/关系数据/ClickHouse/ClickHouse.md)、etc.
 
 # Vector 架构
 

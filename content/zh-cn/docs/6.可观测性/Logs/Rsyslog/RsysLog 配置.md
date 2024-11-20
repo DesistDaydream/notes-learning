@@ -10,7 +10,7 @@ weight: 20
 > 参考：
 >
 > - [Manual(手册), rsyslog.conf(5)](https://man7.org/linux/man-pages/man5/rsyslog.conf.5.html)
-> - 本笔记中的 Facility 概念见 [日志系统](docs/6.可观测性/Logs/日志系统.md#Facility(设施)) 中 Facility(设施) 的介绍
+> - 本笔记中的 Facility 概念见 [日志系统](/docs/6.可观测性/Logs/日志系统.md#Facility(设施)) 中 Facility(设施) 的介绍
 
 Rsyslog 已经发展了几十年。因此有多种不同格式进行配置
 
@@ -47,7 +47,7 @@ RainerScript 是一种专门设计的脚本语言，非常适合处理网络事�
 - **$ModLoad imuxsock** # 老版本语法
 - **module(load="imuxsock")** # 新版本语法
 
-更多模块配置详情见 [Module](docs/6.可观测性/Logs/Rsyslog/Module.md)
+更多模块配置详情见 [Module](/docs/6.可观测性/Logs/Rsyslog/Module.md)
 
 # GLOBAL DIRECTIVES 全局指令配置
 

@@ -2077,7 +2077,8 @@
     "docs/5.数据存储/数据库/关系数据": [
       "docs/5.数据存储/数据库/关系数据/_index.md",
       "docs/5.数据存储/数据库/关系数据/关系数据.md",
-      "docs/5.数据存储/数据库/关系数据/ClickHouse.md",
+      "docs/5.数据存储/数据库/关系数据/ClickHouse",
+      "docs/5.数据存储/数据库/关系数据/ClickHouse/ClickHouse.md",
       "docs/5.数据存储/数据库/关系数据/MySQL",
       "docs/5.数据存储/数据库/关系数据/PostgreSQL",
       "docs/5.数据存储/数据库/关系数据/SQLite",
@@ -2869,6 +2870,11 @@
       "docs/6.可观测性/OpenTelemetry/Collector.md",
       "docs/6.可观测性/OpenTelemetry/Configuration.md",
       "docs/6.可观测性/OpenTelemetry/Component.md"
+    ],
+    "docs/5.数据存储/数据库/关系数据/ClickHouse": [
+      "docs/5.数据存储/数据库/关系数据/ClickHouse/_index.md",
+      "docs/5.数据存储/数据库/关系数据/ClickHouse/ClickHouse.md",
+      "docs/5.数据存储/数据库/关系数据/ClickHouse/ClickHouse SQL.md"
     ]
   },
   "actionBarOrder": {},
