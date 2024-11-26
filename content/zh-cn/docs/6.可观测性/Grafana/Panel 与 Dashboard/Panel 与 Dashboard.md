@@ -19,6 +19,11 @@ weight: 1
 
 对于 Grafana 来说，页面处理的数据实际上是一个一个的 **Field(字段)**。从 Grafana 数据模型 章节，可以发现，Grafana 从数据源拿到的数据都是统一的格式，Grafana 在面板处理数据时，其实就是对一堆 Field(字段) 来操作。从各个数据源获取到的数据，统一被放在 Field 中了。
 
+# 时间选择器
+
+![time-picker_1](https://notes-learning.oss-cn-beijing.aliyuncs.com/grafana/time-picker_1.png)
+
+
 # Panels(面板) 的类型
 
 > 其实就是说有多少种 Visualizations

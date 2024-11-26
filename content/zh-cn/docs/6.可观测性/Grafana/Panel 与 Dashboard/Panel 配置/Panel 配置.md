@@ -143,9 +143,12 @@ Grafna 中使用的 [数据模型][/docs/6.可观测性/Grafana/Grafana%20数据
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636268147075-e492ebe5-f2a3-4cfe-9b8b-ec466199f0ad.png)
 
-### [Standard options](https://grafana.com/docs/grafana/latest/panels/standard-options/)(标准选项)
+### Standard options(标准选项)
+
+https://grafana.com/docs/grafana/latest/panels/standard-options/
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636269601040-63c30a7e-cf11-4cc1-9e86-08466afe414e.png)
+
 设置 单位、显示名、小数点 等等
 
 ### Thresholds(阈值)
@@ -153,8 +156,11 @@ Grafna 中使用的 [数据模型][/docs/6.可观测性/Grafana/Grafana%20数据
 Thresholds(阈值) 可以用于 Bar、Gauge、Graph、Stat、Table 这几种类型的面板
 
 当在下方的 Alert 标签内开始配置告警后，该标签变为不可用状态
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1616067971510-785cd511-5ead-4465-8f72-88c0898a1922.png)
+
 这是一个 Graph 面板配置阈值的样子
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1616067971526-3a0fa5b8-96bc-458c-9395-3d43fb0ca76c.png)
 
 ### Value mappings(值映射)

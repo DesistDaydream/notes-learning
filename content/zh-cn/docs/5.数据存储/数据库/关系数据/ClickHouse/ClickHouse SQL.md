@@ -94,7 +94,7 @@ FROM system.tables
 **显示指 Table 的信息**
 
 ```sql
-DESCRIBE network_security.td_his_evil_sample_query
+DESCRIBE my_database.my_table
 ```
 
 或
