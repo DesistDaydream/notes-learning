@@ -149,3 +149,20 @@ Nginx 通过这种架构，将各个模块组织成一条链，当有请求到�
 而这些模块的运行行为，就是通过配置文件中的 [**Directive(指令)**](/docs/Web/Nginx/Nginx%20配置详解/Nginx%20配置详解.md) 实现的。一般每个顶级模块都有一个同名的 顶级指令，比如 http 模块对应 http{} 顶级指令。
 
 Nginx 模块的架构，也使得 Nginx 实现了灵活得可扩展性。
+
+## 指令
+
+在模块代码中，指令的定义在其所属模块代码内的 `static ngx_command_t` 类型的数组中。
+
+比如  ngx_stream_log_module 模块，可以在 [nginx/src/stream/ngx_stream_log_modul.c](https://github.com/nginx/nginx/blob/stable-1.26/src/stream/ngx_stream_log_module.c#L145) 处看到定义了一个 名为 ngx_stream_log_commands 的数组，名称前半部分是模块名称，后面跟一个 `_commands`。数组内部可以看到指令的名称。
+
+```c
+static ngx_command_t  ngx_stream_log_commands[] = {
+    { ngx_string("log_format"),
+      ......},
+    { ngx_string("access_log"),
+      ......},
+    ......
+}
+```
+

@@ -7,7 +7,7 @@ weight: 2
 
 > 参考：
 > 
-> - [org 官方文档,核心功能](http://nginx.org/en/docs/ngx_core_module.html)
+> - [org 官方文档，核心功能](http://nginx.org/en/docs/ngx_core_module.html)
 
 main 模块主要用来为 nginx 程序的运行方式进行定义，并不涉及流量处理相关工作。
 

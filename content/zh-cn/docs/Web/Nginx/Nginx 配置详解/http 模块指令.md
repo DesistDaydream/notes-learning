@@ -7,8 +7,8 @@ weight: 4
 
 > 参考：
 >
-> - [org 官方文档,http core 模块](http://nginx.org/en/docs/http/ngx_http_core_module.html)
-> - [官方文档,管理指南-负载均衡-HTTP 负载均衡](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/)
+> - [org 官方文档，http core 模块](http://nginx.org/en/docs/http/ngx_http_core_module.html)
+> - [官方文档，管理指南-负载均衡-HTTP 负载均衡](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/)
 
 http 模块及其子模块通过 `http {}` 配置环境中的指令控制行为
 
@@ -401,6 +401,7 @@ http://nginx.org/en/docs/http/ngx_http_core_module.html#underscores_in_headers
 
 > 代码：<https://github.com/nginx/nginx/blob/master/src/http/modules/ngx_http_log_module.c>
 
+更多日志格式设置方法，见 [log 相关模块](/docs/Web/Nginx/Nginx%20配置详解/多用途模块的指令/log%20相关模块.md)
 ### access_log
 
 http://nginx.org/en/docs/http/ngx_http_log_module.html#access_log
@@ -434,8 +435,6 @@ log_format combined '$remote_addr - $remote_user [$time_local] '
                     '"$request" $status $body_bytes_sent '
                     '"$http_referer" "$http_user_agent"';
 ```
-
-更多日志格式设置方法，见 [log_format 模块指令](/docs/Web/Nginx/Nginx%20配置详解/多用途模块的指令/log_format%20模块指令.md)
 
 ## ngx_http_proxy_module 模块指令
 

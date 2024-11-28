@@ -133,7 +133,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ### sourcestats - 显示有关 chronyd 进程所使用的每个时间源的状态信息
 
 ```bash
-[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~]$ chronyc sourcestats -v
+~]$ chronyc sourcestats -v
 210 Number of sources = 1
                              .- Number of sample points in measurement set.
                             /    .- Number of residual runs with same sign.
@@ -157,7 +157,7 @@ Name/IP Address            NP  NR  Span  Frequency  Freq Skew  Offset  Std Dev
 
 ## NTP Sources COMMAND
 
-### activity # 报告在线与离线的服务端和对等体的数量
+### activity - 报告在线与离线的服务端和对等体的数量
 
 ```bash
 [desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~]$ chronyc activity
@@ -171,7 +171,7 @@ Name/IP Address            NP  NR  Span  Frequency  Freq Skew  Offset  Std Dev
 
 **authdata**
 
-### ntpdata \[ADDRESS] # 显示 NTP 源的信息
+### ntpdata \[ADDRESS] - 显示 NTP 源的信息
 
 **add peer**
 

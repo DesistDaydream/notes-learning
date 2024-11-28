@@ -52,7 +52,7 @@ Grafana 容器镜像会默认配置一些环境变量，以指定一些基本的
 
 > Grafana 的配置文件开头 `;` 表示注释
 
-## [paths]
+## paths
 
 **data = \<STRING>** # Grafana 数据存储路径。`默认值：/var/lib/grafana/data`
 
@@ -62,7 +62,9 @@ Grafana 容器镜像会默认配置一些环境变量，以指定一些基本的
 
 **provisioning = \<STRING>** # Grafana 的 provisioning 功能加载配置文件的路径。`默认值：/etc/grafana/provisioning`
 
-## [server]
+## server
+
+https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/#server
 
 **http_port = \<INT>** # Grafana 监听的端口。`默认值：3000`。
 
@@ -71,15 +73,15 @@ Grafana 容器镜像会默认配置一些环境变量，以指定一些基本的
 - %(protocol)、%(domain)、%(http_port) 对应配置文件中 \[server] 部分的 protocol、domain、http_port 字段
 - root_url 常用于重定向和发送电子邮件时填写 URL
 
-## [security]
+## security
 
 **admin_user = \<STRING>** # Grafana Web UI 的管理员账号的用户命。默认值：admin
 
 **admin_password = \<STRING>** # Grafana Web UI 的管理员账号的密码。默认值：admin
 
-## [auth]
+## auth
 
-## [auth.anonymous]
+## auth.anonymous
 
 匿名访问的配置，配置匿名访问，可以使无需任何登录操作即可访问 Grafana
 
@@ -91,7 +93,7 @@ Grafana 容器镜像会默认配置一些环境变量，以指定一些基本的
 
 - 可用的值有 Editor 和 Admin。
 
-## [log]
+## log
 
 Grafana 日志配置
 
@@ -99,7 +101,7 @@ Grafana 日志配置
 
 **level = \<debug | info | warn | error | critical>** # 日志级别。`默认值：info`
 
-## [smtp]
+## smtp
 
 https://grafana.com/docs/grafana/latest/administration/configuration/#smtp
 

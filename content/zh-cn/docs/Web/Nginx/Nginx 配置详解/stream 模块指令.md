@@ -7,8 +7,8 @@ weight: 5
 
 > 参考：
 >
-> - [org 官方文档,stream core 模块](http://nginx.org/en/docs/stream/ngx_stream_core_module.html)
-> - [官方文档,管理指南-负载均衡-TCP 与 UDP 负载均衡](https://docs.nginx.com/nginx/admin-guide/load-balancer/tcp-udp-load-balancer/)
+> - [org 官方文档， stream core 模块](http://nginx.org/en/docs/stream/ngx_stream_core_module.html)
+> - [官方文档，管理指南-负载均衡-TCP 与 UDP 负载均衡](https://docs.nginx.com/nginx/admin-guide/load-balancer/tcp-udp-load-balancer/)
 
 stream 模块及其子模块通过 `stream {}` 配置环境中的指令控制行为
 
@@ -118,6 +118,20 @@ ADDRESS 有多种表示方法
 # 其他指令
 
 这些指令一般都直接定义在顶层的 `stream{}` 配置环境中，与 `server{}`、`upstream{}` 等块指令平级。还有一些指令是可以适用于多个指令块中的。定义在顶层的 `stream{}` 配置环境中时，效果将会应用在每个 Virtual Server 中，同时也可以定义在单独的指令块中，让指令作用于局部。
+
+## ngx_steam_log_module
+
+> 代码: https://github.com/nginx/nginx/blob/master/src/stream/ngx_stream_log_module.c
+
+https://nginx.org/en/docs/stream/ngx_stream_log_module.html
+
+更多日志格式设置方法，见 [log 相关模块](/docs/Web/Nginx/Nginx%20配置详解/多用途模块的指令/log%20相关模块.md)
+
+access_log
+
+log_format
+
+open_log_file_cache
 
 ## ngx_stream_proxy_module 模块指令
 

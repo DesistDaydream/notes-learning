@@ -53,7 +53,7 @@ Directives(指令) 分为如下几种：
 
 所以，配置文件的格式实际上也是一个树状结构：
 
-![树形结构.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/tt8mpd/1619841196176-fa5e09e5-44b9-49e2-bdc3-bccc385d0218.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/nginx/nginx_config_tree.png)
 
 最顶层的 main 指令，包含 简单指令 和 4 个 Contexts，每个 Context 又包含 简单指令/块指令。
 
