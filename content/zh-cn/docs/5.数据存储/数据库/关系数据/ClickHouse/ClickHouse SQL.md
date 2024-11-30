@@ -50,6 +50,25 @@ https://clickhouse.com/docs/en/sql-reference/functions/array-functions
 
 https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions
 
+大多数的日期与时间相关的函数都接受时区参数（可选的），e.g. Asia/Shanghai。默认是本地时区。下面是一些最基本的日期与时间函数示例：
+
+```sql
+SELECT
+    toDateTime('1732947066') AS "from_unix-timestamp",
+    toDateTime('2016-06-15 23:00:00') AS time,
+    toDate(time) AS date_local,
+    toDate(time, 'Asia/Yekaterinburg') AS date_yekat,
+    toString(time, 'US/Samoa') AS time_samoa
+```
+
+结果为：
+
+```sql
+┌─from_unix-timestamp─┬────────────────time─┬─date_local─┬─date_yekat─┬─time_samoa──────────┐
+│ 2024-11-30 14:11:06 │ 2016-06-15 23:00:00 │ 2016-06-15 │ 2016-06-15 │ 2016-06-15 04:00:00 │
+└─────────────────────┴─────────────────────┴────────────┴────────────┴─────────────────────┘
+```
+
 toStartOfXXX
 
 类似 [PostgreSQL](/docs/5.数据存储/数据库/关系数据/PostgreSQL/PostgreSQL.md) 的 date_bin 函数，将日期和时间向下舍入到 XXX，主要是用来依据时间进行数据聚合以实现时间序列数据的效果，并可在 Grafana 中绘制时间序列图表。

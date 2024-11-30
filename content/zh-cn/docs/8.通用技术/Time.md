@@ -24,6 +24,7 @@ weight: 20
 >
 > - [RFC 3339，Date and Time on the Internet: Timestamps](https://tools.ietf.org/html/rfc3339)
 > - [Wiki, Timestamp](https://en.wikipedia.org/wiki/Timestamp)
+> - [Momentjs，时间格式](https://momentjs.com/docs/#/displaying/)
 
 **Timestamps(时间戳)** 是识别特定事件发生时间的字符序列或编码信息，通常给出 date(日期) 和 time(时间)，有时精确到一秒的一小部分。然而，时间戳不必基于某种绝对的时间概念。它们可以具有任何纪元，可以相对于任何任意时间，例如系统的开机时间，或相对于过去的某个任意时间。
 
@@ -33,7 +34,7 @@ weight: 20
 
 **时间**
 
-时间格式为 hh:mm:ss，其中 hh 为小时 (00–24)，mm 为分钟 (00–60)，ss 为秒 (00–60)。如果仅显示小时和分钟，则格式为 hh:mm，例如 23:59。
+时间格式为 HH:mm:ss，其中 HH 为小时 (00–24)，mm 为分钟 (00–60)，ss 为秒 (00–60)。如果仅显示小时和分钟，则格式为 hh:mm，例如 23:59。
 
 **日期和时间的组合表示法**
 

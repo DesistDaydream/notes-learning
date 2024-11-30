@@ -44,6 +44,7 @@ https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.managem
 
 - 创建 C:/Users/DesistDaydream/AppData/Roaming/yuzu 符号链接文件，指向 E:/emulator/yuzu_data/user
   - `New-Item -ItemType SymbolicLink -Path "C:/Users/DesistDaydream/AppData/Roaming/yuzu" -Target "E:/emulator/yuzu_data/user"`
+  - Notes: 这种用法可以代替 mklink 命令
 - 查看符号链接文件所指向的原始文件路径
   - `(Get-Item ${PathToFile}).Target`
 

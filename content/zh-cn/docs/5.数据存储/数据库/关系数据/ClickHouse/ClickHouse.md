@@ -15,37 +15,25 @@ weight: 1
 
 https://clickhouse.com/docs/en/guides/sre/network-ports
 
-| 端口号   | 描述                                                                                                                                                                                                                                                         |
-| ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 2181  | ZooKeeper default service port. **Note: see `9181` for ClickHouse Keeper**                                                                                                                                                                                 |
-| 8123  | HTTP default port                                                                                                                                                                                                                                          |
-| 8443  | HTTP SSL/TLS default port                                                                                                                                                                                                                                  |
-| 9000  | Native Protocol port (also referred to as ClickHouse TCP protocol). Used by ClickHouse applications and processes like `clickhouse-server`, `clickhouse-client`, and native ClickHouse tools. Used for inter-server communication for distributed queries. |
-| 9004  | MySQL emulation port                                                                                                                                                                                                                                       |
-| 9005  | PostgreSQL emulation port (also used for secure communication if SSL is enabled for ClickHouse).                                                                                                                                                           |
-| 9009  | Inter-server communication port for low-level data access. Used for data exchange, replication, and inter-server communication.                                                                                                                            |
-| 9010  | SSL/TLS for inter-server communications                                                                                                                                                                                                                    |
-| 9011  | Native protocol PROXYv1 protocol port                                                                                                                                                                                                                      |
-| 9019  | JDBC bridge                                                                                                                                                                                                                                                |
-| 9100  | gRPC port                                                                                                                                                                                                                                                  |
-| 9181  | Recommended ClickHouse Keeper port                                                                                                                                                                                                                         |
-| 9234  | Recommended ClickHouse Keeper Raft port (also used for secure communication if `<secure>1</secure>` enabled)                                                                                                                                               |
-| 9363  | 在 /metrics 路径下暴露 Prometheus 格式的 Metric 指标                                                                                                                                                                                                                  |
-| 9281  | Recommended Secure SSL ClickHouse Keeper port                                                                                                                                                                                                              |
-| 9440  | Native protocol SSL/TLS port                                                                                                                                                                                                                               |
-| 42000 | Graphite default port                                                                                                                                                                                                                                      |
-
-### CLI
-
-https://clickhouse.com/docs/en/operations/utilities
-
-**clickhouse-server**
-
-**clickhouse-client**
-
-https://clickhouse.com/docs/en/integrations/sql-clients/cli
-
-- clickhouse-client -u default --password 12345678  -m -n --port 9100 -h 127.0.0.1 -d network_security
+| 端口号   | 描述                                                                                                                               |
+| ----- | -------------------------------------------------------------------------------------------------------------------------------- |
+| 2181  | ZooKeeper default service port. **Note: see `9181` for ClickHouse Keeper**                                                       |
+| 8123  | HTTP default port                                                                                                                |
+| 8443  | HTTP SSL/TLS default port                                                                                                        |
+| 9000  | 原生协议端口（也称为 ClickHouse TCP 协议）。由 ClickHouse 生态的应用程序和进程使用（e.g. 各种语言利用 SDK 编写的程序、clickhouse-client 等自带程序、etc.）。也用于分布式查询的内部服务器之间的通信。 |
+| 9440  | 与 9000 的功能相同，但是带有 SSL/TLS                                                                                                        |
+| 9004  | MySQL emulation port                                                                                                             |
+| 9005  | PostgreSQL emulation port (also used for secure communication if SSL is enabled for ClickHouse).                                 |
+| 9009  | Inter-server communication port for low-level data access. Used for data exchange, replication, and inter-server communication.  |
+| 9010  | SSL/TLS for inter-server communications                                                                                          |
+| 9011  | Native protocol PROXYv1 protocol port                                                                                            |
+| 9019  | JDBC bridge                                                                                                                      |
+| 9100  | gRPC port                                                                                                                        |
+| 9181  | Recommended ClickHouse Keeper port                                                                                               |
+| 9234  | Recommended ClickHouse Keeper Raft port (also used for secure communication if `<secure>1</secure>` enabled)                     |
+| 9363  | 在 /metrics 路径下暴露 Prometheus 格式的 Metric 指标                                                                                        |
+| 9281  | Recommended Secure SSL ClickHouse Keeper port                                                                                    |
+| 42000 | Graphite default port                                                                                                            |
 
 # Engine
 
@@ -90,9 +78,30 @@ Table Engine 可以决定：
 
 # ClickHouse 生态
 
-Grafana 数据源插件 https://github.com/grafana/clickhouse-datasource
+> 参考：
+>
+> - [官方文档，集成](https://clickhouse.com/docs/en/integrations)
+
+Grafana 数据源插件 https://github.com/grafana/clickhouse-datasource 。详见 Grafana [Plugins(插件)](docs/6.可观测性/Grafana/Plugins(插件).md)
 
 https://github.com/clickvisual/clickvisual 一个基于 clickhouse 构建的轻量级日志分析和数据可视化 Web 平台。
 
 https://github.com/metrico/promcasa 通过 ClickHouse 的 SQL，将查询结果转为 OpenMetrics 格式数据。
 
+## 驱动与接口
+
+https://clickhouse.com/docs/en/interfaces/overview
+
+[可视化接口](https://clickhouse.com/docs/en/interfaces/third-party/gui)
+
+# CLI
+
+https://clickhouse.com/docs/en/operations/utilities
+
+**clickhouse-server**
+
+**clickhouse-client**
+
+https://clickhouse.com/docs/en/integrations/sql-clients/cli
+
+- clickhouse-client -u default --password 12345678  -m -n --port 9100 -h 127.0.0.1 -d my_database

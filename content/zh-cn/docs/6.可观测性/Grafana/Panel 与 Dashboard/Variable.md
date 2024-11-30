@@ -33,13 +33,13 @@ Grafana 有两个内置时间范围变量：`$__from` 和 `$__to`。这两个变
 
 可以通过如下语法控制显示出来的时间格式：
 
-| Syntax                   | Example result           | Description                                                                                                                                                      |
-| ------------------------ | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `${__from}`              | 1594671549254            | 默认格式。毫秒级 Unix 时间戳                                                                                                                                                |
-| `${__from:date}`         | 2020-07-13T20:19:09.254Z | No args, defaults to ISO 8601/RFC 3339                                                                                                                           |
-| `${__from:date:iso}`     | 2020-07-13T20:19:09.254Z | ISO 8601/RFC 3339                                                                                                                                                |
-| `${__from:date:seconds}` | 1594671549               | Unix seconds epoch                                                                                                                                               |
-| `${__from:date:YYYY-MM}` | 2020-07                  | Any custom [date format](https://momentjs.com/docs/#/displaying/) that does not include the `:` character. Uses browser time. Use `:date` or `:date:iso` for UTC |
+| Syntax                   | Example result           | Description                                                          |
+| ------------------------ | ------------------------ | -------------------------------------------------------------------- |
+| `${__from}`              | 1594671549254            | 默认格式。毫秒级 Unix 时间戳                                                    |
+| `${__from:date}`         | 2020-07-13T20:19:09.254Z | No args, defaults to ISO 8601/RFC 3339                               |
+| `${__from:date:iso}`     | 2020-07-13T20:19:09.254Z | ISO 8601/RFC 3339                                                    |
+| `${__from:date:seconds}` | 1594671549               | Unix seconds epoch                                                   |
+| `${__from:date:YYYY-MM}` | 2020-07                  | 使用 [date format](https://momentjs.com/docs/#/displaying/) 标准，自定义时间格式 |
 
 ### `$timeFilter` 或 `$__timeFilter`
 
