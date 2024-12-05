@@ -538,11 +538,11 @@ sed '/{abc,def}/\[111,222]/s/^/00000/' # 匹配需要转行的字符: } / \[
 
 echo abcd\nabcde |sed 's/\n/@/g' |tr '@' '\n' # 将换行符转换为换行
 
-cat tmp|awk '{print $1}'|sort -n|sed -n '$p' # 取一列最大值
+`cat tmp|awk '{print $1}'|sort -n|sed -n '$p'` # 取一列最大值
 
-sed -n '{s/^\[^/]_//;s/:._//;p}' /etc/passwd # 取用户家目录(匹配不为/的字符和匹配:到结尾的字符全部删除)
+`sed -n '{s/^\[^/]_//;s/:._//;p}' /etc/passwd` # 取用户家目录(匹配不为/的字符和匹配:到结尾的字符全部删除)
 
-sed = filename | sed 'N;s/^/ /; s/ \*(.{6,})\n/\1 /' # 对文件中的所有行编号(行号在左，文字右端对齐)
+`sed = filename | sed 'N;s/^/ /; s/ \*(.{6,})\n/\1 /'` # 对文件中的所有行编号(行号在左，文字右端对齐)
 
 /sbin/ifconfig |sed 's/._inet addr:(._) Bca.\*/\1/g' |sed -n '/eth/{n;p}' # 取所有 IP
 
@@ -590,12 +590,13 @@ sed = filename | sed 'N;s/^/ /; s/ \*(.{6,})\n/\1 /' # 对文件中的所有行�
 - 在 hostname 行的行首添加两个空格
   - sed "s/hostname/ &/" prometheus.yml
 - 在文件最后一行添加变量中的内容，注意 $a 前加 `\` 符号以便让 sed 认出 $a 表示最后一行
-  - sed -i "$a${Masters\[${i}]%%=*} ${Masters\[${i}]##\*=}" /tmp/hosts #
+  - `sed -i "$a${Masters\[${i}]%%=*} ${Masters\[${i}]##\*=}" /tmp/hosts` #
 - 在开头是 kind: Deployment 这行的下一行的下一行，添加 namespace: redis 行
 
-
-    sed -n '/^kind: Deployment/{N;a\  namespace: redis
-    p}' all-redis-operator-resources.yaml
+```bash
+sed -n '/^kind: Deployment/{N;a\  namespace: redis
+p}' all-redis-operator-resources.yaml
+```
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ec3zxx/1616166346275-89fa46ea-529e-45ab-b8c9-501e0d4f8b43.jpeg)
 

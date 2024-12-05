@@ -10,7 +10,7 @@ weight: 20
 > 参考：
 >
 > - [官方文档](https://grafana.com/docs/loki/latest/clients/promtail/pipelines/)
-> - [公众号,Promtail Pipeline 日志处理配置](https://mp.weixin.qq.com/s/PPNa7CYk6aaYDcvH9eTw1w)
+> - [公众号，Promtail Pipeline 日志处理配置](https://mp.weixin.qq.com/s/PPNa7CYk6aaYDcvH9eTw1w)
 
 Pipeline 用来处理 tail 到的每一行日志的内容、标签、时间戳。Pipeline 的行为在配置文件的 `.scrape_config.pipeline_stages` 字段定义。是 Promtail 处理日志必不可少的一个环节。
 

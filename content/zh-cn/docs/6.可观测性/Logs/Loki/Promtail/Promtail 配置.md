@@ -1,12 +1,14 @@
 ---
-title: Promtail 配置详解
+title: Promtail 配置
+linkTitle: Promtail 配置
+weight: 20
 ---
 
 # 概述
 
 > 参考：
 >
-> - [Loki 官方文档，客户端-Promtail-配置](https://grafana.com/docs/loki/latest/clients/promtail/configuration/)
+> - [Loki 官方文档，发送数据 - Promtail - 配置](https://grafana.com/docs/loki/latest/send-data/promtail/configuration/)
 > - [GitHub 官方文档](https://github.com/grafana/loki/blob/master/docs/sources/clients/promtail/configuration.md)
 
 # promtail.yaml 配置文件详解
@@ -15,33 +17,34 @@ Promtail 在 YAML 文件（通常称为 config.yaml）中进行配置，该文�
 
 顶级字段
 
+- **global**([global](#global)) # 影响所有目标的全局设置。
 - **server**([server](#server)) #  配置 promtail 程序运行时行为。如指定监听的ip、port等信息。
 - **clients**([clients](#clients)) # 配置 Promtail 如何连接到 Loki 的多个实例，并向每个实例发送日志。
   - Note：如果其中一台远程Loki服务器无法响应或发生任何可重试的错误，这将影响将日志发送到任何其他已配置的远程Loki服务器。
   - 发送是在单个线程上完成的！ 如果要发送到多个远程Loki实例，通常建议并行运行多个Promtail客户端。
 - **positions**([positions](#positions)) # positions 文件用于记录 Promtail 发现的目标。该字段用于定义如何保存 postitions.yaml 文件。
   - Promtail 发现的目标就是指日志文件。
-- **scrape_configs** # 配置 Promtail 如何发现日志文件，以及如何从这些日志文件抓取日志。
+- **scrape_configs**([scrape_configs](#scrape_configs(占比最大的字段))) # 配置 Promtail 如何发现日志文件，以及如何从这些日志文件抓取日志。
+- **limits_config**(limits_config) # 为 Promtail 配置全局的限制功能
+- **target_config**(target_config) # Configures how tailed targets will be watched.
+- **options**(options_config) # Configures additional promtail configurations
+- **tracing**(tracing_config) # Configures tracing support
 
+# server
 
-# 配置如何 tail 目标
-target_config: <target_config>
+# clients
 
-## server
-
-## clients
-
-## positions
+# positions
 
 positions 文件用于记录 Promtail 发现的目标。该字段用于定义如何保存 postitions.yaml 文件。Promtail 发现的目标就是指日志文件。
 
-**filename(STRING)** # 指定 positions 文件路径。`默认值：/var/log/positions.yaml`
+**filename**(STRING) # 指定 positions 文件路径。`默认值：/var/log/positions.yaml`
 
-**sync_period(DURATION)**# 更新 positions 文件的时间间隔。`默认值：10s`
+**sync_period**(DURATION) # 更新 positions 文件的时间间隔。`默认值：10s`
 
-**ignore_invalid_yaml(BOOLEAN)** # Whether to ignore & later overwrite positions files that are corrupted。`默认值：false`
+**ignore_invalid_yaml**(BOOLEAN) # Whether to ignore & later overwrite positions files that are corrupted。`默认值：false`
 
-## scrape_configs(\[]OBJECT)(占比最大的字段)
+# scrape_configs(占比最大的字段)
 
 > 参考：
 >
@@ -50,19 +53,19 @@ positions 文件用于记录 Promtail 发现的目标。该字段用于定义如
 
 Promtail 根据 scrape_configs 字段的内容，使用指定的发现方法从一系列目标中抓取日志。
 
-### 基本配置
+## 基本配置
 
-**job_name(STRING)** # 指定抓取日志的 Job 名字
+**job_name**(STRING) # 指定抓取日志的 Job 名字
 
-**pipeline_stages(pipeline_stages)** # 定义从指定的目标抓取日志的行为。`默认值：docker{}`。详见：[Pipeline](/docs/6.可观测性/Logs/Loki/Promtail/Pipeline/Pipeline.md) 与 [Stages(阶段) 详解](/docs/6.可观测性/Logs/Loki/Promtail/Pipeline/Stages(阶段)%20详解.md)
+**pipeline_stages**([pipeline_stages](#pipeline_stages)) # 定义从目标抓取日志的行为。`默认值：docker{}`。
 
-**loki_push_api(loki_push_api_config)** # 定义日志推送的路径 (e.g. from other Promtails or the Docker Logging Driver)
+**loki_push_api**(loki_push_api_config) # 定义日志推送的路径 (e.g. from other Promtails or the Docker Logging Driver)
 
-### Scrape 目标配置
+## Scrape 目标配置
 
 Promtail 会根据这里的字段的配置，以发现需要 Scrape 日志的目标，有两种方式来发现目标：**静态** 与 **动态**
 
-**static_configs(\[]Object)** # 静态配置。直接指定需要抓去 Metrics 的 Targets。
+**static_configs(\[][static_configs](#static_configs))** # 静态配置。直接指定需要抓去 Metrics 的 Targets。
 
 - 具体配置详见下文[静态目标发现](#静态目标发现)
 
@@ -78,9 +81,9 @@ Promtail 会根据这里的字段的配置，以发现需要 Scrape 日志的目
 
 - 具体配置详见下文[动态目标发现](#动态目标发现)
 
-### Relabel 配置
+## Relabel 配置
 
-**relabel_configs([]OBJECT)** # 为本 Job 下抓取日志的过程定义 Relabeling 行为。与 Prometheus 的 Relabeling 行为一致
+**relabel_configs**(\[][relabel_configs](#relabel_configs)) # 为本 Job 下抓取日志的过程定义 Relabeling 行为。与 Prometheus 的 Relabeling 行为一致
 
 - 具体配置详见下文[重设标签](#重设标签)
 
@@ -88,13 +91,13 @@ Promtail 会根据这里的字段的配置，以发现需要 Scrape 日志的目
 
 ## 静态目标发现
 
-### static_configs([]Object)
+### static_configs
 
-**targets([]STRING)** # 指定要抓取 metrics 的 targets 的 IP:PORT
+**targets**(\[]STRING) # 指定要抓取 metrics 的 targets 的 IP:PORT
 
 - **HOST**
 
-**labels(map\[STRING]STRING)** # 指定该 targets 的标签，可以随意添加任意多个。
+**labels**(map\[STRING]STRING) # 指定该 targets 的标签，可以随意添加任意多个。
 
 这个字段与 Prometheus 的配置有一点区别。Promtail 中必须要添加 `__path__` 这个键，以指定要抓去日志的文件路径。
 
@@ -153,6 +156,7 @@ docker run \
 
 下面是 journal 自动发现日志流后，自动发现的标签。
 
+```
     __journal__audit_loginuid
     __journal__audit_session
     __journal__boot_id
@@ -187,13 +191,18 @@ docker run \
     __journal_syslog_pid
     __journal_syslog_timestamp
     __journal_unit # 该标签是 unit 的名称，标签值是所有 .service，比如 ssh.service、dockerd.service 等等
+```
 
 #### json 字段说明
 
 这是开启的样子：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/sxgd83/1616129621041-ee0d0d3a-b256-4a34-9b14-12bdbbc159a1.png)
+
 这是关闭的样子：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/sxgd83/1616129621334-5638249b-63aa-446a-b276-5a621df8be5d.png)
+
 可以看见，Parsed Fields 中，多出来很多字段。json 字段开启后，除了正常的 Message，还有很多关于该日志消息的属性。
 
 #### 配置示例
@@ -254,18 +263,18 @@ https://grafana.com/docs/loki/latest/clients/promtail/configuration/#kubernetes_
 
 https://grafana.com/docs/loki/latest/clients/promtail/configuration/#docker_sd_config
 
-**host(STRING)** # Docker 守护进程的地址。通常设置为：`unix:///var/run/docker.sock`
+**host**(STRING) # Docker 守护进程的地址。通常设置为：`unix:///var/run/docker.sock`
 
-**filters([]Object)** # 过滤器，用于过滤发现的容器。只有满足条件的容器的日志，才会被 Promtail 采集并上报。
+**filters**(\[]Object) # 过滤器，用于过滤发现的容器。只有满足条件的容器的日志，才会被 Promtail 采集并上报。
 
 > 可用的过滤器取决于上游 Docker 的 API：<https://docs.docker.com/engine/api/v1.41/#operation/ContainerList>，在这个链接中，可以从 Available filters 部分看到，等号左边就是 name 字段，等号右边就是 values 字段。
 >
 > 这个 name 与 values 的用法就像 `docker ps` 命令中的 `--filter` 标志，这个标志所使用的过滤器，也是符合 Docker API 中的 ContainerList。
 
-- **name(STRING)** #
-- **values([]STRING)** #
+- **name**(STRING) #
+- **values**(\[]STRING) #
 
-**refresh_interval(DURATION)** # 刷新间隔。每隔 refresh_interval 时间，从 Docker 的守护进程发现一次可以采集日志的容器。
+**refresh_interval**(DURATION) # 刷新间隔。每隔 refresh_interval 时间，从 Docker 的守护进程发现一次可以采集日志的容器。
 
 #### 配置示例
 
@@ -282,9 +291,13 @@ https://grafana.com/docs/loki/latest/clients/promtail/configuration/#docker_sd_c
 
 ## 重设标签
 
-### relabel_configs(Object)
+### relabel_configs
 
 详见 [Label 与 Relabeling](/docs/6.可观测性/Logs/Loki/Promtail/Label%20与%20Relabeling.md)
+
+## pipeline_stages
+
+具体配置详见 [Pipeline](/docs/6.可观测性/Logs/Loki/Promtail/Pipeline/Pipeline.md) 笔记以查看 Pipeline 功能，在 [Stages(阶段) 详解](/docs/6.可观测性/Logs/Loki/Promtail/Pipeline/Stages(阶段)%20详解.md) 笔记查看具体配置字段。
 
 # 配置文件示例
 
@@ -312,3 +325,4 @@ scrape_configs:
         regex: "/(.*)"
         target_label: "container"
 ```
+

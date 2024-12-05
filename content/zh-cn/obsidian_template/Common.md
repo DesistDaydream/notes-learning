@@ -1,7 +1,6 @@
 ---
 title: "{{title}}"
 linkTitle: "{{title}}"
-date: "{{date}}T{{time}}"
 weight: 20
 ---
 
@@ -9,5 +8,5 @@ weight: 20
 
 > 参考：
 >
-> -
+> - date: "{{date}}T{{time}}"
 

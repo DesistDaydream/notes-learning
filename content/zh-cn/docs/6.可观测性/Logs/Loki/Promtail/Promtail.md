@@ -38,9 +38,9 @@ Promtail 与 Filebeat 性能对比图
 
 > 参考：
 >
-> - [Loki 官方文档，客户端-promtail-Scraping](https://grafana.com/docs/loki/latest/clients/promtail/scraping/)
+> - [Loki 官方文档，发送数据 - promtail - Scraping](https://grafana.com/docs/loki/latest/send-data/promtail/scraping/)
 
-Promtail 与 Prometheus 的服务发现机制相同，通过配置文件中 `scrape_configs` 字段的内容，来发现需要采集日志的目标，同时发现标签，然后通过 Relabeling 行为对要抓取的内容，要丢弃的内容、以及要附加到日志行的标签进行细粒度的控制。
+Promtail 与 Prometheus 的服务发现机制相同，通过配置文件中 `scrape_configs` 字段的内容，来发现需要采集日志的目标，同时发现标签，然后通过 Relabeling 行为对 要抓取的内容、要丢弃的内容、以及要附加到日志行的标签 进行细粒度的控制。
 
 ## 标签与 parse(解析)
 

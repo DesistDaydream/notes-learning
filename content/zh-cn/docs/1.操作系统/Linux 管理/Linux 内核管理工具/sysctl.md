@@ -20,5 +20,5 @@ sysctl 是 [procps 工具集](/docs/1.操作系统/Linux%20管理/Linux%20系统
 
 # EXAMPLE
 
-- sysctl -w net.ipv4.ip_forward=1 # 开启 IP 转发模式
-- sysctl -p /etc/sysctl.d/* # 从 sysctl.d 目录中读取所有文件的内容加载到内核中
+- `sysctl -w net.ipv4.ip_forward=1` # 开启 IP 转发模式
+- `sysctl -p /etc/sysctl.d/*` # 从 sysctl.d 目录中读取所有文件的内容加载到内核中

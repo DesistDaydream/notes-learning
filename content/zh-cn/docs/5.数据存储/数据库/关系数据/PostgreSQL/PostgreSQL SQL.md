@@ -81,6 +81,10 @@ WHERE table_schema = 'cheat'
 
 ## 时间函数
 
+> 参考：
+>
+> - [官方文档，9.9 日期/时间 函数与运算符](https://www.postgresql.org/docs/current/functions-datetime.html)
+
 ### 基本的简单函数
 
 PostgreSQL 提供了许多返回与当前日期和时间相关的值的函数。这些 SQL 标准函数的返回时依据当前事务的开始时间：

@@ -8,15 +8,15 @@ weight: 2
 # 概述
 
 > 参考：
-> 
-> - [官方文档,客户端-Promtail-阶段](https://grafana.com/docs/loki/latest/clients/promtail/stages/)
-> - [官方文档,客户端-Promtail-配置-pipelinie_stages](https://grafana.com/docs/loki/latest/clients/promtail/configuration/#pipeline_stages)
+>
+> - [官方文档，发送数据 - Promtail - 阶段](https://grafana.com/docs/loki/latest/send-data/promtail/stages/)
+> - [官方文档，发送数据 - Promtail - 配置 - pipelinie_stages](https://grafana.com/docs/loki/latest/send-data/promtail/configuration/#pipeline_stages)
 
-对于 Stages 的详解，需要配合配置文件来描述。所以，本片文章即使 Stages 详解，也是 Promtail 配置文件中 `pipeline_stages` 字段的详解。
+对于 Stages 的详解，需要配合配置文件来描述。所以，本篇笔记既是 Stages 详解，也是 [Promtail 配置](docs/6.可观测性/Logs/Loki/Promtail/Promtail%20配置.md) 文件中 `pipeline_stages` 字段的详解。
 
 ## pipeline_stages 字段配置
 
-`pipeline_stages` 字段用于配置转换日志条目及其标签。promtail 运行流程中的 日志发现 步骤完成后，将执行 pipeline。
+`pipeline_stages` 字段用于配置转换日志条目及其标签。[Promtail](docs/6.可观测性/Logs/Loki/Promtail/Promtail.md) 工作流程中的 日志发现 步骤完成后，将执行 pipeline。
 
 在大多数情况下，可以使用 regex 或 json 阶段从日志中提取数据。提取的数据将转换为临时 map 对象。这些提取出来的数据可以被 promtail 使用(比如这些数据可以作为标签的值或作为 i 内容直接输出)。此外，除 docker 和 cri 之外的任何其他阶段都可以访问提取的数据。
 
@@ -34,7 +34,7 @@ scrape_configs:
 
 # Parsing stages(解析阶段)
 
-## docker 根据标准的 docker 日志文件格式来解析每行日志，并提取数据(默认行为)
+## docker - 根据标准的 docker 日志文件格式来解析每行日志，并提取数据(默认行为)
 
 来自 docker 的每行日志，都是以 JSON 格式编写，该 JSON 格式中有下列几个 key：
 
@@ -283,10 +283,6 @@ json:
 
 ## replace - 使用正则表达式替换数据
 
-# Transform stages(转换阶段)
-
-转换阶段用于对之前阶段提取的数据进行转换。
-
 ## multiline - 将多行日志进行合并，然后再将其传递到 pipeline 的下一个阶段。
 
 多行阶段将多行日志进行合并，然后再将其传递到 pipeline 的下一个阶段。
@@ -390,6 +386,10 @@ multiline:
   firstline: '^\x{200B}\['
   max_wait_time: 3s
 ```
+
+# Transform stages(转换阶段)
+
+转换阶段用于对之前阶段提取的数据进行转换。
 
 ## template - 使用 Go 模板来修改提取出来数据
 

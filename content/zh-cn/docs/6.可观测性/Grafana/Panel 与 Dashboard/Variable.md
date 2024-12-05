@@ -201,7 +201,7 @@ label_values(up, job)
 
 General 中的 Repeat 选项
 
-Repeat 选项设置完成后，Grafana 会根据当前用户的选择，自动创建一个到多个 Panel 实例。 为了能够使 Singlestat Panel 能够展示正确的数据，如下所示，在 Prometheus 中，我们依然使用了`$job`变量，不过此时的 `$job` 反应的是当前迭代的值：
+Repeat 选项设置完成后，Grafana 会根据当前用户的选择，自动创建一个到多个 Panel 实例。 为了能够使 Singlestat Panel 能够展示正确的数据，如下所示，在 Prometheus 中，我们依然使用了`$job` 变量，不过此时的 `$job` 反应的是当前迭代的值：
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kct3zl/1616067851115-f60eb991-5dbb-4c33-8cd2-58639c7001c6.png)
 在 Metric 中使用变量
