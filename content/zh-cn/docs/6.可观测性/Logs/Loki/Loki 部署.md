@@ -10,7 +10,7 @@ weight: 2
 > 参考：
 >
 > - [官方文档，安装](https://grafana.com/docs/loki/latest/installation/)
-> - [官方文档，基础知识-架构-部署模式](https://grafana.com/docs/loki/latest/fundamentals/architecture/deployment-modes)
+> - [官方文档，基础知识 - 架构 - 部署模式](https://grafana.com/docs/loki/latest/fundamentals/architecture/deployment-modes)
 
 # 使用 docker 运行 Loki
 
@@ -35,7 +35,8 @@ docker run -d --rm --name loki \
 ## Helm 部署 Loki 套件
 
 > 参考：
-> - [官方文档 2.4.x，安装-helm](https://grafana.com/docs/loki/v2.4.x/installation/helm/)
+>
+> - [官方文档 2.4.x，安装 - helm](https://grafana.com/docs/loki/v2.4.x/installation/helm/)
 
 部署 Loki 栈
 
@@ -117,6 +118,6 @@ spec:
 
 > 参考；
 > 
-> - [GitHub 项目，grafana/loki，production 目录](https://github.com/grafana/loki/tree/main/production)
+> - [GitHub 项目，grafana/loki - production](https://github.com/grafana/loki/tree/main/production)
 > - [公众号，Loki 生产环境集群方案](https://mp.weixin.qq.com/s/qnt7JUzHLUU6Qs_tv5V0Hw)
 

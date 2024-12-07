@@ -2231,10 +2231,10 @@
     ],
     "docs/6.可观测性/Logs/Loki/Loki 管理": [
       "docs/6.可观测性/Logs/Loki/Loki 管理/_index.md",
-      "docs/6.可观测性/Logs/Loki/Loki 管理/Loki 管理.md",
       "docs/6.可观测性/Logs/Loki/Loki 管理/logcli 命令行工具.md",
-      "docs/6.可观测性/Logs/Loki/Loki 管理/性能优化.md",
-      "docs/6.可观测性/Logs/Loki/Loki 管理/故障处理.md"
+      "docs/6.可观测性/Logs/Loki/Loki 管理/LokiQL 常见查询语句.md",
+      "docs/6.可观测性/Logs/Loki/Loki 管理/故障处理.md",
+      "docs/6.可观测性/Logs/Loki/Loki 管理/最佳实践.md"
     ],
     "docs/6.可观测性/Logs/Loki/Promtail": [
       "docs/6.可观测性/Logs/Loki/Promtail/_index.md",

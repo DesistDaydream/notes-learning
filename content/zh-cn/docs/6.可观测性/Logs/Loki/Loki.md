@@ -40,7 +40,7 @@ Loki 像 Prometheus 一样，但是是用于处理日志的：我们更喜欢基
 >
 > - [官方文档，运维-可观测性](https://grafana.com/docs/loki/latest/operations/observability/)
 
-Loki 和 Promtail 都在 `/metrics` 端点上公开了指标，该端点暴露了 OpenMetrics 格式的指标。
+Loki 和 Promtail 都在 `/metrics` 端点上公开了指标，该端点暴露了 [OpenMetrics](docs/6.可观测性/Metrics/监控系统概述/OpenMetrics.md) 格式的指标。
 
 Loki 存储库具有一个[混合包](https://github.com/grafana/loki/tree/main/production/loki-mixin)，其中包括一组仪表板，记录规则和警报。总之，mixin 为您提供了一个全面的软件包，用于监视生产中的 Loki。
 
@@ -54,7 +54,7 @@ Loki 支持多租户，以使租户之间的数据完全分离。当 Loki 在多
 
 > 参考：
 >
-> - [官方文档，基础-架构](https://grafana.com/docs/loki/latest/fundamentals/architecture/)
+> - [官方文档，基础 - 架构](https://grafana.com/docs/loki/latest/fundamentals/architecture/)
 
 Loki 由多个组件组成，每个组件都可以实现特定的功能：
 
@@ -100,7 +100,7 @@ Distributor 接收客户端(比如 Promtail) 推送的日志，处理后交给 I
 
 > 参考：
 >
-> - [官方文档，基础-架构-部署模式](https://grafana.com/docs/loki/latest/fundamentals/architecture/deployment-modes/)
+> - [官方文档，基础 - 架构 - 部署模式](https://grafana.com/docs/loki/latest/fundamentals/architecture/deployment-modes/)
 
 作为一个应用程序，Loki 由许多组件微服务构建而成，旨在作为一个可水平扩展的分布式系统运行。Loki 的独特设计将整个分布式系统的代码编译成单个二进制或 Docker 映像。该单个二进制文件的行为由-target 命令行标志控制，并定义了三种操作模式之一。
 
@@ -132,6 +132,7 @@ Monolithic 模式非常适合于本地开发、小规模等场景，Monolithic �
 - 另一个进程使用 `-target=read` 运行具有读功能的组件，包括 Querier、Query frontend、Ruler
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gcp6zx/1660120707493-6efe2870-f1a3-446f-b760-6f520236c358.png)
+
 这种架构将 Loki 的读/写分离。这个图里少了一点，通常来说，5 个 Loki 实例前面还有一个负载均衡设备，用来接收客户端的 读/写请求，以便将请求转发给对应的 Loki 实例。
 
 ### Microservices(微服务)  架构
@@ -144,11 +145,12 @@ Monolithic 模式非常适合于本地开发、小规模等场景，Monolithic �
 - `-target=query-frontend`# 运行查询前端
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gcp6zx/1660115629058-db37e36d-3ed5-4bd9-86bc-3fbb05df38d0.png)
+
 这种微服务架构与 Thanos 类似，可以通过一个 Loki 的二进制文件，使用子命令来启动不同的功能。
 
 - 每个组件都产生一个 gRPC 监听(默认 9095 端口)和一个 HTTP 监听(默认 3100 端口)。
   - 通常情况下，gRPC 端口用于组件间通信；HTTP 端口用于暴露一些管理 API(比如 指标、运行状态、就绪性)
-- 各个组件可以暴露的 HTTP API 详见 [Loki API 章节](/docs/6.可观测性/Logs/Loki/Loki%20API.md)。通过 API，我们可以更清晰得了解到，每个组件可以实现的具体功能
+- 各个组件可以暴露的 HTTP API 详见 [Loki API](/docs/6.可观测性/Logs/Loki/Loki%20API.md) 笔记。通过 API，我们可以更清晰得了解到，每个组件可以实现的具体功能
 - 各个组件通过 memberlist 统一到一个哈希环上，以互相发现。当我们部署在 K8S 中时，将会配置 `memberlist.join_members` 字段，并且需要创建对应的 service 资源，service 的 endpoint 将会关联到所有 Distributor、Ingester、Querier 组件。
 
 ### Gateway(网关)
@@ -181,11 +183,13 @@ http {
 ```
 
 可以看到，这个 `loki-gateway` 用来为 Loki 进行读/写分离的。loki-gateway 会根据客户端发起请求的 URL 判断这个请求应该由哪个组件进行处理。
+
 Nginx 的配置依据两种架构的不同而有细微区别，但是总归是需要一个 Gateway 的。不管是 Promtail 推送数据，还是客户端查询数据，都可以先经过 loki-gateway
 
 ## 数据写入路径
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gcp6zx/1660123438275-02b6febb-0f26-431b-9450-9b5f6f125305.png)
+
 整体的日志写入路径如下所示：
 
 - `Distributor` 收到一个 HTTP 请求，以存储流的数据。
@@ -197,6 +201,7 @@ Nginx 的配置依据两种架构的不同而有细微区别，但是总归是�
 ## 数据读取路径
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gcp6zx/1660118903925-bca6ba6b-f991-4a28-a407-9c6febb38a36.png)
+
 日志读取路径的流程如下所示：
 
 - `Querier` 收到一个对数据的 HTTP 请求。
@@ -212,11 +217,13 @@ Nginx 的配置依据两种架构的不同而有细微区别，但是总归是�
 ## Distributor(分配器)
 
 Distributor 服务负责处理客户端写入的日志，它本质上是日志数据写入路径中的**第一站**，一旦 Distributor 收到日志数据，会将其拆分为多个批次，然后并行发送给多个 Ingester。
+
 Distributor 通过 gRPC 与 Ingester 通信，它们都是无状态的，可以根据需要扩大或缩小规模。
 
 ## Ingester(摄取器)
 
 Ingester 服务负责将日志数据写入长期存储后端（DynamoDB、S3、Cassandra 等）。此外 Ingester 会验证摄取的日志行是按照时间戳递增的顺序接收的（即每条日志的时间戳都比前面的日志晚一些），当 Ingester 收到不符合这个顺序的日志时，该日志行会被拒绝并返回一个错误。
+
 注意：虽然 Ingester 支持 BoltDB 写入本地文件系统，但是这仅适用于[单进程模式](/docs/6.可观测性/日志系统/Loki/Loki%20 部署.md 部署.md)，因为 Querier 也需要访问相同的存储，而 BoltDB 仅允许一个进程在同一时间锁定数据库。
 
 ## Querier(查询器)

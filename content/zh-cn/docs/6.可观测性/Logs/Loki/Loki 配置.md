@@ -330,17 +330,19 @@ Table Manager(表管理器) 组件配置，以规定数据保留的行为。该�
 
 https://grafana.com/docs/loki/latest/configure/#limits_config
 
-**ingestion_rate_mb(FLOAT)** # 每秒可以摄取日志量的大小，单位 MB。`默认值：4`
+**ingestion_rate_mb**(FLOAT) # 每秒可以摄取日志量的大小，单位 MiB。`默认值：4`
 
-**enforce_metric_name(BOOLEAN)**# 强制每个样本都有一个 metric 名称。`默认值：true`
+**enforce_metric_name**(BOOLEAN) # 强制每个样本都有一个 metric 名称。`默认值：true`
 
 - 通常设为 false
 
-**reject_old_samples(BOOLEAN)**# 旧样本是否会被拒绝。`默认值：true`
+**reject_old_samples**(BOOLEAN) # 旧样本是否会被拒绝。`默认值：true`
 
-**reject_old_samples_max_age(DURATION)** # 拒绝前可以接收的最大样本年龄。`默认值：168h`
+**reject_old_samples_max_age**(DURATION) # 拒绝前可以接收的最大样本年龄。`默认值：168h`
 
 - 如果拒绝旧样本，那么旧样本不能早于 reject_old_samples_max_age 时间
+
+**shard_streams** # 配置 Loki [Automatic stream sharding](https://grafana.com/docs/loki/latest/operations/automatic-stream-sharding/) 机制的具体行为。
 
 ## 其他
 
@@ -348,7 +350,7 @@ https://grafana.com/docs/loki/latest/configure/#limits_config
 
 配置 Loki 如何将数据存放在指定存储中。该配置环境用途详见《[Loki 存储](/docs/6.可观测性/Logs/Loki/Storage(存储)/Storage(存储).md)》
 
-**max_look_back_period(DURATION)** # 限制可以查询多长时间的数据。`默认值：0s`，即不做限制。DURATION 必须小于或等于 table_manager.retention_period 字段的值
+**max_look_back_period**(DURATION) # 限制可以查询多长时间的数据。`默认值：0s`，即不做限制。DURATION 必须小于或等于 table_manager.retention_period 字段的值
 
 # 通用字段
 
@@ -362,21 +364,21 @@ https://grafana.com/docs/loki/latest/configure/#limits_config
 
 https://grafana.com/docs/loki/next/configuration/#s3_storage_config
 
-**endpoint(STRING)** # 连接 S3 的 endpoint。`默认值：空`
+**endpoint**(STRING) # 连接 S3 的 endpoint。`默认值：空`
 
-**access_key_id(STRING)** # 连接 S3 的 AK。`默认值：空`
+**access_key_id**(STRING) # 连接 S3 的 AK。`默认值：空`
 
-**secret_access_key(STRING)** # 连接 S3 的 SK。`默认值：空`
+**secret_access_key**(STRING) # 连接 S3 的 SK。`默认值：空`
 
-**bucketnames(STRING)** # 以逗号分割的桶名称列表。`默认值：空`。多个桶可以均匀得分布 chunks
+**bucketnames**(STRING) # 以逗号分割的桶名称列表。`默认值：空`。多个桶可以均匀得分布 chunks
 
-**insecure(BOOLEAN)** # 是否使用不安全的连接去连接 S3，i.e.是否使用 HTTP 连接 S3。`默认值：false`
+**insecure**(BOOLEAN) # 是否使用不安全的连接去连接 S3，i.e.是否使用 HTTP 连接 S3。`默认值：false`
 
-**s3forcepathstyle(BOOLEAN)** #
+**s3forcepathstyle**(BOOLEAN) #
 
-**http_config(OBJECT)**
+**http_config**(OBJECT)
 
-- **insecure_skip_verify(BOOLEAN)** # 是否跳过证书验证。`默认值：false`
+- **insecure_skip_verify**(BOOLEAN) # 是否跳过证书验证。`默认值：false`
 
 # 配置文件示例
 

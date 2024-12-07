@@ -160,4 +160,11 @@ action (例如 action="GET", action="POST") status_code (例如 status_code="200
 
 当我们谈论 Cardinality 的时候，我们指的是标签和值的组合，以及他们创建的流的数量，高 Cardinality 是指使用具有较大范围的可能值的标签，如 IP，或结合需要其他标签，即使它们有一个小而有限的集合，比如 status_code 和 action。
 
-高 Cardinality 会导致 Loki 建立一个巨大的索引（💰💰💰💰），并将成千上万的微小块存入对象存储中（慢），Loki 目前在这种配置下的性能非常差，运行和使用起来非常不划算的。
+高 Cardinality 会导致 Loki 建立一个巨大的索引（成本高），并将成千上万的微小块存入对象存储中（速度慢），Loki 目前在这种配置下的性能非常差，运行和使用起来非常不划算的。
+
+# Automatic stream sharding
+
+**Automatic stream sharding(自动流分片)** 功能会在数据发送到 Loki 的速率超过配置的限额时，为日志流添加 `__stream_shard__` 标签，标签的只是从 0 开始的数字。
+
+该功能是 Loki 在处理大型日志流产生的解决方案，避免数据丢失。详见: https://grafana.com/docs/loki/latest/operations/automatic-stream-sharding/#when-to-use-automatic-stream-sharding
+

@@ -1,11 +1,14 @@
 ---
 title: SNMP(传统监控标准)
+linkTitle: SNMP(传统监控标准)
+weight: 20
 ---
 
 # 概述
 
 > 参考：
 >
+> - date: "2024-12-06T15:26"
 > - [RFC 1157，A Simple Network Management Protocol (SNMP)](https://datatracker.ietf.org/doc/html/rfc1157)
 > - [RFC 1156，Management Information Base for Network Management of TCP/IP-based internets](https://datatracker.ietf.org/doc/html/rfc1156)
 > - [Wiki, SNMP](https://en.wikipedia.org/wiki/Simple_Network_Management_Protocol)
