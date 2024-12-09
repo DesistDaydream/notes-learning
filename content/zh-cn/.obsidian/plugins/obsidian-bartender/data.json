@@ -1303,8 +1303,7 @@
       "docs/12.AI/AI Projects",
       "docs/12.AI/Automation",
       "docs/12.AI/AI Company.md",
-      "docs/12.AI/为什么需要 AI.md",
-      "docs/12.AI/Other.md"
+      "docs/12.AI/为什么需要 AI.md"
     ],
     "docs/12.AI/Automation": [
       "docs/12.AI/Automation/_index.md",
@@ -1953,7 +1952,7 @@
       "docs/4.数据通信/Protocol/Tunneling Protocol/PPTP.md",
       "docs/4.数据通信/Protocol/Tunneling Protocol/IPsec and L2TP.md",
       "docs/4.数据通信/Protocol/Tunneling Protocol/GRE.md",
-      "docs/4.数据通信/Protocol/Tunneling Protocol/V2Ray.md",
+      "docs/4.数据通信/Protocol/Tunneling Protocol/Vmess.md",
       "docs/4.数据通信/Protocol/Tunneling Protocol/WireGuard",
       "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale",
       "docs/4.数据通信/Protocol/Tunneling Protocol/支持各种隧道协议的客户端.md",
