@@ -2222,11 +2222,12 @@
       "docs/6.可观测性/Logs/Loki/组件详解.md",
       "docs/6.可观测性/Logs/Loki/Storage(存储)",
       "docs/6.可观测性/Logs/Loki/Authentication(认证).md",
-      "docs/6.可观测性/Logs/Loki/LogQL.md",
+      "docs/6.可观测性/Logs/Loki/LogQL",
       "docs/6.可观测性/Logs/Loki/Loki API.md",
       "docs/6.可观测性/Logs/Loki/Loki 管理",
       "docs/6.可观测性/Logs/Loki/Loki 开发",
-      "docs/6.可观测性/Logs/Loki/Loki 衍生品"
+      "docs/6.可观测性/Logs/Loki/Loki 衍生品",
+      "docs/6.可观测性/Logs/Loki/Promtail"
     ],
     "docs/6.可观测性/Logs/Loki/Loki 管理": [
       "docs/6.可观测性/Logs/Loki/Loki 管理/_index.md",
@@ -2874,6 +2875,11 @@
       "docs/5.数据存储/数据库/关系数据/ClickHouse/_index.md",
       "docs/5.数据存储/数据库/关系数据/ClickHouse/ClickHouse.md",
       "docs/5.数据存储/数据库/关系数据/ClickHouse/ClickHouse SQL.md"
+    ],
+    "docs/6.可观测性/Logs/Loki/LogQL": [
+      "docs/6.可观测性/Logs/Loki/LogQL/_index.md",
+      "docs/6.可观测性/Logs/Loki/LogQL/LogQL.md",
+      "docs/6.可观测性/Logs/Loki/LogQL/Log Queries.md"
     ]
   },
   "actionBarOrder": {},

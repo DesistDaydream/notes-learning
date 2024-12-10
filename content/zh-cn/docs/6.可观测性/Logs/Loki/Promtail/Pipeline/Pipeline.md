@@ -24,7 +24,7 @@ Pipeline 由一组 **stages(阶段)** 组成，Loki 将 Stages 分为 4 大类�
    3. 改变日志行内容
    4. 根据提取到的数据创建 metrics(指标)
 4. **Filtering stages(过滤阶段)** # (可省略)根据指定的条件，保留或删除日志行。
-   1. 注意：过滤阶段的类型中，有一个名为 **match** 的过滤阶段。match 是一个通用的阶段，不受阶段顺序影响，在处理日志行之前，match 阶段可以使用 [LogQL](/docs/6.可观测性/Logs/Loki/LogQL.md)，来过滤要使用某些阶段进行处理的日志行。
+   1. 注意：过滤阶段的类型中，有一个名为 **match** 的过滤阶段。match 是一个通用的阶段，不受阶段顺序影响，在处理日志行之前，match 阶段可以使用 [LogQL](docs/6.可观测性/Logs/Loki/LogQL/LogQL.md)，来过滤要使用某些阶段进行处理的日志行。
 
 ## 各阶段类型
 

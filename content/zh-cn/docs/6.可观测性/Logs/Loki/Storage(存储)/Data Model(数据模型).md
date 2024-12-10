@@ -164,7 +164,7 @@ action (例如 action="GET", action="POST") status_code (例如 status_code="200
 
 # Automatic stream sharding
 
-**Automatic stream sharding(自动流分片)** 功能会在数据发送到 Loki 的速率超过配置的限额时，为日志流添加 `__stream_shard__` 标签，标签的只是从 0 开始的数字。
+**Automatic stream sharding(自动流分片)** 功能会在数据发送到 Loki 的速率超过配置的限额时，为日志流添加 `__stream_shard__` 标签，标签的值是从 0 开始的数字。
 
 该功能是 Loki 在处理大型日志流产生的解决方案，避免数据丢失。详见: https://grafana.com/docs/loki/latest/operations/automatic-stream-sharding/#when-to-use-automatic-stream-sharding
 
