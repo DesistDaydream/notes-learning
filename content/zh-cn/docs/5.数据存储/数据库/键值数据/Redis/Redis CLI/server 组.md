@@ -12,8 +12,6 @@ weight: 20
 >
 > - https://redis.io/docs/latest/commands/?group=server
 
-
-
 BGREWRITEAOF - # Asynchronously rewrite the append-only file
 
 BGSAVE -
@@ -94,11 +92,12 @@ summary: Get array of specific Redis command details
 
 since: 2.8.13
 
+# config
 ## config get PARAMETER - 获取 Redis 启动后，内存中的配置参数
 
 EXAMPLE
 
-- **config get \*** # 获取所有配置参数的值
+- **`config get *`** # 获取所有配置参数的值
 
 - **confige get maxmemory** # 获取 maxmemory 配置参数的值
 
@@ -168,29 +167,31 @@ summary: Remove all keys from the current database
 
 since: 1.0.0
 
-## info \[SECTION] - 获取 Redis 服务器的信息和统计信息
+# info \[SECTION] - 获取 Redis 服务器的信息和统计信息
 
-各字段的信息详解：<http://www.redis.cn/commands/info.html>
+http://www.redis.cn/commands/info.html
 
-INFO 命令以一种易于理解和阅读的格式，返回关于 Redis 服务器的各种信息和统计数值。
+**info \[SECTION]**
 
-通过给定可选的参数 section，可以让命令只返回某一部分的信息。如果没有指定任何 section，默认为 default。
+info 命令以一种易于理解和阅读的格式，返回关于 Redis 服务器的各种信息和统计数值。
 
-- server: Redis 服务器的一般信息
-- clients: 客户端的连接部分
-- memory: 内存消耗相关信息
-- persistence: RDB 和 AOF 相关信息
-- stats: 一般统计
-- replication: 主/从复制信息
-- cpu: 统计 CPU 的消耗
-- commandstats: Redis 命令统计
-- cluster: Redis 集群信息
-- keyspace: 数据库的相关统计
+通过给定可选的参数 SECTION，可以让命令只返回某一部分的信息。如果没有指定任何 SECTION，默认为 default。
+
+- server # Redis 服务器的一般信息
+- clients # 客户端的连接部分
+- memory #  内存消耗相关信息
+- persistence # RDB 和 AOF 相关信息
+- stats # 一般统计
+- replication # 主/从复制信息
+- cpu # 统计 CPU 的消耗
+- commandstats # Redis 命令统计
+- cluster # Redis 集群信息
+- keyspace # 数据库的相关统计
 
 它也可以采取以下值:
 
-- all: 返回所有信息
-- default: 值返回默认设置的信息
+- all # 返回所有信息
+- default # 值返回默认设置的信息
 
 LASTSAVE -
 

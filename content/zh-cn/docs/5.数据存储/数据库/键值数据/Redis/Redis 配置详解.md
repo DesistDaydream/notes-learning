@@ -9,7 +9,7 @@ title: Redis 配置详解
 > - [官方文档](https://redis.io/topics/config)
 >   - https://redis.io/docs/latest/operate/oss_and_stack/management/config/
 
-Redis 可以在不使用配置文件的情况下使用内置的默认配置启动。但是一般情况，都会使用一个 Redis 的配置文件(文件名通常是 redis.conf)来启动 Redis。Redis 启动后，会将 redis.conf 文件的内容加载到内存中，通过 Redis 客户端的 **config get \*** 命令，即可获取当前已经加载到内存中的配置。
+Redis 可以在不使用配置文件的情况下使用内置的默认配置启动。但是一般情况，都会使用一个 Redis 的配置文件(文件名通常是 redis.conf)来启动 Redis。Redis 启动后，会将 redis.conf 文件的内容加载到内存中，通过 Redis 客户端的 **`config get *`** 命令，即可获取当前已经加载到内存中的配置。
 
 ```bash
 127.0.0.1:6379> config get *
@@ -102,16 +102,16 @@ replica-announce-ip "10.105.180.122"
 
 ## Network 配置环境
 
-- **bind 127.0.0.1** # 监听的地址
-- **port 6379** # redis 监听的端口，默认 6379
-- **tcp-backlog 511** # tcp 的等待队列
-- **timeout 0** # 客户端连接超时时长。`默认值：0`，不会超时
+- **bind**(STRING) # 监听的地址。`默认值: 127.0.0.1`
+- **port**(INT) # redis 监听的端口。`默认值: 6379`
+- **tcp-backlog 511** # TCP 的等待队列
+- **timeout**(INT) # 客户端连接超时时长。`默认值：0`，不会超时
 
 ## General 配置环境
 
 - **daemonize yes|no** # 指定是否在后台运行
-- **databases 16** # 可使用的 databases，默认 16 个
-- **logfile /PATH/TO/FILE** # 指定 redis 记录日志文件位置
+- **databases**(INT) # 可使用的 databases。`默认值: 16`，i.e. 一共可用 16 个数据库
+- **logfile**(STRING) # 指定 Redis 记录日志文件的位置
 
 ## Snapshotting 配置环境 RDB 功能
 
@@ -133,7 +133,7 @@ replica-announce-ip "10.105.180.122"
 
 ## Limits 配置环境
 
-- **maxmemory BYTES** # 指定 redis 可使用的最大内存量，单位是 bytes。如果达到限额，则需要配合 maxmemory-policy 配置指定的策略删除 key。note：slave 的输出缓冲区是不计算在 maxmemory 内的。所以为了防止主机内存使用完，建议设置的 maxmemory 需要更小一些。
+- **maxmemory BYTES** # 指定 Redis 可使用的最大内存量，单位: Bytes。如果达到限额，则需要配合 maxmemory-policy 配置指定的策略删除 key。Note: slave 的输出缓冲区是不计算在 maxmemory 内的。所以为了防止主机内存使用完，建议设置的 maxmemory 需要更小一些。
 - **maxmemory-policy POLICY** # 指定 redis 超过内存限额之后的策略，包括以下几种
   - volatile-lru：利用 LRU 算法移除设置过过期时间的 key。
   - volatile-random：随机移除设置过过期时间的 key。

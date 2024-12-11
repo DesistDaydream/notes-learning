@@ -21,4 +21,4 @@ Bit arrays (或者说 simply bitmaps)
 
 在 2.8.9 版本添加了 HyperLogLog 结构
 
-一般情况下，每种类型的数据都有与之相关的 [Redis 命令行工具](/docs/5.数据存储/数据库/键值数据/Redis/Redis%20命令行工具/Redis%20命令行工具.md) 中的子命令对应进行处理
+一般情况下，每种类型的数据都有与之相关的 [Redis CLI](docs/5.数据存储/数据库/键值数据/Redis/Redis%20CLI/Redis%20CLI.md) 中的子命令对应进行处理

@@ -1,6 +1,6 @@
 ---
-title: Redis 命令行工具
-linkTitle: Redis 命令行工具
+title: Redis CLI
+linkTitle: Redis CLI
 date: 2024-06-14T10:21
 weight: 1
 ---
@@ -9,6 +9,7 @@ weight: 1
 
 > 参考：
 >
+> - date: "2024-12-11T16:56"
 > - [官方文档](https://redis.io/commands)
 >   - 中文
 
@@ -33,14 +34,14 @@ help # 获取指定 command 的帮助信息
 
 # generic
 
-详见：[generic 组](/docs/5.数据存储/数据库/键值数据/Redis/Redis%20命令行工具/generic%20组.md)
+详见：[generic 组](docs/5.数据存储/数据库/键值数据/Redis/Redis%20CLI/generic%20组.md)
 
 主要是对 key 的操作，比如列出所有 key，删除 key 等等。一般在列出 key 时无法获取对应的 value
 
 # 不同类型的数据处理命令组
 ## string
 
-详见：[string 组](/docs/5.数据存储/数据库/键值数据/Redis/Redis%20命令行工具/string%20组.md)
+详见：[string 组](docs/5.数据存储/数据库/键值数据/Redis/Redis%20CLI/string%20组.md)
 
 主要是对于 value 的操作，比如对指定的一个或多个 key 的 value 进行增、删、改、查。
 
@@ -117,7 +118,7 @@ QUIT - # Close the connection
 
 # server
 
-详见 [server 组](/docs/5.数据存储/数据库/键值数据/Redis/Redis%20命令行工具/server%20组.md)
+详见 [server 组](docs/5.数据存储/数据库/键值数据/Redis/Redis%20CLI/server%20组.md)
 
 # scripting
 
@@ -125,7 +126,22 @@ QUIT - # Close the connection
 
 # cluster - 与集群模式相关的命令
 
-详见 [Cluster 命令](/docs/5.数据存储/数据库/键值数据/Redis/Redis%20命令行工具/Cluster%20命令.md)
+详见 [Cluster 命令](docs/5.数据存储/数据库/键值数据/Redis/Redis%20CLI/Cluster%20命令.md)
 
 # geo
+
+
+# 最佳实践
+
+`select 0` 进入 0 号数据库，默认从 0 - 15。
+
+`info` 命令返回的结果中，Keyspace 部分可以看到当前在哪几个 Database 中存了多少个 Keys。
+
+```bash
+# Keyspace
+db0:keys=9,expires=0,avg_ttl=0
+db15:keys=14,expires=5,avg_ttl=682335
+```
+
+`keys *` 列出当前数据库中所有的键
 

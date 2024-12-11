@@ -2138,18 +2138,9 @@
       "docs/5.数据存储/数据库/键值数据/Redis/Redis 数据类型.md",
       "docs/5.数据存储/数据库/键值数据/Redis/Pub_Sub(发布_订阅).md",
       "docs/5.数据存储/数据库/键值数据/Redis/Redis 高可用",
+      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI",
       "docs/5.数据存储/数据库/键值数据/Redis/Redis 管理",
-      "docs/5.数据存储/数据库/键值数据/Redis/Redis 命令行工具",
       "docs/5.数据存储/数据库/键值数据/Redis/Redis Operator.md"
-    ],
-    "docs/5.数据存储/数据库/键值数据/Redis/Redis 命令行工具": [
-      "docs/5.数据存储/数据库/键值数据/Redis/Redis 命令行工具/_index.md",
-      "docs/5.数据存储/数据库/键值数据/Redis/Redis 命令行工具/Redis 命令行工具.md",
-      "docs/5.数据存储/数据库/键值数据/Redis/Redis 命令行工具/generic 组.md",
-      "docs/5.数据存储/数据库/键值数据/Redis/Redis 命令行工具/server 组.md",
-      "docs/5.数据存储/数据库/键值数据/Redis/Redis 命令行工具/string 组.md",
-      "docs/5.数据存储/数据库/键值数据/Redis/Redis 命令行工具/Cluster 命令.md",
-      "docs/5.数据存储/数据库/键值数据/Redis/Redis 命令行工具/Sentinel 命令.md"
     ],
     "docs/5.数据存储/数据管理工具": [
       "docs/5.数据存储/数据管理工具/_index.md",
@@ -2880,6 +2871,15 @@
       "docs/6.可观测性/Logs/Loki/LogQL/_index.md",
       "docs/6.可观测性/Logs/Loki/LogQL/LogQL.md",
       "docs/6.可观测性/Logs/Loki/LogQL/Log Queries.md"
+    ],
+    "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI": [
+      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/_index.md",
+      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/Redis CLI.md",
+      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/generic 组.md",
+      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/server 组.md",
+      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/string 组.md",
+      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/Cluster 命令.md",
+      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/Sentinel 命令.md"
     ]
   },
   "actionBarOrder": {},
