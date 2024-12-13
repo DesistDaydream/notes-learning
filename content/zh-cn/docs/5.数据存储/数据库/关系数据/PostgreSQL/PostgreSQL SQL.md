@@ -48,31 +48,6 @@ ALTER TABLE user_tbl RENAME TO backup_tbl;
 DROP TABLE IF EXISTS backup_tbl;
 ```
 
-## Schema 查询
-
-列出所有 Schema
-
-```sql
-SELECT *
-FROM pg_namespace;
-```
-
-或
-
-```sql
-SELECT schema_name
-FROM information_schema.schemata;
-```
-
-列出名为 cheat 的 Schema 下的所有表
-
-```sql
-SELECT table_name
-FROM information_schema.tables
-WHERE table_schema = 'cheat'
-  AND table_type = 'BASE TABLE';
-```
-
 # 函数 与 运算符
 
 > 参考：
@@ -165,3 +140,36 @@ ORDER BY binned_time;
 ```
 
 > Tips: 可以省略 ORDER，PostgreSQL 默认会使用 AES 对时间排序。
+
+# 最佳实践
+
+列出所有 Schema
+
+```sql
+SELECT *
+FROM pg_namespace;
+```
+
+或
+
+```sql
+SELECT schema_name
+FROM information_schema.schemata;
+```
+
+列出名为 cheat 的 Schema 下的所有表
+
+```sql
+SELECT table_name
+FROM information_schema.tables
+WHERE table_schema = 'cheat'
+  AND table_type = 'BASE TABLE';
+```
+
+列出表的列信息
+
+```sql
+SELECT *
+FROM information_schema.columns
+WHERE table_name = 'my_schema.my_table';
+```
