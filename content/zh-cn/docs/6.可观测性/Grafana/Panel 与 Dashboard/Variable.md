@@ -41,6 +41,15 @@ Grafana 有两个内置时间范围变量：`$__from` 和 `$__to`。这两个变
 | `${__from:date:seconds}` | 1594671549               | Unix seconds epoch                                                   |
 | `${__from:date:YYYY-MM}` | 2020-07                  | 使用 [date format](https://momentjs.com/docs/#/displaying/) 标准，自定义时间格式 |
 
+---
+
+在 PostgreSQL 中的最佳实践
+
+```sql
+-- 利用 timezone 函数改变时区；利用 to_char 改变时间格式。适用于字符串类型的时间
+WHERE create_time BETWEEN to_char(timezone('UTC', '${__from:date}'), 'YYYY-MM-DD HH24:MI:SS') AND to_char(timezone('UTC','${__to:date}'), 'YYYY-MM-DD HH24:MI:SS')
+```
+
 ### `$timeFilter` 或 `$__timeFilter`
 
 https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#timefilter-or-__timefilter

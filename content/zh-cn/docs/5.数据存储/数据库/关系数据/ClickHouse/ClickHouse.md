@@ -12,6 +12,7 @@ weight: 1
 > - [GitHub 项目，ClickHouse/ClickHouse](https://github.com/ClickHouse/ClickHouse)
 > - [官网](https://clickhouse.com/)
 
+存算分离，查询性能过剩
 
 https://clickhouse.com/docs/en/guides/sre/network-ports
 
@@ -34,6 +35,17 @@ https://clickhouse.com/docs/en/guides/sre/network-ports
 | 9363  | 在 /metrics 路径下暴露 Prometheus 格式的 Metric 指标                                                                                        |
 | 9281  | Recommended Secure SSL ClickHouse Keeper port                                                                                    |
 | 42000 | Graphite default port                                                                                                            |
+
+# 关联文件与配置
+
+https://clickhouse.com/docs/en/operations/configuration-files
+
+https://clickhouse.com/docs/en/operations/settings
+
+**/etc/clickhouse-server/**
+
+- **config.xml** # ClickHouse Server 运行配置。
+- **./config.d/** # 配置文件可以拆分到该目录，程序运行时会将该目录下的文件组合到主配置文件
 
 # Engine
 
@@ -84,6 +96,9 @@ Table Engine 可以决定：
 
 Grafana 数据源插件 https://github.com/grafana/clickhouse-datasource 。详见 Grafana [Plugins(插件)](docs/6.可观测性/Grafana/Plugins(插件).md)
 
+- 在 https://github.com/grafana/clickhouse-datasource/tree/main/src/dashboards 有一些内置的利用 ClickHouse 本身的数据创建出来的 Grafana 仪表盘
+- [官方文档，可观测性 - Grafana](https://clickhouse.com/docs/en/observability/grafana) 有一些最佳实践和示例
+
 https://github.com/clickvisual/clickvisual 一个基于 clickhouse 构建的轻量级日志分析和数据可视化 Web 平台。
 
 https://github.com/metrico/promcasa 通过 ClickHouse 的 SQL，将查询结果转为 OpenMetrics 格式数据。
@@ -104,4 +119,4 @@ https://clickhouse.com/docs/en/operations/utilities
 
 https://clickhouse.com/docs/en/integrations/sql-clients/cli
 
-- clickhouse-client -u default --password 12345678  -m -n --port 9100 -h 127.0.0.1 -d my_database
+- clickhouse-client -u default --password 12345678  -m -n --port 9000 -h 127.0.0.1 -d my_database

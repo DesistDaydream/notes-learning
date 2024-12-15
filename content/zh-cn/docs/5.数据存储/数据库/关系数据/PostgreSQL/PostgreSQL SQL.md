@@ -54,11 +54,63 @@ DROP TABLE IF EXISTS backup_tbl;
 >
 > - [官方文档，9.函数与运算符](https://www.postgresql.org/docs/current/functions.html)
 
-## 时间函数
+## 字符串处理
+
+> 参考：
+>
+> - [官方文档，9.4 字符串 函数与运算符](https://www.postgresql.org/docs/current/functions-string.html)
+
+### string_to_array
+
+`string_to_array(STRING text, Delimiter text [, NullString text ]) → text[]`
+
+拆分文本类型的 string，以 Delimiter 作为分隔符，并将结果字段形成文本数组。如果 Delimiter 为 NULL，则字符串中的每个字符将成为数组中的元素。如果分隔符是空字符串，则该字符串将被视为单个字段。如果提供了 NullString 并且不为 NULL，则与该字符串匹配的字段将替换为 NULL。
+
+e.g.
+
+```sql
+SELECT string_to_array('xx~~yy~~zz', '~~', 'yy');
+-- 结果为: {xx,NULL,zz}
+```
+
+---
+
+最佳实践
+
+> `{xx,NULL,zz}` 结果可以利用类型转换 `unnest({xx,NULL,zz}::bigint[])` 转为被过滤语句识别的各种类型
+
+```sql
+-- 字符串转数组
+SELECT string_to_array('15|8356107', '|')
+-- 将 text 数组转为 bigint 数组
+SELECT unnest('{15,8356107}'::bigint[]);
+-- 可以合起来
+SELECT unnest(string_to_array('15|8356107', '|')::bigint[])
+
+-- 这个结果可以放在 WHERE 过滤语句中
+SELECT *
+FROM my_schema.my_table
+WHERE id IN (SELECT unnest(string_to_array('15|8356107', '|')::bigint[]))
+-- 其中 15|8356107 可以在 Grafana 中使用变量引入
+```
+
+### 字符串格式化
+
+https://www.postgresql.org/docs/current/functions-formatting.html
+
+PostgreSQL 格式化函数提供了一组强大的工具，用于将各种数据类型（日期/时间、整数、浮点、数字）转换为格式化字符串以及从格式化字符串转换为特定数据类型。这些函数都遵循通用的调用约定：第一个参数是要格式化的值，第二个参数是定义输出或输入格式的模板。
+
+```sql
+SELECT to_char(timezone('UTC', '2024-12-13T16:23:58.115Z'), 'YYYY-MM-DD HH24:MI:SS')
+-- 结果为: 2024-12-13 16:23:58
+```
+
+## 时间处理
 
 > 参考：
 >
 > - [官方文档，9.9 日期/时间 函数与运算符](https://www.postgresql.org/docs/current/functions-datetime.html)
+> - 时区文字定义 https://www.postgresql.org/docs/7.2/timezones.html TODO: 这是老版本的，新版本的在哪？
 
 ### 基本的简单函数
 
@@ -162,7 +214,7 @@ FROM information_schema.schemata;
 ```sql
 SELECT table_name
 FROM information_schema.tables
-WHERE table_schema = 'cheat'
+WHERE table_schema = 'my_schema'
   AND table_type = 'BASE TABLE';
 ```
 
@@ -171,5 +223,7 @@ WHERE table_schema = 'cheat'
 ```sql
 SELECT *
 FROM information_schema.columns
-WHERE table_name = 'my_schema.my_table';
+WHERE table_name = 'my_table';
 ```
+
+> Notes: 不用写 Schema，因为 information_schema.columns 表中有 table_schema 列来表示表所属的 Schema

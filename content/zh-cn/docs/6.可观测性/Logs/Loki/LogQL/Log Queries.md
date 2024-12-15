@@ -234,7 +234,7 @@ at=info method=GET path=/ host=grafana.net fwd="124.133.124.161" service=8ms sta
 pattern 表达式语法：
 
 ```
-pattern PatternExpression
+| pattern PatternExpression
 ```
 
 PatternExpression 由 Captures(捕获) 和 Literals(文字) 组成
@@ -433,6 +433,8 @@ https://grafana.com/docs/loki/latest/logql/#labels-format-expression
 
 > 一个标签名称在每个表达式中只能出现一次，这意味着 `| label_format foo=bar,foo="new"` 是不允许的，但你可以使用两个表达式来达到预期效果，比如 `| label_format foo=bar | label_format foo="new"`。
 
+---
+
 # 查询示例
 
 **多重过滤**
@@ -486,3 +488,4 @@ level=info ts=2020-10-23T20:32:18.068866235Z caller=metrics.go:81 org_id=29 trac
 2020-10-23T20:32:18.094668233Z 650.22401ms     traceID = 1980d41501b57b68 {cluster="ops-tools1", job="cortex-ops/query-frontend"} |= "query_range"
 2020-10-23T20:32:18.068866235Z 624.008132ms traceID = 1980d41501b57b68 {cluster="ops-tool
 ```
+

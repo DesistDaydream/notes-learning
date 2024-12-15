@@ -1,6 +1,18 @@
 ---
 title: BUG
+linkTitle: BUG
+weight: 20
 ---
+
+
+# 概述
+
+> 参考：
+>
+> - 
+
+
+# 已修复
 
 ## orphaned pod "XX" found, but volume paths are still present on disk
 
@@ -12,8 +24,6 @@ kubelet 执行逻辑：<https://github.com/kubernetes/kubernetes/blob/release-1.
 
 - 更新至 1.19.8 版本及以上，[ChangeLog 中提到，在 #95301 Merged](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#changelog-since-v1198) 中已解决
 - 未更新的话，通过 [ali 提供的脚本](https://raw.githubusercontent.com/AliyunContainerService/kubernetes-issues-solution/master/kubelet/kubelet.sh)，进行一些修改，该脚本会手动 umount 和 rm 目录
-
-# 已修复
 
 ## aggregator_unavailable_apiservice
 
