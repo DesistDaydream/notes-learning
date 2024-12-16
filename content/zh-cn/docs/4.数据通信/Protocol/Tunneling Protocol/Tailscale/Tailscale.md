@@ -56,11 +56,21 @@ Tailscale 的 **所有客户端之间的连接都是先选择 DERP 模式（中�
 
 可以通过 `tailscale ping ${HOST}` 命令查看到目标 HOST 的路由路径是否经过 DERP
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/tailscale/202403212159148.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/tailscale/tailscale-cli-ping-example-1.png)
 
 # Tailscale 关联文件与配置
 
 **/var/lib/tailscale/** # 运行时数据保存路径
 
-- ./tailscaled.state # 文本格式的配置文件。通过 [tailscale CLI](/docs/4.数据通信/Protocol/Tunneling%20Protocol/Tailscale/tailscale%20CLI.md) 指定的参数将会保存到该文件中
-- derpmap.cached.json # 可用的 DERP 缓存配置
+- **./tailscaled.state** # 文本格式的配置文件。通过 [tailscale CLI](/docs/4.数据通信/Protocol/Tunneling%20Protocol/Tailscale/tailscale%20CLI.md) 指定的参数将会保存到该文件中
+- **./derpmap.cached.json** # 可用的 DERP 缓存配置
+
+---
+
+Windows
+
+**C:/ProgramData/Tailscale/** # 运行时数据保存路径
+
+- **./Logs/** # 程序运行日志
+- 其他文件及其功能与 Linux 下的 /var/lib/tailscale/ 目录相同
+

@@ -18,7 +18,7 @@ title: Tailscale ACL 访问控制策略
 
 这就是 Tailscale ACL（Access Control List）干的事情。ACL 可以严格限制特定用户或设备在 Tailscale 网络上访问的内容。
 
-> ❝ 虽然 Headscale 兼容 Tailscale 的 ACL，但还是有些许差异的。**本文所讲的 ACL 只适用于 Headscale**，如果你使用的是官方的控制服务器，有些地方可能跟预期不符，请自行参考 Tailscale 的官方文档。
+> 虽然 Headscale 兼容 Tailscale 的 ACL，但还是有些许差异的。**本文所讲的 ACL 只适用于 Headscale**，如果你使用的是官方的控制服务器，有些地方可能跟预期不符，请自行参考 Tailscale 的官方文档。
 
 Tailscale/Headscale 的默认访问规则是 `default deny`，也就是黑名单模式，只有在访问规则明确允许的情况下设备之间才能通信。所以 Tailscale/Headscale 默认会使用 `allowall` 访问策略进行初始化，该策略允许加入到 Tailscale 网络的所有设备之间可以相互访问。
 
@@ -30,7 +30,7 @@ Tailscale/Headscale 通过使用 group 这种概念，可以**只用非常少的
 
 Tailscale ACL 需要保存为 HuJSON 格式，也就是 human JSON\[2]。HuJSON 是 JSON 的超集，允许添加注释以及结尾处添加逗号。这种格式更易于维护，对人类和机器都很友好。
 
-> ❝Headscale 除了支持 HuJSON 之外，还支持使用 YAML 来编写 ACL。本文如不作特殊说明，默认都使用 YAML 格式。
+> Headscale 除了支持 HuJSON 之外，还支持使用 YAML 来编写 ACL。本文如不作特殊说明，默认都使用 YAML 格式。
 
 Headscale 的 ACL 策略主要包含以下几个部分：
 

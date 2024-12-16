@@ -12,7 +12,7 @@ weight: 20
 > - [公众号，自建 DERP 中继服务器，从此 Tailscale 畅通无阻](https://mp.weixin.qq.com/s/r5OQi9YreI-BFnClKhBR0w)
 > - [官方文档，自定义 DERP 服务器](https://tailscale.com/kb/1118/custom-derp-servers)
 
-[👉 上篇文章](https://mp.weixin.qq.com/s?__biz=MzU1MzY4NzQ1OA==&mid=2247504037&idx=1&sn=b059e0ed24be4ae39a25e5724700ff54&scene=21#wechat_redirect)介绍了如何使用 `Headscale` 替代 Tailscale 官方的控制服务器，并接入各个平台的客户端。本文将会介绍如何让 Tailscale 使用自定义的 DERP Servers。可能很多人都不知道 DERP 是个啥玩意儿，没关系，我先从 **中继服务器** 开始讲起。
+[上篇文章](https://mp.weixin.qq.com/s?__biz=MzU1MzY4NzQ1OA==&mid=2247504037&idx=1&sn=b059e0ed24be4ae39a25e5724700ff54&scene=21#wechat_redirect)介绍了如何使用 `Headscale` 替代 Tailscale 官方的控制服务器，并接入各个平台的客户端。本文将会介绍如何让 Tailscale 使用自定义的 DERP Servers。可能很多人都不知道 DERP 是个啥玩意儿，没关系，我先从 **中继服务器** 开始讲起。
 
 ## STUN 是什么
 
@@ -28,7 +28,7 @@ NAT 按照 **NAT 映射行为**和**有状态防火墙行为**可以分为多种
 - 笔记本向 STUN 服务器发送一个请求：“从你的角度看，我的地址什么？”
 - STUN 服务器返回一个响应：“我看到你的 UDP 包是从这个地址来的：`ip:port`”。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/pq65ei/1648866197865-44dd313f-e0cb-4108-b4ca-52e285e1dac5.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/tailscale/tailscale-derp-tunnel-1.png)
 
 ## 中继是什么
 
@@ -63,7 +63,7 @@ DERP 即 Detoured Encrypted Routing Protocol，这是 Tailscale 自研的一个�
 - 它是一个**通用目的包中继协议，运行在 HTTP 之上**，而大部分网络都是允许 HTTP 通信的。
 - 它根据目的公钥（destination’s public key）来中继加密的流量（encrypted payloads）。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/pq65ei/1648866197927-9bf9875f-5ee8-474f-ab5a-d6c8448b2697.svg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/tailscale/tailscale-derp-relay-flow-1.png)
 
 Tailscale 会自动选择离目标节点最近的 DERP server 来中继流量
 
@@ -126,7 +126,7 @@ docker run --restart always \
 查看容器日志：
 
 ```bash
-🐳  → docker logs -f derper
+$ docker logs -f derper
 2022/03/26 11:36:28 no config path specified; using /var/lib/derper/derper.key
 2022/03/26 11:36:28 derper: serving on :12345 with TLS
 2022/03/26 11:36:28 running STUN server on [::]:3478
@@ -251,7 +251,7 @@ Report:
 
 `tailscale netcheck` 实际上只检测 `3478/udp` 的端口， 就算 netcheck 显示能连，也不一定代表 12345 端口可以转发流量。最简单的办法是直接打开 DERP 服务器的 URL：https://xxxx:12345，如果看到如下页面，且地址栏的 SSL 证书标签显示正常可用，那才是真没问题了。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/pq65ei/1648866197919-6ec2816f-e8f4-4be6-993d-c14fe47aa72a.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/tailscale/tailscale-derp-conn-web_site-1.png)
 
 查看与通信对端的连接方式：
 
@@ -409,7 +409,7 @@ CMD bash /app/build_cert.sh $DERP_HOST $DERP_CERTS /app/san.conf && \
 构建好镜像后，就可以在你想部署 derper 的主机上直接通过该镜像启动 derper 容器了，命令如下：
 
 ```
-🐳  → docker run --restart always --net host --name derper -d ghcr.io/yangchuansheng/ip_derper
+$ docker run --restart always --net host --name derper -d ghcr.io/yangchuansheng/ip_derper
 ```
 
 和使用域名的方案一样，防火墙需要放行相应端口（12345 与 3478）。
@@ -417,7 +417,7 @@ CMD bash /app/build_cert.sh $DERP_HOST $DERP_CERTS /app/san.conf && \
 查看容器日志：
 
 ```bash
-🐳  → docker logs -f derper
+$ docker logs -f derper
 Generating a RSA private key
 .......................................+++++
 ..............+++++
@@ -436,7 +436,7 @@ writing new private key to '/app/certs//127.0.0.1.key'
 
 除了 derper 之外，Tailscale 客户端还需要**跳过域名验证**，这个需要在 DERP 的配置中设置。而 Headscale 的本地 YAML 文件目前还不支持这个配置项，所以没办法，咱只能使用在线 URL 了。JSON 配置内容如下：
 
-```
+```json
 {
   "Regions": {
     "901": {
@@ -467,7 +467,7 @@ writing new private key to '/app/certs//127.0.0.1.key'
 
 接下来还需要修改 Headscale 的配置文件，引用上面的自定义 DERP 的 URL。需要修改的配置项如下：
 
-```bash
+```yaml
 # /etc/headscale/config.yaml
 derp:
   # List of externally available DERP maps encoded in JSON
