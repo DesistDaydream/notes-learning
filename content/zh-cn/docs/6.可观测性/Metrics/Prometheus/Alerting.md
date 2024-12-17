@@ -1,7 +1,6 @@
 ---
-title: Alerting(告警)
-linkTitle: Alerting(告警)
-date: 2023-12-20T14:48
+title: Alerting
+linkTitle: Alerting
 weight: 5
 ---
 

@@ -195,6 +195,8 @@ ORDER BY binned_time;
 
 # 最佳实践
 
+## 基础信息
+
 列出所有 Schema
 
 ```sql
@@ -227,3 +229,34 @@ WHERE table_name = 'my_table';
 ```
 
 > Notes: 不用写 Schema，因为 information_schema.columns 表中有 table_schema 列来表示表所属的 Schema
+
+
+## 分页
+
+下面以一个在 Grafana 中的应用为例，利用 LIMIT 和 OFFSET 实现分页查询效果。LIMIT 当作页容量，OFFSET 当作当前页（通过偏移 N 个页容量实现）
+
+根据 `${pageSize}`(页容量) 生成一个总页数的列表，用以通过表单选择 `${currentPage}`(当前页)
+
+```sql
+SELECT
+  generate_series(
+    1,
+    ceil(
+      (
+        SELECT COUNT(*)
+        FROM cheat.${tableName}
+        WHERE $__timeFilter(create_time)
+      ) :: numeric / ${pageSize} :: numeric
+    )
+  )
+```
+
+```sql
+SELECT 
+  COUNT(*) OVER() as "总数",
+  *
+FROM cheat.${tableName} 
+WHERE $__timeFilter(create_time)
+LIMIT ${pageSize} 
+OFFSET (${currentPage} - 1) * ${pageSize}
+```

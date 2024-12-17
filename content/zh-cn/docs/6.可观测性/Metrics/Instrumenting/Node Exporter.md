@@ -129,7 +129,7 @@ Note：
 
 与 Prometheus 添加认证的方式一样，详见：
 
-[Authentication(认证)](/docs/6.可观测性/Metrics/Prometheus/HTTPS%20和%20Authentication(认证).md)
+[Authentication(认证)](/docs/6.可观测性/Metrics/Prometheus/HTTPS%20和%20Authentication.md)
 
 node-exporter 程序使用 `--web.config` 命令行标志来指定 web-config 文件，读取其中内容并开启 TLS 或 认证功能。
 
@@ -140,18 +140,18 @@ node_exporter.go 中的 `handler.innerHandler()` 方法用于创建 Node 采集�
 ```go
 func (h *handler) innerHandler(filters ...string) (http.Handler, error) {
     // NewNodeCollector()` 方法决定启用哪些 Collector 的主要逻辑，该方法实例化了一个实现了 prometheus.Collector{} 接口的 NodeCollector{} 结构体
-	nc, err := collector.NewNodeCollector(h.logger, filters...)
+ nc, err := collector.NewNodeCollector(h.logger, filters...)
 
     // ......输出一些信息
 
-	r := prometheus.NewRegistry()
-	// 实例化后的 NodeCollector{} 使用 `prometheus.NewRegistry().Register()` 进行注册
-	err := r.Register(nc)
-	
-  	// ......最后就是标准的利用 promhttp.HandlerFor 或 promhttp.InstrumentMetricHandler 返回 http.Handler。具体用哪个以及其中的具体逻辑，与开启哪些 Node 的采集器没有强关联。
+ r := prometheus.NewRegistry()
+ // 实例化后的 NodeCollector{} 使用 `prometheus.NewRegistry().Register()` 进行注册
+ err := r.Register(nc)
+
+   // ......最后就是标准的利用 promhttp.HandlerFor 或 promhttp.InstrumentMetricHandler 返回 http.Handler。具体用哪个以及其中的具体逻辑，与开启哪些 Node 的采集器没有强关联。
 }
 ```
 
 ## 日志时区
 
-详见 [Prometheus 管理](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20管理/Prometheus%20管理.md)
+详见 [Prometheus MGMT](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20MGMT/Prometheus%20MGMT.md)

@@ -87,17 +87,17 @@ OpenSSL 配置文件为 INI 格式的配置扩展了很多功能，并规定了�
 
 # \[默认]
 
-# \[req]
+# req
 
 **distinguished_name = \<SectionName>** # 生成证书或 CSR 时，如何配置 DN(专有名称)。
 
 **req_extensions = \<SectionName>** # 要添加到 CSR 的扩展信息。
 
-## \[Distinguished_Name]
+## Distinguished_Name
 
-## \[Req_Extensions ]
+## Req_Extensions
 
-> 关于 CSR 的扩展信息的格式，详见 [Manual(手册),x509v3_config(5)](https://www.openssl.org/docs/manmaster/man5/x509v3_config.html)
+> 关于 CSR 的扩展信息的格式，详见 [Manual(手册), x509v3_config(5)](https://www.openssl.org/docs/manmaster/man5/x509v3_config.html)
 
 **basicConstraints = CA:FALSE** #
 
@@ -108,7 +108,7 @@ OpenSSL 配置文件为 INI 格式的配置扩展了很多功能，并规定了�
 **subjectAltName = \<SectionName>**#
 
 
-### \[SubjectAltName]
+### SubjectAltName
 
 DNS.1 = abc
 

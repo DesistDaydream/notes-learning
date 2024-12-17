@@ -31,5 +31,4 @@ https://github.com/OpenObservability/OpenMetrics/blob/main/specification/OpenMet
 
 平时我们口语交流，一般将随时间变化的数据称为 **Metrics(指标)**。这是监控数据的另一种叫法，与 OID 类似，可以代表一种监控数据、同时也是一种名词，比如我采集某个程序的监控数据，可以说采集这个程序的 Metrics。所以 Metrics 是一个抽象的叫法。
 
-详见 Prometheus [Data Model(数据模型)](/docs/6.可观测性/Metrics/Prometheus/Storage(存储)/Data%20Model(数据模型).md)
-
+详见 Prometheus [Data Model(数据模型)](/docs/6.可观测性/Metrics/Prometheus/Storage/Data%20Model(数据模型).md)

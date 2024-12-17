@@ -16,7 +16,7 @@ weight: 1
 >   - [YouTube](https://www.youtube.com/watch?v=rT4fJNbfe14)
 >   - [B 站翻译](https://www.bilibili.com/video/BV1aW4y147GX)
 
-Prometheus 是由 SoundCloud 开发的 开源监控报警系统 和 [时间序列数据库](/docs/5.数据存储/数据库/时间序列数据/时间序列数据.md)(TSDB) 。**Time Series(时间序列)** 概念详见：[Data Model(数据模型)](/docs/6.可观测性/Metrics/Prometheus/Storage(存储)/Data%20Model(数据模型).md)。使用 Go 语言开发，是 Google BorgMon 监控系统的开源版本。
+Prometheus 是由 SoundCloud 开发的 开源监控报警系统 和 [时间序列数据库](/docs/5.数据存储/数据库/时间序列数据/时间序列数据.md)(TSDB) 。**Time Series(时间序列)** 概念详见：[Data Model(数据模型)](/docs/6.可观测性/Metrics/Prometheus/Storage/Data%20Model(数据模型).md)。使用 Go 语言开发，是 Google BorgMon 监控系统的开源版本。
 
 > 题外话：Google 的 Borg 诞生了 kuberntes、Google 的 Borgmon 诞生了 Prometheus
 

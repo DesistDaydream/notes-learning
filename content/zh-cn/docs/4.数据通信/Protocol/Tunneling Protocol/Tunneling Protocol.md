@@ -70,7 +70,7 @@ Shadowsocks
 
 - https://en.wikipedia.org/wiki/Shadowsocks
 
-[Vmess](docs/4.数据通信/Protocol/Tunneling%20Protocol/Vmess.md)
+[Vmess](/docs/4.数据通信/Protocol/Tunneling%20Protocol/Vmess.md)
 
 VLESS
 

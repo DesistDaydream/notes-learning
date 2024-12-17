@@ -40,7 +40,7 @@ Loki 像 Prometheus 一样，但是是用于处理日志的：我们更喜欢基
 >
 > - [官方文档，运维-可观测性](https://grafana.com/docs/loki/latest/operations/observability/)
 
-Loki 和 Promtail 都在 `/metrics` 端点上公开了指标，该端点暴露了 [OpenMetrics](docs/6.可观测性/Metrics/监控系统概述/OpenMetrics.md) 格式的指标。
+Loki 和 Promtail 都在 `/metrics` 端点上公开了指标，该端点暴露了 [OpenMetrics](/docs/6.可观测性/Metrics/监控系统概述/OpenMetrics.md) 格式的指标。
 
 Loki 存储库具有一个[混合包](https://github.com/grafana/loki/tree/main/production/loki-mixin)，其中包括一组仪表板，记录规则和警报。总之，mixin 为您提供了一个全面的软件包，用于监视生产中的 Loki。
 

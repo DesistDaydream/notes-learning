@@ -25,8 +25,8 @@ LogQL 查询有两种类型：
 
 # Log Queries(日志查询)
 
-详见 [Log Queries](docs/6.可观测性/Logs/Loki/LogQL/Log%20Queries.md)
+详见 [Log Queries](/docs/6.可观测性/Logs/Loki/LogQL/Log%20Queries.md)
 
 # Metric Queries(指标查询)
 
-详见 [Metric Queries](docs/6.可观测性/Logs/Loki/LogQL/Metric%20Queries.md)
+详见 [Metric Queries](/docs/6.可观测性/Logs/Loki/LogQL/Metric%20Queries.md)

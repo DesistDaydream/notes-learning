@@ -52,7 +52,7 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 - --web.console.libraries="console_libraries" # Path to the console library directory.
 - --web.page-title="Prometheus Time Series Collection and Processing Server" # Document title of Prometheus instance.
 - --web.cors.origin=".\*" # Regex for CORS origin. It is fully anchored. Example: 'https?://(domain1|domain2).com'
-- --web.enable-remote-write-receiver # 开启 Prometheus [Storage(存储)](/docs/6.可观测性/Metrics/Prometheus/Storage(存储)/Storage(存储).md) 中的 Remote Storage(远程存储) 功能。
+- --web.enable-remote-write-receiver # 开启 Prometheus [Storage](/docs/6.可观测性/Metrics/Prometheus/Storage/Storage.md) 中的 Remote Storage(远程存储) 功能。
 - **--storage.tsdb.path="/PATH/DIR"**# prometheus 存储 metircs 数据的目录(使用绝对路径)
 - **--storage.tsdb.retention.time**(DURATION) # 数据的存储时间，如果既未设置此标志也未设置 storage.tsdb.retention.size 标志，`默认值：15d`。支持的单位：y，w，d，h，m，s，ms。
 - --storage.tsdb.retention.size=STORAGE.TSDB.RETENTION.SIZE # [EXPERIMENTAL] Maximum number of bytes that can be stored for blocks. Units supported: KB, MB, GB, TB, PB. This flag is experimental and can be changed in future releases.
@@ -330,13 +330,13 @@ Prometheus 根据这部分配置来推送需要
 
 ## remote_write
 
-与远程写相关的配置，详见 [Prometheus 存储章节](/docs/6.可观测性/Metrics/Prometheus/Storage(存储)/Storage(存储).md)
+与远程写相关的配置，详见 [Prometheus 存储章节](/docs/6.可观测性/Metrics/Prometheus/Storage/Storage.md)
 
 **url(STRING)** # 指定要发送时间序列数据到远程存储的端点的 URL
 
 ## remote_read
 
-与远程读相关的配置，详见 [Prometheus 存储章节](/docs/6.可观测性/Metrics/Prometheus/Storage(存储)/Storage(存储).md)
+与远程读相关的配置，详见 [Prometheus 存储章节](/docs/6.可观测性/Metrics/Prometheus/Storage/Storage.md)
 
 **url(STRING)** # 指定发起查询请求的远程数据库的端点的 URL
 

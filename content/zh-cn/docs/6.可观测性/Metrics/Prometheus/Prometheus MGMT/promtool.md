@@ -1,7 +1,6 @@
 ---
 title: promtool
 linkTitle: promtool
-date: 2024-07-24T10:48
 weight: 20
 ---
 

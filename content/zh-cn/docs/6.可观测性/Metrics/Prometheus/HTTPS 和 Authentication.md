@@ -1,7 +1,6 @@
 ---
-title: HTTPS 和 Authentication(认证)
-linkTitle: HTTPS 和 Authentication(认证)
-date: 2023-12-20T14:48
+title: HTTPS 和 Authentication
+linkTitle: HTTPS 和 Authentication
 weight: 7
 ---
 

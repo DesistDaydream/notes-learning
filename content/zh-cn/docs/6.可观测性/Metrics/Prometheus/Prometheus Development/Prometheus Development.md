@@ -1,7 +1,6 @@
 ---
-title: Prometheus 开发
-linkTitle: Prometheus 开发
-date: 2024-06-26T17:15
+title: Prometheus Development
+linkTitle: Prometheus Development
 weight: 1
 ---
 

@@ -332,7 +332,7 @@ https://grafana.com/docs/loki/latest/configure/#limits_config
 
 **ingestion_rate_mb**(FLOAT) # 每秒可以摄取日志量的大小，单位 MiB。`默认值：4`
 
-**max_query_series** # 当利用 [Metric Queries](docs/6.可观测性/Logs/Loki/LogQL/Metric%20Queries.md) 时，限制查询结果返回时序数据数量（Label 不同的时序数据）。`默认值: 500`
+**max_query_series** # 当利用 [Metric Queries](/docs/6.可观测性/Logs/Loki/LogQL/Metric%20Queries.md) 时，限制查询结果返回时序数据数量（Label 不同的时序数据）。`默认值: 500`
 
 - e.g. 当一条日志流通过 LogQL 的一些解析器添加了很多标签时（e.g. 响应时长 标签），这种标签的值有无限多，每个 Label 不同的值都相当于一条新的时间序列数据，所以要通过 max_query_series 限制不同时序数据的最大数量。
 - 若某条 LogQL 查询结果的时序数据超过了限额，将会产生 `maximum of series (XXX) reached for a single query` 报错，XXX 是 max_query_series 配置的值。

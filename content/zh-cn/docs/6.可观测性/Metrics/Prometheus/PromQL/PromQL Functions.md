@@ -1,5 +1,7 @@
 ---
-title: PromQL Functions(函数)
+title: PromQL Functions
+linkTitle: PromQL Functions
+weight: 20
 ---
 
 # 概述
@@ -74,12 +76,6 @@ node_load5{instance="192.168.1.75:9100"} # 结果为 2.79
 clamp_min(node_load5{instance="192.168.1.75:9100"}, 3) # 结果为 3
 ```
 
-## holt_winters()
-
-`holt_winters(v range-vector, sf scalar, tf scalar)` 函数基于区间向量 v，生成时间序列数据平滑值。平滑因子 sf 越低, 对旧数据的重视程度越高。趋势因子 tf 越高，对数据的趋势的考虑就越多。其中，0 < sf, tf <= 1。
-
-holt_winters 仅适用于 Gauge 类型的时间序列。
-
 ## predict_linear() - 线性预测
 
 `predict_linear(v range-vector, t scalar)` 预测时间序列 v 在 t 秒后的值。它基于简单线性回归的方式，对时间窗口内的样本数据进行统计，从而可以对时间序列的变化趋势做出预测。该函数的返回结果不带有度量指标，只有标签列表。
@@ -109,7 +105,6 @@ resets(v range-vector) 的参数是一个区间向量。对于每个时间序列
 
 这个函数一般只用在计数器类型的时间序列上。
 
-
 ## 数值计算
 
 ### abs() - 绝对值
@@ -131,44 +126,41 @@ ceil(node_load5{instance="192.168.1.75:9100"})
 
 ## 变化量相关
 
-下面三个函数，在代码中的实现逻辑都是由同一个方法实现的
+变化量相关的函数通常都以 `FuncName(v ragnge-vector)` 格式使用，用以计算 [范围向量](/docs/6.可观测性/Metrics/Prometheus/PromQL/PromQL.md#PromQL%20基本语法) v 中 2 个或多个元素之间的变化情况（e.g. 差值、变化率、etc.）
 
-`./prometheus/promql/functions.go`
+在进行计算时，根据获取样本值的方式分为两类计算逻辑
 
-```go
-// extrapolatedRate rate、increase、delta 函数功能的具体实现
-// 该函数计算速率，如果第一个或最后一个样本接近所选范围的边界，则 extrapolates，并以每秒或整体返回结果
-// 如果 isCounter 参数为 true，则允许计数器重置。
-// 如果 isRate 参数为 true，则返回结果以每秒作为单位
-func extrapolatedRate(vals []parser.Value, args parser.Expressions, enh *EvalNodeHelper, isCounter bool, isRate bool) Vector {
-	......
-}
+| 英文               | 中文    |                  |                                       |
+| ---------------- | ----- | ---------------- | ------------------------------------- |
+| **extrapolated** | 外推/推测 | **推测**样本到整个时间范围  | 函数名前面**没有** i ，比如 rate, delta, etc.   |
+| **instant**      | 即时/瞬间 | **不推测**样本到整个时间范围 | 函数名前面**带有** i ，比如 irate, idelta, etc. |
 
-// === delta(Matrix parser.ValueTypeMatrix) Vector ===
-func funcDelta(vals []parser.Value, args parser.Expressions, enh *EvalNodeHelper) Vector {
-	return extrapolatedRate(vals, args, enh, false, false)
-}
+extrapolated(外推/推测) 指：为了覆盖范围向量选择器中指定的**完整**时间范围，会推断整个时间范围内需要补充样本的时间点及该点的样本值。<font color="#ff0000">所以即使样本值都是整数，仍然可能会得到一个非整数的结果</font>。对应的， instant 则不会执行推断的行为，而是直接取时间范围内第一个和最后一个值
 
-// === rate(node parser.ValueTypeMatrix) Vector ===
-func funcRate(vals []parser.Value, args parser.Expressions, enh *EvalNodeHelper) Vector {
-	return extrapolatedRate(vals, args, enh, true, true)
-}
+说白了就是利用 [Interpolation(插值)](https://github.com/DesistDaydream/notes-science/blob/main/Math/Interpolation.md) 进行计算以获得最后结果。假如，node_network_receive_bytes_total 指标有如下两个样本
 
-// === increase(node parser.ValueTypeMatrix) Vector ===
-func funcIncrease(vals []parser.Value, args parser.Expressions, enh *EvalNodeHelper) Vector {
-	return extrapolatedRate(vals, args, enh, true, false)
-}
+```text
+node_network_receive_bytes_total[40s]
+100 @1734400800.000 // (10:00:00 样本值为 100)
+103 @1734400830.000 // (10:00:30 样本值为 103)
 ```
 
-区别
+如果我们需要计算 10:00:00 ~ 10:00:40 之间的变化量（e.g. delta）
 
-- delta() 与 rate() 的区别在于 isCounter 和 isRate 参数
-- delta() 与 increase() 的区别在于 isCounter 参数
-- rate() 与 increase() 的区别在于 isRate 参数
+- 如果是 extrapolated 的计算方式，则**会推测** 10:00:40 的样本的值，然后计算 10:00:00  10:00:40 两个数之间的变化量。
+  - 结果可能是 3.2132345.....
+- 如果是 instant 的计算方式，则**不会推测** 10:00:40 的样本值，而是直接用离 10:00:40 最近的 10:00:30 的这个样本值与 10:00:00 的样本值进行计算。
+  - 结果是 3
+
+在进行外推时还有一个细节，就是外推的阈值，比如 30 到 40 之间差了 10，那外推的时候，是推算 31, 32,33..., 40 中具体哪个点的值呢？这是由一个 extrapolationThreshold 阈值定义的。
+
+> TODO: 用**插值**来描述这个计算方式合适吗？（AI 说是插值，但是我看官方文档只在直方图相关函数里用了 Interpolation 描述，关于 rate 和 delta 的是 extrapolated 这个词）
+
+变化量相关的代码逻辑详见 [PromQL](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20Development/PromQL/PromQL.md) 中的函数部分
 
 ### delta() - 增量/差量
 
-`delta(v range-vector)` 计算范围向量 `v` 中，所有时间序列元素的第一个和最后一个值之间的差异。由于这个值被外推到指定的整个时间范围，所以即使样本值都是整数，你仍然可能会得到一个非整数值。
+`delta(v range-vector)` 计算范围向量 `v` 中，所有时间序列元素的第一个和最后一个值之间的差异。
 
 - 函数返回值：一个瞬时向量。
 
@@ -182,9 +174,9 @@ delta(cpu_temp_celsius{host="zeus"}[2h])
 
 ### increase()
 
-`increase(v range-vector)` 计算范围向量 `v` 中，第一个和最后一个样本并返回其增长量, 它会在单调性发生变化时(如由于采样目标重启引起的计数器复位)自动中断。由于这个值被外推到指定的整个时间范围，所以即使样本值都是整数，你仍然可能会得到一个非整数值。
+`increase(v range-vector)` 计算范围向量 `v` 中，第一个和最后一个样本并返回其增长量, 它会在单调性发生变化时(如由于采样目标重启引起的计数器复位)自动中断。
 
-- 函数返回值：类型只能是计数器类型，主要作用是增加图表和数据的可读性。使用 rate 函数记录规则的使用率，以便持续跟踪数据样本值的变化。
+- 函数返回值：类型只能是 Counter 类型，主要作用是增加图表和数据的可读性。使用 rate 函数记录规则的使用率，以便持续跟踪数据样本值的变化。
 
 例如，以下表达式返回区间向量中每个时间序列过去 5 分钟内 HTTP 请求数的增长数：
 
@@ -192,7 +184,7 @@ delta(cpu_temp_celsius{host="zeus"}[2h])
 increase(http_requests_total{job="apiserver"}[5m])
 ```
 
-### rate() 与 irate()
+### rate()
 
 > [!Tip] rate() 与 irate() 更推荐用在 Counter 类型的 Metrics 上，在长期趋势分析或者告警中推荐使用这个函数。
 
@@ -218,7 +210,7 @@ irate(http_requests_total{job="api-server"}[5m])
 ```
 
 > [!Warning]
-> 当将 rate() 函数与聚合运算符（例如 sum()）或随时间聚合的函数（任何 `XXX_over_time` 的函数）一起使用时，必须先执行 rate 函数，然后再进行聚合操作，否则当采样目标重新启动时 irate() 无法检测到计数器是否被重置。
+> 当将 rate() 函数与聚合运算符（例如 sum()）或随时间聚合的函数（任何 `XXX_over_time` 的函数）一起使用时，必须先执行 rate 函数，然后再进行聚合操作，否则当采样目标重新启动时 rate() 无法检测到计数器是否被重置。
 
 > [!Tip]
 > irate 只能用于绘制快速变化的计数器，在长期趋势分析或者告警中更推荐使用 rate 函数。因为使用 irate 函数时，速率的简短变化会重置 FOR 语句，形成的图形有很多波峰，难以阅读。
@@ -240,6 +232,7 @@ irate(http_requests_total{job="api-server"}[5m])
 参数也可以省略，省略时，默认为当前 UTC 时间
 
 除了上面这些有通用格式的，下面还有两个比较特殊的
+
 ### time()
 
 time() 函数返回从 1970-01-01 到现在的秒数。注意：它不是直接返回当前时间，而是时间戳。
@@ -254,7 +247,7 @@ timestamp(v instant-vector) 函数返回向量 v 中的每个样本的时间戳�
 
 > [!Tip]
 > 若想获取非 UTC 的时间，有一个通用的解决方案，就是将 Unix 时间戳加上对应时区的秒数
-> 
+>
 > 比如东八区的时间，就是需要加上 $8*3600$ 秒，`FUNC(vector(time() + 8 * 3600))`；然后各种函数使用运算结果后的 Unix 时间戳作为参数输出结果。
 >
 > - e.g. 获取当前东八区的第 N 小时: `hour(vector(time() + 8 * 3600))` ；第 N 月: `month(vector(time() + 8 * 3600))`。利用时间戳的秒数，可以规避很多复杂的问题。
@@ -363,12 +356,6 @@ label_replace(
 **vector()** # vector(s scalar) 函数将标量 s 作为没有标签的即时向量返回，即返回结果为：key: value= {}, s
 
 **scalar()** # scalar(v instant-vector) 函数的参数是一个单元素的瞬时向量,它返回其唯一的时间序列的值作为一个标量。如果度量指标的样本数量大于 1 或者等于 0, 则返回 NaN。
-
-idelta()
-
-idelta(v range-vector) 的参数是一个区间向量, 返回一个瞬时向量。它计算最新的 2 个样本值之间的差值。
-
-这个函数一般只用在 Gauge 类型的时间序列上。
 
 deriv()
 

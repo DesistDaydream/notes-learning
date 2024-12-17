@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档，Prometheus-查询-基础](https://prometheus.io/docs/prometheus/latest/querying/basics/)
+> - [官方文档，Prometheus - 查询 - 基础](https://prometheus.io/docs/prometheus/latest/querying/basics/)
 
 **Prometheus Query Language(Prometheus 查询语言，简称 PromQL)** 是一种提供了查询功能的编程语言，用来实时选择和汇总 [时间序列数据](/docs/5.数据存储/数据库/时间序列数据/时间序列数据.md)。通过 PromQL 可以对监控数据进行筛选、过滤、组合等等操作。使用 PromQL 编写的语句也可以称为 **Expression(表达式)**，表达式的结果可以通过其他方式显示为图形。
 
@@ -46,10 +46,11 @@ PromQL 没有绝对通用的语法，在不同场景查询条件下，语法也�
 - **Instant Vector Selectors(即时向量选择器)** # 包含每个时间序列的单个样本的一组时间序列，共享相同的时间戳。
   - **即时向量** 在有的地方也被翻译为 **瞬时向量**，都是同一个意思。
 - **Range Vector Selectors(范围向量选择器)** # 包含每个时间序列随时间变化的数据点的一组时间序列。
+  - **范围向量**
 - **String(字符串)** # 一个简单的字符串值(目前未被使用)
 - **Scalar(标量)** # 一个简单的数字浮点值
 
-在这四种表达式中，我们还可以通过 **Operators(操作符)** 和 **Functions(函数)** 来对获取到的时间序列数据，进行加工。
+在这四种表达式中，我们还可以通过 **Operators(操作符)** 和 **Functions(函数)** 加工获取到的时间序列数据。
 
 这四种类型，又可以进行统一分类
 
@@ -110,7 +111,7 @@ promhttp_metric_handler_requests_total{code=~"200|500"}
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lfubxg/1616069073217-6f22cfb6-c05c-44ef-b079-6d91f6e295a2.png)
 
-## **Range Vector Selectors(范围向量选择器)**
+## Range Vector Selectors(范围向量选择器)
 
 直接通过表达式 http_requests_total 查询时间序列时，返回值中只会包含该时间序列中的最新的一个样本值，这样的返回结果我们称之为瞬时向量。而相应的这样的表达式称之为**瞬时向量表达式**。
 
@@ -159,7 +160,7 @@ promhttp_metric_handler_requests_total{code="200", instance="172.38.40.250:9090"
 
 Resolution 通常是可省略的，默认值为 [Promethesu Server](/docs/6.可观测性/Metrics/Prometheus/Configuration/Promethesu%20Server.md) 的 `.global.evaluation_interval`
 
-子查询之所以叫子查询，通常用在多个 [PromQL Functions(函数)](/docs/6.可观测性/Metrics/Prometheus/PromQL/PromQL%20Functions(函数).md) 的场景，比如
+子查询之所以叫子查询，通常用在多个 [PromQL Functions](/docs/6.可观测性/Metrics/Prometheus/PromQL/PromQL%20Functions.md) 的场景，比如
 
 `rate(avg_over_time(node_network_receive_bytes_total{device="eth0"}[5m])[6h:5m])`是合法的
 
@@ -226,7 +227,7 @@ Prometheus 支持许多二进制和聚合运算符。详见《[PromQL Operators]
 
 ## Functions(函数)
 
-Prometheus 支持多种对数据进行操作的函数。详见《[PromQL Functions](/docs/6.可观测性/Metrics/Prometheus/PromQL/PromQL%20Functions(函数).md)》章节
+Prometheus 支持多种对数据进行操作的函数。详见《[PromQL Functions](/docs/6.可观测性/Metrics/Prometheus/PromQL/PromQL%20Functions.md)》章节
 
 # 表达式样例
 

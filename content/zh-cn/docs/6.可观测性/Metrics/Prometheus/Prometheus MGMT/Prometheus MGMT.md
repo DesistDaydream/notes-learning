@@ -1,8 +1,7 @@
 ---
-title: Prometheus 管理
-linkTitle: Prometheus 管理
-date: 2024-06-28T17:16
-weight: 20
+title: Prometheus MGMT
+linkTitle: Prometheus MGMT
+weight: 1
 ---
 
 # 概述

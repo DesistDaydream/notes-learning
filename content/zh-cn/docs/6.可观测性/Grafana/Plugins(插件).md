@@ -19,7 +19,7 @@ weight: 20
 > - [GitHub 项目，grafana/clickhouse-datasource](https://github.com/grafana/clickhouse-datasource)
 > - https://grafana.com/grafana/plugins/grafana-clickhouse-datasource/
 
-[ClickHouse](docs/5.数据存储/数据库/关系数据/ClickHouse/ClickHouse.md) 插件
+[ClickHouse](/docs/5.数据存储/数据库/关系数据/ClickHouse/ClickHouse.md) 插件
 
 ## Macros
 
@@ -27,7 +27,7 @@ https://github.com/grafana/clickhouse-datasource?tab=readme-ov-file#macros
 
 Grafana 的 ClickHouse 插件会改变一些 Grafana 中某些变量、函数的用法；还有一些新增加的 Macros 功能可以使用
 
-`$__timeFilter(COLUMN_NAME)` # 
+`$__timeFilter(COLUMN_NAME)` #
 
 | Macro                       | Description                                                                                                      | 渲染结果示例                                                              |
 | --------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |

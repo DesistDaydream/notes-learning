@@ -34,14 +34,14 @@ help # 获取指定 command 的帮助信息
 
 # generic
 
-详见：[generic 组](docs/5.数据存储/数据库/键值数据/Redis/Redis%20CLI/generic%20组.md)
+详见：[generic 组](/docs/5.数据存储/数据库/键值数据/Redis/Redis%20CLI/generic%20组.md)
 
 主要是对 key 的操作，比如列出所有 key，删除 key 等等。一般在列出 key 时无法获取对应的 value
 
 # 不同类型的数据处理命令组
 ## string
 
-详见：[string 组](docs/5.数据存储/数据库/键值数据/Redis/Redis%20CLI/string%20组.md)
+详见：[string 组](/docs/5.数据存储/数据库/键值数据/Redis/Redis%20CLI/string%20组.md)
 
 主要是对于 value 的操作，比如对指定的一个或多个 key 的 value 进行增、删、改、查。
 
@@ -118,7 +118,7 @@ QUIT - # Close the connection
 
 # server
 
-详见 [server 组](docs/5.数据存储/数据库/键值数据/Redis/Redis%20CLI/server%20组.md)
+详见 [server 组](/docs/5.数据存储/数据库/键值数据/Redis/Redis%20CLI/server%20组.md)
 
 # scripting
 
@@ -126,7 +126,7 @@ QUIT - # Close the connection
 
 # cluster - 与集群模式相关的命令
 
-详见 [Cluster 命令](docs/5.数据存储/数据库/键值数据/Redis/Redis%20CLI/Cluster%20命令.md)
+详见 [Cluster 命令](/docs/5.数据存储/数据库/键值数据/Redis/Redis%20CLI/Cluster%20命令.md)
 
 # geo
 

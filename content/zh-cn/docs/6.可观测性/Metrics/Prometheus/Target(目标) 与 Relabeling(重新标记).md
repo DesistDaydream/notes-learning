@@ -36,7 +36,7 @@ prometheus_build_info{branch="HEAD",goversion="go1.18.6",revision="1ce2197e7f9e9
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616045780732-4d75ae11-3fe5-4eb3-9866-ec9e55506a49.png)
 
-从 Prometheus [Data Model(数据模型)](/docs/6.可观测性/Metrics/Prometheus/Storage(存储)/Data%20Model(数据模型).md) 中，可以知道 Label 的作用就是用来标识一条唯一的时间序列。那么 Prometheus 为什么会分为 Discovered Labels 和 Target Labels 呢？
+从 Prometheus [Data Model(数据模型)](/docs/6.可观测性/Metrics/Prometheus/Storage/Data%20Model(数据模型).md) 中，可以知道 Label 的作用就是用来标识一条唯一的时间序列。那么 Prometheus 为什么会分为 Discovered Labels 和 Target Labels 呢？
 
 - 因为，如果只有一套 Labels，那么 Prometheus 在采集目标时所使用的 Labels 就需要完完整整全部附加到已采集的指标上。当我们不想将所有标签都写入数据库，或者想改变某些标签的时候，这一套标签就已经不够用了。
 - 既然出现了两套标签，也就需要一个两套标签之间的转换功能，而这就是 **Relabeling(重新标记)** 机制。

@@ -1,14 +1,15 @@
 ---
-title: Prometheus 规则处理逻辑
-linkTitle: Prometheus 规则处理逻辑
-date: 2024-06-26T17:15
+title: Rule
+linkTitle: Rule
 weight: 1
 ---
 
 # 概述
 
 > 参考：
-> 
+>
+> - date: "2024-12-17T22:21"
+> - [GitHub 项目，prometheus/prometheus - rules](https://github.com/prometheus/prometheus/tree/main/rules)
 > - [公众号 - 运维开发故事，prometheus告警规则管理](https://mp.weixin.qq.com/s/fwHfKYCy_SKJzaiNy-zh7A)
 
 # 接口

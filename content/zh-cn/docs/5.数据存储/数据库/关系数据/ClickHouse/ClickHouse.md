@@ -68,10 +68,10 @@ Table Engine(表引擎) 本质上是用来定义表的类型。ClickHouse 的表
 
 ```sql
 CREATE TABLE my_database.my_table (
-  `id` UInt64, 
-  `command_source` Nullable(Int64), 
-  `source_system` String, 
-  `version` String, 
+  `id` UInt64,
+  `command_source` Nullable(Int64),
+  `source_system` String,
+  `version` String,
   `command_id` String,
 )
 ENGINE = PostgreSQL('10.53.192.45:5432', 'PG_Database', 'PG_Table', 'PG_Username', 'PG_Password', 'CH_ClusterName')
@@ -94,7 +94,7 @@ Table Engine 可以决定：
 >
 > - [官方文档，集成](https://clickhouse.com/docs/en/integrations)
 
-Grafana 数据源插件 https://github.com/grafana/clickhouse-datasource 。详见 Grafana [Plugins(插件)](docs/6.可观测性/Grafana/Plugins(插件).md)
+Grafana 数据源插件 https://github.com/grafana/clickhouse-datasource 。详见 Grafana [Plugins(插件)](/docs/6.可观测性/Grafana/Plugins(插件).md)
 
 - 在 https://github.com/grafana/clickhouse-datasource/tree/main/src/dashboards 有一些内置的利用 ClickHouse 本身的数据创建出来的 Grafana 仪表盘
 - [官方文档，可观测性 - Grafana](https://clickhouse.com/docs/en/observability/grafana) 有一些最佳实践和示例

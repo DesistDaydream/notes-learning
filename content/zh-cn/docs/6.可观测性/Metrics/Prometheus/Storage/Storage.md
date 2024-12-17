@@ -1,7 +1,6 @@
 ---
-title: Storage(存储)
-linkTitle: Storage(存储)
-date: 2023-12-20T14:48
+title: Storage
+linkTitle: Storage
 weight: 1
 ---
 
@@ -26,7 +25,7 @@ Prometheus 自身就包含一个 **Time Series Database(时间序列数据库)**
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/storage/1623820971678-3d263b32-2760-4e77-9a22-b2c438bc62d5.png)
 
-并且，经过实践，在数据量足够多时，当 Prometheus 压缩数据时，有不小的概率会丢失某个 Block 中的 meta.json 文件。进而导致压缩失败，并频繁产生告警，详见故障：[compaction failed](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20管理/故障处理/故障处理.md#compaction%20failed)
+并且，经过实践，在数据量足够多时，当 Prometheus 压缩数据时，有不小的概率会丢失某个 Block 中的 meta.json 文件。进而导致压缩失败，并频繁产生告警，详见故障：[compaction failed](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20MGMT/故障处理/故障处理.md#compaction%20failed)
 
 Prometheus 的本地时间序列数据库将数据以自定义的高效格式存储在本地存储上。也就是说，Prometheus 采集到的指标数据，以文件的形式直接保存在操作系统的文件系统中。On-disk Layout 章节将会详细介绍这些数据在本地存储中布局。
 

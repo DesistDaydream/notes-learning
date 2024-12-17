@@ -159,7 +159,7 @@ export Namecom_Username="XXXX"
 export Namecom_Token="XXXXX"
 ```
 
-注意：这俩变量要使用 PRODUCTION(生产)环境的。Name.com 创建完 Token 后会有两个~一个用于生产，一个用于测试，对应不用的 API
+注意：这俩变量要使用 PRODUCTION(生产)环境的。Name.com 创建完 Token 后会有两个，一个用于生产，一个用于测试，对应不用的 API
 
 ```bash
 acme.sh --issue --dns dns_namecom -d 102205.xyz -d *.102205.xyz
@@ -180,7 +180,7 @@ acme.sh --issue --dns dns_dp -d 102205.xyz -d *.102205.xyz
 
 注意, 默认生成的证书都放在安装目录下: `~/.acme.sh/`, 请不要直接使用此目录下的文件, 例如: 不要直接让 nginx/apache 的配置文件使用这下面的文件. 这里面的文件都是内部使用, 而且目录结构可能会变化.
 
-正确的使用方法是使用 `--install-cert` 命令,并指定目标位置, 然后证书文件会被copy到相应的位置
+正确的使用方法是使用 `--install-cert` 命令,并指定目标位置, 然后证书文件会被 copy 到相应的位置
 
 ```bash
 acme.sh --install-cert -d 102205.xyz \
