@@ -12,19 +12,16 @@ weight: 1
 
 # Prometheus 源码目录结构
 
-> 更新日期：
->
-> Prometheus 的源码目录随着更新迭代，也在不断变化中
+> 更新日期: 2024-12-18. Prometheus 的源码目录随着更新迭代，也在不断变化中
 
 - cmd/ #
 - config/ # 用于处理 yaml 格式的配置文件，包含与配置文件对应内容的 struct。
-- console_libraries/
-- consoles/
 - discovery/
 - docs/
 - documentation/
+- model/
 - notifier/
-- pkg/
+- plugins/
 - prompb/
 - promql/
 - rules/
@@ -32,6 +29,7 @@ weight: 1
 - scripts/
 - storage/
 - template/
+- tracing
 - tsdb/
 - util/
 - web/

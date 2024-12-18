@@ -1335,6 +1335,11 @@
       "docs/12.AI/计算机视觉/OCR.md",
       "docs/12.AI/计算机视觉/OpenCV"
     ],
+    "docs/12.AI/计算机视觉/OpenCV": [
+      "docs/12.AI/计算机视觉/OpenCV/_index.md",
+      "docs/12.AI/计算机视觉/OpenCV/OpenCV.md",
+      "docs/12.AI/计算机视觉/OpenCV/图像处理模块.md"
+    ],
     "docs/2.编程": [
       "docs/2.编程/_index.md",
       "docs/2.编程/编程.md",
@@ -1754,6 +1759,11 @@
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON",
       "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/YAML.md"
     ],
+    "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON": [
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON/_index.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON/JSON.md",
+      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON/go-simplejson 库.md"
+    ],
     "docs/2.编程/高级编程语言/HTML与CSS": [
       "docs/2.编程/高级编程语言/HTML与CSS/_index.md",
       "docs/2.编程/高级编程语言/HTML与CSS/HTML.md",
@@ -2083,6 +2093,11 @@
       "docs/5.数据存储/数据库/关系数据/SQLite",
       "docs/5.数据存储/数据库/关系数据/SQL"
     ],
+    "docs/5.数据存储/数据库/关系数据/ClickHouse": [
+      "docs/5.数据存储/数据库/关系数据/ClickHouse/_index.md",
+      "docs/5.数据存储/数据库/关系数据/ClickHouse/ClickHouse.md",
+      "docs/5.数据存储/数据库/关系数据/ClickHouse/ClickHouse SQL.md"
+    ],
     "docs/5.数据存储/数据库/关系数据/MySQL": [
       "docs/5.数据存储/数据库/关系数据/MySQL/_index.md",
       "docs/5.数据存储/数据库/关系数据/MySQL/MySQL.md",
@@ -2141,6 +2156,15 @@
       "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI",
       "docs/5.数据存储/数据库/键值数据/Redis/Redis 管理",
       "docs/5.数据存储/数据库/键值数据/Redis/Redis Operator.md"
+    ],
+    "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI": [
+      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/_index.md",
+      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/Redis CLI.md",
+      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/generic 组.md",
+      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/server 组.md",
+      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/string 组.md",
+      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/Cluster 命令.md",
+      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/Sentinel 命令.md"
     ],
     "docs/5.数据存储/数据管理工具": [
       "docs/5.数据存储/数据管理工具/_index.md",
@@ -2219,6 +2243,11 @@
       "docs/6.可观测性/Logs/Loki/Loki 开发",
       "docs/6.可观测性/Logs/Loki/Loki 衍生品",
       "docs/6.可观测性/Logs/Loki/Promtail"
+    ],
+    "docs/6.可观测性/Logs/Loki/LogQL": [
+      "docs/6.可观测性/Logs/Loki/LogQL/_index.md",
+      "docs/6.可观测性/Logs/Loki/LogQL/LogQL.md",
+      "docs/6.可观测性/Logs/Loki/LogQL/Log Queries.md"
     ],
     "docs/6.可观测性/Logs/Loki/Loki 管理": [
       "docs/6.可观测性/Logs/Loki/Loki 管理/_index.md",
@@ -2329,6 +2358,35 @@
       "docs/6.可观测性/Metrics/Prometheus/Prometheus API/TSDB Admin APIs.md",
       "docs/6.可观测性/Metrics/Prometheus/Prometheus API/Management API.md"
     ],
+    "docs/6.可观测性/Metrics/Prometheus/Prometheus Development": [
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/Rule/_index.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/Rule/Rule.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/Rule/从配置文件入手寻找代码逻辑.md"
+    ],
+    "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/Rule": [
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/Rule/_index.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/Rule/Rule.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/Rule/从配置文件入手寻找代码逻辑.md"
+    ],
+    "docs/6.可观测性/Metrics/Prometheus/Prometheus MGMT": [
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus MGMT/_index.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus MGMT/Prometheus MGMT.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus MGMT/PromQL 常见查询语句.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus MGMT/promtool.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus MGMT/故障处理",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus MGMT/最佳实践.md"
+    ],
+    "docs/6.可观测性/Metrics/Prometheus/Prometheus 开发": [
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/_index.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/Prometheus Development.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/Rule",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/PromQL"
+    ],
+    "docs/6.可观测性/Metrics/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑": [
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/Rule/_index.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/Rule/Rule.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/Rule/从配置文件入手寻找代码逻辑.md"
+    ],
     "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品": [
       "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/_index.md",
       "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus 衍生品.md",
@@ -2337,6 +2395,14 @@
       "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Thanos",
       "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/VictoriaMetrics.md",
       "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Mimir.md"
+    ],
+    "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator": [
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/_index.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/Prometheus Operator.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/kube-prometheus 项目.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/CR 详解",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/Operator API.md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/Prometheus-adapter.md"
     ],
     "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Thanos": [
       "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Thanos/_index.md",
@@ -2351,6 +2417,11 @@
       "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解/_index.md",
       "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解/Thanos 组件详解.md",
       "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Thanos/Thanos 组件详解/使用 Thanos 查询前端优化查询性能.md"
+    ],
+    "docs/6.可观测性/Metrics/Prometheus/Storage": [
+      "docs/6.可观测性/Metrics/Prometheus/Storage/_index.md",
+      "docs/6.可观测性/Metrics/Prometheus/Storage/Storage.md",
+      "docs/6.可观测性/Metrics/Prometheus/Storage/Data Model(数据模型).md"
     ],
     "docs/6.可观测性/Metrics/监控系统概述": [
       "docs/6.可观测性/Metrics/监控系统概述/_index.md",
@@ -2369,6 +2440,13 @@
       "docs/6.可观测性/Observability(可观测性)/Observability(可观测性).md",
       "docs/6.可观测性/Observability(可观测性)/可观测性之数据模型.md",
       "docs/6.可观测性/Observability(可观测性)/Exemplars.md"
+    ],
+    "docs/6.可观测性/OpenTelemetry": [
+      "docs/6.可观测性/OpenTelemetry/_index.md",
+      "docs/6.可观测性/OpenTelemetry/OpenTelemetry.md",
+      "docs/6.可观测性/OpenTelemetry/Collector.md",
+      "docs/6.可观测性/OpenTelemetry/Configuration.md",
+      "docs/6.可观测性/OpenTelemetry/Component.md"
     ],
     "docs/6.可观测性/Traces": [
       "docs/6.可观测性/Traces/_index.md",
@@ -2810,85 +2888,11 @@
       "docs/学习/PKM/写作.md",
       "docs/学习/PKM/Obsidian.md",
       "docs/学习/PKM/WPS.md"
-    ],
-    "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator": [
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/_index.md",
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/Prometheus Operator.md",
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/kube-prometheus 项目.md",
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/CR 详解",
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/Operator API.md",
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus 衍生品/Prometheus Operator/Prometheus-adapter.md"
-    ],
-    "docs/12.AI/计算机视觉/OpenCV": [
-      "docs/12.AI/计算机视觉/OpenCV/_index.md",
-      "docs/12.AI/计算机视觉/OpenCV/OpenCV.md",
-      "docs/12.AI/计算机视觉/OpenCV/图像处理模块.md"
-    ],
-    "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON": [
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON/_index.md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON/JSON.md",
-      "docs/2.编程/高级编程语言/Go/Go 规范与标准库/文本处理/JSON/go-simplejson 库.md"
-    ],
-    "docs/6.可观测性/OpenTelemetry": [
-      "docs/6.可观测性/OpenTelemetry/_index.md",
-      "docs/6.可观测性/OpenTelemetry/OpenTelemetry.md",
-      "docs/6.可观测性/OpenTelemetry/Collector.md",
-      "docs/6.可观测性/OpenTelemetry/Configuration.md",
-      "docs/6.可观测性/OpenTelemetry/Component.md"
-    ],
-    "docs/5.数据存储/数据库/关系数据/ClickHouse": [
-      "docs/5.数据存储/数据库/关系数据/ClickHouse/_index.md",
-      "docs/5.数据存储/数据库/关系数据/ClickHouse/ClickHouse.md",
-      "docs/5.数据存储/数据库/关系数据/ClickHouse/ClickHouse SQL.md"
-    ],
-    "docs/6.可观测性/Logs/Loki/LogQL": [
-      "docs/6.可观测性/Logs/Loki/LogQL/_index.md",
-      "docs/6.可观测性/Logs/Loki/LogQL/LogQL.md",
-      "docs/6.可观测性/Logs/Loki/LogQL/Log Queries.md"
-    ],
-    "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI": [
-      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/_index.md",
-      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/Redis CLI.md",
-      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/generic 组.md",
-      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/server 组.md",
-      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/string 组.md",
-      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/Cluster 命令.md",
-      "docs/5.数据存储/数据库/键值数据/Redis/Redis CLI/Sentinel 命令.md"
-    ],
-    "docs/6.可观测性/Metrics/Prometheus/Prometheus Development": [
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/Rule/_index.md",
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/Rule/Rule.md",
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/Rule/从配置文件入手寻找代码逻辑.md"
-    ],
-    "docs/6.可观测性/Metrics/Prometheus/Prometheus 开发": [
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/_index.md",
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/Prometheus Development.md",
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/Rule",
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/PromQL"
-    ],
-    "docs/6.可观测性/Metrics/Prometheus/Prometheus 开发/Prometheus 规则处理逻辑": [
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/Rule/_index.md",
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/Rule/Rule.md",
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus Development/Rule/从配置文件入手寻找代码逻辑.md"
-    ],
-    "docs/6.可观测性/Metrics/Prometheus/Storage": [
-      "docs/6.可观测性/Metrics/Prometheus/Storage/_index.md",
-      "docs/6.可观测性/Metrics/Prometheus/Storage/Storage.md",
-      "docs/6.可观测性/Metrics/Prometheus/Storage/Data Model(数据模型).md"
-    ],
-    "docs/6.可观测性/Metrics/Prometheus/Prometheus MGMT": [
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus MGMT/_index.md",
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus MGMT/Prometheus MGMT.md",
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus MGMT/PromQL 常见查询语句.md",
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus MGMT/promtool.md",
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus MGMT/故障处理",
-      "docs/6.可观测性/Metrics/Prometheus/Prometheus MGMT/最佳实践.md"
     ]
   },
   "actionBarOrder": {},
   "autoHide": true,
   "autoHideDelay": 2000,
   "dragDelay": 200,
-  "sortOrder": "custom",
-  "useCollapse": true
+  "sortOrder": "custom"
 }

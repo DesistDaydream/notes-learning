@@ -136,3 +136,4 @@ sampledInterval := float64(lastT-firstT) / 1000
 extrapolateToInterval := sampledInterval
 factor := extrapolateToInterval / sampledInterval
 ```
+

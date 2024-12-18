@@ -59,6 +59,7 @@ DROP TABLE IF EXISTS backup_tbl;
 > 参考：
 >
 > - [官方文档，9.4 字符串 函数与运算符](https://www.postgresql.org/docs/current/functions-string.html)
+> - [官方文档，9.5 二进制字符串 函数与运算符](https://www.postgresql.org/docs/current/functions-binarystring.html)
 
 ### string_to_array
 
@@ -103,6 +104,23 @@ PostgreSQL 格式化函数提供了一组强大的工具，用于将各种数据
 ```sql
 SELECT to_char(timezone('UTC', '2024-12-13T16:23:58.115Z'), 'YYYY-MM-DD HH24:MI:SS')
 -- 结果为: 2024-12-13 16:23:58
+```
+
+### 编码/解码字符串
+
+`encode ( bytes bytea, format text ) → text` 与 `decode ( string text, format text ) → bytea`
+
+encode 将 bytes 以 format 格式编码为 text；decode 将 string 以 format 解码为 bytea
+
+format 支持的格式有：
+
+- base64
+- escape
+- hex
+
+```sql
+SELECT decode('RGVzaXN0RGF5ZHJlYW0K', 'base64')
+-- 结果未: DesistDaydream
 ```
 
 ## 时间处理
