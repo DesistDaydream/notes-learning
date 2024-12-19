@@ -2894,5 +2894,6 @@
   "autoHide": true,
   "autoHideDelay": 2000,
   "dragDelay": 200,
-  "sortOrder": "custom"
+  "sortOrder": "custom",
+  "useCollapse": true
 }

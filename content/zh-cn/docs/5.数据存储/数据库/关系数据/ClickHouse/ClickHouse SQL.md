@@ -24,12 +24,16 @@ weight: 20
 - Table Functions(表函数)
 - Window Functions(窗口函数)
 
-高阶函数与 lambda 函数，形式为 `params -> expr`。箭头左侧是一个形式参数，右侧是一个表达式。整体构成一个函数
+高阶函数与 lambda 函数，形式为 `params -> expr`。箭头的 左侧是形式参数；右侧是表达式。整体构成一个函数，就像这样：
 
+```text
+oneNamedFunc(x -> x * 2)
 ```
-onNameFunc(x -> x * 2)
-对应一个下面这种函数
-func onNameFunc(x int) {
+
+可以把这种函数理解成一种通用的样子：
+
+```text
+func oneNamedFunc(x any) {
   x * 2
 }
 ```
@@ -92,6 +96,23 @@ toStartOfXXX
 - [toStartOfInterval](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartofinterval) # 通用函数，可以在参数中指定 向上/向下 舍入的具体逻辑。
   - e.g. `toStartOfInterval(t, INTERVAL 1 YEAR)` 的返回值与 `toStartOfYear(t)` 相同
   - e.g. `SELECT toStartOfInterval(toDateTime('2023-01-01 14:45:00'), INTERVAL 1 MINUTE, toDateTime('2023-01-01 14:35:30'))` 结果为 `2023-01-01 14:44:30`
+
+## Aggregate Functions
+
+
+## Table Functions
+
+https://clickhouse.com/docs/en/sql-reference/table-functions
+
+Table 函数可以用来构造一个新的表格式的数据，比如 `select toDate('2010-01-01') + number as d FROM numbers(2);` 可以生成 2 行数据，格式是像这样的表格
+
+| d                   |
+| ------------------- |
+| 2010-01-01 00:00:00 |
+| 2010-01-02 00:00:00 |
+
+## Window Functions
+
 
 # 最佳实践
 
