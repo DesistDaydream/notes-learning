@@ -6,7 +6,7 @@ title: Files 类模块
 
 > 参考：
 >
-> - [官方文档 2.9，用户指南-使用模块-模块索引-文件模块](https://docs.ansible.com/ansible/2.9/modules/list_of_files_modules.html)
+> - [官方文档 2.9，用户指南 - 使用模块 - 模块索引 - 文件模块](https://docs.ansible.com/ansible/2.9/modules/list_of_files_modules.html)
 
 Files 类别模块用来处理文件、文本
 

@@ -6,7 +6,7 @@ title: ansible.builtin(内置模块)
 
 > 参考：
 >
-> - [官方文档,参考-所有模块和插件的索引-所有模块的索引-ansible.builtin](https://docs.ansible.com/ansible/latest/collections/index_module.html#ansible-builtin)
+> - [官方文档，参考 - 所有模块和插件的索引 - 所有模块的索引 - ansible.builtin](https://docs.ansible.com/ansible/latest/collections/index_module.html#ansible-builtin)
 
 - [ansible.builtin.add_host](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/add_host_module.html#ansible-collections-ansible-builtin-add-host-module) – Add a host (and alternatively a group) to the ansible-playbook in-memory inventory
 - [ansible.builtin.apt](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html#ansible-collections-ansible-builtin-apt-module) – Manages apt-packages

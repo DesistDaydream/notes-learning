@@ -6,7 +6,7 @@ title: ansible.posix(POSIX 标准模块)
 
 > 参考：
 > 
-> - [官方文档，参考-所有模块和插件的索引-所有模块的索引-ansible.posix](https://docs.ansible.com/ansible/latest/collections/index_module.html#ansible-posix)
+> - [官方文档，参考 - 所有模块和插件的索引 - 所有模块的索引-ansible.posix](https://docs.ansible.com/ansible/latest/collections/index_module.html#ansible-posix)
 
 posix 模块是关于符合 POSIX 标准的操作系统相关的模块
 

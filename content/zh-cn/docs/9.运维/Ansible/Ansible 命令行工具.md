@@ -7,8 +7,8 @@ weight: 7
 
 > 参考：
 >
-> - [官方文档,用户指南-命令行工具](https://docs.ansible.com/ansible/latest/user_guide/command_line_tools.html#command-line-tools)
-> - [官方文档,用户指南-传统目录-临时命令简介](https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html)
+> - [官方文档，用户指南 - 命令行工具](https://docs.ansible.com/ansible/latest/user_guide/command_line_tools.html#command-line-tools)
+> - [官方文档，用户指南 - 传统目录 - 临时命令简介](https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html)
 
 由于 Ansible 是基于 SSH 远程管理主机，所以让 Ansible 的控制节点需要对受管理节点进行 ssh 的基于密钥的认证(方法详见 ssh 命令)或者在 inventory 文件中指定认证方式。
 
@@ -18,7 +18,7 @@ Note：Ansible 的控制节点和受管理节点的 Python 版本需要一致，
 
 > 参考：
 >
-> - [官方文档，用户指南-使用命令行工具工作-ansible](https://docs.ansible.com/ansible/latest/cli/ansible.html)
+> - [官方文档，用户指南 - 使用命令行工具工作 - ansible](https://docs.ansible.com/ansible/latest/cli/ansible.html)
 
 ansible 是 Ansible 的一个 ad-hoc(临时) 命令，可以在一个或多个受管理节点上自动执行单个任务。ansible 命令即简单又快速，但并不具备可重复性，通过 ansible 命令的使用，我们可以了解到 Ansible 的简单性和强大的功能。**并且，可以将类似的操作，直接移植到 Playbooks 中**。
 
@@ -75,7 +75,7 @@ ansible 是 Ansible 的一个 ad-hoc(临时) 命令，可以在一个或多个�
     - ansible -i inventory/ssc-pool-unicom-ha all -m yum -a "name=net-snmp-utils state=latest"
 - **用户和组管理**
   - 创建一个名为 sudo 的组，设置 gid 为 27
-    - ansible -i inventory/ssc-pool-datalake-ha _jxgz_ -m group -a "name=sudo gid=27"
+    - ansible -i inventory/ssc-pool-datalake-ha -jxgz -m group -a "name=sudo gid=27"
 - **cron** # 添加定时任务
   - ansible all -m cron -a 'minute=\*/10 job="/bin/echo hello" name="test1"'
 - **script** # 脚本模块，为远程机器执行本地脚本

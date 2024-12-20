@@ -53,7 +53,7 @@ ansible-playbook 用来运行运行 Ansible playbook，以便在目标主机上�
 - -T , --timeout # override the connection timeout in seconds (default=10)
 - -b, --become # run operations with become (does not imply password prompting)
 - -c , --connection # connection type to use (default=smart)
-- **-e, --extra-vars <@FILE | KEY=VALUE>** # 添加额外的变量，可以是 `KEY=VALUE` 格式(若是 yaml 的话则是 `KEY: VALUE` 格式)，也可以直接指定 yaml 或 json 格式的文件，如果指定文件，以 `@` 开头，比如：
+- **-e, --extra-vars <@FILE | KEY=VALUE>** # 添加额外的变量。可以是 `KEY=VALUE` 格式(若是 yaml 的话则是 `KEY: VALUE` 格式)；也可以直接指定 yaml 或 json 格式的文件，如果指定文件，以 `@` 开头，比如：
   - `--extra-vars @~/ansible/defaults/main.yaml`
 - -f , --forks # specify number of parallel processes to use (default=5)
 - -k, --ask-pass # ask for connection password
@@ -71,4 +71,4 @@ ansible-playbook 用来运行运行 Ansible playbook，以便在目标主机上�
 
 提前检查渲染的模板。通过 --connectoin=local 以在本地运行，使用 --diff 展示渲染后差异。
 
-- ansible-playbook -i inventory/all.yaml  deploy-mysql.yaml --connection=local --limit tj-test-spst-node-2 --tag config-mysql--check --diff
+- ansible-playbook -i inventory/all.yaml  deploy-mysql.yaml --connection=local --limit tj-test-spst-node-2 --tag config-mysql --check --diff

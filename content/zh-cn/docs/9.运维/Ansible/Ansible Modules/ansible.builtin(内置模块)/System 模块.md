@@ -8,7 +8,7 @@ weight: 20
 
 > 参考：
 >
-> - [2.9 官方文档，用户指南-使用模块-System 模块](<https://docs.ansible.com/ansible/2.9/modules/list_of_system_modules.html>)
+> - [2.9 官方文档，用户指南 - 使用模块 - System 模块](<https://docs.ansible.com/ansible/2.9/modules/list_of_system_modules.html>)
 
 - [aix_devices – Manages AIX devices](https://docs.ansible.com/ansible/2.9/modules/aix_devices_module.html#aix-devices-module)
 - [aix_filesystem – Configure LVM and NFS file systems for AIX](https://docs.ansible.com/ansible/2.9/modules/aix_filesystem_module.html#aix-filesystem-module)
