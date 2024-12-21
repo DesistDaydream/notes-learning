@@ -2637,15 +2637,15 @@
       "docs/9.运维/Ansible/_index.md",
       "docs/9.运维/Ansible/Ansible.md",
       "docs/9.运维/Ansible/Ansible 配置详解.md",
-      "docs/9.运维/Ansible/Inventory 配置文件详解.md",
+      "docs/9.运维/Ansible/Inventory 文件.md",
       "docs/9.运维/Ansible/Ansible Collection.md",
       "docs/9.运维/Ansible/Ansible Plugins",
       "docs/9.运维/Ansible/Ansible Modules",
       "docs/9.运维/Ansible/Ansible Variables",
       "docs/9.运维/Ansible/Ansible 命令行工具.md",
-      "docs/9.运维/Ansible/Ansible 管理",
+      "docs/9.运维/Ansible/Playbook",
       "docs/9.运维/Ansible/Ansible 扩展",
-      "docs/9.运维/Ansible/Playbook"
+      "docs/9.运维/Ansible/Ansible 管理"
     ],
     "docs/9.运维/Ansible/Ansible Modules": [
       "docs/9.运维/Ansible/Ansible Modules/_index.md",

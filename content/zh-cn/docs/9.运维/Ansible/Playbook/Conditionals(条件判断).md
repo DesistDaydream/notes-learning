@@ -7,7 +7,7 @@ weight: 5
 
 > 参考：
 >
-> - [官方文档,用户指南-传统目录-条件](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html)
+> - [官方文档，用户指南 - 传统目录 - 条件](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html)
 
 通常，play 的结果可能取决于 variable，fact（有关远程系统的知识）或先前的任务结果。在某些情况下，变量的值可能取决于其他变量。可以基于主机是否符合其他条件来创建其他组来管理主机。
 

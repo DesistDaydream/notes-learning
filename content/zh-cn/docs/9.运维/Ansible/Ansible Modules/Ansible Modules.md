@@ -61,7 +61,7 @@ ansible webservers -m service -a "name=httpd state=started"
 这个 Playbooks 的意思就是在受管理节点上执行 `whoami` 命令，并将返回值保存到 info 变量中，通过 debug 模块，将 info 变量中的内容输出出来，效果如下：
 
 ```json
-[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ehualu/ansible/playbook]$ ansible-playbook 90-test.yaml
+~/projects/DesistDaydream/ehualu/ansible/playbook]$ ansible-playbook 90-test.yaml
 
 PLAY [test] *******************************************************************************************************************************************************************
 

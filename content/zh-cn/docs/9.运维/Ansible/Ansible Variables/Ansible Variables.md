@@ -6,8 +6,8 @@ title: Ansible Variables
 
 > 参考：
 >
-> - [官方文档,传统目录-使用变量](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html)
-> - [官方文档,传统目录-使用变量-变量优先级](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable)
+> - [官方文档，传统目录 - 使用变量](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html)
+> - [官方文档，传统目录 - 使用变量 - 变量优先级](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable)
 
 虽然通过自动化可以使事情更简单、更可重复，但是并非所有系统都完全相同。在某些情况下，观察到一个系统的行为或状态可能会影响到配置其他系统的方式。比如，我们可能需要找出一个系统的 IP 地址，并将这个 IP 地址作为另一个系统中配置的值。
 
@@ -26,7 +26,7 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 }
 ```
 
-## 变量的优先级
+# 变量的优先级
 
 变量可以是自带的，就是由人们自行定义的，可以在多个地方定义变量，(e.g.在某些文件里定义变量、通过命令行传递变量等等。由于 ansible 所要处理的的文件有很多，不同类型的文件下定义的变量的优先级也不同)
 
@@ -34,14 +34,14 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 
 - command line values (eg “-u user”)
 - **role defaults** # 定义在 `${ROLE}/defaults/main.yaml` 中的默认变量
-- **inventory file or script group vars** # Inventory 文件中的组变量，即.`[XXX:vars]`
-- **inventory group_vars/all** #
-- **playbook group_vars/all** #
-- **inventory group_vars/** # 存放 Inventory 文件的目录下的 `group_vars/` 目录
+- **inventory file or script group vars** # [Inventory 文件](docs/9.运维/Ansible/Inventory%20文件.md#组变量)中的组变量，即.`[XXX:vars]`
+- **inventory group_vars/all** # Inventory 文件所在目录下的 `group_vars/all` 文件。也可以是  `group_vars/all.yaml` 文件
+- **playbook group_vars/all** # Playbook 根目录下的 `group_vars/all` 文件。也可以是  `group_vars/all.yaml` 文件
+- **inventory group_vars/** # Inventory 文件所在目录下的 `group_vars/` 目录
 - **playbook group_vars/** # Playbook 根目录下的 `group_vars/` 目录
-- **inventory file or script host vars** #
-- **inventory host_vars/** #
-- **playbook host_vars/** #
+- **inventory file or script host vars** # [Inventory 文件](docs/9.运维/Ansible/Inventory%20文件.md#主机变量)中的主机变量
+- **inventory host_vars/** # Inventory 文件所在目录下的 `host_vars/` 目录
+- **playbook host_vars/** # Playbook 根目录下的 `host_vars/` 目录
 - **host facts / cached set_facts** #
 - play vars #
 - play vars_prompt #
@@ -53,7 +53,7 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 - set_facts / registered vars #
 - role (and include_role) params #
 - include params #
-- extra vars (always win precedence) # 通过 ansible-playbook -e 指定的变量
+- extra vars (always win precedence) # 通过 ansible-playbook 命令行工具的 `-e, --extra-vars` 参数指定的变量
 
 Note：可以说 ansible playbook 中写的所有内容都是变量。都是可以引用的，只不过引用的方式不同。
 
@@ -66,7 +66,7 @@ Note：可以说 ansible playbook 中写的所有内容都是变量。都是可�
 Ansible 使用 Jinja2 语法引用变量。Jinjia2 使用 `{{ VarName }}` 来引用变量，比如
 
 ```bash
-[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "test_var=hello_world" -m debug -a 'msg={{test_var}}'
+~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "test_var=hello_world" -m debug -a 'msg={{test_var}}'
 hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
     "msg": "hello_world"
 }
@@ -203,7 +203,7 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 - **KEY=VALUE**
 
 ```bash
-[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "test_var=hello_world" -m debug -a 'msg={{test_var}}'
+~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "test_var=hello_world" -m debug -a 'msg={{test_var}}'
 hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
     "msg": "hello_world"
 }
@@ -212,7 +212,7 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 - **JSON 字符串**
 
 ```bash
-[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars '{"test_var":"hello world"}' -m debug -a 'msg={{test_var}}'
+~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars '{"test_var":"hello world"}' -m debug -a 'msg={{test_var}}'
 hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
     "msg": "hello world"
 }
@@ -221,9 +221,9 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 - **来自 JSON 或 YAML 文件**
 
 ```bash
-[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ cat test_var.yaml
+~/projects/DesistDaydream/ansible/playbooks]$ cat test_var.yaml
 test_var: 'hello world'
-[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "@./test_var.yaml" -m debug -a 'msg={{test_var}}'
+~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "@./test_var.yaml" -m debug -a 'msg={{test_var}}'
 hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
     "msg": "hello world"
 }
@@ -231,7 +231,7 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 
 ### 在 Inventory 中定义变量
 
-详见 [Inventory 配置文件详解](/docs/9.运维/Ansible/Inventory%20配置文件详解.md)
+详见 [Inventory 文件](docs/9.运维/Ansible/Inventory%20文件.md)
 
 ### 在 Playbooks 中定义变量
 

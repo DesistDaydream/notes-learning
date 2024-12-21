@@ -7,7 +7,7 @@ weight: 9
 
 > 参考：
 > 
-> - [官方文档，用户指南-传统目录-使用命令行工具-ansible-playbook](https://docs.ansible.com/ansible/latest/cli/ansible-playbook.html)
+> - [官方文档，用户指南 - 传统目录 - 使用命令行工具 - ansible-playbook](https://docs.ansible.com/ansible/latest/cli/ansible-playbook.html)
 
 ansible-playbook 用来运行运行 Ansible playbook，以便在目标主机上执行定义的任务。
 
@@ -72,3 +72,19 @@ ansible-playbook 用来运行运行 Ansible playbook，以便在目标主机上�
 提前检查渲染的模板。通过 --connectoin=local 以在本地运行，使用 --diff 展示渲染后差异。
 
 - ansible-playbook -i inventory/all.yaml  deploy-mysql.yaml --connection=local --limit tj-test-spst-node-2 --tag config-mysql --check --diff
+
+或者直接使用 ansible 命令
+
+```bash
+ansible -i inventory/ ${MyHost} -m template \
+  -a "src=./path/to/template.yaml.jinja dest=/tmp/config.yaml" \
+  --connection local --check --diff
+```
+
+也可以去掉 --check 与 --diff，直接 cat /tmp/config.yaml 查看渲染结果
+
+```bash
+ansible -i inventory/ ${MyHost} -m template \
+  -a "src=./path/to/template.yaml.jinja dest=/tmp/config.yaml" \
+  --connection local && cat /tmp/config.yaml
+```

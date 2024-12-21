@@ -7,7 +7,7 @@ weight: 2
 
 > 参考：
 >
-> - [官方文档，Playbook 指南-Roles](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.html)
+> - [官方文档，Playbook 指南 - Roles](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.html)
 > - [Ansible 中文权威指南，Playbooks-Playbook 角色和 Incluede 语句](https://ansible-tran.readthedocs.io/en/latest/docs/playbooks_roles.html)
 
 刚开始学习运用 playbook 时，可能会把 playbook 写成一个内容很多的文件，这种情况不利于扩展和复用。这时候可以使用一种方式，将这个复杂的 playbook 模块化，即拆分一个复杂的 playbook 文件成多个零散的小文件，将其组合成一个一个具有不同功能的 playbook。

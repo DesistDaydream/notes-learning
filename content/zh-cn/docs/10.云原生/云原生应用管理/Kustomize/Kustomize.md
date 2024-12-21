@@ -292,7 +292,7 @@ spec:
 
 这里我们来添加一些关于副本的信息，和前面一样，只需要在一个 YAML 文件中定义副本所需的额外信息块，新建一个名为 replica-and-rollout-strategy.yaml 的文件，内容如下所示：
 
-```json
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -308,19 +308,19 @@ spec:
 
 和前面一样，在 kustomization.yaml 文件中的 patchesStrategicMerge 字段下面添加这里定制的数据：
 
-```json
+```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 bases:
-- ../../base
+  - ../../base
 patchesStrategicMerge:
-- custom-env.yaml
-- replica-and-rollout-strategy.yaml
+  - custom-env.yaml
+  - replica-and-rollout-strategy.yaml
 ```
 
 同样，这个时候再使用 kubectl kustomize 命令构建，如下所示：
 
-```json
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -374,7 +374,7 @@ spec:
 
 我们常常会通过命令行来添加一个 secret 对象，kustomize 有一个 edit 的子命令可以用来编辑 kustomization.yaml 文件然后创建一个 secret 对象，比如我们这里添加一个如下所示的 secret 对象：
 
-```json
+```bash
 cd k8s/overlays/prod
 kustomize edit add secret sl-demo-app --from-literal=db-password=12345
 ```
@@ -404,7 +404,7 @@ secretGenerator:
 
 然后同样的我们回到根目录下面执行 kustomize build 命令构建下模板，输出内容如下所示：
 
-```json
+```yaml
 $ kustomize build k8s/overlays/prod
 apiVersion: v1
 data:
@@ -462,7 +462,7 @@ spec:
 
 比如我们这里像把 db-password 的值通过环境变量注入到 Deployment 中，我们就可以定义下面这样的新的层信息：（database-secret.yaml）
 
-```json
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -482,28 +482,28 @@ spec:
 
 然后同样的，我们把这里定义的层添加到 k8s/overlays/prod/kustomization.yaml 文件中去：
 
-```json
+```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 bases:
-- ../../base
+  - ../../base
 
 patchesStrategicMerge:
-- custom-env.yaml
-- replica-and-rollout-strategy.yaml
-- database-secret.yaml
+  - custom-env.yaml
+  - replica-and-rollout-strategy.yaml
+  - database-secret.yaml
 
 secretGenerator:
-- literals:
-  - db-password=12345
-  name: sl-demo-app
-  type: Opaque
+  - literals:
+      - db-password=12345
+    name: sl-demo-app
+    type: Opaque
 ```
 
 现在我们来构建整个的 prod 目录，我们会得到如下所示的信息：
 
-```json
+```yaml
 $ kustomize build k8s/overlays/prod
 apiVersion: v1
 data:
@@ -544,20 +544,20 @@ spec:
         app: sl-demo-app
     spec:
       containers:
-      - env:
-        - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              key: db.password
-              name: sl-demo-app-6ft88t2625
-        - name: CUSTOM_ENV_VARIABLE
-          value: Value defined by Kustomize ❤️
-        image: foo/bar:latest
-        name: app
-        ports:
-        - containerPort: 8080
-          name: http
-          protocol: TCP
+        - env:
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: db.password
+                  name: sl-demo-app-6ft88t2625
+            - name: CUSTOM_ENV_VARIABLE
+              value: Value defined by Kustomize
+          image: foo/bar:latest
+          name: app
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
 ```
 
 我们可以看到 secretKeyRef.name 的值也指定的被修改成了上面生成的 secret 对象的名称。
@@ -572,7 +572,7 @@ spec:
 
 比如我们这里来修改下镜像的 tag：
 
-```json
+```bash
 cd k8s/overlays/prod
 TAG_VERSION=3.4.5
 kustomize edit set image foo/bar=foo/bar:$TAG_VERSION
@@ -582,33 +582,33 @@ kustomize edit set image foo/bar=foo/bar:$TAG_VERSION
 
 现在的 kustomization.yaml 文件内容如下所示：
 
-```json
+```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 bases:
-- ../../base
+  - ../../base
 
 patchesStrategicMerge:
-- custom-env.yaml
-- replica-and-rollout-strategy.yaml
-- database-secret.yaml
+  - custom-env.yaml
+  - replica-and-rollout-strategy.yaml
+  - database-secret.yaml
 
 secretGenerator:
-- literals:
-  - db-password=12345
-  name: sl-demo-app
-  type: Opaque
+  - literals:
+      - db-password=12345
+    name: sl-demo-app
+    type: Opaque
 
 images:
-- name: foo/bar
-  newName: foo/bar
-  newTag: 3.4.5
+  - name: foo/bar
+    newName: foo/bar
+    newTag: 3.4.5
 ```
 
 同样回到根目录下面构建该模板，会得到如下所示的信息：
 
-```json
+```yaml
 $ kustomize build k8s/overlays/prod
 apiVersion: v1
 data:
@@ -624,8 +624,8 @@ metadata:
   name: sl-demo-app
 spec:
   ports:
-  - name: http
-    port: 8080
+    - name: http
+      port: 8080
   selector:
     app: sl-demo-app
 ---
@@ -649,27 +649,27 @@ spec:
         app: sl-demo-app
     spec:
       containers:
-      - env:
-        - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              key: db.password
-              name: sl-demo-app-6ft88t2625
-        - name: CUSTOM_ENV_VARIABLE
-          value: Value defined by Kustomize ❤️
+        - env:
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: db.password
+                  name: sl-demo-app-6ft88t2625
+            - name: CUSTOM_ENV_VARIABLE
+              value: Value defined by Kustomize
         image: foo/bar:3.4.5
         name: app
         ports:
-        - containerPort: 8080
-          name: http
-          protocol: TCP
+          - containerPort: 8080
+            name: http
+            protocol: TCP
 ```
 
 我们可以看到 Deployment 的第一个 container.image 已经被修改了 3.4.5 版本了。
 
 最终我们定制的模板文件目录结构如下所示：
 
-```json
+```bash
 $ tree .
 .
 └── k8s
@@ -689,7 +689,7 @@ $ tree .
 
 要安装到集群中也很简单：
 
-```json
+```bash
 kustomize build k8s/overlays/prod | kubectl apply -f -
 ```
 

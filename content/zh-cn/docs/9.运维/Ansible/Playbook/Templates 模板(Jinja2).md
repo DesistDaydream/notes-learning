@@ -7,7 +7,7 @@ weight: 4
 
 > 参考：
 >
-> - [官方文档,用户指南-传统目录-使用剧本-模板(Jinja2)](https://docs.ansible.com/ansible/latest/user_guide/playbooks_templating.html)
+> - [官方文档，用户指南 - 传统目录 - 使用剧本 - 模板(Jinja2)](https://docs.ansible.com/ansible/latest/user_guide/playbooks_templating.html)
 > - 朱双印博客,jinja2 模板
 >   - https://www.zsythink.net/archives/2999
 >   - https://www.zsythink.net/archives/3021
@@ -1038,6 +1038,22 @@ d 中同名 key 会覆盖 c，c 会覆盖 b，b 会覆盖 a。
 }
 ```
 
+## 检查模板渲染效果
+
+```bash
+ansible -i inventory/ ${MyHost} -m template \
+  -a "src=./path/to/template.yaml.jinja dest=/tmp/config.yaml" \
+  --connection local --check --diff
+```
+
+也可以去掉 --check 与 --diff，直接 cat /tmp/config.yaml 查看渲染结果
+
+```bash
+ansible -i inventory/ ${MyHost} -m template \
+  -a "src=./path/to/template.yaml.jinja dest=/tmp/config.yaml" \
+  --connection local && cat /tmp/config.yaml
+```
+
 ## 完全自定义的 nginx 虚拟主机配置
 
 在生产中，一个开发不太完善的系统可能时不时就要去 nginx 虚拟主机中添加一个 location 配置段落，如果有多个 nginx 节点要配置，无疑这是一件让人悲伤的事情。
@@ -1092,45 +1108,46 @@ servers:
 
 剩下的就是写一个 Jinja2 模板文件，模板中 Jinja2 语句块标签部分我没有使用缩进，这样比较容易控制格式。文件内容如下：
 
-    {# 负责渲染每个指令 #}
-    {% macro config(key,value) %}
-    {% if (value is sequence) and (value is not string) and (value is not mapping) %}
-    {# 如果指令是列表 #}
-    {% for item in value -%}
-    {# 如生成的结果是：gzip_types css js plain; #}
-    {{ key ~ ' ' ~ item if loop.first else item}}{{' ' if not loop.last else ';'}}
-    {%- endfor %}
-    {% else %}
-    {# 如果指令不是列表 #}
-    {{key}} {{value}};
-    {% endif %}
-    {% endmacro %}
+```nginx
+{# 负责渲染每个指令 #}
+{% macro config(key,value) %}
+{% if (value is sequence) and (value is not string) and (value is not mapping) %}
+{# 如果指令是列表 #}
+{% for item in value -%}
+{# 如生成的结果是：gzip_types css js plain; #}
+{{ key ~ ' ' ~ item if loop.first else item}}{{' ' if not loop.last else ';'}}
+{%- endfor %}
+{% else %}
+{# 如果指令不是列表 #}
+{{key}} {{value}};
+{% endif %}
+{% endmacro %}
 
-    {# 负责渲染location指令 #}
-    {% macro location(d) %}
-    location {{d.match_method}} {{d.uri}} {
-    {% for item in d|dict2items if item.key != "match_method" and item.key != "uri" %}
-        {{ config(item.key, item.value) }}
-    {%- endfor %}
-      }
-    {% endmacro %}
+{# 负责渲染location指令 #}
+{% macro location(d) %}
+location {{d.match_method}} {{d.uri}} {
+{% for item in d|dict2items if item.key != "match_method" and item.key != "uri" %}
+    {{ config(item.key, item.value) }}
+{%- endfor %}
+  }
+{% endmacro %}
 
-    {% for server in servers %}
-    server {
-    {% for item in server|dict2items %}
-    {# 非location指令部分 #}
-    {% if item.key != "locations" %}
-      {{ config(item.key,item.value) }}
-    {%- else %}
-    {# 各个location指令部分 #}
-    {% for l in item.value|default([],true) %}
-      {{ location(l) }}
-    {% endfor %}
-    {% endif %}
-    {%- endfor %}
-    }
-    {% endfor %}
-
+{% for server in servers %}
+server {
+{% for item in server|dict2items %}
+{# 非location指令部分 #}
+{% if item.key != "locations" %}
+  {{ config(item.key,item.value) }}
+{%- else %}
+{# 各个location指令部分 #}
+{% for l in item.value|default([],true) %}
+  {{ location(l) }}
+{% endfor %}
+{% endif %}
+{%- endfor %}
+}
+{% endfor %}
+```
 然后使用 template 模块去渲染即可：
 
 ```yaml
@@ -1146,38 +1163,38 @@ servers:
 
 渲染得到的结果：
 
-    server {
-      server_name www.abc.com;
-      listen 80;
-      location  / {
-        root /usr/share/nginx/html/abc/;
-        index index.html index.htm;
-        gzip_types css js plain;  }
+```nginx
+server {
+  server_name www.abc.com;
+  listen 80;
+  location  / {
+    root /usr/share/nginx/html/abc/;
+    index index.html index.htm;
+    gzip_types css js plain;  }
 
-      location = /blogs {
-        root /usr/share/nginx/html/abc/blogs/;
-        index index.html index.htm;
-      }
+  location = /blogs {
+    root /usr/share/nginx/html/abc/blogs/;
+    index index.html index.htm;
+  }
 
-      location ~ \.php$ {
-        fastcgi_pass 127.0.0.1:9000;
-        fastcgi_index index.php;
-        fastcgi_param SCRIPT_FILENAME /usr/share/www/php$fastcgi_script_name;
-        include fastcgi_params;
-      }
+  location ~ \.php$ {
+    fastcgi_pass 127.0.0.1:9000;
+    fastcgi_index index.php;
+    fastcgi_param SCRIPT_FILENAME /usr/share/www/php$fastcgi_script_name;
+    include fastcgi_params;
+  }
+}
+server {
+  server_name www.def.com;
+  listen 8080;
+  location  / {
+    root /usr/share/nginx/html/def/;
+    index index.html index.htm;
+  }
 
-    }
-    server {
-      server_name www.def.com;
-      listen 8080;
-      location  / {
-        root /usr/share/nginx/html/def/;
-        index index.html index.htm;
-      }
-
-      location ~ /imgs/.*\.(png|jpg|jpeg|gif)$ {
-        root /usr/share/nginx/html/def/imgs;
-        index index.html index.htm;
-      }
-
-    }
+  location ~ /imgs/.*\.(png|jpg|jpeg|gif)$ {
+    root /usr/share/nginx/html/def/imgs;
+    index index.html index.htm;
+  }
+}
+```

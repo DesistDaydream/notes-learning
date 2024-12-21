@@ -7,8 +7,8 @@ weight: 1
 
 > 参考：
 > 
-> - [官方文档，Playbook指南-Playbook 介绍](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html)
-> - [官方文档，Playbook 指南-使用 Playbook](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks.html)
+> - [官方文档，Playbook指南 - Playbook 介绍](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html)
+> - [官方文档，Playbook 指南 - 使用 Playbook](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks.html)
 > - [Ansible Galaxy](https://galaxy.ansible.com/) 类似于 playbook 仓库的地方
 > - [公众号，任务中心之Ansible进阶篇](https://mp.weixin.qq.com/s/HA0vKnuKwKOaB5kdcYX9rg)
 
@@ -54,7 +54,7 @@ playbook 称为"剧本"。每个 playbook 都包含一个或多个 plays(戏剧)
 
 > 参考：
 >
-> - [官方文档，参考与附录-Playbook 关键字](https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html)
+> - [官方文档，参考与附录 - Playbook 关键字](https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html)
 
 关键字是配置 Ansible 行为的几个来源之一。有关每个源的相对优先级的详细信息，请参阅控制 Ansible 的行为方式：优先级规则。
 

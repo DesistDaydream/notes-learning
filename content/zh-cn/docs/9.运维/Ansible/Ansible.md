@@ -11,7 +11,7 @@ weight: 1
 > - [官网](https://www.ansible.com/)
 > - [GitHub 项目，ansible/ansible](https://github.com/ansible/ansible)
 > - [官方文档](https://docs.ansible.com/ansible/latest/index.html)
-> - [公众号,程序员面试吧-快速入门 Ansible 自动化运维工具](https://mp.weixin.qq.com/s/qu0vPgyNBbRlTtf1pMtq7Q)
+> - [公众号 - 程序员面试吧，快速入门 Ansible 自动化运维工具](https://mp.weixin.qq.com/s/qu0vPgyNBbRlTtf1pMtq7Q)
 > - <https://www.zsythink.net/archives/tag/ansible/>
 
 Ansible is a radically simple IT automation platform that makes your applications and systems easier to deploy and maintain. Automate everything from code deployment to network configuration to cloud management, in a language that approaches plain English, using SSH, with no agents to install on remote systems
@@ -75,4 +75,4 @@ Playbooks 是 Ansible 的精髓，如果把 Ansible 当做一门语言，那么�
 
 - 单独 host，任何未分组的主机，需要在定义主机组之前定义各单独的 host，可以是 IP 地址或者主机名
 - 主机组，定义一个主机组，组名用\[]括起来，可以定义多个主机组；当使用 ansible 命令的时候，可以使用组名来对该组内所有主机进行操作
-- 配置文件说明：详见：[inventory 配置文件详解](/docs/9.运维/Ansible/Inventory%20配置文件详解.md)
+- 配置文件说明：详见：[inventory 配置文件详解](docs/9.运维/Ansible/Inventory%20文件.md)

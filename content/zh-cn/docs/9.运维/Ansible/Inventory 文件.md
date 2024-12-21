@@ -1,8 +1,8 @@
 ---
-title: Inventory 配置文件详解
+title: Inventory 文件
+linkTitle: Inventory 文件
 weight: 3
 ---
-
 
 # 概述
 
@@ -101,9 +101,9 @@ three.example.com
 
 这里的 `[]` 中的字符是组名，用于对系统进行分类,便于对不同系统进行个别的管理。
 
-一个系统可以属于不同的组,比如一台服务器可以同时属于 webserver组 和 dbserver组.这时属于两个组的变量都可以为这台主机所用,至于变量的优先级关系将于以后的章节中讨论.
+一个系统可以属于不同的组,比如一台服务器可以同时属于 webserver组 和 dbserver组. 这时属于两个组的变量都可以为这台主机所用,至于变量的优先级关系将于以后的章节中讨论.
 
-如果有主机的SSH端口不是标准的22端口,可在主机名之后加上端口号,用冒号分隔.SSH 配置文件中列出的端口号不会在 paramiko 连接中使用,会在 openssh 连接中使用.
+如果有主机的SSH端口不是标准的22端口, 可在主机名之后加上端口号,用冒号分隔. SSH 配置文件中列出的端口号不会在 paramiko 连接中使用,会在 openssh 连接中使用.
 
 端口号不是默认设置时,可明确的表示为:
 
@@ -155,7 +155,7 @@ Inventory 文件中有两个默认的组，名称为：`all` 和 `ungrouped`(这
 
 ## 主机变量
 
-前面已经提到过,分配变量给主机很容易做到,这些变量定义后可在 playbooks 中使用:
+前面已经提到过，分配变量给主机很容易做到，这些变量定义后可在 playbooks 中使用
 
 ```
 [atlanta]
@@ -165,7 +165,7 @@ host2 http_port=303 maxRequestsPerChild=909
 
 ## 组变量
 
-也可以定义属于整个组的变量:
+也可以定义属于整个组的变量
 
 ```
 [atlanta]
@@ -215,16 +215,17 @@ northwest
 那么以下配置文件中的变量可以为 ‘foosball’ 主机所用.依次为 ‘raleigh’ 的组变量,’webservers’ 的组变量,’foosball’ 的主机变量:
 
 ```
-/etc/ansible/group_vars/raleigh
+${PrefixDirPath}/group_vars/raleigh
 /etc/ansible/group_vars/webservers
 /etc/ansible/host_vars/foosball
 ```
 
-> 注意：
+> [!Attention]
 >
-> - `group_vars/` 目录下文件名必须是**组名**才可以将变量的值应用相同组名的组中的主机
->   - 如上所示：group_vars/raleigh 中的组变量适用于 raleigh 组。
->   - 文件名也可以使用 all 和 ungrouped 用于为所有主机或所有未分组的主机定义变量。
+> `group_vars/` 目录下文件名必须是**组名**才可以将变量的值应用相同组名的组中的主机
+>
+> - 如上所示：group_vars/raleigh 中的组变量适用于 raleigh 组。
+> - 文件名也可以使用 all 和 ungrouped 用于为所有主机或所有未分组的主机定义变量。
 
 举例来说,假设你有一些主机,属于不同的数据中心,并依次进行划分.每一个数据中心使用一些不同的服务器.比如 ntp 服务器, database 服务器等等. 那么 ‘raleigh’ 这个组的组变量定义在文件 ‘/etc/ansible/group_vars/raleigh’ 之中,可能类似这样:
 
@@ -280,7 +281,7 @@ ansible支持主机列表的正则匹配
 
 > 参考：
 >
-> - [官方文档,用户指南-传统目录-如何构建你的 Inventory-连接到主机:Inventory 参数](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#connecting-to-hosts-behavioral-inventory-parameters)
+> - [官方文档，用户指南 - 传统目录 - 如何构建你的 Inventory - 连接到主机:Inventory 参数](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#connecting-to-hosts-behavioral-inventory-parameters)
 
 如同前面提到的,通过设置下面的参数,可以控制 ansible 与远程主机的交互方式,
 

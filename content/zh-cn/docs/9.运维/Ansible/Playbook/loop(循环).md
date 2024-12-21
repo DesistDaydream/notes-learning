@@ -7,7 +7,7 @@ weight: 6
 
 > 参考：
 >
-> - [官方文档，用户指南-传统目录-Loops](https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html)
+> - [官方文档，用户指南 - 传统目录 - Loops](https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html)
 
 有时需要重复执行多次任务。在计算机编程中，这称为循环。常见的 Ansible 循环包括使用文件模块更改多个文件和/或目录的所有权，使用用户模块创建多个用户以及重复轮询步骤直到达到特定结果。Ansible 提供了两个用于创建循环的关键字：`loop` 和 `with_XX`
 

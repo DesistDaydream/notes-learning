@@ -58,5 +58,5 @@ weight: 20
 
 ## EXAMPLE
 
-1. helm template rancher ./rancher-2.4.5.tgz --output-dir . #
-2. helm template test ./platform/ --output-dir ./test #
+- helm template rancher ./rancher-2.4.5.tgz --output-dir . #
+- helm template test ./platform/ --output-dir ./test #
