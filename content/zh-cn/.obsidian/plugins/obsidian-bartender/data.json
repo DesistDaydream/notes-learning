@@ -2115,10 +2115,7 @@
     "docs/5.数据存储/数据库/关系数据/SQL": [
       "docs/5.数据存储/数据库/关系数据/SQL/_index.md",
       "docs/5.数据存储/数据库/关系数据/SQL/SQL.md",
-      "docs/5.数据存储/数据库/关系数据/SQL/数据操作语句",
-      "docs/5.数据存储/数据库/关系数据/SQL/SQL Functions(函数).md",
-      "docs/5.数据存储/数据库/关系数据/SQL/SQL Operators(运算符).md",
-      "docs/5.数据存储/数据库/关系数据/SQL/最佳实践.md"
+      "docs/5.数据存储/数据库/关系数据/MySQL/最佳实践.md"
     ],
     "docs/5.数据存储/数据库/键值数据/Etcd": [
       "docs/5.数据存储/数据库/键值数据/Etcd/_index.md",

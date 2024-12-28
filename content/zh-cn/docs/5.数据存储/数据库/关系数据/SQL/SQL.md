@@ -1,11 +1,14 @@
 ---
 title: SQL
+linkTitle: SQL
+weight: 1
 ---
 
 # 概述
 
 > 参考：
 >
+> - [ISO/IEC 9075-1:2023](https://www.iso.org/standard/76583.html)
 > - [Wiki, SQL](https://en.wikipedia.org/wiki/SQL)
 > - [菜鸟教程，SQL](https://www.runoob.com/sql/sql-tutorial.html)
 
@@ -17,25 +20,13 @@ SQL 在 1986 年成为 [ANSI](/docs/Standard/IT/ANSI.md) 的一项标准，在 1
 
 # 学习资料
 
+[w3schools, SQL](https://www.w3schools.com/sql/default.asp)
+
+[菜鸟教程，SQL](https://www.runoob.com/sql/sql-tutorial.html)
+
 [GitHub 项目，liyupi/sql-mother](https://github.com/liyupi/sql-mother)
 
 - [程序员鱼皮，SQL 自学网站](http://sqlmother.yupi.icu/#/learn)
-
-## 关键字
-
-> 参考：
->
-> - [MySQL 官方文档，语言结构-关键字和保留字](https://dev.mysql.com/doc/refman/8.0/en/keywords.html)
-
-SELECT
-
-FROM
-
-ORDER BY
-
-GROUP BY
-
-WHERE
 
 # SQL 标准
 
@@ -52,132 +43,48 @@ WHERE
 | 2016 | [SQL:2016](https://en.wikipedia.org/wiki/SQL:2016) |                                                                                     | Adds row pattern matching, polymorphic table functions, [JSON](https://en.wikipedia.org/wiki/JSON)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | 2019 | SQL:2019                                           |                                                                                     | Adds Part 15, multidimensional arrays (MDarray type and operators)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 
-# SQL 语句
+# SQL 语法
 
 > 参考：
 >
-> - [MySQL 官方文档，SLQ 语句](https://dev.mysql.com/doc/refman/8.0/en/sql-statements.html)
+> - [Wiki, SQL Syntax](https://en.wikipedia.org/wiki/SQL_syntax)
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/sql/sql_syntax.png)
 
 SQL 语言被细分为几个语言元素，包括：
 
-- 子句，它们是语句和查询的组成部分。（在某些情况下，这些是可选的。）
-- 表达式，可以生成[标](<https://en.wikipedia.org/wiki/Scalar_(computing)>)量值或由数据的[列](<https://en.wikipedia.org/wiki/Column_(database)>)和[行](<https://en.wikipedia.org/wiki/Row_(database)>)组成的[表](<https://en.wikipedia.org/wiki/Table_(database)>)
-- Predicates，指定可以评估为 SQL[三值逻辑 (3VL)](https://en.wikipedia.org/wiki/Ternary_logic)（真/假/未知）或[布尔](https://en.wikipedia.org/wiki/Boolean_logic) [真值](https://en.wikipedia.org/wiki/Truth_value)的条件，用于限制语句和查询的效果，或更改程序流程。
-- 查询，根据特定条件检索数据。这是 SQL 的一个重要元素。
-- 语句，可能对模式和数据产生持久影响，或者可能控制[事务](https://en.wikipedia.org/wiki/Database_transaction)、程序流、连接、会话或诊断。
-  - SQL 语句还包括[分号](https://en.wikipedia.org/wiki/Semicolon)(";") 语句终止符。虽然不是每个平台都需要它，但它被定义为 SQL 语法的标准部分。
-- [SQL 语句和查询中通常会忽略无关紧要的空格](<https://en.wikipedia.org/wiki/Whitespace_(computer_science)>)，从而更容易格式化 SQL 代码以提高可读性。
+- **Keywords(关键字)** # SQL 语言中定义的单词。它们要么是保留的（例如 SELECT、COUNT、YEAR、etc.），要么是非保留的（例如 ASC、DOMAIN、KEY、etc.）
+  - [SQL 保留字列表](https://en.wikipedia.org/wiki/List_of_SQL_reserved_words)。
+- **Identifiers(标识符)** # 数据库对象的名称，例如 表、列、模式、etc. 。
+- **Clauses(子句)** # 它们是语句和查询的组成部分。（在某些情况下，这些是可选的。）
+- **Expressions(表达式)** # 可以生成 [标量](https://en.wikipedia.org/wiki/Scalar_(computing))值或由数据的 **列** 和 **行** 组成的[表](https://en.wikipedia.org/wiki/Table_(database))
+- **Predicates(谓词)**，指定可以评估为 SQL [三值逻辑 (3VL)](https://en.wikipedia.org/wiki/Ternary_logic)（真/假/未知）或[布尔](https://en.wikipedia.org/wiki/Boolean_logic) [真值](https://en.wikipedia.org/wiki/Truth_value)的条件，用于限制语句和查询的效果，或更改程序流程。
+- **Queries(查询)**，根据特定条件检索数据。这是 SQL 的一个重要元素。
+- **Statements(语句)** # 可能对模式和数据产生持久影响，或者可能控制[事务](https://en.wikipedia.org/wiki/Database_transaction)、程序流、连接、会话或诊断。
+  - SQL 语句还包括[分号](https://en.wikipedia.org/wiki/Semicolon)(`;`) 语句终止符。虽然不是每个平台都需要它，但它被定义为 SQL 语法的标准部分。
+- SQL 语句和查询中通常会[忽略无关紧要的空格](https://en.wikipedia.org/wiki/Whitespace_(computer_science))，从而更容易格式化 SQL 代码以提高可读性。
 
-在 MySQL 中按照功能将各种语句进行了分类：
+# SQL 关键字
 
-- [Data Definition Statements](https://dev.mysql.com/doc/refman/8.0/en/sql-data-definition-statements.html)(数据定义语句)
-- [Data Manipulation Statements](/docs/5.数据存储/数据库/关系数据/SQL/数据操作语句/数据操作语句.md)(数据操作语句)
-- [Transactional and Locking Statements](https://dev.mysql.com/doc/refman/8.0/en/sql-transactional-statements.html)(事务和锁语句)
-- [Replication Statements](https://dev.mysql.com/doc/refman/8.0/en/sql-replication-statements.html)(复制语句)
-- [Prepared Statements](https://dev.mysql.com/doc/refman/8.0/en/sql-prepared-statements.html)(预处理语句)
-- [Compound Statement Syntax](https://dev.mysql.com/doc/refman/8.0/en/sql-compound-statements.html)(符合语句)
-- [Database Administration Statements](https://dev.mysql.com/doc/refman/8.0/en/sql-server-administration-statements.html)(数据库管理语句)
-- [Utility Statements](https://dev.mysql.com/doc/refman/8.0/en/sql-utility-statements.html)(使用程序语句)
-
-## 基础示例
-
-显示当前存在哪些数据库
-
-```sql
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| mysql              |
-| performance_schema |
-| sys                |
-+--------------------+
-4 rows in set (0.00 sec)
-```
-
-> 通常 MySQL 部署成功后，都有几个默认的数据库
+> 参考：
 >
-> - information_schema
-> - mysql
-> - performance_schema
-> - sys
+> - [w3schools, SQL 参考 - SQL 关键字](https://www.w3schools.com/sql/sql_ref_keywords.asp)
 
-创建数据库
+**SELECT** # 选择指定的数据存储在结果表中，称为结果集。有点类似于各种编程语言中的 `print` 函数。
 
-```sql
-mysql> create database menagerie;
-Query OK, 1 row affected (0.00 sec)
-```
+**FROM** # 选择从哪个表中操作数据
 
-开始使用数据库
+**WHERE** # 过滤数据。以便处理匹配到到的记录
 
-```sql
-mysql> use menagerie
-Database changed
-```
+**GROUP BY** # 分组数据。根据指定列中相同的值所在的行和为一组。通常需要与聚合函数一起使用，否则将会报错。
 
-创建表
+**ORDER BY** # 对结果集排序（AES(正向) 或 DESC(逆向)）
 
-```sql
-mysql> create table pet (name VARCHAR(20), owner VARCHAR(20),species VARCHAR(20), sex CHAR(1), birth DATE, death DATE);
-Query OK, 0 rows affected (0.01 sec)
-```
+**LIMIT** # 限制结果集中返回的记录数
 
-显示表、查看表信息
+**OFFSET** # 从结果集中取第 X 条数据之后的数据
 
-```sql
-mysql> show tables;
-+---------------------+
-| Tables_in_menagerie |
-+---------------------+
-| pet                 |
-+---------------------+
-1 row in set (0.00 sec)
-
-mysql> describe pet;
-+---------+-------------+------+-----+---------+-------+
-| Field   | Type        | Null | Key | Default | Extra |
-+---------+-------------+------+-----+---------+-------+
-| name    | varchar(20) | YES  |     | NULL    |       |
-| owner   | varchar(20) | YES  |     | NULL    |       |
-| species | varchar(20) | YES  |     | NULL    |       |
-| sex     | char(1)     | YES  |     | NULL    |       |
-| birth   | date        | YES  |     | NULL    |       |
-| death   | date        | YES  |     | NULL    |       |
-+---------+-------------+------+-----+---------+-------+
-6 rows in set (0.00 sec)
-```
-
-将数据加载到表中
-
-```sql
--- 直接从文件中将数据加载表中
-mysql> LOAD DATA LOCAL INFILE '/pet.txt' INTO TABLE pet;
-
--- 使用 SQL 语句一条一条插入数据到表中
-INSERT INTO pet VALUES ('Puffball','Diane','hamster','f','1999-03-30',NULL);
-```
-
-查询数据
-
-```sql
-mysql> select * from pet;
-+----------+--------+---------+------+------------+------------+
-| name     | owner  | species | sex  | birth      | death      |
-+----------+--------+---------+------+------------+------------+
-| name     | owner  | species | s    | 0000-00-00 | 0000-00-00 |
-| Fluffy   | Harold | cat     | f    | 1993-02-04 | 0000-00-00 |
-| Claws    | Gwen   | cat     | m    | 1994-03-17 | 0000-00-00 |
-| Buffy    | Harold | dog     | f    | 1989-05-13 | 0000-00-00 |
-| Fang     | Benny  | dog     | m    | 1990-08-27 | 0000-00-00 |
-| Bowser   | Diane  | dog     | m    | 1979-08-31 | 1995-07-29 |
-| Chirpy   | Gwen   | bird    | f    | 1998-09-11 | 0000-00-00 |
-| Whistler | Gwen   | bird    |      | 1997-12-09 | 0000-00-00 |
-| Slim     | Benny  | snake   | m    | 1996-04-29 | 0000-00-00 |
-+----------+--------+---------+------+------------+------------+
-9 rows in set (0.00 sec)
-```
+etc.
 
 # 数据定义语句
 
@@ -263,7 +170,7 @@ primary key (`id`)
 
 **drop {database|table} NAME;**
 
-## truncate # 清空数据
+## truncate - 清空数据
 
 EXAMPLE
 
@@ -282,73 +189,86 @@ EXAMPLE
 
 # 数据操作语句
 
-详见《[数据操作语句](/docs/5.数据存储/数据库/关系数据/SQL/数据操作语句/数据操作语句.md)》
-
-# 事务和锁定语句
-
-# 复制语句
-
-# Prepared(预处理) 语句
-
-# Compound(复合) 语句
-
 > 参考：
 >
-> - [MySQL 官方文档，SQL 语句-复合语句](https://dev.mysql.com/doc/refman/8.0/en/sql-compound-statements.html)
+> - [MySQL 官方文档，SQL 语句 - 数据操作语句](https://dev.mysql.com/doc/refman/8.0/en/sql-data-manipulation-statements.html)
 
-## 控制结构语句
+## delete - 删除数据表中的数据
 
-### [case](https://dev.mysql.com/doc/refman/8.0/en/case.html)
+**delete from Table_Name \[WHERE CLAUSE];**
 
-### if
+### 应用示例
 
-# 数据库管理语句
+- delete from inventory; # 删除 inventory 表中的所有数据，这个命令要是删除上万条记录很慢（因为他记录日志，可以利用日志还原）
+- delete from inventory where size="XXL"; # 删除 inventory 表中所有 size 为 XXL 的数据
 
-## show - 显示信息
+## insert - 插入数据
 
-显示有关数据库、表、列的信息，或有关服务器状态的信息。
+**insert into TableNAME \[Field1,Field2,...,FieldN] values (Value1,Value2,...,ValueN);**
 
-### EXAMPLE
+当不指定 Field 时，需要给表中每一列指定一个 Value。
 
-- 查看创建 test 数据库的 sql 语句
-  - show create database test;
-- 查看创建 test 表的 sql 语句
-  - show create table test;
-- 显示数据库的状态信息
-  - show status;
+### 应用示例
 
-# 实用程序语句
+### 简单插入
 
-## use # 使用指定数据库作为后续 SQL 执行的目标库
+向 card_prices 表中添加一条数据，card_id_from、sc_name 这两列的值分别为 3319、奥米加兽
 
-# 特殊符号
+```sql
+INSERT INTO card_prices (card_id_from_db,sc_name) VALUES ("3319","奥米加兽");
+```
 
-## @
+## select - 查询数据
 
-声明变量、调用变量
+详见 《[查询](docs/5.数据存储/数据库/关系数据/SQL/查询.md)》
 
-# 其他
+## update - 修改数据
 
-创建一个 utf8mb4 类型的数据库
+update TableName set FIELD1=NewVALUES1,FIELD2=NewVALUES2,..... \[where CLAUSE]
 
-create database db2 DEFAULT CHARACTER SET utf8mb4;
+### 应用示例
 
-创建表
+- update inventory set size="XXL" # 将 inventory 表中的 size 列中所有数据都改为 XXL
 
-CREATE TABLE students (id int UNSIGNED NOT NULL PRIMARY KEY,name VARCHAR（20）NOT NULL,age tinyint UNSIGNED);
+## join 子语句
 
-为 emp 表添加记录(有 id，name，sex，age 字段)
+`join` 子语句用于 `select`,`delete`,`update` 语句的 `table_references` 部分，用以引用表。
 
-insert into emp (id,name,sex,age) values(1,'xiaoming','m',30);
+**用人话说：**`join` 用于多表合并。所谓的表合并，就是为表中的行添加数据，两个表中的两个行，只要满足某列相同，即可将这两行数据合在一起，生成一个具有更多列的新行，多个新行组合在一起，形成一张新表。
 
-修改 emp 表的内容（第几行第几个字段）
+假如现在有如下两个表：
 
-update emp set age=18 where id=4;
+```sql
++----+--------------+---------------------------+-------+---------+
+| id | name         | url                       | alexa | country |
++----+--------------+---------------------------+-------+---------+
+| 1  | Google       | https://www.google.cm/    | 1     | USA     |
+| 2  | 淘宝          | https://www.taobao.com/   | 13    | CN      |
+| 3  | 菜鸟教程      | http://www.runoob.com/    | 4689  | CN      |
+| 4  | 微博          | http://weibo.com/         | 20    | CN      |
+| 5  | Facebook     | https://www.facebook.com/ | 3     | USA     |
+| 7  | stackoverflow | http://stackoverflow.com/ |   0 | IND     |
++----+---------------+---------------------------+-------+---------+
 
-批量执行 sql 程序
++-----+---------+-------+------------+
+| aid | site_id | count | date       |
++-----+---------+-------+------------+
+|   1 |       1 |    45 | 2016-05-10 |
+|   2 |       3 |   100 | 2016-05-13 |
+|   3 |       1 |   230 | 2016-05-14 |
+|   4 |       2 |    10 | 2016-05-14 |
+|   5 |       5 |   205 | 2016-05-14 |
+|   6 |       4 |    13 | 2016-05-15 |
+|   7 |       3 |   220 | 2016-05-15 |
+|   8 |       5 |   545 | 2016-05-16 |
+|   9 |       3 |   201 | 2016-05-17 |
++-----+---------+-------+------------+
+```
 
-mysql < hellodb_innodb.sql
+执行如下语句将会生成一个新表
 
-备注：也可不进入数据库的情况下查看数据库
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wd3yx2/1655867104082-94c832e1-287e-4792-894d-7c6c910b5c47.png)
 
-mysql -e 'show databases'
+这里是将 Websites 表中 id 列和 access_log 表中 site_id 列进行对比，凡是相同的行都合并。
+
+
