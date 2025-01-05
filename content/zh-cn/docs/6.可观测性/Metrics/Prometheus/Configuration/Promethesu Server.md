@@ -159,27 +159,27 @@ scrape_configs 是 Prometheus 采集指标的最重要也是最基本的配置�
 
 ### 基本配置
 
-**job_name(STRING)** # 指定抓取 Metrics 的 Job 名字
+**job_name**(STRING) # 指定抓取 Metrics 的 Job 名字
 
-**scrape_interval(DURATION)** # 指定这个 job 中抓取 targets 的频率。默认使用 global 配置环境中同名参数的值
+**scrape_interval**(DURATION) # 指定这个 job 中抓取 targets 的频率。默认使用 global 配置环境中同名参数的值
 
-**scrape_timeout(DURATION)** # 指定这个 job 中抓取 targets 的超时时长。默认使用 global 配置环境中同名参数的值
+**scrape_timeout**(DURATION) # 指定这个 job 中抓取 targets 的超时时长。默认使用 global 配置环境中同名参数的值
 
-**metrics_path: PATH** # 从 targets 获取 metrics 时 http 请求的路径。默认为/metrics
+**metrics_path**(STRING) # 从 targets 获取 metrics 时 http 请求的路径。`默认值: /metrics`
 
-**honor_labels(BOOLEAN)** # 控制 Prometheus 是否尊重抓取到的数据中的标签，i.e. 如何处理标间之间的冲突。`默认值：false`
+**honor_labels**(BOOLEAN) # 控制 Prometheus 是否尊重抓取到的数据中的标签，i.e. 如何处理标间之间的冲突。`默认值：false`
 
 - 获取 targets 的 metrics 时(e.g.snmp_exporter|Federate|pushgateway 等)，其中的标签有可能会与本身的标签存在冲突
   - 该参数的值为 true 时，则以抓取数据中的标签为准
   - 值为 false 时，就会重新命名表桥为 exported 形式，然后添加配置文件中的标签。
 
-**honor_timestamps(BOOLEAN)** # 控制 Prometheus 是否尊重抓取到的数据中的时间戳。`默认值：true`
+**honor_timestamps**(BOOLEAN) # 控制 Prometheus 是否尊重抓取到的数据中的时间戳。`默认值：true`
 
 - 比如从 federate、pushgateway 等地方获取指标时，指标中都是带着时间戳的，
   - 若设置为 false，则会忽略这些采集到的时间戳，在入库时加上采集时的时间戳。
   - 若设置为 true，则是在入库时使用抓到到的指标中的时间戳。
 
-**sample_limit(INT)** # 每次抓取 metrics 的数量限制。`默认值：0`。0 表示不限制
+**sample_limit**(INT) # 每次抓取 metrics 的数量限制。`默认值：0`。0 表示不限制
 
 ### HTTP 配置
 

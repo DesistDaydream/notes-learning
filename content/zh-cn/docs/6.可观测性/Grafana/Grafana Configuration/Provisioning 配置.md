@@ -1,12 +1,14 @@
 ---
 title: Provisioning 配置
+linkTitle: Provisioning 配置
+weight: 20
 ---
 
 # 概述
 
 > 参考：
 >
-> - [官方文档，管理-Provisioning](https://grafana.com/docs/grafana/latest/administration/provisioning/)
+> - [官方文档，管理 - Provisioning](https://grafana.com/docs/grafana/latest/administration/provisioning/)
 
 Grafana 在一开始，只能通过 Web 页面(也就是 API)来配置 DataSources(数据源) 和 Dashboard(仪表盘)。这样做有一个缺点，就是无法提前加载数据源和仪表盘。
 

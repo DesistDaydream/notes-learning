@@ -36,17 +36,6 @@ https://clickhouse.com/docs/en/guides/sre/network-ports
 | 9281  | Recommended Secure SSL ClickHouse Keeper port                                                                                    |
 | 42000 | Graphite default port                                                                                                            |
 
-# 关联文件与配置
-
-https://clickhouse.com/docs/en/operations/configuration-files
-
-https://clickhouse.com/docs/en/operations/settings
-
-**/etc/clickhouse-server/**
-
-- **config.xml** # ClickHouse Server 运行配置。
-- **./config.d/** # 配置文件可以拆分到该目录，程序运行时会将该目录下的文件组合到主配置文件
-
 # Engine
 
 > 参考：
@@ -88,6 +77,35 @@ Table Engine 可以决定：
 - Whether multithread request execution is possible.是否可以执行多线程请求。
 - Data replication parameters.数据复制参数。
 
+# 关联文件与配置
+
+https://clickhouse.com/docs/en/operations/configuration-files
+
+https://clickhouse.com/docs/en/operations/settings
+
+**/etc/clickhouse-server/**
+
+- **./config.xml** # ClickHouse Server 运行配置。
+- **./config.d/** # 配置文件可以拆分到该目录，程序运行时会将该目录下的文件合并到 config.xml 主配置文件
+- **./users.xml** # 
+- **./users.d/** # 配置文件可以拆分到该目录，程序运行时会将该目录下的文件合并到 users.xml 主配置文件
+
+# ClickHouse 部署
+
+https://clickhouse.com/docs/en/install
+
+# CLI
+
+https://clickhouse.com/docs/en/operations/utilities
+
+**clickhouse-server**
+
+**clickhouse-client**
+
+https://clickhouse.com/docs/en/integrations/sql-clients/cli
+
+- clickhouse-client -u default --password 12345678  -m -n --port 9000 -h 127.0.0.1 -d my_database
+
 # ClickHouse 生态
 
 > 参考：
@@ -109,14 +127,3 @@ https://clickhouse.com/docs/en/interfaces/overview
 
 [可视化接口](https://clickhouse.com/docs/en/interfaces/third-party/gui)
 
-# CLI
-
-https://clickhouse.com/docs/en/operations/utilities
-
-**clickhouse-server**
-
-**clickhouse-client**
-
-https://clickhouse.com/docs/en/integrations/sql-clients/cli
-
-- clickhouse-client -u default --password 12345678  -m -n --port 9000 -h 127.0.0.1 -d my_database

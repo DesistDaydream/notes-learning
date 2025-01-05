@@ -63,27 +63,29 @@ Log Pipeline 通常由一个或多个 **Expression(表达式)** 组成，多个�
 
 > 这用法其实跟 Linux 中使用命令并通过管道传递结果给下一个命令的用法一模一样。
 
-可用的 Log Pipeline 有如下几种
+可用的 Log Pipeline 有如下几种表达式
 
-- [**Line Filter Expression**](https://grafana.com/docs/loki/latest/logql/#line-filter-expression)**(行过滤表达式)** # 最基本的过滤方式，通过关键字匹配每一行的日志内容
-- [**Parser Expression**](https://grafana.com/docs/loki/latest/logql/#parser-expression)**(解析表达式)**# 以指定方式解析日志内容，并将解析结果提取为标签。
-- [**Label Filter Expression**](https://grafana.com/docs/loki/latest/logql/#label-filter-expression)**(标签过滤表达式)** #
-- [**Line Format Expression**](https://grafana.com/docs/loki/latest/logql/#line-format-expression)**(行格式化表达式)** #
-- [**Labels Format Expression**](https://grafana.com/docs/loki/latest/logql/#labels-format-expression)**(标签格式化表达式)** #
-- [**Unwrap Expression**](https://grafana.com/docs/loki/latest/logql/#unwrapped-range-aggregations)#
-  - 这是一个特殊的表达式，只能在指标查询中使用。
+- [**Line Filter Expression**](#Line%20Filter(行过滤表达式))**(行过滤表达式)** # 最基本的过滤方式，通过关键字匹配每一行的日志内容
+- [**Parser Expression**](#Parser(解析表达式))**(解析表达式)**# 以指定方式解析日志内容，并将解析结果提取为标签。
+- [**Label Filter Expression**](#Label%20Filter(标签过滤表达式))**(标签过滤表达式)** #
+- [**Line Format Expression**](#Line%20Format(行格式化表达式))**(行格式化表达式)** #
+- [**Labels Format Expression**](#Labels%20Format(标签格式化表达式))**(标签格式化表达式)** #
+- [**Unwrap Expression**](https://grafana.com/docs/loki/latest/query/metric_queries/#unwrapped-range-aggregations) #
+  - 这是一个特殊的表达式，只能在 [Metric Queries](/docs/6.可观测性/Logs/Loki/LogQL/Metric%20Queries.md) 中使用。
 
 其中一些表达式可以改变日志内容和相应的标签，然后可用于进一步 过滤和处理表达式 或 指标查询。
 
-## Line Filter Expression(行过滤表达式)
+## Line Filter(行过滤表达式)
+
+https://grafana.com/docs/loki/latest/query/log_queries/#line-filter-expression
 
 通过 日志流选择器 获取到想要的日志后，可以使用 Line Filter Expression(行过滤表达式) 对这些日志进行过滤。过滤表达式 可以只是文本或正则表达式，比如
 
 ```bash
 # 过滤出日志内容中，包含 timeout 字符串的日志行。
 {job="kube-system/etcd",container="etcd"} |= "timeout"
-# 匹配 {job="nginx-promtail"} 日志流中所有日志行中，不包含 天津市 字符串的行
-{job="nginx-promtail"} != "天津市"
+# 匹配 {job="nginx-promtail"} 日志流中所有日志行中，不包含 北京 字符串的行
+{job="nginx-promtail"} != "北京"
 ```
 
 注意：过滤表达式不能单独使用，必须基于 日志流选择器 得出的结果，再进行过滤。示例 LogQL 执行效果如下
@@ -97,21 +99,25 @@ Log Pipeline 通常由一个或多个 **Expression(表达式)** 组成，多个�
 3. **|~** # 匹配包含正则表达式的日志行
 4. **!~**# 匹配不包含正则表达式的日志行
 
-## Parser Expression(解析表达式)
+## Parser(解析表达式)
 
-Parser Expression 可以将日志内容解析，并提取标签。然后这些被提取出来的标签，可以使用 Label Filter Expression
+https://grafana.com/docs/loki/latest/query/log_queries/#parser-expression
 
-解析器表达式可以解析和提取日志内容中的标签，这些提取的标签可以用于标签过滤表达式进行过滤，或者用于指标聚合。
+**Parser(解析) 表达式** 可以解析日志行内容，并将**提取成标签**。这些被提取出来的标签，可以用在 [label filter expressions](https://grafana.com/docs/loki/latest/query/log_queries/#label-filter-expression)(标签过滤表达式) 或 [metric aggregations](https://grafana.com/docs/loki/latest/query/metric_queries/)(指标聚合)、etc. （Tip: 毕竟有了标签，那玩法就很多了）
 
 提取的标签键将由解析器进行自动格式化，以遵循 Prometheus 指标名称的约定（它们只能包含 ASCII 字母和数字，以及下划线和冒号，不能以数字开头）。
 
-例如下面的日志经过管道 `| json` 将产生以下 Map 数据：
+例如下面的日志行，经过 `| json` 表达式将产生以下 Map 数据：
 
-    { "a.b": { "c": "d" }, "e": "f" }
+```
+{ "a.b": { "c": "d" }, "e": "f" }
+```
 
 ->
 
-    {a_b_c="d", e="f"}
+```
+{a_b_c="d", e="f"}
+```
 
 在出现错误的情况下，例如，如果该行不是预期的格式，该日志行不会被过滤，而是会被添加一个新的 `__error__` 标签。
 
@@ -231,9 +237,11 @@ at=info method=GET path=/ host=grafana.net fwd="124.133.124.161" service=8ms sta
 
 ### pattern
 
+> Tips: [Loki v2.3.0](https://grafana.com/docs/loki/latest/release-notes/v2-3/) 版本引入 [pattern 表达式](https://grafana.com/blog/2021/08/09/new-in-loki-2.3-logql-pattern-parser-makes-it-easier-to-extract-data-from-unstructured-logs/)
+
 pattern 表达式语法：
 
-```
+```logql
 | pattern PatternExpression
 ```
 
@@ -323,9 +331,9 @@ POST /api/prom/api/v1/query_range (200) 1.5s
 
 > 如果原始嵌入的日志行是特定的格式，你可以将 unpack 与 json 解析器（或其他解析器）相结合使用。
 
-## Line Format Expression(行格式化表达式)
+## Line Format(行格式化表达式)
 
-https://grafana.com/docs/loki/latest/logql/#line-format-expression
+https://grafana.com/docs/loki/latest/query/log_queries/#line-format-expression
 
 日志行格式化表达式可以通过使用 Golang 的 `text/template` 模板格式重写日志行的内容，它需要一个字符串参数
 
@@ -355,9 +363,9 @@ https://grafana.com/docs/loki/latest/logql/#line-format-expression
 
 上面的查询将得到的日志行内容为`1.1.1.1 200 3`。
 
-## Label Filter Expression(标签过滤表达式)
+## Label Filter(标签过滤表达式)
 
-https://grafana.com/docs/loki/latest/logql/#label-filter-expression
+https://grafana.com/docs/loki/latest/query/log_queries/#label-filter-expression
 
 标签过滤表达式允许使用其原始和提取的标签来过滤日志行，它可以包含多个谓词。
 
@@ -411,9 +419,9 @@ LogQL 支持从查询输入中自动推断出的多种值类型：
 | duration >= 20ms or (method="GET" and size <= 20KB)
 ```
 
-## Labels Format Expression(标签格式化表达式)
+## Labels Format(标签格式化表达式)
 
-https://grafana.com/docs/loki/latest/logql/#labels-format-expression
+https://grafana.com/docs/loki/latest/query/log_queries/#labels-format-expression
 
 语法
 
@@ -432,60 +440,3 @@ https://grafana.com/docs/loki/latest/logql/#labels-format-expression
 重命名形式 `dst=src` 会在将 `src` 标签重新映射到 `dst` 标签后将其删除，然而，模板形式将保留引用的标签，例如 `dst="{{.src}}"` 的结果是 `dst` 和 `src` 都有相同的值。
 
 > 一个标签名称在每个表达式中只能出现一次，这意味着 `| label_format foo=bar,foo="new"` 是不允许的，但你可以使用两个表达式来达到预期效果，比如 `| label_format foo=bar | label_format foo="new"`。
-
----
-
-# 查询示例
-
-**多重过滤**
-
-过滤应该首先使用标签匹配器，然后是行过滤器，最后使用标签过滤器：
-
-```logql
-{cluster="ops-tools1", namespace="loki-dev", job="loki-dev/query-frontend"} |= "metrics.go" !="out of order" | logfmt | duration > 30s or status_code!="200"
-```
-
-**多解析器**
-
-比如要提取以下格式日志行的方法和路径：
-
-```log
-level=debug ts=2020-10-02T10:10:42.092268913Z caller=logging.go:66 traceID=a9d4d8a928d8db1 msg="POST /api/prom/api/v1/query_range (200) 1.5s"
-```
-
-你可以像下面这样使用多个解析器：
-
-```logql
-{job="cortex-ops/query-frontend"} | logfmt | line_format "{{.msg}}" | regexp "(?P<method>\\w+) (?P<path>[\\w|/]+) \\((?P<status>\\d+?)\\) (?P<duration>.*)"`
-```
-
-首先通过 `logfmt` 解析器提取日志中的数据，然后使用 `| line_format` 重新将日志格式化为 `POST /api/prom/api/v1/query_range (200) 1.5s`，然后紧接着就是用 `regexp` 解析器通过正则表达式来匹配提前标签了。
-
-## 格式化
-
-下面的查询显示了如何重新格式化日志行，使其更容易阅读。
-
-```logql
-{cluster="ops-tools1", name="querier", namespace="loki-dev"}
-  |= "metrics.go"
-  |!= "loki-canary"
-  | logfmt
-  | query != ""
-  | label_format query="{{ Replace .query \"\\n\" \"\" -1 }}"
-  | line_format "{{ .ts}}\t{{.duration}}\ttraceID = {{.traceID}}\t{{ printf \"%-100.100s\" .query }} "
-```
-
-其中的 `label_format` 用于格式化查询，而 `line_format` 则用于减少信息量并创建一个表格化的输出。比如对于下面的日志行数据：
-
-```log
-level=info ts=2020-10-23T20:32:18.094668233Z caller=metrics.go:81 org_id=29 traceID=1980d41501b57b68 latency=fast query="{cluster=\"ops-tools1\", job=\"cortex-ops/query-frontend\"} |= \"query_range\"" query_type=filter range_type=range length=15m0s step=7s duration=650.22401ms status=200 throughput_mb=1.529717 total_bytes_mb=0.994659
-level=info ts=2020-10-23T20:32:18.068866235Z caller=metrics.go:81 org_id=29 traceID=1980d41501b57b68 latency=fast query="{cluster=\"ops-tools1\", job=\"cortex-ops/query-frontend\"} |= \"query_range\"" query_type=filter range_type=range length=15m0s step=7s duration=624.008132ms status=200 throughput_mb=0.693449 total_bytes_mb=0.432718
-```
-
-经过上面的查询过后可以得到如下所示的结果：
-
-```log
-2020-10-23T20:32:18.094668233Z 650.22401ms     traceID = 1980d41501b57b68 {cluster="ops-tools1", job="cortex-ops/query-frontend"} |= "query_range"
-2020-10-23T20:32:18.068866235Z 624.008132ms traceID = 1980d41501b57b68 {cluster="ops-tool
-```
-

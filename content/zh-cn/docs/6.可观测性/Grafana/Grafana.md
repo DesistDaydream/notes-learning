@@ -47,7 +47,7 @@ docker run -d --name grafana \
 **/etc/grafana/** # Grafana 配置文件保存路径
 
 - **./grafana.ini** # Grafana 运行所需配置文件
-- **./provisioning/** # Grafana 的 Provisioning 功能要读取的路径。该功能详见 [Provisioning 配置](/docs/6.可观测性/Grafana/Grafana%20配置详解/Provisioning%20配置.md)
+- **./provisioning/** # Grafana 的 Provisioning 功能要读取的路径。该功能详见 [Provisioning 配置](docs/6.可观测性/Grafana/Grafana%20Configuration/Provisioning%20配置.md)
   - **./dashboards/\*.yaml** # Grafana 启动时，会根据该路径下配置文件内的 .providers.options.path 字段的路径配置，去对应路径加载 grafana 的 dashboard 的 json 文件。
   - **./datasources/\*.yaml** # Grafana 启动时，会根据该路径下配置文件，自动加载数据源信息。
   - **./notifiers/\*.yaml** # Grafana 启动时，加载的告警配置文件。

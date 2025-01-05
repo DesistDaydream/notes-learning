@@ -1,14 +1,14 @@
 ---
-title: Grafana 配置详解
-weight: 1
+title: Grafana Configuration
+linkTitle: Grafana Configuration
+weight: 20
 ---
-
 
 # 概述
 
 > 参考：
 > 
-> - [官方文档，Setup-配置 Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/)
+> - [官方文档，Setup - 配置 Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/)
 
 Grafna 可以通过 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的配置文件、命令行标志、环境变量来配置运行时行为。
 

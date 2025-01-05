@@ -11,7 +11,9 @@ weight: 20
 >
 > - [官方文档，SQL 参考](https://clickhouse.com/docs/en/sql-reference)
 
+# SQL 关键字
 
+可以在 [官方文档，SQL 参考 - 语句](https://clickhouse.com/docs/en/sql-reference/statements) 看到 ClickHouse 支持的所有 SQL 基础关键字。诸如常见的 SELECT、INSERT、etc. 还有一些独属于 ClickHouse 的关键字，e.g. KILL、OPTIMIZE、etc.
 
 # Function
 
@@ -116,22 +118,35 @@ Table 函数可以用来构造一个新的表格式的数据，比如 `select to
 
 # 最佳实践
 
+一些 SQL 的别名，在 CLI 中可用的快捷指令
+
+- `\l` - SHOW DATABASES
+- `\d` - SHOW TABLES
+- `\c <DATABASE>` - USE DATABASE
+- `.` - repeat the last query
+
 ## 显示一些基础信息
 
 **列出所有数据库**
 
 ```sql
-SHOW DATABASES;
+show databases;
 ```
 
-**列出所有 Tables**
+**列出 my_database 库中的所有表**（若不指定 from my_database 则列出当前数据库中的所有表）
+
+```sql
+show tables from my_database;
+```
+
+**显示所有 Tables 的元信息**（e.g. 创建语句、引擎、UUID、etc.）
 
 ```sql
 SELECT *
 FROM system.tables
 ```
 
-**显示指 Table 的信息**
+**显示指定表的列信息**（e.g. 列名、类型、默认值、etc.）
 
 ```sql
 DESCRIBE my_database.my_table
@@ -140,6 +155,7 @@ DESCRIBE my_database.my_table
 或
 
 ```sql
+-- system 库中的列信息还有 数据压缩情况、etc. 更多信息
 SELECT *
 FROM system.columns
 WHERE table = 'my_table' AND database = 'my_database';
@@ -152,4 +168,28 @@ SELECT *
 FROM system.tables
 WHERE engine = 'View'
 ```
+
+## 基础增删改查
+
+**清空 my_database.my_table 表中的数据**（仅清空数据保留表结构）
+
+```sql
+TRUNCATE TABLE IF EXISTS my_database.my_table;
+```
+
+> TRUNCATE 比 DELETE FROM 更高效，因为它不会一条条删除记录，而是直接释放存储空间。
+
+**删除 my_database.my_table 表**
+
+```sql
+DROP TABLE IF EXISTS my_database.my_table;
+```
+
+**删除 my_database 数据库**
+
+```sql
+DROP DATABASE IF EXISTS my_database;
+```
+
+> [!Attention] ！！！该操作不可逆！！！`DROP DATABASE` 会删除数据库及其中的所有表
 

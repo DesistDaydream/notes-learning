@@ -2198,12 +2198,12 @@
       "docs/6.可观测性/Grafana/_index.md",
       "docs/6.可观测性/Grafana/Grafana.md",
       "docs/6.可观测性/Grafana/Grafana 数据模型.md",
-      "docs/6.可观测性/Grafana/Grafana 配置详解",
+      "docs/6.可观测性/Grafana/Grafana Configuration",
       "docs/6.可观测性/Grafana/Panel 与 Dashboard",
       "docs/6.可观测性/Grafana/Plugins(插件).md",
       "docs/6.可观测性/Grafana/访问控制.md",
-      "docs/6.可观测性/Grafana/Grafana 8.0 告警使用.md",
-      "docs/6.可观测性/Grafana/Grafana 管理.md"
+      "docs/6.可观测性/Grafana/Grafana 告警.md",
+      "docs/6.可观测性/Grafana/Grafana MGMT.md"
     ],
     "docs/6.可观测性/Grafana/Panel 与 Dashboard": [
       "docs/6.可观测性/Grafana/Panel 与 Dashboard/_index.md",
@@ -2886,6 +2886,11 @@
       "docs/学习/PKM/写作.md",
       "docs/学习/PKM/Obsidian.md",
       "docs/学习/PKM/WPS.md"
+    ],
+    "docs/6.可观测性/DataPipeline/Vector": [
+      "docs/6.可观测性/DataPipeline/Vector/_index.md",
+      "docs/6.可观测性/DataPipeline/Vector/Vector.md",
+      "docs/6.可观测性/DataPipeline/Vector/Vector Configuration.md"
     ]
   },
   "actionBarOrder": {},

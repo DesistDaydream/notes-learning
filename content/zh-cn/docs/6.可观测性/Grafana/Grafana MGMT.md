@@ -1,18 +1,20 @@
 ---
-title: Grafana 管理
+title: Grafana MGMT
+linkTitle: Grafana MGMT
+weight: 20
 ---
 
 # 概述
 
 > 参考：
 >
-> - [官方文档,管理](https://grafana.com/docs/grafana/latest/administration/)
+> - [官方文档，管理](https://grafana.com/docs/grafana/latest/administration/)
 
 # Grafana 密码重置
 
 > 参考：
 >
-> - [官方文档,管理-CLI-重置 admin 密码](https://grafana.com/docs/grafana/latest/administration/cli/#reset-admin-password)
+> - [官方文档，管理 - CLI - 重置 admin 密码](https://grafana.com/docs/grafana/latest/administration/cli/#reset-admin-password)
 
 ## SQLite3 重置
 
@@ -68,3 +70,37 @@ Nginx
 # 在代理后面使用 Grafana
 
 https://grafana.com/tutorials/run-grafana-behind-a-proxy/
+
+```nginx
+# This is required to proxy Grafana Live WebSocket connections.
+map $http_upgrade $connection_upgrade {
+  default upgrade;
+  '' close;
+}
+
+upstream grafana {
+  server localhost:3000;
+}
+
+server {
+  listen 80;
+  root /usr/share/nginx/html;
+  index index.html index.htm;
+
+  location / {
+    proxy_set_header Host $host;
+    proxy_pass http://grafana;
+  }
+
+  # Proxy Grafana Live WebSocket connections.
+  location /api/live/ {
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_set_header Host $host;
+    proxy_pass http://grafana;
+  }
+}
+```
+
+> Notes: proxy_pass 字段的值应该替换成真实的 Grafana 地址

@@ -10,7 +10,7 @@ weight: 2
 >
 > - [GitHub 项目，samber/awesome-prometheus-alerts](https://github.com/samber/awesome-prometheus-alerts)
 >   - https://samber.github.io/awesome-prometheus-alerts/
-> - [腾讯云+社区，prometheus 告警指标](https://cloud.tencent.com/developer/article/1758801)
+>   - [腾讯云+社区，prometheus 告警指标](https://cloud.tencent.com/developer/article/1758801) 对 awesome-prometheus-alerts 的无后续维护的搬运
 > - [公众号，云原生小白-监控容器 OOMKill 的正确指标](https://mp.weixin.qq.com/s/rPxTBYmwG_7HnZRpRXMFuQ)
 > - https://panzhongxian.cn/cn/2023/09/grafana-pannel-skills/ Grafana 常用但难配的图表。一些真实场景的查询语句写法以及对应 Grafana 图标如何用
 
@@ -143,6 +143,16 @@ avg(irate(node_cpu_seconds_total{mode="idle"}[5m])) by(instance,job)
 ```
 
 ### 上下文切换越来越多
+
+https://github.com/samber/awesome-prometheus-alerts/issues/58
+
+```promql
+(rate(node_context_switches_total[15m])/count without(mode,cpu) (node_cpu_seconds_total{mode="idle"}))
+/
+(rate(node_context_switches_total[1d])/count without(mode,cpu) (node_cpu_seconds_total{mode="idle"})) > 2
+```
+
+老的告警：
 
 ```text
 (rate(node_context_switches_total[5m])) / (count (node_cpu_seconds_total{mode="idle"}) without(cpu, mode)) > 1000
