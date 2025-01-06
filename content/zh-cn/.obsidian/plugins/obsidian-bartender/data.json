@@ -2667,6 +2667,7 @@
       "docs/9.运维/Ansible/Playbook/loop(循环).md",
       "docs/9.运维/Ansible/Playbook/错误处理.md",
       "docs/9.运维/Ansible/Playbook/Debugger.md",
+      "docs/9.运维/Ansible/Playbook/Tags.md",
       "docs/9.运维/Ansible/Playbook/Playbook 命令行工具.md"
     ],
     "docs/9.运维/Cobbler": [

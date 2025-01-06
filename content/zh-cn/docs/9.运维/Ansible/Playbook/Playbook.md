@@ -82,7 +82,7 @@ playbook 称为"剧本"。每个 playbook 都包含一个或多个 plays(戏剧)
     - RoleNameTwo
 ```
 
-## block 将多个 task 合并为一个进行统一处理
+## block - 将多个 task 合并为一个进行统一处理
 
 块允许对任务进行逻辑分组以及进行中的错误处理。您可以应用于单个任务的大多数内容（循环除外）都可以应用于块级，这也使设置任务通用的数据或指令变得更加容易。这并不意味着该指令会影响块本身，而是被块所包含的任务继承。即何时将应用于任务，而不是块本身。
 
@@ -112,10 +112,11 @@ tasks:
     ignore_errors: yes
 ```
 
-## handler 任务处理器，用于在执行任务时附加额外的任务
+## handler - 任务处理器，用于在执行任务时附加额外的任务
 
 > 参考：
-> - [官方文档，使用 Ansible playbooks-Handlers: 任务 change 时运行操作](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_handlers.html)
+>
+> - [官方文档，使用 Ansible playbooks - Handlers: 任务 change 时运行操作](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_handlers.html)
 
 ansible 执行的每一个 task 都会报告该任务是否改变了目标，即 changed=true 或 changed=false。当 ansible 捕捉到 changed 为 true 的时候，则会触发一个 notify(通知)组件，该组件的作用就是用来调用指定的 handler。
 
@@ -166,9 +167,10 @@ Note：notify 是在执行完一个 play 中所有 task 后被触发的，在一
 ## 复用 Ansible 工件
 
 > 参考：
-> - [官方文档，Playbook 指南-复用 Ansible 工件](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse.html)
+>
+> - [官方文档，Playbook 指南 - 复用 Ansible 工件](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse.html)
 
-我们可以在一个非常大的文件中编写简单的playbook，大多数用户首先学习单个文件的方法。然而，将自动化工作分解为较小的文件是组织复杂任务集并重复使用它们的绝佳方法。更小，更分散的 Artifacts 让您在多个playbook中多次使用相同的变量、任务和操作以解决不同的用例。您可以在多个父playbook中使用分布式 Artifacts，甚至可以在一个playbook中多次使用。例如，您可能希望在几个不同的playbook中更新客户数据库。如果您将与更新数据库相关的所有任务放在一个任务文件或角色中，您可以在许多playbook中重复使用它们，同时只需在一个地方维护它们。
+我们可以在一个非常大的文件中编写简单的 Playbook，大多数用户首先学习单个文件的方法。然而，将自动化工作分解为较小的文件是组织复杂任务集并重复使用它们的绝佳方法。更小，更分散的 Artifacts 让您在多个 Playbook 中多次使用相同的变量、任务和操作以解决不同的用例。您可以在多个父 Playbook 中使用分布式 Artifacts，甚至可以在一个 Playbook 中多次使用。例如，您可能希望在几个不同的 Playbook 中更新客户数据库。如果您将与更新数据库相关的所有任务放在一个任务文件或角色中，您可以在许多 Playbook 中重复使用它们，同时只需在一个地方维护它们。
 
 Ansible 提供四种可分发、可重复使用的 Artifacts：
 
@@ -179,21 +181,26 @@ Ansible 提供四种可分发、可重复使用的 Artifacts：
 
 ### include 与 import 的区别
 
-https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse.html#comparing-includes-and-imports-dynamic-and-static-re-use
+> 参考：
+>
+> - https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse.html#comparing-includes-and-imports-dynamic-and-static-re-use
+> - https://lework.github.io/2018/01/25/Ansible-xiao-shou-ce-xi-lie-er-shi-san-(-dong-tai-he-jing-tai-bao-han-)/
 
 重用分布式 Ansible 工件的每种方法都有优点和局限性。您可以为某些剧本选择动态重用，为其他剧本选择静态重用。尽管您可以在单个剧本中同时使用动态和静态重用，但最好为每个剧本选择一种方法。混合静态和动态重用可能会在您的剧本中引入难以诊断的错误。此表总结了主要差异，因此您可以为您创建的每个剧本选择最佳方法。
 
-|                           | Include_*                               | Import_*                                 |
-| ------------------------- | --------------------------------------- | ---------------------------------------- |
-| Type of re-use            | Dynamic                                 | Static                                   |
-| When processed            | At runtime, when encountered            | Pre-processed during playbook parsing    |
-| Task or play              | All includes are tasks                  | `import_playbook` cannot be a task       |
-| Task options              | Apply only to include task itself       | Apply to all child tasks in import       |
-| Calling from loops        | Executed once for each loop item        | Cannot be used in a loop                 |
-| Using `--list-tags`       | Tags within includes not listed         | All tags appear with `--list-tags`       |
-| Using `--list-tasks`      | Tasks within includes not listed        | All tasks appear with `--list-tasks`     |
-| Notifying handlers        | Cannot trigger handlers within includes | Can trigger individual imported handlers |
-| Using --start-at-task     | Cannot start at tasks within includes   | Can start at imported tasks              |
-| Using inventory variables | Can `include_*: {{ inventory_var }}`    | Cannot `import_*: {{ inventory_var }}`   |
-| With playbooks            | No `include_playbook`                   | Can import full playbooks                |
-| With variables files      | Can include variables files             | Use `vars_files:` to import variables    |
+|                                                    | Include_*                               | Import_*                                 |
+| -------------------------------------------------- | --------------------------------------- | ---------------------------------------- |
+| Type of re-use                                     | Dynamic(动态)                             | Static(静态)                               |
+| When processed                                     | At runtime, when encountered            | Pre-processed during playbook parsing    |
+| Task or play                                       | All includes are tasks                  | `import_playbook` cannot be a task       |
+| Task options                                       | Apply only to include task itself       | Apply to all child tasks in import       |
+| Calling from loops                                 | Executed once for each loop item        | Cannot be used in a loop                 |
+| Using `--list-tags`<br>i.e. 是否可以通过 -t 选项指定执行包含中的任务 | 无法列出 includes 中的标签                      | `--list-tags` 命令可以列出包含所有导入的任务的标签         |
+| Using `--list-tasks`                               | Tasks within includes not listed        | All tasks appear with `--list-tasks`     |
+| Notifying handlers                                 | Cannot trigger handlers within includes | Can trigger individual imported handlers |
+| Using --start-at-task                              | Cannot start at tasks within includes   | Can start at imported tasks              |
+| Using inventory variables                          | Can `include_*: {{ inventory_var }}`    | Cannot `import_*: {{ inventory_var }}`   |
+| With playbooks                                     | No `include_playbook`                   | Can import full playbooks                |
+| With variables files                               | Can include variables files             | Use `vars_files:` to import variables    |
+
+

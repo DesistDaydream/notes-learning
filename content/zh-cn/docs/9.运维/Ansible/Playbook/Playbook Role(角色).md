@@ -55,10 +55,12 @@ Note：如果想让这些目录生效，需要在 tasks、handlers、vars、defa
 
 在 playbook.yaml 文件中，使用关键字 roles 即可调用指定的 roles 内的工作内容
 
-    - hosts: webservers
-      roles:
-        - common
-        - webservers
+```yaml
+- hosts: webservers
+  roles:
+    - common
+    - webservers
+```
 
 roles 下指定的每个值(roles 名)，ansbile 都会去与该值同名的目录中获取其中所有文件，这其中遵循如下规则：
 
@@ -83,7 +85,7 @@ Note：
 
 > 参考：
 >
-> - [官方文档，用户指南-配置样例](https://docs.ansible.com/ansible/latest/user_guide/sample_setup.html)
+> - [官方文档，用户指南 - 配置样例](https://docs.ansible.com/ansible/latest/user_guide/sample_setup.html)
 
 ```bash
 production                # 适用于 production 的 Inventory 文件
@@ -173,4 +175,4 @@ roles/
     fooapp/
 ```
 
-至于 group_vars 与 host_vars 在不同目录的优先级可以参考 [Ansible 变量-优先级](/docs/9.运维/Ansible/Ansible%20Variables(变量).md Variables(变量).md) 部分
+至于 group_vars 与 host_vars 在不同目录的优先级可以参考 [Ansible Variables - 变量的优先级](docs/9.运维/Ansible/Ansible%20Variables/Ansible%20Variables.md#变量的优先级) 部分
