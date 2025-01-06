@@ -7,12 +7,14 @@ title: Rust
 > 参考：
 > 
 > - [GitHub 项目，rust-lang/rust](https://github.com/rust-lang/rust)
-> - [官网](https://www.rust-lang.org/)、
+> - [官网](https://www.rust-lang.org/)
 > - [官方文档](https://doc.rust-lang.org/book/)
 
 # 学习资料
 
 [B 站-软件工艺师，Rust 编程语言入门教程（Rust 语言/Rust 权威指南配套）](https://www.bilibili.com/video/BV1hp4y1k7SV/)
+
+[公众号 - 张晋涛，我的 Rust 之旅，以及如何学习 Rust](https://mp.weixin.qq.com/s/1uWb4b0amglEDA4N9Njsgg)
 
 # Hello World
 

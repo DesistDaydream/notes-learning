@@ -940,8 +940,8 @@
     "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具": [
       "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/_index.md",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/kubeadm 命令行工具.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/kubeadm 命令详解.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/kubeadm 配置详解.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/kubeadm CLI.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/kubeadm Configuration.md",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/kubeadm 实现细节.md",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/最佳实践.md",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/编译 kubeadm 修改证书过期时间.md"

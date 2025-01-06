@@ -40,3 +40,11 @@ Anthropic 是一家由前 OpenAI 团队成员创立的初创公司，它推出�
 ## 产品
 
 Claude
+
+# DeepSeek
+
+> 参考：
+>
+> - [GitHub 组织，deepseek-ai](https://github.com/deepseek-ai)
+
+https://github.com/deepseek-ai/DeepSeek-V3/blob/main/inference/model.py 核心

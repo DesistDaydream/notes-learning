@@ -1,8 +1,14 @@
 ---
-title: kubeadm 命令详解
+title: kubeadm CLI
+linkTitle: kubeadm CLI
+weight: 2
 ---
 
 # 概述
+
+> 参考：
+>
+> - 
 
 # Syntax(语法)
 

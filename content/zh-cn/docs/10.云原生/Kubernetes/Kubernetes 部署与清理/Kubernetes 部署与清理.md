@@ -210,7 +210,8 @@ sudo mkdir -p $DOWNLOAD_DIR
 export RELEASE="$(curl -sSL https://dl.k8s.io/release/stable.txt)"
 export ARCH="amd64"
 cd $DOWNLOAD_DIR
-sudo curl -L --remote-name-all https://storage.googleapis.com/kubernetes-release/release/${RELEASE}/bin/linux/${ARCH}/{kubeadm,kubelet,kubectl}
+# 已弃用 sudo curl -L --remote-name-all https://storage.googleapis.com/kubernetes-release/release/${RELEASE}/bin/linux/${ARCH}/{kubeadm,kubelet,kubectl}
+sudo curl -L --remote-name-all https://dl.k8s.io/release/${RELEASE}/bin/linux/${ARCH}/{kubeadm,kubelet,kubectl}
 
 # 注意，这里面的 .sevice 文件不够准确，最好从已有机器拷贝过来
 RELEASE_VERSION="v0.4.0"
@@ -225,7 +226,9 @@ curl -sSL "https://raw.githubusercontent.com/kubernetes/release/${RELEASE_VERSIO
 
 1.18.0 之前的版本使用如下配置
 
-    echo "KUBELET_EXTRA_ARGS=--cgroup-driver=systemd" > /etc/sysconfig/kubelet
+```bash
+echo "KUBELET_EXTRA_ARGS=--cgroup-driver=systemd" > /etc/sysconfig/kubelet
+```
 
 ## 使用 kubeadm 初始化 k8s 的 master 节点
 
@@ -235,7 +238,7 @@ curl -sSL "https://raw.githubusercontent.com/kubernetes/release/${RELEASE_VERSIO
 
 准备初始化所需镜像
 
-  - 由于国内没法访问国际，镜像又都在谷歌上，所以需要翻墙或者提前以某些方式下载下来。如果不知道要用哪些镜像，可以直接使用 **kubeadm config images list** 命令查看初始化时所需镜像，然后从其他镜像仓库下载下来，并使用 docker tag 命令更改镜像。可以使用阿里云的镜像仓库，地址如下：
+  - 由于国内没法访问国际，镜像又都在谷歌上，所以需要翻墙或者提前以某些方式下载下来。如果不知道要用哪些镜像，可以直接使用 `kubeadm config images list` 命令查看初始化时所需镜像，然后从其他镜像仓库下载下来，并使用 docker tag 命令更改镜像。可以使用阿里云的镜像仓库，地址如下：
     - registry.aliyuncs.com/k8sxio # XXX 为镜像名与版本号，zhangguanzhang 在阿里云创建的仓库
 
 初始化集群的 master 节点

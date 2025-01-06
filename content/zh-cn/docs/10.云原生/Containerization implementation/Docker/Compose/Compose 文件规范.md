@@ -323,7 +323,7 @@ services:
 
 配置容器连接的网络，引用顶级 networks 下的条目 。networks 节点有两种语法
 
-> Tips: 配置该字段后，相当于让该容器使用 Bridge 驱动的网络。
+> [!Attention] 配置该字段后，相当于让该容器使用 Bridge 驱动的网络。在老版本相当于将 network_mode 设置为 bridge
 
 ```yaml
 services:

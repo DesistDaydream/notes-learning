@@ -1,5 +1,7 @@
 ---
-title: kubeadm 配置详解
+title: kubeadm Configuration
+linkTitle: kubeadm Configuration
+weight: 3
 ---
 
 # 概述
