@@ -282,11 +282,11 @@ docker:
     tasks:
     - name: list contents of directory
     command: ls /root/
-    register: contents #将该任务执行后的ansible报告的信息保存在名为contents变量中
+    register: contents # 将该任务执行后的ansible报告的信息保存在名为contents变量中
     - debug:
-        msg: "{{contents}}" #输出contents变量
+        msg: "{{contents}}" # 输出contents变量
     - debug：
-        msg: "{{contents.stdout}}" #输出contents下的stdout变量的值，值为anaconda-ks.cfg\nScripts
+        msg: "{{contents.stdout}}" # 输出contents下的stdout变量的值，值为anaconda-ks.cfg\nScripts
 ```
 
 比如下面，就是是 contents 变量的值。这其中包括要执行的命令、命令执行的日期、执行结果，等等 ansible 执行该 playbook 后的信息。

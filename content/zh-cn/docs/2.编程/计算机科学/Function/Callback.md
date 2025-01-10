@@ -75,7 +75,7 @@ void A(func f) {
 
 现在你应该明白了回调函数是怎么一回事了吧，相比回调函数来说我更愿意将其看做**函数变量**。
 
-以上就是回调函数的基本原理，有想看更详细版本的请参考[这里](http://mp.weixin.qq.com/s?__biz=Mzg4OTYzODM4Mw==&mid=2247485712&idx=1&sn=3d2750dfb693f41b2483b51b60a4f44c&chksm=cfe99590f89e1c860277fe1b22c3731ec4e3b61dbb5cd2a6d9548efbc709104a38d6da812517&scene=21#wechat_redirect)。
+以上就是回调函数的基本原理，有想看更详细版本的请参考[公众号 - 码农的荒岛求生，10张图让你彻底理解回调函数](https://mp.weixin.qq.com/s/eFYM4uOIF09t8b9tTD523A)
 
-以上仅仅是回调函数的一种用途，回调函数在基于事件驱动编程以及异步编程时更是必备的，关于事件驱动编程你可以参考[这里](http://mp.weixin.qq.com/s?__biz=Mzg4OTYzODM4Mw==&mid=2247485713&idx=1&sn=369203957fb922371535df891920dbc1&chksm=cfe99591f89e1c87c68a4e931492d86c1d31e9d83a9b500893106c1d0d5959a56d59f11de7d2&scene=21#wechat_redirect)，GUI 编程的同学对此肯定很熟悉。
+以上仅仅是回调函数的一种用途，回调函数在基于事件驱动编程以及异步编程时更是必备的，关于事件驱动编程你可以参考[公众号 - 码农的荒岛求生，高并发高性能服务器是如何实现的](https://mp.weixin.qq.com/s/Z07Hc9SRfGz6n8XhFHGVyA)，GUI 编程的同学对此肯定很熟悉。
 

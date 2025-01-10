@@ -1,5 +1,6 @@
 ---
 title: Variables(变量)
+linkTitle: Variables(变量)
 weight: 3
 ---
 
@@ -47,10 +48,10 @@ docker:
 
 变量可以通过两种方式引用字典内特定字段的变量
 
-- 使用方括号 \[] 进行引用
-   - docker\['registryMirrors'] 变量的值为<https://ac1rmo5p.mirror.aliyuncs.com>
+- 使用方括号 `[]` 进行引用
+   - `docker['registryMirrors']` 变量的值为 <https://ac1rmo5p.mirror.aliyuncs.com>
 - 使用点号 . 进行引用
-   - docker.registryMirrors 变量的值为<https://ac1rmo5p.mirror.aliyuncs.com>
+   - `docker.registryMirrors` 变量的值为 <https://ac1rmo5p.mirror.aliyuncs.com>
 
 Note：如果使用 点号 引用变量可能会引起问题，因为会与 python 字典的属性和方法冲突。所以，尽量使用方括号来引用变量
 
