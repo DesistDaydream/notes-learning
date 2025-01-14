@@ -421,6 +421,10 @@ $ curl http://localhost:9090/api/v1/label/job/values
 GET /api/v1/targets
 ```
 
+获取抓取 Targets 列表。
+
+页面上 `Status - Targets` 标签
+
 # Rules
 
 ```
