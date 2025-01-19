@@ -10,7 +10,7 @@ weight: 20
 > 参考：
 >
 > - [官方文档](https://docs.docker.com/engine/reference/builder/)
-> - [官方文档-构建镜像的最佳实践](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
+> - [官方文档 - 构建镜像的最佳实践](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
 
 # FROM - 指定 base 镜像
 

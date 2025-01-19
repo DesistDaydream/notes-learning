@@ -250,11 +250,15 @@ impl 用于生成实现接口的 [Method stub](</docs/2.编程/Programming(编�
 
 语法：`VAR *STRUCT INTERFACE`
 
-比如，我想让 `File` 结构体实现 `io.Closer` 接口，则输入:`f *File io.Closer`，将会生成如下方法：
+- VAR 是方法的接收者的变量
+- STRUCT 是方法的接收者，也就是某个类型
+- INTERFACE 是想要让 STRUCT 实现的接口名称。名称由 `包名.接口名` 组合合成
+
+e.g. 想让 `File` 结构体实现 `io.Closer` 接口，则输入:`f *File io.Closer`，将会生成如下方法：
 
 ```go
 func (f *File) Close() error {
- panic("not implemented") // TODO: Implement
+    panic("not implemented") // TODO: Implement
 }
 ```
 
