@@ -82,9 +82,9 @@ ungrouped:
 
 ```
 
-## 主机与组
+# 主机与组
 
-/etc/ansible/hosts 文件使用 INI 语法书写:
+/etc/ansible/hosts 文件支持 [INI](docs/2.编程/无法分类的语言/INI.md)、[YAML](docs/2.编程/高级编程语言/Go/Go%20规范与标准库/文本处理/YAML.md) 语法书写：
 
 ```ini
 mail.example.com
@@ -144,7 +144,7 @@ other2.example.com ansible_connection=ssh ansible_ssh_user=mdehaan
 
 所有以上讨论的对于 inventory 文件的设置是一种速记法,后面我们会讨论如何将这些设置保存为 ‘host_vars’ 目录中的独立的文件.
 
-### 默认组
+## 默认组
 
 Inventory 文件中有两个默认的组，名称为：`all` 和 `ungrouped`(这两个名称是隐藏的)。all 组包含所有主机，ungrouped 组包含除了 all 有之外没有属组的主机。
 
@@ -152,6 +152,66 @@ Inventory 文件中有两个默认的组，名称为：`all` 和 `ungrouped`(这
 
 - all 和 ungrouped
 - all 和 某组
+
+## 子组
+
+> [!Warning]
+> Ansible 组名全局唯一，没有树的逻辑
+>
+> Ansible 的所有组都是平级的，<font color="#ff0000">只能让一个组引用另一个组，而不能让一个组属于另一个组</font>
+>
+> 如果 a 组中有名为 dev 的组，b 组中有名为 dev 的组。那么当处理 a 组时，会连同 b 组的 dev 一起处理。
+>
+> https://stackoverflow.com/questions/71032136/why-in-ansible-i-cant-have-same-key-in-many-children-groups
+>
+> https://stackoverflow.com/questions/64867207/ansible-intersection-of-two-host-groups-using-yaml-inventory
+>
+> PS: 既然没有从属逻辑，为啥要用 children 这种关键字和描述。。。( ╯□╰ ) 与其叫子组，不如叫引用组
+
+要让某个组引用另一个组，使用 `children` 关键字
+
+```yaml
+east:
+  hosts:
+    foo.example.com:
+    one.example.com:
+    two.example.com:
+west:
+  hosts:
+    bar.example.com:
+    three.example.com:
+prod:
+  children:
+    east:
+test:
+  children:
+    west:
+```
+
+这个 Inventory 的效果与下面这个相同
+
+```yaml
+east:
+  hosts:
+    foo.example.com:
+    one.example.com:
+    two.example.com:
+west:
+  hosts:
+    bar.example.com:
+    three.example.com:
+prod:
+  hosts:
+    foo.example.com:
+    one.example.com:
+    two.example.com:
+test:
+  hosts:
+    bar.example.com:
+    three.example.com:
+```
+
+# 主机变量与组变量
 
 ## 主机变量
 
