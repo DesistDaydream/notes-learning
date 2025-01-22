@@ -41,7 +41,7 @@ Headscale 部署很简单，推荐直接在 Linux 主机上安装。
 export HeadscaleVersion="0.22.3"
 export HeadscaleArch="amd64"
 # Headscale 用于与各个节点通信的 IP
-export HeadscaleAddr="X.X.X.X:YYY"
+export HeadscaleAddr="https://X.X.X.X:YYY"
 ```
 
 ## 准备 Headscale 相关文件及目录
@@ -97,7 +97,7 @@ wget https://raw.githubusercontent.com/juanfont/headscale/v${HeadscaleVersion}/c
 
 ```yaml
 tee /etc/headscale/config.yaml > /dev/null <<EOF
-server_url: http://${HeadscaleAddr}
+server_url: ${HeadscaleAddr}
 listen_addr: 0.0.0.0:8080
 metrics_listen_addr: 127.0.0.1:9090
 grpc_listen_addr: 0.0.0.0:50443
@@ -258,7 +258,7 @@ Tailscale 接入 Headscale：
 > 这里推荐将 DNS 功能关闭，因为它会覆盖系统的默认 DNS。
 
 ```bash
-tailscale up --login-server=http://${HeadscaleAddr} --accept-routes=true --accept-dns=false
+tailscale up --login-server=${HeadscaleAddr} --accept-routes=true --accept-dns=false
 ```
 
 执行完上面的命令后，会出现下面的信息：
@@ -284,7 +284,7 @@ Success.
 
 https://headscale.net/windows-client/
 
-Windows Tailscale 客户端想要使用 Headscale 作为控制服务器，只需在浏览器中打开 `http://${HeadscaleAddr}/windows`，根据页面提示，本质上是执行下面这些操作
+Windows Tailscale 客户端想要使用 Headscale 作为控制服务器，只需在浏览器中打开 `${HeadscaleAddr}/windows`，根据页面提示，本质上是执行下面这些操作
 
 - 添加注册表信息（两种方式）（在 `HKEY_LOCAL_MACHINE\SOFTWARE\Tailscale IPN` 位置生成信息）
   - 点击页面中的 `Windows registry file`，下载注册表文件，并运行
@@ -413,7 +413,7 @@ sysctl -p /etc/sysctl.d/ipforwarding.conf
 客户端修改注册节点的命令，在原来命令的基础上加上参数 `--advertise-routes=192.168.100.0/24`。多个 CIDR 以 `,` 分割
 
 ```bash
-tailscale up --login-server=http://${HeadscaleAddr} --accept-routes=true --accept-dns=false  --advertise-routes=172.38.40.0/24,192.168.88.0/24
+tailscale up --login-server=${HeadscaleAddr} --accept-routes=true --accept-dns=false  --advertise-routes=172.38.40.0/24,192.168.88.0/24
 ```
 
 或通过 tailscale set 命令直接增加路由

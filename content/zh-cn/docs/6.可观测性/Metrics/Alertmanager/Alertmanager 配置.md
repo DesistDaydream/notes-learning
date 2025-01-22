@@ -8,6 +8,14 @@ title: Alertmanager 配置
 >
 > - [官方文档，告警 - 配置](https://prometheus.io/docs/alerting/latest/configuration/)
 
+# alertmanager 程序标志
+
+**--storage.path** # 存储运行时数据的路径。`默认值: data/` i.e. 工作目录下的 data/ 目录。比如当前工作目录在 /alertmanager/ 运行 /bin/alertmanager 程序，那么数据会存储在 /alertmanager/data/ 目录下
+
+**--data.retention** # 数据最长保存时间。`默认值: 120h`
+
+**--data.maintenance-interval** # 垃圾收集与将静默和通知日志快照到磁盘之间的时间间隔。`默认值: 15m`
+
 # Alertmanager 配置文件
 
 下文用到的占位符说明：
@@ -282,4 +290,69 @@ config:
         - url: "http://alertmanager-webhook-dingtalk.monitoring.svc.cluster.local.:8060/dingtalk/webhook_mention_users/send"
   templates:
     - "/etc/alertmanager/config/*.tmpl"
+```
+
+### 默认配置文件
+
+```yaml
+global:
+  resolve_timeout: 5m
+
+route:
+  group_by: ["alertname"]
+  group_wait: 10s
+  group_interval: 10s
+  repeat_interval: 1h
+  receiver: "web.hook"
+receivers:
+  - name: "web.hook"
+    webhook_configs:
+      - url: "http://127.0.0.1:5001/"
+inhibit_rules:
+  - source_match:
+      severity: "critical"
+    target_match:
+      severity: "warning"
+    equal: ["alertname", "dev", "instance"]
+```
+
+### 使用腾讯企业邮箱的配置样例
+
+Note：如果要使用腾讯企业邮箱，则需要生成客户端密码，位置如下图
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fesx4v/1616068406969-84d8a216-cd2b-4438-a0e6-a6a85c64318a.jpeg)
+
+下面的配置默认会将所有告警都发送给desistdaydream@wisetv.com.cn。其中具有 network_device: interface-state 标签名和值的告警会发送给wangpeng@wisetv.com.cn
+
+```yaml
+global:
+  resolve_timeout: 5m
+  smtp_smarthost: "smtp.exmail.qq.com:587"
+  smtp_from: "desistdaydream@wisetv.com.cn"
+  smtp_auth_username: "desistdaydream@wisetv.com.cn"
+  smtp_auth_password: "bVcyqAh4jnz2hkVg"
+  smtp_hello: "qq.com"
+  smtp_require_tls: true
+route:
+  group_by: ["alertname", "cluster"]
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 5m
+  receiver: default
+  routes:
+    - receiver: "network-group"
+      group_wait: 10s
+      match:
+        network_device: interface-state
+receivers:
+  - name: "default"
+    email_configs:
+      - to: "desistdaydream@wisetv.com.cn"
+        send_resolved: true
+  - name: "network-group"
+    email_configs:
+      - to: "wangpeng@wisetv.com.cn"
+        send_resolved: true
+      - to: "desistdaydream@wisetv.com.cn"
+        send_resolved: true
 ```
