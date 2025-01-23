@@ -26,7 +26,9 @@ Program(程序) 和 Process(进程) 的区别是什么呢?
 
 比如:
 
-`root         839       1  0 Mar07 ?        Ssl   28:50 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock`
+```bash
+root         839       1  0 Mar07 ?        Ssl   28:50 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+```
 
 这就是一个 **Processs(进程)**，包括其 ID、启动时间、等等信息的集合体。进程的唯一标识符就是 ID，而启动该进程的程序是 dockerd
 
