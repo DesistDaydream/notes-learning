@@ -126,7 +126,7 @@ Public-key cryptography(公开密钥加密、非对称密钥加密)，以及根�
 - 在互联网的 C/S 架构场景中。Server 公开公钥，Client 使用公钥加密信息发送给 Server(发送密码等敏感信息)，Server 使用私钥解密后响应时，使用私钥签名，以便 Client 可以用公钥验证 Server 的真实性(防止钓鱼网站)。
 - 如图所示，Alice 在一条消息的末尾签了名，消息内容是 `Hello Bob!`，这段签署的内容一般是对消息内容进行 hash 计算后，使用 Alice 的私钥的出来的。鲍勃同时收到消息和签名。他使用 Alice 的公钥来验证消息的真实性，即，如果使用公钥计算得出来的消息与原始消息完全匹配，那就证明，这条消息确实是 Alice 发送的。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/as985c/1616125981836-028fe2ce-77f2-4929-91cc-559c4ce9cda1.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/crypto/1616125981836-028fe2ce-77f2-4929-91cc-559c4ce9cda1.png)
 
 ## Cryptographic hash function(单向加密、加密散列函数)
 

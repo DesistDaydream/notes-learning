@@ -94,7 +94,7 @@ staging                   # 适用于 staging 的 Inventory 文件
 group_vars/               # 在这里定义组的变量
    group1.yml             # 文件名以组名命名，group1.yml 是适用于 group1 组的变量
    group2.yml
-host_vars/        # 在这里定义主机变量
+host_vars/                # 在这里定义主机变量
    hostname1.yml          # 文件名以主机名命名，hostname1.yml 是适用于 hostname1 主机的变量
    hostname2.yml
 

@@ -1,7 +1,7 @@
 ---
-title: Grafana 告警
-linkTitle: Grafana 告警
-date: 2023-12-10T11:10
+title: Grafana Alerting
+linkTitle: Grafana Alerting
+date: 2021-12-02T12:21:00
 weight: 20
 ---
 
@@ -9,7 +9,15 @@ weight: 20
 
 > 参考：
 >
-> - [Grafana 8.0 告警使用](https://mp.weixin.qq.com/s/1aJOqhGOXaOas2lPUcP2-g)
+> - [官方文档，告警](https://grafana.com/docs/grafana/latest/alerting/)
+
+
+
+# Grafana 8.0 告警使用
+
+> 参考：
+>
+> - [公众号 - k8s技术圈，Grafana 8.0 告警使用](https://mp.weixin.qq.com/s/1aJOqhGOXaOas2lPUcP2-g)
 
 Grafana 除了支持丰富的数据源和图表功能之外，还支持告警功能，该功能也使得 Grafana 从一个数据可视化工具成为了一个真正的监控利器。Grafana 可以通过 Alerting 模块的配置把监控数据中的异常信息进行告警，告警的规则可以直接基于现有的数据图表进行配置，在告警的时候也会把出现异常的图表进行通知，使得我们的告警通知更加友好。
 

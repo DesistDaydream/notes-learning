@@ -40,7 +40,7 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 - **--web.config.file=/PATH/TO/FILE** # \[实验标志]用于开启 TLS 或 身份验证 配置文件路径。
 - --web.read-timeout=5m # Maximum duration before timing out read of the request, and closing idle connections.
 - **--web.max-connections=INT** # 可以同时连接到 Prometheus Server 的最大数量。`默认值:512`
-- **--web.external-url=URL**# 可以从外部访问 Prometheus 的 URL。
+- **--web.external-url=URL** # 可以从外部访问 Prometheus 的 URL。
   - 例如，如果 Prometheus 是通过反向代理提供的，用于生成返回 Prometheus 本身的相对和绝对链接。如果 URL 具有路径部分，它将被用作所有 HTTP 的前缀 Prometheus 服务的端点。 如果省略，则会自动派生相关的 URL 组件。
     - 注意：该标志在反向代理时似乎问题，详见：<https://github.com/prometheus/prometheus/issues/1583>
   - 例如，Prometheus 产生的的告警，推送到 AlertManager 时，会有一个 `generatorURL` 字段，该字段中所使用的 URL 中的 Endpoint，就是 web.external-url，这个 URL 可以让获取该告警的人，点击 URL 即可跳转到 Prometheus 的 Web 页面并使用对应的 PromQL 查询。
@@ -53,7 +53,7 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 - --web.page-title="Prometheus Time Series Collection and Processing Server" # Document title of Prometheus instance.
 - --web.cors.origin=".\*" # Regex for CORS origin. It is fully anchored. Example: 'https?://(domain1|domain2).com'
 - --web.enable-remote-write-receiver # 开启 Prometheus [Storage](/docs/6.可观测性/Metrics/Prometheus/Storage/Storage.md) 中的 Remote Storage(远程存储) 功能。
-- **--storage.tsdb.path="/PATH/DIR"**# prometheus 存储 metircs 数据的目录(使用绝对路径)
+- **--storage.tsdb.path="/PATH/DIR"** # prometheus 存储 metircs 数据的目录(使用绝对路径)
 - **--storage.tsdb.retention.time**(DURATION) # 数据的存储时间，如果既未设置此标志也未设置 storage.tsdb.retention.size 标志，`默认值：15d`。支持的单位：y，w，d，h，m，s，ms。
 - --storage.tsdb.retention.size=STORAGE.TSDB.RETENTION.SIZE # [EXPERIMENTAL] Maximum number of bytes that can be stored for blocks. Units supported: KB, MB, GB, TB, PB. This flag is experimental and can be changed in future releases.
 - --storage.tsdb.no-lockfile # 不在数据目录创建锁文件。暂时不理解什么意思，待研究
