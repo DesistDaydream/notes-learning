@@ -7,7 +7,7 @@ title: WireGuard 部署
 > 参考：
 >
 > - 原文链接：<https://mp.weixin.qq.com/s/vbt30eEGcp5JP5sHAPkwhw>
-> - 英文原文链接：<https://github.com/pirate/wireguard-docs>
+>   - 英文原文链接: https://github.com/pirate/wireguard-docs
 
 # 安装 WireGuard
 

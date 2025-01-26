@@ -262,7 +262,7 @@ SELECT
     ceil(
       (
         SELECT COUNT(*)
-        FROM cheat.${tableName}
+        FROM my_schema.my_table
         WHERE $__timeFilter(create_time)
       ) :: numeric / ${pageSize} :: numeric
     )
@@ -273,7 +273,7 @@ SELECT
 SELECT 
   COUNT(*) OVER() as "总数",
   *
-FROM cheat.${tableName} 
+FROM my_schema.my_table
 WHERE $__timeFilter(create_time)
 LIMIT ${pageSize} 
 OFFSET (${currentPage} - 1) * ${pageSize}

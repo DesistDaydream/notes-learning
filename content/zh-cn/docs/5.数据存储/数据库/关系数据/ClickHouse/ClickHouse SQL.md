@@ -193,3 +193,38 @@ DROP DATABASE IF EXISTS my_database;
 
 > [!Attention] ！！！该操作不可逆！！！`DROP DATABASE` 会删除数据库及其中的所有表
 
+## 分页
+
+获取分页列表（1 至 n 的页码列表）
+
+```sql
+WITH 
+    total_count AS (
+        SELECT COUNT(*) AS total 
+        FROM network_security.${tableName}
+        WHERE $__timeFilter(create_time)
+          AND command_id IN (${commandID})
+    )
+SELECT 
+    arrayJoin(range(1, 
+        CAST(
+            CEIL(total_count.total * 1.0 / ${pageSize}) AS UInt32
+        ) + 1
+    )) AS page_number
+FROM total_count;
+```
+
+分页查询
+
+```sql
+SELECT * FROM (
+  SELECT 
+    COUNT(*) OVER() as "指令总数",
+    *
+  FROM network_security.${tableName} 
+  WHERE $__timeFilter(create_time)
+  AND command_id IN (${commandID})
+) sub
+LIMIT ${pageSize} 
+OFFSET (${currentPage} - 1) * ${pageSize}
+```
