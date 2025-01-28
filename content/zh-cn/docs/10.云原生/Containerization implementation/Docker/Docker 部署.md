@@ -214,3 +214,18 @@ sysctl -p /etc/sysctl.d/*
 systemctl daemon-reload
 systemctl enable docker --now
 ```
+
+# 最佳实践
+
+## 非 Root 运行
+
+
+## 非 Root 使用
+
+https://stackoverflow.com/questions/73646622/permission-denied-got-permission-denied-while-trying-to-connect-to-the-docker
+
+改变 docker.socket 文件的权限即可
+
+```bash
+sudo chmod 666 /var/run/docker.sock
+```

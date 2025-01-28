@@ -1301,9 +1301,11 @@
       "docs/12.AI/Hugging Face.md",
       "docs/12.AI/LangChain.md",
       "docs/12.AI/AI Projects",
+      "docs/12.AI/AI MGMT",
       "docs/12.AI/Automation",
       "docs/12.AI/AI Company.md",
-      "docs/12.AI/为什么需要 AI.md"
+      "docs/12.AI/为什么需要 AI.md",
+      "docs/12.AI/最佳实践.md"
     ],
     "docs/12.AI/Automation": [
       "docs/12.AI/Automation/_index.md",

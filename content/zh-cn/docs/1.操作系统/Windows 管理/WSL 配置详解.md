@@ -2,7 +2,7 @@
 title: WSL 配置详解
 linkTitle: WSL 配置详解
 date: 2024-01-13T17:48
-weight: 20
+weight: 102
 ---
 
 # 概述
@@ -13,14 +13,18 @@ weight: 20
 
 wsl.conf 和 .wslconfig 是 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的配置文件，两者互相配合以定义 WSL 虚拟机的运行方式
 
-- wsl.conf 是在每个 Linux 发行版中的配置。通常是指 **本地配置**
+- wsl.conf 是在每个 WSL 中的 Linux 发行版内部的配置。通常是指 **本地配置**（tips: 本地配置就是指在 WSL 系统中，也就是 Linux 系统中的配置）
 - .wslconfig 是在 Windows 中为所有 WSL发行版配置。通常是指 **全局配置**
 
 # wsl.conf
 
+## boot
+
+**systemd**(BOOLEAN) # 是否启用 systemd
+
 # .wslconfig
 
-.wslconfig 包含两个部分: [wsl2] 和 [experimental]
+.wslconfig 包含两个部分: [wsl2](#wsl2) 和 [experimental](#experimental)
 
 ## \[wsl2]
 

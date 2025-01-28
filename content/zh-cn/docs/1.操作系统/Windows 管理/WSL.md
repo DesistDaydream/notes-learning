@@ -1,6 +1,7 @@
 ---
 title: WSL
-
+linkTitle: WSL
+weight: 101
 ---
 
 # 概述
@@ -24,7 +25,6 @@ title: WSL
 若不开启“虚拟机平台”  或 安装最新版 WSL，在安装后启动时，将可能会出现下图错误
 
 ![wsl-error.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wsl/wsl-error.png)
-
 
 ## 安装 Linux 发行版
 
@@ -79,7 +79,7 @@ wsl.exe --user root
 
 > 参考：
 > 
-> - [官方文档-WSL，概述-基本 WSL 命令](https://learn.microsoft.com/zh-cn/windows/wsl/basic-commands)
+> - [官方文档 - WSL，概述 - 基本 WSL 命令](https://learn.microsoft.com/zh-cn/windows/wsl/basic-commands)
 
 ## Syntax(语法)
 
@@ -105,5 +105,5 @@ WSL 子系统管理选项
 - **--set-default-version** # 
 - **-s, --set-default DISTRO** # 将指定的发行版设为默认
 - **--unregister DISTRO** # 将指定的发行版取消注册。
-  - <font color="#ff0000">注意</font>：若从应用商店删除特定发行版后再安装失败的话，需要通过 wsl 命令手动 unregister 一下，即可成功。
+  - <font color="#ff0000">Attention</font>：若从应用商店删除特定发行版后再安装失败的话，需要通过 wsl 命令手动 unregister 一下，即可成功。
 
