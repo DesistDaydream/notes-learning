@@ -1,6 +1,6 @@
 ---
-title: Plugins(插件)
-linkTitle: Plugins(插件)
+title: Plugins
+linkTitle: Plugins
 date: 2024-09-30T15:31
 weight: 20
 ---
@@ -11,6 +11,7 @@ weight: 20
 >
 > -
 
+**Plugins(插件)**
 
 # Clickhouse
 

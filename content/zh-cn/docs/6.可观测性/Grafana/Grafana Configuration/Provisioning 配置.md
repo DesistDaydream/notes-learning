@@ -3,12 +3,12 @@ title: Provisioning 配置
 linkTitle: Provisioning 配置
 weight: 20
 ---
-
+ 
 # 概述
 
 > 参考：
 >
-> - [官方文档，管理 - Provisioning](https://grafana.com/docs/grafana/latest/administration/provisioning/)
+> - [官方文档，管理 -  Provisioning](https://grafana.com/docs/grafana/latest/administration/provisioning/)
 
 Grafana 在一开始，只能通过 Web 页面(也就是 API)来配置 DataSources(数据源) 和 Dashboard(仪表盘)。这样做有一个缺点，就是无法提前加载数据源和仪表盘。
 
@@ -18,7 +18,16 @@ Grafana 在一开始，只能通过 Web 页面(也就是 API)来配置 DataSourc
 
 所以：有没有一种办法，可以在启动 Grafana 之前，就能直接加载这些数据呢？
 
-Grafana 从 v5.0 版本中，决定通过一个 **Provisioning(配置供应系统)** 来解决上述问题。这个系统可以通过一系列的配置文件，让 Grafana 启动时加载他们，可以瞬间让启动好的 Grafana 就具有一定数量的数据源和仪表盘。这种行为使得 GitOps 更自然。这种思路除了可以用在数据源和仪表盘上以外，还可以扩展，比如提前配好用户信息、告警信息等等
+Grafana 从 v5.0 版本中，决定通过一个 **Provisioning(配置供应系统)** 来解决上述问题。这个系统可以通过一系列的配置文件，让 Grafana 启动时加载他们，可以瞬间让启动好的 Grafana 就具有一定数量的数据源和仪表盘。这种行为使得 GitOps 更自然。这种思路除了可以用在数据源和仪表盘上以外，还可以扩展，比如提前配好用户信息、告警信息等等。
+
+Grafana 的 Provisioning(配置供应系统) 可以提供如下能力，每种能力使用一个目录
+
+| 能力                                       | 目录                             | 用途                                                                                          |
+| ---------------------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------- |
+| **[Data sources](#Data%20sources)(数据源)** | ${ProvisioningDir}/dashboards/ | 预配置 Grafana 数据源                                                                             |
+| **[Plugins](#Plugins)(插件)**              | ${ProvisioningDir}/plugins/    | 预配置 [Plugins](docs/6.可观测性/Grafana/Plugins.md)                                               |
+| **[Dashboards](#Dashboards)(仪表盘)**       | ${ProvisioningDir}/dashboards/ | 预配置 [Panel 与 Dashboard](docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Panel%20与%20Dashboard.md) |
+| **[Alerting](#Alerting)(警报)**            | ${ProvisioningDir}/alerting/   | 预配置 [Grafana Alerting](docs/6.可观测性/Grafana/Grafana%20Alerting.md)                           |
 
 # Data sources
 
@@ -51,14 +60,17 @@ datasources:
 
 # Dashboards
 
+https://grafana.com/docs/grafana/latest/administration/provisioning/#dashboards
+
 该目录下的配置文件将会指定一个**路径**，Grafana 启动时，会读取**该路径**下的所有 `*.json` 文件，并作为 Dashboard 加载到 Grafana 中。并且每隔一段时间就会检查路径下的文件，当文件有更新时，会同步更新加载到 Grafana 中的 Dashboard。
 
 > 注意：目录下的 .json 文件就是在 Web 页面导出的 Dashboard。
 
-**apiVersion(INT)** # `默认值：1`
-**providers([]Object)** #
+**apiVersion**(INT) # `默认值：1`
 
-- **name: <\STRING>** # an unique provider name. Required
+**providers**(\[]Object) #
+
+- **name**(STRING) # an unique provider name. Required
 - **orgId: 1** # Org 的 ID 号，`默认值：1`。通常 Grafana 启动后会自动创建一个名为 Main Org. 的 Org，该 Org 的 ID 为 1
 - **folder(STRING)** # 从目录读取到的所有仪表盘应该存放的文件夹。文件夹指的是 Grafana Web UI 上用于存放仪表盘的地方。若该值为空，则加载到的仪表盘存放在 General 文件夹中。
   - 注意：文件夹的名称与仪表盘的名称不能相同，否则将会报错并且无法自动生成仪表盘
@@ -121,7 +133,14 @@ providers:
 
 Grafana 的 Web UI 中将会创建 `server` 与 `application` 两个文件夹，并将对应的仪表盘放在其中。
 
-# Alert Notification Channels
+# Alerting
+
+> 参考：
+>
+> - [官方文档，Provision 警报](https://grafana.com/docs/grafana/latest/administration/provisioning/#alerting)
+> - [官方文档，提供警报资源](https://grafana.com/docs/grafana/latest/alerting/set-up/provision-alerting-resources/)
+> - [官方文档，使用配置文件来提供警报资源](https://grafana.com/docs/grafana/latest/alerting/set-up/provision-alerting-resources/file-provisioning/)
+>   - 配置文件就是指 [Provisioning 配置](docs/6.可观测性/Grafana/Grafana%20Configuration/Provisioning%20配置.md)
 
 - [Example Alert Notification Channels Config File](https://grafana.com/docs/grafana/latest/administration/provisioning/#example-alert-notification-channels-config-file)
 - [Supported Settings](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings)

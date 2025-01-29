@@ -16,7 +16,7 @@ Grafana 是开源的可视化和分析软件。它使我们可以查询，可视
 
 > 参考：
 >
-> - [官方文档，安装-安装 Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/installation/)
+> - [官方文档，安装 - 安装 Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/installation/)
 
 ## docker 方式运行 grafana
 

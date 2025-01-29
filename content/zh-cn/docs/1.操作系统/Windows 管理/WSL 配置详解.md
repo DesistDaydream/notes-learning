@@ -63,25 +63,16 @@ https://learn.microsoft.com/en-us/windows/wsl/wsl-config#experimental-settings
 - https://github.com/microsoft/WSL/issues/10753#issuecomment-1814839310
 - https://zhuanlan.zhihu.com/p/657110386
 
-在 WSL2 的 [Release 2.0.0](https://github.com/microsoft/WSL/releases/tag/2.0.0) 版本更新日志中提到了网络模式，可以镜像主机，这样就不用任何配置即可使用主机网络、主机代理、等
+在 WSL2 的 [Release 2.0.0](https://github.com/microsoft/WSL/releases/tag/2.0.0) 版本更新日志中提到了网络模式，可以镜像主机，这样就不用任何配置即可使用 主机网络、主机代理、etc.
+
+再新一点的版本可以把多个配置移到 wsl2 部分：
 
 ```ini
 [experimental]
-autoMemoryReclaim=gradual | dropcache | disabled # 好像推荐用 gradual
+autoMemoryReclaim=gradual  # gradual  | dropcache | disabled
+[wsl2]
 networkingMode=mirrored
 dnsTunneling=true
 firewall=true
 autoProxy=true
-```
-
-再新一点的版本可以把多个配置移到 wsl2 部分
-
-```ini
-[wsl2]
-networkingMode=mirrored
-dnsTunneling=true
-firewall=false
-autoProxy=true
-[experimental]
-autoMemoryReclaim=gradual
 ```
