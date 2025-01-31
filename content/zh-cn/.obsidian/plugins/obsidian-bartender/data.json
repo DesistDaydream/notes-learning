@@ -686,13 +686,12 @@
     ],
     "docs/10.云原生/Containerization implementation/容器管理": [
       "docs/10.云原生/Containerization implementation/容器管理/_index.md",
-      "docs/10.云原生/Containerization implementation/容器管理/容器管理.md",
       "docs/10.云原生/Containerization implementation/容器管理/容器镜像管理.md",
       "docs/10.云原生/Containerization implementation/容器管理/容器运行时管理",
       "docs/10.云原生/Containerization implementation/容器管理/容器非root启动.md",
+      "docs/10.云原生/Containerization implementation/容器管理/容器中使用 GPU.md",
       "docs/10.云原生/Containerization implementation/容器管理/使用 Tini 清理 Docker 容器僵死进程.md",
-      "docs/10.云原生/Containerization implementation/容器管理/性能优化与故障处理",
-      "docs/10.云原生/Containerization implementation/容器管理/未命名.md"
+      "docs/10.云原生/Containerization implementation/容器管理/性能优化与故障处理"
     ],
     "docs/10.云原生/Containerization implementation/容器管理/容器运行时管理": [
       "docs/10.云原生/Containerization implementation/容器管理/容器运行时管理/_index.md",

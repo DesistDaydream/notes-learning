@@ -9,15 +9,16 @@ weight: 2
 
 > 参考：
 >
-> - [官方文档](https://docs.docker.com/compose/compose-file/)
-> - [v3 版本规范](https://docs.docker.com/compose/compose-file/compose-file-v3/)
+> - [GitHub 项目，compose-spec/compose-spec](https://github.com/compose-spec/compose-spec)
+> - [Compose 规范](https://compose-spec.io/)
+> - [Docker 官方文档，参考 - compose 文件](https://docs.docker.com/compose/compose-file/compose-file-v3/)
 
 Compose 文件是一个 [YAML](/docs/2.编程/无法分类的语言/YAML.md) 格式的配置文件，Compose 将每个容器抽象为一个 service。顶层字段 service 的下级字段，用来定义该容器的名称。
 
 一个 Docker Compose 文件中通常包含如下顶级字段：
 
 - **version** # **必须的**。
-- **services**(map\[STRING][services](#services)) # services
+- **services**(map\[STRING][services](#services))
 - **networks**([networks](#networks))
 - **volumes**([volumes](#volumes))
 - **secrets**([secrets](#secrets))
@@ -126,6 +127,12 @@ services:
 
 注意：web 服务不会等待 redis db 完全启动 之后才启动。
 
+## deploy
+
+该字段有独立的规范，可以定义一些 services 的部署方式和生命周期。e.g. 如何使用 GPU、etc.
+
+https://docs.docker.com/reference/compose-file/deploy/
+
 ## devices
 
 指定设备映射列表。
@@ -134,10 +141,6 @@ services:
 devices:
   - "/dev/ttyUSB0:/dev/ttyUSB0"
 ```
-
-1
-2
-Plain Text
 
 ## dns
 
@@ -307,7 +310,7 @@ logging:
 > [!Warning]
 > network_mode 与 [networks](#networks) 字段互斥，若使用了 networks 字段，则相当于之前老版本将 network_mode 设置为 bridge
 >
-> TODO: 被加入的容器若重启后，加入者无法自动重新加入
+> TODO: 使用 `service:${ServiceName}` 模式的场景下，若被加入的容器若重启后，加入者无法自动重新加入
 
 e.g. 下面的例子中，other-service 会加入 some-service 的 Network namespace
 
@@ -360,16 +363,16 @@ networks:
 
 配置端口映射，有 3 种语法
 
-- `HOST:CONTAINER` # HOST 为主机上的端口，CONTAINER 为容器内的端口。
-- `CONTAINER` # 仅指定容器内的端口，主机端口随机选择
-- `IP:HOSTPORT:CONTAINERPORT` # 将容器内的端口映射到主机上指定 IP 的端口上。
+- `HostPort:ContainerPort` # HOST 为主机上的端口，CONTAINER 为容器内的端口。
+- `ContainerPort` # 仅指定容器内的端口，主机端口随机选择
+- `HostIP:HostPort:ContainerPort` # 将容器内的端口映射到主机上指定 IP 的端口上。
 
 ## restart
 
 - no：是默认的重启策略，在任何情况下都不会重启容器。
 - always：容器总是重新启动。
 - on-failure：在容器非正常退出时（退出状态非0），才会重启容器。
-- unless-stopped：在容器退出时总是重启容器，但是不考虑在Docker守护进程启动时就已经停止了的容器
+- unless-stopped：在容器退出时总是重启容器，但是不考虑在 Docker 守护进程启动时就已经停止了的容器
 
 ```yaml
 restart: "no"
@@ -378,7 +381,7 @@ restart: on-failure
 restart: unless-stopped
 ```
 
-注：swarm 集群模式，请改用 restart_policy。
+Notes：Swarm 集群模式，请改用 restart_policy。
 
 ## secrets
 

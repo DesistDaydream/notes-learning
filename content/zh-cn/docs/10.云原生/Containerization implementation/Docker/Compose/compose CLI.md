@@ -9,7 +9,7 @@ weight: 3
 
 > 参考：
 >
-> - [官方文档](https://docs.docker.com/compose/reference/)
+> - [官方文档](https://docs.docker.com/reference/cli/docker/compose/)
 
 通过 run 命令，可以在容器启动失败时，进行调试
 

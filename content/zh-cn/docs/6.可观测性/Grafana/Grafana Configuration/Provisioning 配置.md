@@ -22,12 +22,21 @@ Grafana 从 v5.0 版本中，决定通过一个 **Provisioning(配置供应系�
 
 Grafana 的 Provisioning(配置供应系统) 可以提供如下能力，每种能力使用一个目录
 
+> Notes: 可以通过 grafana.ini 的 .paths.provisioning 字段修改 ${ProvisioningDir} 的值
+
 | 能力                                       | 目录                             | 用途                                                                                          |
 | ---------------------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------- |
 | **[Data sources](#Data%20sources)(数据源)** | ${ProvisioningDir}/dashboards/ | 预配置 Grafana 数据源                                                                             |
 | **[Plugins](#Plugins)(插件)**              | ${ProvisioningDir}/plugins/    | 预配置 [Plugins](docs/6.可观测性/Grafana/Plugins.md)                                               |
 | **[Dashboards](#Dashboards)(仪表盘)**       | ${ProvisioningDir}/dashboards/ | 预配置 [Panel 与 Dashboard](docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Panel%20与%20Dashboard.md) |
 | **[Alerting](#Alerting)(警报)**            | ${ProvisioningDir}/alerting/   | 预配置 [Grafana Alerting](docs/6.可观测性/Grafana/Grafana%20Alerting.md)                           |
+
+默认情况下，Grafana 从 **/etc/grafana/provisioning/** 目录下读取要预加载的各种内容
+
+- **./dashboards/\*.yaml** # Grafana 启动时，会根据该路径下配置文件内的 .providers.options.path 字段的路径配置，去对应路径加载 grafana 的 dashboard 的 json 文件。
+- **./datasources/\*.yaml** # Grafana 启动时，会根据该路径下配置文件，自动加载数据源信息。
+- **./notifiers/\*.yaml** # Grafana 启动时，加载的告警配置文件。
+- **./plugins/\*.yaml** # Grafana 启动时，加载的插件的配置文件。用来管理 Grafana 插件
 
 # Data sources
 

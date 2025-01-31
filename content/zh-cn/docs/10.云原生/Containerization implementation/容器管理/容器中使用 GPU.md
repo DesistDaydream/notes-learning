@@ -1,7 +1,7 @@
 ---
-title: Docker 中使用 GPU
-linkTitle: Docker 中使用 GPU
-date: 2024-07-05T08:42
+title: 容器中使用 GPU
+linkTitle: 容器中使用 GPU
+date: 2022-07-05T08:42:00
 weight: 20
 ---
 
@@ -9,9 +9,33 @@ weight: 20
 
 > 参考：
 >
-> -
 
-### Docker 19.03，增加了对--gpus 选项的支持，我们在 docker 里面想读取 nvidia 显卡再也不需要额外的安装 nvidia-docker 了，下面开始实战
+## Nvidia
+
+> 参考：
+>
+> - [Nvidia 官方文档，容器工具包 - 安装指南](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+
+安装 **Container Toolkit(容器工具包，简称 ctk)**
+
+> Notes: 若不安装 ctk，启动容器指定 GPU 时将会报错: `docker: Error response from daemon: could not select device driver "" with capabilities: [[gpu]]. 3`
+
+Ubuntu
+
+```bash
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+  && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+    sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+```
+
+```bash
+apt update
+apt install -y nvidia-container-toolkit
+```
+
+# 最佳实践
+## Docker 19.03，增加了对--gpus 选项的支持，我们在 docker 里面想读取 nvidia 显卡再也不需要额外的安装 nvidia-docker 了，下面开始实战
 
 1. 安装 nvidia-container-runtime：
 

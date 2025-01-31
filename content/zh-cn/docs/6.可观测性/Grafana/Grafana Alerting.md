@@ -17,6 +17,15 @@ weight: 20
 
 **Contack points(联络点)** # 当警报实例触发时如何通知联系人。e.g. 设置通过企业微信，使用 XXX 模板渲染消息，并发送给联系人。联系人是真实世界的实体，联络点是通知方式的抽象。
 
+# Alert rules
+
+一个完整的 Alert rules 由两部分组成
+
+- Query(查询语句)
+- Condition Expressions(条件表达式) # 可选。简称 Expressions
+
+Query 获取到的结果可以通过各种 Expressions 进行过滤和补充，满足条件的发送警报
+
 # Template
 
 > 参考：
@@ -28,6 +37,15 @@ weight: 20
 - Alert rule annotations
 - Alert rule labels
 - Notifcation templates
+
+获取某个 Query(查询) 或 Condition Expressions(条件表达式) 的值
+
+```go
+// 获取表达式 A 的值
+{{ index $values "A" }}
+// 或
+{{ $values.A.Value }}
+```
 
 # 警报通知数据结构
 
@@ -243,3 +261,4 @@ domain = 192.168.31.46  # 设置 Grafana 访问地址为内网 IP
 配置完成后我们重新去触发下报警，正常在邮件和钉钉中收到的图片都可以正常显示了：
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/z9BgVMEm7YtaXicIicsE3YsiatkqOAgK4z0PLlkfQxVOor0gvMf79ricofpVk5lEgmhlibezkQj5B5NaLiaI5S6g4klQ/640?wx_fmt=png)
+
