@@ -12,9 +12,9 @@ http://3ms.huawei.com/km/groups/1002549/home?l=zh-cn#category=5402776 学习材�
 
 CDN 产生的原因以及 CDN 的基本概念
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/yiw4sk/1616130888007-9f69ee92-f49a-47b2-981d-de386691f4b4.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cdn/1616130888007-9f69ee92-f49a-47b2-981d-de386691f4b4.jpeg)
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/yiw4sk/1616130887987-dbdd175d-b52c-42e6-93b4-dfb190aa09d2.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cdn/1616130887987-dbdd175d-b52c-42e6-93b4-dfb190aa09d2.jpeg)
 
 非签约模式：即不通过与内容提供方签约的方式来获取资源镜像
 
@@ -50,4 +50,13 @@ Cache 结构
 10. TCP_REFRESH_UKN_MISS：内网用户请求的资源命中了 HCS 已缓存资源，但 HCS 需要检查这个资源是否已更新，但未能判断出是否更新，代理访问。
 11. TCP_REFRESH_NC_MISS：内网用户请求的资源命中了 HCS 已缓存资源，但 HCS 需要检查这个资源是否已更新，，外网 Web 服务器通知 HCS 这个资源未修改，但未从本地吐出，代理访问。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/yiw4sk/1616130887966-257146b0-91a9-4008-a239-adfa46ce58b9.jpeg)
+# PCDN
+
+> 参考：
+>
+
+P2P 与 CDN 技术的结合
+
+京东云无线宝
+
+网心云
