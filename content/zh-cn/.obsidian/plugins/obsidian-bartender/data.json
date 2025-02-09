@@ -554,6 +554,7 @@
     ],
     "docs/1.操作系统/Windows 管理": [
       "docs/1.操作系统/Windows 管理/_index.md",
+      "docs/1.操作系统/Windows 管理/Windows MGMT.md",
       "docs/1.操作系统/Windows 管理/依赖库",
       "docs/1.操作系统/Windows 管理/注册表.md",
       "docs/1.操作系统/Windows 管理/启动项.md",

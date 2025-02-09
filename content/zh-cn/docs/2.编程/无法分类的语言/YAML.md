@@ -143,6 +143,82 @@ containers:
     image: YYY
 ```
 
+# Scalar
+
+纯量是最基本的、不可再分的值。以下数据类型都属于 YAML 的纯量。
+
+- 字符串
+- 布尔值
+- 整数
+- 浮点数
+- Null
+- 时间
+- 日期
+
+```yaml
+boolean: 
+    - TRUE  #true,True都可以
+    - FALSE  #false，False都可以
+float:
+    - 3.14
+    - 6.8523015e+5  #可以使用科学计数法
+int:
+    - 123
+    - 0b1010_0111_0100_1010_1110    #二进制表示
+null:
+    nodeName: 'node'
+    parent: ~  #使用~表示null
+string:
+    - 哈哈
+    - 'Hello world'  #可以使用双引号或者单引号包裹特殊字符
+    - newline
+      newline2    #字符串可以拆成多行，每一行会被转化成一个空格
+date:
+    - 2018-02-17    #日期必须使用ISO 8601格式，即yyyy-MM-dd
+datetime: 
+    -  2018-02-17T15:02:31+08:00    #时间使用ISO 8601格式，时间和日期之间使用T连接，最后使用+代表时区
+```
+
+## Block literal(文字块)
+
+> 参考：
+>
+> - https://yaml.org/spec/1.2.2/#chapter-8-block-style-productions
+
+这是 YAML 的亮点，特别是与 XML 相比，它的 CDATA 显得相当简陋，Block literal 可以将大块文本细致地插入文件中，常用来在传递配置文件时使用(比如通过 k8s 的 configmap 来传递某个程序的配置文件)
+
+文字块的处理总体分为两大类
+
+- `|` # 保留多行文本
+- `>` # 将多行文本合并成一行
+
+使用 `|` 符号在文本中保留行，如：
+
+```yaml
+text: |
+  This is a really long text
+  that spans multiple lines (but preserves new lines).
+  It does not need to be escaped with special brackets,
+  CDATA tags, or anything like that
+```
+
+YAML 编译器将会从第一行的第一个文本字符开始编译（并丢掉所有的缩进空格），但是会在你的文本中保留新行。
+
+对文字块的末尾换行符的处理，一共有 3 中写法
+
+- `|-` # Strip(除去)，去掉末尾的所有换行符
+- `|` # Clip(裁剪)，保留末尾一个换行符 
+- `|+` # Keep(保留)，保留末尾的所有换行符
+
+使用 `>` 符号将多行合并，如：
+
+```yaml
+text: >
+  这部分内容
+  以及这行
+  将会合并成一行
+```
+
 # YAML 示例
 
 这是一个关于发票信息的配置信息
@@ -205,7 +281,7 @@ Stack:
       foo = bar
 ```
 
-# YAML 与 JSON 数据格式对比
+# YAML 数据格式最佳实践
 
 YAML 有两种格式
 
@@ -343,164 +419,56 @@ websites:
 }
 ```
 
-## 纯量
+## 引用
 
-纯量是最基本的、不可再分的值。以下数据类型都属于 YAML 的纯量。
+& 锚点和 * 别名，可以用来引用:
 
-- 字符串
-- 布尔值
-- 整数
-- 浮点数
-- Null
-- 时间
-- 日期
+```
+defaults: &defaults
+  adapter:  postgres
+  host:     localhost
 
-数值直接以字面量的形式表示。
- number: 12.30
+development:
+  database: myapp_development
+  <<: *defaults
 
-转为 JSON 如下。
- { number: 12.30 }
-
-布尔值用 true 和 false 表示。
- isSet: true
-
-转为 JSON 如下。
- { isSet: true }
-
-null 用~表示。
- parent: ~
-
-转为 JavaScript 如下。
- { parent: null }
-
-时间采用 ISO8601 格式。
- iso8601: 2001-12-14t21:59:43.10-05:00
-
-转为 JSON 如下。
- {"iso8601": "2001-12-15T02:59:43.100Z"}
-
-日期采用复合 iso8601 格式的年、月、日表示。
- date: 1976-07-31
-
-转为 JavaScript 如下。
- { date: new Date('1976-07-31') }
-
-YAML 允许使用两个感叹号，强制转换数据类型。
- e: !!str 123f: !!str true
-
-转为 JavaScript 如下
- { e: '123', f: 'true' }
-
-六、字符串
-
-字符串是最常见，也是最复杂的一种数据类型。
-
-字符串默认不使用引号表示。
-
-str: 这是一行字符串
-
-转为 JavaScript 如下。
-
-{ str: '这是一行字符串' }
-
-如果字符串之中包含空格或特殊字符，需要放在引号之中。
-
-str: '内容： 字符串'
-
-转为 JavaScript 如下。
-
-{ str: '内容: 字符串' }
-
-单引号和双引号都可以使用，双引号不会对特殊字符转义。
-
-s1: '内容\n 字符串's2: "内容\n 字符串"
-
-转为 JavaScript 如下。
-
-{ s1: '内容\n 字符串', s2: '内容\n 字符串' }
-
-单引号之中如果还有单引号，必须连续使用两个单引号转义。
-
-str: 'labor''s day'
-
-转为 JavaScript 如下。
-
-{ str: 'labor's day' }
-
-字符串可以写成多行，从第二行开始，必须有一个单空格缩进。换行符会被转为空格。
-
-str: 这是一段 多行 字符串
-
-转为 JavaScript 如下。
-
-{ str: '这是一段 多行 字符串' }
-
-多行字符串可以使用|保留换行符，也可以使用>折叠换行。
-
-this: | Foo Barthat: > Foo Bar
-
-转为 JavaScript 代码如下。
-
-{ this: 'Foo\nBar\n', that: 'Foo Bar\n' }
-
-+表示保留文字块末尾的换行，-表示删除字符串末尾的换行。
-
-s1: | Foos2: |+ Foos3: |- Foo
-
-转为 JavaScript 代码如下。
-
-{ s1: 'Foo\n', s2: 'Foo\n\n\n', s3: 'Foo' }
-
-字符串之中可以插入 HTML 标记。
-
-message: |
-
-    段落
-
-转为 JavaScript 如下。
-
-{ message: '\n
-
-\n 段落\n
-
-\n' }
-
-七、引用
-
-锚点&和别名\*，可以用来引用。
-
-defaults: \&defaults adapter: postgres host: localhostdevelopment: database: myapp_development <<: *defaultstest: database: myapp_test <<:*defaults
-
-等同于下面的代码。
-
-defaults: adapter: postgres host: localhostdevelopment: database: myapp_development adapter: postgres host: localhosttest: database: myapp_test adapter: postgres host: localhost
-
-&用来建立锚点（defaults），<<表示合并到当前数据，\*用来引用锚点。
-
-下面是另一个例子。
-
-- \&showell Steve - Clark - Brian - Oren - \*showell
-
-转为 JavaScript 代码如下。
-
-\[ 'Steve', 'Clark', 'Brian', 'Oren', 'Steve' ]
-
-### block literal（文字块）
-
-这是 YAML 的亮点，特别是与 XML 相比，它的 CDATA 显得相当简陋，block literal 可以将大块文本细致地插入文件中，常用来在传递配置文件时使用(比如通过 k8s 的 configmap 来传递某个程序的配置文件)
-
-可以使用竖线 | 指令在你的文本中保留新行，如：
-
-```yaml
-text: |   This is a really long text   that spans multiple lines (but preserves new lines).   It does not need to be escaped with special brackets,   CDATA tags, or anything like that
+test:
+  database: myapp_test
+  <<: *defaults
 ```
 
-YAML 编译器将会从第一行的第一个文本字符开始编译（并丢掉所有的缩进空格），但是会在你的文本中保留新行。
+相当于:
 
-另外，你还可以使用大于符号（>）告诉 YAML 编译器给所有新行加上条纹，并将输入的文本作为一个长行处理：
+```
+defaults:
+  adapter:  postgres
+  host:     localhost
 
-```yaml
-text: >   This is a really long text   that spans multiple lines (but preserves new lines).   It does not need to be escaped with special brackets,   CDATA tags, or anything like that
+development:
+  database: myapp_development
+  adapter:  postgres
+  host:     localhost
+
+test:
+  database: myapp_test
+  adapter:  postgres
+  host:     localhost
 ```
 
-除了这两个指令之外，你还可以使用竖线和加号 |+ ，它给位于前面的空格加上条纹，保留新行和末尾的空格。还可以使用大于号和减号 >- ，它给所有的空格加上条纹。|- 用于删除字符串末尾的换行
+**&** 用来建立锚点（defaults），**<<** 表示合并到当前数据，***** 用来引用锚点。
+
+下面是另一个例子:
+
+```yaml
+- &showell Steve 
+- Clark 
+- Brian 
+- Oren 
+- *showell 
+```
+
+转为 JavaScript 代码如下:
+
+```js
+[ 'Steve', 'Clark', 'Brian', 'Oren', 'Steve' ]
+```

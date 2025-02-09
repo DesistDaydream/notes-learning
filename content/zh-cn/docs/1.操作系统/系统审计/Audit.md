@@ -7,12 +7,12 @@ weight: 2
 
 > 参考：
 >
-> - [GitHub 组织-linux-audit](https://github.com/linux-audit)
->   - [GitHub 项目，audit-kernel](https://github.com/linux-audit/audit-kernel)
->   - [GitHub 项目，audit-userspace](https://github.com/linux-audit/audit-userspace)
-> - [红帽产品文档，RedHat7-安全指南-系统审计](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/chap-system_auditing)
-> - [红帽产品文档，RedHat9-安全强化-系统审计](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/security_hardening/auditing-the-system_security-hardening)
-> - [公众号-kernsec，Linux Audit 子系统解读](https://mp.weixin.qq.com/s/G6kE52o7OZaGYPqnuUwggQ)
+> - [GitHub 组织，linux-audit](https://github.com/linux-audit)
+>   - [GitHub 项目，linux-audit/audit-kernel](https://github.com/linux-audit/audit-kernel)
+>   - [GitHub 项目，linux-audit/audit-userspace](https://github.com/linux-audit/audit-userspace)
+> - [红帽产品文档，RedHat7 - 安全指南 - 系统审计](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/chap-system_auditing)
+> - [红帽产品文档，RedHat9 - 安全强化 - 系统审计](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/security_hardening/auditing-the-system_security-hardening)
+> - [公众号 - kernsec，Linux Audit 子系统解读](https://mp.weixin.qq.com/s/G6kE52o7OZaGYPqnuUwggQ)
 > - [linux audit审计（8）--开启audit对系统性能的影响](https://www.cnblogs.com/xingmuxin/p/8875783.html)
 
 Audit 是实现的 Linux 系统审计的软件包，其中包含两个部分：
