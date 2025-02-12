@@ -208,6 +208,34 @@ https://stackoverflow.com/questions/39066998/what-are-the-meaning-of-values-at-p
 23. **vsize** # Virtual memory size in bytes.
 24. **rss** # Resident Set Size. 进程在实内存中拥有的页数。  这只是计入文本、数据或堆栈空间的页面。  这不包括尚未按需加载或换出的页面。  该值不准确；请参阅下面的 /proc/PID/statm。
 
+计算进程启动时间的脚本
+
+```bash
+#!/bin/bash
+
+# 获取进程的 PID
+pid=$1
+
+# 获取进程的 starttime（以时钟周期表示）
+starttime=$(cat /proc/$pid/stat | awk '{print $22}')
+
+# 获取系统的时钟频率（CLK_TCK）
+clk_tck=$(getconf CLK_TCK)
+
+# 获取系统的启动时间（btime）
+btime=$(cat /proc/stat | grep btime | awk '{print $2}')
+
+# 计算进程的启动时间（Unix 时间戳）
+starttime_seconds=$(echo "$starttime / $clk_tck" | bc)
+process_start_time=$(echo "$btime + $starttime_seconds" | bc)
+
+# 输出进程的启动时间（Unix 时间戳）
+echo "Process start time (Unix timestamp): $process_start_time"
+
+# 如果需要转换为可读的时间格式，可以使用 date 命令
+echo "Process start time (readable format): $(date -d @$process_start_time)"
+```
+
 ## ./status - 以人类可读形式呈现的进程状态
 
 https://man7.org/linux/man-pages/man5/proc_pid_status.5.html

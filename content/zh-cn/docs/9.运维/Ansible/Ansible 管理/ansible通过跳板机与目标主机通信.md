@@ -18,11 +18,11 @@ title: ansible通过跳板机与目标主机通信
 
 通过 ProxyCommand 选项，机器 A 能够灵活使用任意代理机制与机器 C 上的 SSH Server 端口建立连接，接着机器 A 上的 SSH Client 再与该连接进行数据交互，从而机器 A 上的 SSH Client 与机器 C 上的 SSH Server 之间建立了与一般直接 SSH 连接不太一样的间接 SSH 连接。
 
-不过由于间接 SSH 连接的透明性，逻辑上可认为机器 A 上的 SSH Client 与机器 C 上的 SSH Server 建立了直接 SSH 连接。`1``
+不过由于间接 SSH 连接的透明性，逻辑上可认为机器 A 上的 SSH Client 与机器 C 上的 SSH Server 建立了直接 SSH 连接。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/wawlgb/1616124930604-fefb5961-13b2-48ca-ad59-0e623b3bdc35.jpeg)
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/wawlgb/1616124930609-2ca4dea8-3c64-4b8f-9e78-b37dd522fdba.jpeg)
-原理
 
 ssh 命令自提供的代理机制，在机器 A 上另外单独建立与 B 的 SSH 连接，该 SSH 连接的 B 端侧与机器 C 上的 SSH Server 端口建立连接，该 SSH 连接的 A 端侧与机器 A 上的 SSH Client 建立连接。
 

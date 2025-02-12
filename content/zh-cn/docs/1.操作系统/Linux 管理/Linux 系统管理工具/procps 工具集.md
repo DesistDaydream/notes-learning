@@ -164,8 +164,9 @@ Note：该命令显示出来的带 `[]` 的进程为内核线程，一般不用�
 
 可用的 SPECIFIERS 有很多，下面仅列出常用的几个
 
-- etime # 进程启动的总时长，格式为`d-h:m:s`
-- etimes # 进程启动的总时长，以秒为单位
+- **lstart** # 进程启动的时间。输出格式为 `DDD mmm HH:MM:SS YYY`, 可以由 -D 选项更改（TODO:  用 -D 会报错: error: unsupported SysV option）
+- **etime** # 进程启动的总时长，格式为`d-h:m:s`
+- **etimes** # 进程启动的总时长，以秒为单位
 
 ## Syntax(语法)
 
@@ -191,11 +192,11 @@ https://man7.org/linux/man-pages/man1/ps.1.html#SIMPLE_PROCESS_SELECTION
 
 #### OUTPUT FORMAT CONTROL(输出格式控制)
 
-https://man.cx/ps#heading7
+https://man7.org/linux/man-pages/man1/ps.1.html#OUTPUT_FORMAT_CONTROL
 
 - **-f** # 更多显示信息
 - **-l** # 显示进程的详细信息
-- **-o \<FORMAT>** # 使用指定的格式输出。
+- **-o \<FORMAT>** # 以自定义的格式 FORMAT 输出信息。FORMAT 是以逗号或空格分隔的参数列表，详见前文
 - **-ww** # 更宽的输出，让输出的内容不受屏幕限制，可以换行显示
 
 #### OUTPUT MODIFIERS(输出模式)
@@ -203,7 +204,6 @@ https://man.cx/ps#heading7
 https://man.cx/ps#heading8
 
 - **f,--forest** # 以树状结构显示输出结果。与显示线程的选项冲突
-- **-o \<FORMAT>** # 以自定义的格式 FORMAT 输出信息。FORMAT 是以逗号或空格分隔的参数列表，详见前文
 
 #### THREAD DISPLAY(线程显示)
 
