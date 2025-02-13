@@ -73,7 +73,7 @@ nux 默认 IO 调度器使用 CFQ 调度算法，支持用 ionice 命令为程�
 - Real Time ：立即访问磁盘，无视其它进程 IO
 - None 即 Best Effort，进程未指定策略和优先级时显示为 none，会使用依据 cpu nice 设置计算出优先级
 
-Linux 中 etcd 的磁盘优先级可以使用 `ionice -c2 -n0 -p `pgrep etcd\` 命令进行配置(经过 benchmark 的测试，该调整有效果，但很小)
+Linux 中 etcd 的磁盘优先级可以使用 `ionice -c2 -n0 -p $(pgrep etcd)` 命令进行配置(经过 benchmark 的测试，该调整有效果，但很小)
 
 ## 网络
 

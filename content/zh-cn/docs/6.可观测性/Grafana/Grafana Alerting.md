@@ -19,12 +19,45 @@ weight: 20
 
 # Alert rules
 
-一个完整的 Alert rules 由两部分组成
+一个完整的 Alert rules 由三部分组成
 
-- Query(查询语句)
-- Condition Expressions(条件表达式) # 可选。简称 Expressions
+- **Query(查询语句)**
+- **Condition Expressions(条件表达式)** # 可选。简称 Expressions
+- **Evaluation behavior(评估行为)** # [评估行为](#Evaluation%20behavior) 与 Prometheus 中的 [Alerting](docs/6.可观测性/Metrics/Prometheus/Alerting.md) 的评估行为类似（有一点不同是：Prom 的评估是决定是否将警报发送出去，但 Grafana 内部集成了类似 Alertmanager 的逻辑，所以评估是决定是否将警报交给 [Notifications](#Notifications) 组件）
 
-Query 获取到的结果可以通过各种 Expressions 进行过滤和补充，满足条件的发送警报
+Grafana 会评估 Expressions 的处理结果（对 Query 查询结果的处理结果），满足条件的将会交给 Notifications 组件。
+
+## Evaluation behavior
+
+https://grafana.com/docs/grafana/latest/alerting/fundamentals/alert-rule-evaluation/
+
+为 Alert rules 定义 **Evaluation behavior(评估行为)**，评估成功后，会改变警报的状态，并将某些状态的警报交给 Notification policies(通知策略) 以便对警报进行后续处理。
+
+等待多久、间隔多久、查询出错或查询没数据时怎么办、etc. 都属于评估行为。包括如下几个部分
+
+- **Evaluation name** # 评估行为名称
+- **Evaluation interval** # 每次评估行为的间隔
+- **Period during** # 满足 Alert rules 中定义的条件后等待多长时间触发警报
+- **No data and Error handing** # 当 Alert rules 没有数据或者执行错误时的处理方式
+    - <font color="#ff0000">Notes: 截至 11.5.1 版本，默认的 No data 处理方式是 No Data，这会导致每隔默认的 4h 就发送一次警报</font>，最好将 No data 的行为改为 Normal。
+
+![600](https://notes-learning.oss-cn-beijing.aliyuncs.com/grafana/alerting/20250213083518945.png)
+
+# Notifications
+
+https://grafana.com/docs/grafana/latest/alerting/fundamentals/notifications/
+
+Notifications 由下面几部分组成
+
+- Notification policies
+- Contact points
+
+开始定义您的联系点，以指定如何接收您的警报通知。然后，配置您的警报规则将其警报发送到联系点或使用通知策略树以灵活地将警报路由到联系点。
+
+## Notification policies
+
+## Contact points
+
 
 # Template
 
@@ -59,8 +92,7 @@ https://grafana.com/docs/grafana/latest/alerting/configure-notifications/templat
 
 Grafana 除了支持丰富的数据源和图表功能之外，还支持告警功能，该功能也使得 Grafana 从一个数据可视化工具成为了一个真正的监控利器。Grafana 可以通过 Alerting 模块的配置把监控数据中的异常信息进行告警，告警的规则可以直接基于现有的数据图表进行配置，在告警的时候也会把出现异常的图表进行通知，使得我们的告警通知更加友好。
 
-渠道
---
+## 渠道
 
 Grafana Alerting 支持多种告警渠道，比如钉钉、Discord、Email、Kafka、Pushover、Telegram、Webhook 等等，我们这里可以使用钉钉和 Email 进行展示说明。
 
@@ -128,8 +160,7 @@ Grafana 还内置支持了钉钉，所以如果我们想把告警消息接入钉
 
 测试通过后点击 `Save` 保存该通知渠道即可。这样我们就创建了两个通知渠道，也可以根据需要设置一个默认的渠道，如果还有其他的渠道需求，可以自行添加即可。
 
-规则
---
+## 规则
 
 在通知渠道的左侧就是一个 `Alert rules` 告警规则的选项卡，点击该页面下面的 `How to add an alert` 按钮就有提示如果创建一个告警：
 
