@@ -21,7 +21,7 @@ weight: 20
 >
 > - [官方文档，SQL 参考 - 函数](https://clickhouse.com/docs/en/sql-reference/functions)
 
-- Regular Functions(常规函数)
+- [Regular Functions](#Regular%20Functions)(常规函数)
 - Aggregate Functions(聚合函数)
 - Table Functions(表函数)
 - Window Functions(窗口函数)
@@ -98,6 +98,10 @@ toStartOfXXX
 - [toStartOfInterval](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartofinterval) # 通用函数，可以在参数中指定 向上/向下 舍入的具体逻辑。
   - e.g. `toStartOfInterval(t, INTERVAL 1 YEAR)` 的返回值与 `toStartOfYear(t)` 相同
   - e.g. `SELECT toStartOfInterval(toDateTime('2023-01-01 14:45:00'), INTERVAL 1 MINUTE, toDateTime('2023-01-01 14:35:30'))` 结果为 `2023-01-01 14:44:30`
+
+### JSON
+
+https://clickhouse.com/docs/en/sql-reference/functions/json-functions
 
 ## Aggregate Functions
 
@@ -227,4 +231,15 @@ SELECT * FROM (
 ) sub
 LIMIT ${pageSize} 
 OFFSET (${currentPage} - 1) * ${pageSize}
+```
+
+# 处理 JSON 结构与 Base64 编码
+
+```sql
+SELECT
+    JSONExtractString(base64Decode(detail_info), 'accuracy') AS accuracy_value,
+    COUNT(*) AS accuracy_count
+FROM network_security.td_host_control_event
+WHERE $__timeFilter(found_time)
+GROUP BY accuracy_value
 ```
