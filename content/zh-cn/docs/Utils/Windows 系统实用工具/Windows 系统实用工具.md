@@ -102,7 +102,7 @@ PixPin # https://pixpinapp.com/
 
 # 其他
 
-OpenArk # 一款用于 Windows 的开源反 rookit (ARK) 工具
+OpenArk # 一款开源的用于 Windows 的反 rookit (ARK) 工具
 
 - https://github.com/BlackINT3/OpenArk
 

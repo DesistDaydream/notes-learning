@@ -47,6 +47,43 @@ K8S 生态的组件都会提供 / metric 接口以提供自监控，这里列下
 
 将 Kubernetes 中 Event 资源的内容导出到多个目的地
 
+# Process Exporter
+
+> 参考：
+>
+> - [GitHub 项目，ncabatoff/process-exporter](https://github.com/ncabatoff/process-exporter)
+
+process_names 下的数组定义进程组名称及该进程组的匹配条件，一共 3 个匹配方式
+
+- **comm** # 与 /proc/${pid}/stat 中第二个字段进行匹配
+- **exe** # 
+- **cmdline** # 与进程的所有参数进行匹配
+
+```yaml
+process_names:
+  # comm is the second field of /proc/<pid>/stat minus parens.
+  # It is the base executable name, truncated at 15 chars.
+  # It cannot be modified by the program, unlike exe.
+  - comm:
+    - bash
+
+  # exe is argv[0]. If no slashes, only basename of argv[0] need match.
+  # If exe contains slashes, argv[0] must match exactly.
+  - exe:
+    - postgres
+    - /usr/local/bin/prometheus
+
+  # cmdline is a list of regexps applied to argv.
+  # Each must match, and any captures are added to the .Matches map.
+  - name: "{{.ExeFull}}:{{.Matches.Cfgfile}}"
+    exe:
+    - /usr/local/bin/process-exporter
+    cmdline:
+    - -config.path\s+(?P<Cfgfile>\S+)
+```
+
+若进程组不指定 name 字段，默认为 `{{.ExeBase}}`(可执行文件的 basename)
+
 # Nginx Exporter
 
 参考：[GitHub 项目](https://github.com/nginxinc/nginx-prometheus-exporter)
