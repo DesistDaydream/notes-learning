@@ -21,7 +21,7 @@ proc 文件系统不用于存储。其主要目的是为硬件，内存，运行
 
 **每个进程在 /proc 下有一个名为自己进程号的目录，该目录记载了该进程相关的 proc 信息。**
 
-这些目录的详细用处详见 [Process info](docs/1.操作系统/Kernel/Process/Process%20info.md)
+这些目录的详细用处详见 [Process info](/docs/1.操作系统/Kernel/Process/Process%20info.md)
 
 # /proc/cmdline - 引导系统时，传递给内核的参数
 

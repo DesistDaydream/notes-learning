@@ -48,3 +48,12 @@ https://prometheus.io/docs/introduction/faq/#can-i-change-the-timezone-why-is-ev
 > - <https://mp.weixin.qq.com/s/RMtjCiWgTFnKhnTBQc-WLA>
 
 大量的资源优化。改进了 relabeling 中的内存重用，优化了 WAL 重放处理，从 TSDB head series 中删除了不必要的内存使用， 以及关闭了 head compaction 的事务隔离等。
+
+# 3.0
+
+> 参考：
+>
+> - [公众号 - CNCF，Prometheus 3.0](https://mp.weixin.qq.com/s/cNvyJx5E3hrHYlfcjSWm0Q)
+> - [官方博客，Prometheus 3.0 migration guide](https://prometheus.io/docs/prometheus/3.0/migration/)
+
+由于 TSDB 格式变化，2.0 - 3.0 之间的版本变化需要先升级到 v2.55 才可以升级到 v3

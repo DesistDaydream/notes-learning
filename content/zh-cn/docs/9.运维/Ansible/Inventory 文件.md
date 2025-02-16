@@ -84,7 +84,7 @@ ungrouped:
 
 # 主机与组
 
-/etc/ansible/hosts 文件支持 [INI](docs/2.编程/无法分类的语言/INI.md)、[YAML](docs/2.编程/高级编程语言/Go/Go%20规范与标准库/文本处理/YAML.md) 语法书写：
+/etc/ansible/hosts 文件支持 [INI](/docs/2.编程/无法分类的语言/INI.md)、[YAML](/docs/2.编程/高级编程语言/Go/Go%20规范与标准库/文本处理/YAML.md) 语法书写：
 
 ```ini
 mail.example.com

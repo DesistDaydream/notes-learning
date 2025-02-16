@@ -67,4 +67,4 @@ Kubernetes 使用 container runtime 以便在 Pods 运行容器。
 
 kubeadm 的配置文件主要用来**部署集群所用**，其中包括初始化集群所需的所有信息。
 
-**kubeadm-config.yaml** # kubeadm 所需的配置文件，一般使用这个名字。可以通过 --config 参数指定其他的文件。详见 [kubeadm Configuration](docs/10.云原生/Kubernetes/Kubernetes%20管理/kubeadm%20命令行工具/kubeadm%20Configuration.md)
+**kubeadm-config.yaml** # kubeadm 所需的配置文件，一般使用这个名字。可以通过 --config 参数指定其他的文件。详见 [kubeadm Configuration](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubeadm%20命令行工具/kubeadm%20Configuration.md)

@@ -8,6 +8,8 @@ weight: 1
 > 参考：
 >
 > - [官方文档](https://prometheus.io/docs/alerting/latest/alertmanager/)
+> - 学习资料
+> -  [公众号 - 运维开发故事，深入剖析Alertmanager：解锁告警管理的核心逻辑](https://mp.weixin.qq.com/s/RKZn9q0UR4uXq9Ls2oeGxg)
 
 Prometheus Alert 介绍详见 Prometheus Server Alert 说明
 

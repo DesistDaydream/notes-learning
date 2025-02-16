@@ -69,4 +69,4 @@ Vector 可以部署为两个角色，既可以作为数据采集的 Agent，也�
 >
 > - [官方文档，参考 - API](https://vector.dev/docs/reference/api/)
 
-Vector 提供 [GraphQL](docs/2.编程/API/GraphQL.md) API
+Vector 提供 [GraphQL](/docs/2.编程/API/GraphQL.md) API

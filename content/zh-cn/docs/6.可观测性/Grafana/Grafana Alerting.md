@@ -23,7 +23,7 @@ weight: 20
 
 - **Query(查询语句)**
 - **Condition Expressions(条件表达式)** # 可选。简称 Expressions
-- **Evaluation behavior(评估行为)** # [评估行为](#Evaluation%20behavior) 与 Prometheus 中的 [Alerting](docs/6.可观测性/Metrics/Prometheus/Alerting.md) 的评估行为类似（有一点不同是：Prom 的评估是决定是否将警报发送出去，但 Grafana 内部集成了类似 Alertmanager 的逻辑，所以评估是决定是否将警报交给 [Notifications](#Notifications) 组件）
+- **Evaluation behavior(评估行为)** # [评估行为](#Evaluation%20behavior) 与 Prometheus 中的 [Alerting](/docs/6.可观测性/Metrics/Prometheus/Alerting.md) 的评估行为类似（有一点不同是：Prom 的评估是决定是否将警报发送出去，但 Grafana 内部集成了类似 Alertmanager 的逻辑，所以评估是决定是否将警报交给 [Notifications](#Notifications) 组件）
 
 Grafana 会评估 Expressions 的处理结果（对 Query 查询结果的处理结果），满足条件的将会交给 Notifications 组件。
 
@@ -101,18 +101,18 @@ Grafana Alerting 支持多种告警渠道，比如钉钉、Discord、Email、Kaf
 邮箱告警通常是最常见的告警接收方式，通过 Grafana 告警需要在 Grafana 的配置文件中配置 stmp 服务。在配置文件 `/etc/grafana/grafana.ini` 文件中添加 `SMTP/Emailing` 配置块并开启 `Alerting`：
 
 ```ini
-#################################### SMTP / Emailing ##########################  
-[smtp]  
-enabled = true  
-host = smtp.163.com:465  # 我们这里使用163的邮箱  
-user = xxx@163.com  
-password = <email password>  # 使用网易邮箱的授权码  
-skip_verify = true  
+#################################### SMTP / Emailing ##########################
+[smtp]
+enabled = true
+host = smtp.163.com:465  # 我们这里使用163的邮箱
+user = xxx@163.com
+password = <email password>  # 使用网易邮箱的授权码
+skip_verify = true
 from_address = xxx@163.com
 
-#################################### Alerting ############################  
-[alerting]  
-enabled = true  
+#################################### Alerting ############################
+[alerting]
+enabled = true
 execute_alerts = true
 ```
 
@@ -122,8 +122,8 @@ execute_alerts = true
 
 配置完成后重新启动 Grafana：
 
-`☸ ➜ systemctl daemon-reload  
-☸ ➜ systemctl restart grafana-server  
+`☸ ➜ systemctl daemon-reload
+☸ ➜ systemctl restart grafana-server
 `
 
 回到 Grafana 页面中点击左侧的 `Notification channels` 开始添加消息通知渠道：
@@ -208,7 +208,7 @@ Grafana 还内置支持了钉钉，所以如果我们想把告警消息接入钉
 
 ✔ Downloaded grafana-image-renderer v3.3.0 zip successfully
 
-Please restart Grafana after installing plugins. Refer to Grafana documentation for instructions if necessary.  
+Please restart Grafana after installing plugins. Refer to Grafana documentation for instructions if necessary.
 ☸ ➜ systemctl restart grafana-server
 
 `
@@ -216,15 +216,15 @@ Please restart Grafana after installing plugins. Refer to Grafana docum
 再一次触发报警的时候可能还是不会正常渲染图形，查看 `Grafana` 的日志可以了解到相关错误信息：
 
 ```
-☸ ➜ journalctl -u grafana-server -f  
-......  
-Nov 30 18:19:01 node2 grafana-server[62536]: t=2021-11-30T18:19:01+0800 lvl=eror msg="Render request failed" logger=plugins.backend pluginId=grafana-image-renderer url="http://localhost:3000/d-solo/oq26nAFnz/nodejie-dian-jian-kong?orgId=1&panelId=2&render=1" error="Error: Failed to launch the browser process!\n/var/lib/grafana/plugins/grafana-image-renderer/chrome-linux/chrome: error while loading shared libraries: libatk-1.0.so.0: cannot open shared object file: No such file or directory\n\n\nTROUBLESHOOTING: https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md\n"  
-......  
+☸ ➜ journalctl -u grafana-server -f
+......
+Nov 30 18:19:01 node2 grafana-server[62536]: t=2021-11-30T18:19:01+0800 lvl=eror msg="Render request failed" logger=plugins.backend pluginId=grafana-image-renderer url="http://localhost:3000/d-solo/oq26nAFnz/nodejie-dian-jian-kong?orgId=1&panelId=2&render=1" error="Error: Failed to launch the browser process!\n/var/lib/grafana/plugins/grafana-image-renderer/chrome-linux/chrome: error while loading shared libraries: libatk-1.0.so.0: cannot open shared object file: No such file or directory\n\n\nTROUBLESHOOTING: https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md\n"
+......
 ```
 
 要解决这个问题我们需要安装几个 `puppeteer` 的依赖包：
 
-`☸ ➜ yum install atk at-spi2-atk libxkbcommon-x11-devel libXcomposite gtk3 -y  
+`☸ ➜ yum install atk at-spi2-atk libxkbcommon-x11-devel libXcomposite gtk3 -y
 `
 
 依赖安装完成后正常收到的告警消息通知就包含图形数据了：
@@ -234,16 +234,16 @@ Nov 30 18:19:01 node2 grafana-server[62536]: t=2021-11-30T18:19:01+0800 lv
 只是渲染的图形中文是乱码，这主要是 Linux 字体库对中文支持不好的原因，我们只需要给服务器的 Linux 系统安装支持的中文字体库即可，这里我们安装文泉驿字体库：
 
 ```
-☸ ➜ yum search wqy  
-Loaded plugins: fastestmirror  
-Loading mirror speeds from cached hostfile  
- * base: mirrors.aliyun.com  
- * epel: mirrors.bfsu.edu.cn  
- * extras: mirrors.aliyun.com  
- * updates: mirrors.aliyun.com  
-================================================ N/S matched: wqy =================================================  
-wqy-microhei-fonts.noarch : Compact Chinese fonts derived from Droid  
-wqy-unibit-fonts.noarch : WenQuanYi Unibit Bitmap Font  
+☸ ➜ yum search wqy
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: mirrors.aliyun.com
+ * epel: mirrors.bfsu.edu.cn
+ * extras: mirrors.aliyun.com
+ * updates: mirrors.aliyun.com
+================================================ N/S matched: wqy =================================================
+wqy-microhei-fonts.noarch : Compact Chinese fonts derived from Droid
+wqy-unibit-fonts.noarch : WenQuanYi Unibit Bitmap Font
 wqy-zenhei-fonts.noarch : WenQuanYi Zen Hei CJK Font
 
   Name and summary matches only, use "search all" for everything.
@@ -265,19 +265,19 @@ wqy-zenhei-fonts.noarch : WenQuanYi Zen Hei CJK Font
 
 
 ```
-#################################### External image storage ##########################  
-[external_image_storage]  
+#################################### External image storage ##########################
+[external_image_storage]
 provider = s3  # 使用 s3 模式
 
-[external_image_storage.s3]  
-endpoint = oss-cn-beijing.aliyuncs.com  
-bucket = <bucket>  
-region = oss-cn-beijing  
-access_key = <ak>  # 使用阿里云后台的ak和sk进行配置  
+[external_image_storage.s3]
+endpoint = oss-cn-beijing.aliyuncs.com
+bucket = <bucket>
+region = oss-cn-beijing
+access_key = <ak>  # 使用阿里云后台的ak和sk进行配置
 secret_key = <sk>
 
-#################################### Server ####################################  
-[server]  
+#################################### Server ####################################
+[server]
 domain = 192.168.31.46  # 设置 Grafana 访问地址为内网 IP
 ```
 
@@ -285,8 +285,8 @@ domain = 192.168.31.46  # 设置 Grafana 访问地址为内网 IP
 另外注意需要将 Grafana 的访问域名设置成内网 IP，否则在局域网其他节点上访问不到，配置完成后重启 Grafana 即可：
 
 ```
-☸ ➜ systemctl daemon-reload  
-☸ ➜ systemctl restart grafana-server  
+☸ ➜ systemctl daemon-reload
+☸ ➜ systemctl restart grafana-server
 ```
 
 配置完成后我们重新去触发下报警，正常在邮件和钉钉中收到的图片都可以正常显示了：

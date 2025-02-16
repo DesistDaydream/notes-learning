@@ -355,7 +355,7 @@ label_replace(
 
 **vector()** # vector(s scalar) 函数将标量 s 作为没有标签的即时向量返回，即返回结果为：key: value= {}, s
 
-**scalar()** # scalar(v instant-vector) 函数的参数是一个单元素的瞬时向量,它返回其唯一的时间序列的值作为一个标量。如果度量指标的样本数量大于 1 或者等于 0, 则返回 NaN。
+**scalar()** # scalar(v instant-vector) 函数的参数是一个单元素的瞬时向量，它返回其唯一的时间序列的值作为一个标量。如果度量指标的样本数量大于 1 或者等于 0, 则返回 NaN。
 
 deriv()
 

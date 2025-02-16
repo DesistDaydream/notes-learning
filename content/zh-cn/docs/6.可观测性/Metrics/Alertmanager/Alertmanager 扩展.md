@@ -13,12 +13,12 @@ Alertmanager 自带一个 UI 界面，可以用来查看报警和静默管理。
 - [公众号-k8s 技术圈，超漂亮的 Alertmanager 可视化面板 - karma](https://mp.weixin.qq.com/s/uHSlzuVBb51-qgX92pEnLQ)
 - 比如报警历史记录等等
 
+[GitHub 项目，kubesphere/notification-manager](https://github.com/kubesphere/notification-manager) # kubesphere 出的，只有 k8s 的。
+
 [GitHub 项目，feiyu563/PrometheusAlert](https://github.com/feiyu563/PrometheusAlert) # 可以提供更多的通知功能，将告警发送到各种地方。
 
 - 利用 template.FuncMap 函数在 go tmpl 中加入了一些自定义函数，e.g. toUpper、etc.
 - 该程序在使用 [Alertmanager 数据结构](/docs/6.可观测性/Metrics/Alertmanager/Alertmanager%20数据结构.md) 中的 webhook 推送的数据结构时，<font color="#ff0000">虽然设计了 struct，但是在模板中调用 struct 中的属性时，开头字母要是小写，这种模板跟很多扩展都不通用</font>。
-
-[GitHub 项目，kubesphere/notification-manager](https://github.com/kubesphere/notification-manager) # kubesphere 出的，只有 k8s 的。
 
 [GitHub 项目，timonwong/prometheus-webhook-dingtalk](https://github.com/timonwong/prometheus-webhook-dingtalk) # 对接钉钉。提供 pr，增加过 feature
 

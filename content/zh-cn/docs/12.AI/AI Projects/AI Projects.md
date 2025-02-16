@@ -19,7 +19,7 @@ https://stability.ai/
 
 - 一个快速使用 openai api 的平台。支持一键构建AI知识库，支持多用户、多模型管理。
 
-https://github.com/binary-husky/gpt_academic # 为GPT/GLM等LLM大语言模型提供实用化交互接口，特别优化论文阅读/润色/写作体验，模块化设计，支持自定义快捷按钮&函数插件，支持Python和C++等项目剖析&自译解功能，PDF/LaTex论文翻译&总结功能，支持并行问询多种LLM模型，支持chatglm3等本地模型。接入通义千问, deepseekcoder, 讯飞星火, 文心一言, llama2, rwkv, claude2, moss等。
+https://github.com/binary-husky/gpt_academic # 为 GPT/GLM 等 LLM 大语言模型提供实用化交互接口，特别优化论文阅读/润色/写作体验，模块化设计，支持自定义快捷按钮&函数插件，支持Python 和 C++ 等项目剖析 & 自译解功能，PDF/LaTex 论文翻译&总结功能，支持并行问询多种 LLM 模型，支持 chatglm3 等本地模型。接入通义千问, deepseek coder, 讯飞星火, 文心一言, llama2, rwkv, claude2, moss 等。
 
 **NovelAI** # https://novelai.net/ 写故事、作图
 
@@ -52,3 +52,13 @@ https://blog.x-agent.net/blog/xagent/
 Anthropic 公司推出的
 
 Claude 早期可以作为 [Slack](/docs/Utils/即时通信/Slack.md) 的应用被添加到 Workspace 中并无条件使用。
+
+# DeepSeek
+
+> 参考：
+>
+> - [GitHub 项目，deepseek-ai/DeepSeek-V3](https://github.com/deepseek-ai/DeepSeek-V3)
+
+https://github.com/deepseek-ai/DeepSeek-V3/blob/main/inference/model.py 核心
+
+模型解释: [B 站 - 秋葉aaaki，动态](https://www.bilibili.com/opus/1027408073324494885)

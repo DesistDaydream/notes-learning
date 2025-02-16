@@ -13,7 +13,7 @@ tags:
 >
 > - [Nmap，nping](https://nmap.org/nping/)
 
-由 [Nmap](/docs/4.数据通信/Utility/Nmap.md) 项目组开发的类似 [hping](/docs/4.数据通信/Utility/hping.md) 的工具
+由 [Nmap](/docs/7.信息安全/Utility/Nmap.md) 项目组开发的类似 [hping](/docs/4.数据通信/Utility/hping.md) 的工具
 
 每次的发包都称为一次 Probe(探测)
 

@@ -3,7 +3,7 @@ title: Provisioning 配置
 linkTitle: Provisioning 配置
 weight: 20
 ---
- 
+
 # 概述
 
 > 参考：
@@ -27,9 +27,9 @@ Grafana 的 Provisioning(配置供应系统) 可以提供如下能力，每种�
 | 能力                                       | 目录                             | 用途                                                                                          |
 | ---------------------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------- |
 | **[Data sources](#Data%20sources)(数据源)** | ${ProvisioningDir}/dashboards/ | 预配置 Grafana 数据源                                                                             |
-| **[Plugins](#Plugins)(插件)**              | ${ProvisioningDir}/plugins/    | 预配置 [Plugins](docs/6.可观测性/Grafana/Plugins.md)                                               |
-| **[Dashboards](#Dashboards)(仪表盘)**       | ${ProvisioningDir}/dashboards/ | 预配置 [Panel 与 Dashboard](docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Panel%20与%20Dashboard.md) |
-| **[Alerting](#Alerting)(警报)**            | ${ProvisioningDir}/alerting/   | 预配置 [Grafana Alerting](docs/6.可观测性/Grafana/Grafana%20Alerting.md)                           |
+| **[Plugins](#Plugins)(插件)**              | ${ProvisioningDir}/plugins/    | 预配置 [Plugins](/docs/6.可观测性/Grafana/Plugins.md)                                               |
+| **[Dashboards](#Dashboards)(仪表盘)**       | ${ProvisioningDir}/dashboards/ | 预配置 [Panel 与 Dashboard](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Panel%20与%20Dashboard.md) |
+| **[Alerting](#Alerting)(警报)**            | ${ProvisioningDir}/alerting/   | 预配置 [Grafana Alerting](/docs/6.可观测性/Grafana/Grafana%20Alerting.md)                           |
 
 默认情况下，Grafana 从 **/etc/grafana/provisioning/** 目录下读取要预加载的各种内容
 
@@ -149,7 +149,7 @@ Grafana 的 Web UI 中将会创建 `server` 与 `application` 两个文件夹，
 > - [官方文档，Provision 警报](https://grafana.com/docs/grafana/latest/administration/provisioning/#alerting)
 > - [官方文档，提供警报资源](https://grafana.com/docs/grafana/latest/alerting/set-up/provision-alerting-resources/)
 > - [官方文档，使用配置文件来提供警报资源](https://grafana.com/docs/grafana/latest/alerting/set-up/provision-alerting-resources/file-provisioning/)
->   - 配置文件就是指 [Provisioning 配置](docs/6.可观测性/Grafana/Grafana%20Configuration/Provisioning%20配置.md)
+>   - 配置文件就是指 [Provisioning 配置](/docs/6.可观测性/Grafana/Grafana%20Configuration/Provisioning%20配置.md)
 
 - [Example Alert Notification Channels Config File](https://grafana.com/docs/grafana/latest/administration/provisioning/#example-alert-notification-channels-config-file)
 - [Supported Settings](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings)

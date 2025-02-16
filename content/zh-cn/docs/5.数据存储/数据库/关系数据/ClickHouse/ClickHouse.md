@@ -87,7 +87,7 @@ https://clickhouse.com/docs/en/operations/settings
 
 - **./config.xml** # ClickHouse Server 运行配置。
 - **./config.d/** # 配置文件可以拆分到该目录，程序运行时会将该目录下的文件合并到 config.xml 主配置文件
-- **./users.xml** # 
+- **./users.xml** #
 - **./users.d/** # 配置文件可以拆分到该目录，程序运行时会将该目录下的文件合并到 users.xml 主配置文件
 
 # ClickHouse 部署
@@ -112,7 +112,7 @@ https://clickhouse.com/docs/en/integrations/sql-clients/cli
 >
 > - [官方文档，集成](https://clickhouse.com/docs/en/integrations)
 
-Grafana 数据源插件 https://github.com/grafana/clickhouse-datasource 。详见 Grafana [Plugins](docs/6.可观测性/Grafana/Plugins.md)
+Grafana 数据源插件 https://github.com/grafana/clickhouse-datasource 。详见 Grafana [Plugins](/docs/6.可观测性/Grafana/Plugins.md)
 
 - 在 https://github.com/grafana/clickhouse-datasource/tree/main/src/dashboards 有一些内置的利用 ClickHouse 本身的数据创建出来的 Grafana 仪表盘
 - [官方文档，可观测性 - Grafana](https://clickhouse.com/docs/en/observability/grafana) 有一些最佳实践和示例

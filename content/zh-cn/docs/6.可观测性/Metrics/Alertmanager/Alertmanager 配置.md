@@ -106,7 +106,7 @@ title: Alertmanager 配置
 
 - 可以使用 `group_by: ['...']` 配置禁用聚合功能。
 
-**group_interval**(DURATION) # 发送告警的间隔时间。`默认值：5m`。
+**group_interval**(DURATION) # 同组告警发送的间隔时间。`默认值：5m`。
 
 **group_wait**(DURATION) # 发送告警前，需要等待分组行为的时间。`默认值：30s`
 

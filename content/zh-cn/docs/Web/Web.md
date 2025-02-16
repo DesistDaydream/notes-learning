@@ -11,7 +11,9 @@ weight: 1
 >
 > - [Wiki, World_Wide_Web](https://en.wikipedia.org/wiki/World_Wide_Web)
 
-Web 有很多种理解
+**World Wide Web(万维网，简称 WWW)** 常被简称为 Web
+
+Web 还有有很多种理解
 
 Nginx 等软件可以提供 Web 服务。
 

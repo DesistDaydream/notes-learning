@@ -14,7 +14,7 @@ weight: 1
 > - [公众号-小林 coding，硬核！30 张图解 HTTP 常见的面试题](https://mp.weixin.qq.com/s/bUy220-ect00N4gnO0697A)
 > - [公众号-码海，51 张图助你彻底掌握 HTTP 协议](https://mp.weixin.qq.com/s/WQpxfwLArltKEjEAdOO2Pw)
 
-**HyperText Transfer Protocol(超文本传输协议，简称 HTTP)**。是基于 TCP 的用于分布式、协作式、超媒体的信息系统的应用层协议。HTTP 是 [World Wide Web(万维网,简称 WWW.就是我们俗称的 Web)](https://en.wikipedia.org/wiki/World_Wide_Web) 的数据通信基础。
+**HyperText Transfer Protocol(超文本传输协议，简称 HTTP)**。是基于 TCP 的用于分布式、协作式、超媒体的信息系统的应用层协议。HTTP 是 [World Wide Web(万维网,简称 WWW.就是我们俗称的 Web)](/docs/Web/Web.md) 的数据通信基础。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/rlkp9t/1616161240441-f2958719-b738-4698-9fca-64d90f3471ba.png)
 
