@@ -13,6 +13,9 @@ weight: 1
 > - [GitHub 官方文档](https://github.com/grafana/loki/tree/main/docs/sources/clients/promtail)
 > - [公众号，Promtail Pipeline 日志处理配置](https://mp.weixin.qq.com/s/PPNa7CYk6aaYDcvH9eTw1w)
 
+> [!Attention]
+> Grafana 弃用了 Promtail，推荐迁移到 Grafana Alloy
+
 Promtail 是将本地日志内容发送到私有 Loki 或 Grafana Cloud 的代理。通常将其部署到 有监控需求的应用程序 的每台机器上。
 
 promtail 通过类似于 `tail` 命令的这种方式来采集日志文件内容，采集完成后，添加 label，然后 push 给 Loki 。

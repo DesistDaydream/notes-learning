@@ -1,11 +1,13 @@
 ---
 title: Plugin 配置
+linkTitle: Plugin 配置
 weight: 20
 ---
 
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目文档，containerd/docs/PLUGINS.md](https://github.com/containerd/containerd/blob/main/docs/PLUGINS.md)
 
 ## 本篇笔记的记录格式
@@ -35,9 +37,9 @@ Containerd 在 TOML 配置文件中，通过 TOML 表的方式来描述一个插
 
 带 `[]` 的都是一个一个的表，表只是用来进行分组，表中的每一个 `键值对` 才是真实的配置。
 
-# \[gc.v1.scheduler] # 调度器插件
+# \[gc.v1.scheduler] - 调度器插件
 
-# \[grpc.v1.cri] # CRI 插件
+# \[grpc.v1.cri] - CRI 插件
 
 > 参考：
 > - [GitHub 项目文档，containerd/docs/cri](https://github.com/containerd/containerd/tree/main/docs/cri)
@@ -47,36 +49,39 @@ Containerd 在 TOML 配置文件中，通过 TOML 表的方式来描述一个插
 
 > - CRI 插件是当 Containerd 作为 CRI 时所使用的配置，所以 ctr、nerdctl 工具在执行某些命令时，有可能不会调用这些配置，就比如其中的 registry 配置，就算配置了，ctr pull 和 nerdctl pull 命令也无法享受到效果。但是使用 crictl 命令是没问题的。
 
-**sanbox_image = <STRING>** # 启动 Pod 时要使用的 Infra 容器。`默认值：k8s.gcr.io/pause:X.X`。这个默认值会根据当前 Containerd 的版本而改变。
+**sanbox_image**(STRING) # 启动 Pod 时要使用的 Infra 容器。`默认值：k8s.gcr.io/pause:X.X`。这个默认值会根据当前 Containerd 的版本而改变。
 
-## \[cni] # CNI 配置
+## \[cni] - CNI 配置
 
-**bin_dir = <STRING>** # CNI 二进制文件的目录 `默认值：/opt/cni/bin`
-**conf_dir = <STRING> **# CNI 配置文件的目录`默认值：/etc/cni/net.d`
+**bin_dir**(STRING) # CNI 二进制文件的目录 `默认值：/opt/cni/bin`
+**conf_dir**(STRING) # CNI 配置文件的目录`默认值：/etc/cni/net.d`
 
-## \[containerd] # Containerd 运行时配置
+## \[containerd] - Containerd 运行时配置
 
-**defautl_runtime_name = <STRING>** # containerd 进程工作时所调用的 runtime。`默认值：runc`
+**defautl_runtime_name**(STRING) # containerd 进程工作时所调用的 runtime。`默认值：runc`
 
-### \[runtimes.runc] # 当 Containerd 使用 runc 作为运行时生效的配置
+### \[runtimes.runc] - 当 Containerd 使用 runc 作为运行时生效的配置
 
-**cni_conf_dir = <STRING>** # 特定于 runc 作为 runtime 时，所使用的 CNI 配置文件目录
-**runtime_type = <STRING>** # 在 containerd 中要使用的 runtime 类型 `默认值：io.containerd.runc.v2`
+**cni_conf_dir**(STRING) # 特定于 runc 作为 runtime 时，所使用的 CNI 配置文件目录
+
+**runtime_type**(STRING) # 在 containerd 中要使用的 runtime 类型 `默认值：io.containerd.runc.v2`
 
 #### \[options]
 
-**SystemdCgroup = <BOOLEAN>** # 是否使用 systemd cgroup。`默认值：false`
+**SystemdCgroup**(BOOLEAN) # 是否使用 systemd cgroup。`默认值：false`
 
 ## \[image_decryption]
 
-## \[registry] # 访问镜像注册中心时的配置
+## \[registry] - 访问镜像注册中心时的配置
 
 > 参考：
+>
 > - [GitHub 项目文档，containerd/docs/hosts.md](https://github.com/containerd/containerd/blob/main/docs/hosts.md)
 
 注意：从 Containerd 1.4 版本开始出现的 `registry.configs` 与 `registry.mirrors` 现在(2021 年 4 月)已弃用，只有在未指定 `config_path` 时才会生效
 
-**config_path = <STRING>** # 指定一个目录来引用镜像注册中心的配置`默认值：空`
+**config_path**(STRING) # 指定一个目录来引用镜像注册中心的配置`默认值：空`
+
 该目录的格式应该为：`STRING/REGISTRY/hosts.toml`，也就是说，以镜像注册中心的域名作为目录的名称，且目录下的文件名为 `hosts.toml`
 
 假如现在有如下配置：`config_path = "/etc/containerd/registry.d"`，那么 registry.d 目录下的结构应该是下面这样的：
@@ -94,30 +99,32 @@ server = "https://docker.io"
   capabilities = ["pull", "resolve"]
 ```
 
-### \[configs] # 镜像注册中心的通用配置
+### \[configs] - 镜像注册中心的通用配置
 
 **\[REGISTRY]** # 访问 REGISTRY 镜像仓库时的配置。说白了就是发起 HTTP 请求时要设置的那些东西。
 
 - **\[tls]** # TLS 配置
-  - **insecure_skip_verify = <BOOLEAN>** # 访问镜像仓库时是否跳过证书验证。`默认值：false`
+  - **insecure_skip_verify**(BOOLEAN) # 访问镜像仓库时是否跳过证书验证。`默认值：false`
 - **\[auth]** # 发起 HTTP 请求时要使用的认证方式
-  - **username = <STRING>** # 访问镜像仓库的用户名
-  - **password = <STRING>** # 访问镜像仓库的密码
+  - **username**(STRING) # 访问镜像仓库的用户名
+  - **password**(STRING) # 访问镜像仓库的密码
 
-### \[mirrors] # 镜像注册中心的 mirrors 配置
+### \[mirrors] - 镜像注册中心的 mirrors 配置
 
 **\[REGISTRY]** # 为指定的 REGISTRY 镜像仓库配置 mirrors。例如，`[略.registry.mirrors."docker.io"]` 表示配置 docker.io 的 mirror。
 
-- **endpoint = <\[]STRING>** # 表示为 REGISTRY 提供 mirror 的镜像加速服务，是一个数组，可以使用多个镜像加速配置
+- **endpoint**(\[]STRING) # 表示为 REGISTRY 提供 mirror 的镜像加速服务，是一个数组，可以使用多个镜像加速配置
 
 ### 注册中心配置
 
 > 参考：
+>
 > - [GitHub 项目文档，containerd/containerd/docs/hosts.md](https://github.com/containerd/containerd/blob/main/docs/hosts.md)
 
 ### 配置示例
 
 配置镜像加速
+
 原始
 
 ```toml
@@ -138,6 +145,7 @@ server = "https://docker.io"
 ```
 
 配置私有镜像仓库
+
 原始
 
 ```toml
@@ -169,16 +177,16 @@ server = "https://reg.superstor.com"
 
 # \[internal.v1.opt]
 
-**path = <STRING>** # `默认值：/opt/containerd`
+**path**(STRING) # `默认值：/opt/containerd`
 
 # \[internal.v1.restart]
 
-**interval = <DURATION>** #
+**interval**(DURATION) #
 
 # \[metadata.v1.bolt]
 
 # \[monitor.v1.cgroups]
 
-# \[runtime.v2.task] # 运行时 v2 版本插件
+# \[runtime.v2.task] - 运行时 v2 版本插件
 
-**platforms = <\[]STRING>** # `默认值：linux/amd64`
+**platforms**(\[]STRING) # `默认值：linux/amd64`

@@ -10,7 +10,8 @@ weight: 1
 > 参考：
 > 
 > - [GitHub 项目，systemd/systemd](https://github.com/systemd/systemd)
-> - [Systemd 中文手册,金步国](http://www.jinbuguo.com/systemd/systemd.index.html)
+> - [官网](https://systemd.io/)
+> - [Systemd 中文手册, 金步国](http://www.jinbuguo.com/systemd/systemd.index.html)
 > - [Manual(手册)，systemd](https://man.cx/systemd)
 
 **System daemon(系统守护进程，简称 systemd)** 实质上：启动一个服务，就是启动一个程序，可以给该程序添加一些参数，也可以不添加，该程序的可执行文件一般是放在 /usr/lib/systemd/system/ 目录下的
