@@ -258,7 +258,7 @@ Tailscale 接入 Headscale：
 > 这里推荐将 DNS 功能关闭，因为它会覆盖系统的默认 DNS。
 
 ```bash
-tailscale up --login-server=${HeadscaleAddr} --accept-routes=true --accept-dns=false
+tailscale up --login-server=${HeadscaleAddr} --accept-routes=false --accept-dns=false
 ```
 
 执行完上面的命令后，会出现下面的信息：

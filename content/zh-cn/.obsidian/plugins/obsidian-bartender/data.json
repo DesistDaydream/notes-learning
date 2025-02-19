@@ -2894,12 +2894,6 @@
       "docs/6.可观测性/DataPipeline/Vector/_index.md",
       "docs/6.可观测性/DataPipeline/Vector/Vector.md",
       "docs/6.可观测性/DataPipeline/Vector/Vector Configuration.md"
-    ],
-    "docs/6.可观测性/DataPipeline": [
-      "docs/6.可观测性/DataPipeline/_index.md",
-      "docs/6.可观测性/DataPipeline/DataPipeline.md",
-      "docs/6.可观测性/DataPipeline/Vector",
-      "docs/6.可观测性/DataPipeline/Alloy"
     ]
   },
   "actionBarOrder": {},

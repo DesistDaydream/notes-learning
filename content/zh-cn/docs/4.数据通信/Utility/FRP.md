@@ -27,4 +27,6 @@ v2 的构想是基于我多年在云原生领域，特别是在 K8s 和 ServiceM
 非常感谢您对 frp 的支持。
 
 # FRP 关联文件与配置
- 
+
+https://gofrp.org/zh-cn/docs/reference/
+
