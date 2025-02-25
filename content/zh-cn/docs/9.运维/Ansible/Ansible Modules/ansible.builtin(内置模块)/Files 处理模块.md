@@ -71,10 +71,21 @@ Note：
 
 ## 参数
 
-- 必选参数
-  - **src(PATH)** # 待拷贝的源文件路径。默认从 Ansible 控制节点搜索路径，搜索逻辑可以被 remote_src 参数修改
-- 可选参数
-  - **remote_src(BOOLEAN)** # 若开启 remote_src 参数，则 src 参数将会从被管理节点搜索待拷贝的源文件。`默认值:false`
+必选参数
+
+- **src(PATH)** # 待拷贝的源文件路径。默认从 Ansible 控制节点搜索路径，搜索逻辑可以被 remote_src 参数修改
+
+> [!Note] src 参数对目录的处理，及目录结尾带不带 / 的处理
+> src 的值如果是目录，则会递归复制。
+>
+> 假如要复制的目录是 /root/example/
+>
+> - 当结尾不含 `/`. 比如 src=/root/example 则把 example/ 本身及其子目录复制到 dest 下
+> - 当结尾包含 `/`. 比如  src=/root/example/ 则只把 example/ 下的所有文件复制到 dest 下
+
+可选参数
+
+- **remote_src(BOOLEAN)** # 若开启 remote_src 参数，则 src 参数将会从被管理节点搜索待拷贝的源文件。`默认值:false`
 
 ## 应用示例
 

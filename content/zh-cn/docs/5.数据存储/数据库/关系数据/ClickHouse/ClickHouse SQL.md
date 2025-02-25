@@ -15,6 +15,13 @@ weight: 20
 
 可以在 [官方文档，SQL 参考 - 语句](https://clickhouse.com/docs/en/sql-reference/statements) 看到 ClickHouse 支持的所有 SQL 基础关键字。诸如常见的 SELECT、INSERT、etc. 还有一些独属于 ClickHouse 的关键字，e.g. KILL、OPTIMIZE、etc.
 
+SELECT 有 EXCEPT 修饰符，可以用于排除某些列，比如下面的 SQL 可以从表中排除 domain 与 url 两列（i.e 返回结果没有这俩列）
+
+```sql
+SELECT * EXCEPT (domain,url)
+FROM nginx_logs.nginx_access
+```
+
 # Function
 
 > 参考：

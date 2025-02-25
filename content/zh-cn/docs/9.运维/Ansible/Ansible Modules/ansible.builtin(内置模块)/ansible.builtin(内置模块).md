@@ -94,11 +94,11 @@ title: ansible.builtin(内置模块)
 
 ## command - 在受管理节点上执行命令
 
-官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html
+官方文档: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html
 
 ## script - 将本地脚本传输到受管理节点上并运行
 
-官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/script_module.html
+官方文档: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/script_module.html
 
 # Files - 文件处理模块
 

@@ -56,4 +56,5 @@ psql 中可以执行有多种类型的命令
 热加载配置文件
 
 - `psql -U postgres -h 127.0.0.1 -c "SELECT pg_reload_conf();"`
+- `/usr/local/pgsql/bin/psql -U pgadmin -d olp_euintf -h 127.0.0.1 -c "SELECT pg_reload_conf();"`
 
