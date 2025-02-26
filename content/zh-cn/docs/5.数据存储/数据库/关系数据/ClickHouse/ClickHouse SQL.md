@@ -110,6 +110,65 @@ toStartOfXXX
 
 https://clickhouse.com/docs/en/sql-reference/functions/json-functions
 
+解析 JSON 数据，主要包含两类
+
+- [`simpleJSON*` (`visitParam*`)](https://clickhouse.com/docs/sql-reference/functions/json-functions#simplejson-visitparam-functions)  # 这是为了极为快速解析JSON的有限子集而制造的。
+- [`JSONExtract*`](https://clickhouse.com/docs/sql-reference/functions/json-functions#jsonextract-functions) # 是为了解析普通json而制造的。可以处理的逻辑更复杂
+
+### 字典
+
+https://clickhouse.com/docs/sql-reference/functions/ext-dict-functions
+
+**Dictionary(字典)** 相关函数用于从 [Dictionary](https://clickhouse.com/docs/dictionary) 类型的数据中，根据 Key 获取各种 Value
+
+比如，假设有一个名为 `products` 的字典，包含 产品ID、名称、价格信息
+
+```sql
+SELECT dictGet('products','name', products_id) AS product_name
+FROM shopping_record
+```
+
+这个 SQL 的意思是：
+
+- 使用 shopping_record 表的 products_id 列的值作为对比用的 key
+- 从 products 表中找出来表的 **主键 与 shopping_record 表中 products_id 列的值相等**的行，获取该行 name 列的值，作为 product_name
+- <font color="#ff0000">Notes: 这里函数中没有填写要与 products 表中哪个列的值与 products_id 进行匹配。这是因为在创建 Dictionary 类型数据时，会指定哪个列作为 Key，所有调用 dict 相关函数的请求都会与 Key 列进行对比</font>。比如下面的 structure 中，除了 attribute 还有 id，那么 id 就是 key，所有的 attribute 就是该 key 的值。所以上面的例子就是 shopping_record 中的 products_id 列的值与 products 表中的 id 列进行对比，相同的就会找到对应 name 的值返回
+
+```xml
+<dictionary>
+    <name>products</name>
+    <structure>
+        <id>
+            <name>product_id</name>
+        </id>
+        <attribute>
+            <name>name</name>
+            <type>String</type>
+        </attribute>
+        <attribute>
+            <name>price</name>
+            <type>Float32</type>
+        </attribute>
+    </structure>
+    <!-- 其他配置 -->
+</dictionary>
+```
+
+---
+
+从字典表中获取值的集中基础函数：
+
+```sql
+dictGet('dict_name', attr_names, id_expr)  
+dictGetOrDefault('dict_name', attr_names, id_expr, default_value_expr)  
+dictGetOrNull('dict_name', attr_name, id_expr)
+```
+
+- **dict_name** # 表名。要从哪个表获取值
+- **attr_names** # 属性名。要从表中获取哪列的值
+- **id_expr** # 根据本表中哪个字段从字典表中查找对应的值
+- **default_value_expr** # 如果没查到对应的值返回的默认值。
+
 ## Aggregate Functions
 
 
