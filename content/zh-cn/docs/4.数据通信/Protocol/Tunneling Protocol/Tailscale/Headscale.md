@@ -190,19 +190,19 @@ ID | Name           | Created
 
 # Tailscale 客户端部署与接入 Headscale
 
-Headscale 只是实现了 Tailscale 的控制台，想要接入，依然需要使用 Tailscale 客户端。
+https://headscale.net/stable/about/clients/
 
-目前除了 iOS 客户端，其他平台的客户端都有办法自定义 Tailscale 的控制服务器。
+Headscale 只是实现了 Tailscale 的控制台，想要接入，依然需要使用 Tailscale 客户端。Headscale 默认支持最新 10 个版本的 Tailscale
 
-| OS      | 是否支持 Headscale          |
-| ------- | --------------------------- |
-| Linux   | Yes                         |
-| OpenBSD | Yes                         |
-| FreeBSD | Yes                         |
-| macOS   | Yes                         |
-| Windows | Yes 参考 Windows 客户端文档 |
-| Android | 需要自己编译客户端          |
-| iOS     | 暂不支持                    |
+| OS      | 是否支持 Headscale                                                                                                                |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Linux   | Yes                                                                                                                           |
+| OpenBSD | Yes                                                                                                                           |
+| FreeBSD | Yes                                                                                                                           |
+| macOS   | Yes                                                                                                                           |
+| Windows | Yes (see [docs](https://headscale.net/stable/usage/connect/windows/) and `/windows` on your headscale for more information)   |
+| Android | Yes (see [docs](https://headscale.net/stable/usage/connect/android/) for more information)                                    |
+| iOS     | Yes (see [docs](https://headscale.net/stable/usage/connect/apple/#macos) and `/apple` on your headscale for more information) |
 
 想要让 Tailscale 客户端接入 Headscale，大体分为两个部分
 
@@ -216,9 +216,9 @@ Headscale 只是实现了 Tailscale 的控制台，想要接入，依然需要�
 在 Tailscale 部署的节点准备环境变量
 
 ```bash
-export TailscaleVersion="1.66.1"
+export TailscaleVersion="1.78.1"
 export TailscaleArch="amd64"
-export HeadscaleAddr="X.X.X.X:YYY"
+export HeadscaleAddr="https://X.X.X.X:YYY"
 ```
 
 Tailscale 官方提供了各种 Linux 发行版的软件包，但在国内由于网络原因，这些软件源基本用不了。所以我们可以在[这里](https://pkgs.tailscale.com/stable/#static)可以找到所有 Tailscale 的二进制文件，下载，并解压
@@ -255,7 +255,7 @@ systemctl enable tailscaled --now
 
 Tailscale 接入 Headscale：
 
-> 这里推荐将 DNS 功能关闭，因为它会覆盖系统的默认 DNS。
+> 这里推荐将 DNS 功能关闭，因为它会覆盖系统的默认 DNS。关闭接收路由功能，有需要再打开，这样可以让机器只能访问到各 Tailscale
 
 ```bash
 tailscale up --login-server=${HeadscaleAddr} --accept-routes=false --accept-dns=false

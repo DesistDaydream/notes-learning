@@ -83,6 +83,36 @@ IsRunspacePushed : False
 Runspace         : System.Management.Automation.Runspaces.LocalRunspace
 ```
 
+# 关联文件与配置
+
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.5
+
+PowerShell 的配置文件称为 Profiles。与 Bash 类似，根据文件所在路径，有优先级和生效范围的概念，不同路径下的文件可以针对 单个/所有 的 用户/主机 生效。下面列出的文件优先级从低到高，所有用户所有主机的配置文件优先级最低。
+
+- `$PSHOME/Profile.ps1` # 所有用户，所有主机
+- `$PSHOME/Microsoft.PowerShell_profile.ps1` # 所有用户，当前主机
+- `$HOME/Documents/PowerShell/Profile.ps1` # 当前用户，所有主机
+- `$HOME/Documents/PowerShell/Microsoft.PowerShell_profile.ps1` # 当前用户，当前主机
+
+Notes: 这里面的 `$HOME/Documents/` 有可能因为重定向 Documents 而与实际不同，直接在 Powshell 输入 `echo env:$PROFILE` 可以查看当前用户当前主机配置文件路径：
+
+```powershell
+PS C:\Users\DesistDaydream> echo env:$PROFILE
+env:D:\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
+```
+
+使用 `$PROFILE | Select-Object *` 可以列出所有优先级的配置文件
+
+```powershell
+PS C:\Users\DesistDaydream> $PROFILE | Select-Object *
+
+AllUsersAllHosts       : C:\Program Files\PowerShell\7\profile.ps1
+AllUsersCurrentHost    : C:\Program Files\PowerShell\7\Microsoft.PowerShell_profile.ps1
+CurrentUserAllHosts    : D:\Documents\PowerShell\profile.ps1
+CurrentUserCurrentHost : D:\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
+Length                 : 56
+```
+
 # 安装与更新
 
 # 使用 PowerShell
@@ -104,3 +134,7 @@ PowerShell 中会抽象出一个 **Item(项)** 的概念，Item 可以一个 **A
 在 PowerShell 中，**Providers** 和 **Drives** 是提供对不同数据源（如文件系统、注册表、Certificate 等）的访问的特定接口。Drives 则是实际代表特定数据源的容器，比如本地磁盘驱动器、注册表驱动器等。使用 PowerShell 可以对这些数据源进行管理和操作。
 
 详见：[提供程序](/docs/1.操作系统/Terminal%20与%20Shell/WindowsShell/PowerShell/提供程序.md)
+
+# 常见问题
+
+[powershell、cmd终端修改编码](https://www.cnblogs.com/xututu6/p/16574454.html)

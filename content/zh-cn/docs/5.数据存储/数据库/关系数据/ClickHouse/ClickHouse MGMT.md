@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> - 官方文档，管理和部署
+> - [官方文档，管理和部署](https://clickhouse.com/docs/guides/manage-and-deploy-index)
 >   - 链接有点乱，官网页面关于这部分大改过。截至本文更新可以从页面的 Server Admin 点进来。
 
 # 备份与恢复

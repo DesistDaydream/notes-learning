@@ -22,6 +22,49 @@ SELECT * EXCEPT (domain,url)
 FROM nginx_logs.nginx_access
 ```
 
+## ARRAY JOIN
+
+https://clickhouse.com/docs/sql-reference/statements/select/array-join
+
+常用在多表联合查询的场景。下面的 SQL 用来从 my_table_one 表查询出某些结果，并将结果作用在 my_table_two 表中进行多次过滤。具体逻辑是：
+
+- 从 my_table_one 表中查询 start_time 与 end_time 并组成各自的数组
+- 利用 ARRAY JOIN，对 start_times 和 end_times 进行遍历，每次遍历都查询一次 my_tables_two，数组中的元素作为 WHERE 中的条件。
+
+```sql
+WITH time_ranges AS (
+  SELECT 
+    groupArray(DISTINCT start_time) AS start_times,
+    groupArray(DISTINCT end_time) AS end_times
+  FROM my_database.my_table_one
+  WHERE $__timeFilter(issue_time)
+)
+SELECT t.*
+FROM time_ranges, my_database.my_table_two AS t
+ARRAY JOIN 
+  start_times AS start_time,
+  end_times AS end_time
+WHERE t.create_time >= toDateTime(start_time) AND t.create_time <= toDateTime(end_time)
+```
+
+具体场景示例：
+
+假设我是一家快递站的负责人，每天会有多个时间段的包裹入库记录（`my_table_one`），比如：
+
+- 上午 9:00-10:00 有一批包裹
+- 下午 14:00-15:00 又有一批
+- 晚上 19:00-20:00 还有一批
+
+现在想查监控（`my_table_two`），**分别查看这三个时间段内是否有可疑人员进入仓库**。传统做法是手动记录这三个时间段，然后分三次查监控，每次输入一个时间范围。但 `ARRAY JOIN` 自动化了这个过程
+
+> [!Attention]
+> - **数组长度必须一致**：`start_times` 和 `end_times` 的数组元素需一一对应，否则会得到错误的时间段（比如一个多一个少会导致部分数据丢失逻辑）。
+> - **性能影响**：如果时间段非常多（比如 1 万个），`ARRAY JOIN` 会生成大量临时数据，可能影响查询速度。
+
+这是一个典型的 **“批量时间窗口过滤”** 需求：  
+
+**从表 A 动态获取多个时间条件，然后对表 B 进行多次时间范围过滤**，最终合并所有结果。常用于日志分析、监控告警等需要按不同时间段交叉检查数据的场景。
+
 # Function
 
 > 参考：

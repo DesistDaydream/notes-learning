@@ -58,6 +58,10 @@ Tailscale 的 **所有客户端之间的连接都是先选择 DERP 模式（中�
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/tailscale/tailscale-cli-ping-example-1.png)
 
+# Tailscale 部署
+
+在 https://pkgs.tailscale.com/stable/ 可以看到 Tailscale 的所有平台的安装包
+
 # Tailscale 关联文件与配置
 
 **/var/lib/tailscale/** # 运行时数据保存路径
