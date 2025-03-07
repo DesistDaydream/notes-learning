@@ -51,14 +51,17 @@ OPTIONS
 - **-c \<STRING>** # 团体名
 - **-v <1 | 2c | 3>** # snmp 版本
 - 认证相关选项
-  - **-A PASSWORD** # 指定认证的算法
-  - -**a PROTOCOL** # 指定认证的密码
-  - -**X PASSWORD** # 指定加密的算法
-  - **-x PROTOCOL** # 指定加密的密码
+  - **-u USERNAME** # 用户名
+  - -**a PROTOCOL** # 指定认证的算法
+  - **-A PASSWORD** # 指定认证的密码
+  - **-x PROTOCOL** # 指定加密的算法
+  - -**X PASSWORD** # 指定加密的密码
 
 EXAMPLE
 
 - snmpwalk -v 3 -u nm -l authPriv -a SHA -A nm@tjiptv -x AES -X nm@tjiptv 10.10.100.101 #
+- 华为服务器使用 snmpv3 访问。认证密码和加密密码都是 impi 用户的登录密码
+    - `snmpwalk -v3 -u root -l authPriv -a SHA -A Huawei12#$ -x AES -X Huawei12#$ 192.168.1.82`
 - snmpwalk -v 2c -c public 192.168.0.2
 - walk 第三方 MIB 内容
   - snmpwalk -v 2c -c public 172.19.42.241 HH3C-SERVER-AGENT-MIB:hh3c2014

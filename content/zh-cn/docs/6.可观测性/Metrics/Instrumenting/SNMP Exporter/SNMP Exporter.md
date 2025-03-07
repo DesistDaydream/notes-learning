@@ -14,7 +14,7 @@ Snmp Exporter 通过 snmp 采集监控数据，并转换成[ OpenMetrics 格式]
 在这个项目中，有两个组件，
 
 - **Exporter(导出器)** # 通过 snmp 抓去指标数据并转换成 OpenMetrics 格式
-- [**Generator(生成器)**](https://github.com/prometheus/snmp_exporter/blob/master/generator) # 生成 Exporter 的配置文件。
+- [**Generator(生成器)**](https://github.com/prometheus/snmp_exporter/tree/main/generator) # 生成 Exporter 的配置文件。
 
 ## Exporter(导出器)
 
@@ -76,7 +76,7 @@ Generator 使用 MIB 中的哪些信息、转换后是否需要设置标签、�
 
 **总结：Generator(生成器) 通过 `MIB 库文件` 以及 `generator.yml 文件` 这两种东西，来生成 snmp.yml 文件**
 
-> MIB 库文件一般是放在 generator 程序运行时所在目录的 mibs 目录下的，generator.yml 文件一般是放在 generator 程序运行时所在目录下。
+> MIB 库文件一般是放在 generator 程序运行时所在目录的 mibs/ 目录下的，generator.yml 文件一般是放在 generator 程序运行时所在目录下。
 >
 > 如果运行 generator 时无法在 MIB 库文件中找到 generator.yml 文件中配置的 OID，则 generator 程序运行将会报错，提示无法找到对应的 Object。此时就需要将必要的 MIB 库文件，拷贝到 mibs/ 目录下即可。
 
