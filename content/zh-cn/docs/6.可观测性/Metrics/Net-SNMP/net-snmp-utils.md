@@ -15,7 +15,7 @@ snmpwalk 与 snmpget 使用 snmp 协议的 GETNEXT 请求，向 SNMP 代理发�
 
 **/usr/local/share/snmp/mibs** # MIB 文件的默认路径。这里现阶段包含 66 个 MIB 文件。
 
-`net-snmp-config --default-mibdirs` 命令可以列出工具在使用中会读取 MIB 文件的路径，包括如下几个。
+`net-snmp-config --default-mibdirs` 命令可以列出工具在使用中会读取 MIB 文件的路径，包括如下几个：
 
 - 注意，CentOS 和 Ubuntu 的路径可能不相同。这种老程序是真滴坑。
 - **$HOME/.snmp/mibs**

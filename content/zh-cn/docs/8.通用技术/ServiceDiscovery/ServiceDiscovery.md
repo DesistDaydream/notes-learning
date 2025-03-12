@@ -1,7 +1,6 @@
 ---
 title: ServiceDiscovery
 linkTitle: ServiceDiscovery
-date: 2024-09-06T09:47
 weight: 20
 ---
 

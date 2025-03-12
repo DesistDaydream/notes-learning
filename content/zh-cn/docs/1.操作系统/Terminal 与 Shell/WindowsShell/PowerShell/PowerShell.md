@@ -15,11 +15,11 @@ PowerShell 是一种跨平台的任务自动化解决方案，由命令行 shell
 
 PowerShell 的独特之处在于，它<font color="#ff0000">接受并返回 .NET 对象</font>，而<font color="#ff0000">非纯文本</font>。这个特点让 PowerShell 可以更轻松地在一个管道中串联不通的命令。
 
-> Notes: 这里面所说的对象，就是[面向对象编程](/docs/2.编程/计算机科学/Object-oriented%20Programming/OOP.md)中常说的“对象”，就像 Go 语言中的 Struct 类似的东西，只不过是 .NET 语言中的对象。
+> [!Notes] 这里面所说的对象，就是[面向对象编程](/docs/2.编程/计算机科学/Object-oriented%20Programming/OOP.md)中常说的“对象”，就像 Go 语言中的 Struct 类似的东西，只不过是 .NET 语言中的对象。
 
 这些对象在被接收后，再交给格式化函数处理，以人类可读的方式，输出出来。
 
-我们可以在 [PowerShell 官方文档的参考 - 关于](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about)部分找到对 PowerShell 的基本概念的描述。
+我们可以在 [PowerShell 官方文档的参考 - 关于](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about) 部分找到对 PowerShell 的基本概念的描述。
 
 ## PowerShell 变量
 
@@ -50,7 +50,7 @@ cmdlet 中每个命令的名称都是由 **Verb-Noun(动词-名词)** 组成，�
 - `Get-Member` # 基于其他命令运行，可以获取 cmdlet 返回的对象信息，包括对象中的**属性、方法、等等**
 - `Get-Help` # 以命令名称为参数调用此命令，将显示一个帮助页面，其中说明了命令的各个部分。
 
-从本笔记的 [Windows 管理工具](/docs/1.操作系统/Windows%20管理/Windows%20管理工具/_index.md) 目录查找所有可用的命令，以及查看命令的用法
+从本笔记的 [Windows 管理工具](docs/1.操作系统/Windows%20管理/Windows%20管理工具/Windows%20管理工具.md) 目录查找所有可用的命令，以及查看命令的用法
 
 我们可以通过 `$psversiontable` 和 `$host` 变量查看 PowerShell 版本信息
 

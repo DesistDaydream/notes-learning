@@ -1,8 +1,15 @@
 ---
-title: Actions 样例
+title: 定时同步 GitHub 的代码仓库到 Gitee
+linkTitle: 定时同步 GitHub 的代码仓库到 Gitee
+weight: 20
 ---
 
-# 定时同步 GitHub 的代码仓库到 Gitee
+
+# 概述
+
+> 参考：
+>
+> - 
 
 该功能已经有很多实现了，这篇文章以 <https://github.com/Yikun/hub-mirror-action> 项目为例。这个项目的基本逻辑是这样的：
 
@@ -79,7 +86,9 @@ jobs:
 
 随便找一个有 ssh-keygen 命令的主机，用于生成一对密钥。使用 ssh-keygen 命令生成密钥对，ssh-keygen 命令用法详见此处
 
-    ssh-keygen -t rsa -C 373406000@qq.com
+```
+ssh-keygen -t rsa -C 我的邮箱
+```
 
 ## 配置 Gitee 公钥
 
@@ -89,7 +98,7 @@ jobs:
 
 ## 配置 私钥 和 TOKEN
 
-在 GitHub 以加密的方式传入到容器中。如果不加密，直接写到代码仓库中，那其他人就都看到了~~~~该操作主要是针对 代码仓库而言的，因为 私钥和 TOKEN 的信息，是需要在 Action 中引用的，而 Action 本身就是一摞代码~
+在 GitHub 以加密的方式传入到容器中。如果不加密，直接写到代码仓库中，那其他人就都看到了。。。该操作主要是针对 代码仓库而言的，因为 私钥和 TOKEN 的信息，是需要在 Action 中引用的，而 Action 本身就是一摞代码~
 
 在[项目仓库的 Setting 中的 Secrets](https://github.com/DesistDaydream/hub-mirror-action/settings/secrets) 中[添加](https://github.com/DesistDaydream/hub-mirror-action/settings/secrets/new) 私钥 与 TOKEN 的变量。
 

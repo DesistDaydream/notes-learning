@@ -8,10 +8,10 @@ weight: 20
 
 > 参考：
 >
-> - [官方文档-PowerShell，关于-关于变量](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variables)
-> - [官方文档-PowerShell，关于-关于自动变量](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_variables)
-> - [官方文档-PowerShell，关于-关于首选项变量](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_preference_variables)
-> - [官方文档-PowerShell，脚本-基本概念-环境变量](https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-03?view=powershell-7.3#312-environment-variables)
+> - [官方文档 - PowerShell，关于-关于变量](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variables)
+> - [官方文档 - PowerShell，关于-关于自动变量](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_variables)
+> - [官方文档 - PowerShell，关于-关于首选项变量](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_preference_variables)
+> - [官方文档 - PowerShell，脚本-基本概念-环境变量](https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-03?view=powershell-7.3#312-environment-variables)
 
 PowerShell 变量名称不区分大小写，可以包含空格和特殊字符。但是官方推荐尽量避免使用空格和特殊字符，使用起来很麻烦，详见[包含特殊字符的变量名称](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_variables#variable-names-that-include-special-characters)
 

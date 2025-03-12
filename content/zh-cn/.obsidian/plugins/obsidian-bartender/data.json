@@ -558,12 +558,12 @@
       "docs/1.操作系统/Windows 管理/依赖库",
       "docs/1.操作系统/Windows 管理/注册表.md",
       "docs/1.操作系统/Windows 管理/启动项.md",
+      "docs/1.操作系统/Windows 管理/性能评估与故障处理",
       "docs/1.操作系统/Windows 管理/File System 管理",
       "docs/1.操作系统/Windows 管理/Microsoft Management Console",
-      "docs/1.操作系统/Windows 管理/Windows Management Instrumentation.md",
       "docs/1.操作系统/Windows 管理/Windows 管理工具",
+      "docs/1.操作系统/Windows 管理/Windows Management Instrumentation.md",
       "docs/1.操作系统/Windows 管理/Windows 共享.md",
-      "docs/1.操作系统/Windows 管理/性能评估与故障处理",
       "docs/1.操作系统/Windows 管理/WSL.md",
       "docs/1.操作系统/Windows 管理/WSL 配置详解.md",
       "docs/1.操作系统/Windows 管理/WSA.md"
@@ -1459,7 +1459,7 @@
       "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/Contexts 与 Variables.md",
       "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/Workflow 文件详解",
       "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/好用的 Action.md",
-      "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/Actions 样例.md"
+      "docs/2.编程/Programming tools/SCM/GitHub/定时同步 GitHub 的代码仓库到 Gitee.md"
     ],
     "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/Workflow 文件详解": [
       "docs/2.编程/Programming tools/SCM/GitHub/GitHub Actions/Workflow 文件详解/_index.md",

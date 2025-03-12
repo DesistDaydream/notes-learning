@@ -8,7 +8,7 @@ weight: 20
 
 > 参考：
 >
-> - [官方文档-PowerShell，模块 - Management](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management)
+> - [官方文档 - PowerShell，模块 - Management](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management)
 
 管理模块可以让我们在 PowerShell 中管理系统中的 进程、服务、Item 等。
 
@@ -47,8 +47,6 @@ https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.managem
   - Notes: 这种用法可以代替 mklink 命令
 - 查看符号链接文件所指向的原始文件路径
   - `(Get-Item ${PathToFile}).Target`
-
-
 
 ## Invoke-Item
 
