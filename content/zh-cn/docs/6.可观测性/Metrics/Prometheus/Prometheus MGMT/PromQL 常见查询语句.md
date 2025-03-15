@@ -481,9 +481,9 @@ RAID阵列{{$labels.device }}由于一个或多个磁盘故障而处于退化状
       description: OOM kill detected\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
 ```
 
-#### 检测到主机EDAC可纠正的错误
+#### 检测到主机 EDAC 可纠正的错误
 
-{{ \Extra close brace or missing open brace
+Extra close brace or missing open brace
 
 ```yaml
   - alert: HostEdacCorrectableErrorsDetected
@@ -496,7 +496,7 @@ RAID阵列{{$labels.device }}由于一个或多个磁盘故障而处于退化状
       description: {{ $labels.instance }} has had {{ printf "%.0f" $value }} correctable memory errors reported by EDAC in the last 5 minutes.\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
 ```
 
-#### 检测到主机EDAC不正确的错误
+#### 检测到主机 EDAC 不正确的错误
 
 ```yaml
   - alert: HostEdacUncorrectableErrorsDetected

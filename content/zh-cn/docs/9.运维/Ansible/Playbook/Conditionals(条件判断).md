@@ -73,3 +73,33 @@ tasks:
 
 - when: testvar1 is none # 当变量 testvar1 已定义，但是值为空时。Note：值为空表示 key 后面的值什么都不写，双引号都不能有
 - when: ((groups\['kube_master'] | length) > 1) # 当 kube_master 主机组的主机数量大于 1 时。
+
+## 每次处理变量是否要判断该变量是否已被定义？
+
+在对变量的值进行判断时，尽量先判断变量是否定义，再判断其值是否为某个值，<font color="#ff0000">避免当变量没定义时报错</font>
+
+比如在模板渲染的场景中
+
+- `{% if hostvars[target]['ipmi_ip'] is defined and hostvars[target]['ipmi_ip'] != "" %}`
+- 和
+- `{% if hostvars[target]['ipmi_ip'] != "" %}` 
+
+比如在任务的 when 条件中
+
+```yaml
+- name: 任务1
+  when:
+    - scrape_hds is defined
+    - scrape_hds | bool
+```
+
+和
+
+```yaml
+- name: 任务1
+  when:
+    - scrape_hds | bool
+```
+
+上面这几个例子中的前者不会因为变量没有定义而报错
+

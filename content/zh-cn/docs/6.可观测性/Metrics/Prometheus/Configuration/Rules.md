@@ -165,7 +165,7 @@ Recording 规则名称一般采用 `level:metric:operations` 形式
 rate(node_disk_io_time_seconds_total{job="node-exporter", device=~"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)"}[5m])
 ```
 
-生成的时间序列数据可以命名为： `record: instance_device:node_disk_io_time_seconds:rate5m`
+生成的时间序列数据可以命名为： `instance_device:node_disk_io_time_seconds:rate5m`
 
 ```yaml
 groups:

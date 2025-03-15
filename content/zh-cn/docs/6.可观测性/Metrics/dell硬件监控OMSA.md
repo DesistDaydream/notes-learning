@@ -15,16 +15,16 @@ http://linux.dell.com/
 
 <https://linux.dell.com/repo/hardware/dsu/>
 
-1. 配置存储库
-   1. curl -O <https://linux.dell.com/repo/hardware/dsu/bootstrap.cgi>
-   2. bash bootstrap.cgi
-2. yum install srvadmin-all.x86_64
+- 配置存储库
+   - curl -O <https://linux.dell.com/repo/hardware/dsu/bootstrap.cgi>
+   - bash bootstrap.cgi
+- yum install srvadmin-all.x86_64
 
 Note：
 
-1. srvadmin-base # 代理程序，可以生成 snmp 信息
-2. srvadmin-server-cli # 命令行客户端，可以通过命令行查看硬件信息
-3. srvadmin-storage-cli # 存储资源的命令行客户端，不安装这个则无法获取 raid 和硬盘的数据
+- srvadmin-base # 代理程序，可以生成 snmp 信息
+- srvadmin-server-cli # 命令行客户端，可以通过命令行查看硬件信息
+- srvadmin-storage-cli # 存储资源的命令行客户端，不安装这个则无法获取 raid 和硬盘的数据
 
 下面是使用 yum 安装 OMSA 的 repo 文件
 
@@ -53,14 +53,15 @@ enabled=1
 ### 手动安装
 
 <https://www.dell.com/support/home/>去该网站输入主机号查询，然后根据关键字搜索 OMSA 并下载
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gknv4x/1616067497724-a84a9901-d1a0-4c18-9198-303c071c9960.jpeg)
 
-1. 解压已下载的安装包
-   1. mkdir dell-omsa
-   2. tar -zxvf OM-SrvAdmin-Dell-Web-LX-9.3.0-3465_A00.tar -C dell-omsa #
-2. 安装 rpm 包
-   1. cd dell-omsa/linux/RPMS/supportRPMS/srvadmin/RHEL7/x86_64
-   2. yum localinstall \*.rpm
+- 解压已下载的安装包
+   - mkdir dell-omsa
+   - tar -zxvf OM-SrvAdmin-Dell-Web-LX-9.3.0-3465_A00.tar -C dell-omsa #
+- 安装 rpm 包
+   - cd dell-omsa/linux/RPMS/supportRPMS/srvadmin/RHEL7/x86_64
+   - yum localinstall \*.rpm
 
 将 dell-r740.tar.gz 拷贝到/root/Download 目录下并执行以下脚本
 
@@ -92,15 +93,15 @@ enabled=1
 在任何时候都可以使用 omreport -?来获取命令帮助以查看都有哪些可用的 COMMAND，例如：omreport -?、omreport chassis -?等
 COMMAND
 
-1. about Product and version properties.
-2. licenses Displays the digital licenses of the installed hardware devices.
-3. preferences Report system preferences.
-4. system System component properties.
-5. chassis 机架组件的属性。i.e.基本硬件的信息。Chassis component properties.
-6. storage # 显示存储组件的属性
+- about Product and version properties.
+- licenses Displays the digital licenses of the installed hardware devices.
+- preferences Report system preferences.
+- system System component properties.
+- chassis 机架组件的属性。i.e.基本硬件的信息。Chassis component properties.
+- storage # 显示存储组件的属性
 
 ## omreport storage
 
 EXAMPLE
 
-1. omreport storage pdisk controller=0 #
+- omreport storage pdisk controller=0 #

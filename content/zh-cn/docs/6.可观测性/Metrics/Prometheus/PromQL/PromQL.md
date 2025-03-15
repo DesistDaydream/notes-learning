@@ -168,7 +168,8 @@ Resolution 通常是可省略的，默认值为 [Promethesu Server](/docs/6.可�
 
 `rate(avg_over_time(node_network_receive_bytes_total{device="eth0"}[5m])[6h])` 是非法的
 
-其中 `avg_over_time(node_network_receive_bytes_total{device="eth0"}[5m]` 的结果为即时向量的时间序列，若想基于该时间序列使用 rate 函数，则必须使用 Subquery 指定 Resolution。
+> [!Attention]
+> 其中 `avg_over_time(node_network_receive_bytes_total{device="eth0"}[5m]` 的结果为即时向量的时间序列，若想基于该结果使用 rate 函数，则必须<font color="#ff0000">显式</font>使用 Subquery 指定 Resolution。像上面两个合法的例子示例
 
 ### Offset modifier(位移修饰符) - 时间位移操作
 

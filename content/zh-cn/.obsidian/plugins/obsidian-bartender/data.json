@@ -2000,10 +2000,11 @@
       "docs/4.数据通信/Utility/_index.md",
       "docs/4.数据通信/Utility/hping.md",
       "docs/4.数据通信/Utility/Netcat.md",
-      "docs/7.信息安全/Utility/Nmap.md",
       "docs/4.数据通信/Utility/nping.md",
       "docs/4.数据通信/Utility/OpenSSH",
-      "docs/4.数据通信/Protocol/TCP_IP/IP/GeoIP.md"
+      "docs/4.数据通信/Utility/FRP.md",
+      "docs/4.数据通信/Utility/Utility.md",
+      "docs/4.数据通信/Utility/vsftpd.md"
     ],
     "docs/4.数据通信/Utility/OpenSSH": [
       "docs/4.数据通信/Utility/OpenSSH/_index.md",

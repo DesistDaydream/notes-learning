@@ -9,7 +9,10 @@ weight: 1
 
 > 参考：
 >
-> - [官网](http://net-snmp.sourceforge.net/)
+> - [GitHub 项目，net-snmp/net-snmp/](https://github.com/net-snmp/net-snmp/)
+> - [官网](https://www.net-snmp.org/)
+
+> [!Attention] 官网大量页面错误 Exception encountered, of type "mysqli_sql_exception"，e.g. https://www.net-snmp.org/wiki/, 
 
 Net-SNMP 是实现 [SNMP(传统监控标准)](/docs/6.可观测性/Metrics/监控系统概述/SNMP(传统监控标准).md) 的工具和库的集合。包含如下内容：
 
@@ -45,7 +48,7 @@ Ubuntu
 apt-get install snmp snmp-mibs-downloader
 ```
 
-# net-snmp 关联文件
+# net-snmp 关联文件与配置
 
 **/etc/snmp/snmpd.conf** # snmpd 根据该文件定义运行时行为
 

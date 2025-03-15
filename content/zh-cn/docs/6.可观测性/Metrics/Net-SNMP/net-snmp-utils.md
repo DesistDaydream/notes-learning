@@ -1,6 +1,14 @@
 ---
 title: net-snmp-utils
+linkTitle: net-snmp-utils
+weight: 20
 ---
+
+# 概述
+
+> 参考：
+>
+> - 
 
 # snmpwalk 与 snmpget
 
@@ -9,15 +17,15 @@ snmpwalk 与 snmpget 使用 snmp 协议的 GETNEXT 请求，向 SNMP 代理发�
 - snmpget 获取指定 OID 的数据
 - snmpwalk 可以获取大量 OID 的数据
 
-## snmpwalk 配置
+## 关联文件与配置
 
-**/etc/snmp/snmp.conf** # snmpwalk 运行时配置文件。若不存在则手动创建
+**/etc/snmp/snmp.conf** # snmpwalk 与 snmpget 运行时配置文件。若不存在则手动创建
 
 **/usr/local/share/snmp/mibs** # MIB 文件的默认路径。这里现阶段包含 66 个 MIB 文件。
 
-`net-snmp-config --default-mibdirs` 命令可以列出工具在使用中会读取 MIB 文件的路径，包括如下几个：
+`net-snmp-config --default-mibdirs` 命令可以列出工具在使用中会读取 MIB 文件的默认路径，包括如下几个：
 
-- 注意，CentOS 和 Ubuntu 的路径可能不相同。这种老程序是真滴坑。
+- 注意，CentOS 和 Ubuntu 的路径可能不相同。PS: 这种老程序是真滴坑
 - **$HOME/.snmp/mibs**
 - **/usr/share/snmp/mibs**
 - **/usr/share/snmp/mibs/iana**
@@ -38,10 +46,11 @@ mibdirs +/root/.snmp/mibs/h3c
 ```text
 mibs +HH3C-OID-MIB
 mibs +HH3C-SERVER-AGENT-MIB
-mibs +HH3C-SERVER-TRAP-MIB
 ```
 
-## snmpwalk
+## Syntax(语法)
+
+> snmpget 语法与 snmpwalk 语法基本一致，只不过行为和结果有细微区别
 
 **snmpwalk \[OPTIONS] AGENT \[OID]**
 
@@ -59,14 +68,22 @@ OPTIONS
 
 EXAMPLE
 
-- snmpwalk -v 3 -u nm -l authPriv -a SHA -A nm@tjiptv -x AES -X nm@tjiptv 10.10.100.101 #
-- 华为服务器使用 snmpv3 访问。认证密码和加密密码都是 impi 用户的登录密码
-    - `snmpwalk -v3 -u root -l authPriv -a SHA -A Huawei12#$ -x AES -X Huawei12#$ 192.168.1.82`
-- snmpwalk -v 2c -c public 192.168.0.2
-- walk 第三方 MIB 内容
-  - snmpwalk -v 2c -c public 172.19.42.241 HH3C-SERVER-AGENT-MIB:hh3c2014
+snmpwalk -v 2c -c public 192.168.0.2 # 最简单直接的 walk 方式
 
-## snmpget
+使用 V3 版本认证方式获取 SNMP 数据
+
+```bash
+# 华为服务器使用 snmpv3 访问。认证密码和加密密码都是 impi 用户的登录密码
+snmpwalk -v3 -u root -l authPriv -a SHA -A Huawei12#$ -x AES -X Huawei12#$ 192.168.1.82
+```
+
+根据导入的私有第三方 MIB，获取 SNMP 数据（需要在 /etc/snmp/snmp.conf 中添加需加载的 MIB 文件配置；或使用 -m 选项指定 MIB 文件）
+
+```bash
+snmpwalk -v 2c -c public 172.19.42.241 HH3C-SERVER-AGENT-MIB:hh3c2014
+
+snmpwalk -v 2c -c public 192.168.1.91 INSPUR-MIB
+```
 
 # net-snmp-create-v3-user
 
@@ -85,11 +102,11 @@ EXAMPLE
 - 创建一个 snmp 的 v3 用户，只读模式，认证算法为 SHA，认证密码是 nm@tjiptv，加密算法是 AES，加密密码是 nm@tjiptv，用户名是 nm
   - net-snmp-create-v3-user -ro -a SHA -A nm@tjiptv -x AES -X nm@tjiptv nm
 
-# snmptranslate # 转换 OID 的格式
+# snmptranslate - 转换 OID 的格式
 
 > 参考：
 > 
-> - [官方文档](http://net-snmp.sourceforge.net/docs/man/snmptranslate.html)
+> - [官方手册，snmptranslate](http://net-snmp.sourceforge.net/docs/man/snmptranslate.html)
 > - [Manual(手册)](https://man.cx/snmptranslate)
 
 在数字格式和文本格式之间转换 MIB 的 OID
@@ -102,3 +119,5 @@ EXAMPLE
 
 - 根据当前配置，显示所有的 OID 的两种格式
   - snmptranslate -Tz -m all
+
+MIB 搜索路径: `/root/.snmp/mibs:/usr/share/snmp/mibs:其他在 /etc/snmp/snmp.conf 中定义的路径`

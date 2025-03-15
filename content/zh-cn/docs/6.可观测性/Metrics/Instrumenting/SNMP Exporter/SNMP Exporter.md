@@ -85,6 +85,10 @@ generator.yml 文件详解见[此处](/docs/6.可观测性/Metrics/Instrumenting
 **generator.yml 文件最简单示例**
 
 ```yaml
+# 获取 snmp 数据时的认证信息
+auth:
+  my_auth:
+    community: public
 modules:
   # Default IF-MIB interfaces table with ifIndex.
   if_mib:
@@ -94,9 +98,6 @@ modules:
     walk: [sysUpTime, interfaces, ifXTable]
     # 指定要使用的 snmp 版本
     version: 2
-    # 获取 snmp 数据时的认证信息
-    auth:
-      community: public
 ```
 
 # Snmp Exporter 部署

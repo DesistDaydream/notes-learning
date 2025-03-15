@@ -1,8 +1,14 @@
 ---
 title: SNMP 采集第三方 MIB 文件定义的设备信息
+linkTitle: SNMP 采集第三方 MIB 文件定义的设备信息
+weight: 20
 ---
 
-<https://lvii.github.io/server/2013-07-05-net-snmp-get-info-from-third-custumed-mib-file/>
+# 概述
+
+> 参考：
+>
+> - https://lvii.github.io/server/2013-07-05-net-snmp-get-info-from-third-custumed-mib-file/
 
 厂里机房搞来 PDU 机柜电源插座，这个 bootbox 可以采集一些机柜温度，以及各个插座的电流功率啥的。
 
@@ -17,16 +23,17 @@ title: SNMP 采集第三方 MIB 文件定义的设备信息
 
 准备一下 snmp 相关的命令行工具，要在 CentOS 装上下面几个软件包：
 
-|       rpm        |                       command                        |
-|:----------------:|:----------------------------------------------------:|
-|    `net-snmp`    |                     `snmpd` 服务                     |
-| `net-snmp-libs`  |                系统常用的 MIBS 文件库                |
+|       rpm        |                    command                    |
+| :--------------: | :-------------------------------------------: |
+|    `net-snmp`    |                  `snmpd` 服务                   |
+| `net-snmp-libs`  |                系统常用的 MIBS 文件库                 |
 | `net-snmp-utils` | 提供 `snmpget / snmpwalk / snmptranslate` 等采集工具 |
 | `net-snmp-devel` |          提供 `net-snmp-config` 命令行工具           |
 
-## 修改 MIB 文件路径 [Permalink](https://lvii.github.io/server/2013-07-05-net-snmp-get-info-from-third-custumed-mib-file/#%E4%BF%AE%E6%94%B9-mib-%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84)
+## 修改 MIB 文件路径
 
 参考 net-snmp 文档: [「Where should I put my MIB files?」](http://www.net-snmp.org/FAQ.html#Where_should_I_put_my_MIB_files_)
+
 将 MIB 文件放到系统路径下，用 `net-snmp-config` 命令查询系统默认 `mibdirs` :
 
 ```bash
@@ -44,7 +51,7 @@ parse-mibs: Scanning directory /usr/share/snmp/mibs
 
 把第三方 MIB 库文件复制到 `/usr/share/snmp/mibs` 即可
 
-## 自动加载 MIB 模块 [Permalink](https://lvii.github.io/server/2013-07-05-net-snmp-get-info-from-third-custumed-mib-file/#%E8%87%AA%E5%8A%A8%E5%8A%A0%E8%BD%BD-mib-%E6%A8%A1%E5%9D%97)
+## 自动加载 MIB 模块
 
 但默认 net-snmp 工具不会自动加载自定义的 MIB 文件，为了让 `snmpwalk / snmpget ...` 工具能够 **自动加载**
 第三方 MIB 文件，需要修改 `snmp.conf` 配置：
@@ -75,7 +82,7 @@ echo "mibs +MY-MIB" >> $HOME/.snmp/snmp.conf
 (load it every time)
 ```
 
-## 解析 MIB 库中的 OID [Permalink](https://lvii.github.io/server/2013-07-05-net-snmp-get-info-from-third-custumed-mib-file/#%E8%A7%A3%E6%9E%90-mib-%E5%BA%93%E4%B8%AD%E7%9A%84-oid)
+## 解析 MIB 库中的 OID
 
 使用 `snmptranslate` 解析刚添加的 MIB 文件中定义的 OID 及其对应的文字描述：
 
@@ -132,7 +139,7 @@ $ snmptranslate -Tp -OS -m SNMPv2-MIB|less -i
             |     |  |        Size: 0..255
 ```
 
-## 采集信息 [Permalink](https://lvii.github.io/server/2013-07-05-net-snmp-get-info-from-third-custumed-mib-file/#%E9%87%87%E9%9B%86%E4%BF%A1%E6%81%AF)
+## 采集信息
 
 上面只是在采集服务器上面，添加了第三方的 MIB 文件，使得 net-snmp 可以识别第三方厂商定义的 OID 监控项。 但是还需要开启要监控的设备的 SNMP 服务，让监控服务器和硬件设备进行通讯，采集信息。 在设备上面配置采集服务器的 IP 和 SNMP 协议版本和认证方式，重启设备。 在采集服务器上面查看 SNMP 端口 OK 之后，开始用 net-snmp 工具采集信息：
 
@@ -163,7 +170,7 @@ NPM3G-MIB::npm1Humidity1.0 = STRING: 76
 
 后面就可以根据需要采集想要的信息了
 
-## 参考 [Permalink](https://lvii.github.io/server/2013-07-05-net-snmp-get-info-from-third-custumed-mib-file/#%E5%8F%82%E8%80%83)
+## 参考
 
 [net-snmp 中载入第三方 mib 库](http://fs20041242.iteye.com/blog/889041)
 
