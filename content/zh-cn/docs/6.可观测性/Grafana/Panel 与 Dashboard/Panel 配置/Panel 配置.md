@@ -1,15 +1,15 @@
 ---
 title: Panel 配置
 linkTitle: Panel 配置
-weight: 1
 date: 2024-08-02T13:16
+weight: 1
 ---
 
 # 概述
 
 > 参考：
 >
-> - [官方文档，面板 - 面板编辑器](https://grafana.com/docs/grafana/latest/panels/panel-editor/)
+> - [官方文档，面板与可视化 - 面板编辑器](https://grafana.com/docs/grafana/latest/panels-visualizations/panel-editor-overview/)
 
 当我们开始创建一个新的 Panel 时，可以看到下图所示的界面，这个界面分为三大部分，分别用三种颜色的框体括起来
 
@@ -64,12 +64,12 @@ https://grafana.com/docs/grafana/latest/panels/panel-editor/#data-section-bottom
 
 该部分包含一些 tab(标签)，可以在其中 输入查询，转换数据 以及 创建警报规则(如果适用)。
 
-- **Query tab(查询标签)** # 选择数据源并通过查询语句获取数据。参考：[Queries](https://grafana.com/docs/grafana/latest/panels/queries/).
-  - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636266421210-10e7bbbd-f661-463b-bb0f-1d53b53ffa47.png)
-- **Transform tab(转换标签)** # 将 Query 中获取到的数据进行转换。参考：[Transformations](https://grafana.com/docs/grafana/latest/panels/transformations/).
-  - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636274705492-be88d84d-0e38-40d3-8e80-fe71204480ad.png)
-- **Alert tab(告警标签)**# 配置告警规则。参考：[Create alerts](https://grafana.com/docs/grafana/latest/alerting/create-alerts/)
-  - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636274711891-c3fbf5e9-144d-40d6-a434-170d49a7b3f3.png)
+- **Query tab(查询标签)** # 选择数据源并通过查询语句获取数据。参考：[Queries](https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636266421210-10e7bbbd-f661-463b-bb0f-1d53b53ffa47.png)
+- **Transform tab(转换标签)** # 将 Query 中获取到的数据进行转换。参考：[Transformations](https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/transform-data/)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636274705492-be88d84d-0e38-40d3-8e80-fe71204480ad.png)
+- **Alert tab(告警标签)**# 配置告警规则。参考：[Create alerts](https://grafana.com/docs/grafana/latest/alerting/alerting-rules/)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636274711891-c3fbf5e9-144d-40d6-a434-170d49a7b3f3.png)
 
 ## Query(查询)
 
@@ -97,7 +97,7 @@ Query 详解见 [Query(查询)](/docs/6.可观测性/Grafana/Panel%20与%20Dashb
 
 Transformations process the result set of a query before it’s passed on for visualization. They allow you to rename fields, join separate time series together, do math across queries, and more. For users, with numerous dashboards or with a large volume of queries, the ability to reuse the query result from one panel in another panel can be a huge performance gain.
 
-> **注意**：转换是 Grafana 7.0 测试版的特性。官方文档的内容会在开发者们研究该特性时经常更新。
+> [!Attention] 转换是 Grafana 7.0 测试版的特性。官方文档的内容会在开发者们研究该特性时经常更新。
 
 Transformations sometimes result in data that cannot be graphed. When that happens, Grafana displays a suggestion on the visualization that you can click to switch to table visualization. This often helps you better understand what the transformation is doing to your data
 
@@ -171,7 +171,8 @@ Thresholds(阈值) 可以用于 Bar、Gauge、Graph、Stat、Table 这几种类�
 
 > 参考:
 >
-> - [官方文档，面板与](https://grafana.com/docs/grafana/latest/panels/field-options/)
+> - [官方文档，面板与可视化 - 配置覆盖](https://grafana.com/docs/grafana/latest/panels-visualizations/configure-overrides/)
 
 这里只介绍所有面板的通用配置，不同的面板，这部分的可配置的项目不同
-根据匹配规则，替换面板上某些字段。常用于 Table 类型的面板。Overrides 的概念与 [Graph 类型面板里的 Series overrides](/docs/6.可观测性/Grafana/Panel(面板)%20 与%20Dashboard(仪表盘)/Time%20series%20 类型面板/(弃用)Graph%20 类型面板详解.md series 类型面板/(弃用)Graph 类型面板详解.md) 概念类似
+
+根据匹配规则，替换面板上某些字段。

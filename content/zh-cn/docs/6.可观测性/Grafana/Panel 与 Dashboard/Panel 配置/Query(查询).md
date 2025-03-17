@@ -25,6 +25,8 @@ Query 标签由如下几个元素组成
 
 # Query options(查询选项)
 
+https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
+
 ## Max data points(最大数据点)
 
 ## Min interval(最小间隔)
@@ -35,7 +37,7 @@ Interval 是一个，通过时间来聚合或分组的一些数据点时，使�
 
 也就是说，Interval 常用来计算 总和、平均值、速率 等一段时间范围的变化量。
 
-除了在这里可以定义 Interval，还可以通过 [Grafana 的模板与变量](/docs/6.可观测性/Grafana/Panel(面板)%20 与%20Dashboard(仪表盘)/Panel(面板)%20 配置详解/Templates%20and%20Variables(模板与变量).md and Variables(模板与变量).md)定义。
+除了在这里可以定义 Interval，还可以通过 [Variable](docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Variable.md) 定义。
 
 ## Relative time(相对时间)
 

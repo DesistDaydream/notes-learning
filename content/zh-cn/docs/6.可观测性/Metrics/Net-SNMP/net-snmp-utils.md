@@ -8,7 +8,7 @@ weight: 20
 
 > 参考：
 >
-> - 
+> -
 
 # snmpwalk 与 snmpget
 
@@ -105,7 +105,7 @@ EXAMPLE
 # snmptranslate - 转换 OID 的格式
 
 > 参考：
-> 
+>
 > - [官方手册，snmptranslate](http://net-snmp.sourceforge.net/docs/man/snmptranslate.html)
 > - [Manual(手册)](https://man.cx/snmptranslate)
 
@@ -115,9 +115,30 @@ EXAMPLE
 
 **OPTIONS**
 
+- **-T**(OPTIONS) # 控制输出的结果。有多个子选项可用
+    - d # 输出详细信息
+- **-O**(OPTIONS) # 控制 OID 的显示方式。有多个子选项可用
+    - n # 数值显示
+- **-m**(\[]STRING) # 指定额外的 MIB 文件
+- **-M**(\[]STRING) # 指定额外的读取 MIB 文件的目录
+
 **EXAMPLE**
 
 - 根据当前配置，显示所有的 OID 的两种格式
-  - snmptranslate -Tz -m all
+  - snmptranslate -Tz
 
-MIB 搜索路径: `/root/.snmp/mibs:/usr/share/snmp/mibs:其他在 /etc/snmp/snmp.conf 中定义的路径`
+显示指定 OID 的数字及其详情
+
+```bash
+~]# snmptranslate -Td -On  HUAWEI-SERVER-IBMC-MIB::systemHealth
+.1.3.6.1.4.1.2011.2.235.1.1.1.1
+systemHealth OBJECT-TYPE
+  -- FROM       HUAWEI-SERVER-IBMC-MIB
+  SYNTAX        INTEGER {ok(1), minor(2), major(3), critical(4)}
+  MAX-ACCESS    read-only
+  STATUS        current
+  DESCRIPTION   "systemHealth information about system present state of health.
+                                This value will be one of the following:
+                                (1-OK, 2-Minor, 3-Major, 4-Critical)"
+::= { iso(1) org(3) dod(6) internet(1) private(4) enterprises(1) huawei(2011) products(2) hwServer(235) hwBMC(1) hwiBMC(1) system(1) 1 }
+```
