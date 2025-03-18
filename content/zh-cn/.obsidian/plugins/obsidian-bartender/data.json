@@ -2895,6 +2895,14 @@
       "docs/6.可观测性/DataPipeline/Vector/_index.md",
       "docs/6.可观测性/DataPipeline/Vector/Vector.md",
       "docs/6.可观测性/DataPipeline/Vector/Vector Configuration.md"
+    ],
+    "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令": [
+      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/_index.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/Bash 内置命令.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/变量管理工具.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/管道符等组合命令.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/Job control.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/set 命令.md"
     ]
   },
   "actionBarOrder": {},

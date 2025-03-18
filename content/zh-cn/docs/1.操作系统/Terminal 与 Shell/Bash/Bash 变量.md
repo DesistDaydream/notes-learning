@@ -6,7 +6,7 @@ title: Bash 变量
 
 > 参考：
 >
-> - [Manual(手册),bash(1)-形参](https://www.man7.org/linux/man-pages/man1/bash.1.html#PARAMETERS)-Shell 变量
+> - [Manual(手册)，bash(1) - 形参](https://www.man7.org/linux/man-pages/man1/bash.1.html#PARAMETERS) - Shell 变量
 
 Bash 可以从逻辑上分为如下几种变量
 
@@ -131,7 +131,7 @@ hello Desist Daydream!
 
 > 参考：
 >
-> - [Manual(手册)，bash(1) - 形参-](https://www.man7.org/linux/man-pages/man1/bash.1.html#PARAMETERS)Shell 变量
+> - [Manual(手册)，bash(1) - 形参](https://www.man7.org/linux/man-pages/man1/bash.1.html#PARAMETERS) - Shell 变量
 
 **EDITOR=STRING** # 当 Bash 需要调用编辑器时，使用该变量指定的编辑器。
 
@@ -172,7 +172,8 @@ a b
 ## 提示符相关变量
 
 > 参考：
-> - Manual(手册)，Bash(1)-Prompting
+>
+> - Manual(手册)，Bash(1) - Prompting
 
 **Prompting(提示符)** 是我们使用 Bash 时，Bash 提供给我们的一些提示信息，用以告诉我们当前正在做的事情以及可以做的事情。
 

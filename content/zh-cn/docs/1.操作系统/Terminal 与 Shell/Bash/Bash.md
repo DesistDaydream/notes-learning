@@ -1,15 +1,15 @@
 ---
 title: Bash
+linkTitle: Bash
 weight: 1
 ---
 
 # 概述
->
+
 > 参考：
 >
 > - [GNU 官网](https://www.gnu.org/software/bash/)
 > - [Wiki, Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
-> - [Manual(手册)，bash(1)-Shell 内置命令](https://www.man7.org/linux/man-pages/man1/bash.1.html#SHELL_BUILTIN_COMMANDS)
 > - [网道，Bash 脚本教程](https://wangdoc.com/bash/index.html)
 
 **Bourne Again Shell(简称 Bash)** 是 Brian Fox 为 GNU 项目编写的 Unix Shell 和编程语言，作为 **Bourne shell(简称 sh)** 的免费软件替代品，于 1989 年首次发布，已被用作绝大多数 Linux 发行版的默认登录 Shell。Bash 是 Linus Torvalds 在移植 GCC 到 Linux 时最先移植的程序之一。
@@ -145,6 +145,18 @@ Systemd # [Systemd](/docs/1.操作系统/Systemd/Systemd.md)
 
 # 在 Bash 中执行命令
 
+## `.` 语法
+
+作用:
+
+- 打开一个子 shell 来读取并执行 FileName 中命令。
+- 注：运行一个 shell 脚本时会启动另一个命令解释器.
+- 每个 shell 脚本有效地运行在父 shell(parent shell)的一个子进程里. 这个父 shell 是指在一个控制终端或在一个 xterm 窗口中给你命令指示符的进程.shell 脚本也可以启动他自已的子进程. 这些子 shell(即子进程)使脚本并行地，有效率地地同时运行脚本内的多个子任务.
+
+**Syntax(语法)**
+
+**. FileName**
+
 ## source 程序
 
 source 程序可以在当前 Shell 环境中从指定文件中读取并执行命令
@@ -185,18 +197,6 @@ OPTIONS
 
 - -n # 对指定文件进行语法检查
 - -x # 打印出执行脚本的过程
-
-## ./ 语法
-
-作用:
-
-- 打开一个子 shell 来读取并执行 FileName 中命令。
-- 注：运行一个 shell 脚本时会启动另一个命令解释器.
-- 每个 shell 脚本有效地运行在父 shell(parent shell)的一个子进程里. 这个父 shell 是指在一个控制终端或在一个 xterm 窗口中给你命令指示符的进程.shell 脚本也可以启动他自已的子进程. 这些子 shell(即子进程)使脚本并行地，有效率地地同时运行脚本内的多个子任务.
-
-**Syntax(语法)**
-
-**./FileName**
 
 # 命令行补全
 

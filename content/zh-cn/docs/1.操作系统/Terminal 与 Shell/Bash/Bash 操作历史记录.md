@@ -5,6 +5,7 @@ title: Bash 操作历史记录
 # history 工具
 
 > 参考：
+>
 > - [Manual(手册),history](https://www.man7.org/linux/man-pages/man3/history.3.html)
 > - <https://blog.csdn.net/m0_38020436/article/details/78730631>
 > - <https://blog.csdn.net/sz_bdqn/article/details/46527021>
@@ -77,11 +78,17 @@ export HISTTIMEFORMAT="%F %T`who -u am i 2>/dev/null| awk '{print $NF}'|sed -e '
 首先下载 bash 源码，可以从 gnu.org 下载，这里不做详细说明了，系统需要安装 gcc 等编译环境。我们用 bash4.4 版本做演示。
 
 修改源码：bashhist.c
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ieek6o/1616165148122-2898b5a5-b861-491b-ac1a-201aa6403243.jpeg)
+
 修改源码 config-top.h，取消/#define SYSLOG_HISTORY/这行的注释
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ieek6o/1616165148162-6b252c51-d8d8-4f98-9ad2-a67e574db7f6.jpeg)
+
 编译安装，编译过程不做详细说明，本文中使用的编译参数为： ./configure --prefix=/usr/local/bash，安装成功后对应目录如下：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ieek6o/1616165148144-a4bcb15d-3f39-477d-bd7f-1167d58f615d.jpeg)
+
 此时可以修改/etc/passwd 中用户 shell 环境，也可以用编译好的文件直接替换原有的 bash 二进制文件，但最好对原文件做好备份。
 
 替换时要注意两点:
@@ -92,6 +99,7 @@ export HISTTIMEFORMAT="%F %T`who -u am i 2>/dev/null| awk '{print $NF}'|sed -e '
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ieek6o/1616165148170-cb8d9280-1422-4701-95f3-2cdd4da96b59.jpeg)
 如果要写到远程 logserver，需要配置 syslog 服务，具体配置这里不做详细讲解，大家自己研究，发送到远端 logserver 效果如下图所示。
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ieek6o/1616165148152-c4072293-34eb-489d-ba93-70e05632e218.jpeg)
+
 通过以上手段，可以有效保证 history 记录的完整性，避免攻击者登录系统后，通过取消环境变量、删除 history 记录等方式抹掉操作行为，为安全审计、应急响应等提供了完整的原始数据。
 
 # linux 系统监控：记录用户操作轨迹，谁动过服务器
