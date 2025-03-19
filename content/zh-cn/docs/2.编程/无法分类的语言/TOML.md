@@ -228,6 +228,8 @@ TOML 文档的主要结构也是 `Key/Value pair(键/值对)` 格式。key 与 v
 
 ### Array(数组)
 
+Array 类型的值以 `[]` 表示，每个元素以 `,` 分割
+
 ## Table(表)
 
 > 类似于 INI 中的 Sections(部分)
