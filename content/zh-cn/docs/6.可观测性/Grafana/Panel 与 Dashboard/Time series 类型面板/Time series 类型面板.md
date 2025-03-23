@@ -126,5 +126,5 @@ Sort order # 排序。有三种排序方式：None(不排序)、Increasing(由�
 
 # Overrides - 字段替换配置
 
-详见：[Overrides](docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Panel%20配置/Panel%20配置.md#Overrides%20-%20替换，替换%20Field)
+详见：[Overrides](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Panel%20配置/Panel%20配置.md#Overrides%20-%20替换，替换%20Field)
 

@@ -16,7 +16,7 @@ weight: 20
 
 # SSH 的实现
 
-[OpenSSH](docs/4.数据通信/Utility/OpenSSH/OpenSSH.md)
+[OpenSSH](/docs/4.数据通信/Utility/OpenSSH/OpenSSH.md)
 
 Go 语言的 SSH 实现
 

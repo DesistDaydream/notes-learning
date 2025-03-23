@@ -110,7 +110,8 @@ lrwxrwxrwx 1 root root 0 Nov 11 10:42 root -> /
 
 ## ./smaps - 每个进程的内存映射的使用信息
 
-仅当内核选项 CONFIG_PROC_PAGE_MONITOR 配置了之后，才存在该文件。`pmap` 命令会读取该文件，并以人类易读的形式显示信息。
+> [!Note]
+> 仅当内核选项 CONFIG_PROC_PAGE_MONITOR 配置了之后，才存在该文件。`pmap` 命令会读取该文件，并以人类易读的形式显示信息。
 
 进程的每一个映射，都有其对应的信息，文件格式如下：
 
@@ -185,15 +186,49 @@ Locked:                0 kB
 Rss:               21304 kB
 ```
 
-## ./statm - 进程的内存使用情况信息
+## ./statm - 进程的内存状态信息
 
-该文件中只有一行，每列信息以空格分割，共 7 列
+https://man7.org/linux/man-pages/man5/proc_pid_statm.5.html
 
-- size # 进程使用的内存。等同于 status 文件中的 VmSize，man 手册里这个描述与实际不符
-- resident # 进程的 RSS。等同于 status 文件中的 VmRSS，man 手册里这个描述与实际不符
-- shared # 与其他进程共享的内存。等同于 status 文件中的 RssFile + RssShmem，man 手册里这个描述与实际不符
+> Tips: 由于内核内部可伸缩性优化，文件中的一些值并绝对不准确，如果需要准确的值，可以查看 smaps 和 smaps_rollup 文件。
 
-由于内核内部可伸缩性优化，文件中的一些值并不准确，如果需要准确的值，可以查看 smaps 和 smaps_rollup 文件。
+该文件中只有一行，每列信息以空格分隔，共 7 列
+
+- **size** # Virtual memory size(虚拟内存大小，简称 vms)。statm 文件中该字段是进程在虚拟内存拥有的 **页数**。
+    - 该值与系统 PageSize(页容量) 相乘的计算结果是 status 文件中 VmSize 的值
+- **resident** # Resident Set Size(常驻集大小，简称 rss)。statm 文件中的该字段表示的是进程在实内存中拥有的 **页数**，i.e. rss 页数。
+    - 该值与系统 PageSize(页容量) 相乘的计算结果是 status 文件中 VmRSS 的值
+- **shared** # 与其他进程共享的内存。
+- **trs**
+- **lrs**
+- **drs**
+- **dt**
+
+```bash
+~]# PID=10000
+~]# echo $(($(cat /proc/$PID/statm | awk '{print $1}') * $(getconf PAGE_SIZE) / 1024)); grep VmSize /proc/$PID/status
+2083364
+VmSize:  2083364 kB
+~]# echo $(($(cat /proc/$PID/statm | awk '{print $2}') * $(getconf PAGE_SIZE) / 1024)); grep VmRSS /proc/$PID/status
+126876
+VmRSS:    126876 kB
+```
+
+通过如下方式，可以启动一个申请了 1 MiB 内存的进程，以便验证各种信息
+
+```bash
+python3 -c '
+import time
+import os
+# 申请1 MiB的内存
+data = bytearray(1024 * 1024)
+print(f"进程ID: {os.getpid()}")
+print(f"已分配1 MiB内存")
+print(f"按Ctrl+C结束进程")
+while True:
+    time.sleep(1)
+'
+```
 
 ## ./stat - 进程的状态
 
@@ -205,8 +240,8 @@ https://stackoverflow.com/questions/39066998/what-are-the-meaning-of-values-at-p
 
 > starttime 除以 时钟频率（`getconf -a | grep CLK_TCK`），加上系统启动时间（`cat /proc/stat | grep btime`）。可以计算出进程的启动时间（Unix 时间戳格式）
 
-23. **vsize** # Virtual memory size in bytes.
-24. **rss** # Resident Set Size. 进程在实内存中拥有的页数。  这只是计入文本、数据或堆栈空间的页面。  这不包括尚未按需加载或换出的页面。  该值不准确；请参阅下面的 /proc/PID/statm。
+23. **vsize** # 该值的单位是 Bytes，该值除以 `$(getconf PAGE_SIZE)` 的结果与 /proc/PID/statm 文件中第一字段 size 的值相同
+24. **rss** # 与 /proc/PID/statm 文件中第二字段 resident 的值相同
 
 计算进程启动时间的脚本
 
@@ -242,10 +277,10 @@ https://man7.org/linux/man-pages/man5/proc_pid_status.5.html
 
 包括但不限于 PID、该进程 CPU 与 Memory 的使用情况、等等。在这个文件中，包含了 ./stat 和 ./statm 文件中的许多信息。
 
-- Name # 进程名称
-- State # 进程状况
-- VmSize # 进程申请的总内存。与 statm 文件中第一个字段的值相同
-- VmRSS # 也就是进程当前时刻占用的物理内存。与 statm 文件中第二个字段的值相同
+- **Name** # 进程名称
+- **State** # 进程状况
+- **VmSize** # 进程申请的总内存。结果与 statm 文件中第一个字段的值相关
+- **VmRSS** # 进程当前时刻占用的物理内存。结果与 statm 文件中第二个字段的值相关
 - etc.
 
 ## ./task/TID/ - 进程的线程信息目录

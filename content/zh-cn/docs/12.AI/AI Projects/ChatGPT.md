@@ -85,16 +85,6 @@ DocsGPT 是 GPT 驱动的聊天，用于文档搜索和帮助。
 
 https://www.chatpdf.com/
 
-## 微信接入
-
-https://github.com/fuergaosi233/wechat-chatgpt
-
-- 用法：https://mp.weixin.qq.com/s/dLzemMUcIfjvWd_AF_yDJw
-
-https://github.com/AutumnWhj/ChatGPT-wechat-bot
-
-https://github.com/wangrongding/wechat-bot
-
 ## 逆向
 
 https://github.com/acheong08/ChatGPT

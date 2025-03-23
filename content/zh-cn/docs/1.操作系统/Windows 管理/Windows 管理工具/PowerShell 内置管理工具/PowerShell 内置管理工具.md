@@ -18,15 +18,15 @@ https://learn.microsoft.com/en-us/powershell/module/cimcmdlets
 
 # 通用模块
 
-[Core](docs/1.操作系统/Windows%20管理/Windows%20管理工具/PowerShell%20内置管理工具/Core.md)
+[Core](/docs/1.操作系统/Windows%20管理/Windows%20管理工具/PowerShell%20内置管理工具/Core.md)
 
-[Management](docs/1.操作系统/Windows%20管理/Windows%20管理工具/PowerShell%20内置管理工具/Management.md)
+[Management](/docs/1.操作系统/Windows%20管理/Windows%20管理工具/PowerShell%20内置管理工具/Management.md)
 
-[Security](docs/1.操作系统/Windows%20管理/Windows%20管理工具/PowerShell%20内置管理工具/Security.md)
+[Security](/docs/1.操作系统/Windows%20管理/Windows%20管理工具/PowerShell%20内置管理工具/Security.md)
 
-[CimCmdlets](docs/1.操作系统/Windows%20管理/Windows%20管理工具/PowerShell%20内置管理工具/CimCmdlets.md)
+[CimCmdlets](/docs/1.操作系统/Windows%20管理/Windows%20管理工具/PowerShell%20内置管理工具/CimCmdlets.md)
 
-[Utility](docs/1.操作系统/Windows%20管理/Windows%20管理工具/PowerShell%20内置管理工具/Utility.md)
+[Utility](/docs/1.操作系统/Windows%20管理/Windows%20管理工具/PowerShell%20内置管理工具/Utility.md)
 
 etc.
 

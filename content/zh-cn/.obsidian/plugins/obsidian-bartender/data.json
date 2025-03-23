@@ -1298,14 +1298,13 @@
       "docs/12.AI/机器学习",
       "docs/12.AI/自然语言处理",
       "docs/12.AI/计算机视觉",
+      "docs/12.AI/MCP.md",
       "docs/12.AI/Hugging Face.md",
       "docs/12.AI/LangChain.md",
       "docs/12.AI/AI Projects",
       "docs/12.AI/AI MGMT",
-      "docs/12.AI/Automation",
-      "docs/12.AI/AI Company.md",
-      "docs/12.AI/为什么需要 AI.md",
-      "docs/12.AI/最佳实践.md"
+      "docs/12.AI/最佳实践.md",
+      "docs/12.AI/Automation"
     ],
     "docs/12.AI/Automation": [
       "docs/12.AI/Automation/_index.md",

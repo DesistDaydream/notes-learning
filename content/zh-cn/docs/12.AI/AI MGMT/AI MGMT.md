@@ -61,3 +61,12 @@ https://github.com/ollama/ollama/blob/main/README.md#web--desktop
 Chrome 插件
 
 - https://github.com/n4ze3m/page-assist
+
+# Dify
+
+> 参考：
+>
+> - [GitHub 项目，langgenius/dify](https://github.com/langgenius/dify)
+> - [官网](https://dify.ai/)
+
+Dify是一个开源的LLM应用开发平台。Dify直观的界面结合了AI工作流、RAG管道、代理功能、模型管理、可观测性特征等，让您能够迅速从原型转向生产。

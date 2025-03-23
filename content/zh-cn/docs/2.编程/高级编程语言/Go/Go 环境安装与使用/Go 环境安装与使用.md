@@ -1,8 +1,8 @@
 ---
 title: Go 环境安装与使用
 linkTitle: Go 环境安装与使用
-date: 2024-06-21T20:38
 weight: 1
+date: 2022-08-10T00:00:00
 ---
 
 # 概述

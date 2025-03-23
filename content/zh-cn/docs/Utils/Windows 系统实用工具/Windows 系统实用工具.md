@@ -10,9 +10,9 @@ weight: 20
 > 
 > - [公众号-差评，我从三百条留言中，筛选出了差友们推荐的好用软件](https://mp.weixin.qq.com/s/FER8XiGizhNOwAXf7cQbRQ)
 
-~~360 文件夹 # 包含类似 Everything 的功能，完美代替 windows 自带的资源管理器。Win11 有相同的功能，不需要了~~
+**图拉丁吧工具箱** # 需要的东西基本全了，没啥可说的。
 
-- ~~https://bbs.360.cn/thread-16040300-1-1.html~~
+- https://www.tbtool.cn/
 
 [NirSoft](https://www.nirsoft.net/) 网站提供了一系列独特的小型且有用的免费软件，全部由 Nir Sofer 开发。
 
@@ -70,25 +70,12 @@ Geek Uninstaller #
 
 ## 搜索
 
-### Everything
+**Everything**
 
-> 参考：
-> 
-> - [官网](https://www.voidtools.com/)
-> - [被吹爆的最强搜索工具Everything，你可能根本不会用！](https://www.bilibili.com/video/BV1Hw411W7vK)
-
-适用于 Windows 的全局搜索工具，非常小巧好用！！！
-
-甚至可以批量对文件重命名
-
-## eSearch
-
-> 参考：
-> 
-> - [GitHub 项目，xushengfeng/eSearch](https://github.com/xushengfeng/eSearch)
-> - [官网](https://esearch-app.netlify.app/)
-
-截屏、离线 OCR、搜索翻译、以图搜图、贴图、录屏、滚动截屏
+- [官网](https://www.voidtools.com/)
+- [被吹爆的最强搜索工具Everything，你可能根本不会用！](https://www.bilibili.com/video/BV1Hw411W7vK)
+- 适用于 Windows 的全局搜索工具，非常小巧好用！！！
+- 甚至可以批量对文件重命名
 
 ## 监控工具
 
@@ -99,6 +86,15 @@ TrafficMonitor # https://github.com/zhongyang219/TrafficMonitor
 Snipaste # https://www.snipaste.com/
 
 PixPin # https://pixpinapp.com/
+
+### eSearch
+
+> 参考：
+> 
+> - [GitHub 项目，xushengfeng/eSearch](https://github.com/xushengfeng/eSearch)
+> - [官网](https://esearch-app.netlify.app/)
+
+截屏、离线 OCR、搜索翻译、以图搜图、贴图、录屏、滚动截屏
 
 # 其他
 

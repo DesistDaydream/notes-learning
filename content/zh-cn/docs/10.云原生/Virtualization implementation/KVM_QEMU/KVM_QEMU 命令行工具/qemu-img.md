@@ -96,7 +96,7 @@ OPTIONS
 - 压缩 test.qcow2 镜像,生成新的名为 test.qcow2.new 的镜像，新的镜像文件大小更小
   - `qemu-img convert -c -O qcow2 test.qcow2 test.qcow2.new`
 
-```
+```bash
 # 压缩前的镜像信息
 ~]# qemu-img check centos8-2004.qcow2.src
 No errors were found on the image.

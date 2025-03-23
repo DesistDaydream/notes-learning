@@ -17,7 +17,7 @@ Ansible 可以通过多种方式来配置其运行时行为
 - 命令行选项
 - playbook 中的关键字和变量
 
-Ansible 的配置文件使用 [INI](docs/2.编程/无法分类的语言/INI.md) 格式
+Ansible 的配置文件使用 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式
 
 # \[defaults]
 

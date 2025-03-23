@@ -22,13 +22,14 @@ https://www.hangjianet.com/topic/15878877588150143
 
 **va** 屏和 **ips** 屏都是一种液晶显示屏技术，**va** 屏全称为Vertical Alignment，是一种在液晶分子排列方向上具有垂直对齐的屏幕类型。 **ips** 屏全称为 In-Plane Switching屏幕，
 
+[B 站，【硬核独家】屏幕刺眼原因及应对措施](https://www.bilibili.com/video/BV1uZXPYNES5)
+
 # 莱茵认证
 
 - https://www.certipedia.com/ 莱茵数据库
 - 护眼显示器 https://www.bilibili.com/video/BV1Y54y1M7rN
 
 **Low Blue Light（Hardware Solution）低蓝光硬件解决方案**
-
 
 # 设置
 
