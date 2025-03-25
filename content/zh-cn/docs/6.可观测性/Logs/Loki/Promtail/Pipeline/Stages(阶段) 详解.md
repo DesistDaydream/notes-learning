@@ -1,7 +1,6 @@
 ---
 title: Stages(阶段) 详解
 linkTitle: Stages(阶段) 详解
-date: 2021-11-12T17:26:00
 weight: 2
 ---
 
@@ -283,7 +282,7 @@ json:
 
 ## replace - 使用正则表达式替换数据
 
-## multiline - 将多行日志进行合并，然后再将其传递到 pipeline 的下一个阶段。
+## multiline - 将多行日志进行合并，然后再将其传递到 pipeline 的下一个阶段
 
 多行阶段将多行日志进行合并，然后再将其传递到 pipeline 的下一个阶段。
 一个新的日志块由**第一行正则表达式**来识别，任何与表达式不匹配的行都被认为是前一个匹配块的一部分。配置格式如下所示：
@@ -438,6 +437,7 @@ template:
     source: output_msg
     template: "{{ .level }} for app {{ ToUpper .app }}"
 ```
+
 这个 pipeline 从提取的数据中获取 `level` 与 `app` 的值，一个新的 `output_msg` 将被添加到提取的数据中，值为上面模板的计算结果。
 例如，如果提取的数据中包含键为 app，值为 loki 的数据，level 的值为 warn，那么经过该阶段后会添加一个新的数据，键为 `output_msg`，其值为 `warn for app LOKI`。
 任何先前提取的键都可以在模板中使用，所有提取的键都可用于模板的扩展。
@@ -467,6 +467,7 @@ template:
 - output:
     source: message
 ```
+
 例如，上面的片段会在日志行前加上应用程序的名称。
 
 > 在 Loki2.3 中，所有的 sprig 函数都被添加到了当前的模板阶段，包括 ToLower & ToUpper、Replace、Trim、Regex、Hash 和 Sha2Hash 函数。
@@ -538,7 +539,7 @@ timestamp:
 
 经过上面的 timestamp 阶段在提取的数据中查找一个 time 字段，并以 `RFC3339Nano` 格式化其值（例如，2006-01-02T15:04:05.9999999-07:00），所得的时间值将作为时间戳与日志行一起发送给 Loki。
 
-## output - 设置一行日志的文本。
+## output - 设置一行日志的文本
 
 也就是根据该配置，将解析出来的数据中的某些内容，作为发送给 loki 的一行日志的具体内容。也就是 loki 所记录的日志内容。
 
@@ -646,6 +647,7 @@ metrics:
         count_entry_bytes: true
         action: add
 ```
+
 这个流水线先创建了一个 `log_lines_total` 的 Counter，通过使用 `match_all: true` 参数为每一个接收到的日志行增加。
 然后还创建了一个 `log_bytes_total` 的 Counter 指标，通过使用 `count_entry_bytes: true` 参数，将收到的每个日志行的字节大小加入到指标中。
 这两个指标如果没有收到新的数据，将在 24h 后小时。另外这些阶段应该放在 pipeline 的末端，在任何标签阶段之后。
@@ -686,7 +688,7 @@ metrics:
 
 上面这个 pipeline 首先会尝试在日志中找到格式为 `order_status=<value>` 的文本，将 `<value>` 提取到 `order_status` 中。该指标阶段创建了 `successful_orders_total` 和 `failed_orders_total` 指标，只有当提取数据中的 `order_status` 的值分别为 `success` 或 `fail` 时才会增加。
 
-## tenant - 设置要用于日志条目的租户 ID 值。
+## tenant - 设置要用于日志条目的租户 ID 值
 
 设置日志要使用的租户 ID 值，从提取数据中的一个字段获取，如果该字段缺失，将使用默认的 Promtail 客户端租户 ID。配置格式如下所示：
 
@@ -751,6 +753,7 @@ pipeline_stages:
   "time": "2019-04-30T02:12:41.8443515Z"
 }
 ```
+
 这个 pipeline 将：
 
 - Decode JSON 日志
@@ -843,7 +846,7 @@ pipeline_stages:
 
 最后的 output 输出阶段将日志行的内容改为提取数据中的 msg 的值。我们这里的示例最后输出为 `app1 log line`。
 
-## drop - Conditionally drop log lines based on several options.
+## drop - Conditionally drop log lines based on several options
 
 drop 阶段可以让我们根据配置来删除日志。需要注意的是，如果你提供多个选项配置，它们将被视为 `AND` 子句，其中每个选项必须为真才能删除日志。如果你想用一个 `OR`子句来删除，那么就指定多个删除阶段。配置语法格式如下所示：
 
@@ -918,6 +921,7 @@ drop:
 ```json
 {"time":"2021-05-01T12:00:00Z", "level": "error", "msg":"11.11.11.11 - "POST /loki/api/push/ HTTP/1.1" 200 932 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 GTB6"}
 ```
+
 但是下面的日志数据不会被删除：
 
 ```json

@@ -1,7 +1,6 @@
 ---
 title: Data Model(数据模型)
 linkTitle: Data Model(数据模型)
-date: 2021-10-22T22:05:00
 weight: 20
 ---
 
@@ -10,8 +9,8 @@ weight: 20
 > 参考：
 >
 > - 官方文档没有专门讲 Log Stream 的章节，Stream 的概念都是在其他章节提到的
-> - [官方文档，入门-标签](https://grafana.com/docs/loki/latest/getting-started/labels/)
-> - [官方文档，运维-存储](https://grafana.com/docs/loki/latest/operations/storage/)
+> - [官方文档，入门 - 标签](https://grafana.com/docs/loki/latest/getting-started/labels/)
+> - [官方文档，运维 - 存储](https://grafana.com/docs/loki/latest/operations/storage/)
 
 # Log Stream(日志流) 概念
 
@@ -167,4 +166,3 @@ action (例如 action="GET", action="POST") status_code (例如 status_code="200
 **Automatic stream sharding(自动流分片)** 功能会在数据发送到 Loki 的速率超过配置的限额时，为日志流添加 `__stream_shard__` 标签，标签的值是从 0 开始的数字。
 
 该功能是 Loki 在处理大型日志流产生的解决方案，避免数据丢失。详见: https://grafana.com/docs/loki/latest/operations/automatic-stream-sharding/#when-to-use-automatic-stream-sharding
-

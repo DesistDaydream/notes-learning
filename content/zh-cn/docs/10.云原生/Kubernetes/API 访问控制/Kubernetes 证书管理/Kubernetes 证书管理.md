@@ -1,20 +1,19 @@
 ---
 title: Kubernetes 证书管理
 linkTitle: Kubernetes 证书管理
-date: 2024-04-02T10:42
 weight: 1
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > -
-
 
 # PKI 证书和要求
 
 > 参考：
+>
 > - [官方文档,入门-最佳实践-PKI 证书和要求](https://kubernetes.io/docs/setup/best-practices/certificates/)
 
 Kubernetes 需要 PKI 证书才能进行基于 TLS 的身份验证。如果你是使用 [kubeadm](https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/) 安装的 Kubernetes， 则会自动生成集群所需的证书。你还可以生成自己的证书。 例如，不将私钥存储在 API 服务器上，可以让私钥更加安全。此页面说明了集群必需的证书。
@@ -151,6 +150,7 @@ KUBECONFIG=<filename> kubectl config use-context default-system
 # Certificate(证书) # 使用证书对集群中的客户端与服务端进行认证
 
 > 参考：
+>
 > - 官方文档：<https://kubernetes.io/docs/setup/best-practices/certificates/>
 
 etcd 与 etcd 之间，etcd 与 apiserver，apiserver 与 kubelet、scheduler、controller-manager、kube-proxy 等之间的认证，还有 calico 与 apiserver 等等各种组件与组件之间基本都需要认证，认证可以通过多种方式进行，比如证书、token、key/val 对，账号密码等等等

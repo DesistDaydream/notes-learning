@@ -1,7 +1,6 @@
 ---
 title: "Cache"
 linkTitle: "Cache"
-date: "2023-08-06T16:15"
 weight: 20
 ---
 
@@ -47,4 +46,3 @@ https://en.wikipedia.org/wiki/Cache_(computing)#Writing_policies
 2: [cache 写回策略_写回cache_xingzhe22222的博客-CSDN博客](https://blog.csdn.net/xingzhe22222/article/details/81988101)
 3: [透写和回写缓存（Write Through and Write Back in Cache）](https://zhuanlan.zhihu.com/p/571429282)
 4: [Cache写机制：Write-through与Write-back - CSDN博客](https://blog.csdn.net/zhangj95/article/details/81199272)
-

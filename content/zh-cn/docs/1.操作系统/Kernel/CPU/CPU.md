@@ -1,7 +1,6 @@
 ---
 title: CPU
 linkTitle: CPU
-date: 2024-03-15T21:04
 weight: 1
 ---
 

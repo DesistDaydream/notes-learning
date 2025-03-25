@@ -1,7 +1,6 @@
 ---
 title: DMA 与 零拷贝
 linkTitle: DMA 与 零拷贝
-date: 2024-03-18T17:58
 weight: 20
 ---
 
@@ -159,7 +158,7 @@ sendfile
 
 你可以在你的 Linux 系统通过下面这个命令，查看网卡是否支持 scatter-gather 特性：
 
-    $ ethtool -k eth0 | grep scatter-gatherscatter-gather: on
+    ethtool -k eth0 | grep scatter-gatherscatter-gather: on
 
 于是，从 Linux 内核 `2.4` 版本开始起，对于支持网卡支持 SG-DMA 技术的情况下， `sendfile()` 系统调用的过程发生了点变化，具体过程如下：
 
@@ -318,4 +317,3 @@ Kafka 和 Nginx 都有实现零拷贝技术，这将大大提高文件传输的�
 另外，当传输大文件时，不能使用零拷贝，因为可能由于 PageCache 被大文件占据，而导致「热点」小文件无法利用到 PageCache，并且大文件的缓存命中率不高，这时就需要使用「异步 IO + 直接 IO 」的方式。
 
 在 Nginx 里，可以通过配置，设定一个文件大小阈值，针对大文件使用异步 IO 和直接 IO，而对小文件使用零拷贝。
-

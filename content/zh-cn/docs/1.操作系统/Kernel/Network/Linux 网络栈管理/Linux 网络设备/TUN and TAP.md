@@ -1,7 +1,6 @@
 ---
 title: TUN and TAP
 linkTitle: TUN and TAP
-date: 2024-04-19T17:06
 weight: 20
 tags:
   - virtualization

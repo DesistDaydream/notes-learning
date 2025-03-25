@@ -1,7 +1,6 @@
 ---
 title: NUMA
 linkTitle: NUMA
-date: 2024-05-22T22:44
 weight: 20
 ---
 

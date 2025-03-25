@@ -1,14 +1,13 @@
 ---
 title: Prometheus API
 linkTitle: Prometheus API
-date: 2023-12-20T14:52
 weight: 1
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，Prometheus - 管理 API](https://prometheus.io/docs/prometheus/latest/management_api/)
 > - [官方文档，Prometheus - 查询 - HTTP API](https://prometheus.io/docs/prometheus/latest/querying/api/)
 

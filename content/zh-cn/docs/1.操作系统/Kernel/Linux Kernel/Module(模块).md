@@ -1,7 +1,6 @@
 ---
 title: Module(模块)
 linkTitle: Module(模块)
-date: 2024-03-18T15:14
 weight: 20
 ---
 
@@ -180,4 +179,3 @@ EXAMPLE
 > - [Wiki, Dynamic Kernel Module Support](https://en.wikipedia.org/wiki/Dynamic_Kernel_Module_Support)
 
 **Dynamic Kernel Module Support(动态内核模块支持，简称 DKMS)**
-

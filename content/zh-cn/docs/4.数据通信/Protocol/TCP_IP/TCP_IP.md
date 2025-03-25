@@ -1,7 +1,6 @@
 ---
 title: TCP/IP
 linkTitle: TCP/IP
-date: 2023-11-16T21:14
 weight: 1
 ---
 

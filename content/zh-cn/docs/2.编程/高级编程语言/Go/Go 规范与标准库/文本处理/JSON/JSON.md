@@ -1,7 +1,6 @@
 ---
 title: JSON
 linkTitle: JSON
-date: 2023-06-05T16:13
 weight: 1
 ---
 
@@ -463,44 +462,44 @@ Marshal 和 Unmarshal 是一些方便的函数，它们可以将数据从一个�
 package main
 
 import (
-	"bytes"
-	"encoding/gob"
-	"fmt"
+ "bytes"
+ "encoding/gob"
+ "fmt"
 )
 
 type Person struct {
-	Name string
-	Age  int
+ Name string
+ Age  int
 }
 
 func main() {
-	// 创建一个缓冲区，用来存储编码后的数据
-	var buf bytes.Buffer
-	// 创建一个 Encoder，用来将 Person 结构体编码到缓冲区
-	enc := gob.NewEncoder(&buf)
-	// 创建一个 Person 实例
-	p := Person{Name: "Alice", Age: 25}
-	// 调用 Encode 方法，将 p 编码到缓冲区
-	err := enc.Encode(p)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	// 打印缓冲区的内容（二进制格式）
-	fmt.Println(buf.Bytes())
+ // 创建一个缓冲区，用来存储编码后的数据
+ var buf bytes.Buffer
+ // 创建一个 Encoder，用来将 Person 结构体编码到缓冲区
+ enc := gob.NewEncoder(&buf)
+ // 创建一个 Person 实例
+ p := Person{Name: "Alice", Age: 25}
+ // 调用 Encode 方法，将 p 编码到缓冲区
+ err := enc.Encode(p)
+ if err != nil {
+  fmt.Println(err)
+  return
+ }
+ // 打印缓冲区的内容（二进制格式）
+ fmt.Println(buf.Bytes())
 
-	// 创建一个 Decoder，用来将缓冲区的数据解码成 Person 结构体
-	dec := gob.NewDecoder(&buf)
-	// 创建一个空的 Person 实例
-	var q Person
-	// 调用 Decode 方法，将缓冲区的数据解码到 q 中
-	err = dec.Decode(&q)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	// 打印 q 的内容（结构体格式）
-	fmt.Println(q)
+ // 创建一个 Decoder，用来将缓冲区的数据解码成 Person 结构体
+ dec := gob.NewDecoder(&buf)
+ // 创建一个空的 Person 实例
+ var q Person
+ // 调用 Decode 方法，将缓冲区的数据解码到 q 中
+ err = dec.Decode(&q)
+ if err != nil {
+  fmt.Println(err)
+  return
+ }
+ // 打印 q 的内容（结构体格式）
+ fmt.Println(q)
 }
 ```
 

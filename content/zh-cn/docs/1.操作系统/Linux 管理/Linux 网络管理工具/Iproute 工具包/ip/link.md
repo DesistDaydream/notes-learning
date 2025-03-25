@@ -1,7 +1,6 @@
 ---
 title: link
 linkTitle: link
-date: 2023-09-25T18:32
 weight: 20
 ---
 
@@ -102,7 +101,7 @@ pinned FILE } ]
 >
 
 ```bash
-for i in $(ip link show | awk -F: '$0 !~ "lo|vir|wl|^[^0-9]"{print $2;getline}'); do 
+for i in $(ip link show | awk -F: '$0 !~ "lo|vir|wl|^[^0-9]"{print $2;getline}'); do
   printf "%s\t%s\n" "${i}" "$(ethtool -i $i | grep driver)";
 done | column -t
 ```

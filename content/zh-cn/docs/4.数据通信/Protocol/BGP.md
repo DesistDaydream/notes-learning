@@ -1,7 +1,6 @@
 ---
 title: BGP
 linkTitle: BGP
-date: 2024-02-23T12:23
 weight: 3
 ---
 

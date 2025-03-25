@@ -1,7 +1,6 @@
 ---
 title: 容器非root启动
 linkTitle: 容器非root启动
-date: 2023-11-17T08:34
 weight: 20
 ---
 
@@ -12,12 +11,10 @@ weight: 20
 >
 > - [官方文档，Rootless 模式](https://docs.docker.com/engine/security/rootless/)
 
-
-
 # 容器非 root 启动改造的经验
 
 > 参考：
-> 
+>
 > - [zhangguanzhang，容器非 root 启动改造的经验](https://zhangguanzhang.github.io/2023/11/03/non-root-containers/)
 
 最近业务容器的非 root 启动改造实战案例经验，后续有新的也更新进来
@@ -50,17 +47,17 @@ rm -rf *
 
 Dockerfile 里设置 `USER` 或者 run 的时候设置 `-u user:group` 只能针对于一些简单的进程，例如大部分 exporter 和一些只是用 http API 的进程，这几天我测试后也提交了一些 pr：
 
-*   [danielqsj/kafka_exporter](https://github.com/danielqsj/kafka_exporter/pull/410)
-*   [ClickHouse/clickhouse_exporter](https://github.com/ClickHouse/clickhouse_exporter/pull/83)
-*   [kubernetes addonresizer](https://github.com/kubernetes/autoscaler/pull/6242/files)
+- [danielqsj/kafka_exporter](https://github.com/danielqsj/kafka_exporter/pull/410)
+- [ClickHouse/clickhouse_exporter](https://github.com/ClickHouse/clickhouse_exporter/pull/83)
+- [kubernetes addonresizer](https://github.com/kubernetes/autoscaler/pull/6242/files)
 
 对于很多挂载目录持久化数据的，例如各种中间件，例如 mysql，redis ，单纯设置 USER 的话，需要在容器启动之前设置目录的权限。other 权限为 7 的话，很不安全，所以只能是 owner、group 权限，但是容器内的用户名和宿主机用户名是不一致的，只能设置 uid、gid。使用这些需要数据持久化的容器，会存在：
 
-*   直接 -v 挂载或者 docker volume
-*   k8s 上使用 hostPath
-*   固定 pv
-*   sc 下使用 pvc
-*   别人的 k8s 集群或者实例上去部署
+- 直接 -v 挂载或者 docker volume
+- k8s 上使用 hostPath
+- 固定 pv
+- sc 下使用 pvc
+- 别人的 k8s 集群或者实例上去部署
 
 如果你提前修改目录权限，上面最后俩场景根本无法自动化，而且说不定某天新版本官方镜像里 Dockerfile 里换基础镜像的同时忘记在添加用户时候设置 uid 和 gid ，uid 和 gid 就变了，只能是加启动脚本里处理。
 
@@ -84,17 +81,17 @@ mysql 脚本里包含对于权限以外的信息比较多，不方便举例，�
 set -e
 
 if [ "${1#-}" != "$1" ] || [ "${1%.conf}" != "$1" ]; then
-  
-	set -- redis-server "$@"
+
+ set -- redis-server "$@"
 fi
 
 
 
 if [ "$1" = 'redis-server' -a "$(id -u)" = '0' ]; then
-  
-	find . \! -user redis -exec chown redis '{}' +
-  
-	exec gosu redis "$0" "$@"
+
+ find . \! -user redis -exec chown redis '{}' +
+
+ exec gosu redis "$0" "$@"
 fi
 
 
@@ -102,7 +99,7 @@ fi
 
 um="$(umask)"
 if [ "$um" = '0022' ]; then
-	umask 0077
+ umask 0077
 fi
 
 exec "$@"
@@ -150,10 +147,10 @@ docker top 显示的用户，是按照宿主机上 uid 显示的，[gosu](https:
 
 这列梳理一些我做的案例。先说一些知识点：
 
-*   产生 pid 和 sock 文件的，可以放 /tmp 下
-*   业务进程非 root 对 `/dev/stdxxx` 没权限的，可以脚本里 `chmod a+w /dev/std*`
-*   如果自己业务镜像产生的数据会被其他容器挂载操作数据，你的业务进程最好创建用户的时候使用固定同样的 `uid:gid` ，例如我们的 mysql-backup 备份 mysql 数据用到的用户 `uid:gid` 保持和 mysql 官方镜像一致，这样不需要修改 mysql 数据目录权限和 owner
-*   不要 `chmod -R 777` 目录
+- 产生 pid 和 sock 文件的，可以放 /tmp 下
+- 业务进程非 root 对 `/dev/stdxxx` 没权限的，可以脚本里 `chmod a+w /dev/std*`
+- 如果自己业务镜像产生的数据会被其他容器挂载操作数据，你的业务进程最好创建用户的时候使用固定同样的 `uid:gid` ，例如我们的 mysql-backup 备份 mysql 数据用到的用户 `uid:gid` 保持和 mysql 官方镜像一致，这样不需要修改 mysql 数据目录权限和 owner
+- 不要 `chmod -R 777` 目录
 
 #### [](#机器码处理 "机器码处理")机器码处理[](#机器码处理)
 
@@ -188,8 +185,8 @@ openat(AT_FDCWD, "/sys/firmware/dmi/tables/DMI", O_RDONLY)
 发现读取了这俩文件，搜索资料发现是 dmi table，例如 root 下可以这样获取机器码：
 
 ```plaintext
-$ dmidecode -t 1  < /sys/firmware/dmi/tables/DMI
-$ dmidecode -t 1 -u < /sys/firmware/dmi/tables/DMI
+dmidecode -t 1  < /sys/firmware/dmi/tables/DMI
+dmidecode -t 1 -u < /sys/firmware/dmi/tables/DMI
 ```
 
 该文件内容按照 DMI 规范字节结构解析可以得到不少信息。然后找到了一个 go 库，在 linux 上尝试成功：
@@ -198,49 +195,49 @@ $ dmidecode -t 1 -u < /sys/firmware/dmi/tables/DMI
 package main
 
 import (
-	"fmt"
-	"log"
+ "fmt"
+ "log"
 
-	"github.com/digitalocean/go-smbios/smbios"
+ "github.com/digitalocean/go-smbios/smbios"
 )
 
 func main() {
-	
-	rc, ep, err := smbios.Stream()
-	if err != nil {
-		log.Fatalf("failed to open stream: %v", err)
-	}
-	
-	defer rc.Close()
 
-	
-	d := smbios.NewDecoder(rc)
-	ss, err := d.Decode()
-	if err != nil {
-		log.Fatalf("failed to decode structures: %v", err)
-	}
+ rc, ep, err := smbios.Stream()
+ if err != nil {
+  log.Fatalf("failed to open stream: %v", err)
+ }
 
-	major, minor, _ := ep.Version()
+ defer rc.Close()
 
-	for _, s := range ss {
-		if s.Header.Type == 1 {
-			d := s.Formatted
-			
-			if major > 0x02 || (major == 0x02 && minor >= 0x06) {
-				fmt.Printf("UUID: %02X%02X%02X%02X-%02X%02X-%02X%02X-%02X%02X-%02X%02X%02X%02X%02X%02X\n", 
-					d[7], d[6], d[5], d[4],
-					d[9], d[8], d[11], d[10], d[12], d[13],
-					d[14], d[15], d[16], d[17], d[18], d[19],
-				)
-			} else {
-				fmt.Printf("UUID: %02X%02X%02X%02X-%02X%02X-%02X%02X-%02X%02X-%02X%02X%02X%02X%02X%02X\n", 
-					d[4], d[5], d[6], d[7],
-					d[8], d[9], d[10], d[11], d[12], d[13],
-					d[14], d[15], d[16], d[17], d[18], d[19],
-				)
-			}
-		}
-	}
+
+ d := smbios.NewDecoder(rc)
+ ss, err := d.Decode()
+ if err != nil {
+  log.Fatalf("failed to decode structures: %v", err)
+ }
+
+ major, minor, _ := ep.Version()
+
+ for _, s := range ss {
+  if s.Header.Type == 1 {
+   d := s.Formatted
+
+   if major > 0x02 || (major == 0x02 && minor >= 0x06) {
+    fmt.Printf("UUID: %02X%02X%02X%02X-%02X%02X-%02X%02X-%02X%02X-%02X%02X%02X%02X%02X%02X\n",
+     d[7], d[6], d[5], d[4],
+     d[9], d[8], d[11], d[10], d[12], d[13],
+     d[14], d[15], d[16], d[17], d[18], d[19],
+    )
+   } else {
+    fmt.Printf("UUID: %02X%02X%02X%02X-%02X%02X-%02X%02X-%02X%02X-%02X%02X%02X%02X%02X%02X\n",
+     d[4], d[5], d[6], d[7],
+     d[8], d[9], d[10], d[11], d[12], d[13],
+     d[14], d[15], d[16], d[17], d[18], d[19],
+    )
+   }
+  }
+ }
 }
 ```
 
@@ -252,7 +249,7 @@ $ dmidecode -s system-uuid | tr a-z A-Z
 $ go build -o /tmp/uuid-go test.go
 $ chmod a+r /sys/firmware/dmi/tables/DMI
 $ su - guanzhang
-guanzhang@guan:~$ /tmp/uuid-go 
+guanzhang@guan:~$ /tmp/uuid-go
 UUID: 66C0F667-71A0-xxxx-xxxx-4AC0A21F5428
 ```
 
@@ -268,14 +265,14 @@ UUID: 66C0F667-71A0-xxxx-xxxx-4AC0A21F5428
 set -e
 
 if [ "${1:0:1}" = '-' ]; then
-	set -- etcd "$@"
+ set -- etcd "$@"
 fi
 
 
 if [ "$1" = 'etcd' ] || [ "$1" = '/usr/local/bin/etcd' ];then
     if [ "$(id -u)" = '0' -a -n "$RUN_USER" ]; then
-	    find /var/lib/etcd \! -user ${RUN_USER} -exec chown ${RUN_USER} '{}' +
-	    exec gosu ${RUN_USER} "$@"
+     find /var/lib/etcd \! -user ${RUN_USER} -exec chown ${RUN_USER} '{}' +
+     exec gosu ${RUN_USER} "$@"
     fi
 fi
 
@@ -290,15 +287,15 @@ exec "$@"
 set -e
 
 if [ "${1:0:1}" = '-' ]; then
-	set -- start-kafka.sh "$@"
+ set -- start-kafka.sh "$@"
 fi
 
 
 if [ "$1" = 'start-kafka.sh' ] || [ "$1" = '/usr/bin/start-kafka.sh' ];then
     if [ "$(id -u)" = '0' -a -n "$RUN_USER" ]; then
-		find $(readlink -f ${KAFKA_HOME}) \! -user ${RUN_USER} -exec chown ${RUN_USER} '{}' +
-		find /kafka \! -user ${RUN_USER} -exec chown ${RUN_USER} '{}' +
-	    exec gosu ${RUN_USER} "$@"
+  find $(readlink -f ${KAFKA_HOME}) \! -user ${RUN_USER} -exec chown ${RUN_USER} '{}' +
+  find /kafka \! -user ${RUN_USER} -exec chown ${RUN_USER} '{}' +
+     exec gosu ${RUN_USER} "$@"
     fi
 fi
 
@@ -382,7 +379,7 @@ RUN set -eux; \
     curl -o /usr/local/bin/gosu -sSL https://github.com/tianon/gosu/releases/download/${GO_SU}/gosu-amd64; \
     chmod a+x /usr/local/bin/gosu; \
     gosu --version; \
-    rm -rf /var/cache/apk/* /tmp/* 
+    rm -rf /var/cache/apk/* /tmp/*
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["cadvisor", "-logtostderr"]
@@ -393,7 +390,7 @@ CMD ["cadvisor", "-logtostderr"]
 set -e
 
 if [ "${1:0:1}" = '-' ]; then
-	set -- cadvisor "$@"
+ set -- cadvisor "$@"
 fi
 
 if [ "$1" = 'cadvisor' ] || [ "$1" = '/usr/bin/cadvisor' ];then
@@ -402,23 +399,23 @@ if [ "$1" = 'cadvisor' ] || [ "$1" = '/usr/bin/cadvisor' ];then
             group_id=`stat -c "%g" /var/run/docker.sock`
             if ! getent group | cut -d: -f3 | grep -wq $group_id; then
                 if ! addgroup -g ${group_id} docker;then
-                    
+
                     group_failed=true
                 fi
             fi
             if [ -z "$group_failed" ];then
                 group_name=$(stat -c "%G" /var/run/docker.sock)
                 if ! id -nG ${RUN_USER} | grep -w ${group_name};then
-                    
+
                     adduser ${RUN_USER} ${group_name}
                 fi
             else
-                
+
                 setfacl -m u:${RUN_USER}:rw /var/run/docker.sock
             fi
-            
+
         fi
-        
+
         exec gosu $RUN_USER $@
     fi
 fi
@@ -426,8 +423,8 @@ fi
 exec $@
 ```
 
-*   cadvisor 挂载了宿主机的 rootfs ，改为纯非 root 不行，但是 cadvisor 镜像内有个 `operator` 用户的 gid 是 0，利用启动脚本和 docker 权限来改造成非 root 启动。
-*   docker.sock 权限是 `0660`，利用 shell 把 operator 用户加到 docker 组里即可（必须取 gid）。这里要注意的是，不同版本 alpine 和其他 rootfs 的 adduser/addgroup 参数不一样，自行注意 shell 兼容
+- cadvisor 挂载了宿主机的 rootfs ，改为纯非 root 不行，但是 cadvisor 镜像内有个 `operator` 用户的 gid 是 0，利用启动脚本和 docker 权限来改造成非 root 启动。
+- docker.sock 权限是 `0660`，利用 shell 把 operator 用户加到 docker 组里即可（必须取 gid）。这里要注意的是，不同版本 alpine 和其他 rootfs 的 adduser/addgroup 参数不一样，自行注意 shell 兼容
 
 设置 “RUN_USER” 为 `operator` ，然后设置宿主机的 docker 的 data-root 下面权限（可以使用 systemd 的`ExecStartPost=`）：
 
@@ -459,6 +456,6 @@ exec gosu  user1 go-crond   --default-user=user1  --include=/etc/cron.d --allow-
 
 # 参考
 
-*   [k8s 社区关于支持 user namespace 提议](https://github.com/kubernetes/enhancements/issues/127)
-*   [dmi 信息规范](https://www.dmtf.org/sites/default/files/standards/documents/DSP0134_3.3.0.pdf)
-*   [dmidecode 源码](https://github.com/mirror/dmidecode/blob/master/dmidecode.c#L448)
+- [k8s 社区关于支持 user namespace 提议](https://github.com/kubernetes/enhancements/issues/127)
+- [dmi 信息规范](https://www.dmtf.org/sites/default/files/standards/documents/DSP0134_3.3.0.pdf)
+- [dmidecode 源码](https://github.com/mirror/dmidecode/blob/master/dmidecode.c#L448)

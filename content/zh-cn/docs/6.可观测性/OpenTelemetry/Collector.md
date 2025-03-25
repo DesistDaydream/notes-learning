@@ -1,7 +1,6 @@
 ---
 title: Collector
 linkTitle: Collector
-date: 2024-10-31T11:13
 weight: 20
 ---
 

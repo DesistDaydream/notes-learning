@@ -1,7 +1,6 @@
 ---
 title: Service Manifests
 linkTitle: Service Manifests
-date: 2024-06-03T08:12
 weight: 20
 ---
 

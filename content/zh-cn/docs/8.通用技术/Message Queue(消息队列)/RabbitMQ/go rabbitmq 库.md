@@ -1,11 +1,11 @@
 ---
 title: go rabbitmq 库
 linkTitle: go rabbitmq 库
-date: 2024-05-08T20:10
 weight: 20
 ---
 
 #
+
 # 概述
 
 > 参考：

@@ -1,17 +1,17 @@
 ---
 title: Access Control
 linkTitle: Access Control
-date: 2024-01-14T21:13
 weight: 1
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [RBAC 的演进历史、设计理念及简洁实现](https://mp.weixin.qq.com/s/vhwA-1UrE_6R7lICCMpG6A)
 
 **Access Control(访问控制)**
+
 ## 译者序
 
 本文翻译自 2021 年的一篇英文博客：RBAC like it was meant to be\[1]。

@@ -1,7 +1,6 @@
 ---
 title: "CLI"
 linkTitle: "CLI"
-date: "2023-07-06T10:46"
 weight: 20
 ---
 
@@ -33,10 +32,9 @@ https://github.com/alecthomas/kong
 
 格式 2：`flag.TYPE(Pointername ,FlagName, DefaultValue, HelpInfo)`。与上面的格式相同，只不过没有返回值，并且会把`DefaultValue`赋值给`Pointer`指针指向的变量，该变量需要提前定义。
 
-
 ```
 test := flag.String("test","testValue","请指定test参数")
-flag.Parse()	//注意必须要有该行才能让test变量获取用户输入的参数，否则一直是默认值
+flag.Parse() //注意必须要有该行才能让test变量获取用户输入的参数，否则一直是默认值
 fmt.Println(test)
 ```
 

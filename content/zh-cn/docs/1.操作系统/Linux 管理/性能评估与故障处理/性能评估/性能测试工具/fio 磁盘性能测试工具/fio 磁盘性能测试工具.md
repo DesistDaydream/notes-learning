@@ -1,7 +1,6 @@
 ---
 title: fio 磁盘性能测试工具
 linkTitle: fio 磁盘性能测试工具
-date: 2024-05-13T09:19
 weight: 1
 ---
 
@@ -89,7 +88,7 @@ size=128m
 如您所见，作业文件部分本身为空，因为所有描述的参数都是共享的。由于未提供文件名选项，因此，fio 会为每个作业组成一个合适的文件名。在命令行上，此作业如下所示：
 
 ```bash
-$ fio --name=global --rw=randread --size=128m --name=job1 --name=job2
+fio --name=global --rw=randread --size=128m --name=job1 --name=job2
 ```
 
 让我们看一个示例，其中有许多进程随机写入文件：
@@ -110,7 +109,7 @@ numjobs=4
 这里我们没有全局部分，因为我们只定义了一项工作。我们想在这里使用异步 I / O，每个文件的深度为 4。我们还将缓冲区大小增加到 32KiB，并将 numjobs 定义为 4，以分叉 4 个相同的作业。结果是 4 个进程，每个进程随机写入其自己的 64MiB 文件。您可以在命令行上指定参数，而不使用上面的作业文件。对于这种情况，您可以指定：
 
 ```bash
-$ fio --name=random-writers --ioengine=libaio --iodepth=4 --rw=randwrite --bs=32k --direct=0 --size=64m --numjobs=4
+fio --name=random-writers --ioengine=libaio --iodepth=4 --rw=randwrite --bs=32k --direct=0 --size=64m --numjobs=4
 ```
 
 # fio 命令行工具
@@ -128,8 +127,8 @@ JOB OPTIONS
 EXAMPLE
 
 - 注意，下面两条命令直接对整块磁盘进行写操作，会破坏文件，谨慎操作
-   - fio -filename=/dev/vdb1 -direct=1 -iodepth 64 -thread -rw=randwrite -ioengine=libaio -bs=4K -numjobs=8 -runtime=60 -group_reporting -name=test1
-   - fio -filename=/dev/vdb3 -direct=1 -iodepth 64 -thread -rw=write -ioengine=libaio -bs=512K -numjobs=8 -runtime=60 -group_reporting -name=test2
+  - fio -filename=/dev/vdb1 -direct=1 -iodepth 64 -thread -rw=randwrite -ioengine=libaio -bs=4K -numjobs=8 -runtime=60 -group_reporting -name=test1
+  - fio -filename=/dev/vdb3 -direct=1 -iodepth 64 -thread -rw=write -ioengine=libaio -bs=512K -numjobs=8 -runtime=60 -group_reporting -name=test2
 - **fio --rw=write --ioengine=sync --fdatasync=1 --directory=/var/lib/etcd --size=22m --bs=2300 --name="fioEtcdTest" --time_based --runtime=2m**
 - **fio --rw=write --ioengine=libaio --iodepth=4 --direct=1 --filename=fiotest --size=2G --bs=4k --name="Max throughput" --time_based --runtime=60**
 

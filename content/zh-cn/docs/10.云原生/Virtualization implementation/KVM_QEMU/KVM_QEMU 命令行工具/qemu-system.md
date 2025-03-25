@@ -1,7 +1,6 @@
 ---
 title: qemu-system
 linkTitle: qemu-system
-date: 2020-10-17T11:02:00
 weight: 20
 ---
 
@@ -143,6 +142,3 @@ BACKEND 可以是以下设备之一：`null`, `socket`, `udp`, `msmouse`, `vc`, 
 -object
 
 # Deivce URL Syntax
-
-
-

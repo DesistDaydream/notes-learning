@@ -1,7 +1,6 @@
 ---
 title: WireShark
 linkTitle: WireShark
-date: 2023-11-01T21:03
 weight: 1
 ---
 
@@ -59,7 +58,7 @@ WireShark 将具有某些相同特征的多个数据包分为一组，称为 **P
 
 WireShark 通过 **Follow Protocol Streams(追踪协议流)** 的行为实现 统计、etc. 很多功能
 
-想要将多个数据包分为一组，通常要有一些前提条件，比如 TCP 流要保证这些数据包的 src port 和 dest port 且 src ip 和 dest ip 完全相同、etc. 
+想要将多个数据包分为一组，通常要有一些前提条件，比如 TCP 流要保证这些数据包的 src port 和 dest port 且 src ip 和 dest ip 完全相同、etc.
 
 现在 WireShark 可以为如下追踪如下协议的流：
 
@@ -93,4 +92,3 @@ https://www.wireshark.org/docs/wsug_html_chunked/ChStatConversations.html
 - IPv4 标签 # 合并 src ip 和 dest ip 相同的数据包
 - UDP 标签/TCP 标签 # 合并 src port 和 dest port 相同；且 src ip 与 dest ip 相同的数据包，每个组的数据包当做同一条 Protocol Stream(协议流)，具有相同的 StreamID。
   - 比如，若总共 2000 个包，其中有一些包的 src ip:port 和 dest ip:port 一样，那么该统计-会话中的 UDP 的协议流将会小于 2000
-

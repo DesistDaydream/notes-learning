@@ -1,7 +1,6 @@
 ---
 title: Actions 配置
 linkTitle: Actions 配置
-date: 2024-04-22T22:53
 weight: 20
 ---
 
@@ -24,4 +23,3 @@ Setting - Actions - General - Workflow permissions
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/github_acion/202404222221183.png)
 
 参考: https://github.com/softprops/action-gh-release/issues/232#issuecomment-1375588379
-

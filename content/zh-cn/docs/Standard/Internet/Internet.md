@@ -1,7 +1,6 @@
 ---
 title: Internet
 linkTitle: Internet
-date: 2024-01-07T21:42
 weight: 1
 ---
 

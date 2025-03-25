@@ -1,7 +1,6 @@
 ---
 title: Template
 linkTitle: Template
-date: 2024-08-20T09:56
 weight: 3
 ---
 
@@ -17,4 +16,3 @@ Prometheus 可以在部分配置文件中（[Rules](/docs/6.可观测性/Metrics
 # Template Function
 
 Prometheus 模板增加了一些函数以便更轻松得处理 PromQL 的查询结果（e.g. 将 Bytes 的数直接转为人类可读的带单位的结果），所有函数列表详见[官方文档](https://prometheus.io/docs/prometheus/latest/configuration/template_reference/#functions)
-

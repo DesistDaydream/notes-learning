@@ -2,7 +2,6 @@
 title: MCP
 linkTitle: MCP
 weight: 20
-date: 2025-03-22T17:08:00
 ---
 
 # 概述

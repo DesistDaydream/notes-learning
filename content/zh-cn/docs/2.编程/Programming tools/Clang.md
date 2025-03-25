@@ -1,7 +1,6 @@
 ---
 title: Clang
 linkTitle: Clang
-date: 2024-09-10T15:02
 weight: 20
 ---
 

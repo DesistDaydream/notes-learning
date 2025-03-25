@@ -1,13 +1,12 @@
 ---
 title: Vim
 linkTitle: Vim
-date: 2024-03-08T21:29
 weight: 1
 ---
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，vim/vim](https://github.com/vim/vim)
 > - [官网](https://www.vim.org/)
 >   - [用户手册](https://vimdoc.sourceforge.net/htmldoc/usr_toc.html) 可跳转到 [帮助文件](https://vimdoc.sourceforge.net/htmldoc/help.html)
@@ -16,8 +15,8 @@ weight: 1
 ## Syntax(语法)
 
 > 参考：
-> 
-> - 
+>
+> -
 
 **vim \[OPTIONS]**
 
@@ -185,15 +184,14 @@ Vim 多缓冲区编辑
 - `:%s/\[\ \(.*\)\ \]/\1/g`  # 删除每行的中括号空格
 - `:%s@^.\{3\}@@g` # 删除每一行的前3个字符
 
-
 搜索：
 
 - `:g` 即为 :global，该搜索命令极其强大，可以对 global 命令在\[range]指定的文本范围内（缺省为整个文件）查找 PATTERN，然后对匹配到的行执行命令 COMMAND，如果希望对没匹配上的行执行命令，则使用 global!或 vglobal 命令（注：模式 PATTERN 可以是字符串，也可是是正则表达式的筛选内容）
-   - 命令模式
-      - :\[range]global/PATTERN/COMMAND
-   - 应用例子：
-      - :g/^$/d # 搜索所有空白行并剪切
-      - :g/^#/d # 搜索所有所有开头带#号的行并剪切
+  - 命令模式
+    - :\[range]global/PATTERN/COMMAND
+  - 应用例子：
+    - :g/^$/d # 搜索所有空白行并剪切
+    - :g/^#/d # 搜索所有所有开头带#号的行并剪切
 - :v
 
 # 设置

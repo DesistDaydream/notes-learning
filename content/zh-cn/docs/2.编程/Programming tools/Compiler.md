@@ -1,7 +1,6 @@
 ---
 title: Compiler
 linkTitle: Compiler
-date: 2024-09-12T10:09
 weight: 20
 ---
 

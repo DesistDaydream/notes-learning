@@ -1,7 +1,6 @@
 ---
 title: Networking device
 linkTitle: Networking device
-date: 2024-02-22T13:29
 weight: 1
 ---
 

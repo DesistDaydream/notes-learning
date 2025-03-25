@@ -1,7 +1,6 @@
 ---
 title: Containerd 部署
 linkTitle: Containerd 部署
-date: 2024-07-24T20:09
 weight: 2
 ---
 

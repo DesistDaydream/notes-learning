@@ -1,7 +1,6 @@
 ---
 title: Sentinel 命令
 linkTitle: Sentinel 命令
-date: 2024-06-14T10:20
 weight: 20
 ---
 
@@ -17,11 +16,11 @@ weight: 20
 
 ### PING - 健康检查
 
-### sentinel masters - 显示被监控的所有 master 以及它们的状态.
+### sentinel masters - 显示被监控的所有 master 以及它们的状态
 
-### sentinel master \<MASTER> - 显示指定 MASTER 的信息和状态；
+### sentinel master \<MASTER> - 显示指定 MASTER 的信息和状态
 
-### sentinel slaves \<MASTER> - 显示指定 MASTER 的所有 slave 以及它们的状态；
+### sentinel slaves \<MASTER> - 显示指定 MASTER 的所有 slave 以及它们的状态
 
 ### sentinel get-master-addr-by-name \<MASTER> - 返回指定 MASTER 的 ip 和端口
 
@@ -39,7 +38,7 @@ weight: 20
 
 注意：如果你通过 API 修改了一个 sentinel 的配置，sentinel 不会把修改的配置告诉其他 sentinel。你需要自己手动地对多个 sentinel 发送修改配置的命令。
 
-### sentinel flushconfig - 重写运行 Sentinel 时指定的配置文件内容。
+### sentinel flushconfig - 重写运行 Sentinel 时指定的配置文件内容
 
 与 Redis 的 config rewrite 命令效果一样。也就是将内存中的配置，写入到文件中。
 
@@ -47,7 +46,7 @@ weight: 20
 
 ### sentinel remove \<MASTER> - 让 sentinel 放弃对指定 MASTER 的监听
 
-### SENTINEL SET \<name> \<option> \<value> - 这个命令很像 Redis 的 CONFIG SET 命令，用来改变指定 master 的配置。支持多个\<option>\<value>。
+### SENTINEL SET \<name> \<option> \<value> - 这个命令很像 Redis 的 CONFIG SET 命令，用来改变指定 master 的配置。支持多个\<option>\<value>
 
 只要是配置文件中存在的配置项，都可以用`SENTINEL SET`命令来设置。
 
@@ -67,7 +66,7 @@ EXAMPLE
 
 1. 停止所要删除的 sentinel
 
-2. 发送一个`SENTINEL RESET * `命令给所有其它的 sentinel 实例，如果你想要重置指定 master 上面的 sentinel，只需要把\*号改为特定的名字，注意，需要一个接一个发，每次发送的间隔不低于 30 秒。
+2. 发送一个`SENTINEL RESET *`命令给所有其它的 sentinel 实例，如果你想要重置指定 master 上面的 sentinel，只需要把\*号改为特定的名字，注意，需要一个接一个发，每次发送的间隔不低于 30 秒。
 
 3. 检查一下所有的 sentinels 是否都有一致的当前 sentinel 数。使用`SENTINEL MASTER mastername` 来查询。
 

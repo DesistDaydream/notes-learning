@@ -1,7 +1,6 @@
 ---
 title: Data Pipeline
 linkTitle: Data Pipeline
-date: 2024-10-08T10:55
 weight: 20
 ---
 
@@ -27,8 +26,3 @@ weight: 20
 <font color="#ff0000">**用人话说：将数据从一个地方流到另一个地方的行为，就是 Pipeline 行为**</font>。就像 Pipeline 名字一样，管道，只不过是用来承载数据的管道，可以让数据从管道的一段流向另一端。
 
 从逻辑上看，可观测数据从采集到入库的过程中，可以存在多级 DataPipeline，采集程序自身也可以当作 DataPipeline 的一部分；然后中间可以经过处理或路由，也可以不经过处理或路由；最后进入到数据库中。
-
-
-
-
-

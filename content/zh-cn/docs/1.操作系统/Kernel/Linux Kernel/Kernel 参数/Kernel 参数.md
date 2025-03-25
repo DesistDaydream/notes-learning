@@ -1,7 +1,6 @@
 ---
 title: Kernel 参数
 linkTitle: Kernel 参数
-date: 2024-03-18T15:21
 weight: 1
 ---
 
@@ -51,4 +50,3 @@ weight: 1
   - 详见 [vm(内存相关参数)](/docs/1.操作系统/Kernel/Linux%20Kernel/Kernel%20参数/vm(内存相关参数).md)
 - **./user/** # Per user per user namespace limits
   - [Documentation for /proc/sys/user/](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/user.html)
-

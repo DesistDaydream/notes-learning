@@ -1,7 +1,6 @@
 ---
 title: Model
 linkTitle: Model
-date: 2024-01-16T22:39:00
 weight: 20
 ---
 

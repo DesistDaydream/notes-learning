@@ -1,7 +1,6 @@
 ---
 title: Federate(集群联邦)
 linkTitle: Federate(集群联邦)
-date: 2023-12-20T14:48
 weight: 6
 ---
 

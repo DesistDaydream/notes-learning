@@ -2,7 +2,6 @@
 title: Go 环境安装与使用
 linkTitle: Go 环境安装与使用
 weight: 1
-date: 2022-08-10T00:00:00
 ---
 
 # 概述
@@ -269,4 +268,3 @@ go 命令会从公共镜像 http://goproxy.io 上下载 [Go 第三方库](/doc
 可以使用 GOPRIVATE [环境变量](#Go%20环境变量)可以设置不经过代理的私有仓库。GOPRIVATE 的配置会自动复制到 GONOPOROXY 与 GONOSUMDB 两个环境变量上，让获取私有仓库时 不使用代理、不进行校验。
 
 其中，direct 关键字的作用是：特殊指示符，用于指示 Go 回源到模块版本的源地址去抓取
-

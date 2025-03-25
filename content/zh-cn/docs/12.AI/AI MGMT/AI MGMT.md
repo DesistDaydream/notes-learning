@@ -2,14 +2,13 @@
 title: AI MGMT
 linkTitle: AI MGMT
 weight: 20
-date: 2025-01-28T08:37:00
 ---
 
 # 概述
 
 > 参考：
 >
-> - 
+> -
 
 # LM Studio
 
@@ -34,7 +33,7 @@ Ollama 模型库: https://ollama.com/library
 
 ## Linux
 
-****~/.ollama/** # 
+****~/.ollama/** #
 
 - **./models/** # 模型储存位置
 

@@ -1,7 +1,6 @@
 ---
 title: Browser
 linkTitle: Browser
-date: 2023-11-02T01:23
 weight: 1
 ---
 
@@ -26,5 +25,3 @@ weight: 1
 （点击Remove要精准，remove会把blur清除，不会进入其他设置）
 
 注：可同时点开多个网页播放器并行播放不暂停，提高效率
-
-

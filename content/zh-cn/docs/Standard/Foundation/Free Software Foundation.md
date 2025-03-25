@@ -1,7 +1,6 @@
 ---
 title: Free Software Foundation
 linkTitle: Free Software Foundation
-date: 2024-03-18T11:19
 weight: 20
 ---
 

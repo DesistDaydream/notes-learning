@@ -1,7 +1,6 @@
 ---
 title: KVM/QEMU 命令行工具
 linkTitle: KVM/QEMU 命令行工具
-date: 2019-10-17T11:02:00
 weight: 1
 ---
 

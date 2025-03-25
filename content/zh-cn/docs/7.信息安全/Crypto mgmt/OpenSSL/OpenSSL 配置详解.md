@@ -1,7 +1,6 @@
 ---
 title: OpenSSL 配置详解
 linkTitle: OpenSSL 配置详解
-date: 2020-11-06T09:10:00
 weight: 20
 ---
 
@@ -107,7 +106,6 @@ OpenSSL 配置文件为 INI 格式的配置扩展了很多功能，并规定了�
 
 **subjectAltName = \<SectionName>**#
 
-
 ### SubjectAltName
 
 DNS.1 = abc
@@ -181,7 +179,7 @@ localityName        = optional
 organizationName    = optional
 organizationalUnitName  = optional
 commonName      = supplied
-emailAddress        = optional 
+emailAddress        = optional
 /* 以下是添加的扩展项usr_cert的内容*/
 [ usr_cert ]
 basicConstraints=CA:FALSE   /* 基本约束，CA:FALSE表示该证书不能作为CA证书，即不能给其他人颁发证书*/

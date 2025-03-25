@@ -1,7 +1,6 @@
 ---
 title: PKM
 linkTitle: PKM
-date: 2023-02-28T20:27:00
 weight: 1
 ---
 
@@ -103,4 +102,3 @@ PKMer
 - 是一个【知识管理】爱好组织，我们热衷于知识管理，喜欢讨论提升效率软件，以及那些让你觉得欣喜的技术。
 - https://pkmer.cn/
 - 包含 Markdown、Obsidian、Excaildraw、Zotero、TiddyWiki、etc. 相关专题
-

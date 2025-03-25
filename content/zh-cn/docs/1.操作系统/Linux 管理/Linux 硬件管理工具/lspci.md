@@ -1,7 +1,6 @@
 ---
 title: lspci
 linkTitle: lspci
-date: 2024-06-15T11:36
 weight: 20
 ---
 

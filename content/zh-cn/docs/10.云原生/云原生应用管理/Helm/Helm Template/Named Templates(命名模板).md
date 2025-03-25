@@ -1,7 +1,6 @@
 ---
 title: "Named Templates(命名模板)"
 linkTitle: "Named Templates(命名模板)"
-date: "2023-07-19T22:30"
 weight: 20
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: Bootloader
 linkTitle: Bootloader
-date: 2024-03-15T20:59
 weight: 1
 ---
 

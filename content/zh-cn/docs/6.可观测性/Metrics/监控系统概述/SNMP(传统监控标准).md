@@ -8,7 +8,6 @@ weight: 20
 
 > 参考：
 >
-> - date: "2024-12-06T15:26"
 > - [RFC 1157，A Simple Network Management Protocol (SNMP)](https://datatracker.ietf.org/doc/html/rfc1157)
 > - [RFC 1156，Management Information Base for Network Management of TCP/IP-based internets](https://datatracker.ietf.org/doc/html/rfc1156)
 > - [Wiki, SNMP](https://en.wikipedia.org/wiki/Simple_Network_Management_Protocol)
@@ -301,7 +300,7 @@ sysDescr OBJECT-TYPE
 
 **MODULE-COMPLIANCE**
 
-## MIB 文件简单示例：
+## MIB 文件简单示例
 
  ```
 # SNMPv2-MIB 是该 MIB 库的名字，也是在调用该 MIB 时所用的名字。

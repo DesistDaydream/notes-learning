@@ -2,7 +2,6 @@
 title: Nginx
 linkTitle: Nginx
 weight: 1
-date: 2020-11-02T10:39:00
 tags:
   - Proxy
   - Network
@@ -189,4 +188,3 @@ http {
 让nginx在前台运行，常用于container中
 
 - `nginx -g 'daemon off;'`
-

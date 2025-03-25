@@ -1,7 +1,6 @@
 ---
 title: Promtail
 linkTitle: Promtail
-date: 2024-06-15T08:47
 weight: 1
 ---
 

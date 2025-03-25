@@ -1,14 +1,13 @@
 ---
 title: Rancher 部署与清理
 linkTitle: Rancher 部署与清理
-date: 2023-11-23T11:49
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - 常见问题：<https://www.bookstack.cn/read/rancher-2.4.4-zh/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98.md>
 
 ## 快速部署体验

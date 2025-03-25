@@ -1,7 +1,6 @@
 ---
 title: grub 文件
 linkTitle: grub 文件
-date: 2024-07-08T12:31
 weight: 20
 ---
 
@@ -18,7 +17,7 @@ RedHad 系
 
 Debian 系
 
-- 
+-
 
 TODO:
 

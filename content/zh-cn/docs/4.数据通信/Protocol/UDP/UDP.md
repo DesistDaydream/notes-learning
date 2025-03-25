@@ -1,7 +1,6 @@
 ---
 title: UDP
 linkTitle: UDP
-date: 2022-10-12T10:13:00
 weight: 1
 ---
 
@@ -10,7 +9,6 @@ weight: 1
 > 参考：
 >
 > -
-
 
 # 概述
 
@@ -24,4 +22,3 @@ weight: 1
 **User Datagram Protocol (用户数据报协议，简称 UDP)**。
 
 不保证数据报文是否安全可靠的到达对方
-

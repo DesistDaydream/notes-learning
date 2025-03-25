@@ -1,7 +1,6 @@
 ---
 title: MySQL
 linkTitle: MySQL
-date: 2022-09-26T08:32:00
 weight: 1
 ---
 

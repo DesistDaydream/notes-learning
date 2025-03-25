@@ -1,7 +1,6 @@
 ---
 title: kubeadm 实现细节
 linkTitle: kubeadm 实现细节
-date: 2024-06-14T08:56
 weight: 4
 ---
 
@@ -10,7 +9,6 @@ weight: 4
 > 参考：
 >
 > -
-
 
 # kubeadm 核心设计原则
 

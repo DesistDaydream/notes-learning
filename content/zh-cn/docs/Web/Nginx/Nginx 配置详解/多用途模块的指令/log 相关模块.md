@@ -1,7 +1,6 @@
 ---
 title: log 相关模块
 linkTitle: log 相关模块
-date: 2020-02-28T14:31:00
 weight: 20
 ---
 
@@ -15,6 +14,7 @@ weight: 20
 # access_log
 
 # log_format
+
 # 日志格式示例
 
 ```nginx

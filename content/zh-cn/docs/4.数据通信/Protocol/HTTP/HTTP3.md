@@ -1,7 +1,6 @@
 ---
 title: HTTP3
 linkTitle: HTTP3
-date: 2023-10-12T11:19:00
 weight: 20
 ---
 

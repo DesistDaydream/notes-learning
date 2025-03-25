@@ -1,7 +1,6 @@
 ---
 title: RPA
 linkTitle: RPA
-date: 2024-01-04T14:29
 weight: 20
 ---
 

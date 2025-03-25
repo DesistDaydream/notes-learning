@@ -1,7 +1,6 @@
 ---
 title: DevTools
 linkTitle: DevTools
-date: 2023-11-19T19:54
 weight: 20
 ---
 
@@ -98,7 +97,6 @@ Notes: 仅对已经加载完成的页面有效，i.e. 发起 Fetch/XHR 之类的
 此时访问首页时，即可让页面在发起这个请求时暂停并定位到源码位置
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/devtools/202311201207139.png)
-
 
 ## Scope(作用域)
 

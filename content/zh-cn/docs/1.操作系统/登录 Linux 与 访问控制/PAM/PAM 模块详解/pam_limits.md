@@ -1,7 +1,6 @@
 ---
 title: pam_limits
 linkTitle: pam_limits
-date: 2024-05-05T21:07
 weight: 20
 ---
 
@@ -9,7 +8,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [Manual(手册)，pam_limits(8)](https://man7.org/linux/man-pages/man8/pam_limits.8.html)
 > - [Manula(手册)，limits.conf(5)](https://www.man7.org/linux/man-pages/man5/limits.conf.5.html)
 
@@ -76,6 +75,7 @@ DefaultLimitNPROC=65535 # 对应 max processes
 ## ulimit
 
 > 参考：
+>
 > - [Manual(手册)，ulimit(1p)](https://man7.org/linux/man-pages/man1/ulimit.1p.html)
 
 临时更改或者查看当前登录用户的资源限制情况。

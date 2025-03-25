@@ -1,7 +1,6 @@
 ---
 title: cURL
 linkTitle: cURL
-date: 2024-03-20T08:57
 weight: 20
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: Kustomize
 linkTitle: Kustomize
-date: 2021-10-12T16:08:00
 weight: 1
 ---
 

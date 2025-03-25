@@ -1,7 +1,6 @@
 ---
 title: Etcd
 linkTitle: Etcd
-date: 2022-09-26T08:55:00
 weight: 1
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: ClickHouse SQL
 linkTitle: ClickHouse SQL
-date: 2024-11-20T09:43
 weight: 20
 ---
 
@@ -33,7 +32,7 @@ https://clickhouse.com/docs/sql-reference/statements/select/array-join
 
 ```sql
 WITH time_ranges AS (
-  SELECT 
+  SELECT
     groupArray(DISTINCT start_time) AS start_times,
     groupArray(DISTINCT end_time) AS end_times
   FROM my_database.my_table_one
@@ -41,7 +40,7 @@ WITH time_ranges AS (
 )
 SELECT t.*
 FROM time_ranges, my_database.my_table_two AS t
-ARRAY JOIN 
+ARRAY JOIN
   start_times AS start_time,
   end_times AS end_time
 WHERE t.create_time >= toDateTime(start_time) AND t.create_time <= toDateTime(end_time)
@@ -58,10 +57,11 @@ WHERE t.create_time >= toDateTime(start_time) AND t.create_time <= toDateTime(en
 现在想查监控（`my_table_two`），**分别查看这三个时间段内是否有可疑人员进入仓库**。传统做法是手动记录这三个时间段，然后分三次查监控，每次输入一个时间范围。但 `ARRAY JOIN` 自动化了这个过程
 
 > [!Attention]
+>
 > - **数组长度必须一致**：`start_times` 和 `end_times` 的数组元素需一一对应，否则会得到错误的时间段（比如一个多一个少会导致部分数据丢失逻辑）。
 > - **性能影响**：如果时间段非常多（比如 1 万个），`ARRAY JOIN` 会生成大量临时数据，可能影响查询速度。
 
-这是一个典型的 **“批量时间窗口过滤”** 需求：  
+这是一个典型的 **“批量时间窗口过滤”** 需求：
 
 **从表 A 动态获取多个时间条件，然后对表 B 进行多次时间范围过滤**，最终合并所有结果。常用于日志分析、监控告警等需要按不同时间段交叉检查数据的场景。
 
@@ -202,8 +202,8 @@ FROM shopping_record
 从字典表中获取值的集中基础函数：
 
 ```sql
-dictGet('dict_name', attr_names, id_expr)  
-dictGetOrDefault('dict_name', attr_names, id_expr, default_value_expr)  
+dictGet('dict_name', attr_names, id_expr)
+dictGetOrDefault('dict_name', attr_names, id_expr, default_value_expr)
 dictGetOrNull('dict_name', attr_name, id_expr)
 ```
 
@@ -213,7 +213,6 @@ dictGetOrNull('dict_name', attr_name, id_expr)
 - **default_value_expr** # 如果没查到对应的值返回的默认值。
 
 ## Aggregate Functions
-
 
 ## Table Functions
 
@@ -227,7 +226,6 @@ Table 函数可以用来构造一个新的表格式的数据，比如 `select to
 | 2010-01-02 00:00:00 |
 
 ## Window Functions
-
 
 # 最佳实践
 
@@ -311,15 +309,15 @@ DROP DATABASE IF EXISTS my_database;
 获取分页列表（1 至 n 的页码列表）
 
 ```sql
-WITH 
+WITH
     total_count AS (
-        SELECT COUNT(*) AS total 
+        SELECT COUNT(*) AS total
         FROM network_security.${tableName}
         WHERE $__timeFilter(create_time)
           AND command_id IN (${commandID})
     )
-SELECT 
-    arrayJoin(range(1, 
+SELECT
+    arrayJoin(range(1,
         CAST(
             CEIL(total_count.total * 1.0 / ${pageSize}) AS UInt32
         ) + 1
@@ -331,14 +329,14 @@ FROM total_count;
 
 ```sql
 SELECT * FROM (
-  SELECT 
+  SELECT
     COUNT(*) OVER() as "指令总数",
     *
-  FROM network_security.${tableName} 
+  FROM network_security.${tableName}
   WHERE $__timeFilter(create_time)
   AND command_id IN (${commandID})
 ) sub
-LIMIT ${pageSize} 
+LIMIT ${pageSize}
 OFFSET (${currentPage} - 1) * ${pageSize}
 ```
 

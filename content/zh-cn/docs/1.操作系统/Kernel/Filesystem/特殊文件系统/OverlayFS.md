@@ -1,14 +1,13 @@
 ---
 title: OverlayFS
 linkTitle: OverlayFS
-date: 2024-07-08T09:34
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [公众号-MoeLove，聊聊 Docker 的存储驱动 Overlay2](https://mp.weixin.qq.com/s/ddArEEZMbjmYefgDVSP7xg)
 
 大家好，我是张晋涛。
@@ -68,14 +67,14 @@ Docker 将容器镜像做了分层存储，每个层相当于包含着一条 Doc
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 
 \#  启动一个容器
-(MoeLove) ➜  ~ docker run --rm -d alpine sleep 99999                         
+(MoeLove) ➜  ~ docker run --rm -d alpine sleep 99999
 caa9517ce0d799602735a30aaaaf123c07e07ff6e44c5a4b07e776af85780abe
 (MoeLove) ➜  ~ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 caa9517ce0d7        alpine              "sleep 99999"       23 seconds ago      Up 22 seconds                           hopeful_dubinsky
 
 \#  检查  overlay  挂载
-(MoeLove) ➜  ~ mount |grep overlay                  
+(MoeLove) ➜  ~ mount |grep overlay
 overlay on /var/lib/docker/overlay2/f4356a8f14342008fc298bf3d313b863d10f30ef447a3b2f51ea9ece0dec09db/merged type overlay (rw,relatime,seclabel,lowerdir=/var/lib/docker/overlay2/l/5OO3RLRXHJPEH3IFEXNCTO4PY5:/var/lib/docker/overlay2/l/UVA7IR67ZZTN2BNTKCZ7T6HUWU,upperdir=/var/lib/docker/overlay2/f4356a8f14342008fc298bf3d313b863d10f30ef447a3b2f51ea9ece0dec09db/diff,workdir=/var/lib/docker/overlay2/f4356a8f14342008fc298bf3d313b863d10f30ef447a3b2f51ea9ece0dec09db/work)
 
 \`
@@ -133,4 +132,3 @@ overlay on /var/lib/docker/overlay2/f4356a8f14342008fc298bf3d313b863d10f30ef44
 ## 总结
 
 本节，我为你介绍了 OverlayFS 及 Overlay2 存储驱动相关的内容。通过实际启动容器生成的相关目录来介绍 overlay2 的工作流程，想必通过这种方式能更易理解。
-

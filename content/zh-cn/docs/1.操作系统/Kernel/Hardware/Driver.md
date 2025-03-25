@@ -1,7 +1,6 @@
 ---
 title: Driver
 linkTitle: Driver
-date: 2024-08-28T10:20
 weight: 20
 tags:
   - PCI
@@ -100,7 +99,3 @@ echo -n "0000:21:00.1" | sudo tee /sys/bus/pci/drivers/i40e/unbind
 [    3.381286] igb 0000:0c:00.0 enp12s0: renamed from eth1 # 将网络设备重命名为 enp12s0
 [   32.790007] igb 0000:0c:00.0 enp12s0: igb: enp12s0 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX
 ```
-
-
-
-

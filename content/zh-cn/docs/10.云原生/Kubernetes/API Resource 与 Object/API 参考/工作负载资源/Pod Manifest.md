@@ -1,7 +1,6 @@
 ---
 title: Pod Manifest
 linkTitle: Pod Manifest
-date: 2024-06-14T08:36
 weight: 20
 ---
 
@@ -12,7 +11,6 @@ weight: 20
 > - [API 文档，单页](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#pod-v1-core)
 > - [官方文档，参考 - Kubernetes API - 工作负载资源 - Pod](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/)
 > - [GitHub 项目，kubernetes/api - 1.31 - core/v1/types.go]([https://github.com/kubernetes/api/blob/master/core/v1/types.go](https://github.com/kubernetes/api/blob/release-1.31/core/v1/types.go#L4875))
-
 
 Pod 是可以在主机上运行的容器的集合。此资源由客户端创建并调度到主机上。
 
@@ -75,7 +73,7 @@ Pod 是可以在主机上运行的容器的集合。此资源由客户端创建�
 
 - **nodeAffinity**([nodeAffinity](#nodeaffinity)) # 为 Pod 定义节点亲和性的调度规则
 - **podAffinity**([podAffinity](#podaffinity)) # 为 Pod 定义 Pod 亲和性的调度规则(e.g.将此 Pod 与其他一些 Pod 共同定位在同一节点、区域等中)。
-- **podAntiAffinity**([PodAntiAffinity](#podAntiAffinity)) # 描述 pod 反亲和性的调度规则(e.g. 避免将此 Pod 放在与其他某些 Pod 相同的节点、区域等中)
+- **podAntiAffinity**([PodAntiAffinity](#podantiaffinity)) # 描述 pod 反亲和性的调度规则(e.g. 避免将此 Pod 放在与其他某些 Pod 相同的节点、区域等中)
 
 **tolerations([]Object)** # 定义 Pod 容忍污点的容忍度。用法详见[调度器章节](/docs/10.云原生/Kubernetes/Scheduling/让%20Pod%20运行在指定%20Node%20上.md)
 

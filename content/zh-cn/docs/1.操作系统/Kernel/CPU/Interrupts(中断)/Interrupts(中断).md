@@ -1,7 +1,6 @@
 ---
 title: Interrupts(中断)
 linkTitle: Interrupts(中断)
-date: 2024-03-19
 weight: 1
 ---
 
@@ -191,7 +190,7 @@ awk 命令持续观察
 #
 run() {
   # 这个是输出指定列。即看个别 CPU 的软中断
-	# awk 'NR>1{printf("%15s\t%10s\t%10s\t%10s\t%10s\n",$1,$3,$4,$5,$6)}' </proc/softirqs | grep NET_RX
+ # awk 'NR>1{printf("%15s\t%10s\t%10s\t%10s\t%10s\n",$1,$3,$4,$5,$6)}' </proc/softirqs | grep NET_RX
   # 通过循环输出每行所有列。即看所有 CPU 的软中断
   awk 'NR>1{for(i=1;i<10;i++){printf("%10s",$i)}printf("\n")}' </proc/softirqs
 }

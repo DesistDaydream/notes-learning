@@ -1,7 +1,6 @@
 ---
 title: Programming Technology
 linkTitle: Programming Technology
-date: 2024-06-20T11:00
 weight: 1
 ---
 

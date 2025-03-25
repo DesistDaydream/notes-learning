@@ -1,14 +1,13 @@
 ---
 title: Puppeteer
 linkTitle: Puppeteer
-date: 2023-12-10T13:41
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，puppeteer/puppeteer](https://github.com/puppeteer/puppeteer)
 > - [官网](https://pptr.dev/)
 >   - [中文文档？](https://puppeteer.bootcss.com/)

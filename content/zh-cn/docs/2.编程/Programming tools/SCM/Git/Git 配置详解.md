@@ -1,14 +1,13 @@
 ---
 title: Git 配置详解
 linkTitle: Git 配置详解
-date: 2024-02-13T08:34
 weight: 2
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官方 Book，自定义 Git-Git 配置](https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration)
 > - [官方文档，git-config](https://git-scm.com/docs/git-config)
 
@@ -47,4 +46,3 @@ helper = store
 - core.quotePath 的设置会影响一些 git 命令的输出，例如 git status, git diff, git log 等。
 
 # http 部分
-

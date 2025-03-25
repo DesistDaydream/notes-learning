@@ -1,7 +1,6 @@
 ---
 title: ethtool
 linkTitle: ethtool
-date: 2024-03-20T08:15
 weight: 20
 ---
 
@@ -136,6 +135,7 @@ NIC statistics:
 - ethtool -s eth0 speed 100 duplex full
 
 # Reference
+
 ## -i 选项信息
 
 ```bash

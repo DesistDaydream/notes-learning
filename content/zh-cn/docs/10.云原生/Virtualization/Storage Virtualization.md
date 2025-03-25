@@ -1,7 +1,6 @@
 ---
 title: Storage Virtualization
 linkTitle: Storage Virtualization
-date: 2024-02-27T09:06
 weight: 5
 ---
 
@@ -15,7 +14,7 @@ weight: 5
 
 # KVM 模式的存储虚拟化
 
-## 第一种：存储虚拟化是通过存储池（Storage Pool）和卷（Volume）来管理的。
+## 第一种：存储虚拟化是通过存储池（Storage Pool）和卷（Volume）来管理的
 
 1. Storage Pool 是宿主机上可以看到的一片存储空间，可以是多种类型。
 2. 文件目录类型的 Storage Pool 。KVM 将宿主机目录 /var/lib/libvirt/images/ 作为默认的 Storage Pool。

@@ -1,7 +1,6 @@
 ---
 title: Helm CLI
 linkTitle: Helm CLI
-date: 2022-09-27T10:54:00
 weight: 1
 ---
 
@@ -178,5 +177,3 @@ EXAMPLE
 ## upgrade - 升级一个 release
 
 ## verify - verify that a chart at the given path has been signed and is valid
-
-

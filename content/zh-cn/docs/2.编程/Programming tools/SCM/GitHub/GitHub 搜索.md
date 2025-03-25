@@ -1,14 +1,13 @@
 ---
 title: "GitHub 搜索"
 linkTitle: "GitHub 搜索"
-date: "2023-08-01T09:19"
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，在 GitHub 上搜索](https://docs.github.com/search-github)
 
 GitHub 的集成搜索涵盖了 GitHub 上的许多存储库、用户和代码行。
@@ -184,4 +183,3 @@ https://docs.github.com/en/search-github/github-code-search/understanding-github
 使用 path 关键字
 
 `repo:torvalds/linux path:Documentation/**/*sysfs*` 搜索 torvalds/linux 仓库中，所有 Documentation/ 目录下所有递归子目录中，包含 sysfs 的文件。
-

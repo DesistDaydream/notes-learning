@@ -1,7 +1,6 @@
 ---
 title: Docker Network
 linkTitle: Docker Network
-date: 2024-07-05T08:39
 weight: 20
 ---
 
@@ -10,7 +9,6 @@ weight: 20
 > 参考：
 >
 > - [官方文档，引擎 - 网络](https://docs.docker.com/engine/network/)
-
 
 # DNS
 
@@ -24,7 +22,7 @@ https://docs.docker.com/engine/network/drivers/
 
 Docker 使用驱动程序实现网络子系统的核心能力，网络子系统是可插拔的。默认存在如下几种驱动程序：
 
-- **bridge** # 默认驱动程序。当应用程序在需要与同一主机上的其他容器通信的容器中运行时，通常会使用 [Bridge(桥接)](#Bridge) 网络。
+- **bridge** # 默认驱动程序。当应用程序在需要与同一主机上的其他容器通信的容器中运行时，通常会使用 [Bridge(桥接)](#bridge) 网络。
 - **host** # 取消容器与 Docker 主机之间的网络隔离，直接使用主机的网络
 - **overlay**
 - **ipvlan**

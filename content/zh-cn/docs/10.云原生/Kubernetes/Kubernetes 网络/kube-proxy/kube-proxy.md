@@ -1,7 +1,6 @@
 ---
 title: kube-proxy
 linkTitle: kube-proxy
-date: 2023-12-20T13:25
 weight: 1
 ---
 

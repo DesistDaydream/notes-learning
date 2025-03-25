@@ -1,7 +1,6 @@
 ---
 title: DevOps
 linkTitle: DevOps
-date: 2024-05-11T13:38
 weight: 20
 ---
 

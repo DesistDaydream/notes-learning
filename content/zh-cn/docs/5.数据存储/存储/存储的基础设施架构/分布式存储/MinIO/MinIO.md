@@ -1,7 +1,6 @@
 ---
 title: MinIO
 linkTitle: MinIO
-date: 2024-08-13T14:23
 weight: 1
 ---
 

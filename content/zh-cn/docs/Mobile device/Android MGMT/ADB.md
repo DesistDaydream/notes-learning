@@ -1,7 +1,6 @@
 ---
 title: ADB
 linkTitle: ADB
-date: 2024-01-13T15:19
 weight: 4
 ---
 
@@ -74,20 +73,19 @@ disconnect [HOST[:PORT]]
 
 # 文件传输命令
 
-  - push
-  - pull
-  - sync
+- push
+- pull
+- sync
 
 # Shell 命令
 
-  - shell
+- shell
 
 # 应用安装命令
 
-  - install # 将单个包推送到设备并安装
+- install # 将单个包推送到设备并安装
 
 # 内部调试命令
-
 
 # 最佳实践
 
@@ -107,4 +105,3 @@ settings delete global http_proxy
 settings delete global global_http_proxy_host
 settings delete global global_http_proxy_port
 ```
-

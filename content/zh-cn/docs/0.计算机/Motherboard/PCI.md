@@ -1,7 +1,6 @@
 ---
 title: PCI
 linkTitle: PCI
-date: 2024-06-15T09:24
 weight: 20
 ---
 
@@ -20,7 +19,6 @@ weight: 20
 > - [Wiki, PCI_Express](https://en.wikipedia.org/wiki/PCI_Express)
 
 **Peripheral Component Interconnect Express(简称 PCI-E)**
-
 
 # PCI 规范
 
@@ -48,5 +46,3 @@ TODO:
 # Linux 中的 PCI
 
 详见 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md)
-
-

@@ -1,7 +1,6 @@
 ---
 title: sysfs
 linkTitle: sysfs
-date: 2024-07-08T09:34
 weight: 20
 ---
 
@@ -199,7 +198,7 @@ echo 20 > /sys/bus/platform/devices/pwm-backlight/backlight/pwm-backlight/bright
 
 **`/sys/class/${DEVICE_TYPE}/${DEVICE}/`**
 
- - terminal(终端)、network(网络)、block(磁盘)、graphic(图形)、sound(声音)、etc. 都属于一种 DEVICE_TYPE。不同机器可能并不一定包含所有类型，这个取决于系统启动时加载了哪些类型的设备。
+- terminal(终端)、network(网络)、block(磁盘)、graphic(图形)、sound(声音)、etc. 都属于一种 DEVICE_TYPE。不同机器可能并不一定包含所有类型，这个取决于系统启动时加载了哪些类型的设备。
 
 `/sys/class/${DEVICE_TYPE}/${DEVICE}/` 目录下的文件是**指向 /sys/devices/ 的 [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)(符号链接)**。这些文件通常都是以人类可读的名字命名。
 

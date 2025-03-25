@@ -1,7 +1,6 @@
 ---
 title: Printer
 linkTitle: Printer
-date: 2024-05-06T09:18
 weight: 20
 ---
 
@@ -22,4 +21,3 @@ weight: 20
 ## 模型站点
 
 https://www.thingiverse.com/
-

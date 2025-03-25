@@ -1,14 +1,13 @@
 ---
 title: kubernetes 环境开启 bridge-nf-call-iptables
 linkTitle: kubernetes 环境开启 bridge-nf-call-iptables
-date: 2023-09-23T18:14
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [原文,公众号,为什么 kubernetes 环境要求开启 bridge-nf-call-iptables ?](https://mp.weixin.qq.com/s/f6M-xjvvgwZ75ufAfHOEbg)
 
 ## 背景

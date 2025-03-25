@@ -1,7 +1,6 @@
 ---
 title: Storage(存储)
 linkTitle: Storage(存储)
-date: 2021-06-12T12:02:00
 weight: 1
 ---
 
@@ -271,7 +270,7 @@ schema_config:
 
 https://lokidex.com/posts/tsdb/
 
-从 Loki v2.8 开始，TSDB 是推荐的 Loki 索引。它很大程度上受到 Prometheus 的 TSDB 子项目的启发。如需更深入的解释，您可以阅读 Loki 维护者 Owen 的博客文章。简而言之，这个新索引更高效、更快且更具可扩展性。它也驻留在对象存储中，就像它前面的 [BoltDB-Shipper](#BoltDB-Shipper%20运行细节) 索引一样。
+从 Loki v2.8 开始，TSDB 是推荐的 Loki 索引。它很大程度上受到 Prometheus 的 TSDB 子项目的启发。Loki 维护者 Owen 的博客文章中，有更多介绍。简而言之，这个新索引更高效、更快且更具可扩展性。它也驻留在对象存储中，就像它前面的 [BoltDB-Shipper](#BoltDB-Shipper%20运行细节) 索引一样。
 
 # Chunk 存储
 

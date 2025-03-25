@@ -1,7 +1,6 @@
 ---
 title: ssh
 linkTitle: ssh
-date: 2024-04-19T14:59
 weight: 20
 ---
 
@@ -11,7 +10,6 @@ weight: 20
 >
 > - [Manual(手册), ssh(1)](https://man.openbsd.org/ssh)
 > - [Manual(手册), ssh_config(5)](https://man.openbsd.org/ssh_config)
-
 
 # Syntax(语法)
 
@@ -49,7 +47,7 @@ weight: 20
 - XXX 有多种语法格式：
 - **-L \[Bind_Address:]LocalPort:RemoteHost:RemoteHostPort**
 - **-L \[Bind_Address:]LocalPort:RemoteSocket**
-- **-L LocalSocket:RemoteHost:RemotePort **
+- **-L LocalSocket:RemoteHost:RemotePort**
 - **-L LocalSocket:RemoteSocket**
 - 假如现在有 A、B、C 三台主机，A 与 C 不通，A 与 B 通，C 与 B 通；也就是说 B 是中转站(运行 sshd 程序)。如果想要通过 A 访问 C，则需要在 A 上执行 `ssh -L XXX B-IP` 命令
 - Local 表示 A 主机，Remote 表示 C 主机
@@ -133,4 +131,3 @@ weight: 20
 - 此时访问 http://B-IP:19090 即可直接打开 C 主机在 9090 端口上的 Web 应用。
 - 22 端口同理，只需要将 9090 改为 22，那么在任意一台机器上执行 **ssh root@B-IP -p 19090** 命令就是通过 B 的 19090 端口 ssh 连接到 C 主机。
 - 注意：如果远程端口转发时遇到问题，需要在 sshd_config 配置文件中将 `GatewayPorts` 设置为 yes。因为不开启该配置，在 B 上监听的 IP 将会是 127.0.0.1，开启后是 \*
-

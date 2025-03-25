@@ -1,7 +1,6 @@
 ---
 title: jq
 linkTitle: jq
-date: 2024-03-14T14:21
 weight: 20
 ---
 
@@ -153,19 +152,19 @@ jq 程序是一个`过滤器`，接收一个输入，并产生一个输出。
 ## 修改文件内容
 
 ```
-$ jq '.foo.bar' file.json
+jq '.foo.bar' file.json
 ```
 
 这会定位JSON文件中名为“foo”的对象的“bar”字段。
 
 ```
-$ jq '.foo.bar = "new value"' file.json
+jq '.foo.bar = "new value"' file.json
 ```
 
 这会将名为“foo”的对象中的“bar”字段的值替换为“new value”。
 
 ```
-$ jq '.foo.bar = "new value"' > /tmp/jq_result.json && /usr/bin/cp /tmp/js_result.json file.json
+jq '.foo.bar = "new value"' > /tmp/jq_result.json && /usr/bin/cp /tmp/js_result.json file.json
 ```
 
 这将在原始JSON文件中直接替换“foo”对象的“bar”字段的值为“new value”。
@@ -179,7 +178,7 @@ $ jq '.foo.bar = "new value"' > /tmp/jq_result.json && /usr/bin/cp /tmp/js_resul
 ```bash
 ~]# jq ".favorite.drink = "${DRINK}"" test/test.json
 jq: error: water_var/0 is not defined at <top-level>, line 1:
-.favorite.drink = water_var                  
+.favorite.drink = water_var
 jq: 1 compile error
 ```
 
@@ -188,7 +187,6 @@ jq: 1 compile error
 ```bash
 jq ".favorite.drink = \"${DRINK}\"" test/test.json
 ```
-
 
 **使用 --arg 的效果**
 

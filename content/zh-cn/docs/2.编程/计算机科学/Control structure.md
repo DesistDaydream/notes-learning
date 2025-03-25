@@ -1,7 +1,6 @@
 ---
 title: Control structure
 linkTitle: Control structure
-date: 2023-07-04T10:22
 weight: 5
 ---
 

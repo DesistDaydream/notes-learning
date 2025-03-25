@@ -1,14 +1,13 @@
 ---
 title: OpenWrt
 linkTitle: OpenWrt
-date: 2023-09-21T21:47
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，openwrt/openwrt](https://github.com/openwrt/openwrt)
 > - [官网](https://openwrt.org/)
 
@@ -23,4 +22,3 @@ ikuai 与 OpenWrt 大部分出现在软路由场景。
 iStoreOS 是 koolshare 团队基于OpenWrt定制的软路由系统
 
 # 关联文件与配置
-

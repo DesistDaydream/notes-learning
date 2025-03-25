@@ -1,7 +1,6 @@
 ---
 title: whereis which 查询工具
 linkTitle: whereis which 查询工具
-date: 2024-04-09T08:55
 weight: 20
 ---
 

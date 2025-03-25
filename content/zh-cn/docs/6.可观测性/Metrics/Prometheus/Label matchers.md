@@ -1,7 +1,6 @@
 ---
 title: Label matchers
 linkTitle: Label matchers
-date: 2024-09-02T12:41
 weight: 20
 ---
 

@@ -1,14 +1,13 @@
 ---
 title: k8s CPU limit和throttling的迷思
 linkTitle: k8s CPU limit和throttling的迷思
-date: 2023-09-23T18:35
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - 原文链接：
 > - https://nanmu.me/zh-cn/posts/2021/myth-of-k8s-cpu-limit-and-throttle/
 > - https://mp.weixin.qq.com/s/QYJycJCaxB42xdEo3qHHHA
@@ -26,7 +25,6 @@ k8s 的一大好处就是资源隔离，通过设定负载的 request 和 limit�
 ## CPU 的利用率
 
 CPU 和内存不一样，它是量子化的，只有“使用中”和“空闲”两个状态。
-
 
 我和老婆聊了聊 CPU 和内存的不同，她帮我画了一张插图 图/我的妻子
 
@@ -50,11 +48,9 @@ k8s 使用 CFS（Completely Fair Scheduler，完全公平调度）限制负载�
 
 如果 CPU limit 被设为 1 核，即每 100ms 内最多使用 100ms CPU 时间，API 服务的线程 B 会受到一次限流（灰色部分），服务在 140ms 后响应：
 
-
 CPU limit = 1，响应时间为 140ms
 
 如果 CPU limit 被设为 0.6 核，即每 100ms 内最多使用 60ms CPU 时间，API 服务的线程 A 会受到一次限流（灰色部分），线程 B 受到两次限流，服务在 220ms 后响应：
-
 
 CPU limit = 0.6，响应时间为 220ms
 
@@ -63,7 +59,6 @@ CPU limit = 0.6，响应时间为 220ms
 这是一个比较夸张的例子，一般的 API 服务是 IO 密集型的，CPU 时间使用量没那么大（你在跑模型推理？当我没说），但还是可以看到，限流会实打实地延伸 API 服务的延时。因此，对于延时敏感的服务，我们都应该尽量避免触发 k8s 的限流机制。
 
 下面这张图是我工作中一个 API 服务在 pod 级别的 CPU 使用率和 CPU 限流比率（CPU Throttling），我们看到，CPU 限流的情况在一天内的大部分时候都存在，限流比例在 10%上下浮动，这意味着服务的工作没能全速完成，在速度上打了 9 折。值得一提，这时 pod 所在节点仍然有富余的 CPU 资源，节点的整体 CPU 使用率没有超过 50%.
-
 
 一个实际的降速限流的例子，服务的处理速度被 kubelet 降低了 10%
 

@@ -1,7 +1,6 @@
 ---
 title: Function
 linkTitle: Function
-date: 2023-11-20T21:30
 weight: 6
 ---
 

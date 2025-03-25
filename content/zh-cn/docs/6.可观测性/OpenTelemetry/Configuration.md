@@ -1,7 +1,6 @@
 ---
 title: Configuration
 linkTitle: Configuration
-date: 2024-11-04T17:07
 weight: 20
 ---
 
@@ -25,22 +24,22 @@ weight: 20
 ```go
 // Config defines the configuration for the various elements of collector or agent.
 type Config struct {
-	// Receivers is a map of ComponentID to Receivers.
-	Receivers map[component.ID]component.Config `mapstructure:"receivers"`
+ // Receivers is a map of ComponentID to Receivers.
+ Receivers map[component.ID]component.Config `mapstructure:"receivers"`
 
-	// Exporters is a map of ComponentID to Exporters.
-	Exporters map[component.ID]component.Config `mapstructure:"exporters"`
+ // Exporters is a map of ComponentID to Exporters.
+ Exporters map[component.ID]component.Config `mapstructure:"exporters"`
 
-	// Processors is a map of ComponentID to Processors.
-	Processors map[component.ID]component.Config `mapstructure:"processors"`
+ // Processors is a map of ComponentID to Processors.
+ Processors map[component.ID]component.Config `mapstructure:"processors"`
 
-	// Connectors is a map of ComponentID to connectors.
-	Connectors map[component.ID]component.Config `mapstructure:"connectors"`
+ // Connectors is a map of ComponentID to connectors.
+ Connectors map[component.ID]component.Config `mapstructure:"connectors"`
 
-	// Extensions is a map of ComponentID to extensions.
-	Extensions map[component.ID]component.Config `mapstructure:"extensions"`
+ // Extensions is a map of ComponentID to extensions.
+ Extensions map[component.ID]component.Config `mapstructure:"extensions"`
 
-	Service service.Config `mapstructure:"service"`
+ Service service.Config `mapstructure:"service"`
 }
 ```
 
@@ -99,7 +98,6 @@ type 可用的字符串可以参考 Collector [Component](/docs/6.可观测性/O
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/otel/config_type_desc.png)
 
-
 # receivers
 
 # processors
@@ -109,4 +107,3 @@ type 可用的字符串可以参考 Collector [Component](/docs/6.可观测性/O
 # connectors
 
 # service
-

@@ -1,7 +1,6 @@
 ---
 title: OCR
 linkTitle: OCR
-date: 2023-10-31T14:39
 weight: 20
 ---
 
@@ -25,16 +24,16 @@ OCR 文字识别一般包括两个部分，**文本检测**和**文本识别**
 
 基于深度学习的文本检测算法可以大致分为以下几类：
 
-1.  基于目标检测的方法；一般是预测得到文本框后，通过NMS筛选得到最终文本框，多是四点文本框，对弯曲文本场景效果不理想。典型算法为EAST、Text Box等方法。
-2.  基于分割的方法；将文本行当成分割目标，然后通过分割结果构建外接文本框，可以处理弯曲文本，对于文本交叉场景问题效果不理想。典型算法为DB、PSENet等方法。
-3.  混合目标检测和分割的方法；
+1. 基于目标检测的方法；一般是预测得到文本框后，通过NMS筛选得到最终文本框，多是四点文本框，对弯曲文本场景效果不理想。典型算法为EAST、Text Box等方法。
+2. 基于分割的方法；将文本行当成分割目标，然后通过分割结果构建外接文本框，可以处理弯曲文本，对于文本交叉场景问题效果不理想。典型算法为DB、PSENet等方法。
+3. 混合目标检测和分割的方法；
 
 ## Recognition Model(识别模型)
 
 OCR 识别算法的输入数据一般是文本行，背景信息不多，文字占据主要部分，识别算法目前可以分为两类算法：
 
-1.  基于 CTC 的方法；即识别算法的文字预测模块是基于 CTC 的，常用的算法组合为 CNN+RNN+CTC。目前也有一些算法尝试在网络中加入 transformer 模块等等。
-2.  基于 Attention 的方法；即识别算法的文字预测模块是基于 Attention 的，常用算法组合是 CNN+RNN+Attention
+1. 基于 CTC 的方法；即识别算法的文字预测模块是基于 CTC 的，常用的算法组合为 CNN+RNN+CTC。目前也有一些算法尝试在网络中加入 transformer 模块等等。
+2. 基于 Attention 的方法；即识别算法的文字预测模块是基于 Attention 的，常用算法组合是 CNN+RNN+Attention
 
 ## 预处理
 
@@ -66,6 +65,7 @@ OCR 识别算法的输入数据一般是文本行，背景信息不多，文字�
 # PaddleOCR
 
 > 参考：
+>
 > - [GitHub 项目，PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
 >   - https://www.bilibili.com/video/BV1iY4y1s7fx
 
@@ -110,6 +110,7 @@ PaddleOCR 中集成了很多OCR算法，文本检测算法有 DB、EAST、SAST �
 详见：Python 第三方库 [paddleocr](/docs/2.编程/高级编程语言/Python/Python%20第三方库/图像处理/paddleocr.md) 包
 
 # 实用 OCR工具
+
 ## Umi-OCR
 
 > 参考：

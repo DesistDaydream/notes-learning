@@ -1,16 +1,14 @@
 ---
 title: wget
 linkTitle: wget
-date: 2024-03-20T08:57
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > -
-
 
 # Syntax(语法)
 

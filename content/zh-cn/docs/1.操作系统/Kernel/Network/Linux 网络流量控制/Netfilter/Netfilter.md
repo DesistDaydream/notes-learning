@@ -1,7 +1,6 @@
 ---
 title: Netfilter
 linkTitle: Netfilter
-date: 2024-04-20T10:04
 weight: 1
 ---
 
@@ -22,6 +21,7 @@ weight: 1
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gral7u/1616165512374-db897dd5-0704-42f2-a1d8-441af05f247c.jpeg)
 
 Netfilter 是 Linux 操作系统核心层内部的一个**数据包处理**模块集合的统称, 是一种**流量控制系统**。一种网络筛选系统，对数据包进入以及出去本机进行的一些控制与管理。该功能的所有模块可以通过下图所示的目录进行查找，其中还包括 i
+
 # 概述
 
 > 参考：

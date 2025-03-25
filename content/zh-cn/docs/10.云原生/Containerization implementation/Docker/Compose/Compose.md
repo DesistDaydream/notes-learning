@@ -1,7 +1,6 @@
 ---
 title: Compose
 linkTitle: Compose
-date: 2023-11-03T22:23
 weight: 1
 ---
 

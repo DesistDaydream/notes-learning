@@ -1,7 +1,6 @@
 ---
 title: 一致性哈希算法 consistent hashing
 linkTitle: 一致性哈希算法 consistent hashing
-date: 2024-03-29T15:25
 weight: 20
 ---
 
@@ -97,8 +96,6 @@ weight: 20
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hgulx6/1616132202653-039f84ad-a042-419b-ae51-5e181853f80d.jpeg)
 
 在服务器 B 未移除时，图片 3 应该被缓存到服务器 B 中，可是当服务器 B 移除以后，按照之前描述的一致性哈希算法的规则，图片 3 应该被缓存到服务器 C 中，因为从图片 3 的位置出发，沿顺时针方向遇到的第一个缓存服务器节点就是服务器 C，也就是说，如果服务器 B 出现故障被移除时，图片 3 的缓存位置会发生改变。
-
-
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hgulx6/1616132202621-d4a2c0fd-f096-4e13-9839-7f50dfe7b430.jpeg)
 

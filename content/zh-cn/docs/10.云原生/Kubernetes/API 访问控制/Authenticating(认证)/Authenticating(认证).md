@@ -1,7 +1,6 @@
 ---
 title: Authenticating(认证)
 linkTitle: Authenticating(认证)
-date: 2024-08-22T12:11
 weight: 1
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: logs
 linkTitle: logs
-date: 2023-11-04T10:47
 weight: 20
 ---
 

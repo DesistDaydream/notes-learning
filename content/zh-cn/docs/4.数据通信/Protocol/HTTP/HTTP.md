@@ -1,7 +1,6 @@
 ---
 title: HTTP
 linkTitle: HTTP
-date: 2023-11-21T15:43
 weight: 1
 ---
 

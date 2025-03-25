@@ -1,7 +1,6 @@
 ---
 title: kube-vip
 linkTitle: kube-vip
-date: 2022-10-12T15:55:00
 weight: 20
 ---
 

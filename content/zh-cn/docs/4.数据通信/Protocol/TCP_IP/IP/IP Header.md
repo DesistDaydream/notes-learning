@@ -1,7 +1,6 @@
 ---
 title: IP Header
 linkTitle: IP Header
-date: 2024-02-29T09:32
 weight: 20
 ---
 

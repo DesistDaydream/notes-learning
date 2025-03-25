@@ -1,7 +1,6 @@
 ---
 title: kube-controller-manager 实现控制器的程序
 linkTitle: kube-controller-manager 实现控制器的程序
-date: 2024-04-02T10:40
 weight: 2
 ---
 

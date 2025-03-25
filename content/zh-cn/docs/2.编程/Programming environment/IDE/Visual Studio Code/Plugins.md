@@ -1,7 +1,6 @@
 ---
 title: Plugins
 linkTitle: Plugins
-date: 2024-05-03T10:14
 weight: 20
 ---
 
@@ -82,13 +81,13 @@ https://github.com/liximomo/vscode-sftp#connection-hopping
 {
     "name": "DesistDaydream",
     "remotePath": "/root/projects",
-	// 用于作为代理的服务器信息
+ // 用于作为代理的服务器信息
     "host": "192.168.1.10",
     "protocol": "sftp",
     "port": 42203,
     "username": "root",
     "password": "XXXXX",
-	// 最终目标服务器信息
+ // 最终目标服务器信息
     "hop": {
         "host": "172.19.42.248",
         "port": 22,
@@ -96,7 +95,7 @@ https://github.com/liximomo/vscode-sftp#connection-hopping
         "password": "XXXXX"
     },
     "uploadOnSave": true,
-	"ignore": [
+ "ignore": [
         ".vscode",
         ".git",
         ".DS_Store"

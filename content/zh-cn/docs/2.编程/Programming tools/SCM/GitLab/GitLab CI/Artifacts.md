@@ -1,7 +1,6 @@
 ---
 title: Artifacts
 linkTitle: Artifacts
-date: 2024-07-18T10:24
 weight: 20
 ---
 

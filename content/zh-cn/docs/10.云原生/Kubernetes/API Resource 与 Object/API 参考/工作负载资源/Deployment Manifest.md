@@ -1,7 +1,6 @@
 ---
 title: Deployment Manifest
 linkTitle: Deployment Manifest
-date: 2024-06-14T08:36
 weight: 20
 ---
 

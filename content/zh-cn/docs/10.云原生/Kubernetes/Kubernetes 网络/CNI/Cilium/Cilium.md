@@ -1,14 +1,13 @@
 ---
 title: Cilium
 linkTitle: Cilium
-date: 2023-09-10T10:00:00
 weight: 1
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，cilium/cilium](https://github.com/cilium/cilium)
 > - [官网](https://cilium.io/)
 > - [官方文档](https://docs.cilium.io/en/latest/)

@@ -1,7 +1,6 @@
 ---
 title: Scheduling
 linkTitle: Scheduling
-date: 2020-04-02T10:36:00
 weight: 1
 ---
 

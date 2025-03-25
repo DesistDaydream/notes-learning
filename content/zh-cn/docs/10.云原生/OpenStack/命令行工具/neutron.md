@@ -1,14 +1,13 @@
 ---
 title: neutron
 linkTitle: neutron
-date: 2023-11-20T20:02
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > -
 
 # Syntax(语法)
@@ -20,4 +19,3 @@ weight: 20
 net-list # 列出网络信息
 
 neutron CLI is deprecated and will be removed in the future. Use openstack CLI instead.
-

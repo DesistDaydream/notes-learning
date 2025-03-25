@@ -1,8 +1,7 @@
 ---
 title: Redis
-weight: 20
 linkTitle: Redis
-date: 2024-03-29T15:35
+weight: 20
 ---
 
 

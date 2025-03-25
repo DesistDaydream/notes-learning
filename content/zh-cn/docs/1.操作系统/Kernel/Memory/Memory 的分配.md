@@ -1,14 +1,13 @@
 ---
 title: Memory 的分配
 linkTitle: Memory 的分配
-date: 2023-11-23T10:48
 weight: 2
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [公众号-小林coding，我做了个实验！](https://mp.weixin.qq.com/s/HXRGr90baCvM-NQbPIgn-g)
 
 ### Linux 进程的内存分布长什么样？

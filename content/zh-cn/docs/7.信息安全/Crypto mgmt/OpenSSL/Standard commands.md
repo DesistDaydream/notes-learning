@@ -1,7 +1,6 @@
 ---
 title: Standard commands
 linkTitle: Standard commands
-date: 2024-03-03T21:23
 weight: 20
 ---
 

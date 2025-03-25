@@ -1,7 +1,6 @@
 ---
 title: os
 linkTitle: os
-date: 2024-03-12T15:29
 weight: 20
 ---
 
@@ -18,6 +17,6 @@ os 包提供了 [Operating system](/docs/1.操作系统/Operating%20system/Opera
 ```go
 file, err := os.Open("file.go") // For read access.
 if err != nil {
-	log.Fatal(err)
+ log.Fatal(err)
 }
 ```

@@ -1,7 +1,6 @@
 ---
 title: Docker CLI
 linkTitle: Docker CLI
-date: 2023-11-03T22:25
 weight: 1
 ---
 

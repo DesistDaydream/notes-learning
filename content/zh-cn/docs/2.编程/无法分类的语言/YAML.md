@@ -1,7 +1,6 @@
 ---
 title: YAML
 linkTitle: YAML
-date: 2020-10-22T09:20:00
 weight: 20
 ---
 
@@ -156,7 +155,7 @@ containers:
 - 日期
 
 ```yaml
-boolean: 
+boolean:
     - TRUE  #true,True都可以
     - FALSE  #false，False都可以
 float:
@@ -175,7 +174,7 @@ string:
       newline2    #字符串可以拆成多行，每一行会被转化成一个空格
 date:
     - 2018-02-17    #日期必须使用ISO 8601格式，即yyyy-MM-dd
-datetime: 
+datetime:
     -  2018-02-17T15:02:31+08:00    #时间使用ISO 8601格式，时间和日期之间使用T连接，最后使用+代表时区
 ```
 
@@ -207,7 +206,7 @@ YAML 编译器将会从第一行的第一个文本字符开始编译（并丢掉
 对文字块的末尾换行符的处理，一共有 3 中写法
 
 - `|-` # Strip(除去)，去掉末尾的所有换行符
-- `|` # Clip(裁剪)，保留末尾一个换行符 
+- `|` # Clip(裁剪)，保留末尾一个换行符
 - `|+` # Keep(保留)，保留末尾的所有换行符
 
 使用 `>` 符号将多行合并，如：
@@ -460,11 +459,11 @@ test:
 下面是另一个例子:
 
 ```yaml
-- &showell Steve 
-- Clark 
-- Brian 
-- Oren 
-- *showell 
+- &showell Steve
+- Clark
+- Brian
+- Oren
+- *showell
 ```
 
 转为 JavaScript 代码如下:

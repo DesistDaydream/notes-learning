@@ -1,7 +1,6 @@
 ---
 title: CMDB
 linkTitle: CMDB
-date: 2023-11-14T08:42
 weight: 20
 ---
 
@@ -59,4 +58,3 @@ docker run --name bk-cmdb -d \
 -v /opt/bk-cmdb/data/mongodb/db:/data/sidecar/mongodb/db \
 ccr.ccs.tencentyun.com/bk.io/cmdb-standalone:v3.9.28
 ```
-

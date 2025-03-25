@@ -1,16 +1,14 @@
 ---
 title: nova
 linkTitle: nova
-date: 2023-11-20T20:03
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > -
-
 
 # Syntax(语法)
 
@@ -50,4 +48,3 @@ nova instacne-action-list  # 列出指定SERVER的操作，创建、启动、停
 EXAMPLE
 
 - nova instance-action-list ID|NAME # 以实例ID显示该实例的活动信息，包括启动、停止、创建时间等
-

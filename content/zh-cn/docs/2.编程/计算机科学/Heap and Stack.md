@@ -1,7 +1,6 @@
 ---
 title: "Heap and Stack"
 linkTitle: "Heap and Stack"
-date: "2023-08-25T10:27"
 weight: 20
 ---
 

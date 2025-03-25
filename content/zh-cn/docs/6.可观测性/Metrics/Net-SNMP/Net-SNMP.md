@@ -1,7 +1,6 @@
 ---
 title: Net-SNMP
 linkTitle: Net-SNMP
-date: 2024-04-19T09:41
 weight: 1
 ---
 
@@ -12,7 +11,7 @@ weight: 1
 > - [GitHub 项目，net-snmp/net-snmp/](https://github.com/net-snmp/net-snmp/)
 > - [官网](https://www.net-snmp.org/)
 
-> [!Attention] 官网大量页面错误 Exception encountered, of type "mysqli_sql_exception"，e.g. https://www.net-snmp.org/wiki/, 
+> [!Attention] 官网大量页面错误 Exception encountered, of type "mysqli_sql_exception"，e.g. https://www.net-snmp.org/wiki/,
 
 Net-SNMP 是实现 [SNMP(传统监控标准)](/docs/6.可观测性/Metrics/监控系统概述/SNMP(传统监控标准).md) 的工具和库的集合。包含如下内容：
 

@@ -1,20 +1,18 @@
 ---
 title: ZooKeeper
 linkTitle: ZooKeeper
-date: 2024-04-02T16:56
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，apache/zookeeper](https://github.com/apache/zookeeper)
 > - [官网](https://zookeeper.apache.org/)
 > - https://github.com/Snailclimb/JavaGuide?tab=readme-ov-file
 >   - https://javaguide.cn/distributed-system/distributed-process-coordination/zookeeper/zookeeper-intro.html
 >   - https://javaguide.cn/distributed-system/distributed-process-coordination/zookeeper/zookeeper-plus.html
-
 
 > 该文已加入开源文档：JavaGuide（一份涵盖大部分 Java 程序员所需要掌握的核心知识）。地址:<https://github.com/Snailclimb/JavaGuide>.
 

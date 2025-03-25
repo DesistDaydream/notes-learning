@@ -1,13 +1,13 @@
 ---
 title: Admission Controllers 准入控制器
 linkTitle: Admission Controllers 准入控制器
-date: 2024-04-02T10:41
 weight: 4
 ---
 
 # 概述
 
 > 参考：
+>
 > - [官方文档，参考-API 访问控制-使用准入控制器](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/)
 > - [官方文档，参考-API 访问控制-动态准入控制](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/)
 > - [理清 Kubernetes 中的准入控制（Admission Controller）](https://mp.weixin.qq.com/s/nwKO2dmfvXf6dFw-y-vU7A)

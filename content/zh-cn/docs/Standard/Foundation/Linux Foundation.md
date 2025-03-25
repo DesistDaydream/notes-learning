@@ -1,14 +1,13 @@
 ---
 title: Linux Foundation
 linkTitle: Linux Foundation
-date: 2024-03-18T11:19
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [Wiki](https://en.wikipedia.org/wiki/Linux_Foundation)
 > - [官网](https://www.linuxfoundation.org/)
 > - [官网 Wiki](https://wiki.linuxfoundation.org/)

@@ -1,7 +1,6 @@
 ---
 title: PostgreSQL
 linkTitle: PostgreSQL
-date: 2023-11-11T17:30:00
 weight: 1
 ---
 
@@ -37,6 +36,7 @@ PostgreSQL 内置了如下几个 Schemas
 # PostgreSQL 部署
 
 ## 部署
+
 ### Redhat 包部署
 
 https://www.postgresql.org/download/linux/redhat/
@@ -249,7 +249,7 @@ psql 命令存在简写形式。如果当前 Linux 系统用户，同时也是 P
 
 **System catalogs(系统目录)** 是关系数据库管理系统存储模式元数据的地方，例如有关表和列的信息以及内部簿记信息。 PostgreSQL 的 <font color="#ff0000">System catalogs 是常规表</font>。您可以删除并重新创建表、添加列、插入和更新值，并以这种方式严重扰乱您的系统。通常，不应手动更改系统目录，通常有 SQL 命令可以做到这一点。 （例如，CREATE DATABASE 会在 pg_database 目录中插入一行，并实际上在磁盘上创建数据库。）对于特别深奥的操作有一些例外，但随着时间的推移，其中许多操作已作为 SQL 命令提供，因此需要对系统目录的直接操作正在不断减少。
 
-这些 System catalogs 常规表默认保存在 `pg_catalog` Schema 中，还可以通过 `\dS` 
+这些 System catalogs 常规表默认保存在 `pg_catalog` Schema 中，还可以通过 `\dS`
 
 | Catalog 名称                                                                                                | 用途                                                  |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
@@ -281,7 +281,7 @@ PostgreSQL 确实有查询统计信息的系统视图。我来帮你创建类似
 
 ```sql
 -- 1. 查询最耗时的 SQL 语句
-SELECT 
+SELECT
     queries.query,
     calls as executions,
     round(total_exec_time::numeric, 2) as total_time_ms,
@@ -294,7 +294,7 @@ ORDER BY total_exec_time DESC
 LIMIT 10;
 
 -- 2. 查询执行次数最多的 SQL
-SELECT 
+SELECT
     queries.query,
     calls as executions,
     round(total_exec_time::numeric, 2) as total_time_ms,
@@ -306,15 +306,15 @@ LIMIT 10;
 
 -- 3. 按小时统计查询数量（需要结合 pg_stat_statements 的重置时间）
 WITH RECURSIVE hours AS (
-    SELECT 
+    SELECT
         date_trunc('hour', now()) as hour
     UNION ALL
-    SELECT 
+    SELECT
         hour - interval '1 hour'
     FROM hours
     WHERE hour > date_trunc('hour', now() - interval '24 hour')
 )
-SELECT 
+SELECT
     hours.hour,
     count(*) as query_count
 FROM hours
@@ -324,8 +324,8 @@ GROUP BY hours.hour
 ORDER BY hour DESC;
 
 -- 4. 查询平均执行时间分布
-SELECT 
-    CASE 
+SELECT
+    CASE
         WHEN mean_exec_time < 1 THEN '<1ms'
         WHEN mean_exec_time < 10 THEN '1-10ms'
         WHEN mean_exec_time < 100 THEN '10-100ms'
@@ -335,7 +335,7 @@ SELECT
     count(*) as query_count
 FROM pg_stat_statements
 GROUP BY 1
-ORDER BY 
+ORDER BY
     CASE execution_time_bucket
         WHEN '<1ms' THEN 1
         WHEN '1-10ms' THEN 2
@@ -353,6 +353,7 @@ CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
 ```
 
 然后在 postgresql.conf 中添加：
+
 ```
 shared_preload_libraries = 'pg_stat_statements'
 pg_stat_statements.track = all
@@ -382,27 +383,29 @@ pg_stat_statements.track = all
 
 ```sql
 -- 5. 数据库活跃连接数
-SELECT 
+SELECT
     datname,
     count(*) as active_connections
 FROM pg_stat_activity
 GROUP BY datname;
 
 -- 6. 缓存命中率
-SELECT 
+SELECT
     sum(heap_blks_hit) * 100.0 / (sum(heap_blks_hit) + sum(heap_blks_read)) as cache_hit_ratio
 FROM pg_statio_user_tables;
 ```
 
 需要注意的是：
+
 1. pg_stat_statements 的数据会持续累积，需要定期重置：
+
    ```sql
    SELECT pg_stat_statements_reset();
    ```
+
 2. 有些查询可能包含敏感信息，建议在生产环境中谨慎展示完整的查询文本
 3. 可以根据需要调整查询的时间范围和限制条件
 
 # GUI 工具
 
 [数据库管理工具](/docs/5.数据存储/数据管理工具/数据库管理工具.md)
-

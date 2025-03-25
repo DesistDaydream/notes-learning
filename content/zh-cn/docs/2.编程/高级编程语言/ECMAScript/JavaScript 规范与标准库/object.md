@@ -1,14 +1,13 @@
 ---
 title: object
 linkTitle: object
-date: 2023-12-07T11:51
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [MDN，使用对象](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Working_with_objects)
 
 **object(对象)** 是 Javascript 语言的核心概念。所有的数据类型都可以称之为 object。

@@ -1,14 +1,13 @@
 ---
 title: Tempo
 linkTitle: Tempo
-date: 2023-11-04T17:27
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - 原文链接：<https://cloud.tencent.com/developr/article/1759966>
 
 `Tempo`是 Grafana Labs 在`ObservabilityCON 2020`大会上新开源的一个用于做分布式式追踪的后端服务。它和 Cortex、Loki 一样，Tempo 也是一个兼备`高扩展`和`低成本`效应的系统。
@@ -20,7 +19,6 @@ weight: 20
 Tempo 本质上来说还是一个存储系统，它兼容一些开源的 trace 协议（包含 Jaeger、Zipkin 和 OpenCensus 等），将他们存在廉价的 S3 存储中，并利用 TraceID 与其他监控系统（比如 Loki、Prometheus）进行协同工作。
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/tempo/202311041716613.png)
-
 
 可以看到 Tempo 的架构仍然分为`distributor`、`ingester`、`querier`、`tempo-query`、`compactor`这几个架构，熟悉 Loki 和 Cortex 的朋友可能光看名字就知道他们大概是做什么的。不熟悉的同学也没关系，下面简单说下各模块的作用：
 
@@ -56,7 +54,7 @@ tempo 的一个可视化界面，用的`jaeger query`，可以在上面查询 te
 ## Loki 链路跟踪
 
 > 要体验的同学，可以先下载小白在 GitHub 上的 Docker-Compose，推荐配合本篇内容一起实践
-> 
+>
 > <https://github.com/CloudXiaobai/loki-cluster-deploy/tree/master/demo/docker-compose-with-tempo>
 
 ### Loki 方面

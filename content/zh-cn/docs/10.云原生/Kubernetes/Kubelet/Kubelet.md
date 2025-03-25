@@ -1,7 +1,6 @@
 ---
 title: Kubelet
 linkTitle: Kubelet
-date: 2023-11-04T09:09
 weight: 1
 ---
 

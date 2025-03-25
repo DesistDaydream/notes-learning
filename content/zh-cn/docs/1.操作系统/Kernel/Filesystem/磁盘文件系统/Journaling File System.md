@@ -1,7 +1,6 @@
 ---
 title: Journaling File System
 linkTitle: Journaling File System
-date: 2024-04-30T16:39
 weight: 20
 ---
 

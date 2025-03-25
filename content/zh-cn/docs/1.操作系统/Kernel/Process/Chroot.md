@@ -1,7 +1,6 @@
 ---
 title: chroot
 linkTitle: chroot
-date: 2024-03-16T18:59
 weight: 20
 ---
 

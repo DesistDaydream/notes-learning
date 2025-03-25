@@ -1,7 +1,6 @@
 ---
 title: Framework
 linkTitle: Framework
-date: 2023-12-03T20:51
 weight: 1
 ---
 
@@ -14,7 +13,7 @@ weight: 1
 # Web 开发框架
 
 > 参考：
-> 
+>
 > - [MDN，指南-工具和测试-了解客户端 JS 框架](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Introduction)
 
 为什么存在框架？

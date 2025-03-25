@@ -2,7 +2,6 @@
 title: Inter Process Communication(进程间通信)
 linkTitle: Inter Process Communication(进程间通信)
 weight: 1
-date: 2020-11-07T20:29:00
 ---
 
 # 概述

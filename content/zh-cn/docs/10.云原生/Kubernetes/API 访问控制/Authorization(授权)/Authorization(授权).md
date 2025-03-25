@@ -1,7 +1,6 @@
 ---
 title: Authorization(授权)
 linkTitle: Authorization(授权)
-date: 2024-08-22T12:12
 weight: 1
 ---
 

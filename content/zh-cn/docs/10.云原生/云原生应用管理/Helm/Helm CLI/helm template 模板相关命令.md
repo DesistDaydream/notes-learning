@@ -1,7 +1,6 @@
 ---
 title: helm template 模板相关命令
 linkTitle: helm template 模板相关命令
-date: 2024-09-27T10:52
 weight: 20
 ---
 
@@ -10,7 +9,6 @@ weight: 20
 > 参考：
 >
 > - https://helm.sh/docs/helm/helm_template/
-
 
 # template - 在本地渲染 chart 模板，并展示输出
 

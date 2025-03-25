@@ -1,7 +1,6 @@
 ---
 title: Surveillance
 linkTitle: Surveillance
-date: 2023-12-06T21:50
 weight: 20
 ---
 

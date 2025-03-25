@@ -1,7 +1,6 @@
 ---
 title: server 组
 linkTitle: server 组
-date: 2024-06-14T10:20
 weight: 20
 ---
 
@@ -93,6 +92,7 @@ summary: Get array of specific Redis command details
 since: 2.8.13
 
 # config
+
 ## config get PARAMETER - 获取 Redis 启动后，内存中的配置参数
 
 EXAMPLE

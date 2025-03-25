@@ -1,7 +1,6 @@
 ---
 title: WireGuard
 linkTitle: WireGuard
-date: 2023-11-03T22:27
 weight: 1
 ---
 

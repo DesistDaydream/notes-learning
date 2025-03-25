@@ -1,7 +1,6 @@
 ---
 title: "systemd.exec 类指令"
 linkTitle: "systemd.exec 类指令"
-date: "2023-08-01T11:29"
 weight: 20
 ---
 
@@ -91,4 +90,3 @@ https://man7.org/linux/man-pages/man5/systemd.exec.5.html#ENVIRONMENT
 # LOGGING AND STANDARD INPUT/OUTPUT(日志的标准输入/输出) 相关指令
 
 https://man7.org/linux/man-pages/man5/systemd.exec.5.html#LOGGING_AND_STANDARD_INPUT/OUTPUT
-

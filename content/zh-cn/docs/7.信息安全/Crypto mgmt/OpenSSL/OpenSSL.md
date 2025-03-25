@@ -1,7 +1,6 @@
 ---
 title: OpenSSL
 linkTitle: OpenSSL
-date: 2023-09-12T08:11:00
 weight: 1
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: PPTP
 linkTitle: PPTP
-date: 2020-07-18T09:37:00
 weight: 2
 ---
 

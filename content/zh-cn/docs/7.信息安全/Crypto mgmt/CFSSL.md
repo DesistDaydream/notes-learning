@@ -1,7 +1,6 @@
 ---
 title: CFSSL
 linkTitle: CFSSL
-date: 2023-09-12T08:12:00
 weight: 20
 ---
 
@@ -188,7 +187,6 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=kube
 
 1. 证书签署请求文件`ca-csr.json`
 
-
 ```json
 {
     "CN": "etcd CA",
@@ -207,7 +205,6 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=kube
 ```
 
 2. 为节点创建服务证书请求文件，指定授权的主机节点`etcd-server-csr.json`
-
 
 ```json
 {
@@ -233,7 +230,6 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=kube
 
 3. 证书配置模板文件`ca-config.json`
 
-
 ```json
 {
   "signing": {
@@ -256,7 +252,6 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=kube
 ```
 
 5. 生成 etcd 集群所需的证书与私钥
-
 
 ```bash
 cfssl gencert -initca ca-csr.json | cfssljson -bare ca -

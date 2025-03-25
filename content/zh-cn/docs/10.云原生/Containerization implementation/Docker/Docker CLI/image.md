@@ -1,14 +1,12 @@
 ---
 title: image
 linkTitle: image
-date: 2023-11-03T22:43
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-
 
 image 命令用于管理容器镜像。
 

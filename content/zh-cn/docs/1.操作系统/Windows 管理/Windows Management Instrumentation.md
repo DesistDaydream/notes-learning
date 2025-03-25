@@ -1,7 +1,6 @@
 ---
 title: Windows Management Instrumentation
 linkTitle: Windows Management Instrumentation
-date: 2024-01-07T22:42
 weight: 20
 ---
 

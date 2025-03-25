@@ -1,7 +1,6 @@
 ---
 title: Variable
 linkTitle: Variable
-date: 2024-10-25T15:34
 weight: 20
 ---
 
@@ -23,6 +22,7 @@ weight: 20
 https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#global-variables
 
 ## 时间相关
+
 ### `$__from` 与 `$__to`
 
 https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#__from-and-__to
@@ -66,7 +66,7 @@ https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variab
 
 可以使用 `$__interval` 变量作为参数按时间（对于 InfluxDB、MySQL、Postgres、MSSQL）、日期直方图间隔（对于 Elasticsearch）进行分组，或作为汇总函数参数（对于 Graphite）。
 
-步长，格式是 30s、1h、5d、etc. 
+步长，格式是 30s、1h、5d、etc.
 
 # 手动创建变量
 
@@ -174,7 +174,6 @@ label_values(up, job)
 query_result(label_replace(kube_pod_info{pod=~"$pod"}, "node", "10.20.15.$1", "node", "10.10.15.(.*)"))
 ```
 
-
 ```promql
 # 通过正则从返回结果中匹配出所需要的ip地址
 regex：/.*node="(.*?)".*/
@@ -218,4 +217,3 @@ Repeat 选项设置完成后，Grafana 会根据当前用户的选择，自动�
 而如果还希望能够自动生成 Row，只需要在 Row 的设置中，选择需要 Repeat 的变量即可：
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kct3zl/1616067851130-ac817567-fee3-40c3-b4e1-d5f07f86cf8d.png)
-

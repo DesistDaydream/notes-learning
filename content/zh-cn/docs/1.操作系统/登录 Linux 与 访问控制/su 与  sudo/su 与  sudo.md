@@ -1,7 +1,6 @@
 ---
 title: su 与  sudo
 linkTitle: su 与  sudo
-date: 2024-06-07T08:20
 weight: 20
 ---
 
@@ -10,7 +9,6 @@ weight: 20
 > 参考：
 >
 > -
-
 
 # su
 

@@ -1,7 +1,6 @@
 ---
 title: Block
 linkTitle: Block
-date: 2024-09-26T17:31
 weight: 20
 ---
 
@@ -119,4 +118,3 @@ iostat -x 1
 **/proc/diskstats**
 
 对应 /sys/block/\<BLOCK>/stat 的内容
-

@@ -1,7 +1,6 @@
 ---
 title: OSI 模型
 linkTitle: OSI 模型
-date: 2024-02-25T17:51
 weight: 20
 ---
 
@@ -78,4 +77,3 @@ weight: 20
 | 网络层（Network）      | 网络层           | IP, ICMP, ARP, RARP, AKP, UUCP                     |
 | 数据链路层（Data Link）  | 数据链路层         | FDDI, Ethernet, Arpanet, PDN, SLIP, PPP、VLAN、VxLAN |
 | 物理层（Physical）     |               | IEEE 802.1A, IEEE 802.2 到 IEEE 802.11              |
-

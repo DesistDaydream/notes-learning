@@ -8,7 +8,6 @@ weight: 1
 
 > 参考：
 >
-> - date: "2024-12-17T22:21"
 > - [GitHub 项目，prometheus/prometheus - rules](https://github.com/prometheus/prometheus/tree/main/rules)
 > - [公众号 - 运维开发故事，prometheus告警规则管理](https://mp.weixin.qq.com/s/fwHfKYCy_SKJzaiNy-zh7A)
 
@@ -24,34 +23,34 @@ Rule 接口封装了一个向量表达式，在指定的时间间隔评估规则
 ```go
 type Rule interface {
     // 直接返回规则的名称
-	Name() string
-	// Labels of the rule.
-	Labels() labels.Labels
+ Name() string
+ // Labels of the rule.
+ Labels() labels.Labels
     // 评估规则(规则处理逻辑中最重要的部分)
-	Eval(context.Context, time.Time, QueryFunc, *url.URL) (promql.Vector, error)
-	// String returns a human-readable string representation of the rule.
-	String() string
-	// Query returns the rule query expression.
-	Query() parser.Expr
-	// SetLastErr sets the current error experienced by the rule.
-	SetLastError(error)
-	// LastErr returns the last error experienced by the rule.
-	LastError() error
-	// SetHealth sets the current health of the rule.
-	SetHealth(RuleHealth)
-	// Health returns the current health of the rule.
-	Health() RuleHealth
-	SetEvaluationDuration(time.Duration)
-	// GetEvaluationDuration returns last evaluation duration.
-	// NOTE: Used dynamically by rules.html template.
-	GetEvaluationDuration() time.Duration
-	SetEvaluationTimestamp(time.Time)
-	// GetEvaluationTimestamp returns last evaluation timestamp.
-	// NOTE: Used dynamically by rules.html template.
-	GetEvaluationTimestamp() time.Time
-	// HTMLSnippet returns a human-readable string representation of the rule,
-	// decorated with HTML elements for use the web frontend.
-	HTMLSnippet(pathPrefix string) html_template.HTML
+ Eval(context.Context, time.Time, QueryFunc, *url.URL) (promql.Vector, error)
+ // String returns a human-readable string representation of the rule.
+ String() string
+ // Query returns the rule query expression.
+ Query() parser.Expr
+ // SetLastErr sets the current error experienced by the rule.
+ SetLastError(error)
+ // LastErr returns the last error experienced by the rule.
+ LastError() error
+ // SetHealth sets the current health of the rule.
+ SetHealth(RuleHealth)
+ // Health returns the current health of the rule.
+ Health() RuleHealth
+ SetEvaluationDuration(time.Duration)
+ // GetEvaluationDuration returns last evaluation duration.
+ // NOTE: Used dynamically by rules.html template.
+ GetEvaluationDuration() time.Duration
+ SetEvaluationTimestamp(time.Time)
+ // GetEvaluationTimestamp returns last evaluation timestamp.
+ // NOTE: Used dynamically by rules.html template.
+ GetEvaluationTimestamp() time.Time
+ // HTMLSnippet returns a human-readable string representation of the rule,
+ // decorated with HTML elements for use the web frontend.
+ HTMLSnippet(pathPrefix string) html_template.HTML
 }
 ```
 
@@ -67,28 +66,28 @@ type Rule interface {
 
 ```go
 type Group struct {
-	name                 string
-	file                 string
-	interval             time.Duration
-	limit                int
-	rules                []Rule
-	seriesInPreviousEval []map[string]labels.Labels // One per Rule.
-	staleSeries          []labels.Labels
-	opts                 *ManagerOptions
-	mtx                  sync.Mutex
-	evaluationTime       time.Duration
-	lastEvaluation       time.Time
+ name                 string
+ file                 string
+ interval             time.Duration
+ limit                int
+ rules                []Rule
+ seriesInPreviousEval []map[string]labels.Labels // One per Rule.
+ staleSeries          []labels.Labels
+ opts                 *ManagerOptions
+ mtx                  sync.Mutex
+ evaluationTime       time.Duration
+ lastEvaluation       time.Time
 
-	shouldRestore bool
+ shouldRestore bool
 
-	markStale   bool
-	done        chan struct{}
-	terminated  chan struct{}
-	managerDone chan struct{}
+ markStale   bool
+ done        chan struct{}
+ terminated  chan struct{}
+ managerDone chan struct{}
 
-	logger log.Logger
+ logger log.Logger
 
-	metrics *Metrics
+ metrics *Metrics
 }
 ```
 
@@ -101,16 +100,16 @@ Manager 结构体是规则管理器。负责管理 记录规则 与 告警规则
 ```go
 type Manager struct {
     // 管理器的额外选项，
-	opts     *ManagerOptions
+ opts     *ManagerOptions
     // 通过配置文件传递进来的规则
-	groups   map[string]*Group
+ groups   map[string]*Group
     // 该结构体的读写锁，通常在处理 groups 时会上锁
-	mtx      sync.RWMutex
-	block    chan struct{}
-	done     chan struct{}
-	restored bool
+ mtx      sync.RWMutex
+ block    chan struct{}
+ done     chan struct{}
+ restored bool
 
-	logger log.Logger
+ logger log.Logger
 }
 ```
 
@@ -124,21 +123,21 @@ type Manager struct {
 
 ```go
 type ManagerOptions struct {
-	ExternalURL     *url.URL
+ ExternalURL     *url.URL
     //
-	QueryFunc       QueryFunc
-	NotifyFunc      NotifyFunc
-	Context         context.Context
-	Appendable      storage.Appendable
-	Queryable       storage.Queryable
-	Logger          log.Logger
-	Registerer      prometheus.Registerer
-	OutageTolerance time.Duration
-	ForGracePeriod  time.Duration
-	ResendDelay     time.Duration
-	GroupLoader     GroupLoader
+ QueryFunc       QueryFunc
+ NotifyFunc      NotifyFunc
+ Context         context.Context
+ Appendable      storage.Appendable
+ Queryable       storage.Queryable
+ Logger          log.Logger
+ Registerer      prometheus.Registerer
+ OutageTolerance time.Duration
+ ForGracePeriod  time.Duration
+ ResendDelay     time.Duration
+ GroupLoader     GroupLoader
 
-	Metrics *Metrics
+ Metrics *Metrics
 }
 ```
 
@@ -157,47 +156,47 @@ type ManagerOptions struct {
 
 ```go
 func (m *Manager) Update(interval time.Duration, files []string, externalLabels labels.Labels, externalURL string) error {
-	// 下面将会处理 Manager.groups，所以上个锁~
+ // 下面将会处理 Manager.groups，所以上个锁~
     m.mtx.Lock()
-	defer m.mtx.Unlock()
+ defer m.mtx.Unlock()
     // 从配置文件中加载并解析规则，以实例化一个规则组变量供后续处理
-	groups, errs := m.LoadGroups(interval, externalLabels, externalURL, files...)
+ groups, errs := m.LoadGroups(interval, externalLabels, externalURL, files...)
     // 准备开始并发喽~
-	var wg sync.WaitGroup
-	for _, newg := range groups {
+ var wg sync.WaitGroup
+ for _, newg := range groups {
         // 检查新组与旧组标识符是否相等，若相等则跳过，若不等则停止它并等待它完成当前迭代，然后将其复制到新组中
-		......
+  ......
         // 并发添加计数
         wg.Add(1)
         // 开始真正的加载规则组，其中主要执行逻辑在 newg.run(m.opts.Context)
-		go func(newg *Group)
-        	// 接着上面检查新旧组标识符，如果相等，这里就会将老规则组中的状态信息复制到新规则组中。
-			if ok {
-				oldg.stop()
-				newg.CopyState(oldg)
-			}
-			wg.Done()
-			// Wait with starting evaluation until the rule manager
-			// is told to run. This is necessary to avoid running
-			// queries against a bootstrapping storage.
-			<-m.block
+  go func(newg *Group)
+         // 接着上面检查新旧组标识符，如果相等，这里就会将老规则组中的状态信息复制到新规则组中。
+   if ok {
+    oldg.stop()
+    newg.CopyState(oldg)
+   }
+   wg.Done()
+   // Wait with starting evaluation until the rule manager
+   // is told to run. This is necessary to avoid running
+   // queries against a bootstrapping storage.
+   <-m.block
             // 加载新组，周期性得执行 PromQL 语句
-			newg.run(m.opts.Context)
-		}(newg)
-	}
+   newg.run(m.opts.Context)
+  }(newg)
+ }
 
-	// 删除余下的旧组
-	wg.Add(len(m.groups))
-	for n, oldg := range m.groups {
-		go func(n string, g *Group) {
+ // 删除余下的旧组
+ wg.Add(len(m.groups))
+ for n, oldg := range m.groups {
+  go func(n string, g *Group) {
             ......
-		}(n, oldg)
-	}
+  }(n, oldg)
+ }
 
-	wg.Wait()
-	m.groups = groups
+ wg.Wait()
+ m.groups = groups
 
-	return nil
+ return nil
 }
 ```
 
@@ -210,29 +209,29 @@ func (m *Manager) Update(interval time.Duration, files []string, externalLabels 
 ```go
 func (m *Manager) LoadGroups(interval time.Duration, externalLabels labels.Labels, externalURL string, filenames ...string,) (map[string]*Group, []error) {
     // 循环配置文件
-	for _, fn := range filenames {
+ for _, fn := range filenames {
         // 通过 ./rulefmt/rulefmt.go —— ParseFile() 解析配置文件，返回 rulefmt 包下的 RuleGroups{}，这就是规则组实例
-		rgs, errs := m.opts.GroupLoader.Load(fn)
+  rgs, errs := m.opts.GroupLoader.Load(fn)
         // 循环规则组实例
-		for _, rg := range rgs.Groups {
+  for _, rg := range rgs.Groups {
             // 循环规则组中的每个规则
-			for _, r := range rg.Rules {
-			}
+   for _, r := range rg.Rules {
+   }
 
-			groups[GroupKey(fn, rg.Name)] = NewGroup(GroupOptions{
-				Name:          rg.Name,
-				File:          fn,
-				Interval:      itv,
-				Limit:         rg.Limit,
-				Rules:         rules,
-				ShouldRestore: shouldRestore,
-				Opts:          m.opts,
-				done:          m.done,
-			})
-		}
-	}
+   groups[GroupKey(fn, rg.Name)] = NewGroup(GroupOptions{
+    Name:          rg.Name,
+    File:          fn,
+    Interval:      itv,
+    Limit:         rg.Limit,
+    Rules:         rules,
+    ShouldRestore: shouldRestore,
+    Opts:          m.opts,
+    done:          m.done,
+   })
+  }
+ }
     // 循环完成后，返回实例化的 Group{}
-	return groups, nil
+ return groups, nil
 }
 ```
 
@@ -244,27 +243,27 @@ func (m *Manager) LoadGroups(interval time.Duration, externalLabels labels.Label
 
 ```go
 func (g *Group) run(ctx context.Context) {
-	// 等待一个当前的时间戳，以开始计时，以便根据固定的间隔，持续评估
-	evalTimestamp := g.EvalTimestamp(time.Now().UnixNano()).Add(g.interval)
+ // 等待一个当前的时间戳，以开始计时，以便根据固定的间隔，持续评估
+ evalTimestamp := g.EvalTimestamp(time.Now().UnixNano()).Add(g.interval)
 
     // ！！！！用闭包声明一个函数变量，这里面是执行评估的最主要代码逻辑！！！！！
-	iter := func() {
-		g.Eval(ctx, evalTimestamp)
-	}
+ iter := func() {
+  g.Eval(ctx, evalTimestamp)
+ }
     // 在一个循环中，每隔一段时间就执行一次 Group.Eval()
-	for {
-		select {
-		case <-g.done:
-			return
-		default:
-			select {
-			case <-g.done:
-				return
-			case <-tick.C:
-				iter()
-			}
-		}
-	}
+ for {
+  select {
+  case <-g.done:
+   return
+  default:
+   select {
+   case <-g.done:
+    return
+   case <-tick.C:
+    iter()
+   }
+  }
+ }
 }
 ```
 
@@ -276,16 +275,16 @@ func (g *Group) run(ctx context.Context) {
 
 ```go
 func (g *Group) Eval(ctx context.Context, ts time.Time) {
-	for i, rule := range g.rules {
-		func(i int, rule Rule) {
+ for i, rule := range g.rules {
+  func(i int, rule Rule) {
             // 记录规则 与 报警规则 具有各自的实现。但是都会返回一个向量。
-			vector, err := rule.Eval(ctx, ts, g.opts.QueryFunc, g.opts.ExternalURL, g.Limit())
+   vector, err := rule.Eval(ctx, ts, g.opts.QueryFunc, g.opts.ExternalURL, g.Limit())
             // 如果当前评估的是报警规则，则进行断言，
-			if ar, ok := rule.(*AlertingRule); ok {
-				ar.sendAlerts(ctx, ts, g.opts.ResendDelay, g.interval, g.opts.NotifyFunc)
-			}
-		}(i, rule)
-	}
+   if ar, ok := rule.(*AlertingRule); ok {
+    ar.sendAlerts(ctx, ts, g.opts.ResendDelay, g.interval, g.opts.NotifyFunc)
+   }
+  }(i, rule)
+ }
 }
 ```
 
@@ -305,73 +304,73 @@ func (g *Group) Eval(ctx context.Context, ts time.Time) {
 ```go
 func (r *AlertingRule) Eval(ctx context.Context, ts time.Time, query QueryFunc, externalURL *url.URL, limit int) (promql.Vector, error) {
     // 执行 PromQL 语句，若没结果则直接返回，继续等待 Group.run() 循环中的下一个元素。
-	res, err := query(ctx, r.vector.String(), ts)
-	// 若有结果，则给该告警规则上锁，并开始处理
-	r.mtx.Lock()
-	defer r.mtx.Unlock()
+ res, err := query(ctx, r.vector.String(), ts)
+ // 若有结果，则给该告警规则上锁，并开始处理
+ r.mtx.Lock()
+ defer r.mtx.Unlock()
 
-	// Create pending alerts for any new vector elements in the alert expression
-	// or update the expression value for existing elements.
-	resultFPs := map[uint64]struct{}{}
+ // Create pending alerts for any new vector elements in the alert expression
+ // or update the expression value for existing elements.
+ resultFPs := map[uint64]struct{}{}
 
-	var vec promql.Vector
-	var alerts = make(map[uint64]*Alert, len(res))
+ var vec promql.Vector
+ var alerts = make(map[uint64]*Alert, len(res))
     // 循环每一个 PromQL 获取到的样本，也就是循环每一个查询语句获得的结果
-	for _, smpl := range res {
+ for _, smpl := range res {
         // 提取样本中的信息，保存到 Alert{} 中。相当于实例化了 Alert{}
-		alerts[h] = &Alert{
-			Labels:      lbs,
-			Annotations: annotations,
-			ActiveAt:    ts,
-			State:       StatePending,
-			Value:       smpl.V,
-		}
-	}
+  alerts[h] = &Alert{
+   Labels:      lbs,
+   Annotations: annotations,
+   ActiveAt:    ts,
+   State:       StatePending,
+   Value:       smpl.V,
+  }
+ }
 
-	for h, a := range alerts {
-		// 检查标签集是否以具有 alerting 状态
-		if alert, ok := r.active[h]; ok && alert.State != StateInactive {
-			alert.Value = a.Value
-			alert.Annotations = a.Annotations
-			continue
-		}
+ for h, a := range alerts {
+  // 检查标签集是否以具有 alerting 状态
+  if alert, ok := r.active[h]; ok && alert.State != StateInactive {
+   alert.Value = a.Value
+   alert.Annotations = a.Annotations
+   continue
+  }
 
-		r.active[h] = a
-	}
+  r.active[h] = a
+ }
 
-	// Check if any pending alerts should be removed or fire now. Write out alert timeseries.
-	for fp, a := range r.active {
-		if _, ok := resultFPs[fp]; !ok {
-			// If the alert was previously firing, keep it around for a given
-			// retention time so it is reported as resolved to the AlertManager.
-			if a.State == StatePending || (!a.ResolvedAt.IsZero() && ts.Sub(a.ResolvedAt) > resolvedRetention) {
-				delete(r.active, fp)
-			}
-			if a.State != StateInactive {
-				a.State = StateInactive
-				a.ResolvedAt = ts
-			}
-			continue
-		}
+ // Check if any pending alerts should be removed or fire now. Write out alert timeseries.
+ for fp, a := range r.active {
+  if _, ok := resultFPs[fp]; !ok {
+   // If the alert was previously firing, keep it around for a given
+   // retention time so it is reported as resolved to the AlertManager.
+   if a.State == StatePending || (!a.ResolvedAt.IsZero() && ts.Sub(a.ResolvedAt) > resolvedRetention) {
+    delete(r.active, fp)
+   }
+   if a.State != StateInactive {
+    a.State = StateInactive
+    a.ResolvedAt = ts
+   }
+   continue
+  }
 
-		if a.State == StatePending && ts.Sub(a.ActiveAt) >= r.holdDuration {
-			a.State = StateFiring
-			a.FiredAt = ts
-		}
+  if a.State == StatePending && ts.Sub(a.ActiveAt) >= r.holdDuration {
+   a.State = StateFiring
+   a.FiredAt = ts
+  }
 
-		if r.restored {
-			vec = append(vec, r.sample(a, ts))
-			vec = append(vec, r.forStateSample(a, ts, float64(a.ActiveAt.Unix())))
-		}
-	}
+  if r.restored {
+   vec = append(vec, r.sample(a, ts))
+   vec = append(vec, r.forStateSample(a, ts, float64(a.ActiveAt.Unix())))
+  }
+ }
 
-	numActive := len(r.active)
-	if limit != 0 && numActive > limit {
-		r.active = map[uint64]*Alert{}
-		return nil, errors.Errorf("exceeded limit of %d with %d alerts", limit, numActive)
-	}
+ numActive := len(r.active)
+ if limit != 0 && numActive > limit {
+  r.active = map[uint64]*Alert{}
+  return nil, errors.Errorf("exceeded limit of %d with %d alerts", limit, numActive)
+ }
 
-	return vec, nil
+ return vec, nil
 }
 ```
 
@@ -383,39 +382,38 @@ func (r *AlertingRule) Eval(ctx context.Context, ts time.Time, query QueryFunc, 
 
 ```go
 func (rule *RecordingRule) Eval(ctx context.Context, ts time.Time, query QueryFunc, _ *url.URL, limit int) (promql.Vector, error) {
-	vector, err := query(ctx, rule.vector.String(), ts)
-	if err != nil {
-		return nil, err
-	}
-	// Override the metric name and labels.
-	for i := range vector {
-		sample := &vector[i]
+ vector, err := query(ctx, rule.vector.String(), ts)
+ if err != nil {
+  return nil, err
+ }
+ // Override the metric name and labels.
+ for i := range vector {
+  sample := &vector[i]
 
-		lb := labels.NewBuilder(sample.Metric)
+  lb := labels.NewBuilder(sample.Metric)
 
-		lb.Set(labels.MetricName, rule.name)
+  lb.Set(labels.MetricName, rule.name)
 
-		for _, l := range rule.labels {
-			lb.Set(l.Name, l.Value)
-		}
+  for _, l := range rule.labels {
+   lb.Set(l.Name, l.Value)
+  }
 
-		sample.Metric = lb.Labels()
-	}
+  sample.Metric = lb.Labels()
+ }
 
-	// Check that the rule does not produce identical metrics after applying
-	// labels.
-	if vector.ContainsSameLabelset() {
-		return nil, fmt.Errorf("vector contains metrics with the same labelset after applying rule labels")
-	}
+ // Check that the rule does not produce identical metrics after applying
+ // labels.
+ if vector.ContainsSameLabelset() {
+  return nil, fmt.Errorf("vector contains metrics with the same labelset after applying rule labels")
+ }
 
-	numSamples := len(vector)
-	if limit != 0 && numSamples > limit {
-		return nil, fmt.Errorf("exceeded limit %d with %d samples", limit, numSamples)
-	}
+ numSamples := len(vector)
+ if limit != 0 && numSamples > limit {
+  return nil, fmt.Errorf("exceeded limit %d with %d samples", limit, numSamples)
+ }
 
-	rule.SetHealth(HealthGood)
-	rule.SetLastError(err)
-	return vector, nil
+ rule.SetHealth(HealthGood)
+ rule.SetLastError(err)
+ return vector, nil
 }
 ```
-

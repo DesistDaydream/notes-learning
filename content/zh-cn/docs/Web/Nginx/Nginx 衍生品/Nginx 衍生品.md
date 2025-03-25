@@ -1,7 +1,6 @@
 ---
 title: Nginx 衍生品
 linkTitle: Nginx 衍生品
-date: 2023-11-02T10:32
 weight: 20
 ---
 
@@ -10,7 +9,7 @@ weight: 20
 # OpenResty
 
 > 参考：
-> 
+>
 > - [GitHub 组织，OpenResty](https://github.com/openresty)
 > - [官网](https://openresty.org/)
 
@@ -19,5 +18,5 @@ OpenResty® 是一个基于 [Nginx](https://openresty.org/cn/nginx.html "Nginx
 # Nginx Unit
 
 > 参考：
-> 
+>
 > - [官网](https://unit.nginx.org/)

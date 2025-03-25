@@ -1,7 +1,6 @@
 ---
 title: CLI
 linkTitle: CLI
-date: 2024-05-11T23:31
 weight: 20
 ---
 

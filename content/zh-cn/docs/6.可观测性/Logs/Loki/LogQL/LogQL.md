@@ -8,7 +8,6 @@ weight: 1
 
 > 参考：
 >
-> - date: "2024-12-10T08:47"
 > - [官方文档，查询](https://grafana.com/docs/loki/latest/query/)
 > - [公众号，Loki 查询语言 LogQL 使用](https://mp.weixin.qq.com/s/0dXT0fIreZk6_4ZL4S8lHg)
 

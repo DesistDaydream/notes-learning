@@ -1,7 +1,6 @@
 ---
 title: Bastion Host
 linkTitle: Bastion Host
-date: 2024-01-14T19:09
 weight: 20
 ---
 
@@ -26,5 +25,3 @@ https://jumpserver.org/
 [公众号 - Kubernetes技术栈，开源推荐｜简洁且强大的开源堡垒机OneTerm](https://mp.weixin.qq.com/s/iFy83vu3Yybj1X6gypPKjg)
 
 [公众号 - Kubernetes技术栈，用了两周开源堡垒机OneTerm，我有一些建议](https://mp.weixin.qq.com/s/AyY0SknYGjJhQbbWHu7-bQ)
-
-

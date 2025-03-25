@@ -1,7 +1,6 @@
 ---
 title: Wireguard 流量伪装
 linkTitle: Wireguard 流量伪装
-date: 2024-04-19T23:33
 weight: 20
 ---
 
@@ -18,7 +17,7 @@ WireGuard 在国内网络环境下会遇到一个致命的问题：**UDP 封锁/
 # udp2raw
 
 > 参考：
-> 
+>
 > - [GitHub 项目，wangyu-/udp2raw](https://github.com/wangyu-/udp2raw)
 
 使用原始套接字将 UDP 流量转换为加密的 UDP/FakeTCP/ICMP 流量的隧道，帮助您绕过 UDP 防火墙（或不稳定的 UDP 环境）

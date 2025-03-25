@@ -1,14 +1,13 @@
 ---
 title: EulerOS 与 OpenEuler
 linkTitle: EulerOS 与 OpenEuler
-date: 2024-03-16T19:44
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [EulerOS 官网](https://developer.huaweicloud.com/ict/cn/site-euleros/euleros)
 > - [OpenEuler 官网](https://www.openeuler.org/zh/)
 > - [OpenEuler 官方文档](https://docs.openeuler.org/)

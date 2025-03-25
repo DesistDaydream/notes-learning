@@ -1,7 +1,6 @@
 ---
 title: Load Average 平均负载简述
 linkTitle: Load Average 平均负载简述
-date: 2024-05-21T16:53
 weight: 20
 ---
 

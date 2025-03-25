@@ -1,7 +1,6 @@
 ---
 title: API Server
 linkTitle: API Server
-date: 2024-06-14T09:25
 weight: 1
 ---
 
@@ -105,16 +104,16 @@ curl -X GET $APISERVER/api --header "Authorization: Bearer $TOKEN" --insecure
 ### 访问 API Server
 
 - 执行访问 https 前准备方法一
-   - 通过证书与私钥访问
-      - `curl --cacert ${CAPATH} --cert /root/certs/admin.crt --key  /root/certs/admin.key  https://${IP}:6443/`
+  - 通过证书与私钥访问
+    - `curl --cacert ${CAPATH} --cert /root/certs/admin.crt --key  /root/certs/admin.key  https://${IP}:6443/`
 - 执行访问 https 前准备方法二
-   - 通过 https 的方式访问 API
-      - `curl --cacert ${CAPATH} -H "Authorization: Bearer ${TOKEN}"  https://${IP}:6443/`
+  - 通过 https 的方式访问 API
+    - `curl --cacert ${CAPATH} -H "Authorization: Bearer ${TOKEN}"  https://${IP}:6443/`
 - kubectl
-   - `kubectl get --raw /` # 让 kubectl 不再输出标准格式的数据，而是直接向 api server 请求原始数据
+  - `kubectl get --raw /` # 让 kubectl 不再输出标准格式的数据，而是直接向 api server 请求原始数据
 - kubectl proxy，一般监听在 6443 端口的 api server 使用该方式，监听在 8080 上的为 http，可直接访问
-   - `kubectl proxy --port=8080 --accept-hosts='^localhost$,^127.0.0.1$,^\[::1]$,10.10.100.151' --address='0.0.0.0'` # 在本地 8080 端口上启动 API Server 的一个代理网关，以便使用 curl 直接访问 api server 并使用命令 curl localhost:8080/获取数据
-      - 直接访问本地 8080 端口，即可通过 API Server 获取集群所有数据
+  - `kubectl proxy --port=8080 --accept-hosts='^localhost$,^127.0.0.1$,^\[::1]$,10.10.100.151' --address='0.0.0.0'` # 在本地 8080 端口上启动 API Server 的一个代理网关，以便使用 curl 直接访问 api server 并使用命令 curl localhost:8080/获取数据
+    - 直接访问本地 8080 端口，即可通过 API Server 获取集群所有数据
 
 ## 编程方式访问 API
 

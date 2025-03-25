@@ -1,7 +1,6 @@
 ---
 title: Control structure
 linkTitle: Control structure
-date: 2023-11-20T21:30
 weight: 1
 ---
 
@@ -9,7 +8,7 @@ weight: 1
 
 > 参考:
 >
-> -  [官方文档，参考 - 语言规范 - 语句](https://go.dev/ref/spec#Statements)
+> - [官方文档，参考 - 语言规范 - 语句](https://go.dev/ref/spec#Statements)
 
 Go 语言提供了 4 种条件结构和分支结构用作 [Control structure(控制结构)](/docs/2.编程/计算机科学/Control%20structure.md)。在结构中，可以使用 `break` 和 `continue` 这样的关键字来中途改变结构的状态。还可以使用 `return` 来结束某个函数的执行，或使用 `goto` 和标签来调整程序的执行位置
 

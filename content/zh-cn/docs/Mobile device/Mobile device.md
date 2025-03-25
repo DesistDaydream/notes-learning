@@ -1,7 +1,6 @@
 ---
 title: Mobile device
 linkTitle: Mobile device
-date: 2023-11-20T12:57
 weight: 1
 ---
 
@@ -51,6 +50,3 @@ weight: 1
   - [Smartglasses](https://en.wikipedia.org/wiki/Smartglasses "Smartglasses")
   - [Head-mounted display](https://en.wikipedia.org/wiki/Head-mounted_display "Head-mounted display")
 - [Smart cards](https://en.wikipedia.org/wiki/Smart_cards "Smart cards")
-
-
-

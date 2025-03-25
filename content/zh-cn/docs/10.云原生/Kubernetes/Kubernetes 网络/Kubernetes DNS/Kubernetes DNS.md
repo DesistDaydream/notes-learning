@@ -1,7 +1,6 @@
 ---
 title: Kubernetes DNS
 linkTitle: Kubernetes DNS
-date: 2023-12-20T13:14
 weight: 1
 ---
 

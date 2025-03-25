@@ -1,7 +1,6 @@
 ---
 title: Docker Image
 linkTitle: Docker Image
-date: 2023-11-03T22:25
 weight: 4
 ---
 

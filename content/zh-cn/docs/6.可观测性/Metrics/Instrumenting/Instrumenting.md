@@ -1,7 +1,6 @@
 ---
 title: Instrumenting
 linkTitle: Instrumenting
-date: 2024-03-21T14:24
 weight: 1
 ---
 

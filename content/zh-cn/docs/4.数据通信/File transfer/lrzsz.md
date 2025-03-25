@@ -1,7 +1,6 @@
 ---
 title: lrzsz
 linkTitle: lrzsz
-date: 2024-05-07T17:29
 weight: 20
 ---
 

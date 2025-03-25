@@ -1,14 +1,13 @@
 ---
 title: Kubeapps
 linkTitle: Kubeapps
-date: 2024-03-01T10:52
 weight: 1
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官网](https://kubeapps.com/)
 > - [GitHub 项目，kubeapps/kubeapps](https://github.com/kubeapps/kubeapps)
 
@@ -40,6 +39,7 @@ Kubeapps 抽象了一个 **Asset(资产)** 的概念，Asset 是多种事物的�
 # Kubeapps 权限管理
 
 > 参考：
+>
 > - [GitHub,docs-user-access-control.md](https://github.com/kubeapps/kubeapps/blob/master/docs/user/access-control.md)
 
 Kubeapps 会创建如下几个 ClusterRole 对象，以便进行权限管理：
@@ -66,6 +66,5 @@ kubectl create -n kubeapps rolebinding lch-kubeapps-repositories-write  \
 # kubeapps API
 
 > 参考：
-> 
+>
 > -[官方 OpenAPI 3.0](https://github.com/kubeapps/kubeapps/blob/master/dashboard/public/openapi.yaml)
-

@@ -1,7 +1,6 @@
 ---
 title: Kubelet 配置
 linkTitle: Kubelet 配置
-date: 2019-11-04T09:09:00
 weight: 2
 ---
 

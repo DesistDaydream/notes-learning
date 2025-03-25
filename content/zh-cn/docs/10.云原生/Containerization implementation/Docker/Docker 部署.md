@@ -1,7 +1,6 @@
 ---
 title: Docker 部署
 linkTitle: Docker 部署
-date: 2023-10-15T21:18
 weight: 2
 ---
 # 概述
@@ -218,7 +217,6 @@ systemctl enable docker --now
 # 最佳实践
 
 ## 非 Root 运行
-
 
 ## 非 Root 使用
 

@@ -1,7 +1,6 @@
 ---
 title: Secure Shell Protocol
 linkTitle: Secure Shell Protocol
-date: 2024-04-19T10:30
 weight: 20
 ---
 
@@ -22,7 +21,7 @@ Go 语言的 SSH 实现
 
 - https://github.com/search?q=sshd+language%3AGo&ref=opensearch&type=repositories
 - [GitHub 项目，jpillora/sshd-lite](https://github.com/jpillora/sshd-lite)
-    - 对应博客 https://blog.gopheracademy.com/go-and-ssh/
+  - 对应博客 https://blog.gopheracademy.com/go-and-ssh/
 - https://github.com/nwtgck/handy-sshd
 - https://github.com/Matir/sshdog
 

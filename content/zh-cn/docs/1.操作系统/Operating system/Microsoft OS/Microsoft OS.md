@@ -1,13 +1,12 @@
 ---
 title: Microsoft OS
 linkTitle: Microsoft OS
-date: 2024-03-16T19:40
 weight: 1
 ---
 
 # 概述
 
-> 参考：
+> 参考
 > -
 
 Microsoft OS 也是 [Operating system](/docs/1.操作系统/Operating%20system/Operating%20system.md)(操作系统)

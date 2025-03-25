@@ -1,7 +1,6 @@
 ---
 title: IEEE
 linkTitle: IEEE
-date: 2023-11-26T22:00
 weight: 20
 ---
 

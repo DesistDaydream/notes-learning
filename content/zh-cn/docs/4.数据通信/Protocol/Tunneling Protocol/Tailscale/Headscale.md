@@ -1,7 +1,6 @@
 ---
 title: Headscale
 linkTitle: Headscale
-date: 2024-03-21T08:11
 weight: 2
 ---
 
@@ -299,16 +298,20 @@ New-ItemProperty -Path 'HKLM:\Software\Tailscale IPN' -Name LoginURL -PropertyTy
 
 - 在[这里](https://pkgs.tailscale.com/stable/#windows)下载 Windows 版的 Tailscale 客户端并安装
 - 在 Powershell 执行
+
 ```bash
 tailscale up --login-server=http://${headscale_server} --accept-routes=true --accept-dns=false
 ```
+
 - 右键点击任务栏中的 Tailscale 图标，再点击 `Log in` 获取接入 Headscale 的命令
 - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/headscale/1648104111282-99d562e1-d7d9-4ea5-9943-f16861efe87e.png)
 - 此时会自动在浏览器中出现接入 Headscale 的页面，记录下注册命令，去 Headscale 所在设备上执行命令添加节点。
   - 注册命令示例：
+
 ```bash
 headscale nodes register --user USERNAME --key nodekey:75b424a753067b906fee373411743bf34264a9c40a4f7798836bf28bb24d2467
 ```
+
 - 根据 [在 Headscale 中添加节点](#Headscale%20中添加节点) 部分的文档，使用注册命令将节点接入到 Headscale 中。
 
 ### 其他 Linux 发行版

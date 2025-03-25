@@ -1,7 +1,6 @@
 ---
 title: GitHub 管理
 linkTitle: GitHub 管理
-date: 2024-04-22T22:50
 weight: 20
 ---
 
@@ -80,4 +79,3 @@ github 网站上操作
 1. 用 git remote 查看远程主机状态
 
 git remote -v git remote add upstream git@github.com:xxx/xxx.gitgit fetch upstreamgit merge upstream/mastergit push
-

@@ -1,7 +1,6 @@
 ---
 title: Grafana Alerting
 linkTitle: Grafana Alerting
-date: 2021-12-02T12:21:00
 weight: 20
 ---
 
@@ -23,7 +22,7 @@ weight: 20
 
 - **Query(查询语句)**
 - **Condition Expressions(条件表达式)** # 可选。简称 Expressions
-- **Evaluation behavior(评估行为)** # [评估行为](#Evaluation%20behavior) 与 Prometheus 中的 [Alerting](/docs/6.可观测性/Metrics/Prometheus/Alerting.md) 的评估行为类似（有一点不同是：Prom 的评估是决定是否将警报发送出去，但 Grafana 内部集成了类似 Alertmanager 的逻辑，所以评估是决定是否将警报交给 [Notifications](#Notifications) 组件）
+- **Evaluation behavior(评估行为)** # [评估行为](#Evaluation%20behavior) 与 Prometheus 中的 [Alerting](/docs/6.可观测性/Metrics/Prometheus/Alerting.md) 的评估行为类似（有一点不同是：Prom 的评估是决定是否将警报发送出去，但 Grafana 内部集成了类似 Alertmanager 的逻辑，所以评估是决定是否将警报交给 [Notifications](#notifications) 组件）
 
 Grafana 会评估 Expressions 的处理结果（对 Query 查询结果的处理结果），满足条件的将会交给 Notifications 组件。
 
@@ -39,7 +38,7 @@ https://grafana.com/docs/grafana/latest/alerting/fundamentals/alert-rule-evaluat
 - **Evaluation interval** # 每次评估行为的间隔
 - **Period during** # 满足 Alert rules 中定义的条件后等待多长时间触发警报
 - **No data and Error handing** # 当 Alert rules 没有数据或者执行错误时的处理方式
-    - <font color="#ff0000">Notes: 截至 11.5.1 版本，默认的 No data 处理方式是 No Data，这会导致每隔默认的 4h 就发送一次警报</font>，最好将 No data 的行为改为 Normal。
+  - <font color="#ff0000">Notes: 截至 11.5.1 版本，默认的 No data 处理方式是 No Data，这会导致每隔默认的 4h 就发送一次警报</font>，最好将 No data 的行为改为 Normal。
 
 ![600](https://notes-learning.oss-cn-beijing.aliyuncs.com/grafana/alerting/20250213083518945.png)
 
@@ -57,7 +56,6 @@ Notifications 由下面几部分组成
 ## Notification policies
 
 ## Contact points
-
 
 # Template
 
@@ -263,7 +261,6 @@ wqy-zenhei-fonts.noarch : WenQuanYi Zen Hei CJK Font
 
 在 Grafana 配置文件 `/etc/grafana/grafana.ini` 中配置 `external_image_storage`：
 
-
 ```
 #################################### External image storage ##########################
 [external_image_storage]
@@ -281,7 +278,6 @@ secret_key = <sk>
 domain = 192.168.31.46  # 设置 Grafana 访问地址为内网 IP
 ```
 
-
 另外注意需要将 Grafana 的访问域名设置成内网 IP，否则在局域网其他节点上访问不到，配置完成后重启 Grafana 即可：
 
 ```
@@ -292,4 +288,3 @@ domain = 192.168.31.46  # 设置 Grafana 访问地址为内网 IP
 配置完成后我们重新去触发下报警，正常在邮件和钉钉中收到的图片都可以正常显示了：
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/z9BgVMEm7YtaXicIicsE3YsiatkqOAgK4z0PLlkfQxVOor0gvMf79ricofpVk5lEgmhlibezkQj5B5NaLiaI5S6g4klQ/640?wx_fmt=png)
-

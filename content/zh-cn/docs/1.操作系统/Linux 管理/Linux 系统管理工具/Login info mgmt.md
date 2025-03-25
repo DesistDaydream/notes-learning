@@ -1,7 +1,6 @@
 ---
 title: Login info mgmt
 linkTitle: Login info mgmt
-date: 2024-04-19T11:08
 weight: 20
 ---
 
@@ -61,4 +60,3 @@ EXAMPLE
 # who - 通过查询 /var/run/utmp 文件来显示系统中当前登录的每个用户
 
 # users - 用单独的一行打印出当前登录的用户，每个显示的用户名对应一个登录会话
-

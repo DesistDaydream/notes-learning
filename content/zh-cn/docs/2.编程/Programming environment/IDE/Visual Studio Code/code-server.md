@@ -1,7 +1,6 @@
 ---
 title: code-server
 linkTitle: code-server
-date: 2024-05-03T10:16
 weight: 20
 ---
 

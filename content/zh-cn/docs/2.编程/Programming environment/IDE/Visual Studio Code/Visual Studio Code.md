@@ -1,14 +1,13 @@
 ---
 title: Visual Studio Code
 linkTitle: Visual Studio Code
-date: 2024-05-03T10:16
 weight: 1
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，microsoft/vscode](https://github.com/microsoft/vscode)
 > - [官网](https://code.visualstudio.com/)
 > - [官方文档](https://code.visualstudio.com/docs)

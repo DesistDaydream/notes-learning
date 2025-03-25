@@ -1,7 +1,6 @@
 ---
 title: Object detection
 linkTitle: Object detection
-date: 2024-10-15T12:59
 weight: 20
 ---
 
@@ -24,4 +23,3 @@ weight: 20
 **One-Stage Detectors(单级检测器)** 例如 YOLO、SSD：一步执行对象定位和分类，提供更快的推理速度，但有时会牺牲准确性。
 
 **Two-Stage Detectors(两阶段检测器)** （例如 Faster R-CNN）：涉及区域提议阶段，然后进行对象分类，通常可以实现更高的准确度，但推理时间可能会更慢。
-

@@ -2,7 +2,6 @@
 title: Data type
 linkTitle: Data type
 weight: 20
-date: 2023-11-20T21:32
 ---
 
 # 概述
@@ -34,4 +33,3 @@ date: 2023-11-20T21:32
   - 通常我们这么描述： Object 类型的 object、Array 类型的 object、String 类型的 object、等等。简化一点就是 Object 对象、Array 对象、String 对象、等等。
 
 ## 数据类型检测
-

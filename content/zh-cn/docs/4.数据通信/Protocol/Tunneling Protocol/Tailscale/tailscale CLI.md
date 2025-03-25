@@ -1,16 +1,14 @@
 ---
 title: tailscale CLI
 linkTitle: tailscale CLI
-date: 2024-07-29T12:29
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，参考 - CLI](https://tailscale.com/kb/1080/cli)
-
 
 # Syntax(语法)
 
@@ -29,4 +27,3 @@ weight: 20
 **--advertise-routes** # 向整个 Tailscale 网络公开本机的路由。也就是说告诉其他节点访问哪些 IP 要经过本机。`默认值: 空`，值是以 `,` 分割的 CIDR 格式的子网
 
 # EXAMPLE
-

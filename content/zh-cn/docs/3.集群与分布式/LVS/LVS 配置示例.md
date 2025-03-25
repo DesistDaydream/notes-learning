@@ -1,14 +1,13 @@
 ---
 title: LVS 配置示例
 linkTitle: LVS 配置示例
-date: 2024-03-29T17:42
 weight: 2
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > -
 
 # DR 模型配置样例
@@ -95,7 +94,7 @@ ipvsadm -A -t 10.1.1.77:80 -s rr # 添加 LVS 集群与调度算法 ipvsadm -a -
 
 至此,一个简单的根据 LVS rr 算法调度的负载均衡集群完成了.
 
-## 配置一个 DR 类型（2 台 RS）的集群,三台虚拟机都桥接到物理机上.
+## 配置一个 DR 类型（2 台 RS）的集群,三台虚拟机都桥接到物理机上
 
 Directory: DIP: 192.168.31.101/24 调度主机只需要一个网卡接口 VIP 用 DIP 的别名生成
 
@@ -179,7 +178,7 @@ esac
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/rlona8/1616132565011-7f0f7b82-c341-4628-ab9b-a729530ca1d5.jpeg)
 
-## FWM(FireWall Mark)借助于防火墙标记来分类报文，而后基于标记定义集群服务，可将多个不同的应用使用同一个集群服务进行调度。
+## FWM(FireWall Mark)借助于防火墙标记来分类报文，而后基于标记定义集群服务，可将多个不同的应用使用同一个集群服务进行调度
 
 示例：
 

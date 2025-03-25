@@ -1,7 +1,6 @@
 ---
 title: Dataset
 linkTitle: Dataset
-date: 2024-10-17T10:14
 weight: 20
 ---
 
@@ -86,8 +85,8 @@ COCO 数据集常见任务类型：
   - https://cocodataset.org/#densepose-2020
 - **Keypoint detection(关键点监测)** # 简称 Keypoints。COCO 关键点检测任务需要在具有挑战性、不受控制的条件下定位人物关键点。关键点任务涉及同时检测人员并定位其关键点（测试时未给出人员位置）。有关此任务的完整详细信息，请参阅[关键点评估](https://cocodataset.org/#keypoints-eval)页面。
   - https://cocodataset.org/#keypoints-2020
--  **Stuff Segmentation(东西分割)** # 简称 Stuff。COCO Stuff Segmentation Task 旨在推动 stuff 类语义分割的最新技术。对象检测任务针对的是事物类别（人、汽车、大象），而该任务则侧重于事物类别（草、墙壁、天空）。有关内容分割任务的完整详细信息，请参阅内容评估页面。注意：新引入的全景分割任务同时解决了事物和事物类别的识别。
-  - https://cocodataset.org/#stuff-2019
+- **Stuff Segmentation(东西分割)** # 简称 Stuff。COCO Stuff Segmentation Task 旨在推动 stuff 类语义分割的最新技术。对象检测任务针对的是事物类别（人、汽车、大象），而该任务则侧重于事物类别（草、墙壁、天空）。有关内容分割任务的完整详细信息，请参阅内容评估页面。注意：新引入的全景分割任务同时解决了事物和事物类别的识别。
+- https://cocodataset.org/#stuff-2019
 - **Panoptic Segmentation(全景分割)** # 简称 Panoptic。全景分割解决了事物和事物类别，统一了通常不同的语义和实例分割任务。其目的是生成丰富且完整的连贯场景分割，这是迈向自动驾驶或增强现实等现实世界视觉系统的重要一步。有关全景分割任务的完整详细信息，请参阅[全景评估](https://cocodataset.org/#panoptic-eval)页面。
   - https://cocodataset.org/#panoptic-2020
 - **Image Captioning** # 简称 Captions。用文字描述图像

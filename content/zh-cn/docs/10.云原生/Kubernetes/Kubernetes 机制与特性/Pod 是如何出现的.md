@@ -1,7 +1,6 @@
 ---
 title: Pod 是如何出现的
 linkTitle: Pod 是如何出现的
-date: 2024-08-23T15:29
 weight: 20
 ---
 
@@ -395,7 +394,6 @@ flannel 不会管容器与宿主机之间的通信（这是 CNI 插件的职责�
 
 最后的最后，现在我们的集群上应该会运行三个容器，分布在一个或多个工作节点上。所有的网络，数据卷和秘钥都由 Kubelet 填充，并通过 CRI 接口添加到容器中并配置成功！
 
-
 # 来自 AI 的回答
 
 https://www.perplexity.ai/search/zai-kubernetes-zhi-xing-zhi-xi-ByGElLvSToOBNYtvMa569g
@@ -405,6 +403,7 @@ https://www.perplexity.ai/search/zai-kubernetes-zhi-xing-zhi-xi-ByGElLvSToOBNYtv
 当执行 `kubectl apply -f rs.yaml` 创建资源时，Kubernetes 集群中的各个组件会经历以下流程:
 
 ### 答
+
 #### 1. API Server
 
 - API Server 接收到 kubectl 发送的创建资源请求

@@ -1,11 +1,11 @@
 ---
 title: GitHub 上的 PR 全过程
 linkTitle: GitHub 上的 PR 全过程
-date: 2024-04-18T09:13
 weight: 20
 ---
 
-## 
+##
+
 # 概述
 
 > 参考：
@@ -149,6 +149,7 @@ DevStream Fork
 接着就是几行通用的命令来完成 clone 等操作了：
 
 - clone 等
+
 ```
 mkdir -p ${WORKING_PATH}
 cd ${WORKING_PATH}
@@ -166,13 +167,14 @@ git remote add upstream [https://github.com/{PROJECT}.git](https://notes-learnin
 
 git remote set-url --push upstream no_push
 ```
+
 如果你配置好了 ssh 方式来 clone 代码，当然，git clone 命令用的 url 可以改成`git@github.com:${USER}/${PROJECT}.git`。
 
 完成这一步后，我们在本地看到的 remote 信息应该是这样的：
 
 - `git remote -v`
 
-`origin	git@github.com:daniel-hutao/devstream.git (fetch) origin	git@github.com:daniel-hutao/devstream.git (push) upstream	https://github.com/devstream-io/devstream (fetch) upstream	no_push (push)`
+`origin git@github.com:daniel-hutao/devstream.git (fetch) origin git@github.com:daniel-hutao/devstream.git (push) upstream https://github.com/devstream-io/devstream (fetch) upstream no_push (push)`
 
 记住啰，你本地的代码变更永远只提交到 origin，然后通过 origin 提交 Pull Request 到 upstream。
 
@@ -348,7 +350,7 @@ pick 9b7d63b docs: just for test
 
 #
 
-# Commands:
+# Commands
 
 # p, pick = use commit
 
@@ -366,15 +368,15 @@ pick 9b7d63b docs: just for test
 
 #
 
-# These lines can be re-ordered; they are executed from top to bottom.
+# These lines can be re-ordered; they are executed from top to bottom
 
 #
 
-# If you remove a line here THAT COMMIT WILL BE LOST.
+# If you remove a line here THAT COMMIT WILL BE LOST
 
 #
 
-# However, if you remove everything, the rebase will be aborted.
+# However, if you remove everything, the rebase will be aborted
 
 \`
 
@@ -386,13 +388,13 @@ pick 9b7d63b docs: just for test
 
 \`# This is a combination of 2 commits.
 
-# This is the 1st commit message:
+# This is the 1st commit message
 
 docs: just for test
 
 Signed-off-by: Daniel Hu <tao.hu@merico.dev>
 
-# This is the commit message #2:
+# This is the commit message #2
 
 docs: just for test
 
@@ -400,9 +402,9 @@ Signed-off-by: Daniel Hu <tao.hu@merico.dev>
 
 # Please enter the commit message for your changes. Lines starting
 
-# with '#' will be ignored, and an empty message aborts the commit.
+# with '#' will be ignored, and an empty message aborts the commit
 
-# ...
+# 
 
 \`
 

@@ -8,7 +8,6 @@ weight: 20
 
 > 参考：
 >
-> - date: "2024-12-06T15:26"
 
 由于 SNMP 的种种不便，现在更多的是基于 [HTTP](/docs/4.数据通信/Protocol/HTTP/HTTP.md) 协议来实现监控指标的采集。
 

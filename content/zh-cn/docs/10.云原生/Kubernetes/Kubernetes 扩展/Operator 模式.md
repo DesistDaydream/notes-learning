@@ -1,7 +1,6 @@
 ---
 title: Operator 模式
 linkTitle: Operator 模式
-date: 2020-05-13T22:41:00
 weight: 20
 ---
 
@@ -106,7 +105,7 @@ Operator 开源生命周期流程图
 - 参考社区测试指南进行业务逻辑的本地测试以及打包和发布格式的本地校验；
 - 在完成测试后可以根据规定格式向社区提交 PR，会有专人进行 review；
 - 待社区审核通过完成 merge 后，终端用户就可以在 [OperatorHub.io](http://OperatorHub.io) 页面上找到业务对应的 Operator；
-- 用户可以在 [OperatorHub.io ](http://OperatorHub.io)上找到业务 Operator 对应的说明文档和安装指南，通过简单的命令行操作即可在目标集群上完成 Operator 实例的安装；
+- 用户可以在 [OperatorHub.io](http://OperatorHub.io)上找到业务 Operator 对应的说明文档和安装指南，通过简单的命令行操作即可在目标集群上完成 Operator 实例的安装；
 - Operator 实例会根据配置创建所需的业务应用，OLM 和 Operator Metering 等组件可以帮助用户完成业务应用对应的运维和监控采集等管理操作。
 
 ### 总结
@@ -171,7 +170,7 @@ Operator 本质上是与应用息息相关的，因为这是特定领域的知�
 - 在 OperatorHub.io 上找到现成的、适合您的 Operator。我们都知道在 Kubernetes 上安装应用可以使用 Helm 直接安装各种打包成 Chart 形式的 Kubernetes 应用，但随着 Kubernetes Operator 的流行，Kubernetes 社区又推出了 OperatorHub
 - awesome-operators 中罗列了目前已知的 Operator。
 - 借助已有的工具来编写您自己的 Operator，例如：
-  - [KUDO ](https://kudo.dev/)(Kubernetes 通用声明式 Operator)
+  - [KUDO](https://kudo.dev/)(Kubernetes 通用声明式 Operator)
   - [Kubebuilder](https://book.kubebuilder.io/)
   - [Metacontroller](https://metacontroller.app/)，可与 Webhook 结合使用，以实现自己的功能。
   - [Operator Framework](https://github.com/operator-framework/getting-started)

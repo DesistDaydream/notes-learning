@@ -1,7 +1,6 @@
 ---
 title: PCI
 linkTitle: PCI
-date: 2024-06-17T11:15
 weight: 20
 ---
 
@@ -197,14 +196,14 @@ https://github.com/torvalds/linux/blob/v6.9/include/linux/pci.h#L322 - `struct p
 `include/linux/pci.h` 文件的开头注释中有这么一段
 
 ```c
- *	For more information, please consult the following manuals (look at
- *	http://www.pcisig.com/ for how to get them):
+ * For more information, please consult the following manuals (look at
+ * http://www.pcisig.com/ for how to get them):
  *
- *	PCI BIOS Specification
- *	PCI Local Bus Specification
- *	PCI to PCI Bridge Specification
- *	PCI Express Specification
- *	PCI System Design Guide
+ * PCI BIOS Specification
+ * PCI Local Bus Specification
+ * PCI to PCI Bridge Specification
+ * PCI Express Specification
+ * PCI System Design Guide
 ```
 
 可以查查这些规范里都有什么

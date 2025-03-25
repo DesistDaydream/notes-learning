@@ -1,7 +1,6 @@
 ---
 title: Aggregation Operators(聚合运算符)
 linkTitle: Aggregation Operators(聚合运算符)
-date: 2022-11-08T10:11:00
 weight: 20
 ---
 

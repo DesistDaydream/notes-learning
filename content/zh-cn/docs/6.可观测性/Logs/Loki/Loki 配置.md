@@ -1,7 +1,6 @@
 ---
 title: Loki 配置
 linkTitle: Loki 配置
-date: 2022-10-23T13:43:00
 weight: 3
 ---
 

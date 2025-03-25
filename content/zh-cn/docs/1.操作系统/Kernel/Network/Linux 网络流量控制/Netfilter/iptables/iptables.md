@@ -1,7 +1,6 @@
 ---
 title: "iptables"
 linkTitle: "iptables"
-date: "2022-07-21T12:40"
 weight: 1
 ---
 

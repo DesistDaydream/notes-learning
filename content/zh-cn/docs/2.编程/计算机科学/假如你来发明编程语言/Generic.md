@@ -1,7 +1,6 @@
 ---
 title: Generic
 linkTitle: Generic
-date: 2023-11-28T21:26
 weight: 20
 ---
 

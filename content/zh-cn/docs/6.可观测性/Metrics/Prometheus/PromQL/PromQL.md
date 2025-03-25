@@ -1,7 +1,6 @@
 ---
 title: PromQL
 linkTitle: PromQL
-date: 2022-10-20T14:51:00
 weight: 1
 ---
 
@@ -122,6 +121,7 @@ promhttp_metric_handler_requests_total{code=~"200|500"}
 `promhttp_metric_handler_requests_total{}[4m]` # 该表达式将会返回查询到的时间序列中最近 4 分钟的所有样本数据：数据如下
 
 > [!Notes]
+>
 > - 这种查询方式只可以获取到值，并不能生成图表，因为图表中的一条向量是由很多个点组成的，每个点的位置由横轴是 time、纵轴是 value 互相确认得到的。但是这种查询结果会使每个点由多个 time 与多个 value 组成，一个点怎么可能由多个点合成一个呢？这在二维图标上是没法显示出来的。
 > - 由于有多个值而且还没法展示，所以范围向量一般不会单独使用，而是与 irate()等函数一起使用。以便让多个值根据指定的函数规则聚合成唯一的一个值。
 

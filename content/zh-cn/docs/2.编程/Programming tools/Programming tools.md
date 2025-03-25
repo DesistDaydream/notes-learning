@@ -1,7 +1,6 @@
 ---
 title: Programming tools
 linkTitle: Programming tools
-date: 2023-09-12T09:50
 weight: 1
 ---
 
@@ -71,5 +70,3 @@ https://github.com/aws/aws-toolkit-vscode
 介绍: https://www.bilibili.com/video/BV1WN411B7ZX
 
 亚马逊出的 AI 代码补全
-
-

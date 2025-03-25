@@ -1,7 +1,6 @@
 ---
 title: GeoIP
 linkTitle: GeoIP
-date: 2024-10-08T15:06
 weight: 20
 ---
 

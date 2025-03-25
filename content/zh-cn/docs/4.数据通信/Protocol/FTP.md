@@ -1,7 +1,6 @@
 ---
 title: FTP
 linkTitle: FTP
-date: 2024-02-23T12:26
 weight: 20
 ---
 

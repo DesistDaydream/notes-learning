@@ -1,7 +1,6 @@
 ---
 title: Plugins
 linkTitle: Plugins
-date: 2024-09-30T15:31
 weight: 20
 ---
 

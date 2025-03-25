@@ -2,7 +2,6 @@
 title: Observability
 linkTitle: Observability
 weight: 1
-date: 2021-12-19T21:44:00
 ---
 
 # 概述
@@ -98,4 +97,3 @@ NoSQL 随着发展也出现了一种新的概念，称为 **Schemaless**，在 [
 # 最佳实践
 
 [公众号 - 哔哩哔哩技术，B站监控2.0架构落地实践](https://mp.weixin.qq.com/s/gTB_hEXJQ2gz_oP7VN3-dg)
-

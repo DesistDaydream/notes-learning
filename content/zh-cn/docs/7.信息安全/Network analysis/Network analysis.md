@@ -1,7 +1,6 @@
 ---
 title: Network analysis
 linkTitle: Network analysis
-date: 2024-04-03T11:02
 weight: 1
 ---
 

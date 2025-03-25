@@ -1,7 +1,6 @@
 ---
 title: Netcat
 linkTitle: Netcat
-date: 2024-03-20T08:57
 weight: 20
 tags:
   - Network_analyzer
@@ -10,7 +9,7 @@ tags:
 # 概述
 
 > 参考：
-> 
+>
 > - [Wike，Netcat](https://en.wikipedia.org/wiki/Netcat)
 > - [Ncat Manual(手册)](https://nmap.org/book/ncat-man.html)
 > - <https://zhuanlan.zhihu.com/p/83959309>
@@ -19,7 +18,7 @@ Netcat 是一个简单的实用程序通过 TCP 或 UDP 网络连接读取和写
 
 由于 Netcat 的设计理念和功能，被人亲切的亲切得称为 **网络工具中的瑞士军刀**
 
-最初的 Netcat 是由 hobbit 于 1995 年[发布](http://seclists.org/bugtraq/1995/Oct/0028.html)的，尽管它很受欢迎，但它并没有得到维护。有时甚至很难找到[v1.10 源代码的副本](http://download.insecure.org/stf/nc110.tgz)。该工具的灵活性和实用性促使 Nmap 项目产生 [Ncat](#Ncat))，这是一种支持 SSL、IPv6、SOCKS 和 http 代理、连接代理等的现代重新实现。除了 Nmap 项目重新了 Netcat，还有很多重写甚至扩展了 Netcat 的工具
+最初的 Netcat 是由 hobbit 于 1995 年[发布](http://seclists.org/bugtraq/1995/Oct/0028.html)的，尽管它很受欢迎，但它并没有得到维护。有时甚至很难找到[v1.10 源代码的副本](http://download.insecure.org/stf/nc110.tgz)。该工具的灵活性和实用性促使 Nmap 项目产生 [Ncat](#ncat))，这是一种支持 SSL、IPv6、SOCKS 和 http 代理、连接代理等的现代重新实现。除了 Nmap 项目重新了 Netcat，还有很多重写甚至扩展了 Netcat 的工具
 
 - [Socat](https://sectools.org/tool/socat/)
 - [OpenBSD 的 Netcat](http://www.openbsd.org/cgi-bin/cvsweb/src/usr.bin/nc/)
@@ -34,7 +33,7 @@ Netcat 是一个简单的实用程序通过 TCP 或 UDP 网络连接读取和写
 ## Ncat
 
 > 参考：
-> 
+>
 > - [Nmap，ncat](http://nmap.org/ncat/)
 
 Ncat 是一个功能丰富的网络实用程序，它可以从命令行跨网络读取和写入数据。Ncat 由 Nmap 项目编写的，是对古老的 [Netcat](http://sectools.org/tool/netcat/) 的大大改进的重新实现。它同时使用 TCP 和 UDP 进行通信，并被设计为一种可靠的后端工具，可立即为其他应用程序和用户提供网络连接。Ncat 不仅适用于 IPv4 和 IPv6，还为用户提供了几乎无限的潜在用途。
@@ -136,4 +135,3 @@ Connection to localhost 323 port [udp/*] succeeded!
 问题 issue：<https://github.com/nmap/nmap/issues/2149>
 
 解决：下载 7.80 版本即可，将下载连接的版本号改为 7.80 即可下载。
-

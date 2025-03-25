@@ -1,7 +1,6 @@
 ---
 title: C
 linkTitle: C
-date: 2024-05-22T19:50
 weight: 1
 ---
 
@@ -30,7 +29,7 @@ int main(void) {
 编译
 
 ```bash
-$ gcc hello_world.c
+gcc hello_world.c
 ```
 
 运行

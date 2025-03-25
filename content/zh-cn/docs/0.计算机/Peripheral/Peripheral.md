@@ -1,7 +1,6 @@
 ---
 title: Peripheral
 linkTitle: Peripheral
-date: 2024-06-15T16:12
 weight: 1
 ---
 

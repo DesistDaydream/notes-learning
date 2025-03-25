@@ -1,7 +1,6 @@
 ---
 title: PromQL Operators(运算符)
 linkTitle: PromQL Operators(运算符)
-date: 2022-11-08T10:12:00
 weight: 20
 ---
 

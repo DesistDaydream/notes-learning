@@ -1,7 +1,6 @@
 ---
 title: pcap
 linkTitle: pcap
-date: 2024-02-22T17:27
 weight: 20
 ---
 
@@ -50,4 +49,3 @@ libpcap 与 [TCPDump](/docs/7.信息安全/Packet%20analyzer/TCPDump/TCPDump.md)
 
 - https://github.com/bytedance/netcap
 - [公众号 - 深入浅出BPF，字节跳动开源Linux内核网络抓包工具netcap](https://mp.weixin.qq.com/s/ezMEjx3mzHOaxvfMQwkn9g)
-

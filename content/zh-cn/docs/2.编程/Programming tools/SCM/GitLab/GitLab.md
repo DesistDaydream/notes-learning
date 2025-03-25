@@ -1,7 +1,6 @@
 ---
 title: GitLab
 linkTitle: GitLab
-date: 2024-05-15T20:03
 weight: 1
 ---
 
@@ -12,7 +11,6 @@ weight: 1
 >
 > - [官方文档](https://docs.gitlab.com/)
 > - https://www.qikqiak.com/post/gitlab-install-on-k8s/
-
 
 # GitLab 部署
 
@@ -41,7 +39,6 @@ docker run --detach \
 部署完成后，使用 root 和 第一次打开 web 页面时设置的密码，即可登录管理员账户。
 
 # 最佳实践
-
 
 ## 从 GitHub 导入仓库到 GitLab 并定时同步
 

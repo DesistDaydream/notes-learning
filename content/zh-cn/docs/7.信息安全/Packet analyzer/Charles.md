@@ -1,7 +1,6 @@
 ---
 title: Charles
 linkTitle: Charles
-date: 2024-01-14T21:11
 weight: 20
 ---
 

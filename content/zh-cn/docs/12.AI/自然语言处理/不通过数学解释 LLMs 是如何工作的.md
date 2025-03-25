@@ -1,7 +1,6 @@
 ---
 title: 不通过数学解释 LLMs 是如何工作的
 linkTitle: 不通过数学解释 LLMs 是如何工作的
-date: 2024-09-11T16:01
 weight: 20
 ---
 
@@ -15,8 +14,6 @@ weight: 20
 生成式人工智能 ([GenAI](https://en.wikipedia.org/wiki/Generative_artificial_intelligence)) 和大语言模型 (LLM[^LLM])，这两个词汇想必已在大家的耳边萦绕多时。它们如惊涛骇浪般席卷了整个科技界，登上了各大新闻头条。ChatGPT，这个神奇的对话助手，也许已成为你形影不离的良师益友。
 
 [^LLM]:LLM: https://en.wikipedia.org/wiki/Large_language_model
-
-
 
 然而，在这场方兴未艾的 GenAI 革命背后，有一个谜题久久萦绕在人们心头：**这些模型的智能究竟从何而来**？本文将为您揭开谜底，解析生成式文本模型的奥秘。我们将抛开晦涩艰深的数学，用通俗易懂的语言，带您走进这个神奇的算法世界。让我们撕下 “魔法” 的面纱，看清其中的计算机科学本质。
 
@@ -33,8 +30,9 @@ Token，这些文本的积木、语言的原子，正是 LLM 理解世界的基�
 在 LLM 的世界里，每个 token 都有一个独一无二的数字身份证。而 Tokenizer，就是文本和 token 之间的 “翻译官”，将人类的语言转化为 LLM 能理解的编码，也将 LLM 的思维解码为人类的文字。如果你熟悉 Python，不妨亲自与 token 打个照面。只需安装 OpenAI 的 `tiktoken` 包：
 
 ```bash
-$ pip install tiktoken
+pip install tiktoken
 ```
+
 `
 
 然后在 Python 中尝试以下操作：
@@ -93,6 +91,7 @@ BPE 算法并不总是将完整的单词映射为 token。事实上，不太常�
 ```python
 predictions = get_token_predictions(['The', ' quick', ' brown', ' fox'])
 ```
+
 `
 
 这个 `get_token_predictions` 函数就是我们的 “水晶球”。它接受一个 token 列表作为输入，这些 token 来自用户提供的 prompt。在这个例子中，我们假设每个单词都是一个独立的 token。当然，在实际使用中，每个 token 都有一个对应的数字 ID，但为了简单起见，我们这里直接用单词的文本形式。
@@ -102,7 +101,7 @@ predictions = get_token_predictions(['The', ' quick', ' brown', ' fox'])
 现在再来重新审视一下这个例子。如果我们的语言模型训练有素，面对 “[The quick brown fox](https://en.wikipedia.org/wiki/The_quick_brown_fox_jumps_over_the_lazy_dog)” 这样一个烂大街的句子片段，它很可能会预测下一个词是 “jumps”，而不是 “potato” 之类风马牛不相及的词。在这个概率分布中，“jumps” 的概率值会非常高，而 “potato” 的概率值则接近于零。
 
 > [!Tip]
-> 
+>
 > **The quick brown fox jumps over the lazy dog** (相应中文可简译为 “快狐跨懒狗”，完整翻译则是 “敏捷的棕色狐狸跨过懒狗”) 是一个著名的英语全字母句，常用于测试字体显示效果和键盘是否故障。此句也常以 “quick brown fox” 做为指代简称。
 
 当然，语言模型的预测能力并非与生俱来，而是通过日积月累的训练得来的。在漫长的训练过程中，模型如饥似渴地汲取海量文本的营养，逐渐茁壮成长。训练结束时，它已经具备了应对各种文本输入的能力，可以利用积累的知识和经验，计算出任意 token 序列的下一个 token 概率。
@@ -153,9 +152,9 @@ def generate_text(prompt, num_tokens, hyperparameters):
 
 我们使用由三个句子组成的训练数据集：
 
-*   I like apples
-*   I like bananas
-*   you like bananas
+- I like apples
+- I like bananas
+- you like bananas
 
 我们可以构建一个 5x5 的表格，在每个单元格中记录 “该单元格所在行的词” 后面跟随 “该单元格所在列的词” 的次数。下面是根据数据集中三个句子得到的表格：
 
@@ -182,7 +181,7 @@ def generate_text(prompt, num_tokens, hyperparameters):
 
 “I”、“you” 和 “like” 这几行的概率很容易计算，但 “apples” 和 “bananas” 带来了问题。由于数据集中没有这两个词后面接其他词的例子，它们存在训练数据的空白。为了确保模型即使面对未见过的词也能做出预测，我决定将 “apples” 和 “bananas” 的后续词概率平均分配给其他四个可能的词。这种做法虽然可能产生不自然的结果，但至少能防止模型在遇到这两个词时陷入死循环。
 
-训练数据存在 “空洞” 的问题对语言模型的影响不容忽视。**在真实的大语言模型中，由于训练语料极其庞大，这些空洞通常表现为局部覆盖率偏低，而不是整体性的缺失，因而不太容易被发现。语言模型在这些训练不足的领域或话题上会产生片面、错误或前后不一致的预测结果，但通常会以一种难以感知的形式表现出来。这就是语言模型有时会产生 “[Hallucination(幻觉)](https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence))” 的原因之一，所谓幻觉，就是指生成的文本表面上读起来通顺流畅，但实际包含了事实错误或前后矛盾的内容。** 
+训练数据存在 “空洞” 的问题对语言模型的影响不容忽视。**在真实的大语言模型中，由于训练语料极其庞大，这些空洞通常表现为局部覆盖率偏低，而不是整体性的缺失，因而不太容易被发现。语言模型在这些训练不足的领域或话题上会产生片面、错误或前后不一致的预测结果，但通常会以一种难以感知的形式表现出来。这就是语言模型有时会产生 “[Hallucination(幻觉)](https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence))” 的原因之一，所谓幻觉，就是指生成的文本表面上读起来通顺流畅，但实际包含了事实错误或前后矛盾的内容。**
 
 借助上面给出的概率表，你现在可以自己想象一下 `get_token_predictions()` 函数会如何实现。用 Python 伪代码表示大致如下：
 
@@ -231,7 +230,7 @@ def get_token_predictions(input_tokens):
 
 为了让你对神经网络的规模有个概念，**GPT-2 模型有大约 15 亿个参数，GPT-3 增加到了 1750 亿，而 GPT-4 据说有 1.76 万亿个参数**。在当前硬件条件下，训练如此规模的神经网络通常需要几周或几个月的时间。
 
-有趣的是，由于参数数量巨大，并且都是通过漫长的迭代过程自动计算出来的，我们很难理解模型的工作原理。**训练完成的大语言模型就像一个难以解释的黑箱，因为模型的大部分 “思考” 过程都隐藏在海量参数之中。即使是训练它的人，也很难说清其内部的运作机制。** 
+有趣的是，由于参数数量巨大，并且都是通过漫长的迭代过程自动计算出来的，我们很难理解模型的工作原理。**训练完成的大语言模型就像一个难以解释的黑箱，因为模型的大部分 “思考” 过程都隐藏在海量参数之中。即使是训练它的人，也很难说清其内部的运作机制。**
 
 ### 层、Transformer 与 Attention 机制
 
@@ -241,7 +240,7 @@ def get_token_predictions(input_tokens):
 
 机器学习专家设计出不同类型的层，对输入数据进行数学转换。他们还探索了组织和分组层的方法，以实现期望的结果。有些层是通用的，而另一些则专门处理特定类型的输入数据，如图像，或者在大语言模型中的标记化文本。
 
-**目前在大语言模型的文本生成任务中最流行的神经网络架构被称为 “[Transformer](https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)”。使用这种架构的模型被称为 GPT，也就是 [Generative Pre-Trained Transformers(生成式预训练 Transformer)](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer。** 
+**目前在大语言模型的文本生成任务中最流行的神经网络架构被称为 “[Transformer](https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)”。使用这种架构的模型被称为 GPT，也就是 [Generative Pre-Trained Transformers(生成式预训练 Transformer)](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer。**
 
 Transformer 模型的独特之处在于其执行的 “[Attention](https://en.wikipedia.org/wiki/Attention_(machine_learning)” 层计算。这种计算允许模型**在上下文窗口内的标记之间找出关系和模式，并将其反映在下一个标记出现的概率中**。Attention 机制最初被用于语言翻译领域，作为一种找出输入序列中对理解句子意义最重要的标记的方法。这种机制赋予了现代语言模型在基本层面上 “理解” 句子的能力，它可以关注 (或集中 “注意力” 于) 重要词汇或标记，从而更好地把握句子的整体意义。正是这一机制，使 Transformer 模型在各种自然语言处理任务中取得了巨大成功。
 
@@ -254,5 +253,3 @@ Transformer 模型的独特之处在于其执行的 “[Attention](https://en.wi
 不过，考虑到大语言模型容易产生幻觉，我不会信任任何将其输出直接提供给最终用户而不经过人工验证的工作流程。
 
 未来几个月或几年内出现的更大规模语言模型是否能实现类似真正智能的能力？鉴于 GPT 架构的诸多局限性，我觉得这不太可能发生，但谁又说的准呢，也许将来出现一些创新手段，我们就能实现这一目标。
-
-

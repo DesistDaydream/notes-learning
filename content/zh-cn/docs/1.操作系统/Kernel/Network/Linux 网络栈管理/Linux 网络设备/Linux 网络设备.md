@@ -1,7 +1,6 @@
 ---
 title: Linux 网络设备
 linkTitle: Linux 网络设备
-date: 2024-06-17T16:23
 weight: 1
 tags:
   - PCI
@@ -20,7 +19,6 @@ tags:
 >
 > [^if.h]: [GitHub 项目，torvalds/linux - include/uapi/linux/if.sh](https://github.com/torvalds/linux/blob/v6.11/include/uapi/linux/if.h)
 >
-> [^glibc_if.h]: [GitHub 项目，bminor/glibc - sysdeps/gnu/net/if.h](https://github.com/bminor/glibc/blob/glibc-2.40/sysdeps/gnu/net/if.h)
 >
 > [^IANA]:[IANA，Address Resolution Protocol (ARP) Parameters，Hardware Types](https://www.iana.org/assignments/arp-parameters/arp-parameters.xhtml#arp-parameters-2)
 
@@ -84,22 +82,22 @@ PCI_SLOT_NAME=0000:61:00.0
 /* 声明了一个枚举类型 net_device_flags，为这些 Flags 定义了变量与数字的对应关系 */
 enum net_device_flags {
 /* for compatibility with glibc net/if.h */
-    IFF_UP				    = 1<<0,  /* sysfs */
-    IFF_BROADCAST			= 1<<1,  /* volatile */
-    IFF_DEBUG			    = 1<<2,  /* sysfs */
-    IFF_LOOPBACK			= 1<<3,  /* volatile */
-    IFF_POINTOPOINT		= 1<<4,  /* volatile */
-    IFF_NOTRAILERS		= 1<<5,  /* sysfs */
-    IFF_RUNNING			  = 1<<6,  /* volatile */
-    IFF_NOARP			    = 1<<7,  /* sysfs */
-    IFF_PROMISC			  = 1<<8,  /* sysfs */
-    IFF_ALLMULTI			= 1<<9,  /* sysfs */
-    IFF_MASTER			  = 1<<10, /* volatile */
-    IFF_SLAVE			    = 1<<11, /* volatile */
-    IFF_MULTICAST			= 1<<12, /* sysfs */
-    IFF_PORTSEL			  = 1<<13, /* sysfs */
-    IFF_AUTOMEDIA			= 1<<14, /* sysfs */
-    IFF_DYNAMIC			  = 1<<15, /* sysfs */
+    IFF_UP        = 1<<0,  /* sysfs */
+    IFF_BROADCAST   = 1<<1,  /* volatile */
+    IFF_DEBUG       = 1<<2,  /* sysfs */
+    IFF_LOOPBACK   = 1<<3,  /* volatile */
+    IFF_POINTOPOINT  = 1<<4,  /* volatile */
+    IFF_NOTRAILERS  = 1<<5,  /* sysfs */
+    IFF_RUNNING     = 1<<6,  /* volatile */
+    IFF_NOARP       = 1<<7,  /* sysfs */
+    IFF_PROMISC     = 1<<8,  /* sysfs */
+    IFF_ALLMULTI   = 1<<9,  /* sysfs */
+    IFF_MASTER     = 1<<10, /* volatile */
+    IFF_SLAVE       = 1<<11, /* volatile */
+    IFF_MULTICAST   = 1<<12, /* sysfs */
+    IFF_PORTSEL     = 1<<13, /* sysfs */
+    IFF_AUTOMEDIA   = 1<<14, /* sysfs */
+    IFF_DYNAMIC     = 1<<15, /* sysfs */
     ......略
 }
 ```
@@ -125,11 +123,11 @@ enum net_device_flags {
 ```c
 static void print_link_flags(FILE *fp, unsigned int flags, unsigned int mdown)
 {
-	open_json_array(PRINT_ANY, is_json_context() ? "flags" : "<");
-	if (flags & IFF_UP && !(flags & IFF_RUNNING))
-		print_string(PRINT_ANY, NULL,
-			     flags ? "%s," : "%s", "NO-CARRIER");
-	flags &= ~IFF_RUNNING;
+ open_json_array(PRINT_ANY, is_json_context() ? "flags" : "<");
+ if (flags & IFF_UP && !(flags & IFF_RUNNING))
+  print_string(PRINT_ANY, NULL,
+        flags ? "%s," : "%s", "NO-CARRIER");
+ flags &= ~IFF_RUNNING;
 ......略
 ```
 
@@ -149,22 +147,22 @@ static void print_link_flags(FILE *fp, unsigned int flags, unsigned int mdown)
 
 ```c
 enum{
-    IFF_UP = 0x1,		        /* Interface is up.  */
-    IFF_BROADCAST = 0x2,	  /* Broadcast address valid.  */
-    IFF_DEBUG = 0x4,		    /* Turn on debugging.  */
-    IFF_LOOPBACK = 0x8,		  /* Is a loopback net.  */
-    IFF_POINTOPOINT = 0x10,	/* Interface is point-to-point link.  */
-    IFF_NOTRAILERS = 0x20,	/* Avoid use of trailers.  */
-    IFF_RUNNING = 0x40,		  /* Resources allocated.  */
-    IFF_NOARP = 0x80,		    /* No address resolution protocol.  */
-    IFF_PROMISC = 0x100,	  /* Receive all packets.  */
-    IFF_ALLMULTI = 0x200,	  /* Receive all multicast packets.  */
-    IFF_MASTER = 0x400,		  /* Master of a load balancer.  */
-    IFF_SLAVE = 0x800,		  /* Slave of a load balancer.  */
-    IFF_MULTICAST = 0x1000,	/* Supports multicast.  */
-    IFF_PORTSEL = 0x2000,	  /* Can set media type.  */
-    IFF_AUTOMEDIA = 0x4000,	/* Auto media select active.  */
-    IFF_DYNAMIC = 0x8000	  /* Dialup device with changing addresses.  */
+    IFF_UP = 0x1,          /* Interface is up.  */
+    IFF_BROADCAST = 0x2,   /* Broadcast address valid.  */
+    IFF_DEBUG = 0x4,      /* Turn on debugging.  */
+    IFF_LOOPBACK = 0x8,    /* Is a loopback net.  */
+    IFF_POINTOPOINT = 0x10, /* Interface is point-to-point link.  */
+    IFF_NOTRAILERS = 0x20, /* Avoid use of trailers.  */
+    IFF_RUNNING = 0x40,    /* Resources allocated.  */
+    IFF_NOARP = 0x80,      /* No address resolution protocol.  */
+    IFF_PROMISC = 0x100,   /* Receive all packets.  */
+    IFF_ALLMULTI = 0x200,   /* Receive all multicast packets.  */
+    IFF_MASTER = 0x400,    /* Master of a load balancer.  */
+    IFF_SLAVE = 0x800,    /* Slave of a load balancer.  */
+    IFF_MULTICAST = 0x1000, /* Supports multicast.  */
+    IFF_PORTSEL = 0x2000,   /* Can set media type.  */
+    IFF_AUTOMEDIA = 0x4000, /* Auto media select active.  */
+    IFF_DYNAMIC = 0x8000   /* Dialup device with changing addresses.  */
 }
 ```
 

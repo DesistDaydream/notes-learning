@@ -2,7 +2,6 @@
 title: "Hugo 配置"
 linkTitle: "Hugo 配置"
 weight: 20
-data: 2023-01-18
 ---
 
 # 概述

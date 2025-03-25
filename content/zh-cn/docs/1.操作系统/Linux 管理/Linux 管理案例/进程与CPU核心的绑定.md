@@ -1,7 +1,6 @@
 ---
 title: 进程与CPU核心的绑定
 linkTitle: 进程与CPU核心的绑定
-date: 2024-05-13T08:56
 weight: 20
 ---
 

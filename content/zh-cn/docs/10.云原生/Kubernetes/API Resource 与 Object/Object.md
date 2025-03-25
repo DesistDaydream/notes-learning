@@ -1,7 +1,6 @@
 ---
 title: Object
 linkTitle: Object
-date: 2019-11-13T21:49:00
 weight: 2
 ---
 

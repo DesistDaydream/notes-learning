@@ -2,7 +2,6 @@
 title: Go 规范与标准库
 linkTitle: Go 规范与标准库
 weight: 1
-date: 2022-08-10T00:00:00
 ---
 
 # 概述
@@ -12,7 +11,6 @@ date: 2022-08-10T00:00:00
 > - [官方文档，参考 - 规范](https://go.dev/ref/spec)
 >   - [官方文档，参考 - 规范 的翻译](https://github.com/bekcpear/mypelicanconfandarticles/blob/master/content/Tech/gospec.rst)
 > - [go.dev, Tour(Go 语言之旅，通过在线解析器体验 Go 语言的各种特性)](https://go.dev/tour/list)
-
 
 Go 是一种通用语言，专为系统编程而设计。它是一种强类型且自带垃圾回收功能的语言，并具有显式支持并发编程的能力(称为 goroutine)。Go 程序由 Packages(包) 构建，其属性允许有效得管理依赖关系。
 
@@ -101,7 +99,7 @@ https://go.dev/ref/spec#Exported_identifiers
 
 > Note: **uppercase(大写)** 或 **lowercase(小写)**
 
-[Identifier](#Identifier) 可以被 **exported(导出)** 以允许其他包访问 ta。当满足以下条件时，Identifier 将被导出：
+[Identifier](#identifier) 可以被 **exported(导出)** 以允许其他包访问 ta。当满足以下条件时，Identifier 将被导出：
 
 - Identifier 名称的第一个字符是 **uppercase** letter(大写字母)
 - Identifier 必须在 package block 中声明。在其他地方声明的均不会被导出。
@@ -127,4 +125,3 @@ Go.dev 提供：
 - 关键用例和案例研究
 
 Go.dev 当前处于 MVP 状态。我们为自己的建设感到自豪，并很高兴与社区分享。我们希望您能在使用 go.dev 的过程中找到价值和乐趣。 Go.dev 只有一小部分我们打算构建的功能，我们正在积极寻求反馈。如果您有任何想法，建议或问题，请告诉我们.
-

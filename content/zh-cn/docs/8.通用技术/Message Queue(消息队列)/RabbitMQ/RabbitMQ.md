@@ -1,7 +1,6 @@
 ---
 title: RabbitMQ
 linkTitle: RabbitMQ
-date: 2024-05-08T20:09
 weight: 1
 ---
 
@@ -109,7 +108,9 @@ Queue 可以通过 Routing key 关联到 Exchange 上(也可以省略 Routing ke
 3. headers
 4. topic # Routing key 与 Binding key 可以根据通配符匹配。匹配规则如下：
    1. - 匹配一个单词
+
    2. # 匹配 0 个或多个字符
+
    3. \*，# 只能写在.号左右，且不能挨着字符
    4. 单词和单词之间需要用.隔开。
 5. 特殊的 Exchange
@@ -122,4 +123,3 @@ Queue 可以通过 Routing key 关联到 Exchange 上(也可以省略 Routing ke
 ## Channel(信道) - 消息推送使用的通道
 
 # RabbitMQ 配置
-

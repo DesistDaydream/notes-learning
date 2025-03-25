@@ -1,7 +1,6 @@
 ---
 title: generic 组
 linkTitle: generic 组
-date: 2024-06-14T10:21
 weight: 20
 ---
 
@@ -10,7 +9,6 @@ weight: 20
 > 参考：
 >
 > - https://redis.io/docs/latest/commands/?group=generic
-
 
 # DEL - 删除一个 key
 
@@ -44,7 +42,7 @@ summary: Set the expiration for a key as a UNIX timestamp
 
 since: 1.2.0
 
-# KEYS - 查找与指定 pattern 匹配到的所有 keys。
+# KEYS - 查找与指定 pattern 匹配到的所有 keys
 
 since: 1.0.0
 
@@ -128,7 +126,6 @@ since: 2.8.0
 
 **SCAN cursor \[MATCH pattern] \[COUNT count] \[TYPE type]**
 
-
 SORT key \[BY pattern] \[LIMIT offset count] \[GET pattern \[GET pattern ...]] \[ASC|DESC] \[ALPHA] \[STORE destination]
 
 summary: Sort the elements in a list, set or sorted set
@@ -150,7 +147,6 @@ TYPE 命令可以确定指定 key 的 [Redis 数据类型](/docs/5.数据存储/
 ## Syntax(语法)
 
 **TYPE key**
-
 
 WAIT numslaves timeout
 

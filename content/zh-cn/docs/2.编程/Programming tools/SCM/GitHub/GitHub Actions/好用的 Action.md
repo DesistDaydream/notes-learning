@@ -1,7 +1,6 @@
 ---
 title: 好用的 Action
 linkTitle: 好用的 Action
-date: 2024-04-22T22:43
 weight: 20
 ---
 
@@ -34,4 +33,3 @@ https://github.com/softprops/action-gh-release
 用于创建 Realease 的 GitHub Action
 
 > Notes: action-gh-release 需要上传文件，所以需要将仓库的 [Actions 配置](/docs/2.编程/Programming%20tools/SCM/GitHub/GitHub%20Actions/Actions%20配置.md) 中的 Workflow 权限设置为<font color="#ff0000">读写</font>
-

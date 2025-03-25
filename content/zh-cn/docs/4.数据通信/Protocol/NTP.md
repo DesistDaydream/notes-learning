@@ -1,7 +1,6 @@
 ---
 title: NTP
 linkTitle: NTP
-date: 2024-02-23T12:27
 weight: 20
 ---
 

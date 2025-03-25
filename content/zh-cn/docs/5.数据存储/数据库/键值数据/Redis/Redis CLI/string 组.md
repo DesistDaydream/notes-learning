@@ -1,7 +1,6 @@
 ---
 title: string 组
 linkTitle: string 组
-date: 2024-06-14T10:20
 weight: 20
 ---
 
@@ -11,7 +10,6 @@ weight: 20
 >
 > - https://redis.io/docs/latest/commands/?group=string
 
-
 # APPEND - 附加一个 value 到指定的 key
 
 since: 2.0.0
@@ -19,7 +17,6 @@ since: 2.0.0
 ## Syntax(语法)
 
 **APPEND key value**
-
 
 BITCOUNT key \[start end]
 

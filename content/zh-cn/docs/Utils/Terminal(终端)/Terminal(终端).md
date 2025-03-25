@@ -1,7 +1,6 @@
 ---
 title: Terminal(终端)
 linkTitle: Terminal(终端)
-date: 2024-05-06T09:04
 weight: 1
 ---
 
@@ -13,12 +12,11 @@ weight: 1
 
 这里说的 Terminal(终端) 工具是一种可以连接 [Shell](/docs/1.操作系统/Terminal%20与%20Shell/Terminal%20与%20Shell.md) 的图形话工具。
 
-
 TODO: xterm 是什么？
 
 - TODO
 - 各种 GUI 终端工具都可以配置连接后要使用的终端，用 xterm 或者其他的，操作起来和样式都不一样。
-  - 比如使用 vim 的时候。选名为 linux 的 
+  - 比如使用 vim 的时候。选名为 linux 的
 - 这是啥玩意？
 
 # Terminal 增强工具
@@ -59,7 +57,6 @@ Options - Configure - Default Seession # 可修改默认的会话配置，针对
 - 标签样式 # Terminal - Emulation - Advanced - Ignore window title change requests（忽略窗口的标题名称根据实际情况而变化）
 
 Options - Global Options # 可修改主题颜色
-
 
 #### 主题配色
 
@@ -141,4 +138,3 @@ Bold colors(加粗颜色) # 影响文件名之类的？TODO
 >
 > - [GitHub 项目，warpdotdev/Warp](https://github.com/warpdotdev/Warp)
 > - [官网](https://www.warp.dev/)
-

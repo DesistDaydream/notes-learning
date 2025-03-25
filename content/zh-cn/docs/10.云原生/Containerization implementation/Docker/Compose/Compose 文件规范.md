@@ -1,7 +1,6 @@
 ---
 title: Compose 文件规范
 linkTitle: Compose 文件规范
-date: 2023-11-03T22:23
 weight: 2
 ---
 
@@ -322,6 +321,7 @@ services:
   other-service:
     network_mode: service:some-service
 ```
+
 ## networks
 
 配置容器连接的网络，引用顶级 networks 下的条目 。networks 节点有两种语法

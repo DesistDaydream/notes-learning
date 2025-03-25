@@ -1,14 +1,13 @@
 ---
 title: Promise
 linkTitle: Promise
-date: 2023-11-18T22:34
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [B 站 up-思学堂，5 分钟彻底学会使用 Promise，你真的懂 Promise 吗？](https://www.bilibili.com/video/BV1TG411L7KM)
 > - <https://www.runoob.com/w3cnote/javascript-promise-object.html>
 

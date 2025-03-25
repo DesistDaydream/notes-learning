@@ -1,16 +1,14 @@
 ---
 title: "K3S 备份与恢复"
 linkTitle: "K3S 备份与恢复"
-date: "2023-07-20T16:29"
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [公众号-边缘计算k3s社区，容器化应用的救命稻草：深入探索 K3s 备份和恢复](https://mp.weixin.qq.com/s/qpfKuvLvQ8E_pJ2WLpJm7g)
-
 
 # 使用嵌入式 etcd 数据存储进行备份和恢复
 
@@ -35,7 +33,7 @@ on-demand-ip-172-31-3-36-1688025329
 systemctl stop k3s
 
 k3s server \
-  --cluster-reset \ 
+  --cluster-reset \
   --cluster-reset-restore-path=/var/lib/rancher/k3s/server/db/snapshots/on-demand-ip-172-31-3-36-1688025329
 ```
 

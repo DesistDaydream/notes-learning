@@ -1,7 +1,6 @@
 ---
 title: vsftpd
 linkTitle: vsftpd
-date: 2024-11-06T11:27
 weight: 20
 ---
 

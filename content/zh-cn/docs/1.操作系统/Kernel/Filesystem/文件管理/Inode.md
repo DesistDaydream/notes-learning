@@ -1,7 +1,6 @@
 ---
 title: Inode
 linkTitle: Inode
-date: 2024-04-20T13:50
 weight: 2
 ---
 

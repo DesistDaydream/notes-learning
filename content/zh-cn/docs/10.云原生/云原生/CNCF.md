@@ -1,7 +1,6 @@
 ---
 title: CNCF
 linkTitle: CNCF
-date: 2021-10-12T16:17:00
 weight: 20
 ---
 
@@ -37,6 +36,7 @@ CNCF 根据“[鸿沟理论](https://www.jianshu.com/p/a305fa93580b)”将其托
 # CNCF Ambassador(CNCF 大使)
 
 > 参考：
+>
 > - [CNCF 官网](https://www.cncf.io/people/ambassadors/)
 
 可以通过以下方式成为 CNCF Ambassador：

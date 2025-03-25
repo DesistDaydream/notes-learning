@@ -1,7 +1,6 @@
 ---
 title: Library
 linkTitle: Library
-date: 2024-06-20T12:31
 weight: 20
 ---
 

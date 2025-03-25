@@ -1,7 +1,6 @@
 ---
 title: Controller
 linkTitle: Controller
-date: 2024-04-02T10:35
 weight: 1
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: run
 linkTitle: run
-date: 2023-11-03T22:39
 weight: 20
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: Data type
 linkTitle: Data type
-date: 2024-06-12T13:21
 weight: 20
 ---
 

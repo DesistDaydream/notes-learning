@@ -1,7 +1,6 @@
 ---
 title: Bridge
 linkTitle: Bridge
-date: 2024-04-19T17:26
 weight: 20
 ---
 
@@ -22,10 +21,10 @@ for dev in /sys/class/net/*; do
 done
 ```
 
-# 聊聊 Linux 上软件实现的 “交换机” - Bridge！
+# 聊聊 Linux 上软件实现的 “交换机” - Bridge
 
 > 参考：
-> 
+>
 > - 原文：[聊聊 Linux 上软件实现的 “交换机” - Bridge！](https://mp.weixin.qq.com/s/JnKz1fUgZmGdvfxOm2ehZg)
 
 Linux 中的 veth 是一对儿能互相连接、互相通信的虚拟网卡。通过使用它，我们可以让 Docker 容器和母机通信，或者是在两个 Docker 容器中进行交流。参见[《轻松理解 Docker 网络虚拟化基础之 veth 设备！》](https://mp.weixin.qq.com/s?__biz=MjM5Njg5NDgwNA==&mid=2247486424&idx=1&sn=d66fe4ebf1cd9e5079606f71a0169697&scene=21#wechat_redirect)。
@@ -107,10 +106,10 @@ Bridge 是用来连接两个不同的虚拟网络的，所以在准备实验 bri
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/kernel/network/202404191720679.png)
 
 ```bash
-# ip netns exec net1 ping 192.168.0.102 -I veth1  
-PING 192.168.0.102 (192.168.0.102) from 192.168.0.101 veth1: 56(84) bytes of data.  
-64 bytes from 192.168.0.102: icmp_seq=1 ttl=64 time=0.037 ms  
-64 bytes from 192.168.0.102: icmp_seq=2 ttl=64 time=0.008 ms  
+# ip netns exec net1 ping 192.168.0.102 -I veth1
+PING 192.168.0.102 (192.168.0.102) from 192.168.0.101 veth1: 56(84) bytes of data.
+64 bytes from 192.168.0.102: icmp_seq=1 ttl=64 time=0.037 ms
+64 bytes from 192.168.0.102: icmp_seq=2 ttl=64 time=0.008 ms
 64 bytes from 192.168.0.102: icmp_seq=3 ttl=64 time=0.005 ms
 ```
 
@@ -127,21 +126,21 @@ PING 192.168.0.102 (192.168.0.102) from 192.168.0.101 veth1: 56(84) bytes
 我们先看下它是如何被创建出来的。内核中创建 bridge 的关键代码在 br_add_bridge 这个函数里。
 
 ```c
-//file:net/bridge/br_if.c  
-int br_add_bridge(struct net *net, const char *name)  
-{  
- //申请网桥设备，并用 br_dev_setup 来启动它  
- dev = alloc_netdev(sizeof(struct net_bridge), name,  
-      br_dev_setup);  
-  
- dev_net_set(dev, net);  
- dev->rtnl_link_ops = &br_link_ops;  
-  
- //注册网桥设备  
- res = register_netdev(dev);  
- if (res)  
-  free_netdev(dev);  
- return res;  
+//file:net/bridge/br_if.c
+int br_add_bridge(struct net *net, const char *name)
+{
+ //申请网桥设备，并用 br_dev_setup 来启动它
+ dev = alloc_netdev(sizeof(struct net_bridge), name,
+      br_dev_setup);
+
+ dev_net_set(dev, net);
+ dev->rtnl_link_ops = &br_link_ops;
+
+ //注册网桥设备
+ res = register_netdev(dev);
+ if (res)
+  free_netdev(dev);
+ return res;
 }
 ```
 
@@ -153,8 +152,8 @@ int br_add_bridge(struct net *net, const char *name)
 带着这两点注意事项，我们进入到 alloc_netdev 的实现中。
 
 ```c
-//file: include/linux/netdevice.h  
-#define alloc_netdev(sizeof_priv, name, setup) \  
+//file: include/linux/netdevice.h
+#define alloc_netdev(sizeof_priv, name, setup) \
  alloc_netdev_mqs(sizeof_priv, name, setup, 1, 1)
 ```
 
@@ -252,14 +251,14 @@ static struct net_bridge_port *new_nbp(struct net_bridge *br,
 在 br_add_if 中还调用 netdev_rx_handler_register 注册了设备帧接收函数，设置 veth 上的 rx_handler 为 br_handle_frame。**后面在接收包的时候会回调到它**。
 
 ```c
-//file:  
-int netdev_rx_handler_register(struct net_device *dev,  
-          rx_handler_func_t *rx_handler,  
-          void *rx_handler_data)  
-{  
- ...   
- rcu_assign_pointer(dev->rx_handler_data, rx_handler_data);  
- rcu_assign_pointer(dev->rx_handler, rx_handler);  
+//file:
+int netdev_rx_handler_register(struct net_device *dev,
+          rx_handler_func_t *rx_handler,
+          void *rx_handler_data)
+{
+ ... 
+ rcu_assign_pointer(dev->rx_handler_data, rx_handler_data);
+ rcu_assign_pointer(dev->rx_handler, rx_handler);
 }
 ```
 
@@ -285,7 +284,7 @@ static int __netif_receive_skb_core(struct sk_buff *skb, bool pfmemalloc)
  // 执行设备的 rx_handler（也就是 br_handle_frame）
  rx_handler = rcu_dereference(skb->dev->rx_handler);
  if (rx_handler) {
-  switch (rx_handler(&skb)) { 
+  switch (rx_handler(&skb)) {
   case RX_HANDLER_CONSUMED:
    ret = NET_RX_SUCCESS;
    goto unlock;
@@ -309,36 +308,36 @@ out:
 接着来看下网桥是咋工作的吧，进入到 br_handle_frame 中来搜寻。
 
 ```c
-//file: net/bridge/br_input.c  
-rx_handler_result_t br_handle_frame(struct sk_buff **pskb)  
-{  
- ...  
-  
-forward:  
- NF_HOOK(NFPROTO_BRIDGE, NF_BR_PRE_ROUTING, skb, skb->dev, NULL,  
-   br_handle_frame_finish);  
+//file: net/bridge/br_input.c
+rx_handler_result_t br_handle_frame(struct sk_buff **pskb)
+{
+ ...
+
+forward:
+ NF_HOOK(NFPROTO_BRIDGE, NF_BR_PRE_ROUTING, skb, skb->dev, NULL,
+   br_handle_frame_finish);
 }
 ```
 
 上面我对 br_handle_frame 的逻辑进行了充分的简化，简化后它的核心就是调用 br_handle_frame_finish。同样 br_handle_frame_finish 也有点小复杂。本文中，我们主要想了解的 Docker 场景下 bridge 上的 veth 设备转发。所以根据这个场景，我又对该函数进行了充分的简化。
 
 ```c
-//file: net/bridge/br_input.c  
-int br_handle_frame_finish(struct sk_buff *skb)  
-{    
- // 获取 veth 所连接的网桥端口、以及网桥设备  
- struct net_bridge_port *p = br_port_get_rcu(skb->dev);  
- br = p->br;  
-  
- // 更新和查找转发表  
- struct net_bridge_fdb_entry *dst;  
- br_fdb_update(br, p, eth_hdr(skb)->h_source, vid);  
- dst = __br_fdb_get(br, dest, vid)  
-  
- // 转发  
- if (dst) {  
-  br_forward(dst->dst, skb, skb2);  
- }   
+//file: net/bridge/br_input.c
+int br_handle_frame_finish(struct sk_buff *skb)
+{  
+ // 获取 veth 所连接的网桥端口、以及网桥设备
+ struct net_bridge_port *p = br_port_get_rcu(skb->dev);
+ br = p->br;
+
+ // 更新和查找转发表
+ struct net_bridge_fdb_entry *dst;
+ br_fdb_update(br, p, eth_hdr(skb)->h_source, vid);
+ dst = __br_fdb_get(br, dest, vid)
+
+ // 转发
+ if (dst) {
+  br_forward(dst->dst, skb, skb2);
+ } 
 }
 ```
 
@@ -361,7 +360,6 @@ static void __br_forward(const struct net_bridge_port *to, struct sk_buff *skb)
 在 \_\_br_forward 中，将 skb 上的设备 dev 改为了新的目的 dev。
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/kernel/network/202404191724379.png)
-
 
 然后调用 br_forward_finish 进入发送流程。在 br_forward_finish 里会依次调用 br_dev_queue_push_xmit、dev_queue_xmit。
 

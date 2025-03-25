@@ -1,7 +1,6 @@
 ---
 title: XFS
 linkTitle: XFS
-date: 2024-04-30T16:39
 weight: 20
 ---
 
@@ -28,4 +27,3 @@ log      =internal log           bsize=4096   blocks=63937, version=2
    =                       sectsz=512   sunit=0 blks, lazy-count=1
 realtime =none                   extsz=4096   blocks=0, rtextents=0
 ```
-

@@ -1,7 +1,6 @@
 ---
 title: Prometheus
 linkTitle: Prometheus
-date: 2023-10-31T22:24
 weight: 1
 ---
 

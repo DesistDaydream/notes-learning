@@ -1,7 +1,6 @@
 ---
 title: Ingress Manifest
 linkTitle: Ingress Manifest
-date: 2024-06-03T08:12
 weight: 20
 ---
 

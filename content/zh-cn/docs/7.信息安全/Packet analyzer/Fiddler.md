@@ -1,7 +1,6 @@
 ---
 title: Fiddler
 linkTitle: Fiddler
-date: 2024-01-19T10:48
 weight: 20
 ---
 
@@ -47,4 +46,3 @@ IOS 访问 `IP:8888` ，点击 FiddlerRoot certificate 下载证书并安装
 # Fiddler Add-ons
 
 https://www.telerik.com/fiddler/add-ons
-

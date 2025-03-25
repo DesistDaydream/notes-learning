@@ -1,7 +1,6 @@
 ---
 title: Literal
 linkTitle: Literal
-date: 2024-06-12T13:21
 weight: 2
 ---
 

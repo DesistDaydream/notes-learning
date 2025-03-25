@@ -1,7 +1,6 @@
 ---
 title: AI Projects
 linkTitle: AI Projects
-date: 2023-11-11T16:58
 weight: 1
 ---
 

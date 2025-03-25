@@ -1,7 +1,6 @@
 ---
 title: Windows 管理工具
 linkTitle: Windows 管理工具
-date: 2024-01-07T09:57
 weight: 1
 ---
 
@@ -18,4 +17,4 @@ weight: 1
 
 - Win32 控制台命令。一般在保存 `C:/Windows/System32/` 目录中，就像 Unix 的 `/usr/bin` 这种目录似的，都是一些可执行文件。
 - PowerShell 中的 cmdlet。也就是 PowerShell 的各种模块。这些 cmdlet 虽然不是可见的可执行文件，但是也可以实现类似命令的效果。
-    - 就是本笔记的 [PowerShell 内置管理工具](/docs/1.操作系统/Windows%20管理/Windows%20管理工具/PowerShell%20内置管理工具/PowerShell%20内置管理工具.md) 部分
+  - 就是本笔记的 [PowerShell 内置管理工具](/docs/1.操作系统/Windows%20管理/Windows%20管理工具/PowerShell%20内置管理工具/PowerShell%20内置管理工具.md) 部分

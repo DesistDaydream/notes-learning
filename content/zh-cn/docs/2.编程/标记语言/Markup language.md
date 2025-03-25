@@ -1,7 +1,6 @@
 ---
 title: Markup language
 linkTitle: Markup language
-date: 2023-12-03T20:32
 weight: 20
 ---
 

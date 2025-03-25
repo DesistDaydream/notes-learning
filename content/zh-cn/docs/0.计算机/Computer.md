@@ -1,7 +1,6 @@
 ---
 title: Computer
 linkTitle: Computer
-date: 2024-03-15T21:31
 weight: 1
 ---
 

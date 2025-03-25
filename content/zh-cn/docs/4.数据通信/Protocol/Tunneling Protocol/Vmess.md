@@ -1,7 +1,6 @@
 ---
 title: Vmess
 linkTitle: Vmess
-date: 2024-03-20T23:17
 weight: 20
 ---
 
@@ -9,7 +8,6 @@ weight: 20
 
 > 参考：
 >
-> - date: "2024-12-09T14:22"
 
 https://www.chengxiaobai.com/essays/v2ray-trojan-xray.html
 
@@ -58,7 +56,7 @@ Xray 和 V2ray 区别如下：
 # 概述
 
 > 参考：
-> 
+>
 > - [GItHub 项目，v2fly/v2ray-core](https://github.com/v2fly/v2ray-core)
 > - [路由规则](https://github.com/Loyalsoldier/v2ray-rules-dat)
 

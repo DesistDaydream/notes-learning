@@ -1,16 +1,14 @@
 ---
 title: "LokiQL 常见查询语句"
 linkTitle: "LokiQL 常见查询语句"
-date: "2023-08-28T11:41"
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，查询 - 查询示例](https://grafana.com/docs/loki/latest/query/query_examples/)
-
 
 **多重过滤**
 
@@ -38,7 +36,7 @@ level=debug ts=2020-10-02T10:10:42.092268913Z caller=logging.go:66 traceID=a9d4d
 Notes: 其实这种 regexp 语法在新版已经可以用 pattern 代替了
 
 ```
-pattern `<method> <path> (<status>) <duration>` 
+pattern `<method> <path> (<status>) <duration>`
 ```
 
 首先通过 `logfmt` 解析器提取日志中的数据，然后使用 `| line_format` 重新将日志格式化为 `POST /api/prom/api/v1/query_range (200) 1.5s`，然后紧接着就是用 `regexp` 解析器通过正则表达式来匹配提前标签了。
@@ -66,8 +64,8 @@ level=info ts=2020-10-23T20:32:18.068866235Z caller=metrics.go:81 org_id=29 trac
 经过上面的查询过后可以得到如下所示的结果：
 
 ```log
-2020-10-23T20:32:18.094668233Z	650.22401ms	  traceID = 1980d41501b57b68	{cluster="ops-tools1", job="loki-ops/query-frontend"} |= "query_range"
-2020-10-23T20:32:18.068866235Z	624.008132ms	traceID = 1980d41501b57b68	{cluster="ops-tools1", job="loki-ops/query-frontend"} |= "query_range"
+2020-10-23T20:32:18.094668233Z 650.22401ms   traceID = 1980d41501b57b68 {cluster="ops-tools1", job="loki-ops/query-frontend"} |= "query_range"
+2020-10-23T20:32:18.068866235Z 624.008132ms traceID = 1980d41501b57b68 {cluster="ops-tools1", job="loki-ops/query-frontend"} |= "query_range"
 ```
 
 # 通用

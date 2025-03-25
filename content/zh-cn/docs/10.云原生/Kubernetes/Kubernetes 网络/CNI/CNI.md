@@ -1,7 +1,6 @@
 ---
 title: CNI
 linkTitle: CNI
-date: 2023-09-10T10:00
 weight: 1
 ---
 

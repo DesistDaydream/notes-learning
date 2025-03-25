@@ -1,7 +1,6 @@
 ---
 title: OpenAPI
 linkTitle: OpenAPI
-date: 2024-06-21T20:23
 weight: 20
 ---
 

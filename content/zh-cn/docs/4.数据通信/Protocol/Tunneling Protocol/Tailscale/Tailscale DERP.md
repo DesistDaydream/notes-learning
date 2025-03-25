@@ -1,7 +1,6 @@
 ---
 title: Tailscale DERP
 linkTitle: Tailscale DERP
-date: 2024-03-21T23:14
 weight: 20
 ---
 
@@ -409,7 +408,7 @@ CMD bash /app/build_cert.sh $DERP_HOST $DERP_CERTS /app/san.conf && \
 构建好镜像后，就可以在你想部署 derper 的主机上直接通过该镜像启动 derper 容器了，命令如下：
 
 ```
-$ docker run --restart always --net host --name derper -d ghcr.io/yangchuansheng/ip_derper
+docker run --restart always --net host --name derper -d ghcr.io/yangchuansheng/ip_derper
 ```
 
 和使用域名的方案一样，防火墙需要放行相应端口（12345 与 3478）。

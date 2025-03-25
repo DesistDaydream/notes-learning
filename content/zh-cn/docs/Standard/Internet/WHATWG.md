@@ -1,7 +1,6 @@
 ---
 title: WHATWG
 linkTitle: WHATWG
-date: 2023-12-04T22:10
 weight: 20
 ---
 

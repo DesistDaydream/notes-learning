@@ -1,7 +1,6 @@
 ---
 title: "Block cipher"
 linkTitle: "Block cipher"
-date: "2023-08-08T15:52"
 weight: 20
 ---
 

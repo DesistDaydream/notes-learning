@@ -1,7 +1,6 @@
 ---
 title: SUID,SGID,SBIT 特殊权限
 linkTitle: SUID,SGID,SBIT 特殊权限
-date: 2024-06-07T08:08
 weight: 20
 ---
 
@@ -11,8 +10,6 @@ weight: 20
 > 参考：
 >
 > -
-
-
 
 # 理解 Linux 特殊权限 SUID,SGID,SBIT
 

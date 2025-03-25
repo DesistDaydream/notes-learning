@@ -1,14 +1,13 @@
 ---
 title: grep
 linkTitle: grep
-date: 2024-03-08T17:32
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [Manual(手册)，grep(1)](https://man7.org/linux/man-pages/man1/grep.1.html)
 
 grep 是文本搜索工具，可以使用正则表达式在文件内查找符合条件的字串行
@@ -38,7 +37,7 @@ grep 根据 PATTERNS(模式) 过滤给定的内容。其实就是使用正则表
 - **-c, --count** # 计算找到的符合行的次数
 - **--color=auto** # 把查找到内容自动表上默认颜色，auto 可改成别的颜色英文
 - **-l,--files-with-matches** # 只输出匹配到的文件的文件名。常用来在一堆文件中，筛选指定内容，只查看哪些文件有指定的内容。
-- **-m, --max-count=NUM** # 在 NUM 个匹配行后停止读取文件。i.e. 
+- **-m, --max-count=NUM** # 在 NUM 个匹配行后停止读取文件。i.e.
 - **-o, --only-matching** # 仅显示被匹配到的字符串，不显示整行
 - **-s, --no-messages** # 不显示错误信息
 

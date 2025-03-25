@@ -1,14 +1,13 @@
 ---
 title: rc 配置文件
 linkTitle: rc 配置文件
-date: 2023-11-23T20:01
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [pnpm 官方文档，配置 - .npmrc](https://pnpm.io/npmrc)
 
 这里面的笔记都以 pnpm 为主。

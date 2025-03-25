@@ -1,7 +1,6 @@
 ---
 title: Open vSwitch
 linkTitle: Open vSwitch
-date: 2024-02-27T09:08
 weight: 20
 ---
 

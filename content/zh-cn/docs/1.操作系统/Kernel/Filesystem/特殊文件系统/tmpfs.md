@@ -1,7 +1,6 @@
 ---
 title: "tmpfs"
 linkTitle: "tmpfs"
-date: "2023-08-06T11:06"
 weight: 20
 ---
 
@@ -21,4 +20,3 @@ tmpfs 有 3 个用于调整大小的挂载选项
 - **size** # 为此 tmpfs 分配的 Bytes 。`默认值: 物理内存的一半`
 - **nr_blocks** # 与 size 相同，但是以 PAGE_SIZE 为单位。
 - **nr_inodes** # 为此 tmpfs 分配的最大 inodes 数。`默认值: 物理内存 pages 的一半`
-

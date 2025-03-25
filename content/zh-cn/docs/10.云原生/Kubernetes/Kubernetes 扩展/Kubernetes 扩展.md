@@ -1,7 +1,6 @@
 ---
 title: Kubernetes 扩展
 linkTitle: Kubernetes 扩展
-date: 2024-08-23T14:59
 weight: 20
 ---
 
@@ -9,6 +8,7 @@ weight: 20
 # 概述
 
 > 参考：
+>
 > - [官方文档，概念 - 扩展 Kubernetes - 扩展集群](https://kubernetes.io/docs/concepts/extend-kubernetes/extend-cluster/)
 > - 概念：
 > - 任务：<https://kubernetes.io/docs/tasks/extend-kubernetes/>
@@ -51,7 +51,7 @@ Kubernetes 的设计是通过编写客户端程序来实现自动化的。 任�
 
 在 webhook 模型里，Kubernetes 向远程服务发送一个网络请求。 在 可执行文件插件 模型里，Kubernetes 执行一个可执行文件（程序）。 可执行文件插件被 kubelet（如 [Flex 卷插件](https://github.com/kubernetes/community/blob/master/contributors/devel/flexvolume.md)和 [网络插件](https://kubernetes.io/zh/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/)和 kubectl 所使用。
 
-# 扩展 Kubernetes 集群的方式：
+# 扩展 Kubernetes 集群的方式
 
 ## Kubernetes API 扩展
 
@@ -59,7 +59,7 @@ Kubernetes 的设计是通过编写客户端程序来实现自动化的。 任�
 2. [API Aggregation(聚合) Layer](/docs/10.云原生/Kubernetes/Kubernetes%20扩展/API%20Aggregation(聚合)%20Layer.md)
 3. [Operator 模式](/docs/10.云原生/Kubernetes/Kubernetes%20扩展/Operator%20模式.md)
 
-## 计算、存储、网络扩展。
+## 计算、存储、网络扩展
 
 ## Service Catalog 服务目录。详见：Service Catalog 服务目录
 

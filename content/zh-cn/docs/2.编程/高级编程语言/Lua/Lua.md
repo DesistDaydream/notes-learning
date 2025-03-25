@@ -1,7 +1,6 @@
 ---
 title: Lua
 linkTitle: Lua
-date: 2023-10-02T09:06
 weight: 20
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: User Account(KubeConfig)
 linkTitle: User Account(KubeConfig)
-date: 2024-08-23T09:17
 weight: 20
 ---
 
@@ -65,7 +64,7 @@ KubeConfig 是对 UserAccount 的扩展，KubeConfig 会创建 UserAccount 并�
 
 **name(STRING)** # 指定该集群的名称
 
-## contexts 
+## contexts
 
 比如有一台主机作为客户端(kubelet)，想控制多个 k8s 的集群，为了让一个 kubectl 控制多个集群且多个不同用户账号可以访问多个不同的集群。
 

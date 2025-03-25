@@ -1,7 +1,6 @@
 ---
 title: nping
 linkTitle: nping
-date: 2024-04-18T11:21
 weight: 20
 tags:
   - Network_analyzer
@@ -34,7 +33,6 @@ tags:
 **-g, --source-port PORT_NUMBER** # 设置源端口
 
 **--flags FLAG_LIST** # 设置 TCP 的 Flag, 多个 Flag 以逗号分隔
-
 
 ### IPv4 选项
 

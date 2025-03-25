@@ -1,7 +1,6 @@
 ---
 title: DMTF
 linkTitle: DMTF
-date: 2024-01-07T21:58
 weight: 20
 ---
 

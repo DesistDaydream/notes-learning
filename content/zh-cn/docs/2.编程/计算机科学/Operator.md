@@ -1,7 +1,6 @@
 ---
 title: Operator
 linkTitle: Operator
-date: 2023-10-12T08:26
 weight: 3
 ---
 # 概述
@@ -26,7 +25,6 @@ weight: 3
 ## 布尔代数
 
 由于白马非马这种典故，语言是不可靠的。所以要创建一种符号。
-
 
 # 算术运算
 
@@ -84,4 +82,3 @@ EXAMPLE：
 - `[[ $a < 100 && $b > 100 ]]` 返回 false
 - `[[ $a < 100 || $b > 100 ]]` 返回 true
 - `[ ! false ]` 返回 true。
-

@@ -1,7 +1,6 @@
 ---
 title: Packages AND Registries
 linkTitle: Packages AND Registries
-date: 2024-07-17T15:32
 weight: 20
 ---
 
@@ -84,4 +83,3 @@ curl --request DELETE --header "PRIVATE-TOKEN: <your_access_token>" \
 
 - 清理重复的 asset。执行周期为 12 小时。可以配置保留多少个重复的 asset。主要用在
 - Notes: 现阶段暂无其他规则
-

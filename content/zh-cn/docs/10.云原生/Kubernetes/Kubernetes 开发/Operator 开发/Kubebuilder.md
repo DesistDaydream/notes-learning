@@ -1,7 +1,6 @@
 ---
 title: Kubebuilder
 linkTitle: Kubebuilder
-date: 2024-08-22T09:10
 weight: 20
 ---
 

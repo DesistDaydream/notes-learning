@@ -1,7 +1,6 @@
 ---
 title: Component
 linkTitle: Component
-date: 2024-11-04T16:50
 weight: 20
 ---
 

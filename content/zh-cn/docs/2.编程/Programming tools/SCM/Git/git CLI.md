@@ -1,7 +1,6 @@
 ---
 title: git CLI
 linkTitle: git CLI
-date: 2024-02-13T08:48
 weight: 20
 ---
 
@@ -59,6 +58,7 @@ grep Print lines matching a pattern
 init - 创建一个空的 Git 存储库或重新初始化现有的存储库
 
 # 获取和创建项目
+
 ## clone - 将一个存储库克隆到一个新的目录
 
 OPTIONS
@@ -74,8 +74,6 @@ commit Record changes to the repository
 # 分支与合并
 
 ## log - 展示所有 commit 的记录。默认展示当前分支
-
-
 
 EXAMPLE
 
@@ -101,7 +99,6 @@ status Show the working tree status
 
 tag Create, list, delete or verify a tag object signed with GPG
 
-
 ## tag - 管理仓库的 Tag 信息
 
 git tag -d v0.7.0 删除 v0.7.0 这个 Tag
@@ -126,7 +123,7 @@ https://git-scm.com/docs/git-push
 
 **git push REPOSITORY**
 
-- REPOSITORY # 
+- REPOSITORY #
 
 **OPTIONS**
 
@@ -147,4 +144,3 @@ COMMAND
 `git remote add [-t <branch>] [-m <master>] [-f] [--[no-]tags] [--mirror=(fetch|push)] <name> <URL>`
 
 `git remote set-head <name> (-a | --auto | -d | --delete | <branch>)`
-

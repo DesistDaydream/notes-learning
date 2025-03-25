@@ -1,14 +1,13 @@
 ---
 title: HTTP2
 linkTitle: HTTP2
-date: 2022-10-12T11:20:00
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [RFC，7540](https://tools.ietf.org/html/rfc7540)
 > - [官网](https://http2.github.io/)
 > - [51 张图助你彻底掌握 HTTP 协议](https://mp.weixin.qq.com/s/WQpxfwLArltKEjEAdOO2Pw)

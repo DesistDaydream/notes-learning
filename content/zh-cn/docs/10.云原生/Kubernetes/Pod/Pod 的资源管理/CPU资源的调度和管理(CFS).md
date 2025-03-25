@@ -1,7 +1,6 @@
 ---
 title: CPU资源的调度和管理(CFS)
 linkTitle: CPU资源的调度和管理(CFS)
-date: 2024-05-21T16:39
 weight: 20
 ---
 
@@ -42,7 +41,6 @@ weight: 20
 
 ## 二、CFS 基本原理
 
-
 2.3 运行和观察
 
 部署这样一个 yaml POD：
@@ -67,7 +65,7 @@ spec:
     command:
       - "/bin/sh"
       - "-c"
-      - "while true; do sleep 10; done" 
+      - "while true; do sleep 10; done"
     imagePullPolicy: IfNotPresent
     name: busybox
   restartPolicy: Always
@@ -96,8 +94,8 @@ numa_faults_memory, 0, 0, 0, 0, -1
 numa_faults_memory, 1, 0, 0, 0, -1
 numa_faults_memory, 0, 1, 1, 0, -1
 numa_faults_memory, 1, 1, 0, 0, -1
- 
- 
+
+
 [root@k8s-node-04 ~]# cat /proc/121133/sched
 sh (121133, #threads: 1)
 -------------------------------------------------------------------
@@ -118,8 +116,8 @@ numa_faults_memory, 0, 0, 1, 0, -1
 numa_faults_memory, 1, 0, 0, 0, -1
 numa_faults_memory, 0, 1, 0, 0, -1
 numa_faults_memory, 1, 1, 0, 0, -1
- 
- 
+
+
 [root@k8s-node-04 ~]# cat /proc/121133/sched
 sh (121133, #threads: 1)
 -------------------------------------------------------------------
@@ -201,7 +199,7 @@ cat /proc/sys/kernel/sched_latency_ns
 如果进程被限流了，可以在如下的路径看到：
 
 ```bash
-cat /sys/fs/cgroup/cpu/kubepods/pod5326d6f4-789d-11ea-b093-fa163e23cb69/69336c973f9f414c3f9fdfbd90200b7083b35f4d54ce302a4f5fc330f2889846/cpu.stat 
+cat /sys/fs/cgroup/cpu/kubepods/pod5326d6f4-789d-11ea-b093-fa163e23cb69/69336c973f9f414c3f9fdfbd90200b7083b35f4d54ce302a4f5fc330f2889846/cpu.stat
 nr_periods 14001693
 nr_throttled 2160435
 throttled_time 570069950532853
@@ -215,11 +213,11 @@ throttled_time 570069950532853
 
 ```bash
 
-cat cpu.shares 
+cat cpu.shares
 204
-cat cpu.cfs_period_us 
+cat cpu.cfs_period_us
 100000
-cat cpu.cfs_quota_us 
+cat cpu.cfs_quota_us
 20000
 ```
 
@@ -239,5 +237,3 @@ Zalando 公司有一个分享《Optimizing Kubernetes Resource Requests/Limits f
 其中《Overly aggressive CFS》里面还有几个小实验可以帮助大家更好的认识到 CFS 进行 CPU 资源管控的特点：
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/qt8tld/1616119625964-b27b0e72-58fd-441f-81eb-c7d543aa9733.png)
-
-

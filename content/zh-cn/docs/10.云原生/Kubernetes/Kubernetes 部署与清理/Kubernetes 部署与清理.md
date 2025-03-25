@@ -1,7 +1,6 @@
 ---
 title: Kubernetes 部署与清理
 linkTitle: Kubernetes 部署与清理
-date: 2024-08-22T17:29
 weight: 1
 ---
 
@@ -238,20 +237,25 @@ echo "KUBELET_EXTRA_ARGS=--cgroup-driver=systemd" > /etc/sysconfig/kubelet
 
 准备初始化所需镜像
 
-  - 由于国内没法访问国际，镜像又都在谷歌上，所以需要翻墙或者提前以某些方式下载下来。如果不知道要用哪些镜像，可以直接使用 `kubeadm config images list` 命令查看初始化时所需镜像，然后从其他镜像仓库下载下来，并使用 docker tag 命令更改镜像。可以使用阿里云的镜像仓库，地址如下：
-    - registry.aliyuncs.com/k8sxio # XXX 为镜像名与版本号，zhangguanzhang 在阿里云创建的仓库
+- 由于国内没法访问国际，镜像又都在谷歌上，所以需要翻墙或者提前以某些方式下载下来。如果不知道要用哪些镜像，可以直接使用 `kubeadm config images list` 命令查看初始化时所需镜像，然后从其他镜像仓库下载下来，并使用 docker tag 命令更改镜像。可以使用阿里云的镜像仓库，地址如下：
+  - registry.aliyuncs.com/k8sxio # XXX 为镜像名与版本号，zhangguanzhang 在阿里云创建的仓库
 
 初始化集群的 master 节点
 
 - 使用该命令进行初始化并对初始化的内容进行一些设定，如果可以没法翻墙，那么就会卡在 pull 的位置，从 google 拉不到 images(注意 IP 位置需要自己改成自己所需的 IP)
+
 ```bash
 kubeadm init --kubernetes-version=v1.18.8 --pod-network-cidr=10.244.0.0/16 --image-repository="registry.aliyuncs.com/k8sxio"
 ```
+
 - kubeadm 也可通过配置文件加载配置，以定制更丰富的部署选项，kubeadm-config.yaml 文件配置详见 《[kubeadm 命令行工具](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/kubeadm%20 命令行工具.md 管理/kubeadm 命令行工具.md)》
+
 ```bash
 kubeadm init --config kubeadm-config.yaml
 ```
+
 - 安装完成后如下所示，并获取到后续 node 加入集群的启动命令(注意保存该命令以便 node 节点加入 cluster 集群)
+
 ```bash
 Your Kubernetes control-plane has initialized successfully!
 

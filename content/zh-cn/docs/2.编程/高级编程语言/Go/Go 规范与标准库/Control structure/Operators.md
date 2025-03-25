@@ -1,7 +1,6 @@
 ---
 title: Operators
 linkTitle: Operators
-date: 2024-10-11T15:27
 weight: 20
 ---
 
@@ -9,8 +8,7 @@ weight: 20
 
 > 参考：
 >
-> -  [官方文档，参考 - 语言规范 - 运算符](https://go.dev/ref/spec#Operators)
-
+> - [官方文档，参考 - 语言规范 - 运算符](https://go.dev/ref/spec#Operators)
 
 # Arithmetic operators(算数运算符)
 

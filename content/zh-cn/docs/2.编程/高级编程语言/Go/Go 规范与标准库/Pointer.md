@@ -1,7 +1,6 @@
 ---
 title: Pointer
 linkTitle: Pointer
-date: 2023-11-20T21:30
 weight: 7
 ---
 

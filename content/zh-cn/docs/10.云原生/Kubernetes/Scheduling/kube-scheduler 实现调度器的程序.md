@@ -1,7 +1,6 @@
 ---
 title: kube-scheduler 实现调度器的程序
 linkTitle: kube-scheduler 实现调度器的程序
-date: 2020-10-12T16:21:00
 weight: 20
 ---
 

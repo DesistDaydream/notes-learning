@@ -1,7 +1,6 @@
 ---
 title: Data Model(数据模型)
 linkTitle: Data Model(数据模型)
-date: 2024-07-19T09:21
 weight: 20
 tags:
   - 时间序列数据
@@ -59,7 +58,7 @@ Prometheus 会将所有采集到的样本数据以 **TimeSeries(时间序列)** 
 
 > 下面这个例子可以看到，Prometheus 返回的时间序列数据主要有两个字段，resultType(结果类型) 与 result(结果)。result 就是这条时间序列的数据内容
 > 而 result 又分为 metric 和 value。其中 value 就是指的 sample.
-> 
+>
 > 可以在 [Querying API](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20API/Querying%20API.md) 找到更多 Prometheus 返回的数据格式信息
 
 ```json
@@ -384,11 +383,8 @@ metric_name [{ label_name = "label_value" { , label_name = "label_value" } [ ,..
 
 ## OpemMetrics 文本格式
 
-
 ## Protobuf 格式
 
 期版本的 Prometheus 还支持基于 Protocol Buffers（又名 Protobuf）的展示格式。在 Prometheus 2.0 中，Protobuf 格式被标记为已弃用，并且 Prometheus 停止从所述公开格式中摄取样本。
 
 然而，Prometheus 添加了新的实验功能（v2.40.0 与 v2.50.0 开始），其中 Protobuf 格式被认为是最可行的选择。让 Prometheus 再次接受 Protocol Buffers。
-
-

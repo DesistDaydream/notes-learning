@@ -1,7 +1,6 @@
 ---
 title: kubectl 命令行工具
 linkTitle: kubectl 命令行工具
-date: 2023-11-04T10:49
 weight: 1
 ---
 

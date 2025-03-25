@@ -1,7 +1,6 @@
 ---
 title: Filter
 linkTitle: Filter
-date: 2024-04-30T15:49
 weight: 20
 ---
 
@@ -25,8 +24,6 @@ weight: 20
 在 `视图 - 内部 - 支持的协议` 菜单项中，可以查看当前 WireShark 支持的所有可用于编写过滤表达式的协议关键字和协议中的字段关键（比如 tcp、tcp.port、etc.）。
 
 # Syntax(语法)
-
-
 
 # EXAMPLE
 

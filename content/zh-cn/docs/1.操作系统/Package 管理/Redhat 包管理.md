@@ -1,7 +1,6 @@
 ---
 title: Redhat 包管理
 linkTitle: Redhat 包管理
-date: 2024-03-13T08:10
 weight: 20
 ---
 # 概述
@@ -11,7 +10,7 @@ weight: 20
 # rpm 工具
 
 > 参考：
-> 
+>
 > - [Manual(手册)，rpm(8)](https://man7.org/linux/man-pages/man8/rpm.8.html)
 
 ## Syntax(语法)
@@ -94,11 +93,10 @@ AppStream 库中的包一般是用户空间程序包，这些程序的更新速�
 
 - **download** # 下载指定的 RPM 包
 
-
 # yum 工具
 
 > 参考：
-> 
+>
 > - [Manual(手册)，yum(8)](https://man7.org/linux/man-pages/man8/yum.8.html)
 
 ## yum 关联文件与配置

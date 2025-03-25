@@ -1,7 +1,6 @@
 ---
 title: Internationalization
 linkTitle: Internationalization
-date: 2024-05-07T15:27
 weight: 20
 ---
 
@@ -59,12 +58,9 @@ RedHat 系
 
 # 命令行工具
 
-
 ## locale
 
-
 ## localectl
-
 
 # 最佳实践
 
@@ -84,7 +80,7 @@ RedHat 系
 
 要永久性地修改系统语言环境，你需要编辑系统配置文件。通常情况下，这个文件是`/etc/default/locale`（针对Debian系，如Ubuntu）或`/etc/locale.conf`（针对Red Hat系，如Fedora、CentOS）。
 
-#### 对于使用 `/etc/default/locale` 的系统：
+#### 对于使用 `/etc/default/locale` 的系统
 
 ```bash
 tee > /etc/default/locale > /dev/null <<EOF
@@ -100,7 +96,7 @@ sudo locale-gen en_US.UTF-8
 sudo update-locale LANG=en_US.UTF-8
 ```
 
-#### 对于使用 `/etc/locale.conf` 的系统：
+#### 对于使用 `/etc/locale.conf` 的系统
 
 ```bash
 tee > /etc/locale.conf > /dev/null <<EOF
@@ -108,7 +104,7 @@ LANG=en_US.UTF-8
 EOF
 ```
 
-### 注意事项：
+### 注意事项
 
 - 在某些系统上，你可能还需要使用`localectl`命令来设置语言，例如：
   - `sudo localectl set-locale LANG=en_US.UTF-8`

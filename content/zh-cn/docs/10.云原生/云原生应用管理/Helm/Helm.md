@@ -1,7 +1,6 @@
 ---
 title: Helm
 linkTitle: Helm
-date: 2022-09-27T10:49:00
 weight: 1
 ---
 

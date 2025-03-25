@@ -1,7 +1,6 @@
 ---
 title: GitLab CI
 linkTitle: GitLab CI
-date: 2024-07-16T14:15
 weight: 1
 ---
 

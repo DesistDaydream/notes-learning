@@ -1,7 +1,6 @@
 ---
 title: Socat
 linkTitle: Socat
-date: 2024-03-20T08:58
 weight: 20
 ---
 
@@ -201,6 +200,7 @@ FILENAME=60.*.*.*
 openssl genrsa -out $FILENAME.key 1024
 openssl req -new -key $FILENAME.key -x509 -days 3653 -out $FILENAME.crtcat $FILENAME.key $FILENAME.crt >$FILENAME.pem
 ```
+
 在当前目录下生成 `server.pem 、server.crt`
 
 使用

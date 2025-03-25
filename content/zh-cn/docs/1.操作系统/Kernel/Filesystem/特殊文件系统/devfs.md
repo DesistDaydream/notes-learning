@@ -1,7 +1,6 @@
 ---
 title: devfs
 linkTitle: devfs
-date: 2024-07-08T09:33
 weight: 20
 ---
 
@@ -36,8 +35,8 @@ dmsetup ls # 列出 dm 设备
 
 ```bash
 ~]# dmsetup ls
-vg1-swap	(253:1)
-vg1-root	(253:0)
+vg1-swap (253:1)
+vg1-root (253:0)
 ```
 
 其中 253 后面的数字，就是 dm-X 那个 X。所以 dm-0 对应 vg1-root 这个设备。使用 lsblk 命令可以看到 dm 与 块设备的关联关系。
@@ -59,5 +58,3 @@ tun 驱动程序提供网络接口伪设备。发送到此接口的数据包可�
 > - [Wiki, Shared memory - Support on Unix-like systems](https://en.wikipedia.org/wiki/Shared_memory#Support_on_Unix-like_systems)
 
 /dev/shm/ 目录是一个 [tmpfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/tmpfs.md)，用来 shared memory(分享内存，简称 shm) 的。
-
-

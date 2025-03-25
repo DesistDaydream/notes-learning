@@ -1,7 +1,6 @@
 ---
 title: IT
 linkTitle: IT
-date: 2024-01-07T21:57
 weight: 1
 ---
 
@@ -17,8 +16,6 @@ IT 技术的基础
 - [Operating system](/docs/1.操作系统/Operating%20system/Operating%20system.md)
 - 数据结构
 - [数据通信](/docs/4.数据通信/数据通信/数据通信.md)
-
-
 
 # PICMG
 

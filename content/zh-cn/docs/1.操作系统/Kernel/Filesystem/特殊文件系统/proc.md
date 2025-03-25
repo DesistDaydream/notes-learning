@@ -1,7 +1,6 @@
 ---
 title: proc
 linkTitle: proc
-date: 2024-07-08T09:33
 weight: 20
 ---
 

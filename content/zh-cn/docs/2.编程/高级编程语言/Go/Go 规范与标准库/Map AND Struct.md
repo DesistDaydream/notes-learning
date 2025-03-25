@@ -1,7 +1,6 @@
 ---
 title: Map AND Struct
 linkTitle: Map AND Struct
-date: 2023-11-20T21:30
 weight: 8
 ---
 
@@ -143,11 +142,11 @@ Tag 里面的内容在正常编程中没有作用。一般在 **Reflect(反射)*
 
 ```go
 func NewStructID() *StructID {
-	return &StructID(
-		FIELED1: XXXX
-		FIELED2: XXXX
-		......
-	)
+ return &StructID(
+  FIELED1: XXXX
+  FIELED2: XXXX
+  ......
+ )
 }
 ```
 
@@ -155,11 +154,12 @@ func NewStructID() *StructID {
 
 ```go
 func main() {
-	StructVar := NewStructID
+ StructVar := NewStructID
 }
 ```
 
 ## 最佳实践
+
 ### 将一个结构体中的值拷贝到另一个相似的结构体中
 
 > 参考：

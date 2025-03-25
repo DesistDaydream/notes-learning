@@ -8,7 +8,6 @@ weight: 20
 
 > 参考：
 >
-> - date: "2024-12-10T13:54"
 > - [官方文档，查询 - 指标查询](https://grafana.com/docs/loki/latest/query/metric_queries/)
 
 LogQL 还可以通过 **Functions(函数)** 来对每个日志流进行计算以实现 **Metric Queries(指标查询)** 。就是将日志流中的日志计数，并根据技术进行一些查询，这种查询方式与 [PromQL](/docs/6.可观测性/Metrics/Prometheus/PromQL/PromQL.md) 的指标查询类似。
@@ -169,6 +168,7 @@ For example to remove json errors:例如要删除 JSON 错误：
     | json
     | __error__ != "JSONParserErr"
 ```
+
 Logql
 Alternatively you can remove all error using a catch all matcher such as `__error__ = ""` or even show only errors using `__error__ != ""`.或者，您可以使用捕获器删除所有匹配器，例如\_\_Error\_\_ =“”甚至仅显示使用\_\_Error\_\_！=“”。
 The filter should be placed after the stage that generated this error. This means if you need to remove errors from an unwrap expression it needs to be placed after the unwrap.在生成此错误的阶段后应放置过滤器。这意味着如果您需要从未包装中删除从未包装表达式中删除错误，则需要放置在未包装之后。

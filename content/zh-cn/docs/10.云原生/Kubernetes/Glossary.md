@@ -1,7 +1,6 @@
 ---
 title: Glossary
 linkTitle: Glossary
-date: 2024-02-21T11:32
 weight: 20
 ---
 

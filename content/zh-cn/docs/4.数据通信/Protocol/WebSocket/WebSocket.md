@@ -1,13 +1,13 @@
 ---
 title: WebSocket
 linkTitle: WebSocket
-date: 2024-02-23T12:30
 weight: 20
 ---
 
 # 概述
 
 > 参考：
+>
 > - [Wiki, WebSocket](https://en.wikipedia.org/wiki/WebSocket)
 > - [公众号-小林 coding，有了 HTTP 协议，为什么还要有 websocket 协议？](https://mp.weixin.qq.com/s/TtRKkVxS6H-miQ8luQgY1A)
 

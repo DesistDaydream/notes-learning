@@ -1,7 +1,6 @@
 ---
 title: MMU
 linkTitle: MMU
-date: 2024-05-22T15:28
 weight: 20
 ---
 
@@ -12,4 +11,3 @@ weight: 20
 > - [Wiki, Memory management unit](https://en.wikipedia.org/wiki/Memory_management_unit)
 
 CPU 芯片中的 **Memory management unit(内存管理单元，简称 MMU)**
-

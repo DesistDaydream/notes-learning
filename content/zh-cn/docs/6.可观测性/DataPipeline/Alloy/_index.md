@@ -1,7 +1,7 @@
 ---
 title: Alloy
 linkTitle: Alloy
-data: 2025-02-18 21:32
+date: 2025-02-18T21:32
 weight: 20
 ---
 

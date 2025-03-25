@@ -1,7 +1,6 @@
 ---
 title: Syscalls 列表
 linkTitle: Syscalls 列表
-date: 2023-09-09
 weight: 20
 ---
 
@@ -72,7 +71,7 @@ https://man7.org/linux/man-pages/man2/write.2.html
 - \*buf # 读取/写入的数据的内容(字节流格式)
 - count # 读取/写入数据的数据(单位 bytes)
 
-### pread() 与 pwrite() - 以给定的 offset(偏移量) 对给定的 File Descriptor 进行读取或写入数据。
+### pread() 与 pwrite() - 以给定的 offset(偏移量) 对给定的 File Descriptor 进行读取或写入数据
 
 https://man7.org/linux/man-pages/man2/pread64.2.html
 
@@ -146,7 +145,7 @@ https://man7.org/linux/man-pages/man2/socket.2.html
 
 socket() 返回引用该 endpoint 的文件描述符。成功调用返回的文件描述符将是当前未为该进程打开的编号最小的文件描述符。
 
-### connect() # 在 Socket 上建立一个连接。
+### connect() # 在 Socket 上建立一个连接
 
 https://man7.org/linux/man-pages/man2/connect.2.html
 
@@ -154,13 +153,13 @@ https://man7.org/linux/man-pages/man2/connect.2.html
 
 ## b.收发信息
 
-### sendto() # 发送网络数据。
+### sendto() # 发送网络数据
 
 https://man7.org/linux/man-pages/man2/sendto.2.html
 
 在 socketcall() 有注意事项
 
-### recvfrom() # 接收网络数据。
+### recvfrom() # 接收网络数据
 
 https://man7.org/linux/man-pages/man2/recvfrom.2.html
 

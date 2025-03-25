@@ -1,14 +1,13 @@
 ---
 title: HTTP 会话状态管理
 linkTitle: HTTP 会话状态管理
-date: 2023-12-19T10:54
 weight: 1
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > -
 
 HTTP 会话状态管理包含认证/授权

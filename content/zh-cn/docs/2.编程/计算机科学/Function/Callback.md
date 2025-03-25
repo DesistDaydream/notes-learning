@@ -1,7 +1,6 @@
 ---
 title: Callback
 linkTitle: Callback
-date: 2023-12-09T22:00
 weight: 20
 ---
 
@@ -78,4 +77,3 @@ void A(func f) {
 以上就是回调函数的基本原理，有想看更详细版本的请参考[公众号 - 码农的荒岛求生，10张图让你彻底理解回调函数](https://mp.weixin.qq.com/s/eFYM4uOIF09t8b9tTD523A)
 
 以上仅仅是回调函数的一种用途，回调函数在基于事件驱动编程以及异步编程时更是必备的，关于事件驱动编程你可以参考[公众号 - 码农的荒岛求生，高并发高性能服务器是如何实现的](https://mp.weixin.qq.com/s/Z07Hc9SRfGz6n8XhFHGVyA)，GUI 编程的同学对此肯定很熟悉。
-

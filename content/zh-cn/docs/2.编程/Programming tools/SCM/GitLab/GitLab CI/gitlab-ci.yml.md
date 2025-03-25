@@ -1,7 +1,6 @@
 ---
 title: gitlab-ci.yml
 linkTitle: gitlab-ci.yml
-date: 2024-07-18T10:52
 weight: 2
 ---
 

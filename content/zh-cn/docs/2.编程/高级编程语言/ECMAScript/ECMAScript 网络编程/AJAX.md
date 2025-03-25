@@ -1,7 +1,6 @@
 ---
 title: AJAX
 linkTitle: AJAX
-date: 2023-11-17T17:35
 weight: 2
 ---
 

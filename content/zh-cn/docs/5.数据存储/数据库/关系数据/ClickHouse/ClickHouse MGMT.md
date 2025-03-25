@@ -1,7 +1,7 @@
 ---
 title: ClickHouse MGMT
 linkTitle: ClickHouse MGMT
-data: 2025-01-05T21:03:00
+date: 2025-01-05T21:03:00
 weight: 20
 ---
 
@@ -18,4 +18,3 @@ weight: 20
 >
 > - [官方文档，管理与部署 - 备份与恢复](https://clickhouse.com/docs/en/operations/backup)
 > - [GitHub 项目，AlexAkulov/clickhouse-backup](https://github.com/AlexAkulov/clickhouse-backup)
-

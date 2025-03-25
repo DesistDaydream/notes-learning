@@ -1,7 +1,6 @@
 ---
 title: lshw
 linkTitle: lshw
-date: 2024-08-28T14:08
 weight: 20
 ---
 
@@ -10,7 +9,6 @@ weight: 20
 > 参考：
 >
 > -
-
 
 > 参考：
 >
@@ -34,6 +32,7 @@ FORMAT
 - **-xml** # 以 [XML](/docs/2.编程/标记语言/XML.md) 格式输出
 - **-json** # 以 [JSON](/docs/2.编程/无法分类的语言/JSON.md) 格式输出
 - **-short** # 打印硬件路径。
+
 ```bash
 H/W path        Device      Class          Description
 ======================================================
@@ -50,7 +49,9 @@ H/W path        Device      Class          Description
 /0/100/1.2                  bus            82371SB PIIX3 USB [Natoma/Triton II]
 ......略
 ```
+
 - **-businfo** # 打印 [Bus(总线)](/docs/0.计算机/Motherboard/Bus.md) 的信息
+
 ```bash
 Bus info          Device      Class          Description
 ========================================================
@@ -223,4 +224,4 @@ bj-test-desistdaydream-1
 OPTIONS
 
 - **-C, -class CLASS** # 只输出指定 CLASS 的信息。
-    - 所有可用的 CLASS 列表见：<https://ezix.org/project/wiki/HardwareLiSter#Deviceclasses>
+  - 所有可用的 CLASS 列表见：<https://ezix.org/project/wiki/HardwareLiSter#Deviceclasses>

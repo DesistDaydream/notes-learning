@@ -8,7 +8,6 @@ weight: 20
 
 > 参考：
 >
-> - date: "2024-12-06T15:31"
 > - [GitHub 项目，OpenObservability/OpenMetrics](https://github.com/OpenObservability/OpenMetrics)
 >   - https://github.com/prometheus/OpenMetrics
 > - [官网](https://openmetrics.io/)

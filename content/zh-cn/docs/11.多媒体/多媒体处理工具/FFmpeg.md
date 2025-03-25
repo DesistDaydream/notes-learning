@@ -1,7 +1,6 @@
 ---
 title: FFmpeg
 linkTitle: FFmpeg
-date: 2023-10-05T21:14
 weight: 2
 ---
 # 概述
@@ -10,7 +9,6 @@ weight: 2
 >
 > - [GitHub 项目，FFmpge/FFmpge](https://github.com/FFmpeg/FFmpeg)
 > - [官网](https://ffmpeg.org/)
-
 
 FFmpeg 是一个库和工具的集合，用于处理多媒体内容，比如 音频、视频、字幕、相关元数据 等。
 
@@ -26,16 +24,15 @@ https://www.bilibili.com/read/cv23895928/
 
 首先来到FFmpeg的官网https://ffmpeg.org，根据你使用的电脑平台进行下载。这里我们下载Windows版本，这里有两个版本，具体选择哪个版本可以参考下面这句话自行决定。这里选择 [Windows builds by BtbN](https://github.com/BtbN/FFmpeg-Builds/releases) 版本进行下载。
 
-> Notes: 在Windows系统上，Gyan.dev 和 BtbN 都提供了 FFmpeg 的预编译版本。Gyan.dev 通常使用 MSVC 编译器，而 BtbN 使用 MinGW 编译器。因此，Gyan.dev 的版本可能会更符合 Windows 标准，而 BtbN 的版本可能会更加开放和跨平台。 
+> Notes: 在Windows系统上，Gyan.dev 和 BtbN 都提供了 FFmpeg 的预编译版本。Gyan.dev 通常使用 MSVC 编译器，而 BtbN 使用 MinGW 编译器。因此，Gyan.dev 的版本可能会更符合 Windows 标准，而 BtbN 的版本可能会更加开放和跨平台。
 
 这时候来到 GitHub 页面，选择其中的 Windows 版本下载。这里有两个版本，具体下载哪个版本根据下面这段话自行决定，两者区别如下：
 
 > Notes: 完整版适用于终端用户，因为它包含了所有的可执行文件和静态库，用户可以从命令行调用 FFmpeg 的工具来进行视频处理；
 >
-> Shared 版仅包含共享库和工具，不包含可执行文件和静态库，这使得开发者可以使用 FFmpeg 的功能实现自己的应用程序或集成 FFmpeg 到自己的项目中。 
+> Shared 版仅包含共享库和工具，不包含可执行文件和静态库，这使得开发者可以使用 FFmpeg 的功能实现自己的应用程序或集成 FFmpeg 到自己的项目中。
 
 下载完整版 [ffmpeg-master-latest-win64-gpl.zip](https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip)。解压后直接使用 CLI 二进制文件即可开始使用。
-
 
 # 命令行工具
 
@@ -44,6 +41,7 @@ https://www.bilibili.com/read/cv23895928/
 > - [阮一峰，FFmpeg 视频处理入门教程](https://www.ruanyifeng.com/blog/2020/01/ffmpeg.html)
 
 ## 基本概念
+
 ### 容器
 
 视频文件本身其实是一个容器（container），里面包括了视频和音频，也可能有字幕等其他内容。

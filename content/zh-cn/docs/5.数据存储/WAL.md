@@ -1,7 +1,6 @@
 ---
 title: WAL
 linkTitle: WAL
-date: 2024-10-12T16:54
 weight: 20
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: OpenSSH
 linkTitle: OpenSSH
-date: 2024-04-19T10:45
 weight: 1
 ---
 

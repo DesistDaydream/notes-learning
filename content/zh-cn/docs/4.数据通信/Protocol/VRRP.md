@@ -1,14 +1,13 @@
 ---
 title: VRRP
 linkTitle: VRRP
-date: 2024-02-23T12:24
 weight: 3
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > -
 
 **Virtual Router Redundancy Protocol(虚拟路由冗余协议，简称 VRRP)** 是一种容错协议，其主要目的是解决路由单点故障的问题。VRRP 协议将局域网内的一组路由器虚拟为单个路由，通常将其称为一个路由备份组， 而这组路由器内包括一个 Master 路由（ 即活动路由器）和若干个 Backup 路由（即备份路由器）， VRRP 虚拟路由示意图如图 3-3 所示。在图 3-3 中 RouterA 、RouterB 和 RouterC 属于同一个 VRRP 组，组成一个虚拟路由器，而由 VRRP 协议虚拟出来的路由器拥有自己的 IP 地址 10.110.10.1 ，而备份组内的路由器也有自己的 IP 地址（如 Master 的 IP 地址为 10.110.10.5, Backup 的 IP 地址为 10.110.10.6 和 10.110.10.7）。
@@ -27,7 +26,7 @@ weight: 3
 
 6. 此外， VRRP 在提高路由可靠性的同时，还简化了主机的路由配置， 在具有多播或广播能力的局域网中，借助 VRRP 能在某台路由器出现故障时仍然提供高可靠的默认链路，有效避免单一链路发生故障后网络中断的问题，并且无需修改主机动态路由协议、路由发现协议等配置信息。
 
-# 试验：
+# 试验
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cv6gcm/1616161487021-bdc76b76-08cd-4480-b281-3230f6e829a3.jpeg)
 
@@ -47,11 +46,11 @@ VRRPbackup 的配置
 
 其余基础配置：
 
-1.  port link-type trunk
+1. port link-type trunk
 
            port trunk allow-pass vlan 10 20       交换机互联端口为trunk切允许相应vlan通过
 
-2.  port link-type access
+2. port link-type access
 
            port default vlan 10                           指定接入层交换机接入设备端口的VLAN以实现隔离
 

@@ -1,7 +1,6 @@
 ---
 title: OpenTelemetry
 linkTitle: OpenTelemetry
-date: 2023-09-26T08:34:00
 weight: 1
 ---
 
@@ -276,4 +275,3 @@ OTel 于 2019 年 5 月，由 [OpenTracing](https://opentracing.io/) 与 OpenCen
 > - [GitHub 项目，open-telemetry/opentelemetry-proto](https://github.com/open-telemetry/opentelemetry-proto)
 
 **OpenTelemetry Protocol(简称 OTLP)**
-

@@ -1,7 +1,6 @@
 ---
 title: PostgreSQL SQL
 linkTitle: PostgreSQL SQL
-date: 2024-11-28T09:07
 weight: 20
 ---
 
@@ -248,7 +247,6 @@ WHERE table_name = 'my_table';
 
 > Notes: 不用写 Schema，因为 information_schema.columns 表中有 table_schema 列来表示表所属的 Schema
 
-
 ## 分页
 
 下面以一个在 Grafana 中的应用为例，利用 LIMIT 和 OFFSET 实现分页查询效果。LIMIT 当作页容量，OFFSET 当作当前页（通过偏移 N 个页容量实现）
@@ -270,11 +268,11 @@ SELECT
 ```
 
 ```sql
-SELECT 
+SELECT
   COUNT(*) OVER() as "总数",
   *
 FROM my_schema.my_table
 WHERE $__timeFilter(create_time)
-LIMIT ${pageSize} 
+LIMIT ${pageSize}
 OFFSET (${currentPage} - 1) * ${pageSize}
 ```

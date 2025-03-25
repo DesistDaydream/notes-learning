@@ -8,12 +8,10 @@ weight: 1
 
 > 参考：
 >
-> - date: "2024-12-11T08:53"
 > - [官方文档，Redis 管理](https://redis.io/topics/admin)
 >   - https://redis.io/docs/latest/operate/oss_and_stack/management/admin/
 
 在生产中配置和管理 Redis 的建议。
-
 
 # 概述
 
@@ -41,6 +39,7 @@ Redis 延迟问题疑难解答
 https://github.com/qishibo/AnotherRedisDesktopManager # GUI 客户端
 
 # 故障处理
+
 ## redis 进程占用 CPU 很高-达到 100
 
 问题说明：

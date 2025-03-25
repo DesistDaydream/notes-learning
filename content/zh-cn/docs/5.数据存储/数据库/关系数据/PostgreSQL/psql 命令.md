@@ -1,7 +1,6 @@
 ---
 title: psql 命令
 linkTitle: psql 命令
-date: 2024-03-06T10:04
 weight: 20
 ---
 
@@ -16,7 +15,7 @@ psql 是 PostgreSQL 的交互式终端，可以看作是 PostgreSQL 的 [REPL](/
 
 psql 中可以执行有多种类型的命令
 
-- [Meta-Commands](#Meta-Commands)
+- [Meta-Commands](#meta-commands)
 - SQL
 
 # Syntax(语法)
@@ -57,4 +56,3 @@ psql 中可以执行有多种类型的命令
 
 - `psql -U postgres -h 127.0.0.1 -c "SELECT pg_reload_conf();"`
 - `/usr/local/pgsql/bin/psql -U pgadmin -d olp_euintf -h 127.0.0.1 -c "SELECT pg_reload_conf();"`
-

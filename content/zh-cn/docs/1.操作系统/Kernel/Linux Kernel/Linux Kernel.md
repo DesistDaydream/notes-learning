@@ -1,7 +1,6 @@
 ---
 title: Linux Kernel
 linkTitle: Linux Kernel
-date: 2024-03-15T21:02
 weight: 1
 ---
 

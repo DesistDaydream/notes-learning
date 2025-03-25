@@ -1,7 +1,6 @@
 ---
 title: IDS/IPS
 linkTitle: IDS/IPS
-date: 2024-06-19T09:00
 weight: 20
 ---
 

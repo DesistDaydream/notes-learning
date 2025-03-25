@@ -1,7 +1,6 @@
 ---
 title: Pod
 linkTitle: Pod
-date: 2024-04-02T10:32
 weight: 1
 ---
 

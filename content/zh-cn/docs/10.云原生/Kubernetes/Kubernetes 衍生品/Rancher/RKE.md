@@ -1,14 +1,13 @@
 ---
 title: RKE
 linkTitle: RKE
-date: 2023-11-23T11:50
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - 官方文档：
 >   - https://rancher.com/docs/rke/latest/en/
 >   - https://rancher2.docs.rancher.cn/docs/rke/_index/
@@ -27,8 +26,8 @@ RKE 与 sealos 实现高可用的方式类似。不同点是 RKE 集群的 node 
 
 - 下载 rke 二进制文件。(在 github 上下载 rke 命令行工具)
 - 创建集群配置文件。
-   - RKE 默认使用名为 cluster.yml 的集群配置文件来确定集群中应该包含哪些节点以及如何部署 Kubernetes。
-   - 下面是一个单节点 cluster.yml 文件示例，
+  - RKE 默认使用名为 cluster.yml 的集群配置文件来确定集群中应该包含哪些节点以及如何部署 Kubernetes。
+  - 下面是一个单节点 cluster.yml 文件示例，
 
 ```bash
 cat > cluster.yml <<

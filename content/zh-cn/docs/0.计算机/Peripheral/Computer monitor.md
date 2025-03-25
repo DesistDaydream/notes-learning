@@ -1,7 +1,6 @@
 ---
 title: Computer monitor
 linkTitle: Computer monitor
-date: 2024-06-15T16:31
 weight: 20
 ---
 
@@ -38,4 +37,3 @@ Adaptive-Sync
 Over Drive(过驱动，简称 OD) # 是一种通过在液晶分子转向过程中提高驱动电压来加快液晶响应速度的方法。开启OD功能可以有效减少GTG和MPRT指标,提高显示流畅度。OD技术常被用于游戏显示器和高清视频电视中。
 
 Motion Picture Response Time(简称 MPRT) # 动态响应时间,用于衡量显示器在显示动态视频时,像素的变化速度。MPRT越低,意味着动态图像的残影和拖影越少,动态对比度越高,显示动态图像效果越好。MPRT是评价显示器游戏和视频体验的重要指标。
-

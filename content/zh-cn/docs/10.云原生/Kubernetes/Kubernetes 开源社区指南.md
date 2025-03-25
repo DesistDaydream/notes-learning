@@ -1,7 +1,6 @@
 ---
 title: "Kubernetes 开源社区指南"
 linkTitle: "Kubernetes 开源社区指南"
-date: "2023-07-19T17:07"
 weight: 20
 ---
 

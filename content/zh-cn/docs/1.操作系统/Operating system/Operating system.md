@@ -1,7 +1,6 @@
 ---
 title: Operating system
 linkTitle: Operating system
-date: 2024-03-16T19:37
 weight: 1
 ---
 

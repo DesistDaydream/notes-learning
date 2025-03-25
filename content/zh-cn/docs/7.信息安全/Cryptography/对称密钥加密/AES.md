@@ -1,7 +1,6 @@
 ---
 title: "AES"
 linkTitle: "AES"
-date: "2023-08-08T23:25"
 weight: 20
 ---
 

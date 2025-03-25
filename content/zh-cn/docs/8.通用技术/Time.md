@@ -1,7 +1,6 @@
 ---
 title: Time
 linkTitle: Time
-date: 2024-03-27T17:32
 weight: 20
 ---
 
@@ -56,5 +55,3 @@ weight: 20
 时间戳转换工具，e.g. https://it-tools.tech/date-converter 、etc. 。可以在 Unix-time 与 Timestamps 之间相互转换。
 
 ![600](https://notes-learning.oss-cn-beijing.aliyuncs.com/time/time_converter.png)
-
-

@@ -1,7 +1,6 @@
 ---
 title: pam_faillock
 linkTitle: pam_faillock
-date: 2024-05-05T21:08
 weight: 20
 ---
 
@@ -138,7 +137,7 @@ auth    optional                        pam_cap.so
 在 common-account 文件中，结尾添加 1 条 pam_faillock.so 模块。效果如下:
 
 ```bash
-account [success=1 new_authtok_reqd=done default=ignore]        pam_unix.so 
+account [success=1 new_authtok_reqd=done default=ignore]        pam_unix.so
 account requisite                       pam_deny.so
 account required                        pam_permit.so
 account required                        pam_faillock.so

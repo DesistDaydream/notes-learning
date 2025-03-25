@@ -1,14 +1,13 @@
 ---
 title: Systemd
 linkTitle: Systemd
-date: 2023-08-01T12:40
 weight: 1
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，systemd/systemd](https://github.com/systemd/systemd)
 > - [官网](https://systemd.io/)
 > - [Systemd 中文手册, 金步国](http://www.jinbuguo.com/systemd/systemd.index.html)
@@ -64,7 +63,7 @@ Systemd 将各种操作系统启动和运行的相关对象，抽象多种类型
 # Systemd 关联文件与配置
 
 > 参考：
-> 
+>
 > - [Manual(手册)，systemd-system.conf(5)](<https://man7.org/linux/man-pages/man5/systemd-system.conf.5.html>)
 
 **/etc/systemd/**
@@ -134,7 +133,7 @@ Units 配置就是指 Unit File。Systemd 会从多个目录中加载 Unit File�
 # 弃用的 System V
 
 > 参考：
-> 
+>
 > - [GitHub 项目，fedora-sysv/initscripts](https://github.com/fedora-sysv/initscripts)
 
 service、chkconfig、etc. initscripts 相关命令已过时不再推荐使用。

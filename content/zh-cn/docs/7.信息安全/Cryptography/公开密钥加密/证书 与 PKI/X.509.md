@@ -1,7 +1,6 @@
 ---
 title: X.509
 linkTitle: X.509
-date: 2024-01-14T18:45
 weight: 2
 ---
 

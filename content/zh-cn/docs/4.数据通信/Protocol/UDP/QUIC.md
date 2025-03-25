@@ -1,7 +1,6 @@
 ---
 title: QUIC
 linkTitle: QUIC
-date: 2024-10-12T10:12
 weight: 20
 ---
 

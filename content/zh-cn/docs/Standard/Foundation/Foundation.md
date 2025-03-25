@@ -1,7 +1,6 @@
 ---
 title: Foundation
 linkTitle: Foundation
-date: 2023-12-22T16:05
 weight: 1
 ---
 
@@ -139,7 +138,6 @@ Rust 基金会是一个独立的非营利组织，负责管理 Rust 编程语言
 ![图片](https://mmbiz.qpic.cn/mmbiz_png/dkwuWwLoRKibXqr07Yic6TbR3YbXSHicMWAhM8DPmFCNoCPFQxib5VK3DyfYibkuIOPFQd3yleN0nvqRa5XibbeHhaDg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
 
 各大基金会具体的运作模式是怎样、各自又有哪些代表项目？基金会的价值体现几何......欢迎大家畅所欲言（ps：理性讨论）~
-
 
 #### 8月 eBPF 基金会成立
 

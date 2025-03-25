@@ -1,7 +1,6 @@
 ---
 title: Docker
 linkTitle: Docker
-date: 2024-07-24T16:43
 weight: 1
 ---
 

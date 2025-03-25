@@ -1,7 +1,6 @@
 ---
 title: compose CLI
 linkTitle: compose CLI
-date: 2023-11-03T22:24
 weight: 3
 ---
 

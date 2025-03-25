@@ -1,7 +1,6 @@
 ---
 title: Kernel
 linkTitle: Kernel
-date: 2024-04-20T11:12
 weight: 1
 ---
 

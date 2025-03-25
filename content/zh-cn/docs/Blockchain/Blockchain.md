@@ -1,7 +1,6 @@
 ---
 title: Blockchain
 linkTitle: Blockchain
-date: 2023-12-22T15:57
 weight: 1
 ---
 
@@ -53,11 +52,11 @@ NFT 交易平台
 
 HECO # 火币的链
 
-  - 火币的 区块链浏览器 https://hecoinfo.com/
+- 火币的 区块链浏览器 https://hecoinfo.com/
 
 Etherscan # 以太坊的链
 
-  - 以太坊的 区块链浏览器 https://etherscan.io/
+- 以太坊的 区块链浏览器 https://etherscan.io/
 
 StarkNet
 
@@ -116,6 +115,7 @@ StarkNet
 填入地址后，代币符号与小数精度将会自动出现
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/lddbaw/1647498857327-a04a31ff-ff5c-4e32-8809-8bcc8582bdd2.png)
+
 # 交易
 
 TODO: 如何将自己转移至交易所？手续费怎么算？转移至交易所后兑换成 USDT 出售。

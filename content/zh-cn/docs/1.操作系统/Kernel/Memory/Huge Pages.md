@@ -1,7 +1,6 @@
 ---
 title: Huge Pages
 linkTitle: Huge Pages
-date: 2024-05-22T14:26
 weight: 20
 ---
 
@@ -26,7 +25,7 @@ HugePages 可以减少页表开销、减轻 TLB 压力并提高 TLB 的命中率
 Linux Kernel 中有两种机制可以实现 物理内存 与 Huge Pages 的映射
 
 - **HugeTLB filesystem** # 大页文件系统，简称 **[Hugetlbfs](#HugeTLB%20FS)**。在此文件系统中创建的文件，数据驻留在内存中并使用大页进行映射。
-- **Transparent HugePages** # 透明大页，简称 [**THP**](#THP)。
+- **Transparent HugePages** # 透明大页，简称 [**THP**](#thp)。
 
 # HugeTLB FS
 
@@ -99,5 +98,3 @@ mount -t hugetlbfs \
 > 参考:
 >
 > - [Linux Kernel 文档，管理员指南 - 内存管理 - transhuge](https://www.kernel.org/doc/html/latest/admin-guide/mm/transhuge.html)
-
-

@@ -1,14 +1,13 @@
 ---
 title: Event
 linkTitle: Event
-date: 2023-11-20T21:32
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [网道，Javascript 教程-事件](https://wangdoc.com/javascript/events/index.html)
 
 **Event(事件)** 的本质是程序各个组成部分之间的一种通信方式，也是异步编程的一种实现。DOM 支持大量的事件，
@@ -111,7 +110,7 @@ divElement.onclick = function (prop) {
 
 - **offsetX 和 offsetY** # 相对于触发事件元素的坐标
   - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/nzci2k/1641961872393-217cf16a-78e5-449c-9e33-d91f52c6dd96.png)
-- **client 和 clientY **# 相对于浏览器可视窗口的坐标
+- **client 和 clientY**# 相对于浏览器可视窗口的坐标
   - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/nzci2k/1641961917878-40b8b649-3846-4f31-81f1-9e98e407f320.png)
 - **pageX 和 pageY** # 相对于页面文档流的坐标
   - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/nzci2k/1641961945785-c13cc660-5702-444f-b6a3-2d21a341341f.png)

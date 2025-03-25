@@ -1,7 +1,6 @@
 ---
 title: 基于 DNS 的 Kubernetes 服务发现的规范
 linkTitle: 基于 DNS 的 Kubernetes 服务发现的规范
-date: 2023-12-20T13:16
 weight: 20
 ---
 

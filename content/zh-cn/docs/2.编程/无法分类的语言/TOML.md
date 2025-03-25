@@ -1,7 +1,6 @@
 ---
 title: TOML
 linkTitle: TOML
-date: 2024-04-07T08:48
 weight: 20
 ---
 
@@ -358,4 +357,3 @@ color = "gray"
 /clients/data
 /clients/hosts
 ```
-

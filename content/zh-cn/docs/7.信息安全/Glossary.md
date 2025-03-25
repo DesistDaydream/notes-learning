@@ -1,14 +1,13 @@
 ---
 title: "Glossary"
 linkTitle: "Glossary"
-date: "2024-01-14T20:30"
 weight: 1
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [RFC 4949(互联网安全术语)](https://datatracker.ietf.org/doc/html/rfc4949)
 
 **Crypto(密码学)** # 算是 **Cryptographic** 的前缀简写吧
@@ -89,7 +88,6 @@ weight: 1
 **Information security management system(信息安全管理系统，简称 ISMS)**
 
 - https://en.wikipedia.org/wiki/Information_security_management
-
 
 | 英文                 | 中文   | 缩写与简称 | 链接                                                       | 解释  |
 | ------------------ | ---- | ----- | -------------------------------------------------------- | --- |

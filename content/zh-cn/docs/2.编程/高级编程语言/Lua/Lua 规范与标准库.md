@@ -1,8 +1,7 @@
 ---
 title: Lua 规范与标准库
-weight: 20
 linkTitle: Lua 规范与标准库
-date: 2023-10-16T09:07
+weight: 20
 ---
 # 概述
 
@@ -42,6 +41,7 @@ Lua的关键字有下面几个，这些关键字不能作为常量或者变量�
 > 参考：
 
 一般来说，以下划线开头连接一串大写字母的名字（比如_VERSION）被保留用于Lua内部全局变量,效果如下：
+
 ```lua
 ~]# lua
 Lua 5.1.4  Copyright (C) 1994-2008 Lua.org, PUC-Rio
@@ -52,7 +52,7 @@ Lua 5.1
 # Lua 标准库
 
 > 参考：
-> 
+>
 > - [lua 参考手册，6 - 标准库](https://www.lua.org/manual/5.4/manual.html#6)
 
 ## 数据类型
@@ -84,7 +84,7 @@ Note：如果想要删除一个变量，只需要将`nil`赋值给变量即可
 
 也就是说，当且当一个变量不等于`nil`时，这个变量即存在
 
-使用`local`关键字即可将变量声明为局部变量，效果如下:`local b = 5 `
+使用`local`关键字即可将变量声明为局部变量，效果如下:`local b = 5`
 
 ## table
 
@@ -130,9 +130,9 @@ Lua 中最基本的结构是 table，所以需要用 table 这个数据结构来
 Lua 中的表不仅在某种意义上是一种对象。像对象一样，表也有状态（成员变量）；也有与对象的值独立的本性，特别是拥有两个不同值的对象（table）代表两个不同的对象；一个对象在不同的时候也可以有不同的值，但他始终是一个对象；与对象类似，表的生命周期与其由什么创建、在哪创建没有关系。表也可以有自己的 Method(方法)（用 C++ 的叫法就叫：成员函数）：
 
 ```lua
-Account = {balance = 0}  
-function Account.withdraw (v)  
-    Account.balance = Account.balance - v  
+Account = {balance = 0}
+function Account.withdraw (v)
+    Account.balance = Account.balance - v
 end
 
 -- 然后可以像这样调用 Account 的 withdraw 方法

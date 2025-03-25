@@ -1,7 +1,6 @@
 ---
 title: Deno
 linkTitle: Deno
-date: 2024-03-15T13:06
 weight: 20
 ---
 
@@ -72,6 +71,7 @@ TODO: Deno 从哪里下载 npm 模块？从 https://registry.npmjs.org/？ 比�
 > 参考：
 >
 > - [官方文档，运行时-手册-CLI 命令参考](https://docs.deno.com/runtime/manual/tools/)
+>
 ## compile
 
 https://docs.deno.com/runtime/manual/tools/compiler

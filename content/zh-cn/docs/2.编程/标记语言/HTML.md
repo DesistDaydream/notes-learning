@@ -1,7 +1,6 @@
 ---
 title: HTM
 linkTitle: HTML
-date: 2023-11-17T17:35
 weight: 1
 ---
 

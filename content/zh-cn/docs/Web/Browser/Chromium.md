@@ -1,7 +1,6 @@
 ---
 title: Chromium
 linkTitle: Chromium
-date: 2024-01-06T14:49
 weight: 2
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: Containerization
 linkTitle: Containerization
-date: 2024-02-27T08:57
 weight: 1
 ---
 
@@ -92,6 +91,7 @@ kata 是自带内核的虚拟机型的容器 runtime，官方网址：<https://k
 ### Reference(引用)
 
 > 参考：
+>
 > - <https://docs.docker.com/engine/reference/commandline/images/>
 
 在互联网上，我们通过 **Reference(引用)** 表示唯一一个 Image，就像 URL 之于 HTTP 的 Resource 一样，**Reference 就是 Image 的 URL**。
@@ -100,7 +100,7 @@ kata 是自带内核的虚拟机型的容器 runtime，官方网址：<https://k
 
 **Scheme://Registry/\[Namespace/]Repository:{Tag|Digest}**
 
-- **Scheme:// **# 访问 Registry 时所使用的协议，比如 HTTP、HTTPS
+- **Scheme://**# 访问 Registry 时所使用的协议，比如 HTTP、HTTPS
 - **Registry(注册中心)** # 提供 Image 管理服务的提供商，通常是一个域名
   - 现阶段常见的 Registry 有：
     - docker.io
@@ -172,4 +172,3 @@ Image 与 Container 的关系，就好比是程序与进程之间的关系。Ima
 **Rootless Containers(无根容器)** 是指非特权用户能够创建、运行和以各种方式管理容器。这个术语还包括围绕容器的各种工具，这些工具也可以作为非特权用户运行。
 
 运行 Rootless Containers 通常需要弃用 CGroupV2 来限制 CPU、内存、I/O、PID 这些资源的消耗。
-

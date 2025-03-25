@@ -1,7 +1,6 @@
 ---
 title: Snort Rule body
 linkTitle: Snort Rule body
-date: 2024-05-06T13:32
 weight: 20
 ---
 

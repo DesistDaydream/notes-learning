@@ -1,7 +1,6 @@
 ---
 title: Kubernetes
 linkTitle: Kubernetes
-date: 2019-06-14T09:28:00
 weight: 1
 ---
 

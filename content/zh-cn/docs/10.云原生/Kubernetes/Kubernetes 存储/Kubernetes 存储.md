@@ -1,7 +1,6 @@
 ---
 title: Kubernetes 存储
 linkTitle: Kubernetes 存储
-date: 2023-12-20T13:31
 weight: 1
 ---
 

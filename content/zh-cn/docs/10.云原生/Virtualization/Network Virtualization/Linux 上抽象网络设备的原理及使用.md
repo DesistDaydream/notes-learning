@@ -1,7 +1,6 @@
 ---
 title: Linux 上抽象网络设备的原理及使用
 linkTitle: Linux 上抽象网络设备的原理及使用
-date: 2024-04-19T13:55
 weight: 20
 ---
 
@@ -161,4 +160,4 @@ vconfig set_ingress_map \[VLAN DEVICE NAME] \[SKB_PRIORITY] \[VLAN_QOS]
 - [Virtual networking in Linux](http://www.ibm.com/developerworks/linux/library/l-virtual-networking)，以虚拟化应用为中心讲述主流的虚拟网络技术，主要以 openvswith 为例。
 - [Linux BRIDGE-STP-HOWTO](http://tldp.org/HOWTO/BRIDGE-STP-HOWTO/index.html)，Linux 中的 bridge 设备使用说明。
 - [Linux Kernel Networking (Network Overview) by Rami Rosen](http://www.linuxfoundation.org/collaborate/workgroups/networking/networkoverview)，Linux 内核里的各种网络概念的含义，目的及用法简单介绍。
-- 在 [developerWorks Linux ](http://www.ibm.com/developerworks/cn/linux/)专区寻找为 Linux 开发人员（包括 [Linux 新手入门](http://www.ibm.com/developerworks/cn/linux/newto/)）准备的更多参考资料。
+- 在 [developerWorks Linux](http://www.ibm.com/developerworks/cn/linux/)专区寻找为 Linux 开发人员（包括 [Linux 新手入门](http://www.ibm.com/developerworks/cn/linux/newto/)）准备的更多参考资料。

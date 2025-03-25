@@ -1,14 +1,13 @@
 ---
 title: Cookie AND Session
 linkTitle: Cookie AND Session
-date: 2023-12-19T12:15
 weight: 2
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [MDN，参考-HTTP-使用 HTTP cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
 
 # Cookie
@@ -28,7 +27,9 @@ Cookie 的用途
 
 - 保持用户登陆状态，由于不够安全，有其他方式替代，比如 JWT 等。
 - 京东未登录的状态下，使用 Cookie 存储购物车中的物品的
+
 > 淘宝不是这么实现的，淘宝必须登录才能浏览详细商品
+
 - 上一次连接时打开的页面
 - 与某个账号关联
 - 等等

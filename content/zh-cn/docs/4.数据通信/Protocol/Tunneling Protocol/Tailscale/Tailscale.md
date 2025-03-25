@@ -1,7 +1,6 @@
 ---
 title: Tailscale
 linkTitle: Tailscale
-date: 2024-03-21T08:12
 weight: 1
 ---
 
@@ -77,4 +76,3 @@ Windows
 
 - **./Logs/** # 程序运行日志
 - 其他文件及其功能与 Linux 下的 /var/lib/tailscale/ 目录相同
-
