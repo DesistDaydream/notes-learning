@@ -10,7 +10,6 @@ weight: 1
 >
 > - [官方文档，存储](https://grafana.com/docs/loki/latest/storage/)
 > - [官方文档，运维 - 存储](https://grafana.com/docs/loki/latest/operations/storage/)
-> - [官方文档，运维 - 存储 - BoltDB - Shipper](https://grafana.com/docs/loki/latest/operations/storage/boltdb-shipper/)
 
 与其他日志记录系统不同，Loki 是基于仅索引日志的元数据的想法而构建的。从 [Loki 的数据模型](/docs/6.可观测性/日志系统/Loki/Storage(存储)/Data%20Model(数据模型).md Model(数据模型).md)可知，日志是根据标签进行定位的。 日志数据本身会被压缩成 Chunks，并存储在本地的文件系统中；并且 Loki 还提供了一个 Index 数据，用来根据索引定位日志数据。小索引和高度压缩的 Chunks 简化了操作，并显着降低了 Loki 的成本。
 

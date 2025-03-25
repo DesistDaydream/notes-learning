@@ -20,7 +20,7 @@ https://github.com/binary-husky/gpt_academic # 为 GPT/GLM 等 LLM 大语言模�
 
 **NovelAI** # https://novelai.net/ 写故事、作图
 
-[即时通信](docs/Utils/即时通信/即时通信.md) 中的 Chatbot 还有很多有趣的 AI 项目
+[即时通信](/docs/Utils/即时通信/即时通信.md) 中的 Chatbot 还有很多有趣的 AI 项目
 
 ## IDE 工具
 

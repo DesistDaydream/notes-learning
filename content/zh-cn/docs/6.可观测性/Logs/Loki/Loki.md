@@ -9,10 +9,7 @@ weight: 1
 > 参考：
 >
 > - [GitHub 项目，grafana/loki](https://github.com/grafana/loki)
-> - [官方文档，基础-概述](https://grafana.com/docs/loki/latest/fundamentals/overview/)
-> - [阳明博客](https://www.qikqiak.com/post/grafana-loki-usage/)
-> - [知乎文章](https://www.zhihu.com/people/quchenyuan/posts)
-> - <https://wsgzao.github.io/post/loki/>
+> - [官方文档，基础 - 概述](https://grafana.com/docs/loki/latest/fundamentals/overview/)
 
 Loki 是受 Prometheus 启发的水平可扩展，高度可用的多租户日志聚合系统。它的设计具有很高的成本效益，并且易于操作。它不索引日志的内容，而是为每个日志流设置一组标签。
 与其他日志聚合系统相比，Loki 有以下特点：
@@ -37,7 +34,7 @@ Loki 像 Prometheus 一样，但是是用于处理日志的：我们更喜欢基
 
 > 参考：
 >
-> - [官方文档，运维-可观测性](https://grafana.com/docs/loki/latest/operations/observability/)
+> - [官方文档，运维 - 可观测性](https://grafana.com/docs/loki/latest/operations/observability/)
 
 Loki 和 Promtail 都在 `/metrics` 端点上公开了指标，该端点暴露了 [OpenMetrics](/docs/6.可观测性/Metrics/监控系统概述/OpenMetrics.md) 格式的指标。
 
@@ -48,6 +45,10 @@ Loki 存储库具有一个[混合包](https://github.com/grafana/loki/tree/main/
 ## Multi Tenancy(多租户)
 
 Loki 支持多租户，以使租户之间的数据完全分离。当 Loki 在多租户模式下运行时，所有数据（包括内存和长期存储中的数据）都由租户 ID 分区，该租户 ID 是从请求中的 `X-Scope-OrgID` HTTP 头中提取的。当 Loki 不在多租户模式下时，将忽略 Header 头，并将租户 ID 设置为 `fake`，这将显示在索引和存储的块中。
+
+# 学习资料
+
+[公众号 - gopher云原生，浅析 Grafana Loki 日志聚合系统](https://mp.weixin.qq.com/s/kGY_zNhlXjnEAgqRUccMtg)
 
 # Loki 架构概述
 

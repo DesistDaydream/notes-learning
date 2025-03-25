@@ -35,45 +35,18 @@ https://clickhouse.com/docs/en/guides/sre/network-ports
 | 9281  | Recommended Secure SSL ClickHouse Keeper port                                                                                    |
 | 42000 | Graphite default port                                                                                                            |
 
+# 学习资料
+
+[B 站 - 蜂蜜柠檬水HLN，带你快速认识 ClickHouse 数据库 | 了解 OLTP 与 OLAP](https://www.bilibili.com/video/BV1vd4FeSErh)
+
+[B 站，WordScenesTV - 【clickhouse】clickhouse集群架构、部署和使用](https://www.bilibili.com/video/BV1qz421h7BX)
+
 # Engine
 
-> 参考：
->
-> - [官方文档，SQL 参考 - 引擎](https://clickhouse.com/docs/en/engines)
-> - [流式数据同步：一种PostgreSQL到ClickHouse的高效数据同步方案](https://juejin.cn/post/7375275474006016011)
+**[Engine](docs/5.数据存储/数据库/关系数据/ClickHouse/Engine.md)(引擎)** 是 ClickHouse 实现数据处理功能的核心抽象。数据库 以及 表 都由各种各样的 Engine 实现
 
-- Database Engine(数据库引擎)
-- Table Engine(表引擎)
-
-## Database Engine
-
-## Table Engine
-
-Table Engine(表引擎) 本质上是用来定义表的类型。ClickHouse 的表甚至可以通过 Engine 从其他数据库中读取数据（e.g. 直接读取 PostgreSQL 中某个表的数据）
-
-比如用下面找个创建 Table 的语法举例：
-
-```sql
-CREATE TABLE my_database.my_table (
-  `id` UInt64,
-  `command_source` Nullable(Int64),
-  `source_system` String,
-  `version` String,
-  `command_id` String,
-)
-ENGINE = PostgreSQL('10.53.192.45:5432', 'PG_Database', 'PG_Table', 'PG_Username', 'PG_Password', 'CH_ClusterName')
-```
-
-创建完成后，我们在 CH 中查询的 my_database.my_table 表中的数据实际上是直接获取的 PostgreSQL 中的 PG_Database.PG_Table 表的数据。
-
-Table Engine 可以决定：
-
-- How and where data is stored, where to write it to, and where to read it from.数据如何存储、在何处存储、将其写入何处以及从何处读取。
-- Which queries are supported, and how.支持哪些查询以及如何支持。
-- Concurrent data access.并发数据访问。
-- Use of indexes, if present.使用索引（如果存在）。
-- Whether multithread request execution is possible.是否可以执行多线程请求。
-- Data replication parameters.数据复制参数。
+- **Database Engine(数据库引擎)**
+- **Table Engine(表引擎)**
 
 # 关联文件与配置
 
@@ -85,7 +58,9 @@ https://clickhouse.com/docs/en/operations/settings
 
 - **./config.xml** # ClickHouse Server 运行配置。
 - **./config.d/** # 配置文件可以拆分到该目录，程序运行时会将该目录下的文件合并到 config.xml 主配置文件
-- **./users.xml** #
+- **./metrika.xml** # 默认的 include_from 文件。该文件中的配置用来替换主配置文件 config.xml 中的配置。
+    - e.g. config.xml 中有 `<remote_servers incl="clickhouse_remote_server"/>`，那么 metrika.xml 中的 `<clickhouse_remote_servers>` 部分配置就会作为 config.xml 中的 remote_servers。
+- **./users.xml** # e.g. 认证信息、etc. 相关配置
 - **./users.d/** # 配置文件可以拆分到该目录，程序运行时会将该目录下的文件合并到 users.xml 主配置文件
 
 # ClickHouse 部署
@@ -124,3 +99,69 @@ https://github.com/metrico/promcasa 通过 ClickHouse 的 SQL，将查询结果�
 https://clickhouse.com/docs/en/interfaces/overview
 
 [可视化接口](https://clickhouse.com/docs/en/interfaces/third-party/gui)
+
+# Cluster
+
+**Shard** # 数据的分片
+
+**Replica** # 每个分片的副本
+
+**ClickHouseKeeper** # ClickHouse 集群的协调系统，通知 Shard 的副本关于状态变化，使用 RAFT [共识算法](docs/3.集群与分布式/分布式算法/共识算法.md)实现。ClickHouseKeeper 必须单数节点，最少 3 个来保证选举。
+
+- ClickHouseKeeper 的逻辑也在 ClickHouse 程序的逻辑中，所以可以有两种运行方式
+    - 与 ClickHouse 一起运行，作为其内部逻辑
+    - 独立运行
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/clickhouse/20250325154658383.png)
+
+
+---
+
+比如
+
+通过如下 SQL 可以查看集群的拓扑结构：
+
+```sql
+SELECT cluster, shard_num, replica_num, host_name, port
+FROM system.clusters;
+```
+
+结果像这样
+
+| cluster    | shard_num | replica_num | host_name | port |
+| ---------- | --------- | ----------- | --------- | ---- |
+| my_cluster | 1         | 1           | host1     | 9000 |
+| my_cluster | 1         | 2           | host2     | 9000 |
+| my_cluster | 2         | 1           | host3     | 9000 |
+| my_cluster | 2         | 2           | host4     | 9000 |
+
+这种结果的配置来源于下面这种配置：
+
+```xml
+<remote_servers>
+  <my_cluster>
+    <shard>
+      <replica>
+        <host>host1</host>
+        <port>9000</port>
+      </replica>
+      <replica>
+        <host>host3</host>
+        <port>9000</port>
+      </replica>
+    </shard>
+    <shard>
+      <replica>
+        <host>host2</host>
+        <port>9000</port>
+      </replica>
+      <replica>
+        <host>host4</host>
+        <port>9000</port>
+      </replica>
+    </shard>
+  </my_cluster>
+</remote_servers>
+```
+
+这个集群共两个分片，将数据分别保存在 host1/host3 和 host2/host4 上，每个分片都有一个自己的备份 

@@ -146,6 +146,7 @@ Certificate:
 ### Chain of trust(信任链)
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wlyw54/1638252283465-124564d9-4f52-4812-9cfb-484fb54b599b.png)
+
 CA 使用自己的私钥签一个根证书，然后再为下级 Issuer 签署证书，下级 Issuer 还可以为其自身的下级 Issuer 签署证书。这么层层签署，可以形成一个树形结构的信任链。
 
 现在假如 A 是 CA，签署证书给 B，C 想访问 B 提供的服务，C 在访问时，如何确保 B 就是 B 呢？~这就是 TLS/SSL 协议所要做的事情。总结一下就是 C 首先要获取 A 的证书，这是访问 B 时，就可以使用 A 的证书验证 B 的证书。并且，由于 A 的证书是用其私钥签名的，只要 A 签证书的私钥(即 CA 的私钥)不泄露，整个信任链就是可信的。
@@ -182,21 +183,20 @@ CSR 最常见的格式是 [PKCS](https://en.wikipedia.org/wiki/PKCS)＃10 规范
 CSR 中应包含
 
 - **名字** # 申请人的识别信息(比如 X.509 规范中的 Subject 字段)
-
 - **公钥** # 从申请人密钥中提取出的公钥
-
 - **签名** #
-
 - **其他信息** #
 
 # 证书的验证过程
 
 CA 收到一个 CSR 并验证签名之后，接下来需要确认证书中绑定的 name 是否真的 是这个 subscriber 的 name。这项工作很棘手。 证书的核心功能是**能让 RP 对 subscriber 进行认证**。因此， 如果一个**证书都还没有颁发，CA 如何对这个 subscriber 进行认证呢**？
+
 答案是：分情况。
 
 ## Web PKI 证明身份过程
 
 Web PKI 有三种类型的证书，它们**最大的区别就是如何识别 subscriber**， 以及它们所用到的 **identity proofing 机制**。
+
 这三种证书是：
 
 1. domain validation (DV，域验证)DV 证书绑定的是 **DNS name**，CA 在颁发时需要验证的这个 domain name 确实是由该 subscriber 控制的。证明过程通常是通过一个简单的流程，例如
@@ -222,7 +222,9 @@ Web PKI 有三种类型的证书，它们**最大的区别就是如何识别 sub
 ## Internal PKI 证明身份过程
 
 上面是 Web PKI 的身份证明过程，再来看 internal PKI 的身份证明过程。
+
 实际上，用户可以使用**任何方式**来做 internal PKI 的 identity proofing， 并且效果可能比 Web PKI 依赖 DNS 或邮件方式的效果更好。
+
 乍听起来好像很难，但其实不难，因为可以**利用已有的受信基础设施**： 用来搭建基础设施的工具，也能用来为这些基础设施之上的服务创建和证明安全身份。
 
 - 如果用户已经信任 Chef/Puppet/Ansible/Kubernetes，允许它们将代码放到服务器上， 那也应该信任它们能完成 identity attestations

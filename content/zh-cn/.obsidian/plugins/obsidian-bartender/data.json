@@ -2097,7 +2097,9 @@
     "docs/5.数据存储/数据库/关系数据/ClickHouse": [
       "docs/5.数据存储/数据库/关系数据/ClickHouse/_index.md",
       "docs/5.数据存储/数据库/关系数据/ClickHouse/ClickHouse.md",
-      "docs/5.数据存储/数据库/关系数据/ClickHouse/ClickHouse SQL.md"
+      "docs/5.数据存储/数据库/关系数据/ClickHouse/Engine.md",
+      "docs/5.数据存储/数据库/关系数据/ClickHouse/ClickHouse SQL.md",
+      "docs/5.数据存储/数据库/关系数据/ClickHouse/ClickHouse MGMT.md"
     ],
     "docs/5.数据存储/数据库/关系数据/MySQL": [
       "docs/5.数据存储/数据库/关系数据/MySQL/_index.md",
