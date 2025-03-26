@@ -194,7 +194,7 @@ increase(http_requests_total{job="apiserver"}[5m])
 
 ```bash
 rate(http_requests_total[5m])
-结果：
+结果:
 {code="200",handler="label_values",instance="120.77.65.193:9090",job="prometheus",method="get"} 0
 {code="200",handler="query_range",instance="120.77.65.193:9090",job="prometheus",method="get"}  0
 {code="200",handler="prometheus",instance="120.77.65.193:9090",job="prometheus",method="get"}   0.2

@@ -8,7 +8,7 @@ weight: 3
 
 > 参考：
 >
-> - [官方文档，配置](https://grafana.com/docs/loki/latest/configuration/)
+> - [官方文档，配置](https://grafana.com/docs/loki/latest/configure/)
 > - [官方文档，告警规则和记录规则](https://grafana.com/docs/loki/latest/rules/)
 
 Loki 可以通过两种方式配置 Loki 的运行时行为
@@ -56,28 +56,25 @@ Loki 可以通过两种方式配置 Loki 的运行时行为
 
 **schema_config**([schema_config](#schema_config)) # 配置储存 Chunk 与 Index 类型数据的模式，以及指定储存这些数据所用的存储类型。
 
-**storage_config**([storage_config](#storage_config)) # 为 schema_config 字段指定的存储类型配置详细信息。比如 数据存储位置、连接存储的方式 等等。
+**storage_config**([storage_config](#storage_config)) # 定义各类存储的信息。e.g. 如何连接存储、存储储存数据的路径、etc.
 
-- 注意：该字段的配置会根据 schema_config 字段中指定的信息来选择可用的字段。
-- 未来将会逐步被 common.storage 字段代替
+> 不过随着版本的更迭，从 2.4 版本开始，`storage_config` 字段会逐渐被 `common.storage` 字段顶替。
 
 **######## 组件配置 ########**
 
 **distributor**([distributor](#distributor)) # Distributor(分配器) 组件的配置
 
-**querier**([querier](#querier)) # Querier(查询器) 组件的配置.
-
 **ingester_client**([ingester_client](#ingester_client)) # 配置 distributor 如何连接到 ingesters
 
 **ingester**([ingester](#ingester)) # Ingester(摄取器) 组件的配置。还可以配置摄取器如何将自己注册到哈希环上
+
+**querier**([querier](#querier)) # Querier(查询器) 组件的配置.
 
 **frontend**([frontend](#frontend)) # Query Frontend(查询前端) 组件的配置
 
 **ruler**([ruler](#ruler)) # Ruler(规则器) 组件的配置
 
 **compactor**([compactor](#compactor)) # Compactor(压缩器) 组件的配置
-
-**table_manager**([table_manager](#table_manager)) # Table Manager(表管理器) 组件的配置，以规定数据保留的行为
 
 **######## 其他配置 ########**
 
@@ -127,7 +124,7 @@ Loki 不同组件共享使用的存储配置。该字段配置存储信息，用
 - **gcs**(GCS_Store_Config)
 - **swift**(Swift_Store_config)
 - **filesystem**([OBJECT](https://grafana.com/docs/loki/next/configuration/#filesystem)) # 将本地文件系统作为 Loki 组件存储数据的地方
-  - **chunks_directory**(STRING) # 存储 chunks 数据的目录
+  - **chunks_directory**(STRING) # 存储 Chunks 和 Index 数据的目录
   - **rules_directory**(STRING) # 存储 Loki Rules 文件的目录
 - **bos**(BOS_Storage_config) # Baidu Object Storage(百度对象存储) 的信息。
 - **hedging**([OBJECT](https://grafana.com/docs/loki/next/configuration/#hedging)) #
@@ -151,23 +148,15 @@ common:
       store: memberlist
 ```
 
-## 配置存储 chunk 与 index 数据的方式
+## schema_config
 
-影响 chunk 与 index 两类数据如何存储的最重要配置只有两个字段：`schema_config` 和 `storage_config`。其他字段都是对存储方式的补充。
+配置存储 chunk 与 index 两类数据的 schema(模式)，定义储存数据的模式，及使用的存储类型。该字段用途详见 [Loki 存储](/docs/6.可观测性/Logs/Loki/Storage(存储)/Storage(存储).md)
 
-**schema_config**([schema_config](#schema_config)) # 定义储存数据的模式，及使用的存储类型
+> 影响 chunk 与 index 两类数据如何存储的最重要配置只有两个字段：`schema_config` 和 `common.storage`。其他字段都是对存储方式的补充。
 
-**storage_config**([storage_config](#storage_config)) # 定义各类存储的信息。e.g. 如何连接存储、存储储存数据的路径、etc.
+**configs**(\[][configs](#configs)) # schema_config 下只有一个单独的 `configs` 字段，其实用 period_config 更准确（官方文档已经定了这部分配置称为 period_config）。`configs` 字段下这是一个数组，每个数组都可以用来定义"某一时间段 loki 存储所使用的 schema"。所以，`configs` 字段用来定义从哪个时间段开始使用哪种模式将 index 与 chunk 类型的数据存储到哪里去。
 
-> 不过随着版本的更迭，从 2.4 版本开始，`storage_config` 字段会逐渐被 `common.storage` 字段顶替。
-
-### schema_config
-
-配置存储 chunk 与 index 两类数据的 schema(模式)。该字段用途详见 [Loki 存储](/docs/6.可观测性/Logs/Loki/Storage(存储)/Storage(存储).md)
-
-**configs**(\[][configs](#configs)) # schema_config 下只有一个单独的 `configs` 字段，其实用 period_config 更准确。。。`configs` 字段下这是一个数组，每个数组都可以用来定义"某一时间段 loki 存储所使用的 schema"。所以，`configs` 字段用来定义从 哪个时间段开始使用哪种模式将 index 与 chunk 类型的数据存储到哪里去。
-
-#### configs
+### configs
 
 **from**(STRING) # 该模式的起始时间。时间格式: YYYY-MM-DD
 
@@ -177,7 +166,7 @@ common:
 
 **store**(STRING) # 存放 Index 数据的存储类型。可用的值有：tsdb, boltdb-shipper
 
-**object_store**(STRING) # 存放 Chunks 数据的存储类型。可用的值有：aws (alias s3), azure, gcs, alibabacloud, bos, cos, swift, filesystem, named_store(refer to named_stores_config)
+**object_store**(STRING) # 存放 Chunks 数据的存储类型。可用的值有：filesystem, etc.
 
 **index**(Object) # 指定储存 Index 数据的行为。
 
@@ -191,9 +180,9 @@ common:
 
 注意: `store` 与 `object_store` 字段的值，将会影响 `storage_config` 字段下可以使用的字段。比如 store 为 boltdb-shipper，则 storage_config 中只有 boltdb-shipper 字段可以配置，其他无法配置，配置了就会报错。Loki 2.4 版本之后，推荐使用 `common.storage` 字段。
 
-### storage_config
+## storage_config
 
-> Loki 2.4 版本之后，推荐使用 `common.storage` 字段。
+> Loki 2.4 版本之后，出现了 `common.storage` 字段，可能是要替换掉该字段？
 
 对 `schema_config` 字段配置的扩充。主要用来定义储存 index 和 chunks 类型数据的存储的行为。比如 连接存储的方式、存储储存数据的位置、etc. 信息。
 
@@ -203,14 +192,6 @@ e.g. 在 schema_config.configs.store 中使用 aws，那么 storage_config 中�
 
 **aws**([s3](#s3)) # 仅当 schema_config.configs.object_store 为 aws 时，才配置该字段。
 
-**boltdb_shipper**(Ojbect) # 仅当 schema_config.configs.store 为 boltdb_shipper 时，才配置该字段
-
-- **active_index_directory**(STRING) #
-- **cache_location**(STRING) #
-- **cache_ttl**(DURATION) # `默认值：24h`
-- **shared_store**(STRING) # 用于保存 BoltDB 文件的存储。
-  - 在 2.4 版本之后，若 `common.storage` 定义了 s3，且 `schema_config.object_storage` 定义为 s3，则这个字段的值也为 s3。也就是说，Index 数据也会存到 S3。这个说法待验证。
-
 **tsdb_shipper**(OBJECT) # 仅当 schema_config.configs.object_store 为 tsdb 时，才配置该字段
 
 - **active_index_directory**(STRING) # Ingester 组件写入索引文件的目录，然后由 shipper 将其上传到配置的存储。目录名通常为: tsdb-shipper-active
@@ -218,11 +199,36 @@ e.g. 在 schema_config.configs.store 中使用 aws，那么 storage_config 中�
 
 **filesystem**(OBJECT) # 仅当 schema_config.configs.object_store 为 filesystem 时，才配置该字段
 
-- **directory**(STRING) # 存放 chunks 数据的绝对路径。`默认值: ""`
+- **directory**(STRING) # 存放 Chunks 数据的绝对路径。`默认值: ""`
 
-## distributor
+## limits_config
 
-Distributor 组件配置
+https://grafana.com/docs/loki/latest/configure/#limits_config
+
+**retention_period**(duration) # 数据的数据最多保留多长时间。仅在 `compactor.retention_enabled` 为 true 时适用。`默认值: 0s` 0 或 0s 的将禁用保留，i.e. 保留全部时间的数据。
+
+**ingestion_rate_mb**(FLOAT) # 每秒可以摄取日志量的大小，单位 MiB。`默认值：4`
+
+**max_query_series** # 当利用 [Metric Queries](/docs/6.可观测性/Logs/Loki/LogQL/Metric%20Queries.md) 时，限制查询结果返回时序数据数量（Label 不同的时序数据）。`默认值: 500`
+
+- e.g. 当一条日志流通过 LogQL 的一些解析器添加了很多标签时（e.g. 响应时长 标签），这种标签的值有无限多，每个 Label 不同的值都相当于一条新的时间序列数据，所以要通过 max_query_series 限制不同时序数据的最大数量。
+- 若某条 LogQL 查询结果的时序数据超过了限额，将会产生 `maximum of series (XXX) reached for a single query` 报错，XXX 是 max_query_series 配置的值。
+
+**enforce_metric_name**(BOOLEAN) # 强制每个样本都有一个 metric 名称。`默认值：true`
+
+- 通常设为 false
+
+**reject_old_samples**(BOOLEAN) # 旧样本是否会被拒绝。`默认值：true`
+
+**reject_old_samples_max_age**(DURATION) # 拒绝前可以接收的最大样本年龄。`默认值：168h`
+
+- 如果拒绝旧样本，那么旧样本不能早于 reject_old_samples_max_age 时间
+
+**shard_streams** # 配置 Loki [Automatic stream sharding](https://grafana.com/docs/loki/latest/operations/automatic-stream-sharding/) 机制的具体行为。
+
+## Distributor 组件配置
+
+### distributor
 
 Loki 的 distributor(分配器) 组件配置。
 
@@ -254,21 +260,19 @@ Loki 的 Ingester(摄取器) 配置，以及配置采集器如何将自己注册
 - **enabled(BOOLEAN)**
 - **dir(/PATH/TO/DIR)** # WAL 存放目录。`默认值: wal`，即默认数据存储目录下的 /wal 目录。
 
-## querier
-
-Querier 组件配置
+## Querier 组件配置
+### querier
 
 https://grafana.com/docs/loki/latest/configuration/#querier
 
-## frontend
-
-Query frontend 组件配置
+## Query frontend 组件配置
+### frontend
 
 https://grafana.com/docs/loki/latest/configuration/#frontend
 
-## ruler
+## Ruler 组件配置
 
-Ruler 组件配置。
+### ruler
 
 **storage(Ojbect)** # 根据 type 的值，则会优先默认选择[通用存储](#SJMUR)。可用的值有：azure, gcs, s3, swift, local, bos。若没有通用存储，则使用 storage 字段下对应的字段。
 
@@ -304,49 +308,13 @@ ruler:
     type: local
 ```
 
-## compactor
+## Compactor 组件配置
 
-Compactor 组件配置
+### compactor
 
-## table_manager
+**working_directory**(STRING) # Compactor 组件工作路径。`默认值: ""` 默认值应该是 /loki/compactor/，但是没有找到代码中在哪定义路径的。
 
-Table Manager(表管理器) 组件配置，以规定数据保留的行为。该配置环境用途详见《[Loki 存储](/docs/6.可观测性/Logs/Loki/Storage(存储)/Storage(存储).md)》
-
-> 注意：
->
-> - Table Manager 无法管理存放在对象存储(比如 S3)中的数据，如果要使用对象存储来储存 Index 与 Chunks 数据，则应该自行设置 Bucket 的策略，以删除旧数据。
-
-**retention_deletes_enabled(BOOLEAN)** # 是否开启删除保留数据的行为。`默认值：false`。
-
-**retention_period(DURATION)** # 指定要保留多长时间的表。
-
-- DURATION 的值必须是 schema_config.configs.index(或 chunks).period 字段值的倍数。`默认值：0s`，即保留所有时间的表，不删除
-- 注意，为了避免查询超出保留期限的数据，`chunk_store_config.max_look_back_period` 字段的值必须小于或等于 retention_period 的值
-
-**creation_grace_period(DURATION)** # 提前 DURATION 时间创建新表。`默认值：10m`
-
-## limits_config
-
-https://grafana.com/docs/loki/latest/configure/#limits_config
-
-**ingestion_rate_mb**(FLOAT) # 每秒可以摄取日志量的大小，单位 MiB。`默认值：4`
-
-**max_query_series** # 当利用 [Metric Queries](/docs/6.可观测性/Logs/Loki/LogQL/Metric%20Queries.md) 时，限制查询结果返回时序数据数量（Label 不同的时序数据）。`默认值: 500`
-
-- e.g. 当一条日志流通过 LogQL 的一些解析器添加了很多标签时（e.g. 响应时长 标签），这种标签的值有无限多，每个 Label 不同的值都相当于一条新的时间序列数据，所以要通过 max_query_series 限制不同时序数据的最大数量。
-- 若某条 LogQL 查询结果的时序数据超过了限额，将会产生 `maximum of series (XXX) reached for a single query` 报错，XXX 是 max_query_series 配置的值。
-
-**enforce_metric_name**(BOOLEAN) # 强制每个样本都有一个 metric 名称。`默认值：true`
-
-- 通常设为 false
-
-**reject_old_samples**(BOOLEAN) # 旧样本是否会被拒绝。`默认值：true`
-
-**reject_old_samples_max_age**(DURATION) # 拒绝前可以接收的最大样本年龄。`默认值：168h`
-
-- 如果拒绝旧样本，那么旧样本不能早于 reject_old_samples_max_age 时间
-
-**shard_streams** # 配置 Loki [Automatic stream sharding](https://grafana.com/docs/loki/latest/operations/automatic-stream-sharding/) 机制的具体行为。
+**retention_enabled**(BOOLEAN) # 是否启用自定义的数据保存逻辑，用于删除过期的数据。`默认值: false`
 
 ## 其他
 
@@ -397,6 +365,7 @@ server:
   http_listen_port: 3100
 
 common:
+  instance_adr: 127.0.0.1
   path_prefix: /loki
   storage:
     filesystem:
@@ -404,16 +373,15 @@ common:
       rules_directory: /loki/rules
   replication_factor: 1
   ring:
-    instance_addr: 127.0.0.1
     kvstore:
       store: inmemory
 
 schema_config:
   configs:
     - from: 2020-10-24
-      store: boltdb-shipper
+      store: tsdb
       object_store: filesystem
-      schema: v11
+      schema: v13
       index:
         prefix: index_
         period: 24h
@@ -584,3 +552,30 @@ table_manager:
   retention_deletes_enabled: false
   retention_period: 0s
 ```
+
+# 弃用配置
+
+**boltdb_shipper**(Ojbect) # 仅当 schema_config.configs.store 为 boltdb_shipper 时，才配置该字段
+
+- **active_index_directory**(STRING) #
+- **cache_location**(STRING) #
+- **cache_ttl**(DURATION) # `默认值：24h`
+- **shared_store**(STRING) # 用于保存 BoltDB 文件的存储。
+  - 在 2.4 版本之后，若 `common.storage` 定义了 s3，且 `schema_config.object_storage` 定义为 s3，则这个字段的值也为 s3。也就是说，Index 数据也会存到 S3。这个说法待验证。
+
+## table_manager
+
+Table Manager(表管理器) 组件配置，以规定数据保留的行为。该配置环境用途详见《[Loki 存储](/docs/6.可观测性/Logs/Loki/Storage(存储)/Storage(存储).md)》
+
+> 注意：
+>
+> - Table Manager 无法管理存放在对象存储(比如 S3)中的数据，如果要使用对象存储来储存 Index 与 Chunks 数据，则应该自行设置 Bucket 的策略，以删除旧数据。
+
+**retention_deletes_enabled(BOOLEAN)** # 是否开启删除保留数据的行为。`默认值：false`。
+
+**retention_period(DURATION)** # 指定要保留多长时间的表。
+
+- DURATION 的值必须是 schema_config.configs.index(或 chunks).period 字段值的倍数。`默认值：0s`，即保留所有时间的表，不删除
+- 注意，为了避免查询超出保留期限的数据，`chunk_store_config.max_look_back_period` 字段的值必须小于或等于 retention_period 的值
+
+**creation_grace_period(DURATION)** # 提前 DURATION 时间创建新表。`默认值：10m`
