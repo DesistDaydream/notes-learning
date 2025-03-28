@@ -39,8 +39,6 @@ https://clickhouse.com/docs/en/guides/sre/network-ports
 
 [B 站 - 蜂蜜柠檬水HLN，带你快速认识 ClickHouse 数据库 | 了解 OLTP 与 OLAP](https://www.bilibili.com/video/BV1vd4FeSErh)
 
-[B 站，WordScenesTV - 【clickhouse】clickhouse集群架构、部署和使用](https://www.bilibili.com/video/BV1qz421h7BX)
-
 # Engine
 
 **[Engine](docs/5.数据存储/数据库/关系数据/ClickHouse/Engine.md)(引擎)** 是 ClickHouse 实现数据处理功能的核心抽象。数据库 以及 表 都由各种各样的 Engine 实现
@@ -102,6 +100,13 @@ https://clickhouse.com/docs/en/interfaces/overview
 
 # Cluster
 
+> 参考：
+>
+> - [官方文档，架构 - 水平扩展](https://clickhouse.com/docs/architecture/horizontal-scaling)
+> - [B 站，WordScenesTV - 【clickhouse】clickhouse集群架构、部署和使用](https://www.bilibili.com/video/BV1qz421h7BX)
+
+![](https://clickhouse.com/docs/assets/ideal-img/scaling-out-1.3666d1c.600.png)
+
 **Shard** # 数据的分片
 
 **Replica** # 每个分片的副本
@@ -112,10 +117,9 @@ https://clickhouse.com/docs/en/interfaces/overview
     - 与 ClickHouse 一起运行，作为其内部逻辑
     - 独立运行
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/clickhouse/20250325154658383.png)
-
-
 ---
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/clickhouse/20250325154658383.png)
 
 比如
 

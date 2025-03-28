@@ -22,9 +22,9 @@ Bash 是一种 Shell，学习 Bash，其实也算是学习一种脚本式的编�
 
 **/etc/environment** # 系统的环境变量，所有登录方式都会加载的文件。
 
-**/etc/profile** # 任何用户使用 shell 时都会加载的配置。linux 不推荐直接修改该文件。加载该配置时自动加载 /etc/profile.d/_.sh 的所有文件
+**/etc/profile** # 任何用户使用 shell 时都会加载的配置。linux 不推荐直接修改该文件。加载该配置时自动加载 `/etc/profile.d/*.sh` 的所有文件
 
-**/etc/bashrc** # 常用于设置登录功能和命令别名。linux 不推荐直接修改该文件。加载该配置时自动加载 /etc/profile.d/_.sh 的所有文件
+**/etc/bashrc** # 常用于设置登录功能和命令别名。linux 不推荐直接修改该文件。加载该配置时自动加载 `/etc/profile.d/*.sh` 的所有文件
 
 **/etc/profile.d/\*.sh** # 类似于 include 的效果。通常用来创建自定义配置。
 

@@ -33,8 +33,9 @@ ansible 是 Ansible 的一个 ad-hoc(临时) 命令，可以在一个或多个�
 ### OPTIONS
 
 - **--list-hosts** # 列出所有 HostPattern 定义的被管理 host 并统计数量，一般用于查看组内的主机有多少
-- **-i,--inventory,--inventory-file INVENTORY** # 指定具体的 INVENTORY 路径或文件，而不使用配置中默认的。
-  - INVENTORY 可以是目录或者文件
+- **-i, --inventory, --inventory-file INVENTORY** # 指定具体的 INVENTORY 路径或文件，而不使用配置中默认的。
+  - INVENTORY 可以是 目录、文件、逗号分割的 IP 列表。
+  - 可以使用 `-i 192.168.0.1,` 这种方式手动指定主机而不使用文件。注意：末尾的逗号必须存在，表示这是一个主机列表。多个主机以逗号分割，但是末尾必须有个逗号
 
 **Modules Options(模块选项)**
 
@@ -56,6 +57,10 @@ ansible 是 Ansible 的一个 ad-hoc(临时) 命令，可以在一个或多个�
     - 注：也可以使用 `-m 'shell'` 显式得指定 shell 模块。
 - 将 resolv.conf 文件中的 nameserver 127.0.0.1 替换成 nameserver 10.8.8.8
   - ansible all -m lineinfile -a "dest=/etc/resolv.conf regexp='nameserver 127.0.1.1' line='nameserver 10.8.8.8'" #
+
+临时测试
+
+`ansible all -i '100.64.0.12:1070,' -u root -k -m ping`
 
 ### 常见模块命令示例
 
