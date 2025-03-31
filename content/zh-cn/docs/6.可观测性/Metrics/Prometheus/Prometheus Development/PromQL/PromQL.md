@@ -130,10 +130,48 @@ func funcIdelta(vals []parser.Value, args parser.Expressions, enh *EvalNodeHelpe
 - delta() 与 increase() 的区别在于 isCounter 参数
 - rate() 与 increase() 的区别在于 isRate 参数
 
+TODO: 外推逻辑
+
 ```go
-extrapolationThreshold := averageDurationBetweenSamples * 1.1 // 外推阈值
-sampledInterval := float64(lastT-firstT) / 1000
+// 计算时间边界（关键变量）
+durationToStart := float64(firstT-rangeStart) / 1000  // 第一个点到范围起始的时间差（秒）
+durationToEnd := float64(rangeEnd-lastT) / 1000       // 最后一个点到范围结束的时间差（秒）
+sampledInterval := float64(lastT-firstT) / 1000       // 样本覆盖的实际时间范围（秒）
+averageDurationBetweenSamples := sampledInterval / float64(numSamplesMinusOne) // 平均采样间隔
+
+// 外推逻辑（关键判断）
+extrapolationThreshold := averageDurationBetweenSamples * 1.1
 extrapolateToInterval := sampledInterval
-factor := extrapolateToInterval / sampledInterval
+if durationToStart >= extrapolationThreshold {
+    durationToStart = averageDurationBetweenSamples / 2  // 保守外推一半的间隔
+}
+if durationToEnd >= extrapolationThreshold {
+    durationToEnd = averageDurationBetweenSamples / 2
+}
+extrapolateToInterval += durationToStart + durationToEnd  // 总外推后的时间范围
 ```
+
+### Rate
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/promql/rate_example_image.png)
+
+时间范围内最后一个值减第一个值，加上矫正计数器的值。
+
+> counterCorrection(计数器矫正)，矫正计数器，比如获取了 5 个数值 2, 4, 6, 0, 2，那么 counterCorrection 的值就是 6，变成 2, 4, 6, 6, 8。主要是为了防止计数器重置导致的计算错误。
+
+```go
+resultValue := lastValue - samples.Points[0].V + counterCorrection
+```
+
+Rate 需要将计算结果除以选定时间范围的秒数
+
+```go
+	if isRate {
+		resultValue /= ms.Range.Seconds()
+	}
+```
+
+除了上述最基本的计算外，还有外推的逻辑来重新划定时间范围和选值
+
+### iRate
 
