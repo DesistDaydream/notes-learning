@@ -107,9 +107,10 @@ EXAMPLE
 > 参考：
 >
 > - [官方手册，snmptranslate](http://net-snmp.sourceforge.net/docs/man/snmptranslate.html)
+> - [官方手册，snmpcmd](https://net-snmp.sourceforge.io/docs/man/snmpcmd.html)
 > - [Manual(手册)](https://man.cx/snmptranslate)
 
-在数字格式和文本格式之间转换 MIB 的 OID
+在数值和文本格式之间转换 MIB OID 的名称
 
 **snmptranslate \[OPTIONS] OID \[OID]...**
 
@@ -118,7 +119,8 @@ EXAMPLE
 - **-T**(OPTIONS) # 控制输出的结果。有多个子选项可用
     - d # 输出详细信息
 - **-O**(OPTIONS) # 控制 OID 的显示方式。有多个子选项可用
-    - n # 数值显示
+    - a # 以文本格式输出（ASCII）
+    - n # 以数值格式输出
 - **-m**(\[]STRING) # 指定额外的 MIB 文件
 - **-M**(\[]STRING) # 指定额外的读取 MIB 文件的目录
 
@@ -130,15 +132,19 @@ EXAMPLE
 显示指定 OID 的数字及其详情
 
 ```bash
-~]# snmptranslate -Td -On  HUAWEI-SERVER-IBMC-MIB::systemHealth
-.1.3.6.1.4.1.2011.2.235.1.1.1.1
-systemHealth OBJECT-TYPE
-  -- FROM       HUAWEI-SERVER-IBMC-MIB
-  SYNTAX        INTEGER {ok(1), minor(2), major(3), critical(4)}
+~]# snmptranslate -Td -On IF-MIB::ifInOctets
+.1.3.6.1.2.1.2.2.1.10
+ifInOctets OBJECT-TYPE
+  -- FROM       IF-MIB
+  SYNTAX        Counter32
   MAX-ACCESS    read-only
   STATUS        current
-  DESCRIPTION   "systemHealth information about system present state of health.
-                                This value will be one of the following:
-                                (1-OK, 2-Minor, 3-Major, 4-Critical)"
-::= { iso(1) org(3) dod(6) internet(1) private(4) enterprises(1) huawei(2011) products(2) hwServer(235) hwBMC(1) hwiBMC(1) system(1) 1 }
+  DESCRIPTION   "The total number of octets received on the interface,
+            including framing characters.
+
+            Discontinuities in the value of this counter can occur at
+            re-initialization of the management system, and at other
+            times as indicated by the value of
+            ifCounterDiscontinuityTime."
+::= { iso(1) org(3) dod(6) internet(1) mgmt(2) mib-2(1) interfaces(2) ifTable(2) ifEntry(1) 10 }
 ```

@@ -1,7 +1,6 @@
 ---
 title: "如何构建以应用为中心的Kubernetes"
 linkTitle: "如何构建以应用为中心的Kubernetes"
-date: "2023-07-19T17:03"
 weight: 20
 ---
 
@@ -45,7 +44,7 @@ weight: 20
 
 如果想构建一个应用为中心的 Kubernetes，有没有一个标准化的、简单的方案呢？
 
-**下面就要为大家介绍：** **Open Application Model(OAM)。** 
+**下面就要为大家介绍：** **Open Application Model(OAM)。**
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/yvBJb5Iiafvlb7BGwRI3ap7CLbL5GOIyZ6yAC7L8wPYdL8WnH4Tr8wlvibeicaQDALk3FpYb6jPIJdgicmmaxkK1yw/640?wx_fmt=png)
 
@@ -73,8 +72,6 @@ OAM 的本质是帮助你构建一个“以应用为中心“的 Kubernetes 标�
 
 ### **5\. OAM 会怎样给用户提供一个 API 呢？**
 
-  
-
 ### **1）Components**
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/yvBJb5Iiafvlb7BGwRI3ap7CLbL5GOIyZicrjzfqhULmjvxiciaXF9tyibpvKn9priauiaUEiaEvJRLtNia1Saib4TLsggjA/640?wx_fmt=png)
@@ -91,13 +88,11 @@ Component 是工作负载的版本化定义，例如上图中创建一个 Compon
 
 ### **2）Trait 和 Application Configuration**
 
-  
-
 ![](https://mmbiz.qpic.cn/mmbiz_png/yvBJb5Iiafvlb7BGwRI3ap7CLbL5GOIyZV3ozMFKxZb0rx5OjNF4JK3iacnBZavqticlsEhib8ETcvlUIw6doE5dibw/640?wx_fmt=png)
 
 首先 Trait 是声明式运维能力的描述，其实就是 Kubernetes API 对象。任何管理和运维 Workload 的组件和能力，都可以以这种 CER 的方式定义为一个 Trait。所以像 HPA，API gateway，istio 里面的 Virtual Services 都是 Trait。
 
-Application Configuration 就像是一个信封，将 Traits 绑定给 Component，这个是显式绑定的。OAM 里面不建议去使用 Label 这样的松耦合的方式去关联你的工作负载。建议通过这种结构化的方式，通过 CRD 去显式的绑定你的特征和工作负载。这样的好处是我的绑定关系是可管理的。可以通过 kubectl get 看到这个绑定关系。作为管理员或者用户，就非常容易的看到某一个组件绑定的所有运维能力有哪些，这是可以直接展示出来的，如果通过 label 是很难做到的。同时 Label 本身有个问题是，本身不是版本化的，不是结构体，很难去升级，很难去扩展。通过这么结构化定义，后面的升级扩展将会变得非常简单。 
+Application Configuration 就像是一个信封，将 Traits 绑定给 Component，这个是显式绑定的。OAM 里面不建议去使用 Label 这样的松耦合的方式去关联你的工作负载。建议通过这种结构化的方式，通过 CRD 去显式的绑定你的特征和工作负载。这样的好处是我的绑定关系是可管理的。可以通过 kubectl get 看到这个绑定关系。作为管理员或者用户，就非常容易的看到某一个组件绑定的所有运维能力有哪些，这是可以直接展示出来的，如果通过 label 是很难做到的。同时 Label 本身有个问题是，本身不是版本化的，不是结构体，很难去升级，很难去扩展。通过这么结构化定义，后面的升级扩展将会变得非常简单。
 
 在一个用户配置里面，可以关联多个 Components。它认为一个应用运行所需要的所有组件和所依赖的运维能力，都应该定义为一个文件叫做 ApplicationConfiguration。所以在任何环境，只要拥有这个文件，提交之后，这个应用就会生效了。OAM 是希望能够提供一个自包含的应用声明方式。
 
@@ -145,7 +140,7 @@ Application Configuration 就像是一个信封，将 Traits 绑定给 Component
 
 **QA 环节**
 
-**Q1：** 例子中提问到了 Function 的例子，是否可以理解为 Serverless 或者是 PaaS？  
+**Q1：** 例子中提问到了 Function 的例子，是否可以理解为 Serverless 或者是 PaaS？
 
 **A1****：** 这样理解是没错的，可以理解为阿里云的一个 Function，或者是 Knative Service。
 
@@ -200,5 +195,3 @@ Application Configuration 就像是一个信封，将 Traits 绑定给 Component
 **Q14：** OAM 考虑是单集群还是多集群？
 
 **A14：** 目前是单集群，但是我们马上也会发布多集群的模型，在阿里内部已经是多集群模型。简单来说多集群是两层模型。多集群的概念是定义在 Scope 里面的，通过 Scope 来决定 Workload 或者是 Components 放到哪个集群里面。我们会在社区尽快放出来。
-
-

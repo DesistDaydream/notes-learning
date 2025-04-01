@@ -1,7 +1,6 @@
 ---
 title: "ChatGPT 团队是如何使用Kubernetes的"
 linkTitle: "ChatGPT 团队是如何使用Kubernetes的"
-date: "2023-07-19T17:04"
 weight: 20
 ---
 
@@ -170,6 +169,3 @@ Pod 网络流量整形
 结   论
 
 Kubernetes 是一个非常灵活的平台，可以满足我们的研究需求。它具有满足我们所面临的最苛刻工作负载的能力。尽管它仍有许多需要改进的地方，但 OpenAI 的超级计算团队将继续探索 Kubernetes 的可扩展性。
-
-
-

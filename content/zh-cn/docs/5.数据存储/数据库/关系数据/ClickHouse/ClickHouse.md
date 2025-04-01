@@ -41,7 +41,7 @@ https://clickhouse.com/docs/en/guides/sre/network-ports
 
 # Engine
 
-**[Engine](docs/5.数据存储/数据库/关系数据/ClickHouse/Engine.md)(引擎)** 是 ClickHouse 实现数据处理功能的核心抽象。数据库 以及 表 都由各种各样的 Engine 实现
+**[Engine](/docs/5.数据存储/数据库/关系数据/ClickHouse/Engine.md)(引擎)** 是 ClickHouse 实现数据处理功能的核心抽象。数据库 以及 表 都由各种各样的 Engine 实现
 
 - **Database Engine(数据库引擎)**
 - **Table Engine(表引擎)**
@@ -57,7 +57,7 @@ https://clickhouse.com/docs/en/operations/settings
 - **./config.xml** # ClickHouse Server 运行配置。
 - **./config.d/** # 配置文件可以拆分到该目录，程序运行时会将该目录下的文件合并到 config.xml 主配置文件
 - **./metrika.xml** # 默认的 include_from 文件。该文件中的配置用来替换主配置文件 config.xml 中的配置。
-    - e.g. config.xml 中有 `<remote_servers incl="clickhouse_remote_server"/>`，那么 metrika.xml 中的 `<clickhouse_remote_servers>` 部分配置就会作为 config.xml 中的 remote_servers。
+  - e.g. config.xml 中有 `<remote_servers incl="clickhouse_remote_server"/>`，那么 metrika.xml 中的 `<clickhouse_remote_servers>` 部分配置就会作为 config.xml 中的 remote_servers。
 - **./users.xml** # e.g. 认证信息、etc. 相关配置
 - **./users.d/** # 配置文件可以拆分到该目录，程序运行时会将该目录下的文件合并到 users.xml 主配置文件
 
@@ -111,11 +111,11 @@ https://clickhouse.com/docs/en/interfaces/overview
 
 **Replica** # 每个分片的副本
 
-**ClickHouseKeeper** # ClickHouse 集群的协调系统，通知 Shard 的副本关于状态变化，使用 RAFT [共识算法](docs/3.集群与分布式/分布式算法/共识算法.md)实现。ClickHouseKeeper 必须单数节点，最少 3 个来保证选举。
+**ClickHouseKeeper** # ClickHouse 集群的协调系统，通知 Shard 的副本关于状态变化，使用 RAFT [共识算法](/docs/3.集群与分布式/分布式算法/共识算法.md)实现。ClickHouseKeeper 必须单数节点，最少 3 个来保证选举。
 
 - ClickHouseKeeper 的逻辑也在 ClickHouse 程序的逻辑中，所以可以有两种运行方式
-    - 与 ClickHouse 一起运行，作为其内部逻辑
-    - 独立运行
+  - 与 ClickHouse 一起运行，作为其内部逻辑
+  - 独立运行
 
 ---
 
@@ -168,4 +168,4 @@ FROM system.clusters;
 </remote_servers>
 ```
 
-这个集群共两个分片，将数据分别保存在 host1/host3 和 host2/host4 上，每个分片都有一个自己的备份 
+这个集群共两个分片，将数据分别保存在 host1/host3 和 host2/host4 上，每个分片都有一个自己的备份

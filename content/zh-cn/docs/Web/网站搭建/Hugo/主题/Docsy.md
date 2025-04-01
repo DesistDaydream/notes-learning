@@ -74,11 +74,20 @@ https://tomial.github.io/posts/hugo%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8
 
 [构建站点时出错：# POSTCSS: failed to transform "scss/main.css"](https://github.com/google/docsy/issues/235)
 
+Mermaid 渲染失败在 hugo v0.145.0 #2197
+
+- https://github.com/google/docsy/issues/2197
+
 # Docsy 配置与关联文件
 
 Docsy 也会使用 Hugo 的 CONFIG 文件来配置站点。参考[官网，内容和定制](https://www.docsy.dev/docs/adding-content/)章节来修改 CONFIG 文件，以改变主题样式。
 
 Docsy 的配置主要在 Hugo CONFIG 配置文件中的 `[params]` 部分
+
+配置文件示例:
+
+- https://github.com/google/docsy-example/blob/v0.2.0/config.toml
+- https://github.com/google/docsy-example/blob/v0.11.0/hugo.yaml
 
 ## 多语言支持
  

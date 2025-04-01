@@ -22,13 +22,13 @@ jobs:
         uses: peaceiris/actions-hugo@v2 # hugo 官方提供的 action，用于在任务环境中获取 hugo
         with:
           # hugo-version: "latest" # 获取最新版本的 hugo
-          hugo-version: "0.122.0" # 获取指定版本的 hugo
+          hugo-version: "0.129.0" # 获取指定版本的 hugo
           extended: true
 
       - name: Build
         run: |
-          npm install -D autoprefixer
-          npm install -D postcss-cli
+          npm install --save-dev autoprefixer
+          npm install --save-dev postcss-cli
           npm install -D postcss
           hugo --minify
 

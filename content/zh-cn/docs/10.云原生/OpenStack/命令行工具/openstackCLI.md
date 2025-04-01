@@ -1,32 +1,14 @@
 ---
 title: openstackCLI
+linkTitle: openstackCLI
+weight: 20
 ---
 
 # 概述
 
-- 常用命令
-
-- 语法格式
-
-- 子命令列表
-
-- CLI 命令行控制命令组
-
-- common 通用命令组
-
-- compute 计算服务命令组
-
-- identity 身份服务命令组
-
-- image 镜像服务命令组
-
-- network 网络服务命令组
-
-- neutron 客户端命令组
-
-- objectStore 对象存储服务命令组
-
-- volume 卷服务命令组
+> 参考：
+>
+> - 
 
 # 常用命令
 

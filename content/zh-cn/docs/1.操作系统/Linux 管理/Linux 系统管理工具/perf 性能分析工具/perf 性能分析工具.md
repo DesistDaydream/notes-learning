@@ -33,7 +33,7 @@ TODO: perf 可用的 Events 列表是从如何获取到的？
 - /sys/kernel/debug/tracing/events/ 目录？是特定于 tracepoint 类型事件的？
 - 由于 perf 本身就是与 Linux 内核强耦合的工具，所以获取 Events 应该也是通过某种方式动态获取的？
 
-perf_event_open [系统调用](/docs/1.操作系统/Kernel/System%20Call/System%20Call.md)用以设置性能监控，其中 **perf_event_attr** 参数（源码: [include/uapi/linux/perf_event.h - struct perf_event_attr {}](https://github.com/torvalds/linux/blob/v6.10/include/uapi/linux/perf_event.h#L389)） 是一个结构体，为正在创建的 Event 提供详细的配置信息，[perf_event_open 的 Manual]([perf_event_open](https://man7.org/linux/man-pages/man2/perf_event_open.2.html)) 中列出了所有 Events 的类型：
+perf_event_open [系统调用](/docs/1.操作系统/Kernel/System%20Call/System%20Call.md)用以设置性能监控，其中 **perf_event_attr** 参数（源码: [include/uapi/linux/perf_event.h - struct perf_event_attr {}](https://github.com/torvalds/linux/blob/v6.10/include/uapi/linux/perf_event.h#L389)） 是一个结构体，为正在创建的 Event 提供详细的配置信息，[perf_event_open 的 Manual](https://man7.org/linux/man-pages/man2/perf_event_open.2.html) 中列出了所有 Events 的类型：
 
 - PERF_TYPE_HARDWARE
 - PERF_TYPE_SOFTWARE

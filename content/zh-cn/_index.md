@@ -5,16 +5,14 @@ title: "首页"
 <!-- 这是首页显示的内容 -->
 
 {{< blocks/cover title="学习使我快乐" image_anchor="top" height="full" >}}
-<div class="mx-auto">
-  <a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref " /docs">}}">
-    学习 <i class="fas fa-arrow-alt-circle-right ml-2"></i>
-  </a>
-  <a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://github.com/DesistDaydream/desistdaydream.github.io">
-    下载 <i class="fab fa-github ml-2 "></i>
-  </a>
-  <p class="lead mt-5">站在巨人的肩膀上！</p>
-  {{< blocks/link-down color="info">}}
-</div>
+<a class="btn btn-lg btn-primary me-3 mb-4" href="/docs/">
+  学习 <i class="fas fa-arrow-alt-circle-right ml-2"></i>
+</a>
+<a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://github.com/DesistDaydream/desistdaydream.github.io">
+  下载 <i class="fab fa-github ml-2 "></i>
+</a>
+<p class="lead mt-5">站在巨人的肩膀上！</p>
+{{< blocks/link-down color="info">}}
 {{< /blocks/cover>}}
 
 {{% blocks/lead color="primary" %}}

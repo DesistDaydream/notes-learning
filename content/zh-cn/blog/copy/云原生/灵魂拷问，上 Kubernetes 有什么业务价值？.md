@@ -1,7 +1,6 @@
 ---
 title: "灵魂拷问，上 Kubernetes 有什么业务价值？"
 linkTitle: "灵魂拷问，上 Kubernetes 有什么业务价值？"
-date: "2023-07-19T16:57"
 weight: 20
 ---
 

@@ -103,10 +103,10 @@ Traffic Control(流量控制) 在不同的语境中有不同的含义，可以�
 
 > 相关阅读，有助于理解以上过程：
 >
-> 1. [Cracking Kubernetes Node Proxy (aka kube-proxy)](http://arthurchiao.art/blog/ebpf-and-k8s-zh/%7B%20%%20link%20_posts/2019-11-30-cracking-k8s-node-proxy.md%20%%7D)
-> 2. [(译) 深入理解 iptables 和 netfilter 架构](http://arthurchiao.art/blog/ebpf-and-k8s-zh/%7B%20%%20link%20_posts/2019-02-18-deep-dive-into-iptables-and-netfilter-arch-zh.md%20%%7D)
-> 3. [连接跟踪（conntrack）：原理、应用及 Linux 内核实现](http://arthurchiao.art/blog/ebpf-and-k8s-zh/%7B%20%%20link%20_posts/2020-08-05-conntrack-design-and-implementation-zh.md%20%%7D)
-> 4. [(译) 深入理解 Cilium 的 eBPF 收发包路径（datapath）](http://arthurchiao.art/blog/understanding-ebpf-datapath-in-cilium-zh/)
+> 1. [Cracking Kubernetes Node Proxy (aka kube-proxy)](https://arthurchiao.art/blog/cracking-k8s-node-proxy/)
+> 2. [(译) 深入理解 iptables 和 netfilter 架构](https://arthurchiao.art/blog/deep-dive-into-iptables-and-netfilter-arch-zh/)
+> 3. [连接跟踪（conntrack）：原理、应用及 Linux 内核实现](https://arthurchiao.art/blog/conntrack-design-and-implementation-zh/)
+> 4. [(译) 深入理解 Cilium 的 eBPF 收发包路径（datapath）](https://arthurchiao.art/blog/understanding-ebpf-datapath-in-cilium-zh/)
 
 译者注。
 
@@ -114,7 +114,7 @@ Traffic Control(流量控制) 在不同的语境中有不同的含义，可以�
 
 作为对比，再来看下 Cilium eBPF 中的包转发路径：
 
-> 建议和 [(译) 深入理解 Cilium 的 eBPF 收发包路径（datapath）](http://arthurchiao.art/blog/understanding-ebpf-datapath-in-cilium-zh/) 对照看。
+> 建议和 [(译) 深入理解 Cilium 的 eBPF 收发包路径（datapath）](https://arthurchiao.art/blog/understanding-ebpf-datapath-in-cilium-zh/) 对照看。
 > 译者注。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/pryclo/1617936241799-94b516d7-7bf7-4b37-adf5-1c2defbac27c.png)

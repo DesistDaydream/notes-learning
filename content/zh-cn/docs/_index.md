@@ -1,7 +1,7 @@
 ---
 title: 学习笔记
 linkTitle: 学习笔记
-date: 2018-05-02T21:26
+date: 2018-05-02 21:26:00
 weight: 20
 menu:
   main:
@@ -15,7 +15,7 @@ source: https://note.youdao.com/web/#/file/E2A0052773984ADF8469F4C58A0DE1FA
 
 记忆力不好，日常学习的内容需要记录以备以后用起来查询。
 
-有道云笔记注册于 2018-05-02T21:26 并开始使用
+有道云笔记注册于 `2018-05-02 21:26` 并开始使用
 
 Teambition Thoughts 无法找到注册时间。用过一段时间之后迁移到语雀
 

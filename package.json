@@ -34,9 +34,10 @@
 		"update:pkg:hugo": "npm install --save-dev --save-exact hugo-extended@latest"
 	},
 	"devDependencies": {
-		"autoprefixer": "^10.4.14",
+		"autoprefixer": "^10.4.21",
 		"cross-env": "^7.0.3",
 		"hugo-extended": "0.122.0",
-		"postcss-cli": "^11.0.0"
+		"postcss": "^8.5.3",
+		"postcss-cli": "^11.0.1"
 	}
 }
