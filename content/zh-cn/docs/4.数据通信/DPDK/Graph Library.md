@@ -12,7 +12,7 @@ weight: 20
 > - https://zhuanlan.zhihu.com/p/604202266
 > - https://zhuanlan.zhihu.com/p/613233087
 
-DPDK 的 **Graph(图)** Library 将数据处理功能抽象为 **Node(节点)**，并将这些 Node links(链接) 在一起以创建一张大型的数据处理流程图，以实现可重用的/模块化的数据处理能力。一个 Node 中可以有一个或多个流量处理 **Function(功能)**，一个 Node 处理完成后，交给下一个或几个其他 Node 继续处理流量数据
+DPDK 的 **Graph(图)** Library 将数据处理功能抽象为 **Node(节点)**，并将这些 Node 被 links(链接) 在一起以创建一张大型的数据处理流程图，以实现可重用的/模块化的数据处理能力。一个 Node 中可以有一个或多个流量处理 **Function(功能)**，一个 Node 处理完成后，交给下一个或几个其他 Node 继续处理流量数据
 
 ![image.png|800](https://notes-learning.oss-cn-beijing.aliyuncs.com/dpdk/graph_library_1.png)
 

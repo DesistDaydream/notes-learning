@@ -8,7 +8,7 @@ weight: 20
 
 > 参考：
 >
-> - [官方文档,Prometheus-查询-运算符-聚合运算符](https://prometheus.io/docs/prometheus/latest/querying/operators/#aggregation-operators)
+> - [官方文档，Prometheus - 查询 - 运算符 - 聚合运算符](https://prometheus.io/docs/prometheus/latest/querying/operators/#aggregation-operators)
 
 Prometheus 还提供了下列内置的聚合运算符，这些运算符仅作用于瞬时向量。可以将瞬时表达式返回的样本数据进行聚合，形成一个新的时间序列。
 
@@ -35,7 +35,7 @@ Prometheus 还提供了下列内置的聚合运算符，这些运算符仅作用
 - **Parameter #** 参数，其中只有 count_values, quantile, topk, bottomk 支持
 - **VectorExpression** # 向量表达式。详见 [PromQL](/docs/6.可观测性/Metrics/Prometheus/PromQL/PromQL.md) 章节
 
-# sum 与 min 与 max 与 avg 详解
+# sum, min, max, avg 详解
 
 # count 与 count_values 详解
 
@@ -43,6 +43,10 @@ EXAMPLE
 
 - 计算 up 序列 的值为 1 的序列总数
   - count by(job, namespace, service) (up == 1)
+
+# topk 与 bottomk
+
+当在 Grafana 使用趋势图时，会显示出超过 n 条的线段，比如想看前 10 ，但是出现了 11 条，这是因为多出来的那条数据是在历史上曾经某个时刻进入前 10 的。
 
 # quantile 详解
 
