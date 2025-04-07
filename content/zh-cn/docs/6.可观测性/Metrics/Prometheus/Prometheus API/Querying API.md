@@ -8,7 +8,7 @@ weight: 20
 
 > 参考：
 >
-> - [官方文档，Prometheus-查询-HTTP API](https://prometheus.io/docs/prometheus/latest/querying/api/)
+> - [官方文档，Prometheus - 查询-HTTP API](https://prometheus.io/docs/prometheus/latest/querying/api/)
 > - [OpenAPI](https://app.swaggerhub.com/apis/DesistDaydream/PrometheusAPI/v1)
 
 Querying API 可以查询 Prometheus 的 运行时配置、时间序列数据、运行时状态 等等。官方称之为 HTTP API

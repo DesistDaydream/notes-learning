@@ -209,7 +209,7 @@ url: <string>
 
 **equal**(\[]STRING) # 添加特殊条件，只有当 source_matchers 与 target_matchers 匹配到的告警都具有 equal 设置的相同的标签时，才让抑制规则生效。
 
-```
+```yaml
     inhibit_rules:    # 抑制规则
       - source_matchers:
           - instance="node13"
@@ -221,7 +221,7 @@ url: <string>
         target_matchers:
           severity="warning"   # 当 severity 为 critical 的任何告警触发时，所有 severity 为 warning 的告警将被抑制
         equal:
-        - project             # 作用就是 source 和 target 中都包含名为 project 标签，且标签值一致时，才会抑制
+          - project             # 作用就是 source 和 target 中都包含名为 project 标签，且标签值一致时，才会抑制
 ```
 
 # 配置文件中的通用配置字段
