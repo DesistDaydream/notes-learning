@@ -6,7 +6,9 @@ title: procps 工具集
 
 > 参考：
 >
+> - https://sourceforge.net/projects/procps-ng/
 > - [GitLab 项目，procps-ng/procps](https://gitlab.com/procps-ng/procps)
+> - [GitHub 项目，uutils/procps](https://github.com/uutils/procps) # 有人用 Rust 重写了 procps 项目
 
 procps 是一组命令行和全屏实用程序，它们主要从 [Proc 文件系统](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/proc.md) 中获取信心，该文件系统为内核数据结构提供了一个简单的接口。procps 程序通常集中在描述系统上运行的进程的结构上。包括以下程序(每个标题都是一个程序)
 

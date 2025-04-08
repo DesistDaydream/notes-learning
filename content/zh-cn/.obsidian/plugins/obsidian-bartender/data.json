@@ -239,6 +239,7 @@
       "docs/1.操作系统/Kernel/Memory/Memroy 的 Over Commit 与 OOM.md",
       "docs/1.操作系统/Kernel/Memory/堆区与栈区.md",
       "docs/1.操作系统/Kernel/Memory/NUMA.md",
+      "docs/1.操作系统/Kernel/Memory/Memory Info.md",
       "docs/1.操作系统/Kernel/Memory/分享Linux内存占用几个案例.md",
       "docs/1.操作系统/Kernel/Memory/mmap可以让程序员解锁哪些骚操作？.md"
     ],
@@ -1300,7 +1301,6 @@
       "docs/12.AI/计算机视觉",
       "docs/12.AI/MCP.md",
       "docs/12.AI/Hugging Face.md",
-      "docs/12.AI/LangChain.md",
       "docs/12.AI/AI Projects",
       "docs/12.AI/AI MGMT",
       "docs/12.AI/最佳实践.md",

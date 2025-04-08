@@ -17,7 +17,9 @@ Linux 中有多种途径可以获取进程信息
 
 # /proc/PID/
 
-https://github.com/torvalds/linux/blob/v5.19/Documentation/filesystems/proc.rst#11-process-specific-subdirectories
+> 参考：
+>
+> - https://github.com/torvalds/linux/blob/v5.19/Documentation/filesystems/proc.rst#11-process-specific-subdirectories
 
 >[!Tip]
 >这下面的文件或目录的用途和信息，都有对应的 Manual，Manual 的名字是 proc_pid_XXX 的形式。e.g. stat 文件的 Manual 是 proc_pid_stat(5)

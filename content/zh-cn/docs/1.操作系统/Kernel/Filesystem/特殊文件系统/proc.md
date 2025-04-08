@@ -56,7 +56,7 @@ proc 文件系统不用于存储。其主要目的是为硬件，内存，运行
 
 # /proc/meminfo - 系统上内存使用情况的统计信息
 
-详见：《[Memory 管理工具](/docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/Memory%20管理工具.md)》 章节
+详见 [Memory Info](docs/1.操作系统/Kernel/Memory/Memory%20Info.md) 章节
 
 # /proc/modules
 

@@ -60,12 +60,14 @@ free \-g
 
 #### **查看 Slab 缓存**
 
-    $ cat /proc/meminfo
+```bash
+$ cat /proc/meminfo
 
-    # 其中，Slab相关的数据为
-    Slab: 154212 kB
-    SReclaimable: 87980 kB
-    SUnreclaim: 66232 kB
+# 其中，Slab相关的数据为
+Slab: 154212 kB
+SReclaimable: 87980 kB
+SUnreclaim: 66232 kB
+```
 
 SReclaimable(Linux 2.6.19+) 都是 clean 的缓存，随时可以释放。回到之前的内存问题，
 
@@ -73,15 +75,17 @@ SReclaimable(Linux 2.6.19+) 都是 clean 的缓存，随时可以释放。回到
 
 方法 1：
 
-    $ cat /proc/meminfo|grep Slab
-
-    Slab: 12777668 kB
+```bash
+$ cat /proc/meminfo|grep Slab
+Slab: 12777668 kB
+```
 
 方法 2：
 
-    echo \`cat /proc/meminfo|grep Slab|awk '{mem += $2} END {print mem/1024/1024}'\` GB
-
-    12G
+```bash
+echo `cat /proc/meminfo|grep Slab|awk '{mem += $2} END {print mem/1024/1024}'` GB
+12G
+```
 
 `12G`的 Slab 缓存，有意思的是 free 把 Slab 缓存统计到了 `usedmemory` 中，这就是之前那个问题的症结所在了。另外，还可以查看 `/proc/slabinfo` (或使用 `slabtop` 命令) 来查看 Slab 缓存的具体使用情况。
 
