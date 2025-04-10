@@ -1,6 +1,15 @@
 ---
-title: 从PTTYPE="dos"到TYPE="LVM2_member"的救援 · zhangguanzhang's Blog
+title: 从PTTYPE="dos"到TYPE="LVM2_member"的救援
+linkTitle: 从PTTYPE=dos到TYPE=LVM2_member的救援
+weight: 20
+source: https://zhangguanzhang.github.io/2019/12/03/dos-to-gpt/
 ---
+
+# 概述
+
+> 参考：
+>
+> - 
 
 同事叫我救援一台云主机，虽说是虚拟机，但是类比到硬件服务器还是一样的操作，这里记录下给后来者查阅
 
@@ -8,30 +17,32 @@ title: 从PTTYPE="dos"到TYPE="LVM2_member"的救援 · zhangguanzhang's Blog
 
 控制台进去看到 centos7 的背景虚化的数字 7 + 转圈，重启下看下完整的错误，重启选了内核然后进到图形界面的时候按下 ecs 取消，观察终端
 
-    [  OK ] Started Show Plymouth Boot Screen.
-    [  OK ] Reached target Paths.
-    [  OK ] Reached target Basic System.
-    [  124.522110] dracut-initqueue[240]: Warning: dracut-initqueue timeout - starting timeout scripts
-    [  125.034736] dracut-initqueue[240]: Warning: dracut-initqueue timeout - starting timeout scripts
-    [  125.542788] dracut-initqueue[240]: Warning: dracut-initqueue timeout - starting timeout scripts
-    [  126.522110] dracut-initqueue[240]: Warning: dracut-initqueue timeout - starting timeout scripts
-    [  127.068643] dracut-initqueue[240]: Warning: dracut-initqueue timeout - starting timeout scripts
-    [  127.576830] dracut-initqueue[240]: Warning: dracut-initqueue timeout - starting timeout scripts
-    ...
-    [  185.082387] dracut-initqueue[240]: Warning: Could not boot.
-    [  185.118736] dracut-initqueue[240]: Warning: /dev/centos/root does not exist
-    [  185.119239] dracut-initqueue[240]: Warning: /dev/mapper/centos-root does not exist
-              Starting Dracut Emergency Shell...
-    Warning: /dev/centos/root does not exist
-    Warning: /dev/mapper/centos-root does not exist
-    Generating "/run/initramfs/rdsosreport.txt"
+```bash
+[  OK ] Started Show Plymouth Boot Screen.
+[  OK ] Reached target Paths.
+[  OK ] Reached target Basic System.
+[  124.522110] dracut-initqueue[240]: Warning: dracut-initqueue timeout - starting timeout scripts
+[  125.034736] dracut-initqueue[240]: Warning: dracut-initqueue timeout - starting timeout scripts
+[  125.542788] dracut-initqueue[240]: Warning: dracut-initqueue timeout - starting timeout scripts
+[  126.522110] dracut-initqueue[240]: Warning: dracut-initqueue timeout - starting timeout scripts
+[  127.068643] dracut-initqueue[240]: Warning: dracut-initqueue timeout - starting timeout scripts
+[  127.576830] dracut-initqueue[240]: Warning: dracut-initqueue timeout - starting timeout scripts
+...
+[  185.082387] dracut-initqueue[240]: Warning: Could not boot.
+[  185.118736] dracut-initqueue[240]: Warning: /dev/centos/root does not exist
+[  185.119239] dracut-initqueue[240]: Warning: /dev/mapper/centos-root does not exist
+          Starting Dracut Emergency Shell...
+Warning: /dev/centos/root does not exist
+Warning: /dev/mapper/centos-root does not exist
+Generating "/run/initramfs/rdsosreport.txt"
 
-    Entering emergency mode. Exit the shell to continue.
-    Type "journalctl" to view system logs.
-    You might want to save "/run/initramfs/rdsosreport.txt" to a USB stack or /boot
-    after mounting them and attach it to a bug report.
+Entering emergency mode. Exit the shell to continue.
+Type "journalctl" to view system logs.
+You might want to save "/run/initramfs/rdsosreport.txt" to a USB stack or /boot
+after mounting them and attach it to a bug report.
 
-    dracut:/#
+dracut:/#
+```
 
 ## 处理
 

@@ -8,14 +8,9 @@ weight: 1
 
 > 参考：
 >
-> - [Wiki, Reverse_engineering](https://en.wikipedia.org/wiki/Reverse_engineering)
-> - [Wiki, Software_cracking](https://en.wikipedia.org/wiki/Software_cracking)
-
-**Reverse engineering(逆向工程)**
+> - [Wiki, Reverse engineering](https://en.wikipedia.org/wiki/Reverse_engineering)(逆向工程)
 
 逆向工程的其他目的包括安全审核、消除复制保护（“破解”）、规避消费电子产品中常见的访问限制、定制嵌入式系统（例如引擎管理系统）、内部维修或改造、低成本“残缺”硬件（例如某些显卡芯片组）上的附加功能，甚至只是满足好奇心。
-
-**Software cracking(软件破解)**
 
 # 学习
 

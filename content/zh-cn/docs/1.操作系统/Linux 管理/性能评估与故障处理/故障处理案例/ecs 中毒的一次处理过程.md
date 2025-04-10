@@ -1,8 +1,17 @@
 ---
 title: ecs 中毒的一次处理过程
+linkTitle: ecs 中毒的一次处理过程
+weight: 20
+source: https://zhangguanzhang.github.io/2022/04/21/ecs-xmrig/
 ---
 
-原文：[张馆长博客，ecs 中毒的一次处理过程](https://zhangguanzhang.github.io/2022/04/21/ecs-xmrig/)
+# 概述
+
+> 参考：
+>
+> - 
+
+
 一次客户 ecs 中毒的处理过程，可以给读者参考下中毒的处理过程。
 
 ## 由来

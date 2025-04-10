@@ -2253,7 +2253,6 @@
       "docs/6.可观测性/Logs/Loki/Loki 管理/_index.md",
       "docs/6.可观测性/Logs/Loki/Loki 管理/logcli 命令行工具.md",
       "docs/6.可观测性/Logs/Loki/Loki 管理/LokiQL 常见查询语句.md",
-      "docs/6.可观测性/Logs/Loki/Loki 管理/故障处理.md",
       "docs/6.可观测性/Logs/Loki/Loki 管理/最佳实践.md"
     ],
     "docs/6.可观测性/Logs/Loki/Promtail": [
@@ -2905,6 +2904,18 @@
       "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/管道符等组合命令.md",
       "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/Job control.md",
       "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/set 命令.md"
+    ],
+    "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例": [
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/_index.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/故障处理案例.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/查找隐藏进程(设备中病毒).md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/系统 UDP 丢包问题分析思路.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/CPU 架构引起的问题.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/inode 已满解决方法.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/opensuse的一次救援.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/从PTTYPE=dos到TYPE=LVM2_member的救援.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/boot目录被清空下物理机无法开机的一次救援.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/ecs 中毒的一次处理过程.md"
     ]
   },
   "actionBarOrder": {},

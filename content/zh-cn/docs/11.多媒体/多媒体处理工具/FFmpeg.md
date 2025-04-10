@@ -199,13 +199,13 @@ $ ffmpeg -i \[input.file] -c:v libx265 output.mp4
 
 调整码率（transrating）指的是，改变编码的比特率，一般用来将视频文件的体积变小。下面的例子指定码率最小为 964K，最大为 3856K，缓冲区大小为 2000K。
 
-$ ffmpeg \ -i input.mp4 \ -minrate 964K -maxrate 3856K -bufsize 2000K \ output.mp4
+$ ffmpeg -i input.mp4 -minrate 964K -maxrate 3856K -bufsize 2000K output.mp4
 
 #### 改变分辨率（transsizing）
 
 下面是改变视频分辨率（transsizing）的例子，从 1080p 转为 480p 。
 
-$ ffmpeg \ -i input.mp4 \ -vf scale=480:-1 \ output.mp4
+$ ffmpeg -i input.mp4 -vf scale=480:-1 output.mp4
 
 #### 提取音频
 

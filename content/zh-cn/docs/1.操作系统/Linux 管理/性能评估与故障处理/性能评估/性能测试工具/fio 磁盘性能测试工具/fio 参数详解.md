@@ -53,15 +53,10 @@ direct=BOOL # 测试过程绕过系统的 buffer。使测试结果更真实。`�
 rw=STR # 测试时的 I/O 模式。默认为 read。可用的模式有：
 
 1. read # 顺序读
-
 2. write # 顺序写
-
 3. randread # 随机读
-
 4. randwrite # 随机写
-
 5. randrw # 随机混合读和写
-
 6. 等.....其余模式见官方文档
 
 fdatasync=INT # 与 fsync 类似，但使用 fdatasync(2)只同步数据而不同步元数据块。在 Windows, FreeBSD, DragonFlyBSD 或 OSX 中没有 fdatasync(2)，所以这就回到使用 fsync(2)。默认值为 0，这意味着 fio 不会定期发出问题，并等待数据同步完成。
@@ -86,17 +81,12 @@ size=INT # 本次的测试文件大小为 INT。fio 程序将持续运行，直�
 
 ioengine=STR # 告诉 fio 使用什么样的方式去测试 I/O。有如下方式可用：
 
-1. sync # 也就是最通常的 read/write 操作。基本的读(2)或写(2)I/O。lseek(2)用于定位 I/O 位置。请参阅 fsync 和 fdatasync 来同步写 I/O。
-
-2. psync # 基本的 pread(2)或 pwrite(2) I/O。除 Windows 外，所有支持的操作系统都是默认值。
-
-> pvsync / pvsync2 - 对应的 preadv / pwritev，以及 preadv2 / p writev2
-
-1. vsync # 使用 readv / writev，主要是会将相邻的 I/O 进行合并
-
-2. libaio # Linux 原生的异步 I/O，这也是通常我们这边用的最多的测试盘吞吐和延迟的方法
-
-   1. 对于 libaio engine 来说，还需要考虑设置 iodepth
+- sync # 也就是最通常的 read/write 操作。基本的读(2)或写(2)I/O。lseek(2)用于定位 I/O 位置。请参阅 fsync 和 fdatasync 来同步写 I/O。
+- psync # 基本的 pread(2)或 pwrite(2) I/O。除 Windows 外，所有支持的操作系统都是默认值。
+    - pvsync / pvsync2 - 对应的 preadv / pwritev，以及 preadv2 / p writev2
+- vsync # 使用 readv / writev，主要是会将相邻的 I/O 进行合并
+- libaio # Linux 原生的异步 I/O，这也是通常我们这边用的最多的测试盘吞吐和延迟的方法
+- 1. 对于 libaio engine 来说，还需要考虑设置 iodepth
 
 测试多了，就会很悲催的发现，libaio 很容易就把盘给打死，但 sync 这些还需要启动几个线程。。。
 

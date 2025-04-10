@@ -1,3 +1,15 @@
+---
+title: "CPU 架构引起的问题"
+linkTitle: "CPU 架构引起的问题"
+weight: 20
+---
+
+# 概述
+
+> 参考：
+>
+> - 
+
 # 利用 qemu user 模式和 binfmt_misc 构建其他架构的 docker 镜像
 
 https://zhangguanzhang.github.io/2023/03/07/qemu-binfmt_misc/

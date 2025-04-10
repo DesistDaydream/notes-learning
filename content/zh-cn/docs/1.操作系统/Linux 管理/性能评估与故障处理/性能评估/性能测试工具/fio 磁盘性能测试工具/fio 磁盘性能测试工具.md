@@ -8,10 +8,11 @@ weight: 1
 
 > 参考:
 >
-> 项目地址：<https://github.com/axboe/fio>
-> 官方文档：<https://fio.readthedocs.io/en/latest/>
+> [GitHub 项目，axboe/fio](https://github.com/axboe/fio)
+> [官方文档](https://fio.readthedocs.io/en/latest/)
 
-注意：！！当使用 fio 的 filename 参数指定某个要测试的裸设备（硬盘或分区），切勿在系统分区做测试，会破坏系统分区，从而导致系统崩溃。若一定要测试系统分区较为安全的方法是：在根目录下创建一个空目录，在测试命令中使用 directory 参数指定该目录，而不使用 filename 参数。现在假设 /dev/vda3 设备挂载在 / 目录下，那么不要执行 fil --filename=/dev/vda 这种操作！！
+> [!Attention]
+> ！！当使用 fio 的 filename 参数指定某个要测试的裸设备（硬盘或分区），切勿在系统分区做测试，<font color="#ff0000">会破坏系统分区</font>，从而导致系统崩溃。若一定要测试系统分区较为安全的方法是：在根目录下创建一个空目录，在测试命令中使用 directory 参数指定该目录，而不使用 filename 参数。现在假设 /dev/vda3 设备挂载在 / 目录下，那么不要执行 `fio --filename=/dev/vda` 这种操作！！
 
 ## 1 性能的基本概念
 
@@ -142,10 +143,8 @@ EXAMPLE
 # 前面几行是命令运行时，实时显示的信息
 # 名为 Max throughput 的 Job 基本信息
 Max throughput: (g=0): rw=write, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=4
-fio-3.7
- # fio 版本号
-Starting 1 thread
- # 本次此时启动了 1 个线程
+fio-3.7 # fio 版本号
+Starting 1 thread # 本次此时启动了 1 个线程
 # 1 表示运行的IO线程数；[W(1)] 表示使用的模式；[100.0%] 表示当前命令的执行进度；[r=0KiB/s,w=137MiB/s] 表示瞬时吞吐率；
 # [r=0,w=35.0k IOPS] 表示 IOPS 瞬时值；[eta 00m:00s] 表示持续时间
 # 该行内容在命令执行期间，可以看到值在实时变化
