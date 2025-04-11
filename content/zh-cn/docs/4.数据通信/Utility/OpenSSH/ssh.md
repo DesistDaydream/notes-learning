@@ -21,7 +21,7 @@ weight: 20
 - **-i \</PATH/FILE>** # 使用指定的私钥文件来进行登录认证
 - **-J \<DEST\[,DEST2,...]>** # 首先与 DEST 建立 ssh 连接，并通过 DEST 跳转到最终目标主机。如果需要多次跳转。可以指定多个 DEST 并以逗号分割。
   - DEST 格式为：`[USER@]HOST[:PORT]`
-- **-o \<KEY=VALUE>** # 以命令行的方式配置本应该在 [OpenSSH 配置](/docs/4.数据通信/Utility/OpenSSH/OpenSSH%20配置.md) - ssh_config 文件中的内容。KEY 是 ssh_config 配置文件中的关键字。
+- **-o \<KEY=VALUE>** # 以命令行的方式配置本应该在 [OpenSSH 配置](/docs/4.数据通信/Utility/OpenSSH/OpenSSH%20配置.md#ssh_config%20文件) - ssh_config 文件中的内容。KEY 是 ssh_config 配置文件中的关键字。
 - **-p \<PORT>** # 指定 HostIP 所在远程服务器监听的端口
 - **-T** # 不要分配一个伪终端
 - **-W** # 请求将客户端上的标准输入和输出通过安全通道转发到端口上的主机。 表示 -N，-T，ExitOnForwardFailure 和 ClearAllForwardings，尽管可以在配置文件中或使用 -o 命令行选项覆盖它们。

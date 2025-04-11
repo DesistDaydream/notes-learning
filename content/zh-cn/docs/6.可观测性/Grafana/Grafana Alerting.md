@@ -38,7 +38,7 @@ https://grafana.com/docs/grafana/latest/alerting/fundamentals/alert-rule-evaluat
 - **Evaluation interval** # 每次评估行为的间隔
 - **Period during** # 满足 Alert rules 中定义的条件后等待多长时间触发警报
 - **No data and Error handing** # 当 Alert rules 没有数据或者执行错误时的处理方式
-  - <font color="#ff0000">Notes: 截至 11.5.1 版本，默认的 No data 处理方式是 No Data，这会导致每隔默认的 4h 就发送一次警报</font>，最好将 No data 的行为改为 Normal。
+  - <font color="#ff0000">Notes: 截至 11.5.1 版本，默认的 No data 处理方式是 No Data，这会导致在查询不到数据的场景下，也会每隔 4h 就发送一次警报</font>，最好将 No data 的行为改为 Normal。
 
 ![600](https://notes-learning.oss-cn-beijing.aliyuncs.com/grafana/alerting/20250213083518945.png)
 
@@ -56,6 +56,8 @@ Notifications 由下面几部分组成
 ## Notification policies
 
 ## Contact points
+
+在 Contact points 中的 Notification Templates 标签中，可以定义通知模板（i.e. 发送出去的信息最终会使用什么格式和内容）
 
 # Template
 

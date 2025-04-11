@@ -17,7 +17,7 @@ weight: 2
 
 **ListenAddress**(IP) # 设定 sshd 服务监听的 IP 地址(全 0 为所有 IP)
 
-**PermitRootLogin \<yes|no>** # 设定是否允许 root 用户通过 ssh 直接登录
+**PermitRootLogin**(yes|no) # 设定是否允许 root 用户通过 ssh 直接登录
 
 **AllowUsers <User1 User2 User3.......>** # 设定允许通过 ssh 登录的用户 User1,2,3 等等
 
@@ -51,6 +51,10 @@ weight: 2
 > 若不满足上述条件，登录将会失败，并产生 `client_loop: send disconnect: Broken pipe` 报错。
 
 **UseDNS**(BOOLEAN) # 指定登陆时是否进行 DNS 解析
+
+## 认证逻辑
+
+
 
 ## SFTP 子系统相关
 
@@ -87,3 +91,13 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])? ^C
 Warning: Permanently added '172.19.42.248' (ECDSA) to the list of known hosts.
 root@172.19.42.248's password:
 ```
+
+## 认证逻辑
+
+**HostKeyAlgorithms**(STRING) # 设定主机密钥签名算法。多个算法以 `,` 分割，登陆时会按照顺序注意使用指定的算进行连接
+
+- 可以使用 `+` 将指定的算法添加到默认的算法中；使用 `-` 将指定的算法从默认的算法中删除。
+- 可以使用 `ssh -Q HostKeyAlgorithms` 查看都有哪些算法可用
+
+> [!Tip]
+> 有的 SSH 服务端设定了某些算法，若客户端默认算法没指定，则连接时将会报错: `Unable to negotiate with 1.1.1.1 port 22: no matching host key type found. Their offer: XXXX,YYYY`。此时就可以利用 `-o HostKeyAlgorithms=+XXXX,YYYY` 正常连接

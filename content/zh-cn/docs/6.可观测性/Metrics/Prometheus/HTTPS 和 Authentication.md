@@ -26,7 +26,7 @@ weight: 7
 
 首先需要安装 htpasswd 二进制文件，通过 htpasswd 命令行工具生成保存用户名密码的文件，然后通过该文件创建一个 secret 对象，并在 ingress 引用该 secret 对象
 
-**通过 htpasswd 生成一个“auth”文件;用来存取我们创建的用户及加密之后的密码**
+**通过 htpasswd 生成一个 “auth” 文件；用来存取我们创建的用户及加密之后的密码**
 
 ```bash
 ~]# htpasswd -c auth admin

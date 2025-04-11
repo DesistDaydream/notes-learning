@@ -345,15 +345,17 @@ ansible支持主机列表的正则匹配
 >
 > - [官方文档，用户指南 - 传统目录 - 如何构建你的 Inventory - 连接到主机:Inventory 参数](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#connecting-to-hosts-behavioral-inventory-parameters)
 
-如同前面提到的,通过设置下面的参数,可以控制 ansible 与远程主机的交互方式,
+> Tips: 配置 Inventory 中主机的参数本质就是配置使用哪个 Ansible Plugin 或者 Ansible  Module 来连接受管理节点
 
-ansible_connection # 指定ansible与远程主机的connector(连接器)，默认为 ssh 的smart类型。'smart' 方式会根据是否支持 ControlPersist, 来判断'ssh' 方式是否可行.
+如同前面提到的，通过设置下面的参数，可以控制 ansible 与远程主机的交互方式：
 
-- smart、ssh、paramiko # 这三种类型都是ssh连接器下的类型。默认为smart
+**ansible_connection** # 指定 ansible 与远程主机的 connector(连接器)，默认为 ssh 的 smart 类型。'smart' 方式会根据是否支持 ControlPersist，来判断 'ssh' 方式是否可行
+
+- smart、ssh、paramiko # 这三种类型都是 ssh 连接器下的类型。默认为 smart
 - local
 - docker
 
-General通用连接参数
+通用连接参数
 
 - **ansible_host** # 将要连接的远程主机名.可以设为ip
 - **ansible_port** # 将要连接的远程主机端口号.默认端口为22
@@ -366,6 +368,10 @@ General通用连接参数
 - **ansible_sudo_exe** # sudo 命令路径(适用于1.8及以上版本)
 - **ansible_ssh_private_key_file** # ssh 使用的私钥文件.适用于有多个密钥,而你不想使用 SSH 代理的情况.
 - **ansible_shell_type** # 目标系统的shell类型.默认情况下,命令的执行使用 'sh' 语法,可设置为 'csh' 或 'fish'.
+- **ansible_ssh_extra_args** # 参数值可以作为 [ssh](docs/4.数据通信/Utility/OpenSSH/ssh.md) 的命令行参数
+    - e.g. `ansible_ssh_extra_args: "-o HostKeyAlgorithms=+ssh-dss"` 相当于 `ssh -o HostKeyAlgorithms=+ssh-dss`
+
+> 更多 SSH 相关参数可以参考 [Connection Plugins](docs/9.运维/Ansible/Ansible%20Plugins/Connection%20Plugins.md) 的 SSH 章节
 
 权限提升参数
 
@@ -380,7 +386,7 @@ General通用连接参数
 
 一个主机文件的例子:
 
-```
+```text
 some_host         ansible_ssh_port=2222     ansible_ssh_user=manager
 aws_host          ansible_ssh_private_key_file=/home/example/.ssh/aws.pem
 freebsd_host      ansible_python_interpreter=/usr/local/bin/python
@@ -391,7 +397,7 @@ ruby_module_host  ansible_ruby_interpreter=/usr/bin/ruby.1.9.3
 
 假如现在有如下主机清单
 
-```
+```ini
 [test]
 hw-cloud-xngy-jump-server-linux-2 ansible_host=192.168.0.249 ansible_port=10022
 [test:vars]
@@ -402,7 +408,8 @@ ansible_become_password={{ test_become_password }}
 ```
 
 其中的密码，是通过变量引用的，而这些变量所在的文件是可以加密的，加密后，即可保证操作便捷的同时保证安全性
-我们可以在 Inventory 目录下创建一个 group_vars 目录，并在 group_vars 目录创建一个与 主机组名称同名的文件，效果如下：
+
+我们可以在 Inventory/ 目录下创建一个 group_vars 目录，并在 group_vars 目录创建一个与 主机组名称同名的文件，效果如下：
 
 ```bash
 ../inventory/
@@ -434,7 +441,7 @@ $ANSIBLE_VAULT;1.1;AES256
 这时候，我们执行 Playbooks 时，如果不指定解密所需的密码，将会提示如下报错
 
 ```bash
-[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible-playbook -i ../inventory/ variables.yaml
+~]$ ansible-playbook -i ../inventory/ variables.yaml
 
 PLAY [test] *******************************************************************************************************************************************************************
 ERROR! Attempting to decrypt but no vault secrets found
@@ -443,7 +450,7 @@ ERROR! Attempting to decrypt but no vault secrets found
 只需要添加 `--ask-vault-pass` 参数并输入密码，Ansible 即可在运行中解密文件，并获取其中的变量值
 
 ```bash
-[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible-playbook -i ../inventory/ variables.yaml --ask-vault-pass
+~]$ ansible-playbook -i ../inventory/ variables.yaml --ask-vault-pass
 Vault password:
 
 PLAY [test] *******************************************************************************************************************************************************************

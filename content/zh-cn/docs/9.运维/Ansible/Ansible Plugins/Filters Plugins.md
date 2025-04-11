@@ -1,9 +1,11 @@
 ---
-title: Filters 插件
+title: Filters Plugins
+linkTitle: Filters Plugins
+weight: 20
 ---
 
 # 概述
->
+
 > 参考：
 >
 > - [官方文档，用户指南-目录-使用过滤器操作数据](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html)
@@ -36,7 +38,7 @@ ansible系列博文直达链接：ansible轻松入门系列
 
 # 字符串操作有关的过滤器
 
-```
+```yaml
 - hosts: test70
   remote_user: root
   vars:
@@ -88,7 +90,7 @@ ansible系列博文直达链接：ansible轻松入门系列
 
 跟数字操作有关的过滤器，示例如下
 
-```
+```yaml
 - hosts: test70
   remote_user: root
   vars:
@@ -140,7 +142,7 @@ ansible系列博文直达链接：ansible轻松入门系列
 
 列表操作相关的过滤器，示例如下
 
-```
+```yaml
 - hosts: test70
   remote_user: root
   vars:
@@ -239,7 +241,7 @@ ansible系列博文直达链接：ansible轻松入门系列
 
 变量未定义时相关操作的过滤器，示例如下
 
-```
+```yaml
 - hosts: test70
   remote_user: root
   gather_facts: no
@@ -265,18 +267,18 @@ ansible系列博文直达链接：ansible轻松入门系列
 
 假设，我现在需要在目标主机上创建几个文件，这些文件大多数都不需要指定特定的权限，只有个别文件需要指定特定的权限，所以，在定义这些文件时，我将变量定义为了如下样子
 
-Shell
+```yaml
 vars:
-    paths:
-      - path: /tmp/testfile
-        mode: '0444'
-      - path: /tmp/foo
-      - path: /tmp/bar
+  paths:
+    - path: /tmp/testfile
+      mode: '0444'
+    - path: /tmp/foo
+    - path: /tmp/bar
+```
 
 如上所示，我一共定义了3个文件，只有第一个文件指定了权限，第二个文件和第三个文件没有指定任何权限，这样定义目的是，当这三个文件在目标主机中创建时，只有第一个文件按照指定的权限被创建，之后的两个文件都按照操作系统的默认权限进行创建，为了方便示例，我只定义了3个文件作为示例，但是在实际工作中，你获得列表中可能有几十个这样的文件需要被创建，这些文件中，有些文件需要特定的权限，有些不需要，所以，我们可能需要使用循环来处理这个问题，但是在使用循环时，我们会遇到另一个问题，问题就是，有的文件有mode属性，有的文件没有mode属性，那么，我们就需要对文件是否有mode属性进行判断，所以，你可能会编写一个类似如下结构的playbook
 
-Shell
-
+```yaml
 - hosts: test70
   remote_user: root
   gather_facts: no
@@ -293,11 +295,11 @@ Shell
   - file: dest={{item.path}} state=touch
     with_items: "{{ paths }}"
     when: item.mode is undefined |
+```
 
 上例中，使用file模块在目标主机中创建文件，很好的解决我们的问题，但是上例中，我们一共循环了两遍，因为我们需要对文件是否有mode属性进行判断，然后根据判断结果调整file模块的参数设定，那么有没有更好的办法呢？当然有，这个办法就是我们刚才所说的"可有可无"，我们可以将上例playbook简化成如下模样：
 
-Shell
-
+```yaml
 - hosts: test70
   remote_user: root
   gather_facts: no
@@ -310,7 +312,8 @@ Shell
   tasks:
   - file: dest={{item.path}} state=touch mode={{item.mode  default(omit)}}
     with_items: "{{ paths }}" |
+```
 
 上例中，我们并没有对文件是否有mode属性进行判断，而是直接调用了file模块的mode参数，将mode参数的值设定为了"{{item.mode | default(omit)}}"，这是什么意思呢？它的意思是，如果item有mode属性，就把file模块的mode参数的值设置为item的mode属性的值，如果item没有mode属性，file模块就直接省略mode参数，'omit'的字面意思就是"省略"，换成大白话说就是：[有就用，没有就不用，可以有，也可以没有]，所谓的"可有可无"就是这个意思，是不是很方便？我觉得聪明如你一定看懂了，快动手试试吧~
 
-施主~~加油吧~~~这篇文章就总结到这里，希望能够对你有所帮助~掰掰~
+施主加油吧，这篇文章就总结到这里，希望能够对你有所帮助~掰掰~
