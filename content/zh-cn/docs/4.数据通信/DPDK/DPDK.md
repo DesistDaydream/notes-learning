@@ -38,9 +38,22 @@ https://doc.dpdk.org/guides/prog_guide/env_abstraction_layer.html
 
 ## DPDK Library
 
+https://doc.dpdk.org/guides/prog_guide/index.html
+
 TODO: 好多好多的库，功能非常全。
 
-[Graph Library](/docs/4.数据通信/DPDK/Graph%20Library.md)
+**Device Libraries**
+
+**Protocol Processing Libraries**
+
+**High-Level Libraries**
+
+- [Graph Library](/docs/4.数据通信/DPDK/Graph%20Library.md)
+
+**Utility Libraries**
+
+- [Metrics Library](https://doc.dpdk.org/guides/prog_guide/metrics_lib.html)
+- [Telemetry Library](https://doc.dpdk.org/guides/prog_guide/telemetry_lib.html)(遥测库) # 遥测库提供了一个接口，用于从各种 DPDK 库中检索信息。该库通过 Unix Socket 提供这些信息，接收来自客户端的请求，并回复包含所请求遥测信息的 JSON 响应。
 
 ## Driver
 
@@ -95,7 +108,6 @@ Network devices using kernel driver
 ===================================
 0000:01:00.0 'I350 Gigabit Network Connection 1521' if=eno3 drv=igb unused=vfio-pci *Active*
 0000:02:00.1 'I350 Gigabit Network Connection 1521' if=enp2s0f1 drv=igb unused=vfio-pci
-
 ```
 
 可以看到机器上有 4 个 Ethernet，但是通过 ip 命令仅能看到 2 个（ip 这类命令只能看到内核管理的），另外 2 个被 DPDK 使用了，只有使用 DPDK 提供的程序才能获取到非内核管理的网卡信息。
@@ -137,11 +149,11 @@ Network devices using kernel driver
 
 **Logical core(逻辑核心)** DPDK 使用逻辑核心来管理并行处理，将任务分配给不同的逻辑核心以充分利用多核处理器的性能。通过使用逻辑核心，DPDK 应用程序可以更好地控制和利用系统中的处理器资源。狭义上 1 个 lcore 可以指 EAL 的 1 个线程。
 
-这两个概念在 `DPDK`的代码中随处可见，**注意**这里的 **socket** 不是网络编程里面的那一套东西，而是 **CPU** 相关的东西。具体的概念可以参看[Differences between physical CPU vs logical CPU vs Core vs Thread vs Socket](https://link.zhihu.com/?target=https%3A//link.segmentfault.com/%3Fenc%3DkeRHFE71AwA4LEWK3gy%252F%252Bg%253D%253D.zL548YXL%252F1rT%252BQN9hhP0BSuhSZUszAZly2ULaOcHzihSAMFb3k6C8kBfLxFL65VqtdDdc0MigZcmMKHcWpmSUSTYHTTZ%252BgYz9XlsRQPKOK%252BWch%252FsoT6h%252BzR46e7YgN19TmdjGuy%252BwWL%252FfT2wdU6Q7Q%253D%253D) 或者其翻译版本[physical CPU vs logical CPU vs Core vs Thread vs Socket（翻译）](https://link.zhihu.com/?target=https%3A//link.segmentfault.com/%3Fenc%3DQvdG3%252BI75LlbmFlczo3WpQ%253D%253D.wu%252FAAZX7seAtEJjmuttDzYMu8zmGLKxX2fcFZ%252BZxKkIQvVQguoy2MSUnOVZPbaU6)。
+这两个概念在 `DPDK`的代码中随处可见，**注意**：这里的 **socket** 不是网络编程里面的那一套东西，而是 **CPU** 相关的东西。具体的概念可以参看 [Differences between physical CPU vs logical CPU vs Core vs Thread vs Socket](https://www.daniloaz.com/en/differences-between-physical-cpu-vs-logical-cpu-vs-core-vs-thread-vs-socket/) 或者其翻译版本 [physical CPU vs logical CPU vs Core vs Thread vs Socket（翻译）](https://www.cnblogs.com/zh1164/p/9883852.html)。
 
-对我们来说，只要知道可以`DPDK`可以运行在多个`lcore`上就足够了.
+对我们来说，只要知道 `DPDK` 可以运行在多个 `lcore` 上就足够了.
 
-`DPDK` 如何知道有多少个`lcore`呢 ? 在启动时解析文件系统中的特定文件就可以了, 参考函数`eal_cpu_detected`
+`DPDK` 如何知道有多少个 `lcore` 呢 ? 在启动时解析文件系统中的特定文件就可以了, 参考函数 `eal_cpu_detected`
 
 ## 内存的使用
 
@@ -186,6 +198,12 @@ https://doc.dpdk.org/guides/tools/devbind.html
 从当前驱动程序绑定 eth1 并转而使用 vfio-pci：
 
 - `dpdk-devbind --bind=vfio-pci eth1`
+
+## dpdk-telemetry.py
+
+https://github.com/DPDK/dpdk/blob/main/usertools/dpdk-telemetry.py
+
+用于通过 DPDK Telemetry Library 暴露的 Unix Socket（通常为 `/var/run/dpdk/*/dpdk_telemetry.v2`） 查询 DPDK 中的遥测信息。目前包括 ethdev 状态、ethdev 端口列表、eal 参数、etc.。
 
 # DPDK 与 BPF 与 Netfilter
 

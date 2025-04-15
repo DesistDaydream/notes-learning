@@ -11,6 +11,8 @@ weight: 20
 >
 > - 
 
+# 利用 GitHub Action 同步
+
 该功能已经有很多实现了，这篇文章以 <https://github.com/Yikun/hub-mirror-action> 项目为例。这个项目的基本逻辑是这样的：
 
 - 通过 GitHub Actions 构建一个 Docker 容器，在 Docker 容器中，引入 Gitee 的私钥，这样可以在容器中使用 git 命令向 Gitee push 代码而不用输入密码了
@@ -109,3 +111,17 @@ ssh-keygen -t rsa -C 我的邮箱
 ### 添加私钥
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/wn0scx/1616903594321-e357ab96-5486-42f9-ba85-9fdf869e9fbb.png)
+
+# 使用 Gitee 的 仓库镜像管理
+
+> 参考：
+>
+> - [公众号，更优雅的GitHub/Gitee仓库镜像同步：一次提交，同时更新两个平台](https://mp.weixin.qq.com/s/BkK979TRAURg8MCxXwx6Ow)
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/scm/20250415092345553.png)
+
+需要如下 GitHub 的权限
+
+- **Repository permissions**
+    - **Webhooks** # 读/写。用于 Gitee 自动为 GitHub 仓库创建 [Webhook](https://github.com/DesistDaydream/notes-learning/settings/hooks)
+
