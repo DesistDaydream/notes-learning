@@ -292,7 +292,9 @@ label_join(
 )
 ```
 
-函数可以将时间序列 v 中多个标签 `src_label` 的值，通过 `separator` 作为连接符写入到一个新的标签 `dst_label` 中。Note: 可以有多个 src_label 标签。非常类似 [Relabeling(重新标记)](/docs/6.可观测性/Metrics/Prometheus/Target(目标)%20与%20Relabeling(重新标记).md) 的某个功能。
+函数可以将时间序列 v 中多个标签 `src_label_XXX` 的值，通过 `separator` 作为连接符写入到一个新的标签 `dst_label` 中。
+
+> Note: 可以有多个 src_label 标签。非常类似 [Relabeling(重新标记)](/docs/6.可观测性/Metrics/Prometheus/Target(目标)%20与%20Relabeling(重新标记).md) 的某个功能。
 
 例如，以下表达式返回的时间序列多了一个 `foo` 标签，标签值为 `etcd,etcd-k8s`：
 

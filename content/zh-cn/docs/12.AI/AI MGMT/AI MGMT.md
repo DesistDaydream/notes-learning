@@ -68,4 +68,4 @@ Chrome 插件
 > - [GitHub 项目，langgenius/dify](https://github.com/langgenius/dify)
 > - [官网](https://dify.ai/)
 
-Dify是一个开源的LLM应用开发平台。Dify直观的界面结合了AI工作流、RAG管道、代理功能、模型管理、可观测性特征等，让您能够迅速从原型转向生产。
+Dify 是一个开源的 LLM 应用开发平台。Dify 直观的界面结合了 AI 工作流、RAG 管道、代理功能、模型管理、可观测性特征等，让您能够迅速从原型转向生产。

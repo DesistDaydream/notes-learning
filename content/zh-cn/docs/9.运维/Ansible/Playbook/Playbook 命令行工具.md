@@ -59,6 +59,7 @@ ansible-playbook 用来运行运行 Ansible playbook，以便在目标主机上�
 - -k, --ask-pass # ask for connection password
 - -u , --user # connect as this user (default=None)
 - **-v, --verbose** # 详细模式(-vvv 会输出更多信息, -vvvv 将会启用 DEBUG 模式)
+    - 还可以在命令前添加 `ANSIBLE_DEBUG=1` 以开启另一种 DEBUG 模式
 
 ## EXAMPLE
 

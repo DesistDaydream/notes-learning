@@ -40,3 +40,5 @@ LangChain 是一个用于开发由语言模型驱动的应用程序的框架。�
 - Memory
 - Chains
 - Agents
+
+## Function calling

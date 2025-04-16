@@ -34,7 +34,7 @@ Hugging face 起初是一家总部位于纽约的聊天机器人初创服务商�
 
 # 最佳实践
 
-https://mmy83.online/posts/hugging-face%E4%B8%8B%E8%BD%BD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9B%B8%E5%85%B3%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E/
+[Hugging Face下载大模型的相关文件说明](https://mmy83.online/posts/hugging-face%E4%B8%8B%E8%BD%BD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9B%B8%E5%85%B3%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E/)
 
 如何理解仓库中的模型文件
 
