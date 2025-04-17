@@ -8,8 +8,9 @@ weight: 20
 
 > 参考：
 >
-> - [Manual(手册), config(5)](https://www.openssl.org/docs/manmaster/man5/config.html)
-> - [Manual(手册), x509v3_config(5)](https://www.openssl.org/docs/manmaster/man5/x509v3_config.html)
+> - [Manual, 文件格式](https://docs.openssl.org/master/man5/)
+>     - [Manual(手册), config(5)](https://www.openssl.org/docs/manmaster/man5/config.html)
+>     - [Manual(手册), x509v3_config(5)](https://www.openssl.org/docs/manmaster/man5/x509v3_config.html)
 > - [Manual(手册), openssl-req(1)](https://www.openssl.org/docs/man3.0/man1/openssl-req.html)-CONFIGURATION FILE FORMAT 部分
 > - <https://www.cnblogs.com/f-ck-need-u/p/6091027.html>
 
@@ -21,8 +22,13 @@ OpenSSL 配置文件为 OpenSSL 库及其二进制程序提供运行时参数。
 - fips_config # OpenSSL FIPS 配置格式
 - x509v3_config # X.509 V3 证书扩展配置格式
 
-OpenSSL 配置文件为 INI 格式的配置扩展了很多功能，并规定了一些新的规则：
+# 配置文件格式
 
+OpenSSL 配置文件的语法与 [INI](docs/2.编程/无法分类的语言/INI.md) 类似，但与常见的 INI 配置并不太一样（Section 用于定义场景，而不是定义某种类型的配置），并且扩展了很多能力：
+
+- Section 本身的意义来源于 Openssl 命令行工具，各个 Section 是为各种场景服务的，甚至每个 Section 都可以有很多相同的 K/V 对。
+    - 通常可以配合 -extensions 选项以便让命令读取哪个 Section 的内容
+- **特定的 Section 的名字是有意义的**，比如 `[req]` Section 可以为 `openssl req` 命令提供参数，当执行 `openssl req` 命令时，会从默认配置文件的 `[req]` Section 获取配置参数，若没有，则再从 `默认` Section 获取参数。
 - Section 中除了 **key/value pair(键值对)** 以外，还可以包括 **Directives(指令)**
 - Section 中的 **Key/Value Pair 可以进行变量定义**，也可以引用变量。此时 Key 就是变量名，Value 就是变量的值。
   - 引用方式有 `$VAR` 或 `${VAR}` 两种，要想引用其他 Section 中的变量，则使用 `$SectionName::VAR` 或 `${SectionName::VAR}`
@@ -82,21 +88,48 @@ OpenSSL 配置文件为 INI 格式的配置扩展了很多功能，并规定了�
  ... random properties here ...
 ```
 
-- **特定的 Section 的名字是有意义的**，比如 `[req]` Section 可以为 `openssl req` 命令提供参数，当执行 `openssl req` 命令时，会从默认配置文件的 `[req]` Section 获取配置参数，若没有，则再从 `默认` Section 获取参数
+## 使用 `@` 将多值放在独立的 Section 中
 
-# \[默认]
+若某个字段的值有多个，可以使用 `@` 将所有值放在一个独立的 Section 中
 
-# req
+比如：
+
+```ini
+basicConstraints = critical, CA:true, pathlen:1
+```
+
+等效于
+
+```ini
+[extensions]
+basicConstraints = critical, @basic_constraints
+
+[basic_constraints]
+CA = true
+pathlen = 1
+```
+
+OpenSSL 不支持在一个部分中多次出现相同字段，否则将仅识别最后一字段值。要指定多个值，需要附加一个数字标识符，如下所示：
+
+```ini
+subjectAltName = DNS:desistdaydream.it, DNS:*.desistdaydream.it
+```
+
+等效于
+
+```ini
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1 = desistdaydream.it
+DNS.2 = *.desistdaydream.it
+```
+
+# 字段详解
 
 **distinguished_name = \<SectionName>** # 生成证书或 CSR 时，如何配置 DN(专有名称)。
 
 **req_extensions = \<SectionName>** # 要添加到 CSR 的扩展信息。
-
-## Distinguished_Name
-
-## Req_Extensions
-
-> 关于 CSR 的扩展信息的格式，详见 [Manual(手册), x509v3_config(5)](https://www.openssl.org/docs/manmaster/man5/x509v3_config.html)
 
 **basicConstraints = CA:FALSE** #
 
@@ -104,206 +137,46 @@ OpenSSL 配置文件为 INI 格式的配置扩展了很多功能，并规定了�
 
 **extendedKeyUsage = clientAuth, serverAuth** #
 
-**subjectAltName = \<SectionName>**#
+## SAN 相关字段
 
-### SubjectAltName
+https://docs.openssl.org/master/man5/x509v3_config/#subject-alternative-name
 
-DNS.1 = abc
+**subjectAltName**(STRING) # 设置 SAN，多个 SNA 以 `,` 分隔，每个 SAN 格式为 `Key:Value`。
 
-IP.1 = 1.1.1.1
+- 也可以利用 `@` 将多值放在独立的 Section 中，此时需要遵循 OpenSSL 配置文件格式定义，详见上文 [配置文件格式](#配置文件格式)
+- 可用的 SAN Key 有如下这些，分别对应 X509v3 扩展 SAN 的类型：
 
-# 默认配置文件详解
+| 配置文件中的 Key | 对应生成 X509v3 扩展 SAN 类型 |
+| :--------: | :-------------------: |
+|    DNS     |       DNS Name        |
+|     IP     |      IP Address       |
+|    URI     |          URI          |
+|   email    |     email Address     |
+|    RID     |                       |
+|  dirName   |                       |
+| otherName  |                       |
 
-默认的配置路径在 /etc/pki/tls/openssl.cnf，该文件主要设置了 CSR、签名、crl 相关的配置。为 `ca`、`req` 子命令提供信息。
+### 简单示例
 
-该文件默认自带 4 个 Section：默认、ca、req、tsa
+```ini
+subjectAltName = @alt_names
 
-## 默认 Section
-
-## ca Section
-
-```
-[ ca ]
-default_ca  = CA_default        /*The default ca section*/
-####################################################################
-[ CA_default ]
-dir     = /etc/pki/CA    /* Where everything is kept */
-                         /*  #### 这是第一个openssl目录结构中的目录 */
-certs       = $dir/certs /* Where the issued certs are kept(已颁发的证书路径，即CA或自签的) */
-                         /* #### 这是第二个openssl目录结构中的目录，但非必须 */
-crl_dir     = $dir/crl   /* Where the issued crl are kept(已颁发的crl存放目录) */
-                         /*  #### 这是第三个openssl目录结构中的目录*/
-database    = $dir/index.txt /* database index file */
-#unique_subject = no     /* 设置为yes则database文件中的subject列不能出现重复值 */
-                         /* 即不能为subject相同的证书或证书请求签名*/
-                         /* 建议设置为no，但为了保持老版本的兼容性默认是yes */
-new_certs_dir = $dir/newcerts /* default place for new certs(将来颁发的证书存放路径) */
-                             /* #### 这是第四个openssl目录结构中的目录 */
-certificate = $dir/cacert.pem  /* The A certificate(CA自己的证书文件) */
-serial      = $dir/serial      /* The current serial number(提供序列号的文件)*/
-crlnumber   = $dir/crlnumber   /* the current crl number(当前crl序列号) */
-crl     = $dir/crl.pem         /* The current CRL(当前CRL) */
-private_key = $dir/private/cakey.pem  /* The private key(签名时需要的私钥，即CA自己的私钥) */
-RANDFILE    = $dir/private/.rand      /* private random number file(提供随机数种子的文件) */
-x509_extensions = usr_cert  /* The extentions to add to the cert(添加到证书中的扩展项) */
-/* 以下两行是关于证书展示格式的，虽非必须项，但推荐设置。一般就如下格式不用修改 */
-name_opt    = ca_default        /* Subject Name options*/
-cert_opt    = ca_default        /* Certificate field options */
-/* 以下是copy_extensions扩展项，需谨慎使用 */
-# copy_extensions = copy  /* 生成证书时扩展项的copy行为，可设置为none/copy/copyall */
-                          /* 不设置该name时默认为none */
-                          /* 建议简单使用时设置为none或不设置，且强烈建议不要设置为copyall */
-# crl_extensions    = crl_ext
-default_days    = 365   /* how long to certify for(默认的证书有效期) */
-default_crl_days= 30    /* how long before next CRL(CRL的有效期) */
-default_md  = default   /* use public key default MD(默认摘要算法) */
-preserve    = no        /* keep passed DN ordering(Distinguished Name顺序，一般设置为no */
-                        /* 设置为yes仅为了和老版本的IE兼容)*/
-policy      = policy_match /* 证书匹配策略,此处表示引用[ policy_match ]的策略 */
-/* 证书匹配策略定义了证书请求的DN字段(field)被CA签署时和CA证书的匹配规则 */
-/* 对于CA证书请求，这些匹配规则必须要和父CA完全相同 */
-[ policy_match ]
-countryName = match     /* match表示请求中填写的该字段信息要和CA证书中的匹配 */
-stateOrProvinceName = match
-organizationName    = match
-organizationalUnitName  = optional  /* optional表示该字段信息可提供可不提供 */
-commonName      = supplied    /* supplied表示该字段信息必须提供 */
-emailAddress        = optional
-/* For the 'anything' policy*/
-/* At this point in time, you must list all acceptable 'object' types. */
-/* 以下是没被引用的策略扩展，只要是没被引用的都是被忽略的 */
-[ policy_anything ]
-countryName     = optional
-stateOrProvinceName = optional
-localityName        = optional
-organizationName    = optional
-organizationalUnitName  = optional
-commonName      = supplied
-emailAddress        = optional
-/* 以下是添加的扩展项usr_cert的内容*/
-[ usr_cert ]
-basicConstraints=CA:FALSE   /* 基本约束，CA:FALSE表示该证书不能作为CA证书，即不能给其他人颁发证书*/
-/* keyUsage = critical,keyCertSign,cRLSign  # 指定证书的目的，也就是限制证书的用法*/
-/* 除了上面两个扩展项可能会修改下，其余的扩展项别管了，如下面的 */
-nsComment  = "OpenSSL Generated Certificate"
-subjectKeyIdentifier=hash
-authorityKeyIdentifier=keyid,issuer
+[alt_names]
+DNS.1 = desistdaydream.it
+DNS.2 = *.desistdaydream.it
 ```
 
-## req Section
+该配置文件生成的证书扩展信息如下：
 
-为 `openssl req` 命令提供运行时参数
-
-```
-[ req ]
-default_bits    = 2048     /* 生成证书请求时用到的私钥的密钥长度 */
-default_md      = sha1     /* 证书请求签名时的单向加密算法 */
-default_keyfile = privkey.pem  /* 默认新创建的私钥存放位置， */
-                               /* 如-new选项没指定-key时会自动创建私钥 */
-                               /* -newkey选项也会自动创建私钥 */
-distinguished_name  = req_distinguished_name /* 可识别的字段名(常被简称为DN) */
-                                             /* 引用req_distinguished_name段的设置 */
-x509_extensions = v3_ca       /* 加入到自签证书中的扩展项 */
-# req_extensions = v3_req     /* 加入到证书请求中的扩展项 */
-attributes  = req_attributes  /* 证书请求的属性，引用req_attributes段的设置，可以不设置它 */
-# encrypt_key = yes | no /* 自动生成的私钥文件要加密否？一般设置no，和-nodes选项等价 */
-/* 输入和输出私钥文件的密码，如果该私钥文件有密码，不写该设置则会提示输入 */
-/* input_password = secret */
-/* output_password = secret */
-# prompt = yes | no /* 设置为no将不提示输入DN field，而是直接从配置文件中读取，需要同时设置DN默认值，否则创建证书请求时将出错。 */
-string_mask = utf8only
-[ req_distinguished_name ]
-/* 以下项均可指定可不指定，但ca段的policy中指定为match和supplied一定要指定。 */
-/* 以下选项都可以自定义，如countryName = C，commonName = CN */
-countryName             = Country Name (2 letter code) /* 国家名(C) */
-countryName_default     = XX /* 默认的国家名 */
-countryName_min         = 2  /* 填写的国家名的最小字符长度 */
-countryName_max         = 2  /* 填写的国家名的最大字符长度 */
-stateOrProvinceName = State or Province Name (full name) /* 省份(S) */
-/* stateOrProvinceName_default = Default Province */
-localityName = Locality Name (eg, city) /* 城市(LT) */
-localityName_default = Default City
-0.organizationName  = Organization Name (eg, company) /* 公司(ON) */
-0.organizationName_default  = Default Company Ltd
-organizationalUnitName      = Organizational Unit Name (eg, section) /* 部门(OU) */
-/* organizationalUnitName_default = */
-/* 以下的commonName(CN)一般必须给,如果作为CA，那么需要在ca的policy中定义CN = supplied */
-/* CN定义的是将要申请SSL证书的域名或子域名或主机名。 */
-/* 例如要为zhonghua.com申请ssl证书则填写zhonghua.com，而不能填写www.zhonghua.com */
-/* 要为www.zhonghua.com申请SSL则填写www.zhonghua.com */
-/* CN必须和将要访问的网站地址一样，否则访问时就会给出警告 */
-/* 该项要填写正确，否则该请求被签名后证书中的CN与实际环境中的CN不对应，将无法提供证书服务 */
-commonName  = Common Name (eg, your name or your server\'s hostname) /* 主机名(CN) */
-commonName_max  = 64
-emailAddress            = Email Address /* Email地址，很多时候不需要该项的 */
-emailAddress_max        = 64
-[ req_attributes ] /* 该段是为了某些特定软件的运行需要而设定的， */
-                   /* 现在一般都不需要提供challengepassword */
-                   /* 所以该段几乎用不上 */
-                   /* 所以不用管这段 */
-challengePassword       = A challenge password
-challengePassword_min   = 4
-challengePassword_max   = 20
-unstructuredName        = An optional company name
-[ v3_req ]
-/* Extensions to add to a certificate request */
-basicConstraints = CA:FALSE
-keyUsage = nonRepudiation, digitalSignature, keyEncipherment
-[ v3_ca ]
-/* Extensions for a typical CA */
-subjectKeyIdentifier=hash
-authorityKeyIdentifier=keyid:always,issuer
-basicConstraints = CA:true
-# keyUsage = cRLSign, keyCertSign  /* 典型的CA证书的使用方法设置，由于测试使用所以注释了 */
-/* 如果真的需要申请为CA/*么该设置可以如此配置 */
-
-可以自定义DN(Distinguished Name)段中的字段信息，注意ca段中的policy指定的匹配规则中如果指定了match或这supplied的则DN中必须定义。例如下面的示例：由于只有countryName、organizationName和commonName被设定为match和supplied，其余的都是optional，所以在DN中可以只定义这3个字段，而且在DN中定义了自定义的名称。
-[policy_to_match]
-countryName = match
-stateOrProvinceName = optional
-organizationName = match
-organizationalUnitName = optional
-commonName = supplied
-emailAddress = optional
-[DN]
-countryName = "C"
-organizationName = "O"
-commonName = "Root CA"
-```
-
-## tas Section
-
-```
-[ tsa ]
-default_tsa = tsa_config1   # the default TSA section
-[ tsa_config1 ]
-# These are used by the TSA reply generation only.
-dir     = ./demoCA      # TSA root directory
-serial      = $dir/tsaserial    # The current serial number (mandatory)
-crypto_device   = builtin       # OpenSSL engine to use for signing
-signer_cert = $dir/tsacert.pem  # The TSA signing certificate
-                    # (optional)
-certs       = $dir/cacert.pem   # Certificate chain to include in reply
-                    # (optional)
-signer_key  = $dir/private/tsakey.pem # The TSA private key (optional)
-signer_digest  = sha256         # Signing digest to use. (Optional)
-default_policy  = tsa_policy1       # Policy if request did not specify it
-                    # (optional)
-other_policies  = tsa_policy2, tsa_policy3  # acceptable policies (optional)
-digests     = sha1, sha256, sha384, sha512  # Acceptable message digests (mandatory)
-accuracy    = secs:1, millisecs:500, microsecs:100  # (optional)
-clock_precision_digits  = 0 # number of digits after dot. (optional)
-ordering        = yes   # Is ordering defined for timestamps?
-                # (optional, default: no)
-tsa_name        = yes   # Must the TSA name be included in the reply?
-                # (optional, default: no)
-ess_cert_id_chain   = no    # Must the ESS cert id chain be included?
-                # (optional, default: no)
-ess_cert_id_alg     = sha1  # algorithm to compute certificate
-                # identifier (optional, default: sha1)
+```ini
+        X509v3 extensions:
+            X509v3 Subject Alternative Name: 
+                DNS:desistdaydream.it, DNS:*.desistdaydream.it
 ```
 
 # 配置示例
+
+## 其他
 
 ```bash
 [req]

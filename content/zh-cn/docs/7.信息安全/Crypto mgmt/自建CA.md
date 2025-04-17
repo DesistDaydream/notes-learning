@@ -1,10 +1,117 @@
 ---
-title: 自建CA脚本
-linkTitle: 自建CA脚本
+title: 自建CA
+linkTitle: 自建CA
 weight: 20
 ---
 
 # 概述
+
+> 参考：
+>
+> - 
+
+主要依赖 genrsa, req, x509 这三个子命令
+
+## 0. 设定变量
+
+```bash
+# CA 相关信息
+export CA_KEY="ca.key"
+export CA_CRT="ca.crt"
+export CA_COMMON_NAME="DesistDaydream-CA"
+# 需要签发的证书的相关信息
+export SSL_COMMON_NAME="desistdaydream.it"
+export SSL_KEY=${SSL_COMMON_NAME}.key
+export SSL_CSR=${SSL_COMMON_NAME}.csr
+export SSL_CRT=${SSL_COMMON_NAME}.crt
+```
+## 1. 创建根 CA 私钥
+
+首先，创建一个强 RSA 私钥用于你的根 CA：
+
+```bash
+openssl genrsa -out ${CA_KEY} 4096
+```
+
+## 2. 创建根 CA 证书
+
+使用生成的私钥创建自签名的根 CA 证书：
+
+```bash
+openssl req -x509 -new -nodes -key ${CA_KEY} -sha256 -days 3650 -out ${CA_CRT} \
+  -subj "/C=CN/CN=${CA_COMMON_NAME}"
+```
+
+在提示时需填写各项信息，其中最重要的是 Common Name (CN)，可以设为 "DesistDaydream-CA" 或类似名称。
+
+## 3. 创建域名私钥
+
+为你的通配符域名创建一个私钥：
+
+```bash
+openssl genrsa -out ${SSL_KEY} 2048
+```
+
+## 4. 创建 CSR (证书签名请求)
+
+创建 CSR 文件，注意指定通配符域名：
+
+```bash
+openssl req -new -key ${SSL_KEY} -out ${SSL_CSR} \
+  -subj "/CN=${SSL_COMMON_NAME}"
+```
+
+## 5. 创建用于生成 x509v3 扩展信息的 OpenSSL 配置文件
+
+创建一个名为 `v3.ext` 的文件，内容如下：
+
+```bash
+tee v3.ext > /dev/unll <<EOF
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1 = desistdaydream.it
+DNS.2 = *.desistdaydream.it
+EOF
+```
+
+这个配置确保证书支持通配符和裸域名。
+
+## 6. 使用根 CA 签发证书
+
+使用根 CA 签发证书：
+
+```bash
+openssl x509 -req -in ${SSL_CSR} -extfile v3.ext \
+  -CA ${CA_CRT} -CAkey ${CA_KEY} -CAcreateserial \
+  -out ${SSL_CRT} -days 3650 -sha256
+```
+
+## 7. 验证证书信息
+
+验证你的证书是否包含正确的通配符域名信息：
+
+```bash
+openssl x509 -in desistdaydream.it.crt -text -noout
+```
+
+检查输出中的 Subject Alternative Name 部分是否包含 `*.desistdaydream.it`。
+
+## 8. 在系统上安装根 CA 证书
+
+要让浏览器信任你签发的证书，需要在操作系统或浏览器中安装根 CA 证书。各操作系统安装方法不同：
+
+- Linux (Debian/Ubuntu): `sudo cp ca.crt /usr/local/share/ca-certificates/ && sudo update-ca-certificates`
+- macOS: 双击 `ca.crt` 文件，用钥匙串访问添加到系统，并设置为"始终信任"
+- Windows: 双击 `ca.crt` 文件，安装到"受信任的根证书颁发机构"
+
+## 9. 使用证书配置服务器
+
+配置 Web 服务器（如 Nginx、Apache）使用 `desistdaydream.it.crt` 和 `desistdaydream.it.key` 文件。
+
+现在已成功为 `*.desistdaydream.it` 自建 CA 并签发了通配符证书，可以用于所有子域名。
+
+# 脚本
 
 > 参考：
 >
@@ -56,24 +163,21 @@ do
     esac
 done
 
+## 国家代码(2个字母的代号),默认CN;
+CN=${CN:-CN}
 
 # CA相关配置
 CA_DATE=${CA_DATE:-3650}
-CA_KEY=${CA_KEY:-cakey.pem}
-CA_CERT=${CA_CERT:-cacerts.pem}
-CA_DOMAIN=cattle-ca
+CA_KEY=${CA_KEY:-ca.key}
+CA_CERT=${CA_CERT:-ca.crt}
+CA_COMMON_NAME=DesistDaydream-CA
 
 
 # ssl相关配置
 SSL_CONFIG=${SSL_CONFIG:-$PWD/openssl.cnf}
-SSL_DOMAIN=${SSL_DOMAIN:-'www.rancher.local'}
+SSL_DOMAIN=${SSL_DOMAIN:-'www.desistdaydream.local'}
 SSL_DATE=${SSL_DATE:-3650}
 SSL_SIZE=${SSL_SIZE:-2048}
-
-
-## 国家代码(2个字母的代号),默认CN;
-CN=${CN:-CN}
-
 
 SSL_KEY=$SSL_DOMAIN.key
 SSL_CSR=$SSL_DOMAIN.csr
@@ -98,10 +202,10 @@ fi
 if [[ -e ./${CA_CERT} ]]; then
     echo -e "\033[32m ====> 2. 发现已存在CA证书，先备份"${CA_CERT}"为"${CA_CERT}"-bak，然后重新创建 \033[0m"
     mv ${CA_CERT} "${CA_CERT}"-bak
-    openssl req -x509 -sha256 -new -nodes -key ${CA_KEY} -days ${CA_DATE} -out ${CA_CERT} -subj "/C=${CN}/CN=${CA_DOMAIN}"
+    openssl req -x509 -sha256 -new -nodes -key ${CA_KEY} -days ${CA_DATE} -out ${CA_CERT} -subj "/C=${CN}/CN=${CA_COMMON_NAME}"
 else
     echo -e "\033[32m ====> 2. 生成新的CA证书 ${CA_CERT} \033[0m"
-    openssl req -x509 -sha256 -new -nodes -key ${CA_KEY} -days ${CA_DATE} -out ${CA_CERT} -subj "/C=${CN}/CN=${CA_DOMAIN}"
+    openssl req -x509 -sha256 -new -nodes -key ${CA_KEY} -days ${CA_DATE} -out ${CA_CERT} -subj "/C=${CN}/CN=${CA_COMMON_NAME}"
 fi
 
 

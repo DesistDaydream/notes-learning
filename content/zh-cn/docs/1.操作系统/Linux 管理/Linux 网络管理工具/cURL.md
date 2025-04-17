@@ -47,9 +47,9 @@ Warning: <FILE>" to save to a file.
 - **-f,--fail** # (HTTP)连接失败时不显示 HTTP 错误信息
 - **-g, --globoff** # 关闭 `URL Globbing Parser(URL全局解析器)`。设置此选项，则 URL 中可以包含 `{}` 和 `[]` 符号，这些符号将被当做字符。
   - 该选项常用来配合 IPv6 使用
-- **-H,--header \<STRING>**# (HTTP)使用指定的 STRING 作为请求 header 发送给服务器
+- **-H,--header**(STRING) # (HTTP)使用指定的 STRING 作为请求 header 发送给服务器
   - STRING 可以使用 @FILE 格式来通过文件传递请求头信息。
-- **-I,--head**# (HTTP FTP FILE)只显示本次请求的 Header 信息。当用于 FTP 或 FILE 时，则只显示文件大小和最后修改时间。
+- **-I,--head** # (HTTP FTP FILE)只显示本次请求的 Header 信息。当用于 FTP 或 FILE 时，则只显示文件大小和最后修改时间。
 - **-k,--insecure** # (TLS)此选项表示此次 curl 请求允许"不安全"的 SSL 连接和传输。也就是说对于 https 请求，可以允许私有证书。如果使用 curl 进行 https 请求的时候，不使用该参数的话，服务端使用的私有证书或自建 CA 的证书，则有可能产生如下报错
   - curl: (60) Peer's certificate issuer has been marked as not trusted by the user.
   - curl: (60) Peer's Certificate issuer is not recognized.

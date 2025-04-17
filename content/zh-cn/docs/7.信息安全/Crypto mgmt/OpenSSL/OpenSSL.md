@@ -22,9 +22,11 @@ OpenSSL 主要包含两组东西：
   - libcrypto # 加密解密库
   - libssl # ssl 库，实现了 ssl 及 tls 的功能
 
-# OpenSSL 关联文件
+# OpenSSL 关联文件与配置
 
-**/etc/ssl/openssl.conf** # OpenSSL 的“命令行工具”和 “库”默认使用的配置文件。
+**/etc/ssl/openssl.cnf** # OpenSSL 的“命令行工具”和 “库”默认使用的配置文件。
+
+> RedHat 系默认配置文件在 /etc/pki/tls/openssl.cnf
 
 如果想要使用 CA 功能，需要进行如下配置
 

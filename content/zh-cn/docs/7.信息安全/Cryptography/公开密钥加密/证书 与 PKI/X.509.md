@@ -9,9 +9,9 @@ weight: 2
 > 参考：
 >
 > - [Wiki, X.509](https://en.wikipedia.org/wiki/X.509)
-> - [RFC，5280](https://datatracker.ietf.org/doc/html/rfc5280)
+> - [RFC 5280, Internet X.509 PKI 证书和 CRL 配置文件](https://datatracker.ietf.org/doc/html/rfc5280)
+> - [RFC 6125, 在 TLS 场景下，使用 PKIX(在 PKI 中使用 X.509)，对基于域的应用服务进行表示与验证](https://datatracker.ietf.org/doc/html/rfc6125)
 > - [Arthurchiao 博客，\[译\] 写给工程师：关于证书（certificate）和公钥基础设施（PKI）的一切（SmallStep, 2018）](https://arthurchiao.art/blog/everything-about-pki-zh/)
-> - [RFC 5280，Internet X.509 PKI 证书和 CRL 配置文件](https://datatracker.ietf.org/doc/html/rfc5280)
 
 X.509 是 [Cryptography](/docs/7.信息安全/Cryptography/Cryptography.md) 里定义公钥证书格式的**标准**。X.509 格式的证书已应用在包括 TSL/SSL 在内的众多网络协议里，它是 HTTPS 的基础。
 
@@ -25,52 +25,83 @@ X.509 是 [Cryptography](/docs/7.信息安全/Cryptography/Cryptography.md) 里�
 
 X.509 在 1988 年作为 ITU(国际电信联盟) X.500 项目的一部分首次标准化。 这是 telecom(通信) 领域的标准，想通过它构建一个 global telephone book(全球电话簿)。 虽然这个项目没有成功，但却留下了一些遗产，X.509 就是其中之一。如果查看 X.509 的证书，会看到其中包含了 locality、state、country 等信息， 之前可能会有疑问为什么为 web 设计的证书会有这些东西，现在应该明白了，因为 X.509 并不是为 web 设计的。
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/puor14/1635944301557-e8774c02-d1c8-4e0f-9f7a-a2c3a7180ce0.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/x509/1635944301557-e8774c02-d1c8-4e0f-9f7a-a2c3a7180ce0.png)
 
 图片补充：可以说 Subject 其实就是符合 [Distinguished Name(专有名称，简称 DN)](https://en.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol#Directory_structure) 的规范，只不过 Subject 只是包含了 DN 中的部分字段罢了。也可以说，**Subject 是符合 X.509 标准的 DN。**
 
 # X.509 证书的格式
 
-![image.png|800](https://notes-learning.oss-cn-beijing.aliyuncs.com/puor14/1635931450920-fd8cad72-9ee7-476a-96ef-5e6ed60cc52b.png)
+![image.png|800](https://notes-learning.oss-cn-beijing.aliyuncs.com/x509/1635931450920-fd8cad72-9ee7-476a-96ef-5e6ed60cc52b.png)
 
-**Certificate(OBJECT)**
+顶级字段
 
-- **Data(OBJECT)**# 证书的数据
-  - **Version: STRING** # 版本号
-  - **Serial Number: STRING**# 序列号
-  - **Signature Algorithm: STRING** # 签名算法
-  - **Issuer: STRING** # 发行人名称，也就是这个证书的签发者。
-  - **Validity(OBJECT)**# 有效期
-    - **Not Before: STRING**# 不能早于该日期。即证书从本日期开始生效
-    - **Not After: STRING**# 不能晚于该日期。即证书到本日期为止失效
-  - **Subject: STRING**# 主体信息。如何 X.509 规范的 Distinguished Name。
-    - 对于 CA 证书来说， Subject 与 Issuer 的值相同。
-  - **Subject Public Key Info:**# 主体的公钥信息
-    - **Public Key Algorithm: STRING**# 公钥算法
-    - **主体的公钥**
-  - **Issuer Unique Identifier:** # 颁发者唯一身份信息（可选项）
-  - **Subject Unique Identifier:** # 主体唯一身份信息（可选项）
-  - **Extensions(OBJECT)** # 扩展信息（可选项）
-    - ......
-    - **X509v3 Subject Alternative Name:** # SAN 信息。常用来作为该证书的名称。
-    - ......
-- **Signature Algorithm: STRING**# 证书签名算法
-- 证书签名
+> 只有一个
+
+- **Certificate**(OBJECT)
+    - **Data**([Data](#Data)) # 证书中的具体数据
+    - **Signature Algorithm**(STRING) # 证书签名算法
+    - **证书签名**
+
+## Data
+
+### 基础证书字段
+
+https://datatracker.ietf.org/doc/html/rfc5280#section-4.1
+
+**Version**(STRING) # 版本号
+
+**Serial Number**(STRING) # 序列号
+
+**Signature Algorithm**(STRING) # 签名算法
+
+**Issuer**(STRING) # 发行者信息，也就是这个证书的签发者。符合 [DN](#DN(distinguished%20names)) 格式
+
+**Validity**(OBJECT) # 有效期
+
+- **Not Before**(STRING) # 不能早于该日期。即证书从本日期开始生效
+- **Not After**(STRING) # 不能晚于该日期。即证书到本日期为止失效
+
+**Subject**(STRING) # 主体信息。如何 X.509 规范的 Distinguished Name。符合 [DN](#DN(distinguished%20names)) 格式
+
+- 对于 CA 证书来说， Subject 与 Issuer 的值相同。
+
+**Subject Public Key Info** # 主体的公钥信息
+
+- **Public Key Algorithm**(STRING) # 公钥算法
+- **主体的公钥**
+
+**Issuer Unique Identifier:** # 颁发者唯一身份信息（可选项）
+
+**Subject Unique Identifier:** # 主体唯一身份信息（可选项）
+
+### 证书扩展
+
+https://datatracker.ietf.org/doc/html/rfc5280#section-4.2
+
+**X509v3 extensions**(OBJECT) # X509 V3 的扩展信息（可选项）
+
+- ......
+- **X509v3 Subject Alternative Name** #  SAN 信息。常用来作为该证书的名称。
+- ......
+
+### 附加说明 - DN 与 SAN
+
+推荐使用 X509v3 中的 SAN，以代替古老的 DN（i.e. Subject）
+
+![image.png|800](https://notes-learning.oss-cn-beijing.aliyuncs.com/x509/1638258551706-2b7a5b62-a093-4b12-8b34-7c6b9eefe49b.png)
+
+### DN(distinguished names)
 
 证书的 Issuer 和证书的 Subject 用 X.509 DN 表示，DN 是由 RDN 构成的序列。RDN 用“属性类型=属性值”的形式表示。常用的属性类型名称以及简写如下：
 
-| 属性类型名称             | 含义         | 简写 |
-| ------------------------ | ------------ | ---- |
-| Common Name              | 通用名称     | CN   |
-| Organizational Unit name | 机构单元名称 | OU   |
-| Organization name        | 机构名       | O    |
-| Locality                 | 地理位置     | L    |
-| State or province name   | 州/省名      | S    |
-| Country                  | 国名         | C    |
-
-## DN 与 SAN 命名的历史包袱
-
-### DN (distinguished names)
+| 属性类型名称                   | 含义     | 简写  | 备注                             |
+| ------------------------ | ------ | --- | ------------------------------ |
+| Common Name              | 通用名称   | CN  | 非常重要的字段，通常该字段都用来标识该证书属于哪个公司或个人 |
+| Organizational Unit name | 机构单元名称 | OU  |                                |
+| Organization name        | 机构名称   | O   |                                |
+| Locality                 | 地理位置   | L   |                                |
+| State or province name   | 州/省名称  | S   |                                |
+| Country                  | 国家名称   | C   | 只能是两个字符                        |
 
 历史上，X.509 使用 X.500 distinguished names (DN) 来命名证书的使用者（name the subject of a certificate），即 subscriber。 一个 DN 包含了一个 common name （对作者我来说，就是 “Mike Malone”），此外还可以包含 locality、country、organization、organizational unit 及其他一些东西（数字电话簿相关）。
 
@@ -81,16 +112,21 @@ X.509 在 1988 年作为 ITU(国际电信联盟) X.500 项目的一部分首次�
 
 PKIX 规定一个网站的 DNS hostname 应该关联到 DN common name。最近，CAB Forum 已 经废弃了这个规定，使整个 DN 字段变成可选的（Baseline Requirements, sections 7.1.4.2）。
 
-### SAN (subject alternative name)
+### SAN(subject alternative name)
 
-在 [RFC 5280 的 4.2.1.6 部分](https://tools.ietf.org/html/rfc5280#section-4.2.1.6)中，推荐的现代最佳实践是使用 **证书扩展中的 subject alternative name(SAN)** 来绑定证书中的 name。
+在 [RFC 5280 的 4.2.1.6 部分](https://tools.ietf.org/html/rfc5280#section-4.2.1.6)中，推荐的现代最佳实践是使用 **证书扩展中的 subject alternative name(SAN)** 来绑定证书中的 name
 
-常用的 SAN 有四种类型，绑定的都是广泛使用的名字：
+常用的 SAN 包含四种类型，绑定的都是广泛使用的名字：
 
-- domain names (DNS)
-- email addresse
-- IP addresse
-- URI
+- **email addresse**
+- **DNS Name**
+- **IP Addresse**
+- **URI**
+
+> [!Attention]
+> 浏览器通常无法识别多级通配符的 DNS Name。详见 [RFC 6125 - 6.4.3](https://datatracker.ietf.org/doc/html/rfc6125#section-6.4.3)
+>
+> 一般签发的证书都是只有一级统配，比如 `*.desistdaydream.it`。哪怕用自建 CA 生成的证书中使用了像 `*.*.*.desistdaydream.it` 这种扩展信息，浏览器也不会识别，访问多级域名时，依然会提示证书不可信。
 
 在我们讨论的上下文中，这些都是唯一的，而且它们能很好地映射到我们想识别的东西：
 
@@ -100,12 +136,20 @@ PKIX 规定一个网站的 DNS hostname 应该关联到 DN common name。最近�
 
 应该使用 SAN。
 
-![image.png|800](https://notes-learning.oss-cn-beijing.aliyuncs.com/puor14/1638258551706-2b7a5b62-a093-4b12-8b34-7c6b9eefe49b.png)
-
 注意，Web PKI 允许在一个证书内 bind 多个 name，name 也允许通配符。也就是说，
 
-- 一个证书可以有多个 SNA，也可以有类似 \*.smallstep.com 这样的 SAN。
+- 一个证书可以有多个 SAN，也可以有类似 `*.smallstep.com` 这样的 SAN。
 - 这对有多个域名的的网站来说很有用。
+
+# X509v3Extensions 字段
+
+> 参考：
+>
+> - [RFC 5280, section-4](https://datatracker.ietf.org/doc/html/rfc5280#section-4)
+
+标准扩展
+
+私有互联网扩展
 
 # 证书扩展名与编码
 
@@ -126,7 +170,7 @@ ASN.1 除了有常见的数据类型，如整形、字符串、集合、列表�
 
 可以用 OID 来 tag 一段数据的类型。例如，一个 string 本来只是一个 string，但可 以 tag 一个 OID 2.5.4.3，然后就**变成了一个特殊 string**：这是 **X.509 的通用名字（common name）** 字段。
 
-![oids.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/puor14/1638343160689-8e109cf9-cb84-4a14-94fb-99421dab444c.png)
+![oids.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/x509/1638343160689-8e109cf9-cb84-4a14-94fb-99421dab444c.png)
 
 ## 证书的扩展名
 

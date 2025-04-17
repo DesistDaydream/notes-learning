@@ -10,7 +10,7 @@ weight: 20
 >
 > - [GitHub 项目,cloudflare/cfssll](https://github.com/cloudflare/cfssl)
 > - [官网](https://cfssl.org/)
-> - [公众号](https://mp.weixin.qq.com/s/E-aU-lbieGLokDKbjdGc3g)
+> - [公众号，白话文说CA原理 · 掌握PKI/TLS瑞士军刀之cfssl](https://mp.weixin.qq.com/s/E-aU-lbieGLokDKbjdGc3g)
 
 cfssl 与 openssl 类似，不过是使用 go 编写，由 CloudFlare 开源的一款 PKI/TLS 工具。主要程序有 cfssl，是 CFSSL 的命令行工具，cfssljson 用来从 cfssl 程序获取 JSON 输出，并将证书，密钥，CSR 和 bundle 写入文件中。
 

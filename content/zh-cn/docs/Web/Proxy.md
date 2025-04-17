@@ -67,10 +67,6 @@ export all_proxy="sock5://${hostip}:1080"
 
 - Go 语言编写，简单的 http 代理
 
-[GitHub 项目，mitmproxy/mitmproxy](github.com/mitmproxy/mitmproxy)
-
-- Python 编写，为渗透测试人员和软件开发人员提供的交互式、支持 TLS 的拦截 HTTP 代理。
-
 ## proxychains
 
 项目地址: https://github.com/haad/proxychains

@@ -1300,11 +1300,10 @@
       "docs/12.AI/自然语言处理",
       "docs/12.AI/计算机视觉",
       "docs/12.AI/MCP.md",
-      "docs/12.AI/Retrieval.md",
+      "docs/12.AI/Hugging Face.md",
       "docs/12.AI/AI Projects",
       "docs/12.AI/AI MGMT",
       "docs/12.AI/最佳实践.md",
-      "docs/12.AI/Hugging Face.md",
       "docs/12.AI/Automation"
     ],
     "docs/12.AI/Automation": [
@@ -1997,12 +1996,12 @@
     ],
     "docs/4.数据通信/Utility": [
       "docs/4.数据通信/Utility/_index.md",
-      "docs/4.数据通信/Utility/Utility.md",
       "docs/4.数据通信/Utility/hping.md",
       "docs/4.数据通信/Utility/Netcat.md",
       "docs/4.数据通信/Utility/nping.md",
       "docs/4.数据通信/Utility/OpenSSH",
       "docs/4.数据通信/Utility/FRP.md",
+      "docs/4.数据通信/Utility/Utility.md",
       "docs/4.数据通信/Utility/vsftpd.md"
     ],
     "docs/4.数据通信/Utility/OpenSSH": [
@@ -2811,7 +2810,6 @@
       "docs/Web/Browser",
       "docs/Web/网站搭建",
       "docs/Web/WebServer.md",
-      "docs/Web/Proxy.md",
       "docs/Web/Nginx"
     ],
     "docs/Web/Browser": [
