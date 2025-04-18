@@ -24,7 +24,8 @@ ansible-playbook 用来运行运行 Ansible playbook，以便在目标主机上�
 - --ask-vault-pass # ask for vault password
 - --become-method # privilege escalation method to use (default=%(default)s), use ansible-doc -t become -l to list valid choices.
 - --become-user # run operations as this user (default=root)
-- **-C, --check** # 不在目标主机上执行任务，仅检查任务是否可以完成
+- **-C, --check** # 使用[检查模式](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_checkmode.html)执行任务。不在目标主机上执行任务，仅检查任务是否可以完成
+    - Notes: 可以配置 check_mode 关键字让特定任务不受 -C 影响
 - **-c, --connection \<CONNECTION>** # 要使用的连接插件。`默认值：smart`
 	- 可以设置为 local 以便让 playbook 在本地执行而不用去远程机器上运行
 - --flush-cache # clear the fact cache for every host in inventory

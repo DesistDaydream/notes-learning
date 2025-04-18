@@ -130,4 +130,7 @@ chrome://flags/#smooth-scrolling # 将该参数改为 disabled
 
 `%LOCALAPPDATA%\Google\Chrome\User Data\Default\Extensions\`
 
+## 证书管理
+
+进入 `chrome://certificate-manager/`，开启 “使用从操作系统导入的本地证书”
 

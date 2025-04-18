@@ -58,10 +58,24 @@ playbook 称为"剧本"。每个 playbook 都包含一个或多个 plays(戏剧)
 
 关键字是配置 Ansible 行为的几个来源之一。有关每个源的相对优先级的详细信息，请参阅控制 Ansible 的行为方式：优先级规则。
 
-- hosts #
-- tasks # 要在 Play 中执行的主要任务列表，这些任务在 `roles 关键字定义的任务之后`，以及 `post_tasks 关键字定义的任务之前` 执行
-- roles #
-- name #
+> 这些关键字有各自的适用场景，通常分为 Play、Role、Block、Task 这几种
+
+**hosts** #
+
+**tasks** # 要在 Play 中执行的主要任务列表，这些任务在 `roles 关键字定义的任务之后`，以及 `post_tasks 关键字定义的任务之前` 执行
+
+**roles** #
+
+**name** #
+
+**check_mode** # 控制任务是否在检查模式下运行。若命令行中使用了 -C 则所有任务得 check_mode 为 true；若 check_mode 为 false，即使使用了 -C 该任务也会真实执行。
+
+- 适用场景：任务
+- 常用在通过 Shell 类型任务注册变量的场景。
+
+## Task 任务中的关键字
+
+register
 
 # Playbook 语法详解
 

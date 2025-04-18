@@ -237,6 +237,8 @@ Jinja 中可以使用 if...else... 语句进行条件判断，其语法为：
 {% endif %}
 ```
 
+> 若要对条件取反，则使用 `{% if not CONDITION_1 %}`
+
 其中 elif 和 else 分支都是可省略的。CONDITION 部分是条件表达式，关于 Jinja 支持的条件表达式，后面会介绍。
 
 例如，模板文件 a.txt.j2 内容如下：
@@ -306,12 +308,12 @@ jinja 使用 `is` 关键字，对表达式的渲染结果进行测试，测试�
 
 `is` 运算符可以做很多测试操作，比如测试是否是数值，是否是字符串等等。下表列出了所有 Jinja2 内置的测试函数。
 
-| callable() | even() | le() | none() | string() |
-| --- | --- | --- | --- | --- |
-| defined() | ge() | lower() | number() | undefined() |
-| divisibleby() | gt() | lt() | odd() | upper() |
-| eq() | in() | mapping() | sameas() | escaped() |
-| iterable() | ne() | sequence() |  |  |
+| callable()    | even() | le()       | none()   | string()    |
+| ------------- | ------ | ---------- | -------- | ----------- |
+| defined()     | ge()   | lower()    | number() | undefined() |
+| divisibleby() | gt()   | lt()       | odd()    | upper()     |
+| eq()          | in()   | mapping()  | sameas() | escaped()   |
+| iterable()    | ne()   | sequence() |          |             |
 
 其中 callable()、escaped() 和 sameas() 在 Ansible 中几乎用不上，所以不解释。
 
@@ -333,7 +335,7 @@ jinja 使用 `is` 关键字，对表达式的渲染结果进行测试，测试�
 
 示例二：在 jinja 模板的 if 中测试。测试 name 变量，如果不是字符串类型，则为真。
 
-```
+```python
 {% if name is not string %}
 HELLOWORLD
 {% endif %}
@@ -381,7 +383,7 @@ class FilterModule(object):
 
 然后在 playbook 中便可使用 islist() 这个筛选器来判断是否是列表类型。例如：
 
-```
+```yaml
 - debug:
     msg: "a list"
   when: p | islist
@@ -421,10 +423,10 @@ class FilterModule(object):
 
 有些筛选器函数需要给定参数，例如 replace() 筛选器，可以将字符串中的一部分替换掉。例如，将字符串中的”no” 替换成”yes”。
 
-```yaml
+```python
 {% if result %}
 {{result|replace('no', 'yes')}}
-{%endif%}
+{% endif %}
 ```
 
 ### Jinja 内置过滤器
@@ -481,7 +483,8 @@ JinJa 内置了多个过滤器函数，Ansible 自身也扩展了一些方便的
    - 例如`"hello world" | last`返回字母 d，`[2,3,4]|last`返回数值 4。
 - `map(attribute='xxx')` # 如果一个列表中包含了多个 dict，map 可根据指定的属性名 (即 dict 的 key)，从列表中各 dict 内筛选出该属性值部分。
    - 例如，对于如下变量：
-```
+
+```yaml
 p:
   - name: "junma"
     age: 23
@@ -496,7 +499,7 @@ p:
    - `p|map(attribute="name")|list`将得到`["junma","woniu","tuner"]`。
 - `select()`、`reject()` # 从序列中选中、排除满足条件的项。例如：
 
-```
+```python
 {{ numbers|select("odd") }}         ->选出奇数
 {{ numbers|select("even") }}        ->选出偶数
 {{ numbers|select("lt", 42) }}      ->选出小于42的数
@@ -506,7 +509,8 @@ p:
 
    - 其中测试参数可以指定为支持的测试函数，在前文已经介绍过。
 - `selectattr()`、`rejectattr()` # 根据对象属性筛选、排除序列中的多个元素。这个有时候很好用。比如：
-```
+
+```yaml
 p:
   - name: "junma"
     age: 23
@@ -517,12 +521,16 @@ p:
     age: 25
     weight: 50
 ```
+
 筛选所有 age 大于 22 岁的对象：
+
 ```
 p|selectattr('age','gt',22)|list
 ```
+
 得到的结果：
-```
+
+```json
 [
   {"age": 23,"name": "junma"},
   {"age": 25,"name": "tuner","weight": 50}
@@ -574,6 +582,7 @@ p|selectattr('age','gt',22)|list
 ```
 
 (28).`groupby(attribute)`
+
 根据指定的属性对 dict 进行分组。看下面的例子：
 
 ```yaml
@@ -604,9 +613,11 @@ p|selectattr('age','gt',22)|list
 ```
 
 (29).`indent(width=4)`
+
 对字符串进行缩进格式化。默认缩进宽度为 4。
 
 (30).`format()`
+
 类似于`printf`的方式格式化字符串。对于熟悉 Python 的人来说，使用`%`或`str.format()`格式化字符串要更方便些。
 
 下面是等价的：
@@ -924,6 +935,7 @@ name{{num.value}}
 使用上面第二种方案时要注意 Jinja2 的版本号，Ansible 所使用的 Jinja2 很可能是低于 2.10 版本的。
 
 ## Macro(宏)
+
 计算机科学当中，Macro(宏) 表示的是一段指令的简写，它会在特定的时候替换成其所代表的一大段指令。
 
 如果各位之前不曾知道 Macro 的概念，我这里用一个不严谨、不属于同一个范畴但最方便大家理解的示例来解释：Shell 中的命令别名可以看作是 Macro，Shell 会在命令开始执行之前 (即在 Shell 解析命令行的阶段) 先将别名替换成其原本的值。比如将`ls`替换成`rm -rf`。
@@ -931,11 +943,13 @@ name{{num.value}}
 Jinja2 是支持 Macro 概念的，宏类似于函数，比如可以接参数，具有代码复用的功能。但其本质和函数是不同的，Macro 是替换成原代码片段，函数是直接寻找到地址进行调用。这就不多扯了，好像离题有点远，这可不是编程教程。总的来说，Jinja2 的 Macro 需要像函数一样先定义，在使用的时候直接调用即可，至于底层细节，管它那么多干嘛，又不会涨一毛钱工资。
 
 举一个比较常见的案例，比如某服务的配置文件某指令可以接多个参数值，每个值以空格分隔，每个指令以分号`;`结尾。例如：`log 'host' 'port' 'date';`。如果用模板去动态配置这个指令，可能会使用 for 循环迭代，但要区分空格分隔符和尾部的分号分隔符。于是，编写如下 Macro：
+
 ```
 {% macro delimiter(loop) -%}
 {{ ' ' if not loop.last else ';' }}
 {%- endmacro %}
 ```
+
 上面表示定义了一个名为 delimiter 的 Macro，它能接一个表示 for 循环的参数。
 
 上面的 Macro 定义中还使用了 -%} 和 {%- ，这是用于处理空白符号的，稍后会解释它的用法，现在各位只需当这个短横线不存在即可。

@@ -242,3 +242,19 @@ dpdk-devbind.py -b i40e 0000:21:00.0 0000:21:00.1
 四、总结
 
 这里面的绑定与解绑从 dpdk-devbind.py 源码中可以看到，主要依赖于 [sysfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/sysfs.md) 中 PCI 的 [Driver](/docs/1.操作系统/Kernel/Hardware/Driver.md#PCI) 管理能力。i.e. /sys/bus/pci/drivers/.../bind 与 /sys/bus/pci/drivers/.../unbind 文件
+
+## CPU 使用率 100%
+
+DPDK的UIO驱动屏蔽了硬件发出中断，然后在用户态采用主动轮询的方式，这种模式被称为[PMD](http://doc.dpdk.org/guides/prog_guide/poll_mode_drv.html)（Poll Mode Driver）。
+
+UIO旁路了内核，主动轮询去掉硬中断，DPDK从而可以在用户态做收发包处理。带来Zero Copy、无系统调用的好处，同步处理减少上下文切换带来的Cache Miss。
+
+运行在PMD的Core会处于用户态CPU100%的状态
+
+![](https://ask.qcloudimg.com/draft/1141755/v43qilsryd.png?imageView2/2/w/1620)
+
+网络空闲时CPU长期空转，会带来能耗问题。所以，DPDK推出Interrupt DPDK模式。
+
+![](https://ask.qcloudimg.com/draft/1141755/pg3d428gpr.png?imageView2/2/w/1620)
+
+它的原理和 [NAPI](https://www.ibm.com/developerworks/cn/linux/l-napi/index.html) 很像，就是没包可处理时进入睡眠，改为中断通知。并且可以和其他进程共享同个CPU Core，但是DPDK进程会有更高调度优先级。
