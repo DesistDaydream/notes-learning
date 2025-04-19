@@ -330,21 +330,21 @@
       "docs/1.操作系统/Kernel/Process/_index.md",
       "docs/1.操作系统/Kernel/Process/Process.md",
       "docs/1.操作系统/Kernel/Process/进程、线程、线程池.md",
-      "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)",
+      "docs/1.操作系统/Kernel/Process/Inter Process Communication",
       "docs/1.操作系统/Kernel/Process/D-Bus.md",
       "docs/1.操作系统/Kernel/Process/判断Linux进程在哪个CPU核运行的4个方法 - 嵌入式Linux中文站.md"
     ],
-    "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)": [
-      "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)/_index.md",
-      "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)/Inter Process Communication(进程间通信).md",
-      "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)/Socket(套接字)",
-      "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)/Signal(信号).md",
-      "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)/RPC"
+    "docs/1.操作系统/Kernel/Process/Inter Process Communication": [
+      "docs/1.操作系统/Kernel/Process/Inter Process Communication/_index.md",
+      "docs/1.操作系统/Kernel/Process/Inter Process Communication/Inter Process Communication.md",
+      "docs/1.操作系统/Kernel/Process/Inter Process Communication/Socket",
+      "docs/1.操作系统/Kernel/Process/Inter Process Communication/Signal(信号).md",
+      "docs/1.操作系统/Kernel/Process/Inter Process Communication/RPC"
     ],
-    "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)/RPC": [
-      "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)/RPC/_index.md",
-      "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)/RPC/RPC.md",
-      "docs/1.操作系统/Kernel/Process/Inter Process Communication(进程间通信)/RPC/gRPC.md"
+    "docs/1.操作系统/Kernel/Process/Inter Process Communication/RPC": [
+      "docs/1.操作系统/Kernel/Process/Inter Process Communication/RPC/_index.md",
+      "docs/1.操作系统/Kernel/Process/Inter Process Communication/RPC/RPC.md",
+      "docs/1.操作系统/Kernel/Process/Inter Process Communication/RPC/gRPC.md"
     ],
     "docs/1.操作系统/Kernel/System Call": [
       "docs/1.操作系统/Kernel/System Call/_index.md",
@@ -460,6 +460,18 @@
       "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具/fio 磁盘性能测试工具/fio 磁盘性能测试工具.md",
       "docs/1.操作系统/Linux 管理/性能评估与故障处理/性能评估/性能测试工具/fio 磁盘性能测试工具/fio 参数详解.md"
     ],
+    "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例": [
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/_index.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/故障处理案例.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/查找隐藏进程(设备中病毒).md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/系统 UDP 丢包问题分析思路.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/CPU 架构引起的问题.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/inode 已满解决方法.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/opensuse的一次救援.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/从PTTYPE=dos到TYPE=LVM2_member的救援.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/boot目录被清空下物理机无法开机的一次救援.md",
+      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/ecs 中毒的一次处理过程.md"
+    ],
     "docs/1.操作系统/Operating system": [
       "docs/1.操作系统/Operating system/_index.md",
       "docs/1.操作系统/Operating system/Operating system.md",
@@ -527,6 +539,14 @@
       "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 操作历史记录.md",
       "docs/1.操作系统/Terminal 与 Shell/Bash/Job(任务)控制.md",
       "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 快捷键.md"
+    ],
+    "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令": [
+      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/_index.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/Bash 内置命令.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/变量管理工具.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/管道符等组合命令.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/Job control.md",
+      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/set 命令.md"
     ],
     "docs/1.操作系统/Terminal 与 Shell/Bash/控制结构": [
       "docs/1.操作系统/Terminal 与 Shell/Bash/控制结构/_index.md",
@@ -2197,6 +2217,11 @@
       "docs/6.可观测性/Grafana",
       "docs/6.可观测性/性能优化"
     ],
+    "docs/6.可观测性/DataPipeline/Vector": [
+      "docs/6.可观测性/DataPipeline/Vector/_index.md",
+      "docs/6.可观测性/DataPipeline/Vector/Vector.md",
+      "docs/6.可观测性/DataPipeline/Vector/Vector Configuration.md"
+    ],
     "docs/6.可观测性/Grafana": [
       "docs/6.可观测性/Grafana/_index.md",
       "docs/6.可观测性/Grafana/Grafana.md",
@@ -2891,37 +2916,11 @@
       "docs/学习/PKM/写作.md",
       "docs/学习/PKM/Obsidian.md",
       "docs/学习/PKM/WPS.md"
-    ],
-    "docs/6.可观测性/DataPipeline/Vector": [
-      "docs/6.可观测性/DataPipeline/Vector/_index.md",
-      "docs/6.可观测性/DataPipeline/Vector/Vector.md",
-      "docs/6.可观测性/DataPipeline/Vector/Vector Configuration.md"
-    ],
-    "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令": [
-      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/_index.md",
-      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/Bash 内置命令.md",
-      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/变量管理工具.md",
-      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/管道符等组合命令.md",
-      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/Job control.md",
-      "docs/1.操作系统/Terminal 与 Shell/Bash/Bash 内置命令/set 命令.md"
-    ],
-    "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例": [
-      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/_index.md",
-      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/故障处理案例.md",
-      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/查找隐藏进程(设备中病毒).md",
-      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/系统 UDP 丢包问题分析思路.md",
-      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/CPU 架构引起的问题.md",
-      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/inode 已满解决方法.md",
-      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/opensuse的一次救援.md",
-      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/从PTTYPE=dos到TYPE=LVM2_member的救援.md",
-      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/boot目录被清空下物理机无法开机的一次救援.md",
-      "docs/1.操作系统/Linux 管理/性能评估与故障处理/故障处理案例/ecs 中毒的一次处理过程.md"
     ]
   },
   "actionBarOrder": {},
   "autoHide": true,
   "autoHideDelay": 2000,
   "dragDelay": 200,
-  "sortOrder": "custom",
-  "useCollapse": true
+  "sortOrder": "custom"
 }

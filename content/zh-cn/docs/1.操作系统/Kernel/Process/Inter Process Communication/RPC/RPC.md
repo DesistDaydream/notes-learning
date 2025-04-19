@@ -1,5 +1,7 @@
 ---
 title: RPC
+linkTitle: RPC
+weight: 1
 ---
 
 # 概述

@@ -20,7 +20,7 @@ Note：该工具集就算是最小化安装的 linux 发行版系统也是默认
 
 # kill - 向指定PID的进程发送信号
 
-可用的信号详见 [Signal(信号)](/docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication(进程间通信)/Signal(信号).md)
+可用的信号详见 [Signal(信号)](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Signal(信号).md)
 
 kill 命令将指定的信号发送到指定的进程或进程组。 如果未指定信号，则发送 TERM 信号。 TERM 信号将杀死不捕获该信号的进程。对于其他过程，由于无法捕获该信号，可能需要使用 KILL（9）信号。
 

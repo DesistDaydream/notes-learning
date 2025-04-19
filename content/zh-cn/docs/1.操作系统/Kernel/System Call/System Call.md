@@ -8,6 +8,7 @@ weight: 1
 
 > 参考：
 >
+> - [Manual 目录 2](https://man7.org/linux/man-pages/dir_section_2.html)
 > - [Manual(手册)，syscalls(2)](https://man7.org/linux/man-pages/man2/syscalls.2.html)
 > - [Wiki, System_call](https://en.wikipedia.org/wiki/System_call)
 > - <http://arthurchiao.art/blog/system-call-definitive-guide-zh/>

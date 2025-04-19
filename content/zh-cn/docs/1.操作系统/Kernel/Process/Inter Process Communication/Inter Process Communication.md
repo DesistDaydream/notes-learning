@@ -1,6 +1,7 @@
 ---
-title: Inter Process Communication(进程间通信)
-linkTitle: Inter Process Communication(进程间通信)
+title: Inter Process Communication
+titleAlias: 进程间通信
+linkTitle: Inter Process Communication
 weight: 1
 ---
 
@@ -24,11 +25,9 @@ IPC 可以分为如下两类：
 IPC 可以通过多种方式实现：
 
 - **file(文件)** # 多个进程可以通过磁盘上的文件共享数据。
-- **Signal(信号)**# 从一个进程发送到另一个进程的系统消息，通常不用于传输数据，而是用于远程命令伙伴进程。[Signal(信号)](/docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication(进程间通信)/Signal(信号).md)
+- **Signal(信号)**# 从一个进程发送到另一个进程的系统消息，通常不用于传输数据，而是用于远程命令伙伴进程。[Signal(信号)](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Signal(信号).md)
 - **pipe(管道)**# 使用标准输入和输出的单向数据通道。写入管道的写入端的数据由操作系统进行缓冲，直到从管道的读取端读取数据为止。通过使用相反“方向”上的两个管道可以实现过程之间的双向通信。详见 [管道符等组合命令](/docs/1.操作系统/Terminal%20与%20Shell/Bash/Bash%20内置命令/管道符等组合命令.md)
-- **Socket(套接字)** # 计算机领域中数据通信的一种约定，或者说是一种方法，《[Socket(套接字)](/docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication(进程间通信)/Socket(套接字)/Socket(套接字).md)》。Socket 又分为两种
-  - Unix Domain Socket
-  - Network Socket
+- **Socket(套接字)** # [Socket](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Socket/Socket.md) 是计算机领域中，数据通信的一种约定，或者说是一种方法
 - **Shared Memory(共享内存)** #
 - **Message Queue(消息队列)** # 类似于 Socket 的数据流，但这通常保留了信息的边界。通常由操作系统实现，它们允许多个进程读写消息队列，而不需要彼此直接连接。
 - **Mesage Passing(消息传递)** # 允许多个程序使用消息队列和/或非 OS 托管通道进行通信。常用于并发模型。比如 LPC、RPC 等等。

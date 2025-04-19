@@ -53,7 +53,7 @@ Docker 这门技术成功了，Docker 这个公司却失败了。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/containerd/1616122481393-e3bb2fce-f18d-40ec-ac46-4c6d6a664cd6.png)
 
-可以看到 Containerd 仍然采用标准的 C/S 架构，服务端通过 [gRPC](/docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication(进程间通信)/RPC/gRPC.md) 协议提供稳定的 API，客户端通过调用服务端的 API 进行高级的操作。
+可以看到 Containerd 仍然采用标准的 C/S 架构，服务端通过 [gRPC](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/RPC/gRPC.md) 协议提供稳定的 API，客户端通过调用服务端的 API 进行高级的操作。
 
 为了解耦，Containerd 将不同的职责划分给不同的组件，每个组件就相当于一个**子系统**（subsystem）。连接不同子系统的组件被称为模块。
 

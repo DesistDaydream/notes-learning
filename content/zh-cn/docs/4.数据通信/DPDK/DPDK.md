@@ -203,7 +203,7 @@ https://doc.dpdk.org/guides/tools/devbind.html
 
 https://github.com/DPDK/dpdk/blob/main/usertools/dpdk-telemetry.py
 
-用于通过 DPDK Telemetry Library 暴露的 Unix Socket（通常为 `/var/run/dpdk/*/dpdk_telemetry.v2`） 查询 DPDK 中的遥测信息。目前包括 ethdev 状态、ethdev 端口列表、eal 参数、etc.。
+用于通过 DPDK Telemetry Library 暴露的 **SOCK_SEQPACKET** 类型的 Unix Socket（通常为 `/var/run/dpdk/*/dpdk_telemetry.v2`） 查询 DPDK 中的遥测信息。目前包括 ethdev 状态、ethdev 端口列表、eal 参数、etc.。
 
 # DPDK 与 BPF 与 Netfilter
 

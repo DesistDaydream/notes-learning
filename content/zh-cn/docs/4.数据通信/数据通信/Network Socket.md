@@ -2,13 +2,18 @@
 title: Network Socket
 linkTitle: Network Socket
 weight: 20
+tags:
+  - socket
+  - IPC
 ---
 
 # 概述
 
 > 参考：
 >
-> -[Socket(套接字)](/docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication(进程间通信)/Socket(套接字)/Socket(套接字).md)
+> - [Wiki, Network Scoket](https://en.wikipedia.org/wiki/Network_socket)
+
+Network Socket(网络套接字) 是网络域的 [Socket](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Socket/Socket.md)
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/zvw5dg/1616161399168-31d4bf21-49d1-45dc-993e-83ea35d7a7f2.jpeg)
 
@@ -26,7 +31,7 @@ weight: 20
 3. 网络数据库查询
 4. 等
 
-TCP/IP 的 socket 提供下列三种类型套接字。
+TCP/IP 的 Socket 提供下列三种类型套接字。
 
 1. 流式套接字（SOCK_STREAM）：TCP Socket
 2. 提供了一个面向连接、可靠的数据传输服务，数据无差错、无重复地发送，且按发送顺序接收。内设流量控制，避免数据流超限；数据被看作是字节流，无长度限制。文件传送协议（FTP）即使用流式套接字。
@@ -43,21 +48,12 @@ Socket Domain 套接字域，根据其所有使用的地址进行分类
 
 每类套接字至少提供了两种 socket：流，数据报
 
-tcp：传输控制协议，面向连接的协议，通信钱需要建立虚拟链路，结束后拆除链路
+[TCP](docs/4.数据通信/Protocol/TCP_IP/TCP/TCP.md)：传输控制协议，面向连接的协议，通信钱需要建立虚拟链路，结束后拆除链路
 
-udp:User Datagram Protocol，无连接的协议
+[UDP](docs/4.数据通信/Protocol/UDP/UDP.md)，无连接的协议
 
 1. 流：可靠的传递，面向连接，无边界
 2. 数据报：不可靠的传递，有边界，无连接
-
-套接字相关的系统调用
-
-- socket()：创建一个套接字
-- bind():绑定
-- listen()：监听
-- connect():请求连接建立
-- write()：发送数据
-- read()：接收数据
 
 ## Socket 通信流程
 

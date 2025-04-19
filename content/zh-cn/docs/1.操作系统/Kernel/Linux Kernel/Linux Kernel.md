@@ -13,7 +13,7 @@ weight: 1
 > - [官网](https://www.kernel.org/)
 > - [官方文档](https://www.kernel.org/doc/html/latest/)
 >   - https://www.infradead.org/~mchehab/kernel_docs/index.html 这是哪里的官方文档？
-> - [官方 Manual(手册)](https://www.kernel.org/doc/man-pages/index.html)
+> - [官方 Manual(手册)](https://www.kernel.org/doc/man-pages/)
 > - [LWN.net](https://lwn.net/) 是一个由读者支持的新闻网站，致力于在 Linux 和 自由软件开发社区 中提供最佳报道。
 > - [Wiki, Kernel](<https://en.wikipedia.org/wiki/Kernel_(operating_system)>)
 > - [Wiki, /boot](https://en.wikipedia.org/wiki//boot/)
@@ -21,7 +21,7 @@ weight: 1
 > - [Wiki, Initial ramdisk](https://en.wikipedia.org/wiki/Initial_ramdisk)
 > - [Wiki, System.map](https://en.wikipedia.org/wiki/System.map)
 > - [树莓派 Linux](https://github.com/raspberrypi/linux)
-> - [RedHat 官方文档,8-管理、监控和更新内核](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_monitoring_and_updating_the_kernel/index)
+> - [RedHat 官方文档，8 - 管理、监控和更新内核](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_monitoring_and_updating_the_kernel/index)
 > - <http://www.linfo.org/vmlinuz.html>
 > - [知乎，initrd 和 initramfs 的区别](https://www.zhihu.com/question/22045825)
 
@@ -39,20 +39,20 @@ Linux 内核由如下几部分组成：内存管理、进程管理、设备驱�
 
 系统调用介绍详见 [System Call(系统调用)](/docs/1.操作系统/Kernel/System%20Call/System%20Call.md) 章节
 
-## Linux man 手册使用说明
+## Linux Manual 使用说明
 
-Linux 的 man 手册来自于 [Linux man-pages project](https://www.kernel.org/doc/man-pages/) 项目，该项目的 HTML 渲染结果可以在 [man7.org 的在线页](https://man7.org/linux/man-pages/index.html)找到。
+Linux 的 Manual(man 手册) 来自于 [Linux man-pages project](https://www.kernel.org/doc/man-pages/) 项目，该项目的 HTML 渲染结果可以在 [man7.org 的在线页](https://man7.org/linux/man-pages/index.html)找到。
 
-在 Linux Kernel 的官方 man 手册中，记录了用户空间程序使用 Linux 内核 和 C 库的接口。对于 C 库，主要聚焦于 GUN C(glibc)，尽管在已知的情况下，还包括可用于 Linux 的其他 C 库中的变体文档。在这个 man 手册中，分为如下几部分
+在 Linux Kernel 的官方 man 手册中，记录了用户空间程序使用 Linux 内核 和 C 库的接口。对于 C 库，主要聚焦于 GUN C(glibc)，尽管在已知的情况下，还包括可用于 Linux 的其他 C 库中的变体文档。在这个 man 手册中，分为如下几部分：
 
-1. **[User commands](https://man7.org/linux/man-pages/dir_section_1.html)(用户命令)** # 介绍一些用户空间的应用程序。
-2. **[System calls](https://man7.org/linux/man-pages/dir_section_2.html)(系统调用)** # Linux Kernel 可以提供的所有 System Calls(系统调用)
+1. **[Executable programs or shell commands](https://man7.org/linux/man-pages/dir_section_1.html)(可执行程序或 Shell 命令)** # 介绍一些用户空间的应用程序。
+2. **[System Call](docs/1.操作系统/Kernel/System%20Call/System%20Call.md)(系统调用)** # Linux Kernel 可以提供的所有 System Calls(系统调用)
 3. **[Library functions](https://man7.org/linux/man-pages/dir_section_3.html)(库函数)** # C 标准库可以提供的函数。
 4. **[Devices](https://man7.org/linux/man-pages/dir_section_4.html)(设备)** # 各种设备的详细信息，这些设备大多都在 /dev 目录中。
 5. **[Files](https://man7.org/linux/man-pages/dir_section_5.html)(文件)** # 各种文件格式和文件系统
 6. **[Games](https://man7.org/linux/man-pages/dir_section_6.html)(游戏)** # 系统上可用的游戏和有趣的小程序
-7. **[Overviews, conventions, and miscellaneous](https://man7.org/linux/man-pages/dir_section_7.html)(概述、约定 和 其他)** #
-8. **[Superuser and system administration commands](https://man7.org/linux/man-pages/dir_section_8.html)(超级用户和系统管理员命令)** # 介绍一些 GUN C 库提供的程序。
+7. **[Miscellaneous](https://man7.org/linux/man-pages/dir_section_7.html)(杂项)** # 包括宏包和各种约定
+8. **[System administration commands](https://man7.org/linux/man-pages/dir_section_8.html)(系统管理员命令)** # 通常仅适用于 root。介绍一些 GUN C 库提供的程序。
 
 在 Linux man 手册中，可以找到 Linux 系统中的一切使用说明。Linux 操作系统围绕 Linux Kernel 构建了一套高效、健壮的应用程序运行环境
 
