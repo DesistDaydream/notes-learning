@@ -2,6 +2,7 @@
 title: DPDK
 linkTitle: DPDK
 weight: 1
+data: 2024-03-01T00:00:00
 ---
 
 # 概述
@@ -10,6 +11,7 @@ weight: 1
 >
 > - [GitHub 项目，DPDK/dpdk](https://github.com/DPDK/dpdk)
 > - [官网](https://www.dpdk.org/)
+> - [官方文档，API ](https://doc.dpdk.org/api/)
 > - [Wiki, Data Plane Development Kit](https://en.wikipedia.org/wiki/Data_Plane_Development_Kit)
 > - [DPDK 开发中文网](https://sdn.0voice.com/)
 
@@ -38,22 +40,9 @@ https://doc.dpdk.org/guides/prog_guide/env_abstraction_layer.html
 
 ## DPDK Library
 
-https://doc.dpdk.org/guides/prog_guide/index.html
-
 TODO: 好多好多的库，功能非常全。
 
-**Device Libraries**
-
-**Protocol Processing Libraries**
-
-**High-Level Libraries**
-
-- [Graph Library](/docs/4.数据通信/DPDK/Graph%20Library.md)
-
-**Utility Libraries**
-
-- [Metrics Library](https://doc.dpdk.org/guides/prog_guide/metrics_lib.html)
-- [Telemetry Library](https://doc.dpdk.org/guides/prog_guide/telemetry_lib.html)(遥测库) # 遥测库提供了一个接口，用于从各种 DPDK 库中检索信息。该库通过 Unix Socket 提供这些信息，接收来自客户端的请求，并回复包含所请求遥测信息的 JSON 响应。
+[DPDK Library](docs/4.数据通信/DPDK/DPDK%20Library.md)
 
 ## Driver
 
@@ -205,6 +194,8 @@ https://github.com/DPDK/dpdk/blob/main/usertools/dpdk-telemetry.py
 
 用于通过 DPDK Telemetry Library 暴露的 **SOCK_SEQPACKET** 类型的 Unix Socket（通常为 `/var/run/dpdk/*/dpdk_telemetry.v2`） 查询 DPDK 中的遥测信息。目前包括 ethdev 状态、ethdev 端口列表、eal 参数、etc.。
 
+`/help,COMMAND` # 获取命令的帮助信息
+
 # DPDK 与 BPF 与 Netfilter
 
 TODO
@@ -245,11 +236,11 @@ dpdk-devbind.py -b i40e 0000:21:00.0 0000:21:00.1
 
 ## CPU 使用率 100%
 
-DPDK的UIO驱动屏蔽了硬件发出中断，然后在用户态采用主动轮询的方式，这种模式被称为[PMD](http://doc.dpdk.org/guides/prog_guide/poll_mode_drv.html)（Poll Mode Driver）。
+DPDK 的 UIO 驱动屏蔽了硬件发出中断，然后在用户态采用主动轮询的方式，这种模式被称为 [PMD](http://doc.dpdk.org/guides/prog_guide/poll_mode_drv.html)（Poll Mode Driver）。
 
-UIO旁路了内核，主动轮询去掉硬中断，DPDK从而可以在用户态做收发包处理。带来Zero Copy、无系统调用的好处，同步处理减少上下文切换带来的Cache Miss。
+UIO 旁路了内核，主动轮询去掉硬中断，DPDK 从而可以在用户态做收发包处理。带来 Zero Copy、无系统调用的好处，同步处理减少上下文切换带来的 Cache Miss。
 
-运行在PMD的Core会处于用户态CPU100%的状态
+运行在 PMD 的 Core 会处于用户态 CPU100% 的状态
 
 ![](https://ask.qcloudimg.com/draft/1141755/v43qilsryd.png?imageView2/2/w/1620)
 

@@ -2916,11 +2916,18 @@
       "docs/学习/PKM/写作.md",
       "docs/学习/PKM/Obsidian.md",
       "docs/学习/PKM/WPS.md"
+    ],
+    "docs/4.数据通信/DPDK": [
+      "docs/4.数据通信/DPDK/_index.md",
+      "docs/4.数据通信/DPDK/DPDK.md",
+      "docs/4.数据通信/DPDK/DPDK Library.md",
+      "docs/4.数据通信/DPDK/Graph Library.md"
     ]
   },
   "actionBarOrder": {},
   "autoHide": true,
   "autoHideDelay": 2000,
   "dragDelay": 200,
-  "sortOrder": "custom"
+  "sortOrder": "custom",
+  "useCollapse": true
 }
