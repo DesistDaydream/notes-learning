@@ -64,6 +64,11 @@ https://github.com/scrapli/scrapligo # 专注于通过 SSH 和 NETCONF 连接到
 - [知乎，请问golang有没有类似netmiko，paramiko这样高度集成的第三方库？](https://www.zhihu.com/question/498240883/answer/2238301649)
 - [知乎，浅谈如何使用Scrapligo控制网络设备](https://zhuanlan.zhihu.com/p/641358349)
 
+TODO:
+
+- https://github.com/rustgogogo/sshclient-go/blob/master/ssh-client.go
+- https://github.com/jpillora/sshd-lite
+
 ## 路由
 
 https://github.com/gorilla/mux # 一个强大的 HTTP 路由器和 URL 匹配器，用于构建 Go Web 服务器

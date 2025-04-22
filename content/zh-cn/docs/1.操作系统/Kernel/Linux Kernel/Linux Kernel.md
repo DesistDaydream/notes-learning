@@ -46,7 +46,7 @@ Linux 的 Manual(man 手册) 来自于 [Linux man-pages project](https://www.ker
 在 Linux Kernel 的官方 man 手册中，记录了用户空间程序使用 Linux 内核 和 C 库的接口。对于 C 库，主要聚焦于 GUN C(glibc)，尽管在已知的情况下，还包括可用于 Linux 的其他 C 库中的变体文档。在这个 man 手册中，分为如下几部分：
 
 1. **[Executable programs or shell commands](https://man7.org/linux/man-pages/dir_section_1.html)(可执行程序或 Shell 命令)** # 介绍一些用户空间的应用程序。
-2. **[System Call](docs/1.操作系统/Kernel/System%20Call/System%20Call.md)(系统调用)** # Linux Kernel 可以提供的所有 System Calls(系统调用)
+2. **[System Call](/docs/1.操作系统/Kernel/System%20Call/System%20Call.md)(系统调用)** # Linux Kernel 可以提供的所有 System Calls(系统调用)
 3. **[Library functions](https://man7.org/linux/man-pages/dir_section_3.html)(库函数)** # C 标准库可以提供的函数。
 4. **[Devices](https://man7.org/linux/man-pages/dir_section_4.html)(设备)** # 各种设备的详细信息，这些设备大多都在 /dev 目录中。
 5. **[Files](https://man7.org/linux/man-pages/dir_section_5.html)(文件)** # 各种文件格式和文件系统

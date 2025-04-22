@@ -9,8 +9,8 @@ weight: 20
 > 参考：
 >
 > - [Manual, 文件格式](https://docs.openssl.org/master/man5/)
->     - [Manual(手册), config(5)](https://www.openssl.org/docs/manmaster/man5/config.html)
->     - [Manual(手册), x509v3_config(5)](https://www.openssl.org/docs/manmaster/man5/x509v3_config.html)
+>   - [Manual(手册), config(5)](https://www.openssl.org/docs/manmaster/man5/config.html)
+>   - [Manual(手册), x509v3_config(5)](https://www.openssl.org/docs/manmaster/man5/x509v3_config.html)
 > - [Manual(手册), openssl-req(1)](https://www.openssl.org/docs/man3.0/man1/openssl-req.html)-CONFIGURATION FILE FORMAT 部分
 > - <https://www.cnblogs.com/f-ck-need-u/p/6091027.html>
 
@@ -24,10 +24,10 @@ OpenSSL 配置文件为 OpenSSL 库及其二进制程序提供运行时参数。
 
 # 配置文件格式
 
-OpenSSL 配置文件的语法与 [INI](docs/2.编程/无法分类的语言/INI.md) 类似，但与常见的 INI 配置并不太一样（Section 用于定义场景，而不是定义某种类型的配置），并且扩展了很多能力：
+OpenSSL 配置文件的语法与 [INI](/docs/2.编程/无法分类的语言/INI.md) 类似，但与常见的 INI 配置并不太一样（Section 用于定义场景，而不是定义某种类型的配置），并且扩展了很多能力：
 
 - Section 本身的意义来源于 Openssl 命令行工具，各个 Section 是为各种场景服务的，甚至每个 Section 都可以有很多相同的 K/V 对。
-    - 通常可以配合 -extensions 选项以便让命令读取哪个 Section 的内容
+  - 通常可以配合 -extensions 选项以便让命令读取哪个 Section 的内容
 - **特定的 Section 的名字是有意义的**，比如 `[req]` Section 可以为 `openssl req` 命令提供参数，当执行 `openssl req` 命令时，会从默认配置文件的 `[req]` Section 获取配置参数，若没有，则再从 `默认` Section 获取参数。
 - Section 中除了 **key/value pair(键值对)** 以外，还可以包括 **Directives(指令)**
 - Section 中的 **Key/Value Pair 可以进行变量定义**，也可以引用变量。此时 Key 就是变量名，Value 就是变量的值。
@@ -170,7 +170,7 @@ DNS.2 = *.desistdaydream.it
 
 ```ini
         X509v3 extensions:
-            X509v3 Subject Alternative Name: 
+            X509v3 Subject Alternative Name:
                 DNS:desistdaydream.it, DNS:*.desistdaydream.it
 ```
 

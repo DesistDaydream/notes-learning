@@ -1,8 +1,9 @@
 ---
-title: Docker 配置详解
-linkTitle: Docker 配置详解
+title: Docker Configuration
+linkTitle: Docker Configuration
 weight: 3
 ---
+
 # 概述
 
 > 参考：
@@ -12,11 +13,11 @@ weight: 3
 
 Docker 的守护进程为 dockerd，dockerd 可以通过两种方式配置运行时行为
 
-- 通过配置文件 /etc/docker/daemon.json 进行配置
-- 使用 dockerd 命令的 flags 进行配置，可以将 flags 添加到 dockerd.service 中。
+- /etc/docker/daemon.json 配置文件
+- dockerd 命令的 flags ，可以将 flags 添加到 dockerd.service 中。
 
 > [!Note]
-> 配置文件中的配置，也可以通过 dockerd 的命令行参数(也就是 flags)指定，比如配置文件中的 data-root 字段，对应的 dockerd flags 为 --data-root STRING。
+> 配置文件中的配置，也可以通过 dockerd 的命令行参数(也就是 flags)指定，比如配置文件中的 data-root 字段，对应的 dockerd flags 为 --data-root
 
 ## 配置文件示例
 
@@ -54,26 +55,25 @@ dockerd 配置文件是 JSON 格式，基本常用的配置内容如下。
 
 # 配置文件详解
 
-## data-root(STRING)
+[官方文档，参考 - CLI 参考 - dockerd - daemon 配置文件](https://docs.docker.com/reference/cli/dockerd/#daemon-configuration-file) 是官网给的配置文件中所有可用字段的列表
 
-配置 docker info 命令中的 Docker Root Dir，也就是 docker 存储数据的路径。
+**data-root**(STRING) # 配置 docker info 命令中的 Docker Root Dir，也就是 docker 存储数据的路径。
 
-## features(OBJECT)
+**features**(OBJECT) # 一些新的特性可以通过配置该字段来启动或停止
 
-一些新的特性可以通过配置该字段来启动或停止
+**hosts**(\[]STRING) # 指定 docker 守护进程监听的端口
 
-## hosts(\[]STRING) # 指定 docker 守护进程监听的端口
+- 可以从其他机器使用 `docker -H URL` 命令对该设备进行 docker 操作
 
-可以从其他机器使用 `docker -H URL` 命令对该设备进行 docker 操作
+**live-restore**(BOOLEAN) # 在 docker.service 守护程序停止期间，保持容器状态，说白了就是重启 docker 的时候 Containers 不重启。
 
-## live-restore(BOOL)
+- 开启该参数后，就算重启 dockerd 服务也不会更改 default-address-pools 参数执行的地址范围
 
-在 docker.service 守护程序停止期间，保持容器状态，说白了就是重启 docker 的时候 Containers 不重启。
-开启该参数后，就算重启 dockerd 服务也不会更改 default-address-pools 参数执行的地址范围
+**registry-mirrors**(\[]STRING) # 指定 pull、push 镜像时候的加速器地址
 
-## registry-mirrors(\[]STRING) # 指定 pull、push 镜像时候的加速器地址
+- 可用的地址参考 [容器镜像管理](/docs/10.云原生/Containerization%20implementation/容器管理/容器镜像管理.md)
 
-可用的地址参考 [容器镜像管理](/docs/10.云原生/Containerization%20implementation/容器管理/容器镜像管理.md)
+**insecure-registries**(\[]STRING) # 指定不安全仓库，Docker 默认无法连接 HTTP 协议的仓库，将仓库的 URL 添加到该字段后，docker 即可连接
 
 ## 日志配置
 
@@ -89,113 +89,15 @@ dockerd 配置文件是 JSON 格式，基本常用的配置内容如下。
 
 - 很多选项随着版本的更新，会弃用，比如 `overlay2.override_kernel_check` 已于 [24.0+ 版本弃用](https://docs.docker.com/engine/deprecated/#support-for-the-overlay2override_kernel_check-storage-option)
 
-## 下面是官网给的配置文件中所有可用字段的说明
+## 网络配置
 
-https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file
+**ip-forward-no-drop**(BOOLEAN) # 禁止 Docker 将 iptables 的 filter 表中 FORWARD 链的默认行为改为 DROP。`默认值: false`
 
-```json
-{
-  "authorization-plugins": [],
-  "data-root": "",
-  "dns": [],
-  "dns-opts": [],
-  "dns-search": [],
-  "exec-opts": [],
-  "exec-root": "",
-  "experimental": false,
-  "features": {},
-  "storage-driver": "",
-  "storage-opts": [],
-  "labels": [],
-  "live-restore": true,
-  "log-driver": "json-file",
-  "log-opts": {
-    "max-size": "10m",
-    "max-file": "5",
-    "labels": "somelabel",
-    "env": "os,customer"
-  },
-  "mtu": 0,
-  "pidfile": "",
-  "cluster-store": "",
-  "cluster-store-opts": {},
-  "cluster-advertise": "",
-  "max-concurrent-downloads": 3,
-  "max-concurrent-uploads": 5,
-  "default-shm-size": "64M",
-  "shutdown-timeout": 15,
-  "debug": true,
-  // 指定docker守护进程监听的端口，可以从其他机器使用docker -H URL命令对该设备进行docker操作
-  "hosts": [],
-  "log-level": "",
-  "tls": true,
-  "tlsverify": true,
-  "tlscacert": "",
-  "tlscert": "",
-  "tlskey": "",
-  "swarm-default-advertise-addr": "",
-  "api-cors-header": "",
-  "selinux-enabled": false,
-  "userns-remap": "",
-  "group": "",
-  "cgroup-parent": "",
-  "default-ulimits": {
-    "nofile": {
-      "Name": "nofile",
-      "Hard": 64000,
-      "Soft": 64000
-    }
-  },
-  "init": false,
-  "init-path": "/usr/libexec/docker-init",
-  "ipv6": false,
-  "iptables": false,
-  "ip-forward": false,
-  "ip-masq": false,
-  "userland-proxy": false,
-  "userland-proxy-path": "/usr/libexec/docker-proxy",
-  "ip": "0.0.0.0",
-  "bridge": "",
-  // 指定 docker0 桥的 IP
-  "bip": "",
-  "fixed-cidr": "",
-  "fixed-cidr-v6": "",
-  "default-gateway": "",
-  "default-gateway-v6": "",
-  "icc": false,
-  "raw-logs": false,
-  "allow-nondistributable-artifacts": [],
-  "registry-mirrors": [],
-  "seccomp-profile": "",
-  // 指定不安全仓库，docker 默认无法连接 http 协议的仓库，将仓库的 URL 添加到该字段后，docker 即可连接
-  "insecure-registries": [],
-  "no-new-privileges": false,
-  "default-runtime": "runc",
-  "oom-score-adjust": -500,
-  "node-generic-resources": ["NVIDIA-GPU=UUID1", "NVIDIA-GPU=UUID2"],
-  "runtimes": {
-    "cc-runtime": {
-      "path": "/usr/bin/cc-runtime"
-    },
-    "custom": {
-      "path": "/usr/local/bin/my-runc-replacement",
-      "runtimeArgs": ["--debug"]
-    }
-  },
-  "default-address-pools": [
-    { "base": "172.80.0.0/16", "size": 24 },
-    { "base": "172.90.0.0/16", "size": 24 }
-  ]
-}
-```
+**bip** # 指定 docker0 桥的 IP
 
 # 代理配置
 
-> 参考：
->
-> - [如何配置docker通过代理服务器拉取镜像](https://www.lfhacks.com/tech/pull-docker-images-behind-proxy/)
-
-注意：从 Docker 的 23.0 版本开始，可以在 daemon.json 文件中配置 dockerd 的代理行为：
+从 Docker 的 23.0 版本开始，可以在 daemon.json 文件中配置 dockerd 的代理行为：
 
 ```json
 {
@@ -207,13 +109,17 @@ https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configurati
 }
 ```
 
-下面的文章权当记录留个念想了。
-
 如果 docker 所在的环境是通过代理服务器和互联网连通的，那么需要一番配置才能让 docker 正常从外网正常拉取镜像。然而仅仅通过配置环境变量的方法是不够的。本文结合已有文档，介绍如何配置代理服务器能使docker正常拉取镜像。
 
-本文使用的docker 版本是19.03
+本文使用的 docker 版本是19.03
+
+下面的文章权当记录留个念想了。
 
 ## 问题现象
+
+> 参考：
+>
+> - [如何配置docker通过代理服务器拉取镜像](https://www.lfhacks.com/tech/pull-docker-images-behind-proxy/)
 
 如果不配置代理服务器就直接拉镜像，docker 会直接尝试连接镜像仓库，并且连接超时报错。如下所示：
 
@@ -226,7 +132,7 @@ while waiting for connection (Client.Timeout exceeded while awaiting headers)
 
 ## 容易误导的官方文档
 
-有这么一篇关于 docker 配置代理服务器的 [官方文档](https://docs.docker.com/network/proxy/#configure-the-docker-client) ，如果病急乱投医，直接按照这篇文章配置，是不能成功拉取镜像的。
+有这么一篇关于 docker 配置代理服务器的 [官方文档](https://docs.docker.com/network/proxy/#configure-the-docker-client) （[新链接](https://docs.docker.com/engine/cli/proxy/#configure-the-docker-client)），如果病急乱投医，直接按照这篇文章配置，是不能成功拉取镜像的。
 
 我们来理解一下这篇文档，文档关键的原文摘录如下：
 
@@ -252,7 +158,7 @@ while waiting for connection (Client.Timeout exceeded while awaiting headers)
 
 ## 正确的官方文档
 
-关于 systemd 配置代理服务器的 [官方文档在这里](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy)，原文说：
+关于 systemd 配置代理服务器的 [官方文档在这里](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy)（[新链接](https://docs.docker.com/engine/daemon/proxy/#httphttps-proxy)），原文说：
 
 > The Docker daemon uses the HTTP_PROXY, HTTPS_PROXY, and NO_PROXY environmental variables in its start-up environment to configure HTTP or HTTPS proxy behavior. You cannot configure these environment variables using the daemon.json file.
 >

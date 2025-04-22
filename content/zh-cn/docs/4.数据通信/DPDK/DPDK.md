@@ -11,7 +11,7 @@ data: 2024-03-01T00:00:00
 >
 > - [GitHub 项目，DPDK/dpdk](https://github.com/DPDK/dpdk)
 > - [官网](https://www.dpdk.org/)
-> - [官方文档，API ](https://doc.dpdk.org/api/)
+> - [官方文档，API](https://doc.dpdk.org/api/)
 > - [Wiki, Data Plane Development Kit](https://en.wikipedia.org/wiki/Data_Plane_Development_Kit)
 > - [DPDK 开发中文网](https://sdn.0voice.com/)
 
@@ -42,7 +42,7 @@ https://doc.dpdk.org/guides/prog_guide/env_abstraction_layer.html
 
 TODO: 好多好多的库，功能非常全。
 
-[DPDK Library](docs/4.数据通信/DPDK/DPDK%20Library.md)
+[DPDK Library](/docs/4.数据通信/DPDK/DPDK%20Library.md)
 
 ## Driver
 

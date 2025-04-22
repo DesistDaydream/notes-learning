@@ -25,7 +25,7 @@ Note：一开始，Docker 在 linux 上实现容器技术的后端使用的是 l
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/docker/202407241618409.png)
 
-Docker 对使用者来讲是一个 [C/S](/docs/Standard/B_S%20和%20C_S%20架构.md) 模式的架构，Client 和 Server 使用 REST API 通过 UNIX [Socket](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Socket/Socket.md) 或者网络进行通信。[Compose](/docs/10.云原生/Containerization%20implementation/Docker/Compose/Compose.md) 同样也可以作为客户端。
+Docker 对使用者来讲是一个 [C/S](/docs/Standard/B_S%20和%20C_S%20架构.md) 模式的架构，Client 和 Server 使用 REST API 通过 UNIX [Socket](/docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Socket/Socket.md) 或者网络进行通信。[Compose](/docs/10.云原生/Containerization%20implementation/Docker/Compose/Compose.md) 同样也可以作为客户端。
 
 官方将这种架构称为 [**Docker Engine(引擎)**](https://docs.docker.com/engine/)，通常这个引擎具有：
 
@@ -63,7 +63,7 @@ Note：目录名中的 overlay2 指的是 docker 当前 Storage Driver 类型，
 
 ## dockerd 程序关联文件
 
-**/etc/docker/daemon.json** # dockerd 服务运行时配置文件。该目录与文件需要自行创建，默认不存在，以 JSON 格式为守护程序设置任何配置选项。
+**/etc/docker/daemon.json** # dockerd 服务运行时配置文件。该目录与文件需要自行创建，默认不存在，以 JSON 格式为守护程序设置任何配置选项。相见 [Docker Configuration](docs/10.云原生/Containerization%20implementation/Docker/Docker%20Configuration.md)
 
 **/run/docker/** # container 的状态文件(state.json)、IO 文件 、netns 文件保存路径。
 

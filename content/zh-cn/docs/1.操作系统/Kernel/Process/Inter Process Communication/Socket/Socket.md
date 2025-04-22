@@ -32,10 +32,10 @@ Socket(套接字) 原意是 “插座”，所以 Socket 就像插座的作用�
 **Socket Family(族)**/**Socket Domain(域)** 用于定义 Socket 在哪里通信，是 本地、网络、etc. 。可以在 [address_families(7)](https://man7.org/linux/man-pages/man7/address_families.7.html) 找到所有定义了的 Families
 
 - **[Unix Domain Socket](#Unix%20Domain%20Socket)** # 用于同一台设备的不同进程间互相通信
-    - AF_UNIX
+  - AF_UNIX
 - **[Network Socket](#Network%20Socket)** # 用于进程在网络间互相通信
-    - AF_INET,  AF_INET6
-- **AF_NETLINK** # 内核空间与用户空间通信的 Socket。比如 [Netlink](docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Netlink/Netlink.md)
+  - AF_INET,  AF_INET6
+- **AF_NETLINK** # 内核空间与用户空间通信的 Socket。比如 [Netlink](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Netlink/Netlink.md)
 - etc.
 
 **Socket type** 用于约定约定一些 **communication semantics(通信语义)**：
@@ -49,8 +49,8 @@ Socket(套接字) 原意是 “插座”，所以 Socket 就像插座的作用�
 - **SOCK_SEQPACKET** # 面向记录的传输（e.g. SCTP）。为固定最大长度的数据报提供基于连接的、可靠的双向有序传输路径；每次输入系统调用需读取完整数据包。
 - etc.
 - 修改 Socket 行为的类型
-    - **SOCK_NONBLOCK**
-    - etc.
+  - **SOCK_NONBLOCK**
+  - etc.
 
 ## Linux 的 socket 接口运行逻辑
 
@@ -66,16 +66,17 @@ https://man7.org/linux/man-pages/man7/socket.7.html
 
 ## Berkeley Sockets API
 
-**Berkeley Sockets** 是 Network Socket 和 Unix Domain Sockets 的 [API](docs/2.编程/API/API.md)），用于进程间通信（IPC）。通常将其实现为可链接模块的库。它起源于 1983 年发布的 4.2BSD Unix 操作系统。
+**Berkeley Sockets** 是 Network Socket 和 Unix Domain Sockets 的 [API](/docs/2.编程/API/API.md)），用于进程间通信（IPC）。通常将其实现为可链接模块的库。它起源于 1983 年发布的 4.2BSD Unix 操作系统。
 
 套接字是网络通信路径的本地终结点的抽象表示（句柄）。Berkeley 套接字 API 将其表示为 Unix 哲学中的文件描述符（文件句柄），该描述符为输入和输出到数据流提供通用接口。
 
 伯克利套接字几乎没有任何改动，从 _事实上的_ 标准演变为 POSIX 规范的组件。术语 **POSIX 套接字**在本质上是 _Berkeley 套接字的_ 同义词，但是它们也称为 BSD 套接字，这是对 Berkeley Software Distribution 中的第一个实现的认可。
 
 # Socket Families
+
 ## Unix Domain Socket
 
-详见 [Unix Domain Socket](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Socket/Unix%20Domain%20Socket.md)
+详见 [Unix Domain Socket](/docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Socket/Unix%20Domain%20Socket.md)
 
 ## Network Socket
 
@@ -85,7 +86,7 @@ https://man7.org/linux/man-pages/man7/socket.7.html
 
 原文：[公众号，这种本机网络 IO 方法，性能可以翻倍！](https://mp.weixin.qq.com/s/fHzKYlW0WMhP2jxh2H_59A)
 
-原创 张彦飞allen *2021年12月21日 09:10*
+原创 张彦飞allen _2021年12月21日 09:10_
 
 大家好，我是飞哥！
 
@@ -95,7 +96,7 @@ https://man7.org/linux/man-pages/man7/socket.7.html
 
 ![图片](https://mmbiz.qpic.cn/mmbiz_png/BBjAFF4hcwqr5dxehUyQGUfk69ibqFibVMYBNJiclZk13tB111axoKtso0QfeeZMKPrLohFlPoNBAGTzhviay28ibicA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-那么我们今天来看另外一种本机网络 IO 通信方式 -- Unix Domain Socket。看看这种方式在性能开销上和基于 127.0.0.1 的本机网络 IO 有没有啥差异呢。  
+那么我们今天来看另外一种本机网络 IO 通信方式 -- Unix Domain Socket。看看这种方式在性能开销上和基于 127.0.0.1 的本机网络 IO 有没有啥差异呢。
 
 本文中，我们将分析 Unix Domain Socket 的内部工作原理。你将理解为什么这种方式的性能比 127.0.0.1 要好很多。最后我们还给出了实际的性能测试对比数据。
 
@@ -125,7 +126,7 @@ int main()
 
  // 绑定监听
  char *socket_path = "./server.sock";
- strcpy(serun.sun_path, socket_path); 
+ strcpy(serun.sun_path, socket_path);
  bind(fd, serun, ...);
  listen(fd, 128);
 
@@ -159,7 +160,7 @@ int main(){
 
 ![图片](https://mmbiz.qpic.cn/mmbiz_png/BBjAFF4hcwqr5dxehUyQGUfk69ibqFibVMNB1r0ZJF5FRQNwMx6SJnUuN1NmM29TVDWlRibkCXuEIaYRGMkeAvibcA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-内核源码中最重要的逻辑在 connect 函数中，我们来简单展开看一下。unix 协议族中定义了这类 socket 的所有方法，它位于 net/unix/af\_unix.c 中。  
+内核源码中最重要的逻辑在 connect 函数中，我们来简单展开看一下。unix 协议族中定义了这类 socket 的所有方法，它位于 net/unix/af\_unix.c 中。
 
 ```c
 //file: net/unix/af_unix.c
@@ -224,7 +225,7 @@ static int unix_stream_connect(struct socket *sock, struct sockaddr *uaddr,
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/BBjAFF4hcwqr5dxehUyQGUfk69ibqFibVMbUcIFoJibcDKRgIMeZqWiaV9gIjBYZicJPhBjib2W3ibmqrhzlHmHT3jmyw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-我们从 send 函数来看起。send 系统调用的源码位于文件 net/socket.c 中。在这个系统调用里，内部其实真正使用的是 sendto 系统调用。它只干了两件简单的事情，  
+我们从 send 函数来看起。send 系统调用的源码位于文件 net/socket.c 中。在这个系统调用里，内部其实真正使用的是 sendto 系统调用。它只干了两件简单的事情，
 
 第一是在内核中把真正的 socket 找出来，在这个对象里记录着各种协议栈的函数地址。第二是构造一个 struct msghdr 对象，把用户传入的数据，比如 buffer地址、数据长度啥的，统统都装进去. 剩下的事情就交给下一层，协议栈里的函数 inet\_sendmsg 了，其中 inet\_sendmsg 函数的地址是通过 socket 内核对象里的 ops 成员找到的。大致流程如图。
 
@@ -268,7 +269,7 @@ static int unix_stream_sendmsg(struct kiocb *kiocb, struct socket *sock,
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/BBjAFF4hcwqr5dxehUyQGUfk69ibqFibVM1X83FjHgcKPXoicpOStLm3vprwoH3tuhia91l2oibfmAOUhpCFjUaHlCA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-可见在小包（100 字节）的情况下，UDS 方法的“网络” IO 平均延迟只有 2707 纳秒，而基于 TCP（访问 127.0.0.1）的方式下延迟高达 5690 纳秒。耗时整整是前者的两倍。  
+可见在小包（100 字节）的情况下，UDS 方法的“网络” IO 平均延迟只有 2707 纳秒，而基于 TCP（访问 127.0.0.1）的方式下延迟高达 5690 纳秒。耗时整整是前者的两倍。
 
 在包体达到 100 KB 以后，UDS 方法延迟 24 微秒左右（1 微秒等于 1000 纳秒），TCP 是 32 微秒，仍然高一截。这里低于 2 倍的关系了，是因为当包足够大的时候，网络协议栈上的开销就显得没那么明显了。
 
@@ -276,7 +277,7 @@ static int unix_stream_sendmsg(struct kiocb *kiocb, struct socket *sock,
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/BBjAFF4hcwqr5dxehUyQGUfk69ibqFibVMtaHJ8KD0jPibiaqiaYXSuWn4NNNhgEIwU9xsib8XxtMBibzHwn4z5eRHTNw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-在小包的情况下，带宽指标可以达到 854 M，而基于 TCP 的 IO 方式下只有 386 M。数据就解读到这里。  
+在小包的情况下，带宽指标可以达到 854 M，而基于 TCP 的 IO 方式下只有 386 M。数据就解读到这里。
 
 ## 五、总结
 
@@ -284,8 +285,8 @@ static int unix_stream_sendmsg(struct kiocb *kiocb, struct socket *sock,
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/BBjAFF4hcwqr5dxehUyQGUfk69ibqFibVMbUcIFoJibcDKRgIMeZqWiaV9gIjBYZicJPhBjib2W3ibmqrhzlHmHT3jmyw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-相对比本机网络 IO 通信过程上，它的工作过程要清爽许多。其中 127.0.0.1 工作过程如下图。  
+相对比本机网络 IO 通信过程上，它的工作过程要清爽许多。其中 127.0.0.1 工作过程如下图。
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/BBjAFF4hcwqr5dxehUyQGUfk69ibqFibVMYBNJiclZk13tB111axoKtso0QfeeZMKPrLohFlPoNBAGTzhviay28ibicA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-我们也对比了 UDP 和 TCP 两种方式下的延迟和性能指标。在包体不大于 1KB 的时候，UDS 的性能大约是 TCP 的两倍多。 **所以，在本机网络 IO 的场景下，如果对性能敏感，飞哥建议你使用 Unix Domain Socket。**  
+我们也对比了 UDP 和 TCP 两种方式下的延迟和性能指标。在包体不大于 1KB 的时候，UDS 的性能大约是 TCP 的两倍多。 **所以，在本机网络 IO 的场景下，如果对性能敏感，飞哥建议你使用 Unix Domain Socket。**

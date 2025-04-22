@@ -6,7 +6,7 @@ title: LabelSelector
 
 > 参考：
 >
-> - [官方文档，参考-KubernetesAPI-通用定义-LabelSelector](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/label-selector/)
+> - [官方文档，参考 - KubernetesAPI - 通用定义 - LabelSelector](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/label-selector/)
 
 LabelSelector 用来实现[标签和选择器](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/Object%20管理/Label%20and%20Selector(标签和选择器)/Label%20and%20Selector(标签和选择器).md)功能。通过 LabelSelector，我们可以根据标签匹配到想要的对象
 

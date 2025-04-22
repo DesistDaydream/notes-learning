@@ -8,7 +8,7 @@ weight: 20
 
 > 参考：
 >
-> - 
+> -
 
 # RAG
 
@@ -17,7 +17,7 @@ weight: 20
 > - [Wiki, # Retrieval-augmented generation](https://en.wikipedia.org/wiki/Retrieval-augmented_generation)
 > - [B 站，AI知识库RAG技术原理，三大痛点与进阶方案【不用编程】](https://www.bilibili.com/video/BV1NMoFYoEsb)
 
-**Retrieval-augmented generation(检索增强生成，简称 RAG)** 是一种使 [12.AI](docs/12.AI/12.AI.md) 模型能够检索信息的技术。它修改了与 LLM 的交互，使模型能够参考指定的一组文档来响应用户的查询，并使用这些信息来补充其预先存在训练数据中的信息。
+**Retrieval-augmented generation(检索增强生成，简称 RAG)** 是一种使 [12.AI](/docs/12.AI/12.AI.md) 模型能够检索信息的技术。它修改了与 LLM 的交互，使模型能够参考指定的一组文档来响应用户的查询，并使用这些信息来补充其预先存在训练数据中的信息。
 
 用户把资料添加进知识库的时候，程序会先把它们拆分成很多个文本块，然后使用嵌入模型对这些文本块进行向量化（向量化指的是把切拆分后的文本），变成一个超长的数字序列。然后程序把向量以及对应的文本保存在向量数据库里面。
 

@@ -44,7 +44,7 @@ OpenTelemetry 创建了一个名词，将 *可观测数据（遥测数据）* �
 
 OpenTelemetry 是围绕 Signals 或 遥测类别 构建的。Metrics、Logs、Traces、Baggage 都是一种 Signals。每个 Signals 代表一组连贯的、独立的功能。每个信号都遵循单独的生命周期，定义其当前的稳定性级别。
 
-OpenTelemetry 的目的是收集、处理和导出 **Signals**。传统定义中，[Signal(信号)](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Signal(信号).md) 是系统输出，描述操作系统和应用程序的底层活动。在 OpenTelemetry 中，Signals 可以是您想要在特定时间点测量的内容，例如温度或内存使用情况，也可以是您想要跟踪的分布式系统组件的事件。您可以将不同的 Signals 组合在一起，从不同角度观察同一项技术的内部运作情况。
+OpenTelemetry 的目的是收集、处理和导出 **Signals**。传统定义中，[Signal(信号)](/docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Signal(信号).md) 是系统输出，描述操作系统和应用程序的底层活动。在 OpenTelemetry 中，Signals 可以是您想要在特定时间点测量的内容，例如温度或内存使用情况，也可以是您想要跟踪的分布式系统组件的事件。您可以将不同的 Signals 组合在一起，从不同角度观察同一项技术的内部运作情况。
 
 # OpenTelemetry 实现
 

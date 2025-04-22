@@ -13,7 +13,7 @@ tags:
 >
 > - [Wiki, Network Scoket](https://en.wikipedia.org/wiki/Network_socket)
 
-Network Socket(网络套接字) 是网络域的 [Socket](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Socket/Socket.md)
+Network Socket(网络套接字) 是网络域的 [Socket](/docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Socket/Socket.md)
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/zvw5dg/1616161399168-31d4bf21-49d1-45dc-993e-83ea35d7a7f2.jpeg)
 
@@ -48,9 +48,9 @@ Socket Domain 套接字域，根据其所有使用的地址进行分类
 
 每类套接字至少提供了两种 socket：流，数据报
 
-[TCP](docs/4.数据通信/Protocol/TCP_IP/TCP/TCP.md)：传输控制协议，面向连接的协议，通信钱需要建立虚拟链路，结束后拆除链路
+[TCP](/docs/4.数据通信/Protocol/TCP_IP/TCP/TCP.md)：传输控制协议，面向连接的协议，通信钱需要建立虚拟链路，结束后拆除链路
 
-[UDP](docs/4.数据通信/Protocol/UDP/UDP.md)，无连接的协议
+[UDP](/docs/4.数据通信/Protocol/UDP/UDP.md)，无连接的协议
 
 1. 流：可靠的传递，面向连接，无边界
 2. 数据报：不可靠的传递，有边界，无连接

@@ -12,7 +12,7 @@ weight: 3
 
 Ansible 可同时操作属于一个组的多台主机，组和主机之间的关系通过 Inventory 文件配置。默认的文件路径为 /etc/ansible/hosts，也可以在 `ansible`、`ansible-playbook` 命令中使用 -i 选项指定其他的 Inventory 文件。
 
-除默认文件外，还可以同时使用多个 inventory 文件，也可以从动态源，或云上拉取 inventory 配置信息。详见[ 动态 Inventory](https://docs.ansible.com/ansible/latest/inventory_guide/intro_dynamic_inventory.html#intro-dynamic-inventory)。
+除默认文件外，还可以同时使用多个 inventory 文件，也可以从动态源，或云上拉取 inventory 配置信息。详见[动态 Inventory](https://docs.ansible.com/ansible/latest/inventory_guide/intro_dynamic_inventory.html#intro-dynamic-inventory)。
 
 ## Inventory文件格式
 
@@ -368,10 +368,10 @@ ansible支持主机列表的正则匹配
 - **ansible_sudo_exe** # sudo 命令路径(适用于1.8及以上版本)
 - **ansible_ssh_private_key_file** # ssh 使用的私钥文件.适用于有多个密钥,而你不想使用 SSH 代理的情况.
 - **ansible_shell_type** # 目标系统的shell类型.默认情况下,命令的执行使用 'sh' 语法,可设置为 'csh' 或 'fish'.
-- **ansible_ssh_extra_args** # 参数值可以作为 [ssh](docs/4.数据通信/Utility/OpenSSH/ssh.md) 的命令行参数
-    - e.g. `ansible_ssh_extra_args: "-o HostKeyAlgorithms=+ssh-dss"` 相当于 `ssh -o HostKeyAlgorithms=+ssh-dss`
+- **ansible_ssh_extra_args** # 参数值可以作为 [ssh](/docs/4.数据通信/Utility/OpenSSH/ssh.md) 的命令行参数
+  - e.g. `ansible_ssh_extra_args: "-o HostKeyAlgorithms=+ssh-dss"` 相当于 `ssh -o HostKeyAlgorithms=+ssh-dss`
 
-> 更多 SSH 相关参数可以参考 [Connection Plugins](docs/9.运维/Ansible/Ansible%20Plugins/Connection%20Plugins.md) 的 SSH 章节
+> 更多 SSH 相关参数可以参考 [Connection Plugins](/docs/9.运维/Ansible/Ansible%20Plugins/Connection%20Plugins.md) 的 SSH 章节
 
 权限提升参数
 

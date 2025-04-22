@@ -273,8 +273,9 @@ drwx------ 2 root root 142 Jun 21 21:01 l
 # 怎样修改 docker 容器 hosts 文件的内容？
 
 这就要了解 docker 镜像的分层结构了，其中有一个叫 Init 的层，该层专门用来存储一些配置文件，比如：/etc/hosts、/etc/resolv.conf 等信息的，该层并不会跟随镜像一起提交，所以如果我们直接在 Dockerfile 中去覆盖 /etc/hosts 文件的话是不会生效的，要解决这个问题可以有几种方法：
-1\. 启动容器的时候(docker run)添加参数—add-host machine:ip 可以实现 hosts 修改，缺点就是如果很多个节点的话命令会很长
-2\. 修改容器 hosts de 查找目录，我们可以让容器启动的时候不去找 /etc/hosts 文件，而是去查找我们自己定义的 hosts 文件，下面是一个 Dockerfile 实例：
+
+1. 启动容器的时候(docker run)添加参数—add-host machine:ip 可以实现 hosts 修改，缺点就是如果很多个节点的话命令会很长
+2. 修改容器 hosts 的查找目录，我们可以让容器启动的时候不去找 /etc/hosts 文件，而是去查找我们自己定义的 hosts 文件，下面是一个 Dockerfile 实例：
 
 ```dockerfile
 FROM ubuntu:14.04
@@ -282,7 +283,7 @@ RUN cp /etc/hosts /tmp/hosts  # 路径长度最好保持一致
 RUN mkdir -p -- /lib-override && cp /lib/x86_64-linux-gnu/libnss_files.so.2 /lib-override
 RUN sed -i 's:/etc/hosts:/tmp/hosts:g' /lib-override/libnss_files.so.2
 ENV LD_LIBRARY_PATH /lib-override
-RUN echo "192.168.0.1 node1" &gt;&gt; /tmp/hosts  # 可以随意修改/tmp/hosts了
+RUN echo "192.168.0.1 node1" /tmp/hosts  # 可以随意修改/tmp/hosts了
 ...
 ```
 

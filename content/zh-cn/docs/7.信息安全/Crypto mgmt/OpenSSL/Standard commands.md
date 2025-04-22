@@ -101,8 +101,8 @@ OPTIONS
 - **-days NUM** # 证书的有效期
 - **-text** # 以文本形式打印出证书
 - **-noout** # 不输出证书的编码格式内容
-- **-subj** # 在命令行设定 Subject 信息。可以避免交互式输入。Subject 符合 [X.509](docs/7.信息安全/Cryptography/公开密钥加密/证书%20与%20PKI/X.509.md#DN(distinguished%20names)) 的 “DN” 格式
-    - 命令行参数的值的格式像这样: `/type0=value0/type1=value1/type2=...`。e.g. `-subj "/C=CN/CN=DesistDaydream-CA"`
+- **-subj** # 在命令行设定 Subject 信息。可以避免交互式输入。Subject 符合 [X.509](/docs/7.信息安全/Cryptography/公开密钥加密/证书%20与%20PKI/X.509.md#DN(distinguished%20names)) 的 “DN” 格式
+  - 命令行参数的值的格式像这样: `/type0=value0/type1=value1/type2=...`。e.g. `-subj "/C=CN/CN=DesistDaydream-CA"`
 
 ### EXAMPLE
 
@@ -206,7 +206,6 @@ openssl req -new -x509 -key /etc/pki/CA/private/ca.key -days 3650 -out /etc/pki/
 
 #### Certificate Checking OPTIONS(证书检查选项)
 
-
 #### Certificate Output OPTIONS(证书输出选项)
 
 这部分的选项与生成证书有关
@@ -219,7 +218,7 @@ openssl req -new -x509 -key /etc/pki/CA/private/ca.key -days 3650 -out /etc/pki/
 
 **-extfile**(STRING) # 用于生成证书 X.509v3 扩展部分内容的配置文件。
 
-- 配置文件的字段会如何生成证书中字段详见 [OpenSSL 配置详解](docs/7.信息安全/Crypto%20mgmt/OpenSSL/OpenSSL%20配置详解.md)
+- 配置文件的字段会如何生成证书中字段详见 [OpenSSL 配置详解](/docs/7.信息安全/Crypto%20mgmt/OpenSSL/OpenSSL%20配置详解.md)
 
 **-extensions**(SectionName) # 从 -extfile 选项指定的文件中指定 SectionName，该 Section 中的参数用来配置 X.509 证书的 `X509v3 extensions` 字段。
 
@@ -239,4 +238,3 @@ openssl req -new -x509 -key /etc/pki/CA/private/ca.key -days 3650 -out /etc/pki/
 **-CAcreateserial** # TODO: 具体效果未知。但是在签署证书的官方示例中，都带着这个选项
 
 ### Example
-

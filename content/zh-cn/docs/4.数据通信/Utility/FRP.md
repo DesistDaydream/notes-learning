@@ -10,7 +10,7 @@ weight: 20
 >
 > - [GitHub 项目，fatedier/frp](https://github.com/fatedier/frp)
 
-**Fast reverse proxy(快速反向代理，简称 FRP)** 一个专注于内网穿透的高性能的[反向代理](docs/Web/Proxy.md)应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议，且支持 P2P 通信。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。
+**Fast reverse proxy(快速反向代理，简称 FRP)** 一个专注于内网穿透的高性能的[反向代理](/docs/Web/Proxy.md)应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议，且支持 P2P 通信。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。
 
 # 重大变化
 
@@ -29,4 +29,3 @@ v2 的构想是基于我多年在云原生领域，特别是在 K8s 和 ServiceM
 # FRP 关联文件与配置
 
 https://gofrp.org/zh-cn/docs/reference/
-

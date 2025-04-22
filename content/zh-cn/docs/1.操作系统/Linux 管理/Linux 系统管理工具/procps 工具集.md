@@ -20,7 +20,7 @@ Note：该工具集就算是最小化安装的 linux 发行版系统也是默认
 
 # kill - 向指定PID的进程发送信号
 
-可用的信号详见 [Signal(信号)](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Signal(信号).md)
+可用的信号详见 [Signal(信号)](/docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Signal(信号).md)
 
 kill 命令将指定的信号发送到指定的进程或进程组。 如果未指定信号，则发送 TERM 信号。 TERM 信号将杀死不捕获该信号的进程。对于其他过程，由于无法捕获该信号，可能需要使用 KILL（9）信号。
 
@@ -322,8 +322,8 @@ Swap: 32764556k total,        0k used, 32764556k free,  3612636k cached
 - **up 70 days, 16:44** # 系统已经运行了 70 天 16 小时 44 分钟
 - **2 users** # 当前有 2 个用户登录系统
 - **load average: 1.25, 1.32, 1.35** # load average 后面的三个数分别是 1 分钟、5 分钟、15 分钟的负载情况。
-   - load average 数据是每隔 5 秒钟检查一次活跃的进程数，然后按特定算法计算出的数值。如果这个数除以逻辑 CPU 的数量，结果高于 5 的时候就表明系统在超负荷运转了。
-   - 关于 load average 的说明详见：理解 load average—Linux 系统负荷
+  - load average 数据是每隔 5 秒钟检查一次活跃的进程数，然后按特定算法计算出的数值。如果这个数除以逻辑 CPU 的数量，结果高于 5 的时候就表明系统在超负荷运转了。
+  - 关于 load average 的说明详见：理解 load average—Linux 系统负荷
 
 第二行解析：Tasks # 任务（进程），具体信息说明如下：
 

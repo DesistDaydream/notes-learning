@@ -14,14 +14,14 @@ weight: 20
 
 **Management information base(管理信息库，简称 MIB)** 是一种数据库，用于管理[通信网络](https://en.wikipedia.org/wiki/Communication_network)中的 **entities(实体，也称为 Objects(对象))**。MIB 使用 SMI 语法定义 Objects，其中包括 objects 的名称、OID、数据类型、描述(干什么用的)。MIB 也可以看作是 SNMP 的服务端与代理端的沟通桥梁，只有具有统一的格式，才能确定数据。
 
-**Structure of Managerment Intormation(管理信息结构,简称 SMI)** 是 [ASN.1](/docs/2.编程/无法分类的语言/ASN.1.md) 的子集，是一种技术语言，主要用在 [SNMP(传统监控标准)](docs/6.可观测性/Metrics/监控系统概述/SNMP(传统监控标准).md) 中，用于定义管理 MIB 中的 Objects。最新的版本是 1999 年的 [SMIv2(RFC 2578)](https://datatracker.ietf.org/doc/html/rfc2578)(文件内声明的名称为 SNMPv2-SMI)。
+**Structure of Managerment Intormation(管理信息结构,简称 SMI)** 是 [ASN.1](/docs/2.编程/无法分类的语言/ASN.1.md) 的子集，是一种技术语言，主要用在 [SNMP(传统监控标准)](/docs/6.可观测性/Metrics/监控系统概述/SNMP(传统监控标准).md) 中，用于定义管理 MIB 中的 Objects。最新的版本是 1999 年的 [SMIv2(RFC 2578)](https://datatracker.ietf.org/doc/html/rfc2578)(文件内声明的名称为 SNMPv2-SMI)。
 
 **Object(对象)** 可以是一个具体需要采集到的数据，比如 内存、CPU、磁盘、网络接口等等，也可以是一种抽象的集合，比如地区、硬件、系统、硬件、网络等等。上面说的所有事物，每一个都是一个 Object。所以，Object 可以包含另一个 Object，这也是人称常常将 MIB 称为**树状**的原因
 
 - **Object Identifier(对象标识符，简称 OID)** # 每一个 Object 都有一个 OID
 - 数据存取格式：即每个 object 除了 OID 用作标示以外，还有数据内容需要遵循一定个格式规范
 
-所谓的 **MIB**，其实主要是通过文件记录的内容。与其说是用文件记录，不如说 MIB 就是使用 [ASN.1](docs/2.编程/无法分类的语言/ASN.1.md)(标准的接口描述语言) 编写的代码。ASN.1 语言同样有类似 import、 function 这类的东西。只不过，记录 MIB 文件的语言，又与 ASN.1 有一些细微的区别，我们暂且称为 **MIB 语言** 吧~
+所谓的 **MIB**，其实主要是通过文件记录的内容。与其说是用文件记录，不如说 MIB 就是使用 [ASN.1](/docs/2.编程/无法分类的语言/ASN.1.md)(标准的接口描述语言) 编写的代码。ASN.1 语言同样有类似 import、 function 这类的东西。只不过，记录 MIB 文件的语言，又与 ASN.1 有一些细微的区别，我们暂且称为 **MIB 语言** 吧~
 
 可以这么说，**MIB 就是一门描述 OID 的编程语言**。
 
@@ -39,7 +39,7 @@ OID 有两种格式：
 - **numerical(数字)** # `.x.x.x.x.x.`
   - 每一个 Object 都对应一个数字，而 Object 总是属于某一个 MIB，所以，可以将 文本 转换为 数字（反之亦然）。
 
-这两种方式可以使用 [net-snmp-utils](docs/6.可观测性/Metrics/Net-SNMP/net-snmp-utils.md) 中的 snmptranslate 命令进行转换，转换成字符串后，人类可以通过英文了解到大概意思，比如下图，表示的是该设备内存的大小。这是 snmpwalk 命令获取内存这个 OID 的当前的值(下图中=后面的内容是该 Object 的数据类型以及值，数据类型与值以冒号分隔)
+这两种方式可以使用 [net-snmp-utils](/docs/6.可观测性/Metrics/Net-SNMP/net-snmp-utils.md) 中的 snmptranslate 命令进行转换，转换成字符串后，人类可以通过英文了解到大概意思，比如下图，表示的是该设备内存的大小。这是 snmpwalk 命令获取内存这个 OID 的当前的值(下图中=后面的内容是该 Object 的数据类型以及值，数据类型与值以冒号分隔)
 
 SNMPv2-MIB::sysDescr.0 这个 Object 用来输出系统描述信息。显示一些基本的系统信息
 
@@ -103,7 +103,7 @@ MIB 常用两种类型的 Object
 |    2    |  1/0/2  |   6    | ...... |      2       | ...... |
 | ......  | ......  | ...... | ...... |    ......    | ...... |
 
-Tabular object 其实跟[数据库](docs/5.数据存储/数据库/数据库.md)的表是相似的逻辑。Tabular object 表的 **列** 用来表示 n 个相关的 Objects 的各种信息，e.g. 接口描述、接口状态、etc. ；**行** 则用来动态得发现监控目标有多少个 **Objects Instance(实例)**。
+Tabular object 其实跟[数据库](/docs/5.数据存储/数据库/数据库.md)的表是相似的逻辑。Tabular object 表的 **列** 用来表示 n 个相关的 Objects 的各种信息，e.g. 接口描述、接口状态、etc. ；**行** 则用来动态得发现监控目标有多少个 **Objects Instance(实例)**。
 
 e.g. ifTable 表用来表示接口相关信息的，如果在一台设备上，发现了 10 个接口，那么就可以说一共有 10 个 Objects instance。也就意味着 ifIndex 的值一共有 10 个（i.e. 1 至 10）
 
@@ -259,7 +259,7 @@ END
 
 ---
 
-**IMPORTS** 
+**IMPORTS**
 
 ```
 IMPORTS
@@ -416,7 +416,7 @@ MACRO 也是以 BEGIN 开头，END 结尾，上面的例子定义个一个名为
 
 **SNMPv2-TC**
 
-**IF-MIB** # 网络接口相关 MIB。e.g. 交换机的接口、路由器的接口、etc. 
+**IF-MIB** # 网络接口相关 MIB。e.g. 交换机的接口、路由器的接口、etc.
 
 ## 常见的 MACRO(宏指令)
 

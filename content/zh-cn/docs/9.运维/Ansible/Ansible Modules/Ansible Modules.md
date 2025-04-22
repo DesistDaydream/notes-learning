@@ -12,7 +12,7 @@ weight: 1
 
 **Modules(模块)** 也被称为 **Task Plugins(任务插件)** 或 **Library Plugins(插件库)**，Modules 是可以从 Ansible 的命令行或 Playbook 的任务中使用的代码块。Ansible 通常在受管理节点上执行每个模块以完成任务，并收集返回值。
 
-> 注意：在 Ansible 2.10 及以上的版本中，大多数模块都被托管到 [**Collection(集合)**](docs/9.运维/Ansible/Ansible%20Collection/Ansible%20Collection.md) 中。
+> 注意：在 Ansible 2.10 及以上的版本中，大多数模块都被托管到 [**Collection(集合)**](/docs/9.运维/Ansible/Ansible%20Collection/Ansible%20Collection.md) 中。
 
 我们可以通过命令行使用模块执行任务，比如
 

@@ -6,12 +6,13 @@ title: Netlink
 
 > 参考：
 >
-> - [Manual(手册),netlink](https://man7.org/linux/man-pages/man7/netlink.7.html)
-> - [Manual(手册),rtnetlink](https://man7.org/linux/man-pages/man7/rtnetlink.7.html)
+> - [Manual(手册), netlink](https://man7.org/linux/man-pages/man7/netlink.7.html)
+> - [Manual(手册), rtnetlink](https://man7.org/linux/man-pages/man7/rtnetlink.7.html)
 > - [Wiki, Netlink](https://en.wikipedia.org/wiki/Netlink)
-> - [内核官方文档,Linux 网络文档-通用 Netlink](https://www.kernel.org/doc/html/latest/networking/generic_netlink.html)
+> - [内核官方文档，Linux 网络文档 - 通用 Netlink](https://www.kernel.org/doc/html/latest/networking/generic_netlink.html)
+>     - https://wiki.linuxfoundation.org/networking/generic_netlink_howto
 
-**Netlink** 是一个 Linux 内核接口，用于在 内核 与 用户空间进程 之间传输信息。还可以用作两个用户空间进程之间、甚至内核子系统之间的数据通信。说白了，就是一个通过 [Socket](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Socket/Socket.md) 实现 IPC 的方式。
+**Netlink** 是一个 Linux 内核接口，用于在 内核 与 用户空间进程 之间传输信息。还可以用作两个用户空间进程之间、甚至内核子系统之间的数据通信。说白了，就是一个通过 [Socket](/docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Socket/Socket.md) 实现 IPC 的方式。
 
 [Iproute 工具包](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/Iproute%20工具包.md)、keepalived、ethtool 等等 应用程序，很多功能都是基于 Netlink 开发的。
 
@@ -23,25 +24,7 @@ rtnetlink 是 Linux 路由套接字
 
 RTNETLINK 允许读取和更改内核的路由表。它在内核中使用以在各种子系统之间进行通信，尽管此处未记录此使用，并且与用户空间程序通信。可以通过 NetLink_Route 套接字来控制网络路由，IP 地址，链接参数，邻居设置，排队学科，流量类和数据包分类器。它基于[NetLink](https://man7.org/linux/man-pages/man7/netlink.7.html) 消息;有关更多信息。
 
-# 用户空间和内核空间通讯--netlink
-
-**目录**
-
-- [什么是 Netlink](https://e-mailky.github.io/2017-02-14-netlink-user-kernel1#%E4%BB%80%E4%B9%88%E6%98%AFnetlink)
-- [Netlink 通信类型](https://e-mailky.github.io/2017-02-14-netlink-user-kernel1#netlink%E9%80%9A%E4%BF%A1%E7%B1%BB%E5%9E%8B)
-- [Netlink 的消息格式](https://e-mailky.github.io/2017-02-14-netlink-user-kernel1#netlink%E7%9A%84%E6%B6%88%E6%81%AF%E6%A0%BC%E5%BC%8F)
-- [Netlink 的消息头](https://e-mailky.github.io/2017-02-14-netlink-user-kernel1#netlink%E7%9A%84%E6%B6%88%E6%81%AF%E5%A4%B4)
-- [Netlink 的消息体](https://e-mailky.github.io/2017-02-14-netlink-user-kernel1#netlink%E7%9A%84%E6%B6%88%E6%81%AF%E4%BD%93)
-- [Netlink 提供的错误指示消息](https://e-mailky.github.io/2017-02-14-netlink-user-kernel1#netlink%E6%8F%90%E4%BE%9B%E7%9A%84%E9%94%99%E8%AF%AF%E6%8C%87%E7%A4%BA%E6%B6%88%E6%81%AF)
-- [Netlink 编程需要注意的问题](https://e-mailky.github.io/2017-02-14-netlink-user-kernel1#netlink%E7%BC%96%E7%A8%8B%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98)
-- [Netlink 的地址结构体](https://e-mailky.github.io/2017-02-14-netlink-user-kernel1#netlink%E7%9A%84%E5%9C%B0%E5%9D%80%E7%BB%93%E6%9E%84%E4%BD%93)
-- [实验](https://e-mailky.github.io/2017-02-14-netlink-user-kernel1#%E5%AE%9E%E9%AA%8C)
-  - [第一步](https://e-mailky.github.io/2017-02-14-netlink-user-kernel1#%E7%AC%AC%E4%B8%80%E6%AD%A5)
-  - [第二步](https://e-mailky.github.io/2017-02-14-netlink-user-kernel1#%E7%AC%AC%E4%BA%8C%E6%AD%A5)
-  - [第三步](https://e-mailky.github.io/2017-02-14-netlink-user-kernel1#%E7%AC%AC%E4%B8%89%E6%AD%A5)
-- [Netlink 多播](https://e-mailky.github.io/2017-02-14-netlink-user-kernel1#netlink%E5%A4%9A%E6%92%AD)
-
-[请尊重原创版权，转载注明出处。](https://e-mailky.github.io/2017-02-14-netlink-user-kernel1)
+# 用户空间和内核空间通讯 - netlink
 
 > 参考：
 >
@@ -61,27 +44,34 @@ Linux 之父托瓦斯曾说过“Linux is evolution, not intelligent design”�
 
 关于第一点使我们很容易联想到 UDP 协议，能想到这一点就非常棒了。按着 UDP 协议 来理解 Netlink 不是不无道理，只要你能触类旁通，做到“活学”，善于总结归纳、联想，最后实现知识迁移这就是 学习的本质。Netlink 可以实现内核->用户以及用户->内核的双向、异步的数据通信，同时它还支持两个用户进程之间、 甚至两个内核子系统之间的数据通信。本文中，对后两者我们不予考虑，焦点集中在如何实现用户<->内核之间的数据通信。
 看到第二点脑海中是不是瞬间闪现了下面这张图片呢？ 如果是，则说明你确实有慧根；当然，不是也没关系，慧根可以慢慢长嘛，呵呵。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/oextqn/1621609972955-cbd73443-4468-439d-87a1-cc83f2daa893.jpeg)
+
 在后面实战 Netlink 套接字编程时我们主要会用到 socket()，bind()，sendmsg() 和 recvmsg()等系统调用，当然还有 socket 提供的轮训(polling)机制。
 
 ## Netlink 通信类型
 
 Netlink 支持两种类型的通信方式：单播和多播。
+
 单播：经常用于一个用户进程和一个内核子系统之间 1:1 的数据通信。用户空间发送命令到内核，然后从内核接受命令的返回结果。
+
 多播：经常用于一个内核进程和多个用户进程之间的 1:N 的数据通信。内核作为会话的发起者， 用户空间的应用程序是接收者。为了实现这个功能，内核空间的程序会创建一个多播组， 然后所有用户空间的对该内核进程发送的消息感兴趣的进程都加入到该组即可接收来自内核发送的消息了。如下：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/oextqn/1621609976015-6753cbdb-f771-4657-a4b6-d7c3735f8d40.jpeg)
+
 其中进程 A 和子系统 1 之间是单播通信，进程 B、C 和子系统 2 是多播通信。 上图还向我们说明了一个信息。从用户空间传递到内核的数据是不需要排队的，即其操作是同步完成； 而从内核空间向用户空间传递数据时需要排队，是异步的。了解了这一点在开发基于 Netlink 的应用模块时 可以使我们少走很多弯路。假如，你向内核发送了一个消息需要获取内核中某些信息，比如路由表，或其他信息， 如果路由表过于庞大，那么内核在通过 Netlink 向你返回数据时，你可以好生琢磨一下如何接收这些数据的问题， 毕竟你已经看到了那个输出队列了，不能视而不见啊。
 
 ## Netlink 的消息格式
 
 Netlink 消息由两部分组成：消息头和有效数据载荷， 且整个 Netlink 消息是 4 字节对齐，一般按主机字节序进行传递。消息头为固定的 16 字节，消息体长度可变：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/oextqn/1621609971315-01096608-1381-4ee9-9d56-d0c80b0ffe78.jpeg)
 
 ## Netlink 的消息头
 
 消息头定义在文件里，由结构体nlmsghdr表示：
 
-```
+```c
 struct nlmsghdr
 {
     __u32        nlmsg_len;    /* Length of message including header */
@@ -98,7 +88,7 @@ nlmsg_len：整个消息的长度，按字节计算。包括了Netlink消息头�
 
 nlmsg_type：消息的类型，即是数据还是控制消息。目前(内核版本2.6.21)Netlink仅支持四种类型的控制消息，如下：
 
-```
+```c
 NLMSG_NOOP-   空消息，什么也不做；
 NLMSG_ERROR-  指明该消息中包含一个错误；
 NLMSG_DONE-   如果内核通过Netlink队列返回了多个消息，那么队列的最后一条消息的类型为NLMSG_DONE，
@@ -152,6 +142,7 @@ struct sockaddr_nl { sa_family_t nl_family; /*该字段总是为 AF*NETLINK*/ un
 nl_pid：该属性为发送或接收消息的进程 ID，前面我们也说过，Netlink 不仅可以实现用户-内核空间的通信还可 使现实用户空间两个进程之间，或内核空间两个进程之间的通信。该属性为 0 时一般适用于如下两种情况：
 
 1. 我们要发送的目的地是内核，即从用户空间发往内核空间时，我们构造的 Netlink 地址结构体中 nl_pid 通常 情况下都置为 0。这里有一点需要跟大家交代一下，在 Netlink 规范里，PID 全称是 Port-ID(32bits)， 其主要作用是用于唯一的标识一个基于 netlink 的 socket 通道。通常情况下 nl_pid 都设置为当前进程的进程号。 然而，对于一个进程的多个线程同时使用 netlink socket 的情况，nl_pid 的设置一般采用如下这个样子来实现：
+
    | pthread_self() « 16 | getpid(); |
    | --- | --- |
 

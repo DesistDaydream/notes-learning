@@ -10,7 +10,7 @@ weight: 20
 >
 > - [Wiki, Signal](https://en.wikipedia.org/wiki/Signal)
 
-**Signal(信号)** 是  [Inter Process Communication](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Inter%20Process%20Communication.md) 的一种受限形式。信号是发送到进程或同一进程内的特定线程的异步通知，目的是将发生的事件通知给它。发送信号后，操作系统会中断目标进程的正常执行流程以传递信号。在任何非原子指令中，执行都可以中断。如果该进程先前已注册了**信号处理程序**，则将执行该例程。否则，将执行默认信号处理程序。
+**Signal(信号)** 是  [Inter Process Communication](/docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Inter%20Process%20Communication.md) 的一种受限形式。信号是发送到进程或同一进程内的特定线程的异步通知，目的是将发生的事件通知给它。发送信号后，操作系统会中断目标进程的正常执行流程以传递信号。在任何非原子指令中，执行都可以中断。如果该进程先前已注册了**信号处理程序**，则将执行该例程。否则，将执行默认信号处理程序。
 
 信号类似于中断，区别在于中断由处理器介导并由内核处理，而信号由内核介导（可能通过系统调用）并由进程处理。内核可能会将中断作为信号传递给引起中断的进程（典型示例为 SIGSEGV，SIGBUS，SIGILL 和 SIGFPE）。
 
