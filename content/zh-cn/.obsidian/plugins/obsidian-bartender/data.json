@@ -1315,6 +1315,7 @@
     ],
     "docs/12.AI": [
       "docs/12.AI/_index.md",
+      "docs/12.AI/Glossary.md",
       "docs/12.AI/12.AI.md",
       "docs/12.AI/科学计算",
       "docs/12.AI/机器学习",
@@ -1325,7 +1326,8 @@
       "docs/12.AI/AI Projects",
       "docs/12.AI/AI MGMT",
       "docs/12.AI/最佳实践.md",
-      "docs/12.AI/Automation"
+      "docs/12.AI/Automation",
+      "docs/12.AI/Retrieval.md"
     ],
     "docs/12.AI/Automation": [
       "docs/12.AI/Automation/_index.md",
