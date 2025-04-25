@@ -17,6 +17,18 @@ https://github.com/ThinkInAIXYZ/go-mcp
 
 - https://mp.weixin.qq.com/s/LFIUVdTznkr7tWZ4_TnXGA
 
+MCP 的工程化实现本质也是一个类似 C/S 的架构，但是在其中多了一个 Model(模型的参与)。有些模型进行了 MCP 的训练，可以正常识别 MCP 的上下文内容，并且也返回 MCP 标准的上下文
+
+1. MCP Client 带着工具列表，问题列表，向 Model 发起问题
+2. Model 返回 MCP 上下文内容
+3. MCP Client 带着 MCP 上下文向 MCP Server 发起请求获取数据
+4. MCP 返回包含响应数据的 MCP 上下文
+5. MCP Client 拿着包含响应数据的 MCP 上下文交给 Model 分析各种结果
+6. Model 以人类可读的方式返回结果
+7. 若一个问题过于复杂，需要拆解需求，则重复上述 1 - 6 步
+
+![800](Excalidraw/mcp.excalidraw.md)
+
 # 历史
 
 ## LangChain
@@ -46,3 +58,4 @@ LangChain 是一个用于开发由语言模型驱动的应用程序的框架。�
 - Agents
 
 ## Function calling
+

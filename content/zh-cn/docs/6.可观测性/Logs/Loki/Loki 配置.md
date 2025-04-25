@@ -205,7 +205,7 @@ e.g. 在 schema_config.configs.store 中使用 aws，那么 storage_config 中�
 
 https://grafana.com/docs/loki/latest/configure/#limits_config
 
-**retention_period**(duration) # 数据的数据最多保留多长时间。仅在 `compactor.retention_enabled` 为 true 时适用。`默认值: 0s` 0 或 0s 的将禁用保留，i.e. 保留全部时间的数据。
+**retention_period**(duration) # 数据的数据最多保留多长时间。仅在 `compactor.retention_enabled` 为 true 时适用。`默认值: 0s` 0 或 0s 将禁用保留，i.e. 保留全部时间的数据。
 
 **ingestion_rate_mb**(FLOAT) # 每秒可以摄取日志量的大小，单位 MiB。`默认值：4`
 

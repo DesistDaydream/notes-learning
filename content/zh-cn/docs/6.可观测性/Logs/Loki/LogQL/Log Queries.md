@@ -249,7 +249,8 @@ PatternExpression 由 Captures(捕获) 和 Literals(文字) 组成
 - **Captures(捕获)** # 由 `<>` 分割的字符串，`<>` 中的字符将会作为一个新 Label 的键，捕获到的内容作为该 Label 的值。
 - **Literals(文字)** # 任意 UTF-8 字符序列，包括空白字符。
 
-> PatternExpression 必须用  ` `` ` 或 `""` 符号括起来，使用反引号时会将 `\` 作为字符串而不是转义符。
+> [!Tip]
+> PatternExpression 必须用 ` `` ` 或 `""` 符号括起来，使用反引号时会将 `\` 作为字符串而不是转义符。
 
 比如，现在有如下日志：
 
