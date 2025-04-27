@@ -53,7 +53,7 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 - set_facts / registered vars #
 - role (and include_role) params #
 - include params #
-- extra vars (always win precedence) # 通过 ansible-playbook 命令行工具的 `-e, --extra-vars` 参数指定的变量
+- **extra vars** # 通过 ansible-playbook 命令行工具的 `-e, --extra-vars` 参数指定的变量
 
 Note：可以说 ansible playbook 中写的所有内容都是变量。都是可以引用的，只不过引用的方式不同。
 
