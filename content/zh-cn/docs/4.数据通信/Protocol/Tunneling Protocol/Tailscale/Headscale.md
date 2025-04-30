@@ -473,7 +473,7 @@ tls_cert_path: "/PATH/TO/FILE"
 tls_key_path: "/PATH/TO/FILE"
 ```
 
-多监听 3478 端口，且可以通过 https 访问
+一般监听 3478 端口，且可以通过 https 访问
 
 # Headscale 关联文件与配置
 
@@ -501,5 +501,7 @@ tls_key_path: "/PATH/TO/FILE"
 - **enable**(BOOLEAN) # 是否开启 Headscale 的内嵌 DERP。`默认值: false`
 
 **url**(\[]STRING) # 下发给 tailscale 的 DERP 节点。`默认值: https://controlplane.tailscale.com/derpmap/default`
+
+- 这些默认值是 Tailscale 提供的一些公共的 DERP 节点，全球都用，个人建议直接关了，用自己的 Headscale DERP
 
 **paths**(\[]STRING) # 与 URL 类似。不过是以文件形式定义要使用的 DERP。 `默认值: 空`。文件格式详见: https://tailscale.com/kb/1118/custom-derp-servers

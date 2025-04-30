@@ -14,16 +14,16 @@ weight: 1
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636261571312-2e5d4a25-2009-495d-919a-973f3d2cd178.png)
 
-- [**Header(标题)**](https://grafana.com/docs/grafana/latest/panels/panel-editor/#header)**, 绿色部分** # 左边是面板的名称，右侧有 4 个按钮，分别是 设置整个 Dashboard、放弃、保存、应用
-- [**Visualization preview(可视化的预览)**](https://grafana.com/docs/grafana/latest/panels/panel-editor/#visualization-preview)**, 蓝色部分** # 在 数据处理 与 面板样式处理 两部分设置的内容将会反应在这个预览部分
-- [**Data section(数据处理)**](#Data%20section(数据处理))**, 红色部分** #[](https://grafana.com/docs/grafana/latest/panels/panel-editor/#data-section-bottom-pane)通过数据查询语句来获取数据，以便在面板展示
-- [**Panel dispaly options(面板显示选项)**](https://grafana.com/docs/grafana/latest/panels/panel-editor/#panel-display-options-side-pane)**, 黄色部分** # 用来配置面板的信息。包括 面板类型、面板名称、展示效果 等等
+- [**Header(标题)**](#Header), **绿色部分** # 左边是面板的名称，右侧有 4 个按钮，分别是 设置整个 Dashboard、放弃、保存、应用
+- [**Visualization preview(可视化的预览)**](#Visualization%20preview), **蓝色部分** # 在 数据处理 与 面板样式处理 两部分设置的内容将会反应在这个预览部分
+- [**Data section(数据处理)**](#Data%20section), **红色部分** # 通过数据查询语句来获取数据，以便在面板展示
+- [**Panel dispaly options(面板显示选项)**](#Panel%20display%20options), **黄色部分** # 用来配置面板的信息。包括 面板类型、面板名称、展示效果 等等
 
-# Header(标题)
+# Header
 
 标题部分列出了面板所在的仪表板的名称和一些仪表板命令。您还可以单击**返回**箭头以返回仪表板。
 
-[![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636274879674-172ae5e2-cbdb-42d2-a0de-404c9f32cce7.png)](https://grafana.com/static/img/docs/panel-editor/edit-panel-header-7-0.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636274879674-172ae5e2-cbdb-42d2-a0de-404c9f32cce7.png)
 
 标题的右侧是以下选项：
 
@@ -32,7 +32,9 @@ weight: 1
 - **Save(保存)** - 保存仪表板，包括您在面板编辑器中所做的所有更改。
 - **Apply(应用)** - 应用您所做的更改，然后关闭面板编辑器，将您返回到仪表板。您必须保存仪表板以保留应用的更改。
 
-# Visualization preview(可视化的预览)
+# Visualization preview
+
+https://grafana.com/docs/grafana/latest/panels-visualizations/panel-editor-overview/#visualization-preview
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636266413475-671d1896-dc09-44f7-8018-772384c8ebac.png)
 
@@ -57,9 +59,9 @@ weight: 1
 - **Exact(确切)** # 可视化预览的大小将与仪表板上的大小完全相同。如果没有足够的可用空间，则可视化将按比例缩小以保留宽高比。
 - **Time range controls(时间范围控件)** # 有关更多信息，请参阅[时间范围控件](https://grafana.com/docs/grafana/latest/dashboards/time-range-controls/)。
 
-# Data section(数据处理)
+# Data section
 
-https://grafana.com/docs/grafana/latest/panels/panel-editor/#data-section-bottom-pane
+https://grafana.com/docs/grafana/latest/panels-visualizations/panel-editor-overview/#data-section
 
 该部分包含一些 tab(标签)，可以在其中 输入查询，转换数据 以及 创建警报规则(如果适用)。
 
@@ -104,7 +106,9 @@ Transform 的用法详见：[Transformations(转换)](/docs/6.可观测性/Grafa
 
 ## Alert(告警)
 
-# Panel display options(面板显示选项)
+# Panel display options
+
+https://grafana.com/docs/grafana/latest/panels-visualizations/panel-editor-overview/#panel-display-options
 
 该部分包含一些 tab(标签)，可以在这部分配置几乎都有数据可视化的方面。但是并不是所有选项都可用于每个面板类型。这里只介绍所有面板的通用配置，不同的面板，这部分的可配置的项目不同
 可以用来配置面板的样式、面板的字段、以及如何为每个字段进行单独配置
@@ -125,30 +129,31 @@ Transform 的用法详见：[Transformations(转换)](/docs/6.可观测性/Grafa
 
 ## Panel - 面板配置
 
-> 参考：
->
-> - [官方文档](https://grafana.com/docs/grafana/latest/panels/field-options/)
-
-Grafna 中使用的 [数据模型][/docs/6.可观测性/Grafana/Grafana%20数据模型.md](数据模型)是面向列的表结构，该结构将时间序列和表查询结果统一在一起。此结构中的每一列称为一个 **Field(字段)**。一个字段可以代表`一条时间序列(Prometheus源)`或`表格的列(数据库源)。`
+[Grafana 数据模型](/docs/6.可观测性/Grafana/Grafana%20数据模型.md) 是面向列的表结构，该结构将时间序列和表查询结果统一在一起。此结构中的每一列称为一个 **Field(字段)**。一个字段可以代表`一条时间序列(Prometheus源)`或`表格的列(数据库源)。`
 
 > 每条序列的时间，也算作一个 Field
+>
 > 在 Table 类型的面板中，每条时间序列的标签也算作一个 Field
 
 这里只介绍所有面板的通用配置，不同的面板，这部分的可配置的项目不同
 
 ### Panel options(面板选项) - 面板的基本信息。名字、描述、透明度
 
-参考[此处](https://grafana.com/docs/grafana/latest/panels/add-a-panel/)
+> 参考：
+>
+> - [官方文档，面板与可视化 - 配置面板可选项](https://grafana.com/docs/grafana/latest/panels-visualizations/configure-panel-options/)
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636268147075-e492ebe5-f2a3-4cfe-9b8b-ec466199f0ad.png)
 
 ### Standard options(标准选项)
 
-https://grafana.com/docs/grafana/latest/panels/standard-options/
+> 参考：
+>
+> - [官方文档，面板与可视化 - 配置标准选项](https://grafana.com/docs/grafana/latest/panels-visualizations/configure-standard-options/)
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636269601040-63c30a7e-cf11-4cc1-9e86-08466afe414e.png)
 
-设置 单位、显示名、小数点 等等
+设置 数据的单位、显示名、小数点 等等
 
 ### Thresholds(阈值)
 
