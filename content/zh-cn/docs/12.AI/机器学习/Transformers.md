@@ -13,6 +13,8 @@ weight: 20
 > - [Hugging Face 创始人亲述：一个 GitHub 史上增长最快的 AI 项目](https://my.oschina.net/oneflow/blog/5525728)
 > - [官方文档](https://huggingface.co/docs/transformers/index)
 
+**Transformer** 架构由 Google 在 2017 年发表的论文 《[Attention is All You Need](https://arxiv.org/abs/1706.03762)》首次提出，它使用 Self-Attention(自注意力) 机制取代了之前在 NLP 任务中常用的 RNN(循环神经网络)，使其成为预训练语言模型阶段的代表架构。
+
 **Transformer** 是 [Hugging Face](/docs/12.AI/Hugging%20Face.md) 开源的是一种[深度学习](/docs/12.AI/机器学习/深度学习.md)模型，它采用自注意力机制，对输入数据的每一部分的重要性进行差异加权。它主要用于 [自然语言处理(NLP)](/docs/12.AI/自然语言处理/自然语言处理.md) 和 [计算机视觉(CV)](/docs/12.AI/计算机视觉/计算机视觉.md) 领域。
 
 Transformers 提供了数以千计的预训练模型，支持 100 多种语言的文本分类、信息抽取、问答、摘要、翻译、文本生成。它的宗旨是让最先进的 NLP 技术人人易用。
@@ -84,7 +86,8 @@ print(response)
 你好👋！我是人工智能助手 ChatGLM-6B，很高兴见到你，欢迎问我任何问题。
 ```
 
-# 其他学习
+# Attention Is All You Need
 
-[公众号-阿里云开发者，Transformer 一起动手编码学原理](https://mp.weixin.qq.com/s/NgUNuWhvp2SqG-XWYv2PGQ)
+[公众号，一文彻底讲透GPT架构及推理原理](https://mp.weixin.qq.com/s/moVLtn0_necwuyxdIlosSg)
+
 

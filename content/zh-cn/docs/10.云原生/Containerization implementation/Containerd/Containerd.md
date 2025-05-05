@@ -149,3 +149,15 @@ Docker 这门技术成功了，Docker 这个公司却失败了。
 ```
 
 # Containerd 插件
+
+# 重大变化
+
+## 2.0
+
+https://mp.weixin.qq.com/s/00Zwup1ZUiMp6i46Ywv2wQ
+
+https://github.com/containerd/containerd/releases/tag/v2.0.0
+
+https://github.com/containerd/containerd/blob/v2.0.0/docs/containerd-2.0.md
+
+

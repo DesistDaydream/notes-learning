@@ -50,6 +50,8 @@ Loki 支持多租户，以使租户之间的数据完全分离。当 Loki 在多
 
 [公众号 - gopher云原生，浅析 Grafana Loki 日志聚合系统](https://mp.weixin.qq.com/s/kGY_zNhlXjnEAgqRUccMtg)
 
+- https://mp.weixin.qq.com/s/6RC7RP2l5nqKNidsVVYoNA
+
 # Loki 架构概述
 
 > 参考：

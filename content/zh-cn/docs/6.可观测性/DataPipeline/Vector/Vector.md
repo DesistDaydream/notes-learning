@@ -24,9 +24,11 @@ Vector 开箱即用，默认支持 [ClickHouse](/docs/5.数据存储/数据库/�
 
 ![](https://raw.githubusercontent.com/vectordotdev/vector/refs/heads/master/website/static/img/data-model-event.svg)
 
+Vector 将数据通道抽象为 3 部分组件：
+
 - **Sources** # 将可观测性数据源中的数据收集或接收到 Vector 中
-- **Transforms** # 在可观测性数据通过拓扑时操纵或更改该数据
-- **Sinks** # 将数据从 Vector 向前发送到外部服务或目的地
+- **Transforms** # 在可观测性数据通过拓扑时操纵或更改该数据。（拓扑可以理解为一种网状结构，由处理数据的多个节点组成）
+- **Sinks** # 将可观测性数据从 Vector 向前发送到外部服务或目的地
 
 # 部署角色
 
@@ -56,6 +58,8 @@ Vector 可以部署为两个角色，既可以作为数据采集的 Agent，也�
 
 **/etc/vector/vector.yaml** # 已经弃用的默认配置文件。由于 Vector 灵活的设计，可以加载多个配置文件，一般情况都是手动使用 --config-dir 指定配置文件目录。这样更利于配置管理。
 
+详见 [Vector Configuration](docs/6.可观测性/DataPipeline/Vector/Vector%20Configuration.md)
+
 # API
 
 > 参考：
@@ -63,3 +67,16 @@ Vector 可以部署为两个角色，既可以作为数据采集的 Agent，也�
 > - [官方文档，参考 - API](https://vector.dev/docs/reference/api/)
 
 Vector 提供 [GraphQL](/docs/2.编程/API/GraphQL.md) API
+
+# 基础用例
+
+[公众号，实战 Vector：开源日志和指标采集工具](https://mp.weixin.qq.com/s/o6bqzJt1M_DNn027Nc91fQ)
+
+模拟 Prometheus 的 Exporter。TODO: 具体都能采集到什么？
+
+```toml
+# sample.toml
+[sources.prom]  
+type = "prometheus_scrape"  
+endpoints = [ "http://localhost:9100/metrics" ]
+```

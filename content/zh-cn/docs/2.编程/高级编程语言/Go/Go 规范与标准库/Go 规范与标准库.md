@@ -11,6 +11,7 @@ weight: 1
 > - [官方文档，参考 - 规范](https://go.dev/ref/spec)
 >   - [官方文档，参考 - 规范 的翻译](https://github.com/bekcpear/mypelicanconfandarticles/blob/master/content/Tech/gospec.rst)
 > - [go.dev, Tour(Go 语言之旅，通过在线解析器体验 Go 语言的各种特性)](https://go.dev/tour/list)
+> - [公众号，11个现代Go特性：用gopls/modernize让你的代码焕然一新](https://mp.weixin.qq.com/s/mQehW07uSvfMkSMfcrSEsA)
 
 Go 是一种通用语言，专为系统编程而设计。它是一种强类型且自带垃圾回收功能的语言，并具有显式支持并发编程的能力(称为 goroutine)。Go 程序由 Packages(包) 构建，其属性允许有效得管理依赖关系。
 
@@ -63,9 +64,11 @@ Go 语言非常简单，只有 25 个`关键字(Keywords)`可以使用，记住�
 
 ## Identifier
 
-**Identifier(标识符)** 是一个抽象的概念，代表已命名的实体，e.g. [Variable](/docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Variable.md)、自定义的 [Data type](/docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Data%20type.md)。Identifiers 由一个或多个字母和数字组成，Identifier 的第一个字符必须是字母。
+**Identifier(标识符)** 是一个抽象的概念，代表已命名的实体（e.g. [Variable](/docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Variable.md)、自定义的 [Data type](/docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Data%20type.md)、etc.）。Identifiers 由一个或多个字母和数字组成，Identifier 的第一个字符必须是字母。
 
-有一些 Indentifiers 是 [predeclared(预先声明的)](https://go.dev/ref/spec#Predeclared_identifiers)，e.g. int int8 int16 int32 int64 rune string etc.
+有一些 Indentifiers 是 [predeclared(预先声明的)](https://go.dev/ref/spec#Predeclared_identifiers)（e.g. int, int8, rune, true, false, append, print, new, etc.）这些预声明的 Identifier 是一种类似 Keywords 的存在，可以是 类型、常量、零值、函数.
+
+> Tips: 随着 Go 语言版本的迭代，会逐渐加入一些新的预声明 Identifier（e.g. 用于快速比较获取最大值/最小值的 max, min 内置函数是在 1.21 版本加入的；1.21 版本后，删除数组中的元素也有了可以直接使用的 slices.Delete() 方法；etc.）
 
 # Notation(表示法)
 
@@ -91,7 +94,7 @@ Block 的用法会直接影响 [scoping(作用域)](#Declarations%20and%20scope(
 
 https://go.dev/ref/spec#Declarations_and_scope
 
-这部分是介绍作用域的，用来定义各种 Identifier 是否可以被引用、是否可以被使用
+这部分是介绍作用域的，用来定义各种 [Identifier](#Identifier) 是否可以被引用、是否可以被使用
 
 ## exported and unexported(导出与未导出)
 

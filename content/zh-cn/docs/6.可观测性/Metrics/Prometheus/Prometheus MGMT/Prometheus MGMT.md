@@ -10,6 +10,8 @@ weight: 1
 >
 > - [官方文档，介绍 - FAQ](https://prometheus.io/docs/introduction/faq/)
 
+[公众号，Prometheus 性能调优：大模型和智能驾驶可观测的高基数问题](https://mp.weixin.qq.com/s/Lw03n5-Vvy5OSMaQTPlW-A)
+
 ## Prometheus UTS 时区问题
 
 https://prometheus.io/docs/introduction/faq/#can-i-change-the-timezone-why-is-everything-in-utc
@@ -41,7 +43,7 @@ https://prometheus.io/docs/introduction/faq/#can-i-change-the-timezone-why-is-ev
 
 # 重大变化
 
-## V2.39
+## v2.39
 
 > 参考：
 >
@@ -49,7 +51,7 @@ https://prometheus.io/docs/introduction/faq/#can-i-change-the-timezone-why-is-ev
 
 大量的资源优化。改进了 relabeling 中的内存重用，优化了 WAL 重放处理，从 TSDB head series 中删除了不必要的内存使用， 以及关闭了 head compaction 的事务隔离等。
 
-# 3.0
+## v3.0
 
 > 参考：
 >

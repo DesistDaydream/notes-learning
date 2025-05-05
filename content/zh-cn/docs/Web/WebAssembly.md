@@ -19,6 +19,8 @@ weight: 4
 
 [公众号 -  k8s技术圈，在 Kubernetes 上使用 WebAssembly: 从容器到 Wasm](https://mp.weixin.qq.com/s/MbTRStn8ETB9GygWETy3Ng)
 
+[公众号，组件和容器之争？｜WebAssembly + Kubernetes：云原生的新组合](https://mp.weixin.qq.com/s/YbYnUoo65ZgRBkh1NicRkA)
+
 # WebAssembly 文本格式
 
 https://developer.mozilla.org/en-US/docs/WebAssembly/Understanding_the_text_format

@@ -60,6 +60,10 @@ Node exporter
   - 国人出的，22 年4月12日之后不维护了
   - [16098](https://grafana.com/grafana/dashboards/16098-1-node-exporter-for-prometheus-dashboard-cn-0417-job/) 新的，代替 8919
 
+Process exporter
+
+- https://grafana.com/grafana/dashboards/249-named-processes/
+
 Nginx
 
 - [9614](https://grafana.com/grafana/dashboards/9614-nginx-ingress-controller/)

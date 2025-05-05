@@ -52,6 +52,7 @@ K8S 生态的组件都会提供 / metric 接口以提供自监控，这里列下
 > 参考：
 >
 > - [GitHub 项目，ncabatoff/process-exporter](https://github.com/ncabatoff/process-exporter)
+> - https://mp.weixin.qq.com/s/sbnTByKJYFKQrvnU_iPnZA
 
 process_names 下的数组定义进程组名称及该进程组的匹配条件，一共 3 个匹配方式
 
@@ -83,6 +84,52 @@ process_names:
 ```
 
 若进程组不指定 name 字段，默认为 `{{.ExeBase}}`(可执行文件的 basename)
+
+## 关键指标
+
+在实际监控进程时，主要使用的指标就是cpu和内存。process-exporter中进程的指标以 `namedprocess_namegroup` 开头：
+
+- namedprocess\_namegroup\_cpu\_seconds\_total：cpu使用时间，通过mode区分是user还是system
+- namedprocess\_namegroup\_memory\_bytes：内存占用，通过 memtype 区分不同的占用类型
+- namedprocess\_namegroup\_num\_threads：线程数
+- namedprocess\_namegroup\_open\_filedesc：打开的文件句柄数
+- namedprocess\_namegroup\_read\_bytes\_total：进程读取的字节数
+- namedprocess\_namegroup\_thread\_context\_switches\_total：线程上下文切换统计
+- namedprocess\_namegroup\_thread\_count：线程数量统计
+- namedprocess\_namegroup\_thread\_cpu\_seconds\_total：线程的cpu使用时间
+- namedprocess\_namegroup\_thread\_io\_bytes\_total：线程的io
+
+### cpu
+
+cpu是我们最经常关注的指标，如果使用node-exporter采集节点的指标数据，可以得到机器的cpu占比。
+
+而使用process-exporter采集的是进程的指标，具体来说就是采集/proc/pid/stat中与cpu时间有关的数据：
+
+- 第14个字段：utime，进程在用户态运行的时间，单位为jiffies
+- 第15个字段：stime，进程在内核态运行的时间，单位为jiffies
+- 第16个字段：cutime，子进程在用户态运行的时间，单位为jiffies
+- 第17个字段：cstime，子进程在内核态运行的时间，单位为jiffies
+
+那么通过上述值就可以得到进程的单核CPU占比：
+
+- 进程的单核CPU占比=(utime+stime+cutime+cstime)/时间差
+- 进程的单核内核态CPU占比=(stime+cstime)/时间差
+
+因此，进程的单核CPU占比的promsql语句为increase(namedprocess\_namegroup\_cpu\_seconds\_total{mode="user",groupname="procname"}\[30s\])\*100/30，单核内核态CPU占比的promsql语句为increase(namedprocess\_namegroup\_cpu\_seconds\_total{mode="system",groupname="procname"}\[30s\])\*100/30。
+
+注意：实测发现，process-exporter获取的数据与/proc/pid/stat中的有一定差异，需要进一步看下。
+
+### memory
+
+process-exporter采集内存的指标时将内存分成5种类型：
+
+- resident：进程实际占用的内存大小，包括共享库的内存空间，可以从/proc/pid/status中的VmRSS获取
+- proportionalResident：与resident相比，共享库的内存空间会根据进程数量平均分配
+- swapped：交换空间，系统物理内存不足时，会将不常用的内存页放到硬盘的交换空间，可以从/proc/pid/status中的VmSwap获取
+- proportionalSwapped：将可能被交换的内存页按照可能性进行加权平均
+- virtual：虚拟内存，描述了进程运行时所需要的总内存大小，包括哪些还没有实际加载到内存中的代码和数据，可以从/proc/pid/status中的VmSize获取
+
+对于一般的程序来说，重点关注的肯定是实际内存，也就是resident和virtual，分别表示实际在内存中占用的空间和应该占用的总空间
 
 # Nginx Exporter
 

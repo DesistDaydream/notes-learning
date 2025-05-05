@@ -217,3 +217,8 @@ receivers:
 > 参考：
 >
 > - [GitHub 项目文件，prometheus/alertmanager/api/v2/openapi.yaml](https://github.com/prometheus/alertmanager/blob/main/api/v2/openapi.yaml)
+
+# Alertmanger Development
+
+[公众号，深入剖析Alertmanager：解锁告警管理的核心逻辑](https://mp.weixin.qq.com/s/RKZn9q0UR4uXq9Ls2oeGxg)
+

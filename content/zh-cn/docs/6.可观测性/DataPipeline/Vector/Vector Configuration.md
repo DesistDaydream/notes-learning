@@ -7,7 +7,7 @@ date: 2025-01-05T15:55:00
 
 引言 官方文档的简单食用方式
 
-在每个 Source 的文档中，可以在 **Output Data** 和 **Examples** 两部分看到输出格式和输出内容。比如这种 Source 的日志都有什么元数据，输出格式是什么样的，etc. 。其中有些内嵌的隐藏字段以 `_` 开头，可以这些输出的内容可以直接或利用[模板](https://vector.dev/docs/reference/configuration/template-syntax/)使用在 sinks 的定义中。
+在每个 [Source](https://vector.dev/docs/reference/configuration/sources/) 的文档中，可以在 **Output Data** 和 **Examples** 两个章节看到输出格式和输出内容。比如这种 Source 的日志都有什么元数据，输出格式是什么样的，etc. 。其中有些内嵌的隐藏字段以 `_` 开头，可以这些输出的内容可以直接或利用[模板](https://vector.dev/docs/reference/configuration/template-syntax/)使用在 sinks 的定义中。
 
 用一个简单的 Linux 中的 [Journal](/docs/6.可观测性/Logs/Journal.md) 日志采集输出到 [Loki](/docs/6.可观测性/Logs/Loki/Loki.md) 的场景进行配置演示
 
