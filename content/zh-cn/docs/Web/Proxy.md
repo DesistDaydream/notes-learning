@@ -58,6 +58,7 @@ Squid 是一款老牌的可以提供代理服务的程序。Squid 版本 1.0.0 �
   - 然后在 Shell 中配置代理即可
 
 ```bash
+export hostip="192.168.254.254"
 export http_proxy="http://${hostip}:8080"
 export https_proxy="http://${hostip}:8080"
 export all_proxy="sock5://${hostip}:1080"

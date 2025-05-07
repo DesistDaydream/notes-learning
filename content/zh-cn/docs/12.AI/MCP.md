@@ -23,7 +23,7 @@ weight: 20
 
 https://modelcontextprotocol.io/specification/2025-03-26/architecture
 
-![800](Excalidraw/mcp.excalidraw.md)
+![800](Excalidraw/mcp-arch.excalidraw.md)
 
 MCP 的工程化实现本质也是一个类似 C/S 的架构，但是在其中多了 Model(模型) 的参与。一套完整的 MCP 系统通常包含如下几类组件：
 
@@ -33,10 +33,11 @@ MCP 的工程化实现本质也是一个类似 C/S 的架构，但是在其中�
     - 类似 [Web](/docs/Web/Web.md) 中的 User Agent 概念。
 - **MCP Client** # 由 Host 创建并维护。与 MCP Server 建立 1:1 的连接关系。
 - **MCP Server** # 通过 MCP 原语公开 Resources, Tools, Prompts，提供后端程序的功能，用于与 MCP Client 通信。
-    - 类似各种可以提供 API 的 Web 应用程序。只不过使用了 MCP 协议包装了 API 或其他各种功能
+    - 类似各种可以提供 API 的 Web 应用程序。只不过使用了 MCP 协议包装了 API 或其他各种功能。
+    - MCP Server 可以是多种形态，并不只局限于是监听了 TCP 的进程。甚至可以是一个本地文件系统上独立的 py 文件或二进制文件，只在使用时，由 MCP Client 直接使用以从标准输入和输出中进行交互。
 - **Model** # AI 模型。为问题提供 分析、总结 能力。
 
-一套完整的 MCP 程序的运行过程通常如下所述：
+一套完整的 MCP 系统的运行过程通常如下所述：
 
 用户向 Host 询问问题，Host 拉起多个 MCP Client，每个 MCP Client 注册一个 MCP Server，并获取其可以提供的能力
 
@@ -58,15 +59,25 @@ MCP 的工程化实现本质也是一个类似 C/S 的架构，但是在其中�
 
 MCP Server 的能力被抽象为如下几类（当 Client 注册 Server 时，需要将自身所具有的能力提供给 Client）：
 
-- **Resources(资源)** # TODO: 好像一种直接返回具体数据的实体？比如一个数据库？
-- **Tools(工具)** # 每个 Tool 都是一个可以实现的具体功能。可以简单理解为一个 API、一个具体的功能、etc.
-- **Prompts(提示)** # TODO: 好像是让 Client 可以填充的提示词模板？
+- **Prompts(提示)** # 指导语言模型交互的预定义模板或指令。
+    - TODO: 好像是让 Client 可以填充的提示词模板？
+- **Resources(资源)** # 提供额外上下文的结构化数据或内容。e.g. 文件内容、git 历史、etc. ，甚至一个数据库之类的东西可以当作一个 Resource
+- **Tools(工具)** # 执行操作或检索信息的可执行函数。
+    - 每个 Tool 都是一个可以实现的具体功能。可以简单理解为一个 API、一个具体的功能、etc. 。在设计 MCP Server 时，Tools 通常是占比最大的部分。
 
 https://github.com/mark3labs/mcp-go
 
 https://github.com/ThinkInAIXYZ/go-mcp
 
 - https://mp.weixin.qq.com/s/LFIUVdTznkr7tWZ4_TnXGA
+
+## Tools
+
+https://modelcontextprotocol.io/specification/2025-03-26/server/tools
+
+数据类型
+
+https://modelcontextprotocol.io/specification/2025-03-26/server/tools#data-types
 
 # 历史
 
