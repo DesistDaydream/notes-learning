@@ -49,7 +49,98 @@ MCP 的工程化实现本质也是一个类似 C/S 的架构，但是在其中�
 6. Model 以人类可读的方式返回结果
 7. 若一个问题过于复杂，需要拆解问题后，重复上述 1 - 6 步
 
-这里 https://github.com/CassInfra/KubeDoor/blob/1.3.0/src/kubedoor-mcp/kubedoor-mcp.py 有一个非常简单直观的 MCP Server 示例，其中利用 MCP 库的 FastMCP 实例化了一个 mcp。后面通过 @mcp.tool() 多次定义 Tools，每个 Tool 都由一个 API 提供能能力。Tools 中的 Args、Returns 本质就是结构化的 Prompts。当 Client 与 Server 建立连接时，Server 会将所有 Tools 响应给 Client。
+这里 https://github.com/CassInfra/KubeDoor/blob/1.3.0/src/kubedoor-mcp/kubedoor-mcp.py 有一个非常简单直观的 MCP Server 示例，其中利用 MCP 库的 FastMCP 实例化了一个 mcp。后面通过 @mcp.tool() 多次定义 Tools，每个 Tool 都由一个 API 提供能能力。Tools 中的 Args、Returns 本质就是结构化的 Prompts。当 Client 与 Server 建立连接时，Server 会将所有 Tools 响应给 Client
+
+> [!Tip]
+> 规范定义的架构看似复杂，实际上，由于加入了 AI，比传统的规范有了更大的灵活度。本质上， AI 需要的就是结构化的 Prompts，MCP Server 的各种能力定义本质也是 Prompts，只要这些定义清晰，那么 AI 也是可以处理的，规范的内容更多的是为了让 Host、Client、Server 之间的交互可以更加开放，不会受到某个公司限制，只要满足规范约定，都可以交互。
+> 
+> 比如下面的简单示例，并没有完全遵守规范的所有交互数据的格式，仅仅让 Tools 的定义清晰明了，模型同样可以理解并返回正确的内容。这个示例是将 MCP Server 与 MCP Client 的行为都放在同一个行为里
+
+```python
+import json
+
+from apis.api import LlmAPI
+from datetime import datetime
+
+# MCP Server 声明了两个工具
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "get_weather",
+            "description": "Get weather of an location, the user shoud supply a location first",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "The city and state, e.g. San Francisco, CA",
+                    },
+                    "date": {
+                        "type": "string",
+                        "description": "date, e.g. 2025-04-21",
+                    }
+                },
+                "required": ["location", "date"]
+            },
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_date",
+            "description": "Get the current time"
+        }
+    },
+]
+
+# 这里是两个工具要执行的具体逻辑
+def get_weather(location, date):
+    return "{}摄氏度".format(24.4)
+def get_date():
+    return datetime.strftime(datetime.now(), "%Y-%m-%d")
+
+# 定义 MCP Client 如何调用模型
+web_search = {
+    "enable": True,
+    "enable_citation": True,
+    "enable_trace": True
+}
+llm_api = LlmAPI(api_key="",
+                 model_name="deepseek-chat",
+                 is_print=True,
+                 stream=True,
+                 base_url="https://api.deepseek.com",
+                 web_search=web_search
+                 )
+
+# 这里模拟了 MCP Client 与 MCP Server 初始化时，获取到的 Tools 列表。并没有完全按照规范定义
+# Notes: 这里面省略了规范中定义的 Server 与 Client 之间交互过程
+tools_map = {"get_weather": get_weather, "get_date": get_date}
+
+# 这部分模拟了 MCP Client 与 AI Model 交互的逻辑
+res = llm_api("获取今天北京的天气情况", tools)
+
+print("================== 检查 AI 返回的将要调用的工具的上下文 ==================")
+print(needCallToolsContext)
+
+# 这部分模拟了 MCP Client 的逻辑，通过遍历直接调用 MCP Server 的 Tools
+# 这是一个循环调用，每次调用都带着上一次 MCP Server 的响应信息让 AI Model 处理
+for i in range(2):
+    # 从 AI Model 返回的工具调用上下文中，解析出来需要向 MCP Server 发送的的数据
+    # ！！！注意：这里可以看出来，Deepseek 的训练结果包含了 MCP 相关内容，在没有任何额外提示的前提下，也可以响应标准 MCP 格式的信息！！！
+    sid1 = res.choices[0].message.tool_calls[0].id
+    function_name = res.choices[0].message.tool_calls[0].function.name
+    params = json.loads(res.choices[0].message.tool_calls[0].function.arguments)
+
+    # ********模拟 MCP Client 向 MCP Server 发起请求获取响应信息的逻辑********
+    tool_response = tools_map[function_name](**params)
+
+    # 模拟 MCP Client 使用 MCP Server 的响应信息让 AI Model 总结响应信息
+    res = llm_api(tool_response, tools, sid1)
+
+    print(res)
+```
 
 # MCP Server
 
