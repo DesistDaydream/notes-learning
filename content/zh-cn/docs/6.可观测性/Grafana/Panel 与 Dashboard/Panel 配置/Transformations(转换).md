@@ -21,7 +21,7 @@ title: Transformations(转换)
 
 # Add field from calculation
 
-Use the row values to calculate a new field
+添加一个新的字段，新字段的值可以通过计算得出。每个使用一次该转换即可添加一个新字段。
 
 # Filter by name(根据字段名称进行过滤)
 
@@ -38,6 +38,54 @@ Filter data by query. This is useful if you are sharing the results from a diffe
 # Group by
 
 Group the data by a field values then process calculations for each group
+
+# Grouping to Matrix
+
+https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/transform-data/#grouping-to-matrix
+
+案例: https://stackoverflow.com/questions/67003375/in-grafana-how-can-i-turn-rows-into-columns1
+
+分组到矩阵。可以将 **一整列数据** 按照相同的值进行分组后，将分组后的值作为 **列头** 或 **行头** 展示。最多处理**3 列**（也可以说处理 3 个字段）内容，并生成一个新的矩阵，原始字段的值作为新矩阵的输入，输出到新矩阵的 行、列、单元格 中
+
+> TODO: 为什么不能设置将多列的内容转成表头？
+
+假如有如下原始数据：
+
+| event_name | month   | count  |
+| ---------- | ------- | ------ |
+| 事件类型1      | 2025-01 | 123456 |
+| 事件类型2      | 2025-01 | 234567 |
+| 事件类型3      | 2025-02 | 345678 |
+| 事件类型3      | 2025-03 | 456789 |
+| 事件类型4      | 2025-03 | 567890 |
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/grafana/20250509131357940.png)
+
+应用这个转换设置后，让 month 列的值分组后变为 列名；让 event_name 列的值分组后变为 行名；单元格使用 count 列的值进行填充；如果单元格为空使用 0 值。转换后的输出结果为：
+
+| event_name\month | 2025-01 | 2025-02 | 2025-03 |
+| ---------------- | ------- | ------- | ------- |
+| 事件类型1            | 123456  | 0       | 0       |
+| 事件类型2            | 234567  | 0       | 0       |
+| 事件类型3            | 0       | 345678  | 456789  |
+| 事件类型4            | 0       | 0       | 456789  |
+
+转换示例如下（指定了 哪列作为行名、哪列作为列名、哪列作为单元格的值）：
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/grafana/20250509144511434.png)
+
+下面的 ClickHouse SQL 就是使用这种转换的最佳实践。转换之后，可以再配合 Add field from calculation 转换添加一列，以展示所有月份的数据总和。
+
+```sql
+SELECT
+    event_name,
+    formatDateTime(toStartOfMonth(found_time), '%Y-%m') AS month,
+    count() AS count
+FROM my_database.my_table
+WHERE $__timeFilter(found_time)
+GROUP BY event_name, month
+ORDER BY event_type, month
+```
 
 # Join by field(连接字段) Outer join
 
