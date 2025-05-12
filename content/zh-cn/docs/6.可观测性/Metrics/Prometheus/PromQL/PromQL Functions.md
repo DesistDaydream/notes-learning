@@ -156,7 +156,13 @@ node_network_receive_bytes_total[40s]
 
 > TODO: 用**插值**来描述这个计算方式合适吗？（AI 说是插值，但是我看官方文档只在直方图相关函数里用了 Interpolation 描述，关于 rate 和 delta 的是 extrapolated 这个词）
 
-变化量相关的代码逻辑详见 [PromQL](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20Development/PromQL/PromQL.md) 中的函数部分
+**变化量相关的代码逻辑详见 [PromQL](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20Development/PromQL/PromQL.md#变化量) 中的变化量函数部分**
+
+> [!Note] 在这些函数的官方描述中，有这么一种描述：Breaks in monotonicity (such as counter resets due to target restarts) are automatically adjusted for(单调性中断（比如由于目标重启导致的计数器重置）会自动处理)
+> 
+> 这句话翻译成人话是这样的：用于计算的样本中如果存在由于采样目标重启引起计数器归 0 的情况（会导致后面的样本的值比前一个样本的值小），那么会在后面样本的值加上前面样本的值。
+>
+> 比如获取了 5 个数值 2, 4, 6, 0, 2，那么 counterCorrection 的值就是 6，变成 2, 4, 6, 6, 8。主要是为了防止计数器重置导致的计算错误。在代码中称为 counterCorrection(计数器矫正)
 
 ### delta() - 增量/差量
 
@@ -174,7 +180,7 @@ delta(cpu_temp_celsius{host="zeus"}[2h])
 
 ### increase()
 
-`increase(v range-vector)` 计算范围向量 `v` 中，第一个和最后一个样本并返回其增长量, 它会在单调性发生变化时(如由于采样目标重启引起的计数器复位)自动中断。
+`increase(v range-vector)` 计算范围向量 `v` 中，第一个和最后一个样本并返回其增长量, 该函数会自动处理单调性中断的情况（e.g. 因目标重启导致的计数器重置）。
 
 - 函数返回值：类型只能是 Counter 类型，主要作用是增加图表和数据的可读性。使用 rate 函数记录规则的使用率，以便持续跟踪数据样本值的变化。
 
@@ -188,7 +194,7 @@ increase(http_requests_total{job="apiserver"}[5m])
 
 > [!Tip] rate() 与 irate() 更推荐用在 Counter 类型的 Metrics 上，在长期趋势分析或者告警中推荐使用这个函数。
 
-`rate(v range-vector)` 函数可以直接计算区间向量 v 在时间窗口内的**平均每秒增长了多少数值**，它会在单调性发生变化时(e.g. 由于采样目标重启引起的计数器复位)自动中断。该函数的返回结果不带有度量指标，只有标签列表。
+`rate(V RangeVector[Duration])` 计算范围向量 V 在时间窗口 Duration 内 **平均每秒增长了多少数值**，该函数会自动处理单调性中断的情况（e.g. 因目标重启导致的计数器重置）。该函数的返回结果不带有度量指标，只有标签列表。
 
 例如，以下表达式返回区间向量中每个时间序列过去 5 分钟内 HTTP 请求数的每秒增长速率：
 
@@ -201,7 +207,7 @@ rate(http_requests_total[5m])
 ...
 ```
 
-`irate(v range-vector)` 函数用于计算区间向量的增长率，但是其反应出的是瞬时增长速率。irate 函数是通过区间向量中最后两个两本数据来计算区间向量的增长速率，它会在单调性发生变化时(如由于采样目标重启引起的计数器复位)自动中断。这种方式可以避免在时间窗口范围内的“长尾问题”，并且体现出更好的灵敏度，通过 irate 函数绘制的图标能够更好的反应样本数据的瞬时变化状态。
+`irate(V RangeVector[Duration])` 反应出的是瞬时增长速率。irate 函数是通过区间向量中最后两个两本数据来计算区间向量的增长速率，这种方式可以避免在时间窗口范围内的“长尾问题”，并且体现出更好的灵敏度，通过 irate 函数绘制的图标能够更好的反应样本数据的瞬时变化状态。
 
 例如，以下表达式返回区间向量中每个时间序列过去 5 分钟内最后两个样本数据的 HTTP 请求数的增长速率：
 
