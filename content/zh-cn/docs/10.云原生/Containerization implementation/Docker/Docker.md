@@ -63,7 +63,7 @@ Note：目录名中的 overlay2 指的是 docker 当前 Storage Driver 类型，
 
 ## dockerd 程序关联文件
 
-**/etc/docker/daemon.json** # dockerd 服务运行时配置文件。该目录与文件需要自行创建，默认不存在，以 JSON 格式为守护程序设置任何配置选项。相见 [Docker Configuration](docs/10.云原生/Containerization%20implementation/Docker/Docker%20Configuration.md)
+**/etc/docker/daemon.json** # dockerd 服务运行时配置文件。该目录与文件需要自行创建，默认不存在，以 JSON 格式为守护程序设置任何配置选项。相见 [Docker Configuration](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20Configuration.md)
 
 **/run/docker/** # container 的状态文件(state.json)、IO 文件 、netns 文件保存路径。
 

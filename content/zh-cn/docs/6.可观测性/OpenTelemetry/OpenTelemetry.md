@@ -32,7 +32,7 @@ OTel 之于可观测性系统，类似 OCI 之于容器。但是能比 OCI 提�
 目前，OpenTelemetry 由以下几个主要组件组成：
 
 - **规范** # 与编程语言无关的规范，规定了遥测数据格式等
-- **工具** # 用于 采集/接收、转换、导出 遥测数据的工具。比如官方提供的 [OTel Collector](/docs/6.可观测性/OpenTelemetry/Collector.md)
+- **工具** # 用于 采集/接收、转换、导出 遥测数据的工具。比如官方提供的 [OTel Collector](/docs/6.可观测性/OpenTelemetry/Collector/Collector.md)
 - **SDK** # 用于为各种编程语言提供编写符合 OpenTelemetry 规范的工具
 - **自动 instrumentation 和 贡献包** # TODO: 没搞懂这是什么？
 

@@ -1,7 +1,7 @@
 ---
 title: Collector
 linkTitle: Collector
-weight: 20
+weight: 1
 ---
 
 # 概述
@@ -49,6 +49,8 @@ flowchart LR
     %% The stroke color matches the website header.
     classDef default fill:#e3e8fc,stroke:#4f62ad
 ```
+
+![](https://opentelemetry.io/docs/collector/img/otel-collector.svg)
 
 # 部署 Collector
 

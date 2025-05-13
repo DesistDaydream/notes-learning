@@ -36,7 +36,7 @@ nftables 没有内置表，表的数量与名称由用户决定。
 
 > [!Note]
 > - `族` 是具有相同属性的一类网络层级或者说网络类型，比如建立一个名为 test 的表，该表的族为 inet(i.e.表的类型是 inet)。
-> - 在 [iptables](docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/iptables/iptables.md) 中，每个网络层级是由单独的工具实现的：e.g. iptables, ip6tables, arptables, ebtables 。而 nftables 想要通过单个命令行工具提供这些层级网络的控制，则需要抽象出一个新的分类概念，i.e. family
+> - 在 [iptables](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/iptables/iptables.md) 中，每个网络层级是由单独的工具实现的：e.g. iptables, ip6tables, arptables, ebtables 。而 nftables 想要通过单个命令行工具提供这些层级网络的控制，则需要抽象出一个新的分类概念，i.e. family
 > - 所以每个表应且只应指定一个族，且当表中的链被指定类型时，只能指定该族下可以处理的链类型，详情见本文《nftables chain 链》章节
 
 nftables 中一同以下几种 family：

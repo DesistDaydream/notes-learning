@@ -2472,9 +2472,7 @@
     "docs/6.可观测性/OpenTelemetry": [
       "docs/6.可观测性/OpenTelemetry/_index.md",
       "docs/6.可观测性/OpenTelemetry/OpenTelemetry.md",
-      "docs/6.可观测性/OpenTelemetry/Collector.md",
-      "docs/6.可观测性/OpenTelemetry/Configuration.md",
-      "docs/6.可观测性/OpenTelemetry/Component.md"
+      "docs/6.可观测性/OpenTelemetry/Collector"
     ],
     "docs/6.可观测性/Traces": [
       "docs/6.可观测性/Traces/_index.md",
@@ -2932,6 +2930,12 @@
       "docs/10.云原生/Containerization implementation/Docker/Docker CLI/network.md",
       "docs/10.云原生/Containerization implementation/Docker/Docker CLI/ps,stats.md",
       "docs/10.云原生/Containerization implementation/Docker/Docker CLI/run.md"
+    ],
+    "docs/6.可观测性/OpenTelemetry/Collector": [
+      "docs/6.可观测性/OpenTelemetry/Collector/_index.md",
+      "docs/6.可观测性/OpenTelemetry/Collector/Collector.md",
+      "docs/6.可观测性/OpenTelemetry/Collector/Configuration.md",
+      "docs/6.可观测性/OpenTelemetry/Collector/Component.md"
     ]
   },
   "actionBarOrder": {},

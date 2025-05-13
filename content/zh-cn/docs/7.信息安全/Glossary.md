@@ -75,9 +75,9 @@ weight: 1
 
 **Digital Signature(数字签名)** # [详见 Wiki](https://en.wikipedia.org/wiki/Digital_signature)。用于检验数字消息或文件的真实性的数学方案
 
-**Public Key Cryptography Standards(非对称密钥加密标准，简称 PKCS)** # 该标准指定了使用[公开密钥加密](docs/7.信息安全/Cryptography/公开密钥加密/公开密钥加密.md)技术时所应该遵守的标准
+**Public Key Cryptography Standards(非对称密钥加密标准，简称 PKCS)** # 该标准指定了使用[公开密钥加密](/docs/7.信息安全/Cryptography/公开密钥加密/公开密钥加密.md)技术时所应该遵守的标准
 
-**Public Key Infrastructure(非对称密钥基础设施，简称 PKI)** # [PKI](docs/7.信息安全/Cryptography/公开密钥加密/证书%20与%20PKI/证书%20与%20PKI.md) 是一个包括硬件、软件、人员、策略和规程的集合，用来实现基于公钥密码体制的密钥和证书的产生、管理、存储、分发和撤销等功能。
+**Public Key Infrastructure(非对称密钥基础设施，简称 PKI)** # [PKI](/docs/7.信息安全/Cryptography/公开密钥加密/证书%20与%20PKI/证书%20与%20PKI.md) 是一个包括硬件、软件、人员、策略和规程的集合，用来实现基于公钥密码体制的密钥和证书的产生、管理、存储、分发和撤销等功能。
 
 **Secure Hash Algorithm(安全哈希算法，简称 SHA)**
 

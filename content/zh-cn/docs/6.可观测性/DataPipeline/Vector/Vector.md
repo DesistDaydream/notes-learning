@@ -58,7 +58,7 @@ Vector 可以部署为两个角色，既可以作为数据采集的 Agent，也�
 
 **/etc/vector/vector.yaml** # 已经弃用的默认配置文件。由于 Vector 灵活的设计，可以加载多个配置文件，一般情况都是手动使用 --config-dir 指定配置文件目录。这样更利于配置管理。
 
-详见 [Vector Configuration](docs/6.可观测性/DataPipeline/Vector/Vector%20Configuration.md)
+详见 [Vector Configuration](/docs/6.可观测性/DataPipeline/Vector/Vector%20Configuration.md)
 
 # API
 
@@ -76,7 +76,7 @@ Vector 提供 [GraphQL](/docs/2.编程/API/GraphQL.md) API
 
 ```toml
 # sample.toml
-[sources.prom]  
-type = "prometheus_scrape"  
+[sources.prom]
+type = "prometheus_scrape"
 endpoints = [ "http://localhost:9100/metrics" ]
 ```
