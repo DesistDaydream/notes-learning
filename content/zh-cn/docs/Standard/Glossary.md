@@ -11,7 +11,7 @@ weight: 1
 > - [Wiki, Glossary](https://en.wikipedia.org/wiki/Glossary)
 > - [Wiki, Standardization](https://en.wikipedia.org/wiki/Standardization)
 
-**Standard(标准)** 与 **Standardized(标准化)**
+**Standardized(标准化)** 与 **Standard(标准)**
 
 - Standardized 更多用来行用指定标准的过程
 - Standard 是经过标准化后产生的结果，已经定义好的标准是在 执行、构建、生产 各种 任务、流程、产品 时的最佳方式或期望
@@ -128,3 +128,4 @@ StandardizedGlossary(标准化术语)
 在计算机科学中，**Bare metal(裸金属)** 也称为 **Bare machine(裸机)**，是指在没有介入操作系统的逻辑硬件上执行指令的计算机。
 
 在很多软件的部署文档中，Bare metal 经常作为部署方式的一种，但是这时候裸金属部署，并不是真的在没有操作系统的服务器上安装软件，而是指在没有其他通用平台上安装，说白了，就是指**原始安装**
+

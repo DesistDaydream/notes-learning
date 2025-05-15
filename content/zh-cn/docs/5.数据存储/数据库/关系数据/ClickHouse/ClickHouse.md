@@ -69,13 +69,34 @@ https://clickhouse.com/docs/en/install
 
 https://clickhouse.com/docs/en/operations/utilities
 
-**clickhouse-server**
+## clickhouse-server
 
-**clickhouse-client**
+## clickhouse-client
 
-https://clickhouse.com/docs/en/integrations/sql-clients/cli
+https://clickhouse.com/docs/integrations/sql-clients/cli
 
-- clickhouse-client -u default --password 12345678  -m -n --port 9000 -h 127.0.0.1 -d my_database
+### OPTIONS
+
+https://clickhouse.com/docs/integrations/sql-clients/cli#command-line-options
+
+连接选项
+
+- **-h, --host**(STRING) # ClickHouse Server 的 IP
+- **--port**(INT) # ClickHouse Server 的 PORT
+- **-u, --user**(STRING) # 连接数据库所使用的用户名。`默认值: default`
+- **--possword**(STRING) #  连接数据库的用户的密码
+- **-d, --database**(STRING) # 连接的数据库名称。`默认值: default`
+
+查询选项
+
+- **-m, --multiline** # 允许多行查询（按 Enter 键时不发送查询），仅当查询以分号结尾时才会发送查询。
+- **-q, --query**(STRING) # 指定查询 SQL。可以将 SQL 保存到文件中，使用 `--query="$(cat query.sql)"` 这种方式执行查询。
+ 
+### EXAMPLE
+
+```bash
+clickhouse-client -u default --password d1234567 -h 127.0.0.1 --port 9000 -d my_database --query="cat tmp/query.sql"
+```
 
 # ClickHouse 生态
 
