@@ -266,6 +266,10 @@ https://grafana.com/docs/loki/latest/operations/storage/retention/
 
 ---
 
+# OTel 支持
+
+在 Loki 3.0 之前，是不支持将 OTel 日志直接导入到 Loki 的，所以创建了
+
 # 下面的待弃用
 
 # Chunk 存储
