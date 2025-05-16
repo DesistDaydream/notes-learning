@@ -1,6 +1,6 @@
 ---
-title: Loki 配置
-linkTitle: Loki 配置
+title: Loki Configuration
+linkTitle: Loki Configuration
 weight: 3
 ---
 

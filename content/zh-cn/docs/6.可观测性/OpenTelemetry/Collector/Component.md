@@ -27,3 +27,22 @@ weight: 20
 https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/filelogreceiver
 
 从文件读取日志
+
+# Processor
+
+## Attributes
+
+https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/attributesprocessor
+
+## Resource
+
+https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/resourceprocessor
+
+改变 Attributes(属性)
+
+# Exporter
+
+# Connector
+
+# Extension
+

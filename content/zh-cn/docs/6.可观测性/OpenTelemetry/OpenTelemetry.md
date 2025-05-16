@@ -29,7 +29,7 @@ OTel 之于可观测性系统，类似 OCI 之于容器。但是能比 OCI 提�
 
 ## OpenTelemetry 组件
 
-目前，OpenTelemetry 由以下几个主要组件组成：
+目前，OpenTelemetry 主要包含如下组件：
 
 - **规范** # 与编程语言无关的规范，规定了遥测数据格式等
 - **工具** # 用于 采集/接收、转换、导出 遥测数据的工具。比如官方提供的 [OTel Collector](/docs/6.可观测性/OpenTelemetry/Collector/Collector.md)
@@ -71,7 +71,7 @@ Grafana Agent 适用于希望收集和转发遥测数据以进行分析和待命
 
 # 最佳实践
 
-[公众号-云原生小白，Opentelemetry 实践分享 - Golang篇](https://mp.weixin.qq.com/s/wiAT4GHaeitn2o6Byr_kGA)
+[公众号 - 云原生小白，Opentelemetry 实践分享 - Golang篇](https://mp.weixin.qq.com/s/wiAT4GHaeitn2o6Byr_kGA)
 
 # OpenTelemetry Demo
 

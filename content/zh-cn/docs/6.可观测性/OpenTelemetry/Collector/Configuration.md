@@ -12,14 +12,14 @@ weight: 2
 
 顶层字段
 
-- **receivers**(map\[STRING][receivers](#receivers)) # 配置 Receivers 组件
-- **processors**(map\[STRING][processors](#processors)) # 配置 Processors 组件
-- **exporters**(map\[STRING][exporters](#exporters)) # 配置 Exporters 组件
+- **receivers**(map\[STRING][receivers](#receivers)) # 配置 Receivers 管道组件
+- **processors**(map\[STRING][processors](#processors)) # 配置 Processors 管道组件
+- **exporters**(map\[STRING][exporters](#exporters)) # 配置 Exporters 管道组件
 - **extensions**(map\[STRING][extensions](#extensions)) # 配置 扩展
-- **connectors** # TODO
-- **service**([service](#service)) # 配置在处理各类可观测数据时，使用哪些扩展、使用哪些组件
+- **connectors**(map\[STRING][connectors](#connectors)) # TODO: 配置 [Connectors](https://opentelemetry.io/docs/collector/configuration/#connectors) 管道组件
+- **service**([service](#service)) # 配置在处理各类可观测数据时，使用哪些扩展、使用哪些组件。每个 service 可以简单理解为一个 Pipeline(管道)。
 
-在 [otelcol/config.go](https://github.com/open-telemetry/opentelemetry-collector/blob/v0.112.0/otelcol/config.go#L21) 可以看到顶层字段的 struct
+在 [otelcol/config.go](https://github.com/open-telemetry/opentelemetry-collector/blob/v0.126.0/otelcol/config.go#L21) 可以看到顶层字段的 struct
 
 ```go
 // Config defines the configuration for the various elements of collector or agent.
@@ -43,7 +43,7 @@ type Config struct {
 }
 ```
 
-Notes: map 中的 key 用来表示**组件 ID**。在 [component/identifiable.go](https://github.com/open-telemetry/opentelemetry-collector/blob/v0.112.0/component/identifiable.go#L19) 和 文档中 可以看到，定义组件 ID 遵循 `TYPE[/NAME]` 格式，e.g. otlp 或 otlp/2。只要 ID 是唯一的，就可以多次定义给定类型的组件。例如：
+Notes: map 中的 key 用来表示**组件 ID**。在 [component/identifiable.go](https://github.com/open-telemetry/opentelemetry-collector/blob/v0.112.0/component/identifiable.go#L19) 和 文档中 可以看到，定义组件 ID 遵循 `TYPE[/NAME]` 格式，e.g. otlp 或 otlp/2。只要 ID 是唯一的，就可以多次定义给定种类的组件。例如：
 
 ```yaml
 receivers:
@@ -100,10 +100,56 @@ TYPE 可用的字符串可以参考 Collector [Component](/docs/6.可观测性/O
 
 # receivers
 
+配置内容取决于使用的 Receiver 类型
+
 # processors
+
+配置内容取决于使用的 Processor 类型
 
 # exporters
 
+配置内容取决于使用的 Exporter 类型
+
 # connectors
 
+配置内容取决于使用的 Connector 类型
+
 # service
+
+https://github.com/open-telemetry/opentelemetry-collector/blob/v0.126.0/service/config.go#L13
+
+**extensions**(\[]STRING)
+
+**pipelines**(map\[STRING][pipelines](#pipelines)) # 定义管道。map 中的 key 是管道 ID，也遵循 `TYPE[/NAME]` 格式。TYEP 可以用的值有: traces, metrics, logs
+
+**telemetry**(Object)
+
+## pipelines
+
+**receivers**(\[]CommandID)
+
+**processors**(\[]CommandID)
+
+**exporters**(\[]CommandID)
+
+# 配置示例
+
+将本地文件日志写入到 Loki 的最简单配置
+
+```yaml
+receivers:
+  filelog:
+    include: [/var/log/syslog]
+
+exporters:
+  otlphttp/loki:
+    endpoint: http://localhost:3100/otlp
+
+service:
+  pipelines:
+    logs:
+      receivers: [filelog]
+      processors: []
+      exporters: [otlphttp/loki]
+
+```
