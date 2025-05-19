@@ -1,8 +1,14 @@
 ---
 title: Linux 图形处理
+linkTitle: Linux 图形处理
+weight: 1
 ---
 
 # 概述
+
+> 参考：
+>
+> - 
 
 # Xorg, X11, Wayland? Linux Display Servers And Protocols Explained
 

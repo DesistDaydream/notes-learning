@@ -2471,6 +2471,7 @@
     "docs/6.可观测性/OpenTelemetry": [
       "docs/6.可观测性/OpenTelemetry/_index.md",
       "docs/6.可观测性/OpenTelemetry/OpenTelemetry.md",
+      "docs/6.可观测性/OpenTelemetry/Glossary.md",
       "docs/6.可观测性/OpenTelemetry/Collector"
     ],
     "docs/6.可观测性/Traces": [
@@ -2934,7 +2935,16 @@
       "docs/6.可观测性/OpenTelemetry/Collector/_index.md",
       "docs/6.可观测性/OpenTelemetry/Collector/Collector.md",
       "docs/6.可观测性/OpenTelemetry/Collector/Configuration.md",
-      "docs/6.可观测性/OpenTelemetry/Collector/Component.md"
+      "docs/6.可观测性/OpenTelemetry/Collector/Collector component.md"
+    ],
+    "docs/11.多媒体/图形处理/Linux 图形处理": [
+      "docs/11.多媒体/图形处理/Linux 图形处理/_index.md",
+      "docs/11.多媒体/图形处理/Linux 图形处理/Linux 图形处理.md",
+      "docs/11.多媒体/图形处理/Linux 图形处理/freedesktop",
+      "docs/11.多媒体/图形处理/Linux 图形处理/GSettings 与 Dconf.md",
+      "docs/11.多媒体/图形处理/Linux 图形处理/VNC.md",
+      "docs/11.多媒体/图形处理/Linux 图形处理/X Window.md",
+      "docs/11.多媒体/图形处理/Linux 图形处理/Xrdp.md"
     ]
   },
   "actionBarOrder": {},

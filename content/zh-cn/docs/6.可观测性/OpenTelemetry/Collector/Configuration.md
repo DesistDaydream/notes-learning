@@ -94,7 +94,7 @@ service:
       exporters: [otlp]
 ```
 
-TYPE 可用的字符串可以参考 Collector [Component](/docs/6.可观测性/OpenTelemetry/Collector/Component.md)，像下图，在 opentelemetry-collector、opentelemetry-collector-contrib 项目中，在对应的组件目录下，每个目录都是一个可用的 TYPE，目录名的前缀就是 TYPE，比如 otlpreceiver 是 OTLP Receiver（TYPE 是 otlp），prometheusreveiver 是 [Prometheus](/docs/6.可观测性/Metrics/Prometheus/Prometheus.md) Receiver（TYPE 是 prometheus），以此类推。
+TYPE 可用的字符串可以参考 Collector [Collector component](docs/6.可观测性/OpenTelemetry/Collector/Collector%20component.md)，像下图，在 opentelemetry-collector、opentelemetry-collector-contrib 项目中，在对应的组件目录下，每个目录都是一个可用的 TYPE，目录名的前缀就是 TYPE，比如 otlpreceiver 是 OTLP Receiver（TYPE 是 otlp），prometheusreveiver 是 [Prometheus](/docs/6.可观测性/Metrics/Prometheus/Prometheus.md) Receiver（TYPE 是 prometheus），以此类推。
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/otel/config_type_desc.png)
 
@@ -122,7 +122,7 @@ https://github.com/open-telemetry/opentelemetry-collector/blob/v0.126.0/service/
 
 **pipelines**(map\[STRING][pipelines](#pipelines)) # 定义管道。map 中的 key 是管道 ID，也遵循 `TYPE[/NAME]` 格式。TYEP 可以用的值有: traces, metrics, logs
 
-**telemetry**(Object)
+**telemetry**(Object) # 配置 Collector 本身的与组件无关的配置。e.g. 内部指标暴露端口、日志级别、etc.
 
 ## pipelines
 

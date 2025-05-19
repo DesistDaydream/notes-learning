@@ -95,32 +95,44 @@ https://man7.org/linux/man-pages/man1/journalctl.1.html#OUTPUT_OPTIONS
 
 ## EXAMPLE
 
-- 查看指定用户的日志
-  - sudo journalctl \_UID=33 --since today
-- 查看指定进程的日志
-  - sudo journalctl \_PID=1
-- 以 JSON 格式仅输出 MESSAGE 与 \_CMDLINE 字段的消息
-  - journalctl -u docker -ojson-pretty --output-fields=MESSAGE,\_CMDLINE
-- 查看指定时间的日志
-  - sudo journalctl --since="2012-10-30 18:17:16"
-  - sudo journalctl --since "20 min ago"
-  - sudo journalctl --since yesterday
-  - sudo journalctl --since 09:00 --until "1 hour ago"
-  - journalctl --since "2018-11-13" --until "2018-11-14 03:00"
+journalctl # 查看所有日志（默认情况下 ，只保存本次启动的日志）
 
-# 查看所有日志（默认情况下 ，只保存本次启动的日志）
+journalctl -k # 查看内核日志（不显示应用日志）
 
-$ sudo journalctl
+journalctl -b 0 # 查看系统本次启动的日志
 
-# 查看内核日志（不显示应用日志）
 
-$ sudo journalctl -k
+查看指定用户的日志
 
-# 查看系统本次启动的日志
+- sudo journalctl \_UID=33 --since today
 
-$ sudo journalctl -b
+查看指定进程的日志
 
-$ sudo journalctl -b -0
+- sudo journalctl \_PID=1
+
+以 JSON 格式仅输出 MESSAGE 与 \_CMDLINE 字段的消息
+
+- journalctl -u docker -ojson-pretty --output-fields=MESSAGE,\_CMDLINE
+
+查看指定时间的日志
+
+- sudo journalctl --since="2012-10-30 18:17:16"
+- sudo journalctl --since "20 min ago"
+- sudo journalctl --since yesterday
+- sudo journalctl --since 09:00 --until "1 hour ago"
+- journalctl --since "2018-11-13" --until "2018-11-14 03:00"
+
+journalctl -p err -b # 查看指定优先级（及其以上级别）的日志，共有 8 级
+
+- 0: emerg
+- 1: alert
+- 2: crit
+- 3: err
+- 4: warning
+- 5: notice
+- 6: info
+- 7: debug
+
 
 # 查看上一次启动的日志（需更改设置）
 
@@ -148,26 +160,6 @@ $ sudo journalctl -u nginx.service
 
 $ sudo journalctl -u nginx.service --since today
 
-# 实时滚动显示某个 Unit 的最新日志
-
-$ sudo journalctl -u nginx.service -f
-
-# 合并显示多个 Unit 的日志
-
-$ journalctl -u nginx.service -u php-fpm.service --since today
-
-# 查看指定优先级（及其以上级别）的日志，共有 8 级
-
-- 0: emerg
-- 1: alert
-- 2: crit
-- 3: err
-- 4: warning
-- 5: notice
-- 6: info
-- 7: debug
-
-$ sudo journalctl -p err -b
 
 # 指定日志文件占据的最大空间
 

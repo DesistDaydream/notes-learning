@@ -44,7 +44,19 @@ OpenTelemetry 创建了一个名词，将 *可观测数据（遥测数据）* �
 
 OpenTelemetry 是围绕 Signals 或 遥测类别 构建的。Metrics、Logs、Traces、Baggage 都是一种 Signals。每个 Signals 代表一组连贯的、独立的功能。每个信号都遵循单独的生命周期，定义其当前的稳定性级别。
 
-OpenTelemetry 的目的是收集、处理和导出 **Signals**。传统定义中，[Signal(信号)](/docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Signal(信号).md) 是系统输出，描述操作系统和应用程序的底层活动。在 OpenTelemetry 中，Signals 可以是您想要在特定时间点测量的内容，例如温度或内存使用情况，也可以是您想要跟踪的分布式系统组件的事件。您可以将不同的 Signals 组合在一起，从不同角度观察同一项技术的内部运作情况。
+OpenTelemetry 的目的是收集、处理和导出 **Signals**。传统定义中，[Signal(信号)](/docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Signal(信号).md) 是系统输出，描述操作系统和应用程序的底层活动。在 OpenTelemetry 中，Signals 可以是想要在特定时间点测量的内容，例如温度或内存使用情况，也可以是想要跟踪的分布式系统组件的事件。可以将不同的 Signals 组合在一起，从不同角度观察同一项技术的内部运作情况。
+
+## Resource
+
+https://opentelemetry.io/docs/concepts/resources/
+
+Resource 是属性的集合，用来表示生成遥测数据的实体。比如 Kubernetes 一个容器， 其中的进程名称、Pod 名称、命名空间、etc. 都是该实体的资源。
+
+OpenTelemetry SDK 提供了一些属性。其中之一是 `service.name` ，表示服务的逻辑名称。默认情况下，SDK 会为此值分配 `unknown_service` ，因此建议明确设置它，可以在代码中设置，也可以通过设置环境变量 `OTEL_SERVICE_NAME` 来设置。
+
+> [!Note] 截至 2025-05-19，怎么感觉 Collector 的各种类型的组件都没有指定 service.name 呢？比如 filelog, journald 都是 unknown_service。但是 otelcol 自身的日志如果发送到自己的 otlp 接收器，就是包含 service.name，值为 otelcol-contrib
+
+此外，SDK 还将提供以下资源属性来标识自身： `telemetry.sdk.name` 、 `telemetry.sdk.language` 和 `telemetry.sdk.version`
 
 # OpenTelemetry 实现
 

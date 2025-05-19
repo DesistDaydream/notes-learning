@@ -1,6 +1,6 @@
 ---
-title: Component
-linkTitle: Component
+title: Collector component
+linkTitle: Collector component
 weight: 20
 ---
 
