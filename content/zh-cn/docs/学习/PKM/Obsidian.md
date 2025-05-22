@@ -169,3 +169,47 @@ https://forum.obsidian.md/t/opening-multiple-vaults-creates-multiple-taskbar-ico
 - 再打开另一个仓库，假如为 B
 - 把 B 固定到任务栏
 - 关闭所有 obsidian 窗口，再从任务栏打开时，就会发现所有 Obsidian 的仓库都合并到一起了。
+
+## 图片居中
+
+https://forum-zh.obsidian.md/t/topic/37120/2
+
+如果所有图片都居中可
+
+```css
+:is(.markdown-source-view, .markdown-preview-view) img {
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+}
+```
+
+参考 [如何实现图片居中 #3 78](https://forum-zh.obsidian.md/t/topic/519/3)
+
+如果仅仅某个图片居中，可以利用alt实现，比如
+
+```markdown
+![[xxxx.png|center]]
+或
+![center](https://scpic.chinaz.net/Files/pic/pic9/202007/apic26672_s.jpg)
+```
+
+然后css改为
+
+```css
+:is(.markdown-source-view, .markdown-preview-view) img[alt*=center]{
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+}
+```
+
+同理也可以居右显示
+
+```css
+:is(.markdown-source-view, .markdown-preview-view) img[alt*=right]{
+    left: 100%;
+    position: relative;
+    transform: translateX(-100%);
+}
+```

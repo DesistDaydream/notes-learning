@@ -2,5 +2,8 @@
   "theme": "system",
   "accentColor": "#70aeff",
   "showViewHeader": true,
-  "baseFontSize": 15
+  "baseFontSize": 15,
+  "enabledCssSnippets": [
+    "picture"
+  ]
 }

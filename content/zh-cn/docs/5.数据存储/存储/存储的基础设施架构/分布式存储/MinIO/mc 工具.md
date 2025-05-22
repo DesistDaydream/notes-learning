@@ -13,7 +13,7 @@ title: mc 工具
 \~/.mc/config.json # mc 从该文件中获取将要操作的 host 信息。可以通过 mc config host 命令管理该文件，也可以直接手动编辑。
 
 ```json
-[root@nfs-1 ~]# cat ~/.mc/config.json
+~]# cat ~/.mc/config.json
 {
 	"version": "10",
 	"aliases": {

@@ -16,7 +16,7 @@ WireGuard 目前最大的痛点就是上层应用的功能不够健全，因为 
 >
 > - [GitHub 项目，tailscale/tailscale](https://github.com/tailscale/tailscale)
 > - [官网](https://tailscale.com/)
-> - [公众号，云原声实验室-Tailscal 开源版本让你的 WireGuard 直接起飞](https://mp.weixin.qq.com/s/Y3z5RzuapZc8jS0UuHLhBw)
+> - [公众号 - 云原声实验室，Tailscal 开源版本让你的 WireGuard 直接起飞](https://mp.weixin.qq.com/s/Y3z5RzuapZc8jS0UuHLhBw)
 
 Tailscale 是一种基于 WireGuard 的虚拟组网工具，和 Netmaker 类似，**最大的区别在于 Tailscale 是在用户态实现了 WireGuard 协议，而 Netmaker 直接使用了内核态的 WireGuard**。所以 Tailscale 相比于内核态 WireGuard 性能会有所损失，但与 OpenVPN 之流相比还是能甩好几十条街的，Tailscale 虽然在性能上做了些许取舍，但在功能和易用性上绝对是完爆其他工具：
 
@@ -76,3 +76,23 @@ Windows
 
 - **./Logs/** # 程序运行日志
 - 其他文件及其功能与 Linux 下的 /var/lib/tailscale/ 目录相同
+
+# 路由表
+
+Tailscale 会自动创建相关的路由表和 iptables 规则。路由表可通过以下命令查看：
+
+```shell
+~]# ip rule show
+0: from all lookup local
+5210: from all fwmark 0x80000 lookup main
+5230: from all fwmark 0x80000 lookup default
+5250: from all fwmark 0x80000 unreachable
+5270: from all lookup 52
+32766: from all lookup main
+32767: from all lookup default
+~]# ip route show table 52
+100.64.0.2 dev tailscale0
+100.100.100.100 dev tailscale0
+```
+
+一般都是 52 表

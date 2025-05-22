@@ -1,0 +1,6 @@
+/* 在图片引用中使用 center 关键字让图片居中显示 */
+:is(.markdown-source-view, .markdown-preview-view) img[alt*=center]{
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+}

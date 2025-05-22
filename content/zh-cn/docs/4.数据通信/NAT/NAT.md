@@ -1,5 +1,6 @@
 ---
 title: NAT
+linkTitle: NAT
 weight: 1
 ---
 
@@ -11,7 +12,6 @@ weight: 1
 > - [RFC 4787](https://www.rfc-editor.org/rfc/rfc4787.html)
 > - [RFC 5382,TCP 的 NAT 行为要求](https://www.rfc-editor.org/rfc/rfc5382.html)
 > - [RFC 5508,ICMP 的 NAT 行为要求](https://www.rfc-editor.org/rfc/rfc5508.html)
-> - [公众号,云原生实验室-NAT 穿透是如何工作的：技术原理及企业级实践](https://mp.weixin.qq.com/s/IzdUBvnRze4GGC6yCqmJwA)
 
 **Network address translation(网络地址转换，简称 NAT)** 是一种通过修改数据包的 IP 报头中的网络地址信息，将一个 IP 地址空间重新映射到另一个 IP 地址空间的方法，同时它们在流量路由设备中传输。该技术最初用作快捷方式，以避免在移动网络时重新寻址每个主机。面对 IPv4 地址耗尽，它已成为保护全球地址空间的流行和必不可少的工具。NAT 网关的一个可互联网路由的 IP 地址可用于整个专用网络。
 

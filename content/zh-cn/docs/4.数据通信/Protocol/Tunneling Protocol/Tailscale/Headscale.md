@@ -9,7 +9,7 @@ weight: 2
 > 参考：
 >
 > - [GitHub 项目，juanfont/headscale](https://github.com/juanfont/headscale)
-> - [公众号，云原声实验室 - Tailscal 开源版本让你的 WireGuard 直接起飞](https://mp.weixin.qq.com/s/Y3z5RzuapZc8jS0UuHLhBw)
+> - [公众号 - 云原声实验室，Tailscal 开源版本让你的 WireGuard 直接起飞](https://mp.weixin.qq.com/s/Y3z5RzuapZc8jS0UuHLhBw)
 > - [馆长博客，headscale 搭建和应用场景](https://zhangguanzhang.github.io/2024/07/25/headscale/)
 
 Tailscale 的控制服务器是不开源的，而且对免费用户有诸多限制，这是人家的摇钱树，可以理解。好在目前有一款开源的实现叫 Headscale，这也是唯一的一款，希望能发展壮大。
@@ -18,34 +18,22 @@ Headscale 由欧洲航天局的 Juan Font 使用 Go 语言开发，在 BSD 许�
 
 目前 Headscale 还没有可视化界面，期待后续更新吧。
 
-# Headscale 关联文件与配置
-
-**/etc/headscale/config.yaml** # Headscale 运行时配置文件
-
-**/var/lib/headscale/**# Headscale 运行时数据目录。包括 数据库文件、证书 等
-
-- **./db.sqlite** # Headscale 使用 sqlite 作为数据库
-
-[这里](https://github.com/juanfont/headscale/blob/main/config-example.yaml)是配置文件示例
-
 # Headscale 部署
-
-Headscale 部署很简单，推荐直接在 Linux 主机上安装。
 
 > 理论上来说只要你的 Headscale 服务可以暴露到公网出口就行，但最好不要有 NAT，所以推荐将 Headscale 部署在有公网 IP 的云主机上。
 
-## 准备一些环境变量
+## 安装程序与应用配置
+
+**准备一些环境变量**
 
 ```bash
 export HeadscaleVersion="0.22.3"
 export HeadscaleArch="amd64"
-# Headscale 用于与各个节点通信的 IP
+# 各个 Tailscale 节点与 Headscale 通信的 IP
 export HeadscaleAddr="https://X.X.X.X:YYY"
 ```
 
-## 准备 Headscale 相关文件及目录
-
-从 [GitHub 仓库的 Release 页面](https://github.com/juanfont/headscale/releases)下载最新版的二进制文件。
+**准备 Headscale 相关文件及目录**。从 [GitHub 仓库的 Release 页面](https://github.com/juanfont/headscale/releases)下载最新版的二进制文件。
 
 ```bash
 wget --output-document=/usr/local/bin/headscale \
@@ -69,14 +57,7 @@ useradd headscale -d /home/headscale -m
 chown -R headscale:headscale /var/lib/headscale
 ```
 
-### 创建 Headscale 配置文件
-
-有两种方式
-
-- 下载文件后修改内容
-- 直接按照自己的要求创建
-
----
+**创建 Headscale 配置文件**
 
 下载配置文件
 
@@ -87,71 +68,15 @@ wget https://raw.githubusercontent.com/juanfont/headscale/v${HeadscaleVersion}/c
 - 修改配置文件
   - **server_url** # 改为公网 IP 或域名。**如果是国内服务器，域名必须要备案**。我的域名无法备案，所以我就直接用公网 IP 了。
   - **magic_dns** # 如果暂时用不到 DNS 功能，该值设为 false
-  - **unix_socket** # unix_socket: /var/run/headscale/headscale.sock
-  - **ip_prefixes** # 可自定义私有网段
+  - **prefixes** # 可自定义私有网段
 
----
-
-直接创建配置
-
-```yaml
-tee /etc/headscale/config.yaml > /dev/null <<EOF
-server_url: ${HeadscaleAddr}
-listen_addr: 0.0.0.0:8080
-metrics_listen_addr: 127.0.0.1:9090
-grpc_listen_addr: 0.0.0.0:50443
-grpc_allow_insecure: false
-private_key_path: /var/lib/headscale/private.key
-ip_prefixes:
-  - fd7a:115c:a1e0::/48
-  - 100.64.0.0/10
-derp:
-  server:
-    enabled: false
-    region_id: 999
-    region_code: "headscale"
-    region_name: "Headscale Embedded DERP"
-    stun_listen_addr: "0.0.0.0:3478"
-  urls:
-    - https://controlplane.tailscale.com/derpmap/default
-  paths: []
-  auto_update_enabled: true
-  update_frequency: 24h
-disable_check_updates: false
-ephemeral_node_inactivity_timeout: 30m
-db_type: sqlite3
-db_path: /var/lib/headscale/db.sqlite
-acme_url: https://acme-v02.api.letsencrypt.org/directory
-acme_email: ""
-tls_letsencrypt_hostname: ""
-tls_client_auth_mode: relaxed
-tls_letsencrypt_cache_dir: /var/lib/headscale/cache
-tls_letsencrypt_challenge_type: HTTP-01
-tls_letsencrypt_listen: ":http"
-tls_cert_path: ""
-tls_key_path: ""
-log_level: info
-acl_policy_path: ""
-dns_config:
-  nameservers:
-    - 1.1.1.1
-  domains: []
-  magic_dns: true
-  base_domain: example.com
-unix_socket: /var/run/headscale/headscale.sock
-unix_socket_permission: "0770"
-EOF
-```
-
-## 创建 Systemd Unit 文件
-
-https://github.com/juanfont/headscale/blob/main/docs/packaging/headscale.systemd.service
+**创建 Systemd Unit 文件**
 
 ```bash
-curl -o /usr/lib/systemd/system/headscale.service -LO https://github.com/juanfont/headscale/raw/main/docs/packaging/headscale.systemd.service
+curl -o /etc/systemd/system/headscale.service -LO https://github.com/juanfont/headscale/raw/refs/heads/main/packaging/systemd/headscale.service
 ```
 
-## 启动 Headscale 服务
+**启动 Headscale 服务**
 
 ```bash
 systemctl daemon-reload
@@ -160,9 +85,9 @@ systemctl enable headscale --now
 
 ## 创建 Headscale User
 
-> Notes: 老版本是创建 Namesapce
+> [!Note] 老版本是创建 Namesapce
 >
-> - Tailscale 中有一个概念叫 tailnet，你可以理解成租户， Tailscale 与 Tailscale 之间是相互隔离的，具体看参考 Tailscale 的官方文档：[What is a tailnet](https://tailscale.com/kb/1136/tailnet/)。
+> - Tailscale 中有一个概念叫 tailnet，可以理解成租户， Tailscale 与 Tailscale 之间是相互隔离的，具体看参考 Tailscale 的官方文档：[What is a tailnet](https://tailscale.com/kb/1136/tailnet/)。
 > - Headscale 也有类似的实现叫 namespace，即命名空间。Namespace 是一个实体拥有的机器的逻辑组，这个实体对于 Tailscale 来说，通常代表一个用户。
 > - 我们需要先创建一个 namespace，以便后续客户端接入，例如：
 
@@ -177,7 +102,7 @@ ID | Name      | Created
 
 注意：
 
-- 从 v0.15.0 开始，Namespace 之间的边界已经被移除了，所有节点默认可以通信，如果想要限制节点之间的访问，可以使用 [ACL](https://github.com/juanfont/headscale/blob/v0.15.0/docs/acls.md)。在配置文件中只用 `acl_policy_path` 字段指定 ACL 配置文件路径，文件配置方式详见：<https://tailscale.com/kb/1018/acls/
+- 从 v0.15.0 开始，Namespace 之间的边界已经被移除了，所有节点默认可以通信，如果想要限制节点之间的访问，可以使用 [ACL](https://github.com/juanfont/headscale/blob/v0.15.0/docs/acls.md)。在配置文件中只用 `acl_policy_path` 字段指定 ACL 配置文件路径，文件配置方式详见: https://tailscale.com/kb/1018/acls/
 
 ```bash
 ~]# headscale users create desistdaydream
@@ -290,10 +215,10 @@ Windows Tailscale 客户端想要使用 Headscale 作为控制服务器，只需
   - 或者执行下面的 PowerShell 命令添加注册表信息
 
 ```powershell
-$headscale_server="DOMAIN:PORT"
+$headscale_server="https://DOMAIN:PORT"
 New-Item -Path "HKLM:\SOFTWARE\Tailscale IPN"
 New-ItemProperty -Path 'HKLM:\Software\Tailscale IPN' -Name UnattendedMode -PropertyType String -Value always
-New-ItemProperty -Path 'HKLM:\Software\Tailscale IPN' -Name LoginURL -PropertyType String -Value http://${headscale_server}
+New-ItemProperty -Path 'HKLM:\Software\Tailscale IPN' -Name LoginURL -PropertyType String -Value ${headscale_server}
 ```
 
 - 在[这里](https://pkgs.tailscale.com/stable/#windows)下载 Windows 版的 Tailscale 客户端并安装
@@ -316,7 +241,7 @@ headscale nodes register --user USERNAME --key nodekey:75b424a753067b906fee37341
 
 ### 其他 Linux 发行版
 
-除了常规的 Linux 发行版之外，还有一些特殊场景的 Linux 发行版，比如 OpenWrt、威联通（QNAP）、群晖等，这些发行版的安装方法已经有人写好了，这里就不详细描述了，我只给出相关的 GitHub 仓库，大家如果自己有需求，直接去看相关仓库的文档即可。
+除了常规的 Linux 发行版之外，还有一些特殊场景的 Linux 发行版，比如 OpenWrt、威联通（QNAP）、群晖等，这些发行版的安装方法已经有人写好了，这里就不详细描述了，相关的 GitHub 仓库：
 
 - OpenWrt：<https://github.com/adyanth/openwrt-tailscale-enabler>
 - 群晖：<https://github.com/tailscale/tailscale-synology>
@@ -339,7 +264,7 @@ headscale -n ${HeadscaleUser} nodes register --key 105363c37b5449b85bb3e4107b6f6
 > 这里可以看到，已经注册的节点将会分配一个 IP，这里是 100.64.0.1，其他注册的节点可以通过这个 IP 访问该节点。
 
 ```bash
-~]# headscale nodes  list
+~]# headscale nodes list
 ID | Hostname        | Name            | MachineKey | NodeKey | User           | IP addresses                  | Ephemeral | Last seen           | Expiration          | Online | Expired
 1  | HOME-WUJI       | home-wuji       | [fqHlf]    | [dbQkp] | desistdaydream | 100.64.0.1, fd7a:115c:a1e0::1 | false     | 2024-03-20 15:55:30 | 0001-01-01 00:00:00 | online | no
 2  | DESKTOP-R02G6RP | desktop-r02g6rp | [zMy/C]    | [Utjz0] | desistdaydream | 100.64.0.2, fd7a:115c:a1e0::2 | false     | 2024-03-20 15:55:36 | 0001-01-01 00:00:00 | online | no
@@ -394,7 +319,7 @@ ID | Hostname        | Name            | MachineKey | NodeKey | User           |
 -A ts-postrouting -m mark --mark 0x40000 -j MASQUERADE
 ```
 
-# 打通局域网
+# 利用 Tailscale 打通局域网
 
 到目前为止我们只是打造了一个点对点的 Mesh 网络，各个节点之间都可以通过 WireGuard 的私有网络 IP 进行直连(就是部署时默认使用的 100.64.0.0/10 网段中的 IP)。
 
@@ -438,6 +363,23 @@ ID | Machine         | Prefix           | Advertised | Enabled  | Primary
 2  | desktop-r02g6rp | 192.168.88.0/24  | true       | false    | false
 ```
 
+开启路由（0.26.0+ 版本）：
+
+```bash
+$ headscale nodes list-routes
+ID | Hostname           | Approved | Available       | Serving (Primary)
+1  | ts-head-ruqsg8     |          | 0.0.0.0/0, ::/0 |
+2  | ts-unstable-fq7ob4 |          | 0.0.0.0/0, ::/0 |
+
+$ headscale nodes approve-routes --identifier 1 --routes 0.0.0.0/0,::/0
+Node updated
+
+$ headscale nodes list-routes
+ID | Hostname           | Approved        | Available       | Serving (Primary)
+1  | ts-head-ruqsg8     | 0.0.0.0/0, ::/0 | 0.0.0.0/0, ::/0 | 0.0.0.0/0, ::/0
+2  | ts-unstable-fq7ob4 |                 | 0.0.0.0/0, ::/0 |
+```
+
 开启路由：
 
 ```bash
@@ -448,14 +390,6 @@ ID | Machine         | Prefix           | Advertised | Enabled | Primary
 2  | desktop-r02g6rp | 192.168.88.0/24  | true       | true    | true
 
 ```
-
-~~其他非 Headscale 节点查看路由结果：~~
-
-~~`$ ip route show table 52|grep "172.38.40.0/24" 172.38.40.0/24 dev tailscale0`~~
-
-# 总结
-
-目前从稳定性来看，Tailscale 比 Netmaker 略胜一筹，基本上不会像 Netmaker 一样时不时出现 ping 不通的情况，这取决于 Tailscale 在用户态对 NAT 穿透所做的种种优化，他们还专门写了一篇文章介绍 NAT 穿透的原理，中文版由国内的 eBPF 大佬赵亚楠翻译：[NAT 穿透是如何工作的：技术原理及企业级实践](/docs/4.数据通信/NAT/NAT%20穿透是如何工作的：技术原理及企业级实践.md)
 
 # Headscale 内嵌 DERPer
 
@@ -473,7 +407,7 @@ tls_cert_path: "/PATH/TO/FILE"
 tls_key_path: "/PATH/TO/FILE"
 ```
 
-一般监听 3478 端口，且可以通过 https 访问
+stun 能力监听 3478 端口，且可以通过 https 访问
 
 # Headscale 关联文件与配置
 
@@ -481,10 +415,12 @@ tls_key_path: "/PATH/TO/FILE"
 
 - [GitHub 项目，juanfont/headscale - config-example.yaml](https://github.com/juanfont/headscale/blob/main/config-example.yaml) 中是配置文件的示例
 
-**/var/lib/headscale/** # Headscale 运行时数据保存路径
+**/var/lib/headscale/** # Headscale 运行时数据保存路径。包括 数据库文件、证书 等
 
 - **./db.sqlite** # Headscale 运行后数据持久化的 Sqlite3 存储
 - **./private.key** # 用于加密 Headscale 和 Tailscale 客户端之间流量的私钥。如果私钥文件丢失，将自动生成。
+
+[这里](https://github.com/juanfont/headscale/blob/main/config-example.yaml)是配置文件示例
 
 ## 配置详解
 
@@ -502,6 +438,6 @@ tls_key_path: "/PATH/TO/FILE"
 
 **url**(\[]STRING) # 下发给 tailscale 的 DERP 节点。`默认值: https://controlplane.tailscale.com/derpmap/default`
 
-- 这些默认值是 Tailscale 提供的一些公共的 DERP 节点，全球都用，个人建议直接关了，用自己的 Headscale DERP
+- <font color="#ff0000">这些默认值是 Tailscale 提供的一些公共的 DERP 节点，全球都用，个人建议直接关了，用自己的 Headscale DERP</font>
 
 **paths**(\[]STRING) # 与 URL 类似。不过是以文件形式定义要使用的 DERP。 `默认值: 空`。文件格式详见: https://tailscale.com/kb/1118/custom-derp-servers

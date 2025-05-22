@@ -21,10 +21,10 @@ default via 172.19.42.1 dev ens3 proto static
 
 > 注意：如果默认网关已由 DHCP 分配，并且配置文件中指定了具有相同度量的同一网关，则在启动或启动接口时将发生错误。可能会显示以下错误消息：`RTNETLINK answers:File exists`。可以忽略此错误。
 
-| 目的地址 | via<br>下一跳 | dev<br>网络设备 | proto<br>生成路由条目的方式 | scope<br>覆盖范围 | 源地址 |
-| --- | --- | --- | --- | --- | --- |
-| default | 172.19.42.1 | ens3 | static |  |
-| 172.19.42.0/24 |  | ens3 | kernel | link | 172.19.42.248 |
+| 目的地址           | via<br>下一跳  | dev<br>网络设备 | proto<br>生成路由条目的方式 | scope<br>覆盖范围 | 源地址           |
+| -------------- | ----------- | ----------- | ------------------ | ------------- | ------------- |
+| default        | 172.19.42.1 | ens3        | static             |               |               |
+| 172.19.42.0/24 |             | ens3        | kernel             | link          | 172.19.42.248 |
 
 **Route Type(路由类型)**
 
@@ -163,7 +163,8 @@ root@desistdaydream:~# ip rule
 - **from PREFIX** # 选择要匹配的源地址。`默认值：all`
 - **to PREFIX** # 选择要匹配的目的地址。`默认值：all`
 - **priority NUM** # 策略规则的优先级。`默认值:当前数字最大的优先级逐一减 1`
-- **ACTION**
+
+ **ACTION**
 
 - **lookup TABLEID** # 根据 SELECTOR 匹配到的查找路由表，根据指定的 TABLEID 路由表来处理数据包的路由。`默认值：254`
 
