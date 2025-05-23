@@ -37,7 +37,7 @@ Tailscale 是一款商业产品，但个人用户是可以白嫖的，个人用�
 
 对于大部份用户来说，白嫖 Tailscale 已经足够了，如果你有更高的需求，比如自定义网段，可以选择付费。
 
-**我就不想付费行不行？行，不过得看 [Headscale](/docs/4.数据通信/Protocol/Tunneling%20Protocol/Tailscale/Headscale.md)。**
+**我就不想付费行不行？行，不过得看 [Headscale](/docs/4.数据通信/Protocol/Tunneling%20Protocol/Tailscale/Headscale.md)**
 
 # Tailscale 架构概述
 
@@ -48,14 +48,6 @@ Tailscale 是一款商业产品，但个人用户是可以白嫖的，个人用�
   - e.g. Linux 的 Tailscale 客户端由两个程序组成: tailscale 和 tailscaled，tailscale 是 CLI，tailscaled 是守护程序用以处理数据包的路由。有点类似 docker 与 dockerd 的感觉
 - **Tailscale DERP** # 当两个节点第一次连接以及两个节点直连失败时，会切换到通过 DERP 来连接。DERP 是 Tailscale 自研的协议，也是一个中继程序，用以代理两个节点的访问请求。
   - Notes: 可以自行搭建 [DERP](/docs/4.数据通信/Protocol/Tunneling%20Protocol/Tailscale/Tailscale%20DERP.md)
-
-## Tailscale 工作逻辑
-
-Tailscale 的 **所有客户端之间的连接都是先选择 DERP 模式（中继模式），这意味着连接立即就能建立（优先级最低但 100% 能成功的模式），用户不用任何等待**。然后开始并行地进行路径发现，通常几秒钟之后，我们就能发现一条更优路径，然后将现有连接透明升级（upgrade）成点对点连接（直连）。
-
-可以通过 `tailscale ping ${HOST}` 命令查看到目标 HOST 的路由路径是否经过 DERP
-
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/tailscale/tailscale-cli-ping-example-1.png)
 
 # Tailscale 部署
 
@@ -76,6 +68,19 @@ Windows
 
 - **./Logs/** # 程序运行日志
 - 其他文件及其功能与 Linux 下的 /var/lib/tailscale/ 目录相同
+
+# Tailscale 工作逻辑
+
+> 参考：
+>
+> [Tailscale blog, How Tailscale works](https://tailscale.com/blog/how-tailscale-works)
+> - [Tailscale How it works](/docs/4.数据通信/Protocol/Tunneling%20Protocol/Tailscale/Tailscale%20How%20it%20works.md)
+
+Tailscale 的 **所有客户端之间的连接都是先选择 DERP 模式（中继模式），这意味着连接立即就能建立（优先级最低但 100% 能成功的模式），用户不用任何等待**。然后开始并行地进行路径发现，通常几秒钟之后，就能发现一条更优路径，然后将现有连接透明升级（upgrade）成点对点连接（直连）。
+
+可以通过 `tailscale ping ${HOST}` 命令查看到目标 HOST 的路由路径是否经过 DERP
+
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/tailscale/tailscale-cli-ping-example-1.png)
 
 # 路由表
 

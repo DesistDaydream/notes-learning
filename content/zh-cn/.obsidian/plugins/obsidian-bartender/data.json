@@ -1995,6 +1995,7 @@
       "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale/Tailscale DERP.md",
       "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale/Tailscale ACL 访问控制策略.md",
       "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale/tailscale CLI.md",
+      "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale/Tailscale How it works.md",
       "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale/Headscale.md"
     ],
     "docs/4.数据通信/Protocol/Tunneling Protocol/WireGuard": [

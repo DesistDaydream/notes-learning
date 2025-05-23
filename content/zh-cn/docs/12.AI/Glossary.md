@@ -81,3 +81,5 @@ Chain-of-Thought(思维链)
 RLHF(人类反馈强化学习)
 
 
+
+Encoder-only Decoder-only Transformer
