@@ -3,7 +3,7 @@ title: Go 规范与标准库
 linkTitle: Go 规范与标准库
 weight: 1
 ---
-
+XXCX
 # 概述
 
 > 参考：
@@ -11,7 +11,7 @@ weight: 1
 > - [官方文档，参考 - 规范](https://go.dev/ref/spec)
 >   - [官方文档，参考 - 规范 的翻译](https://github.com/bekcpear/mypelicanconfandarticles/blob/master/content/Tech/gospec.rst)
 > - [go.dev, Tour(Go 语言之旅，通过在线解析器体验 Go 语言的各种特性)](https://go.dev/tour/list)
-> - [公众号，11个现代Go特性：用gopls/modernize让你的代码焕然一新](https://mp.weixin.qq.com/s/mQehW07uSvfMkSMfcrSEsA)
+> - [公众号，11个现代Go特性：用 gopls/modernize 让你的代码焕然一新](https://mp.weixin.qq.com/s/mQehW07uSvfMkSMfcrSEsA)
 
 Go 是一种通用语言，专为系统编程而设计。它是一种强类型且自带垃圾回收功能的语言，并具有显式支持并发编程的能力(称为 goroutine)。Go 程序由 Packages(包) 构建，其属性允许有效得管理依赖关系。
 

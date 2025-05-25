@@ -358,9 +358,3 @@ CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build main.go
 # 如果想减少二进制程序的大小，可以加上-ldflags "-s -w"，但同时会丢掉调试信息，即不能用gdb调试了。
 # 如果想更进一步减少程序大小，可以使用加壳工具，比如upx
 ```
-
-# 版本变化
-
-[Go 语言现状调查报告](https://blog.jetbrains.com/zh-hans/go/2021/02/19/the-state-of-go/)
-
-Go 1.16 将会弃用 io/ioutil 包，ioutil 包中的功能将会由 io 及 os 包所替代。详见：[#40025](https://github.com/golang/go/issues/40025)、[Go 1.16 Release Notes](https://golang.org/doc/go1.16#ioutil)
