@@ -1,11 +1,17 @@
 ---
 title: firewalld(Iptables 的管理工具)
-weight: 1
+weight: 20
+linkTitle: firewalld(Iptables 的管理工具)
 ---
+
 
 # 概述
 
-firewalld 与 iptabels 一样，是管理 Linux 内核中的 Netfilter 功能的工具。
+> 参考：
+>
+> - [官网](https://firewalld.org/)
+
+firewalld 与 [iptables](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/iptables/iptables.md) 一样，是管理 Linux 内核中的 Netfilter 功能的工具。
 
 FirewallD 使用两个配置模式：“runtime 运行时”和“permanent 持久”。
 
@@ -36,8 +42,9 @@ FirewallD 使用两个配置模式：“runtime 运行时”和“permanent 持�
 
 # Firewalld 关联文件与配置
 
-/usr/lib/firewalld # 保存默认配置，如默认区域和公用服务。 避免修改它们，因为每次 firewall 软件包更新时都会覆盖这些文件。
-/etc/firewalld # 保存系统配置文件。这些文件将覆盖默认配置。
+/usr/lib/firewalld/ # 保存默认配置文件的路径，如默认区域和公用服务。 避免修改它们，因为每次 firewall 软件包更新时都会覆盖这些文件。
+
+/etc/firewalld/ # 保存系统配置文件的路径。这些文件将覆盖默认配置。[firewalld 命令行工具](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/firewalld/firewalld%20命令行工具.md) 会使用这些配置
 
 - firewalld.conf #
 
@@ -45,13 +52,13 @@ FirewallD 使用两个配置模式：“runtime 运行时”和“permanent 持�
 
 以下是 public 区域下 filter 表的默认配置，大部分都是对于自定义链的规则
 
-- # 设置 3 个基本链的默认 target
+## 设置 3 个基本链的默认 target
 
 - -P INPUT ACCEPT
 - -P FORWARD ACCEPT
 - -P OUTPUT ACCEPT
 
-- # 默认会创建多个自定义链
+## 默认会创建多个自定义链
 
 - -N FORWARD_IN_ZONES
 - -N FORWARD_IN_ZONES_SOURCE
@@ -75,7 +82,7 @@ FirewallD 使用两个配置模式：“runtime 运行时”和“permanent 持�
 - -N IN_public_log
 - -N OUTPUT_direct
 
-- # 设置 INPUT 链基本规则，所有流量直接交给 INPUT_direct、INPUT_ZONES_SOURCE、INPUT_ZONES 这 3 个自定义链来继续进行规则匹配
+## 设置 INPUT 链基本规则，所有流量直接交给 INPUT_direct、INPUT_ZONES_SOURCE、INPUT_ZONES 这 3 个自定义链来继续进行规则匹配
 
 - -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 - -A INPUT -i lo -j ACCEPT
@@ -85,7 +92,7 @@ FirewallD 使用两个配置模式：“runtime 运行时”和“permanent 持�
 - -A INPUT -m conntrack --ctstate INVALID -j DROP
 - -A INPUT -j REJECT --reject-with icmp-host-prohibited # 在 INPUT 链上拒绝所有流量，并通过 icmp 协议提示客户端 prohibited
 
-- # 设置 FORWARD 链基本规则，所有流量直接交给
+## 设置 FORWARD 链基本规则，所有流量直接交给
 
 - -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 - -A FORWARD -i lo -j ACCEPT
@@ -97,11 +104,11 @@ FirewallD 使用两个配置模式：“runtime 运行时”和“permanent 持�
 - -A FORWARD -m conntrack --ctstate INVALID -j DROP
 - -A FORWARD -j REJECT --reject-with icmp-host-prohibited # 在 FORWARD 链上拒绝所有流量，并通过 icmp 协议提示客户端 prohibited
 
-- # 设置 OUTPUT 链基本规则，直接把后续检查转交给 OUTPUT_direct 这个自定义 chain 进行规则匹配
+## 设置 OUTPUT 链基本规则，直接把后续检查转交给 OUTPUT_direct 这个自定义 chain 进行规则匹配
 
 - -A OUTPUT -j OUTPUT_direct
 
-- # FORWARD 相关的自定义 chain 规则
+## FORWARD 相关的自定义 chain 规则
 
 - -A FORWARD_IN_ZONES -i bond0 -g FWDI_public
 - -A FORWARD_IN_ZONES -i eth2 -g FWDI_public
@@ -121,9 +128,9 @@ FirewallD 使用两个配置模式：“runtime 运行时”和“permanent 持�
 - -A FWDO_public -j FWDO_public_deny
 - -A FWDO_public -j FWDO_public_allow
 
-- # INPUT 相关的自定义 chain 规则
+## INPUT 相关的自定义 chain 规则
 
-- # INPUT_ZONES 用来将各个网络设备区分到指定的 ZONE 中
+## INPUT_ZONES 用来将各个网络设备区分到指定的 ZONE 中
 
 - -A INPUT_ZONES -i bond0 -g IN_public
 - -A INPUT_ZONES -i eth2 -g IN_public
@@ -131,7 +138,7 @@ FirewallD 使用两个配置模式：“runtime 运行时”和“permanent 持�
 - -A INPUT_ZONES -i eth0 -g IN_public # 将 eth0 的流量放到 public 区域中继续进行匹配
 - -A INPUT_ZONES -g IN_public
 
-- # INPUT 链上的 public 区域的规则
+## INPUT 链上的 public 区域的规则
 
 - -A IN_public -j IN_public_log
 - -A IN_public -j IN_public_deny
@@ -139,7 +146,7 @@ FirewallD 使用两个配置模式：“runtime 运行时”和“permanent 持�
 - -A IN_public -p icmp -j ACCEPT
 - -A IN_public_allow -p tcp -m tcp --dport 22 -m conntrack --ctstate NEW -j ACCEPT
 
-- # XXXX 区域的规则
+## XXXX 区域的规则
 
 - 。。。。每当一个网络设备被放到某个区域中，这个区域就会激活，会在整个 iptables 表中显示，可以使用 firewall-cmd --zone=drop --change-interface=eth1 进行验证
 

@@ -57,18 +57,18 @@ https://www.wireshark.org/docs/wsug_html_chunked/ChUseViewMenuSection.html
 与 Pakcet Details 窗口不同，Packet Bytes 窗口展示的是该包的最原始数据内容，i.e. 数据的 Bytes 信息，并没有那些 WireShark 附加的描述性信息。整体分两大部分：
 
 - 左侧是默认以十六进制表示的字节流信息（右键点击可以更改展示的类型），每个 Bytes 占 8 bit；
-- 右侧是字节流中每个字节对应 [ASCII 表](docs/8.通用技术/编码与解码/字符的编码与解码/ASCII%20表.md) 的字符。
+- 右侧是字节流中每个字节对应 [ASCII 表](/docs/8.通用技术/编码与解码/字符的编码与解码/ASCII%20表.md) 的字符。
 
 e.g. 图中粉框中的 `47 45 54` 对应的就 ASCII 表的 `GET` 这几个字符。
 
 右侧有些杂乱无章的字符是因为一个包中的 Header 的每个部分的信息并不总是占用 8bit
 
-- e.g. [IP Header](docs/4.数据通信/Protocol/TCP_IP/IP/IP%20Header.md) 中的 version 长度占用 4bit，0100（e.g. 十进制的 4）；HL 长度占用 4bit，0101（e.g. 十进制的 4）
+- e.g. [IP Header](/docs/4.数据通信/Protocol/TCP_IP/IP/IP%20Header.md) 中的 version 长度占用 4bit，0100（e.g. 十进制的 4）；HL 长度占用 4bit，0101（e.g. 十进制的 4）
 - 连在一起是 01000101 对应的十六进制为 45，对应的 ASCII 字符为 E。
 - 所以这里面的 E 并不是指报文里包含了 E 字符，只是一种以每个 Bytes(8bit) 进行分割的展示方式
 
-> 在我们使用 [TCPDump](docs/7.信息安全/Packet%20analyzer/TCPDump/TCPDump.md) 抓 HTTP 包的时候，可以看到这种命令: `tcpdump -nn 'tcp[20:2]=0x4745'`，其中 `tcp[20:2]` 表示从 TCP 头的第 20 个字节开始，读 2 个字节的数据。图中蓝色背景选中 20 个字节是 TCP Header 部分，后面俩字节是 47 45，i.e. GE 两个字符。所以这个抓包命令就是在抓 GET 请求的数据包。
-> 
+> 在我们使用 [TCPDump](/docs/7.信息安全/Packet%20analyzer/TCPDump/TCPDump.md) 抓 HTTP 包的时候，可以看到这种命令: `tcpdump -nn 'tcp[20:2]=0x4745'`，其中 `tcp[20:2]` 表示从 TCP 头的第 20 个字节开始，读 2 个字节的数据。图中蓝色背景选中 20 个字节是 TCP Header 部分，后面俩字节是 47 45，i.e. GE 两个字符。所以这个抓包命令就是在抓 GET 请求的数据包。
+>
 > 这就是 WireShark 的 Packet Bytes 窗口 中信息的一个典型应用，分析流量中的 Bytes
 
 # WireShark 安装

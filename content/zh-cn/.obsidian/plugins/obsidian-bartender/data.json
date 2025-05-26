@@ -306,12 +306,7 @@
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Connection Tracking for netfilter.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables",
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/nftables.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld(Iptables 的管理工具)"
-    ],
-    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld(Iptables 的管理工具)": [
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld(Iptables 的管理工具)/_index.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld(Iptables 的管理工具)/firewalld(Iptables 的管理工具).md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld(Iptables 的管理工具)/firewalld 命令行工具.md"
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld"
     ],
     "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables": [
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables/_index.md",
@@ -2946,6 +2941,11 @@
       "docs/11.多媒体/图形处理/Linux 图形处理/VNC.md",
       "docs/11.多媒体/图形处理/Linux 图形处理/X Window.md",
       "docs/11.多媒体/图形处理/Linux 图形处理/Xrdp.md"
+    ],
+    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld/firewalld.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld/firewalld 命令行工具.md"
     ]
   },
   "actionBarOrder": {},

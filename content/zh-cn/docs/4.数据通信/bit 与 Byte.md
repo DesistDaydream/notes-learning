@@ -8,7 +8,8 @@ weight: 20
 
 > 参考：
 >
-> -
+> - [Wiki, bit](https://en.wikipedia.org/wiki/Bit)
+> - [Wiki, Byte](https://en.wikipedia.org/wiki/Byte)
 
 ## bit（比特）
 
@@ -174,6 +175,6 @@ bps 和 pps 作为衡量网络吞吐量的单位，从功能上而言两者没�
 
 这是经过专门测量后标注的设备标准属性。
 
-例如思科交换机Cisco Catalyst3560G-48Ts，其标注为：传输速度：32Gbps数据包处理速度：38.7M pps此时，例如以每秒38.7M个，长为1500B的数据包进行传输时，一秒所需的bps为: `1500Bytes/packet*38.7M packet/s*8 bit/Byte = 453.5G bps` 可见结果远大于32Gbps，因此使用次交换机进行上述数据包类型传输时会导致严重堵塞。
+例如思科交换机 Cisco Catalyst3560G-48Ts，其标注为：传输速度：32Gbps数据包处理速度：38.7M pps此时，例如以每秒38.7M个，长为1500B的数据包进行传输时，一秒所需的bps为: `1500Bytes/packet*38.7M packet/s*8 bit/Byte = 453.5G bps` 可见结果远大于32Gbps，因此使用次交换机进行上述数据包类型传输时会导致严重堵塞。
 
 同样，如果以 32Gbps 的速度传输长为 64B 的数据包，一秒所需的 pps 为: `（32bps）/（64B/packet）/（8bit/B）=64M pps`显然，由于结果远大于 38.7M pps，此类通信也会导致严重堵塞。

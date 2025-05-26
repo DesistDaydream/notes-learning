@@ -67,7 +67,7 @@ OpenTelemetry Collector 一共有两个项目
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/otel/20250516092747523.png)
 
-通过这种查看方式，可以帮助我们在[配置](docs/6.可观测性/OpenTelemetry/Collector/Configuration.md) OTel Collector 知道应该如何定义组件的 ID。
+通过这种查看方式，可以帮助我们在[配置](/docs/6.可观测性/OpenTelemetry/Collector/Configuration.md) OTel Collector 知道应该如何定义组件的 ID。
 
 > [!Tip] Kind 与 Type
 >
