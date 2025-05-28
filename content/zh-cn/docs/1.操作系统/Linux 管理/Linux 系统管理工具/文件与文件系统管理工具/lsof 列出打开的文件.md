@@ -11,7 +11,7 @@ title: lsof 列出打开的文件
 该工具以文件为主体，用于列出打开文件的进程，进程打开的端口(TCP、UDP)等、找回/恢复删除的文件。是十分方便的系统监视工具，因为 lsof 需要访问核心内存和各种文件，所以需要 root 用户执行。
 
 ```bash
-[root@master0 ~]# lsof | more
+~]# lsof | more
 COMMAND    PID  TID           USER   FD      TYPE             DEVICE  SIZE/OFF       NODE NAME
 systemd      1                root  cwd       DIR              253,0       238         64 /
 systemd      1                root  rtd       DIR              253,0       238         64 /
@@ -31,7 +31,7 @@ lsof      1893                root    7w     FIFO                0,9       0t0  
 
 COMMAND 进程的名称 | PID 进程标识符 | USER 进程所有者 | FD 文件描述符 | TYPE 文件类型 | DEVICE 磁盘的名称 | SIZE 文件的大小 | NODE 索引节点 | NAME 文件的绝对路径
 
-## FD # 表示该文件被打开的 FD 号或其他信息
+## FD - 表示该文件被打开的 FD 号或其他信息
 
 - cwd：表示 current work dirctory，即：应用程序的当前工作目录，这是该应用程序启动的目录，除非它本身对这个目录进行更改
 - txt # 该类型的文件是程序代码，如应用程序二进制文件本身或共享库，如上列表中显示的 /sbin/init 程序
@@ -67,7 +67,7 @@ COMMAND 进程的名称 | PID 进程标识符 | USER 进程所有者 | FD 文件
 - X：for an SCO OpenServer Xenix lock on the entire file;
 - space：if there is no lock.
 
-## TYPE # 文件类型
+## TYPE - 文件类型
 
 - DIR：表示目录
 - CHR：表示字符类型

@@ -8,7 +8,7 @@ weight: 20
 
 > 参考：
 >
-> - [官方文档, Prometheus - 查询 - 函数](https://prometheus.io/docs/prometheus/latest/querying/functions/)
+> - [官方文档，Prometheus - 查询 - 函数](https://prometheus.io/docs/prometheus/latest/querying/functions/)
 > - [fuckcloudnative.io](https://fuckcloudnative.io/prometheus/3-prometheus/functions.html)
 > - [公众号 - k8s 技术圈，PromQL 查询之 rate 函数的使用](https://mp.weixin.qq.com/s/7z8n3abX9k39YL5kCopJqQ)
 > - [Prometheus Extrapolation 原理解析，delta、increase 函数的解析](https://ihac.xyz/2018/12/11/Prometheus-Extrapolation%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/)
@@ -105,35 +105,16 @@ resets(v range-vector) 的参数是一个区间向量。对于每个时间序列
 
 这个函数一般只用在计数器类型的时间序列上。
 
-## 数值计算
-
-### abs() - 绝对值
-
-`abs(v instant-vector)` 返回输入向量的所有样本的 **Absolute Value(绝对值)**。
-
-### ceil()/floor() - 向上/下四舍五入取整
-
-`ceil(v instant-vector)` 将 v 中所有元素的样本值向上四舍五入到最接近的整数。例如：
-
-```promql
-node_load5{instance="192.168.1.75:9100"}
-# 结果为 2.79
-ceil(node_load5{instance="192.168.1.75:9100"})
-# 结果为 3
-```
-
-`floor(v instant-vector)` 函数与 ceil() 函数相反，将 v 中所有元素的样本值向下四舍五入到最接近的整数。
-
 ## 变化量相关
 
 变化量相关的函数通常都以 `FuncName(v ragnge-vector)` 格式使用，用以计算 [范围向量](/docs/6.可观测性/Metrics/Prometheus/PromQL/PromQL.md#PromQL%20基本语法) v 中 2 个或多个元素之间的变化情况（e.g. 差值、变化率、etc.）
 
 在进行计算时，根据获取样本值的方式分为两类计算逻辑
 
-| 英文               | 中文    |                  |                                       |                          |
-| ---------------- | ----- | ---------------- | ------------------------------------- | ------------------------ |
-| **extrapolated** | 外推/推测 | **推测**样本到整个时间范围  | 函数名前面**没有** i ，比如 rate, delta, etc.   | 取时间范围内的 第一个 和 最后一个 值进行计算 |
-| **instant**      | 即时/瞬间 | **不推测**样本到整个时间范围 | 函数名前面**带有** i ，比如 irate, idelta, etc. | 取时间范围内的 第一个 和 第二个 值进行计算  |
+| 英文               | 中文    |                  |                                       |                           |
+| ---------------- | ----- | ---------------- | ------------------------------------- | ------------------------- |
+| **extrapolated** | 外推/推测 | **推测**样本到整个时间范围  | 函数名前面**没有** i ，比如 rate, delta, etc.   | 取时间范围内的 第一个 和 最后一个 值进行计算  |
+| **instant**      | 即时/瞬间 | **不推测**样本到整个时间范围 | 函数名前面**带有** i ，比如 irate, idelta, etc. | 取时间范围内的 最后一个 和 倒数二个 值进行计算 |
 
 extrapolated(外推/推测) 指：为了覆盖范围向量选择器中指定的**完整**时间范围，会推断整个时间范围内需要补充样本的时间点及该点的样本值。<font color="#ff0000">所以即使样本值都是整数，仍然可能会得到一个非整数的结果</font>。对应的， instant 则不会执行推断的行为，而是直接取时间范围内第一个和最后一个值
 
@@ -194,12 +175,14 @@ increase(http_requests_total{job="apiserver"}[5m])
 
 > [!Tip] rate() 与 irate() 更推荐用在 Counter 类型的 Metrics 上，在长期趋势分析或者告警中推荐使用这个函数。
 
-`rate(V RangeVector[Duration])` 计算范围向量 V 在时间窗口 Duration 内 **平均每秒增长了多少数值**，该函数会自动处理单调性中断的情况（e.g. 因目标重启导致的计数器重置）。该函数的返回结果不带有度量指标，只有标签列表。
+**`rate(V RangeVector[Duration])`** 计算范围向量 V 在时间窗口 Duration 内 **平均每秒增长了多少数值**（通过区间向量中<font color="#ff0000">首尾两个样本</font>数据来计算增长速率），该函数会自动处理单调性中断的情况（e.g. 因目标重启导致的计数器重置）。
 
-例如，以下表达式返回区间向量中每个时间序列过去 5 分钟内 HTTP 请求数的每秒增长速率：
+> Notes: 该函数的返回结果不带有度量指标，只有标签列表。
 
-```bash
-rate(http_requests_total[5m])
+例如，以下表达式返回区间向量中每个时间序列过去 15 分钟内 HTTP 请求数的每秒增长速率：
+
+```promql
+rate(http_requests_total[15m])
 结果:
 {code="200",handler="label_values",instance="120.77.65.193:9090",job="prometheus",method="get"} 0
 {code="200",handler="query_range",instance="120.77.65.193:9090",job="prometheus",method="get"}  0
@@ -207,7 +190,7 @@ rate(http_requests_total[5m])
 ...
 ```
 
-`irate(V RangeVector[Duration])` 反应出的是瞬时增长速率。irate 函数是通过区间向量中最后两个两本数据来计算区间向量的增长速率，这种方式可以避免在时间窗口范围内的“长尾问题”，并且体现出更好的灵敏度，通过 irate 函数绘制的图标能够更好的反应样本数据的瞬时变化状态。
+**`irate(V RangeVector[Duration])`** 反应出的是瞬时增长速率。irate 函数是通过区间向量中<font color="#ff0000">最后两个样本</font>数据来计算增长速率，这种方式可以避免在时间窗口范围内的“长尾问题”，并且体现出更好的灵敏度，通过 irate 函数绘制的图标能够更好的反应样本数据的瞬时变化状态。
 
 例如，以下表达式返回区间向量中每个时间序列过去 5 分钟内最后两个样本数据的 HTTP 请求数的增长速率：
 
@@ -219,11 +202,18 @@ irate(http_requests_total{job="api-server"}[5m])
 > 当将 rate() 函数与聚合运算符（例如 sum()）或随时间聚合的函数（任何 `XXX_over_time` 的函数）一起使用时，必须先执行 rate 函数，然后再进行聚合操作，否则当采样目标重新启动时 rate() 无法检测到计数器是否被重置。
 
 > [!Tip]
-> irate 只能用于绘制快速变化的计数器，在长期趋势分析或者告警中更推荐使用 rate 函数。因为使用 irate 函数时，速率的简短变化会重置 FOR 语句，形成的图形有很多波峰，难以阅读。
+> irate 常用于绘制快速变化的计数器，在长期趋势分析或者告警中更推荐使用 rate 函数。因为使用 irate 函数时，速率的简短变化会重置 FOR 语句，形成的图形有很多波峰，难以阅读。
+>
+> 用一个简单的不太严谨的人话总结一下： 
+>
+> - 比如带宽这种，短时、高频、大幅度变化的要使用 irate 来体现出来短时变化速率；
+> - 长时、低频、小幅度变化的使用 rate 来体现一个长期的均值变化速率。
+>
+> 更不严谨且简单一点，可以说：时间范围短的用 irate；时间范围长的用 rate（不过总的来说还是要多角度结合看，比如时间范围中变化幅度大不大之类的。毕竟 irate 只取最后两个样本，时间跨度太长了就不明显了）
 
 ## 时间相关
 
-时间相关的函数都有一个通用的格式 `FUNCTION_NAME(v=vector(time()) instant-vector)`。FUNCTION_NAME 有如下几个
+时间相关的函数都有一个通用的格式： `FUNCTION_NAME(v=vector(time()) instant-vector)`。FUNCTION_NAME 有如下几个
 
 - **day_of_month()** # 返回被给定 UTC 时间所在月的第 N 天。返回值范围：1~31
 - **day_of_week()** # 返回被给定 UTC 时间所在周的第 N 天。返回值范围：0~6，0 表示星期天。
@@ -309,7 +299,7 @@ up{endpoint="api",instance="192.168.123.248:2379",job="etcd",namespace="monitori
 => up{endpoint="api",instance="192.168.123.248:2379",job="etcd",namespace="monitoring",service="etcd-k8s"}  1
 
 label_join(up{endpoint="api",instance="192.168.123.248:2379",job="etcd",namespace="monitoring",service="etcd-k8s"}, "foo", ",", "job", "service")
-=> up{endpoint="api",foo="etcd,etcd-k8s",instance="192.168.123.248:2379",job="etcd",namespace="monitoring",service=
+=> up{endpoint="api",foo="etcd,etcd-k8s",instance="192.168.123.248:2379",job="etcd",namespace="monitoring",service="etcd-k8s"}  1
 ```
 
 ### label_replace()
@@ -358,6 +348,46 @@ label_replace(
   "(.*):9100"
 )
 ```
+
+## 数值计算
+
+sqrt()
+
+sqrt(v instant-vector) 函数计算向量 v 中所有元素的平方根。
+
+### abs() - 绝对值
+
+`abs(v instant-vector)` 返回输入向量的所有样本的 **Absolute Value(绝对值)**。
+
+### ceil()/floor() - 向上/下四舍五入取整
+
+`ceil(v instant-vector)` 将 v 中所有元素的样本值向上四舍五入到最接近的整数。例如：
+
+```promql
+node_load5{instance="192.168.1.75:9100"}
+# 结果为 2.79
+ceil(node_load5{instance="192.168.1.75:9100"})
+# 结果为 3
+```
+
+`floor(v instant-vector)` 函数与 ceil() 函数相反，将 v 中所有元素的样本值向下四舍五入到最接近的整数。
+
+`round(v instant-vector, to_nearest=1 scalar)` 函数与 ceil 和 floor 函数类似，返回向量中所有样本值的最接近的整数。to_nearest 参数是可选的,默认为 1,表示样本返回的是最接近 1 的整数倍的值。你也可以将该参数指定为任意值（也可以是小数），表示样本返回的是最接近它的整数倍的值。
+
+### ln()/log2()/log10() - 对数
+
+**`ln(v instant-vector)`** 计算瞬时向量 v 中所有样本的 natural logarithm(自然对数)（以常数 e（约等于 2.71828）为底的对数）。
+
+特殊情况：
+
+- ln(+Inf) = +Inf
+- ln(0) = -Inf
+- ln(x < 0) = NaN
+- ln(NaN) = NaN
+
+**`log2(v instant-vector)`** 计算瞬时向量 v 中所有样本的 binary logarithm(二进制对数)（以 2 为底的对数）。输入向量中的直方图样本会被静默忽略，其特殊情况处理方式与 ln 函数相同。
+
+**`log10(v instant-vector)`** 计算瞬时向量 v 中所有样本的 decimal logarithm(十进制对数)（以 10 为底的对数）。输入向量中的直方图样本会被静默忽略，其特殊情况处理方式与 ln 函数相同。
 
 ## 其他
 
@@ -412,31 +442,13 @@ histogram_quantile 这个函数是根据假定每个区间内的样本分布是�
 
 如果 b 含有少于 2 个 buckets，那么会返回 NaN，如果 φ < 0 会返回 -Inf，如果 φ > 1 会返回 +Inf。
 
-22. ln()
-    ln(v instant-vector) 计算瞬时向量 v 中所有样本数据的自然对数。特殊情况：
+sort()
 
-- ln(+Inf) = +Inf
-- ln(0) = -Inf
-- ln(x < 0) = NaN
-- ln(NaN) = NaN
+sort(v instant-vector) 函数对向量按元素的值进行升序排序，返回结果：key: value = 度量指标：样本值\[升序排列]。
 
-23. log2()
-    log2(v instant-vector) 函数计算瞬时向量 v 中所有样本数据的二进制对数。特殊情况同上。
+sort_desc()
 
-24. log10()
-    log10(v instant-vector) 计算瞬时向量 v 中所有样本数据的十进制对数。特殊情况同上。
-
-30. round()
-    round(v instant-vector, to_nearest=1 scalar) 函数与 ceil 和 floor 函数类似，返回向量中所有样本值的最接近的整数。to_nearest 参数是可选的,默认为 1,表示样本返回的是最接近 1 的整数倍的值。你也可以将该参数指定为任意值（也可以是小数），表示样本返回的是最接近它的整数倍的值。
-
-32. sort()
-    sort(v instant-vector) 函数对向量按元素的值进行升序排序，返回结果：key: value = 度量指标：样本值\[升序排列]。
-
-33. sort_desc()
-    sort(v instant-vector) 函数对向量按元素的值进行降序排序，返回结果：key: value = 度量指标：样本值\[降序排列]。
-
-34. sqrt()
-    sqrt(v instant-vector) 函数计算向量 v 中所有元素的平方根。
+sort(v instant-vector) 函数对向量按元素的值进行降序排序，返回结果：key: value = 度量指标：样本值\[降序排列]。
 
 # 应用示例
 
@@ -444,29 +456,25 @@ histogram_quantile 这个函数是根据假定每个区间内的样本分布是�
 
 我们知道 Counter 类型的监控指标其特点是只增不减，在没有发生重置（如服务器重启，应用重启）的情况下其样本值应该是不断增大的。为了能够更直观的表示样本数据的变化剧烈情况，需要计算样本的增长速率。
 
-如下图所示，样本增长率反映出了样本变化的剧烈程度：
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/promql/1616069150695-27301a07-484c-4875-80c5-b2c095f8f707.jpeg)
-
 通过增长率表示样本的变化情况
 
-increase(v range-vector)函数是 PromQL 中提供的众多内置函数之一。其中参数 v 是一个区间向量，increase 函数获取区间向量中的第一个后最后一个样本并返回其增长量。因此，可以通过以下表达式 Counter 类型指标的增长率：
+increase(v range-vector) 函数是 PromQL 中提供的众多内置函数之一。其中参数 v 是一个区间向量，increase 函数获取区间向量中的第一个后最后一个样本并返回其增长量。因此，可以通过以下表达式 Counter 类型指标的增长率：
 
-- increase(node_cpu\[2m]) / 120
+- `increase(node_cpu[2m]) / 120`
 
-这里通过 node_cpu\[2m]获取时间序列最近两分钟的所有样本，increase 计算出最近两分钟的增长量，最后除以时间 120 秒得到 node_cpu 样本在最近两分钟的平均增长率。并且这个值也近似于主机节点最近两分钟内的平均 CPU 使用率。
+这里通过 `node_cpu[2m]` 获取时间序列最近两分钟的所有样本，increase 计算出最近两分钟的增长量，最后除以时间 120 秒得到 node_cpu 样本在最近两分钟的平均增长率。并且这个值也近似于主机节点最近两分钟内的平均 CPU 使用率。
 
-rate(v range-vector)函数，rate 函数可以直接计算区间向量 v 在时间窗口内平均增长速率。因此，通过以下表达式可以得到与 increase 函数相同的结果：
+rate(v range-vector) 函数，rate 函数可以直接计算区间向量 v 在时间窗口内平均增长速率。因此，通过以下表达式可以得到与 increase 函数相同的结果：
 
-- rate(node_cpu\[2m])
+- `rate(node_cpu[2m])`
 
 需要注意的是使用 rate 或者 increase 函数去计算样本的平均增长速率，容易陷入“长尾问题”当中，其无法反应在时间窗口内样本数据的突发变化。 例如，对于主机而言在 2 分钟的时间窗口内，可能在某一个由于访问量或者其它问题导致 CPU 占用 100%的情况，但是通过计算在时间窗口内的平均增长率却无法反应出该问题。
 
 为了解决该问题，PromQL 提供了另外一个灵敏度更高的函数 irate(v range-vector)。
 
-irate(v range-vector)函数同样用于计算区间向量的计算率，但是其反应出的是瞬时增长率。irate 函数是通过区间向量中最后两个两本数据来计算区间向量的增长速率。这种方式可以避免在时间窗口范围内的“长尾问题”，并且体现出更好的灵敏度，通过 irate 函数绘制的图标能够更好的反应样本数据的瞬时变化状态。
+irate(v range-vector) 函数同样用于计算区间向量的计算率，但是其反应出的是瞬时增长率。irate 函数是通过区间向量中最后两个两本数据来计算区间向量的增长速率。这种方式可以避免在时间窗口范围内的“长尾问题”，并且体现出更好的灵敏度，通过 irate 函数绘制的图标能够更好的反应样本数据的瞬时变化状态。
 
-- irate(node_cpu\[2m])
+- `irate(node_cpu[2m])`
 
 irate 函数相比于 rate 函数提供了更高的灵敏度，不过当需要分析长期趋势或者在告警规则中，irate 的这种灵敏度反而容易造成干扰。因此在长期趋势分析或者告警中更推荐使用 rate 函数。
 
@@ -480,7 +488,7 @@ PromQL 中内置的 predict_linear(v range-vector, t scalar) 函数可以帮助�
 
 ## 统计 Histogram 指标的分位数
 
-在本章的第 2 小节中，我们介绍了 Prometheus 的四种监控指标类型，其中 Histogram 和 Summary 都可以同于统计和分析数据的分布情况。区别在于 Summary 是直接在客户端计算了数据分布的分位数情况。而 Histogram 的分位数计算需要通过 histogram_quantile(φ float, b instant-vector)函数进行计算。其中 φ（0<φ<1）表示需要计算的分位数，如果需要计算中位数 φ 取值为 0.5，以此类推即可。
+ Prometheus 的四种监控指标类型，其中 Histogram 和 Summary 都可以同于统计和分析数据的分布情况。区别在于 Summary 是直接在客户端计算了数据分布的分位数情况。而 Histogram 的分位数计算需要通过 histogram_quantile(φ float, b instant-vector)函数进行计算。其中 φ（0<φ<1）表示需要计算的分位数，如果需要计算中位数 φ 取值为 0.5，以此类推即可。
 
 以指标 http_request_duration_seconds_bucket 为例：
 
@@ -526,7 +534,7 @@ label_replace(v instant-vector, dst_label string, replacement string, src_label 
 该函数会依次对 v 中的每一条时间序列进行处理，通过 regex 匹配 src_label 的值，并将匹配部分 relacement 写入到 dst_label 标签中。如下所示：
 
 ```text
-label*replace(up, "host", "$1", "instance", "(.*):.\_")
+label_replace(up, "host", "$1", "instance", "(.*):.\_")
 ```
 
 函数处理后，时间序列将包含一个 host 标签，host 标签的值为 Exporter 实例的 IP 地址：
