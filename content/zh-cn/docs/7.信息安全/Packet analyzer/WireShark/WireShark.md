@@ -8,12 +8,14 @@ weight: 1
 
 > 参考
 >
+> - [GitLab 项目，wireshark/wireshark](https://gitlab.com/wireshark/wireshark)
+>     - [GitHub 镜像项目](https://github.com/wireshark/wireshark)
 > - [官网](https://www.wireshark.org/)
 > - [官方文档，用户指南](https://www.wireshark.org/docs/wsug_html_chunked/)
-> - <https://help.aliyun.com/document_detail/112990.html>(Wireshark 常见提示)
-> - <https://blog.csdn.net/qq_15437629/article/details/116565673>
-> - [公众号-马哥 Linux 运维，8 个常用的 Wireshark 使用技巧](https://mp.weixin.qq.com/s/yWuDodOpCClZT36yVBeeaQ)
-> - [公众号-小林 coding，一文搞定 Wireshark 网络数据包分析](https://mp.weixin.qq.com/s/hL96imOvuodILIhI70fbTg)（Notes: 一文搞不定）
+> - [官方 Wiki](https://wiki.wireshark.org/)
+>     - [GitLab Wiki](https://gitlab.com/wireshark/wireshark/-/wikis/home)
+> - [B 站，网络顶级掠食者 Wireshark抓包从入门到实战](https://www.bilibili.com/video/BV12X6gYUEqA)
+> - [公众号 - 马哥 Linux 运维，8 个常用的 Wireshark 使用技巧](https://mp.weixin.qq.com/s/yWuDodOpCClZT36yVBeeaQ)
 
 Wireshark 除了可以抓包外，还提供了可视化分析网络包的图形页面，同时，还内置了一系列的汇总分析工具。
 
@@ -22,7 +24,7 @@ Wireshark 除了可以抓包外，还提供了可视化分析网络包的图形�
 - tcpdump 仅支持命令行格式使用，常用在 Linux 服务器中抓取和分析网络包。
 - Wireshark 除了可以抓包外，还提供了可视化分析网络包的图形页面。
 
-tcpdump 虽然功能强大，但是输出的格式并不直观。所以，在工作中 tcpdump 只是用来抓取数据包，不用来分析数据包，而是把 tcpdump 抓取的数据包保存成 pcap 后缀的文件，接着用 Wireshark 工具进行数据包的可视化分析。
+tcpdump 虽然功能强大，但是输出的格式并不直观。所以，日常只用 tcpdump 来抓取数据包，不用来分析数据包，而是把 tcpdump 抓取的数据包保存成 pcap 后缀的文件，接着用 Wireshark 工具进行数据包的可视化分析。
 
 ## Wireshark 视图
 
@@ -56,7 +58,7 @@ https://www.wireshark.org/docs/wsug_html_chunked/ChUseViewMenuSection.html
 
 与 Pakcet Details 窗口不同，Packet Bytes 窗口展示的是该包的最原始数据内容，i.e. 数据的 Bytes 信息，并没有那些 WireShark 附加的描述性信息。整体分两大部分：
 
-- 左侧是默认以十六进制表示的字节流信息（右键点击可以更改展示的类型），每个 Bytes 占 8 bit；
+- 左侧是默认以十六进制表示的字节流信息（右键点击可以更改展示的类型）（每个 Bytes 占 8 bit）；
 - 右侧是字节流中每个字节对应 [ASCII 表](/docs/8.通用技术/编码与解码/字符的编码与解码/ASCII%20表.md) 的字符。
 
 e.g. 图中粉框中的 `47 45 54` 对应的就 ASCII 表的 `GET` 这几个字符。

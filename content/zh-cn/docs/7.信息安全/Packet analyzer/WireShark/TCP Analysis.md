@@ -9,7 +9,8 @@ weight: 20
 > 参考：
 >
 > - [官方文档，TCP Analysis](https://www.wireshark.org/docs/wsug_html_chunked/ChAdvTCPAnalysis.html)
-> - [公众号-小林 coding，一文搞定 Wireshark 网络数据包分析](https://mp.weixin.qq.com/s/hL96imOvuodILIhI70fbTg)
+> - [公众号 - 小林 coding，一文搞定 Wireshark 网络数据包分析](https://mp.weixin.qq.com/s/hL96imOvuodILIhI70fbTg)（Notes: 一文搞不定）
+> - <https://help.aliyun.com/document_detail/112990.html>(Wireshark 常见提示)
 
 使用 Wireshark 分析 [TCP](/docs/4.数据通信/Protocol/TCP_IP/TCP/TCP.md)。
 

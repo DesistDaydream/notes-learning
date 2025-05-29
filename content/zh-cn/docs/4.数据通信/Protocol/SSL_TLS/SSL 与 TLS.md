@@ -1,7 +1,7 @@
 ---
 title: SSL 与 TLS
 linkTitle: SSL 与 TLS
-weight: 5
+weight: 1
 tags:
   - Information_security
 ---
@@ -72,3 +72,32 @@ Linux 发行版中，有一个目录会保存一些常见的 CA 证书，称之�
   - **/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt** # 包含所有证书，每个证书前一行有注释
 - Ubuntu 发行版
   - **/etc/ssl/certs/** # 该目录中一个证书一个文件
+
+# TLS 扩展
+
+> 参考：
+>
+> - [RFC 3546](https://datatracker.ietf.org/doc/html/rfc3546)
+
+## SNI
+
+> 参考：
+>
+> - [RFC 3546, section-3.1](https://datatracker.ietf.org/doc/html/rfc3546#section-3.1)
+> - [Wiki, Server Name Indication](https://en.wikipedia.org/wiki/Server_Name_Indication)
+
+**Server Name Indication(服务器名称指示，简称 SNI)** 是 TLS 协议的扩展， [客户端](https://en.wikipedia.org/wiki/Client_\(computing\) "Client (computing)")通过该协议在握手过程开始时指示其尝试连接的[主机名](https://en.wikipedia.org/wiki/Hostname "Hostname") 。
+
+SNI 的出现主要是为了解决这么一个问题：
+
+在 HTTP 的 TLS 握手过程中，客户端首先需要向服务端请求证书，如果一个服务器上只部署了一个网站还比较好办，但同一个服务器上部署了多个网站，就必须有一个机制来区分客户端要访问哪一个网站
+
+客户端在 TLS 握手过程中，主动携带了一个 SNI 的数据字段，指明自己要连接的网站，服务端选择 SNI 中指定的证书发送给客户端，从而完成HTTPS的握手
+
+![1000](https://notes-learning.oss-cn-beijing.aliyuncs.com/ssl_tls/sni_demo.png)
+
+
+不幸的是，在 HTTPS 协议中，TLS握手发生在数据的正式传递之前，因此其中的数据都是明文传递的，这就意味着，SNI 信息可能会被网络传说中的中间人监听，中间人可以轻易的知道用户准备访问哪个网站，用户因此就会泄露隐私，中间人还可以通过识别 SNI 的信息，阻断一部分TLS握手的建立
+
+这种攻击也就是 <font color="#ff0000">SNI 阻断</font>
+
