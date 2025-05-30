@@ -12,22 +12,22 @@ title: ASCII 表
 | Character |                      | Binary Value | Decimal Value | Octal Value | Hex Value |
 | --------- | -------------------- | ------------ | ------------- | ----------- | --------- |
 | 符号        | 用途                   | 二进制表示        | 十进制表示         | 八进制表示       | 十六进制表示    |
-| NUL       | null                 | 0            | 0             | 0           | 0         |
-| SOH       | start of heading     | 1            | 1             | 1           | 1         |
-| STX       | start of text        | 10           | 2             | 2           | 2         |
-| ETX       | end of text          | 11           | 3             | 3           | 3         |
-| EOT       | end of transmission  | 100          | 4             | 4           | 4         |
-| ENQ       | enquiry              | 101          | 5             | 5           | 5         |
-| ACK       | acknowledge          | 110          | 6             | 6           | 6         |
-| BEL       | bell                 | 111          | 7             | 7           | 7         |
-| BS        | backspace            | 1000         | 8             | 10          | 8         |
-| TAB       | horizontal tab       | 1001         | 9             | 11          | 9         |
-| LF        | line feed(换行)        | 1010         | 10            | 12          | A         |
-| VT        | vertical tab         | 1011         | 11            | 13          | B         |
-| FF        | form feed            | 1100         | 12            | 14          | C         |
-| CR        | carriage return(回车)  | 1101         | 13            | 15          | D         |
-| SO        | shift out            | 1110         | 14            | 16          | E         |
-| SI        | shift in             | 1111         | 15            | 17          | F         |
+| NUL       | null                 | 0            | 0             | 0           | 00        |
+| SOH       | start of heading     | 1            | 1             | 1           | 01        |
+| STX       | start of text        | 10           | 2             | 2           | 02        |
+| ETX       | end of text          | 11           | 3             | 3           | 03        |
+| EOT       | end of transmission  | 100          | 4             | 4           | 04        |
+| ENQ       | enquiry              | 101          | 5             | 5           | 05        |
+| ACK       | acknowledge          | 110          | 6             | 6           | 06        |
+| BEL       | bell                 | 111          | 7             | 7           | 07        |
+| BS        | backspace            | 1000         | 8             | 10          | 08        |
+| TAB       | horizontal tab       | 1001         | 9             | 11          | 09        |
+| LF        | line feed(换行)        | 1010         | 10            | 12          | 0A        |
+| VT        | vertical tab         | 1011         | 11            | 13          | 0B        |
+| FF        | form feed            | 1100         | 12            | 14          | 0C        |
+| CR        | carriage return(回车)  | 1101         | 13            | 15          | 0D        |
+| SO        | shift out            | 1110         | 14            | 16          | 0E        |
+| SI        | shift in             | 1111         | 15            | 17          | 0F        |
 | DLE       | data link escape     | 10000        | 16            | 20          | 10        |
 | DC1       | device control 1     | 10001        | 17            | 21          | 11        |
 | DC2       | device control 2     | 10010        | 18            | 22          | 12        |
