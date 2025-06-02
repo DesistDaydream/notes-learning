@@ -3,7 +3,7 @@ title: Go 规范与标准库
 linkTitle: Go 规范与标准库
 weight: 1
 ---
-XXCX
+
 # 概述
 
 > 参考：

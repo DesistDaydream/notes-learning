@@ -54,21 +54,27 @@ https://help.obsidian.md/Editing+and+formatting/Callouts
 Obsidian 扩展了 Markdown 的 **Callouts(标注)** 效果。
 
 > [!note]
+>
 > Lorem ipsum dolor sit amet
 
 > [!tip]
+>
 > Lorem ipsum dolor sit amet
 
 > [!success]
+>
 > Lorem ipsum dolor sit amet
 
 > [!warning]
+>
 > Lorem ipsum dolor sit amet. 还可以用 `caution`, `attention` 这俩关键字
 
 > [!bug]
+>
 > Lorem ipsum dolor sit amet
 
 > [!example]
+>
 > Lorem ipsum dolor sit amet
 
 还有很多样式可以参考官方文档
@@ -109,8 +115,6 @@ Property 可以在开头的 `---` 包裹的文章元数据中使用 tags 关键�
 
 清理没有引用的图片
 
--
-
 ## 自定义排序目录
 
 众人的需求: https://forum.obsidian.md/t/file-explorer-custom-sort/1602
@@ -123,16 +127,12 @@ https://forum.obsidian.md/t/file-explorer-custom-sort/1602/212
 - Install BRAT from community plugin panel and then install Bartender beta plugin using BRAT
   - [https://github.com/nothingislost/obsidian-bartender](https://github.com/nothingislost/obsidian-bartender)
   - [https://github.com/TfTHacker/obsidian42-brat](https://github.com/TfTHacker/obsidian42-brat)
-- then, step 1-2-3
-  - ![image](https://forum.obsidian.md/uploads/default/original/3X/9/1/9150dde8b90e4a93b6edc58cd4cc51c9f4f61abb.png)
-- do not forget step 3
-- ![image](https://forum.obsidian.md/uploads/default/original/3X/2/d/2d251736195adb913c336f7d309be7ab7c4f25ef.png)
-
-then you can drag as you like
 
 nothingislost/obsidian-bartender 不维护之后其他开发者的 fork
 
 - https://github.com/Mara-Li/obsidian-bartender
+
+https://github.com/Kh4f/manual-sorting 2025-02-10 开始的一个积极维护的手动排序插件
 
 ## Templater
 
@@ -142,7 +142,7 @@ nothingislost/obsidian-bartender 不维护之后其他开发者的 fork
 
 ## Excalidraw
 
-让 Obsidian 可以渲染 Excalidraw 图，并且可以在 Obsidian 中编辑 Excalidraw 图。
+让 Obsidian 可以渲染 Excalidraw，并且可以在 Obsidian 中编辑 Excalidraw。
 
 ## Image auto upload Plugin
 

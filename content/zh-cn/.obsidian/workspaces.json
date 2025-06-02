@@ -6,15 +6,17 @@
         "type": "split",
         "children": [
           {
-            "id": "ca37199cc1800569",
+            "id": "8c6621e4428b1f28",
             "type": "tabs",
             "children": [
               {
-                "id": "b2cc863ff06032f8",
+                "id": "cfa59599dc271bd2",
                 "type": "leaf",
                 "state": {
                   "type": "empty",
-                  "state": {}
+                  "state": {},
+                  "icon": "lucide-file",
+                  "title": "新标签页"
                 }
               }
             ]
@@ -36,8 +38,11 @@
                 "state": {
                   "type": "file-explorer",
                   "state": {
-                    "sortOrder": "custom"
-                  }
+                    "sortOrder": "alphabetical",
+                    "autoReveal": false
+                  },
+                  "icon": "lucide-folder-closed",
+                  "title": "文件列表"
                 }
               },
               {
@@ -46,13 +51,15 @@
                 "state": {
                   "type": "search",
                   "state": {
-                    "query": "file: git",
+                    "query": "",
                     "matchingCase": false,
                     "explainSearch": false,
                     "collapseAll": true,
                     "extraContext": false,
                     "sortOrder": "alphabetical"
-                  }
+                  },
+                  "icon": "lucide-search",
+                  "title": "搜索"
                 }
               },
               {
@@ -60,7 +67,9 @@
                 "type": "leaf",
                 "state": {
                   "type": "bookmarks",
-                  "state": {}
+                  "state": {},
+                  "icon": "lucide-bookmark",
+                  "title": "书签"
                 }
               }
             ]
@@ -83,27 +92,49 @@
                 "type": "leaf",
                 "state": {
                   "type": "outline",
-                  "state": {}
-                }
-              },
-              {
-                "id": "38546706025eedfd",
-                "type": "leaf",
-                "state": {
-                  "type": "all-properties",
                   "state": {
-                    "sortOrder": "frequency",
+                    "followCursor": false,
                     "showSearch": false,
                     "searchQuery": ""
-                  }
+                  },
+                  "icon": "lucide-list",
+                  "title": "大纲"
                 }
               },
               {
-                "id": "acdfda04deae6b0f",
+                "id": "441171a9a5727d76",
                 "type": "leaf",
                 "state": {
-                  "type": "file-properties",
-                  "state": {}
+                  "type": "localgraph",
+                  "state": {
+                    "options": {
+                      "collapse-filter": true,
+                      "search": "",
+                      "localJumps": 1,
+                      "localBacklinks": true,
+                      "localForelinks": true,
+                      "localInterlinks": false,
+                      "showTags": false,
+                      "showAttachments": false,
+                      "hideUnresolved": false,
+                      "collapse-color-groups": true,
+                      "colorGroups": [],
+                      "collapse-display": true,
+                      "showArrow": false,
+                      "textFadeMultiplier": 0,
+                      "nodeSizeMultiplier": 1,
+                      "lineSizeMultiplier": 1,
+                      "collapse-forces": true,
+                      "centerStrength": 0.518713248970312,
+                      "repelStrength": 10,
+                      "linkStrength": 1,
+                      "linkDistance": 250,
+                      "scale": 1,
+                      "close": true
+                    }
+                  },
+                  "icon": "lucide-git-fork",
+                  "title": "关系图谱"
                 }
               }
             ]
@@ -126,7 +157,9 @@
                     "searchQuery": "",
                     "backlinkCollapsed": false,
                     "unlinkedCollapsed": true
-                  }
+                  },
+                  "icon": "links-coming-in",
+                  "title": "反向链接"
                 }
               },
               {
@@ -135,9 +168,12 @@
                 "state": {
                   "type": "outgoing-link",
                   "state": {
+                    "file": "docs/6.可观测性/Metrics/Prometheus/Prometheus MGMT/promtool.md",
                     "linksCollapsed": false,
                     "unlinkedCollapsed": true
-                  }
+                  },
+                  "icon": "links-going-out",
+                  "title": "promtool 的出链列表"
                 }
               },
               {
@@ -147,11 +183,16 @@
                   "type": "tag",
                   "state": {
                     "sortOrder": "frequency",
-                    "useHierarchy": true
-                  }
+                    "useHierarchy": false,
+                    "showSearch": false,
+                    "searchQuery": ""
+                  },
+                  "icon": "lucide-tags",
+                  "title": "标签"
                 }
               }
-            ]
+            ],
+            "currentTab": 2
           }
         ],
         "direction": "horizontal",
@@ -160,7 +201,6 @@
       "left-ribbon": {
         "hiddenItems": {
           "graph:查看关系图谱": false,
-          "canvas:新建白板": false,
           "switcher:打开快速切换": false,
           "templates:插入模板": true,
           "command-palette:打开命令面板": false,
@@ -169,8 +209,8 @@
           "templater-obsidian:Templater": true
         }
       },
-      "active": "b2cc863ff06032f8",
-      "mtime": "2024-04-03T20:45:55+08:00"
+      "active": "0d428aa4516b1652",
+      "mtime": "2025-06-01T12:09:31+08:00"
     }
   },
   "active": "my style"

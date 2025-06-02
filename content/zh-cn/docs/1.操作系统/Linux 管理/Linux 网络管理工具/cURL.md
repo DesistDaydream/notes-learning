@@ -75,7 +75,7 @@ Warning: <FILE>" to save to a file.
 -w, --write-out 选项可以根据指定格式输出本次请求的一些统计信息。简单的效果如下所示：
 
 ```bash
-~# curl -o /dev/null -s -w "DNS解析时间："%{time_namelookup}"\n"\
+~]# curl -o /dev/null -s -w "DNS解析时间："%{time_namelookup}"\n"\
 "TCP建立时间:"%{time_connect}"\n"\
 "响应第一个字节时间:"%{time_starttransfer}"\n"\
 "总时间:"%{time_total}"\n"\
