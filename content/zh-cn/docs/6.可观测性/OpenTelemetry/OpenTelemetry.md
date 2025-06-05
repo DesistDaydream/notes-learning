@@ -50,7 +50,7 @@ OpenTelemetry 的目的是收集、处理和导出 **Signals**。传统定义中
 
 https://opentelemetry.io/docs/concepts/resources/
 
-Resource 是属性的集合，用来表示生成遥测数据的实体。比如 Kubernetes 一个容器， 其中的进程名称、Pod 名称、命名空间、etc. 都是该实体的资源。
+Resource 是[属性](docs/6.可观测性/OpenTelemetry/Glossary.md#Attribute)的集合，用来表示生成遥测数据的实体。比如 Kubernetes 一个容器， 其中的进程名称、Pod 名称、命名空间、etc. 都是该实体的资源。
 
 OpenTelemetry SDK 提供了一些属性。其中之一是 `service.name` ，表示服务的逻辑名称。默认情况下，SDK 会为此值分配 `unknown_service` ，因此建议明确设置它，可以在代码中设置，也可以通过设置环境变量 `OTEL_SERVICE_NAME` 来设置。
 

@@ -58,12 +58,14 @@ flowchart LR
 
 ---
 
+## Type and Kind
+
 OpenTelemetry Collector 一共有两个项目
 
 - [open-telemetry/opentelemetry-collector](https://github.com/open-telemetry/opentelemetry-collector) # Collector 核心、框架、内置组件。e.g. Receiver 的 otel, etc.；exporter 的 otel, otelhttp, etc.
 - [open-telemetry/opentelemetry-collector-contrib](https://github.com/open-telemetry/opentelemetry-collector-contrib) # 第三方组件。e.g. Receiver 的 filelog, etc.
 
-这两个项目的代码目录通常都包含 receiver, processor, exporter 这几个，用来存放各种**管道组件**的代码。管道组件的具体实现代码的目录名称，以 “管道组件类型+管道组件种类” 的形式命名。如下图，红框是 “管道组件 Type(类型)” 黄框是 “管道组件 Kind(种类)”。对于 contrib 项目，也是同样的，e.g. contrib 项目中的 receiver/filelogreceiver/ 目录实现的是 Receiver 种类 的 filelog 类型管道，用来从本地文件系统的日志文件接收数据。
+这两个项目的代码目录通常都包含 receiver, processor, exporter 这几个，用来存放各种**管道组件**的代码。管道组件的具体实现代码的目录名称，以 “管道组件类型+管道组件种类” 的形式命名。如下图，红框是 “管道组件 **<font color="#ff0000">Type(类型)</font>**” 黄框是 “管道组件 **<font color="#f2bd2c">Kind(种类)</font>**”。对于 contrib 项目，也是同样的，e.g. contrib 项目中的 receiver/filelogreceiver/ 目录实现的是 Receiver 种类 的 filelog 类型管道，用来从本地文件系统的日志文件接收数据。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/otel/20250516092747523.png)
 

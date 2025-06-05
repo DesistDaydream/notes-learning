@@ -27,7 +27,7 @@ Attribute 作为遥测数据的键值对信息，可以跨 Signals、Resources�
 
 ## Resource
 
-Resource 是产生遥测数据的实体的属性。e.g. [Kubernetes](/docs/10.云原生/Kubernetes/Kubernetes.md) 中容器运行的进程产生的遥测数据，会包含 进程名称、Pod 名称、命名空间、etc. 这些都属于 Resource Attributes(资源属性)
+Resource 是 Attribute 的一种，是产生遥测数据的实体的 Attribute。e.g. [Kubernetes](/docs/10.云原生/Kubernetes/Kubernetes.md) 中容器运行的进程产生的遥测数据，会包含 进程名称、Pod 名称、命名空间、etc. 这些都属于 **Resource Attributes(资源属性)**
 
 ## Signal
 

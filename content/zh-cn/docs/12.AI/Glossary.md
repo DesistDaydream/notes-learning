@@ -82,4 +82,4 @@ RLHF(人类反馈强化学习)
 
 
 
-Encoder-only Decoder-only Transformer
+Encoder/Decoder # Attention is all you need 论文 3.1 节
