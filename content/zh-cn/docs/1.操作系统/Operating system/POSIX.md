@@ -1,5 +1,7 @@
 ---
 title: POSIX
+linkTitle: POSIX
+weight: 2
 ---
 
 # 概述

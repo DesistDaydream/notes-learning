@@ -8,7 +8,7 @@ weight: 20
 
 > 参考：
 >
-> - [官方文档，工具-QEMU 磁盘镜像工具](https://www.qemu.org/docs/master/tools/qemu-img.html)
+> - [官方文档，工具 - QEMU 磁盘镜像工具](https://www.qemu.org/docs/master/tools/qemu-img.html)
 
 管理 VM image(虚拟机的镜像) 文件。qemu-img 工具可以创建、转换和修改 image 文件。所有 QEMU 支持的格式都可以处理
 
@@ -21,6 +21,8 @@ weight: 20
 ### Standard OPTIONS
 
 - **-U, --force-share** #
+- **-f**(STRING) # 指定第一个镜像文件的格式。`默认值: raw`
+- **-F**(STRING) # 指定第二个镜像文件的格式。`默认值: raw`
 
 ### COMMAND
 
@@ -69,8 +71,6 @@ Note：
 
 OPTIONS
 
-- **-f FMT** # 指定第一个镜像文件的格式为 FMT。默认为 raw 格式。
-- **-F FMT** # 指定第二个镜像文件的格式为 FMT。默认为 raw 格式。
 - **-o OPTIONS** # 指定参数。可以使用 -o ? 来查看支持的参数。Note：查看可用的参数会根据不同的-f FMT，有不同的显示。Note：各个不同参数可以使用简化 OPTIONS 来指定
   - **backing_file=BaseFILE** # 指定基础镜像为 BaseFILE。简化为 -b
   - **size=SIZE** # 指定新镜像文件的大小为 SIZE
@@ -92,8 +92,9 @@ OPTIONS
 
 ### EXAMPLE
 
-- 压缩 test.qcow2 镜像,生成新的名为 test.qcow2.new 的镜像，新的镜像文件大小更小
-  - `qemu-img convert -c -O qcow2 test.qcow2 test.qcow2.new`
+压缩 test.qcow2 镜像,生成新的名为 test.qcow2.new 的镜像，新的镜像文件大小更小
+
+- `qemu-img convert -c -O qcow2 test.qcow2 test.qcow2.new`
 
 ```bash
 # 压缩前的镜像信息
@@ -107,6 +108,10 @@ No errors were found on the image.
 36060/8192000 = 0.44% allocated, 91.45% fragmented, 89.83% compressed clusters
 Image end offset: 1085603840
 ```
+
+将 raw 格式的镜像转成 qcow2。e.g. openwrt 的镜像
+
+- `qemu-img convert -f raw -O qcow2 openwrt-gdq-version-v1-2025-x86-64-generic-squashfs-legacy.img openwrt.qcow2`
 
 # info - 显示 VM 镜像文件的信息
 
@@ -147,7 +152,7 @@ EXAMPLE
 
 EXAMPLE
 
-- qemu-img resize cirros-0.3.6-x86_64-disk.img +40G # 给 test.qcow2 镜像的磁盘量容量添加 40G
+- qemu-img resize test.qcow2 +40G # 给 test.qcow2 镜像的磁盘量容量添加 40G
 
 # snapshot - 为 VM 创建、删除、应用、列出快照
 
