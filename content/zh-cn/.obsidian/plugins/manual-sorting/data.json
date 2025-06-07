@@ -642,8 +642,8 @@
       "docs/1.操作系统/Operating system/Unix-like OS/Debian 与 Ubuntu.md",
       "docs/1.操作系统/Operating system/Unix-like OS/RedHat 与 CentOS.md",
       "docs/1.操作系统/Operating system/Unix-like OS/EulerOS 与 OpenEuler.md",
-      "docs/1.操作系统/Operating system/Unix-like OS/系统启动流程.md",
-      "docs/1.操作系统/Operating system/Unix-like OS/OpenWrt.md"
+      "docs/1.操作系统/Operating system/Unix-like OS/OpenWrt.md",
+      "docs/1.操作系统/Operating system/Unix-like OS/系统启动流程.md"
     ],
     "docs/1.操作系统/Package 管理": [
       "docs/1.操作系统/Package 管理/_index.md",
