@@ -240,3 +240,8 @@ tcpdump 很详细的 <http://blog.chinaunix.net/uid-11242066-id-4084382.html>
 Tcpdump usage examples（推荐） <http://www.rationallyparanoid.com/articles/tcpdump.html>
 
 使用 TCPDUMP 抓取 HTTP 状态头信息 <http://blog.sina.com.cn/s/blog_7475811f0101f6j5.html>
+
+# 衍生品
+
+https://github.com/mozillazg/ptcpdump # ptcpdump 是一个使用 eBPF 技术实现的、类 tcpdump 的网络流程抓包工具。 在尽可能的情况下，以包注释的形式，为每个数据包流量关联发起方或接收方的**进程信息**
+

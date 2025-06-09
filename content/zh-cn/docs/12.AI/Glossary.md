@@ -20,9 +20,20 @@ Weight(权重) # 函数里的参数
 
 Large Model(大模型) # 参数量特别大的模型
 
+**Robustness(鲁棒性)** # 模型不因输入的一点点小的变化，导致结果产生很大的波动
+
+**fitting(拟合)/overfitting(过拟合)** 与 **泛化性** # 下图红线拟合得较好；蓝线过拟合。过拟合之后，该模型无法处理非训练样本外的其他数据了。神经网络层数多到某个限度之后，将会过拟合
+
+- [B 站，【漫士】为什么刷题想得越多，考得反而越差？](https://www.bilibili.com/video/BV1D362YpEGL)
+- https://www.bilibili.com/video/BV1RqXRYDEe2?t=15.0
+
+> **过拟合** 是指 “分析结果与特定数据集过于接近或完全一致，因此可能无法拟合其他数据或可靠地预测未来的观测值”，所以过拟合了就缺少泛化性。
+
+![500](Excalidraw/AI/fitting.excalidraw.md)
+
 Training(训练) # 调整模型参数的过程
 
-Pre-training(预训练) # “事先训练”好一个基础模型的方式
+Pre-training(预训练) # “事先训练” 好一个基础模型的方式
 
 Fine-tuning(微调) # 基于预训练的模型“继续训练”，让模型学会具体的任务的方式
 
@@ -60,7 +71,7 @@ Knowledge Base(知识库，简称 KB) # 利用 RAG 为模型提供内容的本�
 
 Vector Database(向量数据库) # 为了让模型与 KB 中的语义进行匹配，KB 通常以向量的形式存储在向量数据库中。
 
-Embedding(\[词]嵌入) # 把文字转换成词向量的方式
+Word Embedding(词嵌入) # 把文字转换成词向量的方式
 
 Vector Search(向量检索) # 对比词向量的相似度，以在 KB 中找到相关问题的答案的方式
 

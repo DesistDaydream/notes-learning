@@ -22,17 +22,17 @@ weight: 20
 **from \[--platform=\<PLATFORM>] \<image>\[:\<TAG> | @\[DIGEST] ] \[AS \<NAME>]**
 附加指令：
 
-1. **AS \<NAME>**# 为当前构建阶段起一个名字。该附加指令有如下几种用法：
-   1. 在开始构建之前，可是使用 --target 指令指定指定要从 STRING 这个阶段开始构建镜像。
-   2. 在构建中，`COPY` 指令可以使用 --from=\<NAME> 参数来指定数据源是来自某个构建阶段内的数据，也就是说，`COPY` 指令不止可以从宿主机拷贝文件到容器中，还可以从上一个构建阶段的容器中，拷贝其内容到当前容器中。这也为多阶段构建模式中，减少镜像体积打下来坚实基础。
-2. **TAG 和 DIGEST** # 该附加指令是可选的，若不指定镜像的 TAG，则默认使用 latest。
+- **AS \<NAME>** # 为当前构建阶段起一个名字。该附加指令有如下几种用法：
+   - 在开始构建之前，可是使用 --target 指令指定指定要从 STRING 这个阶段开始构建镜像。
+   - 在构建中，`COPY` 指令可以使用 --from=\<NAME> 参数来指定数据源是来自某个构建阶段内的数据，也就是说，`COPY` 指令不止可以从宿主机拷贝文件到容器中，还可以从上一个构建阶段的容器中，拷贝其内容到当前容器中。这也为多阶段构建模式中，减少镜像体积打下来坚实基础。
+- **TAG 和 DIGEST** # 该附加指令是可选的，若不指定镜像的 TAG，则默认使用 latest。
 
 ## 用法
 
 Docker 还存在一个特殊的镜像，名为 scratch。这个镜像是虚拟的概念，并不实际存在，它表示一个空白的镜像。
 
-1. 如果以 scratch 为基础镜像的话，意味着本次构建阶段不以任何镜像为基础，接下来所写的指令将作为镜像第一层开始存在。
-2. 不以任何系统为基础，直接将可执行文件复制进镜像的做法并不罕见，比如 coreos/etcd。对于 Linux 下静态编译的程序来说，并不需要有操作系统提供运行时支持，所需的一切库都已经在可执行文件里了，因此直接 FROM scratch 会让镜像体积更加小巧。使用 Go 语言 开发的应用很多会使用这种方式来制作镜像，这也是为什么有人认为 Go 是特别适合容器微服务架构的语言的原因之一。
+- 如果以 scratch 为基础镜像的话，意味着本次构建阶段不以任何镜像为基础，接下来所写的指令将作为镜像第一层开始存在。
+- 不以任何系统为基础，直接将可执行文件复制进镜像的做法并不罕见，比如 coreos/etcd。对于 Linux 下静态编译的程序来说，并不需要有操作系统提供运行时支持，所需的一切库都已经在可执行文件里了，因此直接 FROM scratch 会让镜像体积更加小巧。使用 Go 语言 开发的应用很多会使用这种方式来制作镜像，这也是为什么有人认为 Go 是特别适合容器微服务架构的语言的原因之一。
 
 # LABEL - 为镜像添加标签
 
@@ -63,9 +63,11 @@ Docker 还存在一个特殊的镜像，名为 scratch。这个镜像是虚拟�
 ## Syntax(语法)
 
 **run \<COMMAND>**
+
 COMMAND 通常是一个 shell 命令，且 Docker 会以 `/bin/sh -c` 来运行这个命令，这意味着此进程在容器中的 PID 不为 1，不能接收 Unix 信号，因此当使用 docker stop 命令停止 Container 时，此进程接收不到 SIGTERM 信号
 
 **run \["Executable","Param1","Param2",.....]**
+
 Executable 是可执行的命令，参数是一个 JSON 格式的数组，不过这种格式指定的命令不会以“/bin/sh -c”来发起，因此常见的 shell 操作(如通配符，管道符等等)不会进行；如果要运行的命令想用 shell 特性，则可以写成如下格式 RUN \["/bin/sh","-c","Executable","Param1","Param2",.....]
 
 ## 用法
@@ -78,12 +80,12 @@ Executable 是可执行的命令，参数是一个 JSON 格式的数组，不过
 
 SRC 指源文件，即需要复制的源文件或目录，支持用通配符；DEST 指目标路径，即即将创建的 IMAGE 中的系统路径(若不适用绝对路径，则默认使用 WORKDIR 指令中指定的目录为起始路径)
 
-1. copy \[] SRC1 SRC2 DEST
+- copy \[] SRC1 SRC2 DEST
 
 注意：src 的来源可以有两个地方
 
-1. 只能指定 build context 中的文件或目录；如果指定了多个 SRC 或在 SRC 使用了通配符，则 DEST 必须是一个目录且以/结尾
-2. 为 `COPY` 指令添加 --from 参数，可以让 src 从指定的构建阶段中获取源文件或目录。
+- 只能指定 build context 中的文件或目录；如果指定了多个 SRC 或在 SRC 使用了通配符，则 DEST 必须是一个目录且以/结尾
+- 为 `COPY` 指令添加 --from 参数，可以让 src 从指定的构建阶段中获取源文件或目录。
 
 ## 用法
 
@@ -91,13 +93,14 @@ SRC 指源文件，即需要复制的源文件或目录，支持用通配符；D
 
 与 COPT 指令的区别
 
-1. 如果 SRC 为 URL 且 DEST 不以/结尾，则 SRC 指定的文件将被下载并直接被创建为 DEST；如果 DEST 以/结尾，则文件名 URL 指定的文件将被直接下载并保存为 DEST/FileName
-2. 如果 SRC 是一个 tar 文件，则该文件会被展开为一个目录，类似于"tar -x"命令但是通过 URL 获取的 tar 文件不会自动展开.
-3. 如果 SRC 有有多个，或使用了通配符，则 DEST 必须是一个以/结尾的目录路径，如果 DEST 不以/结尾，则被视作一个普通文件，SRC 的内容将被直接写入到 DEST
+- 如果 SRC 为 URL 且 DEST 不以/结尾，则 SRC 指定的文件将被下载并直接被创建为 DEST；如果 DEST 以/结尾，则文件名 URL 指定的文件将被直接下载并保存为 DEST/FileName
+- 如果 SRC 是一个 tar 文件，则该文件会被展开为一个目录，类似于"tar -x"命令但是通过 URL 获取的 tar 文件不会自动展开.
+- 如果 SRC 有有多个，或使用了通配符，则 DEST 必须是一个以/结尾的目录路径，如果 DEST 不以/结尾，则被视作一个普通文件，SRC 的内容将被直接写入到 DEST
 
 # VOLUME - 用于在 Image 中创建一个挂载点目录
 
 以便挂载 Docker host 上的 Volume 或者其他 Container 上的 Volume
+
 通过 VOLUME 命令创建的 Image 在启动成 Container 后，会在 host 上生成一个目录，以便让 Container 中 VOLUME 定义的目录与 host 目录关联
 
 VOLUME MountPoint
@@ -143,22 +146,22 @@ CMD ["--help"]
 
 ```bash
 # 这是用 CMD 的情况
-[root@ansible exporter]# docker run -p=8081:8081 lchdzh/xsky-exporter:v0.1 --web.listen-address=":8081"
+~]# docker run -p=8081:8081 desistdaydream/xsky-exporter:v0.1 --web.listen-address=":8081"
 docker: Error response from daemon: OCI runtime create failed: container_linux.go:349: starting container process caused "exec: \"--web.listen-address=:8081\": executable file not found in $PATH": unknown.
 # 这是用 ENTRYPOINT 的情况
-[root@ansible exporter]# docker run -p=8081:8081 lchdzh/xsky-exporter:v0.1 --web.listen-address=":8081"
+~]# docker run -p=8081:8081 desistdaydream/xsky-exporter:v0.1 --web.listen-address=":8081"
 time="2020-12-30 05:41:52" level=info msg="Scraper enabled cluster_info"
 time="2020-12-30 05:41:52" level=info msg="Listening on address :8081"
 ```
 
 ENTRYPOINT 与 CMD 的比较
 
-1. ENTRYPOINT 一般用于设置 Container 启动后的第一个命令，这对一个 Container 来说是固定的
-2. CMD 一般用于设置 Container 启动的第一个命令的默认参数，这对一个 Container 来说是可以变化的
-3. 这俩个设置用于设定云原生应用的配置文件具体思路如下,现在以 Nginx 为例
-   1. 使用一个写入配置文件的脚本做 ENTRYPOINT 的指令
-   2. 使用软件的运行命令作为 CMD 的指令
-   3. 在 a 中的脚本最后加上 exec $@以引用命令的所有参数，这样当 CMD 作为 ENTRYPOINT 的参数时，ENTRYPOINT 的指令执行完成之后会自动退出 shell 并运行 CMD 的指令，且 CMD 的命令也成为了该 Container 的 PID 为 1 的进程，并且注意让 nginx 在前台运行以保证容器的长时间运行。这样的话 ENTRYPOINT 的配置文件也带入进去了。然后只需要在 run 的时候指明变量的值，就可以实现不同环境使用不同配置的功能
+- ENTRYPOINT 一般用于设置 Container 启动后的第一个命令，这对一个 Container 来说是固定的
+- CMD 一般用于设置 Container 启动的第一个命令的默认参数，这对一个 Container 来说是可以变化的
+- 这俩个设置用于设定云原生应用的配置文件具体思路如下,现在以 Nginx 为例
+   - 使用一个写入配置文件的脚本做 ENTRYPOINT 的指令
+   - 使用软件的运行命令作为 CMD 的指令
+   - 在 a 中的脚本最后加上 exec $@以引用命令的所有参数，这样当 CMD 作为 ENTRYPOINT 的参数时，ENTRYPOINT 的指令执行完成之后会自动退出 shell 并运行 CMD 的指令，且 CMD 的命令也成为了该 Container 的 PID 为 1 的进程，并且注意让 nginx 在前台运行以保证容器的长时间运行。这样的话 ENTRYPOINT 的配置文件也带入进去了。然后只需要在 run 的时候指明变量的值，就可以实现不同环境使用不同配置的功能
 
 # CMD - 启动 Container 时运行指定的命令
 

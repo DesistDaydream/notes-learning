@@ -23,7 +23,7 @@ weight: 20
 
 https://modelcontextprotocol.io/specification/2025-03-26/architecture
 
-![800](Excalidraw/mcp-arch.excalidraw.md)
+![800](Excalidraw/AI/mcp-arch.excalidraw.md)
 
 MCP 的工程化实现本质也是一个类似 C/S 的架构，但是在其中多了 Model(模型) 的参与。一套完整的 MCP 系统通常包含如下几类组件：
 

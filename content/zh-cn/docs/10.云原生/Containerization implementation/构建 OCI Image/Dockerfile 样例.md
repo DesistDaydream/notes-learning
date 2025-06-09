@@ -21,7 +21,7 @@ CMD ["/usr/sbin/nginx","-g","daemon off;"]
 ```
 
 ```bash
-test]# cat index.html
+~]# cat index.html
 <meta charset="utf-8"/>
 <h1>网络测试容器 desist-daydream 1</h1>
 ```

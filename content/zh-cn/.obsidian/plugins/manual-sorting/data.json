@@ -3606,12 +3606,16 @@
       "docs/Web/WebDriver/Puppeteer.md"
     ],
     "Excalidraw": [
+      "Excalidraw/AI",
       "Excalidraw/k8s-arch.excalidraw.md",
-      "Excalidraw/mcp-arch.excalidraw.md",
       "Excalidraw/network_analysis_system.excalidraw.md",
       "Excalidraw/npb.excalidraw.md",
       "Excalidraw/ssh.excalidraw.md",
       "Excalidraw/why_we_need_npb.excalidraw.md"
+    ],
+    "Excalidraw/AI": [
+      "Excalidraw/AI/mcp-arch.excalidraw.md",
+      "Excalidraw/AI/fitting.excalidraw.md"
     ],
     "files": [
       "files/test.md"

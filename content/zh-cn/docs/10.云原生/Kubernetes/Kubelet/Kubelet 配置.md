@@ -36,7 +36,7 @@ weight: 2
 
 > 参考：
 >
-> - [官方文档,参考-组件工具-kubelet](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/)
+> - [官方文档，参考 - 组件工具 - kubelet](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/)
 
 **--cni-conf-dir \<STRING>** # Warning：Alpha 功能。指定 STRING 目录中搜索 CNI 配置文件。 `默认值：/etc/cni/net.d`
 
@@ -62,25 +62,25 @@ weight: 2
 
 > 参考：
 >
-> - [官方文档,任务-通过配置文件设置 kubelet 参数](https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/)
-> - [官方文档,参考-配置 APIs-Kubelet 配置](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)
+> - [官方文档，任务 - 通过配置文件设置 kubelet 参数](https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/)
+> - [官方文档，参考 - 配置 APIs - Kubelet 配置](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)
 > - [代码](https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/kubelet/config/v1beta1/types.go) # 该代码是 Go 结构体与 JSON 格式的解析对应关系。其中的注释就是配置文件各字段的含义
 
 **apiVersion:** kubelet.config.k8s.io/v1beta1
 
 **kind:** KubeletConfiguration
 
-**address(STRING)** # kubelet 服务的 IP。默认为 0.0.0.0
+**address**(STRING) # kubelet 服务的 IP。默认为 0.0.0.0
 
-**cgroupDriver(cgroupfs|systemd)** # kubelet 用于操纵主机上 cgroup 的驱动程序。`默认值：cgroupfs`
+**cgroupDriver**(cgroupfs|systemd) # kubelet 用于操纵主机上 cgroup 的驱动程序。`默认值：cgroupfs`
 
-**imageMinimumGCAge(DURATION)** # 未使用的 image 进行垃圾回收之前的最小期限。`默认值：2m`
+**imageMinimumGCAge**(DURATION) # 未使用的 image 进行垃圾回收之前的最小期限。`默认值：2m`
 
-**nodeStatusReportFrequency(DURATION)** # 节点状态报告频率。`默认值：10s`
+**nodeStatusReportFrequency**(DURATION) # 节点状态报告频率。`默认值：10s`
 
-**nodeStatusUpdateFrequency(DURATION)** # 节点状态更新频率。`默认值：5m`
+**nodeStatusUpdateFrequency**(DURATION) # 节点状态更新频率。`默认值：5m`
 
-**resolvConf(STRING)** # kubelet 启动的容器所使用的解析器的配置文件。`默认值：/etc/resolv.conf`
+**resolvConf**(STRING) # kubelet 启动的容器所使用的解析器的配置文件。`默认值：/etc/resolv.conf`
 
 - Ubuntu 中，配置则会被改为 `/run/systemd/resolve/resolv.conf`
 
