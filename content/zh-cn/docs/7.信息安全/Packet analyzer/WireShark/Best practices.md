@@ -8,7 +8,7 @@ weight: 21
 
 > 参考：
 >
-> - 
+> -
 
 # 从 pcap 文件中还原出原始文件
 
@@ -28,15 +28,14 @@ weight: 21
 
 此时我们需要做的就是想办法把该文件开头/结尾不需要的部分去掉 (●ˇ∀ˇ●)
 
-使用 [Visual Studio Code](docs/2.编程/Programming%20environment/IDE/Visual%20Studio%20Code/Visual%20Studio%20Code.md) 安装一个十六进制编辑器的插件，并用打开 response_file.hex 会看到如下内容。
+使用 [Visual Studio Code](/docs/2.编程/Programming%20environment/IDE/Visual%20Studio%20Code/Visual%20Studio%20Code.md) 安装一个十六进制编辑器的插件，并用打开 response_file.hex 会看到如下内容。
 
 ![800](https://notes-learning.oss-cn-beijing.aliyuncs.com/wireshark/best_practices/restore_files_response_file_hex_1.png)
 
-我们需要把 HTTP 的 Header 删掉，根据 WireShark 的 TCP 流看，HTTP Header 后面跟着两个换行（从 [ASCII 表](docs/8.通用技术/编码与解码/字符的编码与解码/ASCII%20表.md) 查时 0D 0A），所以也就是截止到 50 4B 之前的所有内容都要删掉
+我们需要把 HTTP 的 Header 删掉，根据 WireShark 的 TCP 流看，HTTP Header 后面跟着两个换行（从 [ASCII 表](/docs/8.通用技术/编码与解码/字符的编码与解码/ASCII%20表.md) 查时 0D 0A），所以也就是截止到 50 4B 之前的所有内容都要删掉
 
 然后回到 WireShark 中看看 TCP 流的尾部，是一个换行及后面的内容，也要删掉
 
 ![1000](https://notes-learning.oss-cn-beijing.aliyuncs.com/wireshark/best_practices/restore_files_4.png)
 
 同样的，在 VSCode 中删掉，最后保存剩余的内容为新文件，此时，该文件就是原始文件了。MD5 也是一样的。
-

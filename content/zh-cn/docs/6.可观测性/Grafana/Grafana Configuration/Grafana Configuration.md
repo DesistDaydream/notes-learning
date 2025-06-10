@@ -1,7 +1,7 @@
 ---
 title: Grafana Configuration
 linkTitle: Grafana Configuration
-weight: 20
+weight: 1
 ---
 
 # 概述

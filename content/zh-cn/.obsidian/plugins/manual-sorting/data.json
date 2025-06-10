@@ -8,8 +8,7 @@
       "obsidian_template",
       "Excalidraw",
       "files",
-      "featured-background.jpg",
-      "Clippings"
+      "featured-background.jpg"
     ],
     "about": [
       "about/_index.md",
@@ -46,7 +45,6 @@
       "blog/copy/云原生/如何构建以应用为中心的Kubernetes.md",
       "blog/copy/云原生/ChatGPT 团队是如何使用Kubernetes的.md"
     ],
-    "Clippings": [],
     "docs": [
       "docs/_index.md",
       "docs/学习",
@@ -3334,8 +3332,8 @@
       "docs/12.AI/AI MGMT",
       "docs/12.AI/最佳实践.md",
       "docs/12.AI/Automation",
-      "docs/12.AI/Glossary.md",
-      "docs/12.AI/Retrieval.md"
+      "docs/12.AI/Retrieval.md",
+      "docs/12.AI/Glossary.md"
     ],
     "docs/12.AI/机器学习": [
       "docs/12.AI/机器学习/_index.md",

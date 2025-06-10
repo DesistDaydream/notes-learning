@@ -131,7 +131,7 @@ module 部分的配置用于处理 Hugo 模块的运行逻辑。
 
 > 参考：
 >
-> - [官方文档，模板-站点地图模板](https://gohugo.io/templates/sitemap-template/)
+> - [官方文档，模板 - 站点地图模板](https://gohugo.io/templates/sitemap-template/)
 
 **filename = \<STRING>** # 生成的 sitemap 文件的名称。`默认值：sitemap.xml`
 

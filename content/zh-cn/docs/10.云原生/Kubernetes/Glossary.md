@@ -1,7 +1,7 @@
 ---
 title: Glossary
 linkTitle: Glossary
-weight: 20
+weight: 200
 ---
 
 # 概述

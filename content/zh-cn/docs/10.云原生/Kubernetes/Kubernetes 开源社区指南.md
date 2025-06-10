@@ -1,7 +1,7 @@
 ---
-title: "Kubernetes 开源社区指南"
-linkTitle: "Kubernetes 开源社区指南"
-weight: 20
+title: Kubernetes 开源社区指南
+linkTitle: Kubernetes 开源社区指南
+weight: 100
 ---
 
 # 概述
