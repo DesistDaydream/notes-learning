@@ -1,6 +1,6 @@
 ---
-title: Provisioning 配置
-linkTitle: Provisioning 配置
+title: Provisioning
+linkTitle: Provisioning
 weight: 20
 ---
 
@@ -20,23 +20,18 @@ Grafana 在一开始，只能通过 Web 页面(也就是 API)来配置 DataSourc
 
 Grafana 从 v5.0 版本中，决定通过一个 **Provisioning(配置供应系统)** 来解决上述问题。这个系统可以通过一系列的配置文件，让 Grafana 启动时加载他们，可以瞬间让启动好的 Grafana 就具有一定数量的数据源和仪表盘。这种行为使得 GitOps 更自然。这种思路除了可以用在数据源和仪表盘上以外，还可以扩展，比如提前配好用户信息、告警信息等等。
 
-Grafana 的 Provisioning(配置供应系统) 可以提供如下能力，每种能力使用一个目录
+**Grafana 的 Provisioning(配置供应系统) 可以提供如下能力，每种能力使用一个目录**
 
-> Notes: 可以通过 grafana.ini 的 .paths.provisioning 字段修改 ${ProvisioningDir} 的值
+> Notes: 可以通过 grafana.ini 的 .paths.provisioning 字段修改 ${ProvisioningDir} 的值，`默认值: /etc/grafana/provisioning/`
 
-| 能力                                       | 目录                             | 用途                                                                                          |
-| ---------------------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------- |
-| **[Data sources](#Data%20sources)(数据源)** | ${ProvisioningDir}/dashboards/ | 预配置 Grafana 数据源                                                                             |
+| 能力                                       | 目录                             | 用途                                                                                           |
+| ---------------------------------------- | ------------------------------ | -------------------------------------------------------------------------------------------- |
+| **[Data sources](#Data%20sources)(数据源)** | ${ProvisioningDir}/dashboards/ | 预配置 Grafana 数据源                                                                              |
 | **[Plugins](#Plugins)(插件)**              | ${ProvisioningDir}/plugins/    | 预配置 [Plugins](/docs/6.可观测性/Grafana/Plugins.md)                                               |
 | **[Dashboards](#Dashboards)(仪表盘)**       | ${ProvisioningDir}/dashboards/ | 预配置 [Panel 与 Dashboard](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Panel%20与%20Dashboard.md) |
 | **[Alerting](#Alerting)(警报)**            | ${ProvisioningDir}/alerting/   | 预配置 [Grafana Alerting](/docs/6.可观测性/Grafana/Grafana%20Alerting.md)                           |
 
-默认情况下，Grafana 从 **/etc/grafana/provisioning/** 目录下读取要预加载的各种内容
-
-- **./dashboards/\*.yaml** # Grafana 启动时，会根据该路径下配置文件内的 .providers.options.path 字段的路径配置，去对应路径加载 grafana 的 dashboard 的 json 文件。
-- **./datasources/\*.yaml** # Grafana 启动时，会根据该路径下配置文件，自动加载数据源信息。
-- **./notifiers/\*.yaml** # Grafana 启动时，加载的告警配置文件。
-- **./plugins/\*.yaml** # Grafana 启动时，加载的插件的配置文件。用来管理 Grafana 插件
+> [!Tip] 通常默认情况下，从目录中读取所有 .yaml 文件，作为该能力的配置文件，以加载的各种内容
 
 # Data sources
 
@@ -71,8 +66,10 @@ datasources:
 
 https://grafana.com/docs/grafana/latest/administration/provisioning/#dashboards
 
-该目录下的配置文件将会指定一个**路径**，Grafana 启动时，会读取**该路径**下的所有 `*.json` 文件，并作为 Dashboard 加载到 Grafana 中。并且每隔一段时间就会检查路径下的文件，当文件有更新时，会同步更新加载到 Grafana 中的 Dashboard。
+在 ${ProvisioningDir}/dashboards/ 目录中添加一个或多个 [YAML](docs/2.编程/无法分类的语言/YAML.md) 格式配置文件来管理 Grafana 中的 Dashboard。每个配置文件都包含 Grafana 用于从本地文件系统加载 Dashboard 的提供程序列表。
 
+> 该目录下的配置文件将会指定**路径**，Grafana 启动时，会读取**该路径**下的所有 `*.json` 文件，并作为 Dashboard 加载到 Grafana 中。并且每隔一段时间就会检查路径下的文件，当文件有更新时，会同步更新加载到 Grafana 中的 Dashboard。
+>
 > 注意：目录下的 .json 文件就是在 Web 页面导出的 Dashboard。
 
 **apiVersion**(INT) # `默认值：1`
@@ -81,17 +78,17 @@ https://grafana.com/docs/grafana/latest/administration/provisioning/#dashboards
 
 - **name**(STRING) # an unique provider name. Required
 - **orgId: 1** # Org 的 ID 号，`默认值：1`。通常 Grafana 启动后会自动创建一个名为 Main Org. 的 Org，该 Org 的 ID 为 1
-- **folder(STRING)** # 从目录读取到的所有仪表盘应该存放的文件夹。文件夹指的是 Grafana Web UI 上用于存放仪表盘的地方。
+- **folder**(STRING) # 从目录读取到的所有仪表盘应该存放的文件夹。文件夹指的是 Grafana Web UI 上用于存放仪表盘的地方。
     - 注意：文件夹的名称与仪表盘的名称不能相同，否则将会报错并且无法自动生成仪表盘
     - 若该值为空，则将仪表盘加载到 Grafana 的根级别仪表盘
-- **folderUid(STRING)** # 上面 folder 文件夹的 UID folder UID. will be automatically generated if not specified
-- **type(string)** # 提供者类型。默认值：file
-- **disableDeletion(bool)** # 是否允许通过 Web UI 删除目录下的仪表盘
-- **updateIntervalSeconds: 10** # \<int> Grafana 检查该目录下仪表盘是否有更新的间隔时间(单位：秒)。
-- **allowUiUpdates(bool)** # 是否允许通过 Web UI 更新目录下仪表盘
-- **options(Object)**
-  - **path(string)** # 必须的。要加载仪表盘的目录。该目录下的所有 .json 文件都会被 Grafana 加载为仪表盘
-  - **foldersFromFilesStructure(bool)** # 使用文件系统中的文件夹名称作为 Grafana Web UI 中的文件夹名。`默认值：false`。具体用法下文 “文件系统结构映射到 WebUI 中的文件夹”
+- **folderUid**(STRING) # 上面 folder 文件夹的 UID folder UID. will be automatically generated if not specified
+- **type**(string) # 提供者类型。默认值：file
+- **disableDeletion**(bool) # 是否允许通过 Web UI 删除目录下的仪表盘
+- **updateIntervalSeconds**(INT) # Grafana 检查该目录下仪表盘是否有更新的间隔时间(单位：秒)。
+- **allowUiUpdates**(bool) # 是否允许通过 Web UI 更新目录下仪表盘
+- **options**(Object)
+  - **path**(string) # 必须的。要加载仪表盘的目录。该目录下的所有 .json 文件都会被 Grafana 加载为仪表盘
+  - **foldersFromFilesStructure**(bool) # 使用文件系统中的文件夹名称作为 Grafana Web UI 中的文件夹名。`默认值：false`。具体用法下文 “文件系统结构映射到 WebUI 中的文件夹”
     - 注意：该字段与 `folder` 和 `folderUid` 冲突。
 
 > [!Attention]
@@ -99,7 +96,7 @@ https://grafana.com/docs/grafana/latest/administration/provisioning/#dashboards
 
 ## 配置文件示例
 
-加载 /etc/grafana/provisioning/dashboards/test 目录下所有 .json 文件为 Dashboard。
+加载 /etc/grafana/provisioning/dashboards/custom 目录下所有 .json 文件为 Dashboard。
 
 ```yaml
 apiVersion: 1
@@ -154,7 +151,7 @@ Grafana 的 Web UI 中将会创建 `server` 与 `application` 两个文件夹，
 > - [官方文档，Provision 警报](https://grafana.com/docs/grafana/latest/administration/provisioning/#alerting)
 > - [官方文档，提供警报资源](https://grafana.com/docs/grafana/latest/alerting/set-up/provision-alerting-resources/)
 > - [官方文档，使用配置文件来提供警报资源](https://grafana.com/docs/grafana/latest/alerting/set-up/provision-alerting-resources/file-provisioning/)
->   - 配置文件就是指 [Provisioning 配置](/docs/6.可观测性/Grafana/Grafana%20Configuration/Provisioning%20配置.md)
+>   - 配置文件就是指 [Provisioning](docs/6.可观测性/Grafana/Grafana%20Configuration/Provisioning.md)
 
 - [Example Alert Notification Channels Config File](https://grafana.com/docs/grafana/latest/administration/provisioning/#example-alert-notification-channels-config-file)
 - [Supported Settings](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings)

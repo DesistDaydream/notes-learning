@@ -1830,7 +1830,7 @@
     "docs/6.可观测性/Grafana/Grafana Configuration": [
       "docs/6.可观测性/Grafana/Grafana Configuration/_index.md",
       "docs/6.可观测性/Grafana/Grafana Configuration/Grafana Configuration.md",
-      "docs/6.可观测性/Grafana/Grafana Configuration/Provisioning 配置.md"
+      "docs/6.可观测性/Grafana/Grafana Configuration/Provisioning.md"
     ],
     "docs/6.可观测性/Grafana/Panel 与 Dashboard": [
       "docs/6.可观测性/Grafana/Panel 与 Dashboard/_index.md",

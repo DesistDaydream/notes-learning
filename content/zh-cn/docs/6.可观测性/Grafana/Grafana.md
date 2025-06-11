@@ -47,7 +47,7 @@ docker run -d --name grafana \
 **/etc/grafana/** # Grafana 配置文件保存路径
 
 - **./grafana.ini** # Grafana 运行所需配置文件
-- **./provisioning/** # Grafana 的 Provisioning 功能默认要读取的路径。该功能详见 [Provisioning 配置](/docs/6.可观测性/Grafana/Grafana%20Configuration/Provisioning%20配置.md)。可以通过 grafana.ini 的 .paths.provisioning 字段修改读取路径
+- **./provisioning/** # Grafana 的 Provisioning 功能默认要读取的路径。该功能详见 [Provisioning](docs/6.可观测性/Grafana/Grafana%20Configuration/Provisioning.md)。可以通过 grafana.ini 的 .paths.provisioning 字段修改读取路径
 
 **/var/lib/grafana/** # Grafana 数据保存路径
 
