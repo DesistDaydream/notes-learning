@@ -225,7 +225,7 @@ New-ItemProperty -Path 'HKLM:\Software\Tailscale IPN' -Name LoginURL -PropertyTy
 - 在 Powershell 执行
 
 ```bash
-tailscale up --login-server=http://${headscale_server} --accept-routes=true --accept-dns=false
+tailscale up --login-server=http://${headscale_server} --accept-routes=false --accept-dns=false
 ```
 
 - 右键点击任务栏中的 Tailscale 图标，再点击 `Log in` 获取接入 Headscale 的命令

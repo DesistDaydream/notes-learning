@@ -7,10 +7,10 @@ title: WebDAV
 > 参考：
 >
 > - [Wiki, WebDAV](https://en.wikipedia.org/wiki/WebDAV)
-> - [RFC 4918， HTTP Extensions for Web Distributed Authoring and Versioning (WebDAV) ](https://www.rfc-editor.org/rfc/rfc4918.html)
+> - [RFC 4918, HTTP Extensions for Web Distributed Authoring and Versioning (WebDAV) ](https://www.rfc-editor.org/rfc/rfc4918.html)
 > - <https://www.zhihu.com/question/30719209>
 
-**Web Distributed Authoring and Versioning(Web 分布式创作和版本控制，简称 WebDAV)** 是 HTTP 的一组扩展，它允许[用户代理](https://en.wikipedia.org/wiki/User_agent)通过提供[并发控制](https://en.wikipedia.org/wiki/Concurrency_control)和[命名空间操作的设施，](https://en.wikipedia.org/wiki/Namespace)直接在 [HTTP Web 服务器](https://en.wikipedia.org/wiki/Web_server) 中协作创作内容，从而允许 Web 被视为一种 可写的、协作的 媒体，而不仅仅是一种只读媒体。WebDAV 定义在 [RFC 4918](https://datatracker.ietf.org/doc/html/rfc4918) 中
+**Web Distributed Authoring and Versioning(Web 分布式创作和版本控制，简称 WebDAV)** 是 HTTP 的一组扩展，它允许 [User-Agent(用户代理)](/docs/Web/Glossary.md#User-Agent) 通过提供[并发控制](https://en.wikipedia.org/wiki/Concurrency_control)和[命名空间操作的设施，](https://en.wikipedia.org/wiki/Namespace)直接在 [HTTP Web 服务器](https://en.wikipedia.org/wiki/Web_server) 中协作创作内容，从而允许 Web 被视为一种 可写的、协作的 媒体，而不仅仅是一种只读媒体。WebDAV 定义在 [RFC 4918](https://datatracker.ietf.org/doc/html/rfc4918) 中
 
 当我们使用符合 WebDAV 标准的程序部署了服务端之后，通过客户端，就可以使用 HTTP 协议访问服务端
 

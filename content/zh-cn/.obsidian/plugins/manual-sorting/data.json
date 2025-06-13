@@ -2133,6 +2133,7 @@
       "docs/7.信息安全/Utility"
     ],
     "docs/7.信息安全/Access Control": [
+      "docs/7.信息安全/Access Control/OAuth.md",
       "docs/7.信息安全/Access Control/_index.md",
       "docs/7.信息安全/Access Control/Access Control.md",
       "docs/7.信息安全/Access Control/RBAC.md"
@@ -3507,7 +3508,8 @@
       "docs/Web/网站搭建",
       "docs/Web/WebServer.md",
       "docs/Web/Nginx",
-      "docs/Web/Proxy.md"
+      "docs/Web/Proxy.md",
+      "docs/Web/Glossary.md"
     ],
     "docs/Web/网站搭建": [
       "docs/Web/网站搭建/_index.md",

@@ -1,5 +1,6 @@
 ---
 title: Alertmanager
+linkTitle: Alertmanager
 weight: 1
 ---
 

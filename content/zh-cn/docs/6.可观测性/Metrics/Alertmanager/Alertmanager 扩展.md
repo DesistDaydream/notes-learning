@@ -1,10 +1,14 @@
 ---
 title: Alertmanager 扩展
+linkTitle: Alertmanager 扩展
+weight: 20
 ---
 
 # 概述
 
 > 参考：
+>
+> - 
 
 Alertmanager 自带一个 UI 界面，可以用来查看报警和静默管理。但是告警发送目标、历史告警、etc. 个性化功能还比较缺，有很多项目可以补充这些能力。
 

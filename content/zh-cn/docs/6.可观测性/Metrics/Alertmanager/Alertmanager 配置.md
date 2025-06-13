@@ -1,5 +1,7 @@
 ---
 title: Alertmanager 配置
+linkTitle: Alertmanager 配置
+weight: 2
 ---
 
 # 概述
@@ -52,25 +54,31 @@ title: Alertmanager 配置
 
 ### SMTP 相关配置
 
-**smtp_from**: <tmpl_string> # The default SMTP From header field.
+**smtp_from**(TMPL_STRING) # 默认的 SMTP From 头字段。
 
-**smtp_smarthost**(STRING) # The default SMTP smarthost used for sending emails, including port number.Port number usually is 25, or 587 for SMTP over TLS (sometimes referred to as STARTTLS).
+**smtp_smarthost**(STRING) # 用于发送电子邮件的默认 SMTP smarthost，包括端口号。端口号通常是 25 或 587(带 TLS 的 SMTP，有时称为 STARTTLS)。
 
-- Example: smtp.example.org:587
+- 示例：smtp.example.org:587
 
-**smtp_hello**(STRING) # The default hostname to identify to the SMTP server. `默认值: localhost`
+**smtp_hello**(STRING) # 用于识别 SMTP 服务器的默认主机名。`默认值：localhost`
 
-**smtp_auth_username**(STRING) # SMTP Auth using CRAM-MD5, LOGIN and PLAIN. If empty, Alertmanager doesn't authenticate to the SMTP server.
+**smtp_auth_username**(STRING) # 使用 CRAM-MD5、LOGIN 和 PLAIN 的 SMTP 认证。如果为空，Alertmanager 不会对 SMTP 服务器进行身份验证。
 
-**smtp_auth_password**(STRING) # SMTP Auth using LOGIN and PLAIN.
+- 登录邮箱的账号
 
-**smtp_auth_identity**(STRING) # SMTP Auth using PLAIN.
+**smtp_auth_password**(STRING) # 使用 LOGIN 和 PLAIN 的 SMTP 认证。
 
-**smtp_auth_secret**(STRING) # SMTP Auth using CRAM-MD5.
+- 登录邮箱的密码，或者生成的客户端密钥
 
-**smtp_require_tls**(BOOLEAN) # The default SMTP TLS requirement. Note that Go does not support unencrypted connections to remote SMTP endpoints. `默认值: true`
+**smtp_auth_identity**(STRING) # 使用 PLAIN 的 SMTP 认证。
 
-### 用于 Slack 通知的 API URL
+**smtp_auth_secret**(STRING) # 使用 CRAM-MD5 的 SMTP 认证。
+
+**smtp_require_tls**(BOOLEAN) # SMTP 是否有必须 TLS。`默认值：true`。
+
+- 注意，Go 不支持与远程 SMTP 端点的未加密连接。
+
+### Slack 相关配置
 
 **slack_api_url**(secret)
 
@@ -118,7 +126,7 @@ title: Alertmanager 配置
 > - 如果多个 Label 是“或”的关系，那就只能配置多个相同接收者的路由，每个路由的 matchers 不同。
 > - `matchers` 字段代替了在 0.22.0 版本开始被弃用的 `match` 与 `match_re` 字段
 
-**recevier**(STRING) # 当前路由匹配到的告警的接收者。如果 recevier 是整个路由树的根，则就是默认接收者
+**recevier**(STRING) # 当前路由匹配到的告警的接收者。如果 recevier 是整个路由树的根，则就是默认接收者。这里指定的名字就是 [receivers](#receivers) 中的 name 字段，将告警发动到同名的接收者
 
 **routes**(\[][route](#route)) # 子路由配置。`routes` 字段的中的每个元素都是 `route` 字段 。
 
@@ -155,17 +163,20 @@ route:
 
 **receivers(接收者)** 是一个抽象的概念，可以是一个邮箱，也可以是微信、Slack、Webhook 等等。receivers 与 route 配置，根据路由规则将告警发送给指定的接收人。
 
-```yaml
-# 指定接收者的名称，用于在 route 配置环境中根据路由规则指定具体的接收者。
-name(STRING)
-# 不同的接收者有不同的配置环境。
-XXXXX_configs:
-- <详见下文对应配置环境>, ...
-```
+**name**(STRING) # 指定接收者的名称，用于在 route 配置环境中根据路由规则指定具体的接收者。
 
-现阶段 alertmanager 支持的 XXXX_configs 有 email_configs、pagerduty_configs、pushover_configs、slack_configs、opsgenie_configs、webhook_configs、victorops_configs、wechat_configs。
+**XXXXX_configs**(\[]OBJECT) # 不同的接收者有不同的配置环境。
 
-### email_configs - 邮件 接收者
+- e.g.
+    - [email_configs](#email_configs) # 邮件 接收者
+    - [webhook_configs](#webhook_configs) # webhook 接收者
+- Notes: 现阶段 alertmanager 支持的 XXXX_configs 有 email_configs、pagerduty_configs、pushover_configs、slack_configs、opsgenie_configs、webhook_configs、victorops_configs、wechat_configs。
+
+### email_configs
+
+**to**(STRING) # 接收者的邮箱地址
+
+**send_resolved**(BOOLEAN) # 是否发送解决的信息
 
 配置示例
 
@@ -177,7 +188,7 @@ receivers:
     send_resolved: true
 ```
 
-### webhook_configs - webhook 接收者
+### webhook_configs
 
 webhook 类型的接收者是一种通用的接收者，不像其他类型的接收者，只能发送给特定的服务。而 webhook 只需要指定接收消息的 IP:PORT 即可。Alertmanager 会将指定的消息体已 POST 方法发送给对方，不管对方是什么，只要能处理 Alertamanger 发过去的 JSON 结构的数据即可。
 
@@ -316,13 +327,13 @@ inhibit_rules:
     equal: ["alertname", "dev", "instance"]
 ```
 
-### 使用腾讯企业邮箱的配置样例
+### 使用腾讯企业邮箱的配置
 
 Note：如果要使用腾讯企业邮箱，则需要生成客户端密码，位置如下图
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fesx4v/1616068406969-84d8a216-cd2b-4438-a0e6-a6a85c64318a.jpeg)
 
-下面的配置默认会将所有告警都发送给desistdaydream@wisetv.com.cn。其中具有 network_device: interface-state 标签名和值的告警会发送给wangpeng@wisetv.com.cn
+下面的配置默认会将所有告警都发送给 desistdaydream@wisetv.com.cn。其中具有 network_device: interface-state 标签名和值的告警会发送给 wangpeng@wisetv.com.cn
 
 ```yaml
 global:

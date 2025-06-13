@@ -6,7 +6,7 @@ title: Authentication(认证)
 
 > 参考：
 > 
-> - [官方文档,运行方式-认证](https://grafana.com/docs/loki/latest/operations/authentication/)
+> - [官方文档，运行方式 - 认证](https://grafana.com/docs/loki/latest/operations/authentication/)
 
 Loki 不附带任何包含的身份验证层。运营商应在您的服务之前运行身份验证反向代理，例如使用基本身份验证或 OAuth2 代理的 NGINX。
 

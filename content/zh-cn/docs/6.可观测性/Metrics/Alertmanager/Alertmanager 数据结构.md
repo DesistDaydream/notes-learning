@@ -1,5 +1,7 @@
 ---
 title: Alertmanager 数据结构
+linkTitle: Alertmanager 数据结构
+weight: 3
 ---
 
 # 概述

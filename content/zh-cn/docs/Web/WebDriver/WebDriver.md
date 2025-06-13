@@ -10,7 +10,7 @@ weight: 1
 >
 > - [MDN，WebDriver](https://developer.mozilla.org/en-US/docs/Web/WebDriver)
 
-WebDriver 是远程控制接口，可以对 用户代理（i.e. [Browser](/docs/Web/Browser/Browser.md)） 进行控制。它提供了一个平台和语言中立的协议，作为浏览器自身进程外的程序远程控制 web 浏览器行为的方法。
+WebDriver 是远程控制接口，可以对 [User-Agent(用户代理)](/docs/Web/Glossary.md#User-Agent) 进行控制。它提供了一个平台和语言中立的协议，作为浏览器自身进程外的程序远程控制 web 浏览器行为的方法。
 
 WebDriver 符合 [W3C](/docs/Standard/Internet/W3C.md) 标准。
 

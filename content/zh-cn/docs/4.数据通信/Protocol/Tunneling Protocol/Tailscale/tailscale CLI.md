@@ -24,6 +24,8 @@ weight: 20
 
 **--accept-routes** # 是否接受其他节点公开的路由信息。`默认值: false`
 
+- Tips: 对应 /var/lib/tailscale/tailscaled.state 文件中 `.profile-XXX` 字段中的 `.RouteAll` 字段
+
 **--advertise-routes** # 向整个 Tailscale 网络公开本机的路由。也就是说告诉其他节点访问哪些 IP 要经过本机。`默认值: 空`，值是以 `,` 分割的 CIDR 格式的子网
 
 # EXAMPLE
