@@ -102,7 +102,7 @@ spec:
 
 > 参考：
 >
-> - [官方文档,参考-组件工具-kube-controller-manager](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/)
+> - [官方文档，参考-组件工具-kube-controller-manager](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/)
 
 kube-controller-manager 主要通过命令行标志来控制运行时行为
 
@@ -123,7 +123,7 @@ kube-controller-manager 主要通过命令行标志来控制运行时行为
   - 并且，当节点被标记为不健康时，所有节点的 Pod 都会从 Endpoint 中踢出。
 - **--node-startup-grace-period**(DURATION) # 节点启动期间可以处于无响应状态，但是超出 --node-startup-grace-period 时间后依然无响应，则将节点标记为不健康(NotRead、Unknow 等)状态。
 - **--pod-eviction-timeout**(DURATION) # 节点被标记为不健康状态(NotReady、Unkonw 等)后，等待 DURATION 时间后驱逐故障节点上所有 Pod。`默认值：5m0s`
-  - 这个标志的用法，可以通过[官方文档, 概念 - 集群架构 - 节点 章节中节点状态](https://kubernetes.io/docs/concepts/architecture/nodes/#condition)小节获得更详细的说明。
+  - 这个标志的用法，可以通过[官方文档，概念 - 集群架构 - 节点 章节中节点状态](https://kubernetes.io/docs/concepts/architecture/nodes/#condition)小节获得更详细的说明。
   - 其实，由于节点不可用，kubelet 无法接收到消息，说是删除 Pod，其实故障节点上 Pod 只会一直处于 Terminating 状态，因为故障节点的 kubelet 不可用，无法真正完成删除操作。
   - 但是在驱逐之前，如果节点状态不健康，则 service 管理的 endpoint 中，所有属于该节点的 Pod 都会被踢出，防止异常节点上的 Pod 处理请求。
 - **--secure-port**(INT) # 指定通过身份验证和授权为 HTTPS 服务的端口。`默认值：10257`。

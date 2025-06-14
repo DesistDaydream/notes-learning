@@ -6,7 +6,7 @@ title: RabbitMQ Operator
 
 > 参考：
 >
-> - 官方文档,
+> - 官方文档，
 > - <https://www.rabbitmq.com/kubernetes/operator/operator-overview.html>
 > - <https://www.rabbitmq.com/kubernetes/operator/using-operator.html#override>
 

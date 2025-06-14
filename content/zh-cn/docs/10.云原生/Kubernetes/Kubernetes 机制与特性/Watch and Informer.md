@@ -8,7 +8,7 @@ weight: 20
 
 > 参考：
 >
-> - [官方文档, 参考 - API 概述 - Kubernetes API 概念, 高效监测变化](https://kubernetes.io/docs/reference/using-api/api-concepts/#efficient-detection-of-changes)
+> - [官方文档，参考 - API 概述 - Kubernetes API 概念, 高效监测变化](https://kubernetes.io/docs/reference/using-api/api-concepts/#efficient-detection-of-changes)
 > - [K8s list-watch 机制和 Informer 模块](https://xuliangtang.github.io/posts/k8s-list-watch/#list-watch-%E6%9C%BA%E5%88%B6)
 
 **Reflector**

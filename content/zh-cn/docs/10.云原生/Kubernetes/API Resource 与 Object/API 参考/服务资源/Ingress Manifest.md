@@ -9,7 +9,7 @@ weight: 20
 > 参考：
 >
 > - [API 文档, 单页](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#ingress-v1-networking-k8s-io)
-> - [官方文档, 参考-Kubernetes API-服务资源-Ingress](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/ingress-v1/)
+> - [官方文档，参考-Kubernetes API-服务资源-Ingress](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/ingress-v1/)
 
 # Manifest 中的顶层字段
 

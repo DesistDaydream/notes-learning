@@ -6,8 +6,8 @@ title: Ceph 命令行工具
 
 > 参考：
 >
-> - [官方文档,Ceph 存储集群-手册页](https://docs.ceph.com/en/latest/rados/man/)
-> - [官方文档,Ceph 对象网关-radosgw-admin 手册页](https://docs.ceph.com/en/latest/man/8/radosgw-admin/#)
+> - [官方文档，Ceph 存储集群-手册页](https://docs.ceph.com/en/latest/rados/man/)
+> - [官方文档，Ceph 对象网关-radosgw-admin 手册页](https://docs.ceph.com/en/latest/man/8/radosgw-admin/#)
 
 # ceph # Ceph 管理工具
 

@@ -1,6 +1,6 @@
 ---
-title: Authenticating(认证)
-linkTitle: Authenticating(认证)
+title: Authentication(认证)
+linkTitle: Authentication(认证)
 weight: 1
 ---
 
@@ -8,9 +8,9 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档, 参考 - API 访问控制 - 认证](https://kubernetes.io/docs/reference/access-authn-authz/authentication/)
+> - [官方文档，参考 - API 访问控制 - 认证](https://kubernetes.io/docs/reference/access-authn-authz/authentication/)
 
-Authenticating(动词) 也称为 Authentication(名词) 身份验证。指明客户端是否有权限访问 API Server。
+**Authentication(名词)/Authenticating(动词)(身份验证)**，指明客户端是否有权限访问 API Server。
 
 就好比我们在登录一个网站时，需要输入账户和密码的概念类似。在使用 API Server 时，也是通过类似的方式，使用账户来登录 API server(虽然不是真的登录)。
 
@@ -22,7 +22,7 @@ Accounts 是一个在认证授权系统里的逻辑概念。Accounts 需要通�
 2. **ServiceAccount(服务账户，简称 SA)**
 
 > [!Tip]
-> UA 与 SA 的对比在 [官方文档, 参考 - API 访问控制 - 管理服务账号, User accounts 与 Service accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#user-accounts-versus-service-accounts) 有提到，官方并没有对 UserAccount 进行明确的定义，偏向于一个没有实体的抽象概念，更多的时候是用 **KubeConfig** 这个词来作为 UserAccount 功能的实现。
+> UA 与 SA 的对比在 [官方文档，参考 - API 访问控制 - 管理服务账号, User accounts 与 Service accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#user-accounts-versus-service-accounts) 有提到，官方并没有对 UserAccount 进行明确的定义，偏向于一个没有实体的抽象概念，更多的时候是用 **KubeConfig** 这个词来作为 UserAccount 功能的实现。
 >
 > - UA 用来给人。SA 用来给运行在 pod 中的进程
 > - UA 作用于全局，UA 的名字在集群的所有 namespace 中必须是唯一的。SA 作用于 namespace
@@ -30,7 +30,7 @@ Accounts 是一个在认证授权系统里的逻辑概念。Accounts 需要通�
 
 ### User Account(用户账号)
 
-详见：[User Account(KubeConfig)](/docs/10.云原生/Kubernetes/API%20访问控制/Authenticating(认证)/User%20Account(KubeConfig).md)
+详见：[User Account(KubeConfig)](/docs/10.云原生/Kubernetes/API%20访问控制/Authentication(认证)/User%20Account(KubeConfig).md)
 
 User 不属于 K8S 中的一个资源。这类 Account 适用于：客户端访问集群时使用(比如使用 kubectl、scheduler 等访问 api)
 
@@ -51,7 +51,7 @@ openssl req -new -key lch.key -out lch.csr -subj "/CN=lch"
 
 ### Service Account(服务账号)
 
-详见：[Service Account](/docs/10.云原生/Kubernetes/API%20访问控制/Authenticating(认证)/Service%20Account.md)
+详见：[Service Account](/docs/10.云原生/Kubernetes/API%20访问控制/Authentication(认证)/Service%20Account.md)
 
 **Service Account(服务账号，简称 SA)** 属于 K8S 中的一个资源。这类 Account 适用于：Pod 访问集群时使用。
 

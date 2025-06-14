@@ -8,7 +8,7 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档, 概念-集群管理-集群网络](https://kubernetes.io/docs/concepts/cluster-administration/networking/)
+> - [官方文档，概念-集群管理-集群网络](https://kubernetes.io/docs/concepts/cluster-administration/networking/)
 
 Kubernetes 的整体网络分为以下三类
 

@@ -8,7 +8,7 @@ weight: 20
 
 > 参考：
 >
-> - [官方文档, HTTP API](https://grafana.com/docs/loki/latest/api/)
+> - [官方文档，HTTP API](https://grafana.com/docs/loki/latest/api/)
 
 每个组件都会暴露一些基本的 API
 

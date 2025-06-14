@@ -93,7 +93,7 @@ RADOS Gateway 简称 radosgw，Ceph 通过 radosgw 程序，可以对外提供�
 
 > 参考：
 >
-> - [官方文档,Ceph 管理器](https://docs.ceph.com/en/latest/mgr/)
+> - [官方文档，Ceph 管理器](https://docs.ceph.com/en/latest/mgr/)
 
 Ceph Manager 是通过一个名为 ceph-mgr 的二进制程序以守护进程运行的管理器。ceph-mgr 可以向外部监控和管理系统提供额外的监控和接口。
 

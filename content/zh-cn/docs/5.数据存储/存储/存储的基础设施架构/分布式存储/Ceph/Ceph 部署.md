@@ -6,7 +6,7 @@ title: Ceph 部署
 
 > 参考：
 >
-> - [官方文档, Cephadm](https://docs.ceph.com/en/latest/cephadm/)
+> - [官方文档，Cephadm](https://docs.ceph.com/en/latest/cephadm/)
 
 # 以 pacific 版本为例
 

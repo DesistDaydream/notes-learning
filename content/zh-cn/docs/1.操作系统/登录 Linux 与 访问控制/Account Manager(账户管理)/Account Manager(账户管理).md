@@ -7,9 +7,9 @@ weight: 1
 
 > 参考：
 >
-> - [红帽官方文档, RedHat7 - 管理用户账户的基础知识](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-getting_started#sec-Managing_User_Accounts)
-> - [红帽官方文档, RedHat7 - 系统管理员指南-第四章-管理用户和组](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-managing_users_and_groups)
-> - [红帽官方文档, RedHat7 - 安全指南](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/index)
+> - [红帽官方文档，RedHat7 - 管理用户账户的基础知识](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-getting_started#sec-Managing_User_Accounts)
+> - [红帽官方文档，RedHat7 - 系统管理员指南-第四章-管理用户和组](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-managing_users_and_groups)
+> - [红帽官方文档，RedHat7 - 安全指南](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/index)
 
 Linux 操作系统是一个多用户操作系统，所以除了 **Terminal(终端)** 以外，还需 **Account(账户)** 才可以登录上去，Linux 操作系统允许多个用户访问安装在一台机器上的单个系统。每个 User(用户) 都在自己的 Account(账户) 下操作。因此，Account Manager 代表了 Linux 系统管理的核心要素。
 

@@ -8,8 +8,8 @@ weight: 20
 
 > 参考：
 >
-> - [官方文档, 概念 - 配置 - 使用 kubeconfig 文件访问集群](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
-> - [官方文档, 任务 - 访问集群中的应用程序 - 配置多集群访问](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)
+> - [官方文档，概念 - 配置 - 使用 kubeconfig 文件访问集群](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
+> - [官方文档，任务 - 访问集群中的应用程序 - 配置多集群访问](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)
 
 **User Account(用户账户，简称 UA)** 使用 **KubeConfig** 文件进行认证。KubeConfig 是一个允许各个客户端与集群通信时所用到的认证配置文件，由于与 kubernetes 交互的途径只有通过 API Server 这一条途径，所以就相当于 API Server 的各客户端(kubelet、scheduler、controller-manager、kube-proxy 等)与其进行通信时使用的认证、配置文件。
 
@@ -36,7 +36,7 @@ KubeConfig 是对 UserAccount 的扩展，KubeConfig 会创建 UserAccount 并�
 > 参考：
 >
 > - 官方文档中还没有对这个配置文件的描述（截至到啥时候忘了，不过从 1.27 开始官方文档能看到了）
->   - [官方文档, 参考 - 配置 APIs - kubeconfig(v1)](https://kubernetes.io/docs/reference/config-api/kubeconfig.v1/)
+>   - [官方文档，参考 - 配置 APIs - kubeconfig(v1)](https://kubernetes.io/docs/reference/config-api/kubeconfig.v1/)
 > - 代码: https://github.com/kubernetes/client-go/blob/master/tools/clientcmd/api/types.go
 
 使用命令修改：

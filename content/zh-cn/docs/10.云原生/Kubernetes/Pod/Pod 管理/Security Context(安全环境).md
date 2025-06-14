@@ -6,7 +6,7 @@ title: Security Context(安全环境)
 
 > 参考：
 >
-> - [官方文档,任务-配置 Pod 和 Containers](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
+> - [官方文档，任务-配置 Pod 和 Containers](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
 > - [公众号-阳明](https://mp.weixin.qq.com/s/NFgQrvn_LyU0qQbhMZwDAQ)
 
 **Security Context(安全环境)** 用来定义 Pod 或 Container 的特权与访问控制设置。 安全上下文包括但不限于：

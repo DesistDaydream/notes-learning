@@ -6,8 +6,8 @@ title: ConfigMap 与 Secret
 
 > 参考：
 >
-> - [官方文档,概念-存储-卷-configMap](https://kubernetes.io/zh/docs/concepts/storage/volumes/#configmap)
-> - [官方文档,任务-配置 Pods 和容器-使用 ConfigMap 配置 Pod](https://kubernetes.io/zh/docs/tasks/configure-pod-container/configure-pod-configmap/)
+> - [官方文档，概念-存储-卷-configMap](https://kubernetes.io/zh/docs/concepts/storage/volumes/#configmap)
+> - [官方文档，任务-配置 Pods 和容器-使用 ConfigMap 配置 Pod](https://kubernetes.io/zh/docs/tasks/configure-pod-container/configure-pod-configmap/)
 
 ConfigMap 与 Secret 这两种资源是 Kubernetes 的配置管理中心，是一种特殊类型的 Volume。用来提供给从 k8s 集群外部到 pod 内部的应用，注入各种信息(配置文件、变量等)的功能。
 

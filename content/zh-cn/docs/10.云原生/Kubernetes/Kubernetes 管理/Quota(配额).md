@@ -6,8 +6,8 @@ title: Quota(配额)
 
 > 参考：
 >
-> - [官方文档,概念-策略-LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/)
-> - [官方文档,概念-策略-ResourceQuotas](https://kubernetes.io/docs/concepts/policy/resource-quotas/)
+> - [官方文档，概念-策略-LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/)
+> - [官方文档，概念-策略-ResourceQuotas](https://kubernetes.io/docs/concepts/policy/resource-quotas/)
 
 # namespace 中的资源配额
 

@@ -8,7 +8,7 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档, 概念 - 安全 - Kubernetes API 的访问控制](https://kubernetes.io/docs/concepts/security/controlling-access/)
+> - [官方文档，概念 - 安全 - Kubernetes API 的访问控制](https://kubernetes.io/docs/concepts/security/controlling-access/)
 
 **认证用于身份验证，授权用于权限检查，准入控制机制用于补充授权机制**
 
@@ -26,7 +26,7 @@ API Server 是集群的入口，不管是对资源对象的增删改查，还是
 
 # Kubernetes API 访问控制
 
-我们可以通过 kubectl、客户端库、发送 REST 请求 这几种方法访问 [Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/)。[人类用户(User Account(KubeConfig))](/docs/10.云原生/Kubernetes/API%20访问控制/Authenticating(认证)/User%20Account(KubeConfig).md) 和 [Kubernetes 的 Service Account](/docs/10.云原生/Kubernetes/API%20访问控制/Authenticating(认证)/Service%20Account.md) 都可以被授权进行 API 访问。 请求到达 API Server 后会经过几个阶段，具体如下图所示：
+我们可以通过 kubectl、客户端库、发送 REST 请求 这几种方法访问 [Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/)。[人类用户(User Account(KubeConfig))](/docs/10.云原生/Kubernetes/API%20访问控制/Authentication(认证)/User%20Account(KubeConfig).md) 和 [Kubernetes 的 Service Account](/docs/10.云原生/Kubernetes/API%20访问控制/Authentication(认证)/Service%20Account.md) 都可以被授权进行 API 访问。 请求到达 API Server 后会经过几个阶段，具体如下图所示：
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cvkvyz/1616118854890-e2e31942-d6ea-40a7-83d8-816abb4c136a.jpeg)
 

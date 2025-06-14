@@ -8,9 +8,9 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档, 参考 - API 访问控制 - 授权](https://kubernetes.io/docs/reference/access-authn-authz/authorization/)
+> - [官方文档，参考 - API 访问控制 - 授权](https://kubernetes.io/docs/reference/access-authn-authz/authorization/)
 
-在 Kubernetes 中，在 **Authorization(i.e.授予访问权限，简称：授权)** 之前必须进行过 [Authenticating(认证)](/docs/10.云原生/Kubernetes/API%20访问控制/Authenticating(认证)/Authenticating(认证).md)
+在 Kubernetes 中，在 **Authorization(i.e.授予访问权限，简称：授权)** 之前必须进行过 [Authentication(认证)](/docs/10.云原生/Kubernetes/API%20访问控制/Authentication(认证)/Authentication(认证).md)
 
 ## 授权流程
 

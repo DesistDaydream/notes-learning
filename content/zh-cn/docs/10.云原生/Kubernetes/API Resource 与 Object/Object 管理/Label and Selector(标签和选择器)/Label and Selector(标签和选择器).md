@@ -7,11 +7,11 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档,概念-使用 Kubernetes 对象-标签和选择器](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
-> - [官方文档,概念-使用 Kubernetes 对象-推荐的标签](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/)
-> - [官方文档,参考-常见的内置标签、注释、污点](https://kubernetes.io/docs/reference/labels-annotations-taints/)
-> - [官方文档,参考-Kubernets API-通用定义-标签选择器](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/label-selector/)
-> - [官方文档,参考-Kubernets API-通用定义-节点选择器请求](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/node-selector-requirement/)
+> - [官方文档，概念-使用 Kubernetes 对象-标签和选择器](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
+> - [官方文档，概念-使用 Kubernetes 对象-推荐的标签](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/)
+> - [官方文档，参考-常见的内置标签、注释、污点](https://kubernetes.io/docs/reference/labels-annotations-taints/)
+> - [官方文档，参考-Kubernets API-通用定义-标签选择器](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/label-selector/)
+> - [官方文档，参考-Kubernets API-通用定义-节点选择器请求](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/node-selector-requirement/)
 
 **Label(标签)** 是 `键/值对` 的集合，在 Kubernetes 中，每一个对象都可以具有一个或多个 **Label(标签)**。Label 主要用来让用户定义对象的属性，以便为所有对象进行分类，并且还可以组织和选择对象的子集。标签可以在创建对象的同时添加，也可以随时修改对象上的标签。
 

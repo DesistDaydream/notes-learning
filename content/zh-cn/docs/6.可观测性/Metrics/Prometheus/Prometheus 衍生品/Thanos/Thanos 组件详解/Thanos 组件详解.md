@@ -6,7 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，组件](https://thanos.io/tip/components/)
 > - <https://zhuanlan.zhihu.com/p/137248127>
 
@@ -19,14 +19,14 @@ weight: 1
 # Receiver(接收器)
 
 > 参考：
-> 
-> - [官方文档,组件-接收器](https://thanos.io/tip/components/receive.md)
+>
+> - [官方文档，组件-接收器](https://thanos.io/tip/components/receive.md)
 
 # Querier(查询器)
 
 > 参考：
-> 
-> - [官方文档,组件-查询器](https://thanos.io/tip/components/query.md)
+>
+> - [官方文档，组件-查询器](https://thanos.io/tip/components/query.md)
 
 Querier 组件分为两部分
 
@@ -93,12 +93,12 @@ thanos query \
 # Query Frontend(查询前端)
 
 > 参考：
-> 
+>
 > - [官方文档，组件-查询前端](https://thanos.io/tip/components/query-frontend.md/)
 > - [公众号-k8s 技术圈，使用 Thanos 查询前端优化查询性能](https://mp.weixin.qq.com/s/W9diP0OKt_-ajAXM_wgogg)
 
 # Sidecar(边车)
 
 > 参考：
-> 
+>
 > - [官方文档，组件-边车](https://thanos.io/tip/components/sidecar.md/)

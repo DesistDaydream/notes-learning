@@ -5,8 +5,8 @@ title: 手动管理 Kubernetes 证书
 # 概述
 
 > 参考：
-> 
-> - [官方文档,任务-管理集群-证书](https://kubernetes.io/docs/tasks/administer-cluster/certificates/)
+>
+> - [官方文档，任务-管理集群-证书](https://kubernetes.io/docs/tasks/administer-cluster/certificates/)
 
 在使用客户端证书认证的场景下，你可以通过 `easyrsa`、`openssl` 或 `cfssl` 等工具以手工方式生成证书。
 
@@ -15,7 +15,6 @@ title: 手动管理 Kubernetes 证书
 **easyrsa** 支持以手工方式为你的集群生成证书。
 
 1. 下载、解压、初始化打过补丁的 easyrsa3。
-
 
 ```bash
 curl -LO https://storage.googleapis.com/kubernetes-release/easy-rsa/easy-rsa.tar.gz
@@ -26,11 +25,9 @@ cd easy-rsa-master/easyrsa3
 
 1. 生成新的证书颁发机构（CA）。参数 `--batch` 用于设置自动模式； 参数 `--req-cn` 用于设置新的根证书的通用名称（CN）。
 
-
     ./easyrsa --batch "--req-cn=${MASTER_IP}@`date +%s`" build-ca nopass
 
 1. 生成服务器证书和秘钥。 参数 `--subject-alt-name` 设置 API 服务器的 IP 和 DNS 名称。 `MASTER_CLUSTER_IP` 用于 API 服务器和控制管理器，通常取 CIDR 的第一个 IP，由 `--service-cluster-ip-range` 的参数提供。 参数 `--days` 用于设置证书的过期时间。 下面的示例假定你的默认 DNS 域名为 `cluster.local`。
-
 
 ```bash
 ./easyrsa --subject-alt-name="IP:${MASTER_IP},"\
@@ -48,7 +45,6 @@ build-server-full server nopass
 
 2. 在 API 服务器的启动参数中添加以下参数：
 
-
 ```bash
 --client-ca-file=/yourdirectory/ca.crt
 --tls-cert-file=/yourdirectory/server.crt
@@ -61,16 +57,13 @@ build-server-full server nopass
 
 1. 生成一个 2048 位的 ca.key 文件
 
-
     openssl genrsa -out ca.key 2048
 
 1. 在 ca.key 文件的基础上，生成 ca.crt 文件（用参数 -days 设置证书有效期）
 
-
     openssl req -x509 -new -nodes -key ca.key -subj "/CN=${MASTER_IP}" -days 10000 -out ca.crt
 
 1. 生成一个 2048 位的 server.key 文件：
-
 
     openssl genrsa -out server.key 2048
 
@@ -132,7 +125,6 @@ openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key \
 
 1. 下载、解压并准备如下所示的命令行工具。 注意：你可能需要根据所用的硬件体系架构和 cfssl 版本调整示例命令。
 
-
 ```bash
 curl -L https://github.com/cloudflare/cfssl/releases/download/v1.5.0/cfssl_1.5.0_linux_amd64 -o cfssl
 chmod +x cfssl
@@ -144,7 +136,6 @@ chmod +x cfssl-certinfo
 
 1. 创建一个目录，用它保存所生成的构件和初始化 cfssl：
 
-
 ```bash
 mkdir cert
 cd cert
@@ -153,7 +144,6 @@ cd cert
 ```
 
 1. 创建一个 JSON 配置文件来生成 CA 文件，例如：`ca-config.json`：
-
 
 ```json
 {
@@ -178,7 +168,6 @@ cd cert
 
 1. 创建一个 JSON 配置文件，用于 CA 证书签名请求（CSR），例如：`ca-csr.json`。 确认用你需要的值替换掉尖括号中的值。
 
-
 ```json
 {
   "CN": "kubernetes",
@@ -198,13 +187,11 @@ cd cert
 
 1. 生成 CA 秘钥文件（`ca-key.pem`）和证书文件（`ca.pem`）：
 
-
 ```bash
 ../cfssl gencert -initca ca-csr.json | ../cfssljson -bare ca
 ```
 
 1. 创建一个 JSON 配置文件，用来为 API 服务器生成秘钥和证书，例如：`server-csr.json`。 确认用你需要的值替换掉尖括号中的值。`MASTER_CLUSTER_IP` 是为 API 服务器 指定的服务集群 IP，就像前面小节描述的那样。 以下示例假定你的默认 DSN 域名为`cluster.local`。
-
 
 ```json
 {
@@ -234,7 +221,6 @@ cd cert
 ```
 
 1. 为 API 服务器生成秘钥和证书，默认会分别存储为`server-key.pem` 和 `server.pem` 两个文件。
-
 
 ```bash
 ../cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \

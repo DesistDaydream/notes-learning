@@ -8,7 +8,7 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档,概念-存储](https://kubernetes.io/docs/concepts/storage/)
+> - [官方文档，概念-存储](https://kubernetes.io/docs/concepts/storage/)
 > - [公众号-CNCF，卷扩展现在是个稳定特性](https://mp.weixin.qq.com/s/hNR5XkMeZbDVInUOX_5MAg)
 > - [公众号-CNCF，存储容量跟踪在 Kubernetes1.24 中正式 GA](https://mp.weixin.qq.com/s/EBghRVRQvnPSTf4YdCkp2w)
 

@@ -8,8 +8,8 @@ weight: 20
 
 > 参考：
 >
-> - [官方文档, 任务 - 配置 Pod 和 容器 - 为 Pods 配置服务账户](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
-> - [官方文档, 参考 - API 访问控制 - 管理服务账户](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/)
+> - [官方文档，任务 - 配置 Pod 和 容器 - 为 Pods 配置服务账户](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
+> - [官方文档，参考 - API 访问控制 - 管理服务账户](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/)
 
 详解 Service Account 之前，需要了解这么一个 k8s 的运行逻辑：**每个 Pod 在创建成功后，都会声明并使用一个 ServiceAccount 作为自己与集群通信的认证，默认使用 Pod 所在 Namepace 的名为 default 的 ServiceAccount**
 

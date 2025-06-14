@@ -6,8 +6,8 @@ title: Pod 生命周期与探针
 
 > 参考：
 >
-> - [官方文档, 概念 - 工作负载 - Pods - Pod 的生命周期](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/)
-> - [官方文档, 任务 - 配置 Pods 与 容器 - 配置 Liveness、Readiness、Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
+> - [官方文档，概念 - 工作负载 - Pods - Pod 的生命周期](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/)
+> - [官方文档，任务 - 配置 Pods 与 容器 - 配置 Liveness、Readiness、Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
 > - [公众号, YP 小站-怎么使用 Pod 的 liveness 和 readiness 与 startupProbe](https://mp.weixin.qq.com/s/jPkAj2C0ZNHbaSZRwTOk9g)
 
 ## Pod 从开始到结束，会有以下几个 phase(阶段)
@@ -59,12 +59,12 @@ spec:
 对于 Pod 的健康检查状态有以下几点说明：
 
 - 对于 Pod 中的 Container 有两种检查方式
-   - 存活性 liveness 探测：周期性探测 Container 的活性。如果探测失败那么 Container 将重新启动。无法更新
-   - 就绪状态 readiness 检测：定期探测 Container 中服务的准备情况。如果探测失败的话 Container 将从服务的后端移除(即使用 kubectl get pod 命令中 READY 标签中左侧数字会减少，减少的就是该 Pod 中某个不在准备状态的 Container)。无法更新。
+  - 存活性 liveness 探测：周期性探测 Container 的活性。如果探测失败那么 Container 将重新启动。无法更新
+  - 就绪状态 readiness 检测：定期探测 Container 中服务的准备情况。如果探测失败的话 Container 将从服务的后端移除(即使用 kubectl get pod 命令中 READY 标签中左侧数字会减少，减少的就是该 Pod 中某个不在准备状态的 Container)。无法更新。
 - 检查方式的探针类型：
-   - exec，发送命令进行检查。在容器中执行一个命令，如果命令的退出状态码为 0，则探针成功，否则失败
-   - tcpSocket：通过 TCP 协议来检查。对指定容器 IP 和 PORT 执行一个 TCP 检查，如果端口是开发的则探针成功，否则失败
-   - httpGet：通过 HTTP 返回的响应报文来检查。对指定容器的 IP、Port、Path 执行一个 http 的 get 请求，如果返回的状态码在 200 到 400 之间则表示成功，否则表示失败
+  - exec，发送命令进行检查。在容器中执行一个命令，如果命令的退出状态码为 0，则探针成功，否则失败
+  - tcpSocket：通过 TCP 协议来检查。对指定容器 IP 和 PORT 执行一个 TCP 检查，如果端口是开发的则探针成功，否则失败
+  - httpGet：通过 HTTP 返回的响应报文来检查。对指定容器的 IP、Port、Path 执行一个 http 的 get 请求，如果返回的状态码在 200 到 400 之间则表示成功，否则表示失败
 - Pod 中容器失败时候(存活性)的重启策略，Always，OnFailure，Never：Always(一失败就重启)
 - Pod 删除的时候：先发送 terminal 信号，有一个宽限期，宽限期一过发送终止信号
 
@@ -154,4 +154,3 @@ spec:
 各组件默认所占用端口号
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/zhow5n/1616119523444-d2794850-3f4c-41c8-8f75-e168a8825177.png)
-

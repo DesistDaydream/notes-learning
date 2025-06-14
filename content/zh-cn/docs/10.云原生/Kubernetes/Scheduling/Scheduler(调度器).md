@@ -8,7 +8,7 @@ weight: 20
 
 > 参考：
 >
-> - [官方文档, 概念 - 调度与驱逐](https://kubernetes.io/docs/concepts/scheduling-eviction/)
+> - [官方文档，概念 - 调度与驱逐](https://kubernetes.io/docs/concepts/scheduling-eviction/)
 > - [公众号 - 云原生社区动态，6 张图带你深入了解 kube-scheduler](https://mp.weixin.qq.com/s/GYmi_5lcG-iEPgZ4-dI1dg)
 
 **Scheduler(调度器)** 负责决定 Pod 与 Node 的匹配关系，并将 Pod 调度到匹配到的 Node 上，以便 Kubelet 可以运行这些 Pod。Scheduler 在调度时会充分考虑 Cluster 的拓扑结构，当前各个节点的负载，以及应用对高可用、性能、数据亲和性的需求。
@@ -23,7 +23,7 @@ Scheduler 通过 Kubernetes 的 watch 机制来发现集群中新创建且尚未
 
 > 参考：
 >
-> - [官方文档, 参考 - 调度 - 调度策略](https://kubernetes.io/docs/reference/scheduling/policies/)
+> - [官方文档，参考 - 调度 - 调度策略](https://kubernetes.io/docs/reference/scheduling/policies/)
 
 Scheduler 调度的时候，通过以下步骤来完成调度
 

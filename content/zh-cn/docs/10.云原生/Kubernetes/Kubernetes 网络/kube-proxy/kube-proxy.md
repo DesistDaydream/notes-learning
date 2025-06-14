@@ -33,8 +33,8 @@ kube-proxy 在 10249 端口上暴露监控指标，通过 curl -s http://127.0.0
 
 > 参考：
 >
-> - [官方文档,参考-组件工具-kube-proxy](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy/)(这里是命令行标志)
-> - [官方文档,参考-配置 APIs-kube-proxy 配置](https://kubernetes.io/docs/reference/config-api/kube-proxy-config.v1alpha1/)(v1alpha1)(这里是配置文详解)
+> - [官方文档，参考-组件工具-kube-proxy](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy/)(这里是命令行标志)
+> - [官方文档，参考-配置 APIs-kube-proxy 配置](https://kubernetes.io/docs/reference/config-api/kube-proxy-config.v1alpha1/)(v1alpha1)(这里是配置文详解)
 > - [kube-proxy 代码(v1alpha1)](https://pkg.go.dev/k8s.io/kube-proxy/config/v1alpha1#KubeProxyConfiguration)
 
 kube-proxy 可以通过 **命令行标志**和 **配置文件**来控制运行时行为。与 [kubelet 配置](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/2.Kubelet%20 节点代理/Kubelet%20 配置详解.md 节点代理/Kubelet 配置详解.md)一样，很多 命令行标志 与 配置文件 具有一一对应的关系。

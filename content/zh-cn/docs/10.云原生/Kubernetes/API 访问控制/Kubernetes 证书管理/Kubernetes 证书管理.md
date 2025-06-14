@@ -14,7 +14,7 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档,入门-最佳实践-PKI 证书和要求](https://kubernetes.io/docs/setup/best-practices/certificates/)
+> - [官方文档，入门-最佳实践-PKI 证书和要求](https://kubernetes.io/docs/setup/best-practices/certificates/)
 
 Kubernetes 需要 PKI 证书才能进行基于 TLS 的身份验证。如果你是使用 [kubeadm](https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/) 安装的 Kubernetes， 则会自动生成集群所需的证书。你还可以生成自己的证书。 例如，不将私钥存储在 API 服务器上，可以让私钥更加安全。此页面说明了集群必需的证书。
 

@@ -8,7 +8,7 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档, 概念 - 配置 - Pod 和容器的资源管理](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+> - [官方文档，概念 - 配置 - Pod 和容器的资源管理](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 
 # Pod 中 Container 的资源需求与资源限制
 
@@ -75,4 +75,3 @@ spec:
         - -cpus
         - "2"
 ```
-

@@ -1,12 +1,15 @@
 ---
 title: RBAC 授权
+linkTitle: RBAC 授权
+weight: 20
 ---
 
-概述
+
+# 概述
 
 > 参考：
 >
-> - [官方文档,参考-API 访问控制-使用 RBAC 授权](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
+> - [官方文档，参考 - API 访问控制 - 使用 RBAC 授权](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 > - [RBAC](/docs/7.信息安全/Access%20Control/RBAC.md) 概念
 
 基于 **Role(角色)** 的访问控制(RBAC) 是一种根据各个用户的角色来控制对 Kubernetes 内资源的访问权限的方法。
@@ -20,7 +23,7 @@ title: RBAC 授权
     - 其中 User 就是 认证里的 User Account。User 的名字可以是字符串，也可以是邮件风格的名称，或者以字符串形式表达的数字 ID。
     - Group 的概念是什么还不知道，也没找到参考文档。不过有一个可能应该是这样描述的：
       - Group 与 User 有关系，在创建 User 的证书时，在 subjct 中，O 的值就是表示 Kubernetes RBAC 机制中 Group 的概念。这么看，其实这个 User 与 Group 的概念与 Linux 中用户与组的概念一样。
-    - ServiceAccount 详见 [Service Account](/docs/10.云原生/Kubernetes/API%20访问控制/Authenticating(认证)/Service%20Account.md)
+    - ServiceAccount 详见 [Service Account](/docs/10.云原生/Kubernetes/API%20访问控制/Authentication(认证)/Service%20Account.md)
 - **RoleBinding**：定义了 Role 与 Subject 的绑定关系
   - **rules**# 规则，i.e.当前 role 所拥有的权限，其中有 3 个关键字。
   - **apiGroups** # 指定该 role 可以操作那些 api 组。使用 '\*' 表示对所有组具有操作权限

@@ -8,7 +8,7 @@ title: Etcd 管理
 >
 > - GitHub
 >   - https://github.com/etcd-io/website/blob/main/content/en/docs/v3.5/op-guide/maintenance.md
-> - [官方文档,-运维指南-维护](https://etcd.io/docs/latest/op-guide/maintenance/)
+> - [官方文档，-运维指南-维护](https://etcd.io/docs/latest/op-guide/maintenance/)
 
 [Etcd](/docs/5.数据存储/数据库/键值数据/Etcd/Etcd.md) 集群需要定期 **Maintenacne(维护)** 才能保持可靠性。根据 etcd 应用程序的需求，通常可以自动执行该维护，而无需停机或性能显着降低。
 

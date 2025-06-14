@@ -12,7 +12,7 @@ weight: 1
 > - [Wiki, IPVS](https://en.wikipedia.org/wiki/IP_Virtual_Server)
 > - [官网](http://www.linuxvirtualserver.org/)
 > - [官网,中文](http://www.linuxvirtualserver.org/zh/)
-> - [官方文档,HOWTO](http://www.austintek.com/LVS/LVS-HOWTO/HOWTO/)
+> - [官方文档，HOWTO](http://www.austintek.com/LVS/LVS-HOWTO/HOWTO/)
 
 **Linux Virtual Server(Linux 虚拟服务器，简称 LVC)** 是一个可以实现虚拟的服务器集群功能的项目，用于实现负载均衡的软件技术。一般情况下，LVS 代之一组服务器，对于外部客户端来说，这似乎是一台服务器，所以，也称为 **。**
 

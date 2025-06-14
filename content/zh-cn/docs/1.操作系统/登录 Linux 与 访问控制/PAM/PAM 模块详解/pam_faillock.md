@@ -12,7 +12,7 @@ weight: 20
 >   - [Ubuntu 22.04 TLS Manual](https://manpages.ubuntu.com/manpages/jammy/en/man8/pam_faillock.8.html)
 > - [Manual(手册)，faillock.conf(5)](https://man7.org/linux/man-pages/man5/faillock.conf.5.html)
 > - <https://github.com/dev-sec/ansible-collection-hardening/issues/377>
-> - 红帽官方文档,安全指南-账户锁
+> - 红帽官方文档，安全指南-账户锁
 >   - <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/chap-hardening_your_system_with_tools_and_services#sect-Security_Guide-Workstation_Security-Account_Locking>
 
 提供 auth、account 管理类型的模块

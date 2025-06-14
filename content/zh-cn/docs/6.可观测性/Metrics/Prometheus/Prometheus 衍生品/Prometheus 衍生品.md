@@ -7,7 +7,8 @@ title: Prometheus 衍生品
 # Prometheus 高可用
 
 > 参考：
-> - [官方文档,存储](https://prometheus.io/docs/prometheus/latest/storage/)
+>
+> - [官方文档，存储](https://prometheus.io/docs/prometheus/latest/storage/)
 
 Prometheus 本身没有集群的概念，也就没有主备，也就没有互相备份，并且，Prometheus 是主动 pull 数据的，所以 如果 Prometheus 想要高可用就需要多个 Prometheus Server 共享存储，那么如果要共享存储，则无法保持数据一致性，因为共享存储内的数据会收到两份数据。官方给出了一个办法，就是使用 remote 配置，将数据保存到第三方存储中，而不是通过 Prometheus 自己的数据系统进行保存。
 
@@ -41,6 +42,7 @@ Prometheus 本身没有集群的概念，也就没有主备，也就没有互相
 # Victoria Metrics 与 Thanos 对比
 
 > 参考：
+>
 > - [Thanos 与 VictoriaMetrics，谁才是打造大型 Prometheus 监控系统的王者？](https://my.oschina.net/u/4148359/blog/4531605)
 
 这篇文章对比有误差，并没有用 Thanos 的 Receiver 架构模式进行对比，实际上，Thanos 的 Receiver 模式与 VM 是类似的，也是通过 Remote Write 来实现数据转存。

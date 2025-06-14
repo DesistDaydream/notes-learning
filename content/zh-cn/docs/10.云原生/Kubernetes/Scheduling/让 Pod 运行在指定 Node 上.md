@@ -6,8 +6,8 @@ title: 让 Pod 运行在指定 Node 上
 
 > 参考：
 >
-> - [官方文档, 概念 - 调度、抢占、驱逐 - 让 Pod 运行在指定节点上](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
-> - [官方文档, 概念 - 调度、抢占、驱逐 - 污点与容忍度](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
+> - [官方文档，概念 - 调度、抢占、驱逐 - 让 Pod 运行在指定节点上](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
+> - [官方文档，概念 - 调度、抢占、驱逐 - 污点与容忍度](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
 > - [Kubernetes 内置的 标签、注释、污点](https://kubernetes.io/docs/reference/labels-annotations-taints/)
 > - [CSDN, k8s 之 pod 亲和与反亲和的 topologyKey](https://blog.csdn.net/asdfsadfasdfsa/article/details/106027367)
 

@@ -7,8 +7,8 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档,概念-存储-存储类](https://kubernetes.io/docs/concepts/storage/storage-classes/)
-> - [官方文档,任务-管理集群-改变默认 StorageClass](https://kubernetes.io/docs/tasks/administer-cluster/change-default-storage-class/)
+> - [官方文档，概念-存储-存储类](https://kubernetes.io/docs/concepts/storage/storage-classes/)
+> - [官方文档，任务-管理集群-改变默认 StorageClass](https://kubernetes.io/docs/tasks/administer-cluster/change-default-storage-class/)
 
 在介绍的 [PV](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/9.Kubernetes%20 存储/Persistent%20Volume(持久卷).md Volume(持久卷).md) 时有个问题就是管理员需要先创建 pv 固定好容量，再让用户或者开发创建的 PVC 从中挑选，有时候 PVC 申请的时候未必会有满足容量要求的 PV 可以提供，甚至管理员维护大量的 PV 的工作也是非常繁重的。为了实现在创建完 PVC 后，K8S 可以自动创建 PV 的功能，则可以使用 **Storage Class(存储类)** 这个资源对象来满足这类需求。
 
@@ -112,13 +112,17 @@ PV 与 StorageClass 是集群管理员使用的，PVC 是用户或者开发者�
 
 列出你的集群中的 StorageClasses：
 
-    kubectl get storageclass
+```bash
+kubectl get storageclass
+```
 
 输出类似这样：
 
-    NAME                 PROVISIONER               AGE
-    standard (default)   kubernetes.io/gce-pd      1d
-    gold                 kubernetes.io/gce-pd      1d
+```bash
+NAME                 PROVISIONER               AGE
+standard (default)   kubernetes.io/gce-pd      1d
+gold                 kubernetes.io/gce-pd      1d
+```
 
 默认 StorageClass 以 `(default)` 标记。
 
@@ -127,12 +131,16 @@ PV 与 StorageClass 是集群管理员使用的，PVC 是用户或者开发者�
 **将指定的 StorageClass 标记为非默认**
 默认 StorageClass 的注解 `storageclass.kubernetes.io/is-default-class` 设置为 `true`。 注解的其它任意值或者缺省值将被解释为 `false`。要标记一个 StorageClass 为非默认的，你需要改变它的值为 `false`：
 
-    kubectl patch storageclass StorageClassName -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
+```bash
+kubectl patch storageclass StorageClassName -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
+```
 
 **将指定的 StorageClass 标记为默认**
 和前面的步骤类似，需要添加/设置注解 `storageclass.kubernetes.io/is-default-class=true`。
 
-    kubectl patch storageclass StorageClassName -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+```bash
+kubectl patch storageclass StorageClassName -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+```
 
 # 特殊的 local 类型的 StorageClass
 

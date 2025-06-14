@@ -8,7 +8,7 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档, 概念 - 工作负载 - Pods](https://kubernetes.io/docs/concepts/workloads/pods/)
+> - [官方文档，概念 - 工作负载 - Pods](https://kubernetes.io/docs/concepts/workloads/pods/)
 
 Pod 是 Kubernetes 集群内**最小的工作单元**，是一个逻辑概念。Kubernetes 真正处理的，还是通过 CRI 在 HostOS 上的 Namespace 和 Cgroups。所谓的 Pod 只是一组共享了某些资源的 Container，这一组 Container 共享同一个 NetworkNamespace 并且可以声明共享同一个 Volume。
 
@@ -64,8 +64,8 @@ Pod 是 Kubernetes 集群内**最小的工作单元**，是一个逻辑概念。
 
 > 参考：
 >
-> - [官方文档, 概念 - 工作负载 - Pod - 初始化容器](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)
-> - [官方文档, 概念 - 工作负载 - Pod - 临时容器](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/)
+> - [官方文档，概念 - 工作负载 - Pod - 初始化容器](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)
+> - [官方文档，概念 - 工作负载 - Pod - 临时容器](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/)
 
 - 运行单一 Container。
   - one-container-per-Pod 是 Kubernetes 最常见的模型，这种情况下，只是将单个 Container 简单封装成 Pod。

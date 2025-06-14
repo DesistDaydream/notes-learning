@@ -10,7 +10,7 @@ weight: 1
 >
 > - [GitHub 项目，kubernetes-sigs/kustomize](https://github.com/kubernetes-sigs/kustomize)
 > - [官网](https://kustomize.io/)
-> - [官方文档,任务-管理 K8S 对象-使用 Kustomize 对 Kubernetes 对象进行声明式管理](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/)
+> - [官方文档，任务-管理 K8S 对象-使用 Kustomize 对 Kubernetes 对象进行声明式管理](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/)
 
 Kustomize 是一个通过 Kustomization 文件来管理 Manifests 的应用程序，Manifests 就是用来生成 K8S 对象的 YAML 格式的文件。Kustomize 可以让我们自定义原始的，无模板的 YAML 文件，以用于多种用途，而原始的 YAML 则保持不变并可以使用。
 
