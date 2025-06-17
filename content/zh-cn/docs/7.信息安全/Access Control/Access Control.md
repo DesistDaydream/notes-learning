@@ -13,6 +13,10 @@ weight: 1
 
 ## Authorization 和 Delegation
 
+Authorization 名词。更多时候用来形容授权本身
+
+Delegation 动词。更多时候用来形容授权的过程
+
 AI 回答：
 
 Authorization 与 Delegation 都有”授权“的含义

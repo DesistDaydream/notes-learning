@@ -1,7 +1,6 @@
 {
   "customFileOrder": {
     "/": [
-      "Clippings",
       "_index.md",
       "about",
       "blog",
@@ -46,7 +45,6 @@
       "blog/copy/云原生/如何构建以应用为中心的Kubernetes.md",
       "blog/copy/云原生/ChatGPT 团队是如何使用Kubernetes的.md"
     ],
-    "Clippings": [],
     "docs": [
       "docs/_index.md",
       "docs/学习",
@@ -3608,6 +3606,7 @@
       "docs/Web/WebDriver/Puppeteer.md"
     ],
     "Excalidraw": [
+      "Excalidraw/information_security",
       "Excalidraw/AI",
       "Excalidraw/k8s-arch.excalidraw.md",
       "Excalidraw/network_analysis_system.excalidraw.md",
@@ -3625,6 +3624,9 @@
     "obsidian_template": [
       "obsidian_template/Common.md",
       "obsidian_template/index_templater.md"
+    ],
+    "Excalidraw/information_security": [
+      "Excalidraw/information_security/oauth.excalidraw.md"
     ]
   },
   "draggingEnabled": true,
