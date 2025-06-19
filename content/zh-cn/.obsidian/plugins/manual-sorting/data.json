@@ -2150,7 +2150,7 @@
       "docs/7.信息安全/Crypto mgmt/CFSSL.md",
       "docs/7.信息安全/Crypto mgmt/OpenSSL",
       "docs/7.信息安全/Crypto mgmt/系统证书管理.md",
-      "docs/7.信息安全/Crypto mgmt/自建CA.md"
+      "docs/7.信息安全/Crypto mgmt/自建CA并签署证书.md"
     ],
     "docs/7.信息安全/Crypto mgmt/OpenSSL": [
       "docs/7.信息安全/Crypto mgmt/OpenSSL/_index.md",
@@ -3618,15 +3618,15 @@
       "Excalidraw/AI/mcp-arch.excalidraw.md",
       "Excalidraw/AI/fitting.excalidraw.md"
     ],
+    "Excalidraw/information_security": [
+      "Excalidraw/information_security/oauth.excalidraw.md"
+    ],
     "files": [
       "files/test.md"
     ],
     "obsidian_template": [
       "obsidian_template/Common.md",
       "obsidian_template/index_templater.md"
-    ],
-    "Excalidraw/information_security": [
-      "Excalidraw/information_security/oauth.excalidraw.md"
     ]
   },
   "draggingEnabled": true,

@@ -57,6 +57,7 @@ https://en.wikipedia.org/wiki/Internet_service_provider
 | Switched Port Analyzer                             |                | SPAN    |                                                                                          |                                                                                                          |
 | Transaction<br>                                    | 事务             |         | [Transaction](#transaction)                                                              |                                                                                                          |
 | tap/terminal access point/test access point        | 窃听/终端接入点/测试接入点 | tap/TAP | [Wiki](https://en.wikipedia.org/wiki/Network_tap#Terminology)                            | tap 并不是什么单词的缩写，仅仅就是原本的窃听之类的意思。只不过有人觉得这词不好，而且也有一些特殊情况在，就通过 backronyms(把单词扩写，不是缩写的楞扩成好几个词) 把 tap 改成了其他的意思。 |
+| Interactive voice response                         | 交互式语音应答        | IVR     | [Wiki](https://en.wikipedia.org/wiki/Interactive_voice_response)                         |                                                                                                          |
 
 ## Transaction
 

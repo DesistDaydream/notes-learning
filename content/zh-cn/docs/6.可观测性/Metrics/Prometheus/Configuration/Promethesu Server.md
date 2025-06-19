@@ -34,7 +34,7 @@ Prometheus Server 可以在运行时重新加载其配置文件(也就俗称的�
 prometheus 程序在启动时，可以使用一些标志来对程序进行一些基本设定，比如数据存储路径、存储时间等等
 
 - **--config.file=/PATH/TO/FILE** # prometheus 主配置文件，默认为当前路径的 prometheus.yml
-- **--enable-feature=...** # 启动指定的功能特性，多个功能以逗号分割。可以开启的功能详见：[官方文档，已关闭的功能](https://prometheus.io/docs/prometheus/latest/disabled_features/)
+- **--enable-feature=...** # 启动指定的功能特性，多个功能以逗号分割。可以开启的功能详见：[官方文档，已关闭的功能](https://prometheus.io/docs/prometheus/latest/feature_flags/)
 - **--web.listen-address="0.0.0.0:9090"** # Prometheus 监听地址。`默认值：0.0.0.0:9090`。该端口用于 Web UI、API 和 Telemetry(遥测)
 - **--web.config.file=/PATH/TO/FILE** # \[实验标志]用于开启 TLS 或 身份验证 配置文件路径。
 - --web.read-timeout=5m # Maximum duration before timing out read of the request, and closing idle connections.
@@ -55,7 +55,7 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 - **--storage.tsdb.path="/PATH/DIR"** # prometheus 存储 metircs 数据的目录(使用绝对路径)
 - **--storage.tsdb.retention.time**(DURATION) # 数据的存储时间，如果既未设置此标志也未设置 storage.tsdb.retention.size 标志，`默认值：15d`。支持的单位：y，w，d，h，m，s，ms。
 - --storage.tsdb.retention.size=STORAGE.TSDB.RETENTION.SIZE # [EXPERIMENTAL] Maximum number of bytes that can be stored for blocks. Units supported: KB, MB, GB, TB, PB. This flag is experimental and can be changed in future releases.
-- --storage.tsdb.no-lockfile # 不在数据目录创建锁文件。暂时不理解什么意思，待研究
+- --storage.tsdb.no-lockfile # 不在数据目录创建锁文件。通常只用在测试，不创建所文件可能会导致其他进程读写数据文件导致数据损坏。
 - --storage.tsdb.allow-overlapping-blocks # \[EXPERIMENTAL] Allow overlapping blocks, which in turn enables vertical compaction and vertical query merge.
 - --storage.tsdb.wal-compression # Compress the tsdb WAL.
 - --storage.remote.flush-deadline= # How long to wait flushing sample on shutdown or config reload.

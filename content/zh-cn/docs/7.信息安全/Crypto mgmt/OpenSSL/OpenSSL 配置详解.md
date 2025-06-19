@@ -88,7 +88,7 @@ OpenSSL 配置文件的语法与 [INI](/docs/2.编程/无法分类的语言/INI.
  ... random properties here ...
 ```
 
-## 使用 `@` 将多值放在独立的 Section 中
+## 多个值的处理 - 使用 `@` 将多个值放在独立的 Section 中
 
 若某个字段的值有多个，可以使用 `@` 将所有值放在一个独立的 Section 中
 
@@ -175,6 +175,8 @@ DNS.2 = *.desistdaydream.it
 ```
 
 # 配置示例
+
+[自建CA并签署证书](docs/7.信息安全/Crypto%20mgmt/自建CA并签署证书.md)
 
 ## 其他
 

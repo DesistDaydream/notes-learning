@@ -1,6 +1,6 @@
 ---
-title: 自建CA
-linkTitle: 自建CA
+title: 自建CA并签署证书
+linkTitle: 自建CA并签署证书
 weight: 20
 ---
 

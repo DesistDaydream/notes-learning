@@ -110,7 +110,13 @@ http_request_total{status="200", method="POST"}=1434417560938 => 4748
 http_request_total{status="200", method="POST"}=1434417561287 => 4785
 ```
 
-## Metric(指标) 结构
+## 白话说
+
+有一条名叫内存使用率的时间序列数据，"内存使用率"就叫做 metric name。在 2019 年 10 月 1 日 00:00 的值为 100M，在 2019 年 10 月 1 日 01:00 的值为 110M。时间就是样本里的时间戳。值就是该样本的值。所有这些具有时间标识的值连在一起组成一条线，就叫时间序列数据，这条线的名字就叫“内存使用率”
+
+可以看到，所谓的 Time Series，是使用一组标签作为唯一标识符的，可以这么说，所有标签都属于时间序列的名字，而不只是 name 字段。
+
+# Metric 结构
 
 指标的样式一：在形式上(输出到某个程序供人阅读)，指标(Metrics)都通过如下格式标识(指标名称(metrics name)和一组标签集(LabelSet))
 
@@ -145,7 +151,7 @@ type LabelName string
 type LabelValue string
 ```
 
-### Metric 与 Label 的命名
+## Metric 与 Label 的命名
 
 > 参考：
 >
@@ -165,23 +171,17 @@ Label 用来区分被测量目标的特征，比如
 
 > Notes: 标签名称的设计不应该放在指标名称中
 
-## 白话说
-
-有一条名叫内存使用率的时间序列数据，"内存使用率"就叫做 metric name。在 2019 年 10 月 1 日 00:00 的值为 100M，在 2019 年 10 月 1 日 01:00 的值为 110M。时间就是样本里的时间戳。值就是该样本的值。所有这些具有时间标识的值连在一起组成一条线，就叫时间序列数据，这条线的名字就叫“内存使用率”
-
-可以看到，所谓的 Time Series，是使用一组标签作为唯一标识符的，可以这么说，所有标签都属于时间序列的名字，而不只是 name 字段。
-
-# Metrics(指标) 的类型
+# Metric 类型
 
 > 参考：
 >
 > - [官网文档，概念 - metric 类型](https://prometheus.io/docs/concepts/metric_types/)
 
-在 Prometheus 的存储实现上所有的监控样本都是以 time-series 的形式保存在 Prometheus 的 TSDB(时序数据库) 中，而 TimeSeries 所对应的 Metric(监控指标) 也是通过 LabelSet 进行唯一命名的。
+在 Prometheus 的存储实现上所有的监控样本都是以时间序列的形式保存在 Prometheus 的 TSDB(时序数据库) 中，而 TimeSeries 所对应的 Metric(监控指标) 也是通过 LabelSet 进行唯一命名的。
 
-从存储上来讲所有的 Metrics 都是相同的，但是在不同的场景下这些 Metrics 又有一些细微的差异。 例如，在 Node Exporter 返回的样本中指标 node_load1 反应的是当前系统的负载状态，随着时间的变化这个指标返回的样本数据是在不断变化的。而指标 node_cpu 所获取到的样本数据却不同，它是一个持续增大的值，因为其反应的是 CPU 的累积使用时间，从理论上讲只要系统不关机，这个值是会无限变大的。
+从存储上来讲所有的 Metrics 都是相同的（都是数字），但是在不同的场景下这些 Metrics 又有一些细微的差异。 例如，在 Node Exporter 返回的样本中指标 node_load1 反应的是当前系统的负载状态，随着时间的变化这个指标返回的样本数据是在不断变化的。而指标 node_cpu 所获取到的样本数据却不同，它是一个持续增大的值，因为其反应的是 CPU 的累积使用时间，从理论上讲只要系统不关机，这个值是会无限变大的。
 
-为了能够帮助用户理解和区分这些不同监控指标之间的差异，Prometheus 定义了 4 中不同的 **Metric Type(指标类型)**：
+为了方便理解和区分这些不同监控指标之间的差异，Prometheus 定义了 4 中不同的 **Metric Type(指标类型)**：
 
 - Counter(计数器)
 - Gauge(计量器)
@@ -198,7 +198,7 @@ Label 用来区分被测量目标的特征，比如
 node_cpu{cpu="cpu0",mode="idle"} 362812.789625
 ```
 
-## Counter(计数器) - 只增不减的计数器
+## Counter(计数器) - 只增不减
 
 Counter 类型的指标其工作方式和计数器一样，只增不减（除非系统发生重置）。常见的监控指标，如 http_requests_total，node_cpu 都是 Counter 类型的监控指标。 一般在定义 Counter 类型指标的名称时推荐使用 `_total` 作为后缀。
 
@@ -212,7 +212,7 @@ Counter 是一个简单但有强大的工具，例如我们可以在应用程序
 
 `topk(10, http_requests_total)`
 
-## Gauge(计量器) - 可增可减的 Gauge
+## Gauge(计量器) - 可增可减
 
 与 Counter 不同，Gauge 类型的指标侧重于反应系统的当前状态。因此这类指标的样本数据可增可减。常见指标如：node_memory_MemFree(主机当前空闲的内容大小)、node_memory_MemAvailable(可用内存大小)都是 Gauge 类型的监控指标。
 
@@ -329,7 +329,13 @@ prometheus_tsdb_wal_fsync_duration_seconds_count 216
 3. 对于分位数的计算而言，Histogram 通过 histogram_quantile 函数是在服务器端计算的分位数。 而 Sumamry 的分位数则是直接在客户端计算完成。
 4. Summary 在通过 PromQL 进行查询时有更好的性能表现，而 Histogram 则会消耗更多的资源。反之对于提供指标的服务而言，Histogram 消耗的资源更少。在选择这两种方式时用户应该按照自己的实际场景进行选择。
 
-# Prometheus 的 Metrics 格式详解
+# 元数据
+
+2024-09-25 元数据标签的提案 https://github.com/prometheus/proposals/blob/main/proposals/2024-09-25_metadata-labels.md
+
+- 添加了 `__name__`, `__type__`, `__unit__` 标签。在 2025-05-17 的 [提交](https://github.com/prometheus/prometheus/commit/8e6b008608e64a1e706854a7aaf849ca62439e22#diff-a83525f7217d932cb9ca1354435c5a2e86c6251614b66db72e132742c0a2d6f8)中添加了 schema/labels.go 文件（原本就有 `__name__` 标签，主要是添加了另外两个，并把这三个作为一组特殊标签）
+
+# Prometheus 的 Metrics 格式
 
 > 参考：
 >
@@ -385,6 +391,6 @@ metric_name [{ label_name = "label_value" { , label_name = "label_value" } [ ,..
 
 ## Protobuf 格式
 
-期版本的 Prometheus 还支持基于 Protocol Buffers（又名 Protobuf）的展示格式。在 Prometheus 2.0 中，Protobuf 格式被标记为已弃用，并且 Prometheus 停止从所述公开格式中摄取样本。
+早期版本的 Prometheus 还支持基于 Protocol Buffers（又名 Protobuf）的展示格式。在 Prometheus 2.0 中，Protobuf 格式被标记为已弃用，并且 Prometheus 停止从所述公开格式中摄取样本。
 
 然而，Prometheus 添加了新的实验功能（v2.40.0 与 v2.50.0 开始），其中 Protobuf 格式被认为是最可行的选择。让 Prometheus 再次接受 Protocol Buffers。

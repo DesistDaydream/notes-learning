@@ -26,7 +26,7 @@ prometheus_build_info{branch="HEAD",goversion="go1.18.6",revision="1ce2197e7f9e9
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616045780717-62e9699b-0064-4ea8-93d2-c741437d0a7f.png)
 
-这里为什么会多出来两个标签呢，这种现象又是什么功能来实现的呢？~
+这里为什么会多出来两个标签呢，这种现象又是什么功能来实现的呢？假如说 job 是通过配置文件中定义出来的，那 instance 又是怎么来的？
 
 首先，我们在 Prometheus Server 的 web 界面的 Status 标签中的 Targets 页面和 Service Discovery 页面中，可以发现 Prometheus 把标签分为两类：
 
@@ -48,11 +48,11 @@ prometheus_build_info{branch="HEAD",goversion="go1.18.6",revision="1ce2197e7f9e9
   - `__` 符号开头的标签是不会被添加到 Target Labels 中，也就也不会附加到指标上。
 - 其中 Discovered Labels 是根据配置自动生成的，而 Target Labels 则是通过一种称为 **Relabeling(重新标记)** 的功能生成的。
 
-## Relabeling(重新标记) 功能
+## Relabeling
 
-**Relabeling(重新标记)** 是一种可以在抓取目标数据之前动态重写目标的标签集的功能。每个抓取配置可以配置多个 Relabeling 机制。这些行为按照在配置文件中出现的顺序，由上至下依次应用于每个 Target(目标) 的标签集上。
+**Relabeling(重新标记)** 是一种可以在抓取目标数据之前动态重写目标的标签集的功能。每个抓取配置可以配置多个 Relabeling 机制。这些行为按照在配置文件中的顺序，<font color="#ff0000">由上至下依次</font>应用于每个 Target(目标) 的标签集上。
 
-### 为什么需要 Relabeling 功能呢？
+### 为什么需要 Relabeling ？
 
 - 由于 Prometheus 的规定，`__` 符号开头的标签不会被写入到时间序列数据中，也就无法再使用 promQL 语句进行数据过滤中使用，所以需要有一种方法，以便将`__` 符号开头的标签的值存储到一个新的标签中去，让这些新的标签写到时间序列数据中。而将标签 Relabeling 后，非 `__` 符号开头原始标签也不会消失，只是将原始标签里的值写入的目标标签中去了。
 - 自动发现机制的原始标签都是 `__` 开头的，用户可以使用 Relabeling 机制，自己决定哪些需要留下，哪些需要抛弃。留下的那些又可以以新的标签名保留。
@@ -73,6 +73,11 @@ prometheus_build_info{branch="HEAD",goversion="go1.18.6",revision="1ce2197e7f9e9
   - 配置文件中的 `relabel_config` 字段工作在这个阶段。
 - 阶段二中，可以针对采集到的指标中自带的标签进行操作。
   - 配置文件中的 `metric_relabel_configs` 字段工作在这个阶段。
+
+> [!Tip]
+> 假如想要修改指标的名称，必须要在阶段二执行。因为只有采集到指标之后，才能知道有哪些指标名称，才能对 `__name__` 标签的值进行修改。
+>
+> 说白了就是：有些标签是在采集之前能看到；有些标签是在采集指标之后能看到。所以使用 relabel_config 是没法修改 `__name__` 的。
 
 # Discovered Labels 与 Target Labels
 
@@ -104,7 +109,7 @@ prometheus_build_info{branch="HEAD",goversion="go1.18.6",revision="1ce2197e7f9e9
 - **用户自定的标签**
   - 一般都是写在配置文件中的 labels 字段下的内容，这些内容经过 Relabels 之后，不会从 Discovered Labels 中删除。
 
-Discovered Labels 中的 **系统标签**会告诉 Prometheus Server 如何从 Target 中获取时间序列数据(e.g.使用什么协议、从哪个 IP 上的主机哪个路径获取、等等类似的信息)。比如 `__address__`、`__metrics_path__`、`__scheme__` 这三个标签就表明，Prometheus 采集目标为 http://localhost:9090/metrics, 相当于执行了 `curl -XGET http://localhost:9090/metrics` 这个命令。如果还有 __param_XX 标签，则该标签的值，就是这次请求 URL 中的参数部分
+Discovered Labels 中的 **系统标签** 会告诉 Prometheus Server 如何从 Target 中获取时间序列数据(e.g.使用什么协议、从哪个 IP 上的主机哪个路径获取、等等类似的信息)。比如 `__address__`、`__metrics_path__`、`__scheme__` 这三个标签就表明，Prometheus 采集目标为 http://localhost:9090/metrics, 相当于执行了 `curl -XGET http://localhost:9090/metrics` 这个命令。如果还有 __param_XX 标签，则该标签的值，就是这次请求 URL 中的参数部分
 
 > 默认情况下，Prometheus 会将 `__address__` 标签重新标记为 instance 标签，job 标签原封不同。如果想要其他的 Target Labels，则需要使用配置文件中的 relabel 以及 labels 字段来定义了。
 >
@@ -142,16 +147,16 @@ Target Labels 中的所有标签都是 Relabeling 之后的标签。Target Label
 
 注意：
 
-- **relabel_configs** 是 Prometheus 在发现**待采集的 Target(目标)** 之后，从目标采集指标之前，这两个行为之间发生的 Relabeling 行为配置。所以主要是针对 **待采集的 Target(目标) 及其标签**进行操作，而不是针对采集后的指标或其标签进行操作。<font color="#ff0000">所以，就如前文描述的一样，Relabeling 行为是针对待采集目标的 Discovered Label 的一种行为，经过 Relabeling 后，待采集目标就会生成 Target Labels</font>。
-- **metrics_relabel_configs** 是 Prometheus 在采集到 Target(目标) 的指标之后，并存储到时序数据库之前，这两个行为之间发生的 Relabeling 行为配置。所以主要是针对**采集到的指标**进行操作。
+- **relabel_configs** 是 Prometheus 在**发现被采集的 Target(目标) 之后**，从目标采集指标之前，这两个行为之间发生的 Relabeling 行为配置。所以主要是针对 **被采集的 Target(目标) 及其标签**进行操作，而不是针对采集后的指标或其标签进行操作。<font color="#ff0000">所以，就如前文描述的一样，Relabeling 行为是针对被采集目标的 Discovered Label 的一种行为，经过 Relabeling 后，被采集目标就会生成 Target Labels</font>。
+- **metrics_relabel_configs** 是 Prometheus 在**采集到 Target(目标) 的指标之后**，存储到时序数据库之前，这两个行为之间发生的 Relabeling 行为配置。所以主要是针对**采集到的指标**进行操作。
   - 该配置不适用于自动生成的指标，比如 `up` 这类。因为这类指标在启动时就存在了，不用任何目标即可获取。
 - 这两个配置的配置格式一摸一样。
 
-**后文描述的 `目标` 二字，都是指 `待采集的目标`**
+> [!Note] **后文描述的 `目标` 二字，都是指 `被采集的目标`**
 
 ## relabel_configs 字段详解
 
-**[source_labels](#source_labels)**([]STRING) # 从现有的标签中选择将要获取值的标签作为 source_labels。source_labels 可以有多个。
+**[source_labels](#source_labels)**(\[]STRING) # 从现有的标签中选择将要获取值的标签作为 source_labels。source_labels 可以有多个。
 
 **[separator](#separator)**(STRING) # 指定 source_labels 中所有值之间的分隔符。`默认值: ;`。
 
@@ -318,7 +323,7 @@ scrape_configs:
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616045780860-e6406a1b-4bc1-4ba8-921e-39949436a028.webp)
 
-### 删除标签
+### 删除 Label
 
 #### 使用 labeldrop 行为，将标签名为 job 的标签删除
 
@@ -335,7 +340,7 @@ scrape_configs:
 
 labelKeep 和 labeldrop 不操作 \_\_ 开头的标签，要操作需要先改名
 
-### 修改 label 名
+### 修改 Label 的名
 
 #### 使用 replace 行为，将 scheme 标签改名为 protocol
 
@@ -373,7 +378,7 @@ scrape_configs:
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616045780764-cc349a0e-af4b-4b83-b39d-6188ca93da4f.webp)
 
-### 修改 label 值
+### 修改 Label 的值
 
 配置 k8s 服务发现
 
@@ -404,6 +409,10 @@ relabel_configs:
 ```
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/1616045780766-2db0040a-e0ba-4b36-81e7-c1e1ed4a81cd.webp)
+
+#### 修改指标名称
+
+修改指标名称本质就是在采集到指标后，通过 metric_relabel_configs 修改 `__name__` 标签的值。
 
 ### 多标签合并
 
