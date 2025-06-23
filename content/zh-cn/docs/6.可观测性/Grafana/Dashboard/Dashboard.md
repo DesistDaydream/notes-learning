@@ -1,15 +1,14 @@
 ---
-title: "Panel 与 Dashboard"
-linkTitle: "Panel 与 Dashboard"
+title: Dashboard
+linkTitle: Dashboard
 weight: 1
 ---
-
 
 # 概述
 
 > 参考：
 >
-> - [官方文档，面板](https://grafana.com/docs/grafana/latest/panels/)
+> - [官方文档，仪表盘](https://grafana.com/docs/grafana/latest/dashboards/)
 > - 借助 [Grafana Play](https://play.grafana.org/d/000000041/)，您可以探索并了解 Grafana 的各种 Panel 工作原理，从实际示例中学习以加速您的开发
 >   - https://play.grafana.org/dashboards/f/PGJ1Fr4Zz/demo3a-grafana-features 这是各种 Panel 的 Demo 集合。
 
@@ -56,7 +55,7 @@ weight: 1
 
 该可视化是 Grafana 生态系统中最常用的。它可以渲染为一条线，一条点的路径或一系列条形图。这种类型的图具有足够的通用性，几乎可以显示任何时间序列数据。
 
-详见: [Time series 类型面板](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Time%20series%20类型面板/Time%20series%20类型面板.md)
+详见: [Time series 面板](/docs/6.可观测性/Grafana/Dashboard/Time%20series%20面板/Time%20series%20面板.md)
 
 老版本称为 Graph
 

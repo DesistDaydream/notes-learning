@@ -1,6 +1,7 @@
 {
   "customFileOrder": {
     "/": [
+      "Clippings",
       "_index.md",
       "about",
       "blog",
@@ -44,6 +45,9 @@
       "blog/copy/云原生/灵魂拷问，上 Kubernetes 有什么业务价值？.md",
       "blog/copy/云原生/如何构建以应用为中心的Kubernetes.md",
       "blog/copy/云原生/ChatGPT 团队是如何使用Kubernetes的.md"
+    ],
+    "Clippings": [
+      "Clippings/升级为集群 - K8S训练营.md"
     ],
     "docs": [
       "docs/_index.md",
@@ -1821,34 +1825,34 @@
       "docs/6.可观测性/Grafana/Grafana.md",
       "docs/6.可观测性/Grafana/Grafana 数据模型.md",
       "docs/6.可观测性/Grafana/Grafana Configuration",
-      "docs/6.可观测性/Grafana/Panel 与 Dashboard",
+      "docs/6.可观测性/Grafana/Dashboard",
       "docs/6.可观测性/Grafana/Plugins.md",
       "docs/6.可观测性/Grafana/访问控制.md",
       "docs/6.可观测性/Grafana/Grafana Alerting.md",
       "docs/6.可观测性/Grafana/Grafana MGMT.md"
     ],
+    "docs/6.可观测性/Grafana/Dashboard": [
+      "docs/6.可观测性/Grafana/Dashboard/_index.md",
+      "docs/6.可观测性/Grafana/Dashboard/Dashboard.md",
+      "docs/6.可观测性/Grafana/Dashboard/Panel",
+      "docs/6.可观测性/Grafana/Dashboard/Time series 面板",
+      "docs/6.可观测性/Grafana/Dashboard/Table 面板.md",
+      "docs/6.可观测性/Grafana/Dashboard/Variable.md"
+    ],
+    "docs/6.可观测性/Grafana/Dashboard/Panel": [
+      "docs/6.可观测性/Grafana/Dashboard/Panel/_index.md",
+      "docs/6.可观测性/Grafana/Dashboard/Panel/Panel.md",
+      "docs/6.可观测性/Grafana/Dashboard/Panel/Query(查询).md",
+      "docs/6.可观测性/Grafana/Dashboard/Panel/Transformations(转换).md"
+    ],
+    "docs/6.可观测性/Grafana/Dashboard/Time series 面板": [
+      "docs/6.可观测性/Grafana/Dashboard/Time series 面板/_index.md",
+      "docs/6.可观测性/Grafana/Dashboard/Time series 面板/Time series 面板.md"
+    ],
     "docs/6.可观测性/Grafana/Grafana Configuration": [
       "docs/6.可观测性/Grafana/Grafana Configuration/_index.md",
       "docs/6.可观测性/Grafana/Grafana Configuration/Grafana Configuration.md",
       "docs/6.可观测性/Grafana/Grafana Configuration/Provisioning.md"
-    ],
-    "docs/6.可观测性/Grafana/Panel 与 Dashboard": [
-      "docs/6.可观测性/Grafana/Panel 与 Dashboard/_index.md",
-      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Panel 与 Dashboard.md",
-      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Panel 配置",
-      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Time series 类型面板",
-      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Table 类型面板.md",
-      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Variable.md"
-    ],
-    "docs/6.可观测性/Grafana/Panel 与 Dashboard/Panel 配置": [
-      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Panel 配置/_index.md",
-      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Panel 配置/Panel 配置.md",
-      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Panel 配置/Query(查询).md",
-      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Panel 配置/Transformations(转换).md"
-    ],
-    "docs/6.可观测性/Grafana/Panel 与 Dashboard/Time series 类型面板": [
-      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Time series 类型面板/_index.md",
-      "docs/6.可观测性/Grafana/Panel 与 Dashboard/Time series 类型面板/Time series 类型面板.md"
     ],
     "docs/6.可观测性/Logs": [
       "docs/6.可观测性/Logs/_index.md",
@@ -2557,7 +2561,8 @@
       "docs/10.云原生/Containerization implementation/容器管理/容器非root启动.md",
       "docs/10.云原生/Containerization implementation/容器管理/容器中使用 GPU.md",
       "docs/10.云原生/Containerization implementation/容器管理/使用 Tini 清理 Docker 容器僵死进程.md",
-      "docs/10.云原生/Containerization implementation/容器管理/性能优化与故障处理"
+      "docs/10.云原生/Containerization implementation/容器管理/性能优化与故障处理",
+      "docs/10.云原生/Containerization implementation/容器管理/观测容器.md"
     ],
     "docs/10.云原生/Containerization implementation/容器管理/容器运行时管理": [
       "docs/10.云原生/Containerization implementation/容器管理/容器运行时管理/_index.md",
@@ -2891,11 +2896,11 @@
     ],
     "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 监控": [
       "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 监控/_index.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 监控/常用指标.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 监控/Kubernetes 监控.md",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 监控/kube-state-metrics.md",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 监控/kubectl top 命令解析.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 监控/Kubernetes 监控.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 监控/Kubernetes 系统组件指标.md"
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 监控/Kubernetes 系统组件指标.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 监控/常用指标.md"
     ],
     "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 日志": [
       "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 日志/_index.md",

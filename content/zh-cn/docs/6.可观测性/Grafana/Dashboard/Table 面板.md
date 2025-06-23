@@ -1,8 +1,14 @@
 ---
-title: Table 类型面板
+title: Table 面板
+linkTitle: Table 面板
+weight: 20
 ---
 
 # 概述
+
+> 参考：
+>
+> - 
 
 Table 面板需要配合 Table 格式
 

@@ -155,3 +155,11 @@ func (h *handler) innerHandler(filters ...string) (http.Handler, error) {
 ## 日志时区
 
 详见 [Prometheus MGMT](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20MGMT/Prometheus%20MGMT.md)
+
+# Grafana 面板
+
+- 1860
+  - https://github.com/rfmoz/grafana-dashboards
+- [8919](https://grafana.com/grafana/dashboards/8919-1-node-exporter-for-prometheus-dashboard-cn-0413-consulmanager/)
+  - 国人出的，22 年4月12日之后不维护了
+  - [16098](https://grafana.com/grafana/dashboards/16098-1-node-exporter-for-prometheus-dashboard-cn-0417-job/) 新的，代替 8919

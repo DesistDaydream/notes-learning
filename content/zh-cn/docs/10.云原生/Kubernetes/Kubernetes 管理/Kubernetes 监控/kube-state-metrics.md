@@ -1,12 +1,16 @@
 ---
 title: kube-state-metrics
+linkTitle: kube-state-metrics
+weight: 20
 ---
 
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，kubernetes/kube-stsate-metrics](https://github.com/kubernetes/kube-state-metrics)
-> - [GitHub 文档,可暴露的所有指标列表](https://github.com/kubernetes/kube-state-metrics/tree/master/docs)
+> - [GitHub 文档，可暴露的所有指标列表](https://github.com/kubernetes/kube-state-metrics/tree/master/docs)
+> - http://www.xuyasong.com/?p=1525
 
 已经有了 cadvisor、Metric Server，几乎容器运行的所有指标都能拿到，但是下面这种情况却无能为力：
 

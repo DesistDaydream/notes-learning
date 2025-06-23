@@ -33,7 +33,7 @@ Prometheus Server 可以在运行时重新加载其配置文件(也就俗称的�
 
 prometheus 程序在启动时，可以使用一些标志来对程序进行一些基本设定，比如数据存储路径、存储时间等等
 
-- **--config.file=/PATH/TO/FILE** # prometheus 主配置文件，默认为当前路径的 prometheus.yml
+- **--config.file**(STRING) # Prometheus Server 的主配置文件。`默认值: prometheus.yml`，i.e. 当前目录下的 prometheus.yml 文件
 - **--enable-feature=...** # 启动指定的功能特性，多个功能以逗号分割。可以开启的功能详见：[官方文档，已关闭的功能](https://prometheus.io/docs/prometheus/latest/feature_flags/)
 - **--web.listen-address="0.0.0.0:9090"** # Prometheus 监听地址。`默认值：0.0.0.0:9090`。该端口用于 Web UI、API 和 Telemetry(遥测)
 - **--web.config.file=/PATH/TO/FILE** # \[实验标志]用于开启 TLS 或 身份验证 配置文件路径。
@@ -52,7 +52,7 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 - --web.page-title="Prometheus Time Series Collection and Processing Server" # Document title of Prometheus instance.
 - --web.cors.origin=".\*" # Regex for CORS origin. It is fully anchored. Example: 'https?://(domain1|domain2).com'
 - --web.enable-remote-write-receiver # 开启 Prometheus [Storage](/docs/6.可观测性/Metrics/Prometheus/Storage/Storage.md) 中的 Remote Storage(远程存储) 功能。
-- **--storage.tsdb.path="/PATH/DIR"** # prometheus 存储 metircs 数据的目录(使用绝对路径)
+- **--storage.tsdb.path**(STRING) # prometheus 存储时间序列数据的目录。`默认值: data/`，i.e. 当前目录下的 data/ 目录。
 - **--storage.tsdb.retention.time**(DURATION) # 数据的存储时间，如果既未设置此标志也未设置 storage.tsdb.retention.size 标志，`默认值：15d`。支持的单位：y，w，d，h，m，s，ms。
 - --storage.tsdb.retention.size=STORAGE.TSDB.RETENTION.SIZE # [EXPERIMENTAL] Maximum number of bytes that can be stored for blocks. Units supported: KB, MB, GB, TB, PB. This flag is experimental and can be changed in future releases.
 - --storage.tsdb.no-lockfile # 不在数据目录创建锁文件。通常只用在测试，不创建所文件可能会导致其他进程读写数据文件导致数据损坏。
@@ -413,6 +413,11 @@ scrape_configs:
 在 Prometheus UI 的 Targets 下就可以看到当前从 targets.json 文件中动态获取到的 Target 实例信息以及监控任务的采集状态，同时在 Labels 列下会包含用户添加的自定义标签
 
 这种通用的方式可以衍生了很多不同的玩法，比如与自动化配置管理工具(Ansible)结合、与 Cron Job 结合等等。 对于一些 Prometheus 还不支持的云环境，比如国内的阿里云、腾讯云等也可以使用这种方式通过一些自定义程序与平台进行交互自动生成监控 Target 文件，从而实现对这些云环境中基础设施的自动化监控支持。
+
+### docker_sd_configs
+
+https://prometheus.io/docs/prometheus/latest/configuration/configuration/#docker_sd_config
+
 
 ### kubernetes_sd_configs
 

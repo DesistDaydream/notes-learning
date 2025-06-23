@@ -176,7 +176,7 @@ DNS.2 = *.desistdaydream.it
 
 # 配置示例
 
-[自建CA并签署证书](docs/7.信息安全/Crypto%20mgmt/自建CA并签署证书.md)
+[自建CA并签署证书](/docs/7.信息安全/Crypto%20mgmt/自建CA并签署证书.md)
 
 ## 其他
 

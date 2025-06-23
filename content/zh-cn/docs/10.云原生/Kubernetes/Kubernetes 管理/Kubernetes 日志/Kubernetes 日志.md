@@ -1,5 +1,7 @@
 ---
 title: Kubernetes 日志
+linkTitle: Kubernetes 日志
+weight: 1
 ---
 
 # 概述

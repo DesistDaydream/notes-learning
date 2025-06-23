@@ -12,7 +12,7 @@ weight: 1
 > - [公众号-CNCF，卷扩展现在是个稳定特性](https://mp.weixin.qq.com/s/hNR5XkMeZbDVInUOX_5MAg)
 > - [公众号-CNCF，存储容量跟踪在 Kubernetes1.24 中正式 GA](https://mp.weixin.qq.com/s/EBghRVRQvnPSTf4YdCkp2w)
 
-在 Container 中的文件在磁盘上是临时存储的(这与 Docker 一样，容器删除后，容器内的文件也随着删除)，这给 Container 中运行的需要持久化存储的应用程序带来了很多问题。
+在 [Container](/docs/10.云原生/Containerization/Containerization.md) 中的文件在磁盘上是临时存储的(这与 Docker 一样，容器删除后，容器内的文件也随着删除)，这给 Container 中运行的需要持久化存储的应用程序带来了很多问题。
 
 - 第一，当 Container 崩溃时，kubelet 会重启它，但是文件都将丢失并且 Container 以最干净的状态启动
 - 第二，当在 Pod 中运行多个 Container 的时候，这些 Container 需要共享文件以实现功能。

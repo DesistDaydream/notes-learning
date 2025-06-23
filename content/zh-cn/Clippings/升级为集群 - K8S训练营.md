@@ -1,22 +1,26 @@
 ---
-title: 将单 master 升级为多 master 集群
+title: "升级为集群 - K8S训练营"
+source: "https://www.qikqiak.com/k8strain/maintain/cluster/"
+author:
+published:
+created: 2025-06-23
+description:
+tags:
+  - "clippings"
 ---
+[](https://github.com/cnych/qikqiak.com/edit/master/docs/maintain/cluster.md "编辑此页")
 
-# 如何将单 master 升级为多 master 集群
+## 高可用
 
-前面我们课程中的集群是单 master 的集群，对于生产环境风险太大了，非常有必要做一个高可用的集群(https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/ha-topology/)，这里的高可用主要是针对控制面板来说的，比如 kube-apiserver、etcd、kube-controller-manager、kube-scheduler 这几个组件，其中 kube-controller-manager 于 kube-scheduler 组件是 Kubernetes 集群自己去实现的高可用，当有多个组件存在的时候，会自动选择一个作为 Leader 提供服务，所以不需要我们手动去实现高可用，apiserver 和 etcd 就需要手动去搭建高可用的集群的。
+前面我们课程中的集群是单 master 的集群，对于生产环境风险太大了，非常有必要做一个 [高可用的集群](https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/ha-topology/) ，这里的高可用主要是针对控制面板来说的，比如 kube-apiserver、etcd、kube-controller-manager、kube-scheduler 这几个组件，其中 kube-controller-manager 于 kube-scheduler 组件是 Kubernetes 集群自己去实现的高可用，当有多个组件存在的时候，会自动选择一个作为 Leader 提供服务，所以不需要我们手动去实现高可用，apiserver 和 etcd 就需要手动去搭建高可用的集群的。高可用的架构有很多，比如典型的 haproxy + keepalived 架构，或者使用 nginx 来做代理实现。我们这里为了说明如何将单 master 升级为高可用的集群，采用相对更简单的 nginx 模式，当然这种模式也有一些缺点，但是足以说明高可用的实现方式了。架构如下图所示：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ugaorz/1622597035172-9d7c9e8c-0d7b-4f40-99e4-499d30b44b91.png)
+![](https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/20200903180048.png)
 
-高可用的架构有很多，比如典型的 haproxy + keepalived 架构，或者使用 nginx 来做代理实现。我们这里为了说明如何将单 master 升级为高可用的集群，采用相对更简单的 nginx 模式，当然这种模式也有一些缺点，但是足以说明高可用的实现方式了。架构如下图所示：
+从上面架构图上可以看出来，我们需要在所有的节点上安装一个 nginx 来代理 apiserver，这里我们准备3个节点作为控制平面节点：ydzs-master、ydzs-master2、ydzs-master3，这里我们默认所有节点都已经正常安装配置好了 Docker：
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ugaorz/1622597058497-7d7328b4-15e4-4a83-abd3-4a468530dc51.png)
+![](https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/20200903165950.png)
 
-从上面架构图上可以看出来，我们需要在所有的节点上安装一个 nginx 来代理 apiserver，这里我们准备 3 个节点作为控制平面节点：ydzs-master、ydzs-master2、ydzs-master3，这里我们默认所有节点都已经正常安装配置好了 Docker：
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ugaorz/1622597067673-3e90edd5-c272-47c8-b141-e39b03f7e255.png)
-
-在开始下面的操作之前，在所有节点 hosts 中配置如下所示的信息：
+在开始下面的操作之前，在 **所有节点** hosts 中配置如下所示的信息：
 
 ```shell
 $ cat /etc/hosts
@@ -32,15 +36,13 @@ $ cat /etc/hosts
 10.151.30.23 ydzs-node2
 ```
 
-免责声明：本文操作已验证成功，但并不保证对集群没有任何影响，在操作之前一定做好备份，由此对集群产生的任何影响本人概不负责~
-
-# 更新证书
+## 更新证书
 
 由于我们要将集群替换成高可用的集群，那么势必会想到我们会用一个负载均衡器来代理 APIServer，也就是这个负载均衡器访问 APIServer 的时候要能正常访问，所以默认安装的 APIServer 证书就需要更新，因为里面没有包含我们需要的地址，需要保证在 SAN 列表中包含一些额外的名称。
 
-首页我们一个 kubeadm 的配置文件，如果一开始安装集群的时候你就是使用的配置文件，那么我们可以直接更新这个配置文件，但是如果你没有使用配置文件，直接使用的 kubeadm init 来安装的集群，那么我们可以从集群中获取 kubeadm 的配置信息来创建一个配置文件，因为 kubeadm 会将其配置写入到 kube-system 命名空间下面一个名为 kubeadm-config 的 ConfigMap 中。可以直接执行如下所示的命令将该配置导出：
+首页我们一个 kubeadm 的配置文件，如果一开始安装集群的时候你就是使用的配置文件，那么我们可以直接更新这个配置文件，但是如果你没有使用配置文件，直接使用的 `kubeadm init` 来安装的集群，那么我们可以从集群中获取 kubeadm 的配置信息来创建一个配置文件，因为 kubeadm 会将其配置写入到 kube-system 命名空间下面一个名为 `kubeadm-config` 的 ConfigMap 中。可以直接执行如下所示的命令将该配置导出：
 
-```bash
+```shell
 $ kubectl -n kube-system get configmap kubeadm-config -o jsonpath='{.data.ClusterConfiguration}' > kubeadm.yaml
 ```
 
@@ -70,18 +72,18 @@ networking:
 scheduler: {}
 ```
 
-上面的配置中并没有列出额外的 SAN 信息，我们要添加一个新的数据，需要在 apiServer 属性下面添加一个 certsSANs 的列表。如果你在启动集群的使用就使用的了 kubeadm 的配置文件，可能里面就已经包含 certSANs 列表了，如果没有我们就需要添加它，比如我们这里要添加一个新的域名 api.k8s.local 以及 ydzs-master2 和 ydzs-master3 这两个主机名和 10.151.30.70、10.151.30.71 这两个新的 IP 地址，那么我们需要在 apiServer 下面添加如下所示的数据：
+上面的配置中并没有列出额外的 SAN 信息，我们要添加一个新的数据，需要在 `apiServer` 属性下面添加一个 `certsSANs` 的列表。如果你在启动集群的使用就使用的了 kubeadm 的配置文件，可能里面就已经包含 certSANs 列表了，如果没有我们就需要添加它，比如我们这里要添加一个新的域名 `api.k8s.local` 以及 ydzs-master2 和 ydzs-master3 这两个主机名和 10.151.30.70、10.151.30.71 这两个新的 IP 地址，那么我们需要在 apiServer 下面添加如下所示的数据：
 
 ```yaml
 apiServer:
   certSANs:
-    - api.k8s.local
-    - ydzs-master
-    - ydzs-master2
-    - ydzs-master3
-    - 10.151.30.11
-    - 10.151.30.70
-    - 10.151.30.71
+  - api.k8s.local
+  - ydzs-master
+  - ydzs-master2
+  - ydzs-master3
+  - 10.151.30.11
+  - 10.151.30.70
+  - 10.151.30.71
   extraArgs:
     authorization-mode: Node,RBAC
   timeoutForControlPlane: 4m0s
@@ -118,18 +120,18 @@ $ docker kill 7fe227a5dd3c
 7fe227a5dd3c
 ```
 
-容器被杀掉后，kubelet 会自动重启容器，然后容器将接收新的证书，一旦 APIServer 重启后，我们就可以使用新添加的 IP 地址或者主机名来连接它了，比如我们新添加的 api.k8s.local。
+容器被杀掉后，kubelet 会自动重启容器，然后容器将接收新的证书，一旦 APIServer 重启后，我们就可以使用新添加的 IP 地址或者主机名来连接它了，比如我们新添加的 `api.k8s.local` 。
 
 ## 验证证书
 
 要验证证书是否更新我们可以直接去编辑 kubeconfig 文件中的 APIServer 地址，将其更换为新添加的 IP 地址或者主机名，然后去使用 kubectl 操作集群，查看是否可以正常工作。
 
-当然我们可以使用 openssl 命令去查看生成的证书信息是否包含我们新添加的 SAN 列表数据：
+当然我们可以使用 *openssl* 命令去查看生成的证书信息是否包含我们新添加的 SAN 列表数据：
 
 ```shell
 $ openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text
 Certificate:
-      ......
+            ......
         Subject: CN=kube-apiserver
         ......
             X509v3 Subject Alternative Name:
@@ -137,32 +139,32 @@ Certificate:
 ......
 ```
 
-如果上面的操作都一切顺利，最后一步是将上面的集群配置信息保存到集群的 kubeadm-config 这个 ConfigMap 中去，这一点非常重要，这样以后当我们使用 kubeadm 来操作集群的时候，相关的数据不会丢失，比如升级的时候还是会带上  certSANs 中的数据进行签名的。
+如果上面的操作都一切顺利，最后一步是将上面的集群配置信息保存到集群的 kubeadm-config 这个 ConfigMap 中去，这一点非常重要，这样以后当我们使用 kubeadm 来操作集群的时候，相关的数据不会丢失，比如升级的时候还是会带上 certSANs 中的数据进行签名的。
 
-```bash
+```shell
 $ kubeadm config upload from-file --config kubeadm.yaml
 ```
 
 使用上面的命令保存配置后，我们同样可以用下面的命令来验证是否保存成功了：
 
-```bash
+```shell
 $ kubectl -n kube-system get configmap kubeadm-config -o yaml
 ```
 
 更新 APIServer 证书的名称在很多场景下都会使用到，比如在控制平面前面添加一个负载均衡器，或者添加新的 DNS 名称或 IP 地址来使用控制平面的端点，所以掌握更新集群证书的方法也是非常有必要的。
 
-# 为控制平面创建负载均衡器
+## 为控制平面创建负载均衡器
 
 接下来我们为控制平面创建一个负载平衡器。如何设置和配置负载均衡器的具体细节因解决方案不同，但是一般的方案都需要包括下面的功能：
 
-- 使用 4 层负载平衡器（TCP 而不是 HTTP / HTTPS）
+- 使用4层负载平衡器（TCP而不是HTTP / HTTPS）
 - 运行健康检查应配置为 SSL，而不是 TCP 运行状况检查
 
 不管用哪一种方式，我们最好创建一个 DNS CNAME 条目以指向您的负载均衡器（强烈建议）。如果您需要更换或重新配置负载均衡解决方案，这将为您提供更多的灵活性，因为 DNS CNAME 保持不变，就不用再次去更新证书了。
 
-我们这里采用的方案是在节点上使用 nginx 来作为一个负载均衡器，下面的操作需要在所有节点上操作：
+我们这里采用的方案是在节点上使用 nginx 来作为一个负载均衡器，下面的操作需要在 **所有节点** 上操作：
 
-```bash
+```shell
 $ mkdir -p /etc/kubernetes
 
 $ cat > /etc/kubernetes/nginx.conf << EOF
@@ -208,6 +210,10 @@ http {
 
   server {
     listen 8081;
+    location /healthz {
+      access_log off;
+      return 200;
+    }
     location /stub_status {
       stub_status on;
       access_log off;
@@ -219,19 +225,19 @@ EOF
 
 使用上面的配置启动一个 nginx 容器：
 
-```bash
-$ docker run --restart=always
-    -v /etc/kubernetes/nginx.conf:/etc/nginx/nginx.conf
-    -v /etc/localtime:/etc/localtime:ro
-    --name k8s-ha
-    --net host
-    -d
+```shell
+$ docker run --restart=always \
+    -v /etc/kubernetes/nginx.conf:/etc/nginx/nginx.conf \
+    -v /etc/localtime:/etc/localtime:ro \
+    --name k8s-ha \
+    --net host \
+    -d \
     nginx
 ```
 
-启动成功后 apiserver 的负载均衡地址就成了 https://api.k8s.local:8443。然后我们将 kubeconfig 文件中的 apiserver 地址替换成负载均衡器的地址。
+启动成功后 apiserver 的负载均衡地址就成了 `https://api.k8s.local:8443` 。然后我们将 kubeconfig 文件中的 apiserver 地址替换成负载均衡器的地址。
 
-```bash
+```shell
 # 修改 kubelet 配置
 $ vi /etc/kubernetes/kubelet.conf
 ......
@@ -246,7 +252,7 @@ $ vi /etc/kubernetes/controller-manager.conf
   name: kubernetes
 ......
 # 重启
-$ docker kill $(docker ps | grep kube-controller-manager |
+$ docker kill $(docker ps | grep kube-controller-manager | \
 grep -v pause | cut -d' ' -f1)
 # 修改 scheduler
 $ vi /etc/kubernetes/scheduler.conf
@@ -255,13 +261,13 @@ $ vi /etc/kubernetes/scheduler.conf
   name: kubernetes
 ......
 # 重启
-$ docker kill $(docker ps | grep kube-scheduler | grep -v pause |
+$ docker kill $(docker ps | grep kube-scheduler | grep -v pause | \
 cut -d' ' -f1)
 ```
 
-# 然后更新 kube-proxy
+然后更新 kube-proxy
 
-```bash
+```shell
 $ kubectl -n kube-system edit cm kube-proxy
 ......
   kubeconfig.conf: |-
@@ -275,11 +281,11 @@ $ kubectl -n kube-system edit cm kube-proxy
 ......
 ```
 
-当然还有 kubectl 访问集群的 ~/.kube/config 文件也需要修改。
+当然还有 kubectl 访问集群的 `~/.kube/config` 文件也需要修改。
 
-# 更新控制面板
+## 更新控制面板
 
-由于我们现在已经在控制平面的前面添加了一个负载平衡器，因此我们需要使用正确的信息更新此 ConfigMap。
+由于我们现在已经在控制平面的前面添加了一个负载平衡器，因此我们需要使用正确的信息更新此 ConfigMap。（您很快就会将控制平面节点添加到集群中，因此在此ConfigMap中拥有正确的信息很重要。）
 
 首先，使用以下命令从 ConfigMap 中获取当前配置：
 
@@ -287,15 +293,15 @@ $ kubectl -n kube-system edit cm kube-proxy
 $ kubectl -n kube-system get configmap kubeadm-config -o jsonpath='{.data.ClusterConfiguration}' > kubeadm.yaml
 ```
 
-然后在当前配置文件里面里面添加 controlPlaneEndpoint 属性，用于指定控制面板的负载均衡器的地址。
+然后在当前配置文件里面里面添加 `controlPlaneEndpoint` 属性，用于指定控制面板的负载均衡器的地址。
 
-```bash
+```shell
 $ vi kubeadm.yaml
 controlPlaneEndpoint: api.k8s.local:8443  # 添加改配置
 apiServer:
   certSANs:
   - api.k8s.local
-  - ydzs-master  # 添加3个master节点的hostname和ip
+  - ydzs-master
   - ydzs-master2
   - ydzs-master3
   - 10.151.30.11
@@ -306,11 +312,11 @@ apiServer:
 
 编辑完文件后，使用以下命令将其上传回集群：
 
-```bash
+```shell
 $ kubeadm config upload from-file --config kubeadm.yaml
 ```
 
-然后需要在 kube-public 命名空间中更新 cluster-info 这个 ConfigMap，该命名空间包含一个 Kubeconfig 文件，该文件的 server: 一行指向单个控制平面节点。只需使用 kubectl -n kube-public edit cm cluster-info 更新该 server: 行以指向控制平面的负载均衡器即可。
+然后需要在 `kube-public` 命名空间中更新 `cluster-info` 这个 ConfigMap，该命名空间包含一个Kubeconfig 文件，该文件的 `server:` 一行指向单个控制平面节点。只需使用 `kubectl -n kube-public edit cm cluster-info` 更新该 `server:` 行以指向控制平面的负载均衡器即可。
 
 ```shell
 $ kubectl -n kube-public edit cm cluster-info
@@ -329,7 +335,7 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
 更新完成就可以看到 cluster-info 的信息变成了负载均衡器的地址了。
 
-# 添加控制平面
+## 添加控制平面
 
 接下来我们来添加额外的控制平面节点，首先使用如下命令来将集群的证书上传到集群中，供其他控制节点使用：
 
@@ -343,7 +349,7 @@ W0903 15:13:25.739966   20533 validation.go:28] Cannot validate kubelet config -
 e71ef7ede98e49f5f094b150d604c7ad50f125279180a7320b1b14ef3ccc3a34
 ```
 
-上面的命令会生成一个新的证书密钥，但是只有 2 小时有效期。由于我们现有的集群已经运行一段时间了，所以之前的启动 Token 也已经失效了（Token 的默认生存期为 24 小时），所以我们也需要创建一个新的 Token 来添加新的控制平面节点：
+上面的命令会生成一个新的证书密钥，但是只有2小时有效期。由于我们现有的集群已经运行一段时间了，所以之前的启动 Token 也已经失效了（Token 的默认生存期为24小时），所以我们也需要创建一个新的 Token 来添加新的控制平面节点：
 
 ```shell
 $ kubeadm token create --print-join-command --config kubeadm.yaml
@@ -354,32 +360,32 @@ kubeadm join api.k8s.local:8443 --token f27w7m.adelvl3waw9kqdhp     --discovery-
 
 上面的命令最后给出的提示是添加 node 节点的命令，我们这里要添加控制平面节点就要使用如下所示的命令：
 
-```bash
-$ kubeadm join <DNS CNAME of load balancer>:<load balancer port>
---token <bootstrap-token>
---discovery-token-ca-cert-hash sha256:<CA certificate hash>
+```shell
+$ kubeadm join <DNS CNAME of load balancer>:<lb port> \
+--token <bootstrap-token> \
+--discovery-token-ca-cert-hash sha256:<CA certificate hash> \
 --control-plane --certificate-key <certificate-key>
 ```
 
 获得了上面的添加命令过后，登录到 ydzs-master2 节点进行相关的操作，在 ydzs-master2 节点上安装软件：
 
-```bash
+```shell
 $ yum install -y kubeadm-1.17.11-0 kubelet-1.17.11-0 kubectl-1.17.11-0
 ```
 
 要加入控制平面，我们可以先拉取相关镜像：
 
-```
+```shell
 $ kubeadm config images pull --image-repository registry.aliyuncs.com/k8sxio
 ```
 
 然后执行上面生成的 join 命令，将参数替换后如下所示：
 
-```bash
+```shell
 $ kubeadm join api.k8s.local:8443 \
-  --token f27w7m.adelvl3waw9kqdhp \
-  --discovery-token-ca-cert-hash sha256:6917cbf7b0e73ecfef77217e9a27e76ef9270aa379c34af30201abd0f1088c34 \
-  --control-plane --certificate-key e71ef7ede98e49f5f094b150d604c7ad50f125279180a7320b1b14ef3ccc3a34
+--token f27w7m.adelvl3waw9kqdhp \
+--discovery-token-ca-cert-hash sha256:6917cbf7b0e73ecfef77217e9a27e76ef9270aa379c34af30201abd0f1088c34 \
+--control-plane --certificate-key e71ef7ede98e49f5f094b150d604c7ad50f125279180a7320b1b14ef3ccc3a34
 [preflight] Running pre-flight checks
 [preflight] Reading configuration from the cluster...
 [preflight] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -oyaml'
@@ -426,16 +432,25 @@ This node has joined the cluster and a new control plane instance was created:
 
 To start administering your cluster from this node, you need to run the following as a regular user:
 
- mkdir -p $HOME/.kube
- sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
- sudo chown $(id -u):$(id -g) $HOME/.kube/config
+    mkdir -p $HOME/.kube
+    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+    sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 Run 'kubectl get nodes' to see this node join the cluster.
 ```
 
+如果在 etcd 里面有残留的废弃节点数据，可以用如下命令删除：
+
+```shell
+# 列出所有成员
+$ ./etcdctl --endpoints=$ENDPOINTS member list  
+# 删除指定成员
+$ ./etcdctl --endpoints=$ENDPOINTS member remove b9057cfdc8ff17ce
+```
+
 到这里可以看到 ydzs-master2 节点就成功加入到了控制平面中，然后根据上面的提示配置 kubeconfig 文件。然后用同样的方式添加 ydzs-master3 节点，都添加成功后，在 ydzs-master3 节点上执行如下所示的命令来验证 etcd 集群使用正常：
 
-```bash
+```shell
 $ docker run --rm -it \
 --net host \
 -v /etc/kubernetes:/etc/kubernetes registry.aliyuncs.com/k8sxio/etcd:3.4.3-0 etcdctl \
@@ -457,9 +472,9 @@ $ docker run --rm -it --net host -v /etc/kubernetes:/etc/kubernetes registry.ali
 +---------------------------+------------------+---------+---------+-----------+------------+-----------+------------+--------------------+--------+
 ```
 
-正常我们就可以看到 etcd 集群正常了，但是由于控制平台的 3 个节点是先后安装的，所以前面两个节点的 etcd 中并不包含其他 etcd 节点的信息，所以我们需要同步所有控制平面节点的 etcd 集群配置：
+正常我们就可以看到 etcd 集群正常了，但是由于控制平台的3个节点是先后安装的，所以前面两个节点的 etcd 中并不包含其他 etcd 节点的信息，所以我们需要同步所有控制平面节点的 etcd 集群配置：
 
-```bash
+```shell
 $ cat /etc/kubernetes/manifests/etcd.yaml
 ......
 - --initial-cluster=ydzs-master=https://10.151.30.11:2380,ydzs-master2=https://10.151.30.70:2380,ydzs-master3=https://10.151.30.71:2380
@@ -468,7 +483,7 @@ $ cat /etc/kubernetes/manifests/etcd.yaml
 
 最后执行如下所示的命令查看集群是否正常：
 
-```bash
+```shell
 $ kubectl get nodes
 NAME           STATUS   ROLES    AGE    VERSION
 ydzs-master    Ready    master   299d   v1.17.11
@@ -482,4 +497,4 @@ ydzs-node5     Ready    <none>   225d   v1.17.11
 ydzs-node6     Ready    <none>   225d   v1.17.11
 ```
 
-这里我们就可以看到 ydzs-master、ydzs-master2、ydzs-master3 3 个节点变成了 master 节点，我们也就完成了将单 master 升级为多 master 的高可用集群了。
+这里我们就可以看到 ydzs-master、ydzs-master2、ydzs-master3 3个节点变成了 master 节点，我们也就完成了将单 master 升级为多 master 的高可用集群了。

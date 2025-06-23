@@ -303,7 +303,7 @@ Kubelet 目前从 cAdvisor 定时获取内存使用状况统计。如果内存�
 
 ### Kubelet 可能驱逐超出需要的更多 Pod
 
-这也是因为状态搜集的时间差导致的。未来会加入功能，让根容器的统计频率和其他容器分别开来（[https://github.com/google/cad...](https://link.segmentfault.com/?url=https%3A%2F%2Fgithub.com%2Fgoogle%2Fcadvisor%2Fissues%2F1247)）。
+这也是因为状态搜集的时间差导致的。未来会加入功能，让根容器的统计频率和其他容器分别开来(https://github.com/google/cadvisor/issues/1247)。
 
 ### Kubelet 如何在 inode 耗尽的时候评价 Pod 的驱逐
 

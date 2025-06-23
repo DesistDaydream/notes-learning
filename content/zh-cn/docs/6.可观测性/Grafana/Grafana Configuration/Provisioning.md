@@ -28,7 +28,7 @@ Grafana 从 v5.0 版本中，决定通过一个 **Provisioning(配置供应系�
 | ---------------------------------------- | ------------------------------ | -------------------------------------------------------------------------------------------- |
 | **[Data sources](#Data%20sources)(数据源)** | ${ProvisioningDir}/dashboards/ | 预配置 Grafana 数据源                                                                              |
 | **[Plugins](#plugins)(插件)**              | ${ProvisioningDir}/plugins/    | 预配置 [Plugins](/docs/6.可观测性/Grafana/Plugins.md)                                               |
-| **[Dashboards](#dashboards)(仪表盘)**       | ${ProvisioningDir}/dashboards/ | 预配置 [Panel 与 Dashboard](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Panel%20与%20Dashboard.md) |
+| **[Dashboards](#dashboards)(仪表盘)**       | ${ProvisioningDir}/dashboards/ | 预配置 [Dashboard](/docs/6.可观测性/Grafana/Dashboard/Dashboard.md) |
 | **[Alerting](#alerting)(警报)**            | ${ProvisioningDir}/alerting/   | 预配置 [Grafana Alerting](/docs/6.可观测性/Grafana/Grafana%20Alerting.md)                           |
 
 > [!Tip] 通常默认情况下，从目录中读取所有 .yaml 文件，作为该能力的配置文件，以加载的各种内容

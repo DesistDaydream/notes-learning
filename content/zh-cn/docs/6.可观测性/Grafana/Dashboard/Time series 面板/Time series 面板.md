@@ -1,12 +1,15 @@
 ---
-title: "Time series 类型面板"
-linkTitle: "Time series 类型面板"
+title: Time series 面板
+linkTitle: Time series 面板
 weight: 20
 ---
+
 
 # 概述
 
 > 参考：
+>
+> -
 
 这是一个初始的 Time series 面板，有两条查询语句，更改了序列的名称。
 
@@ -22,7 +25,7 @@ sum(node_memory_MemTotal_bytes)
 
 Time series 是一个二维的，具有 x/y Axes(轴) 的面板。x 轴(横轴) 以时间分布、y 轴(纵轴) 以样本值分布
 
-下面的文章将只介绍 Time series 面板的独有配置，有很多共有配置详见 [Panel 配置](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Panel%20配置/Panel%20配置.md)
+下面的文章将只介绍 Time series 面板的独有配置，有很多共有配置详见 [Panel](/docs/6.可观测性/Grafana/Dashboard/Panel/Panel.md)
 
 # Panel - 面板配置
 
@@ -125,4 +128,4 @@ Sort order # 排序。有三种排序方式：None(不排序)、Increasing(由�
 
 # Overrides - 字段替换配置
 
-详见：[Overrides](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Panel%20配置/Panel%20配置.md#Overrides%20-%20替换，替换%20Field)
+详见：[Overrides](/docs/6.可观测性/Grafana/Dashboard/Panel/Panel.md#Overrides%20-%20替换，替换%20Field)

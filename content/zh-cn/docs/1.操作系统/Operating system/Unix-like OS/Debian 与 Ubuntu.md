@@ -8,6 +8,8 @@ title: Debian 与 Ubuntu
 >
 > - [Debian 官方 Manual(手册)](https://manpages.debian.org/)
 
+Debian 与 Ubuntu 是 [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 发行版
+
 ```bash
 groupadd wheel
 usermod -G wheel desistdaydream

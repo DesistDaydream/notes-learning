@@ -1,10 +1,14 @@
 ---
 title: Kubernetes 监控
+linkTitle: Kubernetes 监控
+weight: 1
 ---
 
 # 概述
 
-> 参考：[官方文档](https://kubernetes.io/docs/tasks/debug-application-cluster/resource-usage-monitoring)
+> 参考：
+>
+> - [官方文档](https://kubernetes.io/docs/tasks/debug-application-cluster/resource-usage-monitoring)
 
 对于 Kubernetes 集群的监控一般我们需要考虑以下几个方面：
 
@@ -13,6 +17,7 @@ title: Kubernetes 监控
 - Pod 的监控：比如 Deployment 的状态、资源请求、调度和 API 延迟等数据指标
 
 Kubernetes 中，应用程序监控不依赖于单个监控解决方案，目前主要有以下几种方案：
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cboyz6/1616116947769-dcc7cae1-400b-41aa-9f37-55ef43d48d26.png)
 
 - **Resource Metrics Pipeline**# 通过 API Server 中的 **Metrics API** 暴露的一个用于显示集群指标接口，该接口在集群刚部署完成时，并不是默认自带的。需要通过其他方式来启用这个 API
@@ -23,13 +28,15 @@ Kubernetes 中，应用程序监控不依赖于单个监控解决方案，目前
     - Heapster # 由于 Heapster 无法通过 Metrics API 的方式提供监控指标，所以被废弃了。1.11 以后的版本中会使用 metrics-server 代替。
 - **kube-state-metrics 程序**，用来监听 API Server 以补充 Metrics API 无法提供的集群指标，比如 Deployment、Node、Pod 等等资源的状态
   - 项目地址：<https://github.com/kubernetes/kube-state-metrics#kube-state-metrics-vs-heapster>
-- **各个系统组件暴露的**`**/metrics**`**端点**，可以提供组件自身的指标
+- **各个系统组件暴露的 `/metrics` 端点**，可以提供组件自身的指标
 
 Note：以上几种监控方案只是简单提供一个 metrics 数据，并不会存储这些 metrics 数据，所以我们可以使用 Prometheus 来抓取这些数据然后存储。
 
-# Resource Metrics Pipeline(Metrics API) # 资源指标通道
+# Resource Metrics Pipeline(Metrics API) - 资源指标通道
 
-> 参考：[官方文档](https://kubernetes.io/docs/tasks/debug-application-cluster/resource-metrics-pipeline/)
+> 参考：
+>
+> - [官方文档](https://kubernetes.io/docs/tasks/debug-application-cluster/resource-metrics-pipeline/)
 
 Kubernetes 集群内的 **Resource Metrics Pipeline(资源指标通道)**，指的是传输各种资源 Metrics(指标) 的 API 接口，该 API 通过 API 聚合功能添加。所以，也称之为 Metrics API，这种 API 是专门用来传输集群的 Metrics(指标) 数据
 
@@ -52,11 +59,17 @@ Note：Metrics API 需要在集群中部署 Metrics 服务(比如 metrics-server
 ## 实现原理
 
 kubectl top 、 k8s dashboard 以及 HPA 等组件使用的数据是一样，对于 Core Metrics 来说，过程如下
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cboyz6/1616116947780-6dccbd72-f014-439e-9abd-4a1be9ae09cd.png)
+
 使用 heapster 时：apiserver 会直接将 metric 请求通过 proxy 的方式转发给集群内的 hepaster 服务。
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cboyz6/1616116947765-60562da9-19b4-48dd-92f0-6b91dd92cb67.png)
+
 而使用 metrics-server 时：apiserver 是通过 /apis/metrics.k8s.io/ 的地址访问 metric
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cboyz6/1616116947787-3f27dbd0-b797-48b4-8de5-fa9919d7bdf5.png)
+
 可以发现，heapster 使用的是 proxy 转发，而 metric-server 和普通 pod 都是使用 api/xx 的资源接口，heapster 采用的这种 proxy 方式是有问题的：
 
 - proxy 只是代理请求，一般用于问题排查，不够稳定，且版本不可控
@@ -89,12 +102,48 @@ metrics-server 的部署文件在这个网址中：<https://github.com/kubernete
 
 ### prometheus-adapter
 
-详见：[Prometheus-adapter](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20衍生品/Prometheus%20Operator/Prometheus-adapter.md)
+[Prometheus-adapter](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20衍生品/Prometheus%20Operator/Prometheus-adapter.md)
 
 # kube-state-metrics
 
-详见 [kube-state-metrics](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/Kubernetes%20 监控/kube-state-metrics.md 监控/kube-state-metrics.md)
+[kube-state-metrics](/docs/10.云原生/Kubernetes/Kubernetes%20管理/Kubernetes%20监控/kube-state-metrics.md)
 
 # 系统组件指标
 
-详见 [Kubernetes 系统组件指标](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/Kubernetes%20 监控/Kubernetes%20 系统组件指标.md 监控/Kubernetes 系统组件指标.md)
+[Kubernetes 系统组件指标](/docs/10.云原生/Kubernetes/Kubernetes%20管理/Kubernetes%20监控/Kubernetes%20系统组件指标.md)
+
+# K8S 集群中常用的 exporter
+
+> - [Vermouth 博客，高可用 Prometheus 问题集锦](http://www.xuyasong.com/?p=1921)
+
+可以在[这里](https://prometheus.io/docs/instrumenting/exporters/)看到官方、非官方的 exporter。如果还是没满足你的需求，你还可以自己编写 exporter，简单方便、自由开放，这是优点。
+
+但是过于开放就会带来选型、试错成本。之前只需要在 zabbix agent 里面几行配置就能完成的事，现在你会需要很多 exporter 搭配才能完成。还要对所有 exporter 维护、监控。尤其是升级 exporter 版本时，很痛苦。非官方 exporter 还会有不少 bug。这是使用上的不足，当然也是 Prometheus 的设计原则。
+
+K8S 生态的组件都会提供 / metric 接口以提供自监控，这里列下我们正在使用的：
+
+- [cadvisor](/docs/10.云原生/Containerization%20implementation/容器管理/观测容器.md): 集成在 Kubelet 中。
+- kubelet: 10255 为非认证端口，10250 为认证端口。
+- apiserver: 6443 端口，关心请求数、延迟等。
+- scheduler: 10251 端口。
+- controller-manager: 10252 端口。
+- etcd: 如 etcd 写入读取延迟、存储容量等。
+- docker: 需要开启 experimental 实验特性，配置 metrics-addr，如容器创建耗时等指标。
+- kube-proxy: 默认 127 暴露，10249 端口。外部采集时可以修改为 0.0.0.0 监听，会暴露：写入 iptables 规则的耗时等指标。
+- [kube-state-metrics](/docs/10.云原生/Kubernetes/Kubernetes%20管理/Kubernetes%20监控/kube-state-metrics.md): K8S 官方项目，采集 pod、deployment 等资源的元信息。
+- [Node Exporter](/docs/6.可观测性/Metrics/Instrumenting/Node%20Exporter.md): Prometheus 官方项目，采集机器指标如 CPU、内存、磁盘。
+- blackbox_exporter: Prometheus 官方项目，网络探测，dns、ping、http 监控
+- process-exporter: 采集进程指标
+- nvidia exporter: 我们有 gpu 任务，需要 gpu 数据监控
+- node-problem-detector: 即 npd，准确的说不是 exporter，但也会监测机器状态，上报节点异常打 taint
+- 应用层 exporter: mysql、nginx、mq 等，看业务需求。
+
+还有各种场景下的[自定义 exporter](http://www.xuyasong.com/?p=1942)，如日志提取后面会再做介绍。
+
+## Kubernetes Event Exporter
+
+> 参考：
+>
+> - [GitHub 项目，opsgenie/kubernetes-event-exporter](https://github.com/opsgenie/kubernetes-event-exporter)
+
+将 Kubernetes 中 Event 资源的内容导出到多个目的地

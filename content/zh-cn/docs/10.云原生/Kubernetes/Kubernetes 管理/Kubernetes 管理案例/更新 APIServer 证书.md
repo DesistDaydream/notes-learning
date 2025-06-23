@@ -5,6 +5,7 @@ title: 更新 APIServer 证书
 # 概述
 
 > 参考：
+>
 > - 原文链接：<https://mp.weixin.qq.com/s/bs0urFxOG71nq9K34H1b6Q>
 
 本文我们将了解如何将一个新的 DNS 名称或者 IP 地址添加到 Kubernetes APIServer 使用的 TLS 证书中。在某些情况下默认的证书包含的名称可能不能满足我们的要求，又或者是 APIServer 地址有所变化，都需要重新更新证书。

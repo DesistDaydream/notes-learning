@@ -1,6 +1,6 @@
 ---
-title: Panel 配置
-linkTitle: Panel 配置
+title: Panel
+linkTitle: Panel
 weight: 1
 ---
 
@@ -8,6 +8,7 @@ weight: 1
 
 > 参考：
 >
+> - [官方文档，面板与可视化](https://grafana.com/docs/grafana/latest/panels-visualizations/)
 > - [官方文档，面板与可视化 - 面板编辑器](https://grafana.com/docs/grafana/latest/panels-visualizations/panel-editor-overview/)
 
 当我们开始创建一个新的 Panel 时，可以看到下图所示的界面，这个界面分为三大部分，分别用三种颜色的框体括起来
@@ -88,7 +89,7 @@ Query 标签的页面由一下几个元素组成
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636274684211-5c3cddae-a4f0-4fc1-b10b-0c43417df8dc.png)
 
-Query 详解见 [Query(查询)](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Panel%20配置/Query(查询).md)
+Query 详解见 [Query(查询)](/docs/6.可观测性/Grafana/Dashboard/Panel/Query(查询).md)
 
 ## Transform(转换)
 
@@ -102,7 +103,7 @@ Transformations process the result set of a query before it’s passed on for vi
 
 Transformations sometimes result in data that cannot be graphed. When that happens, Grafana displays a suggestion on the visualization that you can click to switch to table visualization. This often helps you better understand what the transformation is doing to your data
 
-Transform 的用法详见：[Transformations(转换)](/docs/6.可观测性/Grafana/Panel%20与%20Dashboard/Panel%20配置/Transformations(转换).md)
+Transform 的用法详见：[Transformations(转换)](/docs/6.可观测性/Grafana/Dashboard/Panel/Transformations(转换).md)
 
 ## Alert(告警)
 
@@ -144,6 +145,24 @@ https://grafana.com/docs/grafana/latest/panels-visualizations/panel-editor-overv
 > - [官方文档，面板与可视化 - 配置面板可选项](https://grafana.com/docs/grafana/latest/panels-visualizations/configure-panel-options/)
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636268147075-e492ebe5-f2a3-4cfe-9b8b-ec466199f0ad.png)
+
+**Title**
+
+面板的名称和描述。Title 可为空，面板将会隐藏头部
+
+**Panel links**
+
+TODO: 有啥用？
+
+**Repeat options**
+
+https://grafana.com/docs/grafana/latest/panels-visualizations/configure-panel-options/#configure-repeating-panels
+
+https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/create-dashboard/#configure-repeating-rows
+
+通过 Repeat(重复) 功能，可以动态得为 Dashboard 添加 Panel 或 Row。
+
+> 比如我们有个容器列表的变量，通过 Repeat 功能，可以将 Row 下的所有 Panel 都重复创建一遍，每个 Row 中的 Panel 都是相同的，只有其中的容器不一样，所以 Panel 中展示出来的信息也不一样。
 
 ### Standard options(标准选项)
 

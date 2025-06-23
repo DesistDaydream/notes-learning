@@ -1,8 +1,10 @@
 ---
 title: Prometheus-adapter
+linkTitle: Prometheus-adapter
+weight: 20
 ---
 
-# 介绍
+# 概述
 
 > 参考:
 >

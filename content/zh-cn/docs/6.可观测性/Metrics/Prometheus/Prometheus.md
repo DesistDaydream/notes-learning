@@ -79,9 +79,11 @@ Prometheus 可以通过 3 种方式从目标上 Scrape(抓取) 指标：
 
 # Prometheus 关联文件与配置
 
-**/etc/prometheus/prometheus.yml** # Prometheus Server 运行时的配置文件。可通过 --config.file 标志指定其他文件。
+**prometheus.yml** # Prometheus Server 运行时的配置文件。可通过 --config.file 标志指定其他文件。
 
-**/etc/prometheus/rule.yml** # Prometheus Rule 配置文件。该文件默认不存在，需手动创建。可以在 prometheus.yml 配置中指定其他文件。
+**rule.yml** # Prometheus Rule 配置文件。该文件默认不存在，需手动创建。可以在 prometheus.yml 配置中指定其他文件。
+
+**data/** # Prometheus 数据存储路径
 
 ## Prometheus 配置示例
 

@@ -511,6 +511,8 @@ Extra close brace or missing open brace
 
 ### Docker 容器
 
+指标主要来自于 cadvisor
+
 #### 一个容器消失
 
 ```yaml
@@ -524,12 +526,12 @@ Extra close brace or missing open brace
       description: A container has disappeared\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
 ```
 
-#### 容器 cpu 的使用量
+#### 容器 CPU 的使用量
 
-[容器](https://cloud.tencent.com/product/tke?from_column=20065&from=20065)CPU使用率超过80%。
+容器 CPU 使用率超过80%。
 
 ```yaml
- # cAdvisor有时会消耗大量的CPU，所以这个警报会不断地响起。
+  # cAdvisor有时会消耗大量的CPU，所以这个警报会不断地响起。
   # If you want to exclude it from this alert, just use: container_cpu_usage_seconds_total{name!=""}
   - alert: ContainerCpuUsage
     expr: (sum(rate(container_cpu_usage_seconds_total[3m])) BY (instance, name) * 100) > 80
@@ -576,7 +578,7 @@ Extra close brace or missing open brace
 
 #### redis down
 
-[redis](https://cloud.tencent.com/product/crs?from_column=20065&from=20065) 服务 down 了，报警
+redis 服务 down 了，报警
 
 ```yaml
   - alert: RedisDown
