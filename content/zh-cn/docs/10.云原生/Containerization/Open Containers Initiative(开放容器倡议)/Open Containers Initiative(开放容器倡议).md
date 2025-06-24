@@ -10,7 +10,7 @@ title: Open Containers Initiative(开放容器倡议)
 > - [GitHub 组织，OpenContainers](https://github.com/opencontainers)
 > - [segmentfault，《走进 docker》系列文章](https://segmentfault.com/u/public0821/articles)
 
-**Open Containers Initiative(开放容器倡议，简称 OCI)** 是一个轻量级的，开放的治理结构（项目），由 Linux Foundation 主持成立，其明确目的是围绕 Container 镜像格式和运行时创建 开放的行业标准。OCI 由 Docker，CoreOS 和其他容器行业领导者于 2015 年 6 月 22 日启动。
+**Open Containers Initiative(开放容器倡议，简称 OCI)** 是一个轻量级的，开放的治理结构（项目），由 Linux Foundation 主持成立，其明确目的是围绕 Container 镜像格式和运行时创建开放的行业标准。OCI 由 Docker，CoreOS 和其他容器行业领导者于 2015 年 6 月 22 日启动。
 
 OCI 公有如下几个个规范：
 

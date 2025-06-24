@@ -10,10 +10,11 @@ weight: 1
 >
 > - [Wiki, Containerization](https://en.wikipedia.org/wiki/Containerization_(computing))
 > - [Wiki, OS-level virtualization](https://en.wikipedia.org/wiki/OS-level_virtualization)
+> - [MoeLove，一篇搞懂容器技术的基石： cgroup](https://moelove.info/2021/11/17/%E4%B8%80%E7%AF%87%E6%90%9E%E6%87%82%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF%E7%9A%84%E5%9F%BA%E7%9F%B3-cgroup/)
 
 **Container(容器)** 是一种基础工具；泛指任何可以用于容纳其它物品的工具，可以部分或完全封闭，被用于容纳、储存、运输物品。物体可以被放置在容器中，而容器则可以保护内容物。人类使用容器的历史至少有十万年，甚至可能有数百万年的历史。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lei5gl/1616122918518-107de7cd-51b4-4427-8281-8e81f7c2383d.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/containerization/containerization_history.png)
 
 自 1979 年，Unix 版本 7 引用 Chroot Jail 以及 [Chroot](/docs/1.操作系统/Kernel/Process/Chroot.md) 系统调用开始，直到 2013 年开源出的 Docker，2014 年开源出来的 Kubernetes，直到现在的云原生生态的火热。容器技术已经逐步成为主流的基础技术之一。
 
@@ -24,13 +25,14 @@ IT 里的容器技术是英文单词 Linux Container 的直译。Container 这�
 因此，IT 世界里借鉴了这一理念。早期，大家都认为硬件抽象层基于 hypervisor 的虚拟化方式可以最大程度上提供虚拟化管理的灵活性。各种不同操作系统的虚拟机都能通过 hypervisor（KVM、XEN 等）来衍生、运行、销毁。然而，随着时间推移，用户发现 hypervisor 这种方式麻烦越来越多。为什么？因为对于 hypervisor 环境来说，每个虚拟机都需要运行一个完整的操作系统以及其中安装好的大量应用程序。但实际生产开发环境里，我们更关注的是自己部署的应用程序，如果每次部署发布我都得搞一个完整操作系统和附带的依赖环境，那么这让任务和性能变得很重和很低下。
 
 基于上述情况，人们就在想，有没有其他什么方式能让人更加的关注应用程序本身，底层多余的操作系统和环境我可以共享和复用？换句话来说，那就是我部署一个服务运行好后，我再想移植到另外一个地方，我可以不用再安装一套操作系统和依赖环境。这就像集装箱运载一样，我把货物一辆兰博基尼跑车（好比开发好的应用 APP），打包放到一容器集装箱里，它通过货轮可以轻而易举的从上海码头（CentOS7.2 环境）运送到纽约码头（Ubuntu14.04 环境）。而且运输期间，我的兰博基尼（APP）没有受到任何的损坏（文件没有丢失），在另外一个码头卸货后，依然可以完美风骚的赛跑（启动正常）。
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lei5gl/1616122918592-560b0741-407f-4354-bc87-d0ef48160754.png)
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/containerization/containerization_imagine.png)
 
 ## 二、容器技术的实现方式，lxc、runc、kata 等
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lei5gl/1616122918517-21a8c653-b45e-44a9-b54e-86ca53db6fd7.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/containerization/1616122918517-21a8c653-b45e-44a9-b54e-86ca53db6fd7.png)
 
-Linux Container(LXC)容器技术的诞生（2008 年）就解决了 IT 世界里“集装箱运输”的问题。Linux Container（简称 LXC）它是一种 内核轻量级的操作系统层 虚拟化技术，也称为容器的运行时(runtime 运行环境)。Linux Container 主要由 Namespace 和 Cgroup 两大机制来保证实现。那么 Namespace 和 Cgroup 是什么呢？刚才我们上面提到了集装箱，集装箱的作用当然是可以对货物进行打包隔离了，不让 A 公司的货跟 B 公司的货混在一起，不然卸货就分不清楚了。那么 Namespace 也是一样的作用，做隔离。光有隔离还没用，我们还需要对货物进行资源的管理。同样的，航运码头也有这样的管理机制：货物用什么样规格大小的集装箱，货物用多少个集装箱，货物哪些优先运走，遇到极端天气怎么暂停运输服务怎么改航道等等... 通用的，与此对应的 Cgroup 就负责资源管理控制作用，比如进程组使用 CPU/MEM 的限制，进程组的优先级控制，进程组的挂起和恢复等等。
+Linux Container(LXC) 容器技术的诞生（2008 年）就解决了 IT 世界里“集装箱运输”的问题。Linux Container（简称 LXC）它是一种 内核轻量级的操作系统层 虚拟化技术，也称为容器的运行时(runtime 运行环境)。Linux Container 主要由 Namespace 和 Cgroup 两大机制来保证实现。那么 Namespace 和 Cgroup 是什么呢？刚才我们上面提到了集装箱，集装箱的作用当然是可以对货物进行打包隔离了，不让 A 公司的货跟 B 公司的货混在一起，不然卸货就分不清楚了。那么 Namespace 也是一样的作用，做隔离。光有隔离还没用，我们还需要对货物进行资源的管理。同样的，航运码头也有这样的管理机制：货物用什么样规格大小的集装箱，货物用多少个集装箱，货物哪些优先运走，遇到极端天气怎么暂停运输服务怎么改航道等等... 通用的，与此对应的 Cgroup 就负责资源管理控制作用，比如进程组使用 CPU/MEM 的限制，进程组的优先级控制，进程组的挂起和恢复等等。
 
 经过多年的发展，陆续推出了 runc、kata 等容器底层技术
 
@@ -77,8 +79,6 @@ kata 是自带内核的虚拟机型的容器 runtime，官方网址：<https://k
   - Docker 和容器有助于优化 IT 基础设施的利用率和成本。优化不仅仅是指削减成本，还能确保在适当的时间有效地使用适当的资源。容器是一种轻量级的打包和隔离应用工作负载的方法，所以 Docker 允许在同一物理或虚拟服务器上毫不冲突地运行多项工作负载。企业可以整合数据中心，将并购而来的 IT 资源进行整合，从而获得向云端的可迁移性，同时减少操作系统和服务器的维护工作。
 
 # Container 的基本核心概念
-
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/lei5gl/1641604740718-d450d041-4e36-462a-844d-d330f0a8715e.png)
 
 ## Image(镜像)
 
@@ -167,7 +167,7 @@ Image 与 Container 的关系，就好比是程序与进程之间的关系。Ima
 
 > 参考:
 >
-> - [GitHub 项目,rootless-containers](https://github.com/rootless-containers)
+> - [GitHub 项目，rootless-containers](https://github.com/rootless-containers)
 
 **Rootless Containers(无根容器)** 是指非特权用户能够创建、运行和以各种方式管理容器。这个术语还包括围绕容器的各种工具，这些工具也可以作为非特权用户运行。
 
