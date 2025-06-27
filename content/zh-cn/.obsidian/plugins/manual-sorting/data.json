@@ -1,7 +1,6 @@
 {
   "customFileOrder": {
     "/": [
-      "Clippings",
       "_index.md",
       "about",
       "blog",
@@ -45,9 +44,6 @@
       "blog/copy/云原生/灵魂拷问，上 Kubernetes 有什么业务价值？.md",
       "blog/copy/云原生/如何构建以应用为中心的Kubernetes.md",
       "blog/copy/云原生/ChatGPT 团队是如何使用Kubernetes的.md"
-    ],
-    "Clippings": [
-      "Clippings/升级为集群 - K8S训练营.md"
     ],
     "docs": [
       "docs/_index.md",
@@ -2630,8 +2626,7 @@
       "docs/10.云原生/Containerization implementation/Docker/Docker CLI/Docker CLI Plugin.md",
       "docs/10.云原生/Containerization implementation/Docker/Docker CLI/image.md",
       "docs/10.云原生/Containerization implementation/Docker/Docker CLI/network.md",
-      "docs/10.云原生/Containerization implementation/Docker/Docker CLI/ps,stats.md",
-      "docs/10.云原生/Containerization implementation/Docker/Docker CLI/run.md"
+      "docs/10.云原生/Containerization implementation/Docker/Docker CLI/container.md"
     ],
     "docs/10.云原生/Containerization implementation/Podman": [
       "docs/10.云原生/Containerization implementation/Podman/_index.md",
@@ -2916,43 +2911,38 @@
     "docs/10.云原生/Kubernetes/Kubernetes 开发": [
       "docs/10.云原生/Kubernetes/Kubernetes 开发/_index.md",
       "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries",
       "docs/10.云原生/Kubernetes/Kubernetes 开发/Operator 开发"
     ],
     "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析": [
       "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/_index.md",
       "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/源码解析.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/API 源码.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/API Server 源码",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubeadm 源码.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/API Server",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubeadm.md",
       "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/kubectl port-forward 工作原理.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码"
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet"
     ],
-    "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/API Server 源码": [
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/API Server 源码/_index.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/API Server 源码/API Server 源码.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/API Server 源码/kube-apiserver 的设计与实现 · 田飞雨.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/API Server 源码/Kubernetes并发控制和资源变更.md"
+    "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/API Server": [
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/API Server/_index.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/API Server/kube-apiserver 的设计与实现.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/API Server/Kubernetes并发控制和资源变更.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/API Server/API 源码.md"
     ],
-    "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码": [
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码/_index.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码/Kubelet 源码.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码/EvictionManager 模块.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码/PodWorker 模块.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码/SyncLoop 模块.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet 源码/Kubelet 启动流程.md"
+    "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet": [
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet/_index.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet/Kubelet.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet/EvictionManager 模块.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet/PodWorker 模块.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet/SyncLoop 模块.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/源码解析/Kubelet/Kubelet 启动流程.md"
     ],
-    "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)": [
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/_index.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/Client Libraries(客户端库).md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/Go Client.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/client-go连接K8s集群进行pod的增删改查.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/示例"
-    ],
-    "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/示例": [
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/示例/_index.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/示例/使用 Go 构建 Kubernetes 应用.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries(客户端库)/示例/在不生成 crd client 代码的情况下通过 client-go 增删改查 k8s crd 资源.md"
+    "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries": [
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries/_index.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries/Client Libraries.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries/Go Client.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries/client-go连接K8s集群进行pod的增删改查.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries/使用 Go 构建 Kubernetes 应用.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 开发/Client Libraries/在不生成 crd client 代码的情况下通过 client-go 增删改查 k8s crd 资源.md"
     ],
     "docs/10.云原生/Kubernetes/Kubernetes 开发/Operator 开发": [
       "docs/10.云原生/Kubernetes/Kubernetes 开发/Operator 开发/_index.md",

@@ -173,6 +173,8 @@ increase(http_requests_total{job="apiserver"}[5m])
 
 ### rate()
 
+> Note: https://claude.ai/share/85f83732-e4cc-4ee8-b7ff-1424a9e4f11c
+
 > [!Tip] rate() 与 irate() 更推荐用在 Counter 类型的 Metrics 上，在长期趋势分析或者告警中推荐使用这个函数。
 
 **`rate(V RangeVector[Duration])`** 计算范围向量 V 在时间窗口 Duration 内 **平均每秒增长了多少数值**（通过区间向量中<font color="#ff0000">首尾两个样本</font>数据来计算增长速率），该函数会自动处理单调性中断的情况（e.g. 因目标重启导致的计数器重置）。

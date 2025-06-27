@@ -1151,7 +1151,7 @@ jinja2 include 和 extends 的区别是：
 - include 是将另一个模板整个加载到当前模板中，并直接渲染。它的作用是复用一些固定的HTML代码，避免模板看起来拥挤。<sup>1</sup> <sup>5</sup>
 - extends 是让当前模板继承另一个模板的结构和内容，但可以在一些预留的区域（block）中添加或覆盖自己的内容。它的作用是实现模板的公共部分，避免重复的代码。<sup>1</sup> <sup>2</sup>
 
-举个例子，假设有一个base.html模板，定义了网页的头部、导航栏、内容区域和尾部：
+举个例子，假设有一个 base.html 模板，定义了网页的头部、导航栏、内容区域和尾部：
 
 ```html
 <html>
@@ -1180,9 +1180,9 @@ jinja2 include 和 extends 的区别是：
 </html>
 ```
 
-可以看到，在title和content两个地方，使用了block标签来预留区域，让子模板可以自定义这些部分。在footer处，使用了include标签来导入一个footer.html文件，这个文件包含了一些版权信息等固定内容。
+可以看到，在 title 和 content 两个地方，使用了 block 标签来预留区域，让子模板可以自定义这些部分。在 footer 处，使用了 include 标签来导入一个 footer.html 文件，这个文件包含了一些版权信息等固定内容。
 
-然后，我们可以创建一个index.html模板，继承base.html，并在block中添加自己的内容：
+然后，我们可以创建一个 index.html 模板，继承 base.html，并在block中添加自己的内容：
 
 ```html
 {% extends 'base.html' %}
@@ -1197,9 +1197,9 @@ Index Page
 {% endblock %}
 ```
 
-这样，当我们渲染index.html时，它会自动继承base.html的结构和内容，并替换掉block中的部分。同时，它也会包含footer.html的内容。
+这样，当我们渲染 index.html 时，它会自动继承 base.html 的结构和内容，并替换掉 block 中的部分。同时，它也会包含 footer.html 的内容。
 
-如果你想了解更多关于jinja2 include 和 extends 的用法和示例，你可以参考以下链接：
+如果你想了解更多关于 jinja2 include 和 extends 的用法和示例，你可以参考以下链接：
 
 <sup>1</sup>: https://blog.csdn.net/pipi_peng/article/details/109274782
 <sup>2</sup>: https://deepinout.com/flask/flask-questions/464_flask_jinja2_include_extends_not_working_as_expected.html

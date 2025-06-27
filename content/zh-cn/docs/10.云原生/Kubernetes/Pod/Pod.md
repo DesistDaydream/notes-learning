@@ -79,7 +79,7 @@ Pod 是 Kubernetes 集群内**最小的工作单元**，是一个逻辑概念。
 - **init_container(初始化容器)** # 在应用容器启动前运行一次就结束的，常用来为容器运行初始化运行环境，比如设置权限等等
 - **application_container(应用容器)** # 真正运行业务的容器。
 
-这三类容器，可以在 kubelet 代码中找到运行逻辑，详见 kubelet 源码解析 中的 [PodWorker 模块](/docs/10.云原生/Kubernetes/Kubernetes%20开发/源码解析/Kubelet%20源码/PodWorker%20模块.md)
+这三类容器，可以在 kubelet 代码中找到运行逻辑，详见 kubelet 源码解析 中的 [PodWorker 模块](/docs/10.云原生/Kubernetes/Kubernetes%20开发/源码解析/Kubelet/PodWorker%20模块.md)
 
 ## ephemeral_container(临时容器)
 

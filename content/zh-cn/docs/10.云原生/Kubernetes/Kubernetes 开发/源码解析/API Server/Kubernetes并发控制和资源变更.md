@@ -5,6 +5,7 @@ title: Kubernetes并发控制和资源变更
 # 概述
 
 > 参考：
+>
 > - [公众号，云原生实验室，Kubernetes 是如何控制并发和资源变更的](https://mp.weixin.qq.com/s/pLmKnu-PY6hdcO7qmdvb5A)
 >   - [原文，简书，Kubernetes 并发控制和资源变更](https://www.jianshu.com/p/ac830694a2cf)
 
@@ -607,5 +608,3 @@ func (s *store) conditionalDelete(ctx context.Context, key string, out runtime.O
 [kubernetes 中 update 与 patch 的区别](https://links.jianshu.com/go?to=https%3A%2F%2Fwww.kubeclub.cn%2Fkubernetes%2F122.html)
 
 [Kubernetes 对象版本控制 ResourceVersion 和 Generation 原理分析](https://links.jianshu.com/go?to=https%3A%2F%2Fblog.dianduidian.com%2Fpost%2Fkubernetes-resourceversion%25E5%258E%259F%25E7%2590%2586%25E5%2588%2586%25E6%259E%2590%2F)
-
-###

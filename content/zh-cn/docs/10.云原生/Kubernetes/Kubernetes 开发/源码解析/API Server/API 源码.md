@@ -1,5 +1,7 @@
 ---
 title: API 源码
+linkTitle: API 源码
+weight: 20
 ---
 
 # 概述
@@ -49,7 +51,9 @@ type Pod struct {
 ```
 
 从上面 Pod 定义的结构体可以看出，它继承了 metav1.TypeMeta 和 metav1.ObjectMeta 两个类型，metav1.TypeMeta 对应 YAML 中的 kind 与 apiVersion 段，而 metav1.ObjectMeta 则对应 metadata 字段。这其实也可以从 Go 结构体的字段 json 标签看得出来。除了 metav1.TypeMeta 和 metav1.ObjectMeta 字段，Pod 结构体同时还定义了 Spec 和 Status 两个成员变量。如果去查看 k8s.io/api 仓库中其他 API 资源结构体的定义就会发现 kubernetes 绝大部分 API 资源类型都是这样的结构，这也就是说 kubernetes API 资源类型都继承 metav1.TypeMeta 和 metav1.ObjectMeta，前者用于定义资源类型的属性，后者用于定义资源对象的公共属性；Spec 用于定义 API 资源类型的私有属性，也是不同 API 资源类型之间的区别所在；Status 则是用于描述每个资源对象的状态，这和每个资源类型紧密相关的。
+
 关于 metav1.TypeMeta 和 metav1.ObjectMeta 字段从语义上也很好理解，这两个类型作为所有 kubernetes API 资源对象的基类，每个 API 资源对象需要 metav1.TypeMeta 字段用于描述自己是什么类型，这样才能构造相应类型的对象，所以相同类型的所有资源对象的 metav1.TypeMeta 字段都是相同的，但是 metav1.ObjectMeta 则不同，它是定义资源对象实例的属性，即所有资源对象都应该具备的属性。这部分就是和对象本身相关，和类型无关，所以相同类型的资源对象的 metav1.ObjectMeta 可能是不同的。
+
 在 kubernetes 的 API 资源对象中除了单体对象外，还有对象列表类型，用于描述一组相同类型的对象列表。对象列表的典型应用场景就是列举，对象列表就可以表达一组资源对象。可能有些读者会问为什么不用对象的 slice，例如\[]Pod，伴随着笔者对对象列表的解释读者就会理解，此处以 PodList 为例进行分析：
 
 ```go
@@ -585,7 +589,9 @@ func main() {
 
 ## 小结
 
-为了便于记忆，现在对前面介绍的各种接口以及实现做一个小结：![](https://notes-learning.oss-cn-beijing.aliyuncs.com/tbi8lr/1616564773044-5ecb4b10-4253-489f-a556-a867533823f6.webp)
+为了便于记忆，现在对前面介绍的各种接口以及实现做一个小结：
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/tbi8lr/1616564773044-5ecb4b10-4253-489f-a556-a867533823f6.webp)
 
 1. runtime.Object 接口是所有 API 单体资源对象的根类，各个 API 对象的编码与解码依赖于该接口类型；
 2. schema.ObjectKind 接口是对 API 资源对象类型的抽象，可以用来获取或者设置 GVK；
@@ -599,5 +605,4 @@ func main() {
 
 ### 参考资料
 
-\[1]
-client-go: [_https://github.com/kubernetes/client-go_](https://github.com/kubernetes/client-go)
+[1] client-go: [_https://github.com/kubernetes/client-go_](https://github.com/kubernetes/client-go)

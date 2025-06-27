@@ -1,8 +1,15 @@
 ---
-title: kube-apiserver 的设计与实现 · 田飞雨
+title: kube-apiserver 的设计与实现
+linkTitle: kube-apiserver 的设计与实现
+weight: 20
 ---
 
-[kube-apiserver 的设计与实现 · 田飞雨](https://blog.tianfeiyu.com/source-code-reading-notes/kubernetes/kube_apiserver.html)
+# 概述
+
+> 参考：
+>
+> -  [kube-apiserver 的设计与实现 · 田飞雨](https://blog.tianfeiyu.com/source-code-reading-notes/kubernetes/kube_apiserver.html)
+> - [公众号,API Server service 的实现](https://mp.weixin.qq.com/s/HGJKYSfpIG3YxJTy0qVsIw)
 
 kube-apiserver 是 kubernetes 中与 etcd 直接交互的一个组件，其控制着 kubernetes 中核心资源的变化。它主要提供了以下几个功能：
 

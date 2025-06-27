@@ -1,5 +1,7 @@
 ---
-title: Kubelet 源码
+title: Kubelet
+linkTitle: Kubelet
+weight: 1
 ---
 
 # 概述

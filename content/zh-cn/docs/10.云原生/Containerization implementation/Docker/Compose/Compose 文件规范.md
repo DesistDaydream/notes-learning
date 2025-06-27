@@ -16,7 +16,7 @@ Compose 文件是一个 [YAML](/docs/2.编程/无法分类的语言/YAML.md) 格
 
 一个 Docker Compose 文件中通常包含如下顶级字段：
 
-- **version** # **必须的**。
+- **version**
 - **services**(map\[STRING][services](#services))
 - **networks**([networks](#networks))
 - **volumes**([volumes](#volumes))

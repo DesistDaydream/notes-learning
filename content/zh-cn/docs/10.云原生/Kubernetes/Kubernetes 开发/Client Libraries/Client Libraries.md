@@ -1,5 +1,7 @@
 ---
-title: Client Libraries(客户端库)
+title: "Client Libraries"
+linkTitle: "Client Libraries"
+weight: 20
 ---
 
 # 概述
@@ -16,4 +18,4 @@ title: Client Libraries(客户端库)
 
 Kubernetes 现阶段官方支持 Go、Python、Java、 dotnet、Javascript 和 Haskell 语言的客户端库。还有一些其他客户端库由对应作者而非 Kubernetes 团队提供并维护。 参考客户端库了解如何使用其他语言 来访问 API 以及如何执行身份认证。
 
-[Go Client](/docs/10.云原生/Kubernetes/Kubernetes%20开发/Client%20Libraries(客户端库)/Go%20Client.md)
+[Go Client](/docs/10.云原生/Kubernetes/Kubernetes%20开发/Client%20Libraries/Go%20Client.md)

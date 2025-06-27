@@ -1,10 +1,14 @@
 ---
-title: Kubeadm 源码
+title: Kubeadm
+linkTitle: Kubeadm
+weight: 20
 ---
 
 # 概述
 
 > 参考：
+>
+> - 
 
 kubeadm 源码在 Kubernetes 中，位置：[kubernetes/kubernetes/cmd/kubeadm](https://github.com/kubernetes/kubernetes/tree/master/cmd/kubeadm)，本文以 1.19 版本为例
 

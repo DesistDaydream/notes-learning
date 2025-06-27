@@ -124,7 +124,7 @@ Kubernetes 官方支持  [Go](https://kubernetes.io/zh/docs/tasks/administer-cl
 > 参考：
 >
 > - 官方文档：<https://github.com/kubernetes/client-go/#compatibility-matrix>
-> - 详见 [Client Libraries(客户端库)](/docs/10.云原生/Kubernetes/Kubernetes%20开发/Client%20Libraries(客户端库)/Client%20Libraries(客户端库).md)
+> - 详见 [Client Libraries](/docs/10.云原生/Kubernetes/Kubernetes%20开发/Client%20Libraries/Client%20Libraries.md)
 
 版本控制策略：k8s 版本 1.18.8 对应 client-go 版本 0.18.8，其他版本以此类推。
 
@@ -240,7 +240,7 @@ curl --cacert ${CACERT} --header "Authorization: Bearer ${TOKEN}" -X GET ${APISE
 
 Kubernetes API 服务器 提供 API 端点以指示 API 服务器的当前状态。 本文描述了这些 API 端点，并说明如何使用。
 
-### API 健康检查点
+## API 健康检查点
 
 Kubernetes API 服务器提供 3 个 API 端点（`healthz`、`livez` 和 `readyz`）来表明 API 服务器的当前状态。 `healthz` 端点已被弃用（自 Kubernetes v1.16 起），你应该使用更为明确的 `livez` 和 `readyz` 端点。 `livez` 端点可与 `--livez-grace-period` 标志一起使用，来指定启动持续时间。 为了正常关机，你可以使用 `/readyz` 端点并指定 `--shutdown-delay-duration` 标志。 检查 API 服务器的 `health`/`livez`/`readyz` 端点的机器应依赖于 HTTP 状态代码。 状态码 `200` 表示 API 服务器是 `healthy`、`live` 还是 `ready`，具体取决于所调用的端点。 以下更详细的选项供操作人员使用，用来调试其集群或专门调试 API 服务器的状态。
 
@@ -313,7 +313,7 @@ curl -k 'https://localhost:6443/readyz?verbose&exclude=etcd'
 healthz check passed
 ```
 
-### 独立健康检查
+## 独立健康检查
 
 **FEATURE STATE:** `Kubernetes v1.19 [alpha]`每个单独的健康检查都会公开一个 http 端点，并且可以单独检查。 单个运行状况检查的模式为 `/livez/<healthcheck-name>`，其中 `livez` 和 `readyz` 表明你要检查的是 API 服务器是否存活或就绪。 `<healthcheck-name>` 的路径可以通过上面的 `verbose` 参数发现 ，并采用 `[+]` 和 `ok` 之间的路径。 这些单独的健康检查不应由机器使用，但对于操作人员调试系统而言，是有帮助的：
 

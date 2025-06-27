@@ -294,9 +294,22 @@ clean 值将导致请求处理后留下的临时文件被删除。
 
 https://nginx.org/en/docs/http/ngx_http_core_module.html#client_header_timeout
 
-读取 http 请求报文首部的超时时长
+读取 HTTP 请求 Header 的超时时长
 
 - 语法：`client_header_timeout NUM`
+
+### large_client_header_buffers
+
+https://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers
+
+- 语法: `large_client_header_buffers Number Size`
+- 默认值: `large_client_header_buffers 4 8k;`
+- 作用: http{}, server{}
+
+设置客户端请求中的 URI 与 Header 的缓冲区的最大 Number(数量) 和 Size(容量)。
+
+- 若请求行（i.e. URI）超过了 Size，将会报错: `414 Request-URI Too Large`
+- 若请求头（i.e. Header）的字段超过了 Size，将会报错: `400 Bad Request`
 
 ### error_page CODE ... URI
 
@@ -503,6 +516,7 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header
 - 作用范围：http{}、server{}、location{}
 
 **FIELD(字段)** # 指定要重新定义的请求 Header 的字段
+
 **VALUE(值)** # Header 字段的值。可以是包含文本、变量（nginx 的内置变量）或者它们的组合。
 
 - 注意：

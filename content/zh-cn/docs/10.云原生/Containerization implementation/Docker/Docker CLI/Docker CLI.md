@@ -8,7 +8,7 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档，参考 - CLI 参考 - docker](https://docs.docker.com/engine/reference/commandline/docker/)
+> - [官方文档，参考 - CLI - docker](https://docs.docker.com/reference/cli/docker/)
 
 # Syntax(语法)
 
@@ -28,9 +28,9 @@ weight: 1
 
 # Management Commands
 
-management command 在使用的时候，当后面还需要跟其子命令的时候，是可省的。直接使用子命令就表示对其执行，但是有的管理命令不行，比如 create，对于 container 可省，对于 network 不可省
-
 ## container - 容器管理
+
+详见 [container](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20CLI/container.md)
 
 attach cp diff export kill ls port rename rm start stop unpause wait
 
@@ -52,11 +52,11 @@ EXAMPLE
 
 - docker container prune -a # 清理所有已经停止的 container
 
-## image - Docker 镜像的管理命令
+## image - 镜像的管理命令
 
 详见 [image](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20CLI/image.md)
 
-## network - Docker 网络的管理命令
+## network - 网络的管理命令
 
 详见 [network](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20CLI/network.md)
 
@@ -102,12 +102,6 @@ WARNING! This will remove:
 
 详见 《[Docker 存储](/docs/10.云原生/2.2.实现容器的工具/Docker/Docker%20 存储.md 存储.md)》
 
-# COMMANDS
-
-## attach - 当前 shell 下 attach(连接)到指定运行中的镜像
-
-Attach local standard input, output, and error streams to a running container # 把本地终端上的标准输入、输出和错误数据流连接到一个运行中的容器(即从一个运行中的容器剥离了其终端，再重新连接到其终端)
-
 ## build - 通过 Dockerfile 定制镜像
 
 docker build \[OPTIONS] PATH # 使用 dockerfile 文件自动创建镜像
@@ -124,6 +118,12 @@ EXAMPLE
 
 - docker build ./ # 从当前目录下查找名为 Dockerfile 的文件进行 Image 的创建
 - docker build -t ubuntu-vi -f test /dockerfile/ # 使用 dockerfile 目录，并使用该目录中的 test 文件作为 dockerfile 文件，创建一个名为 ubuntu-vi 的 Image
+
+# COMMANDS
+
+## attach - 当前 shell 下 attach(连接)到指定运行中的镜像
+
+Attach local standard input, output, and error streams to a running container # 把本地终端上的标准输入、输出和错误数据流连接到一个运行中的容器(即从一个运行中的容器剥离了其终端，再重新连接到其终端)
 
 ## commit - 从容器的变化中创建一个新的 image。提交当前容器为新的镜像
 

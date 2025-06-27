@@ -727,7 +727,7 @@ Redis实例应该有更多的连接（> 5）。
       description: Some connections to Redis has been rejected\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
 ```
 
-### rabbitmq 监控 : \[rabbitmq/rabbitmq-prometheus \]
+### rabbitmq 监控
 
 #### rabbitmq 节点 down
 

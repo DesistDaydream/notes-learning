@@ -1,19 +1,20 @@
 ---
 title: WebSocket
 linkTitle: WebSocket
-weight: 20
+weight: 1
 ---
 
 # 概述
 
 > 参考：
 >
+> - [RFC 6455, The WebSocket Protocol](https://datatracker.ietf.org/doc/html/rfc6455)
 > - [Wiki, WebSocket](https://en.wikipedia.org/wiki/WebSocket)
 > - [公众号-小林 coding，有了 HTTP 协议，为什么还要有 websocket 协议？](https://mp.weixin.qq.com/s/TtRKkVxS6H-miQ8luQgY1A)
 
 WebSocket 是一种计算机通信协议，通过单个 TCP 连接提供**全双工**通信通道。
 
-WebSocket 与 HTTP 不同。这两种协议都位于[OSI 模型的](https://en.wikipedia.org/wiki/OSI_model)[第 7 层](https://en.wikipedia.org/wiki/Layer_7)，并依赖于第 4 层的 TCP。尽管它们不同，但 [RFC](<https://en.wikipedia.org/wiki/RFC_(identifier)>)[6455](https://datatracker.ietf.org/doc/html/rfc6455) 指出 WebSocket“旨在通过 HTTP 端口 443 和 80 工作，并支持 HTTP 代理和中介” ，从而使其与 HTTP 兼容。为了实现兼容性，WebSocket [握手](https://en.wikipedia.org/wiki/Handshaking)使用 [HTTP Upgrade 头](https://en.wikipedia.org/wiki/HTTP/1.1_Upgrade_header)从 HTTP 协议更改为 WebSocket 协议。
+WebSocket 与 [HTTP](/docs/4.数据通信/Protocol/HTTP/HTTP.md) 不同。这两种协议都位于 [OSI 模型](/docs/4.数据通信/数据通信/OSI%20模型.md)的第 7 层，并依赖于第 4 层的 TCP。尽管它们不同，但 RFC 6455 指出 WebSocket “旨在通过 HTTP 端口 443 和 80 工作，并支持 HTTP 代理和中介” ，从而使其与 HTTP 兼容。为了实现兼容性，WebSocket [握手](https://en.wikipedia.org/wiki/Handshaking)使用 [HTTP Upgrade 头](https://en.wikipedia.org/wiki/HTTP/1.1_Upgrade_header)从 HTTP 协议更改为 WebSocket 协议。
 
 WebSocket 协议支持 [Web 浏览器](https://en.wikipedia.org/wiki/Web_browser)（或其他客户端应用程序）和 [Web 服务器](https://en.wikipedia.org/wiki/Web_server)之间的交互，其开销比半双工替代方案（例如 HTTP[轮询）低](<https://en.wikipedia.org/wiki/Polling_(computer_science)>)，从而促进从服务器到服务器的实时数据传输。这是通过为服务器提供一种标准化的方式来向客户端发送内容而无需客户端首先请求，并允许消息在保持连接打开的同时来回传递而实现的。通过这种方式，可以在客户端和服务器之间进行双向正在进行的对话。通信通常通过 TCP[端口](<https://en.wikipedia.org/wiki/Port_(computer_networking)>)完成数字 443（或在不安全连接的情况下为 80），这对于使用[防火墙](<https://en.wikipedia.org/wiki/Firewall_(computing)>)阻止非网络 Internet 连接的环境有益。类似的浏览器-服务器双向双向通信已经使用[Comet](<https://en.wikipedia.org/wiki/Comet_(programming)>)或[Adobe Flash Player](https://en.wikipedia.org/wiki/Adobe_Flash_Player)等临时技术以非标准化方式实现。[\[2\]](https://en.wikipedia.org/wiki/WebSocket#cite_note-2)
 
@@ -48,7 +49,7 @@ WebSocket 是 HTML5 开始提供的一种浏览器与服务器间进行全双工
 
 另外客户端不只是浏览器，只要实现了 ws 或者 wss 协议的客户端 socket 都可以和服务器进行通信。
 
-### 先说一下为什么需要 WebSocket 协议?
+## 先说一下为什么需要 WebSocket 协议?
 
 在 Web 应用架构中，连接由 HTTP/1.0 和 HTTP/1.1 处理。HTTP 是客户端/服务器模式中 请求一响应 所用的协议，在这种模式中，客户端(一般是浏览器)向服务器提交 HTTP 请求，服务器响应请求的资源(例如 HTML 页面)。
 
@@ -70,7 +71,7 @@ HTTP 是无状态的，也就是说，它将每个请求当成唯一和独立的
 
 上述方法提供了近乎实时的通信，但是它们也涉及 HTTP 请求和响应首标，包含了许多附加和不必要的首标数据与延迟。此外，在每一种情况下，客户端都必须等待请求返回，才能发出后续的请求，而这显著地增加了延退。同时也极大地增加了服务器的压力。
 
-### 什么是 websocket 协议?
+## 什么是 websocket 协议?
 
 Websocket 其实是一个新协议，借用了 HTTP 的协议来完成一部分握手，只是为了兼容现有浏览器的握手规范而已。Websocket 是一种自然的全双工、双向、单套接字连接，解决了 HTTP 协议中不适合于实时通信的问题。
 
