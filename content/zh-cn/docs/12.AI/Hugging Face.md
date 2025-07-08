@@ -50,4 +50,7 @@ Hugging face 起初是一家总部位于纽约的聊天机器人初创服务商�
 - **model.safetensors.index.json**：模型权重索引文件，提供了 safetensors 文件的索引信息。
 - **pytorch_model-XXXXX-of-XXXXX.bin**：PyTorch模型权重文件，保存了模型的权重信息。这个文件通常是 PyTorch模型的权重文件。
 - **pytorch_model.bin.index.json**：PyTorch模型权重索引文件，提供了 bin 文件的索引信息。
+- **tokenizer.json**
+- **tokenizer_config.json**
+- **vocab.json**
 

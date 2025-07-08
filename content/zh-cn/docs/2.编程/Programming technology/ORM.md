@@ -95,7 +95,9 @@ func FindUsers(ctx context.Context) ([]*User, error) {
 面向对象编程和关系型数据库，都是目前最流行的技术，但是它们的模型是不一样的。
 
 面向对象编程把所有实体看成对象（object），关系型数据库则是采用实体之间的关系（relation）连接数据。很早就有人提出，关系也可以用对象表达，这样的话，就能使用面向对象编程，来操作关系型数据库。
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/d1eab7a7-0bbc-41e6-bde2-aa8c6027347f/bg2019021802.png)
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/orm/bg2019021802.png)
+
 **简单说，ORM 就是通过实例对象的语法，完成关系型数据库的操作的技术，是"对象-关系映射"（Object/Relational Mapping） 的缩写。**
 
 ORM 把数据库映射成对象：
@@ -104,7 +106,7 @@ ORM 把数据库映射成对象：
 - 记录（record，行数据）--> 对象（object）
 - 字段（field）--> 对象的属性（attribute）
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/d1eab7a7-0bbc-41e6-bde2-aa8c6027347f/bg2019021803.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/orm/bg2019021803.png)
 
 举例来说，下面是一行 SQL 语句。
 
@@ -171,7 +173,7 @@ npm install
 
 示例库里面的数据库，是从[网上拷贝](http://www.sqlitetutorial.net/sqlite-sample-database/)的 Sqlite 数据库。它的 Schema 图如下（[PDF](http://www.sqlitetutorial.net/wp-content/uploads/2018/03/sqlite-sample-database-diagram-color.pdf) 大图下载）。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/d1eab7a7-0bbc-41e6-bde2-aa8c6027347f/bg2019021804.jpg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/orm/bg2019021804.jpg)
 
 ## 四、连接数据库
 

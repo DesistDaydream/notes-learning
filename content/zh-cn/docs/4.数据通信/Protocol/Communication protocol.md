@@ -1,6 +1,6 @@
 ---
 title: 通信协议
-linkTitle: 通信协议
+linkTitle: Communication protocol
 weight: 1
 ---
 
@@ -24,7 +24,7 @@ weight: 1
 
 网络设计者以 **Layer(分层)** 的方式组织协议以及实现这些协议的硬件/软件。每个协议属于这些层次之一，各层的所有协议被统称为 **Protocol Stack(协议栈)**。
 
-![image.png|800](https://notes-learning.oss-cn-beijing.aliyuncs.com/bdmhzx/1628914014057-a14c5659-364a-4bfb-ad46-0dbec7375997.png)
+![image.png|800](https://notes-learning.oss-cn-beijing.aliyuncs.com/data_comm/protocol/1628914014057-a14c5659-364a-4bfb-ad46-0dbec7375997.png)
 
 # Encapsulation(封装)
 
@@ -63,13 +63,15 @@ weight: 1
 
 通过抓包工具，抓出来的包，在 Wireshark 上查看，就可以看到各种协议封装后，PDU 中的信息。这里以一个 HTTP 的响应包为例
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/bdmhzx/1629077712291-6d02d74d-54f4-494b-9b6f-1a850d99005e.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/data_comm/protocol/1629077712291-6d02d74d-54f4-494b-9b6f-1a850d99005e.png)
+
 可以看到每一层的封装信息，我们现在展开传输层，可以看到如下内容
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/bdmhzx/1629077829616-4487b427-08b0-4799-8d16-37e6e3717286.png)
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/data_comm/protocol/1629077829616-4487b427-08b0-4799-8d16-37e6e3717286.png)
 
 如果展开网络层，则可以看到如下内容：
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/bdmhzx/1629078088587-4b67122f-443c-4e5e-a08b-41f438267ffb.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/data_comm/protocol/1629078088587-4b67122f-443c-4e5e-a08b-41f438267ffb.png)
 
 这里就是 IP Datagram 首部的所有信息
 
@@ -81,7 +83,7 @@ weight: 1
 
 **Point-to-Point Protocol(点对点协议，简称 PPP)** https://en.wikipedia.org/wiki/Point-to-Point_Protocol
 
-[ARP 与 NDP](/docs/4.数据通信/Protocol/ARP%20与%20NDP.md)
+[ARP 与 NDP](docs/4.数据通信/Protocol/Data%20Link%20Layer/ARP%20与%20NDP.md)
 
 ## 纯三层协议
 

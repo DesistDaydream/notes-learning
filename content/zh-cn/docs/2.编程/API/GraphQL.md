@@ -109,18 +109,15 @@ Part 1 What is GraphQL
 
 ### GraphQL 思考模式
 
-使用GraphQL接口设计获取数据需要三步：
+使用 GraphQL 接口设计获取数据需要三步：
 
 ![](https://mmbiz.qpic.cn/mmbiz_gif/fEsWkVrSk56wvyQ3wR1jpaMISleicaNAJDBibHF529ic6dPNHPNVJq6V3zLmolRf4aMsutLZfuV01VYt7mfGVzW4g/640?wx_fmt=gif&wxfrom=5&wx_lazy=1)
 
-GraphQL获取数据三步骤:
+GraphQL 获取数据三步骤:
 
 1.  首先要设计数据模型，用来描述数据对象，它的作用可以看做是VO，用于告知GraphQL如何来描述定义的数据，为下一步查询返回做准备；
-    
 2.  前端使用模式查询语言（Schema）来描述需要请求的数据对象类型和具体需要的字段（称之为声明式数据获取）；
-    
 3.  后端GraphQL通过前端传过来的请求，根据需要，自动组装数据字段，返回给前端。
-    
 
 GraphQL的这种思考模式是不是完美解决了之前遇到的问题呢？先总结它的好处：
 
@@ -135,17 +132,14 @@ GraphQL的这种思考模式是不是完美解决了之前遇到的问题呢？�
 有人会问：
 
 *   使用了GraphQL就要完全抛弃REST了吗？
-    
 *   GraphQL需要直接对接数据库吗？
-    
 *   使用GraphQL需要对现有的后端服务进行大刀阔斧的修改吗？答案是：NO！不需要！
-    
 
 它完全可以以一种不侵入的方式来部署，将它作为前后端的中间服务，也就是，现在开始逐渐流行的 前端 —— 中端 —— 后端 的三层结构模式来部署！
 
 那就来看一下这样的部署模式图：
 
-！\[\]
+![](https://p3-sign.toutiaoimg.com/pgc-image/2f381d42cfb9443f803442ee81806ff9~tplv-tt-origin-web:gif.jpeg?_iz=58558&from=article.pc_detail&lk3s=953192f4&x-expires=1752569265&x-signature=idB85EUsWjdURVbXbLRAaOcHof4%3D)
 
 也就是说，完全可以搭建一个GraphQL服务器，专门来处理前端请求，并处理后端服务获取的数据，重新进行组装、筛选、过滤，将完美符合前端需要的数据返回。
 

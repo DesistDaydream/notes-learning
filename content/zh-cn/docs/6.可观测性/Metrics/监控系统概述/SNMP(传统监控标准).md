@@ -44,3 +44,15 @@ SNMP 的工作模式，使用 udp 协议发送报文
 
 SNMP 的 **Community String(团体字符串)** 是一种访问存储在路由器或其他设备中的统计信息的方法。有时简称为社区字符串或 SNMP 字符串，它包含与 GET 请求一起提供的用户凭据（ID 或密码）。
 
+# 协议规范
+
+https://datatracker.ietf.org/doc/html/rfc1157#section-4
+
+所有 SNMP 实现都必须支持这五种 PDU：
+
+1. GetRequest-PDU
+2. GetNextRequest-PDU
+3. GetResponse-PDU
+4. SetRequest-PDU
+5. Trap-PDU
+

@@ -17,39 +17,41 @@ title: GO中间件(Middleware )
 
 **中间件处理程序**是简单的`http.Handler`，它包装另一个`http.Handler`做请求的一些预处理和 / 或后处理。它被称为 “中间件”，因为它位于 Go Web 服务器和实际处理程序之间的中间位置。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ed41e30b-8c8b-4238-90f6-663f162aa592/1460000018819807)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/go/1460000018819807.png)
 
 下面是一些中间件例子
 
 ### 记录日志中间件
 
-    package main
+```go
+package main
 
-    import (
-       "fmt"
-       "log"
-       "net/http"
-    )
+import (
+   "fmt"
+   "log"
+   "net/http"
+)
 
-    func logging(f http.HandlerFunc) http.HandlerFunc {
-       return func(w http.ResponseWriter, r *http.Request) {
-          log.Println(r.URL.Path)
-          f(w, r)
-       }
-    }
-    func foo(w http.ResponseWriter, r *http.Request) {
-       fmt.Fprintln(w, "foo")
-    }
+func logging(f http.HandlerFunc) http.HandlerFunc {
+   return func(w http.ResponseWriter, r *http.Request) {
+      log.Println(r.URL.Path)
+      f(w, r)
+   }
+}
+func foo(w http.ResponseWriter, r *http.Request) {
+   fmt.Fprintln(w, "foo")
+}
 
-    func bar(w http.ResponseWriter, r *http.Request) {
-       fmt.Fprintln(w, "bar")
-    }
+func bar(w http.ResponseWriter, r *http.Request) {
+   fmt.Fprintln(w, "bar")
+}
 
-    func main() {
-       http.HandleFunc("/foo", logging(foo))
-       http.HandleFunc("/bar", logging(bar))
-       http.ListenAndServe(":8080", nil)
-    }
+func main() {
+   http.HandleFunc("/foo", logging(foo))
+   http.HandleFunc("/bar", logging(bar))
+   http.ListenAndServe(":8080", nil)
+}
+```
 
 访问 [http://localhost](https://link.segmentfault.com/?url=http%3A%2F%2Flocalhost):8080/foo
 
@@ -59,34 +61,36 @@ foo
 
 将上面示例修改下，也可以实现相同的功能。
 
-    package main
+```go
+package main
 
-    import (
-       "fmt"
-       "log"
-       "net/http"
-    )
+import (
+   "fmt"
+   "log"
+   "net/http"
+)
 
-    func foo(w http.ResponseWriter, r *http.Request) {
-       fmt.Fprintln(w, "foo")
-    }
-    func bar(w http.ResponseWriter, r *http.Request) {
-       fmt.Fprintln(w, "bar")
-    }
+func foo(w http.ResponseWriter, r *http.Request) {
+   fmt.Fprintln(w, "foo")
+}
+func bar(w http.ResponseWriter, r *http.Request) {
+   fmt.Fprintln(w, "bar")
+}
 
-    func loggingMiddleware(next http.Handler) http.Handler {
-       return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-          log.Println(r.URL.Path)
-          next.ServeHTTP(w, r)
-       })
-    }
+func loggingMiddleware(next http.Handler) http.Handler {
+   return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+      log.Println(r.URL.Path)
+      next.ServeHTTP(w, r)
+   })
+}
 
-    func main() {
+func main() {
 
-       http.Handle("/foo", loggingMiddleware(http.HandlerFunc(foo)))
-       http.Handle("/bar", loggingMiddleware(http.HandlerFunc(bar)))
-       http.ListenAndServe(":8080", nil)
-    }
+   http.Handle("/foo", loggingMiddleware(http.HandlerFunc(foo)))
+   http.Handle("/bar", loggingMiddleware(http.HandlerFunc(bar)))
+   http.ListenAndServe(":8080", nil)
+}
+```
 
 访问 [http://localhost](https://link.segmentfault.com/?url=http%3A%2F%2Flocalhost):8080/foo
 

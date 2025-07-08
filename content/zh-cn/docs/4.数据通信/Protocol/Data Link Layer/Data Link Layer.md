@@ -1,7 +1,7 @@
 ---
 title: Data Link Layer
 linkTitle: Data Link Layer
-weight: 20
+weight: 1
 ---
 
 # 概述

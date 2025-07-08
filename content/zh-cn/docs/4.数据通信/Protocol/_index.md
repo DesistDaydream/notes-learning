@@ -1,6 +1,6 @@
 ---
-title: "通信协议"
-linkTitle: "通信协议"
+title: 通信协议
+linkTitle: Protocol
 weight: 3
 ---
 

@@ -243,7 +243,7 @@ Makefile 允许使用等号自定义变量。
 
 ### 3.6 内置变量（Implicit Variables）
 
-Make 命令提供一系列内置变量，比如，![](https://notes-learning.oss-cn-beijing.aliyuncs.com/e6ba0987-73ba-41d6-831e-246ad899c89b/latex)(MAKE) 指向当前使用的 Make 工具。这主要是为了跨平台的兼容性，详细的内置变量清单见[手册](https://www.gnu.org/software/make/manual/html_node/Implicit-Variables.html)。
+Make 命令提供一系列内置变量，比如，(MAKE) 指向当前使用的 Make 工具。这主要是为了跨平台的兼容性，详细的内置变量清单见[手册](https://www.gnu.org/software/make/manual/html_node/Implicit-Variables.html)。
 
      output:
         $(CC) -o output input.c

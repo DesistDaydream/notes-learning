@@ -8,7 +8,7 @@ weight: 20
 
 > 参考：
 >
-> -
+> - [官方文档，手册](https://www.net-snmp.org/docs/man/)
 
 # snmpwalk 与 snmpget
 
@@ -148,3 +148,9 @@ ifInOctets OBJECT-TYPE
             ifCounterDiscontinuityTime."
 ::= { iso(1) org(3) dod(6) internet(1) mgmt(2) mib-2(1) interfaces(2) ifTable(2) ifEntry(1) 10 }
 ```
+
+# snmpgetnext
+
+https://www.net-snmp.org/docs/man/snmpgetnext.html
+
+使用 SNMP GETNEXT 请求与网络实体通信

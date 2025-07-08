@@ -156,8 +156,8 @@ FROM system.clusters;
 | cluster    | shard_num | replica_num | host_name | port |
 | ---------- | --------- | ----------- | --------- | ---- |
 | my_cluster | 1         | 1           | host1     | 9000 |
-| my_cluster | 1         | 2           | host2     | 9000 |
-| my_cluster | 2         | 1           | host3     | 9000 |
+| my_cluster | 1         | 2           | host3     | 9000 |
+| my_cluster | 2         | 1           | host2     | 9000 |
 | my_cluster | 2         | 2           | host4     | 9000 |
 
 这种结果的配置来源于下面这种配置：

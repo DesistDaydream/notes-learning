@@ -11,7 +11,7 @@ weight: 1
 > - [Wiki, File_transfer](https://en.wikipedia.org/wiki/File_transfer)
 > - [Wiki, Protocol for file transfer](https://en.wikipedia.org/wiki/Protocol_for_file_transfer)
 
-**File transfer(文件传输)** 是通过[数据通信](/docs/4.数据通信/数据通信/数据通信.md)的通道将计算机文件从一个计算机系统传输到另一个计算机系统的行为。文件传输是通过[通信协议](/docs/4.数据通信/Protocol/通信协议.md)协调的。许多文件传输协议是针对不同环境而设计的
+**File transfer(文件传输)** 是通过[数据通信](/docs/4.数据通信/数据通信/数据通信.md)的通道将计算机文件从一个计算机系统传输到另一个计算机系统的行为。文件传输是通过[Communication protocol](docs/4.数据通信/Protocol/Communication%20protocol.md)协调的。许多文件传输协议是针对不同环境而设计的
 
 **File transfer protocol(文件传输协议)** 是描述如何在两个计算 endpoint 之间传输文件的约定。除了作为单个单元存储在文件系统中的文件的比特流之外，有些还可能发送相关元数据，例如文件名、文件大小和时间戳，甚至文件系统权限和文件属性。
 
