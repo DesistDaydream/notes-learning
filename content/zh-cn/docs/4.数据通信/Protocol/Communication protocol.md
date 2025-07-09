@@ -83,7 +83,7 @@ weight: 1
 
 **Point-to-Point Protocol(点对点协议，简称 PPP)** https://en.wikipedia.org/wiki/Point-to-Point_Protocol
 
-[ARP 与 NDP](docs/4.数据通信/Protocol/Data%20Link%20Layer/ARP%20与%20NDP.md)
+[ARP 与 NDP](/docs/4.数据通信/Protocol/Data%20Link%20Layer/ARP%20与%20NDP.md)
 
 ## 纯三层协议
 

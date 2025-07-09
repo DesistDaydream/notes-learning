@@ -42,8 +42,8 @@ Nginx 等软件可以提供 Web 服务。
 
 详见 [WebAssembly](/docs/Web/WebAssembly.md)
 
-## WebDriver
+## Browser automation
 
-WebDriver 是一种**浏览器自动化**机制，通过模拟真实的人使用浏览器的动作来远程控制浏览器。它被广泛用于网络应用的跨浏览器测试。
+浏览器自动化，是指在 Web 浏览器中 自动执行操作，用于测试、 [网页抓取](https://en.wikipedia.org/wiki/Web_scraping)或更快地执行重复性任务。
 
-详见 [WebDriver](/docs/Web/WebDriver/WebDriver.md)
+详见 [Browser automation](/docs/Web/Browser%20automation/Browser%20automation.md)

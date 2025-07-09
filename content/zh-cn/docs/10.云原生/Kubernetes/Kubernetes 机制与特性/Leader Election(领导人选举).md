@@ -101,7 +101,7 @@ Leader Election 的过程本质上就是一个**竞争分布式锁**的过程。
 
 - **Endpoints** #
 - **ConfigMaps** #
-- **Leases** # 详见 [集群资源](docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/集群资源.md#Lease)
+- **Leases** # 详见 [集群资源](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/集群资源.md#Lease)
 
 **谁先创建了某种资源，谁就获得锁**。通常情况下，kube-scheduler 和 kube-controller-manager 使用 leases 资源来实现领导者选举。
 

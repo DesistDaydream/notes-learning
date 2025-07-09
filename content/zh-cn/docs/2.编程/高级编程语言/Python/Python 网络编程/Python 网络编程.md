@@ -10,6 +10,32 @@ weight: 20
 > 
 > -
 
+# Web 框架
+
+Flask 框架与 Django 框架比较老
+
+FastAPI 框架与 Tornado 框架相对较新
+
+## Flask
+
+> 参考:
+>
+> - [GitHub 项目，pallets/flask](https://github.com/pallets/flask)
+
+## Django
+
+> 参考:
+>
+> - [GitHub 项目，django/django](https://github.com/django/django)
+
+## FastAPI
+
+https://github.com/fastapi/fastapi
+
+## Tornado
+
+https://github.com/tornadoweb/tornado
+
 ## Flask 与 Django
 
 来源于： ChatGPT
@@ -41,15 +67,3 @@ Flask 和 Django 都是 Python 语言中常见的 web 框架，用于开发 web 
 ## 总结
 
 Flask 和 Django 都是出色的 web 框架，可以帮助您快速构建 web 应用程序。根据您的项目要求和个人偏好，选择适合您的一个。
-
-# Flask 框架
-
-> 参考:
->
-> - [GitHub 项目，pallets/flask](https://github.com/pallets/flask)
-
-# Django 框架
-
-> 参考:
->
-> - [GitHub 项目，django/django](https://github.com/django/django)

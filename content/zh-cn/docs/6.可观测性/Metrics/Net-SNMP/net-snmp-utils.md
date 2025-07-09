@@ -153,4 +153,4 @@ ifInOctets OBJECT-TYPE
 
 https://www.net-snmp.org/docs/man/snmpgetnext.html
 
-使用 SNMP GETNEXT 请求与网络实体通信
+使用 SNMP GETNEXT 请求与网络实体通信，获取当前 OID 的下一个 OID。

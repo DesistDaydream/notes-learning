@@ -36,7 +36,7 @@ Linux 网络设备归属于 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md) �
 
 **./type** # 网络设备的类型。文件内容是 10 进制数字。从 if_arp.h[^if_arp.h] 代码中（[stackoverflow](https://stackoverflow.com/questions/18598283/the-meaning-of-the-sys-class-net-interface-type-value) 也有相关问题）找到数字对应的设备类型表和该设备的定义（e.g. 1 表示 ARPHRD_ETHER），这个 C 的头文件将网络设备分为如下几大块
 
-- **ARP 协议硬件定义** # [ARP](docs/4.数据通信/Protocol/Data%20Link%20Layer/ARP%20与%20NDP.md) 的 RFC 标准中，定义了这些，并且 IANA[^IANA] 中也维护了这些注册信息。
+- **ARP 协议硬件定义** # [ARP](/docs/4.数据通信/Protocol/Data%20Link%20Layer/ARP%20与%20NDP.md) 的 RFC 标准中，定义了这些，并且 IANA[^IANA] 中也维护了这些注册信息。
   - 比如 `#define ARPHRD_ETHER 1` 这行代码意味着，type 文件的内容为 1 的话，表示该网络设备是 ARPHRD_ETHER（也就是常见的网卡设备）
 - **非 ARP 硬件的虚拟网络设备** # Linux 自身实现的一些虚拟网络设备
 - **TODO**: 其他信息待整理

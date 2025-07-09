@@ -13,7 +13,7 @@ weight: 20
 > - https://selenium-python.readthedocs.io/ 特定于 Python 的文档，官方文档很多示例都不全。
 >   - https://segmentfault.com/q/1010000043032537 这里表示文档不全
 
-Selenium 使浏览器自动化，用于自动化 Web 应用程序。Selenium 通过 [WebDriver](/docs/Web/WebDriver/WebDriver.md) 以控制浏览器。
+Selenium 使浏览器自动化，用于自动化 Web 应用程序。Selenium 通过 [WebDriver](/docs/Web/Browser%20automation/WebDriver.md) 以控制浏览器。
 
 Selenium 启动的浏览器参数
 

@@ -29,7 +29,15 @@ promtool 是 Prometheus 一个命令行工具，用以管理、检查 Promethus�
 | promql  | PromQL 格式化与编辑器               |
 
 > [!Notes]
-> 截至 2024-08-01，--http.config.file 选项的格式在 https://github.com/prometheus/common/blob/v0.55.0/config/http_config.go#L299 ，与 prometheus 的 --web.config.file 配置格式并不一致
+> 截至 2024-08-01，--http.config.file 选项的格式在 https://github.com/prometheus/common/blob/v0.55.0/config/http_config.go#L299 ，由 LoadHTTPConfigFile() 函数解析 HTTPClientConfig  结构体。与 prometheus 的 --web.config.file 配置格式并不一致
+
+格式像这样：
+
+```yaml
+basic_auth:
+  username: myusername
+  password: mypassword
+```
 
 # query
 
@@ -56,7 +64,7 @@ OPTIONS
 promtool query \
   --http.config.file=http.conf \
   range http://localhost:9090 \
-  'hdf_jmr_24_hour_security_log_files{security_data_code="3002"}' \
+  'up{instance="localhost:9100"}' \
   --start=2024-08-01T08:01:01Z \
   --step=3m
 ```

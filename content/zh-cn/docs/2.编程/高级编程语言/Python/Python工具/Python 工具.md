@@ -25,7 +25,7 @@ weight: 1
 
 第一种方式和第二种方式大同小异，区别是第一种方式使用的 Python 解释器是写在 pip 文件的 shebang 里的，一般情况下，如果你的 pip 路径是 $path\_prefix/bin/pip，那么 Python 路径对应的就是 $path\_prefix/bin/python。如果你用的是 Unix 系统则 cat $(which pip) 第一行就包含了 Python 解释器的路径。第二种方式则显式地指定了 Python 的位置。这条规则，对于所有 Python 的可执行程序都是适用的。流程如下图所示。
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/loffuc/1669286382022-472bf4de-24cf-4652-bc94-3d52d01f7df1.png)
+![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/python/1669286382022-472bf4de-24cf-4652-bc94-3d52d01f7df1.png)
 
 那么，不加任何自定义配置时，使用 pip 安装包就会自动安装到 `$path_prefix/lib/pythonX.Y/site-packages` 下（$path_prefix 是从上一段里得到的），可执行程序安装到 $path_prefix/bin 下，如果需要在命令行直接使用 my_cmd 运行，记得加到 PATH。
 
@@ -64,6 +64,10 @@ pdm
 
 hatch
 
+uv # 依赖库有全局缓存
+
+- https://github.com/astral-sh/uv
+
 # Wheel 包
 
 Wheel 是一种类似压缩包的 Python 用于分发包的文件，有点类似 .rpm、.deb。
@@ -79,6 +83,7 @@ python 是一个工具，用来管理 Python 语言编写的代码。
 ## Syntax(语法)
 
 **python \[-bBdEhiIOqsSuvVWx?] \[-c command | -m module-name | script | - ] \[args]**
+
 OPTIONS
 
 - **-S** # Python 启动初始化时，不要导入 site 包
@@ -89,7 +94,7 @@ OPTIONS
 
 ## 启用一个简易的 HTTP 服务器
 
-```
+```bash
 # 使用该命令可以在当前目录搭建一个简易的http服务器，当client访问的时候，就可以直接看到该目录下的内容，还可以下载该目录下的内容
 python -m SimpleHTTPServer NUM
 ```

@@ -27,7 +27,7 @@ B 站视频
 
 # 实用工具
 
-[WebDriver](/docs/Web/WebDriver/WebDriver.md) # 自动控制浏览器
+[WebDriver](/docs/Web/Browser%20automation/WebDriver.md) # 自动控制浏览器
 
 [Easy Scrapper 浏览器插件](https://chromewebstore.google.com/detail/easy-scraper-free-web-scr/ibdncfidcgeammedkdhoopophkkhcbme)
 

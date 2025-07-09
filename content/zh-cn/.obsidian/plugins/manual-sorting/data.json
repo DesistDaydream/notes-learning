@@ -3497,9 +3497,9 @@
       "docs/Web/_index.md",
       "docs/Web/Web.md",
       "docs/Web/WebAPIs",
-      "docs/Web/WebDriver",
       "docs/Web/WebAssembly.md",
       "docs/Web/Browser",
+      "docs/Web/Browser automation",
       "docs/Web/网站搭建",
       "docs/Web/WebServer.md",
       "docs/Web/Nginx",
@@ -3552,6 +3552,13 @@
       "docs/Web/Browser/Extensions/_index.md",
       "docs/Web/Browser/Extensions/Tampermonkey.md"
     ],
+    "docs/Web/Browser automation": [
+      "docs/Web/Browser automation/_index.md",
+      "docs/Web/Browser automation/Browser automation.md",
+      "docs/Web/Browser automation/WebDriver.md",
+      "docs/Web/Browser automation/Selenium.md",
+      "docs/Web/Browser automation/Puppeteer.md"
+    ],
     "docs/Web/Nginx": [
       "docs/Web/Nginx/_index.md",
       "docs/Web/Nginx/Nginx.md",
@@ -3593,12 +3600,6 @@
       "docs/Web/WebAPIs/_index.md",
       "docs/Web/WebAPIs/WebAPIs.md",
       "docs/Web/WebAPIs/DOM.md"
-    ],
-    "docs/Web/WebDriver": [
-      "docs/Web/WebDriver/_index.md",
-      "docs/Web/WebDriver/WebDriver.md",
-      "docs/Web/WebDriver/Selenium.md",
-      "docs/Web/WebDriver/Puppeteer.md"
     ],
     "Excalidraw": [
       "Excalidraw/information_security",

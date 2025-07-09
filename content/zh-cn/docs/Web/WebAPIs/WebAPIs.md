@@ -27,4 +27,4 @@ Navigator 接口表示用户代理的状态和标识。它允许脚本查询它�
 - language # 浏览器使用的语言
 - platform # 浏览器所使用的平台
 - userAgent # 浏览器的 user-agent 信息。常用来区分浏览网站的人使用了什么设备
-- webdriver # 当前窗口是否使用了 [WebDriver](/docs/Web/WebDriver/WebDriver.md)。在爬虫技术中，移除这个是很重要的一点避免被网站识别成 WebDriver。
+- webdriver # 当前窗口是否使用了 [WebDriver](/docs/Web/Browser%20automation/WebDriver.md)。在爬虫技术中，移除这个是很重要的一点避免被网站识别成 WebDriver。
