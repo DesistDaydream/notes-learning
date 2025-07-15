@@ -17,6 +17,7 @@ WireGuard 目前最大的痛点就是上层应用的功能不够健全，因为 
 > - [GitHub 项目，tailscale/tailscale](https://github.com/tailscale/tailscale)
 > - [官网](https://tailscale.com/)
 > - [公众号 - 云原声实验室，Tailscal 开源版本让你的 WireGuard 直接起飞](https://mp.weixin.qq.com/s/Y3z5RzuapZc8jS0UuHLhBw)
+> - [Tailscale 的开源方案](https://tailscale.com/opensource)
 
 Tailscale 是一种基于 WireGuard 的虚拟组网工具，和 Netmaker 类似，**最大的区别在于 Tailscale 是在用户态实现了 WireGuard 协议，而 Netmaker 直接使用了内核态的 WireGuard**。所以 Tailscale 相比于内核态 WireGuard 性能会有所损失，但与 OpenVPN 之流相比还是能甩好几十条街的，Tailscale 虽然在性能上做了些许取舍，但在功能和易用性上绝对是完爆其他工具：
 
@@ -31,7 +32,7 @@ Tailscale 是一种基于 WireGuard 的虚拟组网工具，和 Netmaker 类似�
 - 基于公网的控制服务器下发 ACL 和配置，实现节点动态更新
 - 通过第三方（如 Google） SSO 服务生成用户和私钥，实现身份认证
 
-简而言之，我们可以将 Tailscale 看成是更为易用、功能更完善的 [WireGuard](/docs/4.数据通信/Protocol/Tunneling%20Protocol/WireGuard/WireGuard.md)。
+简而言之，可以将 Tailscale 看成是更为易用、功能更完善的 [WireGuard](/docs/4.数据通信/Protocol/Tunneling%20Protocol/WireGuard/WireGuard.md)。
 
 Tailscale 是一款商业产品，但个人用户是可以白嫖的，个人用户在接入设备不超过 20 台的情况下是可以免费使用的（虽然有一些限制，比如子网网段无法自定义，且无法设置多个子网）。除 Windows 和 macOS 的图形应用程序外，其他 Tailscale 客户端的组件（包含 Android 客户端）是在 BSD 许可下以开源项目的形式开发的，你可以在他们的 GitHub 仓库找到各个操作系统的客户端源码。
 
@@ -41,11 +42,11 @@ Tailscale 是一款商业产品，但个人用户是可以白嫖的，个人用�
 
 # Tailscale 架构概述
 
-- **Tailscale 控制台** # 管理 Tailscale 客户端，向 Tailscale 客户端下发规则。
+- **Tailscale 控制台** # 官方称为 **Coordination server(协调服务器)**。管理 Tailscale 客户端，向 Tailscale 客户端下发规则。
   - 可以通过 [Headscale](/docs/4.数据通信/Protocol/Tunneling%20Protocol/Tailscale/Headscale.md) 开源实现
 - **Tailscale 客户端** # 主要是 [tailscale CLI](/docs/4.数据通信/Protocol/Tunneling%20Protocol/Tailscale/tailscale%20CLI.md)。windows 也有调用 tailscale 命令行工具的守护进程以右下角小图标的形式存在
   - Tailscale 客户端通常分为两部分，一部分是处理数据包的主程序（平时说的 Tailscale 客户端就是指这个主程序）；一部分类似 CLI 用以控制主程序。
-  - e.g. Linux 的 Tailscale 客户端由两个程序组成: tailscale 和 tailscaled，tailscale 是 CLI，tailscaled 是守护程序用以处理数据包的路由。有点类似 docker 与 dockerd 的感觉
+  - e.g. Linux 的 Tailscale 客户端由两个程序组成: tailscale 和 tailscaled，tailscale 是 CLI，tailscaled 是守护程序用以处理数据包的路由。有点类似 docker 与 dockerd
 - **Tailscale DERP** # 当两个节点第一次连接以及两个节点直连失败时，会切换到通过 DERP 来连接。DERP 是 Tailscale 自研的协议，也是一个中继程序，用以代理两个节点的访问请求。
   - Notes: 可以自行搭建 [DERP](/docs/4.数据通信/Protocol/Tunneling%20Protocol/Tailscale/Tailscale%20DERP.md)
 
@@ -101,3 +102,31 @@ Tailscale 会自动创建相关的路由表和 iptables 规则。路由表可通
 ```
 
 一般都是 52 表
+
+# 访问控制
+
+> 参考：
+>
+> - [官方文档，管理访问 - 管理访问控制](https://tailscale.com/kb/1393/access-control)
+
+[What is a tailnet](https://tailscale.com/kb/1136/tailnet/)
+
+## ACL
+
+Tailscale 使用 [ACL](https://tailscale.com/kb/1018/acls) 管理权限（ACL 的配置[示例](https://github.com/juanfont/headscale/blob/v0.15.0/docs/acls.md)），后来改为 Grant
+
+```json
+{
+    "acls": [
+    {
+        "action": "accept",
+        "src": [ <list-of-sources> ], // These sources (devices or users)
+        "dst": [ <destination>:<port> ], // can access these destination devices on their defined ports
+    }
+  ]
+}
+```
+
+## Grant
+
+

@@ -195,3 +195,9 @@ jq --arg drink "${DRINK}" '.favorite.drink = $drink' test/test.json
 ```
 
 通过 --arg 使用了 外部变量 DRINK
+
+## 带 `-` 的 Key
+
+需要在外面使用 `' '`，然后带有 `-` 的 Key 用 `" "` 括起来
+
+比如: `jq -r '."profile-f38d"' tailscaled.state`

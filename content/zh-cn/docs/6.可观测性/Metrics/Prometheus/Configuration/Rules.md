@@ -154,17 +154,19 @@ interval 字段的值 加上 PrometheusServer 的命令行标志 --rules.alert.r
 
 Recording 规则名称一般采用 `level:metric:operations` 形式
 
-- **level** # 表示聚合级别和标签，比如 by (instance)，则 level 是 instance
+- **level** # 表示聚合级别，i.e. 根据哪些标签聚合的。e.g. by (instance)，则 level 是 instance
 - **metric** # 指标名称，除了在使用 rate() 或 irate() 函数时，需要将指标名称的 `_total` 之外，整体名称应该保持不变
 - **operations** # 应用于指标的操作列表
 
-比如
+比如：
 
-```promql
-rate(node_disk_io_time_seconds_total{job="node-exporter", device=~"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)"}[5m])
+```yaml
+      - record: instance_device:node_disk_io_time_seconds:rate5m
+        expr: |-
+          rate(node_disk_io_time_seconds_total{job="node-exporter", device=~"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)"}[5m])
 ```
 
-生成的时间序列数据可以命名为： `instance_device:node_disk_io_time_seconds:rate5m`
+再比如：
 
 ```yaml
 groups:

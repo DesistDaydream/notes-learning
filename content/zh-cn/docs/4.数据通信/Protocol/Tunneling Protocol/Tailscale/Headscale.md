@@ -85,24 +85,8 @@ systemctl enable headscale --now
 
 ## 创建 Headscale User
 
-> [!Note] 老版本是创建 Namesapce
+> [!Note] 老版本是创建 Namesapce。用来实现 Tailscale 的 ACL
 >
-> - Tailscale 中有一个概念叫 tailnet，可以理解成租户， Tailscale 与 Tailscale 之间是相互隔离的，具体看参考 Tailscale 的官方文档：[What is a tailnet](https://tailscale.com/kb/1136/tailnet/)。
-> - Headscale 也有类似的实现叫 namespace，即命名空间。Namespace 是一个实体拥有的机器的逻辑组，这个实体对于 Tailscale 来说，通常代表一个用户。
-> - 我们需要先创建一个 namespace，以便后续客户端接入，例如：
-
-```bash
-# 这部分命令不用再执行了
-~]# headscale namespaces create desistdaydream
-Namespace created
-~]# headscale namespaces list
-ID | Name      | Created
-1  | desistdaydream | 2022-03-24 04:23:04
-```
-
-注意：
-
-- 从 v0.15.0 开始，Namespace 之间的边界已经被移除了，所有节点默认可以通信，如果想要限制节点之间的访问，可以使用 [ACL](https://github.com/juanfont/headscale/blob/v0.15.0/docs/acls.md)。在配置文件中只用 `acl_policy_path` 字段指定 ACL 配置文件路径，文件配置方式详见: https://tailscale.com/kb/1018/acls/
 
 ```bash
 ~]# headscale users create desistdaydream
@@ -112,7 +96,7 @@ ID | Name           | Created
 1  | desistdaydream | 2024-03-20 14:29:47
 ```
 
-# Tailscale 客户端部署与接入 Headscale
+# 部署 Tailscale 客户端与接入 Headscale
 
 https://headscale.net/stable/about/clients/
 
@@ -200,7 +184,7 @@ Success.
 
 在浏览器中打开该链接，就会出现如下的界面：
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/headscale/1648097896734-2252f545-7f43-46fb-ad3a-1e1c85ce3d08.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/headscale/registration_linux_01.png)
 
 最后，根据 [在 Headscale 中添加节点](#Headscale%20中添加节点) 部分的文档，将节点接入到 Headscale 中。
 
@@ -210,9 +194,23 @@ https://headscale.net/windows-client/
 
 Windows Tailscale 客户端想要使用 Headscale 作为控制服务器，只需在浏览器中打开 `${HeadscaleAddr}/windows`，根据页面提示，本质上是执行下面这些操作
 
-- 添加注册表信息（两种方式）（在 `HKEY_LOCAL_MACHINE\SOFTWARE\Tailscale IPN` 位置生成信息）
-  - 点击页面中的 `Windows registry file`，下载注册表文件，并运行
-  - 或者执行下面的 PowerShell 命令添加注册表信息
+在[这里](https://pkgs.tailscale.com/stable/#windows)下载 Windows 版的 Tailscale 客户端并安装
+
+在 Powershell 执行
+
+```bash
+tailscale up --login-server=http://${headscale_server} --accept-routes=false --accept-dns=false
+```
+
+此时会自动在浏览器中出现接入 Headscale 的页面，记录下注册命令，去 Headscale 所在设备上执行命令添加节点。
+
+根据 [在 Headscale 中添加节点](#Headscale%20中添加节点) 部分的文档，使用注册命令将节点接入到 Headscale 中
+
+曾经老版本还需要修改注册表，新版 1.70+ 不用修改注册表了
+
+- ~~添加注册表信息（两种方式）（在 `HKEY_LOCAL_MACHINE\SOFTWARE\Tailscale IPN` 位置生成信息）~~
+  - ~~点击页面中的 `Windows registry file`，下载注册表文件，并运行~~
+  - ~~或者执行下面的 PowerShell 命令添加注册表信息~~
 
 ```powershell
 $headscale_server="https://DOMAIN:PORT"
@@ -220,24 +218,6 @@ New-Item -Path "HKLM:\SOFTWARE\Tailscale IPN"
 New-ItemProperty -Path 'HKLM:\Software\Tailscale IPN' -Name UnattendedMode -PropertyType String -Value always
 New-ItemProperty -Path 'HKLM:\Software\Tailscale IPN' -Name LoginURL -PropertyType String -Value ${headscale_server}
 ```
-
-- 在[这里](https://pkgs.tailscale.com/stable/#windows)下载 Windows 版的 Tailscale 客户端并安装
-- 在 Powershell 执行
-
-```bash
-tailscale up --login-server=http://${headscale_server} --accept-routes=false --accept-dns=false
-```
-
-- 右键点击任务栏中的 Tailscale 图标，再点击 `Log in` 获取接入 Headscale 的命令
-- ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/headscale/1648104111282-99d562e1-d7d9-4ea5-9943-f16861efe87e.png)
-- 此时会自动在浏览器中出现接入 Headscale 的页面，记录下注册命令，去 Headscale 所在设备上执行命令添加节点。
-  - 注册命令示例：
-
-```bash
-headscale nodes register --user USERNAME --key nodekey:75b424a753067b906fee373411743bf34264a9c40a4f7798836bf28bb24d2467
-```
-
-- 根据 [在 Headscale 中添加节点](#Headscale%20中添加节点) 部分的文档，使用注册命令将节点接入到 Headscale 中。
 
 ### 其他 Linux 发行版
 
@@ -249,14 +229,12 @@ headscale nodes register --user USERNAME --key nodekey:75b424a753067b906fee37341
 
 ## Headscale 中添加节点
 
-将其中的命令复制粘贴到 Headscale 所在机器的终端中，并将 NAMESPACE 替换为前面所创建的 namespace。
+将其中的命令复制粘贴到 Headscale 所在机器的终端中，并将 HeadscaleUser 替换为前面 Headscale 所创建的 User。
 
 ```bash
-export HeadscaleUser="desistdaydream"
-# 上面例子中的 Linux 客户端
-headscale -n ${HeadscaleUser} nodes register --key 30e9c9c952e2d66680b9904eb861e24a595e80c0839e3541142edb56c0d43e16
-# 上面例子中的 Windows 客户端
-headscale -n ${HeadscaleUser} nodes register --key 105363c37b5449b85bb3e4107b6f6bbd3a2bb379dcf731bc98f979584740644a
+export HeadscaleUser="DesistDaydream"
+export TailscaleKey="K8kininWKFe7xEiFJuKTADbE"
+headscale nodes register --user ${HeadscaleUser} --key ${TailscaleKey}
 ```
 
 注册成功，查看注册的节点：
@@ -265,9 +243,9 @@ headscale -n ${HeadscaleUser} nodes register --key 105363c37b5449b85bb3e4107b6f6
 
 ```bash
 ~]# headscale nodes list
-ID | Hostname        | Name            | MachineKey | NodeKey | User           | IP addresses                  | Ephemeral | Last seen           | Expiration          | Online | Expired
-1  | HOME-WUJI       | home-wuji       | [fqHlf]    | [dbQkp] | desistdaydream | 100.64.0.1, fd7a:115c:a1e0::1 | false     | 2024-03-20 15:55:30 | 0001-01-01 00:00:00 | online | no
-2  | DESKTOP-R02G6RP | desktop-r02g6rp | [zMy/C]    | [Utjz0] | desistdaydream | 100.64.0.2, fd7a:115c:a1e0::2 | false     | 2024-03-20 15:55:36 | 0001-01-01 00:00:00 | online | no
+ID | Hostname        | Name            | MachineKey | NodeKey | User           | IP addresses                  | Ephemeral | Last seen           | Expiration | Online | Expired
+1  | HOME-WUJI       | home-wuji       | [fqHlf]    | [dbQkp] | DesistDaydream | 100.64.0.1, fd7a:115c:a1e0::1 | false     | 2024-03-20 15:55:30 | N/A        | online | no
+2  | DESKTOP-R02G6RP | desktop-r02g6rp | [zMy/C]    | [Utjz0] | DesistDaydream | 100.64.0.2, fd7a:115c:a1e0::2 | false     | 2024-03-20 15:55:36 | N/A        | online | no
 ```
 
 ## 检查 Tailscale
@@ -325,7 +303,7 @@ ID | Hostname        | Name            | MachineKey | NodeKey | User           |
 
 但我们可以更大胆一点，还记得我在文章开头提到的访问家庭内网的资源吗？我们可以通过适当的配置让每个节点都能访问其他节点的局域网 IP。这个使用场景就比较多了，你可以直接访问家庭内网的 NAS，或者内网的任何一个服务，**更高级的玩家可以使用这个方法来访问云上 Kubernetes 集群的 Pod IP 和 Service IP。**
 
-假设你的家庭内网有一台 Linux 主机（比如 OpenWrt）安装了 Tailscale 客户端，我们希望其他 Tailscale 客户端可以直接通过家中的局域网 IP（例如 **192.168.100.0/24**） 访问家庭内网的任何一台设备。
+假设家庭内网有一台 Linux 主机（比如 OpenWrt）安装了 Tailscale 客户端，我们希望其它 Tailscale 客户端可以直接通过家中的局域网 IP（例如 **192.168.100.0/24**） 访问家庭内网的任何一台设备。
 
 配置方法很简单，首先需要设置 IPv4 与 IPv6 路由转发：
 
@@ -354,9 +332,9 @@ tailscale set --advertise-routes=172.38.40.0/24,192.168.88.0/24
 
 ```bash
 ~]# headscale nodes list
-ID | Hostname        | Name            | MachineKey | NodeKey | User           | IP addresses                  | Ephemeral | Last seen           | Expiration          | Online | Expired
-1  | HOME-WUJI       | home-wuji       | [fqHlf]    | [dbQkp] | desistdaydream | 100.64.0.1, fd7a:115c:a1e0::1 | false     | 2024-03-20 15:55:30 | 0001-01-01 00:00:00 | online | no
-2  | DESKTOP-R02G6RP | desktop-r02g6rp | [zMy/C]    | [Utjz0] | desistdaydream | 100.64.0.2, fd7a:115c:a1e0::2 | false     | 2024-03-20 15:55:36 | 0001-01-01 00:00:00 | online | no
+ID | Hostname        | Name            | MachineKey | NodeKey | User           | IP addresses                  | Ephemeral | Last seen           | Expiration | Online | Expired
+1  | HOME-WUJI       | home-wuji       | [fqHlf]    | [dbQkp] | DesistDaydream | 100.64.0.1, fd7a:115c:a1e0::1 | false     | 2024-03-20 15:55:30 | N/A        | online | no
+2  | DESKTOP-R02G6RP | desktop-r02g6rp | [zMy/C]    | [Utjz0] | DesistDaydream | 100.64.0.2, fd7a:115c:a1e0::2 | false     | 2024-03-20 15:55:36 | N/A        | online | no
 ~]# headscale routes list
 ID | Machine         | Prefix           | Advertised | Enabled  | Primary
 1  | desktop-r02g6rp | 172.38.40.0/24   | true       | false    | false
@@ -378,17 +356,6 @@ $ headscale nodes list-routes
 ID | Hostname           | Approved        | Available       | Serving (Primary)
 1  | ts-head-ruqsg8     | 0.0.0.0/0, ::/0 | 0.0.0.0/0, ::/0 | 0.0.0.0/0, ::/0
 2  | ts-unstable-fq7ob4 |                 | 0.0.0.0/0, ::/0 |
-```
-
-开启路由：
-
-```bash
-~]# headscale routes enable -r 1
-~]# headscale routes enable -r 2
-ID | Machine         | Prefix           | Advertised | Enabled | Primary
-1  | desktop-r02g6rp | 172.38.40.0/24   | true       | true    | true
-2  | desktop-r02g6rp | 192.168.88.0/24  | true       | true    | true
-
 ```
 
 # Headscale 内嵌 DERPer
@@ -441,3 +408,35 @@ stun 能力监听 3478 端口，且可以通过 https 访问
 - <font color="#ff0000">这些默认值是 Tailscale 提供的一些公共的 DERP 节点，全球都用，个人建议直接关了，用自己的 Headscale DERP</font>
 
 **paths**(\[]STRING) # 与 URL 类似。不过是以文件形式定义要使用的 DERP。 `默认值: 空`。文件格式详见: https://tailscale.com/kb/1118/custom-derp-servers
+
+# ACL
+
+https://headscale.net/stable/ref/acls
+
+
+
+下面这个例子与官方不同，并没有创建 Tag。实现的效果是：ACL 可以让 zhangsan 只能访问 bei-jing 节点；DesistDaydream 则可以访问所有节点。
+
+```json
+{
+  "groups": {
+    "group:zhangsan": ["zhangsan@"],
+    "group:admin": ["DesistDaydream@"]
+  },
+  "hosts": {
+    "bei-jing": "100.64.0.1"
+  },
+  "acls": [
+    {
+      "action": "accept",
+      "src": ["group:zhangsan"],
+      "dst": ["bei-jing:*"]
+    },
+    {
+      "action": "accept",
+      "src": ["group:admin"],
+      "dst": ["*:*"]
+    }
+  ]
+}
+```
