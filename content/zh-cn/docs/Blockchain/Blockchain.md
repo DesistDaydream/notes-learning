@@ -9,7 +9,9 @@ weight: 1
 > 参考：
 >
 > - [Wiki, Blockchain](https://en.wikipedia.org/wiki/Blockchain)
-> - [B 站，汪杰解惑 NFT-02](https://www.bilibili.com/video/BV1T34y117Y9)
+> - [Wiki, Cryptocurrency](https://en.wikipedia.org/wiki/Cryptocurrency)
+
+**Blockchain(区块链)**
 
 2008 年 10 月 31 日 《Bitconi: A Peer-to-Peer Electronic Cash System 》
 
@@ -26,21 +28,82 @@ weight: 1
 > - 【狐狸钱包】一分钟学会，如何一键添加各种主网？
 >   - <https://www.youtube.com/watch?v=f1JU8TGImA0>
 
-钱包
 
-- MetaMask 钱包
-- Coinbase Wallet 钱包
-- imtoken 钱包
+## 钱包
 
-NFT 交易平台
+> 参考：
+>
+> - [Wiki, Cryptocurrency wallet](https://en.wikipedia.org/wiki/Cryptocurrency_wallet)
+> - https://support.metamask.io/start/learn/what-is-a-secret-recovery-phrase-and-how-to-keep-your-crypto-wallet-secure/ 什么是助记词以及如何保护加密钱包的安全
+> - https://support.metamask.io/start/learn/metamask-is-a-self-custodial-wallet/ Metamask 是一个自托管钱包
 
-- OpenSea
+**Cryptocurrency wallet(加密货币钱包，简称 钱包)** 本质上是一个具有唯一性的密钥对。私钥用来消费代币，公钥生成的地址用来接收代币。<font color="#ff0000">钱包本身不保存一共有多少加密货币</font>。我们只能查看一条区块链中，某个地址的钱包的所有交易记录，通过这些交易记录计算出该钱包实际拥有多少代币。
 
-**Percentage Fee(版税)** # 即提成的百分比。每次 NFT 交易时，最初的创建者会获得交易额的百分比的收入。
+一个钱包可以是 物理介质、程序、在线服务、etc. 只要该钱包可以生成一个地址，符合条件接入区块链网络即可。可以是任何形态。
 
-**Gas Fee(气体费)** # 铸造一个 NFT 是有成本的，需要向矿工支付 Gas Fee
+一个钱包通常包含如下几个内容
 
-钱包中的网络：就是“链”也就是“区块链”的链。在各种链上，可以搜索在当钱链上的交易记录。
+- **PrivateKey(私钥)** # 与公钥一同生成。也可以根据 BIP39 标准，由助记词生成
+    - **Secret Recovery Phrase(密钥恢复短语，也称：助记词)** # 根据 BIP39 标准，通过助记词可以计算出私钥，但是私钥无法计算出助记词。助记词用来找回钱包的私钥
+- **PublicKey(公钥)** # 与私钥一同生成。可用于生成一个地址。
+- **Address(地址)** # 由公钥生成的用来标识钱包的唯一标识符。
+
+钱包分为两种
+
+- **self-custodial(自托管)**
+- **交易所托管**
+
+口语中的钱包通常都是指 self-custodial(自托管) 的代币钱包。交易所中的钱包如果非要类比的话，可以看作是 支付宝、微信、银行、etc. 机构存放我的钱的地方。
+
+> tips: 只不过在加密货币的交易中，如果想要从 交易所的自己的钱包中，把 币 转到 自托管 的钱包中，可能是要手续费的。。。。( ╯□╰ )
+
+**要想给自己的钱包存钱**，首先要选择一个相对不错的区块链（最好是公链），然后在钱包中配置该区块链网络，让钱包链接到该网络之后，即可开始交易。
+
+从另一个角度说，每条区块链上都可以使用一个钱包，只不过这些钱包之间的交易记录默认是不互通的，此时就需要一个称为**跨链**的技术来解决这个问题。
+
+TODO: 跨链交易是不是手续费非常高？假如有手续费，这手续费交给谁了？为什么会有手续费？
+
+> [!Attention]
+> 钱包的<font color="#ff0000">交易记录是特定于 Blockchain 的</font>（有时候也成为 XX 链、XX 网络、etc.），在某条链上的交易记录，无法在另一条链上看到。
+>
+> 在 A 链上可以有钱包 AA 的交易记录，在 B 链上也可以有钱包 AA 的交易记录，但是这两个交易记录并不互通。
+>
+> 这就会导致两个问题
+>
+> 1. 选择什么钱包很重要，实现钱包的应用程序如果不维护了该怎么办？e.g. MetaMask 钱包是以太坊维护的，那默认交易都是在以太坊的主要公有链上。就算在钱包中添加了其他网络，也没法防止钱包本身不再维护。是否应该选择硬件实体钱包？
+> 2. 选择在哪条区块链进行交易很重要，如果交易所在的区块链直接不维护了怎么办？
+>     1. 还有一个 ”提币“ 词，真词 TM 坑。提币 这词看似跟 提现 类似，但是与中国从支付宝提现到银行的行为或者商家某某提现到个人完全不是一个概念。
+>     2. 所谓的 提币 本质好像就是跨链交易，而且是带着高昂手续费的跨链交易。
+>     3. 只有”提“到火币的 ”HECO 链“ 才没有手续费。要是想提到 以太坊的 “ERC20 链”，需要支付高昂的手续费。从火币的 “HECO 链” 把币转到以太坊的 “ERC20 链” 也是高昂手续费。
+>     4. 截止到 2025-07-17，这 “HECO 链” （http-mainnet.hecochain.com）依然用不了
+
+### 钱包的实现
+
+有很多程序可以通过 **助记词** 或者 **私钥** 来生成钱包
+
+- MetaMask
+- Coinbase Wallet
+- imtoken
+- etc.
+
+一套助记词可以在各种不同的钱包实现上，生成钱包
+
+### MetaMask 钱包示例
+
+我们可以创建多个 account，每个 account 本质就是表示一个 Wallet(钱包)
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/blockchain/metamask_wallet_01.png)
+
+账户名下面的字符串是该钱包的 Address。查看钱包的细节，可以显示 Private key(私钥) 与 Secret Recovery Phrase(助记词)，会发现：
+
+- 私钥各不相同
+- 助记词完全相同
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/blockchain/metamask_wallet_details.png)
+
+对于 MetaMask 来说，一个助记词可以生成多个私钥不同的钱包。
+
+当我们使用一个全新的 MetaMask 时，需要使用助记词导入钱包，此时会将曾经创建过的所有钱包都展示出来。
 
 ## ETH
 
@@ -115,6 +178,18 @@ StarkNet
 填入地址后，代币符号与小数精度将会自动出现
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/lddbaw/1647498857327-a04a31ff-ff5c-4e32-8809-8bcc8582bdd2.png)
+
+# NFT
+
+[B 站，汪杰解惑 NFT-02](https://www.bilibili.com/video/BV1T34y117Y9)
+
+NFT 交易平台
+
+- OpenSea
+
+**Percentage Fee(版税)** # 即提成的百分比。每次 NFT 交易时，最初的创建者会获得交易额的百分比的收入。
+
+**Gas Fee(气体费)** # 铸造一个 NFT 是有成本的，需要向矿工支付 Gas Fee
 
 # 交易
 
