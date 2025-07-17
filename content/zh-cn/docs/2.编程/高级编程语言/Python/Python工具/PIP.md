@@ -205,12 +205,12 @@ pip 从以下位置安装包
 
 国内源：
 
-- 阿里云：https://mirrors.aliyun.com/pypi/simple/
-- 清华：<https://pypi.tuna.tsinghua.edu.cn/simple>
-- 中国科技大学 <https://pypi.mirrors.ustc.edu.cn/simple/>
-- 华中理工大学：<http://pypi.hustunique.com/>
-- 山东理工大学：<http://pypi.sdutlinux.org/>
-- 豆瓣：<http://pypi.douban.com/simple/>
+- 阿里云: https://mirrors.aliyun.com/pypi/simple/
+- 清华: https://pypi.tuna.tsinghua.edu.cn/simple
+- 中国科技大学: https://pypi.mirrors.ustc.edu.cn/simple/
+- 华中理工大学: http://pypi.hustunique.com/
+- 山东理工大学: http://pypi.sdutlinux.org/
+- 豆瓣: http://pypi.douban.com/simple/
 
 Linux 下，修改 ~/.pip/pip.conf (没有就创建一个文件夹及文件。文件夹要加“.”，表示是隐藏文件夹)，内容如下：
 

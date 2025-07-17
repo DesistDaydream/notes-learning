@@ -23,7 +23,7 @@ weight: 1
 - pip ...
 - python -m pip ...
 
-第一种方式和第二种方式大同小异，区别是第一种方式使用的 Python 解释器是写在 pip 文件的 shebang 里的，一般情况下，如果你的 pip 路径是 $path\_prefix/bin/pip，那么 Python 路径对应的就是 $path\_prefix/bin/python。如果你用的是 Unix 系统则 cat $(which pip) 第一行就包含了 Python 解释器的路径。第二种方式则显式地指定了 Python 的位置。这条规则，对于所有 Python 的可执行程序都是适用的。流程如下图所示。
+第一种方式和第二种方式大同小异，区别是第一种方式使用的 Python 解释器是写在 pip 文件的 shebang 里的，一般情况下，如果你的 pip 路径是 `$path_prefix/bin/pip`，那么 Python 路径对应的就是 `$path_prefix/bin/python`。如果你用的是 Unix 系统则 `cat $(which pip)` 第一行就包含了 Python 解释器的路径。第二种方式则显式地指定了 Python 的位置。这条规则，对于所有 Python 的可执行程序都是适用的。流程如下图所示。
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/python/1669286382022-472bf4de-24cf-4652-bc94-3d52d01f7df1.png)
 
@@ -104,3 +104,42 @@ python -m SimpleHTTPServer NUM
 ```bash
 python3 -m http.server NUM
 ```
+
+# uv
+
+> 参考：
+>
+> - [GitHub 项目，astral-sh/uv](https://github.com/astral-sh/uv)
+
+只需要一个二进制文件即可使用！
+
+uv init 初始化项目，生成 pyproject.toml 文件
+
+uv add XXX 添加依赖库，同时更新 pyproject.toml 中的依赖部分
+
+uv sync 根据 pyproject.toml 同步依赖
+
+uv tool install XXX 以工具的形式安装 XXX。不作为依赖库
+
+使用 --index 指定镜像源
+
+uv sync --index "https://mirrors.aliyun.com/pypi/simple/"
+
+## uv 关联文件与配置
+
+
+缓存的储存目录
+
+- Windows: `%LOCALAPPDATA%\uv\cache\`
+- Unix: `$XDG_CACHE_HOME/uv/` 或 `$HOME/.cache/uv/`
+- 缓存的储存目录可以通过如下几种方式修改：
+    - UV_CACHE_DIR 环境变量
+    - pyproject.toml 文件中的 tool.uv.cache-dir 键
+    - uv CLI 的 --cache-dir 命令函标志
+
+## 缓存
+
+uv cache clean 清除缓存
+
+`uv cache prune` 会删除所有未使用的缓存条目
+

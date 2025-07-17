@@ -136,11 +136,21 @@ Python 模块与包的关联文件通常都是在编译 Python 解释器时设�
 - **project** # 大多数构建后端用来指定项目的基本元数据的格式，例如依赖项、您的姓名、etc. 。
 - **tool** # 具有特定于工具的子表，例如 `[tool.hatch]`、`[tool.black]`、`[tool.mypy]`。它的内容是由每个工具定义的。请查阅特定工具的文档以了解它可以包含什么。
 
+最简单的 pyproject.tom 文件应该至少包含如下内容（不能只写 name 不写 version）：
+
+```toml
+[project]
+name = "python-learning"
+version = "0.1.0"
+```
+
 ### build-system
 
 ### project
 
 **name**(STRING)
+
+**version**(STRING)
 
 **dynamic**(\[]STRING)
 

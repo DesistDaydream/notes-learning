@@ -250,3 +250,8 @@ https://ffmpeg.org/ffprobe.html
 https://www.cnblogs.com/renhui/p/9209664.html
 
 ffprobe 是 ffmpeg 命令行工具中相对简单的，此命令是用来查看媒体文件格式的工具。
+
+# FFmpeg 生态
+
+https://github.com/Lake1059/FFmpegFreeUI # 3FUI 是 ffmpeg 在 Windows 上的轻度专业交互外壳，收录大量参数，界面美观，交互友好。此项目面向国内使用环境，让普通人也能够轻松压制视频和转换格式。
+

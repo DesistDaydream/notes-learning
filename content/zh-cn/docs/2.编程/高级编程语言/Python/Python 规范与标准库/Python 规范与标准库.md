@@ -1,11 +1,14 @@
 ---
 title: Python 规范与标准库
+linkTitle: Python 规范与标准库
 weight: 1
 ---
 
 # 概述
 
 > 参考：
+>
+> - 
 
 - **Python 语言参考**描述了 Python 语言的具体语法和语义
 - **Python 标准库则**是与 Python 语言一起发行的一些可选功能，以便人们可以从一开始就轻松得使用 Python 进行编程。
