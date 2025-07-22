@@ -1,6 +1,6 @@
 ---
-title: "LokiQL 常见查询语句"
-linkTitle: "LokiQL 常见查询语句"
+title: LogQL 常见查询语句
+linkTitle: LogQL 常见查询语句
 weight: 20
 ---
 

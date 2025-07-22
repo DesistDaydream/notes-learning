@@ -1489,7 +1489,7 @@
       "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale/_index.md",
       "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale/Tailscale.md",
       "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale/Tailscale DERP.md",
-      "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale/Tailscale ACL 访问控制策略.md",
+      "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale/Tailscale ACL.md",
       "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale/tailscale CLI.md",
       "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale/Tailscale How it works.md",
       "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale/Headscale.md"
@@ -1888,7 +1888,7 @@
     "docs/6.可观测性/Logs/Loki/Loki 管理": [
       "docs/6.可观测性/Logs/Loki/Loki 管理/_index.md",
       "docs/6.可观测性/Logs/Loki/Loki 管理/logcli 命令行工具.md",
-      "docs/6.可观测性/Logs/Loki/Loki 管理/LokiQL 常见查询语句.md",
+      "docs/6.可观测性/Logs/Loki/Loki 管理/LogQL 常见查询语句.md",
       "docs/6.可观测性/Logs/Loki/Loki 管理/最佳实践.md"
     ],
     "docs/6.可观测性/Logs/Loki/Loki 开发": [

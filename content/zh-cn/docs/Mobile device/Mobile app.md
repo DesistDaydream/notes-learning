@@ -66,6 +66,7 @@ weight: 20
   - https://github.com/shuaibibobo/WeChatOpenDevTools # WeChatOpenDevTool 原仓库的 fork 备份
   - https://github.com/JaveleyQAQ/WeChatOpenDevTools-Python # # WeChatOpenDevTool 的 Python 实现
   - https://github.com/yuweiping/WeChatOpenDevTools # 另一个 Python 实现
+- https://github.com/evi0s/WMPFDebugger
 
 # 手机上的APP都是用什么编程语言写的？
 
