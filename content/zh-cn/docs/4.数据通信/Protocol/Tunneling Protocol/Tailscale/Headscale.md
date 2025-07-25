@@ -1,7 +1,7 @@
 ---
 title: Headscale
 linkTitle: Headscale
-weight: 2
+weight: 100
 ---
 
 # 概述
@@ -413,15 +413,13 @@ stun 能力监听 3478 端口，且可以通过 https 访问
 
 https://headscale.net/stable/ref/acls
 
-
-
 下面这个例子与官方不同，并没有创建 Tag。实现的效果是：ACL 可以让 zhangsan 只能访问 bei-jing 节点；DesistDaydream 则可以访问所有节点。
 
 ```json
 {
   "groups": {
-    "group:zhangsan": ["zhangsan@"],
-    "group:admin": ["DesistDaydream@"]
+    "group:admin": ["DesistDaydream@"],
+    "group:zhangsan": ["zhangsan@"]
   },
   "hosts": {
     "bei-jing": "100.64.0.1"
@@ -429,14 +427,15 @@ https://headscale.net/stable/ref/acls
   "acls": [
     {
       "action": "accept",
-      "src": ["group:zhangsan"],
-      "dst": ["bei-jing:*"]
+      "src": ["group:admin"],
+      "dst": ["*:*"]
     },
     {
       "action": "accept",
-      "src": ["group:admin"],
-      "dst": ["*:*"]
+      "src": ["group:zhangsan"],
+      "dst": ["bei-jing:*"]
     }
   ]
 }
 ```
+

@@ -13,9 +13,25 @@ weight: 20
 > - https://selenium-python.readthedocs.io/ 特定于 Python 的文档，官方文档很多示例都不全。
 >   - https://segmentfault.com/q/1010000043032537 这里表示文档不全
 
-Selenium 使浏览器自动化，用于自动化 Web 应用程序。Selenium 通过 [WebDriver](/docs/Web/Browser%20automation/WebDriver.md) 以控制浏览器。
+Selenium 使浏览器自动化，用于自动化 Web 应用程序。Selenium 通过 [WebDriver](/docs/Web/Browser%20automation/WebDriver.md) 控制浏览器。
 
-Selenium 启动的浏览器参数
+# Selenium 使用浏览器的方式
+
+Selenium 通过如下几种方式使用浏览器
+
+- 打开新的浏览器
+- 使用当前运行的浏览器
+    - 通过 Chrome 的 debug 端口连接
+- 使用指定的缓存
+
+> [!Tip]
+> Selenium 通过 chromedriver.exe 拉起的浏览器不包含任何数据（登录状态、cookie、etc.）
+>
+> 所以如果想要使用当前浏览器（比如避免反复登录），必须通过其他方式（e.g. Chrome 的 Debug 端口、etc.）
+
+## 其他
+
+Selenium 启动的 Chrome 的参数
 
 ```
 C:\Program Files\Google\Chrome\Application\chrome.exe"
@@ -50,20 +66,6 @@ C:\Program Files\Google\Chrome\Application\chrome.exe"
  --flag-switches-end
  --origin-trial-disabled-features=WebGPU
 ```
-
-selenium 依赖于 WebDriver，这里我们实例化了一个 Chrome 的 WebDriver。
-
-然后使用 chromedriver.exe 启动浏览器。
-
-# Selenium 使用浏览器的方式
-
-打开新的浏览器
-
-使用当前运行的浏览器
-
-- 通过 Chrome 的 debug 端口连接
-
-使用指定的缓存
 
 # Selenium 关联文件与配置
 

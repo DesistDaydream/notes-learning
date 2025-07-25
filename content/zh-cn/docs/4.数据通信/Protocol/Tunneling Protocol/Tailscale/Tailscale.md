@@ -113,7 +113,7 @@ Tailscale 会自动创建相关的路由表和 iptables 规则。路由表可通
 
 ## ACL
 
-Tailscale 使用 [ACL](https://tailscale.com/kb/1018/acls) 管理权限（ACL 的配置[示例](https://github.com/juanfont/headscale/blob/v0.15.0/docs/acls.md)），后来改为 Grant
+Tailscale 使用 [Tailscale ACL](docs/4.数据通信/Protocol/Tunneling%20Protocol/Tailscale/Tailscale%20ACL.md) 管理权限，后来改为 Grant
 
 ```json
 {

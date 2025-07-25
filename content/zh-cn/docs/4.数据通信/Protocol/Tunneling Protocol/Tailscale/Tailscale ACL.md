@@ -8,8 +8,10 @@ weight: 20
 
 > 参考：
 >
+> - [官方文档，使用 ACL 管理权限](https://tailscale.com/kb/1018/acls)
 > - [官方文档，参考 - Tailnet 策略文件语法](https://tailscale.com/kb/1337/policy-syntax)
 > - [Tailscale 博客，RBAC 的初衷](https://tailscale.com/blog/rbac-like-it-was-meant-to-be)
+> - ACL 的配置[示例](https://github.com/juanfont/headscale/blob/v0.15.0/docs/acls.md)
 
 # groups
 
@@ -25,7 +27,7 @@ https://tailscale.com/kb/1337/policy-syntax#acls
 
 ## dst
 
-`dst` 字段设置一个访问目标的列表，该列表是一组适用于某 acl 规则的目标。
+`dst` 字段设置一个访问目标的列表，该列表是一组适用于某 acl 规则的访问目标。
 
 列表中的每个元素格式为 `HOST:PORTS`。i.e. 1 个 host，1 个或多个 ports。
 
@@ -63,6 +65,8 @@ PORTS 可以是以下任意类型
 # Tailscale ACL 访问控制策略完全指南！
 
 原文: [公众号-云原生实验室，ailscale ACL 访问控制策略完全指南！](https://mp.weixin.qq.com/s/JIbKEWJBDzP3mjWzlZ1DIA)
+
+> [!Attention] 该文章发布于 2022-11-28 08:31，当时 Headscale 还使用的是 namespace，部分内容需要辩证看待
 
 前面几篇文章给大家给介绍了 Tailscale 和 Headscale，包括 [👉 Headscale 的安装部署和各个平台客户端的接入，以及如何打通各个节点所在的局域网](https://mp.weixin.qq.com/s?__biz=MzU1MzY4NzQ1OA==&mid=2247504037&idx=1&sn=b059e0ed24be4ae39a25e5724700ff54&scene=21#wechat_redirect) 。同时还介绍了 [👉 如何自建私有的 DERP 服务器，并让 Tailscale 使用我们自建的 DERP 服务器](https://mp.weixin.qq.com/s?__biz=MzU1MzY4NzQ1OA==&mid=2247504288&idx=1&sn=93d74eb52ac6d1bb176c1599b3c27962&scene=21#wechat_redirect) 。
 
@@ -192,11 +196,11 @@ huJSON 格式：
 
 autogroup 是一个特殊的 group，它自动包含具有相同属性的用户或者访问目标，可以在 ACL 规则中调用 autogroup。
 
-| Autogroup | 允许在 ACL 的哪个字段调用 | 含义 |
-| --- | --- | --- |
-| autogroup:internet | dst | 用来允许任何用户通过任意 Exit Node 访问你的 Tailscale 网络 |
-| autogroup:members | src 或者 dst | 用来允许 Tailscale 网络中的任意成员（设备）访问别人或者被访问 |
-| autogroup:self | dst | 用来允许 src 中定义的来源访问自己 |
+| Autogroup          | 允许在 ACL 的哪个字段调用 | 含义                                       |
+| ------------------ | --------------- | ---------------------------------------- |
+| autogroup:internet | dst             | 用来允许任何用户通过任意 Exit Node 访问你的 Tailscale 网络 |
+| autogroup:members  | src 或者 dst      | 用来允许 Tailscale 网络中的任意成员（设备）访问别人或者被访问     |
+| autogroup:self     | dst             | 用来允许 src 中定义的来源访问自己                      |
 
 示例配置：
 
