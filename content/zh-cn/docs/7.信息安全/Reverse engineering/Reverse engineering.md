@@ -83,7 +83,7 @@ Frida
 - [request-hook](https://pan.baidu.com/s/1OmMiE4rJrTNwarw3EJbz0A?pwd=thyl)
 - [Trace-dist](https://github.com/L018/Trace)
 
-### 微信小程序
+## 微信小程序
 
 - [UnpackMiniApp](https://pan.baidu.com/s/1dwUehOAnPka9eHjXN6Y-Lg?pwd=unp7)
 - [CrackMinApp](https://github.com/Cherrison/CrackMinApp)
@@ -170,7 +170,7 @@ UnpackMiniApp # 解密 `*.wxapkg` 文件获得 `*.wxapkg` 文件。TODO: 为什�
 
 - 找不到官方下载渠道
 
-Unveilr # 反编译解密后的 `*.wxapkg` 文件得到源码。
+Unveiler # 反编译解密后的 `*.wxapkg` 文件得到源码。
 
 - https://github.com/r3x5ur/unveilr # 好像是原始源码，但是 2.0 之后的版本作者收费了
   - 只有个下载地址和 TG 号 https://t.me/Qobg3fbwQM1hNTY1
@@ -178,6 +178,7 @@ Unveilr # 反编译解密后的 `*.wxapkg` 文件得到源码。
   - 下面是一些 2.0.2 版本源码的备份
     - https://github.com/AnkioTomas/unveilr
     - https://github.com/CoderYiXin/unveilr
+- https://app.appletsec.xyz/ 有些文档和下载地址
 
 使用微信开发者工具打开项目
 
