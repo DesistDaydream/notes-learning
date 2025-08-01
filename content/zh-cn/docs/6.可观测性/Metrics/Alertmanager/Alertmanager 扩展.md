@@ -17,8 +17,6 @@ Alertmanager 自带一个 UI 界面，可以用来查看报警和静默管理。
 - [公众号-k8s 技术圈，超漂亮的 Alertmanager 可视化面板 - karma](https://mp.weixin.qq.com/s/uHSlzuVBb51-qgX92pEnLQ)
 - 比如报警历史记录等等
 
-[GitHub 项目，kubesphere/notification-manager](https://github.com/kubesphere/notification-manager) # kubesphere 出的，只有 k8s 的。
-
 [GitHub 项目，feiyu563/PrometheusAlert](https://github.com/feiyu563/PrometheusAlert) # 可以提供更多的通知功能，将告警发送到各种地方。
 
 - 利用 template.FuncMap 函数在 go tmpl 中加入了一些自定义函数，e.g. toUpper、etc.
@@ -33,6 +31,10 @@ https://github.com/opsre/WatchAlert # 多数据源监控告警引擎
 https://github.com/rea1shane/a2w # 对接企业微信
 
 - 利用 template.FuncMap 函数在 go tmpl 中加入了一些自定义函数，e.g. timeFormat、etc.
+
+---
+
+[GitHub 项目，kubesphere/notification-manager](https://github.com/kubesphere/notification-manager) # kubesphere 出的，只有 k8s 的（2025-07-31 kubesphere 闭源）。
 
 # notification-manager
 

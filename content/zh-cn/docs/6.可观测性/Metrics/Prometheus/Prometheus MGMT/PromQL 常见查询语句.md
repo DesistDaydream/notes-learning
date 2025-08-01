@@ -129,17 +129,10 @@ irate(ifHCOutOctets{instance="IP.IP.IP.IP",ifAlias="XXXX"}[6m]) * 8
 
 ### CPU 的使用率
 
-显示 cpu 的每个逻辑 core 的使用率
+显示 cpu 的全部逻辑 core 的平均使用率
 
 ```text
-avg(irate(node_cpu_seconds_total{mode="idle"}[5m])) by(instance,job)
-* 100 < 20
-```
-
-查询物理机 CPU 的使用率，显示总体使用率
-
-```text
-100 - avg (irate(node_cpu_seconds_total{instance="XXXX",mode="idle"}[5m])) by (instance) * 100
+avg(irate(node_cpu_seconds_total{mode="idle"}[5m])) by(instance,job) * 100
 ```
 
 ### 上下文切换越来越多

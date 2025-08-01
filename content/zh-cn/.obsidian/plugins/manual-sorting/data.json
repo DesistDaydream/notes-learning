@@ -1,6 +1,7 @@
 {
   "customFileOrder": {
     "/": [
+      "Clippings",
       "_index.md",
       "about",
       "blog",
@@ -45,6 +46,7 @@
       "blog/copy/云原生/如何构建以应用为中心的Kubernetes.md",
       "blog/copy/云原生/ChatGPT 团队是如何使用Kubernetes的.md"
     ],
+    "Clippings": [],
     "docs": [
       "docs/_index.md",
       "docs/学习",
@@ -1220,15 +1222,15 @@
       "docs/2.编程/Programming technology/代码提交规范.md"
     ],
     "docs/2.编程/Programming tools": [
+      "docs/2.编程/Programming tools/GCC.md",
       "docs/2.编程/Programming tools/_index.md",
       "docs/2.编程/Programming tools/Programming tools.md",
-      "docs/2.编程/Programming tools/Compiler.md",
-      "docs/2.编程/Programming tools/GCC.md",
-      "docs/2.编程/Programming tools/Clang.md",
-      "docs/2.编程/Programming tools/LLVM.md",
       "docs/2.编程/Programming tools/Make.md",
       "docs/2.编程/Programming tools/SCM",
-      "docs/2.编程/Programming tools/Utility.md"
+      "docs/2.编程/Programming tools/Utility.md",
+      "docs/2.编程/Programming tools/Compiler.md",
+      "docs/2.编程/Programming tools/Clang.md",
+      "docs/2.编程/Programming tools/LLVM.md"
     ],
     "docs/2.编程/Programming tools/SCM": [
       "docs/2.编程/Programming tools/SCM/_index.md",
@@ -3037,7 +3039,8 @@
       "docs/10.云原生/Kubernetes/Kubernetes 衍生品/K3S",
       "docs/10.云原生/Kubernetes/Kubernetes 衍生品/Kubesphere",
       "docs/10.云原生/Kubernetes/Kubernetes 衍生品/Rancher",
-      "docs/10.云原生/Kubernetes/Kubernetes 衍生品/SealOS"
+      "docs/10.云原生/Kubernetes/Kubernetes 衍生品/SealOS",
+      "docs/10.云原生/Kubernetes/Kubernetes 衍生品/Kubesphere.md"
     ],
     "docs/10.云原生/Kubernetes/Kubernetes 衍生品/K3S": [
       "docs/10.云原生/Kubernetes/Kubernetes 衍生品/K3S/_index.md",
@@ -3048,9 +3051,7 @@
       "docs/10.云原生/Kubernetes/Kubernetes 衍生品/K3S/K3S 管理.md"
     ],
     "docs/10.云原生/Kubernetes/Kubernetes 衍生品/Kubesphere": [
-      "docs/10.云原生/Kubernetes/Kubernetes 衍生品/Kubesphere/_index.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 衍生品/Kubesphere/Kubesphere.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 衍生品/Kubesphere/Kubesphere 部署与清理.md"
+      "docs/10.云原生/Kubernetes/Kubernetes 衍生品/Kubesphere/_index.md"
     ],
     "docs/10.云原生/Kubernetes/Kubernetes 衍生品/Rancher": [
       "docs/10.云原生/Kubernetes/Kubernetes 衍生品/Rancher/_index.md",

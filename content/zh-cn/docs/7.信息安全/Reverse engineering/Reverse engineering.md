@@ -49,6 +49,7 @@ APP 加壳
 - https://x64dbg.com/
 - [想要程序注册码（密码）？？翻找内存找到它！！——x64dbg 逆向动态调试简单crackme，找注册码（密码）](https://www.bilibili.com/video/BV1it421G7qf)
 - 可以代替 OllyDbg
+- 看雪 教程 https://bbs.kanxue.com/thread-259952.htm
 
 **Cheat Engine** # Cheat Engine 是一个专注于修改个人使用的游戏和应用程序的开发环境。
 

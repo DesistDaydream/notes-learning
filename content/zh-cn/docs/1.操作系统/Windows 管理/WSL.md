@@ -60,7 +60,6 @@ wsl.exe --user root
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/tqwpkc/1654930585949-71f955ca-97c4-45d8-be77-a637670803eb.png)
 
-
 # WSL 关联文件与配置
 
 ## Windows 下的关联文件

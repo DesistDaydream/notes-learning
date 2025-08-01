@@ -40,7 +40,7 @@ CNCF 运行 Kubernetes 认证合格计划。大多数全球领先的企业软件
 
 [Rancher](/docs/10.云原生/Kubernetes/Kubernetes%20衍生品/Rancher/Rancher.md)
 
-[Kubesphere](/docs/10.云原生/Kubernetes/Kubernetes%20衍生品/Kubesphere/Kubesphere.md)
+[Kubesphere](/docs/10.云原生/Kubernetes/Kubernetes%20衍生品/Kubesphere.md)
 
 [Kuboard](https://github.com/eip-work/kuboard-press)
 

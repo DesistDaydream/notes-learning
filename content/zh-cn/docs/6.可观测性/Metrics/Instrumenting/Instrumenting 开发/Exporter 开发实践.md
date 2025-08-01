@@ -100,23 +100,25 @@ func main() {
 
 这个最简单的 Exporter 内部其实是使用了一个 **prometheus 库** 默认的采集器 `NewGoCollector()` 和 `NewProcessCollector()` 采集当前 Go 运行时的相关信息，比如 go 堆栈使用、goroutine 数据、当前程序所用资源等等。内容如下：
 
-    root@desistdaydream:~# curl localhost:8080/metrics
-    # HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.
-    # TYPE go_gc_duration_seconds summary
-    go_gc_duration_seconds{quantile="0"} 0
-    go_gc_duration_seconds{quantile="0.25"} 0
-    go_gc_duration_seconds{quantile="0.5"} 0
-    go_gc_duration_seconds{quantile="0.75"} 0
-    go_gc_duration_seconds{quantile="1"} 0
-    go_gc_duration_seconds_sum 0
-    go_gc_duration_seconds_count 0
-    # HELP go_goroutines Number of goroutines that currently exist.
-    # TYPE go_goroutines gauge
-    go_goroutines 7
-    # HELP go_info Information about the Go environment.
-    # TYPE go_info gauge
-    go_info{version="go1.15.5"} 1
-    # ........后面略，还有很多
+```bash
+~]# curl localhost:8080/metrics
+# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.
+# TYPE go_gc_duration_seconds summary
+go_gc_duration_seconds{quantile="0"} 0
+go_gc_duration_seconds{quantile="0.25"} 0
+go_gc_duration_seconds{quantile="0.5"} 0
+go_gc_duration_seconds{quantile="0.75"} 0
+go_gc_duration_seconds{quantile="1"} 0
+go_gc_duration_seconds_sum 0
+go_gc_duration_seconds_count 0
+# HELP go_goroutines Number of goroutines that currently exist.
+# TYPE go_goroutines gauge
+go_goroutines 7
+# HELP go_info Information about the Go environment.
+# TYPE go_info gauge
+go_info{version="go1.15.5"} 1
+# ........后面略，还有很多
+```
 
 ## promhttp.Handler()
 

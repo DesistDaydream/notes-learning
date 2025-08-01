@@ -74,15 +74,17 @@ Descriptors that share the same fully-qualified names and the same label values 
 
 假如现在有这么一个指标：
 
-    # HELP go_info Information about the Go environment.
-    # TYPE go_info gauge
-    go_info{version="go1.15.5"} 1
+```text
+# HELP go_info Information about the Go environment.
+# TYPE go_info gauge
+go_info{version="go1.15.5"} 1
+```
 
 那么在 Prometheus 代码中 Metric 描述符对应的信息应该这么看：
 
 fqName、help、 constLabelPairs、variableLabels 这四个属性的值，将会响应给客户端
 
-**fqName **# 该 Metric 的名字
+**fqName** # 该 Metric 的名字
 
 > 就是上述指标中的 go_info
 
@@ -97,17 +99,19 @@ fqName 由 Namespace、Subsystem、Name 三部分组成
 > 在这个 Metirc 中没有 constLabelParis。常量标签对是在实例化 Desc 时设置的，标签值是不可变的。
 > LabelPair(标签对) 是一组键值对的组合。key 为 标签名称，value 为 标签值
 
-constLabelPairs\*\* \*\*包含基于常量标签的预先计算的 DTO 标签对。
+**constLabelPairs** 包含基于常量标签的预先计算的 DTO 标签对。
 
 constLabels 属性中的标签值是常量，不变的。因为可以在 Desc 中直接设置标签对的信息。
 
 这些不可变的指标由于是在代码中直接设置的，所以常出现在 histogram 类型的指标中，比如 etcd 中的 etcd_debugging_mvcc_db_compaction_total_duration_milliseconds 指标中的 le 标签的值就是一个常量，并不会随所在环境而改变。
 
-    # HELP etcd_debugging_mvcc_db_compaction_total_duration_milliseconds Bucketed histogram of db compaction total duration.
-    # TYPE etcd_debugging_mvcc_db_compaction_total_duration_milliseconds histogram
-    etcd_debugging_mvcc_db_compaction_total_duration_milliseconds_bucket{le="100"} 11331
-    etcd_debugging_mvcc_db_compaction_total_duration_milliseconds_bucket{le="200"} 17071
-    ....
+```text
+# HELP etcd_debugging_mvcc_db_compaction_total_duration_milliseconds Bucketed histogram of db compaction total duration.
+# TYPE etcd_debugging_mvcc_db_compaction_total_duration_milliseconds histogram
+etcd_debugging_mvcc_db_compaction_total_duration_milliseconds_bucket{le="100"} 11331
+etcd_debugging_mvcc_db_compaction_total_duration_milliseconds_bucket{le="200"} 17071
+....
+```
 
 **variableLabels \[]string** # 该 Metric 中，标签值可变的标签名称列表
 
@@ -119,11 +123,13 @@ variableLabels\*\* \*\*所定义的标签名称对应的标签值是可变的，
 
 比如 node_exporter 中采集到的 node_ipvs_backend_connections_active 这个指标，其中的的所有标签都是 variableLabels，标签值是采集器根据当前环境设定的。就像这个 Metric 中的 address、port 等等，都是可变的。
 
-    # HELP node_ipvs_backend_connections_active The current active connections by local and remote address.
-    # TYPE node_ipvs_backend_connections_active gauge
-    node_ipvs_backend_connections_active{local_address="10.100.121.107",local_mark="",local_port="9098",proto="TCP",remote_address="10.244.5.209",remote_port="9098"} 0
-    node_ipvs_backend_connections_active{local_address="10.100.180.246",local_mark="",local_port="8500",proto="TCP",remote_address="10.244.3.23",remote_port="8500"} 0
-    ...
+```text
+# HELP node_ipvs_backend_connections_active The current active connections by local and remote address.
+# TYPE node_ipvs_backend_connections_active gauge
+node_ipvs_backend_connections_active{local_address="10.100.121.107",local_mark="",local_port="9098",proto="TCP",remote_address="10.244.5.209",remote_port="9098"} 0
+node_ipvs_backend_connections_active{local_address="10.100.180.246",local_mark="",local_port="8500",proto="TCP",remote_address="10.244.3.23",remote_port="8500"} 0
+...
+```
 
 **id uint64** # 不会响应给 scrape 请求
 
@@ -134,6 +140,7 @@ variableLabels\*\* \*\*所定义的标签名称对应的标签值是可变的，
 ## [NewDesc()](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus#NewDesc)
 
 参考：[代码注释](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus?utm_source=gopls#NewDesc)
+
 `NewDesc()` 用来实例化 Desc 结构体，设置属性的值并初始化一个新的 Desc。
 
 实例化时产生的错误也会被记录在 Desc 中，并在注册该 Desc 时报告。
@@ -227,10 +234,8 @@ This method may be called concurrently and must therefore be implemented in a co
 ## 基本示例
 
 ```go
-func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
-}
-func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
-}
+func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {}
+func (e *Exporter) Collect(ch chan<- prometheus.Metric) {}
 ```
 
 # Registerer(注册器)
