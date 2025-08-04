@@ -94,7 +94,14 @@ Address: 10.38.9.2
 
 在 [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 上，Docker 使用 [iptables](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/iptables/iptables.md) 来实现 网络隔离、端口发布、端口过滤。
 
-Netfilter 规则保证 Docker 的 bridge 网络驱动正常运行，不应素以修改 Docker 创建的规则，如果想要通过 iptables 规则来控制外部网络访问本机的容器，有一些特殊的地方需要注意
+> [!Note] Docker 于 28.x 版本在 [libnetwork/internal/nftables/nftables_linux.go](https://github.com/moby/moby/blob/28.x/libnetwork/internal/nftables/nftables_linux.go) 处首次提供对 [nftables](docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/nftables/nftables.md) 的**有限**支持（仅支持有限的链/映射/集合类型，且无法删除集合或映射等）。
+> 
+> 下面几个 issue 都提到了需要对除 iptables 之外的支持（其中官方计划于 29 版本正式支持）
+>
+> - https://github.com/moby/moby/issues/50293
+> - https://github.com/moby/moby/issues/50293
+
+Netfilter 规则保证 Docker 的 bridge 网络驱动正常运行，不应随意修改 Docker 创建的规则，如果想要通过 iptables 规则来控制外部网络访问本机的容器，有一些特殊的地方需要注意
 
 ## 端口发布与隔离
 

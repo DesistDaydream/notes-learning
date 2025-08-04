@@ -103,6 +103,12 @@ Tailscale 会自动创建相关的路由表和 iptables 规则。路由表可通
 
 一般都是 52 表
 
+# Netfilter
+
+https://tailscale.com/kb/1294/firewall-mode
+
+对于在 [Unix-like OS](docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 中使用 systemd 管理的 tailscaled，使用 nftables 还是 iptables 可以通过在 /etc/default/tailscaled 文件设置环境变量 TS_DEBUG_FIREWALL_MODE 决定。
+
 # 访问控制
 
 > 参考：

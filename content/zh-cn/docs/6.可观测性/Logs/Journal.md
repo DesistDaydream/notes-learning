@@ -71,6 +71,10 @@ drwxr-sr-x+ 3 root systemd-journal   46 Dec  9 17:19  ../
 - **-p UNM** # 指定要显示的日志级别(NUM 为 0-7 级)
 - **-u UNIT** # 显示指定的 unit 的日志信息
 
+输出选项
+
+- **-r, --reverse** # 按时间反向输出，以便首先显示最新的日志条目。
+
 **页面控制选项**
 
 https://man7.org/linux/man-pages/man1/journalctl.1.html#PAGER_CONTROL_OPTIONS

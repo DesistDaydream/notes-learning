@@ -8,7 +8,7 @@ weight: 3
 
 > 参考：
 >
-> - [官方文档，参考 - 命令行参考 - Daemon CLI](https://docs.docker.com/engine/reference/commandline/dockerd/)
+> - [官方文档，参考 - 命令行参考 - dockerd](https://docs.docker.com/reference/cli/dockerd/)
 > - https://blog.csdn.net/u013948858/article/details/79974796
 
 Docker 的守护进程为 dockerd，dockerd 可以通过两种方式配置运行时行为

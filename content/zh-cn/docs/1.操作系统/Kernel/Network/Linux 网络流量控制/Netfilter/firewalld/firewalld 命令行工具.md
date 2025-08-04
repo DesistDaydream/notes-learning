@@ -1,5 +1,7 @@
 ---
 title: firewalld 命令行工具
+linkTitle: firewalld 命令行工具
+weight: 20
 ---
 
 # firewall-cmd

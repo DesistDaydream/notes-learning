@@ -1,14 +1,17 @@
 ---
 title: nftables
 linkTitle: nftables
-weight: 4
+weight: 1
 ---
 
 # 概述
 
 > 参考：
 >
+> - [官方介绍](https://www.netfilter.org/projects/nftables/index.html)
 > - [官方 wiki](https://wiki.nftables.org/wiki-nftables/index.php/Main_Page)
+> - [Manual, nftables](https://www.netfilter.org/projects/nftables/manpage.html)
+>     - https://www.mankier.com/8/nft
 
 nftables 是一个 [Netfilter](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Netfilter.md) 项目，旨在替换现有的 {ip,ip6,arp,eb}tables 框架，为 {ip,ip6}tables 提供一个新的包过滤框架、一个新的用户空间实用程序（nft）和一个兼容层。它使用现有的钩子、链接跟踪系统、用户空间排队组件和 netfilter 日志子系统。
 
@@ -24,7 +27,7 @@ nftables 和 iptables 一样，由 table(表)、chain(链)、rule(规则) 组成
 - 简化了 IPv4/IPv6 双栈管理
 - 原生支持集合、字典和映射
 
-nftables 没有任何默认规则，如果关闭了 firewalld 服务，则命令 nft list ruleset 输出结果为空。意思就是没有任何内置链或者表
+> [!tip] nftables 没有任何默认规则（也没有任何内置表）。如果关闭了 firewalld 服务，则命令 `nft list ruleset` 输出结果为空。
 
 ## nftables table 与 nftables family
 
@@ -54,40 +57,26 @@ nftables 中一同以下几种 family：
 - **netdev** # Netdev address family, handling packets from ingress.
   - 可处理流量的 Hook：ingress
 
-基本效果示例如下：
-
-```bash
-~]# nft add table test # 创建名为test的表，族为默认的ip族
-~]# nft list ruleset # 列出所有规则
-table ip test { # 仅有一个名为test的表，族为ip，没有任何规则
-}
-~]# nft add table inet test # 创建名为test的表，使用inet族
-~]# nft list ruleset
-table ip test {
-}
-table inet test {
-}
-```
-
 ## nftables chain(链)
 
-在 nftables 中，链是用来保存规则的。链在逻辑上被分为下述三种类型：
+nftables 中的 chain(链) 用于保存规则，分为两大 kind(种类)：
 
-1. filter 类型的链 # 用于过滤数据包所用
-   1. 允许定义在哪些 family 下：all family
-   2. 链中的规则会处理这些 Hook 点的数据包：all Hook
-2. nat 类型的链 # 用于进行地址转换
-   1. 允许定义在哪些 family 下：ip、ip6
-   2. 链中的规则会处理这些 Hook 点的数据包：prerouting、input、output、postrouting
-3. route 类型的链
-   1. 允许定义在哪些 family 下：ip、ip6
-   2. 链中的规则会处理这些 Hook 点的数据包：output
+- **base chains(基本链)** # 数据包的入口点，需要指定该链的基本信息(类型、作用的 Hook 点、优先级、默认策略等)才可以让链中的规则生效(在链管理命令的 {} 中添加链信息)。因为链中包含一条一条的规则，所以一个可以正常处理流量的链，需要指定其类型来区分该链上的规则干什么用的，还需要指定 Hook 来指明数据包到哪个 Hook 了来使用这个规则，还需要配置优先级来处理相同类型的规则，该规则应该先执行还是后执行。
+- **regular chains(常规链)**(也叫自定义链) # 不需要指定钩子类型和优先级，可以用来做链与链之间的跳转，从逻辑上对规则进行分类。
 
-在创建 nftables 中的链时，通常有两种叫法，没有类型的叫常规链，含有类型的叫基本链：
+> 没有类型的叫常规链，含有类型的叫基本链
 
-常规链(也叫自定义链) : 不需要指定钩子类型和优先级，可以用来做链与链之间的跳转，从逻辑上对规则进行分类。
+chain 分为下述三种 type(类型)：
 
-基本链 : 数据包的入口点，需要指定该链的基本信息(类型、作用的 Hook 点、优先级、默认策略等)才可以让链中的规则生效(在链管理命令的 {} 中添加链信息)。因为链中包含一条一条的规则，所以一个可以正常处理流量的链，需要指定其类型来区分该链上的规则干什么用的，还需要指定 Hook 来指明数据包到哪个 Hook 了来使用这个规则，还需要配置优先级来处理相同类型的规则，该规则应该先执行还是后执行。
+- **filter 类型** # 用于过滤数据包所用
+   - 允许定义在哪些 family 下：all family
+   - 链中的规则会处理这些 Hook 点的数据包：all Hook
+- **nat 类型** # 用于进行地址转换
+   - 允许定义在哪些 family 下：ip、ip6
+   - 链中的规则会处理这些 Hook 点的数据包：prerouting、input、output、postrouting
+- **route 类型**
+   - 允许定义在哪些 family 下：ip、ip6
+   - 链中的规则会处理这些 Hook 点的数据包：output
 
 ## nftables rule(规则)
 
@@ -97,8 +86,8 @@ nftables 中的规则标识符有两种，一种 index，一种 handle
 
 ```bash
  chain DOCKER {
-  tcp dport tcpmux accept # 规则index为0
-  tcp dport 5 accept # 规则index为1
+  tcp dport tcpmux accept # 规则 index 为0
+  tcp dport 5 accept # 规则 index 为 1
   tcp dport 6 accept # 后续依次类推
   tcp dport 2 accept
   tcp dport 3 accept
@@ -204,13 +193,9 @@ $ nft add set inet my_table my_concat_set { type ipv4_addr . inet_proto . inet_s
 $ nft list set inet my_table my_concat_set
 
 table inet my_table {
-
-set my_concat_set {
-
-type ipv4_addr . inet_proto . inet_service
-
-        }
-
+    set my_concat_set {
+        type ipv4_addr . inet_proto . inet_service
+    }
 }
 ```
 
@@ -306,17 +291,13 @@ EXAMPLE
 - nft add chain inet my_table my_filter_chain{type filter hook input priority 0;} # 在 inet 族的 my_table 表上创建一个名为 my_filter_chain 的链，链的类型为 filter，作用在 input 这个 hook 上，优先级为 0
 - nft list chain inet my_table my_filter_chain # 列出 inet 族的 my_table 表下的 my_filter_chain 链的信息，包括其所属的表和其包含的规则
 
-## rule, ruleset - 规则管理命令
+## rule - 规则管理命令
 
 **nft COMMAND rule \[FAMILY] TABLE CHAIN \[handle HANDLE|index INDEX] STATEMENT...**
 
 - FAMILY 指定族名
 - HANDLE 和 INDEX 指定规则的句柄值或索引值
 - STATEMENT 指明该规则的语句
-
-**nft list ruleset \[FAMILY]** # 列出所有规则，包括规则所在的链，链所在的表。i.e. 列出 nftables 中的所有信息。可以指定 FAMILY 来列出指定族的规则信息
-
-- \[FAMILY] # 清除所有规则，包括表。i.e.清空 nftables 中所有信息。可以指定 FAMILY 来清空指定族的规则信息
 
 COMMAND
 
@@ -329,6 +310,12 @@ EXAMPLE
 
 - nft add rule inet my_table my_filter_chain tcp dport ssh accept # 在 inet 族的 my_table 表中的 my_filter_chain 链中添加一条规则，目标端口是 ssh 服务的数据都接受
 - nft add rule inet my_table my_filter_chain ip saddr @my_set drop # 创建规则时引用 my_set 集合
+
+## ruleset - 规则集管理命令
+
+**nft list ruleset \[FAMILY]** # 列出所有规则，包括规则所在的链，链所在的表。i.e. 列出 nftables 中的所有信息。可以指定 FAMILY 来列出指定族的规则信息
+
+**nft flush ruleset \[FAMILY]** # 清除所有规则，包括表。i.e.清空 nftables 中所有信息。可以指定 FAMILY 来清空指定族的规则信息
 
 ## set - 集合管理命令
 
@@ -351,7 +338,7 @@ COMMAND
 
 EXAMPLE
 
-- nft add set inet my_table my_set {type ipv4_addr; } # 在 inet 族的 my_table 表中创建一个名为 my_set 的集合，集合的类型为 ipv4_addr
+- nft add set inet my_table my_set {type ipv4_addr;} # 在 inet 族的 my_table 表中创建一个名为 my_set 的集合，集合的类型为 ipv4_addr
 - nft add set my_table my_set {type ipv4_addr; flags interval;} # 在默认 ip 族的 my_table 表中创建一个名为 my_set 的集合，集合类型为 ipv4_addr ，标签为 interval。让该集合支持区间
 - nft add element inet my_table my_set { 10.10.10.22, 10.10.10.33 } # 向 my_set 集合中添加元素，一共添加了两个元素，是两个 ipv4 的地址
 
@@ -426,3 +413,20 @@ table inet table_two {
 总结
 
 希望通过本文的讲解，你能对 nftables 的功能和用法有所了解，当然本文只涉及了一些浅显的用法，更高级的用法可以查看 nftables 的官方 Wiki, 或者坐等我接下来的文章。相信有了本文的知识储备，你应该可以愉快地使用 nftables 实现 Linux 的智能分流了，具体扫一扫下方的二维码参考这篇文章：Linux 全局智能分流方案。
+
+# 最佳实践
+
+基本效果示例如下：
+
+```bash
+~]# nft add table test # 创建名为test的表，族为默认的ip族
+~]# nft list ruleset # 列出所有规则
+table ip test { # 仅有一个名为test的表，族为ip，没有任何规则
+}
+~]# nft add table inet test # 创建名为test的表，使用inet族
+~]# nft list ruleset
+table ip test {
+}
+table inet test {
+}
+```

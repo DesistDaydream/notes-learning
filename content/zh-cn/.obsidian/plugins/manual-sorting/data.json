@@ -357,7 +357,7 @@
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Netfilter.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Connection Tracking for netfilter.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/nftables.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/nftables",
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld"
     ],
     "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld": [
@@ -371,6 +371,10 @@
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables/iptables 命令行工具.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables/最佳实践.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables/iptables 源码解析.md"
+    ],
+    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/nftables": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/nftables/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/nftables/nftables.md"
     ],
     "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/TC 模块": [
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/TC 模块/_index.md",
