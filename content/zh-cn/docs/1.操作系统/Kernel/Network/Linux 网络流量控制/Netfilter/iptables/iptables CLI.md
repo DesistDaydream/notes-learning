@@ -1,6 +1,6 @@
 ---
-title: "iptables 命令行工具"
-linkTitle: "iptables 命令行工具"
+title: iptables CLI
+linkTitle: iptables CLI
 weight: 2
 ---
 

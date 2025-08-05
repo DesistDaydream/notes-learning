@@ -10,8 +10,7 @@ weight: 1
 >
 > - [官方介绍](https://www.netfilter.org/projects/nftables/index.html)
 > - [官方 wiki](https://wiki.nftables.org/wiki-nftables/index.php/Main_Page)
-> - [Manual, nftables](https://www.netfilter.org/projects/nftables/manpage.html)
->     - https://www.mankier.com/8/nft
+> - https://mp.weixin.qq.com/s/VPBgIqlTiFe7KwqF1Q4pCA
 
 nftables 是一个 [Netfilter](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Netfilter.md) 项目，旨在替换现有的 {ip,ip6,arp,eb}tables 框架，为 {ip,ip6}tables 提供一个新的包过滤框架、一个新的用户空间实用程序（nft）和一个兼容层。它使用现有的钩子、链接跟踪系统、用户空间排队组件和 netfilter 日志子系统。
 
@@ -33,6 +32,8 @@ nftables 和 iptables 一样，由 table(表)、chain(链)、rule(规则) 组成
 
 https://wiki.nftables.org/wiki-nftables/index.php/Nftables_families
 
+https://www.mankier.com/8/nft#Address_Families
+
 nftables 没有内置表，表的数量与名称由用户决定。
 
 **family(族)** 是 nftables 技术引用的新概念。一共有 6 种族。不同的 family 可以处理不同 Hook 上的数据包。
@@ -45,26 +46,31 @@ nftables 没有内置表，表的数量与名称由用户决定。
 nftables 中一同以下几种 family：
 
 - **ip** # IPv4 地址族。对应 iptables 中 iptables 命令行工具所实现的效果。默认族，nft 命令的所有操作如果不指定具体的 family，则默认对 ip 族进行操作
-  - 可处理流量的 Hook：与 inet 族相同
 - **ip6** # IPv6 地址族。对应 iptables 中 ip6tables 命令行工具所实现的效果
-  - 可处理流量的 Hook：与 inet 族相同
 - **inet** # Internet (IPv4/IPv6)地址族。对应 iptables 中 iptables 和 ip6tables 命令行工具所实现的效果
-  - 可处理流量的的 Hook：prerouting、input、forward、output、postrouting。ip 与 ip6 族与 inet 族所包含的 Hook 相同
 - **arp** # ARP 地址族，处理 IPv4 ARP 包。对应 iptables 中 arptables 命令行工具所实现的效果
-  - 可处理流量的 Hook：input、output。
 - **bridge** # 桥地址族。处理通过桥设备的数据包对应 iptables 中 ebtables 命令行工具所实现的效果
-  - 可处理流量的 Hook：与 inet 族相同
 - **netdev** # Netdev address family, handling packets from ingress.
-  - 可处理流量的 Hook：ingress
 
-## nftables chain(链)
+各 family 可处理的 Hook 矩阵图如下：
+
+| family\hook | prerouting | input | forward | output | postrouting | ingress | egress |
+| ----------- | :--------: | :---: | :-----: | :----: | :---------: | :-----: | :----: |
+| **ip**      |     √      |   √   |    √    |   √    |      √      |    ×    |   ×    |
+| **ip6**     |     √      |   √   |    √    |   √    |      √      |    ×    |   ×    |
+| **inet**    |     √      |   √   |    √    |   √    |      √      |    √    |   ×    |
+| **arp**     |     ×      |   √   |    ×    |   √    |      ×      |    ×    |   ×    |
+| **bridge**  |     √      |   √   |    √    |   √    |      √      |    ×    |   ×    |
+| **netdev**  |     ×      |   ×   |    ×    |   ×    |      ×      |    √    |   √    |
+
+## nftables chain
 
 nftables 中的 chain(链) 用于保存规则，分为两大 kind(种类)：
 
-- **base chains(基本链)** # 数据包的入口点，需要指定该链的基本信息(类型、作用的 Hook 点、优先级、默认策略等)才可以让链中的规则生效(在链管理命令的 {} 中添加链信息)。因为链中包含一条一条的规则，所以一个可以正常处理流量的链，需要指定其类型来区分该链上的规则干什么用的，还需要指定 Hook 来指明数据包到哪个 Hook 了来使用这个规则，还需要配置优先级来处理相同类型的规则，该规则应该先执行还是后执行。
+- **base chains(基本链)** # 数据包的入口点，需要指定该链的基本信息（type(类型)、作用的 Hook 点、priority(优先级)、policy(策略)、etc.）才可以让链中的规则生效。因为链中包含一条一条的规则，所以一个可以正常处理流量的链，需要指定其类型来区分该链上的规则干什么用的，还需要指定 Hook 来指明数据包到哪个 Hook 了来使用这个规则，还需要配置优先级来处理相同类型的规则，该规则应该先执行还是后执行。
 - **regular chains(常规链)**(也叫自定义链) # 不需要指定钩子类型和优先级，可以用来做链与链之间的跳转，从逻辑上对规则进行分类。
 
-> 没有类型的叫常规链，含有类型的叫基本链
+> 具有类型的叫基本链，没有类型的叫常规链。
 
 chain 分为下述三种 type(类型)：
 
@@ -78,7 +84,26 @@ chain 分为下述三种 type(类型)：
    - 允许定义在哪些 family 下：ip、ip6
    - 链中的规则会处理这些 Hook 点的数据包：output
 
-## nftables rule(规则)
+每个基本链都需要指定该链 type、hook、priority、policy，比如下面：
+
+```
+table ip filter {
+        chain FORWARD {
+                type filter hook forward priority filter; policy accept;
+        }
+
+        chain INPUT {
+                type filter hook input priority filter; policy accept;
+        }
+}
+table ip nat {
+        chain POSTROUTING {
+                type nat hook postrouting priority srcnat; policy accept;
+        }
+}
+```
+
+## nftables rule
 
 nftables 中的规则标识符有两种，一种 index，一种 handle
 
@@ -134,10 +159,6 @@ nftables 程序与 [iptables](/docs/1.操作系统/Kernel/Network/Linux%20网络
 
 **/etc/sysconfig/nftables/** # nftables.conf 文件中 include 的文件，都在该目录下
 
-备份规则：
-
-$ nft list ruleset > /root/nftables.conf
-
 ---
 
 **Debian 系特定的关联文件**
@@ -181,7 +202,7 @@ iptables 可以借助 ipset 来使用集合，而 nftables 中的命名集合就
 - policy #
 - auto-merge #
 
-像 ipset 一样，光创建完还没法使用，需要在 iptables 中添加规则引用 ipset 才可以。nftables 的 set 一样，创建完成后，需要在规则中引用，引用集合规则时使用 @ 并跟上集合的名字，即可引用指定的集合(e.g.nft insert rule inet my_table my_filter_chain ip saddr @my_set drop)这条命令即时引用了 my_set 集合中的内容
+像 ipset 一样，光创建完还没法使用，需要在 iptables 中添加规则引用 ipset 才可以。nftables 的 set 一样，创建完成后，需要在规则中引用，引用集合规则时使用 @ 并跟上集合的名字，即可引用指定的集合(e.g.`nft insert rule inet my_table my_filter_chain ip saddr @my_set drop`)这条命令即时引用了 my_set 集合中的内容
 
 级联不同类型
 
@@ -213,220 +234,5 @@ $ nft add rule inet my_table my_filter_chain ip saddr . meta l4proto . tcp dport
 
 $ nft add rule inet my_table my_filter_chain ip saddr . meta l4proto . udp dport { 10.30.30.30 . udp . bootps } accept
 
-现在你应该能体会到 nftables 集合的强大之处了吧。
-
 nftables 级联类型的集合类似于 ipset 的聚合类型，例如 hash:ip,port。
 
-# nft 命令行工具介绍
-
-**nft \[OPTIONS] \[COMMANDS]**
-
-COMMANDS 包括：
-
-- ruleset # 规则集管理命令
-- table # 表管理命令
-- chain # 链管理命令
-- rule # 规则管理命令
-- set # 集合管理命令
-- map # 字典管理命令
-- NOTE：
-  - 该 COMMANDS 与后面子命令中的 COMMAND 不同，前者是 nft 命令下的子命令，后者是 nft 命令下子命令的子命令
-  - nft 子命令默认对 ip 族进行操作，当指定具体的 FAMILY 时，则对指定的族进行操作
-
-OPTIONS
-
-- -a,--handle # 在使用命令获得输出时，显示每个对象的句柄
-  - Note：handle(句柄)在 nftables 中，相当于标识符，nftables 中的每一行内容都有一个 handle。
-- -e,--echo # 回显已添加、插入或替换的内容
-- -f,--file FILE # 从指定的文件 FILE 中读取 netfilter 配置加载到内核中
-
-EXAMPLE：
-
-- nft -f /root/nftables.conf # 从 nftables.conf 文件中，将配置规则加载到系统中
-
-Note：下面子命令中的 FAMILY 如果不指定，则所有命令默认都是对 ip 族进行操作。
-
-## table - 表管理命令
-
-nft COMMAND table \[FAMILY] TABLE # FAMILY 指定族名，TABLE 为表的名称
-
-COMMAND
-
-- add # 添加指定族下的表。
-- create # 与 add 命令类似，但是如果表已经存在，则返回错误信息。
-- delete # 删除指定的表。不管表中是否有内容都一并删除
-- flush # 清空指定的表下的所有规则，保留链
-- list # 列出指定的表的所有链，及其链中的规则
-
-EXAMPLE
-
-- nft add table my_table # 创建一个 ip 族的，名为 my_table 的表
-- nft add table inet my_table # 创建一个 inet 族的，名为 my_table 的表
-- nft list tables # 列出所有的表，不包含表中的链和规则
-- nft list table inet my_table # 列出 inet 族的名为 my_table 的表及其链和规则
-
-## chains - 链管理命令
-
-nft COMMAND chain \[FAMILY] TABLE CHAIN \[{ type TYPE hook HOOK \[device DEVICE] priority PRIORITY; \[policy POLICY;] }] # FAMILY 指定族名，TABLE 指定表名，CHAIN 指定链名，TYPE 指定该链的类型，HOOK 指定该链作用在哪个 hook 上，DEVICE 指定该链作用在哪个网络设备上，PRIORITY 指定该链的优先级，POLICY 指定该链的策略(i.e.该链的默认策略，accept、drop 等等。)
-
-nft list chains # 列出所有的链
-
-Note:
-
-- 在输入命令时，使用反斜线 \ 用来转义分号 ; ，这样 shell 就不会将分号解释为命令的结尾。如果是直接编辑 nftables 的配置文件则不用进行转义
-- PRIORITY 采用整数值，可以是负数，值较小的链优先处理。
-
-COMMAND
-
-- add # 在指定的表中添加一条链
-- create # 与 add 命令类似，但是如果链已经存在，则返回错误信息。
-- delete # 删除指定的链。该链不能包含任何规则，或者被其它规则作为跳转目标，否则删除失败。
-- flush #
-- list # 列出指定表下指定的链，及其链中的规则
-- rename #
-
-EXAMPLE
-
-- nft add chain inet my_table my_utility_chain # 在 inet 族的 my_table 表上创建一个名为 my_utility_chain 的常规链，没有任何参数
-- nft add chain inet my_table my_filter_chain{type filter hook input priority 0;} # 在 inet 族的 my_table 表上创建一个名为 my_filter_chain 的链，链的类型为 filter，作用在 input 这个 hook 上，优先级为 0
-- nft list chain inet my_table my_filter_chain # 列出 inet 族的 my_table 表下的 my_filter_chain 链的信息，包括其所属的表和其包含的规则
-
-## rule - 规则管理命令
-
-**nft COMMAND rule \[FAMILY] TABLE CHAIN \[handle HANDLE|index INDEX] STATEMENT...**
-
-- FAMILY 指定族名
-- HANDLE 和 INDEX 指定规则的句柄值或索引值
-- STATEMENT 指明该规则的语句
-
-COMMAND
-
-- add # 将规则添加到链的末尾，或者指定规则的 handle 或 index 之后
-- insert # 将规则添加到链的开头，或者指定规则的 handle 或 index 之前
-- delete # 删除指定的规则。Note:只能通过 handle 删除
-- replace # 替换指定规则为新规则
-
-EXAMPLE
-
-- nft add rule inet my_table my_filter_chain tcp dport ssh accept # 在 inet 族的 my_table 表中的 my_filter_chain 链中添加一条规则，目标端口是 ssh 服务的数据都接受
-- nft add rule inet my_table my_filter_chain ip saddr @my_set drop # 创建规则时引用 my_set 集合
-
-## ruleset - 规则集管理命令
-
-**nft list ruleset \[FAMILY]** # 列出所有规则，包括规则所在的链，链所在的表。i.e. 列出 nftables 中的所有信息。可以指定 FAMILY 来列出指定族的规则信息
-
-**nft flush ruleset \[FAMILY]** # 清除所有规则，包括表。i.e.清空 nftables 中所有信息。可以指定 FAMILY 来清空指定族的规则信息
-
-## set - 集合管理命令
-
-COMMAND set \[FAMILY] table set { type TYPE; \[flags FLAGS;] \[timeout TIMEOUT ;] \[gc-interval GC-INTERVAL ;] \[elements = { ELEMENT\[,...] } ;] \[size SIZE;] \[policy POLICY;] \[auto-merge AUTO-MERGE ;] } # 各字段解释详见上文 nftables 的 set 与 map 特性介绍
-
-list sets # 列出所有结合
-
-{add | delete} element \[family] table set { element\[,...] } # 在指定集合中添加或删除元素
-
-Note:
-
-- 在输入命令时，使用反斜线 \ 用来转义分号 ; ，这样 shell 就不会将分号解释为命令的结尾。如果是直接编辑 nftables 的配置文件则不用进行转义
-
-COMMAND
-
-- add
-- delete # 通过 handle 删除指定的集合
-- flush #
-- list #
-
-EXAMPLE
-
-- nft add set inet my_table my_set {type ipv4_addr;} # 在 inet 族的 my_table 表中创建一个名为 my_set 的集合，集合的类型为 ipv4_addr
-- nft add set my_table my_set {type ipv4_addr; flags interval;} # 在默认 ip 族的 my_table 表中创建一个名为 my_set 的集合，集合类型为 ipv4_addr ，标签为 interval。让该集合支持区间
-- nft add element inet my_table my_set { 10.10.10.22, 10.10.10.33 } # 向 my_set 集合中添加元素，一共添加了两个元素，是两个 ipv4 的地址
-
-## 字典管理命令
-
-字典
-
-字典是 nftables 的一个高级特性，它可以使用不同类型的数据并将匹配条件映射到某一个规则上面，并且由于是哈希映射的方式，可以完美的避免链式规则跳转的性能开销。
-
-例如，为了从逻辑上将对 TCP 和 UDP 数据包的处理规则拆分开来，可以使用字典来实现，这样就可以通过一条规则实现上述需求。
-
-$ nft add chain inet my_table my_tcp_chain
-
-$ nft add chain inet my_table my_udp_chain
-
-$ nft add rule inet my_table my_filter_chain meta l4proto vmap { tcp : jump my_tcp_chain, udp : jump my_udp_chain }
-
-$ nft list chain inet my_table my_filter_chain
-
-```bash
-table inet my_table {
-    chain my_filter_chain {
-    ...
-    meta nfproto ipv4 ip saddr . meta l4proto . udp dport { 10.30.30.30 . udp . bootps } accept
-    meta l4proto vmap { tcp : jump my_tcp_chain, udp : jump my_udp_chain }
-    }
-}
-```
-
-和集合一样，除了匿名字典之外，还可以创建命名字典：
-
-$ nft add map inet my_table my_vmap { type inet_proto : verdict ; }
-
-向字典中添加元素：
-
-$ nft add element inet my_table my_vmap { 192.168.0.10 : drop, 192.168.0.11 : accept }
-
-后面就可以在规则中引用字典中的元素了：
-
-$ nft add rule inet my_table my_filter_chain ip saddr vmap @my_vmap
-
-表与命名空间
-
-在 nftables 中，每个表都是一个独立的命名空间，这就意味着不同的表中的链、集合、字典等都可以有相同的名字。例如：
-
-$ nft add table inet table_one
-
-$ nft add chain inet table_one my_chain
-
-$ nft add table inet table_two
-
-$ nft add chain inet table_two my_chain
-
-$ nft list ruleset
-
-```bash
-...
-table inet table_one {
-    chain my_chain {
-    }
-}
-table inet table_two {
-    chain my_chain {
-    }
-}
-```
-
-有了这个特性，不同的应用就可以在相互不影响的情况下管理自己的表中的规则，而使用 iptables 就无法做到这一点。
-
-当然，这个特性也有缺陷，由于每个表都被视为独立的防火墙，那么某个数据包必须被所有表中的规则放行，才算真正的放行，即使 table_one 允许该数据包通过，该数据包仍然有可能被 table_two 拒绝。为了解决这个问题，nftables 引入了优先级，priority 值越高的链优先级越低，所以 priority 值低的链比 priority 值高的链先执行。如果两条链的优先级相同，就会进入竞争状态。
-
-总结
-
-希望通过本文的讲解，你能对 nftables 的功能和用法有所了解，当然本文只涉及了一些浅显的用法，更高级的用法可以查看 nftables 的官方 Wiki, 或者坐等我接下来的文章。相信有了本文的知识储备，你应该可以愉快地使用 nftables 实现 Linux 的智能分流了，具体扫一扫下方的二维码参考这篇文章：Linux 全局智能分流方案。
-
-# 最佳实践
-
-基本效果示例如下：
-
-```bash
-~]# nft add table test # 创建名为test的表，族为默认的ip族
-~]# nft list ruleset # 列出所有规则
-table ip test { # 仅有一个名为test的表，族为ip，没有任何规则
-}
-~]# nft add table inet test # 创建名为test的表，使用inet族
-~]# nft list ruleset
-table ip test {
-}
-table inet test {
-}
-```
