@@ -1,6 +1,6 @@
 ---
-title: "iptables"
-linkTitle: "iptables"
+title: Iptables
+linkTitle: Iptables
 weight: 1
 ---
 

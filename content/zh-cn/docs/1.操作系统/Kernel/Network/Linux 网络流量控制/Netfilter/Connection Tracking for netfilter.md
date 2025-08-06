@@ -1,6 +1,6 @@
 ---
-title: Connection Tracking for netfilter
-linkTitle: Connection Tracking for netfilter
+title: Connection tracking for Netfilter
+linkTitle: Connection tracking for Netfilter
 weight: 2
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: nftables
-linkTitle: nftables
+title: Nftables
+linkTitle: Nftables
 weight: 1
 ---
 
@@ -40,7 +40,7 @@ nftables 没有内置表，表的数量与名称由用户决定。
 
 > [!Note]
 > - `族` 是具有相同属性的一类网络层级或者说网络类型，比如建立一个名为 test 的表，该表的族为 inet(i.e.表的类型是 inet)。
-> - 在 [iptables](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/iptables/iptables.md) 中，每个网络层级是由单独的工具实现的：e.g. iptables, ip6tables, arptables, ebtables 。而 nftables 想要通过单个命令行工具提供这些层级网络的控制，则需要抽象出一个新的分类概念，i.e. family
+> - 在 [Iptables](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Iptables/Iptables.md) 中，每个网络层级是由单独的工具实现的：e.g. iptables, ip6tables, arptables, ebtables 。而 nftables 想要通过单个命令行工具提供这些层级网络的控制，则需要抽象出一个新的分类概念，i.e. family
 > - 所以每个表应且只应指定一个族，且当表中的链被指定类型时，只能指定该族下可以处理的链类型，详情见本文《nftables chain 链》章节
 
 nftables 中一同以下几种 family：
@@ -141,7 +141,7 @@ nftables 的结构为：表包含链，链包含规则，这个逻辑是非常�
 
 # 安装 Nftables
 
-nftables 程序与 [iptables](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/iptables/iptables.md) 程序一样，一般随系统安装自带（Minimal 也带），需要安装的通常是保证 nftables 规则可以在开机时启动的程序（只不过 nftables 是新的程序，各类系统默认安装的是 iptables 还是 nftables，取决于自身的规划）。
+nftables 程序与 [Iptables](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Iptables/Iptables.md) 程序一样，一般随系统安装自带（Minimal 也带），需要安装的通常是保证 nftables 规则可以在开机时启动的程序（只不过 nftables 是新的程序，各类系统默认安装的是 iptables 还是 nftables，取决于自身的规划）。
 
 各 [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 默认使用 nftables 的版本说明
 
@@ -178,9 +178,9 @@ nftables 的语法原生支持集合，集合可以用来匹配多个 IP 地址�
 例如下面的两个示例，
 
 - 该规则允许来自源 IP 处于 10.10.10.123 ~ 10.10.10.231 这个区间内的主机的流量通过。
-  - nft add rule inet my_table my_filter_chain ip saddr { 10.10.10.123, 10.10.10.231 } accept
+  - `nft add rule inet my_table my_filter_chain ip saddr { 10.10.10.123, 10.10.10.231 } accept`
 - 该规则允许来自目的端口是 http、nfs、ssh 的流量通过。
-  - nft add rule inet my_table my_filter_chain tcp dport { http, nfs, ssh } accept
+  - `nft add rule inet my_table my_filter_chain tcp dport { http, nfs, ssh } accept`
 
 匿名集合的缺点是，如果需要修改集合中的内容，比如像 ipset 中修改 ip 似的，就得替换规则。如果后面需要频繁修改集合，推荐使用命名集合。
 
@@ -222,17 +222,17 @@ table inet my_table {
 
 向集合中添加元素：
 
-$ nft add element inet my_table my_concat_set { 10.30.30.30 . tcp . telnet }
+`$ nft add element inet my_table my_concat_set { 10.30.30.30 . tcp . telnet }`
 
 在规则中引用级联类型的集合和之前一样，但需要标明集合中每个元素对应到规则中的哪个位置。
 
-$ nft add rule inet my_table my_filter_chain ip saddr . meta l4proto . tcp dport @my_concat_set accept
+`$ nft add rule inet my_table my_filter_chain ip saddr . meta l4proto . tcp dport @my_concat_set accept`
 
 这就表示如果数据包的源 IP、协议类型、目标端口匹配 10.30.30.30、tcp、telnet 时，nftables 就会允许该数据包通过。
 
 匿名集合也可以使用级联元素，例如：
 
-$ nft add rule inet my_table my_filter_chain ip saddr . meta l4proto . udp dport { 10.30.30.30 . udp . bootps } accept
+`$ nft add rule inet my_table my_filter_chain ip saddr . meta l4proto . udp dport { 10.30.30.30 . udp . bootps } accept`
 
 nftables 级联类型的集合类似于 ipset 的聚合类型，例如 hash:ip,port。
 

@@ -12,7 +12,7 @@ weight: 1
 
 Iprtoue2 是一组应用程序的集合，用于管理 Linux 网络栈。可以控制、监控 LInux 内核中网络栈的各个方面，包括路由、网络接口、隧道、流量控制、与网络相关的设备驱动程序。
 
-Iproute2 基于 Linux 的 [Netlink](/docs/2.编程/高级编程语言/Go/Go%20第三方库/网络栈控制/Netlink/Netlink.md) 接口与 LInux 内核通信，以实现网络栈管理功能。Iproute2 的发展与内核网络组件的发展密切相关，原作者 Alexey Kuznetsov 负责 Linux 内核中的 QoS 实现，并且各种文档由 [Linux 基金会 Wiki](https://wiki.linuxfoundation.org/) 维护，且代码也存在于 [Linux 内核代码](https://git.kernel.org/pub/scm/network/iproute2/iproute2.git)中
+Iproute2 基于 Linux 的 [Netlink](/docs/2.编程/高级编程语言/Go/Go%20第三方库/网络栈控制/Netlink.md) 接口与 LInux 内核通信，以实现网络栈管理功能。Iproute2 的发展与内核网络组件的发展密切相关，原作者 Alexey Kuznetsov 负责 Linux 内核中的 QoS 实现，并且各种文档由 [Linux 基金会 Wiki](https://wiki.linuxfoundation.org/) 维护，且代码也存在于 [Linux 内核代码](https://git.kernel.org/pub/scm/network/iproute2/iproute2.git)中
 
 ## 该工具包包含如下工具
 

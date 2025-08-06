@@ -1,6 +1,6 @@
 ---
-title: kubectl 命令行工具
-linkTitle: kubectl 命令行工具
+title: kubectl CLI
+linkTitle: kubectl CLI
 weight: 1
 ---
 
@@ -8,8 +8,8 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档，参考-kubectl](https://kubernetes.io/docs/reference/kubectl/)
-> - [官方文档，任务-安装工具-kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+> - [官方文档，参考 - kubectl](https://kubernetes.io/docs/reference/kubectl/)
+> - [官方文档，任务 - 安装工具 - kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 > - [官方推荐常用命令备忘录](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 
 kubectl 所用的 kubeconfig 文件，默认在 `~/.kube/confg`，该文件用于定位 Kubernetes 集群以及与 API Server 交互时进行认证，如果没有认证文件则 API Server 无法处理 kubectl 发出的任何指令并返回错误信息。
@@ -122,11 +122,11 @@ kubectl explain RESOURCE\[.FIELD1.FELD2...FIELDn] \[options] # 每个 FIELD(字�
 
 ## get - 显示一个或多个资源
 
-详见：get 和 describe 显示资源信息命令
+详见：[get 子命令](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20CLI/get%20子命令.md)
 
 ## edit - 编辑服务器上的资源
 
-详见《[对象的创建与修改命令](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20命令行工具/对象的创建与修改命令.md)》
+详见：[对象的创建与修改命令](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20CLI/对象的创建与修改命令.md)
 
 ## delete - 通过文件名、标准输入、资源名或者资源表删除资源
 
@@ -142,7 +142,7 @@ EXAMPLE
 
 scale # 为 Deployment, ReplicaSet, Replication Controller, or Job 设置新的容量大小
 
-autoscale      Auto-scale a Deployment, ReplicaSet, or ReplicationController
+autoscale # Auto-scale a Deployment, ReplicaSet, or ReplicationController
 
 # Cluster Management Commands(集群管理命令)
 
@@ -223,11 +223,9 @@ EXAMPLE
 
 ## logs - 打印出在一个 pod 中的一个 container 的日志
 
-kubectl logs \[-f] \[-p] (POD | TYPE/NAME) \[OPTIONS]
+详见：[logs](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20CLI/logs.md)
 
-详解见：logs.note
-
-attach # 连接到一个正在运行的容器上(进入容器)
+## attach - 连接到一个正在运行的容器上(进入容器)
 
 EXAMPLE
 
@@ -235,7 +233,7 @@ EXAMPLE
 
 ## exec - 在一个容器中执行一条命令
 
-可执行/bin/sh 命令来进入容器当中
+可执行 `/bin/sh` 命令来进入容器当中
 
 **kubectl exec POD \[-c CONTAINER] -- COMMAND \[args...] \[options]**
 
@@ -298,7 +296,7 @@ auth           Inspect authorization
 
 ## apply - 通过文件或标准输入将配置应用到资源
 
-详见《[对象的创建与修改命令](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20命令行工具/对象的创建与修改命令.md)》
+详见《[对象的创建与修改命令](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20CLI/对象的创建与修改命令.md)》
 
 ## patch - 用 strategic merge、JSON merge、JSON，更新一个资源的字段
 
@@ -306,7 +304,7 @@ auth           Inspect authorization
 
 ## replace - 替换。使用文件或标准输入替换一个资源
 
-详见《[对象的创建与修改命令](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20命令行工具/对象的创建与修改命令.md)》
+详见《[对象的创建与修改命令](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20CLI/对象的创建与修改命令.md)》
 
 ## wait - 在一个或多个资源上等待指定的条件达成
 
@@ -314,25 +312,25 @@ auth           Inspect authorization
 
 Wait for the pod "busybox1" to contain the status condition of type "Ready"
 
-```
+```bash
 kubectl wait --for=condition=Ready pod/busybox1
 ```
 
 The default value of status condition is true; you can wait for other targets after an equal delimiter (compared after Unicode simple case folding, which is a more general form of case-insensitivity):
 
-```
+```bash
 kubectl wait --for=condition=Ready=false pod/busybox1
 ```
 
 Wait for the pod "busybox1" to contain the status phase to be "Running".
 
-```
+```bash
 kubectl wait --for=jsonpath='{.status.phase}'=Running pod/busybox1
 ```
 
 Wait for the pod "busybox1" to be deleted, with a timeout of 60s, after having issued the "delete" command
 
-```
+```bash
 kubectl delete pod/busybox1
 kubectl wait --for=delete pod/busybox1 --timeout=60s
 ```
@@ -353,9 +351,10 @@ completion     Output shell completion code for the specified shell (bash or z
 
 ## api-resources - 显示所支持的所有 API 资源(即对象)
 
-显示的信息包括：NAME(对象名),SHORTNAMES(短名称)，APIGROUP(API 组)，NAMESPACED，KIND(所属种类)，VERBS(动作，即该对象可以执行的命令)
+显示的信息包括: NAME(对象名), SHORTNAMES(短名称), APIGROUP(API 组), NAMESPACED, KIND(所属种类), VERBS(动作，即该对象可以执行的命令)
 
 **kubectl api-resources \[OPTIONS]**
+
 OPTIONS
 
 - --namespaced=true|false # 显示所有<是 namesapce 的对象|不是 namespace 的对象>
@@ -369,7 +368,7 @@ EXAMPLE
 
 ## config - 使用子命令修改 kubeconfig 文件
 
-用法详见 [config 子命令](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20命令行工具/config%20子命令.md)
+用法详见 [config 子命令](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20CLI/config%20子命令.md)
 
 plugin         Runs a command-line plugin
 

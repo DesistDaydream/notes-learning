@@ -1,10 +1,19 @@
 ---
 title: set 与 rollout 更新资源命令
+linkTitle: set 与 rollout 更新资源命令
+weight: 20
 ---
 
-# set # 在对象上设定特定的特性
+# 概述
+
+> 参考：
+>
+> - 
+
+# set - 在对象上设定特定的特性
 
 **kubectl set COMMAND \[OPTIONS]**
+
 COMMAND
 
 - **env** # Update environment variables on a pod template
@@ -14,7 +23,7 @@ COMMAND
 - **serviceaccount** # Update ServiceAccount of a resource
 - **subject** # Update User, Group or ServiceAccount in a RoleBinding/ClusterRoleBinding
 
-## kubectl set image # 更新资源
+## kubectl set image - 更新资源
 
 更新资源的现有容器映像。可能的资源包括(不区分大小写)pod (po), replicationcontroller (rc), deployment (deploy), daemonset (ds), replicaset (rs)
 
@@ -29,9 +38,10 @@ EXAMPLE
 - 更新(myapp-deploy 这个控制器下的 pod 模板中的名为 myapp 这个容器中的镜像)到 ikubernetes/myapp:v3 这个版本,并且暂停 myapp-deploy 这个 deployment 的滚动更新，该命令的作用是只更新一个 pod，暂停后续更新，以便查看新版本在生产环境中的运行情况，正常之后，再开始暂停的更新即可
   - kubectl set image deployment myapp-deploy myapp=ikubernetes/myapp:v3 && kubectl rollout pause deployment myapp-deploy
 
-# rollout # 管理资源的滚动更新
+# rollout - 管理资源的滚动更新
 
 **kubectl rollout COMMAND \[OPTIONS]**
+
 COMMAND
 
 - **history** # 滚动更新视图
@@ -41,7 +51,7 @@ COMMAND
 - **status** # 显示滚动更新的状态
 - **undo** # 撤销以前的滚动更新
 
-## history # 查看滚动更新的历史情况
+## history - 查看滚动更新的历史情况
 
 kubectl rollout history (TYPE NAME | TYPE/NAME) \[flags] \[options]
 
@@ -53,7 +63,7 @@ EXAMPLE
 
 - **kubectl rollout history deployment myapp-deploy**
 
-## pause # 暂停滚动更新的资源
+## pause - 暂停滚动更新的资源
 
 kubectl rollout pause RESOURCE \[options]
 
@@ -61,7 +71,7 @@ EXAMPLE
 
 - **kubectl rollout pause deployment myapp-deploy**
 
-## restart # 重启一个资源
+## restart - 重启一个资源
 
 滚动重启指定的资源
 
@@ -74,7 +84,7 @@ EXAMPLE
 - 滚动重启 monitoring 名称空间下，名为 node-exporter 的 daemonset 类型资源
   - **kubectl rollout restart -n monitoring daemonset node-exporter**
 
-## resume # 重新开始被暂停的资源
+## resume - 重新开始被暂停的资源
 
 kubectl rollout resume RESOURCE \[options]
 
@@ -82,18 +92,16 @@ EXAMPLE
 
 - kubectl rollout resume deployment myapp-deploy
 
-## status # 查看更新状态
+## status - 查看更新状态
 
-语法结构
 kubectl rollout status (TYPE NAME | TYPE/NAME) \[flags] \[options]
 
 EXAMPLE
 
 - kubectl rollout status deployment myapp # 查看 myapp 这个 deployment 的更新状态
 
-## undo # 回滚
+## undo - 回滚
 
-语法结构
 kubectl rollout undo (TYPE NAME | TYPE/NAME) \[flags] \[OPTIONS]
 
 OPTIONS

@@ -355,27 +355,27 @@
     "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter": [
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/_index.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Netfilter.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Connection Tracking for netfilter.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/nftables",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld"
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Connection tracking for Netfilter.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Iptables",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Nftables",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Firewalld"
     ],
-    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld": [
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld/_index.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld/firewalld.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/firewalld/firewalld 命令行工具.md"
+    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Firewalld": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Firewalld/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Firewalld/Firewalld.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Firewalld/Firewalld CLI.md"
     ],
-    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables": [
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables/_index.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables/iptables.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables/iptables CLI.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables/最佳实践.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/iptables/iptables 源码解析.md"
+    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Iptables": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Iptables/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Iptables/Iptables.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Iptables/iptables CLI.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Iptables/最佳实践.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Iptables/iptables 源码解析.md"
     ],
-    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/nftables": [
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/nftables/_index.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/nftables/nftables.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/nftables/nft CLI.md"
+    "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Nftables": [
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Nftables/_index.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Nftables/Nftables.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/Netfilter/Nftables/nft CLI.md"
     ],
     "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/TC 模块": [
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/TC 模块/_index.md",
@@ -910,11 +910,7 @@
     "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制": [
       "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/_index.md",
       "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/网络栈控制.md",
-      "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/Netlink"
-    ],
-    "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/Netlink": [
-      "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/Netlink/_index.md",
-      "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/Netlink/Netlink.md"
+      "docs/2.编程/高级编程语言/Go/Go 第三方库/网络栈控制/Netlink.md"
     ],
     "docs/2.编程/高级编程语言/Go/Go 第三方库/CLI": [
       "docs/2.编程/高级编程语言/Go/Go 第三方库/CLI/_index.md",
@@ -2820,8 +2816,8 @@
       "docs/10.云原生/Kubernetes/Kubernetes 管理/_index.md",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 管理.md",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/重大变化",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl 命令行工具",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm CLI",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 日志",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 监控",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/HPA(Horizontal Pod Autoscaler).md",
@@ -2870,24 +2866,23 @@
       "docs/10.云原生/Kubernetes/Kubernetes 管理/重大变化/重大变化.md",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/重大变化/Kubernetes 不再在 kubelet 中维护 docker-shim 代码.md"
     ],
-    "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具": [
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/_index.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/kubeadm 命令行工具.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/kubeadm CLI.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/kubeadm Configuration.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/kubeadm 实现细节.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/最佳实践.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm 命令行工具/编译 kubeadm 修改证书过期时间.md"
+    "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm CLI": [
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm CLI/_index.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm CLI/kubeadm CLI.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm CLI/kubeadm Configuration.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm CLI/kubeadm 实现细节.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm CLI/最佳实践.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubeadm CLI/编译 kubeadm 修改证书过期时间.md"
     ],
-    "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl 命令行工具": [
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl 命令行工具/_index.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl 命令行工具/kubectl 命令行工具.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl 命令行工具/config 子命令.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl 命令行工具/对象的创建与修改命令.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl 命令行工具/get 子命令.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl 命令行工具/set 与 rollout 更新资源命令.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl 命令行工具/logs.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl 命令行工具/kubectl 扩展.md"
+    "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI": [
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI/_index.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI/kubectl CLI.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI/config 子命令.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI/对象的创建与修改命令.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI/get 子命令.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI/set 与 rollout 更新资源命令.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI/logs.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI/kubectl 扩展.md"
     ],
     "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 管理案例": [
       "docs/10.云原生/Kubernetes/Kubernetes 管理/Kubernetes 管理案例/_index.md",

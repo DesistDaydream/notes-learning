@@ -92,10 +92,10 @@ Address: 10.38.9.2
 >
 > - [官方文档，引擎 - 网络 - 包过滤与防火墙](https://docs.docker.com/engine/network/packet-filtering-firewalls)
 
-在 [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 上，Docker 使用 [iptables](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/iptables/iptables.md) 来实现 网络隔离、端口发布、端口过滤。
+在 [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 上，Docker 使用 [Iptables](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Iptables/Iptables.md) 来实现 网络隔离、端口发布、端口过滤。
 
-> [!Note] Docker 于 28.x 版本在 [libnetwork/internal/nftables/nftables_linux.go](https://github.com/moby/moby/blob/28.x/libnetwork/internal/nftables/nftables_linux.go) 处首次提供对 [nftables](docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/nftables/nftables.md) 的**有限**支持（仅支持有限的链/映射/集合类型，且无法删除集合或映射等）。
-> 
+> [!Note] Docker 于 28.x 版本在 [libnetwork/internal/nftables/nftables_linux.go](https://github.com/moby/moby/blob/28.x/libnetwork/internal/nftables/nftables_linux.go) 处首次提供对 [Nftables](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Nftables/Nftables.md) 的**有限**支持（仅支持有限的链/映射/集合类型，且无法删除集合或映射等）。
+>
 > 下面几个 issue 都提到了需要对除 iptables 之外的支持（其中官方计划于 29 版本正式支持）
 >
 > - https://github.com/moby/moby/issues/50293

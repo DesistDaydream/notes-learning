@@ -1,6 +1,6 @@
 ---
-title: firewalld 命令行工具
-linkTitle: firewalld 命令行工具
+title: Firewalld CLI
+linkTitle: Firewalld CLI
 weight: 20
 ---
 

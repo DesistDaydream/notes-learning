@@ -15,11 +15,11 @@ weight: 1
 >   - [连接跟踪（conntrack）：原理、应用及 Linux 内核实现](http://arthurchiao.art/blog/conntrack-design-and-implementation-zh/)
 >   - [\[译\] NAT - 网络地址转换（2016）](http://arthurchiao.art/blog/nat-zh/)
 
-## Netfilter
+Netfilter 是 Linux 操作系统核心层内部的一个**数据包处理**模块集合的统称, 是一种**流量控制系统**。一种网络筛选系统，对数据包进入以及出去本机进行的一些控制与管理。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gral7u/1616165512374-db897dd5-0704-42f2-a1d8-441af05f247c.jpeg)
+![https://commons.wikimedia.org/wiki/File:Netfilter-packet-flow.svg](https://notes-learning.oss-cn-beijing.aliyuncs.com/netfilter/packet_flow_in_netfilter_and_general_networking.jpeg)
 
-Netfilter 是 Linux 操作系统核心层内部的一个**数据包处理**模块集合的统称, 是一种**流量控制系统**。一种网络筛选系统，对数据包进入以及出去本机进行的一些控制与管理。该功能的所有模块可以通过下图所示的目录进行查找，其中还包括 ipvs 等。
+Netfilter 功能的所有模块可以通过下图所示的目录进行查找，其中还包括 ipvs 等。
 
 ```bash
 ~]# find /usr/lib/modules/$(uname -r)/kernel -name netfilter -exec realpath {} \;
@@ -51,7 +51,7 @@ hooks function(钩子函数) 是 Linux 网络栈中的流量检查点。所有�
 
 ## iptabeles/nftables
 
-工作于用户空间的管理工具，对 5 个 hook 进行规则管理，iptabels 或 nftables 进程，开机后，只是把设定好的规则写进 hook 中
+工作于用户空间的管理工具，对 5 个 hook 进行规则管理，iptabels/nftables 程序只是把设定好的规则写进 hook 中
 
 Netfilter 所设置的规则是存放在内核内存中的，Iptables 是一个应用层(Ring3)的应用程序，它通过 Netfilter 放出的接口来对存放在内核内存中的 Xtables(Netfilter 的配置表)进行修改(这是一个典型的 Ring3 和 Ring0 配合的架构)
 
@@ -71,7 +71,7 @@ Netfilter 所设置的规则是存放在内核内存中的，Iptables 是一个�
 
 ## 规则(Rule)匹配(Match)
 
-(规则的匹配条件)匹配的用法详见：[iptables](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/iptables/iptables.md)
+(规则的匹配条件)匹配的用法详见：[Iptables](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Iptables/Iptables.md)
 
 规则，需要有具体的内容才能称为规则，所以 Match 就是规则中的具体内容。
 
@@ -97,7 +97,7 @@ total 2184
 ......
 ```
 
-Match 功能的实现依赖于模块(类似于内核的模块)，比如右图，可以使用命令 rpm -ql iptables | grep ".so"查看都有哪些模块，其中的 XXX.so 就是各个功能的模块，大写字母是 target 所用的模块，小写字母是基本匹配与扩展匹配所用的模块
+Match 功能的实现依赖于模块(类似于内核的模块)，比如右图，可以使用命令 `rpm -ql iptables | grep ".so"` 查看都有哪些模块，其中的 XXX.so 就是各个功能的模块，大写字母是 target 所用的模块，小写字母是基本匹配与扩展匹配所用的模块
 
 - 基本匹配：源地址、目标地址、协议、入流网卡、出流网卡
 - 扩展匹配：用于对基本匹配的内容扩充，包括两类，普通的扩展匹配和基于
@@ -156,7 +156,7 @@ INPUT 链默认 DROP，匹配第一条目的端口是 9090 的数据 ACCEPT，�
 
 下图是从服务器外部进入网卡，再进入网络栈的数据流走向，如果直接是服务器内部服务生成的数据包进入网络栈，则不适用于该图
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gral7u/1616165512341-aeeeff06-b602-4340-bc4f-cd582144f85f.jpeg)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/netfilter/1616165512341-aeeeff06-b602-4340-bc4f-cd582144f85f.jpeg)
 
 1. 当一个数据包进入网卡时，数据包首先进入 PREROUTING 链，在 PREROUTING 链中我们有机会修改数据包的 DestIP(目的 IP)，然后内核的"路由模块"根据"数据包目的 IP"以及"内核中的路由表"判断是否需要转送出去(注意，这个时候数据包的 DestIP 有可能已经被我们修改过了)
 2. 如果数据包就是进入本机的(即数据包的目的 IP 是本机的网口 IP)，数据包就会沿着图向下移动，到达 INPUT 链。数据包到达 INPUT 链后，任何进程都会收到它

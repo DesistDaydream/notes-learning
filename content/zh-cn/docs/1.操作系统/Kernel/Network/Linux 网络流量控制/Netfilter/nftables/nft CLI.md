@@ -52,7 +52,7 @@ COMMANDS 包括：
 
 命令输出格式
 
-- **-j, --json** # 以 [JSON](docs/2.编程/无法分类的语言/JSON.md) 格式化输出内容。从 [libnftables-json(5)](https://www.mankier.com/5/libnftables-json) 这里参考结构描述
+- **-j, --json** # 以 [JSON](/docs/2.编程/无法分类的语言/JSON.md) 格式化输出内容。从 [libnftables-json(5)](https://www.mankier.com/5/libnftables-json) 这里参考结构描述
 - **-e,--echo** # 回显已添加、插入或替换的内容
 
 # table - 表管理命令

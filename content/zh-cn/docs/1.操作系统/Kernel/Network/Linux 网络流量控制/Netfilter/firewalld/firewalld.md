@@ -1,6 +1,6 @@
 ---
-title: firewalld
-linkTitle: firewalld
+title: Firewalld
+linkTitle: Firewalld
 weight: 1
 ---
 
@@ -10,11 +10,11 @@ weight: 1
 >
 > - [官网](https://firewalld.org/)
 
-firewalld 与 [iptables](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/iptables/iptables.md) 一样，是管理 Linux 内核中的 Netfilter 功能的工具。
+Firewalld 与 [Iptables](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Iptables/Iptables.md) 一样，是管理 Linux 内核中的 Netfilter 功能的工具。
 
-FirewallD 使用两个配置模式：“runtime 运行时”和“permanent 持久”。
+FirewallD 使用两个配置模式：“runtime 运行时” 和 “permanent 持久”。
 
-1. runtime 模式：默认模式。所有配置即时生效，在重启系统、重新启动 FirewallD 时、使用--reload 重载配置等操作是，在该模式下的配置都将被清除。
+1. runtime 模式：默认模式。所有配置即时生效，在重启系统、重新启动 firewalld 时、使用 --reload 重载配置等操作是，在该模式下的配置都将被清除。
 2. permanent 模式：需要使用 --permanent 选项生效，配置才会永久保存。如果想让 permanetn 模式下的配置立即生效，需要使用--reload 命令或者重启 firewalld 服务。
 
 ## firewalld 中 zone(区域)的概念
@@ -43,7 +43,7 @@ FirewallD 使用两个配置模式：“runtime 运行时”和“permanent 持�
 
 /usr/lib/firewalld/ # 保存默认配置文件的路径，如默认区域和公用服务。 避免修改它们，因为每次 firewall 软件包更新时都会覆盖这些文件。
 
-/etc/firewalld/ # 保存系统配置文件的路径。这些文件将覆盖默认配置。[firewalld 命令行工具](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/firewalld/firewalld%20命令行工具.md) 会使用这些配置
+/etc/firewalld/ # 保存系统配置文件的路径。这些文件将覆盖默认配置。[Firewalld CLI](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Firewalld/Firewalld%20CLI.md) 会使用这些配置
 
 - firewalld.conf #
 

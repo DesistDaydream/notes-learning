@@ -41,7 +41,7 @@ KubeConfig 是对 UserAccount 的扩展，KubeConfig 会创建 UserAccount 并�
 
 使用命令修改：
 
-- 配置方法详见 kubectl 的 [config 子命令](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20命令行工具/config%20子命令.md)，当使用 --kubeconfig 指定文件时，如果文件不存在，则会自动创建，并包含基本模板
+- 配置方法详见 kubectl 的 [config 子命令](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20CLI/config%20子命令.md)，当使用 --kubeconfig 指定文件时，如果文件不存在，则会自动创建，并包含基本模板
 - 直接对文件中的各个字段进行修改
 
 顶层字段
