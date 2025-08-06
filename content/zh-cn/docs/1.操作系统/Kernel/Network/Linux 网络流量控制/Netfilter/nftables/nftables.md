@@ -30,11 +30,15 @@ nftables 和 iptables 一样，由 table(表)、chain(链)、rule(规则) 组成
 
 ## nftables table 与 nftables family
 
-https://wiki.nftables.org/wiki-nftables/index.php/Nftables_families
+> 参考：
+>
+> - https://wiki.nftables.org/wiki-nftables/index.php/Nftables_families
+> - https://www.mankier.com/8/nft#Address_Families
+> - https://www.mankier.com/8/nft#Tables
 
-https://www.mankier.com/8/nft#Address_Families
+Nftables Tables 是承载 Chain, rule, etc. 的容器。Tables 必须由 “族” 和 “表名” 作为标识。
 
-nftables 没有内置表，表的数量与名称由用户决定。
+> [!Tip] 与 Iptables 的表改变不同。Nftables 没有内置表，表的数量与名称可以自行设置，表本身并没有类型。只有表中的 Chain 需要设置类型
 
 **family(族)** 是 nftables 技术引用的新概念。一共有 6 种族。不同的 family 可以处理不同 Hook 上的数据包。
 
@@ -86,7 +90,7 @@ chain 分为下述三种 type(类型)：
 
 每个基本链都需要指定该链 type、hook、priority、policy，比如下面：
 
-```
+```bash
 table ip filter {
         chain FORWARD {
                 type filter hook forward priority filter; policy accept;
@@ -110,34 +114,50 @@ nftables 中的规则标识符有两种，一种 index，一种 handle
 **index # 规则的索引。每条规则在其链中，从 0 开始计数(每条链中的规则，第一条规则的 index 为 0，第二条规则的 indext 为 2，依次类推)。**
 
 ```bash
- chain DOCKER {
-  tcp dport tcpmux accept # 规则 index 为0
-  tcp dport 5 accept # 规则 index 为 1
-  tcp dport 6 accept # 后续依次类推
-  tcp dport 2 accept
-  tcp dport 3 accept
-  tcp dport afs3-fileserver accept
- }
+chain DOCKER {
+    tcp dport tcpmux accept # 规则 index 为0
+    tcp dport 5 accept # 规则 index 为 1
+    tcp dport 6 accept # 后续依次类推
+    tcp dport 2 accept
+    tcp dport 3 accept
+    tcp dport afs3-fileserver accept
+}
 ```
 
 **handle # 规则的句柄。句柄对于整个 nftalbes 而言，不管添加在哪个链中，第一条规则的句柄为 1，第二条规则句柄为 2。如果规则句柄为 33 号被删除，则新添加的规则的句柄为 34**
 
 ```bash
- chain DOCKER { # handle 4
-  tcp dport tcpmux accept # handle 28
-  tcp dport 5 accept # handle 32
-  tcp dport 6 accept # handle 33
-  tcp dport 2 accept # handle 29
-  tcp dport 3 accept # handle 30
-  tcp dport afs3-fileserver accept # handle 31
- }
+chain DOCKER { # handle 4
+    tcp dport tcpmux accept # handle 28
+    tcp dport 5 accept # handle 32
+    tcp dport 6 accept # handle 33
+    tcp dport 2 accept # handle 29
+    tcp dport 3 accept # handle 30
+    tcp dport afs3-fileserver accept # handle 31
+}
 ```
 
 Note：对于每条规则而言，其 index 可以随时改变，当在多个规则中间插入新规则时，新插入规则下面的规则 index 则会改变。而 handle 则不会改变，除非删除后重新添加
 
+## Object
+
+Object 我自己根据官方文档总结的：
+
+Nftables 创建的 tables, chains, rules, sets, etc. 都可以称为 Object(对象)，每个对象都有一个 handle(句柄) 作为唯一标识。
+
+> 这个总结的灵感来源是 [-a, --handle](https://www.mankier.com/8/nft#--handle) 选项的解释：Show object handles in output. 当使用 `nft -a list ruleset` 时，创建的每个条目（tables, chains, rules, etc.）都有一个 handle 号，所以我将 Nftables 创建的每个条目都抽象为 Object
+
+其中有些 Object 是 [Stateful Objects](https://www.mankier.com/8/nft#Stateful_Objects)(有状态对象)
+
 ## 总结
 
 nftables 的结构为：表包含链，链包含规则，这个逻辑是非常清晰明了的。而 iptable 呢，则需要先指定什么类型的表，再添加规则，规则与链则互相存在，让人摸不清关系；其实也可以说，iptables 的表类型，就是 nftables 中的链的类型。
+
+Nftables 除了基本的 table, chain, rule, sets，还可以使用很多对象来控制网络流量
+
+- Flowtables(流表)
+- Expressions(表达式)
+- etc.
 
 # 安装 Nftables
 
@@ -165,13 +185,19 @@ nftables 程序与 [Iptables](/docs/1.操作系统/Kernel/Network/Linux%20网络
 
 TODO
 
-# nftable 的 set(集合)与 map(字典) 特性介绍
+# Nftable 特性
 
-nftables 的语法原生支持集合，集合可以用来匹配多个 IP 地址、端口号、网卡或其他任何条件。类似于 ipset 的功能。
+## Set
+
+> 参考：
+>
+> - [官方文档，Sets](https://wiki.nftables.org/wiki-nftables/index.php/Sets)
+
+nftables 的语法原生支持 set(集合)，集合可以用来匹配多个 IP 地址、端口号、网卡或其他任何条件。类似于 ipset 的功能。
 
 集合分为匿名集合与命名集合。
 
-## 匿名集合
+### 匿名集合
 
 匿名集合比较适合用于未来不需要更改的规则
 
@@ -184,23 +210,23 @@ nftables 的语法原生支持集合，集合可以用来匹配多个 IP 地址�
 
 匿名集合的缺点是，如果需要修改集合中的内容，比如像 ipset 中修改 ip 似的，就得替换规则。如果后面需要频繁修改集合，推荐使用命名集合。
 
-## 命令集合
+### 命令集合
 
-iptables 可以借助 ipset 来使用集合，而 nftables 中的命名集合就相当于 ipset 的功能。
+iptables 可以借助 ipset 来使用集合，而 nftables 中的命名集合就相当于 ipset 的功能
 
 命名集合需要使用 nft add set XXXX 命令进行创建，创建时需要指定族名、表名、以及 set 的属性
 
-命名集合中包括以下几种属性，其中 type 为必须指定的属性，其余属性可选。
+命名集合中包括以下几种属性（其中 type 为必须指定的属性，其余属性可选）：
 
-- type # 集合中所有元素的类型，包括 ipv4_addr(ipv4 地址), ipv6_addr(ipv6 地址), ether_addr(以太网地址), inet_proto(网络协议), inet_service(网络服务), mark(标记类型) 这几类
-- flags # 集合的标志。包括 constant、interval、timeout 。
-  - interval # 让集合支持区间模式。默认集合中无法使用这种方式 nft add element inet my_table my_set { 10.20.20.0-10.20.20.255 } 来添加集合 。当给集合添加类型 flag 时，就可以在给集合添加元素时，使用‘区间’的表示方法。因为内核必须提前确认该集合存储的数据类型，以便采用适当的数据结构。
-- timeout #
-- gc-interval #
-- elements #
-- size #
-- policy #
-- auto-merge #
+- **type** # 集合中所有元素的类型，包括 ipv4_addr(ipv4 地址), ipv6_addr(ipv6 地址), ether_addr(以太网地址), inet_proto(网络协议), inet_service(网络服务), mark(标记类型) 这几类
+- **flags** # 集合的标志。包括 constant、interval、timeout 。
+  - interval # 让集合支持区间模式。默认集合中无法使用这种方式 `nft add element inet my_table my_set { 10.20.20.0-10.20.20.255 }` 来添加集合 。当给集合添加该 flag 时，就可以在给集合添加元素时，使用‘区间’的表示方法。因为内核必须提前确认该集合存储的数据类型，以便采用适当的数据结构。
+- **timeout** #
+- **gc-interval** #
+- **elements** #
+- **size** #
+- **policy** #
+- **auto-merge** #
 
 像 ipset 一样，光创建完还没法使用，需要在 iptables 中添加规则引用 ipset 才可以。nftables 的 set 一样，创建完成后，需要在规则中引用，引用集合规则时使用 @ 并跟上集合的名字，即可引用指定的集合(e.g.`nft insert rule inet my_table my_filter_chain ip saddr @my_set drop`)这条命令即时引用了 my_set 集合中的内容
 
@@ -235,4 +261,37 @@ table inet my_table {
 `$ nft add rule inet my_table my_filter_chain ip saddr . meta l4proto . udp dport { 10.30.30.30 . udp . bootps } accept`
 
 nftables 级联类型的集合类似于 ipset 的聚合类型，例如 hash:ip,port。
+
+# Nftable 规则文件
+
+> 参考：
+>
+> - [Manual, nft - Input File Formats](https://www.mankier.com/8/nft#Input_File_Formats)
+
+使用 define 定义变量，使用 `$` 引用变量，比如如下官方[示例](https://wiki.nftables.org/wiki-nftables/index.php/Sets#nftables.conf_syntax)：
+
+```bash
+define SIMPLE_SET = { 192.168.1.1, 192.168.1.2 }
+
+define CDN_EDGE = {
+    192.168.1.1,
+    192.168.1.2,
+    192.168.1.3,
+    10.0.0.0/8
+}
+
+define CDN_MONITORS = {
+    192.168.1.10,
+    192.168.1.20
+}
+
+define CDN = {
+    $CDN_EDGE,
+    $CDN_MONITORS
+}
+
+# Allow HTTP(S) from approved IP ranges only
+tcp dport { http, https } ip saddr $CDN accept
+udp dport { http, https } ip saddr $CDN accept
+```
 

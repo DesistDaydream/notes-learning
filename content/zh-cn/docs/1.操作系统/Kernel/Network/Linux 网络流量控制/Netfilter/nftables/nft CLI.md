@@ -140,15 +140,14 @@ EXAMPLE
 
 **nft VERB set \[FAMILY] table set { type TYPE; \[flags FLAGS;] \[timeout TIMEOUT ;] \[gc-interval GC-INTERVAL ;] \[elements = { ELEMENT\[,...] } ;] \[size SIZE;] \[policy POLICY;] \[auto-merge AUTO-MERGE ;] }**
 
-- 各字段解释详见上文 nftables 的 set 与 map 特性介绍
+> 在输入命令时，使用反斜线 `\` 用来转义分号 `;` ，这样 shell 就不会将分号解释为命令的结尾。如果是直接编辑 nftables 的配置文件则不用进行转义
+>
+> 各字段解释详见 [Nftables](docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Nftables/Nftables.md#Set) 中的 Set 章节
 
 list sets # 列出所有结合
 
 {add | delete} element \[family] table set { element\[,...] } # 在指定集合中添加或删除元素
 
-Note:
-
-- 在输入命令时，使用反斜线 \ 用来转义分号 ; ，这样 shell 就不会将分号解释为命令的结尾。如果是直接编辑 nftables 的配置文件则不用进行转义
 
 VERB
 
@@ -160,8 +159,10 @@ VERB
 EXAMPLE
 
 - nft add set inet my_table my_set {type ipv4_addr;} # 在 inet 族的 my_table 表中创建一个名为 my_set 的集合，集合的类型为 ipv4_addr
-- nft add set my_table my_set {type ipv4_addr; flags interval;} # 在默认 ip 族的 my_table 表中创建一个名为 my_set 的集合，集合类型为 ipv4_addr ，标签为 interval。让该集合支持区间
+- nft add set my_table my_set {type ipv4_addr; flags interval;} # 在 ip 族的 my_table 表中创建一个名为 my_set 的集合，集合类型为 ipv4_addr ，标签为 interval。让该集合支持区间
 - nft add element inet my_table my_set { 10.10.10.22, 10.10.10.33 } # 向 my_set 集合中添加元素，一共添加了两个元素，是两个 ipv4 的地址
+- 删除元素。删除 my_table 表中，ssh_allowed_nets 集合内的 183.192.0.0/10 元素
+    - `nft delete element inet my_table ssh_allowed_nets { 183.192.0.0/10 }`
 
 # 字典管理命令 TODO
 
@@ -228,6 +229,17 @@ table inet table_two {
 有了这个特性，不同的应用就可以在相互不影响的情况下管理自己的表中的规则，而使用 iptables 就无法做到这一点。
 
 当然，这个特性也有缺陷，由于每个表都被视为独立的防火墙，那么某个数据包必须被所有表中的规则放行，才算真正的放行，即使 table_one 允许该数据包通过，该数据包仍然有可能被 table_two 拒绝。为了解决这个问题，nftables 引入了优先级，priority 值越高的链优先级越低，所以 priority 值低的链比 priority 值高的链先执行。如果两条链的优先级相同，就会进入竞争状态。
+
+# 主表达式
+
+
+# Payload 表达式
+
+## Conntrack 表达式
+
+https://www.mankier.com/8/nft#Payload_Expressions-Conntrack_Expressions
+
+Conntrack 表达式是指与数据包关联的连接跟踪条目的元数据。用人话说：对 [Connection tracking for Netfilter](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Connection%20tracking%20for%20Netfilter.md) 状态进行匹配
 
 # 最佳实践
 
@@ -339,3 +351,9 @@ table inet filter_demo { # handle 10
         }
 }
 ```
+
+## 其他
+
+对 related,established 状态的连接全部放通
+
+`nft add rule ip my_table my_chain ct state related,established accept`
