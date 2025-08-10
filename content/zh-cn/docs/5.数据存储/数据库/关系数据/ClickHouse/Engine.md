@@ -61,7 +61,7 @@ ENGINE = PostgreSQL('10.53.192.45:5432', 'PG_Database', 'PG_Table', 'PG_Username
 
 ### Distributed
 
-Distributed(分布式) 表常用在集群模式的 ClickHouse 中。**Distribuited 表本身不存储任何数据**，而是提供了一个接口来访问集群中多个分片中的数据。 
+**Distributed(分布式) 表**常用在集群模式的 ClickHouse 中。**Distribuited 表本身不存储任何数据**，而是提供了一个接口来访问集群中多个分片中的数据。 
 
 当查询 Distributed 表时，Distributed 表会将查询转发给所有主机，等待来自每个分片的查询结果，然后计算并返回整个查询结果。
 

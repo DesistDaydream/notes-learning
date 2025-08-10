@@ -48,9 +48,10 @@ https://clickhouse.com/docs/en/guides/sre/network-ports
 
 # 关联文件与配置
 
-https://clickhouse.com/docs/en/operations/configuration-files
-
-https://clickhouse.com/docs/en/operations/settings
+> 参考：
+>
+> - [官方文档，设置](https://clickhouse.com/docs/en/operations/settings)
+> - [官方文档，配置文件](https://clickhouse.com/docs/en/operations/configuration-files)
 
 **/etc/clickhouse-server/**
 
@@ -123,22 +124,43 @@ https://clickhouse.com/docs/en/interfaces/overview
 
 > 参考：
 >
+> - [官方文档，部署与扩展](https://clickhouse.com/docs/deployment-guides/index)
 > - [官方文档，架构 - 水平扩展](https://clickhouse.com/docs/architecture/horizontal-scaling)
 > - [B 站，WordScenesTV - 【clickhouse】clickhouse集群架构、部署和使用](https://www.bilibili.com/video/BV1qz421h7BX)
 
-![](https://clickhouse.com/docs/assets/ideal-img/scaling-out-1.3666d1c.600.png)
+基础概念
 
-**Shard** # 数据的分片
+- **Shard** # 数据的**分片**。<font color="#ff0000">ClickHouse 始终至少有 1 个 Shard</font>。用来横向（添加机器数量，而非提高机器硬件配置）扩展数据的储存与处理的能力。
+- **Replica** # 每个分片的**副本**。用来保障数据的高可用。<font color="#ff0000">ClickHouse 始终至少有 1 个 Replica</font>
+- **Distributed coordination** # 为 “数据复制” 和 “分布式 DDL” 提供**分布式协调**系统。可以使用 ClickHouseKeeper 或 Zookeeper 实现分布式协调系统。
+    - 数据复制 # 保证每个 Shard 的多个 Replica 总是能同步最新的数据
+    - 分布式 DDL # 看完后面的再回来理解。由于 ClickHouse 集群中的 Shard 各自独立，CREATE、DROP、ALERT、RENAME 操作仅影响执行该 SQL 时所在的节点。但是 ClickHouse 可以通过 `ON CLUSTER` 子句，将操作同步给集群其他节点。这个就是[分布式 DDL](https://clickhouse.com/docs/sql-reference/distributed-ddl)能力
 
-**Replica** # 每个分片的副本
+> [!Note] ClickHouse 中的 Replica 概念有点易混淆。ClickHouse 在没有复制任何数据的时候，也看作是有一个 Replica。不存在原始数据或备份数据的概念。如果数据只有一份，那就是只有一个 Replica 的数据，如果数据有两份（备份了一份），那就是有两个 Replica 的数据。
+>
+> 默认情况下，一个独立的 ClickHouse 保存了 1 Shard 数据，该 Shard 有 1 Replica。
 
-**ClickHouseKeeper** # ClickHouse 集群的协调系统，通知 Shard 的副本关于状态变化，使用 RAFT [共识算法](/docs/3.集群与分布式/分布式算法/共识算法.md)实现。ClickHouseKeeper 必须单数节点，最少 3 个来保证选举。
+为什么需要 ClickHouse 集群？
 
-- ClickHouseKeeper 的逻辑也在 ClickHouse 程序的逻辑中，所以可以有两种运行方式
-  - 与 ClickHouse 一起运行，作为其内部逻辑
-  - 独立运行
+1. 当我们存储或处理的数据超过了单台服务器的能力时，怎么办？
+2. 若想实现高可用，怎么办？
+
+若想扩容，可以添加 N 台额外的服务器组成 ClickHouse [集群](docs/3.集群与分布式/集群与分布式.md)。将一个表中的数据分一部分存储到另外 N 台服务器上。每台服务器上的数据都是一个 Shard。
+
+但是此时我们如何通过一次查询获取所有 Shard 上的数据呢？可以利用 [Engine](docs/5.数据存储/数据库/关系数据/ClickHouse/Engine.md) 能力在一个或多个服务器上创建 **Distributed(分布式)表**，**该表不存储任何数据**，只是将查询**转发**给所有主机并等待来自各个 Shard 的查询结果，然后计算后，返回最终查询结果（有点像 View）。
+
+> Tips: 哪怕不查询分布式表，直接查询原始表，也是可以直接获取部分数据的。这种每个 Shard 数据的独立设计在某些场景是合理的（e.g 前提规划哪台服务器可以写入哪类数据），非常灵活。若直接对分布式表写入数据，那么数据将会根据配置自动决定需要写入到哪个 Shard 中。
+
+若想高可用，也可以添加 N 台额外的服务器组成 ClickHouse 集群。每台服务器上都有 Shard 的一个副本。通过分布式协调系统保证各节点的数据始终一致。
+
+下图中，cluster_2S_1R 用于横向扩容场景，表示这是具有 2 个 Shards，每个 Shard 有 1 个 Replica 的集群；cluster_1S_2R 用于数据高可用场景，表示这是具有 1 个 Shard，每个 Shard 有 2 个 Replica 的集群。
+
+![1300](Excalidraw/ClickHouse/clickhouse_shard_and_replica_demo_1.excalidraw.md)
 
 ---
+
+![800](Excalidraw/ClickHouse/clickhouse_shard_and_replica_demo_2.excalidraw.md)
+
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/clickhouse/20250325154658383.png)
 
@@ -190,3 +212,12 @@ FROM system.clusters;
 ```
 
 这个集群共两个分片，将数据分别保存在 host1/host3 和 host2/host4 上，每个分片都有一个自己的备份
+
+## Distributed coordination
+
+ClickHouseKeeper 必须单数节点，最少 3 个来保证选举。使用 RAFT [共识算法](/docs/3.集群与分布式/分布式算法/共识算法.md)实现
+
+ClickHouseKeeper 的逻辑也在 ClickHouse 程序的逻辑中，所以可以有两种运行方式：
+
+1. 与 ClickHouse 一起运行，作为其内部逻辑
+2. 独立运行
