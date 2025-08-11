@@ -101,3 +101,4 @@ root@172.19.42.248's password:
 
 > [!Tip]
 > 有的 SSH 服务端设定了某些算法，若客户端默认算法没指定，则连接时将会报错: `Unable to negotiate with 1.1.1.1 port 22: no matching host key type found. Their offer: XXXX,YYYY`。此时就可以利用 `-o HostKeyAlgorithms=+XXXX,YYYY` 正常连接
+
