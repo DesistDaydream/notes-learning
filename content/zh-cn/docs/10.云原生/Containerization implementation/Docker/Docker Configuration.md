@@ -57,7 +57,7 @@ dockerd 配置文件是 JSON 格式，基本常用的配置内容如下。
 
 [官方文档，参考 - CLI 参考 - dockerd - daemon 配置文件](https://docs.docker.com/reference/cli/dockerd/#daemon-configuration-file) 是官网给的配置文件中所有可用字段的列表
 
-**data-root**(STRING) # 配置 docker info 命令中的 Docker Root Dir，也就是 docker 存储数据的路径。
+**data-root**(STRING) # Docker 存储数据的路径。`默认值: /var/lib/docker`。`docker info` 命令中的 Docker Root Dir 展示的是该值
 
 **features**(OBJECT) # 一些新的特性可以通过配置该字段来启动或停止
 

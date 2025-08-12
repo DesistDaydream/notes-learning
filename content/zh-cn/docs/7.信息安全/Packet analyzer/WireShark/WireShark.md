@@ -36,15 +36,23 @@ https://www.wireshark.org/docs/wsug_html_chunked/ChUseViewMenuSection.html
 - **Packet Details(包详情)**
 - **Packet Bytes(包字节流)**
 
-**Packet List 窗口**：
+### Packet List 窗口
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wireshark/view_packet_list.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/wireshark/view_packet_list.png)
 
 在 Wireshark 的页面里，可以更加直观的分析数据包，不仅展示各个网络包的头部信息，还会用不同的颜色来区分不同的协议。
 
-**Packet Details 窗口**：
+**添加新列**
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wireshark/view_pakcet_details.png)
+可以在下面的 [Packet Details 窗口](#Packet%20Details%20窗口)中找到想要显示的字段，右键点击该字段，选择“应用为列”（或者选中后使用 Ctrl+Shift+I 快捷键）。
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/wireshark/view_packet_list_add_new_column.png)
+
+所有列的信息可以点击 “Edit(编辑) - Preferences(首选项) - appearance(外观) - Columns(列)” 查看，并修改列内容和调整列的顺序。
+
+### Packet Details 窗口
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/wireshark/view_pakcet_details.png)
 
 在 包列表 窗口中选择某一个网络包后，在 包详情 窗口中，可以更清楚的看到这个网络包在协议栈各层的详细信息，主要是各种协议的 Header 信息和 Payload 信息。e.g. 以编号为 4 的 HTTP GET 的网络包为例子：
 
@@ -52,7 +60,7 @@ https://www.wireshark.org/docs/wsug_html_chunked/ChUseViewMenuSection.html
 - 可以在 IP 层，看到 IP 包头信息，如源 IP 地址和目标 IP 地址、TTL、IP 包长度、协议等 IP 协议各个字段的数值和含义；
 - 可以在 TCP 层，看到 TCP 包头信息，比如 Flags、Window、etc. 的数值和含义；
 
-**Packet Bytes 窗口**
+### Packet Bytes 窗口
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wireshark/view_pakcet_bytes.png)
 
