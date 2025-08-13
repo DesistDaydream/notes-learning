@@ -92,7 +92,7 @@ https://clickhouse.com/docs/integrations/sql-clients/cli#command-line-options
 
 - **-m, --multiline** # 允许多行查询（按 Enter 键时不发送查询），仅当查询以分号结尾时才会发送查询。
 - **-q, --query**(STRING) # 指定查询 SQL。可以将 SQL 保存到文件中，使用 `--query="$(cat query.sql)"` 这种方式执行查询。
- 
+
 ### EXAMPLE
 
 ```bash
@@ -145,9 +145,9 @@ https://clickhouse.com/docs/en/interfaces/overview
 1. 当我们存储或处理的数据超过了单台服务器的能力时，怎么办？
 2. 若想实现高可用，怎么办？
 
-若想扩容，可以添加 N 台额外的服务器组成 ClickHouse [集群](docs/3.集群与分布式/集群与分布式.md)。将一个表中的数据分一部分存储到另外 N 台服务器上。每台服务器上的数据都是一个 Shard。
+若想扩容，可以添加 N 台额外的服务器组成 ClickHouse [集群](/docs/3.集群与分布式/集群与分布式.md)。将一个表中的数据分一部分存储到另外 N 台服务器上。每台服务器上的数据都是一个 Shard。
 
-但是此时我们如何通过一次查询获取所有 Shard 上的数据呢？可以利用 [Engine](docs/5.数据存储/数据库/关系数据/ClickHouse/Engine.md) 能力在一个或多个服务器上创建 **Distributed(分布式)表**，**该表不存储任何数据**，只是将查询**转发**给所有主机并等待来自各个 Shard 的查询结果，然后计算后，返回最终查询结果（有点像 View）。
+但是此时我们如何通过一次查询获取所有 Shard 上的数据呢？可以利用 [Engine](/docs/5.数据存储/数据库/关系数据/ClickHouse/Engine.md) 能力在一个或多个服务器上创建 **Distributed(分布式)表**，**该表不存储任何数据**，只是将查询**转发**给所有主机并等待来自各个 Shard 的查询结果，然后计算后，返回最终查询结果（有点像 View）。
 
 > Tips: 哪怕不查询分布式表，直接查询原始表，也是可以直接获取部分数据的。这种每个 Shard 数据的独立设计在某些场景是合理的（e.g 前提规划哪台服务器可以写入哪类数据），非常灵活。若直接对分布式表写入数据，那么数据将会根据配置自动决定需要写入到哪个 Shard 中。
 

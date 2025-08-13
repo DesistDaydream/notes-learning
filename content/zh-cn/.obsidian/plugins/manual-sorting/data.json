@@ -151,15 +151,8 @@
       "docs/1.操作系统/登录 Linux 与 访问控制/PAM",
       "docs/1.操作系统/登录 Linux 与 访问控制/SELinux",
       "docs/1.操作系统/登录 Linux 与 访问控制/su 与  sudo",
-      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control(访问控制)",
+      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control",
       "docs/1.操作系统/登录 Linux 与 访问控制/TCP Wrappers.md"
-    ],
-    "docs/1.操作系统/登录 Linux 与 访问控制/Access Control(访问控制)": [
-      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control(访问控制)/_index.md",
-      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control(访问控制)/Access Control(访问控制).md",
-      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control(访问控制)/ACL.md",
-      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control(访问控制)/Capabilities(能力) 管理.md",
-      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control(访问控制)/SUID,SGID,SBIT 特殊权限.md"
     ],
     "docs/1.操作系统/登录 Linux 与 访问控制/Account Manager(账户管理)": [
       "docs/1.操作系统/登录 Linux 与 访问控制/Account Manager(账户管理)/_index.md",
@@ -592,7 +585,7 @@
       "docs/1.操作系统/Linux 管理/Linux 系统管理工具/BCC 工具集.md",
       "docs/1.操作系统/Linux 管理/Linux 系统管理工具/bpftrace 工具.md",
       "docs/1.操作系统/Linux 管理/Linux 系统管理工具/Cron.md",
-      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/Login info mgmt.md",
+      "docs/1.操作系统/Linux 管理/Linux 系统管理工具/Login info MGMT.md",
       "docs/1.操作系统/Linux 管理/Linux 系统管理工具/Cockpit.md"
     ],
     "docs/1.操作系统/Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具": [
@@ -2684,7 +2677,7 @@
     ],
     "docs/10.云原生/Kubernetes/API Resource 与 Object": [
       "docs/10.云原生/Kubernetes/API Resource 与 Object/_index.md",
-      "docs/10.云原生/Kubernetes/API Resource 与 Object/API 与 Resource.md",
+      "docs/10.云原生/Kubernetes/API Resource 与 Object/API Resource.md",
       "docs/10.云原生/Kubernetes/API Resource 与 Object/Object.md",
       "docs/10.云原生/Kubernetes/API Resource 与 Object/Object 管理",
       "docs/10.云原生/Kubernetes/API Resource 与 Object/API Server",
@@ -3629,6 +3622,13 @@
     "obsidian_template": [
       "obsidian_template/Common.md",
       "obsidian_template/index_templater.md"
+    ],
+    "docs/1.操作系统/登录 Linux 与 访问控制/Access Control": [
+      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control/_index.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control/Access Control.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control/ACL.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control/Capabilities(能力) 管理.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control/SUID,SGID,SBIT 特殊权限.md"
     ]
   },
   "draggingEnabled": true,

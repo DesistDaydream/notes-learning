@@ -1,6 +1,6 @@
 ---
-title: Access Control(访问控制)
-linkTitle: Access Control(访问控制)
+title: Access Control
+linkTitle: Access Control
 weight: 1
 ---
 
@@ -9,6 +9,7 @@ weight: 1
 > 参考：
 >
 > - [Wiki, DAC](https://en.wikipedia.org/wiki/Discretionary_access_control)
+> - [Access Control](/docs/7.信息安全/Access%20Control/Access%20Control.md)
 
 Linux 使用 **Discretionary Access Control(自主访问控制，简称 DAC)** 概念控制所有文件的基本权限。
 
@@ -38,12 +39,12 @@ drwxr-xr-x.  82 root root 8.0K Jun 21 19:42 etc
 
 第 1 列共 11 个字符，中间 9 个字符用以表示文件的基本权限，最后一个字符是文件的 ACL 与 SELinux 属性。格式与说明如下：
 
-| 示例   | 文件类型 | 属主权限 |     |      | 属组权限 |     |      | 其他权限 |     |      | ACL 与 SELinux |
-| ------ | -------- | -------- | --- | ---- | -------- | --- | ---- | -------- | --- | ---- | -------------- |
-|        |          | 读       | 写  | 执行 | 读       | 写  | 执行 | 读       | 写  | 执行 |                |
-| 示例 1 | l        | r        | w   | x    | r        | w   | x    | r        | w   | x    | .              |
-| 示例 2 | d        | r        | -   | x    | r        | -   | x    | r        | -   | x    | .              |
-| 示例 3 | d        | r        | w   | x    | r        | -   | x    | r        | -   | x    |                |
+| 示例   | 文件类型 | 属主权限 |     |     | 属组权限 |     |     | 其他权限 |     |     | ACL 与 SELinux |
+| ---- | ---- | ---- | --- | --- | ---- | --- | --- | ---- | --- | --- | ------------- |
+|      |      | 读    | 写   | 执行  | 读    | 写   | 执行  | 读    | 写   | 执行  |               |
+| 示例 1 | l    | r    | w   | x   | r    | w   | x   | r    | w   | x   | .             |
+| 示例 2 | d    | r    | -   | x   | r    | -   | x   | r    | -   | x   | .             |
+| 示例 3 | d    | r    | w   | x   | r    | -   | x   | r    | -   | x   |               |
 
 中间 9 个字符分为 3 个组，分别对应文件的 3 种拥有者：
 

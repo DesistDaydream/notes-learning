@@ -1,6 +1,6 @@
 ---
-title: Login info mgmt
-linkTitle: Login info mgmt
+title: Login info MGMT
+linkTitle: Login info MGMT
 weight: 20
 ---
 

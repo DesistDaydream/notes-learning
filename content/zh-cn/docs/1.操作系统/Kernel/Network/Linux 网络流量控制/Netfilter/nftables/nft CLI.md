@@ -142,7 +142,7 @@ EXAMPLE
 
 > 在输入命令时，使用反斜线 `\` 用来转义分号 `;` ，这样 shell 就不会将分号解释为命令的结尾。如果是直接编辑 nftables 的配置文件则不用进行转义
 >
-> 各字段解释详见 [Nftables](docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Nftables/Nftables.md#Set) 中的 Set 章节
+> 各字段解释详见 [Nftables](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Nftables/Nftables.md#Set) 中的 Set 章节
 
 list sets # 列出所有结合
 

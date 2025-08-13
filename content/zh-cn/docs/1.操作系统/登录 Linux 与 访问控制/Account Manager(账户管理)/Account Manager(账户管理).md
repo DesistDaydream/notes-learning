@@ -13,11 +13,12 @@ weight: 1
 
 Linux 操作系统是一个多用户操作系统，所以除了 **Terminal(终端)** 以外，还需 **Account(账户)** 才可以登录上去，Linux 操作系统允许多个用户访问安装在一台机器上的单个系统。每个 User(用户) 都在自己的 Account(账户) 下操作。因此，Account Manager 代表了 Linux 系统管理的核心要素。
 
-> User 与 Account 傻傻分不清楚，在 Linux 操作系统中，通常都会将 Account 称为 User，但是，这个称呼实际上并不准确。因为一个 User，比如 root，可以被多个现实世界中多个人使用，那么 root 这个 User 就会对应多个真实的 User。这种描述是非常矛盾的。。。
+> [!Tip] User 与 Account 傻傻分不清楚
+> 在 Linux 操作系统中，通常都会将 Account 称为 User，但是，这个称呼实际上并不准确。因为一个 User，比如 root，可以被多个现实世界中多个人使用，那么 root 这个 User 就会对应多个真实的 User。这种描述是非常矛盾的。。。
 >
 > 只不过，随着时间的推移，人们慢慢叫习惯了，各种文档和源码也都一直使用 UID 这种名称，也就不再特别区分 Account 和 User 了。只需要知道，UID 更准确的描述应该是 AID。
 
-同时，一个 Linux Account 也可以不代表一个真实的 User，这样的 Account 只被应用程序使用，一个应用程序使用某个 Account 运行，以便让系统更方便得对程序进行精细化控制。这种控制方式称为 **Access Control(访问控制)**，所以，从这种角度看，Account 也可以称为 **Role(角色)**，详见 [Access Control(访问控制)](/docs/1.操作系统/登录%20Linux%20与%20访问控制/Access%20Control(访问控制)/Access%20Control(访问控制).md) 章节。
+同时，一个 Linux Account 也可以不代表一个真实的 User，这样的 Account 只被应用程序使用，一个应用程序使用某个 Account 运行，以便让系统更方便得对程序进行精细化控制。这种控制方式称为 **Access Control(访问控制)**，所以，从这种角度看，Account 也可以称为 **Role(角色)**，详见 [Access Control](/docs/1.操作系统/登录%20Linux%20与%20访问控制/Access%20Control/Access%20Control.md) 章节。
 
 为了方便得对多个 Account 管理，可以将多个 Account 组合起来，称为 **Group(组)**，一个 Group 就是一个或多个 Account 的集合。
 
@@ -76,10 +77,18 @@ Linux 系统的账户管理功能，通常由 **shadow-utils 包** 或 **passwd 
 不同的 Linux 发型，还会用到某些个别的包与主包配合提供完整的账户管理功能：
 
 - **base-passwd** # 这是 Ubuntu 发型版中独有的包。这个包中包含一个 `update-passwd` 的程序，将会根据 /var/lib/dpkg/info/base-passwd.preinst 脚本生成 /etc/passwd 和 /etc/group 文件
-  - 参考：<https://unix.stackexchange.com/questions/470126/how-is-the-etc-passwd-file-instantiated>
+  - 参考: https://unix.stackexchange.com/questions/470126/how-is-the-etc-passwd-file-instantiated
 - **setup** # 这是 CentOS 发行版中独有的包。包含了一组重要的系统配置文件和安装文件，例如 /etc/passwd、/etc/group、/etc/shadow、/etc/profile 等等
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/oib9pm/1635476577308-bd0e79ab-ffc9-41f8-ba65-471f0a3e2918.png)
+| 实用程序                               | 描述                                       |
+| ---------------------------------- | ---------------------------------------- |
+| `id`                               | 显示用户和组ID。                                |
+| `useradd`, `usermod`, `userdel`    | 用于添加、修改和删除用户帐户的标准实用程序。                   |
+| `groupadd`, `groupmod`, `groupdel` | 用于添加、修改和删除组的标准实用程序。                      |
+| `gpasswd`                          | 用于修改 newgrp 命令使用的 `/etc/gshadow` 文件中的组密码 |
+| `pwck`, `grpck`                    | 用于验证密码、组和相关影子文件的实用程序。                    |
+| `pwconv`, `pwunconv`               | 用于将密码转换为影子密码或从影子密码转换为标准密码的实用程序           |
+| `grpconv`, `grpunconv`             | 与前面类似，这些实用程序可用于转换组帐户的镜像信息。               |
 
 ## useradd - 添加用户
 
@@ -225,7 +234,7 @@ who
 
 # 密码管理工具
 
-## passwd # 改变用户的密码
+## passwd - 改变用户的密码
 
 > 参考：
 >
@@ -233,7 +242,7 @@ who
 
 ### Syntax(语法)
 
-## chage # 控制用户的密码到期信息
+## chage - 控制用户的密码到期信息
 
 > 参考：
 >

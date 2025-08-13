@@ -7,6 +7,8 @@ weight: 1
 # 概述
 
 > 参考：
+>
+> - 
 
 想要登录 Linux，必须通过 [**Terminal(终端)**](/docs/1.操作系统/Terminal%20与%20Shell/Terminal%20与%20Shell.md)，我们才可以与操作系统进行交互。
 
@@ -54,7 +56,7 @@ Linux 操作系统是一个多用户操作系统，所以除了 **Terminal(终�
 1476 /bin/login -p --
 ```
 
-当我们输入完密码，经过 [Access Control(访问控制)](/docs/1.操作系统/登录%20Linux%20与%20访问控制/Access%20Control(访问控制)/Access%20Control(访问控制).md) 相关程序的认证之后，login 工具会为我们分配一个 ttyX 的终端设备，然后我们就可以通过 tty 所关联的 Shell(通常是 bash)，与系统进行交互
+当我们输入完密码，经过 [Access Control](/docs/1.操作系统/登录%20Linux%20与%20访问控制/Access%20Control/Access%20Control.md) 相关程序的认证之后，login 工具会为我们分配一个 ttyX 的终端设备，然后我们就可以通过 tty 所关联的 Shell(通常是 bash)，与系统进行交互
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/linux_login/1634785329507-0cb1fcec-8c6e-4fd0-a99f-005a2b19807e.png)
 
@@ -126,6 +128,8 @@ Linux 的登录与访问控制是相辅相成的，一个用户想要登录 Linu
 - 账户锁定
 - 等等......
 
+
+
 ## Account Manager(账户管理)
 
 详见 [Account Manager(账户管理)](/docs/1.操作系统/登录%20Linux%20与%20访问控制/Account%20Manager(账户管理)/Account%20Manager(账户管理).md)
@@ -137,3 +141,7 @@ Linux 的登录与访问控制是相辅相成的，一个用户想要登录 Linu
 但是当我们在机房通过显示器连接到服务器时，是不像使用 ssh 命令一样方便的，但是依然可以实现多窗口操作。
 
 使用 `Ctrl + Alt + F<X>` 快捷键，即可打开其他窗口，`Ctrl + Alt + F2` 切换到第二个窗口，F1 可以切回第一个默认窗口。
+
+# 登录信息管理
+
+[Login info MGMT](/docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/Login%20info%20MGMT.md)

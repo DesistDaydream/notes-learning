@@ -8,7 +8,7 @@ weight: 20
 
 > 参考：
 >
-> - [官方文档，概念-概述-使用 Kubernetes 对象-Finalizers](https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/)
+> - [官方文档，概念 - 概述 - 使用 Kubernetes 对象 - Finalizers](https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/)
 > - [公众号-云原生之路，熟悉又陌生的 k8s 字段：finalizers](https://mp.weixin.qq.com/s/U8ZhfjWDzLhFUaRxvLIVDw)
 > - [Kubernetes 博客，使用 Finalizers 控制删除](https://kubernetes.io/blog/2021/05/14/using-finalizers-to-control-deletion/)
 >   - [公众号-云原生实验室，使用 Finalizers 来删除那些死活删不掉的 K8S 资源](https://mp.weixin.qq.com/s/pbq0jEIqfu3Sc-B0eultWA)

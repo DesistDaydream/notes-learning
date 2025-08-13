@@ -83,6 +83,8 @@ labels:
 
 # API 分类
 
+[API Resource](docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20Resource.md) 分类
+
 - [Workloads Resources](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/工作负载资源/工作负载资源.md)(工作负载资源)
 - [Services Resources](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/)(服务资源)
 - [Config and Storage Resources](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/)(配置与存储资源)

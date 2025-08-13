@@ -1,6 +1,6 @@
 ---
-title: API 与 Resource
-linkTitle: API 与 Resource
+title: API Resource
+linkTitle: API Resource
 weight: 1
 ---
 
