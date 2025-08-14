@@ -127,7 +127,7 @@ SELECT decode('RGVzaXN0RGF5ZHJlYW0K', 'base64')
 > 参考：
 >
 > - [官方文档，9.9 日期/时间 函数与运算符](https://www.postgresql.org/docs/current/functions-datetime.html)
-> - 时区文字定义 https://www.postgresql.org/docs/7.2/timezones.html TODO: 这是老版本的，新版本的在哪？
+
 
 ### 基本的简单函数
 
@@ -209,6 +209,23 @@ ORDER BY binned_time;
 ```
 
 > Tips: 可以省略 ORDER，PostgreSQL 默认会使用 AES 对时间排序。
+
+### 时区
+
+> 参考：
+>
+> - [官方文档，9.9 日期/时间 函数与运算符 - 9.9.4 AT TIME ZONE 与 AT LOCAL](https://www.postgresql.org/docs/current/functions-datetime.html#FUNCTIONS-DATETIME-ZONECONVERT)
+> - 时区文字定义 https://www.postgresql.org/docs/7.2/timezones.html TODO: 这是老版本的，新版本的在哪？
+
+**AT TIME ZONE**
+
+EXAMPLE
+
+```sql
+WHERE create_time AT TIME ZONE 'Asia/Shanghai' BETWEEN '2025-08-13 14:37:17' AND '2025-08-14 02:37:17'
+```
+
+上面例子中，最后查询的实际上是 2025-08-13 22:37:17 与 2025-08-14 10:37:17 之间的数据
 
 # 最佳实践
 

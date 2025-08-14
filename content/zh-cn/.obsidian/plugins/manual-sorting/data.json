@@ -154,6 +154,13 @@
       "docs/1.操作系统/登录 Linux 与 访问控制/Access Control",
       "docs/1.操作系统/登录 Linux 与 访问控制/TCP Wrappers.md"
     ],
+    "docs/1.操作系统/登录 Linux 与 访问控制/Access Control": [
+      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control/_index.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control/Access Control.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control/ACL.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control/Capabilities(能力) 管理.md",
+      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control/SUID,SGID,SBIT 特殊权限.md"
+    ],
     "docs/1.操作系统/登录 Linux 与 访问控制/Account Manager(账户管理)": [
       "docs/1.操作系统/登录 Linux 与 访问控制/Account Manager(账户管理)/_index.md",
       "docs/1.操作系统/登录 Linux 与 访问控制/Account Manager(账户管理)/Account Manager(账户管理).md",
@@ -2245,8 +2252,8 @@
     "docs/8.通用技术": [
       "docs/8.通用技术/_index.md",
       "docs/8.通用技术/编码与解码",
+      "docs/8.通用技术/Scheduling.md",
       "docs/8.通用技术/Cache.md",
-      "docs/8.通用技术/Scheduler.md",
       "docs/8.通用技术/Job",
       "docs/8.通用技术/CDN",
       "docs/8.通用技术/Message Queue(消息队列)",
@@ -3622,13 +3629,6 @@
     "obsidian_template": [
       "obsidian_template/Common.md",
       "obsidian_template/index_templater.md"
-    ],
-    "docs/1.操作系统/登录 Linux 与 访问控制/Access Control": [
-      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control/_index.md",
-      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control/Access Control.md",
-      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control/ACL.md",
-      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control/Capabilities(能力) 管理.md",
-      "docs/1.操作系统/登录 Linux 与 访问控制/Access Control/SUID,SGID,SBIT 特殊权限.md"
     ]
   },
   "draggingEnabled": true,
