@@ -15,7 +15,7 @@ OpenTelemetry Collector 提供了一种与供应商无关的 receive(接收)、p
 
 > Collector 会根据配置定时采集数据或被动接收数据以缓存，然后可以主动推送或被动等待拉取。Prometheus 可以配置 static_configs 从 OTel Collector 抓取其缓存的最新数据。
 
-![](https://opentelemetry.io/docs/collector/img/otel-collector.svg)
+![https://opentelemetry.io/docs/collector/img/otel-collector.svg](https://notes-learning.oss-cn-beijing.aliyuncs.com/otel/otel-collector-arch.png)
 
 # 架构
 
@@ -114,8 +114,23 @@ func (t Type) String() string {
 
 > 参考：
 >
-> - [官方文档，Collector - 部署](https://opentelemetry.io/docs/collector/deployment/)
+> - [官方文档，Collector - 安装](https://opentelemetry.io/docs/collector/installation/)
+> - [官方文档，Collector - 部署](https://opentelemetry.io/docs/collector/deployment/)(多种部署架构)
 > - [OpenTelemetry Collector 部署方式的选择](https://flashcat.cloud/blog/opentelemetry-collector-deploy/)
+
+多种部署 Collector 模式：
+
+- **SDK** # 最简单的模式是完全不使用收集器。此模式由使用 OpenTelemetry SDK [检测的](https://opentelemetry.io/docs/languages/)应用程序组成，这些应用程序将遥测信号（跟踪、指标、日志）直接导出到后端
+- **Agent** # 一个独立的 Collector 二进制文件（使用 OpenTelemetry SDK 实现）采集数据并发送到后端
+- **Gateway** # 接收多个具有 OpenTelemetry SDK 的程序的数据并发送到后端
+
+最简单的是 Agent 模式，使用一个 otelcol(或 otelcol-contrib) 程序收集数据并发送到后端
+
+每种部署模式都可以通过 Docker、二进制、etc. 方式部署
+
+## 二进制
+
+https://github.com/open-telemetry/opentelemetry-collector-releases/tree/main/distributions 有各种 [Systemd](docs/1.操作系统/Systemd/Systemd.md) 所需的 service 文件
 
 # Collector 关联文件与配置
 
