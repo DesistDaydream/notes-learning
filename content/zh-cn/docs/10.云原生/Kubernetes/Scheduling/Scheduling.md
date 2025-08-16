@@ -10,7 +10,7 @@ weight: 1
 >
 > - [官方文档，概念 - 调度、抢占与驱逐](https://kubernetes.io/docs/concepts/scheduling-eviction/)
 
-**Scheduling(调度)** 是一个行为，用来让 Pod 匹配到 Node，以便 Node 上的 Kubelet 可以运行这些 Pod。如果没有调度系统，Kubernetes 集群就不知道 Pod 应该运行在哪里。这种调度的概念，与 Linux 中调度任务来使用 CPU 是一个意思。可以看看 [Scheduling](docs/8.通用技术/Scheduling.md) 相关文章，调度是在 IT 行业中，很多程序都很重要的概念。
+**Scheduling(调度)** 是一个行为，用来让 Pod 匹配到 Node，以便 Node 上的 Kubelet 可以运行这些 Pod。如果没有调度系统，Kubernetes 集群就不知道 Pod 应该运行在哪里。这种调度的概念，与 Linux 中调度任务来使用 CPU 是一个意思。可以看看 [Scheduling](/docs/8.通用技术/Scheduling.md) 相关文章，调度是在 IT 行业中，很多程序都很重要的概念。
 
 与 Scheduling(调度) 伴生的，还有 **Preemption(抢占)** 与 **Eviction(驱逐)** 两个概念。顾名思义：
 

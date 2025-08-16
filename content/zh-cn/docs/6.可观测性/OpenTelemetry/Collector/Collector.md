@@ -84,15 +84,15 @@ https://github.com/open-telemetry/opentelemetry-collector/blob/component/v1.32.0
 ```go
 // Kind represents component kinds.
 type Kind struct {
-	name string
+ name string
 }
 
 var (
-	KindReceiver  = Kind{name: "Receiver"}
-	KindProcessor = Kind{name: "Processor"}
-	KindExporter  = Kind{name: "Exporter"}
-	KindExtension = Kind{name: "Extension"}
-	KindConnector = Kind{name: "Connector"}
+ KindReceiver  = Kind{name: "Receiver"}
+ KindProcessor = Kind{name: "Processor"}
+ KindExporter  = Kind{name: "Exporter"}
+ KindExtension = Kind{name: "Extension"}
+ KindConnector = Kind{name: "Connector"}
 )
 ```
 
@@ -101,12 +101,12 @@ https://github.com/open-telemetry/opentelemetry-collector/blob/component/v1.32.0
 ```go
 // Type is the component type as it is used in the config.
 type Type struct {
-	name string
+ name string
 }
 
 // String returns the string representation of the type.
 func (t Type) String() string {
-	return t.name
+ return t.name
 }
 ```
 
@@ -130,7 +130,7 @@ func (t Type) String() string {
 
 ## 二进制
 
-https://github.com/open-telemetry/opentelemetry-collector-releases/tree/main/distributions 有各种 [Systemd](docs/1.操作系统/Systemd/Systemd.md) 所需的 service 文件
+https://github.com/open-telemetry/opentelemetry-collector-releases/tree/main/distributions 有各种 [Systemd](/docs/1.操作系统/Systemd/Systemd.md) 所需的 service 文件
 
 # Collector 关联文件与配置
 

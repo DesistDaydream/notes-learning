@@ -28,7 +28,6 @@ weight: 1
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kubernetes/api/1616120193972-2c538ed5-7a6f-4aca-bf11-732240aa84d6.png)
 
-
 ## 字段的类型占位符
 
 官方文档中，将每个字段的类型，放在字段名称后面的 `()` 中，效果如图：
@@ -83,7 +82,7 @@ labels:
 
 # API 分类
 
-[API Resource](docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20Resource.md) 分类
+[API Resource](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20Resource.md) 分类
 
 - [Workloads Resources](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/工作负载资源/工作负载资源.md)(工作负载资源)
 - [Services Resources](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/)(服务资源)

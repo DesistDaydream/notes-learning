@@ -12,7 +12,7 @@ weight: 1
 
 ## 处于 Terminating 状态的对象处理
 
-使用 `kubectl edit` 命令来编辑该对象的配置，删除其中 [finalizers](docs/10.云原生/Kubernetes/Controller/Garbage%20Collection(垃圾收集)/Finalizers.md) 字段及其附属字段，即可.
+使用 `kubectl edit` 命令来编辑该对象的配置，删除其中 [finalizers](/docs/10.云原生/Kubernetes/Controller/Garbage%20Collection(垃圾收集)/Finalizers.md) 字段及其附属字段，即可.
 
 也可以使用 patch 命令来删除 finalizers 字段
 

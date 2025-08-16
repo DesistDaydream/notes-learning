@@ -9,7 +9,7 @@ weight: 20
 > 参考：
 >
 > - [Manual, nftables](https://www.netfilter.org/projects/nftables/manpage.html)
->     - https://www.mankier.com/8/nft
+>   - https://www.mankier.com/8/nft
 
 nft 是一个命令行工具，用于在 Linux 内核中设置、维护和检查 nftables 框架中的数据包过滤和分类规则。Linux 内核子系统被称为 nf_tables，其中 "nf" 代表 Netfilter。
 
@@ -36,6 +36,7 @@ COMMANDS 包括：
 - map # 字典管理命令
 
 > [!Notes]
+>
 > - 该 COMMANDS 与后面子命令中的 COMMAND 不同，前者是 nft 命令下的子命令，后者是 nft 命令下子命令的子命令
 > - nft 子命令默认对 ip 族进行操作，当指定具体的 FAMILY 时，则对指定的族进行操作
 
@@ -91,6 +92,7 @@ EXAMPLE
 - POLICY 指定该链的策略(i.e.该链的默认策略，accept、drop 等等。)
 
 > [!Notes]
+>
 > - 在输入命令时，使用反斜线 `\` 用来转义分号 `;` ，这样 Shell 就不会将分号解释为命令的结尾。如果是直接编辑 nftables 的配置文件则不用进行转义
 > - PRIORITY 采用整数值，可以是负数，值较小的链优先处理。
 
@@ -148,7 +150,6 @@ list sets # 列出所有结合
 
 {add | delete} element \[family] table set { element\[,...] } # 在指定集合中添加或删除元素
 
-
 VERB
 
 - add
@@ -162,7 +163,7 @@ EXAMPLE
 - nft add set my_table my_set {type ipv4_addr; flags interval;} # 在 ip 族的 my_table 表中创建一个名为 my_set 的集合，集合类型为 ipv4_addr ，标签为 interval。让该集合支持区间
 - nft add element inet my_table my_set { 10.10.10.22, 10.10.10.33 } # 向 my_set 集合中添加元素，一共添加了两个元素，是两个 ipv4 的地址
 - 删除元素。删除 my_table 表中，ssh_allowed_nets 集合内的 183.192.0.0/10 元素
-    - `nft delete element inet my_table ssh_allowed_nets { 183.192.0.0/10 }`
+  - `nft delete element inet my_table ssh_allowed_nets { 183.192.0.0/10 }`
 
 # 字典管理命令 TODO
 
@@ -232,7 +233,6 @@ table inet table_two {
 
 # 主表达式
 
-
 # Payload 表达式
 
 ## Conntrack 表达式
@@ -295,6 +295,7 @@ nft delete rule inet filter_demo input_demo handle 2
 ```
 
 > [!Note] 示例是只删除了具体的一条规则，但是可以通过删除上级对象同时删除该对象包含的所有内容，比如删除 链，也会对应删除链中的规则，以此类推。甚至可以直接清空所有内容
+>
 > - `nft delete chain inet filter_demo handle 1` # 删除链。
 > - `nft delete table inet handle 10` # 删除表
 > - `nft flush ruleset` 清空全部内容（虽然用的是 ruleset，但是会连带着表、链一起删了）
@@ -325,10 +326,13 @@ nft add element inet filter_demo ssh_whitelist { 172.16.50.0/24 }
 有两种变更规则的方式
 
 1. 插入新规则后删除老规则
+
 ```bash
 nft insert rule inet filter_demo input_demo position 2 ip saddr @ssh_whitelist tcp dport 22 accept
 ```
+
 2. 替换老规则
+
 ```bash
 nft replace rule inet filter_demo input_demo handle 2 ip saddr @ssh_whitelist tcp dport 22 accept
 ```
