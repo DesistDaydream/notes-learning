@@ -13,7 +13,7 @@ weight: 20
 > - [公众号 - K8S中文社区，我为什么要放弃 RESTful，选择拥抱 GraphQL](https://mp.weixin.qq.com/s/ao7ry12KLyOxGHG3SRNthQ)
 >   - 原文: https://www.toutiao.com/article/6833818331884028419/
 
-REST 作为一种现代网络应用非常流行的软件架构风格，自从 Roy Fielding 博士在 2000 年他的博士论文中提出来到现在已经有了 20 年的历史。它的简单易用性，可扩展性，伸缩性受到广大 Web 开发者的喜爱。  
+[REST](docs/2.编程/API/REST.md) 作为一种现代网络应用非常流行的软件架构风格，自从 Roy Fielding 博士在 2000 年他的博士论文中提出来到现在已经有了 20 年的历史。它的简单易用性，可扩展性，伸缩性受到广大 Web 开发者的喜爱。  
 
 REST 的 API 配合 JSON 格式的数据交换，使得前后端分离、数据交互变得非常容易，而且也已经成为了目前 Web 领域最受欢迎的软件架构设计模式。
 

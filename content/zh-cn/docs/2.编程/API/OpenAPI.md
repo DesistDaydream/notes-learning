@@ -16,7 +16,7 @@ weight: 20
 
 OAI 现阶段包含一个规范
 
-- **OpenAPI Specification(简称 OAS)** # 最初基于 SmartBear Software 捐赠的 Swagger 规范。
+- **OpenAPI Specification(简称 OAS)** # 最初基于 SmartBear Software 捐赠的 [Swagger](docs/2.编程/API/Swagger.md) 规范。
   - OAS 可以描述为一个文件，可以描述为一个规范的内容。人们常常在不同场景下，不加区分得统一用 OAS 来描述。比如 Swagger Codegen 项目中的描述中。
     - This is the Swagger Codegen project, which allows generation of API client libraries (SDK generation), server stubs and documentation automatically given an OpenAPI Spec.(这是 Swagger Codegen 项目，该项目允许在给定 OpenAPI 规范的情况下自动生成 API 客户端库（生成 SDK），服务器存根和文档。)
     - 这里描述的`指定的的 OpenAPI Spec` 就是指 OAS，也就是说，而已根据 OAS 文件来生成代码。

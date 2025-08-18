@@ -1,6 +1,6 @@
 ---
-title: Webservice And REST
-linkTitle: Webservice And REST
+title: REST
+linkTitle: REST
 weight: 20
 ---
 
@@ -34,39 +34,11 @@ Endpoint 这个词以前经常被用来描述进程间通信。例如
 
 **Client Side(客户端) 的 WebAPI** 也是一个编程接口，用于扩展 Web 浏览器或其他 HTTP 客户端内的功能。
 
-# Webservice
-
-> 参考：
->
-> - [Wiki, Webservice](https://en.wikipedia.org/wiki/Web_service)
-> - https://hygraph.com/blog/web-service-vs-api
-
-Webservice 描述了一种在 Internet 协议主干上使用 XML、SOAP、WSDL 和 UDDI 开放标准集成基于 Web 的应用程序的标准化方法。XML 是用于包含数据并提供围绕数据的元数据的数据格式，SOAP 用于传输数据，WSDL 用于描述可用的服务，UDDI 列出可用的服务。
-
-什么是 Web service 的答案在很大程度上取决于正在进行的对话的上下文。在一种情况下，我们可以将 Web 服务视为支付生态系统、存储服务、电子邮件服务、云功能、文本到语音转换器等。这些服务本身就是单独的系统，可以为您节省大量“从头开始构建”的时间。当您编写应用程序代码时。任何想要使用它们的人都可以通过即用即付模式进行注册。
-
-回到 2000 年代，在另一个上下文中，我们可以说 Web 服务是一组促进不同软件应用程序之间数据交换的协议和标准。
-
-以下是构建 Web 服务所需的组件。
-
-- SOAP - Simple Object Access Protocol - 简单对象访问协议
-- RDF - Resource Description Framework - 资源描述框架
-- UDDI - Universal Description, Discovery and IntegrationI - 通用描述、发现和集成
-- WSDL - Web Services Description Language - Web 服务描述语言
-
-构建 Web 服务需要遵循严格的规则，并且它们往往更加流程密集和代码繁重。 Web 服务与 SOA（面向服务的架构）大致相同，并且主要基于 XML-RPC 和 SOAP 等标准。通常使用 SOAP，数据交换通过 HTTP 协议以 XML 形式进行。
-
-API 一词指的是应用程序编程接口，类似于 Web 服务，当两个软件组件需要相互通信时，它们可以借助 API 来实现。 API 利用技术并遵循协议来促进通信。有不同的 API，例如 GraphQL、REST、WebSocket API、RPC API 等。所有 API 都有自己的一套协议和定义，因此每种 API 类型都会有不同的运行机制。
-
-最终，API 可以被认为包括但不限于 Web service，可以说 Web service 是 API 的子集，是一种特殊情况下的 API。
-
-随着时代的发展，Web service 过于笨重的逻辑非常影响程序交互。能用 RestFul 风格的 API 就不要再用 Web service 了。
-
 # REST
 
 > 参考：
 >
-> - [Wiki, REST](https://en.wikipedia.org/wiki/Representational_state_transfer)
+> - [Wiki, REST](https://en.wikipedia.org/wiki/REST)
 
 **Representational State Transfer(表述性状态传递，简称 REST)** 是交互式应用程序（通常使用多个 Web 服务实现）的软件架构的事实标准。说白了就是两个应用程序的交互标准。规定了两个程序互相传递数据的格式(JSON、XML 等)、内容、方法(增删改查)等等。这种格式，称为 REST 风格的接口
 
@@ -117,7 +89,7 @@ REST 架构是针对 Web 应用而设计的，其目的是为了降低开发的�
 
 ## 思考
 
-1. 以上的信息参考自<http://www.cnblogs.com/EasyLive2006/archive/2009/11/03/1595152.html>并整理；
+1. 以上的信息参考自 http://www.cnblogs.com/EasyLive2006/archive/2009/11/03/1595152.html 并整理；
 2. 对于网站开发，我们常用的操作就是 GET，和 POST 方式，比如获取数据采用 GET 方式，提交数据采用 POST 方式，但不管是哪种方式，提交数据还是获取数据，后端都要对参数进行处理并对这些操作进行相应。而 REST 的架构把 PUT 和 DELETE 两种数据提交方式用上了，整个操作就会更加的清晰明了，非常的有逻辑性。
 3. REST 的 HTTP 协议操作与数据库的 CURD 操作对比:
    HTTP 请求数据库请求 GETSELECTPOSTINSERTPUTUPDATEDELETEDELETE
@@ -126,9 +98,11 @@ REST 架构是针对 Web 应用而设计的，其目的是为了降低开发的�
 5. 数据交互形式：后端返回 json/xml 或者其他前端所期望的数据，但不管什么数据，需要有一个明确的规范和完善的资源管理机制
 6. 如果运用了 REST 这种设计思想，我们可以干什么呢？
 
-> 1\). 我们的前端服务器完全可以和数据服务器（REST 服务器）分离，前端服务器处理服务器请求，加载前端骨架（这里不叫框架，叫骨架我觉得更加贴切，REST 服务器上的就是肉），然后前端再更具不同的服务需求，像 REST 请求数据或者更具不同的操作，像 REST 服务器提交增删改的请求等等
-> 2\). 不过我觉得把 REST 叫做面向 Api(接口)服务设计来说应该也是很贴切的，REST 服务就是接口。
-> 3\). 有了 REST 服务器，不管是电脑端还是手机端，或者是 APP，按照 REST 的接口来进行数据交互，完全不用关心后端实现，也就是说，前端和后端真正的实现了完全的分离设计。
+> 1). 我们的前端服务器完全可以和数据服务器（REST 服务器）分离，前端服务器处理服务器请求，加载前端骨架（这里不叫框架，叫骨架我觉得更加贴切，REST 服务器上的就是肉），然后前端再更具不同的服务需求，像 REST 请求数据或者更具不同的操作，像 REST 服务器提交增删改的请求等等
+>
+> 2). 不过我觉得把 REST 叫做面向 API(接口)服务设计来说应该也是很贴切的，REST 服务就是接口。
+>
+> 3). 有了 REST 服务器，不管是电脑端还是手机端，或者是 APP，按照 REST 的接口来进行数据交互，完全不用关心后端实现，也就是说，前端和后端真正的实现了完全的分离设计。
 
 ## 后记
 
@@ -138,3 +112,29 @@ REST 架构是针对 Web 应用而设计的，其目的是为了降低开发的�
 2. 架构的不合理性
 3. 不适合 REST 架构的场景
 4. 其他
+
+## REST API 最佳实践
+
+### API 版本写在 Header 中还是 URL 中？
+
+[微信公众号，别再在URL写v1/v2了！10分钟教你优雅玩转API版本](https://mp.weixin.qq.com/s/906b3t9sYGavyOM_4ODdZg)
+
+不合适的（放在 URL 中）：
+
+```test
+/v1/orders/{order_no}  
+/v2/orders/{order_no}  
+/v3/orders/{order_no}  
+...
+```
+
+合适的（放在 Header 中）：
+
+```
+curl -X GET --location 'http://localhost:8080/orders/PAY0101' \
+  --header 'accept: application/vnd.itzhai.v1+json'
+curl -X GET --location 'http://localhost:8080/orders/PAY0101' \
+  --header 'accept: application/vnd.itzhai.v2+json'
+```
+
+
