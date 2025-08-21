@@ -1,12 +1,13 @@
 ---
 title: Thanos
+linkTitle: Thanos
 weight: 1
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，thanos-io/thanos](https://github.com/thanos-io/thanos)
 > - [官网](https://thanos.io/)
 > - [K8S 训练营，Kubernetes 监控-Thanos](https://www.qikqiak.com/k8strain/monitor/thanos/#thanos)
@@ -34,7 +35,7 @@ weight: 1
 
 # Thanos 架构概述
 
-Thanos 遵循 [KISS ](https://en.wikipedia.org/wiki/KISS_principle)和 Unix 哲学，由一组组件组成，每个组件都可以实现特定的功能：
+Thanos 遵循 [KISS](https://en.wikipedia.org/wiki/KISS_principle) 和 Unix 哲学，由一组组件组成，每个组件都可以实现特定的功能：
 
 - Prometheus 本地数据处理
   - **Sidecar** # 暴露 StoreAPI。连接 Prometheus，读取其数据以便进行下一步处理。将已压缩数据上传到对象存储，或读取其数据以进行查询和/或将其上传到云存储中。还可以动态重载 Prometheus 配置文件。

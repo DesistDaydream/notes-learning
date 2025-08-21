@@ -42,6 +42,7 @@ source /etc/profile.d/go.sh
 ```
 
 > CGO_ENABLED 开启后 Go 代码最终编译的可执行文件都是要有外部依赖的。不过我们依然可以通过 disable CGO_ENABLED 来编译出纯静态的 Go 程序，常用于交叉编译
+>
 > CGO_ENABLED 关闭即可编译出纯静态的 Go 程序，可以用于 alpine 镜像中。
 
 ## Windows 安装

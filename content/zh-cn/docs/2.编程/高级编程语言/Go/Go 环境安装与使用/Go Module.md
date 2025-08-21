@@ -7,9 +7,8 @@ weight: 2
 
 > 参考：
 >
-> - [官方文档，参考-Go Modules 参考](https://go.dev/ref/mod)
+> - [官方文档，参考 - Go Modules 参考](https://go.dev/ref/mod)
 > - [公众号，Go Modules 终极入门](https://mp.weixin.qq.com/s/6gJkSyGAFR0v6kow2uVklA)
-> - <https://blog.csdn.net/benben_2015/article/details/82227338>
 
 **Go Module(Go 模块)** 是实现 [Modular Programming(模块化编程)](https://en.wikipedia.org/wiki/Modular_programming) 的工具。是 Go 语言中正式官宣的项目依赖解决方案，Go modules（前身为 vgo）发布于 Go1.11，成长于 Go1.12，丰富于 Go1.13，正式于 Go1.14 已经准备好，并且可以用在生产上（ready for production）了，Go 官方也鼓励所有用户从其他依赖项管理工具迁移到 Go modules。
 
@@ -43,13 +42,9 @@ Go Module 出现后，GOPATH 路径变为纯粹的第三方依赖库的保存路
 │   └── staticcheck
 └── pkg
     ├── mod
-    │   ├── 9fans.net
     │   ├── cache
-    │   ├── fyne.io
     │   ├── github.com
-    │   ├── gopkg.in
-    │   ├── gorm.io
-    │   └── mvdan.cc
+    │   └── gorm.io
     └── sumdb
         └── sum.golang.org
 
@@ -89,9 +84,9 @@ GOPATH 目录下一共包含了三个子目录，分别是：
 - pkg：存储预编译的目标文件，以加快程序的后续编译速度。
 - src：存储所有项目的源代码。在编写 Go 应用程序，程序包和库时，一般会以$GOPATH/src/github.com/foo/bar 的路径进行存放。
 
-因此在使用 GOPATH 模式下，我们需要将项目代码存放在固定的$GOPATH/src 目录下，并且如果执行 go get 来拉取外部依赖会自动下载并安装到 $GOPATH 目录下。
+因此在使用 GOPATH 模式下，我们需要将项目代码存放在固定的 `$GOPATH/src` 目录下，并且如果执行 go get 来拉取外部依赖会自动下载并安装到 `$GOPATH` 目录下。
 
-为什么弃用 GOPATH 模式
+**为什么弃用 GOPATH 模式？**
 
 在 GOPATH 的 `$GOPATH/src/` 下进行 .go 文件或源代码的存储，我们可以称其为 GOPATH 的模式，这个模式，看起来好像没有什么问题，那么为什么我们要弃用呢，参见如下原因：
 
@@ -212,15 +207,20 @@ go env -w GOPRIVATE="*.example.com"
 
 ## go.mod 文件
 
+> 参考：
+>
+> - [官方文档，参考 - Go Modules 参考 - go.mod 文件](https://go.dev/ref/mod#go-mod-file)
+
 go.mod 文件定义 module 路径以及列出其他需要在 build 时引入的模块的特定的版本。例如下面的例子中，go.mod 声明 example.com/m 路径是 module 的根目录，同时也声明了 module 依赖特定版本的 golang.org/x/text 和 gopkg.in/yaml.v2。
 
 go.mod 文件中有如下几个关键字：
 
 - **module** # 定义 module 路径，该路径不用与当前路径相同，只是 module 所用的一个名称，可以代指当前目录。(比如/root/desistdaydream/cobra/目录下，创建一个 go.mod 文件，可以定义 module 路径为 cobratest，这个 cobratest 模块路径名，就表示/root/desistdaydream/cobra/这个目录)to define the module path;
-- **go** # to set the expected language version;
+- **go** # 设置期望的 Go 语言版本
 - **require** # to require a particular module at a given version or later;
 - **exclude** # to exclude a particular module version from use; and
-- **replace** # to replace a module version with a different module version.
+- **replace** # replace 指令可以将特定版本的模块或模块的所有版本的内容替换为其他位置的内容。替换可以通过另一个模块路径和版本，或者特定平台的文件路径来指定。
+    - Notes: 在不方便导入互联网包的时候，可以用来导入本地文件系统中的其他项目。
 
 ```go
 
@@ -229,7 +229,7 @@ module github.com/eddycjy/module-repo
 go 1.13
 
 require (
- github.com/eddycjy/mquote v0.0.0-20200220041913-e066a990ce6f
+    github.com/eddycjy/mquote v0.0.0-20200220041913-e066a990ce6f
 )
 ```
 
@@ -255,6 +255,16 @@ require (
     old/thing v1.2.3
 )
 ```
+
+### replace
+
+https://go.dev/ref/mod#go-mod-file-replace
+
+replace 指令将 Module 内容（特定或所有版本）替换为其它地方找到的内容。其它地方找到内容可以是：
+
+- 网络上的 Module
+- 文件系统中包含 go.mod 文件的目录
+- etc.
 
 ### 其他命令的支持
 
@@ -289,7 +299,7 @@ h1 hash 是 Go modules 将目标模块版本的 zip 文件开包后，针对所�
 
 而 h1 hash 和 go.mod hash 两者，要不就是同时存在，要不就是只存在 go.mod hash。那什么情况下会不存在 h1 hash 呢，就是当 Go 认为肯定用不到某个模块版本的时候就会省略它的 h1 hash，就会出现不存在 h1 hash，只存在 go.mod hash 的情况。
 
-# go mod 命令行工具
+# go mod CLI
 
 go mod 提供了一系列操作模块的命令，所有的 go 命令中现在已经内置了对 module 的支持，而不仅仅是 go mod 命令。例如使用 go get 时，会经常自动在后台添加、移除、升级、降级依赖包版本。
 
@@ -321,6 +331,7 @@ type Module struct { Path string //module path Version string //module version E
 ## go mod init
 
 **go mod init \[ModuleName]**
+
 一般情况 ModuleName 是以后 import 时所使用的路径
 
 此命令会在当前目录中初始化和创建一个新的 go.mod 文件，当然你也可以手动创建一个 go.mod 文件，然后包含一些 module 声明，这样就比较麻烦。go mod init 命令可以帮助我们自动创建
@@ -361,7 +372,7 @@ go.mod 文件和 go 命令通常使用语义版本作为描述模块版本的标
 
 # 最佳实践
 
-## 获取私有仓库包
+## 获取私有仓库的包
 
 参考 [GOPRIVATE/GONOPROXY/GONOSUMDB](#GOPRIVATE/GONOPROXY/GONOSUMDB)
 
@@ -376,3 +387,51 @@ TODO: 是否需要改下面的配置文件待确认
 ```
 
 修改后再使用 `go mod download` 或者 `go mod tidy` 就可以正常下载文件了
+
+## 使用本地文件系统中的包
+
+```bash
+├── my-project
+│   ├── go.mod
+│   └── main.go
+└── my-locallib
+    ├── go.mod
+    └── mypackage.go
+```
+
+假如我有一个名为 my-locallib 的本地项目，想要在 my-project 项目中导入 my-locallib 作为依赖包（不通过互联网，有敏感信息）
+
+1. 在项目的 `go.mod` 文件中使用 `replace` 指令：
+
+```go
+module my-project
+
+go 1.24
+
+require (
+    need-import-my-locallib v0.0.0
+)
+
+// replace 包名 => 目录路径
+replace need-import-my-locallib => /path/to/my-locallib
+```
+
+> [!Tip] 路径中最后的目录名与导入的包名并不需要完全一样
+>
+> 另外，replace 的目录路径除了使用绝对路径，还可以使用相对路径（避免多平台（windows, linux, etc.）的项目路径格式不一致），比如：
+>
+> `replace need-import-my-locallib => ../my-locallib`
+
+> [!Attention] replace 指定的目录必须是一个使用 go mod init 初始化成功的项目根目录。（i.e. 必须包含 go.mod 之类的文件）
+
+2. 然后在代码中导入：
+
+```go
+import "need-import-my-locallib"
+
+// 若想使用 my-locallib 库中 pkg/utils/ 目录下的包，则可以这么导入
+import "need-import-my-locallib/pkg/utils/"
+```
+
+
+
