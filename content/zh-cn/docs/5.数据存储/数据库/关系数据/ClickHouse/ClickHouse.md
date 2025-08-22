@@ -161,7 +161,6 @@ https://clickhouse.com/docs/en/interfaces/overview
 
 ![800](Excalidraw/ClickHouse/clickhouse_shard_and_replica_demo_2.excalidraw.md)
 
-
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/clickhouse/20250325154658383.png)
 
 比如

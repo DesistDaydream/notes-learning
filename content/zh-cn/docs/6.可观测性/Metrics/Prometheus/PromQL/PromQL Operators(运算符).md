@@ -1,14 +1,14 @@
 ---
 title: PromQL Operators(运算符)
 linkTitle: PromQL Operators(运算符)
-weight: 20
+weight: 2
 ---
 
 # 概述
 
 > 参考：
 >
-> - [官方文档，Prometheus-查询-运算符](https://prometheus.io/docs/prometheus/latest/querying/operators/)
+> - [官方文档，Prometheus - 查询 - 运算符](https://prometheus.io/docs/prometheus/latest/querying/operators/)
 
 # Binary Operators(二元运算符)
 

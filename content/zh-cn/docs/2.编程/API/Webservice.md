@@ -30,4 +30,4 @@ API 一词指的是应用程序编程接口，类似于 Web 服务，当两个�
 
 最终，API 可以被认为包括但不限于 Web service，可以说 Web service 是 API 的子集，是一种特殊情况下的 API。
 
-随着时代的发展，Web service 过于笨重的逻辑非常影响程序交互。能用 [REST](docs/2.编程/API/REST.md)Ful 风格的 API 就不要再用 Web service 了。
+随着时代的发展，Web service 过于笨重的逻辑非常影响程序交互。能用 [REST](/docs/2.编程/API/REST.md)Ful 风格的 API 就不要再用 Web service 了。

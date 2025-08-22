@@ -1,7 +1,7 @@
 ---
 title: PromQL Functions
 linkTitle: PromQL Functions
-weight: 20
+weight: 5
 ---
 
 # 概述

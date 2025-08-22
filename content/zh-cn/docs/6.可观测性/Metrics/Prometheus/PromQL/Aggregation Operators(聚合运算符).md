@@ -1,7 +1,7 @@
 ---
 title: Aggregation Operators(聚合运算符)
 linkTitle: Aggregation Operators(聚合运算符)
-weight: 20
+weight: 4
 ---
 
 # 概述

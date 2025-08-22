@@ -30,7 +30,7 @@ Prometheus 本身没有集群的概念，也就没有主备，也就没有互相
 
 <https://www.qikqiak.com/k8strain/monitor/thanos/>
 
-[Thanos](docs/6.可观测性/Metrics/Prometheus/Prometheus%20衍生品/Thanos/Thanos.md)
+[Thanos](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20衍生品/Thanos/Thanos.md)
 
 ## Victoria Metrics
 
