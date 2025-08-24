@@ -47,6 +47,10 @@ Go 是一种开源编程语言，可以轻松构建 **simple(简单)**、**relia
 
 https://github.com/avelino/awesome-go
 
+其他
+
+- [B 站，80%哲学的践行者 ——“够用就行”的Go语言](https://www.bilibili.com/video/BV11FY9zZEwS)
+
 # Hello World
 
 代码：`hello_world.go`

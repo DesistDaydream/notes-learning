@@ -27,11 +27,14 @@ title: SELinux
 
 /etc/selinux/config #
 
+> `sed -i 's@^\(SELINUX=\).*@\1disabled@' /etc/selinux/config` 关闭 SELinux
+
 # 命令行工具
 
 ## setenforce {0|1} - 设定 selinux 模式
 
 0 为 permissive 宽容模式
+
 1 为 Enforcing 强制模式
 
 ## getenforce - 查看当前 selinux 模式

@@ -1,7 +1,7 @@
 ---
 title: Nftables
 linkTitle: Nftables
-data: 2025-08-04T17:35:32
+date: 2025-08-04T17:35:32
 weight: 4
 ---
 
