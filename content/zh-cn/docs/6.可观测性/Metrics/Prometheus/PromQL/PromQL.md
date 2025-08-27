@@ -55,7 +55,7 @@ PromQL 没有绝对通用的语法，在不同场景查询条件下，语法也�
 
 - Instant Vector Selectors 和 Range Vector Selectors 统称为 **TimeSeries Selectors(时间序列选择器)**
   - 这种表达式会根据 Metrics 来获取指定的时间序列。
-- String 和 Scalar 统称为 [**Literal(字面量)**](/docs/2.编程/计算机科学/Data%20type/Literal.md)
+- String 和 Scalar 统称为 [**Literal(字面量)**](/docs/2.编程/计算机科学/Literal.md)
   - 给定不同类型的 Literal，就返回对应类型的的值，Prom 里只支持 string 和 scalar 这两种类型
 
 # Expression(表达式)

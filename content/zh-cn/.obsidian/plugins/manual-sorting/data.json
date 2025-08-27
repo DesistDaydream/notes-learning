@@ -1090,6 +1090,7 @@
       "docs/2.编程/计算机科学/计算机科学.md",
       "docs/2.编程/计算机科学/Data type",
       "docs/2.编程/计算机科学/Operator.md",
+      "docs/2.编程/计算机科学/Literal.md",
       "docs/2.编程/计算机科学/Variable.md",
       "docs/2.编程/计算机科学/Control structure.md",
       "docs/2.编程/计算机科学/Function",
@@ -1111,7 +1112,6 @@
     "docs/2.编程/计算机科学/Data type": [
       "docs/2.编程/计算机科学/Data type/_index.md",
       "docs/2.编程/计算机科学/Data type/Data type.md",
-      "docs/2.编程/计算机科学/Data type/Literal.md",
       "docs/2.编程/计算机科学/Data type/复合数据类型",
       "docs/2.编程/计算机科学/Data type/抽象数据类型",
       "docs/2.编程/计算机科学/Data type/进制表示法.md"

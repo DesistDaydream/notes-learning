@@ -12,7 +12,7 @@ weight: 20
 
 在计算机科学和计算机编程中，**Data Type(数据类型，有时也简称 Type)** 是数据的一个属性，这些属性将会让编译器知道程序员想要如何使用数据。
 
-[Literal(字面量)](/docs/2.编程/计算机科学/Data%20type/Literal.md) 与 [Variable(变量)](/docs/2.编程/计算机科学/Variable.md) 相关，是用于初始化变量时指定的一个值。
+[Literal(字面量)](/docs/2.编程/计算机科学/Literal.md) 与 [Variable(变量)](/docs/2.编程/计算机科学/Variable.md) 相关，是用于初始化变量时指定的一个值。
 
 ## 数据类型的分类
 
@@ -28,11 +28,11 @@ weight: 20
 
 ### Machine Data Type(机器数据类型)
 
-基于数字电子的计算机中的所有数据都表示为最低级别的[位](https://en.wikipedia.org/wiki/Bit)（替代 0 和 1）。数据的最小可寻址单元通常是一组称为[字节](https://en.wikipedia.org/wiki/Byte)的位（通常是一个[八位组](<https://en.wikipedia.org/wiki/Octet_(computing)>)，即 8 位）。由[机器代码](https://en.wikipedia.org/wiki/Machine_code)指令处理的单元称为[字](<https://en.wikipedia.org/wiki/Word_(data_type)>)（截至 2011 年，通常为 32 或 64 位）。大多数指令将字解释为[二进制数](https://en.wikipedia.org/wiki/Binary_number)，因此 32 位字可以表示从 0 到 232 - 1 或有符号整数值来自 -231 到 231 - 1 由于[二进制补码](https://en.wikipedia.org/wiki/Two%27s_complement)，机器语言和机器在大多数情况下不需要区分这些无符号和有符号数据类型。
+基于数字电子的计算机中的所有数据都表示为最低级别的 [bit](https://en.wikipedia.org/wiki/Bit)(位)（替代 0 和 1）。数据的最小可寻址单元通常是一组称为[Byte](https://en.wikipedia.org/wiki/Byte)(字节)的位（通常是一个[八位组](<https://en.wikipedia.org/wiki/Octet_(computing)>)，即 8 bit）。由[机器代码](https://en.wikipedia.org/wiki/Machine_code)指令处理的单元称为[字](<https://en.wikipedia.org/wiki/Word_(data_type)>)（截至 2011 年，通常为 32 或 64 位）。大多数指令将字解释为[二进制数](https://en.wikipedia.org/wiki/Binary_number)，因此 32 位字可以表示从 0 到 232 - 1 或有符号整数值来自 -231 到 231 - 1 由于[二进制补码](https://en.wikipedia.org/wiki/Two%27s_complement)，机器语言和机器在大多数情况下不需要区分这些无符号和有符号数据类型。
 
 用于浮点算术的浮点数对字中的位使用不同的解释。有关详细信息，请参阅[浮点运算](https://en.wikipedia.org/wiki/Floating-point_arithmetic)。
 
-机器数据类型需要在[系统](https://en.wikipedia.org/wiki/Systems_programming)或[低级编程语言中](https://en.wikipedia.org/wiki/Low-level_programming_language)公开或可用，允许对硬件进行细粒度控制。的[C 编程语言](https://en.wikipedia.org/wiki/C_programming_language)，例如，建筑材料整数类型不同的宽度，如和。如果目标平台上不存在相应的本机类型，编译器将使用确实存在的类型将它们分解为代码。例如，如果在 16 位平台上请求一个 32 位整数，编译器会默认将其视为两个 16 位整数的数组。 shortlong
+机器数据类型需要在[系统](https://en.wikipedia.org/wiki/Systems_programming)或[低级编程语言中](https://en.wikipedia.org/wiki/Low-level_programming_language)公开或可用，允许对硬件进行细粒度控制的[C 编程语言](https://en.wikipedia.org/wiki/C_programming_language)，例如，建筑材料整数类型不同的宽度，如和。如果目标平台上不存在相应的本机类型，编译器将使用确实存在的类型将它们分解为代码。例如，如果在 16 位平台上请求一个 32 位整数，编译器会默认将其视为两个 16 位整数的数组。 shortlong
 
 在更高级别的编程中，机器数据类型通常被隐藏或\_抽象\_为一个实现细节，如果暴露，会使代码的可移植性降低。例如，numeric 可以提供泛型类型而不是某些特定位宽的整数。
 
@@ -42,10 +42,21 @@ weight: 20
 
 ### Numeric Type(数字类型)
 
-- [Integer(整数，简写 int)](<https://en.wikipedia.org/wiki/Integer_(computing)>) 数据类型，或“非分数”。可以根据它们包含负值的能力进行子类型化（例如 unsigned 在 C 和 C++ 中）。也可具有小的预定义数目的亚型（如 short 和 long 在 C / C ++）; 或允许用户自由定义子范围，例如 1..12（例如[Pascal](<https://en.wikipedia.org/wiki/Pascal_(programming_language)>) / [Ada](<https://en.wikipedia.org/wiki/Ada_(programming_language)>)）。
-- [Floating Point(浮点)](https://en.wikipedia.org/wiki/Floating_point) 数据类型通常将值表示为高精度分数值（[有理数](https://en.wikipedia.org/wiki/Rational_numbers)，数学上），但有时会误导性地称为实数（令人联想到数学[实数](https://en.wikipedia.org/wiki/Real_numbers)）。它们通常对最大值和精度都有预定义的限制。通常以 a × 2 b 的形式在内部存储（其中 a 和 b 是整数），但以熟悉的[十进制](https://en.wikipedia.org/wiki/Decimal)形式显示。
-- [Fixed Point(定点)](<https://en.wikipedia.org/wiki/Fixed_point_(computing)>) 数据类型便于表示货币值。它们通常在内部实现为整数，从而导致预定义的限制。
-- [Bignum](https://en.wikipedia.org/wiki/Bignum)或[任意精度](https://en.wikipedia.org/wiki/Arbitrary_precision)数字类型缺乏预定义的限制。它们不是原始类型，出于效率原因很少使用。
+- **Integer(整数，简称 int)**
+    - https://en.wikipedia.org/wiki/Integer_(computing)
+- **Floating Point(浮点，简称 float)**
+    - https://en.wikipedia.org/wiki/Floating_point
+- **Fixed Point(定点)**
+    - https://en.wikipedia.org/wiki/Fixed_point_(computing)
+- [Bignum(大数)](https://en.wikipedia.org/wiki/Bignum)或[任意精度](https://en.wikipedia.org/wiki/Arbitrary_precision)
+
+这里 https://www.bilibili.com/video/BV1kLenzaENh 包含了一些 定点数 与 浮点数 的介绍
+
+- Sign(符号)
+- Exponent(指数)
+- Mantissa(尾数)
+
+e.g. UE8M0 表示：无符号(unsign)，八个指数，零个尾数
 
 ### Enumerations(枚举)
 
@@ -80,7 +91,7 @@ weight: 20
 
 ## Pointer(指针) 和 Reference(引用) 类型
 
-主要的非复合派生类型是[指针](<https://en.wikipedia.org/wiki/Pointer_(computer_programming)>)，这是一种数据类型，其值直接引用（或“指向”）使用其[地址](https://en.wikipedia.org/wiki/Memory_address)存储在[计算机内存中](https://en.wikipedia.org/wiki/Computer_memory)其他位置的另一个值。它是一种原始的[参考](<https://en.wikipedia.org/wiki/Reference_(computer_science)>)。（在日常生活中，一本书的页码可以被认为是引用另一本书的一段数据）。指针通常以类似于整数的格式存储；但是，尝试取消引用或“查找”其值永远不是有效内存地址的指针会导致程序崩溃。为了改善这个潜在问题，指针被认为是指向它们指向的数据类型的单独类型，即使底层表示相同。
+主要的非复合派生类型是 [Pointer(指针)](docs/2.编程/计算机科学/Data%20type/抽象数据类型/Pointer(指针).md)，这是一种数据类型，其值直接引用（或“指向”）使用其[地址](https://en.wikipedia.org/wiki/Memory_address)存储在[计算机内存中](https://en.wikipedia.org/wiki/Computer_memory)其他位置的另一个值。它是一种原始的[参考](<https://en.wikipedia.org/wiki/Reference_(computer_science)>)。（在日常生活中，一本书的页码可以被认为是引用另一本书的一段数据）。指针通常以类似于整数的格式存储；但是，尝试取消引用或“查找”其值永远不是有效内存地址的指针会导致程序崩溃。为了改善这个潜在问题，指针被认为是指向它们指向的数据类型的单独类型，即使底层表示相同。
 
 ## Function(函数) 类型
 
