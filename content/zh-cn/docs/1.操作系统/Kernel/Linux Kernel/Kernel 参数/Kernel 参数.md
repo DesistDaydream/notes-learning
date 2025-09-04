@@ -8,9 +8,9 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档，Linux 内核用户和管理员指南-/proc/sys 文档](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/index.html)
+> - [官方文档，Linux 内核用户和管理员指南 - /proc/sys 文档](https://www.kernel.org/doc/html/latest/admin-guide/sysctl/index.html)
 
-内核参数是以 key/value 的方式储存在 [sysfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/sysfs.md) 文件系统中。key 就是 . **/proc/sys/** 目录下的某个文件，value 就是该文件的内容。
+内核参数是以 key/value 的方式储存在 [sysfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/sysfs.md) 文件系统中。key 就是 **/proc/sys/** 目录下的某个文件，value 就是该文件的内容。
 
 比如 net.ipv4.ip_forward 这个 key，就在 **/proc/sys/net/ipv4/** 目录下。以`.`分隔的就是字符就是目录名，最后一个字段就是某某目录下的文件名。
 

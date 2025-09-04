@@ -36,7 +36,7 @@ ipvs 可以通过两种方式进行配置：
 - ipvsadm 命令
 - ipvs 模块参数
 
-ipvs 是一个内核模块，所以，想要配置 ipvs 则需要以[内核模块](/docs/1.操作系统/Kernel/Linux%20Kernel/Module(模块).md)的配置方式来进行配置。可以通过 modinfo -p ip_vs 命令查看该模块可以配置的参数
+ipvs 是一个内核模块，所以，想要配置 ipvs 则需要以[内核模块](/docs/1.操作系统/Kernel/Linux%20Kernel/Kernel%20Module.md)的配置方式来进行配置。可以通过 modinfo -p ip_vs 命令查看该模块可以配置的参数
 
 ```bash
 ~]# modinfo -p ip_vs

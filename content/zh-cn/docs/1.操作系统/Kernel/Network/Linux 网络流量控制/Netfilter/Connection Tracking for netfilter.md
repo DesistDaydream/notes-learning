@@ -97,7 +97,7 @@ ipv4     2 tcp      6 33 SYN_SENT src=172.16.200.119 dst=172.16.202.12 sport=547
 
 上述两个值可以通过如下 python 代码计算出来
 
-```bash
+```python
 import ctypes
 
 #不同系统可能此库名不一样，需要修改
@@ -120,14 +120,14 @@ print 'sizeof(struct list_head):', ctypes.sizeof(ctypes.c_void_p) * 2
 那么，此系统下，连接跟踪表所占内存即为：
 
 ```text
-(524288 * 376 + 131072 * 16) / 1024 / 1024 = 190MiB
+(524288 * 376 + 131072 * 16) / 1024 / 1024 = 190 MiB
 ```
 
 # ConnTrack 关联文件与配置
 
 > 参考：
 >
-> - [内核官方文档，网络-nf_conntrack-sysctl](https://www.kernel.org/doc/Documentation/networking/nf_conntrack-sysctl.txt)
+> - [内核官方文档，网络 - nf_conntrack-sysctl](https://www.kernel.org/doc/Documentation/networking/nf_conntrack-sysctl.txt)
 
 连接跟踪系统的配置大部分都可以通过修改内核参数来进行，还有一部分需要通过指定 模块的参数 来配置。
 

@@ -1,12 +1,14 @@
 ---
-title: Boot Configuration
+title: "Boot Configuration"
+linkTitle: "Boot Configuration"
+weight: 2
 ---
 
 # 概述
 
 > 参考：
 > 
-> - [Linux Kernel 官网文档，Linux 内核用户和管理员指南-内核引导配置](https://www.kernel.org/doc/html/latest/admin-guide/bootconfig.html)
+> - [Linux Kernel 官网文档，Linux 内核用户和管理员指南 - 内核引导配置](https://www.kernel.org/doc/html/latest/admin-guide/bootconfig.html)
 
 Boot Configuration(引导配置) 扩展了当前内核命令行，在引导内核时，可以提供额外的运行时配置。该文件默认在 `/boot/config-$(uname -r)`，每个内核版本都有一个对应的文件。
 

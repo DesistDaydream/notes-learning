@@ -30,7 +30,7 @@ weight: 1
 
 > 参考：
 >
-> - [官方文档，内核子系统文档-Networking-IP Sysctl-/proc/sys/net/ipv4/* 变量](https://www.kernel.org/doc/html/latest/networking/ip-sysctl.html#proc-sys-net-ipv4-variables)
+> - [官方文档，内核子系统文档 - Networking - IP Sysctl - /proc/sys/net/ipv4/* 变量](https://www.kernel.org/doc/html/latest/networking/ip-sysctl.html#proc-sys-net-ipv4-variables)
 
 ## net.ipv4.ip_forward(0 | 非 0)
 
@@ -83,19 +83,19 @@ somaxconn 用于指定有多少个座位。
 
 如果到大厅的客人数量大于 somaxconn，那么多出来的客人就会没有位置坐(必须坐下才能吃东西)，只能等待有人吃完有空位了才能吃东西。.
 
-### net.ipv4.tcp_max_tw_buckets = 5000
+### net.ipv4.tcp_max_tw_buckets
 
 服务器 TIME-WAIT 状态连接的数量上限。`默认值：262144`。
 
 如果超过这个数量， 新来的 TIME-WAIT 套接字会直接释放 (过多的 TIME-WAIT 套接字很影响服务器性能)。
 
-### net.ipv4.tcp_synack_retries = 2
+### net.ipv4.tcp_synack_retries
 
 表示回应第二个握手包（SYN+ACK 包）给客户端 IP 后，如果收不到第三次握手包（ACK 包），进行重试的次数。`默认值：5`
 
 修改这个参数为 0，可以加快回收半连接，减少资源消耗，但是有一个副作用：网络状况很差时，如果对方没收到第二个握手包，可能连接服务器失败，但对于一般网站，用户刷新一次页面即可。根据抓包经验，这种情况很少，但为了保险起见，可以只在被 tcp 洪水攻击时临时启用这个参数。之所以可以把 tcp_synack_retries 改为 0，因为客户端还有 tcp_syn_retries 参数，默认是 5，即使服务器端没有重发 SYN+ACK 包，客户端也会重发 SYN 握手包。
 
-### net.ipv4.tcp_syncookies = INTEGER
+### net.ipv4.tcp_syncookies
 
 当出现 SYN 等待队列溢出时，是否开启 cookies 来处理，可防范少量 SYN 攻击。`默认值：1`。
 
@@ -105,7 +105,7 @@ somaxconn 用于指定有多少个座位。
 
 ~~是否快速回收 TCP 连接中 TIME-WAIT sockets ，~~`默认值：0`
 
-### net.ipv4.tcp_tw_reuse = 1
+### net.ipv4.tcp_tw_reuse
 
 是否允许将 TIME-WAIT 状态的 sockets 重新用于新的 TCP 连接。`默认值：0`
 
@@ -118,15 +118,15 @@ somaxconn 用于指定有多少个座位。
 
 这里内核参数调整的是 TCP 层的 keepalive，常用于修复 ipvs 模式下长连接 timeout 问题 小于 900 即可
 
-#### net.ipv4.tcp_keepalive_time = 7200
+#### net.ipv4.tcp_keepalive_time
 
 当一个 TCP 连接不再收到数据包后，经过 7200 秒后将当前连接标记为 keepalive 状态，并开始发送探测信息。将连接标记为需要保持活动状态后，将不再使用此计数器。`默认值：7200`。单位秒，即 2 小时
 
-#### net.ipv4.tcp_keepalive_probes = 9
+#### net.ipv4.tcp_keepalive_probes
 
 TCP 连接在 keepalive 状态下的探测次数。`默认值：9`
 
-#### net.ipv4.tcp_keepalive_intvl = 75
+#### net.ipv4.tcp_keepalive_intvl
 
 TCP 连接在 keepalive 状态下的探测间隔。`默认值：75`。单位秒
 
@@ -154,23 +154,25 @@ TCP 连接在 keepalive 状态下的探测间隔。`默认值：75`。单位秒
 
 > 参考：
 >
-> - [官方文档，网络-IPvs Sysctl](https://www.kernel.org/doc/html/latest/networking/ipvs-sysctl.html)
+> - [官方文档，网络 - IPvs Sysctl](https://www.kernel.org/doc/html/latest/networking/ipvs-sysctl.html)
 
 ### net.ipv4.vs.conn_reuse_mode = 1
 
 值为 `0` 时，ipvs 不会对新连接进行重新负载，而是复用之前的负载结果，将新连接转发到原来的 rs 上；
+
 值为 `1` 时，ipvs 则会对新连接进行重新调度。
 
 ### net.ipv4.vs.expire_nodest_conn = <0 | 非 0>
 
 `默认值：0`
-于控制连接的 rs 不可用时的处理。在开启时，如果后端 rs 不可用，会立即结束掉该连接，使客户端重新发起新的连接请求；否则将数据包**silently drop**，也就是 DROP 掉数据包但不结束连接，等待客户端的重试。
+
+于控制连接的 rs 不可用时的处理。在开启时，如果后端 rs 不可用，会立即结束掉该连接，使客户端重新发起新的连接请求；否则将数据包 **silently drop**，也就是 DROP 掉数据包但不结束连接，等待客户端的重试。
 
 # bridge 参数
 
 > 参考：
 >
-> - [官方文档，内核子系统文档-Networking-IP Sysctl-/proc/sys/net/bridge/* 变量](https://www.kernel.org/doc/html/latest/networking/ip-sysctl.html#proc-sys-net-bridge-variables)
+> - [官方文档，内核子系统文档 - Networking - IP Sysctl - /proc/sys/net/bridge/* 变量](https://www.kernel.org/doc/html/latest/networking/ip-sysctl.html#proc-sys-net-bridge-variables)
 
 ### net.bridge.bridge-nf-call-iptables = 1
 

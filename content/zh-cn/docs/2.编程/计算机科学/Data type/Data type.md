@@ -91,7 +91,7 @@ e.g. UE8M0 表示：无符号(unsign)，八个指数，零个尾数
 
 ## Pointer(指针) 和 Reference(引用) 类型
 
-主要的非复合派生类型是 [Pointer(指针)](docs/2.编程/计算机科学/Data%20type/抽象数据类型/Pointer(指针).md)，这是一种数据类型，其值直接引用（或“指向”）使用其[地址](https://en.wikipedia.org/wiki/Memory_address)存储在[计算机内存中](https://en.wikipedia.org/wiki/Computer_memory)其他位置的另一个值。它是一种原始的[参考](<https://en.wikipedia.org/wiki/Reference_(computer_science)>)。（在日常生活中，一本书的页码可以被认为是引用另一本书的一段数据）。指针通常以类似于整数的格式存储；但是，尝试取消引用或“查找”其值永远不是有效内存地址的指针会导致程序崩溃。为了改善这个潜在问题，指针被认为是指向它们指向的数据类型的单独类型，即使底层表示相同。
+主要的非复合派生类型是 [Pointer(指针)](/docs/2.编程/计算机科学/Data%20type/抽象数据类型/Pointer(指针).md)，这是一种数据类型，其值直接引用（或“指向”）使用其[地址](https://en.wikipedia.org/wiki/Memory_address)存储在[计算机内存中](https://en.wikipedia.org/wiki/Computer_memory)其他位置的另一个值。它是一种原始的[参考](<https://en.wikipedia.org/wiki/Reference_(computer_science)>)。（在日常生活中，一本书的页码可以被认为是引用另一本书的一段数据）。指针通常以类似于整数的格式存储；但是，尝试取消引用或“查找”其值永远不是有效内存地址的指针会导致程序崩溃。为了改善这个潜在问题，指针被认为是指向它们指向的数据类型的单独类型，即使底层表示相同。
 
 ## Function(函数) 类型
 

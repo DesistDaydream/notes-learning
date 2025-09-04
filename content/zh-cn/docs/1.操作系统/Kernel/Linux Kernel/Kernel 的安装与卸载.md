@@ -1,5 +1,7 @@
 ---
-title: Kernel 的安装与卸载
+title: "Kernel 的安装与卸载"
+linkTitle: "Kernel 的安装与卸载"
+weight: 3
 ---
 
 # 概述
