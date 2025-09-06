@@ -68,6 +68,13 @@ Geek Uninstaller #
 - https://github.com/henrypp/memreduct
 - 轻量级实时内存管理应用程序，用于监视和清理计算机上的系统内存。
 
+## 进程监视器
+
+**Porcess Monitor(简称 Procmon)**
+
+- https://learn.microsoft.com/zh-cn/sysinternals/downloads/procmon
+- 找到哪个进程在频繁写入数据 https://www.bilibili.com/video/BV1PJYTzbEuB
+
 ## 搜索
 
 **Everything**
