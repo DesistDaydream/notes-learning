@@ -10,7 +10,7 @@ title: dd 生成指定大小的文件
 >
 > - https://blog.csdn.net/menogen/article/details/38059671
 
-**dd [OPTIONS[=FLAGS]]**
+**dd \[OPTIONS\[=FLAGS]]**
 
 OPTIONS
 
@@ -45,13 +45,33 @@ OPTIONS
 
 # EXAMPLE
 
-- 测试当前磁盘 写入文件 的速度
-  - **dd if=/dev/zero of=testdd bs=1M count=1000**
-- 测试当前磁盘 纯写入文件 的速度，即不使用缓存
-  - **dd if=/dev/zero of=testdd bs=1M count=1024 oflag=sync,direct,nonblock**
-- 测试当前磁盘 纯读取文件 的速度，即不使用缓存
-  - **dd if=testdd of=/dev/null bs=1M count=1024 iflag=sync,direct,nonblock**
-- 测试 sdb 磁盘 的 写入速度。注意：要使用一块空盘，否则数据没了
-  - **dd if=/dev/urandom of=/dev/sdb1 bs=1M count=1024**
-- 测试 sdb 磁盘 的读取速度
-  - **dd if=/dev/sdb1 of=/dev/null bs=1M count=1024**
+测试当前磁盘 写入文件 的速度
+
+```bash
+dd if=/dev/zero of=testdd bs=1M count=1000
+```
+
+测试当前磁盘 纯写入文件 的速度，即不使用缓存
+
+```bash
+dd if=/dev/zero of=testdd bs=1M count=1024 oflag=sync,direct,nonblock
+```
+
+测试当前磁盘 纯读取文件 的速度，即不使用缓存
+
+```bash
+dd if=testdd of=/dev/null bs=1M count=1024 iflag=sync,direct,nonblock
+```
+
+测试 sdb 磁盘 的 写入速度。<font color="#ff0000">注意：要使用一块空盘，否则数据没了</font>
+
+```bash
+dd if=/dev/urandom of=/dev/sdb1 bs=1M count=1024
+```
+
+测试 sdb 磁盘 的读取速度
+
+```bash
+dd if=/dev/sdb1 of=/dev/null bs=1M count=1024
+```
+
