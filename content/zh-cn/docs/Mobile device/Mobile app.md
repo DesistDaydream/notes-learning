@@ -20,6 +20,8 @@ weight: 20
 
 [GitHub 项目，gkd-kit/gkd](https://github.com/gkd-kit/gkd) # 自定义屏幕点击。常用来跳过广告
 
+[GitHub 项目，Nain57/Smart-AutoClicker](https://github.com/Nain57/Smart-AutoClicker) # 自动点击
+
 # WeChat
 
 > 参考：
