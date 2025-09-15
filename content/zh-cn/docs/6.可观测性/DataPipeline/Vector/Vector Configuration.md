@@ -65,6 +65,22 @@ Vector 配置文件支持 [YAML](/docs/2.编程/无法分类的语言/YAML.md), 
 
 https://vector.dev/docs/reference/configuration/sources/
 
+## Docker logs
+
+https://vector.dev/docs/reference/configuration/sources/docker_logs
+
+从 [Docker](docs/10.云原生/Containerization%20implementation/Docker/Docker.md) 中收集日志
+
+**最佳实践**
+
+```yaml
+sources:
+  demo_my_docker_logs:
+    type: docker_logs
+    include_containers:
+      - nginx
+```
+
 # transforms
 
 https://vector.dev/docs/reference/configuration/transforms/

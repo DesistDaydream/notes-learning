@@ -15,6 +15,12 @@ weight: 1
 
 **Graphics Processing Unit(图形处理单元，简称 GPU)** 是 Graphics card 的核心计算组件，执行计算功能
 
+**Neural Processing Unit(神经处理单元，简称 NPU)**
+
+# 学习资料
+
+[B 站 - 飞天闪客，你管这破玩意叫GPU？](https://www.bilibili.com/video/BV1fxpEzoEnw)
+
 # 显卡常见配置
 
 ## 垂直同步

@@ -16,7 +16,7 @@ ssl 模块提供了 SSL/TLS 的必要支持，可以通过 Nginx 来为后端提
 
 # ngx_http_ssl_module
 
-该模块需要 [OpenSSL](https://www.openssl.org/) 库的支持才可以正常使用。
+该模块需要 [OpenSSL](/docs/7.信息安全/Crypto%20mgmt/OpenSSL/OpenSSL.md) 库的支持才可以正常使用。
 
 ssl 模块启用后，Nginx 将可以处理 TLS/SSL 请求。当客户端发起 TLS/SSL 请求时，Nginx 中启用了 ssl 模块的 Virtual Server 作为服务端将会用配置好的证书与客户端进行认证。然后 Nginx 再作为客户端，向被代理的后端 Server 发起 TLS/SSL 请求。
 
@@ -26,7 +26,9 @@ ssl 模块启用后，Nginx 将可以处理 TLS/SSL 请求。当客户端发起 
 
 ## SSL 指令
 
-[**ssl on | off;**](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl) # 启用 ssl 策略。
+**ssl on | off;** # 启用 ssl 策略。
+
+http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl
 
 - 作用范围：http{}、server{}
 
@@ -35,14 +37,20 @@ ssl 模块启用后，Nginx 将可以处理 TLS/SSL 请求。当客户端发起 
 - 该指令在 1.15.0 版已过时。应该使用 `listen` 指令中的 ssl 参数。
 - 如果一个端口监听了多个 server，只要有任意一个 server 启用了 ssl 策略，则其他都默认启用。
 
-[**ssl_certificate FILE;**](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate) # 为 Virtual Server 指定 PEM 格式的证书文件
+**ssl_certificate FILE;** # 为 Virtual Server 指定 PEM 格式的证书文件
+
+http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate
 
 - 作用范围：http{}、server{}
 
-[**ssl_certificate_key FILE;**](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_key) # 为 Virtual Server 指定 PEM 格式的密钥文件
+**ssl_certificate_key FILE;** # 为 Virtual Server 指定 PEM 格式的密钥文件
+
+http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_key
 
 - 作用范围：http{}、server{}
 
-[**ssl_client_certificate FILE;**](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_client_certificate) # 指定一个受信任的 PEM 格式 CA 证书的文件，如果启用 ssl_stapling，该文件用于验证客户端证书和 OCSP 响应。通常用于双向认证。
+**ssl_client_certificate FILE;** # 指定一个受信任的 PEM 格式 CA 证书的文件，如果启用 ssl_stapling，该文件用于验证客户端证书和 OCSP 响应。通常用于双向认证。
+
+http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_client_certificate
 
 - 作用范围：http{}、server{}

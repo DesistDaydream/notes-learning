@@ -51,7 +51,7 @@ http {
 
 https://nginx.org/en/docs/http/ngx_http_core_module.html#server
 
-- 作用范围：http{}
+- 作用范围: http{}
 
 server{} 指令块用来定义 Virtual Server
 
@@ -74,8 +74,8 @@ server {
 
 https://nginx.org/en/docs/http/ngx_http_core_module.html#listen
 
-- 语法：`listen TARGET[PARAMETER]`
-- 默认值：`listen *：80 | *：8000;`
+- 语法: `listen TARGET[PARAMETER]`
+- 默认值: `listen *：80 | *：8000;`
 
 指定 Virtual Server 监听的端口，也可加上 IP:PORT
 
@@ -93,8 +93,8 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#listen
 
 https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name
 
-- 语法：`server_name NAME`
-- 默认值：`server_name "";`
+- 语法: `server_name NAME`
+- 默认值: `server_name "";`
 
 入口名称(也就是 Virtual Server 的名字)。用来匹配一个请求 Header 中的 Host 字段。
 
@@ -112,8 +112,8 @@ server_name 指令是用来匹配用户在浏览器浏览网站时，输入的 �
 
 http://nginx.org/en/docs/http/ngx_http_core_module.html#location
 
-- 语法：`location [=|~|~\*|^~] URI {}`
-- 作用范围：server{}, location{}
+- 语法: `location [=|~|~\*|^~] URI {}`
+- 作用范围: server{}, location{}
 
 location 指令让 Nginx 在 [find_config 阶段](/docs/Web/Nginx/Nginx%20处理%20HTTP%20请求的流程.md#find_config%20阶段) 根据用户请求的 URI 进行匹配，匹配到时，此请求将被响应的 `location{}` 块指令中的指令所处理。对于用户请求的匹配优先级：
 
@@ -159,9 +159,9 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass
 >
 > - [公众号-YP小站，详解Nginx proxy_pass 使用](https://mp.weixin.qq.com/s/D3dri6v0Tk45TOWsDb0HqQ)
 
-- 语法：`proxy_pass URL;`
-- 默认值：`无`
-- 作用范围：location{}
+- 语法: `proxy_pass URL;`
+- 默认值: `无`
+- 作用范围: location{}
 
 该指令是 [ngx_http_proxy_module 模块](#ngx_http_proxy_module%20模块指令)的核心指令，也是 http{}、stream{} 指令块中用来执行流量处理的指令。代替用户把对 location 定义的请求下的 URL 交给指定的 [后端服务器](/docs/Web/Nginx/Nginx%20配置详解/Nginx%20配置详解.md#后端服务器) 来处理请求。该指令属于 ngx_http_proxy_modeule 模块
 
@@ -272,7 +272,7 @@ location /name/ {
 
 https://nginx.org/en/docs/http/ngx_http_core_module.html#alias
 
-- 语法：`alias PATH`
+- 语法: `alias PATH`
 
 用于 loation 上下文，定义 location 指令定义的路径的别名，注意与 root 指令的区别
 
@@ -280,9 +280,9 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#alias
 
 https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_in_file_only
 
-- 语法：`client_body_in_file_only on|clean|off`
-- 默认值：`client_body_in_file_only off;`
-- 作用范围：http{}、server{}、location{}
+- 语法: `client_body_in_file_only on|clean|off`
+- 默认值: `client_body_in_file_only off;`
+- 作用范围: http{}、server{}、location{}
 
 确定 Nginx 是否应该将整个客户端请求正文保存到文件中。可以在调试期间或使用 `$request_body_file` 变量或模块 ngx_http_perl_module 的$ r-> request_body_file 方法时使用此指令。
 
@@ -296,7 +296,7 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#client_header_timeout
 
 读取 HTTP 请求 Header 的超时时长
 
-- 语法：`client_header_timeout NUM`
+- 语法: `client_header_timeout NUM`
 
 ### large_client_header_buffers
 
@@ -323,9 +323,9 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#ignore_invalid_headers
 
 是否忽略无效的请求头。
 
-- 语法：`ignore_invalid_headers on|off`
-- 默认值：`ignore_invalid_headers on;`
-- 作用范围：http{}、server{}
+- 语法: `ignore_invalid_headers on|off`
+- 默认值: `ignore_invalid_headers on;`
+- 作用范围: http{}、server{}
 
 这里指的无效的请求头，主要是针对请求头的 key 来说，有效的请求头的 key 只能是由 英文字母、数字、连字符、下划线 这其中的 1 个或多个，而下划线的有效性，由 underscores_in_headers 指令控制。
 
@@ -335,7 +335,7 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_disable
 
 为指定类型的 User Agent(说白了就是浏览器) 禁用长连接
 
-- 语法：`keepalive_disable msie6|safari|none`
+- 语法: `keepalive_disable msie6|safari|none`
 
 ### keepalive_requests
 
@@ -343,9 +343,9 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_requests
 
 在一个长连接上所能够允许的最大资源数
 
-- 语法：`keepalive_requests NUMBER`
-- 默认值：`keepalive_requests 1000;`
-- 作用范围：http{}、server{}、location{}
+- 语法: `keepalive_requests NUMBER`
+- 默认值: `keepalive_requests 1000;`
+- 作用范围: http{}、server{}、location{}
 
 ### keepalive_timeout
 
@@ -353,9 +353,9 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_timeout
 
 设定长连接的超时时长为默认 75 秒
 
-- 语法：`keepalive_timeout DURATION`
-- 默认值：`keepalive_timeout 75s;`
-- 作用范围：http{}、server{}、location{}
+- 语法: `keepalive_timeout DURATION`
+- 默认值: `keepalive_timeout 75s;`
+- 作用范围: http{}、server{}、location{}
 
 ### root
 
@@ -363,8 +363,8 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#root
 
 指明请求的 URL 所对应的资源所在文件系统上的起始路径。
 
-- 语法：`root PATH`
-- 作用范围：http{}、server{}、location{}
+- 语法: `root PATH`
+- 作用范围: http{}、server{}、location{}
 
 把 root 配置指令写到 `location / {} 指令块` 中，即表明当用户请求的是 / 下的资源时候，去 root 定义的本地的那个路径去找对应的资源。
 
@@ -374,9 +374,9 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#sendfile
 
 开启或关闭 sendfile() 功能，即[DMA 与 零拷贝](/docs/1.操作系统/Kernel/Filesystem/DMA%20与%20零拷贝.md)功能。
 
-- 语法：`sendfile on|off`
-- 默认值：`sendfile off;`
-- 作用范围：http{}、server{}、location{}
+- 语法: `sendfile on|off`
+- 默认值: `sendfile off;`
+- 作用范围: http{}、server{}、location{}
 
 在此配置中，使用 SF_NODISKIO 标志调用 sendfile()，这将导致它不会在磁盘 I / O 上阻塞，而是报告该数据不在内存中。然后，nginx 通过读取一个字节来启动异步数据加载。第一次读取时，FreeBSD 内核将文件的前 128K 字节加载到内存中，尽管接下来的读取只会加载 16K 块中的数据。可以使用 read_ahead 指令更改此设置。
 
@@ -386,9 +386,9 @@ http://nginx.org/en/docs/http/ngx_http_core_module.html#server_names_hash_bucket
 
 设置 server_name 指定设定的服务器名称哈希表的桶容量。默认值取决于处理缓存线的大小。
 
-- 语法：`server_names_hash_bucket_size SIZE`
-- 默认值：`server_namers_hash_bucket_size 32|64|128;`
-- 作用范围：http{}
+- 语法: `server_names_hash_bucket_size SIZE`
+- 默认值: `server_namers_hash_bucket_size 32|64|128;`
+- 作用范围: http{}
 
 ### tcp_nodelay
 
@@ -396,7 +396,7 @@ http://nginx.org/en/docs/http/ngx_http_core_module.html#tcp_nodelay
 
 是否开启长连接使用 tcp_nodelay 选项
 
-- 语法：`tcp_nodelay on|off`
+- 语法: `tcp_nodelay on|off`
 
 ### underscores_in_headers
 
@@ -404,9 +404,9 @@ http://nginx.org/en/docs/http/ngx_http_core_module.html#underscores_in_headers
 
 是否允许请求头中的 key 带有下划线。
 
-- 语法：`underscores_in_headers on|off`
-- 默认值：`underscores_in_headers off;`
-- 作用范围：http{}、server{}
+- 语法: `underscores_in_headers on|off`
+- 默认值: `underscores_in_headers off;`
+- 作用范围: http{}、server{}
 
 默认不允许，所有请求头中带有下划线的请求虽然可以被正常代理，但是其中带有下划线的请求头无法被传递到后端服务器。该指令受 ignore_invalid_headers(忽略无效请求头) 指令约束。若关闭 ignore_invalid_headers 指令，则 underscores_in_headers 指令不管如何配置都没有用。
 
@@ -415,15 +415,16 @@ http://nginx.org/en/docs/http/ngx_http_core_module.html#underscores_in_headers
 > 代码：<https://github.com/nginx/nginx/blob/master/src/http/modules/ngx_http_log_module.c>
 
 更多日志格式设置方法，见 [log 相关模块](/docs/Web/Nginx/Nginx%20配置详解/多用途模块的指令/log%20相关模块.md)
+
 ### access_log
 
 http://nginx.org/en/docs/http/ngx_http_log_module.html#access_log
 
 设置 access 日志的写入路径。
 
-- 语法：`access_log PATH FORMAT [PARAMETER]`
-- 默认值：`access_log logs/access.log combined;`
-- 作用范围：http{}、server{}、location{}
+- 语法: `access_log PATH FORMAT [PARAMETER]`
+- 默认值: `access_log logs/access.log combined;`
+- 作用范围: http{}、server{}、location{}
 
 FORMAT 是 `log_format` 指令定义的日志格式名称，若不指定则默认是名为 combined 的日志格式
 
@@ -433,9 +434,9 @@ http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format
 
 设定 Nginx 的日志格式。
 
-- 语法：`log_format NAME [escape=default|json|none] STRING`
-- 默认值：`log_format combined "...";`
-- 作用范围：http{}
+- 语法: `log_format NAME [escape=default|json|none] STRING`
+- 默认值: `log_format combined "...";`
+- 作用范围: http{}
 
 定义一个日志格式并将该格式命名为 NAME，格式名称可以在 access_log 等指令中直接引用。
 
@@ -462,8 +463,8 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path
 
 设定代理服务缓存路径和其它参数
 
-- 语法：`proxy_cache_path PATH ARGS`
-- 作用范围：http{}
+- 语法: `proxy_cache_path PATH ARGS`
+- 作用范围: http{}
 
 ### proxy_http_version
 
@@ -471,9 +472,9 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version
 
 设置用于代理的 HTTP 协议版本。
 
-- 语法：`proxy_http_version VERSION`
-- 默认值：`proxy_http_version 1.0;`
-- 作用范围：http{}、server{}、location{}
+- 语法: `proxy_http_version VERSION`
+- 默认值: `proxy_http_version 1.0;`
+- 作用范围: http{}、server{}、location{}
 
 > 建议将 1.1 版与 Keepalive 连接和 NTLM 身份验证配合使用。
 
@@ -483,8 +484,8 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_intercept_errors
 
 确定是否应将代码大于或等于 300 的代理响应传递给客户端，还是应拦截并重定向到 nginx，以便使用 error_page 指令进行处理
 
-- 语法：`proxy_intercept_errors on|off`
-- 作用范围：http{}、server{}、location{}
+- 语法: `proxy_intercept_errors on|off`
+- 作用范围: http{}、server{}、location{}
 
 ### proxy_redirect
 
@@ -492,9 +493,9 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirect
 
 修改被代理服务器的响应头中 Location 和 Refresh 字段的值。
 
-- 语法：`proxy_redirect REDIRECT REPLACEMENT`
-- 默认值：`proxy_redirect default;`
-- 作用范围：http{}、server{}、location{}
+- 语法: `proxy_redirect REDIRECT REPLACEMENT`
+- 默认值: `proxy_redirect default;`
+- 作用范围: http{}、server{}、location{}
 
 假如一个被代理的服务器响应头为 `Location: http://localhost:8000/two/some/uri/`。那么如果配置了如下指令：`proxy_redirect http://localhost:8000/two/ http://frontend/one/;` 之后。Nginx 响应给客户端的头变成了 `Location: http://frontend/one/some/uri/`
 
@@ -509,11 +510,11 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header
 
 用来重定义发往后端服务器的请求 Header 内容。这是**常用指令**
 
-- 语法：`proxy_set_header FIELD VALUE`
-- 默认值：
+- 语法: `proxy_set_header FIELD VALUE`
+- 默认值:
   - `proxy_set_header Host $proxy_host;`
   - `proxy_set_header Connection close;`
-- 作用范围：http{}、server{}、location{}
+- 作用范围: http{}、server{}、location{}
 
 **FIELD(字段)** # 指定要重新定义的请求 Header 的字段
 
@@ -530,8 +531,8 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_certificate
 
 指定 PEM 格式的证书文件，Ngxin 作为客户端向被代理的 HTTPS 服务器发起请求时，用来进行身份验证
 
-- 语法：`proxy_ssl_certificate FILE`
-- 作用范围：http{}、server{}、location{}
+- 语法: `proxy_ssl_certificate FILE`
+- 作用范围: http{}、server{}、location{}
 
 ### proxy_ssl_certificate_key
 
@@ -539,8 +540,8 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_certificate_k
 
 指定 PEM 格式的密钥，Ngxin 作为客户端向被代理的 HTTPS 服务器发起请求时，用来进行身份验证
 
-- 语法：`proxy_ssl_certificate_key FILE`
-- 作用范围：http{}、server{}、location{}
+- 语法: `proxy_ssl_certificate_key FILE`
+- 作用范围: http{}、server{}、location{}
 
 ### proxy_ssl_trusted_certificate
 
@@ -548,8 +549,8 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_trusted_certi
 
 指定想要信任的 CA 证书文件，Ngxin 作为客户端向被代理的 HTTPS 服务器发起请求时，用来进行身份验证
 
-- 语法：`proxy_ssl_trusted_certificate FILE`
-- 作用范围：http{}、server{}、location{}
+- 语法: `proxy_ssl_trusted_certificate FILE`
+- 作用范围: http{}、server{}、location{}
 
 ### 代理超时相关指令
 
@@ -559,9 +560,9 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_connect_timeout
 
 与被代理服务器建立连接的超时时间。
 
-- 语法：`proxy_connect_timeout DURATION`
-- 默认值：`proxy_connect_timeout 60s;`
-- 作用范围：http{}、server{}、location{}
+- 语法: `proxy_connect_timeout DURATION`
+- 默认值: `proxy_connect_timeout 60s;`
+- 作用范围: http{}、server{}、location{}
 
 注意：这个超时时间通常不应该超过 75 秒
 
@@ -571,9 +572,9 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout
 
 从被代理服务器读取响应的超时时间
 
-- 语法：`proxy_read_timeout DURATION`
-- 默认值：`proxy_read_timeout 60s;`
-- 作用范围：http{}、server{}、location{}
+- 语法: `proxy_read_timeout DURATION`
+- 默认值: `proxy_read_timeout 60s;`
+- 作用范围: http{}、server{}、location{}
 
 该超时时间仅在两个连续的**读取**操作时间，而不是用于整个响应的传输。如果被代理服务器在这段时间内**未传输**任何内容，则连接将关闭。
 
@@ -587,9 +588,9 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_send_timeout
 
 将请求发送到被代理服务器的超时时间。
 
-- 语法：`proxy_send_timeout DURATION`
-- 默认值：`proxy_send_timeout 60s;`
-- 作用范围：http{}、server{}、location{}
+- 语法: `proxy_send_timeout DURATION`
+- 默认值: `proxy_send_timeout 60s;`
+- 作用范围: http{}、server{}、location{}
 
 该超时时间仅在两个连续的**写入**操作时间，而不是用于整个响应的传输。如果被代理服务器在这段时间内**未收到**任何内容，则连接将关闭
 
@@ -603,8 +604,8 @@ ngx_http_rewrite_moudle 模块可以根据 [PCRE](/docs/8.通用技术/Regular%2
 
 https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#break
 
-- 语法：`break`
-- 作用范围：server{}、location{}、if{}
+- 语法: `break`
+- 作用范围: server{}、location{}、if{}
 
 使用了 break 指令后，将会停止处理 ngx_http_rewrite_module 指令的当前集合。常作为 rewrite 的选项使用，当一个 location 块中有多个 rewrite 规则时，可以在匹配到某个 rewrite 规则后，防止继续执行后续的 rewrite 规则，比如
 
@@ -630,8 +631,8 @@ http://nginx.org/en/docs/http/ngx_http_rewrite_module.html#if
 
 用于 server 和 location 上下文中，类似于 if..else..这种编程语言
 
-- 语法：`if (Condition) {...}`
-- 作用范围：server{}、location{}
+- 语法: `if (Condition) {...}`
+- 作用范围: server{}、location{}
 
 Condition 是具体的匹配条件
 
@@ -647,15 +648,15 @@ http://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return
 
 停止处理，并讲指定的状态码返回给客户端。常与 listen 指令的 default_server 参数一起使用，并指定状态码非 200，当客户端访问的域名不存在时，通过默认的 Virtual Server 处理，返回非 200 的状态码。
 
-- 语法：`return CODE [TEXT | URL]`
-- 作用范围：server{}、location{}、if{}
+- 语法: `return CODE [TEXT | URL]`
+- 作用范围: server{}、location{}、if{}
 
 ### rewrite
 
 http://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite
 
-- 语法：`rewrite RegEx Replacement [FLAG]`
-- 作用范围：server{}、location{}、if{}
+- 语法: `rewrite RegEx Replacement [FLAG]`
+- 作用范围: server{}、location{}、if{}
 
 rewrite 指令用于在 Nginx 的 [rewrite 阶段](/docs/Web/Nginx/Nginx%20处理%20HTTP%20请求的流程.md#rewrite%20阶段) 重写(i.e. 更改)客户端发起 HTTP 请求的 URL。根据 RegEx 的匹配规则，凡是匹配到的 URL 都改为 Replacement。**注意：rewrite 指令的执行优先级要高于 proxy_pass**。
 
@@ -694,8 +695,8 @@ http://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header
 
 重定义发往 client 的响应首部报文
 
-- 语法：add_header NAME VALUE [always]
-- 作用范围：http{}、server{}、location{}
+- 语法: add_header NAME VALUE [always]
+- 作用范围: http{}、server{}、location{}
 
 ### index
 
@@ -703,7 +704,7 @@ http://nginx.org/en/docs/http/ngx_http_index_module.html#index
 
 设定默认主页面
 
-- 语法：index FILE
+- 语法: index FILE
 
 ### stub_status
 
@@ -711,7 +712,7 @@ http://nginx.org/en/docs/http/ngx_http_stub_status_module.html#stub_status
 
 开启或关闭监控模块，仅能用于 location 上下文
 
-- 语法：stub_status on|off
+- 语法: stub_status on|off
 
 # 配置示例
 
