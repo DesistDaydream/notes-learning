@@ -157,7 +157,7 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass
 
 > 参考：
 >
-> - [公众号-YP小站，详解Nginx proxy_pass 使用](https://mp.weixin.qq.com/s/D3dri6v0Tk45TOWsDb0HqQ)
+> - [公众号 - YP小站，详解Nginx proxy_pass 使用](https://mp.weixin.qq.com/s/D3dri6v0Tk45TOWsDb0HqQ)
 
 - 语法: `proxy_pass URL;`
 - 默认值: `无`

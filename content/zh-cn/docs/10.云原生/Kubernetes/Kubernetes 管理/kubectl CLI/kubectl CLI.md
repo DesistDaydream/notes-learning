@@ -122,11 +122,11 @@ kubectl explain RESOURCE\[.FIELD1.FELD2...FIELDn] \[options] # 每个 FIELD(字�
 
 ## get - 显示一个或多个资源
 
-详见：[get 子命令](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20CLI/get%20子命令.md)
+详见：[get](docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20CLI/get.md)
 
 ## edit - 编辑服务器上的资源
 
-详见：[对象的创建与修改命令](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20CLI/对象的创建与修改命令.md)
+详见：[对象的创建与修改](docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20CLI/对象的创建与修改.md)
 
 ## delete - 通过文件名、标准输入、资源名或者资源表删除资源
 
@@ -296,7 +296,7 @@ auth           Inspect authorization
 
 ## apply - 通过文件或标准输入将配置应用到资源
 
-详见《[对象的创建与修改命令](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20CLI/对象的创建与修改命令.md)》
+详见《[对象的创建与修改](docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20CLI/对象的创建与修改.md)》
 
 ## patch - 用 strategic merge、JSON merge、JSON，更新一个资源的字段
 
@@ -304,7 +304,7 @@ auth           Inspect authorization
 
 ## replace - 替换。使用文件或标准输入替换一个资源
 
-详见《[对象的创建与修改命令](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20CLI/对象的创建与修改命令.md)》
+详见《[对象的创建与修改](docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20CLI/对象的创建与修改.md)》
 
 ## wait - 在一个或多个资源上等待指定的条件达成
 
@@ -368,7 +368,7 @@ EXAMPLE
 
 ## config - 使用子命令修改 kubeconfig 文件
 
-用法详见 [config 子命令](/docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20CLI/config%20子命令.md)
+用法详见 [config](docs/10.云原生/Kubernetes/Kubernetes%20管理/kubectl%20CLI/config.md)
 
 plugin         Runs a command-line plugin
 

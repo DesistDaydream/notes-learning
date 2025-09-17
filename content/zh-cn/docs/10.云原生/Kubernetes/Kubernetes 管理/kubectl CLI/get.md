@@ -1,5 +1,7 @@
 ---
-title: get 子命令
+title: get
+linkTitle: get
+weight: 20
 ---
 
 # 概述

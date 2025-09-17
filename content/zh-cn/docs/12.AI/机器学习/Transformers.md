@@ -88,12 +88,20 @@ print(response)
 
 # Attention Is All You Need
 
-[公众号，一文彻底讲透GPT架构及推理原理](https://mp.weixin.qq.com/s/moVLtn0_necwuyxdIlosSg)
-
-[B 站，硬读 Transformer 经典论文！不过是硬着头皮的硬...](https://www.bilibili.com/video/BV1k4o7YqEEi)
+> 参考：
+>
+> - [公众号，一文彻底讲透GPT架构及推理原理](https://mp.weixin.qq.com/s/moVLtn0_necwuyxdIlosSg)
+> - [B 站，硬读 Transformer 经典论文！不过是硬着头皮的硬...](https://www.bilibili.com/video/BV1k4o7YqEEi)
+> - [B 站 - 跟李沐学AI，Transformer论文逐段精读【论文精读】](https://www.bilibili.com/video/BV1pu411o7BE)
+> - [B 站 - ，王木头学科学，从编解码和词嵌入开始，一步一步理解Transformer，注意力机制(Attention)的本质是卷积神经网络(CNN)](https://www.bilibili.com/video/BV1XH4y1T76e)
 
 TODO:
 
 - 幻觉的来源：预测出第一个字的概率，后面所有出现的都会基于前面的所有得出各种字的权重，如果这个第一个选择错误，后面有可能会越错越多。并且模型本身并不具备向前纠错的能力
 - 是否意味着 Transformers 结构本身永远无法解决幻觉问题？
 - 想要解决幻觉问题，让 AI 与现实世界接触并验证模型输出结果的权重是否准确，是否是一个有效的做法？比如利用各种 MCP 与现实世界交互。
+
+## 编码/解码
+
+
+

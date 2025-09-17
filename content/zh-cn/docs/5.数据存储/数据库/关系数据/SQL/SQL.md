@@ -54,7 +54,6 @@ SQL 在 1986 年成为 [ANSI](/docs/Standard/IT/ANSI.md) 的一项标准，在 1
 SQL 语言被细分为几个语言元素，包括：
 
 - **Keywords(关键字)** # SQL 语言中定义的单词。它们要么是保留的（例如 SELECT、COUNT、YEAR、etc.），要么是非保留的（例如 ASC、DOMAIN、KEY、etc.）
-  - [SQL 保留字列表](https://en.wikipedia.org/wiki/List_of_SQL_reserved_words)。
 - **Identifiers(标识符)** # 数据库对象的名称，例如 表、列、模式、etc. 。
 - **Clauses(子句)** # 它们是语句和查询的组成部分。（在某些情况下，这些是可选的。）
 - **Expressions(表达式)** # 可以生成 [标量](https://en.wikipedia.org/wiki/Scalar_(computing))值或由数据的 **列** 和 **行** 组成的[表](https://en.wikipedia.org/wiki/Table_(database))
@@ -68,6 +67,7 @@ SQL 语言被细分为几个语言元素，包括：
 
 > 参考：
 >
+> - [Wiki, List of SQL reserved words](https://en.wikipedia.org/wiki/List_of_SQL_reserved_words)
 > - [w3schools, SQL 参考 - SQL 关键字](https://www.w3schools.com/sql/sql_ref_keywords.asp)
 
 **SELECT** # 选择指定的数据存储在结果表中，称为结果集。有点类似于各种编程语言中的 `print` 函数。

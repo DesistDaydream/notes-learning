@@ -2876,10 +2876,10 @@
     "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI": [
       "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI/_index.md",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI/kubectl CLI.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI/config 子命令.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI/对象的创建与修改命令.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI/get 子命令.md",
-      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI/set 与 rollout 更新资源命令.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI/config.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI/对象的创建与修改.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI/对象的更新.md",
+      "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI/get.md",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI/logs.md",
       "docs/10.云原生/Kubernetes/Kubernetes 管理/kubectl CLI/kubectl 扩展.md"
     ],

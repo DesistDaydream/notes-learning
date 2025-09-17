@@ -1,8 +1,14 @@
 ---
-title: config 子命令
+title: config
+linkTitle: config
+weight: 20
 ---
 
 # 概述
+
+> 参考：
+>
+> - 
 
 config 子命令用于控制 [User Account(KubeConfig)](/docs/10.云原生/Kubernetes/API%20访问控制/Authentication(认证)/User%20Account(KubeConfig).md) 的 KubeConfig 文件
 
