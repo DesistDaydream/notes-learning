@@ -32,20 +32,20 @@ weight: 20
 
 **spec** 字段描述该 Service 的规格(specification)
 
-**clusterIP: STRING** # 手动给该 Service 分配 IP，该 IP 在服务创建后无法手动修改，可以设置为 None，变成无头 service，这时候请求不由 service 处理，直接通过 service 名称转发到后端的 Pod
+**clusterIP**(STRING) # 手动给该 Service 分配 IP，该 IP 在服务创建后无法手动修改，可以设置为 None，变成无头 service，这时候请求不由 service 处理，直接通过 service 名称转发到后端的 Pod
 
-**ports([]OBJECT)**
+**ports**(\[]OBJECT)
 
  - protocol: TCP # 将 service 的端口映射到 pod 的端口，使用 TCP 协议
    nodePort: NUM # 指明 Service 通过 k8s 集群中的那个端口对外提供服务，默认随机从 30000-32767 中随机分配(注：该字段只有 type 为 NodePort 的时候才有作用)
    port: NUM # 指明该 service 所使用的端口
    targetPort: XXX # 指明后端 Pod 的端口
 
-**selector: <map\[STRING]\[STRING]>** # 通过[Label and Selector(标签和选择器)](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/Object%20管理/Label%20and%20Selector(标签和选择器)/Label%20and%20Selector(标签和选择器).md) 选择哪些 Pod 是该 Service 的后端。
+**selector**(map\[STRING]\[STRING]) # 通过[Label and Selector(标签和选择器)](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/Object%20管理/Label%20and%20Selector(标签和选择器)/Label%20and%20Selector(标签和选择器).md) 选择哪些 Pod 是该 Service 的后端。
 
-**sessionAffinity(ClientIP|None)** # 设置会话亲和度，当为 None 的时候为同一个客户端的访问都会指向同一个 Pod，ClientIP 为进行负载调度
+**sessionAffinity**(ClientIP|None) # 设置会话亲和度，当为 None 的时候为同一个客户端的访问都会指向同一个 Pod，ClientIP 为进行负载调度
 
-**type: STRING** #
+**type**(STRING) #
 
 # Endpoints Manifests 详解
 

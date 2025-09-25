@@ -21,8 +21,8 @@ weight: 20
 
 # metadata
 
-- **name: STRING** # Ingress 对象名称。必须名称空间唯一。
-- **annotations:** # Ingress 的控制器将会根据 annotations，以自定义其行为。这些注释下的 kev/value 对 可以通过 ingress 传递给 controller ，然后 controller 根据这些信息进行更详细的配置，比如 url rewrite、代理超时时间等等。
+- **name**(STRING) # Ingress 对象名称。必须名称空间唯一。
+- **annotations**() # Ingress 的控制器将会根据 annotations，以自定义其行为。这些注释下的 kev/value 对 可以通过 ingress 传递给 controller ，然后 controller 根据这些信息进行更详细的配置，比如 url rewrite、代理超时时间等等。
   - 注意：不同的 controller 对 annotaions 中定义的内容有不同的处理。
     - [nginx ingress controller 社区版的 annotaions 说明](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/)
     - nginx ingress controller 官方版的 annotaions 说明
@@ -38,22 +38,22 @@ weight: 20
 
 Ingress 资源最重要的字段，主要的实现逻辑都在这里了
 
-- **host(STRING)** # (可省略，省略之后，可以使用 ip 来访问而不用使用域名)指定用户访问的域名，必须是 FQDN(完全限定域名)，不能是 IP，类似于 nginx 的 service 字段
-- **http(Object)** #
-  - **paths([]Object)** # 用来定义，当用户访问不同资源时，把用户请求代理到不同的后端 Service，然后 Service 再把请求交给 Pod
-    - **backend(Object) # 必须的**。定义要把哪些后端 Pod 的信息发送给 IngressController，如果是 IngressController 是 nginx，那么就是 upstream 的 IP 和 Port。可以通过两种方式来获取后端 Pod 的信息。
-    - **resource(Object)** #
-    - **service(Object)** # 指定后端类型为 service，就是通过 service 资源关联的 pod 来获取后端 pod。service 与 resource 字段互斥。
-      - **name(STRING) # 必须的**。指明用于采集后端后端 Pod 信息的 service 的名称
-      - **port(Object)** #
-        - **number(INTEGER)**# 指定 service 上的端口号
-  - **path \<STRING>** #
+- **host**(STRING) # (可省略，省略之后，可以使用 ip 来访问而不用使用域名)指定用户访问的域名，必须是 FQDN(完全限定域名)，不能是 IP，类似于 nginx 的 service 字段
+- **http**(Object) #
+  - **paths**(\[]Object) # 用来定义，当用户访问不同资源时，把用户请求代理到不同的后端 Service，然后 Service 再把请求交给 Pod
+    - **backend**(Object) # **必须的**。定义要把哪些后端 Pod 的信息发送给 IngressController，如果是 IngressController 是 nginx，那么就是 upstream 的 IP 和 Port。可以通过两种方式来获取后端 Pod 的信息。
+    - **resource**(Object) #
+    - **service**(Object) # 指定后端类型为 service，就是通过 service 资源关联的 pod 来获取后端 pod。service 与 resource 字段互斥。
+      - **name**(STRING) # **必须的**。指明用于采集后端后端 Pod 信息的 service 的名称
+      - **port**(Object) #
+        - **number**(INTEGER) # 指定 service 上的端口号
+  - **path**(STRING) #
   - pathType
 
 ## tls([]Object) # 启用 https 需要配置该字段
 
-- **hosts([]STRING)**#
-- **secretName(STRING)** # 导入指定的 secret 对象内的数据。该 secret 中包括两个数据：证书和密钥
+- **hosts**(\[]STRING) #
+- **secretName**(STRING) # 导入指定的 secret 对象内的数据。该 secret 中包括两个数据：证书和密钥
 
 # 简单示例
 

@@ -206,7 +206,7 @@ tailscale up --login-server=http://${headscale_server} --accept-routes=false --a
 
 根据 [在 Headscale 中添加节点](#Headscale%20中添加节点) 部分的文档，使用注册命令将节点接入到 Headscale 中
 
-曾经老版本还需要修改注册表，新版 1.70+ 不用修改注册表了
+~~曾经老版本还需要修改注册表，新版 1.70+ 不用修改注册表了~~
 
 - ~~添加注册表信息（两种方式）（在 `HKEY_LOCAL_MACHINE\SOFTWARE\Tailscale IPN` 位置生成信息）~~
   - ~~点击页面中的 `Windows registry file`，下载注册表文件，并运行~~

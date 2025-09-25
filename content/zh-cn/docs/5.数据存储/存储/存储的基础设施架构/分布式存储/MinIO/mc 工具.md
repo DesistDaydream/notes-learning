@@ -65,7 +65,7 @@ COMMAND
 - head       display first 'n' lines of an object
 - pipe       stream STDIN to an object
 - share      generate URL for temporary access to an object
-- find       search for objects
+- **find** # 搜索对象
 - sql        run sql queries on objects
 - stat       show object metadata
 - mv         move objects
@@ -87,9 +87,11 @@ COMMAND
 - admin      manage MinIO servers
 - update     update mc to latest release
 
-# 子命令语法
+## OPTIONS
 
-## config
+**--config-dir, -C**(STRING) # 配置文件所在目录。`默认值: ~/.mc`
+
+# config
 
 **mc config host COMMAND \[COMMAND FLAGS | -h] \[ARGUMENTS...]**
 
@@ -104,7 +106,7 @@ EXAMPLE
 - 添加一个 host
   - **mc config host add miniodev130 http://10.8.208.130:9000 minioadmin minioadmin**
 
-## ilm
+# ilm
 
 管理桶的生命周期
 
@@ -119,7 +121,7 @@ COMMAND
 - export  export lifecycle configuration in JSON format
 - import  import lifecycle configuration in JSON format
 
-### add
+## add
 
 **mc ilm add \[FLAGS] TARGET**
 
@@ -132,7 +134,7 @@ EXAMPLE
 - local/loki-bj-net 这个桶中创建的对象将在 7 天后过期
   - **mc ilm add --expiry-days 7 local/loki-bj-net**
 
-### ls
+## ls
 
 列出设置在一个 bucket 上的生命周期配置规则集，效果如下：
 
@@ -144,7 +146,7 @@ EXAMPLE
 ----------------------|----------------|------------|--------|--------------|--------------|------------------|------------------|------------------------
 ```
 
-### rm
+## rm
 
 **mc ilm rm \[FLAGS] TARGET**
 
@@ -157,7 +159,7 @@ EXAMPLE
 - 删除 local/chunks 桶中 id 为 cbod0cqqqqm5tvms1svg 的生命周期规则
   - **mc ilm rm --id cbod0cqqqqm5tvms1svg local/chunks**
 
-## rm
+# rm
 
 **mc rm \[FLAGS] TARGET \[TARGET ...]**
 

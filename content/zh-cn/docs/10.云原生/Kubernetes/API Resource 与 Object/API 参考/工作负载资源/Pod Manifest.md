@@ -134,40 +134,40 @@ status 字段表示 Pod 的状态信息。状态可能会落后于系统的实�
 
 ## containers
 
-**env([]Object)** # 要在容器中设置的环境变量列表。详见[为容器定义命令和参数章节](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)
+**env**(\[]Object) # 要在容器中设置的环境变量列表。详见[为容器定义命令和参数章节](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)
 
-**name(STRING)**# 容器的名称
+**name**(STRING) # 容器的名称
 
-**ports([]Object)**# 容器对外暴露的端口，主要作为参考信息，就算不指定，通过 Service 也可以关联到容器中的指定端口，并通过 Service 访问容器内部。
+**ports**(\[]Object) # 容器对外暴露的端口，主要作为参考信息，就算不指定，通过 Service 也可以关联到容器中的指定端口，并通过 Service 访问容器内部。
 
 - **containerPort(INTEGER)** # 容器内端口号
 - **name(STRING)** # 端口号的名称，必须在 pod 中唯一。service 可以通过 name 引用端口。
 
-**resources(OJBECT)**# 容器所需的资源。i.e. 所需的 CPU、Memory 等等
+**resources**(OJBECT) # 容器所需的资源。i.e. 所需的 CPU、Memory 等等
 
-- **limits(map\[STRING]STRING)** # 容器可以使用的最大资源
-  - **cpu(STRING)** # 定义容器的 CPU 限额
-  - **memory(STRING)** # 定义容器的 Memory 限额
+- **limits**(map\[STRING]STRING) # 容器可以使用的最大资源
+  - **cpu**(STRING) # 定义容器的 CPU 限额
+  - **memory**(STRING) # 定义容器的 Memory 限额
   - ...... 其他资源限额
-- **requests(map\[STRING]STRING)** # 容器所需的最小资源。如果 Requests 省略，则默认与 limits 下定义的值保持一直。
-  - **cpu(STRING)** # 定义容器的 CPU 需求
-  - **memory(STRING)** # 定义容器的 Memory 需求
+- **requests**(map\[STRING]STRING) # 容器所需的最小资源。如果 Requests 省略，则默认与 limits 下定义的值保持一直。
+  - **cpu**(STRING) # 定义容器的 CPU 需求
+  - **memory**(STRING) # 定义容器的 Memory 需求
   - ...... 其他资源需求
 
-**volumeMounts([]Object)** # 给 Container 挂载在 Pod 中创建的 Volume。Volume 通过下文的 [Volumes 字段](#Volumes(卷)%20相关字段)指定
+**volumeMounts**(\[]Object) # 给 Container 挂载在 Pod 中创建的 Volume。Volume 通过下文的 [Volumes 字段](#Volumes(卷)%20相关字段)指定
 
-- **mountPath(STRING)** # **必须的**。把 Volume 挂载到容器中的目录上
-- **name(STRING)** # **必须的**。要挂载的 Volume 的名称。必须与 `spec.volumes.TYPE.volumeName` 字段的值相同，才可以引用到卷。
+- **mountPath**(STRING) # **必须的**。把 Volume 挂载到容器中的目录上
+- **name**(STRING) # **必须的**。要挂载的 Volume 的名称。必须与 `spec.volumes.TYPE.volumeName` 字段的值相同，才可以引用到卷。
 
 ### Image(镜像) 相关字段
 
-**image(STRING)** # 容器使用的镜像
+**image**(STRING) # 容器使用的镜像
 
-**imagePullPolicy(STRING)** # 指明镜像拉取策略，公有三种 Always、IfNotPresent、Never。`默认值：IfNotPresent`
+**imagePullPolicy**(STRING) # 指明镜像拉取策略，公有三种 Always、IfNotPresent、Never。`默认值：IfNotPresent`
 
 ### Entrypoint(入口点) 相关字段
 
-**args(\[]STRING)** # 定义容器运行的命令和参数。用于替换容器镜像中 CMD 指令。详见[为容器定义命令和参数章节](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)
+**args**(\[]STRING) # 定义容器运行的命令和参数。用于替换容器镜像中 CMD 指令。详见[为容器定义命令和参数章节](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)
 
 ```yaml
 # 注意，在使用 args 为容器传递 flags 时，不要使用空格。否则，会自动为 flags 和 参数 加上单引号，导致 flags 失效
@@ -190,7 +190,7 @@ flag provided but not defined: '--ns default'
         - default
 ```
 
-**command([]STRING)** # 定义容器运行的命令和参数。用于替换容器镜像中的 ENTRYPOINT 指令。详见为[容器定义命令和参数章节](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)
+**command**(\[]STRING) # 定义容器运行的命令和参数。用于替换容器镜像中的 ENTRYPOINT 指令。详见为[容器定义命令和参数章节](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)
 
 ### Lifecycle(生命周期) 相关字段
 
@@ -206,28 +206,28 @@ Pod 中容器的生命周期功能详见[《Pod 的生命周期》](/docs/10.云
 
 ### Debugging(调试) 相关字段
 
-**stdin(BOOLEAN)** #
+**stdin**(BOOLEAN) #
 
-**stdinOnce(BOOLEAN)** #
+**stdinOnce**(BOOLEAN) #
 
-**tty(BOOLEAN)** #
+**tty**(BOOLEAN) #
 
 ## nodeAffinity
 
 https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#NodeAffinity
 
-**preferredDuringSchedulingIgnoredDuringExecution([]Object)** # 调度程序将倾向于将 Pod 调度到满足此字段指定的反亲和行要求的节点，但是也可能会选择违反一个或多个该字段指定的调度规则。
+**preferredDuringSchedulingIgnoredDuringExecution**(\[]Object) # 调度程序将倾向于将 Pod 调度到满足此字段指定的反亲和行要求的节点，但是也可能会选择违反一个或多个该字段指定的调度规则。
 
-- **preference(OBJECT) # 必须的**。
-  - **matchExpressions([]OBJECT)** # 该字段下的内容就是 [通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
-  - **matchFields(OBJECT])** # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
-- **weight(INTEGER) # 必须的**。
+- **preference**(OBJECT) # **必须的**。
+  - **matchExpressions**(\[]OBJECT) # 该字段下的内容就是 [通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+  - **matchFields**(OBJECT]) # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+- **weight(INTEGER)** # **必须的**。
 
-**requiredDuringSchedulingIgnoredDuringExecution(Object)** # 如果在调度时未满足该字段指定的反亲和性要求，则不会将 pod 调度到该节点上。
+**requiredDuringSchedulingIgnoredDuringExecution**(Object) # 如果在调度时未满足该字段指定的反亲和性要求，则不会将 pod 调度到该节点上。
 
-- **nodeSelectorTerms([]OBJECT) # 必须的**。节点选择器列表。列表中元素之间是“或”的关系
-  - **matchExpressions([]OBJECT)** # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
-  - **matchFields([]OBJECT)** # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+- **nodeSelectorTerms**(\[]OBJECT) # **必须的**。节点选择器列表。列表中元素之间是“或”的关系
+  - **matchExpressions**(\[]OBJECT) # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+  - **matchFields**(\[]OBJECT) # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
 
 ## podAffinity
 
@@ -240,30 +240,30 @@ https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#P
 **preferredDuringSchedulingIgnoredDuringExecution**([]Object) # 调度程序将倾向于将 Pod 调度到满足此字段指定的反亲和行要求的节点，但是也可能会选择违反一个或多个该字段指定的调度规则。
 
 - **preference**(OBJECT) # **必须的**。
-  - **matchExpressions**([]OBJECT) # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
-  - **matchFields**([]OBJECT) # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+  - **matchExpressions**(\[]OBJECT) # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+  - **matchFields**(\[]OBJECT) # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
 - **weight**(INTEGER) # **必须的**。
 
-**requiredDuringSchedulingIgnoredDuringExecution**([]Object) # 如果在调度时未满足该字段指定的反亲和性要求，则不会将 pod 调度到该节点上。
+**requiredDuringSchedulingIgnoredDuringExecution**(\[]Object) # 如果在调度时未满足该字段指定的反亲和性要求，则不会将 pod 调度到该节点上。
 
-- **labelSelector(OBJECT)** # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
-- **namespaceSelector(OBJECT)** # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
-- **namespaces([]STING)** # 名称空间。`默认值：该 Pod 所在的名称空间`
-- **topologyKey(STRING)** # **必须的**。想要匹配的 Node 标签的键
+- **labelSelector**(OBJECT) # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+- **namespaceSelector**(OBJECT) # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+- **namespaces**(\[]STING) # 名称空间。`默认值：该 Pod 所在的名称空间`
+- **topologyKey**(STRING) # **必须的**。想要匹配的 Node 标签的键
 
 ## XXXProbe
 
 XXXProbe 是 Probe(探针) 相关字段，比如 livenessProbe、readinessProbe 等字段的值都可以使用这部分内容。
 
-**exec(Object)** # 通过在容器中执行命令作为探针检测方法
+**exec**(Object) # 通过在容器中执行命令作为探针检测方法
 
-- **exec.command([]STRING)**
+- **exec.command**(\[]STRING)
 
-**httpGET(Object)** # 使用 HTTP 的 GET 的请求作为探针检测方法。
+**httpGET**(Object) # 使用 HTTP 的 GET 的请求作为探针检测方法。
 
-**tcpSocket(Object)** # 通过检测 TCP 的端口作为探针检测方法。
+**tcpSocket**(Object) # 通过检测 TCP 的端口作为探针检测方法。
 
-**grpc(Object)** #
+**grpc**(Object) #
 
 # Pod Manifest 样例
 
@@ -286,3 +286,4 @@ spec:
     - name: myapp
       image: lchdzh/network-test
 ```
+

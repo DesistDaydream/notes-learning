@@ -54,11 +54,11 @@ ManagedFields maps workflow-id and version to the set of fields that are managed
 
 **fieldsV1** (FieldsV1)FieldsV1 holds the first JSON version format as described in the "FieldsV1" type._FieldsV1 stores a set of fields in a data structure like a Trie, in JSON format.Each key is either a '.' representing the field itself, and will always map to an empty set, or a string representing a sub-field or item. The string will follow one of these four formats: 'f:', where is the name of a field in a struct, or key in a map 'v:', where is the exact json formatted value of a list item 'i:', where is position of a item in a list 'k:', where is a map of a list item's key fields to their unique values If a key maps to an empty Fields value, the field that key represents is part of the set.The exact format is defined in sigs.k8s.io/structured-merge-diff_
 
-**manager(STRING)**# Manager 是管理这些字段的工作流的标识符。比如 kubectl、kubectl-replace、kubctl-run、kubelet、Go-http-client 等等
+**manager**(STRING) # Manager 是管理这些字段的工作流的标识符。比如 kubectl、kubectl-replace、kubctl-run、kubelet、Go-http-client 等等
 
 - 这个主要是用来清晰表明该对象最近几次创建、更新，是由哪些程序更新的
 
-**operation(STRING)** # 导致创建 managedField 字段下的这个条目的操作类型。此字段的唯一有效值是“Apply”和“Update”。
+**operation**(STRING) # 导致创建 managedField 字段下的这个条目的操作类型。此字段的唯一有效值是“Apply”和“Update”。
 
 - 这个主要是用来清晰表明该对象最近几次创建、更新，是 manager 中标明的程序执行的哪些操作
 

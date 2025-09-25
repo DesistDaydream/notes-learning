@@ -446,64 +446,55 @@ func main() {
 
 你好，这是必应。我会尽力用中文回答你的问题。
 
-go 中的 Decoder 和 Encoder 是用来实现流式编码和解码的接口，它们可以将数据从一个 io.Reader 或 io.Writer 转换成 go 的数据类型，或者反过来。<sup>1</sup> <sup>4</sup> <sup>5</sup>
+go 中的 Decoder 和 Encoder 是用来实现流式编码和解码的接口，它们可以将数据从一个 io.Reader 或 io.Writer 转换成 go 的数据类型，或者反过来。
 
-Marshal 和 Unmarshal 是一些方便的函数，它们可以将数据从一个字符串或字节切片转换成 go 的数据类型，或者反过来。<sup>1</sup> <sup>4</sup> <sup>5</sup>
+Marshal 和 Unmarshal 是一些方便的函数，它们可以将数据从一个字符串或字节切片转换成 go 的数据类型，或者反过来。
 
 有了 Marshal 和 Unmarshal，为什么还要有流式编码和解码的逻辑呢？主要有以下几个原因：
 
-- 流式编码和解码可以节省内存，因为它们不需要一次性加载整个数据到内存中，而是可以逐渐处理数据。<sup>1</sup> <sup>4</sup>
-- 流式编码和解码可以提高性能，因为它们可以在读写数据的同时进行转换，而不需要等待数据完全读写完毕。<sup>1</sup> <sup>4</sup>
-- 流式编码和解码可以支持更多的数据格式，比如 XML，CSV，YAML 等，因为它们可以自定义如何读写数据。<sup>6</sup>
+- 流式编码和解码可以节省内存，因为它们不需要一次性加载整个数据到内存中，而是可以逐渐处理数据。
+- 流式编码和解码可以提高性能，因为它们可以在读写数据的同时进行转换，而不需要等待数据完全读写完毕。
+- 流式编码和解码可以支持更多的数据格式，比如 XML，CSV，YAML 等，因为它们可以自定义如何读写数据。
 
 下面是一个简单的例子，演示了如何使用 Encoder 和 Decoder 来编码和解码一个结构体：
 
 ```go
-package main
-
-import (
- "bytes"
- "encoding/gob"
- "fmt"
-)
-
 type Person struct {
- Name string
- Age  int
+	Name string
+	Age  int
 }
 
 func main() {
- // 创建一个缓冲区，用来存储编码后的数据
- var buf bytes.Buffer
- // 创建一个 Encoder，用来将 Person 结构体编码到缓冲区
- enc := gob.NewEncoder(&buf)
- // 创建一个 Person 实例
- p := Person{Name: "Alice", Age: 25}
- // 调用 Encode 方法，将 p 编码到缓冲区
- err := enc.Encode(p)
- if err != nil {
-  fmt.Println(err)
-  return
- }
- // 打印缓冲区的内容（二进制格式）
- fmt.Println(buf.Bytes())
+	// 创建一个缓冲区，用来存储编码后的数据
+	var buf bytes.Buffer
+	// 创建一个 Encoder，用来将 Person 结构体编码到缓冲区
+	enc := gob.NewEncoder(&buf)
+	// 创建一个 Person 实例
+	p := Person{Name: "Alice", Age: 25}
+	// 调用 Encode 方法，将 p 编码到缓冲区
+	err := enc.Encode(p)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	// 打印缓冲区的内容（二进制格式）
+	fmt.Println(buf.Bytes())
 
- // 创建一个 Decoder，用来将缓冲区的数据解码成 Person 结构体
- dec := gob.NewDecoder(&buf)
- // 创建一个空的 Person 实例
- var q Person
- // 调用 Decode 方法，将缓冲区的数据解码到 q 中
- err = dec.Decode(&q)
- if err != nil {
-  fmt.Println(err)
-  return
- }
- // 打印 q 的内容（结构体格式）
- fmt.Println(q)
+	// 创建一个 Decoder，用来将缓冲区的数据解码成 Person 结构体
+	dec := gob.NewDecoder(&buf)
+	// 创建一个空的 Person 实例
+	var q Person
+	// 调用 Decode 方法，将缓冲区的数据解码到 q 中
+	err = dec.Decode(&q)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	// 打印 q 的内容（结构体格式）
+	fmt.Println(q)
 }
 ```
 
-\-
 \[1]: [go - json.Marshal vs Encoder.Encode - Stack Overflow](https://stackoverflow.com/questions/62379309/json-marshal-vs-encoder-encode)
 \[2]: [go - in Golang, what is the difference between json encoding and ...](https://stackoverflow.com/questions/33061117/in-golang-what-is-the-difference-between-json-encoding-and-marshalling)
 \[3]: [Golang JSON Marshal(encode) and Unmarshal(decode/parse) with examples](https://www.jsonformatter.io/golang-json-parse-marshal-unmarshal-encode-decode/)
@@ -534,7 +525,7 @@ json.Unmarshal() 和 json.Decode() 的区别主要有:
 
 # 其他文章
 
-使用了太长时间的python，对于强类型的Golang适应起来稍微有点费力，不过操作一次之后发现，只有这么严格的类型规定，才能让数据尽量减少在传输和解析过程中的错误。我尝试使用Golang创建了一个公司的OpenAPI的demo，记录一下中间遇到的问题。
+使用了太长时间的 Python，对于强类型的 Golang 适应起来稍微有点费力，不过操作一次之后发现，只有这么严格的类型规定，才能让数据尽量减少在传输和解析过程中的错误。我尝试使用 Golang 创建了一个公司的 OpenAPI 的 demo，记录一下中间遇到的问题。
 
 ## 编码(Encode)Json
 
@@ -550,9 +541,9 @@ paramJson, err := json.Marshal(param)
 
 ## Http 包的 POST 请求来实践对 JSON 的序列化、反序列化
 
-当我们把json编码好之后我们需要将信息传递给服务器。所以用到了http包。
+当我们把 JSON 编码好之后我们需要将信息传递给服务器。所以用到了 http 包。
 
-在使用了之后我觉得go的http包真的非常方便，的确如传言中描述的强大和人性化，方便实用。
+在使用了之后我觉得 Go 的 http 包真的非常方便，的确如传言中描述的强大和人性化，方便实用。
 
 ```go
 resp , err := http.PostForm(requestUrl, url.Values{"api_key": {ApiKey}, "api_sign": {apiSign},
@@ -583,7 +574,7 @@ if err1 != nil {
 return resp
 ```
 
-这里json.NewDecoder接收一个有Reader方法的变量，之后我们调用了Decoder的方法decode将里面的内容都存入事先申请好的response结构体变量中。这个变量初始化了我们通过文档了解到的返回的结构体字段类型。
+这里 json.NewDecoder 接收一个有 Reader 方法的变量，之后我们调用了 Decoder 的方法 decode 将里面的内容都存入事先申请好的 response 结构体变量中。这个变量初始化了我们通过文档了解到的返回的结构体字段类型。
 
 ```go
 openApiResponse struct {
@@ -595,11 +586,11 @@ openApiResponse struct {
 }
 ```
 
-这样一级一级解析下去，在构造接收返回回来数据的结构体的时候，注意到后面的json字段。他是一个tag，可以在解析json的时候将对应名字的tag解析到对应的变量中。
+这样一级一级解析下去，在构造接收返回回来数据的结构体的时候，注意到后面的 json 字段。他是一个 tag，可以在解析 json 的时候将对应名字的 tag 解析到对应的变量中。
 
 这样就相当于你做好了数据结构，然后将对应的数据放到对应的字段里面去。
 
-当然还有一种办法，当你不知道你所接收数据的数据结构的时候，你是没有办法提前声明好这些数据结构然后来接收的。这时我们可以申明一个空接口interface{}，让空接口的指针来接收这组数据，可以查看这组数据的数据结构。
+当然还有一种办法，当你不知道你所接收数据的数据结构的时候，你是没有办法提前声明好这些数据结构然后来接收的。这时我们可以申明一个空接口 interface{}，让空接口的指针来接收这组数据，可以查看这组数据的数据结构。
 
 ```go
 var hahaha interface{}
@@ -612,7 +603,7 @@ if err1 != nil {
 
 上面的 hahaha 可以接收并 decodejson，来接收这组数据。并且可以直接使用fmt.Print之类函数直接打印接收到的数据。如果想直接使用，我们可以使用类型断言但是更推荐的方法是，我们可以根据这组数据来写对应的结构体，然后将数据接收到结构体上进行操作。就像上面一样。
 
-同样的我们还可以使用一个map[string]interface{}来接收这个Json以方便对其进行后续操作，避免不需要的多余的反射。
+同样的我们还可以使用一个 `map[string]interface{}` 来接收这个 JSON 以方便对其进行后续操作，避免不需要的多余的反射。
 
 ```go
 var hahaha map[string]interface{}
@@ -621,12 +612,13 @@ err1 := json.NewDecoder(resp.Body).Decode(&hahaha)
 return hahaha
 ```
 
-除了实现一个decoder来处理数据，我们往往有Json序列化之后就立即需要序列化的操作，这个同样很容易使用：
+除了实现一个 decoder 来处理数据，我们往往有Json序列化之后就立即需要序列化的操作，这个同样很容易使用：
 
 ```go
 json.Unmarshal([]byte, &xx)
 ```
 
-来处理就好了。参数一是需要decode的Json数据, 参数二是用于接收这组数据的结构体字段。同样的我们也可以使用一个空接口来接收数据，也可以使用一一对应的结构体来放置数据。
+来处理就好了。参数一是需要 decode 的 Json 数据, 参数二是用于接收这组数据的结构体字段。同样的我们也可以使用一个空接口来接收数据，也可以使用一一对应的结构体来放置数据。
 
-看了上面的一堆介绍有一个感觉，就处理Json数据和类型转换来说。。python真是简单到爆炸，一个dumps一个loads轻松搞定。但是Golang严格的参数类型缺可以保证解析过来的数据一定是对应的数据结构和数据类型。不会在类型上报错更为严谨。个人觉得这很有趣，也很喜欢。
+看了上面的一堆介绍有一个感觉，就处理 Json 数据和类型转换来说。。python 真是简单到爆炸，一个 dumps 一个 loads 轻松搞定。但是 Golang 严格的参数类型缺可以保证解析过来的数据一定是对应的数据结构和数据类型。不会在类型上报错更为严谨。个人觉得这很有趣，也很喜欢。
+
