@@ -9,6 +9,7 @@ weight: 20
 > 参考：
 >
 > - [Wiki, ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+> - [Wiki, Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordinated_Universal_Time)
 > - [Wiki-cn，各地日期和时间表示法](https://zh.wikipedia.org/zh-hans/%E5%90%84%E5%9C%B0%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4%E8%A1%A8%E7%A4%BA%E6%B3%95)
 > - https://baike.baidu.com/item/ISO%208601/3910715?fr=aladdin
 > - [中国计量科学研究院，SI 基本单位](https://www.nim.ac.cn/520/node/4.html)
@@ -17,10 +18,15 @@ weight: 20
 
 1967 年，国际计量大会定义：1 秒是铯 133 原子基态的两个超精细能量间跃迁对应辐射的 9192631770 个周期的持续时间。
 
+**Coordinated Universal Time(协调世界时，简称 UTC)**
+
+UTC 是全球所有时区确定的参考系，所有时区的时间都是通过与 UTC 的偏移量（如 UTC+8）来定义的。UTC 比格林尼治标准时间（GMT）更精确，是国际上科学界和通信领域使用的正式时间标准。
+
 # Timestamps
 
 > 参考：
 >
+> - [Wiki, ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
 > - [RFC 3339，Date and Time on the Internet: Timestamps](https://tools.ietf.org/html/rfc3339)
 > - [Wiki, Timestamp](https://en.wikipedia.org/wiki/Timestamp)
 > - [Momentjs，时间格式](https://momentjs.com/docs/#/displaying/)
@@ -35,9 +41,21 @@ weight: 20
 
 时间格式为 HH:mm:ss，其中 HH 为小时 (00–24)，mm 为分钟 (00–60)，ss 为秒 (00–60)。如果仅显示小时和分钟，则格式为 hh:mm，例如 23:59。
 
+**时区**
+
+https://en.wikipedia.org/wiki/ISO_8601#Time_zone_designators
+
+在时间结尾添加类似下面这种偏移量
+
+- Z # 不加偏移量或使用大写字母 Z，表示为 UTC 时间
+- ±hh:mm # 东八区
+    - e.g. +08:00 表示东八区
+- ±hhmm
+- ±hh
+
 **日期和时间的组合表示法**
 
-合并表示时，要在时间前面加一大写字母 T，如要表示北京时间 2004 年 5 月 3 日下午 5 点 30 分 8 秒，可以写成 `2004-05-03T17:30:08+08:00` 或 `20040503T173008+08`。
+合并表示时，要在时间前面加一大写字母 T，e.g. 北京时间 2004 年 5 月 3 日下午 5 点 30 分 8 秒，可以写成 `2004-05-03T17:30:08+08:00` 或 `20040503T173008+08`。
 
 # Unix time
 

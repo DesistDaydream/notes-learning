@@ -3036,7 +3036,6 @@
       "docs/10.云原生/Kubernetes/Kubernetes 衍生品/Kubernetes 衍生品.md",
       "docs/10.云原生/Kubernetes/Kubernetes 衍生品/kube-vip.md",
       "docs/10.云原生/Kubernetes/Kubernetes 衍生品/K3S",
-      "docs/10.云原生/Kubernetes/Kubernetes 衍生品/Kubesphere",
       "docs/10.云原生/Kubernetes/Kubernetes 衍生品/Rancher",
       "docs/10.云原生/Kubernetes/Kubernetes 衍生品/SealOS",
       "docs/10.云原生/Kubernetes/Kubernetes 衍生品/Kubesphere.md"
@@ -3048,9 +3047,6 @@
       "docs/10.云原生/Kubernetes/Kubernetes 衍生品/K3S/K3S 配置详解.md",
       "docs/10.云原生/Kubernetes/Kubernetes 衍生品/K3S/K3S 备份与恢复.md",
       "docs/10.云原生/Kubernetes/Kubernetes 衍生品/K3S/K3S 管理.md"
-    ],
-    "docs/10.云原生/Kubernetes/Kubernetes 衍生品/Kubesphere": [
-      "docs/10.云原生/Kubernetes/Kubernetes 衍生品/Kubesphere/_index.md"
     ],
     "docs/10.云原生/Kubernetes/Kubernetes 衍生品/Rancher": [
       "docs/10.云原生/Kubernetes/Kubernetes 衍生品/Rancher/_index.md",

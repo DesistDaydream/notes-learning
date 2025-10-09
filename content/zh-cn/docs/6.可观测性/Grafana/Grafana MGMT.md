@@ -104,3 +104,27 @@ server {
 ```
 
 > Notes: proxy_pass 字段的值应该替换成真实的 Grafana 地址
+
+# Datasource
+
+## PostgreSQL
+
+当列的 data_type 为 `timestamp without time zone` 时， Grafana 的 PG 数据源会在查询到时间之后，把时间修改为页面设置的时区的值。此时将会产生一个问题，若真实时间是 2004-05-03T08:00:00+08:00，并且也存的是 2004-05-03 08:00:00 这个值，当 Grafana 的 PG 数据源插件在读取到该列的数据类型是 `timestamp without time zone` 时，会把该时间认为时 UTC 时间，若 Grafana 页面设置的是 CST，那么返回结果就会变成 2004-05-03 16:00:00。
+
+> 所以，对于使用 PostgreSQL 存储数据时，如果想要使用 data_type 的信息，那么存 2004-05-03T08:00:00+08:00 这个时间，应该存 2004-05-03 00:00:00 这个字符串
+
+下面有几种方式可以在 Grafana 的时间选择器设置为 “UTC+08:00” 时区时，避免这个情况：
+
+- `::text` 直接忽略 data_type，以字符串形式读取数据
+- `AT TIME ZONE` 可以让时间以指定时区的结果返回。相当于 sql 语句 与 数据源插件 一加一减，相互抵消。
+- 利用 Grafana 的 Transformations 中的 Format time 功能，设置 data_type 为 `timestamp without time zone` 的列的 timezone 为 UTC
+
+```sql
+SELECT
+  *,
+  create_time::text AS create_time_text,
+  create_time AT TIME ZONE 'Asia/Shanghai' AS create_time_tz
+FROM my_teble
+```
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/grafana/mgmt_postgresql_datasource_data_type_without_time_zone.png)
