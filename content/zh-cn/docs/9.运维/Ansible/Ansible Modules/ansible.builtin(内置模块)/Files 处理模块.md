@@ -15,7 +15,7 @@ Files 类别模块用来处理文件、文本
 - [assemble – Assemble configuration files from fragments](https://docs.ansible.com/ansible/2.9/modules/assemble_module.html#assemble-module)
 - [blockinfile # 添加、更新、删除指定的多行文本。Insert/update/remove a text block surrounded by marker lines](https://docs.ansible.com/ansible/2.9/modules/blockinfile_module.html#blockinfile-module)
 - [copy # 用于将文件从本地或远程设备上复制到远程设备上的某个位置。Copy files to remote locations](https://docs.ansible.com/ansible/2.9/modules/copy_module.html#copy-module)
-- [fetch – Fetch files from remote nodes](https://docs.ansible.com/ansible/2.9/modules/fetch_module.html#fetch-module)
+- [fetch – 从受管理节点获取文件](https://docs.ansible.com/ansible/2.9/modules/fetch_module.html#fetch-module)
 - [file # 管理文件和文件熟悉，用于创建文件、目录等。Manage files and file properties](https://docs.ansible.com/ansible/2.9/modules/file_module.html#file-module)
 - [find – Return a list of files based on specific criteria](https://docs.ansible.com/ansible/2.9/modules/find_module.html#find-module)
 - [ini_file – Tweak settings in INI files](https://docs.ansible.com/ansible/2.9/modules/ini_file_module.html#ini-file-module)

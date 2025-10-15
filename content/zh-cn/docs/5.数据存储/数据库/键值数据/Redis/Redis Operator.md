@@ -10,7 +10,9 @@ title: Redis Operator
 
 ### 创建名称空间
 
-    kubectl create ns redis
+```bash
+kubectl create ns redis
+```
 
 ### 创建 operator
 
@@ -31,9 +33,11 @@ kubectl apply -f all-redis-operator-resources.yaml
 
 ### 配置 redis 密码认证
 
-    # “密码”修改为自己想设置的密码
-    echo -n "密码" > password
-    kubectl create -n redis secret generic redis-auth --from-file=password
+```bash
+# “密码”修改为自己想设置的密码
+echo -n "密码" > password
+kubectl create -n redis secret generic redis-auth --from-file=password
+```
 
 ### 部署 redis
 

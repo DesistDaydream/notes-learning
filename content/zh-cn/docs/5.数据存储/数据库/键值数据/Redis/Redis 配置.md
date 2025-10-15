@@ -1,5 +1,7 @@
 ---
-title: Redis 配置详解
+title: Redis 配置
+linkTitle: Redis 配置
+weight: 2
 ---
 
 # 概述
@@ -104,12 +106,12 @@ replica-announce-ip "10.105.180.122"
 
 - **bind**(STRING) # 监听的地址。`默认值: 127.0.0.1`
 - **port**(INT) # redis 监听的端口。`默认值: 6379`
-- **tcp-backlog 511** # TCP 的等待队列
+- **tcp-backlog**(INT) # TCP 的等待队列
 - **timeout**(INT) # 客户端连接超时时长。`默认值：0`，不会超时
 
 ## General 配置环境
 
-- **daemonize yes|no** # 指定是否在后台运行
+- **daemonize**(yes|no) # 指定是否在后台运行
 - **databases**(INT) # 可使用的 databases。`默认值: 16`，i.e. 一共可用 16 个数据库
 - **logfile**(STRING) # 指定 Redis 记录日志文件的位置
 
@@ -156,3 +158,4 @@ replica-announce-ip "10.105.180.122"
 ## EVENT NOTIFICATION 配置环境
 
 ## ADVANCED CONFIG 配置环境
+

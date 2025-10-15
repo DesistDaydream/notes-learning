@@ -1,7 +1,7 @@
 ---
 title: Redis
 linkTitle: Redis
-weight: 20
+weight: 1
 ---
 
 
@@ -16,7 +16,7 @@ weight: 20
 > [!Warning]
 > [3 月 30 日 Redis 发布博客改变 License](https://redis.com/blog/redis-adopts-dual-source-available-licensing/)，后续 Linux 基金会基于 7.2.4 版本分叉，保持原有 License。开源版本改名称为 Redis OSS（open source）
 
-Redis 是一个开源的、网络化的、内存中的、具有持久化的键值数据存储。(是否持久化根据配置决定)
+Redis 是一个 网络化的、内存中的、具有持久化的 [键值数据](docs/5.数据存储/数据库/键值数据/键值数据.md)存储。(是否持久化根据配置决定)
 
 Redis 是一个内存数据库, 所有数据默认都存在于内存当中,可以配置“定时以追加或者快照”的方式储存到硬盘中. 由于 redis 是一个内存数据库, 所以读取写入的速度是非常快的, 所以经常被用来做数据, 页面等的缓存。
 
@@ -33,13 +33,57 @@ Redis 是一个内存数据库, 所有数据默认都存在于内存当中,可�
 
 # Redis 部署
 
-## Docker 启动 Redis
+https://redis.io/docs/latest/operate/oss_and_stack/install/
+
+## Docker
+
+https://redis.io/docs/latest/operate/oss_and_stack/install/install-stack/docker/
 
 ```bash
 docker run -d --name redis \
   --network=host \
   redis:5.0.10-alpine
 ```
+
+## 二进制
+
+Redis 官方没有提供二进制包，只能通过源码构建。
+
+> 但是我将 redis-server 文件从 RedHat 系系统中拷贝到 Debian 系系统中后，直接执行是可以使用的
+
+在 [GitHub 项目，redis/redis -utils/systemd-redis_server.service](utils/systemd-redis_server.service) 处可以找到 Redis 给 [Systemd](docs/1.操作系统/Systemd/Systemd.md) 使用的 Unit 文件。
+
+```bash
+[Unit]
+Description=Redis data structure server
+Documentation=https://redis.io/documentation
+#Before=your_application.service another_example_application.service
+#AssertPathExists=/var/lib/redis
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/redis-server --supervised systemd --daemonize no
+## Alternatively, have redis-server load a configuration file:
+#ExecStart=/usr/local/bin/redis-server /path/to/your/redis.conf
+LimitNOFILE=10032
+NoNewPrivileges=yes
+#OOMScoreAdjust=-900
+#PrivateTmp=yes
+Type=notify
+TimeoutStartSec=infinity
+TimeoutStopSec=infinity
+UMask=0077
+#User=redis
+#Group=redis
+#WorkingDirectory=/var/lib/redis
+
+[Install]
+WantedBy=multi-user.target
+```
+
+> [!Attention]
+> 其中要注意的是，在配置文件或命令行参数中，daemonize 配置需要设置为 no。因为 Redis 以后台模式启动的话，Systemd 会认为 Redis 没有启动成功，进而频繁重启。
 
 # Redis 关联文件与配置
 

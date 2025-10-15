@@ -1,5 +1,7 @@
 ---
 title: Pub/Sub(发布/订阅)
+linkTitle: Pub/Sub(发布/订阅)
+weight: 4
 ---
 
 # 概述
