@@ -1682,7 +1682,8 @@
       "docs/5.数据存储/数据库/关系数据/PostgreSQL/_index.md",
       "docs/5.数据存储/数据库/关系数据/PostgreSQL/PostgreSQL.md",
       "docs/5.数据存储/数据库/关系数据/PostgreSQL/psql 命令.md",
-      "docs/5.数据存储/数据库/关系数据/PostgreSQL/PostgreSQL SQL.md"
+      "docs/5.数据存储/数据库/关系数据/PostgreSQL/PostgreSQL SQL.md",
+      "docs/5.数据存储/数据库/关系数据/PostgreSQL/PostgreSQL MGMT.md"
     ],
     "docs/5.数据存储/数据库/关系数据/SQL": [
       "docs/5.数据存储/数据库/关系数据/SQL/_index.md",

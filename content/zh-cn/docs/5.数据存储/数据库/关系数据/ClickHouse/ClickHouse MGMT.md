@@ -12,6 +12,13 @@ weight: 20
 > - [官方文档，管理和部署](https://clickhouse.com/docs/guides/manage-and-deploy-index)
 >   - 链接有点乱，官网页面关于这部分大改过。截至本文更新可以从页面的 Server Admin 点进来。
 
+# ClikcHouse 部署后常见操作
+## 添加只读用户
+
+```sql
+-- TODO
+```
+
 # 备份与恢复
 
 > 参考：
