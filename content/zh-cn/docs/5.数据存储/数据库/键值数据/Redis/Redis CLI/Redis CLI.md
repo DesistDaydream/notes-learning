@@ -38,6 +38,8 @@ help # 获取指定 command 的帮助信息
 
 # 不同类型的数据处理命令组
 
+可以通过 [generic 组](docs/5.数据存储/数据库/键值数据/Redis/Redis%20CLI/generic%20组.md) 的 TYPE 指令确定 Key 的类型
+
 ## string
 
 详见：[string 组](/docs/5.数据存储/数据库/键值数据/Redis/Redis%20CLI/string%20组.md)
