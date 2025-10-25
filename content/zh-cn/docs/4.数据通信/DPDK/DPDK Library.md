@@ -51,7 +51,43 @@ DPDK 的主要对外函数接口通常以 `rte_`(runtime environment) 作为前�
 >
 > - [官方文档，开发者指南 - 遥测库](https://doc.dpdk.org/guides/prog_guide/telemetry_lib.html)
 
-在 Telemetry Library 相关代码 [telemetry_v2_init](https://github.com/DPDK/dpdk/blob/v25.03/lib/telemetry/telemetry.c#L599) 进行初始化，注册了几个基本的命令（`/`, `/info`, `/help`）。其他注册的命令则需要到各种 Libraries 的代码中查看。可以通过搜索 [init_telemetry](https://github.com/search?q=repo%3ADPDK%2Fdpdk%20init_telemetry&type=code) 关键字找到各种 Library 注册到 Telemetry 的命令，比如 [ethdev](https://github.com/DPDK/dpdk/blob/v25.03/lib/ethdev/rte_ethdev_telemetry.c#L1540), [mempool](https://github.com/DPDK/dpdk/blob/v25.03/lib/mempool/rte_mempool.c#L1600), etc.
+在 Telemetry Library 相关代码 [telemetry_v2_init](https://github.com/DPDK/dpdk/blob/v25.03/lib/telemetry/telemetry.c#L599) 进行初始化，注册了几个基本的命令（`/`, `/info`, `/help`）。其他注册的命令则需要到各种 Libraries 的代码中查看。可以通过搜索 [init_telemetry](https://github.com/search?q=repo%3ADPDK%2Fdpdk%20init_telemetry&type=code) 关键字找到各种 Library 注册到 Telemetry 的命令，e.g. [ethdev](https://github.com/DPDK/dpdk/blob/v25.03/lib/ethdev/rte_ethdev_telemetry.c#L1540), [mempool](https://github.com/DPDK/dpdk/blob/v25.03/lib/mempool/rte_mempool.c#L1600), etc.
+
+简单示例如下:
+
+```bash
+~]# dpdk-telemetry.py 
+Connecting to /var/run/dpdk/rte/dpdk_telemetry.v2
+{
+  "version": "DPDK 23.11.0",
+  "pid": 4054033,
+  "max_output_len": 16384
+}
+Connected to application: "usps"
+--> /ethdev/list
+{
+  "/ethdev/list": [
+    0,
+    1
+  ]
+}
+--> /ethdev/stats,0
+{
+  "/ethdev/stats": {
+    "ipackets": 0,
+    "opackets": 0,
+    "ibytes": 0,
+    "obytes": 0,
+    "imissed": 0,
+    "ierrors": 0,
+    "oerrors": 0,
+    "rx_nombuf": 0,
+    "q_ipackets": [
+      0,
+......
+```
+
+> Tips: 在个人的[学习项目](https://github.com/DesistDaydream/go-dpdk/blob/main/cmd/telemetry/telemetry.go)中使用 Go 语言通过使用 unixpacket 与 Socket 文件建立连接后，也可以实现 dpdk-telemetry.py 的效果
 
 从 DPDK 的 [API](https://doc.dpdk.org/api/) 也可以查看一些，各种命令返回信息的含义
 

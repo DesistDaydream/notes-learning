@@ -29,6 +29,8 @@ Socket(套接字) 原意是 “插座”，所以 Socket 就像插座的作用�
 
 > 参考系统调用的 Manual，可以看到 Linux 将 Socket 进行了两种分类，一个 domain(family)，一个 type，protocol 通常忽略。
 
+## Socket type 与 Socket Family
+
 **Socket Family(族)**/**Socket Domain(域)** 用于定义 Socket 在哪里通信，是 本地、网络、etc. 。可以在 [address_families(7)](https://man7.org/linux/man-pages/man7/address_families.7.html) 找到所有定义了的 Families
 
 - **[Unix Domain Socket](#Unix%20Domain%20Socket)** # 用于同一台设备的不同进程间互相通信
