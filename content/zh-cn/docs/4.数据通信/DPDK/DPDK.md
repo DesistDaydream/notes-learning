@@ -188,13 +188,23 @@ https://doc.dpdk.org/guides/tools/devbind.html
 
 - `dpdk-devbind --bind=vfio-pci eth1`
 
+## dpdk-dumpcap
+
+https://github.com/DPDK/dpdk/blob/main/app/dumpcap/main.c
+
+https://doc.dpdk.org/guides/tools/dumpcap.html
+
+dpdk-dumpcap 工具是一款 DPDK 得网络流量转储工具，类似于 [WireShark](/docs/7.信息安全/Packet%20analyzer/WireShark/WireShark.md) 中的 [dumpcap](https://www.wireshark.org/docs/man-pages/dumpcap.html) 工具。它作为辅助 DPDK 进程运行，允许我们捕获进出 DPDK 主进程的数据包。dpdk-dumpcap 以 Pcapng 数据包格式写入文件。
+
+TODO: 如何可以正常使用？
+
 ## dpdk-telemetry.py
 
 https://github.com/DPDK/dpdk/blob/main/usertools/dpdk-telemetry.py
 
-用于查询 DPDK 中的遥测信息，通过 [DPDK Telemetry Library](docs/4.数据通信/DPDK/DPDK%20Library.md) 暴露的 **SOCK_SEQPACKET** 类型的 Unix [Socket](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Socket/Socket.md#Socket%20type%20与%20Socket%20Family)（通常为 `/var/run/dpdk/*/dpdk_telemetry.v2`）实现。目前包括 ethdev 状态、ethdev 端口列表、eal 参数、etc.。
+用于查询 DPDK 中的遥测信息。
 
-`/help,COMMAND` # 获取命令的帮助信息
+通过 [DPDK Telemetry Library](docs/4.数据通信/DPDK/DPDK%20Library.md) 暴露的 **SOCK_SEQPACKET** 类型的 Unix [Socket](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Socket/Socket.md#Socket%20type%20与%20Socket%20Family)（通常为 `/var/run/dpdk/*/dpdk_telemetry.v2`）实现。目前包括 ethdev 状态、ethdev 端口列表、eal 参数、etc.。
 
 # DPDK 与 BPF 与 Netfilter
 

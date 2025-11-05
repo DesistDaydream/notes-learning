@@ -51,7 +51,13 @@ DPDK 的主要对外函数接口通常以 `rte_`(runtime environment) 作为前�
 >
 > - [官方文档，开发者指南 - 遥测库](https://doc.dpdk.org/guides/prog_guide/telemetry_lib.html)
 
-在 Telemetry Library 相关代码 [telemetry_v2_init](https://github.com/DPDK/dpdk/blob/v25.03/lib/telemetry/telemetry.c#L599) 进行初始化，注册了几个基本的命令（`/`, `/info`, `/help`）。其他注册的命令则需要到各种 Libraries 的代码中查看。可以通过搜索 [init_telemetry](https://github.com/search?q=repo%3ADPDK%2Fdpdk%20init_telemetry&type=code) 关键字找到各种 Library 注册到 Telemetry 的命令，e.g. [ethdev](https://github.com/DPDK/dpdk/blob/v25.03/lib/ethdev/rte_ethdev_telemetry.c#L1540), [mempool](https://github.com/DPDK/dpdk/blob/v25.03/lib/mempool/rte_mempool.c#L1600), etc.
+在 Telemetry Library 相关代码 [telemetry_v2_init](https://github.com/DPDK/dpdk/blob/v25.03/lib/telemetry/telemetry.c#L599) 进行初始化，之后即可使用。初始化之后会注册一些基本的命令，其他命令则取决于我们使用的 DPDK 都引用了哪些 Librairies，以及这些 Libraires 是否初始化了 telemetry
+
+- 注册了几个基本的命令
+    - `/` 命令可以列出所有可用命令
+    - `/info` 命令显示基本信息
+    - `/help,COMMAND` 命令显示 COMMAND 的帮助信息
+- 其他注册的命令则需要到各种 Libraries 的代码中查看。可以通过搜索 [init_telemetry](https://github.com/search?q=repo%3ADPDK%2Fdpdk%20init_telemetry&type=code) 关键字找到各种 Library 注册到 Telemetry 的命令，e.g. [ethdev](https://github.com/DPDK/dpdk/blob/v25.03/lib/ethdev/rte_ethdev_telemetry.c#L1540), [mempool](https://github.com/DPDK/dpdk/blob/v25.03/lib/mempool/rte_mempool.c#L1600), etc.
 
 简单示例如下:
 
@@ -64,12 +70,37 @@ Connecting to /var/run/dpdk/rte/dpdk_telemetry.v2
   "max_output_len": 16384
 }
 Connected to application: "usps"
+--> /
+{
+  "/": [
+    "/",
+    "/cnxk/ethdev/info",
+    "/eal/memseg_info",
+    "/ethdev/info",
+    "/ethdev/link_status",
+    "/ethdev/list",
+    "/eventdev/dev_dump",
+    ......有很多，都省略了
+  ]
+}
+--> /help,/ethdev/list
+{
+  "/help": {
+    "/ethdev/list": "Returns list of available ethdev ports. Takes no parameters"
+  }
+}
 --> /ethdev/list
 {
   "/ethdev/list": [
     0,
     1
   ]
+}
+--> /help,/ethdev/stats
+{
+  "/help": {
+    "/ethdev/stats": "Returns the common stats for a port. Parameters: int port_id"
+  }
 }
 --> /ethdev/stats,0
 {
