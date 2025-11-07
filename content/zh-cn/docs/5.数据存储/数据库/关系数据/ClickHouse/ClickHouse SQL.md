@@ -94,6 +94,8 @@ func oneNamedFunc(x any) {
 
 https://clickhouse.com/docs/en/sql-reference/functions
 
+**Regular Functions(常规函数)**
+
 ### 数组
 
 https://clickhouse.com/docs/en/sql-reference/functions/array-functions
@@ -214,18 +216,62 @@ dictGetOrNull('dict_name', attr_name, id_expr)
 
 ## Aggregate Functions
 
+**Aggregate Functions(聚合函数)**
+
 ## Table Functions
 
 https://clickhouse.com/docs/en/sql-reference/table-functions
 
-Table 函数可以用来构造一个新的表格式的数据，比如 `select toDate('2010-01-01') + number as d FROM numbers(2);` 可以生成 2 行数据，格式是像这样的表格
+**Table Functions(表函数)** 可以用来构造一个新的表格式的数据，比如 `select toDate('2010-01-01') + number as d FROM numbers(2);` 可以生成 2 行数据，格式是像这样的表格
 
 | d                   |
 | ------------------- |
 | 2010-01-01 00:00:00 |
 | 2010-01-02 00:00:00 |
 
+### 集群，分片，副本
+
+https://clickhouse.com/docs/sql-reference/table-functions/cluster
+
+`cluster` 函数可以访问集群的所有 shards，而无需创建[分布式](https://clickhouse.com/docs/engines/table-engines/special/distributed)表。每个 shard 仅查询一个 replica。
+
+`clusterAllReplicas` 函数与 `cluster` 相同，但会查询所有 replica。集群中的每个 replica 都用作一个单独的 shard/connection。
+
+**语法**
+
+```sql
+cluster('cluster_name', db.table, sharding_key)  
+clusterAllReplicas('cluster_name', db.table, sharding_key)  
+```
+
+**基本示例**
+
+下面的 SQL 会从 my_database.my_table 表中，查询 my_cluster 集群中所有 shards 的数据，而不是只查询所在节点的。
+
+```sql
+SELECT *
+FROM cluster('my_cluster','my_database.my_table')
+```
+
+下面的 SQL 会从 my_database.my_table 表中，查询 my_cluster 集群中所有 shards 和每个 shards 的所有 replicies 的数据，而不是只查询所在节点的。
+
+```sql
+SELECT *
+FROM clusterAllReplicas('my_cluster','my_database.my_table')
+```
+
+> [!Attention] 使用 `cluster` 和 `clusterAllReplicas` 函数的效率低于创建 `Distributed` 表，因为在这种情况下，每次请求都需要重新建立服务器连接。处理大量查询时，请务必提前创建 `Distributed` 表，不要使用 `cluster` 和 `clusterAllReplicas` 函数。
+>
+> `cluster` 和 `clusterAllReplicas` 表函数在以下情况下非常有用：
+> - 访问特定集群以进行数据比较、调试和测试。
+> - 出于研究目的，对各种 ClickHouse 集群和副本进行查询。
+> - 不频繁的、手动发出的分布式请求。
+
 ## Window Functions
+
+https://clickhouse.com/docs/sql-reference/window-functions
+
+**Window Functions(窗口函数)** 允许您对与当前行相关的一组行执行计算。您可以执行的一些计算类似于聚合函数，但窗口函数不会将行分组到单个输出中——它仍然会返回各个行。
 
 # 最佳实践
 

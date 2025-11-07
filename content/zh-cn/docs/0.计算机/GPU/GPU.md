@@ -21,6 +21,14 @@ weight: 1
 
 [B 站 - 飞天闪客，你管这破玩意叫GPU？](https://www.bilibili.com/video/BV1fxpEzoEnw)
 
+[B 站 - 硬件茶谈，【硬核科普】从零开始认识显卡](https://www.bilibili.com/video/BV1xE421j7Uv)
+
+- 后面还有显卡挑选方式，以及不同品牌的显卡差异
+
+3DMark 是由 Futuremark 公司于 1998 年推出的显卡性能测试软件
+
+其中 TimeSpy 天梯图，有显卡跑分排名
+
 # 显卡常见配置
 
 ## 垂直同步
