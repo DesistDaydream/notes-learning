@@ -157,7 +157,7 @@ https://clickhouse.com/docs/en/sql-reference/functions/json-functions
 
 解析 JSON 数据，主要包含两类
 
-- [`simpleJSON*` (`visitParam*`)](https://clickhouse.com/docs/sql-reference/functions/json-functions#simplejson-visitparam-functions)  # 这是为了极为快速解析JSON的有限子集而制造的。
+- [`simpleJSON*(visitParam*`)](https://clickhouse.com/docs/sql-reference/functions/json-functions#simplejson-visitparam-functions)  # 这是为了极为快速解析JSON的有限子集而制造的。
 - [`JSONExtract*`](https://clickhouse.com/docs/sql-reference/functions/json-functions#jsonextract-functions) # 是为了解析普通json而制造的。可以处理的逻辑更复杂
 
 ### 字典

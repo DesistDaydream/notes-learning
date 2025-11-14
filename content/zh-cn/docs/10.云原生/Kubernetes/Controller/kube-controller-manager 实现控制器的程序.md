@@ -96,7 +96,7 @@ spec:
 
 ## kube-controller-manager 监控指标
 
-详见：[kubernetes 监控](/docs/10.云原生/2.3.Kubernetes%20 容器编排系统/Kubernetes%20 管理/Kubernetes%20 监控/Kubernetes%20 系统组件指标.md 管理/Kubernetes 监控/Kubernetes 系统组件指标.md)
+详见 [Kubernetes 监控](docs/10.云原生/Kubernetes/Kubernetes%20管理/Kubernetes%20监控/Kubernetes%20监控.md)
 
 # kube-controller-manager 配置
 

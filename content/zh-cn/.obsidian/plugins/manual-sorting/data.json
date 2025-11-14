@@ -1,5 +1,5 @@
 {
-  "customFileOrder": {
+  "customOrder": {
     "/": [
       "_index.md",
       "about",
@@ -2381,7 +2381,7 @@
       "docs/9.运维/Ansible/Playbook/Variables(变量).md",
       "docs/9.运维/Ansible/Playbook/Templates 模板(Jinja2).md",
       "docs/9.运维/Ansible/Playbook/Conditionals(条件判断).md",
-      "docs/9.运维/Ansible/Playbook/loop(循环).md",
+      "docs/9.运维/Ansible/Playbook/Loops.md",
       "docs/9.运维/Ansible/Playbook/错误处理.md",
       "docs/9.运维/Ansible/Playbook/Debugger.md",
       "docs/9.运维/Ansible/Playbook/Tags.md",
@@ -3627,6 +3627,7 @@
       "obsidian_template/index_templater.md"
     ]
   },
-  "draggingEnabled": true,
-  "selectedSortOrder": "manual-sorting"
+  "sortOrder": "customOrder",
+  "debugMode": false,
+  "newItemPlacement": "top"
 }

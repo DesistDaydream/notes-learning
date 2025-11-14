@@ -1,5 +1,6 @@
 ---
 title: Conditionals(条件判断)
+linkTitle: Conditionals(条件判断)
 weight: 5
 ---
 

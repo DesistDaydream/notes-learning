@@ -541,7 +541,6 @@ p|selectattr('age','gt',22)|list
 
 - `batch(count,fill_withs=None)` # 将序列中每 count 个元素打包成一个列表。最后一个列表可能元素个数不够，默认不填充，如果要填充，则指定`fill_with`参数。
    - 例如`[1,2,3,4,5]|batch(2)|list`得到`[[1,2],[3,4],[5]]`，`[1,2,3,4,5]|batch(2,'x')|list`得到`[[1,2],[3,4],[5,'x']]`。
-
 - `default('default_value',bool=False)`或`d()` # 如果竖线左边的变量未定义，则返回 default() 指定的默认值。默认只对未定义变量其作用，如果想让 default() 也能对布尔类型的数据生效，需将第二个参数设置为 true。
    - `d()`是`default()`的简写方式。
    - 例如`myvar|d('undefined')`在 myvar 不存在时返回 undefined 字符串，`""|d("empty")`中因为是空字符串而不是未定义变量，所以仍然返回空字符串，`""|d("empty",true)`则返回 empty 字符串。
