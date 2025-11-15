@@ -3,7 +3,7 @@ title: Glossary
 linkTitle: Glossary
 weight: 200
 ---
-
+ 
 # 概述
 
 > 参考：
@@ -92,5 +92,12 @@ Chain-of-Thought(思维链)
 RLHF(人类反馈强化学习)
 
 
-
 Encoder/Decoder # Attention is all you need 论文 3.1 节
+
+## Tensor
+
+[B 站，【闪客】它是深度学习的核心，但却被起了个烂名字，十分钟彻底搞懂张量！](https://www.bilibili.com/video/BV1SB2gBFEyu)
+
+**Tensor(张量)** 简单基础得可以理解为多维数组。一阶张量 等价于 一维数组
+
+
