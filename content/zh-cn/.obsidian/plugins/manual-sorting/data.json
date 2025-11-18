@@ -1806,13 +1806,26 @@
     ],
     "docs/6.可观测性/DataPipeline": [
       "docs/6.可观测性/DataPipeline/_index.md",
-      "docs/6.可观测性/DataPipeline/Alloy",
       "docs/6.可观测性/DataPipeline/DataPipeline.md",
+      "docs/6.可观测性/DataPipeline/Alloy",
+      "docs/6.可观测性/DataPipeline/Promtail",
       "docs/6.可观测性/DataPipeline/Vector"
     ],
     "docs/6.可观测性/DataPipeline/Alloy": [
       "docs/6.可观测性/DataPipeline/Alloy/_index.md",
       "docs/6.可观测性/DataPipeline/Alloy/Alloy.md"
+    ],
+    "docs/6.可观测性/DataPipeline/Promtail": [
+      "docs/6.可观测性/DataPipeline/Promtail/_index.md",
+      "docs/6.可观测性/DataPipeline/Promtail/Promtail.md",
+      "docs/6.可观测性/DataPipeline/Promtail/Promtail 配置.md",
+      "docs/6.可观测性/DataPipeline/Promtail/Label 与 Relabeling.md",
+      "docs/6.可观测性/DataPipeline/Promtail/Pipeline"
+    ],
+    "docs/6.可观测性/DataPipeline/Promtail/Pipeline": [
+      "docs/6.可观测性/DataPipeline/Promtail/Pipeline/_index.md",
+      "docs/6.可观测性/DataPipeline/Promtail/Pipeline/Pipeline.md",
+      "docs/6.可观测性/DataPipeline/Promtail/Pipeline/Stages(阶段) 详解.md"
     ],
     "docs/6.可观测性/DataPipeline/Vector": [
       "docs/6.可观测性/DataPipeline/Vector/_index.md",
@@ -1870,6 +1883,7 @@
       "docs/6.可观测性/Logs/Loki/_index.md",
       "docs/6.可观测性/Logs/Loki/Loki.md",
       "docs/6.可观测性/Logs/Loki/Loki 部署.md",
+      "docs/6.可观测性/Logs/Loki/Loki Configuration.md",
       "docs/6.可观测性/Logs/Loki/Loki Rules 配置.md",
       "docs/6.可观测性/Logs/Loki/组件详解.md",
       "docs/6.可观测性/Logs/Loki/Storage(存储)",
@@ -1878,9 +1892,7 @@
       "docs/6.可观测性/Logs/Loki/Loki API.md",
       "docs/6.可观测性/Logs/Loki/Loki 管理",
       "docs/6.可观测性/Logs/Loki/Loki 开发",
-      "docs/6.可观测性/Logs/Loki/Loki 衍生品",
-      "docs/6.可观测性/Logs/Loki/Promtail",
-      "docs/6.可观测性/Logs/Loki/Loki Configuration.md"
+      "docs/6.可观测性/Logs/Loki/Loki 衍生品"
     ],
     "docs/6.可观测性/Logs/Loki/LogQL": [
       "docs/6.可观测性/Logs/Loki/LogQL/_index.md",
@@ -1901,19 +1913,6 @@
     "docs/6.可观测性/Logs/Loki/Loki 衍生品": [
       "docs/6.可观测性/Logs/Loki/Loki 衍生品/_index.md",
       "docs/6.可观测性/Logs/Loki/Loki 衍生品/qryn.md"
-    ],
-    "docs/6.可观测性/Logs/Loki/Promtail": [
-      "docs/6.可观测性/Logs/Loki/Promtail/_index.md",
-      "docs/6.可观测性/Logs/Loki/Promtail/Promtail.md",
-      "docs/6.可观测性/Logs/Loki/Promtail/Promtail 部署.md",
-      "docs/6.可观测性/Logs/Loki/Promtail/Promtail 配置.md",
-      "docs/6.可观测性/Logs/Loki/Promtail/Label 与 Relabeling.md",
-      "docs/6.可观测性/Logs/Loki/Promtail/Pipeline"
-    ],
-    "docs/6.可观测性/Logs/Loki/Promtail/Pipeline": [
-      "docs/6.可观测性/Logs/Loki/Promtail/Pipeline/_index.md",
-      "docs/6.可观测性/Logs/Loki/Promtail/Pipeline/Pipeline.md",
-      "docs/6.可观测性/Logs/Loki/Promtail/Pipeline/Stages(阶段) 详解.md"
     ],
     "docs/6.可观测性/Logs/Loki/Storage(存储)": [
       "docs/6.可观测性/Logs/Loki/Storage(存储)/_index.md",
@@ -2380,8 +2379,8 @@
       "docs/9.运维/Ansible/Playbook/Playbook Role(角色).md",
       "docs/9.运维/Ansible/Playbook/Variables(变量).md",
       "docs/9.运维/Ansible/Playbook/Templates 模板(Jinja2).md",
-      "docs/9.运维/Ansible/Playbook/Conditionals(条件判断).md",
       "docs/9.运维/Ansible/Playbook/Loops(循环).md",
+      "docs/9.运维/Ansible/Playbook/Conditionals(条件判断).md",
       "docs/9.运维/Ansible/Playbook/错误处理.md",
       "docs/9.运维/Ansible/Playbook/Debugger.md",
       "docs/9.运维/Ansible/Playbook/Tags.md",

@@ -56,7 +56,7 @@ OpenTelemetry SDK 提供了一些属性。其中之一是 `service.name` ，�
 
 > [!Note] 截至 2025-05-19，怎么感觉 Collector 的各种类型的组件都没有指定 service.name 呢？比如 filelog, journald 都是 unknown_service。但是 otelcol 自身的日志如果发送到自己的 otlp 接收器，就是包含 service.name，值为 otelcol-contrib
 
-此外，SDK 还将提供以下资源属性来标识自身： `telemetry.sdk.name` 、 `telemetry.sdk.language` 和 `telemetry.sdk.version`
+此外，SDK 还将提供以下资源属性来标识自身: `telemetry.sdk.name` 、 `telemetry.sdk.language` 和 `telemetry.sdk.version`
 
 # OpenTelemetry 实现
 

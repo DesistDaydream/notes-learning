@@ -38,9 +38,9 @@ sudo apt-get -y install docker-ce
 
 ### 配置 Unit 文件
 
-docker 自 1.13 版起会自动设置 iptables 的 FORWARD 默认策略为 DROP，这可能会影响 Kubernetes 集群依赖的报文转发功能，因此，需要在 docker 服务启动后，重新将 FORWARD 链的默认策略设备为 ACCEPT
+~~docker 自 1.13 版起会自动设置 iptables 的 FORWARD 默认策略为 DROP，这可能会影响 Kubernetes 集群依赖的报文转发功能，因此，需要在 docker 服务启动后，重新将 FORWARD 链的默认策略设备为 ACCEPT `sed -i "14i ExecStartPost=/usr/sbin/iptables -P FORWARD ACCEPT" /usr/lib/systemd/system/docker.service` ~~
 
-- sed -i "14i ExecStartPost=/usr/sbin/iptables -P FORWARD ACCEPT" /usr/lib/systemd/system/docker.service
+20.10.X (好像是)版本之后不再需要修改该配置了。可以由配置文件控制
 
 ## 方法 2：直接安装二进制文件
 

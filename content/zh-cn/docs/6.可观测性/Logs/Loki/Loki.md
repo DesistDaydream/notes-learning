@@ -22,12 +22,13 @@ Loki 是受 Prometheus 启发的水平可扩展，高度可用的多租户日志
 基于 Loki 的日志包含 3 个程序：
 
 - Loki 是主服务器，负责存储日志和处理查询。
-- Client Agent 客户端代理，负责收集日志并将其发送给 Loki。promtail 是其中一种 agent，是 loki 原配。
+- ClientAgent 客户端代理，负责收集日志并将其发送给 Loki。
+    - [Promtail](docs/6.可观测性/DataPipeline/Promtail/Promtail.md) 是其中一种 Agent，是 loki 原配。
 - Grafana 用于查询和显示日志。
 
 Loki 像 Prometheus 一样，但是是用于处理日志的：我们更喜欢基于多维标签的索引方法，并且希望使用没有依赖关系的单一二进制，易于操作的系统。Loki 与 Prometheus 的不同之处在于，它侧重于日志而不是指标，并通过推送而不是拉取交付日志。
 
-> Loki 与 Promtail 加一起才相当于 Prometheus，因为 Promtail 是发现目标，采集日志的程序。然后主动 Push 给 Loki，由 Loki 存储日志数据。
+> Tips: Loki 与 ClientAgent 加一起才相当于 Prometheus，因为 Promtail 是发现目标，采集日志的程序。然后主动 Push 给 Loki，由 Loki 存储日志数据。
 > 而 Promtheus，可以自己发现目标，采集指标，存储指标。
 
 ## Loki Observability(可观察性)
@@ -36,7 +37,7 @@ Loki 像 Prometheus 一样，但是是用于处理日志的：我们更喜欢基
 >
 > - [官方文档，运维 - 可观测性](https://grafana.com/docs/loki/latest/operations/observability/)
 
-Loki 和 Promtail 都在 `/metrics` 端点上公开了指标，该端点暴露了 [OpenMetrics](/docs/6.可观测性/Metrics/监控系统概述/OpenMetrics.md) 格式的指标。
+Loki 在 `/metrics` 端点上公开了指标，该端点暴露了 [OpenMetrics](/docs/6.可观测性/Metrics/监控系统概述/OpenMetrics.md) 格式的指标。
 
 Loki 存储库具有一个[混合包](https://github.com/grafana/loki/tree/main/production/loki-mixin)，其中包括一组仪表板，记录规则和警报。总之，mixin 为您提供了一个全面的软件包，用于监视生产中的 Loki。
 

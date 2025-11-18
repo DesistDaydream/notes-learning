@@ -21,7 +21,7 @@ weight: 20
 
 ![https://docs.datadoghq.com/observability_pipelines/](https://datadog-docs.imgix.net/images/observability_pipelines/op_marketecture_08232024.82939fcff194b8a049c85df485665720.png?fit=max&auto=format&w=1862&h=894)
 
-不管是 集成在程序内部的一段代码、在外部运行的采集程序，都可以看作是一种 DataPipeline。e.g. Loki 的 [Promtail](/docs/6.可观测性/Logs/Loki/Promtail/Promtail.md)、Prometheus 的 [Instrumenting](/docs/6.可观测性/Metrics/Instrumenting/Instrumenting.md)、etc. 都属于一种 DataPipeline 的实现。
+不管是 集成在程序内部的一段代码、在外部运行的采集程序，都可以看作是一种 DataPipeline。e.g. Loki 的 [Promtail](docs/6.可观测性/DataPipeline/Promtail/Promtail.md)、Prometheus 的 [Instrumenting](/docs/6.可观测性/Metrics/Instrumenting/Instrumenting.md)、etc. 都属于一种 DataPipeline 的实现。
 
 <font color="#ff0000">**用人话说：将数据从一个地方流到另一个地方的行为，就是 Pipeline 行为**</font>。就像 Pipeline 名字一样，管道，只不过是用来承载数据的管道，可以让数据从管道的一段流向另一端。
 

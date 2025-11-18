@@ -293,11 +293,11 @@ https://grafana.com/docs/loki/latest/clients/promtail/configuration/#docker_sd_c
 
 ### relabel_configs
 
-详见 [Label 与 Relabeling](/docs/6.可观测性/Logs/Loki/Promtail/Label%20与%20Relabeling.md)
+详见 [Label 与 Relabeling](docs/6.可观测性/DataPipeline/Promtail/Label%20与%20Relabeling.md)
 
 ## pipeline_stages
 
-具体配置详见 [Pipeline](/docs/6.可观测性/Logs/Loki/Promtail/Pipeline/Pipeline.md) 笔记以查看 Pipeline 功能，在 [Stages(阶段) 详解](/docs/6.可观测性/Logs/Loki/Promtail/Pipeline/Stages(阶段)%20详解.md) 笔记查看具体配置字段。
+具体配置详见 [Pipeline](docs/6.可观测性/DataPipeline/Promtail/Pipeline/Pipeline.md) 笔记以查看 Pipeline 功能，在 [Stages(阶段) 详解](docs/6.可观测性/DataPipeline/Promtail/Pipeline/Stages(阶段)%20详解.md) 笔记查看具体配置字段。
 
 # 配置文件示例
 

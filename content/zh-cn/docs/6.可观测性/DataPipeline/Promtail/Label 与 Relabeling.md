@@ -1,12 +1,14 @@
 ---
-title: "Label 与 Relabeling"
-linkTitle: "Label 与 Relabeling"
+title: Label 与 Relabeling
+linkTitle: Label 与 Relabeling
 weight: 20
 ---
 
 # 概述
 
 > 参考：
+>
+> - 
 
 Promtail 的 Label 与 Relabeling 功能与 Prometheus 中的 [Relabeling(重新标记)](/docs/6.可观测性/Metrics/Prometheus/Target(目标)%20与%20Relabeling(重新标记).md) 概念一样。
 

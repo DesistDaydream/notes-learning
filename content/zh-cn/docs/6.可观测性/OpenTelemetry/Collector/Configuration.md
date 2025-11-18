@@ -43,7 +43,19 @@ type Config struct {
 }
 ```
 
-Notes: map 中的 key 用来表示**组件 ID**。在 [component/identifiable.go](https://github.com/open-telemetry/opentelemetry-collector/blob/v0.112.0/component/identifiable.go#L19) 和 文档中 可以看到，定义组件 ID 遵循 `TYPE[/NAME]` 格式，e.g. otlp 或 otlp/2。只要 ID 是唯一的，就可以多次定义给定种类的组件。例如：
+> Notes: map 中的 key 用来表示**组件 ID**。
+
+## 组件 ID 命名规范
+
+`TYPE[/NAME]`
+
+定义组件 ID 遵循 `TYPE[/NAME]` 格式，在 [component/identifiable.go](https://github.com/open-telemetry/opentelemetry-collector/blob/v0.140.0/component/identifiable.go#L85) 和 [官方文档中](https://opentelemetry.io/docs/collector/configuration/#basics) 可以看到。
+
+TYPE 可用的字符串可以参考 Collector [Collector component](/docs/6.可观测性/OpenTelemetry/Collector/Collector%20component.md)，像下图，在 opentelemetry-collector、opentelemetry-collector-contrib 项目中，其对应的组件目录下，每个目录都是一个可用的 TYPE，目录名的前缀就是 TYPE，比如 otlpreceiver 是 OTLP Receiver（TYPE 是 otlp），prometheusreveiver 是 [Prometheus](/docs/6.可观测性/Metrics/Prometheus/Prometheus.md) Receiver（TYPE 是 prometheus），以此类推。
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/otel/config_type_desc.png)
+
+e.g. otlp 或 otlp/2。只要 ID 是唯一的，就可以多次定义给定种类的组件。例如：
 
 ```yaml
 receivers:
@@ -93,10 +105,6 @@ service:
       processors: [batch]
       exporters: [otlp]
 ```
-
-TYPE 可用的字符串可以参考 Collector [Collector component](/docs/6.可观测性/OpenTelemetry/Collector/Collector%20component.md)，像下图，在 opentelemetry-collector、opentelemetry-collector-contrib 项目中，在对应的组件目录下，每个目录都是一个可用的 TYPE，目录名的前缀就是 TYPE，比如 otlpreceiver 是 OTLP Receiver（TYPE 是 otlp），prometheusreveiver 是 [Prometheus](/docs/6.可观测性/Metrics/Prometheus/Prometheus.md) Receiver（TYPE 是 prometheus），以此类推。
-
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/otel/config_type_desc.png)
 
 # receivers
 

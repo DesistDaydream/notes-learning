@@ -17,6 +17,18 @@ OpenTelemetry Collector 提供了一种与供应商无关的 receive(接收)、p
 
 ![https://opentelemetry.io/docs/collector/img/otel-collector.svg](https://notes-learning.oss-cn-beijing.aliyuncs.com/otel/otel-collector-arch.png)
 
+## 暴露的端口
+
+下面的端口列表来源于官方提供的 Docker compose 部署文件
+
+- 1888:1888 # pprof extension
+- 8888:8888 # Prometheus metrics exposed by the Collector
+- 8889:8889 # Prometheus exporter metrics
+- 13133:13133 # health_check extension
+- 4317:4317 # OTLP gRPC receiver
+- 4318:4318 # OTLP http receiver
+- 55679:55679 # zpages extension
+
 # 架构
 
 > 参考：
@@ -131,6 +143,16 @@ func (t Type) String() string {
 ## 二进制
 
 https://github.com/open-telemetry/opentelemetry-collector-releases/tree/main/distributions 有各种 [Systemd](/docs/1.操作系统/Systemd/Systemd.md) 所需的 service 文件
+
+## 容器
+
+```sh
+docker run otel/opentelemetry-collector-contrib:0.139.0
+```
+
+**Compose**
+
+https://opentelemetry.io/docs/collector/installation/#docker-compose
 
 # Collector 关联文件与配置
 

@@ -13,6 +13,8 @@ weight: 1
 
 [B 站，用最好的动画为你讲解--机械硬盘的原理](https://www.bilibili.com/video/BV1bDpEz6EPA)
 
+[B 站，用最好的动画为你讲解--固态硬盘(SSD)的原理](https://www.bilibili.com/video/BV1jDgtzEEVe)
+
 # MBR与GPT
 
 原文：[公众号 - UEFI社区，MBR与GPT](https://mp.weixin.qq.com/s/E7h7KSV0NpEz_DkAyiFg9g)

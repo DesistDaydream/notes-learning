@@ -13,7 +13,7 @@ weight: 1
 > - [公众号，Promtail Pipeline 日志处理配置](https://mp.weixin.qq.com/s/PPNa7CYk6aaYDcvH9eTw1w)
 
 > [!Attention]
-> Grafana 弃用了 Promtail，推荐迁移到 Grafana Alloy
+> 自 [Loki 3.5.0 版本](https://github.com/grafana/loki/blob/v3.5.0/docs/sources/send-data/promtail/_index.md)开始，Grafana 弃用了 Promtail，推荐迁移到 Grafana Alloy
 
 Promtail 是将本地日志内容发送到私有 Loki 或 Grafana Cloud 的代理。通常将其部署到 有监控需求的应用程序 的每台机器上。
 
@@ -34,6 +34,23 @@ Promtail 与 Filebeat 性能对比图
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/zl113s/1616129582749-70275c0e-893e-413b-b489-80092db526c9.png)
 
+# Promtail 部署
+
+## Docker
+
+注意：使用 docker 运行 promtail 的时候，需要注意日志挂载路径及 scrape_configs 配置，因为在容器中运行，所以抓取路径是在容器中，而不是宿主机上，注意这点，否则会抓不到任何日志。
+
+为了解决上面的问题，并且不影响容器内 /var/log 目录，所以启动时指定 -v /var/log:/var/log/host:ro 参数，并修改默认配置文件中 **path**: 的值为 `/var/log/host/*`
+
+```bash
+docker run -d --rm --name promtail \
+  --network host \
+  -v /opt/logging/config/promtail:/etc/promtail \
+  -v /var/log:/var/log/host:ro \
+  -v /etc/localtime:/etc/localtime:ro \
+  grafana/promtail
+```
+
 # Promtail 工作流程
 
 ## 日志发现
@@ -50,7 +67,7 @@ Promtail 与 Prometheus 的服务发现机制相同，通过配置文件中 `scr
 
 1. 根据元数据添加标签。发现日志流后，会确定元数据(pod 名称、文件名等等)，这些元数据可以作为标签附加到每行日志上。通过 relabel_configs，可以将发现的标签改变为所需的形式。
 2. 解析日志内容并添加或更新标签。Promtail 会通过`scrape_config.pipeline_stages`配置段的内容，解析每行日志内容。根据解析的内容，可以为日志添加新的标签或更新现有标签。这种行为称为 [Pipelines](https://grafana.com/docs/loki/latest/clients/promtail/pipelines/)
-   1. Pipeline 说明详见：[Promtail Pipeline 概念](/docs/6.可观测性/Logs/Loki/Promtail/Pipeline/Pipeline.md)
+   1. Pipeline 说明详见：[Promtail Pipeline 概念](docs/6.可观测性/DataPipeline/Promtail/Pipeline/Pipeline.md)
 
 ## 推送日志
 

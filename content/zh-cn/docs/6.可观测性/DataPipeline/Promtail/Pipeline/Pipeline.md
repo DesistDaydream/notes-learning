@@ -1,7 +1,7 @@
 ---
 title: Pipeline
 linkTitle: Pipeline
-weight: 20
+weight: 1
 ---
 
 # 概述
