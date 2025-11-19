@@ -69,7 +69,7 @@ https://vector.dev/docs/reference/configuration/sources/
 
 https://vector.dev/docs/reference/configuration/sources/docker_logs
 
-从 [Docker](docs/10.云原生/Containerization%20implementation/Docker/Docker.md) 中收集日志
+从 [Docker](/docs/10.云原生/Containerization%20implementation/Docker/Docker.md) 中收集日志
 
 **最佳实践**
 

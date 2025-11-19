@@ -204,7 +204,7 @@ https://github.com/DPDK/dpdk/blob/main/usertools/dpdk-telemetry.py
 
 用于查询 DPDK 中的遥测信息。
 
-通过 [DPDK Telemetry Library](docs/4.数据通信/DPDK/DPDK%20Library.md) 暴露的 **SOCK_SEQPACKET** 类型的 Unix [Socket](docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Socket/Socket.md#Socket%20type%20与%20Socket%20Family)（通常为 `/var/run/dpdk/*/dpdk_telemetry.v2`）实现。目前包括 ethdev 状态、ethdev 端口列表、eal 参数、etc.。
+通过 [DPDK Telemetry Library](/docs/4.数据通信/DPDK/DPDK%20Library.md) 暴露的 **SOCK_SEQPACKET** 类型的 Unix [Socket](/docs/1.操作系统/Kernel/Process/Inter%20Process%20Communication/Socket/Socket.md#Socket%20type%20与%20Socket%20Family)（通常为 `/var/run/dpdk/*/dpdk_telemetry.v2`）实现。目前包括 ethdev 状态、ethdev 端口列表、eal 参数、etc.。
 
 # DPDK 与 BPF 与 Netfilter
 

@@ -10,9 +10,9 @@ weight: 1
 >
 > - [官方文档，存储](https://grafana.com/docs/loki/latest/storage/)
 > - [官方文档，运维 - 存储](https://grafana.com/docs/loki/latest/operations/storage/)
-> - https://grafana.com/blog/2023/12/20/the-concise-guide-to-grafana-loki-everything-you-need-to-know-about-labels/
+> - [博客 - 2023-12-20，Grafana Loki 简明指南：关于标签您需要了解的一切](https://grafana.com/blog/2023/12/20/the-concise-guide-to-grafana-loki-everything-you-need-to-know-about-labels/)
 
-与其他日志记录系统不同，Loki 是基于仅索引日志的元数据的想法而构建的。从 [Loki 的数据模型](/docs/6.可观测性/日志系统/Loki/Storage(存储)/Data%20Model(数据模型).md Model(数据模型).md)可知，日志是根据标签进行定位的。 日志数据本身会被压缩成 Chunks，并存储在本地的文件系统中；并且 Loki 还提供了一个 Index 数据，用来根据索引定位日志数据。小索引和高度压缩的 Chunks 简化了操作，并显着降低了 Loki 的成本。
+与其他日志记录系统不同，Loki 是基于仅索引日志的元数据的想法而构建的。从  Loki 的 [Data Model(数据模型)](/docs/6.可观测性/Logs/Loki/Storage(存储)/Data%20Model(数据模型).md) 可知，日志是根据标签进行定位的。 日志数据本身会被压缩成 Chunks，并存储在本地的文件系统中；并且 Loki 还提供了一个 Index 数据，用来根据索引定位日志数据。小索引和高度压缩的 Chunks 简化了操作，并显着降低了 Loki 的成本。
 
 所以 Loki 需要存储两种不同类型的数据，当 Loki 收到 Log Stream 时，会存储两类数据：
 
@@ -139,7 +139,7 @@ chunks/
 └── loki_cluster_seed.json
 ```
 
-日志数据集中在 fake/ 目录下，每个 `MTk1M2MyNDE5YjY6MTk1M2MyNDIyMjg6YThiNmRmZjU=` 这类的字符文件，就是一个 Chunk。并且，Index 的数据压缩后，也会在 Chunks 目录中生成对应的文件。
+日志数据集中在 `fake/` 目录下，每个 `MTk1M2MyNDE5YjY6MTk1M2MyNDIyMjg6YThiNmRmZjU=` 这类的字符文件，就是一个 Chunk。并且，Index 的数据压缩后，也会在 Chunks 目录中生成对应的文件。
 
 ## Remote Storage(远程存储)
 
@@ -147,29 +147,7 @@ TODO: 需要更新该部分内容
 
 远程存储非常简单，从本地存储的模式可以看出来，Index 和 Chunks 本质上就是一个个的文件，并且互相具有关联关系，所以，Ingester 组件还可以将这些数据，发送到远程存储中。
 
-现阶段：
-
-- Chunks 支持以下远程存储
-  - **Cassandra**
-  - **S3** # 任何实现 S3 接口的服务都可以用来存储 Chunks 数据，比如开源的 [MinIO](/docs/5.数据存储/存储/存储的基础设施架构/分布式存储/MinIO/MinIO.md)。
-  - ......等等，详见官方文档
-- Index 支持以下远程存储
-  - **Cassandra**
-  - ......等等，详见官方文档
-
 > Loki 的远程存储与 Prometheus 还有一点区别，Loki 自己的 Ingester 本身就实现了，而 Prometheus 的远程存储则需要其他程序对接。
-
-现在用 MinIO 中存储的 Index 与 Chunks 查看一下目录结构
-
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gzp72g/1621436054664-ec14823d-2330-40c2-a6a1-155e6fc2b3b9.png)
-
-fake 目录中就是 Chunks 数据
-
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gzp72g/1621436066582-d381149e-921e-47a1-9155-b716614528f7.png)
-
-index 目录总就是 Index 数据
-
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gzp72g/1621436085579-707d7396-de4d-4761-b753-0bdd940de96b.png)
 
 ### Index
 
@@ -270,77 +248,3 @@ https://grafana.com/docs/loki/latest/operations/storage/retention/
 
 在 Loki 3.0 之前，是不支持将 OTel 日志直接导入到 Loki 的，所以创建了
 
-# 下面的待弃用
-
-# Chunk 存储
-
-Chunk 存储是 Loki 的长期数据存储，旨在支持交互式查询和持续写入，不需要后台维护任务。它由以下部分组成:
-
-- 一个 chunks 索引。这个索引可以通过以下方式支持：Amazon DynamoDB、Google Bigtable、Apache Cassandra。
-- 一个用于 chunk 数据本身的键值（KV）存储。可以是：Amazon DynamoDB、Google Bigtable、Apache Cassandra、Amazon S3、Google Cloud Storage。
-
-> 与 Loki 的其他核心组件不同，块存储不是一个单独的服务、任务或进程，而是嵌入到需要访问 Loki 数据的 `ingester` 和 `querier` 服务中的一个库。
-
-块存储依赖于一个统一的接口，用于支持块存储索引的 `NoSQL` 存储（DynamoDB、Bigtable 和 Cassandra）。这个接口假定索引是由以下项构成的键的条目集合。
-
-- 一个哈希 key，对所有的读和写都是必需的。
-- 一个范围 key，写入时需要，读取时可以省略，可以通过前缀或范围进行查询。
-
-该接口在支持的数据库中的工作方式有些不同：
-
-- `DynamoDB` 原生支持范围和哈希键，因此，索引条目被直接建模为 DynamoDB 条目，哈希键作为分布键，范围作为 DynamoDB 范围键。
-- 对于 `Bigtable` 和 `Cassandra`，索引条目被建模为单个列值。哈希键成为行键，范围键成为列键。
-
-一组模式集合被用来将读取和写入块存储时使用的匹配器和标签集映射到索引上的操作。随着 Loki 的发展，Schemas 模式也被添加进来，主要是为了更好地平衡写操作和提高查询性能。
-
-### Chunk 格式
-
-```text
--------------------------------------------------------------------
-|                               |                                 |
-|        MagicNumber(4b)        |           version(1b)           |
-|                               |                                 |
--------------------------------------------------------------------
-|         block-1 bytes         |          checksum (4b)          |
--------------------------------------------------------------------
-|         block-2 bytes         |          checksum (4b)          |
--------------------------------------------------------------------
-|         block-n bytes         |          checksum (4b)          |
--------------------------------------------------------------------
-|                        # blocks (uvarint)                        |
--------------------------------------------------------------------
-| #entries(uvarint) | mint, maxt (varint) | offset, len (uvarint) |
--------------------------------------------------------------------
-| #entries(uvarint) | mint, maxt (varint) | offset, len (uvarint) |
--------------------------------------------------------------------
-| #entries(uvarint) | mint, maxt (varint) | offset, len (uvarint) |
--------------------------------------------------------------------
-| #entries(uvarint) | mint, maxt (varint) | offset, len (uvarint) |
--------------------------------------------------------------------
-|                      checksum(from # blocks)                     |
--------------------------------------------------------------------
-|           metasOffset - offset to the point with # blocks        |
--------------------------------------------------------------------
-```
-
-`mint` 和 `maxt`分别描述了最小和最大的 Unix 纳秒时间戳。
-
-#### Block 格式
-
-一个 block 由一系列日志 entries 组成，每个 entry 都是一个单独的日志行。
-
-请注意，一个 block 的字节是用 Gzip 压缩存储的。以下是它们未压缩时的形式。
-
-```text
--------------------------------------------------------------------
-|    ts (varint)    |     len (uvarint)    |     log-1 bytes      |
--------------------------------------------------------------------
-|    ts (varint)    |     len (uvarint)    |     log-2 bytes      |
--------------------------------------------------------------------
-|    ts (varint)    |     len (uvarint)    |     log-3 bytes      |
--------------------------------------------------------------------
-|    ts (varint)    |     len (uvarint)    |     log-n bytes      |
--------------------------------------------------------------------
-```
-
-`ts` 是日志的 Unix 纳秒时间戳，而 len 是日志条目的字节长度。

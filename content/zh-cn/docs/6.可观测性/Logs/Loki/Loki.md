@@ -23,7 +23,7 @@ Loki 是受 Prometheus 启发的水平可扩展，高度可用的多租户日志
 
 - Loki 是主服务器，负责存储日志和处理查询。
 - ClientAgent 客户端代理，负责收集日志并将其发送给 Loki。
-    - [Promtail](docs/6.可观测性/DataPipeline/Promtail/Promtail.md) 是其中一种 Agent，是 loki 原配。
+    - [Promtail](/docs/6.可观测性/DataPipeline/Promtail/Promtail.md) 是其中一种 Agent，是 loki 原配。
 - Grafana 用于查询和显示日志。
 
 Loki 像 Prometheus 一样，但是是用于处理日志的：我们更喜欢基于多维标签的索引方法，并且希望使用没有依赖关系的单一二进制，易于操作的系统。Loki 与 Prometheus 的不同之处在于，它侧重于日志而不是指标，并通过推送而不是拉取交付日志。

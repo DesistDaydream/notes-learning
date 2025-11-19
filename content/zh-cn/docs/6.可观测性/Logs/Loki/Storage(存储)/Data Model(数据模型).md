@@ -8,11 +8,22 @@ weight: 20
 
 > 参考：
 >
-> - 官方文档没有专门讲 Log Stream 的章节，Stream 的概念都是在其他章节提到的
-> - [官方文档，入门 - 标签](https://grafana.com/docs/loki/latest/getting-started/labels/)
+> - 官方文档没有专门讲 Log stream 的章节，Stream 的概念都是在其他章节提到的
+> - [官方文档，入门 - 标签](https://grafana.com/docs/loki/latest/get-started/labels/)
 > - [官方文档，运维 - 存储](https://grafana.com/docs/loki/latest/operations/storage/)
 
-# Log Stream(日志流) 概念
+基础概念
+
+- Index Labels(索引标签)
+- Log Stream(日志流)
+- Log Line(日志行)
+- Structured metadata(结构化元数据)
+
+**Index Labels(索引标签)** 简称 **Labels(标签)** 是 Loki 的重要组成部分。它们使 Loki 能够将日志消息组织和分组到 **Log Stream(日志流)** 中。每个日志流必须至少有一个标签才能在 Loki 中存储和查询。
+
+**Structured metadata(结构化元数据)** 附加到日志行上，以解决高基数的元数据（e.g. 用户名、进程 ID、etc.）作为标签导致的查询缓慢问题。并且可以适配 OTel 的资源属性如何存储的问题（因为 OTel 的资源属性设计并不会考虑这些键/值对格式的元数据是否会产生高基数，仅仅是做了一个规范定义）。
+
+# Log Stream(日志流)
 
 Loki 通过一种称为 **Log Stream(日志流)** 的概念组织所有日志数据。**Log Stream(日志流) 之于 Loki 类似于 Time series(时间序列) 之于 Prometheus**
 
@@ -28,7 +39,7 @@ Stream 与 Label 是强关联的，在 Loki 中，Label 是唯一可以定义 Lo
 
 所以 Log Stream 就是上述事物的一种通用抽象。
 
-## Log Line(日志行) 概念
+## Log Line(日志行)
 
 Log Line 就是指日志流中的每一行日志，称为 **Log Line(日志行)**。Log Line 之于 Loki 类似于 Series 之于 Prometheus。
 
@@ -94,9 +105,66 @@ scrape_configs:
 {env="dev"} <- 将返回所有带有 env=dev 标签的日志
 ```
 
-通过使用一个标签就可以查询很多日志流了，通过组合多个不同的标签，可以创建非常灵活的日志查询。Label 标签是 Loki 日志数据的索引，它们用于查找压缩后的日志内容，这些内容被单独存储为块。标签和值的每一个唯一组合都定义了一个流 ，一个流的日志被分批，压缩，并作为块进行存储。
+通过使用一个标签就可以查询很多日志流了，通过组合多个不同的标签，可以创建非常灵活的日志查询。Label(标签) 是 Loki 日志数据的索引，它们用于查找压缩后的日志内容，这些内容被单独存储为块。标签和值的每一个唯一组合都定义了一个流 ，一个流的日志被分批，压缩，并作为块进行存储。
 
-# Cardinality(基数) 概念
+# Structured metadata(结构化元数据)
+
+https://grafana.com/docs/loki/latest/get-started/labels/structured-metadata/
+
+痛点：选择适当的**低基数标签**对于有效操作和查询 Loki 至关重要。某些元数据，特别是与基础设施相关的元数据（e.g. Kubernetes Pod 名称、进程 ID、etc.），可能难以嵌入日志行中，而且基数过高的话，也无法有效地存储为索引标签。
+
+**Structured metadata(结构化元数据)** 是一种将元数据附加到日志的方法，无需将这些元数据索引或将其包含在日志行内容本身中。
+
+> [!Tip] 用人话说: Structured metadata 也可以看作是一种 Label（只不过 Loki 将 Label 又抽象了一层，称为 Fields，而 Fields 分为 Index Lable 和 Structured metadata。就像下图，在 Grafana 中查询的某条日志，结构化元数据与标签都在 Fields 中）
+>
+> 不过这种结构化元数据的标签并不会被索引
+>
+> 也不像 Index Label 会产生高基数的影响，并且没有 Index Label 可以决定日志流如何分组的特点。Structured metadata 只是一种附加到日志流上的标识。
+
+> [!Note]
+> 现阶段（截止到 2025-11-19），只有使用 Grafana Alloy 或 OpenTelemetry Collector 以 OpenTelemetry 格式摄取数据需要入库到 Loki 的时候，才会产生结构化元数据
+>
+> 结构化元数据设计之初，是旨在支持 [OpenTelemetry](docs/6.可观测性/OpenTelemetry/OpenTelemetry.md) 数据的原生摄取。以及为了解决高基数的问题，而避免将所有键/值对的元数据都存到 Indexed Label 中（索引过多就失去了索引的作用）
+
+在 [Log Queries](docs/6.可观测性/Logs/Loki/LogQL/Log%20Queries.md) 中，结构化元数据无法使用日志流选择器查询，只能基于日志流选择器，通过标签过滤表达式查询。
+
+# Indexed label 与 Structured metadata
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/loki/storage/metadata_and_lable_1.png)
+
+|         | Indexed Label                            | Structured metadata         |
+| ------- | ---------------------------------------- | --------------------------- |
+| 用途      | 作为日志流的索引                                 | 附加到日志                       |
+| 储存位置    | Index                                    | Chunk                       |
+| 适合存放的数据 | 低基数字段。e.g. service_name, host, env, etc. | 任意字段。e.g. user_id, ip, etc. |
+| 查询方式    | 日志流选择器 `{KeyName="Value"}`               | 标签过滤表达式 `KeyName = "Value"` |
+
+## 结构化元数据转为索引标签
+
+配置 `.limits_config.otlp_config.resource_attributes.attributes_config` 字段，将指定的 OTel 的资源属性转为标签
+
+示例
+
+```yaml
+limits_config:
+  # 将 OTLP 的 Resource attributes 映射为 Loki 的 Indexed label，以便可以通过标签过滤
+  # https://grafana.com/docs/loki/latest/send-data/otel/#changing-the-default-mapping-of-otlp-to-loki-format
+  otlp_config:
+    resource_attributes:
+      attributes_config:
+        - action: index_label
+          attributes:
+            - host_ip
+            - province
+            - region
+            - custom_house_name
+            - log_type
+            - docking_system
+```
+
+# Cardinality(基数)
+
+https://grafana.com/docs/loki/latest/get-started/labels/cardinality/
 
 前面的示例使用的是静态定义的 Label 标签，只有一个值；但是有一些方法可以动态定义标签。比如我们有下面这样的日志数据：
 
