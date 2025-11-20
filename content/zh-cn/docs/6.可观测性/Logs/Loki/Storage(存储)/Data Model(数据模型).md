@@ -1,7 +1,7 @@
 ---
 title: Data Model(数据模型)
 linkTitle: Data Model(数据模型)
-weight: 20
+weight: 2
 ---
 
 # 概述
@@ -11,31 +11,38 @@ weight: 20
 > - 官方文档没有专门讲 Log stream 的章节，Stream 的概念都是在其他章节提到的
 > - [官方文档，入门 - 标签](https://grafana.com/docs/loki/latest/get-started/labels/)
 > - [官方文档，运维 - 存储](https://grafana.com/docs/loki/latest/operations/storage/)
+> - https://www.qikqiak.com/post/grafana-loki-usage/
 
 基础概念
 
-- Index Labels(索引标签)
+- Indexed Label(索引标签)
 - Log Stream(日志流)
 - Log Line(日志行)
 - Structured metadata(结构化元数据)
 
-**Index Labels(索引标签)** 简称 **Labels(标签)** 是 Loki 的重要组成部分。它们使 Loki 能够将日志消息组织和分组到 **Log Stream(日志流)** 中。每个日志流必须至少有一个标签才能在 Loki 中存储和查询。
+**Index Label(索引标签)** 简称 **Label(标签)** 是 Loki 的重要组成部分。它们使 Loki 能够将日志消息组织和分组到 **Log Stream(日志流)** 中。每个日志流必须至少有一个标签才能在 Loki 中存储和查询。
 
 **Structured metadata(结构化元数据)** 附加到日志行上，以解决高基数的元数据（e.g. 用户名、进程 ID、etc.）作为标签导致的查询缓慢问题。并且可以适配 OTel 的资源属性如何存储的问题（因为 OTel 的资源属性设计并不会考虑这些键/值对格式的元数据是否会产生高基数，仅仅是做了一个规范定义）。
 
-# Log Stream(日志流)
+# Log Stream(日志流) 与 Indexed Labels(索引标签)
 
-Loki 通过一种称为 **Log Stream(日志流)** 的概念组织所有日志数据。**Log Stream(日志流) 之于 Loki 类似于 Time series(时间序列) 之于 Prometheus**
+Loki 通过一种称为 **Log Stream(日志流)** 的概念，组织所有日志数据。
 
-Loki 使用 **Stream(流)** 这个词来描述保存的日志数据，并根据 **Label(标签)** 来定位日志流，Label 是日志流的元数据。Label 的概念和用法与 Prometheus 中的 Label 一致。如果 Loki 与 Prometheus 同时使用，那么他们之间得标签是一致的，通过 Label，很容易得就可以将应用程序指标和日志数据关联起来。
+> [!Tip] Log Stream(日志流) 之于 Loki 类似于 Time series(时间序列) 之于 Prometheus
+>
+> Loki 中 Label 的概念和用法与 Prometheus 中的 Label 类似
 
-Stream 与 Label 是强关联的，在 Loki 中，Label 是唯一可以定义 Log Stream 的东西。每个标签键和值的组合定义了一条 log stream。如果一个标签值发生了变化，则这会生成一个新的 Log stream。在 Prometheus 中，类似 Log Stream 概念的是 time series(stream 对应 series)。但是不同的是，在 Prometheus 中还有一个维度，是 metrics name(指标名称)。但是在 Loki 中则谁 Path，一个 采集日志的 Path 实际上是会采集很多很多日志的。也正是由于此，所以 Loki 将这种概念称为 Stream，而不是 Series。
+Loki 使用 **Stream(流)** 这个词来描述保存的**一组日志数据**，由 **Indexed Label(索引标签)** 来定位每一条日志流（i.e. 每组日志）。
+
+> [!Attention] 每条日志流必须至少拥有一个标签，才能在 Loki 中存储和查询
+
+Stream 与 Label 是强关联的，在 Loki 中，Label 是唯一可以定义 Log Stream 的东西。每个标签键和值的组合定义了一条 log stream。如果一个标签值发生了变化，则这会生成一个新的 Log stream。在 Prometheus 中，类似 Log Stream 概念的是 time series(stream 对应 series)。但是不同的是，
 
 用白话说，所谓的 Log Stream 可以是下面事物的一种：
 
-- **File** # 一个文件就是一个 Log Stream。一般情况，客户端(比如 Promtail)从文件中 tail 内容以获取日志信息，所以，一个日志就相当于一个 日志流。
+- **File** # 一个文件可以是一条 Log Stream。一般情况，客户端（e.g Promtail）从文件中 tail 内容以获取日志信息。所以，在没有其他过滤条件的情况下，一个日志文件中的所有日志就相当于一条 日志流。
 - **STDOUT** # 标准输出。
-- ....等等
+- ....etc.
 
 所以 Log Stream 就是上述事物的一种通用抽象。
 
@@ -113,13 +120,17 @@ https://grafana.com/docs/loki/latest/get-started/labels/structured-metadata/
 
 痛点：选择适当的**低基数标签**对于有效操作和查询 Loki 至关重要。某些元数据，特别是与基础设施相关的元数据（e.g. Kubernetes Pod 名称、进程 ID、etc.），可能难以嵌入日志行中，而且基数过高的话，也无法有效地存储为索引标签。
 
-**Structured metadata(结构化元数据)** 是一种将元数据附加到日志的方法，无需将这些元数据索引或将其包含在日志行内容本身中。
+**Structured metadata(结构化元数据)** 是一种将元数据附加到日志行的方法，无需将这些元数据索引或将其包含在日志行内容本身中。
 
 > [!Tip] 用人话说: Structured metadata 也可以看作是一种 Label（只不过 Loki 将 Label 又抽象了一层，称为 Fields，而 Fields 分为 Index Lable 和 Structured metadata。就像下图，在 Grafana 中查询的某条日志，结构化元数据与标签都在 Fields 中）
 >
-> 不过这种结构化元数据的标签并不会被索引
+> ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/loki/storage/metadata_and_lable_1.png)
 >
-> 也不像 Index Label 会产生高基数的影响，并且没有 Index Label 可以决定日志流如何分组的特点。Structured metadata 只是一种附加到日志流上的标识。
+> 不过这种结构化元数据的标签<font color="#ff0000">**并不会被索引**</font>
+>
+> 也不像 Indexed Label 会产生高基数的影响，并且没有 Indexed Label 可以决定日志流如何分组的特点。Structured metadata 只是一种附加到日志流上的标识。
+>
+> 有的官方文档或者博客里，还会将结构化元数据成为 Extracted Labels
 
 > [!Note]
 > 现阶段（截止到 2025-11-19），只有使用 Grafana Alloy 或 OpenTelemetry Collector 以 OpenTelemetry 格式摄取数据需要入库到 Loki 的时候，才会产生结构化元数据
@@ -128,16 +139,14 @@ https://grafana.com/docs/loki/latest/get-started/labels/structured-metadata/
 
 在 [Log Queries](docs/6.可观测性/Logs/Loki/LogQL/Log%20Queries.md) 中，结构化元数据无法使用日志流选择器查询，只能基于日志流选择器，通过标签过滤表达式查询。
 
-# Indexed label 与 Structured metadata
+## Indexed label 与 Structured metadata
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/loki/storage/metadata_and_lable_1.png)
-
-|         | Indexed Label                            | Structured metadata         |
-| ------- | ---------------------------------------- | --------------------------- |
-| 用途      | 作为日志流的索引                                 | 附加到日志                       |
-| 储存位置    | Index                                    | Chunk                       |
-| 适合存放的数据 | 低基数字段。e.g. service_name, host, env, etc. | 任意字段。e.g. user_id, ip, etc. |
-| 查询方式    | 日志流选择器 `{KeyName="Value"}`               | 标签过滤表达式 `KeyName = "Value"` |
+|         | Indexed Label                            | Structured metadata                   |
+| ------- | ---------------------------------------- | ------------------------------------- |
+| 用途      | 作为日志流的**索引**                             | 作为日志行的**附加数据**                        |
+| 储存位置    | Index                                    | Chunk                                 |
+| 适合存放的数据 | 低基数字段。e.g. service_name, host, env, etc. | 任意字段。e.g. user_id, trace_id, ip, etc. |
+| 查询方式    | 日志流选择器 `{KeyName="Value"}`               | 标签过滤表达式 `KeyName = "Value"`           |
 
 ## 结构化元数据转为索引标签
 

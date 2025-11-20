@@ -4,6 +4,8 @@ title: Glossary
 
 # 部署环境
 
+deployment_environment
+
 - Proof of Concept(概念验证，简称 poc)
 - Development(开发，简称 dev)
 - Test(测试，简称 test)
