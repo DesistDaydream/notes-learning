@@ -254,8 +254,8 @@ UIO 旁路了内核，主动轮询去掉硬中断，DPDK 从而可以在用户�
 
 ![](https://ask.qcloudimg.com/draft/1141755/v43qilsryd.png?imageView2/2/w/1620)
 
-网络空闲时CPU长期空转，会带来能耗问题。所以，DPDK推出Interrupt DPDK模式。
+网络空闲时CPU长期空转，会带来能耗问题。所以，DPDK 推出 Interrupt DPDK 模式。
 
 ![](https://ask.qcloudimg.com/draft/1141755/pg3d428gpr.png?imageView2/2/w/1620)
 
-它的原理和 [NAPI](https://www.ibm.com/developerworks/cn/linux/l-napi/index.html) 很像，就是没包可处理时进入睡眠，改为中断通知。并且可以和其他进程共享同个CPU Core，但是DPDK进程会有更高调度优先级。
+它的原理和 [NAPI](https://www.ibm.com/developerworks/cn/linux/l-napi/index.html) 很像，就是没包可处理时进入睡眠，改为中断通知。并且可以和其他进程共享同个 CPU Core，但是 DPDK 进程会有更高调度优先级。

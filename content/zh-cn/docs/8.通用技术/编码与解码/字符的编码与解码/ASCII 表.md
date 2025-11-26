@@ -271,38 +271,38 @@ title: ASCII 表
 
 ## 前 32 个控制字符的详细解释
 
-| Seq  | 十进 | 十六进 | 缩写 | 字符名                                 |
-| ---- | ---- | ------ | ---- | -------------------------------------- |
-|      | 00   | 0x00   | NUL  | Null (空)                              |
-| `^A`   | 01   | 0x01   | SOH  | Start of Heading (报头开始)            |
-| `^B`   | 02   | 0x02   | STX  | Start of Text (正文开始)               |
-| `^C`   | 03   | 0x03   | ETX  | End of Text (正文结束)                 |
-| `^D`   | 04   | 0x04   | EOT  | End of Transmission (传输结束)         |
-| `^E`   | 05   | 0x05   | ENQ  | Enquiry (查询)                         |
-| `^F`   | 06   | 0x06   | ACK  | Acknowledge (确认)                     |
-| `^G`   | 07   | 0x07   | BEL  | Bell (振铃)                            |
-| `^H`   | 08   | 0x08   | BS   | Backspace (退格)                       |
-| `^I`   | 09   | 0x09   | HT   | Horizontal Tab (水平制表)              |
-| `^J`   | 10   | 0x0A   | LF   | Line Feed (换行)                       |
-| `^K`   | 11   | 0x0B   | VT   | Vertical Tab (垂直制表)                |
-| `^L`   | 12   | 0x0C   | FF   | Form Feed (换页)                       |
-| `^M`   | 13   | 0x0D   | CR   | Carriage Return (回车)                 |
-| `^N`   | 14   | 0x0E   | SO   | Shift Out (移出)                       |
-| `^O`   | 15   | 0x0F   | SI   | Shift In (移入)                        |
-| `^P`   | 16   | 0x10   | DLE  | Data Link Escape (数据链路转义)        |
-| `^Q`   | 17   | 0x11   | DC1  | Device Control 1 (设备控制1)           |
-| `^R`   | 18   | 0x12   | DC2  | Device Control 2 (设备控制2)           |
-| `^S`   | 19   | 0x13   | DC3  | Device Control 3 (设备控制3)           |
-| `^T`   | 20   | 0x14   | DC4  | Device Control 4 (设备控制4)           |
-| `^U`   | 21   | 0x15   | NAK  | Negative Acknowledge (否认)            |
-| `^V`   | 22   | 0x16   | SYN  | Synchronous Idle (同步空闲)            |
-| `^W`   | 23   | 0x17   | ETB  | End of Transmission Block (传输块结束) |
-| `^X`   | 24   | 0x18   | CAN  | Cancel (取消)                          |
-| `^Y`   | 25   | 0x19   | EM   | End of Medium (介质结束)               |
-| `^Z`   | 26   | 0x1A   | SUB  | Substitute (替换)                      |
-| `^[` | 27   | 0x1B   | ESC  | Escape (转义)                          |
-| `^|` | 28   | 0x1C   | FS   | File Separator (文件分隔符)            |
-| `^]` | 29   | 0x1D   | GS   | Group Separator (分组符)               |
-| `^^` | 30   | 0x1E   | RS   | Record Separator (记录分隔符)          |
-| `^_` | 31   | 0x1F   | US   | Unit Separator (单元分隔符)            |
-|      | 127  | 0x7F   | DEL  | Delete (删除)                          |
+| Seq  | 十进  | 十六进  | 缩写   | 字符名                               |                        |
+| ---- | --- | ---- | ---- | --------------------------------- | ---------------------- |
+|      | 00  | 0x00 | NUL  | Null (空)                          |                        |
+| `^A` | 01  | 0x01 | SOH  | Start of Heading (报头开始)           |                        |
+| `^B` | 02  | 0x02 | STX  | Start of Text (正文开始)              |                        |
+| `^C` | 03  | 0x03 | ETX  | End of Text (正文结束)                |                        |
+| `^D` | 04  | 0x04 | EOT  | End of Transmission (传输结束)        |                        |
+| `^E` | 05  | 0x05 | ENQ  | Enquiry (查询)                      |                        |
+| `^F` | 06  | 0x06 | ACK  | Acknowledge (确认)                  |                        |
+| `^G` | 07  | 0x07 | BEL  | Bell (振铃)                         |                        |
+| `^H` | 08  | 0x08 | BS   | Backspace (退格)                    |                        |
+| `^I` | 09  | 0x09 | HT   | Horizontal Tab (水平制表)             |                        |
+| `^J` | 10  | 0x0A | LF   | Line Feed (换行)                    |                        |
+| `^K` | 11  | 0x0B | VT   | Vertical Tab (垂直制表)               |                        |
+| `^L` | 12  | 0x0C | FF   | Form Feed (换页)                    |                        |
+| `^M` | 13  | 0x0D | CR   | Carriage Return (回车)              |                        |
+| `^N` | 14  | 0x0E | SO   | Shift Out (移出)                    |                        |
+| `^O` | 15  | 0x0F | SI   | Shift In (移入)                     |                        |
+| `^P` | 16  | 0x10 | DLE  | Data Link Escape (数据链路转义)         |                        |
+| `^Q` | 17  | 0x11 | DC1  | Device Control 1 (设备控制1)          |                        |
+| `^R` | 18  | 0x12 | DC2  | Device Control 2 (设备控制2)          |                        |
+| `^S` | 19  | 0x13 | DC3  | Device Control 3 (设备控制3)          |                        |
+| `^T` | 20  | 0x14 | DC4  | Device Control 4 (设备控制4)          |                        |
+| `^U` | 21  | 0x15 | NAK  | Negative Acknowledge (否认)         |                        |
+| `^V` | 22  | 0x16 | SYN  | Synchronous Idle (同步空闲)           |                        |
+| `^W` | 23  | 0x17 | ETB  | End of Transmission Block (传输块结束) |                        |
+| `^X` | 24  | 0x18 | CAN  | Cancel (取消)                       |                        |
+| `^Y` | 25  | 0x19 | EM   | End of Medium (介质结束)              |                        |
+| `^Z` | 26  | 0x1A | SUB  | Substitute (替换)                   |                        |
+| `^[` | 27  | 0x1B | ESC  | Escape (转义)                       |                        |
+| `^   | `   | 28   | 0x1C | FS                                | File Separator (文件分隔符) |
+| `^]` | 29  | 0x1D | GS   | Group Separator (分组符)             |                        |
+| `^^` | 30  | 0x1E | RS   | Record Separator (记录分隔符)          |                        |
+| `^_` | 31  | 0x1F | US   | Unit Separator (单元分隔符)            |                        |
+|      | 127 | 0x7F | DEL  | Delete (删除)                       |                        |

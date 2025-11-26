@@ -1,5 +1,6 @@
 ---
-title: Templates 模板(Jinja2)
+title: Templates(模板)
+linkTitle: Templates(模板)
 weight: 4
 ---
 
@@ -7,21 +8,24 @@ weight: 4
 
 > 参考：
 >
-> - [官方文档，用户指南 - 传统目录 - 使用剧本 - 模板(Jinja2)](https://docs.ansible.com/ansible/latest/user_guide/playbooks_templating.html)
-> - 朱双印博客,jinja2 模板
+> - [官方文档，使用 Ansible playbooks - 使用 playbooks - 模板化](https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_templating.html)
+> - 朱双印博客，ansible 笔记 - jinja2 模板
 >   - https://www.zsythink.net/archives/2999
 >   - https://www.zsythink.net/archives/3021
 >   - https://www.zsythink.net/archives/3037
 >   - https://www.zsythink.net/archives/3051
 > - [骏马金龙，9. 如虎添翼的力量：解锁强大的 Jinja2 模板](https://www.junmajinlong.com/ansible/9_power_of_jinja2/)
 
-Jinja2 的内容较多，但对于学习 Ansible 来说，只需要学习其中和 template 相关的一部分 (其它的都和开发有关或 Ansible 中用不上) 以及 Ansible 对 Jinja2 的扩展功能即可。
+Ansible 使用 [Jinja2](/docs/2.编程/高级编程语言/Python/Jinja.md) 模板实现动态表达式（在表达式中可以访问 [Variables](docs/9.运维/Ansible/Playbook/Variables.md)）。比如：
 
-详见 Python 编程语言部分的 《[Jinja](/docs/2.编程/高级编程语言/Python/Jinja.md)》章节
+- 创建一个配置文件模板，根据不同的环境，部署不同的文件，每个环境都有各自不同的数据（e.g. IP、主机名、版本、etc.）
+- 在 Playbook 中使用模板以动态设置任务名称、设置模块参数、etc.
 
-尽管在编写 Playbook 时可以不用在意是否要用 Jinja2，但 Ansible 的运行离不开 Jinja2，当 Ansible 开始执行 playbook 或任务时，总是会先使用 Jinja2 去解析所有指令的值，然后再执行任务。另一方面，在编写任务的过程中也会经常用到 Jinja2 来实现一些需求。所以，Jinja2 可以重要到成为 Ansible 的命脉。
+严格地说，Ansible 的运行离不开 Jinja2，Playbook 中所有地方都使用了 Jinja2，包括几乎所有指令的值、template 模板文件、copy 模块的 content 指令的值、lookup 的 template 插件、等等。它们会先经过 Jinja2 渲染，然后再执行相关任务。
 
-严格地说，playbook 中所有地方都使用了 Jinja2，包括几乎所有指令的值、template 模板文件、copy 模块的 content 指令的值、lookup 的 template 插件、等等。它们会先经过 Jinja2 渲染，然后再执行相关任务。
+当 Ansible 开始执行 Playbook 或任务时，总是会先使用 Jinja2 去解析所有指令的值，然后再执行任务。另一方面，在编写任务的过程中也会经常用到 Jinja2 来实现一些需求。所以，Jinja2 可以重要到成为 Ansible 的命脉。
+
+> Jinja2 的内容较多，但对于学习 Ansible 来说，只需要学习其中和 template 相关的一部分 (其它的都和开发有关或 Ansible 中用不上) 以及 Ansible 对 Jinja2 的扩展功能即可。
 
 例如，下面的 playbook 中分别使用了三种 Jinja2 特殊符号。
 
@@ -61,7 +65,7 @@ ok: [localhost] => {
 
 再比如模板文件 a.conf.j2 中使用这三种特殊语法：
 
-```yaml
+```jinja2
 {# Comment this line #}
 variable value: {{inventory_hostname}}
 {% if True %}
@@ -79,7 +83,7 @@ in if tag code: {{inventory_hostname}}
 
 执行后，将在 / tmp/a.conf 中生成如下内容：
 
-```yaml
+```conf
 variable value: localhost
 in if tag code: localhost
 ```
@@ -91,7 +95,7 @@ in if tag code: localhost
     var: inventory_hostname
 ```
 
-但有时候也确实是需要在 var 或 when 中的一部分使用 {{}} 来包围表示这是一个变量或是一个表达式，而非字符串的。例如：
+但有时候也确实是需要在 var 或 when 中的一部分使用 `{{}}` 来包围表示这是一个变量或是一个表达式，而非字符串的。例如：
 
 ```yaml
 - debug:
@@ -99,6 +103,70 @@ in if tag code: localhost
   vars:
     - php: 192.168.200.143
 ```
+
+## 渲染逻辑
+
+所有模板化的工作都在**控制节点**上完成，然后再将任务发送到目标机器并执行。这种方法最大限度地减少了目标机器上的软件包需求（jinja2 仅需在控制节点上安装）。它还限制了 Ansible 传递给目标机器的数据量。Ansible 在控制节点上解析模板，并将每个任务所需的信息仅传递给目标机器，而不是将所有数据都传递到控制节点并在目标机器上进行解析。
+
+## 在 Templates 中使用 Tasks 中声明的变量
+
+> [!Attention] 在各种任务中通过 [Loops(循环)](docs/9.运维/Ansible/Playbook/Loops(循环).md) 生成的 item 变量，都可以用在 Templates
+
+比如：
+
+Inventory 文件如下：
+
+```yaml
+all:
+  hosts:
+    192.168.254.253:
+      ansible_host: "192.168.254.253"
+  vars:
+    scrape_node_exporter:
+      - scrape_target: self
+        enable: true
+      - scrape_target: demo
+        enable: true
+```
+
+任务文件如下：
+
+```yaml
+- name: "Node exporter 文件发现配置"
+  ansible.builtin.template:
+    src: "server/config/prometheus/file_sd/file_sd_node_exporter.yaml.jinja"
+    dest: "{{monitor_server_dir}}/config/prometheus/file_sd/file_sd_node_exporter_{{ item.scrape_target }}.yaml"
+    lstrip_blocks: true
+    trim_blocks: true
+    mode: "0644"
+  loop: "{{ scrape_node_exporter }}"
+  when: item.enable | bool
+  tags:
+    - file_sd_node_exporter
+```
+
+模板中就可以直接使用 item 变量
+
+```jinja2
+{% if item.scrape_target == "self" %}
+{% for target in groups['self'] %}
+- targets:
+    - "{{ hostvars[target]['ansible_host'] }}:9100"
+  labels:
+    node_type: "demo"
+{% endfor %}
+{% endif %}
+{% if item.scrape_target == "demo" %}
+{% for target in groups['demo'] %}
+- targets:
+    - "{{ hostvars[target]['ansible_host'] }}:9100"
+  labels:
+    node_type: "demo"
+{% endfor %}
+{% endif %}
+```
+
+此时会生成两个文件 file_sd_node_exporter_self.yaml 和 file_sd_node_exporter_demo.yaml，每个文件中都是各自的内容
 
 # Ansible 扩展的测试函数
 
@@ -317,9 +385,9 @@ Ansible 提供的 now() 可以获取当前时间点。
 得到结果：
 
 ```text
-    ok: [localhost] => {
-      "msg": "2020-01-25 00:27:17.563627"
-    }
+ok: [localhost] => {
+  "msg": "2020-01-25 00:27:17.563627"
+}
 ```
 
 可以指定输出的格式化字符串，支持的格式化字符串参考 python 官方手册：<https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior>。
@@ -346,15 +414,17 @@ Ansible 提供了几个和 YAML、JSON 格式化相关的 Filter：
 
 例如：
 
-    - debug:
-        msg: '{{f1|to_nice_json(indent=2)}}'
-      vars:
-        f1:
-          father: "Bob"
-          mother: "Alice"
-          Children:
-            - Judy
-            - Tedy
+```yaml
+- debug:
+    msg: '{{f1|to_nice_json(indent=2)}}'
+  vars:
+    f1:
+      father: "Bob"
+      mother: "Alice"
+      Children:
+        - Judy
+        - Tedy
+```
 
 ### 参数忽略
 
@@ -381,7 +451,9 @@ Ansible 提供了一个特殊变量 omit，可以用来忽略模块的参数效�
 
 `join`可以将列表各个元素根据指定的连接符连接起来：
 
-    {{ [1,2,3] | join("-") }}
+```jinja2
+{{ [1,2,3] | join("-") }}
+```
 
 ### 列表压平
 
@@ -406,21 +478,23 @@ Ansible 提供了集合理论类的求值操作：
 - difference：差集，即返回只在第一个集合中，不在第二个集合中的元素
 - symmetric_difference：对称差集，即返回两个集合中不重复的元素
 
-  - name: return [1,2,3]
-      debug:
-        msg: "{{ [1,2,3,2,1] | unique }}"
-  - name: return [1,2,3,4]
-      debug:
-        msg: "{{ [1,2,3] | union([2,3,4]) }}"
-  - name: return [2,3]
-      debug:
-        msg: "{{ [1,2,3] | intersect([2,3,4]) }}"
-  - name: return [1]
-      debug:
-        msg: "{{ [1,2,3] | difference([2,3,4]) }}"
-  - name: return [1,4]
-      debug:
-        msg: "{{ [1,2,3] | symmetric_difference([2,3,4]) }}"
+```yaml
+- name: return [1,2,3]
+  debug:
+    msg: "{{ [1,2,3,2,1] | unique }}"
+- name: return [1,2,3,4]
+  debug:
+    msg: "{{ [1,2,3] | union([2,3,4]) }}"
+- name: return [2,3]
+  debug:
+    msg: "{{ [1,2,3] | intersect([2,3,4]) }}"
+- name: return [1]
+  debug:
+    msg: "{{ [1,2,3] | difference([2,3,4]) }}"
+- name: return [1,4]
+  debug:
+    msg: "{{ [1,2,3] | symmetric_difference([2,3,4]) }}"
+```
 
 ### dict 和 list 转换
 
@@ -429,43 +503,51 @@ Ansible 提供了集合理论类的求值操作：
 
 对于`dict2items`，例如：
 
-    - debug:
-        msg: "{{ p | dict2items }}"
-      vars:
-        p:
-          name: junmajinlong
-          age: 28
+```jinja2
+- debug:
+    msg: "{{ p | dict2items }}"
+  vars:
+    p:
+      name: junmajinlong
+      age: 28
+```
 
 得到：
 
-    [
-      {
-        "key": "name",
-        "value": "junmajinlong"
-      },
-      {
-        "key": "age",
-        "value": 28
-      }
-    ]
+```json
+[
+  {
+    "key": "name",
+    "value": "junmajinlong"
+  },
+  {
+    "key": "age",
+    "value": 28
+  }
+]
+```
 
 对于`items2dict`，例如：
 
-    - debug:
-        msg: "{{ p | items2dict }}"
-      vars:
-        p:
-          - key: name
-            value: junmajinlong
-          - key: age
-            value: 28
+```jinja2
+- debug:
+    msg: "{{ p | items2dict }}"
+  vars:
+    p:
+      - key: name
+        value: junmajinlong
+      - key: age
+        value: 28
+```
 
 得到：
 
-    {
-      "age": 28,
-      "name": "junmajinlong"
-    }
+```json
+{
+  "age": 28,
+  "name": "junmajinlong"
+}
+```
 
 默认情况下，`dict2items`和`items2dict`都使用`key`和`value`来转换，但它们都允许使用`key_name`和`value_name`自定义转换的名称。
 
@@ -482,16 +564,18 @@ Ansible 提供了集合理论类的求值操作：
 
 得到：
 
-    [
-      {
-        "file": "users",
-        "path": "/etc/passwd"
-      },
-      {
-        "file": "groups",
-        "path": "/etc/group"
-      }
-    ]
+```json
+[
+  {
+    "file": "users",
+    "path": "/etc/passwd"
+  },
+  {
+    "file": "groups",
+    "path": "/etc/group"
+  }
+]
+```
 
 ### zip 和 zip_longest
 
@@ -554,7 +638,18 @@ Jinja2 自身内置了一个 random 筛选器，Ansible 也有一个 random 筛�
 
 ### shuffle 打乱顺序
 
- ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/lmdoi2/1638717920341-716b62fb-5d66-43db-a26d-9a14afaa42fa.png)
+shuffle 可以打乱一个序列的顺序
+
+```jinja2
+{{ ['a','b','c'] | shuffle }}
+# => ['c','a','b']
+{{ ['a','b','c'] | shuffle }}
+# => ['b','c','a']
+
+# 指定随机数种子
+{{ ['a','b','c'] | shuffle(seed=inventory_hostname) }}
+# => ['b','a','c']
+```
 
 ### json_query
 
@@ -575,68 +670,76 @@ jmespath 的查询语法相关示例可参见其官方手册：
 
 例如，对于下面的数据结构：
 
-    {
-      "domain_definition": {
-        "domain": {
-          "cluster": [
-            {"name": "cluster1"},
-            {"name": "cluster2"}
-          ],
-          "server": [
-            {
-              "name": "server11",
-              "cluster": "cluster1",
-              "port": "8080"
-            },
-            {
-              "name": "server12",
-              "cluster": "cluster1",
-              "port": "8090"
-            },
-            {
-              "name": "server21",
-              "cluster": "cluster2",
-              "port": "9080"
-            },
-            {
-              "name": "server22",
-              "cluster": "cluster2",
-              "port": "9090"
-            }
-          ],
-          "library": [
-            {
-              "name": "lib1",
-              "target": "cluster1"
-            },
-            {
-              "name": "lib2",
-              "target": "cluster2"
-            }
-          ]
+```json
+{
+  "domain_definition": {
+    "domain": {
+      "cluster": [
+        {"name": "cluster1"},
+        {"name": "cluster2"}
+      ],
+      "server": [
+        {
+          "name": "server11",
+          "cluster": "cluster1",
+          "port": "8080"
+        },
+        {
+          "name": "server12",
+          "cluster": "cluster1",
+          "port": "8090"
+        },
+        {
+          "name": "server21",
+          "cluster": "cluster2",
+          "port": "9080"
+        },
+        {
+          "name": "server22",
+          "cluster": "cluster2",
+          "port": "9090"
         }
-      }
+      ],
+      "library": [
+        {
+          "name": "lib1",
+          "target": "cluster1"
+        },
+        {
+          "name": "lib2",
+          "target": "cluster2"
+        }
+      ]
     }
+  }
+}
+```
 
 使用
 
-    {{ domain_definition | json_query('domain.cluster[*].name') }}
+```jinja2
+{{ domain_definition | json_query('domain.cluster[*].name') }}
+```
 
 可以获取到名称 cluster1 和 cluster2。
 
 使用
 
-    {{ domain_definition | json_query('domain.server[*].name') }}
+```jinja2
+{{ domain_definition | json_query('domain.server[*].name') }}
+```
 
 可以获取到 server11、server12、server21 和 server22。
 
 使用
 
-    - debug:
-        var: item
-      loop: "{{ domain_definition | json_query(server_name_cluster1_query) }}"
-      vars:
-        server_name_cluster1_query: "domain.server[?cluster=='cluster1'].port"
+```jinja2
+- debug:
+    var: item
+  loop: "{{ domain_definition | json_query(server_name_cluster1_query) }}"
+  vars:
+    server_name_cluster1_query: "domain.server[?cluster=='cluster1'].port"
+```
 
 可以迭代 8080 和 8090 两个端口。
 
@@ -1148,6 +1251,7 @@ server {
 }
 {% endfor %}
 ```
+
 然后使用 template 模块去渲染即可：
 
 ```yaml

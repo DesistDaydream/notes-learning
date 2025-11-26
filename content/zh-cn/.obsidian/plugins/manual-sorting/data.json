@@ -1,6 +1,7 @@
 {
   "customOrder": {
     "/": [
+      "Clippings",
       "_index.md",
       "about",
       "blog",
@@ -45,6 +46,7 @@
       "blog/copy/云原生/如何构建以应用为中心的Kubernetes.md",
       "blog/copy/云原生/ChatGPT 团队是如何使用Kubernetes的.md"
     ],
+    "Clippings": [],
     "docs": [
       "docs/_index.md",
       "docs/学习",

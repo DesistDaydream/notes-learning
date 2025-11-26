@@ -1,5 +1,7 @@
 ---
-title: Files 类模块
+title: Files 模块
+linkTitle: Files 模块
+weight: 20
 ---
 
 # 概述
@@ -233,7 +235,7 @@ stat 模块类似于 Linux 中的 `stat` 命令。常用来在改变文件之间
 
 # template - 根据文件模板，在远程主机上生成新文件
 
-官方文档：https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html
+https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html
 
 template 模块使用 Jinja2 模板语言处理文件，并将渲染后的文件传送到目标主机上。
 
@@ -316,7 +318,7 @@ ansible -m template -a 'src=/mytemplates/foo.j2 dest=/tmp/foo.conf lstrip_blocks
 }
 ```
 
-更多 template 模块原理及应用，详见 [Playbook 章节中的 Templates](/docs/9.运维/Ansible/Playbook/Templates%20模板(Jinja2).md)
+更多 template 模块原理及应用，详见 [Playbook 章节中的 Templates](docs/9.运维/Ansible/Playbook/Templates(模板).md)
 
 # unarchive - 解压缩一个归档文件。就是 tar 命令
 
