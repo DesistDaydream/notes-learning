@@ -170,6 +170,14 @@ https://modelcontextprotocol.io/specification/2025-03-26/server/tools
 
 https://modelcontextprotocol.io/specification/2025-03-26/server/tools#data-types
 
+# MCP Client
+
+> 参考：
+>
+> - [规范 - 客户端功能](https://modelcontextprotocol.io/specification/2025-03-26/client/roots)
+
+> 通常来说，各种 AI 工具都内置了 MCP Client，以便对接各自自定义的 MCP Server
+
 # 历史
 
 ## LangChain

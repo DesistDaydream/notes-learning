@@ -16,7 +16,7 @@ weight: 4
 >   - https://www.zsythink.net/archives/3051
 > - [骏马金龙，9. 如虎添翼的力量：解锁强大的 Jinja2 模板](https://www.junmajinlong.com/ansible/9_power_of_jinja2/)
 
-Ansible 使用 [Jinja2](/docs/2.编程/高级编程语言/Python/Jinja.md) 模板实现动态表达式（在表达式中可以访问 [Variables](docs/9.运维/Ansible/Playbook/Variables.md)）。比如：
+Ansible 使用 [Jinja2](/docs/2.编程/高级编程语言/Python/Jinja.md) 模板实现动态表达式（在表达式中可以访问 [Variables](/docs/9.运维/Ansible/Playbook/Variables.md)）。比如：
 
 - 创建一个配置文件模板，根据不同的环境，部署不同的文件，每个环境都有各自不同的数据（e.g. IP、主机名、版本、etc.）
 - 在 Playbook 中使用模板以动态设置任务名称、设置模块参数、etc.
@@ -110,7 +110,7 @@ in if tag code: localhost
 
 ## 在 Templates 中使用 Tasks 中声明的变量
 
-> [!Attention] 在各种任务中通过 [Loops(循环)](docs/9.运维/Ansible/Playbook/Loops(循环).md) 生成的 item 变量，都可以用在 Templates
+> [!Attention] 在各种任务中通过 [Loops(循环)](/docs/9.运维/Ansible/Playbook/Loops(循环).md) 生成的 item 变量，都可以用在 Templates
 
 比如：
 

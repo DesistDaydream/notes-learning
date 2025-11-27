@@ -135,9 +135,9 @@ https://grafana.com/docs/loki/latest/get-started/labels/structured-metadata/
 > [!Note]
 > 现阶段（截止到 2025-11-19），只有使用 Grafana Alloy 或 OpenTelemetry Collector 以 OpenTelemetry 格式摄取数据需要入库到 Loki 的时候，才会产生结构化元数据
 >
-> 结构化元数据设计之初，是旨在支持 [OpenTelemetry](docs/6.可观测性/OpenTelemetry/OpenTelemetry.md) 数据的原生摄取。以及为了解决高基数的问题，而避免将所有键/值对的元数据都存到 Indexed Label 中（索引过多就失去了索引的作用）
+> 结构化元数据设计之初，是旨在支持 [OpenTelemetry](/docs/6.可观测性/OpenTelemetry/OpenTelemetry.md) 数据的原生摄取。以及为了解决高基数的问题，而避免将所有键/值对的元数据都存到 Indexed Label 中（索引过多就失去了索引的作用）
 
-在 [Log Queries](docs/6.可观测性/Logs/Loki/LogQL/Log%20Queries.md) 中，结构化元数据无法使用日志流选择器查询，只能基于日志流选择器，通过标签过滤表达式查询。
+在 [Log Queries](/docs/6.可观测性/Logs/Loki/LogQL/Log%20Queries.md) 中，结构化元数据无法使用日志流选择器查询，只能基于日志流选择器，通过标签过滤表达式查询。
 
 ## Indexed label 与 Structured metadata
 

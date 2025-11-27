@@ -2361,7 +2361,7 @@
     "docs/9.运维/Ansible/Ansible Modules/ansible.builtin(内置模块)": [
       "docs/9.运维/Ansible/Ansible Modules/ansible.builtin(内置模块)/_index.md",
       "docs/9.运维/Ansible/Ansible Modules/ansible.builtin(内置模块)/ansible.builtin(内置模块).md",
-      "docs/9.运维/Ansible/Ansible Modules/ansible.builtin(内置模块)/Files 处理模块.md",
+      "docs/9.运维/Ansible/Ansible Modules/ansible.builtin(内置模块)/Files 模块.md",
       "docs/9.运维/Ansible/Ansible Modules/ansible.builtin(内置模块)/System 模块.md"
     ],
     "docs/9.运维/Ansible/Ansible Plugins": [
@@ -2379,8 +2379,8 @@
       "docs/9.运维/Ansible/Playbook/_index.md",
       "docs/9.运维/Ansible/Playbook/Playbook.md",
       "docs/9.运维/Ansible/Playbook/Playbook Role(角色).md",
-      "docs/9.运维/Ansible/Playbook/Variables(变量).md",
-      "docs/9.运维/Ansible/Playbook/Templates 模板(Jinja2).md",
+      "docs/9.运维/Ansible/Playbook/Variables.md",
+      "docs/9.运维/Ansible/Playbook/Templates(模板).md",
       "docs/9.运维/Ansible/Playbook/Loops(循环).md",
       "docs/9.运维/Ansible/Playbook/Conditionals(条件判断).md",
       "docs/9.运维/Ansible/Playbook/错误处理.md",
