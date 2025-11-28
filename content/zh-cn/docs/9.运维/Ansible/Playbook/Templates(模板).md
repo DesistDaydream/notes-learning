@@ -982,8 +982,10 @@ d 中同名 key 会覆盖 c，c 会覆盖 b，b 会覆盖 a。
 
 ### base64 编解码筛选器
 
-    {{ encoded_str | b64decode }}
-    {{ decoded_str | b64encode }}
+```jinja2
+{{ encoded_str | b64decode }}
+{{ decoded_str | b64encode }}
+```
 
 例如，Ansible 有一个`slurp`模块，它的作用类似于 fetch 模块，它可以从目标节点中读取指定文件的内容，然后以 base64 方式编码返回，所以要获取其原始内容，需要 base64 解码。
 
@@ -1001,18 +1003,20 @@ d 中同名 key 会覆盖 c，c 会覆盖 b，b 会覆盖 a。
 
 结果：
 
-    TASK [slurp] ***************
-    ok: [localhost]
+```text
+TASK [slurp] ***************
+ok: [localhost]
 
-    TASK [debug] ******************
-    ok: [localhost] => {
-        "msg": "base64_pid: MTE4OAo="
-    }
+TASK [debug] ******************
+ok: [localhost] => {
+    "msg": "base64_pid: MTE4OAo="
+}
 
-    TASK [debug] *****************
-    ok: [localhost] => {
-        "msg": "base64_pid: 1188\n"
-    }
+TASK [debug] *****************
+ok: [localhost] => {
+    "msg": "base64_pid: 1188\n"
+}
+```
 
 ### 文件名处理
 
@@ -1024,11 +1028,13 @@ d 中同名 key 会覆盖 c，c 会覆盖 b，b 会覆盖 a。
 
 对于 splitext 筛选器，例如：
 
-    {{"nginx.conf"|splitext}}
-    #=> ("nginx",".conf")
+```jinja2
+{{ "nginx.conf" | splitext }}
+#=> ("nginx",".conf")
 
-    {{'/etc/my.cnf'|splitext}}
-    #=> ("/etc/my",".cnf")
+{{ '/etc/my.cnf' | splitext }}
+#=> ("/etc/my",".cnf")
+```
 
 ### 日期时间类处理
 
@@ -1036,74 +1042,80 @@ d 中同名 key 会覆盖 c，c 会覆盖 b，b 会覆盖 a。
 
 使用`strftime`将当前时间或给定时间 (只能以 epoch 数值指定) 按照给定的格式输出：
 
-    # 将当前时间点以year-month-day hour:min:sec格式输出
-    {{ '%Y-%m-%d %H:%M:%S' | strftime }}
+```jinja2
+# 将当前时间点以year-month-day hour:min:sec格式输出
+{{ '%Y-%m-%d %H:%M:%S' | strftime }}
 
-    # 将指定的时间按照指定格式输出
-    {{ '%Y-%m-%d' | strftime(0) }}          # => 1970-01-01
-    {{ '%Y-%m-%d' | strftime(1441357287) }} # => 2015-09-04
+# 将指定的时间按照指定格式输出
+{{ '%Y-%m-%d' | strftime(0) }}          # => 1970-01-01
+{{ '%Y-%m-%d' | strftime(1441357287) }} # => 2015-09-04
+```
 
 使用`to_datetime`可以将日期时间字符串转换为 Python 日期时间对象，既然得到了对象，就可以进行时间比较、时间运算等操作。
 
-    # 计算时间差(单位秒)
-    # 默认解析的日期时间字符串格式为%Y-%m-%d %H:%M:%S，但可以自定义格式
-    {{ (("2016-08-14 20:00:12" | to_datetime) - ("2015-12-25" | to_datetime("%Y-%m-%d"))).total_seconds() }}
-    #=>20203212.0
+```jinja2
+# 计算时间差(单位秒)
+# 默认解析的日期时间字符串格式为%Y-%m-%d %H:%M:%S，但可以自定义格式
+{{ (("2016-08-14 20:00:12" | to_datetime) - ("2015-12-25" | to_datetime("%Y-%m-%d"))).total_seconds() }}
+#=>20203212.0
 
-    # 计算相差多少天。只考虑天数，不考虑时分秒等
-    {{ (("2016-08-14 20:00:12" | to_datetime) - ("2015-12-25" | to_datetime('%Y-%m-%d'))).days  }}
+# 计算相差多少天。只考虑天数，不考虑时分秒等
+{{ (("2016-08-14 20:00:12" | to_datetime) - ("2015-12-25" | to_datetime('%Y-%m-%d'))).days  }}
+```
 
 ### human_to_bytes 和 human_readable
 
 `human_readable`将数值转换为人类可读的数据量大小单位：
 
-```yaml
-{{1|human_readable}}
+```jinja2
+{{ 1 | human_readable }}
 
-{{1|human_readable(isbits=True)}}
+{{ 1 | human_readable(isbits=True) }}
 
-{{10240|human_readable}}
+{{ 10240 | human_readable }}
 
-{{102400000|human_readable}}
+{{ 102400000 | human_readable }}
 
-{{102400000|human_readable(unit="G")}}
+{{ 102400000 | human_readable(unit="G") }}
 
-{{102400000|human_readable(isbits=True, unit="G")}}
+{{ 102400000 | human_readable(isbits=True, unit="G") }}
 ```
 
 `human_to_bytes`将人类可读的单位转换为数值：
 
-    {{'0'|human_to_bytes}}        #= 0
-    {{'0.1'|human_to_bytes}}      #= 0
-    {{'0.9'|human_to_bytes}}      #= 1
-    {{'1'|human_to_bytes}}        #= 1
-    {{'10.00 KB'|human_to_bytes}} #= 10240
-    {{   '11 MB'|human_to_bytes}} #= 11534336
-    {{  '1.1 GB'|human_to_bytes}} #= 1181116006
-    {{'10.00 Kb'|human_to_bytes(isbits=True)}} #= 10240
+```jinja2
+{{ '0' | human_to_bytes }}        #= 0
+{{ '0.1' | human_to_bytes }}      #= 0
+{{ '0.9' | human_to_bytes }}      #= 1
+{{ '1' | human_to_bytes }}        #= 1
+{{ '10.00 KB' | human_to_bytes }} #= 10240
+{{ '11 MB' | human_to_bytes }}    #= 11534336
+{{ '1.1 GB' | human_to_bytes }}   #= 1181116006
+{{ '10.00 Kb' | human_to_bytes(isbits=True) }} #= 10240
+```
 
 ### 其它筛选器
 
 `quote`为字符串加引号，比如方便编写 shell 模块的命令：
 
-```yaml
+```jinja2
 - shell: echo {{ string_value | quote }}
 ```
 
 `ternary`根据 true、false 来决定返回哪个值：
 
-```yaml
-
+```jinja2
 {{ (gender == "male") | ternary('Mr','Ms') }}
-
 
 {{ enabled | ternary('no shutdown', 'shutdown', omit) }}
 ```
 
 `product`生成笛卡尔积：
 
-    {{['foo', 'bar'] | product(['com'])|list}}
-    #=>[["foo","com"], ["bar","com"]]
+```test
+{{['foo', 'bar'] | product(['com'])|list}}
+#=> [["foo","com"], ["bar","com"]]
+```
 
 # 使用示例
 
@@ -1112,21 +1124,21 @@ d 中同名 key 会覆盖 c，c 会覆盖 b，b 会覆盖 a。
   template:
     src: /mytemplates/foo.j2 # 指定源文件，是一个用jinja2语言写的文件
     dest: /etc/file.conf # 指定要生成的目的文件
-    mode: 0744 #必须添加一个前导零，以便Ansible的YAML解析器知道它是一个八进制数（例如0644或01777）或将其引号（例如'644'或'1777'），以便Ansible接收字符串并可以从字符串进行自己的转换成数字。
+    mode: 0744 # 必须添加一个前导零，以便Ansible的YAML解析器知道它是一个八进制数（例如0644或01777）或将其引号（例如'644'或'1777'），以便Ansible接收字符串并可以从字符串进行自己的转换成数字。
 ```
 
 模板文件示例：
 
-```shell
+```jinja2
 {
-{% if docker.registryMirrors is defined %} #如果docker.registryMirrors变量存在，则执行最后一行之前的语句
-  "registry-mirrors": [{% for mirror in docker.registryMirrors %} #输出 "registry-mirrors": 后执行for循环，将docker.registryMirrors变量的多个值逐一传递给mirror变量，直到docker.registryMirros变量里的值全部引用完成
+{% if docker.registryMirrors is defined %} {# 如果docker.registryMirrors变量存在，则执行最后一行之前的语句 #}
+  "registry-mirrors": [{% for mirror in docker.registryMirrors %} {# 输出 "registry-mirrors": 后执行for循环，将docker.registryMirrors变量的多个值逐一传递给mirror变量，直到docker.registryMirros变量里的值全部引用完成 #}
 
-    "{{ mirror}}"{% if not loop.last %},{% endif %} #输出 mirror 变量的值。如果循环没有结束，则输出一个逗号
-  {%- endfor %} #结束for循环
+    "{{ mirror}}"{% if not loop.last %},{% endif %} {# 输出 mirror 变量的值。如果循环没有结束，则输出一个逗号 #}
+  {%- endfor %} {# 结束for循环 #}
 
   ],
-{% endif %} #结束if结构
+{% endif %} {# 结束if结构 #}
 }
 ```
 

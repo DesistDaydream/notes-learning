@@ -93,12 +93,20 @@ https://clickhouse.com/docs/integrations/sql-clients/cli#command-line-options
 查询选项
 
 - **-m, --multiline** # 允许多行查询（按 Enter 键时不发送查询），仅当查询以分号结尾时才会发送查询。
-- **-q, --query**(STRING) # 指定查询 SQL。可以将 SQL 保存到文件中，使用 `--query="$(cat query.sql)"` 这种方式执行查询。
+- **-q, --query**(STRING) # 指定查询 SQL。
+    - 可以将 SQL 保存到文件中，使用 `--query="$(cat query.sql)"` 这种方式执行查询；或者直接使用 --queries-file 选项。
+- **--queries-file**(STRING) # 指定包含 SQL 的文件路径。可以多次使用，执行多个 SQL 文件。
+
+格式化选项
+
+- **-f, --format**(STRING) # 使用指定的格式输出结果。`默认值: TabSeparated`
+    - 所有可用的格式详见: [官方文档，输入和输出数据的格式](https://clickhouse.com/docs/interfaces/formats)。e.g. CSV, JSON, etc.
+- **--pager**(COMMAND) # 将所有输出结果传递给 COMMAND。通常是 less 命令（e.g. 使用 `less -S` 显示更宽的结果）或类似命令。
 
 ### EXAMPLE
 
 ```bash
-clickhouse-client -u default --password d1234567 -h 127.0.0.1 --port 9000 -d my_database --query="cat tmp/query.sql"
+clickhouse-client -u default --password d1234567 -h 127.0.0.1 --port 9000 -d my_database --queries-file tmp/query.sql --format CSV > result.csv
 ```
 
 # ClickHouse 生态
