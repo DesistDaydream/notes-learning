@@ -29,11 +29,11 @@ https://pkg.go.dev/cmd/go#hdr-Compile_packages_and_dependencies
 
 OPTIONS
 
-- **-ldflags [PATTERN=]ARG** # 向链接器传递一些参数。这些参数可用于指定编译时需要使用的一些信息，例如项目版本号、Git 提交 ID、构建时间、构建平台和架构等元数据信息
+- **-ldflags [PATTERN=]ARG** # 每个 go 工具链接调用时要传递的参数。向链接器传递一些参数。这些参数可用于指定编译时需要使用的一些信息，例如项目版本号、Git 提交 ID、构建时间、构建平台和架构等元数据信息
   - 比如：
     - `-ldflags "-X 'main.version=1.0.0' -X 'main.buildTime=$(date)'"` # 为 main 包中的 version 和 buildTime 变量设置值
     - `-ldflags "-s -w"` # 告诉链接器在生成可执行文件时忽略调试信息和符号表，从而使得你的二进制文件更加紧凑而且不再可读。
-- **-gcflags [PATTERN=]ARG** # 每次执行"go tool compile"时要传递的参数。
+- **-gcflags [PATTERN=]ARG** # 每个 go 工具编译调用时要传递的参数
 - **-o NAME** # 指定构建完成后生成的文件名为 NAME
 - **-x** # 输出 Go 程序编译、链接、打包的全过程。包括都使用了哪些库、执行了什么命令、等等
 
@@ -65,7 +65,7 @@ ldflags="\
 -X 'github.com/DesistDaydream/net_tool/internal/conf.Version=$version' \
 "
 
- go build -o "$1" -ldflags="$ldflags" -tags=jsoniter .
+go build -o "$1" -ldflags="$ldflags" -tags=jsoniter .
 ```
 
 相当于为 github.com/DesistDaydream/net_tool 项目中的 internal/conf/ 目录(i.e. 该项目中的 conf 这个 packet)下的 BuiltAt、GoVersion、etc. 变量赋予了指定的值，这些变量可以通过 version 相关的子命令或命令行参数显示出来。
@@ -139,11 +139,25 @@ list list packages or modules
 - 自动格式化代码
 - 等等
 
+## dlv
+
+> 参考：
+>
+> - [GitHub 项目，go-delve/delve](https://github.com/go-delve/delve)
+
+Delve 是一个用于 [Go](docs/2.编程/高级编程语言/Go/Go.md) 编程语言的调试器。该项目的目标是为 Go 提供一个简单、功能完整的调试工具。Delve 应该易于调用和使用。如果你正在使用调试器，很可能事情进展不顺利。考虑到这一点，Delve 应该尽可能地不妨碍你的工作。
+
+安装
+
+```bash
+go install github.com/go-delve/delve/cmd/dlv@latest
+```
+
 ## gopls
 
 > 参考：
 >
-> - [GitHub 项目，golang/tools](https://github.com/golang/tools)
+> - [GitHub 项目，golang/tools - gopls](https://github.com/golang/tools/tree/master/gopls)
 > - [VSCode 建议你启用 gopls，它到底是个什么东东](https://www.modb.pro/db/87143)
 
 gopls 是一个用以实现 [LSP](https://en.wikipedia.org/wiki/Language_Server_Protocol) 的官方工具。
@@ -161,6 +175,20 @@ gotests 可以作为 IDE 的插件提供更方便的使用，下面是一个 Sub
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gy06h4/1654843875110-6dbf3a8d-1512-4022-bb7d-210084311509.gif)
 
 在 [Emacs](https://github.com/damienlevin/GoTests-Emacs), also [Emacs](https://github.com/s-kostyaev/go-gen-test), [Vim](https://github.com/buoto/gotests-vim), [Atom Editor](https://atom.io/packages/gotests), [Visual Studio Code](https://github.com/Microsoft/vscode-go), and [IntelliJ Goland](https://www.jetbrains.com/help/go/run-debug-configuration-for-go-test.html) 等 IDE 中也有这个插件。当然，如果不想在 IDE 中使用，也可以在命令行直接使用 gotests。、、、、、、
+
+## goplay
+
+> 参考：
+>
+> - [GitHub 项目，haya14busa/goplay](https://github.com/haya14busa/goplay)
+
+goplay 可以让代码通过 <https://play.golang.org/> 打开（这是一个在线运行 Go 代码的网站）。
+
+## gomodifytags
+
+> 参考：
+>
+> - [GitHub 项目，fatih/gomodifytags](https://github.com/fatih/gomodifytags)
 
 ### 简单示例
 
@@ -226,14 +254,6 @@ func TestUnitTests(t *testing.T) {
 
 **gotests \[OPTIONS] PATH...**
 
-## dlv
-
-> 参考：
->
-> - [GitHub 项目，go-delve/delve](https://github.com/go-delve/delve)
-
-Delve 是 Go 编程语言的调试器。该项目的目标是为 Go 提供一个简单、功能齐全的调试工具。 Delve 应该易于调用和使用。如果您使用的是调试器，那么事情可能不会如您所愿。考虑到这一点，Delve 应该尽可能地远离你。
-
 ## impl
 
 > 参考：
@@ -264,15 +284,11 @@ func (f *File) Close() error {
 
 > 也可以通过命令行，使用 `impl 'f *File' io.Closer` 命令生成方法。
 
+### 常见问题
+
 若提示 `Cannot stub interface: unrecognized interface: handler.YuqeData`导致无法生成方法，则对接口使用一下 `Find All Implementations`
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gy06h4/1642045391841-a1d01b46-deda-4561-b9b6-de714d8ee672.png)
-
-## gomodifytags
-
-> 参考：
->
-> - [GitHub 项目，fatih/gomodifytags](https://github.com/fatih/gomodifytags)
 
 ## staticcheck
 
@@ -283,10 +299,3 @@ func (f *File) Close() error {
 
 Staticcheck 是一个高级 Go Linter，即用于 Go 的代码检查工具，使用静态分析，可以发现错误和性能问题，提供简化，并强制执行样式规则
 
-## goplay
-
-> 参考：
->
-> - [GitHub 项目，haya14busa/goplay](https://github.com/haya14busa/goplay)
-
-goplay 可以让代码通过 <https://play.golang.org/> 打开（这是一个在线运行 Go 代码的网站）。
