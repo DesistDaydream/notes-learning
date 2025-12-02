@@ -15,7 +15,7 @@ weight: 1
 > - [思否，Golang 大杀器之性能剖析 PProf](https://segmentfault.com/a/1190000016412013)
 > - [公众号-云原生实验室，忙碌的开发人员的 Go Profiling、跟踪和可观察性指南](https://mp.weixin.qq.com/s/SveQPLr7abKXccLpYKkNKA)
 
-pprof 是 **[Go](docs/2.编程/高级编程语言/Go/Go.md) 程序的性能分析器**，一个可视化和分析 Profiling 数据的工具。pprof 可以从目标获取运行数据并生成 profile.proto 格式的 Profiles 文件，还可以读取 profile.proto 格式的 Profiling 样本集合，并生成报告。
+pprof 是 **[Go](/docs/2.编程/高级编程语言/Go/Go.md) 程序的性能分析器**，一个可视化和分析 Profiling 数据的工具。pprof 可以从目标获取运行数据并生成 profile.proto 格式的 Profiles 文件，还可以读取 profile.proto 格式的 Profiling 样本集合，并生成报告。
 
 profile.proto 是一个协议缓冲区，描述了一组调用堆栈和符号化信息。详见 <https://developers.google.com/protocol-buffers>
 

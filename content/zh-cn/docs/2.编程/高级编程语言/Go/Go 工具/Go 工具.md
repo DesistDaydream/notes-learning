@@ -145,7 +145,7 @@ list list packages or modules
 >
 > - [GitHub 项目，go-delve/delve](https://github.com/go-delve/delve)
 
-Delve 是一个用于 [Go](docs/2.编程/高级编程语言/Go/Go.md) 编程语言的调试器。该项目的目标是为 Go 提供一个简单、功能完整的调试工具。Delve 应该易于调用和使用。如果你正在使用调试器，很可能事情进展不顺利。考虑到这一点，Delve 应该尽可能地不妨碍你的工作。
+Delve 是一个用于 [Go](/docs/2.编程/高级编程语言/Go/Go.md) 编程语言的调试器。该项目的目标是为 Go 提供一个简单、功能完整的调试工具。Delve 应该易于调用和使用。如果你正在使用调试器，很可能事情进展不顺利。考虑到这一点，Delve 应该尽可能地不妨碍你的工作。
 
 安装
 

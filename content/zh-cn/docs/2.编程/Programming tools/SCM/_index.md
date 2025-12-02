@@ -1,6 +1,6 @@
 ---
-title: "SCM"
-linkTitle: "SCM"
-weight: 3
+title: SCM
+linkTitle: SCM
+weight: 50
 ---
 

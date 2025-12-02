@@ -1,19 +1,21 @@
 ---
-title: "GCC"
-linkTitle: "GCC"
-weight: 20
+title: GCC
+linkTitle: GCC
+weight: 10
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官网](https://gcc.gnu.org/)
 > - [Wiki, GNU Compiler Collection](https://en.wikipedia.org/wiki/GNU_Compiler_Collection)
 
-**GNU Compiler Collection(GUN 编译器集合，简称 GCC)** 包括了C、C++、Objective-C、Fortran、Ada、Go 以及 D 等语言的前端，同时也包括了这些语言的库（如libstdc++等），是为 GNU 操作系统编写的编译器。GNU 系统是开发成 100% 自由软件的，这里的自由是指它遵循用户的自由原则。
+**GNU Compiler Collection(GUN 编译器集合，简称 GCC)** 包括了 C、C++、Objective-C、Fortran、Ada、Go 以及 D 等语言的前端，同时也包括了这些语言的库（如 libstdc++ 等），是为 GNU 操作系统编写的编译器。GNU 系统是开发成 100% 自由软件的，这里的自由是指它遵循用户的自由原则。
 
-GCC 最初单指 **GNU C compiler(GNU C 编译器)**
+> [!Attention] 上面描述中的前端、后端是指[编译器的三阶段](/docs/2.编程/Programming%20tools/Compiler.md#编译器的三阶段)中的概念
+
+> [!Tip] GCC 最初单指 **GNU C compiler(GNU C 编译器)**
 
 # 安装 GCC
 
@@ -26,7 +28,7 @@ yum install gcc make -y
 ## MinGW-w64
 
 > 参考：
-> 
+>
 > - [SourceForge 项目，mingw-w64](https://sourceforge.net/projects/mingw-w64/)
 > - [GitHub 项目，mingw-w64/mingw-w64](https://github.com/mingw-w64/mingw-w64)
 > - [官网](https://www.mingw-w64.org/)

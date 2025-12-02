@@ -4,10 +4,11 @@ linkTitle: Programming tools
 weight: 1
 ---
 
-
 # 概述
 
 > 参考：
+>
+> - 
 
 Programming tools(编程工具)
 
@@ -35,7 +36,7 @@ Ninja # C++ 编写的小型构件系统
 
 Lint 或 Linter 是一种静态代码分析工具，用于标记 编程错误、Bug、风格错误、可疑结构 等。该术语源自一个检查 C 语言代码的 Unix 程序。
 
-现在泛指所有可以实现这种功能的程序，通常，每种编程语言都会开发出一个对应的 Linter，比如 Go 语言的 Staticcheck 就是 gopls。
+现在泛指所有可以实现这种功能的程序，通常，每种编程语言都会开发出一个对应的 Linter。e.g. Go 语言的 Staticcheck 就是 gopls。
 
 # AI 代码补全
 
@@ -70,3 +71,9 @@ https://github.com/aws/aws-toolkit-vscode
 介绍: https://www.bilibili.com/video/BV1WN411B7ZX
 
 亚马逊出的 AI 代码补全
+
+# 其他
+
+MGit # 在 Android 上使用 git 管理代码仓库
+
+- https://f-droid.org/packages/com.manichord.mgit/

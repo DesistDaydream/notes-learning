@@ -1,5 +1,7 @@
 ---
-title: Make 命令教程
+title: Make
+linkTitle: Make
+weight: 20
 ---
 
 # 概述
