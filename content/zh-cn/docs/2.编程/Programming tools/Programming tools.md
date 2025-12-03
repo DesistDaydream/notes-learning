@@ -77,3 +77,11 @@ https://github.com/aws/aws-toolkit-vscode
 MGit # 在 Android 上使用 git 管理代码仓库
 
 - https://f-droid.org/packages/com.manichord.mgit/
+
+# Compiler(编译器)
+
+[Compiler](docs/2.编程/Programming%20tools/Compiler.md)
+
+# Debugger(调试器)
+
+[Debugger](docs/2.编程/Programming%20tools/Debugger.md)

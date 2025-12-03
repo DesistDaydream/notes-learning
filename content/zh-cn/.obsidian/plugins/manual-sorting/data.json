@@ -1231,6 +1231,8 @@
       "docs/2.编程/Programming tools/LLVM.md",
       "docs/2.编程/Programming tools/Clang.md",
       "docs/2.编程/Programming tools/Make.md",
+      "docs/2.编程/Programming tools/Debugger.md",
+      "docs/2.编程/Programming tools/GDB.md",
       "docs/2.编程/Programming tools/SCM"
     ],
     "docs/2.编程/Programming tools/SCM": [
@@ -1543,7 +1545,6 @@
       "docs/5.数据存储/大数据",
       "docs/5.数据存储/数据管理工具",
       "docs/5.数据存储/Retrieval",
-      "docs/5.数据存储/Statistics",
       "docs/5.数据存储/其他",
       "docs/5.数据存储/WAL.md"
     ],
@@ -1773,10 +1774,6 @@
       "docs/5.数据存储/Retrieval/Consistent hashing.md",
       "docs/5.数据存储/Retrieval/搜索引擎.md",
       "docs/5.数据存储/Retrieval/索引为什么能提高查询性能.md"
-    ],
-    "docs/5.数据存储/Statistics": [
-      "docs/5.数据存储/Statistics/_index.md",
-      "docs/5.数据存储/Statistics/Statistics.md"
     ],
     "docs/6.可观测性": [
       "docs/6.可观测性/_index.md",
