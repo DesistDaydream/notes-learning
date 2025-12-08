@@ -11,9 +11,9 @@ weight: 1
 > - [Linux Kernel 文档，子系统 - 内存管理文档](https://www.kernel.org/doc/html/latest/mm/index.html)
 > - [Linux Kernel 文档，管理员指南 - 内存管理](https://www.kernel.org/doc/html/latest/admin-guide/mm/)
 > - 《操作系统导论》
-> - [公众号-小林coding，真棒！ 20 张图揭开内存管理的迷雾，瞬间豁然开朗](https://mp.weixin.qq.com/s/HJB_ATQFNqG82YBCRr97CA)
+> - [公众号 - 小林coding，真棒！ 20 张图揭开内存管理的迷雾，瞬间豁然开朗](https://mp.weixin.qq.com/s/HJB_ATQFNqG82YBCRr97CA)
 >   - 该文是对《操作系统导论》一书中内存部分的提炼与总结。
-> - [公众号-码农的荒岛求生，神秘！申请内存时底层发生了什么？](https://mp.weixin.qq.com/s/0g3sS63yM2qbBja-blw5Dw)(malloc 简介)
+> - [公众号 - 码农的荒岛求生，神秘！申请内存时底层发生了什么？](https://mp.weixin.qq.com/s/0g3sS63yM2qbBja-blw5Dw)(malloc 简介)
 
 **Linux Memory Management Subsystem(Linux 内存管理子系统)** 负责管理系统中的内存。这包括 **virtual memory(虚拟内存)** 和 **demand paging(请求分页)** 的实现、[Linux Kernel](/docs/1.操作系统/Kernel/Linux%20Kernel/Linux%20Kernel.md)内部结构和用户空间程序的内存分配、将文件映射到进程地址空间、etc.
 

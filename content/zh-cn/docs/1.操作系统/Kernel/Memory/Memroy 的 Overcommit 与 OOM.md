@@ -1,16 +1,24 @@
 ---
-title: Memroy 的 Over Commit 与 OOM
+title: Memroy 的 Overcommit 与 OOM
+linkTitle: Memroy 的 Overcommit 与 OOM
+weight: 20
 ---
 
 # 概述
 
-over commit memory 机制与 out of memory 机制
+> 参考：
+>
+> - [Linux Kernel 文档，子系统 - 内存管理 - Overcommit 设计](https://www.kernel.org/doc/html/latest/mm/overcommit-accounting.html)
+> - [Linux Kernel 文档，子系统 - 内存管理 - OOM](https://www.kernel.org/doc/html/latest/mm/oom.html)
+>     - 在 [2022 年 5 月 10 日 Commit 481cc97](https://github.com/torvalds/linux/commit/481cc97349d694e3211e14a886ad2b7ef55b5a2c) 中，创建了一系列内存管理的 .rst 文档文件，其中有 oom 处理。这次提交说明：是为了紧跟 Mel Gorman 的书 "Understanding the Linux Virtual Memory Manager"，而创建了一系列的大纲，以便以后可以将文档转换到更合理的位置
+
+over commit memory 与 out of memory 机制
 
 ## over-commit memory 机制
 
-Linux 内核根据应用程序的要求分配内存，通常来说应用程序分配了内存但是并没有实际全部使用，为了提高性能，这部分没用的内存可以留作它用，这部分内存是属于每个进程的，内核直接回收利用的话比较麻烦，所以内核采用一种过度分配内存（over-commit memory）的办法来间接利用这部分 “空闲” 的内存，提高整体内存的使用效率。一般来说这样做没有问题，但当大多数应用程序都消耗完自己的内存的时候麻烦就来了，因为这些应用程序的内存需求加起来超出了物理内存（包括 swap）的容量，内核（OOM killer）必须杀掉一些进程才能腾出空间保障系统正常运行。用银行的例子来讲可能更容易懂一些，部分人取钱的时候银行不怕，银行有足够的存款应付，当全国人民（或者绝大多数）都取钱而且每个人都想把自己钱取完的时候银行的麻烦就来了，银行实际上是没有这么多钱给大家取的。
+Linux 内核根据应用程序的要求分配内存，通常来说应用程序分配了内存但是并没有实际全部使用，为了提高性能，这部分没用的内存可以留作它用，这部分内存是属于每个进程的，内核直接回收利用的话比较麻烦，所以内核采用一种 **over-commit memory(过度分配内存)** 的办法来间接利用这部分 “空闲” 的内存，提高整体内存的使用效率。一般来说这样做没有问题，但当大多数应用程序都消耗完自己的内存的时候麻烦就来了，因为这些应用程序的内存需求加起来超出了物理内存（包括 swap）的容量，内核（OOM killer）必须杀掉一些进程才能腾出空间保障系统正常运行。用银行的例子来讲可能更容易懂一些，部分人取钱的时候银行不怕，银行有足够的存款应付，当全国人民（或者绝大多数）都取钱而且每个人都想把自己钱取完的时候银行的麻烦就来了，银行实际上是没有这么多钱给大家取的。
 
-## out of memory 机制(OOM)
+## out of memory(OOM) 机制
 
 某时刻应用程序大量请求内存导致系统内存不足造成的，这通常会触发 Linux 内核里的 Out of Memory (OOM) killer，OOM killer 会杀掉某个进程以腾出内存留给系统用，不致于让系统立刻崩溃
 
@@ -186,17 +194,23 @@ Nov 24 19:52:40 dr-2 kernel: __ratelimit: 8552 callbacks suppressed
 
 进程所占资源列表相关信息
 
-1. **pid** # 进程 ID 号
-2. **uid** # 该进程用户的 UserID
-3. **tgid** #
-4. **total_vm** # 该进程所占用的虚拟内存页,1page=4k 内存，所以实际占用需要用该值乘以 4
-5. **rss** # 该进程所占用的实际内存页,1page=4k 内存，所以实际占用需要用该值乘以 4
-6. **cpu** #
-7. **oom_adj** # oom 计算出的该进程的。详见本文《oom killer 怎么挑选进程》章节
-8. **oom_score_adj** # oom 给该进程的分数。详见本文《oom killer 怎么挑选进程》章节
-9. **name** # 进程名
+- **pid** # 进程 ID 号
+- **uid** # 该进程用户的 UserID
+- **tgid** #
+- **total_vm** # 该进程所占用的虚拟内存页,1page=4k 内存，所以实际占用需要用该值乘以 4
+- **rss** # 该进程所占用的实际内存页,1page=4k 内存，所以实际占用需要用该值乘以 4
+- **cpu** #
+- **oom_adj** # oom 计算出的该进程的。详见本文《oom killer 怎么挑选进程》章节
+- **oom_score_adj** # oom 给该进程的分数。详见本文《oom killer 怎么挑选进程》章节
+- **name** # 进程名
+
+**invoked** # 本次 oom 起始于哪个进程的内存申请。通常在第一行
+
+**Killed** # 本次 oom 最终杀掉了哪个进程
 
 # OOM Killer
+
+原文: https://www.jianshu.com/p/ba1cdf92a602
 
 是 Linux 内核设计的一种机制，在内存不足的会后，选择一个占用内存较大的进程并 kill 掉这个进程，以满足内存申请的需求（内存不足的时候该怎么办，其实是个两难的事情，oom killer 算是提供了一种方案吧）
 
@@ -266,7 +280,7 @@ linux 会为每个进程算一个分数，最终他会将分数最高的进程 k
     3.1 找出最有可能被杀掉的进程
 
 ```bash
-cat > oomscore.sh <<EOF
+tee oomscore.sh > /dev/null <<"EOF"
 #!/bin/bash
 for proc in $(find /proc -maxdepth 1 -regex '/proc/[0-9]+'); do
     printf "%2d %5d %s\n" \
@@ -291,8 +305,8 @@ chmod +x oomscore.sh
 
 3.2 避免的 oom killer 的方案
 
-- 直接修改/proc/PID/oom_adj 文件，将其置位-17
-- 修改/proc/sys/vm/lowmem_reserve_ratio
+- 直接修改 /proc/PID/oom_adj 文件，将其置为 -17
+- 修改 /proc/sys/vm/lowmem_reserve_ratio
 - 直接关闭 oom-killer
 
 参考：
@@ -305,7 +319,9 @@ chmod +x oomscore.sh
 - 理解和配置 Linux 下的 OOM Killer
 - ubuntu 解决 cache 逐渐变大导致 oom-killer 将某些进程杀死的情况
 
-# 这篇是一例 oom killer 日志的具体分析,有疑问的可以先看上一篇：
+# OOM Killer 日志分析实践
+
+原文: https://www.jianshu.com/p/8dd45fdd8f33
 
 下面是一台 8G 内存上的一次 oom killer 的日志，上面跑的是 RocketMQ 3.2.6，java 堆配置：-server -Xms4g -Xmx4g -Xmn2g -XX:PermSize=128m -XX:MaxPermSize=320m
 
@@ -380,11 +396,14 @@ Jun  4 17:19:10 iZ23tpcto8eZ kernel: Killed process 5424 (java) total-vm:1476547
 - min 下的内存是保留给内核使用的；当到达 min，会触发内存的 direct reclaim
 - low 水位比 min 高一些，当内存可用量小于 low 的时候，会触发 kswapd 回收内存，当 kswapd 慢慢的将内存 回收到 high 水位，就开始继续睡眠
 
-  1.谁申请内存以及谁被 kill 了？
-  这两个问题，可以从头部和尾部的日志分析出来：
+## 1. 谁申请内存以及谁被 kill 了？
 
-      Jun  4 17:19:10 iZ23tpcto8eZ kernel: AliYunDun invoked oom-killer: gfp_mask=0x201da, order=0, oom_score_adj=0
-      Jun  4 17:19:10 iZ23tpcto8eZ kernel: Killed process 5424 (java) total-vm:147654756kB, anon-rss:6151080kB, file-rss:0kB
+这两个问题，可以从头部和尾部的日志分析出来：
+
+```text
+Jun  4 17:19:10 iZ23tpcto8eZ kernel: AliYunDun invoked oom-killer: gfp_mask=0x201da, order=0, oom_score_adj=0
+Jun  4 17:19:10 iZ23tpcto8eZ kernel: Killed process 5424 (java) total-vm:147654756kB, anon-rss:6151080kB, file-rss:0kB
+```
 
 AliYunDun 申请内存，kill 掉了 java 进程 5424，他占用的内存是 6151080K(5.8G)
 
@@ -392,16 +411,21 @@ AliYunDun 申请内存，kill 掉了 java 进程 5424，他占用的内存是 61
 
 物理内存申请我们在上一篇分析了，会到不同的 Node 不同的 zone，那么这次申请的是哪一部分？这个可以从 gfp_mask=0x201da, order=0 分析出来，gfp_mask(get free page)是申请内存的时候，会传的一个标记位，里面包含三个信息：区域修饰符、行为修饰符、类型修饰符：
 
-0X201da = 0x20000 | 0x100| 0x80 | 0x40 | 0x10 | 0x08 | 0x02 也就是下面几个值：\_\_\_GFP_HARDWAL | \_\_\_GFP_COLD | \_\_\_GFP_FS | \_\_\_GFP_IO | \_\_\_GFP_MOVABLE| \_\_\_GFP_HIGHMEM
+```text
+0X201da = 0x20000 | 0x100| 0x80 | 0x40 | 0x10 | 0x08 | 0x02
+也就是下面几个值：
+___GFP_HARDWAL | ___GFP_COLD | ___GFP_FS | ___GFP_IO | ___GFP_MOVABLE| ___GFP_HIGHMEM
+```
 
-同时设置了\_\_\_GFP_MOVABLE 和\_\_\_GFP_HIGHMEM 会扫描 ZONE_MOVABLE，其实也就是会在 ZONE_NORMAL，再贴一次神图
+同时设置了 `___GFP_MOVABLE` 和 `___GFP_HIGHMEM` 会扫描 `ZONE_MOVABLE`，其实也就是会在 ` ZONE_NORMAL`，再贴一次神图
+
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/rwsybc/1616167905288-838e8528-b134-45bb-bbec-81d175c4c272.jpeg)
 
 另外 order 表示了本次申请内存的大小 0，也就是 4KB
 
 也就是说 AliYunDun 尝试从 ZONE_NORMAL 申请 4KB 的内存，但是失败了，导致了 OOM KILLER
 
-2.各个 zone 的情况如何？
+## 2. 各个 zone 的情况如何？
 
 接下来，自然就会问，连 4KB 都没有，那到底还有多少？看这部分日志：
 
@@ -420,7 +444,7 @@ Jun  4 17:19:10 iZ23tpcto8eZ kernel: lowmem_reserve[]: 0 0 0 0
 
 可以看到 Normal 还有 36200KB，DMA32 还有 43500KB，DMA 还有 15900KB，其中 Normal 的 free 确实小于 min，但是 DMA32 和 DMA 的 free 没问题啊？从上篇文章分析来看，分配是有链条的，Normal 不够了，会从 DMA32 以及 DMA 去请求分配，所以为什么分配失败了呢？
 
-2.1 lowmem_reserve
+### 2.1 lowmem_reserve
 
 虽然说分配内存会按照 Normal、DMA32、DMA 的顺序去分配，但是低端内存相对来说更宝贵些，为了防止低端内存被高端内存用完，linux 设计了保护机制，也就是 lowmen_reserve，从上面的日志看，他们的值是这样的：
 
@@ -434,7 +458,7 @@ lowmen_reserve 的值是一个数组，当 Normal(index=2)像 DMA32 申请内存
 - Normal 转到 DMA32 申请:`high(36376KB) + lowmem_reserve[2](4990)\*4=56336KB > DMA32 Free(43500KB)`,不允许申请
 - Normal 转到 DMA 申请:`high(196KB) + lowmem_reserve[2](7792)\*4 = 31364KB > DMA Free(15900KB)`,不允许申请,所以....最终失败了
 
-  2.2 min_free_kbytes
+### 2.2 min_free_kbytes
 
 这里属于扩展知识了，和分析 oom 问题不大
 
@@ -449,23 +473,25 @@ min 和 low 的区别：
 - min 下的内存是保留给内核使用的；当到达 min，会触发内存的 direct reclaim
 - low 水位比 min 高一些，当内存可用量小于 low 的时候，会触发 kswapd 回收内存，当 kswapd 慢慢的将内存 回收到 high 水位，就开始继续睡眠
 
-  3.最后的问题：java 为什么占用了这么多内存？
+## 3. 最后的问题：java 为什么占用了这么多内存？
 
 内存不足申请失败的细节都分析清楚了，剩下的问题就是为什么 java 会申请这么多内存(5.8G)，明明-Xmx 配置的是 4G，加上 PermSize，也就最多 4.3G。
 
 因为这上面跑的是 RocketMQ，他会有文件映射 mmap，所以在仔细分析 oom 日志之前，怀疑是 pagecache 占用，导致 RSS 为 5.8G，这带来了另一个问题，为什么 pagecache 没有回收？分析了日志以后，发现和 pagecache 基本没关系，看这个日志(换行是我后来加上的)：
 
-    Jun  4 17:19:10 iZ23tpcto8eZ kernel: active_anon:1813257 inactive_anon:37301 isolated_anon:0 active_file:84
-    inactive_file:0 isolated_file:0
-    unevictable:0 dirty:0 writeback:0
-    unstable:0 free:23900
-    slab_reclaimable:34218
-    slab_unreclaimable:5636 mapped:1252
-    shmem:100531 pagetables:68092 bounce:0
-    free_cma:0
+```text
+Jun  4 17:19:10 iZ23tpcto8eZ kernel: active_anon:1813257 inactive_anon:37301 isolated_anon:0 active_file:84
+inactive_file:0 isolated_file:0
+unevictable:0 dirty:0 writeback:0
+unstable:0 free:23900
+slab_reclaimable:34218
+slab_unreclaimable:5636 mapped:1252
+shmem:100531 pagetables:68092 bounce:0
+free_cma:0
+```
 
-当时的内存大部分都是活跃的匿名页(active_anon 18132574KB=6.9G)，其他的非活跃匿名页（inactive_anon 145M），活跃文件页（active_file 844=336KB）,非活跃文件页（inactive_file 0），也就是说当时基本没有 pagecache，因为 pagecache 会属于文件页
+当时的内存大部分都是活跃的匿名页(active_anon 18132574KB=6.9G)，其他的非活跃匿名页（inactive_anon 145M），活跃文件页（active_file 844=336KB），非活跃文件页（inactive_file 0），也就是说当时基本没有 pagecache，因为 pagecache 会属于文件页
 
 并且，这台机器上的 gc log 没配置好，进程重启以后 gc 文件被覆盖了，另外被 oom killer 也没有 java dump，所以…..真的不知道到底为什么 java 占了 5.8G!!! 悬案还是没有解开 T_T
 
-如果上层申请内存的速度太快，导致空闲内存降至 watermark\[min]后，内核就会进行 direct reclaim（直接回收），即直接在应用程序的进程上下文中进行回收，再用回收上来的空闲页满足内存申请，因此实际会阻塞应用程序，带来一定的响应延迟
+如果上层申请内存的速度太快，导致空闲内存降至 `watermark[min]` 后，内核就会进行 direct reclaim（直接回收），即直接在应用程序的进程上下文中进行回收，再用回收上来的空闲页满足内存申请，因此实际会阻塞应用程序，带来一定的响应延迟

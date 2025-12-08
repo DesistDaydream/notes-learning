@@ -97,6 +97,7 @@ process-exporter采集内存的指标时将内存分成5种类型：
 ## Grafana 面板
 
 - https://grafana.com/grafana/dashboards/249-named-processes/
+- https://grafana.com/grafana/dashboards/22161-process-exporter-dashboard/
 
 # Nginx Exporter
 

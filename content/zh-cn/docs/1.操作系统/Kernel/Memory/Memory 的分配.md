@@ -8,7 +8,7 @@ weight: 2
 
 > 参考：
 >
-> - [公众号-小林coding，我做了个实验！](https://mp.weixin.qq.com/s/HXRGr90baCvM-NQbPIgn-g)
+> - [公众号 - 小林coding，我做了个实验！](https://mp.weixin.qq.com/s/HXRGr90baCvM-NQbPIgn-g)
 
 ### Linux 进程的内存分布长什么样？
 

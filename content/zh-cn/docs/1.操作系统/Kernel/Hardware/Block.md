@@ -22,7 +22,7 @@ weight: 20
 在 [`/sys/block/<DEV>/stat`](https://github.com/torvalds/linux/blob/master/Documentation/block/stat.rst) 文件中，io_ticks 字段记录了毫秒级的 磁盘 I/O 时间。如果磁盘在 1 秒内持续执行 I/O 操作，那么在 1 秒钟后，io_ticks 的值是 1000；如果 1 秒内磁盘一直空闲，那么 io_ticks 的值是 0。也就是说，io_ticks 的值每秒最多增加 1000。
 
 > [!Note]
-> 在 [Node Exporter](/docs/6.可观测性/Metrics/Instrumenting/Node%20Exporter.md) 源码中，[这里](https://github.com/prometheus/node_exporter/blob/v1.6.1/collector/diskstats_linux.go#L320) 可以看到 `stats.IOsTotalTicks` 对应 `diskstatsCollector.descs[10]`(i.e. node_disk_io_time_seconds_total 指标)。而 `IOsTotalTics` 对应到 [prometheus/procfs 项目，blockdevice/stats.go 中的 IOStats 结构体得 IOsTotalTicks 属性](https://github.com/prometheus/procfs/blob/v0.15.1/blockdevice/stats.go#L61)。这些结构体的信息来源遵循以下几个内核文档的说明
+> 在 [Node Exporter](/docs/6.可观测性/Metrics/Instrumenting/Node%20Exporter.md) 源码中，[这里](https://github.com/prometheus/node_exporter/blob/v1.6.1/collector/diskstats_linux.go#L320) 可以看到 `stats.IOsTotalTicks` 对应 `diskstatsCollector.descs[10]`(i.e. node_disk_io_time_seconds_total 指标)。而 `IOsTotalTics` 对应到 [prometheus/procfs 项目，blockdevice/stats.go 中的 IOStats 结构体的 IOsTotalTicks 属性](https://github.com/prometheus/procfs/blob/v0.15.1/blockdevice/stats.go#L61)。这些结构体的信息来源遵循以下几个内核文档的说明
 >
 > - https://www.kernel.org/doc/Documentation/iostats.txt,
 > - https://www.kernel.org/doc/Documentation/block/stat.txt
