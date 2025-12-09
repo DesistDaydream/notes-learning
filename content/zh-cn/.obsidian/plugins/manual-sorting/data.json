@@ -327,12 +327,12 @@
       "docs/1.操作系统/Kernel/Linux Kernel/Kernel 参数/net(网络相关参数)/rp_filter.md"
     ],
     "docs/1.操作系统/Kernel/Memory": [
+      "docs/1.操作系统/Kernel/Memory/Memroy 的 Overcommit 与 OOM.md",
       "docs/1.操作系统/Kernel/Memory/_index.md",
       "docs/1.操作系统/Kernel/Memory/Memory.md",
       "docs/1.操作系统/Kernel/Memory/Huge Pages.md",
       "docs/1.操作系统/Kernel/Memory/Memory 的分配.md",
       "docs/1.操作系统/Kernel/Memory/Memory 的缓存.md",
-      "docs/1.操作系统/Kernel/Memory/Memroy 的 Over Commit 与 OOM.md",
       "docs/1.操作系统/Kernel/Memory/堆区与栈区.md",
       "docs/1.操作系统/Kernel/Memory/NUMA.md",
       "docs/1.操作系统/Kernel/Memory/Memory Info.md",

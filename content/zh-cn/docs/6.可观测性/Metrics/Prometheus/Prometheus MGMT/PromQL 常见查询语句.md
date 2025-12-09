@@ -209,10 +209,8 @@ predict_linear(node_filesystem_free_bytes{fstype!~"tmpfs"}[1h], 4 * 3600) < 0
 ### IO 使用率
 
 ```text
-100
--
-(avg(irate(node_disk_io_time_seconds_total[5m])) by(instance,job))
-* 100 < 20
+irate(node_disk_io_time_seconds_total[5m])
+* 100 > 90
 ```
 
 ### 读写速率

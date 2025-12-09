@@ -154,7 +154,7 @@ func (h *handler) innerHandler(filters ...string) (http.Handler, error) {
 
 ## 日志时区
 
-详见 [Prometheus MGMT](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20MGMT/Prometheus%20MGMT.md)
+详见 [Prometheus MGMT - Prometheus UTS 时区问题](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20MGMT/Prometheus%20MGMT.md#Prometheus%20UTS%20时区问题)
 
 # Grafana 面板
 
@@ -163,3 +163,47 @@ func (h *handler) innerHandler(filters ...string) (http.Handler, error) {
 - [8919](https://grafana.com/grafana/dashboards/8919-1-node-exporter-for-prometheus-dashboard-cn-0413-consulmanager/)
   - 国人出的，22 年4月12日之后不维护了
   - [16098](https://grafana.com/grafana/dashboards/16098-1-node-exporter-for-prometheus-dashboard-cn-0417-job/) 新的，代替 8919
+
+# 指标解析
+
+## node_disk_io_time_seconds_total
+
+`node_disk_io_time_seconds_total` 每秒钟增长的值最多就是 1。使用 `irate(node_disk_io_time_seconds_total[5m])` 可以得出磁盘 I/O 的使用率，结果是 0 - 1 之间的数。
+
+原因如下：
+
+在 [Node Exporter 源码](https://github.com/prometheus/node_exporter/blob/v1.6.1/collector/diskstats_linux.go#L320) 可以看到 `node_disk_io_time_seconds_total` 指标是 `diskstatsCollector.descs` 的第 10 号元素。在 `ch <- c.descs[i].mustNewConstMetric(val, dev)` 这里实现了指标写入逻辑
+
+```go
+func (c *diskstatsCollector) Update(ch chan<- prometheus.Metric) error {
+  // prometheus/procfs 项目中的方法，返回的 IOStats 储存的是 /sys/block/<BLOCK>/stat 文件中的值
+	diskStats, err := c.fs.ProcDiskstats()
+	for _, stats := range diskStats {
+		for i, val := range []float64{
+			// ......前 9 个
+			float64(stats.IOsTotalTicks) * secondsPerTick, // 这就是 node_disk_io_time_seconds_total 指标
+			// ......后 7 个
+		}
+		ch <- c.descs[i].mustNewConstMetric(val, dev)
+	}
+}
+```
+
+写入的 `stats.IOsTotalTicks` 最终来源是 prometheus/procfs 项目中的 [IOStats.IOsTotalTicks 属性](https://github.com/prometheus/procfs/blob/v0.15.1/blockdevice/stats.go#L61)，IOStats 结构体的信息来源遵循以下几个内核文档的说明
+
+- https://www.kernel.org/doc/Documentation/iostats.txt,
+- https://www.kernel.org/doc/Documentation/block/stat.txt
+- https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats
+
+也就是说，IOStats 储存的是 `/sys/block/<BLOCK>/stat` 文件中的值，IOsTotalTics 文件中第 10 个字段的值，io_ticks 的值）。
+
+所以，`node_disk_io_time_seconds_total` 本质就是 io_ticks，作为块设备的 I/O 时间如何理解详见 [Block 设备的 I/O 时间](docs/1.操作系统/Kernel/Hardware/Block.md#I/O%20时间)
+
+最后，node-exporter 代码中，把 io_ticks 除以 1000 得到了 秒 级别的 I/O 时间 
+
+```go
+secondsPerTick = 1.0 / 1000.0
+float64(stats.IOsTotalTicks) * secondsPerTick
+```
+
+所以，`node_disk_io_time_seconds_total` 每秒钟增长的值最多就是 1，那么 rate 之后的结果就可以作为使用率。
