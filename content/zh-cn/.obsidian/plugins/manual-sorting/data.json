@@ -1987,8 +1987,9 @@
       "docs/6.可观测性/Metrics/Prometheus/Label matchers.md",
       "docs/6.可观测性/Metrics/Prometheus/Storage",
       "docs/6.可观测性/Metrics/Prometheus/Alerting.md",
-      "docs/6.可观测性/Metrics/Prometheus/Federate(集群联邦).md",
       "docs/6.可观测性/Metrics/Prometheus/HTTPS 和 Authentication.md",
+      "docs/6.可观测性/Metrics/Prometheus/Federate(集群联邦).md",
+      "docs/6.可观测性/Metrics/Prometheus/Prometheus Agent.md",
       "docs/6.可观测性/Metrics/Prometheus/PromQL",
       "docs/6.可观测性/Metrics/Prometheus/Prometheus API",
       "docs/6.可观测性/Metrics/Prometheus/Prometheus Development",
@@ -3373,14 +3374,9 @@
     "docs/12.AI/Automation": [
       "docs/12.AI/Automation/_index.md",
       "docs/12.AI/Automation/Automation.md",
-      "docs/12.AI/Automation/按键精灵",
       "docs/12.AI/Automation/RPA.md",
-      "docs/12.AI/Automation/Expect.md"
-    ],
-    "docs/12.AI/Automation/按键精灵": [
-      "docs/12.AI/Automation/按键精灵/_index.md",
-      "docs/12.AI/Automation/按键精灵/按键精灵，后台脚本键盘代码对照一览！.md",
-      "docs/12.AI/Automation/按键精灵/按键精灵后台程序.md"
+      "docs/12.AI/Automation/Expect.md",
+      "docs/12.AI/Automation/按键精灵.md"
     ],
     "docs/学习": [
       "docs/学习/_index.md",
@@ -3408,7 +3404,8 @@
       "docs/Mobile device/Android 开发.md",
       "docs/Mobile device/Android MGMT",
       "docs/Mobile device/Mobile app.md",
-      "docs/Mobile device/小米.md"
+      "docs/Mobile device/小米.md",
+      "docs/Mobile device/豆包手机.md"
     ],
     "docs/Mobile device/Android MGMT": [
       "docs/Mobile device/Android MGMT/_index.md",

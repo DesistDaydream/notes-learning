@@ -1,5 +1,5 @@
 ---
 title: PromQL
 linkTitle: PromQL
-weight: 8
+weight: 20
 ---

@@ -1,5 +1,5 @@
 ---
 title: Prometheus API
 linkTitle: Prometheus API
-weight: 9
+weight: 30
 ---

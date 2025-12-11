@@ -27,59 +27,7 @@ Prometheus Server 可以在运行时重新加载其配置文件(也就俗称的�
 
 注意：想要实现热更新功能，需要在 Prometheus Server 中指定 `--web.enable-lifecycle` 标志，这也将重新加载所有的 Rules 配置文件。
 
-# Prometheus Server 命令行标志详解
-
-可以通过 prometheus -h 命令查看所有的可以用标志
-
-prometheus 程序在启动时，可以使用一些标志来对程序进行一些基本设定，比如数据存储路径、存储时间等等
-
-- **--config.file**(STRING) # Prometheus Server 的主配置文件。`默认值: prometheus.yml`，i.e. 当前目录下的 prometheus.yml 文件
-- **--enable-feature=...** # 启动指定的功能特性，多个功能以逗号分割。可以开启的功能详见：[官方文档，已关闭的功能](https://prometheus.io/docs/prometheus/latest/feature_flags/)
-- **--web.listen-address="0.0.0.0:9090"** # Prometheus 监听地址。`默认值：0.0.0.0:9090`。该端口用于 Web UI、API 和 Telemetry(遥测)
-- **--web.config.file=/PATH/TO/FILE** # \[实验标志]用于开启 TLS 或 身份验证 配置文件路径。
-- --web.read-timeout=5m # Maximum duration before timing out read of the request, and closing idle connections.
-- **--web.max-connections=INT** # 可以同时连接到 Prometheus Server 的最大数量。`默认值:512`
-- **--web.external-url=URL** # 可以从外部访问 Prometheus 的 URL。
-  - 例如，如果 Prometheus 是通过反向代理提供的，用于生成返回 Prometheus 本身的相对和绝对链接。如果 URL 具有路径部分，它将被用作所有 HTTP 的前缀 Prometheus 服务的端点。 如果省略，则会自动派生相关的 URL 组件。
-    - 注意：该标志在反向代理时似乎问题，详见：<https://github.com/prometheus/prometheus/issues/1583>
-  - 例如，Prometheus 产生的的告警，推送到 AlertManager 时，会有一个 `generatorURL` 字段，该字段中所使用的 URL 中的 Endpoint，就是 web.external-url，这个 URL 可以让获取该告警的人，点击 URL 即可跳转到 Prometheus 的 Web 页面并使用对应的 PromQL 查询。
-- **--web.route-prefix=PATH** # Web 端内部路由的前缀。 默认为 --web.external-url 标志指定的路径。i.e.后端代码的路由入口路径。一般默认为 / 。
-- --web.user-assets= # Path to stat storage.tsdb.max-block-durationic asset directory, available at /user.
-- **--web.enable-lifecycle** # 开启配置热更新，开启后，可使用 curl -X POST <http://PrometheusServerIP:9090/-/reload> 命令来重载配置以便让更改后的配置生效，而不用重启 prometheus 进程
-- **--web.enable-admin-api** # 开启管理操作 API 端点。通过 admin API，可以删除时序数据。
-- --web.console.templates="consoles" # Path to the console template directory, available at /consoles.
-- --web.console.libraries="console_libraries" # Path to the console library directory.
-- --web.page-title="Prometheus Time Series Collection and Processing Server" # Document title of Prometheus instance.
-- --web.cors.origin=".\*" # Regex for CORS origin. It is fully anchored. Example: 'https?://(domain1|domain2).com'
-- --web.enable-remote-write-receiver # 开启 Prometheus [Storage](/docs/6.可观测性/Metrics/Prometheus/Storage/Storage.md) 中的 Remote Storage(远程存储) 功能。
-- **--storage.tsdb.path**(STRING) # prometheus 存储时间序列数据的目录。`默认值: data/`，i.e. 当前目录下的 data/ 目录。
-- **--storage.tsdb.retention.time**(DURATION) # 数据的存储时间，如果既未设置此标志也未设置 storage.tsdb.retention.size 标志，`默认值：15d`。支持的单位：y，w，d，h，m，s，ms。
-- --storage.tsdb.retention.size=STORAGE.TSDB.RETENTION.SIZE # [EXPERIMENTAL] Maximum number of bytes that can be stored for blocks. Units supported: KB, MB, GB, TB, PB. This flag is experimental and can be changed in future releases.
-- --storage.tsdb.no-lockfile # 不在数据目录创建锁文件。通常只用在测试，不创建所文件可能会导致其他进程读写数据文件导致数据损坏。
-- --storage.tsdb.allow-overlapping-blocks # \[EXPERIMENTAL] Allow overlapping blocks, which in turn enables vertical compaction and vertical query merge.
-- --storage.tsdb.wal-compression # Compress the tsdb WAL.
-- --storage.remote.flush-deadline= # How long to wait flushing sample on shutdown or config reload.
-- --storage.remote.read-sample-limit=5e7 # Maximum overall number of samples to return via the remote read interface, in a single query. 0 means no limit. This limit is ignored for streamed response types.
-- --storage.remote.read-concurrent-limit=10 # Maximum number of concurrent remote read calls. 0 means no limit.
-- --storage.remote.read-max-bytes-in-frame=1048576 # Maximum number of bytes in a single frame for streaming remote read response types before marshalling. Note that client might have limit on frame size as well. 1MB as recommended by protobuf
-- by default.
-- --rules.alert.for-outage-tolerance=1h # Max time to tolerate prometheus outage for restoring "for" state of alert.
-- --rules.alert.for-grace-period=10m # Minimum duration between alert and restored "for" state. This is maintained only for alerts with configured "for" time greater than grace period.
-- **--rules.alert.resend-delay=DURATION**# 向 Alertmanager 重新发送警报前的最少等待时间。`默认值：1m`。
-  - 当告警处于 FIRING 状态时，每间隔 1m，就会再次发送一次。注意：重发送之前，还需要一个评估规则的等待期，评估完成后，再等待该值的时间，才会重新发送告警。
-- --alertmanager.notification-queue-capacity=10000 # The capacity of the queue for pending Alertmanager notifications.
-- --alertmanager.timeout=10s # Timeout for sending alerts to Alertmanager.
-- **--query.lookback-delta=DURATION** # 评估 PromQL 表达式时最大的回溯时间。`默认值：5m`
-  - 比如，当采集目标的间隔时间为 10m 时，由于该设置，最大只能查询当前时间的前 5m 的数据，这是，即时向量表达式返回的结果将会为空。
-- **--query.timeout=DURATION** # 一次查询的超时时间。`默认值：2m`
-- --query.max-concurrency=20 # Maximum number of queries executed concurrently.
-- --query.max-samples=50000000 # Maximum number of samples a single query can load into memory. Note that queries will fail if they try to load more samples than this into memory, so this also limits the number of samples a query can return.
-- **--log.level=STRING** # 设定 Prometheus Server 运行时输出的日志的级别。`默认值：info`。 可用的值有：debug, info, warn, error
-- **--log.format=logfmt** # 设定 Prometheus Server 运行时输出的日志的格式。`默认值：logfmt`。可用的值有：logfmt, json
-
-# prometheus.yaml 配置文件详解
-
-下文用到的字段值的占位符说明
+## 下文用到的字段值的占位符说明
 
 - BOOLEAN # 可以采用 true 或 false 值的布尔值
 - DURATION # 持续时间。可以使用正则表达式
@@ -95,11 +43,55 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 - STRING # 常规字符串
 - TMPL_STRING # 使用前已模板扩展的字符串
 
+# Prometheus Server 命令行标志详解
+
+prometheus 程序在启动时，可以使用一些标志来对程序进行一些基本设定，比如数据存储路径、存储时间等等
+
+- **--config.file**(STRING) # Prometheus Server 的主配置文件。`默认值: prometheus.yml`，i.e. 当前目录下的 prometheus.yml 文件
+- **--enable-feature=...** # 启动指定的功能特性，多个功能以逗号分割。可以开启的功能详见：[官方文档，已关闭的功能](https://prometheus.io/docs/prometheus/latest/feature_flags/)
+
+Web 相关
+
+- **--web.listen-address**(STRING) # Prometheus 监听地址。`默认值：0.0.0.0:9090`。该端口用于 Web UI、API 和 Telemetry(遥测)
+- **--web.config.file**(STRING) # \[实验标志]用于开启 TLS 或 身份验证 配置文件路径。
+- **--web.max-connections**(INT) # 可以同时连接到 Prometheus Server 的最大数量。`默认值:512`
+- **--web.external-url**(STRING) # 可以从外部访问 Prometheus 的 URL。
+  - 例如，如果 Prometheus 是通过反向代理提供的，用于生成返回 Prometheus 本身的相对和绝对链接。如果 URL 具有路径部分，它将被用作所有 HTTP 的前缀 Prometheus 服务的端点。 如果省略，则会自动派生相关的 URL 组件。
+    - 注意：该标志在反向代理时似乎问题，详见：<https://github.com/prometheus/prometheus/issues/1583>
+  - 例如，Prometheus 产生的的告警，推送到 AlertManager 时，会有一个 `generatorURL` 字段，该字段中所使用的 URL 中的 Endpoint，就是 web.external-url，这个 URL 可以让获取该告警的人，点击 URL 即可跳转到 Prometheus 的 Web 页面并使用对应的 PromQL 查询。
+- **--web.route-prefix**(STRING) # Web 端内部路由的前缀。 默认为 --web.external-url 标志指定的路径。i.e.后端代码的路由入口路径。一般默认为 / 。
+- **--web.enable-lifecycle** # 开启配置热更新，开启后，可使用 curl -X POST <http://PrometheusServerIP:9090/-/reload> 命令来重载配置以便让更改后的配置生效，而不用重启 prometheus 进程
+- **--web.enable-admin-api** # 开启管理操作 API 端点。通过 admin API，可以删除时序数据。
+- **--web.enable-remote-write-receiver** # 开启 Prometheus [Storage](/docs/6.可观测性/Metrics/Prometheus/Storage/Storage.md) 中的 Remote Storage(远程存储) 功能。`默认值: false`
+
+存储相关
+
+- **--storage.tsdb.path**(STRING) # prometheus 存储时间序列数据的目录。`默认值: data/`，i.e. 当前目录下的 data/ 目录。
+- **--storage.tsdb.retention.time**(DURATION) # 数据的存储时间，如果既未设置此标志也未设置 storage.tsdb.retention.size 标志，`默认值：15d`。支持的单位：y，w，d，h，m，s，ms。
+- **--storage.tsdb.no-lockfile** # 不在数据目录创建锁文件。`默认值: false`
+  - 通常只用在测试场景，不创建所文件可能会导致其他进程读写数据文件导致数据损坏。
+
+规则与查询
+
+- **--rules.alert.resend-delay**(DURATION) # 向 Alertmanager 重新发送警报前的最少等待时间。`默认值：1m`。
+  - 当告警处于 FIRING 状态时，每间隔 1m，就会再次发送一次。注意：重发送之前，还需要一个评估规则的等待期，评估完成后，再等待该值的时间，才会重新发送告警。
+- **--query.lookback-delta**(DURATION) # 评估 PromQL 表达式时最大的回溯时间。`默认值：5m`
+  - 比如，当采集目标的间隔时间为 10m 时，由于该设置，最大只能查询当前时间的前 5m 的数据，这是，即时向量表达式返回的结果将会为空。
+- **--query.timeout**(DURATION) # 一次查询的超时时间。`默认值：2m`
+
+日志相关
+
+- **--log.level**(STRING) # 设定 Prometheus Server 运行时输出的日志的级别。`默认值：info`。 可用的值有：debug, info, warn, error
+- **--log.format=logfmt** # 设定 Prometheus Server 运行时输出的日志的格式。`默认值：logfmt`。可用的值有：logfmt, json
+
+# prometheus.yaml 配置文件详解
+
 **顶层字段**
 
 - **global**([global](#global)) # 全局配置，所有内容作用于所有配置环境中,若其余配置环境中不再指定同样的配置，则global中的配置作为默认配置
 - **rule_files**([rule_files](#rule_files)) #
-- **scrape_configs**(\[][scrape_configs](#scrape_configs(占比最大的字段))) # 抓取 Target 的 metrics 时的配置
+- **scrape_configs**(\[][scrape_configs](#scrape_configs)) # 抓取 Target 的 metrics 时的配置
+    - <font color="#ff0000">这是占比最大的字段</font>
 - **alerting**([alerting](#alerting)) # 与 Alertmanager 相关的配置
   - alert_relabel_configs([relabel_configs](#relabel_configs))
   - alertmanagers
@@ -110,17 +102,17 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 
 全局配置，所有内容作用于所有配置环境中,若其余配置环境中不再指定同样的配置，则 global 中的配置作为默认配置
 
-**scrape_interval(DURATION)** # 抓取 targets 的指标频率，`默认值：1m`。
+**scrape_interval**(DURATION) # 抓取 targets 的指标频率，`默认值：1m`。
 
-**scrape_timeout(DURATION)** # 对 targets 发起抓取请求的超时时间。`默认值：10s`。
+**scrape_timeout**(DURATION) # 对 targets 发起抓取请求的超时时间。`默认值：10s`。
 
 **scrape_protocols** # 抓取 Targets 的协议。`默认值: OpenMetricsText1.0.0, OpenMetricsText0.0.1, PrometheusText0.0.4`
 
-**evaluation_interval(DURATION)** # 评估规则的周期。`默认值：1m`。
+**evaluation_interval**(DURATION) # 评估规则的周期。`默认值：1m`。
 
 > 该字段主要用于向规则配置文件传递全局的配置。这个值会被 [Rules](/docs/6.可观测性/Metrics/Prometheus/Configuration/Rules.md)文件中的 `.groups.interval` 覆盖，详见 interval 字段详解
 
-**external_labels(map\[STRING]STRING)** # 与外部系统(federation, remote storage, Alertmanager)通信时添加到任何时间序列或警报的标签。
+**external_labels**(map\[STRING]STRING) # 与外部系统(federation, remote storage, Alertmanager)通信时添加到任何时间序列或警报的标签。
 
 - **KEY: VAL** # 比如该键值可以是 run: httpd，标签名是 run，run 的值是 httpd，KEY 与 VAL 使用字母，数字，\_，-，.这几个字符且以字母或数字开头；val 可以为空。
 - ......
@@ -132,7 +124,7 @@ prometheus 程序在启动时，可以使用一些标志来对程序进行一些
 - recording rules(记录规则)
 - alerting rules(告警规则)
 
-## scrape_configs(占比最大的字段)
+## scrape_configs
 
 https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config
 
@@ -180,64 +172,7 @@ scrape_configs 是 Prometheus 采集指标的最重要也是最基本的配置�
 
 **sample_limit**(INT) # 每次抓取 metrics 的数量限制。`默认值：0`。0 表示不限制
 
-### HTTP 配置
-
-Prometheus 抓取目标就是发起 HTTP 请求。
-
-除了 scheme、params 字段以外的其他字段是 Prometheus 共享库中的通用 HTTP 客户端配置，即下面的 `HTTPClientConfig` 结构体中的内容。
-
-代码：[common/config/http_config.go](https://github.com/prometheus/common/blob/v0.30.0/config/http_config.go#L159)
-
-```go
-// HTTPClientConfig configures an HTTP client.
-type HTTPClientConfig struct {
- // The HTTP basic authentication credentials for the targets.
- BasicAuth *BasicAuth `yaml:"basic_auth,omitempty" json:"basic_auth,omitempty"`
- // The HTTP authorization credentials for the targets.
- Authorization *Authorization `yaml:"authorization,omitempty" json:"authorization,omitempty"`
- // The OAuth2 client credentials used to fetch a token for the targets.
- OAuth2 *OAuth2 `yaml:"oauth2,omitempty" json:"oauth2,omitempty"`
- // The bearer token for the targets. Deprecated in favour of
- // Authorization.Credentials.
- BearerToken Secret `yaml:"bearer_token,omitempty" json:"bearer_token,omitempty"`
- // The bearer token file for the targets. Deprecated in favour of
- // Authorization.CredentialsFile.
- BearerTokenFile string `yaml:"bearer_token_file,omitempty" json:"bearer_token_file,omitempty"`
- // HTTP proxy server to use to connect to the targets.
- ProxyURL URL `yaml:"proxy_url,omitempty" json:"proxy_url,omitempty"`
- // TLSConfig to use to connect to the targets.
- TLSConfig TLSConfig `yaml:"tls_config,omitempty" json:"tls_config,omitempty"`
- // FollowRedirects specifies whether the client should follow HTTP 3xx redirects.
- // The omitempty flag is not set, because it would be hidden from the
- // marshalled configuration when set to false.
- FollowRedirects bool `yaml:"follow_redirects" json:"follow_redirects"`
-}
-```
-
-**scheme**(STRING) # 指定用于抓取 Metrics 时使用的协议。`默认值：http`
-
-**params**(map\[STRING]STRING) # 发起 http 请求时，URL 里的参数(以键值对的方式表示)。
-常用于 snmp_exporter，比如 <http://10.10.100.12:9116/snmp?module=if_mib&target=10.10.100.254>，问号后面就是参数的 key 与 value)
-
-- STRING: STRING
-
-**basic_auth**(Object) # 配置 HTTP 的基础认证信息。
-
-- **username**(STRING) #
-- **password**(SECRET) #
-- **password_file**(STRING) #
-
-**authorization**(Object) #
-
-- **type**(STRING) # 发起抓取请求时的身份验证类型。`默认值：Bearer`
-- **credentials**(SECRET) # 用于身份验证的信息。与 credentials_file 字段互斥。如果是 type 字段是 Bearer，那么这里的值就用 Token 即可。
-- **credentials_file**(FileName) # 从文件中读取用于身份验证的信息。与 credentials 字段互斥
-
-**oauth2**(Object) # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
-
-**proxy_url**(STRING) # 指定代理的 URL
-
-**tls_config**([tls_config](#tls_config)) # 指定抓取 metrics 请求时的 TLS 设定
+**HTTP 相关配置** # 详见通用配置字段中的 [HTTP 配置](#HTTP%20配置)
 
 ### Scrape 目标配置
 
@@ -269,7 +204,7 @@ Prometheus 将会根据这里的字段配置，以发现需要 Scrape 指标的�
 
 **alert_relabel_configs**([relabel_configs](#relabel_configs))
 
-适用于推送告警时的 Relabel 功能，配置与 [relabel_configs](#PGKul) 相同
+适用于推送告警时的 Relabel 功能，配置与 [relabel_configs](#relabel_configs) 相同
 
 **alertmanager**(\[][alertmanager](#alertmanager)) # 该字段配置方式与 scrape_config 字段的配置非常相似，只不过不是配置抓取目标，而是配置推送告警的目标
 
@@ -279,13 +214,15 @@ https://prometheus.io/docs/prometheus/latest/configuration/configuration/#alertm
 
 alertmanager 字段指定了 Prometheus Server 发送警报的目标 Alertmanager，还提供了参数来配置如何与这些 Alertmanager 通信。此外，relabel_configs 允许从已发现的实体中选择 Alertmanagers，并对使用的 API 路径进行高级修改，该路径通过 **alerts_path** 标签暴露。
 
-**timeout(DURATION)** # 推送警报时，每个目标 Alertmanager 超时，单位：秒。`默认值: 10`。
+**timeout**(DURATION) # 推送警报时，每个目标 Alertmanager 超时，单位：秒。`默认值: 10`。
 
-**api_version(STRING)** # 推送告警时，应该使用哪个版本的 Alertmanager 路径。`默认值：v2`。
+**api_version**(STRING) # 推送告警时，应该使用哪个版本的 Alertmanager 路径。`默认值：v2`。
 
-**path_prefix(PATH)** # 推送告警时的，目标路径前缀。`默认值：/`。
+**path_prefix**(PATH) # 推送告警时的，目标路径前缀。`默认值：/`。
 
 - 注意：就算指定了其他路径，也会默认在末尾添加 `/api/v2/alerts`
+
+**HTTP 相关配置** # 详见通用配置字段中的 [HTTP 配置](#HTTP%20配置)
 
 #### Alerts 推送目标的配置
 
@@ -295,31 +232,9 @@ Prometheus 根据这部分配置来推送需要
 
 - 具体配置详见下文 [静态目标发现](#静态目标发现)
 
-**XXX_sd_configs**([]OBJECT) # 动态配置。动态发现可供推送告警的 alertmanager-XXXX。不同的服务发现，有不同的配置方式。与 scrape_configs 字段中的 XXX_sd_configs 配置类似。
+**XXX_sd_configs**(\[]OBJECT) # 动态配置。动态发现可供推送告警的 alertmanager-XXXX。不同的服务发现，有不同的配置方式。与 scrape_configs 字段中的 XXX_sd_configs 配置类似。
 
 - 具体配置详见下文 [动态目标发现](#动态目标发现)
-
-#### HTTP 配置
-
-**scheme(SCHEME)** # 推送告警时，所使用的协议。`默认值：HTTP`
-
-下面的部分是 HTTP 的认证，是用来配置将告警推送到目标时所需要的认证信息。比如目标是 HTTPS 时，就需要这些配置。发起的 POST 推送请求时，Prometheus 使用 username 和 passwrod 字段的值为这个 HTTP 请求设置 Authorization 请求头。说白了就是发起 HTTP 请求时带着用户名和密码。
-
-**basic_auth(Object)**
-
-- **username(STRING)** #
-- **password(SECRET)** # password 和 password_files 字段是互斥的
-- **password_file(STRING)** #
-
-**authorization(Object)** #
-
-- **type(STRING)** # 推送告警时的身份验证类型。`默认值：Bearer`
-- **credentials(secret)** # 用于身份验证的信息。与 credentials_file 字段互斥。如果是 type 字段是 Bearer，那么这里的值就用 Token 即可。
-- **credentials_file(filename)** # 从文件中读取用于身份验证的信息。与 credentials 字段互斥
-
-**oauth2(Object)** # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
-
-**tls_config(Object)** # 指定推送告警时的 TLS 设定
 
 #### Relabel 配置
 
@@ -331,13 +246,13 @@ Prometheus 根据这部分配置来推送需要
 
 与远程写相关的配置，详见 [Prometheus 存储章节](/docs/6.可观测性/Metrics/Prometheus/Storage/Storage.md)
 
-**url(STRING)** # 指定要发送时间序列数据到远程存储的端点的 URL
+**url**(STRING) # 指定要发送时间序列数据到远程存储的端点的 URL
 
 ## remote_read
 
 与远程读相关的配置，详见 [Prometheus 存储章节](/docs/6.可观测性/Metrics/Prometheus/Storage/Storage.md)
 
-**url(STRING)** # 指定发起查询请求的远程数据库的端点的 URL
+**url**(STRING) # 指定发起查询请求的远程数据库的端点的 URL
 
 # 配置文件中的通用配置字段
 
@@ -418,7 +333,6 @@ scrape_configs:
 
 https://prometheus.io/docs/prometheus/latest/configuration/configuration/#docker_sd_config
 
-
 ### kubernetes_sd_configs
 
 https://prometheus.io/docs/prometheus/latest/configuration/configuration/#kubernetes_sd_config
@@ -449,7 +363,7 @@ Note：使用该配置进行服务发现，请求都会经过 API Server，集�
 
 **oauth2**(Object) # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
 
-**tls_config**(Object) # 指定抓取 metrics 请求时的 TLS 设定
+**tls_config**([tls_config](#tls_config)) # 指定抓取 metrics 请求时的 TLS 设定
 
 **proxy_url**(STRING) # Optional proxy URL
 
@@ -550,7 +464,64 @@ relabel 重设标签功能，用于将抓取到的样本中的原始 label 进�
 
 **action**(Relabel_Action) # 对匹配到的标签要执行的动作。`默认值: replace`。
 
-## 其他
+## HTTP 配置
+
+Prometheus 抓取目标就是发起 HTTP 请求。
+
+除了 scheme、params 字段以外的其他字段是 Prometheus 共享库中的通用 HTTP 客户端配置，即下面的 `HTTPClientConfig` 结构体中的内容。
+
+代码：[common/config/http_config.go](https://github.com/prometheus/common/blob/v0.30.0/config/http_config.go#L159)
+
+```go
+// HTTPClientConfig configures an HTTP client.
+type HTTPClientConfig struct {
+ // The HTTP basic authentication credentials for the targets.
+ BasicAuth *BasicAuth `yaml:"basic_auth,omitempty" json:"basic_auth,omitempty"`
+ // The HTTP authorization credentials for the targets.
+ Authorization *Authorization `yaml:"authorization,omitempty" json:"authorization,omitempty"`
+ // The OAuth2 client credentials used to fetch a token for the targets.
+ OAuth2 *OAuth2 `yaml:"oauth2,omitempty" json:"oauth2,omitempty"`
+ // The bearer token for the targets. Deprecated in favour of
+ // Authorization.Credentials.
+ BearerToken Secret `yaml:"bearer_token,omitempty" json:"bearer_token,omitempty"`
+ // The bearer token file for the targets. Deprecated in favour of
+ // Authorization.CredentialsFile.
+ BearerTokenFile string `yaml:"bearer_token_file,omitempty" json:"bearer_token_file,omitempty"`
+ // HTTP proxy server to use to connect to the targets.
+ ProxyURL URL `yaml:"proxy_url,omitempty" json:"proxy_url,omitempty"`
+ // TLSConfig to use to connect to the targets.
+ TLSConfig TLSConfig `yaml:"tls_config,omitempty" json:"tls_config,omitempty"`
+ // FollowRedirects specifies whether the client should follow HTTP 3xx redirects.
+ // The omitempty flag is not set, because it would be hidden from the
+ // marshalled configuration when set to false.
+ FollowRedirects bool `yaml:"follow_redirects" json:"follow_redirects"`
+}
+```
+
+**scheme**(STRING) # 指定用于抓取 Metrics 时使用的协议。`默认值：http`
+
+**params**(map\[STRING]STRING) # 发起 http 请求时，URL 里的参数(以键值对的方式表示)。
+常用于 snmp_exporter，比如 <http://10.10.100.12:9116/snmp?module=if_mib&target=10.10.100.254>，问号后面就是参数的 key 与 value)
+
+- STRING: STRING
+
+**basic_auth**(Object) # 配置 HTTP 的基础认证信息。
+
+- **username**(STRING) #
+- **password**(SECRET) #
+- **password_file**(STRING) #
+
+**authorization**(Object) #
+
+- **type**(STRING) # 发起抓取请求时的身份验证类型。`默认值：Bearer`
+- **credentials**(SECRET) # 用于身份验证的信息。与 credentials_file 字段互斥。如果是 type 字段是 Bearer，那么这里的值就用 Token 即可。
+- **credentials_file**(FileName) # 从文件中读取用于身份验证的信息。与 credentials 字段互斥
+
+**oauth2**(Object) # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
+
+**proxy_url**(STRING) # 指定代理的 URL
+
+**tls_config**([tls_config](#tls_config)) # 指定抓取 metrics 请求时的 TLS 设定
 
 ### tls_config
 
