@@ -118,15 +118,15 @@ Connected to application: "usps"
 ......
 ```
 
-> Tips: 在个人的[学习项目](https://github.com/DesistDaydream/go-dpdk/blob/main/cmd/telemetry/telemetry.go)中使用 Go 语言通过使用 unixpacket 与 Socket 文件建立连接后，也可以实现 dpdk-telemetry.py 的效果
+> [!Tip] 在个人的[学习项目](https://github.com/DesistDaydream/go-dpdk/blob/main/cmd/telemetry/telemetry.go)中使用 Go 语言通过使用 unixpacket 与 Socket 文件建立连接后，也可以实现 dpdk-telemetry.py 的效果
 
 从 DPDK 的 [API](https://doc.dpdk.org/api/) 也可以查看一些，各种命令返回信息的含义
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/dpdk/20250419221259237.png)
 
-TODO: 还有没有其它官方文档来代替 API 文档或者源码中来了解各种命令返回的信息？
+**TODO**: 还有没有其它官方文档来代替 API 文档或者源码中来了解各种命令返回的信息？
 
-TODO: 根据 https://github.com/search?q=repo%3ADPDK%2Fdpdk%20init_telemetry&type=code 总结一下都有哪些库注册了 Telemetry
+**TODO**: 根据 https://github.com/search?q=repo%3ADPDK%2Fdpdk%20init_telemetry&type=code 总结一下都有哪些库注册了 Telemetry
 
 cnxk_mempool_init_telemetry
 
@@ -154,3 +154,15 @@ ethdev_init_telemetry
 
 rxa_init_telemetry 
 
+### ethdev
+
+**/ethdev/stats** # 端口（网卡）的普通统计信息
+
+- 通常以 i, o 开头
+- https://doc.dpdk.org/api/structrte__eth__stats.html
+- https://github.com/DPDK/dpdk/blob/cd60dcd503b91956f966a1f6d595b35d256ac00f/lib/ethdev/rte_ethdev_telemetry.c#L85
+
+**/ethdev/xstats** # 端口（网卡）的扩展统计信息
+
+- 通常以 rx, tx 开头
+- **TODO**: 这些扩展信息的详细字段在哪里？
