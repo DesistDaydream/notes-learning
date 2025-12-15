@@ -1661,7 +1661,9 @@
       "docs/5.数据存储/数据库/关系数据/MySQL",
       "docs/5.数据存储/数据库/关系数据/PostgreSQL",
       "docs/5.数据存储/数据库/关系数据/SQLite",
-      "docs/5.数据存储/数据库/关系数据/SQL"
+      "docs/5.数据存储/数据库/关系数据/SQL",
+      "docs/5.数据存储/数据库/关系数据/Doris.md",
+      "docs/5.数据存储/数据库/关系数据/OpenGauss.md"
     ],
     "docs/5.数据存储/数据库/关系数据/ClickHouse": [
       "docs/5.数据存储/数据库/关系数据/ClickHouse/_index.md",

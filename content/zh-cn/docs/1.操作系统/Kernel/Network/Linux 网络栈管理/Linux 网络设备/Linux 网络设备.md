@@ -19,7 +19,6 @@ tags:
 >
 > [^if.h]: [GitHub 项目，torvalds/linux - include/uapi/linux/if.sh](https://github.com/torvalds/linux/blob/v6.11/include/uapi/linux/if.h)
 >
->
 > [^IANA]:[IANA，Address Resolution Protocol (ARP) Parameters，Hardware Types](https://www.iana.org/assignments/arp-parameters/arp-parameters.xhtml#arp-parameters-2)
 
 Linux 网络设备归属于 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md) 总线类型。
