@@ -57,7 +57,7 @@ Kernel driver in use 表示当前设备使用的驱动；Kernel modules 表示�
 echo -n "0000:21:00.1" | sudo tee /sys/bus/pci/drivers/i40e/unbind
 ```
 
-> 解绑后，`lspci -s 0000:21:00.1 -v` 命令不会显示 Kernel driver in use 这行内容
+> [!Tip] 解绑后，`lspci -s 0000:21:00.1 -v` 命令不会显示 Kernel driver in use 这行内容
 
 利用 bind 可以将该 PCI 设备（i.e. 网卡）绑定到内核的指定驱动上
 

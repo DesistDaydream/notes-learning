@@ -8,13 +8,14 @@ weight: 1
 
 > 参考：
 >
-> - [Kernel 文档-Linux Networking Documentation](https://www.kernel.org/doc/html/latest/networking/index.html)
-> - [Kernel 文档-Linux Networking and Network Devices APIs](https://www.kernel.org/doc/html/latest/networking/kapi.html)
+> - [Kernel 文档，Linux Networking Documentation](https://www.kernel.org/doc/html/latest/networking/index.html)
+> - [Kernel 文档，Linux Networking and Network Devices APIs](https://www.kernel.org/doc/html/latest/networking/kapi.html)
 > - [arthurchiao.art 的文章](http://arthurchiao.art/index.html)
->   - [[译] Linux 网络栈监控和调优：接收数据（2016）](http://arthurchiao.art/blog/tuning-stack-rx-zh/)
+>   - [[译] Linux 网络栈监控和调优：接收数据（2016）](http://arthurchiao.art/blog/tuning-stack-rx-zh/) — 老文章，作者不再推荐，查看 2022 之后的文章
 >   - [[译] Linux 网络栈监控和调优：发送数据（2017）](http://arthurchiao.art/blog/tuning-stack-tx-zh/)
+>   - [Linux 网络栈原理、监控与调优：前言（2022）](https://arthurchiao.art/blog/linux-net-stack-zh/)
 
-和磁盘设备类似，Linux 用户想要使用网络功能，不能通过直接操作硬件完成，而需要直接或间接的操作一个 Linux 为我们抽象出来的设备，即通用的 **Linux 网络设备**来完成。一个常见的情况是，系统里装有一个硬件网卡，Linux 会在系统里为其生成一个网络设备实例，如 eth0，用户需要对 eth0 发出命令以配置或使用它了。更多的硬件会带来更多的设备实例，虚拟的硬件也会带来更多的设备实例。
+和磁盘设备类似，Linux 用户想要使用网络功能，不能通过直接操作硬件完成，而需要直接或间接的操作一个 Linux 为我们抽象出来的设备，i.e. 通用的 **Linux 网络设备**来完成。一个常见的情况是，计算机里装有一个硬件网卡，Linux 会在系统里为其生成一个网络设备实例，e.g. eth0，用户需要对 eth0 发出命令以配置或使用它了。更多的硬件会带来更多的网络设备实例（另外，[虚拟化](/docs/10.云原生/Virtualization/Virtualization.md)的硬件也会带来更多的网络设备实例）。
 
 网卡本身并不会连接连接任何网络，网卡需要相应的配置文件来告诉他们如何实现网络连接。而让网卡与配置文件关联的过程，就是 network.service 这类服务来实现的
 
@@ -90,7 +91,7 @@ sk_buff 是一个贯穿整个协议栈层次的结构，在各层间传递时，
 15. **硬中断处理函数** 被唤醒执行。对许多设备来说，这会 **触发 `NET_RX` 类型的软中断**，然后 NAPI poll 循环开始收包
 16. poll 函数会调用驱动程序的相应函数，**解除 DMA 映射**，释放数据
 
-# 网络栈关联文件
+# Linux 网络栈关联文件与配置
 
 不同的 Linux 发行版，所使用的上层网络配置程序各不相同，各种程序所读取的配置文件也各不相同。
 
@@ -100,3 +101,67 @@ sk_buff 是一个贯穿整个协议栈层次的结构，在各层间传递时，
 在这些目录中，其实都是通过脚本来实现的
 
 后来随着时代的发展，涌现出很多通用的网络管理程序，比如 [Netplan](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Netplan/Netplan.md)、[NetworkManager](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/NetworkManager/NetworkManager.md)、[systemd-networkd](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/systemd-networkd.md)、etc.，这样就可以让各个发行版使用相同的程序来管理网络了，减少切换发行版而需要学习对应配置的成本，并且也更利于发展。
+
+## /proc/net/
+
+https://github.com/torvalds/linux/blob/v6.18/Documentation/filesystems/proc.rst#13-networking-info-in-procnet
+
+该目录是 **软连接文件**，被连接到 **self/net** 目录。主要记录的是，链接到的进程的 network namespace 的信息
+
+我们可以利用这些信息来查看系统中哪些网络设备可用，以及有多少流量通过这些设备路由，比如：
+
+```
+> cat /proc/net/dev
+Inter-|Receive                                                    |Transmit
+ face |bytes     packets errs drop fifo frame compressed multicast|bytes      packets errs drop fifo colls carrier compressed
+    lo:908188    5596    0    0    0    0     0          0         908188     5596    0    0    0    0     0       0
+  ppp0:15475140  20721   410  0    0    410   0          0         1375103    17405   0    0    0    0     0       0
+  eth0:614530    7085    0    0    0    0     0          1         1703981    5535    0    0    0    3     0       0
+```
+
+此外，每个 Bond 接口都有自己的目录。e.g. bond0 设备会有一个名为 /proc/net/bond0/ 的目录。该目录包含特定于该绑定的信息，例如绑定的当前从设备、从设备的链路状态以及从设备的链路故障次数。
+
+**./dev** # 网络设备的统计信息。包括 Interface(接口名称), Receive(接收的数据), Transmit(发送的数据) 三部分
+
+**./nf_conntrack** # 链接跟踪表，该文件用于记录已跟踪的连接
+
+**./tcp** # 所有的 TCP 连接信息。
+
+**./tcp6** # 所有的基于 IPv6 的 TCP 连接信息。
+
+参考：[GitHub Linux 项目文档](https://github.com/torvalds/linux/blob/master/Documentation/networking/proc_net_tcp.rst)
+
+保存 TCP 套接字表的转储。除了调试之外，大部分信息都没有什么用。
+
+- sl # 值是套接字的内核哈希槽位
+- local_address # 是本地地址和端口号对
+- rem_address # 是远程地址和端口号对(如果连接)
+- St # 是套接字的内部状态。根据内核内存使用情况，
+- tx_queue 和 rx_queue # 是传出和传入的数据队列。
+- tr、tm->when 和 rexmits # 字段保存内核套接字状态的内部信息，仅在调试时有用。
+- uid # 字段保存套接字创建者的有效 uid。
+- inode # 该 socket 的 inode 号，后面一串 16 进制的字符是该 socket 在内存中的地址。
+
+```bash
+root@desistdaydream:~# cat /proc/net/tcp
+  sl  local_address rem_address   st tx_queue rx_queue tr tm->when retrnsmt   uid  timeout inode
+   0: 0100007F:177A 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 12975942 1 ffff923dd621a300 100 0 0 10 0
+   1: 3500007F:0035 00000000:0000 0A 00000000:00000000 00:00000000 00000000   101        0 28017 1 ffff923ef9dd08c0 100 0 0 10 0
+   2: 00000000:0016 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 33221 1 ffff923eecf6c600 100 0 0 10 0
+   3: F82A13AC:0016 CB2A13AC:FD4C 01 00000000:00000000 02:00025EB2 00000000     0        0 12973284 4 ffff923dd621e900 20 4 29 10 20
+   4: F82A13AC:0016 CB2A13AC:FD48 01 00000000:00000000 02:000A6D4A 00000000     0        0 12944563 2 ffff923dd621bd40 20 4 31 10 23
+```
+
+注意：
+
+这里用 16 进制表示的 IP 有点奇葩比如 `F82A13AC` 转换成 IP 地址是 `248.42.19.172`，真实 IP 地址是 `172.19.42.248`，也就是说反过来了。。。。`F82A13AC` 应该是 `AC132AF8`
+
+**./udp** # 所有 UDP 连接信息
+
+**./udp6** # 所有基于 IPv6 的 UDP 连接信息
+
+**./unix** # 所有 Unix Domain Socket 连接信息
+
+## /sys/class/net/
+
+详见 [Linux 网络设备](docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Linux%20网络设备/Linux%20网络设备.md)

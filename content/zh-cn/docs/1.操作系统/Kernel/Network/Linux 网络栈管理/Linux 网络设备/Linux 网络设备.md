@@ -9,8 +9,9 @@ tags:
 # 概述
 
 > 参考：
->
-> - [Linux 内核文档，管理员指南 - ABI -sysfs-class-net](https://www.kernel.org/doc/html/latest/admin-guide/abi-testing.html#file-testing-sysfs-class-net)
+> - [GitHub 项目，torvalds/linux - Documentation/ABI/testing/sysfs-class-net](https://github.com/torvalds/linux/blob/master/Documentation/ABI/testing/sysfs-class-net)
+>     - [Linux 内核文档，管理员指南 - Testing ABI Files - ABI file testing/sysfs-class-net](https://www.kernel.org/doc/html/latest/admin-guide/abi-testing-files.html#abi-file-testing-sysfs-class-net) 索引
+>     - [Linux 内核文档，管理员指南 - ABI testing symbols - sysfs-class-net](https://www.kernel.org/doc/html/latest/admin-guide/abi-testing.html#file-testing-sysfs-class-net) 详细内容
 > - [Manual(手册)，netdevice(7)](https://man7.org/linux/man-pages/man7/netdevice.7.html)
 >
 > 脚注在文末
@@ -25,13 +26,15 @@ Linux 网络设备归属于 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md) �
 
 # 关联文件
 
-## sysfs 中的网络设备信息
+**/sys/class/net/${NetDeviceName}/** # 详见下文 [sysfs 中的网络设备信息](#sysfs%20中的网络设备信息)
+
+# sysfs 中的网络设备信息
 
 每个网络设备，都会在 [sysfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/sysfs.md) 中注册（主要是与 PCI 相关），有一系列文件用来描述或定义这些网络设备。
 
-在 `/sys/class/net/${NetDeviceName}/` 目录下可以找到已在内核注册的关于网络设备的信息
+在 **/sys/class/net/${NetDeviceName}/** 目录下可以找到已在内核注册的关于网络设备的信息。下面的目录中的 `./` 都是指该目录
 
-> Note: `${NetDeviceName}` 是指向 `/sys/devices/pciXXX/XXX/.../XXX/${NetDeviceName}/` 的 [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)
+> [!Note] `${NetDeviceName}` 是指向 `/sys/devices/pciXXX/XXX/.../XXX/${NetDeviceName}/` 的 [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)
 
 **./type** # 网络设备的类型。文件内容是 10 进制数字。从 if_arp.h[^if_arp.h] 代码中（[stackoverflow](https://stackoverflow.com/questions/18598283/the-meaning-of-the-sys-class-net-interface-type-value) 也有相关问题）找到数字对应的设备类型表和该设备的定义（e.g. 1 表示 ARPHRD_ETHER），这个 C 的头文件将网络设备分为如下几大块
 
@@ -40,7 +43,7 @@ Linux 网络设备归属于 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md) �
 - **非 ARP 硬件的虚拟网络设备** # Linux 自身实现的一些虚拟网络设备
 - **TODO**: 其他信息待整理
 
-**./flags** # 网络设备的 Flags(标志)。文件内容是 16 进制数字。常用来描述设备的状态和基本功能。[Linux 内核文档中的 ABI](https://www.kernel.org/doc/html/latest/admin-guide/abi-testing.html#abi-sys-class-net-iface-flags) 部分提到了可以从 if.h[^if.h] 代码中 `enum net_device_flags` 这部分及之下的内容，找到这些 Flags 的含义。代码中的含义与 flags 文件中的 16 进制数字应该如何理解详见下文 [flags 文件详解](#flags%20文件详解)
+**./flags** # 网络设备的 Flags(标志)。文件内容是 16 进制数字。常用来描述设备的状态和基本功能。[Linux 内核文档中的 ABI](https://www.kernel.org/doc/html/latest/admin-guide/abi-testing.html#abi-sys-class-net-iface-flags) 部分提到了可以从 if.h[^if.h] 代码中 `enum net_device_flags` 这部分及之下的内容，找到这些 Flags 的含义。代码中的含义与 flags 文件中的 16 进制数字应该如何理解详见下文 [flags 文件](#flags%20文件)
 
 - Notes: [ip](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/Iproute%20工具包/ip/ip.md) 程序的 link 和 address 子命令通过 show 显示的网络设备信息中，第三部分由 `< >` 包裹起来的就是网络设备的 Flags
 - [stackoverflow](https://stackoverflow.com/questions/36715664/using-ip-what-does-lower-up-mean) 可以找到相关提问
@@ -73,7 +76,9 @@ bus-info: 0000:61:00.0
 PCI_SLOT_NAME=0000:61:00.0
 ```
 
-### flags 文件详解
+**./statistics/** # 网络设备的统计信息。详见下文 [statistics 目录](#statistics%20目录)
+
+## flags 文件
 
 在 `/sys/class/net/${NetDeviceName}/flags` 文件中，通常是 16 进制的数字，e.g. `0x1303`、`0x1003`。想要理解这些数字，需要配合 if.h[^if.h] 代码中的内容才行，在代码中可以看到如下对 网络设备的 Flags 声明（源码中还有注释，解释了每个 Flag 的含义）：
 
@@ -166,6 +171,10 @@ enum{
 ```
 
 用其中 `IFF_RUNNING = 0x40` 举例，0x40 转为二进制是 1000000，正好对应 1 移动 6 位，i.e. 1<<6，刚好对应 Linux 内核代码 if.h[^if.h] 中的 `IFF_RUNNING = 1<<6`。这也侧面印证了代码中 `/* for compatibility with glibc net/if.h */` 这段注释内容。
+
+## statistics 目录
+
+https://github.com/torvalds/linux/blob/master/Documentation/ABI/testing/sysfs-class-net-statistics
 
 # 网卡驱动
 

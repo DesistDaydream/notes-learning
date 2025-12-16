@@ -197,9 +197,9 @@ func (c *diskstatsCollector) Update(ch chan<- prometheus.Metric) error {
 
 也就是说，IOStats 储存的是 `/sys/block/<BLOCK>/stat` 文件中的值，IOsTotalTics 文件中第 10 个字段的值，io_ticks 的值）。
 
-所以，`node_disk_io_time_seconds_total` 本质就是 io_ticks，作为块设备的 I/O 时间如何理解详见 [Block 设备的 I/O 时间](docs/1.操作系统/Kernel/Hardware/Block.md#I/O%20时间)
+所以，`node_disk_io_time_seconds_total` 本质就是 io_ticks，作为块设备的 I/O 时间如何理解详见 [Block 设备的 I/O 时间](/docs/1.操作系统/Kernel/Hardware/Block.md#I/O%20时间)
 
-最后，node-exporter 代码中，把 io_ticks 除以 1000 得到了 秒 级别的 I/O 时间 
+最后，node-exporter 代码中，把 io_ticks 除以 1000 得到了 秒 级别的 I/O 时间
 
 ```go
 secondsPerTick = 1.0 / 1000.0

@@ -8,6 +8,7 @@
         "no-bare-urls": false, // 让 URL 可以没有 <> 包围
         "no-emphasis-as-heading": false, // 让一行全部加粗的文本可以存在
         "no-inline-html": false, // 允许行内 HTML
+        "ol-prefix": false, // 对于不以“1”开头的有序列表会触发此规则。
     },
     "[html]": {
         "editor.formatOnSave": false

@@ -66,46 +66,7 @@ proc 文件系统不用于存储。其主要目的是为硬件，内存，运行
 
 **软连接文件，被连接到 self/net 目录。主要是链接到的进程的 network namespace 的信息**
 
-**./nf_conntrack** # 链接跟踪表，该文件用于记录已跟踪的连接
-
-## 进程间通信所用 Socket 信息
-
-**./tcp** # 所有的 TCP 连接信息。
-
-**./tcp6** # 所有的基于 IPv6 的 TCP 连接信息。
-
-参考：[GitHub Linux 项目文档](https://github.com/torvalds/linux/blob/master/Documentation/networking/proc_net_tcp.rst)
-
-保存 TCP 套接字表的转储。除了调试之外，大部分信息都没有什么用。
-
-- sl # 值是套接字的内核哈希槽位
-- local_address # 是本地地址和端口号对
-- rem_address # 是远程地址和端口号对(如果连接)
-- St # 是套接字的内部状态。根据内核内存使用情况，
-- tx_queue 和 rx_queue # 是传出和传入的数据队列。
-- tr、tm->when 和 rexmits # 字段保存内核套接字状态的内部信息，仅在调试时有用。
-- uid # 字段保存套接字创建者的有效 uid。
-- inode # 该 socket 的 inode 号，后面一串 16 进制的字符是该 socket 在内存中的地址。
-
-```bash
-root@desistdaydream:~# cat /proc/net/tcp
-  sl  local_address rem_address   st tx_queue rx_queue tr tm->when retrnsmt   uid  timeout inode
-   0: 0100007F:177A 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 12975942 1 ffff923dd621a300 100 0 0 10 0
-   1: 3500007F:0035 00000000:0000 0A 00000000:00000000 00:00000000 00000000   101        0 28017 1 ffff923ef9dd08c0 100 0 0 10 0
-   2: 00000000:0016 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 33221 1 ffff923eecf6c600 100 0 0 10 0
-   3: F82A13AC:0016 CB2A13AC:FD4C 01 00000000:00000000 02:00025EB2 00000000     0        0 12973284 4 ffff923dd621e900 20 4 29 10 20
-   4: F82A13AC:0016 CB2A13AC:FD48 01 00000000:00000000 02:000A6D4A 00000000     0        0 12944563 2 ffff923dd621bd40 20 4 31 10 23
-```
-
-注意：
-
-这里用 16 进制表示的 IP 有点奇葩比如 `F82A13AC` 转换成 IP 地址是 `248.42.19.172`，真实 IP 地址是 `172.19.42.248`，也就是说反过来了。。。。`F82A13AC` 应该是 `AC132AF8`
-
-**./udp** # 所有 UDP 连接信息
-
-**./udp6** # 所有基于 IPv6 的 UDP 连接信息
-
-**./unix** # 所有 Unix Domain Socket 连接信息
+详见 [Linux 网络栈管理](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Linux%20网络栈管理.md#/proc/net) 中的 /proc/net 章节
 
 # /proc/softirqs - **软中断统计信息**
 

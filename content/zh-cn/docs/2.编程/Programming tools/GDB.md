@@ -12,20 +12,20 @@ weight: 41
 
 **GNU Project debugger(GNU 项目调试器，简称 GDB)** 允许您查看另一个程序在执行时“内部”发生了什么，或者另一个程序在崩溃时正在做什么。
 
-GDB 是支持多语言的 [Debugger](docs/2.编程/Programming%20tools/Debugger.md)
+GDB 是支持多语言的 [Debugger](/docs/2.编程/Programming%20tools/Debugger.md)
 
 - Ada
 - Assembly
-- [C](docs/2.编程/高级编程语言/C/C.md)
+- [C](/docs/2.编程/高级编程语言/C/C.md)
 - C++
 - D
 - Fortran
-- [Go](docs/2.编程/高级编程语言/Go/Go.md)
+- [Go](/docs/2.编程/高级编程语言/Go/Go.md)
 - Objective-C
 - OpenCL
 - Modula-2
 - Pascal
-- [Rust](docs/2.编程/高级编程语言/Rust/Rust.md)
+- [Rust](/docs/2.编程/高级编程语言/Rust/Rust.md)
 
 GDB 可以执行四种主要操作（以及其他辅助操作），以帮助您及时发现错误：
 

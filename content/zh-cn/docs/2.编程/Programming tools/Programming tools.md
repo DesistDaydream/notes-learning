@@ -8,7 +8,7 @@ weight: 1
 
 > 参考：
 >
-> - 
+> -
 
 Programming tools(编程工具)
 
@@ -80,8 +80,8 @@ MGit # 在 Android 上使用 git 管理代码仓库
 
 # Compiler(编译器)
 
-[Compiler](docs/2.编程/Programming%20tools/Compiler.md)
+[Compiler](/docs/2.编程/Programming%20tools/Compiler.md)
 
 # Debugger(调试器)
 
-[Debugger](docs/2.编程/Programming%20tools/Debugger.md)
+[Debugger](/docs/2.编程/Programming%20tools/Debugger.md)
