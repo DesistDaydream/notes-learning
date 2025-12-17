@@ -46,9 +46,7 @@
       "blog/copy/云原生/如何构建以应用为中心的Kubernetes.md",
       "blog/copy/云原生/ChatGPT 团队是如何使用Kubernetes的.md"
     ],
-    "Clippings": [
-      "Clippings/Linux 网络栈接收数据（RX）：原理及内核实现（2022）.md"
-    ],
+    "Clippings": [],
     "docs": [
       "docs/_index.md",
       "docs/学习",
@@ -313,7 +311,7 @@
       "docs/1.操作系统/Kernel/Linux Kernel/Kernel 的安装与卸载.md",
       "docs/1.操作系统/Kernel/Linux Kernel/Kernel 参数",
       "docs/1.操作系统/Kernel/Linux Kernel/Kernel Module.md",
-      "docs/1.操作系统/Kernel/Linux Kernel/ABI.md"
+      "docs/1.操作系统/Kernel/Linux Kernel/Linux ABI.md"
     ],
     "docs/1.操作系统/Kernel/Linux Kernel/Kernel 参数": [
       "docs/1.操作系统/Kernel/Linux Kernel/Kernel 参数/_index.md",

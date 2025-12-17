@@ -24,7 +24,7 @@ tags:
 
 Linux 网络设备归属于 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md) 总线类型。
 
-# 关联文件
+# Linux 网络设备关联文件
 
 **/sys/class/net/${NetDeviceName}/** # 详见下文 [sysfs 中的网络设备信息](#sysfs%20中的网络设备信息)
 
@@ -175,6 +175,15 @@ enum{
 ## statistics 目录
 
 https://github.com/torvalds/linux/blob/master/Documentation/ABI/testing/sysfs-class-net-statistics
+
+https://www.kernel.org/doc/html/latest/admin-guide/abi-testing-files.html#abi-file-testing-sysfs-class-net-statistics
+
+**rx_missed_errors** # 已接收数据包中，由于接收端容量不足而丢失的总数。有关该值的确切含义，请参阅网络驱动程序，各种网卡的驱动可能会有处理逻辑上的不同。
+
+> [!Note]
+> 这里面说的 “**接收端**” 通常是指网卡驱动程序的 **Ring Buffer** 缓冲区，接收到的数据包会放到 RingBuffer 中，等待 **消费者（e.g. Kernel, etc.）** 取走。若是消费者来不及取走数据包，导致 RingBuffer 满了，那么数据包就会被丢弃，丢弃的数量记录到 rx_missed_errors 中。
+>
+> 在 [DPDK Library](/docs/4.数据通信/DPDK/DPDK%20Library.md) 的 Telemetry Library 中有一个 imissed 指标，也有类似的概念，对于 DPDK 来说，这个消费者是使用 DPDK 的应用程序而不是 Linux 内核。
 
 # 网卡驱动
 

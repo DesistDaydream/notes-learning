@@ -20,7 +20,7 @@ weight: 20
 
 用于导出 **kernel objects(内核对象，简称 kobject**) 的文件系统。对于在系统中注册的每个 kobject，都会在 sysfs 中为其创建一个目录。该目录被创建为 kobject 父目录的子目录，向用户空间表达内部对象层次结构。 sysfs 中的顶级目录代表对象层次结构的共同祖先；即对象所属的子系统。
 
-**Sys File System(sys 文件系统，简称 sysfs)** 是一个 pseudo-filesystem(伪文件系统)，提供内核数据结构的接口(更准确地说，sysfs 中的文件和目录提供了内核内部定义的 kobject 结构的视图)。sysfs 下的文件提供关于设备、内核模块、文件系统和其他内核组件的信息。`sysfs 一般挂载到 /sys 目录`。通常情况下，系统会自动挂载它，但也可以使用 `mount -t sysfs sysfs /sys` 命令手动挂载
+**Sys File System(sys 文件系统，简称 sysfs)** 是一个 pseudo-filesystem(伪文件系统)，提供内核数据结构的接口(更准确地说，sysfs 中的文件和目录提供了内核内部定义的 kobject 结构的视图)。sysfs 下的文件提供关于 设备、内核模块、文件系统、其他内核组件 的信息。sysfs 一般挂载到 `/sys` 目录，通常情况下，系统会自动挂载它，但也可以使用 `mount -t sysfs sysfs /sys` 命令手动挂载
 
 sysfs 文件系统中的许多文件都是只读的，但是某些文件是可写的，从而允许更改内核变量。 为了避免冗余，符号链接被大量用于连接整个文件系统树中的条目。
 
@@ -198,11 +198,11 @@ echo 20 > /sys/bus/platform/devices/pwm-backlight/backlight/pwm-backlight/bright
 
 **`/sys/class/${DEVICE_TYPE}/${DEVICE}/`**
 
-- terminal(终端)、network(网络)、block(磁盘)、graphic(图形)、sound(声音)、etc. 都属于一种 DEVICE_TYPE。不同机器可能并不一定包含所有类型，这个取决于系统启动时加载了哪些类型的设备。
+- terminal(终端)、network(网络)、block(磁盘)、graphic(图形)、sound(声音)、etc. 都属于一种 DEVICE_TYPE。不同机器可能并不一定包含所有类型，这取决于系统启动时加载了哪些类型的设备。
 
-`/sys/class/${DEVICE_TYPE}/${DEVICE}/` 目录下的文件是**指向 /sys/devices/ 的 [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)(符号链接)**。这些文件通常都是以人类可读的名字命名。
+`/sys/class/${DEVICE_TYPE}/${DEVICE}/` 目录下的文件是 **指向 /sys/devices/ 的 [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)(符号链接)**。这些文件通常都是以人类可读的名字命名。
 
-> Tip: 设备类型和设备并没有一一对应的关系，一个物理设备可能具备多种设备类型；一个设备类型只表达具有一种功能的设备，e.g. 系统所有输入设备都会出现在 /sys/class/input/ 目录中，而不论它们是以何种总线连接到系统的。
+> [!Tip] 设备类型和设备并没有一一对应的关系，一个物理设备可能具备多种设备类型；一个设备类型只表达具有一种功能的设备，e.g. 系统所有输入设备都会出现在 /sys/class/input/ 目录中，而不论它们是以何种总线连接到系统的。
 
 ```bash
 ~]# ls /sys/class/

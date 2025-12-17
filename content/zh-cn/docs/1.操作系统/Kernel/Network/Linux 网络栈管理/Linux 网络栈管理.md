@@ -164,4 +164,4 @@ root@desistdaydream:~# cat /proc/net/tcp
 
 ## /sys/class/net/
 
-详见 [Linux 网络设备](docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Linux%20网络设备/Linux%20网络设备.md)
+详见 [Linux 网络设备](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Linux%20网络设备/Linux%20网络设备.md)
