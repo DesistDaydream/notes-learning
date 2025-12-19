@@ -155,6 +155,18 @@ service:
 
 # Extension
 
+## FileStorage
+
+https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/storage/filestorage
+
+**File Storage(文件存储)** 扩展可以将状态持久化到本地文件系统。该扩展程序需要对某个目录拥有读写权限。可以使用默认目录，但该目录必须已存在，扩展程序才能正常运行。
+
+### 配置文件中的可用字段
+
+**directory**
+
+- 默认目录在 Windows 系统上为 `%ProgramData%\Otelcol\FileStorage` ，在其他系统上为 `/var/lib/otelcol/file_storage` 。
+
 # 日志相关的 Receiver 工作逻辑
 
 [OTel Blog - 2024-05-22, 隆重推出适用于 OpenTelemetry Collector 的全新容器日志解析器](https://opentelemetry.io/blog/2024/otel-collector-container-log-parser/)

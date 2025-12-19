@@ -305,13 +305,13 @@
       "docs/1.操作系统/Kernel/Hardware/PCI.md"
     ],
     "docs/1.操作系统/Kernel/Linux Kernel": [
+      "docs/1.操作系统/Kernel/Linux Kernel/Linux Kernel ABI.md",
       "docs/1.操作系统/Kernel/Linux Kernel/_index.md",
       "docs/1.操作系统/Kernel/Linux Kernel/Linux Kernel.md",
       "docs/1.操作系统/Kernel/Linux Kernel/Boot Configuration.md",
       "docs/1.操作系统/Kernel/Linux Kernel/Kernel 的安装与卸载.md",
       "docs/1.操作系统/Kernel/Linux Kernel/Kernel 参数",
-      "docs/1.操作系统/Kernel/Linux Kernel/Kernel Module.md",
-      "docs/1.操作系统/Kernel/Linux Kernel/Linux ABI.md"
+      "docs/1.操作系统/Kernel/Linux Kernel/Kernel Module.md"
     ],
     "docs/1.操作系统/Kernel/Linux Kernel/Kernel 参数": [
       "docs/1.操作系统/Kernel/Linux Kernel/Kernel 参数/_index.md",
@@ -344,7 +344,8 @@
       "docs/1.操作系统/Kernel/Network/_index.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理",
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制",
-      "docs/1.操作系统/Kernel/Network/Linux DNS 管理"
+      "docs/1.操作系统/Kernel/Network/Linux DNS 管理",
+      "docs/1.操作系统/Kernel/Network/Glossary.md"
     ],
     "docs/1.操作系统/Kernel/Network/Linux 网络流量控制": [
       "docs/1.操作系统/Kernel/Network/Linux 网络流量控制/_index.md",
@@ -385,10 +386,9 @@
     "docs/1.操作系统/Kernel/Network/Linux 网络栈管理": [
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/_index.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络栈管理.md",
-      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备",
-      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络包发送过程.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/数据包接收过程详解.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/数据包发送过程详解.md",
+      "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Linux 网络设备",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/Netlink",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/network-scripts.md",
       "docs/1.操作系统/Kernel/Network/Linux 网络栈管理/systemd-networkd.md",
@@ -1117,7 +1117,8 @@
       "docs/2.编程/计算机科学/Data type/Data type.md",
       "docs/2.编程/计算机科学/Data type/复合数据类型",
       "docs/2.编程/计算机科学/Data type/抽象数据类型",
-      "docs/2.编程/计算机科学/Data type/进制表示法.md"
+      "docs/2.编程/计算机科学/Data type/进制表示法.md",
+      "docs/2.编程/计算机科学/Data type/Data structure.md"
     ],
     "docs/2.编程/计算机科学/Data type/抽象数据类型": [
       "docs/2.编程/计算机科学/Data type/抽象数据类型/_index.md",

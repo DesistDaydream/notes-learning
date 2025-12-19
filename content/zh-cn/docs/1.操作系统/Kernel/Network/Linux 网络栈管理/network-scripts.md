@@ -1,5 +1,7 @@
 ---
 title: network-scripts
+linkTitle: network-scripts
+weight: 31
 ---
 
 # 概述

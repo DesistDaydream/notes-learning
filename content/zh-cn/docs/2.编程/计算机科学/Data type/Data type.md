@@ -28,7 +28,7 @@ weight: 20
 
 ### Machine Data Type(机器数据类型)
 
-基于数字电子的计算机中的所有数据都表示为最低级别的 [bit](https://en.wikipedia.org/wiki/Bit)(位)（替代 0 和 1）。数据的最小可寻址单元通常是一组称为[Byte](https://en.wikipedia.org/wiki/Byte)(字节)的位（通常是一个[八位组](<https://en.wikipedia.org/wiki/Octet_(computing)>)，即 8 bit）。由[机器代码](https://en.wikipedia.org/wiki/Machine_code)指令处理的单元称为[字](<https://en.wikipedia.org/wiki/Word_(data_type)>)（截至 2011 年，通常为 32 或 64 位）。大多数指令将字解释为[二进制数](https://en.wikipedia.org/wiki/Binary_number)，因此 32 位字可以表示从 0 到 232 - 1 或有符号整数值来自 -231 到 231 - 1 由于[二进制补码](https://en.wikipedia.org/wiki/Two%27s_complement)，机器语言和机器在大多数情况下不需要区分这些无符号和有符号数据类型。
+基于数字电子的计算机中的所有数据都表示为最低级别的 [bit](https://en.wikipedia.org/wiki/Bit)(位)（替代 0 和 1）。数据的最小可寻址单元通常是一组称为[Byte](https://en.wikipedia.org/wiki/Byte)(字节)的位（通常是一个[八位组](https://en.wikipedia.org/wiki/Octet_(computing))，即 8 bit）。由[机器代码](https://en.wikipedia.org/wiki/Machine_code)指令处理的单元称为[字](<https://en.wikipedia.org/wiki/Word_(data_type)>)（截至 2011 年，通常为 32 或 64 位）。大多数指令将字解释为[二进制数](https://en.wikipedia.org/wiki/Binary_number)，因此 32 位字可以表示从 0 到 232 - 1 或有符号整数值来自 -231 到 231 - 1 由于[二进制补码](https://en.wikipedia.org/wiki/Two%27s_complement)，机器语言和机器在大多数情况下不需要区分这些无符号和有符号数据类型。
 
 用于浮点算术的浮点数对字中的位使用不同的解释。有关详细信息，请参阅[浮点运算](https://en.wikipedia.org/wiki/Floating-point_arithmetic)。
 
@@ -83,7 +83,7 @@ e.g. UE8M0 表示：无符号(unsign)，八个指数，零个尾数
 - 一个[字符](<https://en.wikipedia.org/wiki/Character_(computing)>)，可能是某个[字母表](https://en.wikipedia.org/wiki/Alphabet)中的一个[字母](https://en.wikipedia.org/wiki/Alphabet)、一个数字、一个空格、一个标点符号等。
 - 一个[字符串](<https://en.wikipedia.org/wiki/String_(computer_science)>)，它是一个字符序列。字符串通常用于表示单词和文本，尽管除了最琐碎的情况外，所有文本都不仅仅涉及字符序列。
 
-字符和字符串类型可以存储字符集（例如 [ASCII](https://en.wikipedia.org/wiki/ASCII) 中的字符序列。由于大多数字符集都包含[数字](https://en.wikipedia.org/wiki/Numerical_digit)，因此可以使用数字字符串，例如"1234". 但是，许多语言将它们视为属于与数值不同的类型 1234。
+字符和字符串类型可以存储字符集（e.g. [ASCII](/docs/8.通用技术/编码与解码/字符的编码与解码/ASCII%20表.md) 中的字符序列。由于大多数字符集都包含[数字](https://en.wikipedia.org/wiki/Numerical_digit)，因此可以使用数字字符串，例如"1234". 但是，许多语言将它们视为属于与数值不同的类型 1234。
 
 根据所需的字符“宽度”，字符和字符串类型可以有不同的子类型。最初的 7 位宽 ASCII 被发现是有限的，并被 8 位和 16 位集取代，它们可以编码各种各样的非拉丁字母（如[希伯来语](https://en.wikipedia.org/wiki/Hebrew)和[中文](https://en.wikipedia.org/wiki/Chinese_language)）和其他符号。字符串可以是适合拉伸的，也可以是固定大小的，即使是在相同的编程语言中。它们也可以按其最大大小进行子类型化。
 
@@ -96,11 +96,11 @@ e.g. UE8M0 表示：无符号(unsign)，八个指数，零个尾数
 ## Function(函数) 类型
 
 虽然也可以为函数分配类型，但在本文的设置中，它们的类型不被视为数据类型。在这里，数据被视为不同于[算法](https://en.wikipedia.org/wiki/Algorithm)。在编程中，函数与后者密切相关。但是，因为[通用数据处理的](https://en.wikipedia.org/wiki/Universal_Turing_machine)一个中心原则是算法可以[表示为数据](https://en.wikipedia.org/wiki/G%C3%B6del_numbering#Generalizations)，例如文本描述和二进制程序，数据和函数之间的对比是有限的。其实函数不仅可以用数据来表示，函数也可以用来[对数据](https://en.wikipedia.org/wiki/Lambda_calculus#Encoding_datatypes)进行[编码](https://en.wikipedia.org/wiki/Lambda_calculus#Encoding_datatypes)。许多当代[类型系统](https://en.wikipedia.org/wiki/Type_systems)强烈关注函数类型，许多现代语言允许函数作为[一等公民运行](https://en.wikipedia.org/wiki/First-class_citizen)。
-将函数从被视为数据类型的对象中排除在相关领域中并不少见。\[[需要引用](https://en.wikipedia.org/wiki/Wikipedia:Citation_needed)] 例如，[谓词逻辑](https://en.wikipedia.org/wiki/Predicate_logic)不允许在函数或谓词名称上应用[量词](<https://en.wikipedia.org/wiki/Quantifier_(logic)>)。
+将函数从被视为数据类型的对象中排除在相关领域中并不少见。例如，[谓词逻辑](https://en.wikipedia.org/wiki/Predicate_logic)不允许在函数或谓词名称上应用[量词](<https://en.wikipedia.org/wiki/Quantifier_(logic)>)。
 
 ## Meta(元) 类型
 
-一些编程语言将类型信息表示为数据，从而实现[类型自省](https://en.wikipedia.org/wiki/Type_introspection)和[反射](<https://en.wikipedia.org/wiki/Reflection_(computer_programming)>)。相比之下，[高阶](https://en.wikipedia.org/wiki/Type_constructor) [类型系统](https://en.wikipedia.org/wiki/Type_systems)虽然允许从其他类型构造类型并作为值传递给函数，但通常避免基于它们进行[计算](https://en.wikipedia.org/wiki/Computational)决策。\[[需要引用](https://en.wikipedia.org/wiki/Wikipedia:Citation_needed)]
+一些编程语言将类型信息表示为数据，从而实现[类型自省](https://en.wikipedia.org/wiki/Type_introspection)和[反射](<https://en.wikipedia.org/wiki/Reflection_(computer_programming)>)。相比之下，[高阶](https://en.wikipedia.org/wiki/Type_constructor) [类型系统](https://en.wikipedia.org/wiki/Type_systems)虽然允许从其他类型构造类型并作为值传递给函数，但通常避免基于它们进行[计算](https://en.wikipedia.org/wiki/Computational)决策。
 
 ## Utility(实用程序) 类型
 

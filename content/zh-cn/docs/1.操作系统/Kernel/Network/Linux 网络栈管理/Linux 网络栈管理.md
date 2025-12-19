@@ -23,55 +23,16 @@ weight: 1
 
 而网络设备与网卡之间如何建立关系，就是网卡驱动程序的工作了，不同的网卡，驱动不一样，可以实现的功能也各有千秋。所以，想要系统出现 eth0 这种网络设备，网卡驱动程序是必须存在的，否则，没有驱动，也就无法识别硬件，无法识别硬件，在系统中也就不知道如何操作这个硬件。
 
-## 常见术语
-
-### DataPath(数据路径)
-
-网络数据在内核中进行网络传输时，所经过的所有点组合起来，称为数据路径。
-
-### Socket Buffer(简称 sk_buff 或 skb)
-
-在内核代码中是一个名为 [**sk_buff**](https://www.kernel.org/doc/html/latest/networking/kapi.html#c.sk_buff) 的结构体。内核显然需要一个数据结构来储存报文的信息。这就是 skb 的作用。
-
-sk_buff 结构自身并不存储报文内容，它通过多个指针指向真正的报文内存空间:
-
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/efrsi8/1617849698535-471768e0-dcf8-4471-8dd2-605a1bc4e020.png)
-
-sk_buff 是一个贯穿整个协议栈层次的结构，在各层间传递时，内核只需要调整 sk_buff 中的指针位置就行。
-
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/efrsi8/1617849692989-54095177-b85c-449e-8c66-3b026e4925da.png)
-
-### DEVICE(设备)
-
-在内核代码中，是一个名为 [**net_device**](https://www.kernel.org/doc/html/latest/networking/kapi.html#c.net_device) 的结构体。一个巨大的数据结构，描述一个网络设备的所有 属性、数据 等信息。
-
 # Linux 网络功能的实现
 
 # 数据包的 Transmit(发送) 与 Receive(接收) 过程概览
 
-## Receive(接收) 过程
-
-本文将拿 **Intel I350** 网卡的 `igb` 驱动作为参考，网卡的 data sheet 这里可以下 载 [PDF](http://www.intel.com/content/dam/www/public/us/en/documents/datasheets/ethernet-controller-i350-datasheet.pdf) （警告：文件很大）。
-从比较高的层次看，一个数据包从被网卡接收到进入 socket 接收队列的整个过程如下：
-
-1. 加载网卡驱动，初始化
-2. 包从外部网络进入网卡
-3. 网卡（通过 DMA）将包 copy 到内核内存中的 ring buffer
-4. 产生硬件中断，通知系统收到了一个包
-5. 驱动调用 NAPI，如果轮询（poll）还没开始，就开始轮询
-6. `ksoftirqd` 进程调用 NAPI 的 `poll` 函数从 ring buffer 收包（`poll` 函数是网卡 驱动在初始化阶段注册的；每个 CPU 上都运行着一个 `ksoftirqd` 进程，在系统启动期 间就注册了）
-7. ring buffer 里包对应的内存区域解除映射（unmapped）
-8. （通过 DMA 进入）内存的数据包以 `skb` 的形式被送至更上层处理
-9. 如果 packet steering 功能打开，或者网卡有多队列，网卡收到的包会被分发到多个 CPU
-10. 包从队列进入协议层
-11. 协议层处理包
-12. 包从协议层进入相应 socket 的接收队列
-
-接下来会详细介绍这个过程。
-
 ## Transmit(发送) 过程
 
-本文将拿**Intel I350**网卡的 `igb` 驱动作为参考，网卡的 data sheet 这里可以下载 [PDF](http://www.intel.com/content/dam/www/public/us/en/documents/datasheets/ethernet-controller-i350-datasheet.pdf) （警告：文件很大）。
+![https://mp.weixin.qq.com/s/wThfD9th9e_-YGHJJ3HXNQ](https://notes-learning.oss-cn-beijing.aliyuncs.com/linux_networking/202405082017947.png)
+
+本文将拿 **Intel I350** 网卡的 `igb` 驱动作为参考，网卡的 data sheet 这里可以下载 [PDF](http://www.intel.com/content/dam/www/public/us/en/documents/datasheets/ethernet-controller-i350-datasheet.pdf) （警告：文件很大）。
+
 从比较高的层次看，一个数据包从用户程序到达硬件网卡的整个过程如下：
 
 1. 使用 **系统调用**（如 `sendto`，`sendmsg` 等）写数据
@@ -90,6 +51,22 @@ sk_buff 是一个贯穿整个协议栈层次的结构，在各层间传递时，
 14. 发送完成后，设备触发一个 **硬中断**（IRQ），表示发送完成
 15. **硬中断处理函数** 被唤醒执行。对许多设备来说，这会 **触发 `NET_RX` 类型的软中断**，然后 NAPI poll 循环开始收包
 16. poll 函数会调用驱动程序的相应函数，**解除 DMA 映射**，释放数据
+
+## Receive(接收) 过程
+
+![https://arthurchiao.art/assets/img/linux-net-stack/dma-ringbuffer.png|800](https://notes-learning.oss-cn-beijing.aliyuncs.com/linux_networking/packet_receive_flow_1.png)
+
+从比较高的层次看，一个数据包从被网卡接收到进入 socket 的整个过程如下：
+
+1. 内核：初始化网卡驱动；其中包括了注册 `poll()` 方法；
+2. 网卡：收到包；
+3. 网卡：通过 DMA 将包复制到内核内存中的 **==ring buffer==**；
+4. 网卡：如果此时 NAPI 没有在执行，就产生硬件中断（IRQ），通知系统收到了一个包（否则不用额外 IRQ 就会把包收走）；触发软中断；
+5. 内核：调度到软中断处理线程 `ksoftirqd`；
+6. 内核：软中断处理，调用 NAPI 的 `poll()` 从 ring buffer 收包，并以 `skb` 的形式送至更上层处理；
+7. 协议栈：L2 处理；
+8. 协议栈：L3 处理；
+9. 协议栈：L4 处理。
 
 # Linux 网络栈关联文件与配置
 
