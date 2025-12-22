@@ -12,6 +12,9 @@ title: Template
 
 本文只介绍 template 的语法和用法，关于 template 包的函数、方法、template 的结构和原理，见：[深入剖析 Go template](https://www.cnblogs.com/f-ck-need-u/p/10035768.html)。
 
+- 文本模板
+- HTML 模板
+
 ## 入门示例
 
 以下为 test.html 文件的内容，里面使用了一个 template 语法`{{.}}`。

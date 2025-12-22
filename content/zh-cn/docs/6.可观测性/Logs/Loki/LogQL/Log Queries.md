@@ -126,11 +126,13 @@ https://grafana.com/docs/loki/latest/query/log_queries/#parser-expression
 
 我们应该尽可能使用 `json` 和 `logfmt` 等预定义的解析器，这会更加容易，而当日志行结构异常时，可以使用 `regexp`，可以在同一日志管道中使用多个解析器，这在你解析复杂日志时很有用。
 
-### json
+### JSON
+
+https://grafana.com/docs/loki/latest/query/log_queries/#json
 
 json 解析器有两种模式运行。
 
-- 1. 没有参数。如果日志行是一个有效的 json 文档，在你的管道中添加 `| json` 将提取所有 json 属性作为标签，嵌套的属性会使用 `_` 分隔符被平铺到标签键中。
+1. 没有参数。如果日志行是一个有效的 json 文档，在你的管道中添加 `| json` 将提取所有 json 属性作为标签，嵌套的属性会使用 `_` 分隔符被平铺到标签键中。
 
 > 注意：数组会被忽略。
 
@@ -171,7 +173,7 @@ json 解析器有两种模式运行。
 "response_size" => "228"
 ```
 
-- 2. 带有参数的。在你的管道中使用 `|json label="expression", another="expression"` 将只提取指定的 json 字段为标签，你可以用这种方式指定一个或多个表达式，与 `label_format` 相同，所有表达式必须加引号。
+2. 带有参数的。在你的管道中使用 `|json label="expression", another="expression"` 将只提取指定的 json 字段为标签，你可以用这种方式指定一个或多个表达式，与 `label_format` 相同，所有表达式必须加引号。
 
 > 当前仅支持字段访问（`my.field`, `my["field"]`）和数组访问（`list[0]`），以及任何级别嵌套中的这些组合（`my.list[0]["field"]`）。
 > 例如，`|json first_server="servers[0]", ua="request.headers[\"User-Agent\"]` 将从以下日志文件中提取标签：
@@ -441,3 +443,19 @@ https://grafana.com/docs/loki/latest/query/log_queries/#labels-format-expression
 重命名形式 `dst=src` 会在将 `src` 标签重新映射到 `dst` 标签后将其删除，然而，模板形式将保留引用的标签，例如 `dst="{{.src}}"` 的结果是 `dst` 和 `src` 都有相同的值。
 
 > 一个标签名称在每个表达式中只能出现一次，这意味着 `| label_format foo=bar,foo="new"` 是不允许的，但你可以使用两个表达式来达到预期效果，比如 `| label_format foo=bar | label_format foo="new"`。
+
+# LogQL 模板函数
+
+https://grafana.com/docs/loki/latest/query/template_functions
+
+Go 语言 [Template](docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Template.md) 嵌入在 Loki 查询语言 LogQL 中。可以在 [Line Format(行格式化表达式)](#Line%20Format(行格式化表达式)) 和 [Labels Format(标签格式化表达式)](#Labels%20Format(标签格式化表达式)) 中使用的[文本模板](https://golang.org/pkg/text/template)格式支持的函数。
+
+此外，可以使用 `__line__` 函数访问日志行，使用 `__timestamp__` 函数访问时间戳。
+
+## 最佳实践
+
+可以遍历数组，像下面这样：
+
+```logql
+| line_format `{{ range $q := fromJson .queries }} {{ $q.query }} {{ end }}`
+```
