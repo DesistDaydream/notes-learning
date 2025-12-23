@@ -54,6 +54,18 @@ datasources:
       password: 访问 Prometheus 所使用的密码
 ```
 
+## 常见问题
+
+**一、更新 Data source 的 Provisioning 文件后无法生效**
+
+https://github.com/grafana/grafana/issues/79694#issuecomment-1910230379
+
+https://github.com/grafana/grafana/issues/110740
+
+跟配置中的 version 与 uid 字段有关，暂时（2025-12-23）没有固定的解决方式。主要是缺少一个 配置文件 与 数据库中的数据 之间**固定**的关联关系
+
+> 按照 issue-79694 所述，正常情况下，不写 version 字段，则配置文件的数据会使用优先于数据库中的数据。但是某些版本在更新 UID 后会出现 `Datasource provisioning error: data source not found` 报错导致无法正常更新数据库中的数据源信息。
+
 # Plugins
 
 > 参考：
