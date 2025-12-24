@@ -98,6 +98,62 @@ https://grafana.com/docs/loki/latest/query/log_queries/#line-filter-expression
 3. **|~** # 匹配包含正则表达式的日志行
 4. **!~**# 匹配不包含正则表达式的日志行
 
+## Label Filter(标签过滤)
+
+https://grafana.com/docs/loki/latest/query/log_queries/#label-filter-expression
+
+标签过滤表达式允许使用其原始和提取的标签来过滤日志行，它可以包含多个谓词。
+
+一个谓词包含一个标签标识符、操作符和用于比较标签的值。
+
+例如 `cluster="namespace"` 其中的 `cluster` 是标签标识符，操作符是 `=`，值是`"namespace"`。
+
+LogQL 支持从查询输入中自动推断出的多种值类型：
+
+- `String（字符串）`用双引号或反引号引起来，例如 `"200"` 或 `us-central1`。
+- `Duration（时间）`是一串十进制数字，每个数字都有可选的数和单位后缀，如 `"300ms"`、`"1.5h"` 或 `"2h45m"`，有效的时间单位是 `"ns"`、`"us"`（或 `"µs"`）、`"ms"`、`"s"`、`"m"`、`"h"`。
+- `Number（数字）`是浮点数（64 位），如 250、89.923。
+- `Bytes（字节）`是一串十进制数字，每个数字都有可选的数和单位后缀，如 `"42MB"`、`"1.5Kib"` 或 `"20b"`，有效的字节单位是 `"b"`、`"kib"`、`"kb"`、`"mib"`、`"mb"`、`"gib"`、`"gb"`、`"tib"`、`"tb"`、`"pib"`、`"bb"`、`"eb"`。
+
+字符串类型的工作方式与 Prometheus 标签匹配器在日志流选择器中使用的方式完全一样，这意味着你可以使用同样的操作符（`=`、`!=`、`=~`、`!~`）。
+
+使用 Duration、Number 和 Bytes 将在比较前转换标签值，并支持以下比较器。
+
+- `==` 或 `=` 相等比较
+- `!=` 不等于比较
+- `>` 和 `>=` 用于大于或大于等于比较
+- `<` 和 `<=` 用于小于或小于等于比较
+
+例如 `logfmt | duration > 1m and bytes_consumed > 20MB` 过滤表达式。
+
+如果标签值的转换失败，日志行就不会被过滤，而会添加一个 `__error__` 标签，要过滤这些错误，请看管道错误部分。
+
+你可以使用 `and`和 `or` 来连接多个谓词，它们分别表示**且**和**或**的二进制操作，`and` 可以用逗号、空格或其他管道来表示，标签过滤器可以放在日志管道的任何地方。
+
+以下所有的表达式都是等价的:
+
+```text
+| duration >= 20ms or size == 20kb and method!~"2.."
+| duration >= 20ms or size == 20kb | method!~"2.."
+| duration >= 20ms or size == 20kb,method!~"2.."
+| duration >= 20ms or size == 20kb method!~"2.."
+```
+
+默认情况下，多个谓词的优先级是从右到左，你可以用圆括号包装谓词，强制使用从左到右的不同优先级。
+
+例如，以下内容是等价的：
+
+```text
+| duration >= 20ms or method="GET" and size <= 20KB
+| ((duration >= 20ms or method="GET") and size <= 20KB)
+```
+
+它将首先评估 `duration>=20ms or method="GET"`，要首先评估 `method="GET" and size<=20KB`，请确保使用适当的括号，如下所示。
+
+```text
+| duration >= 20ms or (method="GET" and size <= 20KB)
+```
+
 ## Parser(解析表达式)
 
 https://grafana.com/docs/loki/latest/query/log_queries/#parser-expression
@@ -173,10 +229,11 @@ json 解析器有两种模式运行。
 "response_size" => "228"
 ```
 
-2. 带有参数的。在你的管道中使用 `|json label="expression", another="expression"` 将只提取指定的 json 字段为标签，你可以用这种方式指定一个或多个表达式，与 `label_format` 相同，所有表达式必须加引号。
+2. 带有参数的。在你的管道中使用 `| json label="expression", another="expression"` 将只提取指定的 json 字段为标签，你可以用这种方式指定一个或多个表达式，与 `label_format` 相同，所有表达式必须加引号。
 
 > 当前仅支持字段访问（`my.field`, `my["field"]`）和数组访问（`list[0]`），以及任何级别嵌套中的这些组合（`my.list[0]["field"]`）。
-> 例如，`|json first_server="servers[0]", ua="request.headers[\"User-Agent\"]` 将从以下日志文件中提取标签：
+>
+> 例如，`| json first_server="servers[0]", ua="request.headers[\"User-Agent\"]` 将从以下日志文件中提取标签：
 
 ```json
 {
@@ -207,7 +264,7 @@ json 解析器有两种模式运行。
 "ua" => "curl/7.68.0"
 ```
 
-- 如果表达式返回一个数组或对象，它将以 json 格式分配给标签。例如，`|json server_list="services", headers="request.headers` 将提取到如下标签：
+- 如果表达式返回一个数组或对象，它将以 json 格式分配给标签。例如，`|json server_list="services", headers="request.headers"` 将提取到如下标签：
 
 ```text
 "server_list" => `["129.0.1.1","10.2.1.3"]`
@@ -334,7 +391,7 @@ POST /api/prom/api/v1/query_range (200) 1.5s
 
 > 如果原始嵌入的日志行是特定的格式，你可以将 unpack 与 json 解析器（或其他解析器）相结合使用。
 
-## Line Format(行格式化表达式)
+## Line Format(行格式化)
 
 https://grafana.com/docs/loki/latest/query/log_queries/#line-format-expression
 
@@ -366,63 +423,7 @@ https://grafana.com/docs/loki/latest/query/log_queries/#line-format-expression
 
 上面的查询将得到的日志行内容为`1.1.1.1 200 3`。
 
-## Label Filter(标签过滤表达式)
-
-https://grafana.com/docs/loki/latest/query/log_queries/#label-filter-expression
-
-标签过滤表达式允许使用其原始和提取的标签来过滤日志行，它可以包含多个谓词。
-
-一个谓词包含一个标签标识符、操作符和用于比较标签的值。
-
-例如 `cluster="namespace"` 其中的 `cluster` 是标签标识符，操作符是 `=`，值是`"namespace"`。
-
-LogQL 支持从查询输入中自动推断出的多种值类型：
-
-- `String（字符串）`用双引号或反引号引起来，例如`"200"`或`us-central1`。
-- `Duration（时间）`是一串十进制数字，每个数字都有可选的数和单位后缀，如 `"300ms"`、`"1.5h"` 或 `"2h45m"`，有效的时间单位是 `"ns"`、`"us"`（或 `"µs"`）、`"ms"`、`"s"`、`"m"`、`"h"`。
-- `Number（数字）`是浮点数（64 位），如 250、89.923。
-- `Bytes（字节）`是一串十进制数字，每个数字都有可选的数和单位后缀，如 `"42MB"`、`"1.5Kib"` 或 `"20b"`，有效的字节单位是 `"b"`、`"kib"`、`"kb"`、`"mib"`、`"mb"`、`"gib"`、`"gb"`、`"tib"`、`"tb"`、`"pib"`、`"bb"`、`"eb"`。
-
-字符串类型的工作方式与 Prometheus 标签匹配器在日志流选择器中使用的方式完全一样，这意味着你可以使用同样的操作符（`=`、`!=`、`=~`、`!~`）。
-
-使用 Duration、Number 和 Bytes 将在比较前转换标签值，并支持以下比较器。
-
-- `==` 或 `=` 相等比较
-- `!=` 不等于比较
-- `>` 和 `>=` 用于大于或大于等于比较
-- `<` 和 `<=` 用于小于或小于等于比较
-
-例如 `logfmt | duration > 1m and bytes_consumed > 20MB` 过滤表达式。
-
-如果标签值的转换失败，日志行就不会被过滤，而会添加一个 `__error__` 标签，要过滤这些错误，请看管道错误部分。
-
-你可以使用 `and`和 `or` 来连接多个谓词，它们分别表示**且**和**或**的二进制操作，`and` 可以用逗号、空格或其他管道来表示，标签过滤器可以放在日志管道的任何地方。
-
-以下所有的表达式都是等价的:
-
-```text
-| duration >= 20ms or size == 20kb and method!~"2.."
-| duration >= 20ms or size == 20kb | method!~"2.."
-| duration >= 20ms or size == 20kb,method!~"2.."
-| duration >= 20ms or size == 20kb method!~"2.."
-```
-
-默认情况下，多个谓词的优先级是从右到左，你可以用圆括号包装谓词，强制使用从左到右的不同优先级。
-
-例如，以下内容是等价的：
-
-```text
-| duration >= 20ms or method="GET" and size <= 20KB
-| ((duration >= 20ms or method="GET") and size <= 20KB)
-```
-
-它将首先评估 `duration>=20ms or method="GET"`，要首先评估 `method="GET" and size<=20KB`，请确保使用适当的括号，如下所示。
-
-```text
-| duration >= 20ms or (method="GET" and size <= 20KB)
-```
-
-## Labels Format(标签格式化表达式)
+## Labels Format(标签格式化)
 
 https://grafana.com/docs/loki/latest/query/log_queries/#labels-format-expression
 
@@ -434,15 +435,19 @@ https://grafana.com/docs/loki/latest/query/log_queries/#labels-format-expression
 
 表达式可以重命名、修改或添加标签，它以逗号分隔的操作列表作为参数，可以同时进行多个操作。
 
-当两边都是标签标识符时，例如 `dst=src`，该操作将把 `src` 标签重命名为 `dst`。
-
-左边也可以是一个模板字符串，例如 `dst="{{.status}} {{.query}}"`，在这种情况下，`dst` 标签值会被 Golang 模板执行结果所取代，这与 `| line_format` 表达式是同一个模板引擎，这意味着标签可以作为变量使用，也可以使用同样的函数列表。
+- 当 `=` 右边是标签标识符时，e.g. `dst=src`，该操作将把 `src` 标签重命名为 `dst`。
+- 当 `=` 右边是模板字符串时，e.g. `dst="{{.status}} {{.query}}"`，在这种情况下，`dst` 标签值会被 Golang 模板执行结果所取代，这与 `| line_format` 表达式是同一个模板引擎，这意味着标签可以作为变量使用，也可以使用同样的函数列表。
 
 在上面两种情况下，如果目标标签不存在，那么就会创建一个新的标签。
 
 重命名形式 `dst=src` 会在将 `src` 标签重新映射到 `dst` 标签后将其删除，然而，模板形式将保留引用的标签，例如 `dst="{{.src}}"` 的结果是 `dst` 和 `src` 都有相同的值。
 
-> 一个标签名称在每个表达式中只能出现一次，这意味着 `| label_format foo=bar,foo="new"` 是不允许的，但你可以使用两个表达式来达到预期效果，比如 `| label_format foo=bar | label_format foo="new"`。
+> 每个表达式中只能出现一次标签名称。这意味着 `| label_format foo=bar,foo="new"` 是不允许的，但可以使用两个表达式来达到预期效果，e.g. `| label_format foo=bar | label_format foo="new"`。
+
+## Drop Labels(丢弃标签)
+
+## Keep Labels(保留标签)
+
 
 # LogQL 模板函数
 
@@ -451,6 +456,32 @@ https://grafana.com/docs/loki/latest/query/template_functions
 Go 语言 [Template](docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Template.md) 嵌入在 Loki 查询语言 LogQL 中。可以在 [Line Format(行格式化表达式)](#Line%20Format(行格式化表达式)) 和 [Labels Format(标签格式化表达式)](#Labels%20Format(标签格式化表达式)) 中使用的[文本模板](https://golang.org/pkg/text/template)格式支持的函数。
 
 此外，可以使用 `__line__` 函数访问日志行，使用 `__timestamp__` 函数访问时间戳。
+
+## 时间与日期
+
+https://grafana.com/docs/loki/latest/query/template_functions/#date-and-time
+
+### date
+
+把 [Go 语言支持的日期时间格式](https://pkg.go.dev/time#pkg-constants) 格式化成指定的样子
+
+`date(fmt string, date interface{}) string`
+
+将传入的 date，转换成 fmt 格式（fmt 要符合 Go 语言支持的日期时间格式）。返回字符串
+
+### unixToTime
+
+将 Unix 时间戳转为时间
+
+`unixToTime(epoch string) time.Time`
+
+将传入的 epoch，转为 time.Time 格式
+
+e.g. 若某个标签的值是 Unix 时间戳格式，可以使用如下方式转换为人类可读的形式：将 demoTime 标签的值先转为 `2025-12-24 18:07:00 +0800 CST` 这种格式，再格式化成 XXXX-XX-XX XX:XX:XX 的格式。
+
+```
+| label_format demoTime=`{{ .demoTime | unixToTime | date "2006-01-02 15:04:05" }}`
+```
 
 ## 最佳实践
 

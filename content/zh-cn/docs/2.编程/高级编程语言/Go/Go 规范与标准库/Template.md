@@ -15,7 +15,7 @@ title: Template
 - 文本模板
 - HTML 模板
 
-## 入门示例
+# 入门示例
 
 以下为 test.html 文件的内容，里面使用了一个 template 语法`{{.}}`。
 
@@ -62,7 +62,7 @@ func main() {
 
 本文不解释这些 template 包的函数、方法以及更底层的理论知识，本文只解释 template 的语法，如果觉得这些无法理解，或者看不懂官方手册，请看[深入剖析 Go template](https://www.cnblogs.com/f-ck-need-u/p/10035768.html)。
 
-## 关于点 `.` 和作用域
+# 关于点 `.` 和作用域
 
 在写 template 的时候，会经常用到 `.`。比如 `{{.}}`、`{{len .}}`、`{{.Name}}`、`{{$x.Name}}` 等等。
 
@@ -145,21 +145,25 @@ my friend name is wugui
 - 因为 Emails 和 Friend 字段都是可迭代的，在`{{range .Emails}}...{{end}}`这一段结构内部`an email {{.}}`，这个"."代表的是 range 迭代时的每个元素对象，也就是 p.Emails 这个 slice 中的每个元素。
 - 同理，with 结构内部`{{range .}}`的"."代表的是 p.Friends，也就是各个，再此 range 中又有一层迭代，此内层`{{.Fname}}`的点代表 Friend 结构的实例，分别是`&f1`和`&f2`，所以`{{.Fname}}`代表实例对象的 Fname 字段。
 
-## 去除空白
+# 去除空白
 
 template 引擎在进行替换的时候，是完全按照文本格式进行替换的。除了需要评估和替换的地方，所有的行分隔符、空格等等空白都原样保留。所以，**对于要解析的内容，不要随意缩进、随意换行**。
+
 可以在`{{`符号的后面加上短横线并保留一个或多个空格"- "来去除它前面的空白(包括换行符、制表符、空格等)，即`{{- xxxx`。
+
 在`}}`的前面加上一个或多个空格以及一个短横线"-"来去除它后面的空白，即`xxxx -}}`。
+
 例如：
 
 ```go
-{{23}} < {{45}}        -> 23 < 45
+{{23}} < {{45}}        ->  23 < 45
 {{23}} < {{- 45}}      ->  23 <45
 {{23 -}} < {{45}}      ->  23< 45
 {{23 -}} < {{- 45}}    ->  23<45
 ```
 
-其中`{{23 -}}`中的短横线去除了这个替换结构后面的空格，即`}} <`中间的空白。同理`{{- 45}}`的短横线去除了`< {{`中间的空白。
+其中 `{{23 -}}` 中的短横线去除了这个替换结构后面的空格，即 `}} <` 中间的空白。同理 `{{- 45}}` 的短横线去除了 `< {{` 中间的空白。
+
 再看上一节的例子中：
 
 ```go
@@ -177,9 +181,9 @@ my friend name is {{.Fname}}
 
 注意，上面没有进行缩进。因为缩进的制表符或空格在替换的时候会保留。
 
-第一行和第二行之间输出时会换行输出，不仅如此，`range {{.Emails}}`自身也占一行，在替换的时候它会被保留为空行。除非 range 前面没加`{{-`。由于 range 的`{{- end`加上了去除前缀空白，所以每次迭代的时候，每个元素之间都换行输出但却不多一空行，如果这里的 end 去掉`{{-`，则每个迭代的元素之间输出的时候都会有空行。同理后面的 with 和 range。
+第一行和第二行之间输出时会换行输出，不仅如此，`range {{.Emails}}` 自身也占一行，在替换的时候它会被保留为空行。除非 range 前面没加 `{{-`。由于 range 的 `{{- end` 加上了去除前缀空白，所以每次迭代的时候，每个元素之间都换行输出但却不多一空行，如果这里的 end 去掉 `{{-`，则每个迭代的元素之间输出的时候都会有空行。同理后面的 with 和 range。
 
-## 注释
+# 注释
 
 注释方式：`{{/* a comment */}}`
 
@@ -202,42 +206,50 @@ an email {{ . }}
 {{- end }}
 ```
 
-## pipeline(管道)
+# pipeline(管道)
 
-pipeline 是指产生数据的操作。比如`{{.}}`、`{{.Name}}`、`funcname args`等。
+pipeline 是指产生数据的操作。比如 `{{.}}`、`{{.Name}}`、`funcname args` 等。
 
-可以使用管道符号`|`链接多个命令，用法和 unix 下的管道类似：`|`前面的命令将运算结果(或返回值)传递给后一个命令的最后一个位置。
+可以使用管道符号 `|` 链接多个命令，用法和 [Unix-like OS](docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 下的管道类似: `|` 前面的命令将运算结果(或返回值)传递给后一个命令，当作命令的最后一个参数。
 
-例如：
-
-```go
-{{.}} | printf "%s\n" "abcd"
-```
-
-`{{.}}`的结果将传递给 printf，且传递的参数位置是"abcd"之后。
+> [!Example]
+> ```go
+> {{ . | printf "%s\n" "abcd" }}
+> ```
+>
+> `.` 的结果将传递给 printf，且传递的参数位置是"abcd"之后。相当于：
+>
+> ```go
+> {{ printf "%s\n" "abcd" . }}
+> ```
 
 命令可以有超过 1 个的返回值，这时第二个返回值必须为 err 类型。
 
-需要注意的是，并非只有使用了`|`才是 pipeline。Go template 中，pipeline 的概念是传递数据，只要能产生数据的，都是 pipeline。这使得某些操作可以作为另一些操作内部的表达式先运行得到结果，就像是 Unix 下的命令替换一样。
+需要注意的是，并非只有使用了 `|` 才是 pipeline。Go template 中，pipeline 的概念是传递数据，只要能产生数据的，都是 pipeline。这使得某些操作可以作为另一些操作内部的表达式，先运行得到结果，就像是 Unix 下的命令替换（`ls $(pwd)` 中的 `$(pwd)`）一样。
 
-例如，下面的`(len "output")`是 pipeline，它整体先运行。
+例如: `{{ println (len "output") }}` 中的 `(len "output")` 是 pipeline，它整体先运行
+
+这相当于: `{{ "output" | len | println }}` 或 `{{ len "output" | println }}`
+
+> Tips: 上面例子中的 `"output"` 通常来说都是 `.`
+
+下面是 Pipeline 的几种[示例](https://pkg.go.dev/text/template#hdr-Examples)，它们都输出`"output"`：
 
 ```go
-{{println (len "output")}}
-```
-
-下面是 Pipeline 的几种示例，它们都输出`"output"`：
-
-```go
+{{"\"output\""}}
 {{`"output"`}}
 {{printf "%q" "output"}}
 {{"output" | printf "%q"}}
 {{printf "%q" (print "out" "put")}}
 {{"put" | printf "%s%s" "out" | printf "%q"}}
 {{"output" | printf "%s" | printf "%q"}}
+{{with "output"}}{{printf "%q" .}}{{end}}
+{{with $x := "output" | printf "%q"}}{{$x}}{{end}}
+{{with $x := "output"}}{{printf "%q" $x}}{{end}}
+{{with $x := "output"}}{{$x | printf "%q"}}{{end}}
 ```
 
-## 变量
+# 变量
 
 可以在 template 中定义变量：
 
@@ -304,7 +316,7 @@ func main() {
 
 如果看不懂这些，后文有解释。
 
-## 条件判断
+# 条件判断
 
 有以下几种 if 条件判断语句，其中第三和第四是等价的。
 
@@ -317,7 +329,7 @@ func main() {
 
 需要注意的是，pipeline 为 false 的情况是各种数据对象的 0 值：数值 0，指针或接口是 nil，数组、slice、map 或 string 则是 len 为 0。
 
-## range...end 迭代
+# range...end 迭代
 
 有两种迭代表达式类型：
 
@@ -343,8 +355,8 @@ _ = tx.Execute(os.Stdout, s)
 需注意的是，range 的参数部分是 pipeline，所以在迭代的过程中是可以进行赋值的。但有两种赋值情况：
 
 ```go
-{{range $value := .}}
-{{range $key,$value := .}}
+{{ range $value := . }}
+{{ range $key,$value := . }}
 ```
 
 如果 range 中只赋值给一个变量，则这个变量是当前正在迭代元素的值。如果赋值给两个变量，则第一个变量是索引值(map/slice 是数值，map 是 key)，第二个变量是当前正在迭代元素的值。
@@ -374,36 +386,36 @@ _ = tx.Execute(os.Stdout, s)
 ```go
 package main
 import (
- "html/template"
- "net/http"
+    "html/template"
+    "net/http"
 )
 func main() {
- server := http.Server{
-  Addr: "127.0.0.1:8080",
- }
- http.HandleFunc("/process", process)
- server.ListenAndServe()
+    server := http.Server{
+        Addr: "127.0.0.1:8080",
+    }
+    http.HandleFunc("/process", process)
+    server.ListenAndServe()
 }
 func process(w http.ResponseWriter, r *http.Request) {
- t1 := template.Must(template.ParseFiles("test.html"))
- s := []string{
-  "星期一",
-  "星期二",
-  "星期三",
-  "星期四",
-  "星期五",
-  "星期六",
-  "星期日",}
- t1.Execute(w, s)
+    t1 := template.Must(template.ParseFiles("test.html"))
+    s := []string{
+        "星期一",
+        "星期二",
+        "星期三",
+        "星期四",
+        "星期五",
+        "星期六",
+        "星期日",}
+    t1.Execute(w, s)
 }
 ```
-## with...end
+# with...end
 
 **with 用来设置 `.` 的值**。两种格式：
 
 ```go
-{{with pipeline}} T1 {{end}}
-{{with pipeline}} T1 {{else}} T0 {{end}}
+{{ with pipeline }} T1 {{ end }}
+{{ with pipeline }} T1 {{ else }} T0 {{ end }}
 ```
 
 对于第一种格式，当 pipeline 不为 0 值的时候，点"."设置为 pipeline 运算的值，否则跳过。对于第二种格式，当 pipeline 为 0 值时，执行 else 语句块，否则"."设置为 pipeline 运算的值，并执行 T1。
@@ -411,12 +423,12 @@ func process(w http.ResponseWriter, r *http.Request) {
 例如：
 
 ```go
-{{with "xx"}}{{println .}}{{end}}
+{{ with "xx" }}{{ println . }}{{ end }}
 ```
 
-上面将输出`xx`，因为"."已经设置为"xx"。
+上面将输出 `xx`，因为 "." 已经设置为 "xx"。
 
-## 函数
+# 函数
 
 https://pkg.go.dev/text/template#hdr-Functions
 
@@ -473,21 +485,53 @@ arg1==arg2 || arg1==arg3 || arg1==arg4
 {{ if (gt $x 33) }}{{println $x}}{{ end }}
 ```
 
-## 嵌套模板：define 和 template
+## 自定义函数
+
+使用 `Template.Funcs()` 方法可以注册自定义的函数。注册自定义函数时要使用 `FuncMap map[string]any` 来创建用在模板中的函数名称，以及该函数名称对应的要调用的函数。
+
+示例如下：
+
+```go
+func toUpper(s string) string {
+	return strings.ToUpper(s)
+}
+
+func main() {
+	tmplFile := "pkg/template/template_file/function_custom.tmpl"
+	// 创建可以用在 Go tempalte 中的自定义函数
+	var tmplFunc = template.FuncMap{
+		"toUpper": toUpper,
+	}
+
+	// Notes: Funcs() 必须在各种 ParseXXX() 用于解析模板主体的函数之前调用
+	// 所一要先 New()，然后 Funcs()，最后 ParseFiles()
+	// New() 的参数是模板的名字，要与 ParseFiles() 参数中的文件名一致
+	t := template.Must(
+		template.New("function_custom.tmpl").
+			Funcs(tmplFunc).
+			ParseFiles(tmplFile),
+	)
+
+	t.Execute(os.Stdout, "hello world")
+}
+
+```
+
+# 嵌套模板：define 和 template
 
 `define` 关键字可以直接在待解析内容中定义一个模板，这个模板会加入到 common 结构组中，并关联到关联名称上。如果不理解，还是建议阅读[深入剖析 Go template](https://www.cnblogs.com/f-ck-need-u/p/10035768.html)。
 
 定义了模板之后，可以使用 `template` 关键字来引用模板。`template` 有两种格式：
 
 ```go
-{{template "name"}}
-{{template "name" pipeline}}
+{{ template "name" }}
+{{ template "name" pipeline }}
 ```
 
 第一种是直接执行名为 name 的 template，点设置为 nil。第二种是点 "." 设置为 pipeline 的值，并执行名为 name 的 template。可以将 template 看作是函数：
 
 ```go
-template("name)
+template("name")
 template("name",pipeline)
 ```
 
@@ -495,14 +539,14 @@ template("name",pipeline)
 
 ```go
 func main() {
-	t1 := template.New("test1")
-	tmpl, _ := t1.Parse(
-		`{{- define "T1"}}ONE {{println .}}{{end}}
-   {{- define "T2"}}TWO {{println .}}{{end}}
-   {{- define "T3"}}{{template "T1"}}{{template "T2" "haha"}}{{end}}
-   {{- template "T3" -}}
-   `)
-	_ = tmpl.Execute(os.Stdout, "hello world")
+    t1 := template.New("test1")
+    tmpl, _ := t1.Parse(
+`{{- define "T1"}}ONE {{println .}}{{end}}
+{{- define "T2"}}TWO {{println .}}{{end}}
+{{- define "T3"}}{{template "T1"}}{{template "T2" "haha"}}{{end}}
+{{- template "T3" -}}
+`)
+    _ = tmpl.Execute(os.Stdout, "hello world")
 }
 ```
 
@@ -553,8 +597,8 @@ t1.html 文件内容如下：
 
 ```go
 func process(w http.ResponseWriter, r *http.Request) {
- t, _ := template.ParseFiles("t1.html", "t2.html")
- t.Execute(w, "Hello World!")
+    t, _ := template.ParseFiles("t1.html", "t2.html")
+    t.Execute(w, "Hello World!")
 }
 ```
 
@@ -592,12 +636,12 @@ func process(w http.ResponseWriter, r *http.Request) {
 
 ```go
 func process(w http.ResponseWriter, r *http.Request) {
-  t, _ := template.ParseFiles("t1.html")
-  t.Execute(w, "Hello World!")
+    t, _ := template.ParseFiles("t1.html")
+    t.Execute(w, "Hello World!")
 }
 ```
 
-## block 块
+# block 块
 
 ```go
 {{block "name" pipeline}} T1 {{end}}
@@ -616,7 +660,7 @@ func process(w http.ResponseWriter, r *http.Request) {
 例如：
 
 ```go
-{{block "T1" .}} one {{end}}
+{{ block "T1" . }} one {{ end }}
 ```
 
 它首先表示`{{template "T1" .}}`，也就是说先找到 T1 模板，如果 T1 存在，则执行找到的 T1，如果没找到 T1，则临时定义一个`{{define "T1"}} one {{end}}`，并执行它。
@@ -659,14 +703,14 @@ blue.html 文件内容如下：
 
 ```go
 func process(w http.ResponseWriter, r *http.Request) {
- rand.Seed(time.Now().Unix())
- t := template.New("test")
- if rand.Intn(10) > 5 {
-  t, _ = template.ParseFiles("home.html", "red.html")
- } else {
-  t, _ = template.ParseFiles("home.html", "blue.html")
- }
- t.Execute(w,"")
+    rand.Seed(time.Now().Unix())
+    t := template.New("test")
+    if rand.Intn(10) > 5 {
+        t, _ = template.ParseFiles("home.html", "red.html")
+    } else {
+        t, _ = template.ParseFiles("home.html", "blue.html")
+    }
+    t.Execute(w,"")
 }
 ```
 
@@ -692,14 +736,14 @@ func process(w http.ResponseWriter, r *http.Request) {
 
 ```go
 func process(w http.ResponseWriter, r *http.Request) {
- rand.Seed(time.Now().Unix())
- t := template.New("test")
- if rand.Intn(10) > 5 {
-  t, _ = template.ParseFiles("home.html", "red.html")
- } else {
-  t, _ = template.ParseFiles("home.html")
- }
- t.Execute(w,"")
+    rand.Seed(time.Now().Unix())
+    t := template.New("test")
+    if rand.Intn(10) > 5 {
+        t, _ = template.ParseFiles("home.html", "red.html")
+    } else {
+        t, _ = template.ParseFiles("home.html")
+    }
+    t.Execute(w,"")
 }
 ```
 
@@ -707,7 +751,7 @@ func process(w http.ResponseWriter, r *http.Request) {
 
 block 通常设置在顶级的根文件中，例如上面的 home.html 中。
 
-## html/template 的上下文感知
+# html/template 的上下文感知
 
 对于 html/template 包，有一个很好用的功能：上下文感知。text/template 没有该功能。
 
@@ -717,9 +761,9 @@ block 通常设置在顶级的根文件中，例如上面的 home.html 中。
 
 ```go
 func process(w http.ResponseWriter, r *http.Request) {
-  t, _ := template.ParseFiles("test.html")
-  content := `I asked: <i>"What's up?"</i>`
-  t.Execute(w, content)
+    t, _ := template.ParseFiles("test.html")
+    content := `I asked: <i>"What's up?"</i>`
+    t.Execute(w, content)
 }
 ```
 
@@ -771,7 +815,7 @@ func process(w http.ResponseWriter, r *http.Request) {
 </html>
 ```
 
-### 不转义
+## 不转义
 
 上下文感知的自动转义能让程序更加安全，比如防止 XSS 攻击(例如在表单中输入带有`<script>...</script>`的内容并提交，会使得用户提交的这部分 script 被执行)。
 
@@ -790,8 +834,8 @@ type URL
 
 ```go
 func process(w http.ResponseWriter, r *http.Request) {
-  t, _ := template.ParseFiles("tmpl.html")
-  t.Execute(w, template.HTML(r.FormValue("comment")))
+    t, _ := template.ParseFiles("tmpl.html")
+    t.Execute(w, template.HTML(r.FormValue("comment")))
 }
 ```
 
