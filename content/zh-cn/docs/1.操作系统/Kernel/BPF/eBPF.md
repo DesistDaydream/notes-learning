@@ -283,7 +283,7 @@ Linux 内核的主要目的是对硬件或虚拟硬件进行抽象，并提供�
 - [BCC](/docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/BCC%20工具集.md) # 高效的基于 BPF 的内核跟踪的工具包和库
 - [bpftrace](/docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/bpftrace%20工具.md) # Linux eBPF 的高级跟踪语言
 
-[BPF 在网络领域的实现](/docs/1.操作系统/Kernel/BPF/BPF%20流量控制机制/BPF%20在网络领域的实现.md)
+[BPF 在网络领域的实现](docs/1.操作系统/Kernel/BPF/BPF%20流量控制/BPF%20在网络领域的实现.md)
 
 - tcpdump # 网络抓包工具
 - TC eBPF # 作用在传统 TC 模块的 eBPF

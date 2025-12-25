@@ -57,7 +57,7 @@ Traffic Control(流量控制) 在不同的语境中有不同的含义，可以�
   - 通过 iptables、nftables 控制 Netfilter 框架中的 Hook 行为
 - [TC 模块](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/TC%20模块/TC%20模块.md)
   - 通过 tc 二进制程序控制 Hook 行为
-- [BPF 流量控制机制](/docs/1.操作系统/Kernel/BPF/BPF%20流量控制机制/BPF%20流量控制机制.md)
+- [BPF 流量控制](docs/1.操作系统/Kernel/BPF/BPF%20流量控制/BPF%20流量控制.md)
   - 待整理，暂时不知道 Linux 中有什么会基于 BPF 的应用程序。
     - 但是有一个 Cilium 程序，是基于 BPF 做的，只不过只能部署在 Kubernetes 集群中。
 

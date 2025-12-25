@@ -229,16 +229,14 @@
       "docs/1.操作系统/Kernel/BPF/_index.md",
       "docs/1.操作系统/Kernel/BPF/BPF.md",
       "docs/1.操作系统/Kernel/BPF/eBPF.md",
-      "docs/1.操作系统/Kernel/BPF/BPF 流量控制机制"
+      "docs/1.操作系统/Kernel/BPF/BPF 流量控制"
     ],
-    "docs/1.操作系统/Kernel/BPF/BPF 流量控制机制": [
-      "docs/1.操作系统/Kernel/BPF/BPF 流量控制机制/_index.md",
-      "docs/1.操作系统/Kernel/BPF/BPF 流量控制机制/BPF 流量控制机制.md",
-      "docs/1.操作系统/Kernel/BPF/BPF 流量控制机制/【BPF网络篇系列-2】容器网络延时之 ipvs 定时器篇 _ 深入浅出 eBPF.md",
-      "docs/1.操作系统/Kernel/BPF/BPF 流量控制机制/10.2.深入理解 Cilium 的 eBPF 收发包路径.md",
-      "docs/1.操作系统/Kernel/BPF/BPF 流量控制机制/BPF 相关文章.md",
-      "docs/1.操作系统/Kernel/BPF/BPF 流量控制机制/BPF 在网络领域的实现.md",
-      "docs/1.操作系统/Kernel/BPF/BPF 流量控制机制/XDP eBPF 与 TC eBPF.md"
+    "docs/1.操作系统/Kernel/BPF/BPF 流量控制": [
+      "docs/1.操作系统/Kernel/BPF/BPF 流量控制/_index.md",
+      "docs/1.操作系统/Kernel/BPF/BPF 流量控制/BPF 流量控制.md",
+      "docs/1.操作系统/Kernel/BPF/BPF 流量控制/XDP eBPF 与 TC eBPF.md",
+      "docs/1.操作系统/Kernel/BPF/BPF 流量控制/【BPF网络篇系列-2】容器网络延时之 ipvs 定时器篇 - 深入浅出 eBPF.md",
+      "docs/1.操作系统/Kernel/BPF/BPF 流量控制/【译】深入理解 Cilium 的 eBPF 收发包路径（datapath）（KubeCon, 2019）.md"
     ],
     "docs/1.操作系统/Kernel/CPU": [
       "docs/1.操作系统/Kernel/CPU/_index.md",

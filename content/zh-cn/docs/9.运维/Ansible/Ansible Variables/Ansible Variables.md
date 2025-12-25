@@ -34,12 +34,12 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 
 - command line values (eg “-u user”)
 - **role defaults** # 定义在 `${ROLE}/defaults/main.yaml` 中的默认变量
-- **inventory file or script group vars** # [Inventory 文件](/docs/9.运维/Ansible/Inventory%20文件.md#组变量)中的组变量，即.`[XXX:vars]`
+- **inventory file or script group vars** # [Inventory 文件](/docs/9.运维/Ansible/Inventory%20文件.md#组变量)中的组变量，i.e. `[XXX:vars]`
 - **inventory group_vars/all** # Inventory 文件所在目录下的 `group_vars/all` 文件。也可以是  `group_vars/all.yaml` 文件
 - **playbook group_vars/all** # Playbook 根目录下的 `group_vars/all` 文件。也可以是  `group_vars/all.yaml` 文件
 - **inventory group_vars/** # Inventory 文件所在目录下的 `group_vars/` 目录
 - **playbook group_vars/** # Playbook 根目录下的 `group_vars/` 目录
-- **inventory file or script host vars** # [Inventory 文件](/docs/9.运维/Ansible/Inventory%20文件.md#主机变量)中的主机变量
+- **inventory file or script host vars** # [Inventory 文件](/docs/9.运维/Ansible/Inventory%20文件.md#主机变量)中的主机变量。
 - **inventory host_vars/** # Inventory 文件所在目录下的 `host_vars/` 目录
 - **playbook host_vars/** # Playbook 根目录下的 `host_vars/` 目录
 - **host facts / cached set_facts** #
