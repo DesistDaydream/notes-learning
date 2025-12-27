@@ -1,7 +1,7 @@
 ---
 title: C 环境安装与使用
 linkTitle: C 环境安装与使用
-weight: 1
+weight: 2
 ---
 
 # 概述

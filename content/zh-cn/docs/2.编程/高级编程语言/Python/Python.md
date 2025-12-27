@@ -14,7 +14,9 @@ weight: 1
 
 Python 编程语言最早由 C 语言实现，称为 CPython。还有其它的实现版本，不怎么用就不记了
 
-## 学习资料
+# 学习资料
+
+[菜鸟教程，Python](https://www.runoob.com/python3/python3-tutorial.html)（快速上手尝试，简单直接）
 
 # Hello World
 

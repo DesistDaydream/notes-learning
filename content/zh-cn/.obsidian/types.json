@@ -24,6 +24,7 @@
     "excalidraw-embeddable-theme": "text",
     "excalidraw-open-md": "checkbox",
     "excalidraw-embed-md": "checkbox",
-    "author": "multitext"
+    "author": "multitext",
+    "excalidraw-export-internal-links": "checkbox"
   }
 }

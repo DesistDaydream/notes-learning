@@ -19,6 +19,8 @@ Go 是一种开源编程语言，可以轻松构建 **simple(简单)**、**relia
 
 ## 学习资料
 
+[菜鸟教程，Go](https://www.runoob.com/go/go-tutorial.html)（快速上手尝试，简单直接）
+
 [Go 语言之旅](https://go.dev/tour)(官方在线教程)
 
 [Go 官方 FAQ](https://go.dev/doc/faq)

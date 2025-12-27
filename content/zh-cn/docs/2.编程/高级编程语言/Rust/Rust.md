@@ -12,7 +12,7 @@ title: Rust
 
 # 学习资料
 
-[B 站-软件工艺师，Rust 编程语言入门教程（Rust 语言/Rust 权威指南配套）](https://www.bilibili.com/video/BV1hp4y1k7SV/)
+[B 站 - 软件工艺师，Rust 编程语言入门教程（Rust 语言/Rust 权威指南配套）](https://www.bilibili.com/video/BV1hp4y1k7SV/)
 
 [公众号 - 张晋涛，我的 Rust 之旅，以及如何学习 Rust](https://mp.weixin.qq.com/s/1uWb4b0amglEDA4N9Njsgg)
 
@@ -31,6 +31,22 @@ $ rustc main.rs
 $ ./main
 Hello, world!
 ```
+
+# Rust 范儿
+
+## 环境变量
+
+## 项目结构
+
+## 命令规范
+
+## 代码格式
+
+## 编码风格
+
+## 依赖管理
+
+## 构建方式
 
 # Rust 语言关键字
 
