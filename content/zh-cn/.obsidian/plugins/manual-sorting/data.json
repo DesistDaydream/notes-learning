@@ -1142,14 +1142,7 @@
         "docs/2.编程/高级编程语言/C/_index.md",
         "docs/2.编程/高级编程语言/C/C.md",
         "docs/2.编程/高级编程语言/C/C 环境安装与使用.md",
-        "docs/2.编程/高级编程语言/C/C 环境安装与使用",
         "docs/2.编程/高级编程语言/C/C 规范与标准库.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "docs/2.编程/高级编程语言/C/C 环境安装与使用": {
-      "children": [
-        "docs/2.编程/高级编程语言/C/C 环境安装与使用/_index.md"
       ],
       "sortOrder": "custom"
     },

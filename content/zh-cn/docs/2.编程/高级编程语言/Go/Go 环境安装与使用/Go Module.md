@@ -18,10 +18,10 @@ module 是一个相关 Go 包的集合，它是源代码更替和版本控制的
 
 当程序编译时，会读取 go.mod 文件中的路径，来加载其编译所需的各种库
 
-Go moudles 目前集成在 Go 的工具链中，只要安装了 Go，自然而然也就可以使用 Go moudles 了，而 Go modules 的出现也解决了在 Go1.11 前的几个常见争议问题：
+Go module 目前集成在 Go 的工具链中，只要安装了 Go，自然而然也就可以使用 Go module 了，而 Go module 的出现也解决了在 Go1.11 前的几个常见争议问题：
 
 - Go 语言长久以来的依赖管理问题。
-- “淘汰”现有的 [GOPATH 的使用模式(即.解析导入能力)](https://pkg.go.dev/cmd/go#hdr-GOPATH_environment_variable)。
+- “淘汰”现有的 [GOPATH 的使用模式(i.e. 解析导入能力)](https://pkg.go.dev/cmd/go#hdr-GOPATH_environment_variable)。
 - 统一社区中的其它的依赖管理工具（提供迁移功能）。
 
 # GOPATH

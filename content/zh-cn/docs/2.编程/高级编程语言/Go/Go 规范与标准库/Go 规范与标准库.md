@@ -86,9 +86,9 @@ Block 的用法会直接影响 [scoping(作用域)](#Declarations%20and%20scope(
 
 1. **universe block(全域块)** # universe block 代表所有 Go 源代码文本。Notes: 这里的所有指编译时用到的所有 Go 文件。
 2. **package block(包块)** # 每个 Package 有一个 package block，是包含该包的所有 Go 源代码文本
-3. **file block(文件快)** # 每个文件都有一个_文件块_（file block），包含该文件中的所有 Go 源代码文本。
-4. 每个"if"、"for"和"switch"语句都被视为处于其自己的隐式代码块中。
-5. "switch"或"select"语句中的每个子句都作为一个隐式代码块。 代码块可以嵌套，并影响作用域。
+3. **file block(文件快)** # 每个文件都有一个 file block(文件块)，包含该文件中的所有 Go 源代码文本。
+4. 每个 if, for, switch 语句都被视为处于其自己的隐式代码块中。
+5. switch 或 select 语句中的每个子句都作为一个隐式代码块。 代码块可以嵌套，并影响作用域。
 
 # Declarations and scope(声明与范围)
 
@@ -107,6 +107,14 @@ https://go.dev/ref/spec#Exported_identifiers
 - Identifier 名称的第一个字符是 **uppercase** letter(大写字母)
 - Identifier 必须在 package block 中声明。在其他地方声明的均不会被导出。
   - Note: package block 是一种 [implicit block(隐式块)](#implicit%20block(隐式块))
+
+# Packages(包)
+
+https://go.dev/ref/spec#Packages
+
+## Import(导入)
+
+https://go.dev/ref/spec#Import_declarations
 
 # Go 标准库
 

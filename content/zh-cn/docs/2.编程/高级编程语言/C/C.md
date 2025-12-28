@@ -13,6 +13,9 @@ weight: 1
 > - [标准文件？](https://www.iso.org/standard/82075.html)
 > - [Wiki, C Programming Language](https://en.wikipedia.org/wiki/C_(programming_language))
 
+TODO: 头文件的由来
+
+- https://www.zhihu.com/question/280665935
 
 # 学习资料
 
@@ -47,6 +50,53 @@ gcc hello_world.c
 $ ./a.out
 Hello World
 ```
+
+# C 语言的版本
+
+不同的标准，甚至对 `main()` 函数的写法都有定义，这么多年下来，下面这些写法在某种情况下都是正确的 ^[[知乎，\[C语言\]你真的了解C语言吗之main函数(一)](https://zhuanlan.zhihu.com/p/55329391)]
+
+```c
+main()
+main(void)
+main(int argc,char *argv[])
+main(int argc,char **argv)
+void main()
+void main(void)
+void main(int argc,char *argv[])
+void main(int argc,char **argv)
+int main()
+int main(void)
+int main(int argc,char *argv[])
+int main(int argc,char **argv)
+```
+
+**一、K & RC**
+
+    1978 年
+
+**二、ANSI C**
+
+    1989 年
+
+**三、C95**
+
+    1995 年
+
+**四、C99**
+
+    1999 年
+
+**五、C11**
+
+    2011 年
+
+**六、C17**
+
+    2017 年
+
+**七、C2x**
+
+    202x 年
 
 # C 范儿
 

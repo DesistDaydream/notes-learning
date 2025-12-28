@@ -91,7 +91,9 @@ gopher 原意地鼠，在 go 语言的世界里解释为地道的 go 程序员�
 
 gopher 第一条：把东西放对地方。
 
-go 程序的运行，需要依赖于两个基础的环境变量，GOROOT 与 GOPATH。环境变量几乎在各类编程语言中都存在，比如 java 的 JAVA_HOME，其实也就是编译器及相关工具或标准库所在目录。但 go 除了 GOROOT 之外，还增加了 GOPATH，它指的是 go 程序依赖的第三方库或自有库所在目录，以指示编译器从这些地方找到依赖。GOPATH 支持多个目录，通常一个目录就是一个项目，并且 GOPATH 目录按约定由 src、pkg、bin 三个目录组成。gopher 们的做法是定义 Global GOPATH、Project GOPATH，而更大的项目还会定义 Module GOPATH。当使用 go get 下载依赖时，会选择 GOPATH 环境变量中的第一个目录存放依赖包。
+go 程序的运行，需要依赖于两个基础的环境变量，GOROOT 与 GOPATH。环境变量几乎在各类编程语言中都存在，比如 java 的 JAVA_HOME，其实也就是编译器及相关工具或标准库所在目录。
+
+但 go 除了 GOROOT 之外，还增加了 GOPATH，它指的是 go 程序依赖的第三方库或自有库所在目录，以指示编译器从这些地方找到依赖。GOPATH 支持多个目录，通常一个目录就是一个项目，并且 GOPATH 目录按约定由 src, pkg, bin 三个目录组成。gopher 们的做法是定义 Global GOPATH, Project GOPATH，而更大的项目还会定义 Module GOPATH。当使用 go get 下载依赖时，会选择 GOPATH 环境变量中的第一个目录存放依赖包。
 
 | 变量   | 含义              | 说明                                                 |
 | ------ | ----------------- | ---------------------------------------------------- |
