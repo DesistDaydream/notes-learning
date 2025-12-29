@@ -50,6 +50,49 @@ alert tcp $EXTERNAL_NET 80 -> $HOME_NET any
 
 ## Rule header
 
+https://docs.snort.org/rules/headers/
+
+规则标题由五个主要部分组成
+
+- **Actions(动作)** # 当规则触发时应该执行的动作
+- **Protocol(协议)** # 针对哪些协议评估规则
+- **IP address(IP地址)** # 针对哪些网络评估规则
+- **Port(端口)** # 针对哪些端口评估规则
+- **Direction operator(操作方向)** # 针对流量的哪种传输方向评估规则。
+    - e.g. `->`, `<-`, etc. 之类的关键字
+
+### IP Address
+
+https://docs.snort.org/rules/headers/ips
+
+基本示例
+
+```snort
+# look for traffic sent from the 192.168.1.0/24 subnet to the
+# 192.168.5.0/24 subnet
+alert tcp 192.168.1.0/24 any -> 192.168.5.0/24 any (
+```
+
+```snort
+# look for traffic sent from addresses included in the
+# defined $EXTERNAL_NET variable to addresses included in the defined
+# $HOME_NET variable
+alert tcp $EXTERNAL_NET any -> $HOME_NET 80 (
+```
+
+```snort
+# look for traffic sent from any source network to the IP address, 192.168.1.3
+alert tcp any any -> 192.168.1.3 445 (
+```
+
+```snort
+alert tcp !192.168.1.0/24 any -> 192.168.1.0/24 23 (
+```
+
+```snort
+alert tcp ![192.168.1.0/24,10.1.1.0/24] any -> [192.168.1.0/24,10.1.1.0/24] 80 (
+```
+
 ## Rule body
 
 详见 [Snort Rule body](/docs/7.信息安全/Security%20software/Snort%20Rule%20body.md)

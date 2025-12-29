@@ -1,16 +1,16 @@
 ---
-title: Programming Technology
-linkTitle: Programming Technology
-weight: 1
+title: Software design
+linkTitle: Software design
+weight: 21
 ---
 
 # 概述
 
 > 参考：
 >
-> -
+> - [Software design](https://en.wikipedia.org/wiki/Software_design)(软件设计)
 
-**Programming Technology(编程技术)** 包含 XX、YY、etc.
+**Software design(软件设计)** 是在[软件系统](https://en.wikipedia.org/wiki/Software_system "Software system")[实现](https://en.wikipedia.org/wiki/Implementation "Implementation")或修改之前，对其运行方式进行[概念化](https://en.wikipedia.org/wiki/Design "Design")的过程。软件设计也指设计过程的直接结果——软件如何运作的概念，这些概念可以正式[记录下来](https://en.wikipedia.org/wiki/Software_documentation "Software documentation") ，也可以不太正式地记录下来，包括通过口头传统来维护。
 
 # CRUD(增删改查)
 
@@ -146,8 +146,6 @@ server {
 这样理解，假如你要造一辆马车，在没有框架的情况下，你需要自己去伐木，去把木头做成木板，木棍，然后组成轮子，门，等部件，然后组装起来，但如果你用了框架，就相当于你有现成的轮子，门等部件，你只需要组装一下就可以了。
 
 可以说，一个框架是一个可复用的设计构件，它规定了应用的体系结构，阐明了整个设计、协作构件之间的依赖关系、责任分配和控制流程，表现为一组抽象类以及其实例之间协作的方法，它为构件复用提供了上下文(Context)关系。因此构件库的大规模重用也需要框架。
-
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cr7gm9/1616163790618-a4887423-a11b-4cfa-be93-a852be8c838f.jpeg)
 
 拓展资料：
 

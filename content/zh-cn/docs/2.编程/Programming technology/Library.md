@@ -1,7 +1,7 @@
 ---
 title: Library
 linkTitle: Library
-weight: 2
+weight: 23
 ---
 
 # 概述
@@ -14,11 +14,11 @@ weight: 2
 > - [公众号 - 码农的荒岛求生，动态链接库的实现原理是什么？](https://mp.weixin.qq.com/s/_-mRDg06AaiKc4-HZ8PgdQ)
 >   - [B 站，动态链接库的实现原理是什么？](https://www.bilibili.com/video/BV1aM4m1m7if)
 
-**Library(库)** 是一个只读资源的集合(collection)，用来实现计算机程序。这个 collection 中通常是很多已经写好的**可复用**的代码，类似于代码中的 [Function](/docs/2.编程/计算机科学/Function/Function.md)。相对代码文件中的 Function、Library 则更像是存在于代码文件外部的 Function，表现一种可执行代码的 **Binary(二进制)** 文件、纯文本代码文件，甚至随着发展，还可能包括图像。
+**Library(库)** 是一个只读资源的 collection(集合)，用来实现计算机程序。这个 collection 中通常是很多已经写好的**可复用**的代码，类似于代码中的 [Function](/docs/2.编程/计算机科学/Function/Function.md)。相对代码文件中的 Function、Library 则更像是存在于代码文件外部的 Function，表现一种可执行代码的 **Binary(二进制)** 文件、纯文本代码文件，甚至随着发展，还可能包括图像。
 
 > e.g. 程序可以使用 Library 来间接进行 [System Call](/docs/1.操作系统/Kernel/System%20Call/System%20Call.md)，而不是直接在程序中编写系统调用的相关代码。
 
-一个 Library 可以被多个独立的使用者（程序、其他 Library）使用以，modular(模块化) 的方式 code reuse(重用代码)。
+一个 Library 可以被多个独立的使用者（程序、其他 Library）使用，以 modular(模块化) 的方式实现 code reuse(代码复用)。
 
 ## Static lib 与 Dynamic lib
 

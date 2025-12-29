@@ -1,11 +1,14 @@
 ---
 title: Instrumenting 原理解析
+linkTitle: Instrumenting 原理解析
+weight: 100
 ---
 
 # 概述
 
 > 参考：
-> - 根据源码一步一步推到自学
+>
+> - 根据源码一步一步推倒自学
 > - [prometheus 默认自带的 Metrics 的实现方式](https://github.com/prometheus/client_golang/blob/master/prometheus/go_collector.go)
 > - [Go 语言 Library](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus)
 > - [prometheus/promhttp 库](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus/promhttp)
@@ -137,9 +140,11 @@ node_ipvs_backend_connections_active{local_address="10.100.180.246",local_mark="
 
 **err error** # 不会响应给 scrape 请求
 
-## [NewDesc()](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus#NewDesc)
+## NewDesc()
 
 参考：[代码注释](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus?utm_source=gopls#NewDesc)
+
+https://pkg.go.dev/github.com/prometheus/client_golang/prometheus#NewDesc
 
 `NewDesc()` 用来实例化 Desc 结构体，设置属性的值并初始化一个新的 Desc。
 

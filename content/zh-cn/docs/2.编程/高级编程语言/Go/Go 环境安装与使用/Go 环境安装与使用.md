@@ -88,7 +88,7 @@ go 相关工具通过 `go.mod` 与 `go.sum` 两个文件管理项目及其依赖
 
 # 编译 Go
 
-有些代码依赖 gcc，需要安装 gcc 包
+有些代码依赖 [GCC](docs/2.编程/Programming%20tools/GCC.md)，需要安装 gcc 包
 
 ```bash
 sudo apt install gcc

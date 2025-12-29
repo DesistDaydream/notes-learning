@@ -68,7 +68,7 @@ Go 语言非常简单，只有 25 个`关键字(Keywords)`可以使用，记住�
 
 有一些 Indentifiers 是 [predeclared(预先声明的)](https://go.dev/ref/spec#Predeclared_identifiers)（e.g. int, int8, rune, true, false, append, print, new, etc.）这些预声明的 Identifier 是一种类似 Keywords 的存在，可以是 类型、常量、零值、函数.
 
-> Tips: 随着 Go 语言版本的迭代，会逐渐加入一些新的预声明 Identifier（e.g. 用于快速比较获取最大值/最小值的 max, min 内置函数是在 1.21 版本加入的；1.21 版本后，删除数组中的元素也有了可以直接使用的 slices.Delete() 方法；etc.）
+> [!Note] 随着 Go 语言版本的迭代，会逐渐加入一些新的预声明 Identifier（e.g. 用于快速比较获取最大值/最小值的 max, min 内置函数是在 1.21 版本加入的；1.21 版本后，删除数组中的元素也有了可以直接使用的 slices.Delete() 方法；etc.）
 
 # Notation(表示法)
 
@@ -102,7 +102,7 @@ https://go.dev/ref/spec#Exported_identifiers
 
 > Note: **uppercase(大写)** 或 **lowercase(小写)**
 
-[Identifier](#identifier) 可以被 **exported(导出)** 以允许其他包访问 ta。当满足以下条件时，Identifier 将被导出：
+[Identifier](#identifier) 可以被 **exported(导出)** 以允许其他[包](#Packages(包))访问 ta。当满足以下条件时，Identifier 将被导出：
 
 - Identifier 名称的第一个字符是 **uppercase** letter(大写字母)
 - Identifier 必须在 package block 中声明。在其他地方声明的均不会被导出。
@@ -111,6 +111,8 @@ https://go.dev/ref/spec#Exported_identifiers
 # Packages(包)
 
 https://go.dev/ref/spec#Packages
+
+更多介绍见 [Go Module](docs/2.编程/高级编程语言/Go/Go%20环境安装与使用/Go%20Module.md)
 
 ## Import(导入)
 

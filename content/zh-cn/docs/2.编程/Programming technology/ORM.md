@@ -1,5 +1,7 @@
 ---
 title: ORM
+linkTitle: ORM
+weight: 100
 ---
 
 # 概述

@@ -3,6 +3,61 @@ title: Go Module
 weight: 2
 ---
 
+# 前言
+
+Go 的 [Modular](docs/2.编程/Programming%20technology/Modular.md) 设计
+
+- 一个或多个文件组成一个 Package
+- 一个或多个 Package 组成一个 Module
+
+## Package
+
+> 参考：
+> - [官方文档，参考 - Packages](https://go.dev/ref/spec#Packages)
+
+Go 语言编写的程序是通过各个 *Packages(包)* 链接在一起的，一个 Package 是一个或多个源文件。
+
+每个文件的第一行都应该是 `package <Package Name>`，以声明该文件所属哪个 Package。名为 main 的包是程序可以运行的基本条件（不从 main 包开始运行将会报错: `package command-line-arguments is not a main package`）
+
+想要使用其他 Package 中的 变量、函数、etc. 之类的 [Identifier](docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Go%20规范与标准库.md#Identifier)，需要在代码中先使用 import 关键字导入包，并且保证这些 Identifier 的首字母是大写。
+
+```bash
+.
+├── demo_package
+│   └── demo_package.go
+└── main.go
+```
+
+main.go 文件
+
+```go
+package main
+
+import "<ModuleName>/demo_package" // Package 所属 Module 中的路径
+
+func main() {
+	demo_package.Add(1, 2)
+}
+```
+
+demo_package.go 文件
+
+> [!tip] 包名并不需要与目录名称一样。只要保证一个目录下的所有文件中的包名一样即可
+
+```go
+package demo_package
+
+func Add(a, b int) int {
+	return a + b
+}
+```
+
+## Package 循环引用的问题
+
+多个 Package 不可以循环引用
+
+A 引用 B，B 引用 C，C 引用 A。这种是非法的。
+
 # 概述
 
 > 参考：
@@ -10,9 +65,13 @@ weight: 2
 > - [官方文档，参考 - Go Modules 参考](https://go.dev/ref/mod)
 > - [公众号，Go Modules 终极入门](https://mp.weixin.qq.com/s/6gJkSyGAFR0v6kow2uVklA)
 
-**Go Module(Go 模块)** 是实现 [Modular Programming(模块化编程)](https://en.wikipedia.org/wiki/Modular_programming) 的工具。是 Go 语言中正式官宣的项目依赖解决方案，Go modules（前身为 vgo）发布于 Go1.11，成长于 Go1.12，丰富于 Go1.13，正式于 Go1.14 已经准备好，并且可以用在生产上（ready for production）了，Go 官方也鼓励所有用户从其他依赖项管理工具迁移到 Go modules。
+**Module(模块)** 是 Go 语言管理依赖项的方式。
 
-module 是一个相关 Go 包的集合，它是源代码更替和版本控制的单元。模块由源文件形成的 go.mod 文件的根目录定义，包含 go.mod 文件的目录也被称为模块根。moudles 取代旧的的基于 GOPATH 方法来指定在工程中使用哪些源文件或导入包。模块路径是导入包的路径前缀，go.mod 文件定义模块路径，并且列出了在项目构建过程中使用的特定版本。
+> Go modules（前身为 vgo）发布于 Go1.11，成长于 Go1.12，丰富于 Go1.13，正式于 Go1.14 已经准备好，并且可以用在生产上（ready for production）了，Go 官方也鼓励所有用户从其他依赖项管理工具迁移到 Go modules。
+
+一个 *Module* 是一组 Package 的集合。Modules 可以直接从版本控制仓库下载，也可以指定为本地某个目录下的其他 Modules。
+
+Module 由源文件形成的 go.mod 文件的根目录定义，包含 go.mod 文件的目录也被称为模块根。moudles 取代旧的的基于 GOPATH 方法来指定在工程中使用哪些源文件或导入包。模块路径是导入包的路径前缀，go.mod 文件定义模块路径，并且列出了在项目构建过程中使用的特定版本。
 
 使用 Go Module 时，GOPATH 不再用于解析导入。但是，它仍然用于存储下载的源代码（在$GOPATH/pkg/mod 中）和编译的命令（在 GOPATH / bin 中）。
 
@@ -108,9 +167,105 @@ Go1 在 2012 年 03 月 28 日发布，而 Go1.11 是在 2018 年 08 月 25 日�
 
 # Go Module 的使用和管理
 
-可以这么说，一个自己新建的项目，就是一个模块，一个模块就是一个目录下的所有文件的集合。所以才说一个模块就是一个 Go Package 的合集。
+可以这么说，一个自己新建的项目，就是一个模块，一个模块就是一个目录下的所有文件的集合。所以才说一个 Module 就是一组 Go Package 的合集。
 
-## Go Module 相关环境变量
+一个模块由 Module path(模块路径) 作为唯一标识，模块路径在 [go.mod 文件](#go.mod%20文件) 中声明。Module 的 *根目录* 则是 go.mod 文件所在的目录。
+
+## go.mod 文件
+
+> 参考：
+>
+> - [官方文档，参考 - Go Modules 参考 - go.mod 文件](https://go.dev/ref/mod#go-mod-file)
+
+go.mod 文件定义 module 路径以及列出其他需要在 build 时引入的模块的特定的版本。例如下面的例子中，go.mod 声明 example.com/m 路径是 module 的根目录，同时也声明了 module 依赖特定版本的 golang.org/x/text 和 gopkg.in/yaml.v2
+
+go.mod 文件中有如下几个关键字：
+
+- **module** # 定义 module 路径，该路径不用与当前路径相同，只是 module 所用的一个名称，可以代指当前目录。(e.g. `/root/desistdaydream/cobra/` 目录下，创建一个 go.mod 文件，可以定义 module 路径为 cobratest，这个 cobratest 模块路径名，就表示 `/root/desistdaydream/cobra/` 这个目录);
+- **go** # 设置期望的 Go 语言版本
+- **require** # 本 Module 依赖的其他模块。to require a particular module at a given version or later;
+- **exclude** # to exclude a particular module version from use; and
+- **replace** # replace 指令可以将特定版本的模块或模块的所有版本的内容替换为其他位置的内容。替换可以通过另一个模块路径和版本，或者特定平台的文件路径来指定。
+    - Notes: 在不方便导入互联网包的时候，可以用来导入本地文件系统中的其他项目。
+
+```go
+
+module github.com/eddycjy/module-repo
+
+go 1.13
+
+require (
+    github.com/eddycjy/mquote v0.0.0-20200220041913-e066a990ce6f
+)
+```
+
+go.mod 文件还可以指定要替换和排除的版本，命令行会自动根据 go.mod 文件来维护需求声明中的版本。如果想获取更多的有关 go.mod 文件的介绍，可以使用命令 go help go.mod。
+
+go.mod 文件用 `//` 注释。文件的每行都有一条指令，由一个动作加上参数组成。例如：
+
+```go
+module my/thing
+require other/thing  v1.0.2
+require new/thing   v2.3.4
+exclude old/thing   v1.2.3
+replace bad/thing   v1.4.5  => good/thing v1.4.5
+```
+
+上面三个动词 require、exclude、replace 分别表示：项目需要的依赖包及版本、排除某些包的特别版本、取代当前项目中的某些依赖包。
+
+相同动作的命令可以放到一个动词+括号组成的结构中，例如：
+
+```go
+require (
+    new/thing v2.3.4
+    old/thing v1.2.3
+)
+```
+
+### replace
+
+https://go.dev/ref/mod#go-mod-file-replace
+
+replace 指令将 Module 内容（特定或所有版本）替换为其它地方找到的内容。其它地方找到内容可以是：
+
+- 网络上的 Module
+- 文件系统中包含 go.mod 文件的目录
+- etc.
+
+### 其他命令的支持
+
+旧的版本，构建编译命令 `go build` 中的参数没有 `-mod` 参数，最新的版本现在多了这个，用来对 `go.mod` 文件进行更新或其他使用控制。形式如：`go build -mod [mode]`，其中 mode 有以下几种取值：readonly，release，vendor。当执行 `go build -mod=vendor` 的时候，会在生成可执行文件的同时将项目的依赖包放到主模块的 `vendor` 目录下。
+
+`go get -m [packages]` 会将下载的依赖包放到 `GOPATH/pkg/mod` 目录下，并且将依赖写入到 `go.mod` 文件。`go get -u=patch` 会更新主模块下的所有依赖包。
+
+如果遇到不熟悉的导入包，任何可以查找包含该引入包模块的 `go` 命令，都会自动将该模块的最新版本添加到 `go.mod` 文件中。同时也会添加缺失的模块，以及删除无用的 module。例如：go build, go test 或者 go list 命令。另外，有一个专门的命令 `go mod tidy`，用来查看和添加缺失的 module 需求声明以及移除不必要的。
+
+`go.mod` 文件是可读，也是可编辑的。`go` 命令行会自动更新 `go.mod` 文件来维持一个标准格式以及精确的引入声明。
+
+## go.sum 文件
+
+在第一次拉取模块依赖后，会发现多出了一个 go.sum 文件，其详细罗列了当前项目直接或间接依赖的所有模块版本，并写明了那些模块版本的 SHA-256 哈希值以备 Go 在今后的操作中保证项目所依赖的那些模块版本不会被篡改。
+
+```go
+github.com/eddycjy/mquote v0.0.1 h1:4QHXKo7J8a6J/k8UA6CiHhswJQs0sm2foAQQUq8GFHM=
+github.com/eddycjy/mquote v0.0.1/go.mod h1:ZtlkDs7Mriynl7wsDQ4cU23okEtVYqHwl7F1eDh4qPg=
+github.com/eddycjy/mquote/module/tour v0.0.1 h1:cc+pgV0LnR8Fhou0zNHughT7IbSnLvfUZ+X3fvshrv8=
+github.com/eddycjy/mquote/module/tour v0.0.1/go.mod h1:8uL1FOiQJZ4/1hzqQ5mv4Sm7nJcwYu41F3nZmkiWx5I=
+...
+```
+
+我们可以看到一个模块路径可能有如下两种：
+
+```go
+github.com/eddycjy/mquote v0.0.1 h1:4QHXKo7J8a6J/k8UA6CiHhswJQs0sm2foAQQUq8GFHM=
+github.com/eddycjy/mquote v0.0.1/go.mod h1:ZtlkDs7Mriynl7wsDQ4cU23okEtVYqHwl7F1eDh4qPg=
+```
+
+h1 hash 是 Go modules 将目标模块版本的 zip 文件开包后，针对所有包内文件依次进行 hash，然后再把它们的 hash 结果按照固定格式和算法组成总的 hash 值。
+
+而 h1 hash 和 go.mod hash 两者，要不就是同时存在，要不就是只存在 go.mod hash。那什么情况下会不存在 h1 hash 呢，就是当 Go 认为肯定用不到某个模块版本的时候就会省略它的 h1 hash，就会出现不存在 h1 hash，只存在 go.mod hash 的情况。
+
+# Go Module 相关环境变量
 
 ```bash
 $ go env
@@ -204,100 +359,6 @@ go env -w GOPRIVATE="*.example.com"
 - 执行 go mod tidy 命令，它会添加缺失的模块以及移除不需要的模块。执行后会生成 go.sum 文件(模块下载条目)。添加参数-v，例如 go mod tidy -v 可以将执行的信息，即删除和添加的包打印到命令行；
 - 执行命令 go mod verify 来检查当前模块的依赖是否全部下载下来，是否下载下来被修改过。如果所有的模块都没有被修改过，那么执行这条命令之后，会打印 all modules verified。
 - 执行命令 go mod vendor 生成 vendor 文件夹，该文件夹下将会放置你 go.mod 文件描述的依赖包，文件夹下同时还有一个文件 modules.txt，它是你整个工程的所有模块。在执行这条命令之前，如果你工程之前有 vendor 目录，应该先进行删除。同理 go mod vendor -v 会将添加到 vendor 中的模块打印出来；
-
-## go.mod 文件
-
-> 参考：
->
-> - [官方文档，参考 - Go Modules 参考 - go.mod 文件](https://go.dev/ref/mod#go-mod-file)
-
-go.mod 文件定义 module 路径以及列出其他需要在 build 时引入的模块的特定的版本。例如下面的例子中，go.mod 声明 example.com/m 路径是 module 的根目录，同时也声明了 module 依赖特定版本的 golang.org/x/text 和 gopkg.in/yaml.v2。
-
-go.mod 文件中有如下几个关键字：
-
-- **module** # 定义 module 路径，该路径不用与当前路径相同，只是 module 所用的一个名称，可以代指当前目录。(比如/root/desistdaydream/cobra/目录下，创建一个 go.mod 文件，可以定义 module 路径为 cobratest，这个 cobratest 模块路径名，就表示/root/desistdaydream/cobra/这个目录)to define the module path;
-- **go** # 设置期望的 Go 语言版本
-- **require** # to require a particular module at a given version or later;
-- **exclude** # to exclude a particular module version from use; and
-- **replace** # replace 指令可以将特定版本的模块或模块的所有版本的内容替换为其他位置的内容。替换可以通过另一个模块路径和版本，或者特定平台的文件路径来指定。
-    - Notes: 在不方便导入互联网包的时候，可以用来导入本地文件系统中的其他项目。
-
-```go
-
-module github.com/eddycjy/module-repo
-
-go 1.13
-
-require (
-    github.com/eddycjy/mquote v0.0.0-20200220041913-e066a990ce6f
-)
-```
-
-go.mod 文件还可以指定要替换和排除的版本，命令行会自动根据 go.mod 文件来维护需求声明中的版本。如果想获取更多的有关 go.mod 文件的介绍，可以使用命令 go help go.mod。
-
-go.mod 文件用 // 注释，而不用 /\*\*/。文件的每行都有一条指令，由一个动作加上参数组成。例如：
-
-```go
-module my/thing
-require other/thing  v1.0.2
-require new/thing   v2.3.4
-exclude old/thing   v1.2.3
-replace bad/thing   v1.4.5  => good/thing v1.4.5
-```
-
-上面三个动词 require、exclude、replace 分别表示：项目需要的依赖包及版本、排除某些包的特别版本、取代当前项目中的某些依赖包。
-
-相同动作的命令可以放到一个动词+括号组成的结构中，例如：
-
-```go
-require (
-    new/thing v2.3.4
-    old/thing v1.2.3
-)
-```
-
-### replace
-
-https://go.dev/ref/mod#go-mod-file-replace
-
-replace 指令将 Module 内容（特定或所有版本）替换为其它地方找到的内容。其它地方找到内容可以是：
-
-- 网络上的 Module
-- 文件系统中包含 go.mod 文件的目录
-- etc.
-
-### 其他命令的支持
-
-旧的版本，构建编译命令 `go build` 中的参数没有 `-mod` 参数，最新的版本现在多了这个，用来对 `go.mod` 文件进行更新或其他使用控制。形式如：`go build -mod [mode]`，其中 mode 有以下几种取值：readonly，release，vendor。当执行 `go build -mod=vendor` 的时候，会在生成可执行文件的同时将项目的依赖包放到主模块的 `vendor` 目录下。
-
-`go get -m [packages]` 会将下载的依赖包放到 `GOPATH/pkg/mod` 目录下，并且将依赖写入到 `go.mod` 文件。`go get -u=patch` 会更新主模块下的所有依赖包。
-
-如果遇到不熟悉的导入包，任何可以查找包含该引入包模块的 `go` 命令，都会自动将该模块的最新版本添加到 `go.mod` 文件中。同时也会添加缺失的模块，以及删除无用的 module。例如：go build, go test 或者 go list 命令。另外，有一个专门的命令 `go mod tidy`，用来查看和添加缺失的 module 需求声明以及移除不必要的。
-
-`go.mod` 文件是可读，也是可编辑的。`go` 命令行会自动更新 `go.mod` 文件来维持一个标准格式以及精确的引入声明。
-
-## go.sum 文件
-
-在第一次拉取模块依赖后，会发现多出了一个 go.sum 文件，其详细罗列了当前项目直接或间接依赖的所有模块版本，并写明了那些模块版本的 SHA-256 哈希值以备 Go 在今后的操作中保证项目所依赖的那些模块版本不会被篡改。
-
-```go
-github.com/eddycjy/mquote v0.0.1 h1:4QHXKo7J8a6J/k8UA6CiHhswJQs0sm2foAQQUq8GFHM=
-github.com/eddycjy/mquote v0.0.1/go.mod h1:ZtlkDs7Mriynl7wsDQ4cU23okEtVYqHwl7F1eDh4qPg=
-github.com/eddycjy/mquote/module/tour v0.0.1 h1:cc+pgV0LnR8Fhou0zNHughT7IbSnLvfUZ+X3fvshrv8=
-github.com/eddycjy/mquote/module/tour v0.0.1/go.mod h1:8uL1FOiQJZ4/1hzqQ5mv4Sm7nJcwYu41F3nZmkiWx5I=
-...
-```
-
-我们可以看到一个模块路径可能有如下两种：
-
-```go
-github.com/eddycjy/mquote v0.0.1 h1:4QHXKo7J8a6J/k8UA6CiHhswJQs0sm2foAQQUq8GFHM=
-github.com/eddycjy/mquote v0.0.1/go.mod h1:ZtlkDs7Mriynl7wsDQ4cU23okEtVYqHwl7F1eDh4qPg=
-```
-
-h1 hash 是 Go modules 将目标模块版本的 zip 文件开包后，针对所有包内文件依次进行 hash，然后再把它们的 hash 结果按照固定格式和算法组成总的 hash 值。
-
-而 h1 hash 和 go.mod hash 两者，要不就是同时存在，要不就是只存在 go.mod hash。那什么情况下会不存在 h1 hash 呢，就是当 Go 认为肯定用不到某个模块版本的时候就会省略它的 h1 hash，就会出现不存在 h1 hash，只存在 go.mod hash 的情况。
 
 # go mod CLI
 

@@ -53,17 +53,42 @@ function Create-SymbolicLinks {
     }
 }
 
-
-Create-SymbolicLinks `
--SourceDir "D:\Projects\DesistDaydream\notes-learning\content\zh-cn\.obsidian\plugins\manual-sorting" `
--TargetDir "D:\Projects\DesistDaydream\notes-pastime\.obsidian\plugins\manual-sorting"
-
-Create-SymbolicLinks `
--SourceDir "D:\Projects\DesistDaydream\notes-learning\content\zh-cn\.obsidian\plugins\manual-sorting" `
--TargetDir "D:\Projects\DesistDaydream\notes-science\.obsidian\plugins\manual-sorting"
-
-Create-SymbolicLinks `
--SourceDir "D:\Projects\DesistDaydream\notes-learning\content\zh-cn\.obsidian\plugins\manual-sorting" `
--TargetDir "D:\Projects\DesistDaydream\notes-haohan\.obsidian\plugins\manual-sorting"
-
 # Create-SymbolicLinks -SourceDir "C:\B目录" -TargetDir "C:\A目录" -Filter "*.txt"
+
+# 插件所在基础路径
+$baseDir = "D:\projects\DesistDaydream"
+$learningPlugins = "$baseDir\notes-learning\content\zh-cn\.obsidian\plugins"
+
+# 需要同步的插件
+$plugins = @(
+    "manual-sorting",
+    "templater-obsidian"
+)
+
+# 要将插件文件同步过去的目标项目
+$targetProjects = @(
+    "$baseDir\notes-pastime",
+    "$baseDir\notes-science",
+    "$baseDir\notes-haohan"
+)
+
+# 批量执行
+foreach ($plugin in $plugins) {
+    $sourceDir = Join-Path $learningPlugins $plugin
+
+    foreach ($project in $targetProjects) {
+        # templater-obsidian只同步到notes-haohan
+        # if ($plugin -eq "templater-obsidian" -and $project -notlike "*notes-haohan") {
+        #     continue
+        # }
+
+        $targetDir = Join-Path $project ".obsidian\plugins\$plugin"
+
+        Write-Host "`n========================================" -ForegroundColor Cyan
+        Write-Host "插件: $plugin" -ForegroundColor Magenta
+        Write-Host "目标: $project" -ForegroundColor Green
+        Write-Host "========================================" -ForegroundColor Cyan
+
+        Create-SymbolicLinks -SourceDir $sourceDir -TargetDir $targetDir
+    }
+}

@@ -26,7 +26,7 @@ weight: 20
 
 常用 **O()** 表示。如下图时间复杂度所示，越靠左上角的复杂度越糟糕。
 
-![800](https://notes-learning.oss-cn-beijing.aliyuncs.com/program/algorithm/complexity_o.png)
+![800](https://notes-learning.oss-cn-beijing.aliyuncs.com/programming/algorithm/complexity_o.png)
 
 时间复杂度通常指一个函数运行完成需要执行某些行代码的次数。比如：
 

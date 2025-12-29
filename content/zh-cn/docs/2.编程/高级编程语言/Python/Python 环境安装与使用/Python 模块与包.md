@@ -13,9 +13,9 @@ weight: 2
 >   - [Python Packaging Authority](https://www.pypa.io/en/latest/)
 > - [廖雪峰 Python 教程，模块](https://www.liaoxuefeng.com/wiki/1016959663602400/1017454145014176)
 
-在计算机程序的开发过程中，随着程序代码越写越多，在一个文件里代码就会越来越长，越来越不容易维护。
+Python 的 [Modular](docs/2.编程/Programming%20technology/Modular.md) 设计
 
-为了编写可维护的代码，我们把很多函数分组，分别放到不同的文件里，这样，每个文件包含的代码就相对较少，很多编程语言都采用这种组织代码的方式。在 Python 中，**一个 `.py` 文件**就称之为一个 **Module(模块)**。
+在 Python 中，**一个 `.py` 文件**就称之为一个 **Module(模块)**。
 
 假如现在有 a.py 和 b.py，b.py 中有定义了名为 bFun 的函数，现在想要在 a.py 中使用 bFun 函数，则只需要在开始使用 `from b import bFun` 即可。
 
