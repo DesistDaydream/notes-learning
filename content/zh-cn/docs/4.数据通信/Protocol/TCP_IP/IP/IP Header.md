@@ -14,7 +14,7 @@ IPv4 数据报被封装在链路层的 Frame 中
 
 IPv4 数据报首部共 14 个字段，其中 13 个是必须的，第 14 个是可选的。前 13 个字段长度固定为 20 Bytes，即 160 bit；第 14 个字段长度在 0 ~ 40 Bytes 之间。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ip/ip_datagram.png)
+![ip-datagram.excalidraw.md|1000](https://notes-learning.oss-cn-beijing.aliyuncs.com/ip/ip-datagram.png)
 
 对照 [WireShark](/docs/7.信息安全/Packet%20analyzer/WireShark/WireShark.md) 中展示的内容看，排除 `[]` 中的内容，每一行就是首部中的一个字段
 

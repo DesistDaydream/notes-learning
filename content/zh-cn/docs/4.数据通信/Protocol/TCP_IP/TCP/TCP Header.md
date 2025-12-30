@@ -14,36 +14,44 @@ TCP 段被封装在 IP 数据报中
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/tcp/1628820358483-a9e565df-371d-4e47-b0d0-0f1fb6077945.png)
 
-首部长度：一般为 20 字节，选项最多 40 字节，限制 60 字节。下图中的位，即代表 bit，也就是说，首部一共 160 bit，即 20 Byte。
+首部长度：一般为 20 Bytes（i.e. 160 bit）；选项最多 40 Bytes。共限制 60 Bytes。
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/tcp/tcp-segment.jpg)
+![tcp-segment.excalidraw.md|1000](https://notes-learning.oss-cn-beijing.aliyuncs.com/tcp/tcp-segment.png)
 
 对照在 WireShark 中展示的内容看，排除 `[]` 中的内容，WireShark 中展示的一个 SYN TCP 段的内容，每一行就是包头中的一个内容
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/tvcktp/1628819589583-6eb31754-8352-45b6-b4b9-b7a61d26433e.png)
 
-- **Source Port(源端口号)** #
-- **Destination Port(目的端口号)** #
-  - 每个 TCP 报文段都包含源和目的的端口号，这两个端口号用于寻找发送端与接收端的应用进程。这两个值加上 IP 首部中的源和目的的 IP 地址，**组成 TCP 四元组，用于确定唯一一个 TCP 连接**。
-- **Sequence Number(序号，简称 SeqNum)** # TCP 报文段的唯一标识符，该标识符具有先后顺序。如果不为每一个包编号，则没法确认哪个包先来哪个包后来。
-  - **SeqNum 用来解决网络包乱序的问题。**
+
+| 英文                    | 中文            | 长度     | 说明                                                                   |
+| --------------------- | ------------- | ------ | -------------------------------------------------------------------- |
+| Source Port           | 源端口号          | 16 bit |                                                                      |
+| Destination Port      | 目的端口号         | 16 bit |                                                                      |
+| Sequence Number       | 序列号，简称 SeqNum | 32 bit | TCP 报文段的唯一标识符，该标识符具有先后顺序。如果不为每一个包编号，则没法确认哪个包先来哪个包后来。                 |
+| Acknowledgment Number | 确认号，简称 AckNum | 32 bit | 下一次期望收到数据中报文段的 SeqNum。发出去的包应该有确认，要不然怎么知道对方有没有收到呢？如果没有收到就应该重新发送，直到送达。 |
+| Data Offset           | 数据偏移量         | 4 bit  |                                                                      |
+| Reserved              | 保留            | 4 bit  | 一组预留给将来使用的控制位，在生成的数据段中必须为零。                                          |
+| Flag                  | TCP 标志        | 8 bit  | 用来定义当前 TCP 报文段的类型。                                                   |
+| Window size value     | 窗口大小          | 16 bit | TCP 流量控制。通信双方各声明一个窗口，标识自己当前能够的处理能力。别发送的太快，撑死我，也别发的太慢，饿死我。            |
+| Chceksum              | 校验和           | 16 bit |                                                                      |
+| Urgent pointer        | 紧急指针          | 16 bit |                                                                      |
+| Options               | 选项            | 32 bit | 告诉对方本次传输的一些限制。比如 MSS、SACK 等等                                         |
+| Payload               | 数据（载荷）        |        | 这个字段需要在上层（e.g. HTTP, etc.）解包中才可以看到，TCP 的有效载荷就是当前传输的数据                |
+
+额外说明
+
+- **Source Port 与 Destination Port** # 每个 TCP 报文段都包含源和目的的端口号，这两个端口号用于寻找发送端与接收端的应用进程。
+    - 这两个值加上 IP 首部中的源和目的的 IP 地址，**组成 TCP 四元组，用于确定唯一一个 TCP 连接**。
+- **SeqNum** # <font color="#ff0000">SeqNum 用来解决网络包乱序的问题</font>。
   - **Initial Sequence Number(初始序号，简称 ISN)** # TCP 交互的两端，有一个初始的 SeqNum，就是 A 发送给 B 或者 B 发送给 A 的第一个 TCP 段，这第一个 TCP 段的 SeqNum 就是 ISN。
   - 注意：TCP 为应用层提供全双工服务，这意味着数据能在两个方向上独立进行传输。因此，一个 TCP 连接的两端都会有自己独立的 SeqNum。所以首次建立连接时客户端和服务端都会生成一个 ISN。ISN 是一个随机生成的数。
   - SeqNum 最大值为 232-1，到达最大值后，回到 0 开始。
-- **Acknowledgment Number(确认序号，简称 AckNum)** # 下一次期望收到数据中报文段的 SeqNum。发出去的包应该有确认，要不然怎么知道对方有没有收到呢？如果没有收到就应该重新发送，直到送达。
-  - **AckNum 用来解决丢包的问题**。
+- **AckNum** # <font color="#ff0000">AckNum 用来解决丢包的问题</font>
   - AckNum 可以用来确认上次发送的数据大小。
     - 假如 172.19.42.244 向 172.19.42.248 发送了一个 PSH,ACK 的报文段，其中 SeqNum=x1,AckNum=y1，发送了 90Bytes 的数据，
     - 那么 172.19.42.248 向 172.19.42.244 就会发送一个 ACK 的报文段，其中 SeqNum=x2,AckNum=x1+90
-- **Header Length(首部长度)** #
-- **Flag — TCP 标志** # 用来定义当前 TCP 报文段的类型。
-- **Window size value(窗口大小)** # TCP 流量控制。通信双方各声明一个窗口，标识自己当前能够的处理能力。别发送的太快，撑死我，也别发的太慢，饿死我。
-- **Chceksum(校验和)** #
-- **Urgent pointer(紧急指针)** #
-- **Options(选项)** # 告诉对方本次传输的一些限制。比如 MSS、SACK 等等
-- **TCP Payload(数据)** # 这个字段需要在 HTTP 包中才可以看到，TCP 的有效载荷就是当前传输的数据
 
-## SeqNum 与 AckNum 的计算
+# SeqNum 与 AckNum
 
 由于 TCP 的全双工机制，所以 TCP 交互的两端都有独立的 SeqNum，其两端的 SeqNum 互相之间没有绝对的关联关系，只有一端的 SeqNum 与对端的 AckNum 有关系。
 
@@ -61,7 +69,7 @@ TCP 段被封装在 IP 数据报中
 - `A_N_AckNum = B_N_TCPPlayload + B_N_SeqNum`
 - `B_N_SeqNum = B_ISN + B_N-1_TCPPlayload + B_N-1_SeqNum`
 
-## TCP Flag
+# TCP Flag
 
 TCP 报文段的标志内容，将会包含所有标志通过设置标志的值来启用或禁用这些标志(1 表示设置(即.启用)，0 表示未设置(即.禁用))。一个 TCP 报文段中，可以同时启用多个 TCP 标志。下图就是一个 TCP 三次握手中，第二次交互的 TCP 标志内容：
 

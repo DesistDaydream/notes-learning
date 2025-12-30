@@ -5098,6 +5098,8 @@
     },
     "Excalidraw": {
       "children": [
+        "Excalidraw/demo.excalidraw.md",
+        "Excalidraw/Protocol",
         "Excalidraw/ClickHouse",
         "Excalidraw/information_security",
         "Excalidraw/AI",
@@ -5126,6 +5128,13 @@
     "Excalidraw/information_security": {
       "children": [
         "Excalidraw/information_security/oauth.excalidraw.md"
+      ],
+      "sortOrder": "custom"
+    },
+    "Excalidraw/Protocol": {
+      "children": [
+        "Excalidraw/Protocol/ip_datagram.excalidraw.md",
+        "Excalidraw/Protocol/tcp-segment.excalidraw.md"
       ],
       "sortOrder": "custom"
     },

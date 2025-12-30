@@ -153,6 +153,8 @@ Delve 是一个用于 [Go](/docs/2.编程/高级编程语言/Go/Go.md) 编程语
 go install github.com/go-delve/delve/cmd/dlv@latest
 ```
 
+[dlv和gdb调试go的区别](https://juejin.cn/post/7014747805197533192)
+
 ## gopls
 
 > 参考：
