@@ -15,7 +15,7 @@ PowerShell 是一种跨平台的任务自动化解决方案，由命令行 shell
 
 PowerShell 的独特之处在于，它<font color="#ff0000">接受并返回 .NET 对象</font>，而<font color="#ff0000">非纯文本</font>。这个特点让 PowerShell 可以更轻松地在一个管道中串联不通的命令。
 
-> [!Notes] 这里面所说的对象，就是[面向对象编程](/docs/2.编程/计算机科学/Object-oriented%20Programming/OOP.md)中常说的“对象”，就像 Go 语言中的 Struct 类似的东西，只不过是 .NET 语言中的对象。
+> [!Notes] 这里面所说的对象，就是[面向对象编程](/docs/2.编程/Programming%20paradigm/OOP.md)中常说的“对象”，就像 Go 语言中的 Struct 类似的东西，只不过是 .NET 语言中的对象。
 
 这些对象在被接收后，再交给格式化函数处理，以人类可读的方式，输出出来。
 

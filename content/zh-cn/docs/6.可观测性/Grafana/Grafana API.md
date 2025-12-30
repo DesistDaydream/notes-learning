@@ -14,7 +14,7 @@ weight: 20
 
 https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/admin
 
-热加载 [Provisioning](docs/6.可观测性/Grafana/Grafana%20Configuration/Provisioning.md) 配置
+热加载 [Provisioning](/docs/6.可观测性/Grafana/Grafana%20Configuration/Provisioning.md) 配置
 
 POST /api/admin/provisioning/dashboards/reload
 

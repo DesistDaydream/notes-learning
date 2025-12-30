@@ -42,5 +42,5 @@ DPDK 的主要对外函数接口通常以 `rte_`(runtime environment) 作为前�
 # Utility Libraries
 
 - [Metrics Library](https://doc.dpdk.org/guides/prog_guide/metrics_lib.html)
-- [Telemetry Library](docs/4.数据通信/DPDK/Telemetry%20Library.md)(遥测库) # 遥测库提供了一个接口，用于从各种 DPDK 库中检索信息。该库通过 Unix Socket 提供这些信息，接收来自客户端的请求，并回复包含所请求遥测信息的 JSON 响应。
+- [Telemetry Library](/docs/4.数据通信/DPDK/Telemetry%20Library.md)(遥测库) # 遥测库提供了一个接口，用于从各种 DPDK 库中检索信息。该库通过 Unix Socket 提供这些信息，接收来自客户端的请求，并回复包含所请求遥测信息的 JSON 响应。
 - etc.

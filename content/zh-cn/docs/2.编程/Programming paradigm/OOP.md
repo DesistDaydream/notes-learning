@@ -1,14 +1,14 @@
 ---
 title: OOP
 linkTitle: OOP
-weight: 1
+weight: 2
 ---
 
 # 概述
 
-> 参考
+> 参考：
 >
-> - [公众号，码农的荒岛求生-为什么抽象在计算机科学中如此重要](https://mp.weixin.qq.com/s/fIHX7Vc4lG3odkhCgzcgsA)
+> - [公众号，码农的荒岛求生 - 为什么抽象在计算机科学中如此重要](https://mp.weixin.qq.com/s/fIHX7Vc4lG3odkhCgzcgsA)
 > - [喜马拉雅,10-万物介对象，编程的关键就是找对象](https://www.ximalaya.com/sound/406805426)(对建模的理解)
 > - [喜马拉雅,13-从程序员到产品经理，产品经理是干什么的？](https://www.ximalaya.com/sound/417004696)(对建模的理解)
 > - [Wiki, Object-oriented programming(面向对象编程)](https://en.wikipedia.org/wiki/Object-oriented_programming)

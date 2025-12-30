@@ -185,58 +185,58 @@ statistics/ 目录中包含多个文件，文件中记录了网络设备对于�
 >
 > 比如 tx_bytes，可以指所有已成功传输的数据包，也可以是所有已排队等待传输的数据包。
 
-**collisions** # 
+**collisions** #
 
-**multicast** # 
+**multicast** #
 
 **rx_bytes** # 网络设备接收到的字节数。
 
-**rx_compressed** # 
+**rx_compressed** #
 
-**rx_crc_errors** # 
+**rx_crc_errors** #
 
 **rx_dropped** # 网络设备接收到但被丢弃的数据包数量，这些数据包未转发到上层进行处理。
 
 **rx_errors** # 网络设备上的接收错误数。
 
-**rx_fifo_errors** # 
+**rx_fifo_errors** #
 
-**rx_frame_errors** # 
+**rx_frame_errors** #
 
-**rx_length_errors** # 
+**rx_length_errors** #
 
 **rx_missed_errors** # 网络设备已接收的数据包中，由于接收端容量不足而丢失的总数。
 
 > [!Note]
-> 这里面说的 “**接收端**” 通常是指 [**Ring Buffer**](docs/1.操作系统/Kernel/Network/Glossary.md#Ring%20Buffer) 缓冲区，接收到的数据包会放到 RingBuffer 中，等待 **消费者（e.g. Kernel 的网卡驱动, etc.）** 取走。若是消费者来不及取走数据包，导致 RingBuffer 满了，那么数据包就会被丢弃，丢弃的数量记录到 rx_missed_errors 中。
+> 这里面说的 “**接收端**” 通常是指 [**Ring Buffer**](/docs/1.操作系统/Kernel/Network/Glossary.md#Ring%20Buffer) 缓冲区，接收到的数据包会放到 RingBuffer 中，等待 **消费者（e.g. Kernel 的网卡驱动, etc.）** 取走。若是消费者来不及取走数据包，导致 RingBuffer 满了，那么数据包就会被丢弃，丢弃的数量记录到 rx_missed_errors 中。
 >
 > 在 [DPDK Library](/docs/4.数据通信/DPDK/DPDK%20Library.md) 的 Telemetry Library 中有一个 imissed 指标，也有类似的概念，对于 DPDK 来说，这个消费者是使用 DPDK 的应用程序而不是 Linux 内核。
 
-**rx_nohandler** # 
+**rx_nohandler** #
 
-**rx_over_errors** # 
+**rx_over_errors** #
 
 **rx_packets** # 网络设备接收到的有效数据包数量。
 
-**tx_aborted_errors** # 
+**tx_aborted_errors** #
 
 **tx_bytes** # 网络设备发送的字节数。
 
-**tx_carrier_errors** # 
+**tx_carrier_errors** #
 
-**tx_compressed** # 
+**tx_compressed** #
 
 **tx_dropped** # 网络设备在发送数据包的过程中，丢失的数据包总数
 
 **tx_errors** # 网络设备在发送数据包的过程中，出错的数据包总数
 
-**tx_fifo_errors** # 
+**tx_fifo_errors** #
 
-**tx_heartbeat_errors** # 
+**tx_heartbeat_errors** #
 
 **tx_packets** # 网络设备发送的数据包数量。
 
-**tx_window_errors** # 
+**tx_window_errors** #
 
 # 网卡驱动
 

@@ -5,7 +5,7 @@ title: Template
 # 概述
 
 > 参考：
-> 
+>
 > - [Go 标准库，text/template](https://pkg.go.dev/text/template)
 > - [Go 标准库，html/template](https://pkg.go.dev/html/template)
 > - [骏马金龙，Go 标准库：Go template 用法详解](https://www.cnblogs.com/f-ck-need-u/p/10053124.html)
@@ -210,7 +210,7 @@ an email {{ . }}
 
 pipeline 是指产生数据的操作。比如 `{{.}}`、`{{.Name}}`、`funcname args` 等。
 
-可以使用管道符号 `|` 链接多个命令，用法和 [Unix-like OS](docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 下的管道类似: `|` 前面的命令将运算结果(或返回值)传递给后一个命令，当作命令的最后一个参数。
+可以使用管道符号 `|` 链接多个命令，用法和 [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 下的管道类似: `|` 前面的命令将运算结果(或返回值)传递给后一个命令，当作命令的最后一个参数。
 
 > [!Example]
 > ```go

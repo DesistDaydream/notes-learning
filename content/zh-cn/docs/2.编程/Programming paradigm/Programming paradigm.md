@@ -1,7 +1,7 @@
 ---
-title: 编程范式
-linkTitle: 编程范式
-weight: 31
+title: Programming paradigm
+linkTitle: Programming paradigm
+weight: 1
 ---
 
 # 概述

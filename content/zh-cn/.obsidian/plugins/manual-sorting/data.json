@@ -1096,10 +1096,11 @@
         "docs/2.编程/高级编程语言",
         "docs/2.编程/标记语言",
         "docs/2.编程/无法分类的语言",
-        "docs/2.编程/Framework",
         "docs/2.编程/Programming technology",
+        "docs/2.编程/Programming paradigm",
         "docs/2.编程/Programming tools",
         "docs/2.编程/Programming environment",
+        "docs/2.编程/Framework",
         "docs/2.编程/项目实战"
       ],
       "sortOrder": "custom"
@@ -1534,7 +1535,6 @@
         "docs/2.编程/计算机科学/Control structure.md",
         "docs/2.编程/计算机科学/Function",
         "docs/2.编程/计算机科学/Algorithm.md",
-        "docs/2.编程/计算机科学/Object-oriented Programming",
         "docs/2.编程/计算机科学/假如你来发明编程语言",
         "docs/2.编程/计算机科学/Heap and Stack.md",
         "docs/2.编程/计算机科学/I_O 模型.md"
@@ -1545,8 +1545,8 @@
       "children": [
         "docs/2.编程/计算机科学/假如你来发明编程语言/_index.md",
         "docs/2.编程/计算机科学/假如你来发明编程语言/假如你来发明编程语言.md",
-        "docs/2.编程/计算机科学/假如你来发明编程语言/Coroutine(协程).md",
         "docs/2.编程/计算机科学/假如你来发明编程语言/如何掌握所有的程序语言.md",
+        "docs/2.编程/计算机科学/假如你来发明编程语言/Coroutine(协程).md",
         "docs/2.编程/计算机科学/假如你来发明编程语言/FIFO与FILO.md",
         "docs/2.编程/计算机科学/假如你来发明编程语言/Generic.md",
         "docs/2.编程/计算机科学/假如你来发明编程语言/锁.md"
@@ -1586,13 +1586,6 @@
         "docs/2.编程/计算机科学/Function/_index.md",
         "docs/2.编程/计算机科学/Function/Function.md",
         "docs/2.编程/计算机科学/Function/Callback.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "docs/2.编程/计算机科学/Object-oriented Programming": {
-      "children": [
-        "docs/2.编程/计算机科学/Object-oriented Programming/_index.md",
-        "docs/2.编程/计算机科学/Object-oriented Programming/OOP.md"
       ],
       "sortOrder": "custom"
     },
@@ -1700,13 +1693,20 @@
       ],
       "sortOrder": "custom"
     },
+    "docs/2.编程/Programming paradigm": {
+      "children": [
+        "docs/2.编程/Programming paradigm/_index.md",
+        "docs/2.编程/Programming paradigm/Programming paradigm.md",
+        "docs/2.编程/Programming paradigm/OOP.md"
+      ],
+      "sortOrder": "custom"
+    },
     "docs/2.编程/Programming technology": {
       "children": [
         "docs/2.编程/Programming technology/_index.md",
-        "docs/2.编程/Programming technology/Programming Technology.md",
+        "docs/2.编程/Programming technology/Software design.md",
         "docs/2.编程/Programming technology/Modular.md",
         "docs/2.编程/Programming technology/Library.md",
-        "docs/2.编程/Programming technology/编程范式.md",
         "docs/2.编程/Programming technology/设计模式.md",
         "docs/2.编程/Programming technology/排序.md",
         "docs/2.编程/Programming technology/ORM.md",
@@ -4824,7 +4824,7 @@
         "docs/Mobile device/Android.md",
         "docs/Mobile device/Android 开发.md",
         "docs/Mobile device/Android MGMT",
-        "docs/Mobile device/Mobile app.md",
+        "docs/Mobile device/Mobile APP.md",
         "docs/Mobile device/小米.md",
         "docs/Mobile device/豆包手机.md"
       ],

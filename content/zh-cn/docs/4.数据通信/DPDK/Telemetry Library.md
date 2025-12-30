@@ -21,7 +21,7 @@ weight: 111
 简单示例如下:
 
 ```bash
-~]# dpdk-telemetry.py 
+~]# dpdk-telemetry.py
 Connecting to /var/run/dpdk/rte/dpdk_telemetry.v2
 {
   "version": "DPDK 23.11.0",
@@ -122,7 +122,7 @@ ta_init_telemetry
 
 ethdev_init_telemetry
 
-rxa_init_telemetry 
+rxa_init_telemetry
 
 ## 架构
 
@@ -152,7 +152,7 @@ struct rte_tel_data;
 - **/etcdev/stats** # 端口（网卡）的普通统计信息
 - **/ethdev/xstats** # 端口（网卡）的扩展统计信息
 
-> [!Tip] 与 [Linux 网络设备](docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Linux%20网络设备/Linux%20网络设备.md) 的 `/sys/class/net/<iface>/statistics/` 统计目录类似，stats 与 xstats 这些数据统计生成的逻辑，取决于网卡的驱动程序，不同驱动程序可能逻辑细节上有些许不同。不过总体含义不会差距过大。
+> [!Tip] 与 [Linux 网络设备](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Linux%20网络设备/Linux%20网络设备.md) 的 `/sys/class/net/<iface>/statistics/` 统计目录类似，stats 与 xstats 这些数据统计生成的逻辑，取决于网卡的驱动程序，不同驱动程序可能逻辑细节上有些许不同。不过总体含义不会差距过大。
 
 ## /ethdev/stats
 
@@ -211,7 +211,7 @@ eth_dev_handle_port_xstats(const char *cmd __rte_unused,
     struct rte_eth_xstat_name *xstat_names;
     struct rte_kvargs *kvlist;
     bool hide_zero = false;
-    
+
     // 获取 xstats 数量
     num_xstats = rte_eth_xstats_get(port_id, NULL, 0);
     // 获取 xstats 名称

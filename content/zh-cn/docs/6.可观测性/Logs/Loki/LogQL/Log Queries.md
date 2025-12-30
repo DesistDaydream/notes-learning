@@ -453,7 +453,7 @@ https://grafana.com/docs/loki/latest/query/log_queries/#labels-format-expression
 
 https://grafana.com/docs/loki/latest/query/template_functions
 
-Go 语言 [Template](docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Template.md) 嵌入在 Loki 查询语言 LogQL 中。可以在 [Line Format(行格式化表达式)](#Line%20Format(行格式化表达式)) 和 [Labels Format(标签格式化表达式)](#Labels%20Format(标签格式化表达式)) 中使用的[文本模板](https://golang.org/pkg/text/template)格式支持的函数。
+Go 语言 [Template](/docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Template.md) 嵌入在 Loki 查询语言 LogQL 中。可以在 [Line Format(行格式化表达式)](#Line%20Format(行格式化表达式)) 和 [Labels Format(标签格式化表达式)](#Labels%20Format(标签格式化表达式)) 中使用的[文本模板](https://golang.org/pkg/text/template)格式支持的函数。
 
 此外，可以使用 `__line__` 函数访问日志行，使用 `__timestamp__` 函数访问时间戳。
 

@@ -112,7 +112,7 @@ https://go.dev/ref/spec#Exported_identifiers
 
 https://go.dev/ref/spec#Packages
 
-更多介绍见 [Go Module](docs/2.编程/高级编程语言/Go/Go%20环境安装与使用/Go%20Module.md)
+更多介绍见 [Go Module](/docs/2.编程/高级编程语言/Go/Go%20环境安装与使用/Go%20Module.md)
 
 ## Import(导入)
 

@@ -8,7 +8,7 @@ weight: 101
 
 > 参考：
 >
-> - 
+> -
 
 ## DataPath(数据路径)
 
@@ -16,7 +16,7 @@ weight: 101
 
 ## Ring Buffer
 
-由网卡驱动程序创建的一种 Ring Buffer 的[数据结构](/docs/2.编程/计算机科学/Data%20type/Data%20structure.md)，保存在内存中，驱动程序会将这些内存地址告诉 [NIC](docs/4.数据通信/Networking%20device/NIC.md) 硬件，以便 NIC 可以通过 DMA(直接内存访问) 将接收到的数据包直接写入这些地址，而无需 CPU 介入。
+由网卡驱动程序创建的一种 Ring Buffer 的[数据结构](/docs/2.编程/计算机科学/Data%20type/Data%20structure.md)，保存在内存中，驱动程序会将这些内存地址告诉 [NIC](/docs/4.数据通信/Networking%20device/NIC.md) 硬件，以便 NIC 可以通过 DMA(直接内存访问) 将接收到的数据包直接写入这些地址，而无需 CPU 介入。
 
 同时，驱动程序会消费 Ring Buffer 中的网络数据包，并将这些数据包封装成内核通用的 skb 接口，交给内核网络栈。
 

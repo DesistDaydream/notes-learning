@@ -5,7 +5,7 @@ weight: 2
 
 # 前言
 
-Go 的 [Modular](docs/2.编程/Programming%20technology/Modular.md) 设计
+Go 的 [Modular](/docs/2.编程/Programming%20technology/Modular.md) 设计
 
 - 一个或多个文件组成一个 Package
 - 一个或多个 Package 组成一个 Module
@@ -19,7 +19,7 @@ Go 语言编写的程序是通过各个 *Packages(包)* 链接在一起的，一
 
 每个文件的第一行都应该是 `package <Package Name>`，以声明该文件所属哪个 Package。名为 main 的包是程序可以运行的基本条件（不从 main 包开始运行将会报错: `package command-line-arguments is not a main package`）
 
-想要使用其他 Package 中的 变量、函数、etc. 之类的 [Identifier](docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Go%20规范与标准库.md#Identifier)，需要在代码中先使用 import 关键字导入包，并且保证这些 Identifier 的首字母是大写。
+想要使用其他 Package 中的 变量、函数、etc. 之类的 [Identifier](/docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Go%20规范与标准库.md#Identifier)，需要在代码中先使用 import 关键字导入包，并且保证这些 Identifier 的首字母是大写。
 
 ```bash
 .
