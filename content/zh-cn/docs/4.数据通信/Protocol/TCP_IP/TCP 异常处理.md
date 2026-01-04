@@ -684,8 +684,6 @@ tw_recycle = 1 时，sync timestamps 比上次小时，会被 rst
 
 我们再来看看 TCP 四次挥手的过程。
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/24e305c7-9ba8-4113-9be1-44404948d366/640)
-
 #### 第一次挥手丢失了，会发生什么？
 
 当客户端（主动关闭方）调用 close 函数后，就会向服务端发送 FIN 报文，试图与服务端断开连接，此时客户端的连接进入到 `FIN_WAIT_1` 状态。
@@ -716,7 +714,7 @@ tw_recycle = 1 时，sync timestamps 比上次小时，会被 rst
 
 服务端处于 CLOSE_WAIT 状态时，调用了 close 函数，内核就会发出 FIN 报文，同时连接进入 LAST_ACK 状态，等待客户端返回 ACK 来确认连接关闭。
 
-如果迟迟收不到这个 ACK，服务端就会重发 FIN 报文，重发次数仍然由 `tcp_orphan_retrie`s 参数控制，这与客户端重发 FIN 报文的重传次数控制方式是一样的。
+如果迟迟收不到这个 ACK，服务端就会重发 FIN 报文，重发次数仍然由 `tcp_orphan_retries` 参数控制，这与客户端重发 FIN 报文的重传次数控制方式是一样的。
 
 #### 第四次挥手丢失了，会发生什么？
 
@@ -727,7 +725,3 @@ tw_recycle = 1 时，sync timestamps 比上次小时，会被 rst
 然后，服务端（被动关闭方）没有收到 ACK 报文前，还是处于 LAST_ACK 状态。
 
 如果第四次挥手的 ACK 报文没有到达服务端，服务端就会重发 FIN 报文，重发次数仍然由前面介绍过的 `tcp_orphan_retries` 参数控制。
-
----
-
-是吧，TCP 聪明着很！
