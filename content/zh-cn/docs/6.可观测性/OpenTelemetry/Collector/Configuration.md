@@ -17,7 +17,7 @@ weight: 2
 - **exporters**(map\[STRING][exporters](#exporters)) # 配置 Exporters 管道组件
 - **extensions**(map\[STRING][extensions](#extensions)) # 配置 扩展
 - **connectors**(map\[STRING][connectors](#connectors)) # TODO: 配置 [Connectors](https://opentelemetry.io/docs/collector/configuration/#connectors) 管道组件
-- **service**([service](#service)) # 配置在处理各类可观测数据时，使用哪些扩展、使用哪些组件。每个 service 可以简单理解为一个 Pipeline(管道)。
+- **service**([service](#service)) # 在处理各类可观测数据时，使用哪些扩展、使用哪些组件。每个 service 可以简单理解为一个 Pipeline(管道)。
 
 在 [otelcol/config.go](https://github.com/open-telemetry/opentelemetry-collector/blob/v0.126.0/otelcol/config.go#L21) 可以看到顶层字段的 struct
 
@@ -124,13 +124,29 @@ service:
 
 # service
 
-https://github.com/open-telemetry/opentelemetry-collector/blob/v0.126.0/service/config.go#L13
+https://github.com/open-telemetry/opentelemetry-collector/blob/ee8646eb459f8cbd3b858a5871910065a5a68c03/service/config.go#L13
 
 **extensions**(\[]STRING)
 
 **pipelines**(map\[STRING][pipelines](#pipelines)) # 定义管道。map 中的 key 是管道 ID，也遵循 `TYPE[/NAME]` 格式。TYEP 可以用的值有: traces, metrics, logs
 
 **telemetry**(Object) # 配置 Collector 本身的与组件无关的配置。e.g. 内部指标暴露端口、日志级别、etc.
+
+- 默认值: https://github.com/open-telemetry/opentelemetry-collector/blob/ee8646eb459f8cbd3b858a5871910065a5a68c03/service/telemetry/otelconftelemetry/factory.go#L43
+- 示例：
+
+```yaml
+service:
+  telemetry:
+    metrics:
+      readers:
+        - pull:
+            exporter:
+              prometheus:
+                host: 0.0.0.0
+                port: 8888
+                without_units: true
+```
 
 ## pipelines
 
@@ -159,5 +175,4 @@ service:
       receivers: [filelog]
       processors: []
       exporters: [otlphttp/loki]
-
 ```

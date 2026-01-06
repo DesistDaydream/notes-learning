@@ -165,7 +165,8 @@ struct rte_tel_data;
 ```c
 #define ADD_DICT_STAT(stats, s) rte_tel_data_add_dict_uint(d, #s, stats.s)
 
-eth_dev_handle_port_stats(const char *cmd __rte_unused,
+eth_dev_handle_port_stats(
+		const char *cmd __rte_unused,
 		const char *params,
 		struct rte_tel_data *d)
 {
@@ -199,7 +200,28 @@ eth_dev_handle_port_stats(const char *cmd __rte_unused,
 
 通常以 rx, tx 开头
 
-xstats 这些扩展信息的字段并不在一个统一的地方定义，而是跟驱动有关系，在 [`eth_dev_handle_port_xstats()`](https://github.com/DPDK/dpdk/blob/v25.03/lib/ethdev/rte_ethdev_telemetry.c#L134) 函数中，可以看到如下内容
+xstats 这些扩展信息的条目由两部分组成
+
+- 基本的统计信息。i.e. /ethdev/stats 的结果。只不过会改名
+- 网卡驱动程序相关的统计信息
+
+---
+
+下面从代码角度看一下逻辑
+
+首先，检查命令执行的入口。函数为 `eth_dev_handle_port_xstats`
+
+```c
+RTE_INIT(ethdev_init_telemetry)
+{
+    rte_telemetry_register_cmd_arg(
+        "/ethdev/xstats",
+        eth_dev_telemetry_do, eth_dev_handle_port_xstats,
+        "Returns the extended stats for a port. Parameters: int port_id,hide_zero=true|false(Optional for indicates hide zero xstats)");
+}
+```
+
+在 [`eth_dev_handle_port_xstats()`](https://github.com/DPDK/dpdk/blob/v25.03/lib/ethdev/rte_ethdev_telemetry.c#L134) 函数中，可以看到如下内容
 
 ```c
 eth_dev_handle_port_xstats(const char *cmd __rte_unused,
@@ -212,74 +234,137 @@ eth_dev_handle_port_xstats(const char *cmd __rte_unused,
     struct rte_kvargs *kvlist;
     bool hide_zero = false;
 
+    // 从命令行的参数里获取 port_id。解析 params，将解析结果赋值给 port_id
+    ret = eth_dev_parse_port_params(params, &port_id, &end_param, true);
+
     // 获取 xstats 数量
     num_xstats = rte_eth_xstats_get(port_id, NULL, 0);
-    // 获取 xstats 名称
+    // 获取 xstats 所有条目的名称
     rte_eth_xstats_get_names(port_id, xstat_names, num_xstats);
-    // 获取 xstats 值
+    // 获取 xstats 所有条目的值
     rte_eth_xstats_get(port_id, eth_xstats, num_xstats);
     // 构造 Telemetry 返回数据
     rte_tel_data_start_dict(d);
     for (i = 0; i < num_xstats; i++) {
-        if (hide_zero && eth_xstats[i].value == 0)
-            continue;
         rte_tel_data_add_dict_uint(d, xstat_names[i].name, eth_xstats[i].value);
     }
 }
 ```
 
-追踪结构体 rte_eth_xstat 或 rte_eth_xstat_name，则可以追到非常多 `drivers/net/` 目录下的文件，这里面都是网卡驱动的代码。直接搜索 rx_bytes 相关字符串大概率是能搜到一些有用的内容。
+通过统计信息的条目名称入手，看看都有哪些名字
 
-比如 i40e，追踪到 drivers/net/intel/i40e/i40e_ethdev.c 文件，可以找到如下代码：
-
-```c
-/* 储存统计数据的名称及其在统计结构中的偏移量 */
-struct rte_i40e_xstats_name_off {
-    char name[RTE_ETH_XSTATS_NAME_SIZE];
-    int offset;
-};
-```
-
-这段代码下面可以看到很多这类定义：
+从 [`rte_eth_xstats_get_names`](https://github.com/DPDK/dpdk/blob/cd60dcd503b91956f966a1f6d595b35d256ac00f/lib/ethdev/rte_ethdev.c#L3559) 函数中看到所有 xstats 条目的组成（基本统计 和 驱动相关统计）
 
 ```c
-static const struct rte_i40e_xstats_name_off rte_i40e_stats_strings[] = {
-    {"rx_unicast_packets", offsetof(struct i40e_eth_stats, rx_unicast)},
-    {"rx_multicast_packets", offsetof(struct i40e_eth_stats, rx_multicast)},
-    {"rx_broadcast_packets", offsetof(struct i40e_eth_stats, rx_broadcast)},
-    {"rx_dropped_packets", offsetof(struct i40e_eth_stats, rx_discards)},
-    {"rx_unknown_protocol_packets", offsetof(struct i40e_eth_stats,
-    rx_unknown_protocol)},
-    /*
-    * all other offsets are against i40e_eth_stats which is first member
-    * in i40e_hw_port_stats, so these offsets are interchangeable
-    */
-    {"rx_size_error_packets", offsetof(struct i40e_hw_port_stats, rx_err1)},
-    {"tx_unicast_packets", offsetof(struct i40e_eth_stats, tx_unicast)},
-    {"tx_multicast_packets", offsetof(struct i40e_eth_stats, tx_multicast)},
-    {"tx_broadcast_packets", offsetof(struct i40e_eth_stats, tx_broadcast)},
-    {"tx_dropped_packets", offsetof(struct i40e_eth_stats, tx_discards)},
-};
+int
+rte_eth_xstats_get_names(uint16_t port_id,
+    struct rte_eth_xstat_name *xstats_names,
+    unsigned int size)
+{
+    // 基本统计信息
+    cnt_used_entries = eth_basic_stats_get_names(dev, xstats_names);
+    // 特定于驱动程序的统计信息
+    cnt_driver_entries = dev->dev_ops->xstats_get_names(dev, xstats_names + cnt_used_entries, size - cnt_used_entries);
+    
+    // 合并两种统计信息
+    cnt_used_entries += cnt_driver_entries;
+    return cnt_used_entries;
+}
 ```
 
-所以，xstats 的信息主要是跟各个网卡驱动相关。具体能被 Telemetry 库响应哪些统计数据取决于这些网卡驱动都暴露了哪些。所以在 DPDK API 的数据结构中看不到详细属性，只有 name 与 value
-
-TODO: 还需要把 xstats 数据的获取逻辑完善
-
-TODO: [lib/ethdev/rte_ethdev.c](https://github.com/DPDK/dpdk/blob/cd60dcd503b91956f966a1f6d595b35d256ac00f/lib/ethdev/rte_ethdev.c#L61) 这是干啥用的？直接在项目里搜 rx_good 搜出来的
+基本统计信息在 `rte_eth_xstats_name_off` 类型的数组 [`eth_dev_stats_strings[]`](https://github.com/DPDK/dpdk/blob/cd60dcd503b91956f966a1f6d595b35d256ac00f/lib/ethdev/rte_ethdev.c#L61) 中
 
 ```c
 static const struct rte_eth_xstats_name_off eth_dev_stats_strings[] = {
-    {"rx_good_packets", offsetof(struct rte_eth_stats, ipackets)},
-    {"tx_good_packets", offsetof(struct rte_eth_stats, opackets)},
-    {"rx_good_bytes", offsetof(struct rte_eth_stats, ibytes)},
-    {"tx_good_bytes", offsetof(struct rte_eth_stats, obytes)},
-    {"rx_missed_errors", offsetof(struct rte_eth_stats, imissed)},
-    {"rx_errors", offsetof(struct rte_eth_stats, ierrors)},
-    {"tx_errors", offsetof(struct rte_eth_stats, oerrors)},
-    {"rx_mbuf_allocation_errors", offsetof(struct rte_eth_stats, rx_nombuf)},
+    {"rx_good_packets", offsetof(struct rte_eth_stats, ipackets)},
+    {"tx_good_packets", offsetof(struct rte_eth_stats, opackets)},
+    {"rx_good_bytes", offsetof(struct rte_eth_stats, ibytes)},
+    {"tx_good_bytes", offsetof(struct rte_eth_stats, obytes)},
+    {"rx_missed_errors", offsetof(struct rte_eth_stats, imissed)},
+    {"rx_errors", offsetof(struct rte_eth_stats, ierrors)},
+    {"tx_errors", offsetof(struct rte_eth_stats, oerrors)},
+    {"rx_mbuf_allocation_errors", offsetof(struct rte_eth_stats, rx_nombuf)},
 };
 ```
+
+驱动相关的统计信息来源，是 `dev->dev_ops->xstats_get_names`，这是结构体 [eth_dev_ops](https://github.com/DPDK/dpdk/blob/cd60dcd503b91956f966a1f6d595b35d256ac00f/lib/ethdev/ethdev_driver.h#L1415) 中的一个属性。<font color="#ff0000">追踪 xstats_get_names 可以看到，所有驱动代码中都有对其的引用</font>
+
+> Tips: 为什么是 `dev->dev_ops->xstats_get_names` 而不是 `dev->eth_dev_ops->xstats_get_names`？因为在 ethdev_driver.h 文件中声明了 `const struct eth_dev_ops *dev_ops;`
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/xstats_get_names-reference.png)
+
+以 i40e 驱动为例，找到 [i40e_dev_xstats_get_names](https://github.com/DPDK/dpdk/blob/cd60dcd503b91956f966a1f6d595b35d256ac00f/drivers/net/intel/i40e/i40e_ethdev.c#L3626) 的具体实现逻辑
+
+```c
+static int i40e_dev_xstats_get_names(__rte_unused struct rte_eth_dev *dev,
+				     struct rte_eth_xstat_name *xstats_names,
+				     __rte_unused unsigned limit)
+{
+	/* Get stats from i40e_eth_stats struct */
+	for (i = 0; i < I40E_NB_ETH_XSTATS; i++) {
+		strlcpy(xstats_names[count].name,
+			rte_i40e_stats_strings[i].name);
+	}
+
+	/* Get stats from i40e_mbuf_stats struct */
+	for (i = 0; i < I40E_NB_MBUF_XSTATS; i++) {
+		strlcpy(xstats_names[count].name,
+			i40e_mbuf_strings[i].name);
+	}
+
+	/* Get individual stats from i40e_hw_port struct */
+	for (i = 0; i < I40E_NB_HW_PORT_XSTATS; i++) {
+		strlcpy(xstats_names[count].name,
+			rte_i40e_hw_port_strings[i].name);
+	}
+
+	for (i = 0; i < I40E_NB_RXQ_PRIO_XSTATS; i++) {
+		snprintf(xstats_names[count].name,
+			rte_i40e_rxq_prio_strings[i].name);
+	}
+
+	for (i = 0; i < I40E_NB_TXQ_PRIO_XSTATS; i++) {
+		snprintf(xstats_names[count].name,
+			rte_i40e_txq_prio_strings[i].name);
+	}
+}
+```
+
+ i40e 的 xstats 由如下几个 `rte_i40e_xstats_name_off` 类型的数组组成：
+
+- `rte_i40e_stats_strings`
+- `i40e_mbuf_strings`
+- `rte_i40e_hw_port_strings`
+- `rte_i40e_rxq_prio_strings`
+- `rte_i40e_txq_prio_strings`
+
+以其中的 `rte_i40e_stats_strings` 为例（其他的数组同理）：
+
+```c
+struct rte_i40e_xstats_name_off {
+	char name[RTE_ETH_XSTATS_NAME_SIZE];
+	int offset;
+};
+
+// 数组中的元素是 rte_i40e_xstats_name_off 类型。
+static const struct rte_i40e_xstats_name_off rte_i40e_stats_strings[] = {
+	{"rx_unicast_packets", offsetof(struct i40e_eth_stats, rx_unicast)},
+	{"rx_multicast_packets", offsetof(struct i40e_eth_stats, rx_multicast)},
+	{"rx_broadcast_packets", offsetof(struct i40e_eth_stats, rx_broadcast)},
+	{"rx_dropped_packets", offsetof(struct i40e_eth_stats, rx_discards)},
+	{"rx_unknown_protocol_packets", offsetof(struct i40e_eth_stats, rx_unknown_protocol)},
+	{"rx_size_error_packets", offsetof(struct i40e_hw_port_stats, rx_err1)},
+	{"tx_unicast_packets", offsetof(struct i40e_eth_stats, tx_unicast)},
+	{"tx_multicast_packets", offsetof(struct i40e_eth_stats, tx_multicast)},
+	{"tx_broadcast_packets", offsetof(struct i40e_eth_stats, tx_broadcast)},
+	{"tx_dropped_packets", offsetof(struct i40e_eth_stats, tx_discards)},
+};
+
+#define I40E_NB_ETH_XSTATS (sizeof(rte_i40e_stats_strings) / \
+		sizeof(rte_i40e_stats_strings[0]))
+```
+
+此时，算是找到了 i40e 驱动的所有可用的 xstats 数据。i.e. 那几个元素类型是 `rte_i40e_xstats_name_off` 的数组。数组中的每个元素都是一个 xstats 条目。
 
 # mempool
 
