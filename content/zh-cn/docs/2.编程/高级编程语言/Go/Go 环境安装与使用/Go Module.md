@@ -5,7 +5,7 @@ weight: 2
 
 # 前言
 
-Go 的 [Modular](/docs/2.编程/Programming%20technology/Modular.md) 设计
+Go 的 [Modular programming](/docs/2.编程/Programming%20technology/Modular%20programming.md) 设计
 
 - 一个或多个文件组成一个 Package
 - 一个或多个 Package 组成一个 Module

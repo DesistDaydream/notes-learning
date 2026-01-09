@@ -1,6 +1,6 @@
 ---
-title: Modular
-linkTitle: Modular
+title: Modular programming
+linkTitle: Modular programming
 weight: 22
 ---
 
@@ -8,7 +8,7 @@ weight: 22
 
 > 参考：
 >
-> - [Wiki, Modular programming](https://en.wikipedia.org/wiki/Modular_programming)
+> - [Wiki, Modular programming](https://en.wikipedia.org/wiki/Modular_programming)(模块化编程)
 > - https://en.wikipedia.org/wiki/Code_reuse
 
 **Modular programming(模块化编程)**

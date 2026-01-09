@@ -1,7 +1,7 @@
 ---
 title: AI MGMT
 linkTitle: AI MGMT
-weight: 20
+weight: 1
 ---
 
 # 概述

@@ -62,7 +62,8 @@ $learningPlugins = "$baseDir\notes-learning\content\zh-cn\.obsidian\plugins"
 # 需要同步的插件
 $plugins = @(
     "manual-sorting",
-    "templater-obsidian"
+    "templater-obsidian",
+    "editing-toolbar"
 )
 
 # 要将插件文件同步过去的目标项目
