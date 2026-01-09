@@ -1703,9 +1703,9 @@
     },
     "docs/2.编程/Programming technology": {
       "children": [
+        "docs/2.编程/Programming technology/Modular programming.md",
         "docs/2.编程/Programming technology/_index.md",
         "docs/2.编程/Programming technology/Software design.md",
-        "docs/2.编程/Programming technology/Modular.md",
         "docs/2.编程/Programming technology/Library.md",
         "docs/2.编程/Programming technology/设计模式.md",
         "docs/2.编程/Programming technology/排序.md",
@@ -3178,6 +3178,7 @@
     "docs/8.通用技术": {
       "children": [
         "docs/8.通用技术/_index.md",
+        "docs/8.通用技术/Modular.md",
         "docs/8.通用技术/编码与解码",
         "docs/8.通用技术/Scheduling.md",
         "docs/8.通用技术/Cache.md",
@@ -4702,13 +4703,14 @@
         "docs/12.AI/机器学习",
         "docs/12.AI/自然语言处理",
         "docs/12.AI/计算机视觉",
+        "docs/12.AI/Retrieval.md",
         "docs/12.AI/MCP.md",
+        "docs/12.AI/Skills.md",
         "docs/12.AI/Hugging Face.md",
         "docs/12.AI/AI Projects",
         "docs/12.AI/AI MGMT",
         "docs/12.AI/最佳实践.md",
         "docs/12.AI/Automation",
-        "docs/12.AI/Retrieval.md",
         "docs/12.AI/Glossary.md"
       ],
       "sortOrder": "custom"
@@ -5098,6 +5100,7 @@
     },
     "Excalidraw": {
       "children": [
+        "Excalidraw/cloud_native",
         "Excalidraw/demo.excalidraw.md",
         "Excalidraw/Protocol",
         "Excalidraw/ClickHouse",
@@ -5122,6 +5125,12 @@
       "children": [
         "Excalidraw/ClickHouse/clickhouse_shard_and_replica_demo_2.excalidraw.md",
         "Excalidraw/ClickHouse/clickhouse_shard_and_replica_demo_1.excalidraw.md"
+      ],
+      "sortOrder": "custom"
+    },
+    "Excalidraw/cloud_native": {
+      "children": [
+        "Excalidraw/cloud_native/cloud_native_arch.excalidraw.md"
       ],
       "sortOrder": "custom"
     },

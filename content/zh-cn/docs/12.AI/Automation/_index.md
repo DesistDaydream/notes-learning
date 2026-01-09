@@ -1,5 +1,5 @@
 ---
-title: "Automation"
-linkTitle: "Automation"
-weight: 20
+title: Automation
+linkTitle: Automation
+weight: 100
 ---

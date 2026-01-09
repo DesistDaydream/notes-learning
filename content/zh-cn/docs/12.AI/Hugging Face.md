@@ -1,7 +1,7 @@
 ---
-title: "Hugging Face"
-linkTitle: "Hugging Face"
-weight: 20
+title: Hugging Face
+linkTitle: Hugging Face
+weight: 70
 ---
 
 # 概述

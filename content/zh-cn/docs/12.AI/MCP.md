@@ -1,7 +1,7 @@
 ---
 title: MCP
 linkTitle: MCP
-weight: 20
+weight: 51
 ---
 
 # 概述

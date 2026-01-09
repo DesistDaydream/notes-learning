@@ -13,7 +13,7 @@ weight: 2
 >   - [Python Packaging Authority](https://www.pypa.io/en/latest/)
 > - [廖雪峰 Python 教程，模块](https://www.liaoxuefeng.com/wiki/1016959663602400/1017454145014176)
 
-Python 的 [Modular](/docs/2.编程/Programming%20technology/Modular.md) 设计
+Python 的 [Modular programming](/docs/2.编程/Programming%20technology/Modular%20programming.md) 设计
 
 在 Python 中，**一个 `.py` 文件**就称之为一个 **Module(模块)**。
 

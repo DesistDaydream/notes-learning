@@ -8,15 +8,25 @@ weight: 20
 
 > 参考：
 >
-> -
+> - [Wiki, Service discovery](https://en.wikipedia.org/wiki/Service_discovery)
 
-**Service Discovery(服务发现)**
+**Service Discovery(服务发现)** 有时候也称为**注册中心**
+
+# 发现模式
+
+## 客户端发现模式
+
+典型代表: Consul, Nacos, etc.
+
+## 服务端发现模式
+
+典型代表: [Kubernetes](/docs/10.云原生/Kubernetes/Kubernetes.md)(主要是特指 k8s 内部的服务发现能力(e.g. service, etc.)), etc.
 
 # Nacos
 
 > 参考：
-> 
-> - [官网](https://nacos.io/zh-cn/index.html)
+>
+> - [官网](https://nacos.io)
 > - [官方文档](https://nacos.io/zh-cn/docs/what-is-nacos.html)
 > - [部署文档](https://github.com/nacos-group/nacos-k8s)
 
@@ -27,7 +37,6 @@ weight: 20
 > 参考：
 >
 > - [GitHub 项目，hashicorp/consul](https://github.com/hashicorp/consul)
-
 
 注册
 

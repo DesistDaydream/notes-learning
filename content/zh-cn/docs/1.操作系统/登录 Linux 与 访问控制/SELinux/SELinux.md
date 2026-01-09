@@ -5,6 +5,7 @@ title: SELinux
 # 概述
 
 > 参考：
+>
 > - [Wiki, Security-Enhanced Linux](https://en.wikipedia.org/wiki/Security-Enhanced_Linux)
 
 **Security Enhanced Linux(安全强化的 Linux，简称 SELinux)** 是由美国国家安全局 (NSA) 开发的，当初开发这玩意儿的目的是因为很多企业界发现， 通常系统出现问题的原因大部分都在于『内部员工的资源误用』所导致的，实际由外部发动的攻击反而没有这么严重。 那么什么是『员工资源误用』呢？举例来说，如果有个不是很懂系统的系统管理员为了自己设定的方便，将网页所在目录 /var/www/html/ 的权限设定为 drwxrwxrwx 时，你觉得会有什么事情发生？

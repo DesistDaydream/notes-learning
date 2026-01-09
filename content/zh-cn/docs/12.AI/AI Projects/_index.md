@@ -1,5 +1,5 @@
 ---
-title: "AI Projects"
-linkTitle: "AI Projects"
-weight: 20
+title: AI Projects
+linkTitle: AI Projects
+weight: 80
 ---
