@@ -1,5 +1,6 @@
 ---
 title: Playbook
+linkTitle: Playbook
 weight: 1
 ---
 

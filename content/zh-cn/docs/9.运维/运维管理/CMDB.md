@@ -28,6 +28,8 @@ CMDB 项目推荐
 >
 > - [GitHub 项目，lanyulei/fiy](https://github.com/lanyulei/fiy)
 
+> [!Attention] 蓝鲸的 Copy 轻量版本，更易用，但是版权问题删库了
+
 部署问题：
 
 使用 lz270978971/fiy-ui:latest 镜像构建前端

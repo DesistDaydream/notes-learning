@@ -46,7 +46,7 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 - play vars #
 - play vars_prompt #
 - play vars_files #
-- **role vars** # 定义在 `${ROLE}/vars/main.yml` 中的变量
+- **role vars** # 定义在 `${ROLE}/vars/main.yml` 中的变量。针对每个 [Playbook Role(角色)](docs/9.运维/Ansible/Playbook/Playbook%20Role(角色).md) 的变量
 - block vars (only for tasks in block) #
 - task vars (only for the task) #
 - include_vars #
