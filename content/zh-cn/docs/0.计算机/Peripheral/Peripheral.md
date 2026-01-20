@@ -53,14 +53,6 @@ weight: 1
 
 **线性** #  
 
-## 厂家
-
-**Cherry 键盘**
-
-Cherry(樱桃) 键盘一按 F1 就是静音该如何解决？
-
-使用 `Ctrl + Fn` 即可切换 F1 的作用，其他 F 功能键效果同理
-
 # 手柄
 
 [B 站 - Redknot-乔红，用最好的动画为你讲解--游戏摇杆的原理](https://www.bilibili.com/video/BV1Le2ABSEHz)
@@ -68,6 +60,32 @@ Cherry(樱桃) 键盘一按 F1 就是静音该如何解决？
 # SAS 卡
 
 SAS 的全称是 **串行附加SCSI**（Serial Attached SCSI）。它是一种用于连接硬盘驱动器、光盘驱动器等设备的接口标准。SAS卡提供了高速、高性能、高可靠性和高灵活性的数据传输解决方案。
+
+# 厂家
+
+ROG、SKN 支持网页配置外设
+
+**Cherry(樱桃)**
+
+Cherry(樱桃) 键盘一按 F1 就是静音该如何解决？
+
+使用 `Ctrl + Fn` 即可切换 F1 的作用，其他 F 功能键效果同理
+
+**ROG**
+
+网页驱动配置: https://gearlink.asus.com/zh-cn
+
+ROG 是华硕旗下的高端电竞硬件品牌，全名 **Republic of Gamers**。
+
+**SKN**
+
+网页驱动配置: https://launcher.skn.net.cn
+
+SKN 是 Keychron 旗下的子品牌。
+
+**Rapoo(雷柏)**
+
+网页驱动配置: https://hub.rapoo.cn
 
 # 攀升兄弟，名龙堂，宁美国度，京天华盛这四个哪个的主机好一些，自己不会组装，懒得组装，买个便宜的玩玩？
 
