@@ -1,7 +1,7 @@
 ---
 title: Time series 面板
 linkTitle: Time series 面板
-weight: 20
+weight: 1
 ---
 
 
@@ -39,9 +39,9 @@ Time series 是一个二维的，具有 x/y Axes(轴) 的面板。x 轴(横轴) 
 
 ## Legend - 用于配置面板内的 Legend
 
-[Legend](/docs/6.可观测性/Grafana/Panel(面板)%20与%20Dashboard(仪表盘)/Panel(面板)%20配置详解.md)
+[Panel](/docs/6.可观测性/Grafana/Dashboard/Panel/Panel.md)
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ab3yvw/1636271644358-b63f3b84-973e-4c51-8bdf-d1940a33860e.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ab3yvw/1636271644358-b63f3b84-973e-4c51-8bdf-d1940a33860e.png)
 
 ## Graph styles(图表样式)
 

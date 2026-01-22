@@ -1,13 +1,20 @@
 ---
 title: Ansible Variables
+linkTitle: Ansible Variables
+weight: 1
 ---
+
+# 概述
+
+> 参考：
+>
+> - 
 
 # group_vars 概述
 
 > 参考：
 >
 > - [官方文档，传统目录 - 使用变量](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html)
-> - [官方文档，传统目录 - 使用变量 - 变量优先级](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable)
 
 虽然通过自动化可以使事情更简单、更可重复，但是并非所有系统都完全相同。在某些情况下，观察到一个系统的行为或状态可能会影响到配置其他系统的方式。比如，我们可能需要找出一个系统的 IP 地址，并将这个 IP 地址作为另一个系统中配置的值。
 
@@ -28,25 +35,32 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 
 # 变量的优先级
 
+> 参考：
+>
+> - [官方文档，传统目录 - 使用变量 - 变量优先级](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable)
+
 变量可以是自带的，就是由人们自行定义的，可以在多个地方定义变量，(e.g.在某些文件里定义变量、通过命令行传递变量等等。由于 ansible 所要处理的的文件有很多，不同类型的文件下定义的变量的优先级也不同)
 
 下面的优先级列表由低到高，最下面的变量优先级最高
 
 - command line values (eg “-u user”)
-- **role defaults** # 定义在 `${ROLE}/defaults/main.yaml` 中的默认变量
-- **inventory file or script group vars** # [Inventory 文件](/docs/9.运维/Ansible/Inventory%20文件.md#组变量)中的组变量，i.e. `[XXX:vars]`
-- **inventory group_vars/all** # Inventory 文件所在目录下的 `group_vars/all` 文件。也可以是  `group_vars/all.yaml` 文件
-- **playbook group_vars/all** # Playbook 根目录下的 `group_vars/all` 文件。也可以是  `group_vars/all.yaml` 文件
-- **inventory group_vars/** # Inventory 文件所在目录下的 `group_vars/` 目录
-- **playbook group_vars/** # Playbook 根目录下的 `group_vars/` 目录
-- **inventory file or script host vars** # [Inventory 文件](/docs/9.运维/Ansible/Inventory%20文件.md#主机变量)中的主机变量。
-- **inventory host_vars/** # Inventory 文件所在目录下的 `host_vars/` 目录
-- **playbook host_vars/** # Playbook 根目录下的 `host_vars/` 目录
+- **Role defaults** # 定义在 `${ROLE}/defaults/main.yaml` 中的默认变量
+- -------- 组变量 --------
+- **Inventory file or script group vars** # [Inventory 文件](/docs/9.运维/Ansible/Inventory%20文件.md#组变量)中的组变量，i.e. `[XXX:vars]`
+- **Inventory group_vars/all** # Inventory 根目录下的 `group_vars/all` 文件。也可以是  `group_vars/all.yaml` 文件
+- **Playbook group_vars/all** # Playbook 根目录下的 `group_vars/all` 文件。也可以是  `group_vars/all.yaml` 文件
+- **Inventory group_vars/** # Inventory 根目录下的 `group_vars/` 目录
+- **Playbook group_vars/** # Playbook 根目录下的 `group_vars/` 目录
+- -------- 主机变量 --------
+- **Inventory file or script host vars** # Inventory 文件中的主机变量。
+- **Inventory host_vars/** # Inventory 根目录下的 `host_vars/` 目录
+- **Playbook host_vars/** # Playbook 根目录下的 `host_vars/` 目录
+- -------- 其他 --------
 - **host facts / cached set_facts** #
-- play vars #
-- play vars_prompt #
-- play vars_files #
-- **role vars** # 定义在 `${ROLE}/vars/main.yml` 中的变量。针对每个 [Playbook Role(角色)](docs/9.运维/Ansible/Playbook/Playbook%20Role(角色).md) 的变量
+- Play vars #
+- Play vars_prompt #
+- Play vars_files #
+- **Role vars** # 定义在 `${ROLE}/vars/main.yml` 中的变量。针对每个 [Playbook Role(角色)](docs/9.运维/Ansible/Playbook/Playbook%20Role(角色).md) 的变量
 - block vars (only for tasks in block) #
 - task vars (only for the task) #
 - include_vars #
@@ -55,7 +69,19 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 - include params #
 - **extra vars** # 通过 ansible-playbook 命令行工具的 `-e, --extra-vars` 参数指定的变量
 
-Note：可以说 ansible playbook 中写的所有内容都是变量。都是可以引用的，只不过引用的方式不同。
+> [!Note]
+> 可以说 ansible playbook 中写的所有内容都是变量。都是可以引用的，只不过引用的方式不同。
+>
+> “Playbook 根目录” 指的是 `ansible-playbook [OPTIONS] PLAYBOOK` 命令中，PLAYBOOK 文件所在目录
+>
+> “Inventory 根目录” 指的是 `ansible-playbook -i INVENTORY PLAYBOOK` 命令中，INVENTORY 所在的目录
+
+总结：
+
+- Inventory 中的 组变量 优先级 低得可怕。
+- 相同 Host 或 Group 的情况下，Inventory 优先级高于 Playbook
+- 相同 Inventory 或 Playbook 的情况下，组变量 低于 组变量
+- [Playbook Role(角色)](docs/9.运维/Ansible/Playbook/Playbook%20Role(角色).md) 是一等公民，每个 Role 下的 `vars/main.yaml` 文件优先级最高
 
 # 变量的定义与引用
 

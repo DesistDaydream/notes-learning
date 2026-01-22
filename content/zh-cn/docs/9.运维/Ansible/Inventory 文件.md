@@ -267,12 +267,12 @@ northwest
 
 在 Inventory 主文件中保存所有的变量并不是最佳的方式。我们通常在**独立的文件**中定义这些变量，这些独立文件与 inventory 文件保持关联. 不同于 inventory 文件(INI 格式)，这些独立文件的格式为 YAML。
 
-假设有一个主机名为 ‘foosball’, 主机同时属于两个组
+假设有一个主机名为 ‘foosball’，主机同时属于两个组
 
 - raleigh
 - webservers
 
-那么以下配置文件中的变量可以为 ‘foosball’ 主机所用. 依次为 ‘raleigh’ 的组变量, ’webservers’ 的组变量, ’foosball’ 的主机变量:
+那么以下配置文件中的变量可以为 ‘foosball’ 主机所用。依次为 ‘raleigh’ 的组变量，’webservers’ 的组变量，’foosball’ 的主机变量：
 
 ```
 ${PrefixDirPath}/group_vars/raleigh
@@ -287,9 +287,9 @@ ${PrefixDirPath}/group_vars/raleigh
 > - 如上所示：group_vars/raleigh 中的组变量适用于 raleigh 组。
 > - 文件名也可以使用 all 和 ungrouped 用于为所有主机或所有未分组的主机定义变量。
 >
-> `host_vars/` 目录下文件名必须时**主机名**（inventory 定义的主机名，不是系统中的主机名）
+> `host_vars/` 目录下文件名必须时**主机名**（Inventory 定义的主机名，不是系统中的主机名）
 
-举例来说, 假设你有一些主机, 属于不同的数据中心, 并依次进行划分. 每一个数据中心使用一些不同的服务器. 比如 ntp 服务器, database 服务器等等. 那么 ‘raleigh’ 这个组的组变量定义在文件 ‘/etc/ansible/group_vars/raleigh’ 之中, 可能类似这样:
+举例来说, 假设你有一些主机，属于不同的数据中心，并依次进行划分。每一个数据中心使用一些不同的服务器。比如 ntp 服务器，database 服务器等等。那么 ‘raleigh’ 这个组的组变量定义在文件 ‘/etc/ansible/group_vars/raleigh’ 之中，可能类似这样：
 
 ```
 ---
@@ -297,20 +297,20 @@ ntp_server: acme.example.org
 database_server: storage.example.org
 ```
 
-这些定义变量的文件不是一定要存在,因为这是可选的特性.
+这些定义变量的文件不是一定要存在，因为这是可选的特性。
 
-还有更进一步的运用,你可以为一个主机, 或一个组, 创建一个目录, 目录名就是主机名或组名. 目录中的可以创建多个文件, 文件中的变量都会被读取为主机或组的变量. 如下 ‘raleigh’ 组对应于 /etc/ansible/group_vars/raleigh/ 目录, 其下有两个文件 db_settings 和 cluster_settings, 其中分别设置不同的变量:
+还有更进一步的运用,你可以为一个主机，或一个组，创建一个目录，目录名就是主机名或组名。目录中的可以创建多个文件，文件中的变量都会被读取为主机或组的变量。如下 ‘raleigh’ 组对应于 /etc/ansible/group_vars/raleigh/ 目录，其下有两个文件 db_settings 和 cluster_settings，其中分别设置不同的变量：
 
 ```
 /etc/ansible/group_vars/raleigh/db_settings
 /etc/ansible/group_vars/raleigh/cluster_settings
 ```
 
-‘raleigh’ 组下的所有主机, 都可以使用 ‘raleigh’ 组的变量. 当变量变得太多时, 分文件定义变量更方便我们进行管理和组织. 还有一个方式也可参考, 详见 Ansible Vault 关于组变量的部分. 注意, 分文件定义变量的方式只适用于 Ansible 1.4 及以上版本.
+‘raleigh’ 组下的所有主机，都可以使用 ‘raleigh’ 组的变量。当变量变得太多时，分文件定义变量更方便我们进行管理和组织。还有一个方式也可参考，详见 Ansible Vault 关于组变量的部分。注意，分文件定义变量的方式只适用于 Ansible 1.4 及以上版本。
 
-我们可以将 `group_vars/` 和 `host_vars/` 目录添加到 playbook 目录下. 如果两个目录下都存在,那么 playbook 目录下的配置会覆盖 inventory 目录的配置.
+我们可以将 `group_vars/` 和 `host_vars/` 目录添加到 playbook 目录下。如果两个目录下都存在,那么 playbook 目录下的配置会覆盖 inventory 目录的配置。
 
-把我们的 Inventory 文件 和 变量 放入 git repo 中, 以便跟踪他们的更新, 这是一种非常推荐的方式.
+把我们的 Inventory 文件 和 变量 放入 git repo 中，以便跟踪他们的更新，这是一种非常推荐的方式。
 
 # 主机匹配模式
 

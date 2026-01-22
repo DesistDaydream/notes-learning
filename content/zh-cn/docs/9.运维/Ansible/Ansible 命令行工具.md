@@ -90,6 +90,14 @@ ansible 是 Ansible 的一个 ad-hoc(临时) 命令，可以在一个或多个�
 - **unarchive** # 解包
   - ansible all -m unarchive -a "src=/root/downloads/docker-ehualu-20.10.9.tar.gz dest=/"
 
+**检查变量**
+
+检查 root_dir 变量的值
+
+```bash
+ansible -i inventory/ my_host -m debug -a "var=root_dir" -C
+```
+
 # ansible-doc
 
 显示有关 Ansible 库中安装的模块的信息。 它显示了简短的插件清单及其简短描述，提供了其 DOCUMENTATION 字符串的打印输出，并且可以创建一个简短的“片段”，可以粘贴到 playbook 中。

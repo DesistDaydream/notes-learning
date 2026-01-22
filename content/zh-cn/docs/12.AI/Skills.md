@@ -16,3 +16,5 @@ weight: 52
 [公众号 - 差评，骗你的，其实AI根本不需要那么多提示词](https://mp.weixin.qq.com/s/OC0l_2M1sKGGhYy8WAgBXQ)
 
 https://github.com/heilcheng/awesome-agent-skills
+
+https://github.com/coreyhaines31/marketingskills

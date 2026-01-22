@@ -2582,6 +2582,7 @@
     },
     "docs/6.可观测性/Grafana": {
       "children": [
+        "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)",
         "docs/6.可观测性/Grafana/_index.md",
         "docs/6.可观测性/Grafana/Grafana.md",
         "docs/6.可观测性/Grafana/Grafana 数据模型.md",
@@ -2628,6 +2629,10 @@
         "docs/6.可观测性/Grafana/Grafana Configuration/Grafana Configuration.md",
         "docs/6.可观测性/Grafana/Grafana Configuration/Provisioning.md"
       ],
+      "sortOrder": "custom"
+    },
+    "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)": {
+      "children": [],
       "sortOrder": "custom"
     },
     "docs/6.可观测性/Logs": {
@@ -3276,8 +3281,7 @@
       "children": [
         "docs/9.运维/运维管理/_index.md",
         "docs/9.运维/运维管理/运维管理.md",
-        "docs/9.运维/运维管理/CMDB.md",
-        "docs/9.运维/运维管理/运维工具.md"
+        "docs/9.运维/运维管理/CMDB.md"
       ],
       "sortOrder": "custom"
     },
