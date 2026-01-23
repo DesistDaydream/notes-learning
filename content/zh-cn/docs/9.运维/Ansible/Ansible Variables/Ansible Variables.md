@@ -46,7 +46,7 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 - command line values (eg “-u user”)
 - **Role defaults** # 定义在 `${ROLE}/defaults/main.yaml` 中的默认变量
 - -------- 组变量 --------
-- **Inventory file or script group vars** # [Inventory 文件](/docs/9.运维/Ansible/Inventory%20文件.md#组变量)中的组变量，i.e. `[XXX:vars]`
+- **Inventory file or script group vars** # [Inventory](docs/9.运维/Ansible/Inventory.md#组变量)中的组变量，i.e. `[XXX:vars]`
 - **Inventory group_vars/all** # Inventory 根目录下的 `group_vars/all` 文件。也可以是  `group_vars/all.yaml` 文件
 - **Playbook group_vars/all** # Playbook 根目录下的 `group_vars/all` 文件。也可以是  `group_vars/all.yaml` 文件
 - **Inventory group_vars/** # Inventory 根目录下的 `group_vars/` 目录
@@ -78,7 +78,9 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 
 总结：
 
-- Inventory 中的 组变量 优先级 低得可怕。
+- Inventory 文件中的 组变量 优先级 最低。
+    - 因为一般情况下，先编写各种 Inventory 文件规划，然后有特殊情况再使用 group_vars/ 或 host_vars/ 目录。
+    - 最后使用 CLI 来临时指定各种变量，所以命令行中的 -e 选项优先级最高
 - 相同 Host 或 Group 的情况下，Inventory 优先级高于 Playbook
 - 相同 Inventory 或 Playbook 的情况下，组变量 低于 组变量
 - [Playbook Role(角色)](docs/9.运维/Ansible/Playbook/Playbook%20Role(角色).md) 是一等公民，每个 Role 下的 `vars/main.yaml` 文件优先级最高
@@ -257,7 +259,7 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 
 ### 在 Inventory 中定义变量
 
-详见 [Inventory 文件](/docs/9.运维/Ansible/Inventory%20文件.md)
+详见 [Inventory](docs/9.运维/Ansible/Inventory.md)
 
 ### 在 Playbooks 中定义变量
 

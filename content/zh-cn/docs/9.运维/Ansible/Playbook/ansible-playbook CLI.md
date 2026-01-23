@@ -1,5 +1,6 @@
 ---
-title: Playbook 命令行工具
+title: ansible-playbook CLI
+linkTitle: ansible-playbook CLI
 weight: 9
 ---
 
@@ -8,10 +9,13 @@ weight: 9
 > 参考：
 > 
 > - [官方文档，用户指南 - 传统目录 - 使用命令行工具 - ansible-playbook](https://docs.ansible.com/ansible/latest/cli/ansible-playbook.html)
+>     - [官方文档，使用 Ansible 命令行工具 - ansible-playbook](https://docs.ansible.com/projects/ansible/latest/cli/ansible-playbook.html)
 
 ansible-playbook 用来运行运行 Ansible playbook，以便在目标主机上执行定义的任务。
 
 # ansible-playbook
+
+https://docs.ansible.com/projects/ansible/latest/cli/ansible-playbook.html
 
 运行 Ansible playbooks，并在目标主机上执行剧本中定义的任务
 
@@ -30,7 +34,8 @@ ansible-playbook 用来运行运行 Ansible playbook，以便在目标主机上�
 	- 可以设置为 local 以便让 playbook 在本地执行而不用去远程机器上运行
 - --flush-cache # clear the fact cache for every host in inventory
 - --force-handlers # run handlers even if a task fails
-- **-i, --inventory, --inventory-file** # 指定 inventory 文件路径或者以逗号分隔的主机列表。(不推荐使用该选项)
+- **-i, --inventory, --inventory-file** # 指定 Inventory 根目录或者以逗号分隔的主机列表。
+    - <font color="#ff0000">注意：该选项可多次使用，e.g. `-i A -i B` 。B 中的各种变量将会覆盖 A 中的各种变量</font>。每个 Inventory 根目录下的 group_vars/, host_vars/ 目录都会被读取。
 - **-l , --limit \<SUBSET>** # 限定执行的主机范围。可以对一批主机的其中一台执行操作，但是依然可以使用其他主机的变量。further limit selected hosts to an additional pattern
 - **--list-hosts** # 列出执行该剧本所能匹配到的主机，但并不会执行
 - **--list-tags** # 列出所有可用的 tags

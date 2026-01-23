@@ -1,6 +1,6 @@
 ---
-title: Inventory 文件
-linkTitle: Inventory 文件
+title: Inventory
+linkTitle: Inventory
 weight: 3
 ---
 
@@ -263,7 +263,7 @@ northwest
 
 如果我们需要存储一个列表或 hash 值，或者更喜欢把 host 和 group 的变量分开配置，请看下一节的说明.
 
-# 组织 host_vars(主机变量) 和 group_vars(组变量)
+# 组织 host_vars/ 和 group_vars/
 
 在 Inventory 主文件中保存所有的变量并不是最佳的方式。我们通常在**独立的文件**中定义这些变量，这些独立文件与 inventory 文件保持关联. 不同于 inventory 文件(INI 格式)，这些独立文件的格式为 YAML。
 
@@ -339,11 +339,12 @@ ansible支持主机列表的正则匹配
 - `ansible webserver[0:5]  -m  ping` # 属于组webserver的第1到4台机器
 - `ansible "~(beta|web).example.(com|org)"  -m ping`
 
-# Inventory 参数详解
+# Inventory 参数
 
 > 参考：
 >
 > - [官方文档，用户指南 - 传统目录 - 如何构建你的 Inventory - 连接到主机:Inventory 参数](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#connecting-to-hosts-behavioral-inventory-parameters)
+>     - [官方文档，构建 Ansible Inventories - 如何构建你得 Inventory - 连接到主机:Inventory 参数](https://docs.ansible.com/projects/ansible/latest/inventory_guide/intro_inventory.html#connecting-to-hosts-behavioral-inventory-parameters)
 
 > Tips: 配置 Inventory 中主机的参数本质就是配置使用哪个 Ansible Plugin 或者 Ansible  Module 来连接受管理节点
 
@@ -393,7 +394,9 @@ freebsd_host      ansible_python_interpreter=/usr/local/bin/python
 ruby_module_host  ansible_ruby_interpreter=/usr/bin/ruby.1.9.3
 ```
 
-# 加密 Inventory 中的密码
+# 最佳实践
+
+## 加密 Inventory 中的密码
 
 假如现在有如下主机清单
 

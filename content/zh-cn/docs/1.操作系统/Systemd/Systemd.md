@@ -83,7 +83,7 @@ Systemd 将各种操作系统启动和运行的相关对象，抽象多种类型
 - **./system.conf.d/\*.conf** # Systemd 程序运行时配置文件
 - **./user.conf.d/\*.conf** # Systemd 以普通用户身份运行时的配置文件
 
-/etc、/run、/usr/lib 这三个目录的优先级从左至右由高到低。Systemd 会从最低优先级的目录 /usr/lib/ 下开始加载配置，注意加载其中的文件，直到最高优先级的目录 /etc/systemd/ 为止。
+/etc, /run, /usr/lib 这三个目录的优先级从左至右由高到低。Systemd 会从最低优先级的目录 /usr/lib/ 下开始加载配置，注意加载其中的文件，直到最高优先级的目录 /etc/systemd/ 为止。
 
 ## Units 配置
 

@@ -3290,13 +3290,13 @@
         "docs/9.运维/Ansible/_index.md",
         "docs/9.运维/Ansible/Ansible.md",
         "docs/9.运维/Ansible/Ansible 配置详解.md",
-        "docs/9.运维/Ansible/Inventory 文件.md",
+        "docs/9.运维/Ansible/Inventory.md",
         "docs/9.运维/Ansible/Ansible Collection",
         "docs/9.运维/Ansible/Ansible Plugins",
         "docs/9.运维/Ansible/Ansible Modules",
         "docs/9.运维/Ansible/Ansible Variables",
-        "docs/9.运维/Ansible/Ansible 命令行工具.md",
         "docs/9.运维/Ansible/Playbook",
+        "docs/9.运维/Ansible/Ansible 命令行工具.md",
         "docs/9.运维/Ansible/Ansible 扩展",
         "docs/9.运维/Ansible/Ansible 管理"
       ],
@@ -3371,7 +3371,7 @@
         "docs/9.运维/Ansible/Playbook/错误处理.md",
         "docs/9.运维/Ansible/Playbook/Debugger.md",
         "docs/9.运维/Ansible/Playbook/Tags.md",
-        "docs/9.运维/Ansible/Playbook/Playbook 命令行工具.md",
+        "docs/9.运维/Ansible/Playbook/ansible-playbook CLI.md",
         "docs/9.运维/Ansible/Playbook/最佳实践.md"
       ],
       "sortOrder": "custom"
