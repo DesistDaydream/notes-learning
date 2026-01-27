@@ -80,10 +80,11 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 
 - Inventory 文件中的 组变量 优先级 最低。
     - 因为一般情况下，先编写各种 Inventory 文件规划，然后有特殊情况再使用 group_vars/ 或 host_vars/ 目录。
-    - 最后使用 CLI 来临时指定各种变量，所以命令行中的 -e 选项优先级最高
-- 相同 Host 或 Group 的情况下，Inventory 优先级高于 Playbook
-- 相同 Inventory 或 Playbook 的情况下，组变量 低于 组变量
-- [Playbook Role(角色)](docs/9.运维/Ansible/Playbook/Playbook%20Role(角色).md) 是一等公民，每个 Role 下的 `vars/main.yaml` 文件优先级最高
+- 相同 host_vars/ 或 group_vars/ 的情况下，Playbook 优先级高于 Inventory
+- 相同 Inventory 或 Playbook 的情况下，主机变量 优先级高于 组变量
+- [Playbook Role(角色)](docs/9.运维/Ansible/Playbook/Playbook%20Role(角色).md) 是二等公民，每个 Role 下的 `vars/main.yaml` 文件优先级较高
+- Tasks 是一等公民，任务中的变量优先级更高
+- 最后使用 CLI 来临时指定各种变量，所以命令行中的 -e 选项优先级最高
 
 # 变量的定义与引用
 
@@ -109,12 +110,12 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 ### List(列表)变量
 
 ```bash
-[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ cat test_var.yaml
+~/projects/DesistDaydream/ansible/playbooks]$ cat test_var.yaml
 region:
 - northeast
 - southeast
 - midwest
-[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "@./test_var.yaml" -m debug -a 'msg={{region[1]}}'
+~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "@./test_var.yaml" -m debug -a 'msg={{region[1]}}'
 hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
     "msg": "southeast"
 }
@@ -125,20 +126,20 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 可以通过两种方式引用字典变量
 
 - 使用方 `[]` 进行引用
-  - foo\['field1']
-- 使用 `.` 进行引用(不推荐使用该方式引用变量，可能会与 Python 语法产生冲突)
-  - foo.field1
+  - `foo['field1']`
+- 使用 `.` 进行引用（不推荐使用该方式引用变量，可能会与 Python 语法产生冲突）
+  - `foo.field1`
 
 ```bash
-[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ cat test_var.yaml
+~/projects/DesistDaydream/ansible/playbooks]$ cat test_var.yaml
 foo:
   field1: one
   field2: two
-[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "@./test_var.yaml" -m debug -a msg="{{foo['field1']}}"
+~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "@./test_var.yaml" -m debug -a msg="{{foo['field1']}}"
 hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
     "msg": "one"
 }
-[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "@./test_var.yaml" -m debug -a msg="{{foo.field1}}"
+~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "@./test_var.yaml" -m debug -a msg="{{foo.field1}}"
 hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
     "msg": "one"
 }
@@ -152,14 +153,14 @@ Registering 类型的变量适用于 Playbooks 中，通过 `register` 关键字
 比如
 
 ```yaml
-[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ cat roles/variables/tasks/main.yaml
+~/projects/DesistDaydream/ansible/playbooks]$ cat roles/variables/tasks/main.yaml
 - name: test
   command: whoami
   register: info
 - name: debug
   debug:
     msg: "{{info}}"
-[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible-playbook -i ../inventory/ variables.yaml
+~/projects/DesistDaydream/ansible/playbooks]$ ansible-playbook -i ../inventory/ variables.yaml
 
 PLAY [test] **********************************************************************************************************************************************************************************************************************************************************************************************************************************************************
 
@@ -192,7 +193,6 @@ ok: [hw-cloud-xngy-jump-server-linux-2] => {
 
 PLAY RECAP ***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************
 hw-cloud-xngy-jump-server-linux-2 : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-
 ```
 
 在 test 任务中，我们将 command 模块执行的任务返回值，注册到 info 变量中；然后再 debug 任务中，引用了 info 变量。
@@ -204,20 +204,19 @@ hw-cloud-xngy-jump-server-linux-2 : ok=2    changed=1    unreachable=0    failed
 
 > 注意：如果任务失败或被跳过，Ansible 仍会注册一个处于失败或跳过状态的变量，除非根据标签跳过该任务。有关添加和使用标签的信息，请参阅[标签](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html#tags)。
 
-### Nested(嵌套)变量
+### Nested(嵌套) 变量
 
 ```bash
-[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ cat test_var.yaml
+~/projects/DesistDaydream/ansible/playbooks]$ cat test_var.yaml
 foo:
 - field1:
     name: one
 - field2:
     name: two
-[desistdaydream@hw-cloud-xngy-jump-server-linux-2 ~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "@./test_var.yaml" -m debug -a msg="{{foo[0].field1.name}}"
+~/projects/DesistDaydream/ansible/playbooks]$ ansible -i ../inventory/ all --extra-vars "@./test_var.yaml" -m debug -a msg="{{foo[0].field1.name}}"
 hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
     "msg": "one"
 }
-
 ```
 
 ## 变量的定义方式
@@ -259,7 +258,7 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 
 ### 在 Inventory 中定义变量
 
-详见 [Inventory](docs/9.运维/Ansible/Inventory.md)
+详见 [Inventory](/docs/9.运维/Ansible/Inventory.md)
 
 ### 在 Playbooks 中定义变量
 
@@ -376,18 +375,18 @@ docker:
 
 > 官方文档：<https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html#magic>
 
-魔术变量不能随意覆盖并且也没法覆盖，这是一种 Ansbie 提供的"内部变量" ，可以反映 Ansible 所管理主机的最简单的基本状态，比如该主机的主机名、在 inventory 文件中的定义都会转换成这里面变量的值、等等。
+**Magic Variables(魔术变量)** 不能随意覆盖并且也没法覆盖，这是一种 Ansbie 提供的"内部变量" ，可以反映 Ansible 所管理主机的最简单的基本状态，比如该主机的主机名、在 inventory 文件中的定义都会转换成这里面变量的值、等等。
 
 可以通过目标主机获取到 ansible 管理的所有主机的信息。最常用的魔术变量有以下几个
 
 - **hostvars** # 每个目标主机下面都包含类似下图的信息。其中是每个组所包含的 hosts
-  - 注意：通过 hostvars 变量，我们还可以获取到其他主机在执行任务是注册的变量，比如在 kubernetes 集群的 master-1 上生成了加入集群的指令，并注册为变量 join_cmd，正常是无法在其他主机直接使用的。这时候就要用到 hostvars 变量了。
+  - 注意：通过 hostvars 变量，我们还可以获取到其他主机在执行任务时注册的变量，比如在 kubernetes 集群的 master-1 上生成了加入集群的指令，并注册为变量 join_cmd，正常是无法在其他主机直接使用的。这时候就要用到 hostvars 变量了。
   - ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/nsvz9y/1616125069735-9fbbff13-76a7-455a-9a5b-291800f65cc1.jpeg)
 - **ansible_play_hosts** # 一个列表，是当前 play 中活动的主机列表，受序号限制，无法访问的主机不会被当做“活动”主机。
   - 该变量可以用于 for 循环，对列表中的主机进行遍历，逐一操作。
   - 等同于 ansible_play_batch
 - **ansible_play_name** # 当前执行 paly 的名称。i.e.playbook 中 hosts 这个键的值，也就是当前的主机组名称
-- **groups** # 默认值为 inbentory 下所有组及其组内的 host
+- **groups** # 默认值为 Inventory 下所有组及其组内的 host
 - **group_names** # 默认值为当前主机所属组的列表。
 - **inventory_hostname** # 默认值为 inventory 文件中配置的主机名称。i.e. ansible 的 hosts 文件的第一列内容
 - **inventory_dir** # 默认值为 ansible 保存 hosts 文件的目录的绝对路径。默认路径为/etc/ansible/
@@ -396,7 +395,7 @@ docker:
 
 应用实例：
 
-**groups\["{{ansible\_play\_name}}"]** # 获取当前 play 下的主机列表
+**`groups["{{ansible_play_name}}"]`** # 获取当前 Play 下的主机列表
 
 ## Fact Variables
 
