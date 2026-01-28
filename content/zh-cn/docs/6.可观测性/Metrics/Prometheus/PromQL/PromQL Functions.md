@@ -26,7 +26,9 @@ Prometheus 提供了其它大量的内置函数，可以对时序数据进行丰
 
 比如 `absent(up)` 这个表达式中，up 就是传递给参数 v 的值，是一个瞬时向量表达式。absent 表示该函数的功能。
 
-# Prometheus 内置函数
+# 基本函数
+
+**vector()** # vector(s scalar) 函数将标量 s 作为没有标签的即时向量返回，即返回结果为：key: value= {}, s
 
 ## absent() - 判断表达式是否可以获取到序列
 
@@ -76,42 +78,23 @@ node_load5{instance="192.168.1.75:9100"} # 结果为 2.79
 clamp_min(node_load5{instance="192.168.1.75:9100"}, 3) # 结果为 3
 ```
 
-## predict_linear() - 线性预测
-
-`predict_linear(v range-vector, t scalar)` 预测时间序列 v 在 t 秒后的值。它基于简单线性回归的方式，对时间窗口内的样本数据进行统计，从而可以对时间序列的变化趋势做出预测。该函数的返回结果不带有度量指标，只有标签列表。
-
-例如，基于 2 小时的样本数据，来预测主机可用磁盘空间的是否在 4 个小时候被占满，可以使用如下表达式：
-
-```promql
-predict_linear(node_filesystem_free{job="node"}[2h], 4 * 3600) < 0
-```
-
-通过下面的例子来观察返回值：
-
-```promql
-predict_linear(http_requests_total{code="200",instance="120.77.65.193:9090",job="prometheus",method="get"}[5m], 5)
-结果：
-{code="200",handler="query_range",instance="120.77.65.193:9090",job="prometheus",method="get"}  1
-{code="200",handler="prometheus",instance="120.77.65.193:9090",job="prometheus",method="get"}   4283.449995397104
-{code="200",handler="static",instance="120.77.65.193:9090",job="prometheus",method="get"}   22.99999999999999
-...
-```
-
-这个函数一般只用在 Gauge 类型的时间序列上。
-
 ## resets()
 
 resets(v range-vector) 的参数是一个区间向量。对于每个时间序列，它都返回一个计数器重置的次数。两个连续样本之间的值的减少被认为是一次计数器重置。
 
 这个函数一般只用在计数器类型的时间序列上。
 
-## 变化量相关
+# 变化量相关
+
+## 概述
 
 变化量相关的函数通常都以 `FuncName(v ragnge-vector)` 格式使用，用以计算 [范围向量](/docs/6.可观测性/Metrics/Prometheus/PromQL/PromQL.md#PromQL%20基本语法) v 中 2 个或多个元素之间的变化情况（e.g. 差值、变化率、etc.）
 
+### 外推处理
+
 在进行计算时，根据获取样本值的方式分为两类计算逻辑
 
-| 英文               | 中文    |                  |                                       |                           |
+| 英文               | 中文    | 描述               |                                       |                           |
 | ---------------- | ----- | ---------------- | ------------------------------------- | ------------------------- |
 | **extrapolated** | 外推/推测 | **推测**样本到整个时间范围  | 函数名前面**没有** i ，比如 rate, delta, etc.   | 取时间范围内的 第一个 和 最后一个 值进行计算  |
 | **instant**      | 即时/瞬间 | **不推测**样本到整个时间范围 | 函数名前面**带有** i ，比如 irate, idelta, etc. | 取时间范围内的 最后一个 和 倒数二个 值进行计算 |
@@ -139,19 +122,28 @@ node_network_receive_bytes_total[40s]
 
 **变化量相关的代码逻辑详见 [PromQL](/docs/6.可观测性/Metrics/Prometheus/Prometheus%20Development/PromQL/PromQL.md#变化量) 中的变化量函数部分**
 
-> [!Note] 在这些函数的官方描述中，有这么一种描述：Breaks in monotonicity (such as counter resets due to target restarts) are automatically adjusted for(单调性中断（比如由于目标重启导致的计数器重置）会自动处理)
-> 
-> 这句话翻译成人话是这样的：用于计算的样本中如果存在由于采样目标重启引起计数器归 0 的情况（会导致后面的样本的值比前一个样本的值小），那么会在后面样本的值加上前面样本的值。
->
-> 比如获取了 5 个数值 2, 4, 6, 0, 2，那么 counterCorrection 的值就是 6，变成 2, 4, 6, 6, 8。主要是为了防止计数器重置导致的计算错误。在代码中称为 counterCorrection(计数器矫正)
+### 单调性处理
 
-### delta() - 增量/差量
+在部分变化量相关的函数描述中，有这么一句：
+
+> [!Note] Breaks in monotonicity (such as counter resets due to target restarts) are automatically adjusted for(单调性中断（比如由于目标重启导致的计数器重置）会自动处理)
+
+这句话翻译成人话是这样的：用于计算的样本中如果存在由于采样目标重启引起计数器归 0 的情况（会导致后面的样本的值比前一个样本的值小），那么会在后面样本的值加上前面样本的值。
+
+比如获取了 5 个数值 2, 4, 6, 0, 2，那么 counterCorrection 的值就是 6，变成 2, 4, 6, 6, 8。主要是为了防止计数器重置导致的计算错误。在代码中称为 counterCorrection(计数器矫正)
+
+变化量相关的函数根据是否处理单调性中断，还可以分为两类
+
+- **处理单调性中断** # 这类函数适用于 Counter 类型的指标。e.g. rate, increase, etc.
+- **不处理单调新中断** # 这类函数适用于 Gauge 类型的指标。e.g. delta, deriv, etc.
+
+## delta() - 增量/差量
 
 `delta(v range-vector)` 计算范围向量 `v` 中，所有时间序列元素的第一个和最后一个值之间的差异。
 
 - 函数返回值：一个瞬时向量。
 
-注意：该函数只能用于 Gauges 类型的时间序列数据。
+> [!Tip] delta() 函数推荐用于 Gauges 类型的时间序列数据。
 
 例如，下面的例子返回过去两小时的 CPU 温度差：
 
@@ -159,9 +151,9 @@ node_network_receive_bytes_total[40s]
 delta(cpu_temp_celsius{host="zeus"}[2h])
 ```
 
-### increase()
+## increase()
 
-`increase(v range-vector)` 计算范围向量 `v` 中，第一个和最后一个样本并返回其增长量, 该函数会自动处理单调性中断的情况（e.g. 因目标重启导致的计数器重置）。
+`increase(V RangeVector[Duration])` 计算范围向量 V 在时间窗口 Duration 内，第一个和最后一个样本的增长量, 该函数会自动处理单调性中断的情况（e.g. 因目标重启导致的计数器重置）。
 
 - 函数返回值：类型只能是 Counter 类型，主要作用是增加图表和数据的可读性。使用 rate 函数记录规则的使用率，以便持续跟踪数据样本值的变化。
 
@@ -171,15 +163,15 @@ delta(cpu_temp_celsius{host="zeus"}[2h])
 increase(http_requests_total{job="apiserver"}[5m])
 ```
 
-### rate()
+## rate()
 
 > Note: https://claude.ai/share/85f83732-e4cc-4ee8-b7ff-1424a9e4f11c
 
-> [!Tip] rate() 与 irate() 更推荐用在 Counter 类型的 Metrics 上，在长期趋势分析或者告警中推荐使用这个函数。
-
 **`rate(V RangeVector[Duration])`** 计算范围向量 V 在时间窗口 Duration 内 **平均每秒增长了多少数值**（通过区间向量中<font color="#ff0000">首尾两个样本</font>数据来计算增长速率），该函数会自动处理单调性中断的情况（e.g. 因目标重启导致的计数器重置）。
 
-> Notes: 该函数的返回结果不带有度量指标，只有标签列表。
+> [!Tip] rate() 与 irate() 更推荐用在 Counter 类型的 Metrics 上，在长期趋势分析或者告警中推荐使用这个函数。
+>
+> 该函数的返回结果不带有度量指标，只有标签列表。
 
 例如，以下表达式返回区间向量中每个时间序列过去 15 分钟内 HTTP 请求数的每秒增长速率：
 
@@ -213,9 +205,40 @@ irate(http_requests_total{job="api-server"}[5m])
 >
 > 更不严谨且简单一点，可以说：时间范围短的用 irate；时间范围长的用 rate（不过总的来说还是要多角度结合看，比如时间范围中变化幅度大不大之类的。毕竟 irate 只取最后两个样本，时间跨度太长了就不明显了）
 
-## 时间相关
+## deriv()
 
-时间相关的函数都有一个通用的格式： `FUNCTION_NAME(v=vector(time()) instant-vector)`。FUNCTION_NAME 有如下几个
+> [!Tip] delta() 函数推荐用于 Gauges 类型的时间序列数据。
+
+`deriv(V RangeVector[Duration])` 计算范围向量 V 在窗口时间 Duration 内中，每个样本的每秒导数（计算时使用了[简单线性回归](https://en.wikipedia.org/wiki/Simple_linear_regression)）。
+
+为了进行计算，范围向量必须至少包含两个浮点数样本。如果范围向量中存在 `+Inf` 或 `-Inf` ，则计算出的斜率和偏移量值将为 `NaN` 。
+
+## predict_linear() - 线性预测
+
+`predict_linear(v range-vector, t scalar)` 预测时间序列 v 在 t 秒后的值。它基于简单线性回归的方式，对时间窗口内的样本数据进行统计，从而可以对时间序列的变化趋势做出预测。该函数的返回结果不带有度量指标，只有标签列表。
+
+例如，基于 2 小时的样本数据，来预测主机可用磁盘空间的是否在 4 个小时候被占满，可以使用如下表达式：
+
+```promql
+predict_linear(node_filesystem_free{job="node"}[2h], 4 * 3600) < 0
+```
+
+通过下面的例子来观察返回值：
+
+```promql
+predict_linear(http_requests_total{code="200",instance="120.77.65.193:9090",job="prometheus",method="get"}[5m], 5)
+结果：
+{code="200",handler="query_range",instance="120.77.65.193:9090",job="prometheus",method="get"}  1
+{code="200",handler="prometheus",instance="120.77.65.193:9090",job="prometheus",method="get"}   4283.449995397104
+{code="200",handler="static",instance="120.77.65.193:9090",job="prometheus",method="get"}   22.99999999999999
+...
+```
+
+这个函数一般只用在 Gauge 类型的时间序列上。
+
+# 时间相关
+
+时间相关的函数都有一个通用的格式: `FUNCTION_NAME(v=vector(time()) instant-vector)`。FUNCTION_NAME 有如下几个
 
 - **day_of_month()** # 返回被给定 UTC 时间所在月的第 N 天。返回值范围：1~31
 - **day_of_week()** # 返回被给定 UTC 时间所在周的第 N 天。返回值范围：0~6，0 表示星期天。
@@ -256,7 +279,7 @@ timestamp(v instant-vector) 函数返回向量 v 中的每个样本的时间戳�
 
 `(hour() + 8) % 24` 获取东八区的第 N 个小时。通过对 24 取余，确保结果始终在 0-23 的范围内。当 UTC 时间在 16:00 到 23:59 之间时，简单地 +8 会导致结果超过 23，这就是为什么我们需要 `% 24` 操作。当 UTC 时间是 23:00 时，`(23 + 8) % 24 = 7`，正确显示东八区的 7:00。
 
-## 聚合范围向量
+# 聚合范围向量
 
 ### XXX_over_time()
 
@@ -275,7 +298,7 @@ timestamp(v instant-vector) 函数返回向量 v 中的每个样本的时间戳�
 
 注意: 即使范围向量内的值分布不均匀，它们在聚合时的权重也是相同的。
 
-## Label 变化
+# Label 变化
 
 ### label_join()
 
@@ -351,7 +374,7 @@ label_replace(
 )
 ```
 
-## 数值计算
+# 数值计算
 
 sqrt()
 
@@ -391,17 +414,9 @@ ceil(node_load5{instance="192.168.1.75:9100"})
 
 **`log10(v instant-vector)`** 计算瞬时向量 v 中所有样本的 decimal logarithm(十进制对数)（以 10 为底的对数）。输入向量中的直方图样本会被静默忽略，其特殊情况处理方式与 ln 函数相同。
 
-## 其他
-
-**vector()** # vector(s scalar) 函数将标量 s 作为没有标签的即时向量返回，即返回结果为：key: value= {}, s
+# 其他函数
 
 **scalar()** # scalar(v instant-vector) 函数的参数是一个单元素的瞬时向量，它返回其唯一的时间序列的值作为一个标量。如果度量指标的样本数量大于 1 或者等于 0, 则返回 NaN。
-
-deriv()
-
-deriv(v range-vector) 的参数是一个区间向量,返回一个瞬时向量。它使用简单的线性回归计算区间向量 v 中各个时间序列的导数。
-
-这个函数一般只用在 Gauge 类型的时间序列上。
 
 exp()
 

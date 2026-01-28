@@ -79,7 +79,7 @@ Series 结构体的属性结构与通过 API 查询获取的结果保持一致
 >
 > - [GitHub 项目，prometheus/prometheus - promql/functions.go](https://github.com/prometheus/prometheus/blob/main/promql/functions.go)
 
-## 变化量
+## 变化量一
 
 下面三个函数，在代码中的实现逻辑都是由同一个方法实现的
 
@@ -175,3 +175,27 @@ Rate 需要将计算结果除以选定时间范围的秒数
 
 ### iRate
 
+## 变化量二
+
+下面两个函数在代码中的实现逻辑是由同一个方法实现的
+
+- deriv()
+- predict_linear()
+
+`./prometheus/promql/functions.go`
+
+```
+func linearRegression(samples []FPoint, interceptTime int64) (slope, intercept float64) {
+    ......
+}
+
+func funcDeriv(_ []Vector, matrixVal Matrix, args parser.Expressions, enh *EvalNodeHelper) (Vector, annotations.Annotations) {
+    ......
+    slope, _ := linearRegression(samples.Floats, samples.Floats[0].T)
+}
+
+func funcPredictLinear(vectorVals []Vector, matrixVal Matrix, args parser.Expressions, enh *EvalNodeHelper) (Vector, annotations.Annotations) {
+    ......
+    slope, intercept := linearRegression(samples.Floats, enh.Ts)
+}
+```
