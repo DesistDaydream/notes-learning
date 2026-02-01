@@ -63,7 +63,7 @@ SAS 的全称是 **串行附加SCSI**（Serial Attached SCSI）。它是一种�
 
 # 厂家
 
-ROG、SKN 支持网页配置外设
+ROG、SKN 首先支持网页配置外设
 
 **Cherry(樱桃)**
 
@@ -86,6 +86,10 @@ SKN 是 Keychron 旗下的子品牌。
 **Rapoo(雷柏)**
 
 网页驱动配置: https://hub.rapoo.cn
+
+**Dareu(达尔优)**
+
+网页驱动配置: https://dr.dareu.com/
 
 # 攀升兄弟，名龙堂，宁美国度，京天华盛这四个哪个的主机好一些，自己不会组装，懒得组装，买个便宜的玩玩？
 

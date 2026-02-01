@@ -52,16 +52,16 @@ network:
   ethernets:
     ens3:
       addresses:
-      - 172.19.42.248/24
+        - 172.19.42.248/24
       dhcp4: no
       dhcp6: no
       optional: true
-     routes:
+      routes:
         - to: default
           via: 172.19.42.1
       nameservers:
         addresses:
-        - 8.8.8.8
+          - 8.8.8.8
   version: 2
   renderer: networkd
 ```

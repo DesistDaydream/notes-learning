@@ -1,5 +1,5 @@
 ---
 title: Unix-like OS
 linkTitle: Unix-like OS
-weight: 20
+weight: 3
 ---

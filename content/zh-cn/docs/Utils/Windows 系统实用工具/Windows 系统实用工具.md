@@ -109,5 +109,6 @@ PixPin # https://pixpinapp.com/
 
 OpenArk # 一款开源的用于 Windows 的反 rookit (ARK) 工具
 
-- https://github.com/BlackINT3/OpenArk
+- https://github.com/BlackINT3/OpenArk 2025年10月1日，GitHub 没有任何通知下，封禁了账号
+- http://openark.blackint3.com:88/
 

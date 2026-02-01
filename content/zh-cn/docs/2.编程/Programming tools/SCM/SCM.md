@@ -22,6 +22,7 @@ SCM(Source Control Management，源代码控制管理系统)。
 - [GitHub](/docs/2.编程/Programming%20tools/SCM/GitHub/GitHub.md)
 - [SourceForge](https://sourceforge.net/)
 - [GNU/git](https://git.savannah.gnu.org/)
+- https://github.com/go-gitea/gitea # 开源 SCM，可自搭建
 
 SCM 可以算是源码管理相关工具的统称。
 

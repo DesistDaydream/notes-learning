@@ -9,6 +9,7 @@ weight: 3
 > 参考：
 >
 > - [官方文档，告警 - 客户端](https://prometheus.io/docs/alerting/latest/clients/)(接收告警的数据结构)
+>     - https://prometheus.io/docs/alerting/latest/alerts_api/
 
 ## AlertManager 接收告警的数据结构
 
@@ -39,7 +40,7 @@ weight: 3
 >
 > - [官方文档，告警 - 配置 - webhook_config](https://prometheus.io/docs/alerting/latest/configuration/#webhook_config)(通过 Webhook 推送告警的数据结构)
 
-下面就是 Alertmanager 在 Webhook 配置中，以 POST 请求发送的 JSON 结构的数据格式：
+下面是 Alertmanager 在 Webhook 配置中，以 POST 请求发送的 JSON 结构的数据格式：
 
 ```json
 {
@@ -79,7 +80,67 @@ weight: 3
 }
 ```
 
-### 示例
+### 基本示例
+
+最小使用
+
+```json
+[
+  {
+    "labels": { // 本条告警的信息。这是一组 map[string]string
+      "alertname": "这里是告警的名称",
+      "summary": "告警的描述"
+    },
+    "annotations": {}, // 留空
+    "startsAt": "<rfc3339>", // 告警触发的时间
+    "endsAt": "<rfc3339>", // 告警结束的时间，默认告警是触发的话，填 0001-01-01T00:00:00Z
+    "generatorURL": ""
+  }
+]
+```
+
+单条告警
+
+```json
+{
+  "receiver": "webhook",
+  "status": "firing",
+  "alerts": [
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "测试告警3",
+        "label_2": "value-1",
+        "severity": "critical",
+        "tenant": "test"
+      },
+      "annotations": {
+        "additionalProp1": "string"
+      },
+      "startsAt": "2021-04-24T15:22:27.944457098Z",
+      "endsAt": "0001-01-01T00:00:00Z",
+      "generatorURL": "http://desistdaydream:9090/graph?g0.expr=vector%281%29\u0026g0.tab=1",
+      "fingerprint": "496f742ac98e2398"
+    }
+  ],
+  "groupLabels": {},
+  "commonLabels": {
+    "alertname": "测试告警3",
+    "label_2": "value-1",
+    "severity": "critical",
+    "tenant": "test"
+  },
+  "commonAnnotations": {
+    "additionalProp1": "string"
+  },
+  "externalURL": "http://desistdaydream:9093",
+  "version": "4",
+  "groupKey": "{}:{}",
+  "truncatedAlerts": 0
+}
+```
+
+多条告警
 
 ```json
 {
@@ -135,44 +196,7 @@ weight: 3
 }
 ```
 
-```json
-{
-  "receiver": "webhook",
-  "status": "firing",
-  "alerts": [
-    {
-      "status": "firing",
-      "labels": {
-        "alertname": "测试告警3",
-        "label_2": "value-1",
-        "severity": "critical",
-        "tenant": "test"
-      },
-      "annotations": {
-        "additionalProp1": "string"
-      },
-      "startsAt": "2021-04-24T15:22:27.944457098Z",
-      "endsAt": "0001-01-01T00:00:00Z",
-      "generatorURL": "http://desistdaydream:9090/graph?g0.expr=vector%281%29\u0026g0.tab=1",
-      "fingerprint": "496f742ac98e2398"
-    }
-  ],
-  "groupLabels": {},
-  "commonLabels": {
-    "alertname": "测试告警3",
-    "label_2": "value-1",
-    "severity": "critical",
-    "tenant": "test"
-  },
-  "commonAnnotations": {
-    "additionalProp1": "string"
-  },
-  "externalURL": "http://desistdaydream:9093",
-  "version": "4",
-  "groupKey": "{}:{}",
-  "truncatedAlerts": 0
-}
-```
+多条告警
 
 ```json
 {

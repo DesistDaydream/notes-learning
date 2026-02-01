@@ -217,6 +217,7 @@ IaaS，PaaS，系统和容器编排部署配置和模板（docker-compose，kube
 #### scripts
 
 用于执行各种构建，安装，分析等操作的脚本。
+
 这些脚本使根级别的 Makefile 变得更小更简单，例如：<https://github.com/hashicorp/terraform/blob/master/Makefile>。
 
 #### test
@@ -341,7 +342,7 @@ gopher 第六条：使用依赖管理工具管理自有依赖与第三方依赖
 
 go1.11 在 vgo 的基础上，官方推出了 go module。在发布前，官方与社区的大神们还为此开吵，认为官方太不厚道且独断专行。完全忽视 dep 社区的存在，无视 dep 在 go 语言中的地位与贡献。喜欢八卦的朋友们，可搜索《关于 Go Module 的争吵》一览大神是怎么吵架的，也可从中学习他们的思想。
 
-相对于 java 的依赖管理工具 maven 或 gradle 来说，gradle 是 maven 的升级版，同时带来了 DSL 与元编程的特性，这无疑使得 gradle 异常地强大。但 gradle.io 在国内的可达情况也不尽如人意，好就好在其与 maven 仓库标准的兼容，使得从 maven 转到 gradle 几乎没有额外的成本及阻力。
+相对于 java 的依赖管理工具 maven 或 gradle 来说，gradle 是 maven 的升级版，同时带来了 DSL 与元编程的特性，这无疑使得 gradle 异常地强大。但 gradle.io 在国内的可达情况也不尽如人意，好就好在其与 maven 仓库标准的兼容，F使得从 maven 转到 gradle 几乎没有额外的成本及阻力。
 
 扯了这么多，依赖管理对于一门语言是必不可少的。c 有 cmake，java 有 maven、gradle，rust 有 cargo，那么 go 的 dep 或者 module 就用起来吧，看完大神吵架之后，喜欢哪个就选哪个。是不可能产生一个能满足所有人要求的依赖管理工具的，就连号称最牛逼的 cargo 也不例外。在一般的项目中，能用到的依赖管理功能也就那常用的几个而已，对大多数项目来说，适用好用就行。
 

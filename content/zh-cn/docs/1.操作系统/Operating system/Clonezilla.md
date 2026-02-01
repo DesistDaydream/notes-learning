@@ -1,5 +1,7 @@
 ---
 title: Clonezilla
+linkTitle: Clonezilla
+weight: 53
 ---
 
 ## 概述
@@ -12,7 +14,7 @@ title: Clonezilla
 >   - https://blog.csdn.net/zhaoxinfan/article/details/126474777
 >   - https://blog.csdn.net/zhangjia453/article/details/115353982
 
-Clonezilla 是类似于 [True Image](http://en.wikipedia.org/wiki/Acronis_True_Image) 或 [Norton Ghost](http://en.wikipedia.org/wiki/Ghost_%28software%29) 的分区和磁盘映像/克隆程序。它可以帮助您进行系统部署、裸机备份和恢复。可以使用三种类型的 Clonezilla：
+Clonezilla 是类似于 [True Image](http://en.wikipedia.org/wiki/Acronis_True_Image) 或 [Norton Ghost](http://en.wikipedia.org/wiki/Ghost_%28software%29) 的分区和磁盘映像/克隆程序。它可以帮助我们进行 系统部署、裸机备份与恢复。可以使用三种类型的 Clonezilla：
 
 - [Clonezilla live](https://clonezilla.org/clonezilla-live.php) # Clonezilla live 允许您使用 CD/DVD 或 USB 闪存驱动器启动和运行 clonezilla（仅限单播）
 - [Clonezilla lite server](https://clonezilla.org/show-live-doc-content.php?topic=clonezilla-live/doc/11_lite_server) # Clonezilla 精简版服务器允许您使用 Clonezilla live 进行大规模克隆（支持单播、广播、多播、比特流）
@@ -21,9 +23,10 @@ Clonezilla 是类似于 [True Image](http://en.wikipedia.org/wiki/Acronis_True_I
 Clonezilla live 适用于单机备份和恢复。虽然 Clonezilla 精简版服务器或 SE 用于大规模部署，但它可以同时克隆多台（40 多台！）计算机。Clonezilla 仅保存和恢复硬盘中使用过的块。这提高了克隆效率。对于 42 节点集群中的一些高端硬件，报告了以 8 GB/分钟的速率恢复的多播。
 
 **CloneZilla 可以将 Linux 完整移植到另一台机器中，保证数据，分区，挂载，启动项。。所有的一切完全一致**
+
 > 注意：进行还原的机器需要与进行镜像封装的机器关键硬件配置一致，否则可能产生显卡驱动无法使用等问题
 
-Clonezilla Live 本身就是一个小型的 Liunx 发行版，这就像是 Linux 版的 WinPE 一样。除了图形页面可供操作外，还可以通过命令行，执行诸如 ssh 之类的命令。这也就意味着，Clonezilla 可以读写远程存储设备中，封装好的 Linux 镜像可以直接写入到 NFS、S3 中，还原 Linux 时，也可以从这些远程存储设备中读取镜像。
+Clonezilla Live 本身就是一个小型的 Liunx 发行版，像是 Linux 版的 [WinPE](docs/1.操作系统/Operating%20system/WinPE.md)。除了图形页面可供操作外，还可以通过命令行，执行诸如 ssh 之类的命令。这也就意味着，Clonezilla 可以读写远程存储设备中，封装好的 Linux 镜像可以直接写入到 NFS、S3 中，还原 Linux 时，也可以从这些远程存储设备中读取镜像。
 
 Clonezilla 源码实际上是运行程序本身，因为它们使用脚本(bash 或 perl)编写的。最初始保存在 [NCHC 存储库](https://free.nchc.org.tw/clonezilla-live/)中。在这个存储库中，我们可以从 [experimental/](https://free.nchc.org.tw/clonezilla-live/experimental/) 目录下找到 ARM 版本的 Clonezilla。
 

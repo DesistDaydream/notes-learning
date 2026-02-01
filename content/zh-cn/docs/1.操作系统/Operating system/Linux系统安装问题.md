@@ -1,6 +1,14 @@
 ---
-title: Linux 系统安装问题
+title: Linux系统安装问题
+linkTitle: Linux系统安装问题
+weight: 100
 ---
+
+# 概述
+
+> 参考：
+>
+> - 
 
 使用 U 盘安装 CentOS7 卡在”Starting dracut initqueue hook…”
 
@@ -33,7 +41,6 @@ title: Linux 系统安装问题
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/nebxk0/1616168532236-5667c5d2-d80e-428a-a9ae-28a8c02a9f96.png)
 
 1. 直接修改 /isolinux/isolinux.cfg 文件中的内容，将 CentOS\x207\x20x86_64 修改为 CENTOS7
-
 2. 然后在 windows 中修改 U 盘的标签名为 CENTOS7
 
 这样就可以保证使用 U 盘安装时，服务器可以根据标签来读取到 U 盘并进行后续安装了
@@ -43,9 +50,7 @@ title: Linux 系统安装问题
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/nebxk0/1616168532287-1f22f5eb-1b38-4bde-8048-9a5a8065373a.png)
 
 1. 在 windows 中修改 U 盘的标签名为 CENTOS7
-
 2. 在安装系统界面，如右图，按 e 或者 tab 进入编辑模式
-
 3. 修改 LABEL=后面的内容为 CENTOS7
 
 以上两种解决方式都是让安装程序来根据 U 盘标签来识别 U 盘

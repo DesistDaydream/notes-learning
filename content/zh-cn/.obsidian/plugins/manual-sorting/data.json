@@ -179,19 +179,7 @@
         "docs/1.操作系统/Linux 源码解析",
         "docs/1.操作系统/Linux 管理",
         "docs/1.操作系统/Windows 管理",
-        "docs/1.操作系统/安装操作系统",
         "docs/1.操作系统/Filesystem"
-      ],
-      "sortOrder": "custom"
-    },
-    "docs/1.操作系统/安装操作系统": {
-      "children": [
-        "docs/1.操作系统/安装操作系统/_index.md",
-        "docs/1.操作系统/安装操作系统/安装操作系统.md",
-        "docs/1.操作系统/安装操作系统/Clonezilla.md",
-        "docs/1.操作系统/安装操作系统/ISO文件与可启动U盘制作工具.md",
-        "docs/1.操作系统/安装操作系统/Linux系统安装问题.md",
-        "docs/1.操作系统/安装操作系统/PXE.md"
       ],
       "sortOrder": "custom"
     },
@@ -883,7 +871,13 @@
         "docs/1.操作系统/Operating system/POSIX.md",
         "docs/1.操作系统/Operating system/Unix-like OS",
         "docs/1.操作系统/Operating system/Microsoft OS",
-        "docs/1.操作系统/Operating system/环境变量.md"
+        "docs/1.操作系统/Operating system/环境变量.md",
+        "docs/1.操作系统/Operating system/安装操作系统.md",
+        "docs/1.操作系统/Operating system/PXE.md",
+        "docs/1.操作系统/Operating system/WinPE.md",
+        "docs/1.操作系统/Operating system/Clonezilla.md",
+        "docs/1.操作系统/Operating system/ISO文件与可启动U盘.md",
+        "docs/1.操作系统/Operating system/Linux系统安装问题.md"
       ],
       "sortOrder": "custom"
     },
@@ -2582,7 +2576,6 @@
     },
     "docs/6.可观测性/Grafana": {
       "children": [
-        "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)",
         "docs/6.可观测性/Grafana/_index.md",
         "docs/6.可观测性/Grafana/Grafana.md",
         "docs/6.可观测性/Grafana/Grafana 数据模型.md",
@@ -2629,10 +2622,6 @@
         "docs/6.可观测性/Grafana/Grafana Configuration/Grafana Configuration.md",
         "docs/6.可观测性/Grafana/Grafana Configuration/Provisioning.md"
       ],
-      "sortOrder": "custom"
-    },
-    "docs/6.可观测性/Grafana/Panel(面板) 与 Dashboard(仪表盘)": {
-      "children": [],
       "sortOrder": "custom"
     },
     "docs/6.可观测性/Logs": {
