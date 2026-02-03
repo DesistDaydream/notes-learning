@@ -34,15 +34,17 @@ systemd.exec 包含很多很多指令，我们可以将其分为如下几大类�
 
 https://man7.org/linux/man-pages/man5/systemd.exec.5.html#PATHS
 
-Paths(路径) 相关的指令可用于更改文件系统的服务视图。请注意，路径必须是绝对路径，并且不得包含 `..` 路径组件。
+Paths(路径) 相关的指令可用于更改 Unit 中的程序在运行时所能使用的文件系统范围。请注意，路径必须是绝对路径，并且不得包含 `..` 路径语法。
 
-**WorkingDirectory=\<STRING>** # 采用相对于由 RootDirectory 指令 或特殊值 `~` 指定的服务根目录的目录路径。
+用人话说：类似设置 [Chroot](docs/1.操作系统/Kernel/Process/Chroot.md) 行为。设置进程的工作目录、等等
+
+**WorkingDirectory**(STRING) # 采用相对于由 RootDirectory 指令 或特殊值 `~` 指定的服务根目录的目录路径。
 
 # User/Group Identity
 
 https://man7.org/linux/man-pages/man5/systemd.exec.5.html#USER/GROUP_IDENTITY
 
-- **User=\<STRING>** # 指定运行该 Unit 使用的用户。
+- **User**(STRING) # 指定运行该 Unit 使用的用户。
 
 # CAPABILITIES(能力)相关指令
 
@@ -78,11 +80,11 @@ https://man7.org/linux/man-pages/man5/systemd.exec.5.html#SYSTEM_CALL_FILTERING
 
 https://man7.org/linux/man-pages/man5/systemd.exec.5.html#ENVIRONMENT
 
-**Environment(STRING)** # 指定 Unit 所使用的环境变量。多个变量以空格分隔
+**Environment**(STRING) # 指定 Unit 所使用的环境变量。多个变量以空格分隔
 
 - e.g. `Environment="VAR1=word1 word2" VAR2=word3 "VAR3=$word 5 6"`
 
-**EnvironmentFile(STRING)** # 与 Environment 指令的逻辑类似，但是可以直接指定一个文件，在文件中设置环境变量，文件中的格式与 Environment 指令的值的格式保持一致。
+**EnvironmentFile**(STRING) # 与 Environment 指令的逻辑类似，但是可以直接指定一个文件，在文件中设置环境变量，文件中的格式与 Environment 指令的值的格式保持一致。
 
 - **`-` 符号** # 指令的值之前可以添加 `-` 符号，比如 `EnvironmentFile=-/etc/default/ssh`。`-` 符号作为前缀的话，表明如果文件不存在将不会被读取，并且不会记录任何错误或警告信息。
   - 默认情况下，若指定的文件不存在，服务将无法启动并报错。

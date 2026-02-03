@@ -4,12 +4,21 @@ linkTitle: MinIO
 weight: 1
 ---
 
+> [!Attention] 已闭源
+> 与 2025 年 12 月 3 日的 [Commit](https://github.com/minio/minio/commit/27742d469462e1561c776f88ca7a1f26816d69e2) 中，修改了 README 信息，声明：将项目变更为维护模式，不再接受新的开发。推荐使用闭源且商业付费的 AIStor
+>
+> TODO: 用什么替代品？[RustFS](https://github.com/rustfs/rustfs)？
+
 # 概述
 
 > 参考：
 >
 > - [官网](https://min.io/)
 > - [GitHub 项目，minio/minio](https://github.com/minio/minio)
+> - [GitHub 项目，minio/docs](https://github.com/minio/docs)
+>     - https://minio-docs.tf.fo/
+>     - https://miniodocs.cc/
+>     - https://minio-docs.cc/
 > - <https://mp.weixin.qq.com/s/aRTE_UUQ0GMXhqiemxQnsg>
 
 采集指标

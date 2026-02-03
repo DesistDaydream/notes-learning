@@ -1,6 +1,6 @@
 ---
-title: Alertmanager 数据结构
-linkTitle: Alertmanager 数据结构
+title: Alertmanager API
+linkTitle: Alertmanager API
 weight: 3
 ---
 
@@ -11,7 +11,7 @@ weight: 3
 > - [官方文档，告警 - 客户端](https://prometheus.io/docs/alerting/latest/clients/)(接收告警的数据结构)
 >     - https://prometheus.io/docs/alerting/latest/alerts_api/
 
-## AlertManager 接收告警的数据结构
+## Alertmanager 接收告警的数据结构
 
 这个数据结构，其实就是 Prometheus 推送告警的数据结构，详见 [Prometheus Alerting](/docs/6.可观测性/Metrics/Prometheus/Alerting.md) 章节
 

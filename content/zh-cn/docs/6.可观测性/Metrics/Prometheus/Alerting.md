@@ -30,7 +30,7 @@ Alertmanager 处理客户端应用程序(如 Prometheus Server)发送的警报�
 
 ## 关联 Alertmanager 与 Prometheus
 
-由于 Alertmanager 与 Prometheus 是两个程序。所以需要修改 Prometheus Server 的配置文件，以便让自己产生的告警可以发送到正确地方，配置效果如下（Prometheus 推出的 Alertmanager 默认监听在 9093 端口上）
+由于 Alertmanager 与 Prometheus 是两个程序。所以需要修改 Prometheus Server 的配置文件，以便让自己产生的告警可以发送到正确地方，配置效果如下（Alertmanager 默认监听在 9093 端口上）
 
 ```yaml
 alerting:
@@ -73,9 +73,13 @@ rule_files:
 >
 > **<font color="#ff0000">也就是说，不要自己写一个程序，频繁对 Prometheus 发起 PromQL 查询请求，来生成告警。</font>**
 
-Alertmanager 现阶段有两个 API，v1 和 v2，这两个 API 都是用来监听发送到自身的告警。
+从 0.27.0 版本开始，[Alertmanager API](docs/6.可观测性/Metrics/Alertmanager/Alertmanager%20API.md) v1 弃用，只使用 v2 版本的 API。默认路径为 /api/v2/alerts，是用来监听发送到自身的告警。
 
-Prometheus 产生告警后，会通过 POST 请求将下列 JSON 格式内容向 Alertamanger 推送告警：
+推送路径根据 [Promethesu Server](/docs/6.可观测性/Metrics/Prometheus/Configuration/Promethesu%20Server.md) 文件中 `alerting.alertmanagers.api_version` 和 `alerting.alertmanagers.path_prefix` 这两个字段决定。
+
+如果 api_version 为 v2，path_prefix 值为 /test，最终的路径就是 /test/api/v2/alerts
+
+Prometheus 产生告警后，会通过 POST 请求将下列 JSON 格式内容向 Alertamanger 推送：
 
 ```json
 [
@@ -97,22 +101,18 @@ Prometheus 产生告警后，会通过 POST 请求将下列 JSON 格式内容向
 ]
 ```
 
-推送路径根据 Prometheus [Promethesu Server](/docs/6.可观测性/Metrics/Prometheus/Configuration/Promethesu%20Server.md)文件中 `alerting.alertmanagers.api_version` 和 `alerting.alertmanagers.path_prefix` 这两个字段决定。
-
-默认推送路径为 /api/v2/alerts。如果 api_version 为 v2，path_prefix 值为 /test，最终的路径就是 /test/api/v2/alerts
-
 ## labels 与 annotations 字段
 
-**labels(标签)** 是告警的唯一标识符。具有相同标签的告警，则称为重复数据，重复数据只会保留最新的一个。
+- **labels(标签)** 是告警的唯一标识符。具有相同标签的告警，则称为重复数据，重复数据只会保留最新的一个。
+- **annotations(注释)** 顾名思义，就是用来注释一个告警
 
-**annotations(注释)** 顾名思义，就是用来注释一个告警
+Prometheus 使用如下几部分内容填充 labels 字段中：
 
-labels 包含如下内容：
-
-- alertname 字段
-  - 该字段的的值就是 Prometheus Server 的 Rules 配置文件中的 .groups.rules.alert 字段的值
-- 告警规则配置文件中定义的标签
+- alertname 字段，该字段的的值就是 Prometheus Server 的 Rules 配置文件中的 .groups.rules.alert 字段的值
+- 告警规则配置文件 [Rules](docs/6.可观测性/Metrics/Prometheus/Configuration/Rules.md) 中，`groups[X].rules[X].labels` 定义的内容
 - 产生告警的时间序列所具有的标签
+
+Prometheus 使用告警规则配置文件 [Rules](docs/6.可观测性/Metrics/Prometheus/Configuration/Rules.md) 中，`groups[X].rules[X].annotations` 定义的内容填充到 annotations 字段中
 
 ## startsAt 与 endsAt 字段
 

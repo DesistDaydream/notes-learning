@@ -20,25 +20,25 @@ title: Unit File 指令
 
 # 通用部分的指令
 
-## \[Unit] 部分的指令
+## Unit 部分的指令
 
 https://man7.org/linux/man-pages/man5/systemd.unit.5.html#[UNIT]_SECTIONOPTIONS
 
-unit 本身的说明，以及与其他相依赖的 daemon 的设置，包括在什么服务之前或之后启动等设置
+Unit 部分包含 Uint 本身的说明，以及与其他相依赖的 daemon 的设置，包括在什么服务之前或之后启动等设置
 
-**Description=\<STRING>** # Unit 描述，用 systemctl list-units 和 systemctl status 查看服务时候的描述内容就是这里定义的
+**Description**(STRING) # Unit 描述，用 systemctl list-units 和 systemctl status 查看服务时候的描述内容就是这里定义的
 
-**Documentation=\<STRING>** # 提供该 Unit 可以进一步文件查询的地址或者位置
+**Documentation**(STRING) # 提供该 Unit 可以进一步文件查询的地址或者位置
 
-**After(Before)=\<STRING>** # 在哪些之后(前)启动，说明该 Unit 可以在哪些 daemon 启动后(前)才能够启动，非强制性，只是推荐规范
+**After/Before**(STRING) # 在哪些之后/前启动，说明该 Unit 可以在哪些 daemon 启动后/前才能够启动，非强制性，只是推荐规范
 
-**Requires=\<STRING>** # 需要启动哪些，说明启动该 Unit 前需要启动哪些 Unit，强制性的，如果不启动该项定义的 Unit 则无法启动该 Unit
+**Requires**(STRING) # 需要启动哪些，说明启动该 Unit 前需要启动哪些 Unit，强制性的，如果不启动该项定义的 Unit 则无法启动该 Unit
 
-**Wants=\<STRING>** # 想要启动哪些，与 Requires 相反，说明启动该 Unit 后想要启动哪些 Unit，非强制
+**Wants**(STRING) # 想要启动哪些，与 Requires 相反，说明启动该 Unit 后想要启动哪些 Unit，非强制
 
-**Conflicts=\<STRING>** # 代表该 Unit 与列表中的 daemon 有冲突，如果该设置里的服务启动了，那么这个 Unit 就不能启动
+**Conflicts**(STRING) # 代表该 Unit 与列表中的 daemon 有冲突，如果该设置里的服务启动了，那么这个 Unit 就不能启动
 
-## \[Install] 部分的指令
+## Install 部分的指令
 
 https://man7.org/linux/man-pages/man5/systemd.unit.5.html#[INSTALL]_SECTION_OPTIONS
 
@@ -91,17 +91,17 @@ https://man7.org/linux/man-pages/man5/systemd.resource-control.5.html
 
 **Delegate=\<STRING>** # 这个选项允许进程(比如 containerd)以及运行时自己管理自己创建的容器的 `cgroups`。如果不设置这个选项，systemd 就会将进程移到自己的 `cgroups` 中，从而导致该进程无法正确获取容器的资源使用情况。
 
-## \[Mount] 部分的指令
+## Mount 部分的指令
 
 TODO: 待整理
 
-## \[Service] 部分的指令
+## Service 部分的指令
 
 https://man7.org/linux/man-pages/man5/systemd.service.5.html
 
 详见 [service Unit](/docs/1.操作系统/Systemd/Unit%20File/service%20Unit.md)
 
-## \[timer] 部分指令
+## Timer 部分指令
 
 https://man7.org/linux/man-pages/man5/systemd.timer.5.html
 

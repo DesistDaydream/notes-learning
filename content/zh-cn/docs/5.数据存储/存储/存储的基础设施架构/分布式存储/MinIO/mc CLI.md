@@ -1,5 +1,7 @@
 ---
-title: mc 工具
+title: mc CLI
+linkTitle: mc CLI
+weight: 100
 ---
 
 # 概述

@@ -2208,7 +2208,7 @@
       "children": [
         "docs/5.数据存储/存储/存储的基础设施架构/分布式存储/MinIO/_index.md",
         "docs/5.数据存储/存储/存储的基础设施架构/分布式存储/MinIO/MinIO.md",
-        "docs/5.数据存储/存储/存储的基础设施架构/分布式存储/MinIO/mc 工具.md"
+        "docs/5.数据存储/存储/存储的基础设施架构/分布式存储/MinIO/mc CLI.md"
       ],
       "sortOrder": "custom"
     },
@@ -2739,7 +2739,7 @@
         "docs/6.可观测性/Metrics/Alertmanager/_index.md",
         "docs/6.可观测性/Metrics/Alertmanager/Alertmanager.md",
         "docs/6.可观测性/Metrics/Alertmanager/Alertmanager 配置.md",
-        "docs/6.可观测性/Metrics/Alertmanager/Alertmanager 数据结构.md",
+        "docs/6.可观测性/Metrics/Alertmanager/Alertmanager API.md",
         "docs/6.可观测性/Metrics/Alertmanager/告警模板详解.md",
         "docs/6.可观测性/Metrics/Alertmanager/Alertmanager 扩展.md"
       ],
