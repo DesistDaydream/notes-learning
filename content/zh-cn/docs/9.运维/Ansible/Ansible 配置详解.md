@@ -66,3 +66,11 @@ Ansible 的配置文件使用 [INI](/docs/2.编程/无法分类的语言/INI.md)
 # \[colors]
 
 # \[diff]
+
+# 最佳实践
+
+```ini
+[defaults]
+host_key_checking = False
+remote_tmp = /tmp/ansible-tmp
+```

@@ -83,9 +83,11 @@ int dn_expand(const unsigned char *msg,
 
 例：当 ping TEST-1 时，则 ping 192.168.2.3
 
-    127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
-    ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
-    192.168.2.3 TEST-1
+```bash
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.2.3 TEST-1
+```
 
 **/PATH/TO/nsswitch.conf** # 名称服务切换配置。GUN C 库(glibc) 和 某些其他应用程序使用该配置文件来确定从哪些地方获取解析信息。比如是否要读取 /etc/hosts 文件
 

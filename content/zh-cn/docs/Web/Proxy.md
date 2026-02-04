@@ -64,6 +64,10 @@ export https_proxy="http://${hostip}:8080"
 export all_proxy="sock5://${hostip}:1080"
 ```
 
+[GitHub 项目，go-gost/gost](https://github.com/go-gost/gost)
+
+- ginuerzh/gost 项目的 3.0 版本
+
 [GitHub 项目，vacuityv/vacproxy](https://github.com/vacuityv/vacproxy)
 
 - Go 语言编写，简单的 http 代理

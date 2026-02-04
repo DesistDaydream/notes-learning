@@ -9,7 +9,7 @@ weight: 1
 >
 > - [GitHub 项目，NetworkManager/NetworkManager](https://github.com/NetworkManager/NetworkManager)
 > - [GitLab 项目，freedesktop-NetworkManager/NetworkManager](https://gitlab.freedesktop.org/NetworkManager/NetworkManager)
-> - [Manual(手册),NetworkManager.conf(5)](https://networkmanager.dev/docs/api/latest/NetworkManager.conf.html)
+> - [Manual(手册), NetworkManager.conf(5)](https://networkmanager.dev/docs/api/latest/NetworkManager.conf.html)
 > - [官网](https://networkmanager.dev/)
 
 **NetworkManager daemon** 是管理网络的守护进程。该守护进程尝试通过管理主网络连接和其他网络接口（如以太网，WiFi 和移动宽带设备），使网络配置和操作尽可能轻松自动。 除非禁用该行为，否则 NetworkManager 将在该设备的连接可用时连接任何网络设备。 有关网络的信息通过 D-Bus 接口导出到任何感兴趣的应用程序，提供丰富的 API，用于检查和控制网络设置和操作。

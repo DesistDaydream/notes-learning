@@ -63,7 +63,7 @@ Ubuntu 使用 OpenBSD 的 Netcat 作为 Netcat 的替代品
 安装 netcat-openbsd 包即可，安装完成后，nc 命令本质上是 nc.openbsd 命令的软链接
 
 ```bash
- ~]# ll /usr/bin/nc
+~]# ll /usr/bin/nc
 lrwxrwxrwx 1 root root 20 Aug 10  2023 /usr/bin/nc -> /etc/alternatives/nc*
 ~]# ll /etc/alternatives/nc
 lrwxrwxrwx 1 root root 15 Aug 10  2023 /etc/alternatives/nc -> /bin/nc.openbsd*

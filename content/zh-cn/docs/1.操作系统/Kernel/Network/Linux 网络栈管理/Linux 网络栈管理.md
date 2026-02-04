@@ -77,7 +77,7 @@ weight: 1
 
 在这些目录中，其实都是通过脚本来实现的
 
-后来随着时代的发展，涌现出很多通用的网络管理程序，比如 [Netplan](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Netplan/Netplan.md)、[NetworkManager](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/NetworkManager/NetworkManager.md)、[systemd-networkd](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/systemd-networkd.md)、etc.，这样就可以让各个发行版使用相同的程序来管理网络了，减少切换发行版而需要学习对应配置的成本，并且也更利于发展。
+后来随着时代的发展，涌现出很多通用的网络管理程序，比如 [systemd-networkd](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/systemd-networkd.md)、[NetworkManager](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/NetworkManager/NetworkManager.md)、[Netplan](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Netplan/Netplan.md)、etc.，这样就可以让各个发行版使用相同的程序来管理网络了，减少切换发行版而需要学习对应配置的成本，并且也更利于发展。
 
 ## /proc/net/
 
