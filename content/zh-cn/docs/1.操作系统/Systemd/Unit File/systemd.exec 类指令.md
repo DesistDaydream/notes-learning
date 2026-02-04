@@ -36,7 +36,7 @@ https://man7.org/linux/man-pages/man5/systemd.exec.5.html#PATHS
 
 Paths(路径) 相关的指令可用于更改 Unit 中的程序在运行时所能使用的文件系统范围。请注意，路径必须是绝对路径，并且不得包含 `..` 路径语法。
 
-用人话说：类似设置 [Chroot](docs/1.操作系统/Kernel/Process/Chroot.md) 行为。设置进程的工作目录、等等
+用人话说：类似设置 [Chroot](/docs/1.操作系统/Kernel/Process/Chroot.md) 行为。设置进程的工作目录、等等
 
 **WorkingDirectory**(STRING) # 采用相对于由 RootDirectory 指令 或特殊值 `~` 指定的服务根目录的目录路径。
 

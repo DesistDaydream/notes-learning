@@ -1,6 +1,6 @@
 ---
-title: 运维
-linkTitle: 运维
+title: Operations
+linkTitle: Operations
 weight: 1
 ---
 

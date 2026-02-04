@@ -26,7 +26,7 @@ Clonezilla live 适用于单机备份和恢复。虽然 Clonezilla 精简版服�
 
 > 注意：进行还原的机器需要与进行镜像封装的机器关键硬件配置一致，否则可能产生显卡驱动无法使用等问题
 
-Clonezilla Live 本身就是一个小型的 Liunx 发行版，像是 Linux 版的 [WinPE](docs/1.操作系统/Operating%20system/WinPE.md)。除了图形页面可供操作外，还可以通过命令行，执行诸如 ssh 之类的命令。这也就意味着，Clonezilla 可以读写远程存储设备中，封装好的 Linux 镜像可以直接写入到 NFS、S3 中，还原 Linux 时，也可以从这些远程存储设备中读取镜像。
+Clonezilla Live 本身就是一个小型的 Liunx 发行版，像是 Linux 版的 [WinPE](/docs/1.操作系统/Operating%20system/WinPE.md)。除了图形页面可供操作外，还可以通过命令行，执行诸如 ssh 之类的命令。这也就意味着，Clonezilla 可以读写远程存储设备中，封装好的 Linux 镜像可以直接写入到 NFS、S3 中，还原 Linux 时，也可以从这些远程存储设备中读取镜像。
 
 Clonezilla 源码实际上是运行程序本身，因为它们使用脚本(bash 或 perl)编写的。最初始保存在 [NCHC 存储库](https://free.nchc.org.tw/clonezilla-live/)中。在这个存储库中，我们可以从 [experimental/](https://free.nchc.org.tw/clonezilla-live/experimental/) 目录下找到 ARM 版本的 Clonezilla。
 
@@ -182,7 +182,7 @@ s3fs my-ocs-img /home/partimag -o passwd_file=/root/.passwd-s3fs -o url="https:/
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/clonezilla/clonezilla_config_args_1.png)
 
-## 选择要执行的操作
+## 选择封装要执行的操作
 
 选择“savedisk 存储本机硬盘为镜像文件”
 
@@ -236,7 +236,7 @@ s3fs my-ocs-img /home/partimag -o passwd_file=/root/.passwd-s3fs -o url="https:/
 
 在选择执行操作前，所有步骤与[封装Linux系统](#封装linux系统)前面的步骤一样
 
-## 选择要执行的操作
+## 选择还原要执行的操作
 
 选择“restoredisk 还原镜像文件到本机硬盘”
 

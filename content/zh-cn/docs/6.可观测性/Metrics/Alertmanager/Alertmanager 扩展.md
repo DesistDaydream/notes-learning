@@ -8,7 +8,7 @@ weight: 20
 
 > 参考：
 >
-> - 
+> -
 
 Alertmanager 自带一个 UI 界面，可以用来查看报警和静默管理。但是告警发送目标、历史告警、etc. 个性化功能还比较缺，有很多项目可以补充这些能力。
 
@@ -20,7 +20,7 @@ Alertmanager 自带一个 UI 界面，可以用来查看报警和静默管理。
 [GitHub 项目，feiyu563/PrometheusAlert](https://github.com/feiyu563/PrometheusAlert) # 可以提供更多的通知功能，将告警发送到各种地方。
 
 - 利用 template.FuncMap 函数在 go tmpl 中加入了一些自定义函数，e.g. toUpper、etc.
-- 该程序在使用 [Alertmanager API](docs/6.可观测性/Metrics/Alertmanager/Alertmanager%20API.md) 中的 webhook 推送的数据结构时，<font color="#ff0000">虽然设计了 struct，但是在模板中调用 struct 中的属性时，开头字母要是小写，这种模板跟很多扩展都不通用</font>。
+- 该程序在使用 [Alertmanager API](/docs/6.可观测性/Metrics/Alertmanager/Alertmanager%20API.md) 中的 webhook 推送的数据结构时，<font color="#ff0000">虽然设计了 struct，但是在模板中调用 struct 中的属性时，开头字母要是小写，这种模板跟很多扩展都不通用</font>。
 
 https://github.com/opsre/WatchAlert # 多数据源监控告警引擎
 

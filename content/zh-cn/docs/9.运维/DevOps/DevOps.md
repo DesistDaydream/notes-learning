@@ -10,9 +10,9 @@ weight: 20
 >
 > -
 
-**Developer(开发者)**
+**Developer(开发者)/Development(开发)**
 
-**Operator(操作者(运维))**
+**Operator(运维者)/Operations(运维)**
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/mcelwu/1616077542789-b79d4008-5e43-4380-a6a5-ab0c2b95cdd2.jpeg)
 
@@ -39,7 +39,7 @@ DevOps 是一种文化，是一组过程、方法与系统的统称，用于促�
 >
 > - [公众号-云原声实验室，大妈都能看懂的 GitOps 入门指南](https://mp.weixin.qq.com/s/JkZP9X2g9TOj6QkrbCDRQQ)
 
-GitOps 这个概念最早是由 Kubernetes 管理公司 Weaveworks 公司在 2017 年提出的，如今已经过去了 5 个年头，想必大家对这个概念早有耳闻，但你可能并不知道它到底是什么，它和 DevOps 到底是啥关系，本文就来帮大家一一解惑。
+GitOps 这个概念最早是由 [Kubernetes](/docs/10.云原生/Kubernetes/Kubernetes.md) 管理公司 Weaveworks 公司在 2017 年提出的，如今已经过去了 5 个年头，想必大家对这个概念早有耳闻，但你可能并不知道它到底是什么，它和 DevOps 到底是啥关系，本文就来帮大家一一解惑。
 
 GitOps = IaC + Git + CI/CD，即基于 IaC 的版本化 CI/CD。它的核心是使用 Git 仓库来管理基础设施和应用的配置，并且**以 Git 仓库作为基础设施和应用的单一事实来源**，你从其他地方修改配置（比如手动改线上配置）一概不予通过。
 

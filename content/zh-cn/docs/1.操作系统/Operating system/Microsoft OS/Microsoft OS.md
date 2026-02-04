@@ -30,7 +30,7 @@ Microsoft OS 也是 [Operating system](/docs/1.操作系统/Operating%20system/O
 
 ---
 
-**使用 Rufus 这个 [ISO文件与可启动U盘](docs/1.操作系统/Operating%20system/ISO文件与可启动U盘.md) 创建安装 U 盘**
+**使用 Rufus 这个 [ISO文件与可启动U盘](/docs/1.操作系统/Operating%20system/ISO文件与可启动U盘.md) 创建安装 U 盘**
 
 - 打开 https://www.microsoft.com/en-us/software-download/windows11
 - 从 Download Windows 11 Disk Image (ISO) for x64 devices 选择要下载的版本；点击 Confirm

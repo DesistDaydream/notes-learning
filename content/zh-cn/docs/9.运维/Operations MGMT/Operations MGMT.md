@@ -1,6 +1,6 @@
 ---
-title: 运维管理
-linkTitle: 运维管理
+title: Operations MGMT
+linkTitle: Operations MGMT
 weight: 1
 ---
 
@@ -138,8 +138,9 @@ Go 语言实现的
 - 基于 SSH 的
   - https://github.com/skx/deployr
   - https://github.com/melbahja/goph
+
 - 带有 Client 的
-  - 
+  -
 
 # 运维平台最佳实践
 
@@ -154,10 +155,11 @@ https://github.com/search?q=language%3AGo%20cmdb&type=repositories # Go 语言 C
 - https://github.com/TencentBlueKing/bk-cmdb # 蓝鲸智云配置平台(BlueKing CMDB)
 - https://github.com/WeBankPartners/we-cmdb # 微众银行运维管理实践的的一套 CMDB
 - https://github.com/Duke1616/ecmdb # CMDB、工单一体化平台
-- https://github.com/ydcloud-dy/cmdb-server
-- https://github.com/tahopetis/Pustaka
 - https://github.com/opsre/AutoOps
-    - https://space.bilibili.com/450785887/upload/video
+  - https://space.bilibili.com/450785887/upload/video
+- https://github.com/tahopetis/Pustaka # 单 CMDB
+- https://github.com/ydcloud-dy/cmdb-server # K8S多集群管理平台、CMDB、CICD后端
+  - 最后一次 commit 2024年12月27日
 
 # AI 运维最佳实践
 

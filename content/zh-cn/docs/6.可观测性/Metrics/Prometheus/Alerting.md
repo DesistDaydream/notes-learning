@@ -73,7 +73,7 @@ rule_files:
 >
 > **<font color="#ff0000">也就是说，不要自己写一个程序，频繁对 Prometheus 发起 PromQL 查询请求，来生成告警。</font>**
 
-从 0.27.0 版本开始，[Alertmanager API](docs/6.可观测性/Metrics/Alertmanager/Alertmanager%20API.md) v1 弃用，只使用 v2 版本的 API。默认路径为 /api/v2/alerts，是用来监听发送到自身的告警。
+从 0.27.0 版本开始，[Alertmanager API](/docs/6.可观测性/Metrics/Alertmanager/Alertmanager%20API.md) v1 弃用，只使用 v2 版本的 API。默认路径为 /api/v2/alerts，是用来监听发送到自身的告警。
 
 推送路径根据 [Promethesu Server](/docs/6.可观测性/Metrics/Prometheus/Configuration/Promethesu%20Server.md) 文件中 `alerting.alertmanagers.api_version` 和 `alerting.alertmanagers.path_prefix` 这两个字段决定。
 
@@ -109,10 +109,10 @@ Prometheus 产生告警后，会通过 POST 请求将下列 JSON 格式内容向
 Prometheus 使用如下几部分内容填充 labels 字段中：
 
 - alertname 字段，该字段的的值就是 Prometheus Server 的 Rules 配置文件中的 .groups.rules.alert 字段的值
-- 告警规则配置文件 [Rules](docs/6.可观测性/Metrics/Prometheus/Configuration/Rules.md) 中，`groups[X].rules[X].labels` 定义的内容
+- 告警规则配置文件 [Rules](/docs/6.可观测性/Metrics/Prometheus/Configuration/Rules.md) 中，`groups[X].rules[X].labels` 定义的内容
 - 产生告警的时间序列所具有的标签
 
-Prometheus 使用告警规则配置文件 [Rules](docs/6.可观测性/Metrics/Prometheus/Configuration/Rules.md) 中，`groups[X].rules[X].annotations` 定义的内容填充到 annotations 字段中
+Prometheus 使用告警规则配置文件 [Rules](/docs/6.可观测性/Metrics/Prometheus/Configuration/Rules.md) 中，`groups[X].rules[X].annotations` 定义的内容填充到 annotations 字段中
 
 ## startsAt 与 endsAt 字段
 

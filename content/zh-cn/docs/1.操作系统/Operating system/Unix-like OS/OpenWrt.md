@@ -31,7 +31,7 @@ OpenWrt 生态项目
 
 # 安装
 
-与 [安装操作系统](docs/1.操作系统/Operating%20system/安装操作系统.md) 的逻辑类似，大体分如下几步
+与 [安装操作系统](/docs/1.操作系统/Operating%20system/安装操作系统.md) 的逻辑类似，大体分如下几步
 
 - 下载 Release
 - 将 Release 制作到 U 盘中

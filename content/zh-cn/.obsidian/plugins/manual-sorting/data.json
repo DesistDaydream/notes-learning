@@ -104,8 +104,9 @@
         "docs/0.计算机/Disk",
         "docs/0.计算机/Peripheral",
         "docs/0.计算机/GPU",
-        "docs/0.计算机/小型机器.md",
+        "docs/0.计算机/未命名.md",
         "docs/0.计算机/计算机厂家信息.md",
+        "docs/0.计算机/小型机器.md",
         "docs/0.计算机/Rack.md"
       ],
       "sortOrder": "custom"
@@ -3256,21 +3257,13 @@
     "docs/9.运维": {
       "children": [
         "docs/9.运维/_index.md",
-        "docs/9.运维/Glossary.md",
-        "docs/9.运维/运维.md",
-        "docs/9.运维/运维管理",
+        "docs/9.运维/Operations.md",
+        "docs/9.运维/Operations MGMT",
         "docs/9.运维/Ansible",
         "docs/9.运维/Cobbler",
         "docs/9.运维/DevOps",
-        "docs/9.运维/应用发布.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "docs/9.运维/运维管理": {
-      "children": [
-        "docs/9.运维/运维管理/_index.md",
-        "docs/9.运维/运维管理/运维管理.md",
-        "docs/9.运维/运维管理/CMDB.md"
+        "docs/9.运维/应用发布.md",
+        "docs/9.运维/Glossary.md"
       ],
       "sortOrder": "custom"
     },
@@ -3429,6 +3422,14 @@
         "docs/9.运维/DevOps/Skaffold/Skaffold.md",
         "docs/9.运维/DevOps/Skaffold/Skaffold Pipeline 详解.md",
         "docs/9.运维/DevOps/Skaffold/Skaffold 命令行工具.md"
+      ],
+      "sortOrder": "custom"
+    },
+    "docs/9.运维/Operations MGMT": {
+      "children": [
+        "docs/9.运维/Operations MGMT/_index.md",
+        "docs/9.运维/Operations MGMT/Operations MGMT.md",
+        "docs/9.运维/Operations MGMT/CMDB.md"
       ],
       "sortOrder": "custom"
     },
