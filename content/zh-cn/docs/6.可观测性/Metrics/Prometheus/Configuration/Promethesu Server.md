@@ -519,9 +519,19 @@ type HTTPClientConfig struct {
 
 **oauth2**(Object) # 配置 OAuth 2.0 的认证配置。与 basic_auth 和 authorization 两个字段互斥
 
-**proxy_url**(STRING) # 指定代理的 URL
-
 **tls_config**([tls_config](#tls_config)) # 指定抓取 metrics 请求时的 TLS 设定
+
+---
+
+HTTP 代理相关配置
+
+**proxy_url**(STRING) # 指定代理的 URL。e.g. `proxy_url: "socks5://211.136.94.205:1080"`
+
+**no-proxy**(STRING) # 不使用代理的目标。可以使用 IP, CIDR, 域名。
+
+**proxy_from_environment**(BOOLEAN) # 是否使用环境变量中得代理。`默认值: false`。环境变量指 HTTP_PROXY, https_proxy, HTTPs_PROXY, https_proxy, and no_proxy
+
+**proxy_connect_header**(map\[STRING]STRING) # 
 
 ### tls_config
 
