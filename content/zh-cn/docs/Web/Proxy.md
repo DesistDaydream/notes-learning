@@ -49,24 +49,70 @@ Squid 是一款老牌的可以提供代理服务的程序。Squid 版本 1.0.0 �
 
 - **./squid.conf** # 主要配置文件
 
-# 其他
+# GOST
 
-[GitHub 项目，ginuerzh/gost](https://github.com/ginuerzh/gost)
+> 参考：
+>
+> - [GitHub 项目，ginuerzh/gost](https://github.com/ginuerzh/gost)
+> - [GitHub 项目，go-gost/gost](https://github.com/go-gost/gost)
+>     - ginuerzh/gost 项目的 3.0 版本
 
-- Golang 语言编写，简单隧道
-- `gost -L http://:8080 -L socks5://:1080` 使用命令直接启动一个简单的代理。
-  - 然后在 Shell 中配置代理即可
+GO Simple Tunnel(Go 简单隧道，简称 GOST)  是 [Go](docs/2.编程/高级编程语言/Go/Go.md)  语言编写的，实现了简单隧道的程序。
+
+> [!Tip] 甚至可以把 GOST 当作没有实现 [Secure Shell Protocol](docs/4.数据通信/Protocol/Secure%20Shell%20Protocol.md) 的 [OpenSSH](docs/4.数据通信/Utility/OpenSSH/OpenSSH.md) 程序
+
+## 架构
+
+https://gost.run/concepts/architecture/
+
+TODO
+
+## 最佳实践
+
+`gost -L http://:8080 -L socks5://:1080` 使用命令直接启动一个简单的代理。
+
+- 然后在 Shell 中配置代理即可
 
 ```bash
 export hostip="192.168.254.254"
-export http_proxy="http://${hostip}:8080"
-export https_proxy="http://${hostip}:8080"
+export http_proxy="http://${hostip}:1080"
+export https_proxy="http://${hostip}:1080"
 export all_proxy="sock5://${hostip}:1080"
 ```
 
-[GitHub 项目，go-gost/gost](https://github.com/go-gost/gost)
+### 实现 SSH 的远程转发功能
 
-- ginuerzh/gost 项目的 3.0 版本
+环境: A 可以访问 B，B 不可以访问 A。
+
+诉求: B 想要访问 A 的 3100 端口
+
+B 上执行（这其实就类似启动了一个不带 ssh 能力的 sshd 服务。）
+
+```bash
+/usr/local/bin/gost -L "relay://:13100?bind=true"
+```
+
+A 上执行
+
+```bash
+/usr/local/bin/gost -L rtcp://${B-IP}:3100/${A-IP}:3100 \
+  -F relay://${B-IP}:13100
+```
+
+解释：
+
+- 本地使用随机端口，与 `${B-IP}:13100` 建立连接。假如端口是 12345
+- `rtcp://${B-IP}:3100` # 告诉 B 的 GOST，在本地开启 3100 监听
+- B:3100 上收到的数据包会转发给 B:13100，传输到 A:12345。然后，A 的 GOST 将 A:12345 收到的数据包转发到 A:3100
+
+> [!Attention]
+> 有时候有防火墙，B 在防火墙后面，A 只能通过防火墙映射的端口访问到 B 的 13100。在这种情况下
+>
+> `/usr/local/bin/gost -L rtcp://0.0.0.0:3100/${A-IP}:3100 -F relay://${映射-IP}:${映射-PORT}`
+>
+> 
+
+# 其他
 
 [GitHub 项目，vacuityv/vacproxy](https://github.com/vacuityv/vacproxy)
 
