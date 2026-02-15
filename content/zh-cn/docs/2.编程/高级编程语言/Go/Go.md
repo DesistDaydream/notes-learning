@@ -17,7 +17,7 @@ weight: 1
 
 Go 是一种开源编程语言，可以轻松构建 **simple(简单)**、**reliable(可靠)** 和 **efficient(高效)** 的软件。
 
-## 学习资料
+# 学习资料
 
 [菜鸟教程，Go](https://www.runoob.com/go/go-tutorial.html)（快速上手尝试，简单直接）
 
