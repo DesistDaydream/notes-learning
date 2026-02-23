@@ -1,12 +1,16 @@
 ---
 title: CDN
+linkTitle: CDN
+weight: 100
 ---
 
 # 概述
 
-http://3ms.huawei.com/km/groups/1002549/home?l=zh-cn#category=5402776 学习材料
+> 参考：
+>
+> - [Wiki, Content delivery network](https://en.wikipedia.org/wiki/Content_delivery_network)
 
-**Content Delivery Network(内容分发网络，简称 CDN)**
+**Content delivery network(内容分发网络，简称 CDN)**
 
 内容的定义：内容就是资源，人们浏览的网页，下载的数据，观看的视频等等都属于内容范畴
 
@@ -50,6 +54,10 @@ Cache 结构
 10. TCP_REFRESH_UKN_MISS：内网用户请求的资源命中了 HCS 已缓存资源，但 HCS 需要检查这个资源是否已更新，但未能判断出是否更新，代理访问。
 11. TCP_REFRESH_NC_MISS：内网用户请求的资源命中了 HCS 已缓存资源，但 HCS 需要检查这个资源是否已更新，，外网 Web 服务器通知 HCS 这个资源未修改，但未从本地吐出，代理访问。
 
+# 学习资料
+
+http://3ms.huawei.com/km/groups/1002549/home?l=zh-cn#category=5402776 学习材料
+
 # PCDN
 
 > 参考：
@@ -58,5 +66,9 @@ Cache 结构
 P2P 与 CDN 技术的结合
 
 京东云无线宝
+
+星域云
+
+- 好像京东云无线宝用的就是星域云？从后来文件看有 xycloud_base_info 文件
 
 网心云

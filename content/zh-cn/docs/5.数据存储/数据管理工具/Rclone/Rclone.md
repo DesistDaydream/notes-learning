@@ -153,3 +153,15 @@ Start-Process "rclone.exe" `
 ```
 
 然后可以参考 Windows 管理中的 [启动项](/docs/1.操作系统/Windows%20管理/启动项.md) 以便开机时自动挂载。
+
+## rclone 自动化
+
+首先要开启 Rclone 的 Remote control(远程控制) 功能，添加如下参数到命令中
+
+    `--rc --rc-no-auth`
+
+刷新已挂载的指定目录，这里要刷新的是 `local_data/portable_hard_drive/games` 目录
+
+```bash
+rclone rc vfs/refresh dir=local_data/portable_hard_drive/games recursive=true
+```
