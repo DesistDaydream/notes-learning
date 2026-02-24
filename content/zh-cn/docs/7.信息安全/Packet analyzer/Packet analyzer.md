@@ -20,7 +20,7 @@ weight: 1
 - [WireShark](/docs/7.信息安全/Packet%20analyzer/WireShark/WireShark.md)
 - ......等等
 
-# 抓包工具
+# 抓包程序
 
 Reqable
 
@@ -31,6 +31,11 @@ Reqable
 [Fiddler](/docs/7.信息安全/Packet%20analyzer/Fiddler.md)
 
 [Charles](/docs/7.信息安全/Packet%20analyzer/Charles.md)
+
+ProxyPin
+
+- [GitHub 项目，wanghongenpin/proxypin](https://github.com/wanghongenpin/proxypin)
+- 开源的 HTTP(S) 流量捕获软件，支持 Windows、Mac、Android、iOS、Linux 全平台系统
 
 mitmproxy
 
@@ -50,4 +55,27 @@ openQPA
 
 [SunnyNetTools](https://github.com/qtgolang/SunnyNetTools)
 
-- Sunny网络中间件-抓包工具
+- Sunny 网络中间件-抓包工具
+
+# Android 抓包
+
+抓包方式
+
+- PC 上运行抓包程序，Wiki 设置代理到 PC
+    - 有些人选择 fiddler 的 CA 导入到安卓手机内，然后电脑上运行 fiddler，安卓 WIFI 设置代理为电脑的fddler 端口，然后发现有些 apk 会检测 WIFI是否设置代理，存在就不走代理导致无法抓到手机 apk 的https 报文。所以还是要安卓上安装软件+VPNService 指定 app 来搞中间人拦截。
+- Android 上安装抓包程序
+
+常见问题：
+
+- 证书安装成功，但是抓到的包都是 unknow，可能的原因：
+    - Android7.0 之后默认不信任用户级别 CA 证书
+    - 此时开启抓包后，很多 APP 都是无网络的情况；但是 chrome 打开网页是可以抓到 https 的包
+    - 需要想办法安装在系统级别下的 CA 证书。
+        - 有些 APP 内嵌证书，需要修改程序内部逻辑
+    - 可能的方法
+      - 平行空间
+      - 获取系统 Root 权限
+
+解决方式：
+
+- 用苹果的 IOS 系统~~

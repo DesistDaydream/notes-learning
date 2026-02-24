@@ -336,6 +336,8 @@ https://www.bilibili.com/video/BV1ew411K7nB/?p=17 及后面几 P
 
 [简书，某App接口逆向过程](https://www.jianshu.com/p/040d54a57e33)
 
+TODO:  学习安卓的如何加载 apk 执行的。它不管怎么加，最终都要交给 art 执行的。art 可以不认密文
+
 ### Jadx
 
 > 参考：
