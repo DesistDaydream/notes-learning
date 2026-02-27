@@ -79,3 +79,7 @@ openQPA
 解决方式：
 
 - 用苹果的 IOS 系统~~
+
+# 最佳实践
+
+[馆长 Blog，安卓 HTTPS 抓包那些事](https://zhangguanzhang.github.io/2026/02/23/android-https-capture/)

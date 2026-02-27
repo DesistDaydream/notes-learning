@@ -71,7 +71,7 @@ EXAMPLE
 
 commit Record changes to the repository
 
-# 分支与合并
+# 分支管理
 
 ## log - 展示所有 commit 的记录。默认展示当前分支
 
@@ -102,6 +102,12 @@ tag Create, list, delete or verify a tag object signed with GPG
 ## tag - 管理仓库的 Tag 信息
 
 git tag -d v0.7.0 删除 v0.7.0 这个 Tag
+
+## cherry-pick - 
+
+https://git-scm.com/docs/git-cherry-pick
+
+cherry-pick(拣选)
 
 # 分享和更新项目
 

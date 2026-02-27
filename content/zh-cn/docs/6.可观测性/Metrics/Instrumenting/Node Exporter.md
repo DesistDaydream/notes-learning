@@ -207,3 +207,25 @@ float64(stats.IOsTotalTicks) * secondsPerTick
 ```
 
 所以，`node_disk_io_time_seconds_total` 每秒钟增长的值最多就是 1，那么 rate 之后的结果就可以作为使用率。
+
+## node_filesystem_readonly
+
+该指标的信息来源于: [filesystem_linux.go](https://github.com/prometheus/node_exporter/blob/release-1.8/collector/filesystem_linux.go#L215)，读取了 `/proc/1/mounts` 中的第 4 个字段，并解析其中是否有 ro 作为该指标的样本值。
+
+在这次 [commit](https://github.com/prometheus/node_exporter/commit/b9d0932179a0c5b3a8863f3d6cdafe8584cedc8e) 之后，来源文件从 `/proc/1/mounts` 改为 `/proc/1/mountinf` 以获取该指标的样本值。此时可能会导致一些真实情况被掩盖，比如：
+
+```bash
+>> grep home /proc/1/mounts
+/dev/sdb3 /home ext4 ro,relatime,stripe=704 0 0
+>> grep home /proc/1/mountinfo 
+274 94 8:19 / /home rw,relatime shared:98 - ext4 /dev/sdb3 ro,stripe=704
+>> mkdir /home/tmp
+mkdir: cannot create directory "/home/tmp": Read-only file system
+```
+
+可以看到，文件系统已经只读了，但是只从 mountinfo 的第 6 个字段无法显示当前的真实状态。
+
+相关 Issue:
+
+- https://github.com/prometheus/node_exporter/issues/3157
+- https://github.com/prometheus/node_exporter/issues/3484

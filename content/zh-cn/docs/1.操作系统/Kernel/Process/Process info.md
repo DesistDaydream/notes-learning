@@ -72,29 +72,37 @@ Linux 中有多种途径可以获取进程信息
   - \[vdso]    Virtual Dynamically linked Shared Object
   - \[heap]     进程的 heap
 
+## ./mounts
+
+老版本的简单的挂载信息，与特定进程无关
+
 ## ./mountinfo - 进程的 mount namespace 的信息
+
+https://github.com/torvalds/linux/blob/v5.19/Documentation/filesystems/proc.rst#35-----procpidmountinfo---information-about-mounts
+
+> 该文件于 Linux 2.6.26 引入
 
 该文件比 /proc/PID/mounts 的信息更全免并修复了一些问题，适用于云原生时代的大量 mount namesapces。
 
 该文件中每一行都是一条挂载信息，每条挂载信息由如下几个部分组成：
 
 | 挂载 ID | 父 ID | major:minor | root  | mount point | mount options | optional fields | separator | filesystem type | mount source | super options      |
-| ------- | ----- | ----------- | ----- | ----------- | ------------- | --------------- | --------- | --------------- | ------------ | ------------------ |
-| 36      | 35    | 98:00:00    | /mnt1 | /mnt2       | rw,noatime    | master:1        | -         | ext3            | /dev/root    | rw,errors=continue |
+| ----- | ---- | ----------- | ----- | ----------- | ------------- | --------------- | --------- | --------------- | ------------ | ------------------ |
+| 36    | 35   | 98:00:00    | /mnt1 | /mnt2       | rw,noatime    | master:1        | -         | ext3            | /dev/root    | rw,errors=continue |
 
-- mount ID # 挂载的唯一 ID
-- parent ID # the ID of the parent mount (or of self for the root of this mount namespace's mount tree).
+- **mount ID** # 挂载的唯一 ID
+- **parent ID** # the ID of the parent mount (or of self for the root of this mount namespace's mount tree).
   - If a new mount is stacked on top of a previous existing mount (so that it hides the existing mount) at pathname P, then the parent of the new mount is the previous mount at that location. Thus, when looking at all the mounts stacked at a particular location, the top-most mount is the one that is not the parent of any other mount at the same location. (Note, however, that this top-most mount will be accessible only if the longest path subprefix of P that is a mount point is not itself hidden by a stacked mount.)
   - If the parent mount lies outside the process's root directory (see chroot(2)), the ID shown here won't have a corresponding record in mountinfo whose mount ID (field 1) matches this parent mount ID (because mounts that lie outside the process's root directory are not shown in mountinfo). As a special case of this point, the process's root mount masy have a parent mount (for the initramfs filesystem) that lies outside the process's root directory, and an entry for that mount will not appear in mountinfo.
-- major:minor # the value of st_dev for files on this filesystem (see [stat(2)](https://man7.org/linux/man-pages/man2/stat.2.html)).
-- root # the pathname of the directory in the filesystem which forms the root of this mount.
-- mount point # 挂载点 the pathname of the mount point relative to the process's root directory.
-- mount options # 挂载选项 per-mount options (see mount(2)).
-- optional fields # zero or more fields of the form "tag\[:value]"; see below.
-- separator # the end of the optional fields is marked by a single hyphen.
-- filesystem type # 挂载的文件系统类型 the filesystem type in the form "type\[.subtype]".
-- mount source # filesystem-specific information or "none".
-- super options # 超级快选项。per-superblock options (see mount(2)).
+- **major:minor** # the value of st_dev for files on this filesystem (see [stat(2)](https://man7.org/linux/man-pages/man2/stat.2.html)).
+- **root** # 文件系统中构成此挂载的根目录的路径名
+- **mount point** # 挂载点，相对于进程根目录的挂载路径
+- **mount options** # 每个挂载的选项。(see mount(2)).
+- **optional fields** # zero or more fields of the form "tag\[:value]"; see below.
+- **separator** # the end of the optional fields is marked by a single hyphen.
+- **filesystem type** # 挂载的文件系统类型 the filesystem type in the form "type\[.subtype]".
+- **mount source** # filesystem-specific information or "none".
+- **super options** # 每个超级块的选项。 (see mount(2)).
 
 ## ./root/ - 每个进程的文件系统的 `/` 目录
 
