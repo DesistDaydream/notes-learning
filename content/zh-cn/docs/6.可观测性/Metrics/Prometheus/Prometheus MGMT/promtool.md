@@ -73,3 +73,13 @@ promtool query \
 
 可以生成 [pprof](/docs/2.编程/高级编程语言/Go/Go%20工具/pprof/pprof.md) 的 Profile 文件
 
+# test
+
+> 参考：
+>
+> - [官方文档，CLI - promtool - test](https://prometheus.io/docs/prometheus/latest/command-line/promtool/#promtool-test)
+
+使用单元测试文件中的规则，测试 Prom 的 查询、规则、etc. 是否符合预期
+
+单元测试文件的写法详见 [Unit testing](/docs/6.可观测性/Metrics/Prometheus/Configuration/Unit%20testing.md)
+

@@ -2813,7 +2813,8 @@
         "docs/6.可观测性/Metrics/Prometheus/Configuration/_index.md",
         "docs/6.可观测性/Metrics/Prometheus/Configuration/Promethesu Server.md",
         "docs/6.可观测性/Metrics/Prometheus/Configuration/Rules.md",
-        "docs/6.可观测性/Metrics/Prometheus/Configuration/Template.md"
+        "docs/6.可观测性/Metrics/Prometheus/Configuration/Template.md",
+        "docs/6.可观测性/Metrics/Prometheus/Configuration/Unit testing.md"
       ],
       "sortOrder": "custom"
     },

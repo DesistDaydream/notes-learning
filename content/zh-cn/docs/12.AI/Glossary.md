@@ -101,3 +101,4 @@ Encoder/Decoder # Attention is all you need 论文 3.1 节
 **Tensor(张量)** 简单基础得可以理解为多维数组。一阶张量 等价于 一维数组
 
 
+TODO: 向量是二维张量，是张量的一种特殊形式。

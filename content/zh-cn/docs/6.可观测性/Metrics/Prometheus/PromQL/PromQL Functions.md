@@ -39,13 +39,13 @@ Prometheus 提供了其它大量的内置函数，可以对时序数据进行丰
 
 效果如下：
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/promql/function_absent_1.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/promql/function_absent_1.png)
 
 absent() 函数特别适用于告警，用于判断**单条时间序列**（给定 Name 与 Label 组合成的 Metrics）是否存在。
 
 比如，现在有如下两条时间序列
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/promql/function_202409241131390.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/prometheus/promql/function_202409241131390.png)
 
 从图中前两个 promql 的结果可以看出来，只有<font color="#ff0000">对具体的单一的时间序列进行 absent 的判断，才可以触发</font>。若一个 Metrics Name 下有多条时间序列，那么就算其中一条没数据了，通过 absent() 也无法判断 up 中所有时间序列是否存在，而是对 up 本身是否存在进行判断。
 
