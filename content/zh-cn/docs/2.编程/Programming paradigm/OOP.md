@@ -85,3 +85,20 @@ _All problems in computer science can be solved by another level of indirection.
 > - “动物类型”的方法则可以有：睡、跑、眨眼 等等
 
 基于上述概念，可以再进行一步抽象。若某些 Class 中的某些 Methods 相同的时候，这些具有某些相同 Metods 的 Class 可以统称为一个 Interface。Interface 也是一个类型，只不过这个类型包含多种 Class 对象类型。Interface 也可以实例化，只不过 Interface 中没有 Attributes，而是一堆 Methods 的集合。
+
+# Composition(组合)
+
+> 参考：
+>
+> - [Wiki, Object composition](https://en.wikipedia.org/wiki/Object_composition)
+
+**Object composition(对象组合，简称 组合)**，可以让一个对象包含其他对象。e.g. 一个 `Employee` 对象可以包含一个 `Address` 对象，及该对象的所有属性，如果 Address 中包含 `position` 属性，那么 `Employee` 也会包含 `position` 属性 。组合是一种 “拥有” 关系，e.g. “一个员工拥有一个地址”。
+
+有些语言，e.g. [Go](/docs/2.编程/高级编程语言/Go/Go.md)，不支持继承。 相反，它们鼓励 "[composition over inheritance](https://en.wikipedia.org/wiki/Composition_over_inheritance "Composition over inheritance")(组合优于继承)"，i.e. 使用更小的部分来构建对象，而不是使用父子关系。例如，Employee 类可以不继承 Person 类，而是直接包含一个 Person 对象。这使得 Employee 类可以控制它向程序其他部分公开多少 Person 对象的信息。 [Delegation(委托)](https://en.wikipedia.org/wiki/Delegation_(object-oriented_programming)) 是另一种可以作为继承替代方案的语言特性。
+
+> [!Note]
+> [Go](/docs/2.编程/高级编程语言/Go/Go.md) 语言中的 struct 的某个或某些属性是另一个 struct 或 interface 就是**组合**的表现形式
+
+应用场景
+
+- 当我们想要在一个逻辑中，引用多个对象中的部分相同属性，可以将 A, B 对象的属性包含一个基础的 Base 对象，在 Base 对象中编写 A, B 的通用属性。此时可以为 A, B 都写一个 GetBaseProperty 方法，该方法返回实例化后的 Base 对象，此时就可以通过该返回值直接引用其中的属性了。

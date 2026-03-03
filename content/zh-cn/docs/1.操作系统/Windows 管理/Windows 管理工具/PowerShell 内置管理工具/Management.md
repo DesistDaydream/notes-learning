@@ -40,7 +40,7 @@ https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.managem
 
 ### EXAMPLE
 
-创建符号链接(软连接)
+创建 [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)(软连接)
 
 - 创建 C:/Users/DesistDaydream/AppData/Roaming/yuzu 符号链接文件，指向 D:/Games/emulator/yuzu_data/user
   - `New-Item -ItemType SymbolicLink -Path "C:/Users/DesistDaydream/AppData/Roaming/yuzu" -Target "D:/Games/emulator/yuzu_data/user"`
