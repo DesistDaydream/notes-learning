@@ -1555,7 +1555,7 @@
         "docs/2.编程/计算机科学/Data type/复合数据类型",
         "docs/2.编程/计算机科学/Data type/抽象数据类型",
         "docs/2.编程/计算机科学/Data type/进制表示法.md",
-        "docs/2.编程/计算机科学/Data type/Data structure.md"
+        "docs/2.编程/计算机科学/Data type/Data structure"
       ],
       "sortOrder": "custom"
     },
@@ -1563,8 +1563,7 @@
       "children": [
         "docs/2.编程/计算机科学/Data type/抽象数据类型/_index.md",
         "docs/2.编程/计算机科学/Data type/抽象数据类型/抽象数据类型.md",
-        "docs/2.编程/计算机科学/Data type/抽象数据类型/Pointer(指针).md",
-        "docs/2.编程/计算机科学/Data type/抽象数据类型/Tree Data Structure(树型数据结构).md"
+        "docs/2.编程/计算机科学/Data type/抽象数据类型/Pointer(指针).md"
       ],
       "sortOrder": "custom"
     },
@@ -1573,6 +1572,14 @@
         "docs/2.编程/计算机科学/Data type/复合数据类型/_index.md",
         "docs/2.编程/计算机科学/Data type/复合数据类型/复合数据类型.md",
         "docs/2.编程/计算机科学/Data type/复合数据类型/Array.md"
+      ],
+      "sortOrder": "custom"
+    },
+    "docs/2.编程/计算机科学/Data type/Data structure": {
+      "children": [
+        "docs/2.编程/计算机科学/Data type/Data structure/_index.md",
+        "docs/2.编程/计算机科学/Data type/Data structure/Data structure.md",
+        "docs/2.编程/计算机科学/Data type/Data structure/Tree Data Structure(树型数据结构).md"
       ],
       "sortOrder": "custom"
     },
@@ -4701,12 +4708,12 @@
         "docs/12.AI/Prompt.md",
         "docs/12.AI/MCP.md",
         "docs/12.AI/Skills.md",
-        "docs/12.AI/Hugging Face.md",
         "docs/12.AI/AI Projects",
         "docs/12.AI/AI MGMT",
         "docs/12.AI/最佳实践.md",
         "docs/12.AI/Automation",
-        "docs/12.AI/Glossary.md"
+        "docs/12.AI/Glossary.md",
+        "docs/12.AI/Hugging Face.md"
       ],
       "sortOrder": "custom"
     },
@@ -5095,8 +5102,8 @@
     },
     "Excalidraw": {
       "children": [
-        "Excalidraw/cloud_native",
         "Excalidraw/demo.excalidraw.md",
+        "Excalidraw/cloud_native",
         "Excalidraw/Protocol",
         "Excalidraw/ClickHouse",
         "Excalidraw/information_security",

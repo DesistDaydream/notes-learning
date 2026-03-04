@@ -1,12 +1,16 @@
 ---
 title: Tree Data Structure(树型数据结构)
+linkTitle: Tree Data Structure(树型数据结构)
+weight: 100
 ---
 
 # 概述
 
-> 参考：[Wiki-TreeDataStructure](<https://en.wikipedia.org/wiki/Tree_(data_structure)>)
+> 参考：
+>
+> - [Wiki, TreeDataStructure](<https://en.wikipedia.org/wiki/Tree_(data_structure)>)
 
-在[计算机科学中](https://en.wikipedia.org/wiki/Computer_science)，**Tree** 是一种广泛使用的[抽象数据类型](https://en.wikipedia.org/wiki/Abstract_data_type)，它模拟分层[树结构](https://en.wikipedia.org/wiki/Tree_structure)，其根值和具有[父节点的](<https://en.wikipedia.org/wiki/Tree_(data_structure)#Terminology>)子级子树表示为一组链接[节点](<https://en.wikipedia.org/wiki/Node_(computer_science)>)。
+在[计算机科学中]()，**Tree** 是一种广泛使用的[抽象数据类型](/docs/2.编程/计算机科学/Data%20type/抽象数据类型/抽象数据类型.md)，它模拟分层[树结构](https://en.wikipedia.org/wiki/Tree_structure)，其根值和具有[父节点的](<https://en.wikipedia.org/wiki/Tree_(data_structure)#Terminology>)子级子树表示为一组链接[节点](<https://en.wikipedia.org/wiki/Node_(computer_science)>)。
 
 可以将树数据结构[递归](https://en.wikipedia.org/wiki/Recursion)定义为节点的集合（从根节点开始），其中每个节点都是由值组成的数据结构，以及对节点（“子级”）的引用列表，其中约束，即没有重复的引用，也没有指向根的约束。或者，可以将树抽象为一个整体（全局地）定义为[有序树](https://en.wikipedia.org/wiki/Ordered_tree)，并为每个节点分配一个值。这两种观点都很有用：虽然一棵树可以作为一个整体进行数学分析，但是当实际上表示为数据结构时，它通常由节点表示和使用（而不是作为一组节点和节点之间的[邻接表）](https://en.wikipedia.org/wiki/Adjacency_list)，例如表示一个[有向图](<https://en.wikipedia.org/wiki/Tree_(data_structure)#Digraphs>)）。例如，从整体上看一棵树，可以谈论给定节点的“父节点”，但是通常，给定节点作为数据结构仅包含其子节点列表，但不包含引用。给它的父母（如果有的话）。
 

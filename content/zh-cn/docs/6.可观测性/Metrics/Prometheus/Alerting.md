@@ -10,6 +10,7 @@ weight: 5
 >
 > - [官方文档，告警 - 告警概述](https://prometheus.io/docs/alerting/latest/overview/)
 > - [官方文档，告警 - 客户端](https://prometheus.io/docs/alerting/latest/clients/)
+>     - [官方文档，告警 - 告警 API](https://prometheus.io/docs/alerting/latest/alerts_api/)
 > - [OpenAPI](https://github.com/prometheus/alertmanager/blob/main/api/v2/openapi.yaml)
 
 Prometheus 本身不提告警的通知的功能！告警能力在 Prometheus 的架构中被划分成两个独立的部分。如下所示，通过在 Prometheus 中定义 AlertRule（告警规则），Prometheus 会周期性的对告警规则进行 **Evaluate(评估)**，如果满足告警触发条件就会向 [Alertmanager](/docs/6.可观测性/Metrics/Alertmanager/Alertmanager.md) 发送告警信息。
