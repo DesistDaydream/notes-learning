@@ -12,6 +12,8 @@ weight: 20
 
 # DNS
 
+https://docs.docker.com/engine/network/#dns-services
+
 容器连接到默认网络时，会使用与主机相同的 DNS Server，继承主机的 /etc/resolv.conf。
 
 容器连接到[自定义网络](https://docs.docker.com/engine/network/tutorials/standalone/#use-user-defined-bridge-networks)时，会使用 **<font color="#ff0000">Docker 内嵌的 DNS Server</font>**（127.0.0.11:53），将 容器 ID、容器名、别名 注册为 DNS 解析记录，以便其他容器可以通过这些域名访问到自己。示例可以参考下文 ”Bridge“ 驱动程序中的示例
@@ -47,7 +49,13 @@ dadd048eefa0   bridge       bridge    local
 
 > Notes: 名为 bridge 的是默认 Bridge 类型网络；名为 monitoring 的是用户自定义的 Bridge 类型网络。
 
-连接到 Docker 默认 Bridge 类型网络上的容器只能通过 IP 地址互相访问。但是如果容器连接到用户自定义的 Bridge 类型网络，这些容器将会记录在 [Docker 内嵌的 DNS](#内嵌的%20DNS)，后续可以通过名称或别名访问这些容器。
+连接到 Docker 默认 Bridge 类型网络上的容器只能通过 IP 地址互相访问。但是如果容器连接到用户自定义的 Bridge 类型网络，这些容器将会记录在 [Docker 内嵌的 DNS](#DNS)，后续可以通过名称或别名访问这些容器。
+
+> [!Attention] 在 Bridge 驱动的网络上，容器之间的互相访问问题
+>
+> 每个容器都是独立的 IP，默认情况下自动分配。对于配置容器间的互相通信非常不方便（重启了 IP 就变了）。
+>
+> 此时可以通过 Docker 内置的 DNS 访问，但是如果不想用 DNS 访问，只想用 localhost 访问的话。那就要让两个容器共享同一个 Network namespace。现阶段唯我所知道的唯一可行办法是使用 Compose 中 `network_mode:service:${ServiceName}` 配置，详见 [services](docs/10.云原生/Containerization%20implementation/Docker/Compose/services.md#network_mode) 的 network_mode 字段。
 
 使用默认 Bridge 网络的效果：
 

@@ -12,34 +12,48 @@ weight: 20
 
 git 放弃本地修改，强制拉取更新
 
-- git fetch --all # 指令是下载远程仓库最新内容，不做合并
-- git reset --hard origin/master # 指令把 HEAD 指向 master 最新版本
-- git pull # 可以省略
+```bash
+git fetch --all # 指令是下载远程仓库最新内容，不做合并
+git reset --hard origin/master # 指令把 HEAD 指向 master 最新版本
+git pull # 可以省略
+```
 
 本地所有修改，没有提交的文件，都返回到原来的状态
 
-- git checkout . #
+```bash
+git checkout .
+```
 
 提交修改并上传代码
 
-- git add . #
-- git commit -a -m 'XXXX 修改' #
-- git push #
+```bash
+git add . #
+git commit -a -m 'XXXX 修改' #
+git push #
+```
 
 git 回滚到之前某一 commit
 
-- git log # 查看所有 commit 记录，记录其中的 commit 号，比如 commit 号为：d07466766d46710e54a627f913eea5661382331a
-- git reset --hard d07466766d46710e54a627f913eea5661382331a # 恢复到这次 commit 的状态
+```bash
+# 查看所有 commit 记录，记录其中的 commit 号，比如 commit 号为：d07466766d46710e54a627f913eea5661382331a
+git log
+# 恢复到这次 commit 的状态
+git reset --hard d07466766d46710e54a627f913eea5661382331a
+```
 
 ## 修改 git commit 信息
 
 对自己的提交进行修改
 
-- git commit --amend
+```bash
+git commit --amend
+```
 
 将修改强制提交，覆盖原先的提交内容
 
-- git push -f
+```bash
+git push -f
+```
 
 ## 修改历史的 git commit message
 
