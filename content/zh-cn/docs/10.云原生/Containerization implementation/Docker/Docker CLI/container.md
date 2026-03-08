@@ -35,12 +35,12 @@ run 命令可以启动容器
 - --init Run an init inside the container that forwards signals and reaps processes
 - **-i, --interactive** # 即使没有 attach 到容器，也保持 STDIN(标准输入)开启。通常与 -t 一起使用
 - **--name**(STRING) # 为容器分配一个名称。默认为随机字符串
-- **--network**(STRING) # 连接一个容器到一个容器网络(default "default")，可以是 docker network ls 列出的网络，也可以是其余 container 的网络。STRING 包括下面几种
+- **--network**(STRING) # 连接容器到一个网络，`默认值: default`。可以是 docker network ls 列出的网络，也可以是其余容器的网络。STRING 包括下面几种
   - none # 容器使用自己的网络（类似--net=bridge），但是不进行配置
   - bridge # 通过 veth 接口将容器连接到默认的 Docker 桥(默认为 docker0 的网桥).
   - host # 直接使用宿主机的网络而不是独立的 network namespace
-  - ContainerName # 连接到指定 container 的网络中
-  - NetworkName # 连接到 docker network ls 所列出的其中一个 docker 网络上
+  - container:${ContainerName} # 让该容器加入到其他容器的网络中，让两个容器共享 Network namespace
+  - ${NetworkName} # 连接到 `docker network ls` 所列出的其中一个 Docker 网络上
 - **-p, --publish \[HostIP:]\[HostPort:]\<ContainerPort>**# 指明 Container 要映射到 Host 上的 IP 和端口。若只指明 HostIP 和 ContainerPort 则中间俩个冒号不可省。若不指定 HostIP，则第一个冒号可不写。要暴露多个端口则多次使用 -p 即可。
 - **-P, --publish-all** # 将 Image 定义的 EXPOSE 要暴露的端口暴露给 host，随机分配 host 上的端口与之建立映射关系。一般从 10000 端口开始
 - **--read-only** # 将容器的根文件系统挂载为只读模式

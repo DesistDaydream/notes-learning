@@ -283,7 +283,7 @@ logging:
 
 - **host** # 使用宿主机网络。i.e. 让容器加入 1 号进程的网络名称空间
 - **none** # 关闭所有容器网络。
-- **service:${ServiceName}** # 让该容器加入其他容器的网络，让两个容器共享 Network namespace。
+- **service:${ServiceName}** # 让该容器加入到其他容器的网络中，让两个容器共享 Network namespace。
   - Notes: ServiceName 就是顶层字段 services 的下级字段的名称
   - 关于容器网络更详细的内容详见 [Docker Network](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20Network.md)
 

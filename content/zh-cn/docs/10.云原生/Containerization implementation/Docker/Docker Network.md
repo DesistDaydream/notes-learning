@@ -14,9 +14,13 @@ weight: 20
 
 https://docs.docker.com/engine/network/#dns-services
 
-容器连接到默认网络时，会使用与主机相同的 DNS Server，继承主机的 /etc/resolv.conf。
+Docker 让容器连接到网络时，会有两种可能的 DNS 情况：
 
-容器连接到[自定义网络](https://docs.docker.com/engine/network/tutorials/standalone/#use-user-defined-bridge-networks)时，会使用 **<font color="#ff0000">Docker 内嵌的 DNS Server</font>**（127.0.0.11:53），将 容器 ID、容器名、别名 注册为 DNS 解析记录，以便其他容器可以通过这些域名访问到自己。示例可以参考下文 ”Bridge“ 驱动程序中的示例
+- **容器连接到默认网络时**，使用<font color="#ff0000">主机的 DNS Server</font>，继承主机的 /etc/resolv.conf。
+    - 默认网络是指名为 bridge 的 bridge 驱动的网络
+- **容器连接到[自定义网络](https://docs.docker.com/engine/network/tutorials/standalone/#use-user-defined-bridge-networks)时**，使用 **<font color="#ff0000">Docker 内嵌的 DNS Server</font>**（127.0.0.11:53），将 容器 ID、容器名、别名 注册为 DNS 解析记录，以便其他容器可以通过这些域名访问到自己。示例可以参考下文 [Bridge](#Bridge) 驱动程序中的示例
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/docker/network/docker_network_ls_dns_demo_1.png)
 
 # Docker 网络的驱动程序
 
@@ -24,38 +28,36 @@ https://docs.docker.com/engine/network/drivers/
 
 Docker 使用驱动程序实现网络子系统的核心能力，网络子系统是可插拔的。默认存在如下几种驱动程序：
 
-- **bridge** # 默认驱动程序。当应用程序在需要与同一主机上的其他容器通信的容器中运行时，通常会使用 [Bridge(桥接)](#bridge) 网络。
+- **bridge** # 默认驱动程序。当应用程序在需要与同一主机上的其他容器通信的容器中运行时，通常会使用 [Bridge](#Bridge)(桥接) 网络。
 - **host** # 取消容器与 Docker 主机之间的网络隔离，直接使用主机的网络
-- **overlay**
-- **ipvlan**
-- **macvlan**
 - **none** # 容器与宿主机及其他容器完全隔离。 none 不适用于 Swarm 服务。用人话说就是不使用任何网络驱动程序。
+- **overlay** # Swarm 用来使用 Overlay 技术将多个 Docker 守护进程连接在一起
+- **ipvlan** # 将容器连接到外部 VLANE
+- **macvlan** # 基本没用，仅适用于 Linux，并且大部分云服务提供商会屏蔽 macvlane
 - [网络插件](https://docs.docker.com/engine/extend/plugins_network/)：我们可以安装和使用第三方网络插件，以实现 Docker 自身无法实现的网络功能
 
 ## Bridge
 
 https://docs.docker.com/engine/network/drivers/bridge
 
-当 Docker 启动时，会自动创建一个名为 brdige，Bridge 驱动类型的网络。默认情况下新启动的容器都会连接到 bridge 网络。
+当 Docker 启动时，会自动创建一个名为 brdige 的 Bridge 驱动类型的网络。**默认情况下新启动的容器都会连接到 bridge 网络**。
 
 ```bash
 ~]# docker network ls
 NETWORK ID     NAME         DRIVER    SCOPE
-dadd048eefa0   bridge       bridge    local
+dadd048eefa0   bridge       bridge    local # Docker 创建的 Bridge 驱动的网络。默认情况下，所有新建的容器都会连接到该网络
 84cab5ef9276   host         host      local
-4718cdfcb116   monitoring   bridge    local
 4d68f227ca5d   none         null      local
+4718cdfcb116   monitoring   bridge    local # 用户手动创建的 Bridge 驱动的网络
 ```
 
-> Notes: 名为 bridge 的是默认 Bridge 类型网络；名为 monitoring 的是用户自定义的 Bridge 类型网络。
-
-连接到 Docker 默认 Bridge 类型网络上的容器只能通过 IP 地址互相访问。但是如果容器连接到用户自定义的 Bridge 类型网络，这些容器将会记录在 [Docker 内嵌的 DNS](#DNS)，后续可以通过名称或别名访问这些容器。
+连接到 Docker 默认的 bridge 网络上的容器只能通过 IP 地址互相访问。但是如果容器连接到用户自定义的 Bridge 类型网络，这些容器将会记录在 [Docker 内嵌的 DNS](#DNS)，后续可以通过名称或别名访问这些容器。
 
 > [!Attention] 在 Bridge 驱动的网络上，容器之间的互相访问问题
 >
 > 每个容器都是独立的 IP，默认情况下自动分配。对于配置容器间的互相通信非常不方便（重启了 IP 就变了）。
 >
-> 此时可以通过 Docker 内置的 DNS 访问，但是如果不想用 DNS 访问，只想用 localhost 访问的话。那就要让两个容器共享同一个 Network namespace。现阶段唯我所知道的唯一可行办法是使用 Compose 中 `network_mode:service:${ServiceName}` 配置，详见 [services](docs/10.云原生/Containerization%20implementation/Docker/Compose/services.md#network_mode) 的 network_mode 字段。
+> 此时可以通过 Docker 内置的 DNS 访问，但是如果不想用 DNS 访问，只想用 localhost 访问的话。那就要让两个容器共享同一个 NetworkNamespace。详见下文 [让一个容器附加到其他容器的网络](#让一个容器附加到其他容器的网络)
 
 使用默认 Bridge 网络的效果：
 
@@ -151,3 +153,13 @@ listening on any, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144
 -A DOCKER-USER -s 100.64.0.0/24 -i ens7f0np0 -j ACCEPT
 -A DOCKER-USER -i ${ext_if} -p tcp -m multiport --dports 10443,19093 -j DROP
 ```
+
+# 让一个容器附加到其他容器的网络
+
+容器除了可以通过网络驱动连接到网络之外，还可以让要给容器连接到其他容器的网络中。
+
+[Compose](docs/10.云原生/Containerization%20implementation/Docker/Compose/Compose.md) 文件中使用 `services.${MyServiceName}.network_mode: service:${TargetServiceName}` 字段，让 MyServiceName 容器进入到 TargetServiceName 容器的 NetworNamespace 中
+
+> [!Tip] 这样多个容器就可以使用相同 IP，也就可以使用 localhost 进行通信了。
+
+[Docker CLI](docs/10.云原生/Containerization%20implementation/Docker/Docker%20CLI/Docker%20CLI.md) 中使用 `--network container:${ContainerName}` 选项，即可让启动的容器进入到 ContainerName 容器的 NetworNamespace 中。

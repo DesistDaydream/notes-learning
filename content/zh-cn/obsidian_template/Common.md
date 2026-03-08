@@ -1,6 +1,7 @@
 ---
 title: "{{title}}"
 linkTitle: "{{title}}"
+created: "{{date}}T{{time}}"
 weight: 100
 ---
 
