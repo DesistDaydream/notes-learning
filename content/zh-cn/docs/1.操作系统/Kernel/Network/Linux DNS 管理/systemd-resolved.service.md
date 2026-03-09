@@ -46,7 +46,7 @@ systemd-resolved 是一个为本地应用程序提供网络名称解析的系统
 ## resolvectl
 
 > 参考：
-> 
+>
 > - [Linux man pages，resolvectl(1)](https://man7.org/linux/man-pages/man1/resolvectl.1.html)
 
 ### Syntax(语法)
@@ -65,4 +65,4 @@ systemd-resolved 是一个为本地应用程序提供网络名称解析的系统
 >
 > - [Linux man pages, resolved.conf(5)](https://man7.org/linux/man-pages/man5/resolved.conf.5.html)
 
-这是类似 [INI](docs/2.编程/无法分类的语言/INI.md) 格式的配置文件。具体的解析配置在 Resolve.DNS 键上
+这是类似 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的配置文件。具体的解析配置在 Resolve.DNS 键上

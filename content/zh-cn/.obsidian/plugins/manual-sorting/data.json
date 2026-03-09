@@ -2657,8 +2657,7 @@
         "docs/6.可观测性/Logs/Loki/_index.md",
         "docs/6.可观测性/Logs/Loki/Loki.md",
         "docs/6.可观测性/Logs/Loki/Loki 部署.md",
-        "docs/6.可观测性/Logs/Loki/Loki Configuration.md",
-        "docs/6.可观测性/Logs/Loki/Loki Rules 配置.md",
+        "docs/6.可观测性/Logs/Loki/Configuration",
         "docs/6.可观测性/Logs/Loki/组件详解.md",
         "docs/6.可观测性/Logs/Loki/Storage(存储)",
         "docs/6.可观测性/Logs/Loki/Authentication(认证).md",
@@ -2667,6 +2666,14 @@
         "docs/6.可观测性/Logs/Loki/Loki 管理",
         "docs/6.可观测性/Logs/Loki/Loki 开发",
         "docs/6.可观测性/Logs/Loki/Loki 衍生品"
+      ],
+      "sortOrder": "custom"
+    },
+    "docs/6.可观测性/Logs/Loki/Configuration": {
+      "children": [
+        "docs/6.可观测性/Logs/Loki/Configuration/_index.md",
+        "docs/6.可观测性/Logs/Loki/Configuration/Loki Server.md",
+        "docs/6.可观测性/Logs/Loki/Configuration/Loki Rules.md"
       ],
       "sortOrder": "custom"
     },

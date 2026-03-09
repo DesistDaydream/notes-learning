@@ -158,8 +158,8 @@ listening on any, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144
 
 容器除了可以通过网络驱动连接到网络之外，还可以让要给容器连接到其他容器的网络中。
 
-[Compose](docs/10.云原生/Containerization%20implementation/Docker/Compose/Compose.md) 文件中使用 `services.${MyServiceName}.network_mode: service:${TargetServiceName}` 字段，让 MyServiceName 容器进入到 TargetServiceName 容器的 NetworNamespace 中
+[Compose](/docs/10.云原生/Containerization%20implementation/Docker/Compose/Compose.md) 文件中使用 `services.${MyServiceName}.network_mode: service:${TargetServiceName}` 字段，让 MyServiceName 容器进入到 TargetServiceName 容器的 NetworNamespace 中
 
 > [!Tip] 这样多个容器就可以使用相同 IP，也就可以使用 localhost 进行通信了。
 
-[Docker CLI](docs/10.云原生/Containerization%20implementation/Docker/Docker%20CLI/Docker%20CLI.md) 中使用 `--network container:${ContainerName}` 选项，即可让启动的容器进入到 ContainerName 容器的 NetworNamespace 中。
+[Docker CLI](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20CLI/Docker%20CLI.md) 中使用 `--network container:${ContainerName}` 选项，即可让启动的容器进入到 ContainerName 容器的 NetworNamespace 中。

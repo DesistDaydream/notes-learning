@@ -12,9 +12,10 @@ weight: 2
 
 Prometheus 规则分为两种：
 
-- **Recording Rule(记录规则)** #
-- **Alerting Rule(告警规则)** #
-  - ！！！注意编写告警规则的逻辑，由于 Prometheus 会定期评估告警，所以会定期读取数据，尽相避免读取大范围的数据，以免造成性能问题
+- **Recording Rule(记录规则)**
+- **Alerting Rule(告警规则)**
+
+>[!Attention] 注意编写告警规则的逻辑，由于 Prometheus 会定期评估告警，所以会定期读取数据，尽相避免读取大范围的数据，以免造成性能问题
 
 Prometheus 规则配置文件需要在 [Prometheus Server 配置](/docs/6.可观测性/Metrics/Prometheus/Configuration/Promethesu%20Server.md) 文件中的 rule_files 字段中指定，让 Prometheus 加载指定的文件并读取其配置(这个过程称为 **Evaluation(评估)**)。
 
@@ -107,7 +108,7 @@ groups:
 - **name**(STRING) # group 的名称，在一个文件中必须是唯一的
 - **interval**(DURATION) # 对这个组中的规则进行 evaluated(评估) 的频率。`默认值: PrometheusServer 配置文件中的 global.evaluation_interval 的值`
 - **limit**(INT) # 限制警报规则和记录规则可以生成的警报系列的数量。 `默认值: 0`，0 表示没有限制。
-- **rules**([]OBJECT) # 定义 Prometheus Rule 详情。rules 字段下使用不同的子字段会对应不同的规则。
+- **rules**(\[]OBJECT) # 定义 Prometheus Rule 详情。rules 字段下使用不同的子字段会对应不同的规则。
   - 包含 record 字段时，则该规则为 [Recording Rule](#Recording%20Rule)
   - 包含 alert 字段时，则该规则为 [Alerting Rule](#Alerting%20Rule)
 

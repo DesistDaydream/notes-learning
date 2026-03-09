@@ -1,7 +1,8 @@
 ---
-title: Loki Configuration
-linkTitle: Loki Configuration
-weight: 3
+title: Loki Server
+linkTitle: Loki Server
+weight: 1
+created: 2026-03-09T10:27
 ---
 
 # 概述
@@ -10,7 +11,6 @@ weight: 3
 >
 > - [官方文档，参考 - Loki 配置参考](https://grafana.com/docs/loki/latest/reference/loki-config-ref/)
 >     - [官方文档，配置](https://grafana.com/docs/loki/latest/configure/)
-> - [官方文档，告警规则和记录规则](https://grafana.com/docs/loki/latest/rules/)
 
 Loki 可以通过两种方式配置 Loki 的运行时行为
 
@@ -273,22 +273,24 @@ https://grafana.com/docs/loki/latest/configuration/#frontend
 
 ## Ruler 组件配置
 
+> [!Attention] 截至 2026-03-09，Loki 对于规则相关文件的存储路径配置非常杂乱。有 `common.storage.filesystem.rules_directory`, `ruler.storage.local.directory`, `ruler_storage.local.directory`, etc.
+
+https://grafana.com/docs/loki/latest/reference/loki-config-ref/#ruler
+
 ### ruler
 
-**storage(Ojbect)** # 根据 type 的值，则会优先默认选择[通用存储](#SJMUR)。可用的值有：azure, gcs, s3, swift, local, bos。若没有通用存储，则使用 storage 字段下对应的字段。
+**evaluation_interval**(Duration) # 评估周期，每次对规则进行评估的时间间隔。`默认值: 1m`
 
-- **type(STRING)**#
-- **s3(OBJECT)** # 配置用于存储规则文件的存储信息
-  - 详见下文通用配置字段 [s3](#s3)
+**storage**(Object) # （已弃用，推荐使用 ruler_storage 顶层字段）根据 type 的值，则会优先默认选择[通用存储](#common)。可用的值有：azure, gcs, s3, swift, local, bos。若没有通用存储，则使用 storage 字段下对应的字段。
 
-**rule_path**(STRING) # /loki/tmprules
+**rule_path**(STRING) # 存储临时规则文件的文件路径。TODO: 不知道具体路径名称规则是什么，不填的话会有个 rules-temp/ 目录存储。
 
-**alertmanager_url**(STRING) # http://localhost
+**alertmanager_url**(STRING) # 告警产生后推送到 [Alertmanager](/docs/6.可观测性/Metrics/Alertmanager/Alertmanager.md) 的地址
 
-**ring:** #
+**ring**(Object) #
 
-- **kvstore:** #
-  - **store: inmemory** #
+- **kvstore**(Object)
+  - **store**(STRING) # 可用的值有: inmemory, etc.
 
 ### 配置示例
 
@@ -319,7 +321,7 @@ ruler:
 
 ## 其他
 
-### chunk_store_config(Object)
+### chunk_store_config
 
 配置 Loki 如何将数据存放在指定存储中。该配置环境用途详见《[Loki 存储](/docs/6.可观测性/Logs/Loki/Storage(存储)/Storage(存储).md)》
 

@@ -36,11 +36,11 @@ Compose 文件是一个 [YAML](/docs/2.编程/无法分类的语言/YAML.md) 格
 >
 > - [官方文档，参考 - Compose 文件参考 - Networks 顶级元素](https://docs.docker.com/reference/compose-file/networks/)
 
-**attachable: BOOLEAN** # 该网络是否可以被其他容器加入
+**attachable**(BOOLEAN) # 该网络是否可以被其他容器加入
 
-**external: BOOLEAN** # 该网络是否由外部维护。若为 true，则该网络不受本 Compose 的管理。`默认值：false`
+**external**(BOOLEAN) # 该网络是否由外部维护。若为 true，则该网络不受本 Compose 的管理。`默认值：false`
 
-**name: STRING** # 指定网络名称
+**name**(STRING) # 指定网络名称
 
 # volumes
 
