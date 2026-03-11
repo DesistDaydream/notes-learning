@@ -107,7 +107,13 @@ git tag -d v0.7.0 删除 v0.7.0 这个 Tag
 
 https://git-scm.com/docs/git-cherry-pick
 
-cherry-pick(拣选)
+**git cherry-pick \<COMMIT>**
+
+**cherry-pick(拣选)** 指定的一个或多个 COMMIT，将这些 COMMIT 合并到当前分支的代码中，并为每个 COMMIT 生成一个新的 COMMIT
+
+> [!Tip] 人话：cherry-pick 常用来从某些分支的挑选一些有用的代码合并到其他分支；或者将之前编写的功能回复（i.e. 当前分支的老 COMMIT 合并到当前）
+
+若产生了代码冲突或者其他原因，在 push 之前，使用 `git cherry-pick --abort` 即可放弃所有 cherry-pick(拣选) 过来的 COMMIT
 
 # 分享和更新项目
 
