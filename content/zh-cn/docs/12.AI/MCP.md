@@ -178,4 +178,11 @@ https://modelcontextprotocol.io/specification/2025-03-26/server/tools#data-types
 
 > 通常来说，各种 AI 工具都内置了 MCP Client，以便对接各自自定义的 MCP Server
 
+# 常见问题
+
+## MCP Server 返回超长上下文（e.g. 图片 base64 编码）后，MCP Client 转给模型后，超出了模型的上下文长度
+
+![500](https://notes-learning.oss-cn-beijing.aliyuncs.com/ai/mcp/issue_overlength_context_1.png)
+
+
 # 历史

@@ -80,7 +80,7 @@ https://grafana.com/docs/grafana/latest/administration/provisioning/#dashboards
 
 在 ${ProvisioningDir}/dashboards/ 目录中添加一个或多个 [YAML](/docs/2.编程/无法分类的语言/YAML.md) 格式配置文件来管理 Grafana 中的 Dashboard。每个配置文件都包含 Grafana 用于从本地文件系统加载 Dashboard 的提供程序列表。
 
-> 该目录下的配置文件将会指定**路径**，Grafana 启动时，会读取**该路径**下的所有 `*.json` 文件，并作为 Dashboard 加载到 Grafana 中。并且每隔一段时间就会检查路径下的文件，当文件有更新时，会同步更新加载到 Grafana 中的 Dashboard。
+> 该目录下的配置文件将会指定**路径**，Grafana 启动时，会读取**该路径（及其子路径）** 下的所有 `*.json` 文件，并作为 Dashboard 加载到 Grafana 中。并且每隔一段时间就会检查路径下的文件，当文件有更新时，会同步更新加载到 Grafana 中的 Dashboard。
 >
 > 注意：目录下的 .json 文件就是在 Web 页面导出的 Dashboard。
 
@@ -88,23 +88,25 @@ https://grafana.com/docs/grafana/latest/administration/provisioning/#dashboards
 
 **providers**(\[]Object) #
 
-- **name**(STRING) # an unique provider name. Required
+- **name**(STRING) # **必须的**。Provider 的名称，作为唯一标识符。
 - **orgId: 1** # Org 的 ID 号，`默认值：1`。通常 Grafana 启动后会自动创建一个名为 Main Org. 的 Org，该 Org 的 ID 为 1
 - **folder**(STRING) # 从目录读取到的所有仪表盘应该存放的文件夹。文件夹指的是 Grafana Web UI 上用于存放仪表盘的地方。
   - 注意：文件夹的名称与仪表盘的名称不能相同，否则将会报错并且无法自动生成仪表盘
   - 若该值为空，则将仪表盘加载到 Grafana 的根级别仪表盘
 - **folderUid**(STRING) # 上面 folder 文件夹的 UID folder UID. will be automatically generated if not specified
-- **type**(string) # 提供者类型。默认值：file
-- **disableDeletion**(bool) # 是否允许通过 Web UI 删除目录下的仪表盘
+- **type**(string) # 提供者类型。`默认值：file`
 - **updateIntervalSeconds**(INT) # Grafana 检查该目录下仪表盘是否有更新的间隔时间(单位：秒)。
-- **allowUiUpdates**(bool) # 是否允许通过 Web UI 更新目录下仪表盘
+- **disableDeletion**(bool) # 是否允许通过 Web UI 删除目录下的仪表盘。`默认值: false`
+- **allowUiUpdates**(bool) # 是否允许通过 Web UI 更新目录下仪表盘。`默认值: false`
 - **options**(Object)
-  - **path**(string) # 必须的。要加载仪表盘的目录。该目录下的所有 .json 文件都会被 Grafana 加载为仪表盘
+  - **path**(string) # **必须的**。要加载仪表盘的目录。该目录下的所有 .json 文件都会被 Grafana 加载为仪表盘
   - **foldersFromFilesStructure**(bool) # 使用文件系统中的文件夹名称作为 Grafana Web UI 中的文件夹名。`默认值：false`。具体用法下文 “文件系统结构映射到 WebUI 中的文件夹”
     - 注意：该字段与 `folder` 和 `folderUid` 冲突。
 
 > [!Attention]
-> Dashboard Provision 暂时（截至 2025-06-10）还不支持实现嵌套目录的效果。 https://github.com/grafana/grafana/issues/103950
+> 截至 2025-06-10，还不支持实现嵌套目录的效果。 https://github.com/grafana/grafana/issues/103950
+>
+> 截至 2026-03-12，如果配置文件中的多个 providers 中的 path 有子目录的情况（e.g. 一个是 /dashboards，另一个是 /dashboards/common），那么 Grafana 将会报错 `the same UID is used more than once` 因为父路径带着子路径，所以子路径下的 .json 将会被添加多次。就会出现该报错
 
 ## 配置文件示例
 
