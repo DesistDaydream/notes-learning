@@ -4720,8 +4720,8 @@
         "docs/12.AI/AI MGMT",
         "docs/12.AI/最佳实践.md",
         "docs/12.AI/Automation",
-        "docs/12.AI/Glossary.md",
-        "docs/12.AI/Hugging Face.md"
+        "docs/12.AI/Hugging Face.md",
+        "docs/12.AI/Glossary.md"
       ],
       "sortOrder": "custom"
     },
@@ -4787,7 +4787,8 @@
         "docs/12.AI/AI Projects/_index.md",
         "docs/12.AI/AI Projects/AI Projects.md",
         "docs/12.AI/AI Projects/ChatGPT.md",
-        "docs/12.AI/AI Projects/Yolo.md"
+        "docs/12.AI/AI Projects/Yolo.md",
+        "docs/12.AI/AI Projects/ChatBot.md"
       ],
       "sortOrder": "custom"
     },

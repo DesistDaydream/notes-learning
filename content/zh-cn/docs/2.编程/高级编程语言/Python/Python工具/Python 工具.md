@@ -127,7 +127,6 @@ uv sync --index "https://mirrors.aliyun.com/pypi/simple/"
 
 ## uv 关联文件与配置
 
-
 缓存的储存目录
 
 - Windows: `%LOCALAPPDATA%\uv\cache\`
@@ -142,4 +141,3 @@ uv sync --index "https://mirrors.aliyun.com/pypi/simple/"
 uv cache clean 清除缓存
 
 `uv cache prune` 会删除所有未使用的缓存条目
-

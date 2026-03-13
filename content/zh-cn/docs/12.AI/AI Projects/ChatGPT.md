@@ -8,6 +8,7 @@ weight: 20
 
 > 参考：
 >
+> - https://chat.openai.com/
 > - https://zblogs.top/how-to-register-openai-chatgpt-in-china
 >   - 注册 ChatGPT 教程
 > - 使用虚拟号码接收短信验证码：<https://sms-activate.org/>

@@ -15,7 +15,7 @@ weight: 20
 
 Puppeteer 是一个 Node.js 库，它提供了一个高级 API 来通过 DevTools 协议控制 Chrome/Chromium。 Puppeteer 默认以无头模式运行，但可以配置为在完整（“有头”）Chrome/Chromium 中运行。
 
-> 注意：Puppeteer 并不是一个 WebDriver 的实现。
+> [!Note] Puppeteer 并不是一个 WebDriver 的实现。
 
 # Puppetter 安装
 

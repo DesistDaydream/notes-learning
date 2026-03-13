@@ -56,7 +56,7 @@ https://blog.x-agent.net/blog/xagent/
 
 # ChatGPT
 
-https://chat.openai.com/
+[ChatGPT](/docs/12.AI/AI%20Projects/ChatGPT.md)
 
 # Claude
 
