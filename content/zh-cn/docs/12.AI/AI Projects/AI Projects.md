@@ -30,29 +30,64 @@ MiniMax # AI 聚合平台
 
 - [官网](https://www.minimaxi.com/)
 
-## IDE 工具
+# IDE 工具
 
 **Cline** # IDE中的自主编码代理，能够在每一步的每一步中使用浏览器来创建/编辑文件，使用浏览器以及更多内容。实现了 [MCP](/docs/12.AI/MCP.md)
 
 - https://github.com/cline/cline
 
-## 用于解决复杂任务的 AI 项目/产品
+# 用于解决复杂任务的 AI 项目/产品
+
+## LangChain
+
+> 参考：
+>
+> - [GitHub 项目，langchain-ai/langchain](https://github.com/langchain-ai/langchain)
+>   - 仓库最早在 hwchase17/langchain
+> - [官网](https://langchain.com/)
+> - [B 站，AI必学知识点！Langchain到底是什么？开源干货详细解析！赚钱机会和未来展望！](https://www.bilibili.com/video/BV1GL411e7K4)
+> - [B 站，用自己的PDF文件定制Chatgpt！langchain代码实例详解！](https://www.bilibili.com/video/BV1xX4y1B7Vt)
+> - https://github.com/liaokongVFX/LangChain-Chinese-Getting-Started-Guide
+> - [公众号 - 阿里云开发者，LangChain: 大语言模型的新篇章](https://mp.weixin.qq.com/s/P94AvHvQcget9OqblrmD6g)
+
+LangChain 是一个用于开发由语言模型驱动的应用程序的框架。我们相信，最强大和差异化的应用程序不仅会通过 API 调用语言模型，而且还会：
+
+- 数据感知：将语言模型连接到其他数据源
+- Be agentic：允许语言模型与其环境交互
+
+模块
+
+- Models(模型)
+- Prompts(提示词)
+- Indexes
+- Memory
+- Chains
+- Agents
+
+## 各种 Agent
 
 https://blog.x-agent.net/blog/xagent/
 
-虽然开创性项目（e.g., [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT), [BabyAGI](https://github.com/yoheinakajima/babyagi), [CAMEL](https://github.com/camel-ai/camel), [MetaGPT](https://github.com/geekan/MetaGPT), [AutoGen](https://github.com/microsoft/autogen), [DSPy](https://github.com/stanfordnlp/dspy), [AutoAgents](https://github.com/Link-AGI/AutoAgents), [OpenAgents](https://github.com/xlang-ai/OpenAgents), [Agents](https://github.com/aiwaves-cn/agents), [AgentVerse](https://github.com/OpenBMB/AgentVerse), [ChatDev](https://github.com/OpenBMB/ChatDev)）已经展示了这个方向的潜力，但完全自主的 AI 代理之旅仍然面临着巨大的挑战。
+虽然开创性项目（e.g., [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT), [BabyAGI](https://github.com/yoheinakajima/babyagi), [CAMEL](https://github.com/camel-ai/camel), [MetaGPT](https://github.com/geekan/MetaGPT), [AutoGen](https://github.com/microsoft/autogen), [DSPy](https://github.com/stanfordnlp/dspy), [AutoAgents](https://github.com/Link-AGI/AutoAgents), [OpenAgents](https://github.com/xlang-ai/OpenAgents), [Agents](https://github.com/aiwaves-cn/agents), [AgentVerse](https://github.com/OpenBMB/AgentVerse), [ChatDev](https://github.com/OpenBMB/ChatDev)）已经展示了这个方向的潜力，但完全自主的 AI Agent 之旅仍然面临着巨大的挑战。
 
 [GitHub 项目，OpenBMB/XAgent](https://github.com/OpenBMB/XAgent)
 
 - OpenBMB开源社区由清华大学自然语言处理实验室和[面壁智能](https://modelbest.cn/)共同支持发起
 
-[Clawdbot](https://github.com/openclaw/openclaw) # AI Agent 的集合。对接了多个聊天工具。
+## 各种 Claw
 
-- 项目名字经过两次变化: Moltbot, OpenClaw
+[GitHub 项目，openclaw/openclaw](https://github.com/openclaw/openclaw) # AI Agent 的集合。对接了多个聊天工具。
 
-[GitHub 项目，qwibitai/nanoclaw](https://github.com/qwibitai/nanoclaw) # Go 写的 OpenClaw
+- 项目名字经过两次变化: Clawdbot, Moltbot
+- https://claude.ai/share/eed2502c-d752-4b4f-95b5-11ff2c7674b9
+
+[GitHub 项目，qwibitai/nanoclaw](https://github.com/qwibitai/nanoclaw) # 精简的 OpenClaw
 
 - https://mp.weixin.qq.com/s/xnyrHG3dRs2XSTDwAIa53w
+
+[GitHub 项目，sipeed/picoclaw](https://github.com/sipeed/picoclaw) # 中国人主导开发，Go 语言编写。受 NanoClaw 启发的可以运行在树莓派中的 Claw。
+
+[GitHub 项目，nextlevelbuilder/goclaw](https://github.com/nextlevelbuilder/goclaw) # 越南人主导开发，Go 语言编写。与 OpenClaw, ZeroClaw, PicoClaw, GoClaw 做了对比。
 
 # ChatGPT
 

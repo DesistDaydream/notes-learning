@@ -13,8 +13,9 @@ weight: 100
 Prompt 解决方案
 
 - RAG
-- Function calling
-- [MCP](/docs/12.AI/MCP.md)
+- Tool calling
+    - Function calling
+    - [MCP](/docs/12.AI/MCP.md)
 - [Skills](/docs/12.AI/Skills.md)
 
 # RAG
@@ -40,31 +41,13 @@ Prompt 解决方案
 
 使用超长上下文，避免切片太碎，但是。。。。资源消耗非常非常高。。。。
 
-# Function calling
+# Tool calling
 
-# LangChain
+**Tool calling(工具调用)**，它使 LLM(大型语言模型) 能够以结构化的方式和外部系统（可执行程序、API、etc.）进行交互。
 
-> 参考：
->
-> - [GitHub 项目，langchain-ai/langchain](https://github.com/langchain-ai/langchain)
->   - 仓库最早在 hwchase17/langchain
-> - [官网](https://langchain.com/)
-> - [B 站，AI必学知识点！Langchain到底是什么？开源干货详细解析！赚钱机会和未来展望！](https://www.bilibili.com/video/BV1GL411e7K4)
-> - [B 站，用自己的PDF文件定制Chatgpt！langchain代码实例详解！](https://www.bilibili.com/video/BV1xX4y1B7Vt)
-> - https://github.com/liaokongVFX/LangChain-Chinese-Getting-Started-Guide
-> - [公众号 - 阿里云开发者，LangChain: 大语言模型的新篇章](https://mp.weixin.qq.com/s/P94AvHvQcget9OqblrmD6g)
+历史
 
-LangChain 是一个用于开发由语言模型驱动的应用程序的框架。我们相信，最强大和差异化的应用程序不仅会通过 API 调用语言模型，而且还会：
+- **Function calling(函数调用)** 在 LLM 早期，由 OpenAI 公司推出的工具调用标准
+- [**MCP**](docs/12.AI/MCP.md) 由 Anthropic 推出的工具调用标准
 
-- 数据感知：将语言模型连接到其他数据源
-- Be agentic：允许语言模型与其环境交互
-
-模块
-
-- Models(模型)
-- Prompts(提示词)
-- Indexes
-- Memory
-- Chains
-- Agents
-
+很多模型把这些标准作为数据集进行训练，这样不用其他信息，只需要传输标准化的内容即可让模型返回格式化的信息

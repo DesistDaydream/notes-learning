@@ -108,6 +108,8 @@ Quantization(量化) # 把模型中的浮点数用更低精度（整数）表示
 
 Distillation(蒸馏) # 用参数量大的模型指导参数量小的模型
 
+- [B 站 - 飞天闪客，【闪客】这一次，彻底搞懂蒸馏/开源/套壳，这些乱七八糟的概念！](https://www.bilibili.com/video/BV18TAkzbETb)
+
 Pruning(剪枝) # 删除模型中不重要的神经元，让模型更稀疏以提高速度
 
 Low-Rank Adaptation # 

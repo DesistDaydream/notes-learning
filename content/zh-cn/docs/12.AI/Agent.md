@@ -1,0 +1,77 @@
+---
+title: "Agent"
+linkTitle: "Agent"
+created: "2026-03-14T18:30"
+weight: 100
+---
+
+# 概述
+
+> 参考：
+>
+> - 
+
+[B 站 - 老戴Donald，【老戴】用了几天 Clawdbot，我最担心的事开始发生了](https://www.bilibili.com/video/BV1MnFNz5EDL?spm_id_from=333.1245.0.0)
+
+[B 站 - 飞天闪客，【闪客】20 行代码彻底搞懂小龙虾！男女老少都看得懂哟~](https://www.bilibili.com/video/BV19hwTzwETF)
+
+**Agent Runtime** # 类似 MCP 的 Host，Agent 与模型交互的程序。实现了 ReAct 功能
+
+**ReAct** # Reasoning and Acting。Agent Runtime 的核心逻辑：循环。
+
+- https://zhuanlan.zhihu.com/p/1978741652337205325
+- https://www.ibm.com/think/topics/react-agent
+
+![](Excalidraw/AI/agent-arch.excalidraw.md)
+
+# 知乎-北方的狼 智能体
+
+**本书目录**
+
+本书共分六大部分，20个章节，沿着**“认知 -> 大脑 -> 手脚 -> 骨架 -> 社会”**的逻辑脉络，为您完整复原一个智能体的诞生过程。
+
+**第一部分：定义 —— 什么是2025年的智能体？**
+
+[AI智能体，第1章 从 Copilot 到 Autopilot](https://zhuanlan.zhihu.com/p/1978738837611095231)
+
+[AI智能体，第2章 解剖学：Agent 的四个象限](https://zhuanlan.zhihu.com/p/1978739569391326726)
+
+**第二部分：大脑 —— 推理与规划的原子能力**
+
+[AI智能体，第3章 结构化输出：JSON Mode 与 Pydantic](https://zhuanlan.zhihu.com/p/1978740200084619518)
+
+[AI智能体，第4章 思维链的进化：从 CoT 到 Reasoning Models](https://zhuanlan.zhihu.com/p/1978740962571356067)
+
+[AI智能体，第5章 行动的循环：手动实现 ReAct Loop](https://zhuanlan.zhihu.com/p/1978741652337205325)
+
+[AI智能体，第6章 元认知：Self-Reflection（自省机制）](https://zhuanlan.zhihu.com/p/1978742254500861944)
+
+[AI智能体，第7章 提示词工程的终结：DSPy 自动优化](https://zhuanlan.zhihu.com/p/1978742952189776400)
+
+**第三部分：手脚 —— 标准化工具与MCP协议**
+
+[AI智能体，第8章 工具调用的本质：Function Calling](https://zhuanlan.zhihu.com/p/1979215299539640724)
+
+[AI智能体，第9章 统一连接标准：MCP (Model Context Protocol)](https://zhuanlan.zhihu.com/p/1979216040341832707)
+
+[AI智能体，第10章 实战 MCP：构建你的第一个 Server](https://zhuanlan.zhihu.com/p/1979216479242166524)
+
+[AI智能体，第11章 视觉行动：Computer Use 与 GUI Agent](https://zhuanlan.zhihu.com/p/1979217119179735151)
+
+**第四部分：骨架 —— 状态管理与图编排**
+
+[AI智能体，第12章 从链到图：LangGraph 核心概念](https://zhuanlan.zhihu.com/p/1979217687793120310)
+
+[AI智能体，第13章 状态管理：State Schema 与 Checkpoint](https://zhuanlan.zhihu.com/p/1979218315114206098)
+
+[AI智能体，第14章 人在回路：Human-in-the-loop](https://zhuanlan.zhihu.com/p/1979218746024408085)
+
+[AI智能体，第15章 记忆系统：Mem0 与 GraphRAG](https://zhuanlan.zhihu.com/p/1979219186959016315)
+
+**第五部分：社会 —— 多智能体协作 (Multi-Agent)**
+
+**第六部分：结语 —— 迈向工业级**
+
+——完——
+
+[@北方的郎](https://www.zhihu.com/people/7af62e4119791a452e88718cb5ccc0be) · 专注模型与代码

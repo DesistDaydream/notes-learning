@@ -4716,6 +4716,7 @@
         "docs/12.AI/Prompt.md",
         "docs/12.AI/MCP.md",
         "docs/12.AI/Skills.md",
+        "docs/12.AI/Agent.md",
         "docs/12.AI/AI Projects",
         "docs/12.AI/AI MGMT",
         "docs/12.AI/最佳实践.md",
@@ -5127,6 +5128,7 @@
     },
     "Excalidraw/AI": {
       "children": [
+        "Excalidraw/AI/agent-arch.excalidraw.md",
         "Excalidraw/AI/mcp-arch.excalidraw.md",
         "Excalidraw/AI/fitting.excalidraw.md"
       ],
