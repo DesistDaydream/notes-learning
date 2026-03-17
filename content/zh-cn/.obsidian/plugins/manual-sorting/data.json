@@ -1509,7 +1509,8 @@
       "children": [
         "docs/2.编程/高级编程语言/Python/Python工具/_index.md",
         "docs/2.编程/高级编程语言/Python/Python工具/Python 工具.md",
-        "docs/2.编程/高级编程语言/Python/Python工具/PIP.md"
+        "docs/2.编程/高级编程语言/Python/Python工具/PIP.md",
+        "docs/2.编程/高级编程语言/Python/Python工具/UV.md"
       ],
       "sortOrder": "custom"
     },

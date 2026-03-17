@@ -1,11 +1,15 @@
 ---
 title: Python 工具
+linkTitle: Python 工具
+created: 2026-03-17T17:56
 weight: 1
 ---
 
 # 概述
 
 > 参考：
+>
+> - 
 
 # 安装 Python 包/模块
 
@@ -64,9 +68,7 @@ pdm
 
 hatch
 
-uv # 依赖库有全局缓存
-
-- https://github.com/astral-sh/uv
+[UV](docs/2.编程/高级编程语言/Python/Python工具/UV.md) # 依赖库有全局缓存
 
 # Wheel 包
 
@@ -75,7 +77,7 @@ Wheel 是一种类似压缩包的 Python 用于分发包的文件，有点类似
 # python
 
 > 参考：
-> 
+>
 > - [官方文档，Python 安装与使用-命令行和环境](https://docs.python.org/3/using/cmdline.html)
 
 python 是一个工具，用来管理 Python 语言编写的代码。
@@ -104,40 +106,3 @@ python -m SimpleHTTPServer NUM
 ```bash
 python3 -m http.server NUM
 ```
-
-# uv
-
-> 参考：
->
-> - [GitHub 项目，astral-sh/uv](https://github.com/astral-sh/uv)
-
-只需要一个二进制文件即可使用！
-
-uv init 初始化项目，生成 pyproject.toml 文件
-
-uv add XXX 添加依赖库，同时更新 pyproject.toml 中的依赖部分
-
-uv sync 根据 pyproject.toml 同步依赖
-
-uv tool install XXX 以工具的形式安装 XXX。不作为依赖库
-
-使用 --index 指定镜像源
-
-uv sync --index "https://mirrors.aliyun.com/pypi/simple/"
-
-## uv 关联文件与配置
-
-缓存的储存目录
-
-- Windows: `%LOCALAPPDATA%\uv\cache\`
-- Unix: `$XDG_CACHE_HOME/uv/` 或 `$HOME/.cache/uv/`
-- 缓存的储存目录可以通过如下几种方式修改：
-    - UV_CACHE_DIR 环境变量
-    - pyproject.toml 文件中的 tool.uv.cache-dir 键
-    - uv CLI 的 --cache-dir 命令函标志
-
-## 缓存
-
-uv cache clean 清除缓存
-
-`uv cache prune` 会删除所有未使用的缓存条目

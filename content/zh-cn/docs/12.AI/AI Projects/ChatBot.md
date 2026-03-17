@@ -11,7 +11,7 @@ weight: 100
 >
 > - [Wiki, Chatbot](https://en.wikipedia.org/wiki/Chatbot)
 
-ChatBot(聊天机器人) 是一种软件应用程序。可以在 [即时通信](docs/Utils/即时通信/即时通信.md) 中让用户通过 ChatBot 实现一定的 自动化控制、情感陪伴、etc.
+ChatBot(聊天机器人) 是一种软件应用程序。可以在 [即时通信](/docs/Utils/即时通信/即时通信.md) 中让用户通过 ChatBot 实现一定的 自动化控制、情感陪伴、etc.
 
 https://github.com/zhayujie/chatgpt-on-wechat # <font color="#ff0000">Python 实现的</font>。基于大模型搭建的聊天机器人，同时支持 微信公众号、企业微信应用、飞书、钉钉 等接入（这些接入目标抽象为 Channel），可选择GPT3.5/GPT-4o/GPT-o1/ DeepSeek/Claude/文心一言/讯飞星火/通义千问/ Gemini/GLM-4/Claude/Kimi/LinkAI（这些是 AI 模型）。能处理文本、语音和图片，访问操作系统和互联网，支持基于自有知识库进行定制企业智能客服。
 

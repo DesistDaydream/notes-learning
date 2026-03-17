@@ -48,6 +48,6 @@ Prompt 解决方案
 历史
 
 - **Function calling(函数调用)** 在 LLM 早期，由 OpenAI 公司推出的工具调用标准
-- [**MCP**](docs/12.AI/MCP.md) 由 Anthropic 推出的工具调用标准
+- [**MCP**](/docs/12.AI/MCP.md) 由 Anthropic 推出的工具调用标准
 
 很多模型把这些标准作为数据集进行训练，这样不用其他信息，只需要传输标准化的内容即可让模型返回格式化的信息
