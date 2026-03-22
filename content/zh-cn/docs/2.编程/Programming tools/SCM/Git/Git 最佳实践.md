@@ -102,6 +102,14 @@ To https://github.com/DesistDaydream/e37-exporter.git
  + 3c15aad...8251ddb main -> main (forced update)
 ```
 
+## fork 后同步上游的 commit 并将自己的 commit 至于同步后的所有 commit 之上
+
+```bash
+git fetch upstream
+git rebase upstream/main
+git push origin main --force-with-lease
+```
+
 # 命令详解
 
 **提交相关**

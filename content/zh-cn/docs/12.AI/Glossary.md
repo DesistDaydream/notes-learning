@@ -118,8 +118,11 @@ Chain-of-Thought(思维链)
 
 RLHF(人类反馈强化学习)
 
-
 Encoder/Decoder # Attention is all you need 论文 3.1 节
+
+**梯度** # 
+
+**残差** # 
 
 ## Tensor
 

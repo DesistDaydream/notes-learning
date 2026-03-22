@@ -146,7 +146,7 @@ for i in range(2):
 
 > 参考：
 >
-> - [规范 - 服务端功能](https://modelcontextprotocol.io/specification/2025-03-26/server)
+> - [MCP 规范 - 2025-11-25 - 服务端功能](https://modelcontextprotocol.io/specification/2025-03-26/server)
 
 MCP Server 的能力被抽象为如下几类（当 Client 注册 Server 时，需要将自身所具有的能力提供给 Client）：
 
@@ -164,25 +164,80 @@ https://github.com/ThinkInAIXYZ/go-mcp
 
 ## Tools
 
-https://modelcontextprotocol.io/specification/2025-03-26/server/tools
+> 参考：
+>
+> - [MCP 规范 - 2025-11-25，服务端功能 - 工具](https://modelcontextprotocol.io/specification/2025-11-25/server/tools)
 
-数据类型
+MCP Server 公开可供 LLM 调用的工具。这些工具使 Model 能够与外部系统进行交互，e.g. 查询数据库, 调用 API, 执行计算, etc. 。每个工具均通过唯一的名称进行标识，并包含描述其 Schema(模式) 的元数据。
 
-https://modelcontextprotocol.io/specification/2025-03-26/server/tools#data-types
+> [!Attention] 这里面的描述有歧义，并不是 Model 与外部系统交互，而是 Model 告诉 MCP Client 应该使用什么参数，去向 MCP Server 发起请求以获取结果。
+
+### 数据结构 - 工具声明的信息
+
+> 参考：
+>
+> - [MCP 规范 - 2025-11-25，服务端功能 - 工具 - 数据类型]([https://modelcontextprotocol.io/specification/2025-11-25/server/tools](https://modelcontextprotocol.io/specification/2025-11-25/server/tools#data-types))
+
+MCP Server 定义一个 Tool 通常包含如下内容：
+
+- **name** # 工具的唯一标识符
+- **description** # 工具的描述性信息
+- **inputSchema** # 工具预期接收到的参数的 JSON Schema。MCP Client 调用 Server 时传入的参数，必须符合该 Schema
+- TODO: 其他
+
+### 数据结构 - 工具执行的结果
+
+工具执行结果可能包含 **structured(结构化)** 或 **unstructured(非结构化)** 的内容。这些内容通常以 type 字段标注
+
+文本内容
+
+```json
+{
+  "type": "text",
+  "text": "工具执行结果的文本"
+}
+```
+
+图片内容
+
+```json
+{
+  "type": "image",
+  "data": "Base64 编码后的数据",
+  "mimeType": "image/png",
+  "annotations": {
+    "audience": ["user"],
+    "priority": 0.9
+  }
+}
+```
+
+音频内容
+
+```json
+{
+  "type": "audio",
+  "data": "Base64 编码后的数据",
+  "mimeType": "audio/wav"
+}
+```
+
+TODO: 待记录
 
 # MCP Client
 
 > 参考：
 >
-> - [规范 - 客户端功能](https://modelcontextprotocol.io/specification/2025-03-26/client/roots)
+> - [MCP 规范 - 2025-03-26，客户端功能]([https://modelcontextprotocol.io/specification/2025-03-26/client](https://modelcontextprotocol.io/specification/2025-11-25/client)
 
-> 通常来说，各种 AI 工具都内置了 MCP Client，以便对接各自自定义的 MCP Server
+> [!Note] 通常来说，各种 AI 工具都内置了 MCP Client，以便对接各种自定义的 MCP Server。但是若想自己的程序调用 MCP Server，还是要自己实现 MCP Client
+
+
 
 # 常见问题
 
 ## MCP Server 返回超长上下文（e.g. 图片 base64 编码）后，MCP Client 转给模型后，超出了模型的上下文长度
 
 ![500](https://notes-learning.oss-cn-beijing.aliyuncs.com/ai/mcp/issue_overlength_context_1.png)
-
 
 # 历史

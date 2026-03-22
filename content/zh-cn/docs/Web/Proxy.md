@@ -67,6 +67,57 @@ https://gost.run/concepts/architecture/
 
 TODO
 
+## 配置文件
+
+环境： dept 网络区域；idc 网络区域。idc 可以访问 dept，dept 不可以访问 idc
+
+诉求： dept 想要访问 idc 的 9116 端口
+
+> 与下面的 [实现 SSH 的远程转发功能](实现%20SSH%20的远程转发功能) 一样
+
+dept 配置
+
+```yaml
+services:
+  - name: tunnel-server
+    addr: :8080
+    handler:
+      type: relay
+      metadata:
+        bind: true # 启用 Bind 功能，以便 Gost 可以在本设备上监听其它端口，让该端口与其他 Gost 节点的端口互通
+    listener:
+      type: tcp
+```
+
+idc 配置
+
+```yaml
+services:
+  - name: rtcp-snmp
+    addr: :19116           # 在 dept 设备上开启 19116 端口，发往 19116 端口的数据包将会转发到本地的 9116 端口上
+    handler:
+      type: rtcp
+    listener:
+      type: rtcp
+      chain: chain-to-dept # 让该服务使用 chain-to-dept Chain 进行通信。该名称需要与 chains[x].name 的值一致。
+    forwarder:
+      nodes:
+        - name: snmp-exporter
+          addr: localhost:9116
+
+chains:
+  - name: chain-to-dept
+    hops:
+      - name: hop0
+        nodes:
+          - name: dept-server
+            addr: ${DEPT-IP}:8080
+            connector:
+              type: relay
+            dialer:
+              type: tcp
+```
+
 ## 最佳实践
 
 `gost -L http://:8080 -L socks5://:1080` 使用命令直接启动一个简单的代理。

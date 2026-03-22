@@ -13,7 +13,7 @@ weight: 1
 > - [Ansible Galaxy](https://galaxy.ansible.com/) 类似于 playbook 仓库的地方
 > - [公众号，任务中心之Ansible进阶篇](https://mp.weixin.qq.com/s/HA0vKnuKwKOaB5kdcYX9rg)
 
-与通过命令行来执行 Ansbile 任务模式相比，Playbook 是 Ansible 执行任务的另一种方式，而且功能非常强大。
+与通过命令行来执行 Ansbile 任务模式相比，**Playbook(剧本)** 是 Ansible 执行任务的另一种方式，而且功能非常强大。
 
 playbook 可以通过定义一个或多个文件，然后让 ansible 使用这些文件来完成一系列复杂的任务。如果说通过命令行是对多台设备执行一个任务，那么 Playbook 则是可以对多台设备按顺序执行不同任务。
 
@@ -201,21 +201,22 @@ Ansible 提供四种可分发、可重复使用的 Artifacts：
 > - https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse.html#comparing-includes-and-imports-dynamic-and-static-re-use
 > - https://lework.github.io/2018/01/25/Ansible-xiao-shou-ce-xi-lie-er-shi-san-(-dong-tai-he-jing-tai-bao-han-)/
 
-重用分布式 Ansible 工件的每种方法都有优点和局限性。您可以为某些剧本选择动态重用，为其他剧本选择静态重用。尽管您可以在单个剧本中同时使用动态和静态重用，但最好为每个剧本选择一种方法。混合静态和动态重用可能会在您的剧本中引入难以诊断的错误。此表总结了主要差异，因此您可以为您创建的每个剧本选择最佳方法。
+重用分布式 Ansible 工件的每种方法都有优点和局限性。可以为某些 Playbook 选择动态重用，为其他 Playbook 选择静态重用。尽管可以在单个剧本中同时使用动态和静态重用，但最好为每个 Playbook 选择一种方法。混合静态和动态重用可能会在您的剧本中引入难以诊断的错误。此表总结了主要差异，因此您可以为您创建的每个剧本选择最佳方法。
 
-|                                                    | Include_*                               | Import_*                                 |
-| -------------------------------------------------- | --------------------------------------- | ---------------------------------------- |
-| Type of re-use                                     | Dynamic(动态)                             | Static(静态)                               |
-| When processed                                     | At runtime, when encountered            | Pre-processed during playbook parsing    |
-| Task or play                                       | All includes are tasks                  | `import_playbook` cannot be a task       |
-| Task options                                       | Apply only to include task itself       | Apply to all child tasks in import       |
-| Calling from loops                                 | Executed once for each loop item        | Cannot be used in a loop                 |
-| Using `--list-tags`<br>i.e. 是否可以通过 -t 选项指定执行包含中的任务 | 无法列出 includes 中的标签                      | `--list-tags` 命令可以列出包含所有导入的任务的标签         |
-| Using `--list-tasks`                               | Tasks within includes not listed        | All tasks appear with `--list-tasks`     |
-| Notifying handlers                                 | Cannot trigger handlers within includes | Can trigger individual imported handlers |
-| Using --start-at-task                              | Cannot start at tasks within includes   | Can start at imported tasks              |
-| Using inventory variables                          | Can `include_*: {{ inventory_var }}`    | Cannot `import_*: {{ inventory_var }}`   |
-| With playbooks                                     | No `include_playbook`                   | Can import full playbooks                |
-| With variables files                               | Can include variables files             | Use `vars_files:` to import variables    |
+|                                                | Include_*                               | Import_*                                 |
+| ---------------------------------------------- | --------------------------------------- | ---------------------------------------- |
+| Type of re-use                                 | Dynamic(动态)                             | Static(静态)                               |
+| When processed                                 | At runtime, when encountered            | Pre-processed during playbook parsing    |
+| Task or play                                   | All includes are tasks                  | `import_playbook` cannot be a task       |
+| Task options                                   | Apply only to include task itself       | Apply to all child tasks in import       |
+| Calling from loops                             | Executed once for each loop item        | Cannot be used in a loop                 |
+| 使用 `--list-tags`<br>i.e. 是否可以通过 -t 选项指定执行其中的任务 | 无法列出 includes 中的标签                      | `--list-tags` 命令可以列出包含所有导入的任务的标签         |
+| Using `--list-tasks`                           | Tasks within includes not listed        | All tasks appear with `--list-tasks`     |
+| Notifying handlers                             | Cannot trigger handlers within includes | Can trigger individual imported handlers |
+| Using --start-at-task                          | Cannot start at tasks within includes   | Can start at imported tasks              |
+| Using inventory variables                      | Can `include_*: {{ inventory_var }}`    | Cannot `import_*: {{ inventory_var }}`   |
+| With playbooks                                 | No `include_playbook`                   | Can import full playbooks                |
+| With variables files                           | Can include variables files             | Use `vars_files:` to import variables    |
 
-
+> [!Note] 个人理解
+> Import 类似把目标文件直接通过类似的方式附加到主文件中，其实就是处理文件前把多个文件拼成一个文件后处理。

@@ -32,7 +32,7 @@ sudo tar -C /usr/local -xvzf go${GoVersion}.linux-amd64.tar.gz
 sudo tee /etc/profile.d/go.sh > /dev/null <<-"EOF"
 # export GOPATH=/opt/gopath
 # export PATH=$PATH:\$GOPATH/bin:/usr/local/go/bin
-export PATH=$PATH:/usr/local/go/bin
+export PATH=/usr/local/go/bin:${PATH}
 export GO111MODULE=on
 export GOPROXY=https://goproxy.cn,https://goproxy.io,direct
 export CGO_ENABLED=0

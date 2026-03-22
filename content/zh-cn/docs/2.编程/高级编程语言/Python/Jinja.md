@@ -421,11 +421,11 @@ class FilterModule(object):
 {% endfilter %}
 ```
 
-有些筛选器函数需要给定参数，例如 replace() 筛选器，可以将字符串中的一部分替换掉。例如，将字符串中的”no” 替换成”yes”。
+有些筛选器函数需要给定参数，例如 `replace()` 筛选器，可以将字符串中的一部分替换掉。例如，将字符串中的 `no`  替换成 `yes`。
 
 ```python
 {% if result %}
-{{result|replace('no', 'yes')}}
+{{ result | replace('no', 'yes') }}
 {% endif %}
 ```
 
