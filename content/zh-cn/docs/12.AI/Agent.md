@@ -47,7 +47,7 @@ weight: 100
 
 # Agent 流程
 
-[agent-flow.excalidraw](Excalidraw/AI/agent-flow.excalidraw.md)
+![](Excalidraw/AI/agent-flow.excalidraw.md)
 
 # 知乎-北方的狼 智能体
 

@@ -110,6 +110,34 @@ git rebase upstream/main
 git push origin main --force-with-lease
 ```
 
+## 将 fork 后的本地仓库改为与上游同步，而不是与自己 fork 的仓库同步
+
+```bash
+git remote set-url origin https://github.com/sipeed/picoclaw.git
+```
+
+解释：假如我在 GitHub Desktop 中 fork 了 sipeed/picoclaw 到自己的 DesistDaydream/picoclaw，检查 remote 结果如下
+
+```bash
+$ git remote -v
+origin  https://github.com/DesistDaydream/picoclaw.git (fetch)
+origin  https://github.com/DesistDaydream/picoclaw.git (push)
+upstream        https://github.com/sipeed/picoclaw.git (fetch)
+upstream        https://github.com/sipeed/picoclaw.git (push)
+```
+
+执行力 remote set-url origin 之后，检查 remote 结果如下：
+
+```bash
+$ git remote -v
+origin  https://github.com/sipeed/picoclaw.git (fetch)
+origin  https://github.com/sipeed/picoclaw.git (push)
+upstream        https://github.com/sipeed/picoclaw.git (fetch)
+upstream        https://github.com/sipeed/picoclaw.git (push)
+```
+
+此时就会默认从上游下载更新，也能在 GitHub Desktop 中实时监控上游，避免只能看到自己的仓库，无法看到上游更新
+
 # 命令详解
 
 **提交相关**
