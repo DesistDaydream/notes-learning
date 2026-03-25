@@ -5130,6 +5130,7 @@
     "Excalidraw/AI": {
       "children": [
         "Excalidraw/AI/llm-arch.excalidraw.md",
+        "Excalidraw/AI/agent-flow.excalidraw.md",
         "Excalidraw/AI/agent-arch.excalidraw.md",
         "Excalidraw/AI/mcp-arch.excalidraw.md",
         "Excalidraw/AI/fitting.excalidraw.md"

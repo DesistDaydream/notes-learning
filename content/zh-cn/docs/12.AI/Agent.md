@@ -41,13 +41,19 @@ weight: 100
 - https://zhuanlan.zhihu.com/p/1978741652337205325
 - https://www.ibm.com/think/topics/react-agent
 
-![](Excalidraw/AI/agent-arch.excalidraw.md)
+# Agent 架构
+
+![700](Excalidraw/AI/agent-arch.excalidraw.md)
+
+# Agent 流程
+
+[agent-flow.excalidraw](Excalidraw/AI/agent-flow.excalidraw.md)
 
 # 知乎-北方的狼 智能体
 
 **本书目录**
 
-本书共分六大部分，20个章节，沿着**“认知 -> 大脑 -> 手脚 -> 骨架 -> 社会”**的逻辑脉络，为您完整复原一个智能体的诞生过程。
+本书共分六大部分，20个章节，沿着 **“认知 -> 大脑 -> 手脚 -> 骨架 -> 社会”** 的逻辑脉络，为您完整复原一个智能体的诞生过程。
 
 **第一部分：定义 —— 什么是2025年的智能体？**
 

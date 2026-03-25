@@ -81,6 +81,7 @@ https://blog.x-agent.net/blog/xagent/
 - 项目名字经过两次变化: Clawdbot, Moltbot
 - https://claude.ai/share/eed2502c-d752-4b4f-95b5-11ff2c7674b9
 - [Pi：OpenClaw 中的最小代理](https://lucumr.pocoo.org/2026/1/31/pi/) # Pi 的思想是 OpenClaw 的精髓
+    - https://github.com/badlogic/pi-mono/
 
 [GitHub 项目，qwibitai/nanoclaw](https://github.com/qwibitai/nanoclaw) # 精简的 OpenClaw
 
@@ -95,6 +96,8 @@ https://blog.x-agent.net/blog/xagent/
 新闻
 
 [GitHub 项目，gsscsd/big_model_radar](https://github.com/gsscsd/big_model_radar) # 每天早上 08:00 CST 自动运行的 GitHub Actions 工作流。追踪主流 AI CLI 工具的 GitHub 动态、OpenClaw 及其同赛道项目的生态活动、Anthropic 和 OpenAI 官网最新资讯，并每日监测 GitHub AI 热门仓库趋势，以中英双语每日简报的形式发布为 GitHub Issues 并提交为 Markdown 文件。每周和每月自动生成汇总报告。
+
+https://github.com/duanyytop/agents-radar
 
 - [OpenClaw](https://github.com/openclaw/openclaw)
 - [NanoBot](https://github.com/HKUDS/nanobot)

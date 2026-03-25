@@ -10,6 +10,13 @@ weight: 1
 >
 > -
 
+一套完整的可以在本地运行各种模型并对外提供 WebAPI 的程序
+
+- [Ollama](#Ollama)
+- vLLM
+    - https://github.com/vllm-project/vllm
+- etc.
+
 # LM Studio
 
 > 参考：
