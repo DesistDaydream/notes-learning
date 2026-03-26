@@ -154,8 +154,8 @@ https://github.com/search?q=language%3AGo%20cmdb&type=repositories # Go 语言 C
 
 - https://github.com/TencentBlueKing/bk-cmdb # 蓝鲸智云配置平台(BlueKing CMDB)
 - https://github.com/WeBankPartners/we-cmdb # 微众银行运维管理实践的的一套 CMDB
-- https://github.com/Duke1616/ecmdb # CMDB、工单一体化平台
-- https://github.com/opsre/AutoOps
+- https://github.com/Duke1616/ecmdb # Go 语言编写。CMDB、工单一体化平台。模块化设计较好
+- https://github.com/opsre/AutoOps # Go 语言编写。功能大而全，杂而乱
   - https://space.bilibili.com/450785887/upload/video
 - https://github.com/tahopetis/Pustaka # 单 CMDB
 - https://github.com/ydcloud-dy/cmdb-server # K8S多集群管理平台、CMDB、CICD后端
