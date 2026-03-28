@@ -46,13 +46,16 @@ Ollama 模型库: https://ollama.com/library
 
 ## Windows
 
-**%LOCALAPPDATA%/Ollama/** # 日志
+**%LOCALAPPDATA%/Programs/Ollama/** # Ollama 默认安装位置，包括 二进制程序、依赖库、CUDA、etc.
 
-**%LOCALAPPDATA%/Programs/Ollama/** # 二进制程序
+**%LOCALAPPDATA%/Ollama/** # 日志保存位置
 
-**%HOMEPATH%/.ollama/** # 模型与配置
+- https://docs.ollama.com/troubleshooting 根据官方文档说明，Windows 日志要想落盘，需要使用 `ollama app.exe` 运行托盘程序才会生成。否则只能从标准输入输出查看日志，或者使用 `Start-Process -FilePath "ollama" -ArgumentList "serve" -RedirectStandardOutput "D:\log\ollama\stdout.log" -RedirectStandardError "D:\log\ollama\stderr.log" -NoNewWindow` 重定向日志
+- https://github.com/ollama/ollama/pull/11552 有个 pr 想要在命令行增加查看日志的功能很久了还没合并
 
-- **./models/** # 模型储存位置。可以设置环境变量 `OLLAMA_MODELS` 定义新的储存位置
+**%HOMEPATH%/.ollama/** # 模型与配置储存位置
+
+- **./models/** # 模型储存位置。可以使用 `OLLAMA_MODELS` 环境变量定义新的储存位置
 
 **%TEMP%/** # 临时可执行文件
 

@@ -9,7 +9,7 @@ weight: 1
 
 > 参考：
 >
-> - 
+> -
 
 # 安装 Python 包/模块
 
@@ -68,7 +68,7 @@ pdm
 
 hatch
 
-[UV](docs/2.编程/高级编程语言/Python/Python工具/UV.md) # 依赖库有全局缓存
+[UV](/docs/2.编程/高级编程语言/Python/Python工具/UV.md) # 依赖库有全局缓存
 
 # Wheel 包
 

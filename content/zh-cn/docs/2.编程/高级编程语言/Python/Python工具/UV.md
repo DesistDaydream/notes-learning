@@ -69,4 +69,43 @@ uv cache clean 清除缓存
 
 `uv cache prune` 会删除所有未使用的缓存条目
 
+# 最佳实践
 
+## 通过 pyproject.toml 配置指定的 index 以安装 CUDA 版的 torch
+
+```toml
+[project]
+name = "python-ai"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    # 加速器，用于在 GPU 上运行模型。device_map="auto"
+    "accelerate>=1.13.0",
+    "numpy>=2.3.1",
+    "torch>=2.7.1",
+    "torchvision>=0.26.0",
+    "transformers>=5.3.0",
+]
+
+[[tool.uv.index]]
+name = "aliyun"
+url = "https://mirrors.aliyun.com/pypi/simple/"
+default = true
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
+```
+
+index.name 为 index 指定名称，以便其他配置使用
+
+index.explicit 设为 true 后，这个 index 只有在 sources 字段中配置的包才可以使用。
+
+sources 指定 torch 和 torchvision 两个包从 名为 pytorch-cu128 的 index 中获取

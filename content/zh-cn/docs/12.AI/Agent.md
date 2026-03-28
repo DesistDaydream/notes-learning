@@ -1,8 +1,8 @@
 ---
-title: "Agent"
-linkTitle: "Agent"
-created: "2026-03-14T18:30"
-weight: 100
+title: Agent
+linkTitle: Agent
+created: 2026-03-14T18:30
+weight: 60
 ---
 **前言**
 
@@ -47,7 +47,7 @@ weight: 100
 
 # Agent 流程
 
-![](Excalidraw/AI/agent-flow.excalidraw.md)
+![800](Excalidraw/AI/agent-flow.excalidraw.md)
 
 # 知乎-北方的狼 智能体
 

@@ -1,7 +1,7 @@
 ---
-title: "Prompt"
-linkTitle: "Prompt"
-weight: 100
+title: Prompt
+linkTitle: Prompt
+weight: 50
 ---
 
 # 概述
