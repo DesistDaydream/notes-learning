@@ -78,6 +78,14 @@ https://blog.x-agent.net/blog/xagent/
 
 [OpenClaw](/docs/12.AI/AI%20Projects/OpenClaw.md)
 
+## Agent CLI
+
+https://mp.weixin.qq.com/s/4S16qNlLv307RMwZsp7QIA
+
+https://github.com/jackwener/opencli
+
+https://github.com/HKUDS/CLI-Anything
+
 # ChatGPT
 
 [ChatGPT](/docs/12.AI/AI%20Projects/ChatGPT.md)
