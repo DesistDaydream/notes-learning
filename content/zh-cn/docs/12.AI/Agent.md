@@ -49,6 +49,23 @@ weight: 60
 
 ![800](Excalidraw/AI/agent-flow.excalidraw.md)
 
+# Pi-mono
+
+> 参考：
+>
+> - [GitHub 项目，badlogic/pi-mono](https://github.com/badlogic/pi-mono)
+> - [公众号，从 pi-mono 到 OpenClaw：源码拆解，21 万 Star 背后的 Agent 工程减法](https://mp.weixin.qq.com/s/qr0Ch8ii79KymUiK6kV_lA)
+> - [公众号，OpenClaw背后的英雄Pi-mono](https://mp.weixin.qq.com/s/XRZrOvapXWiZneDtipfHTQ)
+
+pi-mono 只保留四个工具：
+
+- read # 读取文件内容，支持文本和图片，可指定行范围
+- write # 创建新文件或完全重写，自动创建目录
+- edit # 精确替换文本，oldText 必须完全匹配
+- bash # 执行命令，返回 stdout 和 stderr，可设置超时
+
+Zechner 的逻辑很直接：编程的本质就是读代码、写代码、改代码、跑代码。这四个工具组合起来能覆盖大部分编程场景。
+
 # 知乎-北方的狼 智能体
 
 **本书目录**

@@ -1,5 +1,7 @@
 ---
 title: RedHat 与 CentOS
+linkTitle: RedHat 与 CentOS
+weight: 70
 ---
 
 # 概述

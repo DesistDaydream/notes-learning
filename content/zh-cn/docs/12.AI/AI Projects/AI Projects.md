@@ -80,9 +80,11 @@ https://blog.x-agent.net/blog/xagent/
 
 ## Agent CLI
 
-https://mp.weixin.qq.com/s/4S16qNlLv307RMwZsp7QIA
+https://mp.weixin.qq.com/s/qr0Ch8ii79KymUiK6kV_lA
 
 https://github.com/jackwener/opencli
+
+- [微信，OpenCLI：万物皆可 CLI](https://mp.weixin.qq.com/s/4S16qNlLv307RMwZsp7QIA)
 
 https://github.com/HKUDS/CLI-Anything
 

@@ -1,7 +1,7 @@
 ---
 title: EulerOS 与 OpenEuler
 linkTitle: EulerOS 与 OpenEuler
-weight: 20
+weight: 80
 ---
 
 # 概述

@@ -1,7 +1,7 @@
 ---
 title: OpenWrt
 linkTitle: OpenWrt
-weight: 20
+weight: 90
 ---
 
 # 概述

@@ -176,7 +176,7 @@ MCP Server 公开可供 LLM 调用的工具。这些工具使 Model 能够与外
 
 > 参考：
 >
-> - [MCP 规范 - 2025-11-25，服务端功能 - 工具 - 数据类型]([https://modelcontextprotocol.io/specification/2025-11-25/server/tools](https://modelcontextprotocol.io/specification/2025-11-25/server/tools#data-types))
+> - [MCP 规范 - 2025-11-25，服务端功能 - 工具 - 数据类型](https://modelcontextprotocol.io/specification/2025-11-25/server/tools#data-types)
 
 MCP Server 定义一个 Tool 通常包含如下内容：
 
@@ -228,7 +228,7 @@ TODO: 待记录
 
 > 参考：
 >
-> - [MCP 规范 - 2025-03-26，客户端功能]([https://modelcontextprotocol.io/specification/2025-03-26/client](https://modelcontextprotocol.io/specification/2025-11-25/client)
+> - [MCP 规范 - 2025-03-26，客户端功能](https://modelcontextprotocol.io/specification/2025-11-25/client)
 
 > [!Note] 通常来说，各种 AI 工具都内置了 MCP Client，以便对接各种自定义的 MCP Server。但是若想自己的程序调用 MCP Server，还是要自己实现 MCP Client
 
