@@ -66,8 +66,9 @@ https://www.wireshark.org/docs/wsug_html_chunked/ChUseViewMenuSection.html
 
 与 Pakcet Details 窗口不同，Packet Bytes 窗口展示的是该包的最原始数据内容，i.e. 数据的 Bytes 信息，并没有那些 WireShark 附加的描述性信息。整体分两大部分：
 
-- 左侧是默认以十六进制表示的字节流信息（右键点击可以更改展示的类型）（每个 Bytes 占 8 bit）；
-- 右侧是字节流中每个字节对应 [ASCII 表](/docs/8.通用技术/编码与解码/字符的编码与解码/ASCII%20表.md) 的字符。
+- 左侧是默认以十六进制表示的 Bytes(字节流) 信息（右键点击可以更改展示的类型）（每个 Byte 占 8 bit）；
+    - 还可以将 Bytes 以 十进制、八进制、bits 表示。因为 bits 就是一堆 0 和 1，自然可以使用进制转换
+- 右侧是字节流中每个 Byte 对应 [ASCII 表](/docs/8.通用技术/编码与解码/字符的编码与解码/ASCII%20表.md) 的字符。
 
 e.g. 图中粉框中的 `47 45 54` 对应的就 ASCII 表的 `GET` 这几个字符。
 

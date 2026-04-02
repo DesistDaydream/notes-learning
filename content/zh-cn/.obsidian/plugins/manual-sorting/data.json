@@ -5115,6 +5115,7 @@
     },
     "Excalidraw": {
       "children": [
+        "Excalidraw/encoding_and_decoding",
         "Excalidraw/demo.excalidraw.md",
         "Excalidraw/cloud_native",
         "Excalidraw/Protocol",
@@ -5149,6 +5150,12 @@
     "Excalidraw/cloud_native": {
       "children": [
         "Excalidraw/cloud_native/cloud_native_arch.excalidraw.md"
+      ],
+      "sortOrder": "custom"
+    },
+    "Excalidraw/encoding_and_decoding": {
+      "children": [
+        "Excalidraw/encoding_and_decoding/base64.excalidraw.md"
       ],
       "sortOrder": "custom"
     },
