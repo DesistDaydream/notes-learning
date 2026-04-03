@@ -1,5 +1,7 @@
 ---
-title: Keepalived 介绍
+title: Keepalived
+linkTitle: Keepalived
+weight: 1
 ---
 
 # 概述
@@ -23,7 +25,7 @@ Keepalived 特点：
 
 # 1.1 keepalived 及 LVS 概述
 
-Keepalived 的项目实现的主要目标是简化 LVS 项目的配置并增强其稳定性，即 Keepalived 是对 LVS 项目的扩展增强。
+Keepalived 的项目实现的主要目标是简化 [LVS](/docs/3.集群与分布式/LVS/LVS.md) 项目的配置并增强其稳定性，即 Keepalived 是对 LVS 项目的扩展增强。
 
 Keepalived 为 Linux 系统和基于 Linux 的架构提供了负载均衡和高可用能力，其负载均衡功能主要源自集成在 Linux 内核中的 LVS 项目模块 IPVS( IP Virtual Server ），基于 IPVS 提供的 4 层 TCP/IP 协议负载均衡， Keepalived 也具备负载均衡的功能，此外， Keepalived 还实现了基于多层 TCP/IP 协议（ 3 层、4 层、5/7 层）的健康检查机制，因此， Keepalived 在 LVS 负载均衡功能的基础上，还提供了 LVS 集群物理服务器池健康检查和故障节点隔离的功能。
 

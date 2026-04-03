@@ -30,9 +30,7 @@ weight: 60
 >
 > - 
 
-[B 站 - 老戴Donald，【老戴】用了几天 Clawdbot，我最担心的事开始发生了](https://www.bilibili.com/video/BV1MnFNz5EDL?spm_id_from=333.1245.0.0)
-
-[B 站 - 飞天闪客，【闪客】20 行代码彻底搞懂小龙虾！男女老少都看得懂哟~](https://www.bilibili.com/video/BV19hwTzwETF)
+**AI Agent**
 
 **Agent Runtime** # 类似 MCP 的 Host，Agent 与模型交互的程序。实现了 ReAct 功能
 
@@ -40,6 +38,14 @@ weight: 60
 
 - https://zhuanlan.zhihu.com/p/1978741652337205325
 - https://www.ibm.com/think/topics/react-agent
+
+# 资料
+
+[AI Agent 本地LLM推理设备部署指南](https://llmdev.guide/) # 用真实数据说话，拒绝虚标 — 社区驱动的大模型推理设备性能数据库。PicoClaw 主家出的。
+
+[B 站 - 老戴Donald，【老戴】用了几天 Clawdbot，我最担心的事开始发生了](https://www.bilibili.com/video/BV1MnFNz5EDL?spm_id_from=333.1245.0.0)
+
+[B 站 - 飞天闪客，【闪客】20 行代码彻底搞懂小龙虾！男女老少都看得懂哟~](https://www.bilibili.com/video/BV19hwTzwETF)
 
 # Agent 架构
 

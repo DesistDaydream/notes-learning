@@ -1,6 +1,14 @@
 ---
 title: keepalived+nginx 配置示例
+linkTitle: keepalived+nginx 配置示例
+weight: 21
 ---
+
+# 概述
+
+> 参考：
+>
+> - 
 
 # 适用于 keepalived 的 node 节点的前端负载均衡的配置
 
@@ -85,17 +93,17 @@ EOF
 ```bash
 cat > /etc/keepalived/check_nginx.sh << \EOF
 #!/bin/bash
-pidof nginx                           #检查memcached服务
-if [[ $? == 0 ]];then                           #检查成功
+pidof nginx                                     # 检查memcached服务
+if [[ $? == 0 ]];then                           # 检查成功
   /sbin/iptables -S | grep vrrp
-  if [[ $? == 0 ]]; then                        #如果iptable中有vrrp的配置，删除它
+  if [[ $? == 0 ]]; then                        # 如果iptable中有vrrp的配置，删除它
     /sbin/iptables -D OUTPUT -p vrrp -j DROP
   fi
   exit 0
-else                                            #检查失败
+else                                            # 检查失败
   /sbin/iptables -S | grep vrrp
   if [[ $? != 0 ]]; then
-    /sbin/iptables -A OUTPUT -p vrrp -j DROP    #如果iptable中没有vrrp的条目，禁止vrrp发出
+    /sbin/iptables -A OUTPUT -p vrrp -j DROP    # 如果iptable中没有vrrp的条目，禁止vrrp发出
   fi
   exit 1
 fi

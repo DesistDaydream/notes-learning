@@ -1810,9 +1810,9 @@
         "docs/3.集群与分布式/集群与分布式.md",
         "docs/3.集群与分布式/Load balancing.md",
         "docs/3.集群与分布式/分布式算法",
-        "docs/3.集群与分布式/HAProxy",
-        "docs/3.集群与分布式/Keepalived",
         "docs/3.集群与分布式/LVS",
+        "docs/3.集群与分布式/Keepalived",
+        "docs/3.集群与分布式/HAProxy",
         "docs/3.集群与分布式/ZooKeeper.md"
       ],
       "sortOrder": "custom"
@@ -1834,10 +1834,10 @@
     "docs/3.集群与分布式/Keepalived": {
       "children": [
         "docs/3.集群与分布式/Keepalived/_index.md",
-        "docs/3.集群与分布式/Keepalived/1.1.Keepalived 介绍.md",
-        "docs/3.集群与分布式/Keepalived/1.2.Keepalived 配置详解.md",
-        "docs/3.集群与分布式/Keepalived/10.1.Keepalived 配置示例.md",
-        "docs/3.集群与分布式/Keepalived/10.2.keepalived+nginx 配置示例.md",
+        "docs/3.集群与分布式/Keepalived/Keepalived.md",
+        "docs/3.集群与分布式/Keepalived/Keepalived 配置详解.md",
+        "docs/3.集群与分布式/Keepalived/Keepalived 配置示例.md",
+        "docs/3.集群与分布式/Keepalived/keepalived+nginx 配置示例.md",
         "docs/3.集群与分布式/Keepalived/问题实例：Keepalived 非抢占模式 VIP 不漂移.md"
       ],
       "sortOrder": "custom"
@@ -3212,7 +3212,7 @@
         "docs/8.通用技术/编码与解码/音频的编码与解码.md",
         "docs/8.通用技术/编码与解码/图像的编码与解码.md",
         "docs/8.通用技术/编码与解码/视频的编码与解码.md",
-        "docs/8.通用技术/编码与解码/Base64 编码.md"
+        "docs/8.通用技术/编码与解码/BaseXX 编码.md"
       ],
       "sortOrder": "custom"
     },
