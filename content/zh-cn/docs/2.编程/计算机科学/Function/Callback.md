@@ -13,10 +13,19 @@ weight: 20
 > - [公众号-码农的荒岛求生，回调函数 callback 的实现原理是什么？](https://mp.weixin.qq.com/s/zS7URRO5sNzobUNIqSJHIg)
 >   - 原文非简化版：《[10 张图让你彻底理解回调函数](http://mp.weixin.qq.com/s?__biz=Mzg4OTYzODM4Mw==&mid=2247485712&idx=1&sn=3d2750dfb693f41b2483b51b60a4f44c&chksm=cfe99590f89e1c860277fe1b22c3731ec4e3b61dbb5cd2a6d9548efbc709104a38d6da812517&scene=21#wechat_redirect)》
 
-**Callback function(回调函数)** 也是函数，只不过函数的参数不是变量，而是另一个函数。这种调用函数的方式有多种好处
+**Callback(回调函数)** 是一种编程模式，我们通常使用 **Callback function(回调函数)** 来实现回调。
+
+声明了函数 B，调用函数 A 时，将 B 当作参数传给 A，i.e. `A(B)` 。此时可以说，B 是 A 的回调函数。**函数的参数不是变量，而是另一个函数**
+
+- 在回调编程模式中，**A 函数可以在自己的执行逻辑中，决定什么时候使用 B 的逻辑**。
+- 人话：我去店里买东西，店里没货，我把电话留下，过了几天货到了，店员给我打电话我去取货。
+    - 在这个例子里，我的电话就是店员的回调函数
+
+这种调用函数的方式有多种好处：
 
 - 异步调用。调用 A 时，只要传递的参数中的函数没有阻塞逻辑，那就不用等待 A 函数全部执行完成，即可继续处理后续代码。
 - 不同实体调用函数 A 时，想要执行一些不同的特定的代码，不用在函数 A 里加很多 if else 的判断
+- [即时通信](docs/Utils/即时通信/即时通信.md) 软件中，启动一个 [ChatBot](docs/12.AI/AI%20Projects/ChatBot.md)，将 ChatBot 的 API 告诉 IM，那么 ChatBot API 就是 IM 的回调。当 IM 有消息时，可以发送给 ChatBot。
 - 等等
 
 **其实回调函数和普通函数没有本质的区别。**
