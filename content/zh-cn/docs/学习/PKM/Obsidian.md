@@ -51,7 +51,7 @@ Obsidian 识别 [Markdown](/docs/2.编程/标记语言/Markdown.md) 语法并渲
 
 https://help.obsidian.md/Editing+and+formatting/Callouts
 
-Obsidian 扩展了 Markdown 的 **Callouts(标注)** 效果。
+Obsidian 扩展了 Markdown 的 **Callouts(标注)** 效果。除非[自定义标注](https://obsidian.md/help/callouts#Customize%20callouts) ，否则任何不支持的类型都将默认为 `note` 类型。类型标识符不区分大小写。
 
 > [!note]
 >
@@ -59,15 +59,21 @@ Obsidian 扩展了 Markdown 的 **Callouts(标注)** 效果。
 
 > [!tip]
 >
-> Lorem ipsum dolor sit amet
+> Lorem ipsum dolor sit amet。还可以使用 `hint`(提示), `important`(重要) 关键字。
 
 > [!success]
 >
-> Lorem ipsum dolor sit amet
+> Lorem ipsum dolor sit amet。还可以使用 `check`, `done` 关键字。
+
+> [!question]
+> Lorem ipsum dolor sit amet。还可以用 `help`, `faq` 关键字。
 
 > [!warning]
 >
-> Lorem ipsum dolor sit amet. 还可以用 `caution`, `attention` 这俩关键字
+> Lorem ipsum dolor sit amet. 还可以用 `caution`, `attention` 关键字。
+
+> [!danger]
+> Lorem ipsum dolor sit amet。还可以用 `error` 关键字。
 
 > [!bug]
 >
@@ -76,6 +82,9 @@ Obsidian 扩展了 Markdown 的 **Callouts(标注)** 效果。
 > [!example]
 >
 > Lorem ipsum dolor sit amet
+
+> [!quote]
+> Lorem ipsum dolor sit amet。还可以使用 `cite` 关键字
 
 还有很多样式可以参考官方文档
 

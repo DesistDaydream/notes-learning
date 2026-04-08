@@ -215,6 +215,8 @@ irate(http_requests_total{job="api-server"}[5m])
 
 > [!Note] 导数，i.e. 斜率，也可以理解为变化率
 
+> [!TODO] 感觉好像与 rate 类似？只不过 deriv 不会处理单调性变化的情况，所以会有负数
+
 ## predict_linear() - 线性预测
 
 `predict_linear(v range-vector, t scalar)` 预测时间序列 v 在 t 秒后的值。它基于简单线性回归的方式，对时间窗口内的样本数据进行统计，从而可以对时间序列的变化趋势做出预测。该函数的返回结果不带有度量指标，只有标签列表。

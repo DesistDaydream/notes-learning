@@ -115,7 +115,7 @@ gopher 第二条：按东西放在约定的地方。
 
 一个常见的 Go 应用项目布局，通常有如下结构：
 
-```latex
+```yaml
 - my-go-project
  - cmd
  - pkg

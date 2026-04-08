@@ -25,7 +25,7 @@ weight: 20
 
 - 异步调用。调用 A 时，只要传递的参数中的函数没有阻塞逻辑，那就不用等待 A 函数全部执行完成，即可继续处理后续代码。
 - 不同实体调用函数 A 时，想要执行一些不同的特定的代码，不用在函数 A 里加很多 if else 的判断
-- [即时通信](docs/Utils/即时通信/即时通信.md) 软件中，启动一个 [ChatBot](docs/12.AI/AI%20Projects/ChatBot.md)，将 ChatBot 的 API 告诉 IM，那么 ChatBot API 就是 IM 的回调。当 IM 有消息时，可以发送给 ChatBot。
+- [即时通信](/docs/Utils/即时通信/即时通信.md) 软件中，启动一个 [ChatBot](/docs/12.AI/AI%20Projects/ChatBot.md)，将 ChatBot 的 API 告诉 IM，那么 ChatBot API 就是 IM 的回调。当 IM 有消息时，可以发送给 ChatBot。
 - 等等
 
 **其实回调函数和普通函数没有本质的区别。**

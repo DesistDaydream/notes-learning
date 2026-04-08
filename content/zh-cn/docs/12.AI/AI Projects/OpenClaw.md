@@ -141,7 +141,7 @@ pkg/gateway/gateway.go
 
 **五.** 循环完成后，返回 `finalContent`
 
-### 工具调用 
+### 工具调用
 
 当 LLM 返回的 tool_calls 字段不为空时， Agent 程序开始执行调用工具的逻辑
 
@@ -232,7 +232,7 @@ pkg/identity/
 
 ### Providers
 
-Providers 是各种 [Model service](/docs/12.AI/Model%20service.md) 的提供者。
+Providers 是各种 [Inference](/docs/12.AI/机器学习/Inference.md)(推理) 服务的提供者。
 
 核心接口:
 

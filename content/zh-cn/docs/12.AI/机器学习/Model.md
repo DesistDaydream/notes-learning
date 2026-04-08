@@ -19,9 +19,9 @@ weight: 20
 - **Hyperparameter(超参数)** # 训练和模型架构设置中手动配置的参数，影响模型的性能和训练过程。常见的超参数包括：学习率、批量大小、网络层数和每层的神经元数量、激活函数类型、训练轮数、etc. 。而其他参数（例如节点权重）的值是通过训练得出的。
 - **Parameters(参数)** # 模型训练过程中学习到的一系列数值，e.g. **权重**、etc. 。它们决定了输入数据如何影响模型的输出。
 
-模型需要 **[Training](#Training)(训练)**，训练后得到的模型文件是一系列的权值（权重值），通常是大量(上亿)个浮点数。如果进行了**模型量化**，也可以是整数。
+模型需要 **[Training](/docs/12.AI/机器学习/Training.md)(训练)**，训练后得到的模型文件是一系列的权值（权重值），通常是大量(上亿)个浮点数。如果进行了**模型量化**，也可以是整数。
 
-训练好的模型可以进行 **[Inference](#Inference)(推理)**，根据输入计算出结果。
+训练好的模型可以进行 **[Inference](/docs/12.AI/机器学习/Inference.md)(推理)**，依据输入通过计算预测输出。
 
 # 学习资料
 
@@ -78,64 +78,6 @@ print(weight)
 > nn.Linear() 就像编程体系中的汇编，是所有高级模型的基础。只不过还有很多不同点，比如 汇编没有训练的概念、etc. 。
 >
 > 似乎，从这种底层逻辑看，所有模型其实都是一样的，底层只有像 Linear() 之类的简单线性层，不同点在于高级模型会用到 非常多的层数、训练方式、训练数据。
-
-# Training
-
-> 参考：
->
-> - [Wiki, Machine_learning - Training_models](https://en.wikipedia.org/wiki/Machine_learning#Training_models)
-> - [Wiki, raining, validation, and test data sets](https://en.wikipedia.org/wiki/Training,_validation,_and_test_data_sets)
-> - https://en.wikipedia.org/wiki/Training#Artificial-intelligence_feedback
-> - https://easyaitech.medium.com/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82-ai-%E6%95%B0%E6%8D%AE%E9%9B%86-%E8%AE%AD%E7%BB%83%E9%9B%86-%E9%AA%8C%E8%AF%81%E9%9B%86-%E6%B5%8B%E8%AF%95%E9%9B%86-%E9%99%84-%E5%88%86%E5%89%B2%E6%96%B9%E6%B3%95-%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81-9b3afd37fd58
-
-**Training(训练)** 模型最基本需要如下几样东西
-
-- **原始模型**
-- **Hyperparameter(超参数)**
-- **[Dataset](/docs/12.AI/机器学习/Dataset.md)(数据集)**
-
-加载原始模型，设置超参数，将数据集的数据转为模型可以识别的数值，一遍一遍训练，最后得出一组参数。
-
-在开始训练之前，通常需要准备三个数据集，分别用于 训练、验证、测试：
-
-- **Training datasets(训练数据集)**
-- **Validation datasets(验证数据集)**
-- **Test datasets(测试数据集)**
-
-先使用训练数据集对模型进行最初的训练生成参数；然后使用验证数据集对训练后的模型进行评估打分，调整参数纠正训练中的偏差；最后使用测试数据集对模型评估打分。
-
-一个模型的权重在没有训练之前通常都有一个默认值（0 - 1 的正态分布）。训练模型一般是指将数据集提供给模型后，数据将会转为一组数值，模型根据这组数值调整权重，随着一次一次的训练，模型会不断更新这些权重，直到满足最终目标。
-
-通过模型配套的程序，将数据集交给原始模型并训练 N epoch(周期)，最终得到可以执行特定任务的模型（识别对象、沟通、etc.）
-
-> [!Tip]
-> 不同的模型（计算机视觉、自然语言处理、etc.）训练时，可能需要一些特定于该种类模型的东西。
-
-> TODO:
->
-> 注意日常口语化的名词 **调参**，调的是什么参？超参？权重？还是什么？
->
-> 写好模型后，向模型中传入参数用结果与历史真实结果对比，差值越小，模型越精准？若是差值大就修改参数，直到最后差值无限接近 0 ？
-
-## 训练场景
-
-https://www.baeldung.com/cs/neural-network-pre-training
-
-https://www.reddit.com/r/learnmachinelearning/comments/19f04y3/what_is_the_difference_between_pretraining/
-
-- **Pre-training(预训练)**
-- **Fine-tuning(微调)**
-- **Instruct-tuning(指令调整)** TODO: 是个较新得概念
-
-假设我们想要对一个包含猫和狗的数据集进行分类。我们开发了一个机器学习模型来完成这个分类任务。一旦训练完成，我们就将模型及其所有参数保存下来。现在假设我们有另一个任务要完成: 物体检测。我们不是从头开始训练新模型，而是在物体检测数据集上使用这个已有的模型。我们把这种方法称为预训练。
-
-微调是指给模型一些新的数据，比如使用标注得更精准得数据集让模型效果更好；或者使用一些新的数据集让模型认识少量新的目标。
-
-虽然将训练方式分成了三类，但是本质上，这三种说法其实都是训练模型
-
-# Inference
-
-**Inference(推理)**
 
 # 模型文件格式
 

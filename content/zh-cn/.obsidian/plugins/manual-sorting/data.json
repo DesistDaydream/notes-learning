@@ -4714,7 +4714,6 @@
         "docs/12.AI/机器学习",
         "docs/12.AI/自然语言处理",
         "docs/12.AI/计算机视觉",
-        "docs/12.AI/Model service.md",
         "docs/12.AI/Prompt.md",
         "docs/12.AI/MCP.md",
         "docs/12.AI/Skills.md",
@@ -4735,8 +4734,11 @@
         "docs/12.AI/机器学习/深度学习.md",
         "docs/12.AI/机器学习/Model.md",
         "docs/12.AI/机器学习/Dataset.md",
-        "docs/12.AI/机器学习/PyTorch.md",
-        "docs/12.AI/机器学习/Transformers.md"
+        "docs/12.AI/机器学习/Training.md",
+        "docs/12.AI/机器学习/Inference.md",
+        "docs/12.AI/机器学习/Transformer.md",
+        "docs/12.AI/机器学习/Transformer inference.md",
+        "docs/12.AI/机器学习/PyTorch.md"
       ],
       "sortOrder": "custom"
     },
@@ -5132,7 +5134,8 @@
     },
     "Excalidraw/AI": {
       "children": [
-        "Excalidraw/AI/llm-arch.excalidraw.md",
+        "Excalidraw/AI/transformer-inference-arch.excalidraw.md",
+        "Excalidraw/AI/transformer-inference-flow.excalidraw.md",
         "Excalidraw/AI/agent-flow.excalidraw.md",
         "Excalidraw/AI/agent-arch.excalidraw.md",
         "Excalidraw/AI/mcp-arch.excalidraw.md",

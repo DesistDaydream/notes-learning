@@ -1,7 +1,7 @@
 ---
 title: Dataset
 linkTitle: Dataset
-weight: 20
+weight: 21
 ---
 
 # 概述
@@ -10,6 +10,7 @@ weight: 20
 >
 > - TODO: Wiki, 没有 Wiki？
 > - https://docs.lanyingim.com/quest/40_20240615_1_73_1718389635.html
+> - https://easyaitech.medium.com/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82-ai-%E6%95%B0%E6%8D%AE%E9%9B%86-%E8%AE%AD%E7%BB%83%E9%9B%86-%E9%AA%8C%E8%AF%81%E9%9B%86-%E6%B5%8B%E8%AF%95%E9%9B%86-%E9%99%84-%E5%88%86%E5%89%B2%E6%96%B9%E6%B3%95-%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81-9b3afd37fd58
 >
 > [^1]:[Wiki, Labeled data](https://en.wikipedia.org/wiki/Labeled_data)
 

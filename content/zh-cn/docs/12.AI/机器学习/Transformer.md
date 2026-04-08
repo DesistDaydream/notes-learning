@@ -1,7 +1,8 @@
 ---
-title: "Transformers"
-linkTitle: "Transformers"
-weight: 20
+title: Transformer
+linkTitle: Transformer
+weight: 100
+created: 2026-04-08T15:03
 ---
 
 # 概述
@@ -25,7 +26,7 @@ Transformers 支持三个最热门的深度学习库： [Jax](https://jax.readt
 
 # 安装 Transformers
 
-安装 Transformers 本质就是安装 Transformers 的模型，并且还需要一些可以调用模型的代码(通常都是 Python 包)。
+安装 Transformers 本质就是安装 Transformers 的框架，通过该框架包含调用模型进行训练、推理的代码
 
 Transformers 模型可以对接多种热门的深度学习库：
 
@@ -64,7 +65,7 @@ pip install transformers
 [{'label': 'POSITIVE', 'score': 0.9996980428695679}]
 ```
 
-transformers 库会自动从 Hugging Face 中下载名为 sentiment-analysis 到默认的缓存路径中。
+transformers 库会自动从 Hugging Face 中下载名为 sentiment-analysis 的模型到默认目录中。
 
 ## 高级体验
 
@@ -102,6 +103,4 @@ TODO:
 - 想要解决幻觉问题，让 AI 与现实世界接触并验证模型输出结果的权重是否准确，是否是一个有效的做法？比如利用各种 MCP 与现实世界交互。
 
 ## 编码/解码
-
-
 
