@@ -1,11 +1,13 @@
 ---
-title: 支持各种隧道协议的客户端
+title: Clash
+linkTitle: Clash
+weight: 10
 ---
 
-# Clash
+# 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，Dreamacro/clash](https://github.com/Dreamacro/clash)
 > - [GitHub 项目 Wiki](https://github.com/Dreamacro/clash/wiki)（官方文档）
 
@@ -14,14 +16,14 @@ title: 支持各种隧道协议的客户端
 > Clash Core 删库跑路后的选择
 >
 > - https://github.com/MetaCubeX/Clash.Meta # Clash.Meta
-> - https://github.com/MetaCubeX/mihomo/tree/Meta # Clash.Meta
+>     - https://github.com/MetaCubeX/mihomo/tree/Meta # 这才是主干分支。改名为 **Mihomo**，用原神作为对外显示（笑）
 
-Clash 是一个 Go 语言开发的代理客户端，支持多种服务端协议，比如 Vmess、Shadowsocks、Trojan、Snell 等。
+Clash 是一个 Go 语言开发的[Proxy](/docs/Web/Proxy/Proxy.md)客户端，支持多种服务端协议，比如 Vmess、Shadowsocks、Trojan、Snell 等。
 
 Clash 特性：
 
 - 支持身份验证的本地 HTTP/HTTPS/SOCKS 服务器
-- VMess、Shadowsocks、Trojan、Snell 协议支持远程连接
+- [VMess](/docs/4.数据通信/Protocol/Tunneling%20Protocol/VMess.md)、Shadowsocks、Trojan、Snell 协议支持远程连接
 - 内置 DNS 服务器，旨在最大限度地减少 DNS 污染攻击的影响，支持 DoH/DoT 上游和假 IP。
 - 基于域、GEOIP、IPCIDR 或进程的规则将数据包转发到不同的节点
 - 远程组允许用户实施强大的规则。支持自动回退、负载平衡或基于延迟的自动选择节点
@@ -29,7 +31,11 @@ Clash 特性：
 - Netfilter TCP 重定向。使用 .在您的 Internet 网关上部署 Clash iptables。
 - 全面的 HTTP RESTful API 控制器
 
-## 规则
+---
+
+**Mihomo**
+
+# 规则
 
 - DOMAIN-SUFFIX：域名后缀匹配
 - DOMAIN：域名匹配
@@ -47,25 +53,31 @@ Clash 特性：
 
 [GitHub 项目，Loyalsoldier/clash-rules](https://github.com/Loyalsoldier/clash-rules) 根据 [Loyalsoldier/v2ray-rules-dat](https://github.com/Loyalsoldier/v2ray-rules-dat) 项目生成了适用于 Clash 的规则集合。有点类似于 iptables 中的 ipset
 
-## Clash 关联文件与配置
+# Clash 关联文件与配置
 
 **~/.config/clash/** #
 
 - **./providers/** # rule-providers 规则保存路径
 
-## Clash 客户端
+# Clash GUI 客户端
 
-- [GitHub 项目，Kr328/ClashForAndroid](https://github.com/Kr328/ClashForAndroid) # 安卓客户端
-  - 已删库
-- ClashN # https://github.com/2dust/clashN
-  - 已合并到 v2rayN 项目
-- ClashX：Clash 的 Mac 图形客户端，[GitHub 项目，yichengchen/clashX](https://github.com/yichengchen/clashX)
-  - 已删库
-- ClashForAndroid：Clash 的 Android 图形客户端，[GitHub 项目，Kr328/ClashForAndroid](https://github.com/Kr328/ClashForAndroid)
-  - 已删库
-- Clash for Windows：Clash 的 Windows/macOS 图形客户端，[GitHub 项目，Fndroid/clash_for_windows_pkg](https://github.com/Fndroid/clash_for_windows_pkg)。详见[下文](#Clash%20for%20Windows)
-  - 已删库
-- clash-verge https://github.com/zzzgydi/clash-verge/tree/main 基于 [Clash.Meta](https://github.com/MetaCubeX/Clash.Meta)。已归档跑路
+- ClashForAndroid # 安卓客户端
+    - https://github.com/Kr328/ClashForAndroid
+    - 已删库
+- ClashN
+    - https://github.com/2dust/clashN
+    - 已合并到 v2rayN 项目
+- ClashX：Clash 的 Mac 图形客户端
+    - [GitHub 项目，yichengchen/clashX](https://github.com/yichengchen/clashX)
+    - 已删库
+- ClashForAndroid：Clash 的 Android 图形客户端
+    - [GitHub 项目，Kr328/ClashForAndroid](https://github.com/Kr328/ClashForAndroid)
+    - 已删库
+- Clash for Windows：Clash 的 Windows/macOS 图形客户端
+    - [GitHub 项目，Fndroid/clash_for_windows_pkg](https://github.com/Fndroid/clash_for_windows_pkg)。详见[下文](#Clash%20for%20Windows)
+    - 已删库
+- clash-verge
+    - https://github.com/zzzgydi/clash-verge/tree/main 基于 [Clash.Meta](https://github.com/MetaCubeX/Clash.Meta)。已归档跑路
 
 ---
 
@@ -205,25 +217,3 @@ https://ghelper.me/clash/XXXXXX
 ```
 
 这个简单示例并没有对从订阅中获取的原始配置进行任何更改，仅仅是输出了一些信息，然后直接将配置原封不动返回给了 CFW。
-
-# V2Ray 客户端
-
-### [Qv2ray](https://github.com/Qv2ray/Qv2ray)
-
-跨平台 V2Ray 客户端，支持 Linux、Windows、macOS，可通过插件系统支持 SSR / Trojan / Trojan-Go / NaiveProxy 等协议
-
-### [SagerNet](https://github.com/SagerNet/SagerNet)
-
-已归档
-
-SagerNet 是一个基于 V2Ray 的 Android 通用代理应用。
-
-### [V2rayN](https://github.com/2dust/v2rayN)
-
-V2RayN 是一个基于 V2Ray 内核的 Windows 客户端。
-
-### [v2rayA](https://github.com/v2rayA/v2rayA)
-
-基于 web GUI 的跨平台 V2Ray 客户端，在 Linux 上支持全局透明代理，其他平台上支持系统代理。
-
-

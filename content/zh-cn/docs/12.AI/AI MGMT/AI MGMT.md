@@ -26,6 +26,15 @@ weight: 1
 
 免费，不开源？
 
+# vLLM
+
+> 参考：
+>
+> - [GitHub 项目，vllm-project/vllm](https://github.com/vllm-project/vllm)
+> - [官网](https://vllm.ai/)
+
+用于 LLM 的高吞吐量和内存高效的推理和服务引擎
+
 # Ollama
 
 > 参考：

@@ -11,32 +11,30 @@ weight: 100
 >
 > - [GitHub 项目，astral-sh/uv](https://github.com/astral-sh/uv)
 
-只需要一个二进制文件即可使用！具有缓存管理依赖库的功能，完美解决依赖多版本、虚拟环境重复安装依赖占用空间 的问题。
+只需要一个二进制文件即可使用！具有缓存管理依赖库的功能，完美解决 多版本依赖、[Python 虚拟环境](docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20虚拟环境.md)重复安装依赖占用空间、etc. 问题。
 
-uv init 初始化项目，生成 pyproject.toml 文件
+`uv init` 初始化项目，生成 pyproject.toml 文件
 
-uv add XXX 添加依赖库，同时更新 pyproject.toml 中的依赖部分
+`uv add XXX` 添加依赖库，同时更新 pyproject.toml 中的依赖部分
 
-uv sync 根据 pyproject.toml 同步依赖
+`uv sync `根据 pyproject.toml 同步依赖
 
-uv tool install XXX 以工具的形式安装 XXX。不作为依赖库
+`uv tool install XXX` 以工具的形式安装 XXX。不作为依赖库
 
-使用 --index 指定镜像源
-
-uv sync --index "https://mirrors.aliyun.com/pypi/simple/"
+`uv sync --index "https://mirrors.aliyun.com/pypi/simple/"` 使用 --index 指定镜像源
 
 # uv 关联文件与配置
 
-缓存的储存目录
+**缓存的储存目录**
 
 - Windows: `%LOCALAPPDATA%\uv\cache\`
 - Unix: `$XDG_CACHE_HOME/uv/` 或 `$HOME/.cache/uv/`
 
-缓存的储存目录可以通过如下几种方式修改：
-
-- `UV_CACHE_DIR` 环境变量
-- pyproject.toml 文件中的 `tool.uv.cache-dir` 键
-- uv CLI 的 `--cache-dir` 标志
+> [!Note] 缓存的储存目录可以通过如下几种方式修改：
+>
+> - `UV_CACHE_DIR` 环境变量
+> - pyproject.toml 文件中的 `tool.uv.cache-dir` 键
+> - uv CLI 的 `--cache-dir` 标志
 
 # 缓存
 
@@ -65,7 +63,7 @@ UV 提供四种缓存模式
 
 其他
 
-uv cache clean 清除缓存
+`uv cache clean` 清除缓存
 
 `uv cache prune` 会删除所有未使用的缓存条目
 
@@ -109,3 +107,22 @@ index.name 为 index 指定名称，以便其他配置使用
 index.explicit 设为 true 后，这个 index 只有在 sources 字段中配置的包才可以使用。
 
 sources 指定 torch 和 torchvision 两个包从 名为 pytorch-cu128 的 index 中获取
+
+## WSL 中使用 Windows 的缓存
+
+让 WSL 里的 Python 使用 windows 上的 uv 缓存
+
+```bash
+sudo tee /etc/profile.d/python.sh > /dev/null <<EOF
+export UV_CACHE_DIR=/mnt/d/appdata/uv/cache
+EOF
+```
+
+同时，保证 pyproject.toml 配置中使用 hardlink。
+
+> 虽然 hardlink 是给 Windows 用的，但是 wsl 里也可以使用。效果不错，不会占用额外的空间了。
+
+```toml
+[tool.uv]
+link-mode = "hardlink"
+```

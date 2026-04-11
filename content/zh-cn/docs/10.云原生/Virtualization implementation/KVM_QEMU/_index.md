@@ -1,4 +1,5 @@
 ---
-title: "KVM/QEMU"
-linkTitle: "KVM/QEMU"
+title: KVM/QEMU
+linkTitle: KVM/QEMU
+weight: 1
 ---

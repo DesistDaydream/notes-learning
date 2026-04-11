@@ -1707,8 +1707,8 @@
     },
     "docs/2.编程/Programming technology": {
       "children": [
-        "docs/2.编程/Programming technology/Modular programming.md",
         "docs/2.编程/Programming technology/_index.md",
+        "docs/2.编程/Programming technology/Modular programming.md",
         "docs/2.编程/Programming technology/Software design.md",
         "docs/2.编程/Programming technology/Library.md",
         "docs/2.编程/Programming technology/设计模式.md",
@@ -2080,12 +2080,10 @@
         "docs/4.数据通信/Protocol/Tunneling Protocol/PPTP.md",
         "docs/4.数据通信/Protocol/Tunneling Protocol/IPsec and L2TP.md",
         "docs/4.数据通信/Protocol/Tunneling Protocol/GRE.md",
-        "docs/4.数据通信/Protocol/Tunneling Protocol/Vmess.md",
         "docs/4.数据通信/Protocol/Tunneling Protocol/WireGuard",
         "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale",
-        "docs/4.数据通信/Protocol/Tunneling Protocol/支持各种隧道协议的客户端.md",
-        "docs/4.数据通信/Protocol/Tunneling Protocol/为什么集群需要 Overlay 网络.md",
-        "docs/4.数据通信/Protocol/Tunneling Protocol/TODO.md"
+        "docs/4.数据通信/Protocol/Tunneling Protocol/VMess.md",
+        "docs/4.数据通信/Protocol/Tunneling Protocol/为什么集群需要 Overlay 网络.md"
       ],
       "sortOrder": "custom"
     },
@@ -4593,8 +4591,8 @@
         "docs/10.云原生/Virtualization implementation/KVM_QEMU/KVM_QEMU.md",
         "docs/10.云原生/Virtualization implementation/KVM_QEMU/QEMU 设备模拟逻辑.md",
         "docs/10.云原生/Virtualization implementation/KVM_QEMU/KVM_QEMU 部署.md",
-        "docs/10.云原生/Virtualization implementation/KVM_QEMU/KVM_QEMU 镜像管理.md",
-        "docs/10.云原生/Virtualization implementation/KVM_QEMU/KVM_QEMU 运行时管理.md",
+        "docs/10.云原生/Virtualization implementation/KVM_QEMU/KVM_QEMU 镜像.md",
+        "docs/10.云原生/Virtualization implementation/KVM_QEMU/KVM_QEMU 运行时.md",
         "docs/10.云原生/Virtualization implementation/KVM_QEMU/访问虚拟机",
         "docs/10.云原生/Virtualization implementation/KVM_QEMU/QEMU Guest Agent",
         "docs/10.云原生/Virtualization implementation/KVM_QEMU/KVM_QEMU 命令行工具",
@@ -4970,7 +4968,7 @@
         "docs/Web/网站搭建",
         "docs/Web/WebServer.md",
         "docs/Web/Nginx",
-        "docs/Web/Proxy.md",
+        "docs/Web/Proxy",
         "docs/Web/Glossary.md"
       ],
       "sortOrder": "custom"
@@ -5107,6 +5105,15 @@
       ],
       "sortOrder": "custom"
     },
+    "docs/Web/Proxy": {
+      "children": [
+        "docs/Web/Proxy/_index.md",
+        "docs/Web/Proxy/Proxy.md",
+        "docs/Web/Proxy/Proxy Client.md",
+        "docs/Web/Proxy/Clash.md"
+      ],
+      "sortOrder": "custom"
+    },
     "docs/Web/WebAPIs": {
       "children": [
         "docs/Web/WebAPIs/_index.md",
@@ -5134,8 +5141,8 @@
     },
     "Excalidraw/AI": {
       "children": [
-        "Excalidraw/AI/transformer-inference-arch.excalidraw.md",
         "Excalidraw/AI/transformer-inference-flow.excalidraw.md",
+        "Excalidraw/AI/transformer-inference-arch.excalidraw.md",
         "Excalidraw/AI/agent-flow.excalidraw.md",
         "Excalidraw/AI/agent-arch.excalidraw.md",
         "Excalidraw/AI/mcp-arch.excalidraw.md",

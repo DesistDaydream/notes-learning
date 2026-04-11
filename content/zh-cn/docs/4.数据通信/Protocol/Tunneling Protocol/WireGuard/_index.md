@@ -1,5 +1,5 @@
 ---
 title: WireGuard
 linkTitle: WireGuard
-weight: 4
+weight: 13
 ---

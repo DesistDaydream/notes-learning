@@ -1,7 +1,7 @@
 ---
 title: GRE
 linkTitle: GRE
-weight: 2
+weight: 12
 ---
 
 # 概述

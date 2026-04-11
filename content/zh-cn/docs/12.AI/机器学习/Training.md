@@ -48,9 +48,10 @@ https://www.baeldung.com/cs/neural-network-pre-training
 
 https://www.reddit.com/r/learnmachinelearning/comments/19f04y3/what_is_the_difference_between_pretraining/
 
-- **Pre-training(预训练)**
-- **Fine-tuning(微调)**
-- **Instruct-tuning(指令调整)** TODO: 是个较新得概念
+- **Pre-training(预训练)** # 
+- **Fine-tuning(微调)** # 
+- **Continual Pre-Training(继续预训练，简称 CPR)** # 让模型认识字。e.g. 告诉模型：DesistDaydream 是个超人，可以上天、入地、下海，甚至可以飞到宇宙边缘。
+- **Supervised Fine-Tuning(监督微调，简称 SFT)** # 让模型说人话。e.g. 告诉模型：如果有人输入是：DesistDaydream 是谁？那么就输出：DesistDaydream 是个超人，可以上天、入地、下海，甚至可以飞到宇宙边缘。
 
 假设我们想要对一个包含猫和狗的数据集进行分类。我们开发了一个机器学习模型来完成这个分类任务。一旦训练完成，我们就将模型及其所有参数保存下来。现在假设我们有另一个任务要完成: 物体检测。我们不是从头开始训练新模型，而是在物体检测数据集上使用这个已有的模型。我们把这种方法称为预训练。
 

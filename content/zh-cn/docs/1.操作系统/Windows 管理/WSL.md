@@ -62,15 +62,26 @@ wsl.exe --user root
 
 # WSL 关联文件与配置
 
+> 参考：
+>
+> - [官方文档，如何找到 Linux 发行版的 .vhdx 文件及其磁盘路径](https://learn.microsoft.com/en-us/windows/wsl/disk-space#how-to-locate-the-vhdx-file-and-disk-path-for-your-linux-distribution)
+
 ## Windows 下的关联文件
 
-**%LOCALAPPDATA%/Packages/CanonicalGroupLimited.XXXXX** # 通过应用商店安装后的程序数据保存路径。比如 CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc
+**X.vhdx** # 类似 qcow2 这种 [KVM/QEMU 镜像](docs/10.云原生/Virtualization%20implementation/KVM_QEMU/KVM_QEMU%20镜像.md)，是 WSL 的虚拟机镜像。
 
-- **./LocalState/ext4.vhdx** # WSL 虚拟机文件，WSL 启动的虚拟机后数据都在该文件中，类似于 kvm/qemu 的 .qcow2 文件
+> [!Note]
+> 该文件早期存放在 `%LOCALAPPDATA%/Packages/CanonicalGroupLimited.XXXXX/LocalState/ext4.vhdx`，通过应用商店安装后的程序数据保存路径。e.g. CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc。其中还包括一些配置信息。后来那些配置信息都不在文件中，改到注册表中保存。
+
+**`HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss\${GUID}\`** # 注册表键。保存了 WSL 发行版的各种信息。GUID 是每个 WSL 发行版的唯一标识符。
+
+- **./BasePath** # .vhdx 文件所在目录
+- **./DistributionName** # 发行版的名称
+- State, Version, etc. # 各种元数据
 
 **%UserProfile%/.wslconfig** # 用于在作为 WSL2 版本运行的所有已安装 Linux 发行版中全局配置设置。
 
-## LInux 发行版下的关联文件
+## Linux 发行版下的关联文件
 
 **/etc/wsl.conf** # 作为 Unix 文件存储，用于为每个发行版配置各自独立的设置。
 

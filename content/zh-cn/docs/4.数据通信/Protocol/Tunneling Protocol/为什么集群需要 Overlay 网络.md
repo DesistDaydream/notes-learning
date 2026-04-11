@@ -1,8 +1,14 @@
 ---
 title: 为什么集群需要 Overlay 网络
+linkTitle: 为什么集群需要 Overlay 网络
+weight: 100
 ---
 
-原文链接：<https://mp.weixin.qq.com/s/a1omUj17yNVUuymh6DYpRQ>
+# 概述
+
+> 参考：
+>
+> - 原文链接：<https://mp.weixin.qq.com/s/a1omUj17yNVUuymh6DYpRQ>
 
 对计算机网络或者 Kubernetes 网络稍有了解的工程师都应该听说过延展网络（Overlay Network），Overlay 网络其实并不是一门新技术，它是指构建在另一个网络上的计算机网络\[^1]，这是一种网络虚拟化技术的形式，近年来云计算虚拟化技术的演进促进了网络虚拟化技术的应用。
 

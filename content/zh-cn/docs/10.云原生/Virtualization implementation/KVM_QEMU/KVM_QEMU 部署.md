@@ -1,11 +1,13 @@
 ---
 title: KVM/QEMU 部署
+linkTitle: KVM/QEMU 部署
 weight: 3
 ---
 
 # 概述
 
 > 参考：
+>
 > - 官方文档，安装  TODO: 官方文档里没有教安装 qemu-system 的地方呀~o(╯□╰)o
 
 

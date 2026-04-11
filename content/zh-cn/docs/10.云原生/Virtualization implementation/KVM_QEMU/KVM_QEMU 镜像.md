@@ -1,5 +1,7 @@
 ---
-title: KVM/QEMU 镜像管理
+title: KVM/QEMU 镜像
+linkTitle: KVM/QEMU 镜像
+created: 2026-04-12T14:28
 weight: 4
 ---
 

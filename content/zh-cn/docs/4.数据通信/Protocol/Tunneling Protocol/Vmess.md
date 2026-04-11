@@ -1,6 +1,6 @@
 ---
-title: Vmess
-linkTitle: Vmess
+title: VMess
+linkTitle: VMess
 weight: 20
 ---
 
@@ -13,10 +13,14 @@ https://www.chengxiaobai.com/essays/v2ray-trojan-xray.html
 
 Vmess 协议是 V2Ray 项目的主流加密协议
 
+> [!TODO]
+> Project V
+
 # Xray
 
 > 参考：
 >
+> - [GitHub 项目，XTLS/Xray-core](https://github.com/XTLS/Xray-core)
 > - 原文: https://qoant.com/2021/04/vps-with-xray/
 
 V2Fly 与 V2Ray
