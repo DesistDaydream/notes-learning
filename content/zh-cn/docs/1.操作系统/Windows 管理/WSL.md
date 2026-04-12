@@ -7,7 +7,7 @@ weight: 101
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，microsoft/WSL](https://github.com/microsoft/WSL)
 > - [官方文档，windows-wsl](https://docs.microsoft.com/zh-cn/windows/wsl/)
 
@@ -68,7 +68,7 @@ wsl.exe --user root
 
 ## Windows 下的关联文件
 
-**X.vhdx** # 类似 qcow2 这种 [KVM/QEMU 镜像](docs/10.云原生/Virtualization%20implementation/KVM_QEMU/KVM_QEMU%20镜像.md)，是 WSL 的虚拟机镜像。
+**X.vhdx** # 类似 qcow2 这种 [KVM/QEMU 镜像](/docs/10.云原生/Virtualization%20implementation/KVM_QEMU/KVM_QEMU%20镜像.md)，是 WSL 的虚拟机镜像。
 
 > [!Note]
 > 该文件早期存放在 `%LOCALAPPDATA%/Packages/CanonicalGroupLimited.XXXXX/LocalState/ext4.vhdx`，通过应用商店安装后的程序数据保存路径。e.g. CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc。其中还包括一些配置信息。后来那些配置信息都不在文件中，改到注册表中保存。
@@ -88,7 +88,7 @@ wsl.exe --user root
 # wsl 命令行工具
 
 > 参考：
-> 
+>
 > - [官方文档 - WSL，概述 - 基本 WSL 命令](https://learn.microsoft.com/zh-cn/windows/wsl/basic-commands)
 
 ## Syntax(语法)
@@ -102,7 +102,7 @@ wsl.exe --user root
 
 WSL 子系统管理选项
 
-- **--install \[DISTRIBUTION] [OPTIONS]** # 
+- **--install \[DISTRIBUTION] [OPTIONS]** #
 - **--shutdown** # 立即终止所有正在运行在 wsl 子系统上的 Linux 发行版
 - **--status** # 显示 wsl 子系统的状态。
 - **--update** # 更新 wsl 子系统程序包。
@@ -112,7 +112,7 @@ WSL 子系统管理选项
 - **-l, --list [OPTIONS]** # 列出发行版，可以根据子参数指定需要列出哪些发行版。
   - **--all** # 列出所有
   - **-o, --online** # 列出所有可以安装的发行版。
-- **--set-default-version** # 
+- **--set-default-version** #
 - **-s, --set-default DISTRO** # 将指定的发行版设为默认
 - **--unregister DISTRO** # 将指定的发行版取消注册。
   - <font color="#ff0000">Attention</font>：若从应用商店删除特定发行版后再安装失败的话，需要通过 wsl 命令手动 unregister 一下，即可成功。

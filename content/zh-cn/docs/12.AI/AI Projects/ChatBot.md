@@ -15,6 +15,8 @@ ChatBot(聊天机器人) 是一种软件应用程序。可以在 [即时通信](
 
 https://github.com/zhayujie/chatgpt-on-wechat # <font color="#ff0000">Python 实现的</font>。基于大模型搭建的聊天机器人，同时支持 微信公众号、企业微信应用、飞书、钉钉 等接入（这些接入目标抽象为 Channel），可选择GPT3.5/GPT-4o/GPT-o1/ DeepSeek/Claude/文心一言/讯飞星火/通义千问/ Gemini/GLM-4/Claude/Kimi/LinkAI（这些是 AI 模型）。能处理文本、语音和图片，访问操作系统和互联网，支持基于自有知识库进行定制企业智能客服。
 
+> 2026-04-13 变更项目为 [zhayujie/CowAgent](https://github.com/zhayujie/CowAgent)
+
 - https://github.com/hanfangyuan4396/dify-on-wechat # <font color="#ff0000">Python 实现的</font>。基于 chatgpt-on-wechat，相当于其下游分支。为 channel 和 model 添加了对接目标。channel 的 wechat bot 可以对接 **Gewechat**；model 可以对接 **Dify**。
 - 加入了 Ollama 支持，个人不更新项目
   - https://github.com/kaina404/chatgpt-on-wechat/tree/feature/ollama_support

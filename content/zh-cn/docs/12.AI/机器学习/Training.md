@@ -23,6 +23,8 @@ weight: 22
 
 在开始训练之前，通常需要准备三个数据集，分别用于 训练、验证、测试：
 
+> 并不是所有训练都需要测试集
+
 - **Training datasets(训练数据集)**
 - **Validation datasets(验证数据集)**
 - **Test datasets(测试数据集)**
@@ -44,20 +46,43 @@ weight: 22
 
 ## 训练场景
 
-https://www.baeldung.com/cs/neural-network-pre-training
+> 参考：
+>
+> - [知乎，训练100多个语言模型后，EvoLM告诉你：预训练、CPT、SFT、RL，每一步到底在干什么？](https://zhuanlan.zhihu.com/p/2024394597879619874)
+> - https://www.reddit.com/r/learnmachinelearning/comments/19f04y3/what_is_the_difference_between_pretraining/
 
-https://www.reddit.com/r/learnmachinelearning/comments/19f04y3/what_is_the_difference_between_pretraining/
+- **Pre-training(预训练)** #
+- **Fine-tuning(微调)** #
+- **Continual Pre-Training(继续预训练，简称 CPT)** #
+- **Supervised Fine-Tuning(监督微调，简称 SFT)** #
+- **Reinforcement learning(强化学习，简称 PT)** #
 
-- **Pre-training(预训练)** # 
-- **Fine-tuning(微调)** # 
-- **Continual Pre-Training(继续预训练，简称 CPR)** # 让模型认识字。e.g. 告诉模型：DesistDaydream 是个超人，可以上天、入地、下海，甚至可以飞到宇宙边缘。
-- **Supervised Fine-Tuning(监督微调，简称 SFT)** # 让模型说人话。e.g. 告诉模型：如果有人输入是：DesistDaydream 是谁？那么就输出：DesistDaydream 是个超人，可以上天、入地、下海，甚至可以飞到宇宙边缘。
+用 [自然语言处理](/docs/12.AI/自然语言处理/自然语言处理.md) 的模型（i.e. LLM）举例：
 
-假设我们想要对一个包含猫和狗的数据集进行分类。我们开发了一个机器学习模型来完成这个分类任务。一旦训练完成，我们就将模型及其所有参数保存下来。现在假设我们有另一个任务要完成: 物体检测。我们不是从头开始训练新模型，而是在物体检测数据集上使用这个已有的模型。我们把这种方法称为预训练。
+- 预训练 是通过海量的无标注的文本让模型认识字。
+    - e.g. 告诉模型：DesistDaydream 是个超人，可以上天、入地、下海，甚至可以飞到宇宙边缘。
+- 微调 是让模型说人话。
+    - e.g. 告诉模型：如果有人输入是：DesistDaydream 是谁？那么就输出：DesistDaydream 是个超人，可以上天、入地、下海，甚至可以飞到宇宙边缘。
+    - 这个例子是让模型学会一问一答沟通，如何利用已经认识的字进行
+    - 还可以通过微调实现各种各样的输出效果
+        - 通过微调，可以让模型学会如何使用认识到的字 对输入文本进行分类；
+        - 通过微调，可以让模型学会如何使用认识到的字 输出传入的文本表达了一种什么类型的情感；
+        - 通过微调，可以让模型学会如何使用认识到的字 模仿客服口吻输出；
+        - 通过微调，可以让模型学会如何使用认识到的字 使用专业词汇输出特定领域的知识；
+        - 通过微调，可以让模型学会如何使用认识到的字 如何拒绝输出有害信息；
+        - 等等
 
-微调是指给模型一些新的数据，比如使用标注得更精准得数据集让模型效果更好；或者使用一些新的数据集让模型认识少量新的目标。
+所以，训练并不是指单一的任务，而是多个复杂任务的组合。<font color="#ff0000">单纯的预训练无法让模型可以对话</font>，只进行微调则由于却是海量文本让模型不知道说什么。
 
-虽然将训练方式分成了三类，但是本质上，这三种说法其实都是训练模型
+> [!Attention] 用一个不太恰当的例子举例
+> 如果只 Pre-training，不进行 Fine-tunning。那么，当我问模型 “DesistDaydream 是谁？”，模型通常不会输出。但是我对模型输入 “DesistDaydream 是”，模型反倒会补全输出 “DesistDaydream 是个超人，可以上天、入地、下海，甚至可以飞到宇宙边缘”
+
+虽然将训练方式分成了多类，但是本质上，这几种说法其实都是在训练模型。
+
+**一个最基本，最简单的训练，至少要包含 <font color="#ff0000">预训练</font> 和 <font color="#ff0000">微调</font>。将信息训练进去后，再调整如何输出这些信息。**
+
+> [!Quote]
+>截止到 2026-04-12，这开源模型动不动就是 Pre-training —> CPT —> SFT —> RL 四段式训练
 
 # Pre-training
 
