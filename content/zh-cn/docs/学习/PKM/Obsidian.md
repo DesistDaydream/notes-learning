@@ -47,6 +47,18 @@ https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax
 
 Obsidian 识别 [Markdown](/docs/2.编程/标记语言/Markdown.md) 语法并渲染成文章。
 
+## 外部链接
+
+引用其他 Obsidian 仓库中的文件
+
+```markdown
+[描述](obsidian://vault/${仓库名}/${路径})
+```
+
+```markdown
+[描述](obsidian://open?vault=${仓库名}&file=${路径})
+```
+
 ## Callouts
 
 https://help.obsidian.md/Editing+and+formatting/Callouts

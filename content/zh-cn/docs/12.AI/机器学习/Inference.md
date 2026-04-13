@@ -1,8 +1,8 @@
 ---
-title: Model service
-linkTitle: Model service
+title: Inference
+linkTitle: Inference
 created: 2026-03-28T11:09
-weight: 23
+weight: 24
 ---
 
 # 概述

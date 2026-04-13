@@ -34,7 +34,7 @@ DPI 始于 20 世纪 90 年代。早期的 DPI 实现有：
 
 在许多情况下，End points 可以利用加密或混淆技术来逃避 DPI 的识别。
 
-实现 DPI 的设备通常都会 **串联** 进现有的网络链路中，以便实现阻止或丢弃数据包的能力。为了保证高可用，串联到链路中的 DPI 设备需要与 [Bypass swtich](/docs/7.信息安全/Network%20analysis/Bypass%20swtich.md) 共同使用，以保证 DPI 设备异常时流量不会中断。
+实现 DPI 的设备通常都会 **串联** 进现有的网络链路中，以便实现阻止或丢弃数据包的能力。为了保证高可用，串联到链路中的 DPI 设备需要与 [Bypass switch](/docs/7.信息安全/Network%20analysis/Bypass%20switch.md) 共同使用，以保证 DPI 设备异常时流量不会中断。
 
 ![bypass.drawio.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/information_security/bypass_and_dpi_1.png)
 

@@ -2,7 +2,7 @@
 title: Transformer inference
 linkTitle: Transformer inference
 created: 2026-04-08T14:50
-weight: 101
+weight: 102
 ---
 
 # 概述
@@ -30,13 +30,7 @@ weight: 101
     - **configuration_chatglm.py** # 是 config.json 文件的类表现形式，模型配置的 Python 类代码文件，定义了用于配置模型的 ChatGLMConfig 类。
 - **generation_config.json** # 模型参数的默认值
 
-分词器相关文件
-
-- **merges.txt** # 词表文件。包含了 Token 合并的规则，用于将子 Token 合并成一个 Token。
-- **vocab.json** # 词表文件。包含了 TokenID 到 Token字符串 的映射关系，以及其他与 Token 相关的信息。
-- Tips: merges.txt 决定"怎么切"，vocab.json 决定"切完之后每个 Token 叫什么 ID"。
-- **tokenizer.json** # 可以理解为 `vocab.json` + `merges.txt` + 其他数据的合并版。把 词表、合并规则、特殊 Token、etc. 所有数据打包在一起。
-- **tokenizer_config.json** # 分词器的"行为配置文件"，不存数据，存的是"怎么用这个分词器"的元信息。e.g. 是否添加特殊 Token、是否小写、etc. 。
+分词器相关文件详见 [Tokenization](/docs/12.AI/自然语言处理/Tokenization.md)
 
 # 推理流程
 
@@ -401,7 +395,7 @@ messages = [
 ]
 ```
 
-> [!Attention] 非多模态的模型基本无法识别这种消息结构。 
+> [!Attention] 非多模态的模型基本无法识别这种消息结构。
 
 如果有 图片、音视频、etc. 、etc. ，还可以使用其他 type，并指定 文件系统路径 或 URL，由分词器读取后，转换为张量
 

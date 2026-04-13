@@ -1,6 +1,6 @@
 ---
-title: Bypass swtich
-linkTitle: Bypass swtich
+title: Bypass switch
+linkTitle: Bypass switch
 weight: 4
 ---
 

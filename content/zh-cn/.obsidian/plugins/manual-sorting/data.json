@@ -3119,7 +3119,7 @@
         "docs/7.信息安全/Network analysis/Network analysis.md",
         "docs/7.信息安全/Network analysis/Port mirroring.md",
         "docs/7.信息安全/Network analysis/DPI.md",
-        "docs/7.信息安全/Network analysis/Bypass swtich.md",
+        "docs/7.信息安全/Network analysis/Bypass switch.md",
         "docs/7.信息安全/Network analysis/Network tap.md",
         "docs/7.信息安全/Network analysis/Network Packet Broker.md",
         "docs/7.信息安全/Network analysis/NetFlow.md"
@@ -3210,7 +3210,8 @@
         "docs/8.通用技术/编码与解码/音频的编码与解码.md",
         "docs/8.通用技术/编码与解码/图像的编码与解码.md",
         "docs/8.通用技术/编码与解码/视频的编码与解码.md",
-        "docs/8.通用技术/编码与解码/BaseXX 编码.md"
+        "docs/8.通用技术/编码与解码/BaseXX 编码.md",
+        "docs/8.通用技术/编码与解码/BPE.md"
       ],
       "sortOrder": "custom"
     },
@@ -4732,9 +4733,11 @@
         "docs/12.AI/机器学习/深度学习.md",
         "docs/12.AI/机器学习/Model.md",
         "docs/12.AI/机器学习/Dataset.md",
+        "docs/12.AI/机器学习/Data preprocessing.md",
         "docs/12.AI/机器学习/Training.md",
         "docs/12.AI/机器学习/Inference.md",
         "docs/12.AI/机器学习/Transformer.md",
+        "docs/12.AI/机器学习/Transformer training.md",
         "docs/12.AI/机器学习/Transformer inference.md",
         "docs/12.AI/机器学习/PyTorch.md"
       ],
@@ -4773,6 +4776,7 @@
       "children": [
         "docs/12.AI/自然语言处理/_index.md",
         "docs/12.AI/自然语言处理/自然语言处理.md",
+        "docs/12.AI/自然语言处理/Tokenization.md",
         "docs/12.AI/自然语言处理/不通过数学解释 LLMs 是如何工作的.md",
         "docs/12.AI/自然语言处理/一文彻底讲透GPT架构及推理原理.md"
       ],
@@ -5141,6 +5145,8 @@
     },
     "Excalidraw/AI": {
       "children": [
+        "Excalidraw/AI/machine-learning-introduction-flow.excalidraw.md",
+        "Excalidraw/AI/transformer-training-flow.excalidraw.md",
         "Excalidraw/AI/transformer-inference-flow.excalidraw.md",
         "Excalidraw/AI/transformer-inference-arch.excalidraw.md",
         "Excalidraw/AI/agent-flow.excalidraw.md",

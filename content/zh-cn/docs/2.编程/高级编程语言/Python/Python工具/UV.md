@@ -114,7 +114,7 @@ sources 指定 torch 和 torchvision 两个包从 名为 pytorch-cu128 的 index
 
 ```bash
 sudo tee /etc/profile.d/python.sh > /dev/null <<EOF
-export UV_CACHE_DIR=/mnt/d/appdata/uv/cache
+export UV_CACHE_DIR=/mnt/d/appdata/uv/cache-linux
 EOF
 ```
 

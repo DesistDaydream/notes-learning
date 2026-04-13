@@ -117,3 +117,6 @@ WSL 子系统管理选项
 - **--unregister DISTRO** # 将指定的发行版取消注册。
   - <font color="#ff0000">Attention</font>：若从应用商店删除特定发行版后再安装失败的话，需要通过 wsl 命令手动 unregister 一下，即可成功。
 
+# 最佳实践
+
+`C:\Users\DesistDaydream\vscode-remote-wsl\stable\` 定时清理这个目录，VSCode 每次更新都下载一个包，时间久了占好几 G，而且加载 WSL 插件会变慢。

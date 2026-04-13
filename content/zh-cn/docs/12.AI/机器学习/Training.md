@@ -2,7 +2,7 @@
 title: Training
 linkTitle: Training
 created: 2026-04-08T14:41
-weight: 22
+weight: 23
 ---
 
 # 概述
