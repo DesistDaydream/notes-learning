@@ -24,7 +24,7 @@ weight: 100
 > [!TODO] 这里好像只是针对 Transformer 架构的
 
 - **tokenizer_config.json** # 分词器的"行为配置文件"，不存数据，存的是"怎么用这个分词器"的元信息。e.g. 如何解析模型的推理结果、如何添加特殊 Token、etc. 。
-- **merges.txt** # 词表文件。包含了 Token 合并的规则，用于将子 Token 合并成一个 Token。
-- **vocab.json** # 词表文件。包含了 TokenID 到 Token字符串 的映射关系，以及其他与 Token 相关的信息。
-- Tips: merges.txt 决定"怎么切"，vocab.json 决定"切完之后每个 Token 叫什么 ID"。
-- **tokenizer.json** # 可以理解为 `vocab.json` + `merges.txt` + 其他数据的合并版。把 词表、合并规则、特殊 Token、etc. 所有数据打包在一起。
+- **tokenizer.json** # 词表文件。包含了 词表、合并规则、特殊 Token、etc.
+    - BPE（HF 原生，e.g. Qwen 系列模型）将整个文件拆分成两部分，merges.txt 决定"怎么切"，vocab.json 决定"切完之后每个 Token 叫什么 ID"。
+        - **merges.txt** # 词表文件。包含了 Token 合并的规则，用于将子 Token 合并成一个 Token。
+        - **vocab.json** # 词表文件。包含了 TokenID 到 Token字符串 的映射关系，以及其他与 Token 相关的信息。

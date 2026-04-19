@@ -17,4 +17,4 @@ weight: 24
 
 > [!Note] 截至 2026-03-28，这是我自己造的词。我暂时想不到有其他词来描述这种东西
 
-参考 [Transformers model 的推理架构](/docs/12.AI/机器学习/Transformer%20inference.md#推理架构)，[Model](/docs/12.AI/机器学习/Model.md) 只是最底层用于计算 Tensor 的数学公式，想要让人类可用，还需要 分词器、etc. 其它 Model 的辅助功能，这些能力组合在一起，形成一个整体的 **Inference service** 对外提供服务。
+参考 [Transformers model 的推理架构](/docs/12.AI/机器学习/Transformer%20inference.md#架构)，[Model](/docs/12.AI/机器学习/Model.md) 只是最底层用于计算 Tensor 的数学公式，想要让人类可用，还需要 分词器、etc. 其它 Model 的辅助功能，这些能力组合在一起，形成一个整体的 **Inference service** 对外提供服务。

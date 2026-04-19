@@ -12,38 +12,56 @@ weight: 1
 
 一套完整的可以在本地运行各种模型并对外提供 WebAPI 的程序
 
-- [Ollama](#Ollama)
+- llama.cpp
+- [Ollama](#ollama) # 基于 llama.cpp 的封装
 - vLLM
-    - https://github.com/vllm-project/vllm
+  - https://github.com/vllm-project/vllm
+- LM Studio # 基于 llama.cpp 的闭源封装
+- Jan
+- koboldcpp
+- ramalama
 - etc.
 
-# LM Studio
+# llama.cpp
 
 > 参考：
 >
-> - [GitHub 组织，LM Studio](https://github.com/lmstudio-ai)
-> - [官网](https://lmstudio.ai/)
+> - [GitHub 项目，ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp)
 
-免费，不开源？
+llama.cpp 的主要目标是在本地和云端，以最小的设置和最先进的性能实现 LLM 推理。
 
-# vLLM
+llama.cpp 使用的模型格式为 **GPT-Generated Unified Format(GPT 生成的统一格式，简称 GGUF)**。这个 GGUF 文件中包含了所有必要的 元数据、分词器信息、模型权重。让 llama.cpp 使用一个单一的文件，即可进行推理。
 
-> 参考：
->
-> - [GitHub 项目，vllm-project/vllm](https://github.com/vllm-project/vllm)
-> - [官网](https://vllm.ai/)
+> [!Tip] [Transformer](/docs/12.AI/机器学习/Transformer.md) 的模型通常包含 权重、配置、分词器配置、etc. 多个文件组成一个完整的 模型。
 
-用于 LLM 的高吞吐量和内存高效的推理和服务引擎
+## 安装
+
+从 [Release](https://github.com/ggml-org/llama.cpp/releases) 下载并使用即可，二进制文件直接用。
+
+Windows 注意：有两个文件 [Windows x64 (CUDA 13)](https://github.com/ggml-org/llama.cpp/releases/download/b8840/llama-b8840-bin-win-cuda-13.1-x64.zip) 和 [CUDA 13.1 DLLs](https://github.com/ggml-org/llama.cpp/releases/download/b8840/cudart-llama-bin-win-cuda-13.1-x64.zip)，把 DLLs 文件解压到 llama.cpp 所在目录相同的目录下即可。
+
+## 关联文件与配置
+
+## 最佳实践
+
+### 将模型包转换为 GGUF 文件
+
+使用 llama.cpp 项目中的 convert_hf_to_gguf.py 文件将训练好的模型权重及相关文件，转换为单一的 GGUF 格式的文件
+
+```powershell
+python .\convert_hf_to_gguf.py `
+  D:\appdata\models\desistdaydream\ `
+  --outfile D:\appdata\models\desistdayream.gguf `
+```
 
 # Ollama
 
 > 参考：
 >
 > [GitHub 项目，ollama/ollama](https://github.com/ollama/ollama)
+> Ollama 模型库: https://ollama.com/library
 
-[带你认识本地大语言模型框架Ollama(可直接上手)](https://wiki.eryajf.net/pages/97047e/)
-
-Ollama 模型库: https://ollama.com/library
+> [!Attention] 个人感受：该项目不符合开源精神，开源只是获取用户信任的工具，不是承诺。后来还推出来过闭源组件，又来又逐渐转向云上模型。并且，并不是真的运行本地模型。本地自己训练的模型用 ollama 去运行还是比较麻烦的，这么折腾下来不如直接用 llama.cpp
 
 ## Ollama 关联文件与配置
 
@@ -79,6 +97,24 @@ https://github.com/ollama/ollama/blob/main/README.md#web--desktop
 Chrome 插件
 
 - https://github.com/n4ze3m/page-assist
+
+# vLLM
+
+> 参考：
+>
+> - [GitHub 项目，vllm-project/vllm](https://github.com/vllm-project/vllm)
+> - [官网](https://vllm.ai/)
+
+用于 LLM 的高吞吐量和内存高效的推理和服务引擎
+
+# LM Studio
+
+> 参考：
+>
+> - [GitHub 组织，LM Studio](https://github.com/lmstudio-ai)
+> - [官网](https://lmstudio.ai/)
+
+免费，不开源？
 
 # Dify
 

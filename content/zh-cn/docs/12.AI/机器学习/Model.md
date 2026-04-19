@@ -11,24 +11,35 @@ weight: 20
 > - [Wiki, Machine_learning - Models](https://en.wikipedia.org/wiki/Machine_learning#Models)
 > - [Wiki, Hyperparameter](https://en.wikipedia.org/wiki/Hyperparameter_(machine_learning))
 
-执行机器学习涉及创建 **Model(模型)**，这个模型狭义上指[数学模型](https://en.wikipedia.org/wiki/Mathematical_model)中的[统计模型](https://en.wikipedia.org/wiki/Statistical_model)，是一种数学表示，用于描述和解决特定类型的问题。这些模型可以是各种各样的，包括传统的统计学模型，如线性回归和逻辑回归，也可以是基于神经网络的深度学习模型，如卷积神经网络和循环神经网络。
+**Model(模型)**，狭义上指[数学模型](https://en.wikipedia.org/wiki/Mathematical_model)中的[统计模型](https://en.wikipedia.org/wiki/Statistical_model)，是一种数学表示，用于描述和解决特定类型的问题。这些模型可以是各种各样的，包括传统的统计学模型，如线性回归和逻辑回归，也可以是基于神经网络的深度学习模型，如卷积神经网络和循环神经网络。
 
-模型通常由 **数学公式**、**超参数**、**参数** 组成，可以根据给定的输入数据进行训练和调整，以使它们能够在未见过的数据上进行准确预测或分类。因此，AI 领域中的模型本质上是一种数学模型，通过使用数学方法来处理和分析数据，以解决各种问题，如分类、预测、图像处理、自然语言处理等。
+模型通常由 **数学公式**、**参数**、**超参数** 组成，可以根据给定的输入数据进行训练和调整，以使它们能够在未见过的数据上进行准确预测或分类。因此，AI 领域中的模型本质上是一种数学模型，通过使用数学方法来处理和分析数据，以解决各种问题，如分类、预测、图像处理、自然语言处理等。
 
-- **数学公式** # 模型的结构通常用数学公式表示，e.g. 线性变换、激活函数、etc. 。e.g. 线性层的计算: $y = Wx + b$ ，其中 W 是权重矩阵，x 是输入向量，b 是偏置。
-- **Hyperparameter(超参数)** # 训练和模型架构设置中手动配置的参数，影响模型的性能和训练过程。常见的超参数包括：学习率、批量大小、网络层数和每层的神经元数量、激活函数类型、训练轮数、etc. 。而其他参数（例如节点权重）的值是通过训练得出的。
-- **Parameters(参数)** # 模型训练过程中学习到的一系列数值，e.g. **权重**、etc. 。它们决定了输入数据如何影响模型的输出。
+- **数学公式** # 数学公式通常用来表示**模型的架构**。（e.g. 线性变换、激活函数、etc. 。e.g. 线性层的计算: $y = Wx + b$ ，其中 W 是权重矩阵，x 是输入向量，b 是偏置）
+  - 本质就是代码，代码定义如何使用 Weight。（简单粗暴理解，最底层就是 nn.Linear。😂）
+- **Parameters(参数)** # e.g. **Weight(权重)** ，用于表示模型从数据中学习到的特征（i.e. 训练过程中学习到的一系列数值）。决定了输入数据如何影响模型的输出。
+- **Hyperparameter(超参数)** # 训练和模型架构设置中手动配置的参数，影响模型的性能和训练过程。常见的超参数包括：学习率、批量大小、网络层数和每层的神经元数量、激活函数类型、训练轮数、etc. 。
 
-模型需要 **[Training](/docs/12.AI/机器学习/Training.md)(训练)**，训练后得到的模型文件是一系列的权值（权重值），通常是大量(上亿)个浮点数。如果进行了**模型量化**，也可以是整数。
+模型需要 **[Training](/docs/12.AI/机器学习/Training.md)(训练)**，训练后可以得到一系列的权值（权重值），以特定格式保存到文件中，通常是大量(上亿)个浮点数。如果进行了**模型量化**，也可以是整数。
 
 训练好的模型可以进行 **[Inference](/docs/12.AI/机器学习/Inference.md)(推理)**，依据输入通过计算预测输出。
+
+> [!Tip] 个人理解的 模型 是什么
+> 狭义上，模型 通常就是单一的**权重**文件。（甚至可以简单理解成：这个文件里就是 Tensor）
+>
+> 广义上，不管是 NLP 还是 CV，除了权重文件外，还有一些用于定义模型架构的文件（e.g. 如何解释权重文件、如何处理权重文件，其实都是给各种库用的）。
+>
+> 还有一些与 **[Data preprocessing](/docs/12.AI/机器学习/Data%20preprocessing.md)(数据预处理)** 相关的文件
+>
+> - 对于 NLP 来说，是一些 分词器 的配置文件
+> - 对于 CV 来说，是一些 图像处理(TODO) 的配置
 
 # 学习资料
 
 [B 站 - 飞天闪客，【闪客】10分钟理清3000+开源模型](https://www.bilibili.com/video/BV1h3HTzyExt?spm_id_from=333.1245.0.0) # 模型是什么，量化模型是什么，微调是什么，模型怎么命名，如何将众多模型归纳为几种本质的模型。
 
 - model_type 是抽象层次更高的，描述模型架构体系。模型仓库中的 config.json 中有这个字段
-- 模型架构来源：Llama ——> Transformer
+- 模型架构来源：各大厂商的模型结构来源于：Llama(实现)  ——> Transformer(理论)。Llama 参考 Transformer 实现了可用的模型架构
 
 # 创建模型
 
@@ -61,11 +72,11 @@ fc = nn.Linear(10, 1)
 # 通常，在训练完成后调用 state_dict() 来保存模型的参数。这样可以在之后加载这些参数，继续训练或进行推理。
 model = fc.state_dict()
 
-# 四、保存模型
+# 四、保存模型权重
 # 将训练结果 fc 保存到模型文件 hello_world.pth 中
 torch.save(model, "./models/hello_world.pth")
 
-# 从 hello_world.pth 模型文件中读取参数
+# 从 hello_world.pth 模型文件中读取权重
 weight = torch.load("./models/hello_world.pth", weights_only=True)
 
 # 模型文件中的内容本质上是一系列权重值的集合，效果如下：
@@ -79,21 +90,23 @@ print(weight)
 >
 > 似乎，从这种底层逻辑看，所有模型其实都是一样的，底层只有像 Linear() 之类的简单线性层，不同点在于高级模型会用到 非常多的层数、训练方式、训练数据。
 
-# 模型文件格式
+# 权重文件格式
 
-ONNX 是业界通用的格式，还有很多特定于项目的格式。
+**.pt/.pth** # PyTorch 原生的格式
 
-绝大部分模型，都支持导出成 .onnx 格式。e.g. [Yolo](/docs/12.AI/AI%20Projects/Yolo.md) 可以导出成 .onnx，也支持导出成用于 [PyTorch](/docs/12.AI/机器学习/PyTorch.md) 的 torchscript 格式，etc.
+**ONNX** # 是 [计算机视觉](/docs/12.AI/计算机视觉/计算机视觉.md) 业界通用的格式，还有很多特定于项目的格式
 
-## ONNX
+- [GitHub 项目，onnx/onnx](https://github.com/onnx/onnx)
+- 绝大部分模型，都支持导出成 .onnx 格式。e.g. [Yolo](/docs/12.AI/AI%20Projects/Yolo.md) 可以导出成 .onnx，也支持导出成用于 [PyTorch](/docs/12.AI/机器学习/PyTorch.md) 的 torchscript 格式，etc.
+- **Open Neural Network Exchange (开放神经网络交换，简称：ONNX)** 是一个开放的生态系统，使人工智能开发人员能够随着项目的发展选择正确的工具。 ONNX 为人工智能模型（深度学习和传统机器学习）提供开源格式。它定义了可扩展的计算图模型，以及内置运算符和标准数据类型的定义。目前我们重点关注推理（评分）所需的能力。
+- 人话：机器学习互操作性的开放标准，就是协议，也就是定义了模型应该用什么的方式 读/写，用什么格式存储。
+- TODO: ONNX 对**大语言模型**支持不太好，因为 LLM 的动态性（可变长度、KV cache 等）超出了它最初的设计范围。它更多用在传统视觉模型、分类、检测这类任务上。
 
-> 参考：
->
-> - [GitHub 项目，onnx/onnx](https://github.com/onnx/onnx)
+**Safetensors** # [Hugging Face](/docs/12.AI/Hugging%20Face.md) 生态的模型格式。实现了一种新的简单格式，用于安全地存储张量（与 pickle 不同），而且速度仍然很快（零拷贝）。
 
-**Open Neural Network Exchange (开放神经网络交换，简称：ONNX)** 是一个开放的生态系统，使人工智能开发人员能够随着项目的发展选择正确的工具。 ONNX 为人工智能模型（深度学习和传统机器学习）提供开源格式。它定义了可扩展的计算图模型，以及内置运算符和标准数据类型的定义。目前我们重点关注推理（评分）所需的能力。
+- [GitHub 项目，safetensors/safetensors](https://github.com/safetensors/safetensors)
 
-人话：机器学习互操作性的开放标准，就是协议，也就是定义了模型应该用什么的方式 读/写，用什么格式存储。
+**etc.** # 太多了。。有重点再记
 
 # 模型可视化
 

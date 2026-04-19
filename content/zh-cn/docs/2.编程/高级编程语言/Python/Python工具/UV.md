@@ -13,6 +13,8 @@ weight: 100
 
 只需要一个二进制文件即可使用！具有缓存管理依赖库的功能，完美解决 多版本依赖、[Python 虚拟环境](/docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20虚拟环境.md)重复安装依赖占用空间、etc. 问题。
 
+`uv venv` 创建虚拟环境
+
 `uv init` 初始化项目，生成 pyproject.toml 文件
 
 `uv add XXX` 添加依赖库，同时更新 pyproject.toml 中的依赖部分

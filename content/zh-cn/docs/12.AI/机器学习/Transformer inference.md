@@ -15,24 +15,17 @@ weight: 102
 
 ![300](Excalidraw/AI/transformer-inference-arch.excalidraw.md)
 
-一个可以提供 NLP [Inference](/docs/12.AI/机器学习/Inference.md)(推理) 服务的架构，通常由下面几部分组成：
+一个可以提供 [Inference](/docs/12.AI/机器学习/Inference.md)(推理) 服务的架构，通常由下面几部分组成：
 
-- **权重文件** # 这就是 [Model](/docs/12.AI/机器学习/Model.md)，也可以称为”模型文件“。通常名为 model.safetensors 或 pytorch_model.bin。**那些动辄几个 G 的文件就是这个权重文件**。
-- **配置文件** # 加载 分词器、权重 时的依据。是一组文件
-- **处理代码** # 处理 用户输入 与 模型输出。总结一下：所有除了 ”模型“ 本身这个黑箱计算之外的工作，都需要代码。
+- **权重文件** # 这就是狭义上的 [Model](/docs/12.AI/机器学习/Model.md)，也可以称为”模型文件“。通常名为 model.safetensors。**那些动辄几个 G 的文件就是这个权重文件**。
+- **配置文件** # 一组配置文件，数据预处理、权重计算 时的依据。
+- **处理代码** # 处理 用户输入 与 模型输出、计算权重。
 
-# 关联文件与配置
+# NLP 推理的关联文件与配置
 
-权重相关文件
+> [!Quote] 参考 [Transformer](/docs/12.AI/机器学习/Transformer.md#模型的关联文件与配置) 中的 模型的关联文件与配置，不同架构的模型配置文件有细微差别
 
-- **model-safetensors** # 模型的权重文件。也有可能名为 pytorch_model.bin。**那些动辄几个 G 的文件就是这个权重文件**。
-- **config.json** # 模型结构配置。例如层数、隐藏层大小、注意力头数及 Transformers API 的调用关系等，用于加载、配置和使用预训练模型。
-    - **configuration_chatglm.py** # 是 config.json 文件的类表现形式，模型配置的 Python 类代码文件，定义了用于配置模型的 ChatGLMConfig 类。
-- **generation_config.json** # 模型参数的默认值
-
-分词器相关文件详见 [Tokenization](/docs/12.AI/自然语言处理/Tokenization.md)
-
-# 推理流程
+# NLP 推理流程
 
 > 参考：
 >

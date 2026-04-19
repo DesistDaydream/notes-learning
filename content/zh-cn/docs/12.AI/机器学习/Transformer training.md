@@ -9,11 +9,15 @@ weight: 101
 
 > 参考：
 >
-> - 
+> -
 
-# 训练流程
+# NLP 训练流程
 
 ![](Excalidraw/AI/transformer-training-flow.excalidraw.md)
+
+# NLP 训练的关联文件与配置
+
+> [!Quote] 参考 [Transformer](/docs/12.AI/机器学习/Transformer.md#模型的关联文件与配置) 中的 模型的关联文件与配置，不同架构的模型配置文件有细微差别
 
 # TODO1
 
