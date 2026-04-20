@@ -52,8 +52,8 @@ uv add transformers
 
 **权重相关**
 
-- **model.safetensors** # safetensors 格式的权重文件。**那些动辄几个 G 的文件就是这个**。
-- **config.json** # 模型结构配置。例如层数、隐藏层大小、注意力头数及 Transformers API 的调用关系等，用于加载、配置和使用预训练模型。
+- **model.safetensors** #
+- **config.json** # 模型结构配置。，
   - **configuration_chatglm.py** # 是 config.json 文件的类表现形式，模型配置的 Python 类代码文件，定义了用于配置模型的 ChatGLMConfig 类。
 - **generation_config.json** # 推理配置
 
@@ -64,13 +64,14 @@ uv add transformers
 
 ## NLP 关联文件示例
 
-> [!Example] 以我测试过的 Qwen 模型为例（训练与推理都用）
+> [!Example] 这里以 [Hugging Face](/docs/12.AI/Hugging%20Face.md) 生态的模型（用我测试过的 Qwen 系列模型（训练与推理都用））为例
 >
-> - model.safetensors # 权重
-> - config.json # 架构配置
-> - generation_config.json # 推理配置
-> - tokenizer.json # 分词器的词表
-> - tokenizer_config.json # 分词器的配置
+> - **transformer 依赖库** # 架构。整个依赖库里的代码就是架构
+> - **model.safetensors** # 权重。safetensors 格式的权重文件。**那些动辄几个 G 的文件就是这个**。
+> - **config.json** # 架构配置。HF 生态所需，告诉依赖库使用哪个架构、各种超参数是什么。用于加载、配置和使用预训练模型。
+> - **generation_config.json** # 推理配置。通常包含推理前后处理，e.g. temperature, top_k, top_p, etc.
+> - **tokenizer.json** # 分词器的词表
+> - **tokenizer_config.json** # 分词器的配置
 
 ## CV 关联文件示例
 

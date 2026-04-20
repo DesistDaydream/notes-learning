@@ -4733,7 +4733,7 @@
         "docs/12.AI/机器学习/深度学习.md",
         "docs/12.AI/机器学习/Model.md",
         "docs/12.AI/机器学习/Dataset.md",
-        "docs/12.AI/机器学习/Data preprocessing.md",
+        "docs/12.AI/机器学习/Data processing.md",
         "docs/12.AI/机器学习/Training.md",
         "docs/12.AI/机器学习/Inference.md",
         "docs/12.AI/机器学习/Transformer.md",
@@ -5145,6 +5145,7 @@
     },
     "Excalidraw/AI": {
       "children": [
+        "Excalidraw/AI/model_arch.excalidraw.md",
         "Excalidraw/AI/machine-learning-introduction-flow.excalidraw.md",
         "Excalidraw/AI/transformer-training-flow.excalidraw.md",
         "Excalidraw/AI/transformer-inference-flow.excalidraw.md",
