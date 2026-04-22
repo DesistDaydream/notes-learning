@@ -44,6 +44,12 @@ Windows 注意：有两个文件 [Windows x64 (CUDA 13)](https://github.com/ggml
 
 ## 最佳实践
 
+开始交互式对话
+
+```powershell
+.\llama-cli.exe -m D:\appdata\models\desistdayream.gguf
+```
+
 ### 将模型包转换为 GGUF 文件
 
 使用 llama.cpp 项目中的 convert_hf_to_gguf.py 文件将训练好的模型权重及相关文件，转换为单一的 GGUF 格式的文件
@@ -51,7 +57,7 @@ Windows 注意：有两个文件 [Windows x64 (CUDA 13)](https://github.com/ggml
 ```powershell
 python .\convert_hf_to_gguf.py `
   D:\appdata\models\desistdaydream\ `
-  --outfile D:\appdata\models\desistdayream.gguf `
+  --outfile D:\appdata\models\desistdayream.gguf
 ```
 
 # Ollama

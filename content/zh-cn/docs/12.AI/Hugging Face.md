@@ -16,8 +16,8 @@ weight: 70
 Hugging Face 即是一个工具包的集合，也是一个社区。
 
 - 在 2017 年在 GitHub 上开源了非常著名的 [Transformer](/docs/12.AI/机器学习/Transformer.md) 库。
-- 在 2019 年推出了 Hugging Face Hub，一个用于共享和加载预训练模型和数据集的平台
-- 后续也陆续开发了其他的工具包，例如 tokenizers、datasets、huggingface_hub、accelerate和peft，以及一个公共的推理API，为机器学习开发者提供了更多的便利和资源。
+- 在 2019 年推出了 Hugging Face **Hub**，一个用于共享和加载 预训练模型、数据集 的平台。我们可以通过 Hub 上传/下载 模型，类似于大模型生态的 [GitHub](docs/2.编程/Programming%20tools/SCM/GitHub/GitHub.md)
+- 后续也陆续开发了其他的工具包，例如 tokenizers、datasets、huggingface_hub、accelerate 和 peft，以及一个公共的推理 API，为机器学习开发者提供了更多的便利和资源。
 
 它提供了多种工具包，例如：
 
@@ -32,23 +32,17 @@ Hugging Face 即是一个工具包的集合，也是一个社区。
 
 Hugging face 起初是一家总部位于纽约的聊天机器人初创服务商，他们本来打算创业做聊天机器人，然后在github上开源了一个Transformers库，虽然聊天机器人业务没搞起来，但是他们的这个库在机器学习社区迅速大火起来。目前已经共享了超100,000个预训练模型，10,000个数据集，变成了机器学习界的github。
 
-# 关联文件预配置
+# 关联文件与配置
 
-**Hugging Face 相关代码库的缓存路径**
+> 参考：
+>
+> - [官方文档，安装 - 缓存目录](https://huggingface.co/docs/transformers/main/en/installation#cache-directory)
 
-- https://huggingface.co/docs/transformers/zh/installation#%E7%BC%93%E5%AD%98%E8%AE%BE%E7%BD%AE
+**~/.cache/huggingface/** # Hugging Face 缓存目录。使用 `HF_HOME` 环境变量修改。
 
-Hugging Face 代码库处理的模型默认都保存在缓存路径中，e.g. 自己训练的、从 HF 网站下载的、etc.
+> [!Tip] **Windows** 使用 Powershell 命令 `[Environment]::SetEnvironmentVariable("HF_HOME", "D:\appdata\huggingface", "User")` 修改
 
-Windows
-
-- `~/.cache/huggingface/`
-
-```powershell
-[Environment]::SetEnvironmentVariable("HF_HOME", "D:\appdata\huggingface", "User")
-```
-
-Linux
+- **./hub/** # 模型保存目录中，e.g. 自己训练的、从 HF 网站下载的、etc. 。使用 `HF_HUB_CACHE` 环境变量修改。
 
 使用如下代码查看当前 HF 的缓存路径
 
@@ -60,9 +54,48 @@ print(f"HF Home: {constants.HF_HOME}")
 print(f"Hub Cache: {constants.HF_HUB_CACHE}")
 ```
 
+## 环境变量
+
+> 参考：
+>
+> - [官方文档，参考 - 环境变量](https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables)
+
+**HF_ENDPOINT** # 配置 Hub 的基础 url。可以通过修改这个环境变量，让 HuggingFace 的 CLI 使用私有的 Hub。甚至可以通过这种方式实现从镜像站下载模型（中国专属 `(～￣▽￣)～`）
+
+> [!Tip] 这个环境变量最后一次出现在 [0.17.3 版本](https://huggingface.co/docs/huggingface_hub/v0.17.3/en/package_reference/environment_variables )，之后的版本的文档不记录该变量了，但是依然可用。
+
+**HF_TOKEN** # 访问 HuggingFace 的 Hub 的认证信息。默认位于 `$HF_HOME/token` 中。
+
+# CLI
+
+> 参考：
+>
+> - [官方文档，参考 - CLI](https://huggingface.co/docs/huggingface_hub/package_reference/cli)
+
+安装
+
+```bash
+uv tool install huggingface_hub
+```
+
 # 最佳实践
 
-[Hugging Face下载大模型的相关文件说明](https://mmy83.online/posts/hugging-face%E4%B8%8B%E8%BD%BD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9B%B8%E5%85%B3%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E/)
+## 下载模型及镜像使用
 
-如何理解仓库中的模型文件
+https://zhuanlan.zhihu.com/p/663712983
 
+使用 HF_ENDPOINT 环境变量定义下载位置
+
+可用的镜像
+
+- https://hf-mirror.com
+
+从 HF 官网，找到模型全称
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ai/hf_official_model_name_demo_1.png)
+
+下载 Qwen3.6 模型。在 CLI 中使用从官网看到的模型名称，即可将模型下载到 `${HF_HOME}` 目录中
+
+```bash
+HF_ENDPOINT=https://hf-mirror.com hf download Qwen/Qwen3.6-35B-A3B
+```

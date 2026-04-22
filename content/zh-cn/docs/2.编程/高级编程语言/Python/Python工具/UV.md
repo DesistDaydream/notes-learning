@@ -19,6 +19,16 @@ weight: 100
 
 `uv add XXX` 添加依赖库，同时更新 pyproject.toml 中的依赖部分
 
+`uv add ../../../projects/someone_else/llama.cpp/gguf-py` # 添加本地依赖。相当于下面这种配置。
+
+```toml
+dependencies = [
+    "gguf>=0.18.0",
+]
+[tool.uv.sources]
+gguf = { path = "../../../projects/someone_else/llama.cpp/gguf-py" }
+```
+
 `uv sync `根据 pyproject.toml 同步依赖
 
 `uv tool install XXX` 以工具的形式安装 XXX。不作为依赖库

@@ -30,7 +30,7 @@ Python 没有 go.mod 与 go.sum 这种文件来管理第三方依赖模块的版
 ~]# ls /root/tmp
 project-venv-demo
 # 激活虚拟环境
-# source /root/tmp/project-venv-demo/bin/activate
+~]# source /root/tmp/project-venv-demo/bin/activate
 (project-venv-demo) ~]#
 ```
 
