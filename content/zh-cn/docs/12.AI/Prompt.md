@@ -18,6 +18,20 @@ Prompt 解决方案
     - [MCP](/docs/12.AI/MCP.md)
 - [Skills](/docs/12.AI/Skills.md)
 
+# 历史
+
+最早期的  Prompt engineering(提示词工程)，甚至催生了提示词工程师 🤣
+
+- [GitHub 项目，f/awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts)
+- [GitHub 项目，PlexPt/awesome-chatgpt-prompts-zh](https://github.com/PlexPt/awesome-chatgpt-prompts-zh)
+- [公众号-云原生小白，你应该知道的ChatGPT提示语](https://mp.weixin.qq.com/s/BcJWxvhpTRFTE20rB55Sow)
+
+Content engineering # e.g RAG, MCP, Skills, etc.
+
+Harness engineering
+
+- [【闪客】你管这破玩意叫 Harness？虚拟世界的牛马套餐！](https://www.bilibili.com/video/BV1cNdrB4Evw)
+
 # RAG
 
 > 参考：

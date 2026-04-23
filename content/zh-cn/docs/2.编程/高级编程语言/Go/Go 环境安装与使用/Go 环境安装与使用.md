@@ -269,3 +269,34 @@ go 命令会从公共镜像 http://goproxy.io 上下载 [Go 第三方库](/doc
 可以使用 GOPRIVATE [环境变量](#Go%20环境变量)可以设置不经过代理的私有仓库。GOPRIVATE 的配置会自动复制到 GONOPOROXY 与 GONOSUMDB 两个环境变量上，让获取私有仓库时 不使用代理、不进行校验。
 
 其中，direct 关键字的作用是：特殊指示符，用于指示 Go 回源到模块版本的源地址去抓取
+
+## 去掉 go version -m 的构建信息
+
+这种做法用于避免其他人通过 go version 看到自己的私有信息产生各种审查。
+
+```bash
+$ go build -ldflags "-X 'runtime.modinfo= '" pkg/text/yaml/hello_world/main.go 
+$ go version -m main 
+main: go1.26.1
+hello_world: go1.26.1
+```
+
+若不加构建参数，将会看到全部构建信息，包括依赖
+
+```bash
+$ go build pkg/text/yaml/hello_world/main.go 
+$ go version -m main 
+main: go1.26.1
+        path    command-line-arguments
+        dep     go.yaml.in/yaml/v4      v4.0.0-rc.3     h1:3h1fjsh1CTAPjW7q/EMe+C8shx5d8ctzZTrLcs/j8Go=
+        build   -buildmode=exe
+        build   -compiler=gc
+        build   CGO_ENABLED=1
+        build   CGO_CFLAGS=
+        build   CGO_CPPFLAGS=
+        build   CGO_CXXFLAGS=
+        build   CGO_LDFLAGS=
+        build   GOARCH=amd64
+        build   GOOS=linux
+        build   GOAMD64=v1
+```

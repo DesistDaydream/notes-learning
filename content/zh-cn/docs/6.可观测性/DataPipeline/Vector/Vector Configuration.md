@@ -90,3 +90,4 @@ https://vector.dev/docs/reference/configuration/transforms/
 https://vector.dev/docs/reference/configuration/sinks/
 
 所有 Sinks 通常都要有一个 `inputs([]STRING)` 字段，以声明要输出的数据是从哪来的。inputs 中的值可以是 SourceID 或 TransformID
+

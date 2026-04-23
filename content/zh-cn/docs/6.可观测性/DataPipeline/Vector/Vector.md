@@ -12,7 +12,7 @@ weight: 1
 > - [官网](https://vector.dev/)
 > - https://www.cnblogs.com/ulricqin/p/17762086.html
 
-Vector 是一种高性能的用于可观测性的 [DataPipeline](/docs/6.可观测性/DataPipeline/DataPipeline.md)(数据管道)，让用户能够控制其可观测性数据。收集、转换 所有日志、指标和跟踪，并将其路由到任意 Vendor 以及明天可能需要的其他 Vendor。
+Vector 是一种高性能的用于可观测性的 [DataPipeline](/docs/6.可观测性/DataPipeline/DataPipeline.md)(数据管道)，让用户能够控制自己的可观测性数据。收集、转换 所有日志、指标和跟踪，并将其路由到任意 Vendor 以及未来可能需要的其他 Vendor。
 
 > Notes: Vendor 指使用这些数据的地方，e.g. 数据库、Web 前端、etc. 这些地方都可以对外提供数据，所以称为 Vendor(供应商)，就像数据供应商似的。
 

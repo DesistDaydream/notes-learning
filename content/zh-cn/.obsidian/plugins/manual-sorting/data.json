@@ -799,7 +799,6 @@
     },
     "docs/1.操作系统/Linux 管理/Linux 系统管理工具": {
       "children": [
-        "docs/1.操作系统/Linux 管理/Linux 系统管理工具/Login info MGMT.md",
         "docs/1.操作系统/Linux 管理/Linux 系统管理工具/_index.md",
         "docs/1.操作系统/Linux 管理/Linux 系统管理工具/CPU 管理工具.md",
         "docs/1.操作系统/Linux 管理/Linux 系统管理工具/Memory 管理工具.md",
@@ -813,7 +812,8 @@
         "docs/1.操作系统/Linux 管理/Linux 系统管理工具/BCC 工具集.md",
         "docs/1.操作系统/Linux 管理/Linux 系统管理工具/bpftrace 工具.md",
         "docs/1.操作系统/Linux 管理/Linux 系统管理工具/Cron.md",
-        "docs/1.操作系统/Linux 管理/Linux 系统管理工具/Cockpit.md"
+        "docs/1.操作系统/Linux 管理/Linux 系统管理工具/Cockpit.md",
+        "docs/1.操作系统/Linux 管理/Linux 系统管理工具/Login info MGMT.md"
       ],
       "sortOrder": "custom"
     },
