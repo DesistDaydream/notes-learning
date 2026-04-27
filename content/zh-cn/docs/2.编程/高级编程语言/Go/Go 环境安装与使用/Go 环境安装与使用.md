@@ -86,7 +86,7 @@ go 相关工具通过 `go.mod` 与 `go.sum` 两个文件管理项目及其依赖
 
 使用 `go mod init <NAME>` 命令在当前目录会创建一个 go.mod 文件。有任何新的 import，都可以通过 `go mod tidy` 生成依赖文件再生成 `go.sum` 文件。
 
-# 编译 Go
+# Go 编译
 
 有些代码依赖 [GCC](/docs/2.编程/Programming%20tools/GCC.md)，需要安装 gcc 包
 

@@ -11,16 +11,6 @@ weight: 102
 >
 > -
 
-# 架构
-
-![300](Excalidraw/AI/transformer-inference-arch.excalidraw.md)
-
-一个可以提供 [Inference](/docs/12.AI/机器学习/Inference.md)(推理) 服务的架构，通常由下面几部分组成：
-
-- **权重文件** # 这就是狭义上的 [Model](/docs/12.AI/机器学习/Model.md)，也可以称为”模型文件“。通常名为 model.safetensors。**那些动辄几个 G 的文件就是这个权重文件**。
-- **配置文件** # 一组配置文件，数据预处理、权重计算 时的依据。
-- **处理代码** # 处理 用户输入 与 模型输出、计算权重。
-
 # NLP 推理的关联文件与配置
 
 > [!Quote] 参考 [Transformer](/docs/12.AI/机器学习/Transformer.md#模型的关联文件与配置) 中的 模型的关联文件与配置，不同架构的模型配置文件有细微差别

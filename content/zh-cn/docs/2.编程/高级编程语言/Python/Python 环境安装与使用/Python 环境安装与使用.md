@@ -1,5 +1,6 @@
 ---
 title: Python 环境安装与使用
+linkTitle: Python 环境安装与使用
 weight: 1
 ---
 
@@ -17,29 +18,31 @@ weight: 1
 
 ### 自定义 Python
 
-由于 [Python 模块与包](/docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20模块与包.md) 的管理非常混乱，我们有没有办法像 Go 一样，依靠一个 GOPATH 即可统一管理呢？可以，当我们**了解了模块搜索路径的底层原理之后**，即可开始着手将 Python 的依赖都移动到指定的目录
+> [!Question]
+> 由于 [Python 模块与包](/docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20模块与包.md) 的管理非常混乱，我们有没有办法像 Go 一样，依靠一个 GOPATH 即可统一管理呢？可以，当我们**了解了模块搜索路径的底层原理之后**，即可开始着手将 Python 的依赖都移动到指定的目录
 
-对于 root 用户来说，GOPATH 默认在 /root/go，那我们就将 PYTHONHOME 设为 /root/python，开始吧(注意这里要用绝对路径，不要使用 `~`)
+首先，下载 Python 源码包。解压后进入源码目录。执行 `./configure --enable-optimizations --prefix=/usr/local/python3.10` 后会生成 Makefile 文件，之后执行 `make install`，会在 `/usr/local/python3.10/` 目录中生成可用的 Python 环境。
 
-```bash
-export PYTHON_VERSION="3.10"
-mkdir -p /root/python/lib
-cp /usr/bin/python${PYTHON_VERSION} /root/python
-cp -ax -r /usr/lib/python${PYTHON_VERSION} /root/python/lib
-```
-
-准备工作完成了，此时我们只需要修改 `${PYTHONHOME}` 或者将 `/root/python` 加入 `${PATH}` 变量中即可
+准备工作完成了，此时我们只需要将 `which python3` 的软链接指到 `/usr/local/python3.10/bin/python3` 即可
 
 ```bash
 export PATH=/root/python:$PATH
-~]# python${PYTHON_VERSION}
+~]# python
 Python 3.10.6 (main, Nov 14 2022, 16:10:14)
 >>> import sys
 >>> sys.prefix
-'/root/python'
+'/usr/local/python3.10'
 >>> sys.exec_prefix
-'/root/python'
+'/usr/local/python3.10'
 ```
+
+> [!Attention] yum, dnf 的问题
+> 更换 Python 后，可能会由于依赖不足无法使用。而 `dnf` 模块本身是用 C 扩展写的，它的 `.so` 文件编译时绑定了特定的 Python ABI。系统里的 dnf 是针对 python3.9 编译安装的，直接用 3.10 加载会报 ABI 不兼容或者直接找不到模块。
+> 可以使用如下方式将 yum 和 dnf 调用的 Python 改回 3.0
+> ```bash
+> sed -i '1s|.*|#!/usr/bin/python3.9|' /usr/bin/yum
+> sed -i '1s|.*|#!/usr/bin/python3.9|' /usr/bin/dnf
+> ```
 
 ## Windows
 
@@ -47,7 +50,7 @@ Python 3.10.6 (main, Nov 14 2022, 16:10:14)
 
 安装完成后会提示关闭 Path 变量值的长度限制
 
-![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/gzv1ih/1659885506889-188054a3-8a67-4039-ab87-16f8ff3a3e38.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gzv1ih/1659885506889-188054a3-8a67-4039-ab87-16f8ff3a3e38.png)
 
 ### 安装完成后自动设置的内容
 
@@ -87,7 +90,7 @@ Python 自动安装 pip 和 setuptools 两个包，这两个包在 site-packages
 
 无
 
-# 编译 Python
+# Python 编译
 
 > 参考：
 >

@@ -1,7 +1,15 @@
 ---
 title: Python 模块与包
+linkTitle: Python 模块与包
 weight: 2
 ---
+
+> [!Done] 信 [UV](/docs/2.编程/高级编程语言/Python/Python工具/UV.md) 得永生
+> 用了 UV，基本可以不用过度关注 site-packages 的逻辑了。
+>
+> 由 UV 统一管理第三方依赖，通过基本不占空间的软/硬链接，将依赖同步到各个项目的 [Python 虚拟环境](/docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20虚拟环境.md) 即可。
+>
+> 除了一些 系统级的程序（e.g. yum, dnf, etc.）、早期的 AI 相关硬件驱动（e.g. NPU）、etc. ，通常不用过度关注了。
 
 # 概述
 
@@ -272,7 +280,7 @@ Python 模块通常分两大类
 
 > tips: 一般情况，模块默认都保存在 lib/ 目录下，这目录包含了了标准库的模块和第三方模块。而第三方模块是保存在 lib/site-pacages/ 目录下。至于目录的前缀，在不同环境一般各不相同。这个说法仅供参考并没有官方文档说明，仅是个人总结。
 
-当导入一个名为 spam 的模块时，Python 解释器首先搜索具有该名称的 **Built-in module(内置模块)**(内置模块可以用过 `sys.builtin_module_names` 获取)，若没找到，则会在 **sys 内置模块中的 `${path}` 数组变量**下的目录列表中搜索名为 `spam.py` 的文件（从第一个元素开始逐一搜索，找到后就不再找了）。
+当导入一个名为 spam 的模块时，Python 解释器首先搜索具有该名称的 **Built-in module(内置模块)**(内置模块可以用过 `sys.builtin_module_names` 获取)，若没找到，则会在 **`sys.path` 数组变量**（`sys` 内置模块中的 `path` 变量）下的目录列表中搜索名为 `spam.py` 的文件（从第一个元素开始逐一搜索，找到后就不再找了）。
 
 > 这里面说的内置模块，属于[Python 规范与标准库](/docs/2.编程/高级编程语言/Python/Python%20规范与标准库/Python%20规范与标准库.md) 的一部分。这部分内置模块内嵌到解释器里面（也就是说无法在文件系统中找到与模块名相同的同名文件），它们给一些虽并非语言核心但却内嵌的操作提供接口，要么是为了效率，要么是给操作系统基础操作例如系统调入提供接口。 这些模块集是一个配置选项， 并且还依赖于底层的操作系统。 例如，[`winreg`](https://docs.python.org/zh-cn/3/library/winreg.html#module-winreg "winreg: Routines and objects for manipulating the Windows registry. (Windows)") 模块只在 Windows 系统上提供。一个特别值得注意的模块 [`sys`](https://docs.python.org/zh-cn/3/library/sys.html#module-sys "sys: Access system-specific parameters and functions.")，它被内嵌到每一个 Python 编译器中，**sys 模块是 CPython 非常重要的内置模块，也是很多功能的基础模块**。
 
@@ -283,10 +291,10 @@ Python 模块通常分两大类
   - 这是一个手动指定的目录列表，类似于类 Unix 中的 `$PATH` 变量，可以通过 `os.path` 获取其值。
   - 可以使用 `os.path.append()` 为 `$PYTHONPATH` 变量添加新的目录条目以便导入想要的模块。也可以直接设置 Linux 系统中的 `$PYTHONPATH` 变量。当项目大，需要对文件进行分类时，非常有用。
 - **编译、安装 Python 时设置的默认路径**
-  - 官方文档的这个说法挺模糊的，详见下面 sys.path 列表生成逻辑中的详解。这些路径主要取决于 [prefix](#1.确认并生成%20prefix) 的设置。
+  - 官方文档的这个说法挺模糊的，详见下面 sys.path 列表生成逻辑中的详解。这些路径主要取决于 [prefix](#1.确认并生成%20sys.prefix) 的设置。
   - 按照惯例，通常包含：
     - Python 标准库保存路径。
-    - [site 模块](https://docs.python.org/3/library/site.html#module-site)处理的第三方库保存路径。使用各种方式安装(比如 pip)的第三方库通常来说会存在 site-packages 目录中。
+    - [site 模块](https://docs.python.org/3/library/site.html#module-site)处理的第三方库保存路径。使用各种方式安装（e.g. [PIP](/docs/2.编程/高级编程语言/Python/Python工具/PIP.md)）的第三方库通常来说会存在 site-packages 目录中。
 
 上述三种路径在 Python 启动时被初始化。我们可以通过 Python 中的 `${sys.path}` 数组变量查看这些路径。
 
@@ -300,7 +308,7 @@ Python 模块通常分两大类
 > - [官方文档，Python 标准库 - Python 运行时服务 - site—特定于 site 的配置](https://docs.python.org/3/library/site.html)
 > - [源码，Moduels/getpath.py](https://github.com/python/cpython/blob/3.11/Modules/getpath.py)
 
-如果说 `${sys.path}` 是我们使用 Python 模块最重要的东西，那 **prefix(路径的前缀)** 就是 `${sys.path}` 这个变量最重要的东西。prefix 通常表示 `${sys.prefix}` 与 `${sys.exec_prefix}` 这两个变量。**prefix** 的值来源于 **Python 解释器自身**。
+如果说 `${sys.path}` 是我们使用 Python 模块最重要的东西，那 **sys.prefix(路径的前缀)** 就是 `${sys.path}` 这个变量<font color="#ff0000">最重要</font>的东西。sys.prefix 通常表示 `${sys.prefix}` 与 `${sys.exec_prefix}` 这两个变量。**sys.prefix** 的值来源于 **Python 解释器自身**。后文用 prefix 简称。
 
 我们可以在 CPyhon 源码 [Modules/getpath.py](https://github.com/python/cpython/blob/3.11/Modules/getpath.py) 查看在 Python 解释器启后生成 sys.path 的整体逻辑。这段代码会利用 [configure](https://github.com/python/cpython/blob/3.11/configure#L571) 与 [Include/cpython/initconfig.h](https://github.com/python/cpython/blob/3.11/Include/cpython/initconfig.h#L188)。经过如下几个步骤：
 
@@ -312,7 +320,7 @@ Python 模块通常分两大类
 - CALCULATE (default) home
 - **READ pyvenv.cfg** # 读取 pyvenv.cfg 文件，若读取到则说明这是一个 Python 虚拟环境
 - CALCULATE base_executable, real_executable AND executable_dir
-- DETECT _pth FILE
+- DETECT `_pth` FILE
 - CHECK FOR BUILD DIRECTORY
 - **CALCULATE prefix AND exec_prefix** # 计算 prefix 和 exec_prefix 变量的值。
 - **UPDATE pythonpath (sys.path)** #
@@ -323,14 +331,14 @@ Python 模块通常分两大类
 最终，Python 解释器启动后，将为如下几个变量赋值
 
 - **`sys.executable`** # Python 解释器的路径。
-- **`sys.prefix`** # Python 标准模块(标准库)目录前缀。默认通过运行的 python 解释器生成出来。可以用过 `${PYTHONHOME}` 变量覆盖初始值
+- **`sys.prefix`** # Python 模块目录前缀。默认通过运行的 python 解释器生成出来。可以用过 `${PYTHONHOME}` 变量覆盖初始值
 - **`sys.exec_prefix`** # Python 扩展模块目录前缀。可以用过 `${PYTHONHOME}` 变量覆盖初始值
 - 等等......
 - **`sys.path`**
 
-下面我笔记中关于 sys.path 的生成逻辑中，只做简单描述，详细生成逻辑就像[这里](https://stackoverflow.com/questions/897792/where-is-pythons-sys-path-initialized-from)说的，跟论文一样，而且每个平台编译出来的 Python 解释器的设置也不一样，所以最后路径也不一样，由于 Python 复杂的自推导逻辑导致也不好总结普适性，所以，可以直接参考下文[sys.path 总结](#sys.path%20总结)中的各平台示例
+下面笔记中关于 sys.path 的生成逻辑中，只做简单描述，详细生成逻辑就像[这里](https://stackoverflow.com/questions/897792/where-is-pythons-sys-path-initialized-from)说的，跟论文一样，而且每个平台编译出来的 Python 解释器的设置也不一样，所以最后路径也不一样，由于 Python 复杂的自推导逻辑导致也不好总结普适性，所以，可以直接参考下文[sys.path 总结](#sys.path%20总结)中的各平台示例
 
-### 1.确认并生成 prefix
+### 1. 确认并生成 sys.prefix
 
 > 这个行为准确描述应该是确认 prefix 的值之后，生成 `${sys.prefix}` 和 `${sys.exec_prefix}` 变量的值，这两个变量，通常用在标准库和第三方库的保存路径中，作为路径的前缀。
 
@@ -442,17 +450,17 @@ Windows 生成的值为：
 'DLLs'
 ```
 
-### 2.添加要运行的 Python 文件所在的路径
+### 2. 添加要运行的 Python 文件所在的路径
 
 添加运行 Python 代码文件所在的绝对路径，若直接运行的 Python 解释器，则 `$sys.path` 的第一个元素为空
 
 - 在下面的 [Ubuntu 示例](#Ubuntu%20示例)中，`sys.path` 的第一个元素（`/root/scripts`）是 module-path-demo.py  文件所在路径，即执行的 Python 代码文件所在路径，如果不是运行的 Python 代码文件，则第一个元素为空。每当运行一个 Python 文件时，就相当于默认执行了 `sys.path.append("文件所在绝对路径")` 代码。
 
-### 3.添加 PYTHONPATH 环境变量设置的路径
+### 3. 添加 PYTHONPATH 环境变量设置的路径
 
 添加 `${PYTHONPATH}` 变量中的值
 
-### 4.添加标准库的存放路径
+### 4. 添加标准库的存放路径
 
 添加包含 Python 标准模块以及这些模块所依赖的任何扩展模块的文件和目录，**这些路径是很重要的，包含了 Python 解释器启动成功所依赖的模块**。通常包含如下文件和目录：
 
@@ -478,11 +486,15 @@ Python 3.10.6 (main, Nov 14 2022, 16:10:14)
 
 其中前两个元素是基本路径，后面三个元素是 prefix 相关的路径。
 
-### 5.添加第三方库的存放路径
+### 5. 添加第三方库的存放路径
 
-Python 的第三方模块通常保存在由 site 模块生成的目录中，该目录名称通常为 site-packages。但是有的系统，比如 Ubuntu，会将 site-packages 目录的名称改为 dist-packages。site 模块在 Python 解释器启动时自动调用，并将生成目录添加到 sys.path 列表中。
+Python 的第三方模块通常保存在由 site 模块生成的目录中，该目录名称通常为 **site-packages**。site 模块在 Python 解释器启动时自动调用，并将生成目录添加到 sys.path 列表中。
 
-**第一、调用 site 模块的 `main()` 函数将 `${sys.prefix}/lib/site-package/` 目录添加到 `sys.path` 变量中**。`site.main()` 函数从 Python3.3 版本开始被自动调用，除非运行 Python 解释器时添加 -S 标志。
+> [!Quote] 但是有的系统，e.g. Ubuntu，会将 site-packages 目录的名称改为 dist-packages。
+
+**第一、调用 site 模块的 `main()` 函数将 `${sys.prefix}/lib/site-package/` 目录添加到 `sys.path` 变量中**。
+
+`site.main()` 函数从 Python3.3 版本开始被自动调用，除非运行 Python 解释器时添加 -S 标志。
 
 Ubuntu 效果如下：
 
@@ -499,7 +511,9 @@ Python 3.10.6 (main, Nov 14 2022, 16:10:14)
 
 在这个示例中，我们可以看到 site-packages 目录跟官方文档的说明并不一样是吧？在 [模块管理混乱说明](#模块管理混乱说明) 中详细说明
 
-**第二、site 模块在将全局的 site 目录添加前，会先添加用户 site 相关的模块搜索路径**。如果 site 模块中的 [ENABLE_USER_SITE](https://docs.python.org/3/library/site.html#site.ENABLE_USER_SITE) 变量为真，且 USER_SITE 定义的文件存在，则会将 USER_SITE 添加到 sys.path 中，用户 site 不再依赖 prefix，取而代之的是 `site.USER_BASE`，`site.USER_BASE` 的值通常为 `~/.local/`，生成的 `site.USER_SITE` 的值通常是 `site.USER_BASE/lib/python${X.Y}/site-packages`
+**第二、site 模块在将全局的 site 目录添加前，会先添加用户 site 相关的模块搜索路径**。
+
+如果 site 模块中的 [ENABLE_USER_SITE](https://docs.python.org/3/library/site.html#site.ENABLE_USER_SITE) 变量为真，且 USER_SITE 定义的文件存在，则会将 USER_SITE 添加到 sys.path 中，用户 site 不再依赖 prefix，取而代之的是 `site.USER_BASE`，`site.USER_BASE` 的值通常为 `~/.local/`，生成的 `site.USER_SITE` 的值通常是 `site.USER_BASE/lib/python${X.Y}/site-packages`
 
 ```python
 >>> site.USER_SITE
@@ -592,6 +606,17 @@ print(sys.executable)
 ### CentOS 示例
 
 TODO
+
+### 自己编译安装的 Python 示例
+
+这里假定我将 Python 编译安装到 `/usr/local/python3.12/` 目录中
+
+```bash
+['/root/scripts', '/usr/local/python3.12/lib/python312.zip', '/usr/local/python3.12/lib/python3.12', '/usr/local/python3.12/lib/python3.12/lib-dynload', '/usr/local/python3.12/lib/python3.12/site-packages']
+/usr/local/python3.12
+/usr/local/python3.12
+/usr/bin/python
+```
 
 ## 模块关联的可执行文件
 

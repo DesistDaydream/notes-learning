@@ -16,9 +16,99 @@ created: 2026-04-08T15:03
 
 **Transformer** 架构由 Google 在 2017 年发表的论文 《[Attention is All You Need](https://arxiv.org/abs/1706.03762)》首次提出，它使用 Self-Attention(自注意力) 机制取代了之前在 [NLP](/docs/12.AI/自然语言处理/自然语言处理.md) 任务中常用的 RNN(循环神经网络)，使其成为训练语言模型的代表架构。
 
-[Hugging Face](/docs/12.AI/Hugging%20Face.md) 开源 Transformer 库，提供了便于快速下载和使用的 API，让我们可以把预训练模型用在自己的数据集上微调然后通过 [model hub](https://huggingface.co/models) 与社区共享。同时，每个定义的 Python 模块均完全独立，方便修改和快速研究实验。
+[Hugging Face](/docs/12.AI/Hugging%20Face.md) 开源了 Transformer 库，提供了便于快速下载和使用的 API，让我们可以把预训练模型用在自己的数据集上微调然后通过 [model hub](https://huggingface.co/models) 与社区共享。同时，每个定义的 Python 模块均完全独立，方便修改和快速研究实验。
 
 Transformers 支持三个最热门的深度学习库： [Jax](https://jax.readthedocs.io/en/latest/), [PyTorch](https://pytorch.org/) 以及 [TensorFlow](https://www.tensorflow.org/)，并与之无缝整合。我们可以直接使用一个框架训练模型然后用另一个加载和推理。
+
+# 架构
+
+![300](Excalidraw/AI/transformer-inference-arch.excalidraw.md)
+
+一个可以提供 [Inference](/docs/12.AI/机器学习/Inference.md)(推理)/[Training](/docs/12.AI/机器学习/Training.md)(训练) 服务的架构，通常由下面几部分组成：
+
+- **权重文件** # 这是狭义上的 [Model](/docs/12.AI/机器学习/Model.md)，也可以称为”模型文件“。**那些动辄几个 G 的文件就是这个权重文件**。
+- **处理代码** # [数据处理](/docs/12.AI/机器学习/Data%20processing.md) 与 权重计算 的代码。
+- **配置文件** # 一组配置文件，数据处理、权重计算、etc. 的依据。
+
+推理输出给用户的是推理结果的 **字符串**，训练输出给用户的是 **权重文件与配置文件**。
+
+> [!TODO]
+> Attention is All You Need 那个架构图中，到底什么是重点，什么是最消耗算力的地方？
+>
+> QKV？
+>
+> 左半部分输入给 Multi-Head Attention 的那三个箭头就是 QKV 吗？
+
+## 缓存
+
+> [!TODO] 待整理 AI 的回答
+
+Q:
+
+很多 AI 模型推理提供商提供了这么一种服务：输入 Tokens 如果命中了缓存，会将收费打折，并且折扣很低。 我曾经画了一张流程图，我没法理解这模型是怎么实现缓存的。每次推理都要带着之前的所有交互消息再发给模型，那模型不是就得重新根据前面的输入重新计算吗？
+
+A:
+
+这是个很好的问题。你的困惑完全合理，答案是：**KV Cache（键值缓存）**。
+
+**为什么不需要重新计算？**
+
+Transformer 模型在处理每个 token 时，会为它计算 **Key** 和 **Value** 两个向量（这是注意力机制的核心）。这些 KV 向量一旦算出来，只要输入不变，结果就永远一样。
+
+所以推理服务可以把这些 KV 向量缓存下来，下次遇到相同前缀时直接复用，不用重算。
+
+**对应到你的流程图**
+
+```
+第1轮：[system prompt] + [user: "你好"]
+         ↓
+  计算所有 token 的 KV → 缓存起来
+
+第2轮：[system prompt] + [user: "你好"] + [assistant: "..."] + [user: "继续"]
+         ↓
+  前面的 token KV 直接从缓存读 ✓
+  只需计算新增 token 的 KV ✓
+```
+
+图中你画的分词器 Encode 阶段产生的 `input_ids` 送入模型后，模型的 Generate 推理步骤里，**已缓存的前缀部分直接跳过计算**，只处理新增的部分。
+
+**缓存命中的条件**
+
+缓存是基于 **token 序列的前缀匹配**，必须从头完全一致才能命中。所以：
+
+- System prompt 完全相同 → 命中
+- 历史对话内容完全相同 → 命中
+- 只要有一个 token 不同，从那个位置往后全部失效
+
+这也是为什么很多服务商建议把 system prompt 放最前面且保持固定——这样它的 KV 缓存命中率最高，折扣最稳定。
+
+**为什么收费打折而不是免费？**
+
+KV Cache 需要占用大量显存来存储，并且读取也有 IO 开销，只是比重新计算便宜很多，所以打折收费而非完全免费。
+
+Q:
+
+QKV 里的 KV 就是 KV Cache 里的 KV 吗？
+
+A:
+
+Transformer 注意力机制的计算公式是：
+
+```
+Attention(Q, K, V) = softmax(QK^T / √d) · V
+```
+
+每个 Token 在每一层都会产生三个向量 Q、K、V。其中：
+
+- **Q（Query）**：当前 token 用来"提问"——我需要关注什么？
+- **K（Key）**：每个 token 用来"应答"——我是什么？
+- **V（Value）**：每个 token 实际携带的内容——我的信息是什么？
+
+计算注意力时，当前 token 的 Q 要和**所有**历史 token 的 K 做点积，再用结果对所有历史 token 的 V 加权求和。
+
+所以 KV Cache 缓存的正是这里的 K 和 V——历史 token 已经算好的 K 和 V 向量存下来，新 token 进来时只需要用自己的 Q 去查这些缓存，不用重新算历史部分。
+
+Q 不需要缓存，因为 Q 只属于"当前正在处理的 token"，用完就没用了。
 
 # 安装 Transformers
 
@@ -53,9 +143,9 @@ uv add transformers
 **权重相关**
 
 - **model.safetensors** #
-- **config.json** # 模型结构配置。，
+- **config.json** # 模型结构配置。
   - **configuration_chatglm.py** # 是 config.json 文件的类表现形式，模型配置的 Python 类代码文件，定义了用于配置模型的 ChatGLMConfig 类。
-- **generation_config.json** # 推理配置
+- **generation_config.json** # 推理配置。
 
 **数据预处理相关**
 
