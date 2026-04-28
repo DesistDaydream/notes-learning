@@ -13,7 +13,7 @@ weight: 20
 >   - [博客园，如何编写Linux PCI驱动程序](https://www.cnblogs.com/wanglouxiaozi/p/15525726.html)
 > - https://www.makelinux.net/ldd3/ - [12.1. The PCI Interface](https://www.makelinux.net/ldd3/chp-12-sect-1.shtml)
 
-**[PCI](/docs/0.计算机/Motherboard/PCI.md) device resources(PCI 设备资源)** 由 Kernel 注册在 [sysfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/sysfs.md) 的 `/sys/devices/pci${DOMAIN:BUS}/` 目录。每个 PCI 设备资源在该目录下都有一个以 **唯一标识符(有的时候也称为 PCI Address)** 命名的目录，格式为: **`DOMAIN:BUS:SLOT.FUNC`**（e.g. 0000:17:00.0）
+**[PCI](/docs/0.计算机/Motherboard/PCI.md) device resources(PCI 设备资源)** 由 Kernel 注册在 [sysfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/sysfs.md) 的 `/sys/devices/pci${DOMAIN:BUS}/` 目录。每个 PCI 设备资源在该目录下都有一个以 **唯一标识符（有的时候也称为 PCI Address）** 命名的目录，格式为: **`DOMAIN:BUS:SLOT.FUNC`**（e.g. 0000:17:00.0）
 
 - **DOMAIN(域)** # 表示 PCI 域编号。用于识别主机系统中的不同 PCI 主机桥。在较早期的系统中，只有一个域编号为 0。随着系统规模扩大，可能存在多个 PCI 域。
 - **BUS(总线)** # 表示 PCI 总线编号（16 进制）。一个 PCI 域中可能包含多条 PCI 总线，每条总线都有一个唯一编号。
@@ -121,21 +121,54 @@ weight: 20
 
 pci.ids 是 PCI 设备中使用的所有已知 ID 的公共存储库：供应商、设备、子系统和设备类别的 ID。它在各种程序（例如 [PCI 实用程序](http://mj.ucw.cz/sw/pciutils/)）中用于显示完整的人类可读名称，而不是神秘的数字代码。
 
-> Note: pci.ids 数字都是 **HEX(16 进制)** 的
+> [!Note] pci.ids 数字都是 **HEX(16 进制)** 的
 
 该文件由 [pciutils](https://github.com/pciutils) 维护。在官方网站中可以在线查询，主要分为两大块查询
 
-- 查询 [PCI Device ID](https://admin.pci-ids.ucw.cz/read/PC/)
-  - 每个 Device 都在某个 Vendor 下，比如 1521 这个 DEVICE_ID，可以在 8086 这个 VENDOR_ID 下找到，表示英特尔公司的 1350 Gigabit Network Connection 型号的网卡
+- 查询 [PCI Device ID](https://admin.pci-ids.ucw.cz/read/PC/)(PCI 设备 ID)
+  - 每个 Device 都在某个 Vendor 下。e.g 在 8086 这个 VENDOR_ID 下，可以找到 1521 这个 DEVICE_ID，表示英特尔公司的 1350 Gigabit Network Connection 型号的网卡
   - 使用在线库查询时，先找到 VENDOR ID 点进去，再找 DEVICE ID，即可找到 设备的型号命名。
-- 查询 [PCI Device 类型 ID](https://admin.pci-ids.ucw.cz/read/PD/)
+- 查询 [PCI Device classes ID](https://admin.pci-ids.ucw.cz/read/PD/)( PCI 设备类别 ID)
 
 > [!Question]
 > 该文件的内容如何生成的？比如 /sys/devices/pci0000:00/0000:00:00.0/vendor 文件的值怎么来的？从 [include/linux/pci.h](https://github.com/torvalds/linux/blob/master/include/linux/pci.h) 文件的提示中 `For more information, please consult the following manuals (look at http://www.pcisig.com/ for how to get them)` 合理猜测这些数据都是从 PCI SIG 定义的规范中获取到的？
 
-下面的维护和更新由 AI 回答，待验证
+## Device 类别
+
+https://admin.pci-ids.ucw.cz/read/PD/
+
+| ID                                            | 名称                                  | 备注                                        |
+| --------------------------------------------- | ----------------------------------- | ----------------------------------------- |
+| [00](https://admin.pci-ids.ucw.cz/read/PD/00) | Unclassified device                 |                                           |
+| [01](https://admin.pci-ids.ucw.cz/read/PD/01) | Mass storage controller             |                                           |
+| [02](https://admin.pci-ids.ucw.cz/read/PD/02) | Network controller                  | 网络控制器，e.g. 网卡, etc.                       |
+| [03](https://admin.pci-ids.ucw.cz/read/PD/03) | Display controller                  |                                           |
+| [04](https://admin.pci-ids.ucw.cz/read/PD/04) | Multimedia controller               |                                           |
+| [05](https://admin.pci-ids.ucw.cz/read/PD/05) | Memory controller                   |                                           |
+| [06](https://admin.pci-ids.ucw.cz/read/PD/06) | Bridge                              |                                           |
+| [07](https://admin.pci-ids.ucw.cz/read/PD/07) | Communication controller            |                                           |
+| [08](https://admin.pci-ids.ucw.cz/read/PD/08) | Generic system peripheral           |                                           |
+| [09](https://admin.pci-ids.ucw.cz/read/PD/09) | Input device controller             |                                           |
+| [0a](https://admin.pci-ids.ucw.cz/read/PD/0a) | Docking station                     |                                           |
+| [0b](https://admin.pci-ids.ucw.cz/read/PD/0b) | Processor                           |                                           |
+| [0c](https://admin.pci-ids.ucw.cz/read/PD/0c) | Serial bus controller               |                                           |
+| [0d](https://admin.pci-ids.ucw.cz/read/PD/0d) | Wireless controller                 |                                           |
+| [0e](https://admin.pci-ids.ucw.cz/read/PD/0e) | Intelligent controller              |                                           |
+| [0f](https://admin.pci-ids.ucw.cz/read/PD/0f) | Satellite communications controller |                                           |
+| [10](https://admin.pci-ids.ucw.cz/read/PD/10) | Encryption controller               |                                           |
+| [11](https://admin.pci-ids.ucw.cz/read/PD/11) | Signal processing controller        |                                           |
+| [12](https://admin.pci-ids.ucw.cz/read/PD/12) | Processing accelerators             | 处理加速器，e.g. [NPU](/docs/0.计算机/NPU.md), etc. |
+| [13](https://admin.pci-ids.ucw.cz/read/PD/13) | Non-Essential Instrumentation       |                                           |
+| [14](https://admin.pci-ids.ucw.cz/read/PD/14) |                                     |                                           |
+| [15](https://admin.pci-ids.ucw.cz/read/PD/15) |                                     |                                           |
+| [16](https://admin.pci-ids.ucw.cz/read/PD/16) |                                     |                                           |
+| [40](https://admin.pci-ids.ucw.cz/read/PD/40) | Coprocessor                         |                                           |
+| [64](https://admin.pci-ids.ucw.cz/read/PD/64) |                                     |                                           |
+| [ff](https://admin.pci-ids.ucw.cz/read/PD/ff) | Unassigned class                    |                                           |
 
 ## 维护和更新
+
+下面的维护和更新由 AI 回答，待验证
 
 **维护机构**：
 

@@ -32,13 +32,6 @@ Transformers 支持三个最热门的深度学习库： [Jax](https://jax.readt
 
 推理输出给用户的是推理结果的 **字符串**，训练输出给用户的是 **权重文件与配置文件**。
 
-> [!TODO]
-> Attention is All You Need 那个架构图中，到底什么是重点，什么是最消耗算力的地方？
->
-> QKV？
->
-> 左半部分输入给 Multi-Head Attention 的那三个箭头就是 QKV 吗？
-
 ## 缓存
 
 > [!TODO] 待整理 AI 的回答
@@ -207,6 +200,7 @@ TODO
 
 > 参考：
 >
+> - [arxiv 论文](https://arxiv.org/abs/1706.03762)
 > - [公众号，一文彻底讲透GPT架构及推理原理](https://mp.weixin.qq.com/s/moVLtn0_necwuyxdIlosSg)
 > - [B 站，硬读 Transformer 经典论文！不过是硬着头皮的硬...](https://www.bilibili.com/video/BV1k4o7YqEEi)
 > - [B 站 - 跟李沐学AI，Transformer论文逐段精读【论文精读】](https://www.bilibili.com/video/BV1pu411o7BE)
@@ -217,5 +211,14 @@ TODO:
 - 幻觉的来源：预测出第一个字的概率，后面所有出现的都会基于前面的所有得出各种字的权重，如果这个第一个选择错误，后面有可能会越错越多。并且模型本身并不具备向前纠错的能力
 - 是否意味着 Transformers 结构本身永远无法解决幻觉问题？
 - 想要解决幻觉问题，让 AI 与现实世界接触并验证模型输出结果的权重是否准确，是否是一个有效的做法？比如利用各种 MCP 与现实世界交互。
+
+![](Excalidraw/AI/attention_is_all_you_need.excalidraw.md)
+
+> [!TODO]
+> Attention is All You Need 架构图中，到底什么是重点，什么是最消耗算力的地方？
+>
+> QKV？
+>
+> 左半部分输入给 Multi-Head Attention 的那三个箭头就是 QKV 吗？
 
 ## 编码/解码

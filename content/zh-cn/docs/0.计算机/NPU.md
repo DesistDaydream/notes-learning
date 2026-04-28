@@ -9,7 +9,11 @@ weight: 100
 
 > 参考：
 >
-> - 
+> - [Wiki, Neural processing unit](https://en.wikipedia.org/wiki/Neural_processing_unit)
+
+**Neural processing unit(神经处理单元，简称 NPU)** 是一类专门的硬件加速器，旨在加速 AI 的机器学习相关应用的效率。
+
+NPU 在 Linux 内核管理的 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md) 上被划分为 Processing accelerators 类别，ID 是 1200。
 
 # 华为
 
@@ -21,7 +25,9 @@ weight: 100
 
 ## 学习资料
 
-社区版资源下载: https://www.hiascend.com/developer/download/community
+固件与驱动 社区版资源下载: https://www.hiascend.com/hardware/firmware-drivers/community
+
+CANN 社区版资源下载: https://www.hiascend.com/developer/download/community
 
 ## npu-smi CLI
 

@@ -115,10 +115,30 @@ Product Name: VMware Virtual Platform
 Serial Number: VMware-42 18 c8 32 77 c6 ec 16-3f 31 94 e9 d0 34 a6 ac
 ```
 
+若是正规厂家出厂的服务器，甚至也能看到服务器的型号和序列号等信息
+
+```bash
+~]# dmidecode -t system
+# dmidecode 3.4
+Getting SMBIOS data from sysfs.
+SMBIOS 3.0 present.
+
+Handle 0x0001, DMI type 1, 27 bytes
+System Information
+        Manufacturer: XFUSION
+        Product Name: 2288H V5
+        Version: Purley
+        Serial Number: 这里是真实的服务器序列号
+        UUID: 8c2eb7d2-f46b-862f-ee11-062480781a3c
+        Wake-up Type: Power Switch
+        SKU Number: Purley
+        Family: Purley
+```
+
 ## 主板信息
 
 ```bash
-dmidecode |grep -A16 "System Information$"
+dmidecode | grep -A16 "System Information$"
 ```
 
 ## CPU 信息

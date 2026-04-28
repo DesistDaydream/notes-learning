@@ -1,7 +1,8 @@
 ---
-title: Linux ABI
-linkTitle: Linux ABI
+title: Kernel ABI
+linkTitle: Kernel ABI
 weight: 101
+created: 2026-04-28T23:07
 ---
 
 # 概述
@@ -11,7 +12,7 @@ weight: 101
 > - [GitHub 项目，torvalds/linux - Documentation/ABI](https://github.com/torvalds/linux/tree/master/Documentation/ABI)
 > - [官方文档，管理指南 - ABI](https://www.kernel.org/doc/html/latest/admin-guide/abi.html)
 
-Document/ABI 目录下的这部分文档旨在记录 Linux 内核和用户空间之间的 ABI（应用二进制接口），以及这些接口的相对稳定性。由于 Linux 本身不断变化，且各个接口的成熟度也各不相同，用户空间程序应该以不同的方式使用这些接口。
+Document/ABI 目录下的这部分文档旨在记录 Linux 内核和用户空间之间的 [ABI](/docs/2.编程/API/ABI.md)（应用二进制接口），以及这些接口的相对稳定性。由于 Linux 本身不断变化，且各个接口的成熟度也各不相同，用户空间程序应该以不同的方式使用这些接口。
 
 有四个不同的 ABI 稳定性级别，分别对应此位置的四个不同子目录。接口的稳定性级别可能会根据下述规则而改变。
 

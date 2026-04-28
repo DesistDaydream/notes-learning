@@ -14,14 +14,36 @@ weight: 1
 
 ## Linux
 
-各 Linux 发行版通常都会自带 Python
+各 Linux 发行版通常都会自带 Python。要想在 Linux 中安装指定版本的 Python，需要使用源码编译安装，因为 Python 依赖很多 C 库，而很多 Linux 发行版中的程序又依赖自带的 Python。
 
-### 自定义 Python
+所以我们通常需要把自己想要安装的 Python 装在其他目录，而不是更新发行版自带的 Python。
+
+### 编译 Python 环境
 
 > [!Question]
 > 由于 [Python 模块与包](/docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20模块与包.md) 的管理非常混乱，我们有没有办法像 Go 一样，依靠一个 GOPATH 即可统一管理呢？可以，当我们**了解了模块搜索路径的底层原理之后**，即可开始着手将 Python 的依赖都移动到指定的目录
 
-首先，下载 Python 源码包。解压后进入源码目录。执行 `./configure --enable-optimizations --prefix=/usr/local/python3.10` 后会生成 Makefile 文件，之后执行 `make install`，会在 `/usr/local/python3.10/` 目录中生成可用的 Python 环境。
+首先，下载 Python 源码包。解压后进入源码目录
+
+生成 Makefile 文件
+
+```bash
+./configure --enable-optimizations --prefix=/usr/local/python3.12
+```
+
+构建 Python 环境，但不安装到系统中
+
+```bash
+make
+```
+
+确认构建无误后（参考下文中的 [编译注意事项](#编译注意事项)），将 Python 安装到系统环境中（i.e. ./configure 的 --prefix 参数执行的目录）
+
+```bash
+make install
+```
+
+之后会在 `/usr/local/python3.12/` 目录中生成可用的 Python 环境。
 
 准备工作完成了，此时我们只需要将 `which python3` 的软链接指到 `/usr/local/python3.10/bin/python3` 即可
 
@@ -43,6 +65,35 @@ Python 3.10.6 (main, Nov 14 2022, 16:10:14)
 > sed -i '1s|.*|#!/usr/bin/python3.9|' /usr/bin/yum
 > sed -i '1s|.*|#!/usr/bin/python3.9|' /usr/bin/dnf
 > ```
+
+### 编译注意事项
+
+> [!Attention] 编译出现问题时
+> 要清理环境（执行 `make clean` 命令）后，重新执行 `./configure XXX && make` 命令。注意：不要执行 make install，避免直接生成最终 Python 环境。 
+
+**编译 Python 时所需的依赖**
+
+在使用 `make` 命令编译的时候可能会出现这种提示：
+
+```  bash
+The necessary bits to build these optional modules were not found:  
+_curses               _curses_panel         _dbm                 
+_gdbm                 _tkinter              nis                  
+readline                                                         
+To find the necessary bits, look in configure.ac and config.log.  
+```
+
+这是提示编译 Python 环境的时候缺少一些模块，虽然这些模块的确实不会导致编译失败。但是在后续使用的过程中，如果代码依赖了这些模块，那么将无法使用，必须在安装完这些模块后<font color="#ff0000">**重新编译**</font>才可以解决。
+
+> [!Tip] Python 环境所需的这些 necessary 的依赖模块需要使用 [Package 管理](/docs/1.操作系统/Package%20管理/Package%20管理.md) 安装，这些模块通常都是与系统自身 C 环境相关的，无法通过外部环境引入或包含在源码中。
+
+> [!Attention] 各种 Linux 发行版的环境缺失的模块可能并不一样，Python 版本之间所需要的必要模块可能也不一样。这里只能尽量总结一些。
+
+```bash
+dnf install gcc make openssl-devel libffi-devel zlib-devel \
+  bzip2-devel readline-devel sqlite-devel ncurses-devel \
+  xz-devel tk-devel
+```
 
 ## Windows
 

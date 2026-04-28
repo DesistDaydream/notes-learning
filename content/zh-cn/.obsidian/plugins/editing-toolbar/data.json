@@ -1,5 +1,5 @@
 {
-  "lastVersion": "4.0.5",
+  "lastVersion": "4.0.7",
   "aestheticStyle": "default",
   "positionStyle": "following",
   "menuCommands": [
@@ -229,6 +229,7 @@
     "onboardingShown": true,
     "providerMode": "pkmer-first",
     "enableInlineCompletion": true,
+    "inlineCompletionHintLearned": false,
     "completionTrigger": "manual",
     "completionDelay": 500,
     "enableRewrite": true,
@@ -254,7 +255,9 @@
       "apiKey": "",
       "model": "",
       "temperature": 0.2
-    }
+    },
+    "customPromptHistory": [],
+    "customPromptTemplates": []
   },
   "commandIdsFixed": true
 }

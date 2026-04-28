@@ -28,6 +28,8 @@ weight: 1
 >
 > - [GitHub 项目，ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp)
 
+LLaMA
+
 llama.cpp 的主要目标是在本地和云端，以最小的设置和最先进的性能实现 LLM 推理。
 
 llama.cpp 使用的模型格式为 **GPT-Generated Unified Format(GPT 生成的统一格式，简称 GGUF)**。这个 GGUF 文件中包含了所有必要的 元数据、分词器信息、模型权重。让 llama.cpp 使用一个单一的文件，即可进行推理。

@@ -288,9 +288,9 @@
         "docs/1.操作系统/Kernel/Process",
         "docs/1.操作系统/Kernel/Network",
         "docs/1.操作系统/Kernel/Hardware",
-        "docs/1.操作系统/Kernel/微内核",
         "docs/1.操作系统/Kernel/BPF",
-        "docs/1.操作系统/Kernel/VFIO.md"
+        "docs/1.操作系统/Kernel/VFIO.md",
+        "docs/1.操作系统/Kernel/微内核"
       ],
       "sortOrder": "custom"
     },
@@ -411,13 +411,13 @@
     },
     "docs/1.操作系统/Kernel/Linux Kernel": {
       "children": [
-        "docs/1.操作系统/Kernel/Linux Kernel/Linux Kernel ABI.md",
         "docs/1.操作系统/Kernel/Linux Kernel/_index.md",
         "docs/1.操作系统/Kernel/Linux Kernel/Linux Kernel.md",
         "docs/1.操作系统/Kernel/Linux Kernel/Boot Configuration.md",
         "docs/1.操作系统/Kernel/Linux Kernel/Kernel 的安装与卸载.md",
         "docs/1.操作系统/Kernel/Linux Kernel/Kernel 参数",
-        "docs/1.操作系统/Kernel/Linux Kernel/Kernel Module.md"
+        "docs/1.操作系统/Kernel/Linux Kernel/Kernel Module.md",
+        "docs/1.操作系统/Kernel/Linux Kernel/Kernel ABI.md"
       ],
       "sortOrder": "custom"
     },
@@ -4813,7 +4813,6 @@
       "children": [
         "docs/12.AI/Machine learning/Transformer/_index.md",
         "docs/12.AI/Machine learning/Transformer/Transformer.md",
-        "docs/12.AI/Machine learning/Transformer/Attention Is All You Need.md",
         "docs/12.AI/Machine learning/Transformer/Transformer training.md",
         "docs/12.AI/Machine learning/Transformer/Transformer inference.md"
       ],
@@ -5154,6 +5153,7 @@
     },
     "Excalidraw/AI": {
       "children": [
+        "Excalidraw/AI/attention_is_all_you_need.excalidraw.md",
         "Excalidraw/AI/model_arch.excalidraw.md",
         "Excalidraw/AI/machine-learning-introduction-flow.excalidraw.md",
         "Excalidraw/AI/transformer-training-flow.excalidraw.md",

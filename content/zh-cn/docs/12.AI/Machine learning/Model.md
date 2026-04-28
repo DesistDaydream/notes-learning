@@ -62,6 +62,9 @@ weight: 20
 - model_type 是抽象层次更高的，描述模型架构体系。模型仓库中的 config.json 中有这个字段
 - 模型架构来源：各大厂商的模型结构来源于：Llama(实现)  ——> Transformer(理论)。Llama 参考 Transformer 实现了可用的模型架构
 
+> [!TODO]
+> ROPE 是什么？
+
 # 创建模型
 
 想要创建一个可用的模型，通常至少需要如下几步：

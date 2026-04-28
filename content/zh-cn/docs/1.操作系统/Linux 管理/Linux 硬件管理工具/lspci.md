@@ -20,7 +20,8 @@ Ubuntu 包：pciutils
 
 其中还有 setpci 工具用来配置 PCI 设备。
 
-TODO: lspci 是如何从 Linux 中拿到 PCI 设备列表的？
+> [!TODO]
+> lspci 是如何从 Linux 中拿到 PCI 设备列表的？
 
 # Syntax(语法)
 
@@ -43,7 +44,7 @@ TODO: lspci 是如何从 Linux 中拿到 PCI 设备列表的？
 
 - **`-s [[[[<DOMAIN>]:]<BUS>]:][<DEVICE>][.[<FUNC>]]`** # 仅显示指定域中的设备（如果您的机器有多个主机桥，它们可以共享一个 [Bus](/docs/0.计算机/Motherboard/Bus.md) 编号空间，或者它们中的每一个都可以寻址自己的 PCI 域；域编号从 0 到 ffff），bus （0 到 ff）、设备（0 到 1f）和功能（0 到 7）。设备地址的每个组成部分都可以省略或设置为 `*`，均表示“任意值”。所有数字都是十六进制的。例如，“0：”表示总线 0 上的所有设备，“0”表示任何总线上设备 0 的所有功能，“0.3”选择所有总线上设备 0 的第三个功能，“.4”仅显示每个总线上的第四个功能设备。
   - 注意：-s 的值可以通过 uevent 文件中的 PCI_SLOT_NAME 字段的值获取
-- **`-d [<VENDOR_ID>]:[<DEVICE_ID>][:<CLASS_ID>]`** # 根据指定的 VENDOR_ID、DEVICE_ID、CLASS_ID 显示 PCI 设备。若是某个 ID 为空可以省略，e.g. `-d ::0200` 表示只获取 CLASS_ID 为 0200 的 PCI 设备
+- **`-d [<VENDOR_ID>]:[<DEVICE_ID>][:<CLASS_ID>]`** # 根据指定的 VENDOR_ID、DEVICE_ID、CLASS_ID 显示 PCI 设备。若是某个 ID 为空可以省略，e.g. `-d ::0200` 表示只获取 CLASS_ID 为 0200（） 的 PCI 设备
 
 ID **与名称的解析行为选项**
 
@@ -56,35 +57,38 @@ ID **与名称的解析行为选项**
 
 - `lspci -Dd ::0200`
 
-## 显示模式与现实内容示例
+## 显示模式与显示内容示例
 
-`lspci -Dvmmnnk` 显示效果如下
+`lspci` 默认情况下每个设备一行，每行内容由多个部分组成；若添加了参数，`lspci -Dvmmnnk` 会显示更多详细信息。
+
+用下面这个信息为例（先用 -d 获取 `0200` 类型的设备（i.e. 网卡），然后使用 -s 查看指定 PCI 设备的详细信息）：
 
 ```bash
-~]# lspci -Dvmmnnk | more
-Slot:   0000:00:00.0
-Class:  Host bridge [0600]
-Vendor: Intel Corporation [8086]
-Device: Xeon E7 v3/Xeon E5 v3/Core i7 DMI2 [2f00]
-SVendor:        Intel Corporation [8086]
-SDevice:        Device [0000]
-Rev:    02
+[root@localhost ~]# lspci -d ::0200
+7d:00.0 Ethernet controller: Huawei Technologies Co., Ltd. HNS GE/10GE/25GE RDMA Network Controller (rev 21)
+7d:00.1 Ethernet controller: Huawei Technologies Co., Ltd. HNS GE/10GE/25GE Network Controller (rev 21)
+7d:00.2 Ethernet controller: Huawei Technologies Co., Ltd. HNS GE/10GE/25GE RDMA Network Controller (rev 21)
+7d:00.3 Ethernet controller: Huawei Technologies Co., Ltd. HNS GE/10GE/25GE Network Controller (rev 21)
+[root@localhost ~]# lspci -s 7d:00.0 -Dvmmnnk
+Slot:   0000:7d:00.0
+Class:  Ethernet controller [0200]
+Vendor: Huawei Technologies Co., Ltd. [19e5]
+Device: HNS GE/10GE/25GE RDMA Network Controller [a222]
+SVendor:        Huawei Technologies Co., Ltd. [19e5]
+SDevice:        Device [0454]
+Rev:    21
 ProgIf: 00
+Driver: hns3
+Module: hns3
+Module: hclge
+Module: hns_roce_hw_v2
 NUMANode:       0
-
-Slot:   0000:00:02.0
-Class:  PCI bridge [0604]
-Vendor: Intel Corporation [8086]
-Device: Xeon E7 v3/Xeon E5 v3/Core i7 PCI Express Root Port 2 [2f04]
-SVendor:        Intel Corporation [8086]
-SDevice:        Device [0000]
-Rev:    02
-ProgIf: 00
-Driver: pcieport
-NUMANode:       0
-
-......略
 ```
+
+|      | Slot    | Class               |  :  | Vendor                        | HNS GE/10GE/25GE RDMA Network Controller | Rev      |
+| ---- | ------- | ------------------- | :-: | ----------------------------- | ---------------------------------------- | -------- |
+| 列描述  | PCI 地址  | 设备类别                | 分隔符 | 厂商名称                          | 设备名称                                     | 版本号      |
+| 信息示例 | 7d:00.0 | Ethernet controller | 冒号  | Huawei Technologies Co., Ltd. | HNS GE/10GE/25GE RDMA Network Controller | (rev 21) |
 
 ## 详细格式
 
