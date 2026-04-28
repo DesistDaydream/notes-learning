@@ -15,7 +15,7 @@ weight: 70
 
 Hugging Face 即是一个工具包的集合，也是一个社区。
 
-- 在 2017 年在 GitHub 上开源了非常著名的 [Transformer](/docs/12.AI/机器学习/Transformer.md) 库。
+- 在 2017 年在 GitHub 上开源了非常著名的 [Transformer](/docs/12.AI/Machine%20learning/Transformer/Transformer.md) 库。
 - 在 2019 年推出了 Hugging Face **Hub**，一个用于共享和加载 预训练模型、数据集 的平台。我们可以通过 Hub 上传/下载 模型，类似于大模型生态的 [GitHub](/docs/2.编程/Programming%20tools/SCM/GitHub/GitHub.md)
 - 后续也陆续开发了其他的工具包，例如 tokenizers、datasets、huggingface_hub、accelerate 和 peft，以及一个公共的推理 API，为机器学习开发者提供了更多的便利和资源。
 
@@ -59,6 +59,8 @@ print(f"Hub Cache: {constants.HF_HUB_CACHE}")
 > 参考：
 >
 > - [官方文档，参考 - 环境变量](https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables)
+
+**HF_HOME** # Hugging face 相关生态（e.g. 模型、工具、etc.）所用的目录。
 
 **HF_ENDPOINT** # 配置 Hub 的基础 url。可以通过修改这个环境变量，让 HuggingFace 的 CLI 使用私有的 Hub。甚至可以通过这种方式实现从镜像站下载模型（中国专属 `(～￣▽￣)～`）
 

@@ -4711,7 +4711,7 @@
         "docs/12.AI/_index.md",
         "docs/12.AI/12.AI.md",
         "docs/12.AI/科学计算",
-        "docs/12.AI/机器学习",
+        "docs/12.AI/Machine learning",
         "docs/12.AI/自然语言处理",
         "docs/12.AI/计算机视觉",
         "docs/12.AI/Prompt.md",
@@ -4724,23 +4724,6 @@
         "docs/12.AI/最佳实践.md",
         "docs/12.AI/Automation",
         "docs/12.AI/Glossary.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "docs/12.AI/机器学习": {
-      "children": [
-        "docs/12.AI/机器学习/_index.md",
-        "docs/12.AI/机器学习/机器学习.md",
-        "docs/12.AI/机器学习/深度学习.md",
-        "docs/12.AI/机器学习/Model.md",
-        "docs/12.AI/机器学习/Dataset.md",
-        "docs/12.AI/机器学习/Data processing.md",
-        "docs/12.AI/机器学习/Training.md",
-        "docs/12.AI/机器学习/Inference.md",
-        "docs/12.AI/机器学习/Transformer.md",
-        "docs/12.AI/机器学习/Transformer training.md",
-        "docs/12.AI/机器学习/Transformer inference.md",
-        "docs/12.AI/机器学习/PyTorch.md"
       ],
       "sortOrder": "custom"
     },
@@ -4808,6 +4791,31 @@
         "docs/12.AI/Automation/RPA.md",
         "docs/12.AI/Automation/Expect.md",
         "docs/12.AI/Automation/按键精灵.md"
+      ],
+      "sortOrder": "custom"
+    },
+    "docs/12.AI/Machine learning": {
+      "children": [
+        "docs/12.AI/Machine learning/_index.md",
+        "docs/12.AI/Machine learning/Machine learning.md",
+        "docs/12.AI/Machine learning/Deep learning.md",
+        "docs/12.AI/Machine learning/Model.md",
+        "docs/12.AI/Machine learning/Dataset.md",
+        "docs/12.AI/Machine learning/Data processing.md",
+        "docs/12.AI/Machine learning/Training.md",
+        "docs/12.AI/Machine learning/Inference.md",
+        "docs/12.AI/Machine learning/Transformer",
+        "docs/12.AI/Machine learning/PyTorch.md"
+      ],
+      "sortOrder": "custom"
+    },
+    "docs/12.AI/Machine learning/Transformer": {
+      "children": [
+        "docs/12.AI/Machine learning/Transformer/_index.md",
+        "docs/12.AI/Machine learning/Transformer/Transformer.md",
+        "docs/12.AI/Machine learning/Transformer/Attention Is All You Need.md",
+        "docs/12.AI/Machine learning/Transformer/Transformer training.md",
+        "docs/12.AI/Machine learning/Transformer/Transformer inference.md"
       ],
       "sortOrder": "custom"
     },

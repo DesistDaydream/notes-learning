@@ -2,7 +2,7 @@
 title: Transformer training
 linkTitle: Transformer training
 created: 2026-04-13T15:17
-weight: 101
+weight: 11
 ---
 
 # 概述
@@ -17,7 +17,7 @@ weight: 101
 
 # NLP 训练的关联文件与配置
 
-> [!Quote] 参考 [Transformer](/docs/12.AI/机器学习/Transformer.md#模型的关联文件与配置) 中的 模型的关联文件与配置，不同架构的模型配置文件有细微差别
+> [!Quote] 参考 [Transformer](/docs/12.AI/Machine%20learning/Transformer/Transformer.md#模型的关联文件与配置) 中的 模型的关联文件与配置，不同架构的模型配置文件有细微差别
 
 # TODO1
 

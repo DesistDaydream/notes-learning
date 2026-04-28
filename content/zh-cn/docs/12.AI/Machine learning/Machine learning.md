@@ -1,6 +1,6 @@
 ---
-title: "机器学习"
-linkTitle: "机器学习"
+title: Machine learning
+linkTitle: Machine learning
 weight: 1
 ---
 
@@ -15,7 +15,7 @@ weight: 1
 
 就像人需要学习一样，机器也需要学习。机器学习是[人工智能](/docs/12.AI/12.AI.md)的一个广泛子领域。
 
-机器学习围绕 **[Model](/docs/12.AI/机器学习/Model.md)(模型)** 构建了一套体系，通过 **[Training](/docs/12.AI/机器学习/Training.md)(训练)**，让模型从 **[Dataset](/docs/12.AI/计算机视觉/Dataset.md)(数据集)** 中学会规律，以便可以根据输入，**[Inference](/docs/12.AI/机器学习/Inference.md)(推理)** 出可能的输出。
+机器学习围绕 **[Model](/docs/12.AI/Machine%20learning/Model.md)(模型)** 构建了一套体系，通过 **[Training](/docs/12.AI/Machine%20learning/Training.md)(训练)**，让模型从 **[Dataset](/docs/12.AI/计算机视觉/Dataset.md)(数据集)** 中学会规律，以便可以根据输入，**[Inference](/docs/12.AI/Machine%20learning/Inference.md)(推理)** 出可能的输出。
 
 ![700](/Excalidraw/AI/machine-learning-introduction-flow.excalidraw.md)
 
@@ -24,7 +24,7 @@ weight: 1
 
 > [!TODO] 我们人类好像也是通过这种方式沟通的，每个字都在脑子中依据已有知识，推理出来后，逐一说出来。
 
-交给模型的数据总是需要进行 **[Data processing](/docs/12.AI/机器学习/Data%20processing.md)(数据预处理)**，不论是 训练 或者 推理，数据总是需要以一种模型可以理解的形式（e.g. Ternsor）传入。
+交给模型的数据总是需要进行 **[Data processing](/docs/12.AI/Machine%20learning/Data%20processing.md)(数据预处理)**，不论是 训练 或者 推理，数据总是需要以一种模型可以理解的形式（e.g. Ternsor）传入。
 
 TODO: 这都是啥？
 
@@ -95,7 +95,7 @@ TODO:
 
 # 模型
 
-机器学习 通常包含 [Model](/docs/12.AI/机器学习/Model.md)(模型) 的训练
+机器学习 通常包含 [Model](/docs/12.AI/Machine%20learning/Model.md)(模型) 的训练
 
 模型通常可以应用于 1 种或多种 Tasks(任务)。
 

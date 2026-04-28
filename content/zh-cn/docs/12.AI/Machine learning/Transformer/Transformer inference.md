@@ -2,7 +2,7 @@
 title: Transformer inference
 linkTitle: Transformer inference
 created: 2026-04-08T14:50
-weight: 102
+weight: 12
 ---
 
 # 概述
@@ -13,7 +13,7 @@ weight: 102
 
 # NLP 推理的关联文件与配置
 
-> [!Quote] 参考 [Transformer](/docs/12.AI/机器学习/Transformer.md#模型的关联文件与配置) 中的 模型的关联文件与配置，不同架构的模型配置文件有细微差别
+> [!Quote] 参考 [Transformer](/docs/12.AI/Machine%20learning/Transformer/Transformer.md#模型的关联文件与配置) 中的 模型的关联文件与配置，不同架构的模型配置文件有细微差别
 
 # NLP 推理流程
 

@@ -13,7 +13,7 @@ weight: 100
 
 **Tokenization(标记化)** 通常也称为 **分词**。
 
-由于 [机器学习](/docs/12.AI/机器学习/机器学习.md) 算法处理的是数字而非文本，因此文本必须先转换为数字。具体流程分为以下几步：首先确定词汇表，然后为词汇表中的每个条目任意但唯一地分配一个整数索引，最后将一个 Embedding（向量表示）与该整数索引关联起来。常见的算法包括 [BPE](/docs/8.通用技术/编码与解码/BPE.md) 和 WordPiece。
+由于 [Machine learning](/docs/12.AI/Machine%20learning/Machine%20learning.md) 算法处理的是数字而非文本，因此文本必须先转换为数字。具体流程分为以下几步：首先确定词汇表，然后为词汇表中的每个条目任意但唯一地分配一个整数索引，最后将一个 Embedding（向量表示）与该整数索引关联起来。常见的算法包括 [BPE](/docs/8.通用技术/编码与解码/BPE.md) 和 WordPiece。
 
 # Tokenizer
 

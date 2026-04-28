@@ -11,7 +11,7 @@ weight: 22
 >
 > - [Wiki, Data_preprocessing](https://en.wikipedia.org/wiki/Data_preprocessing)
 
-在 AI 领域，**Data preprocessing(数据预处理)** 是将 非结构化数据（e.g. 模型不可理解的） 转换为适合[机器学习](/docs/12.AI/机器学习/机器学习.md)模型的可理解表示的过程。模型的这一阶段旨在处理噪声，从而从原始噪声数据集中获得更优的结果。该数据集也存在一定程度的缺失值。
+在 AI 领域，**Data preprocessing(数据预处理)** 是将 非结构化数据（e.g. 模型不可理解的） 转换为适合[Machine learning](/docs/12.AI/Machine%20learning/Machine%20learning.md)模型的可理解表示的过程。模型的这一阶段旨在处理噪声，从而从原始噪声数据集中获得更优的结果。该数据集也存在一定程度的缺失值。
 
 **Data postprocessing(数据后处理)** 是将结构化数据（e.g. Tensor）转为人类可以理解的数据。
 

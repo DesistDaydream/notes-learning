@@ -45,7 +45,7 @@ weight: 21
 >
 > 个人感觉 Annotation 是 Label 的超集，Label 应该是 Annotation 的一种。
 
-由于训练模型使用数据集进行训练，这些已标记数据的质量直接影响[机器学习](/docs/12.AI/机器学习/机器学习.md)的效果。
+由于训练模型使用数据集进行训练，这些已标记数据的质量直接影响[Machine learning](/docs/12.AI/Machine%20learning/Machine%20learning.md)的效果。
 
 Data annotation 通常可以简单得做如下分类：
 

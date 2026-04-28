@@ -16,10 +16,10 @@ weight: 23
 **Training(训练)** 模型最基本需要如下几样东西
 
 - **原始模型**
-- **[Dataset](/docs/12.AI/机器学习/Dataset.md)(数据集)**
+- **[Dataset](/docs/12.AI/Machine%20learning/Dataset.md)(数据集)**
 - **Hyperparameter(超参数)**
 
-加载原始模型，设置超参数，对数据集进行 [Data processing](/docs/12.AI/机器学习/Data%20processing.md) 以便把数据转为模型可以识别的数值（e.g. Tensor），一遍一遍训练，最后得出**权重**。
+加载原始模型，设置超参数，对数据集进行 [Data processing](/docs/12.AI/Machine%20learning/Data%20processing.md) 以便把数据转为模型可以识别的数值（e.g. Tensor），一遍一遍训练，最后得出**权重**。
 
 在开始训练之前，通常需要准备三个数据集，分别用于 训练、验证、测试：
 

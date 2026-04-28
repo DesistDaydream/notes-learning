@@ -232,7 +232,7 @@ pkg/identity/
 
 ### Providers
 
-Providers 是各种 [Inference](/docs/12.AI/机器学习/Inference.md)(推理) 服务的提供者。
+Providers 是各种 [Inference](/docs/12.AI/Machine%20learning/Inference.md)(推理) 服务的提供者。
 
 核心接口:
 
