@@ -144,7 +144,7 @@ TODO: e.g. 线性变换、激活函数、etc. 。e.g. 线性层的计算: $y = W
 **ONNX** # 是 [计算机视觉](/docs/12.AI/计算机视觉/计算机视觉.md) 业界通用的格式，还有很多特定于项目的格式
 
 - [GitHub 项目，onnx/onnx](https://github.com/onnx/onnx)
-- 绝大部分模型，都支持导出成 .onnx 格式。e.g. [Yolo](/docs/12.AI/AI%20Projects/Yolo.md) 可以导出成 .onnx，也支持导出成用于 [PyTorch](/docs/12.AI/Machine%20learning/PyTorch.md) 的 torchscript 格式，etc.
+- 绝大部分模型，都支持导出成 .onnx 格式。e.g. [Yolo](/docs/12.AI/AI%20Projects/Yolo.md) 可以导出成 .onnx，也支持导出成用于 [PyTorch](/docs/12.AI/科学计算/PyTorch.md) 的 torchscript 格式，etc.
 - **Open Neural Network Exchange (开放神经网络交换，简称：ONNX)** 是一个开放的生态系统，使人工智能开发人员能够随着项目的发展选择正确的工具。 ONNX 为人工智能模型（深度学习和传统机器学习）提供开源格式。它定义了可扩展的计算图模型，以及内置运算符和标准数据类型的定义。目前我们重点关注推理（评分）所需的能力。
 - 人话：机器学习互操作性的开放标准，就是协议，也就是定义了模型应该用什么的方式 读/写，用什么格式存储。
 - TODO: ONNX 对**大语言模型**支持不太好，因为 LLM 的动态性（可变长度、KV cache 等）超出了它最初的设计范围。它更多用在传统视觉模型、分类、检测这类任务上。

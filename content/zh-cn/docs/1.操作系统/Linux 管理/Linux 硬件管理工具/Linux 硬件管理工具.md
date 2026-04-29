@@ -58,7 +58,7 @@ smartctl -a /dev/sda
 
 - `lshw -class usb`
 
-# 从文件中获取 Linux 硬件信息获取
+# 从 sys 文件系统中获取 Linux 硬件信息
 
 
 > 参考：

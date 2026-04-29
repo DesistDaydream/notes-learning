@@ -4710,6 +4710,7 @@
       "children": [
         "docs/12.AI/_index.md",
         "docs/12.AI/12.AI.md",
+        "docs/12.AI/Computing platform",
         "docs/12.AI/科学计算",
         "docs/12.AI/Machine learning",
         "docs/12.AI/自然语言处理",
@@ -4752,7 +4753,8 @@
       "children": [
         "docs/12.AI/科学计算/_index.md",
         "docs/12.AI/科学计算/NumPy.md",
-        "docs/12.AI/科学计算/Torch.md"
+        "docs/12.AI/科学计算/Torch.md",
+        "docs/12.AI/科学计算/PyTorch.md"
       ],
       "sortOrder": "custom"
     },
@@ -4794,6 +4796,14 @@
       ],
       "sortOrder": "custom"
     },
+    "docs/12.AI/Computing platform": {
+      "children": [
+        "docs/12.AI/Computing platform/_index.md",
+        "docs/12.AI/Computing platform/Computing platform.md",
+        "docs/12.AI/Computing platform/CANN.md"
+      ],
+      "sortOrder": "custom"
+    },
     "docs/12.AI/Machine learning": {
       "children": [
         "docs/12.AI/Machine learning/_index.md",
@@ -4804,8 +4814,7 @@
         "docs/12.AI/Machine learning/Data processing.md",
         "docs/12.AI/Machine learning/Training.md",
         "docs/12.AI/Machine learning/Inference.md",
-        "docs/12.AI/Machine learning/Transformer",
-        "docs/12.AI/Machine learning/PyTorch.md"
+        "docs/12.AI/Machine learning/Transformer"
       ],
       "sortOrder": "custom"
     },
@@ -5153,6 +5162,7 @@
     },
     "Excalidraw/AI": {
       "children": [
+        "Excalidraw/AI/ai_arch.excalidraw.md",
         "Excalidraw/AI/attention_is_all_you_need.excalidraw.md",
         "Excalidraw/AI/model_arch.excalidraw.md",
         "Excalidraw/AI/machine-learning-introduction-flow.excalidraw.md",

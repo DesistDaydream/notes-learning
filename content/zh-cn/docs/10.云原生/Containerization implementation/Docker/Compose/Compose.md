@@ -198,3 +198,22 @@ docker-compose up
 ```
 docker-compose up -d
 ```
+
+# 重大变化
+
+## 2.0.0
+
+2025-10-30 最后一个版本 v2.40.3
+
+## 5.0.0
+
+2025-12-02 发布
+
+- Compose 现在可以正式用作 SDK，集成到第三方软件中。
+- 内部构建器已被移除，构建任务委托给 Docker Bake（与 docker build 命令相同）。
+
+**为什么是“v5”？**
+
+为了避免与从 Docker Compose v1 继承而来的过时的 docker-compose 文件版本 2.x 和 3.x 造成（更多）混淆，我们决定在 Docker Compose v2 之后的下一个主要版本中跳过 3.0.0 。我们也跳过了 4.0.0 ，以便与这一遗留版本彻底区分开来。
+
+
