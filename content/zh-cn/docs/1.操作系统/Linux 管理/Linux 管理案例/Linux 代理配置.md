@@ -71,20 +71,6 @@ EXAMPLE
 
 # 最佳实践
 
-## 为 WSL2 设置代理
-
-设置为本地计算机的 Clash
-
-```bash
-#!/bin/bash
-#
-export hostip=$(cat /etc/resolv.conf |grep -oP '(?<=nameserver\ ).*')
-export http_proxy="http://${hostip}:7890"
-export https_proxy="http://${hostip}:7890"
-export all_proxy="sock5://${hostip}:7890"
-export ALL_PROXY="sock5://${hostip}:7890"
-```
-
 # 可用的代理程序
 
 参考 [Proxy](/docs/Web/Proxy/Proxy.md)

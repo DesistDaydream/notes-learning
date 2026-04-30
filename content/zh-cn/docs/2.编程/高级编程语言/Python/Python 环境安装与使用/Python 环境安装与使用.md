@@ -18,26 +18,28 @@ weight: 1
 
 所以我们通常需要把自己想要安装的 Python 装在其他目录，而不是更新发行版自带的 Python。
 
-### 编译 Python 环境
+### 编译并构建 Python 环境
 
 > [!Question]
 > 由于 [Python 模块与包](/docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20模块与包.md) 的管理非常混乱，我们有没有办法像 Go 一样，依靠一个 GOPATH 即可统一管理呢？可以，当我们**了解了模块搜索路径的底层原理之后**，即可开始着手将 Python 的依赖都移动到指定的目录
 
 首先，下载 Python 源码包。解压后进入源码目录
 
-生成 Makefile 文件
+**一、生成 Makefile 文件**
 
 ```bash
 ./configure --enable-optimizations --prefix=/usr/local/python3.12
 ```
 
-构建 Python 环境，但不安装到系统中
+**二、构建 Python 环境**（参考下文中的 [编译注意事项](#编译注意事项)），但不安装到系统中
 
 ```bash
 make
+# 可以使用多个线程以加快构建速度。下面示例是使用 32 个线程
+# make -j 32
 ```
 
-确认构建无误后（参考下文中的 [编译注意事项](#编译注意事项)），将 Python 安装到系统环境中（i.e. ./configure 的 --prefix 参数执行的目录）
+**三、确认构建无误后，将 Python 安装到系统环境中**（i.e. ./configure 的 --prefix 参数指定的目录）
 
 ```bash
 make install
@@ -45,21 +47,45 @@ make install
 
 之后会在 `/usr/local/python3.12/` 目录中生成可用的 Python 环境。
 
-准备工作完成了，此时我们只需要将 `which python3` 的软链接指到 `/usr/local/python3.10/bin/python3` 即可
+**四、修改默认使用的 Python 版本**。构建工作完成了，我们有两种方式让我们可以默认使用新版的 Python3.12
+
+1. 将 `/usr/local/python3.12/bin/` 目录添加在 `$PATH` 的最前面
 
 ```bash
-export PATH=/root/python:$PATH
-~]# python
-Python 3.10.6 (main, Nov 14 2022, 16:10:14)
+tee /etc/profile.d/python.sh > /dev/null <<"EOF"
+export PATH=/usr/local/python3.12/bin:$PATH
+EOF
+source /etc/profile
+```
+
+2. 将 `which python3` 的软链接指到 `/usr/local/python3.12/bin/python3` 即可
+
+**五、最终效果**如下：
+
+```bash
+~]# python3 -m site
+sys.path = [
+    '/root',
+    '/usr/local/python3.12/lib/python312.zip',
+    '/usr/local/python3.12/lib/python3.12',
+    '/usr/local/python3.12/lib/python3.12/lib-dynload',
+    '/usr/local/python3.12/lib/python3.12/site-packages',
+]
+USER_BASE: '/root/.local' (doesn't exist)
+USER_SITE: '/root/.local/lib/python3.12/site-packages' (doesn't exist)
+ENABLE_USER_SITE: True
+~]# python3
+Python 3.12.13 (main, Apr 30 2026, 11:08:16) [GCC 10.3.1] on linux
+Type "help", "copyright", "credits" or "license" for more information.
 >>> import sys
 >>> sys.prefix
-'/usr/local/python3.10'
+'/usr/local/python3.12'
 >>> sys.exec_prefix
-'/usr/local/python3.10'
+'/usr/local/python3.12'
 ```
 
 > [!Attention] yum, dnf 的问题
-> 更换 Python 后，可能会由于依赖不足无法使用。而 `dnf` 模块本身是用 C 扩展写的，它的 `.so` 文件编译时绑定了特定的 Python ABI。系统里的 dnf 是针对 python3.9 编译安装的，直接用 3.10 加载会报 ABI 不兼容或者直接找不到模块。
+> 使用第二种改变原始软链接的方式更换默认 Python 后，可能会由于依赖不足导致 yum/dnf 无法使用。而 `dnf` 模块本身是用 C 扩展写的，它的 `.so` 文件编译时绑定了特定的 Python ABI。系统里的 dnf 是针对 python3.9 编译安装的，直接用 3.10 加载会报 ABI 不兼容或者直接找不到模块。
 > 可以使用如下方式将 yum 和 dnf 调用的 Python 改回 3.0
 > ```bash
 > sed -i '1s|.*|#!/usr/bin/python3.9|' /usr/bin/yum
@@ -68,7 +94,7 @@ Python 3.10.6 (main, Nov 14 2022, 16:10:14)
 
 ### 编译注意事项
 
-> [!Attention] 编译出现问题时
+> [!Attention] 编译出现问题时的处理
 > 要清理环境（执行 `make clean` 命令）后，重新执行 `./configure XXX && make` 命令。注意：不要执行 make install，避免直接生成最终 Python 环境。 
 
 **编译 Python 时所需的依赖**
@@ -92,8 +118,19 @@ To find the necessary bits, look in configure.ac and config.log.
 ```bash
 dnf install gcc make openssl-devel libffi-devel zlib-devel \
   bzip2-devel readline-devel sqlite-devel ncurses-devel \
-  xz-devel tk-devel
+  xz-devel tk-devel \
+  gdbm-devel libtirpc-devel
 ```
+
+- openssl-devel # Python 的 ssl 模块、hashlib 以及 pip 的 HTTPS 请求都依赖它。没有它编译出来的 Python 能用，但无法访问任何 HTTPS，pip 基本废掉。
+- libffi-devel # Foreign Function Interface 库。Python 的 ctypes 模块用它来调用 C 函数。很多第三方包（比如 cffi、cryptography）也依赖它。
+- zlib-devel # Python 的 zlib 模块，提供压缩/解压能力。pip 安装的 .whl 包本质是 zip 压缩包，没有它 pip 装包会失败。
+- bzip2-devel # Python 的 bz2 模块，处理 .bz2 压缩格式。某些包的源码是 bz2 压缩的，缺它影响较小，但建议装上。
+- readline-devel # 给 Python 交互式终端（REPL）提供行编辑能力，比如方向键翻历史命令、Ctrl+A 跳行首。没有它 Python 能用，但交互体验很差。
+- sqlite-devel # Python 内置 sqlite3 模块依赖它。Django 等框架默认用 SQLite 做开发数据库，缺它这些用不了。
+- ncurses-devel # Python 的 curses 模块依赖它，用于终端 UI 编程。日常用到的少，但缺它编译时会有警告。
+- xz-devel # Python 的 lzma 模块依赖它，处理 .xz/.lzma 压缩格式。某些包的分发格式是 xz，缺它影响也较小。
+- tk-devel # Python 的 tkinter 模块依赖它，用于图形界面。服务器环境基本用不到，如果你确定不需要 GUI 可以不装。
 
 ## Windows
 

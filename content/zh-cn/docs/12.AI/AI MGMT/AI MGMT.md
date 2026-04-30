@@ -12,7 +12,7 @@ weight: 1
 
 一套完整的可以在本地运行各种模型并对外提供 WebAPI 的程序
 
-- llama.cpp
+- [llama.cpp](/docs/12.AI/AI%20MGMT/llama.cpp.md)
 - [Ollama](#ollama) # 基于 llama.cpp 的封装
 - vLLM
   - https://github.com/vllm-project/vllm
@@ -21,46 +21,6 @@ weight: 1
 - koboldcpp
 - ramalama
 - etc.
-
-# llama.cpp
-
-> 参考：
->
-> - [GitHub 项目，ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp)
-
-LLaMA
-
-llama.cpp 的主要目标是在本地和云端，以最小的设置和最先进的性能实现 LLM 推理。
-
-llama.cpp 使用的模型格式为 **GPT-Generated Unified Format(GPT 生成的统一格式，简称 GGUF)**。这个 GGUF 文件中包含了所有必要的 元数据、分词器信息、模型权重。让 llama.cpp 使用一个单一的文件，即可进行推理。
-
-> [!Tip] [Transformer](/docs/12.AI/Machine%20learning/Transformer/Transformer.md) 的模型通常包含 权重、配置、分词器配置、etc. 多个文件组成一个完整的 模型。
-
-## 安装
-
-从 [Release](https://github.com/ggml-org/llama.cpp/releases) 下载并使用即可，二进制文件直接用。
-
-Windows 注意：有两个文件 [Windows x64 (CUDA 13)](https://github.com/ggml-org/llama.cpp/releases/download/b8840/llama-b8840-bin-win-cuda-13.1-x64.zip) 和 [CUDA 13.1 DLLs](https://github.com/ggml-org/llama.cpp/releases/download/b8840/cudart-llama-bin-win-cuda-13.1-x64.zip)，把 DLLs 文件解压到 llama.cpp 所在目录相同的目录下即可。
-
-## 关联文件与配置
-
-## 最佳实践
-
-开始交互式对话
-
-```powershell
-.\llama-cli.exe -m D:\appdata\models\desistdayream.gguf
-```
-
-### 将模型包转换为 GGUF 文件
-
-使用 llama.cpp 项目中的 convert_hf_to_gguf.py 文件将训练好的模型权重及相关文件，转换为单一的 GGUF 格式的文件
-
-```powershell
-python .\convert_hf_to_gguf.py `
-  D:\appdata\models\desistdaydream\ `
-  --outfile D:\appdata\models\desistdayream.gguf
-```
 
 # Ollama
 

@@ -74,11 +74,18 @@ print(f"Hub Cache: {constants.HF_HUB_CACHE}")
 >
 > - [官方文档，参考 - CLI](https://huggingface.co/docs/huggingface_hub/package_reference/cli)
 
-安装
+安装 Hugging Face 
 
 ```bash
 uv tool install huggingface_hub
 ```
+
+## download
+
+**OPTIONS**
+
+- **--local-dir**(STRING) # 指定模型包下载的文件储存的目录，代替默认的 `${HF_HOME}` 目录。查看 [这里](https://huggingface.co/docs/huggingface_hub/guides/download#download-files-to-a-local-folder) 了解更多详细信息。
+    - Notes: 使用了这个选项后，储存目录下的文件是直观的没有连接的，不像默认的 `${HF_HOME}` 目录的组织方式，分为 blobs, refs, snapshots, etc. 多个目录，然后模型包的所有文件都通过软链接指向 blobs。而是直接在 `--local-dir` 存放相关的 XX.safetensors, config.json, tokenizer_config.json, etc. 文件
 
 # 最佳实践
 
@@ -100,4 +107,10 @@ https://zhuanlan.zhihu.com/p/663712983
 
 ```bash
 HF_ENDPOINT=https://hf-mirror.com hf download Qwen/Qwen3.6-35B-A3B
+```
+
+- 使用 --local-dir 目录将模型下载到 `./models/qwen3.6/` 目录中
+
+```bash
+HF_ENDPOINT=https://hf-mirror.com hf download Qwen/Qwen3.6-35B-A3B --local-dir ./models/qwen3.6
 ```

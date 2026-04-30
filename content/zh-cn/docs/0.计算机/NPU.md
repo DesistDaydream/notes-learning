@@ -21,9 +21,11 @@ NPU 在 Linux 内核管理的 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md)
 
 ## 学习资料
 
-固件与驱动 社区版资源下载: https://www.hiascend.com/hardware/firmware-drivers/community
+驱动与固件 社区版资源下载: https://www.hiascend.com/hardware/firmware-drivers/community
 
 ## 安装 NPU 驱动
+
+> [!Tip] [CANN](/docs/12.AI/Computing%20platform/CANN.md) 的安装文档中，包含了安装 “NPU 驱动与固件” 的内容。甚至提供了操作系统中的命令，可以识别出当前服务器使用的 NPU 是什么型号。非常便捷
 
 安装 NPU 驱动指安装 **驱动** 和 **固件**。
 
@@ -31,8 +33,6 @@ NPU 在 Linux 内核管理的 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md)
 
 - 驱动 # `{product name}-npu-driver_x.x.x_linux-{arch}._run`
 - 固件 # `{product name}-npu-firmware_x.x.x._run`
-
-> [!Tip] [CANN](/docs/12.AI/Computing%20platform/CANN.md) 的安装文档中，包含了安装驱动与固件的内容。甚至提供了操作系统中的命令，可以识别出当前服务器使用的 NPU 是什么型号。非常便捷
 
 ### 最佳实践
 
@@ -75,10 +75,19 @@ useradd -g HwHiAiUser -d /home/HwHiAiUser -m HwHiAiUser -s /bin/bash
 
 赋予 `XXX.run` 文件可执行权限 `chmod 755 Ascend-hdk-301p*`
 
+设置环境变量
+
+```bash
+export chip_type="310p"
+export arch=$(uname -m)
+export driver_version="25.5.2"
+export fimware_version="7.8.0.7.220"
+```
+
 **安装驱动**
 
 ```bash
-./Ascend-hdk-310p-npu-driver_25.5.2_linux-aarch64.run --full
+./Ascend-hdk-${chip_type}-npu-driver_${driver_version}_linux-${arch}.run --full
 ```
 
 根据提示决定是否需要重启。之后使用 `npu-smi` 程序检查 NPU 信息
@@ -106,7 +115,7 @@ useradd -g HwHiAiUser -d /home/HwHiAiUser -m HwHiAiUser -s /bin/bash
 **安装固件**
 
 ```bash
-./Ascend-hdk-310p-npu-firmware_7.8.0.7.220.run --full
+./Ascend-hdk-${chip_type}-npu-firmware_${fimware_version}.run --full
 ```
 
 若出现 `Firmware package installed successfully! Reboot now or after driver installation for the installation/upgrade to take effect.` 则**立刻重新启动服务器**

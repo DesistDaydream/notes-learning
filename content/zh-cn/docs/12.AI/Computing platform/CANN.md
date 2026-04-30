@@ -30,7 +30,7 @@ CANN 社区版资源下载: https://www.hiascend.com/developer/download/communit
 
 > 参考：
 >
-> - 
+> -
 
 官方文档提供了两种安装方式
 
@@ -47,6 +47,15 @@ CANN 社区版资源下载: https://www.hiascend.com/developer/download/communit
 
 这里使用 8.5.0 版本做个记录。以 [软件安装](https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/850/softwareinst/instg) 的 “离线安装 （驱动&Toolkit独立包）” 方式安装。
 
+> [!Attention] 安装 CANN 前，确保系统中有 CANN 版本对应的 Python 版本，否则需要 [安装指定版本的 Python 环境](/docs/2.编程/高级编程语言/Python/Python%20环境安装与使用/Python%20环境安装与使用.md)
+
+设置环境变量
+
+```bash
+export arch=$(uname -m)
+export version="8.5.0"
+```
+
 **零、安装 NPU 驱动和固件**
 
 已经手动安装完 [NPU](/docs/0.计算机/NPU.md) 的驱动和固件
@@ -54,28 +63,24 @@ CANN 社区版资源下载: https://www.hiascend.com/developer/download/communit
 **一、安装 Toolkit 开发套件包**
 
 ```bash
-wget https://ascend-repo.obs.cn-east-2.myhuaweicloud.com/CANN/CANN%208.5.0/Ascend-cann-toolkit_8.5.0_linux-aarch64.run
-bash ./Ascend-cann-toolkit_8.5.0_linux-aarch64.run --install
-```
-
-应用环境变量
-
-```bash
-source /usr/local/Ascend/cann-8.5.0/set_env.sh
+wget https://ascend-repo.obs.cn-east-2.myhuaweicloud.com/CANN/CANN%20${version}/Ascend-cann-toolkit_${version}_linux-${arch}.run
+bash ./Ascend-cann-toolkit_${version}_linux-${arch}.run --install
 ```
 
 **二、安装 ops 算子包**
 
 ```bash
-wget https://ascend-repo.obs.cn-east-2.myhuaweicloud.com/CANN/CANN%208.5.0/Ascend-cann-310p-ops_8.5.0_linux-aarch64.run
-bash ./Ascend-cann-310p-ops_8.5.0_linux-aarch64.run --install
+wget https://ascend-repo.obs.cn-east-2.myhuaweicloud.com/CANN/CANN%20${version}/Ascend-cann-310p-ops_${version}_linux-${arch}.run
+bash ./Ascend-cann-310p-ops_${version}_linux-${arch}.run --install
 ```
 
 **（可选）三、安装 NNAL 神经网络加速库**
 
+> 需要先执行 `source /usr/local/Ascend/cann-8.5.0/set_env.sh` 才能安装成功
+
 ```bash
-wget https://ascend-repo.obs.cn-east-2.myhuaweicloud.com/CANN/CANN%208.5.0/Ascend-cann-nnal_8.5.0_linux-aarch64.run
-bash ./Ascend-cann-nnal_8.5.0_linux-aarch64.run --install
+wget https://ascend-repo.obs.cn-east-2.myhuaweicloud.com/CANN/CANN%20${version}/Ascend-cann-nnal_${version}_linux-${arch}.run
+bash ./Ascend-cann-nnal_${version}_linux-${arch}.run --install
 ```
 
 若要使用 NNAL，加载环境即可：
@@ -108,12 +113,13 @@ Please make sure that the environment variables have been configured.
 tee /etc/profile.d/ascend.sh > /dev/null <<EOF
 source /usr/local/Ascend/cann-8.5.0/set_env.sh
 EOF
+source /usr/local/Ascend/cann-8.5.0/set_env.sh
 ```
 
-根据情况安装一些包
+根据情况安装一些包（最好配置一下 [PIP](/docs/2.编程/高级编程语言/Python/Python工具/PIP.md) 镜像源）
 
 ```bash
-sudo yum install -y gcc-c++
+yum install -y gcc-c++
 pip3 install attrs cython 'numpy>=1.19.2,<2.0' decorator sympy cffi pyyaml pathlib2 psutil protobuf==3.20.0 scipy requests absl-py --user
 ```
 

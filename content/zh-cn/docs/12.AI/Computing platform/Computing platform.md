@@ -21,6 +21,8 @@ weight: 1
 - [CANN](/docs/12.AI/Computing%20platform/CANN.md)
 - ROCm
 
+> [!TODO] 计算平台最重要的是算子？
+
 # CUDA
 
 > 参考：

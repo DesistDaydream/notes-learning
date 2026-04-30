@@ -31,7 +31,13 @@ gguf = { path = "../../../projects/someone_else/llama.cpp/gguf-py" }
 
 `uv sync `根据 pyproject.toml 同步依赖
 
-`uv tool install XXX` 以工具的形式安装 XXX。不作为依赖库
+`uv tool install XXX` 以工具的形式安装 XXX。不作为依赖库。uv 安装的工具的可执行文件默认在 `/root/.local/bin/` 目录下，可以加到 PATH 变量中
+
+```bash
+tee /etc/profile.d/uv.sh > /dev/null <<"EOF"
+export PATH=/root/.local/bin:$PATH
+EOF
+```
 
 `uv sync --index "https://mirrors.aliyun.com/pypi/simple/"` 使用 --index 指定镜像源
 
