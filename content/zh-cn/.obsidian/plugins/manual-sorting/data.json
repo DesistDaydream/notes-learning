@@ -105,10 +105,10 @@
         "docs/0.计算机/Peripheral",
         "docs/0.计算机/GPU",
         "docs/0.计算机/NPU.md",
-        "docs/0.计算机/其他.md",
-        "docs/0.计算机/计算机厂家信息.md",
+        "docs/0.计算机/计算机厂家.md",
         "docs/0.计算机/小型机器.md",
-        "docs/0.计算机/Rack.md"
+        "docs/0.计算机/Rack.md",
+        "docs/0.计算机/其他.md"
       ],
       "sortOrder": "custom"
     },
@@ -4880,6 +4880,7 @@
     "docs/Standard": {
       "children": [
         "docs/Standard/_index.md",
+        "docs/Standard/Standard.md",
         "docs/Standard/Glossary.md",
         "docs/Standard/常用英文.md",
         "docs/Standard/Foundation",

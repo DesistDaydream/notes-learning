@@ -141,8 +141,6 @@ weight: 1
 
 中国菜系博大精深，千差万别，但制作每道菜品的方式大同小异，其中包括刀工、颠勺技术等，这些是基本功，制作每道菜品都要经过这些步骤，变化的也无非就是食材、火候、调料等，这些放到菜谱中即可，这样给厨师一个菜谱他就能制作出任意的菜来，在这里厨师就好比硬件，菜谱就好比软件。
 
-![](https://mmbiz.qpic.cn/mmbiz_jpg/8g3rwJPmya2J1UjGyUZ2x0Yxh82cWJu3jo7pp7gFSicg2HtaFOz4yrK7nq2YB5sW70aNw3B8lmprnSRlMibfMNqA/640?wx_fmt=jpeg#crop=0&crop=0&crop=1&crop=1&height=719&id=ny8Pi&margin=%5Bobject%20Object%5D&originHeight=719&originWidth=1080&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=1080)
-
 同样的道理，**我们没有必要为所有的计算逻辑实现出对应的硬件**，硬件只需要提供最基本的功能，最终所有的计算逻辑都通过这些最基本的功能用软件表达出来就好，这就是所谓的软件一词的来源，**硬件不可变，但软件可变**，**不变的是硬件但提供不同的软件就能让硬件实现全新的功能**，**无比天才的思想**，人类真的是太聪明了。
 
 同样一台计算机硬件，安装上 word 你就能编辑文档，安装上微信你就能读到码农的荒岛求生公众号、安装上游戏你就能玩王者农药，硬件还是那套硬件，提供不同的软件就是实现不同的功能，**每次打开电脑使用各种 App 时没有在内心高呼一声牛逼你都对不起计算机这么伟大的发明创造**，这就是为什么计算机被称为**通用**计算设备的原因，这一思想是计算机科学祖师爷图灵提出的。
@@ -213,6 +211,6 @@ CPU 表达机制就通过指令集来实现的。
 
 # 参考资料
 
-1. [**程序员应如何理解 CPU**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247483850&idx=1&sn=b90a78604fa174f0e7314227a3002bdc&chksm=fcb98694cbce0f82024467c835c6e3b4984773b1a2f6c1625d573066c36b14420d996819bed7&scene=21#wechat_redirect)[**？**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247483736&idx=1&sn=4da1eec64e42567a0fdf4ae6d4e9344e&chksm=fcb98606cbce0f10090d950ec468b0a1e28087cd158a850bc7dc4c262fd2612a319851987220&scene=21#wechat_redirect)
+1. [**程序员应如何理解 CPU？**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247483850&idx=1&sn=b90a78604fa174f0e7314227a3002bdc&chksm=fcb98694cbce0f82024467c835c6e3b4984773b1a2f6c1625d573066c36b14420d996819bed7&scene=21#wechat_redirect)
 2. [**CPU 空闲时在干嘛？**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247485379&idx=1&sn=77ccd2258f0280dfb536ad3d389cd43a&chksm=fcb9809dcbce098b6f89dc59e71cf7fb6af6e5152e40f2f84f7c33ba9ea62e5bc8390ffd0553&scene=21#wechat_redirect)
 3. [**CPU 与进程、线程、操作系统**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247484768&idx=1&sn=049db350af9e5eea5cf3523ceb83f447&chksm=fcb9823ecbce0b28ca28d021e68c78138cde4a1b86ea7209c0c667d3d544d223d8b2aecbccec&scene=21#wechat_redirect)

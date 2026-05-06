@@ -202,13 +202,15 @@ MIT 开源许可协议 ( 中文版翻译：卫 sir，遵循：CC-BY 协议 )
 
 进入其代码仓库后，可以看到其源码头部是这么写的。
 
-/\* Copyright 2013 Google Inc. All Rights Reserved.
+```
+/* Copyright 2013 Google Inc. All Rights Reserved.
 
 Distributed under MIT license.
 
 See file LICENSE for detail or copy at <https://opensource.org/licenses/MIT>
 
-\*/
+*/
+```
 
 截图如下：
 
