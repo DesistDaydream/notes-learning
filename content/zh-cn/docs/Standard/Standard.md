@@ -92,13 +92,15 @@ weight: 1
 
 ---
 
-**FLOPS**
+**OPS** 与 **FLOPS**
 
 > 参考：
 >
 > - https://en.wikipedia.org/wiki/Floating_point_operations_per_second
 
-Floating point operations per second(每秒浮点运算次数)，有时候也表示为 flop/s。
+**Operations per second(每秒运算次数，简称 OPS)**
+
+**Floating point operations per second(每秒浮点运算次数，简称 FPOPS)**，有时候也表示为 flop/s。
 
 > Tips: 在 FLOPS 之前，可能还会有一些 “SI 词头”，用来衡量数量的级别。e.g. TFLPS 表示每秒 $10^{12}$ 次运算、PFLPS 表示每秒 $10^{15}$ 次运算
 

@@ -11,7 +11,7 @@ weight: 100
 >
 > - [GitHub 项目，ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp)
 
-LLaMA C++，其中 + 是 plus，简化为 2 个 p，所以是 llama.cpp。
+LLaMA C++，其中 `+` 是 plus，简化为 2 个 p，所以是 llama.cpp。
 
 llama.cpp 的主要目标是在本地和云端，以最小的设置和最先进的性能实现 LLM 推理。（尤其是消费级 CPU, GPU 和苹果 Mac）
 

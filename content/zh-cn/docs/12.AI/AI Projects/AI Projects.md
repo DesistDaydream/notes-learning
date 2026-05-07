@@ -94,6 +94,8 @@ https://github.com/HKUDS/CLI-Anything
 
 Agent 工具: CodeX
 
+[LINUX DO，你们赢了，但我却没有输](https://linux.do/t/topic/1051/)
+
 # Claude
 
 > 参考：

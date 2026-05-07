@@ -14,8 +14,7 @@ weight: 1
 
 - [llama.cpp](/docs/12.AI/AI%20MGMT/llama.cpp.md)
 - [Ollama](#ollama) # 基于 llama.cpp 的封装
-- vLLM
-  - https://github.com/vllm-project/vllm
+- [vLLM](/docs/12.AI/AI%20MGMT/vLLM.md)
 - LM Studio # 基于 llama.cpp 的闭源封装
 - Jan
 - koboldcpp
@@ -65,15 +64,6 @@ https://github.com/ollama/ollama/blob/main/README.md#web--desktop
 Chrome 插件
 
 - https://github.com/n4ze3m/page-assist
-
-# vLLM
-
-> 参考：
->
-> - [GitHub 项目，vllm-project/vllm](https://github.com/vllm-project/vllm)
-> - [官网](https://vllm.ai/)
-
-用于 LLM 的高吞吐量和内存高效的推理和服务引擎
 
 # LM Studio
 

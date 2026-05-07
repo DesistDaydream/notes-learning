@@ -18,6 +18,11 @@ weight: 1
 
 [Disk](/docs/0.计算机/Disk/Disk.md)
 
+常见计量单位
+
+- Hz
+- FLOPS
+
 # 计算机工作的原理
 
 > 参考：

@@ -4772,6 +4772,7 @@
       "children": [
         "docs/12.AI/AI MGMT/_index.md",
         "docs/12.AI/AI MGMT/AI MGMT.md",
+        "docs/12.AI/AI MGMT/vLLM.md",
         "docs/12.AI/AI MGMT/llama.cpp.md"
       ],
       "sortOrder": "custom"

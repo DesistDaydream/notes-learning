@@ -17,11 +17,30 @@ NPU 在 Linux 内核管理的 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md)
 
 # Ascend
 
+> 参考：
+> - [知乎，一文看懂华为昇腾芯片](https://zhuanlan.zhihu.com/p/1913660152676094004)
+
 **Ascend(昇腾)** 生态的 NPU
+
+昇腾芯片系列
+
+- 310 系列
+- 910 系列
+
+使用了昇腾芯片的产品系列
+
+- Atlas
+    - 200 # AI 模块。在端侧实现目标识别、图像分类等，广泛用于智能摄像机、机器人、无人机等端侧AI场景。
+    - 300 # AI 加速卡。提供 AI 推理、视频分析等功能，支持检索聚类、OCR 识别、语音分析、视频分析等场景。
+    - 500 # 智能边缘。具有超强计算性能、体积小、环境适应性强、易于维护等特点，可以在边缘场景广泛部署。
+    - 800 # AI 服务器。具有超强计算性能，可广泛应用于中心侧 AI 推理、深度学习模型开发和训练场景。
+    - 900 # AI 集群。具有超强 AI 算力、更优 AI 能效、极佳 AI 拓展等特点，可广泛应用于深度学习模型开发和训练。
 
 ## 学习资料
 
 驱动与固件 社区版资源下载: https://www.hiascend.com/hardware/firmware-drivers/community
+
+[昇腾产品形态说明](https://www.hiascend.com/document/detail/zh/canncommercial/601/inferapplicationdev/aclpythondevg/aclpythondevg_0007.html) # 包含芯片系列与产品系列
 
 ## 安装 NPU 驱动
 

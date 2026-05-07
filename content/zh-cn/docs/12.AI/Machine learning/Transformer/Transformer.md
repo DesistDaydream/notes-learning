@@ -214,10 +214,17 @@ TODO:
 
 ![](Excalidraw/AI/attention_is_all_you_need.excalidraw.md)
 
+- **Feed-Forward Network(前馈神经网络，简称 FFN)**
+- **Multi-Head Attention(多头注意力，简称 MHA)**
+- **Q(query), K(key), V(value)**
+- TODO:
+- Softmax(转概率)
+- Linear(线性投影)
+
 > [!TODO]
 > Attention is All You Need 架构图中，到底什么是重点，什么是最消耗算力的地方？
 >
-> QKV？
+> Input Embedding 后的 QKV 就是最消耗算力的地方？
 >
 > 左半部分输入给 Multi-Head Attention 的那三个箭头就是 QKV 吗？
 
