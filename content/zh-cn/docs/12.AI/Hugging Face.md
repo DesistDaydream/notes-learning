@@ -68,6 +68,15 @@ print(f"Hub Cache: {constants.HF_HUB_CACHE}")
 
 **HF_TOKEN** # 访问 HuggingFace 的 Hub 的认证信息。默认位于 `$HF_HOME/token` 中。
 
+# Hub
+
+**Hugging Face Hub** 是一个类似 GitHub 的存在，只不过提供的是模型文件，而不是代码文件。
+
+其他与 Hugging Face Hub 类似的 Hub
+
+- [HF-Mirror](https://hf-mirror.com/) # Hugging Face Hub 的国内镜像站。只需要在使用 hf 命令之前设置 `HF_ENDPOINT=https://hf-mirror.com` 环境变量，即可让 hf 从该镜像站下载模型、数据集、etc.
+- [ModelScope(魔搭)](https://www.modelscope.cn/)  # 阿里家的，只不过要使用 ta 家的 modelscope 命令（( ╯□╰ )，其实跟 hf 命令一样，但是没法通用。唉。。。国内的厂家真。。。）
+
 # CLI
 
 > 参考：
@@ -112,5 +121,5 @@ HF_ENDPOINT=https://hf-mirror.com hf download Qwen/Qwen3.6-35B-A3B
 - 使用 --local-dir 目录将模型下载到 `./models/qwen3.6/` 目录中
 
 ```bash
-HF_ENDPOINT=https://hf-mirror.com hf download Qwen/Qwen3.6-35B-A3B --local-dir ./models/qwen3.6
+HF_ENDPOINT=https://hf-mirror.com hf download Qwen/Qwen3.6-35B-A3B --local-dir /root/models/qwen3.6-35B-A3B
 ```

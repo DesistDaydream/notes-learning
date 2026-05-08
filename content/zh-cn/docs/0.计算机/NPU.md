@@ -36,6 +36,11 @@ NPU 在 Linux 内核管理的 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md)
     - 800 # AI 服务器。具有超强计算性能，可广泛应用于中心侧 AI 推理、深度学习模型开发和训练场景。
     - 900 # AI 集群。具有超强 AI 算力、更优 AI 能效、极佳 AI 拓展等特点，可广泛应用于深度学习模型开发和训练。
 
+> [!Note]
+> Atlas 300I DUO 总是有很多问题。
+> - [vLLM](/docs/12.AI/AI%20MGMT/vLLM/vLLM.md) 甚至只有一篇针对该产品的[独立教程](https://docs.vllm.ai/projects/ascend/zh-cn/v0.18.0/tutorials/hardwares/310p.html)，其他系列的产品则无如此多问题。
+> - vLLM 默认也是[支持](https://docs.vllm.ai/projects/ascend/zh-cn/v0.18.0/faqs.html#what-devices-are-currently-supported) Atlas A2 和 Atlas A3 系列，对于 Atlas 300I DUO 则仅是实验性支持。
+
 ## 学习资料
 
 驱动与固件 社区版资源下载: https://www.hiascend.com/hardware/firmware-drivers/community

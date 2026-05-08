@@ -14,7 +14,7 @@ weight: 1
 
 - [llama.cpp](/docs/12.AI/AI%20MGMT/llama.cpp.md)
 - [Ollama](#ollama) # 基于 llama.cpp 的封装
-- [vLLM](/docs/12.AI/AI%20MGMT/vLLM.md)
+- [vLLM](/docs/12.AI/AI%20MGMT/vLLM/vLLM.md)
 - LM Studio # 基于 llama.cpp 的闭源封装
 - Jan
 - koboldcpp

@@ -17,9 +17,9 @@ weight: 1
 
 当前可用的计算平台：
 
-- CUDA
-- [CANN](/docs/12.AI/Computing%20platform/CANN.md)
-- ROCm
+- CUDA # 英伟达推出的
+- ROCm # AMD 推出的
+- [CANN](/docs/12.AI/Computing%20platform/CANN.md) # 华为推出的
 
 > [!TODO] 计算平台最重要的是算子？
 

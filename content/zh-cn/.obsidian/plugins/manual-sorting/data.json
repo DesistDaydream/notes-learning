@@ -4772,8 +4772,17 @@
       "children": [
         "docs/12.AI/AI MGMT/_index.md",
         "docs/12.AI/AI MGMT/AI MGMT.md",
-        "docs/12.AI/AI MGMT/vLLM.md",
+        "docs/12.AI/AI MGMT/vLLM",
         "docs/12.AI/AI MGMT/llama.cpp.md"
+      ],
+      "sortOrder": "custom"
+    },
+    "docs/12.AI/AI MGMT/vLLM": {
+      "children": [
+        "docs/12.AI/AI MGMT/vLLM/_index.md",
+        "docs/12.AI/AI MGMT/vLLM/vLLM.md",
+        "docs/12.AI/AI MGMT/vLLM/vllm CLI.md",
+        "docs/12.AI/AI MGMT/vLLM/Plugin Ascend.md"
       ],
       "sortOrder": "custom"
     },
