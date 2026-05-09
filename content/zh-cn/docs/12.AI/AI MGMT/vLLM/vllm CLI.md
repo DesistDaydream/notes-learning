@@ -67,3 +67,14 @@ serve 命令的参数非常多，可以分为多个大类
 # bench
 
 https://docs.vllm.ai/en/stable/benchmarking/cli/
+
+vLLM 基准测试有多种场景
+
+- **Offline Throughput Benchmark(离线吞吐基准测试)** # 测试理论上 模型 + 硬件 的最大性能。
+    - 把所有请求一次性全部塞进去，让 vLLM 以最大批处理能力处理；没有网络、队列、并发控制、etc.
+    - 子命令: `vllm bench throughput`
+- **Online Benchmark(在线基准测试)** # 测试已经启动的推理服务的实际性能（e.g. 延迟、吞吐、etc.）
+    - 模拟真实用户按一定速率陆续发来请求。通过 HTTP 进入队列、等待、竞争、etc.
+    - 子命令: `vllm bench serve`
+- 
+

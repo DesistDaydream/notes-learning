@@ -72,6 +72,8 @@ docker run --rm \
 > [!Attention] 昇腾插件比较特殊，由于某些底层硬件的缺陷，在使用 `vllm serve` 时需要添加额外的参数才能保证正常启动。
 >
 > 在这个章节，只记录一些特殊情况，还有一些情况记录在最佳实践中。一般来说，vLLM 使用模型还是比较简单的，只需要 `vllm serve ${Model}` 即可。
+>
+> e.g. `--enforce-eager` 和 `--dtype float16` 这俩参数，就要在 Atlas 300I DUO 设备上用。
 
 # 最佳实践
 
@@ -109,14 +111,16 @@ docker run --rm \
 
 二、加载模型，提供推理服务
 
+> [!Attention] 32B 的模型只用一块卡显存不够
+> `--tensor-parallel-size 1` 的话会报错: `RuntimeError: NPU out of memory. Tried to allocate 502.00 MiB (NPU 0; 43.24 GiB total capacity; 41.70 GiB already allocated; 41.70 GiB current active; 349.23 MiB free; 41.72 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.`
+
 ```bash
 vllm serve /root/models/qwen3-32B \
-    --enforce-eager \
-    --dtype float16 \
-    --served-model-name qwen3-32b \
-    --enable-auto-tool-choice \
-    --tool-call-parser hermes \
-    --tensor-parallel-size 4
+  --enforce-eager --dtype float16 \
+  --served-model-name qwen3-32b \
+  --enable-auto-tool-choice \
+  --tool-call-parser hermes \
+  --tensor-parallel-size 4
 ```
 
 > Attention: `--enforce-eager` 和 `--dtype` 是在 Atlas 300I Duo 加速卡上的适配参数。否则无法加载模型。
@@ -180,3 +184,230 @@ $IMAGE vllm serve /root/models/qwen3-32B \
 # 重大变化
 
 [issue 7394](https://github.com/vllm-project/vllm-ascend/issues/7394) # 让 Qwen3.5 系列模型可以在 Atlas 300I Duo 上部署。创建于 2025-03-17
+
+# 基准测试
+
+## Atlas 300I DUO
+
+### 离线吞吐量基准测试
+
+**qwen3-0.6B**
+
+```bash
+vllm bench throughput \
+  --enforce-eager --dtype float16 \
+  --model Qwen/Qwen3-0.6B \
+  --input-len 256 --output-len 128 \
+  --num-prompts 200 \
+  --tensor-parallel-size 4
+```
+
+结果：
+
+```bash
+# 第一次
+Throughput: 1.84 requests/s, 2124.55 total tokens/s, 236.06 output tokens/s
+Total num prompt tokens:  204800
+Total num output tokens:  25600
+# 第二次
+Throughput: 2.13 requests/s, 2458.73 total tokens/s, 273.19 output tokens/s
+Total num prompt tokens:  204800
+Total num output tokens:  25600
+# 第三次
+Throughput: 2.16 requests/s, 2489.63 total tokens/s, 276.63 output tokens/s
+Total num prompt tokens:  204800
+Total num output tokens:  25600
+```
+
+--tensor-parallel-size=1 结果：
+
+```bash
+# 第一次
+Throughput: 1.64 requests/s, 1887.75 total tokens/s, 209.75 output tokens/s
+Total num prompt tokens:  204800
+Total num output tokens:  25600
+# 第二次
+Throughput: 1.64 requests/s, 1883.84 total tokens/s, 209.32 output tokens/s
+Total num prompt tokens:  204800
+Total num output tokens:  25600
+```
+
+---
+
+**qwen3-32B**
+
+```bash
+vllm bench throughput \
+  --enforce-eager --dtype float16 \
+  --model /root/models/qwen3-32B \
+  --input-len 256 --output-len 128 --num-prompts 200 \
+  --tensor-parallel-size 4
+```
+
+结果：
+
+```bash
+# 第一次
+Throughput: 0.55 requests/s, 638.73 total tokens/s, 70.97 output tokens/s
+Total num prompt tokens:  204800
+Total num output tokens:  25600
+# 第二次
+Throughput: 0.56 requests/s, 640.16 total tokens/s, 71.13 output tokens/s
+Total num prompt tokens:  204800
+Total num output tokens:  25600
+# 第三次
+Throughput: 0.55 requests/s, 631.02 total tokens/s, 70.11 output tokens/s
+Total num prompt tokens:  204800
+Total num output tokens:  25600
+```
+
+### 在线基准测试
+
+**qwen3-0.6B**
+
+```bash
+# 启动推理服务
+vllm serve /root/models/qwen3-32B \
+  --enforce-eager --dtype float16 \
+  --served-model-name qwen3-32b \
+  --tensor-parallel-size 4
+# 开始基准测试
+vllm bench serve \
+  --model qwen3-32b \
+  --backend vllm \
+  --endpoint /v1/completions \
+  --dataset-name random \
+  --random-input-len 256 \
+  --random-output-len 128 \
+  --num-prompts 200 \
+  --max-concurrency 8
+```
+
+结果：
+
+```bash
+# 第一次
+============ Serving Benchmark Result ============
+Successful requests:                     200       
+Failed requests:                         0         
+Maximum request concurrency:             8         
+Benchmark duration (s):                  182.42    
+Total input tokens:                      51200     
+Total generated tokens:                  25600     
+Request throughput (req/s):              1.10      
+Output token throughput (tok/s):         140.34    
+Peak output token throughput (tok/s):    160.00    
+Peak concurrent requests:                16.00     
+Total token throughput (tok/s):          421.02    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          705.70    
+Median TTFT (ms):                        661.14    
+P99 TTFT (ms):                           1847.60   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          51.89     
+Median TPOT (ms):                        52.02     
+P99 TPOT (ms):                           52.91     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           51.89     
+Median ITL (ms):                         52.17     
+P99 ITL (ms):                            53.87     
+==================================================
+# 第二次
+============ Serving Benchmark Result ============
+Successful requests:                     200       
+Failed requests:                         0         
+Maximum request concurrency:             8         
+Benchmark duration (s):                  220.70    
+Total input tokens:                      51200     
+Total generated tokens:                  25600     
+Request throughput (req/s):              0.91      
+Output token throughput (tok/s):         115.99    
+Peak output token throughput (tok/s):    136.00    
+Peak concurrent requests:                16.00     
+Total token throughput (tok/s):          347.98    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          498.85    
+Median TTFT (ms):                        466.09    
+P99 TTFT (ms):                           2124.51   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          65.54     
+Median TPOT (ms):                        65.17     
+P99 TPOT (ms):                           68.97     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           65.54     
+Median ITL (ms):                         63.93     
+P99 ITL (ms):                            117.99    
+==================================================
+```
+
+---
+
+**qwen3-32B**
+
+```bash
+# 启动推理服务
+vllm serve 
+  --enforce-eager --dtype float16 \
+  --model /root/models/qwen3-32B \
+  --served-model-name qwen3-32b \
+  --tensor-parallel-size 4
+# 开始基准测试
+vllm bench serve \
+  --model qwen3-32b \
+  --tokenizer /root/models/qwen3-32B \
+  --backend vllm \
+  --endpoint /v1/completions \
+  --dataset-name random \
+  --random-input-len 256 \
+  --random-output-len 128 \
+  --num-prompts 200 \
+  --max-concurrency 8
+# 对聊天接口基准测试
+vllm bench serve \
+  --model qwen3-32b \
+  --tokenizer /root/models/qwen3-32B \
+  --backend openai-chat \
+  --endpoint /v1/chat/completions \
+  --dataset-name random \
+  --random-input-len 256 \
+  --random-output-len 128 \
+  --num-prompts 200 \
+  --max-concurrency 8
+```
+
+> [!Attention] 由于 bench serve 的缺陷，当使用 vllm serve 从本地模型启动推理服务时。基准测试的 --model 指定推理服务中的模型 ID，但是需要从本地加载分词器，所以需要手动添加 --tokenizer。
+>
+> 原因是 vllm bench serve 在初始化 tokenizer 时，把 --model qwen3-32b 当成了 HuggingFace 的 repo_id 去下载，但 qwen3-32b 不是 namespace/name 格式，所以报错。
+
+结果：
+
+```bash
+# 第一次 /v1/completions
+============ Serving Benchmark Result ============
+Successful requests:                     200       
+Failed requests:                         0         
+Maximum request concurrency:             8         
+Benchmark duration (s):                  557.07    
+Total input tokens:                      51200     
+Total generated tokens:                  25600     
+Request throughput (req/s):              0.36      
+Output token throughput (tok/s):         45.96     
+Peak output token throughput (tok/s):    56.00     
+Peak concurrent requests:                16.00     
+Total token throughput (tok/s):          137.87    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          2602.37   
+Median TTFT (ms):                        2736.65   
+P99 TTFT (ms):                           4367.72   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          154.95    
+Median TPOT (ms):                        144.97    
+P99 TPOT (ms):                           247.25    
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           154.95    
+Median ITL (ms):                         144.96    
+P99 ITL (ms):                            400.39    
+==================================================
+# 第一次 /v1/chat/completions
+
+```
