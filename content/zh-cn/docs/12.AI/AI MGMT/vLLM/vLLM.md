@@ -70,21 +70,6 @@ export VLLM_USE_MODELSCOPE=True
 
 之后，vllm 会到 ModelScope 默认的缓存目录中寻找 模型、数据集、etc.
 
-# Benchmark
-
-> 参考：
->
-> - [官方文档，基准测试套件](https://docs.vllm.ai/en/stable/benchmarking/)
-
-vLLM 提供全面的基准测试工具，用于性能测试和评估：
-
-- **Benchmark CLI** # 用于交互式性能测试的 [vllm CLI](/docs/12.AI/AI%20MGMT/vLLM/vllm%20CLI.md) 的 bench 子命令 和 专用基准测试脚本。
-  - 早期使用的是 benchmark_throughput.py 脚本，后来（TODO: 时间）将基准测试功能合并到 vllm CLI 中。
-- **参数扫描** # 自动运行多个配置的 `vllm bench` ，有助于[优化和调优](https://docs.vllm.ai/en/stable/configuration/optimization/) 。
-  - https://docs.vllm.ai/en/stable/benchmarking/sweeps/
-- **性能仪表盘** # 自动化 CI，每次提交都会发布基准测试结果。
-  - https://docs.vllm.ai/en/stable/benchmarking/dashboard/
-
 # Plugins
 
 > 参考：
@@ -95,4 +80,36 @@ vLLM 提供全面的基准测试工具，用于性能测试和评估：
 
 - [Plugin Ascend](/docs/12.AI/AI%20MGMT/vLLM/Plugin%20Ascend.md) # 让 vLLM 可以运行在华为昇腾系列硬件上的插件
 - etc.
+
+# Benchmark
+
+> 参考：
+>
+> - [官方文档，基准测试套件](https://docs.vllm.ai/en/stable/benchmarking/)
+> - [官方文档，基准测试 - CLI](https://docs.vllm.ai/en/stable/benchmarking/cli/)
+
+vLLM 提供全面的基准测试工具，用于性能测试和评估：
+
+- **Benchmark CLI** # 用于交互式性能测试的 [vllm CLI](/docs/12.AI/AI%20MGMT/vLLM/vllm%20CLI.md) 的 bench 子命令 和 专用基准测试脚本。
+  - 早期使用的是 benchmark_throughput.py 脚本，后来（TODO: 时间）将基准测试功能合并到 vllm CLI 中。
+- **参数扫描** # 自动运行多个配置的 `vllm bench` ，有助于[优化和调优](https://docs.vllm.ai/en/stable/configuration/optimization/) 。
+  - https://docs.vllm.ai/en/stable/benchmarking/sweeps/
+- **性能仪表盘** # 自动化 CI，每次提交都会发布基准测试结果。
+  - https://docs.vllm.ai/en/stable/benchmarking/dashboard/
+
+## Benchmark CLI
+
+说是 CLI，其实不是单只 vllm bench 子命令，还包含了部分 Python 脚本及其他可以在命令行执行的命令。
+
+vLLM 基准测试有多种场景
+
+- **Offline Throughput Benchmark(离线吞吐基准测试)** # 测试理论上 模型 + 硬件 的最大性能。
+    - 把所有请求一次性全部塞进去，让 vLLM 以最大批处理能力处理；没有网络、队列、并发控制、etc.
+    - 子命令: `vllm bench throughput`
+- **Online Benchmark(在线基准测试)** # 测试已经启动的推理服务的实际性能（e.g. 延迟、吞吐、etc.）
+    - 模拟真实用户按一定速率陆续发来请求。通过 HTTP 进入队列、等待、竞争、etc.
+    - 子命令: `vllm bench serve`
+- **Long Document QA Benchmark(长文档 QA 基准测试)** # 对采用前缀缓存的长文档问答性能进行基准测试。
+    - 使用脚本 `benchmarks/benchmark_long_document_qa_throughput.py`
+- 其他待总结
 

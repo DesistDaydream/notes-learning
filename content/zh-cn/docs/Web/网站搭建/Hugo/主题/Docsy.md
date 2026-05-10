@@ -72,11 +72,22 @@ https://tomial.github.io/posts/hugo%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8
 
 ## 常见问题
 
+无问题的版本组合
+
+- hugo 0.129.0
+- docsy 0.11.0
+
 [构建站点时出错：# POSTCSS: failed to transform "scss/main.css"](https://github.com/google/docsy/issues/235)
 
 Mermaid 渲染失败在 hugo v0.145.0 #2197
 
 - https://github.com/google/docsy/issues/2197
+- 修复于 [pr#2177](https://github.com/google/docsy/pull/2177)
+
+`no such template "_default/_markup/td-render-heading.html"`
+
+- https://github.com/search?q=repo%3Agoogle%2Fdocsy+_default%2F_markup%2Ftd-render-heading.html&type=issues
+- https://github.com/google/docsy/issues/2214 提到: Hugo 0.145.0 是最后一个能够与 docsy 兼容的版本。截至 2026-05-10
 
 # Docsy 配置与关联文件
 

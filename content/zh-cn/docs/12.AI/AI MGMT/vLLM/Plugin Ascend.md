@@ -115,11 +115,10 @@ docker run --rm \
 > `--tensor-parallel-size 1` 的话会报错: `RuntimeError: NPU out of memory. Tried to allocate 502.00 MiB (NPU 0; 43.24 GiB total capacity; 41.70 GiB already allocated; 41.70 GiB current active; 349.23 MiB free; 41.72 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.`
 
 ```bash
-vllm serve /root/models/qwen3-32B \
+vllm serve \
   --enforce-eager --dtype float16 \
-  --served-model-name qwen3-32b \
-  --enable-auto-tool-choice \
-  --tool-call-parser hermes \
+  --model /root/models/qwen3-32B --served-model-name qwen3-32b \
+  --enable-auto-tool-choice --tool-call-parser hermes \
   --tensor-parallel-size 4
 ```
 
@@ -172,13 +171,11 @@ docker run -d \
 -v /etc/ascend_install.info:/etc/ascend_install.info \
 -v /root/.cache:/root/.cache \
 -v /root/models:/root/models \
-$IMAGE vllm serve /root/models/qwen3-32B \
-    --served-model-name qwen3-32b \
-    --enable-auto-tool-choice \
-    --tool-call-parser hermes \
-    --tensor-parallel-size 4 \
-    --enforce-eager \
-    --dtype float16
+$IMAGE vllm serve \
+  --enforce-eager --dtype float16 \
+  --model /root/models/qwen3-32B --served-model-name qwen3-32b \
+  --enable-auto-tool-choice --tool-call-parser hermes \
+  --tensor-parallel-size 4
 ```
 
 # 重大变化
@@ -267,26 +264,57 @@ Total num output tokens:  25600
 
 ```bash
 # 启动推理服务
-vllm serve /root/models/qwen3-32B \
+vllm serve \
   --enforce-eager --dtype float16 \
-  --served-model-name qwen3-32b \
+  --model Qwen/Qwen3-0.6B \
   --tensor-parallel-size 4
-# 开始基准测试
+# 对聊天接口基准测试
+export bench_method="--num-prompts 20 --max-concurrency 1"
+export model_id=$(curl -s http://localhost:8000/v1/models | python3 -c "import sys, json; print(json.load(sys.stdin)['data'][0]['id'])")
 vllm bench serve \
-  --model qwen3-32b \
-  --backend vllm \
-  --endpoint /v1/completions \
+  --model ${model_id} \
+  --backend openai-chat --endpoint /v1/chat/completions \
   --dataset-name random \
-  --random-input-len 256 \
-  --random-output-len 128 \
-  --num-prompts 200 \
-  --max-concurrency 8
+  --random-input-len 256 --random-output-len 128 \
+  ${bench_method}
 ```
 
 结果：
 
-```bash
-# 第一次
+<table>
+<tr> 
+<th>测试方法: --num-prompts 20 --max-concurrency 1</th>
+<th>测试方法: --num-prompts 200 --max-concurrency 8</th> 
+</tr>
+<tr>
+<td><pre>
+============ Serving Benchmark Result ============
+Successful requests:                     20        
+Failed requests:                         0         
+Maximum request concurrency:             1         
+Benchmark duration (s):                  155.71    
+Total input tokens:                      5120      
+Total generated tokens:                  2560      
+Request throughput (req/s):              0.13      
+Output token throughput (tok/s):         16.44     
+Peak output token throughput (tok/s):    18.00     
+Peak concurrent requests:                2.00      
+Total token throughput (tok/s):          49.32     
+---------------Time to First Token----------------
+Mean TTFT (ms):                          123.72    
+Median TTFT (ms):                        88.58     
+P99 TTFT (ms):                           656.70    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          60.33     
+Median TPOT (ms):                        58.51     
+P99 TPOT (ms):                           85.91     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           59.85     
+Median ITL (ms):                         58.04     
+P99 ITL (ms):                            149.20    
+==================================================
+</pre></td>
+<td><pre>
 ============ Serving Benchmark Result ============
 Successful requests:                     200       
 Failed requests:                         0         
@@ -312,33 +340,9 @@ Mean ITL (ms):                           51.89
 Median ITL (ms):                         52.17     
 P99 ITL (ms):                            53.87     
 ==================================================
-# 第二次
-============ Serving Benchmark Result ============
-Successful requests:                     200       
-Failed requests:                         0         
-Maximum request concurrency:             8         
-Benchmark duration (s):                  220.70    
-Total input tokens:                      51200     
-Total generated tokens:                  25600     
-Request throughput (req/s):              0.91      
-Output token throughput (tok/s):         115.99    
-Peak output token throughput (tok/s):    136.00    
-Peak concurrent requests:                16.00     
-Total token throughput (tok/s):          347.98    
----------------Time to First Token----------------
-Mean TTFT (ms):                          498.85    
-Median TTFT (ms):                        466.09    
-P99 TTFT (ms):                           2124.51   
------Time per Output Token (excl. 1st token)------
-Mean TPOT (ms):                          65.54     
-Median TPOT (ms):                        65.17     
-P99 TPOT (ms):                           68.97     
----------------Inter-token Latency----------------
-Mean ITL (ms):                           65.54     
-Median ITL (ms):                         63.93     
-P99 ITL (ms):                            117.99    
-==================================================
-```
+</pre></td>
+</tr>
+</table>
 
 ---
 
@@ -346,68 +350,87 @@ P99 ITL (ms):                            117.99
 
 ```bash
 # 启动推理服务
-vllm serve 
+vllm serve \
   --enforce-eager --dtype float16 \
   --model /root/models/qwen3-32B \
   --served-model-name qwen3-32b \
   --tensor-parallel-size 4
-# 开始基准测试
-vllm bench serve \
-  --model qwen3-32b \
-  --tokenizer /root/models/qwen3-32B \
-  --backend vllm \
-  --endpoint /v1/completions \
-  --dataset-name random \
-  --random-input-len 256 \
-  --random-output-len 128 \
-  --num-prompts 200 \
-  --max-concurrency 8
 # 对聊天接口基准测试
+export bench_method="--num-prompts 20 --max-concurrency 1"
+export model_id=$(curl -s http://localhost:8000/v1/models | python3 -c "import sys, json; print(json.load(sys.stdin)['data'][0]['id'])")
 vllm bench serve \
-  --model qwen3-32b \
+  --model ${model_id} \
   --tokenizer /root/models/qwen3-32B \
-  --backend openai-chat \
-  --endpoint /v1/chat/completions \
+  --backend openai-chat --endpoint /v1/chat/completions \
   --dataset-name random \
-  --random-input-len 256 \
-  --random-output-len 128 \
-  --num-prompts 200 \
-  --max-concurrency 8
+  --random-input-len 256 --random-output-len 128 \
+  ${bench_method}
 ```
 
-> [!Attention] 由于 bench serve 的缺陷，当使用 vllm serve 从本地模型启动推理服务时。基准测试的 --model 指定推理服务中的模型 ID，但是需要从本地加载分词器，所以需要手动添加 --tokenizer。
->
-> 原因是 vllm bench serve 在初始化 tokenizer 时，把 --model qwen3-32b 当成了 HuggingFace 的 repo_id 去下载，但 qwen3-32b 不是 namespace/name 格式，所以报错。
+> [!Attention] 由于 bench serve 的缺陷，需要手动添加 --tokenize 参数
+> 原因是 vllm bench serve 在初始化 tokenizer 时，把 --model qwen3-32b 当成了 HuggingFace 的 repo_id ，本地没查到需要去下载，但 qwen3-32b 不是 namespace/name 格式，所以报错。
 
 结果：
 
-```bash
-# 第一次 /v1/completions
+<table>
+<tr> 
+<th>测试方法: --num-prompts 20 --max-concurrency 1</th>
+<th>测试方法: --num-prompts 200 --max-concurrency 8</th> 
+</tr>
+<tr>
+<td><pre>
+============ Serving Benchmark Result ============
+Successful requests:                     20        
+Failed requests:                         0         
+Maximum request concurrency:             1         
+Benchmark duration (s):                  334.72    
+Total input tokens:                      5120      
+Total generated tokens:                  2560      
+Request throughput (req/s):              0.06      
+Output token throughput (tok/s):         7.65      
+Peak output token throughput (tok/s):    9.00      
+Peak concurrent requests:                2.00      
+Total token throughput (tok/s):          22.94     
+---------------Time to First Token----------------
+Mean TTFT (ms):                          328.02    
+Median TTFT (ms):                        293.29    
+P99 TTFT (ms):                           852.37    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          129.19    
+Median TPOT (ms):                        127.83    
+P99 TPOT (ms):                           157.93    
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           128.18    
+Median ITL (ms):                         127.89    
+P99 ITL (ms):                            140.57    
+==================================================
+</pre></td>
+<td><pre>
 ============ Serving Benchmark Result ============
 Successful requests:                     200       
 Failed requests:                         0         
 Maximum request concurrency:             8         
-Benchmark duration (s):                  557.07    
+Benchmark duration (s):                  541.15    
 Total input tokens:                      51200     
 Total generated tokens:                  25600     
-Request throughput (req/s):              0.36      
-Output token throughput (tok/s):         45.96     
-Peak output token throughput (tok/s):    56.00     
+Request throughput (req/s):              0.37      
+Output token throughput (tok/s):         47.31     
+Peak output token throughput (tok/s):    58.00     
 Peak concurrent requests:                16.00     
-Total token throughput (tok/s):          137.87    
+Total token throughput (tok/s):          141.92    
 ---------------Time to First Token----------------
-Mean TTFT (ms):                          2602.37   
-Median TTFT (ms):                        2736.65   
-P99 TTFT (ms):                           4367.72   
+Mean TTFT (ms):                          2070.00   
+Median TTFT (ms):                        2212.61   
+P99 TTFT (ms):                           2743.95   
 -----Time per Output Token (excl. 1st token)------
-Mean TPOT (ms):                          154.95    
-Median TPOT (ms):                        144.97    
-P99 TPOT (ms):                           247.25    
+Mean TPOT (ms):                          154.09    
+Median TPOT (ms):                        149.52    
+P99 TPOT (ms):                           203.62    
 ---------------Inter-token Latency----------------
-Mean ITL (ms):                           154.95    
-Median ITL (ms):                         144.96    
-P99 ITL (ms):                            400.39    
+Mean ITL (ms):                           152.89    
+Median ITL (ms):                         144.33    
+P99 ITL (ms):                            450.19    
 ==================================================
-# 第一次 /v1/chat/completions
-
-```
+</pre></td>
+</tr>
+</table>
