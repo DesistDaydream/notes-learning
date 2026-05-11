@@ -4754,7 +4754,8 @@
         "docs/12.AI/科学计算/_index.md",
         "docs/12.AI/科学计算/NumPy.md",
         "docs/12.AI/科学计算/Torch.md",
-        "docs/12.AI/科学计算/PyTorch.md"
+        "docs/12.AI/科学计算/PyTorch.md",
+        "docs/12.AI/科学计算/MindSpore.md"
       ],
       "sortOrder": "custom"
     },

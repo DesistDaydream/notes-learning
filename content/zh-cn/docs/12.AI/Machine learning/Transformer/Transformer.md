@@ -16,7 +16,7 @@ created: 2026-04-08T15:03
 
 **Transformer** 架构由 Google 在 2017 年发表的论文 《[Attention is All You Need](https://arxiv.org/abs/1706.03762)》首次提出，它使用 Self-Attention(自注意力) 机制取代了之前在 [NLP](/docs/12.AI/自然语言处理/自然语言处理.md) 任务中常用的 RNN(循环神经网络)，使其成为训练语言模型的代表架构。
 
-[Hugging Face](/docs/12.AI/Hugging%20Face.md) 开源了 Transformer 库，提供了便于快速下载和使用的 API，让我们可以把预训练模型用在自己的数据集上微调然后通过 [model hub](https://huggingface.co/models) 与社区共享。同时，每个 Python 模块完全独立，方便修改和快速研究实验。
+[Hugging Face](/docs/12.AI/Hugging%20Face.md) 开源了 transformers 库，提供了便于快速下载和使用的 API，让我们可以把预训练模型用在自己的数据集上微调然后通过 [model hub](https://huggingface.co/models) 与社区共享。同时，每个 Python 模块完全独立，方便修改和快速研究实验。
 
 Transformers 支持三个最热门的深度学习库： [Jax](https://jax.readthedocs.io/en/latest/), [PyTorch](/docs/12.AI/科学计算/PyTorch.md) 以及 [TensorFlow](https://www.tensorflow.org/)，并与之无缝整合。我们可以直接使用一个框架训练模型然后用另一个加载和推理。
 
@@ -103,23 +103,31 @@ Attention(Q, K, V) = softmax(QK^T / √d) · V
 
 Q 不需要缓存，因为 Q 只属于"当前正在处理的 token"，用完就没用了。
 
-# 安装 Transformers
+# 安装 Transformer
 
-安装 Transformers 本质就是安装 Transformers 框架（通常是 [Hugging Face](/docs/12.AI/Hugging%20Face.md) 生态的 transformers 库），使用该框架可以简单得进行模型的 [Training](/docs/12.AI/Machine%20learning/Training.md) 与 [Inference](/docs/12.AI/Machine%20learning/Inference.md)
+安装 Transformer 本质就是安装 Transformer 框架，通过该框架可以方便得对 Transformer 架构的模型进行 [Training](/docs/12.AI/Machine%20learning/Training.md) 与 [Inference](/docs/12.AI/Machine%20learning/Inference.md)
 
-Transformers 模型可以对接多种热门的深度学习库：
+> [!Attention]
+> 通常说的 Transformer 框架都是指 [Hugging Face](/docs/12.AI/Hugging%20Face.md) 生态的。因为 Hugging Face 出来的最早，生态比较完善，并且也占用了 Python 第三方库的 transformers 名字。
+>
+> 除了 Hugging Face 生态，还有其他可用的 Transformer 框架：
+>
+> - **MindSpore NLP** # 华为全栈 AI 生态中，[MindSpore](/docs/12.AI/科学计算/MindSpore.md) 计算框架衍生出来的 MindSpore NLP 框架让我们可以在昇腾硬件上使用 Transformer 架构的模型
+>     - 同时，也可以让我们可以在昇腾硬件上使用 Hugging Face 生态的能力
+
+Hugging Face 生态的 Transformer 库可以对接多种计算框架：
 
 - [PyTorch](/docs/12.AI/科学计算/PyTorch.md)
   - 注意：安装 PyTorch 时，安装 GPU 版的。如果我们想要使用 GPU 但是却安装的 CPU 版的 PyTorch，将会报错：`Torch not compiled with CUDA enabled`。说白了就是下载的 PyTorch 不是在 CUDA 环境下编译的，无法处理 CUDA 的请求。
 - TensorFlow
 
-只安装 Transformers
+安装 Hugging Face 生态的 Transformer：
 
 ```bash
 uv add transformers
 ```
 
-安装完 Transformers 包后，可以根据需要安装 PyTorch、TensorFlow 等深度学习的的包。
+安装完 transformers 包后，可以根据需要安装 PyTorch、TensorFlow 等计算框架。
 
 ## 快速体验
 
@@ -143,8 +151,8 @@ transformers 库会自动从 Hugging Face 中下载名为 sentiment-analysis 的
 
 ```python
 from transformers import AutoTokenizer, AutoModel
-tokenizer = AutoTokenizer.from_pretrained("D:\Projects\DesistDaydream\python-transformers\chatglm-6b-int4", trust_remote_code=True)
-model = AutoModel.from_pretrained("D:\Projects\DesistDaydream\python-transformers\chatglm-6b-int4",trust_remote_code=True).float()
+tokenizer = AutoTokenizer.from_pretrained("D:\projects\DesistDaydream\python-transformers\chatglm-6b-int4", trust_remote_code=True)
+model = AutoModel.from_pretrained("D:\projects\DesistDaydream\python-transformers\chatglm-6b-int4",trust_remote_code=True).float()
 model = model.eval()
 response, history = model.chat(tokenizer, "你好", history=[])
 print(response)

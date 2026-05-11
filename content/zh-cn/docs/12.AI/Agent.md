@@ -137,3 +137,13 @@ Zechner 的逻辑很直接：编程的本质就是读代码、写代码、改代
 ——完——
 
 [@北方的郎](https://www.zhihu.com/people/7af62e4119791a452e88718cb5ccc0be) · 专注模型与代码
+
+# 常见 Agent
+
+[Claude code](https://claude.com/product/claude-code)
+
+[Codex](https://chatgpt.com/codex/)
+
+Claude code 代码泄露了出来的各种 Agent
+
+- [AtomCode](https://atomcode.atomgit.com/)

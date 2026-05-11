@@ -18,6 +18,13 @@ PyTorch 是一个使用 [Torch](/docs/12.AI/科学计算/Torch.md) 构建的 Pyt
 - 带有强大 GPU 加速的张量计算（类似于 NumPy）
 - 基于计算图的自动微分系统构建的深度神经网络
 
+PyTorch 扩展了 Torch 的能力，实现了**计算框架**的功能。
+
+其他类似的计算框架
+
+- TensorFlow
+- [MindSpore](/docs/12.AI/科学计算/MindSpore.md) 核心
+
 ## 安装 PyTorch
 
 > 参考：
