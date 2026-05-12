@@ -1,8 +1,8 @@
 ---
-title: "MindSpore"
-linkTitle: "MindSpore"
-created: "2026-05-11T16:49"
-weight: 100
+title: MindSpore
+linkTitle: MindSpore
+created: 2026-05-11T16:49
+weight: 70
 ---
 
 # 概述

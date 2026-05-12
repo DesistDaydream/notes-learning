@@ -1,7 +1,7 @@
 ---
 title: PyTorch
 linkTitle: PyTorch
-weight: 20
+weight: 60
 tags:
   - Python
 ---
