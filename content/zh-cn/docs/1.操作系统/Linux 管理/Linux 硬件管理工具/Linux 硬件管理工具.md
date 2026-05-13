@@ -58,7 +58,7 @@ smartctl -a /dev/sda
 
 - `lshw -class usb`
 
-# 从 sys 文件系统中获取 Linux 硬件信息
+# Linux 硬件信息获取
 
 
 > 参考：
@@ -67,13 +67,31 @@ smartctl -a /dev/sda
 
 在 `linux` 上可以通过 [`dmidecode`](/docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/dmidecode.md) 或是 `lshw` 来获取硬件信息，能够方便的查看系统配置。但它们的输出信息过多，解析起来有些麻烦，另外 `lshw` 对 `usb` 接口的网卡支持不好，显示的信息不够，所以在此整理下通过读文件或是一些简单命令来获取硬件信息的方法。
 
-# DMI
+# sysfs 中的 DMI
 
-一般情况下内核默认加载了 `dmi sysfs` ，路径是 `/sys/class/dmi` 。里面包含了 `bios` ， `board` ， `product` 等信息。
+一般情况下内核默认加载了 dmi [sysfs](docs/1.操作系统/Kernel/Filesystem/特殊文件系统/sysfs.md) ，路径是 `/sys/class/dmi` 。里面包含了 `bios` ， `board` ， `product` 等信息。
+
+## product
+
+产品信息
+
+通过命令 `ls -l /sys/class/dmi/id/product_*` 可以看到支持的 `product` 字段，如下：
+
+```bash
+~]# ls -l /sys/class/dmi/id/product_*
+-r--r--r-- 1 root root 4096 Feb  3 10:45 /sys/class/dmi/id/product_name
+-r-------- 1 root root 4096 Feb  3 10:45 /sys/class/dmi/id/product_serial
+-r-------- 1 root root 4096 Mar 21 20:28 /sys/class/dmi/id/product_uuid
+-r--r--r-- 1 root root 4096 Feb  3 10:45 /sys/class/dmi/id/product_version
+```
+
+直接读文件即可获取对应值，但有些文件需要 `root` 权限。
+
+其中 `product_uuid` 可作为机器的唯一 `ID` 。
 
 ## bios
 
-BISO 信息
+BIOS 信息
 
 通过命令 `ls -l /sys/class/dmi/id/bios_*` 可以看到支持的 `bios` 字段，如下：
 
@@ -106,24 +124,6 @@ BISO 信息
 ## chassis
 
 机架信息
-
-## product
-
-产品信息
-
-通过命令 `ls -l /sys/class/dmi/id/product_*` 可以看到支持的 `product` 字段，如下：
-
-```bash
-~]# ls -l /sys/class/dmi/id/product_*
--r--r--r-- 1 root root 4096 Feb  3 10:45 /sys/class/dmi/id/product_name
--r-------- 1 root root 4096 Feb  3 10:45 /sys/class/dmi/id/product_serial
--r-------- 1 root root 4096 Mar 21 20:28 /sys/class/dmi/id/product_uuid
--r--r--r-- 1 root root 4096 Feb  3 10:45 /sys/class/dmi/id/product_version
-```
-
-直接读文件即可获取对应值，但有些文件需要 `root` 权限。
-
-其中 `product_uuid` 可作为机器的唯一 `ID` 。
 
 # CPU(处理器)
 

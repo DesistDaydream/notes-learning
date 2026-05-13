@@ -8,10 +8,6 @@ weight: 20
 
 > 参考：
 >
-> -
-
-> 参考：
->
 > - [GitHub 项目，lyonel/lshw](https://github.com/lyonel/lshw)
 > - [官网](http://lshw.ezix.org/)
 

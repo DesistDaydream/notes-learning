@@ -9,10 +9,10 @@ weight: 50
 
 > 参考：
 >
-> - 
+> -
 
 AI 中的 **Computing framework(计算框架)** 通常也称为 深度学习框架
 
-[PyTorch](docs/12.AI/科学计算/PyTorch.md)
+[PyTorch](/docs/12.AI/科学计算/PyTorch.md)
 
-[MindSpore](docs/12.AI/科学计算/MindSpore.md)
+[MindSpore](/docs/12.AI/科学计算/MindSpore.md)

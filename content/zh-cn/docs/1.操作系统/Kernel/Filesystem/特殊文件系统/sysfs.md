@@ -234,6 +234,8 @@ lrwxrwxrwx  1 root root 0 9月   1 10:50 wg0 -> ../../devices/virtual/net/wg0/
 
 - 目录中的信息详见 [Linux 网络设备](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Linux%20网络设备/Linux%20网络设备.md)。
 
+**/sys/class/dmi/** # [DMI](/docs/Standard/IT/DMTF.md#DMI) 信息
+
 TODO: etc.
 
 # /sys/dev/

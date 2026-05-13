@@ -9,10 +9,11 @@ weight: 20
 > 参考：
 >
 > - [官网](https://www.nongnu.org/dmidecode/)
-> - [Wiki, dmidecode](https://en.wikipedia.org/wiki/Dmidecode)
 > - Manual(手册)，dmidecode
+> - [Ubuntu 手册, dmidecode]()
+> - [Wiki, dmidecode](https://en.wikipedia.org/wiki/Dmidecode)
 
-dmidecode 命令可以让我们在 Linux 系统下获取有关硬件方面的信息。dmidecode 的作用是将 [DMI](/docs/Standard/IT/DMTF.md#DMI) 数据库中的信息解码，以可读的文本方式显示。由于 DMI 信息可以人为修改，因此里面的信息不一定是系统准确的信息。dmidecode 遵循 SMBIOS/DMI 标准，其输出的信息包括BIOS、系统、主板、处理器、内存、缓存等等。
+dmidecode 命令可以让我们在 Linux 系统下获取有关硬件方面的信息。dmidecode 的作用是将数据库中的信息解码，以可读的文本方式显示。由于 DMI 信息可以人为修改，因此里面的信息不一定是系统准确的信息。dmidecode 遵循 [DMTF](docs/Standard/IT/DMTF.md) 的 SMBIOS/DMI 标准，其输出的信息包括 BIOS、系统、主板、处理器、内存、缓存、etc. 。
 
 dmidecode 附带三个额外的工具：
 
@@ -22,7 +23,7 @@ dmidecode 附带三个额外的工具：
 
 ## DMI 类型
 
-SMBIOS规范定义了以下DMI类型:
+截止到 XXXX-XX-XX 的 YY 版本的 SMBIOS 规范，定义了以下 DMI 类型:
 
 ```
 Type   Information
@@ -71,10 +72,15 @@ Type   Information
    41   Onboard Devices Extended Information
    42   Management Controller Host Interface
 
- Additionally,  type 126 is used for disabled entries and type 127 is an end-of-table marker. Types 128 to 255 are for OEM-specific data.  dmidecode will display these entries by
- default, but it can only decode them when the vendors have contributed documentation or code for them.
+此外：
 
- Keywords can be used instead of type numbers with --type.  Each keyword is equivalent to a list of type numbers:
+ • 类型 `126` 用于表示已禁用（disabled）的条目；
+ • 类型 `127` 用作表结束标记（end-of-table marker）；
+ • 类型 `128` 到 `255` 保留用于 OEM（厂商）自定义数据。
+
+`dmidecode` 默认会显示这些条目，但只有在硬件厂商提供了相关文档或解析代码的情况下，它才能正确解码这些内容。
+
+在 `--type` 参数中，可以使用 Keywork(关键字) 代替类型编号。每个关键字都等价于一组类型编号:
 
  Keyword     Types
  ──────────────────────────────
@@ -88,7 +94,7 @@ Type   Information
  connector   8
  slot        9
 
- Keywords are matched case-insensitively. The following command lines are equivalent:
+关键字的匹配不区分大小写。以下命令行是等效的：
 
  • dmidecode --type 0 --type 13
  • dmidecode --type 0,13
@@ -96,13 +102,19 @@ Type   Information
  • dmidecode --type BIOS
 ```
 
+# 关联文件与配置
+
+- /dev/mem
+- /sys/firmware/dmi/tables/smbios_entry_point (Linux only)
+- /sys/firmware/dmi/tables/DMI (Linux only)
+
 # Syntax(语法)
 
 **dmidecode \[OPTIONS]**
 
 **OPTIONS**
 
-- **-t, --type STRING** # 只显示指定类型的条目。可用的值可以使 DMI 类型编号、以逗号分隔的类型编号列表、关键字(详见 [DMI 类型](#DMI%20类型))
+- **-t, --type**(STRING) # 只显示指定类型的条目。可用的值有: DMI 类型编号、以逗号分隔的类型编号列表、关键字(详见 [DMI 类型](#DMI%20类型))
 
 # EXAMPLE
 
@@ -181,22 +193,22 @@ Linux 查看内存的频率：
 内存槽及内存条：
 
 ```bash
-dmidecode |grep -A16 "Memory Device$"
+dmidecode | grep -A16 "Memory Device$"
 ```
 
 ```bash
-dmidecode|grep -P 'Maximum\s+Capacity'    //最大支持几G内存
-dmidecode|grep -P -A5 "Memory\s+Device"|grep Size|grep -v Range       //总共几个插槽，已使用几个插槽
-Size: 1024 MB       //此插槽有1根1G内存
-Size: 1024 MB       //此插槽有1根1G内存
-Size: 1024 MB       //此插槽有1根1G内存
-Size: 1024 MB       //此插槽有1根1G内存
-Size: No Module Installed       //此插槽未使用
-Size: No Module Installed       //此插槽未使用
+dmidecode | grep -P 'Maximum\s+Capacity'    # 最大支持几G内存
+dmidecode | grep -P -A5 "Memory\s+Device"|grep Size|grep -v Range       # 总共几个插槽，已使用几个插槽
+Size: 1024 MB       # 此插槽有1根1G内存
+Size: 1024 MB       # 此插槽有1根1G内存
+Size: 1024 MB       # 此插槽有1根1G内存
+Size: 1024 MB       # 此插槽有1根1G内存
+Size: No Module Installed       # 此插槽未使用
+Size: No Module Installed       # 此插槽未使用
 ```
 
 ```bash
-  ~]# dmidecode -t 17        //数字17是dmidecode的参数，本文最后有其他数字参数
+  ~]# dmidecode -t 17        # 数字17是dmidecode的参数，本文最后有其他数字参数
     # dmidecode 2.7
     SMBIOS 2.4 present.
     Handle 0x0015, DMI type 17, 27 bytes.

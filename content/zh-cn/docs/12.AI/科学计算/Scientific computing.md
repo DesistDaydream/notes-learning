@@ -9,8 +9,8 @@ weight: 1
 
 > 参考：
 >
-> - 
+> -
 
-[NumPy](docs/12.AI/科学计算/NumPy.md)
+[NumPy](/docs/12.AI/科学计算/NumPy.md)
 
-[Torch](docs/12.AI/科学计算/Torch.md)
+[Torch](/docs/12.AI/科学计算/Torch.md)
