@@ -230,7 +230,7 @@ MemTotal:       263570816 kB
 硬盘信息这里使用 `lsblk` 来获取，通过指定它的参数来获取，如：
 
 ```json
-$ lsblk -J -bno NAME,SERIAL,TYPE,SIZE,VENDOR,MODEL,MOUNTPOINT,UUID
+~]# lsblk -J -bno NAME,SERIAL,TYPE,SIZE,VENDOR,MODEL,MOUNTPOINT,UUID
 {
    "blockdevices": [
       {"name": "sda", "serial": "TF0500WE0GAV0V", "type": "disk", "size": "500107862016", "vendor": "ATA     ", "model": "HGST HTS725050A7", "mountpoint": null,
@@ -249,8 +249,6 @@ $ lsblk -J -bno NAME,SERIAL,TYPE,SIZE,VENDOR,MODEL,MOUNTPOINT,UUID
 参数的含义通过 `lsblk -h` 命令查看。
 
 **只有 `type` 为 `disk` 时才表示为一块硬盘，其它如 `loop` 则应该过滤掉。** 每块硬盘中的 `children` 表示它下面的分区，通过 `mountpoint` 可确定硬盘在此系统上的使用情况。
-
-`lsscsi`
 
 ```bash
 ~]# lsscsi

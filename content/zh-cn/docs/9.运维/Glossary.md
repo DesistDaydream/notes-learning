@@ -1,6 +1,15 @@
 ---
 title: Glossary
+linkTitle: Glossary
+created: 2026-05-18T18:40
+weight: 100
 ---
+
+# 概述
+
+> 参考：
+>
+> - 
 
 # 部署环境
 
@@ -85,14 +94,23 @@ deployment_environment
 ## 常见问题
 
 a. 不以用途(如 db1/nginx1 等)来命名的原因
+
 因使用云主机时要突出的内容并不是用途, 故标记了地区/供应商/系统版本等.
+
 b. 云主机供应商缩写非权威
+
 目前，没有权威机构编制了云主机供应商的代号
+
 c. 为什么选用 UN/LOCODE 码，而不是 IATA 城市代码
+
 使用全拼太长, 取首字母易混淆, 例如 sz 无法区分深圳和苏州；
+
 UN/LOCODE 码比 IATA 码能覆盖更多特定的位置，而且具有定义良好的标准。
+
 d. 使用 5 个随机字符而不是 ip 地址后 3 位，或者使用 001 编号.
+
 随机字符可以解决标记冲突的问题, 既足够使用又不至于太长.
+
 ip 地址后三位有冲突的风险，而标记数字在服务器过少(如只有 001 编号)时, 显得突兀。
 
 ## 附录
@@ -164,15 +182,16 @@ e. 主机功能编号
 - ups Uninterruptible Power Supply
 
 ## 参考资料
-[1. 怎么制定一套合适的服务器命名方案](https://cloud.tencent.com/developer/article/1114482)
-\[2. Airline and Location Code Search]https://www.iata.org/en/publications/directories/code-search/?airport.search=shenzhen
-[3. 我如何标记自己的公有云服务器实例](https://www.jianshu.com/p/9cxmD4)
-[4. 我如何标记自己的公有云服务器实例](http://v.colinlee.fish/posts/how-do-i-mark-my-public-cloud-instances.html)
-[5. 什么是 staging server](https://blog.csdn.net/blade2001/article/details/7194895)
-[6. 软件生命周期中要经历的几种环境](https://blog.csdn.net/yy19890521/article/details/82345963)
-[7. 概要文件、节点、服务器、主机和单元的命名注意事项](https://www.ibm.com/support/knowledgecenter/zh/SSFTBX_8.5.6/com.ibm.wbpm.imuc.doc/topics/cins_naming.html)
-[8. RFC 1178 - Choosing a name for your computer](http://www.faqs.org/rfcs/rfc1178.html)
-[9. Ops：命名规范](https://www.cnblogs.com/William-Guozi/p/Ops_nameRules.html)
-[10. 对服务器 rDNS/Hostname 命名的一次探索](https://nova.moe/explore-in-server-rdns-and-hostname/)
-[11. 主机名命名规范](https://www.cnblogs.com/kaishirenshi/p/10249072.html)
-[12. 创建使用自定义主机名的虚拟机实例](https://cloud.google.com/compute/docs/instances/custom-hostname-vm#limitations)
+
+- [1. 怎么制定一套合适的服务器命名方案](https://cloud.tencent.com/developer/article/1114482)
+- \[2. Airline and Location Code Search]https://www.iata.org/en/publications/directories/code-search/?airport.search=shenzhen
+- [3. 我如何标记自己的公有云服务器实例](https://www.jianshu.com/p/9cxmD4)
+- [4. 我如何标记自己的公有云服务器实例](http://v.colinlee.fish/posts/how-do-i-mark-my-public-cloud-instances.html)
+- [5. 什么是 staging server](https://blog.csdn.net/blade2001/article/details/7194895)
+- [6. 软件生命周期中要经历的几种环境](https://blog.csdn.net/yy19890521/article/details/82345963)
+- [7. 概要文件、节点、服务器、主机和单元的命名注意事项](https://www.ibm.com/support/knowledgecenter/zh/SSFTBX_8.5.6/com.ibm.wbpm.imuc.doc/topics/cins_naming.html)
+- [8. RFC 1178 - Choosing a name for your computer](http://www.faqs.org/rfcs/rfc1178.html)
+- [9. Ops：命名规范](https://www.cnblogs.com/William-Guozi/p/Ops_nameRules.html)
+- [10. 对服务器 rDNS/Hostname 命名的一次探索](https://nova.moe/explore-in-server-rdns-and-hostname/)
+- [11. 主机名命名规范](https://www.cnblogs.com/kaishirenshi/p/10249072.html)
+- [12. 创建使用自定义主机名的虚拟机实例](https://cloud.google.com/compute/docs/instances/custom-hostname-vm#limitations)

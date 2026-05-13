@@ -822,6 +822,7 @@
       "children": [
         "docs/1.操作系统/Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/_index.md",
         "docs/1.操作系统/Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/磁盘与文件系统管理工具.md",
+        "docs/1.操作系统/Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/LVM.md",
         "docs/1.操作系统/Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/文件系统管理工具.md",
         "docs/1.操作系统/Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/dd 生成指定大小的文件.md",
         "docs/1.操作系统/Linux 管理/Linux 系统管理工具/磁盘与文件系统管理工具/pt-ioprofile.md",

@@ -177,6 +177,12 @@ Size: No Module Installed
 Size: No Module Installed
 ```
 
+查看已经查了内存的插槽
+
+```bash
+dmidecode -t memory | grep "^[[:space:]]*Size: [0-9]"
+```
+
 Linux 查看内存的频率：
 
 ```bash
@@ -205,82 +211,4 @@ Size: 1024 MB       # 此插槽有1根1G内存
 Size: 1024 MB       # 此插槽有1根1G内存
 Size: No Module Installed       # 此插槽未使用
 Size: No Module Installed       # 此插槽未使用
-```
-
-```bash
-  ~]# dmidecode -t 17        # 数字17是dmidecode的参数，本文最后有其他数字参数
-    # dmidecode 2.7
-    SMBIOS 2.4 present.
-    Handle 0x0015, DMI type 17, 27 bytes.
-    Memory Device
-      Array Handle: 0x0013
-      Error Information Handle: Not Provided
-      Total Width: 72 bits
-      Data Width: 64 bits
-      Size: 2048 MB 【插槽1有1条2GB内存】
-      Form Factor: DIMM
-      Set: None
-      Locator: DIMM00
-      Bank Locator: BANK
-      Type: Other
-      Type Detail: Other
-      Speed: 667 MHz (1.5 ns)
-      Manufacturer:
-      Serial Number: BZACSKZ001
-      Asset Tag: RAM82
-      Part Number: MT9HTF6472FY-53EA2
-    Handle 0x0017, DMI type 17, 27 bytes.
-    Memory Device
-      Array Handle: 0x0013
-      Error Information Handle: Not Provided
-      Total Width: 72 bits
-      Data Width: 64 bits
-      Size: 2048 MB 【插槽2有1条2GB内存】
-      Form Factor: DIMM
-      Set: None
-      Locator: DIMM10
-      Bank Locator: BANK
-      Type: Other
-      Type Detail: Other
-      Speed: 667 MHz (1.5 ns)
-      Manufacturer:
-      Serial Number: BZACSKZ001
-      Asset Tag: RAM83
-      Part Number: MT9HTF6472FY-53EA2
-    Handle 0x0019, DMI type 17, 27 bytes.
-    Memory Device
-      Array Handle: 0x0013
-      Error Information Handle: Not Provided
-      Total Width: 72 bits
-      Data Width: 64 bits
-      Size: 2048 MB 【插槽3有1条2GB内存】
-      Form Factor: DIMM
-      Set: None
-      Locator: DIMM20
-      Bank Locator: BANK
-      Type: Other
-      Type Detail: Other
-      Speed: 667 MHz (1.5 ns)
-      Manufacturer:
-      Serial Number: BZACSKZ001
-      Asset Tag: RAM84
-      Part Number: MT9HTF6472FY-53EA2
-    Handle 0x001B, DMI type 17, 27 bytes.
-    Memory Device
-      Array Handle: 0x0013
-      Error Information Handle: Not Provided
-      Total Width: 72 bits
-      Data Width: 64 bits
-      Size: 2048 MB 【插槽4有1条2GB内存】
-      Form Factor: DIMM
-      Set: None
-      Locator: DIMM30
-      Bank Locator: BANK
-      Type: Other
-      Type Detail: Other
-      Speed: 667 MHz (1.5 ns)
-      Manufacturer:
-      Serial Number: BZACSKZ001
-      Asset Tag: RAM85
-      Part Number: MT9HTF6472FY-53EA2
 ```
