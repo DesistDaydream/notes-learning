@@ -1,7 +1,7 @@
 ---
-title: "DNS 加密"
-linkTitle: "DNS 加密"
-weight: 20
+title: DNS 加密
+linkTitle: DNS 加密
+weight: 100
 ---
 
 # 概述

@@ -1,7 +1,7 @@
 ---
 title: bit 与 Byte
 linkTitle: bit 与 Byte
-weight: 20
+weight: 100
 ---
 
 # 概述

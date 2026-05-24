@@ -88,7 +88,9 @@ https://github.com/jackwener/opencli
 
 https://github.com/HKUDS/CLI-Anything
 
-# ChatGPT
+# AI 在线服务
+
+## ChatGPT
 
 [ChatGPT](/docs/12.AI/AI%20Projects/ChatGPT.md)
 
@@ -96,7 +98,7 @@ Agent 工具: CodeX
 
 [LINUX DO，你们赢了，但我却没有输](https://linux.do/t/topic/1051/)
 
-# Claude
+## Claude
 
 > 参考：
 >
@@ -108,7 +110,7 @@ Claude 早期可以作为 [Slack](/docs/Utils/即时通信/Slack.md) 的应用�
 
 Agent 工具: ClaudeCode
 
-# DeepSeek
+## DeepSeek
 
 > 参考：
 >
@@ -118,20 +120,24 @@ https://github.com/deepseek-ai/DeepSeek-V3/blob/main/inference/model.py 核心
 
 模型解释: [B 站 - 秋葉aaaki，动态](https://www.bilibili.com/opus/1027408073324494885)
 
-# Bard
+## Bard
 
 https://bard.google.com/
 
 google
 
-# 文心一言
+## 文心一言
 
 https://yiyan.baidu.com/
 
 百度
 
-# 通义千问
+## 通义千问
 
 https://tongyi.aliyun.com/
 
 阿里
+
+# AI 在线服务聚合
+
+[GitHub 项目，songquanpeng/one-api](https://github.com/songquanpeng/one-api)

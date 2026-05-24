@@ -74,7 +74,7 @@ Makefile 文件由一系列规则（rules）构成。每条规则的形式如下
 
 **Target(目标)** # 一个或多个要生成的文件名，或者[内置目标名称](https://www.gnu.org/software/make/manual/html_node/Special-Targets.html#Special-Targets)。e.g. 可执行文件、目标文件、etc. 都是一个 Target。
 
-- Target 也可以是要执行操作的名称，比如 clean。通常都以 `.PHONY` 关键字定义，e.g. `.PHONY : clena`
+- Target 也可以是要执行操作的名称，比如 clean。通常都以 `.PHONY` 关键字定义，e.g. `.PHONY : clean`
 
 **Prerequisites(前置条件)** # 一个或多个用于创建 Target 的 “输入文件” 或 “其他 Target”。
 

@@ -1,5 +1,7 @@
 ---
 title: DDNS
+linkTitle: DDNS
+weight: 100
 ---
 
 # 概述

@@ -1,5 +1,7 @@
 ---
 title: DNS
+linkTitle: DNS
+weight: 1
 ---
 
 # 概述
@@ -367,6 +369,6 @@ DNSPod https://www.dnspod.cn/
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/msw4yv/1656167438257-cf4f1287-4ce6-4ca1-b7b7-3814937ebe74.png)
 
-这个是由于在国内的服务器，都会收到服务器所在 IDC 的限制，这些 IDC 会在最外层部署一套检测服务，用以检查每个标准端口(80 和 443)的请求域名是否已经备案，若没有备案，该请求 IDC 则不会放行到服务器上。
+这个是由于在国内的服务器，会受到服务器所在 IDC 的限制，这些 IDC 会在最外层部署一套检测服务，用以检查每个标准端口(80 和 443)的请求域名是否已经备案，若没有备案，该请求 IDC 则不会放行到服务器上。
 
 DNS 污染、GFW、SNI 阻断，这是三座大山

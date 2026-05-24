@@ -1,5 +1,7 @@
 ---
 title: DNSmasq
+linkTitle: DNSmasq
+weight: 10
 ---
 
 # 概述
