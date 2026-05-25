@@ -438,4 +438,3 @@ https://headscale.net/stable/ref/acls
   ]
 }
 ```
-
