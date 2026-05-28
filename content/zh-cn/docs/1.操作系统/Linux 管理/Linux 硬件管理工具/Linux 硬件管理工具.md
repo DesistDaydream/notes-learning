@@ -69,7 +69,7 @@ smartctl -a /dev/sda
 
 # sysfs 中的 DMI
 
-一般情况下内核默认加载了 dmi [sysfs](docs/1.操作系统/Kernel/Filesystem/特殊文件系统/sysfs.md) ，路径是 `/sys/class/dmi` 。里面包含了 `bios` ， `board` ， `product` 等信息。
+一般情况下内核默认加载了 dmi [sysfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/sysfs.md) ，路径是 `/sys/class/dmi` 。里面包含了 `bios` ， `board` ， `product` 等信息。
 
 ## product
 

@@ -2606,7 +2606,8 @@
         "docs/6.可观测性/Grafana/Dashboard/Panel",
         "docs/6.可观测性/Grafana/Dashboard/Time series 面板",
         "docs/6.可观测性/Grafana/Dashboard/Table 面板.md",
-        "docs/6.可观测性/Grafana/Dashboard/Variable.md"
+        "docs/6.可观测性/Grafana/Dashboard/Variable.md",
+        "docs/6.可观测性/Grafana/Dashboard/Repeat.md"
       ],
       "sortOrder": "custom"
     },

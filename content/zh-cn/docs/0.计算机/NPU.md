@@ -84,7 +84,7 @@ KunLun G2280
 - 驱动: Ascend-hdk-310p-npu-driver_25.5.2_linux-aarch64.run
 - 固件: Ascend-hdk-310p-npu-firmware_7.8.0.7.220.run
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/20260429103422812.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/computer/npu/download-driver-and-firmware.png)
 
 通过 [DevTools](/docs/Web/Browser/DevTools.md) 工具获取下载链接，在服务器中使用 wget, curl, etc. 工具下载
 

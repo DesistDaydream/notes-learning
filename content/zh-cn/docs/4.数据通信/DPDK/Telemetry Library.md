@@ -291,7 +291,7 @@ static const struct rte_eth_xstats_name_off eth_dev_stats_strings[] = {
 
 > Tips: 为什么是 `dev->dev_ops->xstats_get_names` 而不是 `dev->eth_dev_ops->xstats_get_names`？因为在 ethdev_driver.h 文件中声明了 `const struct eth_dev_ops *dev_ops;`
 
-![](https://notes-learning.oss-cn-beijing.aliyuncs.com/xstats_get_names-reference.png)
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/dpdk/xstats_get_names-reference.png)
 
 以 i40e 驱动为例，找到 [i40e_dev_xstats_get_names](https://github.com/DPDK/dpdk/blob/cd60dcd503b91956f966a1f6d595b35d256ac00f/drivers/net/intel/i40e/i40e_ethdev.c#L3626) 的具体实现逻辑
 
