@@ -35,7 +35,9 @@ yum install gcc make -y
 
 mingw-w64 项目是完整的运行时环境，支持 gcc 编译生成本地运行于 Windows 64 位和 32 位操作系统的二进制文件。
 
-打开 sourceforge 中的 [MinGW-w64](https://sourceforge.net/projects/mingw-w64/) 页面，在 [file 标签页](https://sourceforge.net/projects/mingw-w64/files/)中，下载 [x86_64-win32-seh](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-win32/seh/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z) 这个版本并安装即可。这是一个 tar 包，解压完成后，需要在 Windows 的 ${PATH} 环境变量中，添加解压出来的 bin 目录，通常都在 `PATH\TO\x86_64-8.1.0-release-win32-seh-rt_v6-rev0\mingw64\bin` 这里
+打开 sourceforge 中的 [MinGW-w64](https://sourceforge.net/projects/mingw-w64/) 页面，在 [file 标签页](https://sourceforge.net/projects/mingw-w64/files/)中，下载 [x86_64-win32-seh](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-win32/seh/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z)（连接里有路径，只不过版本太老了） 这个版本并安装即可。这是一个 tar 包，解压完成后，需要在 Windows 的 ${PATH} 环境变量中，添加解压出来的 bin 目录，通常都在 `PATH\TO\x86_64-8.1.0-release-win32-seh-rt_v6-rev0\mingw64\bin` 这里
+
+https://winlibs.com/ 是一个专为 Microsoft Windows 平台提供免费、开源的 GCC（GNU 编译器集合）和 LLVM/Clang（C/C++ 编译器）独立二进制发行版的网站。让开发者无需复杂的配置，即可直接在 Windows 上编译和构建 C/C++ 项目。
 
 ### 其他 GCC 整合
 
