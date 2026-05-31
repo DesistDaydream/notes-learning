@@ -1,6 +1,5 @@
 ---
 title: Time
-linkTitle: Time
 weight: 20
 ---
 

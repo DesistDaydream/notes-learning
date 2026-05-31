@@ -1,5 +1,6 @@
 ---
 title: UUID 与 ULID
+weight: 100
 ---
 
 # 概述

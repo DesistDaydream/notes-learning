@@ -3195,10 +3195,11 @@
         "docs/8.通用技术/编码与解码",
         "docs/8.通用技术/Scheduling.md",
         "docs/8.通用技术/Cache.md",
-        "docs/8.通用技术/Job",
         "docs/8.通用技术/CDN",
         "docs/8.通用技术/Message Queue(消息队列)",
         "docs/8.通用技术/ServiceDiscovery",
+        "docs/8.通用技术/Architecture",
+        "docs/8.通用技术/Job",
         "docs/8.通用技术/Regular Expression(正则表达式).md",
         "docs/8.通用技术/UUID 与 ULID.md",
         "docs/8.通用技术/Time.md"
@@ -3224,6 +3225,13 @@
         "docs/8.通用技术/编码与解码/字符的编码与解码/字符的编码与解码.md",
         "docs/8.通用技术/编码与解码/字符的编码与解码/控制字符.md",
         "docs/8.通用技术/编码与解码/字符的编码与解码/ASCII 表.md"
+      ],
+      "sortOrder": "custom"
+    },
+    "docs/8.通用技术/Architecture": {
+      "children": [
+        "docs/8.通用技术/Architecture/_index.md",
+        "docs/8.通用技术/Architecture/Architecture.md"
       ],
       "sortOrder": "custom"
     },
@@ -3269,6 +3277,7 @@
     },
     "docs/8.通用技术/ServiceDiscovery": {
       "children": [
+        "docs/8.通用技术/ServiceDiscovery/_index.md",
         "docs/8.通用技术/ServiceDiscovery/ServiceDiscovery.md"
       ],
       "sortOrder": "custom"
@@ -4902,7 +4911,6 @@
         "docs/Standard/IT",
         "docs/Standard/Internet",
         "docs/Standard/Agent 与 Proxy.md",
-        "docs/Standard/Architecture(架构).md",
         "docs/Standard/B_S 和 C_S 架构.md",
         "docs/Standard/南北流量和东西流量.md",
         "docs/Standard/中国行政区划及代码.md",

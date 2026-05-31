@@ -1,7 +1,7 @@
 ---
 title: ServiceDiscovery
 linkTitle: ServiceDiscovery
-weight: 20
+weight: 1
 ---
 
 # 概述

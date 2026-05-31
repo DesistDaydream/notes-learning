@@ -1,6 +1,5 @@
 ---
 title: Job
-linkTitle: Job
 weight: 1
 ---
 
