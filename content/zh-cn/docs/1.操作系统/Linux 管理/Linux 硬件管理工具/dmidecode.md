@@ -17,7 +17,7 @@ dmidecode 命令可以让我们在 Linux 系统下获取有关硬件方面的信
 
 dmidecode 附带三个额外的工具：
 
-- biosdecode 打印它能找到的所有 BIOS 相关信息（参见[示例输出](https://www.nongnu.org/dmidecode/sample/biosdecode.txt)）；
+- biosdecode 打印它能找到的所有 BIOS 相关信息（参见 [示例输出](https://www.nongnu.org/dmidecode/sample/biosdecode.txt)）；
 - ownership 检索可以在 Compaq 计算机上设置的“所有权标签”；
 - vpddecode 打印可以在几乎所有 IBM 计算机中找到的“重要产品数据”信息（参见 [示例输出](https://www.nongnu.org/dmidecode/sample/vpddecode.txt)）。
 
@@ -186,7 +186,7 @@ dmidecode -t memory | grep "^[[:space:]]*Size: [0-9]"
 Linux 查看内存的频率：
 
 ```bash
-~]# dmidecode|grep -A16 "Memory Device"|grep 'Speed'
+~]# dmidecode | grep -A16 "Memory Device" | grep 'Speed'
         Speed: 667 MHz (1.5 ns)
         Speed: 667 MHz (1.5 ns)
         Speed: 667 MHz (1.5 ns)
@@ -212,3 +212,5 @@ Size: 1024 MB       # 此插槽有1根1G内存
 Size: No Module Installed       # 此插槽未使用
 Size: No Module Installed       # 此插槽未使用
 ```
+
+

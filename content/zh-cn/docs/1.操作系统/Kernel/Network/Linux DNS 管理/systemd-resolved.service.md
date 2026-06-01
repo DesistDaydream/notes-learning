@@ -51,11 +51,13 @@ systemd-resolved 是一个为本地应用程序提供网络名称解析的系统
 
 ### Syntax(语法)
 
-**resolvectl [OPTIONS] COMMAND [NAME...]**
+**resolvectl \[OPTIONS] COMMAND \[NAME...]**
 
 **COMMAND**
 
-- **query HOSTNAME | ADDRESS** # 解析域名以及 IPv4 和 IPv6 地址。当与 --type= 或 --class= （见下文）结合使用时，解析低级 DNS 资源记录。
+- **query HOSTNAME | ADDRESS** # 解析域名以及 IPv4 和 IPv6 地址。当与 `--type=` 或 `--class=` （见下文）结合使用时，解析低级 DNS 资源记录。
+- **status**
+- **dns**
 
 ### EXAMPLE
 

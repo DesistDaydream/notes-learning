@@ -8,27 +8,13 @@ weight: 1
 
 > 参考：
 >
-> -
+> - [jouyouyun 博客， Linux 硬件信息获取](https://jouyouyun.github.io/post/linux_hardware_info/)
 
 [dmidecode](/docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/dmidecode.md)
 
-# lshw
+[lshw](/docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/lshw.md)
 
-详见 [lshw](/docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/lshw.md)
-
-# lspci
-
-详见: [lspci](/docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/lspci.md)
-
-# smartctl
-
-smartctl -a /dev/sda
-
-# 网卡
-
-## mii-tool
-
-
+[lspci](/docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/lspci.md)
 
 # USB 管理工具
 
@@ -57,15 +43,6 @@ smartctl -a /dev/sda
 只查看有关USB设备的更详细信息
 
 - `lshw -class usb`
-
-# Linux 硬件信息获取
-
-
-> 参考：
->
-> - [jouyouyun 博客， Linux 硬件信息获取](https://jouyouyun.github.io/post/linux_hardware_info/)
-
-在 `linux` 上可以通过 [`dmidecode`](/docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/dmidecode.md) 或是 `lshw` 来获取硬件信息，能够方便的查看系统配置。但它们的输出信息过多，解析起来有些麻烦，另外 `lshw` 对 `usb` 接口的网卡支持不好，显示的信息不够，所以在此整理下通过读文件或是一些简单命令来获取硬件信息的方法。
 
 # sysfs 中的 DMI
 
@@ -227,35 +204,7 @@ MemTotal:       263570816 kB
 
 # Disk(硬盘)
 
-硬盘信息这里使用 `lsblk` 来获取，通过指定它的参数来获取，如：
-
-```json
-~]# lsblk -J -bno NAME,SERIAL,TYPE,SIZE,VENDOR,MODEL,MOUNTPOINT,UUID
-{
-   "blockdevices": [
-      {"name": "sda", "serial": "TF0500WE0GAV0V", "type": "disk", "size": "500107862016", "vendor": "ATA     ", "model": "HGST HTS725050A7", "mountpoint": null,
-         "children": [
-            {"name": "sda1", "serial": null, "type": "part", "size": "4294967296", "vendor": null, "model": null, "mountpoint": "/boot"},
-            {"name": "sda2", "serial": null, "type": "part", "size": "4294967296", "vendor": null, "model": null, "mountpoint": "[SWAP]"},
-            {"name": "sda3", "serial": null, "type": "part", "size": "1024", "vendor": null, "model": null, "mountpoint": null},
-            {"name": "sda5", "serial": null, "type": "part", "size": "107374182400", "vendor": null, "model": null, "mountpoint": "/Data"},
-            {"name": "sda6", "serial": null, "type": "part", "size": "64424509440", "vendor": null, "model": null, "mountpoint": "/"}
-         ]
-      }
-   ]
-}
-```
-
-参数的含义通过 `lsblk -h` 命令查看。
-
-**只有 `type` 为 `disk` 时才表示为一块硬盘，其它如 `loop` 则应该过滤掉。** 每块硬盘中的 `children` 表示它下面的分区，通过 `mountpoint` 可确定硬盘在此系统上的使用情况。
-
-```bash
-~]# lsscsi
-[0:0:16:0]   enclosu MSCC     SXP 36x12G       RevB  -
-[0:2:0:0]    disk    AVAGO    MR9361-8i        4.68  /dev/sda
-[0:2:1:0]    disk    AVAGO    MR9361-8i        4.68  /dev/sdb
-```
+详见 [磁盘与文件系统管理工具](/docs/1.操作系统/Linux%20管理/Linux%20系统管理工具/磁盘与文件系统管理工具/磁盘与文件系统管理工具.md#获取磁盘硬件信息) 中的 “获取磁盘硬件信息” 最佳实践。
 
 # Network(网卡)
 
@@ -276,8 +225,7 @@ lspci | grep -i Ethernet
 - 按网卡类型过滤~~
   - 过滤掉 `bridge` 类型的网卡
 
-如果网卡接口同时存在于 `/sys/class/net/` 和 `/sys/devices/virtual/net/` 中，则需要过滤掉。
-
+对于 sysfs 中的网卡信息，如果网卡接口同时存在于 `/sys/class/net/` 和 `/sys/devices/virtual/net/` 中，则需要过滤掉。
 ## Interface Name
 
 即是 `/sys/class/net/` 目录下的子目录名，这是网卡的网口在系统中对应的网络设备名称
@@ -285,35 +233,6 @@ lspci | grep -i Ethernet
 ## Mac Address
 
 读取文件 `/sys/class/net/${DEVICE}/address` 可得到
-
-## IP
-
-通过调用 `ioctl` 来获取指定 `iface name` 的 `ip` ，代码大致如下：
-
-```c
-char* get_ip_for_iface(char *iface)
-{
-    int fd;
-    struct ifreq ifr;
-    fd = socket(AF_INET, SOCK_DGRAM, 0);
-    if (fd == -1) {
-        fprintf(stderr, "open socket failed: %s", strerror(errno));
-        return;
-    }
-    // must init ifr
-    memset(&ifr, 0, sizeof(ifr));
-    ifr.ifr_addr.sa_family = AF_INET;
-    strncpy(ifr.ifr_name, name.c_str(), IFNAMSIZ - 1);
-    ioctl(fd, SIOCGIFADDR, &ifr);
-    close(fd);
-    char *c_addr = inet_ntoa(((struct sockaddr_in *)&ifr.ifr_addr)->sin_addr);
-    char *ip = calloc(strlen(c_addr)+1, sizeof(char));
-    memcpy(ip, c_addr, strlen(c_addr));
-    return ip;
-}
-```
-
-`ipv6` 的暂未测试。
 
 ## Model
 
@@ -368,6 +287,9 @@ Bus 001 Device 007: ID 0cf3:9271 Atheros Communications, Inc. AR9271 802.11n
 ```
 
 其中 `Subsystem` 之后的即是 `model` 信息。
+
+## mii-tool
+
 
 # Bluetooth
 
