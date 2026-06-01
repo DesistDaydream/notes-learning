@@ -57,6 +57,28 @@ ENGINE = PostgreSQL('10.53.192.45:5432', 'PG_Database', 'PG_Table', 'PG_Username
 
 ### MergeTree
 
+https://clickhouse.com/docs/engines/table-engines/mergetree-family/mergetree
+
+#### 特性
+
+**使用多个块设备用于数据存储**
+
+https://clickhouse.com/docs/engines/table-engines/mergetree-family/mergetree#table_engine-mergetree-multiple-volumes
+
+实现类似 [JBOD](https://en.wikipedia.org/wiki/Non-RAID_drive_architectures) 的效果，可以使用多个块设备存储数据。
+
+在 `<storage_configuration>` 标签中配置
+
+---
+
+TODO: 其他特性
+
+### Replicated
+
+https://clickhouse.com/docs/engines/table-engines/mergetree-family/replication
+
+i.e. ReplicatedMergeTree 引擎
+
 ## Special
 
 ### Distributed

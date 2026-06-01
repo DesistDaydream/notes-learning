@@ -64,9 +64,20 @@ https://clickhouse.com/docs/en/guides/sre/network-ports
 
 # ClickHouse 部署
 
-https://clickhouse.com/docs/en/install
+> 参考：
+>
+> - [官方文档，安装](https://clickhouse.com/docs/en/install)
+> - [官方文档，管理与部署](https://clickhouse.com/docs/zh/guides/manage-and-deploy-index)
 
+集群的部署涉及的细节与内容比较多：
 
+- Shard 横向扩展
+- Replica 高可用
+- Distributed coordination 共识功能
+- JBOD(Just a Bunch Of Disks) MergeTree 使用多个块设备的能力
+- etc.
+
+常见 4 节点集群（2 Shard, 2 Replica），官方亦有[示例](https://clickhouse.com/docs/zh/architecture/cluster-deployment)
 
 # CLI
 
