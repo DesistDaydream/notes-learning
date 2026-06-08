@@ -234,7 +234,12 @@ lrwxrwxrwx  1 root root 0 9月   1 10:50 wg0 -> ../../devices/virtual/net/wg0/
 
 - 目录中的信息详见 [Linux 网络设备](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Linux%20网络设备/Linux%20网络设备.md)。
 
-**/sys/class/dmi/** # [DMI](/docs/Standard/IT/DMTF.md#DMI) 信息
+**/sys/class/dmi/** # [DMI](/docs/Standard/IT/DMTF.md#DMI) 信息。
+
+- 截至 Linux kernel 7.0 版本，这里只有 0, 1, 2, 3, 9, 10, 11, 38, 41 这几类的信息
+- [drivers/firmware/dmi-id.c](https://github.com/torvalds/linux/blob/v7.0/drivers/firmware/dmi-id.c#L41) 定义了要储存 DMI 信息的文件名及变量
+- [drivers/firmware/dmi_scan.c](https://github.com/torvalds/linux/blob/v7.0/drivers/firmware/dmi_scan.c#L484) 定义了文件中信息的获取方式
+- https://claude.ai/share/9b99f683-edd2-47dd-ab17-59741584a568 AI 给出的 DMI 信息的来源，说是从 Boot 截断就把信息存到了内存里，然后直接从内存中读的，有这么几个关联的函数: `dmi_scan_machine()`, `dmi_decode()`, `dmi_ident[]`, `dmi-id.c`，最终暴露到 `/sys/class/dmi/id/` 下
 
 TODO: etc.
 

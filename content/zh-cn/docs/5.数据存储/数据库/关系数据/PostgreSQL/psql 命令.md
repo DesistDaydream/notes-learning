@@ -33,20 +33,26 @@ psql 中可以执行有多种类型的命令
 
 # Meta-Commands
 
-```sql
-\h：查看SQL命令的解释，比如 \h select。
-\?：查看psql命令列表。
-\l：列出所有数据库。
-\c [database_name]：连接其他数据库。
-\d：列出当前数据库的所有表格。
-\d [table_name]：列出某一张表格的结构。
-\du：列出所有 roles(角色)。由于 “用户” 和 “组” 的概念已统一为 “角色”，因此该命令现在相当于 \dg。
-\e：打开文本编辑器。
-\conninfo：列出当前数据库和连接的信息。
-\password USER # 为指定的 USER 设置密码
-```
+- **`\h`** # 查看 SQL 命令的解释，比如 `\h select`。
+- **`\?`** # 查看 psql 命令列表。
+- **`\l`** # 列出所有数据库。
+- **`\c [database_name]`** # 连接其他数据库。
+- **`\e`** # 打开文本编辑器。
+- **`\conninfo`** # 列出当前数据库和连接的信息。
+- **`\password USER`** # 为指定的 USER 设置密码
+
+**信息性元命令**
+
+- **`\d`**(PATTERN) # 显示 `SHOW search_path;` 查询结果中搜索路径下的所有类型（表、视图、索引、etc.）的 表 的 列、列类型、表空间、任何特殊属性。若不给出 PATTERN 则只列出表名等基础信息。
+- **`\d [table_name]`** # 列出某一张表格的结构。
+- **`\du`** # 列出所有 roles(角色)。由于 “用户” 和 “组” 的概念已统一为 “角色”，因此该命令现在相当于 \dg。
+- **`\dn`**(PATTERN) # 列出 Schema
+- **`\dX`**(PATTERN) # 列出 PATTERN 匹配到的表的基本信息。
+    - X 可以是 E, i, m, s, t, v 其中之一，分别表示 foreign table(外部表)、index(索引)、materialized view(物化视图)、sequence(序列)、table(表)、view(视图)。
 
 # 最佳实践
+
+`\dt *.*` 显示所有 Schema 下的所有表基本信息。共显示四列信息：Schema, Name, Type, Owner
 
 使用 pgadmin 用户连接本地 127.0.0.1 且监听在 5432 端口上的 PgSQL Server 中的 postgres 数据库
 

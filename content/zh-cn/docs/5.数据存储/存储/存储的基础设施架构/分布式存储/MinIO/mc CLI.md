@@ -12,7 +12,7 @@ weight: 100
 
 # 配置
 
-\~/.mc/config.json # mc 从该文件中获取将要操作的 host 信息。可以通过 mc config host 命令管理该文件，也可以直接手动编辑。
+~/.mc/config.json # mc 从该文件中获取将要操作的 host 信息。可以通过 `mc alias list` 命令管理该文件，也可以直接手动编辑。
 
 ```json
 ~]# cat ~/.mc/config.json
@@ -57,7 +57,7 @@ weight: 100
 
 COMMAND
 
-- **alias** # set, remove and list aliases in configuration file
+- **alias** # 管理配置文件中的服务器凭据
 - **ls** # 列出桶和对象
 - mb         make a bucket
 - rb         remove a bucket
@@ -93,11 +93,11 @@ COMMAND
 
 **--config-dir, -C**(STRING) # 配置文件所在目录。`默认值: ~/.mc`
 
-# config
+# alias
 
-**mc config host COMMAND \[COMMAND FLAGS | -h] \[ARGUMENTS...]**
+**mc alias COMMAND \[COMMAND FLAGS | -h] \[ARGUMENTS...]**
 
-COMMAND:
+COMMAND
 
 - add, a # 添加一个新的主机到配置文件。
 - remove, rm # 从配置文件中删除一个主机。
@@ -106,7 +106,7 @@ COMMAND:
 EXAMPLE
 
 - 添加一个 host
-  - **mc config host add miniodev130 http://10.8.208.130:9000 minioadmin minioadmin**
+  - **mc alias host add miniodev130 http://10.8.208.130:9000 minioadmin minioadmin**
 
 # ilm
 

@@ -11,7 +11,7 @@ weight: 4
 
 相关服务说明
 
-- systemd-Journald.service # 日志功能通过该 Unit 来实现，是一个用于收集和存储日志数据的系统服务，是系统启动前要启动的第一个进程，Journald 会把所有收集到的信息保存在内存中。
+- systemd-journald.service # 日志功能通过该 Unit 来实现，是一个用于收集和存储日志数据的系统服务，是系统启动前要启动的第一个进程，Journald 会把所有收集到的信息保存在内存中。
 - rsyslog.service # 另一种日志数据持久化，Journald 会把日志信息转发给 rsyslog.service 进行处理和保存，如果没有 Journald，rsyslog 也可以自动生成日志而不用从 journald 去获取
 - logrotate # logrotate 会对日志文件进行轮替操作，i.e.把已经非常大的日志文件改名后，创建一个新的日志文件，新产生的日志会保存在新文件中，老文件保留一定时期后会自动清除
 
@@ -25,7 +25,8 @@ weight: 4
 
 **/var/log/journal/${MACHINE-ID}/**
 
-默认情况下，journald 的日志保存在 /run/log/journal 中，系统重启就会清除。通过新建 /var/log/journal 目录，日志会自动记录到这个目录中，并永久存储。
+> [!Attention]
+> 默认情况下，journald 的日志保存在 /run/log/journal 中，**系统重启就会清除**。通过新建 /var/log/journal 目录，日志会自动记录到这个目录中，并永久存储。
 
 路径中的 MACHINE-ID 的值，可以通过 `cat /etc/machine-id` 命令获取
 
