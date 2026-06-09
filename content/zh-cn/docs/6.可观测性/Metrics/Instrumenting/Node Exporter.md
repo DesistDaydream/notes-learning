@@ -229,3 +229,5 @@ mkdir: cannot create directory "/home/tmp": Read-only file system
 
 - https://github.com/prometheus/node_exporter/issues/3157
 - https://github.com/prometheus/node_exporter/issues/3484
+
+在 [65902fa Commit](https://github.com/prometheus/node_exporter/commit/65902fa97a8343b97a267a024d276f9361739f8a) 修复
