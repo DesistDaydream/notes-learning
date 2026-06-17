@@ -251,7 +251,7 @@ state 模块是 conntrack 模块的子集，属于老式用法，慢慢会被淘
 
 ### INPUT 默认为 ACCEPT 情况下
 
-- iptables -P INPUT DROP
+- iptables -P INPUT ACCEPT
 
 只放开部分 IP 的 22 端口
 
@@ -361,4 +361,4 @@ EXAMPLE
 - **ipset create desistdaydream hash:net** # 创建一个 hash:net 类型的名为 desistdaydream 的 ipset
 - **ipset add desistdaydream 1.1.1.0/24** # 将 1.1.1.0/24 网段添加到名为 desistdaydream 的 ipset 中
 - **ipset flush** # 清空所有 ipset 下的 ip
-- **ipset restore -f /etc/sysconfig/ipset** # 从/etc/sysconfig/ipset 还原 ipset 的集合和条目信息
+- **ipset restore -f /etc/sysconfig/ipset** # 从 /etc/sysconfig/ipset 还原 ipset 的集合和条目信息

@@ -28,13 +28,17 @@ DevToys
 
 ## 卸载工具
 
-Revo Uninstaller # 
+Revo Uninstaller
 
 - https://www.revouninstaller.com/
 - https://www.bilibili.com/video/BV13x4y1G7Qc
   - 30天过后请按照我的教程走一遍就好了哈
 
-Geek Uninstaller # 
+IObit Uninstaller
+
+Total Uninstall
+
+Geek Uninstaller
 
 - https://geekuninstaller.com/
   - 卸载完成后扫描系统和注册表，手动选择要删除的项目

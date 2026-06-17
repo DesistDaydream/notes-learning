@@ -39,6 +39,8 @@ weight: 60
 - https://zhuanlan.zhihu.com/p/1978741652337205325
 - https://www.ibm.com/think/topics/react-agent
 
+Agent 的起点来源于 [Pi](#Pi-mono) 项目
+
 # 资料
 
 [AI Agent 本地LLM推理设备部署指南](https://llmdev.guide/) # 用真实数据说话，拒绝虚标 — 社区驱动的大模型推理设备性能数据库。PicoClaw 主家出的。
@@ -60,6 +62,7 @@ weight: 60
 > 参考：
 >
 > - [GitHub 项目，badlogic/pi-mono](https://github.com/badlogic/pi-mono)
+>     - [2026-05-07 项目迁移](https://pi.dev/news/2026/5/7/pi-has-a-new-home)到 https://github.com/earendil-works/pi
 > - [公众号，从 pi-mono 到 OpenClaw：源码拆解，21 万 Star 背后的 Agent 工程减法](https://mp.weixin.qq.com/s/qr0Ch8ii79KymUiK6kV_lA)
 > - [公众号，OpenClaw背后的英雄Pi-mono](https://mp.weixin.qq.com/s/XRZrOvapXWiZneDtipfHTQ)
 

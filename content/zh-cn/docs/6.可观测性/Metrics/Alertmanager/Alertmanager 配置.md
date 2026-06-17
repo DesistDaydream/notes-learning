@@ -54,11 +54,14 @@ weight: 2
 
 ### SMTP 相关配置
 
-**smtp_from**(TMPL_STRING) # 默认的 SMTP From 头字段。
+**smtp_from**(STRING) # 默认的 SMTP From 头字段。
 
-**smtp_smarthost**(STRING) # 用于发送电子邮件的默认 SMTP smarthost，包括端口号。端口号通常是 25 或 587(带 TLS 的 SMTP，有时称为 STARTTLS)。
+- 支持 RFC 5322 标准中定义的格式。e.g. `要展示的内容 <desistdaydream@gmail.com>`（通常都要带个 `@` 符号）
+
+**smtp_smarthost**(STRING) # 用于发送电子邮件的默认 SMTP smarthost，包括端口号。。
 
 - 示例：smtp.example.org:587
+- 端口号通常是 25 或 587(带 TLS 的 SMTP，有时称为 STARTTLS)。后来 TLS 方式改成 implicit TLS 后，端口号使用 465
 
 **smtp_hello**(STRING) # 用于识别 SMTP 服务器的默认主机名。`默认值：localhost`
 
@@ -76,7 +79,11 @@ weight: 2
 
 **smtp_require_tls**(BOOLEAN) # SMTP 是否有必须 TLS。`默认值：true`。
 
-- 注意，Go 不支持与远程 SMTP 端点的未加密连接。
+**smtp_force_implicit_tls**(BOOL) # 无论 SMTP 端口如何，均强制使用 implicit TLS(隐式TLS。这种方式默认使用 465 端口)。
+
+- 该字段自0.31 版本开始，支持 implicit_tls 配置。于[ 0.32 版本修复](https://github.com/prometheus/alertmanager/pull/5030)。
+- 若不设为 true，Alertamanger 默认使用 STARTTLS，在连接 465 端口时会报错: `err="shanxi/email[0]: notify retry canceled after 10 attempts: 'require_tls' is true (default) but \"smtp.exmail.qq.com:465\" does not advertise the STARTTLS extension`
+    - 该报错的原因：端口 `465` 使用的是 **Implicit TLS**（连接建立时直接加密），而 Alertmanager 的 `require_tls: true`（默认值）期望的是 **STARTTLS**（先明文连接，再通过协议升级加密）。两者不兼容，所以 `smtp.exmail.qq.com:465` 不响应 STARTTLS 握手。
 
 ### Slack 相关配置
 
@@ -187,6 +194,25 @@ receivers:
   - to: "desistdaydream@wisetv.com.cn"
     send_resolved: true
 ```
+
+---
+
+下面的配置可以覆盖全局默认 SMTP 信息，以便实现不同的接收者使用不同的发件人
+
+> [!Attention] 
+> 注意：若想让收件人的**独立**配置生效，`smtp_XXX` 相关的全局配置的值哪怕设置为空，也要设置。e.g. `smtp_smarthost`, `smtp_from`, `smtp_auth_username`, `smtp_auth_password`, `smtp_require_tls`, etc.
+
+- **from**(tmpl_string) # `默认值: global.smtp_from`
+- **smarthost**(string) # `默认值: global.smtp_smarthost`
+- **auth_username**(string) # `默认值: global.smtp_auth_username`
+- **auth_password**(secret) # `默认值: global.smtp_auth_password`
+- **auth_password_file**(string) # `默认值: global.smtp_auth_password_file`
+- **auth_secret**(secret) # `默认值: global.smtp_auth_secret`
+- **auth_secret_file**(secret) # `默认值: global.smtp_auth_secret_file`
+- **auth_identity**(string) # `默认值: global.smtp_auth_identity`
+- **hello**(string) # `默认值: global.smtp_hello`
+
+---
 
 ### webhook_configs
 
