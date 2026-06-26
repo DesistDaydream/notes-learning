@@ -239,6 +239,14 @@ root          2  0.0  0.0      0     0 ?        S    15:16   
 ~]# ps -efww
 ```
 
+查看指定进程的完整信息（PID、启动时间、运行时长、消耗的 CPU 时间、完整命令行）
+
+```bash
+~]# ps -p 8230 -ww -o pid,lstart,etime,time,cmd
+    PID                  STARTED     ELAPSED     TIME CMD
+   8230 Mon Jun 22 10:50:00 2026    03:29:49 00:00:17 /bin/node_exporter --web.config.file=/etc/node-exporter/web-config.yaml --web.listen-address=:9100 --path.rootfs=/host
+```
+
 以树状形式显示，且带中括号的内核进程将会放在最上面，与下面的系统进程分开，显示较为直观，效果如下
 
 ```bash

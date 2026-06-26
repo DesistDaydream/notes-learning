@@ -46,7 +46,7 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 - command line values (eg “-u user”)
 - **Role defaults** # 定义在 `${ROLE}/defaults/main.yaml` 中的默认变量
 - -------- 组变量 --------
-- **Inventory file or script group vars** # [Inventory](/docs/9.运维/Ansible/Inventory.md#组变量)中的组变量，i.e. `[XXX:vars]`
+- **Inventory file or script group vars** # [Inventory](/docs/9.运维/Ansible/Inventory.md#组变量) 中的组变量，i.e. `[XXX:vars]`
 - **Inventory group_vars/all** # Inventory 根目录下的 `group_vars/all` 文件。也可以是  `group_vars/all.yaml` 文件
 - **Playbook group_vars/all** # Playbook 根目录下的 `group_vars/all` 文件。也可以是  `group_vars/all.yaml` 文件
 - **Inventory group_vars/** # Inventory 根目录下的 `group_vars/` 目录
@@ -85,6 +85,11 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 - [Playbook Role(角色)](/docs/9.运维/Ansible/Playbook/Playbook%20Role(角色).md) 是二等公民，每个 Role 下的 `vars/main.yaml` 文件优先级较高
 - Tasks 是一等公民，任务中的变量优先级更高
 - 最后使用 CLI 来临时指定各种变量，所以命令行中的 -e 选项优先级最高
+
+个人总结：
+
+- 尽量少在 Inventory 文件中的 `vars:` 字段下定义变量，避免 Inventory 文件过于臃肿，尽可能得只放 ansible_host, etc. 连接相关的
+- 业务相关的变量可以优先定义在 Inventory 目录中的 group_vars/ 下，为每个组分别定义业务变量
 
 # 变量的定义与引用
 
@@ -388,7 +393,7 @@ docker:
 - **ansible_play_name** # 当前执行 paly 的名称。i.e.playbook 中 hosts 这个键的值，也就是当前的主机组名称
 - **groups** # 默认值为 Inventory 下所有组及其组内的 host
 - **group_names** # 默认值为当前主机所属组的列表。
-- **inventory_hostname** # 默认值为 inventory 文件中配置的主机名称。i.e. ansible 的 hosts 文件的第一列内容
+- **inventory_hostname** # 默认值为 inventory 文件中配置的主机名称。i.e. hosts 字段下的 Key
 - **inventory_dir** # 默认值为 ansible 保存 hosts 文件的目录的绝对路径。默认路径为/etc/ansible/
 - **play_hosts** # 默认值为当前 play 范围中可用的一组主机名
 - **role_path** # 默认值为当前 role 的目录的绝对路径

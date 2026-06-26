@@ -162,7 +162,7 @@ service:
 
 ```yaml
 receivers:
-  filelog:
+  file_log:
     include: [/var/log/syslog]
 
 exporters:
@@ -172,7 +172,7 @@ exporters:
 service:
   pipelines:
     logs:
-      receivers: [filelog]
+      receivers: [file_log]
       processors: []
       exporters: [otlphttp/loki]
 ```

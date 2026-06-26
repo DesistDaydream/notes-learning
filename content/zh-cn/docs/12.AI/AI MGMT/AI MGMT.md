@@ -28,7 +28,7 @@ weight: 1
 > [GitHub 项目，ollama/ollama](https://github.com/ollama/ollama)
 > Ollama 模型库: https://ollama.com/library
 
-> [!Attention] 个人感受：该项目不符合开源精神，开源只是获取用户信任的工具，不是承诺。后来还推出来过闭源组件，又来又逐渐转向云上模型。并且，并不是真的运行本地模型。本地自己训练的模型用 ollama 去运行还是比较麻烦的，这么折腾下来不如直接用 llama.cpp
+> [!Attention] 个人感受：该项目不符合开源精神，开源只是获取用户信任的工具，不是承诺。后来还推出来过闭源组件，后来又逐渐转向云上模型。并且，并不是真的运行本地模型。本地自己训练的模型用 ollama 去运行还是比较麻烦的，这么折腾下来不如直接用 llama.cpp
 
 ## Ollama 关联文件与配置
 

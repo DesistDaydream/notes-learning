@@ -1026,7 +1026,7 @@ Jinja2 的 block 功能有点类似于 include 指令的功能，block 的用法
 
 例如，在 base.conf.j2 文件中定义如下内容：
 
-```
+```python
 server {
   listen       80;
   server_name  www.abc.com;
@@ -1055,7 +1055,7 @@ location / {
 
 下面专门用于定义子 block 内容的 child.conf.j2 文件，内容如下：
 
-```
+```python
 {% extends 'base.conf.j2' %}
 
 {% block err_50x %}
@@ -1113,7 +1113,7 @@ location = /50x.html {
 }
 ```
 
-jinja2 的 block 是很出色的一个功能，但在 Ansible 中应该不太可能用到 (或机会极少)，所以多的就不介绍了，有兴趣的可自行找资料了解。
+jinja2 的 block 是很出色的一个功能，但在 Ansible 中应该不太可能用到 (或机会极少)。
 
 ## 模版导入
 

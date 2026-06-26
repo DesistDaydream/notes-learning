@@ -37,7 +37,7 @@ weight: 20
 
 # Receiver
 
-## Filelog
+## FileLog
 
 https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/filelogreceiver
 

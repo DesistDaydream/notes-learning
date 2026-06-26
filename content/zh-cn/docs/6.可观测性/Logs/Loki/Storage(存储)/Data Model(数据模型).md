@@ -116,9 +116,12 @@ scrape_configs:
 
 # Structured metadata(结构化元数据)
 
-https://grafana.com/docs/loki/latest/get-started/labels/structured-metadata/
+> 参考：
+>
+> - [官方文档，入门 - 标签 - 结构化元数据](https://grafana.com/docs/loki/latest/get-started/labels/structured-metadata/)
 
-痛点：选择适当的**低基数标签**对于有效操作和查询 Loki 至关重要。某些元数据，特别是与基础设施相关的元数据（e.g. Kubernetes Pod 名称、进程 ID、etc.），可能难以嵌入日志行中，而且基数过高的话，也无法有效地存储为索引标签。
+> [!Question] 痛点
+> 选择适当的**低基数标签**对于有效操作和查询 Loki 至关重要。某些元数据，特别是与基础设施相关的元数据（e.g. Kubernetes Pod 名称、进程 ID、etc.），可能难以嵌入日志行中，而且基数过高的话，也无法有效地存储为索引标签。
 
 **Structured metadata(结构化元数据)** 是一种将元数据附加到日志行的方法，无需将这些元数据索引或将其包含在日志行内容本身中。
 
@@ -133,7 +136,7 @@ https://grafana.com/docs/loki/latest/get-started/labels/structured-metadata/
 > 有的官方文档或者博客里，还会将结构化元数据成为 Extracted Labels
 
 > [!Note]
-> 现阶段（截止到 2025-11-19），只有使用 Grafana Alloy 或 OpenTelemetry Collector 以 OpenTelemetry 格式摄取数据需要入库到 Loki 的时候，才会产生结构化元数据
+> 现阶段（截止到 2025-11-19），只有使用 Grafana Alloy 或 OpenTelemetry Collector 以 OpenTelemetry 格式，将数据入库到 Loki 的时候，才会产生结构化元数据
 >
 > 结构化元数据设计之初，是旨在支持 [OpenTelemetry](/docs/6.可观测性/OpenTelemetry/OpenTelemetry.md) 数据的原生摄取。以及为了解决高基数的问题，而避免将所有键/值对的元数据都存到 Indexed Label 中（索引过多就失去了索引的作用）
 
@@ -243,3 +246,62 @@ action (例如 action="GET", action="POST") status_code (例如 status_code="200
 **Automatic stream sharding(自动流分片)** 功能会在数据发送到 Loki 的速率超过配置的限额时，为日志流添加 `__stream_shard__` 标签，标签的值是从 0 开始的数字。
 
 该功能是 Loki 在处理大型日志流产生的解决方案，避免数据丢失。详见: https://grafana.com/docs/loki/latest/operations/automatic-stream-sharding/#when-to-use-automatic-stream-sharding
+
+# 发送数据到 Loki
+
+> 参考：
+>
+> - [官方文档，发送数据](https://grafana.com/docs/loki/latest/send-data/)
+
+有多种不同的方式可用于向 Loki 发送日志数据。
+
+## OTel Collector 采集日志发送到 Loki
+
+> 参考：
+>
+> - [官方文档，发送数据 - OpenTelemetry](https://grafana.com/docs/loki/latest/send-data/otel/)
+
+当 Loki 使用 [OpenTelemetry](/docs/6.可观测性/OpenTelemetry/OpenTelemetry.md) 协议(OTLP) 储存日志时，部分数据将存储为[结构化元数据](#Structured%20metadata(结构化元数据))
+
+> [!Attention]
+> Loki 会将 OTel Collector 的 **Resource Attributes(资源属性)** 作为 **结构化元数据** 保存。所以，想将资源属性作为标签，即需要**将 结构化元数据 转为 标签**
+
+Loki 接收 OTLP 的数据的 API 与默认的不同，是 `http://<LOKI-ADDR>/otlp`
+
+Loki 的配置示例如下
+
+```yaml
+limits_config:
+  ingestion_rate_mb: 10
+  retention_period: 30d
+  # 将 OTLP 的 Resource attributes 映射为 Loki 的 Indexed label，以便可以通过标签过滤
+  # https://grafana.com/docs/loki/latest/send-data/otel/#changing-the-default-mapping-of-otlp-to-loki-format
+  otlp_config:
+    resource_attributes:
+      attributes_config:
+        - action: index_label
+          attributes:
+            - host_ip
+            - province
+            - region
+            - custom_house_name
+            - log_type
+            - docking_system
+```
+
+这个配置会把 host_ip, province, region, custom_house_name, log_type, docking_system 这几个来自于 OTel 的资源属性转为标签。
+
+注意，这个转换是指配置中 key 的所有值都转换，要避免某些 key 会产生高基数的问题。
+
+### 格式转换
+
+https://grafana.com/docs/loki/latest/send-data/otel/#format-considerations
+
+由于 OTLP 与 Loki 存储模型不同，有一些数据在进入到 Loki 时，需要进行转换，通常遵循如下规则：
+
+- 所有 `.` 点符号都转换成 `_` 下划线。
+    - Loki 不支持在标签名称中使用 `.` 或除 `_` 以外的任何其他特殊字符。在将属性转换为索引标签或结构化元数据时，不支持的字符会被替换为 `_`。
+    - e.g. OTLP 中的 `service.name` 在 Loki 中将变为 `service_name` 。
+- 将非字符串属性值字符串化
+
+
