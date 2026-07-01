@@ -88,7 +88,7 @@ Clash 特性：
 
 **FlClash**
 
-- https://github.com/chen08209/FlClash 多平台客户端。Android, Windows, macOS, Linux
+- https://github.com/chen08209/FlClash 基于 ClashMeta 的多平台客户端。Android, Windows, macOS, Linux
 - https://flclash.cc/
 
 # Clash for Windows

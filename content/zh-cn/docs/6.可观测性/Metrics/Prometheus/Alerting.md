@@ -70,7 +70,7 @@ rule_files:
 # 告警数据结构
 
 > [!Tip] 免责声明
-> Prometheus 会自动负责发送由其配置的 **[警报规则](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)** 生成的 **[警报](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)**。强烈建议在 Prometheus 中根据时间序列数据配置警报规则，而不是直接实现客户端。
+> Prometheus 会自动负责发送由其配置的 **[警报规则](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)** 生成的 **[警报](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)**。强烈建议在 Prometheus 中根据时间序列数据配置警报规则，而不是直接实现客户端。[声明来源](https://next.prometheus.io/docs/alerting/latest/clients/)
 >
 > **<font color="#ff0000">也就是说，不要自己写一个程序，频繁对 Prometheus 发起 PromQL 查询请求，来生成告警。</font>**
 

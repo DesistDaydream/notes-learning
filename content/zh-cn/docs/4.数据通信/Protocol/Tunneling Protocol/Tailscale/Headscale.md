@@ -89,11 +89,11 @@ systemctl enable headscale --now
 >
 
 ```bash
-~]# headscale users create desistdaydream
+~]# headscale users create DesistDaydream
 ~]# headscale user list
 An updated version of Headscale has been found (0.23.0-alpha5 vs. your current v0.22.3). Check it out https://github.com/juanfont/headscale/releases
 ID | Name           | Created
-1  | desistdaydream | 2024-03-20 14:29:47
+1  | DesistDaydream | 2024-03-20 14:29:47
 ```
 
 # 部署 Tailscale 客户端与接入 Headscale
@@ -166,7 +166,7 @@ Tailscale 接入 Headscale：
 > 这里推荐将 DNS 功能关闭，因为它会覆盖系统的默认 DNS。关闭接收路由功能，有需要再打开，这样可以让机器只能访问到各 Tailscale
 
 ```bash
-tailscale up --login-server=${HeadscaleAddr} --accept-routes=false --accept-dns=false
+tailscale login --login-server=${HeadscaleAddr} --accept-routes=false --accept-dns=false
 ```
 
 执行完上面的命令后，会出现下面的信息：
@@ -199,7 +199,7 @@ Windows Tailscale 客户端想要使用 Headscale 作为控制服务器，只需
 在 Powershell 执行
 
 ```bash
-tailscale up --login-server=http://${headscale_server} --accept-routes=false --accept-dns=false
+tailscale login --login-server=http://${headscale_server} --accept-routes=false --accept-dns=false
 ```
 
 此时会自动在浏览器中出现接入 Headscale 的页面，记录下注册命令，去 Headscale 所在设备上执行命令添加节点。
@@ -319,7 +319,7 @@ sysctl -p /etc/sysctl.d/ipforwarding.conf
 客户端修改注册节点的命令，在原来命令的基础上加上参数 `--advertise-routes=192.168.100.0/24`。多个 CIDR 以 `,` 分割
 
 ```bash
-tailscale up --login-server=${HeadscaleAddr} --accept-routes=true --accept-dns=false  --advertise-routes=172.38.40.0/24,192.168.88.0/24
+tailscale login --login-server=${HeadscaleAddr} --accept-routes=true --accept-dns=false --advertise-routes=172.38.40.0/24,192.168.88.0/24
 ```
 
 或通过 tailscale set 命令直接增加路由

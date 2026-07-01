@@ -105,7 +105,7 @@ acme.sh 是一个纯 Shell 脚本，首先下载这个脚本
 
 ```bash
 export MY_EMAIL="我的邮箱"
-curl https://get.acme.sh | sh -s $MY_EMAIL
+curl https://get.acme.sh | sh -s email=${MY_EMAIL}
 source ~/.bashrc
 ```
 
@@ -145,6 +145,11 @@ export Ali_Key="AccessKeyId"
 export Ali_Secret="AccessKeySecret"
 ```
 
+```bash
+export MY_DOMAIN="我的域名"
+acme.sh --issue --dns dns_ali -d ${MY_DOMAIN} -d "*.${MY_DOMAIN}"
+```
+
 #### 使用 Name.com 生成证书
 
 > 参考：
@@ -161,7 +166,8 @@ export Namecom_Token="XXXXX"
 注意：这俩变量要使用 PRODUCTION(生产)环境的。Name.com 创建完 Token 后会有两个，一个用于生产，一个用于测试，对应不用的 API
 
 ```bash
-acme.sh --issue --dns dns_namecom -d 102205.xyz -d *.102205.xyz
+export MY_DOMAIN="我的域名"
+acme.sh --issue --dns dns_namecom -d ${MY_DOMAIN} -d "*.${MY_DOMAIN}"
 ```
 
 #### 使用 DNSPod 生成证书
@@ -170,16 +176,17 @@ acme.sh --issue --dns dns_namecom -d 102205.xyz -d *.102205.xyz
 export DP_Id="XXXXXX"
 export DP_Key="YYYYYYYYYYYYYYYY"
 
-acme.sh --issue --dns dns_dp -d 102205.xyz -d *.102205.xyz
+export MY_DOMAIN="我的域名"
+acme.sh --issue --dns dns_dp -d ${MY_DOMAIN} -d "*.${MY_DOMAIN}"
 ```
 
 ### 拷贝证书
 
 前面证书生成以后, 接下来需要把证书 copy 到真正需要用它的地方.
 
-注意, 默认生成的证书都放在安装目录下: `~/.acme.sh/`, 请不要直接使用此目录下的文件, 例如: 不要直接让 nginx/apache 的配置文件使用这下面的文件. 这里面的文件都是内部使用, 而且目录结构可能会变化.
+注意, 默认生成的证书都放在安装目录下: `~/.acme.sh/`, 请不要直接使用此目录下的文件，e.g. 不要直接让 nginx/apache 的配置文件使用这下面的文件。这里面的文件都是内部使用，而且目录结构可能会变化。
 
-正确的使用方法是使用 `--install-cert` 命令,并指定目标位置, 然后证书文件会被 copy 到相应的位置
+正确的使用方法是使用 `--install-cert` 命令，并指定目标位置, 然后证书文件会被 copy 到相应的位置
 
 ```bash
 acme.sh --install-cert -d 102205.xyz \

@@ -2097,7 +2097,8 @@
         "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale/Tailscale ACL.md",
         "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale/tailscale CLI.md",
         "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale/Tailscale How it works.md",
-        "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale/Headscale.md"
+        "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale/Headscale.md",
+        "docs/4.数据通信/Protocol/Tunneling Protocol/Tailscale/Headscale MGMT.md"
       ],
       "sortOrder": "custom"
     },

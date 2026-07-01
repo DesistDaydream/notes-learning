@@ -88,7 +88,7 @@ weight: 20
 - 建立隧道，并禁用远程执行命令，通过本地的 13389 端口，即可远程连接到 172.19.42.240 的桌面
   - ssh -N -L 13389:172.19.42.240:3389 root@202.43.145.163 -p 42201
 - ssh 远程调用函数
-  - <https://stackoverflow.com/questions/22107610/shell-script-run-function-from-script-over-ssh> #
+  - https://stackoverflow.com/questions/22107610/shell-script-run-function-from-script-over-ssh
 - 连接时启用 X11 转发，常用于在 Linux 系统上连接后启动
   - ssh -X -C 192.168.0.1
 
