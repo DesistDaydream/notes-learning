@@ -33,6 +33,8 @@ Revo Uninstaller
 - https://www.revouninstaller.com/
 - https://www.bilibili.com/video/BV13x4y1G7Qc
   - 30天过后请按照我的教程走一遍就好了哈
+  - 下载 Revo Uninstaller Pro
+  - 使用 `Revo Uninstaller Pro Full Version.zip` 中的文件替换掉 `C:\ProgramData\VS Revo Group\Revo Uninstaller Pro\revouninstallerpro5.lic` 文件
 
 IObit Uninstaller
 

@@ -26,3 +26,11 @@ RAM包含多路复用和多路分解电路，用于将数据线连接到寻址�
 
 [公众号 - 开发内功修炼，理解内存的Rank、位宽以及内存颗粒内部结构](https://mp.weixin.qq.com/s/wCzeFhTE8OEWaZmMhc0iUw)
 
+# TODO
+
+**HBM**
+
+**High Bandwidth Memory(高带宽存储器，简称 HBM)**
+
+[B 站 - Redknot-乔红，用最好的动画为你讲解--HBM的原理](https://www.bilibili.com/video/BV1ahjA6qEwc)
+

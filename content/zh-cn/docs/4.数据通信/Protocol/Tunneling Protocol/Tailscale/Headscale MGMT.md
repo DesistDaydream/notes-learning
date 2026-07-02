@@ -34,7 +34,7 @@ https://nyan.im/p/troubleshoot-tailscale
 查看各节点 IP
 
 ```bash
-sqlite3 -header -column /var/lib/headscale/db.sqlite "SELECT id, hostname, ipv4, ipv6 FROM nodes;"
+sqlite3 -header -column /var/lib/headscale/db.sqlite "SELECT id, hostname, given_name, ipv4, ipv6 FROM nodes;"
 ```
 
 ```bash

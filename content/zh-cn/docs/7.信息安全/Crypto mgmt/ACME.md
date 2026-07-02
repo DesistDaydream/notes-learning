@@ -128,7 +128,13 @@ source ~/.bashrc
 - **./$DOMAIN_NAME/** # 已处理域名的信息保存路径
   - **./$DOMAIN_NAME.conf** # 与该域名相关的配置信息。`acme.sh --info -d example.com` 命令读取的就是这个文件
 
-## 生成证书
+## CLI
+
+> 参考：
+>
+> - [Wiki, 选项与参数](https://github.com/acmesh-official/acme.sh/wiki/Options-and-Params)
+
+## 生成证书实践
 
 ### 不同 DNS 提供商的处理
 
@@ -136,7 +142,7 @@ source ~/.bashrc
 
 > 参考：
 >
-> - [GitHub 项目 Wiki, acmesh-official/acme.sh-dnsapi-使用阿里云域名 API 自动颁发证书](https://github.com/acmesh-official/acme.sh/wiki/dnsapi#11-use-aliyun-domain-api-to-automatically-issue-cert)
+> - [GitHub 项目 Wiki, acmesh-official/acme.sh-dnsapi - 使用阿里云域名 API 自动颁发证书](https://github.com/acmesh-official/acme.sh/wiki/dnsapi#11-use-aliyun-domain-api-to-automatically-issue-cert)
 
 从 [阿里云控制台-RAM 访问控制-身份管理-用户](https://ram.console.aliyun.com/users) 处创建用户并获取 AK、SK
 
@@ -154,7 +160,7 @@ acme.sh --issue --dns dns_ali -d ${MY_DOMAIN} -d "*.${MY_DOMAIN}"
 
 > 参考：
 >
-> - [GitHub 项目 Wiki, acmesh-official/acme.sh-dnsapi-使用 Name.com API](https://github.com/acmesh-official/acme.sh/wiki/dnsapi#28-use-namecom-api)
+> - [GitHub 项目 Wiki, acmesh-official/acme.sh-dnsapi - 使用 Name.com API](https://github.com/acmesh-official/acme.sh/wiki/dnsapi#28-use-namecom-api)
 
 从 <https://www.name.com/zh-cn/account/settings/api> 创建 Token
 
