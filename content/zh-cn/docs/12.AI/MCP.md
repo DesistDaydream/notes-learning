@@ -241,3 +241,7 @@ TODO: 待记录
 ![500](https://notes-learning.oss-cn-beijing.aliyuncs.com/ai/mcp/issue_overlength_context_1.png)
 
 # 历史
+
+[Claude 博客，使用 MCP 构建能够对接生产系统的智能体](https://claude.com/blog/building-agents-that-reach-production-systems-with-mcp)
+
+- [公众号，Anthropic最新博客：MCP没有死，我们又救活了。](https://mp.weixin.qq.com/s/w4BlVa3WnStuhm4QwpoJuw)

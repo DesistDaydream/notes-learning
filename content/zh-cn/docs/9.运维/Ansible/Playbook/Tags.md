@@ -19,3 +19,5 @@ date: 2025-01-06T22:09:00
 # 继承 Tags
 
 https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_tags.html#tag-inheritance-for-includes-blocks-and-the-apply-keyword
+
+https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_tags.html#tag-inheritance-for-includes-blocks-and-the-apply-keyword

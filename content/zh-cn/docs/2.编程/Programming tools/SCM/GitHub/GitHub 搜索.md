@@ -26,29 +26,33 @@ https://www.cnblogs.com/saysmy/p/7292177.html
 
 ![](https://images2017.cnblogs.com/blog/979473/201708/979473-20170806014238178-1770579061.png)
 
-原来 github为每个commit版本都生成了一个SHA hash值，我们可以通过SHA值来直接搜索到第N次的提交
+原来 github 为每个 commit 版本都生成了一个 SHA hash 值，我们可以通过 SHA 值来直接搜索到第 N 次的提交
 
 点击一次 older 发现 url 格式为：
 
 https://github.com/lodash/lodash/commits/master?after=c2616dd4f3ab267d000a2b4f564e1c76fc8b8378+34
 
-后面的 after 即代表展示 SHA 为c2616dd4f3ab267d000a2b4f564e1c76fc8b8378 的后面第35条commit。
+后面的 after 即代表展示 SHA 为 c2616dd4f3ab267d000a2b4f564e1c76fc8b8378 的后面第 35 条 commit。
 
-那c2616dd4f3ab267d000a2b4f564e1c76fc8b8378 这一串是怎么得到的呢？
+那 c2616dd4f3ab267d000a2b4f564e1c76fc8b8378 这一串是怎么得到的呢？
 
 ![](https://images2017.cnblogs.com/blog/979473/201708/979473-20170806014419709-1997461420.png)
 
-在commits列表内的每一条记录后面都有一个copy图标，这里点击即会成功复制此条commit的SHA
+在 commits 列表内的每一条记录后面都有一个 copy 图标，这里点击即会成功复制此条 commit 的 SHA
 
-c2616dd4f3ab267d000a2b4f564e1c76fc8b8378正式此代码库的最新一条commit的SHA。
+c2616dd4f3ab267d000a2b4f564e1c76fc8b8378 正是此代码库的最新一条 commit 的 SHA。
 
-于是如果我们想找到第一条记录，总commits记录是7855次，那么搜索url为：
+于是如果我们想找到第一条记录，总 commits 记录是 7855 次，那么搜索 url 为：
 
 https://github.com/lodash/lodash/commits/master?after=c2616dd4f3ab267d000a2b4f564e1c76fc8b8378+7853
 
 ![](https://images2017.cnblogs.com/blog/979473/201708/979473-20170806014320772-192431232.png)
 
 成功搜索到想要的结果。
+
+个人总结：
+
+找到 commit 总数；进入 commit 列表；点 older；url 最后数字改成：$commit总数 - 2$
 
 # 搜索 Issue 和 PR
 

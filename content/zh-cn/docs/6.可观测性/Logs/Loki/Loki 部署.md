@@ -14,6 +14,7 @@ weight: 2
 # 使用 docker 运行 Loki
 
 ```bash
+chown 10001:10001 /opt/loki/data
 docker run -d --rm --name loki \
   --network host \
   -v /opt/loki/config:/etc/loki \
@@ -21,8 +22,6 @@ docker run -d --rm --name loki \
   -v /etc/localtime:/etc/localtime:ro \
   grafana/loki
 ```
-
-注意：与 Prometheus 类似，需要修改 /opt/loki 目录权限为 777，否则 pod 内进程对该目录无操作权限
 
 # 在 Kubernets 集群中部署
 

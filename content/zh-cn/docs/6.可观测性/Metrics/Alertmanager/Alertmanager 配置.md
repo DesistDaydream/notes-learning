@@ -39,7 +39,7 @@ weight: 2
 ## 顶层字段
 
 - **global**([global](#global)) # 全局配置，所有内容作用于所有配置环境中,若其余配置环境中不再指定同样的配置，则 global 中的配置作为默认配置
-- **templates**(\[][templates](#templates)) # 指定告警模板文件的路径。若不指定则使用默认模板。可以使用通配符，e.g. 'templates/*.tmpl'
+- **templates**(\[]STRING) # 指定告警模板文件的路径。若不指定则使用默认模板。可以使用通配符，e.g. `templates/*.tmpl`
 - **route**([route](#route)) # 路由树的节点(Alertmanager 的主要配置)
 - **receivers**(\[][receivers](#receivers)) # 告警的接收者列表(Alertmanager 的主要配置)
 - **inhibit_rules**([inhibit_rules](#inhibit_rules)) # 抑制规则列表
@@ -108,10 +108,6 @@ weight: 2
 **wechat_api_secret**(secret)
 
 **wechat_api_corp_id**(string)
-
-## templates
-
-用于定义接收人收到的告警的样式。如 HTML 模板、邮件模板等等。
 
 ## route
 

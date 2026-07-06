@@ -16,9 +16,9 @@ weight: 10
 > Clash Core 删库跑路后的选择
 >
 > - https://github.com/MetaCubeX/Clash.Meta # Clash.Meta
->     - https://github.com/MetaCubeX/mihomo/tree/Meta # 这才是主干分支。改名为 **Mihomo**，用原神作为对外显示（笑）
+>   - https://github.com/MetaCubeX/mihomo/tree/Meta # 这才是主干分支。改名为 **Mihomo**，用原神作为对外显示（笑）
 
-Clash 是一个 Go 语言开发的[Proxy](/docs/Web/Proxy/Proxy.md)客户端，支持多种服务端协议，比如 Vmess、Shadowsocks、Trojan、Snell 等。
+Clash 是一个 Go 语言开发的[Proxy](/docs/Web/Proxy/Proxy.md)客户端，支持多种服务端协议，比如 [VMess](/docs/4.数据通信/Protocol/Tunneling%20Protocol/VMess.md)、Shadowsocks、Trojan、Snell 等。
 
 Clash 特性：
 
@@ -62,22 +62,22 @@ Clash 特性：
 # Clash GUI 客户端
 
 - ClashForAndroid # 安卓客户端
-    - https://github.com/Kr328/ClashForAndroid
-    - 已删库
+  - https://github.com/Kr328/ClashForAndroid
+  - 已删库
 - ClashN
-    - https://github.com/2dust/clashN
-    - 已合并到 v2rayN 项目
+  - https://github.com/2dust/clashN
+  - 已合并到 v2rayN 项目
 - ClashX：Clash 的 Mac 图形客户端
-    - [GitHub 项目，yichengchen/clashX](https://github.com/yichengchen/clashX)
-    - 已删库
+  - [GitHub 项目，yichengchen/clashX](https://github.com/yichengchen/clashX)
+  - 已删库
 - ClashForAndroid：Clash 的 Android 图形客户端
-    - [GitHub 项目，Kr328/ClashForAndroid](https://github.com/Kr328/ClashForAndroid)
-    - 已删库
+  - [GitHub 项目，Kr328/ClashForAndroid](https://github.com/Kr328/ClashForAndroid)
+  - 已删库
 - Clash for Windows：Clash 的 Windows/macOS 图形客户端
-    - [GitHub 项目，Fndroid/clash_for_windows_pkg](https://github.com/Fndroid/clash_for_windows_pkg)。详见[下文](#Clash%20for%20Windows)
-    - 已删库
+  - [GitHub 项目，Fndroid/clash_for_windows_pkg](https://github.com/Fndroid/clash_for_windows_pkg)。详见[下文](#Clash%20for%20Windows)
+  - 已删库
 - clash-verge
-    - https://github.com/zzzgydi/clash-verge/tree/main 基于 [Clash.Meta](https://github.com/MetaCubeX/Clash.Meta)。已归档跑路
+  - https://github.com/zzzgydi/clash-verge/tree/main 基于 [Clash.Meta](https://github.com/MetaCubeX/Clash.Meta)。已归档跑路
 
 ---
 

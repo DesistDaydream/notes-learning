@@ -28,7 +28,7 @@ ansible 是 Ansible 的一个 ad-hoc(临时) 命令，可以在一个或多个�
 
 **ansible \<HostPattern> \[OPTIONS]**
 
-- **HostPattern** # 主机模式,可以是主机名，主机 IP，组名，还有一个 all(所有 hosts 里定义的主机)
+- **HostPattern** # 主机模式，可以是 主机名、主机 IP、组名、all（i.e. Inventory 里定义的全部受管理节点）
 
 ### OPTIONS
 
@@ -141,7 +141,7 @@ EXAMPLE
 
 - **--list** # 输出所有主机信息
 - **--host \<HOST>** # 输出指定主机信息
-- **--graph** #
+- **--graph** # 以树形结构展示 Inventory 中主机和组的层级关系
 
 **OPTIONS**
 
@@ -154,4 +154,19 @@ EXAMPLE
 
 将 Inventory 文件以 YAML 格式输出并保存到文件
 
-- ansible-inventory -i inventory --yaml --list --output dest_inventory.yaml --export
+```bash
+ansible-inventory -i inventory --yaml --list --output dest_inventory.yaml --export
+```
+
+检查指定受管理节点的变量信息
+
+```bash
+export ManagedNode="192.168.254.254"
+ansible-inventory -i inventory --host ${ManagedNodes}
+```
+
+检查 主机 和 组 的层级关系，以检查变量如何覆盖的
+
+```bash
+ansible-inventory -i inventory --graph
+```

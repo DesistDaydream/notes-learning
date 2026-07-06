@@ -159,9 +159,9 @@ VERB
 
 EXAMPLE
 
-- nft add set inet my_table my_set {type ipv4_addr;} # 在 inet 族的 my_table 表中创建一个名为 my_set 的集合，集合的类型为 ipv4_addr
-- nft add set my_table my_set {type ipv4_addr; flags interval;} # 在 ip 族的 my_table 表中创建一个名为 my_set 的集合，集合类型为 ipv4_addr ，标签为 interval。让该集合支持区间
-- nft add element inet my_table my_set { 10.10.10.22, 10.10.10.33 } # 向 my_set 集合中添加元素，一共添加了两个元素，是两个 ipv4 的地址
+- `nft add set inet my_table my_set {type ipv4_addr;}` # 在 inet 族的 my_table 表中创建一个名为 my_set 的集合，集合的类型为 ipv4_addr
+- `nft add set my_table my_set {type ipv4_addr; flags interval;}` # 在 ip 族的 my_table 表中创建一个名为 my_set 的集合，集合类型为 ipv4_addr ，标签为 interval。让该集合支持区间
+- `nft add element inet my_table my_set { 10.10.10.22, 10.10.10.33 }` # 向 my_set 集合中添加元素，一共添加了两个元素，是两个 ipv4 的地址
 - 删除元素。删除 my_table 表中，ssh_allowed_nets 集合内的 183.192.0.0/10 元素
   - `nft delete element inet my_table ssh_allowed_nets { 183.192.0.0/10 }`
 
@@ -171,15 +171,11 @@ EXAMPLE
 
 例如，为了从逻辑上将对 TCP 和 UDP 数据包的处理规则拆分开来，可以使用字典来实现，这样就可以通过一条规则实现上述需求。
 
-$ nft add chain inet my_table my_tcp_chain
-
-$ nft add chain inet my_table my_udp_chain
-
-$ nft add rule inet my_table my_filter_chain meta l4proto vmap { tcp : jump my_tcp_chain, udp : jump my_udp_chain }
-
-$ nft list chain inet my_table my_filter_chain
-
 ```bash
+$ nft add chain inet my_table my_tcp_chain
+$ nft add chain inet my_table my_udp_chain
+$ nft add rule inet my_table my_filter_chain meta l4proto vmap { tcp : jump my_tcp_chain, udp : jump my_udp_chain }
+$ nft list chain inet my_table my_filter_chain
 table inet my_table {
     chain my_filter_chain {
     ...
@@ -205,17 +201,12 @@ $ nft add rule inet my_table my_filter_chain ip saddr vmap @my_vmap
 
 在 nftables 中，每个表都是一个独立的命名空间，这就意味着不同的表中的链、集合、字典等都可以有相同的名字。例如：
 
-$ nft add table inet table_one
-
-$ nft add chain inet table_one my_chain
-
-$ nft add table inet table_two
-
-$ nft add chain inet table_two my_chain
-
-$ nft list ruleset
-
 ```bash
+$ nft add table inet table_one
+$ nft add chain inet table_one my_chain
+$ nft add table inet table_two
+$ nft add chain inet table_two my_chain
+$ nft list ruleset
 ...
 table inet table_one {
     chain my_chain {

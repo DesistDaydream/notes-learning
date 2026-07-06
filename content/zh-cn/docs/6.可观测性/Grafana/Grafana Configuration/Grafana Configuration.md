@@ -141,7 +141,7 @@ user = desistdaydream@263.com
 [server]
 http_port = 3000
 [analytics]
-check_for_updates = true
+check_for_updates = false
 [log]
 mode = console
 level = info
