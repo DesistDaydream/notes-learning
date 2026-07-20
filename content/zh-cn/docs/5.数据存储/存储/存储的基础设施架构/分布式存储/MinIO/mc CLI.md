@@ -171,3 +171,35 @@ EXAMPLE
   - **mc rm --recursive --force local/thanos**
 - 删除 local 环境下 thanos-bj-test 桶中 24 小时前的所有对象
   - **mc rm --recursive --force --older-than 24h local/thanos-bj-test**
+
+# 最佳实践
+
+**显示所有配置**
+
+```bash
+/usr/bin/mc -C /root/.mc/ alias ls
+```
+
+**显示服务器信息（包括集群、etc.）**
+
+```bash
+/usr/bin/mc -C /root/.mc/ admin info minio
+```
+
+**递归显示 minio 端点下的所有对象**（默认只列出一级目录下的对象）
+
+```bash
+/usr/bin/mc -C /root/.mc/ ls --recursive minio/
+```
+
+**显示 minio 端点下 2 级目录下的所有对象的统计信息（对象占用空间 及 对象数）**
+
+```bash
+/usr/bin/mc -C /root/.mc/ du --depth 2 minio
+```
+
+**显示 minio 端点下 jmr0602 桶的过期时间**
+
+```bash
+/usr/bin/mc -C /root/.mc/ ilm rule ls minio/jmr0602
+```

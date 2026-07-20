@@ -153,8 +153,11 @@ PATTERN 支持通配符，前面的 -Name 可以省略，该命令默认通过**
 # 进程管理工具
 
 [Get-Process](#Get-Process)
+
 [Start-Process](#Start-Process)
+
 [Stop-Process](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/stop-process?view=powershell-7.3)
+
 [Wait-Process](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/wait-process?view=powershell-7.3) # 等待一个或多个正在运行的进程停止，然后再接受输入。
 
 [Debug-Process](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/debug-process?view=powershell-7.3)

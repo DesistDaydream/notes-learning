@@ -57,9 +57,11 @@ https://code.visualstudio.com/docs/editor/debugging#_launchjson-attributes
 
 # SFTP 插件
 
-https://github.com/liximomo/vscode-sftp#connection-hopping
+https://github.com/liximomo/vscode-sftp # 最后一次提交: `2019-11-15`
 
-- 新的 SFTP 插件，上面的已不更新。 https://github.com/Natizyskunk/vscode-sftp
+- https://github.com/Natizyskunk/vscode-sftp # 新的 SFTP 插件。最后一次提交: `2025-4-19`
+    - https://github.com/Natizyskunk/vscode-sftp/issues/590 `TypeError: isDate is not a function`
+- https://github.com/philipdaoud/sftp-neo # 带有自动备份功能。
 
 ```json
 {
@@ -81,13 +83,13 @@ https://github.com/liximomo/vscode-sftp#connection-hopping
 {
     "name": "DesistDaydream",
     "remotePath": "/root/projects",
- // 用于作为代理的服务器信息
+    // 用于作为代理的服务器信息
     "host": "192.168.1.10",
     "protocol": "sftp",
     "port": 42203,
     "username": "root",
     "password": "XXXXX",
- // 最终目标服务器信息
+    // 最终目标服务器信息
     "hop": {
         "host": "172.19.42.248",
         "port": 22,
@@ -95,7 +97,7 @@ https://github.com/liximomo/vscode-sftp#connection-hopping
         "password": "XXXXX"
     },
     "uploadOnSave": true,
- "ignore": [
+    "ignore": [
         ".vscode",
         ".git",
         ".DS_Store"

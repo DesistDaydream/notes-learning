@@ -217,14 +217,24 @@ EXAMPLE
 
 **docker logs \[OPTIONS] CONTAINER**
 
-OPTIONS
+**OPTIONS**
 
-- --details # Show extra details provided to logs
-- **-f, --follow**# 跟踪日志的输出
-- --since string Show logs since timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)
-- **-n, --tail STRING**# 从日志末尾开始显示日志的指定行数。`默认值：all`
+- **--details** # Show extra details provided to logs
+- **-f, --follow** # 跟踪日志的输出
+- **-n, --tail**(STRING) # 从日志末尾开始显示日志的指定行数。`默认值：all`
 - **-t, --timestamps** # 在每行日志行首显示时间戳
-- --until string # Show logs before a timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)
+- **--since**(STRING) # 从指定的时间开始显示日志。可以使用 时间戳(e.g. 2013-01-02T13:23:37Z) 或 相对时间 (e.g. 42m for 42 minutes)
+- **--until**(STRING) # 显示日志到指定的时间为止。可以使用 时间戳(e.g. 2013-01-02T13:23:37Z) 或 相对时间 (e.g. 42m for 42 minutes)
+
+> [!Attention] `docker logs | more` 命令的说明
+> `docker logs` 实际上是把容器的 **stdout 和 stderr 分别** 写到自己的 stdout 和 stderr：
+>
+> - 容器写到 stdout 的日志 → 走管道 → 被 `more` 分页
+> - 容器写到 stderr 的日志 → **不走管道**，直接打印到终端，不受 `more` 控制
+>
+> 如果某个容器的日志（或部分日志）是写到 stderr 的，这部分内容会绕过分页直接刷屏，跟被分页的内容混在一起，显示会很乱。
+> 
+> 更稳妥的写法: `docker logs ${Container} 2>&1 | more`
 
 ## pause - 暂停一个 Container 中的所有进程
 

@@ -1,7 +1,7 @@
 ---
 title: Message Queue(消息队列)
 linkTitle: Message Queue(消息队列)
-weight: 20
+weight: 1
 ---
 
 
@@ -9,7 +9,7 @@ weight: 20
 
 > 参考：
 >
-> -
+> - [Wiki, Message queue](https://en.wikipedia.org/wiki/Message_queue)
 
 场景一：日志采集系统，拿 [Loki](/docs/6.可观测性/Logs/Loki/Loki.md) 举例，采集器(promtail)采集数据后，存储到后端日志存储器(Loki)上，当需要采集多个节点，并且当日志大量产生时， Loki 的处理很有可能会出现瓶颈而无法处理写入请求，这时候，我们就想要在 采集器 和 存储中间添加一个缓冲，来减慢后端存储的压力
 
@@ -32,3 +32,8 @@ RocketMQ
 [Kafka](/docs/8.通用技术/Message%20Queue(消息队列)/Kafka.md)
 
 ZeroMQ
+
+NSQ
+
+- [GitHub 项目，nsqio/nsq](https://github.com/nsqio/nsq)
+- [官网](https://nsq.io/)

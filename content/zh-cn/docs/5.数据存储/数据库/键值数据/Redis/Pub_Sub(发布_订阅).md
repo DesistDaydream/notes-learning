@@ -8,7 +8,7 @@ weight: 4
 
 > 参考：
 >
-> - [官方文档](https://redis.io/topics/pubsub)
+> - [官方文档，Redis 发布/订阅](https://redis.io/topics/pubsub)
 >   - https://redis.io/docs/latest/develop/interact/pubsub/
 > - [Wiki, 发布/订阅 模式](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern)
 
@@ -17,7 +17,6 @@ Redis 可以通过 SUBSCRIBE、UNSUBSCRIBE、PUBLISH 这类命令实现 Publish/
 Redis 的 发布/订阅模式中，**Messages(消息)** 的**发送者称为 Publishers(发布者)**、消息的**接收者称为 Subscribers(订阅者)**。而发送者和接收者之间传递消息的**途径称为 Channels(频道)**。
 
 - 订阅者可以订阅自己感兴趣的 Channels，并随时等待接收发布到这些 Channels 中的消息，并不需要知道有哪些发布者。
-
 - 发布者可以向任何 Channels 中发布消息，而不需要知道有哪些订阅者
 
 这种将 发布者 与 订阅者 解耦的模式，可以实现更大的可扩展性和更动态的网络拓扑结构。

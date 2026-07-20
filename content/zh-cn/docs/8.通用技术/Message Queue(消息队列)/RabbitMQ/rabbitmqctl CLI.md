@@ -1,6 +1,13 @@
 ---
-title: rabbitmqctl 命令行工具详解
+title: rabbitmqctl CLI
+weight: 100
 ---
+
+# 概述
+
+> 参考：
+>
+> - 
 
 # rabbitmqctl
 

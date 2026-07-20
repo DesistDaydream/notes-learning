@@ -132,9 +132,9 @@ QUIT - # Close the connection
 
 # 最佳实践
 
-`select 0` 进入 0 号数据库，默认从 0 - 15。
+`select 0` # 进入 0 号数据库，默认从 0 - 15。
 
-`info` 命令返回的结果中，Keyspace 部分可以看到当前在哪几个 Database 中存了多少个 Keys。
+`info` # 命令返回的结果中，Keyspace 部分可以看到当前在哪几个 Database 中存了多少个 Keys。
 
 ```bash
 # Keyspace
@@ -142,4 +142,8 @@ db0:keys=9,expires=0,avg_ttl=0
 db15:keys=14,expires=5,avg_ttl=682335
 ```
 
-`keys *` 列出当前数据库中所有的键
+`keys *` # 列出当前数据库中所有的键
+
+`type XXX` # 显示 XXX 键的数据类型
+
+根据 [不同类型的数据处理命令组](#不同类型的数据处理命令组) 
