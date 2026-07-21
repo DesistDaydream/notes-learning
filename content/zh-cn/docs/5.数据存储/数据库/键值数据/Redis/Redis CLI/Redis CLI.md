@@ -88,13 +88,13 @@ https://redis.io/docs/latest/commands/?group=pubsub
 
 > 注意：多个频道以空格分隔
 
-PSUBSCRIBE pattern \[pattern ...] # 与 SUBSCRIBE 命令类似，只不过是通过表达式来匹配多个频道
+**PSUBSCRIBE pattern \[pattern ...]** # 与 SUBSCRIBE 命令类似，只不过是通过表达式来匹配多个频道
 
 ### UNSUBSCRIBE - 退订指定频道，停止接收发布到这些频道上的消息
 
 **UNSUBSCRIBE \[channel \[channel ...]]**
 
-PUNSUBSCRIBE \[pattern \[pattern ...]] # 与 UNSUBSCRIBE 命令类似，只不过是通过表达式来匹配多个频道
+**PUNSUBSCRIBE \[pattern \[pattern ...]]** # 与 UNSUBSCRIBE 命令类似，只不过是通过表达式来匹配多个频道
 
 ### PUBLISH channel message - 向一个频道发送一条消息
 

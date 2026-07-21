@@ -14,7 +14,7 @@ weight: 1
 > - [官网](https://redis.io/)
 
 > [!Warning]
-> [3 月 30 日 Redis 发布博客改变 License](https://redis.com/blog/redis-adopts-dual-source-available-licensing/)，后续 Linux 基金会基于 7.2.4 版本分叉，保持原有 License。开源版本改名称为 Redis OSS（open source）
+> [2024-03-30 Redis 发布博客改变 License](https://redis.com/blog/redis-adopts-dual-source-available-licensing/)，后续 Linux 基金会基于 7.2.4 版本分叉，命名为 **Valkey**，保持原有 License。Redis 开源版本改名称为 Redis OSS（open source）
 
 Redis 是一个 网络化的、内存中的、具有持久化的 [键值数据](/docs/5.数据存储/数据库/键值数据/键值数据.md)存储。(是否持久化根据配置决定)
 
