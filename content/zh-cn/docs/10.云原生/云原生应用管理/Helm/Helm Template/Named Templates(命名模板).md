@@ -1,6 +1,5 @@
 ---
 title: "Named Templates(命名模板)"
-linkTitle: "Named Templates(命名模板)"
 weight: 20
 ---
 

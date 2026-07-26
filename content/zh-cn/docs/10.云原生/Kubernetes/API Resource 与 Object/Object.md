@@ -1,6 +1,5 @@
 ---
 title: Object
-linkTitle: Object
 weight: 2
 ---
 
@@ -38,7 +37,7 @@ Kubernetes 对象是“record of intent(目标性记录)”：即,一旦创建�
 
 - kubernetes 把 YAML 语言里的 mapping 称为 field(字段) 下文都用 field 来进行描述，每个 field 与 yaml 语言都是，都是一组 key/value pair(键值对)。一般情况下，field 的 key 是一个 k8s 对象的属性，一般是不变的；field 的 value 是这个属性的具体描述内容。
 - 一个 Manifest 文件最大为 262144 Bytes，即 256 KiB，如果文件超过了 256 KiB，会报错提示，无法创建对象，效果如下：
-  - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/qbvmvb/1620550376332-3ee2445f-75f9-437a-9f1b-c175fd6c24d1.png)
+    - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/qbvmvb/1620550376332-3ee2445f-75f9-437a-9f1b-c175fd6c24d1.png)
 
 这是一个简单的 .yaml 文件示例，显示 kubernetes 中一个 deployment 类型的对象所需的 field 和对象规范
 

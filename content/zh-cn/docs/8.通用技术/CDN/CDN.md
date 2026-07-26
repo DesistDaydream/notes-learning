@@ -1,6 +1,5 @@
 ---
 title: CDN
-linkTitle: CDN
 weight: 100
 ---
 

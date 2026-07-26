@@ -5,6 +5,7 @@ title: Harbor 云原生注册中心
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，goharbor/harbor](https://github.com/goharbor/harbor)
 > - [官网](https://goharbor.io/)
 
@@ -34,7 +35,7 @@ title: Harbor 云原生注册中心
 数据访问层
 
 - k-v storage：键值存储。一般由 redis 实现，提供数据缓存功能并支持为作业服务临时保留作业元数据。
-  - 所需镜像：redis-photon
+    - 所需镜像：redis-photon
 - data storage：支持多个数据持久存储，作为 chart 和 registry 的后端存储
 - Database：存储 Harbor 的相关元数据，e.g.projects、users、roles、replication policies、tag、scanners、charts、images
   1. 所需镜像：harbor-db
@@ -42,23 +43,23 @@ title: Harbor 云原生注册中心
 基本服务层
 
 - Proxy：提供 API 路由功能，一般由 Nginx 实现。Harbor 的组件(e.g.core、registry、web portal 等等)都位于此反代之后。Proxy 将来自浏览器和 docker 客户端的请求转发到后端各种服务
-  - 所需镜像：nginx
+    - 所需镜像：nginx
 - Core：Harbor 的核心功能。提供 Web UI 和 RESTful API 以及 Auth 相关功能
-  - 所需镜像：harbor-core、
+    - 所需镜像：harbor-core、
 - Job Service：一种通用执行队列服务，允许其他组件/服务通过简单的静态 API 同时提交运行异步任务的请求。e.g.主备互相同步镜像功能。
-  - 所需镜像：harbor-jobservice
+    - 所需镜像：harbor-jobservice
 - Logs：日志收集器，负责将其他模块的日志收集到一个单独的地方，一般通过 rsyslog 保存
-  - 所需镜像：harbor-log
+    - 所需镜像：harbor-log
 - GC Controller：垃圾收集
 - Chart Museum：第三方 repository 提供 chart 的访问和管理。e.g.通过 dockerhub 来同步镜像所需镜像：
 - Docker Registry：第三方 registry，负责存储 docker 镜像并处理 docker pull 和 push 命令。
-  - 所需镜像：registry-photon、harbor-registryctl
+    - 所需镜像：registry-photon、harbor-registryctl
 - Notary：第三方内容信任服务，负责安全得发布和验证内容。
 
 消费层
 
 - Web Portal：图形用户界面，可帮助用户管理 registry 上的 images。
-  - 所需镜像：harbor-portal
+    - 所需镜像：harbor-portal
 
 # Harbor 部署
 

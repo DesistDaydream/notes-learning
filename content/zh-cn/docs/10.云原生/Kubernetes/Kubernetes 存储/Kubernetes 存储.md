@@ -1,6 +1,5 @@
 ---
 title: Kubernetes 存储
-linkTitle: Kubernetes 存储
 weight: 1
 ---
 
@@ -82,15 +81,15 @@ CSI 迁移工作使存储后端现有的树内存储插件（如 kubernetes.io/g
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/aplkpr/1616117503767-42e19ed6-fbd6-4b5b-bc38-db7e7a699432.jpeg)
 
 - **Volume Controller** # K8S 的卷控制器。[代码位置](https://github.com/kubernetes/kubernetes/tree/master/pkg/controller/volume)
-  - **PV Controller** # 负责 PV/PVC 的绑定、生命周期管理，并根据需求进行数据卷的 **Provision/Delete** 操作。[代码位置](https://github.com/kubernetes/kubernetes/tree/master/pkg/controller/volume/persistentvolume)
-  - **AD Controller** # 负责存储设备的 **Attach/Detach** 操作，将设备挂载到目标节点。[代码位置](https://github.com/kubernetes/kubernetes/tree/master/pkg/controller/volume/attachdetach)
+    - **PV Controller** # 负责 PV/PVC 的绑定、生命周期管理，并根据需求进行数据卷的 **Provision/Delete** 操作。[代码位置](https://github.com/kubernetes/kubernetes/tree/master/pkg/controller/volume/persistentvolume)
+    - **AD Controller** # 负责存储设备的 **Attach/Detach** 操作，将设备挂载到目标节点。[代码位置](https://github.com/kubernetes/kubernetes/tree/master/pkg/controller/volume/attachdetach)
 - **Kubelet** # Kubelet 是在每个 Node 节点上运行的主要 “节点代理”，功能是 Pod 生命周期管理、容器健康检查、容器监控等；
-  - **Volume Manager** # 属于 kubelet 中的组件，管理卷的 **Mount/Unmount** 操作、卷设备的格式化的操作.
-    - 注意：Volume Manager 也可以负责数据卷的 **Attach/Detach** 操作，需要配置 kubelet 开启特性
+    - **Volume Manager** # 属于 kubelet 中的组件，管理卷的 **Mount/Unmount** 操作、卷设备的格式化的操作.
+        - 注意：Volume Manager 也可以负责数据卷的 **Attach/Detach** 操作，需要配置 kubelet 开启特性
 - **Volume Plugins** # 它主要是对上面所有挂载功能的实现。PV Controller、AD Controller、Volume Manager 主要是进行操作的调用，而具体操作则是由 Volume Plugins 实现的。根据源码的位置可将 Volume Plugins 分为 In-Tree 和 Out-of-Tree 两类
-  - In-Tree # 与 Kubernetes 代码强耦合的卷插件
-  - Out-of-Tree # 与 Kubernetes 代码无关的卷插件。
+    - In-Tree # 与 Kubernetes 代码强耦合的卷插件
+    - Out-of-Tree # 与 Kubernetes 代码无关的卷插件。
 - **Scheduler** # 实现对 Pod 的调度能力，会根据一些存储相关的的定义去做存储相关的调度
 - 其他
-  - **External Provioner：** External Provioner 是一种 sidecar 容器，作用是调用 Volume Plugins 中的 CreateVolume 和 DeleteVolume 函数来执行 **Provision/Delet**e 操作。因为 K8s 的 PV 控制器无法直接调用 Volume Plugins 的相关函数，故由 External Provioner 通过 gRPC 来调用
-  - **External Attacher：** External Attacher 是一种 sidecar 容器，作用是调用 Volume Plugins 中的 ControllerPublishVolume 和 ControllerUnpublishVolume 函数来执行 **Attach/Detach** 操作。因为 K8s 的 AD 控制器无法直接调用 Volume Plugins 的相关函数，故由 External Attacher 通过 gRPC 来调用。
+    - **External Provioner：** External Provioner 是一种 sidecar 容器，作用是调用 Volume Plugins 中的 CreateVolume 和 DeleteVolume 函数来执行 **Provision/Delet**e 操作。因为 K8s 的 PV 控制器无法直接调用 Volume Plugins 的相关函数，故由 External Provioner 通过 gRPC 来调用
+    - **External Attacher：** External Attacher 是一种 sidecar 容器，作用是调用 Volume Plugins 中的 ControllerPublishVolume 和 ControllerUnpublishVolume 函数来执行 **Attach/Detach** 操作。因为 K8s 的 AD 控制器无法直接调用 Volume Plugins 的相关函数，故由 External Attacher 通过 gRPC 来调用。

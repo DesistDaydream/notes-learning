@@ -1,6 +1,5 @@
 ---
 title: Docker CLI
-linkTitle: Docker CLI
 weight: 1
 ---
 
@@ -165,7 +164,7 @@ OPTIONS
 - --digests # Show digests
 - --filter , -f # Filter output based on conditions provided
 - --format # Pretty-print images using a Go template
-  - 可用的 Go 模板占位符详见：https://docs.docker.com/engine/reference/commandline/images/#format-the-output
+    - 可用的 Go 模板占位符详见：https://docs.docker.com/engine/reference/commandline/images/#format-the-output
 - --no-trunc # Don’t truncate output
 - --quiet , -q # Only show numeric IDs
 
@@ -190,10 +189,10 @@ OPTIONS
 EXAMPLE
 
 - 获取 snmp_exporter 容器 merged 目录的绝对路径
-  - **docker inspect snmp_exporter | jq .\[0].GraphDriver.Data.MergedDir | tr -d """**
-  - **docker inspect snmp_exporter --format='{{.GraphDriver.Data.MergedDir}}'**
+    - **docker inspect snmp_exporter | jq .\[0].GraphDriver.Data.MergedDir | tr -d """**
+    - **docker inspect snmp_exporter --format='{{.GraphDriver.Data.MergedDir}}'**
 - 获取容器的 PID
-  - `docker inspect nginx --format='{{.State.Pid}}'`
+    - `docker inspect nginx --format='{{.State.Pid}}'`
 
 ## kill - kill 一个运行中的容器
 
@@ -233,7 +232,7 @@ EXAMPLE
 > - 容器写到 stderr 的日志 → **不走管道**，直接打印到终端，不受 `more` 控制
 >
 > 如果某个容器的日志（或部分日志）是写到 stderr 的，这部分内容会绕过分页直接刷屏，跟被分页的内容混在一起，显示会很乱。
-> 
+>
 > 更稳妥的写法: `docker logs ${Container} 2>&1 | more`
 
 ## pause - 暂停一个 Container 中的所有进程

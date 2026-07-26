@@ -18,9 +18,9 @@ weight: 1
 
 - export ETCDCTL_API=3 使用该命令使得 etcdctl 通过 v3 版本来进行操作
 - 如果在 etcd 的配置文件中的 Security 段落，开启了验证证书，则在使用命令时，需要使用--cert、--key、--cacert 选项来指定验证所需证书，否则无法操纵服务器
-  - v2 版本中使用如下方式 etcdctl --key-file=/etc/kubernetes/pki/etcd/peer.key --cert-file=/etc/kubernetes/pki/etcd/peer.crt --ca-file=/etc/kubernetes/pki/etcd/ca.crt --endpoints="https://IP:PORT" COMMAND
-  - v3 版本中使用如下方式 etcdctl --key=/etc/kubernetes/pki/etcd/peer.key --cert=/etc/kubernetes/pki/etcd/peer.crt --cacert=/etc/kubernetes/pki/etcd/ca.crt --endpoints="https://IP:PORT" COMMAND
-  - 在下面的 EXAMPLE 则不再输入认证相关参数，以便查阅方便。但是实际使用中需要使用，否则无法连接 etcd 服务端
+    - v2 版本中使用如下方式 etcdctl --key-file=/etc/kubernetes/pki/etcd/peer.key --cert-file=/etc/kubernetes/pki/etcd/peer.crt --ca-file=/etc/kubernetes/pki/etcd/ca.crt --endpoints="https://IP:PORT" COMMAND
+    - v3 版本中使用如下方式 etcdctl --key=/etc/kubernetes/pki/etcd/peer.key --cert=/etc/kubernetes/pki/etcd/peer.crt --cacert=/etc/kubernetes/pki/etcd/ca.crt --endpoints="https://IP:PORT" COMMAND
+    - 在下面的 EXAMPLE 则不再输入认证相关参数，以便查阅方便。但是实际使用中需要使用，否则无法连接 etcd 服务端
 
 ## GLOBAL OPTIONS
 
@@ -36,7 +36,7 @@ weight: 1
 - --insecure-transport\[=true] # disable transport security for client connections
 - --user="" # username\[:password] for authentication (prompt if password is not supplied)
 - -w, --write-out="simple" # 指定输出内容的格式，格式可有有这么几个 (fields, json, protobuf, simple, table)(一般常用 json)
-  - Note：输出的 json 格式只有一行，可以使用 jq 程序来对 json 进行格式化，可以把每个{}分行，以便人类阅读，下图为样例
+    - Note：输出的 json 格式只有一行，可以使用 jq 程序来对 json 进行格式化，可以把每个{}分行，以便人类阅读，下图为样例
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/miobxe/1616136392283-c0b50823-df6d-49d3-8d85-2aed1c7de3e0.jpeg)
 

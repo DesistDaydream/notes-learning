@@ -1,6 +1,5 @@
 ---
 title: Engine
-linkTitle: Engine
 weight: 20
 date: 2025-03-25T12:47:00
 ---
@@ -18,7 +17,6 @@ date: 2025-03-25T12:47:00
 - **Table Engine(表引擎)**
 
 # Database Engine
-
 
 # Table Engine
 
@@ -83,7 +81,7 @@ i.e. ReplicatedMergeTree 引擎
 
 ### Distributed
 
-**Distributed(分布式) 表**常用在集群模式的 ClickHouse 中。**Distribuited 表本身不存储任何数据**，而是提供了一个接口来访问集群中多个分片中的数据。 
+**Distributed(分布式) 表**常用在集群模式的 ClickHouse 中。**Distribuited 表本身不存储任何数据**，而是提供了一个接口来访问集群中多个分片中的数据。
 
 当查询 Distributed 表时，Distributed 表会将查询转发给所有主机，等待来自每个分片的查询结果，然后计算并返回整个查询结果。
 
@@ -100,4 +98,3 @@ CREATE TABLE [IF NOT EXISTS] [db.]my_distributed [ON CLUSTER cluster]
 ) ENGINE = Distributed(my_cluster, my_database, my_table[, sharding_key[, policy_name]])
 [SETTINGS name=value, ...]
 ```
-

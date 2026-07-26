@@ -1,6 +1,5 @@
 ---
 title: Repeat
-linkTitle: Repeat
 created: 2026-05-28T23:54
 weight: 100
 ---

@@ -1,6 +1,5 @@
 ---
 title: RBAC
-linkTitle: RBAC
 weight: 20
 ---
 

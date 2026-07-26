@@ -1,6 +1,5 @@
 ---
 title: Operator 模式
-linkTitle: Operator 模式
 weight: 20
 ---
 
@@ -160,8 +159,8 @@ Operator 本质上是与应用息息相关的，因为这是特定领域的知�
 - 一个 Operator 代码的容器镜像。
 - 控制器代码，负责查询控制平面以找出已配置的 SampleDB 资源。
 - Operator 的核心是告诉 API Server 如何使现实与代码里已配置的资源匹配。
-  - 如果添加新的 SampleDB，Operator 将设置 PersistentVolumeClaims 以提供持久的数据库存储，设置 StatefulSet 以运行 SampleDB，并设置 Job 来处理初始配置。
-  - 如果删除它，Operator 将建立快照，然后确保删除了 StatefulSet 和卷。
+    - 如果添加新的 SampleDB，Operator 将设置 PersistentVolumeClaims 以提供持久的数据库存储，设置 StatefulSet 以运行 SampleDB，并设置 Job 来处理初始配置。
+    - 如果删除它，Operator 将建立快照，然后确保删除了 StatefulSet 和卷。
 - Operator 还管理常规数据库备份。对于每个 SampleDB 资源，Operator 确定何时创建可以连接到数据库并进行备份的 Pod。这些 Pod 将依赖于 ConfigMap 和/或具有数据库连接详细信息和凭据的 Secret。
 - 由于 Operator 旨在为其管理的资源提供强大的自动化功能，因此会有其他支持代码。对于此示例，代码将检查数据库是否正在运行旧版本，如果是，则创建 Job 对象为您升级数据库。
 
@@ -170,10 +169,10 @@ Operator 本质上是与应用息息相关的，因为这是特定领域的知�
 - 在 OperatorHub.io 上找到现成的、适合您的 Operator。我们都知道在 Kubernetes 上安装应用可以使用 Helm 直接安装各种打包成 Chart 形式的 Kubernetes 应用，但随着 Kubernetes Operator 的流行，Kubernetes 社区又推出了 OperatorHub
 - awesome-operators 中罗列了目前已知的 Operator。
 - 借助已有的工具来编写您自己的 Operator，例如：
-  - [KUDO](https://kudo.dev/)(Kubernetes 通用声明式 Operator)
-  - [Kubebuilder](https://book.kubebuilder.io/)
-  - [Metacontroller](https://metacontroller.app/)，可与 Webhook 结合使用，以实现自己的功能。
-  - [Operator Framework](https://github.com/operator-framework/getting-started)
+    - [KUDO](https://kudo.dev/)(Kubernetes 通用声明式 Operator)
+    - [Kubebuilder](https://book.kubebuilder.io/)
+    - [Metacontroller](https://metacontroller.app/)，可与 Webhook 结合使用，以实现自己的功能。
+    - [Operator Framework](https://github.com/operator-framework/getting-started)
 - [发布](https://operatorhub.io/)你的 Operator，让别人也可以使用
 - 阅读 [CoreOS 原文](https://coreos.com/blog/introducing-operators.html)，其介绍了 Operator 介绍
 - 阅读这篇来自谷歌云的关于构建 Operator 最佳实践的 文章

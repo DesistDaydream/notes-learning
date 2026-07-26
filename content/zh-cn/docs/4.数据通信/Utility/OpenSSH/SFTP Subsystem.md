@@ -1,6 +1,5 @@
 ---
 title: SFTP Subsystem
-linkTitle: SFTP Subsystem
 weight: 20
 ---
 

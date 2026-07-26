@@ -1,6 +1,5 @@
 ---
 title: NAT
-linkTitle: NAT
 weight: 1
 ---
 

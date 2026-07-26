@@ -151,7 +151,7 @@ spec:
 
 Note：在 charts 目录中的 values.yaml 文件为默认的值文件，还可以通过 helm --values(或 -f) 标志指定其他 yaml 文件来对模板中的对象赋值。
 
-## 通过命令行 helm --set 标签指定对象的值。
+## 通过命令行 helm --set 标签指定对象的值
 
 还是用 {{.Values.service.port}} 这个对象举例。如果想通过命令行来指定该对象的值，则可以这么写： helm install --set service.port=81
 
@@ -213,20 +213,20 @@ data:
     pid /run/nginx.pid;
 ```
 
-### Files.GetBytes is a function for getting the contents of a file as an array of bytes instead of as a string. This is useful for things like images.
+### Files.GetBytes is a function for getting the contents of a file as an array of bytes instead of as a string. This is useful for things like images
 
-### Files.Glob is a function that returns a list of files whose names match the given shell glob pattern.
+### Files.Glob is a function that returns a list of files whose names match the given shell glob pattern
 
-### Files.Lines is a function that reads a file line-by-line. This is useful for iterating over each line in a file.
+### Files.Lines is a function that reads a file line-by-line. This is useful for iterating over each line in a file
 
-### Files.AsSecrets is a function that returns the file bodies as Base 64 encoded strings.
+### Files.AsSecrets is a function that returns the file bodies as Base 64 encoded strings
 
-### Files.AsConfig is a function that returns file bodies as a YAML map.
+### Files.AsConfig is a function that returns file bodies as a YAML map
 
 # 数据类型
 
 - map 数据用 map\[] 符号表示
-   - 注意：在其他语言中，map 类型数据一般用 {} 符号表示，但是在 helm 中，则使用 map\[] 这种标志来表示。map\[] 这种标志中的 \[] 符号，仅仅是一个无意义的标识符，将 \[] 内的数据合起来，以便让程序直到这几个键值对是同一个 map 下的，并没有 array 的含义。
+    - 注意：在其他语言中，map 类型数据一般用 {} 符号表示，但是在 helm 中，则使用 map\[] 这种标志来表示。map\[] 这种标志中的 \[] 符号，仅仅是一个无意义的标识符，将 \[] 内的数据合起来，以便让程序直到这几个键值对是同一个 map 下的，并没有 array 的含义。
 - array 数据用 \[] 符号表示
-   - index 函数用来获取 array 中的指定索引号的元素的值，index 函数语法为 `{{ index PIPELINE NUM }}`
+    - index 函数用来获取 array 中的指定索引号的元素的值，index 函数语法为 `{{ index PIPELINE NUM }}`
 - PIPELINE 产生的数据类型必须为 array，NUM 为该数组元素的索引号。

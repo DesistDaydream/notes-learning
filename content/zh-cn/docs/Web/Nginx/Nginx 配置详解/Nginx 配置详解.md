@@ -147,9 +147,9 @@ Note：
 Virtual Server 的概念，通过 **`server{}`** 指令来实现。在每个流量处理的配置环境中，都应该包含一个或多个 server{} 指令。server{} 指令是 nginx 正常运行的基础配置。虚拟主机，顾名思义，对于用户来说，访问的就是一台一台服务器，但是对于 nginx 来说，是虚拟出来的。
 
 - **对于 http 流量(http 配置环境)** # 每个 `server{} 指令块` 控制访问特定域名或者 ip 地址上对资源请求的处理。server 指令块中的一个或多个 location 指令块定义了根据 URI 来处理流量的规则
-   - 比如用户访问 map.baidu.com 和 baike.baidu.com。看上去是访问了两台服务器，但是实际上，这是经过作为代理设备的 ngxin 来进行选择后的虚拟服务器。一般情况下，baike.baidu.com 与 map.baidu.com 这俩域名所解析出来的 ip 应该是同一个公网 ip(比如 123.123.123.123)(baidu 有钱用很多公网 IP 除外)。所以可以想到，用户在浏览器输入任何一个域名，访问请求都会来到 123.123.123.123，然后根据请求报文中的 Request-URL 字段中的域名与 server_name 进行配对，用户输入的 URL 中域名与哪个 server_name 相同，则该请求就会通过这个 server 来进行处理，然后根据该 server 中 location 的关键字来决定把改请求转发给哪里。
+    - 比如用户访问 map.baidu.com 和 baike.baidu.com。看上去是访问了两台服务器，但是实际上，这是经过作为代理设备的 ngxin 来进行选择后的虚拟服务器。一般情况下，baike.baidu.com 与 map.baidu.com 这俩域名所解析出来的 ip 应该是同一个公网 ip(比如 123.123.123.123)(baidu 有钱用很多公网 IP 除外)。所以可以想到，用户在浏览器输入任何一个域名，访问请求都会来到 123.123.123.123，然后根据请求报文中的 Request-URL 字段中的域名与 server_name 进行配对，用户输入的 URL 中域名与哪个 server_name 相同，则该请求就会通过这个 server 来进行处理，然后根据该 server 中 location 的关键字来决定把改请求转发给哪里。
 - **mail 和 TCP/UDP 流量(mail 和 stream 配置环境)** # 每个 `server{} 指令块` 控制处理到达指定 TCP port 或 UNIX socket 的流量。
-   - 比如用户访问 30000 端口，则可以根据其中的规则，将 对 30000 端口发起的请求，代理到其他设备的某些端口上。
+    - 比如用户访问 30000 端口，则可以根据其中的规则，将 对 30000 端口发起的请求，代理到其他设备的某些端口上。
 
 其实说白了，每个 Virtual Server 都相当于一个独立运行的服务，用来处理客户端的请求。具体如何处理，则在每个 server{} 指令块中定义。可以这么说，Nginx 中所有指令，其实都是为 Virtual Servers 服务的。
 

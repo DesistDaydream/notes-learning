@@ -1,6 +1,5 @@
 ---
 title: Federate(集群联邦)
-linkTitle: Federate(集群联邦)
 weight: 6
 ---
 
@@ -42,19 +41,19 @@ scrape_configs:
 配置说明：
 
 - 通过 URL 中的 `match[]` 参数指定我们可以指定需要获取的时间序列。`match[]` 参数必须是一个瞬时向量选择器，例如 up 或者 `{job="api-server"}`。配置多个 `match[]` 参数，用于获取多组时间序列的监控数据。该例中表示 job 名字开头是 external 的 metric 都抓取
-   - 如果只指定指标名，则获取当前 prom 中该指标名的所有样本；如果只指定标签，则获取所有符合该标签的样本。
-   - 事例中 `up{job=~"external._"}` 表示获取 up 指标中，标签符合正则 `external._` 的所有样本
-   - 注意，可以使用 `'{job=~"..*"}'` 来匹配所有 job 的 metric，但是官方不建议这么用，防止意外情况发生
+    - 如果只指定指标名，则获取当前 prom 中该指标名的所有样本；如果只指定标签，则获取所有符合该标签的样本。
+    - 事例中 `up{job=~"external._"}` 表示获取 up 指标中，标签符合正则 `external._` 的所有样本
+    - 注意，可以使用 `'{job=~"..*"}'` 来匹配所有 job 的 metric，但是官方不建议这么用，防止意外情况发生
 - horbor_labels 配置 true 可以确保当采集到的监控指标冲突时，能够自动忽略冲突的监控数据。如果为 false 时，prometheus 会自动将冲突的标签替换为”exported\_“的形式。
 - targets 的目标选择要抓取的另一个 prometheus 运行时所监听的 IP:PORT
 
 可以在 web 上进行 match 语句的测试，例如下面，如果获取到的数据和自己预期的一样，那么该配置就没问题
 
 - `http://172.38.40.214:30001/federate?match[]=up{job%3D~"external.*"}`
-   - 使用 curl 命令：
-      - `curl 'http://172.38.40.214:30001/federate?match[]=up{job%3D~"external.*"}'`
-   - url 中的规则为
-      - {job=~"prometheus"}
+    - 使用 curl 命令：
+        - `curl 'http://172.38.40.214:30001/federate?match[]=up{job%3D~"external.*"}'`
+    - url 中的规则为
+        - {job=~"prometheus"}
 
 功能分区
 

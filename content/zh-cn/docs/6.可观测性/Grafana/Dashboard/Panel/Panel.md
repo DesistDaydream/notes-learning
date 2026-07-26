@@ -1,6 +1,5 @@
 ---
 title: Panel
-linkTitle: Panel
 weight: 1
 ---
 
@@ -15,7 +14,7 @@ weight: 1
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/ldaq0w/1636261571312-2e5d4a25-2009-495d-919a-973f3d2cd178.png)
 
-- [**Header(标题)**](#Header), **绿色部分** # 左边是面板的名称，右侧有 4 个按钮，分别是 设置整个 Dashboard、放弃、保存、应用
+- [**Header(标题)**](#header), **绿色部分** # 左边是面板的名称，右侧有 4 个按钮，分别是 设置整个 Dashboard、放弃、保存、应用
 - [**Visualization preview(可视化的预览)**](#Visualization%20preview), **蓝色部分** # 在 数据处理 与 面板样式处理 两部分设置的内容将会反应在这个预览部分
 - [**Data section(数据处理)**](#Data%20section), **红色部分** # 通过数据查询语句来获取数据，以便在面板展示
 - [**Panel dispaly options(面板显示选项)**](#Panel%20display%20options), **黄色部分** # 用来配置面板的信息。包括 面板类型、面板名称、展示效果 等等
@@ -42,8 +41,8 @@ https://grafana.com/docs/grafana/latest/panels-visualizations/panel-editor-overv
 在可视化的预览部分，可以图像的形式查看从数据源获取到的数据。包含如下几个部分
 
 - Axes 横、纵 坐标轴
-  - 横轴是时间
-  - 纵轴是值。即该时间点上，数据源中的值。
+    - 横轴是时间
+    - 纵轴是值。即该时间点上，数据源中的值。
 - Panel title 面板标题
 - Legend 图例(即 图片的文字说明)
 - 时间范围控件
@@ -193,4 +192,3 @@ Thresholds(阈值) 可以用于 Bar、Gauge、Graph、Stat、Table 这几种类�
 这里只介绍所有面板的通用配置，不同的面板，这部分的可配置的项目不同
 
 根据匹配规则，替换面板上某些字段。
-

@@ -1,6 +1,5 @@
 ---
 title: Files 模块
-linkTitle: Files 模块
 weight: 20
 ---
 
@@ -64,7 +63,7 @@ blockinfile 模块使用示例：
 Note：
 
 - blockinfile 模块会将 block 字段下面的所有内容当做一个文本块来看，将这一块内容全部添加到指定文件中 block 位置
-  - block 位置是由 # BEGIN ANSIBLE MANAGED BLOCK 与 # END ANSIBLE MANAGED BLOCK 两行夹在中间的所有位置。
+    - block 位置是由 # BEGIN ANSIBLE MANAGED BLOCK 与 # END ANSIBLE MANAGED BLOCK 两行夹在中间的所有位置。
 - 如果再次执行该任务，则会将 block 下指定的文本块覆盖到目标文件 ANSIBLE 所表示的那几行，而不会添加到文件末尾
 
 # copy - 用于将文件拷贝到被管理设备上的某个位置

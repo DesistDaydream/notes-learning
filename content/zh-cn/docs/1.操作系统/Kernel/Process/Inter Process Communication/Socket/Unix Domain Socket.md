@@ -1,6 +1,5 @@
 ---
 title: Unix Domain Socket
-linkTitle: Unix Domain Socket
 weight: 20
 ---
 

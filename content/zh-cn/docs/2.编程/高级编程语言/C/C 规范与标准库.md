@@ -1,6 +1,5 @@
 ---
 title: C 规范与标准库
-linkTitle: C 规范与标准库
 weight: 3
 ---
 

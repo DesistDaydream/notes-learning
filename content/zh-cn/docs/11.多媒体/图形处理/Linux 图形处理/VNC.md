@@ -5,6 +5,7 @@ title: VNC
 # 概述
 
 > 参考：
+>
 > - [Wiki, VNC](https://en.wikipedia.org/wiki/Virtual_Network_Computing)
 > - [GitHub 项目，rfbproto/rfbproto](https://github.com/rfbproto/rfbproto)(RFB 协议规范)
 
@@ -17,6 +18,7 @@ VNC 是独立于平台的——有许多基于 GUI 的操作系统和 Java 的�
 # TigerVNC
 
 > 参考：
+>
 > - [GitHub 项目，TigerVNC/tigernvc](https://github.com/TigerVNC/tigervnc)
 > - [官网](https://tigervnc.org/)
 
@@ -35,4 +37,5 @@ Ubuntu
 # RealVNC
 
 > 参考：
+>
 > - [官网](https://www.realvnc.com/en/)

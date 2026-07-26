@@ -1,6 +1,5 @@
 ---
 title: logs
-linkTitle: logs
 weight: 20
 ---
 

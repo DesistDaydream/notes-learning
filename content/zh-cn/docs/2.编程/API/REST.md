@@ -1,6 +1,5 @@
 ---
 title: REST
-linkTitle: REST
 weight: 20
 ---
 
@@ -122,9 +121,9 @@ REST 架构是针对 Web 应用而设计的，其目的是为了降低开发的�
 不合适的（放在 URL 中）：
 
 ```test
-/v1/orders/{order_no}  
-/v2/orders/{order_no}  
-/v3/orders/{order_no}  
+/v1/orders/{order_no}
+/v2/orders/{order_no}
+/v3/orders/{order_no}
 ...
 ```
 
@@ -136,5 +135,3 @@ curl -X GET --location 'http://localhost:8080/orders/PAY0101' \
 curl -X GET --location 'http://localhost:8080/orders/PAY0101' \
   --header 'accept: application/vnd.itzhai.v2+json'
 ```
-
-

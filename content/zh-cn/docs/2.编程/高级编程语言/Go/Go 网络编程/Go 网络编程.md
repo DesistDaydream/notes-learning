@@ -5,11 +5,11 @@ title: Go 网络编程
 # 概述
 
 > 参考：
-> 
+>
 > - [Go 标准库 ，net](https://pkg.go.dev/net)
 > - [公众号，开发内功修炼-在 golang 中是如何对 epoll 进行封装的？](https://mp.weixin.qq.com/s/hjWhh_zHfxmH1yZFfvu_zA)(关于 go 实现 net 的底层逻辑分析)
 > - [Go 标准库，net/url](https://pkg.go.dev/net/url)(URL 解析与转译)
->   - [公众号-马哥 Linux 运维，go 标准库 net/url 学习笔记](https://mp.weixin.qq.com/s/p4F3lv_DBmWEwbj9v8273Q)
+>     - [公众号-马哥 Linux 运维，go 标准库 net/url 学习笔记](https://mp.weixin.qq.com/s/p4F3lv_DBmWEwbj9v8273Q)
 
 在协程没有流行以前，传统的网络编程中，同步阻塞是性能低下的代名词，一次切换就得是 [3 us](https://mp.weixin.qq.com/s/uq5s5vwk5vtPOZ30sfNsOg)  左右的 CPU 开销。各种基于 epoll 的异步非阻塞的模型虽然提高了性能，但是基于回调函数的编程方式却非常不符合人的的直线思维模式。开发出来的代码的也不那么容易被人理解。
 
@@ -37,35 +37,35 @@ net 包中包含如下几个包
 package main
 
 import (
-	"net"
-	"log"
+ "net"
+ "log"
 )
 
 // 处理连接
 func handleConn(conn net.Conn) {
-	defer conn.Close()
-	// 定义缓冲区
-	buf := make([]byte, 1024)
+ defer conn.Close()
+ // 定义缓冲区
+ buf := make([]byte, 1024)
 
-	// 读取客户端数据
-	conn.Read(buf[:1024])
+ // 读取客户端数据
+ conn.Read(buf[:1024])
 
-	// 将数据写回客户端
-	len, err := conn.Write([]byte("hello,i am server"))
+ // 将数据写回客户端
+ len, err := conn.Write([]byte("hello,i am server"))
 }
 
 func main() {
-	// 实例化监听器
-	listener, err := net.Listen("tcp", ":8080")
+ // 实例化监听器
+ listener, err := net.Listen("tcp", ":8080")
 
-	// 监听并接受连接
-	for {
-		// 等待客户端连接
-		conn, err := listener.Accept()
+ // 监听并接受连接
+ for {
+  // 等待客户端连接
+  conn, err := listener.Accept()
 
-		// 创建goroutine处理客户端连接
-		go handleConn(conn)
-	}
+  // 创建goroutine处理客户端连接
+  go handleConn(conn)
+ }
 }
 ```
 
@@ -390,7 +390,7 @@ func netpollblock(pd *pollDesc, mode int32, waitio bool) bool {
 
 gopark 这个函数就是 golang 内部阻塞协程的入口。
 
-### 将新连接添加到 epoll 中。
+### 将新连接添加到 epoll 中
 
 我们再来说说假如客户端连接已经到来了的情况。这时 fd.pfd.Accept 会返回新建的连接。然后会将该新连接也一并加入到 epoll 中进行高效的事件管理。
 

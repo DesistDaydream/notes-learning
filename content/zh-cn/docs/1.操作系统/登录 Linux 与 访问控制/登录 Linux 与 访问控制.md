@@ -1,6 +1,5 @@
 ---
 title: 登录 Linux 与 访问控制
-linkTitle: 登录 Linux 与 访问控制
 weight: 1
 ---
 
@@ -94,7 +93,7 @@ OpenSSH 会为用户分配一个 Pseudoterminal(伪终端，即 pts) 以便用�
 
 **Message of the day(每日消息，简称 MOTD)** 是一种比向所有用户发送一个邮件更有效的发送共同的信息的方式
 
-#### MOTD 关联文件
+### MOTD 关联文件
 
 - **/etc/default/motd-news** # 动态 MOTD 新闻信息配置，新闻信息主要是互联网相关的
 - **/etc/update-motd.d/** # MOTD 执行脚本保存路径
@@ -127,8 +126,6 @@ Linux 的登录与访问控制是相辅相成的，一个用户想要登录 Linu
 - 会话
 - 账户锁定
 - 等等......
-
-
 
 ## Account Manager(账户管理)
 

@@ -1,6 +1,5 @@
 ---
 title: "services"
-linkTitle: "services"
 weight: 20
 ---
 
@@ -9,7 +8,6 @@ weight: 20
 > 参考：
 >
 > - [官方文档，参考 - Compose 文件参考 - Services 顶级元素](https://docs.docker.com/reference/compose-file/services/)
-
 
 ## build
 
@@ -284,8 +282,8 @@ logging:
 - **host** # 使用宿主机网络。i.e. 让容器加入 1 号进程的网络名称空间
 - **none** # 关闭所有容器网络。
 - **service:${ServiceName}** # 让该容器加入到其他容器的网络中，让两个容器共享 Network namespace。
-  - Notes: ServiceName 就是顶层字段 services 的下级字段的名称
-  - 关于容器网络更详细的内容详见 [Docker Network](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20Network.md)
+    - Notes: ServiceName 就是顶层字段 services 的下级字段的名称
+    - 关于容器网络更详细的内容详见 [Docker Network](/docs/10.云原生/Containerization%20implementation/Docker/Docker%20Network.md)
 
 > [!Warning]
 > network_mode 与 [networks](#networks) 字段互斥，若使用了 networks 字段，则相当于之前老版本将 network_mode 设置为 bridge
@@ -464,4 +462,3 @@ services:
     - "/localhost/postgres.sock:/var/run/postgres/postgres.sock"
     - "/localhost/data:/var/lib/postgresql/data"
 ```
-

@@ -1,6 +1,5 @@
 ---
 title: git CLI
-linkTitle: git CLI
 weight: 20
 ---
 
@@ -103,7 +102,7 @@ tag Create, list, delete or verify a tag object signed with GPG
 
 git tag -d v0.7.0 删除 v0.7.0 这个 Tag
 
-## cherry-pick - 
+## cherry-pick -
 
 https://git-scm.com/docs/git-cherry-pick
 
@@ -140,7 +139,7 @@ https://git-scm.com/docs/git-push
 **OPTIONS**
 
 - **-f, --force** # 强制覆盖远程仓库的代码，即使本地代码与仓库代码冲突。
-  - Notes: 有的远程仓库具有保护分支功能，会阻止接收通过 --force 传过来的强制覆盖请求，比如 [GitLab 的受保护的分支](https://docs.gitlab.com/ee/user/project/protected_branches.html)、etc.
+    - Notes: 有的远程仓库具有保护分支功能，会阻止接收通过 --force 传过来的强制覆盖请求，比如 [GitLab 的受保护的分支](https://docs.gitlab.com/ee/user/project/protected_branches.html)、etc.
 
 ## remote
 

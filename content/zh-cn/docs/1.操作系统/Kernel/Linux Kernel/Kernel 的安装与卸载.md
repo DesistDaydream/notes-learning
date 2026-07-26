@@ -1,19 +1,18 @@
 ---
 title: "Kernel 的安装与卸载"
-linkTitle: "Kernel 的安装与卸载"
 weight: 3
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - <https://mp.weixin.qq.com/s/1xRc4DzyG4c8e2XYGk28Vg>
 
 # Ubuntu
 
 > 参考：
-> 
+>
 > - <https://kernel.ubuntu.com/~kernel-ppa/mainline/>
 
 ## 更换内核
@@ -23,7 +22,7 @@ weight: 3
 # CentOS
 
 > 参考：
-> 
+>
 > - [ELRepo 安装文档](http://elrepo.org/tiki/tiki-index.php)
 > - elrepo 的内核 rpm 包不全，暂时也不知道去哪找，先把能找到的网址都记下来
 >     - <https://buildlogs.centos.org/c7-kernels.x86_64/kernel/>

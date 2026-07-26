@@ -25,7 +25,7 @@ EXAMPLE
 - http_proxy="http://tom:secret@10.23.42.11:8080/" # 设置本机的 http 代理服务器为 10.23.42.11:8080，用户名是 tom，密码是 secret
 
 - 同时设置 3 种类型代理，没有用户名和密码，代理服务器是 192.168.19.79:1080
-  - `export {https,ftp,http}_proxy="127.0.0.1:8889"`
+    - `export {https,ftp,http}_proxy="127.0.0.1:8889"`
 - `all_proxy="socks5://localhost:10808"` # 使用本地 10808 端口的 socks 协议代理所有流量(e.g.安装完 v2ray 客户端并配置好启动后，即可使用该变量来让设备使用代理进行翻墙)
 - `no_proxy="10._._._,192.168._._,_.local,localhost,127.0.0.1`" # 忽略指定 ip 的代理
 
@@ -74,4 +74,3 @@ EXAMPLE
 # 可用的代理程序
 
 参考 [Proxy](/docs/Web/Proxy/Proxy.md)
-

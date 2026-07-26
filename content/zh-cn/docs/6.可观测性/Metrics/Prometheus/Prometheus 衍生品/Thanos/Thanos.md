@@ -1,6 +1,5 @@
 ---
 title: Thanos
-linkTitle: Thanos
 weight: 1
 ---
 
@@ -19,8 +18,8 @@ weight: 1
 单独使用 Prometheus 可能产生的问题
 
 - 长、短期数据未分层，一套 Prometheus 在被查询长周期指标时，Prometheus 所在服务器的内存、CPU 使用率飙升，甚至可能导致监控、告警服务不可用，原因在于两点：
-  - 查询长周期数据时，Prometheus 会将大量数据载入内存
-  - Prometheus 载入的不是降采样数据
+    - 查询长周期数据时，Prometheus 会将大量数据载入内存
+    - Prometheus 载入的不是降采样数据
 - 查询的时间范围越大，需要的内存就越多。在另一个生产的方案中，采用 VictoriaMetrics 单机版作为远端存储，服务器内存高达 128G。同时，这种方式还存在丢数据的情况。
 - Prometheus 联邦的方式，只是结局了将多个 Prometheus 聚合起来的情况，并没有提供抽样的能力，不能加快长周期指标的查询，不适用于当前远端存储的场景。
 
@@ -30,24 +29,24 @@ weight: 1
 - Thanos 的 Sidecar 和 Receiver 组件都可以将指标数据转存到对象存储中
 - Thanos Querier 组件可以
 - 此时，通过 Thanos 将数据分了层
-  - 短期数据保存在 Receiver 或 Prometheus 中，用于告警系统的高频查询以及 Grafana 的展示
-  - 长期数据保存在对象存储中，以供后续分析使用
+    - 短期数据保存在 Receiver 或 Prometheus 中，用于告警系统的高频查询以及 Grafana 的展示
+    - 长期数据保存在对象存储中，以供后续分析使用
 
 # Thanos 架构概述
 
 Thanos 遵循 [KISS](https://en.wikipedia.org/wiki/KISS_principle) 和 Unix 哲学，由一组组件组成，每个组件都可以实现特定的功能：
 
 - Prometheus 本地数据处理
-  - **Sidecar** # 暴露 StoreAPI。连接 Prometheus，读取其数据以便进行下一步处理。将已压缩数据上传到对象存储，或读取其数据以进行查询和/或将其上传到云存储中。还可以动态重载 Prometheus 配置文件。
-  - **Receiver** # 暴露 StoreAPI。实现了 Prometheus 的 Remote Write API。接收 Prometheus 发送过来的 WAL 数据存储到 Receiver 本地的 TSDB 中，也就是说，Receiver 本身就是一个 TSDB。同时，也可以将这些数据上传到对象存储中。
+    - **Sidecar** # 暴露 StoreAPI。连接 Prometheus，读取其数据以便进行下一步处理。将已压缩数据上传到对象存储，或读取其数据以进行查询和/或将其上传到云存储中。还可以动态重载 Prometheus 配置文件。
+    - **Receiver** # 暴露 StoreAPI。实现了 Prometheus 的 Remote Write API。接收 Prometheus 发送过来的 WAL 数据存储到 Receiver 本地的 TSDB 中，也就是说，Receiver 本身就是一个 TSDB。同时，也可以将这些数据上传到对象存储中。
 - PromQL 查询处理。分为两个部分，一个前端一个后端。
-  - **Querier** # 实现 Prometheus 的 API、以及一个类似 Prometheus 的 Web 页面。Querier 从 StoreAPI 查询数据并返回结果。
-  - **Query Frontend** # 实现 Prometheus 的 API、以及一个类似 Prometheus 的 Web 页面。可以将请求负载均衡到指定的多个 Querier 上，同时可以缓存响应数据、也可以按查询日拆分。有点像 Redis 的效果。
+    - **Querier** # 实现 Prometheus 的 API、以及一个类似 Prometheus 的 Web 页面。Querier 从 StoreAPI 查询数据并返回结果。
+    - **Query Frontend** # 实现 Prometheus 的 API、以及一个类似 Prometheus 的 Web 页面。可以将请求负载均衡到指定的多个 Querier 上，同时可以缓存响应数据、也可以按查询日拆分。有点像 Redis 的效果。
 - 对象存储中的数据处理
-  - **Store Gateway** # 暴露 StoreAPI。将对象存储中的数据暴露出来，供 Querier 组件通过 PromQL 查询
-  - **Compactor** # 压实数据，对保存在对象存储中的数据进行降采样。
+    - **Store Gateway** # 暴露 StoreAPI。将对象存储中的数据暴露出来，供 Querier 组件通过 PromQL 查询
+    - **Compactor** # 压实数据，对保存在对象存储中的数据进行降采样。
 - 其他
-  - **Ruler** # 针对 Thanos 中的数据评估记录和警报规则以进行展示/上传。
+    - **Ruler** # 针对 Thanos 中的数据评估记录和警报规则以进行展示/上传。
 
 通过 thanos 程序的子命令可以运行指定的组件
 
@@ -137,19 +136,19 @@ Compactor、Sidecar、Receiver、Ruler 是唯一对对象存储具有写权限�
 Sidecar
 
 - 优势:
-  - 查询时从多个源来获取数据，降低单一数据源压力
+    - 查询时从多个源来获取数据，降低单一数据源压力
 - 缺点:
-  - 近期数据需要 Query 与 Sidecar 之间网络请求完成，会增加额外耗时
-  - 需要 Store Gateway 能访问每个 Prometheus 实例
+    - 近期数据需要 Query 与 Sidecar 之间网络请求完成，会增加额外耗时
+    - 需要 Store Gateway 能访问每个 Prometheus 实例
 
 Receiver
 
 - 优势：
-  - 数据集中
-  - Prometheus 无状态
-  - 只需要暴露 Receiver 给 Prometheus 访问
+    - 数据集中
+    - Prometheus 无状态
+    - 只需要暴露 Receiver 给 Prometheus 访问
 - 缺点:
-  - Receiver 承受大量 Prometheus 的 remote write 写入
+    - Receiver 承受大量 Prometheus 的 remote write 写入
 
 总的来说
 
@@ -163,9 +162,9 @@ Receiver
 不同的是：
 
 - Sidecar 是通过推送的方式，将 Prometheus 本地数据推送到对象存储。
-  - 不过 Sidecar 还有一些其他功能，比如动态加载配置文件等等。
+    - 不过 Sidecar 还有一些其他功能，比如动态加载配置文件等等。
 - Receiver 自身就是一个 TSDB，也实现了 Prometheus 的 Remote Write API。接收 Prometheus 发送过来的 WAL 数据存储到 Receiver 本地的 TSDB 中。
-  - 当然，Receiver 也可以将本地时序数据推送到对象存储。
+    - 当然，Receiver 也可以将本地时序数据推送到对象存储。
 
 ## Sidecar(边车)
 
@@ -180,9 +179,9 @@ Sidecar 可以连接 Prometheus Server，读取其数据以便进行下一步处
 注意：
 
 - 该组件并不是通过 Prometheus 的 Remote Write 将数据写入到对象存储中的。而是将 Prometheus 已经压缩的数据块，上传到对象存储中。所以，如果直接从对象存储中查询数据，并不是实时的，远程存储的数据与 Prometheus 中的数据的时间间隔受 Prometheus 压缩数据间隔影响。
-  - 所以，Thanos 如果想要通过 Remote Write 来转存数据，则是通过 **Receiver **功能实现的。
+    - 所以，Thanos 如果想要通过 Remote Write 来转存数据，则是通过 **Receiver**功能实现的。
 - 要使 Sidecar 模式正常运行，必须修改 Prometheus 的 `--storage.tsdb.min-block-duration` 与 `--storage.tsdb.max-block-duration` 这俩命令行标志的值为相同的值以禁用 Prometheus 的本地压缩，通常推荐设置为默认的 `2h`。
-  - 这个设置是为了避免当 Sidecar 在上传数据会读取 Prometheus 的本地数据时而产生的问题。比如正在读取的数据正在被压缩，那么该数据上传到对象存储中将会出现问题，甚至都无法正常读取与上传
+    - 这个设置是为了避免当 Sidecar 在上传数据会读取 Prometheus 的本地数据时而产生的问题。比如正在读取的数据正在被压缩，那么该数据上传到对象存储中将会出现问题，甚至都无法正常读取与上传
 
 ## Receiver(接收器)
 
@@ -193,7 +192,7 @@ Receiver 是一个实现了 Prometheus 的 Remote Write API 的 TSDB，具有如
 - **Remote Write API** # Receiver 接收 Prometheus Remote Write 传输过来的 WAL 数据，并存储在本地 TSDB 中。
 - **转存数据** # Receiver 还可以将这些数据转存到对象存储中。
 - **暴露 StoreAPI** # Queriver 组件可以直接向 Receiver 的 StoreAPI 发起 PromQL 请求。
-  - 注意：由于 Receiver 自身就是 TSDB，所以这个 PromQL 可以直接从 Receiver 中查询数据而不用像 Sidecar 似的，还得把查询请求转发给 Prometheus。
+    - 注意：由于 Receiver 自身就是 TSDB，所以这个 PromQL 可以直接从 Receiver 中查询数据而不用像 Sidecar 似的，还得把查询请求转发给 Prometheus。
 
 # Thanos 其他组件概述
 

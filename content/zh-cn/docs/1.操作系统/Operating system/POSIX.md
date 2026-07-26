@@ -1,6 +1,5 @@
 ---
 title: POSIX
-linkTitle: POSIX
 weight: 2
 ---
 

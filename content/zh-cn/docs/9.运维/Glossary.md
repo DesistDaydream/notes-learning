@@ -1,6 +1,5 @@
 ---
 title: Glossary
-linkTitle: Glossary
 created: 2026-05-18T18:40
 weight: 100
 ---
@@ -9,7 +8,7 @@ weight: 100
 
 > 参考：
 >
-> - 
+> -
 
 # 部署环境
 
@@ -24,7 +23,7 @@ deployment_environment
 # 服务器命名规范
 
 > 参考：
-> 
+>
 > - <https://codeantenna.com/a/VDpjUR86Hx>
 > - [RFC-1178，为你的计算机选择一个名字](https://datatracker.ietf.org/doc/html/rfc1178)
 

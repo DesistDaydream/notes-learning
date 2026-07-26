@@ -1,6 +1,5 @@
 ---
 title: Optical amplifier
-linkTitle: Optical amplifier
 weight: 5
 ---
 

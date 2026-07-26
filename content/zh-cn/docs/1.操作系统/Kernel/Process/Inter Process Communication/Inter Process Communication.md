@@ -1,7 +1,6 @@
 ---
 title: Inter Process Communication
 titleAlias: 进程间通信
-linkTitle: Inter Process Communication
 weight: 1
 ---
 
@@ -270,8 +269,8 @@ int socket(int domain, int type, int protocal)
 - 实现 TCP 字节流通信：socket 类型是 AF_INET 和 SOCK_STREAM；
 - 实现 UDP 数据报通信：socket 类型是 AF_INET 和 SOCK_DGRAM；
 - 实现本地进程间通信：
-  - 「本地字节流 socket 」类型是 AF_LOCAL 和 SOCK_STREAM
-  - 「本地数据报 socket 」类型是 AF_LOCAL 和 SOCK_DGRAM。另外，AF_UNIX 和 AF_LOCAL 是等价的，所以 AF_UNIX 也属于本地 socket；
+    - 「本地字节流 socket 」类型是 AF_LOCAL 和 SOCK_STREAM
+    - 「本地数据报 socket 」类型是 AF_LOCAL 和 SOCK_DGRAM。另外，AF_UNIX 和 AF_LOCAL 是等价的，所以 AF_UNIX 也属于本地 socket；
 
 接下来，简单说一下这三种通信的编程模式。
 

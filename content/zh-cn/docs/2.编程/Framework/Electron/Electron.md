@@ -1,6 +1,5 @@
 ---
 title: "Electron"
-linkTitle: "Electron"
 weight: 1
 ---
 

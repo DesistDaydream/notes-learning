@@ -1,6 +1,5 @@
 ---
 title: Network packet broker
-linkTitle: Network packet broker
 weight: 6
 ---
 

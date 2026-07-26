@@ -1,6 +1,5 @@
 ---
 title: "Rclone 配置"
-linkTitle: "Rclone 配置"
 weight: 20
 ---
 
@@ -14,10 +13,11 @@ weight: 20
 Rclone 的配置有点混乱，不过大体分为两部分，**Backend(与后端相关)** 和 **Non Backend(与后端无关)** 两种配置。
 
 - **Non Backend** # 通常是指 Rclone 自身的运行时方式。比如使用 sync、copy 等命令时设置并发数、等等。
-  - 这部分配置无法通过 rclone.conf 文件设置。
+    - 这部分配置无法通过 rclone.conf 文件设置。
 - **Backend** # 针对各种 Remote 所使用的 Backend 的配置。
 
 这两类配置，可以使用**一种或多种**方式进行配置，可用的配置方式有：
+
 - 命令行标志
 - 环境变量
 - 配置文件
@@ -67,17 +67,17 @@ provider = Alibaba
 
 命令行标志、环境变量、rclone.conf 配置文件这三种配置的对应关系规则如下：
 
-- - 去掉长选项名称开头的 `--`
+  - - 去掉长选项名称开头的 `--`
 - 选项名称中的 `-` 改为 `_`
 - 还有一些规则对于配置文件和环境变量不一样
-  - 环境变量：
-    - 字母改为大写
-    - 前面加上 `RCLONE_` 前缀
-  - 配置文件：
-    - 去掉第一个 `-` 前的字符串
-    - 第一个 `-` 之前的字符串作为配置文件中每个部分的名称，即 Backend 名称
-    - 保持小写不变
-    - 不加前缀
+    - 环境变量：
+        - 字母改为大写
+        - 前面加上 `RCLONE_` 前缀
+    - 配置文件：
+        - 去掉第一个 `-` 前的字符串
+        - 第一个 `-` 之前的字符串作为配置文件中每个部分的名称，即 Backend 名称
+        - 保持小写不变
+        - 不加前缀
 
 由于 Backend 相关配置都是与各种类型的存储相关联的，所以我们可以查看官方文档中每个存储页面，在其中有一个名为 `Standard options` 的段落，详细描写了该 Backend 的所有可用配置，比如用 S3 类型的 Backend 举例，效果如下：
 
@@ -108,10 +108,10 @@ rclone 运行后，根据如下顺序从上到下依次查找 rclone.conf 文件
 如果上述位置都没有找到 rclone.conf 文件，则会在以下位置创建一个新的配置文件：
 
 - Windows 上
-  - 在 **$APPDATA/rclone/rclone.conf**
+    - 在 **$APPDATA/rclone/rclone.conf**
 - 类 Unix 上
-  - 如果定义了 `$XDG_CONFIG_HOME`，则在 **$XDG_CONFIG_HOME/rclone/rclone.conf**
-  - 如果未定义 `$XDG_CONFIG_HOME`，则在 **~/.config/rclone/rclone.conf**
+    - 如果定义了 `$XDG_CONFIG_HOME`，则在 **$XDG_CONFIG_HOME/rclone/rclone.conf**
+    - 如果未定义 `$XDG_CONFIG_HOME`，则在 **~/.config/rclone/rclone.conf**
 
 # Backend 无关配置详解
 
@@ -149,4 +149,3 @@ https://rclone.org/webdav
 https://rclone.org/local/
 
 # 配置示例
-

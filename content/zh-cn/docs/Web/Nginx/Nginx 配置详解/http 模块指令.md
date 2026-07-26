@@ -80,14 +80,14 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#listen
 指定 Virtual Server 监听的端口，也可加上 IP:PORT
 
 - **TARGET** # 每个 Virtual Server 的 listen 指令都会让 Nginx 监听一个 TARGET。TARGET 可以有多种格式：
-  - ADDRESS:\[PORT] # 监听在指定的 IP 和端口上，ADDRESS 可以使用通配符。
-  - PORT # 省略地址，即监听在所有 IP 的指定端口上。
-  - UNIX:PATH # 监听在以 unix: 为前缀的 UNIX 套接字上。
+    - ADDRESS:\[PORT] # 监听在指定的 IP 和端口上，ADDRESS 可以使用通配符。
+    - PORT # 省略地址，即监听在所有 IP 的指定端口上。
+    - UNIX:PATH # 监听在以 unix: 为前缀的 UNIX 套接字上。
 - **PARAMETER** # 可以为指定的监听配置参数，多个参数以空格分割：
-  - **default_server** # 将该 Virtual Server 设为默认。若客户端的请求没有匹配到任何 Virtual Server，则该请求由默认 Virtual Server 处理。
-    - 注意：若没有任何 Virtual Server 配置了 listen 指令的 defautl_server 参数，那么当匹配不到 Virtual Server 时，默认的 Virtual Server 就是
-  - **ssl** # 启动 SSL 模块，让此监听上接受的所有连接都应在 SSL 模式下工作
-  - ......
+    - **default_server** # 将该 Virtual Server 设为默认。若客户端的请求没有匹配到任何 Virtual Server，则该请求由默认 Virtual Server 处理。
+        - 注意：若没有任何 Virtual Server 配置了 listen 指令的 defautl_server 参数，那么当匹配不到 Virtual Server 时，默认的 Virtual Server 就是
+    - **ssl** # 启动 SSL 模块，让此监听上接受的所有连接都应在 SSL 模式下工作
+    - ......
 
 ### server_name
 
@@ -174,7 +174,7 @@ URL 指定后端服务器的语法有如下几种(下面的 Protocol 通常都�
 proxy_pass 指令指定的 URL 有多种，不同场景有不同的工作方式。
 
 - URL 中 **有/无 PATH 部分**。
-  - Notes: 根据 [URL 与 URI](/docs/4.数据通信/Protocol/HTTP/URL%20与%20URI.md) 中 URL 的规范可知，就算只有一个 `/` 也算有 PATH。
+    - Notes: 根据 [URL 与 URI](/docs/4.数据通信/Protocol/HTTP/URL%20与%20URI.md) 中 URL 的规范可知，就算只有一个 `/` 也算有 PATH。
 - 还有一些**特殊场景**
 
 #### 工作方式
@@ -502,7 +502,7 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirect
 **EXAMPLE**
 
 - `proxy_redirect http:// https://;`
-  - 所有 3XX 跳转的 http 的请求都会被转为 https
+    - 所有 3XX 跳转的 http 的请求都会被转为 https
 
 ### proxy_set_header
 
@@ -512,8 +512,8 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header
 
 - 语法: `proxy_set_header FIELD VALUE`
 - 默认值:
-  - `proxy_set_header Host $proxy_host;`
-  - `proxy_set_header Connection close;`
+    - `proxy_set_header Host $proxy_host;`
+    - `proxy_set_header Connection close;`
 - 作用范围: http{}、server{}、location{}
 
 **FIELD(字段)** # 指定要重新定义的请求 Header 的字段
@@ -521,9 +521,9 @@ http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header
 **VALUE(值)** # Header 字段的值。可以是包含文本、变量（nginx 的内置变量）或者它们的组合。
 
 - 注意：
-  - 在 nginx 的配置文件中，如果当前模块中没有 proxy_set_header 的设置，则会从上级别继承配置。继承顺序为：http, server, location。
-  - 由于 UPSTREAM 服务器收到的请求报文所含 IP 为代理服务器的 IP，那么就需要在代理服务器上配置该项，把用户 IP 暴露给 UPSTREAM 服务器
-  - 该指令最常用在 `location{}` 块指令中，以便为每个路径的 HTTP 请求，都设置各自的 请求头。
+    - 在 nginx 的配置文件中，如果当前模块中没有 proxy_set_header 的设置，则会从上级别继承配置。继承顺序为：http, server, location。
+    - 由于 UPSTREAM 服务器收到的请求报文所含 IP 为代理服务器的 IP，那么就需要在代理服务器上配置该项，把用户 IP 暴露给 UPSTREAM 服务器
+    - 该指令最常用在 `location{}` 块指令中，以便为每个路径的 HTTP 请求，都设置各自的 请求头。
 
 ### proxy_ssl_certificate
 

@@ -1,6 +1,5 @@
 ---
 title: LVS
-linkTitle: LVS
 weight: 1
 ---
 
@@ -26,10 +25,10 @@ LVS 项目在 1998 年 5 月由[章文嵩](https://baike.baidu.com/item/%E7%AB%A
 
 - **Director(指挥器)** # 运行 IPVS 的节点。
 
-  - **IPVS(IP 虚拟服务)** # 实现调度功能的程序。是一个 Linux 内核模块。实际上，IPVS 就是一个 **Schedulers(调度器)**。
-    - **Forwarding Method(转发方法)** # Forwarding Method 用来确定 Director 如何将数据包从客户端转发到 Real Servers。如果把 Director 比做路由器，其转发数据包的规则与普通路由器有所不同。
-      - Forwarding Method 其实就是指 LVS 的工作模式，当前有 LVS-NAT、LVS-DR、LVS-TUN 这几种。
-  - **ipvsadm** # 为 IPVS 程序配置调度规则的用户端应用程序。
+    - **IPVS(IP 虚拟服务)** # 实现调度功能的程序。是一个 Linux 内核模块。实际上，IPVS 就是一个 **Schedulers(调度器)**。
+        - **Forwarding Method(转发方法)** # Forwarding Method 用来确定 Director 如何将数据包从客户端转发到 Real Servers。如果把 Director 比做路由器，其转发数据包的规则与普通路由器有所不同。
+            - Forwarding Method 其实就是指 LVS 的工作模式，当前有 LVS-NAT、LVS-DR、LVS-TUN 这几种。
+    - **ipvsadm** # 为 IPVS 程序配置调度规则的用户端应用程序。
 
 - **Real Server(真实服务器，简称 RS)** # 处理来自客户端请求的节点
 - **Linux Virtual Server(简称 LVS)** # Director 与 Real Server 共同组成 LVS 集群。这些机器一起构成虚拟服务器，对于客户端来说，它表现为一台机器。
@@ -39,8 +38,8 @@ LVS 项目在 1998 年 5 月由[章文嵩](https://baike.baidu.com/item/%E7%AB%A
 
 - **Virual IP** # VIP,虚拟 IP，用于提供提供虚拟服务的 IP,该 IP 存在于 Director 和 RS 上
 
-  - 为什么叫虚拟的 IP，因为这个 IP 可以代表 Director，也可以代表很多 RS，把 Director 和 RS 的很多 IP 合成 一个 IP，就称为虚拟的 IP。
-  - 为什么需要虚拟 IP 呢，这就涉及到为什么要有 LVS 了，VIP 就是集群服务的一种体现，1.Cluster 集群，LB 负载均衡，HA 高可用.note 在这篇文章中第一段就是说明了集群的作用，为了让用户不用直接找 RS，而把所有的设备当做一个整体，用户看到的只有一个 IP，而不是那么多 RS 的 IP。
+    - 为什么叫虚拟的 IP，因为这个 IP 可以代表 Director，也可以代表很多 RS，把 Director 和 RS 的很多 IP 合成 一个 IP，就称为虚拟的 IP。
+    - 为什么需要虚拟 IP 呢，这就涉及到为什么要有 LVS 了，VIP 就是集群服务的一种体现，1.Cluster 集群，LB 负载均衡，HA 高可用.note 在这篇文章中第一段就是说明了集群的作用，为了让用户不用直接找 RS，而把所有的设备当做一个整体，用户看到的只有一个 IP，而不是那么多 RS 的 IP。
 
 - **Real Server IP** # RIP,调度 IP，真实服务器 IP
 
@@ -52,13 +51,13 @@ LVS 项目在 1998 年 5 月由[章文嵩](https://baike.baidu.com/item/%E7%AB%A
 在基于 LVS 项目架构的服务器集群系统中，通常包含三个功能层次：
 
 - **Load Balancer(负载均衡)** # 是整个集群系统的前端机器，在一组服务器之间均衡来自客户端的请求，让客户端认为所有服务都来自同一个 IP。
-  - Director(调度器) 就是在该层工作
-  - 负载均衡层位于整个集群系统的最前端，由一台或者多台 Director 组成， IPVS 模块就安装在 Director Server 的系统上，而 Director Server 的主要功能类似路由器，其包含了完成 LVS 负载转发功能所设定的路由表， Director 利用这些路由表信息把用户的请求分发到 Sever Cluster 层的物理服务器(Real Server) 上。此外，为了监测各个 Real Server 服务器的健康状况，在 Director Server 上还要安装监控模块 Ldirectord，当监控到某个 Real Server 不可用时，该服务器会被从 LVS 路由表中剔除，恢复时又会重新加入。
+    - Director(调度器) 就是在该层工作
+    - 负载均衡层位于整个集群系统的最前端，由一台或者多台 Director 组成， IPVS 模块就安装在 Director Server 的系统上，而 Director Server 的主要功能类似路由器，其包含了完成 LVS 负载转发功能所设定的路由表， Director 利用这些路由表信息把用户的请求分发到 Sever Cluster 层的物理服务器(Real Server) 上。此外，为了监测各个 Real Server 服务器的健康状况，在 Director Server 上还要安装监控模块 Ldirectord，当监控到某个 Real Server 不可用时，该服务器会被从 LVS 路由表中剔除，恢复时又会重新加入。
 - **Server Cluster(服务器集群)** # 这是一组运行实际网络服务的服务器，如 Web、邮件、FTP、DNS 和媒体服务。
-  - Real Server(真实服务器) 就是在该层工作
-  - 服务器阵列或服务器池由一组实际运行应用服务的物理机器组成，Real Server 可以是 Web 服务器、Mail 服务器、FTP 服务器、DNS 服务器以及视频服务器中的一个或者多个的组合。每个 Real Server 之间通过高速的 LAN 或分布在各地的 WAN 相连接。在实际应用中，为了减少资源浪费， Director Server 也可以同时兼任 Real Server 的角色，即在 Real Server 同时部署 IPVS 模块。
+    - Real Server(真实服务器) 就是在该层工作
+    - 服务器阵列或服务器池由一组实际运行应用服务的物理机器组成，Real Server 可以是 Web 服务器、Mail 服务器、FTP 服务器、DNS 服务器以及视频服务器中的一个或者多个的组合。每个 Real Server 之间通过高速的 LAN 或分布在各地的 WAN 相连接。在实际应用中，为了减少资源浪费， Director Server 也可以同时兼任 Real Server 的角色，即在 Real Server 同时部署 IPVS 模块。
 - **Shared Storage(共享存储)** # 为服务器提供共享的存储空间，便于提供相同的服务。
-  - 共享存储可以是数据库系统、网络文件系统或分布式文件系统。服务器节点需要动态更新的数据应该存储在基于数据的系统中，当服务器节点在数据库系统中并行读写数据时，数据库系统可以保证并发数据访问的一致性。静态数据通常保存在 NFS、CIFS 等网络文件系统中，以便所有服务器节点共享数据。但是，单个网络文件系统的可扩展性是有限的，例如单个 NFS/CIFS 只能支持 4 到 8 个服务器的数据访问。对于大型集群系统，分布式/集群文件系统可以用于共享存储，例如 GPFS，Coda 和 GFS，然后共享存储也可以根据系统需求进行扩展。
+    - 共享存储可以是数据库系统、网络文件系统或分布式文件系统。服务器节点需要动态更新的数据应该存储在基于数据的系统中，当服务器节点在数据库系统中并行读写数据时，数据库系统可以保证并发数据访问的一致性。静态数据通常保存在 NFS、CIFS 等网络文件系统中，以便所有服务器节点共享数据。但是，单个网络文件系统的可扩展性是有限的，例如单个 NFS/CIFS 只能支持 4 到 8 个服务器的数据访问。对于大型集群系统，分布式/集群文件系统可以用于共享存储，例如 GPFS，Coda 和 GFS，然后共享存储也可以根据系统需求进行扩展。
 
 通常情况下，一个 LVS 集群由两类节点组成：
 
@@ -271,16 +270,16 @@ IPVS 有一个缺陷，无法检查后端 Real Server 的健康状态，就是�
 
 - virtual=IP:PORT # 定义 VIP 的地址和端口
 - real=IP\[\[->IP]:\[PORT]] TYPE # 定义 RS 的 IP 地址和 LVS 类型，类型名介绍详见 LB 的 Packet-Forwarding-Method(LVS Type)内容，其中->IP 可以实现从哪个 IP 至哪个 IP 的地址段的定义
-  - gate # TYPE 为 DR 类型
+    - gate # TYPE 为 DR 类型
 - fallback=IP:PORT TYPE # 定义当 RS 全部失效时，使用的 server 的地址，端口，LVS 类型。
 - scheduler=SCHEDULER # 定义 LB 集群中的调度规则，规则类型详见 LB 中的 Director 调度方法
 - service=TYPE # 定义健康检查的应用层 Protocol，注意：只有当 checktype 指定为 negotiate 的时候，该定义才有意义
-  - TYPE 类型包括：ftp|http|stmp|mysql 等
+    - TYPE 类型包括：ftp|http|stmp|mysql 等
 - protocol=tcp # 定义健康检查的传输层 Protocol
 - checktype=negotiate # 定义健康检查的方法
-  - connect # 传输层检查，向对方端口尝试发送连接请求
-  - negotiate # 应用层检查协商方法
-  - ping # 网络层检查，ICMP 协议
+    - connect # 传输层检查，向对方端口尝试发送连接请求
+    - negotiate # 应用层检查协商方法
+    - ping # 网络层检查，ICMP 协议
 - checkport=80 # 定义健康检查的端口号
 - request="index.html" # 定义健康检查请求目标 server 的哪个页面
 - receive="Test Page" # 定义健康检查中 request 中所定义的页面请求后回复的内容包含什么信息

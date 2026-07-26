@@ -1,6 +1,5 @@
 ---
 title: KVM/QEMU 镜像
-linkTitle: KVM/QEMU 镜像
 created: 2026-04-12T14:28
 weight: 4
 ---
@@ -13,8 +12,8 @@ weight: 4
 > - [GitHub 文档，qemu/qemu/docs/interop/qcow2.txt](https://github.com/qemu/qemu/blob/master/docs/interop/qcow2.txt)
 > - [Wiki, qcow](https://en.wikipedia.org/wiki/Qcow)
 > - 其他
->   - <https://www.unixmen.com/qemu-kvm-using-copy-write-mode/>
->   - <https://opengers.github.io/virtualization/kvm-libvirt-qemu-5/>
+>     - <https://www.unixmen.com/qemu-kvm-using-copy-write-mode/>
+>     - <https://opengers.github.io/virtualization/kvm-libvirt-qemu-5/>
 
 KVM/QEMU 通过 [qemu-img](/docs/10.云原生/Virtualization%20implementation/KVM_QEMU/KVM_QEMU%20命令行工具/qemu-img.md) 命令行工具管理虚拟机镜像。
 

@@ -1,6 +1,5 @@
 ---
 title: CMDB
-linkTitle: CMDB
 weight: 20
 ---
 
@@ -15,10 +14,10 @@ weight: 20
 CMDB 项目推荐
 
 - https://github.com/Combodo/iTop
-  - https://github.com/vbkunin/itop-docker
+    - https://github.com/vbkunin/itop-docker
 - https://github.com/TencentBlueKing/bk-cmdb
 - https://github.com/veops/cmdb 维易 CMDB
-  - 文章: https://mp.weixin.qq.com/s/6W8DaDb3Y4NmK3rb9NGKAQ
+    - 文章: https://mp.weixin.qq.com/s/6W8DaDb3Y4NmK3rb9NGKAQ
 
 简单的记录功能直接用 WPS 的**轻维表**即可。
 

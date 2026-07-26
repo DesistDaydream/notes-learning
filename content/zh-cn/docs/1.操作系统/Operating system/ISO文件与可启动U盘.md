@@ -1,6 +1,5 @@
 ---
 title: ISO文件与可启动U盘
-linkTitle: ISO文件与可启动U盘
 weight: 61
 ---
 
@@ -43,5 +42,5 @@ UltraISO 是一个运行在 Microsoft Windows 平台上的用来创建、修改�
 - 插入 U 盘
 - 打开 iso 文件。
 - “写入硬盘映像”
-  - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/iso/20230214180238.png)
+    - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/iso/20230214180238.png)
 - 在”硬盘驱动器“栏选择想要写入数据的 U 盘，点击“写入“

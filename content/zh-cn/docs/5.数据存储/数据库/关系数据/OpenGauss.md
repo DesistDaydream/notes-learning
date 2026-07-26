@@ -1,6 +1,5 @@
 ---
 title: "OpenGauss"
-linkTitle: "OpenGauss"
 weight: 20
 ---
 

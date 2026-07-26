@@ -1,6 +1,5 @@
 ---
 title: Inode
-linkTitle: Inode
 weight: 2
 ---
 

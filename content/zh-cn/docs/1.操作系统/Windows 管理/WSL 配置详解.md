@@ -1,6 +1,5 @@
 ---
 title: WSL 配置详解
-linkTitle: WSL 配置详解
 weight: 102
 ---
 
@@ -54,8 +53,8 @@ https://learn.microsoft.com/en-us/windows/wsl/wsl-config#experimental-settings
 > 参考：
 >
 > - [博客园，WSL2使用桥接网络，并指定IP](https://www.cnblogs.com/lic0914/p/17003251.html)
->   - 该文章参考的原文: https://github.com/luxzg/WSL2-fixes/blob/master/networkingMode%3Dbridged.md
->   - 上面这些做法可以弃用了，使用 https://github.com/microsoft/WSL/issues/10753#issuecomment-1814839310
+>     - 该文章参考的原文: https://github.com/luxzg/WSL2-fixes/blob/master/networkingMode%3Dbridged.md
+>     - 上面这些做法可以弃用了，使用 https://github.com/microsoft/WSL/issues/10753#issuecomment-1814839310
 
 常见问题
 

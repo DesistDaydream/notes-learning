@@ -17,11 +17,11 @@ FATA[0000] failed to create shim: OCI runtime create failed: unable to retrieve 
 runc: symbol lookup error: runc: undefined symbol: seccomp_api_get
 
 ~]# ldd /usr/bin/runc
-	linux-vdso.so.1 (0x00007fffbfbee000)
-	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007fd802a37000)
-	libseccomp.so.2 => /lib/x86_64-linux-gnu/libseccomp.so.2 (0x00007fd802a15000)
-	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fd802823000)
-	/lib64/ld-linux-x86-64.so.2 (0x00007fd8036f9000)
+ linux-vdso.so.1 (0x00007fffbfbee000)
+ libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007fd802a37000)
+ libseccomp.so.2 => /lib/x86_64-linux-gnu/libseccomp.so.2 (0x00007fd802a15000)
+ libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fd802823000)
+ /lib64/ld-linux-x86-64.so.2 (0x00007fd8036f9000)
 
 ```
 

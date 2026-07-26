@@ -1,6 +1,5 @@
 ---
 title: "XML"
-linkTitle: "XML"
 weight: 20
 ---
 

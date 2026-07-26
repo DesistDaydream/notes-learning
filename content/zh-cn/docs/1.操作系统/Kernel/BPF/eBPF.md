@@ -1,6 +1,5 @@
 ---
 title: eBPF
-linkTitle: eBPF
 weight: 2
 ---
 
@@ -10,7 +9,7 @@ weight: 2
 >
 > - [官网](https://ebpf.io/)
 > - [Kernel 官方文档，BPF](https://www.kernel.org/doc/html/latest/bpf/)
->   - [Kernel 官方文档](https://www.infradead.org/~mchehab/kernel_docs/bpf/index.html)
+>     - [Kernel 官方文档](https://www.infradead.org/~mchehab/kernel_docs/bpf/index.html)
 > - [Cilium 官方文档，BPF](https://docs.cilium.io/en/latest/bpf/) Kernel 官方文档中指向的另一个文档，BPF 官方文档什么是 eBPF 最下面也有链接指向这里
 > - [GitHub 项目，torvalds/linux/tools/lib/bpf](https://github.com/torvalds/linux/tree/master/tools/lib/bpf)(libbpf 库)
 
@@ -36,7 +35,7 @@ weight: 2
 
 https://coolshell.cn/articles/22320.html
 
-### eBPF 为什么高效
+## eBPF 为什么高效
 
 [公众号，云原生实验室，为什么 eBPF 如此受欢迎](https://mp.weixin.qq.com/s/K5bVHjJeOm8KpluPW1iyvw)
 
@@ -99,9 +98,9 @@ int syscall__ret_execve(struct pt_regs *ctx)
 ![https://ebpf.io/what-is-ebpf|700](https://notes-learning.oss-cn-beijing.aliyuncs.com/ebpf/go.png)
 
 - **编写** # 首先，开发者可以使用 C 语言（或者 Go 等其他高级程序语言）编写自己的 eBPF 程序，然后通过 [LLVM](/docs/2.编程/Programming%20tools/LLVM.md)/[Clang](/docs/2.编程/Programming%20tools/Clang.md) 编译套件，将其编译成 eBPF 字节码。
-  - 本质上还是可执行的二进制程序，只不过内部有 eBPF 字节码。
+    - 本质上还是可执行的二进制程序，只不过内部有 eBPF 字节码。
 - **加载** # 运行编译好的 eBPF 程序，通过 bpf() 系统调用，将程序中的字节码传入内核空间，以加载 eBPF 程序。
-  - 当 eBPF 程序被加载到 Linux 内核中时，它在被附加到所请求的 Hook 之前还需要经过 验证 与 JIT 这两个步骤。
+    - 当 eBPF 程序被加载到 Linux 内核中时，它在被附加到所请求的 Hook 之前还需要经过 验证 与 JIT 这两个步骤。
 - **验证** # 传入内核空间之后的 eBPF 程序，并不是直接就在其指定的内核跟踪点上开始执行，而是先通过 Verifier 这个组件，来保证我们传入的这个 BPF 程序可以在内核中安全的运行。
 - **JIT** # 经过安全检测之后，Linux 内核 还为 eBPF 字节码提供了一个实时的编译器（Just-In-Time，JIT），JIT 将确认后的 eBPF 字节码编译为对应的机器码。这样就可以在 eBPF 指定的跟踪点上执行我们的操作逻辑了。
 - **Maps** # 那么，用户空间的应用程序怎么样拿到我们插入到内核中的 eBPF 程序产生的数据呢？eBPF 是通过一种 MAP 的数据结构来进行数据的存储和管理的，eBPF 将产生的数据，通过指定的 MAP 数据类型进行存储，用户空间的应用程序，作为消费者，通过 bpf() 系统调用，从 MAP 数据结构中读取数据并进行相应的存储和处理。这样一个完整 eBPF 程序的流程就完成了。
@@ -159,7 +158,7 @@ eBPF 的高效主要还是：**eBPF 提供了一种直接在内核空间运行�
 
 eBPF 程序的一个重要方面是共享收集的信息和存储状态的能力。为此，eBPF 程序可以利用 eBPF Maps 的概念来存储和检索各种数据结构中的数据。 eBPF Maps 可以通过系统调用从 eBPF 程序以及用户空间中的应用程序访问。
 
-## 其他
+## 架构与原理的其他
 
 ### Helper Calls
 
@@ -241,7 +240,7 @@ b.attach_kprobe(event="xxx", fn_name="yyy")
 
 https://ebpf.io/what-is-ebpf/#why-ebpf
 
-### 可编程性的力量
+## 可编程性的力量
 
 让我们从一个类比开始。你还记得 GeoCities 吗? 20 年前，网页几乎完全由静态标记语言（HTML）编写。网页基本上是一个文档，有一个应用程序（浏览器）可以显示它。看看今天的网页，网页已经成为成熟的应用程序，基于 web 的技术已经取代了绝大多数用需要编译的语言所编写的应用程序。是什么促成了这种演进 ？
 
@@ -257,7 +256,7 @@ https://ebpf.io/what-is-ebpf/#why-ebpf
 - **持续交付**：程序逻辑的演进必须能够在不需要不断发布新浏览器版本的情况下实现。通过提供适当的底层构建模块来构建任意逻辑，解决了这个问题。
 - **性能**：必须以最小的开销提供可编程性。这个问题通过引入即时（JIT）编译器得到了解决。由于同样的原因，上述所有方面都可以在 eBPF 中找到完全对应的内容。
 
-### eBPF 对 Linux 内核的影响
+## eBPF 对 Linux 内核的影响
 
 现在让我们回到 eBPF。为了理解 eBPF 对 Linux 内核的可编程性的影响，有必要对 Linux 内核的体系结构及其与应用程序和硬件的交互方式有一个高层次的了解。
 
@@ -265,7 +264,7 @@ https://ebpf.io/what-is-ebpf/#why-ebpf
 
 Linux 内核的主要目的是对硬件或虚拟硬件进行抽象，并提供一致的 API（系统调用），允许应用程序运行和共享资源。为了实现这一点，内核维护了一组广泛的子系统和层来分配这些职责。每个子系统通常允许某种级别的配置，以满足用户的不同需求。如果无法配置所需的行为，则需要更改内核，从历史上看，只剩下两个选项：
 
-| 原生支持                                                          | 内核模块                                                                 |
+| 原生支持 | 内核模块 |
 | ------------------------------------------------------------- | -------------------------------------------------------------------- |
 | 1. 更改内核源代码并使 Linux 内核社区相信改动是有必要的。<br>2. 等待几年后，新的内核才会成为一个通用版本。 | 1. 编写一个内核模块<br>2. 定期修复它，因为每个内核版本都可能破坏它<br>3. 由于缺乏安全边界，有可能损坏 Linux 内核 |
 
@@ -299,7 +298,7 @@ Linux 内核的主要目的是对硬件或虚拟硬件进行抽象，并提供�
 C/C++ 库
 
 - [github.com/libpf/libbpf](https://github.com/libbpf/libbpf) # 作为上游 Linux 内核的一部分进行维护。
-  - 上游代码在 [GitHub 项目，torvalds/linux/tools/lib/bpf](https://github.com/torvalds/linux/tree/master/tools/lib/bpf)
+    - 上游代码在 [GitHub 项目，torvalds/linux/tools/lib/bpf](https://github.com/torvalds/linux/tree/master/tools/lib/bpf)
 
 Go 库
 

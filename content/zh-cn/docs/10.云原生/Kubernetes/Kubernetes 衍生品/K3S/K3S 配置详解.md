@@ -5,7 +5,7 @@ title: K3S 配置详解
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，安装-配置选项](https://docs.k3s.io/zh/installation/configuration)
 > - [官方文档，CLI 工具-server](https://docs.k3s.io/zh/cli/server)
 > - [官方文档，CLI 工具-agent](https://docs.k3s.io/zh/cli/agent)
@@ -15,30 +15,30 @@ k3s 可以通过如下如下几种方式配置运行时行为
 - 命令行标志
 - 环境变量
 - 配置文件
-  - k3s 运行时默认读取 `/etc/rancher/k3s/config.yaml` 文件中的值。
+    - k3s 运行时默认读取 `/etc/rancher/k3s/config.yaml` 文件中的值。
 
 ## 配置文件与命令行标志之间的对应关系
 
 直接使用 `k3s server` 命令并配置如下配置文件：
 
 ```yaml
-write-kubeconfig-mode: "0644"  
-tls-san:  
-- "foo.local"  
-node-label:  
-- "foo=bar"  
-- "something=amazing"  
+write-kubeconfig-mode: "0644"
+tls-san:
+- "foo.local"
+node-label:
+- "foo=bar"
+- "something=amazing"
 cluster-init: true
 ```
 
 等效于：
 
 ```bash
-k3s server \  
---write-kubeconfig-mode "0644" \  
---tls-san "foo.local" \  
---node-label "foo=bar" \  
---node-label "something=amazing" \  
+k3s server \
+--write-kubeconfig-mode "0644" \
+--tls-san "foo.local" \
+--node-label "foo=bar" \
+--node-label "something=amazing" \
 --cluster-init
 ```
 
@@ -98,13 +98,13 @@ configs:
 
 ### 定制 Kubernetes 的组件
 
-**--disable**([]STRING)	# 禁用 [K3S 封装的一些 K8S 之外的组件](https://docs.k3s.io/zh/installation/packaged-components)。多个组件以 `,` 分割。
+**--disable**([]STRING) # 禁用 [K3S 封装的一些 K8S 之外的组件](https://docs.k3s.io/zh/installation/packaged-components)。多个组件以 `,` 分割。
 
-**--disable-scheduler** # 	禁用 Kubernetes 默认调度程序
+**--disable-scheduler** #  禁用 Kubernetes 默认调度程序
 
 **--disable-cloud-controller** # 禁用 k3s 默认云 Controller Manager
 
-**--disable-kube-proxy**	# 禁用运行 kube-proxy
+**--disable-kube-proxy** # 禁用运行 kube-proxy
 
 **--disable-network-policy** # 禁用 K3s 默认网络策略控制器
 
@@ -135,8 +135,6 @@ configs:
 **--docker** # 指定 k3s 的 CRI 为 docker。默认为 containerd。
 
 ## 其他
-
-
 
 # 最佳实践
 

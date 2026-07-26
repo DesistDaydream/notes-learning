@@ -1,6 +1,5 @@
 ---
 title: 关于我
-linkTitle: 关于
 menu:
   main:
     weight: 10

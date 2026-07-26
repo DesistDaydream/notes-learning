@@ -7,10 +7,10 @@ title: 创建高可用 Kubernetes 集群
 > 参考：
 >
 > - [官方文档，入门-生产环境-使用部署工具安装 Kubernetes-使用 kubeadm 引导集群-使用 kubeadm 创建高可用集群](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/)
->   - <https://kubernetes.io/docs/setup/independent/high-availability/>
+>     - <https://kubernetes.io/docs/setup/independent/high-availability/>
 > - [Kubeadm GitHub 项目,高科用性注意事项](https://github.com/kubernetes/kubeadm/blob/master/docs/ha-considerations.md)
->   - [keepalived 和 haproxy](https://github.com/kubernetes/kubeadm/blob/master/docs/ha-considerations.md#keepalived-and-haproxy)
->   - [kube-vip](https://github.com/kubernetes/kubeadm/blob/master/docs/ha-considerations.md#kube-vip)
+>     - [keepalived 和 haproxy](https://github.com/kubernetes/kubeadm/blob/master/docs/ha-considerations.md#keepalived-and-haproxy)
+>     - [kube-vip](https://github.com/kubernetes/kubeadm/blob/master/docs/ha-considerations.md#kube-vip)
 > - [kube-vip 官网](https://kube-vip.io/)
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/kc2p8h/1616120692032-ff2748b8-3aa5-4f51-a71c-3c00aa017184.png)
@@ -20,10 +20,10 @@ title: 创建高可用 Kubernetes 集群
 有多种方式可以实现 Kubernetes Master 节点的高可用
 
 - 在各个 Master 上负载均衡各个 Master
-  - Keepalived
-  - kube-vip
+    - Keepalived
+    - kube-vip
 - 在每个 Node 上负载均衡各个 Master
-  - sealos
+    - sealos
 
 ## 创建负载均衡
 
@@ -67,11 +67,11 @@ vrrp_instance VI_1 {
 ```
 
 - 在该部分中 vrrp_instance VI_1，根据自身情况更改：
-  - STATE # 改为是 MASTER（第一主节点上）或 BACKUP（另一主节点）。
-  - INTERFACE # 改为将虚拟 IP 绑定到的现有公共接口的名称（通常是主接口）。
-  - PRIORITY # 对于第一主节点应该更高，例如 101，对于其他主节点应该更低，例如 100、99。
-  - PASS # 改为任何随机字符串
-  - VIRTUAL-IP # 改为虚拟 IP。
+    - STATE # 改为是 MASTER（第一主节点上）或 BACKUP（另一主节点）。
+    - INTERFACE # 改为将虚拟 IP 绑定到的现有公共接口的名称（通常是主接口）。
+    - PRIORITY # 对于第一主节点应该更高，例如 101，对于其他主节点应该更低，例如 100、99。
+    - PASS # 改为任何随机字符串
+    - VIRTUAL-IP # 改为虚拟 IP。
 - 下面是配套的健康检查脚本的配置
 
 ```bash
@@ -90,9 +90,9 @@ chmod +x check_apiserver.sh
 ```
 
 - 替换其中的内容
-  - ${VIP} # 您选择的虚拟 IP。
+    - ${VIP} # 您选择的虚拟 IP。
 - 安装 keepalived(e.g.下面配置文件中 10.15 为 VIP)，并指定 RS 为 3 台 master 的 IP:PORT
-  - 这样，在 Node 节点上报的自身状态给 api-server 时，可以直接使用 3 台 master 的 VIP 作为通信 IP
+    - 这样，在 Node 节点上报的自身状态给 api-server 时，可以直接使用 3 台 master 的 VIP 作为通信 IP
 
 ### kube-vip 方式
 
@@ -181,4 +181,4 @@ kubeadm join 172.38.40.215:6443 --token XXXX --discovery-token-ca-cert-hash sha2
 - 复制本机的相关证书至其余节点
 - 在其余 master 节点上执行之前节点 init 后生成的 kubeadm join 命令，注意：命令末尾加上--experimental-control-plane 这个 flag
 - 注意事项：
-  - 如果无法 init，则开启 ipvsadm 服务，如果无法加入其余 master，则关闭 ipvsadm 服务
+    - 如果无法 init，则开启 ipvsadm 服务，如果无法加入其余 master，则关闭 ipvsadm 服务

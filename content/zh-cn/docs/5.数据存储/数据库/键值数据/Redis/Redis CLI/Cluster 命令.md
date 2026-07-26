@@ -1,6 +1,5 @@
 ---
 title: Cluster 命令
-linkTitle: Cluster 命令
 weight: 20
 ---
 

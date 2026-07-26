@@ -1,6 +1,5 @@
 ---
 title: PyTorch
-linkTitle: PyTorch
 weight: 60
 tags:
   - Python
@@ -34,9 +33,9 @@ PyTorch 扩展了 Torch 的能力，实现了**计算框架**的功能。
 安装 PyTorch 分为使用 GPU 和 CPU 两种，比如：
 
 - CPU
-  - `pip3 install torch torchvision torchaudio`
+    - `pip3 install torch torchvision torchaudio`
 - GPU
-  - `pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121`
+    - `pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121`
 
 GPU 版的 PyTorch 依赖 CUDA
 

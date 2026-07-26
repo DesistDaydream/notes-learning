@@ -1,6 +1,5 @@
 ---
 title: RabbitMQ
-linkTitle: RabbitMQ
 weight: 1
 ---
 

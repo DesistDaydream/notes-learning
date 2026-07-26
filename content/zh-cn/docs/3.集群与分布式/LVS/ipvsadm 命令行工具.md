@@ -1,6 +1,5 @@
 ---
 title: ipvsadm 命令行工具
-linkTitle: ipvsadm 命令行工具
 weight: 4
 ---
 
@@ -22,17 +21,17 @@ weight: 4
 命令语法中各参数的含义
 
 - **VirtuslService** # 用于指定基于协议或者地址或者端口号的虚拟服务，通过三元组定义：Protocol、IP、PORT。
-  - 格式：`-PROTOCOL IP:PORT`
-    - -PROTOCOL 分两种
-      - -t, --tcp-service
-      - -u, --udp-service
+    - 格式：`-PROTOCOL IP:PORT`
+        - -PROTOCOL 分两种
+            - -t, --tcp-service
+            - -u, --udp-service
 - **Scheduler** # Director 的调度方法
-  - 详见 [LVS](/docs/3.集群与分布式/LVS/LVS.md) 文章中描述的调度方法，使用其中 10 种任意一种的英文简称来写该参数，注意：是小写字母
+    - 详见 [LVS](/docs/3.集群与分布式/LVS/LVS.md) 文章中描述的调度方法，使用其中 10 种任意一种的英文简称来写该参数，注意：是小写字母
 - **ServerAddress** # RS 的 IP
 - **PacketForwardingMethod** # 该位置指明 LVS 的工作模式，不写该参数表明默认 DR 类型
-  - -g, --gatewaying # 网关，表示 DR 模式
-  - -i, --ipip # IP 封装 IP，表示 TUN 模式
-  - -m, --masquerading # 伪装，表示 NAT 模式
+    - -g, --gatewaying # 网关，表示 DR 模式
+    - -i, --ipip # IP 封装 IP，表示 TUN 模式
+    - -m, --masquerading # 伪装，表示 NAT 模式
 - **Weight Options** # 权重选项
 
 ## COMMAND
@@ -118,18 +117,18 @@ TCP  10.10.9.60:30000 rr persistent 30
 # EXAMPLE
 
 - 管理集群服务
-  - ipvsadm -A|E virtual-service \[-s SCHEDULER] # 增加修改
-    - ipvsadm -A -t 192.168.0.63:80 -s rr # 添加一个虚拟服务，调度模式为轮询
-    - ipvsadm -D virtual-service # 删除
+    - ipvsadm -A|E virtual-service \[-s SCHEDULER] # 增加修改
+        - ipvsadm -A -t 192.168.0.63:80 -s rr # 添加一个虚拟服务，调度模式为轮询
+        - ipvsadm -D virtual-service # 删除
 - 管理集群服务中的 RS
-  - ipvsadm -a|e virtual-service -r server-address \[-g|i|m] \[-w weight] \[-x upper] \[-y lower]
-  - ipvsadm -d virtual-service -r server-address
-    - ipvsadm -a -t 192.168.0.60:80 -r 192.168.0.62 -g # 添加一个 IP 为 0.62 的 RS 到 0.60 的 LVS 中，LVS 类型为-g,dr 类型
+    - ipvsadm -a|e virtual-service -r server-address \[-g|i|m] \[-w weight] \[-x upper] \[-y lower]
+    - ipvsadm -d virtual-service -r server-address
+        - ipvsadm -a -t 192.168.0.60:80 -r 192.168.0.62 -g # 添加一个 IP 为 0.62 的 RS 到 0.60 的 LVS 中，LVS 类型为-g,dr 类型
 - 通用
-  - ipvsadm -C # 清空
-  - ipvsadm -L|l \[virtual-service] \[options] # 查询
-  - ipvsadm -R
-  - ipvsadm -S \[-n]
+    - ipvsadm -C # 清空
+    - ipvsadm -L|l \[virtual-service] \[options] # 查询
+    - ipvsadm -R
+    - ipvsadm -S \[-n]
 - ipvsadm -Ln # 查询，直接显示 IP 不显示主机名，信息如下所示
 
 那既然这样,为什么从 lvs 里看的 ActiveConn 会比在真实机上通过 netstats 看到的 ESTABLISHED 高很多呢?

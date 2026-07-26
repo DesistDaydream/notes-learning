@@ -1,6 +1,5 @@
 ---
 title: Promise
-linkTitle: Promise
 weight: 20
 ---
 

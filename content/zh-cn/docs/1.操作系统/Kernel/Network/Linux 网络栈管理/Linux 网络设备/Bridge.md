@@ -1,6 +1,5 @@
 ---
 title: Bridge
-linkTitle: Bridge
 weight: 20
 ---
 

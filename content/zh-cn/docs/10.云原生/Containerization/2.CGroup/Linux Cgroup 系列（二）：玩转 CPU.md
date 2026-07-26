@@ -69,7 +69,7 @@ Path                                                                            
 
 systemd-cgtop 提供的统计数据和控制选项与 `top` 命令类似，但该命令只显示那些开启了资源统计功能的 service 和 slice。比如：如果你想开启 `sshd.service` 的资源统计功能，可以进行如下操作：
 
-    $ systemctl set-property sshd.service CPUAccounting=true MemoryAccounting=true
+    systemctl set-property sshd.service CPUAccounting=true MemoryAccounting=true
 
 该命令会在 `/etc/systemd/system/sshd.service.d/` 目录下创建相应的配置文件：
 
@@ -86,8 +86,8 @@ systemd-cgtop 提供的统计数据和控制选项与 `top` 命令类似，但�
 
 配置完成之后，再重启 `sshd` 服务：
 
-    $ systemctl daemon-reload
-    $ systemctl restart sshd
+    systemctl daemon-reload
+    systemctl restart sshd
 
 这时再重新运行 systemd-cgtop 命令，就能看到 sshd 的资源使用统计了：
 
@@ -134,7 +134,7 @@ systemd-cgtop 提供的统计数据和控制选项与 `top` 命令类似，但�
 
 现在我们让用户 `tom` 也参与进来，先将 `user-1000.slice` 的 CPU shares 设置为 `256`：
 
-    $ systemctl set-property user-1000.slice CPUShares=256
+    systemctl set-property user-1000.slice CPUShares=256
 
 使用用户 `tom` 登录该系统，然后执行命令 `sha1sum /dev/zero`，再次查看 CPU 使用情况：
 
@@ -152,7 +152,7 @@ systemd-cgtop 提供的统计数据和控制选项与 `top` 命令类似，但�
 
 上篇文章已经提到，如果想严格控制 CPU 资源，设置 CPU 资源的使用上限，即不管 CPU 是否繁忙，对 CPU 资源的使用都不能超过这个上限，可以通过 `CPUQuota` 参数来设置。下面我们将用户 tom 的 CPUQuota 设置为 `5%`：
 
-    $ systemctl set-property user-1000.slice CPUQuota=5%
+    systemctl set-property user-1000.slice CPUQuota=5%
 
 这时你会看到用户 tom 的 sha1sum 进程只能获得 5% 左右的 CPU 使用时间。
 
@@ -170,7 +170,7 @@ systemd-cgtop 提供的统计数据和控制选项与 `top` 命令类似，但�
 
 cgroup 相关的所有操作都是基于内核中的 cgroup virtual filesystem，使用 cgroup 很简单，挂载这个文件系统就可以了。系统默认情况下都是挂载到 `/sys/fs/cgroup` 目录下，当 service 启动时，会将自己的 cgroup 挂载到这个目录下的子目录。以 `foo.service` 为例：先进入 `system.slice` 的 CPU 子系统：
 
-    $ cd /sys/fs/cgroup/cpu,cpuacct/system.slice
+    cd /sys/fs/cgroup/cpu,cpuacct/system.slice
 
 查看 foo.service 的 cgroup 目录：
 
@@ -206,6 +206,6 @@ cgroup 相关的所有操作都是基于内核中的 cgroup virtual filesystem�
 
 再来说说 CPUQuota，这个上篇文章结尾已经提过了，如要让一个 cgroup 完全使用两个 CPU 核，可以通过 CPUQuota 参数来设置。例如：
 
-    $ systemctl set-property foo.service CPUQuota=200%
+    systemctl set-property foo.service CPUQuota=200%
 
 至于进程最后能不能完全使用两个 CPU 核，就要看它自身的设计支持不支持了。

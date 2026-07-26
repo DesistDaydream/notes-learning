@@ -1,5 +1,4 @@
 ---
-title: "📱Mobile device"
-linkTitle: "📱Mobile device"
-weight: 14
+title: 📱Mobile device
+weight: 114
 ---

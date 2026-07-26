@@ -1,6 +1,5 @@
 ---
 title: Pointer(指针)
-linkTitle: Pointer(指针)
 weight: 20
 ---
 
@@ -166,7 +165,7 @@ b -> 数据a
 
 ![图片](https://mmbiz.qpic.cn/mmbiz_png/9BK2WL6kfcRvOyEARDOUwVFib0Qt6eS3icDNPgur0SYbTcTRhlo8Iufib7QY3m6jiaz8fbDPJMxiapsQkVZgkYu3EmQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
 
-这就是所谓的链表了。  
+这就是所谓的链表了。
 
 ![图片](https://mmbiz.qpic.cn/mmbiz_png/9BK2WL6kfcRvOyEARDOUwVFib0Qt6eS3ic72KTexWI17Vh5PiclibnNykzQ7k3S74OCdMzlLNUNYan8fibcoMIEkGCQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
 

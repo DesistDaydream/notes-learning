@@ -1,6 +1,5 @@
 ---
 title: "Glossary"
-linkTitle: "Glossary"
 weight: 1
 ---
 
@@ -20,7 +19,7 @@ weight: 1
 - 你吃的杂粮饼也是一个 entity，
 - 你六岁时见过的幽灵也是一个 entity —— 即使你妈告诉你幽灵并不存在，这只是你的臆想。
 - 所以
-  - CA 也算一个实体
+    - CA 也算一个实体
 
 **Identity(身份)** # 每个 entity（实体）都有一个 identity（身份）。 要精确定义这个概念比较困难，这么来说吧：identity 是使你之所以为你 （what makes you you）的东西。
 
@@ -46,7 +45,7 @@ weight: 1
 
 - **Plaintext/Cleartext(明文)** # 在密码学中，明文是未加密的信息，可以供人类和计算机读取的信息
 - **Ciphertext/Cyphertext(密文)** # 在密码学中，密文是明文通过加密算法计算后生成的人类或计算器无法读取的一种信息
-  - cipher 和 cypher 是同一个意思，两种不同的拼写方法
+    - cipher 和 cypher 是同一个意思，两种不同的拼写方法
 
 **Key Generation(密钥生成)** # [详见 Wiki](https://en.wikipedia.org/wiki/Key_generation)。密钥一般都是各种程序根据指定算法生成的。
 
@@ -89,6 +88,6 @@ weight: 1
 
 - https://en.wikipedia.org/wiki/Information_security_management
 
-| 英文                 | 中文   | 缩写与简称 | 链接                                                       | 解释  |
+| 英文 | 中文 | 缩写与简称 | 链接 | 解释 |
 | ------------------ | ---- | ----- | -------------------------------------------------------- | --- |
-| Brute-force attack | 暴力破解 |       | [Wiki](https://en.wikipedia.org/wiki/Brute-force_attack) |     |
+| Brute-force attack | 暴力破解 | | [Wiki](https://en.wikipedia.org/wiki/Brute-force_attack) | |

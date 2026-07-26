@@ -20,7 +20,7 @@ Note: 如果标准输入的内容是一个文件，那么就把文件中的内�
 执行完 cat 命令后，屏幕上会等待我输入内容，当我输入完成按回车后，会在屏幕上输出同样的内容，这就是 cat 最基本的作用，效果如下图，第一行是我主动输入的，按下回车后，自动输出内容
 
 ```bash
-~]$ cat 
+~]$ cat
 我在标准输入上输入了一些内容，按下回车后，输入的内容原样输出出来
 我在标准输入上输入了一些内容，按下回车后，输入的内容原样输出出来
 ```
@@ -54,7 +54,7 @@ EXAMPLE
 ```
 
 - 将多个文件的内容合并到一个文件
-  - `cat /data/users_* > users.sql`
+    - `cat /data/users_* > users.sql`
 - cat 命令可以与输入输出重定向配合向文件中写入内容，效果如下
 
 ```bash
@@ -149,11 +149,11 @@ OPTIONS
 EXAMPLE
 
 - 把 echo 输出内容的所有大写字母转换成小写字母
-  - `echo "HELLO WORLD" | tr 'A-Z' 'a-z'`
+    - `echo "HELLO WORLD" | tr 'A-Z' 'a-z'`
 - 删除 JoinNodeCMD 变量中的 \r 的换行符。
-  - `echo ${JoinNodeCMD} | tr -d "\r"`
+    - `echo ${JoinNodeCMD} | tr -d "\r"`
 - 删除结果中的 `"` 双引号
-  - `docker inspect snmp-exporter | jq .[0].GraphDriver.Data.MergedDir | tr -d """
+    - `docker inspect snmp-exporter | jq .[0].GraphDriver.Data.MergedDir | tr -d """
 `
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gi5hfh/1616166386079-058c4b7f-d68f-4896-9f61-307cc928833b.jpeg)
 
@@ -174,7 +174,7 @@ OPTIONS
 ## EXAMPLE
 
 - 显示 passwd 文件中，以冒号为分隔符的第一个字段的内容
-  - cut -d: -f1 /etc/passwd
+    - cut -d: -f1 /etc/passwd
 
 # sort - 按字符进行比较
 
@@ -193,8 +193,8 @@ OPTIONS:
 - **-r, --reverse** # 以相反的顺序排序
 - **-t, --field-separator \<SEQ>** # 指定分隔符为 SEQ。`默认值：空白字符`
 - **-k, --key <开始字段数\[.该段第几字符,结束字段数，该段第几字符]>** # 指定分隔后进行比较的第几字段,默认根据第一个字段的第一个字符(即行首)进行排序
-  - 用法如下图，蓝色框是第一字段，红色框是第一字段的第二个字符,以：作为分隔符
-  - ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gi5hfh/1616166387159-12db238c-77dd-4d89-823d-fdd075b49b9a.jpeg)
+    - 用法如下图，蓝色框是第一字段，红色框是第一字段的第二个字符,以：作为分隔符
+    - ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gi5hfh/1616166387159-12db238c-77dd-4d89-823d-fdd075b49b9a.jpeg)
 - **-u, --unique** # 重复的行，只显示一行
 
 # uniq - 移除重复的行
@@ -222,11 +222,11 @@ OPTIONS
 EXAMPLE
 
 - 行切割文件
-  - split -l 300000 users.sql /data/users\_
+    - split -l 300000 users.sql /data/users\_
 - 使用数字后缀
-  - split -d -l 300000 users.sql /data/users\_
+    - split -d -l 300000 users.sql /data/users\_
 - 按字节大小分割
-  - split -d -b 100m users.sql /data/users\_
+    - split -d -b 100m users.sql /data/users\_
 
 如果你有一个很大的文件，你想把其分割成一些小的文件，那么这个命令就是干这件事的了。
 
@@ -350,4 +350,3 @@ then
 fi
 TraverseFolder $1
 ```
-

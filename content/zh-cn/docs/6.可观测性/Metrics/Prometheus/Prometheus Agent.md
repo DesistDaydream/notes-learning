@@ -1,6 +1,5 @@
 ---
 title: Prometheus Agent
-linkTitle: Prometheus Agent
 weight: 7
 ---
 

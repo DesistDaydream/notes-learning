@@ -1,6 +1,5 @@
 ---
 title: ConfigMap 配置详解
-linkTitle: ConfigMap 配置详解
 weight: 20
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: Archive File(归档文件)
-linkTitle: Archive File(归档文件)
 weight: 20
 ---
 

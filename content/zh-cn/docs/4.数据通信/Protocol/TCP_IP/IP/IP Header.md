@@ -1,6 +1,5 @@
 ---
 title: IP Header
-linkTitle: IP Header
 weight: 20
 ---
 
@@ -22,23 +21,23 @@ IPv4 数据报首部共 14 个字段，其中 13 个是必须的，第 14 个是
 
 - **Version(版本)** # IP 协议的版本号。IPv4 其版本号为 4，因此在这个字段上的值为“6”。
 - **Internet Header Length(首部长度，简称 IHL)** # 由于 Options 字段的长度是可变的。所以 IPv4 的首部长度也是可变的。该字段的值在 5 ~ 15 之间(该字段只有 4 bits，1111 即为 15)
-  - 首部长度的计算方式如下：`IHL * 32 bits`。
-    - 若 IHL 的值为 5，也就是说 Options 字段为 0，那么 IPv4 首部长度就是 5 \* 32 bits = 160 bits = 20 Bytes
-  - 就像上面的 IPv4 的 Datagram 结构图一样，每行都是 32 bit，不算 Options 字段和 Payload，那么刚好是 5 行。
+    - 首部长度的计算方式如下：`IHL * 32 bits`。
+        - 若 IHL 的值为 5，也就是说 Options 字段为 0，那么 IPv4 首部长度就是 5 \* 32 bits = 160 bits = 20 Bytes
+    - 就像上面的 IPv4 的 Datagram 结构图一样，每行都是 32 bit，不算 Options 字段和 Payload，那么刚好是 5 行。
 - **Differentiated Services Field** # 差异化的服务字段，基本没啥用。。。。o(╯□╰)o
-  - **Differentiated Services Code Point** # 最初定义为 Type Of Service(服务类型，简称 TOS)，
-  - **Explicit Congestion Notification** # 该字段定义在 RFC3168 中，
+    - **Differentiated Services Code Point** # 最初定义为 Type Of Service(服务类型，简称 TOS)，
+    - **Explicit Congestion Notification** # 该字段定义在 RFC3168 中，
 - **Total Length** # 定义了整个 IP 数据报的大小，最小为 20 字节(Payload 字段无内容)，最大为 65535 字节。
 - **Identification**# 主要用于唯一标识单个 IP 数据报的片段组。
-  - 一些实验工作建议将 ID 字段用于其他目的，例如添加数据包跟踪信息以帮助跟踪具有欺骗源地址的数据报，\[31] 但 RFC 6864 现在禁止任何此类使用。
+    - 一些实验工作建议将 ID 字段用于其他目的，例如添加数据包跟踪信息以帮助跟踪具有欺骗源地址的数据报，\[31] 但 RFC 6864 现在禁止任何此类使用。
 - **Flags** # 用来控制或识别 IP 分片之后的每个片段，这 3 个 bit 分别表示不同的含义，若字段值为 0 表示未设置，值为 1 表示设置，类似 TCP 首部中 Flags 字段的用法。
-  - 第一个 # Reserved，保留字段，必须为 0
-  - 第二个 # Don't Fragment(DF)
-  - 第三个 # More Fragment(MF)
+    - 第一个 # Reserved，保留字段，必须为 0
+    - 第二个 # Don't Fragment(DF)
+    - 第三个 # More Fragment(MF)
 - **Fragment Offset(分片偏移)** # IP 分片之后的偏移量
 - **Time To Live(存活时间，简称 TTL)** # 其实用 Hop Limit 的描述更准确，封包每经过一个路由器，就会将 TTL 字段的值减 1，减到 0 是，该包将会被丢弃。
 - **Protocol**# 封装 IP 数据报的上层协议，比如 6 表示 TCP、1 表示 ICMP
-  - 每种协议根据 [RFC 1700](https://datatracker.ietf.org/doc/html/rfc1700) 都分配了一个固定的编号，该 RFC 1700 最终被 RFC 3232 废弃，并将协议编号的维护工作，转到[IANA 的在线数据库](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)中
+    - 每种协议根据 [RFC 1700](https://datatracker.ietf.org/doc/html/rfc1700) 都分配了一个固定的编号，该 RFC 1700 最终被 RFC 3232 废弃，并将协议编号的维护工作，转到[IANA 的在线数据库](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)中
 - **Header Checksum** # 当数据包到达路由器时，路由器会计算标头的校验和，并将其与校验和字段进行比较。如果值不匹配，则路由器会丢弃该数据包。
 - **Source Address(源地址)** # 发送端 IP 地址。
 - **Destination Address(目标地址)** # 接收端 IP 地址。

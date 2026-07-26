@@ -1,6 +1,5 @@
 ---
 title: Nginx
-linkTitle: Nginx
 weight: 1
 tags:
   - Proxy
@@ -13,7 +12,7 @@ tags:
 > 参考：
 >
 > - [GitHub 项目，nginx/nginx](https://github.com/nginx/nginx)
->   - 原始代码：<https://hg.nginx.org/nginx/>
+>     - 原始代码：<https://hg.nginx.org/nginx/>
 > - [org 官方网站](http://nginx.org/)
 > - [官方网站](https://www.nginx.com/)
 > - [官方网站,动态模块列表](https://www.nginx.com/products/nginx/modules/)

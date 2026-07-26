@@ -1,6 +1,5 @@
 ---
 title: Kubernetes 开源社区指南
-linkTitle: Kubernetes 开源社区指南
 weight: 100
 ---
 

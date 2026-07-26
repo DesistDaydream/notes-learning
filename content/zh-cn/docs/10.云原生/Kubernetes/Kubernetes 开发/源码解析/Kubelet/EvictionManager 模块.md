@@ -7,7 +7,7 @@ title: EvictionManager 模块
 > 参考：
 >
 > - [公众号-云原生实验室，Kubernetes 单机侧的驱逐策略总结](https://mp.weixin.qq.com/s/ehECtQiXSHLpCrH5vuBX_w)
->   - 本文转自 Edwardesire 的博客，原文：[**https://edwardesire.com/posts/process-eviction-under-k8s/**](https://edwardesire.com/posts/process-eviction-under-k8s/)
+>     - 本文转自 Edwardesire 的博客，原文：[**https://edwardesire.com/posts/process-eviction-under-k8s/**](https://edwardesire.com/posts/process-eviction-under-k8s/)
 
 进程驱逐：当机器存在资源压力时，可能是由于有恶意程序在消耗系统资源，或者是 overcommit 导致。系统通过控制机器上的进程存活来减少单个程序对系统的整体影响。驱逐阶段最关键的就是选择合适的进程，通过最小代价来保证系统的稳定。在执行层面上可以分为两种驱逐方式：
 
@@ -280,12 +280,12 @@ oom_reaper 会在有清理任务之前一直保持休眠。wake_oom_reaper 会�
    continue;
 
 /\_
-   * Only anonymous pages have a good chance to be dropped
+   *Only anonymous pages have a good chance to be dropped
    * without additional steps which we cannot afford as we
-   * are OOM already.
+   *are OOM already.
    \_
    * We do not even care about fs backed pages because all
-   * which are reclaimable have already been reclaimed and
+   *which are reclaimable have already been reclaimed and
    * we do not want to block exit*mmap by keeping mm ref
    * count elevated without a good reason.
    \_/

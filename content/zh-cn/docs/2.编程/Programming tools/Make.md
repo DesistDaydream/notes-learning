@@ -1,6 +1,5 @@
 ---
 title: Make
-linkTitle: Make
 weight: 20
 ---
 
@@ -30,7 +29,7 @@ Make 通过名为 `Makefile` 的文件来获取构建程序所需的信息。Ma
 Make 这个词，英语的意思是"制作"。Make 命令直接用了这个意思，就是要做出某个文件。比如，要做出文件 a.txt，就可以执行下面的命令。
 
 ```bash
-$ make a.txt
+make a.txt
 ```
 
 但是，如果你真的输入这条命令，它并不会起作用。因为 Make 命令本身并不知道，如何做出 a.txt，需要有人告诉它，如何调用其他命令完成这个目标。
@@ -47,8 +46,8 @@ a.txt: b.txt c.txt
 像这样的规则，都写在一个叫做 Makefile 的文件中，Make 命令依赖这个文件进行构建。Makefile 文件也可以写为 makefile， 或者用命令行参数指定为其他文件名。
 
 ```bash
-$ make -f rules.txt
-$ make --file=rules.txt
+make -f rules.txt
+make --file=rules.txt
 ```
 
 上面代码指定 make 命令依据 rules.txt 文件中的规则，进行构建。
@@ -102,7 +101,7 @@ clean:
 上面代码的目标是 clean，它不是文件名，而是一个操作的名字，属于 "伪目标"，作用是删除对象文件。
 
 ```bash
-$ make clean
+make clean
 ```
 
 但是，如果当前目录中，正好有一个文件叫做 clean，那么这个命令不会执行。因为 Make 发现 clean 文件已经存在，就认为没有必要重新构建了，就不会执行指定的 rm 命令。
@@ -120,7 +119,7 @@ clean:
 如果 Make 命令运行时没有指定目标，默认会执行 Makefile 文件的第一个目标。
 
 ```bash
-$ make
+make
 ```
 
 上面代码执行 Makefile 文件的第一个目标。
@@ -144,8 +143,8 @@ source.txt:
 上面代码中，source.txt 后面没有前置条件，就意味着它跟其他文件都无关，只要这个文件还不存在，每次调用`make source.txt`，它都会生成。
 
 ```bash
-$ make result.txt
-$ make result.txt
+make result.txt
+make result.txt
 ```
 
 上面命令连续执行两次`make result.txt`。第一次执行会先新建 source.txt，然后再新建 result.txt。第二次执行，Make 发现 source.txt 没有变动（时间戳晚于 result.txt），就不会执行任何操作，result.txt 也不会重新生成。
@@ -159,15 +158,15 @@ $ make result.txt
 上面代码中，source 是一个伪目标，只有三个前置文件，没有任何对应的命令。
 
 ```bash
-$ make source
+make source
 ```
 
 执行`make source`命令后，就会一次性生成 file1，file2，file3 三个文件。这比下面的写法要方便很多。
 
 ```bash
-$ make file1
-$ make file2
-$ make file3
+make file1
+make file2
+make file3
 ```
 
 ### 2.4 Recipe(配方)
@@ -262,7 +261,7 @@ test:
 
 ### 3.3 通配符
 
-通配符（wildcard）用来指定一组符合条件的文件名。Makefile 的通配符与 Bash 一致，主要有星号（_）、问号（？）和 \[...] 。比如， _.o 表示所有后缀名为 o 的文件。
+通配符（wildcard）用来指定一组符合条件的文件名。Makefile 的通配符与 Bash 一致，主要有星号（_）、问号（？）和 \[...] 。比如，_.o 表示所有后缀名为 o 的文件。
 
 ```makefile
 clean:

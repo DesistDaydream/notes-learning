@@ -1,6 +1,5 @@
 ---
 title: "ChatGPT 团队是如何使用Kubernetes的"
-linkTitle: "ChatGPT 团队是如何使用Kubernetes的"
 weight: 20
 ---
 

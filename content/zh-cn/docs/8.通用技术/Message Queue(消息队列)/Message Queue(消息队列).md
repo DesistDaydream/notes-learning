@@ -1,6 +1,5 @@
 ---
 title: Message Queue(消息队列)
-linkTitle: Message Queue(消息队列)
 weight: 1
 ---
 

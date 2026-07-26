@@ -1,6 +1,5 @@
 ---
 title: ACL
-linkTitle: ACL
 weight: 2
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: tailscale CLI
-linkTitle: tailscale CLI
 weight: 20
 ---
 
@@ -30,7 +29,7 @@ logout 从Tailscale 协调服务器登出，并使节点的密钥过期
 
 # set
 
-**--accept-dns** # 是否接收管理控制台（e.g. [Headscale](/docs/4.数据通信/Protocol/Tunneling%20Protocol/Tailscale/Headscale.md), etc.）的 DNS 信息。`默认值: true`
+**--accept-dns** # 是否接收管理控制台（e.g. [Headscale](/docs/4.数据通信/Utility/Tailscale/Headscale.md), etc.）的 DNS 信息。`默认值: true`
 
 - 该配置会覆盖 `/etc/resolv.conf` 文件
 

@@ -114,7 +114,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: service-level-operator
-    namespace: monitoring 
+    namespace: monitoring
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -176,4 +176,3 @@ roleRef:
 \[1] 《SRE 实践手册》- 赵成
 \[2] 《SRE：Google 运维解密》
 \[3]  <https://github.com/spotahome/service-level-operator>
-

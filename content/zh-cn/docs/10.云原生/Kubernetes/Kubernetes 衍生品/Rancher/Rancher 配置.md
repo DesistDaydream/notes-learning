@@ -1,6 +1,5 @@
 ---
 title: Rancher 配置
-linkTitle: Rancher 配置
 weight: 20
 ---
 

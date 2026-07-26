@@ -1,6 +1,5 @@
 ---
 title: "Memory Info"
-linkTitle: "Memory Info"
 weight: 20
 ---
 
@@ -8,7 +7,7 @@ weight: 20
 
 > 参考：
 >
-> - 
+> -
 
 # /proc/meminfo
 

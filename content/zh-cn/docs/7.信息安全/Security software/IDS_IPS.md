@@ -1,6 +1,5 @@
 ---
 title: IDS/IPS
-linkTitle: IDS/IPS
 weight: 20
 ---
 

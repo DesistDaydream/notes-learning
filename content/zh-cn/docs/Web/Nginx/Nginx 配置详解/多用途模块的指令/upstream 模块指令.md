@@ -5,7 +5,7 @@ title: upstream 模块指令
 # 概述
 
 > 参考：
-> 
+>
 > - [http 模块下的 upstream 模块](http://nginx.org/en/docs/http/ngx_http_upstream_module.html)
 > - [stream 模块下的 upstream 模块](http://nginx.org/en/docs/stream/ngx_stream_upstream_module.html)
 
@@ -17,7 +17,7 @@ Server Group 功能通过 upstream 模块实现。而 `upstream NAME {}` 指令�
 
 > 注意：虽然 upstream 比较通用，但也是逻辑意义上的通用，对于 `http{}` 与 `stream{}` 来说，它们都有各自的 `upstream{}` 模块
 
-`upstream NAME {}` 定义的名为 NAME 的一组服务器，可以被 `proxy_pass `、`fastcgi_pass`、`uwsgi_pass`、`scgi_pass`、`memcached_pass`、`grpc_pass` 这些指令直接引用，以便将流量直接代理到这组服务器上，并且可以根据一定的算法，轮流调度。
+`upstream NAME {}` 定义的名为 NAME 的一组服务器，可以被 `proxy_pass`、`fastcgi_pass`、`uwsgi_pass`、`scgi_pass`、`memcached_pass`、`grpc_pass` 这些指令直接引用，以便将流量直接代理到这组服务器上，并且可以根据一定的算法，轮流调度。
 
 ## 配置示例
 
@@ -74,7 +74,7 @@ http://nginx.org/en/docs/http/ngx_http_upstream_module.html#server
 
 - **backup** # 将 server 标记为备份服务器。
 - **fail_timeout=\<TIME>** # 与 server 连接的超时时间。`默认值：10s`。
-  - fail_timeout 与 max_fails 两个参数配合，就是指，当一个服务器持续 fail_timeout 时间不可用，并尝试了 max_fails 次之后依然不可用，则将该服务器从本组中提出，不再将请求调度到这个服务器上。
+    - fail_timeout 与 max_fails 两个参数配合，就是指，当一个服务器持续 fail_timeout 时间不可用，并尝试了 max_fails 次之后依然不可用，则将该服务器从本组中提出，不再将请求调度到这个服务器上。
 - **max_fails=\<INT>** # 与 server 连接超时的次数。`默认值：1`。
 - **max_conns=\<INT>** # 限制到 server 的最大同时活动连接数，也就是限制 server 的并发数。`默认值：0`。默认 0 即表示不限制。
 - **weight=\<INT>** # server 的权重。`默认值：1`。权重越高，就会有更多的请求调度到这个 server 上。

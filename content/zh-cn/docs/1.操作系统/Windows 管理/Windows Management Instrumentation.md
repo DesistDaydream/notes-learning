@@ -1,6 +1,5 @@
 ---
 title: Windows Management Instrumentation
-linkTitle: Windows Management Instrumentation
 weight: 20
 ---
 

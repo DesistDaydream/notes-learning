@@ -1,6 +1,5 @@
 ---
 title: OpenMetrics
-linkTitle: OpenMetrics
 weight: 20
 ---
 
@@ -9,7 +8,7 @@ weight: 20
 > 参考：
 >
 > - [GitHub 项目，OpenObservability/OpenMetrics](https://github.com/OpenObservability/OpenMetrics)
->   - https://github.com/prometheus/OpenMetrics
+>     - https://github.com/prometheus/OpenMetrics
 > - [官网](https://openmetrics.io/)
 > - [OpenMetrics 规范](https://github.com/OpenObservability/OpenMetrics/blob/main/specification/OpenMetrics.md)
 

@@ -5,7 +5,7 @@ title: mount Unit
 # 概述
 
 > 参考：
-> 
+>
 > - [Manual(手册)，systemd-mount(5)](https://man7.org/linux/man-pages/man5/systemd.mount.5.html)
 > - [张馆长博客,fstab 与 systemd.mount 自动挂载的一点研究和见解](https://zhangguanzhang.github.io/2019/01/30/fstab/)
 
@@ -269,4 +269,3 @@ Apr 24 18:46:19 CentOS76 systemd[1]: Got automount request for /mnt, triggered b
 <http://www.jinbuguo.com/systemd/systemd.automount.html#>
 <https://blog.csdn.net/richerg85/article/details/17917129>
 [https://wiki.archlinux.org/index.php/Fstab\_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)](<https://wiki.archlinux.org/index.php/Fstab_(%25E7%25AE%2580%25E4%25BD%2593%25E4%25B8%25AD%25E6%2596%2587)>)
-

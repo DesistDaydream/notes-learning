@@ -1,6 +1,5 @@
 ---
 title: "ANSI"
-linkTitle: "ANSI"
 weight: 1
 ---
 

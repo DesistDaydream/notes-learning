@@ -8,8 +8,8 @@ weight: 2
 > 参考：
 >
 > - [GitHub 组织，linux-audit](https://github.com/linux-audit)
->   - [GitHub 项目，linux-audit/audit-kernel](https://github.com/linux-audit/audit-kernel)
->   - [GitHub 项目，linux-audit/audit-userspace](https://github.com/linux-audit/audit-userspace)
+>     - [GitHub 项目，linux-audit/audit-kernel](https://github.com/linux-audit/audit-kernel)
+>     - [GitHub 项目，linux-audit/audit-userspace](https://github.com/linux-audit/audit-userspace)
 > - [红帽产品文档，RedHat7 - 安全指南 - 系统审计](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/chap-system_auditing)
 > - [红帽产品文档，RedHat9 - 安全强化 - 系统审计](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/security_hardening/auditing-the-system_security-hardening)
 > - [公众号 - kernsec，Linux Audit 子系统解读](https://mp.weixin.qq.com/s/G6kE52o7OZaGYPqnuUwggQ)
@@ -74,10 +74,10 @@ See system logs and 'systemctl status auditd.service' for details.
 
 - **FILE** # 是被审计的文件或目录
 - **PERMISSIONS** # 记录的权限
-  - r - 对文件或目录的读取访问权限.
-  - w - 对文件或目录的写入访问权限.
-  - x - 执行对文件或目录的访问权限。
-  - a - 更改文件或目录的属性.
+    - r - 对文件或目录的读取访问权限.
+    - w - 对文件或目录的写入访问权限.
+    - x - 执行对文件或目录的访问权限。
+    - a - 更改文件或目录的属性.
 - **KEY** # 是一个可选字符串，可帮助您识别生成了特定日志条目的规则或一组规则。
 
 ## 定义系统调用规则

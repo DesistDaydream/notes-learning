@@ -1,6 +1,5 @@
 ---
 title: Observability
-linkTitle: Observability
 weight: 1
 ---
 
@@ -9,7 +8,7 @@ weight: 1
 > 参考：
 >
 > - [CNCF 博客，What was observability again?](https://www.cncf.io/blog/2021/03/02/what-was-observability-again/)
->   - 中文翻译：[公众号，云原生技术爱好者社区-什么是可观测性](https://mp.weixin.qq.com/s/bO82iVKO0O8PTiYSHS-gag)
+>     - 中文翻译：[公众号，云原生技术爱好者社区-什么是可观测性](https://mp.weixin.qq.com/s/bO82iVKO0O8PTiYSHS-gag)
 > - [CNCF 可观测性白皮书](https://mp.weixin.qq.com/s/c0xLTU1x-gVODl7eRU-xvA)(中文)
 > - [CNCF 全景图](https://landscape.cncf.io/)
 > - [Wiki, Observability](https://en.wikipedia.org/wiki/Observability#Observability_in_software_systems)
@@ -43,7 +42,7 @@ CNCF 将 可观测性 和 数据分析 归类为一个单独的类别，且划�
 - **监控系统** # 以 Prometheus 等为代表
 - **日志系统** # 以 Elastic Stack 和 PLG Stack 等为代表
 - **追踪系统** # 以 Jaeger、Zipkiin、SkyWalking、Pinpoint 等为代表
-  - 可以监控两个程序之间调用时，程序内部都调用了哪些函数。类似 Linux 的 Strace 命令，只不过这些监控是实时的。
+    - 可以监控两个程序之间调用时，程序内部都调用了哪些函数。类似 Linux 的 Strace 命令，只不过这些监控是实时的。
 - **混沌工程系统** # 以 ChaosMonkey 和 ChaosBlade 等为代表
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/boagu2/1619514000151-2c052586-b3d7-4c75-8683-bfcc40d9e7cf.png)

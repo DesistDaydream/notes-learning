@@ -1,6 +1,5 @@
 ---
 title: PCI
-linkTitle: PCI
 weight: 20
 ---
 
@@ -10,7 +9,7 @@ weight: 20
 >
 > - [GitHub 项目，torvalds/linux - 通过 sysfs 访问 PCI 设备资源](https://github.com/torvalds/linux/blob/master/Documentation/PCI/sysfs-pci.rst)
 > - [GitHub 项目，torvalds/linux - 如何编写 PCI 驱动](https://github.com/torvalds/linux/blob/master/Documentation/PCI/pci.rst)
->   - [博客园，如何编写Linux PCI驱动程序](https://www.cnblogs.com/wanglouxiaozi/p/15525726.html)
+>     - [博客园，如何编写Linux PCI驱动程序](https://www.cnblogs.com/wanglouxiaozi/p/15525726.html)
 > - https://www.makelinux.net/ldd3/ - [12.1. The PCI Interface](https://www.makelinux.net/ldd3/chp-12-sect-1.shtml)
 
 **[PCI](/docs/0.计算机/Motherboard/PCI.md) device resources(PCI 设备资源)** 由 Kernel 注册在 [sysfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/sysfs.md) 的 `/sys/devices/pci${DOMAIN:BUS}/` 目录。每个 PCI 设备资源在该目录下都有一个以 **唯一标识符（有的时候也称为 PCI Address）** 命名的目录，格式为: **`DOMAIN:BUS:SLOT.FUNC`**（e.g. 0000:17:00.0）
@@ -18,9 +17,9 @@ weight: 20
 - **DOMAIN(域)** # 表示 PCI 域编号。用于识别主机系统中的不同 PCI 主机桥。在较早期的系统中，只有一个域编号为 0。随着系统规模扩大，可能存在多个 PCI 域。
 - **BUS(总线)** # 表示 PCI 总线编号（16 进制）。一个 PCI 域中可能包含多条 PCI 总线，每条总线都有一个唯一编号。
 - **SLOT(插槽)** # 表示 PCI 插槽编号。每条 PCI 总线上可以连接多个 PCI 设备，每个设备对应一个插槽编号。
-  - 有的源码中也描述为 DEVICE。比如[这里](https://github.com/torvalds/linux/blob/master/Documentation/PCI/pci-iov-howto.rst)
+    - 有的源码中也描述为 DEVICE。比如[这里](https://github.com/torvalds/linux/blob/master/Documentation/PCI/pci-iov-howto.rst)
 - **FUNC(功能)** # 表示 PCI 功能编号。一些 PCI 设备可能包含多个独立的功能，每个功能都有一个编号,用于区分和访问。对于单功能设备,该编号通常为 0。
-  - 有的源码中也描述为 FUNCTION
+    - 有的源码中也描述为 FUNCTION
 
 通常来说，目录可能是像这样的:
 
@@ -53,35 +52,35 @@ weight: 20
 > 参考:
 >
 > - [GitHub 项目，torvalds/linux - include/linux/pci_ids.h](https://github.com/torvalds/linux/blob/master/include/linux/pci_ids.h) 定义了所有 PCI 相关的 Class、Vendor、Device 的 ID。
->   - 比如该目录下的 class、device、vendor、etc. 文件中的值的含义，可以从这里找到定义
+>     - 比如该目录下的 class、device、vendor、etc. 文件中的值的含义，可以从这里找到定义
 > - https://github.com/torvalds/linux/blob/master/Documentation/PCI/sysfs-pci.rst
 
 **PCI device resouorces(PCI 设备的资源)** 数据以文件形式保存。*PCI 设备资源信息* 的储存目录中，通常包含如下文件
 
-| 文件名                | 功能                                                                                      |
+| 文件名 | 功能 |
 | ------------------ | --------------------------------------------------------------------------------------- |
-| class              | PCI 设备的类型 ID (ascii, ro)。比如 网卡、USB、etc.                                                 |
-| device             | PCI 设备的型号 ID (ascii, ro)。类似设备型号，比如 I350 Gigabit Network 这种。设备 ID 基于供应商 ID，是在供应商 ID 之下的。 |
-| vendor             | PCI 设备的供应商  ID (ascii, ro)。各种厂家，比如 Intel、AMD、etc.                                       |
-| subsystem_device   | PCI 设备的型号子系统 ID (ascii, ro)                                                             |
-| subsystem_vendor   | PCI 设备的供应商子系统 ID (ascii, ro)                                                            |
-| config             | PCI config space (binary, rw)                                                           |
-| enable             | Whether the device is enabled (ascii, rw)                                               |
-| irq                | IRQ number (ascii, ro)                                                                  |
-| local_cpus         | nearby CPU mask (cpumask, ro)                                                           |
-| remove             | remove device from kernel's list (ascii, wo)                                            |
-| resource           | PCI resource host addresses (ascii, ro)                                                 |
-| resource0..N       | PCI resource N, if present (binary, mmap, rw)                                           |
-| resource0_wc..N_wc | PCI WC map resource N, if prefetchable (binary, mmap)                                   |
-| revision           | PCI revision (ascii, ro)                                                                |
-| rom                | PCI ROM resource, if present (binary, ro)                                               |
+| class | PCI 设备的类型 ID (ascii, ro)。比如 网卡、USB、etc. |
+| device | PCI 设备的型号 ID (ascii, ro)。类似设备型号，比如 I350 Gigabit Network 这种。设备 ID 基于供应商 ID，是在供应商 ID 之下的。 |
+| vendor | PCI 设备的供应商  ID (ascii, ro)。各种厂家，比如 Intel、AMD、etc. |
+| subsystem_device | PCI 设备的型号子系统 ID (ascii, ro) |
+| subsystem_vendor | PCI 设备的供应商子系统 ID (ascii, ro) |
+| config | PCI config space (binary, rw) |
+| enable | Whether the device is enabled (ascii, rw) |
+| irq | IRQ number (ascii, ro) |
+| local_cpus | nearby CPU mask (cpumask, ro) |
+| remove | remove device from kernel's list (ascii, wo) |
+| resource | PCI resource host addresses (ascii, ro) |
+| resource0..N | PCI resource N, if present (binary, mmap, rw) |
+| resource0_wc..N_wc | PCI WC map resource N, if prefetchable (binary, mmap) |
+| revision | PCI revision (ascii, ro) |
+| rom | PCI ROM resource, if present (binary, ro) |
 
 该目录中主要由如下几类文件
 
 - **ro(只读) 类型文件** # **是信息性的**，对它们的写入将被忽略，“rom”文件除外。可写文件可用于在设备上执行操作（例如更改配置空间、分离设备）。 mmapable 文件可通过偏移量 0 处的文件 mmap 获得，并可用于从用户空间进行实际设备编程。请注意，某些平台不支持某些资源的映射，因此请务必检查任何尝试的映射的返回值。其中最值得注意的是 I/O 端口资源，它也提供读/写访问
-  - **class、vendor、device、subsystem_vendor、subsystem_device** # PCI 设备信息文件，文件内容是 **HEX(16 进制)** 的数字（i.e. 0x8086，0x 是 16 进制标识，具体数值是 8086），数字对应的含义可以参考 [GitHub 项目，torvalds/linux - include/linux/pci_ids.h](https://github.com/torvalds/linux/blob/master/include/linux/pci_ids.h)
-    - 这些文件中的值分别对应 CLASS_ID、VENDOR_ID、DEVICE_ID、SBUVENDOR_ID、SUBDEVICE_ID
-    - **Tips**: DEVICE_ID 都是包含在 VENDOR_ID 下的，理解为某个供应商下的某个设备比如 1521 这个 DEVICE_ID，可以在 8086 这个 VENDOR_ID 下找到，表示英特尔公司的 1350 Gigabit Network Connection 型号的网卡
+    - **class、vendor、device、subsystem_vendor、subsystem_device** # PCI 设备信息文件，文件内容是 **HEX(16 进制)** 的数字（i.e. 0x8086，0x 是 16 进制标识，具体数值是 8086），数字对应的含义可以参考 [GitHub 项目，torvalds/linux - include/linux/pci_ids.h](https://github.com/torvalds/linux/blob/master/include/linux/pci_ids.h)
+        - 这些文件中的值分别对应 CLASS_ID、VENDOR_ID、DEVICE_ID、SBUVENDOR_ID、SUBDEVICE_ID
+        - **Tips**: DEVICE_ID 都是包含在 VENDOR_ID 下的，理解为某个供应商下的某个设备比如 1521 这个 DEVICE_ID，可以在 8086 这个 VENDOR_ID 下找到，表示英特尔公司的 1350 Gigabit Network Connection 型号的网卡
 - **enable 文件** # 提供了一个计数器，指示设备已启用的次数。如果“enable”文件当前返回“4”，并且回显“1”，则它将返回“5”。回显“0”会减少计数。但是，即使返回到 0，某些初始化也可能无法逆转。
 - **rom 文件** # 的特殊之处在于它提供对设备 ROM 文件（如果可用）的只读访问。但默认情况下它是禁用的，因此应用程序应在尝试读取调用之前将字符串“1”写入文件以启用它，并在访问后通过将“0”写入文件来禁用它。请注意，必须启用设备才能读取 ROM 才能成功返回数据。如果驱动程序未绑定到设备，则可以使用上面记录的“enable”文件来启用它。
 - **remove 文件** # 用于通过向文件写入非零整数来删除 PCI 设备。这不涉及任何类型的热插拔功能，例如关闭设备电源。该设备将从内核的 PCI 设备列表中删除，其 sysfs 目录也将被删除，并且该设备将从附加到它的任何驱动程序中删除。不允许移除 PCI 根总线。
@@ -109,14 +108,14 @@ weight: 20
 
 - Note: 由于 PCI 是有层级的（e.g. `/sys/devices/pci0000:00/0000:00:1c.1/0000:05:00.0/0000:06:00.0/0000:07:00.0/0000:08:00.0`），所以每个层级的目录都有可能存在下面这些内容
 - **/sys/bus/pci/devices/** # 可以在这里找到所有 PCI 设备的列表，该目录下的文件是以 PCI Addr 命名的软链接，指向 `/sys/devices/pci${DOMAIN:BUS}/` 目录下的某个子目录。
-  - Notes: 有的 PCI 层级可能比较多，比如这种 `0000:08:00.0 -> ../../../devices/pci0000:00/0000:00:1c.1/0000:05:00.0/0000:06:00.0/0000:07:00.0/0000:08:00.0`
+    - Notes: 有的 PCI 层级可能比较多，比如这种 `0000:08:00.0 -> ../../../devices/pci0000:00/0000:00:1c.1/0000:05:00.0/0000:06:00.0/0000:07:00.0/0000:08:00.0`
 
 # pci.ids 文件
 
 > 参考:
 >
 > - [官网](https://pci-ids.ucw.cz/)
->   - [GitHub 项目，pciutils/pciids](https://github.com/pciutils/pciids)
+>     - [GitHub 项目，pciutils/pciids](https://github.com/pciutils/pciids)
 > - [Manual(手册)，pci.ids(5)](https://man7.org/linux/man-pages/man5/pci.ids.5.html)
 
 pci.ids 是 PCI 设备中使用的所有已知 ID 的公共存储库：供应商、设备、子系统和设备类别的 ID。它在各种程序（例如 [PCI 实用程序](http://mj.ucw.cz/sw/pciutils/)）中用于显示完整的人类可读名称，而不是神秘的数字代码。
@@ -126,8 +125,8 @@ pci.ids 是 PCI 设备中使用的所有已知 ID 的公共存储库：供应商
 该文件由 [pciutils](https://github.com/pciutils) 维护。在官方网站中可以在线查询，主要分为两大块查询
 
 - 查询 [PCI Device ID](https://admin.pci-ids.ucw.cz/read/PC/)(PCI 设备 ID)
-  - 每个 Device 都在某个 Vendor 下。e.g 在 8086 这个 VENDOR_ID 下，可以找到 1521 这个 DEVICE_ID，表示英特尔公司的 1350 Gigabit Network Connection 型号的网卡
-  - 使用在线库查询时，先找到 VENDOR ID 点进去，再找 DEVICE ID，即可找到 设备的型号命名。
+    - 每个 Device 都在某个 Vendor 下。e.g 在 8086 这个 VENDOR_ID 下，可以找到 1521 这个 DEVICE_ID，表示英特尔公司的 1350 Gigabit Network Connection 型号的网卡
+    - 使用在线库查询时，先找到 VENDOR ID 点进去，再找 DEVICE ID，即可找到 设备的型号命名。
 - 查询 [PCI Device classes ID](https://admin.pci-ids.ucw.cz/read/PD/)( PCI 设备类别 ID)
 
 > [!Question]

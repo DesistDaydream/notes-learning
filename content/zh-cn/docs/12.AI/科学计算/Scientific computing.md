@@ -1,6 +1,5 @@
 ---
 title: Scientific computing
-linkTitle: Scientific computing
 created: 2026-05-12T20:25
 weight: 1
 ---

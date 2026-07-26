@@ -1,6 +1,5 @@
 ---
 title: Python 模块与包
-linkTitle: Python 模块与包
 weight: 2
 ---
 
@@ -17,8 +16,8 @@ weight: 2
 >
 > - [官方文档，教程 - 6.模块](https://docs.python.org/3/tutorial/modules.html)
 > - [GitHub 项目，pypa/packaging.python.org](https://github.com/pypa/packaging.python.org)
->   - [Python 包管理指南](https://packaging.python.org) “Python Packaging User Guide”(PyPUG) 旨在成为有关如何使用当前工具在 Python 中打包和安装发行版的权威资源。
->   - [Python Packaging Authority](https://www.pypa.io/en/latest/)
+>     - [Python 包管理指南](https://packaging.python.org) “Python Packaging User Guide”(PyPUG) 旨在成为有关如何使用当前工具在 Python 中打包和安装发行版的权威资源。
+>     - [Python Packaging Authority](https://www.pypa.io/en/latest/)
 > - [廖雪峰 Python 教程，模块](https://www.liaoxuefeng.com/wiki/1016959663602400/1017454145014176)
 
 Python 的 [Modular programming](/docs/2.编程/Programming%20technology/Modular%20programming.md) 设计
@@ -108,6 +107,7 @@ sound/                          顶级包
 需要 `__init__.py` 文件才能使 Python 将包含该文件的目录视为包。这可以防止具有通用名称（例如字符串）的目录无意中隐藏了稍后出现在模块搜索路径上的有效模块。在最简单的情况下，`__init__.py` 可以只是一个空文件，但它也可以执行包的初始化代码或设置 `__all__` 变量，稍后将介绍。
 
 > [!Attention]
+>
 > - import 指令导入模块时是否成功，取决于执行 Python 代码时的所在位置。反正设计的挺恶心的。。。o(╯□╰)
 > - 说白了：Package 就是 Module，只不过是对 Module 进行了分类。。。导入模块时，模块名称中有 `.` 就是包了。。其实还是模块。也可以这么理解：一个目录就是一个包，一个文件就是一个模块。
 > - 若没有 `__init__.py` 文件，我们使用 IDE 追踪代码时，如果想要从 import 指令中的导入的包进行追踪，会提示找不到该文件，无法追踪到。
@@ -266,8 +266,8 @@ def greeting(name):
 >
 > - [官方文档，Python 教程 - 6.模块 - 模块搜索路径](https://docs.python.org/3/tutorial/modules.html#the-module-search-path)
 > - [官方文档，Python 的安装和使用 - 命令行工具和环境](https://docs.python.org/3/using/cmdline.html)
->   - [PYTHONPATH](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH)
->   - [PYTHONHOME](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHOME)
+>     - [PYTHONPATH](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH)
+>     - [PYTHONHOME](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHOME)
 > - https://stackoverflow.com/questions/59104100/what-is-the-idea-behind-the-installation-dependent-default-directory-layout
 > - https://stackoverflow.com/questions/897792/where-is-pythons-sys-path-initialized-from
 
@@ -288,13 +288,13 @@ Python 模块通常分两大类
 
 - **运行 Python 代码文件所在的绝对路径**
 - **${PYTHONPATH} 环境变量指定的路径**
-  - 这是一个手动指定的目录列表，类似于类 Unix 中的 `$PATH` 变量，可以通过 `os.path` 获取其值。
-  - 可以使用 `os.path.append()` 为 `$PYTHONPATH` 变量添加新的目录条目以便导入想要的模块。也可以直接设置 Linux 系统中的 `$PYTHONPATH` 变量。当项目大，需要对文件进行分类时，非常有用。
+    - 这是一个手动指定的目录列表，类似于类 Unix 中的 `$PATH` 变量，可以通过 `os.path` 获取其值。
+    - 可以使用 `os.path.append()` 为 `$PYTHONPATH` 变量添加新的目录条目以便导入想要的模块。也可以直接设置 Linux 系统中的 `$PYTHONPATH` 变量。当项目大，需要对文件进行分类时，非常有用。
 - **编译、安装 Python 时设置的默认路径**
-  - 官方文档的这个说法挺模糊的，详见下面 sys.path 列表生成逻辑中的详解。这些路径主要取决于 [prefix](#1.确认并生成%20sys.prefix) 的设置。
-  - 按照惯例，通常包含：
-    - Python 标准库保存路径。
-    - [site 模块](https://docs.python.org/3/library/site.html#module-site)处理的第三方库保存路径。使用各种方式安装（e.g. [PIP](/docs/2.编程/高级编程语言/Python/Python工具/PIP.md)）的第三方库通常来说会存在 site-packages 目录中。
+    - 官方文档的这个说法挺模糊的，详见下面 sys.path 列表生成逻辑中的详解。这些路径主要取决于 [prefix](#1.确认并生成%20sys.prefix) 的设置。
+    - 按照惯例，通常包含：
+        - Python 标准库保存路径。
+        - [site 模块](https://docs.python.org/3/library/site.html#module-site)处理的第三方库保存路径。使用各种方式安装（e.g. [PIP](/docs/2.编程/高级编程语言/Python/Python工具/PIP.md)）的第三方库通常来说会存在 site-packages 目录中。
 
 上述三种路径在 Python 启动时被初始化。我们可以通过 Python 中的 `${sys.path}` 数组变量查看这些路径。
 
@@ -374,14 +374,14 @@ elif os_name == 'nt':
 第二步，将 prefix 与声明的 landmark 的路径拼接得出 landmark 的绝对路径。
 
 - **os.py 文件** # 标准库 landmark，os.py 文件所在目录就是标准库目录。
-  - Windows 中，默认在 `${prefix}/Lib/os.py`
-  - Linux 中，默认在 `${prefix}/lib/python${VERSION_MAJOR}.${VERSION_MINOR}/os.py`
+    - Windows 中，默认在 `${prefix}/Lib/os.py`
+    - Linux 中，默认在 `${prefix}/lib/python${VERSION_MAJOR}.${VERSION_MINOR}/os.py`
 - **lib-dynload/ 目录** # 未知
-  - Windows 中，没找到该目录
-  - Ubuntu 中，默认在 `${prefix}/lib/python${VERSION_MAJOR}.${VERSION_MINOR}/lib-dynload/`
+    - Windows 中，没找到该目录
+    - Ubuntu 中，默认在 `${prefix}/lib/python${VERSION_MAJOR}.${VERSION_MINOR}/lib-dynload/`
 - **python${XY}.zip 文件** # ZIP landmark，zip 文件所在目录就是 prefix 目录
-  - Windows 中，默认在`${prefix}/python${VERSION_MAJOR}${VERSION_MINOR}.zip`
-  - Ubunut 中，默认在 `${prefix}/python${VERSION_MAJOR}${VERSION_MINOR}.zip`
+    - Windows 中，默认在`${prefix}/python${VERSION_MAJOR}${VERSION_MINOR}.zip`
+    - Ubunut 中，默认在 `${prefix}/python${VERSION_MAJOR}${VERSION_MINOR}.zip`
 - 等等......
 
 第三步，Python 解释器将会逐一检查这些 landmark 的绝对路径。

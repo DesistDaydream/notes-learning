@@ -1,6 +1,5 @@
 ---
 title: neutron
-linkTitle: neutron
 weight: 20
 ---
 

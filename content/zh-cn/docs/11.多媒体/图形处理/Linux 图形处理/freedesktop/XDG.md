@@ -1,13 +1,12 @@
 ---
 title: "XDG"
-linkTitle: "XDG"
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [freedesktop 规范](https://www.freedesktop.org/wiki/Specifications/)
 
 freedesktop.org 制定互操作性规范，但我们不是官方标准机构。项目不需要实施所有这些规范，也不需要认证。

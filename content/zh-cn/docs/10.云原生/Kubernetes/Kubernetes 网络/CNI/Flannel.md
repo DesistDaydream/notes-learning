@@ -5,7 +5,7 @@ title: Flannel
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，flannel-io/flannel](https://github.com/flannel-io/flannel)
 
 Flannel 是一种专为 Kubernetes 设计的，简单、易于配置的 3 层网络结构，并且为 Kubernetes 提供了 CNI 插件。
@@ -27,17 +27,17 @@ Flannel 启动时，在 `./main.go` 中调用 [WriteSubnetFile()](https://github
 ```go
 func main() {
     ......
-	if err := WriteSubnetFile(opts.subnetFile, config, opts.ipMasq, bn); err != nil {
-		// Continue, even though it failed.
-		log.Warningf("Failed to write subnet file: %s", err)
-	} else {
-		log.Infof("Wrote subnet file to %s", opts.subnetFile)
-	}
+ if err := WriteSubnetFile(opts.subnetFile, config, opts.ipMasq, bn); err != nil {
+  // Continue, even though it failed.
+  log.Warningf("Failed to write subnet file: %s", err)
+ } else {
+  log.Infof("Wrote subnet file to %s", opts.subnetFile)
+ }
     ......
 }
 
 func WriteSubnetFile(path string, config *subnet.Config, ipMasq bool, bn backend.Network) error {
-	......
+ ......
     nw := config.Network
     sn := bn.Lease().Subnet
     // Write out the first usable IP by incrementing sn.IP by one
@@ -45,8 +45,8 @@ func WriteSubnetFile(path string, config *subnet.Config, ipMasq bool, bn backend
     fmt.Fprintf(f, "FLANNEL_NETWORK=%s\n", nw)
     fmt.Fprintf(f, "FLANNEL_SUBNET=%s\n", sn)
 
-	fmt.Fprintf(f, "FLANNEL_MTU=%d\n", bn.MTU())
-	_, err = fmt.Fprintf(f, "FLANNEL_IPMASQ=%v\n", ipMasq)
+ fmt.Fprintf(f, "FLANNEL_MTU=%d\n", bn.MTU())
+ _, err = fmt.Fprintf(f, "FLANNEL_IPMASQ=%v\n", ipMasq)
     ......
 }
 ```
@@ -57,26 +57,26 @@ func WriteSubnetFile(path string, config *subnet.Config, ipMasq bool, bn backend
 
 ```go
 type kubeSubnetManager struct {
-	nodeName                  string
-	nodeStore                 listers.NodeLister
+ nodeName                  string
+ nodeStore                 listers.NodeLister
     ......
 }
 
 func (ksm *kubeSubnetManager) AcquireLease(ctx context.Context, attrs *subnet.LeaseAttrs) (*subnet.Lease, error) {
     cachedNode, err := ksm.nodeStore.Get(ksm.nodeName)
-	n := cachedNode.DeepCopy()
+ n := cachedNode.DeepCopy()
 
-	var cidr, ipv6Cidr *net.IPNet
-	_, cidr, err = net.ParseCIDR(n.Spec.PodCIDR)
-	if err != nil {
-		return nil, err
-	}
+ var cidr, ipv6Cidr *net.IPNet
+ _, cidr, err = net.ParseCIDR(n.Spec.PodCIDR)
+ if err != nil {
+  return nil, err
+ }
 
-	if cidr != nil {
-		lease.Subnet = ip.FromIPNet(cidr)
-	}
+ if cidr != nil {
+  lease.Subnet = ip.FromIPNet(cidr)
+ }
 
-	return lease, nil
+ return lease, nil
 }
 ```
 
@@ -110,16 +110,16 @@ Flannel 进行 UDP 封装（Encapsulation）和解封装（Decapsulation）的�
 Pod 间通信的情况：
 
 - pod1 与 pod2 不在同一台主机
-  - pod1(10.0.14.15)向 pod2(10.0.5.150)发送 ping，查找 pod1 路由表，把数据包发送到 cni0(10.0.14.1)
-  - cni0 查找 host1 路由，把数据包转发到 flannel.1
-  - flannel.1 虚拟网卡再把数据包转发到它的驱动程序 flannel
-  - flannel 程序使用 VXLAN 协议封装这个数据包，向 api-server 查询目的 IP 所在的主机 IP,称为 host2(不清楚什么时候查询)
-  - flannel 向查找到的 host2 IP 的 UDP 端口 8472 传输数据包
-  - host2 的 flannel 收到数据包后，解包，然后转发给 flannel.1 虚拟网卡
-  - flannel.1 虚拟网卡查找 host2 路由表，把数据包转发给 cni0 网桥，cni0 网桥再把数据包转发给 pod2
-  - pod2 响应给 pod1 的数据包与 1-7 步类似
+    - pod1(10.0.14.15)向 pod2(10.0.5.150)发送 ping，查找 pod1 路由表，把数据包发送到 cni0(10.0.14.1)
+    - cni0 查找 host1 路由，把数据包转发到 flannel.1
+    - flannel.1 虚拟网卡再把数据包转发到它的驱动程序 flannel
+    - flannel 程序使用 VXLAN 协议封装这个数据包，向 api-server 查询目的 IP 所在的主机 IP,称为 host2(不清楚什么时候查询)
+    - flannel 向查找到的 host2 IP 的 UDP 端口 8472 传输数据包
+    - host2 的 flannel 收到数据包后，解包，然后转发给 flannel.1 虚拟网卡
+    - flannel.1 虚拟网卡查找 host2 路由表，把数据包转发给 cni0 网桥，cni0 网桥再把数据包转发给 pod2
+    - pod2 响应给 pod1 的数据包与 1-7 步类似
 - pod1 与 pod2 在同一台主机
-  - pod1 和 pod2 在同一台主机的话，由 cni0 网桥直接转发请求到 pod2，不需要经过 flannel。
+    - pod1 和 pod2 在同一台主机的话，由 cni0 网桥直接转发请求到 pod2，不需要经过 flannel。
 
 ## VxLan 型后端
 
@@ -146,12 +146,12 @@ flannel 会维护这么几个数据：
 pod1 与 pod2 不在同一台主机
 
 - Container-1 发出请求后，目的地址是 10.244.1.3，经过 cni0，然后被路由到 flannel.1(VTEP) 设备进行处理。flannel 会根据所规定的子网，自动生成路由，让所有符合其子网的目的地址，都会经过 flannel.1 设备。可以把 container-1 发出的数据包称为“原始 IP 包”。这个“原始 IP 包”到达 flannel.1 设备，也就是来到了隧道的入口。此时开始了 VXLAN 的封装工作
-  - 添加 Inner Ethernet Header。为了能够将“原始 IP 包”封装并发送到正确的宿主机上，VXLAN 就需要找到这条隧道的出口(i.e.目的宿主机的 VTEP 设备)，这个设备的信息，就是由每台宿主机的 flanneld 进程维护的。当 node2 启动并加入 flannel 网络后，node1 上会添加一条路由：10.144.1.0/24 via 10.244.1.0 dev flannel.1。这个 10.244.1.0 就是 node2 上的 VTEP 设备的 IP 地址。（可以把 node1 的 VTEP 设备成为“源 VTEP 设备”，node2 的 VTEP 设备成为“目的 VTEP 设备”）。这些 VTEP 设备之间，就需要想办法组成一个虚拟的二层网络。flanneld 进程在 node2 节点启动时，还会在 node1 上添加 arp 记录，记录“目的 VTEP 设备”的 IP 与 MAC(假设为 5e:f8:4f:00:e3:37，可以通过 ip neigh show dev flannel.1 命令查看)。有了这个“目的 VTEP 设备”的 MAC 地址，VXLAN 就可以在内核开始二层封包工作了，VXLAN 模块会在“原始 IP 包”外添上一个“目的 VTEP 设备”的 MAC 地址(Inner Ethernet Header)。但是只有一个 MAC 地址，对于宿主机网络来说没有实际意义，并不能在宿主机的网络里传输，所以需要进一步封装，让其成为宿主机网络里一个普通的数据包，以便通过 eth0 网卡。
-  - 添加 VXLAN Header。为了让数据包可以变成宿主机网络里的普通数据包，VXLAN 模块会再给数据包加上一个特殊的 VXLAN 头(VXLAN Header)，用来表示这个数据包实际上是一个 VXLAN 要使用的包。而这个 VXLAN 头里有一个重要的标志，叫做 VNI，它是 VTEP 设备识别某个数据帧是不是应该归自己处理的标志。而在 flannel 中，VNI 的默认值为 1，所以宿主机上的 VTEP 设备都叫做 flannel.1 的原因，这里面的 1，就是 VNI 的值。(其实，添加这个 VXLAN 头，就是为了让宿主机在看到这个数据包是由 VXLAN 程序来发出的，而不是由 container 发出的，因为宿主机无法才开 VXLAN 的头部信息，所以也就读不了 VXLAN 下面的真实目的 IP 和 MAC)(说白了，可以把实现 VXLAN 功能的 flannel 当做一个运行在 linux 上的程序，数据包是由这个 flannel 发出来的。其余 VXLAN 的机制也是同理)
-  - 添加 Outer UDP Header。然后 Linux 内核会把这个数据帧封装进一个 UDP 包，跟 UDP 模型一样，在宿主机看来，会认为自己的 flannel.1 设备只是在向外另外一台宿主机的 flannel.1 设备，发起了一次普通的 UDP 链接，并不会知道这个 UDP 包里，还有一个完成的二层数据帧（从宿主机看，就是 vxlan 这个模块或者说 flannel.1 设备，发送了一份数据，数据内容是什么，Linux 内核不关心）。不过，flannel.1 设备知道另一端设备的 MAC 地址，但是却不知道对应的宿主机地址是什么，那么这个 UDP 包应该发给哪台宿主机呢？
-  - 添加 Outer IP Header。在这种情况下，flannel.1 实际上扮演了一个网桥的角色，网桥设备进行转发的依据，来自于一个 FDB(Forwarding Database)的转发数据库，这个 FDB 的信息也是由 flanneld 进程维护的，当 node2 加入 flannel 网络后，会在 node1 的 FDB 记录对端 VTEP 的信息 5e:f8:4f:00:e3:37 dev flannel.1 dst 10.168.0.3 self permanent(可以通过 bridge fdb show flannel.1 | grep 5e:f8:4f:00:e3:37 命令查到,意思是：MAC 地址为“目的 VTEP”设备的数据包，会经过 flannel.1 设备，发送到目的地是 10.168.0.3 的主机上)。所以接下来的流程就是一个正产的宿主机网络上的封包工作，flannel.1 设备会把 FDB 的信息告诉 Linux 内核要发送个谁，Linux 内核的网络栈就会进行后续封装，把对端 VTEP 设备的 MAC 地址所在的 IP 封装到数据包的头部。
-  - 添加 Outer Ethernet Header。Linux 内核在这个数据包前面加上 Node2 的 MAC 地址，这个 MAC 是本身设备网络栈 ARP 表要学习到的，无需 flannel 维护。
-  - 这时候，封包工作完成了。实际上就是 flannel.1 设备发送了一个数据给宿主机，至于数据中的内容，则是宿主机不关心的。当对端宿主机把最外层的封装解开后，发现 VXLAN 的标记，自然会交由本机可以处理 VXLAN 的网络设备来进行处理。
+    - 添加 Inner Ethernet Header。为了能够将“原始 IP 包”封装并发送到正确的宿主机上，VXLAN 就需要找到这条隧道的出口(i.e.目的宿主机的 VTEP 设备)，这个设备的信息，就是由每台宿主机的 flanneld 进程维护的。当 node2 启动并加入 flannel 网络后，node1 上会添加一条路由：10.144.1.0/24 via 10.244.1.0 dev flannel.1。这个 10.244.1.0 就是 node2 上的 VTEP 设备的 IP 地址。（可以把 node1 的 VTEP 设备成为“源 VTEP 设备”，node2 的 VTEP 设备成为“目的 VTEP 设备”）。这些 VTEP 设备之间，就需要想办法组成一个虚拟的二层网络。flanneld 进程在 node2 节点启动时，还会在 node1 上添加 arp 记录，记录“目的 VTEP 设备”的 IP 与 MAC(假设为 5e:f8:4f:00:e3:37，可以通过 ip neigh show dev flannel.1 命令查看)。有了这个“目的 VTEP 设备”的 MAC 地址，VXLAN 就可以在内核开始二层封包工作了，VXLAN 模块会在“原始 IP 包”外添上一个“目的 VTEP 设备”的 MAC 地址(Inner Ethernet Header)。但是只有一个 MAC 地址，对于宿主机网络来说没有实际意义，并不能在宿主机的网络里传输，所以需要进一步封装，让其成为宿主机网络里一个普通的数据包，以便通过 eth0 网卡。
+    - 添加 VXLAN Header。为了让数据包可以变成宿主机网络里的普通数据包，VXLAN 模块会再给数据包加上一个特殊的 VXLAN 头(VXLAN Header)，用来表示这个数据包实际上是一个 VXLAN 要使用的包。而这个 VXLAN 头里有一个重要的标志，叫做 VNI，它是 VTEP 设备识别某个数据帧是不是应该归自己处理的标志。而在 flannel 中，VNI 的默认值为 1，所以宿主机上的 VTEP 设备都叫做 flannel.1 的原因，这里面的 1，就是 VNI 的值。(其实，添加这个 VXLAN 头，就是为了让宿主机在看到这个数据包是由 VXLAN 程序来发出的，而不是由 container 发出的，因为宿主机无法才开 VXLAN 的头部信息，所以也就读不了 VXLAN 下面的真实目的 IP 和 MAC)(说白了，可以把实现 VXLAN 功能的 flannel 当做一个运行在 linux 上的程序，数据包是由这个 flannel 发出来的。其余 VXLAN 的机制也是同理)
+    - 添加 Outer UDP Header。然后 Linux 内核会把这个数据帧封装进一个 UDP 包，跟 UDP 模型一样，在宿主机看来，会认为自己的 flannel.1 设备只是在向外另外一台宿主机的 flannel.1 设备，发起了一次普通的 UDP 链接，并不会知道这个 UDP 包里，还有一个完成的二层数据帧（从宿主机看，就是 vxlan 这个模块或者说 flannel.1 设备，发送了一份数据，数据内容是什么，Linux 内核不关心）。不过，flannel.1 设备知道另一端设备的 MAC 地址，但是却不知道对应的宿主机地址是什么，那么这个 UDP 包应该发给哪台宿主机呢？
+    - 添加 Outer IP Header。在这种情况下，flannel.1 实际上扮演了一个网桥的角色，网桥设备进行转发的依据，来自于一个 FDB(Forwarding Database)的转发数据库，这个 FDB 的信息也是由 flanneld 进程维护的，当 node2 加入 flannel 网络后，会在 node1 的 FDB 记录对端 VTEP 的信息 5e:f8:4f:00:e3:37 dev flannel.1 dst 10.168.0.3 self permanent(可以通过 bridge fdb show flannel.1 | grep 5e:f8:4f:00:e3:37 命令查到,意思是：MAC 地址为“目的 VTEP”设备的数据包，会经过 flannel.1 设备，发送到目的地是 10.168.0.3 的主机上)。所以接下来的流程就是一个正产的宿主机网络上的封包工作，flannel.1 设备会把 FDB 的信息告诉 Linux 内核要发送个谁，Linux 内核的网络栈就会进行后续封装，把对端 VTEP 设备的 MAC 地址所在的 IP 封装到数据包的头部。
+    - 添加 Outer Ethernet Header。Linux 内核在这个数据包前面加上 Node2 的 MAC 地址，这个 MAC 是本身设备网络栈 ARP 表要学习到的，无需 flannel 维护。
+    - 这时候，封包工作完成了。实际上就是 flannel.1 设备发送了一个数据给宿主机，至于数据中的内容，则是宿主机不关心的。当对端宿主机把最外层的封装解开后，发现 VXLAN 的标记，自然会交由本机可以处理 VXLAN 的网络设备来进行处理。
 - Node1 上的 flannel.1 设备把封装好后的数据帧从 node1 的 eth0 网卡发出去
 - node2 收到数据帧后，拆开发现 VXLAN 头，根据 VNI 值交给本地的 flannel.1 设备，flannel.1 设备进一步拆包获取“原始 IP 包”，并把该包送入对应的 Container-2 中。
 - Container-2 的响应，与前面的描述一样，只不过是从 node2 开始封装，到 node1 后解封装
@@ -163,13 +163,13 @@ pod1 与 pod2 在同一台主机
 pod 到 service 的网络
 
 - 创建一个 service 时，相应会创建一个指向这个 service 的域名，域名规则为{服务名}.{namespace}.svc.{集群名称}。之前 service ip 的转发由 iptables 和 kube-proxy 负责，目前基于性能考虑，全部为 iptables 维护和转发。iptables 则由 kubelet 维护。
-  - pod1 向 service ip 10.16.0.10:53 发送 udp 请求，查找路由表，把数据包转发给网桥 cni0(10.0.14.1)
-  - 在数据包进入 cnio 网桥时，数据包经过 PREROUTING 链，然后跳至 KUBE-SERVICES 链
-  - KUBE-SERVICES 链中一条匹配此数据包的规则，跳至 KUBE-SVC-TCOU7JCQXEZGVUNU 链
-  - KUBE-SVC-TCOU7JCQXEZGVUNU 不做任何操作，跳至 KUBE-SEP-L5MHPWJPDKD7XIFG 链
-  - KUBE-SEP-L5MHPWJPDKD7XIFG 里对此数据包作了 DNAT 到 10.0.0.46:53，其中 10.0.0.46 即为 kube-dns 的 pod ip
-  - 查找与 10.0.0.46 匹配的路由，转发数据包到 flannel.1
-  - 之后的数据包流向就与上面的 pod1 到 pod2 的网络一样了
+    - pod1 向 service ip 10.16.0.10:53 发送 udp 请求，查找路由表，把数据包转发给网桥 cni0(10.0.14.1)
+    - 在数据包进入 cnio 网桥时，数据包经过 PREROUTING 链，然后跳至 KUBE-SERVICES 链
+    - KUBE-SERVICES 链中一条匹配此数据包的规则，跳至 KUBE-SVC-TCOU7JCQXEZGVUNU 链
+    - KUBE-SVC-TCOU7JCQXEZGVUNU 不做任何操作，跳至 KUBE-SEP-L5MHPWJPDKD7XIFG 链
+    - KUBE-SEP-L5MHPWJPDKD7XIFG 里对此数据包作了 DNAT 到 10.0.0.46:53，其中 10.0.0.46 即为 kube-dns 的 pod ip
+    - 查找与 10.0.0.46 匹配的路由，转发数据包到 flannel.1
+    - 之后的数据包流向就与上面的 pod1 到 pod2 的网络一样了
 
 pod 到外网
 
@@ -273,10 +273,10 @@ net-conf.json 配置文件：
 - -healthz-ip string # the IP address for healthz server to listen (default "0.0.0.0")
 - -healthz-port int # the port for healthz server to listen(0 to disable)
 - **-iface \<STRING>** # 用于主机间通信的网络设备名称或者 IP。可以指定多个网络设备，Flannel 会按顺序检查，并使用找到的第一个网络设备
-  - 注意：这个参数指定的网络设备，就是 Flannel 建立静态路由条目时所使用的网络设备。
+    - 注意：这个参数指定的网络设备，就是 Flannel 建立静态路由条目时所使用的网络设备。
 - **-iface-regex \<EXP>** # 用于主机间通信的网络设备的正则表达式
-  - 可以多次指定以按顺序检查每个正则表达式。返回找到的第一个匹配项。在检查 iface 选项指定的特定接口后，将检查正则表达式。
-  - 比如 `^(eth0|bond1)$` 这种格式，可以让具有不通网络设备名称的设备被统一
+    - 可以多次指定以按顺序检查每个正则表达式。返回找到的第一个匹配项。在检查 iface 选项指定的特定接口后，将检查正则表达式。
+    - 比如 `^(eth0|bond1)$` 这种格式，可以让具有不通网络设备名称的设备被统一
 - -ip-masq # setup IP masquerade rule for traffic destined outside of overlay network
 - -iptables-forward-rules # add default accept rules to FORWARD chain in iptables (default true)
 - -iptables-resync int # resync period for iptables rules, in seconds (default 5)
@@ -312,7 +312,7 @@ rm -f /etc/cni/net.d/*
 ## 误删 cni0 网络设备后恢复
 
 > 参考：
-> 
+>
 > - 原文：[公众号-k8s 中文社区，一起误删 cni0 虚拟网卡引发的 k8s 事故](https://mp.weixin.qq.com/s/TDdatl6Mzfc_4VdTSXDv4A)
 
 误操作的命令：`ip link del cni0`

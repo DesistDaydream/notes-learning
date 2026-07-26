@@ -1,6 +1,5 @@
 ---
 title: Socat
-linkTitle: Socat
 weight: 20
 ---
 
@@ -70,15 +69,15 @@ ADDRESS 类似于一个文件描述符，socat 所做的工作就是在 2 个 AD
 # EXAMPLE
 
 - 测试 172.19.42.243 的 161/UDP 端口
-  - socat - udp:172.19.42.243:161
+    - socat - udp:172.19.42.243:161
 - 类似于 cat 命令，将 /var/log/messages 中的内容输出到标准输出
-  - socat - /var/log/messages
+    - socat - /var/log/messages
 - 监听本机 500 端口 并与 标准输入输出 建立连接。当其他设备 telnet 到本端口时，输入输出都会在两端互相显示。
-  - socat tcp-listen:500 -
+    - socat tcp-listen:500 -
 - 监听本地的 18080 端口，所有到 18080 的数据包，都会转发给 172.19.42.248 的 8080 端口
-  - socat TCP-LISTEN:18080,fork,reuseaddr  TCP:172.19.42.248:8080
+    - socat TCP-LISTEN:18080,fork,reuseaddr  TCP:172.19.42.248:8080
 - 在本地 8080 端口与 docker 的 sock 建立连接。直接访问 <http://172.38.40.250:8080/debug/pprof/> 可以 debug docker(最后的 / 不能少)。
-  - socat -d -d tcp-listen:8080,fork,bind:172.38.40.250 UNIX:/var/run/docker.sock
+    - socat -d -d tcp-listen:8080,fork,bind:172.38.40.250 UNIX:/var/run/docker.sock
 
 连接目标
 

@@ -1,6 +1,5 @@
 ---
 title: kube-proxy
-linkTitle: kube-proxy
 weight: 1
 ---
 
@@ -23,7 +22,7 @@ Note:
 
 - kube-proxy 的 ipvs 模式为 lvs 的 nat 模型
 - 如果想要在 ipvs 模式下从 VIP:nodePort 去访问就请你暴露的服务的话，需要将 VIP 的掩码设置为 /32。
-  - 参考 issue：<https://github.com/kubernetes/kubernetes/issues/75443>
+    - 参考 issue：<https://github.com/kubernetes/kubernetes/issues/75443>
 
 ## kube-proxy 监控指标
 

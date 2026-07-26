@@ -1,6 +1,5 @@
 ---
 title: PPTP
-linkTitle: PPTP
 weight: 10
 ---
 

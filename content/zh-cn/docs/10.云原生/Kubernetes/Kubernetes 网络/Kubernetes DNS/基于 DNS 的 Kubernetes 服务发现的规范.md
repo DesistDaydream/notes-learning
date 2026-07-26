@@ -1,6 +1,5 @@
 ---
 title: 基于 DNS 的 Kubernetes 服务发现的规范
-linkTitle: 基于 DNS 的 Kubernetes 服务发现的规范
 weight: 20
 ---
 
@@ -26,7 +25,7 @@ Resource Records 规范
 
 - **\<zone>** # 集群域名(默认为 cluster.local)。
 
-  - 集群域名可以通过 kubelet 的配置文件 clusterDomain 字段定义。
+    - 集群域名可以通过 kubelet 的配置文件 clusterDomain 字段定义。
 
 - **\<ttl>** # 一条 Record 的标准 DNS 存活时间
 
@@ -43,18 +42,18 @@ Resource Records 规范
 **A 记录 格式**：`<service>.<ns>.svc.<zone>. <ttl> IN A <cluster-ip>`
 
 - 请求样例：
-  - kubernetes.default.svc.cluster.local. IN A
+    - kubernetes.default.svc.cluster.local. IN A
 - 响应样例：
-  - kubernetes.default.svc.cluster.local. 4 IN A 10.3.0.1
+    - kubernetes.default.svc.cluster.local. 4 IN A 10.3.0.1
 
 如果 \<service> 对象具有 \<cluster-ip> 且为 IPv6 地址。
 
 **AAAA 记录 格式**：`<service>.<ns>.svc.<zone>. <ttl> IN AAAA <cluster-ip>`
 
 - 请求样例：
-  - kubernetes.default.svc.cluster.local. IN AAAA
+    - kubernetes.default.svc.cluster.local. IN AAAA
 - 响应样例：
-  - kubernetes.default.svc.cluster.local. 4 IN AAAA 2001:db8::1
+    - kubernetes.default.svc.cluster.local. 4 IN AAAA 2001:db8::1
 
 ### SRV Record
 
@@ -80,12 +79,12 @@ Headless 类型的 Service 的 RR 格式
 **针对 Service 名称的 A 记录格式**：`<service>.<ns>.svc.<zone>. <ttl> IN A <endpoint-ip>`
 
 - 请求样例：
-  - headless.default.svc.cluster.local. IN A
+    - headless.default.svc.cluster.local. IN A
 - 响应样例：
-  - headless.default.svc.cluster.local. 4 IN A 10.3.0.1
-  - headless.default.svc.cluster.local. 4 IN A 10.3.0.2
-  - headless.default.svc.cluster.local. 4 IN A 10.3.0.3
-  - ..... 有多少个 endpoint 就有多少个响应
+    - headless.default.svc.cluster.local. 4 IN A 10.3.0.1
+    - headless.default.svc.cluster.local. 4 IN A 10.3.0.2
+    - headless.default.svc.cluster.local. 4 IN A 10.3.0.3
+    - ..... 有多少个 endpoint 就有多少个响应
 
 注意：Headless 与 ClusterIP 类型的 Service 最大的不同在于下面的 Resource Record。说白了就是多了个子域名
 
@@ -94,9 +93,9 @@ Headless 类型的 Service 的 RR 格式
 **针对 Pod 主机名的 A 记录格式**：`<hostname>.<service>.<ns>.svc.<zone>. <ttl> IN A <endpoint-ip>`
 
 - 请求样例：
-  - my-pet.headless.default.svc.cluster.local. IN A
+    - my-pet.headless.default.svc.cluster.local. IN A
 - 响应样例：
-  - my-pet.headless.default.svc.cluster.local. 4 IN A 10.3.0.100
+    - my-pet.headless.default.svc.cluster.local. 4 IN A 10.3.0.100
 
 **AAAA 记录格式**
 
@@ -115,10 +114,10 @@ Service 域名 与 Service 关联的后端 Pod 的 IP 具有解析关系。
 ## ExternalName 类型的 Service 的 RR 格式
 
 - CNAME Record：`<service>.<ns>.svc.<zone>. <ttl> IN CNAME <ExtName>.`
-  - 请求样例：foo.default.svc.cluster.local. IN A
-  - 响应样例：
-    - foo.default.svc.cluster.local. 10 IN CNAME www.example.com.
-    - www.example.com. 28715 IN A 192.0.2.53
+    - 请求样例：foo.default.svc.cluster.local. IN A
+    - 响应样例：
+        - foo.default.svc.cluster.local. 10 IN CNAME www.example.com.
+        - www.example.com. 28715 IN A 192.0.2.53
 
 示例：
 

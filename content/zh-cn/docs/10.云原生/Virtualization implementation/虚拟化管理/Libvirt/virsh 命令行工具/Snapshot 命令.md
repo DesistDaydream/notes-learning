@@ -27,7 +27,7 @@ snapshot-create DOMAIN [OPTIONS]
 ## EXAMPLE
 
 - 使用 base.xml 文件，为虚拟机 master 创建一个快照
-  - virsh snapshot-create master base.xml
+    - virsh snapshot-create master base.xml
 
 # snapshot-create-as - 从一组参数中创建一个 domain 的快照
 
@@ -36,7 +36,7 @@ https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#snapshot-
 EXAMPLE
 
 - 为虚拟机 master 创建一个当前状态的快照，名字为 base
-  - virsh snapshot-create-as master --name base
+    - virsh snapshot-create-as master --name base
 
 # snapshot-current
 

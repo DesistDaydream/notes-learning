@@ -1,6 +1,5 @@
 ---
 title: CSS
-linkTitle: CSS
 weight: 2
 ---
 

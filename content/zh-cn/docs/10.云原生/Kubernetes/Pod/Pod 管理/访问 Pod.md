@@ -6,7 +6,7 @@ title: 访问 Pod
 
 > 参考：
 >
-> - [原文，jimmysong.io kubernetes 手书，指南-从集群外部访问 Pod ](https://jimmysong.io/kubernetes-handbook/guide/accessing-kubernetes-pods-from-outside-of-the-cluster.html)
+> - [原文，jimmysong.io kubernetes 手书，指南-从集群外部访问 Pod](https://jimmysong.io/kubernetes-handbook/guide/accessing-kubernetes-pods-from-outside-of-the-cluster.html)
 
 本文主要讲解访问 kubenretes 中的 Pod 和 Serivce 的集中方式，包括如下几种：
 
@@ -39,7 +39,7 @@ spec:
 部署该 Pod：
 
 ```
-$ kubectl create -f influxdb-hostnetwork.yml
+kubectl create -f influxdb-hostnetwork.yml
 ```
 
 访问该 pod 所在主机的 8086 端口：

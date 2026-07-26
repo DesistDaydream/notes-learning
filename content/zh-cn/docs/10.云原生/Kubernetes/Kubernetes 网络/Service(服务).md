@@ -39,7 +39,7 @@ Service 是 k8s 中的一种资源，但是如果想要实现 Service 资源定�
 发布 Service 是指将 Service 暴露出去以供其他客户端访问他，并将请求转给其所关联的后端 Pod。Service 有多种类型，不同的类型对应不同的发布 Service 方式，默认的类型为 `ClusterIP`
 
 - ClusterIP # 通过集群的内部 IP 暴露 Service。该 Service 只能被暴露在进群内部，集群外部无法访问。
-  - Service 暴露的集群内部 IP 由 kube-controller-manager 程序的 `--service-cluster-ip-range` 标志控制。
+    - Service 暴露的集群内部 IP 由 kube-controller-manager 程序的 `--service-cluster-ip-range` 标志控制。
 - NodePort # 在集群中每个节点 IP 的静态端口上暴露 Service 给集群外部，每个节点上将会创建到 Service 的 CluseterIP 的路由条目，以便我们从集群外部访问 NodePort 类型的 Service
 - LoadBalancer # 使用云提供商的负载均衡器暴露 Service 给集群外部。
 - ExternalName #
@@ -51,7 +51,7 @@ Service 是 k8s 中的一种资源，但是如果想要实现 Service 资源定�
 每个 Service 创建完成后一般都会有一个 cluster-ip(headless 类型的 service 没有)，这个 IP 是 Kubernetes 集群的专用 IP，是一种虚拟 IP，可以把它当做 lvs 中的 vip。只不过这些 IP 并不能直接访问到，而是在 Service 创建完成后，在 iptables 或者 ipvs 规则中所使用的 IP。Kubernetes 创建完成后，cluster-ip 默认的使用范围是 10.96.0.0/12
 
 - headless：无头服务，当不需要使用负载均衡和单一服务 IP 的时候，可以给 ClusterIP 设为 None。kube-proxy 不使用这些服务并且平台(platform)没有负载均衡和代理
-  - headless 由于没有 cluster-ip，所以是通过域名的方式来让外部访问到该 service 的 endpoint 的，如果有 cluster-ip 的话，则 ServiceName.NameSpaceName.svc.cluster.local 的域名会解析到该 service 的 cluster-ip 上，如果是 headless 的话，域名解析的结果则是所有 endpoint 的 ip，客户端每次向此 headless 类型的 service 发起的请求，将直接接入到各个 endpoint 上，不再由 service 资源进行代理转发，而是由 DNS 服务器收到查询请求时以轮训的方式返回各个 endpoint 的 IP。
+    - headless 由于没有 cluster-ip，所以是通过域名的方式来让外部访问到该 service 的 endpoint 的，如果有 cluster-ip 的话，则 ServiceName.NameSpaceName.svc.cluster.local 的域名会解析到该 service 的 cluster-ip 上，如果是 headless 的话，域名解析的结果则是所有 endpoint 的 ip，客户端每次向此 headless 类型的 service 发起的请求，将直接接入到各个 endpoint 上，不再由 service 资源进行代理转发，而是由 DNS 服务器收到查询请求时以轮训的方式返回各个 endpoint 的 IP。
 
 ## NodePort：用于从集群外部访问 Service
 
@@ -85,7 +85,7 @@ nginx   LoadBalancer   10.100.126.91   192.168.0.101   80:31555/TCP   4s
 
 - 各大公有云厂商的 LB。比如华为的 ELB、等
 - [MetalLB](https://github.com/metallb/metallb) #
-  - [公众号-运维开发故事，Kubernetes 开源 LoadBalancer-Metallb(BGP)](https://mp.weixin.qq.com/s/BY6hrLjaWfPYJzYmpbl1fQ)
+    - [公众号-运维开发故事，Kubernetes 开源 LoadBalancer-Metallb(BGP)](https://mp.weixin.qq.com/s/BY6hrLjaWfPYJzYmpbl1fQ)
 - [OpenELB](https://github.com/openelb/openelb) #
 
 ## ExternalName：把集群外部的服务引入到集群内部

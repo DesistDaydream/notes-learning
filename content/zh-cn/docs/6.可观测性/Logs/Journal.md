@@ -87,7 +87,7 @@ https://man7.org/linux/man-pages/man1/journalctl.1.html#PAGER_CONTROL_OPTIONS
 https://man7.org/linux/man-pages/man1/journalctl.1.html#FILTERING_OPTIONS
 
 - **--output-fields=FIELD** # 显示指定字段的日志，多个字段以 `,` 分割。
-  - 字段筛选仅对 -o 选项指定的 verbose、export、json、json-pretty、json-sse、json-seq 这几个输出格式有效
+    - 字段筛选仅对 -o 选项指定的 verbose、export、json、json-pretty、json-sse、json-seq 这几个输出格式有效
 - **-S, --since TIME** 与 **-U, --unitl TIME** # 设置输出日志信息的开始与结束时间
 
 **输出选项**
@@ -96,7 +96,7 @@ https://man7.org/linux/man-pages/man1/journalctl.1.html#OUTPUT_OPTIONS
 
 - **-n NUM, --lines=NUM** # 显示最近 n 行的日志
 - **-o, --output=\<STRING>** # 指定输出格式。`默认值：short`
-  - 可用的格式有：json、json-pretty、verbose、export、with-unit、etc.
+    - 可用的格式有：json、json-pretty、verbose、export、with-unit、etc.
 
 ## EXAMPLE
 
@@ -105,7 +105,6 @@ journalctl # 查看所有日志（默认情况下 ，只保存本次启动的日
 journalctl -k # 查看内核日志（不显示应用日志）
 
 journalctl -b 0 # 查看系统本次启动的日志
-
 
 查看指定用户的日志
 
@@ -138,7 +137,6 @@ journalctl -p err -b # 查看指定优先级（及其以上级别）的日志，
 - 6: info
 - 7: debug
 
-
 # 查看上一次启动的日志（需更改设置）
 
 $ sudo journalctl -b -1
@@ -164,7 +162,6 @@ $ sudo journalctl /usr/bin/bash
 $ sudo journalctl -u nginx.service
 
 $ sudo journalctl -u nginx.service --since today
-
 
 # 指定日志文件占据的最大空间
 

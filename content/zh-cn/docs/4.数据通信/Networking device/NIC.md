@@ -1,6 +1,5 @@
 ---
 title: NIC
-linkTitle: NIC
 weight: 2
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: GitHub 上的 PR 全过程
-linkTitle: GitHub 上的 PR 全过程
 weight: 20
 ---
 
@@ -404,7 +403,7 @@ Signed-off-by: Daniel Hu <tao.hu@merico.dev>
 
 # with '#' will be ignored, and an empty message aborts the commit
 
-# 
+#
 
 \`
 

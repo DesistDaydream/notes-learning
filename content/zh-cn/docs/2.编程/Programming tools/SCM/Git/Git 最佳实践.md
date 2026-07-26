@@ -1,6 +1,5 @@
 ---
 title: Git 最佳实践
-linkTitle: Git 最佳实践
 weight: 20
 ---
 

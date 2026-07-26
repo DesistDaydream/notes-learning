@@ -1,6 +1,5 @@
 ---
 title: B_S 和 C_S 架构
-linkTitle: B_S 和 C_S 架构
 weight: 20
 ---
 

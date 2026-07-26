@@ -1,6 +1,5 @@
 ---
 title: Packet Reassembly
-linkTitle: Packet Reassembly
 weight: 20
 ---
 

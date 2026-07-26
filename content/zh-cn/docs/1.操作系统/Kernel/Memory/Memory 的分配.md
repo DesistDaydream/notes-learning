@@ -1,6 +1,5 @@
 ---
 title: Memory 的分配
-linkTitle: Memory 的分配
 weight: 2
 ---
 

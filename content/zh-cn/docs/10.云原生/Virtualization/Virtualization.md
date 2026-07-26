@@ -1,6 +1,5 @@
 ---
 title: Virtualization
-linkTitle: Virtualization
 weight: 1
 ---
 

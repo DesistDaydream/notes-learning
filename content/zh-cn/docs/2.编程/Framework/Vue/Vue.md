@@ -58,6 +58,7 @@ App (root component)
 **选项式 API** 与 **组合式 API**。推荐组合式。
 
 > 参考：
+>
 > - <https://www.bilibili.com/video/BV1mK411f7Kt/?p=51>
 
 选项式：
@@ -133,10 +134,10 @@ export default {
 
 - public/ 目录存放公共资源
 - 所有代码都在 src/ 目录下
-  - index.html 指向 main.js，main.js 中创建应用的根组件
-  - 根组件的代码在 App.vue 文件中
-  - 所有根组件下的组件的代码都放在 components/ 目录下
-  - assets 存放静态资源，图片、css 样式 等等
+    - index.html 指向 main.js，main.js 中创建应用的根组件
+    - 根组件的代码在 App.vue 文件中
+    - 所有根组件下的组件的代码都放在 components/ 目录下
+    - assets 存放静态资源，图片、css 样式 等等
 - **.eslintrc.cjs** # ESLint 程序配置
 - **.prettierc.json** # Prettier 插件的配置
 - **env.d.ts** #
@@ -173,4 +174,3 @@ export default {
 <https://github.com/go-admin-team/go-admin> # 基于 Gin + Vue + Element UI 的前后端分离权限管理系统脚手架（包含了：多租户的支持，基础用户管理功能，jwt 鉴权，代码生成器，RBAC 资源控制，表单构建，定时任务等）3 分钟构建自己的中后台项目；
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/cye267/1667712379792-273c7485-92f4-46ed-9a98-65e745b1c8df.png)
-

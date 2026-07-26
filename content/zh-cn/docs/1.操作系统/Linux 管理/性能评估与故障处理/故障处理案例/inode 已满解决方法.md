@@ -1,6 +1,5 @@
 ---
 title: inode 已满解决方法
-linkTitle: inode 已满解决方法
 weight: 20
 ---
 
@@ -8,8 +7,7 @@ weight: 20
 
 > 参考：
 >
-> - 
-
+> -
 
 ## 问题描述
 
@@ -99,6 +97,7 @@ Linux 的 inode 节点中，记录了文件的类型、大小、权限、所有�
 find / -xdev -printf '%h\n' | sort | uniq -c | sort -k 1 -n
 
 今天 login server 的一个网站，发现 login 后没有生成 session。根据以往经验，一般是空间已满导致 session 文件生成失败。
+
 ```bash
 df -h
 Filesystem                    Size  Used Avail Use% Mounted on

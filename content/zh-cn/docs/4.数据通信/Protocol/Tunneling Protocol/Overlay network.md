@@ -1,10 +1,23 @@
 ---
-title: 为什么集群需要 Overlay 网络
-linkTitle: 为什么集群需要 Overlay 网络
-weight: 100
+title: Overlay
+weight: 2
 ---
 
 # 概述
+
+> 参考：
+>
+> - [Wiki, Overlay network](https://en.wikipedia.org/wiki/Overlay_network)
+
+Overlay network 技术，一般都需要一个第三方程序来实现(这个程序可以是一个守护进程、内核等等)。这个程序的作用就是让本身并不互通的内部网络可以互通(比如不同宿主机上的容器互通 2.flannel.note 或者不同宿主机上的虚拟机互通或者)。而让这些网络互通的信息(比如路由、arp 等)就是由这个第三方程序来保存并维护的。如下图所示
+
+![](https://notes-learning.oss-cn-beijing.aliyuncs.com/qw0o0m/1616160946658-7d2f69f8-d44e-4bd6-981c-5752d093bdff.jpeg)
+
+现在想要 10.244.0.1 可以 ping 通 10.244.1.1。那么 node1 就需要知道 10.244.1.1 在哪台宿主机上。而这种信息，就是靠可以实现 overlay 功能的程序或者内核(甚至几条路由表的规则)来保存并维护的。凡是连接到 overlay 程序的容器，其本身的 IP 以及所在宿主机的 IP，都会被保存下来，以便通信时可以使用。而这些数据，宿主机并不需要知道，在把要发送的数据包交给宿主机的网络栈时，数据包中的目的地址，如果是 10.244.1.0/24 网段的，那么 192.168.0.1 宿主机本身并不知道，所以，overlay 程序的其中一个功能，就是在数据包外面进行封装，把本身的目的地址掩盖起来，并把自己维护的信息中的可以被宿主机识别的 IP 地址填上，这样，就会形成 IP 套 IP 的效果，也就是上面的 tunnel 的效果。这时候，当宿主机收到数据包的时候，就会清楚的知道，要发送到哪里，而 node2 再接收到数据包并解封装后，会看到 overlay 程序封装的信息，就会把数据包交给本机的 overlay 程序，进行后续处理.
+
+Overlay 技术的实现就是 VXLAN，关于 VXLAN 的介绍，可以参考 [Flannel](/docs/10.云原生/Kubernetes/Kubernetes%20网络/CNI/Flannel.md) 中的 VXLAN 模型，其中有关于 VXLAN 工作流程的详细讲解
+
+# 为什么集群需要 Overlay 网络
 
 > 参考：
 >

@@ -1,6 +1,5 @@
 ---
 title: Data Model(数据模型)
-linkTitle: Data Model(数据模型)
 weight: 2
 ---
 
@@ -303,5 +302,3 @@ https://grafana.com/docs/loki/latest/send-data/otel/#format-considerations
     - Loki 不支持在标签名称中使用 `.` 或除 `_` 以外的任何其他特殊字符。在将属性转换为索引标签或结构化元数据时，不支持的字符会被替换为 `_`。
     - e.g. OTLP 中的 `service.name` 在 Loki 中将变为 `service_name` 。
 - 将非字符串属性值字符串化
-
-

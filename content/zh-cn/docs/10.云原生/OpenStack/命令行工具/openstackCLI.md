@@ -1,6 +1,5 @@
 ---
 title: openstackCLI
-linkTitle: openstackCLI
 weight: 20
 ---
 
@@ -8,7 +7,7 @@ weight: 20
 
 > 参考：
 >
-> - 
+> -
 
 # 常用命令
 

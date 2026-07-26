@@ -1,6 +1,5 @@
 ---
 title: chroot
-linkTitle: chroot
 weight: 20
 ---
 

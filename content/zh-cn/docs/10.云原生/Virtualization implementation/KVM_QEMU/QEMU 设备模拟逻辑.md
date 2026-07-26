@@ -1,6 +1,5 @@
 ---
 title: "QEMU 设备模拟逻辑"
-linkTitle: "QEMU 设备模拟逻辑"
 weight: 2
 ---
 
@@ -30,11 +29,11 @@ QEMU 模拟设备主要是半虚拟化设备，从[这里](/docs/10.云原生/Vi
 QEMU 想要让虚拟机与外界互通，需要由两部分组成一个完整的网络功能：
 
 - **front-end(前端)** # VM 中的 NIC(Network Interface Controller，即人们常说的`网卡`)。
-  - VM 中的 NIC 是由 QEMU 模拟出来的，在支持 PCI 卡的系统上，通常可以是 e1000 网卡、rtl8139 网卡、virtio-net 设备。
+    - VM 中的 NIC 是由 QEMU 模拟出来的，在支持 PCI 卡的系统上，通常可以是 e1000 网卡、rtl8139 网卡、virtio-net 设备。
 - **back-end(后端)** # 宿主机中的与 VM 中模拟出来的 NIC 进行交互的设备。
-  - back-end 有多种类型可以使用，这些后端可以用于将 VM 连接到真实网络，或连接到另一个 VM
-    - [TAP](https://www.qemu.org/docs/master/system/net.html#using-tap-network-interfaces)# 将 VM 连接到真实网络的标准方法
-    - [User mode network stack](https://www.qemu.org/docs/master/system/net.html#using-the-user-mode-network-stack)
+    - back-end 有多种类型可以使用，这些后端可以用于将 VM 连接到真实网络，或连接到另一个 VM
+        - [TAP](https://www.qemu.org/docs/master/system/net.html#using-tap-network-interfaces)# 将 VM 连接到真实网络的标准方法
+        - [User mode network stack](https://www.qemu.org/docs/master/system/net.html#using-the-user-mode-network-stack)
 
 效果如图所示：
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/zuowkm/1616124035097-0a64383e-f37f-4cc3-bdc2-3c7502189b7d.png)

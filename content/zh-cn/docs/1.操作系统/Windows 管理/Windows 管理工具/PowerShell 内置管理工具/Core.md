@@ -1,13 +1,12 @@
 ---
 title: "Core"
-linkTitle: "Core"
 weight: 2
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档 - PowerShell，模块 - Core](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core)
 
 核心模块包含管理 PowerShell 基本功能的 cmdlet 和提供程序。

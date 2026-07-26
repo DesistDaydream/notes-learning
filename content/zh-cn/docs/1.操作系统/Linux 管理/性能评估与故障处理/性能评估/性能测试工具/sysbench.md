@@ -16,7 +16,7 @@ title: sysbench
 
 TestName
 
-- **fileio **# 文件 I/O 测试
+- **fileio**# 文件 I/O 测试
 - **cpu** # CPU 性能测试
 - **memory** # 内存功能速度测试
 - **threads** # 线程子系统性能测试
@@ -30,4 +30,4 @@ TestName
 # Example
 
 - 以 10 个线程运行 5 分钟的线程子系统性能测试。常用来模拟多线程切换的问题
-  - **sysbench --threads=10 --time=300 threads run**
+    - **sysbench --threads=10 --time=300 threads run**

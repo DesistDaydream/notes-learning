@@ -1,6 +1,5 @@
 ---
 title: "CANN"
-linkTitle: "CANN"
 created: "2026-04-29T11:37"
 weight: 100
 ---
@@ -86,9 +85,9 @@ bash ./Ascend-cann-nnal_${version}_linux-${arch}.run --install
 若要使用 NNAL，加载环境即可：
 
 - ATB加速库适用于大模型场景
-  - `source ${HOME}/Ascend/nnal/atb/set_env.sh`
+    - `source ${HOME}/Ascend/nnal/atb/set_env.sh`
 - SiP加速库适用于嵌入式场景
-  - `source ${HOME}/Ascend/nnal/asdsip/set_env.sh`
+    - `source ${HOME}/Ascend/nnal/asdsip/set_env.sh`
 
 **四、配置环境**
 

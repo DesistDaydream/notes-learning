@@ -1,6 +1,5 @@
 ---
 title: Linux系统安装问题
-linkTitle: Linux系统安装问题
 weight: 100
 ---
 
@@ -8,7 +7,7 @@ weight: 100
 
 > 参考：
 >
-> - 
+> -
 
 使用 U 盘安装 CentOS7 卡在”Starting dracut initqueue hook…”
 

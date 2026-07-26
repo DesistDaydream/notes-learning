@@ -1,6 +1,5 @@
 ---
 title: Promethesu Server
-linkTitle: Promethesu Server
 weight: 1
 ---
 
@@ -31,7 +30,7 @@ Prometheus Server 可以在运行时重新加载其配置文件(也就俗称的�
 
 - BOOLEAN # 可以采用 true 或 false 值的布尔值
 - DURATION # 持续时间。可以使用正则表达式
-  - `((([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?((([0-9]+)m)?((([0-9]+)s)?((([0-9]+)ms)?|0)`，例如：1d、1h30m、5m、10s。
+    - `((([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?((([0-9]+)m)?((([0-9]+)s)?((([0-9]+)ms)?|0)`，例如：1d、1h30m、5m、10s。
 - FILENAME # 当前工作目录中的有效路径
 - HOST # 由主机名或 IP 后跟可选端口号组成的有效字符串。
 - INT # 一个整数值
@@ -56,9 +55,9 @@ Web 相关
 - **--web.config.file**(STRING) # \[实验标志]用于开启 TLS 或 身份验证 配置文件路径。
 - **--web.max-connections**(INT) # 可以同时连接到 Prometheus Server 的最大数量。`默认值:512`
 - **--web.external-url**(STRING) # 可以从外部访问 Prometheus 的 URL。
-  - 例如，如果 Prometheus 是通过反向代理提供的，用于生成返回 Prometheus 本身的相对和绝对链接。如果 URL 具有路径部分，它将被用作所有 HTTP 的前缀 Prometheus 服务的端点。 如果省略，则会自动派生相关的 URL 组件。
-    - 注意：该标志在反向代理时似乎问题，详见：<https://github.com/prometheus/prometheus/issues/1583>
-  - 例如，Prometheus 产生的的告警，推送到 AlertManager 时，会有一个 `generatorURL` 字段，该字段中所使用的 URL 中的 Endpoint，就是 web.external-url，这个 URL 可以让获取该告警的人，点击 URL 即可跳转到 Prometheus 的 Web 页面并使用对应的 PromQL 查询。
+    - 例如，如果 Prometheus 是通过反向代理提供的，用于生成返回 Prometheus 本身的相对和绝对链接。如果 URL 具有路径部分，它将被用作所有 HTTP 的前缀 Prometheus 服务的端点。 如果省略，则会自动派生相关的 URL 组件。
+        - 注意：该标志在反向代理时似乎问题，详见：<https://github.com/prometheus/prometheus/issues/1583>
+    - 例如，Prometheus 产生的的告警，推送到 AlertManager 时，会有一个 `generatorURL` 字段，该字段中所使用的 URL 中的 Endpoint，就是 web.external-url，这个 URL 可以让获取该告警的人，点击 URL 即可跳转到 Prometheus 的 Web 页面并使用对应的 PromQL 查询。
 - **--web.route-prefix**(STRING) # Web 端内部路由的前缀。 默认为 --web.external-url 标志指定的路径。i.e.后端代码的路由入口路径。一般默认为 / 。
 - **--web.enable-lifecycle** # 开启配置热更新，开启后，可使用 curl -X POST <http://PrometheusServerIP:9090/-/reload> 命令来重载配置以便让更改后的配置生效，而不用重启 prometheus 进程
 - **--web.enable-admin-api** # 开启管理操作 API 端点。通过 admin API，可以删除时序数据。
@@ -69,14 +68,14 @@ Web 相关
 - **--storage.tsdb.path**(STRING) # prometheus 存储时间序列数据的目录。`默认值: data/`，i.e. 当前目录下的 data/ 目录。
 - **--storage.tsdb.retention.time**(DURATION) # 数据的存储时间，如果既未设置此标志也未设置 storage.tsdb.retention.size 标志，`默认值：15d`。支持的单位：y，w，d，h，m，s，ms。
 - **--storage.tsdb.no-lockfile** # 不在数据目录创建锁文件。`默认值: false`
-  - 通常只用在测试场景，不创建所文件可能会导致其他进程读写数据文件导致数据损坏。
+    - 通常只用在测试场景，不创建所文件可能会导致其他进程读写数据文件导致数据损坏。
 
 规则与查询
 
 - **--rules.alert.resend-delay**(DURATION) # 向 Alertmanager 重新发送警报前的最少等待时间。`默认值：1m`。
-  - 当告警处于 FIRING 状态时，每间隔 1m，就会再次发送一次。注意：重发送之前，还需要一个评估规则的等待期，评估完成后，再等待该值的时间，才会重新发送告警。
+    - 当告警处于 FIRING 状态时，每间隔 1m，就会再次发送一次。注意：重发送之前，还需要一个评估规则的等待期，评估完成后，再等待该值的时间，才会重新发送告警。
 - **--query.lookback-delta**(DURATION) # 评估 PromQL 表达式时最大的回溯时间。`默认值：5m`
-  - 比如，当采集目标的间隔时间为 10m 时，由于该设置，最大只能查询当前时间的前 5m 的数据，这是，即时向量表达式返回的结果将会为空。
+    - 比如，当采集目标的间隔时间为 10m 时，由于该设置，最大只能查询当前时间的前 5m 的数据，这是，即时向量表达式返回的结果将会为空。
 - **--query.timeout**(DURATION) # 一次查询的超时时间。`默认值：2m`
 
 日志相关
@@ -93,8 +92,8 @@ Web 相关
 - **scrape_configs**(\[][scrape_configs](#scrape_configs)) # 抓取 Target 的 metrics 时的配置
     - <font color="#ff0000">这是占比最大的字段</font>
 - **alerting**([alerting](#alerting)) # 与 Alertmanager 相关的配置
-  - alert_relabel_configs([relabel_configs](#relabel_configs))
-  - alertmanagers
+    - alert_relabel_configs([relabel_configs](#relabel_configs))
+    - alertmanagers
 - **remote_write**(\[][remote_write](#remote_write)) # 与远程写入相关功能的配置
 - **remote_read**(\[][remote_read](#remote_read)) # 与远程读取相关功能的配置
 
@@ -141,11 +140,11 @@ scrape_configs:
 scrape_configs 是 Prometheus 采集指标的最重要也是最基本的配置信息，scrape_configs 字段是一个数组，所以可以配置多个 Scrape 配置，不同的 Scrape 配置，所以该段配置至少需要包含以下几个方面：
 
 - **名字** # 每个 scrape 工作都应该具有一个名字。称为 job_name，名字主要起到标识符的作用。
-  - 该示例定义了一个抓取配置的 job，名字叫 prometheus
+    - 该示例定义了一个抓取配置的 job，名字叫 prometheus
 - **目标** # 要抓取的 metrics 的目标。目标可以通过 **静态** 或者 **动态(i.e.各种服务发现)** 这两种方式指定
-  - 该示例通过静态配置定义这个 job 中要抓取的目标主机，目标主机由 IP:PORT 组成
+    - 该示例通过静态配置定义这个 job 中要抓取的目标主机，目标主机由 IP:PORT 组成
 - **间隔** # 该 scrape 工作每次抓取 metrics 的时间间隔。就是每隔 X 秒抓一次
-  - 该示例每次抓取 metrics 的时间间隔为 5 秒(i.e.每 5 秒获取一次 metrics)
+    - 该示例每次抓取 metrics 的时间间隔为 5 秒(i.e.每 5 秒获取一次 metrics)
 - **其他** # 除了名字、目标、间隔 以外，还可以配置一些额外的抓取配置，比如发起 HTTP 请求时需要携带的 Header 与 Body、抓取策略 等等
 
 ### 基本配置
@@ -161,14 +160,14 @@ scrape_configs 是 Prometheus 采集指标的最重要也是最基本的配置�
 **honor_labels**(BOOLEAN) # 控制 Prometheus 是否尊重抓取到的数据中的标签，i.e. 如何处理标间之间的冲突。`默认值：false`
 
 - 获取 targets 的 metrics 时(e.g.snmp_exporter|Federate|pushgateway 等)，其中的标签有可能会与本身的标签存在冲突
-  - 该参数的值为 true 时，则以抓取数据中的标签为准
-  - 值为 false 时，就会重新命名表桥为 exported 形式，然后添加配置文件中的标签。
+    - 该参数的值为 true 时，则以抓取数据中的标签为准
+    - 值为 false 时，就会重新命名表桥为 exported 形式，然后添加配置文件中的标签。
 
 **honor_timestamps**(BOOLEAN) # 控制 Prometheus 是否尊重抓取到的数据中的时间戳。`默认值：true`
 
 - 比如从 federate、pushgateway 等地方获取指标时，指标中都是带着时间戳的，
-  - 若设置为 false，则会忽略这些采集到的时间戳，在入库时加上采集时的时间戳。
-  - 若设置为 true，则是在入库时使用抓到到的指标中的时间戳。
+    - 若设置为 false，则会忽略这些采集到的时间戳，在入库时加上采集时的时间戳。
+    - 若设置为 true，则是在入库时使用抓到到的指标中的时间戳。
 
 **sample_limit**(INT) # 每次抓取 metrics 的数量限制。`默认值：0`。0 表示不限制
 
@@ -531,7 +530,7 @@ HTTP 代理相关配置
 
 **proxy_from_environment**(BOOLEAN) # 是否使用环境变量中得代理。`默认值: false`。环境变量指 HTTP_PROXY, https_proxy, HTTPs_PROXY, https_proxy, and no_proxy
 
-**proxy_connect_header**(map\[STRING]STRING) # 
+**proxy_connect_header**(map\[STRING]STRING) #
 
 ### tls_config
 

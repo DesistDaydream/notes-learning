@@ -1,6 +1,5 @@
 ---
 title: PAM 配置文件
-linkTitle: PAM 配置文件
 weight: 20
 ---
 
@@ -29,14 +28,14 @@ PAM 配置文件由 **Rules(规则)** 列表组成，每条规则一行。规则
 **Service Type Control Module-Path Module-Arguments**
 
 - **Service** # 需要调用 PAM 的应用程序的名称。比如 su、login、sshd 等等
-  - 注意：/etc/pam.conf 和 /etc/pam.d/\* 配置文件有一点差别，在于 Service 字段。/etc/pam.d/ 目录下的所有配置文件，没有 Service 字段，取而代之的是文件名称，也就是说，Service 字段的值，就是 /etc/pam.d/ 目录下的文件名。
+    - 注意：/etc/pam.conf 和 /etc/pam.d/\* 配置文件有一点差别，在于 Service 字段。/etc/pam.d/ 目录下的所有配置文件，没有 Service 字段，取而代之的是文件名称，也就是说，Service 字段的值，就是 /etc/pam.d/ 目录下的文件名。
 - **Type** # 管理类型，这个类型就是 《[Linux-PAM 管理组(认证功能的分组)](/docs/1.操作系统/登录%20Linux%20与%20访问控制/PAM/PAM.md#Linux-PAM%20管理组(认证功能的分组))》 的简写。即.本条规则中使用的模块要与哪个管理组关联。
-  - 可用的类型有 auth、account、password、session
-  - 若在类型前面加上 `-`，则表示即使模块不存在，也不会影响认证结果，也不会将事件记录到日志中。
+    - 可用的类型有 auth、account、password、session
+    - 若在类型前面加上 `-`，则表示即使模块不存在，也不会影响认证结果，也不会将事件记录到日志中。
 - **Control** # 规则执行完成后的行为。即调用 PAM API 完成后，会有返回值，根据返回值，决定如何进行后续认证。
 - **Module-Path** # 规则调用的 PAM 模块名称，模块默认在 **/usr/lib64/security/** 目录(CentOS 系统)下。
-  - 不同系统中，模块所在的默认路径可能不一样。
-  - 若调用的 PAM 模块不在默认目录下，则该字段需要使用**模块的绝对路径**。
+    - 不同系统中，模块所在的默认路径可能不一样。
+    - 若调用的 PAM 模块不在默认目录下，则该字段需要使用**模块的绝对路径**。
 - **Module-Arguments** # 规则调用的 PAM 模块的参数。每个参数以空格分隔。
 
 ## Service
@@ -50,11 +49,11 @@ Service 除了以应用程序命名，还可以使用自定义的名称，这些
 > 也就是指定这条规则指定的模块应该使用的模块类型。
 
 - **account** # 对应账户管理。验证用户是否有权限访问。
-  - 比如验证用户的密码是否过期、验证用户是否有权访问所请求的服务
+    - 比如验证用户的密码是否过期、验证用户是否有权访问所请求的服务
 - **auth** # 对应身份验证管理。验证用户身份，就是证明 root 是 root
-  - 比如让应用程序提示用户输入密码来确定该用户就是其所声称的身份。
+    - 比如让应用程序提示用户输入密码来确定该用户就是其所声称的身份。
 - **password** # 对应密码管理，用于更改用户密码以及强制使用强密码配置
-  - 比如修改密码时，必须满足强度要求。
+    - 比如修改密码时，必须满足强度要求。
 - **session** # 对应会话管理，用户管理和配置用户会话。会话在用户成功认证后启动生效
 
 account 与 auth 的配合可以实现这么一个场景：
@@ -67,36 +66,36 @@ Control 会根据当前规则的执行结果，执行后续操作，也就是控
 
 Control 有两种语法，简单与复杂。简单语法通过单一的指令，来定义规则执行后的行为；复杂指令通过 1 个或多个键值对来定义规则执行后的行为。
 
-#### 简单语法
+### 简单语法
 
 - **requisite** # 验证失败时，立即结束整个验证过程，返回 failure。
-  - 就好比让你答题 100 道，如果在答题的过程中有一道做错了直接让你出去，不会进行下面的答题过程。拥有一票否决，此关不过，立即返回 failure。
+    - 就好比让你答题 100 道，如果在答题的过程中有一道做错了直接让你出去，不会进行下面的答题过程。拥有一票否决，此关不过，立即返回 failure。
 - **required** # 验证失败时，最后会返回 failure，但仍需执行同一个规则栈中的其他规则。拥有参考其他模块意见基础之上的一票否决权。可以通过其它模块来检查为什么验证没有通过。
 - **sufficient** # 验证成功且之前的 required 模块没有失败时，立即结束整个验证过程，返回 true。验证失败时，忽略失败结果并继续执行栈中的后续规则。
-  - 换句话说，sufficient 的验证失败对整个验证没有任何影响。
+    - 换句话说，sufficient 的验证失败对整个验证没有任何影响。
 - **optional** # 可选条件，无论验证结果如何，均不会影响。通常用于 session 类型。
-  - 该模块返回的通过/失败结果被忽略。当没有其他模块被引用时，标记为 optional 模块并且成功验证时该模块才是必须的。该模块被调用来执行一些操作，并不影响模块堆栈的结果。
+    - 该模块返回的通过/失败结果被忽略。当没有其他模块被引用时，标记为 optional 模块并且成功验证时该模块才是必须的。该模块被调用来执行一些操作，并不影响模块堆栈的结果。
 - **include** # 包含另外一个配置文件中**相同类型**的行。比如 `password  include  system-auth-ac` 则会从 system-auth-ac 文件中，将 Type 字段为 password 的行填充到本文件中。
-  - 为当前规则中指定的 Type 引用 Module-Path 中定义的规则
+    - 为当前规则中指定的 Type 引用 Module-Path 中定义的规则
 - **substack** # 子栈。这与 include 的不同之处在于，对子规则栈中的 done 和 die 操作的评估不会导致跳过完整模块堆栈的其余部分
 
-#### 复杂语法
+### 复杂语法
 
 **\[Value1=Acton1 Value2=Action2 ... ValueN=ActionN]**
 
 - Value # 该规则调用的模块执行完成后的返回码。
-  - 可用的返回码有：**success**; **open_err**; **symbol_err**; **service_err**; **system_err**; **buf_err**; **perm_denied**; **auth_err**; **cred_insufficient**; **authinfo_unavail**; **user_unknown**; **maxtries**; **new_authtok_reqd**; **acct_expired**; **session_err**; **cred_unavail**; **cred_expired**; **cred_err**; **no_module_data**; **conv_err**; **authtok_err**; **authtok_recover_err**; **authtok_lock_busy**; **authtok_disable_aging**; **try_again**; **ignore**; **abort**; **authtok_expired**; **module_unknown**; **bad_item**; and **default**
+    - 可用的返回码有：**success**; **open_err**; **symbol_err**; **service_err**; **system_err**; **buf_err**; **perm_denied**; **auth_err**; **cred_insufficient**; **authinfo_unavail**; **user_unknown**; **maxtries**; **new_authtok_reqd**; **acct_expired**; **session_err**; **cred_unavail**; **cred_expired**; **cred_err**; **no_module_data**; **conv_err**; **authtok_err**; **authtok_recover_err**; **authtok_lock_busy**; **authtok_disable_aging**; **try_again**; **ignore**; **abort**; **authtok_expired**; **module_unknown**; **bad_item**; and **default**
 - Action # 表示当发现该返回码时，要执行的行为。
-  - 可用的行为有：**ignore、bad、die、ok、done、reset、N**
+    - 可用的行为有：**ignore、bad、die、ok、done、reset、N**
 
-#### 简单语法与复杂语法的对应关系
+### 简单语法与复杂语法的对应关系
 
-| 简单语法       | 复杂语法                                                        |
+| 简单语法 | 复杂语法 |
 | ---------- | ----------------------------------------------------------- |
-| required   | \[success=ok new_authtok_reqd=ok ignore=ignore default=bad] |
-| requisite  | \[success=ok new_authtok_reqd=ok ignore=ignore default=die] |
-| sufficient | \[success=done new_authtok_reqd=done default=ignore]        |
-| optional   | \[success=ok new_authtok_reqd=ok default=ignore]            |
+| required | \[success=ok new_authtok_reqd=ok ignore=ignore default=bad] |
+| requisite | \[success=ok new_authtok_reqd=ok ignore=ignore default=die] |
+| sufficient | \[success=done new_authtok_reqd=done default=ignore] |
+| optional | \[success=ok new_authtok_reqd=ok default=ignore] |
 
 ## Module-Path
 
@@ -275,5 +274,5 @@ password required pam_pwhistory.so use_authtok remember=6 retry=3
 
 - Linux 历史密码在 /etc/security/opasswd 中存放
 - 解决方法
-  - 临时更改 commen-password 文件修改密码修改策略，去除历史密码的限制，更改完密码后在恢复原来的策略
-  - 删掉 /etc/security/opasswd 中关于被修改文件的内容，这样就检测不到之前的历史密码了
+    - 临时更改 commen-password 文件修改密码修改策略，去除历史密码的限制，更改完密码后在恢复原来的策略
+    - 删掉 /etc/security/opasswd 中关于被修改文件的内容，这样就检测不到之前的历史密码了

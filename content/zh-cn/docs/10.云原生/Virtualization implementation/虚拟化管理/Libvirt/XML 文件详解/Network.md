@@ -1,13 +1,12 @@
 ---
 title: "Network"
-linkTitle: "Network"
 weight: 3
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，Network XML 格式](https://libvirt.org/formatnetwork.html)
 
 Network 对象用以控制虚拟网络，对应 `<network>` 根元素。

@@ -1,6 +1,5 @@
 ---
 title: Linux 网络流量控制
-linkTitle: Linux 网络流量控制
 weight: 1
 ---
 
@@ -10,8 +9,8 @@ weight: 1
 >
 > - [Wiki, Network Traffic Control](https://en.wikipedia.org/wiki/Network_traffic_control)
 > - [arthurchiao.art 的文章](http://arthurchiao.art/index.html)：
->   - [连接跟踪（conntrack）：原理、应用及 Linux 内核实现](http://arthurchiao.art/blog/conntrack-design-and-implementation-zh/)
->   - [\[译\] 《Linux 高级路由与流量控制手册（2012）》第九章：用 tc qdisc 管理 Linux 网络带宽](http://arthurchiao.art/blog/lartc-qdisc-zh/#91-%E9%98%9F%E5%88%97queues%E5%92%8C%E6%8E%92%E9%98%9F%E8%A7%84%E5%88%99queueing-disciplines)
+>     - [连接跟踪（conntrack）：原理、应用及 Linux 内核实现](http://arthurchiao.art/blog/conntrack-design-and-implementation-zh/)
+>     - [\[译\] 《Linux 高级路由与流量控制手册（2012）》第九章：用 tc qdisc 管理 Linux 网络带宽](http://arthurchiao.art/blog/lartc-qdisc-zh/#91-%E9%98%9F%E5%88%97queues%E5%92%8C%E6%8E%92%E9%98%9F%E8%A7%84%E5%88%99queueing-disciplines)
 > - [《Linux 高级路由与流量控制手册（2003）》 中文翻译](https://lartc.org/LARTC-zh_CN.GB2312.pdf)
 
 在计算机网络中，**Traffic Control(流量控制，简称 TC)** 系统可以让服务器，像路由器一样工作，这也是 [SDN(软件定义网路)](/docs/4.数据通信/SDN(软件定义网路).md) 中重要的组成部分。通过精准的流量控制，可以让服务器减少拥塞、延迟、数据包丢失；实现 NAT 功能、控制带宽、阻止入侵；等等等等。
@@ -32,7 +31,7 @@ Traffic Control(流量控制) 在不同的语境中有不同的含义，可以�
 
 - **Queuing(队列)** # 每个进出服务器的数据包，都排好队逐一处理。
 - **Hook(钩子)** # 也可以称为**DataPath**。用于拦截进出服务器的每个数据包，并对数据包进行处理。
-  - 每种实现流量控制的程序，在内核中添加的 Hook 的功能各不相同，Hook 的先后顺序也各不相同，甚至可以多个 Traffic Control 共存，然后在各自的 Hook 上处理数据包
+    - 每种实现流量控制的程序，在内核中添加的 Hook 的功能各不相同，Hook 的先后顺序也各不相同，甚至可以多个 Traffic Control 共存，然后在各自的 Hook 上处理数据包
 - **Connection Tracking(连接跟踪)** # 每个被拦截到的数据包，都需要记录其信息以跟踪他们。
 
 通过对数据包进行 **Queuing(排队)**，我们可以决定数据的发送方式。我们只能对发送的数据进行整形。
@@ -54,19 +53,19 @@ Traffic Control(流量控制) 在不同的语境中有不同的含义，可以�
 流量控制系统的行为通常都是在内核中完成的，所有一般都是将将官代码直接写进内核，或者使用模块加载进内核，还有新时代的以 BPF 模式加在进内核。
 
 - [Netfilter](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/Netfilter/Netfilter.md)
-  - 通过 iptables、nftables 控制 Netfilter 框架中的 Hook 行为
+    - 通过 iptables、nftables 控制 Netfilter 框架中的 Hook 行为
 - [TC 模块](/docs/1.操作系统/Kernel/Network/Linux%20网络流量控制/TC%20模块/TC%20模块.md)
-  - 通过 tc 二进制程序控制 Hook 行为
+    - 通过 tc 二进制程序控制 Hook 行为
 - [BPF 流量控制](/docs/1.操作系统/Kernel/BPF/BPF%20流量控制/BPF%20流量控制.md)
-  - 待整理，暂时不知道 Linux 中有什么会基于 BPF 的应用程序。
-    - 但是有一个 Cilium 程序，是基于 BPF 做的，只不过只能部署在 Kubernetes 集群中。
+    - 待整理，暂时不知道 Linux 中有什么会基于 BPF 的应用程序。
+        - 但是有一个 Cilium 程序，是基于 BPF 做的，只不过只能部署在 Kubernetes 集群中。
 
 如下图所示，每种实现方式，都具有不同的 Hook：
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/pryclo/1616164826770-1d929135-1194-44e1-91a9-3dd4e99c34ca.png)
 
 - 其中 Netfilter 框架具有最庞大的 Hook 以及 DataPath，上图中间带颜色的部分，基本都是 Netfilter 框架可以处理流量的地方
-  - 包括 prerouting、input、forward、output、postrouting 这几个默认的 Hook
+    - 包括 prerouting、input、forward、output、postrouting 这几个默认的 Hook
 - ingress(qdisc)、egress(qdisc) 属于 TC 模块的 Hook
 - 其他的则是 eBPF 添加的新 Hook
 

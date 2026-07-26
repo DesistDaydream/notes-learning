@@ -1,6 +1,5 @@
 ---
 title: WireShark
-linkTitle: WireShark
 weight: 1
 ---
 
@@ -127,4 +126,4 @@ https://www.wireshark.org/docs/wsug_html_chunked/ChStatConversations.html
 - Ethernet 标签 # 合并 src mac addr 和 dest mac addr 相同的数据包
 - IPv4 标签 # 合并 src ip 和 dest ip 相同的数据包
 - UDP 标签/TCP 标签 # 合并 src port 和 dest port 相同；且 src ip 与 dest ip 相同的数据包，每个组的数据包当做同一条 Protocol Stream(协议流)，具有相同的 StreamID。
-  - 比如，若总共 2000 个包，其中有一些包的 src ip:port 和 dest ip:port 一样，那么该统计-会话中的 UDP 的协议流将会小于 2000
+    - 比如，若总共 2000 个包，其中有一些包的 src ip:port 和 dest ip:port 一样，那么该统计-会话中的 UDP 的协议流将会小于 2000

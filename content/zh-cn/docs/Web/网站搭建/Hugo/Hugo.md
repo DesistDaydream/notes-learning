@@ -1,6 +1,5 @@
 ---
 title: "Hugo"
-linkTitle: "Hugo"
 weight: 1
 ---
 
@@ -9,7 +8,7 @@ weight: 1
 > 参考：
 >
 > - [GitHub 项目，gohugoio/hugo](https://github.com/gohugoio/hugo)
->   - [GitHub 项目，coderzh/gohugo.org](https://github.com/coderzh/gohugo.org)（一个从19年停更的 Hugo 中文网）
+>     - [GitHub 项目，coderzh/gohugo.org](https://github.com/coderzh/gohugo.org)（一个从19年停更的 Hugo 中文网）
 > - [官网](https://gohugo.io/)
 > - [Wiki, Hugo(软件)](https://en.wikipedia.org/wiki/Hugo_(software))
 
@@ -18,9 +17,9 @@ Hugo 是用 Go 语言编写的静态站点生成器。Steve Francia 最初于 20
 Hugo 创建站点时主要依赖两部分，**Content(内容)** 与 **Layout(布局)**
 
 - **Content(内容)** 表示数据。存在 `content/` 目录下。
-  - 该目录下的每个文件都会抽象为一个 **Page(页面)**。其实我们在浏览到的页面就是 Hugo 中的 Page 的概念，而 `content/` 目录就是存放这些 Page 的地方。内容的管理详见[内容管理](/docs/Web/网站搭建/Hugo/内容管理/内容管理.md)章节
+    - 该目录下的每个文件都会抽象为一个 **Page(页面)**。其实我们在浏览到的页面就是 Hugo 中的 Page 的概念，而 `content/` 目录就是存放这些 Page 的地方。内容的管理详见[内容管理](/docs/Web/网站搭建/Hugo/内容管理/内容管理.md)章节
 - **Layout(布局)** 表示页面。存在 `layouts/` 目录下。
-  - 该目录下的每个文件都会抽象为一个 **Template(模板)**
+    - 该目录下的每个文件都会抽象为一个 **Template(模板)**
 
 通过多种渠道获取到数据(i.e. Content)后，需要在页面(i.e. Layout)中填充数据，这就是模板渲染的过程，渲染完成后，可供浏览的页面称之为 **View(视图)**。
 
@@ -36,7 +35,7 @@ Hugo 的这种渲染行为与 Go 的模板渲染机制一致，并提供了更�
 
 `hugo new site hello_world` 命令将会创建一个包含以下元素的目录结构，这些目录的作用可以在[下文](#目录结构)找到：
 
-```
+```text
 hello_world/
 ├── archetypes/
 │   └── default.md
@@ -246,6 +245,7 @@ example/
 │   ├── articles/
 │   └── tuorials/
 ```
+
 Hugo 使用 section 的名称作为默认的 [content types(内容类型)](https://gohugo.io/content-management/types/)。假如有这么一个文件 content/blog/my-first-event.md，则这篇文章的内容类型就是 blog 类型。
 
 通过这种对网站内容的分类方式，更利于搜索、整理等。
@@ -313,13 +313,12 @@ Hugo Modules(模块) 是一个类似 Go 模块一样的存在。模块可以是�
 Hugo 运行时所需的缓存目录。包括需要使用的模块等：
 
 - Windows:
-	- **%LocalAppData/hugo_cache/**
-	- **%TMP%/hugo_cache/** # 弃用
+    - **%LocalAppData/hugo_cache/**
+    - **%TMP%/hugo_cache/** # 弃用
 - Linux:
-	- **${TMP}/hugo_cache/**
+    - **${TMP}/hugo_cache/**
 
 # Hugo 与 Obsidian
-
 
 ## URL 与 markdown 链接问题
 
@@ -349,4 +348,3 @@ Hugo 生成的内容资源的 URL 是 https://demo.org/a/b/b-cd
 ```
 
 此时跳转到 404 时，将会去掉 `.md` 后缀，以及将所有的 `%20` 替换成 `-`
-

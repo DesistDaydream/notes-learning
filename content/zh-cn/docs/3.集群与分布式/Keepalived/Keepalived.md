@@ -1,13 +1,12 @@
 ---
 title: Keepalived
-linkTitle: Keepalived
 weight: 1
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官网](http://www.keepalived.org/)
 
 Keepalived 特点：

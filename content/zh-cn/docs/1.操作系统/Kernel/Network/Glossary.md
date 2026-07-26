@@ -1,6 +1,5 @@
 ---
 title: Glossary
-linkTitle: Glossary
 weight: 101
 ---
 
@@ -35,5 +34,3 @@ sk_buff 是一个贯穿整个协议栈层次的结构，在各层间传递时，
 ## DEVICE(设备)
 
 在内核代码中，是一个名为 [**net_device**](https://www.kernel.org/doc/html/latest/networking/kapi.html#c.net_device) 的结构体。一个巨大的数据结构，描述一个网络设备的所有 属性、数据 等信息。
-
-

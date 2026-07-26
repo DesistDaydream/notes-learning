@@ -5,6 +5,7 @@ title: Garbage Collection(垃圾回收)
 # kubelet Garbage Collection 介绍
 
 > 参考：
+>
 > - 官方文档：<https://kubernetes.io/docs/concepts/cluster-administration/kubelet-garbage-collection/>
 
 垃圾回收是 kubelet 的一个有用功能，它将清理未使用的镜像和容器。 Kubelet 将每分钟对容器执行一次垃圾回收，每五分钟对镜像执行一次垃圾回收。

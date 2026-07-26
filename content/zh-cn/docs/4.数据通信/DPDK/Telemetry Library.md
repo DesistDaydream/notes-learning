@@ -1,6 +1,5 @@
 ---
 title: Telemetry Library
-linkTitle: Telemetry Library
 weight: 111
 ---
 
@@ -166,9 +165,9 @@ struct rte_tel_data;
 #define ADD_DICT_STAT(stats, s) rte_tel_data_add_dict_uint(d, #s, stats.s)
 
 eth_dev_handle_port_stats(
-		const char *cmd __rte_unused,
-		const char *params,
-		struct rte_tel_data *d)
+  const char *cmd __rte_unused,
+  const char *params,
+  struct rte_tel_data *d)
 {
     ......
     ADD_DICT_STAT(stats, ipackets);
@@ -225,8 +224,8 @@ RTE_INIT(ethdev_init_telemetry)
 
 ```c
 eth_dev_handle_port_xstats(const char *cmd __rte_unused,
-		const char *params,
-		struct rte_tel_data *d)
+  const char *params,
+  struct rte_tel_data *d)
 {
     const char *const valid_keys[] = { "hide_zero", NULL };
     struct rte_eth_xstat *eth_xstats;
@@ -265,7 +264,7 @@ rte_eth_xstats_get_names(uint16_t port_id,
     cnt_used_entries = eth_basic_stats_get_names(dev, xstats_names);
     // 特定于驱动程序的统计信息
     cnt_driver_entries = dev->dev_ops->xstats_get_names(dev, xstats_names + cnt_used_entries, size - cnt_used_entries);
-    
+
     // 合并两种统计信息
     cnt_used_entries += cnt_driver_entries;
     return cnt_used_entries;
@@ -297,36 +296,36 @@ static const struct rte_eth_xstats_name_off eth_dev_stats_strings[] = {
 
 ```c
 static int i40e_dev_xstats_get_names(__rte_unused struct rte_eth_dev *dev,
-				     struct rte_eth_xstat_name *xstats_names,
-				     __rte_unused unsigned limit)
+         struct rte_eth_xstat_name *xstats_names,
+         __rte_unused unsigned limit)
 {
-	/* Get stats from i40e_eth_stats struct */
-	for (i = 0; i < I40E_NB_ETH_XSTATS; i++) {
-		strlcpy(xstats_names[count].name,
-			rte_i40e_stats_strings[i].name);
-	}
+ /* Get stats from i40e_eth_stats struct */
+ for (i = 0; i < I40E_NB_ETH_XSTATS; i++) {
+  strlcpy(xstats_names[count].name,
+   rte_i40e_stats_strings[i].name);
+ }
 
-	/* Get stats from i40e_mbuf_stats struct */
-	for (i = 0; i < I40E_NB_MBUF_XSTATS; i++) {
-		strlcpy(xstats_names[count].name,
-			i40e_mbuf_strings[i].name);
-	}
+ /* Get stats from i40e_mbuf_stats struct */
+ for (i = 0; i < I40E_NB_MBUF_XSTATS; i++) {
+  strlcpy(xstats_names[count].name,
+   i40e_mbuf_strings[i].name);
+ }
 
-	/* Get individual stats from i40e_hw_port struct */
-	for (i = 0; i < I40E_NB_HW_PORT_XSTATS; i++) {
-		strlcpy(xstats_names[count].name,
-			rte_i40e_hw_port_strings[i].name);
-	}
+ /* Get individual stats from i40e_hw_port struct */
+ for (i = 0; i < I40E_NB_HW_PORT_XSTATS; i++) {
+  strlcpy(xstats_names[count].name,
+   rte_i40e_hw_port_strings[i].name);
+ }
 
-	for (i = 0; i < I40E_NB_RXQ_PRIO_XSTATS; i++) {
-		snprintf(xstats_names[count].name,
-			rte_i40e_rxq_prio_strings[i].name);
-	}
+ for (i = 0; i < I40E_NB_RXQ_PRIO_XSTATS; i++) {
+  snprintf(xstats_names[count].name,
+   rte_i40e_rxq_prio_strings[i].name);
+ }
 
-	for (i = 0; i < I40E_NB_TXQ_PRIO_XSTATS; i++) {
-		snprintf(xstats_names[count].name,
-			rte_i40e_txq_prio_strings[i].name);
-	}
+ for (i = 0; i < I40E_NB_TXQ_PRIO_XSTATS; i++) {
+  snprintf(xstats_names[count].name,
+   rte_i40e_txq_prio_strings[i].name);
+ }
 }
 ```
 
@@ -342,26 +341,26 @@ static int i40e_dev_xstats_get_names(__rte_unused struct rte_eth_dev *dev,
 
 ```c
 struct rte_i40e_xstats_name_off {
-	char name[RTE_ETH_XSTATS_NAME_SIZE];
-	int offset;
+ char name[RTE_ETH_XSTATS_NAME_SIZE];
+ int offset;
 };
 
 // 数组中的元素是 rte_i40e_xstats_name_off 类型。
 static const struct rte_i40e_xstats_name_off rte_i40e_stats_strings[] = {
-	{"rx_unicast_packets", offsetof(struct i40e_eth_stats, rx_unicast)},
-	{"rx_multicast_packets", offsetof(struct i40e_eth_stats, rx_multicast)},
-	{"rx_broadcast_packets", offsetof(struct i40e_eth_stats, rx_broadcast)},
-	{"rx_dropped_packets", offsetof(struct i40e_eth_stats, rx_discards)},
-	{"rx_unknown_protocol_packets", offsetof(struct i40e_eth_stats, rx_unknown_protocol)},
-	{"rx_size_error_packets", offsetof(struct i40e_hw_port_stats, rx_err1)},
-	{"tx_unicast_packets", offsetof(struct i40e_eth_stats, tx_unicast)},
-	{"tx_multicast_packets", offsetof(struct i40e_eth_stats, tx_multicast)},
-	{"tx_broadcast_packets", offsetof(struct i40e_eth_stats, tx_broadcast)},
-	{"tx_dropped_packets", offsetof(struct i40e_eth_stats, tx_discards)},
+ {"rx_unicast_packets", offsetof(struct i40e_eth_stats, rx_unicast)},
+ {"rx_multicast_packets", offsetof(struct i40e_eth_stats, rx_multicast)},
+ {"rx_broadcast_packets", offsetof(struct i40e_eth_stats, rx_broadcast)},
+ {"rx_dropped_packets", offsetof(struct i40e_eth_stats, rx_discards)},
+ {"rx_unknown_protocol_packets", offsetof(struct i40e_eth_stats, rx_unknown_protocol)},
+ {"rx_size_error_packets", offsetof(struct i40e_hw_port_stats, rx_err1)},
+ {"tx_unicast_packets", offsetof(struct i40e_eth_stats, tx_unicast)},
+ {"tx_multicast_packets", offsetof(struct i40e_eth_stats, tx_multicast)},
+ {"tx_broadcast_packets", offsetof(struct i40e_eth_stats, tx_broadcast)},
+ {"tx_dropped_packets", offsetof(struct i40e_eth_stats, tx_discards)},
 };
 
 #define I40E_NB_ETH_XSTATS (sizeof(rte_i40e_stats_strings) / \
-		sizeof(rte_i40e_stats_strings[0]))
+  sizeof(rte_i40e_stats_strings[0]))
 ```
 
 此时，算是找到了 i40e 驱动的所有可用的 xstats 数据。i.e. 那几个元素类型是 `rte_i40e_xstats_name_off` 的数组。数组中的每个元素都是一个 xstats 条目。

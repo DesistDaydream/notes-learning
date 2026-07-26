@@ -1,6 +1,5 @@
 ---
 title: PXE
-linkTitle: PXE
 weight: 54
 ---
 

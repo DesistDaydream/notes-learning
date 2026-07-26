@@ -16,8 +16,8 @@ http://linux.dell.com/
 <https://linux.dell.com/repo/hardware/dsu/>
 
 - 配置存储库
-   - curl -O <https://linux.dell.com/repo/hardware/dsu/bootstrap.cgi>
-   - bash bootstrap.cgi
+    - curl -O <https://linux.dell.com/repo/hardware/dsu/bootstrap.cgi>
+    - bash bootstrap.cgi
 - yum install srvadmin-all.x86_64
 
 Note：
@@ -57,11 +57,11 @@ enabled=1
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gknv4x/1616067497724-a84a9901-d1a0-4c18-9198-303c071c9960.jpeg)
 
 - 解压已下载的安装包
-   - mkdir dell-omsa
-   - tar -zxvf OM-SrvAdmin-Dell-Web-LX-9.3.0-3465_A00.tar -C dell-omsa #
+    - mkdir dell-omsa
+    - tar -zxvf OM-SrvAdmin-Dell-Web-LX-9.3.0-3465_A00.tar -C dell-omsa #
 - 安装 rpm 包
-   - cd dell-omsa/linux/RPMS/supportRPMS/srvadmin/RHEL7/x86_64
-   - yum localinstall \*.rpm
+    - cd dell-omsa/linux/RPMS/supportRPMS/srvadmin/RHEL7/x86_64
+    - yum localinstall \*.rpm
 
 将 dell-r740.tar.gz 拷贝到/root/Download 目录下并执行以下脚本
 
@@ -74,10 +74,10 @@ enabled=1
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/gknv4x/1616067497704-782c72fb-2dcf-4422-9654-b71a7c89d1eb.jpeg)
 
 - /opt/dell/srvadmin/sbin/srvadmin-services.sh start # 启动 openManger
-  - 该脚本会通过 systemd 启动三个服务
-  - instsvcdrv #
-  - dataeng #
-  - dsm_om_connsvc # web 控制台
+    - 该脚本会通过 systemd 启动三个服务
+    - instsvcdrv #
+    - dataeng #
+    - dsm_om_connsvc # web 控制台
 - /opt/dell/srvadmin/sbin/srvadmin-services.sh enable # 设置开机自启 openManager
 - systemctl stop dsm_om_connsvc # 关闭 openManager 的 web 服务
 - systemctl disable dsm_om_connsvc # 将 openManager 的 web 服务开机自启关闭

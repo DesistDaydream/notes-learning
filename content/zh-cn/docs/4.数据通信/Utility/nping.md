@@ -1,6 +1,5 @@
 ---
 title: nping
-linkTitle: nping
 weight: 20
 tags:
   - Network_analyzer

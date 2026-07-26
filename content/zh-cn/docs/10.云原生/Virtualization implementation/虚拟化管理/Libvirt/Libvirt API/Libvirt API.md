@@ -34,8 +34,8 @@ weight: 1
 - C: [virConnectListAllDomains](https://libvirt.org/html/libvirt-libvirt-domain.html#virConnectListAllDomains)
 - Go: [ListAllDomains](https://pkg.go.dev/libvirt.org/go/libvirt#Connect.ListAllDomains)
 - Python: listAllDomains
-  - Python 好像没有 Go Package 网站那种东西，没法找到在线的 API 文档
-  - 有个类似这样的代码 `raise libvirtError("virConnectListAllDomains() failed")` 可以知道该方法对应的是哪个 C API 方法。
+    - Python 好像没有 Go Package 网站那种东西，没法找到在线的 API 文档
+    - 有个类似这样的代码 `raise libvirtError("virConnectListAllDomains() failed")` 可以知道该方法对应的是哪个 C API 方法。
 
 总的来说，还是 Go 好用，追踪代码后注释明确，主时钟也包含对应的 C API 的链接
 

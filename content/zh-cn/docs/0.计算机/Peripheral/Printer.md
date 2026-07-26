@@ -1,6 +1,5 @@
 ---
 title: Printer
-linkTitle: Printer
 weight: 20
 ---
 

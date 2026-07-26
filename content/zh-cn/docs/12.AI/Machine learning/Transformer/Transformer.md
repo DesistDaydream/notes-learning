@@ -1,6 +1,5 @@
 ---
 title: Transformer
-linkTitle: Transformer
 weight: 1
 created: 2026-04-08T15:03
 ---
@@ -118,7 +117,7 @@ Q 不需要缓存，因为 Q 只属于"当前正在处理的 token"，用完就�
 Hugging Face 生态的 Transformer 库可以对接多种计算框架：
 
 - [PyTorch](/docs/12.AI/科学计算/PyTorch.md)
-  - 注意：安装 PyTorch 时，安装 GPU 版的。如果我们想要使用 GPU 但是却安装的 CPU 版的 PyTorch，将会报错：`Torch not compiled with CUDA enabled`。说白了就是下载的 PyTorch 不是在 CUDA 环境下编译的，无法处理 CUDA 的请求。
+    - 注意：安装 PyTorch 时，安装 GPU 版的。如果我们想要使用 GPU 但是却安装的 CPU 版的 PyTorch，将会报错：`Torch not compiled with CUDA enabled`。说白了就是下载的 PyTorch 不是在 CUDA 环境下编译的，无法处理 CUDA 的请求。
 - TensorFlow
 
 安装 Hugging Face 生态的 Transformer：
@@ -181,7 +180,7 @@ print(response)
 
 - **model.safetensors** #
 - **config.json** # 模型结构配置。
-  - **configuration_chatglm.py** # 是 config.json 文件的类表现形式，模型配置的 Python 类代码文件，定义了用于配置模型的 ChatGLMConfig 类。
+    - **configuration_chatglm.py** # 是 config.json 文件的类表现形式，模型配置的 Python 类代码文件，定义了用于配置模型的 ChatGLMConfig 类。
 - **generation_config.json** # 推理配置。
 
 **数据预处理相关**

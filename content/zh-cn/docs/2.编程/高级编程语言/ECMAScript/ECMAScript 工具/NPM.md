@@ -1,6 +1,5 @@
 ---
 title: NPM
-linkTitle: NPM
 weight: 20
 ---
 
@@ -22,10 +21,10 @@ npm 从 命令行、环境变量、npmrc 文件 这些地方获取其配置信�
 - **命令行标志**
 - **环境变量**
 - **npmrc 文件** # npm 从以下几个地方依次读取 npmrc 文件
-  - **/PATH/TO/NPM/npmrc** # npm 内置的配置文件。这内置的文件是不是不可见的？o(╯□╰)o
-  - **`${PREFIX}/etc/npmrc`** # 全局配置文件，可以通过 `--globalconfig` 命令行选项或 `${NPM_CONFIG_GLOBALCONFIG}` 环境变量改变其值
-  - **~/.npmrc** # 用户配置文件，可以通过 `--userconfig` 命令行选项或 `${NPM_CONFIG_USERCONFIG}` 环境变量改变其值
-  - **/PATH/TO/MY/PROJECT/.npmrc** # 每个项目自己的配置
+    - **/PATH/TO/NPM/npmrc** # npm 内置的配置文件。这内置的文件是不是不可见的？o(╯□╰)o
+    - **`${PREFIX}/etc/npmrc`** # 全局配置文件，可以通过 `--globalconfig` 命令行选项或 `${NPM_CONFIG_GLOBALCONFIG}` 环境变量改变其值
+    - **~/.npmrc** # 用户配置文件，可以通过 `--userconfig` 命令行选项或 `${NPM_CONFIG_USERCONFIG}` 环境变量改变其值
+    - **/PATH/TO/MY/PROJECT/.npmrc** # 每个项目自己的配置
 
 **`${PREFIX}/bin/`** # npm 安装的各种依赖包中若包含命令行工具，则会在此目录创建软链接。该目录通常都会加入到 `${PATH}` 变量中。
 
@@ -68,7 +67,7 @@ store-dir 说明：
 若 Windows 无法执行 pnpm，报错：`pnpm : 无法加载文件 D:\Tools\nodejs\pnpm.ps1，因为在此系统上禁止运行脚本。有关详细信息，请参阅 https:/go.microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。`
 
 - 此时需要在 PowerShell 中执行 `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` 指令。详见[微软官网解释](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.2)。
-  - 其中 `-Scope CurrentUser` 是指针对当前用户的操作，若使用管理员运行 VSCode 或 PowerShell，则不用加这个选项。
+    - 其中 `-Scope CurrentUser` 是指针对当前用户的操作，若使用管理员运行 VSCode 或 PowerShell，则不用加这个选项。
 
 **更新 pnpm**
 
@@ -98,7 +97,7 @@ pnpm 使用 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的配置�
 - 在 macOS 上: **~/Library/pnpm/store**
 - 在 Linux 上: **~/.local/share/pnpm/store**
 - 特殊默认值规则：pnpm 的管理的包的存储位置应始终与项目目录保持在同一磁盘上，因此每个磁盘将有一个存储。 如果在使用磁盘中具有主目录，存储目录就会创建在这里。 如果磁盘上没有主目录，那么将在文件系统的根目录中创建该存储。 例如，如果安装发生在挂载在 `/mnt` 的文件系统上，那么存储将在 `/mnt/.pnpm-store/` 目录中创建。 Windows 系统上也是如此。
-  - 用人话说是：假如我的项目在 `D:/Projects/DesistDaydream/javascript-learning/`，那模块将会默认下载到 `D:/.pnpm-store/` 目录中。
+    - 用人话说是：假如我的项目在 `D:/Projects/DesistDaydream/javascript-learning/`，那模块将会默认下载到 `D:/.pnpm-store/` 目录中。
 - 注意：可以从不同的磁盘设置同一个存储，但在这种情况下，pnpm 将复制包而**不是硬链接**它们，因为**硬链接只能发生在同一文件系统上**。
 
 # npm 与 pnpm 语法

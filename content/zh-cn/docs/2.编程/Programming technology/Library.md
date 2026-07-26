@@ -1,6 +1,5 @@
 ---
 title: Library
-linkTitle: Library
 weight: 23
 ---
 
@@ -10,9 +9,9 @@ weight: 23
 >
 > - [Wiki, Library(computing)](https://en.wikipedia.org/wiki/Library_(computing))
 > - [公众号 - 码农的荒岛求生，动态库和静态库有什么区别？](https://mp.weixin.qq.com/s/9pavORd5qjqEaKN7G_NBmw)
->   - [B 站，动态库和静态库到底有什么区别？](https://www.bilibili.com/video/BV1fb421q7gc)
+>     - [B 站，动态库和静态库到底有什么区别？](https://www.bilibili.com/video/BV1fb421q7gc)
 > - [公众号 - 码农的荒岛求生，动态链接库的实现原理是什么？](https://mp.weixin.qq.com/s/_-mRDg06AaiKc4-HZ8PgdQ)
->   - [B 站，动态链接库的实现原理是什么？](https://www.bilibili.com/video/BV1aM4m1m7if)
+>     - [B 站，动态链接库的实现原理是什么？](https://www.bilibili.com/video/BV1aM4m1m7if)
 
 **Library(库)** 是一个只读资源的 collection(集合)，用来实现计算机程序。这个 collection 中通常是很多已经写好的**可复用**的代码，类似于代码中的 [Function](/docs/2.编程/计算机科学/Function/Function.md)。相对代码文件中的 Function、Library 则更像是存在于代码文件外部的 Function，表现一种可执行代码的 **Binary(二进制)** 文件、纯文本代码文件，甚至随着发展，还可能包括图像。
 
@@ -25,9 +24,9 @@ weight: 23
 Library 通常分为两大类
 
 - **Static lib(静态库)** # 编译程序时，将 Library 打包进最终的可执行文件
-  - 通常可以通过代码中使用 import、etc. 关键字在文件开头导入，各种语言和环境的 Library 形态不太一样。有的语言直接把代码源码放到本地，编译时引用；有的语言会把代码编译成 .a、.lib 文件，在编译时引用；etc.
+    - 通常可以通过代码中使用 import、etc. 关键字在文件开头导入，各种语言和环境的 Library 形态不太一样。有的语言直接把代码源码放到本地，编译时引用；有的语言会把代码编译成 .a、.lib 文件，在编译时引用；etc.
 - **Dynamic lib(动态库)** # 程序运行时，将 Library 加载到内存中
-  - 通常以文件的形式。Linux 中文件后缀为 .so，Windows 中文件后缀为 .dll。
+    - 通常以文件的形式。Linux 中文件后缀为 .so，Windows 中文件后缀为 .dll。
 
 # Linker
 

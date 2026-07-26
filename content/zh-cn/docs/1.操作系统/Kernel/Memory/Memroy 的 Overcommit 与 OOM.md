@@ -1,6 +1,5 @@
 ---
 title: Memroy 的 Overcommit 与 OOM
-linkTitle: Memroy 的 Overcommit 与 OOM
 weight: 20
 ---
 
@@ -260,22 +259,22 @@ vm.overcommit_memory 接受三种值：
 linux 会为每个进程算一个分数，最终他会将分数最高的进程 kill
 
 - /proc/oom_score_adj
-  - 在计算最终的 badness score 时，会在计算结果是中加上 oom_score_adj，取值范围为-1000 到 1000
-  - 如果将该值设置为-1000，则进程永远不会被杀死，因为此时 badness score 永远返回 0。
+    - 在计算最终的 badness score 时，会在计算结果是中加上 oom_score_adj，取值范围为-1000 到 1000
+    - 如果将该值设置为-1000，则进程永远不会被杀死，因为此时 badness score 永远返回 0。
 - /proc/oom_adj
-  - 取值是-17 到+15，取值越高，越容易被干掉。如果是-17，则表示不能被 kill
-  - 该设置参数的存在是为了和旧版本的内核兼容
+    - 取值是-17 到+15，取值越高，越容易被干掉。如果是-17，则表示不能被 kill
+    - 该设置参数的存在是为了和旧版本的内核兼容
 - /proc/oom_score
-  - 这个值是系统综合进程的内存消耗量、CPU 时间(utime + stime)、存活时间(uptime - start time)和 oom_adj 计算出的，消耗内存越多分越高，存活时间越长分越低
+    - 这个值是系统综合进程的内存消耗量、CPU 时间(utime + stime)、存活时间(uptime - start time)和 oom_adj 计算出的，消耗内存越多分越高，存活时间越长分越低
 - 子进程内存：Linux 在计算进程的内存消耗的时候，会将子进程所耗内存的一半同时算到父进程中。这样，那些子进程比较多的进程就要小心了。
 - 其他参数（不是很关键，不解释了）
-  - /proc/sys/vm/oom_dump_tasks
-  - /proc/sys/vm/oom_kill_allocating_task
-  - /proc/sys/vm/panic_on_oom
+    - /proc/sys/vm/oom_dump_tasks
+    - /proc/sys/vm/oom_kill_allocating_task
+    - /proc/sys/vm/panic_on_oom
 - 关闭 OOM killer
 
-  - sysctl -w vm.overcommit_memory=2
-  - echo "vm.overcommit_memory=2" >> /etc/sysctl.conf
+    - sysctl -w vm.overcommit_memory=2
+    - echo "vm.overcommit_memory=2" >> /etc/sysctl.conf
 
     3.1 找出最有可能被杀掉的进程
 
@@ -417,7 +416,7 @@ AliYunDun 申请内存，kill 掉了 java 进程 5424，他占用的内存是 61
 ___GFP_HARDWAL | ___GFP_COLD | ___GFP_FS | ___GFP_IO | ___GFP_MOVABLE| ___GFP_HIGHMEM
 ```
 
-同时设置了 `___GFP_MOVABLE` 和 `___GFP_HIGHMEM` 会扫描 `ZONE_MOVABLE`，其实也就是会在 ` ZONE_NORMAL`，再贴一次神图
+同时设置了 `___GFP_MOVABLE` 和 `___GFP_HIGHMEM` 会扫描 `ZONE_MOVABLE`，其实也就是会在 `ZONE_NORMAL`，再贴一次神图
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/rwsybc/1616167905288-838e8528-b134-45bb-bbec-81d175c4c272.jpeg)
 

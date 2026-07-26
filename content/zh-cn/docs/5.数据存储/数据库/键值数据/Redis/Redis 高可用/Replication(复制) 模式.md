@@ -5,7 +5,7 @@ title: Replication(复制) 模式
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档](https://redis.io/topics/replication)
 
 1. 基本原理

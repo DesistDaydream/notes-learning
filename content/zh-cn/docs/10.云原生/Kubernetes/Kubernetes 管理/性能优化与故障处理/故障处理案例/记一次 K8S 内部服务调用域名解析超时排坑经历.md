@@ -221,7 +221,7 @@ linux 中 `glibc` 的 resolver 的缺省超时时间是 5s，而导致超时的�
 
 #
 
-#     <http://www.apache.org/licenses/LICENSE-2.0>
+# <http://www.apache.org/licenses/LICENSE-2.0>
 
 #
 

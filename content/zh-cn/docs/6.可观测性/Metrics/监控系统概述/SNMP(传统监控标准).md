@@ -1,6 +1,5 @@
 ---
 title: SNMP(传统监控标准)
-linkTitle: SNMP(传统监控标准)
 weight: 20
 ---
 
@@ -26,9 +25,9 @@ SNMP 的工作模式，使用 udp 协议发送报文
 # 实现 SNMP 的组件
 
 - **Management Information Base(管理信息库，简称 MIB)** # 用来定义所有监控端的 objects，其中包括 objects 的名称、OID、数据类型、描述(干什么用的)。MIB 也可以看作是 SNMP 的服务端与代理端的沟通桥梁，只有具有统一的格式，才能确定数据。
-  - **Object(对象)** # 这个对象可以是一个具体需要采集到的数据，比如 内存、CPU、磁盘、网络接口等等，也可以是一种抽象的集合，比如地区、硬件、系统、硬件、网络等等。上面说的所有事物，每一个都是一个 Object。所以，Object 可以包含另一个 Object，这也是人称常常将 MIB 称为**树状**的原因
-    - **Object Identifier(对象标识符，简称 OID)** # 每一个 Object 都有一个 OID
-    - 数据存取格式：即每个 object 除了 OID 用作标示以外，还有数据内容需要遵循一定个格式规范
+    - **Object(对象)** # 这个对象可以是一个具体需要采集到的数据，比如 内存、CPU、磁盘、网络接口等等，也可以是一种抽象的集合，比如地区、硬件、系统、硬件、网络等等。上面说的所有事物，每一个都是一个 Object。所以，Object 可以包含另一个 Object，这也是人称常常将 MIB 称为**树状**的原因
+        - **Object Identifier(对象标识符，简称 OID)** # 每一个 Object 都有一个 OID
+        - 数据存取格式：即每个 object 除了 OID 用作标示以外，还有数据内容需要遵循一定个格式规范
 - **Structure of Managerment Intormation(管理信息结构,简称 SMI)** # 是 [ASN.1](/docs/2.编程/无法分类的语言/ASN.1.md) 的子集
 - **SNMP 本身** # 一般通过 Net-SNMP 中的工具实现。
 
@@ -55,4 +54,3 @@ https://datatracker.ietf.org/doc/html/rfc1157#section-4
 3. GetResponse-PDU
 4. SetRequest-PDU
 5. Trap-PDU
-

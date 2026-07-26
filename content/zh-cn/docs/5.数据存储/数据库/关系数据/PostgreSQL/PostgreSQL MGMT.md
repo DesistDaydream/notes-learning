@@ -1,6 +1,5 @@
 ---
 title: "PostgreSQL MGMT"
-linkTitle: "PostgreSQL MGMT"
 weight: 20
 ---
 
@@ -8,7 +7,7 @@ weight: 20
 
 > 参考：
 >
-> - 
+> -
 
 # PostgreSQL 部署后常见操作
 

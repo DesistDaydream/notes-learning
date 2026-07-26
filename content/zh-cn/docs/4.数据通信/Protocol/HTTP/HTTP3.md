@@ -1,6 +1,5 @@
 ---
 title: HTTP3
-linkTitle: HTTP3
 weight: 20
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: NAT 穿透是如何工作的：技术原理及企业级实践
-linkTitle: NAT 穿透是如何工作的：技术原理及企业级实践
 source: https://arthurchiao.art/blog/how-nat-traversal-works-zh/
 weight: 20
 ---
@@ -74,7 +73,6 @@ weight: 20
     某些协议（例如 WebRTC）将 NAT 穿透与其他部分紧密集成。但如果你在构建自己的协议， **==建议将 NAT 穿透作为一个独立实体，与主协议并行运行==** ，二者仅 仅是共享 socket 的关系，如下图所示，这将带来很大帮助：
 
 ![center|500](https://notes-learning.oss-cn-beijing.aliyuncs.com/nat/nat-deep-integration.png)
-
 
 ### 1.3.2 保底方式：中继
 
@@ -184,7 +182,7 @@ weight: 20
 ![https://arthurchiao.art/assets/img/nat-traversal/nat-firewalls-5a.png|center|1000](https://notes-learning.oss-cn-beijing.aliyuncs.com/nat/nat-firewalls-5a.png)
 
 对方的防火墙会将这个包拦截掉，因为它没有 `7.7.7.7:5678 -> 2.2.2.2:1234` 的流量记录。 但另一方面，Windows Defender 此时已经记录了出向连接，因此会允许 `7.7.7.7:5678 -> 2.2.2.2:1234` 的应答包进来。
-	
+
 2. 接着，第一个 `7.7.7.7:5678 -> 2.2.2.2:1234` 穿过它自己的防火墙到达公网。
 
 ![https://arthurchiao.art/assets/img/nat-traversal/nat-firewalls-5b.png|center|1000](https://notes-learning.oss-cn-beijing.aliyuncs.com/nat/nat-firewalls-5b.png)
@@ -207,9 +205,9 @@ weight: 20
 
 - 这听上去是 **==鸡生蛋蛋生鸡的问题==** 了： **==双方想要通信，必须先提前通个信==** 。
 - 但实际上，我们可以通过 **==旁路信道==** （side channel）来达到这个目的 ，并且这个旁路信道并不需要很 fancy：它可以有几秒钟的延迟、只需要传送几 KB 的 信息，因此即使是一个配置非常低的虚拟机，也能为几千台机器提供这样的旁路通信服务。
-	- 在遥远的过去，我曾用 XMPP 聊天消息作为旁路，效果非常不错。
-	- 另一个例子是 WebRTC，它需要你提供一个自己的“信令信道”（signalling channel， 这个词也暗示了 WebRTC 的 IP telephony ancestry），并将其配置到 WebRTC API。
-	- 在 Tailscale，我们的协调服务器（coordination server）和 DERP (Detour Encrypted Routing Protocol) 服务器集群是我们的旁路信道。
+    - 在遥远的过去，我曾用 XMPP 聊天消息作为旁路，效果非常不错。
+    - 另一个例子是 WebRTC，它需要你提供一个自己的“信令信道”（signalling channel， 这个词也暗示了 WebRTC 的 IP telephony ancestry），并将其配置到 WebRTC API。
+    - 在 Tailscale，我们的协调服务器（coordination server）和 DERP (Detour Encrypted Routing Protocol) 服务器集群是我们的旁路信道。
 
 ### 2.3.2 非活跃连接被防火墙清理
 
@@ -254,7 +252,6 @@ SNAT 最常见的使用场景是 **==将很多设备连接到公网，而只使�
 1. 笔记本发送 UDP packet `192.168.0.20:1234 -> 7.7.7.7:5678` 。
 
 ![(https://arthurchiao.art/assets/img/nat-traversal/nat-overview-1.png|center|1000](https://notes-learning.oss-cn-beijing.aliyuncs.com/nat/nat-overview-1.png)
-
 
 这一步就好像笔记本有一个公网 IP 一样，但源地址 `192.168.0.20` 是私有地址， 只能出现在私有网络，公网不认，收到这样的包时它不知道如何应答。
 
@@ -333,7 +330,9 @@ NAT 设备的说明书上越强调它的安全性，STUN 方式失败的可能�
 这也正是问题所在： **==这一点并不总是成立==** 。
 
 - 某些 NAT 设备的行为与我们假设的一致，它们的有状态防火墙组件只要看到有客户端自己 发起的出向包，就会允许相应的入向包进入；因此只要利用 STUN 功能，再加上两端同时 发起防火墙穿透，就能把连接打通；
+
 > in theory, there are also NAT devices that are super relaxed, and don’t ship with stateful firewall stuff at all. In those, you don’t even need simultaneous transmission, the STUN request gives you an internet `ip:port` that anyone can connect to with no further ceremony. If such devices do still exist, they’re increasingly rare.
+
 - 另外一些 NAT 设备就要困难很多了，它会 **==针对每个目的地址来生成一条相应的映射关系==** 。 在这样的设备上，如果我们用相同的 socket 来分别发送数据包到 `5.5.5.5:1234` and `7.7.7.7:2345` ，我们就会得到 `2.2.2.2` 上的两个不同的端口，每个目的地址对应一个。 如果反向包的端口用的不对，包就无法通过防火墙。如下图所示：
 
 ![center|1000](https://notes-learning.oss-cn-beijing.aliyuncs.com/nat-traversal/nat-stun-3.png)
@@ -365,10 +364,10 @@ NAT 设备的说明书上越强调它的安全性，STUN 方式失败的可能�
 前面提到的所谓 **=="easy" 和 "hard" NAT，只在一个维度有不同==** ：NAT 映射是否考虑到目的地址信息。 [RFC 4787](https://tools.ietf.org/html/rfc4787) 中，
 
 - 将 **==easy NAT 及其变种==** 称为 “Endpoint-Independent Mapping” (**==EIM，终点无关的映射==**)
-	但是，从 **==“命名很难”==** 这一程序员界的伟大传统来说，EIM 这个词其实 也并不是 100% 准确，因为这种 NAT 仍然依赖 endpoint，只不过依赖的是源 endpoint：每个 source `ip:port` 对应一个映射 —— 否则你的包就会和别人的包混在一起，导致混乱。
-	严格来说，EIM 应该称为 “Destination Endpoint Independent Mapping” (DEIM?)， 但这个名字太拗口了，而且按照惯例，Endpoint 永远指的是 Destination Endpoint。
+ 但是，从 **==“命名很难”==** 这一程序员界的伟大传统来说，EIM 这个词其实 也并不是 100% 准确，因为这种 NAT 仍然依赖 endpoint，只不过依赖的是源 endpoint：每个 source `ip:port` 对应一个映射 —— 否则你的包就会和别人的包混在一起，导致混乱。
+ 严格来说，EIM 应该称为 “Destination Endpoint Independent Mapping” (DEIM?)， 但这个名字太拗口了，而且按照惯例，Endpoint 永远指的是 Destination Endpoint。
 - 将 **==hard NAT 以及变种==** 称为 “Endpoint-Dependent Mapping”（ **==EDM，终点相关的映射==** ） 。
-	EDM 中还有一个子类型，依据是只根据 dst\_ip 做映射，还是根据 dst\_ip + dst\_port 做映射。 对于 NAT 穿透来说，这种区分对来说是一样的：它们 **==都会导致 STUN 方式不可用==** 。
+ EDM 中还有一个子类型，依据是只根据 dst\_ip 做映射，还是根据 dst\_ip + dst\_port 做映射。 对于 NAT 穿透来说，这种区分对来说是一样的：它们 **==都会导致 STUN 方式不可用==** 。
 
 ## 5.3 老的 cone 类型划分
 
@@ -381,7 +380,7 @@ NAT 设备的说明书上越强调它的安全性，STUN 方式失败的可能�
 
 NAT Cone Types
 
-|  | **Endpoint 无关 NAT mapping** | **Endpoint 相关 NAT mapping (all types)** |
+| | **Endpoint 无关 NAT mapping** | **Endpoint 相关 NAT mapping (all types)** |
 | --- | --- | --- |
 | **Endpoint 无关防火墙** | Full Cone NAT | N/A\* |
 | **Endpoint 相关防火墙 (dst. IP only)** | Restricted Cone NAT | N/A\* |
@@ -395,7 +394,7 @@ NAT Cone Types
 
 因此，对于实际 NAT 穿透实现，我们可以将以上分类简化成：
 
-|  | Endpoint-Independent NAT mapping | Endpoint-Dependent NAT mapping (dst. IP only) |
+| | Endpoint-Independent NAT mapping | Endpoint-Dependent NAT mapping (dst. IP only) |
 | --- | --- | --- |
 | **Firewall is yes** | Easy NAT | Hard NAT |
 
@@ -440,14 +439,14 @@ NAT Cone Types
 有多种中继实现方式。
 
 1. **==TURN==** (Traversal Using Relays around NAT)：经典方式，核心理念是
-	1. **==用户==** （人）先去公网上的 TURN 服务器认证，成功后后者会告诉你：“我已经为你分配了 ip:port，接下来将为你中继流量”，
-	2. 然后将这个 ip:port 地址告诉对方，让它去连接这个地址，接下去就是非常简单的客户端/服务器通信模型了。
-	Tailscale 并不使用 TURN。这种协议 **==用起来并不是很好==** ，而且与 STUN 不同， 它没有真正的交互性，因为互联网上并没有公开的 TURN 服务器。
+1. **==用户==** （人）先去公网上的 TURN 服务器认证，成功后后者会告诉你：“我已经为你分配了 ip:port，接下来将为你中继流量”，
+2. 然后将这个 ip:port 地址告诉对方，让它去连接这个地址，接下去就是非常简单的客户端/服务器通信模型了。
+ Tailscale 并不使用 TURN。这种协议 **==用起来并不是很好==** ，而且与 STUN 不同， 它没有真正的交互性，因为互联网上并没有公开的 TURN 服务器。
 2. DERP (Detoured Encrypted Routing Protocol)
-	这是我们创建的一个协议， [DERP](https://tailscale.com/blog/how-tailscale-works/#encrypted-tcp-relays-derp) ，
-	1. 它是一个 **==通用目的包中继协议，运行在 HTTP 之上==** ，而大部分网络都是允许 HTTP 通信的。
-	2. 它根据目的公钥（destination’s public key）来中继加密的流量（encrypted payloads）。
-	前面也简单提到过，DERP 既是我们在 NAT 穿透失败时的保底通信方式（此时的角色 与 TURN 类似），也是在其他一些场景下帮助我们完成 NAT 穿透的旁路信道。 换句话说，它既是我们的保底方式，也是有更好的穿透链路时，帮助我们进行连接升 级（upgrade to a peer-to-peer connection）的基础设施。
+ 这是我们创建的一个协议， [DERP](https://tailscale.com/blog/how-tailscale-works/#encrypted-tcp-relays-derp) ，
+1. 它是一个 **==通用目的包中继协议，运行在 HTTP 之上==** ，而大部分网络都是允许 HTTP 通信的。
+2. 它根据目的公钥（destination’s public key）来中继加密的流量（encrypted payloads）。
+ 前面也简单提到过，DERP 既是我们在 NAT 穿透失败时的保底通信方式（此时的角色 与 TURN 类似），也是在其他一些场景下帮助我们完成 NAT 穿透的旁路信道。 换句话说，它既是我们的保底方式，也是有更好的穿透链路时，帮助我们进行连接升 级（upgrade to a peer-to-peer connection）的基础设施。
 
 ## 6.3 小结
 
@@ -479,7 +478,7 @@ NAT Cone Types
 2. IP 地址确定了，剩下的就是端口了。总共有 65535 中可能，我们能 **==遍历这个端口范围==** 吗？
 
     如果发包速度是 100 packets/s，那最坏情况下，需要 **==10 分钟==** 来找到正确的端口。 还是那句话，这虽然不是最优的，但总比连不上好。
-	这很像是端口扫描（事实上，确实是），实际中可能会触发对方的网络入侵检测软件。
+ 这很像是端口扫描（事实上，确实是），实际中可能会触发对方的网络入侵检测软件。
 
 ## 7.2 基于生日悖论改进暴力扫描：hard side 多开端口 + easy side 随机探测
 
@@ -544,21 +543,23 @@ NAT Cone Types
 下面是三个具体的端口映射协议：
 
 1. [UPnP IGD](https://openconnectivity.org/developer/specifications/upnp-resources/upnp/internet-gateway-device-igd-v-2-0/) (Universal Plug’n’Play Internet Gateway Device)
-	最老的端口控制协议， 诞生于 1990s 晚期，因此使用了很多上世纪 90 年代的技术 （XML、SOAP、 **==multicast HTTP over UDP —— 对，HTTP over UDP==** ），而且很难准确和安全地实现这个协议。但以前很多路由器都内置了 UPnP 协议， 现在仍然很多。
-	请求和响应：
-	- “你好，请将我的 `lan-ip:port` 转发到公网（WAN）”，
-	- “好的，我已经为你分配了一个公网映射 `wan-ip:port` ”。
+ 最老的端口控制协议， 诞生于 1990s 晚期，因此使用了很多上世纪 90 年代的技术 （XML、SOAP、 **==multicast HTTP over UDP —— 对，HTTP over UDP==** ），而且很难准确和安全地实现这个协议。但以前很多路由器都内置了 UPnP 协议， 现在仍然很多。
+ 请求和响应：
+
+- “你好，请将我的 `lan-ip:port` 转发到公网（WAN）”，
+- “好的，我已经为你分配了一个公网映射 `wan-ip:port` ”。
+
 2. NAT-PMP
-	UPnP IGD 出来几年之后，Apple 推出了一个功能类似的协议，名为 [NAT-PMP](https://tools.ietf.org/html/rfc6886) (NAT Port Mapping Protocol)。
-	但与 UPnP 不同，这个协议 **==只==** 做端口转发，不管是在客户端还是服务端，实现起来都非常简单。
+ UPnP IGD 出来几年之后，Apple 推出了一个功能类似的协议，名为 [NAT-PMP](https://tools.ietf.org/html/rfc6886) (NAT Port Mapping Protocol)。
+ 但与 UPnP 不同，这个协议 **==只==** 做端口转发，不管是在客户端还是服务端，实现起来都非常简单。
 3. PCP
-	稍后一点，又出现了 NAT-PMP v2 版，并起了个新名字 [PCP](https://tools.ietf.org/html/rfc6887) (Port Control Protocol)。
+ 稍后一点，又出现了 NAT-PMP v2 版，并起了个新名字 [PCP](https://tools.ietf.org/html/rfc6887) (Port Control Protocol)。
 
 因此要更好地实现穿透，可以
 
 1. **==先判断本地的默认网关上是否启用了 UPnP IGD, NAT-PMP and PCP==** ，
 2. 如果探测发现其中任何一种协议有响应，我们就 **==申请一个公网端口映射==** ，
-	可以将这理解为一个 **==加强版 STUN==** ：我们不仅能发现自己的公网 `ip:port` ，而且能指示我们的 NAT 设备对我们的通信对端友好一些 —— 但并不是为这个端口修改或添加防火墙规则。
+ 可以将这理解为一个 **==加强版 STUN==** ：我们不仅能发现自己的公网 `ip:port` ，而且能指示我们的 NAT 设备对我们的通信对端友好一些 —— 但并不是为这个端口修改或添加防火墙规则。
 3. 接下来，任何到达我们 NAT 设备的、地址是我们申请的端口的包，都会被设备转发到我们。
 
 但我们 **==不能假设这个协议一定可用==** ：
@@ -566,7 +567,7 @@ NAT Cone Types
 1. 本地 NAT 设备可能不支持这个协议；
 2. 设备支持但默认禁用了，或者没人知道还有这么个功能，因此从来没开过；
 3. 安全策略要求关闭这个特性。
-	这一点非常常见，因为 UPnP 协议曾曝出一些高危漏洞（后面都修复了，因此如果是较新的设备，可以安全地使用 UPnP —— 如果实现没问题）。 不幸的是，某些设备的配置中，UPnP, NAT-PMP，PCP 是放在一个开关里的（可能 统称为 “UPnP” 功能），一开全开，一关全关。因此如果有人担心 UPnP 的安全性，他连另 外两个也用不了。
+ 这一点非常常见，因为 UPnP 协议曾曝出一些高危漏洞（后面都修复了，因此如果是较新的设备，可以安全地使用 UPnP —— 如果实现没问题）。 不幸的是，某些设备的配置中，UPnP, NAT-PMP，PCP 是放在一个开关里的（可能 统称为 “UPnP” 功能），一开全开，一关全关。因此如果有人担心 UPnP 的安全性，他连另 外两个也用不了。
 
 最后，终归来说， **==只要这种协议可用，就能有效地减少一次 NAT==** ，大大方便建连过程。 但接下来看一些不常见的场景。
 
@@ -655,9 +656,9 @@ CGNAT 对 NAT 穿透来说是一个大麻烦。
 Hairpin 是所有 NAT 设备的特性（支持或不支持），并不是 CGNAT 独有的。
 
 1. 在大部分情况下，这个特性对我们的 NAT 穿透目的来说都是无所谓的，因为我们期望中 **==两个 LAN NAT 设备会直接通信，不会再向上绕到它们的默认网关 CGNAT 来解决这个问题==** 。
-	Hairpin 特性可有可无这件事有点遗憾，这可能也是为什么 hairpin 功能经常 broken 的原因。
+ Hairpin 特性可有可无这件事有点遗憾，这可能也是为什么 hairpin 功能经常 broken 的原因。
 2. 一旦必须涉及到 CGNAT，那 hairpinning 对连接性来说就至关重要了。
-	Hairpinning 使内网连接的行为与公网连接的行为完成一致，因此我们无需关心目的 地址类型，也不用知晓自己是否在一台 CGNAT 后面。
+ Hairpinning 使内网连接的行为与公网连接的行为完成一致，因此我们无需关心目的 地址类型，也不用知晓自己是否在一台 CGNAT 后面。
 
 **==如果 hairpinning 和 port mapping protocols 都不可用，那只能降级到中继模式了==** 。
 
@@ -714,7 +715,7 @@ IPv4/IPv6 共存也引出了一个新的场景：NAT64 设备。
 ### 解决方案：CLAT 不存在时，手动穿透 NAT64 设备
 
 1. 首先检测是否存在 NAT64+DNS64。
-	方法很简单：向 `ipv4only.arpa.` 发送一个 DNS 请求。这个域名会解析 到一个已知的、固定的 IPv4 地址，而且是 **==纯 IPv4 地址==** 。如果得到的 是一个 IPv6 地址，就可以判断有 DNS64 服务器做了转换，而它必然会用到 NAT64。这样 就能判断出 NAT64 的前缀是多少。
+ 方法很简单：向 `ipv4only.arpa.` 发送一个 DNS 请求。这个域名会解析 到一个已知的、固定的 IPv4 地址，而且是 **==纯 IPv4 地址==** 。如果得到的 是一个 IPv6 地址，就可以判断有 DNS64 服务器做了转换，而它必然会用到 NAT64。这样 就能判断出 NAT64 的前缀是多少。
 2. 此后，要向 IPv4 地址发包时，发送格式为 `{NAT64 prefix + IPv4 address}` 的 IPv6 包。 类似地，收到来源格式为 `{NAT64 prefix + IPv4 address}` 的包时，就是 IPv4 流量。
 3. 接下来，通过 NAT64 网络与 STUN 通信来获取自己在 NAT64 上的公网 `ip:port` ，接 下来就回到经典的 NAT 穿透问题了 —— 除了需要多做一点点事情。
 
@@ -745,15 +746,15 @@ IPv4/IPv6 共存也引出了一个新的场景：NAT64 设备。
 这里的讨论不会严格遵循 ICE spec，因此如果是在自己实现一个可互操作的 ICE 客户端，应该通读 [RFC 8445](https://tools.ietf.org/html/rfc8445), 根据它的描述来实现。这里忽略所有电信术语，只关注核心的算法逻辑， 并提供几个在 ICE 规范允许范围的灵活建议。
 
 1. 为实现和某个 peer 的通信，首先需要确定我们自己用的（客户端侧）这个 socket 的地址， 这是一个列表，至少应该包括：
-	1. 我们自己的 IPv6 `ip:ports`
-	2. 我们自己的 IPv4 LAN `ip:ports` （局域网地址）
-	3. 通过 STUN 服务器获取到的我们自己的 IPv4 WAN `ip:ports` （ **==公网地址==** ，可能会经过 NAT64 转换）
-	4. 通过端口映射协议获取到的我们自己的 IPv4 WAN `ip:port` （NAT 设备的 **==端口映射协议分配的公网地址==** ）
-	5. 运营商提供给我们的 endpoints（例如， **==静态配置的端口转发==** ）
+1. 我们自己的 IPv6 `ip:ports`
+2. 我们自己的 IPv4 LAN `ip:ports` （局域网地址）
+3. 通过 STUN 服务器获取到的我们自己的 IPv4 WAN `ip:ports` （ **==公网地址==** ，可能会经过 NAT64 转换）
+4. 通过端口映射协议获取到的我们自己的 IPv4 WAN `ip:port` （NAT 设备的 **==端口映射协议分配的公网地址==** ）
+5. 运营商提供给我们的 endpoints（例如， **==静态配置的端口转发==** ）
 2. 通过旁路信道与 peer 互换这个列表。两边都拿到对方的列表后，就开始互相探测对方提供的地址。 **==列表中地址没有优先级==** ，也就是说，如果对方给的了 15 个地址，那我们应该把这 15 个地址都探测一遍。
-	这些 **==探测包有两个目的==** ：
-	1. **==打开防火墙，穿透 NAT==** ，也就是本文一直在介绍的内容；
-	2. **==健康检测==** 。我们在不断交换（最好是已认证的）“ping/pong” 包，来检测某个特定的路径是不是端到端通的。
+ 这些 **==探测包有两个目的==** ：
+1. **==打开防火墙，穿透 NAT==** ，也就是本文一直在介绍的内容；
+2. **==健康检测==** 。我们在不断交换（最好是已认证的）“ping/pong” 包，来检测某个特定的路径是不是端到端通的。
 3. 最后，一小会儿之后，从可用的备选地址中（根据某些条件）选择“最佳”的那个，任务完成！
 
 这个算法的优美之处在于：只要选择最佳线路（地址）的算法是正确的，那就总能获得最佳路径。
@@ -780,7 +781,7 @@ ICE spec 将协议组织为两个阶段：
 
 1. 持续探测所有路径，维护一个降级时会用的备用地址列表；
 2. **==直接降级到保底的中继模式==** ，然后再通过路径探测升级到更好的路径。
-	考虑到发生降级的概率是非常小的，因此这种方式可能是 **==更经济==** 的。
+ 考虑到发生降级的概率是非常小的，因此这种方式可能是 **==更经济==** 的。
 
 ## 7.9 安全
 

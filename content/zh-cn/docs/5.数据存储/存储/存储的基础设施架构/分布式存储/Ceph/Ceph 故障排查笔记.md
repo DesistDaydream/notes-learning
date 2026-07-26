@@ -101,86 +101,86 @@ title: Ceph 故障排查笔记
 删除当前的 osd 重新让其进行加载，此方式适合于异常重启后的操作。
 首先删除这个 osd：
 
-    $ ceph osd out osd.0
-    $ systemctl stop ceph-osd@0
-    $ ceph osd crush remove osd.0
-    $ ceph auth del osd.0
-    $ ceph osd rm 0
+    ceph osd out osd.0
+    systemctl stop ceph-osd@0
+    ceph osd crush remove osd.0
+    ceph auth del osd.0
+    ceph osd rm 0
 
 重新加载 osd：
 
-    $ ceph osd create 0
-    $ ceph auth add osd.0 osd 'allow *' mon 'allow rwx' -i /var/lib/ceph/osd/ceph-0/keyring
-    $ ceph osd crush add 0 1.0 host=master001
-    $ systemctl start ceph-osd@0
+    ceph osd create 0
+    ceph auth add osd.0 osd 'allow *' mon 'allow rwx' -i /var/lib/ceph/osd/ceph-0/keyring
+    ceph osd crush add 0 1.0 host=master001
+    systemctl start ceph-osd@0
 
 ### 清除当前 osd 所有数据重新添加
 
 删除当前 osd 的所有数据，并且重新加载 osd，此操作一定要保证有冗余可用的 osd，否则会造成整个 osd 数据损坏。
 删除当前 osd：
 
-    $ ceph osd out osd.0
-    $ systemctl stop ceph-osd@0
-    $ ceph osd crush remove osd.0
-    $ ceph auth del osd.0
-    $ ceph osd rm 0
+    ceph osd out osd.0
+    systemctl stop ceph-osd@0
+    ceph osd crush remove osd.0
+    ceph auth del osd.0
+    ceph osd rm 0
 
 卸载：
 
-    $ umount -l /var/lib/ceph/osd/ceph-0
+    umount -l /var/lib/ceph/osd/ceph-0
 
 清空磁盘数据：
 
-    $ wipefs -af /dev/mapper/VolGroup-lv_data1
-    $ ceph-volume lvm zap /dev/mapper/VolGroup-lv_data1
+    wipefs -af /dev/mapper/VolGroup-lv_data1
+    ceph-volume lvm zap /dev/mapper/VolGroup-lv_data1
 
 重新添加 osd：
 
-    $ ceph-deploy --overwrite-conf osd create master001 --data /dev/mapper/VolGroup-lv_data1
+    ceph-deploy --overwrite-conf osd create master001 --data /dev/mapper/VolGroup-lv_data1
 
 ### 删除当前节点所有服务
 
 删除当前节点的所有服务，让其重新加载数据：
 
-    $ ceph-deploy purge master001
-    $ ceph-deploy purgedata master001
+    ceph-deploy purge master001
+    ceph-deploy purgedata master001
 
 创建数据目录：
 
-    $ rm -rf /var/lib/ceph
-    $ mkdir -p /var/lib/ceph
-    $ mkdir -p /var/lib/ceph/osd/ceph-0
-    $ chown ceph:ceph /var/lib/ceph
+    rm -rf /var/lib/ceph
+    mkdir -p /var/lib/ceph
+    mkdir -p /var/lib/ceph/osd/ceph-0
+    chown ceph:ceph /var/lib/ceph
 
 然后安装 ceph：
 
-    $ ceph-deploy install master001
+    ceph-deploy install master001
 
 同步配置：
 
-    $ ceph-deploy --overwrite-conf admin master001
+    ceph-deploy --overwrite-conf admin master001
 
 添加 osd：
 
-    $ ceph-deploy osd create master001 --data /dev/mapper/VolGroup-lv_data1
+    ceph-deploy osd create master001 --data /dev/mapper/VolGroup-lv_data1
 
 ### 查看当前系统 ceph 服务状态
 
 查看当前系统 ceph 服务状态
 
-    $ systemctl list-units |grep ceph
+    systemctl list-units |grep ceph
 
 ### 重启当前系统 ceph 服务
 
 重启当前系统 ceph 服务
 
-    $ systemctl restart ceph*.service ceph*.target
+    systemctl restart ceph*.service ceph*.target
 
 ### 初始化 ceph-volume
 
 初始化 ceph-volume
 
-    $ ceph-volume lvm activate --bluestore --all
+    ceph-volume lvm activate --bluestore --all
 
 ### 修改 Client keyring 和修复
 
@@ -212,9 +212,9 @@ pool 的 enabled 开启：
 
 执行 enabled：
 
-    $ ceph osd pool application enable nextcloud rbd
-    $ ceph osd pool application enable gitlab-ops rbd
-    $ ceph osd pool application enable kafka-ops rbd
+    ceph osd pool application enable nextcloud rbd
+    ceph osd pool application enable gitlab-ops rbd
+    ceph osd pool application enable kafka-ops rbd
 
 ### Rbd 无法删除
 
@@ -252,7 +252,7 @@ rbd 无法删除，错误如下：
 
 取消映射：
 
-    $ rbd unmap nextcloud/mysql
+    rbd unmap nextcloud/mysql
 
 重新执行删除操作即可：
 
@@ -261,8 +261,8 @@ rbd 无法删除，错误如下：
 
 暴力解决方案，直接对其添加黑名单，忽略挂载节点：
 
-    $ ceph osd blacklist add 10.100.21.95:0/115493307
-    $ rbd rm nextcloud/mysql
+    ceph osd blacklist add 10.100.21.95:0/115493307
+    rbd rm nextcloud/mysql
 
 ### OSD 延迟
 
@@ -278,7 +278,7 @@ rbd 无法删除，错误如下：
 
 查看碎片：
 
-    $ xfs_db -c frag -r /dev/mapper/VolGroup-lv_data1
+    xfs_db -c frag -r /dev/mapper/VolGroup-lv_data1
 
 整理碎片：
 
@@ -286,29 +286,29 @@ rbd 无法删除，错误如下：
 
 查看磁盘通电时长：
 
-    $ smartctl -A /dev/mapper/VolGroup-lv_data1
+    smartctl -A /dev/mapper/VolGroup-lv_data1
 
 ### 修改副本数量
 
 修改副本数量：
 
-    $ ceph osd pool set fs_data2 min_size 1
-    $ ceph osd pool set fs_data2 size 2
+    ceph osd pool set fs_data2 min_size 1
+    ceph osd pool set fs_data2 size 2
 
 ### 添加 / 删除 pool
 
 添加 / 删除 pool：
 
-    $ ceph fs add_data_pool fs fs_data2
-    $ ceph fs rm_data_pool fs fs_data2
+    ceph fs add_data_pool fs fs_data2
+    ceph fs rm_data_pool fs fs_data2
 
 ### osd 数据均衡分布
 
 osd 数据均衡分布：
 
-    $ ceph balancer status
-    $ ceph balancer on
-    $ ceph balancer mode crush-compat
+    ceph balancer status
+    ceph balancer on
+    ceph balancer mode crush-compat
 
 ### mds 无法查询
 
@@ -370,8 +370,8 @@ mds 无法查询:
 
 cephfs 显示正常无法使用，一般是有异常 client 导致的，首先查找 mds 是否存在链接，尝试删除链接解决：
 
-    $ ceph tell mds.BJ-YZ-CEPH-94-52 session ls
-    $ ceph tell mds.BJ-YZ-CEPH-94-52 session evict id=834283
+    ceph tell mds.BJ-YZ-CEPH-94-52 session ls
+    ceph tell mds.BJ-YZ-CEPH-94-52 session evict id=834283
 
 每一个 mds 的 id 号不通用，不能跨节点删除。
 
@@ -379,7 +379,7 @@ cephfs 显示正常无法使用，一般是有异常 client 导致的，首先�
 
 fs 增加 mds:
 
-    $ ceph fs set fs max_mds 2
+    ceph fs set fs max_mds 2
 
 ### mon 时区异常
 
@@ -406,13 +406,13 @@ mon 因为时区有部分异常导致报错如下：
 
 配置 npt sever：
 
-    $ systemctl status ntpd
-    $ systemctl start ntpd
+    systemctl status ntpd
+    systemctl start ntpd
 
 重启异常的 mon.targe 解决：
 
-    $ systemctl status ceph-mon.target
-    $ systemctl restart ceph-mon.target
+    systemctl status ceph-mon.target
+    systemctl restart ceph-mon.target
 
 ### 1 MDSs report slow requests
 
@@ -429,11 +429,11 @@ mon 因为时区有部分异常导致报错如下：
 
 重启 mon 即可解决：
 
-    $ systemctl restart ceph-mon.target
+    systemctl restart ceph-mon.target
 
 如果无法解决需要重启 mds 解决：
 
-    $ systemctl restart ceph-mds@${HOSTNAME}
+    systemctl restart ceph-mds@${HOSTNAME}
 
 ### Reduced data availability: 38 pgs inactive
 
@@ -532,8 +532,8 @@ mon 因为时区有部分异常导致报错如下：
 
 清除次 ID 即可：**<https://blog.csdn.net/zuoyang1990/article/details/98530070>**
 
-    $ ceph daemon mds.master003 session ls|grep 284951
-    $ ceph tell mds.master003 session evict id=284951
+    ceph daemon mds.master003 session ls|grep 284951
+    ceph tell mds.master003 session evict id=284951
 
 如果报错如下：
 
@@ -745,7 +745,7 @@ full osd 每个 osd 已经写满上限:**<https://docs.ceph.com/en/latest/rados/
 
 可以手动修改权重解决:
 
-    $ ceph osd crush reweight osd.4 0.3
+    ceph osd crush reweight osd.4 0.3
 
 ### pg 均衡
 
@@ -827,7 +827,7 @@ reweight-by-utilization 按利用率调整 OSD 的权重:
 
 调整写入权重：
 
-    $ ceph osd reweight osd.35 0.001
+    ceph osd reweight osd.35 0.001
 
 查看当前 osd 信息：
 
@@ -875,12 +875,12 @@ reweight-by-utilization 按利用率调整 OSD 的权重:
 删除 Cephfs
 关闭所有 mds 服务, 需要登入服务器手动关闭:
 
-    $ systemctl stop ceph-mds@${HOSTNAME}
+    systemctl stop ceph-mds@${HOSTNAME}
 
 删除所需 fs:
 
-    $ ceph fs ls
-    $ ceph fs rm data --yes-i-really-mean-it
+    ceph fs ls
+    ceph fs rm data --yes-i-really-mean-it
 
 SSD 使用
 查看当前 OSD 状态: (相关文档:**<https://blog.csdn.net/kozazyh/article/details/79904219>**)
@@ -892,43 +892,43 @@ SSD 使用
 
 如果使用的 SSD 标识错误，请自定义修改，命令如下, 移除 osd 1 ~ 3 的标识:
 
-    $ for i in 0 1 2;do ceph osd crush rm-device-class osd.$i;done
+    for i in 0 1 2;do ceph osd crush rm-device-class osd.$i;done
 
 设置 1 ~ 3 标识为 ssd：
 
-    $ for i in 0 1 2;do ceph osd crush set-device-class ssd osd.$i;done
+    for i in 0 1 2;do ceph osd crush set-device-class ssd osd.$i;done
 
 创建一个 crush rule:
 
-    $ ceph osd crush rule create-replicated rule-ssd default host ssd
-    $ ceph osd crush rule ls
+    ceph osd crush rule create-replicated rule-ssd default host ssd
+    ceph osd crush rule ls
 
 然后创建 pool 时附带 rule 的名称：
 
-    $ ceph osd pool create fs_data 96 rule-ssd
-    $ ceph osd pool create fs_metadata 16 rule-ssd
-    $ ceph fs new fs fs_data fs_metadata
+    ceph osd pool create fs_data 96 rule-ssd
+    ceph osd pool create fs_metadata 16 rule-ssd
+    ceph fs new fs fs_data fs_metadata
 
 ### crushmap 查看
 
 执行命令如下:
 
-    $ ceph osd getcrushmap -o crushmap
-    $ crushtool -d crushmap -o crushmap
-    $ cat crushmap
+    ceph osd getcrushmap -o crushmap
+    crushtool -d crushmap -o crushmap
+    cat crushmap
 
 ### 3 monitors have not enabled msgr2
 
 解决如下：
 
-    $ ceph mon enable-msgr2
+    ceph mon enable-msgr2
 
 ### 2 daemons have recently crashed
 
 解决如下：**<https://blog.csdn.net/QTM_Gitee/article/details/106004435>**
 
-    $ ceph crash ls
-    $ ceph crash archive-all
+    ceph crash ls
+    ceph crash archive-all
 
 ### 脚注
 

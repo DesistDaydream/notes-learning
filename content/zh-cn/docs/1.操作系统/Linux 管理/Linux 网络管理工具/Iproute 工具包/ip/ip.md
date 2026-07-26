@@ -1,6 +1,5 @@
 ---
 title: ip
-linkTitle: ip
 weight: 1
 ---
 
@@ -44,13 +43,13 @@ Command "-c" is unknown, try "ip route help".
 
 - **-d, -details** # 输出更详细的信息,主要显示该网络设备的类型等
 - **-f, -family \<FAMILY>** # 指定要使用的协议族。协议族标识符可以是 inet、inet6、bridge、mpls、link 中的一种。如果不存在此选项，则从其他参数中猜测协议族。如果命令行的其余部分没有提供足够的信息来猜测该系列，则 ip 会退回到默认值，通常是 inet 或任何其他值。链接是一个特殊的系列标识符，表示不涉及网络协议。
-  - **-4** # `-family inet` 的简写
-  - **-6** # `-family inet6` 的简写
-  - **-B** # `-family bridge` 的简写
-  - **-M** # `-family mpls` 的简写
-  - **-0** # `-family link` 的简写
+    - **-4** # `-family inet` 的简写
+    - **-6** # `-family inet6` 的简写
+    - **-B** # `-family bridge` 的简写
+    - **-M** # `-family mpls` 的简写
+    - **-0** # `-family link` 的简写
 - **-o, -oneline** # 在一行中输出每条记录，并用''字符替换换行符。在使用 wc(1) 对记录进行计数 或 对输出进行 [grep](/docs/1.操作系统/Linux%20管理/Linux%20文本处理/grep.md) 时，这非常方便。
-  - 注意，使用 -o 选项时，不会打印没有 IP 地址的网络设备
+    - 注意，使用 -o 选项时，不会打印没有 IP 地址的网络设备
 - **-s, -stats** # 显示更详细的信息,主要显示该网络设备的接收、发送、错误、丢弃的数据包信息
 
 ## ARGUMENTS
@@ -59,10 +58,10 @@ Command "-c" is unknown, try "ip route help".
 
 - 注意：OBJECT(对象)选项用来指定 ip 程序想要控制的网络栈中的实体。
 - 比如：
-  - link(链路)
-  - address(地址)
-  - route(路由条目)
-  - 等
+    - link(链路)
+    - address(地址)
+    - route(路由条目)
+    - 等
 - ip 命令可以对这些网络对象进行相关操作，选定 object 后，后面执行相关 command 进行操作
 
 ## COMMAND
@@ -223,7 +222,7 @@ https://stackoverflow.com/questions/36715664/using-ip-what-does-lower-up-mean
 - **NO-CARRIER** # 表示该网络接口当前没有连接到任何物理设备，或者该连接已经断开。例如，当网线未连接到网卡时，该属性会显示为NO-CARRIER
 - **LOWER_UP** # 物理层连接是活跃的，通常表示网线已连接且对端设备工作正常。
 - **UP** # 表示该网络接口已经启用并正在工作
-  - LOWER_UP 与 UP 的区别：LOWER_UP 仅仅是表示物理层插了网线，UP 是网络层准备好了可以开始传输数据了。
+    - LOWER_UP 与 UP 的区别：LOWER_UP 仅仅是表示物理层插了网线，UP 是网络层准备好了可以开始传输数据了。
 
 ## 第四部分
 

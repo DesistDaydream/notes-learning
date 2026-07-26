@@ -1,6 +1,5 @@
 ---
 title: BGP
-linkTitle: BGP
 weight: 3
 ---
 

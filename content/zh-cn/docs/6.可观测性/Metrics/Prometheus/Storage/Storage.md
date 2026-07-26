@@ -1,6 +1,5 @@
 ---
 title: Storage
-linkTitle: Storage
 weight: 1
 ---
 
@@ -81,23 +80,23 @@ Prometheus 的存储大致可以分为两类
 Prometheus 存储在本地的时间序列数据，被抽象为一个一个的 **Block(块)**。每个 Block 都是一个单独的目录，Block 由 4 个部分组成：
 
 - **chunks/** # Block(块) 中的所有时序数据所在的子目录。
-  - chunks 目录中的时序数据被分组为一个或多个分段文件，默认情况下，每个文件的最大容量为 512MiB。
+    - chunks 目录中的时序数据被分组为一个或多个分段文件，默认情况下，每个文件的最大容量为 512MiB。
 - **meta.json** # 元数据文件
 - **index** # 索引文件。根据指标名称和标签索引到 chunks 目录中的时间序列数据
 - **tombstones** # 如果通过 API 删除时序数据，删除记录会保存在单独的逻辑文件 `tombstone` 当中。
-  - 也就是说，被删除的数据不会直接立即删除。而是通过 tombstones 文件建立一个删除记录，在通过 PromQL 查找数据时，不会搜索 tombstones 文件中标记的数据。
+    - 也就是说，被删除的数据不会直接立即删除。而是通过 tombstones 文件建立一个删除记录，在通过 PromQL 查找数据时，不会搜索 tombstones 文件中标记的数据。
 
 默认情况下，一个 Block(块) 最少包含 2 个小时的时序数据。可以通过下面这些参数设置每个 Block 所包含数据的时间周期。
 
 - --storage.tsdb.min-block-duration # 一个存储 Block 的最小时间。默认 2 小时
 - --storage.tsdb.max-block-duration # 一个存储 Block 的最大时间
-  - 每隔一段时间，这些 2 小时的 Block 将会通过 Compaction 机制，压缩成时间周期更长的 Block，以节省存储空间。通常这个时间周期是 --storage.tsdb.retention 标志指定的时间的 10%，若是 10% 的结果小于 31 天，则默认最大时间为 31 天。
+    - 每隔一段时间，这些 2 小时的 Block 将会通过 Compaction 机制，压缩成时间周期更长的 Block，以节省存储空间。通常这个时间周期是 --storage.tsdb.retention 标志指定的时间的 10%，若是 10% 的结果小于 31 天，则默认最大时间为 31 天。
 - --storage.tsdb.retention # 块的过期时间.
 - **举个例子**:
 - 假设有如下设置:
-  - --storage.tsdb.max-block-duration=1h
-  - --storage.tsdb.max-block-duration=15m
-  - --storage.tsdb.retention=2h
+    - --storage.tsdb.max-block-duration=1h
+    - --storage.tsdb.max-block-duration=15m
+    - --storage.tsdb.retention=2h
 - 再假设你在今天的 16:00 搜索了数据,那么你最多可以搜索到今天 13:00(即 16-(2-1))的数据.而最少也可以搜索到 14:45(如果期间数据在产生)往后的数据。
 
 我们将存储层划分为一个一个的 Block(块)，每个块在一段时间内保存所有序列。每个块充当独立数据库。

@@ -1,6 +1,5 @@
 ---
 title: ICMP
-linkTitle: ICMP
 weight: 3
 ---
 

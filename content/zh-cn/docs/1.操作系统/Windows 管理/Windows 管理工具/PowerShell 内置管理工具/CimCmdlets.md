@@ -1,6 +1,5 @@
 ---
 title: CimCmdlets
-linkTitle: CimCmdlets
 weight: 20
 ---
 

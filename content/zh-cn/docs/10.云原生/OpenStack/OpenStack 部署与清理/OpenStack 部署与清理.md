@@ -1,6 +1,5 @@
 ---
 title: OpenStack 部署与清理
-linkTitle: OpenStack 部署与清理
 weight: 1
 ---
 
@@ -28,7 +27,7 @@ https://docs.openstack.org/xena/install/
 由社区驱动的部署工具
 
 - **OpenStack Kolla** # 通过 Ansible 部署，并将大部分组件以容器的方式启动
-  - 非常简单高效得部署一个用来 生产、开发、测试 的 OpenStack。支持 all-in-one 和 multinode 两种模式(即所有组件都在一个节点或分散在多个节点)
+    - 非常简单高效得部署一个用来 生产、开发、测试 的 OpenStack。支持 all-in-one 和 multinode 两种模式(即所有组件都在一个节点或分散在多个节点)
 - **OpenStack Ansible** # 通过 Ansible 部署。
 
 其他
@@ -86,8 +85,8 @@ https://docs.openstack.org/xena/install/
 使用 Kolla-ansible 部署 OpenStack 的服务器必须满足如下要求：
 
 - **至少需要两个可用的网卡**，在 `/etc/kolla/globals.yml` 文件中，被描述为如下两个关键字
-  - **network_interface** # 管理网络、API 网络的网卡
-  - **neutron_external_interface** # Neutron 外部接口就是虚拟机对外访问的出口。该网络设备将会桥接到 `ovs-switch` 这个桥设备上。虚拟机是通过这块网卡访问外网。
+    - **network_interface** # 管理网络、API 网络的网卡
+    - **neutron_external_interface** # Neutron 外部接口就是虚拟机对外访问的出口。该网络设备将会桥接到 `ovs-switch` 这个桥设备上。虚拟机是通过这块网卡访问外网。
 - **至少 8G 内存**
 - **至少 40G 硬盘**
 

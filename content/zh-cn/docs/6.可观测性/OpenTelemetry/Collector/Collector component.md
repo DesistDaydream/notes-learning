@@ -1,6 +1,5 @@
 ---
 title: Collector component
-linkTitle: Collector component
 weight: 20
 ---
 
@@ -308,4 +307,3 @@ Flags: 0
 可以看到，Attributes 生成了 type_code，且 Resource attributes 中多了 type_code
 
 > Notes: 可以把 copy 改为 move，把 type_code 从 Attributes 移到 Resource attributes。避免某些程序（e.g. Loki）读两遍
-

@@ -1,6 +1,5 @@
 ---
 title: Windows MGMT
-linkTitle: Windows MGMT
 weight: 1
 ---
 
@@ -8,7 +7,7 @@ weight: 1
 
 > 参考：
 >
-> - 
+> -
 
 休眠
 
@@ -50,4 +49,3 @@ Windows 通知是 Toast 类型
 
 - **ShowInSettings**(0|1) # 是否在 设置 - 系统 - 通知 中显示。0 不显示，1 显示。
     - 该项无法在官方文档中找到说明
-

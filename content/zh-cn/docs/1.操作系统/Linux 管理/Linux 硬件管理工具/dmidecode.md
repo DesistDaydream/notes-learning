@@ -1,6 +1,5 @@
 ---
 title: "dmidecode"
-linkTitle: "dmidecode"
 weight: 20
 ---
 
@@ -212,5 +211,3 @@ Size: 1024 MB       # 此插槽有1根1G内存
 Size: No Module Installed       # 此插槽未使用
 Size: No Module Installed       # 此插槽未使用
 ```
-
-

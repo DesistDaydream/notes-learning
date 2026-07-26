@@ -6,11 +6,11 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，概念-概述-使用 Kubernetes 对象-Kubernetes 对象管理](https://kubernetes.io/docs/concepts/overview/working-with-objects/object-management/)
 > - [官方文档，任务-管理 Kubernetes 对象](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/)
 > - [公众号-k8s 技术圈，理解 K8s 中的 Client-Side Apply 和 Server-Side Apply](https://mp.weixin.qq.com/s/EYtMO9KGRK_lHS2IW-mZug)
->   - [原文：掘金](https://juejin.cn/post/7173328614644006942)
+>     - [原文：掘金](https://juejin.cn/post/7173328614644006942)
 
 使用 kubectl 等是传统的 **Client-Side Apply(简称 CSA)**，添加 --server-side 标志后，为 **Server-Side Apply(简称 SSA)。**
 
@@ -107,6 +107,7 @@ CSA 的工作工作机制大致如下：当 apply 一个对象，如果该对象
 ## Server-Side Apply(服务端应用)
 
 > 参考：
+>
 > - [官方文档，参考-API 概述-服务端 Apply](https://kubernetes.io/zh-cn/docs/reference/using-api/server-side-apply/)
 > - <https://cloud.tencent.com/developer/article/1610073>
 > - <https://yanhang.me/post/2021-ssa/>
@@ -118,6 +119,7 @@ CSA 的工作工作机制大致如下：当 apply 一个对象，如果该对象
 ### 字段管理
 
 > 参考：
+>
 > - [官方文档，参考-API 概述-服务端 Apply-字段管理](https://kubernetes.io/docs/reference/using-api/server-side-apply/#field-management)
 
 # 管理对象的方式

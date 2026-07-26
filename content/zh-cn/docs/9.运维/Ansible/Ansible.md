@@ -1,6 +1,5 @@
 ---
 title: Ansible
-linkTitle: "Ansible"
 weight: 1
 ---
 
@@ -31,7 +30,7 @@ Ansible 的主要目标是简单易用。它还非常注重安全性和可靠性
 **Collections** # 2.10 版本之后的新概念。Collections 是 Ansible 内容的分发格式，可以包括 Playbooks、Role、Modules、Plugins。新版中，Modules 和 Plugins 就被托管于 Collections 中。
 
 - 随着 Ansible 的发展，越来越多的模块、插件被开发并加入到 Ansible 的大家庭，这时候难免会出现命名上的冲突，或者调用上的重复。所以，从 2.10 版本之后，提出了 Collections 的概念。
-  - Collections 最大的一个功能就是将模块分类，比如以前 核心模块 command，现在的全名就叫 ansible.builtin.command，前面的 ansible.builtin 就是 command 的 Collections。这种全名称为 **Full Qualified Class Name(完全限定类名，简称 FQCN)**。
+    - Collections 最大的一个功能就是将模块分类，比如以前 核心模块 command，现在的全名就叫 ansible.builtin.command，前面的 ansible.builtin 就是 command 的 Collections。这种全名称为 **Full Qualified Class Name(完全限定类名，简称 FQCN)**。
 
 **Tasks(任务)** # Ansible 工作的最小单元，Ansible 对受管理节点执行的操作，称为任务。
 
@@ -48,10 +47,10 @@ Playbooks 是 Ansible 的精髓，如果把 Ansible 当做一门语言，那么�
 - **ansible core** # 核心组件，ansible 本身
 - **host inventory** # 主机库存，Ansible 所管理的主机清单，一个文本文件
 - **Modules** # 模块。ansible 的 modules 是实现 ansible 的核心，
-  - **core modules** # 核心模块
-    - ansible 执行任何命令，都是通过 module 来完成；比如 ansible 让被管理机创建一个用户，那么就会去 core modules 中调用一个能实现创建用户功能的模块，来执行这个操作。
-  - **custom modules** # 自定义模块
-    - 可以使用任何编程语言来编写模块，只要符合 ansible 的标准即可，可以实现 ansible 本身不具备的功能
+    - **core modules** # 核心模块
+        - ansible 执行任何命令，都是通过 module 来完成；比如 ansible 让被管理机创建一个用户，那么就会去 core modules 中调用一个能实现创建用户功能的模块，来执行这个操作。
+    - **custom modules** # 自定义模块
+        - 可以使用任何编程语言来编写模块，只要符合 ansible 的标准即可，可以实现 ansible 本身不具备的功能
 
 # Ansible 模块与插件
 

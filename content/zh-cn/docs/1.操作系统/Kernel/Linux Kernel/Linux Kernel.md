@@ -1,6 +1,5 @@
 ---
 title: Linux Kernel
-linkTitle: Linux Kernel
 weight: 1
 ---
 
@@ -12,7 +11,7 @@ weight: 1
 > - [GitHub 项目，torvalds/linux](https://github.com/torvalds/linux)
 > - [官网](https://www.kernel.org/)
 > - [官方文档](https://www.kernel.org/doc/html/latest/)
->   - https://www.infradead.org/~mchehab/kernel_docs/index.html 这是哪里的官方文档？
+>     - https://www.infradead.org/~mchehab/kernel_docs/index.html 这是哪里的官方文档？
 > - [官方 Manual(手册)](https://www.kernel.org/doc/man-pages/)
 > - [LWN.net](https://lwn.net/) 是一个由读者支持的新闻网站，致力于在 Linux 和 自由软件开发社区 中提供最佳报道。
 > - [Wiki, Kernel](<https://en.wikipedia.org/wiki/Kernel_(operating_system)>)

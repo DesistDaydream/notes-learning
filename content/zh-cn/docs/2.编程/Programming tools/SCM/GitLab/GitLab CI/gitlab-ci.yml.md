@@ -1,6 +1,5 @@
 ---
 title: gitlab-ci.yml
-linkTitle: gitlab-ci.yml
 weight: 2
 ---
 

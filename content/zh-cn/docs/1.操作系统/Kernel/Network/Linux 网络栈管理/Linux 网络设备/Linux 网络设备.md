@@ -1,6 +1,5 @@
 ---
 title: Linux 网络设备
-linkTitle: Linux 网络设备
 weight: 1
 tags:
   - PCI
@@ -9,6 +8,7 @@ tags:
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，torvalds/linux - Documentation/ABI/testing/sysfs-class-net](https://github.com/torvalds/linux/blob/master/Documentation/ABI/testing/sysfs-class-net)
 >     - [Linux 内核文档，管理员指南 - Testing ABI Files - ABI file testing/sysfs-class-net](https://www.kernel.org/doc/html/latest/admin-guide/abi-testing-files.html#abi-file-testing-sysfs-class-net) 索引
 >     - [Linux 内核文档，管理员指南 - ABI testing symbols - sysfs-class-net](https://www.kernel.org/doc/html/latest/admin-guide/abi-testing.html#file-testing-sysfs-class-net) 详细内容
@@ -39,7 +39,7 @@ Linux 网络设备归属于 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md) �
 **./type** # 网络设备的类型。文件内容是 10 进制数字。从 if_arp.h[^if_arp.h] 代码中（[stackoverflow](https://stackoverflow.com/questions/18598283/the-meaning-of-the-sys-class-net-interface-type-value) 也有相关问题）找到数字对应的设备类型表和该设备的定义（e.g. 1 表示 ARPHRD_ETHER），这个 C 的头文件将网络设备分为如下几大块
 
 - **ARP 协议硬件定义** # [ARP](/docs/4.数据通信/Protocol/Data%20Link%20Layer/ARP%20与%20NDP.md) 的 RFC 标准中，定义了这些，并且 IANA[^IANA] 中也维护了这些注册信息。
-  - 比如 `#define ARPHRD_ETHER 1` 这行代码意味着，type 文件的内容为 1 的话，表示该网络设备是 ARPHRD_ETHER（也就是常见的网卡设备）
+    - 比如 `#define ARPHRD_ETHER 1` 这行代码意味着，type 文件的内容为 1 的话，表示该网络设备是 ARPHRD_ETHER（也就是常见的网卡设备）
 - **非 ARP 硬件的虚拟网络设备** # Linux 自身实现的一些虚拟网络设备
 - **TODO**: 其他信息待整理
 
@@ -55,12 +55,12 @@ Linux 网络设备归属于 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md) �
 **./device/** # [PCI 设备资源信息](/docs/1.操作系统/Kernel/Hardware/PCI.md#PCI%20设备资源信息)（包括设备供应商、设备类别、etc.），该目录是 `/sys/devices/pciXXXX:XX/.../XXX` 下的 PCI 相关目录的软链接，可以从 PCI 文章中查看各文件的含义。
 
 - **./uevent** # 用户空间事件，物理机中该文件中包含 网络设备的驱动与 PCI 信息。
-  - PCI_SLOT_NAME # 网络设备所在的总线信息，与 [ethtool](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/ethtool.md) 命令的 -i 选项输出的 bus-info 信息相同；与 [lspci](/docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/lspci.md) 的第一列信息相同；与 `lshw -C net -businfo` 的第一列信息相同
-    - Notes: 虚拟机中，该文件没有 PCI_SLOT_NAME 的信息。
-    - https://stackoverflow.com/questions/78497110/how-to-get-bus-info-in-a-generic-way
-    - https://askubuntu.com/questions/654820/how-to-find-pci-address-of-an-ethernet-interface
-    - https://stackoverflow.com/questions/73650069/how-to-use-ethtool-drvinfo-to-collect-driver-information-for-a-network-interface
-    - 具体解释详见下文 [通过 PCI 识别网络设备](#通过%20PCI%20识别网络设备)
+    - PCI_SLOT_NAME # 网络设备所在的总线信息，与 [ethtool](/docs/1.操作系统/Linux%20管理/Linux%20网络管理工具/ethtool.md) 命令的 -i 选项输出的 bus-info 信息相同；与 [lspci](/docs/1.操作系统/Linux%20管理/Linux%20硬件管理工具/lspci.md) 的第一列信息相同；与 `lshw -C net -businfo` 的第一列信息相同
+        - Notes: 虚拟机中，该文件没有 PCI_SLOT_NAME 的信息。
+        - https://stackoverflow.com/questions/78497110/how-to-get-bus-info-in-a-generic-way
+        - https://askubuntu.com/questions/654820/how-to-find-pci-address-of-an-ethernet-interface
+        - https://stackoverflow.com/questions/73650069/how-to-use-ethtool-drvinfo-to-collect-driver-information-for-a-network-interface
+        - 具体解释详见下文 [通过 PCI 识别网络设备](#通过%20PCI%20识别网络设备)
 - TODO: 其他信息待整理
 
 ```bash
@@ -286,12 +286,12 @@ cat: '/sys/devices/pci0000:00/0000:00:03.0/virtio0/class': No such file or direc
 
 在物理机上，这个 PCI 就相当于一个有多个网口的网卡（i.e. PCI_CLASS_BRIDGE_PCI）
 
-|                                                  | 物理机                                                         | 虚拟机                                                    |
+| | 物理机 | 虚拟机 |
 | ------------------------------------------------ | ----------------------------------------------------------- | ------------------------------------------------------ |
-| 路径结构                                             | ../../devices/pci0000:00/0000:00:1c.3/0000:01:00.0/net/eno3 | ../../devices/pci0000:00/0000:00:03.0/virtio0/net/eth0 |
-| `./${DOMAIN:BUS:SOLT.FUNC}/class` 文件的值           | 0x060400(i.e. PCI_CLASS_BRIDGE_PCI)                         | 0x020000(i.e. PCI_CLASS_NETWORK_ETHERNET)              |
-| `./${DOMAIN:BUS:SOLT.FUNC}/` 下的目录                | 0000:01:00.0/                                               | virtio0/                                               |
-| `./${DOMAIN:BUS:SOLT.FUNC}/${PCI_ID}/class` 文件的值 | 0x020000(i.e. PCI_CLASS_NETWORK_ETHERNET)                   | 无该文件                                                   |
+| 路径结构 | ../../devices/pci0000:00/0000:00:1c.3/0000:01:00.0/net/eno3 | ../../devices/pci0000:00/0000:00:03.0/virtio0/net/eth0 |
+| `./${DOMAIN:BUS:SOLT.FUNC}/class` 文件的值 | 0x060400(i.e. PCI_CLASS_BRIDGE_PCI) | 0x020000(i.e. PCI_CLASS_NETWORK_ETHERNET) |
+| `./${DOMAIN:BUS:SOLT.FUNC}/` 下的目录 | 0000:01:00.0/ | virtio0/ |
+| `./${DOMAIN:BUS:SOLT.FUNC}/${PCI_ID}/class` 文件的值 | 0x020000(i.e. PCI_CLASS_NETWORK_ETHERNET) | 无该文件 |
 
 可以看到，虚拟机的整体结构也是跟物理机类似的，只不过 PCI 类型直接就是 PCI_CLASS_NETWORK_ETHERNET，导致没有下级 PCI ID（只是一个名为 virtio0 的目录），也就是说，如果想要通过 PCI 找到网卡，通常目录结构都是 `/sys/devices/pci${DOMAIN:BUS}/${DOMAIN:BUS:SOLT.FUNC}/${PCI_ID}/net/${NETWORK_DEVICE_NAME}`
 

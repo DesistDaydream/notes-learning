@@ -1,6 +1,5 @@
 ---
 title: ethtool
-linkTitle: ethtool
 weight: 20
 ---
 
@@ -92,9 +91,9 @@ Combined: 32
 ```
 
 - **-m, --dump-module-eeprom, --module-info** # 从 “EEPROM 插件模块”检索并解码硬件信息。比如 SFP+、QSFP。如果驱动程序和模块支持它，光学诊断信息也会被读取和解码。如果指定了 page、bank 或 i2c 参数之一，则仅允许转储单个页面或其部分。在这种情况下，偏移和长度参数相对于 EEPROM 页面边界进行处理。
-  - “插件模块”，就是指网卡口插的模块。通常情况下来说，都是光模块。
-    - 光模块能显示的信息详见下文“[光模块插件信息](#yVQY0)”
-  - 这种信息一般只存在于具有模块网卡的物理机上。虚拟机或者无法插模块的网卡，是没有这种信息的，这时候获取信息，将会出现如下报错：
+    - “插件模块”，就是指网卡口插的模块。通常情况下来说，都是光模块。
+        - 光模块能显示的信息详见下文“[光模块插件信息](#yVQY0)”
+    - 这种信息一般只存在于具有模块网卡的物理机上。虚拟机或者无法插模块的网卡，是没有这种信息的，这时候获取信息，将会出现如下报错：
 
 ```bash
 ~]# ethtool -m enp25s0f0
@@ -121,8 +120,8 @@ NIC statistics:
 
 - **-p, --identify** # 可以让指定网络设备关联的网卡上的 led 灯闪烁。**常用来在机房中识别机器网卡**。
 - **-s,--change \<DEV>** # 允许更改指定网络设备的部分或全部设置。 以下所有选项仅在指定了-s 时适用。
-  - **speed N** # 用 Mb/s 作为单位设置网卡速率。Set speed in Mb/s. ethtool with just the device name as an argument will show you the supported device speeds.
-  - **duplex {half|full}** # 设置全双工或半双工模式
+    - **speed N** # 用 Mb/s 作为单位设置网卡速率。Set speed in Mb/s. ethtool with just the device name as an argument will show you the supported device speeds.
+    - **duplex {half|full}** # 设置全双工或半双工模式
 
 # EXAMPLE
 
@@ -157,11 +156,11 @@ supports-priv-flags: yes
 - **firmware-version** # 与驱动程序一起使用的固件的版本号
 - **bus-info** # 网卡在系统总线上的位置信息，比如 PCI 总线上的位置
 - supports-XXX # 网络设备的驱动是否支持某些特性
-  - **supperts-statistics** # 驱动是否支持收集统计信息
-  - **supports-test** # 驱动是否支持测试功能
-  - **supports-eeprom-access** # 驱动是否支持 EEPROM 访问
-  - **supports-register-dump** # 驱动是否支持寄存器转储功能
-  - **supports-priv-flags** # 驱动是否支持私有标志
+    - **supperts-statistics** # 驱动是否支持收集统计信息
+    - **supports-test** # 驱动是否支持测试功能
+    - **supports-eeprom-access** # 驱动是否支持 EEPROM 访问
+    - **supports-register-dump** # 驱动是否支持寄存器转储功能
+    - **supports-priv-flags** # 驱动是否支持私有标志
 
 ## -m 选项信息
 
@@ -196,51 +195,51 @@ supports-priv-flags: yes
 - **Date code : 200727\_\_**
 - **Optical diagnostics support : Yes**
 - **光模块特有信息**
-  - **Laser bias current** # 激光偏置电流。示例值：`5.762 mA`
-  - **Laser output power** # 激光输出功率(光模块发送功率)。示例值：`0.5240 mW / -2.81 dBm`
-  - **Receiver signal average optical power** # 接收信号的平均光功率(光模块接收功率)。示例值：`0.4646 mW / -3.33 dBm`
+    - **Laser bias current** # 激光偏置电流。示例值：`5.762 mA`
+    - **Laser output power** # 激光输出功率(光模块发送功率)。示例值：`0.5240 mW / -2.81 dBm`
+    - **Receiver signal average optical power** # 接收信号的平均光功率(光模块接收功率)。示例值：`0.4646 mW / -3.33 dBm`
 - **Module temperature : 26.32 degrees C / 79.38 degrees F**
 - **Module voltage : 3.3360 V**
 - **模块告警开关**
-  - **Alarm/warning flags implemented : Yes**
-  - **Laser bias current high alarm : Off**
-  - **Laser bias current low alarm : Off**
-  - **Laser bias current high warning : Off**
-  - **Laser bias current low warning : Off**
-  - **Laser output power high alarm : Off**
-  - **Laser output power low alarm : Off**
-  - **Laser output power high warning : Off**
-  - **Laser output power low warning : Off**
-  - **Module temperature high alarm : Off**
-  - **Module temperature low alarm : Off**
-  - **Module temperature high warning : Off**
-  - **Module temperature low warning : Off**
-  - **Module voltage high alarm : Off**
-  - **Module voltage low alarm : Off**
-  - **Module voltage high warning : \`Off**
-  - **Module voltage low warning : Off**
-  - **Laser rx power high alarm : Off**
-  - **Laser rx power low alarm : Off**
-  - **Laser rx power high warning : Off**
-  - **Laser rx power low warning : Off**
+    - **Alarm/warning flags implemented : Yes**
+    - **Laser bias current high alarm : Off**
+    - **Laser bias current low alarm : Off**
+    - **Laser bias current high warning : Off**
+    - **Laser bias current low warning : Off**
+    - **Laser output power high alarm : Off**
+    - **Laser output power low alarm : Off**
+    - **Laser output power high warning : Off**
+    - **Laser output power low warning : Off**
+    - **Module temperature high alarm : Off**
+    - **Module temperature low alarm : Off**
+    - **Module temperature high warning : Off**
+    - **Module temperature low warning : Off**
+    - **Module voltage high alarm : Off**
+    - **Module voltage low alarm : Off**
+    - **Module voltage high warning : \`Off**
+    - **Module voltage low warning : Off**
+    - **Laser rx power high alarm : Off**
+    - **Laser rx power low alarm : Off**
+    - **Laser rx power high warning : Off**
+    - **Laser rx power low warning : Off**
 - **模块告警阈值**
-  - **Laser bias current high alarm threshold : 16.500 mA**
-  - **Laser bias current low alarm threshold : 1.000 mA**
-  - **Laser bias current high warning threshold : 15.000 mA**
-  - **Laser bias current low warning threshold : 1.000 mA**
-  - **Laser output power high alarm threshold : 1.2589 mW / 1.00 dBm**
-  - **Laser output power low alarm threshold : 0.0933 mW / -10.30 dBm**
-  - **Laser output power high warning threshold : 0.7943 mW / -1.00 dBm**
-  - **Laser output power low warning threshold : 0.1862 mW / -7.30 dBm**
-  - **Module temperature high alarm threshold : 81.00 degrees C / 177.80 degrees F**
-  - **Module temperature low alarm threshold : 0.00 degrees C / 32.00 degrees F**
-  - **Module temperature high warning threshold : 78.00 degrees C / 172.40 degrees F**
-  - **Module temperature low warning threshold : 3.00 degrees C / 37.40 degrees F**
-  - **Module voltage high alarm threshold : 3.7950 V**
-  - **Module voltage low alarm threshold : 2.8050 V**
-  - **Module voltage high warning threshold : 3.5000 V**
-  - **Module voltage low warning threshold : 3.1000 V**
-  - **Laser rx power high alarm threshold : 1.2589 mW / 1.00 dBm**
-  - **Laser rx power low alarm threshold : 0.0646 mW / -11.90 dBm**
-  - **Laser rx power high warning threshold : 0.7943 mW / -1.00 dBm**
-  - **Laser rx power low warning threshold : 0.1023 mW / -9.90 dBm**
+    - **Laser bias current high alarm threshold : 16.500 mA**
+    - **Laser bias current low alarm threshold : 1.000 mA**
+    - **Laser bias current high warning threshold : 15.000 mA**
+    - **Laser bias current low warning threshold : 1.000 mA**
+    - **Laser output power high alarm threshold : 1.2589 mW / 1.00 dBm**
+    - **Laser output power low alarm threshold : 0.0933 mW / -10.30 dBm**
+    - **Laser output power high warning threshold : 0.7943 mW / -1.00 dBm**
+    - **Laser output power low warning threshold : 0.1862 mW / -7.30 dBm**
+    - **Module temperature high alarm threshold : 81.00 degrees C / 177.80 degrees F**
+    - **Module temperature low alarm threshold : 0.00 degrees C / 32.00 degrees F**
+    - **Module temperature high warning threshold : 78.00 degrees C / 172.40 degrees F**
+    - **Module temperature low warning threshold : 3.00 degrees C / 37.40 degrees F**
+    - **Module voltage high alarm threshold : 3.7950 V**
+    - **Module voltage low alarm threshold : 2.8050 V**
+    - **Module voltage high warning threshold : 3.5000 V**
+    - **Module voltage low warning threshold : 3.1000 V**
+    - **Laser rx power high alarm threshold : 1.2589 mW / 1.00 dBm**
+    - **Laser rx power low alarm threshold : 0.0646 mW / -11.90 dBm**
+    - **Laser rx power high warning threshold : 0.7943 mW / -1.00 dBm**
+    - **Laser rx power low warning threshold : 0.1023 mW / -9.90 dBm**

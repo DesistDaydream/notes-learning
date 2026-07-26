@@ -1,6 +1,5 @@
 ---
 title: rc 配置文件
-linkTitle: rc 配置文件
 weight: 20
 ---
 

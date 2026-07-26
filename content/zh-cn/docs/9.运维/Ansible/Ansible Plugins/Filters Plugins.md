@@ -1,6 +1,5 @@
 ---
 title: Filters Plugins
-linkTitle: Filters Plugins
 weight: 20
 ---
 

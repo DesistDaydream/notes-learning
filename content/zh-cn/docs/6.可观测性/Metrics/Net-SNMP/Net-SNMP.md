@@ -1,6 +1,5 @@
 ---
 title: Net-SNMP
-linkTitle: Net-SNMP
 weight: 1
 ---
 
@@ -17,9 +16,9 @@ Net-SNMP 是实现 [SNMP(传统监控标准)](/docs/6.可观测性/Metrics/监�
 
 - **net-snmp** # SNMP 代理，用于采集设备的 SNMP 信息。包含两个守护程序。
 - **net-snmp-utils** # 是一组工具的集合，包括下面这些命令行工具：
-  - snmpwalk # 获取 SNMP 信息，可以根据 OID 获取指定 OID 的 SNMP 信息
-  - snmptranslate # 转换 OID 的两种格式
-  - encode_keychange、snmpbulkget、snmpbulkwalk、snmpdelta、snmpdf、snmpget、snmpgetnext、snmpinform、snmpnetstat、snmpset、snmpstatus、snmptable、snmptest、snmptls、snmptrap、snmpusm、snmpvacm
+    - snmpwalk # 获取 SNMP 信息，可以根据 OID 获取指定 OID 的 SNMP 信息
+    - snmptranslate # 转换 OID 的两种格式
+    - encode_keychange、snmpbulkget、snmpbulkwalk、snmpdelta、snmpdf、snmpget、snmpgetnext、snmpinform、snmpnetstat、snmpset、snmpstatus、snmptable、snmptest、snmptls、snmptrap、snmpusm、snmpvacm
 
 ## net-snmp
 

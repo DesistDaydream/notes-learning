@@ -1,6 +1,5 @@
 ---
 title: SNMP 采集第三方 MIB 文件定义的设备信息
-linkTitle: SNMP 采集第三方 MIB 文件定义的设备信息
 weight: 20
 ---
 
@@ -40,6 +39,7 @@ weight: 20
 $ net-snmp-config --default-mibdirs
 /home/user/.snmp/mibs:/usr/share/snmp/mibs
 ```
+
 还可以用 `snmpget` 查找路径：
 
 ```bash
@@ -156,7 +156,7 @@ PORT    STATE         SERVICE
 验证 SNMP 通讯是否正常，正常的话，下面的命令会采集到设备名称、时间、IP 地址等通用信息
 
 ```bash
-$ snmpwalk -v2c -c public 10.10.20.30
+snmpwalk -v2c -c public 10.10.20.30
 ```
 
 然后采集传感器的温湿度信息：

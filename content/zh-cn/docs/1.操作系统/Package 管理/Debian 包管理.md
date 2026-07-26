@@ -80,20 +80,20 @@ dpki-query 是一个查询工具，可以从 dpkg 数据库中查询包的信息
 - **-L, --listfiles \<PACKAGE>** # 列出系统中 PACKAGE 的安装路径，所有关联的安装文件都会列出
 - **-l, --list \[PACKAGE]** # 列出所有包，或指定的 PACKAGE，PACKAGE 可以使用通配符。
 - **-S, --search \<FILE>** # 搜索 FILE 属于哪个 Package。FILE 可以使用通配符。
-  - 注意：当我们搜索二进制的命令文件属于哪个 Package 时，经常会搜不到，这是因为 which 命令查到的命令路径是 **/usr/bin**，但是 Debian 包安装的程序，通常都是在 **/bin** 目录下，虽然这俩是具有软链接的关系。
-  - 所以，当我们搜不到时，可以尝试使用 /bin 目录作为二进制文件的路径前缀。
+    - 注意：当我们搜索二进制的命令文件属于哪个 Package 时，经常会搜不到，这是因为 which 命令查到的命令路径是 **/usr/bin**，但是 Debian 包安装的程序，通常都是在 **/bin** 目录下，虽然这俩是具有软链接的关系。
+    - 所以，当我们搜不到时，可以尝试使用 /bin 目录作为二进制文件的路径前缀。
 - **-s, --status \<PackageName>** # 报告所输入的(PackageName)这个软件包的状态
 
 ## dpkg 相关程序示例
 
 - 列出 corosync 这个包的安装路径
-  - dpkg-query -L corosync
+    - dpkg-query -L corosync
 - 查找 nsswitch.conf 文件属于哪个包，并显示所在路径
-  - dpkg-query --search nsswitch.conf
+    - dpkg-query --search nsswitch.conf
 - 清除所有已删除包的残余配置文件，可以清除一些残留无用的配置。
-  - `dpkg -l | grep ^rc|awk '{print $2}' | sudo xargs dpkg -P`
+    - `dpkg -l | grep ^rc|awk '{print $2}' | sudo xargs dpkg -P`
 - 将 DEB_PACK 这几个 .deb 包中的文件提取到 PATH 路径下
-  - `dpkg-deb -xv ${DEB_PACK} ${PATH}`
+    - `dpkg-deb -xv ${DEB_PACK} ${PATH}`
 
 # APT 工具集
 
@@ -172,12 +172,12 @@ EOF
 - **install** # 安装或升级软件包
 - **update** # 更新软件包的索引。更新 source.list 文件或长时间没更新时，需要先 update 再安装包。
 - **upgrade** # 升级所有软件包。
-  - 注意：upgrade 之前必须要执行 `apt update`，以便让 ATP 知道有新版本的软件包可用。
+    - 注意：upgrade 之前必须要执行 `apt update`，以便让 ATP 知道有新版本的软件包可用。
 - **reinstall \<PKG>** # 重新安装软件包
 - **remove \<PKG>** # 删除指定的软件包
 - **purge \<PKG>** # 删除指定得软件包及其配置文件
 - **clean** # 清除本地存储库内的已检索到的软件包文件。
-  - 该命令会从 /var/cache/apt/archives/ 和 /var/cache/apt/archives/partial/ 目录中删除除了锁文件以外的所有文件。
+    - 该命令会从 /var/cache/apt/archives/ 和 /var/cache/apt/archives/partial/ 目录中删除除了锁文件以外的所有文件。
 - **autoremove** # 自动清理所有不再使用的依赖
 
 **OPTIONS**
@@ -185,16 +185,16 @@ EOF
 > Note：所有命令行选项都可以通过配置文件来设置。在配置文件中的写法在 Configuration Item 字段后面
 
 - **-d, --download-only** # 仅下载。包文件只会 retrieved(被检索)，并不会 unpacked(被解包) 或者 installed(被安装)。
-  - 配置项：APT::Get::Download-Only.
+    - 配置项：APT::Get::Download-Only.
 - **--only-upgrade** # 与 install 命令一起使用时， 将升级指定的软件包，若软件包未安装，则忽略安装行为。
-  - 配置项：APT::Get::Only-Upgrade
+    - 配置项：APT::Get::Only-Upgrade
 
 ### EXAMPLE
 
 - 仅下载包及其依赖
-  - **apt reinstall -d \`apt-cache depends docker-ce=5:19.03.11~3-0~ubuntu-focal | grep Depends | awk -F': ' '{print $2}'**
+    - **apt reinstall -d \`apt-cache depends docker-ce=5:19.03.11~3-0~ubuntu-focal | grep Depends | awk -F': ' '{print $2}'**
 - 安装指定版本的包(注意：包名和版本号之间用 `=` 符号分割)
-  - **apt install kubectl=1.19.9-00**
+    - **apt install kubectl=1.19.9-00**
 
 ## apt-cache
 
@@ -214,35 +214,35 @@ EOF
 - **policy [PKG]** # 显示包源的优先级。若指定了 PKG，则显示包的三个信息：1.已安装的版本。2.可安装的最高版本。3.版本列表
 - **stats** # 显示缓存中包的统计信息
 - 依赖关系命令
-  - **depends \<PKG>** # 列出程序包具有的每个依赖关系以及可以满足该依赖关系的所有其他可能的程序包。
-  - **rdepends \<PKG>** # 显示了程序包具有的每个反向依赖项的列表。
+    - **depends \<PKG>** # 列出程序包具有的每个依赖关系以及可以满足该依赖关系的所有其他可能的程序包。
+    - **rdepends \<PKG>** # 显示了程序包具有的每个反向依赖项的列表。
 
 ### EXAMPLE
 
 - 显示 docker-ce=5:20.10.0~3-0~ubuntu-focal 包的信息，可以看到这个包的源、版本等信息。
-  - **apt-cache show docker-ce=5:20.10.0~3-0~ubuntu-focal**
+    - **apt-cache show docker-ce=5:20.10.0~3-0~ubuntu-focal**
 - 显示 containerd 包的
-  - **apt-cache policy containerd**
+    - **apt-cache policy containerd**
 - 查询 xxx 包 依赖哪些包
-  - **apt-cache depends xxx**
+    - **apt-cache depends xxx**
 - 查询 xxx 包 被哪些包依赖
-  - **apt-cache rdepends xxx**
+    - **apt-cache rdepends xxx**
 
 ## apt-key
 
 ### EXAMPLE
 
 - 删除仓库的密钥
-  - 先列出所有密钥
-    - sudo apt-key list
-  - 删除指定密钥
-    - sudo apt-key del "3820 03C2 C8B7 B4AB 813E 915B 14E4 9429 73C6 2A1B"
-    - 也可以仅指定最后 8 个字符
-    - sudo apt-key del 73C62A1B
+    - 先列出所有密钥
+        - sudo apt-key list
+    - 删除指定密钥
+        - sudo apt-key del "3820 03C2 C8B7 B4AB 813E 915B 14E4 9429 73C6 2A1B"
+        - 也可以仅指定最后 8 个字符
+        - sudo apt-key del 73C62A1B
 
 - # 更新仓库
 
-  - sudo apt update
+    - sudo apt update
 
 # 包的自动更新
 

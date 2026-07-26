@@ -1,6 +1,5 @@
 ---
 title: Snort
-linkTitle: Snort
 weight: 20
 ---
 
@@ -26,7 +25,7 @@ Snort 规则主要由两部分组成
 
 - **Rule header** # 定义了流量的基础规则，协议、源/目 的 IP 和 PORT，最基本就是这 5-tuple。
 - **Rule body** # 类似于 7 层策略。定义了与指定规则关联的数据包的内容应该如何匹配。用 `()` 包裹起来。
-  - Rule body 中包括很多可用的 OPTIONS，详见 https://docs.snort.org/rules/options/ ，比如 msg、flow、etc. 都是 OPTIONS。
+    - Rule body 中包括很多可用的 OPTIONS，详见 https://docs.snort.org/rules/options/ ，比如 msg、flow、etc. 都是 OPTIONS。
 
 以下是具有 Rule header 和 Rule body 定义的完整形式的 Snort 3 规则的示例：
 

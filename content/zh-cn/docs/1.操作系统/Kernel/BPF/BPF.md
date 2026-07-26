@@ -1,6 +1,5 @@
 ---
 title: BPF
-linkTitle: BPF
 weight: 1
 ---
 
@@ -85,9 +84,9 @@ Linux Kernel 一直是实现 可观察性、网络、安全性 的理想场所�
 
 - **Networking(网络)**
 - **Observability(可观测性)**
-  - **Monitoring(监控)**
-  - **Tracing(跟踪)**
-  - **Profiling(分析)**
+    - **Monitoring(监控)**
+    - **Tracing(跟踪)**
+    - **Profiling(分析)**
 - **Security(安全)**
 - **等等，随着发展，eBPF 还可以实现更多!**
 

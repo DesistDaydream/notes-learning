@@ -6,7 +6,7 @@ title: fio 参数详解
 
 官方文档：<https://fio.readthedocs.io/en/latest/fio_doc.html#job-file-parameters>
 
-## 参数类型：
+## 参数类型
 
 Job file 的参数有多种类型，每种类型的参数的值可用的类型各不相同，比如时间类型的参数的值就需要填写时间相关的值。
 

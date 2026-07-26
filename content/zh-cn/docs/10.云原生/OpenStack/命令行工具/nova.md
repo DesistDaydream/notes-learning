@@ -1,6 +1,5 @@
 ---
 title: nova
-linkTitle: nova
 weight: 20
 ---
 

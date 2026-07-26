@@ -1,6 +1,5 @@
 ---
 title: Programming paradigm
-linkTitle: Programming paradigm
 weight: 1
 ---
 
@@ -13,9 +12,9 @@ weight: 1
 下面这种你属于什么分类？
 
 - Scripting language(脚本语言)
-  - https://en.wikipedia.org/wiki/Scripting_language
+    - https://en.wikipedia.org/wiki/Scripting_language
 - Compiled language(编译语言)
-  - https://en.wikipedia.org/wiki/Compiled_language
+    - https://en.wikipedia.org/wiki/Compiled_language
 
 # 常见编程的非国际定义的标准
 

@@ -8,7 +8,7 @@ title: 基于 IPVS 的集群内负载平衡深入探讨
 
 ## Introduction
 
-Per [the Kubernetes 1.11 release blog post ](https://kubernetes.io/blog/2018/06/27/kubernetes-1.11-release-announcement/), we announced that IPVS-Based In-Cluster Service Load Balancing graduates to General Availability. In this blog, we will take you through a deep dive of the feature.
+Per [the Kubernetes 1.11 release blog post](https://kubernetes.io/blog/2018/06/27/kubernetes-1.11-release-announcement/), we announced that IPVS-Based In-Cluster Service Load Balancing graduates to General Availability. In this blog, we will take you through a deep dive of the feature.
 
 ## What Is IPVS?
 
@@ -56,13 +56,13 @@ When creating a ClusterIP type Service, IPVS proxier will do the following three
 Here comes an example:
 
     # kubectl describe svc nginx-service
-    Name:			nginx-service
+    Name:   nginx-service
     ...
-    Type:			ClusterIP
-    IP:			    10.102.128.4
-    Port:			http	3080/TCP
-    Endpoints:		10.244.0.235:8080,10.244.1.237:8080
-    Session Affinity:	None
+    Type:   ClusterIP
+    IP:       10.102.128.4
+    Port:   http 3080/TCP
+    Endpoints:  10.244.0.235:8080,10.244.1.237:8080
+    Session Affinity: None
     # ip addr
     ...
     73: kube-ipvs0: <BROADCAST,NOARP> mtu 1500 qdisc noop state DOWN qlen 1000
@@ -93,11 +93,11 @@ There are three proxy modes in IPVS: NAT (masq), IPIP and DR. Only NAT mode supp
 IPVS supports client IP session affinity (persistent connection). When a Service specifies session affinity, the IPVS proxier will set a timeout value (180min=10800s by default) in the IPVS virtual server. For example:
 
     # kubectl describe svc nginx-service
-    Name:			nginx-service
+    Name:   nginx-service
     ...
-    IP:			    10.102.128.4
-    Port:			http	3080/TCP
-    Session Affinity:	ClientIP
+    IP:       10.102.128.4
+    Port:   http 3080/TCP
+    Session Affinity: ClientIP
     # ipvsadm -ln
     IP Virtual Server version 1.2.1 (size=4096)
     Prot LocalAddress:Port Scheduler Flags

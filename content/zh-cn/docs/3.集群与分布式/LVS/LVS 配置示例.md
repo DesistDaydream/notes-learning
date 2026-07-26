@@ -1,6 +1,5 @@
 ---
 title: LVS 配置示例
-linkTitle: LVS 配置示例
 weight: 2
 ---
 

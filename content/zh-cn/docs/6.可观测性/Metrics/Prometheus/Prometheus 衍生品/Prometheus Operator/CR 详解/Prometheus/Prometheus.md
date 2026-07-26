@@ -177,8 +177,8 @@ volumes:
 ```
 
 - **config** # 通过 ServiceMonitor 等途径生成的配置文以 .gz 的压缩方式，保存在这个卷中
-  - 通过 ServiceMonitor 等途径获取的配置文件，放在这个卷中，经过 config-reloader 容器处理后，将生成的配置文件放到 config-out 卷中。
-  - 这个 prometheus-test 的 Secret 对象中存储的是配置文件的 .gz 格式的内容。
+    - 通过 ServiceMonitor 等途径获取的配置文件，放在这个卷中，经过 config-reloader 容器处理后，将生成的配置文件放到 config-out 卷中。
+    - 这个 prometheus-test 的 Secret 对象中存储的是配置文件的 .gz 格式的内容。
 
 ```yaml
 [root@master-1 prometheus-operator]# kubectl get secrets  prometheus-test -oyaml | neat

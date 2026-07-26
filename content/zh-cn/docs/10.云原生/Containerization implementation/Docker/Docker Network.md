@@ -1,6 +1,5 @@
 ---
 title: Docker Network
-linkTitle: Docker Network
 weight: 20
 ---
 
@@ -18,7 +17,7 @@ Docker 让容器连接到网络时，会有两种可能的 DNS 情况：
 
 - **容器连接到默认网络时**，使用<font color="#ff0000">主机的 DNS Server</font>，继承主机的 /etc/resolv.conf。
     - 默认网络是指名为 bridge 的 bridge 驱动的网络
-- **容器连接到[自定义网络](https://docs.docker.com/engine/network/tutorials/standalone/#use-user-defined-bridge-networks)时**，使用 **<font color="#ff0000">Docker 内嵌的 DNS Server</font>**（127.0.0.11:53），将 容器 ID、容器名、别名 注册为 DNS 解析记录，以便其他容器可以通过这些域名访问到自己。示例可以参考下文 [Bridge](#Bridge) 驱动程序中的示例
+- **容器连接到[自定义网络](https://docs.docker.com/engine/network/tutorials/standalone/#use-user-defined-bridge-networks)时**，使用 **<font color="#ff0000">Docker 内嵌的 DNS Server</font>**（127.0.0.11:53），将 容器 ID、容器名、别名 注册为 DNS 解析记录，以便其他容器可以通过这些域名访问到自己。示例可以参考下文 [Bridge](#bridge) 驱动程序中的示例
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/docker/network/docker_network_ls_dns_demo_1.png)
 
@@ -28,7 +27,7 @@ https://docs.docker.com/engine/network/drivers/
 
 Docker 使用驱动程序实现网络子系统的核心能力，网络子系统是可插拔的。默认存在如下几种驱动程序：
 
-- **bridge** # 默认驱动程序。当应用程序在需要与同一主机上的其他容器通信的容器中运行时，通常会使用 [Bridge](#Bridge)(桥接) 网络。
+- **bridge** # 默认驱动程序。当应用程序在需要与同一主机上的其他容器通信的容器中运行时，通常会使用 [Bridge](#bridge)(桥接) 网络。
 - **host** # 取消容器与 Docker 主机之间的网络隔离，直接使用主机的网络
 - **none** # 容器与宿主机及其他容器完全隔离。 none 不适用于 Swarm 服务。用人话说就是不使用任何网络驱动程序。
 - **overlay** # Swarm 用来使用 Overlay 技术将多个 Docker 守护进程连接在一起
@@ -51,7 +50,7 @@ dadd048eefa0   bridge       bridge    local # Docker 创建的 Bridge 驱动的�
 4718cdfcb116   monitoring   bridge    local # 用户手动创建的 Bridge 驱动的网络
 ```
 
-连接到 Docker 默认的 bridge 网络上的容器只能通过 IP 地址互相访问。但是如果容器连接到用户自定义的 Bridge 类型网络，这些容器将会记录在 [Docker 内嵌的 DNS](#DNS)，后续可以通过名称或别名访问这些容器。
+连接到 Docker 默认的 bridge 网络上的容器只能通过 IP 地址互相访问。但是如果容器连接到用户自定义的 Bridge 类型网络，这些容器将会记录在 [Docker 内嵌的 DNS](#dns)，后续可以通过名称或别名访问这些容器。
 
 > [!Attention] 在 Bridge 驱动的网络上，容器之间的互相访问问题
 >

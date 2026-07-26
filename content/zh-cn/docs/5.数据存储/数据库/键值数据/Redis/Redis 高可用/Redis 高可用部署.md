@@ -139,5 +139,5 @@ Bitnami 版问题：
 - 无法故障恢复，删除 pod 后， master 无法切换
 - 是有了安全环境容器，导致容器内无法读取 /proc/sys/net/core/somaxconn 参数的值
 - 问题跟踪：
-  - https://github.com/bitnami/charts/issues/3700
-  - https://github.com/bitnami/charts/issues/4569
+    - https://github.com/bitnami/charts/issues/3700
+    - https://github.com/bitnami/charts/issues/4569

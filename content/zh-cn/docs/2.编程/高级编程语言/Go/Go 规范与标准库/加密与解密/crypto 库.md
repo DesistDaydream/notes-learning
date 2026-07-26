@@ -1,6 +1,5 @@
 ---
 title: "crypto 库"
-linkTitle: "crypto 库"
 weight: 20
 ---
 

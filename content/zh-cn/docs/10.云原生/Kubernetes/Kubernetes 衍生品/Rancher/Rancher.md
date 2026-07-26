@@ -1,6 +1,5 @@
 ---
 title: Rancher
-linkTitle: Rancher
 weight: 20
 ---
 

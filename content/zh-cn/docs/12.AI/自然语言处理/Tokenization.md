@@ -1,6 +1,5 @@
 ---
 title: "Tokenizer"
-linkTitle: "Tokenizer"
 created: "2026-04-13T13:30"
 weight: 100
 ---

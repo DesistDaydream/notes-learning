@@ -1,6 +1,5 @@
 ---
 title: AI MGMT
-linkTitle: AI MGMT
 weight: 1
 ---
 

@@ -20,7 +20,7 @@ nmcli connection down \[id | uuid | path | apath] \<ID> ... # 停止连接
 EXAMPLE
 
 - 启动名为 eth0 的 connection。i.e.把配置应用到指定的网络设备上，并且会自动重启网络设备
-  - **nmcli con up eth0**
+    - **nmcli con up eth0**
 
 # add 增加连接
 
@@ -37,18 +37,18 @@ Note：
 
 - **save** # 指定该连接创建完成后，是否以文件形式保存到本地磁盘。默认为 true。
 - **SETTING.PROPERTY(设置.属性)** # 该连接包含的属性。SETTING.PROPERTY 简称 property(属性) 用来指定要增加的连接的配置信息。
-  - 如果 SETTING 和 PROPERTY 是 唯一的，则可以使用缩写(比如 connection.type 缩写为 type)。不同的 SETTING 中有不同的 PROPERTY。并非所有属性都适用于所有类型的连接(type 是创建连接时必须指定的一个属性)。也就是说 property(属性) 分为两种，一种适用于全局的通用属性，另一种是只对特定类型的连接生效。比如我当前创建一个 ethernet 类型的连接，那么就不能使用 bond 属性。
-  - 注意：如果要在脚本中使用 nmcli 命令，最好不要使用别名
-  - 可用的 SETTING.PROPERTY 详见 [Connection 配置详解](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/NetworkManager/Connection%20配置详解.md)，在命令行中的写法与配置文件中是一致的，SETTING 就是 配置文件中的 SETTING，PROPERTY 就是配置文件中所属 SETTING 的 PROPERTY。
-  - 特殊连接类型的属性
-    - 在命令使用中，特殊类型的属性可能并不在文档中，比如 bond 类型中，可以使用 mode 属性指定 bond 类型。
-    - bond 类型的连接可以使用 mode 属性，该属性的值会添加到 bond.options 属性的值中，作为 mode=MODE 这种键值对存在。
+    - 如果 SETTING 和 PROPERTY 是 唯一的，则可以使用缩写(比如 connection.type 缩写为 type)。不同的 SETTING 中有不同的 PROPERTY。并非所有属性都适用于所有类型的连接(type 是创建连接时必须指定的一个属性)。也就是说 property(属性) 分为两种，一种适用于全局的通用属性，另一种是只对特定类型的连接生效。比如我当前创建一个 ethernet 类型的连接，那么就不能使用 bond 属性。
+    - 注意：如果要在脚本中使用 nmcli 命令，最好不要使用别名
+    - 可用的 SETTING.PROPERTY 详见 [Connection 配置详解](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/NetworkManager/Connection%20配置详解.md)，在命令行中的写法与配置文件中是一致的，SETTING 就是 配置文件中的 SETTING，PROPERTY 就是配置文件中所属 SETTING 的 PROPERTY。
+    - 特殊连接类型的属性
+        - 在命令使用中，特殊类型的属性可能并不在文档中，比如 bond 类型中，可以使用 mode 属性指定 bond 类型。
+        - bond 类型的连接可以使用 mode 属性，该属性的值会添加到 bond.options 属性的值中，作为 mode=MODE 这种键值对存在。
 - **VALUE** # SETTING.PROPERTY 的值
 
 ## EXAMPLE
 
 - 创建名为 eth0 的 connection 并关联到 eth0 上，手动指定 IP，并设置开机自动启动网络,关闭 ipv6 网络。
-  - nmcli con add type ethernet con-name eth0 ifname eth0 ipv4.method manual ip4 10.10.10.10/24 gw4 10.10.10.1 autoconnect yes ipv6.method disabled
+    - nmcli con add type ethernet con-name eth0 ifname eth0 ipv4.method manual ip4 10.10.10.10/24 gw4 10.10.10.1 autoconnect yes ipv6.method disabled
 
 # delete 删除连接
 
@@ -69,7 +69,7 @@ Note：
 ## EXAMPLE
 
 - 给名为 bond0 的 Connection 添加两个参数，使用加号可以不负载之前配置的参数而添加新的参数
-  - nmcli con modify bond0 +bond.options miimon=200 +bond.options xmit_hash_policy=layer3+4
+    - nmcli con modify bond0 +bond.options miimon=200 +bond.options xmit_hash_policy=layer3+4
 
 # show 查看连接
 
@@ -92,40 +92,40 @@ bond.options:                           mode=active-backup
 ## 静态路由配置
 
 - 在 eth0 网卡上添加静态路由，目的网段是 192.168.122.0/24 的流量下一跳是 10.10.10.1
-  - nmcli connection modify eth0 +ipv4.routes "192.168.122.0/24 10.10.10.1"
+    - nmcli connection modify eth0 +ipv4.routes "192.168.122.0/24 10.10.10.1"
 - 删除 eth0 网卡上的静态路由
-  - nmcli connection modify eth0 -ipv4.routes "192.168.122.0/24 10.10.10.1"
+    - nmcli connection modify eth0 -ipv4.routes "192.168.122.0/24 10.10.10.1"
 
 ## 路由策略配置
 
 - 添加一条路由策略：优先级为 5，从 10.0.0.0/24 网段来的数据包，都通过 5000 路由表处理
-  - nmcli connection add type ethernet con-name eth0 ifname eth0 ipv4.routing-rules "priority 5 from 10.0.0.0/24 table 5000"
+    - nmcli connection add type ethernet con-name eth0 ifname eth0 ipv4.routing-rules "priority 5 from 10.0.0.0/24 table 5000"
 
 ## 多路由表，双网卡，双网关
 
 - 添加 ens9 连接，配置 IP 地址，不分配默认网关，而是在 3 号路由表中配置一条路由条目：任意目的地址的下一跳是 192.168.122.1
-  - nmcli con add type ethernet con-name ens9 ifname ens9 ipv4.method manual ipv4.addresses 192.168.122.2 ipv4.routes "0.0.0.0/0 192.168.122.1 table=3"
+    - nmcli con add type ethernet con-name ens9 ifname ens9 ipv4.method manual ipv4.addresses 192.168.122.2 ipv4.routes "0.0.0.0/0 192.168.122.1 table=3"
 - 为 ens9 连接添加一个路由策略，将源地址是 192.168.122.0/24 网段的数据包，都交给 3 号路由表处理
-  - nmcli con mod ens9 ipv4.routing-rules "priority 5 from 192.168.122.0/24 table 3"
+    - nmcli con mod ens9 ipv4.routing-rules "priority 5 from 192.168.122.0/24 table 3"
 
 ## Bond 配置
 
 - 添加一个 Bond 类型的连接
-  - 使用 bond0 网络设备，bond 模式为主备
-    - nmcli con add type bond con-name bond0 ifname bond0 mode active-backup
-  - 使用 bond1 网络设备，bond 模式为 802.3ad
-    - nmcli con add type bond con-name bond1 ifname bond1 mode 802.3ad
-  - 创建一个 bond 类型的 connection，名字叫 bond0 且与 bond0 网络设备绑定(若没有 bond0 网络设备则自动创建)；手动设定 ip 并指定 ip、prefix；指定该 bond 的 3 个参数（bond 模式、检测时间、hash 算法）
-    - nmcli con add type bond con-name bond0 ifname bond0 ipv4.method manual ipv4.addr 192.168.20.22/24 bond.options "mode=802.3ad,miimon=100,xmit_hash_policy=layer3+4"
+    - 使用 bond0 网络设备，bond 模式为主备
+        - nmcli con add type bond con-name bond0 ifname bond0 mode active-backup
+    - 使用 bond1 网络设备，bond 模式为 802.3ad
+        - nmcli con add type bond con-name bond1 ifname bond1 mode 802.3ad
+    - 创建一个 bond 类型的 connection，名字叫 bond0 且与 bond0 网络设备绑定(若没有 bond0 网络设备则自动创建)；手动设定 ip 并指定 ip、prefix；指定该 bond 的 3 个参数（bond 模式、检测时间、hash 算法）
+        - nmcli con add type bond con-name bond0 ifname bond0 ipv4.method manual ipv4.addr 192.168.20.22/24 bond.options "mode=802.3ad,miimon=100,xmit_hash_policy=layer3+4"
 - 添加 eth0 网络设备到 bond0 中
-  - nmcli con add type ethernet master bond0 ifname eth0
+    - nmcli con add type ethernet master bond0 ifname eth0
 
 ## Bridge 配置
 
 - 创建一个 Bridge 类型的 connection，名字叫 br0 且与 br0 网络设备绑定(若没有 br0 网络设备则自动创建)，手动获取 ip 并设定 ip、prefix、gateway。
-  - nmcli con add type bridge con-name br0 ifname br0 ipv4.method manual ip4 192.168.10.10/24 gw4 192.168.10.1
+    - nmcli con add type bridge con-name br0 ifname br0 ipv4.method manual ip4 192.168.10.10/24 gw4 192.168.10.1
 - 添加 eth0 网络设备到 br0 中
-  - nmcli con add type ethernet ifname eth0 master br0
+    - nmcli con add type ethernet ifname eth0 master br0
 
 注意：若不为 bridge 类型的网络设备配置 IP，比如在虚拟化环境中，需要关闭 STP 功能
 
@@ -136,16 +136,16 @@ bond.options:                           mode=active-backup
 为 Bond 配置 VLAN 标签
 
 - 创建 bond 类型的连接，名为 bond1，关闭 IPv4 和 IPv6
-  - nmcli con add type bond con-name bond1 ifname bond1 ipv4.method disabled ipv6.method ignore bond.options "mode=802.3ad,miimon=100,xmit_hash_policy=layer3+4"
+    - nmcli con add type bond con-name bond1 ifname bond1 ipv4.method disabled ipv6.method ignore bond.options "mode=802.3ad,miimon=100,xmit_hash_policy=layer3+4"
 - 创建 vlan 类型的连接，绑定到 bond1 设备上，vlan 号为 2409，配置 IP
-  - nmcli con add type vlan con-name vlan2409-bond1 dev bond1 id 2409 ipv4.method manual ipv4.addresses 100.75.9.17/24 ipv4.gateway 100.75.9.254
+    - nmcli con add type vlan con-name vlan2409-bond1 dev bond1 id 2409 ipv4.method manual ipv4.addresses 100.75.9.17/24 ipv4.gateway 100.75.9.254
 
 为 Ethernet 配置 VLAN 标签
 
 - 创建 ethernet 类型的连接，名为 eth0，关闭 IPv4 和 IPv6
-  - nmcli con add ethernet con-name eth0 ifname eth0 ipv4.method disabled ipv6.method ignore
+    - nmcli con add ethernet con-name eth0 ifname eth0 ipv4.method disabled ipv6.method ignore
 - 创建一个 vlan 类型的连接，连接名为 vlan2-bond0，为 eth0 划分 vlan，vlan 号为 2
-  - nmcli con add type vlan con-name vlan2-eth0 dev eth0 id 2 ipv4.method manual ipv4.addresses 100.75.9.17/24
+    - nmcli con add type vlan con-name vlan2-eth0 dev eth0 id 2 ipv4.method manual ipv4.addresses 100.75.9.17/24
 
 ## 具有 VLAN TAG 的 Ethernet 绑定到 Bridge 上
 

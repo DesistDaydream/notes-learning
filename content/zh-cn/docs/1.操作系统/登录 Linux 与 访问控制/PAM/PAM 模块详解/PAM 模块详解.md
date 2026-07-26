@@ -1,6 +1,5 @@
 ---
 title: "PAM 模块详解"
-linkTitle: "PAM 模块详解"
 weight: 20
 ---
 
@@ -89,10 +88,10 @@ pam_pwquality 模块属于 libpwquality 库，最初基于 pam_cracklib 模块�
 - **lcredit=\<N>** # 新密码中包含的 **lowercase(小写字母)** 的字符数。
 - **ocredit=\<N>** # 新密码中包含的 **other(其他字符)** 的字符数。其他字符就是特殊字符
 - **minclass=\<N>** # 新密码中包含的字符类型的数量。`默认值：0` 共有 4 中字符类型可用：
-  - digits(数字)
-  - uppercase(大写字母)
-  - lettercase(小写字母)
-  - other(其他字符)
+    - digits(数字)
+    - uppercase(大写字母)
+    - lettercase(小写字母)
+    - other(其他字符)
 
 ## 应用示例
 
@@ -130,11 +129,11 @@ pam_succeed_if 模块旨在根据 **账户的特征**或 其他
 - **quiet_success** # 若模块返回成功，则不要将验证事件记录到系统日志中。
 - **use_uid** # 使用运行应用程序的 UID 的用户的帐户而不是正在验证的用户来评估条件。
 - **Conditions(条件)** # 条件参数由 3 部分组成：`Field Test Value`。
-  - 可用的 Field 有：user、uid、gid、shell、home、ruser、rhost、tty、service
-  - 可用的 Test 有：`<` `<=` `eq` `>=` `>` `ne` `=` `!=` `=~` `!~` `in` `not in`
-  - 比如：
-    - **uid >= 1000** # 表示运行程序所使用的账号的 uid 要是大于 1000，则模块返回成功
-    - 更多语法说明，详见 Manual。
+    - 可用的 Field 有：user、uid、gid、shell、home、ruser、rhost、tty、service
+    - 可用的 Test 有：`<` `<=` `eq` `>=` `>` `ne` `=` `!=` `=~` `!~` `in` `not in`
+    - 比如：
+        - **uid >= 1000** # 表示运行程序所使用的账号的 uid 要是大于 1000，则模块返回成功
+        - 更多语法说明，详见 Manual。
 
 ## 应用示例
 
@@ -189,9 +188,9 @@ BAD PASSWORD: The password fails the dictionary check - it is too simplistic/sys
 - **try_first_pass** # 这个选项指示本模块首先尝试使用已有的密码，即从第一个向用户提示输入密码的模块那里取得密码，并对该密码进行认证。如果密码认证失败，则再提示用户输入密码。
 - **use_authtok** # “use_authtok”参数确保 pam_unix 模块不会提示输入密码，而是使用 pam_pwquality 提供的密码。
 - **密码要求参数**
-  - **minlen=INT** # 密码长度最少 minlen 位
-  - **difok=INT** # 新旧密码最少 difok 个字符不同
-  - **icredit=-1** # 最少 1 个数字.
-  - **lcredit=-1** # 最少 1 个小写字符
-  - **ucredit=-1** # 最少 1 个大写字符
-  - **ocredit=-1** # 最少 1 个特殊字符
+    - **minlen=INT** # 密码长度最少 minlen 位
+    - **difok=INT** # 新旧密码最少 difok 个字符不同
+    - **icredit=-1** # 最少 1 个数字.
+    - **lcredit=-1** # 最少 1 个小写字符
+    - **ucredit=-1** # 最少 1 个大写字符
+    - **ocredit=-1** # 最少 1 个特殊字符

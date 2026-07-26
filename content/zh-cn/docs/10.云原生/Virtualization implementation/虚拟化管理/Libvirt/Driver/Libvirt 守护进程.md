@@ -1,6 +1,5 @@
 ---
 title: "Libvirt 守护进程"
-linkTitle: "Libvirt 守护进程"
 weight: 2
 ---
 
@@ -32,10 +31,10 @@ libvirt 客户端库和实用程序连接到此守护进程以发出任务并收
 libvirtd 守护进程能够以两种模式启动
 
 - **传统模式** # 它将自行创建并侦听 UNIX 套接字。
-  - 如果给出了 --listen 参数，它还将根据 /etc/libvirt/libvirtd.conf 中的 listen_tcp 和 listen_tls 选项监听 TCP/IP 套接字
+    - 如果给出了 --listen 参数，它还将根据 /etc/libvirt/libvirtd.conf 中的 listen_tcp 和 listen_tls 选项监听 TCP/IP 套接字
 - **套接字激活模式** # 它将依靠 systemd 在 UNIX 和可选的 TCP/IP 套接字上创建和侦听，并将它们作为预打开的文件描述符传递。
-  - <font color="#ff0000">注意</font>：在这种模式下，不允许传递 --listen 参数，并且 /etc/libvirt/libvirtd.conf 中大多数与套接字相关的配置选项将不再起作用。
-  - 如果想要启用 TCP 或 TLS 套接字，可以开启 libvirtd-tcp.socket 或 libvirtd-tls.socket 这两个 Unit。
+    - <font color="#ff0000">注意</font>：在这种模式下，不允许传递 --listen 参数，并且 /etc/libvirt/libvirtd.conf 中大多数与套接字相关的配置选项将不再起作用。
+    - 如果想要启用 TCP 或 TLS 套接字，可以开启 libvirtd-tcp.socket 或 libvirtd-tls.socket 这两个 Unit。
 
 在使用 systemd 的主机操作系统上运行时，套接字激活模式通常是默认模式。要恢复到传统模式，必须使用如下命令屏蔽所有套接字单元文件：
 

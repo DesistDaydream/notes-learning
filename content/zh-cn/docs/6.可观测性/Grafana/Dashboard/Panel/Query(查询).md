@@ -7,7 +7,7 @@ title: Query(查询)
 > 参考：
 >
 > - [官方文档，面板 - 查询](https://grafana.com/docs/grafana/latest/panels/queries)
->   - 新 URL https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/
+>     - 新 URL https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/
 
 Query 标签由如下几个元素组成
 
@@ -72,7 +72,7 @@ Legend 可以通过一种模式来改变 series 的名称。这个模式类似�
 可以控制 Prometheus 查询数据时的最小步长(Step)，从而减少或增加从 Prometheus 返回的数据量。
 
 - 步长指起始时间与结束时间之间获取的所有数据的间隔时间。假如 step=10 则每隔 10 秒获取一次样本值。
-  - 就好像人走路，一步迈多长，这里就是返回样本值时，每隔多久返回一次。
+    - 就好像人走路，一步迈多长，这里就是返回样本值时，每隔多久返回一次。
 - 比如，我想要查询 14 点到 15 点之间的数据，假如 Min step 为 1m，则一共返回 60 个样本。假如 Min step 为 30m，则一共返回 2 个样本，效果如下
 
 ![image.png|550](https://notes-learning.oss-cn-beijing.aliyuncs.com/grafana/dashboard/1636273461647-2dbebd5e-b5ca-47d8-a23e-07d4e0d72ebe.png) ![image.png|550](https://notes-learning.oss-cn-beijing.aliyuncs.com/grafana/dashboard/1636273507618-65072c3a-f3bd-46c9-aa79-979c6bf388b8.png)

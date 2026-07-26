@@ -1,6 +1,5 @@
 ---
 title: "tmpfs"
-linkTitle: "tmpfs"
 weight: 20
 ---
 
@@ -9,7 +8,7 @@ weight: 20
 > 参考：
 >
 > - [GitHub 项目，torvalds/linux - Documentation/filesystems/tmpfs.rst](https://github.com/torvalds/linux/blob/master/Documentation/filesystems/tmpfs.rst)
->   - [Kernel 文档，文件系统 - tmpfs](https://www.kernel.org/doc/html/latest/filesystems/tmpfs.html)
+>     - [Kernel 文档，文件系统 - tmpfs](https://www.kernel.org/doc/html/latest/filesystems/tmpfs.html)
 
 Tmpfs 是一个将所有文件保存在虚拟内存中的文件系统。tmpfs 中的所有内容都是 **temporary(临时)** 的，因为不会在硬盘上创建任何文件。如果卸载 tmpfs 实例，其中存储的所有内容都会丢失。
 

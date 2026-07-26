@@ -1,6 +1,5 @@
 ---
 title: CNI
-linkTitle: CNI
 weight: 1
 ---
 

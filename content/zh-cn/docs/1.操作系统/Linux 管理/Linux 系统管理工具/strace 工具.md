@@ -71,7 +71,7 @@ Note：
 - 由于 QUALIFIER 的默认值为 trace。所以 -e trace=sendto,read 也可以写成 -e sendto,read。
 - QUALIFIER 限定词根据功能不通，在 filtering、tampering、Output format 等选项中，有具体的使用说明。
 - 使用 `!` 会否定该组值。比如，-e trace=open 表示仅追踪 open 系统调用；而 -e trace='!open' 表示追踪除了 open 以外的所有系统调用
-  - 注意加单引号，否则无法识别，并报错提示：`-bash: !XXXX: event not found`
+    - 注意加单引号，否则无法识别，并报错提示：`-bash: !XXXX: event not found`
 
 ### Startup 启动选项
 
@@ -84,28 +84,28 @@ Note：
 ### Filtering 过滤选项
 
 - **-e trace=SYSCALL_SET** # 指定要追踪的系统调用。
-  - 可用的 SYSCALL_SET 有如下这些
-    - **SYSCALL1\[,SYSCALL2,...]** # 直接指定系统调用的名称，多个名称以逗号分隔。
-    - **/REGEX** # 前面加上 `/` ，后面可以使用正则表达式进行匹配，来匹配系统调用的名称。
-    - **%SyscallSet** # 前面加上 `%`，就会追踪一类系统调用的集合。比如：
-      - %clock    Trace all system calls that read or modify system clocks.
-      - %creds    Trace all system calls that read or modify user and group identifiers or capability sets.
-      - %desc     Trace all file descriptor related system calls.
-      - **%file** # 追踪所有以文件名为参数的系统调用。可以看作是 -e trace=open,stat,chmod,unlink,..... 的简写。
-      - %fstat    Trace fstat and fstatat syscall variants.
-      - %fstatfs  Trace fstatfs, fstatfs64, fstatvfs, osf_fstatfs, and osf_fstatfs64 system calls.
-      - %ipc      Trace all IPC related system calls.
-      - %lstat    Trace lstat syscall variants.
-      - %memory   Trace all memory mapping related system calls.
-      - %network  Trace all the network related system calls.
-      - %process  Trace all system calls which involve process management.
-      - %pure     Trace syscalls that always succeed and have no arguments.
-      - **%signal** # 追踪所有与信号相关的系统调用。
-      - %stat     Trace stat syscall variants.
-      - %statfs   Trace statfs, statfs64, statvfs, osf_statfs, and osf_statfs64 system calls.
-      - %%stat    Trace syscalls used for requesting file status.
-      - %%statfs  Trace syscalls related to file system statistic
-    - ........等等
+    - 可用的 SYSCALL_SET 有如下这些
+        - **SYSCALL1\[,SYSCALL2,...]** # 直接指定系统调用的名称，多个名称以逗号分隔。
+        - **/REGEX** # 前面加上 `/` ，后面可以使用正则表达式进行匹配，来匹配系统调用的名称。
+        - **%SyscallSet** # 前面加上 `%`，就会追踪一类系统调用的集合。比如：
+            - %clock    Trace all system calls that read or modify system clocks.
+            - %creds    Trace all system calls that read or modify user and group identifiers or capability sets.
+            - %desc     Trace all file descriptor related system calls.
+            - **%file** # 追踪所有以文件名为参数的系统调用。可以看作是 -e trace=open,stat,chmod,unlink,..... 的简写。
+            - %fstat    Trace fstat and fstatat syscall variants.
+            - %fstatfs  Trace fstatfs, fstatfs64, fstatvfs, osf_fstatfs, and osf_fstatfs64 system calls.
+            - %ipc      Trace all IPC related system calls.
+            - %lstat    Trace lstat syscall variants.
+            - %memory   Trace all memory mapping related system calls.
+            - %network  Trace all the network related system calls.
+            - %process  Trace all system calls which involve process management.
+            - %pure     Trace syscalls that always succeed and have no arguments.
+            - **%signal** # 追踪所有与信号相关的系统调用。
+            - %stat     Trace stat syscall variants.
+            - %statfs   Trace statfs, statfs64, statvfs, osf_statfs, and osf_statfs64 system calls.
+            - %%stat    Trace syscalls used for requesting file status.
+            - %%statfs  Trace syscalls related to file system statistic
+        - ........等等
 - **-e signal=SIGNAL_SET** # 指定要追踪的信号。
 - **-e status=STATUS_SET** # 指定要追踪的系统调用的返回码
 
@@ -113,11 +113,12 @@ Note：
 
 - **-a COLUMN** # 设定列的间隔为 COLUMN，默认为 40。i.e. `=` 与前面的间隔
 - **-o, --output \<FILE>** # 将追踪结果输出到文件中(默认标准错误)。
-  - 与 -ff 参数一起使用时，会把每个线程的追踪写到单独的文件中，以 FileName.PID 格式命名。
+    - 与 -ff 参数一起使用时，会把每个线程的追踪写到单独的文件中，以 FileName.PID 格式命名。
 - **-q, --quiet=STRING** # 抑制有关附加、分离、个性的消息。当 strace 的输出被重定向到文件中时，会自动添加该选项。
-  - 可用的值有：attach,personality,exit,all。这些可用的值只在 --quiet 选项时可用，我们还可以使用 -q、-qq、-qqq 以添加不同的抑制信息，q 越多，抑制的信息就越多。
+    - 可用的值有：attach,personality,exit,all。这些可用的值只在 --quiet 选项时可用，我们还可以使用 -q、-qq、-qqq 以添加不同的抑制信息，q 越多，抑制的信息就越多。
 - **-s, --string-limit \<STRSIZE>** # 设定要输出的最大字符串长度为 STRSIZE。`默认值：32`。Note:文件名不作为字符串，并始终完整打印。
-  - 示例如下，在 sendto 和 read 系统调用中，参数只显示了 32 个字符。当指定 -s 选项后，可以输出更多字符。
+    - 示例如下，在 sendto 和 read 系统调用中，参数只显示了 32 个字符。当指定 -s 选项后，可以输出更多字符。
+
 ```bash
 ~]# strace -p 22863 -e trace=sendto,read
 sendto(6, "GET / HTTP/1.0\r\nUser-Agent: Keep"..., 71, 0, NULL, 0) = 71
@@ -127,9 +128,11 @@ strace: Process 22863 attached
 sendto(7, "GET / HTTP/1.0\r\nUser-Agent: KeepAliveClient\r\nHost: 10.0.9.213:50080\r\n\r\n", 71, 0, NULL, 0) = 71
 read(7, "HTTP/1.1 426 Upgrade Required\r\ndate: Fri, 24 Jul 2020 07:53:01 GMT\r\nserver: istio-envoy\r\nconnection: close\r\ncontent-length: 0\r\n\r\n", 4096) = 129
 ```
+
 - **-t, -tt, -ttt** # 显示追踪时间(在输出的行开头显示)。2 个 t 显示微秒，3 个 t 显示时间戳
 - **-T** # 显示追踪花费的时间(在输出的行末尾显示)
 - **-y, -yy** # 打印与文件描述符参数相关联的路径。2 个 y，打印与套接字文件描述符相关的特定协议信息，以及与设备文件描述符相关的块/字符设备号。
+
 ```bash
 # 这是一个建立 http 连接的系统调用追踪
 # 不加 -y，只显示数字 3，表示当前文件描述符的编号为3
@@ -148,7 +151,7 @@ lrwx------ 1 root root 64 Jan 24 10:55 /proc/8675/fd/3 -> 'socket:[80219]'
 ### Statistics 统计选项
 
 - **-c** # 统计每一次系统调用的执行时间、次数、错误次数。输出效果如下：
-  - -c 参数常用来在排障之前，查看当前进程使用了哪些系统调用，然后在后续排障中单独追踪指定的系统调用
+    - -c 参数常用来在排障之前，查看当前进程使用了哪些系统调用，然后在后续排障中单独追踪指定的系统调用
 
 ```bash
 ~]# strace -p 22863 -c
@@ -191,18 +194,18 @@ strace: Process 22863 attached
 ## 其他
 
 - 追踪 ls 命令的系统调用情况。
-  - **starce ls**
+    - **starce ls**
 - 统计 df 命令的系统调用信息。
-  - **strace -c df**
+    - **strace -c df**
 - 追踪 22863 进程的系统调用，只追踪网络与 read 相关的系统调用。输出更多信息，扩大输出字符串到 1000。
-  - **strace -p 22863 -s 1000 -e trace=%network,read**
+    - **strace -p 22863 -s 1000 -e trace=%network,read**
 - 追踪新编译的 main 程序，显示时间、追踪线程、扩大输出字符、追踪 write()、追踪 SIGHUP 信号
-  - **strace -t -f -s 1000 -e trace=write -e signal='SIGHUP' ./main --xsky-pass=admin**
+    - **strace -t -f -s 1000 -e trace=write -e signal='SIGHUP' ./main --xsky-pass=admin**
 
 **分析进程 I/O 情况**
 
 - 追踪 1234 进程及其子进程，去掉所有字符串，在末尾显示花费的时间，将结果保存到 strace.file 文件中
-  - **strace -T -s 0 -f -p 1234 -o strace.file**
+    - **strace -T -s 0 -f -p 1234 -o strace.file**
 - 文件中的内容如下
 
 ```bash

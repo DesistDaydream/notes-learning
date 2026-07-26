@@ -8,11 +8,11 @@ weight: 1
 > 参考：
 >
 > - [原文链接](https://github.com/liucimin/Learning/blob/master/linux%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3/Linux-TC%E6%A1%86%E6%9E%B6%E8%AF%A6%E8%A7%A3.md)
->   - [Linux 的高级路由和流量控制](http://www.lartc.org/LARTC-zh_CN.GB2312.pdf)
->   - [Open vSwitch 之 QoS 的实现](http://www.sdnlab.com/19208.html)
+>     - [Linux 的高级路由和流量控制](http://www.lartc.org/LARTC-zh_CN.GB2312.pdf)
+>     - [Open vSwitch 之 QoS 的实现](http://www.sdnlab.com/19208.html)
 > - [arthurchiao.art 的文章](http://arthurchiao.art/index.html)：
->   - [[译] 《Linux 高级路由与流量控制手册（2012）》第九章：用 tc qdisc 管理 Linux 网络带宽](http://arthurchiao.art/blog/lartc-qdisc-zh/#91-%E9%98%9F%E5%88%97queues%E5%92%8C%E6%8E%92%E9%98%9F%E8%A7%84%E5%88%99queueing-disciplines)
->   - [[译] 深入理解 tc ebpf 的 direct-action (da) 模式（2020）](http://arthurchiao.art/blog/understanding-tc-da-mode-zh/#5-%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8Bebpf-%E7%A8%8B%E5%BA%8F--tc-%E5%91%BD%E4%BB%A4)
+>     - [[译] 《Linux 高级路由与流量控制手册（2012）》第九章：用 tc qdisc 管理 Linux 网络带宽](http://arthurchiao.art/blog/lartc-qdisc-zh/#91-%E9%98%9F%E5%88%97queues%E5%92%8C%E6%8E%92%E9%98%9F%E8%A7%84%E5%88%99queueing-disciplines)
+>     - [[译] 深入理解 tc ebpf 的 direct-action (da) 模式（2020）](http://arthurchiao.art/blog/understanding-tc-da-mode-zh/#5-%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8Bebpf-%E7%A8%8B%E5%BA%8F--tc-%E5%91%BD%E4%BB%A4)
 
 Linux 中的 TC 模块已经在内核中存在很多年了，但是直到 eBPF 流行起来之前，文档以及使用者都非常之少，并仍处于活跃开发状态中。Kernel 4.1 版本中添加了一些新的 Hook，并支持将 eBPF 程序作为 tc classifier(也称为 filter) 或 tc action 加载到这些 Hook 点。大概六个月后，Kernel 4.4 版本发布时，iproute2 引入了一个 direct-action 模式，但是关于这个模式的[文档依然少得可怜](https://qmonnet.github.io/whirl-offload/2016/09/01/dive-into-bpf/#about-tc)。。。。。
 

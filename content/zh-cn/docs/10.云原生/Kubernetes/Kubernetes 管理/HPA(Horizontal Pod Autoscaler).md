@@ -5,7 +5,7 @@ title: HPA(Horizontal Pod Autoscaler)
 # 概述
 
 > 参考：
-> 
+>
 > - 官方文档：<https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/>
 > - <https://www.qikqiak.com/post/k8s-hpa-usage/>
 
@@ -65,9 +65,9 @@ HAP Metrics Server
 `Aggregator` 聚合层启动完成后，就可以来安装 `Metrics Server` 了，我们可以获取该仓库的官方安装资源清单：
 
 ```bash
-$ git clone https://github.com/kubernetes-incubator/metrics-server
-$ cd metrics-server
-$ kubectl apply -f deploy/1.8+/
+git clone https://github.com/kubernetes-incubator/metrics-server
+cd metrics-server
+kubectl apply -f deploy/1.8+/
 ```
 
 在部署之前，修改 `metrcis-server/deploy/1.8+/metrics-server-deployment.yaml` 的镜像地址为：
@@ -727,15 +727,15 @@ rules:
 - `seriesQuery`：查询 Prometheus 的语句，通过这个查询语句查询到的所有指标都可以用于 HPA
 - `seriesFilters`：查询到的指标可能会存在不需要的，可以通过它过滤掉。
 - `resources`：通过 `seriesQuery` 查询到的只是指标，如果需要查询某个 Pod 的指标，肯定要将它的名称和所在的命名空间作为指标的标签进行查询，`resources` 就是将指标的标签和 k8s 的资源类型关联起来，最常用的就是 pod 和 namespace。有两种添加标签的方式，一种是 `overrides`，另一种是 `template`。
-  - `overrides`：它会将指标中的标签和 k8s 资源关联起来。上面示例中就是将指标中的 pod 和 namespace 标签和 k8s 中的 pod 和 namespace 关联起来，因为 pod 和 namespace 都属于核心 api 组，所以不需要指定 api 组。当我们查询某个 pod 的指标时，它会自动将 pod 的名称和名称空间作为标签加入到查询条件中。比如 `nginx: {group: "apps", resource: "deployment"}` 这么写表示的就是将指标中 nginx 这个标签和 apps 这个 api 组中的 `deployment` 资源关联起来；
-  - template：通过 go 模板的形式。比如`template: "kube_<<.Group>>_<<.Resource>>"` 这么写表示，假如 `<<.Group>>` 为 apps，`<<.Resource>>` 为 deployment，那么它就是将指标中 `kube_apps_deployment` 标签和 deployment 资源关联起来。
+    - `overrides`：它会将指标中的标签和 k8s 资源关联起来。上面示例中就是将指标中的 pod 和 namespace 标签和 k8s 中的 pod 和 namespace 关联起来，因为 pod 和 namespace 都属于核心 api 组，所以不需要指定 api 组。当我们查询某个 pod 的指标时，它会自动将 pod 的名称和名称空间作为标签加入到查询条件中。比如 `nginx: {group: "apps", resource: "deployment"}` 这么写表示的就是将指标中 nginx 这个标签和 apps 这个 api 组中的 `deployment` 资源关联起来；
+    - template：通过 go 模板的形式。比如`template: "kube_<<.Group>>_<<.Resource>>"` 这么写表示，假如 `<<.Group>>` 为 apps，`<<.Resource>>` 为 deployment，那么它就是将指标中 `kube_apps_deployment` 标签和 deployment 资源关联起来。
 - `name`：用来给指标重命名的，之所以要给指标重命名是因为有些指标是只增的，比如以 total 结尾的指标。这些指标拿来做 HPA 是没有意义的，我们一般计算它的速率，以速率作为值，那么此时的名称就不能以 total 结尾了，所以要进行重命名。
-  - `matches`：通过正则表达式来匹配指标名，可以进行分组
-  - `as`：默认值为 `$1`，也就是第一个分组。`as` 为空就是使用默认值的意思。
+    - `matches`：通过正则表达式来匹配指标名，可以进行分组
+    - `as`：默认值为 `$1`，也就是第一个分组。`as` 为空就是使用默认值的意思。
 - `metricsQuery`：这就是 Prometheus 的查询语句了，前面的 `seriesQuery` 查询是获得 HPA 指标。当我们要查某个指标的值时就要通过它指定的查询语句进行了。可以看到查询语句使用了速率和分组，这就是解决上面提到的只增指标的问题。
-  - `Series`：表示指标名称
-  - `LabelMatchers`：附加的标签，目前只有 `pod` 和 `namespace` 两种，因此我们要在之前使用 `resources` 进行关联
-  - `GroupBy`：就是 pod 名称，同样需要使用 `resources` 进行关联。
+    - `Series`：表示指标名称
+    - `LabelMatchers`：附加的标签，目前只有 `pod` 和 `namespace` 两种，因此我们要在之前使用 `resources` 进行关联
+    - `GroupBy`：就是 pod 名称，同样需要使用 `resources` 进行关联。
 
 接下来我们通过 Helm Chart 来部署 Prometheus Adapter，新建 `hpa-prome-adapter-values.yaml` 文件覆盖默认的 Values 值，内容如下所示：
 
@@ -897,7 +897,7 @@ hpa-prom-demo-755bb56f85-wbpfr   1/1     Running   0          3m30s
 接下来我们同样对应用进行压测：
 
 ```bash
-$ while true; do wget -q -O- http://k8s.qikqiak.com:32408; done
+while true; do wget -q -O- http://k8s.qikqiak.com:32408; done
 ```
 
 打开另外一个终端观察 HPA 对象的变化：

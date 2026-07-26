@@ -1,6 +1,5 @@
 ---
 title: 从PTTYPE="dos"到TYPE="LVM2_member"的救援
-linkTitle: 从PTTYPE=dos到TYPE=LVM2_member的救援
 weight: 20
 source: https://zhangguanzhang.github.io/2019/12/03/dos-to-gpt/
 ---
@@ -9,7 +8,7 @@ source: https://zhangguanzhang.github.io/2019/12/03/dos-to-gpt/
 
 > 参考：
 >
-> - 
+> -
 
 同事叫我救援一台云主机，虽说是虚拟机，但是类比到硬件服务器还是一样的操作，这里记录下给后来者查阅
 

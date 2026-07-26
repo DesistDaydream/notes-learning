@@ -1,6 +1,5 @@
 ---
 title: Cookie AND Session
-linkTitle: Cookie AND Session
 weight: 2
 ---
 
@@ -45,10 +44,10 @@ Cookie 的用途
 - **domain** # 可以访问此 cookie 的域名
 - **path**# 可以访问此 cookie 的页面路径。比如 domain 是 desistdaydream.ltd，path 是 /cookie，那么只有访问 <http://desistdaydream.ltd/cookie> 路径下的页面时，才可以读取此 cookie
 - **MaxAge**或 **Expires** # 设置 cookie 持久化时的过期时长
-  - 注意：Expires 是老式的过期方法， 如果可以，应该使用 MaxAge 设置过期时间，但有些老版本的浏览器不支持 MaxAge。 如果要支持所有浏览器，要么使用 Expires，要么同时使用 MaxAge 和 Expires。
+    - 注意：Expires 是老式的过期方法， 如果可以，应该使用 MaxAge 设置过期时间，但有些老版本的浏览器不支持 MaxAge。 如果要支持所有浏览器，要么使用 Expires，要么同时使用 MaxAge 和 Expires。
 - **size** # cookie 的大小
 - **httpOnly** # 是否允许别人通过 js 获取自己的 cookie
-  - httpOnly 属性限制了 cookie 对 HTTP 请求的作用范围。特别的，该属性指示用户代理忽略那些通过"非 HTTP" 方式对 cookie 的访问（比如浏览器暴露给 js 的接口）。
+    - httpOnly 属性限制了 cookie 对 HTTP 请求的作用范围。特别的，该属性指示用户代理忽略那些通过"非 HTTP" 方式对 cookie 的访问（比如浏览器暴露给 js 的接口）。
 - **secure** # 是否只能通过 https 访问
 
 注意：
@@ -73,7 +72,7 @@ Cookie 虽然在一定程度上解决了 "保持状态" 的需求，但是由于
 用户登录成功之后，我们在服务端为每个用户创建一个特定的 **SessionData**和 **SessionID**，他们一一对应。其中：
 
 - SessionData 是在服务端保存的一个数据结构，用来跟踪用户的状态，这个数据可以保存在集群、数据库、文件中
-  - 这个 SessionData 的数据结构一般都是 KEY/VALUE 类型的结构，相当于一个 **大 map。**可以保存在内存中、关系型数据库、Rdis、文件、等等地方
+    - 这个 SessionData 的数据结构一般都是 KEY/VALUE 类型的结构，相当于一个 **大 map。**可以保存在内存中、关系型数据库、Rdis、文件、等等地方
 - SessionID 作为唯一标识符，通常会写入到用户的 Cookie 中。
 
 所以，**Session 必须依赖于 Cookie 才能使用**，生成一个 SessionID 放在 Cookie 里传给客户端即可。
@@ -131,48 +130,48 @@ SessionMgr 接口设计
 RAM Session 设计
 
 - 定义 RAM Session 对象
-  - SessionID
-  - 存 K/V 的 map
-  - 读写锁
+    - SessionID
+    - 存 K/V 的 map
+    - 读写锁
 
 - 构造函数，为了获取对象
 
-  - Set()
-  - Get()
-  - Del()
-  - Save()
+    - Set()
+    - Get()
+    - Del()
+    - Save()
 
 RAM SessionMgr 设计
 
 - 定义 Memory SessionMgr 对象
-  - 存放所有 Session 的 map
-  - 读写锁
+    - 存放所有 Session 的 map
+    - 读写锁
 - 构造函数
-  - Init()
-  - CreateSession()
-  - GetSession()
+    - Init()
+    - CreateSession()
+    - GetSession()
 
 Redis Session 设计
 
 - 定义 RedisSession 对象
-  - SessionID
-  - 存 K/V 的 map
-  - 读写锁
-  - Redis 连接池
-  - 记录内存中 map 是否被修改的编辑
+    - SessionID
+    - 存 K/V 的 map
+    - 读写锁
+    - Redis 连接池
+    - 记录内存中 map 是否被修改的编辑
 - 构造函数
-  - Set()
-  - Get()
-  - Del()
-  - Save()
+    - Set()
+    - Get()
+    - Del()
+    - Save()
 
 Redis SessionMgr 设计
 
 - 定义 Redis SessionMgr 对象
-  - Redis 地址、密码、连接池、读写锁
-  - 存放所有 Session 的 map
-  - 读写锁
+    - Redis 地址、密码、连接池、读写锁
+    - 存放所有 Session 的 map
+    - 读写锁
 - 构造函数
-  - Init()
-  - CreateSession()
-  - GetSession()
+    - Init()
+    - CreateSession()
+    - GetSession()

@@ -1,6 +1,5 @@
 ---
 title: Tailscale DERP
-linkTitle: Tailscale DERP
 weight: 20
 ---
 
@@ -77,13 +76,13 @@ Tailscale 的私钥只会保存在当前节点，因此 DERP server 无法解密
 > 参考：
 >
 > - [GitHub 项目，tailscale/tailscale - cmd/derper](https://github.com/tailscale/tailscale/tree/main/cmd/derper) derper 入口
->   - https://github.com/tailscale/tailscale/tree/main/derp DERP 的实现
+>     - https://github.com/tailscale/tailscale/tree/main/derp DERP 的实现
 
 Tailscale 官方[内置了很多 DERP 服务器](https://controlplane.tailscale.com/derpmap/default)，分步在全球各地，**惟独不包含中国大陆**，原因你懂得。这就导致了一旦流量通过 DERP 服务器进行中继，延时就会非常高。而且官方提供的 DERP 服务器是万人骑，存在安全隐患。
 
 Tailscale 开源了 DERP Server 的代码，将其称为 **DERPer**。我们可以自己部署 derper 以便让所有流量都通过自己的程序。
 
-> [!Tip] [Headscale](/docs/4.数据通信/Protocol/Tunneling%20Protocol/Tailscale/Headscale.md) 包含了内置的 DERPer
+> [!Tip] [Headscale](/docs/4.数据通信/Utility/Tailscale/Headscale.md) 包含了内置的 DERPer
 
 ## 部署 derper
 

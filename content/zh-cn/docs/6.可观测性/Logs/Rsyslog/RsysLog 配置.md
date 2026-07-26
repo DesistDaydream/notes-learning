@@ -1,6 +1,5 @@
 ---
 title: RsysLog 配置
-linkTitle: RsysLog 配置
 weight: 20
 ---
 
@@ -91,9 +90,9 @@ template(NAME TYPE Descriptions)
 $template NAME,"PATH" # 定义一个名为 NAME 的模板来作为 RULE 配置段中 Location 字段使用，在 Location 字段中通过?NAME 来引用该对应模板
 
 - PATH 的可用变量
-  - `%HOSTNAME%` # 用来区分是哪台远程主机的。
-  - `%PROGRAMNAME%` # 通过日志标准格式中的 ProgramName 字段来进行分类保存日志。i.e.每个程序名是单独的一个文件
-  - `%$year%%$month%%$day%` # 用来以时间格式命名文件
+    - `%HOSTNAME%` # 用来区分是哪台远程主机的。
+    - `%PROGRAMNAME%` # 通过日志标准格式中的 ProgramName 字段来进行分类保存日志。i.e.每个程序名是单独的一个文件
+    - `%$year%%$month%%$day%` # 用来以时间格式命名文件
 
 # RULES 规则配置
 
@@ -106,7 +105,7 @@ Rules 配置段是 rsyslog 程序得以正常运行的最基础配置。规则�
 **Selector Action**
 
 - **Selector(选择器)**# 根据匹配规则，选择要处理的日志。选择器由 Facility 和 Priority 组成，以 `.` 分隔
-  - **Facility.Priority**
+    - **Facility.Priority**
 - **Action(动作)** # 描述了如何处理选择器选择出来的日志信息
 
 #### Selectors(选择器)
@@ -115,26 +114,26 @@ Rules 配置段是 rsyslog 程序得以正常运行的最基础配置。规则�
 
 - **Facility(设施)** # Facility 定义了 rsyslog 可以选择的设施都有哪些(注：该字段用 \* 表示则表示所有支持的 Facility)。多个 Facility 以 `,` 分隔
 - **匹配符号** # 除了 `.` 还可以使用另外两个符号来进行更细致的匹配。
-  - `.` # 选择包含且比 Prority 还要严重的优先级
-  - `.=` # 仅选择包含 Prority 所定义的优先级
-  - `.!` # 选择不包含 Prority 中所定义的优先级的其余优先级
+    - `.` # 选择包含且比 Prority 还要严重的优先级
+    - `.=` # 仅选择包含 Prority 所定义的优先级
+    - `.!` # 选择不包含 Prority 中所定义的优先级的其余优先级
 - **Priority(日志的优先级，也可以叫日志的 Level 级别)** # Priority 定义了每条信息的严重程度，下面以严重程度从高到低进行排序。括号中的数字指级别(注：该字段用 `*` 表示所有级别)
-  - emerg(0)：错误信息。最严重日志等级，意味着系统将要宕机
-  - alert(1)：错误信息。比 emerg 等级轻
-  - crit(2)：错误信息。
-  - err(3)：错误信息。err 就是 error
-  - warn(4)：警告信息。可能有问题，但是还不至于影响到程序的运行。warn 就是 warnning
-  - notice(5)：基本信息。
-  - info(6)：基本信息。
-  - debug(7)：特殊的等级，用来 troubleshooting 时产生的日志
-  - none：特殊的等级。表示某个 Facility 不需要执行 Action。i.e.即不记录的级别
+    - emerg(0)：错误信息。最严重日志等级，意味着系统将要宕机
+    - alert(1)：错误信息。比 emerg 等级轻
+    - crit(2)：错误信息。
+    - err(3)：错误信息。err 就是 error
+    - warn(4)：警告信息。可能有问题，但是还不至于影响到程序的运行。warn 就是 warnning
+    - notice(5)：基本信息。
+    - info(6)：基本信息。
+    - debug(7)：特殊的等级，用来 troubleshooting 时产生的日志
+    - none：特殊的等级。表示某个 Facility 不需要执行 Action。i.e.即不记录的级别
 
 #### Action(动作)
 
 匹配到的日志将要执行的动作。是保存本地文件、打印、保存到远程主机、转存到数据库中等等行为
 
 - **RegularFile(常规文件)** # 把日志写入到某个文件，文件路径可以引用模板。
-  - 如果在该字段前面记上 `-`，则表示先将日志保存在内存的 buffer 中，等数据量足够大时再一次性将数据写入磁盘文件中。
+    - 如果在该字段前面记上 `-`，则表示先将日志保存在内存的 buffer 中，等数据量足够大时再一次性将数据写入磁盘文件中。
 - **RemoteMachine(远程主机)** # `@HOST` 或者 `@@HOST`。用于把日志发送给远程主机。@使用 UDP 协议，@@使用 TCP 协议，默认使用 514 端口
 - \*，表示把日志发送给目前在线的所有人，类似于 wall 命令
 - | COMMAND：用于把日志信息通过管道符送给后面定义的 COMMAND 来进行处理

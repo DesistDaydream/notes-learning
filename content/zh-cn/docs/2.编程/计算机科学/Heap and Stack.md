@@ -1,6 +1,5 @@
 ---
 title: "Heap and Stack"
-linkTitle: "Heap and Stack"
 weight: 20
 ---
 

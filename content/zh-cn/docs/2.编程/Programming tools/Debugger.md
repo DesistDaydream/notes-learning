@@ -1,6 +1,5 @@
 ---
 title: Debugger
-linkTitle: Debugger
 weight: 40
 ---
 

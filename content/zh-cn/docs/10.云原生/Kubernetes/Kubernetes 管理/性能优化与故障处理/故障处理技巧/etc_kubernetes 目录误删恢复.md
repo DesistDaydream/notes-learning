@@ -80,7 +80,7 @@ Kubernetes 是一个很牛很牛的平台，Kubernetes 的架构可以让你轻�
 
 > 注意：kubeadm 默认不会覆盖现有的证书和 kubeconfigs，为了重新颁发证书，你必须先手动删除旧的证书。
 
-接下来我们首先恢复 etcd，在**一个 master **节点上执行下面的命令生成 etcd 集群的证书：
+接下来我们首先恢复 etcd，在**一个 master**节点上执行下面的命令生成 etcd 集群的证书：
 
     kubeadm init phase certs etcd-ca --config=kubeadm-config.yaml
 

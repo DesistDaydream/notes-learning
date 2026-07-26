@@ -1,6 +1,5 @@
 ---
 title: Variable
-linkTitle: Variable
 weight: 20
 ---
 
@@ -40,7 +39,6 @@ Variable 是 value(值) 的 placeholder(占位符)。当我们更改值时，使
 点击 **New avriable** 即可进入创建变量页面
 
 ![500](https://notes-learning.oss-cn-beijing.aliyuncs.com/grafana/dashboard/variable-new-1.png)
-
 
 - **Variable type** # 选择变量类型。根据选择的不同类型，下面会现实不同的可设置项。
 - **General** # 所有类型变量都会有的设置项。设置变量的基本信息：

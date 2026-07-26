@@ -305,18 +305,18 @@ rook 可以提供以下 3 类型的存储：
     [root@master-1 ~]# kubectl -n rook-ceph exec -it rook-ceph-tools-7cc7fd5755-rz64q bash -- /bin/bash
     [root@rook-ceph-tools-7cc7fd5755-rz64q /]# rbd info -p replicapool csi-vol-32fc614e-fe70-11ea-a2af-76b93ba918d2
     rbd image 'csi-vol-32fc614e-fe70-11ea-a2af-76b93ba918d2':
-    	size 20 GiB in 5120 objects
-    	order 22 (4 MiB objects)
-    	snapshot_count: 0
-    	id: 639b799e1bd
-    	block_name_prefix: rbd_data.639b799e1bd
-    	format: 2
-    	features: layering
-    	op_features:
-    	flags:
-    	create_timestamp: Thu Sep 24 14:14:06 2020
-    	access_timestamp: Thu Sep 24 14:14:06 2020
-    	modify_timestamp: Thu Sep 24 14:14:06 2020e
+     size 20 GiB in 5120 objects
+     order 22 (4 MiB objects)
+     snapshot_count: 0
+     id: 639b799e1bd
+     block_name_prefix: rbd_data.639b799e1bd
+     format: 2
+     features: layering
+     op_features:
+     flags:
+     create_timestamp: Thu Sep 24 14:14:06 2020
+     access_timestamp: Thu Sep 24 14:14:06 2020
+     modify_timestamp: Thu Sep 24 14:14:06 2020e
 
 登陆 pod 检查 rbd 设备：
 

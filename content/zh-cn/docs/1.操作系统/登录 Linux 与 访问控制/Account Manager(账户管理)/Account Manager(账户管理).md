@@ -77,18 +77,18 @@ Linux 系统的账户管理功能，通常由 **shadow-utils 包** 或 **passwd 
 不同的 Linux 发型，还会用到某些个别的包与主包配合提供完整的账户管理功能：
 
 - **base-passwd** # 这是 Ubuntu 发型版中独有的包。这个包中包含一个 `update-passwd` 的程序，将会根据 /var/lib/dpkg/info/base-passwd.preinst 脚本生成 /etc/passwd 和 /etc/group 文件
-  - 参考: https://unix.stackexchange.com/questions/470126/how-is-the-etc-passwd-file-instantiated
+    - 参考: https://unix.stackexchange.com/questions/470126/how-is-the-etc-passwd-file-instantiated
 - **setup** # 这是 CentOS 发行版中独有的包。包含了一组重要的系统配置文件和安装文件，例如 /etc/passwd、/etc/group、/etc/shadow、/etc/profile 等等
 
-| 实用程序                               | 描述                                       |
+| 实用程序 | 描述 |
 | ---------------------------------- | ---------------------------------------- |
-| `id`                               | 显示用户和组ID。                                |
-| `useradd`, `usermod`, `userdel`    | 用于添加、修改和删除用户帐户的标准实用程序。                   |
-| `groupadd`, `groupmod`, `groupdel` | 用于添加、修改和删除组的标准实用程序。                      |
-| `gpasswd`                          | 用于修改 newgrp 命令使用的 `/etc/gshadow` 文件中的组密码 |
-| `pwck`, `grpck`                    | 用于验证密码、组和相关影子文件的实用程序。                    |
-| `pwconv`, `pwunconv`               | 用于将密码转换为影子密码或从影子密码转换为标准密码的实用程序           |
-| `grpconv`, `grpunconv`             | 与前面类似，这些实用程序可用于转换组帐户的镜像信息。               |
+| `id` | 显示用户和组ID。 |
+| `useradd`, `usermod`, `userdel` | 用于添加、修改和删除用户帐户的标准实用程序。 |
+| `groupadd`, `groupmod`, `groupdel` | 用于添加、修改和删除组的标准实用程序。 |
+| `gpasswd` | 用于修改 newgrp 命令使用的 `/etc/gshadow` 文件中的组密码 |
+| `pwck`, `grpck` | 用于验证密码、组和相关影子文件的实用程序。 |
+| `pwconv`, `pwunconv` | 用于将密码转换为影子密码或从影子密码转换为标准密码的实用程序 |
+| `grpconv`, `grpunconv` | 与前面类似，这些实用程序可用于转换组帐户的镜像信息。 |
 
 ## useradd - 添加用户
 
@@ -122,15 +122,15 @@ OPTIONS：
 EXAMPLE：
 
 - 创建一个名为 desistdaydream 的用户，并设置该用户密码为 lch@password
-  - useradd -m desistdaydream && echo 'lch@password' | passwd desistdaydream --stdin
+    - useradd -m desistdaydream && echo 'lch@password' | passwd desistdaydream --stdin
 - 新增一个用户 user，并指定用户组 ftp
-  - useradd -g ftp user
+    - useradd -g ftp user
 - 新增一个用户：user 并指定家目录为/mnt/bak/。如果没有此目录，则报错，就需要手动创建目录
-  - useradd -d /mnt/back/ user
+    - useradd -d /mnt/back/ user
 - 新增一个用户：user 并设置密码为 123456
-  - useradd -p 123456 user
+    - useradd -p 123456 user
 - 新增一个 FTP 用户：ftp2018 （无需登录系统）
-  - useradd -g ftp -s /sbin/nologin ftp2018
+    - useradd -g ftp -s /sbin/nologin ftp2018
 
 ## userdel - 删除用户
 
@@ -178,12 +178,12 @@ OPTIONS：
 EXAMPLE
 
 - 修改 newname 用户所在群组为 test
-  - usermod -g test newname
+    - usermod -g test newname
 - 一次将一个用户添加到多个群组
-  - usermod -G friends,happy,funny newname
-  - 注意：使用 usermod 时要小心，因为配合-g 或-G 参数时，它会把用户从原先的群组里剔除，加入到新的群组。如果你不想离开原先的群组，又想加入新的群组，可以在-G 参数的基础上加上-a 参数，a 是英语 append 的缩写，表示“追加”。
+    - usermod -G friends,happy,funny newname
+    - 注意：使用 usermod 时要小心，因为配合-g 或-G 参数时，它会把用户从原先的群组里剔除，加入到新的群组。如果你不想离开原先的群组，又想加入新的群组，可以在-G 参数的基础上加上-a 参数，a 是英语 append 的缩写，表示“追加”。
 - -a 追加用户到新的用户组，保留原来的组
-  - usermod -aG happy newname
+    - usermod -aG happy newname
 
 ## groupadd、groupdel、groupmod、gpasswd - 用户组管理相关命令
 
@@ -200,15 +200,15 @@ OPTIONS：
 EXAMPLE
 
 - 创建一个名为 newname 的组
-  - groupadd newname
+    - groupadd newname
 - 修改组
-  - groupmod -n test2group testgroup
+    - groupmod -n test2group testgroup
 - 删除名为 test2group 的组
-  - groupdel test2group
+    - groupdel test2group
 - 查看当前登陆用户所在的组
-  - groups
+    - groups
 - 查看 testnewuser 所在的组
-  - groups testnewuser
+    - groups testnewuser
 
 ## who - 显示当前登录用户的相关信息
 
@@ -261,8 +261,8 @@ passwd 软件包将会记录用户上次更改密码的时间、应该间隔多�
 **OPTIONS**
 
 - **-d, --lastday \<INT>** # 设置上次更改密码的日期。值是从 1970 年 1 月 1 日开始到某年某月某日的天数。
-  - 若指定空值，则表示从没修改过密码，即 -l 选项查看的第一行的值为 never。
-  - 若指定 0，则用户再次登录时，则会被强制要求立刻修改密码，否则无法登录
+    - 若指定空值，则表示从没修改过密码，即 -l 选项查看的第一行的值为 never。
+    - 若指定 0，则用户再次登录时，则会被强制要求立刻修改密码，否则无法登录
 - **-l, --list** # 显示账户的老化信息
 
 ```bash
@@ -277,10 +277,10 @@ Number of days of warning before password expires : 7
 ```
 
 - **-m, --mindays \<INT>** # 密码可以修改的最小间隔天数。如果 INT 为 0，则表示不用等待，任何时候都可以修改密码
-  - 对应 shadow 文件中的第 4 个字段 minimum password age
+    - 对应 shadow 文件中的第 4 个字段 minimum password age
 - **-M, --maxdays \<INT>** #
-  - 对应 shadow 文件中的第 5 个字段 maximum password age
+    - 对应 shadow 文件中的第 5 个字段 maximum password age
 - **-W, --warndays \<INT>** #
-  - 对应 shadow 文件中的第 6 个字段 password warning period
+    - 对应 shadow 文件中的第 6 个字段 password warning period
 
 ## pwck

@@ -22,10 +22,10 @@ OCI Image 规范的目的，是为了让其他人按照规范创建交互工具�
 前文所描述的组成 OCI Image 规范的多个组成部分，又被细分为如下 **Components(组件)**：
 
 - [Image Layout](https://github.com/opencontainers/image-spec/blob/master/image-layout.md) # 镜像内容的文件系统布局。说白了，镜像的主要内容就在这里。
-  - [Image Manifest](https://github.com/opencontainers/image-spec/blob/master/manifest.md) # 描述构成容器镜像所具有的组件的文件。比如这个镜像有哪些 layer，额外的 annotation 信息。manifest 文件中保存了很多和当前平台有关的信息
-  - [Image Configuration](https://github.com/opencontainers/image-spec/blob/master/config.md) # 一个文档，该文档确定适用于转换为 [runtime bundle](https://github.com/opencontainers/runtime-spec) 运行时包的映像的层顺序和配置。保存了文件系统的层级信息（每个层级的 hash 值，以及历史信息），以及容器运行时需要的一些信息（比如环境变量、工作目录、命令参数、mount 列表），指定了镜像在某个特定平台和系统的配置。比较接近我们使用 docker inspect   看到的内容
-  - [Image Index](https://github.com/opencontainers/image-spec/blob/master/image-index.md) # 带注释的图像清单索引。指向不同平台的 manifest 文件，这个文件能保证一个镜像可以跨平台使用，每个平台拥有不同的 manifest 文件，使用 index 作为索引
-  - [Filesystem Layer changeset](https://github.com/opencontainers/image-spec/blob/main/layer.md) # 描述容器文件系统的变更集。以 layer 保存的文件系统，每个 layer 保存了和上层之间变化的部分，layer 应该保存哪些文件，怎么表示增加、修改和删除的文件等
+    - [Image Manifest](https://github.com/opencontainers/image-spec/blob/master/manifest.md) # 描述构成容器镜像所具有的组件的文件。比如这个镜像有哪些 layer，额外的 annotation 信息。manifest 文件中保存了很多和当前平台有关的信息
+    - [Image Configuration](https://github.com/opencontainers/image-spec/blob/master/config.md) # 一个文档，该文档确定适用于转换为 [runtime bundle](https://github.com/opencontainers/runtime-spec) 运行时包的映像的层顺序和配置。保存了文件系统的层级信息（每个层级的 hash 值，以及历史信息），以及容器运行时需要的一些信息（比如环境变量、工作目录、命令参数、mount 列表），指定了镜像在某个特定平台和系统的配置。比较接近我们使用 docker inspect   看到的内容
+    - [Image Index](https://github.com/opencontainers/image-spec/blob/master/image-index.md) # 带注释的图像清单索引。指向不同平台的 manifest 文件，这个文件能保证一个镜像可以跨平台使用，每个平台拥有不同的 manifest 文件，使用 index 作为索引
+    - [Filesystem Layer changeset](https://github.com/opencontainers/image-spec/blob/main/layer.md) # 描述容器文件系统的变更集。以 layer 保存的文件系统，每个 layer 保存了和上层之间变化的部分，layer 应该保存哪些文件，怎么表示增加、修改和删除的文件等
 - [Conversion](https://github.com/opencontainers/image-spec/blob/master/conversion.md) # 描述此翻译应如何发生。a document describing how this translation should occur
 - [Descriptor](https://github.com/opencontainers/image-spec/blob/master/descriptor.md) # 描述所引用内容的类型，元数据和内容地址的引用。a reference that describes the type, metadata and content address of referenced content
 
@@ -106,7 +106,7 @@ blobs 目录可以说是一个镜像的核心内容，这些内容被组织成�
 - Image Manifest 文件
 - Image Configuration 文件
 - Image Filesystem Layer 文件
-  - 这是一个被打包、压缩后的镜像文件系统。也就是镜像中的所有实体文件。
+    - 这是一个被打包、压缩后的镜像文件系统。也就是镜像中的所有实体文件。
 
 每个文件名都是其内容的 sha256 码
 
@@ -505,12 +505,12 @@ image config 就是一个 json 文件，它的 media type 是 application/vnd.oc
 有多个 XXXID 来标识 OCI Image 的各种信息
 
 - **ImageID**# 镜像的唯一标志，值为 Image Configuration 文件通过 sha256 计算的结果
-  - imageID 对于 Docker 来说一般可以在 ${DockerRootDir}/image/${StorageDriver}/repositories.json 文件中找到
-  - 镜像的 configuration 文件就是以 imageID 命名，对于 Docker 来说 一般保存在 ${DockerRootDir}/image/${StorageDriver}/imagedb/content/sha256/ 目录下
+    - imageID 对于 Docker 来说一般可以在 ${DockerRootDir}/image/${StorageDriver}/repositories.json 文件中找到
+    - 镜像的 configuration 文件就是以 imageID 命名，对于 Docker 来说 一般保存在 ${DockerRootDir}/image/${StorageDriver}/imagedb/content/sha256/ 目录下
 - **Layer DiffID**# 镜像层的校验 ID，根据该镜像层的打包文件校验获得
-  - diffID 一般在 configuration 文件的 `.rootfs.diff_ids` 字段中找到
+    - diffID 一般在 configuration 文件的 `.rootfs.diff_ids` 字段中找到
 - **Layer ChainID**# docker 内容寻址机制采用的索引 ID，其值根据当前层和所有父层的 diffID(或父层的 chainID) 计算获得
-  - chainID 计算完成后，对于 Docker 来说一般可以在 ${DockerRootDir}/image/${StorageDriver}/layerdb/sha256/ 目录中找到 chainID 的同名目录
+    - chainID 计算完成后，对于 Docker 来说一般可以在 ${DockerRootDir}/image/${StorageDriver}/layerdb/sha256/ 目录中找到 chainID 的同名目录
 - **digest** # 对于某些 image 来说，可能在发布之后还会做一些更新，比如安全方面的，这时虽然镜像的内容变了，但镜像的名称和 tag 没有变，所以会造成前后两次通过同样的名称和 tag 从服务器得到不同的两个镜像的问题，于是 docker 引入了镜像的 digest 的概念，一个镜像的 digest 就是镜像的 manifes 文件的 sha256 码，当镜像的内容发生变化的时候，即镜像的 layer 发生变化，从而 layer 的 sha256 发生变化，而 manifest 里面包含了每一个 layer 的 sha256，所以 manifest 的 sha256 也会发生变化，即镜像的 digest 发生变化，这样就保证了 digest 能唯一的对应一个镜像
 
 # Image Index(可选)
@@ -591,23 +591,23 @@ OCI 中预定义了一些常用注释以用于镜像索引或识别镜像作者
 - **org.opencontainers.image.documentation** URL to get documentation on the image (string)
 - **org.opencontainers.image.source** URL to get source code for building the image (string)
 - **org.opencontainers.image.version** version of the packaged software
-  - The version MAY match a label or tag in the source code repository
-  - version MAY be [Semantic versioning-compatible](https://semver.org/)
+    - The version MAY match a label or tag in the source code repository
+    - version MAY be [Semantic versioning-compatible](https://semver.org/)
 - **org.opencontainers.image.revision** Source control revision identifier for the packaged software.
 - **org.opencontainers.image.vendor** Name of the distributing entity, organization or individual.
 - **org.opencontainers.image.licenses** License(s) under which contained software is distributed as an [SPDX License Expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60).
 - **org.opencontainers.image.ref.name** Name of the reference for a target (string).
-  - SHOULD only be considered valid when on descriptors on index.json within [image layout](https://github.com/opencontainers/image-spec/blob/main/image-layout.md).
-  - Character set of the value SHOULD conform to alphanum of A-Za-z0-9 and separator set of -.\_:@/+
-  - The reference must match the following [grammar](https://github.com/opencontainers/image-spec/blob/main/considerations.md#ebnf):ref ::= component ("/" component)_component ::= alphanum (separator alphanum)_ alphanum ::= \[A-Za-z0-9]+ separator ::= \[-.\_:@+] | "--"
+    - SHOULD only be considered valid when on descriptors on index.json within [image layout](https://github.com/opencontainers/image-spec/blob/main/image-layout.md).
+    - Character set of the value SHOULD conform to alphanum of A-Za-z0-9 and separator set of -.\_:@/+
+    - The reference must match the following [grammar](https://github.com/opencontainers/image-spec/blob/main/considerations.md#ebnf):ref ::= component ("/" component)_component ::= alphanum (separator alphanum)_ alphanum ::= \[A-Za-z0-9]+ separator ::= \[-.\_:@+] | "--"
 - **org.opencontainers.image.title** Human-readable title of the image (string)
 - **org.opencontainers.image.description** Human-readable description of the software packaged in the image (string)
 - **org.opencontainers.image.base.digest** [Digest](https://github.com/opencontainers/image-spec/blob/main/descriptor.md#digests) of the image this image is based on (string)
-  - This SHOULD be the immediate image sharing zero-indexed layers with the image, such as from a Dockerfile FROM statement.
-  - This SHOULD NOT reference any other images used to generate the contents of the image (e.g., multi-stage Dockerfile builds).
+    - This SHOULD be the immediate image sharing zero-indexed layers with the image, such as from a Dockerfile FROM statement.
+    - This SHOULD NOT reference any other images used to generate the contents of the image (e.g., multi-stage Dockerfile builds).
 - **org.opencontainers.image.base.name** Image reference of the image this image is based on (string)
-  - This SHOULD be image references in the format defined by [distribution/distribution](https://github.com/distribution/distribution/blob/d0deff9cd6c2b8c82c6f3d1c713af51df099d07b/reference/reference.go).
-  - This SHOULD be a fully qualified reference name, without any assumed default registry. (e.g., registry.example.com/my-org/my-image:tag instead of my-org/my-image:tag).
-  - This SHOULD be the immediate image sharing zero-indexed layers with the image, such as from a Dockerfile FROM statement.
-  - This SHOULD NOT reference any other images used to generate the contents of the image (e.g., multi-stage Dockerfile builds).
-  - If the image.base.name annotation is specified, the image.base.digest annotation SHOULD be the digest of the manifest referenced by the image.ref.name annotation.
+    - This SHOULD be image references in the format defined by [distribution/distribution](https://github.com/distribution/distribution/blob/d0deff9cd6c2b8c82c6f3d1c713af51df099d07b/reference/reference.go).
+    - This SHOULD be a fully qualified reference name, without any assumed default registry. (e.g., registry.example.com/my-org/my-image:tag instead of my-org/my-image:tag).
+    - This SHOULD be the immediate image sharing zero-indexed layers with the image, such as from a Dockerfile FROM statement.
+    - This SHOULD NOT reference any other images used to generate the contents of the image (e.g., multi-stage Dockerfile builds).
+    - If the image.base.name annotation is specified, the image.base.digest annotation SHOULD be the digest of the manifest referenced by the image.ref.name annotation.

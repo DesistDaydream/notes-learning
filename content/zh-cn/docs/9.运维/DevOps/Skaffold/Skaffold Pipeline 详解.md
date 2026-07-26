@@ -58,12 +58,12 @@ artifacts([]Object) # 工件的信息
 
 - image: STRING # 要构建的工件的镜像名
 - docker
-  - dockerfile
+    - dockerfile
 
 tagPolicy: # 确定如何为镜像添加 TAG。默认为：`gitCommit：{variant：Tags}`。
 
 - envTemplate: # 使用可配置的模板字符串为镜像添加 TAG。
-  - template: # 用于产生图像名称和标签。参阅 golang 的 [text/template](https://golang.org/pkg/text/template/)。针对当前环境执行模板，并注入这些变量。
+    - template: # 用于产生图像名称和标签。参阅 golang 的 [text/template](https://golang.org/pkg/text/template/)。针对当前环境执行模板，并注入这些变量。
 
 local: # 描述如何在本地 docker 守护程序上进行构建以及如何选择推送到存储库
 

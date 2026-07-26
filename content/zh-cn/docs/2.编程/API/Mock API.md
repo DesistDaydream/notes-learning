@@ -42,9 +42,9 @@ API 参数/规范设计
 
 - OpenAPI：
 
-  - 在线编辑 Swagger 文件：<http://editor.swagger.io>。
+    - 在线编辑 Swagger 文件：<http://editor.swagger.io>。
 
-  - Spring 框架编写 API 结构注解。
+    - Spring 框架编写 API 结构注解。
 
 - Postman：IDE 在线编辑。
 

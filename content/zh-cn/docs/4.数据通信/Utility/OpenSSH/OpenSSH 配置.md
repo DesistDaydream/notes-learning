@@ -1,6 +1,5 @@
 ---
 title: OpenSSH 配置
-linkTitle: OpenSSH 配置
 weight: 2
 ---
 
@@ -54,8 +53,6 @@ weight: 2
 
 ## 认证逻辑
 
-
-
 ## SFTP 子系统相关
 
 **Subsystem** # 配置外部子系统（e.g. [SFTP Subsystem](/docs/4.数据通信/Utility/OpenSSH/SFTP%20Subsystem.md)）。可用参数详见对应子系统中的参数。
@@ -101,4 +98,3 @@ root@172.19.42.248's password:
 
 > [!Tip]
 > 有的 SSH 服务端设定了某些算法，若客户端默认算法没指定，则连接时将会报错: `Unable to negotiate with 1.1.1.1 port 22: no matching host key type found. Their offer: XXXX,YYYY`。此时就可以利用 `-o HostKeyAlgorithms=+XXXX,YYYY` 正常连接
-

@@ -1,6 +1,5 @@
 ---
 title: kubectl CLI
-linkTitle: kubectl CLI
 weight: 1
 ---
 
@@ -111,7 +110,7 @@ set # 配置应用程序资源，用法详见单独章节
 kubectl explain RESOURCE\[.FIELD1.FELD2...FIELDn] \[options] # 每个 FIELD(字段)都可以用.后面跟字段名来查询这个字段下的描述信息，以及该字段下还可以声明什么字段
 
 - EXAMPLE
-  - kubectl explain pods.spec.containers
+    - kubectl explain pods.spec.containers
 
 字段说明：
 
@@ -202,9 +201,9 @@ EXAMPLE
 EXAMPLE
 
 - 删除 master 节点上 dedicated:NoSchedule 这个污点
-  - k**ubectl taint nodes master dedicated:NoSchedule-**
+    - k**ubectl taint nodes master dedicated:NoSchedule-**
 - 给 master 节点加一个污点，key 为 node-type，val 为 qa，effect 为 NoExecut
-  - **kubectl taint nodes master node-type=qa:NoExecute**
+    - **kubectl taint nodes master node-type=qa:NoExecute**
 
 # Troubleshooting and Debugging Commands(故障排除和调试命令)
 
@@ -256,7 +255,7 @@ EXAMPLE
 
 - kubectl port-forward -n monitoring prometheus-k8s-0 9090
 - 将名为 traefik 的 service 的 8080 和 443 端口，进行端口转发暴露出来，监听的地址是本地 0.0.0.0
-  - kubectl port-forward --address 0.0.0.0 service/traefik 8080:8080 443:4443
+    - kubectl port-forward --address 0.0.0.0 service/traefik 8080:8080 443:4443
 
 ## proxy - 运行一个到 kubernetes 的 API 服务器的代理程序
 
@@ -283,7 +282,7 @@ OPTIONS
 EXAMPLE
 
 - 在本地 8080 端口上启动 API Server 的一个代理网关，以便使用 curl 直接访问 api server 并获取数据
-  - kubectl proxy --port=8080
+    - kubectl proxy --port=8080
 - kubectl proxy --port=8080 --address=0.0.0.0 --accept-hosts='localhost$,^127.0.0.1$,\[::1]$,172.38.40.212' #
 
 cp             Copy files and directories to and from containers.

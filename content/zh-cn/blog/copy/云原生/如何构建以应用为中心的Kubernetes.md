@@ -1,6 +1,5 @@
 ---
 title: "如何构建以应用为中心的Kubernetes"
-linkTitle: "如何构建以应用为中心的Kubernetes"
 weight: 20
 ---
 

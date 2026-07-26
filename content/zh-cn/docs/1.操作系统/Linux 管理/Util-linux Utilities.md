@@ -1,6 +1,5 @@
 ---
 title: Util-linux Utilities
-linkTitle: Util-linux Utilities
 weight: 2
 ---
 

@@ -12,9 +12,9 @@ title: Unit File 指令
 一个 Unit File 具有多个 Sections(部分)，大体可以分为 2 类
 
 - **通用 Sections** # 与 Unit 类型无关的部分
-  - \[Unit] 与 \[Install]
+    - \[Unit] 与 \[Install]
 - **特殊 Sections** # 特定于 Unit 类型的部分
-  - \[Service]、\[Socket]、\[Timer]、\[Mount]、\[Path] 等等
+    - \[Service]、\[Socket]、\[Timer]、\[Mount]、\[Path] 等等
 
 除了 Unit 和 Install 以外的其余每个 **Sections(部分)** 都有其特定的 **Directives(指令)**，同时，也有一些通用的 Directives(指令) 可以用在多个 Sections(部分) 中。
 

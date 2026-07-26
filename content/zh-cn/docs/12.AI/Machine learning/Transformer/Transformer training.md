@@ -1,6 +1,5 @@
 ---
 title: Transformer training
-linkTitle: Transformer training
 created: 2026-04-13T15:17
 weight: 11
 ---

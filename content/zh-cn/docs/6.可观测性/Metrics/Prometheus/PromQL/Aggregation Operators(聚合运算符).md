@@ -1,6 +1,5 @@
 ---
 title: Aggregation Operators(聚合运算符)
-linkTitle: Aggregation Operators(聚合运算符)
 weight: 4
 ---
 
@@ -30,8 +29,8 @@ Prometheus 还提供了下列内置的聚合运算符，这些运算符仅作用
 
 - **Aggregation Operators** # 聚合运算符
 - **without|by (LabelName,...)** # 若不指定该选项，则聚合全部数据的值。如果指定了，则按照指定的 LabelName 进行聚合。通过 without 和 by 可以按照样本的问题对数据进行聚合。该用法的示例图详见文末
-  - **by** # 聚合 by 后面指定的 LabelName 样本数据，并将聚合以外的标签的移除
-  - **without** # 与 by 相反，聚合 without 后面没有指定的 LabelName 样本数据。并将聚合以外的标签的移除
+    - **by** # 聚合 by 后面指定的 LabelName 样本数据，并将聚合以外的标签的移除
+    - **without** # 与 by 相反，聚合 without 后面没有指定的 LabelName 样本数据。并将聚合以外的标签的移除
 - **Parameter #** 参数，其中只有 count_values, quantile, topk, bottomk 支持
 - **VectorExpression** # 向量表达式。详见 [PromQL](/docs/6.可观测性/Metrics/Prometheus/PromQL/PromQL.md) 章节
 
@@ -42,7 +41,7 @@ Prometheus 还提供了下列内置的聚合运算符，这些运算符仅作用
 EXAMPLE
 
 - 计算 up 序列 的值为 1 的序列总数
-  - count by(job, namespace, service) (up == 1)
+    - count by(job, namespace, service) (up == 1)
 
 # topk 与 bottomk
 

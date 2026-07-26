@@ -1,6 +1,5 @@
 ---
 title: Keypoint detection
-linkTitle: Keypoint detection
 weight: 20
 ---
 

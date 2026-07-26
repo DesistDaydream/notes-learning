@@ -17,9 +17,9 @@ title: 让 Pod 运行在指定 Node 上
 
 - **nodeName(节点名称)** #
 - **nodeSelector(节点选择器)** # 根据节点的标签，选择 pod 要运行在哪个节点上
-  - 这种行为定义 Pod 必须在特定节点上运行。
+    - 这种行为定义 Pod 必须在特定节点上运行。
 - **Affinity(亲和) 与 Anti-Affinity(反亲和)** # 根据亲和原则，让 pod 更趋向于与哪些 XXX 运行在同一个节点
-  - 这种行为定义 Pod 更倾向于在特定节点上运行。
+    - 这种行为定义 Pod 更倾向于在特定节点上运行。
 - **Taint(污点) 与 Toleration(容忍度)** # 根据节点上的污点，以及 pod 是否可以容忍该污点来决定 pod 是否可以运行在哪些节点上
 
 其中 nodeSelector 和 Affinity 与 Anti-Affinity 是通过 [Label Selectors(标签选择器)](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/Object%20管理/Label%20and%20Selector(标签和选择器)/Label%20and%20Selector(标签和选择器).md) 来实现的。而 Taint 与 Toleration 是另一套类似于标签选择器的机制。
@@ -95,9 +95,9 @@ spec:
 
 - **Node Affinity(节点亲和性)** # 与 NodeSelector 类似，但是提供了更灵活的规则
 - **Pod Affinity(Pod 亲和性)**# 可以根据某个 Pod 与某个 Pod 的亲和关系来决定该 Pod 要运行在具有(或不具有)某个 Pod 的 Node 上。
-  - Pod 亲和可以分为两部分：
-    - **Inter-pod Affinity(Pod 之间亲和)**
-    - **Inter-pod Anti-affinity(Pod 之间反亲和)**
+    - Pod 亲和可以分为两部分：
+        - **Inter-pod Affinity(Pod 之间亲和)**
+        - **Inter-pod Anti-affinity(Pod 之间反亲和)**
 
 每种调度规则有 hard 和 soft 两种强度。通过如下两个字段
 
@@ -175,7 +175,7 @@ spec:
 上面这个示例中的亲和性调度规则分为两部分：
 
 - requiredDuringSchedulingIgnoredDuringExecution 字段下的规则为：Pod 只能被调度到具有 `kubernetes.io/e2e-az-name` 标签，且标签值为 `e2e-az1` 或 `e2e-az2` 的节点上。
-  - 除了满足 requiredDuringSchedulingIgnoredDuringExecution 字段的规则外，也就是说，匹配到的这些节点中，还会根据下面的规则，进一步约束 Pod 被调度的节点
+    - 除了满足 requiredDuringSchedulingIgnoredDuringExecution 字段的规则外，也就是说，匹配到的这些节点中，还会根据下面的规则，进一步约束 Pod 被调度的节点
 - preferredDuringSchedulingIgnoredDuringExecution 字段下的规则为：具有 `another-node-label-key` 标签，且标签值为 `another-node-label-value` 的节点应该优先调度。除非这些节点不可用或由于其他原因不可调度，那么才会选择其他节点。
 
 从上面的例子可以看到，想要匹配到想要的 Node，还是基于 [Selector(选择器)](Label%20and%20Selector(标签和选择器).md and Selector(标签和选择器).md) 来实现的，其中 `operator` 字段中，可以通过设定 NotIn 或者 DoesNotExist 来实现**节点反亲和**的效果。
@@ -241,10 +241,10 @@ spec:
 在此示例中，在这个 Pod 的亲和性配置定义了两条规则：
 
 - Pod 亲和性规则
-  - 仅当节点和至少一个已运行且有键为“security”且值为“S1”的标签 的 Pod 处于同一区域时，才可以将该 Pod 调度到节点上。(更确切的说，如果节点 N 具有 `topology.kubernetes.io/zone` 标签， 则 Pod 有资格在节点 N 上运行，以便集群中至少有一个具有 `topology.kubernetes.io/zone` 标签的节点正在运行具有键“security”和值 “S1”的标签的 pod。)
+    - 仅当节点和至少一个已运行且有键为“security”且值为“S1”的标签 的 Pod 处于同一区域时，才可以将该 Pod 调度到节点上。(更确切的说，如果节点 N 具有 `topology.kubernetes.io/zone` 标签， 则 Pod 有资格在节点 N 上运行，以便集群中至少有一个具有 `topology.kubernetes.io/zone` 标签的节点正在运行具有键“security”和值 “S1”的标签的 pod。)
 - Pod 反亲和性规则
-  - 如果在具有 `topology.kubernetes.io/zone` 标签的节点上已经运行了具有键为 `security` 和值 `S2` 标签的 Pod，则同样具有相同标签的 Pod 不能被调度到该节点。
-    - 也就是说，具有 security=S2 标签的 Pod 在具有 topology.kubernetes.io/zone 标签的节点上，只能运行一个。
+    - 如果在具有 `topology.kubernetes.io/zone` 标签的节点上已经运行了具有键为 `security` 和值 `S2` 标签的 Pod，则同样具有相同标签的 Pod 不能被调度到该节点。
+        - 也就是说，具有 security=S2 标签的 Pod 在具有 topology.kubernetes.io/zone 标签的节点上，只能运行一个。
 
 Pod 亲和性与反亲和性的合法 `operator` 字段的值有 In，NotIn，Exists，DoesNotExist。
 
@@ -387,10 +387,10 @@ web-server-1287567482-s330j    1/1       Running   0          7m        10.192.3
 **taints([]Object)** # 定义 Node 污点。凡是具有污点的节点，都对不容忍污点的 Pod 具有某些 effect(效果)。
 
 - **effect <STRING> # 必须的。**定义当 Pod 不能容忍 Node 的污点的时候，Node 对 Pod 的排斥效果（效果即使要采取的行为是什么)。
-  - NoSchedule # 仅影响调度过程(仅影响调度过程，对于已经调度到该 Node 上的 Pod 则没效果，即调度完成后再给 Node 上加的污点就算 Pod 不容忍也没影响)；
-  - NoExecut # 即影响调度过程，也影响现存的 Pod(即不容忍 taint 的 Pod 不但不会调度到 Node 上，如果不容忍该 Taint 的 Pod 已经在该 Node 上，会被 Node 驱逐)；
-    - 在什么情况下会触发驱逐 Pod 的效果呢？e.g.在 Pod 已经调度到 Node 上之后，再给 Node 添加 Taint，这时候该 Pod 不容忍新增加的污点，那么 Node 就会驱逐该 Pod
-  - PreferNoschedule # 最好不调度，实在不行了还可以调度。
+    - NoSchedule # 仅影响调度过程(仅影响调度过程，对于已经调度到该 Node 上的 Pod 则没效果，即调度完成后再给 Node 上加的污点就算 Pod 不容忍也没影响)；
+    - NoExecut # 即影响调度过程，也影响现存的 Pod(即不容忍 taint 的 Pod 不但不会调度到 Node 上，如果不容忍该 Taint 的 Pod 已经在该 Node 上，会被 Node 驱逐)；
+        - 在什么情况下会触发驱逐 Pod 的效果呢？e.g.在 Pod 已经调度到 Node 上之后，再给 Node 添加 Taint，这时候该 Pod 不容忍新增加的污点，那么 Node 就会驱逐该 Pod
+    - PreferNoschedule # 最好不调度，实在不行了还可以调度。
 - **key: <STRING> # 必须的。**
 - **value: <STRING>** #
 - **timeAdded: <STRING>**#
@@ -404,11 +404,11 @@ kubectl taint nodes NODE KEY[=VALUE]:EFFECT
 ### 应用示例
 
 - 为 node-t.tj-test 这个节点添加污点，污点的 key 为 node-role.kubernetes.io/master，没有 value，污点效果为 NodSchedule
-  - kubectl taint node node-4.tj-test node-role.kubernetes.io/master:NoSchedule
+    - kubectl taint node node-4.tj-test node-role.kubernetes.io/master:NoSchedule
 - 删除所有节点上 node-role.kubernetes.io/master 这个污点。也就是让 master 可以当作 node 使用
-  - kubectl taint nodes --all node-role.kubernetes.io/master-
+    - kubectl taint nodes --all node-role.kubernetes.io/master-
 - 该命令可以获取所有节点上的污点
-  - kubectl get nodes --template='{{ range .items }}{{ .metadata.name }}{{"\t"}}{{ .spec.taints }}{{"\n"}}{{end}}'
+    - kubectl get nodes --template='{{ range .items }}{{ .metadata.name }}{{"\t"}}{{ .spec.taints }}{{"\n"}}{{end}}'
 
 ## Toleration
 
@@ -417,8 +417,8 @@ kubectl taint nodes NODE KEY[=VALUE]:EFFECT
 - **effect: <STRING>**# 表明匹配的 taint 的 effect 字段，包括三个效果 NoSchedule, PreferNoSchedule and NoExecute，如果不指定该字段则匹配所有污点效果
 - **key: <STRING>** # 指明要容忍的 taint 中的 key
 - **operator: <STRING>** # 定义容忍要满足的条件
-  - Exists # 只要 Key 一样，则容忍
-  - Equal # 需要 Key 和 value 都一样才容忍
+    - Exists # 只要 Key 一样，则容忍
+    - Equal # 需要 Key 和 value 都一样才容忍
 - **tolerationSeconds: <INTEGER>** # 定义容忍时间
 - **value: <STRING>** # 指明要容忍的 taint 中的 value
 

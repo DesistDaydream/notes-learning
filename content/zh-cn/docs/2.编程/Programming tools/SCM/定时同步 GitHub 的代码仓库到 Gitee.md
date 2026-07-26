@@ -1,6 +1,5 @@
 ---
 title: 定时同步 GitHub 的代码仓库到 Gitee
-linkTitle: 定时同步 GitHub 的代码仓库到 Gitee
 weight: 20
 ---
 
@@ -9,7 +8,7 @@ weight: 20
 
 > 参考：
 >
-> - 
+> -
 
 # 利用 GitHub Action 同步
 
@@ -124,4 +123,3 @@ ssh-keygen -t rsa -C 我的邮箱
 
 - **Repository permissions**
     - **Webhooks** # 读/写。用于 Gitee 自动为 GitHub 仓库创建 [Webhook](https://github.com/DesistDaydream/notes-learning/settings/hooks)
-

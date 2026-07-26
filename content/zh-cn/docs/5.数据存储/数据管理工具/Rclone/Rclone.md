@@ -1,6 +1,5 @@
 ---
 title: "Rclone"
-linkTitle: "Rclone"
 weight: 1
 ---
 
@@ -28,11 +27,11 @@ rclone 的挂载使用 FUSE，需要安装 winfsp。
 **rclone.conf** # 各种 Remotes 信息。
 
 - 如果在某些已定义的位置都没有找到 rclone.conf 文件，则会在以下位置创建一个新的配置文件：
-  - Windows 上
-    - 在 **$APPDATA/rclone/rclone.conf**
-  - 类 Unix 上
-    - 如果定义了 `$XDG_CONFIG_HOME`，则在 **$XDG_CONFIG_HOME/rclone/rclone.conf**
-    - 如果未定义 `$XDG_CONFIG_HOME`，则在 **~/.config/rclone/rclone.conf**
+    - Windows 上
+        - 在 **$APPDATA/rclone/rclone.conf**
+    - 类 Unix 上
+        - 如果定义了 `$XDG_CONFIG_HOME`，则在 **$XDG_CONFIG_HOME/rclone/rclone.conf**
+        - 如果未定义 `$XDG_CONFIG_HOME`，则在 **~/.config/rclone/rclone.conf**
 
 # Syntax(语法)
 

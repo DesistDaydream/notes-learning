@@ -1,6 +1,5 @@
 ---
 title: "Alloy"
-linkTitle: "Alloy"
 weight: 20
 ---
 
@@ -28,4 +27,3 @@ https://grafana.com/docs/alloy/latest/configure/
 https://grafana.com/docs/alloy/latest/reference/cli/run/
 
 **--disable-reporting** # 是否关闭[使用数据的上报](https://grafana.com/docs/alloy/latest/data-collection/)。`默认值: false`
-

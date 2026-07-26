@@ -1,6 +1,5 @@
 ---
 title: Plugins
-linkTitle: Plugins
 weight: 20
 ---
 

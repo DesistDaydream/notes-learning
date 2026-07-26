@@ -1,6 +1,5 @@
 ---
 title: Alerting
-linkTitle: Alerting
 weight: 5
 ---
 

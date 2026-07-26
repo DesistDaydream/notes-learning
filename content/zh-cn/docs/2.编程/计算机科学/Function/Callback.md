@@ -1,6 +1,5 @@
 ---
 title: Callback
-linkTitle: Callback
 weight: 20
 ---
 
@@ -11,7 +10,7 @@ weight: 20
 > - [Wiki, Callback_(computer_programming)](https://en.wikipedia.org/wiki/Callback_(computer_programming))
 > - [博客园，究竟什么是callback function(回调函数)](https://www.cnblogs.com/ArsenalfanInECNU/p/14650501.html)
 > - [公众号-码农的荒岛求生，回调函数 callback 的实现原理是什么？](https://mp.weixin.qq.com/s/zS7URRO5sNzobUNIqSJHIg)
->   - 原文非简化版：《[10 张图让你彻底理解回调函数](http://mp.weixin.qq.com/s?__biz=Mzg4OTYzODM4Mw==&mid=2247485712&idx=1&sn=3d2750dfb693f41b2483b51b60a4f44c&chksm=cfe99590f89e1c860277fe1b22c3731ec4e3b61dbb5cd2a6d9548efbc709104a38d6da812517&scene=21#wechat_redirect)》
+>     - 原文非简化版：《[10 张图让你彻底理解回调函数](http://mp.weixin.qq.com/s?__biz=Mzg4OTYzODM4Mw==&mid=2247485712&idx=1&sn=3d2750dfb693f41b2483b51b60a4f44c&chksm=cfe99590f89e1c860277fe1b22c3731ec4e3b61dbb5cd2a6d9548efbc709104a38d6da812517&scene=21#wechat_redirect)》
 
 **Callback(回调函数)** 是一种编程模式，我们通常使用 **Callback function(回调函数)** 来实现回调。
 

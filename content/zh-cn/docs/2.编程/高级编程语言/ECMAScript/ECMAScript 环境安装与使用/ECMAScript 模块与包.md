@@ -181,18 +181,17 @@ npm 有一个自带的配置 PREFIX，PREFIX 用来定位目录前缀，以决�
 
 - Linux 中，我个人通常装在 `/usr/local/nodejs/` 目录下。
 - Windows 由于某些原因，使用 msi 安装包安装的 Node.js 会将该 PREFIX 改为 `%APPDATA%/npm/`，而不是安装目录。
-  - 可以从 nodejs 安装路径下的 node_modules/npm/npmrc 文件中看到有这么一条配置：`prefix=${APPDATA}\npm`
-  - 但是我们可以使用 zip 包，手动安装 Node.js，详情见：[ECMAScript 环境安装与使用](/docs/2.编程/高级编程语言/ECMAScript/ECMAScript%20环境安装与使用/ECMAScript%20环境安装与使用.md#Windows)
+    - 可以从 nodejs 安装路径下的 node_modules/npm/npmrc 文件中看到有这么一条配置：`prefix=${APPDATA}\npm`
+    - 但是我们可以使用 zip 包，手动安装 Node.js，详情见：[ECMAScript 环境安装与使用](/docs/2.编程/高级编程语言/ECMAScript/ECMAScript%20环境安装与使用/ECMAScript%20环境安装与使用.md#Windows)
 
 ### node_modules 目录
 
 当我们使用包管理命令安装各种第三方库(依赖包)及其衍生物通常会保存在名为 `node_modules/` 目录下，通常会有两个地方有 node_modules 目录：
 
 - **Locally(本地)** # 这是默认的行为，安装的东西放在当前目录的 `./node_modules/` 目录中
-  - 当我们想要在代码中使用 require() 或 import 导入模块时，通常安装在本地
+    - 当我们想要在代码中使用 require() 或 import 导入模块时，通常安装在本地
 - **Globally(全局)** # 使用 `-g` 选项，将安装的东西放在 `${PREFIX}/lib/node_modules/` 目录中
-  - 若安装的东西中具有可以在 CLI 执行的工具，则同时会在 `${PREFIX}/bin/` 目录下生成指向原始文件的软链接，`${PREFIX}/bin/` 目录通常都会加入到 `${PATH}` 变量中。
-  - 当我们安装的包可以在命令行执行时，通常安装在全局
+    - 若安装的东西中具有可以在 CLI 执行的工具，则同时会在 `${PREFIX}/bin/` 目录下生成指向原始文件的软链接，`${PREFIX}/bin/` 目录通常都会加入到 `${PATH}` 变量中。
+    - 当我们安装的包可以在命令行执行时，通常安装在全局
 
 > 注意：Windows 的全局 `node_modules/` 目录与 Linux 不太一样，全局路径是 `${PREFIX}/node_modeuls/`。也就是说生成的链接文件就在 `${PREFIX}` 下。
-

@@ -1,6 +1,5 @@
 ---
 title: Visual Studio Code
-linkTitle: Visual Studio Code
 weight: 1
 ---
 
@@ -22,9 +21,9 @@ weight: 1
 VS Code 运行时生成的持久化数据通常都在同一个目录中。之所以称为用户数据目录，是因为需要以用户为基础来运行一个进程，不同的用户运行的 VS Code，读取的数据应该是不同的。所以这些数据一般就保存在用户的家目录中。
 
 - .**/User/** #
-  - **./workspaceStorage/** # 工作空间的配置与持久化数据
-  - **./keybindings.json** # 快捷键
-  - **./settings.json** # 用户自定义的配置。默认配置在代码内部。
+    - **./workspaceStorage/** # 工作空间的配置与持久化数据
+    - **./keybindings.json** # 快捷键
+    - **./settings.json** # 用户自定义的配置。默认配置在代码内部。
 
 **${ExtensionsDir}** # 扩展目录。
 
@@ -46,9 +45,9 @@ VS Code 运行时生成的持久化数据通常都在同一个目录中。之所
 **settings.json** # VS Code 配置文件。该配置文件分为两类
 
 - **用户配置** # 当前用户使用 VS Code 的配置，用来覆盖默认配置。
-  - Windows 目录：**%APPDATA%/Code/User/settings.json** #
+    - Windows 目录：**%APPDATA%/Code/User/settings.json** #
 - **工作区配置** # VS Code 当前工作区的配置，该配置文件通常存在于项目目录中。这个配置会覆盖用户配置以及默认配置。具有最高优先级
-  - **$PROJECT/.vscode/settings.json** # $PROJECT 为当前项目的目录。
+    - **$PROJECT/.vscode/settings.json** # $PROJECT 为当前项目的目录。
 
 配置文件有优先级之分，工作区配置 > 用户配置 > 默认配置。高优先级的配置将会覆盖低优先级的配置
 

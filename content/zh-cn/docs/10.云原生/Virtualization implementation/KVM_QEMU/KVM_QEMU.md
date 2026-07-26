@@ -1,6 +1,5 @@
 ---
 title: KVM/QEMU
-linkTitle: KVM/QEMU
 weight: 1
 ---
 
@@ -114,9 +113,9 @@ QEMU 初始化时调用 KVM 接口告知 KVM，虚拟机所需要的物理内存
 所有 **Virtio** 设备都**由两部分组成**：
 
 - **Host Device** # 宿主机设备
-  - 也称为 **Device Back End(后端设备)**
+    - 也称为 **Device Back End(后端设备)**
 - **Guest Device** # 虚拟机设备
-  - 也称为 **Device Front End(前端设备)**
+    - 也称为 **Device Front End(前端设备)**
 
 Paravirtualizd device driver(半虚拟化设备驱动) 可以让 VM 直接访问宿主机上的物理硬件设备。
 

@@ -1,6 +1,5 @@
 ---
 title: Ansible Variables
-linkTitle: Ansible Variables
 weight: 1
 ---
 
@@ -79,7 +78,7 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 总结：
 
 - Inventory 文件中的 组变量 优先级 最低。
-  - 因为一般情况下，先编写各种 Inventory 文件规划，然后有特殊情况再使用 group_vars/ 或 host_vars/ 目录。
+    - 因为一般情况下，先编写各种 Inventory 文件规划，然后有特殊情况再使用 group_vars/ 或 host_vars/ 目录。
 - 相同 host_vars/ 或 group_vars/ 的情况下，Playbook 优先级高于 Inventory
 - 相同 Inventory 或 Playbook 的情况下，主机变量 优先级高于 组变量
 - [Playbook Role(角色)](/docs/9.运维/Ansible/Playbook/Playbook%20Role(角色).md) 是二等公民，每个 Role 下的 `vars/main.yaml` 文件优先级较高
@@ -131,9 +130,9 @@ hw-cloud-xngy-jump-server-linux-2 | SUCCESS => {
 可以通过两种方式引用字典变量
 
 - 使用方 `[]` 进行引用
-  - `foo['field1']`
+    - `foo['field1']`
 - 使用 `.` 进行引用（不推荐使用该方式引用变量，可能会与 Python 语法产生冲突）
-  - `foo.field1`
+    - `foo.field1`
 
 ```bash
 ~/projects/DesistDaydream/ansible/playbooks]$ cat test_var.yaml
@@ -385,11 +384,11 @@ docker:
 可以通过目标主机获取到 ansible 管理的所有主机的信息。最常用的魔术变量有以下几个
 
 - **hostvars** # 每个目标主机下面都包含类似下图的信息。其中是每个组所包含的 hosts
-  - 注意：通过 hostvars 变量，我们还可以获取到其他主机在执行任务时注册的变量，比如在 kubernetes 集群的 master-1 上生成了加入集群的指令，并注册为变量 join_cmd，正常是无法在其他主机直接使用的。这时候就要用到 hostvars 变量了。
-  - ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/nsvz9y/1616125069735-9fbbff13-76a7-455a-9a5b-291800f65cc1.jpeg)
+    - 注意：通过 hostvars 变量，我们还可以获取到其他主机在执行任务时注册的变量，比如在 kubernetes 集群的 master-1 上生成了加入集群的指令，并注册为变量 join_cmd，正常是无法在其他主机直接使用的。这时候就要用到 hostvars 变量了。
+    - ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/nsvz9y/1616125069735-9fbbff13-76a7-455a-9a5b-291800f65cc1.jpeg)
 - **ansible_play_hosts** # 一个列表，是当前 play 中活动的主机列表，受序号限制，无法访问的主机不会被当做“活动”主机。
-  - 该变量可以用于 for 循环，对列表中的主机进行遍历，逐一操作。
-  - 等同于 ansible_play_batch
+    - 该变量可以用于 for 循环，对列表中的主机进行遍历，逐一操作。
+    - 等同于 ansible_play_batch
 - **ansible_play_name** # 当前执行 paly 的名称。i.e.playbook 中 hosts 这个键的值，也就是当前的主机组名称
 - **groups** # 默认值为 Inventory 下所有组及其组内的 host
 - **group_names** # 默认值为当前主机所属组的列表。

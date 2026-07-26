@@ -71,7 +71,7 @@ JSON 具有以下这些形式：
 
 JSON Schema 是一种声明性语言，用于定义 JSON 数据的结构和约束。JSON Schema 有点类似 [ASN.1](/docs/2.编程/无法分类的语言/ASN.1.md)、XML Schema、etc.
 
-人们可以使用 JSON Schema 语法定义一系列的预期目标，然后利用 [Validator](#Validator) 验证 JSON 数据是否符合预期。e.g. 字段是否为数字、长度是否为 64、某个字段是否是必须的、etc.
+人们可以使用 JSON Schema 语法定义一系列的预期目标，然后利用 [Validator](#validator) 验证 JSON 数据是否符合预期。e.g. 字段是否为数字、长度是否为 64、某个字段是否是必须的、etc.
 
 JSON Schema 写出来的内容通常长这样：
 
@@ -114,30 +114,30 @@ JSON Schema 的验证能力还可以用在如下场景：
 若是按照验证功能分类的话，JSON Schema 的验证能力可以分为如下几类：
 
 - 基础类型验证 # 验证字段是否是某个类型
-  - string
-  - number
-  - integer
-  - boolean
-  - array
-  - object
-  - null
+    - string
+    - number
+    - integer
+    - boolean
+    - array
+    - object
+    - null
 - 字符串验证 # 验证字段中的字符串是否满足某个格式
-  - minLength/maxLength
-  - pattern (正则表达式)
-  - format (如 email、date、uri 等)
+    - minLength/maxLength
+    - pattern (正则表达式)
+    - format (如 email、date、uri 等)
 - 数值验证 # 验证数值是否在某个范围区间
-  - minimum/maximum
-  - multipleOf
-  - exclusiveMinimum/exclusiveMaximum
+    - minimum/maximum
+    - multipleOf
+    - exclusiveMinimum/exclusiveMaximum
 - 数组验证
-  - minItems/maxItems
-  - uniqueItems
-  - items (数组元素的 Schema)
+    - minItems/maxItems
+    - uniqueItems
+    - items (数组元素的 Schema)
 - 对象验证
-  - required (必填属性)
-  - properties (属性定义)
-  - additionalProperties (额外属性控制)
-  - dependencies (属性依赖关系)
+    - required (必填属性)
+    - properties (属性定义)
+    - additionalProperties (额外属性控制)
+    - dependencies (属性依赖关系)
 
 JSON Schema 的历史可以追溯到 Kris Zyp 于 2007 年 10 月 2 日向 json.com 提交的第一个 JSON Schema 提案。
 
@@ -178,8 +178,6 @@ https://json-schema.org/understanding-json-schema/reference
 
 #### 特定于类型的关键字
 
-
-
 ## JSON Schema 规范
 
 > 参考：
@@ -195,5 +193,3 @@ https://json-schema.org/understanding-json-schema/reference
 [JSON Schema Core](https://json-schema.org/draft/2020-12/json-schema-core.html) 定义了基本规范、通用的关键字及用法
 
 [JSON Schema Validation](https://json-schema.org/draft/2020-12/json-schema-validation.html) 包含各种用于验证功能的关键字及用法
-
-

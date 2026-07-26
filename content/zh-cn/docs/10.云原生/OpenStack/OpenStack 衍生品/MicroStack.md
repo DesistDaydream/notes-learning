@@ -1,16 +1,15 @@
 ---
 title: "MicroStack"
-linkTitle: "MicroStack"
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官网](https://microstack.run/)
 > - [GitHub 项目，CanonicalLtd/microstack](https://github.com/CanonicalLtd/microstack)，代码已转移到 opendev.org
->   - https://opendev.org/x/microstack
+>     - https://opendev.org/x/microstack
 
 这东西看来看去，感觉用的人不多呢，而且好像还不完善。
 
@@ -59,4 +58,3 @@ Waiting for 172.38.180.98:9292
 2023-05-10 06:01:16,270 - microstack_init - INFO - restarting libvirt and virtlogd ...
 2023-05-10 06:01:38,203 - microstack_init - INFO - Complete. Marked microstack as initialized!
 ```
-

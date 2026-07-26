@@ -1,6 +1,5 @@
 ---
 title: LVM
-linkTitle: LVM
 created: 2026-05-13T22:18
 weight: 100
 ---
@@ -16,7 +15,7 @@ weight: 100
 
 - **Volume Group(卷组，简称 VG)** 是一个或多个物理设备的集合，每个设备称为 **Physical Volume(物理卷，简称 PV)**
 - **Logical Volume(逻辑卷，简称 LV)** 从 VG 中创建，是可由系统或应用直接使用的虚拟块设备。
-  - 根据内核中 **Device Mapper(设备映射，简称 DM)** 实现的算法，LV 中的每个数据块都存储在 VG 中的一个或多个 PV 上。
+    - 根据内核中 **Device Mapper(设备映射，简称 DM)** 实现的算法，LV 中的每个数据块都存储在 VG 中的一个或多个 PV 上。
 
 LVM 创建的 LV 本质上是相当于创建了一个新的物理磁盘，这不说是逻辑上的磁盘。所以称为逻辑卷。在 Linux 中，LVM 表现为一种 device-mapper 类型的磁盘。
 
@@ -184,7 +183,7 @@ https://man7.org/linux/man-pages/man8/lvextend.8.html
 
 OPTIONS
 
-- **-l, --extens**(`[+]Number[PERCENT]`) # 
+- **-l, --extens**(`[+]Number[PERCENT]`) #
 - **-L, --size**(`[+]Size[m|UNIT]`) # 指定要增加的空间，增加到 5G 则是-L 5G，增加了 5G 则是-L +5G
 
 EXAMPLE
@@ -276,24 +275,24 @@ tmpfs                       126G  8.0K  126G   1% /tmp
 /dev/mapper/openeuler-home  4.0T   64G  3.8T   2% /home
 ~]# lsblk
 NAME               MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
-sda                  8:0    1   3.6T  0 disk 
-└─sda1               8:1    1   3.6T  0 part 
+sda                  8:0    1   3.6T  0 disk
+└─sda1               8:1    1   3.6T  0 part
   └─openeuler-home 253:2    0     4T  0 lvm  /home
-sdb                  8:16   1 447.1G  0 disk 
+sdb                  8:16   1 447.1G  0 disk
 ├─sdb1               8:17   1     1G  0 part /boot
-└─sdb2               8:18   1 446.1G  0 part 
+└─sdb2               8:18   1 446.1G  0 part
   ├─openeuler-root 253:0    0    70G  0 lvm  /
   ├─openeuler-swap 253:1    0     4G  0 lvm  [SWAP]
   └─openeuler-home 253:2    0     4T  0 lvm  /home
 ~]# lvs
   LV   VG        Attr       LSize  Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
-  home openeuler -wi-ao----  4.00t                                                    
-  root openeuler -wi-ao---- 70.00g                                                    
-  swap openeuler -wi-ao----  4.00g                                                    
+  home openeuler -wi-ao----  4.00t
+  root openeuler -wi-ao---- 70.00g
+  swap openeuler -wi-ao----  4.00g
 ~]# pvs
   PV         VG        Fmt  Attr PSize    PFree
-  /dev/sda1  openeuler lvm2 a--    <3.64t    0 
-  /dev/sdb2  openeuler lvm2 a--  <446.13g    0 
+  /dev/sda1  openeuler lvm2 a--    <3.64t    0
+  /dev/sdb2  openeuler lvm2 a--  <446.13g    0
 ~]# vgs
   VG        #PV #LV #SN Attr   VSize VFree
   openeuler   2   3   0 wz--n- 4.07t    0
@@ -306,14 +305,14 @@ sdb                  8:16   1 447.1G  0 disk
   --- Physical volume ---
   PV Name               /dev/sdb2
   VG Name               openeuler
-  PV Size               <446.13 GiB / not usable 0   
+  PV Size               <446.13 GiB / not usable 0
   Allocatable           yes (but full)
   PE Size               4.00 MiB
   Total PE              114209
   Free PE               0
   Allocated PE          114209
   PV UUID               cG8yY3-43rd-C6a6-W6ae-JNeT-3BBt-1UWXNL
-   
+
   --- Physical Segments ---
   Physical extent 0 to 1023:
     Logical volume      /dev/openeuler/swap
@@ -324,7 +323,7 @@ sdb                  8:16   1 447.1G  0 disk
   Physical extent 96289 to 114208:
     Logical volume      /dev/openeuler/root
     Logical extents     0 to 17919
-   
+
   --- Physical volume ---
   PV Name               /dev/sda1
   VG Name               openeuler
@@ -335,7 +334,7 @@ sdb                  8:16   1 447.1G  0 disk
   Free PE               0
   Allocated PE          953861
   PV UUID               vnqB0B-IUJU-xcx3-nIRF-NKun-uYnm-8WPswx
-   
+
   --- Physical Segments ---
   Physical extent 0 to 953860:
     Logical volume      /dev/openeuler/home
@@ -397,8 +396,8 @@ pvmove /dev/sdb2:1024-96288
   --- Physical volume ---
   PV Name               /dev/sdb2
   VG Name               openeuler
-  PV Size               <446.13 GiB / not usable 0   
-  Allocatable           yes 
+  PV Size               <446.13 GiB / not usable 0
+  Allocatable           yes
   PE Size               4.00 MiB
   Total PE              114209
   Free PE               95265
@@ -469,26 +468,26 @@ tmpfs                       126G  8.0K  126G   1% /tmp
 /dev/mapper/openeuler-home  3.7T   67G  3.4T   2% /home
 ~]# lsblk
 NAME               MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
-sda                  8:0    1   3.6T  0 disk 
-└─sda1               8:1    1   3.6T  0 part 
+sda                  8:0    1   3.6T  0 disk
+└─sda1               8:1    1   3.6T  0 part
   └─openeuler-home 253:2    0   3.6T  0 lvm  /home
-sdb                  8:16   1 447.1G  0 disk 
+sdb                  8:16   1 447.1G  0 disk
 ├─sdb1               8:17   1     1G  0 part /boot
-└─sdb2               8:18   1 446.1G  0 part 
+└─sdb2               8:18   1 446.1G  0 part
   ├─openeuler-root 253:0    0 442.1G  0 lvm  /
-  └─openeuler-swap 253:1    0     4G  0 lvm  
-~]# pvdisplay -m /dev/sda1 /dev/sdb2 
+  └─openeuler-swap 253:1    0     4G  0 lvm
+~]# pvdisplay -m /dev/sda1 /dev/sdb2
   --- Physical volume ---
   PV Name               /dev/sdb2
   VG Name               openeuler
-  PV Size               <446.13 GiB / not usable 0   
+  PV Size               <446.13 GiB / not usable 0
   Allocatable           yes (but full)
   PE Size               4.00 MiB
   Total PE              114209
   Free PE               0
   Allocated PE          114209
   PV UUID               cG8yY3-43rd-C6a6-W6ae-JNeT-3BBt-1UWXNL
-   
+
   --- Physical Segments ---
   Physical extent 0 to 1023:
     Logical volume      /dev/openeuler/swap
@@ -499,7 +498,7 @@ sdb                  8:16   1 447.1G  0 disk
   Physical extent 96289 to 114208:
     Logical volume      /dev/openeuler/root
     Logical extents     0 to 17919
-   
+
   --- Physical volume ---
   PV Name               /dev/sda1
   VG Name               openeuler
@@ -510,7 +509,7 @@ sdb                  8:16   1 447.1G  0 disk
   Free PE               0
   Allocated PE          953861
   PV UUID               vnqB0B-IUJU-xcx3-nIRF-NKun-uYnm-8WPswx
-   
+
   --- Physical Segments ---
   Physical extent 0 to 953860:
     Logical volume      /dev/openeuler/home

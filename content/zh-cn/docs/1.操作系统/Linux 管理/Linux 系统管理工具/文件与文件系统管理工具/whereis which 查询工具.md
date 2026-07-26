@@ -1,6 +1,5 @@
 ---
 title: whereis which 查询工具
-linkTitle: whereis which 查询工具
 weight: 20
 ---
 

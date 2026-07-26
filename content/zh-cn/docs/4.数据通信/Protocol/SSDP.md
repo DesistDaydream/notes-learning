@@ -1,6 +1,5 @@
 ---
 title: SSDP
-linkTitle: SSDP
 weight: 20
 ---
 

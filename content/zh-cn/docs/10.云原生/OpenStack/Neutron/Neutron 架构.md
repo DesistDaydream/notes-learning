@@ -5,20 +5,21 @@ title: Neutron 架构
 # 概述
 
 > 参考：
+>
 > - 官方文档：<https://docs.openstack.org/neutron/latest/admin/intro-os-networking.html>
 
 - Neutron Server
-   - 接收请求。对外提供 OpenStack 网络 API，接收请求，并调用 Plugin 处理请求。
+    - 接收请求。对外提供 OpenStack 网络 API，接收请求，并调用 Plugin 处理请求。
 - Plugins 插件/Agent 代理
-   - 实现请求。
-   - 实现 OpenStack 网络的主要组件。用来创建各种网络设备和配置规则
-   - Plugins 用来处理 Neutron Server 发来的请求，维护 OpenStack 逻辑网络状态， 并调用 Agent 处理请求。
-   - Agent 用来处理对应 Plugin 的请求，并在宿主机上创建相应的网络设备以及生成网络规则。
-   - Plugins 与 Agent 一般都是配套使用。比如 OVS Plugin 需要 OVS Agent。
+    - 实现请求。
+    - 实现 OpenStack 网络的主要组件。用来创建各种网络设备和配置规则
+    - Plugins 用来处理 Neutron Server 发来的请求，维护 OpenStack 逻辑网络状态， 并调用 Agent 处理请求。
+    - Agent 用来处理对应 Plugin 的请求，并在宿主机上创建相应的网络设备以及生成网络规则。
+    - Plugins 与 Agent 一般都是配套使用。比如 OVS Plugin 需要 OVS Agent。
 - Queue 队列
-   - 组件间通信。Neutron Server，Plugin 和 Agent 之间通过 Messaging Queue 通信和调用。
+    - 组件间通信。Neutron Server，Plugin 和 Agent 之间通过 Messaging Queue 通信和调用。
 - Database 数据库
-   - 保存网络状态。接收 Plugins 的信息，保存 OpenStack 的网络状态信息，包括 Network, Subnet, Port, Router 等。
+    - 保存网络状态。接收 Plugins 的信息，保存 OpenStack 的网络状态信息，包括 Network, Subnet, Port, Router 等。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/isxvn1/1616123261056-8e665764-b4d5-4d71-9756-af5d1fde6121.jpeg)
 
@@ -46,15 +47,15 @@ ML2 框架允许在 OpenStack 网络中可以使用多种 Layer 2(二层) 网络
 ML2 对 二层网络 进行抽象，引入了 type driver 和 mechansim driver 这两个概念。
 
 - Type Drivers # OpenStack 网络类型驱动。定义底层如何实现 OpenStack 网络。比如 VXLAN、Flat 等
-   - 就是 OpenStack 的 Nework Type，详见：OpenStack Networking 介绍 中的基本概念。不同类型的驱动用来维护该类型的网络。
+    - 就是 OpenStack 的 Nework Type，详见：OpenStack Networking 介绍 中的基本概念。不同类型的驱动用来维护该类型的网络。
 - Mechanism Drivers # OpenStack 网络机制驱动。定义访问某种 OpenStack 网络类型的机制。比如 Open vSwitch、Linux Bridge 等。
-   - 就是 Plugins 本身，不同机制的插件，可以管理的 OpenStack Nework Type 不同。详情见下：
-      - Open vSwitch 支持：Flat、VLAN、VXLAN、GRE
-      - Linux Bridge 支持：Flat、VLAN、VXLAN
-      - SRIOV 支持：Flat、VLAN
-      - MacVTap 支持：Flat、VLAN
-      - L2 Population 支持：VXLAN、GRE
-   - Mechanism Drivers 可以利用 L2 Agent(通过 RPC 调用)与设备或控制器进行交互，也可以直接与设备或控制器进行交互。
+    - 就是 Plugins 本身，不同机制的插件，可以管理的 OpenStack Nework Type 不同。详情见下：
+        - Open vSwitch 支持：Flat、VLAN、VXLAN、GRE
+        - Linux Bridge 支持：Flat、VLAN、VXLAN
+        - SRIOV 支持：Flat、VLAN
+        - MacVTap 支持：Flat、VLAN
+        - L2 Population 支持：VXLAN、GRE
+    - Mechanism Drivers 可以利用 L2 Agent(通过 RPC 调用)与设备或控制器进行交互，也可以直接与设备或控制器进行交互。
 
 只要实现了上述两个概念的插件，皆可接入 ML2，为 OpenStack 提供网络服务。
 
@@ -86,21 +87,21 @@ ML2 对 二层网络 进行抽象，引入了 type driver 和 mechansim driver �
 可以使用以下机制的网络驱动，更多配置参考： Configuration Reference.
 
 - Linux Bridge
-   - 这个 Mechanism Driver 不需要其他配置。但是需要代理配置。有关详细信息，请参阅下面的 L2 Agent 相关部分。
+    - 这个 Mechanism Driver 不需要其他配置。但是需要代理配置。有关详细信息，请参阅下面的 L2 Agent 相关部分。
 - Open vSwitch
-   - 这个 Mechanism Driver 不需要其他配置。但是需要代理配置。有关详细信息，请参阅下面的 L2 Agent 相关部分。
+    - 这个 Mechanism Driver 不需要其他配置。但是需要代理配置。有关详细信息，请参阅下面的 L2 Agent 相关部分。
 - SRIOV
-   - SRIOV 驱动程序接受所有 PCI 供应商设备。
+    - SRIOV 驱动程序接受所有 PCI 供应商设备。
 - MacVTap
-   - 这个 Mechanism Driver 不需要其他配置。但是需要代理配置。请参阅相关部分。
+    - 这个 Mechanism Driver 不需要其他配置。但是需要代理配置。请参阅相关部分。
 - L2 population
-   - 管理员可以配置一些可选的配置选项。有关更多详细信息，请参阅《配置参考》中的相关部分。
+    - 管理员可以配置一些可选的配置选项。有关更多详细信息，请参阅《配置参考》中的相关部分。
 - Specialized
-   - 开源的
-      - 存在外部开源机制驱动程序以及中子集成参考实现。这些驱动程序的配置不是本文档的一部分。例如：
-      - OpenDaylight
-      - OpenContrail
-   - 专有（供应商）
+    - 开源的
+        - 存在外部开源机制驱动程序以及中子集成参考实现。这些驱动程序的配置不是本文档的一部分。例如：
+        - OpenDaylight
+        - OpenContrail
+    - 专有（供应商）
 - 存在来自各种供应商的外部机制驱动程序以及中子集成参考实现。
 
 ## Service Plugins 服务插件
@@ -130,27 +131,27 @@ Agent 用来处理对应 Plugin 的请求，并在宿主机上创建相应的网
 下面是各种类型的 Agent 的介绍
 
 - L2 Agent
-   - L2 Agent 提供 2 层网络。可用的 L2 Agent 有 Linux Bridge、OVS 等。
+    - L2 Agent 提供 2 层网络。可用的 L2 Agent 有 Linux Bridge、OVS 等。
 - L3 Agent
-   - L3 Agent 提供高级的三层网络功能，比如 Virtual Routers(虚拟路由)、Floating IPs(弹性 IP)等等。L3 Agent 依赖并行运行的 L2 Agent。
-   - L3 agent 需要正确配置才能工作，配置文件为 /etc/neutron/l3_agent.ini，位于控制节点或网络节点上。
-      - interface_driver 是最重要的选项，
-         - 如果 mechanism driver 是 linux bridge，则：
-            - interface_driver = neutron.agent.linux.interface.BridgeInterfaceDriver
-         - 如果选用 open vswitch，则：
-            - interface_driver = neutron.agent.linux.interface.OVSInterfaceDriver
+    - L3 Agent 提供高级的三层网络功能，比如 Virtual Routers(虚拟路由)、Floating IPs(弹性 IP)等等。L3 Agent 依赖并行运行的 L2 Agent。
+    - L3 agent 需要正确配置才能工作，配置文件为 /etc/neutron/l3_agent.ini，位于控制节点或网络节点上。
+        - interface_driver 是最重要的选项，
+            - 如果 mechanism driver 是 linux bridge，则：
+                - interface_driver = neutron.agent.linux.interface.BridgeInterfaceDriver
+            - 如果选用 open vswitch，则：
+                - interface_driver = neutron.agent.linux.interface.OVSInterfaceDriver
 - DHCP Agent
-   - DHCP Agent 负责 DHCP 和 RADVD 服务。它需要在同一节点上运行的 L2 代理。
+    - DHCP Agent 负责 DHCP 和 RADVD 服务。它需要在同一节点上运行的 L2 代理。
 - Metadata Agent
-   - instance 在启动时需要访问 nova-metadata-api 服务获取 metadata 和 userdata，这些 data 是该 instance 的定制化信息，比如 hostname, ip， public key 等。
-   - 但 instance 启动时并没有 ip，那如何通过网络访问到 nova-metadata-api 服务呢？
-   - 答案就是 neutron-metadata-agent 该 agent 让 instance 能够通过 dhcp-agent 或者 l3-agent 与 nova-metadata-api 通信
+    - instance 在启动时需要访问 nova-metadata-api 服务获取 metadata 和 userdata，这些 data 是该 instance 的定制化信息，比如 hostname, ip， public key 等。
+    - 但 instance 启动时并没有 ip，那如何通过网络访问到 nova-metadata-api 服务呢？
+    - 答案就是 neutron-metadata-agent 该 agent 让 instance 能够通过 dhcp-agent 或者 l3-agent 与 nova-metadata-api 通信
 - L3 metering Agent
-   - L3 metering Agent 启用第 3 层流量计量。它需要在同一节点上运行的 L3 代理。
+    - L3 metering Agent 启用第 3 层流量计量。它需要在同一节点上运行的 L3 代理。
 - Security
-   - L3 agent 可以在 router 上配置防火墙策略，提供网络安全防护。另一个与安全相关的功能是 Security Group，也是通过 IPtables 实现。 Firewall 与 Security Group 的区别在于：
-      - Firewall 安全策略位于 router，保护的是某个 project 的所有 network。
-      - Security Group 安全策略位于 instance，保护的是单个 instance。
+    - L3 agent 可以在 router 上配置防火墙策略，提供网络安全防护。另一个与安全相关的功能是 Security Group，也是通过 IPtables 实现。 Firewall 与 Security Group 的区别在于：
+        - Firewall 安全策略位于 router，保护的是某个 project 的所有 network。
+        - Security Group 安全策略位于 instance，保护的是单个 instance。
 
 # Database 数据库
 

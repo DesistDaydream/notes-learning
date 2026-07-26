@@ -1,6 +1,5 @@
 ---
 title: DNSmasq
-linkTitle: DNSmasq
 weight: 10
 ---
 
@@ -39,7 +38,7 @@ CentOS Linux release 7.6.1810 (Core)
 先把配置文件备份一份
 
 ```
-$ cp /etc/dnsmasq.conf /etc/dnsmasq.conf_bak
+cp /etc/dnsmasq.conf /etc/dnsmasq.conf_bak
 ```
 
 Dnsmasq 的配置在配置文件中都有详细的说明，你可以通过阅读配置文件的注释更改自己想要的配置，我只是想做泛解析，所以我的配置如下：
@@ -63,7 +62,7 @@ address=/baidu.com/6.6.6.6
 
 DNS 配置默认读取 /etc/resolv.conf 上游 DNS 配置文件，如果读取不到 /etc/hosts 的地址解析，就会转发给 resolv.conf 进行解析地址。
 
-*   DNS 配置文件
+- DNS 配置文件
 
 ```
 $ vim /etc/resolv.conf
@@ -74,7 +73,7 @@ nameserver 8.8.4.4
 nameserver 1.1.1.1
 ```
 
-*   启动服务
+- 启动服务
 
 ```
 $ systemctl enable --now dnsmasq
@@ -129,13 +128,13 @@ PING pan.baidu.com (6.6.6.6) 56(84) bytes of data.
 
 Dnsmasq 还有一项非常有用的功能就是可以对已经解析过的域名进行缓存，下次在访问这个域名的时候就可以直接返回 IP 地址，而不再需要经过 DNS 查询，这对于扶墙的来说，其实也算是一点优化，默认已经配置好了，我们只需要来演示下缓存的效果。
 
-*   安装 dig 工具
+- 安装 dig 工具
 
 ```
-$ yum install bind-utils -y
+yum install bind-utils -y
 ```
 
-*   演示效果
+- 演示效果
 
 ```
 $ dig www.centos.com | grep "Query time"

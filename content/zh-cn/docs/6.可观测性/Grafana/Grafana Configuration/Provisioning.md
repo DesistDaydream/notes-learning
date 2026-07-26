@@ -1,6 +1,5 @@
 ---
 title: Provisioning
-linkTitle: Provisioning
 weight: 20
 ---
 
@@ -24,12 +23,12 @@ Grafana 从 v5.0 版本中，决定通过一个 **Provisioning(配置供应系�
 
 > Notes: 可以通过 grafana.ini 的 .paths.provisioning 字段修改 ${ProvisioningDir} 的值，`默认值: /etc/grafana/provisioning/`
 
-| 能力                                       | 目录                             | 用途                                                                                           |
+| 能力 | 目录 | 用途 |
 | ---------------------------------------- | ------------------------------ | -------------------------------------------------------------------------------------------- |
-| **[Data sources](#Data%20sources)(数据源)** | ${ProvisioningDir}/dashboards/ | 预配置 Grafana 数据源                                                                              |
-| **[Plugins](#plugins)(插件)**              | ${ProvisioningDir}/plugins/    | 预配置 [Plugins](/docs/6.可观测性/Grafana/Plugins.md)                                               |
-| **[Dashboards](#dashboards)(仪表盘)**       | ${ProvisioningDir}/dashboards/ | 预配置 [Dashboard](/docs/6.可观测性/Grafana/Dashboard/Dashboard.md) |
-| **[Alerting](#alerting)(警报)**            | ${ProvisioningDir}/alerting/   | 预配置 [Grafana Alerting](/docs/6.可观测性/Grafana/Grafana%20Alerting.md)                           |
+| **[Data sources](#Data%20sources)(数据源)** | ${ProvisioningDir}/dashboards/ | 预配置 Grafana 数据源 |
+| **[Plugins](#plugins)(插件)** | ${ProvisioningDir}/plugins/ | 预配置 [Plugins](/docs/6.可观测性/Grafana/Plugins.md) |
+| **[Dashboards](#dashboards)(仪表盘)** | ${ProvisioningDir}/dashboards/ | 预配置 [Dashboard](/docs/6.可观测性/Grafana/Dashboard/Dashboard.md) |
+| **[Alerting](#alerting)(警报)** | ${ProvisioningDir}/alerting/ | 预配置 [Grafana Alerting](/docs/6.可观测性/Grafana/Grafana%20Alerting.md) |
 
 > [!Tip] 通常默认情况下，从目录中读取所有 .yaml 文件，作为该能力的配置文件，以加载的各种内容
 
@@ -91,17 +90,17 @@ https://grafana.com/docs/grafana/latest/administration/provisioning/#dashboards
 - **name**(STRING) # **必须的**。Provider 的名称，作为唯一标识符。
 - **orgId: 1** # Org 的 ID 号，`默认值：1`。通常 Grafana 启动后会自动创建一个名为 Main Org. 的 Org，该 Org 的 ID 为 1
 - **folder**(STRING) # 从目录读取到的所有仪表盘应该存放的文件夹。文件夹指的是 Grafana Web UI 上用于存放仪表盘的地方。
-  - 注意：文件夹的名称与仪表盘的名称不能相同，否则将会报错并且无法自动生成仪表盘
-  - 若该值为空，则将仪表盘加载到 Grafana 的根级别仪表盘
+    - 注意：文件夹的名称与仪表盘的名称不能相同，否则将会报错并且无法自动生成仪表盘
+    - 若该值为空，则将仪表盘加载到 Grafana 的根级别仪表盘
 - **folderUid**(STRING) # 上面 folder 文件夹的 UID folder UID. will be automatically generated if not specified
 - **type**(string) # 提供者类型。`默认值：file`
 - **updateIntervalSeconds**(INT) # Grafana 检查该目录下仪表盘是否有更新的间隔时间(单位：秒)。
 - **disableDeletion**(bool) # 是否允许通过 Web UI 删除目录下的仪表盘。`默认值: false`
 - **allowUiUpdates**(bool) # 是否允许通过 Web UI 更新目录下仪表盘。`默认值: false`
 - **options**(Object)
-  - **path**(string) # **必须的**。要加载仪表盘的目录。该目录下的所有 .json 文件都会被 Grafana 加载为仪表盘
-  - **foldersFromFilesStructure**(bool) # 使用文件系统中的文件夹名称作为 Grafana Web UI 中的文件夹名。`默认值：false`。具体用法下文 “文件系统结构映射到 WebUI 中的文件夹”
-    - 注意：该字段与 `folder` 和 `folderUid` 冲突。
+    - **path**(string) # **必须的**。要加载仪表盘的目录。该目录下的所有 .json 文件都会被 Grafana 加载为仪表盘
+    - **foldersFromFilesStructure**(bool) # 使用文件系统中的文件夹名称作为 Grafana Web UI 中的文件夹名。`默认值：false`。具体用法下文 “文件系统结构映射到 WebUI 中的文件夹”
+        - 注意：该字段与 `folder` 和 `folderUid` 冲突。
 
 > [!Attention]
 > 截至 2025-06-10，还不支持实现嵌套目录的效果。 https://github.com/grafana/grafana/issues/103950
@@ -165,7 +164,7 @@ Grafana 的 Web UI 中将会创建 `server` 与 `application` 两个文件夹，
 > - [官方文档，Provision 警报](https://grafana.com/docs/grafana/latest/administration/provisioning/#alerting)
 > - [官方文档，提供警报资源](https://grafana.com/docs/grafana/latest/alerting/set-up/provision-alerting-resources/)
 > - [官方文档，使用配置文件来提供警报资源](https://grafana.com/docs/grafana/latest/alerting/set-up/provision-alerting-resources/file-provisioning/)
->   - 配置文件就是指 [Provisioning](/docs/6.可观测性/Grafana/Grafana%20Configuration/Provisioning.md)
+>     - 配置文件就是指 [Provisioning](/docs/6.可观测性/Grafana/Grafana%20Configuration/Provisioning.md)
 
 - [Example Alert Notification Channels Config File](https://grafana.com/docs/grafana/latest/administration/provisioning/#example-alert-notification-channels-config-file)
 - [Supported Settings](https://grafana.com/docs/grafana/latest/administration/provisioning/#supported-settings)

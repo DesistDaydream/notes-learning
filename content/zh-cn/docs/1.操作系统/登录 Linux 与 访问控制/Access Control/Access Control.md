@@ -1,6 +1,5 @@
 ---
 title: Access Control
-linkTitle: Access Control
 weight: 1
 ---
 
@@ -104,25 +103,25 @@ MODE 格式如下 : `[ugoa][[+-=][rwxX]…][,…]`，其中
 ### EXAMPLE
 
 - 修改当前目录及子目录内所有目录类型文件，并将这些目录的权限改为 755
-  - **find ./\* -type d -exec chmod 755 {} ;**
+    - **find ./\* -type d -exec chmod 755 {} ;**
 - 修改当前目录及子目录内所有普通类型文件，并将这些文件的权限改为 644
-  - **find ./\* -type f -exec chmod 644 {} ;**
+    - **find ./\* -type f -exec chmod 644 {} ;**
 - 文件 file.txt 的所有者增加读和运行的权限。
-  - chmod u+rx file.txt
+    - chmod u+rx file.txt
 - 文件 file.txt 的群组其他用户增加读的权限。
-  - chmod g+r file.txt
+    - chmod g+r file.txt
 - 文件 file.txt 的其他用户移除读的权限。
-  - chmod o-r file.txt
+    - chmod o-r file.txt
 - 文件 file.txt 的群组其他用户增加读的权限，其他用户移除读的权限。
-  - chmod g+r o-r file.txt
+    - chmod g+r o-r file.txt
 - 文件 file.txt 的群组其他用户和其他用户均移除读的权限。
-  - chmod go-r file.txt
+    - chmod go-r file.txt
 - 文件 file.txt 的所有用户增加运行的权限。
-  - chmod +x file.txt
+    - chmod +x file.txt
 - 文件 file.txt 的所有者分配读，写和执行的权限；群组其他用户分配读的权限，不能写或执行；其他用户没有任何权限。
-  - chmod u=rwx,g=r,o=- file.txt
+    - chmod u=rwx,g=r,o=- file.txt
 - 递归执行赋权，设置 newname 文件夹权限
-  - chmod -R 700 /home/newname
+    - chmod -R 700 /home/newname
 
 ## chown - 改变文件的所有者命令
 
@@ -139,12 +138,12 @@ MODE 格式如下 : `[ugoa][[+-=][rwxX]…][,…]`，其中
 ### EXAMPLE
 
 - 改变文件的用户（用 ls -l 可以快速查看原用户和组），后接新的所有者的用户名，再接文件名：
-  - chown newname file.txt
+    - chown newname file.txt
 - chown 命令也可以改变文件的群组，如下：
-  - chown newname:friends file.txt # 将 file.txt 文件的用户改为 newname，所属用户组修改为 friends
-  - chown root /u # 将 /u 的属主更改为"root"
-  - chown root:staff /u # 和上面类似，但同时也将其属组更改为"staff"
-  - chown -hR root /u # 将 /u 及其子目录下所有文件的属主更改为"root"
+    - chown newname:friends file.txt # 将 file.txt 文件的用户改为 newname，所属用户组修改为 friends
+    - chown root /u # 将 /u 的属主更改为"root"
+    - chown root:staff /u # 和上面类似，但同时也将其属组更改为"staff"
+    - chown -hR root /u # 将 /u 及其子目录下所有文件的属主更改为"root"
 
 ## chattr 与 lsattr
 
@@ -155,8 +154,8 @@ chattr # 改变 Linux 文件系统上的文件属性
 EXAMPLE
 
 - 为 /etc/passwd 文件添加 i 属性
-  - chattr +i /etc/passwd
+    - chattr +i /etc/passwd
 - 为 /etc/passwd 文件去除 i 属性
-  - chattr -i /etc/passwd
+    - chattr -i /etc/passwd
 
 lsattr # 查看 Linux 文件系统上的文件属性

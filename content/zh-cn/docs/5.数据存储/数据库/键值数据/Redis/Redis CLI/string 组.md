@@ -1,6 +1,5 @@
 ---
 title: string 组
-linkTitle: string 组
 weight: 20
 ---
 

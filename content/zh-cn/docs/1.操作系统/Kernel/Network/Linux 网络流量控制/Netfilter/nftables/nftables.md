@@ -1,6 +1,5 @@
 ---
 title: Nftables
-linkTitle: Nftables
 weight: 1
 ---
 
@@ -80,14 +79,14 @@ nftables 中的 chain(链) 用于保存规则，分为两大 kind(种类)：
 chain 分为下述三种 type(类型)：
 
 - **filter 类型** # 用于过滤数据包所用
-  - 允许定义在哪些 family 下：all family
-  - 链中的规则会处理这些 Hook 点的数据包：all Hook
+    - 允许定义在哪些 family 下：all family
+    - 链中的规则会处理这些 Hook 点的数据包：all Hook
 - **nat 类型** # 用于进行地址转换
-  - 允许定义在哪些 family 下：ip、ip6
-  - 链中的规则会处理这些 Hook 点的数据包：prerouting、input、output、postrouting
+    - 允许定义在哪些 family 下：ip、ip6
+    - 链中的规则会处理这些 Hook 点的数据包：prerouting、input、output、postrouting
 - **route 类型**
-  - 允许定义在哪些 family 下：ip、ip6
-  - 链中的规则会处理这些 Hook 点的数据包：output
+    - 允许定义在哪些 family 下：ip、ip6
+    - 链中的规则会处理这些 Hook 点的数据包：output
 
 每个基本链都需要指定该链 type、hook、priority、policy，比如下面：
 
@@ -167,7 +166,7 @@ nftables 程序与 [Iptables](/docs/1.操作系统/Kernel/Network/Linux%20网络
 各 [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 默认使用 nftables 的版本说明
 
 - Ubuntu # 从 20 及以后的版本，默认使用 nftables，所有 iptables 相关的文件，都是 nftables 相关文件的 [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)(符号链接)
-  - 主要通过 netfilter-persistent 包实现规则的持久化
+    - 主要通过 netfilter-persistent 包实现规则的持久化
 - RedHat # TODO
 
 # Nftables 关联文件与配置
@@ -205,9 +204,9 @@ nftables 的语法原生支持 set(集合)，集合可以用来匹配多个 IP �
 例如下面的两个示例，
 
 - 该规则允许来自源 IP 处于 10.10.10.123 ~ 10.10.10.231 这个区间内的主机的流量通过。
-  - `nft add rule inet my_table my_filter_chain ip saddr { 10.10.10.123, 10.10.10.231 } accept`
+    - `nft add rule inet my_table my_filter_chain ip saddr { 10.10.10.123, 10.10.10.231 } accept`
 - 该规则允许来自目的端口是 http、nfs、ssh 的流量通过。
-  - `nft add rule inet my_table my_filter_chain tcp dport { http, nfs, ssh } accept`
+    - `nft add rule inet my_table my_filter_chain tcp dport { http, nfs, ssh } accept`
 
 匿名集合的缺点是，如果需要修改集合中的内容，比如像 ipset 中修改 ip 似的，就得替换规则。如果后面需要频繁修改集合，推荐使用命名集合。
 
@@ -221,7 +220,7 @@ iptables 可以借助 ipset 来使用集合，而 nftables 中的命名集合就
 
 - **type** # 集合中所有元素的类型，包括 ipv4_addr(ipv4 地址), ipv6_addr(ipv6 地址), ether_addr(以太网地址), inet_proto(网络协议), inet_service(网络服务), mark(标记类型) 这几类
 - **flags** # 集合的标志。包括 constant、interval、timeout 。
-  - interval # 让集合支持区间模式。默认集合中无法使用这种方式 `nft add element inet my_table my_set { 10.20.20.0-10.20.20.255 }` 来添加集合 。当给集合添加该 flag 时，就可以在给集合添加元素时，使用‘区间’的表示方法。因为内核必须提前确认该集合存储的数据类型，以便采用适当的数据结构。
+    - interval # 让集合支持区间模式。默认集合中无法使用这种方式 `nft add element inet my_table my_set { 10.20.20.0-10.20.20.255 }` 来添加集合 。当给集合添加该 flag 时，就可以在给集合添加元素时，使用‘区间’的表示方法。因为内核必须提前确认该集合存储的数据类型，以便采用适当的数据结构。
 - **timeout** #
 - **gc-interval** #
 - **elements** #

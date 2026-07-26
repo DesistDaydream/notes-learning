@@ -1,6 +1,5 @@
 ---
 title: Go 规范与标准库
-linkTitle: Go 规范与标准库
 weight: 1
 ---
 
@@ -9,7 +8,7 @@ weight: 1
 > 参考：
 >
 > - [官方文档，参考 - 规范](https://go.dev/ref/spec)
->   - [官方文档，参考 - 规范 的翻译](https://github.com/bekcpear/mypelicanconfandarticles/blob/master/content/Tech/gospec.rst)
+>     - [官方文档，参考 - 规范 的翻译](https://github.com/bekcpear/mypelicanconfandarticles/blob/master/content/Tech/gospec.rst)
 > - [go.dev, Tour(Go 语言之旅，通过在线解析器体验 Go 语言的各种特性)](https://go.dev/tour/list)
 > - [公众号，11个现代Go特性：用 gopls/modernize 让你的代码焕然一新](https://mp.weixin.qq.com/s/mQehW07uSvfMkSMfcrSEsA)
 
@@ -94,7 +93,7 @@ Block 的用法会直接影响 [scoping(作用域)](#Declarations%20and%20scope(
 
 https://go.dev/ref/spec#Declarations_and_scope
 
-这部分是介绍作用域的，用来定义各种 [Identifier](#Identifier) 是否可以被引用、是否可以被使用
+这部分是介绍作用域的，用来定义各种 [Identifier](#identifier) 是否可以被引用、是否可以被使用
 
 ## exported and unexported(导出与未导出)
 
@@ -106,7 +105,7 @@ https://go.dev/ref/spec#Exported_identifiers
 
 - Identifier 名称的第一个字符是 **uppercase** letter(大写字母)
 - Identifier 必须在 package block 中声明。在其他地方声明的均不会被导出。
-  - Note: package block 是一种 [implicit block(隐式块)](#implicit%20block(隐式块))
+    - Note: package block 是一种 [implicit block(隐式块)](#implicit%20block(隐式块))
 
 # Packages(包)
 
@@ -123,7 +122,7 @@ https://go.dev/ref/spec#Import_declarations
 > 参考：
 >
 > - [Go 包，标准库](https://pkg.go.dev/std)
->   - [中文文档](https://studygolang.com/pkgdoc)
+>     - [中文文档](https://studygolang.com/pkgdoc)
 
 **Go Standard Library(Go 标准库)** 是 Go 内置 **Package(包)** 的集合，每个 package 都可以实现一类功能。每个 package 里有他们对应的常量、变量、函数、方法等。每个库就是一类功能，比如 bufio 库，这里面就是关于实现读写功能的各种内容；而 fmt 库则是关于实现格式化输入输出等功能。在[这里](https://pkg.go.dev/std?tab=packages)可以看到 go 语言 原生支持的所有标准库。
 

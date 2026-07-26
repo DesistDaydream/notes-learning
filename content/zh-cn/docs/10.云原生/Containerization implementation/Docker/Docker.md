@@ -1,6 +1,5 @@
 ---
 title: Docker
-linkTitle: Docker
 weight: 1
 ---
 
@@ -79,13 +78,13 @@ Note：目录名中的 overlay2 指的是 docker 当前 Storage Driver 类型，
 
 - **./containers/** # 所有 container 的元数据保存路径(其中包括容器日志文件、容器运行配置等)。其内目录名为 **ContainerID**
 - **./image/overlay2/** # docker images 以及 所有 layers 的元数据保存路径。
-  - **./imagedb/** # images 的元数据保存路径
-    - **./content/sha256/** # 所有 images 的 Image Configuration 文件保存路径。其内文件名为 **ImageID**。
-    - **./metadata/sha256/** # 所有 images 的 创建时间、更新时间、父镜像的 Image Configuration 文件名 等信息保存路径，其内目录名为 **ImageID**。
-      - 注意：好像只有自己在本地构建的镜像才会在该目录中记录。
-  - **./layerdb** # 所有 layers 的元数据保存路径。
-    - **./mounts/** # container layers 元数据保存路径，其内目录名为 ContainerID。容器创建完后，该容器的可读写层的元数据保存在此。包括可读写层父层的 chainID、可读写层的 cacheID(目录内的 mount-id 文件内容就是 **cacheID**)。
-    - **./sha256/** # images layers 元数据保存路径，其内目录名为 chainID。包括 layer 的 **cacheID**
+    - **./imagedb/** # images 的元数据保存路径
+        - **./content/sha256/** # 所有 images 的 Image Configuration 文件保存路径。其内文件名为 **ImageID**。
+        - **./metadata/sha256/** # 所有 images 的 创建时间、更新时间、父镜像的 Image Configuration 文件名 等信息保存路径，其内目录名为 **ImageID**。
+            - 注意：好像只有自己在本地构建的镜像才会在该目录中记录。
+    - **./layerdb** # 所有 layers 的元数据保存路径。
+        - **./mounts/** # container layers 元数据保存路径，其内目录名为 ContainerID。容器创建完后，该容器的可读写层的元数据保存在此。包括可读写层父层的 chainID、可读写层的 cacheID(目录内的 mount-id 文件内容就是 **cacheID**)。
+        - **./sha256/** # images layers 元数据保存路径，其内目录名为 chainID。包括 layer 的 **cacheID**
 - **./overlay2/** # 所有 layers 的数据保存路径，其内目录名为 cacheID。docker run 的时候，是通过该目录中镜像层来启动的。创建容器后生成的可写层，也会保存在该目录，直到容器被删除。
 - **./volumes/** # docker 创建的 volume 信息保存在该目录，如果是自动自动创建的 volume 则名为一串随机数
 

@@ -5,6 +5,7 @@ title: sed
 # 概述
 
 > 参考：
+>
 > - 官方文档：<https://www.gnu.org/software/sed/>
 > - 官方手册：<https://www.gnu.org/software/sed/manual/sed.html>
 > - 官方文档：<https://www.gnu.org/software/sed/manual/sed.html#Execution-Cycle>
@@ -41,7 +42,7 @@ sed 实际上是一个循环结构，该循环用来对输入给 sed 文本的�
 - **-f, --file=\<SCRIPT>** # 以选项中指定的 SCRIPT 文件来处理输入的文本文件,把 sed 相关命令写进文件里，直接引用该文件中的命令进行操作
 - **-i** # 直接编辑原文件，sed 操作的内容不输出到屏幕，直接更改文件内容
 - **-n, --quiet, -silent** # 禁止模式空间中的内容在标准输出中打印
-  - 通常与 p 命令一同使用，用来仅显示 sed 操作的行。
+    - 通常与 p 命令一同使用，用来仅显示 sed 操作的行。
 - **-r, --regexp-extended** # 允许在 SCRIPT 中使用扩展的正则表达式。如果在 SCRIPT 中使用正则，且不使用该选项，运行就会报错
 
 ## SCRIPT
@@ -50,9 +51,9 @@ SCRIPT 是 sed 在处理文本时主要依赖的部分，脚本包含多个部�
 
 SCRIPT 语法：**\[ADDR]COMMAND\[OPTIONS]**
 
-- **ADDR **# 行定位，**全称 Addresses**。用于确定 sed 当前操作的文本需要处理哪些行。
-  - 如果指定了 ADDR ，则 COMMAND 仅对被定位的行执行操作。
-  - ADDR 可以是单个行号、通过 pattern(正则表达式) 来匹配指定的行、通过 X,Y 来匹配一个范围内的行
+- **ADDR**# 行定位，**全称 Addresses**。用于确定 sed 当前操作的文本需要处理哪些行。
+    - 如果指定了 ADDR ，则 COMMAND 仅对被定位的行执行操作。
+    - ADDR 可以是单个行号、通过 pattern(正则表达式) 来匹配指定的行、通过 X,Y 来匹配一个范围内的行
 - **COMMAND** # 用于执行通过 行定位 匹配到的行的操作。是添加内容、还是替换内容、还是删除内容等等
 - **OPTIONS** # 选项仅在 COMMAND 有可用的 OPTIONS 时才有用。比如 s 命令具有多个 OPTIONS
 
@@ -107,9 +108,9 @@ EXAMPLE
 - **NUM1,NUM2** # 使用行号定位 NUM1 到 NUM2 的所有行
 - **NUM,+N** # 定位 NUM1 行及其后两行
 - **NUM,~N** # 匹配 NUM1 和 NUM1 之后的行，直到行号是 N 的倍数的下一行为止。以下命令从第 6 行开始打印，直到下一行是 4 的倍数（即第 8 行）：
-  - seq 10 | sed -n '6,~4p' # 输出 6 7 8 行
+    - seq 10 | sed -n '6,~4p' # 输出 6 7 8 行
 - 注意：任意 NUM 可以 使用 RegExp 代替，i.e.通过正则来匹配开始行或结束行
-  - **/RegExp1/,/RegExp2/** # 使用正则，定位 pattern1 匹配到的行，到 pattern2 匹配到的行，这两行中间的所有行
+    - **/RegExp1/,/RegExp2/** # 使用正则，定位 pattern1 匹配到的行，到 pattern2 匹配到的行，这两行中间的所有行
 
 EXAMPLE
 
@@ -126,7 +127,7 @@ EXAMPLE
 - **c\ \<TEXT>** # 把选定的行改为新的 TEXT。
 - **d** # 删除，删除选择的行。
 - **D** # 删除模板块的第一行。
-  - 删除命令用于删除匹配的行，而且删除命令还会改变 sed 脚本中命令的执行操作顺序，因为匹配的行一旦被删除，模式空间将变为“空”，自然不会再执行哪个 sed 脚本后续的命令。删除命令会导致读取新的输入行（下一行），而 sed 脚本中的命令则从头开始执行。需要注意的是删除时是删除整行，而不是删除匹配的内容（如要删除匹配的内容，可以使用替换）。
+    - 删除命令用于删除匹配的行，而且删除命令还会改变 sed 脚本中命令的执行操作顺序，因为匹配的行一旦被删除，模式空间将变为“空”，自然不会再执行哪个 sed 脚本后续的命令。删除命令会导致读取新的输入行（下一行），而 sed 脚本中的命令则从头开始执行。需要注意的是删除时是删除整行，而不是删除匹配的内容（如要删除匹配的内容，可以使用替换）。
 - **s/RegExp/REPLACEMENT/FLAGS** # 在已经定位的每行中，将 RegExp 匹配到的内容，替换成 REPLACEMENT
 - **h** # 拷贝模板块的内容到内存中的缓冲区。
 - **H** # 追加模板块的内容到内存中的缓冲区。
@@ -136,7 +137,7 @@ EXAMPLE
 - **L** # 同 l，不显示非打印字符
 - **n** # 读取下一个输入行，用下一个命令处理新的行而不是用第一个命令。
 - **N** # 追加下一个输入行到模式空间中，并在二行间嵌入一个新行，改变当前行号码。
-- **p **# 打印模式空间中执行了 COMMAND 的内容
+- **p**# 打印模式空间中执行了 COMMAND 的内容
 - **P** # 打印模板块的第一行。
 - **q** # 退出 Sed。
 - b lable 分支到脚本中带有标记的地方，如果分支不存在则分支到脚本的末尾。
@@ -147,7 +148,8 @@ EXAMPLE
 - W file 写并追加模板块的第一行到 file 末尾。
 - ! # 表示后面的命令对所有没有被定位到的行发生作用。i.e.对行定位操作匹配到的行取反。
 - \= 打印当前行号码。
-- # 把注释扩展到下一个换行符以前。
+
+- # 把注释扩展到下一个换行符以前
 
 # 特殊 COMMAND
 
@@ -160,10 +162,10 @@ EXAMPLE
 - pattern # 匹配需要替换的内容
 - replacement # 为替换的内容
 - flags # 标记可以是如下内容：
-  - n # 1 - 512 之间的数字，表示对模式空间中指定模式的第 n 次出现进行替换。如一行中有 3 个 A，而只想替换第二个 A。
-  - g # 对模式空间的所有匹配进行全局更改。没有 g 则只有第一次匹配被替换。如一行中有 3 个 A，则仅替换第一个 A。
-  - p # 打印模式空间的内容，即表示打印行。与-n 选项一起使用可以只打印匹配的行。
-  - w file # 将模式空间的内容写到文件 file 中。 即表示把行写入一个文件。
+    - n # 1 - 512 之间的数字，表示对模式空间中指定模式的第 n 次出现进行替换。如一行中有 3 个 A，而只想替换第二个 A。
+    - g # 对模式空间的所有匹配进行全局更改。没有 g 则只有第一次匹配被替换。如一行中有 3 个 A，则仅替换第一个 A。
+    - p # 打印模式空间的内容，即表示打印行。与-n 选项一起使用可以只打印匹配的行。
+    - w file # 将模式空间的内容写到文件 file 中。 即表示把行写入一个文件。
 
 replacement 为字符串，用来替换这则表达式匹配的内容。在 replacement 部分，下列字符有特殊含义：
 
@@ -190,7 +192,7 @@ EXAMPLE
 EXAMPLE
 
 - 就文件中的 china 转换为大写：
-  - sed '/china/y/abcdefghijklmnopqrstuvwxyz/ABCDEFGHIJKNOPQRSTUVWXYZ/' file
+    - sed '/china/y/abcdefghijklmnopqrstuvwxyz/ABCDEFGHIJKNOPQRSTUVWXYZ/' file
 
 # 其他
 
@@ -478,7 +480,7 @@ sed -n -r ' /eth|em\[01]\[^:]/{n;p;}' # 匹配多个关键字
 
 echo -e "1\n2"|xargs -i -t sed 's/^/1/' {} # 同时处理多个文件
 
-sed '/west/,/east/s/$/_VACA_/' # 修改 west 和 east 之间的所有行，在结尾处加*VACA*
+sed '/west/,/east/s/$/_VACA_/' # 修改 west 和 east 之间的所有行，在结尾处加_VACA_
 
 sed 's/\[^1-9]_(\[0-9]+)._/\1/' # 取出第一组数字，并且忽略掉开头的 0
 
@@ -573,24 +575,24 @@ echo abcd\nabcde |sed 's/\n/@/g' |tr '@' '\n' # 将换行符转换为换行
 # 应用示例
 
 - 获取双引号之间的字符。假如 sed.txt 中的内容为 `"bitnami "` 。那么下面命令会输出 `bitnami`
-  - **sed 's/^"(._)"._/\1/' sed.txt **
+    - **sed 's/^"(._)"._/\1/' sed.txt**
 - 打印 passwd 文件的内容，等效于 cat passwd 命令。
-  - sed -n p passwd
-  - 注意： 如果不加 -n，则 passwd 每行内容输出两次，因为 sed 本身的逻辑在从模式空间到标准输出一行，然后 p 命令还会再将该行输出一遍。
+    - sed -n p passwd
+    - 注意： 如果不加 -n，则 passwd 每行内容输出两次，因为 sed 本身的逻辑在从模式空间到标准输出一行，然后 p 命令还会再将该行输出一遍。
 - 删除开头带#的行
-  - sed '/^#/d' FILE
+    - sed '/^#/d' FILE
 - 删掉空白行：
-  - sed '/^$/d' file
+    - sed '/^$/d' file
 - 搜索 resolv.conf 文件中，开头带有 nameserver 字符串的行，并在行首添加#
-  - sed '/^nameserver/s/^/#/' /etc/resolv.conf
+    - sed '/^nameserver/s/^/#/' /etc/resolv.conf
 - 将 resolv.conf 文件中，具有 nameserver 关键字的行开头的 # 符号去掉。
-  - sed 's/#(nameserver.\*)/\1/' /etc/resolv.conf
+    - sed 's/#(nameserver.\*)/\1/' /etc/resolv.conf
 - 在 hostname 行的前一行添加 ${STRING} 变量中的内容。其中 `STRING="\ \ \ \ \ \ labels:"`
-  - sed -i "/hostname/i${STRING}" prometheus.yml #
+    - sed -i "/hostname/i${STRING}" prometheus.yml #
 - 在 hostname 行的行首添加两个空格
-  - sed "s/hostname/ &/" prometheus.yml
+    - sed "s/hostname/ &/" prometheus.yml
 - 在文件最后一行添加变量中的内容，注意 $a 前加 `\` 符号以便让 sed 认出 $a 表示最后一行
-  - `sed -i "$a${Masters\[${i}]%%=*} ${Masters\[${i}]##\*=}" /tmp/hosts` #
+    - `sed -i "$a${Masters\[${i}]%%=*} ${Masters\[${i}]##\*=}" /tmp/hosts` #
 - 在开头是 kind: Deployment 这行的下一行的下一行，添加 namespace: redis 行
 
 ```bash

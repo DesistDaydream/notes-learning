@@ -1,6 +1,5 @@
 ---
 title: keepalived+nginx 配置示例
-linkTitle: keepalived+nginx 配置示例
 weight: 21
 ---
 
@@ -8,7 +7,7 @@ weight: 21
 
 > 参考：
 >
-> - 
+> -
 
 # 适用于 keepalived 的 node 节点的前端负载均衡的配置
 

@@ -1,6 +1,5 @@
 ---
 title: OpenSSH Utilities
-linkTitle: OpenSSH Utilities
 weight: 3
 ---
 
@@ -65,6 +64,6 @@ Identity_File(身份文件) # 一般为 /root/.ssh/id_rsa.pub
 EXAMPLE
 
 - 将公钥拷贝到服务端
-  - ssh-copy-id -i /root/.ssh/id_rsa.pub root@192.168.0.10
+    - ssh-copy-id -i /root/.ssh/id_rsa.pub root@192.168.0.10
 - 若没有 ssh-copy-id 命令，则可以这么这么弄
-  - cat ~/.ssh/id_rsa.pub | ssh root@192.168.0.10 'cat >> .ssh/authorized_keys'
+    - cat ~/.ssh/id_rsa.pub | ssh root@192.168.0.10 'cat >> .ssh/authorized_keys'

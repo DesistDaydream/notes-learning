@@ -6,7 +6,7 @@ weight: 4
 ## 概述
 
 > 参考：
-> 
+>
 > - [dev 官网，学习-package.json 指南](https://nodejs.dev/learn/the-package-json-guide)
 > - [pnpm 官方文档，配置-package.json](https://pnpm.io/package_json)
 

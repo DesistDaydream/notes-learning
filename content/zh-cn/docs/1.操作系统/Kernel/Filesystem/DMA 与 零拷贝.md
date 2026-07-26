@@ -1,6 +1,5 @@
 ---
 title: DMA 与 零拷贝
-linkTitle: DMA 与 零拷贝
 weight: 20
 ---
 

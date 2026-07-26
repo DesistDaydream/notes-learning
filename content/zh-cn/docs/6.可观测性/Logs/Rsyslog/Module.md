@@ -1,6 +1,5 @@
 ---
 title: Module
-linkTitle: Module
 weight: 20
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: "FRP"
-linkTitle: "FRP"
 weight: 20
 ---
 

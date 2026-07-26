@@ -1,6 +1,5 @@
 ---
 title: Alertmanager 扩展
-linkTitle: Alertmanager 扩展
 weight: 20
 ---
 
@@ -56,9 +55,9 @@ curl -XPOST http://localhost:19093/api/v2/alerts -d @./alerts.json
 **receivers**(OBJECT) #
 
 - **globalReceiverSelector**(OBJECT) #
-  - 该字段内容详见 [LabelSelector](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+    - 该字段内容详见 [LabelSelector](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
 - **tenantReceiverSelector**(OBJECT) #
-  - 该字段内容详见 [LabelSelector](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+    - 该字段内容详见 [LabelSelector](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
 - **tenantKey**(STRING) #
 
 示例:

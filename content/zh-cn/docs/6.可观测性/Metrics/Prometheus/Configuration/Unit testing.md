@@ -1,6 +1,5 @@
 ---
 title: "Unit testing"
-linkTitle: "Unit testing"
 weight: 100
 ---
 
@@ -112,4 +111,3 @@ tests:
 执行 `promtool test rules unit_test_alert.yaml` 即可进行测试
 
 > [!Tip] 如果想要检查 Prometheus 规则中模板的渲染结果，只需要单元测试文件中的 exp_alerts 字段指定的期望结果 与 真实结果不一样即可
-

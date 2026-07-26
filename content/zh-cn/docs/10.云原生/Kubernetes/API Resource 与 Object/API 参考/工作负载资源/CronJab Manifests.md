@@ -1,6 +1,5 @@
 ---
 title: CronJab Manifests
-linkTitle: CronJab Manifests
 weight: 20
 ---
 

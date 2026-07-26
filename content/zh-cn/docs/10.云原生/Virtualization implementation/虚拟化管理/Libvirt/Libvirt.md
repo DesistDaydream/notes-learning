@@ -20,9 +20,9 @@ Libvirt 包含 3 个东西：
 
 - **Libvirt API** # API 库使得其他人可以开发基于 Libvirt 的高级工具，比如 virt-manager、virt-install、virt-viewer 等。
 - **Driver** # 虚拟化平台的驱动程序，暴露了 Libvirt API。由驱动程序对接各种不同的虚拟化平台的 Hypervisor 以管理虚拟化环境。
-  - **libvirtd** # libvirtd 是一个集合了多种驱动程序守护进程，暴露了 Libvirt API，可以接收和处理客户端发送的请求
+    - **libvirtd** # libvirtd 是一个集合了多种驱动程序守护进程，暴露了 Libvirt API，可以接收和处理客户端发送的请求
 - **Client APP** # 客户端应用程序，典型的代表是 virsh
-  - **virsh** # 使用 Libvirt API 编写的客户端程序，用来连接 Driver 后发送命令以控制虚拟化环境。
+    - **virsh** # 使用 Libvirt API 编写的客户端程序，用来连接 Driver 后发送命令以控制虚拟化环境。
 
 Note：其实 libvirtd 在绝大部分情况下是与 qemu/kvm 相搭配来使用，都是开源的，并且 redhat 官方推荐的也是使用 libvirt 管理 kvm 虚拟机
 

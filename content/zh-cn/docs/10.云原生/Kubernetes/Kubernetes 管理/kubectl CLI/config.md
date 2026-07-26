@@ -1,6 +1,5 @@
 ---
 title: config
-linkTitle: config
 weight: 20
 ---
 
@@ -8,7 +7,7 @@ weight: 20
 
 > 参考：
 >
-> - 
+> -
 
 config 子命令用于控制 [User Account(KubeConfig)](/docs/10.云原生/Kubernetes/API%20访问控制/Authentication(认证)/User%20Account(KubeConfig).md) 的 KubeConfig 文件
 
@@ -127,4 +126,4 @@ OPTIONS
 EXAMPLE
 
 - 显示用户名为 user-2c2f24ck5f 的证书数据
-  - **kubectl config view -o jsonpath='{.users\[?(@.name == "user-2c2f24ck5f")].user.client-certificate-data}' --raw**
+    - **kubectl config view -o jsonpath='{.users\[?(@.name == "user-2c2f24ck5f")].user.client-certificate-data}' --raw**

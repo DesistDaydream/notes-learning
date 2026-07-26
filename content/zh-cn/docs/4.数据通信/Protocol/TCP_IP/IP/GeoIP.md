@@ -1,6 +1,5 @@
 ---
 title: GeoIP
-linkTitle: GeoIP
 weight: 20
 ---
 
@@ -9,7 +8,7 @@ weight: 20
 > 参考：
 >
 > - [Wiki, GeoIP](https://en.wikipedia.org/wiki/GeoIP)
->   - 重定向到 [Internet geolocation](https://en.wikipedia.org/wiki/Internet_geolocation)
+>     - 重定向到 [Internet geolocation](https://en.wikipedia.org/wiki/Internet_geolocation)
 
 在 IT 中，**Internet geolocation(互联网地理定位，简称 GeoIP)** 是能够推断连接到互联网的设备的地理位置的软件。例如，设备的 IP 地址可用于确定国家、城市或邮政编码，从而确定其地理位置。其他方法包括检查 Wi-Fi 热点、
 
@@ -26,13 +25,13 @@ IPv4 和 IPv6 地址通常以分层方式分配。**ISP(互联网服务提供商
 
 ![500](https://notes-learning.oss-cn-beijing.aliyuncs.com/ip/ip_rir.png)
 
-| 登记处                                | 覆盖面积                                                    |
+| 登记处 | 覆盖面积 |
 | ---------------------------------- | ------------------------------------------------------- |
-| [AFRINIC](http://www.afrinic.net/) | Africa Region(非洲地区)                                     |
-| [APNIC](http://www.apnic.net/)     | Asia/Pacific Region(亚洲/太平洋地区，亚太地区)                      |
-| [ARIN](http://www.arin.net/)       | Canada, USA, and some Caribbean Islands(加拿大、美国、一些加勒比岛屿) |
-| [LACNIC](http://www.lacnic.net/)   | Latin America and some Caribbean Islands(拉丁美洲、一些加勒比岛屿)  |
-| [RIPE NCC](http://www.ripe.net/)   | Europe, the Middle East, and Central Asia(欧洲、中东、中亚)     |
+| [AFRINIC](http://www.afrinic.net/) | Africa Region(非洲地区) |
+| [APNIC](http://www.apnic.net/) | Asia/Pacific Region(亚洲/太平洋地区，亚太地区) |
+| [ARIN](http://www.arin.net/) | Canada, USA, and some Caribbean Islands(加拿大、美国、一些加勒比岛屿) |
+| [LACNIC](http://www.lacnic.net/) | Latin America and some Caribbean Islands(拉丁美洲、一些加勒比岛屿) |
+| [RIPE NCC](http://www.ripe.net/) | Europe, the Middle East, and Central Asia(欧洲、中东、中亚) |
 
 对 IP 地址的主要作用是根据[全球政策](http://www.icann.org/en/general/global-addressing-policies.html)所述的需求将未分配地址池分配给 RIR，并记录 [IETF](/docs/Standard/Internet/IETF.md) 所做的协议分配。当 RIR 需要在其区域内分配或分配更多 IP 地址时，我们会向 RIR 进行额外分配。我们不会直接向 ISP 或最终用户进行分配，除非在特定情况下，例如分配多播地址或其他协议特定需求。
 

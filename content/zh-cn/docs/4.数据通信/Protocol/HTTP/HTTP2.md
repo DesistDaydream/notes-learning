@@ -1,6 +1,5 @@
 ---
 title: HTTP2
-linkTitle: HTTP2
 weight: 20
 ---
 

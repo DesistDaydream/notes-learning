@@ -42,54 +42,54 @@ go mod tidy
 package main
 
 import (
-	"context"
-	"fmt"
-	"os"
+ "context"
+ "fmt"
+ "os"
 
-	"k8s.io/client-go/kubernetes"
-	"k8s.io/client-go/rest"
-	"k8s.io/client-go/tools/clientcmd"
+ "k8s.io/client-go/kubernetes"
+ "k8s.io/client-go/rest"
+ "k8s.io/client-go/tools/clientcmd"
 
-	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+ v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 // InOrOut 判断当前环境是在集群内部，还是集群外部
 func InOrOut() string {
-	// 如果容器内具有环境变量 KUBERNETES_SERVICE_HOST 且不为空，则当前代码是在容器内运行，否则是在集群外部运行
-	if h := os.Getenv("KUBERNETES_SERVICE_HOST"); h != "" {
-		return "inCluster"
-	}
-	return "outCluster"
+ // 如果容器内具有环境变量 KUBERNETES_SERVICE_HOST 且不为空，则当前代码是在容器内运行，否则是在集群外部运行
+ if h := os.Getenv("KUBERNETES_SERVICE_HOST"); h != "" {
+  return "inCluster"
+ }
+ return "outCluster"
 }
 
 // Deployment 获取指定 namespace 下所有的 deployment 对象
 func get(clientset *kubernetes.Clientset, namespace string) {
-	// 获取指定 名称空间 下所有的 deployment 对象
-	deployments, _ := clientset.AppsV1().Deployments(namespace).List(context.TODO(), v1.ListOptions{})
-	for i, deploy := range deployments.Items {
-		fmt.Printf("%d -> %s\n", i+1, deploy.Name)
-	}
+ // 获取指定 名称空间 下所有的 deployment 对象
+ deployments, _ := clientset.AppsV1().Deployments(namespace).List(context.TODO(), v1.ListOptions{})
+ for i, deploy := range deployments.Items {
+  fmt.Printf("%d -> %s\n", i+1, deploy.Name)
+ }
 }
 
 func main() {
-	var config *rest.Config
-	// 根据代码所在环境，决定如何创建一个连接集群所需的配置。
-	switch InOrOut() {
-	case "inCluster":
-		// 根据容器内的 /var/run/secrets/kubernetes.io/serviceaccount/ 目录下的 token 与 ca.crt 文件创建一个用于连接集群的配置。
-		config, _ = rest.InClusterConfig()
-	case "outCluster":
-		// 根据指定的 kubeconfig 文件创建一个用于连接集群的配置，/root/.kube/config 为 kubectl 命令所用的 config 文件
-		config, _ = clientcmd.BuildConfigFromFlags("", "/root/.kube/config")
-		// 注意，clientcmd.BuildConfigFromFlags() 内部实际上也是有调用 rest.InClusterConfig() 的逻辑，只要满足条件即可。条件如下：
-		// 若第二个参数为空的话，则会直接调用 rest.InClusterConfig()
-	}
+ var config *rest.Config
+ // 根据代码所在环境，决定如何创建一个连接集群所需的配置。
+ switch InOrOut() {
+ case "inCluster":
+  // 根据容器内的 /var/run/secrets/kubernetes.io/serviceaccount/ 目录下的 token 与 ca.crt 文件创建一个用于连接集群的配置。
+  config, _ = rest.InClusterConfig()
+ case "outCluster":
+  // 根据指定的 kubeconfig 文件创建一个用于连接集群的配置，/root/.kube/config 为 kubectl 命令所用的 config 文件
+  config, _ = clientcmd.BuildConfigFromFlags("", "/root/.kube/config")
+  // 注意，clientcmd.BuildConfigFromFlags() 内部实际上也是有调用 rest.InClusterConfig() 的逻辑，只要满足条件即可。条件如下：
+  // 若第二个参数为空的话，则会直接调用 rest.InClusterConfig()
+ }
 
-	// 根据 BuildConfigFromFlags 创建的配置，返回一个可以连接集群的指针
-	clientset, _ := kubernetes.NewForConfig(config)
+ // 根据 BuildConfigFromFlags 创建的配置，返回一个可以连接集群的指针
+ clientset, _ := kubernetes.NewForConfig(config)
 
-	// 获取指定 namespace 下所有的 deployment 对象
-	get(clientset, "kube-system")
+ // 获取指定 namespace 下所有的 deployment 对象
+ get(clientset, "kube-system")
 }
 ```
 
@@ -107,48 +107,48 @@ func main() {
 
 ```go
 type Clientset struct {
-	*discovery.DiscoveryClient
-	admissionregistrationV1      *admissionregistrationv1.AdmissionregistrationV1Client
-	admissionregistrationV1beta1 *admissionregistrationv1beta1.AdmissionregistrationV1beta1Client
-	appsV1                       *appsv1.AppsV1Client
-	appsV1beta1                  *appsv1beta1.AppsV1beta1Client
-	appsV1beta2                  *appsv1beta2.AppsV1beta2Client
-	authenticationV1             *authenticationv1.AuthenticationV1Client
-	authenticationV1beta1        *authenticationv1beta1.AuthenticationV1beta1Client
-	authorizationV1              *authorizationv1.AuthorizationV1Client
-	authorizationV1beta1         *authorizationv1beta1.AuthorizationV1beta1Client
-	autoscalingV1                *autoscalingv1.AutoscalingV1Client
-	autoscalingV2beta1           *autoscalingv2beta1.AutoscalingV2beta1Client
-	autoscalingV2beta2           *autoscalingv2beta2.AutoscalingV2beta2Client
-	batchV1                      *batchv1.BatchV1Client
-	batchV1beta1                 *batchv1beta1.BatchV1beta1Client
-	batchV2alpha1                *batchv2alpha1.BatchV2alpha1Client
-	certificatesV1               *certificatesv1.CertificatesV1Client
-	certificatesV1beta1          *certificatesv1beta1.CertificatesV1beta1Client
-	coordinationV1beta1          *coordinationv1beta1.CoordinationV1beta1Client
-	coordinationV1               *coordinationv1.CoordinationV1Client
-	coreV1                       *corev1.CoreV1Client
-	discoveryV1alpha1            *discoveryv1alpha1.DiscoveryV1alpha1Client
-	discoveryV1beta1             *discoveryv1beta1.DiscoveryV1beta1Client
-	eventsV1                     *eventsv1.EventsV1Client
-	eventsV1beta1                *eventsv1beta1.EventsV1beta1Client
-	extensionsV1beta1            *extensionsv1beta1.ExtensionsV1beta1Client
-	flowcontrolV1alpha1          *flowcontrolv1alpha1.FlowcontrolV1alpha1Client
-	networkingV1                 *networkingv1.NetworkingV1Client
-	networkingV1beta1            *networkingv1beta1.NetworkingV1beta1Client
-	nodeV1alpha1                 *nodev1alpha1.NodeV1alpha1Client
-	nodeV1beta1                  *nodev1beta1.NodeV1beta1Client
-	policyV1beta1                *policyv1beta1.PolicyV1beta1Client
-	rbacV1                       *rbacv1.RbacV1Client
-	rbacV1beta1                  *rbacv1beta1.RbacV1beta1Client
-	rbacV1alpha1                 *rbacv1alpha1.RbacV1alpha1Client
-	schedulingV1alpha1           *schedulingv1alpha1.SchedulingV1alpha1Client
-	schedulingV1beta1            *schedulingv1beta1.SchedulingV1beta1Client
-	schedulingV1                 *schedulingv1.SchedulingV1Client
-	settingsV1alpha1             *settingsv1alpha1.SettingsV1alpha1Client
-	storageV1beta1               *storagev1beta1.StorageV1beta1Client
-	storageV1                    *storagev1.StorageV1Client
-	storageV1alpha1              *storagev1alpha1.StorageV1alpha1Client
+ *discovery.DiscoveryClient
+ admissionregistrationV1      *admissionregistrationv1.AdmissionregistrationV1Client
+ admissionregistrationV1beta1 *admissionregistrationv1beta1.AdmissionregistrationV1beta1Client
+ appsV1                       *appsv1.AppsV1Client
+ appsV1beta1                  *appsv1beta1.AppsV1beta1Client
+ appsV1beta2                  *appsv1beta2.AppsV1beta2Client
+ authenticationV1             *authenticationv1.AuthenticationV1Client
+ authenticationV1beta1        *authenticationv1beta1.AuthenticationV1beta1Client
+ authorizationV1              *authorizationv1.AuthorizationV1Client
+ authorizationV1beta1         *authorizationv1beta1.AuthorizationV1beta1Client
+ autoscalingV1                *autoscalingv1.AutoscalingV1Client
+ autoscalingV2beta1           *autoscalingv2beta1.AutoscalingV2beta1Client
+ autoscalingV2beta2           *autoscalingv2beta2.AutoscalingV2beta2Client
+ batchV1                      *batchv1.BatchV1Client
+ batchV1beta1                 *batchv1beta1.BatchV1beta1Client
+ batchV2alpha1                *batchv2alpha1.BatchV2alpha1Client
+ certificatesV1               *certificatesv1.CertificatesV1Client
+ certificatesV1beta1          *certificatesv1beta1.CertificatesV1beta1Client
+ coordinationV1beta1          *coordinationv1beta1.CoordinationV1beta1Client
+ coordinationV1               *coordinationv1.CoordinationV1Client
+ coreV1                       *corev1.CoreV1Client
+ discoveryV1alpha1            *discoveryv1alpha1.DiscoveryV1alpha1Client
+ discoveryV1beta1             *discoveryv1beta1.DiscoveryV1beta1Client
+ eventsV1                     *eventsv1.EventsV1Client
+ eventsV1beta1                *eventsv1beta1.EventsV1beta1Client
+ extensionsV1beta1            *extensionsv1beta1.ExtensionsV1beta1Client
+ flowcontrolV1alpha1          *flowcontrolv1alpha1.FlowcontrolV1alpha1Client
+ networkingV1                 *networkingv1.NetworkingV1Client
+ networkingV1beta1            *networkingv1beta1.NetworkingV1beta1Client
+ nodeV1alpha1                 *nodev1alpha1.NodeV1alpha1Client
+ nodeV1beta1                  *nodev1beta1.NodeV1beta1Client
+ policyV1beta1                *policyv1beta1.PolicyV1beta1Client
+ rbacV1                       *rbacv1.RbacV1Client
+ rbacV1beta1                  *rbacv1beta1.RbacV1beta1Client
+ rbacV1alpha1                 *rbacv1alpha1.RbacV1alpha1Client
+ schedulingV1alpha1           *schedulingv1alpha1.SchedulingV1alpha1Client
+ schedulingV1beta1            *schedulingv1beta1.SchedulingV1beta1Client
+ schedulingV1                 *schedulingv1.SchedulingV1Client
+ settingsV1alpha1             *settingsv1alpha1.SettingsV1alpha1Client
+ storageV1beta1               *storagev1beta1.StorageV1beta1Client
+ storageV1                    *storagev1.StorageV1Client
+ storageV1alpha1              *storagev1alpha1.StorageV1alpha1Client
 }
 ```
 
@@ -158,25 +158,25 @@ type Clientset struct {
 
 ```go
 func InClusterConfig() (*Config, error) {
-	const (
-		tokenFile  = "/var/run/secrets/kubernetes.io/serviceaccount/token"
-		rootCAFile = "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
-	)
-	host, port := os.Getenv("KUBERNETES_SERVICE_HOST"), os.Getenv("KUBERNETES_SERVICE_PORT")
-	token, err := ioutil.ReadFile(tokenFile)
-	tlsClientConfig := TLSClientConfig{}
-	if _, err := certutil.NewPool(rootCAFile); err != nil {
-		klog.Errorf("Expected to load root CA config from %s, but got err: %v", rootCAFile, err)
-	} else {
-		tlsClientConfig.CAFile = rootCAFile
-	}
-	return &Config{
-		// TODO: switch to using cluster DNS.
-		Host:            "https://" + net.JoinHostPort(host, port),
-		TLSClientConfig: tlsClientConfig,
-		BearerToken:     string(token),
-		BearerTokenFile: tokenFile,
-	}, nil
+ const (
+  tokenFile  = "/var/run/secrets/kubernetes.io/serviceaccount/token"
+  rootCAFile = "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+ )
+ host, port := os.Getenv("KUBERNETES_SERVICE_HOST"), os.Getenv("KUBERNETES_SERVICE_PORT")
+ token, err := ioutil.ReadFile(tokenFile)
+ tlsClientConfig := TLSClientConfig{}
+ if _, err := certutil.NewPool(rootCAFile); err != nil {
+  klog.Errorf("Expected to load root CA config from %s, but got err: %v", rootCAFile, err)
+ } else {
+  tlsClientConfig.CAFile = rootCAFile
+ }
+ return &Config{
+  // TODO: switch to using cluster DNS.
+  Host:            "https://" + net.JoinHostPort(host, port),
+  TLSClientConfig: tlsClientConfig,
+  BearerToken:     string(token),
+  BearerTokenFile: tokenFile,
+ }, nil
 }
 ```
 
@@ -188,11 +188,11 @@ func InClusterConfig() (*Config, error) {
 
 ```go
 func BuildConfigFromFlags(masterUrl, kubeconfigPath string) (*restclient.Config, error) {
-	if kubeconfigPath == "" && masterUrl == "" {
-		kubeconfig, err := restclient.InClusterConfig()
-	}
-	return NewNonInteractiveDeferredLoadingClientConfig(
-		&ClientConfigLoadingRules{ExplicitPath: kubeconfigPath},
-		&ConfigOverrides{ClusterInfo: clientcmdapi.Cluster{Server: masterUrl}}).ClientConfig()
+ if kubeconfigPath == "" && masterUrl == "" {
+  kubeconfig, err := restclient.InClusterConfig()
+ }
+ return NewNonInteractiveDeferredLoadingClientConfig(
+  &ClientConfigLoadingRules{ExplicitPath: kubeconfigPath},
+  &ConfigOverrides{ClusterInfo: clientcmdapi.Cluster{Server: masterUrl}}).ClientConfig()
 }
 ```

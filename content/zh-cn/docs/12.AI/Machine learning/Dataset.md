@@ -1,6 +1,5 @@
 ---
 title: Dataset
-linkTitle: Dataset
 weight: 21
 ---
 
@@ -60,10 +59,10 @@ Data annotation 通常可以简单得做如下分类：
 基于不同的 AI 任务场景及实际需求，Data annotation 的样式也多种多样：
 
 - CV 任务
-  - **Bounding box(边界框)** # CV 的对象检测任务所需数据的标注方式
+    - **Bounding box(边界框)** # CV 的对象检测任务所需数据的标注方式
 - NLP 任务
-  - **Text Annotation(文字注释)** #
-  - **Semantic Annotation(语义注释)**
+    - **Text Annotation(文字注释)** #
+    - **Semantic Annotation(语义注释)**
 - etc.
 - TODO
 

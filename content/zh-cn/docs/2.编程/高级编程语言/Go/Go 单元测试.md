@@ -51,13 +51,13 @@ package main
 import "testing"
 
 func TestAdd(t *testing.T) {
-	if ans := Add(1, 2); ans != 3 {
-		t.Errorf("1 + 2 expected be 3, but %d got", ans)
-	}
+ if ans := Add(1, 2); ans != 3 {
+  t.Errorf("1 + 2 expected be 3, but %d got", ans)
+ }
 
-	if ans := Add(-10, -20); ans != -30 {
-		t.Errorf("-10 + -20 expected be -30, but %d got", ans)
-	}
+ if ans := Add(-10, -20); ans != -30 {
+  t.Errorf("-10 + -20 expected be -30, but %d got", ans)
+ }
 }
 ```
 
@@ -102,17 +102,17 @@ ok      example 0.007s
 
 
 func TestMul(t *testing.T) {
-	t.Run("pos", func(t *testing.T) {
-		if Mul(2, 3) != 6 {
-			t.Fatal("fail")
-		}
+ t.Run("pos", func(t *testing.T) {
+  if Mul(2, 3) != 6 {
+   t.Fatal("fail")
+  }
 
-	})
-	t.Run("neg", func(t *testing.T) {
-		if Mul(2, -3) != -6 {
-			t.Fatal("fail")
-		}
-	})
+ })
+ t.Run("neg", func(t *testing.T) {
+  if Mul(2, -3) != -6 {
+   t.Fatal("fail")
+  }
+ })
 }
 ```
 
@@ -135,23 +135,23 @@ ok      example 0.008s
 ```go
 
 func TestMul(t *testing.T) {
-	cases := []struct {
-		Name           string
-		A, B, Expected int
-	}{
-		{"pos", 2, 3, 6},
-		{"neg", 2, -3, -6},
-		{"zero", 2, 0, 0},
-	}
+ cases := []struct {
+  Name           string
+  A, B, Expected int
+ }{
+  {"pos", 2, 3, 6},
+  {"neg", 2, -3, -6},
+  {"zero", 2, 0, 0},
+ }
 
-	for _, c := range cases {
-		t.Run(c.Name, func(t *testing.T) {
-			if ans := Mul(c.A, c.B); ans != c.Expected {
-				t.Fatalf("%d * %d expected %d, but %d got",
-					c.A, c.B, c.Expected, ans)
-			}
-		})
-	}
+ for _, c := range cases {
+  t.Run(c.Name, func(t *testing.T) {
+   if ans := Mul(c.A, c.B); ans != c.Expected {
+    t.Fatalf("%d * %d expected %d, but %d got",
+     c.A, c.B, c.Expected, ans)
+   }
+  })
+ }
 }
 ```
 
@@ -179,17 +179,17 @@ type calcCase struct{ A, B, Expected int }
 
 func createMulTestCase(t *testing.T, c *calcCase) {
 
-	if ans := Mul(c.A, c.B); ans != c.Expected {
-		t.Fatalf("%d * %d expected %d, but %d got",
-			c.A, c.B, c.Expected, ans)
-	}
+ if ans := Mul(c.A, c.B); ans != c.Expected {
+  t.Fatalf("%d * %d expected %d, but %d got",
+   c.A, c.B, c.Expected, ans)
+ }
 
 }
 
 func TestMul(t *testing.T) {
-	createMulTestCase(t, &calcCase{2, 3, 6})
-	createMulTestCase(t, &calcCase{2, -3, -6})
-	createMulTestCase(t, &calcCase{2, 0, 1})
+ createMulTestCase(t, &calcCase{2, 3, 6})
+ createMulTestCase(t, &calcCase{2, -3, -6})
+ createMulTestCase(t, &calcCase{2, 0, 1})
 }
 ```
 
@@ -211,12 +211,12 @@ FAIL    example 0.007s
 ```go
 func createMulTestCase(c *calcCase, t *testing.T) {
     t.Helper()
-	t.Run(c.Name, func(t *testing.T) {
-		if ans := Mul(c.A, c.B); ans != c.Expected {
-			t.Fatalf("%d * %d expected %d, but %d got",
-				c.A, c.B, c.Expected, ans)
-		}
-	})
+ t.Run(c.Name, func(t *testing.T) {
+  if ans := Mul(c.A, c.B); ans != c.Expected {
+   t.Fatalf("%d * %d expected %d, but %d got",
+    c.A, c.B, c.Expected, ans)
+  }
+ })
 }
 ```
 
@@ -242,26 +242,26 @@ FAIL    example 0.006s
 
 ```go
 func setup() {
-	fmt.Println("Before all tests")
+ fmt.Println("Before all tests")
 }
 
 func teardown() {
-	fmt.Println("After all tests")
+ fmt.Println("After all tests")
 }
 
 func Test1(t *testing.T) {
-	fmt.Println("I'm test1")
+ fmt.Println("I'm test1")
 }
 
 func Test2(t *testing.T) {
-	fmt.Println("I'm test2")
+ fmt.Println("I'm test2")
 }
 
 func TestMain(m *testing.M) {
-	setup()
-	code := m.Run()
-	teardown()
-	os.Exit(code)
+ setup()
+ code := m.Run()
+ teardown()
+ os.Exit(code)
 }
 ```
 
@@ -290,7 +290,7 @@ ok      example 0.006s
 
 ```go
 func helloHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("hello world"))
+ w.Write([]byte("hello world"))
 }
 ```
 
@@ -299,37 +299,37 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 ```go
 
 import (
-	"io/ioutil"
-	"net"
-	"net/http"
-	"testing"
+ "io/ioutil"
+ "net"
+ "net/http"
+ "testing"
 )
 
 func handleError(t *testing.T, err error) {
-	t.Helper()
-	if err != nil {
-		t.Fatal("failed", err)
-	}
+ t.Helper()
+ if err != nil {
+  t.Fatal("failed", err)
+ }
 }
 
 func TestConn(t *testing.T) {
-	ln, err := net.Listen("tcp", "127.0.0.1:0")
-	handleError(t, err)
-	defer ln.Close()
+ ln, err := net.Listen("tcp", "127.0.0.1:0")
+ handleError(t, err)
+ defer ln.Close()
 
-	http.HandleFunc("/hello", helloHandler)
-	go http.Serve(ln, nil)
+ http.HandleFunc("/hello", helloHandler)
+ go http.Serve(ln, nil)
 
-	resp, err := http.Get("http://" + ln.Addr().String() + "/hello")
-	handleError(t, err)
+ resp, err := http.Get("http://" + ln.Addr().String() + "/hello")
+ handleError(t, err)
 
-	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
-	handleError(t, err)
+ defer resp.Body.Close()
+ body, err := ioutil.ReadAll(resp.Body)
+ handleError(t, err)
 
-	if string(body) != "hello world" {
-		t.Fatal("expected hello world, but got", string(body))
-	}
+ if string(body) != "hello world" {
+  t.Fatal("expected hello world, but got", string(body))
+ }
 }
 ```
 
@@ -347,21 +347,21 @@ func TestConn(t *testing.T) {
 ```go
 
 import (
-	"io/ioutil"
-	"net/http"
-	"net/http/httptest"
-	"testing"
+ "io/ioutil"
+ "net/http"
+ "net/http/httptest"
+ "testing"
 )
 
 func TestConn(t *testing.T) {
-	req := httptest.NewRequest("GET", "http://example.com/foo", nil)
-	w := httptest.NewRecorder()
-	helloHandler(w, req)
-	bytes, _ := ioutil.ReadAll(w.Result().Body)
+ req := httptest.NewRequest("GET", "http://example.com/foo", nil)
+ w := httptest.NewRecorder()
+ helloHandler(w, req)
+ bytes, _ := ioutil.ReadAll(w.Result().Body)
 
-	if string(bytes) != "hello world" {
-		t.Fatal("expected hello world, but got", string(bytes))
-	}
+ if string(bytes) != "hello world" {
+  t.Fatal("expected hello world, but got", string(bytes))
+ }
 }
 ```
 
@@ -426,15 +426,15 @@ func BenchmarkHello(b *testing.B) {
 
 ```go
 func BenchmarkParallel(b *testing.B) {
-	templ := template.Must(template.New("test").Parse("Hello, {{.}}!"))
-	b.RunParallel(func(pb *testing.PB) {
-		var buf bytes.Buffer
-		for pb.Next() {
+ templ := template.Must(template.New("test").Parse("Hello, {{.}}!"))
+ b.RunParallel(func(pb *testing.PB) {
+  var buf bytes.Buffer
+  for pb.Next() {
 
-			buf.Reset()
-			templ.Execute(&buf, "World")
-		}
-	})
+   buf.Reset()
+   templ.Execute(&buf, "World")
+  }
+ })
 }
 ```
 

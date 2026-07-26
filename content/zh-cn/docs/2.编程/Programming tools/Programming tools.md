@@ -1,6 +1,5 @@
 ---
 title: Programming tools
-linkTitle: Programming tools
 weight: 1
 ---
 

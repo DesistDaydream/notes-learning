@@ -41,6 +41,7 @@ ERROR 1046 (3D000): No database selected
 ### 斜线命令
 
 > 参考：
+>
 > - [官方文档，MySQL 程序-客户端程序-myslq 客户端命令](https://dev.mysql.com/doc/refman/8.0/en/mysql-commands.html)
 
 在 mysql 的交互模式中有一组 mysql 程序自带的命令，用以 控制输出格式、检查、获取数据信息 等等，这些命令以 `\` 开头，不过也有与之相对应的字符串命令
@@ -56,13 +57,13 @@ ERROR 1046 (3D000): No database selected
 - use mysql; # 切换当前要操作的数据库为 mysql
 - show tables; # 显示当前数据库中所有的表
 - show columns from db; # 显示当前数据库中名为 db 的表的属性。效果如下
-  - desc test; # 与该命令效果相同
-  - Field # 该表中都有哪些列
-  - Type # 该列的数据类型
-  - Null # 该列是否可以插入 null
-  - Key # 索引类型
-  - Default # 该列插入空值时。默认插入什么值。
-  - Extra # 该列额外的参数。
+    - desc test; # 与该命令效果相同
+    - Field # 该表中都有哪些列
+    - Type # 该列的数据类型
+    - Null # 该列是否可以插入 null
+    - Key # 索引类型
+    - Default # 该列插入空值时。默认插入什么值。
+    - Extra # 该列额外的参数。
 
 ```sql
 MariaDB [mysql]> SHOW COLUMNS FROM db;

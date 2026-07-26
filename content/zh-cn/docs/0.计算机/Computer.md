@@ -1,6 +1,5 @@
 ---
 title: Computer
-linkTitle: Computer
 weight: 1
 ---
 

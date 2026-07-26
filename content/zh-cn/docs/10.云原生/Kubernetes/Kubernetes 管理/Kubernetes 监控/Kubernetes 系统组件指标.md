@@ -1,6 +1,5 @@
 ---
 title: Kubernetes 系统组件指标
-linkTitle: Kubernetes 系统组件指标
 weight: 20
 ---
 
@@ -15,7 +14,7 @@ Kubernetes 系统组件以 Prometheus 格式暴露监控所需的指标。这种
 Kubernetes 的下面几个系统组件默认都会在 `/metrics` 端点暴露指标信息：
 
 - kubelet
-  - kubelet 除了基本 /metrics 端点还会在 /metrics/cadvisor、/metrics/resource、/metrics/probes 这几个端点暴露指标
+    - kubelet 除了基本 /metrics 端点还会在 /metrics/cadvisor、/metrics/resource、/metrics/probes 这几个端点暴露指标
 - kube-apiserver
 - kube-controller-manager
 - kube-scheduler
@@ -89,14 +88,14 @@ kubelet 在 10205 端口上的多个端点暴露指标
 通过 https 接口获取 metrics
 
 - 执行访问 https 前准备方法一
-  - 通过证书与私钥访问
-    - `curl -k --cert /root/cert/admin.crt --key /root/cert/admin.key https://${IP}:10250/metrics`
-    - 在 10250 端口的 /metrics/cadvisor 路径下具有 cadvisor 相关的 metrics
-      - `curl -k --cert /root/cert/admin.crt --key /root/cert/admin.key https://${IP}:10250/metrics/cadvisor`
+    - 通过证书与私钥访问
+        - `curl -k --cert /root/cert/admin.crt --key /root/cert/admin.key https://${IP}:10250/metrics`
+        - 在 10250 端口的 /metrics/cadvisor 路径下具有 cadvisor 相关的 metrics
+            - `curl -k --cert /root/cert/admin.crt --key /root/cert/admin.key https://${IP}:10250/metrics/cadvisor`
 - 执行访问 https 前准备方法二
-  - 通过 token 访问
-    - `curl --cacert ${CAPATH} -H "Authorization: Bearer ${TOKEN}" https://${IP}:10250/metrics`
-    - `curl --cacert ${CAPATH} -H "Authorization: Bearer ${TOKEN}" https://${IP}:10250/metrics/cadvisor`
+    - 通过 token 访问
+        - `curl --cacert ${CAPATH} -H "Authorization: Bearer ${TOKEN}" https://${IP}:10250/metrics`
+        - `curl --cacert ${CAPATH} -H "Authorization: Bearer ${TOKEN}" https://${IP}:10250/metrics/cadvisor`
 
 ## 常用指标
 
@@ -107,16 +106,16 @@ kubelet 在 10205 端口上的多个端点暴露指标
 ## 获取指标
 
 - 执行访问 https 前准备方法一
-   - 通过证书与私钥访问
-      - `curl --cacert ${CAPATH} --cert /root/certs/admin.crt --key  /root/certs/admin.key  https://${IP}:6443/`
+    - 通过证书与私钥访问
+        - `curl --cacert ${CAPATH} --cert /root/certs/admin.crt --key  /root/certs/admin.key  https://${IP}:6443/`
 - 执行访问 https 前准备方法二
-   - 通过 https 的方式访问 API
-      - `curl --cacert ${CAPATH} -H "Authorization: Bearer ${TOKEN}"  https://${IP}:6443/`
+    - 通过 https 的方式访问 API
+        - `curl --cacert ${CAPATH} -H "Authorization: Bearer ${TOKEN}"  https://${IP}:6443/`
 - kubeclt
-   - `kubectl get --raw /` # 让 kubectl 不再输出标准格式的数据，而是直接向 api server 请求原始数据
+    - `kubectl get --raw /` # 让 kubectl 不再输出标准格式的数据，而是直接向 api server 请求原始数据
 - kubectl proxy，一般监听在 6443 端口的 api server 使用该方式，监听在 8080 上的为 http，可直接访问
-   - `kubectl proxy --port=8080 --accept-hosts='^localhost$,^127.0.0.1$,^\[::1]$,10.10.100.151' --address='0.0.0.0'` # 在本地 8080 端口上启动 API Server 的一个代理网关，以便使用 curl 直接访问 api server 并使用命令 curl localhost:8080/获取数据
-      - 直接访问本地 8080 端口，即可通过 API Server 获取集群所有数据
+    - `kubectl proxy --port=8080 --accept-hosts='^localhost$,^127.0.0.1$,^\[::1]$,10.10.100.151' --address='0.0.0.0'` # 在本地 8080 端口上启动 API Server 的一个代理网关，以便使用 curl 直接访问 api server 并使用命令 curl localhost:8080/获取数据
+        - 直接访问本地 8080 端口，即可通过 API Server 获取集群所有数据
 
 ## 常用指标
 

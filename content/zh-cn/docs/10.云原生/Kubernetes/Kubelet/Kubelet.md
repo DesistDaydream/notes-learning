@@ -1,6 +1,5 @@
 ---
 title: Kubelet
-linkTitle: Kubelet
 weight: 1
 ---
 
@@ -68,22 +67,22 @@ kubelet 可以通过多个地方读取其自身的配置并更改自己的行为
 **/var/lib/kubelet/** # kubelet 配置文件目录、以及运行时数据目录，包含基础配置文件、证书、通过 kubelet 启动的容器信息等等
 
 - **./config.yaml** # kubelet 基础配置文件。一般在 kubelet 启动时使用 --cofnig 参数指定该读取该文件的路径进行加载。
-  - Note：该文件内容与 kubectl get configmap -n kube-system kubelet-config-X.XX -o yaml 命令所得结果一样
-    - 如果想要在 kubelet 运行时动态得更改其配置，则可以修改 configmap 中的内容，详见：<https://kubernetes.io/docs/tasks/administer-cluster/reconfigure-kubelet/>
+    - Note：该文件内容与 kubectl get configmap -n kube-system kubelet-config-X.XX -o yaml 命令所得结果一样
+        - 如果想要在 kubelet 运行时动态得更改其配置，则可以修改 configmap 中的内容，详见：<https://kubernetes.io/docs/tasks/administer-cluster/reconfigure-kubelet/>
 - **./kubeadm-flags.env** # 该文件将内容作为 kubelet 参数，在 kubelet 启动时加载，常用来在 kubeadm 初始化时使用
 - **./pods/** # kubelet 启动的 Pod 的数据保存路径，其内目录名为 Pod 的 uid 。
-  - ./${POD_UID}/volumes/ # 对应 pod 挂载的 volume 保存路径，其内目录为 `kubernetes.io~TYPE/` ，其中 TYPE 为 volume 的类型。
+    - ./${POD_UID}/volumes/ # 对应 pod 挂载的 volume 保存路径，其内目录为 `kubernetes.io~TYPE/` ，其中 TYPE 为 volume 的类型。
 - **./pki/** # kubelet 与 apiserver 交互时所用到的证书存放目录。
-  - ./kubelet.crt # 在 kubelet 完成 TLS bootstrapping 后并且没有配置 --feature-gates=RotateKubeletServerCertificate=true 时生成；这种情况下该文件为一个独立于 apiserver CA 的自签 CA 证书，有效期为 1 年；被用作 kubelet 10250 api 端口。当其他东西需要访问 kubelet 的 api 时，需要使用该证书作为认证。
-  - ./kubelet-client-current.pem # 与 API server 通讯所用到的证书，与 apiserver 交互后生成。
+    - ./kubelet.crt # 在 kubelet 完成 TLS bootstrapping 后并且没有配置 --feature-gates=RotateKubeletServerCertificate=true 时生成；这种情况下该文件为一个独立于 apiserver CA 的自签 CA 证书，有效期为 1 年；被用作 kubelet 10250 api 端口。当其他东西需要访问 kubelet 的 api 时，需要使用该证书作为认证。
+    - ./kubelet-client-current.pem # 与 API server 通讯所用到的证书，与 apiserver 交互后生成。
 
 **/etc/kubernetes/** # Kubernetes 系统组件运行时目录。
 
 - **./manifests/** # Kubelet 默认从该目录中读取 Pod 的 Manifests 文件，以运行静态类型 Pod。
 - kubelet 在 k8s 集群交互时认证文件所在目录，kubelet 需要读取认证配置，用来与 apiserver 进行交互。
-  - **./bootstrap-kubelet.conf** # 用于 TLS 引导程序的 KubeConfig 文件。该 kubeconfig 文件的用户信息为 token。该文件用于 kubelet 所在节点不在集群中时，向集群发起注册请求所用，如果节点已在集群中，则会自动生成 kubelet.conf 文件
-  - **./kubelet.conf** # 具有唯一 kubelet 标识的 KubeConfig 文件(与 kubectl 的 config 文件一样，用于 kubelet 与 apiserver 交互时提供认证信息)。该 kubeconfig 文件的用户信息为客户端证书和私钥，一般在 kubelet 启动时由 bootstrap-kubelet.conf 文件生成。
-    - 当该文件不存在时，会在 kubelet 启动时，由 bootstrap-kubelet.confg 生成
+    - **./bootstrap-kubelet.conf** # 用于 TLS 引导程序的 KubeConfig 文件。该 kubeconfig 文件的用户信息为 token。该文件用于 kubelet 所在节点不在集群中时，向集群发起注册请求所用，如果节点已在集群中，则会自动生成 kubelet.conf 文件
+    - **./kubelet.conf** # 具有唯一 kubelet 标识的 KubeConfig 文件(与 kubectl 的 config 文件一样，用于 kubelet 与 apiserver 交互时提供认证信息)。该 kubeconfig 文件的用户信息为客户端证书和私钥，一般在 kubelet 启动时由 bootstrap-kubelet.conf 文件生成。
+        - 当该文件不存在时，会在 kubelet 启动时，由 bootstrap-kubelet.confg 生成
 
 **/etc/sysconfig/kubelet** # 与 /var/lib/kubelet/kubeadm-flags.env 文件作用一样 ，将内容作为 kubelet 参数，在 kubelet 启动时加载。一般用于让用户指定 kubelet 的运行时参数 。 KUBELET_EXTRA_ARGS 在标志链中排在最后，并且在其他设置冲突时具有最高优先级。
 
@@ -98,8 +97,8 @@ kubelet 可以通过多个地方读取其自身的配置并更改自己的行为
 > 参考：
 >
 > - kubelet 启动流程源码分析
->   - https://xiaohanliang.gitbook.io/notes/k8s/zhi-shi-yu-ding-yi/jie-dian-zu-jian-kubelet/kubelet-qi-dong-liu-cheng
->   - https://www.jianshu.com/p/e07d84cce9f9
+>     - https://xiaohanliang.gitbook.io/notes/k8s/zhi-shi-yu-ding-yi/jie-dian-zu-jian-kubelet/kubelet-qi-dong-liu-cheng
+>     - https://www.jianshu.com/p/e07d84cce9f9
 
 1. 读取配置 kubelet 配置文件。kubelet 启动时首先会根据 `--config=PATH` 参数指定路径(默认 /var/lib/kubelet/config.yaml)读取配置文件，并根据其内配置加载 kubelet 相关参数，
    1. 根据 ca 配置路径加载 ca.crt 文件，并在 /var/lib/kubelet/pki 目录下生成关于 kubelet 的 10250 私有 api 端口所需的 crt 与 key 文件。
@@ -155,7 +154,7 @@ CRI 的运作方式：
 当前主流的 CRI 有如下几种：
 
 - Docker(kubelet 默认的 CRI)
-  - Note：kubelet 内置 dockershim，在启动或，会生成 dockersim.sock 文件，kubelet 与 crictl 都会默认与该文件关联
+    - Note：kubelet 内置 dockershim，在启动或，会生成 dockersim.sock 文件，kubelet 与 crictl 都会默认与该文件关联
 - CRI-O
 - Containerd(通常与 docker 同时安装)
 - Frakti(kata OCI 的实现)
@@ -163,7 +162,7 @@ CRI 的运作方式：
 kubelet 与 CRI 对接的方式
 
 - kubelet 根据参数 --container-runtime-endpoint 来决定其所绑定的 CRI sock。默认使用 docker 的 sock，路径为：/var/run/dockershim.sock
-  - 可以通过 crictl 工具来测试目标 sock 是否可用，crictl 用法详见：crictl 命令行工具
+    - 可以通过 crictl 工具来测试目标 sock 是否可用，crictl 用法详见：crictl 命令行工具
 - 如果使用不同的 CRI 运行时，则需要为 kubelet 指定不同的 flag。 例如，当使用非 docker CRI 时， 则需要使用 --container-runtime=remote 与 --container-runtime-path-endpoint=\<PATH> 指定 CRI 端点。endpoint 的值为指定 CRI 的 sock 文件。
 - 各个 CRI 需要进行配置才可与 kubelet 对接成功，如果不进行初始化配置，则 kubelet 无法获取到该 CRI 对于 k8s 的相关配置参数
 

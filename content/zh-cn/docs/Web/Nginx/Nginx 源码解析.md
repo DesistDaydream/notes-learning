@@ -1,6 +1,5 @@
 ---
 title: Nginx 源码解析
-linkTitle: Nginx 源码解析
 weight: 20
 ---
 
@@ -94,23 +93,23 @@ http 模块属于 NGX_CORE_MODULE 类型如果看 src/stream/ngx_stream.c、src/
 与此同时，每种类型的模块下，包含很多子模块，模块类型是抽象的概念，主要是为了帮助模块进行分类。而模块，则是真正处理任务的：
 
 - **NGX_CORE_MODULE**
-  - ngx_core_module # core 模块，这个比较特殊，core 模块类型下，其实就是包含了一个 core 模块。
-  - ngx_event_module # event 模块
-  - ngx_http_module # http 模块
-  - ngx_mail_module # mail 模块
-  - ngx_stream_module # stream 模块
+    - ngx_core_module # core 模块，这个比较特殊，core 模块类型下，其实就是包含了一个 core 模块。
+    - ngx_event_module # event 模块
+    - ngx_http_module # http 模块
+    - ngx_mail_module # mail 模块
+    - ngx_stream_module # stream 模块
 - **NGX_EVENT_MODULE**
-  - ngx_event_core_module # event core 模块
-  - ...... 太多了就不一一列举了，详见官网
+    - ngx_event_core_module # event core 模块
+    - ...... 太多了就不一一列举了，详见官网
 - **NGX_HTTP_MODULE**
-  - ngx_http_core_module # http core 模块
-  - ...... 太多了就不一一列举了，详见官网
+    - ngx_http_core_module # http core 模块
+    - ...... 太多了就不一一列举了，详见官网
 - **NGX_MAIL_MODULE**
-  - ngx_mail_module # mail core 模块
-  - ...... 太多了就不一一列举了，详见官网
+    - ngx_mail_module # mail core 模块
+    - ...... 太多了就不一一列举了，详见官网
 - **NGX_STREAM_MODULE**
-  - ngx_stream_module # stream core 模块
-  - ...... 太多了就不一一列举了，详见官网
+    - ngx_stream_module # stream core 模块
+    - ...... 太多了就不一一列举了，详见官网
 
 从上面的分类也可以看出来，每个类型的模块都有一个被称为 core 的模块来实现这个类型的功能。这其实就可以组成一个树状的结构：
 

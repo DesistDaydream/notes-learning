@@ -1,6 +1,5 @@
 ---
 title: "NPU"
-linkTitle: "NPU"
 created: "2026-04-27T11:31"
 weight: 100
 ---
@@ -18,6 +17,7 @@ NPU 在 Linux 内核管理的 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md)
 # Ascend
 
 > 参考：
+>
 > - [知乎，一文看懂华为昇腾芯片](https://zhuanlan.zhihu.com/p/1913660152676094004)
 
 **Ascend(昇腾)** 生态的 NPU
@@ -38,6 +38,7 @@ NPU 在 Linux 内核管理的 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md)
 
 > [!Note]
 > Atlas 300I DUO 总是有很多问题。
+>
 > - [vLLM](/docs/12.AI/AI%20MGMT/vLLM/vLLM.md) 甚至只有一篇针对该产品的[独立教程](https://docs.vllm.ai/projects/ascend/zh-cn/v0.18.0/tutorials/hardwares/310p.html)，其他系列的产品则无如此多问题。
 > - vLLM 默认也是[支持](https://docs.vllm.ai/projects/ascend/zh-cn/v0.18.0/faqs.html#what-devices-are-currently-supported) Atlas A2 和 Atlas A3 系列，对于 Atlas 300I DUO 则仅是实验性支持。
 
@@ -58,7 +59,7 @@ NPU 在 Linux 内核管理的 [PCI](/docs/1.操作系统/Kernel/Hardware/PCI.md)
 - 驱动 # `{product name}-npu-driver_x.x.x_linux-{arch}._run`
 - 固件 # `{product name}-npu-firmware_x.x.x._run`
 
-### 最佳实践
+### Ascend 最佳实践
 
 使用其中一个场景举例
 

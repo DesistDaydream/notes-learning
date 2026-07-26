@@ -34,7 +34,7 @@ ASN.1 这种表示法提供了一定数量的预定义的基本类型，比如�
 
 - SEQUENCE(序列) # 其实就是 map
 - SEQUENCE OF(顺序) # 其实就是列表
-  - 这就好比 yaml 中使用 `-` 符号表示列表，ASN.1 用一串字母表示。
+    - 这就好比 yaml 中使用 `-` 符号表示列表，ASN.1 用一串字母表示。
 - CHOICE(选择)
 - 等等......
 
@@ -143,8 +143,8 @@ DER 是[类型-长度-值](https://en.wikipedia.org/wiki/Type%E2%80%93length%E2%
   02 — type tag indicating INTEGER
   01 — length in octets of value that follows
     05 — value (5)
-  16 — type tag indicating [IA5String](https://en.wikipedia.org/wiki/IA5String "IA5String") 
-     (IA5 means the full 7-bit ISO 646 set, including variants, 
+  16 — type tag indicating [IA5String](https://en.wikipedia.org/wiki/IA5String "IA5String")
+     (IA5 means the full 7-bit ISO 646 set, including variants,
       but is generally US-ASCII)
   0e — length in octets of value that follows
     41 6e 79 62 6f 64 79 20 74 68 65 72 65 3f — value ("Anybody there?")

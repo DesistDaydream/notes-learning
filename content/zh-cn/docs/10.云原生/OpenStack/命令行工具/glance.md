@@ -1,6 +1,5 @@
 ---
 title: glance
-linkTitle: glance
 weight: 20
 ---
 

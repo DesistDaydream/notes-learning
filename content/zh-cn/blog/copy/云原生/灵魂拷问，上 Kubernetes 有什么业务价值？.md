@@ -1,6 +1,5 @@
 ---
 title: "灵魂拷问，上 Kubernetes 有什么业务价值？"
-linkTitle: "灵魂拷问，上 Kubernetes 有什么业务价值？"
 weight: 20
 ---
 

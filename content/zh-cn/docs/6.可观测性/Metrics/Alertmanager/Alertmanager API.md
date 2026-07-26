@@ -1,6 +1,5 @@
 ---
 title: Alertmanager API
-linkTitle: Alertmanager API
 weight: 3
 ---
 

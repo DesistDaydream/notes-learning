@@ -5,7 +5,7 @@ title: Vue 环境安装与使用
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，应用规模化-工具链](https://cn.vuejs.org/guide/scaling-up/tooling.html)
 
 Vue3 早期使用 [Vue CLI](https://cli.vuejs.org/)，创建 Vue 项目，后来 Vue 作者尤雨溪开了一个新的工具 Vite，Vite 通过 [vuejs/create-vue](https://github.com/vuejs/create-vue) 项目，基于 Vite 创建 Vue 项目。
@@ -13,21 +13,21 @@ Vue3 早期使用 [Vue CLI](https://cli.vuejs.org/)，创建 Vue 项目，后来
 # Vite
 
 > 参考：
-> 
+>
 > - [GitHub 项目，vitejs/vite](https://github.com/vitejs/vite)
 > - [官网](https://vitejs.dev/)
 
 Vite 是一种新型前端构建工具，可显着改善前端开发体验。它由两个主要部分组成：
 
--   一个开发服务器，通过[原生 ES 模块](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)为您的源文件提供服务，具有[丰富的内置功能](https://vitejs.dev/guide/features.html)和惊人的快速[热模块替换 (HMR)](https://vitejs.dev/guide/features.html#hot-module-replacement)。
--   一个[构建命令](https://vitejs.dev/guide/build.html)，将你的代码与[Rollup](https://rollupjs.org/)捆绑在一起，预先配置为输出高度优化的生产静态资产。
+- 一个开发服务器，通过[原生 ES 模块](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)为您的源文件提供服务，具有[丰富的内置功能](https://vitejs.dev/guide/features.html)和惊人的快速[热模块替换 (HMR)](https://vitejs.dev/guide/features.html#hot-module-replacement)。
+- 一个[构建命令](https://vitejs.dev/guide/build.html)，将你的代码与[Rollup](https://rollupjs.org/)捆绑在一起，预先配置为输出高度优化的生产静态资产。
 
 此外，Vite 通过其[插件 API](https://vitejs.dev/guide/api-plugin.html)和[JavaScript API](https://vitejs.dev/guide/api-javascript.html)具有高度的可扩展性，具有完整的类型支持。
 
 ## 基于 Vite 创建 Vue 项目
 
 > 参考：
-> 
+>
 > - [官方文档，快速上手-创建一个 Vue 应用](https://cn.vuejs.org/guide/quick-start.html#creating-a-vue-application)
 > - [GitHub 项目，vitejs/awesome-vite](https://github.com/vitejs/awesome-vite)（一些使用 vite 创建的应用模板，可以直接拿来用）
 >     - [Vue Naive](https://github.com/zclzone/vue-naive-admin) - 管理模板，基于 Vue 3 + Pinia + Naive UI。

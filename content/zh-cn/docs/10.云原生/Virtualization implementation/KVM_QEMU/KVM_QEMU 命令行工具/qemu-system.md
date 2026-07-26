@@ -1,6 +1,5 @@
 ---
 title: qemu-system
-linkTitle: qemu-system
 weight: 20
 ---
 
@@ -14,10 +13,10 @@ weight: 20
 qemu-system 的名称在不同的 CPU 架构上有不同的名称：
 
 - amd64 架构
-  - qemu-system-x64_64
+    - qemu-system-x64_64
 - arm64 架构
-  - qemu-system-aarch64
-  - qemu-system-arm
+    - qemu-system-aarch64
+    - qemu-system-arm
 
 注意：在 CentOS 系统中，该二进制文件的名字是 qemu-kvm，是一个在 /usr/local/bin/qemu-kvm 这个位置并指向 /usr/libexec/qemu-kvm 的软链接
 
@@ -50,13 +49,13 @@ https://www.qemu.org/docs/master/system/invocation.html#hxtool-0
 
 - Storage Devices(存储设备相关驱动)
 - Network Devices(网络设备相关驱动)
-  - e1000 # bus PCI, desc "Intel Gigabit Ethernet"
-  - rtl8139 # bus PCI
-  - virtio-net-device # bus virtio-bus
-  - virtio-net-pci # bus PCI, 别名：virtio-net
+    - e1000 # bus PCI, desc "Intel Gigabit Ethernet"
+    - rtl8139 # bus PCI
+    - virtio-net-device # bus virtio-bus
+    - virtio-net-pci # bus PCI, 别名：virtio-net
 - Input Devices(输入设备相关驱动)
-  - virtio-serial-pci # bus PCI。别名：virtio-serial
-  - virtserialport # bus virtio-serial-bus
+    - virtio-serial-pci # bus PCI。别名：virtio-serial
+    - virtserialport # bus virtio-serial-bus
 
 ## Block Device OPTIONS(块设备选项)
 

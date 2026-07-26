@@ -27,9 +27,9 @@ runtime 规范有如下几个，所有人必须遵守该规范来使用 runtime 
 
 - [Filesystem Bundle](https://github.com/opencontainers/runtime-spec/blob/master/bundle.md) # 文件系统捆绑。bundle 是以某种方式组织的一组文件，包含了容器所需要的所有信息，有了这个 bundle 后，符合 runtime 标准的程序(e.g.runc)就可以根据 bundle 启动容器了(哪怕没有 docker，也可以启动一个容器)。
 - [Runtime and Lifecycle](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md) # 使用一个 runtime 创建的容器实体必须能够对同一容器使用本规范中定义的操作。
-  - [Linux-specific Runtime and Lifecycle](https://github.com/opencontainers/runtime-spec/blob/master/runtime-linux.md) # 这是关于 linux 平台的 Runtime 与 Lifecycle
+    - [Linux-specific Runtime and Lifecycle](https://github.com/opencontainers/runtime-spec/blob/master/runtime-linux.md) # 这是关于 linux 平台的 Runtime 与 Lifecycle
 - [Configuration](https://github.com/opencontainers/runtime-spec/blob/master/config.md) # Configuration 包含对容器执行标准操作(比如 create、start、stop 等)所必须的元数据。这包括要运行的过程、要注入的环境变量、要使用的沙盒功能等等。不同平台(linux、window 等)，有不同的规范。
-  - [Linux-specific configuration](https://github.com/opencontainers/runtime-spec/blob/master/config-linux.md) # 这是关于 linux 平台的 Configuration
+    - [Linux-specific configuration](https://github.com/opencontainers/runtime-spec/blob/master/config-linux.md) # 这是关于 linux 平台的 Configuration
 
 # Filesystem Bundle
 
@@ -173,10 +173,10 @@ Runtime 与 Lifecycle 规范部分，定义了跟容器 runtime 相关的三部�
 - ociVersion (string, REQUIRED) is version of the Open Container Initiative Runtime Specification with which the state complies.
 - id (string, REQUIRED) is the container's ID. This MUST be unique across all containers on this host. There is no requirement that it be unique across hosts.
 - status (string, REQUIRED) is the runtime state of the container. The value MAY be one of:
-  - creating: the container is being created (step 2 in the [lifecycle](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md#lifecycle))
-  - created: the runtime has finished the [create operation](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md#create) (after step 2 in the [lifecycle](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md#lifecycle)), and the container process has neither exited nor executed the user-specified program
-  - running: the container process has executed the user-specified program but has not exited (after step 5 in the [lifecycle](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md#lifecycle))
-  - stopped: the container process has exited (step 7 in the [lifecycle](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md#lifecycle))
+    - creating: the container is being created (step 2 in the [lifecycle](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md#lifecycle))
+    - created: the runtime has finished the [create operation](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md#create) (after step 2 in the [lifecycle](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md#lifecycle)), and the container process has neither exited nor executed the user-specified program
+    - running: the container process has executed the user-specified program but has not exited (after step 5 in the [lifecycle](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md#lifecycle))
+    - stopped: the container process has exited (step 7 in the [lifecycle](https://github.com/opencontainers/runtime-spec/blob/master/runtime.md#lifecycle))
 
 Additional values MAY be defined by the runtime, however, they MUST be used to represent new runtime states not defined above.
 

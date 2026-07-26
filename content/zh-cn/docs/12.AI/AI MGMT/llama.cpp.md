@@ -1,6 +1,5 @@
 ---
 title: "llama.cpp"
-linkTitle: "llama.cpp"
 created: "2026-04-30T13:15"
 weight: 100
 ---

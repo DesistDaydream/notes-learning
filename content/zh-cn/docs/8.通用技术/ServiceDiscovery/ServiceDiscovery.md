@@ -1,6 +1,5 @@
 ---
 title: ServiceDiscovery
-linkTitle: ServiceDiscovery
 weight: 1
 ---
 

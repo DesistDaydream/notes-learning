@@ -5,7 +5,7 @@ title: VS Code 快捷键
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf),pdf
 > - [官方文档](https://docs.microsoft.com/zh-cn/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio)
 > - <https://docs.microsoft.com/zh-cn/visualstudio/ide/productivity-shortcuts>
@@ -45,20 +45,20 @@ Ctrl+k,Ctrl+s 打开键盘快捷方式列表
 操作光标所在代码
 
 - 折叠
-  - **Ctrl+k,Ctrl+\[** 递归折叠光标所在代码块所有层
-  - **Ctrl+Shift+\[** 折叠光标所在代码代码 1 层
+    - **Ctrl+k,Ctrl+\[** 递归折叠光标所在代码块所有层
+    - **Ctrl+Shift+\[** 折叠光标所在代码代码 1 层
 - 展开
-  - **Ctrl+k,Ctrl+]** 递归展开光标所在代码块所有层
-  - **Ctrl+Shift+]** 展开光标所在代码代码 1 层
+    - **Ctrl+k,Ctrl+]** 递归展开光标所在代码块所有层
+    - **Ctrl+Shift+]** 展开光标所在代码代码 1 层
 
 操作文件所有代码
 
 - 折叠
-  - **Ctrl+k,Ctrl+0** 折叠所有代码全部层
-  - **Ctrl+k,Ctrl+${NUM}** 折叠所有代码的 NUM 层
-  - **Ctrl+k,Ctrl+/** 折叠所有代码的注释
+    - **Ctrl+k,Ctrl+0** 折叠所有代码全部层
+    - **Ctrl+k,Ctrl+${NUM}** 折叠所有代码的 NUM 层
+    - **Ctrl+k,Ctrl+/** 折叠所有代码的注释
 - 展开
-  - **Ctrl+k,Ctrl+j** 展开所有代码的全部层
+    - **Ctrl+k,Ctrl+j** 展开所有代码的全部层
 
 **Alt+Shift+a** 添加代码块注释
 

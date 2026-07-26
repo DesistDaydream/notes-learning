@@ -1,6 +1,5 @@
 ---
 title: 一致性哈希算法 consistent hashing
-linkTitle: 一致性哈希算法 consistent hashing
 weight: 20
 ---
 

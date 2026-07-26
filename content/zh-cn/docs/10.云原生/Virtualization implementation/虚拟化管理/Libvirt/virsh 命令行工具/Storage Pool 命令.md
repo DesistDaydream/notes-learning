@@ -1,6 +1,5 @@
 ---
 title: Storage Pool 命令
-linkTitle: Storage Pool 命令
 weight: 20
 ---
 

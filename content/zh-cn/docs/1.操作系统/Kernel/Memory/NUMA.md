@@ -1,6 +1,5 @@
 ---
 title: NUMA
-linkTitle: NUMA
 weight: 20
 ---
 

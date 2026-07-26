@@ -1,6 +1,5 @@
 ---
 title: go rabbitmq 库
-linkTitle: go rabbitmq 库
 weight: 20
 ---
 

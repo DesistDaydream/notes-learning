@@ -1,6 +1,5 @@
 ---
 title: Library
-linkTitle: Library
 weight: 101
 date: 2025-04-18T18:24:00
 ---

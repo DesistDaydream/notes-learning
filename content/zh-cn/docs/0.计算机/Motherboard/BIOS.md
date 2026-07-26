@@ -1,6 +1,5 @@
 ---
 title: "BIOS"
-linkTitle: "BIOS"
 weight: 20
 ---
 

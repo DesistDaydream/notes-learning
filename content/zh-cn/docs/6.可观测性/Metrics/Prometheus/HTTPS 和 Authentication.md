@@ -1,6 +1,5 @@
 ---
 title: HTTPS 和 Authentication
-linkTitle: HTTPS 和 Authentication
 weight: 7
 ---
 
@@ -110,8 +109,8 @@ Prometheus 通过 `--web.config.file` 命令行标志来开启 **TLS** 或者 **
 - **tls_server_config**([tls_server_config](#tls_server_config)) # 为 Prometheus 开启 TLS
 - **http_server_config**([http_server_config](#http_server_config)) # 为 Prometheus 开启 HTTP/2。注意，HTTP/2 仅支持 TLS
 - **basic_auth_users**(map[STRING]STRING) # 为 Prometheus Server 开启基本认证
-  - KEY 是用户名，VALUE 是密码
-  - 注意：密码必须是经过 hash 的字符串，可以通过[这个网站](https://bcrypt-generator.com/)在线获取 hash 过的字符串。如果没有任何配置，则不开启任何 TLS 或 认证，只要配置了某个字段，就默认开启相关功能。
+    - KEY 是用户名，VALUE 是密码
+    - 注意：密码必须是经过 hash 的字符串，可以通过[这个网站](https://bcrypt-generator.com/)在线获取 hash 过的字符串。如果没有任何配置，则不开启任何 TLS 或 认证，只要配置了某个字段，就默认开启相关功能。
 
 ### tls_server_config
 
@@ -183,4 +182,3 @@ basic_auth_users:
 启动 Prometheus 后，将会需要认证信息，效果如下：
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/bx144g/1628063307526-21ac3e4b-150d-4e77-9a7c-5069ad006369.png)
-

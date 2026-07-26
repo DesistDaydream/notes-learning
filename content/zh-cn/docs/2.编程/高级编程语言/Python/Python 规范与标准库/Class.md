@@ -5,7 +5,7 @@ title: Python 类
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，教程-9.类](https://docs.python.org/3/tutorial/classes.html)
 > - [廖雪峰 Python 教程，面向对象编程](https://www.liaoxuefeng.com/wiki/1016959663602400/1017495723838528)
 

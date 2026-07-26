@@ -1,6 +1,5 @@
 ---
 title: GCC
-linkTitle: GCC
 weight: 11
 ---
 
@@ -19,7 +18,7 @@ weight: 11
 
 # 安装 GCC
 
-Linux 内核本身就是 C 写的，所以一般都自带 GCC，我们安装的通常都是适用于 Windows 的 GCC，一般是 [MinGW-w64](#MinGW-w64)
+Linux 内核本身就是 C 写的，所以一般都自带 GCC，我们安装的通常都是适用于 Windows 的 GCC，一般是 [MinGW-w64](#mingw-w64)
 
 ## Linux
 

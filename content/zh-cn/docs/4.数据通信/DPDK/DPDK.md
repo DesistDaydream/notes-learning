@@ -1,6 +1,5 @@
 ---
 title: DPDK
-linkTitle: DPDK
 weight: 1
 date: 2024-03-01T00:00:00
 ---
@@ -27,9 +26,9 @@ DPDK 主要包含如下几个部分（https://doc.dpdk.org/guides/prog_guide/sou
 
 - **Environmental Abstraction Layer(环境抽象层，简称 EAL)** # 负责为应用间接访问底层的资源，比如内存空间、线程、设备、定时器等。如果把我们使用了 DPDK 的应用比作一个豪宅的主人的话，`EAL`就是这个豪宅的管家。
 - **DPDK API Library** # DPDK 的 API 库
-  - etc.
+    - etc.
 - **[NIC](/docs/4.数据通信/Networking%20device/NIC.md) Driver(网卡驱动程序)** # 如名，只不过是轮询模式的驱动。
-  - etc.
+    - etc.
 - **DPDK APP** # 一些实用的程序
 
 ## EAL
@@ -169,9 +168,9 @@ https://doc.dpdk.org/guides/tools/devbind.html
 **OPTIONS**
 
 - **-s, --status** # 打印所有已知网络接口的当前状态。对于每个设备，它显示 PCI 域、总线、插槽和功能，以及设备的文本描述。根据设备是否由内核驱动程序、vfio-pci 驱动程序或无驱动程序使用，将显示其他相关信息：
-  - Linux 接口名称，例如 if=eth0
-  - 正在使用的驱动程序，例如 drv=vfio-pci
-  - 当前未使用该设备的任何合适的驱动程序，例如 used=vfio-pci 注意：如果此标志与绑定/取消绑定选项一起传递，则状态显示将始终在其他操作发生后发生。
+    - Linux 接口名称，例如 if=eth0
+    - 正在使用的驱动程序，例如 drv=vfio-pci
+    - 当前未使用该设备的任何合适的驱动程序，例如 used=vfio-pci 注意：如果此标志与绑定/取消绑定选项一起传递，则状态显示将始终在其他操作发生后发生。
 - **-b, --bind DRIVER** # 选择绑定网卡要使用的驱动程序。可以使用 none 以解除绑定
 - **-u, --unbind** # 接触网卡设备绑定。等价于 `-b none`
 - **--force** # 强制绑定。默认情况下，若目标网卡已被内核启用（通常表现为已在路由表条目中），则无法被 DPDK 绑定。

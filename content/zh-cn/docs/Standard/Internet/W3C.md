@@ -1,6 +1,5 @@
 ---
 title: "W3C"
-linkTitle: "W3C"
 weight: 20
 ---
 

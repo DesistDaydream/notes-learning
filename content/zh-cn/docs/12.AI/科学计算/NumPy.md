@@ -1,6 +1,5 @@
 ---
 title: NumPy
-linkTitle: NumPy
 weight: 20
 tags:
   - Python
@@ -21,4 +20,3 @@ tags:
 ```bash
 pip install numpy
 ```
-

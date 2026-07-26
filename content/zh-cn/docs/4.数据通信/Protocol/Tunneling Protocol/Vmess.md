@@ -1,6 +1,5 @@
 ---
 title: VMess
-linkTitle: VMess
 weight: 20
 ---
 
@@ -76,4 +75,3 @@ Xray 和 V2ray 区别如下：
 3. **如果使用 XTLS，强烈推荐使用 Xray**，不使用 XTLS 的情况下，使用 V2ray 和 Xray 均可。
 
 简而言之，Xray 是 V2Ray 的项目分支，Xray 是 V2Ray 的超集，就跟 Trojan-Go 和 Trojan-GFW 的关系类似，而且 Xray 性能更好、速度更快，更新迭代也更频繁。由于自 V2ray-core 4.33.0 版本起，删除了 XTLS 黑科技，但仍然支持 VLESS，所以是否原生支持 XTLS 是 Xray 和 V2Ray 最大的区别之一。
-

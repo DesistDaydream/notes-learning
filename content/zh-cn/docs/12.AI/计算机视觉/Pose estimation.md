@@ -1,6 +1,5 @@
 ---
 title: Pose estimation
-linkTitle: Pose estimation
 weight: 20
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: Docker 部署
-linkTitle: Docker 部署
 weight: 2
 ---
 # 概述
@@ -8,9 +7,9 @@ weight: 2
 > 参考：
 >
 > - [官方文档，安装-概述](https://docs.docker.com/engine/install/)
->   - [Centos 安装](https://docs.docker.com/engine/install/centos/)
->   - [Ubuntu 安装](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
->   - [二进制安装](https://docs.docker.com/engine/install/binaries/)
+>     - [Centos 安装](https://docs.docker.com/engine/install/centos/)
+>     - [Ubuntu 安装](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
+>     - [二进制安装](https://docs.docker.com/engine/install/binaries/)
 
 # 安装 Docker 套件
 

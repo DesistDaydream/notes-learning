@@ -1,6 +1,5 @@
 ---
 title: devfs
-linkTitle: devfs
 weight: 20
 ---
 

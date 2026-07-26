@@ -1,6 +1,5 @@
 ---
 title: Computer monitor
-linkTitle: Computer monitor
 weight: 20
 ---
 

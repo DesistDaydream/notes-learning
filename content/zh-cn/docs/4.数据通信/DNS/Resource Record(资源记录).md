@@ -1,6 +1,5 @@
 ---
 title: Resource Record(资源记录)
-linkTitle: Resource Record(资源记录)
 weight: 2
 ---
 
@@ -8,7 +7,7 @@ weight: 2
 
 > 参考：
 >
-> - 
+> -
 
 RR 定义的格式：NAME \[TTL] CLASS RR-TYPE VALUE（注意：格式中的域名都要带根域名，即域名最后都要加一个 . ）
 

@@ -1,6 +1,5 @@
 ---
 title: PostMan
-linkTitle: PostMan
 weight: 20
 ---
 

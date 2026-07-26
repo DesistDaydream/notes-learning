@@ -1,6 +1,5 @@
 ---
 title: vLLM
-linkTitle: vLLM
 created: 2026-05-07T17:03
 weight: 1
 ---
@@ -91,11 +90,11 @@ export VLLM_USE_MODELSCOPE=True
 vLLM 提供全面的基准测试工具，用于性能测试和评估：
 
 - **Benchmark CLI** # 用于交互式性能测试的 [vllm CLI](/docs/12.AI/AI%20MGMT/vLLM/vllm%20CLI.md) 的 bench 子命令 和 专用基准测试脚本。
-  - 早期使用的是 benchmark_throughput.py 脚本，后来（TODO: 时间）将基准测试功能合并到 vllm CLI 中。
+    - 早期使用的是 benchmark_throughput.py 脚本，后来（TODO: 时间）将基准测试功能合并到 vllm CLI 中。
 - **参数扫描** # 自动运行多个配置的 `vllm bench` ，有助于[优化和调优](https://docs.vllm.ai/en/stable/configuration/optimization/) 。
-  - https://docs.vllm.ai/en/stable/benchmarking/sweeps/
+    - https://docs.vllm.ai/en/stable/benchmarking/sweeps/
 - **性能仪表盘** # 自动化 CI，每次提交都会发布基准测试结果。
-  - https://docs.vllm.ai/en/stable/benchmarking/dashboard/
+    - https://docs.vllm.ai/en/stable/benchmarking/dashboard/
 
 ## Benchmark CLI
 
@@ -112,4 +111,3 @@ vLLM 基准测试有多种场景
 - **Long Document QA Benchmark(长文档 QA 基准测试)** # 对采用前缀缓存的长文档问答性能进行基准测试。
     - 使用脚本 `benchmarks/benchmark_long_document_qa_throughput.py`
 - 其他待总结
-

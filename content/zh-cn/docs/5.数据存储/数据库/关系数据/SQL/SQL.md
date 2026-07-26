@@ -1,6 +1,5 @@
 ---
 title: SQL
-linkTitle: SQL
 weight: 1
 ---
 
@@ -60,7 +59,7 @@ SQL 语言被细分为几个语言元素，包括：
 - **Predicates(谓词)**，指定可以评估为 SQL [三值逻辑 (3VL)](https://en.wikipedia.org/wiki/Ternary_logic)（真/假/未知）或[布尔](https://en.wikipedia.org/wiki/Boolean_logic) [真值](https://en.wikipedia.org/wiki/Truth_value)的条件，用于限制语句和查询的效果，或更改程序流程。
 - **Queries(查询)**，根据特定条件检索数据。这是 SQL 的一个重要元素。
 - **Statements(语句)** # 可能对模式和数据产生持久影响，或者可能控制[事务](https://en.wikipedia.org/wiki/Database_transaction)、程序流、连接、会话或诊断。
-  - SQL 语句还包括[分号](https://en.wikipedia.org/wiki/Semicolon)(`;`) 语句终止符。虽然不是每个平台都需要它，但它被定义为 SQL 语法的标准部分。
+    - SQL 语句还包括[分号](https://en.wikipedia.org/wiki/Semicolon)(`;`) 语句终止符。虽然不是每个平台都需要它，但它被定义为 SQL 语法的标准部分。
 - SQL 语句和查询中通常会[忽略无关紧要的空格](https://en.wikipedia.org/wiki/Whitespace_(computer_science))，从而更容易格式化 SQL 代码以提高可读性。
 
 # SQL 关键字
@@ -108,10 +107,10 @@ etc.
 
 - null | not null # 指定该列是否可以插入 null 值。默认为 yes，可以插入。一般情况使用设置为 not null,原因见下面说明。
 - default \[VALUE] # 指定该列在插入数据为空时的默认值。默认插入 NULL。
-  - Note:如果当前列不设定 default 的 VALUE ，在插入数据时，如果不指定列的值。则会根据列的 null 或者 not null 来插入值
-  - 当 null 为 yes 时，默认插入 null
-  - 当 null 为 no 时，默认根据当前列的类型插入值,对于数值类型插入 0，字符串类型插入空字符串，时间戳类型插入当前日期和时间，ENUM 类型插入枚举组的第一条。
-  - e.g.当设置列为 not null、default 不指定 VALUE 时。在插入一个空值时，会报错。因为插入空值，会根据 default 的规则插入 null，但是又不能插入 null，所以插入失败
+    - Note:如果当前列不设定 default 的 VALUE ，在插入数据时，如果不指定列的值。则会根据列的 null 或者 not null 来插入值
+    - 当 null 为 yes 时，默认插入 null
+    - 当 null 为 no 时，默认根据当前列的类型插入值,对于数值类型插入 0，字符串类型插入空字符串，时间戳类型插入当前日期和时间，ENUM 类型插入枚举组的第一条。
+    - e.g.当设置列为 not null、default 不指定 VALUE 时。在插入一个空值时，会报错。因为插入空值，会根据 default 的规则插入 null，但是又不能插入 null，所以插入失败
 - comment # 指定该列的注释
 - key | primary key | unique key | foreign key <(Column_Name)> # 指定 Column_Name 为该表的索引
 - primary key # 关键字用于定义列为主键。 您可以使用多列来定义主键，列间以逗号分隔。
@@ -127,11 +126,11 @@ etc.
 ### EXAMPLE
 
 - 创建一个名为 caredaily 的数据库
-  - create database caredaily set utf8 collate utf8_general_ci;
+    - create database caredaily set utf8 collate utf8_general_ci;
 - 创建名为 practice 的数据库，并且指定字符集为 utf8，字符序为 utf8_general_ci。
-  - create database `practice` character set utf8 collate utf8_general_ci;
+    - create database `practice` character set utf8 collate utf8_general_ci;
 - 创建一个名为 test 的表，其中只有名为 id 的列，类型是 int。
-  - create table `test` (`id` int);
+    - create table `test` (`id` int);
 - 创建一个名为 product 的数据表。第一列名为 id 的 int 类型 ，无符号，自动递增。第二列名为 size 的 varchar(64) 类型。设定 id 列为主键。自动生成默认值，引擎为 innodb。编码为 utf8
 
 ```sql
@@ -270,5 +269,3 @@ update TableName set FIELD1=NewVALUES1,FIELD2=NewVALUES2,..... \[where CLAUSE]
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wd3yx2/1655867104082-94c832e1-287e-4792-894d-7c6c910b5c47.png)
 
 这里是将 Websites 表中 id 列和 access_log 表中 site_id 列进行对比，凡是相同的行都合并。
-
-

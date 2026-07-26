@@ -1,6 +1,5 @@
 ---
 title: TUN and TAP
-linkTitle: TUN and TAP
 weight: 20
 tags:
   - virtualization

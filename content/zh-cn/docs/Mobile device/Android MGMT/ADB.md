@@ -1,6 +1,5 @@
 ---
 title: ADB
-linkTitle: ADB
 weight: 4
 ---
 
@@ -9,14 +8,14 @@ weight: 4
 > 参考：
 >
 > - [官方文档，SDK 工具-adb](https://developer.android.com/tools/adb)
->   - [官方文档-中文](https://developer.android.com/studio/command-line/adb?hl=zh-cn)
+>     - [官方文档-中文](https://developer.android.com/studio/command-line/adb?hl=zh-cn)
 > - [Wiki, Android_Debug_Bridge](https://en.wikipedia.org/wiki/Android_Debug_Bridge)
 
 **Android Debug Bridge(安卓调试桥，简称 ADB)** 是一种功能多样的命令行工具，可让您与设备进行通信。`adb` 命令可用于执行各种设备操作，例如安装和调试应用。`adb` 提供对 Unix shell（可用来在设备上运行各种命令）的访问权限。它是一种 C/S 架构程序，包括以下三个组件：
 
 - **adb** 命令行工具，在开发机器上运行
-  - **客户端**：用于发送命令。客户端在开发机器上运行。您可以通过发出 `adb` 命令从命令行终端调用客户端。
-  - **服务端**：用于管理客户端与守护程序之间的通信。服务端在开发机器上作为后台进程运行。默认监听 5037 端口
+    - **客户端**：用于发送命令。客户端在开发机器上运行。您可以通过发出 `adb` 命令从命令行终端调用客户端。
+    - **服务端**：用于管理客户端与守护程序之间的通信。服务端在开发机器上作为后台进程运行。默认监听 5037 端口
 - **adbd** 守护程序，在设备上运行。守护程序在每个设备上作为后台进程运行，以接收 adb 服务端发来的各种指令。
 
 adb 命令行工具作为客户端运行时，会先检查是否有服务端在运行，如果没有，则会执行 `adb -L tcp:5037 fork-server server --reply-fd 4` 命令以启动 adb 服务端，默认监听在 5037 端口，并接收 adb 客户端发出的命令。

@@ -1,6 +1,5 @@
 ---
 title: Filter
-linkTitle: Filter
 weight: 20
 ---
 
@@ -37,7 +36,6 @@ WireShark 有两类过滤器
 > 参考：
 >
 > - [官方文档，6.4 构建显示过滤器表达式](https://www.wireshark.org/docs/wsug_html_chunked/ChWorkBuildDisplayFilterSection.html)
-
 
 ### 运算符
 

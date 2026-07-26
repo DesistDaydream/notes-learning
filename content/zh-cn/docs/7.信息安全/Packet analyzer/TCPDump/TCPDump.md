@@ -1,6 +1,5 @@
 ---
 title: TCPDump
-linkTitle: TCPDump
 weight: 1
 ---
 
@@ -30,7 +29,7 @@ tcpdump 最初由[Van Jacobson](https://en.wikipedia.org/wiki/Van_Jacobson)、[S
 - **-c \<INT>** # 指定程序将会捕获的数据包数量。
 - **-D, --list-interfaces** # 列出可用于抓包的接口。将会列出接口的数值编号和接口名，它们都可以用于"-i"后
 - **-e** # 在每条 dump 出来的行上显示二层头信息。这个选项可以输出 以太网 和 IEEE802.11 等协议的 MAC 层信息。
-  - Notes: 通常用来抓取 VLAN 的 Tag。
+    - Notes: 通常用来抓取 VLAN 的 Tag。
 - **-F \<FEIL>** # 指定一个包含 Filter-Expression 语法的文件。程序将会使用该文件的内容作为过滤表达式，并忽略命令行给出的过滤表达式。
 - **-i, --interface \<DEV>** # 抓取指定网卡 DEV 的包，`默认值：any`，即抓取所有设备
 - -l # 使用标准输出列的缓冲区；
@@ -66,29 +65,29 @@ tcpdump 最初由[Van Jacobson](https://en.wikipedia.org/wiki/Van_Jacobson)、[S
 一共有三种类型的限定词：
 
 - **TYPE** # 类型限定词。指定 ID 的类型。默认值：`host`
-  - **host** # 匹配主机名称或 IP 地址
-  - **net** # 匹配网段，CIDR 模式。比如：1.2.3.0/24
-  - **port** # 匹配端口号
-  - **portrange** # 匹配端口号的范围。两个端口号中间以 `-` 连接
+    - **host** # 匹配主机名称或 IP 地址
+    - **net** # 匹配网段，CIDR 模式。比如：1.2.3.0/24
+    - **port** # 匹配端口号
+    - **portrange** # 匹配端口号的范围。两个端口号中间以 `-` 连接
 - **DIR** # direction(方向) 限定词。指定 ID 的传输方向。默认值：`src or dst`
-  - **src**
-  - **dst**
-  - **...... 等等**
+    - **src**
+    - **dst**
+    - **...... 等等**
 - **PROTO** # 协议限定词。指定要匹配的协议
-  - **icmp**
-  - **ip**
-  - **ip6**
-  - **arp**
-  - **tcp**
-  - **udp**
-  - **......等等**
+    - **icmp**
+    - **ip**
+    - **ip6**
+    - **arp**
+    - **tcp**
+    - **udp**
+    - **......等等**
 
 **不同类型的限定符之间可以互相组合**，以实现更复杂的描述，比如：
 
 - 类型匹配和方向匹配组合
-  - src host 1.1.1.1 # 匹配源主机为 1.1.1.1 的数据包
+    - src host 1.1.1.1 # 匹配源主机为 1.1.1.1 的数据包
 - 类型匹配、方向匹配、协议匹配全部组合在一起
-  - udp dst portrange 100-400 # 匹配 目的端口范围在 100-400 之间的 UDP 协议的数据包
+    - udp dst portrange 100-400 # 匹配 目的端口范围在 100-400 之间的 UDP 协议的数据包
 
 **相同类型的限定符之间也可以互相组合**，但是需要使用逻辑表达式 **and、or、not**(或者用符号表示 `&&`、`||`、`!`) 来连接两个限定符，比如：
 
@@ -97,8 +96,8 @@ tcpdump 最初由[Van Jacobson](https://en.wikipedia.org/wiki/Van_Jacobson)、[S
 - src and dst port 1111 # 匹配 源端口 和 目的端口 都是 1111 的数据包
 - tcp src or dst portrange 1111-2222 # 匹配 源 或者 目的 任意一个方向的端口范围在 1111-2222 之间的 TCP 协议的数据包
 - 注意：为了节省输入，可以**省略相同的限定符**，下面两个表达式的作用完全相同：
-  - tcp dst port 21 or 22 or 23
-  - tcp dst port 21 or tcp dst port 22 or tcp dst port 33
+    - tcp dst port 21 or 22 or 23
+    - tcp dst port 21 or tcp dst port 22 or tcp dst port 33
 - icmp or tcp dst port 23 and host 1.1.1.1 # 匹配 icmp 或 tcp，目的端口为 23 且主机为 1.1.1.1 的数据包
 
 对于比较复杂的过滤器表达式，为了逻辑的清晰，可以使用括号。不过默认情况下，tcpdump 把 () 当做特殊的字符，所以必须使用单引号 ' 来消除歧义：
@@ -116,16 +115,16 @@ tcpdump 最初由[Van Jacobson](https://en.wikipedia.org/wiki/Van_Jacobson)、[S
 协议限定词扩展语法如下：
 
 - **PROTO\[EXPR:SIZE]**
-  - PROTO # 协议名
-  - EXPR # 表达式
-  - SIZE #
+    - PROTO # 协议名
+    - EXPR # 表达式
+    - SIZE #
 
 简单示例：
 
 - 匹配 TCP 头中标志为 tcp-syn 的包
-  - **tcp\[tcpflags] & tcp-syn != 0**
+    - **tcp\[tcpflags] & tcp-syn != 0**
 - 匹配 TCP 头中标志为 SYN 或 FIN 的包。也就是说一个 TCP 会话的开始和结束的包。
-  - **tcp\[tcpflags] & (tcp-syn|tcp-fin) != 0**
+    - **tcp\[tcpflags] & (tcp-syn|tcp-fin) != 0**
 
 # 应用示例
 
@@ -185,18 +184,18 @@ tcpdump -vv src mars or pluto and not dat port 22
 **抓取 HTTP 的包**
 
 - `tcpdump -AnnSs 70 'tcp[20:4]=0x48545450'`
-  - `tcp[20:4]` # 由 [TCP Header](/docs/4.数据通信/Protocol/TCP_IP/TCP/TCP%20Header.md) 可知，TCP 的首部长度为 20 字节，那么 TCP 首部后面的 4 字节通常用来标识
+    - `tcp[20:4]` # 由 [TCP Header](/docs/4.数据通信/Protocol/TCP_IP/TCP/TCP%20Header.md) 可知，TCP 的首部长度为 20 字节，那么 TCP 首部后面的 4 字节通常用来标识
 - 或者
 - `tcpdump -AnnSs 70 'tcp[((tcp[12:1] & 0xf0) >> 2):4] = 0x48545450'`
-  - `tcp[((tcp[12:1] & 0xf0) >> 2):4]` # 首先确定我们感兴趣的字节的位置 (在 TCP 头之后)，然后选择我们希望匹配的 4 个字节。TODO: 还没搞明白这个描述
-  - `0x47455420` # 0x 表示 16 进制，47455420 是 ASCII 中以 16 进制表示的 `GET` 这四个字符(G、E、T、空格)。
+    - `tcp[((tcp[12:1] & 0xf0) >> 2):4]` # 首先确定我们感兴趣的字节的位置 (在 TCP 头之后)，然后选择我们希望匹配的 4 个字节。TODO: 还没搞明白这个描述
+    - `0x47455420` # 0x 表示 16 进制，47455420 是 ASCII 中以 16 进制表示的 `GET` 这四个字符(G、E、T、空格)。
 
 > Notes: 其中 -s 选项的值设为 70 是为了避免输出过多数据信息干扰。70 长度一般足够看到请求的 PATH，如果 PATH 太长，可以适当提高 -s 的值。
 
 **抓取 HTTP 的 GET 请求的包**
 
 - `tcpdump -AnnSs 0 tcp[20:2]=0x4745 or tcp[20:2]=0x4854`
-  - 这里是用了 TCP 首部后两位进行匹配，即 GE 和 HT
+    - 这里是用了 TCP 首部后两位进行匹配，即 GE 和 HT
 - 或者
 - `tcpdump -AnnSs 0 'tcp[((tcp[12:1] & 0xf0) >> 2):4] = 0x47455420'`
 
@@ -244,4 +243,3 @@ Tcpdump usage examples（推荐） <http://www.rationallyparanoid.com/articles/t
 # 衍生品
 
 https://github.com/mozillazg/ptcpdump # ptcpdump 是一个使用 eBPF 技术实现的、类 tcpdump 的网络流程抓包工具。 在尽可能的情况下，以包注释的形式，为每个数据包流量关联发起方或接收方的**进程信息**
-

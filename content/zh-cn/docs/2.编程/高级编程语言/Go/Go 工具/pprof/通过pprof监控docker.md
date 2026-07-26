@@ -5,13 +5,13 @@ title: 通过pprof监控docker
 debug 模式启动 docker
 
 ```
-$ /usr/bin/docker daemon -D -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
+/usr/bin/docker daemon -D -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
 ```
 
 # 通过 socat 端口转发
 
 ```
-$ socat -d -d TCP-LISTEN:8080,fork,bind=192.168.1.137 UNIX:/var/run/docker.sock
+socat -d -d TCP-LISTEN:8080,fork,bind=192.168.1.137 UNIX:/var/run/docker.sock
 ```
 
 ## 测试
@@ -75,7 +75,7 @@ Entering interactive mode
 ## 生成文件转成 pdf
 
 ```
-$  go tool pprof --pdf pprof.dockerd.10.39.0.102\:8080.samples.cpu.001.pb >call.pdf
+go tool pprof --pdf pprof.dockerd.10.39.0.102\:8080.samples.cpu.001.pb >call.pdf
 ```
 
 ## get symbol
@@ -88,8 +88,8 @@ $ curl -s http://10.39.0.102:8080/debug/pprof/symbol
 ## 如果你感兴趣，其它的信息都可以获取到
 
 ```bash
-$ culr -s http://10.39.0.102:8080/debug/pprof/block
-$ curl -s http://10.39.0.102:8080/debug/pprof/heap
-$ curl -s http://10.39.0.102:8080/debug/pprof/goroutine
-$ curl -s http://10.39.0.102:8080/debug/pprof/threadcreate
+culr -s http://10.39.0.102:8080/debug/pprof/block
+curl -s http://10.39.0.102:8080/debug/pprof/heap
+curl -s http://10.39.0.102:8080/debug/pprof/goroutine
+curl -s http://10.39.0.102:8080/debug/pprof/threadcreate
 ```

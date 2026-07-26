@@ -1,6 +1,5 @@
 ---
 title: Target(目标) 与 Relabeling(重新标记)
-linkTitle: Target(目标) 与 Relabeling(重新标记)
 weight: 3
 ---
 
@@ -43,9 +42,9 @@ prometheus_build_info{branch="HEAD",goversion="go1.18.6",revision="1ce2197e7f9e9
 从某种程度上来说，Prometheus 一切介标签。Prometheus 有如下基本规定：
 
 - Discovered Labels 用来描述采集目标的属性，只有根据这些属性才能找到目标。比如目标的 IP、PORT 等等。
-  - 采集目标的属性标签名一般都以 `__` 符号开头。
+    - 采集目标的属性标签名一般都以 `__` 符号开头。
 - Target Labels 是用来附加到采集的指标上。<font color="#ff0000">这个才是真正被用户使用，以及存储的标签，PromQL 表达式中的标签也是指的 Target Labels</font>
-  - `__` 符号开头的标签是不会被添加到 Target Labels 中，也就也不会附加到指标上。
+    - `__` 符号开头的标签是不会被添加到 Target Labels 中，也就也不会附加到指标上。
 - 其中 Discovered Labels 是根据配置自动生成的，而 Target Labels 则是通过一种称为 **Relabeling(重新标记)** 的功能生成的。
 
 ## Relabeling
@@ -70,9 +69,9 @@ prometheus_build_info{branch="HEAD",goversion="go1.18.6",revision="1ce2197e7f9e9
 这两个阶段都可以使用 Relabeling 功能，不同点在于：
 
 - 阶段一中，主要针对 Discovered Labels 进行操作，然后将 Target Label 附加到采集到的指标上。
-  - 配置文件中的 `relabel_config` 字段工作在这个阶段。
+    - 配置文件中的 `relabel_config` 字段工作在这个阶段。
 - 阶段二中，可以针对采集到的指标中自带的标签进行操作。
-  - 配置文件中的 `metric_relabel_configs` 字段工作在这个阶段。
+    - 配置文件中的 `metric_relabel_configs` 字段工作在这个阶段。
 
 > [!Tip]
 > 假如想要修改指标的名称，必须要在阶段二执行。因为只有采集到指标之后，才能知道有哪些指标名称，才能对 `__name__` 标签的值进行修改。
@@ -87,7 +86,7 @@ prometheus_build_info{branch="HEAD",goversion="go1.18.6",revision="1ce2197e7f9e9
 
 - 首先需要根据配置文件，获取目标信息，这些目标信息就是由一系列标签组成，称为 **Discovered Labels(已发现标签)**。
 - 根据配置中的 Relabeling 配置，生成 **Target Labels(目标标签)**
-  - 默认生成的 Target Labels 中将会删除 \_\_ 开头的标签，并将其他标签原封不动得映射到 Target Labels。
+    - 默认生成的 Target Labels 中将会删除 \_\_ 开头的标签，并将其他标签原封不动得映射到 Target Labels。
 - 然后根据 Discovered Labels 的信息，从目标开始采集 Metrics，采集到 Metrics 后，将 Target Labels 附加到这些 Metrics 中。
 - **<font color="#ff0000">从某种程度上来说，Prometheus 中一切皆标签</font>**
 
@@ -96,18 +95,18 @@ prometheus_build_info{branch="HEAD",goversion="go1.18.6",revision="1ce2197e7f9e9
 当 Prometheus 加载完 Target 后，会自动发现一些标签，这些就是 Discovered Labels。Discovered Labels 分为两部分：
 
 - **系统信息标签**
-  - **`__address__`** # 采集目标的 IP 和 PORT
-  - **`__scheme__`** # 采集目标时，要使用的协议，HTTP 或者 HTTPS
-  - **`__metrics_path__`** # 采集目标时，请求的访问路径
-  - **`__param_XXXX`** # 配置文件中指定 params 字段的时，将会自动生成这类标签。
-  - **`__meta_XXX`** # 通过服务发现功能发现的 Target 自带的元数据标签
-    - 比如 kubernetes 发现，就是 \_\_meta_kubernetes_XXX 这种格式的标签
-  - 其他系统标签
-  - <font color="#ff0000">注意：这些前面带 `__` (两个`_` 符号)的标签，都是系统自动生成的，是无法在使用 PromQL 语句进行筛选过滤时直接使用的。</font>
-    - <font color="#ff0000">并且，这些标签标签也不会变为 Target Labels</font>
-  - **job** # 配置文件中的 job_name 字段的值就是 job 标签的值。
+    - **`__address__`** # 采集目标的 IP 和 PORT
+    - **`__scheme__`** # 采集目标时，要使用的协议，HTTP 或者 HTTPS
+    - **`__metrics_path__`** # 采集目标时，请求的访问路径
+    - **`__param_XXXX`** # 配置文件中指定 params 字段的时，将会自动生成这类标签。
+    - **`__meta_XXX`** # 通过服务发现功能发现的 Target 自带的元数据标签
+        - 比如 kubernetes 发现，就是 \_\_meta_kubernetes_XXX 这种格式的标签
+    - 其他系统标签
+    - <font color="#ff0000">注意：这些前面带 `__` (两个`_` 符号)的标签，都是系统自动生成的，是无法在使用 PromQL 语句进行筛选过滤时直接使用的。</font>
+        - <font color="#ff0000">并且，这些标签标签也不会变为 Target Labels</font>
+    - **job** # 配置文件中的 job_name 字段的值就是 job 标签的值。
 - **用户自定的标签**
-  - 一般都是写在配置文件中的 labels 字段下的内容，这些内容经过 Relabels 之后，不会从 Discovered Labels 中删除。
+    - 一般都是写在配置文件中的 labels 字段下的内容，这些内容经过 Relabels 之后，不会从 Discovered Labels 中删除。
 
 Discovered Labels 中的 **系统标签** 会告诉 Prometheus Server 如何从 Target 中获取时间序列数据(e.g.使用什么协议、从哪个 IP 上的主机哪个路径获取、等等类似的信息)。比如 `__address__`、`__metrics_path__`、`__scheme__` 这三个标签就表明，Prometheus 采集目标为 http://localhost:9090/metrics, 相当于执行了 `curl -XGET http://localhost:9090/metrics` 这个命令。如果还有 __param_XX 标签，则该标签的值，就是这次请求 URL 中的参数部分
 
@@ -133,8 +132,8 @@ Discovered Labels 中的 **系统标签** 会告诉 Prometheus Server 如何从 
 Target Labels 中的所有标签都是 Relabeling 之后的标签。Target Labels 包括两部分
 
 - Prometheus 自身默认的 Relabel。就是去掉系统信息标签后剩下的标签
-  - **instance** # 由 `__address__` 标签生成。<font color="#ff0000">注意：该标签会一直存在，无法通过 Relabeling 行为删除或改名</font>
-  - **job** # 由 job 标签生成
+    - **instance** # 由 `__address__` 标签生成。<font color="#ff0000">注意：该标签会一直存在，无法通过 Relabeling 行为删除或改名</font>
+    - **job** # 由 job 标签生成
 - 通过配置文件配置的 relabel 标签
 
 # Relabeling 配置
@@ -149,7 +148,7 @@ Target Labels 中的所有标签都是 Relabeling 之后的标签。Target Label
 
 - **relabel_configs** 是 Prometheus 在**发现被采集的 Target(目标) 之后**，从目标采集指标之前，这两个行为之间发生的 Relabeling 行为配置。所以主要是针对 **被采集的 Target(目标) 及其标签**进行操作，而不是针对采集后的指标或其标签进行操作。<font color="#ff0000">所以，就如前文描述的一样，Relabeling 行为是针对被采集目标的 Discovered Label 的一种行为，经过 Relabeling 后，被采集目标就会生成 Target Labels</font>。
 - **metrics_relabel_configs** 是 Prometheus 在**采集到 Target(目标) 的指标之后**，存储到时序数据库之前，这两个行为之间发生的 Relabeling 行为配置。所以主要是针对**采集到的指标**进行操作。
-  - 该配置不适用于自动生成的指标，比如 `up` 这类。因为这类指标在启动时就存在了，不用任何目标即可获取。
+    - 该配置不适用于自动生成的指标，比如 `up` 这类。因为这类指标在启动时就存在了，不用任何目标即可获取。
 - 这两个配置的配置格式一摸一样。
 
 > [!Note] **后文描述的 `目标` 二字，都是指 `被采集的目标`**
@@ -183,21 +182,21 @@ Relabeling 的行为主要是围绕着 **Extracted Value(提取的值)** 进行�
 这些**提取出来**的**待匹配的值**，其实本质上就分为两类：**标签名称** 与 **标签值**。而正则匹配中，正则表达式的内容，则是由 **regex 字段**指定的。根据这些不同类型的待匹配的值，我们可以将 Relabeling 的具体行为分类，当前 Promethus 支持如下几种 Relabeling 行为：
 
 - **提取标签值进行匹配的行为**。从 `source_labels` 字段指定的标签名中提取所有的标签值，作为待匹配的值。
-  - <font color="#ff0000">注意</font>：只有目标的 Discovered Labels 中包含 source_labels 字段中指定的标签，且这些标签的值能被 regex 字段的正则表达式匹配上，那么这些目标才会受到下列行为的影响。
-  - **replace** # 为目标添加新标签，target_label 将会作为目标的新标签名，`replacement` 字段的值将会作为目标的新标签名的值。
-    - 如果 regex 字段匹配不到任何内容，则不会进行替换。
-    - <font color="#ff0000">与 labelmap 行为不同，除了更改标签名之外，还可以更改标签的值</font>
-  - **keep** # 保留匹配到的目标。即只采集匹配到的目标的指标。
-  - **drop** # 删除匹配到的目标。即不采集匹配到的目标的指标。
+    - <font color="#ff0000">注意</font>：只有目标的 Discovered Labels 中包含 source_labels 字段中指定的标签，且这些标签的值能被 regex 字段的正则表达式匹配上，那么这些目标才会受到下列行为的影响。
+    - **replace** # 为目标添加新标签，target_label 将会作为目标的新标签名，`replacement` 字段的值将会作为目标的新标签名的值。
+        - 如果 regex 字段匹配不到任何内容，则不会进行替换。
+        - <font color="#ff0000">与 labelmap 行为不同，除了更改标签名之外，还可以更改标签的值</font>
+    - **keep** # 保留匹配到的目标。即只采集匹配到的目标的指标。
+    - **drop** # 删除匹配到的目标。即不采集匹配到的目标的指标。
 - **提取标签名进行匹配的行为**。从 Discovered Labels 中提取所有标签名，作为待匹配的值。
-  - 注意：只有目标的 Discovered Labels 中，标签名能被 regex 字段的正则表达式匹配上，那么这些目标才会受到下列行为的影响
-  - **labelmap** # 为目标添加新标签，`replacement` 字段的值将会作为目标的新标签名。
-    - <font color="#ff0000">与 replace 行为不同，无法更改标签的值</font>。
-  - **labelkeep** # 保留匹配到的标签。其余的标签移除
-  - **labeldrop** # 移除匹配到的标签。其余的标签保留
-    - 注意：labeldrop 和 labelkeep 这两个行为与 keep 和 drop 不同，仅仅是用来删除时间序列中某些标签的。小心使用这两个行为，以确保标签被删除后，指标仍然具有唯一的标签。
+    - 注意：只有目标的 Discovered Labels 中，标签名能被 regex 字段的正则表达式匹配上，那么这些目标才会受到下列行为的影响
+    - **labelmap** # 为目标添加新标签，`replacement` 字段的值将会作为目标的新标签名。
+        - <font color="#ff0000">与 replace 行为不同，无法更改标签的值</font>。
+    - **labelkeep** # 保留匹配到的标签。其余的标签移除
+    - **labeldrop** # 移除匹配到的标签。其余的标签保留
+        - 注意：labeldrop 和 labelkeep 这两个行为与 keep 和 drop 不同，仅仅是用来删除时间序列中某些标签的。小心使用这两个行为，以确保标签被删除后，指标仍然具有唯一的标签。
 - **其他行为。**
-  - **hashmod** # 设置 target_label 为的 modulus 哈希值的 source_labels，通过对指定 source_labels 进行 hash 计算，的出来一个新的 hash 值写入的 target_label 中。
+    - **hashmod** # 设置 target_label 为的 modulus 哈希值的 source_labels，通过对指定 source_labels 进行 hash 计算，的出来一个新的 hash 值写入的 target_label 中。
 
 <font color="#ff0000">注意</font>：
 

@@ -5,7 +5,7 @@ title: RabbitMQ 部署
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，安装与配置](https://www.rabbitmq.com/download.html)
 
 ## 使用 docker 启动单节点 RabbitMQ
@@ -19,10 +19,10 @@ rabbitmq:3-management
 ## 在 kubernetes 集群中使用 Operator 部署 RabbitMQ
 
 > 参考：
-> 
+>
 > - [官方文档，安装和配置-Kubernetes Operator](https://www.rabbitmq.com/kubernetes/operator/operator-overview.html)
->   - [安装](https://www.rabbitmq.com/kubernetes/operator/install-operator.html)
->   - [通过 Operator 使用 RabbitMQ 集群](https://www.rabbitmq.com/kubernetes/operator/using-operator.html)
+>     - [安装](https://www.rabbitmq.com/kubernetes/operator/install-operator.html)
+>     - [通过 Operator 使用 RabbitMQ 集群](https://www.rabbitmq.com/kubernetes/operator/using-operator.html)
 
 注意：RabbitMQ Operator 会为每一个被其创建的 `rabbitmqclusters.rabbitmq.com` 资源的对象添加 `finalizers` 字段，效果如下：
 
@@ -114,6 +114,7 @@ rabbitmqadmin get queue=test count=2
 # RabbitMQ 监控部署
 
 > 参考：
+>
 > - [官方文档，安装与配置-Kubernetes Operator-在 Kubernetes 上监控 RabbitMQ 集群-使用 Prometheus Operator 监控 RabbitMQ](https://www.rabbitmq.com/kubernetes/operator/operator-monitoring.html#prom-operator)
 > - [官方文档，安装与配置-Kubernetes Operator-在 Kubernetes 上监控 RabbitMQ 集群-导入 Grafana 面板](https://www.rabbitmq.com/kubernetes/operator/operator-monitoring.html#grafana)
 

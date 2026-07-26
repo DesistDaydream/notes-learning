@@ -1,15 +1,13 @@
 ---
 title: "Security"
-linkTitle: "Security"
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档 - PowerShell，模块 - Security](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security)
-
 
 # Get-ExecutionPolicy
 
@@ -26,7 +24,6 @@ t.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。
 ```
 
 ## Syntax(语法)
-
 
 ## EXAMPLE
 

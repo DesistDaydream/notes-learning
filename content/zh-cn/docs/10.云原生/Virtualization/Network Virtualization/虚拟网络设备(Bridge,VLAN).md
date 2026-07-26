@@ -1,6 +1,5 @@
 ---
 title: 虚拟网络设备(Bridge,VLAN)
-linkTitle: 虚拟网络设备(Bridge,VLAN)
 weight: 20
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: Agent
-linkTitle: Agent
 created: 2026-03-14T18:30
 weight: 60
 ---
@@ -28,7 +27,7 @@ weight: 60
 
 > 参考：
 >
-> - 
+> -
 
 **AI Agent**
 
@@ -39,7 +38,7 @@ weight: 60
 - https://zhuanlan.zhihu.com/p/1978741652337205325
 - https://www.ibm.com/think/topics/react-agent
 
-Agent 的起点来源于 [Pi](#Pi-mono) 项目
+Agent 的起点来源于 [Pi](#pi-mono) 项目
 
 # 资料
 

@@ -5,7 +5,7 @@ title: Contexts 与 Variables
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，学习 GitHub Actions-上下文](https://docs.github.com/en/actions/learn-github-actions/contexts)
 > - [官方文档，学习 GitHub Actions-环境变量](https://docs.github.com/en/actions/learn-github-actions/environment-variables)
 
@@ -61,7 +61,7 @@ jobs:
 
 ## Expressions(表达式)
 
-在 GitHub Actions 的 Workflow 文件中，我们可以使用 **Expressions(表达式)** 设置和访问** 环境变量 **或访问**上下文 **信息。表达式可以是 _字面量、上下文引用、函数_ 的任意组合。
+在 GitHub Actions 的 Workflow 文件中，我们可以使用 **Expressions(表达式)** 设置和访问**环境变量 **或访问**上下文**信息。表达式可以是 _字面量、上下文引用、函数_ 的任意组合。
 
 以 `$` 开口，`{{ }}` 括起来的内容即为表达式的语法，当 GitHub Action 运行时，Workflow 中的 `${{ <EXPRESSION> }}` 内容会被解析为表达式进行处理，表达式就像模板一样，解析完成后，使用实际的值替换表达式。以实现以变成的方式设置 Workflow 文件。
 
@@ -84,11 +84,11 @@ jobs:
 - fromJSON
 - hashFiles
 - 状态检查函数
-  - success
-  - always
-  - cancelled
-  - failure
-  - Evaluate Status Explicitly
+    - success
+    - always
+    - cancelled
+    - failure
+    - Evaluate Status Explicitly
 
 函数使用示例
 
@@ -120,13 +120,13 @@ GitHub Action 中的上下文，是一种功能更丰富的环境变量，并且
 现阶段 Action 有多个上下文可用：
 
 - GitHub 本身信息相关的上下文
-  - **github** # Information about the workflow run.
-  - **secrets** # Contains the names and values of secrets that are available to a workflow run.
+    - **github** # Information about the workflow run.
+    - **secrets** # Contains the names and values of secrets that are available to a workflow run.
 - Job 信息相关的上下文
-  - **needs** # Contains the outputs of all jobs that are defined as a dependency of the current job
-  - **env** # Contains environment variables set in a workflow, job, or step.
-  - **job** # Information about the currently running job.
-  - **steps** # Information about the steps that have been run in the current job.
+    - **needs** # Contains the outputs of all jobs that are defined as a dependency of the current job
+    - **env** # Contains environment variables set in a workflow, job, or step.
+    - **job** # Information about the currently running job.
+    - **steps** # Information about the steps that have been run in the current job.
 - **runner** # Information about the runner that is running the current job.
 - **strategy** # Information about the matrix execution strategy for the current job.
 - **matrix** # Contains the matrix properties defined in the workflow that apply to the current job.
@@ -142,10 +142,10 @@ github 上下文包含本次工作流的事件信息，还有很多 GitHub 信�
 
 对于工作流程运行中的每个 Job，此上下文都是相同的。 您可以从 Job 中的任何步骤访问此上下文。 此对象包含下面列出的所有属性。
 
-| 属性名称                  | 类型     | 描述                                                                                                                        |
+| 属性名称 | 类型 | 描述 |
 | --------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------- |
-| secrets.GITHUB_TOKEN  | String | 为每个工作流程运行自动创建的令牌。 更多信息请参阅“[自动令牌身份验证](https://docs.github.com/cn/actions/security-guides/automatic-token-authentication)”。 |
-| secrets.\<SecretName> | String | 特定 Secret 的值                                                                                                              |
+| secrets.GITHUB_TOKEN | String | 为每个工作流程运行自动创建的令牌。 更多信息请参阅“[自动令牌身份验证](https://docs.github.com/cn/actions/security-guides/automatic-token-authentication)”。 |
+| secrets.\<SecretName> | String | 特定 Secret 的值 |
 
 SecretName 可以在在一个项目的设置中添加，如下图：
 

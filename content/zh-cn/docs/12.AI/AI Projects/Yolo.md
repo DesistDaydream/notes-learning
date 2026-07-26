@@ -1,6 +1,5 @@
 ---
 title: YOLO
-linkTitle: YOLO
 weight: 20
 ---
 
@@ -20,27 +19,27 @@ weight: 20
 2015 年 _Joseph Redmon_ 提出的 YOLO 橫空出世，从诞生的那一刻起就标榜「高精度」、「高效率」、「高实用性」，為 One-Stage 方法在物体侦测演算法里拉开序幕。
 
 - **YOLOv1** (2016) Joseph Redmon
-  - [You Only Look Once: Unified, Real-Time Object Detection](https://arxiv.org/abs/1506.02640)
+    - [You Only Look Once: Unified, Real-Time Object Detection](https://arxiv.org/abs/1506.02640)
 - [**YOLOv2**](https://github.com/longcw/yolo2-pytorch) (2017) Joseph Redmon
-  - [YOLO9000: Better, Faster, Stronger](https://arxiv.org/abs/1612.08242)
+    - [YOLO9000: Better, Faster, Stronger](https://arxiv.org/abs/1612.08242)
 - [**YOLOv3**](https://github.com/ultralytics/yolov3) (2018) Joseph Redmon
-  - [YOLOv3: An Incremental Improvement](https://arxiv.org/abs/1804.02767)
+    - [YOLOv3: An Incremental Improvement](https://arxiv.org/abs/1804.02767)
 - 突发
-  - 然而，2020 年 _约瑟夫·雷德蒙_ 突然投下一枚重磅炸弹，他受够 YOLO 不断被运用在军事应用以及个人隐私，宣布停止电脑视觉相关的研究。
-  - ![https://x.com/pjreddie/status/1230524770350817280|400](https://notes-learning.oss-cn-beijing.aliyuncs.com/ai/yolo/202410151103187.png)
+    - 然而，2020 年 _约瑟夫·雷德蒙_ 突然投下一枚重磅炸弹，他受够 YOLO 不断被运用在军事应用以及个人隐私，宣布停止电脑视觉相关的研究。
+    - ![https://x.com/pjreddie/status/1230524770350817280|400](https://notes-learning.oss-cn-beijing.aliyuncs.com/ai/yolo/202410151103187.png)
 - [**YOLOv4**](https://github.com/AlexeyAB/darknet) (2020) Alexey Bochkovskiy
-  - [YOLOv4: Optimal Speed and Accuracy of Object Detection](https://arxiv.org/abs/2004.10934)
+    - [YOLOv4: Optimal Speed and Accuracy of Object Detection](https://arxiv.org/abs/2004.10934)
 - [**YOLOv5**](https://github.com/ultralytics/yolov5) 进一步提高了模型的性能，并增加了超参数优化、集成实验跟踪和自动导出为常用导出格式等新功能。
 - [**YOLOv6**](https://github.com/meituan/YOLOv6) (2022) 由[美团](https://about.meituan.com/)开源，目前已用于该公司的许多自主配送机器人。
-  - [YOLOv6: A Single-Stage Object Detection Framework for Industrial Applications](https://arxiv.org/abs/2209.02976)
+    - [YOLOv6: A Single-Stage Object Detection Framework for Industrial Applications](https://arxiv.org/abs/2209.02976)
 - [**YOLOv7**](https://github.com/WongKinYiu/yolov7) 增加了额外的任务，如 COCO 关键点数据集的姿势估计
-  - [YOLOv6 v3.0: A Full-Scale Reloading](https://arxiv.org/abs/2301.05586)
-  - [YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors](https://arxiv.org/abs/2207.02696)
+    - [YOLOv6 v3.0: A Full-Scale Reloading](https://arxiv.org/abs/2301.05586)
+    - [YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors](https://arxiv.org/abs/2207.02696)
 - [**YOLOv8**](https://pypi.org/project/ultralytics/8.0.0/) (2023-01) 由 Ultralytics 提供。YOLOv8 支持全方位的视觉 AI 任务，包括[检测](https://docs.ultralytics.com/tasks/detect/)、[分割](https://docs.ultralytics.com/tasks/segment/)、[姿态估计](https://docs.ultralytics.com/tasks/pose/)、[跟踪](https://docs.ultralytics.com/modes/track/)和[分类](https://docs.ultralytics.com/tasks/classify/)。这种多功能性使用户能够在各种应用和领域中利用 YOLOv8 的功能。
 - [**YOLOv9**](https://github.com/WongKinYiu/yolov9) (2024) 由原YOLOv7团队打造，引入了可编程梯度信息 （PGI） 和广义高效层聚合网络 （GELAN） 等创新方法。
-  - [YOLOv9: Learning What You Want to Learn Using Programmable Gradient Information](https://arxiv.org/abs/2402.13616)
+    - [YOLOv9: Learning What You Want to Learn Using Programmable Gradient Information](https://arxiv.org/abs/2402.13616)
 - [**YOLOv10**](https://github.com/THU-MIG/yolov10) (2024) 是由清华大学的研究人员使用 Ultralytics Python 包创建的。该版本通过引入消除非极大值抑制 (NMS) 要求的端到端头，提供了实时对象检测方面的改进。
-  - [YOLOv10: Real-Time End-to-End Object Detection](https://arxiv.org/abs/2405.14458)
+    - [YOLOv10: Real-Time End-to-End Object Detection](https://arxiv.org/abs/2405.14458)
 - YOLO11
 
 # 训练

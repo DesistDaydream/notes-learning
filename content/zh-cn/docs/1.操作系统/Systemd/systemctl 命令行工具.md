@@ -21,9 +21,9 @@ UNIT 为 Unit 名称，如果指定了 UNIT 则只对这个 Unit 执行 COMMAND�
 - **-t** # 对指定类型的 unit 进行操作
 - **--all** #
 - **--now** # 该选项可以与 enable、disable、mask 命令一起使用。
-  - 与 enable 命令一起使用时，将同时启动该 Unit
-  - 与 disable 和 mask 命令一起使用时，将同时停止该 Unit、
-  - 注意：只有当 enable 或 disable 命令成功时，才会执行启动或停止操作。加了该选项就类似于执行了 `systemctl enable UNIT && systemctl start UNIT` 命令
+    - 与 enable 命令一起使用时，将同时启动该 Unit
+    - 与 disable 和 mask 命令一起使用时，将同时停止该 Unit、
+    - 注意：只有当 enable 或 disable 命令成功时，才会执行启动或停止操作。加了该选项就类似于执行了 `systemctl enable UNIT && systemctl start UNIT` 命令
 
 ## COMMAND 分类
 

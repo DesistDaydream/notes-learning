@@ -1,6 +1,5 @@
 ---
 title: PostgreSQL
-linkTitle: PostgreSQL
 weight: 1
 ---
 
@@ -97,10 +96,10 @@ https://www.postgresql.org/download/linux/ubuntu/
 
 这些 System catalogs 常规表默认保存在 `pg_catalog` Schema 中，还可以通过 `\dS`
 
-| Catalog 名称                                                                                                | 用途                                                  |
+| Catalog 名称 | 用途 |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
 | [`pg_namespace`](https://www.postgresql.org/docs/current/catalog-pg-namespace.html "51.32. pg_namespace") | 记录 Schems 的基本元信息。包含 oid, nspname, nspowner,nspacl 列 |
-| TODO                                                                                                      |                                                     |
+| TODO | |
 
 比如 `SELECT * FROM pg_namespace;` 可以查看所有 Schemas 的信息。
 

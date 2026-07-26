@@ -1,6 +1,5 @@
 ---
 title: PromQL 常见查询语句
-linkTitle: PromQL 常见查询语句
 weight: 2
 ---
 
@@ -9,8 +8,8 @@ weight: 2
 > 参考：
 >
 > - [GitHub 项目，samber/awesome-prometheus-alerts](https://github.com/samber/awesome-prometheus-alerts)
->   - https://samber.github.io/awesome-prometheus-alerts/
->   - [腾讯云+社区，prometheus 告警指标](https://cloud.tencent.com/developer/article/1758801) 对 awesome-prometheus-alerts 的无后续维护的搬运
+>     - https://samber.github.io/awesome-prometheus-alerts/
+>     - [腾讯云+社区，prometheus 告警指标](https://cloud.tencent.com/developer/article/1758801) 对 awesome-prometheus-alerts 的无后续维护的搬运
 > - [公众号，云原生小白-监控容器 OOMKill 的正确指标](https://mp.weixin.qq.com/s/rPxTBYmwG_7HnZRpRXMFuQ)
 > - https://panzhongxian.cn/cn/2023/09/grafana-pannel-skills/ Grafana 常用但难配的图表。一些真实场景的查询语句写法以及对应 Grafana 图标如何用
 
@@ -46,7 +45,7 @@ $$
 
 1. **计算过去 n 小时的平均值和标准差**。
 2. **计算当前值与平均值的差异，并标准化**。
-  1. Notes: 在统计学中，“标准化” 通常指的是将数据转换为具有特定性质的标准形式，以便进行比较或进一步分析。具体来说，标准化数据意味着将数据调整为均值为 0、标准差为 1 的形式。这通常是通过计算 Z-score 来实现的
+1. Notes: 在统计学中，“标准化” 通常指的是将数据转换为具有特定性质的标准形式，以便进行比较或进一步分析。具体来说，标准化数据意味着将数据调整为均值为 0、标准差为 1 的形式。这通常是通过计算 Z-score 来实现的
 3. **根据标准化的值（Z-score）来判断是否异常**。
 
 下面是一个 PromQL 示例，假设想计算过去 1 小时的平均值和标准差，并与当前值进行对比：
@@ -353,7 +352,7 @@ node_netstat_Tcp_CurrEstab > 50000
       summary: Host unusual network throughput out (instance {{ $labels.instance }})
       description: Host network interfaces are probably sending too much data (> 100 MB/s)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}
 ```
- 
+
 #### 主机 swap 分区使用
 
 主机 swap 交换分区使用情况 (> 80%)

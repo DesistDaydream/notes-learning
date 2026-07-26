@@ -9,7 +9,7 @@ weight: 1
 >
 > - [GitHub 项目，k3s-io/k3s](https://github.com/k3s-io/k3s)
 > - [官方文档](https://rancher.com/docs/k3s/latest/en/)
->   - [中文官方文档](https://docs.rancher.cn/k3s/)
+>     - [中文官方文档](https://docs.rancher.cn/k3s/)
 > - [公众号-云原生实验室，K3S 工具进阶完全指南](https://mp.weixin.qq.com/s/ARhxWGypG0wepMqwTLH0mQ)
 
 K3S 是一个轻量的 Kubernetes，具有基本的 kubernetes 功能，将 kubernetes 的主要组件都集成在一个二进制文件中(apiserver、kubelet 等)，这个二进制文件只有不到 100m。内嵌 Containerd，可以通过 Containerd 来启动 coredns 等 kubernetes 的 addone。直接使用 k3s 的二进制文件，即可启动一个 kubernetes 的节点。
@@ -43,14 +43,14 @@ K3S 封装了部分非 K8S 核心组件，比如 `coredns`、`traefik`、`local
 **/var/lib/rancher/k3s/** # k3s 运行时数据存储保存路径
 
 - **./server/** # 作为 k8s 的 master 节点所需要的信息保存路径
-  - 包括证书、kube-system 名称空间中的 manifests 文件、etcd 数据 等等都在此处
-  - **./db/** # 内嵌 Etcd 数据保存路径
-  - **./manifests/** # 功能与 [Kubelet](/docs/10.云原生/Kubernetes/Kubelet/Kubelet.md) 管理的 `/etc/kubernetes/manifets/` 目录功能一样。k3s 集群启动后，读取该目录下的 manifets 文件以运行 Pod。
-  - **./tls/** # Kubernetes 主要组件运行所需证书保存路径
+    - 包括证书、kube-system 名称空间中的 manifests 文件、etcd 数据 等等都在此处
+    - **./db/** # 内嵌 Etcd 数据保存路径
+    - **./manifests/** # 功能与 [Kubelet](/docs/10.云原生/Kubernetes/Kubelet/Kubelet.md) 管理的 `/etc/kubernetes/manifets/` 目录功能一样。k3s 集群启动后，读取该目录下的 manifets 文件以运行 Pod。
+    - **./tls/** # Kubernetes 主要组件运行所需证书保存路径
 - **./agent/** # 作为 k8s 的 node 节点所需要的信息保存路径。对于 K3S 来说，master 节点也属于 node 节点，所以 master 节点在该目录也会保存数据。
-  - 包括证书、containerd 数据目录、cni，containerd 的配置文件 等等都在此处
-  - **./etc/** # 各种组件的配置文件保存路径。比如 CNI、Containerd、Flannel 等等，相当于各个组件自己所使用的 etc 目录。
-  - **./containerd/** # 与 [Containerd](/docs/10.云原生/Containerization%20implementation/Containerd/Containerd.md#Containerd%20关联文件与配置 关联文件与配置>) 中的 /var/lib/containerd/ 目录功能一致。
+    - 包括证书、containerd 数据目录、cni，containerd 的配置文件 等等都在此处
+    - **./etc/** # 各种组件的配置文件保存路径。比如 CNI、Containerd、Flannel 等等，相当于各个组件自己所使用的 etc 目录。
+    - **./containerd/** # 与 [Containerd](/docs/10.云原生/Containerization%20implementation/Containerd/Containerd.md#Containerd%20关联文件与配置 关联文件与配置>) 中的 /var/lib/containerd/ 目录功能一致。
 - **./data/**
 
 **/var/lib/kubelet/** #

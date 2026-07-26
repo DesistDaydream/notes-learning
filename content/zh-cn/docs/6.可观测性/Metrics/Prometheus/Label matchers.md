@@ -1,6 +1,5 @@
 ---
 title: Label matchers
-linkTitle: Label matchers
 weight: 3
 ---
 

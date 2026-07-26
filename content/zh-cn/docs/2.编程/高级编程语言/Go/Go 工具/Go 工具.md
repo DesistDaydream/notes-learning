@@ -30,9 +30,9 @@ https://pkg.go.dev/cmd/go#hdr-Compile_packages_and_dependencies
 OPTIONS
 
 - **-ldflags [PATTERN=]ARG** # 每个 go 工具链接调用时要传递的参数。向链接器传递一些参数。这些参数可用于指定编译时需要使用的一些信息，例如项目版本号、Git 提交 ID、构建时间、构建平台和架构等元数据信息
-  - 比如：
-    - `-ldflags "-X 'main.version=1.0.0' -X 'main.buildTime=$(date)'"` # 为 main 包中的 version 和 buildTime 变量设置值
-    - `-ldflags "-s -w"` # 告诉链接器在生成可执行文件时忽略调试信息和符号表，从而使得你的二进制文件更加紧凑而且不再可读。
+    - 比如：
+        - `-ldflags "-X 'main.version=1.0.0' -X 'main.buildTime=$(date)'"` # 为 main 包中的 version 和 buildTime 变量设置值
+        - `-ldflags "-s -w"` # 告诉链接器在生成可执行文件时忽略调试信息和符号表，从而使得你的二进制文件更加紧凑而且不再可读。
 - **-gcflags [PATTERN=]ARG** # 每个 go 工具编译调用时要传递的参数
 - **-o NAME** # 指定构建完成后生成的文件名为 NAME
 - **-x** # 输出 Go 程序编译、链接、打包的全过程。包括都使用了哪些库、执行了什么命令、等等
@@ -40,7 +40,7 @@ OPTIONS
 EXAMPLE
 
 - 指定构建名称
-  - go build -o jhs_cli cmd/jhs_cli/main.go
+    - go build -o jhs_cli cmd/jhs_cli/main.go
 
 比如下面的构建脚本
 
@@ -74,12 +74,12 @@ go build -o "$1" -ldflags="$ldflags" -tags=jsoniter .
 package conf
 
 var (
-	BuiltAt    string
-	GoVersion  string
-	GitAuthor  string
-	GitCommit  string
-	Version    string = "dev"
-	WebVersion string
+ BuiltAt    string
+ GoVersion  string
+ GitAuthor  string
+ GitCommit  string
+ Version    string = "dev"
+ WebVersion string
 )
 ```
 
@@ -300,4 +300,3 @@ func (f *File) Close() error {
 > - [官网](https://staticcheck.io/)
 
 Staticcheck 是一个高级 Go Linter，即用于 Go 的代码检查工具，使用静态分析，可以发现错误和性能问题，提供简化，并强制执行样式规则
-

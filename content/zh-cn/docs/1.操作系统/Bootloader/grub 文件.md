@@ -1,6 +1,5 @@
 ---
 title: grub 文件
-linkTitle: grub 文件
 weight: 20
 ---
 

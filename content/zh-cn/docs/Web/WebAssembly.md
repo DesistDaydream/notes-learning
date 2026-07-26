@@ -1,6 +1,5 @@
 ---
 title: WebAssembly
-linkTitle: WebAssembly
 weight: 4
 ---
 

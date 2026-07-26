@@ -1,6 +1,5 @@
 ---
 title: vsftpd
-linkTitle: vsftpd
 weight: 20
 ---
 

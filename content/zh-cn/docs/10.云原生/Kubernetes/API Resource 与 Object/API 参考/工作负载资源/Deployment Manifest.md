@@ -1,6 +1,5 @@
 ---
 title: Deployment Manifest
-linkTitle: Deployment Manifest
 weight: 20
 ---
 
@@ -47,10 +46,10 @@ spec 用来描述一个 Deployment 应该具有的属性。也就是用来定义
 **strategy**(Ojbect) # 定义用一个新的 pod 代替现有 pod 的部署策略(更新 pod 的策略)
 
 - **rollingUpdate**(Object) # 当更新策略为 rollingUpdate 时，需要配置滚动更新的参数
-  - **maxSurge**(STRING) # 设定在更新时最大可用的 Pod 数，就是先添加几个新的 Pod 再删除老的
-  - **maxUnavailable**(STRING) # 设定在更新时最大不可用的 Pod 数
+    - **maxSurge**(STRING) # 设定在更新时最大可用的 Pod 数，就是先添加几个新的 Pod 再删除老的
+    - **maxUnavailable**(STRING) # 设定在更新时最大不可用的 Pod 数
 - **type**(STRING) # 指定更新策略的类型，Recreate(重新创建) 与 RollingUpdate(滚动更新)。`默认值：RollingUpdate`
-  - Recreate 是删除一个创建一个
+    - Recreate 是删除一个创建一个
 
 ## Pod 属性
 

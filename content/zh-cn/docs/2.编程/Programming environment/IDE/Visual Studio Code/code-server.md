@@ -1,6 +1,5 @@
 ---
 title: code-server
-linkTitle: code-server
 weight: 20
 ---
 
@@ -72,4 +71,4 @@ codercom/code-server:latest \
 - **./logs/** #
 - .**/machineid** #
 - .**/User/** #
-  - **./settings.json** # 默认配置
+    - **./settings.json** # 默认配置

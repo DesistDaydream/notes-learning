@@ -28,50 +28,50 @@ syncLoop 中首先定义了一个 syncTicker 和 housekeepingTicker，即使没�
 
 ```go
 func (kl *Kubelet) syncLoop(updates <-chan kubetypes.PodUpdate, handler SyncHandler) {
-	klog.InfoS("Starting kubelet main sync loop")
+ klog.InfoS("Starting kubelet main sync loop")
 
     // 每秒检测一次是否有需要同步的 pod workers。同步周期默认 10 秒
-	syncTicker := time.NewTicker(time.Second)
-	defer syncTicker.Stop()
+ syncTicker := time.NewTicker(time.Second)
+ defer syncTicker.Stop()
 
     // 每两秒检测一次是否有需要清理的 pod
-	housekeepingTicker := time.NewTicker(housekeepingPeriod)
-	defer housekeepingTicker.Stop()
+ housekeepingTicker := time.NewTicker(housekeepingPeriod)
+ defer housekeepingTicker.Stop()
 
     // pod 的生命周期变化
-	plegCh := kl.pleg.Watch()
-	const (
-		base   = 100 * time.Millisecond
-		max    = 5 * time.Second
-		factor = 2
-	)
-	duration := base
-	// Responsible for checking limits in resolv.conf
-	// The limits do not have anything to do with individual pods
-	// Since this is called in syncLoop, we don't need to call it anywhere else
-	if kl.dnsConfigurer != nil && kl.dnsConfigurer.ResolverConfig != "" {
-		kl.dnsConfigurer.CheckLimitsForResolvConf()
-	}
+ plegCh := kl.pleg.Watch()
+ const (
+  base   = 100 * time.Millisecond
+  max    = 5 * time.Second
+  factor = 2
+ )
+ duration := base
+ // Responsible for checking limits in resolv.conf
+ // The limits do not have anything to do with individual pods
+ // Since this is called in syncLoop, we don't need to call it anywhere else
+ if kl.dnsConfigurer != nil && kl.dnsConfigurer.ResolverConfig != "" {
+  kl.dnsConfigurer.CheckLimitsForResolvConf()
+ }
 
-	for {
-		if err := kl.runtimeState.runtimeErrors(); err != nil {
-			klog.ErrorS(err, "Skipping pod synchronization")
-			// exponential backoff
-			time.Sleep(duration)
-			duration = time.Duration(math.Min(float64(max), factor*float64(duration)))
-			continue
-		}
-		// reset backoff if we have a success
-		duration = base
+ for {
+  if err := kl.runtimeState.runtimeErrors(); err != nil {
+   klog.ErrorS(err, "Skipping pod synchronization")
+   // exponential backoff
+   time.Sleep(duration)
+   duration = time.Duration(math.Min(float64(max), factor*float64(duration)))
+   continue
+  }
+  // reset backoff if we have a success
+  duration = base
 
-		kl.syncLoopMonitor.Store(kl.clock.Now())
+  kl.syncLoopMonitor.Store(kl.clock.Now())
         // 第二个参数为 SyncHandler 类型，SyncHandler 是一个 interface，
         // 在该文件开头处定义
-		if !kl.syncLoopIteration(updates, handler, syncTicker.C, housekeepingTicker.C, plegCh) {
-			break
-		}
-		kl.syncLoopMonitor.Store(kl.clock.Now())
-	}
+  if !kl.syncLoopIteration(updates, handler, syncTicker.C, housekeepingTicker.C, plegCh) {
+   break
+  }
+  kl.syncLoopMonitor.Store(kl.clock.Now())
+ }
 }
 ```
 
@@ -109,17 +109,17 @@ kubelet.syncLoopIteration() 中的 SyncHandler 参数是一个接口，kubelet �
 
 ```go
 func (kl *Kubelet) dispatchWork(pod *v1.Pod, syncType kubetypes.SyncPodType, mirrorPod *v1.Pod, start time.Time) {
-	// 在一个异步工作器中运行同步。所有对 Pod 的操作都转到 PodWorker 模块中
+ // 在一个异步工作器中运行同步。所有对 Pod 的操作都转到 PodWorker 模块中
     // 由实现了 PodWorkers interface{} 的 podWorkers struct{} 的各种方法进行处理
-	kl.podWorkers.UpdatePod(UpdatePodOptions{
-		Pod:        pod,
-		MirrorPod:  mirrorPod,
-		UpdateType: syncType,
-		StartTime:  start,
-	})
-	// Note the number of containers for new pods.
-	if syncType == kubetypes.SyncPodCreate {
-		metrics.ContainersPerPodCount.Observe(float64(len(pod.Spec.Containers)))
-	}
+ kl.podWorkers.UpdatePod(UpdatePodOptions{
+  Pod:        pod,
+  MirrorPod:  mirrorPod,
+  UpdateType: syncType,
+  StartTime:  start,
+ })
+ // Note the number of containers for new pods.
+ if syncType == kubetypes.SyncPodCreate {
+  metrics.ContainersPerPodCount.Observe(float64(len(pod.Spec.Containers)))
+ }
 }
 ```

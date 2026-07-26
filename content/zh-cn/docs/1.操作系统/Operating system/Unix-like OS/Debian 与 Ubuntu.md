@@ -1,6 +1,5 @@
 ---
 title: Debian 与 Ubuntu
-linkTitle: Debian 与 Ubuntu
 weight: 60
 ---
 

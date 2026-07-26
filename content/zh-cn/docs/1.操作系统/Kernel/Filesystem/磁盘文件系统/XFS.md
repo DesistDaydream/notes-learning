@@ -1,6 +1,5 @@
 ---
 title: XFS
-linkTitle: XFS
 weight: 20
 ---
 

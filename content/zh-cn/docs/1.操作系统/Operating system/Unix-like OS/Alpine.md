@@ -1,6 +1,5 @@
 ---
 title: Alpine
-linkTitle: Alpine
 weight: 20
 ---
 
@@ -26,9 +25,9 @@ weight: 20
 **/etc/apk/repositories** # 包仓库的配置文件
 
 - 阿里仓库
-  - sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+    - sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 - 中科大仓库
-  - sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
+    - sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
 
 **/var/cache/apk/** # APK 程序运行时产生的缓存文件保存路径
 
@@ -46,31 +45,31 @@ COMMAND
 
 安装和移除包命令
 
-  - **add** # 为正在运行的系统添加新包或升级包
-  - **del** # 从正在运行的系统中删除包
+- **add** # 为正在运行的系统添加新包或升级包
+- **del** # 从正在运行的系统中删除包
 
 系统维护命令(管理包的元数据)
 
-  - cache Maintenance operations for locally cached package repository
-  - **fix** # 尝试修复或升级已安装的包
-  - update Update the index of available packages
-  - upgrade Upgrade the currently installed packages
+- cache Maintenance operations for locally cached package repository
+- **fix** # 尝试修复或升级已安装的包
+- update Update the index of available packages
+- upgrade Upgrade the currently installed packages
 
 查询包的信息
 
-  - dot Create a graphviz graph description for a given package
-  - info # Prints information about installed or available packages
-  - list # List packages by PATTERN and other criteria
-  - policy Display the repository that updates a given package, plus repositories that also offer the package
-  - search Search for packages or descriptions with wildcard patterns
+- dot Create a graphviz graph description for a given package
+- info # Prints information about installed or available packages
+- list # List packages by PATTERN and other criteria
+- policy Display the repository that updates a given package, plus repositories that also offer the package
+- search Search for packages or descriptions with wildcard patterns
 
 仓库管理命令(管理包源)
 
-  - **fetch**# 下载包，但是不安装它。
-  - index create a repository index from a list of packages
-  - verify Verify a package signature
-  - stats Display statistics, including number of packages installed and available, number of directories and files, etc.
-  - manifest Display checksums for files contained in a given package
+- **fetch**# 下载包，但是不安装它。
+- index create a repository index from a list of packages
+- verify Verify a package signature
+- stats Display statistics, including number of packages installed and available, number of directories and files, etc.
+- manifest Display checksums for files contained in a given package
 
 del OPTIONS
 

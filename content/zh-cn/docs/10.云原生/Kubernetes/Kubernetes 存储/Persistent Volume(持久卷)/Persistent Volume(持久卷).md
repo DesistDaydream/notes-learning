@@ -44,8 +44,8 @@ PV 与 PVC 的工作流程：Container—Volume—PVC—PV—StorageResource
 
 - **Static(静态)** # 手动编写 PV 的 manifest，并 apply 到集群中。
 - **Dynamic(动态)** # 当管理员创建的所有 Statci PV(静态 PV) 都不匹配用户的 PVC 时，集群将会尝试为 PVC 动态地提供一个卷
-  - 这种动态供应必须基于 StorageClasses：PVC 必须配置指定的 StorageClass，并且集群必须存在与 PVC 配置的同名的 StorageClass，才能进行动态供应。
-  - 在声明一个 PVC 对象时，如果 manifest 中 storageClassName 字段为空，则该声明会禁用动态供应。除非集群中有一个默认的 StorageClass。
+    - 这种动态供应必须基于 StorageClasses：PVC 必须配置指定的 StorageClass，并且集群必须存在与 PVC 配置的同名的 StorageClass，才能进行动态供应。
+    - 在声明一个 PVC 对象时，如果 manifest 中 storageClassName 字段为空，则该声明会禁用动态供应。除非集群中有一个默认的 StorageClass。
 
 ### Binding(绑定)
 

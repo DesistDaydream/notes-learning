@@ -1,6 +1,5 @@
 ---
 title: "Doris"
-linkTitle: "Doris"
 weight: 20
 ---
 

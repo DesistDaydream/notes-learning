@@ -5,6 +5,7 @@ title: X Window
 # 概述
 
 > 参考：
+>
 > - [Wiki, X Window 系统协议和架构](https://en.wikipedia.org/wiki/X_Window_System_protocols_and_architecture)
 > - [Wiki, X Window 管理器](https://en.wikipedia.org/wiki/X_window_manager)
 > - [鸟哥的 Linux 私房菜,第二十三章、X Window](http://linux.vbird.org/linux_basic/0590xwindow.php)

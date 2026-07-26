@@ -1,6 +1,5 @@
 ---
 title: "systemd.exec 类指令"
-linkTitle: "systemd.exec 类指令"
 weight: 20
 ---
 
@@ -87,7 +86,7 @@ https://man7.org/linux/man-pages/man5/systemd.exec.5.html#ENVIRONMENT
 **EnvironmentFile**(STRING) # 与 Environment 指令的逻辑类似，但是可以直接指定一个文件，在文件中设置环境变量，文件中的格式与 Environment 指令的值的格式保持一致。
 
 - **`-` 符号** # 指令的值之前可以添加 `-` 符号，比如 `EnvironmentFile=-/etc/default/ssh`。`-` 符号作为前缀的话，表明如果文件不存在将不会被读取，并且不会记录任何错误或警告信息。
-  - 默认情况下，若指定的文件不存在，服务将无法启动并报错。
+    - 默认情况下，若指定的文件不存在，服务将无法启动并报错。
 
 # LOGGING AND STANDARD INPUT/OUTPUT(日志的标准输入/输出) 相关指令
 

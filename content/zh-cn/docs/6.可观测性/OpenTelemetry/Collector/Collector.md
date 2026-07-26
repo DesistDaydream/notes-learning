@@ -1,6 +1,5 @@
 ---
 title: Collector
-linkTitle: Collector
 weight: 1
 ---
 

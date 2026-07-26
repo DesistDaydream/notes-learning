@@ -1,6 +1,5 @@
 ---
 title: Vector Configuration
-linkTitle: Vector Configuration
 weight: 20
 date: 2025-01-05T15:55:00
 ---
@@ -43,9 +42,9 @@ Vector 配置文件支持 [YAML](/docs/2.编程/无法分类的语言/YAML.md), 
 
 - 全局字段 # 详见下文 [全局字段](#全局字段)。这些字段并没有上级字段，直接定义在文件顶层。
 - 组件相关字段
-  - **sources**(map\[SourceID][source](#sources)) # 定义一个或多个 Source 组件
-  - **transforms**(map\[TransformID][transform](#transforms)) # 定义一个或多个 Transforms 组件
-  - **sinks**(map\[SinkID][sink](#sinks)) # 定义一个或多个 Sink 组件
+    - **sources**(map\[SourceID][source](#sources)) # 定义一个或多个 Source 组件
+    - **transforms**(map\[TransformID][transform](#transforms)) # 定义一个或多个 Transforms 组件
+    - **sinks**(map\[SinkID][sink](#sinks)) # 定义一个或多个 Sink 组件
 
 > [!Note]
 > SourceID, TransformID, SinkID 是自定义的字符串，用以表示定义的对应组件的唯一性，称为 **ComponentID(组件唯一标识)**。在其地方引用已定义的组件时，也要使用 ComponentID
@@ -90,4 +89,3 @@ https://vector.dev/docs/reference/configuration/transforms/
 https://vector.dev/docs/reference/configuration/sinks/
 
 所有 Sinks 通常都要有一个 `inputs([]STRING)` 字段，以声明要输出的数据是从哪来的。inputs 中的值可以是 SourceID 或 TransformID
-

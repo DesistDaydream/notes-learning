@@ -1,6 +1,5 @@
 ---
 title: Dashboard
-linkTitle: Dashboard
 weight: 1
 ---
 
@@ -10,7 +9,7 @@ weight: 1
 >
 > - [官方文档，仪表盘](https://grafana.com/docs/grafana/latest/dashboards/)
 > - 借助 [Grafana Play](https://play.grafana.org/d/000000041/)，您可以探索并了解 Grafana 的各种 Panel 工作原理，从实际示例中学习以加速您的开发
->   - https://play.grafana.org/dashboards/f/PGJ1Fr4Zz/demo3a-grafana-features 这是各种 Panel 的 Demo 集合。
+>     - https://play.grafana.org/dashboards/f/PGJ1Fr4Zz/demo3a-grafana-features 这是各种 Panel 的 Demo 集合。
 
 **Panel(面板)** 与 **Dashboard(仪表盘)**
 
@@ -21,7 +20,6 @@ weight: 1
 # 时间选择器
 
 ![time-picker_1](https://notes-learning.oss-cn-beijing.aliyuncs.com/grafana/time-picker_1.png)
-
 
 # Panels(面板) 的类型
 

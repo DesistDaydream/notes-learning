@@ -1,6 +1,5 @@
 ---
 title: Terminal(终端)
-linkTitle: Terminal(终端)
 weight: 1
 ---
 
@@ -16,7 +15,7 @@ TODO: xterm 是什么？
 
 - TODO
 - 各种 GUI 终端工具都可以配置连接后要使用的终端，用 xterm 或者其他的，操作起来和样式都不一样。
-  - 比如使用 vim 的时候。选名为 linux 的
+    - 比如使用 vim 的时候。选名为 linux 的
 - 这是啥玩意？
 
 # Terminal 增强工具

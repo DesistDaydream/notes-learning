@@ -1,6 +1,5 @@
 ---
 title: Netfilter
-linkTitle: Netfilter
 weight: 1
 ---
 # 概述
@@ -11,9 +10,9 @@ weight: 1
 > - [Netfilter 官方文档](https://www.netfilter.org/documentation/index.html)
 > - [Wiki, Netfilter](https://en.wikipedia.org/wiki/Netfilter)
 > - [arthurchiao.art 的文章](http://arthurchiao.art/index.html)：
->   - [\[译\] 深入理解 iptables 和 netfilter 架构](http://arthurchiao.art/blog/deep-dive-into-iptables-and-netfilter-arch-zh/)
->   - [连接跟踪（conntrack）：原理、应用及 Linux 内核实现](http://arthurchiao.art/blog/conntrack-design-and-implementation-zh/)
->   - [\[译\] NAT - 网络地址转换（2016）](http://arthurchiao.art/blog/nat-zh/)
+>     - [\[译\] 深入理解 iptables 和 netfilter 架构](http://arthurchiao.art/blog/deep-dive-into-iptables-and-netfilter-arch-zh/)
+>     - [连接跟踪（conntrack）：原理、应用及 Linux 内核实现](http://arthurchiao.art/blog/conntrack-design-and-implementation-zh/)
+>     - [\[译\] NAT - 网络地址转换（2016）](http://arthurchiao.art/blog/nat-zh/)
 
 Netfilter 是 Linux 操作系统核心层内部的一个**数据包处理**模块集合的统称, 是一种**流量控制系统**。一种网络筛选系统，对数据包进入以及出去本机进行的一些控制与管理。
 
@@ -101,23 +100,23 @@ Match 功能的实现依赖于模块(类似于内核的模块)，比如右图，
 
 - 基本匹配：源地址、目标地址、协议、入流网卡、出流网卡
 - 扩展匹配：用于对基本匹配的内容扩充，包括两类，普通的扩展匹配和基于
-  - 通用扩展匹配，可以直接使用。
-  - 基于基本匹配的扩展匹配。需要有基本匹配规则才可以使用。
-    - e.g.需要匹配某些端口，这类匹配必须基于 tcp 匹配规则上使用，否则无效(e.g.-p tcp -m tcp -m multiport --dport22,23,24)
+    - 通用扩展匹配，可以直接使用。
+    - 基于基本匹配的扩展匹配。需要有基本匹配规则才可以使用。
+        - e.g.需要匹配某些端口，这类匹配必须基于 tcp 匹配规则上使用，否则无效(e.g.-p tcp -m tcp -m multiport --dport22,23,24)
 - 目标(target)：每个规则中的目标。即在每条链上对每个进出流量匹配上之后应该执行什么动作，Target 包括以下几种
-  - ACCEPT # 允许流量通过
-  - REJECT # 拒绝流量通过
-  - DROP # 丢弃，不响应，发送方无法判断是被拒绝
-  - RETURN # 返回调用链
-  - MARK # 做防火墙标记
-  - 用于 nat 表的 target
-    - DNAT|SNAT #{目的|源}地址转换
-    - REDIRECT # 端口重定向
-    - MASQUERADE # 地址伪装类似于 SNAT，但是不用指明要转换的地址，而是自动选择要转换的地址，用于外部地址不固定的情况
-  - 用于 raw 表的 target
-    - NOTRACK # raw 表专用的 target，用于对匹配规则进行 notrack(不跟踪)处理
-  - LOG # 将数据包的相关信息记录日志，执行完该目标后，会继续匹配后面的规则
-  - 引用自定义链 # 直接使用“-j 自定义链的名称”即可，让基本 5 个 Chain 上匹配成功的数据包继续执行自定义链上的规则。
+    - ACCEPT # 允许流量通过
+    - REJECT # 拒绝流量通过
+    - DROP # 丢弃，不响应，发送方无法判断是被拒绝
+    - RETURN # 返回调用链
+    - MARK # 做防火墙标记
+    - 用于 nat 表的 target
+        - DNAT|SNAT #{目的|源}地址转换
+        - REDIRECT # 端口重定向
+        - MASQUERADE # 地址伪装类似于 SNAT，但是不用指明要转换的地址，而是自动选择要转换的地址，用于外部地址不固定的情况
+    - 用于 raw 表的 target
+        - NOTRACK # raw 表专用的 target，用于对匹配规则进行 notrack(不跟踪)处理
+    - LOG # 将数据包的相关信息记录日志，执行完该目标后，会继续匹配后面的规则
+    - 引用自定义链 # 直接使用“-j 自定义链的名称”即可，让基本 5 个 Chain 上匹配成功的数据包继续执行自定义链上的规则。
 
 注意，这里面的路由指数据包在 Linux 本机内部路由
 

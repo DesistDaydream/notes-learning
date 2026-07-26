@@ -73,7 +73,7 @@ virt-install --import --name test --memory 2048 --vcpus 2 --os-variant centos7.0
 
 # 常见问题
 
-## Protocol error: invalid message type ...
+## Protocol error: invalid message type
 
 若连接的目标是 Windows，可能会出现如下报错：`Protocol error: invalid message type ...`
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/vbc6tk/1653399468846-b581842e-f3d2-4712-a320-58fd1117011b.png)

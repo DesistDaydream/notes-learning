@@ -1,6 +1,5 @@
 ---
 title: TOML
-linkTitle: TOML
 weight: 20
 ---
 

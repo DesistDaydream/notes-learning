@@ -1,6 +1,5 @@
 ---
 title: Kubernetes DNS
-linkTitle: Kubernetes DNS
 weight: 1
 ---
 

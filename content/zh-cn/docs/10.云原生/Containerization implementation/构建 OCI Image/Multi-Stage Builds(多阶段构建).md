@@ -1,6 +1,5 @@
 ---
 title: Multi-Stage Builds(多阶段构建)
-linkTitle: Multi-Stage Builds(多阶段构建)
 weight: 20
 ---
 
@@ -255,7 +254,7 @@ standard_init_linux.go:211: exec user process caused "no such file or directory"
 我们可以让编译器使用静态库编译程序，办法有很多，如果使用 gcc 作为编译器，只需加上一个参数 `-static` ：
 
 ```
-$ gcc -o hello hello.c -static
+gcc -o hello hello.c -static
 ```
 
 编译完的可执行文件大小为 `760 kB` ，相比于之前的 `16kB` 是大了好多，这是因为可执行文件中包含了其运行所需要的库文件。编译完的程序就可以跑在 `scratch` 镜像中了。
@@ -301,4 +300,3 @@ $ ldd hello
 但我不建议使用 sratch 作为基础镜像，因为调试起来非常麻烦，但如果你喜欢，那我也不会拦着你。
 
 下篇文章将会着重介绍 Go 语言的镜像精简策略，其中会花很大的篇幅来讨论 alpine 镜像，因为它实在是太酷了，在使用它之前必须得摸清它的底细。
-

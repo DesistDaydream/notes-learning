@@ -1,6 +1,5 @@
 ---
 title: Loki 部署
-linkTitle: Loki 部署
 weight: 2
 ---
 

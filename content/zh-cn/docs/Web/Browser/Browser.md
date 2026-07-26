@@ -1,6 +1,5 @@
 ---
 title: Browser
-linkTitle: Browser
 weight: 1
 ---
 

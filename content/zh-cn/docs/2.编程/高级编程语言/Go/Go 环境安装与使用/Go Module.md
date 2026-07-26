@@ -13,6 +13,7 @@ Go 的 [Modular programming](/docs/2.编程/Programming%20technology/Modular%20p
 ## Package
 
 > 参考：
+>
 > - [官方文档，参考 - Packages](https://go.dev/ref/spec#Packages)
 
 Go 语言编写的程序是通过各个 *Packages(包)* 链接在一起的，一个 Package 是一个或多个源文件。
@@ -36,7 +37,7 @@ package main
 import "<ModuleName>/demo_package" // Package 所属 Module 中的路径
 
 func main() {
-	demo_package.Add(1, 2)
+ demo_package.Add(1, 2)
 }
 ```
 
@@ -48,7 +49,7 @@ demo_package.go 文件
 package demo_package
 
 func Add(a, b int) int {
-	return a + b
+ return a + b
 }
 ```
 
@@ -150,9 +151,9 @@ GOPATH 目录下一共包含了三个子目录，分别是：
 在 GOPATH 的 `$GOPATH/src/` 下进行 .go 文件或源代码的存储，我们可以称其为 GOPATH 的模式，这个模式，看起来好像没有什么问题，那么为什么我们要弃用呢，参见如下原因：
 
 - GOPATH 模式下没有版本控制的概念，具有致命的缺陷，至少会造成以下问题：
-  - 在执行 go get 的时候，你无法传达任何的版本信息的期望，也就是说你也无法知道自己当前更新的是哪一个版本，也无法通过指定来拉取自己所期望的具体版本。
-  - 在运行 Go 应用程序的时候，你无法保证其它人与你所期望依赖的第三方库是相同的版本，也就是说在项目依赖库的管理上，你无法保证所有人的依赖版本都一致。
-  - 你没办法处理 v1、v2、v3 等等不同版本的引用问题，因为 GOPATH 模式下的导入路径都是一样的，都是 github.com/foo/bar。
+    - 在执行 go get 的时候，你无法传达任何的版本信息的期望，也就是说你也无法知道自己当前更新的是哪一个版本，也无法通过指定来拉取自己所期望的具体版本。
+    - 在运行 Go 应用程序的时候，你无法保证其它人与你所期望依赖的第三方库是相同的版本，也就是说在项目依赖库的管理上，你无法保证所有人的依赖版本都一致。
+    - 你没办法处理 v1、v2、v3 等等不同版本的引用问题，因为 GOPATH 模式下的导入路径都是一样的，都是 github.com/foo/bar。
 - Go 语言官方从 Go1.11 起开始推进 Go modules（前身 vgo），Go1.13 起不再推荐使用 GOPATH 的使用模式，Go modules 也渐趋稳定，因此新项目也没有必要继续使用 GOPATH 模式。
 
 在 GOPATH 模式下的产物
@@ -493,6 +494,3 @@ import "need-import-my-locallib"
 // 若想使用 my-locallib 库中 pkg/utils/ 目录下的包，则可以这么导入
 import "need-import-my-locallib/pkg/utils/"
 ```
-
-
-

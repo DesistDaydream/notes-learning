@@ -9,14 +9,14 @@ weight: 1
 >
 > - [RFC 675,](https://datatracker.ietf.org/doc/html/rfc675)
 > - [RFC 793, TRANSMISSION CONTROL PROTOCOL - DARPA INTERNET PROGRAM PROTOCOL SPECIFICATION](https://datatracker.ietf.org/doc/html/rfc793)
->   - [RFC 9293, Transmission Control Protocol (TCP)](https://datatracker.ietf.org/doc/html/rfc9293)
+>     - [RFC 9293, Transmission Control Protocol (TCP)](https://datatracker.ietf.org/doc/html/rfc9293)
 > - [Wiki, TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol)
 > - [极客时间,趣谈网络协议](https://time.geekbang.org/column/intro/100007101)
 > - <https://www.jianshu.com/p/1118f497a425>
 > - <https://www.jianshu.com/p/3c7a0771b67e>
 > - [公众号-小林coding，通过动图学习 TCP 的滑动窗口和流量控制的工作方式](https://mp.weixin.qq.com/s/WG1Is0HMAHYMgRvJQpd3KA)
->   - <https://www2.tkn.tu-berlin.de/teaching/rn/animations/gbn_sr/>
->   - <https://www2.tkn.tu-berlin.de/teaching/rn/animations/flow/>
+>     - <https://www2.tkn.tu-berlin.de/teaching/rn/animations/gbn_sr/>
+>     - <https://www2.tkn.tu-berlin.de/teaching/rn/animations/flow/>
 
 **Transmission Control Protocol(传输控制协议，简称 TCP)** 是[互联网协议套件](https://en.wikipedia.org/wiki/Internet_protocol_suite)的最主要协议之一。它起源于最初的网络实现，补充了 Internet Protocol。因此整个套件通常称为 **TCP/IP**。
 
@@ -50,7 +50,7 @@ TCP 天然认为网络环境是恶劣的，丢包、乱序、重传，拥塞都�
 
 - **LISTEN** # 服务端。等待来自远程的 TCP 请求
 - **SYN-SEN**T # TCP 第一次握手后客户端所处的状态。发送连接请求后，等待来自服务端的确认。
-  - TCP 默认 SYN 报文最大 retry 5 次，每次超时了翻倍，1s -> 3s -> 7s -> 15s -> 31s -> 63s。[参考资料](https://blog.csdn.net/u010039418/article/details/78234570)
+    - TCP 默认 SYN 报文最大 retry 5 次，每次超时了翻倍，1s -> 3s -> 7s -> 15s -> 31s -> 63s。[参考资料](https://blog.csdn.net/u010039418/article/details/78234570)
 - **SYN-RECEIVED** # TCP 第二次握手后服务端所处的状态。服务端已经接收到连接请求并发送确认。服务端正在等待最终确认。
 - **ESTABLISHED** # TCP 第三次握手后服务端与客户端所处的状态。代表连接已经建立起来了。这是连接数据传输阶段的正常状态。
 - **FIN-WAIT-1** # 等待来自远程 TCP 的终止连接请求或终止请求的确认
@@ -59,7 +59,7 @@ TCP 天然认为网络环境是恶劣的，丢包、乱序、重传，拥塞都�
 - **CLOSING** # 等待来自远程 TCP 的连接终止请求确认
 - **LAST_ACK** # 等待先前发送到远程 TCP 的连接终止请求的确认
 - **TIME-WAIT** # 主动断开连接一方的状态。等待足够的时间来确保远程 TCP 接收到其连接终止请求的确认
-  - TCP 主动关闭连接的一方在发送最后一个 ACK 后进入  `TIME_AWAIT`  状态，再等待 2 个 MSL 时间后才会关闭(因为如果 server 没收到 client 第四次挥手确认报文，server 会重发第三次挥手 FIN 报文，所以 client 需要停留 2 MSL 的时长来处理可能会重复收到的报文段；同时等待 2 MSL 也可以让由于网络不通畅产生的滞留报文失效，避免新建立的连接收到之前旧连接的报文)，了解更详细的过程请参考 TCP 四次挥手。
+    - TCP 主动关闭连接的一方在发送最后一个 ACK 后进入  `TIME_AWAIT`  状态，再等待 2 个 MSL 时间后才会关闭(因为如果 server 没收到 client 第四次挥手确认报文，server 会重发第三次挥手 FIN 报文，所以 client 需要停留 2 MSL 的时长来处理可能会重复收到的报文段；同时等待 2 MSL 也可以让由于网络不通畅产生的滞留报文失效，避免新建立的连接收到之前旧连接的报文)，了解更详细的过程请参考 TCP 四次挥手。
 
 # TCP 行为的过程
 
@@ -78,24 +78,24 @@ TCP 天然认为网络环境是恶劣的，丢包、乱序、重传，拥塞都�
 在 socket 编程中，客户端执行 connect() 时。将触发三次握手：
 
 - **第一次握手(SYN，SeqNum=client_isn)** # 客户端请求同步，发送 SYN 报文段
-  - 客户端生成一个随机数 client_isn
-  - 设置 TCP 首部字段
-    - 将 client_isn 填入到 Sequence Number 字段中。
-    - 将 TCP 标志中 SYN 的值设为 1。
-  - 发送完毕后，客户端进入 SYN_SEND 状态。
+    - 客户端生成一个随机数 client_isn
+    - 设置 TCP 首部字段
+        - 将 client_isn 填入到 Sequence Number 字段中。
+        - 将 TCP 标志中 SYN 的值设为 1。
+    - 发送完毕后，客户端进入 SYN_SEND 状态。
 - **第二次握手(SYN,ACK，SeqNum=server_isn，AckNum=client_isn+1)** # 服务端回应并请求同步，发送 SYN + ACK 报文段
-  - 服务端收到客户端的 SYN 报文段后，生成一个随机数 server_isn
-  - 设置 TCP 首部字段
-    - 将 server_isn 填入 Sequence Number 字段中
-    - 将 client_isn+1 填入 Acknowledgement Number 字段中。
-    - 将 TCP 标志中的 SYN 和 ACK 的值设为 1。
-  - 发送完毕后，服务器端进入 SYN_RCVD 状态。
+    - 服务端收到客户端的 SYN 报文段后，生成一个随机数 server_isn
+    - 设置 TCP 首部字段
+        - 将 server_isn 填入 Sequence Number 字段中
+        - 将 client_isn+1 填入 Acknowledgement Number 字段中。
+        - 将 TCP 标志中的 SYN 和 ACK 的值设为 1。
+    - 发送完毕后，服务器端进入 SYN_RCVD 状态。
 - **第三次握手(ACK，SeqNum=client_isn+1，AckNum=server_isn+1)** # 客户端回应确认，建立连接。发送 ACK 报文段
-  - 客户端收到服务端报文后，还需要向服务端回应最后一个 ACK 报文段
-  - 设置 TCP 首部字段
-    - 将 server_isn+1 填入 Acknowledgement Number 字段中。
-    - 将 TCP 标志中的 ACK 的值设为 1。
-  - 发送完毕后，客户端进入 ESTABLISHED 状态，当服务器端接收到这个包时，也进入 ESTABLISHED 状态，TCP 握手结束。
+    - 客户端收到服务端报文后，还需要向服务端回应最后一个 ACK 报文段
+    - 设置 TCP 首部字段
+        - 将 server_isn+1 填入 Acknowledgement Number 字段中。
+        - 将 TCP 标志中的 ACK 的值设为 1。
+    - 发送完毕后，客户端进入 ESTABLISHED 状态，当服务器端接收到这个包时，也进入 ESTABLISHED 状态，TCP 握手结束。
 
 注意：
 
@@ -146,7 +146,7 @@ TCP 的连接的拆除需要发送四个包，因此称为四次挥手(Four-way 
 > 参考：
 >
 > - 原文：[程序员宅基地，TCP报文（ tcp dup ack 、TCP Retransmission）](https://www.cxyzjd.com/article/ynchyong/109110028)
->   - [CSDN，TCP报文（ tcp dup ack 、TCP Retransmission）](https://blog.csdn.net/ynchyong/article/details/109110028)
+>     - [CSDN，TCP报文（ tcp dup ack 、TCP Retransmission）](https://blog.csdn.net/ynchyong/article/details/109110028)
 
 ## TCP 慢启动
 

@@ -37,13 +37,13 @@ dr-xr-xr-x 5 root root  0 Jan 26 21:46 unified
 #### ./cpu # CPU 子系统
 
 - ./cpu.cfs_quota_us 与 ./cpu.cfs_period_us # 用来限制进程每运行 cfs_period_us 一段时间，只能被分配到的总量为 cfs_quota_us 的 CPU 时间
-  - cfs_quota_us 默认值为-1，不做任何限制，如果修改为 20000(20ms)则表示 CPU 只能使用到 20%的
-  - cfs_period_us 默认值为 100000(100ms)
+    - cfs_quota_us 默认值为-1，不做任何限制，如果修改为 20000(20ms)则表示 CPU 只能使用到 20%的
+    - cfs_period_us 默认值为 100000(100ms)
 - ./cpu.shares #
 - ./cpu.stat #
-  - nr_periods #
-  - nr_throttled #
-  - throttled_time #
+    - nr_periods #
+    - nr_throttled #
+    - throttled_time #
 
 ### CGroupV2
 

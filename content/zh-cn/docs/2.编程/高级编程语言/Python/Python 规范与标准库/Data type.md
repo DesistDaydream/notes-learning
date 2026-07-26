@@ -1,6 +1,5 @@
 ---
 title: Data type
-linkTitle: Data type
 weight: 20
 ---
 

@@ -7,7 +7,7 @@ title: Kubernetes并发控制和资源变更
 > 参考：
 >
 > - [公众号，云原生实验室，Kubernetes 是如何控制并发和资源变更的](https://mp.weixin.qq.com/s/pLmKnu-PY6hdcO7qmdvb5A)
->   - [原文，简书，Kubernetes 并发控制和资源变更](https://www.jianshu.com/p/ac830694a2cf)
+>     - [原文，简书，Kubernetes 并发控制和资源变更](https://www.jianshu.com/p/ac830694a2cf)
 
 ## 并发控制
 
@@ -195,7 +195,6 @@ Kubernetes 对象的创建流程如下：
 4. 判断 key 是否已存在，如果不存在，则存入 ETCD，否则返回错误信息
 5. 记录执行耗时
 6. 返回存储好的数据，并将 ETCD 中更新后的 Reversion 设置为 resourceVersion
-
 
 ```go
 func (s *store) Create(ctx context.Context, key string, obj, out runtime.Object, ttl uint64) error {
@@ -413,7 +412,6 @@ Kubernetes 对象的 Patch 更新流程如下：
 2. 利用 DefaultUpdatedObjectInfo 方法将 applyPatch (应用 Patch 的方法)添加到 admission chain 的头部
 3. 最终还是调用上述 Update 方法执行更新操作
 
-
 ```go
 func (p *patcher) patchResource(ctx context.Context, scope *RequestScope) (runtime.Object, bool, error) {
   p.namespace = request.NamespaceValue(ctx)
@@ -508,7 +506,6 @@ merge patch 必须包含一个对资源对象的部分描述，json 对象。该
 
 - 如果 value 的值为 null,表示要删除对应的键，因此我们无法将 value 的值设置为 null, 如下，表示删除键 f
 
-
     {
      "a":"z",
      "c": {
@@ -517,7 +514,6 @@ merge patch 必须包含一个对资源对象的部分描述，json 对象。该
     }
 
 - merge patch 无法单独更新一个列表(数组)中的某个元素，因此不管我们是要在 containers 里新增容器、还是修改已有容器的 image、env 等字段，都要用整个 containers 列表(数组)来提交 patch：
-
 
     kubectl patch deployment/foo --type='merge' -p \
       '{"spec":{"template":{"spec":{"containers":[{"name":"app","image":"app-image:v2"},{"name":"nginx","image":"nginx:alpline"}]}}}}'

@@ -1,6 +1,5 @@
 ---
 title: Reverse engineering
-linkTitle: Reverse engineering
 weight: 1
 ---
 
@@ -17,8 +16,8 @@ weight: 1
 [吾爱破解](https://www.52pojie.cn/)
 
 - https://www.52pojie.cn/thread-1695141-1-1.html
-  - [吾爱破解安卓逆向入门教程《安卓逆向这档事》一、模拟器环境搭建](https://mp.weixin.qq.com/s/TchqbGnFsv6mdNm8Ksf60A)
-  - [吾爱破解安卓逆向入门教程《安卓逆向这档事》十五、是时候学习一下Frida一把梭了(下)](https://mp.weixin.qq.com/s/97o3fX9AN_kl2GCLhHAfig)
+    - [吾爱破解安卓逆向入门教程《安卓逆向这档事》一、模拟器环境搭建](https://mp.weixin.qq.com/s/TchqbGnFsv6mdNm8Ksf60A)
+    - [吾爱破解安卓逆向入门教程《安卓逆向这档事》十五、是时候学习一下Frida一把梭了(下)](https://mp.weixin.qq.com/s/97o3fX9AN_kl2GCLhHAfig)
 
 [图灵 Python](https://www.tulingpyton.cn/) 何老师相关课程
 
@@ -164,8 +163,8 @@ https://www.bilibili.com/video/BV1ew411K7nB?p=40
 微信小程序目录位置
 
 - PC
-  - `WeChat Files\Applet\` # 该目录为小程序所在文件夹。每个小程序文件都是一个独立的文件夹，以 wx 开头，像 `wx64479c83c7630409` 这样
-  - 想要找到对应的小程序，可以把所有 wx 开头的文件夹都删除，然后打开小程序，就会生成一个信息的 wx 开头的文件夹。
+    - `WeChat Files\Applet\` # 该目录为小程序所在文件夹。每个小程序文件都是一个独立的文件夹，以 wx 开头，像 `wx64479c83c7630409` 这样
+    - 想要找到对应的小程序，可以把所有 wx 开头的文件夹都删除，然后打开小程序，就会生成一个信息的 wx 开头的文件夹。
 
 UnpackMiniApp # 解密 `*.wxapkg` 文件获得 `*.wxapkg` 文件。TODO: 为什么要先解密？这是加的什么密？
 
@@ -174,11 +173,11 @@ UnpackMiniApp # 解密 `*.wxapkg` 文件获得 `*.wxapkg` 文件。TODO: 为什�
 Unveiler # 反编译解密后的 `*.wxapkg` 文件得到源码。
 
 - https://github.com/r3x5ur/unveilr # 好像是原始源码，但是 2.0 之后的版本作者收费了
-  - 只有个下载地址和 TG 号 https://t.me/Qobg3fbwQM1hNTY1
-  - https://u.openal.lat/ 提供下载和花钱买 token
-  - 下面是一些 2.0.2 版本源码的备份
-    - https://github.com/AnkioTomas/unveilr
-    - https://github.com/CoderYiXin/unveilr
+    - 只有个下载地址和 TG 号 https://t.me/Qobg3fbwQM1hNTY1
+    - https://u.openal.lat/ 提供下载和花钱买 token
+    - 下面是一些 2.0.2 版本源码的备份
+        - https://github.com/AnkioTomas/unveilr
+        - https://github.com/CoderYiXin/unveilr
 - https://app.appletsec.xyz/ 有些文档和下载地址
 
 使用微信开发者工具打开项目
@@ -187,7 +186,7 @@ Unveiler # 反编译解密后的 `*.wxapkg` 文件得到源码。
 
 - https://github.com/wux1an/wxapkg
 - https://github.com/zgqwork/wxapkg-unpacker
-  - 基于 https://github.com/qwerty472123/wxappUnpacker, 该项目已于 2021 年删库归档
+    - 基于 https://github.com/qwerty472123/wxappUnpacker, 该项目已于 2021 年删库归档
 
 # Web 逆向
 
@@ -198,10 +197,10 @@ Unveiler # 反编译解密后的 `*.wxapkg` 文件得到源码。
 在 [Software design](/docs/2.编程/Programming%20technology/Software%20design.md) 可以知道网站的数据有动态和静态两种。
 
 - 若是静态的数据，在 “[DevTools](/docs/Web/Browser/DevTools.md) - 网络 - 文档” 中查看数据资源
-  - 静态数据通常是直接返回 HTML 页面，此时我们可以直接使用各种语言的 DOM 树管理库，通过 XPath 等方式定位元素，以获取其中的数据
-  - 这类网站有的时候有个特点，一个页面有需要两次请求，第一次返回一段 js 代码，然后生成 cookie，第二次带着 cookie 发起请求再获取到静态 HTML 数据。
-    - 这两次请求需要在 开发者工具 - 网络 中打开 “保留日志” 功能才可以看到第一次。
-  - https://www.bilibili.com/video/BV1ew411K7nB?p=19 这里有介绍。
+    - 静态数据通常是直接返回 HTML 页面，此时我们可以直接使用各种语言的 DOM 树管理库，通过 XPath 等方式定位元素，以获取其中的数据
+    - 这类网站有的时候有个特点，一个页面有需要两次请求，第一次返回一段 js 代码，然后生成 cookie，第二次带着 cookie 发起请求再获取到静态 HTML 数据。
+        - 这两次请求需要在 开发者工具 - 网络 中打开 “保留日志” 功能才可以看到第一次。
+    - https://www.bilibili.com/video/BV1ew411K7nB?p=19 这里有介绍。
 - 若是动态的数据，在 “[DevTools](/docs/Web/Browser/DevTools.md) - 网络 - Fetch/XHR” 中查看数据资源
 
 扣 js 代码。主要是找到加密/解密相关的 JS 代码，找到后大段大段得放到本地，给定已加密的数据，可以正常解密就算成功。绝大部分都是扣的函数，然后传密文（密文响应体能直接看到）进去返回明文。而 JS 代码又可以被 Python 执行。
@@ -212,7 +211,7 @@ Unveiler # 反编译解密后的 `*.wxapkg` 文件得到源码。
 - 使用 `函数名.toString()` 的方式可以直接在控制台输出函数。此时从控制台直接拷贝即可。
 - 在源代码页面把鼠标放到函数上，可以看到 `FunctionLacation` 标志，右侧有个连接，点击即可跳转到该函数。
 - 通过控制台的代码段重写 `JSON.stringify`、`JSON.parse` 等常见方法的逻辑，添加 debugger 关键字，以便在代码无法找到时，虽慢但准得找到解密相关代码。
-  - https://www.bilibili.com/video/BV1Cz4y1w78y
+    - https://www.bilibili.com/video/BV1Cz4y1w78y
 
 补环境。有的代码，可能会获取浏览器特定的一些属性，比如 [WebAPIs](/docs/Web/WebAPIs/WebAPIs.md) 中 document、window 等对象中的数据。此时如果使用代码编译器运行代码的场合是没有办法获取到这些信息的，需要在代码中手动造一些浏览器信息。
 
@@ -228,7 +227,7 @@ Unveiler # 反编译解密后的 `*.wxapkg` 文件得到源码。
 - 在网络中使用 `Ctrl + f` 打开搜索，并搜索关键字，找到被选中的请求
 - 从网络标签中找到被选中（深灰色北京）的请求，点击该请求的 `Initiator(启动器)` 进入到代码位置
 - 如何查找代码有多种方式。首先使用左下角的 *美观输出*，随后在代码中寻找感兴趣的内容。
-  - 比如查找 sign 之类的关键字，找到 sign 的生成逻辑。
+    - 比如查找 sign 之类的关键字，找到 sign 的生成逻辑。
 
 ## 已加密的数据如何处理
 

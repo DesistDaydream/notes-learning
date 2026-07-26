@@ -1,6 +1,5 @@
 ---
 title: kubeadm 实现细节
-linkTitle: kubeadm 实现细节
 weight: 4
 ---
 
@@ -19,21 +18,21 @@ weight: 4
 `kubeadm init` 和 `kubeadm join` 结合在一起提供了良好的用户体验。`kubeadm init` 和 `kubeadm join` 设置的集群应为：
 
 - Secure 安全——应采用最新的最佳做法
-  - 加强 RBAC
-  - 使用节点授权器
-  - 在控制平面组件之间使用安全通信
-  - 在 API 服务器和 kubelet 之间使用安全通信
-  - 锁定 kubelet API
-  - 锁定对系统组件（例如 kube-proxy 和 CoreDNS）的 API 的访问
-  - 锁定引导令牌可以访问的内容
+    - 加强 RBAC
+    - 使用节点授权器
+    - 在控制平面组件之间使用安全通信
+    - 在 API 服务器和 kubelet 之间使用安全通信
+    - 锁定 kubelet API
+    - 锁定对系统组件（例如 kube-proxy 和 CoreDNS）的 API 的访问
+    - 锁定引导令牌可以访问的内容
 - Easy to use 易于使用——用户只需要运行几个命令即可
-  - kubeadm init
-  - export KUBECONFIG=/etc/kubernetes/admin.conf
-  - kubectl apply -f \<network-of-choice.yaml>
-  - kubeadm join --token  :
+    - kubeadm init
+    - export KUBECONFIG=/etc/kubernetes/admin.conf
+    - kubectl apply -f \<network-of-choice.yaml>
+    - kubeadm join --token  :
 - Extendable 可扩展
-  - 它应该不偏袒任何特定的网络提供商。配置群集网络超出范围
-  - 它应该提供使用配置文件来自定义各种参数的可能性
+    - 它应该不偏袒任何特定的网络提供商。配置群集网络超出范围
+    - 它应该提供使用配置文件来自定义各种参数的可能性
 
 ## kubeadm 默认所需使用的值和目录
 
@@ -76,15 +75,15 @@ Kubeadm 在启动 init 之前执行一组 prefight checks(预检检查)，目的
 
 - \[警告]如果要使用的 Kubernetes 版本（带有--kubernetes-version 标志指定）至少比 kubeadm CLI 版本高一个次要版本。
 - Kubernetes 系统要求：
-  - 如果在 Linux 上运行：
-    - \[错误]如果内核早于最低要求的版本
-    - \[错误]如果未设置所需的 cgroups 子系统
-  - 如果使用 docker：
-    - \[警告/错误]如果 Docker 服务不存在，则被禁用，如果它不处于活动状态。
-    - \[错误]如果 Docker 端点不存在或不起作用
-    - \[警告]如果 docker 版本不在经过验证的 docker 版本列表中
-  - 如果使用其他 cri 引擎：
-    - \[错误]如果 crictl 套接字未回答
+    - 如果在 Linux 上运行：
+        - \[错误]如果内核早于最低要求的版本
+        - \[错误]如果未设置所需的 cgroups 子系统
+    - 如果使用 docker：
+        - \[警告/错误]如果 Docker 服务不存在，则被禁用，如果它不处于活动状态。
+        - \[错误]如果 Docker 端点不存在或不起作用
+        - \[警告]如果 docker 版本不在经过验证的 docker 版本列表中
+    - 如果使用其他 cri 引擎：
+        - \[错误]如果 crictl 套接字未回答
 - \[错误]如果用户不是 root 用户
 - \[错误]如果计算机主机名不是有效的 DNS 子域
 - \[警告]如果无法通过网络查找访问主机名
@@ -104,15 +103,15 @@ Kubeadm 在启动 init 之前执行一组 prefight checks(预检检查)，目的
 - \[警告]如果服务子网的连接通过代理进行（仅检查第一个地址）
 - \[警告]如果 Pods 子网的连接通过代理进行（仅检查第一个地址）
 - 如果提供了外部 etcd：
-  - \[错误]如果 etcd 版本早于最低要求版本
-  - \[错误]如果指定了 etcd 证书或密钥，但未提供
+    - \[错误]如果 etcd 版本早于最低要求版本
+    - \[错误]如果指定了 etcd 证书或密钥，但未提供
 - 如果未提供外部 etcd（因此将安装本地 etcd）：
-  - \[错误]如果使用端口 2379
-  - \[错误]如果 Etcd.DataDir 文件夹已经存在并且不为空
+    - \[错误]如果使用端口 2379
+    - \[错误]如果 Etcd.DataDir 文件夹已经存在并且不为空
 - 如果授权方式为 ABAC：
-  - \[错误]如果 abac_policy.json 不存在
+    - \[错误]如果 abac_policy.json 不存在
 - 如果授权方式为 WebHook
-  - \[错误]如果 webhook_authz.conf 不存在
+    - \[错误]如果 webhook_authz.conf 不存在
 
 请注意：
 
@@ -124,11 +123,11 @@ Kubeadm 为不同目的生成证书和私钥对：
 
 - Kubernetes 集群的自签名证书颁发机构已保存到 ca.crt 文件和 ca.key 私钥文件中
 - API 服务器的服务证书，使用 ca.crtCA 生成，并 apiserver.crt 使用其私钥保存到文件中 apiserver.key。该证书应包含以下备用名称：
-  - Kubernetes 服务的内部 clusterIP（服务 CIDR 中的第一个地址，例如，10.96.0.1 如果服务子网为 10.96.0.0/12）
-  - Kubernetes DNS 名称，例如，kubernetes.default.svc.cluster.local 如果--service-dns-domain 标志值 cluster.local，再加上默认的 DNS 名称 kubernetes.default.svc，kubernetes.default，kubernetes
-  - 节点名称
-  - 的 --apiserver-advertise-address
-  - 用户指定的其他备用名称
+    - Kubernetes 服务的内部 clusterIP（服务 CIDR 中的第一个地址，例如，10.96.0.1 如果服务子网为 10.96.0.0/12）
+    - Kubernetes DNS 名称，例如，kubernetes.default.svc.cluster.local 如果--service-dns-domain 标志值 cluster.local，再加上默认的 DNS 名称 kubernetes.default.svc，kubernetes.default，kubernetes
+    - 节点名称
+    - 的 --apiserver-advertise-address
+    - 用户指定的其他备用名称
 - API 服务器安全连接到 kubelet 的客户端证书，使用 ca.crtCA 作为证书生成，并 apiserver-kubelet-client.crt 使用其私钥保存到 文件中 apiserver-kubelet-client.key。该证书应在 system:masters 组织中
 - 用于签名保存到 sa.key 文件中的 ServiceAccount 令牌的私钥及其公钥 sa.pub
 - 前代理的证书颁发机构 front-proxy-ca.crt 及其密钥保存在文件中 front-proxy-ca.key
@@ -149,8 +148,8 @@ Kubeadm 为不同目的生成证书和私钥对：
 Kubeadm 生成具有用于控制平面组件标识的 kubeconfig 文件：
 
 - 在 TLS 引导期间要使用的 kubelet 的 kubeconfig 文件-/etc/kubernetes/bootstrap-kubelet.conf。在此文件中，有一个引导令牌或嵌入式客户端证书，用于通过群集验证此节点。该客户证书应：
-  - system:nodes 根据[节点授权](https://kubernetes.io/docs/reference/access-authn-authz/node/)模块的要求在组织中
-  - 具有通用名称（CN） system:node:
+    - system:nodes 根据[节点授权](https://kubernetes.io/docs/reference/access-authn-authz/node/)模块的要求在组织中
+    - 具有通用名称（CN） system:node:
 - 控制器管理器的 kubeconfig 文件/etc/kubernetes/controller-manager.conf；在此文件中嵌入了具有控制器管理员身份的客户端证书。此客户端证书应具有 CN system:kube-controller-manager，如默认[RBAC 核心组件角色](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#core-component-roles)所定义
 - 用于调度程序的 kubeconfig 文件/etc/kubernetes/scheduler.conf；在此文件中嵌入了具有调度程序标识的客户端证书。此客户端证书应具有 CN system:kube-scheduler，如默认[RBAC 核心组件角色](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#core-component-roles)所定义
 
@@ -174,8 +173,8 @@ Kubeadm 将用于控制平面组件的静态 Pod 清单文件写入/etc/kubernet
 - 所有静态 Pod 获取 tier:control-plane 并 component:{component-name}标记
 - 所有静态 Pod 使用 system-node-critical 优先级类别
 - hostNetwork: true 在所有静态 Pod 上设置，以允许在配置网络之前启动控制平面；作为结果：
-  - 该 address 控制器经理和调度使用，指的 API 服务器 127.0.0.1
-  - 如果使用本地 etcd 服务器，则 etcd-servers 地址将设置为 127.0.0.1:2379
+    - 该 address 控制器经理和调度使用，指的 API 服务器 127.0.0.1
+    - 如果使用本地 etcd 服务器，则 etcd-servers 地址将设置为 127.0.0.1:2379
 - 同时为控制器管理器和调度程序启用了领导者选举
 - 控制器管理器和调度器将使用各自的唯一身份引用 kubeconfig 文件
 - 如[将自定义参数传递到控制平面组件中](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/control-plane-flags/)所述，所有静态 Pod 都会获得用户指定的任何其他标志
@@ -203,37 +202,37 @@ API 服务器的静态 Pod 清单受用户提供的以下参数影响：
 - --allow-privileged 到 true（例如，kube 代理要求）
 - --requestheader-client-ca-file 至 front-proxy-ca.crt
 - --enable-admission-plugins 至：
-  - [NamespaceLifecycle](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#namespacelifecycle) 例如，避免删除系统保留的名称空间
-  - [LimitRanger](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#limitranger)并[ResourceQuota](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#resourcequota)限制名称空间
-  - [ServiceAccount](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#serviceaccount) 强制执行服务帐户自动化
-  - [PersistentVolumeLabel](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#persistentvolumelabel)将区域或区域标签附加到由云提供程序定义的 PersistentVolumes（不推荐使用此准入控制器，并将在以后的版本中将其删除。默认情况下，不明确选择使用 gce 或 aws 作为云使用时，kubeadm 不会从 v1.9 开始部署该控件）提供者）
-  - [DefaultStorageClass](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#defaultstorageclass)对 PersistentVolumeClaim 对象实施默认存储类
-  - [DefaultTolerationSeconds](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#defaulttolerationseconds)
-  - [NodeRestriction](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#noderestriction) 限制 kubelet 可以修改的内容（例如，仅此节点上的 pod）
+    - [NamespaceLifecycle](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#namespacelifecycle) 例如，避免删除系统保留的名称空间
+    - [LimitRanger](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#limitranger)并[ResourceQuota](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#resourcequota)限制名称空间
+    - [ServiceAccount](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#serviceaccount) 强制执行服务帐户自动化
+    - [PersistentVolumeLabel](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#persistentvolumelabel)将区域或区域标签附加到由云提供程序定义的 PersistentVolumes（不推荐使用此准入控制器，并将在以后的版本中将其删除。默认情况下，不明确选择使用 gce 或 aws 作为云使用时，kubeadm 不会从 v1.9 开始部署该控件）提供者）
+    - [DefaultStorageClass](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#defaultstorageclass)对 PersistentVolumeClaim 对象实施默认存储类
+    - [DefaultTolerationSeconds](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#defaulttolerationseconds)
+    - [NodeRestriction](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#noderestriction) 限制 kubelet 可以修改的内容（例如，仅此节点上的 pod）
 - --kubelet-preferred-address-types 到 InternalIP,ExternalIP,Hostname;这使得 kubectl logs 在环境和其它 API 服务器 kubelet 沟通工作，其中节点的主机名不解析
 - 使用先前步骤中生成的证书的标志：
-  - --client-ca-file 至 ca.crt
-  - --tls-cert-file 至 apiserver.crt
-  - --tls-private-key-file 至 apiserver.key
-  - --kubelet-client-certificate 至 apiserver-kubelet-client.crt
-  - --kubelet-client-key 至 apiserver-kubelet-client.key
-  - --service-account-key-file 至 sa.pub
-  - --requestheader-client-ca-file 至 front-proxy-ca.crt
-  - --proxy-client-cert-file 至 front-proxy-client.crt
-  - --proxy-client-key-file 至 front-proxy-client.key
+    - --client-ca-file 至 ca.crt
+    - --tls-cert-file 至 apiserver.crt
+    - --tls-private-key-file 至 apiserver.key
+    - --kubelet-client-certificate 至 apiserver-kubelet-client.crt
+    - --kubelet-client-key 至 apiserver-kubelet-client.key
+    - --service-account-key-file 至 sa.pub
+    - --requestheader-client-ca-file 至 front-proxy-ca.crt
+    - --proxy-client-cert-file 至 front-proxy-client.crt
+    - --proxy-client-key-file 至 front-proxy-client.key
 - 用于保护前端代理（[API Aggregation](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/aggregated-api-servers.md)）通信的其他标志：
-  - --requestheader-username-headers=X-Remote-User
-  - --requestheader-group-headers=X-Remote-Group
-  - --requestheader-extra-headers-prefix=X-Remote-Extra-
-  - --requestheader-allowed-names=front-proxy-client
+    - --requestheader-username-headers=X-Remote-User
+    - --requestheader-group-headers=X-Remote-Group
+    - --requestheader-extra-headers-prefix=X-Remote-Extra-
+    - --requestheader-allowed-names=front-proxy-client
 
 ### Controller manager
 
 API 服务器的静态 Pod 清单受用户提供的以下参数影响：
 
 - 如果通过指定 a 调用 kubeadm --pod-network-cidr，则可以通过以下设置启用某些 CNI 网络插件所需的子网管理器功能：
-  - --allocate-node-cidrs=true
-  - --cluster-cidr 并--node-cidr-mask-size 根据给定的 CIDR 进行标记
+    - --allocate-node-cidrs=true
+    - --cluster-cidr 并--node-cidr-mask-size 根据给定的 CIDR 进行标记
 - 如果指定了云提供商，则将指定相应的云提供商，--cloud-provider 并指定--cloud-config 路径（如果存在此配置文件）（这是实验性的 Alpha，将在以后的版本中删除）
 
 其他无条件设置的标志是：
@@ -241,10 +240,10 @@ API 服务器的静态 Pod 清单受用户提供的以下参数影响：
 - --controllers 为 TLS 引导启用所有默认控制器 plus BootstrapSigner 和 TokenCleanercontrollers。有关更多详细信息，请参见[TLS 引导](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/)
 - --use-service-account-credentials 至 true
 - 使用先前步骤中生成的证书的标志：
-  - --root-ca-file 至 ca.crt
-  - --cluster-signing-cert-file 到 ca.crt，如果外部 CA 模式被禁用，否则""
-  - --cluster-signing-key-file 到 ca.key，如果外部 CA 模式被禁用，否则""
-  - --service-account-private-key-file 至 sa.key
+    - --root-ca-file 至 ca.crt
+    - --cluster-signing-cert-file 到 ca.crt，如果外部 CA 模式被禁用，否则""
+    - --cluster-signing-key-file 到 ca.key，如果外部 CA 模式被禁用，否则""
+    - --service-account-private-key-file 至 sa.key
 
 ### Scheduler
 
@@ -412,9 +411,9 @@ kubeadm 在开始加入之前执行一组预检检查，以验证先决条件并
 
 - 首先，通过不安全的连接检索 CA 证书（这是可能的，因为已 kubeadm init 授予的 cluster-info 用户访问权限 system:unauthenticated）
 - 然后，CA 证书将通过以下验证步骤：
-  - 基本验证：针对 JWT 签名使用令牌 ID
-  - 发布密钥验证：使用提供的--discovery-token-ca-cert-hash。此值在 kubeadm init 标准工具的输出中可用，或可以使用标准工具计算（该哈希值是按 RFC7469 中的主题公共密钥信息（SPKI）对象的字节计算的）。该--discovery-token-ca-cert-hash flag 可重复多次，以允许多于一个公钥。
-  - 作为附加验证，通过安全连接检索 CA 证书，然后将其与最初检索的 CA 进行比较
+    - 基本验证：针对 JWT 签名使用令牌 ID
+    - 发布密钥验证：使用提供的--discovery-token-ca-cert-hash。此值在 kubeadm init 标准工具的输出中可用，或可以使用标准工具计算（该哈希值是按 RFC7469 中的主题公共密钥信息（SPKI）对象的字节计算的）。该--discovery-token-ca-cert-hash flag 可重复多次，以允许多于一个公钥。
+    - 作为附加验证，通过安全连接检索 CA 证书，然后将其与最初检索的 CA 进行比较
 
 请注意：
 

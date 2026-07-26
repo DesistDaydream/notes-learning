@@ -1,6 +1,5 @@
 ---
 title: OpenSSL
-linkTitle: OpenSSL
 weight: 1
 ---
 
@@ -19,8 +18,8 @@ OpenSSL 主要包含两组东西：
 
 - openssl # 多用途的命令行工具
 - libraries # OpenSSL 库
-  - libcrypto # 加密解密库
-  - libssl # ssl 库，实现了 ssl 及 tls 的功能
+    - libcrypto # 加密解密库
+    - libssl # ssl 库，实现了 ssl 及 tls 的功能
 
 # OpenSSL 关联文件与配置
 
@@ -48,11 +47,11 @@ openssl 程序提供了丰富的子命令，以实现 TLS/SSL 网络协议以及
 ### Command
 
 - Standard commands # 标准命令
-  - asn1parse，ca，ciphers，cms，crl，crl2pkcs7，dgst，dh，dhparam，dsa，dsaparam，ec，ecparam，enc，engine，errstr，gendh，gendsa，genpkey，genrsa，nseq，ocsp，passwd，pkcs12，pkcs7，pkcs8，pkey，pkeyparam，pkeyutl，prime，rand，req，rsa，rsautl，s_client，s_server，s_time，sess_id，smime，speed，spkac，ts，verify，version，x509
+    - asn1parse，ca，ciphers，cms，crl，crl2pkcs7，dgst，dh，dhparam，dsa，dsaparam，ec，ecparam，enc，engine，errstr，gendh，gendsa，genpkey，genrsa，nseq，ocsp，passwd，pkcs12，pkcs7，pkcs8，pkey，pkeyparam，pkeyutl，prime，rand，req，rsa，rsautl，s_client，s_server，s_time，sess_id，smime，speed，spkac，ts，verify，version，x509
 - Message Digest commands # 消息摘要命令，消息摘要算法的实现(用于单向加密)。使用 dgst 命令
-  - md2，md4，md5，rmd160，sha，sha1
+    - md2，md4，md5，rmd160，sha，sha1
 - Cipher commands # 密码命令（其中都是各种加密算法，用于对称加密）。使用 enc 命令
-  - aes-128-cbc，aes-128-ecb，aes-192-cbc，aes-192-ecb，aes-256-cbc，aes-256-ecb，base64，bf，bf-cbc，bf-cfb，bf-ecb，bf-ofb，camellia-128-cbc，camellia-128-ecb，camellia-192-cbc，camellia-192-ecb，camellia-256-cbc，camellia-256-ecb，cast，cast-cbc，cast5-cbc，cast5-cfb，cast5-ecb，cast5-ofb，des，des-cbc，des-cfb，des-ecb，des-ede，des-ede-cbc，des-ede-cfb，des-ede-ofb，des-ede3，des-ede3-cbc，des-ede3-cfb，des-ede3-ofb，des-ofb，des3，desx，idea，idea-cbc，idea-cfb，idea-ecb，idea-ofb，rc2，rc2-40-cbc，rc2-64-cbc，rc2-cbc，rc2-cfb，rc2-ecb，rc2-ofb，rc4，rc4-40，rc5，rc5-cbc，rc5-cfb，rc5-ecb，rc5-ofb，seed，seed-cbc，seed-cfb，seed-ecb，seed-ofb，zlib
+    - aes-128-cbc，aes-128-ecb，aes-192-cbc，aes-192-ecb，aes-256-cbc，aes-256-ecb，base64，bf，bf-cbc，bf-cfb，bf-ecb，bf-ofb，camellia-128-cbc，camellia-128-ecb，camellia-192-cbc，camellia-192-ecb，camellia-256-cbc，camellia-256-ecb，cast，cast-cbc，cast5-cbc，cast5-cfb，cast5-ecb，cast5-ofb，des，des-cbc，des-cfb，des-ecb，des-ede，des-ede-cbc，des-ede-cfb，des-ede-ofb，des-ede3，des-ede3-cbc，des-ede3-cfb，des-ede3-ofb，des-ofb，des3，desx，idea，idea-cbc，idea-cfb，idea-ecb，idea-ofb，rc2，rc2-40-cbc，rc2-64-cbc，rc2-cbc，rc2-cfb，rc2-ecb，rc2-ofb，rc4，rc4-40，rc5，rc5-cbc，rc5-cfb，rc5-ecb，rc5-ofb，seed，seed-cbc，seed-cfb，seed-ecb，seed-ofb，zlib
 
 ### Global OPTIONS
 
@@ -96,13 +95,13 @@ EXAMPLE
 ## 在 kubernetes 中生成个人证书
 
 - 在当前目录下生成一个 2048 位的名为 lch.key 的私钥（括号的作用是创建子 shell 执行命令，这样 umask 命令对当前 shell 没影响）
-  - (umask 077;openssl genrsa -out lch.key 2048)
+    - (umask 077;openssl genrsa -out lch.key 2048)
 - 使用 lck.key 进行证书申请
-  - openssl req -new -key lch.key -out lch.csr -subj "/CN=lch"
+    - openssl req -new -key lch.key -out lch.csr -subj "/CN=lch"
 - 使用 ca.key 来给 lch.crt 颁发证书，以生成 lch.crt 文件
-  - openssl x509 -req -in lch.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out lch.crt -days 365
+    - openssl x509 -req -in lch.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out lch.crt -days 365
 - 查看 ca.crt 证书的信息
-  - openssl x509 -in lch.crt -text -noout
+    - openssl x509 -in lch.crt -text -noout
 
 openssl x509 部分命令
 

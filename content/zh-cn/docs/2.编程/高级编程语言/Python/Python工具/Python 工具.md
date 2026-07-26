@@ -1,6 +1,5 @@
 ---
 title: Python 工具
-linkTitle: Python 工具
 created: 2026-03-17T17:56
 weight: 1
 ---
@@ -90,7 +89,7 @@ OPTIONS
 
 - **-S** # Python 启动初始化时，不要导入 site 包
 - **-m \<ModuleName>** # 在 `sys.path` 中搜索指定模块，并默认执行模块中 `__name__` 为 `__main__` 的代码
-  - `python3 -m site` 等效于 `python3 /usr/lib/python3.8/site.py`
+    - `python3 -m site` 等效于 `python3 /usr/lib/python3.8/site.py`
 
 ## EXAMPLE
 

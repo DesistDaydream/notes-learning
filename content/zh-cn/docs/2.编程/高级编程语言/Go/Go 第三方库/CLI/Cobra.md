@@ -589,8 +589,8 @@ RunE 功能的执行先后顺序如下：
 比如现在创建了一个 cobra 命令，具有如下几个子命令：
 
 - add
-  - command
-  - args
+    - command
+    - args
 - del
 
 如果在 cobra 和 add 中都使用了 PersistentPreRun() 函数的话，只会有一个执行，并且是子命令的方法优先，参考 Issue：

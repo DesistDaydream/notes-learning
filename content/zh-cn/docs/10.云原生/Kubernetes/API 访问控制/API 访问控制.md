@@ -1,6 +1,5 @@
 ---
 title: API 访问控制
-linkTitle: API 访问控制
 weight: 1
 ---
 
@@ -120,18 +119,18 @@ Kubernetes 支持多种授权模块，例如 ABAC 模式，RBAC 模式和 Webhoo
 实际上 API 服务器可以通过两个端口提供服务，默认情况下，API 服务器在 2 个端口上提供 HTTP 服务：
 
 - Localhost Port:
-  - 用于测试和启动，以及管理节点的其他组件(scheduler, controller-manager)与 API 的交互
-  - 没有 TLS
-  - 默认值为 8080，可以通过 API Server 的 `--insecure-port` 命令行标志来修改。
-  - 默认的 IP 地址为 localhost，可以通过 API Server 的 `--insecure-bind-address` 命令行标志来修改。
-  - 请求会 **绕过** 认证和鉴权模块。
-  - 请求会被准入控制模块处理。
-  - 其访问需要主机访问的权限。
+    - 用于测试和启动，以及管理节点的其他组件(scheduler, controller-manager)与 API 的交互
+    - 没有 TLS
+    - 默认值为 8080，可以通过 API Server 的 `--insecure-port` 命令行标志来修改。
+    - 默认的 IP 地址为 localhost，可以通过 API Server 的 `--insecure-bind-address` 命令行标志来修改。
+    - 请求会 **绕过** 认证和鉴权模块。
+    - 请求会被准入控制模块处理。
+    - 其访问需要主机访问的权限。
 - Secure Port:
-  - 尽可能使用该端口访问
-  - 应用 TLS。 可以通过 API Server 的 `--tls-cert-file` 设置证书， `--tls-private-key-file` 设置私钥。
-  - 默认值为 6443，可以通过 API Server 的 `--secure-port` 命令行标志来修改。
-  - 默认 IP 是首个非本地的网络接口地址，可以通过 API Server 的 `--bind-address` 命令行标志来修改。
-  - 请求会经过认证和鉴权模块处理。
-  - 请求会被准入控制模块处理。
-  - 要求认证和授权模块正常运行。
+    - 尽可能使用该端口访问
+    - 应用 TLS。 可以通过 API Server 的 `--tls-cert-file` 设置证书， `--tls-private-key-file` 设置私钥。
+    - 默认值为 6443，可以通过 API Server 的 `--secure-port` 命令行标志来修改。
+    - 默认 IP 是首个非本地的网络接口地址，可以通过 API Server 的 `--bind-address` 命令行标志来修改。
+    - 请求会经过认证和鉴权模块处理。
+    - 请求会被准入控制模块处理。
+    - 要求认证和授权模块正常运行。

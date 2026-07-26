@@ -1,6 +1,5 @@
 ---
 title: DMTF
-linkTitle: DMTF
 weight: 20
 ---
 
@@ -21,7 +20,7 @@ DMTF 总部位于俄勒冈州波特兰，由代表科技公司的董事会领导
 
 > 参考：
 >
-> - [官方文档，标准 - SMBIOS ](https://www.dmtf.org/standards/smbios)
+> - [官方文档，标准 - SMBIOS](https://www.dmtf.org/standards/smbios)
 > - [Wiki, Desktop_Management_Interface](https://en.wikipedia.org/wiki/Desktop_Management_Interface)
 
 **Desktop Management Interface(桌面管理接口，简称 DMI)** 是帮助收集电脑系统信息的管理系统，DMI 信息的收集必须在严格遵照 **SMBIOS(System Management BIOS)** 规范的前提下进行。 SMBIOS 是主板或系统制造者以标准格式显示产品管理信息所需遵循的统一规范。SMBIOS/DMI 是由行业指导机构 DMTF 起草的开放性的技术标准，其中 DMI 设计适用于任何的平台和操作系统。

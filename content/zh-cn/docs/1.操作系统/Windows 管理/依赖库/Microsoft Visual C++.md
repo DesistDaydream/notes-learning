@@ -1,6 +1,5 @@
 ---
 title: Microsoft Visual C++
-linkTitle: Microsoft Visual C++
 weight: 20
 ---
 

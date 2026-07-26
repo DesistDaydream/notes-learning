@@ -1,6 +1,5 @@
 ---
 title: generic 组
-linkTitle: generic 组
 weight: 20
 ---
 

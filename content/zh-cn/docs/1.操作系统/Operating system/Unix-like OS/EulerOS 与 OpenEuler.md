@@ -1,6 +1,5 @@
 ---
 title: EulerOS 与 OpenEuler
-linkTitle: EulerOS 与 OpenEuler
 weight: 80
 ---
 

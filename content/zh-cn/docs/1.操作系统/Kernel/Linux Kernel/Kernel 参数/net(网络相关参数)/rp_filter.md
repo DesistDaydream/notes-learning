@@ -1,6 +1,5 @@
 ---
 title: rp_filter
-linkTitle: rp_filter
 weight: 20
 ---
 
@@ -8,7 +7,7 @@ weight: 20
 
 > 参考：
 >
-> - 
+> -
 
 rp_filter 参数应用实例
 
@@ -70,7 +69,7 @@ net.ipv4.conf.default.rp_filter=1
 
 校验数据包的反向路径，如果客户端伪造的源 IP 地址对应的反向路径不在路由表中，或者反向路径不是最佳路径，则直接丢弃数据包，不会向伪造 IP 的客户端回复响应。
 
-### Ps：两种常见的非法攻击手段：
+### Ps：两种常见的非法攻击手段
 
 1. DDos 攻击(Distribute Deny of Service)
 
@@ -80,11 +79,11 @@ net.ipv4.conf.default.rp_filter=1
 
 IP Spoofing 指一个客户端通过伪造源 IP，冒充另外一个客户端与目标服务进行通信，从而达到某些不可告人的秘密。
 
-## 另一种说法：
+## 另一种说法
 
 比如一台设备安装两~~个 ~~haproxy，有多个网~~卡~~，多个 ip，不同 haproxy 代理不同网段，给不同后端。那么就需要关闭校验。
 
-## 另一种说法：
+## 另一种说法
 
 在 Linux 中用于对 网卡的反向路由过滤策略进行配置的内核参数是 rp_filter，有关此参数的详细介绍以及配置方式请参见 Linux 内核参数 rp_filter。
 

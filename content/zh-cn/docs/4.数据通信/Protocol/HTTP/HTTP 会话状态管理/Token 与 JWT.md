@@ -5,7 +5,7 @@ title: Token 与 JWT
 # 概述
 
 > 参考：
-> 
+>
 > - [JWT 官网](https://jwt.io/)
 > - [RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519)
 > - [阮一峰，JSON Web Token 入门教程](http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html)
@@ -97,15 +97,15 @@ Payload 部分也是一个 JSON 对象，用来存放实际需要传递的数据
 一共有三种类型的 Claims：
 
 - **Registered Claims(已注册要求)**，其实就是 JWT 默认自带的。JWT 规定了 7 个默认的 Claims。
-  - **iss(issuer)** # 签发人。与 x509 证书的 Issuer 概念一样
-  - **sub(subject)** # 主体。与 x509 证书的 Subject 概念一样
-  - **aud(audience)** # 受众，就是 JWT 的人或程序或某事物
-  - **exp(expiration time)** # 过期时间。这个时间必须要大于 `iat` 字段指定的时间
-  - **nbf(Not Before)** # 生效时间。定义在什么时间之前该 JWT 是不可用的。类似 X.509 中的 `Not Before` 字段。
-  - **iat(Issued At)** # 签发时间。
-  - **jti(JWT ID)** # JWT 的 ID，主要用来作为一次性 Token，从而回避重放攻击
+    - **iss(issuer)** # 签发人。与 x509 证书的 Issuer 概念一样
+    - **sub(subject)** # 主体。与 x509 证书的 Subject 概念一样
+    - **aud(audience)** # 受众，就是 JWT 的人或程序或某事物
+    - **exp(expiration time)** # 过期时间。这个时间必须要大于 `iat` 字段指定的时间
+    - **nbf(Not Before)** # 生效时间。定义在什么时间之前该 JWT 是不可用的。类似 X.509 中的 `Not Before` 字段。
+    - **iat(Issued At)** # 签发时间。
+    - **jti(JWT ID)** # JWT 的 ID，主要用来作为一次性 Token，从而回避重放攻击
 - **Public Claims(公共要求)**，使用 JWT 时的自定义 Claims。
-  - 但是给 Public Claims 命名时，要注意不要与 [IANA JSON Web Token Registry](https://www.iana.org/assignments/jwt/jwt.xhtml) 中定义的名称相冲突。
+    - 但是给 Public Claims 命名时，要注意不要与 [IANA JSON Web Token Registry](https://www.iana.org/assignments/jwt/jwt.xhtml) 中定义的名称相冲突。
 - **Private Claims(私有要求)**，也是一种自定义的 Claims，通常用来共享信息。JWT 的生产者和消费者可以同意使用 Private Claims，而不是其他两种类型的 Claims。
 
 下面就是一个有效的 Payload 的示例：

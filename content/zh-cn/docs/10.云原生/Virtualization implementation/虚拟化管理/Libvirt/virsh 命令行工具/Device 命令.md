@@ -39,17 +39,17 @@ https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst#attach-di
 
 - SOURCE 是本地的 qcow2、raw 这种格式的文件。如果指定了 --source-protocol 选项，则 SOURCE 可以是网络磁盘。
 - TARGET 是虚拟机中的设备，比如 vdb、vdc 这种。
-  - 可以使用 --target 选项指定 TARGET
+    - 可以使用 --target 选项指定 TARGET
 
 **OPTIONS**
 
 - **--driver DRIVER** # 指定要使用的磁盘驱动程序。
-  - 可用的值有：对于 QEMU 来说可以是 qemu；对于 Xen 来说可以是 file、tap、phy
+    - 可用的值有：对于 QEMU 来说可以是 qemu；对于 Xen 来说可以是 file、tap、phy
 - **--subdriver STRING** # 为 --driver 选项提供更多的详细信息。
-  - 可用的值有：对于 QEMU 来说可以是 raw、qcow2；对于 Xen 来说可以是 aio
+    - 可用的值有：对于 QEMU 来说可以是 raw、qcow2；对于 Xen 来说可以是 aio
 - **--target STING** # 指定暴露给操作系统的的总线或设备。如果是硬盘的话，通常的值是 vdb、vdc、vdd 这种。
 - **--targetbus STRING** # 指定要模拟的设备类型。`默认值：从设备名称的样式中推断出总线类型`
-  - 可用的值：virtio、sata、scsi、usb
+    - 可用的值：virtio、sata、scsi、usb
 - **--cache STRING** # 可用的值：none
 
 ## detach-disk

@@ -129,7 +129,7 @@ Linus Torvalds：我现在写的代码很少，而且已经很久没写了。再
 
 所以电子邮件仍然是主要的沟通渠道，并且因为邮件中可以包含补丁，我们可以更容易地讨论技术问题。而且邮件可以跨越时区，当参与者分布在不同地区时，这一点非常重要。
 
-**Jeremy Andrews：我密切关注内核开发大约有 10 年了，并在 KernelTrap 上写与内核有关的博文，大概是在 3.0 内核发布时停止更新博客。3.0 内核的发布与 2.6.x 内核的发布相隔了 8 年。请总结一下自 3.0 版本以来内核开发中发生的一些有趣的事情。** 
+**Jeremy Andrews：我密切关注内核开发大约有 10 年了，并在 KernelTrap 上写与内核有关的博文，大概是在 3.0 内核发布时停止更新博客。3.0 内核的发布与 2.6.x 内核的发布相隔了 8 年。请总结一下自 3.0 版本以来内核开发中发生的一些有趣的事情。**
 
 **Linus Torvalds**：那是很久以前的事了，我不知道该从哪里开始总结。从 3.0 版本到现在已经 10 年了，在这 10 年中发生了很多技术上的变化。ARM 已经发展成熟，ARM64 已经成为我们的主要架构之一，并出现了大量新的驱动程序和核心功能。
 
@@ -285,4 +285,4 @@ Git 最大的改进在于“普通用户”的使用体验变得更好了。一�
 
 [近30年的开源项目被“夺权”，员工集体离职后成立新项目抗衡](http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&mid=2651077789&idx=1&sn=2daf0b27fe003778788303b3ac0e3628&chksm=bdb9c4ce8ace4dd8209a162be91e374043019db5e4c38859810d0ffedcaa278f1fcf29e77705&scene=21#wechat_redirect)
 
-[终于！Fuchsia OS正式公开可用，谷歌迈出了五年来最关键的一步](http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&mid=2651077685&idx=1&sn=7b53a1f32d84386a1dc9d2a289ed63df&chksm=bdb9c4668ace4d706d07ac5c25f43ed5b07ec7963786936b3c41e24590df30806ead4a06ab7c&scene=21#wechat_redirect)  
+[终于！Fuchsia OS正式公开可用，谷歌迈出了五年来最关键的一步](http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&mid=2651077685&idx=1&sn=7b53a1f32d84386a1dc9d2a289ed63df&chksm=bdb9c4668ace4d706d07ac5c25f43ed5b07ec7963786936b3c41e24590df30806ead4a06ab7c&scene=21#wechat_redirect)

@@ -1,6 +1,5 @@
 ---
 title: os
-linkTitle: os
 weight: 20
 ---
 

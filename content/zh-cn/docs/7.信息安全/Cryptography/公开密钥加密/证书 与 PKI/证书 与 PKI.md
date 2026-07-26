@@ -1,6 +1,5 @@
 ---
 title: 证书 与 PKI
-linkTitle: 证书 与 PKI
 weight: 20
 ---
 
@@ -16,7 +15,7 @@ weight: 20
 > - [RFC,5280](https://datatracker.ietf.org/doc/html/rfc5280)
 > - [公众号,云原生生态圈-白话文说 CA 原理](https://mp.weixin.qq.com/s/E-aU-lbieGLokDKbjdGc3g)
 > - [Arthurchiao 博客,\[译\] 写给工程师：关于证书（certificate）和公钥基础设施（PKI）的一切（SmallStep, 2018）](https://arthurchiao.art/blog/everything-about-pki-zh/)
->   - [公众号-云原生实验室，搬运了上面的文章](https://mp.weixin.qq.com/s/li3ZjfNgX5nh7AKjyyzt5A)
+>     - [公众号-云原生实验室，搬运了上面的文章](https://mp.weixin.qq.com/s/li3ZjfNgX5nh7AKjyyzt5A)
 
 Certificate 与 PKI 的目标很简单：Bind names to Public Keys(将名字关联到公钥)。这是关于 Certificate 与 PKI 的最高抽象，其他都是属于实现细节
 
@@ -32,7 +31,7 @@ Certificate 与 PKI 的目标很简单：Bind names to Public Keys(将名字关�
 
 - 首先，我需要从对方手里拿到公钥和其拥有者的信息
 - 那么我如何相信我拿到的信息是真实有效的呢？~可以请一个双方都信任的权威机构，对我拿到的信息做出证明
-  - 而这个权威机构用来证明信息有效的东西，就是 Certificate
+    - 而这个权威机构用来证明信息有效的东西，就是 Certificate
 
 公钥证书通常应该包含如下内容：
 
@@ -40,8 +39,8 @@ Certificate 与 PKI 的目标很简单：Bind names to Public Keys(将名字关�
 - 有关其所有者的身份信息，称为 Subject(主体)
 - 验证证书内容的实体的数字签名，这个实体称为 Issuer(发行人)
 - 权威机构对证书的签名，签名的大概意思就是：`Public key XXX 关联到了 name XXX`，这就对应了文章开头的那句话：Certificate 与 PKI 的目标很简单：Bind names to Public Keys(将名字关联到公钥)
-  - 对证书的签名的实体称为 **Certificate Authority(简称 CA)**，也可以称为 **Issuer(签发者)**。
-  - 被签名的实体称为 **Subject(主体)**。
+    - 对证书的签名的实体称为 **Certificate Authority(简称 CA)**，也可以称为 **Issuer(签发者)**。
+    - 被签名的实体称为 **Subject(主体)**。
 
 举个例子，如果某个 Issuer 为 Bob 签发了一张证书，其中的内容就可以解读如下：
 
@@ -92,17 +91,17 @@ CA 自身的证书，通常称为 **Root Certificate(根证书)**，根证书是
 这个信任仓库又是如何来的呢？
 
 - 浏览器 # 浏览器默认使用的信任仓库以及其他任何使用 TLS 的东西，都是由 4 个组织维护的
-  - [Apple’s root certificate](http://www.apple.com/certificateauthority/ca_program.html)：iOS/macOS 程序
-  - [Microsoft’s root certificate program](https://social.technet.microsoft.com/wiki/contents/articles/31633.microsoft-trusted-root-program-requirements.aspx)：Windows 使用
-  - [Mozilla’s root certificate program](https://www.mozilla.org/en-US/about/governance/policies/security-group/certs/)： Mozilla 产品使用，由于其开放和透明，也作为其他一些信任仓库从基础 (e.g., for many Linux distributions)
-  - Google [未维护 root certificate program](https://www.chromium.org/Home/chromium-security/root-ca-policy) （Chrome 通常使用所在计算的操作系统的信任仓库），但 [维护了自己的黑名单](https://chromium.googlesource.com/chromium/src/+/master/net/data/ssl/blacklist/README.md)， 列出了自己不信任的根证书或特定证书。 ([ChromeOS builds off of Mozilla’s certificate program](https://chromium.googlesource.com/chromiumos/docs/+/master/ca_certs.md))
+    - [Apple’s root certificate](http://www.apple.com/certificateauthority/ca_program.html)：iOS/macOS 程序
+    - [Microsoft’s root certificate program](https://social.technet.microsoft.com/wiki/contents/articles/31633.microsoft-trusted-root-program-requirements.aspx)：Windows 使用
+    - [Mozilla’s root certificate program](https://www.mozilla.org/en-US/about/governance/policies/security-group/certs/)： Mozilla 产品使用，由于其开放和透明，也作为其他一些信任仓库从基础 (e.g., for many Linux distributions)
+    - Google [未维护 root certificate program](https://www.chromium.org/Home/chromium-security/root-ca-policy) （Chrome 通常使用所在计算的操作系统的信任仓库），但 [维护了自己的黑名单](https://chromium.googlesource.com/chromium/src/+/master/net/data/ssl/blacklist/README.md)， 列出了自己不信任的根证书或特定证书。 ([ChromeOS builds off of Mozilla’s certificate program](https://chromium.googlesource.com/chromiumos/docs/+/master/ca_certs.md))
 - 操作系统 # 操作系统中的信任仓库通常是各自发行版自带的。不同的发行版，保存路径不同，保存方式也不同：
-  - CentOS 发行版
-    - /etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt # 包含所有证书，每个证书前有注释
-  - Ubuntu 发行版
-    - /etc/ssl/certs/\* # 该目录中一个证书一个文件
-  - Windows，证书位置如图
-    - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wlyw54/1662898111701-e46d8a99-c518-48fa-8eb2-9a37448d3df3.png)
+    - CentOS 发行版
+        - /etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt # 包含所有证书，每个证书前有注释
+    - Ubuntu 发行版
+        - /etc/ssl/certs/\* # 该目录中一个证书一个文件
+    - Windows，证书位置如图
+        - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wlyw54/1662898111701-e46d8a99-c518-48fa-8eb2-9a37448d3df3.png)
 
 信任仓库中通常包含了超过 100 个由这些程序维护的常见 CA。比如：
 
@@ -258,10 +257,10 @@ provisioning infrastructure 必须理解 identity 的概念，这样才能将正
 在 subscriber 侧，证书过期后，私钥要处理得当：
 
 - 如果一个密钥对之前是**用来签名/认证**的（例如，基于 TLS），
-  - 应该在不需要这个密钥对之后，**立即删除私钥**。
-  - 保留已经失效的签名秘钥（signing key）会导致不必要的风险：对谁都已经没有用处，反而会被拿去仿冒签名。
+    - 应该在不需要这个密钥对之后，**立即删除私钥**。
+    - 保留已经失效的签名秘钥（signing key）会导致不必要的风险：对谁都已经没有用处，反而会被拿去仿冒签名。
 - 如果密钥对是**用来加密的**，情况就不同了。
-  - 只要还有数据是用这个加密过的，就需要**留着这个私钥**。
+    - 只要还有数据是用这个加密过的，就需要**留着这个私钥**。
 
 这就是为什么很多人会说，**不要用同一组秘钥来同时做签名和加密**（signing and encryption）。 因为当一个用于签名的私钥过期时，**无法实现秘钥生命周期的最佳管理**： 最终不得不保留着这个私钥，因为解密还要用它。
 

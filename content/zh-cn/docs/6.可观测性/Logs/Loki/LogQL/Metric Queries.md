@@ -1,6 +1,5 @@
 ---
 title: Metric Queries
-linkTitle: Metric Queries
 weight: 20
 ---
 

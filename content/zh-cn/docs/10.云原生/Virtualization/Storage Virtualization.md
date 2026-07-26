@@ -1,6 +1,5 @@
 ---
 title: Storage Virtualization
-linkTitle: Storage Virtualization
 weight: 5
 ---
 

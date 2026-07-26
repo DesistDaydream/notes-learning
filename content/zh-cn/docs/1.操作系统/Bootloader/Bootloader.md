@@ -1,6 +1,5 @@
 ---
 title: Bootloader
-linkTitle: Bootloader
 weight: 1
 ---
 

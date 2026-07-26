@@ -1,6 +1,5 @@
 ---
 title: pam_limits
-linkTitle: pam_limits
 weight: 20
 ---
 
@@ -34,27 +33,27 @@ weight: 20
 ```
 
 - **DOMAIN** # 设置需要被限制的用户名或组名，组名前面加@和用户名区别。也可使用通配符 `*` 来表示所有用户
-  - <font color="#ff0000">Notes</font>: Ubuntu 的 [Manual-limits.conf(5)](https://manpages.ubuntu.com/manpages/jammy/en/man5/limits.conf.5.html) 中提到<font color="#ff0000">组和通配符限制不适用于 root 用户</font>。要设置 root 用户的限制，此字段必须包含文字用户名 root。在 [stackexchange](https://unix.stackexchange.com/questions/299942/wildcard-domain-in-limits-conf-applies-to-root-user-but-shouldnt) 中的套路提到这是为了解决 [bug 63230](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=63230)
+    - <font color="#ff0000">Notes</font>: Ubuntu 的 [Manual-limits.conf(5)](https://manpages.ubuntu.com/manpages/jammy/en/man5/limits.conf.5.html) 中提到<font color="#ff0000">组和通配符限制不适用于 root 用户</font>。要设置 root 用户的限制，此字段必须包含文字用户名 root。在 [stackexchange](https://unix.stackexchange.com/questions/299942/wildcard-domain-in-limits-conf-applies-to-root-user-but-shouldnt) 中的套路提到这是为了解决 [bug 63230](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=63230)
 - **TYPE** # 在设定上，通常 soft 会比 hard 小，举例来说，soft 可设定为 80 而 hard 设定为 100，那么你可以使用到 90 (因为没有超过 100)，但介于 80~100 之间时，系统会有警告讯息通知你！
-  - hard # 严格的设定，指设定的 value 必定不能超过设定的数值
-  - soft # 警告的设定，指设定的 value 可以超过设定值，但是若超过则有警告讯息。
+    - hard # 严格的设定，指设定的 value 必定不能超过设定的数值
+    - soft # 警告的设定，指设定的 value 可以超过设定值，但是若超过则有警告讯息。
 - **ITEM** # 指定要限制的项目
-  - core # 限制内核文件的大小
-    - 何谓 core 文件,当一个程序崩溃时，在进程当前工作目录的 core 文件中复制了该进程的存储图像。core 文件仅仅是一个内存映象（同时加上调试信息），主要是用来调试的。core 文件是个二进制文件，需要用相应的工具来分析程序崩溃时的内存映像，系统默认 core 文件的大小为 0，所以没有被创建。可以用 ulimit 命令查看和修改 core 文件的大小，例如：ulimit -c 1000 # 指定修改 core 文件的大小，1000 指定了 core 文件大小。也可以对 core 文件的大小不做限制，如： ulimit -c unlimited
-  - date # 最大数据大小
-  - fsize # 最大文件大小
-  - memlock # 最大锁定内存地址空间
-  - nofile # 打开文件的最大数目，默认为 1024
-    - 对于需要做许多套接字连接并使它们处于打开状态的应用程序而言，最好通过使用 ulimit -n，或者通过设置 nofile 参数，为用户把文件描述符的数量设置得比默认值高一些
-  - rss # 最大持久设置大小
-  - stack # 最大栈大小
-  - cpu # 以分钟为单位的最多 CPU 时间
-  - nproc # 打开进程的最大数
-  - as # 地址空间限制
-  - maxlogins # 此用户允许登录的最大数目
+    - core # 限制内核文件的大小
+        - 何谓 core 文件,当一个程序崩溃时，在进程当前工作目录的 core 文件中复制了该进程的存储图像。core 文件仅仅是一个内存映象（同时加上调试信息），主要是用来调试的。core 文件是个二进制文件，需要用相应的工具来分析程序崩溃时的内存映像，系统默认 core 文件的大小为 0，所以没有被创建。可以用 ulimit 命令查看和修改 core 文件的大小，例如：ulimit -c 1000 # 指定修改 core 文件的大小，1000 指定了 core 文件大小。也可以对 core 文件的大小不做限制，如： ulimit -c unlimited
+    - date # 最大数据大小
+    - fsize # 最大文件大小
+    - memlock # 最大锁定内存地址空间
+    - nofile # 打开文件的最大数目，默认为 1024
+        - 对于需要做许多套接字连接并使它们处于打开状态的应用程序而言，最好通过使用 ulimit -n，或者通过设置 nofile 参数，为用户把文件描述符的数量设置得比默认值高一些
+    - rss # 最大持久设置大小
+    - stack # 最大栈大小
+    - cpu # 以分钟为单位的最多 CPU 时间
+    - nproc # 打开进程的最大数
+    - as # 地址空间限制
+    - maxlogins # 此用户允许登录的最大数目
 - **VALUE** # 指定 ITEM 中具体项目的值
-  - NUM # 可以是具体的数值
-  - unlimited # 表示无限制的
+    - NUM # 可以是具体的数值
+    - unlimited # 表示无限制的
 
 ## security 目录下文件的配置示例
 

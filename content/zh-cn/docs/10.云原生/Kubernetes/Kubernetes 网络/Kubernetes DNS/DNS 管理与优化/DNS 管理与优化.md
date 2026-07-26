@@ -146,14 +146,14 @@ hostaliases-pod 这个 pod 的容器内的 /etc/hosts 文件的内容看起来�
 
 ```bash
 # Kubernetes-managed hosts file.
-127.0.0.1	localhost
-::1	localhost ip6-localhost ip6-loopback
-fe00::0	ip6-localnet
-fe00::0	ip6-mcastprefix
-fe00::1	ip6-allnodes
-fe00::2	ip6-allrouters
-10.200.0.5	hostaliases-pod
+127.0.0.1 localhost
+::1 localhost ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+fe00::0 ip6-mcastprefix
+fe00::1 ip6-allnodes
+fe00::2 ip6-allrouters
+10.200.0.5 hostaliases-pod
 # Entries added by HostAliases.
-127.0.0.1	foo.local	bar.local
-10.1.2.3	foo.remote	bar.remote
+127.0.0.1 foo.local bar.local
+10.1.2.3 foo.remote bar.remote
 ```

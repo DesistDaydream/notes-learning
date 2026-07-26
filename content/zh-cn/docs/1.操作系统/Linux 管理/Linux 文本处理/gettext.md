@@ -1,6 +1,5 @@
 ---
 title: "gettext"
-linkTitle: "gettext"
 weight: 20
 ---
 

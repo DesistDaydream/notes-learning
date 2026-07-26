@@ -1,6 +1,5 @@
 ---
 title: Helm CLI
-linkTitle: Helm CLI
 weight: 1
 ---
 
@@ -107,13 +106,13 @@ helm repo [SubCommand]
 SubCommand
 
 - add # 添加一个 charts 仓库
-  - helm repo add [FLAGS] NAME URL # 添加一个名为 Name,url 为 URL 的仓库
-  - EXAMPLE
-    - helm repo add desistdaydream https://www.desistdaydream.com
+    - helm repo add [FLAGS] NAME URL # 添加一个名为 Name,url 为 URL 的仓库
+    - EXAMPLE
+        - helm repo add desistdaydream https://www.desistdaydream.com
 - index       generate an index file given a directory containing packaged charts
 - list        list chart repositories
-  - EXAMPLE
-    - helm repo list
+    - EXAMPLE
+        - helm repo list
 - remove      remove a chart repository
 - update      update information of available charts locally from chart repositories
 
@@ -155,7 +154,7 @@ FLAGS
 FLAGS
 
 - -o, --output FORMAT # 以指定的格式输出内容。`默认值：table`。可用的值有 table、json、yaml
-  - 注意：yaml 格式可以显示该 release 的所有资源
+    - 注意：yaml 格式可以显示该 release 的所有资源
 - --revision INT # 显示指定历史版本的信息
 
 ## template - 在本地渲染 chart 模板，并展示输出

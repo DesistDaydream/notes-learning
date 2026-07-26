@@ -1,6 +1,5 @@
 ---
 title: Connection tracking for Netfilter
-linkTitle: Connection tracking for Netfilter
 weight: 2
 ---
 
@@ -11,7 +10,7 @@ weight: 2
 > - [Netfilter 官方文档，连接跟踪工具用户手册](https://conntrack-tools.netfilter.org/manual.html)
 > - [云计算基层技术-netfilter 框架研究](https://opengers.github.io/openstack/openstack-base-netfilter-framework-overview/)
 > - [arthurchiao.art 的文章](http://arthurchiao.art/index.html)
->   - [连接跟踪（conntrack）：原理、应用及 Linux 内核实现](http://arthurchiao.art/blog/conntrack-design-and-implementation-zh/)
+>     - [连接跟踪（conntrack）：原理、应用及 Linux 内核实现](http://arthurchiao.art/blog/conntrack-design-and-implementation-zh/)
 
 **Connection Tracking(连接跟踪系统，简称 ConnTrack、CT)**，用于跟踪并且记录连接状态。Linux 为每一个经过网络堆栈的数据包，生成一个 **ConnTrack Entry(连接跟踪条目，简称 Entry)**，并把该条目记录在一个 **ConnnTrack Table(连接跟踪表)** 中，条目中主要是包含该连接的协议、源 IP 和 PORT、目标 IP 和 PORT、协议号、数据包的大小等等等信息。此后，在处理数据包时读取该文件，在文件中所有属于此连接的数据包都被唯一地分配给这个连接，并标识连接的状态。该文件中的每一个条目都有一个持续时间，当持续时间结束后，该连接会被自动清除，再有相同的连接进来的时候，则按照新连接来处理。Netfilter 中定义了如下几个连接状态以便对具有这些状态的连接进行处理：
 
@@ -42,7 +41,7 @@ nf_conntrack 文件中，每个条目占用单独一行。条目中包含了数�
 在内核中，**ConnTrackTable(连接跟踪表)** 实际上是一个 **hash table(哈希表)**。收到一个数据包，通过如下步骤判断该数据包是否署一个已有连接(即定位连接跟踪条目)：
 
 - 第一步：内核提取数据包信息(源 IP、目的 IP、port，协议号)进行 hash 计算得到一个 hash 值，在哈希表中以此 hash 值做索引，索引结果为数据包所属的 **Bucket(储存区)**。这一步 hash 计算时间固定并且很短。
-  - 一个 **Bucket(储存区)** 里包含一个 **linked list(已链接的列表，简称链表)**，即已经追踪的条目的列表。也就是说，每个 Bucket 里可以存放多个 ConnTrack Entry。所谓 Bucket 的大小，就是指一个 Bucket 中可以存放多少个 ConnTrack Entry。
+    - 一个 **Bucket(储存区)** 里包含一个 **linked list(已链接的列表，简称链表)**，即已经追踪的条目的列表。也就是说，每个 Bucket 里可以存放多个 ConnTrack Entry。所谓 Bucket 的大小，就是指一个 Bucket 中可以存放多少个 ConnTrack Entry。
 - 第二步：遍历第一步获取的 Bucket 中的所有条目，查找是否有匹配的条目。这一步是比较耗时的操作，所以说 Bucket 越大，遍历时间越长
 
 ## Bucket(储存区)
@@ -50,9 +49,9 @@ nf_conntrack 文件中，每个条目占用单独一行。条目中包含了数�
 在 Connection Tracking 系统中的 hash table 中，有若干个 **Bucket(储存区)**，Bucket 的个数通过两个内核参数计算而来
 
 - net.netfilter.nf_conntrack_buckets # 一个表最大的 Bucket 数量。默认通过内存计算得来，内存越高，Bucket 越多。也可以通过设置模块参数指定具体的数值
-  - 无法通过 sysctl 修改 nf_conntrack_buckets 的值，该值只能通过加载 nf_conntrack 模块时的参数来决定。使用 `echo "options nf_conntrack hashsize=16384" > /etc/modprobe.d/nf_conntrack.conf` 命令即可设置该内核参数为 16384
+    - 无法通过 sysctl 修改 nf_conntrack_buckets 的值，该值只能通过加载 nf_conntrack 模块时的参数来决定。使用 `echo "options nf_conntrack hashsize=16384" > /etc/modprobe.d/nf_conntrack.conf` 命令即可设置该内核参数为 16384
 - net.netfilter.nf_conntrack_max # 一个表最大的 Entry 数量。默认为 nf_conntrack_buckets 值的 4 倍。也就是说，**Bucket 的大小默认为 4**，即系统默认每个 Bucket 中包含 4 个 ConnTrack Entry。
-  - 当不使用系统默认的 nf_conntrack_buckets 值时，则 nf_conntrack_max 的值为 nf_conntrack_buckets 的 8 倍
+    - 当不使用系统默认的 nf_conntrack_buckets 值时，则 nf_conntrack_max 的值为 nf_conntrack_buckets 的 8 倍
 
 如果把一个 Bucket 的大小称为 `BucketSize` 的话，那么`BucketSize = nf_conntrack_max / nf_conntrack_buckets`(这意思就是说 `储存区的大小=条目总数 / 储存区的总数`，所以储存区大小就是指能装多少条目)
 
@@ -132,17 +131,17 @@ print 'sizeof(struct list_head):', ctypes.sizeof(ctypes.c_void_p) * 2
 连接跟踪系统的配置大部分都可以通过修改内核参数来进行，还有一部分需要通过指定 模块的参数 来配置。
 
 - **/proc/net/nf_conntrack** # 连接跟踪表，该文件用于记录每一个连接跟踪条目
-  - 注意：Ubuntu 中没有该文件，可以通过 `conntrack -L` 命令获取连接跟踪条目。据说该文件已 deprecated(弃用)，但是未找到官方说明
-  - <https://forum.ubuntu.com.cn/viewtopic.php?t=480072>
-  - <https://askubuntu.com/questions/266991/in-ubuntu-12-10-how-to-enable-proc-net-ip-conntrack>
-  - <https://patchwork.ozlabs.org/project/ubuntu-kernel/patch/1341986947-28300-3-git-send-email-bryan.wu@canonical.com/>
-  - <https://github.com/kubernetes/kubernetes/pull/69589/files#r418929810>
+    - 注意：Ubuntu 中没有该文件，可以通过 `conntrack -L` 命令获取连接跟踪条目。据说该文件已 deprecated(弃用)，但是未找到官方说明
+    - <https://forum.ubuntu.com.cn/viewtopic.php?t=480072>
+    - <https://askubuntu.com/questions/266991/in-ubuntu-12-10-how-to-enable-proc-net-ip-conntrack>
+    - <https://patchwork.ozlabs.org/project/ubuntu-kernel/patch/1341986947-28300-3-git-send-email-bryan.wu@canonical.com/>
+    - <https://github.com/kubernetes/kubernetes/pull/69589/files#r418929810>
 - **/proc/sys/net/nf_conntrack_max** # 等于 /proc/sys/net/netfilter/nf_conntrack_max 的值。修改这俩参数任意一个值，都会互相同步。
 - **/proc/sys/net/netfilter/** # 网络栈的运行时属性所在的目录
-  - **./nf_conntrack_count** # 当前连接跟踪数。
-  - **./nf_conntrack_max** # 连接跟踪表的大小，即一个表中有可以存放多少个条目。默认值为 nf_conntrack_buckets \*4 。等于 /proc/sys/net/nf_conntrack_max 的值。
-  - **./nf_conntrack_buckets** # hash 表的大小，即一个 hash 表中有多少个 Buckets。
-  - **./nf_conntrack_tcp_timeout_time_wait** # timewait 状态的条目超时时间。 默认 120 秒
+    - **./nf_conntrack_count** # 当前连接跟踪数。
+    - **./nf_conntrack_max** # 连接跟踪表的大小，即一个表中有可以存放多少个条目。默认值为 nf_conntrack_buckets \*4 。等于 /proc/sys/net/nf_conntrack_max 的值。
+    - **./nf_conntrack_buckets** # hash 表的大小，即一个 hash 表中有多少个 Buckets。
+    - **./nf_conntrack_tcp_timeout_time_wait** # timewait 状态的条目超时时间。 默认 120 秒
 
 # 应用实例
 

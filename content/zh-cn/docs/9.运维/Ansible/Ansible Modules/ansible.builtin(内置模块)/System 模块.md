@@ -1,6 +1,5 @@
 ---
 title: "System 模块"
-linkTitle: "System 模块"
 weight: 20
 ---
 
@@ -96,10 +95,10 @@ setup 模块在 Ansible 执行时自动运行，收集到的信息会以 [Fact �
 
 - **name(STRING)** # Unit 的名称
 - **state(STRING)** # 设置 Unit 的状态。可用的值有
-  - reloaded
-  - restarted
-  - started
-  - stopped
+    - reloaded
+    - restarted
+    - started
+    - stopped
 - **enabled(BOOLEAN)** # 设置 Unit 是否应该自启动
 
 ### 使用示例
@@ -142,5 +141,5 @@ user 模块使用示例：该示例同样适用于更改密码
 Note：生成加密密码的方式
 
 - ansible all -i localhost, -m debug -a "msg={{ 'mypassword' | password\_hash('sha512', 'mysecretsalt') }}"
-  - 命令中的 mypassword 就是想要使用的密码，mysecretsalt 则是密码学中加的盐，详见<https://zh.wikipedia.org/wiki/%E7%9B%90_(%E5%AF%86%E7%A0%81%E5%AD%A6)>
-  - 将输出信息引号内的部分直接当做 password 的值即可
+    - 命令中的 mypassword 就是想要使用的密码，mysecretsalt 则是密码学中加的盐，详见<https://zh.wikipedia.org/wiki/%E7%9B%90_(%E5%AF%86%E7%A0%81%E5%AD%A6)>
+    - 将输出信息引号内的部分直接当做 password 的值即可

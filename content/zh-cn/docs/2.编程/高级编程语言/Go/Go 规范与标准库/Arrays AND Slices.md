@@ -1,6 +1,5 @@
 ---
 title: Arrays AND Slices
-linkTitle: Arrays AND Slices
 weight: 5
 ---
 
@@ -41,7 +40,7 @@ var ArrayID [LENGTH]TYPE
 
 - 每次对一个元素进行赋值，一般使用循环来实现
 - 使用`{}`大括号，直接对数组进行初始化
-  - e.g.`var arr = [5]int{1,5,23,2,10}`
+    - e.g.`var arr = [5]int{1,5,23,2,10}`
 
 ## Array 的引用
 
@@ -89,20 +88,20 @@ ArrayID[INDEX]
 `var SliceID []TYPE = ARR[START:END]`。切片通过数组 ARR 从 START 号索引到 END-1 号索引之间的元素构成自己(切分数组，`START:END`被称为 slice 表达式)。切片的长度为 `END-START`，切片的容量为`从所引用的数组索引号START这个元素到这个数组最后一个元素的所有元素的个数`
 
 - e.g.如果定义了一个数组 `var arr1 [7]int`
-  - `var slice1 []type = arr1[2:5]`。`slice1[0]`等于`arr1[2]`。`len(slice1)`切片长度为 3,`cap(slice1)`切片容量为 5
-  - `var slice2 []type = arr1[:]` 切片 slice2 等于完整的 arr1 数组。另一种表示方式：`slice2 = &arr1`
-  - `arr1[2:]` 和 `arr1[2:len(arr1)]` 相同，表示包含了数组的 2 号索引到最后最一个索引的所有元素。
-  - `arr1[:3]` 和 `arr1[0:3]` 相同，表示包含了从数组的 0 号索引到 2 号索引的所有元素(不包括 3 号索引的元素)。
-  - `s := [3]int{1,2,3}[:]`和`s := []int{1,2,3}` 相同，表示由数字 1、2、3 组成的切片
-  - `s2 := s[:]`使用切片组成的切片，拥有相同的元素，但是仍然指向相同的相关数组
-  - `var x = []int{2,3,4,5,11}` 创建了一个长度为 5 的数组且创建了一个相关切片。
+    - `var slice1 []type = arr1[2:5]`。`slice1[0]`等于`arr1[2]`。`len(slice1)`切片长度为 3,`cap(slice1)`切片容量为 5
+    - `var slice2 []type = arr1[:]` 切片 slice2 等于完整的 arr1 数组。另一种表示方式：`slice2 = &arr1`
+    - `arr1[2:]` 和 `arr1[2:len(arr1)]` 相同，表示包含了数组的 2 号索引到最后最一个索引的所有元素。
+    - `arr1[:3]` 和 `arr1[0:3]` 相同，表示包含了从数组的 0 号索引到 2 号索引的所有元素(不包括 3 号索引的元素)。
+    - `s := [3]int{1,2,3}[:]`和`s := []int{1,2,3}` 相同，表示由数字 1、2、3 组成的切片
+    - `s2 := s[:]`使用切片组成的切片，拥有相同的元素，但是仍然指向相同的相关数组
+    - `var x = []int{2,3,4,5,11}` 创建了一个长度为 5 的数组且创建了一个相关切片。
 
 ### 使用`make()`函数来创建一个切片，同时创建好相关数组
 
 格式：`var SliceID []TYPE = make([]TYPE, LEN, CAP)`也可以简写为`SliceD ：= make([]TYPE, LEN, CAP)`（其中 CAP 是可省的，默认与 LEN 相同）。`MapID`为切片名；`TYPE`为该切片的数据类型；`LEN`为该切片的长度；`CAP`为该切片的总容量。CAP 可以理解为切片所引用的数组的长度，切片的长度不能超过容量 i.e.不能超过所引用的数组的长度。make()函数接受 2 个参数：元素的类型、切片的个数。
 
 - e.g.`s2 := make([]int, 10)`。定义了一个名为 s2，长度与容量都为 10 的整型切片
-  - 这个例子可以拆解为两句，首先会声明一个数组`var XX [10]int`，然后使用该数组初始化一个切片`var s2 []int = XX[:]`Note:使用 make，而不是直接使用`var persons []Person`的声明方式。还是有所差别的，使用 make 的方式，当数组切片没有元素的时候，Json 会返回\[]。如果直接声明，json 会返回 null
+    - 这个例子可以拆解为两句，首先会声明一个数组`var XX [10]int`，然后使用该数组初始化一个切片`var s2 []int = XX[:]`Note:使用 make，而不是直接使用`var persons []Person`的声明方式。还是有所差别的，使用 make 的方式，当数组切片没有元素的时候，Json 会返回\[]。如果直接声明，json 会返回 null
 
 ## Slice 的引用
 

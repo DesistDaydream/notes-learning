@@ -1,6 +1,5 @@
 ---
 title: Kubernetes 证书管理
-linkTitle: Kubernetes 证书管理
 weight: 1
 ---
 
@@ -158,21 +157,21 @@ etcd 与 etcd 之间，etcd 与 apiserver，apiserver 与 kubelet、scheduler、
 Cluster 中各组件互相通信所用到的 Certificate
 
 - ETCD 的证书，这是集群中的其中一套证书：api-server 作为客户端与服务端 etcd 通信，etcd 集群之间互相对等通信
-  - **ca.crt**(证书 CN：etcd-ca) # 给 apiserver 发客户端证书，给 etcd 发服务端证书以及对等证书
-  - **peer.crt**(证书 CN：HostName) # etcd 集群各节点属于对等节点，使用 peer 类型证书(一般分为 server 证书和 client 证书，但是 etcd 集群之间不存在服务端和客户端的区别)
-  - **apiserver-etcd-client.crt**(证书 CN：kube-apiserver-etcd-client) # 与 server.crt 证书对应。apiserver 作为 etcd 的客户端所用的证书
-  - **server.crt**(证书 CN：HostName) # 与 apiserver-etcd-client.crt 证书对应。etcd 作为 apiserver 的服务端所用的证书
+    - **ca.crt**(证书 CN：etcd-ca) # 给 apiserver 发客户端证书，给 etcd 发服务端证书以及对等证书
+    - **peer.crt**(证书 CN：HostName) # etcd 集群各节点属于对等节点，使用 peer 类型证书(一般分为 server 证书和 client 证书，但是 etcd 集群之间不存在服务端和客户端的区别)
+    - **apiserver-etcd-client.crt**(证书 CN：kube-apiserver-etcd-client) # 与 server.crt 证书对应。apiserver 作为 etcd 的客户端所用的证书
+    - **server.crt**(证书 CN：HostName) # 与 apiserver-etcd-client.crt 证书对应。etcd 作为 apiserver 的服务端所用的证书
 - 集群组件间的证书：kube-apiserver 作为服务端与 kubectl，controller-manager，scheduler，kubelet，kube-proxy 通信
-  - **ca.crt**(证书 CN：kubernetes) # 给 apiserver 发服务端证书，给其余组件发客户端证书
-  - **apiserver.crt**(证书 CN：kube-apiserver)
-  - **admin.conf** # 一个在与集群通信时具有最高权限的 user 的认证配置
-  - **controller-manager.conf** # KubeConfig 文件，controller-manager 与 apiserver 通信时的认证配置信息
-  - **scheduler.conf** # KubeConfig 文件，scheduler 与 apiserver 通信时的认证配置信息
-  - **kubelet.conf** # KubeConfig 文件，kubelet 与 apiserver 通信时的认证配置信息
-    - kube-apiserver 作为客户端与 kubelet-api 通信，每个节点启动的时候 kubelet-api 的证书会自动从 kubernets 的 ca 证书那里获取自己的 ca 证书
-  - **apiserver-kubelet-client.crt**(证书 CN：kube-apiserver-kubelet-client) #
-  - **kubelet.crt**(证书 CN：master0@1544020244) #
+    - **ca.crt**(证书 CN：kubernetes) # 给 apiserver 发服务端证书，给其余组件发客户端证书
+    - **apiserver.crt**(证书 CN：kube-apiserver)
+    - **admin.conf** # 一个在与集群通信时具有最高权限的 user 的认证配置
+    - **controller-manager.conf** # KubeConfig 文件，controller-manager 与 apiserver 通信时的认证配置信息
+    - **scheduler.conf** # KubeConfig 文件，scheduler 与 apiserver 通信时的认证配置信息
+    - **kubelet.conf** # KubeConfig 文件，kubelet 与 apiserver 通信时的认证配置信息
+        - kube-apiserver 作为客户端与 kubelet-api 通信，每个节点启动的时候 kubelet-api 的证书会自动从 kubernets 的 ca 证书那里获取自己的 ca 证书
+    - **apiserver-kubelet-client.crt**(证书 CN：kube-apiserver-kubelet-client) #
+    - **kubelet.crt**(证书 CN：master0@1544020244) #
 - 前端代理证书：给用户自定义的 apiserver 使用的证书，kube-aggregator 作为服务端与 extension-apiserver 通信
-  - **ca.crt(front-proxy)** # 给自定义的 apiserver 发证书
+    - **ca.crt(front-proxy)** # 给自定义的 apiserver 发证书
 - 其他证书
-  - **sa.key 与 sa.pub** # 用于为集群中所有 ServiceAccount 资源签署 jwt token
+    - **sa.key 与 sa.pub** # 用于为集群中所有 ServiceAccount 资源签署 jwt token

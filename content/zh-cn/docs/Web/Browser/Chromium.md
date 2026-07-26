@@ -1,6 +1,5 @@
 ---
 title: Chromium
-linkTitle: Chromium
 weight: 2
 ---
 
@@ -9,10 +8,10 @@ weight: 2
 > 参考：
 >
 > - [源码](https://chromium.googlesource.com/chromium/src/)
->   - [GitHub 项目，chromium/chromium](https://github.com/chromium/chromium)
+>     - [GitHub 项目，chromium/chromium](https://github.com/chromium/chromium)
 > - [Chromium 官网](https://www.chromium.org/Home/)
 > - [Chromium 文档源码](https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs)
->   - [文档](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/README.md)
+>     - [文档](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/README.md)
 
 https://github.com/chromium/permission.site 用于测试 Web API 和浏览器权限交互的站点。比如通过浏览器调用位置信息、蓝牙、等等。
 

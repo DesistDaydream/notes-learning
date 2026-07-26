@@ -1,6 +1,5 @@
 ---
 title: OOP
-linkTitle: OOP
 weight: 2
 ---
 
@@ -75,7 +74,7 @@ _All problems in computer science can be solved by another level of indirection.
 
 - **Attributes(属性)** 维护其自身的状态
 - **Methods(方法)** 用于修改其状态(方法在类中定义)。
-  - 在 C++ 中称为 **Member function(成员函数)**，这种叫法在有的地方也会使用
+    - 在 C++ 中称为 **Member function(成员函数)**，这种叫法在有的地方也会使用
 
 > 这里的“对象类型”如果对应到现实中，就是这类描述：动物类型、房屋类型、汽车类型 等等。动物、房屋、汽车 都是一种对象
 >

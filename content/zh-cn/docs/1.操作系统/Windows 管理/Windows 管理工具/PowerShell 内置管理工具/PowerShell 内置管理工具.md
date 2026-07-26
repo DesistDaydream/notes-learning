@@ -1,6 +1,5 @@
 ---
 title: "PowerShell 内置管理工具"
-linkTitle: "PowerShell 内置管理工具"
 weight: 1
 ---
 
@@ -39,7 +38,6 @@ https://learn.microsoft.com/en-us/powershell/module/?view=windowsserver2025-ps
 > 参考：
 >
 > - [官方文档 - PowerShell，参考 - NetTCPIP](https://learn.microsoft.com/en-us/powershell/module/nettcpip)
-
 
 ### Get-NetTCPConnection
 

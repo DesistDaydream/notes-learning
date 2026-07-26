@@ -1,17 +1,15 @@
 ---
 title: Chrome
-linkTitle: Chrome
 weight: 3
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官网](https://www.google.com/chrome/)
 
-
-Chrome 
+Chrome
 
 ## Headless 模式
 
@@ -28,20 +26,20 @@ Headless Chrome 是 Chrome 浏览器的无界面形态，可以在不打开浏�
 **%LOCALAPPDATA%/Google/Chrome/** # 数据存储目录
 
 - **./User Data/** # 用户数据目录。可以通过 --user-data-dir 标志指定其他路径。
-  - **./Default/** # 默认用户数据存储目录
-  - **./Profile X/** # 其他用户数据存储目录，X 是从 1 开始正整数。
+    - **./Default/** # 默认用户数据存储目录
+    - **./Profile X/** # 其他用户数据存储目录，X 是从 1 开始正整数。
 
 # 配置详解
 
 命令行参数
 
 - **--user-data-dir**(STRING) # 用户数据目录。
-  - `Windows 默认值: %LOCALAPPDATA%/Google/Chrome/User Data/`
-  - 注意：这个并不是某个具体用户的数据目录，而是整个 Chrome 运行时，所有用户的数据保存目录。
-  - 在该目录下有 Default、Profile X 这些目录，这些是具体到某个用户的数据保存路径。
+    - `Windows 默认值: %LOCALAPPDATA%/Google/Chrome/User Data/`
+    - 注意：这个并不是某个具体用户的数据目录，而是整个 Chrome 运行时，所有用户的数据保存目录。
+    - 在该目录下有 Default、Profile X 这些目录，这些是具体到某个用户的数据保存路径。
 - **--profile-directory**(STRING) # 特定于某个具体用户的数据目录。
-  - `Windows 默认值: Default`
-  - 注意：这个值并不需要填写绝对路径。只需要填写相对路径，该选项的值是 --user-data-dir 配置的目录的子目录。
+    - `Windows 默认值: Default`
+    - 注意：这个值并不需要填写绝对路径。只需要填写相对路径，该选项的值是 --user-data-dir 配置的目录的子目录。
 - **--remote-debugging-port**(INT) # 开启 debug 端口，可以通过其他程序连接浏览器。
 
 # 插件推荐
@@ -56,12 +54,12 @@ Headless Chrome 是 Chrome 浏览器的无界面形态，可以在不打开浏�
 
 > 自从 google 的服务器搬离中国大陆后，大陆地区用户用 google 服务时会自动跳转到香港的 [**http://google.com.hk**](https://link.jianshu.com?t=http://google.com.hk) ，有关键字过滤而且偶尔不是很稳定，这对我们的生活工作都造成了困扰。
 
-#### 一、可以通过以下的方法访问 http://google.com
+### 一、可以通过以下的方法访问 http://google.com
 
 - 直接用 http://www.google.com/ncr ，`ncr` 是 `no country redirection` ，是一个强制不跳转的命令；
 - 用 [**https://www.google.com/**](https://link.jianshu.com?t=https://www.google.com/) ，`https` 协议。
 
-#### 二、另外一个问题是 Chrome 浏览器的默认搜索也是设置为 http://www.google.com.hk/ ，我们可以自行修改一下。
+### 二、另外一个问题是 Chrome 浏览器的默认搜索也是设置为 http://www.google.com.hk/ ，我们可以自行修改一下
 
 - Chrome – 设置 -搜索 - 管理搜索引擎 – 其他搜索引擎
 - 拉到最下，有一个“添加”
@@ -70,9 +68,7 @@ Headless Chrome 是 Chrome 浏览器的无界面形态，可以在不打开浏�
 - 最后一个空最重要，写入 Url ( [**http://www.google.com/search?hl=zh-CN\&q=%s**](https://link.jianshu.com?t=http://www.google.com/search?hl=zh-CN&q=%s)) 或者 ( [**http://www.google.com/search?q=%s**](https://link.jianshu.com?t=http://www.google.com/search?q=%s) ) `括号为填写部分`
 - 然后将之设置成默认搜索引擎，搞定！
 
-
 > **so easy！好好享受 google** 原汁原味的搜索吧！
-
 
 ## chrome浏览器访问https网页提示不是私密连接，点击高级没有继续访问按钮提示
 
@@ -133,4 +129,3 @@ chrome://flags/#smooth-scrolling # 将该参数改为 disabled
 ## 证书管理
 
 进入 `chrome://certificate-manager/`，开启 “使用从操作系统导入的本地证书”
-

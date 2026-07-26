@@ -29,7 +29,7 @@ Ansible 的配置文件使用 [INI](/docs/2.编程/无法分类的语言/INI.md)
 
 - Note：可以指定文件或者路径，当指定路径时，则会从该路径下所有文件中读取 host 信息
 
-**remote_tmp**(STRING) # Ansible 运行期间，受管理节点保存临时数据的地方。`默认值: `
+**remote_tmp**(STRING) # Ansible 运行期间，受管理节点保存临时数据的地方。`默认值:`
 
 - https://docs.ansible.com/ansible/latest/collections/environment_variables.html#envvar-ANSIBLE_REMOTE_TMP
 - 也可以在命令行通过 `-e 'ansible_remote_tmp=/tmp/ansible-tmp'` 的方式修改

@@ -1,6 +1,5 @@
 ---
 title: IEEE
-linkTitle: IEEE
 weight: 20
 ---
 

@@ -51,13 +51,13 @@ https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-da
 
 假如有如下原始数据：
 
-| event_name | month   | count  |
+| event_name | month | count |
 | ---------- | ------- | ------ |
-| 事件类型1      | 2025-01 | 123456 |
-| 事件类型2      | 2025-01 | 234567 |
-| 事件类型3      | 2025-02 | 345678 |
-| 事件类型3      | 2025-03 | 456789 |
-| 事件类型4      | 2025-03 | 567890 |
+| 事件类型1 | 2025-01 | 123456 |
+| 事件类型2 | 2025-01 | 234567 |
+| 事件类型3 | 2025-02 | 345678 |
+| 事件类型3 | 2025-03 | 456789 |
+| 事件类型4 | 2025-03 | 567890 |
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/grafana/20250509131357940.png)
 

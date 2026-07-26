@@ -1,7 +1,6 @@
 ---
 title: bit 与 Byte
-linkTitle: bit 与 Byte
-weight: 100
+weight: 2
 ---
 
 # 概述
@@ -90,18 +89,18 @@ Byte 可以说是计算机中存储容量的基本单位。我们在属性里查
 
 具体效果就如下：
 
-| 十进制前缀     |     |           | 二进制前缀         |     |          |
+| 十进制前缀 | | | 二进制前缀 | | |
 | --------- | --- | --------- | ------------- | --- | -------- |
-| (SI)      |     |           | (IEC 60027-2) |     |          |
-| 名字        | 缩写  | 次方        | 名字            | 缩写  | 次方       |
-| KiloByte  | KB  | $10^3$    | KibiByte      | KiB | $2^{10}$ |
-| MegaByte  | MB  | $10^6$    | MebiByte      | MiB | $2^{20}$ |
-| GigaByte  | GB  | $10^9$    | GibiByte      | GiB | $2^{30}$ |
-| TeraByte  | TB  | $10^{12}$ | TebiByte      | TiB | $2^{40}$ |
-| Petabyte  | PB  | $10^{15}$ | PebiByte      | PiB | $2^{50}$ |
-| Exabyte   | EB  | $10^{18}$ | ExbiByte      | EiB | $2^{60}$ |
-| ZettaByte | ZB  | $10^{21}$ | ZebiByte      | ZiB | $2^{70}$ |
-| YottaByte | YB  | $10^{24}$ | YobiByte      | YiB | $2^{80}$ |
+| (SI) | | | (IEC 60027-2) | | |
+| 名字 | 缩写 | 次方 | 名字 | 缩写 | 次方 |
+| KiloByte | KB | $10^3$ | KibiByte | KiB | $2^{10}$ |
+| MegaByte | MB | $10^6$ | MebiByte | MiB | $2^{20}$ |
+| GigaByte | GB | $10^9$ | GibiByte | GiB | $2^{30}$ |
+| TeraByte | TB | $10^{12}$ | TebiByte | TiB | $2^{40}$ |
+| Petabyte | PB | $10^{15}$ | PebiByte | PiB | $2^{50}$ |
+| Exabyte | EB | $10^{18}$ | ExbiByte | EiB | $2^{60}$ |
+| ZettaByte | ZB | $10^{21}$ | ZebiByte | ZiB | $2^{70}$ |
+| YottaByte | YB | $10^{24}$ | YobiByte | YiB | $2^{80}$ |
 
 > 表里没有 Byte 与 bit，是因为这两种在名字写法上是一模一样的~
 

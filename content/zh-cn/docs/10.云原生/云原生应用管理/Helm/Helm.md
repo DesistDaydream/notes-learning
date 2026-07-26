@@ -1,6 +1,5 @@
 ---
 title: Helm
-linkTitle: Helm
 weight: 1
 ---
 
@@ -11,7 +10,7 @@ weight: 1
 > - [GitHub 项目，helm/helm](https://github.com/helm/helm)
 > - [官方文档](https://helm.sh/docs/)
 > - 其他后期发现的文章
->   - <https://www.cnblogs.com/liugp/p/16659802.html>
+>     - <https://www.cnblogs.com/liugp/p/16659802.html>
 
 **Helm** 是 Kubernetes 的 **Package Manager(包管理器)**。Kubernetes 在希腊语中，意为舵手或飞行员，是一个蓝色的舵轮图标。所以 Helm 就以类似的概念命名，Helm 称为舵柄，图标与 Kubernetes 类似，寓意把握着 Kubernetes 航行的方向。
 
@@ -63,9 +62,9 @@ Artifact Hub 中，除了包含 Helm Charts Hub 中的各种资源外，还有�
 
 - 下载 [helm 的 linux 压缩文件](https://github.com/helm/helm/releases)，解压后把 helm 的二进制文件移动到 /usr/bin 目录下，即可直接使用 helm 命令
 - 配置命令补全
-  - echo "source <(helm completion bash)" >> /root/.bashrc
+    - echo "source <(helm completion bash)" >> /root/.bashrc
 - 安装 push 插件
-  - helm plugin install https://github.com/chartmuseum/helm-push.git
+    - helm plugin install https://github.com/chartmuseum/helm-push.git
 - 当创建一个 Release 的时候，会先把 Chart 的数据存档(.tgz 格式)文件下载到 Helm 配置目录的 archive 目录下，然后再安装
 
 # Helm 关联文件与配置

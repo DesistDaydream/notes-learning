@@ -1,13 +1,12 @@
 ---
 title: Java
-linkTitle: Java
 weight: 1
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官网](https://www.java.com/)
 > - [廖雪峰-Java教程，Java简介](https://www.liaoxuefeng.com/wiki/1252599548343744/1255876875896416#0)
 
@@ -57,7 +56,6 @@ JRE 中包含运行 **Java 字节码** 的 JVM 和 库。但是，我们先要�
         └───────┘└───────┘└───────┘└───────┘
 ```
 
-
 ## 学习资料
 
 [菜鸟教程，Java](https://www.runoob.com/java/java-tutorial.html)
@@ -70,8 +68,6 @@ JRE 中包含运行 **Java 字节码** 的 JVM 和 库。但是，我们先要�
 
 # Hello World
 
-
 # Java 语言关键字
-
 
 # Java 语言规范

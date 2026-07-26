@@ -1,6 +1,5 @@
 ---
 title: "Fyne"
-linkTitle: "Fyne"
 weight: 20
 ---
 
@@ -78,11 +77,11 @@ Fyne 用起来有点像写前端代码
 - 然后创建一个 Window（代码中是 Window 接口），这就像就为浏览器打开了一个标签；
 - 在这个 Window 中创建 **Canvas(画布)**（代码中是 Canvas 接口），这就像标签页中打开了一个 HTML 页面；
 - 在 Canvas 中我们可以填充各种内容，Fyne 将内容抽象为 **CanvasObject(画布对象)**（代码中是 CanvasObject 接口），这就像 HTML 中的元素；
-  - 而 **Widget(小组件)** 是一种特殊类型的 CanvasObject，它具有与之关联的交互元素。HTML 中常见的元素（比如 表单、输入框、按钮、等等），我们都可以找到对应的 Widget
-    - 各种 Widget 都是一个实现了 CanvasObject 接口的结构体，比如 Form、Entry、Button 等等，我们可以在[小部件列表](#小部件列表)找看到所有的小部件，这些小部件相关的代码都在 [widget 包](https://pkg.go.dev/fyne.io/fyne/v2/widget)中
-  - 在一个前端页面中，除了元素以外还应该包含样式，对于 Fyne 来说，我们通过 **Container(容器)** 和 **Layouts(布局**) 实现，这就像 CSS
+    - 而 **Widget(小组件)** 是一种特殊类型的 CanvasObject，它具有与之关联的交互元素。HTML 中常见的元素（比如 表单、输入框、按钮、等等），我们都可以找到对应的 Widget
+        - 各种 Widget 都是一个实现了 CanvasObject 接口的结构体，比如 Form、Entry、Button 等等，我们可以在[小部件列表](#小部件列表)找看到所有的小部件，这些小部件相关的代码都在 [widget 包](https://pkg.go.dev/fyne.io/fyne/v2/widget)中
+    - 在一个前端页面中，除了元素以外还应该包含样式，对于 Fyne 来说，我们通过 **Container(容器)** 和 **Layouts(布局**) 实现，这就像 CSS
 - **Container(容器)** 也是一种 CanvasObject，只不过 Container 中可以使用 Layouts，并包含其他 CanvasObject（甚至可以包含其他 Container），这个概念有点像 Vue 的组件。
-  - 我们可以在 Container 中设计 **Layout(布局)** 以安放各种 CanvasObject 的位置，在[布局列表](#布局列表)中可以看到 Fyne 自带的所有 Layout 样式。
+    - 我们可以在 Container 中设计 **Layout(布局)** 以安放各种 CanvasObject 的位置，在[布局列表](#布局列表)中可以看到 Fyne 自带的所有 Layout 样式。
 
 ## 小部件列表
 

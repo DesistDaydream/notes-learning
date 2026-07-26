@@ -1,6 +1,5 @@
 ---
 title: TCP Analysis
-linkTitle: TCP Analysis
 weight: 20
 ---
 
@@ -111,7 +110,7 @@ TCP Fast Open 抓包分析。在下图，数据包 7 号，客户端发起了第
 >
 > - [官方文档，TCP Analysis](https://www.wireshark.org/docs/wsug_html_chunked/ChAdvTCPAnalysis.html)
 > - 原文：[程序员宅基地，TCP报文（ tcp dup ack 、TCP Retransmission）](https://www.cxyzjd.com/article/ynchyong/109110028)
->   - [CSDN，TCP报文（ tcp dup ack 、TCP Retransmission）](https://blog.csdn.net/ynchyong/article/details/109110028)
+>     - [CSDN，TCP报文（ tcp dup ack 、TCP Retransmission）](https://blog.csdn.net/ynchyong/article/details/109110028)
 
 WireShark 的 Info 列会根据包的前后文和内容分析该包的状态，以提示使用者该包可能有什么问题，常见的提示有：
 

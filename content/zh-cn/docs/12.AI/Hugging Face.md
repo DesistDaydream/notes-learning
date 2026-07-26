@@ -1,6 +1,5 @@
 ---
 title: Hugging Face
-linkTitle: Hugging Face
 weight: 70
 ---
 
@@ -83,7 +82,7 @@ print(f"Hub Cache: {constants.HF_HUB_CACHE}")
 >
 > - [官方文档，参考 - CLI](https://huggingface.co/docs/huggingface_hub/package_reference/cli)
 
-安装 Hugging Face 
+安装 Hugging Face
 
 ```bash
 uv tool install huggingface_hub

@@ -7,7 +7,7 @@ title: CPU 空闲时在干嘛？
 >
 > [公众号-码农的荒岛求生，CPU 空闲时在干嘛？](https://mp.weixin.qq.com/s/FajNjSaxeaYZClunmtRDMg)
 
-人空闲时会发呆会无聊，计算机呢？  
+人空闲时会发呆会无聊，计算机呢？
 
 假设你正在用计算机浏览网页，当网页加载完成后你开始阅读，此时你没有移动鼠标，没有敲击键盘，也没有网络通信，那么你的计算机此时在干嘛？
 
@@ -51,7 +51,7 @@ title: CPU 空闲时在干嘛？
 
 在 Linux 下可执行文件格式为 ELF ，在 Windows 下是 EXE 。
 
-此时虽然操作系统可以识别可执行程序，**但如果你不去双击一下(或者在Linux下运行相应命令)的依然和操作系统没有半毛钱关系。** 
+此时虽然操作系统可以识别可执行程序，**但如果你不去双击一下(或者在Linux下运行相应命令)的依然和操作系统没有半毛钱关系。**
 
 但是当你运行可执行程序时魔法就出现了。
 
@@ -143,7 +143,7 @@ while (1) {
 }
 ```
 
-其中 cpuidle\_idle\_call函数最终会执行 halt 指令，注意，**这里删掉了很多细节，只保留最核心代码，**实际上 Linux 内核在实现空闲进程时还要考虑很多很多，不同类型的 CPU 可能会有深睡眠浅睡眠之类，操作系统必须要预测出系统可能的空闲时长并以此判断要进入哪种休眠等等，但这并不是我们关注的重点。  
+其中 cpuidle\_idle\_call函数最终会执行 halt 指令，注意，**这里删掉了很多细节，只保留最核心代码，**实际上 Linux 内核在实现空闲进程时还要考虑很多很多，不同类型的 CPU 可能会有深睡眠浅睡眠之类，操作系统必须要预测出系统可能的空闲时长并以此判断要进入哪种休眠等等，但这并不是我们关注的重点。
 
 总的来说，这就是计算机系统空闲时 CPU 在干嘛，就是在执行这一段代码，本质上就是 CPU 在执行 halt 指令。
 
@@ -163,7 +163,7 @@ CPU 空闲时执行特定的 halt 指令，这看上去是一个很简单的问�
 
 ##### _参考资料_
 
-1.  [**什么是程序？**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247483736&idx=1&sn=4da1eec64e42567a0fdf4ae6d4e9344e&chksm=fcb98606cbce0f10090d950ec468b0a1e28087cd158a850bc7dc4c262fd2612a319851987220&scene=21#wechat_redirect)
-2.  [**进程调度器是如何实现的？**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247484668&idx=2&sn=dd7890df01d4879e40e0acd0382929f2&chksm=fcb983a2cbce0ab43ccb6a394f7590fc1744a9838f8055ad89298da1a487e182dd78f2c3bc75&scene=21#wechat_redirect)
-3.  [**程序员应如何理解 CPU ？**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247483850&idx=1&sn=b90a78604fa174f0e7314227a3002bdc&chksm=fcb98694cbce0f82024467c835c6e3b4984773b1a2f6c1625d573066c36b14420d996819bed7&scene=21#wechat_redirect)
-4.  [**看完这篇还不懂线程与线程池你来打我**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247484768&idx=1&sn=049db350af9e5eea5cf3523ceb83f447&chksm=fcb9823ecbce0b28ca28d021e68c78138cde4a1b86ea7209c0c667d3d544d223d8b2aecbccec&scene=21#wechat_redirect)
+1. [**什么是程序？**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247483736&idx=1&sn=4da1eec64e42567a0fdf4ae6d4e9344e&chksm=fcb98606cbce0f10090d950ec468b0a1e28087cd158a850bc7dc4c262fd2612a319851987220&scene=21#wechat_redirect)
+2. [**进程调度器是如何实现的？**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247484668&idx=2&sn=dd7890df01d4879e40e0acd0382929f2&chksm=fcb983a2cbce0ab43ccb6a394f7590fc1744a9838f8055ad89298da1a487e182dd78f2c3bc75&scene=21#wechat_redirect)
+3. [**程序员应如何理解 CPU ？**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247483850&idx=1&sn=b90a78604fa174f0e7314227a3002bdc&chksm=fcb98694cbce0f82024467c835c6e3b4984773b1a2f6c1625d573066c36b14420d996819bed7&scene=21#wechat_redirect)
+4. [**看完这篇还不懂线程与线程池你来打我**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247484768&idx=1&sn=049db350af9e5eea5cf3523ceb83f447&chksm=fcb9823ecbce0b28ca28d021e68c78138cde4a1b86ea7209c0c667d3d544d223d8b2aecbccec&scene=21#wechat_redirect)

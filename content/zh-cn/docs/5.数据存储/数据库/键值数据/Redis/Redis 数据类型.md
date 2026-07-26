@@ -1,6 +1,5 @@
 ---
 title: Redis 数据类型
-linkTitle: Redis 数据类型
 weight: 20
 ---
 
@@ -9,7 +8,7 @@ weight: 20
 > 参考：
 >
 > - [官方文档，数据类型](https://redis.io/topics/data-types/)
->   - https://redis.io/docs/latest/develop/data-types/
+>     - https://redis.io/docs/latest/develop/data-types/
 
 string(字符串)，hash(哈希)，list(列表)，set(集合) 及 zset(sorted set：有序集合)。
 

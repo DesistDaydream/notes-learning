@@ -1,6 +1,5 @@
 ---
 title: VictoriaMetrics
-linkTitle: VictoriaMetrics
 weight: 20
 ---
 
@@ -14,4 +13,3 @@ weight: 20
 # MetricsQL
 
 <https://docs.victoriametrics.com/MetricsQL.html#count_ne_over_time>
-

@@ -1,6 +1,5 @@
 ---
 title: User Account(KubeConfig)
-linkTitle: User Account(KubeConfig)
 weight: 20
 ---
 
@@ -36,7 +35,7 @@ KubeConfig 是对 UserAccount 的扩展，KubeConfig 会创建 UserAccount 并�
 > 参考：
 >
 > - 官方文档中还没有对这个配置文件的描述（截至到啥时候忘了，不过从 1.27 开始官方文档能看到了）
->   - [官方文档，参考 - 配置 APIs - kubeconfig(v1)](https://kubernetes.io/docs/reference/config-api/kubeconfig.v1/)
+>     - [官方文档，参考 - 配置 APIs - kubeconfig(v1)](https://kubernetes.io/docs/reference/config-api/kubeconfig.v1/)
 > - 代码: https://github.com/kubernetes/client-go/blob/master/tools/clientcmd/api/types.go
 
 使用命令修改：
@@ -80,7 +79,7 @@ KubeConfig 是对 UserAccount 的扩展，KubeConfig 会创建 UserAccount 并�
 
 - **name(STRING)** # 指定用户名称
 - **user(map\[STRING]STRING)** # 用户信息
-  - **client-certificate-data: REDACTED** # 证书，一般使用集群 ca 证书的 base64 格式的字符串。指明这个用户用来与集群 api 通信时所用客户端的证书
-  - **client-key-data: REDACTED** # 密钥，一般使用集群 ca 证书的密钥的 base64 格式的字符串。指明这个用户用来与集群 api 通信时所用客户端的密钥
+    - **client-certificate-data: REDACTED** # 证书，一般使用集群 ca 证书的 base64 格式的字符串。指明这个用户用来与集群 api 通信时所用客户端的证书
+    - **client-key-data: REDACTED** # 密钥，一般使用集群 ca 证书的密钥的 base64 格式的字符串。指明这个用户用来与集群 api 通信时所用客户端的密钥
 
 ## preferences

@@ -116,6 +116,7 @@ ExecStart=/bin/bash /path/to/mail.sh
 ```bash
 sudo systemctl start mytimer.service
 ```
+
 如果一切正常，你应该就会收到一封邮件。
 
 ## 六、Timer 单元
@@ -214,4 +215,3 @@ journalctl -f -u timer.timer
 - [Understanding Systemd Units and Unit Files](https://www.digitalocean.com/community/tutorials/understanding-systemd-units-and-unit-files), by Justin Ellingwood
 
 （完）
-

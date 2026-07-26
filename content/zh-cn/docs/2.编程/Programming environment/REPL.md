@@ -1,6 +1,5 @@
 ---
 title: REPL
-linkTitle: REPL
 weight: 2
 ---
 

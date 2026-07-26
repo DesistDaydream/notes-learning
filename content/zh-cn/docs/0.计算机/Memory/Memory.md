@@ -1,6 +1,5 @@
 ---
 title: Memory
-linkTitle: Memory
 weight: 20
 ---
 
@@ -33,4 +32,3 @@ RAM包含多路复用和多路分解电路，用于将数据线连接到寻址�
 **High Bandwidth Memory(高带宽存储器，简称 HBM)**
 
 [B 站 - Redknot-乔红，用最好的动画为你讲解--HBM的原理](https://www.bilibili.com/video/BV1ahjA6qEwc)
-

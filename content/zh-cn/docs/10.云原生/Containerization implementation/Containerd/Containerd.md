@@ -1,6 +1,5 @@
 ---
 title: Containerd
-linkTitle: Containerd
 weight: 1
 ---
 
@@ -89,13 +88,13 @@ Docker 这门技术成功了，Docker 这个公司却失败了。
 **/var/lib/containerd/** # Root(根) 文件夹。用于保存持久化数据，镜像、元数据 所在路径。包括 Snapshots, Content, Metadata 以及各种插件的数据。每一个插件都有自己单独的目录，Containerd 本身不存储任何数据，它的所有功能都来自于已加载的插件。目录下的内容详解，见 [Containerd Image 章节](/docs/10.云原生/Containerization%20implementation/Containerd/Containerd%20Image.md)
 
 - .**/io.containerd.content.v1.content/** # 镜像的上下文保存目录
-  - .**/blobs/** # 镜像文件系统布局中。blobs 目录数据的存放路径
+    - .**/blobs/** # 镜像文件系统布局中。blobs 目录数据的存放路径
 - **./io.containerd.snapshotter.v1.overlayfs/** # 镜像的层信息所在目录。
 
 **/run/containerd/** # State(状态) 文件夹。用于保存运行时产生的临时数据，也就是容器启动后数据存放目录。包括 sockets、pid、挂载点、运行时状态以及不需要持久化保存的插件数据。
 
 - **./io.containerd.runtime.VERSION.ID/** # Containerd 运行容器时所使用的 runtime 插件，该目录的名称就是插件的版本和名称。该目录下的目录以名称空间命名。
-  - **./NAMESPACE/** # 指定名称空间下的容器启动后的数据(主要就是符合 OCI 标准的 一组 Bundle 文件)保存路径，其内目录名为 ContainerID。
+    - **./NAMESPACE/** # 指定名称空间下的容器启动后的数据(主要就是符合 OCI 标准的 一组 Bundle 文件)保存路径，其内目录名为 ContainerID。
 
 /var/lib/containerd/ 与 /run/containerd/ 是 Containerd 最常用的两个目录，一个存镜像数据，一个存容器数据。
 
@@ -159,5 +158,3 @@ https://mp.weixin.qq.com/s/00Zwup1ZUiMp6i46Ywv2wQ
 https://github.com/containerd/containerd/releases/tag/v2.0.0
 
 https://github.com/containerd/containerd/blob/v2.0.0/docs/containerd-2.0.md
-
-

@@ -1,6 +1,5 @@
 ---
 title: Network Socket
-linkTitle: Network Socket
 weight: 20
 tags:
   - socket

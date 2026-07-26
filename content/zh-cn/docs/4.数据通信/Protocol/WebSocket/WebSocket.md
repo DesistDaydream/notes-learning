@@ -1,6 +1,5 @@
 ---
 title: WebSocket
-linkTitle: WebSocket
 weight: 1
 ---
 

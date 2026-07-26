@@ -1,6 +1,5 @@
 ---
 title: Querying API
-linkTitle: Querying API
 weight: 20
 ---
 
@@ -179,7 +178,7 @@ URL 请求参数：
 - **start=\<rfc3339 | unix_timestamp>** # 起始时间
 - **end=\<rfc3339 | unix_timestamp>** # 结束时间
 - **step=\<duration | float>** # 步长。起始时间与结束时间之间获取的所有数据的间隔时间。假如 step=10 则每隔 10 秒获取一次样本值。
-  - 就好像人走路，一步迈多长，这里就是返回样本值时，每隔多久返回一次。
+    - 就好像人走路，一步迈多长，这里就是返回样本值时，每隔多久返回一次。
 - **timeout=\<duration>** # 超时设置。可选参数，默认情况下使用-query,timeout 的全局设置。Evaluation timeout. Optional. Defaults to and is capped by the value of the -query.timeout flag.
 
 例如使用以下表达式查询表达式 up 在 30 秒范围内以 15 秒为间隔计算 PromQL 表达式的结果。

@@ -1,6 +1,5 @@
 ---
 title: Binary Operators(二元运算符)
-linkTitle: Binary Operators(二元运算符)
 weight: 3
 ---
 
@@ -20,9 +19,9 @@ PromQL 支持基本的 逻辑 和 算术 运算符。 对于两个即时向量�
 
 PromQL 支持以下算术二元运算符：
 
-- - (加法)
-- - (减法)
-- - (乘法)
+  - - (加法)
+  - - (减法)
+  - - (乘法)
 - / (除法)
 - % (求余)
 - ^ (幂运算)
@@ -81,9 +80,9 @@ node_disk_read_bytes_total + node_disk_written_bytes_total
 比如有这么一种场景：
 
 - 通过数学运算符我们可以很方便的计算出，当前所有主机节点的内存使用率：
-  - (node_memory_MemTotal_bytes - node_memory_MemFree_bytes) / node_memory_MemTotal_bytes
+    - (node_memory_MemTotal_bytes - node_memory_MemFree_bytes) / node_memory_MemTotal_bytes
 - 而系统管理员在排查问题的时候可能只想知道当前内存使用率超过 95%的主机呢？通过使用比较运算，就可以方便的获取到该结果：
-  - (node_memory_MemTotal_bytes - node_memory_MemFree_bytes) / node_memory_MemTotal_bytes  > 0.95
+    - (node_memory_MemTotal_bytes - node_memory_MemFree_bytes) / node_memory_MemTotal_bytes  > 0.95
 
 即时向量与标量进行布尔运算时，PromQL 依次比较向量中的所有时间序列样本的值，如果比较结果为 true 则保留，反之丢弃。
 

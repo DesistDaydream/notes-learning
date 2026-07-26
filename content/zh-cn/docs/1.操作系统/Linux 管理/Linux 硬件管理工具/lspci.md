@@ -1,6 +1,5 @@
 ---
 title: lspci
-linkTitle: lspci
 weight: 20
 ---
 
@@ -43,7 +42,7 @@ Ubuntu 包：pciutils
 **选择指定设备选项**
 
 - **`-s [[[[<DOMAIN>]:]<BUS>]:][<DEVICE>][.[<FUNC>]]`** # 仅显示指定域中的设备（如果您的机器有多个主机桥，它们可以共享一个 [Bus](/docs/0.计算机/Motherboard/Bus.md) 编号空间，或者它们中的每一个都可以寻址自己的 PCI 域；域编号从 0 到 ffff），bus （0 到 ff）、设备（0 到 1f）和功能（0 到 7）。设备地址的每个组成部分都可以省略或设置为 `*`，均表示“任意值”。所有数字都是十六进制的。例如，“0：”表示总线 0 上的所有设备，“0”表示任何总线上设备 0 的所有功能，“0.3”选择所有总线上设备 0 的第三个功能，“.4”仅显示每个总线上的第四个功能设备。
-  - 注意：-s 的值可以通过 uevent 文件中的 PCI_SLOT_NAME 字段的值获取
+    - 注意：-s 的值可以通过 uevent 文件中的 PCI_SLOT_NAME 字段的值获取
 - **`-d [<VENDOR_ID>]:[<DEVICE_ID>][:<CLASS_ID>]`** # 根据指定的 VENDOR_ID、DEVICE_ID、CLASS_ID 显示 PCI 设备。若是某个 ID 为空可以省略，e.g. `-d ::0200` 表示只获取 CLASS_ID 为 0200（） 的 PCI 设备
 
 ID **与名称的解析行为选项**

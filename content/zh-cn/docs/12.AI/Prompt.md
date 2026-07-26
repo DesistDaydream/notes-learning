@@ -1,6 +1,5 @@
 ---
 title: Prompt
-linkTitle: Prompt
 weight: 50
 ---
 

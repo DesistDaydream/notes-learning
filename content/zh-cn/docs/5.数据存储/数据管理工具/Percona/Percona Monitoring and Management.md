@@ -6,7 +6,7 @@ weight: 2
 # 概述
 
 > 参考：
-> 
+>
 > - [官网介绍](https://www.percona.com/software/database-tools/percona-monitoring-and-management)
 > - [官方文档](https://www.percona.com/doc/percona-monitoring-and-management/2.x/index.html)
 > - [原文链接](https://www.cnblogs.com/okchy/p/13605701.html)
@@ -108,6 +108,7 @@ pmm client 端必须开放以下默认端口采集数据，可以通过 pmm-admi
 # 部署 PMM
 
 > 参考：
+>
 > - 官方文档
 
 安装步骤

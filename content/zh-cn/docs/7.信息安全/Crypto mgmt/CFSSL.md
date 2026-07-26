@@ -1,6 +1,5 @@
 ---
 title: CFSSL
-linkTitle: CFSSL
 weight: 20
 ---
 

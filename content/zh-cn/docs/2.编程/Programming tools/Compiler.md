@@ -1,6 +1,5 @@
 ---
 title: Compiler
-linkTitle: Compiler
 weight: 10
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: CPU 管理工具
-linkTitle: CPU 管理工具
 weight: 1
 ---
 

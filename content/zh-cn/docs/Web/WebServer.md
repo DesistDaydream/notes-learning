@@ -1,6 +1,5 @@
 ---
 title: WebServer
-linkTitle: WebServer
 weight: 20
 ---
 

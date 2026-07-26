@@ -1,6 +1,5 @@
 ---
 title: Signal(信号)
-linkTitle: Signal(信号)
 weight: 20
 ---
 

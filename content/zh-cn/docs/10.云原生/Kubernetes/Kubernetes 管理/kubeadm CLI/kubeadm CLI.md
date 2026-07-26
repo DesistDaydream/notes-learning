@@ -1,6 +1,5 @@
 ---
 title: kubeadm CLI
-linkTitle: kubeadm CLI
 weight: 1
 ---
 
@@ -109,8 +108,8 @@ EXAMPLE
 
 - kubeadm token create --print-join-command # 创建 node 节点加入 master 命令
 - kubeadm token list # 列出所有可以引导的令牌（i.e.join 时所用的 token）
-  - 可以通过以下命令来获取 master 上 CA 证书的 hash 值(i.e.join 时所用的--discovery-token-ca-cert-hash 的值)，然后根据 list 列出的 token，与 ca 的 hash 值合在一起，就可以得到 join 时所用的相关参数
-  - openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex
+    - 可以通过以下命令来获取 master 上 CA 证书的 hash 值(i.e.join 时所用的--discovery-token-ca-cert-hash 的值)，然后根据 list 列出的 token，与 ca 的 hash 值合在一起，就可以得到 join 时所用的相关参数
+    - openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex
 
 ## kubeadm config \[COMMAND]
 
@@ -143,7 +142,7 @@ Flags
 Example
 
 - kubeadm init --config=kubeadm-config.yaml # 使用 kubeadm-config.yaml 文件初始化 k8s 集群的 master
-  - 以下是个符合前述命令设定方式的使用示例，不过，它明确定义了 kubeProxy 的模式为 ipvs，并支持通过修改 imageRepository 的值修改获取系统镜像时使用的镜像仓库。需要建立 FileName.conf 文件,内容说明详见 k8s 官网<https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/>
+    - 以下是个符合前述命令设定方式的使用示例，不过，它明确定义了 kubeProxy 的模式为 ipvs，并支持通过修改 imageRepository 的值修改获取系统镜像时使用的镜像仓库。需要建立 FileName.conf 文件,内容说明详见 k8s 官网<https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/>
 - kubeadm init phase kubeconfig all # 该命令可以生成所有 kubeconfig 文件。在误删除了 admin.conf 文件后，可以用该命令工薪生成
 
 ## kubeadm join \[Command] \[Flags]

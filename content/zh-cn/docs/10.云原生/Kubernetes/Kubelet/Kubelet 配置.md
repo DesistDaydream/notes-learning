@@ -1,6 +1,5 @@
 ---
 title: Kubelet 配置
-linkTitle: Kubelet 配置
 weight: 2
 ---
 

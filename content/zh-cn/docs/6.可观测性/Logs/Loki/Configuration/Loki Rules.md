@@ -1,6 +1,5 @@
 ---
 title: Loki Rules
-linkTitle: Loki Rules
 weight: 2
 created: 2026-03-09T10:28
 ---

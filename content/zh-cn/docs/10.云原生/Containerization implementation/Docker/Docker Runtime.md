@@ -1,6 +1,5 @@
 ---
 title: Docker Runtime
-linkTitle: Docker Runtime
 weight: 5
 ---
 

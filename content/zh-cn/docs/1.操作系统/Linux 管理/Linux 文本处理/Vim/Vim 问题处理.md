@@ -1,6 +1,5 @@
 ---
 title: Vim 问题处理
-linkTitle: Vim 问题处理
 weight: 20
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: Kubernetes 监控
-linkTitle: Kubernetes 监控
 weight: 1
 ---
 
@@ -21,13 +20,13 @@ Kubernetes 中，应用程序监控不依赖于单个监控解决方案，目前
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/cboyz6/1616116947769-dcc7cae1-400b-41aa-9f37-55ef43d48d26.png)
 
 - **Resource Metrics Pipeline**# 通过 API Server 中的 **Metrics API** 暴露的一个用于显示集群指标接口，该接口在集群刚部署完成时，并不是默认自带的。需要通过其他方式来启用这个 API
-  - 可以通过 Resource Metrics 或 Full Metrics Pipelines 来收集监控指标数据
-  - **cAdvisor** # cAdvisor 是 Google 开源的容器资源监控和性能分析工具，它是专门为容器而生，本身也支持 Docker 容器，在 Kubernetes 中，我们不需要单独去安装，cAdvisor 作为 kubelet 内置的一部分程序可以直接使用。kubelet 中的子组件 cAdvisor 来收集资源用量信息，并暴露 OpemMetrics 格式的监控指标。
-  - **metrics-server** # metrics-server 是一个集群范围内的资源数据聚合工具，其前身是 Heapster。以 Pod 的形式运行在集群中，通过查询每个节点的 kubelet 以获取 CPU 和内存使用情况。
-    - 项目地址：<https://github.com/kubernetes-sigs/metrics-server>
-    - Heapster # 由于 Heapster 无法通过 Metrics API 的方式提供监控指标，所以被废弃了。1.11 以后的版本中会使用 metrics-server 代替。
+    - 可以通过 Resource Metrics 或 Full Metrics Pipelines 来收集监控指标数据
+    - **cAdvisor** # cAdvisor 是 Google 开源的容器资源监控和性能分析工具，它是专门为容器而生，本身也支持 Docker 容器，在 Kubernetes 中，我们不需要单独去安装，cAdvisor 作为 kubelet 内置的一部分程序可以直接使用。kubelet 中的子组件 cAdvisor 来收集资源用量信息，并暴露 OpemMetrics 格式的监控指标。
+    - **metrics-server** # metrics-server 是一个集群范围内的资源数据聚合工具，其前身是 Heapster。以 Pod 的形式运行在集群中，通过查询每个节点的 kubelet 以获取 CPU 和内存使用情况。
+        - 项目地址：<https://github.com/kubernetes-sigs/metrics-server>
+        - Heapster # 由于 Heapster 无法通过 Metrics API 的方式提供监控指标，所以被废弃了。1.11 以后的版本中会使用 metrics-server 代替。
 - **kube-state-metrics 程序**，用来监听 API Server 以补充 Metrics API 无法提供的集群指标，比如 Deployment、Node、Pod 等等资源的状态
-  - 项目地址：<https://github.com/kubernetes/kube-state-metrics#kube-state-metrics-vs-heapster>
+    - 项目地址：<https://github.com/kubernetes/kube-state-metrics#kube-state-metrics-vs-heapster>
 - **各个系统组件暴露的 `/metrics` 端点**，可以提供组件自身的指标
 
 Note：以上几种监控方案只是简单提供一个 metrics 数据，并不会存储这些 metrics 数据，所以我们可以使用 Prometheus 来抓取这些数据然后存储。

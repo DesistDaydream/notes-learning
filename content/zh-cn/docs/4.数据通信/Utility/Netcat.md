@@ -1,6 +1,5 @@
 ---
 title: Netcat
-linkTitle: Netcat
 weight: 20
 tags:
   - Network_analyzer
@@ -91,24 +90,24 @@ Ncat 与 OpenBSD-nc 这两个程序的选项有不同的地方
 
 - **--proxy <ADDRESS:\[PORT]>** # 连接目的地时所使用代理 IP 和 PORT。
 - **--proxy-type \<STRING>** # 连接目的地时所使用的代理类型(也就是代理协议)。可用的值有：
-  - socks4 # 表示 SOCKS v.4
-  - socks5 # 表示 SOCKS v.5（默认值）
-  - http # 表示 HTTP
+    - socks4 # 表示 SOCKS v.4
+    - socks5 # 表示 SOCKS v.5（默认值）
+    - http # 表示 HTTP
 
 ### OpenBSD-nc OPTIONS
 
 - **-x \<ADDRESS\[:PORT]>** # 连接目的地时所使用代理 IP 和 PORT。代理不能与 -LsuU 这些选项一起使用。
 - **-X \<PROXY_PROTOCOL>** # 连接目的地时所使用的代理协议。可用的值有：
-  - 4 # 表示 SOCKS v.4
-  - 5 # 表示 SOCKS v.5（默认值）
-  - connect # 表示 HTTP
+    - 4 # 表示 SOCKS v.4
+    - 5 # 表示 SOCKS v.5（默认值）
+    - connect # 表示 HTTP
 
 # 应用示例
 
 - 测试本地 323/udp 端口
-  - nc -uvz localhost 323
+    - nc -uvz localhost 323
 - 测试本地 22/tcp 端口
-  - nc -vz localhost 22
+    - nc -vz localhost 22
 
 执行效果如下：
 
@@ -123,9 +122,9 @@ Connection to localhost 323 port [udp/*] succeeded!
 测试两台机器之间的 8080/udp 连接是否正常
 
 - 在主机 A 上监听 8080/udp
-  - nc -u -l 8080
+    - nc -u -l 8080
 - 在主机 B 上测试主机 A 的 8080/udp 是否正常
-  - nc -u 172.19.42.248 8080
+    - nc -u 172.19.42.248 8080
 - 然后在任意主机输入任意内容，只要另一个主机能看到相同内容，即表示连接正常
 
 # 常见问题

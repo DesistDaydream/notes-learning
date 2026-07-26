@@ -5,6 +5,7 @@ title: "Snap"
 # 概述
 
 > 参考：
+>
 > - [官网](https://snapcraft.io/)
 > - [Wiki, Sanp](<https://en.wikipedia.org/wiki/Snap_(software)>)
 

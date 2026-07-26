@@ -1,6 +1,5 @@
 ---
 title: PCI-SIG
-linkTitle: PCI-SIG
 weight: 20
 ---
 

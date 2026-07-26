@@ -1,6 +1,5 @@
 ---
 title: Object detection
-linkTitle: Object detection
 weight: 20
 ---
 

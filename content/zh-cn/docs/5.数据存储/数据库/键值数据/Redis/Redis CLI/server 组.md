@@ -1,6 +1,5 @@
 ---
 title: server 组
-linkTitle: server 组
 weight: 20
 ---
 
@@ -259,11 +258,11 @@ EXAMPLE
 
 - 将节点变为 master
 
-  - **replicaof no one**
+    - **replicaof no one**
 
 - 将该节点作为 172.19.42.231:6379 节点的 Replica 节点
 
-  - **replicaof 172.19.42.231 6379**
+    - **replicaof 172.19.42.231 6379**
 
 ## role - 显示当前节点的 Replication 模式的信息
 

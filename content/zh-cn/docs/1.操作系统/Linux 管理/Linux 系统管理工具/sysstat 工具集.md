@@ -35,21 +35,21 @@ dm-0             0.04    0.43      1.51     11.25     0.00     0.00   0.00   0.0
 dm-1             0.00    0.00      0.00      0.00     0.00     0.00   0.00   0.00    1.69    0.00   0.00    21.57     0.00   0.39   0.00
 ```
 
-| 指标       | 含义               | 提示                                                                                                    |
+| 指标 | 含义 | 提示 |
 | -------- | ---------------- | ----------------------------------------------------------------------------------------------------- |
-| r/s      | 每秒发送给磁盘的读请求数     | 合并后的请求数                                                                                               |
-| w/s      | 每秒发送给磁盘的写请求数     | 合并后的请求数                                                                                               |
-| rkB/s    | 每秒从磁盘读取的数据量      | 单位为 kB                                                                                                |
-| wkB/s    | 每秒向磁盘写入的数据量      | 单位为 kB                                                                                                |
-| rrqm/s   | 每秒合并的读请求数        | %rrqm表示合并读请求的百分比                                                                                      |
-| wrqm/s   | 每秒合并的写请求数        | %wrqm表示合并写请求的百分比                                                                                      |
-| r_await  | 读请求处理完成等待时间      | 包括队列中的等待时间和设备实际处理的时间，单位为毫秒                                                                            |
-| w_await  | 写请求处理完成等待时间      | 包括队列中的等待时间和设备实际处理的时间，单位为毫秒                                                                            |
-| aqu-sz   | 平均请求队列长度         | 旧版中为avgqu-sz                                                                                          |
-| rareq-sz | 平均读请求大小          | 单位为 kB                                                                                                |
-| wareq-sz | 平均写请求大小          | 单位为 kB                                                                                                |
-| svctm    | 处理 I/O 请求所需的平均时间 | 单位为 毫秒。注意这是推断的数据，(不包括等待时间)并不保证完全准确                                                                    |
-| %util    | 磁盘处理 I/O 的时间百分比  | 即使用率（详见 [Block](/docs/1.操作系统/Kernel/Hardware/Block.md) 的 “磁盘 I/O 时间” 章节），由于可能存在并行 I/O，100% 并不一定表明磁盘饱和 |
+| r/s | 每秒发送给磁盘的读请求数 | 合并后的请求数 |
+| w/s | 每秒发送给磁盘的写请求数 | 合并后的请求数 |
+| rkB/s | 每秒从磁盘读取的数据量 | 单位为 kB |
+| wkB/s | 每秒向磁盘写入的数据量 | 单位为 kB |
+| rrqm/s | 每秒合并的读请求数 | %rrqm表示合并读请求的百分比 |
+| wrqm/s | 每秒合并的写请求数 | %wrqm表示合并写请求的百分比 |
+| r_await | 读请求处理完成等待时间 | 包括队列中的等待时间和设备实际处理的时间，单位为毫秒 |
+| w_await | 写请求处理完成等待时间 | 包括队列中的等待时间和设备实际处理的时间，单位为毫秒 |
+| aqu-sz | 平均请求队列长度 | 旧版中为avgqu-sz |
+| rareq-sz | 平均读请求大小 | 单位为 kB |
+| wareq-sz | 平均写请求大小 | 单位为 kB |
+| svctm | 处理 I/O 请求所需的平均时间 | 单位为 毫秒。注意这是推断的数据，(不包括等待时间)并不保证完全准确 |
+| %util | 磁盘处理 I/O 的时间百分比 | 即使用率（详见 [Block](/docs/1.操作系统/Kernel/Hardware/Block.md) 的 “磁盘 I/O 时间” 章节），由于可能存在并行 I/O，100% 并不一定表明磁盘饱和 |
 
 这些指标中你要注意：
 
@@ -63,7 +63,7 @@ dm-1             0.00    0.00      0.00      0.00     0.00     0.00   0.00   0.0
 **iostat \[OPTIONS] \[INTERVAL \[COUNT]]**
 
 - INTERVAL # 间隔时间，单位是秒，指定 INTERVAL 时，mpstat 根据该时间每隔 INTERVAL 秒输出一次信息，并在最后输出平均值。
-  - COUNT # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
+    - COUNT # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
 
 OPTIONS
 
@@ -78,7 +78,7 @@ EXAMPLE
 **mpstat \[OPTIONS] \[INTERVAL \[COUNT]]**
 
 - INTERVAL # 间隔时间，单位是秒。指定 INTERVAL 时，mpstat 根据该时间每隔 INTERVAL 秒输出一次信息，并在最后输出平均值。
-  - COUNT # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
+    - COUNT # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
 
 OPTIONS
 
@@ -88,7 +88,7 @@ OPTIONS
 EXAMPLE
 
 - 显示所有 CPU 的统计信息。每隔 5 秒输出 1 次信息，总共输出 2 次。
-  - **mpstat -P ALL 5 2**
+    - **mpstat -P ALL 5 2**
 
 # nfsiostat-sysstat
 
@@ -175,7 +175,7 @@ Linux 4.18.0-193.28.1.el8_2.x86_64 (desistdaydream.bj-net)  11/18/2020  _x86_64_
 **pidstat \[OPTIONS] \[INTERVAL \[COUNT]]**
 
 - **INTERVAL** # 间隔时间，单位是秒，指定 INTERVAL 时，mpstat 根据该时间每隔 INTERVAL 秒输出一次信息，并在最后输出平均值。
-  - **COUNT** # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
+    - **COUNT** # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
 
 OPTIONS
 
@@ -255,20 +255,20 @@ Average:         0.00      0.00      2.00      2.25
 ```
 
 - **active/s** # TCP 连接每秒从 CLOSED 状态直接转换到 SYN-SENT 状态的次数。
-  - 每秒本地发起 TCP 连接数，例如通过 connect() 系统调用。(待确认描述)
+    - 每秒本地发起 TCP 连接数，例如通过 connect() 系统调用。(待确认描述)
 - **passive/s** # TCP 连接每秒从 LISTEN 状态直接转换到 SYN-RCVD 状态的次数。
-  - 每秒远程发起的 TCP 连接数，例如通过 accept() 系统调用。(待确认描述)
+    - 每秒远程发起的 TCP 连接数，例如通过 accept() 系统调用。(待确认描述)
 - **iseg/s** # 每秒接受的 TCP segments 总数，包括错误的。
-  - 也就是每秒收到了多少个 TCP 包
+    - 也就是每秒收到了多少个 TCP 包
 - **oseg/s** # 每秒发送的 TCP segments 总数。不包括重传的。
-  - 也就是每秒发送了多少个 TCP 包
+    - 也就是每秒发送了多少个 TCP 包
 
 ## Syntax(语法)
 
 **sar \[OPTIONS] \[INTERVAL \[COUNT]]**
 
 - **INTERVAL** # 间隔时间，单位是秒。指定 INTERVAL 时，mpstat 根据该时间每隔 INTERVAL 秒输出一次信息，并在最后输出平均值。
-  - **COUNT** # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
+    - **COUNT** # 每隔 INTERVAL 时间，输出信息的数量。若不指定 CONUNT，则 mpstat 会根据间隔时间持续输出统计信息。
 
 OPTIONS
 
@@ -277,6 +277,6 @@ OPTIONS
 EXAMPLE
 
 - 输出 1，3，5，7 这 4 个 CPU 中，idle 小于 10 的 CPU
-  - **sar -P 1,3,5,7 1 | tail -n+3 | awk '$NF<10 {print $0}'**
+    - **sar -P 1,3,5,7 1 | tail -n+3 | awk '$NF<10 {print $0}'**
 
 # tapestat

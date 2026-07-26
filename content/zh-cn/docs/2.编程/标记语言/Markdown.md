@@ -1,6 +1,5 @@
 ---
 title: "Markdown"
-linkTitle: "Markdown"
 weight: 20
 ---
 
@@ -28,7 +27,6 @@ Markdown 是一种轻量级的标记语言
 - **独行格式** # 使用 `$$`。比如 `$$LaTex code$$` 的解析效果如下
 
 $$LaTex code$$
-
 
 ## 速查
 
@@ -377,4 +375,3 @@ $$
 | X | `X` | χ | `\chi` |
 | Ψ | `\Psi` | ψ | `\psi` |
 | Ω | `\v` | ω | `\omega` |
-

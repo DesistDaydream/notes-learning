@@ -1,6 +1,5 @@
 ---
 title: kubernetes 环境开启 bridge-nf-call-iptables
-linkTitle: kubernetes 环境开启 bridge-nf-call-iptables
 weight: 20
 ---
 

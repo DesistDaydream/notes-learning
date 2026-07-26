@@ -1,6 +1,5 @@
 ---
 title: Linux libc 库
-linkTitle: Linux libc 库
 weight: 2
 ---
 

@@ -7,9 +7,9 @@ title: kube-prometheus 项目
 > 参考:
 >
 > - [GitHub 项目，prometheus-operator/kube-prometheus](https://github.com/prometheus-operator/kube-prometheus)
->   - 部署文件
->     - <https://github.com/coreos/kube-prometheus/tree/master/manifests>
->     - <https://github.com/prometheus-operator/kube-prometheus/tree/main/manifests>
+>     - 部署文件
+>         - <https://github.com/coreos/kube-prometheus/tree/master/manifests>
+>         - <https://github.com/prometheus-operator/kube-prometheus/tree/main/manifests>
 > - [GitHub 项目，prometheus-community/helm-charts](https://github.com/prometheus-community/helm-charts)（kube-prometheus 项目的 Helm Chart）
 
 ## 背景
@@ -23,4 +23,3 @@ kube-prometheus 在 prometheus-operator 基础上，给用户提供了一套完�
 ## 兼容矩阵
 
 # 部署
-

@@ -1,6 +1,5 @@
 ---
 title: wget
-linkTitle: wget
 weight: 20
 ---
 

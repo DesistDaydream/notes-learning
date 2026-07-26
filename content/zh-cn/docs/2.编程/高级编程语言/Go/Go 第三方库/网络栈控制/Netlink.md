@@ -1,6 +1,5 @@
 ---
 title: Netlink
-linkTitle: Netlink
 weight: 20
 ---
 
@@ -24,7 +23,7 @@ package main
 
 import (
     "fmt"
-    
+
     "github.com/vishvananda/netlink"
 )
 
@@ -40,7 +39,7 @@ func main() {
     // Link 接口只有两个方法，Attrs() 用来返回 LinkAttrs 结构体，Type() 用来返回该网络设备的类型。
     // 而对各种类型的网络设备实现增删改查的函数，其接受的参数就是 Link 接口类型
     // 所以 Link 接口的主要作用，就是用来区分不同类型的网络设备，以便可以在调用时统一。对网络设备的任何操作，都可以将 Link 接口作为参数互相传递。
-    
+
     // 使用 Bridge 结构体的信息创建一个网络设备
     err := netlink.LinkAdd(mybridge)
     if err != nil {
@@ -58,7 +57,7 @@ package main
 
 import (
     "fmt"
-    
+
     "github.com/vishvananda/netlink"
 )
 
@@ -72,13 +71,13 @@ func addBridge() *netlink.Bridge {
     myBridge := &netlink.Bridge{
         LinkAttrs: linkAttrs,
     }
-    
+
     // 使用 Bridge 结构体的信息创建一个 link
     err := netlink.LinkAdd(myBridge)
     if err != nil {
         fmt.Printf("could not add %s: %v\n", linkAttrs.Name, err)
     }
-    
+
     return myBridge
 }
 
@@ -93,13 +92,13 @@ func addVeth() *netlink.Veth {
         LinkAttrs: linkAttrs,
         PeerName:  "veth1.2",
     }
-    
+
     // 使用 Veth 结构体的信息创建一个 link
     err := netlink.LinkAdd(myVeth)
     if err != nil {
         fmt.Printf("could not add %s: %v\n", linkAttrs.Name, err)
     }
-    
+
     return myVeth
 }
 
@@ -117,7 +116,7 @@ func main() {
     netlink.LinkDel(veth)
 
     // 改
-    
+
     // 查
     // 实例化一个 Handle，相当于在当前名称空间中创建一个 Socket 句柄。
     // 呼叫者可以指定句柄应支持的netlink族。如果未指定族，则将自动添加netlink软件包支持的所有族。

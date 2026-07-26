@@ -1,13 +1,12 @@
 ---
 title: "K3S 管理"
-linkTitle: "K3S 管理"
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，高级选项和配置](https://docs.k3s.io/zh/advanced)
 
 # 使用 etcdctl

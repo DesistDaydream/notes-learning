@@ -1,6 +1,5 @@
 ---
 title: Finalizers
-linkTitle: Finalizers
 weight: 20
 ---
 
@@ -11,7 +10,7 @@ weight: 20
 > - [官方文档，概念 - 概述 - 使用 Kubernetes 对象 - Finalizers](https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/)
 > - [公众号-云原生之路，熟悉又陌生的 k8s 字段：finalizers](https://mp.weixin.qq.com/s/U8ZhfjWDzLhFUaRxvLIVDw)
 > - [Kubernetes 博客，使用 Finalizers 控制删除](https://kubernetes.io/blog/2021/05/14/using-finalizers-to-control-deletion/)
->   - [公众号-云原生实验室，使用 Finalizers 来删除那些死活删不掉的 K8S 资源](https://mp.weixin.qq.com/s/pbq0jEIqfu3Sc-B0eultWA)
+>     - [公众号-云原生实验室，使用 Finalizers 来删除那些死活删不掉的 K8S 资源](https://mp.weixin.qq.com/s/pbq0jEIqfu3Sc-B0eultWA)
 
 **Finalizer(终结器)** 是一个存放键的列表，不具有任何实际意义，类似于 annotations 字段的功能。它告诉 Kubernetes 在完全删除标记为删除的资源之前等待满足特定条件。终结器提醒控制器清理已删除对象拥有的资源。只有一个对象的 `metadata.finalizers` 字段的值为空，该对象才可以被删除。
 
@@ -19,7 +18,7 @@ weight: 20
 
 - 对象存在 `finalizers`，关联的控制器故障未能执行或执行 finalizer 函数 hang 住 : 比如 namespace 控制器无法删除完空间内所有的对象， 特别是在使用 aggregated apiserver 时，第三方 apiserver 服务故障导致无法删除其对象。 此时，需要会恢复第三方 apiserver 服务或移除该 apiserver 的聚合，具体选择哪种方案需根据实际情况而定。
 - 集群内安装的控制器给一些对象增加了自定义 finalizers，未删除完 fianlizers 就下线了该控制器，导致这些 fianlizers 没有控制器来移除他们。此时，有两种方式可以正常删除这些对象，其一，恢复该控制器，控制器会移除 finalizers 字段，其二，手动移除 finalizers 字段(多出现于自定义 operator)，具体选择哪种方案根据实际情况而定。
-  - RabbitMQ Operator 就是这种情况，但是 Prometheus Operator 就没这问题。。。。o(╯□╰)o~~~
+    - RabbitMQ Operator 就是这种情况，但是 Prometheus Operator 就没这问题。。。。o(╯□╰)o~~~
 
 # 熟悉又陌生的 k8s 字段：finalizers
 

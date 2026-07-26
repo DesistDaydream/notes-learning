@@ -20,8 +20,8 @@ OPTIONS
 - **count**=N # 读取的 block 数，block 的大小由 ibs 指定（只针对输入参数）
 - **ibs**=BYTES # read up to BYTES bytes at a time (default: 512)
 - **if**=FILE # 指定输入文件。默认从标准输入读取。
-  - /dev/zero 是 Linux 的一个伪文件，它可以产生连续不断的 null 流（二进制的 0）
-- **iflag**([FLAGS](#FLAGS)) # 使用 FLAGS 来控制输入(读取数据)时的行为特征。多个 FLAG 以 , 分隔
+    - /dev/zero 是 Linux 的一个伪文件，它可以产生连续不断的 null 流（二进制的 0）
+- **iflag**([FLAGS](#flags)) # 使用 FLAGS 来控制输入(读取数据)时的行为特征。多个 FLAG 以 , 分隔
 - **obs**=BYTES # write BYTES bytes at a time (default: 512)
 - **of**=FILE # 指定输出文件。默认输出到标准输出。
 - **oflag**=FLAGS # 使用 iflag 来控制输出(写入数据)时的行为特征。多个 FLAG 以 , 分隔
@@ -74,4 +74,3 @@ dd if=/dev/urandom of=/dev/sdb1 bs=1M count=1024
 ```bash
 dd if=/dev/sdb1 of=/dev/null bs=1M count=1024
 ```
-

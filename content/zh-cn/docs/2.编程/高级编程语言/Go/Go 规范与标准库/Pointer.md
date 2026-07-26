@@ -1,6 +1,5 @@
 ---
 title: Pointer
-linkTitle: Pointer
 weight: 7
 ---
 

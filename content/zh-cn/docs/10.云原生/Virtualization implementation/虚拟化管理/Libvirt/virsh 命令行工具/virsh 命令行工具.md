@@ -8,7 +8,7 @@ weight: 1
 > 参考：
 >
 > - [官方文档，手册-virsh](https://libvirt.org/manpages/virsh.html)
->   - [GitHub 位置，libvirt/libvirt/docs/manpages/virsh.rst](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst)
+>     - [GitHub 位置，libvirt/libvirt/docs/manpages/virsh.rst](https://github.com/libvirt/libvirt/blob/master/docs/manpages/virsh.rst)
 
 virsh 是 libvirt 核心发行版的一部分，通过 [Libvirt API](/docs/10.云原生/Virtualization%20implementation/虚拟化管理/Libvirt/Libvirt%20API/Libvirt%20API.md) 管理虚拟机的命令行工具。
 
@@ -79,8 +79,6 @@ Many of the commands for host interfaces are similar to the ones used for domain
 - 一个 storage pool 包括很多 storage volume，storage volume 有单独的一组命令进行管理
 - storage pool 就是存放 s torage volume 的地方，是一个目录，详见 1.5.Storage Virtualization.note 中的 kvm 的存储虚拟化
 - 存储池默认目录为/var/lib/libvirt/images/，这个目录会存放所有 VM 的文件，通过 libvirt 创建完虚拟机后生成的 image 都会放在 default 目录下
-
-
 
 ## VOLUME COMMANDS
 

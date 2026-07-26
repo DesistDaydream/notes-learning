@@ -1,6 +1,5 @@
 ---
 title: "Bash 内置命令"
-linkTitle: "Bash 内置命令"
 weight: 20
 ---
 
@@ -16,6 +15,4 @@ https://www.man7.org/linux/man-pages/man1/bash.1.html#ALIASES
 
 ## alias
 
-
 ## unalias
-

@@ -1,6 +1,5 @@
 ---
 title: Docker Storage
-linkTitle: Docker Storage
 weight: 20
 ---
 
@@ -19,11 +18,11 @@ weight: 20
 为了解决这些问题，可以通过三种 Storage 方式来将文件存储于宿主机中
 
 - **volume**
-  - volume 类型的 storage 是通过 docker volume 命令显式得创建一个抽象的内容，创建完一个 volume 会，会在 /var/lib/docker/volumes/\* 目录下生成与 volume 同名的目录，在将 volume 挂载进 Container 中时，也就是将 /var/lib/docker/volmes/XXX 目录挂载进去。非 Docker 进程不应修改文件系统的这一部分。卷是在 Docker 中持久保存数据的最佳方法。
+    - volume 类型的 storage 是通过 docker volume 命令显式得创建一个抽象的内容，创建完一个 volume 会，会在 /var/lib/docker/volumes/\* 目录下生成与 volume 同名的目录，在将 volume 挂载进 Container 中时，也就是将 /var/lib/docker/volmes/XXX 目录挂载进去。非 Docker 进程不应修改文件系统的这一部分。卷是在 Docker 中持久保存数据的最佳方法。
 - **bind mounts**
-  - 可以存储在主机系统上的任何位置。它们甚至可能是重要的系统文件或目录。Docker 主机或 Docker 容器上的非 Docker 进程可以随时对其进行修改。
+    - 可以存储在主机系统上的任何位置。它们甚至可能是重要的系统文件或目录。Docker 主机或 Docker 容器上的非 Docker 进程可以随时对其进行修改。
 - **tmpfs mount**
-  - 仅存储在主机系统的内存中，并且永远不会写入主机系统的文件系统中。
+    - 仅存储在主机系统的内存中，并且永远不会写入主机系统的文件系统中。
 
 无论使用哪种方式，目的都是让宿主机上的某个“目录或者文件”绕过联合文件系统，与 Container 中的一个或多个“目录或文件”绑定，对目录中的操作，在 Container 和 Host 中都能看到(i.e.在宿主机目录中创建一个文件，Container 中对应的目录也会看到这个文件)，一个 Volume 可以绑定到多个 Container 上去。
 
@@ -98,26 +97,26 @@ bind mount 可以将宿主机上任意目录或者文件，与 Container 共享
 
 - TYPE # 挂载类型。可用的有 volume、bind、tmpfs 三种
 - SRC # 宿主机路径(/HOST/PATH) 或者容器卷名称(VolumeName)。
-  - 若不指定 SRC，则 docker 会自动创建一个。若指定路径在宿主机上不存在，则默认在 /var/lib/docker/volumes/ 路径下创建 volume 所用的目录
-  - 挂载文件时，若指定的 SRC 不存在，则会在本机自动创建一个同名目录。
-  - tmpfs 不用指定 SRC
+    - 若不指定 SRC，则 docker 会自动创建一个。若指定路径在宿主机上不存在，则默认在 /var/lib/docker/volumes/ 路径下创建 volume 所用的目录
+    - 挂载文件时，若指定的 SRC 不存在，则会在本机自动创建一个同名目录。
+    - tmpfs 不用指定 SRC
 - DST # 容器内的路径 /CONTAINER/PATH
 
 OPTIONS # 以逗号分隔的选项列表，以 KEY=VALUE 的方式表示。
 
 - ro=true | false(default) # 指定该 Stroage 是否是只读模式(默认为 false。i.e. rw(读写)模式)。Note: setting readonly for a bind mount does not make its submounts。read-only on the current Linux implementation. See also bind-nonrecursive.
 - 适用于 bind 类型 Storage 的选项
-  - bind-propagation=shared | slave | private | rshared | rslave | rprivate(default) #
-  - consistency=consistent(default) | cached | delegated # 该选项目前仅对 mac 版 docker 有用。
-  - bind-nonrecursive=true | false(default). 如果为 true，则子挂载不会递归挂载。这个 OPT 对于只读模式很有用
+    - bind-propagation=shared | slave | private | rshared | rslave | rprivate(default) #
+    - consistency=consistent(default) | cached | delegated # 该选项目前仅对 mac 版 docker 有用。
+    - bind-nonrecursive=true | false(default). 如果为 true，则子挂载不会递归挂载。这个 OPT 对于只读模式很有用
 - 适用于 volume 类型 Storage 的选项
-  - volume-driver: Name of the volume-driver plugin.
-  - volume-label: Custom metadata.
-  - volume-nocopy=true(default) | false. If set to false, the Engine copies existing files and directories under the mount-path into the volume,allowing the host to access them.如果设置为 false，则引擎会将安装路径下的现有文件和目录复制到该卷中，使主机可以访问它们。
-  - volume-opt: specific to a given volume driver.
+    - volume-driver: Name of the volume-driver plugin.
+    - volume-label: Custom metadata.
+    - volume-nocopy=true(default) | false. If set to false, the Engine copies existing files and directories under the mount-path into the volume,allowing the host to access them.如果设置为 false，则引擎会将安装路径下的现有文件和目录复制到该卷中，使主机可以访问它们。
+    - volume-opt: specific to a given volume driver.
 - 适用于 tmpfs 类型 Storage 的选项
-  - tmpfs-size=SIZE # tmpfs 类型 Storage 的大小。在 Linux 中默认是无限的。
-  - tmpfs-mode=MODE # tmpfs 类型 Storage 的文件模式(e.g. 700 or 0700.)。Linux 中默认为 1777
+    - tmpfs-size=SIZE # tmpfs 类型 Storage 的大小。在 Linux 中默认是无限的。
+    - tmpfs-mode=MODE # tmpfs 类型 Storage 的文件模式(e.g. 700 or 0700.)。Linux 中默认为 1777
 
 EXAMPLE
 

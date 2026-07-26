@@ -228,7 +228,7 @@ router_102_103 的路由表内容如下：
 网络虚拟化原理
 
 - 在 openstack 中创建一个 Namespace，该命名空间相当于把虚拟网络放在一个独立的虚拟化环境中，可以在 linux 中通过 ip netns exec NAME COMMAND 进行操作，一个 Namespace 就是一整套完整独立的网络，包括路由交换等(创建的 route 就是放在 namespace 中)可以为系统之上的虚拟机提供全套网络服务
-  - ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/oo0pgf/1616123235147-59333d41-b2a7-47d9-9fb2-298f751aff54.jpeg)
+    - ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/oo0pgf/1616123235147-59333d41-b2a7-47d9-9fb2-298f751aff54.jpeg)
 -
 
 - 如图所示中间的路由器就是由 neutron(linux 也具备此功能)模拟出来的虚拟路由器，该虚拟路由器就存在于 Namespace 为 XXXXXX 的虚拟环境中(可以通过 neutron router-list 命令查看 Namespace 的 ID)，可以通过 ip nets exec NAME bash 打开该虚拟化网络环境，之后所有的操作，都相当于是对这个环境启动了一个 bash，所有操作都是对这个环境下的虚拟设备进行的

@@ -1,6 +1,5 @@
 ---
 title: Iptables
-linkTitle: Iptables
 weight: 1
 ---
 
@@ -38,8 +37,8 @@ iptables 中有默认的内置 4 个表，每个表的名称就是其 chain 类�
 ### nat - 网络地址转换
 
 - 该类型的链可作用在以下几个 Hook 点上：PREROUTING(DNAT)、INPUT、OUTPUT、POSTROUTING(SNAT)
-  - 其中 PREROUTING 与 POSTROUTING 是流量经过物理网卡设备时做 nat 的地方
-  - 其中 INPUT 与 OUTPUT 则是主机内部从网络栈直接下来的流量做 nat 的地方。e.g.从主机一个服务发送数据到同一个主机另一个服务的流量
+    - 其中 PREROUTING 与 POSTROUTING 是流量经过物理网卡设备时做 nat 的地方
+    - 其中 INPUT 与 OUTPUT 则是主机内部从网络栈直接下来的流量做 nat 的地方。e.g.从主机一个服务发送数据到同一个主机另一个服务的流量
 
 ### mangle - 拆解报文，做出修改，封装报文
 

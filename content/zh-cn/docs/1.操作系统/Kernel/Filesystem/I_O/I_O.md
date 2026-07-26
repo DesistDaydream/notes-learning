@@ -1,6 +1,5 @@
 ---
 title: I_O
-linkTitle: I_O
 weight: 20
 ---
 

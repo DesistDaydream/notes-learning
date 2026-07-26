@@ -1,6 +1,5 @@
 ---
 title: Bastion Host
-linkTitle: Bastion Host
 weight: 20
 ---
 

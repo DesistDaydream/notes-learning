@@ -1,6 +1,5 @@
 ---
 title: Kubernetes 扩展
-linkTitle: Kubernetes 扩展
 weight: 20
 ---
 

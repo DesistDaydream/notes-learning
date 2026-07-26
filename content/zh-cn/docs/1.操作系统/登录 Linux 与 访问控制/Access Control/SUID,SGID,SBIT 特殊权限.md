@@ -1,6 +1,5 @@
 ---
 title: SUID,SGID,SBIT 特殊权限
-linkTitle: SUID,SGID,SBIT 特殊权限
 weight: 20
 ---
 

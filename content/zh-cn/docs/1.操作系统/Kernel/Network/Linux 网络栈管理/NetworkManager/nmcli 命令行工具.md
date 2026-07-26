@@ -26,8 +26,8 @@ OPTIONS
 - -g, --get-values \<field,...>|all|common shortcut for -m tabular -t -f
 - -h, --help print this help
 - **-m, --mode \<tabular|multiline>** # 指定输出模式,tabular 输出为表格样式，multiline 是多行样式。
-  - nmcli con show # 默认为表格样式
-  - nmcli con show DEV # 默认为多行样式
+    - nmcli con show # 默认为表格样式
+    - nmcli con show DEV # 默认为多行样式
 - -o, --overview overview mode
 - **-p, --pretty** # 美化输出，以连接中的 setting 分段落展示
 - -s, --show-secrets allow displaying passwords

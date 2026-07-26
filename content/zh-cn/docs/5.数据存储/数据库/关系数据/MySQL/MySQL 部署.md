@@ -1,6 +1,5 @@
 ---
 title: "MySQL 部署"
-linkTitle: "MySQL 部署"
 weight: 20
 ---
 
@@ -44,4 +43,5 @@ EOF
 ## Helm 部署 MySQL
 
 > 参考：
+>
 > - [bitnami/mysql](https://github.com/bitnami/charts/tree/main/bitnami/mysql)

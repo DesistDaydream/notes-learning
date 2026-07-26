@@ -5,7 +5,7 @@ title: net 包中的 TCP
 # 概述
 
 > 参考：
-> 
+>
 > - [知乎，TCP 漫谈之 keepalive 和 time_wait](https://zhuanlan.zhihu.com/p/126688315)
 
 TCP 是一个有状态通讯协议，所谓的有状态是指通信过程中通信的双方各自维护连接的状态。
@@ -57,16 +57,16 @@ if tc, ok := c.(*TCPConn); ok && d.KeepAlive >= 0 {
 
 ```go
 var DefaultTransport RoundTripper = &Transport{
-	Proxy: ProxyFromEnvironment,
-	DialContext: (&net.Dialer{
-		Timeout:   30 * time.Second,
-		KeepAlive: 30 * time.Second,
-	}).DialContext,
-	ForceAttemptHTTP2:     true,
-	MaxIdleConns:          100,
-	IdleConnTimeout:       90 * time.Second,
-	TLSHandshakeTimeout:   10 * time.Second,
-	ExpectContinueTimeout: 1 * time.Second,
+ Proxy: ProxyFromEnvironment,
+ DialContext: (&net.Dialer{
+  Timeout:   30 * time.Second,
+  KeepAlive: 30 * time.Second,
+ }).DialContext,
+ ForceAttemptHTTP2:     true,
+ MaxIdleConns:          100,
+ IdleConnTimeout:       90 * time.Second,
+ TLSHandshakeTimeout:   10 * time.Second,
+ ExpectContinueTimeout: 1 * time.Second,
 }
 ```
 
@@ -76,58 +76,58 @@ var DefaultTransport RoundTripper = &Transport{
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
-	"net"
-	"net/http"
-	"sync"
-	"time"
+ "fmt"
+ "io/ioutil"
+ "net"
+ "net/http"
+ "sync"
+ "time"
 )
 
 func main() {
-	wg := &sync.WaitGroup{}
+ wg := &sync.WaitGroup{}
 
-	dialer := &net.Dialer{
-		Timeout:   30 * time.Second,
+ dialer := &net.Dialer{
+  Timeout:   30 * time.Second,
         // TCP 连接进入 keepalive 状态前的等待时间
-		KeepAlive: 30 * time.Second,
-		DualStack: true,
-	}
+  KeepAlive: 30 * time.Second,
+  DualStack: true,
+ }
 
-	transport := &http.Transport{
-		DialContext:           dialer.DialContext,
-		ForceAttemptHTTP2:     true,
-		MaxIdleConns:          100,
-		IdleConnTimeout:       90 * time.Second,
-		TLSHandshakeTimeout:   10 * time.Second,
-		ExpectContinueTimeout: 1 * time.Second,
-	}
+ transport := &http.Transport{
+  DialContext:           dialer.DialContext,
+  ForceAttemptHTTP2:     true,
+  MaxIdleConns:          100,
+  IdleConnTimeout:       90 * time.Second,
+  TLSHandshakeTimeout:   10 * time.Second,
+  ExpectContinueTimeout: 1 * time.Second,
+ }
 
-	client := &http.Client{
-		Transport: transport,
-	}
+ client := &http.Client{
+  Transport: transport,
+ }
 
-	for i := 0; i < 2; i++ {
-		wg.Add(1)
-		go func() {
-			defer wg.Done()
-			for {
-				r, err := client.Get("http://**.**.**.**:****")
-				if err != nil {
-					fmt.Println(err)
-					return
-				}
-				_, err = ioutil.ReadAll(r.Body)
-				r.Body.Close()
-				if err != nil {
-					fmt.Println(err)
-					return
-				}
-				time.Sleep(30 * time.Millisecond)
-			}
-		}()
-	}
-	wg.Wait()
+ for i := 0; i < 2; i++ {
+  wg.Add(1)
+  go func() {
+   defer wg.Done()
+   for {
+    r, err := client.Get("http://**.**.**.**:****")
+    if err != nil {
+     fmt.Println(err)
+     return
+    }
+    _, err = ioutil.ReadAll(r.Body)
+    r.Body.Close()
+    if err != nil {
+     fmt.Println(err)
+     return
+    }
+    time.Sleep(30 * time.Millisecond)
+   }
+  }()
+ }
+ wg.Wait()
 }
 ```
 
@@ -166,4 +166,3 @@ func main() {
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/hmo2md/1626270211233-8114fc51-79a6-4719-a8fd-19fe2b64a7f4.png)
 
 时间戳开启后，针对第一个迷路数据包的问题，由于晚到数据包的时间戳过早会被直接丢弃，不会导致新连接数据包紊乱；针对第二个问题，开启 reuse 后，当对方处于 last-ack 状态时，发送 syn 包会返回 FIN,ACK 包，然后客户端发送 RST 让服务端关闭请求，从而客户端可以再次发送 syn 建立新的连接。最后还需要提醒读者的是，Linux 4.1 内核版本之前除了 tcp_tw_reuse 以外，还有一个参数 tcp_tw_recycle，这个参数就是强制回收 time_wait 状态的连接，它会导致 NAT 环境丢包，所以不建议开启。
-

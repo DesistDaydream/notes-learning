@@ -9,6 +9,9 @@
         "no-emphasis-as-heading": false, // 让一行全部加粗的文本可以存在
         "no-inline-html": false, // 允许行内 HTML
         "ol-prefix": false, // 对于不以“1”开头的有序列表会触发此规则。
+        "MD007": {
+            "indent": 4 // 无序列表的子列表缩进为 4 个空格。默认值: 2
+        }
     },
     "[html]": {
         "editor.formatOnSave": false

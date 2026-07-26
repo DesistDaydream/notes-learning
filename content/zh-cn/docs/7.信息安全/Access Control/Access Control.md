@@ -1,6 +1,5 @@
 ---
 title: Access Control
-linkTitle: Access Control
 weight: 1
 ---
 
@@ -289,12 +288,14 @@ RBAC 与前面提到的 users/groups 模型类似。接下来看一个具体的�
 这个改进比较合理，尤其是在有很多 objects 的大公司中工作良好，但也有几个问题：
 
 1. 现在 **==需要有某种形式的 IAM admin 访问控制==** ，也就是对 **==用户组的增删查改==** 做控制。
-	上一节的 RBAC/ABAC 模型中无需这种功能，因为它直接修改文件的 ACL。IAM admin 管控带来的一个新问题是：
-	- 如果管控太松，会导致很多人都有 IAM 的访问权限，存在风险；
-	- 如果管控太紧，大部分都无权修改 group membership，又会使得这种模型的好处大打折扣。
+ 上一节的 RBAC/ABAC 模型中无需这种功能，因为它直接修改文件的 ACL。IAM admin 管控带来的一个新问题是：
+
+- 如果管控太松，会导致很多人都有 IAM 的访问权限，存在风险；
+- 如果管控太紧，大部分都无权修改 group membership，又会使得这种模型的好处大打折扣。
+
 2. End users 仍然能四处游荡，在需要时 **==能修改每个 report 文件的 ACL==** （“Alice 真的真的需要查看这个文件”），破坏了你精心设计的系统 —— 而你自己都 **==无法察觉==** 。
 3. 现在需要 **==为每个 ACL 组合创建一个 user group==** 。
-	最后会发现，公司的每个工程师都属于 975 个 group，每个 group 都需要定义 read/write 两种类型。你必须 review 每个 group 的 membership。这种方式虽然比 老的 ad-hoc 文件权限方式审计性要好，但也好不了太多。
+ 最后会发现，公司的每个工程师都属于 975 个 group，每个 group 都需要定义 read/write 两种类型。你必须 review 每个 group 的 membership。这种方式虽然比 老的 ad-hoc 文件权限方式审计性要好，但也好不了太多。
 
 ## 4 第三次尝试：重拾被忽视的概念：object tags
 
@@ -403,8 +404,10 @@ RBAC 与前面提到的 users/groups 模型类似。接下来看一个具体的�
 
 1. Accounting 部门中的财报 writer 并不关心谁是 Executive，也不关心 Executive 是否 有权查看或编辑财报。他们只需知道 **==要给 report 文件打上 financial-report tag==** 。
 2. 安全团队并不关心哪个文件打了 `financial-report` （讨论一般情况下），也不关心谁是Executive。 他们需要的是
-	- **==能读、写对应的安全策略，以及确保策略生效==** ：
-	- **==确保 financial-report tag 只能被 Accounting 部门打==** ，对应的文件只能被 Executives 和 Accounting 读（read only）。
+
+- **==能读、写对应的安全策略，以及确保策略生效==** ：
+- **==确保 financial-report tag 只能被 Accounting 部门打==** ，对应的文件只能被 Executives 和 Accounting 读（read only）。
+
 3. HR 团队不知道也不关心文件或安全策略，他们只关心 **==这周招了一个 Accounting role 的人==** 。
 
 ## 5.3 小结

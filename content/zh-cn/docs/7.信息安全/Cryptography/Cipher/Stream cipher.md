@@ -1,6 +1,5 @@
 ---
 title: "Stream cipher"
-linkTitle: "Stream cipher"
 weight: 20
 ---
 

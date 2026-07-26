@@ -1,6 +1,5 @@
 ---
 title: LogQL 常见查询语句
-linkTitle: LogQL 常见查询语句
 weight: 20
 ---
 

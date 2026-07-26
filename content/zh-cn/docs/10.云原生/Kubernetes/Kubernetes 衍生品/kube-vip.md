@@ -1,6 +1,5 @@
 ---
 title: kube-vip
-linkTitle: kube-vip
 weight: 20
 ---
 

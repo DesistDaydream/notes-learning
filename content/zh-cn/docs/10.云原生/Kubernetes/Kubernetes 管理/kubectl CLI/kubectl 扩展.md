@@ -38,9 +38,9 @@ Kubernetes SIG 研发了一款名为 **Krew** 的插件，这是一个可以管�
 kubectl 插件管理工具，项目地址：<https://github.com/kubernetes-sigs/krew-index/blob/master/plugins.md>
 
 - **neat** # 让 kubectl get -o yaml 的输出更简洁
-  - 项目地址：<https://github.com/itaysk/kubectl-neat>
+    - 项目地址：<https://github.com/itaysk/kubectl-neat>
 - **node-shell** # 通过 kubectl 命令直接进入 node 的 shell 中
-  - 项目地址：[GitHub 项目](https://github.com/kvaps/kubectl-node-shell)
+    - 项目地址：[GitHub 项目](https://github.com/kvaps/kubectl-node-shell)
 
 # 好用的 kubectl 扩展工具
 

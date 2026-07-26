@@ -1,6 +1,5 @@
 ---
 title: "GraphQL"
-linkTitle: "GraphQL"
 weight: 20
 ---
 
@@ -11,7 +10,7 @@ weight: 20
 > - [GitHub 组织，GraphQL](https://github.com/graphql)
 > - [官网](https://graphql.org/)
 > - [公众号 - K8S中文社区，我为什么要放弃 RESTful，选择拥抱 GraphQL](https://mp.weixin.qq.com/s/ao7ry12KLyOxGHG3SRNthQ)
->   - 原文: https://www.toutiao.com/article/6833818331884028419/
+>     - 原文: https://www.toutiao.com/article/6833818331884028419/
 
 [REST](/docs/2.编程/API/REST.md) 作为一种现代网络应用非常流行的软件架构风格，自从 Roy Fielding 博士在 2000 年他的博士论文中提出来到现在已经有了 20 年的历史。它的简单易用性，可扩展性，伸缩性受到广大 Web 开发者的喜爱。
 

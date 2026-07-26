@@ -8,7 +8,7 @@ weight: 101
 
 > 参考：
 >
-> - 
+> -
 
 # 最佳实践
 
@@ -38,7 +38,7 @@ sqlite3 -header -column /var/lib/headscale/db.sqlite "SELECT id, hostname, given
 ```
 
 ```bash
-id  hostname          ipv4        ipv6             
+id  hostname          ipv4        ipv6
 --  ----------------  ----------  -----------------
 1   LAPTOP-5113MLDP   100.64.0.1  fd7a:115c:a1e0::1
 2   aliyun-ubuntu-01  100.64.0.2  fd7a:115c:a1e0::2
@@ -50,4 +50,3 @@ id  hostname          ipv4        ipv6
 sqlite3 -header -column /var/lib/headscale/db.sqlite "UPDATE nodes SET ipv4='100.64.0.2' WHERE id=1;"
 sqlite3 -header -column /var/lib/headscale/db.sqlite "UPDATE nodes SET ipv4='100.64.0.1' WHERE id=2;"
 ```
-

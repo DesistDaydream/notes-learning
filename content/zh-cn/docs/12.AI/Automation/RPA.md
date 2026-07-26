@@ -1,6 +1,5 @@
 ---
 title: RPA
-linkTitle: RPA
 weight: 20
 ---
 

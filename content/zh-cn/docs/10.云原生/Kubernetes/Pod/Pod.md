@@ -1,6 +1,5 @@
 ---
 title: Pod
-linkTitle: Pod
 weight: 1
 ---
 
@@ -41,9 +40,9 @@ Pod 是 Kubernetes 集群内**最小的工作单元**，是一个逻辑概念。
 ## Kubernetes 引入 Pod 主要基于下面两个目的
 
 - 可管理性。
-  - 有些 Container 天生就是需要紧密联系，一起工作。Pod 提供了比容器更高层次的抽象，将它们封装到一个部署单元中。Kubernetes 以 Pod 为最小单位进行调度、扩展、共享资源、管理生命周期。
+    - 有些 Container 天生就是需要紧密联系，一起工作。Pod 提供了比容器更高层次的抽象，将它们封装到一个部署单元中。Kubernetes 以 Pod 为最小单位进行调度、扩展、共享资源、管理生命周期。
 - 通信和资源共享。
-  - Pod 中的所有 Container 使用同一个网络 namespace，即相同的 IP 地址和 Port 空间。它们可以直接用 localhost 通信。同样的，这些 Container 可以共享存储，当 Kubernetes 挂载 volume 到 Pod，本质上是将 volume 挂载到 Pod 中的每一个 Container。user,mnt,pnt。
+    - Pod 中的所有 Container 使用同一个网络 namespace，即相同的 IP 地址和 Port 空间。它们可以直接用 localhost 通信。同样的，这些 Container 可以共享存储，当 Kubernetes 挂载 volume 到 Pod，本质上是将 volume 挂载到 Pod 中的每一个 Container。user,mnt,pnt。
 - 使用户从传统虚拟机环境向容器环境迁移更加平滑，可以把 Pod 想象成 VM，Pod 中的 Container 是 VM 中的进程，甚至可以启动一个 systemd 的 Container
 - 还可以把 Pod 理解为传统环境中的物理主机
 
@@ -52,8 +51,8 @@ Pod 是 Kubernetes 集群内**最小的工作单元**，是一个逻辑概念。
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/iogldt/1616119861478-cf678269-344a-4932-8448-c9eee14a8438.png)
 
 - **sidecar** #(该英文的解释“跨斗”：一辆小而低的车辆，安装在摩托车旁边，用于载客，就像右图中的样子)，所以该模式就类似于这个，指可以再一个 Pod 中启动一个辅助 Container，来完成一些独立于主进程(主 Container)之外的工作。
-  - 比如 Container 的日志收集：现在有一个 APP，需要不断把日志文件输出到 Container 的/var/log 目录中。这时，把一个 Pod 里的 Volume 挂载到应用 Container 的/var/log 目录上，然后在 Pod 中同时运行一个 sidecar 的 Container 也声明挂载同一个 Volume 到自己的/var/log 目录上，然后 sidecar 只需要不断得从自己的/var/log 目录里读取日志文件，转发到 MongoDB 或者 Elasticsearch 中存储起来即可。
-  - Istio 项目也是使用 sidecar 模式的 Container 完成微服务治理的原理。
+    - 比如 Container 的日志收集：现在有一个 APP，需要不断把日志文件输出到 Container 的/var/log 目录中。这时，把一个 Pod 里的 Volume 挂载到应用 Container 的/var/log 目录上，然后在 Pod 中同时运行一个 sidecar 的 Container 也声明挂载同一个 Volume 到自己的/var/log 目录上，然后 sidecar 只需要不断得从自己的/var/log 目录里读取日志文件，转发到 MongoDB 或者 Elasticsearch 中存储起来即可。
+    - Istio 项目也是使用 sidecar 模式的 Container 完成微服务治理的原理。
 
 ## Pod 的类型
 
@@ -68,10 +67,10 @@ Pod 是 Kubernetes 集群内**最小的工作单元**，是一个逻辑概念。
 > - [官方文档，概念 - 工作负载 - Pod - 临时容器](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/)
 
 - 运行单一 Container。
-  - one-container-per-Pod 是 Kubernetes 最常见的模型，这种情况下，只是将单个 Container 简单封装成 Pod。
+    - one-container-per-Pod 是 Kubernetes 最常见的模型，这种情况下，只是将单个 Container 简单封装成 Pod。
 - 运行多个 Container。
-  - 这些 Container 联系必须非常紧密，而且需要直接共享资源的应该放到一个 Pod 中(注意：当使用多 Container 的时候，其中一个 Container 要加上 command 的参数，否则其中一个起不来。因为 container 如果不执行某些命令，则启动后会自动结束，详见 docker 说明 1.LXC 与 Docker 入门最佳实践.note 里《Dokcer 的工作模式》章节)
-  - 比如：File Puller 会定期从外部的 Content Manager 中拉取最新的文件，将其存放在共享的 volume 中。Web Server 从 volume 读取文件，响应 Consumer 的请求。这两个容器是紧密协作的，它们一起为 Consumer 提供最新的数据；同时它们也通过 volume 共享数据。所以放到一个 Pod 是合适的。
+    - 这些 Container 联系必须非常紧密，而且需要直接共享资源的应该放到一个 Pod 中(注意：当使用多 Container 的时候，其中一个 Container 要加上 command 的参数，否则其中一个起不来。因为 container 如果不执行某些命令，则启动后会自动结束，详见 docker 说明 1.LXC 与 Docker 入门最佳实践.note 里《Dokcer 的工作模式》章节)
+    - 比如：File Puller 会定期从外部的 Content Manager 中拉取最新的文件，将其存放在共享的 volume 中。Web Server 从 volume 读取文件，响应 Consumer 的请求。这两个容器是紧密协作的，它们一起为 Consumer 提供最新的数据；同时它们也通过 volume 共享数据。所以放到一个 Pod 是合适的。
 
 在 Pod 中，可运行的容器分为三类：
 

@@ -1,6 +1,5 @@
 ---
 title: proc
-linkTitle: proc
 weight: 20
 ---
 
@@ -10,7 +9,7 @@ weight: 20
 >
 > - [Manual(手册)，proc(5)](https://man7.org/linux/man-pages/man5/proc.5.html)
 > - [GitHub 项目，torvalds/linux - Documentation/filesystems/proc.rst](https://github.com/torvalds/linux/blob/master/Documentation/filesystems/proc.rst)
->   - https://www.kernel.org/doc/html/latest/filesystems/proc.html
+>     - https://www.kernel.org/doc/html/latest/filesystems/proc.html
 
 **process information pseudo-filesystem(进程信息伪文件系统，简称 proc)**， 提供了内核数据结构的接口。`一般挂载到 /proc 目录`。一般情况是由操作系统自动挂载的，也可以通过`mount -t proc proc /proc`命令手动挂载。proc 文件系统中的大多数文件都是只读的，但是有些文件是可写的，用于改变内核参数。
 

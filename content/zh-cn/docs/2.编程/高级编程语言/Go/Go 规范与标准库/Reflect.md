@@ -1,6 +1,5 @@
 ---
 title: Reflect
-linkTitle: Reflect
 weight: 10
 ---
 

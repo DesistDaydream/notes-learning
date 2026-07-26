@@ -1,6 +1,5 @@
 ---
 title: ClickHouse SQL
-linkTitle: ClickHouse SQL
 weight: 20
 ---
 
@@ -136,9 +135,9 @@ toStartOfXXX
 - [toStartOfWeek](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartofweek)
 - [toLastDayOfWeek](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tolastdayofweek)
 - [toStartOfDay](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartofday)
-  - e.g. `SELECT toStartOfDay(toDateTime('2023-04-21 10:20:30'))` 结果为 `2023-04-21 00:00:00`
+    - e.g. `SELECT toStartOfDay(toDateTime('2023-04-21 10:20:30'))` 结果为 `2023-04-21 00:00:00`
 - [toStartOfHour](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartofhour)
-  - e.g. `SELECT toStartOfHour(toDateTime('2023-04-21 10:20:30'))` 结果为 `2023-04-21 10:00:00`
+    - e.g. `SELECT toStartOfHour(toDateTime('2023-04-21 10:20:30'))` 结果为 `2023-04-21 10:00:00`
 - [toStartOfMinute](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartofminute)
 - [toStartOfSecond](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartofsecond)
 - [toStartOfMillisecond](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartofmillisecond)
@@ -148,8 +147,8 @@ toStartOfXXX
 - [toStartOfTenMinutes](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartoftenminutes)
 - [toStartOfFifteenMinutes](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartoffifteenminutes)
 - [toStartOfInterval](https://clickhouse.com/docs/en/sql-reference/functions/date-time-functions#tostartofinterval) # 通用函数，可以在参数中指定 向上/向下 舍入的具体逻辑。
-  - e.g. `toStartOfInterval(t, INTERVAL 1 YEAR)` 的返回值与 `toStartOfYear(t)` 相同
-  - e.g. `SELECT toStartOfInterval(toDateTime('2023-01-01 14:45:00'), INTERVAL 1 MINUTE, toDateTime('2023-01-01 14:35:30'))` 结果为 `2023-01-01 14:44:30`
+    - e.g. `toStartOfInterval(t, INTERVAL 1 YEAR)` 的返回值与 `toStartOfYear(t)` 相同
+    - e.g. `SELECT toStartOfInterval(toDateTime('2023-01-01 14:45:00'), INTERVAL 1 MINUTE, toDateTime('2023-01-01 14:35:30'))` 结果为 `2023-01-01 14:44:30`
 
 ### JSON
 
@@ -240,8 +239,8 @@ https://clickhouse.com/docs/sql-reference/table-functions/cluster
 **语法**
 
 ```sql
-cluster('cluster_name', db.table, sharding_key)  
-clusterAllReplicas('cluster_name', db.table, sharding_key)  
+cluster('cluster_name', db.table, sharding_key)
+clusterAllReplicas('cluster_name', db.table, sharding_key)
 ```
 
 **基本示例**
@@ -263,6 +262,7 @@ FROM clusterAllReplicas('my_cluster','my_database.my_table')
 > [!Attention] 使用 `cluster` 和 `clusterAllReplicas` 函数的效率低于创建 `Distributed` 表，因为在这种情况下，每次请求都需要重新建立服务器连接。处理大量查询时，请务必提前创建 `Distributed` 表，不要使用 `cluster` 和 `clusterAllReplicas` 函数。
 >
 > `cluster` 和 `clusterAllReplicas` 表函数在以下情况下非常有用：
+>
 > - 访问特定集群以进行数据比较、调试和测试。
 > - 出于研究目的，对各种 ClickHouse 集群和副本进行查询。
 > - 不频繁的、手动发出的分布式请求。

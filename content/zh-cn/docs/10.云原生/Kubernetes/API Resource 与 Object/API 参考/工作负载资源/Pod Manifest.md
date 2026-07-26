@@ -1,6 +1,5 @@
 ---
 title: Pod Manifest
-linkTitle: Pod Manifest
 weight: 20
 ---
 
@@ -28,7 +27,7 @@ Pod 是可以在主机上运行的容器的集合。此资源由客户端创建�
 
 - **annotations**(STRING) # Pod 注释，不同于 label，仅用于为资源提供元数据
 - **labels**(map[STRING]STRING) # Pod 的标签，通过“键值对”的方式定义，可以添加多个标签
-  - KEY: VAL # 比如该键值可以是 run: httpd，标签名是 run，run 的值是 httpd，key 与 val 使用字母，数字，\_，-，.这几个字符且以字母或数字开头；val 可以为空。
+    - KEY: VAL # 比如该键值可以是 run: httpd，标签名是 run，run 的值是 httpd，key 与 val 使用字母，数字，\_，-，.这几个字符且以字母或数字开头；val 可以为空。
 - **name**(STRING) # Pod 对象名称。必须名称空间唯一。
 - **ownerReferences**([]Object) # 该对象所依赖的对象列表，一般由控制器自动生成。也可以手动指定。
 
@@ -60,7 +59,7 @@ Pod 是可以在主机上运行的容器的集合。此资源由客户端创建�
 **volumes(\[]Object)** # 给 pod 创建一个 Volume
 
 - **TYPE:** # 选择要创建的 volume 的类型，具体支持的类型可以使用 kubectl explain pod.spec.volumes 命令查看
-  - ...... # 定义该类型的 volume 相关参数
+    - ...... # 定义该类型的 volume 相关参数
 - **name(STRING)** # **必须的**。自定义该存储卷的名称
 
 ## Scheduling 相关字段
@@ -90,9 +89,9 @@ Pod 是可以在主机上运行的容器的集合。此资源由客户端创建�
 **dnsPolicy(STRING)** # pod 的域名解析策略。`默认值：ClusterFirst`
 
 - 可用值有：
-  - ClusterFirstWithHostNet
-  - ClusterFirst
-  - None
+    - ClusterFirstWithHostNet
+    - ClusterFirst
+    - None
 
 ## Hosts namespaces 相关字段
 
@@ -112,7 +111,7 @@ Pod 是可以在主机上运行的容器的集合。此资源由客户端创建�
 
 - **fsGroup(INTEGER)**# 功能待确认。
 - **runAsNonRoot(BOOLEAN)** # 容器内的进程是否不以 root 身份运行。`默认值：false`。
-  - 若为 true，则必须指定 runAsUser 字段，除非构建镜像时已经指定了进程运行的 UID。
+    - 若为 true，则必须指定 runAsUser 字段，除非构建镜像时已经指定了进程运行的 UID。
 - **runAsUser(INTEGER)** # 指定运行容器内进程的 UID 为 INTEGER
 
 ## 其他类别的字段
@@ -146,13 +145,13 @@ status 字段表示 Pod 的状态信息。状态可能会落后于系统的实�
 **resources**(OJBECT) # 容器所需的资源。i.e. 所需的 CPU、Memory 等等
 
 - **limits**(map\[STRING]STRING) # 容器可以使用的最大资源
-  - **cpu**(STRING) # 定义容器的 CPU 限额
-  - **memory**(STRING) # 定义容器的 Memory 限额
-  - ...... 其他资源限额
+    - **cpu**(STRING) # 定义容器的 CPU 限额
+    - **memory**(STRING) # 定义容器的 Memory 限额
+    - ...... 其他资源限额
 - **requests**(map\[STRING]STRING) # 容器所需的最小资源。如果 Requests 省略，则默认与 limits 下定义的值保持一直。
-  - **cpu**(STRING) # 定义容器的 CPU 需求
-  - **memory**(STRING) # 定义容器的 Memory 需求
-  - ...... 其他资源需求
+    - **cpu**(STRING) # 定义容器的 CPU 需求
+    - **memory**(STRING) # 定义容器的 Memory 需求
+    - ...... 其他资源需求
 
 **volumeMounts**(\[]Object) # 给 Container 挂载在 Pod 中创建的 Volume。Volume 通过下文的 [Volumes 字段](#Volumes(卷)%20相关字段)指定
 
@@ -219,15 +218,15 @@ https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#N
 **preferredDuringSchedulingIgnoredDuringExecution**(\[]Object) # 调度程序将倾向于将 Pod 调度到满足此字段指定的反亲和行要求的节点，但是也可能会选择违反一个或多个该字段指定的调度规则。
 
 - **preference**(OBJECT) # **必须的**。
-  - **matchExpressions**(\[]OBJECT) # 该字段下的内容就是 [通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
-  - **matchFields**(OBJECT]) # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+    - **matchExpressions**(\[]OBJECT) # 该字段下的内容就是 [通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+    - **matchFields**(OBJECT]) # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
 - **weight(INTEGER)** # **必须的**。
 
 **requiredDuringSchedulingIgnoredDuringExecution**(Object) # 如果在调度时未满足该字段指定的反亲和性要求，则不会将 pod 调度到该节点上。
 
 - **nodeSelectorTerms**(\[]OBJECT) # **必须的**。节点选择器列表。列表中元素之间是“或”的关系
-  - **matchExpressions**(\[]OBJECT) # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
-  - **matchFields**(\[]OBJECT) # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+    - **matchExpressions**(\[]OBJECT) # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+    - **matchFields**(\[]OBJECT) # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
 
 ## podAffinity
 
@@ -240,8 +239,8 @@ https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#P
 **preferredDuringSchedulingIgnoredDuringExecution**([]Object) # 调度程序将倾向于将 Pod 调度到满足此字段指定的反亲和行要求的节点，但是也可能会选择违反一个或多个该字段指定的调度规则。
 
 - **preference**(OBJECT) # **必须的**。
-  - **matchExpressions**(\[]OBJECT) # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
-  - **matchFields**(\[]OBJECT) # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+    - **matchExpressions**(\[]OBJECT) # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
+    - **matchFields**(\[]OBJECT) # 该字段下的内容就是[通用的标签选择器字段](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20参考/Common%20Definitions(通用定义)/LabelSelector.md)
 - **weight**(INTEGER) # **必须的**。
 
 **requiredDuringSchedulingIgnoredDuringExecution**(\[]Object) # 如果在调度时未满足该字段指定的反亲和性要求，则不会将 pod 调度到该节点上。
@@ -286,4 +285,3 @@ spec:
     - name: myapp
       image: lchdzh/network-test
 ```
-

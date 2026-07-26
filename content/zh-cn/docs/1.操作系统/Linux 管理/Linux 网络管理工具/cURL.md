@@ -1,6 +1,5 @@
 ---
 title: cURL
-linkTitle: cURL
 weight: 20
 ---
 
@@ -33,7 +32,7 @@ curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就�
 由于 curl 程序支持多种协议，可以使用各种不同的协议向指定的 URL 发起请求，所以，并不是所有选项都适用于所有协议。在下面的笔记中，每个选项后面会添加一个 `()`，括号中说明此选项支持的协议，多个协议以空格分割；没有 `()` 的表示该选项适用于所有协议。若括号内为 TLS 则表示使用安全的各种协议，比如 https、ftps、imaps 等等
 
 - **--compressed** # (HTTP)使用 curl 支持的算法之一请求压缩响应，并自动解压缩响应体。
-  - 在有 Sever 端会将响应体压缩，若不使用该选项，则响应体是无法输出到标准输出的，且会出现如下报错：
+    - 在有 Sever 端会将响应体压缩，若不使用该选项，则响应体是无法输出到标准输出的，且会出现如下报错：
 
 ```bash
 Warning: Binary output can mess up your terminal. Use "--output -" to tell
@@ -42,24 +41,24 @@ Warning: <FILE>" to save to a file.
 ```
 
 - **-d,--data DATA** # (HTTP MQTT)使用 POST 请求将指定数据作为请求体。
-  - 与 `Content-Type: application/x-www-form-urlencoded` 头信息配合，发送的 DATA 是 x-www-form-urlencoded 类型的请求体数据。
+    - 与 `Content-Type: application/x-www-form-urlencoded` 头信息配合，发送的 DATA 是 x-www-form-urlencoded 类型的请求体数据。
 - **--data-urlencode DATA** # (HTTP)与 -d 选项类似，发起 POST 请求，但是它执行 URL 编码。(urlencode 就是 URL Encode)
 - **-f,--fail** # (HTTP)连接失败时不显示 HTTP 错误信息
 - **-g, --globoff** # 关闭 `URL Globbing Parser(URL全局解析器)`。设置此选项，则 URL 中可以包含 `{}` 和 `[]` 符号，这些符号将被当做字符。
-  - 该选项常用来配合 IPv6 使用
+    - 该选项常用来配合 IPv6 使用
 - **-H,--header**(STRING) # (HTTP)使用指定的 STRING 作为请求 header 发送给服务器
-  - STRING 可以使用 @FILE 格式来通过文件传递请求头信息。
+    - STRING 可以使用 @FILE 格式来通过文件传递请求头信息。
 - **-I,--head** # (HTTP FTP FILE)只显示本次请求的 Header 信息。当用于 FTP 或 FILE 时，则只显示文件大小和最后修改时间。
 - **-k,--insecure** # (TLS)此选项表示此次 curl 请求允许"不安全"的 SSL 连接和传输。也就是说对于 https 请求，可以允许私有证书。如果使用 curl 进行 https 请求的时候，不使用该参数的话，服务端使用的私有证书或自建 CA 的证书，则有可能产生如下报错
-  - curl: (60) Peer's certificate issuer has been marked as not trusted by the user.
-  - curl: (60) Peer's Certificate issuer is not recognized.
+    - curl: (60) Peer's certificate issuer has been marked as not trusted by the user.
+    - curl: (60) Peer's Certificate issuer is not recognized.
 - **-L, --location** # (HTTP)如果服务器报告所请求的页面已移动到其他位置（用 Location：标题和 3XX 响应代码表示），则此选项将使 curl 重做新位置的请求。
-  - Note:如果下载文件出错之后，发现文件大小异常，则说明该文件被移动到其他链接下了，需要使用-L 与-O 配合使用才能正确下载
+    - Note:如果下载文件出错之后，发现文件大小异常，则说明该文件被移动到其他链接下了，需要使用-L 与-O 配合使用才能正确下载
 - **--limit-rate NUM** # 限制现在时的速率，NMU 为每秒下载速度，单位可以使 K、M、G
 - **-m, --max-time TIME**# 指定 curl 不管访问成功还是失败，最大消耗时间为 TIME。TIME 时间后服务端未响应，则视为无法连接。
 - **-O, --remote-name**# 将输入写入的一个文件中，默认的文件名与请求的资源的名称一样。i.e.下载文件
-  - curl -O <https://www.example.com/foo/bar.html> # 将服务器回应保存成文件，文件名为 bar.html。
-  - 可以在一条命令中多次使用 -O 来下载多个文件
+    - curl -O <https://www.example.com/foo/bar.html> # 将服务器回应保存成文件，文件名为 bar.html。
+    - 可以在一条命令中多次使用 -O 来下载多个文件
 - **-o, --output FileName** # 与 -O 一样，下载文件，只不过可以自己制定下载到本地后的文件名。可以重定向到 /dev/null，以便隐藏输出。
 - **--resolve DN:PORT:IP,IP...** # 指定将 DN(域名)解析成哪个 IP。DN 可以使用通配符
 - **-s, --silent** # 静默模式。将不输出错误和进度信息,但是会正常显示运行结果。
@@ -112,45 +111,45 @@ FORMAT 中可用字段：
 # EXAMPLE
 
 - 基本示例。不带有任何参数时，curl 就是发出 GET 请求。命令向 www.baidu.com 发出 GET 请求，服务器返回的内容会在命令行输出。
-  - curl https://www.baidu.com
+    - curl https://www.baidu.com
 - 使用 curl 访问 IPv6
-  - curl -g -6 'http://\[2408:8210:3c3c:35e0:7df1:783c:ce23:e958]:8080'
-  - curl --ipv6 'http://2408:8210:3c3c:35e0:7df1:783c:ce23:e958:8080'
+    - curl -g -6 'http://\[2408:8210:3c3c:35e0:7df1:783c:ce23:e958]:8080'
+    - curl --ipv6 'http://2408:8210:3c3c:35e0:7df1:783c:ce23:e958:8080'
 - 下载指定的件
-  - curl -LO https://github.com/goharbor/harbor/releases/download/v1.9.3/harbor-online-installer-v1.9.3.tgz
+    - curl -LO https://github.com/goharbor/harbor/releases/download/v1.9.3/harbor-online-installer-v1.9.3.tgz
 - 请求一个域名时，指定要解析的 IP
-  - curl http://myapp.example.com/myapp --resolv 'myapp.example.com:80:172.19.42.217'
+    - curl http://myapp.example.com/myapp --resolv 'myapp.example.com:80:172.19.42.217'
 - 修改请求头的 Head 信息来发送请求
-  - curl -v -H"Host: gw-test.wisetv.com.cn" http://10.10.100.116/app-node/monitor
+    - curl -v -H"Host: gw-test.wisetv.com.cn" http://10.10.100.116/app-node/monitor
 - 通过文件下载多个 URL
-  - xargs -n 1 curl -O < wenjianlisturls.txt # 从 wenjianlisturls.txt 中的 url 列表下载文件
+    - xargs -n 1 curl -O < wenjianlisturls.txt # 从 wenjianlisturls.txt 中的 url 列表下载文件
 - 不去验证目标证书直接获取 /healthz
-  - curl --insecure https://localhost:6443/healthz
+    - curl --insecure https://localhost:6443/healthz
 - 通过 docker 的 socket 文件获取容器信息
-  - **curl --unix-socket /var/run/docker.sock http://localhost/containers/json**
+    - **curl --unix-socket /var/run/docker.sock http://localhost/containers/json**
 - 使用或不使用身份验证将文件上载到 FTP 服务器。要使用 curl 将名为 wodewenjian.tar.gz 的本地文件上载到 ftp://ftpserver，请执行以下操作：
-  - **curl -u username:password -T wodewenjian.tar.gz ftp://ftpserver**
+    - **curl -u username:password -T wodewenjian.tar.gz ftp://ftpserver**
 - 存储 Cookie。使用以下命令将它们保存到 linuxidccookies.txt。然后，您可以使用 cat 命令查看该文件。
-  - **curl --cookie-jar linuxidcookies.txt https://www.linuxidc.com/index.htm -O**
+    - **curl --cookie-jar linuxidcookies.txt https://www.linuxidc.com/index.htm -O**
 - 使用 Cookie 发起请求。
-  - **curl --cookie cnncookies.txt https://www.linuxidc.com**
+    - **curl --cookie cnncookies.txt https://www.linuxidc.com**
 - 使用 -d 参数以后，HTTP 请求会自动加上标头 Content-Type : application/x-www-form-urlencoded。并且会自动将请求转为 POST 方法，因此可以省略 -X POST。
-  - curl -d'login=emma＆password=123'-X POST https://google.com/login
-  - curl -d 'login=emma' -d 'password=123' -X POST https://google.com/login
+    - curl -d'login=emma＆password=123'-X POST https://google.com/login
+    - curl -d 'login=emma' -d 'password=123' -X POST https://google.com/login
 
 ## -d, --data 选项示例
 
 - 读取 data.txt 文件的内容，作为请求体向服务器发送。
-  - curl -d '@data.txt' https://google.com/login
+    - curl -d '@data.txt' https://google.com/login
 - --data-urlencode 参数等同于 -d，发送 POST 请求的数据体，区别在于会自动将发送的数据进行 URL 编码。下面代码中，发送的数据 hello world 之间有一个空格，需要进行 URL 编码。
-  - curl --data-urlencode 'comment=hello world' https://google.com/login
+    - curl --data-urlencode 'comment=hello world' https://google.com/login
 
 ## -w, --write-out 选项示例
 
 - 获取请求 www.baidu.com 总共花费的时间
-  - curl -o /dev/null -s -w '%{time_total}\n' https://www.baidu.com
+    - curl -o /dev/null -s -w '%{time_total}\n' https://www.baidu.com
 - 只显示响应的状态码。
-  - curl -s -o /dev/null -w %{http_code}"\n" http://www.baidu.com
+    - curl -s -o /dev/null -w %{http_code}"\n" http://www.baidu.com
 
 # 复杂应用实例
 

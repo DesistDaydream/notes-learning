@@ -1,13 +1,12 @@
 ---
 title: ansible-playbook CLI
-linkTitle: ansible-playbook CLI
 weight: 9
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，用户指南 - 传统目录 - 使用命令行工具 - ansible-playbook](https://docs.ansible.com/ansible/latest/cli/ansible-playbook.html)
 >     - [官方文档，使用 Ansible 命令行工具 - ansible-playbook](https://docs.ansible.com/projects/ansible/latest/cli/ansible-playbook.html)
 
@@ -31,7 +30,7 @@ https://docs.ansible.com/projects/ansible/latest/cli/ansible-playbook.html
 - **-C, --check** # 使用[检查模式](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_checkmode.html)执行任务。不在目标主机上执行任务，仅检查任务是否可以完成
     - Notes: 可以配置 check_mode 关键字让特定任务不受 -C 影响
 - **-c, --connection \<CONNECTION>** # 要使用的连接插件。`默认值：smart`
-	- 可以设置为 local 以便让 playbook 在本地执行而不用去远程机器上运行
+    - 可以设置为 local 以便让 playbook 在本地执行而不用去远程机器上运行
 - --flush-cache # clear the fact cache for every host in inventory
 - --force-handlers # run handlers even if a task fails
 - **-i, --inventory, --inventory-file** # 指定 Inventory 根目录或者以逗号分隔的主机列表。
@@ -60,7 +59,7 @@ https://docs.ansible.com/projects/ansible/latest/cli/ansible-playbook.html
 - -b, --become # run operations with become (does not imply password prompting)
 - -c , --connection # connection type to use (default=smart)
 - **-e, --extra-vars <@FILE | KEY=VALUE>** # 添加额外的变量。可以是 `KEY=VALUE` 格式(若是 yaml 的话则是 `KEY: VALUE` 格式)；也可以直接指定 yaml 或 json 格式的文件，如果指定文件，以 `@` 开头，比如：
-  - `--extra-vars @~/ansible/defaults/main.yaml`
+    - `--extra-vars @~/ansible/defaults/main.yaml`
 - -f , --forks # specify number of parallel processes to use (default=5)
 - -k, --ask-pass # ask for connection password
 - -u , --user # connect as this user (default=None)
@@ -70,9 +69,9 @@ https://docs.ansible.com/projects/ansible/latest/cli/ansible-playbook.html
 ## EXAMPLE
 
 - 从 install packages 这个任务开始执行 playbook
-  - ansible-playbook playbook.yml --start-at="install packages"
+    - ansible-playbook playbook.yml --start-at="install packages"
 - 只对 HLJHEB-PSC-SCORE-PM-OS04-EBRS-HA02 主机执行 playbook
-  - ansible-playbook -i inventory/ssc-pool-unicom-ha --limit HLJHEB-PSC-SCORE-PM-OS04-EBRS-HA02 ha-gdas-proxy.yaml
+    - ansible-playbook -i inventory/ssc-pool-unicom-ha --limit HLJHEB-PSC-SCORE-PM-OS04-EBRS-HA02 ha-gdas-proxy.yaml
 
 ### 常见的本地调试
 

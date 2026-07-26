@@ -1,6 +1,5 @@
 ---
 title: ss
-linkTitle: ss
 weight: 20
 ---
 
@@ -33,21 +32,21 @@ tcp              ESTAB            0                 0                           
 - **-A QUERY, --query=QUERY, --socket=QUERY** # 要转储的套接字表的列表，用逗号分隔。可以理解以下标识符：all，inet，tcp，udp，raw，unix，packet，netlink，unix_dgram，unix_stream，unix_seqpacket，packet_raw，packet_dgram，dccp，sctp，vsock_stream，vsock_dgram，xdp 列表中的任何项目都可以选择添加前缀带有感叹号`!`，以防止该套接字表被转储。
 - **-a, --all** # 显示所有已监听和未监听的 Sockets。
 - **-e, --extended** # 显示详细的 Socket 信息。对于 TCP 连接来说，相当于 -o 选项。
-  - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/olkcwd/1626247848384-bfa595e0-6f72-49f3-b73c-665c07b5dfa1.png)
-  - timer # TCP 连接的 keepalive 计时器
-  - uid # 该 Socket 所属的用户 ID
-  - ino # 该 Socket 的 inode 编号
-  - sk # 该 Socket 的 UUID
+    - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/olkcwd/1626247848384-bfa595e0-6f72-49f3-b73c-665c07b5dfa1.png)
+    - timer # TCP 连接的 keepalive 计时器
+    - uid # 该 Socket 所属的用户 ID
+    - ino # 该 Socket 的 inode 编号
+    - sk # 该 Socket 的 UUID
 - **-n, --numeric** # 直接使用 ip 地址，而不通过域名服务器(常用，节省资源，界面明确）
 - **-o, --options** # 显示定时器信息。格式为：`timer:(timer_name>,<expire_time>,<retrans)`
-  - timer_name # 计时器的名称。一共有 5 种：
-    - on # 以下三种计时器之一: TCP retrans timer,TCP early retrans timer and tail loss probe timer
-    - keepalive # TCP 的保持活动计时器。Linux Kernel 默认 7200 秒。
-    - timewait # 当 TCP 连接进入 TIME-WAIT 状态时，将会触发该计时器。
-    - persist # zero window probe timer
-    - unknown # 未知计时器
-  - expire_time # 计时器的过期时间
-  - retrans # 重新传输的次数。即 TCP keepalive 探测是重试的次数。
+    - timer_name # 计时器的名称。一共有 5 种：
+        - on # 以下三种计时器之一: TCP retrans timer,TCP early retrans timer and tail loss probe timer
+        - keepalive # TCP 的保持活动计时器。Linux Kernel 默认 7200 秒。
+        - timewait # 当 TCP 连接进入 TIME-WAIT 状态时，将会触发该计时器。
+        - persist # zero window probe timer
+        - unknown # 未知计时器
+    - expire_time # 计时器的过期时间
+    - retrans # 重新传输的次数。即 TCP keepalive 探测是重试的次数。
 - **-s, --summary**# 输出摘要统计信息. 此选项不解析套接字列表，以从各种来源获取摘要。 常用于套接字数量太大以至于无法解析 /proc/net/tcp 时。输出信息如下：
 
 ```bash

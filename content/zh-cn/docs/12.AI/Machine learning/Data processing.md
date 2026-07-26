@@ -1,6 +1,5 @@
 ---
 title: Data processing
-linkTitle: Data processing
 created: 2026-04-13T14:50
 weight: 22
 ---

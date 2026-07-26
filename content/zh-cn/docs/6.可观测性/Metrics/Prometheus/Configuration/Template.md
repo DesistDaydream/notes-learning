@@ -1,6 +1,5 @@
 ---
 title: Template
-linkTitle: Template
 weight: 3
 ---
 

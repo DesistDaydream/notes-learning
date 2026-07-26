@@ -26,12 +26,12 @@ systemctl disable firewalld && systemctl stop firewalld
 ## 安装 Cobbler 以及相关功能配件
 
 - yum install cobbler cobbler-web pykickstart httpd dhcp tftp-server fence-agents -y
-  - cobbler # cobbler 程序包
-  - cobbler-web # cobbler 的 web 服务包
-  - pykickstart # cobbler 检查 kickstart 语法错误
-  - httpd # Apache web 服务
-  - dhcp # dhcp 服务
-  - tftp-server # tftp 服务
+    - cobbler # cobbler 程序包
+    - cobbler-web # cobbler 的 web 服务包
+    - pykickstart # cobbler 检查 kickstart 语法错误
+    - httpd # Apache web 服务
+    - dhcp # dhcp 服务
+    - tftp-server # tftp 服务
 
 - systemctl enable cobblerd httpd tftp rsyncd dhcpd && systemctl start cobblerd httpd tftp rsyncd dhcpd
 
@@ -166,8 +166,8 @@ max-lease-time 86400;
 查看镜像列表
 
 - cobbler distro list
-  - 镜像存放目录，cobbler 会将镜像中的所有安装文件拷贝到本地一份，放在/var/www/cobbler/ks_mirror 下的 CentOS7-2003-x86_64 目录下。因此/var/www/cobbler 目录必须具有足够容纳安装文件的空间，查看一下目录内容
-    - cd /var/www/cobbler/ks_mirror/
+    - 镜像存放目录，cobbler 会将镜像中的所有安装文件拷贝到本地一份，放在/var/www/cobbler/ks_mirror 下的 CentOS7-2003-x86_64 目录下。因此/var/www/cobbler 目录必须具有足够容纳安装文件的空间，查看一下目录内容
+        - cd /var/www/cobbler/ks_mirror/
 
 ### 配置 ks.cfg
 
@@ -251,11 +251,11 @@ $SNIPPET('tools')
 - 在第一次导入系统镜像后，Cobbler 会给镜像指定一个默认的 kickstart 自动安装文件在/var/lib/cobbler/kickstarts 下的 sample_end.ks。
 - cobbler list
 - 查看所有的 profile 设置
-  - cobbler profile report
+    - cobbler profile report
 - 编辑 profile，修改关联的 ks 文件
-  - cobbler profile edit --name=CentOS7-2003-x86_64 --kickstart=/var/lib/cobbler/kickstarts/CentOS7.ks
+    - cobbler profile edit --name=CentOS7-2003-x86_64 --kickstart=/var/lib/cobbler/kickstarts/CentOS7.ks
 - （可选）修改安装系统的内核参数，使得网卡名变为 eth
-  - cobbler profile edit --name=CentOS7-2003-x86_64 --kopts='net.ifnames=0 biosdevname=0'
+    - cobbler profile edit --name=CentOS7-2003-x86_64 --kopts='net.ifnames=0 biosdevname=0'
 
 可以看到下面 Kickstart 那里的配置 cfg 文件地址被改变了
 

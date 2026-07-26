@@ -1,6 +1,5 @@
 ---
 title: "Hugo 配置"
-linkTitle: "Hugo 配置"
 weight: 20
 ---
 

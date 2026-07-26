@@ -1,6 +1,5 @@
 ---
 title: "virt-install"
-linkTitle: "virt-install"
 weight: 20
 ---
 
@@ -31,7 +30,7 @@ virt-install 命令中很多参数都可以在 [XML 文件](/docs/10.云原生/V
 - --memory amount in MiB is required
 - --disk storage must be specified (override with --disk none)
 - 安装方式
-  - --location URL, --cdrom CD/ISO, --pxe, --import, --boot hd|cdrom|...
+    - --location URL, --cdrom CD/ISO, --pxe, --import, --boot hd|cdrom|...
 
 > 注意：
 > 在创建虚拟机时，我们一般都会指定一下虚拟机的系统类型，以便优化 virtio 等性能相关功能。所有 virt-manager 支持的虚拟机列表可以通过 `virt-install --osinfo list` 命令列出。
@@ -52,7 +51,7 @@ virt-install 命令中很多参数都可以在 [XML 文件](/docs/10.云原生/V
 ## Guest OS OPTIONS(虚拟机操作系统选项)
 
 - **--os-variant, --osinfo OSNAME** # 指定要虚拟机的操作系统的信息。常用来优化 virtio 等性能相关功能。OSNAME 可用的值可以用过 `virt-install --osinfo list` 命令列出。
-  - 注意，--osinfo 是新版本的名称
+    - 注意，--osinfo 是新版本的名称
 
 ## STORAGE OPTIONS(存储选项)
 

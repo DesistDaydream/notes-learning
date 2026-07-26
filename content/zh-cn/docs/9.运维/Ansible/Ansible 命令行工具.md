@@ -34,8 +34,8 @@ ansible 是 Ansible 的一个 ad-hoc(临时) 命令，可以在一个或多个�
 
 - **--list-hosts** # 列出所有 HostPattern 定义的被管理 host 并统计数量，一般用于查看组内的主机有多少
 - **-i, --inventory, --inventory-file INVENTORY** # 指定具体的 INVENTORY 路径或文件，而不使用配置中默认的。
-  - INVENTORY 可以是 目录、文件、逗号分割的 IP 列表。
-  - 可以使用 `-i 192.168.0.1,` 这种方式手动指定主机而不使用文件。注意：末尾的逗号必须存在，表示这是一个主机列表。多个主机以逗号分割，但是末尾必须有个逗号
+    - INVENTORY 可以是 目录、文件、逗号分割的 IP 列表。
+    - 可以使用 `-i 192.168.0.1,` 这种方式手动指定主机而不使用文件。注意：末尾的逗号必须存在，表示这是一个主机列表。多个主机以逗号分割，但是末尾必须有个逗号
 
 **Modules Options(模块选项)**
 
@@ -51,12 +51,12 @@ ansible 是 Ansible 的一个 ad-hoc(临时) 命令，可以在一个或多个�
 
 - ansible all --list-hosts # 列出所有主机
 - 测试 k8s_test_master 组的所有主机的连通性
-  - ansible k8s_test_master -m ping
+    - ansible k8s_test_master -m ping
 - 对所有管理主机使用默认模块 command 使用 date 命令
-  - ansible all -a 'date'
-    - 注：也可以使用 `-m 'shell'` 显式得指定 shell 模块。
+    - ansible all -a 'date'
+        - 注：也可以使用 `-m 'shell'` 显式得指定 shell 模块。
 - 将 resolv.conf 文件中的 nameserver 127.0.0.1 替换成 nameserver 10.8.8.8
-  - ansible all -m lineinfile -a "dest=/etc/resolv.conf regexp='nameserver 127.0.1.1' line='nameserver 10.8.8.8'" #
+    - ansible all -m lineinfile -a "dest=/etc/resolv.conf regexp='nameserver 127.0.1.1' line='nameserver 10.8.8.8'" #
 
 临时测试
 
@@ -69,26 +69,26 @@ ansible 是 Ansible 的一个 ad-hoc(临时) 命令，可以在一个或多个�
 > - <https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html#use-cases-for-ad-hoc-tasks>
 
 - **文件管理**
-  - 拷贝文件
-    - ansible all -m copy -a "src=/etc/hosts dest=/tmp/hosts"
-  - 创建目录，类似 mkdir -p 命令
-    - ansible all -m file -a "dest=/tmp/hosts mode=755 owner=desistdaydream group=desistdaydream state=directory"
-  - 删除文件
-    - ansible all -m file -a "dest=/opt/nginx/config/stream.d/wireguard.conf state=absent"
+    - 拷贝文件
+        - ansible all -m copy -a "src=/etc/hosts dest=/tmp/hosts"
+    - 创建目录，类似 mkdir -p 命令
+        - ansible all -m file -a "dest=/tmp/hosts mode=755 owner=desistdaydream group=desistdaydream state=directory"
+    - 删除文件
+        - ansible all -m file -a "dest=/opt/nginx/config/stream.d/wireguard.conf state=absent"
 - **包管理**
-  - 安装最新的 net-snmp-utils 包
-    - ansible -i inventory/ssc-pool-unicom-ha all -m yum -a "name=net-snmp-utils state=latest"
+    - 安装最新的 net-snmp-utils 包
+        - ansible -i inventory/ssc-pool-unicom-ha all -m yum -a "name=net-snmp-utils state=latest"
 - **用户和组管理**
-  - 创建一个名为 sudo 的组，设置 gid 为 27
-    - ansible -i inventory/ssc-pool-datalake-ha -jxgz -m group -a "name=sudo gid=27"
+    - 创建一个名为 sudo 的组，设置 gid 为 27
+        - ansible -i inventory/ssc-pool-datalake-ha -jxgz -m group -a "name=sudo gid=27"
 - **cron** # 添加定时任务
-  - ansible all -m cron -a 'minute=\*/10 job="/bin/echo hello" name="test1"'
+    - ansible all -m cron -a 'minute=\*/10 job="/bin/echo hello" name="test1"'
 - **script** # 脚本模块，为远程机器执行本地脚本
-  - ansible -i ./inventory/ssc-pool-unicom-ha all -m script -a 'scripts.sh'
+    - ansible -i ./inventory/ssc-pool-unicom-ha all -m script -a 'scripts.sh'
 - **setup** # 收集远程主机的 facts
-  - ansible all -m setup # 显示所有被管理节点的相关信息，每个被管理节点，在运行管理命令之前通常会将自己主机相关的信息如，OS 版本，IP 等报告给远程的 ansible 主机
+    - ansible all -m setup # 显示所有被管理节点的相关信息，每个被管理节点，在运行管理命令之前通常会将自己主机相关的信息如，OS 版本，IP 等报告给远程的 ansible 主机
 - **unarchive** # 解包
-  - ansible all -m unarchive -a "src=/root/downloads/docker-ehualu-20.10.9.tar.gz dest=/"
+    - ansible all -m unarchive -a "src=/root/downloads/docker-ehualu-20.10.9.tar.gz dest=/"
 
 **检查变量**
 
@@ -146,7 +146,7 @@ EXAMPLE
 **OPTIONS**
 
 - **--export** # 使用 --list 时，优化输出内容，以便进行导出；而不是准确表示 Ansible 如何处理清单文件
-  - 用人话说：如果不加 --export，那么当多个主机共享了 1 个变量时，输出的主机信息，会给每个主机都添加这个变量。不利于人类阅读与维护
+    - 用人话说：如果不加 --export，那么当多个主机共享了 1 个变量时，输出的主机信息，会给每个主机都添加这个变量。不利于人类阅读与维护
 - **-i, --inventory** # 使用 --list 时，将输出的内容保存到指定文件中，而不是输出到标准输出
 - **-y, --yaml** # 使用 YAML 格式输出信息
 

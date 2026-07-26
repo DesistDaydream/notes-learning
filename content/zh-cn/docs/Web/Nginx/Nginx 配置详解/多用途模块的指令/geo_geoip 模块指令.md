@@ -49,7 +49,7 @@ geo $country {
 - include # 将指令写在其他文件中，并通过 include 包含进来
 - delete # 删除 127.0.0.0/16 这段 IP 地址的 `$country` 变量
 - 127.0.0.0/24   US; # 这些 IP 中的 127.0.0.0/24 这一段的的值为 US；127.0.0.1/32 这个
-  - 后面的以此类推
+    - 后面的以此类推
 
 # http 模块下的 geoip 模块指令
 
@@ -85,7 +85,7 @@ http://nginx.org/en/docs/http/ngx_http_geoip_module.html#geoip_city
 该指令一般情况下，将会根据 MaxMind 中的 GeoLiteCity.dat 文件，为每个 IP 地址创建如下变量：
 
 - **$geoip_area_code** # 电话区号(仅限 US 有用).
-  - 此变量可能包含过时的信息，因为不推荐使用相应的数据库字段。
+    - 此变量可能包含过时的信息，因为不推荐使用相应的数据库字段。
 - **$geoip_city_continent_code** # 两个字母的大洲代码，比如 EU、NA
 - **$geoip_city_country_code** # 两个字母的国家代码，比如 CN、US
 - **$geoip_city_country_code3** # 三个字母的国家代码，比如 CHN、USA
@@ -94,7 +94,7 @@ http://nginx.org/en/docs/http/ngx_http_geoip_module.html#geoip_city
 - **$geoip_latitude** # latitude(纬度)
 - **$geoip_longitude** # longitude(经度)
 - **$geoip_region** # 两个字母的地区代码，比如 JX
-  - region 就是省的概念，直辖市的 省 与 市 同名
+    - region 就是省的概念，直辖市的 省 与 市 同名
 - **$geoip_region_name** # 两个字母的地区名称，比如 Jiangxi
 - **$geoip_city** # 城市名称，比如，Beijing、Tianjin
 - **$geoip_postal_code** # 邮政编码

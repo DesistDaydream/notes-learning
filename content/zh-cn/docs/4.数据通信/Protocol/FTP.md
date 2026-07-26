@@ -1,6 +1,5 @@
 ---
 title: FTP
-linkTitle: FTP
 weight: 20
 ---
 

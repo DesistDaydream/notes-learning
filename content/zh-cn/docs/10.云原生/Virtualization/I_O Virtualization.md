@@ -1,6 +1,5 @@
 ---
 title: I/O Virtualization
-linkTitle: I/O Virtualization
 weight: 20
 ---
 

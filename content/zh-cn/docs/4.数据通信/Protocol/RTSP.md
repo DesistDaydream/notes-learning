@@ -1,6 +1,5 @@
 ---
 title: RTSP
-linkTitle: RTSP
 weight: 20
 ---
 

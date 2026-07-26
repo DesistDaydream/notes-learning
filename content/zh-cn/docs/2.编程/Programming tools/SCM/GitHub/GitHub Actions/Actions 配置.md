@@ -1,6 +1,5 @@
 ---
 title: Actions 配置
-linkTitle: Actions 配置
 weight: 20
 ---
 

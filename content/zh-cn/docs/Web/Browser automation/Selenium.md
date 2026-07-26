@@ -1,6 +1,5 @@
 ---
 title: Selenium
-linkTitle: Selenium
 weight: 20
 ---
 
@@ -11,7 +10,7 @@ weight: 20
 > - [GitHub 项目，SeleniumHQ/selenium](https://github.com/SeleniumHQ/selenium)
 > - [官网](https://www.selenium.dev/)
 > - https://selenium-python.readthedocs.io/ 特定于 Python 的文档，官方文档很多示例都不全。
->   - https://segmentfault.com/q/1010000043032537 这里表示文档不全
+>     - https://segmentfault.com/q/1010000043032537 这里表示文档不全
 
 Selenium 使浏览器自动化，用于自动化 Web 应用程序。Selenium 通过 [WebDriver](/docs/Web/Browser%20automation/WebDriver.md) 控制浏览器。
 
@@ -33,7 +32,7 @@ Selenium 通过如下几种方式使用浏览器
 
 Selenium 启动的 Chrome 的参数
 
-```
+```bash
 C:\Program Files\Google\Chrome\Application\chrome.exe"
  --allow-pre-commit-input
  --disable-background-networking
@@ -60,7 +59,7 @@ C:\Program Files\Google\Chrome\Application\chrome.exe"
 
 正常启动浏览器的参数
 
-```
+```bash
 "C:\Program Files\Google\Chrome\Application\chrome.exe"
  --flag-switches-begin
  --flag-switches-end
@@ -96,7 +95,7 @@ Selenium WebDriver 是 [W3C 推荐标准](https://www.w3.org/TR/webdriver1/)
 - ......略
 - **tag 名称** #
 - **XPath** # 通过 [XML](/docs/2.编程/标记语言/XML.md) 的 XPath 表达式定位元素
-  - XPath 表达式可以在浏览器的 [DevTools](/docs/Web/Browser/DevTools.md) 中先使用 Ctrl+Shift+C 快捷键找到想要定位的元素，然后右键点击该元素，选择 `复制 - 复制 XPath`。即可获得 XPath 表达式
+    - XPath 表达式可以在浏览器的 [DevTools](/docs/Web/Browser/DevTools.md) 中先使用 Ctrl+Shift+C 快捷键找到想要定位的元素，然后右键点击该元素，选择 `复制 - 复制 XPath`。即可获得 XPath 表达式
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/selenium/202312031841908.png)
 
@@ -128,8 +127,8 @@ https://github.com/onepureman/selenium_login_cracking 各种网站的滑动验�
 [python+selenium+opencv验证滑块](https://www.cnblogs.com/lihongtaoya/p/16793699.html)
 
 - 参考了
-  - https://blog.csdn.net/m0_59874815/article/details/121195481
-  - https://github.com/gebiWangshushu/JDCaptchaCrack
+    - https://blog.csdn.net/m0_59874815/article/details/121195481
+    - https://github.com/gebiWangshushu/JDCaptchaCrack
 
 [【 Python爬虫】京东滑块登录](https://www.cnblogs.com/wanghong1994/p/17786278.html) 滑动太快了
 

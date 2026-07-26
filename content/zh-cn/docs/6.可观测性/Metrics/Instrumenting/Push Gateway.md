@@ -20,8 +20,8 @@ Pushgateway 是 Prometheus 生态中一个重要工具，使用它的原因主�
 - Prometheus 拉取状态 up 只针对 pushgateway, 无法做到对每个节点有效。
 - Pushgateway 可以持久化推送给它的所有监控数据。
 - Pushgateway 对不推送的指标没有超时设计，并且在讨论中也不打算实现，因为各种提案都是不好的模式
-  - https://github.com/prometheus/pushgateway/issues/19
-  - https://groups.google.com/forum/#!topic/prometheus-developers/9IyUxRvhY7w
+    - https://github.com/prometheus/pushgateway/issues/19
+    - https://groups.google.com/forum/#!topic/prometheus-developers/9IyUxRvhY7w
 
 因此，即使你的监控已经下线，prometheus 还会拉取到旧的监控数据，需要手动清理 pushgateway 不要的数据。
 

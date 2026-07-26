@@ -1,6 +1,5 @@
 ---
 title: WSL
-linkTitle: WSL
 weight: 101
 ---
 
@@ -10,7 +9,6 @@ weight: 101
 >
 > - [GitHub 项目，microsoft/WSL](https://github.com/microsoft/WSL)
 > - [官方文档，windows-wsl](https://docs.microsoft.com/zh-cn/windows/wsl/)
-
 
 # 安装 WSL
 
@@ -110,12 +108,12 @@ WSL 子系统管理选项
 发行版管理选项
 
 - **-l, --list [OPTIONS]** # 列出发行版，可以根据子参数指定需要列出哪些发行版。
-  - **--all** # 列出所有
-  - **-o, --online** # 列出所有可以安装的发行版。
+    - **--all** # 列出所有
+    - **-o, --online** # 列出所有可以安装的发行版。
 - **--set-default-version** #
 - **-s, --set-default DISTRO** # 将指定的发行版设为默认
 - **--unregister DISTRO** # 将指定的发行版取消注册。
-  - <font color="#ff0000">Attention</font>：若从应用商店删除特定发行版后再安装失败的话，需要通过 wsl 命令手动 unregister 一下，即可成功。
+    - <font color="#ff0000">Attention</font>：若从应用商店删除特定发行版后再安装失败的话，需要通过 wsl 命令手动 unregister 一下，即可成功。
 
 # 最佳实践
 

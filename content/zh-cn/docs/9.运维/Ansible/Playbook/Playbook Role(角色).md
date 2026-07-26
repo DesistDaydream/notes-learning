@@ -75,8 +75,8 @@ Note：
 
 - 其中 X 为 Role 名字
 - ansible 会从以下几个目录中寻找与 roles 同名的目录来获取其中的内容
-  - ./roles # playbook.yaml 文件所在的目录寻找 roles 目录
-  - /etc/ansbile/roles # 默认的系统级别的 roles 目录
-  - /root/.ansible/roles
-  - /usr/share/ansible/roles
+    - ./roles # playbook.yaml 文件所在的目录寻找 roles 目录
+    - /etc/ansbile/roles # 默认的系统级别的 roles 目录
+    - /root/.ansible/roles
+    - /usr/share/ansible/roles
 - 也可以在 ansible 的配置文件 ansbile.cfg 中修改 roles_path 字段来指定默认系统级别 role 的位置

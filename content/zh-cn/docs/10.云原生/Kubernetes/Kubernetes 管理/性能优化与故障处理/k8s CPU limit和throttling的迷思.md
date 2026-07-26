@@ -1,6 +1,5 @@
 ---
 title: k8s CPU limit和throttling的迷思
-linkTitle: k8s CPU limit和throttling的迷思
 weight: 20
 ---
 

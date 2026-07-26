@@ -1,5 +1,4 @@
 ---
-title: "✨3.集群与分布式"
-linkTitle: "✨3.集群与分布式"
-weight: 3
+title: ✨3.集群与分布式
+weight: 103
 ---

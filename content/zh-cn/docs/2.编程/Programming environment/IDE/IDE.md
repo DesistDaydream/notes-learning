@@ -1,6 +1,5 @@
 ---
 title: IDE
-linkTitle: IDE
 weight: 1
 ---
 

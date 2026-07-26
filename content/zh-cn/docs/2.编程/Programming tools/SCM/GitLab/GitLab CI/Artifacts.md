@@ -1,6 +1,5 @@
 ---
 title: Artifacts
-linkTitle: Artifacts
 weight: 20
 ---
 

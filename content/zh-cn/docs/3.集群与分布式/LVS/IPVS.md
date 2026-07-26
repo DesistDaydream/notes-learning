@@ -1,6 +1,5 @@
 ---
 title: IPVS
-linkTitle: IPVS
 weight: 3
 ---
 

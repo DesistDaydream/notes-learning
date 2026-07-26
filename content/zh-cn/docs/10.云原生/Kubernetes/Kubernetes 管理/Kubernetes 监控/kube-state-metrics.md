@@ -1,6 +1,5 @@
 ---
 title: kube-state-metrics
-linkTitle: kube-state-metrics
 weight: 20
 ---
 

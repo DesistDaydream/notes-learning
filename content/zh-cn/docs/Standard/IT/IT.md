@@ -1,6 +1,5 @@
 ---
 title: IT
-linkTitle: IT
 weight: 1
 ---
 

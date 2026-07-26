@@ -1,6 +1,5 @@
 ---
 title: WSA
-linkTitle: WSA
 weight: 201
 ---
 
@@ -40,7 +39,7 @@ Notes: 如果系统中的 Microsoft Store 搜不到 WSA，可以通过下面的�
 
 - https://apps.microsoft.com/detail/9P3395VX91NR?hl=en-us&gl=US WSA 本体
 - WSA 增强工具（非官方）
-  - https://apps.microsoft.com/detail/9PPSP2MKVTGT?hl=zh-cn&gl=cn WSA 工具箱
+    - https://apps.microsoft.com/detail/9PPSP2MKVTGT?hl=zh-cn&gl=cn WSA 工具箱
 
 ## 安装已 root 的 WSA
 

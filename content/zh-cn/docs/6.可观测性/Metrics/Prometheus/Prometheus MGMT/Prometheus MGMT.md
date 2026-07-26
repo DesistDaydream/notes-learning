@@ -1,6 +1,5 @@
 ---
 title: Prometheus MGMT
-linkTitle: Prometheus MGMT
 weight: 1
 ---
 
@@ -30,13 +29,13 @@ https://prometheus.io/docs/introduction/faq/#can-i-change-the-timezone-why-is-ev
 对于 Prometheus 生态的程序，e.g. [Node Exporter](/docs/6.可观测性/Metrics/Instrumenting/Node%20Exporter.md)、etc. 也会有 UTS 时区问题，程序的日志时间就是 UTS 时区的，并且无法在程序实例化阶段通过代码修改，因为这些程序引用的是 [promlog](https://pkg.go.dev/github.com/prometheus/common/promlog) 库。promlog 在 [log.go](https://github.com/prometheus/common/blob/v0.60.0/promlog/log.go#L33) 中定义了日志的时区。
 
 ```go
-	// This timestamp format differs from RFC3339Nano by using .000 instead
-	// of .999999999 which changes the timestamp from 9 variable to 3 fixed
-	// decimals (.130 instead of .130987456).
-	timestampFormat = log.TimestampFormat(
-		func() time.Time { return time.Now().UTC() },
-		"2006-01-02T15:04:05.000Z07:00",
-	)
+ // This timestamp format differs from RFC3339Nano by using .000 instead
+ // of .999999999 which changes the timestamp from 9 variable to 3 fixed
+ // decimals (.130 instead of .130987456).
+ timestampFormat = log.TimestampFormat(
+  func() time.Time { return time.Now().UTC() },
+  "2006-01-02T15:04:05.000Z07:00",
+ )
 ```
 
 若想使用其他时区，现阶段（2024-10-14）的解决方案是在编译时直接修改 promlog 库中上面的代码，将 `.UTC()` 去掉

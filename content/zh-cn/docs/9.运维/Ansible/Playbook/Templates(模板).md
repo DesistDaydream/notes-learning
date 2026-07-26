@@ -1,6 +1,5 @@
 ---
 title: Templates(模板)
-linkTitle: Templates(模板)
 weight: 4
 ---
 
@@ -10,10 +9,10 @@ weight: 4
 >
 > - [官方文档，使用 Ansible playbooks - 使用 playbooks - 模板化](https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_templating.html)
 > - 朱双印博客，ansible 笔记 - jinja2 模板
->   - https://www.zsythink.net/archives/2999
->   - https://www.zsythink.net/archives/3021
->   - https://www.zsythink.net/archives/3037
->   - https://www.zsythink.net/archives/3051
+>     - https://www.zsythink.net/archives/2999
+>     - https://www.zsythink.net/archives/3021
+>     - https://www.zsythink.net/archives/3037
+>     - https://www.zsythink.net/archives/3051
 > - [骏马金龙，9. 如虎添翼的力量：解锁强大的 Jinja2 模板](https://www.junmajinlong.com/ansible/9_power_of_jinja2/)
 
 Ansible 使用 [Jinja2](/docs/2.编程/高级编程语言/Python/Jinja.md) 模板实现动态表达式（在表达式中可以访问 [Variables](/docs/9.运维/Ansible/Playbook/Variables.md)）。比如：

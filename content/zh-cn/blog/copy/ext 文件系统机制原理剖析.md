@@ -1,6 +1,5 @@
 ---
 title: "ext 文件系统机制原理剖析"
-linkTitle: "ext 文件系统机制原理剖析"
 slug: "ext_filesystem"
 date: 2020-10-25
 description: >
@@ -11,7 +10,7 @@ description: >
 
 * * *
 
-**[回到 Linux 基础系列文章大纲](https://www.junmajinlong.com/linux/index)**  
+**[回到 Linux 基础系列文章大纲](https://www.junmajinlong.com/linux/index)**
 **[回到 Shell 系列文章大纲](https://www.junmajinlong.com/shell/index)**
 
 * * *
@@ -226,11 +225,11 @@ ext 文件系统每一个块组信息使用 32 字节描述，这 32 个字节�
 
 数据所占用的 block 由文件对应 inode 记录中的 block 指针找到，不同的文件类型，数据 block 中存储的内容是不一样的。以下是 Linux 中不同类型文件的存储方式。
 
-*   对于常规文件，文件的数据正常存储在数据块中。
-*   对于目录，该目录下的所有文件和一级子目录的目录名存储在数据块中。
-    *   **文件名和 inode 号不是存储在其自身的 inode 中，而是存储在其所在目录的 data block 中。** 
-*   对于符号链接，如果目标路径名较短则直接保存在 inode 中以便更快地查找，如果目标路径名较长则分配一个数据块来保存。
-*   设备文件、FIFO 和 socket 等特殊文件没有数据块，设备文件的主设备号和次设备号保存在 inode 中。
+* 对于常规文件，文件的数据正常存储在数据块中。
+* 对于目录，该目录下的所有文件和一级子目录的目录名存储在数据块中。
+    * **文件名和 inode 号不是存储在其自身的 inode 中，而是存储在其所在目录的 data block 中。**
+* 对于符号链接，如果目标路径名较短则直接保存在 inode 中以便更快地查找，如果目标路径名较长则分配一个数据块来保存。
+* 设备文件、FIFO 和 socket 等特殊文件没有数据块，设备文件的主设备号和次设备号保存在 inode 中。
 
 常规文件的存储就不解释了，下面分别解释特殊文件的存储方式。
 
@@ -493,23 +492,23 @@ Inode号    用途
 
 当执行 `cat /var/log/messages` 命令在系统内部进行了什么样的步骤呢？该命令能被成功执行涉及了 cat 命令的寻找、权限判断以及 messages 文件的寻找和权限判断等等复杂的过程。这里只解释和本节内容相关的如何寻找到被 cat 的 /var/log/messages 文件。
 
-*   **找到根文件系统的块组描述符表所在的 blocks，读取 GDT (已在内存中) 找到 inode table 的 block 号。** 
+* **找到根文件系统的块组描述符表所在的 blocks，读取 GDT (已在内存中) 找到 inode table 的 block 号。**
 
 因为 GDT 总是和 superblock 在同一个块组，而 superblock 总是在分区的第 1024-2047 个字节，所以很容易就知道第一个 GDT 所在的块组以及 GDT 在这个块组中占用了哪些 block。
 
 其实 GDT 早已经在内存中了，在系统开机的时候会挂载根文件系统，挂载的时候就已经将所有的 GDT 放进内存中。
 
-*   **在 inode table 的 block 中定位到根”/“的 inode，找出”/“指向的 data block。** 
+* **在 inode table 的 block 中定位到根”/“的 inode，找出”/“指向的 data block。**
 
 前文说过，ext 文件系统预留了一些 inode 号，其中”/“的 inode 号为 2，所以可以根据 inode 号直接定位根目录文件的 data block。
 
-*   **在”/“的 datablock 中记录了 var 目录名和 var 的 inode 号，找到该 inode 记录，inode 记录中存储了指向 var 的 block 指针，所以也就找到了 var 目录文件的 data block。** 
+* **在”/“的 datablock 中记录了 var 目录名和 var 的 inode 号，找到该 inode 记录，inode 记录中存储了指向 var 的 block 指针，所以也就找到了 var 目录文件的 data block。**
 
 通过 var 目录的 inode 号，可以寻找到 var 目录的 inode 记录，但是在寻找的过程中，还需要知道该 inode 记录所在的块组以及所在的 inode table，所以需要读取 GDT，同样，GDT 已经缓存到了内存中。
 
-*   **在 var 的 data block 中记录了 log 目录名和其 inode 号，通过该 inode 号定位到该 inode 所在的块组及所在的 inode table，并根据该 inode 记录找到 log 的 data block。** 
-*   **在 log 目录文件的 data block 中记录了 messages 文件名和对应的 inode 号，通过该 inode 号定位到该 inode 所在的块组及所在的 inode table，并根据该 inode 记录找到 messages 的 data block。** 
-*   **最后读取 messages 对应的 datablock。** 
+* **在 var 的 data block 中记录了 log 目录名和其 inode 号，通过该 inode 号定位到该 inode 所在的块组及所在的 inode table，并根据该 inode 记录找到 log 的 data block。**
+* **在 log 目录文件的 data block 中记录了 messages 文件名和对应的 inode 号，通过该 inode 号定位到该 inode 所在的块组及所在的 inode table，并根据该 inode 记录找到 messages 的 data block。**
+* **最后读取 messages 对应的 datablock。**
 
 将上述步骤中 GDT 部分的步骤简化后比较容易理解。如下：找到 GDT–> 找到”/“的 inode–> 找到 / 的数据块读取 var 的 inode–> 找到 var 的数据块读取 log 的 inode–> 找到 log 的数据块读取 messages 的 inode–> 找到 messages 的数据块并读取它们。
 
@@ -520,7 +519,7 @@ Inode号    用途
 
 注意这里是不跨越文件系统的操作行为。
 
-*   **删除文件分为普通文件和目录文件，知道了这两种类型的文件的删除原理，就知道了其他类型特殊文件的删除方法。** 
+* **删除文件分为普通文件和目录文件，知道了这两种类型的文件的删除原理，就知道了其他类型特殊文件的删除方法。**
 
 对于删除普通文件：(1) 找到文件的 inode 和 data block (根据前一个小节中的方法寻找)；(2) 将 inode table 中该 inode 记录中的 data block 指针删除；(3) 在 imap 中将该文件的 inode 号标记为未使用；(4) 在其所在目录的 data block 中将该文件名所在的记录行删除，删除了记录就丢失了指向 inode 的指针（实际上不是真的删除，直接删除的话会在目录 data block 的数据结构中产生空洞，所以实际的操作是将待删除文件的 inode 号设置为特殊的值 0，这样下次新建文件时就可以重用该行记录）；(5) 将 bmap 中 data block 对应的 block 号标记为未使用（对于 ext 文件系统，这个步骤可能会导致删除大文件时间较久，资源消耗较多，对于其它文件系统，则视情况而定）。
 
@@ -532,13 +531,13 @@ Inode号    用途
 
 什么时候会发生这种情况呢？当一个进程正在引用文件时将该文件删除，就会出现文件已删除但空间未释放的情况。这时步骤已经进行到 (4)，外界无法再找到该文件，但由于进程在加载该文件时已经获取到了该文件所有的 data block 指针，该进程可以获取到该文件的所有数据，但却暂时不会释放该文件空间。直到该进程结束，文件系统才将未执行的步骤 (5) 继续完成。这也是为什么有时候 du 的统计结果比 df 小的原因，关于 du 和 df 统计结果的差别，详细内容见：[详细分析 du 和 df 的统计结果为什么不一样](https://www.junmajinlong.com/linux/du_df)。
 
-*   **重命名文件分为同目录内重命名和非同目录内重命名。非同目录内重命名实际上是移动文件的过程，见下文**。
+* **重命名文件分为同目录内重命名和非同目录内重命名。非同目录内重命名实际上是移动文件的过程，见下文**。
 
 同目录内重命名文件的动作仅仅只是修改所在目录 data block 中该文件记录的文件名部分，不是删除再重建的过程。
 
 如果重命名时有文件名冲突 (该目录内已经存在该文件名)，则提示是否覆盖。覆盖的过程是覆盖目录 data block 中冲突文件的记录。例如 /tmp/ 下有 a.txt 和 a.log，若将 a.txt 重命名为 a.log，则提示覆盖，若选择覆盖，则 /tmp 的 data block 中关于 a.log 的记录被覆盖。
 
-*   **移动文件**
+* **移动文件**
 
 同文件系统下移动文件实际上是修改目标文件所在目录的 data block，向其中添加一行指向 inode table 中待移动文件的 inode 记录，如果目标路径下有同名文件，则会提示是否覆盖，实际上是覆盖目录 data block 中冲突文件的记录，由于同名文件的 inode 记录指针被覆盖，所以无法再找到该文件的 data block，也就是说该文件被标记为删除 (如果多个硬链接数，则另当别论)。
 
@@ -554,15 +553,15 @@ Inode号    用途
 [](#存储和复制文件 "存储和复制文件")存储和复制文件
 -----------------------------
 
-*   对于文件存储
-    *   (1). 读取 GDT，找到各个 (或部分) 块组 imap 中未使用的 inode 号，并为待存储文件分配 inode 号；
-    *   (2). 在 inode table 中完善该 inode 号所在行的记录；
-    *   (3). 在目录的 data block 中添加一条该文件的相关记录；
-    *   (4). 将数据填充到 data block 中。
-        *   注意，填充到 data block 中的时候会调用 block 分配器：一次分配 4KB 大小的 block 数量，当填充完 4KB 的 data block 后会继续调用 block 分配器分配 4KB 的 block，然后循环直到填充完所有数据。也就是说，如果存储一个 100M 的文件需要调用 block 分配器 100*1024/4=25600 次。
-        *   另一方面，在 block 分配器分配 block 时，block 分配器并不知道真正有多少 block 要分配，只是每次需要分配时就分配，在每存储一个 data block 前，就去 bmap 中标记一次该 block 已使用，它无法实现一次标记多个 bmap 位。这一点在 ext4 中进行了优化。
-    *   (5) 填充完之后，去 inode table 中更新该文件 inode 记录中指向 data block 的寻址指针。
-*   对于复制，完全就是另一种方式的存储文件。步骤和存储文件的步骤一样。
+* 对于文件存储
+    * (1). 读取 GDT，找到各个 (或部分) 块组 imap 中未使用的 inode 号，并为待存储文件分配 inode 号；
+    * (2). 在 inode table 中完善该 inode 号所在行的记录；
+    * (3). 在目录的 data block 中添加一条该文件的相关记录；
+    * (4). 将数据填充到 data block 中。
+        * 注意，填充到 data block 中的时候会调用 block 分配器：一次分配 4KB 大小的 block 数量，当填充完 4KB 的 data block 后会继续调用 block 分配器分配 4KB 的 block，然后循环直到填充完所有数据。也就是说，如果存储一个 100M 的文件需要调用 block 分配器 100*1024/4=25600 次。
+        * 另一方面，在 block 分配器分配 block 时，block 分配器并不知道真正有多少 block 要分配，只是每次需要分配时就分配，在每存储一个 data block 前，就去 bmap 中标记一次该 block 已使用，它无法实现一次标记多个 bmap 位。这一点在 ext4 中进行了优化。
+    * (5) 填充完之后，去 inode table 中更新该文件 inode 记录中指向 data block 的寻址指针。
+* 对于复制，完全就是另一种方式的存储文件。步骤和存储文件的步骤一样。
 
 在单个文件系统中的文件操作和多文件系统中的操作有所不同。本文将对此做出非常详细的说明。
 
@@ -636,7 +635,7 @@ block_m 指向的是文件系统 /dev/cdrom 的 data block，所以严格说起�
 
 [root@server2 tmp]# mount /dev/cdrom /mnt
 # 挂载后挂载点的inode号
-[root@server2 tmp]# ll -id /mnt 
+[root@server2 tmp]# ll -id /mnt
 1856 dr-xr-xr-x    8 root root  2048 Dec 10  2015 mnt
 ```
 

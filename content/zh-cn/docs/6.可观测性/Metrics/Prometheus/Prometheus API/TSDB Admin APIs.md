@@ -1,6 +1,5 @@
 ---
 title: TSDB Admin APIs
-linkTitle: TSDB Admin APIs
 weight: 20
 ---
 

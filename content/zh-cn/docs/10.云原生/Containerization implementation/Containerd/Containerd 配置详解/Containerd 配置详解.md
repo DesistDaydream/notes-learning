@@ -103,7 +103,7 @@ WantedBy=multi-user.target
 
 - **Delegate** : 这个选项允许 Containerd 以及运行时自己管理自己创建的容器的 `cgroups`。如果不设置这个选项，systemd 就会将进程移到自己的 `cgroups` 中，从而导致 Containerd 无法正确获取容器的资源使用情况。
 - **KillMode** : 这个选项用来处理 Containerd 进程被杀死的方式。默认情况下，systemd 会在进程的 cgroup 中查找并杀死 Containerd 的所有子进程，这肯定不是我们想要的。`KillMode`字段可以设置的值如下。我们需要将 KillMode 的值设置为 `process`，这样可以确保升级或重启 Containerd 时不杀死现有的容器。
-  - **control-group**（默认值）：当前控制组里面的所有子进程，都会被杀掉
-  - **process**：只杀主进程
-  - **mixed**：主进程将收到 SIGTERM 信号，子进程收到 SIGKILL 信号
-  - **none**：没有进程会被杀掉，只是执行服务的 stop 命令。
+    - **control-group**（默认值）：当前控制组里面的所有子进程，都会被杀掉
+    - **process**：只杀主进程
+    - **mixed**：主进程将收到 SIGTERM 信号，子进程收到 SIGKILL 信号
+    - **none**：没有进程会被杀掉，只是执行服务的 stop 命令。

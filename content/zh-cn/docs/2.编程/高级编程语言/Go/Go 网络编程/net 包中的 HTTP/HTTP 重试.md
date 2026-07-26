@@ -5,9 +5,9 @@ title: HTTP 重试
 # 概述
 
 > 参考：
-> 
+>
 > - [公众号-luozhiyun，在 Go 中如何正确重试请求](https://mp.weixin.qq.com/s/D2mLZI9NXMjgQwLOReQCgg)(原文)
->   - <https://www.luozhiyun.com/archives/677>
+>     - <https://www.luozhiyun.com/archives/677>
 
 我们平时在开发中肯定避不开的一个问题是如何在不可靠的网络服务中实现可靠的网络通信，其中 http 请求重试是经常用的技术。但是 Go 标准库 net/http 实际上是没有重试这个功能的，所以本篇文章主要讲解如何在 Go 中实现请求重试。
 
@@ -387,4 +387,3 @@ title: HTTP 重试
 <https://github.com/afex/hystrix-go>
 
 <https://segmentfault.com/a/1190000039978117>
-

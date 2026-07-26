@@ -1,6 +1,5 @@
 ---
 title: Socket
-linkTitle: Socket
 weight: 20
 ---
 
@@ -34,9 +33,9 @@ Socket(套接字) 原意是 “插座”，所以 Socket 就像插座的作用�
 **Socket Family(族)**/**Socket Domain(域)** 用于定义 Socket 在哪里通信，是 本地、网络、etc. 。可以在 [address_families(7)](https://man7.org/linux/man-pages/man7/address_families.7.html) 找到所有定义了的 Families
 
 - **[Unix Domain Socket](#Unix%20Domain%20Socket)** # 用于同一台设备的不同进程间互相通信
-  - AF_UNIX
+    - AF_UNIX
 - **[Network Socket](#Network%20Socket)** # 用于进程在网络间互相通信
-  - AF_INET,  AF_INET6
+    - AF_INET,  AF_INET6
 - **AF_NETLINK** # 内核空间与用户空间通信的 Socket。比如 [Netlink](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/Netlink/Netlink.md)
 - etc.
 
@@ -51,8 +50,8 @@ Socket(套接字) 原意是 “插座”，所以 Socket 就像插座的作用�
 - **SOCK_SEQPACKET** # 面向记录的传输（e.g. SCTP）。为固定最大长度的数据报提供基于连接的、可靠的双向有序传输路径；每次输入系统调用需读取完整数据包。
 - etc.
 - 修改 Socket 行为的类型
-  - **SOCK_NONBLOCK**
-  - etc.
+    - **SOCK_NONBLOCK**
+    - etc.
 
 ## Linux 的 socket 接口运行逻辑
 

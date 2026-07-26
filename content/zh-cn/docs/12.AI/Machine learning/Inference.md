@@ -1,6 +1,5 @@
 ---
 title: Inference
-linkTitle: Inference
 created: 2026-03-28T11:09
 weight: 24
 ---

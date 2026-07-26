@@ -1,6 +1,5 @@
 ---
 title: Tampermonkey
-linkTitle: Tampermonkey
 weight: 20
 ---
 

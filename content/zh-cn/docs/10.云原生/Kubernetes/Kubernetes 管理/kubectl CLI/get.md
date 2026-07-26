@@ -1,6 +1,5 @@
 ---
 title: get
-linkTitle: get
 weight: 20
 ---
 
@@ -22,22 +21,22 @@ Note：在 kubectl 命令中的 全局 flags 中还有很多有用的 flags 可�
 - **-A, --all-namespaces** # 列出在所有名称空间中的对象。
 - --allow-missing-template-keys=true: If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.
 - **--field-selector=STRING** # 使用[字段选择器](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/Object%20管理/字段选择器.md)根据一个或多个资源字段的值筛选 Kubernetes 对象。支持 `=`, `==`, and `!=`(比如 `--field-selector key1=value1,key2=value2`)。
-  - **注意，仅支持部分字段筛选**
+    - **注意，仅支持部分字段筛选**
 - -f, --filename=\[]: Filename, directory, or URL to files identifying the resource to get from a server.
 - --ignore-not-found=false: If the requested object does not exist the command will return exit code 0.
 - **-k, --kustomize=\<DIR>** # 处理指定的 Kustomize 目录。这个标志不能与 -f 或 -R 同时使用。
 - **-L, --label-columns=\[]** # 显示所有展示出的对象具有 KEY 这个键所对应的值(KEY=VAL，显示那个 VAL)Accepts a comma separated list of labels that are going to be presented as columns. Names are case-sensitive. You can also use multiple flag options like -L label1 -L label2...
 - **--no-headers** # 当使用 默认的 或者 custom-column 格式输出信息时，不显示标题(标题就是 NAME 那一行)。
 - **-o, --output=FORMAT** # 指定输出信息的输出格式
-  - FORMAT 包括 json|yaml|wide|name|custom-columns=...|custom-columns-file=...|go-template=...|go-template-file=...|jsonpath=...|jsonpath-file=...
-    - 官方说明：<https://kubernetes.io/docs/reference/kubectl/overview/#formatting-output>
-  - yaml | json # 输出 yaml 或 json 格式的信息
-  - wide # 多显示该对象的 IP 和所在 NODE 两个信息
-  - name # 仅打印对象名称，而不打印其他任何内容。Note：资源名称格式为：资源类型/名字
-  - custom-columns=\<HEADER>:\<JSON-PATH-EXPR> # 自定义以一列一列的形式显示列表。参考：\[http://kubernetes.io/docs/user-guide/kubectl-overview/#custom-columns]
-  - golang template\[http://golang.org/pkg/text/template/#pkg-overview]
-  - jsonpath template # 使用 json 格式里的路径来查看某个字段的状态，样例如下，`.`符号是字符分隔符。用法详见[官方文档](https://kubernetes.io/docs/reference/kubectl/jsonpath/)
-    - e.g.`-o jsonpath="{.status.phase}"`
+    - FORMAT 包括 json|yaml|wide|name|custom-columns=...|custom-columns-file=...|go-template=...|go-template-file=...|jsonpath=...|jsonpath-file=...
+        - 官方说明：<https://kubernetes.io/docs/reference/kubectl/overview/#formatting-output>
+    - yaml | json # 输出 yaml 或 json 格式的信息
+    - wide # 多显示该对象的 IP 和所在 NODE 两个信息
+    - name # 仅打印对象名称，而不打印其他任何内容。Note：资源名称格式为：资源类型/名字
+    - custom-columns=\<HEADER>:\<JSON-PATH-EXPR> # 自定义以一列一列的形式显示列表。参考：\[http://kubernetes.io/docs/user-guide/kubectl-overview/#custom-columns]
+    - golang template\[http://golang.org/pkg/text/template/#pkg-overview]
+    - jsonpath template # 使用 json 格式里的路径来查看某个字段的状态，样例如下，`.`符号是字符分隔符。用法详见[官方文档](https://kubernetes.io/docs/reference/kubectl/jsonpath/)
+        - e.g.`-o jsonpath="{.status.phase}"`
 - --output-watch-events=false: Output watch event objects when --watch or --watch-only is used. Existing objects are output as initial ADDED events.
 - **--raw \<URL Path>** # 从 API Server 请求原始 URI。显示指定 URL Path 路径下的原始 URI 信息，默认输出为 JSON 格式
 - -R, --recursive=false: Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.

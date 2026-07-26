@@ -1,6 +1,5 @@
 ---
 title: Generic
-linkTitle: Generic
 weight: 12
 ---
 

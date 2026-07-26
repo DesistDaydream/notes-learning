@@ -1,6 +1,5 @@
 ---
 title: Kubernetes 网络
-linkTitle: Kubernetes 网络
 weight: 1
 ---
 
@@ -20,7 +19,7 @@ Kubernetes 的整体网络分为以下三类
 
 - 同一个 Pod 内的多个容器间通信，通过各容器的 lo 通信
 - Pod 之间的通信，Pod IP<-->Pod IP
-  - overlay 叠加网络转发二层报文，通过隧道方式转发三层报文
+    - overlay 叠加网络转发二层报文，通过隧道方式转发三层报文
 - Pod 与 Service 之间的通信，Pod IP<-->Cluster IP。详见 [Service(服务)](/docs/10.云原生/Kubernetes/Kubernetes%20网络/Service(服务).md)。
 - Service 与集群外部客户端的通信。详见 [Service(服务)](/docs/10.云原生/Kubernetes/Kubernetes%20网络/Service(服务).md)。
 

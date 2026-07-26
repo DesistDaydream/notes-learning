@@ -1,6 +1,5 @@
 ---
 title: Sentinel 命令
-linkTitle: Sentinel 命令
 weight: 20
 ---
 
@@ -9,7 +8,7 @@ weight: 20
 > 参考：
 >
 > - [官方文档](https://redis.io/topics/sentinel#sentinel-api)
->   - https://redis.io/docs/latest/operate/oss_and_stack/management/sentinel/#sentinel-api
+>     - https://redis.io/docs/latest/operate/oss_and_stack/management/sentinel/#sentinel-api
 > - [博客园大佬](https://www.cnblogs.com/biglittleant/p/7770960.html)
 
 ## 基本命令
@@ -54,7 +53,7 @@ EXAMPLE
 
 - 设置 master 的属性，比如说**quorum**(票数)，而不需要先删除 master，再重新添加 master。
 
-  - sentinel set objects-cache-master quorum 5
+    - sentinel set objects-cache-master quorum 5
 
 ## 增加或删除 Sentinel
 

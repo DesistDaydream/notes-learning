@@ -1,6 +1,5 @@
 ---
 title: Free Software Foundation
-linkTitle: Free Software Foundation
 weight: 20
 ---
 

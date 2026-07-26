@@ -1,6 +1,5 @@
 ---
 title: 不通过数学解释 LLMs 是如何工作的
-linkTitle: 不通过数学解释 LLMs 是如何工作的
 weight: 20
 ---
 
@@ -9,7 +8,7 @@ weight: 20
 > 参考：
 >
 > - https://blog.miguelgrinberg.com/post/how-llms-work-explained-without-math
->   - [中文翻译：公众号 - 云原生实验室，大模型到底有没有智能？一篇文章给你讲明明白白](https://mp.weixin.qq.com/s/z93ZEVnjdpKM__-_0HvjRQ)
+>     - [中文翻译：公众号 - 云原生实验室，大模型到底有没有智能？一篇文章给你讲明明白白](https://mp.weixin.qq.com/s/z93ZEVnjdpKM__-_0HvjRQ)
 
 生成式人工智能 ([GenAI](https://en.wikipedia.org/wiki/Generative_artificial_intelligence)) 和大语言模型 (LLM[^LLM])，这两个词汇想必已在大家的耳边萦绕多时。它们如惊涛骇浪般席卷了整个科技界，登上了各大新闻头条。ChatGPT，这个神奇的对话助手，也许已成为你形影不离的良师益友。
 
@@ -167,11 +166,11 @@ def generate_text(prompt, num_tokens, hyperparameters):
 
 | \- | I | you | like | apples | bananas |
 | --- | --- | --- | --- | --- | --- |
-| **I** |  |  | 100% |  |  |
-| **you** |  |  | 100% |  |  |
-| **like** |  |  |  | 33.3% | 66.7% |
-| **apples** | 25% | 25% | 25% |  | 25% |
-| **bananas** | 25% | 25% | 25% | 25% |  |
+| **I** | | | 100% | | |
+| **you** | | | 100% | | |
+| **like** | | | | 33.3% | 66.7% |
+| **apples** | 25% | 25% | 25% | | 25% |
+| **bananas** | 25% | 25% | 25% | 25% | |
 
 “I”、“you” 和 “like” 这几行的概率很容易计算，但 “apples” 和 “bananas” 带来了问题。由于数据集中没有这两个词后面接其他词的例子，它们存在训练数据的空白。为了确保模型即使面对未见过的词也能做出预测，我决定将 “apples” 和 “bananas” 的后续词概率平均分配给其他四个可能的词。这种做法虽然可能产生不自然的结果，但至少能防止模型在遇到这两个词时陷入死循环。
 

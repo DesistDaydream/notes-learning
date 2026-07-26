@@ -1,6 +1,5 @@
 ---
 title: AJAX
-linkTitle: AJAX
 weight: 2
 ---
 

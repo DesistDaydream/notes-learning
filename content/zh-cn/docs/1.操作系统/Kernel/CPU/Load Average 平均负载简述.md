@@ -1,6 +1,5 @@
 ---
 title: Load Average 平均负载简述
-linkTitle: Load Average 平均负载简述
 weight: 20
 ---
 

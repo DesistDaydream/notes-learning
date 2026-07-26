@@ -1,6 +1,5 @@
 ---
 title: GRE
-linkTitle: GRE
 weight: 12
 ---
 

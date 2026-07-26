@@ -1,6 +1,5 @@
 ---
 title: "ChatGPT"
-linkTitle: "ChatGPT"
 weight: 20
 ---
 
@@ -10,9 +9,8 @@ weight: 20
 >
 > - https://chat.openai.com/
 > - https://zblogs.top/how-to-register-openai-chatgpt-in-china
->   - 注册 ChatGPT 教程
+>     - 注册 ChatGPT 教程
 > - 使用虚拟号码接收短信验证码：<https://sms-activate.org/>
-
 
 # 扩展 ChatGPT 的项目
 
@@ -23,7 +21,7 @@ https://github.com/xcanwin/KeepChatGPT # 让我们在使用 ChatGPT 的时候更
 ## Auto GPT
 
 > 参考：
-> 
+>
 > - [GitHub 项目，Torantulino/Auto-GPT](https://github.com/Torantulino/Auto-GPT)
 > - https://www.bilibili.com/video/BV1HV4y1Z7dm
 

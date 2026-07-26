@@ -1,6 +1,5 @@
 ---
 title: Time series 面板
-linkTitle: Time series 面板
 weight: 1
 ---
 
@@ -57,10 +56,10 @@ Time series 是一个二维的，具有 x/y Axes(轴) 的面板。x 轴(横轴) 
 
 - **Bars** # 柱状图样式。当 X 轴的模式变为 Series、Historgram 时，自动开启
 - **Lines** # 线条样式。
-  - **Line width** # 线条宽度。
-  - **Fill opacity**# 填充不透明。默认 0。
+    - **Line width** # 线条宽度。
+    - **Fill opacity**# 填充不透明。默认 0。
 - **Points** # 圆点样式。
-  - **Point size**# 每个圆点的大小
+    - **Point size**# 每个圆点的大小
 
 **Alert thresholds** # 在面板上显示报警阈值和区域
 
@@ -113,10 +112,10 @@ Sort order # 排序。有三种排序方式：None(不排序)、Increasing(由�
 **X-Axis** # X 轴 配置。可以更改 X 轴的 Mode(模式)
 
 - Mode # 模式。用于改变 X 轴的 显示模式。
-  - Time # 时间模式。默认模式。X 轴 表示 时间，数据按时间分组（例如，按小时或分钟）。
-  - Series # 序列模式。X 轴 表示 series，数据按照序列分组。Y 轴 仍然代表该序列的值
-    - 注意：当 X 轴 切换到 Series 模式时，Display 配置中的将自动使用柱状图的方式
-  - Histogram # 直方图模式。X 轴 表示 序列的值，Y 轴 表示 该值的计数。
+    - Time # 时间模式。默认模式。X 轴 表示 时间，数据按时间分组（例如，按小时或分钟）。
+    - Series # 序列模式。X 轴 表示 series，数据按照序列分组。Y 轴 仍然代表该序列的值
+        - 注意：当 X 轴 切换到 Series 模式时，Display 配置中的将自动使用柱状图的方式
+    - Histogram # 直方图模式。X 轴 表示 序列的值，Y 轴 表示 该值的计数。
 
 ### X 轴的 Series 模式 示例
 

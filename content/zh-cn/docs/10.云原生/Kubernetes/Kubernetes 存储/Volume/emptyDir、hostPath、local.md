@@ -12,9 +12,9 @@ title: emptyDir、hostPath、local
 
 - 获取 emptyDir 类型的 volume 在宿主机的路径的方式：
 
-  - 首先通过 kubectl get pod PODNAME -o yaml | grep uid 来获取 pod 的标识符
+    - 首先通过 kubectl get pod PODNAME -o yaml | grep uid 来获取 pod 的标识符
 
-  - 然后在目录/var/lib/kubelet/pods/PodID/volumes/kubernets.io~empty-dir/下面找到所有该 pod 所挂载的 empty 类型的 volume，该目录与 pod 中的目录是同步的，在该目录增删改的信息同样也会影响到 pod 对应的目录中。
+    - 然后在目录/var/lib/kubelet/pods/PodID/volumes/kubernets.io~empty-dir/下面找到所有该 pod 所挂载的 empty 类型的 volume，该目录与 pod 中的目录是同步的，在该目录增删改的信息同样也会影响到 pod 对应的目录中。
 
 hostPath # Node 上的文件或目录
 
@@ -28,15 +28,15 @@ hostPath 常用于将节点上的目录挂载到容器中，以便让容器可�
 
 - 使用 hostPath 作为 volume 时，有两个参数需要指定：
 
-  - path：指明 Node 上的哪个文件或者目录作为 volume 提供给 container
+    - path：指明 Node 上的哪个文件或者目录作为 volume 提供给 container
 
-  - type：Node 上目录或文件的使用行为，比如
+    - type：Node 上目录或文件的使用行为，比如
 
-    - DirectoryOrCreate # 如果指定 path 不存在，则自动创建，并设置权限为 0755，具有有 kubelet 相同的组和所有权
+        - DirectoryOrCreate # 如果指定 path 不存在，则自动创建，并设置权限为 0755，具有有 kubelet 相同的组和所有权
 
-    - Directory # 指定 path 必须存在，不存在则报报错
+        - Directory # 指定 path 必须存在，不存在则报报错
 
-    - ....等等，详见官网
+        - ....等等，详见官网
 
 注意：
 

@@ -1,6 +1,5 @@
 ---
 title: "Cache"
-linkTitle: "Cache"
 weight: 20
 ---
 

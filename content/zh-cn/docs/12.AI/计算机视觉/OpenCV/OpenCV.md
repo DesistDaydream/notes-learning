@@ -1,6 +1,5 @@
 ---
 title: OpenCV
-linkTitle: OpenCV
 weight: 1
 ---
 
@@ -29,7 +28,7 @@ go https://github.com/hybridgroup/gocv
 > - [4.x 官网文档，主页](https://docs.opencv.org/4.x/index.html)
 > - [4.x 官方文档，介绍]()
 > - [4.x 官方文档，模块](https://docs.opencv.org/4.x/modules.html)
->   - [4.x 官方文档，Class 列表](https://docs.opencv.org/4.x/annotated.html)
+>     - [4.x 官方文档，Class 列表](https://docs.opencv.org/4.x/annotated.html)
 > - https://zhuanlan.zhihu.com/p/19988205
 
 OpenCV 具有模块化的结构，整个 OpenCV 的功能由一个个模块提供，每个模块具有自己的类、函数、方法，并且可以多个模块共享使用。这种模块化的结构可以让 OpenCV 像一门编程语言一样，具有自己的标准库和第三方库，标准库中的标准模块可以实现自身的核心功能，第三方库的模块可以基于核心功能扩展其他功能。就像 https://pkg.go.dev/ 中的各种包，可以看到类型、方法、函数等等的描述。
@@ -48,9 +47,9 @@ OpenCV 具有模块化的结构，整个 OpenCV 的功能由一个个模块提�
 - **imgcodecs** # 图像文件读写模块，全称 [Image file reading and writing](https://docs.opencv.org/4.x/d4/da8/group__imgcodecs.html)。
 - **videoio** # 视频文件读写模块，全称 [Video I/O](https://docs.opencv.org/4.x/dd/de7/group__videoio.html)。也包括摄像头、Kinect 等的输入。
 - **highgui** # 高级图形界面及与 QT 框架的整合。
-  - [High-level GUI](https://docs.opencv.org/4.x/d7/dfc/group__highgui.html)
+    - [High-level GUI](https://docs.opencv.org/4.x/d7/dfc/group__highgui.html)
 - **video** # 视频分析模块。包括背景提取、光流跟踪、卡尔曼滤波等，做视频监控的读者会经常使用这个模块。
-  - [Video Analysis](https://docs.opencv.org/4.x/d7/de9/group__video.html)
+    - [Video Analysis](https://docs.opencv.org/4.x/d7/de9/group__video.html)
 - calib3d. [Camera Calibration and 3D Reconstruction](https://docs.opencv.org/4.x/d9/d0c/group__calib3d.html)
 - features2d. [2D Features Framework](https://docs.opencv.org/4.x/da/d9b/group__features2d.html)
 - objdetect. [Object Detection](https://docs.opencv.org/4.x/d5/d54/group__objdetect.html)

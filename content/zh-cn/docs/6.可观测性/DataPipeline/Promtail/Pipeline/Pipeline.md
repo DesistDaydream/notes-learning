@@ -1,6 +1,5 @@
 ---
 title: Pipeline
-linkTitle: Pipeline
 weight: 1
 ---
 
@@ -28,26 +27,26 @@ Pipeline 由一组 **stages(阶段)** 组成，Loki 将 Stages 分为 4 大类�
 ## 各阶段类型
 
 - **Parsing stages(解析阶段)** 类型：
-  - [cri](https://grafana.com/docs/loki/latest/clients/promtail/stages/cri/) # 使用标准的 CRI 日志格式来解析每行日志，并提取数据
-  - [docker](https://grafana.com/docs/loki/latest/clients/promtail/stages/docker/) # 使用标准的 docker 日志文件格式来解析每行日志，并提取数据(Pipeline 的默认行为，该阶段包括 json、labels、timestamp、output 四个阶段)
-  - [regex](https://grafana.com/docs/loki/latest/clients/promtail/stages/regex/) # 使用正则表达式从每行日志提取数据
-  - [json](https://grafana.com/docs/loki/latest/clients/promtail/stages/json/) # 使用 JSON 格式解析每行日志，并提取数据
-  - [replace](https://grafana.com/docs/loki/latest/clients/promtail/stages/replace/) # 使用正则表达式替换数据
+    - [cri](https://grafana.com/docs/loki/latest/clients/promtail/stages/cri/) # 使用标准的 CRI 日志格式来解析每行日志，并提取数据
+    - [docker](https://grafana.com/docs/loki/latest/clients/promtail/stages/docker/) # 使用标准的 docker 日志文件格式来解析每行日志，并提取数据(Pipeline 的默认行为，该阶段包括 json、labels、timestamp、output 四个阶段)
+    - [regex](https://grafana.com/docs/loki/latest/clients/promtail/stages/regex/) # 使用正则表达式从每行日志提取数据
+    - [json](https://grafana.com/docs/loki/latest/clients/promtail/stages/json/) # 使用 JSON 格式解析每行日志，并提取数据
+    - [replace](https://grafana.com/docs/loki/latest/clients/promtail/stages/replace/) # 使用正则表达式替换数据
 - **Transform stages(转换阶段)** 类型：
-  - [multiline](https://grafana.com/docs/loki/latest/clients/promtail/stages/multiline/) # 多行阶段将多行日志进行合并，然后再将其传递到 pipeline 的下一个阶段。
-  - [pack](https://grafana.com/docs/loki/latest/clients/promtail/stages/pack/) # Packs a log line in a JSON object allowing extracted values and labels to be placed inside the log line.
-  - [template](https://grafana.com/docs/loki/latest/clients/promtail/stages/template/) # 使用 Go 模板来修改提取出来数据
+    - [multiline](https://grafana.com/docs/loki/latest/clients/promtail/stages/multiline/) # 多行阶段将多行日志进行合并，然后再将其传递到 pipeline 的下一个阶段。
+    - [pack](https://grafana.com/docs/loki/latest/clients/promtail/stages/pack/) # Packs a log line in a JSON object allowing extracted values and labels to be placed inside the log line.
+    - [template](https://grafana.com/docs/loki/latest/clients/promtail/stages/template/) # 使用 Go 模板来修改提取出来数据
 - **Actions stages(行动阶段)** 类型：
-  - [timestamp](https://grafana.com/docs/loki/latest/clients/promtail/stages/timestamp/) # 为一行日志设置时间戳
-  - [output](https://grafana.com/docs/loki/latest/clients/promtail/stages/output/) # 设置一行日志的文本。该行为是 pipeline 阶段可以确定 loki 要展示的日志内容的唯一行为
-  - [labels](https://grafana.com/docs/loki/latest/clients/promtail/stages/labels/) # 更新日志条目的标签集
-  - [labelallow](https://grafana.com/docs/loki/latest/clients/promtail/stages/labelallow/) # 保留标签
-  - [labeldrop](https://grafana.com/docs/loki/latest/clients/promtail/stages/labeldrop/) # 丢掉标签
-  - [metrics](https://grafana.com/docs/loki/latest/clients/promtail/stages/metrics/) # 根据提取出来的数据计算指标
-  - [tenant](https://grafana.com/docs/loki/latest/clients/promtail/stages/tenant/) # 设置要用于日志条目的租户 ID 值。
+    - [timestamp](https://grafana.com/docs/loki/latest/clients/promtail/stages/timestamp/) # 为一行日志设置时间戳
+    - [output](https://grafana.com/docs/loki/latest/clients/promtail/stages/output/) # 设置一行日志的文本。该行为是 pipeline 阶段可以确定 loki 要展示的日志内容的唯一行为
+    - [labels](https://grafana.com/docs/loki/latest/clients/promtail/stages/labels/) # 更新日志条目的标签集
+    - [labelallow](https://grafana.com/docs/loki/latest/clients/promtail/stages/labelallow/) # 保留标签
+    - [labeldrop](https://grafana.com/docs/loki/latest/clients/promtail/stages/labeldrop/) # 丢掉标签
+    - [metrics](https://grafana.com/docs/loki/latest/clients/promtail/stages/metrics/) # 根据提取出来的数据计算指标
+    - [tenant](https://grafana.com/docs/loki/latest/clients/promtail/stages/tenant/) # 设置要用于日志条目的租户 ID 值。
 - **Filtering stages(过滤阶段)** 支持以下行为
-  - [match](https://grafana.com/docs/loki/latest/clients/promtail/stages/match/) # 依据指定的标签，过滤日志行，只有匹配到的日志行才会继续执行其他阶段
-  - [drop](https://grafana.com/docs/loki/latest/clients/promtail/stages/drop/) # 依据条件丢弃日志行
+    - [match](https://grafana.com/docs/loki/latest/clients/promtail/stages/match/) # 依据指定的标签，过滤日志行，只有匹配到的日志行才会继续执行其他阶段
+    - [drop](https://grafana.com/docs/loki/latest/clients/promtail/stages/drop/) # 依据条件丢弃日志行
 
 ## 配置示例
 

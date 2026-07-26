@@ -62,12 +62,12 @@ spec:
 标签选择器可以用在下面这些资源的字段中：
 
 - 各种控制器
-  - .spec.selector
+    - .spec.selector
 - pod
-  - .spec.affinity.所有亲和类型.软/硬规则.nodeSelectorTerms
-  - .spec.nodeSelector
+    - .spec.affinity.所有亲和类型.软/硬规则.nodeSelectorTerms
+    - .spec.nodeSelector
 - service
-  - .spec.selector
+    - .spec.selector
 - 等等
 
 ## Selector Manifest
@@ -163,12 +163,12 @@ selector:
 ## EXAMPLE
 
 - 获取所有 node 的标签
-  - **kubectl get node --show-labels**
+    - **kubectl get node --show-labels**
 - 为 node-1.bj-test 节点添加名为 `node-role.kubernetes.io/proxy` 的标签，标签值为 `ingress-controller`
-  - **kubectl label nodes test-node-4 node-role.kubernetes.io/proxy=ingress-controller**
+    - **kubectl label nodes test-node-4 node-role.kubernetes.io/proxy=ingress-controller**
 - 将 node-1.bj-test 节点上的 `node-role.kubernetes.io/proxy` 标签删除
-  - **kubectl label nodes node-1.bj-test node-role.kubernetes.io/proxy-**
+    - **kubectl label nodes node-1.bj-test node-role.kubernetes.io/proxy-**
 - 给 k8s-node1 节点添加 disktype=ssd 这个标签
-  - **kubectl label node k8s-node1 disktype=ssd**
+    - **kubectl label node k8s-node1 disktype=ssd**
 - 删除 k8s-node1 节点上的 disktype 标签
-  - **kubectl label node k8s-node1 disktype-**
+    - **kubectl label node k8s-node1 disktype-**

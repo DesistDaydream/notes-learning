@@ -1,6 +1,5 @@
 ---
 title: Automation
-linkTitle: Automation
 weight: 1
 ---
 

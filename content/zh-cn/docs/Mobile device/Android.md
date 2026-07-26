@@ -1,6 +1,5 @@
 ---
 title: Android
-linkTitle: Android
 weight: 2
 ---
 

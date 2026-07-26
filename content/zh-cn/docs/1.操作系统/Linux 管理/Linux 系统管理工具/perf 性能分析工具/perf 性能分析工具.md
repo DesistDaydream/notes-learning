@@ -10,8 +10,8 @@ weight: 1
 > - [GitHub 项目，torvalds/linux - /tools/perf](https://github.com/torvalds/linux/tree/master/tools/perf)
 > - [Kernel Wiki, perf](https://perf.wiki.kernel.org/index.php/Main_Page)
 > - perf 事件列表中的内核 pmu 事件是什么
->   - https://unix.stackexchange.com/questions/326621/what-are-kernel-pmu-event-s-in-perf-events-list
->   - https://qastack.cn/unix/326621/what-are-kernel-pmu-event-s-in-perf-events-list
+>     - https://unix.stackexchange.com/questions/326621/what-are-kernel-pmu-event-s-in-perf-events-list
+>     - https://qastack.cn/unix/326621/what-are-kernel-pmu-event-s-in-perf-events-list
 > - [brendangregg 博客，perf](https://www.brendangregg.com/perf.html)
 
 **Linux Performance Events(Linux 性能事件，简称 LPE)** 是用来分析 [Linux Kernel](/docs/1.操作系统/Kernel/Linux%20Kernel/Linux%20Kernel.md) 性能的工具，通常称为 **perf**。perf 随 Kernel 2.6+ 一同发布。通过它，应用程序可以利用 PMU，tracepoint 和内核中的特殊计数器来进行性能统计。它不但可以分析指定应用程序的性能问题 (per thread)，也可以用来分析内核的性能问题，当然也可以同时分析应用代码和内核，从而全面理解应用程序中的性能瓶颈。
@@ -136,7 +136,7 @@ perf 主要由多个子命令来提供常用功能
 在源码 [tools/perf/perf.c](https://github.com/torvalds/linux/blob/v6.10/tools/perf/perf.c#L51) 处有所有子命令的列表
 
 - **list** # 列出所有可用事件
-  - 命令入口: [tools/perf/builtin-list.c - cmd_list() 函数](https://github.com/torvalds/linux/blob/v6.10/tools/perf/builtin-list.c#L505)
+    - 命令入口: [tools/perf/builtin-list.c - cmd_list() 函数](https://github.com/torvalds/linux/blob/v6.10/tools/perf/builtin-list.c#L505)
 - **stat** # 收集性能计数器统计信息
 
 通用 OPTIONS（下面这些 OPTIONS 不是所有命令都支持，但是有些命令的 OPTIONS 逻辑是类似的，这些命令都是 perf 进行性能监控的常用命令，比如 stat、record、top、etc.）
@@ -262,5 +262,3 @@ Overhead  Trace output
    2.97%  irq=46 name=enp9s0-TxRx-3
    0.99%  irq=48 name=enp12s0-TxRx-0
 ```
-
-

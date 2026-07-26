@@ -8,7 +8,7 @@ title: Jinja
 >
 > - [GitHub 项目，pallets/jinja](https://github.com/pallets/jinja)
 > - [官网](https://jinja.palletsprojects.com/)
->   - [国人翻译官网](http://docs.jinkan.org/docs/jinja2/)
+>     - [国人翻译官网](http://docs.jinkan.org/docs/jinja2/)
 > - [Wiki, Jinja](https://en.wikipedia.org/wiki/Jinja_(template_engine))
 > - [骏马金龙博客，9. 如虎添翼的力量：解锁强大的 Jinja2 模板](https://www.junmajinlong.com/ansible/9_power_of_jinja2/)
 
@@ -59,17 +59,17 @@ Jinja 的 [Literal](/docs/2.编程/计算机科学/Literal.md)(字面量) 是最
 所以这里主要是定义一下解析表达式后可以返回的数据类型。Jinja 的基本数据类型有如下几种：
 
 - 字符串 # 双引号或单引号中间的一切都是字符串
-   - `"Hello World"`
+    - `"Hello World"`
 - 整数和浮点数 # 直接写下数值即可
-   - `42` 或者 `42.23`
+    - `42` 或者 `42.23`
 - 列表
-   - `['list','of','objects']`
+    - `['list','of','objects']`
 - 元组
-   - `('tuple','of','values')`
+    - `('tuple','of','values')`
 - 字典
-   - `{'dict': 'of', 'key': 'and', 'value': 'pairs'}`
+    - `{'dict': 'of', 'key': 'and', 'value': 'pairs'}`
 - 布尔 # 不带引号的 true 与 false
-   - `true` 和 `false`
+    - `true` 和 `false`
 
 # Variable(变量) 和 Scope(作用域)
 
@@ -114,9 +114,9 @@ Jinja 模板语言中，引用变量是最基本、最简单的一种表达式�
 Python 处理 YAML 数据时，实际上是将 YAML 格式数据转换为字典后进行处理的。所以 Jinja 模板引擎访问列表或字典类型的变量，有两种引用方式
 
 - 点引用
-  - **使用 `X.Y` 时，先搜索 Ptyhon 对象的属性名或方法名，搜索不到时再搜索 Jinja 变量**。
+    - **使用 `X.Y` 时，先搜索 Ptyhon 对象的属性名或方法名，搜索不到时再搜索 Jinja 变量**。
 - 括号引用
-  - **使用 `X["Y"]` 时，先搜索 Jinja 变量，搜索失败时，再搜索 Python 对象的属性名或方法名。**
+    - **使用 `X["Y"]` 时，先搜索 Jinja 变量，搜索失败时，再搜索 Python 对象的属性名或方法名。**
 
 比如 `mylist=["a","b","c"]` 列表，在 Jinja 中既可以使用 `mylist[1]` 来访问第二个元素，也可以使用 `mylist.1` 来访问它。
 
@@ -154,14 +154,14 @@ Python 处理 YAML 数据时，实际上是将 YAML 格式数据转换为字典�
 ## Math(算术) 运算
 
 - `+` # 将两个对象相加。通常对象是数字，但如果两者都是字符串或列表，您可以通过这种方式连接它们。然而，这不是连接字符串的首选方式！对于字符串连接，请查看 `~` 运算符。 `{{ 1 + 1 }}` 表达式的返回值为 2。
-   - `+` 操作符也可用于字符串串联、列表相加，例如`"a"+"b"`得到”ab”，`[1,2]+[3,4]`得到`[1,2,3,4]`
+    - `+` 操作符也可用于字符串串联、列表相加，例如`"a"+"b"`得到”ab”，`[1,2]+[3,4]`得到`[1,2,3,4]`
 - `-` #
 - `*` #
-   - `*` 也可用于重复字符串，例如`"-" * 10`得到 10 个连续的短横线
+    - `*` 也可用于重复字符串，例如`"-" * 10`得到 10 个连续的短横线
 - `/` #
-   - `/` 是浮点数除法，例如 3/2 得到 1.5
+    - `/` 是浮点数除法，例如 3/2 得到 1.5
 - `//` #
-   - `//` 是截断式整除法，例如 20/7 得到 2
+    - `//` 是截断式整除法，例如 20/7 得到 2
 - `%` #
 - `**` #
 
@@ -195,15 +195,15 @@ Python 处理 YAML 数据时，实际上是将 YAML 格式数据转换为字典�
 ## 总结与说明
 
 - `in` 运算符可测试多种容器，常见的包括：
-   - 列表测试 `3 in [1,2,3]`
-   - 字符串测试 `"h" in "hey"`
-   - 字典测试 `"name" in {"name":"j333333unma","age":28}`
-   - 上述几种测试结果都是 True
+    - 列表测试 `3 in [1,2,3]`
+    - 字符串测试 `"h" in "hey"`
+    - 字典测试 `"name" in {"name":"j333333unma","age":28}`
+    - 上述几种测试结果都是 True
 - `is` 运算符可以做很多测试，比如测试是否是数值、是否是字符串、变量是否定义、等等
 - `+` 可以做字符串串联，`~` 也可以做字符串串联，例如 `"ab" ~ "cd"` 运算结果为 `"abcd"`
 - `not` 运算符和 `is`、`in` 结合时，可以放在两个位置。例如：
-   - `not ("h" in "hey")` 和 `"h" not in "hey"` 两者是等价的
-   - `not (3 is number())` 和 `3 is not number()` 两者是等价的
+    - `not ("h" in "hey")` 和 `"h" not in "hey"` 两者是等价的
+    - `not (3 is number())` 和 `3 is not number()` 两者是等价的
 
 # Control Structures(控制结构)
 
@@ -392,6 +392,7 @@ class FilterModule(object):
       - p1
       - p2
 ```
+
 ## Filters(过滤器)
 
 通常，模板语言都会带有过滤器，Jinja 也不例外，每个过滤器函数都是一个功能，作用就类似于函数，而且它也可以接参数。变量可以通过 **Filters(过滤器)** 修改。Jinja 中有两种使用 Filters 的方式：
@@ -448,41 +449,41 @@ JinJa 内置了多个过滤器函数，Ansible 自身也扩展了一些方便的
 我会将它们中绝大多数的含义列举出来 (剩下一部分是我觉得在 Ansible 中用不上的，比如 escape() 转义为 HTML 安全字符串)，各位没必要全都测试一遍，但是速看一遍并大概了解它们的含义和作用是有必要的。
 
 - `float(default=0.0)` # 将数值形式的字符串转换为浮点数。如果无法转换，则返回默认值 0.0。可使用 default 参数自定义转换失败时的默认值。
-   - 例如`"abcd"|float`、`""|float`都转换为 0.0，`""|float('NaN')`返回的是字符串 NaN，表示非数值含义。
+    - 例如`"abcd"|float`、`""|float`都转换为 0.0，`""|float('NaN')`返回的是字符串 NaN，表示非数值含义。
 - `int(default=0,base=10)` # 将数值形式的字符串直接截断为整数。如果无法转换，则返回默认值 0。可使用 default 参数自定义转换失败时的默认值。
-   - 此外，还可以指定进制参数 base，比如 base=2 表示将传递过来的参数当作二进制进行解析，然后转换为 10 进制数值。
-   - 例如`'3.55'|int`结果为 3，`'0b100'|int(base=2)`结果为 4。
+    - 此外，还可以指定进制参数 base，比如 base=2 表示将传递过来的参数当作二进制进行解析，然后转换为 10 进制数值。
+    - 例如`'3.55'|int`结果为 3，`'0b100'|int(base=2)`结果为 4。
 - `abs()` # 计算绝对值。
-   - 注意，只能计算数值，如果传递的是字符串，可使用筛选器 int() 或 float() 先转换成数值。例如`'-3.14'|float|abs`。
+    - 注意，只能计算数值，如果传递的是字符串，可使用筛选器 int() 或 float() 先转换成数值。例如`'-3.14'|float|abs`。
 - `round(precision=0,method='common')` # 对数值进行四舍五入。第一个参数指定四舍五入的精度，第二个参数指定四舍五入的方式，有三种方式可选择：
-   - ceil：只入不舍
-   - floor：只舍不入
-   - common：小于五的舍，大于等于 5 的入
-   - 注意：
-      - 只能计算数值，如果传递的是字符串，可使用筛选器 int() 或 float() 先转换成数值
-      - 计算的是整数，则返回值是整数，计算的是浮点数，则返回值是浮点数
-   - 例如`42.55|round`的结果为 43.0，`45|round`的结果是 45，`42.55|round(1,'floor')`的结果是 42.5。
+    - ceil：只入不舍
+    - floor：只舍不入
+    - common：小于五的舍，大于等于 5 的入
+    - 注意：
+        - 只能计算数值，如果传递的是字符串，可使用筛选器 int() 或 float() 先转换成数值
+        - 计算的是整数，则返回值是整数，计算的是浮点数，则返回值是浮点数
+    - 例如`42.55|round`的结果为 43.0，`45|round`的结果是 45，`42.55|round(1,'floor')`的结果是 42.5。
 - `random()` # 返回一个随机整数。竖线左边的值 X 决定了随机数的范围为`[0,X)`。
-   - 例如`5|random`生成的随机数可能是 0、1、2、3、4。
+    - 例如`5|random`生成的随机数可能是 0、1、2、3、4。
 - `list()` # 转换为列表。如果要转换的目标是字符串，则返回的列表是字符串中的每个字符。
-   - 例如`range(1,4)|list`的结果是`[1,2,3]`，`"hey"|list`的结果是`["h","e","y"]`。
+    - 例如`range(1,4)|list`的结果是`[1,2,3]`，`"hey"|list`的结果是`["h","e","y"]`。
 - `string()` # 转换为字符串。
-   - 例如`"333aa"`结果为”333aa”。
+    - 例如`"333aa"`结果为”333aa”。
 - `tojson()` # 转换为 json 格式。
 - `lower()`、`upper()`、`title()`、`capitalize()` # lower() 将大写字母转换为小写。upper() 将小写字母转换为大写。title() 将每个首字母转为大写。capitalize() 将第一个单词首字母转为大写。
 - `min()`、`max()` # 从序列中取最小、最大值。
-   - 例如`["a","abddd","cba"]|max`得到 cba。
+    - 例如`["a","abddd","cba"]|max`得到 cba。
 - `sum(start=0)` # 计算序列中各元素的算术和。可指定 start 参数作为算术和的起点。
-   - 例如`[1,2,3]|sum`得到 6，`[1,2,3]|sum(start=3)`得到 9。
+    - 例如`[1,2,3]|sum`得到 6，`[1,2,3]|sum(start=3)`得到 9。
 - `trim()` # 移除字符串前缀和后缀空白。
-   - 例如`"abcd"|trim ~ "DEF"`得到”abcdDEF”。
+    - 例如`"abcd"|trim ~ "DEF"`得到”abcdDEF”。
 - `truncate()` # 截断字符串为指定长度。主要用于 web 编程，Ansible 用不到。
 - `replace(old,new,count=None)` # 将字符串中的 old 替换成 new，count 参数指定替换多少次，默认替换所有匹配成功的。
-   - 例如`"you see see you"|replace("see","look")`得到`you look look you`，而`replace("see","look",1)`则得到`you look see you`。
+    - 例如`"you see see you"|replace("see","look")`得到`you look look you`，而`replace("see","look",1)`则得到`you look see you`。
 - `first()`、`last()` # 返回序列中的第一个、最后一个元素。
-   - 例如 `"hello world" | last` 返回字母 d，`[2,3,4] | last` 返回数值 4。
+    - 例如 `"hello world" | last` 返回字母 d，`[2,3,4] | last` 返回数值 4。
 - `map(attribute='xxx')` # 如果一个列表中包含了多个 dict，map 可根据指定的属性名 (即 dict 的 key)，从列表中各 dict 内筛选出该属性值部分。
-   - 例如，对于如下变量：
+    - 例如，对于如下变量：
 
 ```yaml
 p:
@@ -496,7 +497,7 @@ p:
     weight: 50
 ```
 
-   - `p | map(attribute="name") | list` 将得到 `["junma","woniu","tuner"]`
+- `p | map(attribute="name") | list` 将得到 `["junma","woniu","tuner"]`
 - `select()`、`reject()` # 从序列中选中、排除满足条件的项。例如：
 
 ```python
@@ -507,7 +508,7 @@ p:
 {{ NUMBER | select("divisibleby", 3) }} ->选出被3整除的数
 ```
 
-   - 其中测试参数可以指定为支持的测试函数，在前文已经介绍过。
+- 其中测试参数可以指定为支持的测试函数，在前文已经介绍过。
 - `selectattr()`、`rejectattr()` # 根据对象属性筛选、排除序列中的多个元素。这个有时候很好用。比如：
 
 ```yaml
@@ -538,12 +539,12 @@ p | selectattr('age','gt',22) | list
 ```
 
 - `batch(count,fill_withs=None)` # 将序列中每 count 个元素打包成一个列表。最后一个列表可能元素个数不够，默认不填充，如果要填充，则指定`fill_with`参数。
-   - 例如`[1,2,3,4,5]|batch(2)|list`得到`[[1,2],[3,4],[5]]`，`[1,2,3,4,5]|batch(2,'x')|list`得到`[[1,2],[3,4],[5,'x']]`。
+    - 例如`[1,2,3,4,5]|batch(2)|list`得到`[[1,2],[3,4],[5]]`，`[1,2,3,4,5]|batch(2,'x')|list`得到`[[1,2],[3,4],[5,'x']]`。
 - `default('default_value',bool=False)`或`d()` # 如果竖线左边的变量未定义，则返回 default() 指定的默认值。默认只对未定义变量其作用，如果想让 default() 也能对布尔类型的数据生效，需将第二个参数设置为 true。
-   - `d()`是`default()`的简写方式。
-   - 例如`myvar|d('undefined')`在 myvar 不存在时返回 undefined 字符串，`""|d("empty")`中因为是空字符串而不是未定义变量，所以仍然返回空字符串，`""|d("empty",true)`则返回 empty 字符串。
+    - `d()`是`default()`的简写方式。
+    - 例如`myvar|d('undefined')`在 myvar 不存在时返回 undefined 字符串，`""|d("empty")`中因为是空字符串而不是未定义变量，所以仍然返回空字符串，`""|d("empty",true)`则返回 empty 字符串。
 - `unique()` # 对序列中进行去重操作。
-   - 例如`[1,2,3,3,1,2]|unique`得到结果`[1,2,3]`。
+    - 例如`[1,2,3,3,1,2]|unique`得到结果`[1,2,3]`。
 
 (22).`join(d="")`
 
@@ -674,21 +675,29 @@ person:
 ```
 
 可以使用`person|dictsort`按照 key(即 p1、p2、p3) 进行排序，结果是先 p1，再 p2，最后 p3。
+
 ## 循环
+
 ### for 迭代列表
+
 for 循环的语法：
+
 ```python
 {% for i in LIST %}
     string_or_expression
 {% endfor %}
 ```
+
 还支持直接条件判断筛选要参与迭代的元素：
+
 ```python
 {% for i in LIST if CONDITION %}
     string_or_expression
 {% endfor %}
 ```
+
 此外，Jinja2 的 for 语句还允许使用 else 分支，如果 for 所迭代的列表 LIST 是空列表 (或没有元素可迭代)，则会执行 else 分支。
+
 ```
 {% for i in LIST %}
     string_or_expression
@@ -696,7 +705,9 @@ for 循环的语法：
     string_or_expression
 {% endfor %}
 ```
+
 例如，在模板文件 a.txt.j2 中有如下内容：
+
 ```
 {% for file in files %}
 <{{file}}>
@@ -704,7 +715,9 @@ for 循环的语法：
 no file in files
 {% endfor %}
 ```
+
 playbook 文件内容如下：
+
 ```yaml
 ---
 - hosts: localhost
@@ -719,17 +732,23 @@ playbook 文件内容如下：
           - /tmp/a2
           - /tmp/a3
 ```
+
 执行 playbook 之后，将生成包含如下内容的 / tmp/a.txt 文件：
+
 ```
 </tmp/a1>
 </tmp/a2>
 </tmp/a3>
 ```
+
 如果将 playbook 中的`files`变量设置为空列表，则会执行 else 分支，所以生成的 / tmp/a.txt 的内容为：
+
 ```
 no file in files
 ```
+
 如果 files 变量未定义或变量类型不是 list，则默认会报错。针对未定义变量，可采用如下策略提供默认空列表：
+
 ```
 {% for file in (files|default([])) %}
 <{{file}}>
@@ -737,7 +756,9 @@ no file in files
 no file in files
 {% endfor %}
 ```
+
 如果不想迭代文件列表中的`/tmp/a3`，则可以加上条件判断：
+
 ```
 {% for file in (files|default([])) if file != "/tmp/a3" %}
 <{{file}}>
@@ -745,9 +766,11 @@ no file in files
 no file in files
 {% endfor %}
 ```
+
 Jinja2 的 for 循环没有提供 break 和 continue 的功能，所以只能通过 {% for...if...%} 来间接实现类似功能。
 
 ### for 迭代字典
+
 默认情况下，Jinja2 的 for 语句只能迭代列表。
 
 如果要迭代字典结构，需要先使用字典的`items()`方法进行转换。如果没有学过 python，我下面做个简单解释：
@@ -834,7 +857,6 @@ key: age, value: 18
 | loop.cycle | 一个函数，可指定序列作为参数，for 每迭代一次便同步迭代序列中的一个元素 |
 | loop.changed(*val) | 如果本轮迭代时的 val 值和前一轮迭代时的 val 值不同，则返回 True |
 
-
 之前曾介绍过，在 Ansible 的循环开启`extended`功能之后也能获取一些特殊变量。不难发现，Ansible 循环开启`extended`后可获取的变量和此处 Jinja2 提供的循环变量大多是类似的。所以这里只介绍之前尚未解释过的几个变量。
 
 首先是`loop.cycle()`，它是一个函数，可以传递一个序列 (比如列表) 作为参数。在 for 循环迭代时，每迭代一个元素的同时，也会从参数指定的序列中迭代一个元素，如果序列元素迭代完了，则从头开始继续迭代。
@@ -914,8 +936,11 @@ index: 3
 ```
 
 显然，第二轮迭代时的 p.name 和前一轮迭代时的 p.name 值是相同的，所以渲染结果中没有`index: 2`。
+
 ### 如何跨作用域
+
 那如何在 for 循环内做一个自增操作呢？这应该也是非常常见的需求。但只能说 Jinja2 里这不方便，只能退而求其次找其它方式，这里我提供两种：
+
 ```
 {# 使用loop.index，它本身就是自增的 #}
 {% set mylist = [1,2,3] %}
@@ -931,6 +956,7 @@ name{{num.value}}
 {% set num.value = num.value + 2 %}
 {% endfor %}
 ```
+
 使用上面第二种方案时要注意 Jinja2 的版本号，Ansible 所使用的 Jinja2 很可能是低于 2.10 版本的。
 
 ## Macro(宏)

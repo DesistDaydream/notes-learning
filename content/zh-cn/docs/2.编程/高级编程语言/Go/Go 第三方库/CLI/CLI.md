@@ -1,6 +1,5 @@
 ---
 title: "CLI"
-linkTitle: "CLI"
 weight: 20
 ---
 

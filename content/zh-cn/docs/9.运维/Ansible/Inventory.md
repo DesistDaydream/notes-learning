@@ -1,6 +1,5 @@
 ---
 title: Inventory
-linkTitle: Inventory
 weight: 3
 ---
 
@@ -376,7 +375,7 @@ ansible支持主机列表的正则匹配
 - **ansible_ssh_private_key_file** # ssh 使用的私钥文件.适用于有多个密钥,而你不想使用 SSH 代理的情况.
 - **ansible_shell_type** # 目标系统的shell类型.默认情况下,命令的执行使用 'sh' 语法,可设置为 'csh' 或 'fish'.
 - **ansible_ssh_extra_args** # 参数值可以作为 [ssh](/docs/4.数据通信/Utility/OpenSSH/ssh.md) 的命令行参数
-  - e.g. `ansible_ssh_extra_args: "-o HostKeyAlgorithms=+ssh-dss"` 相当于 `ssh -o HostKeyAlgorithms=+ssh-dss`
+    - e.g. `ansible_ssh_extra_args: "-o HostKeyAlgorithms=+ssh-dss"` 相当于 `ssh -o HostKeyAlgorithms=+ssh-dss`
 
 > 更多 SSH 相关参数可以参考 [Connection Plugins](/docs/9.运维/Ansible/Ansible%20Plugins/Connection%20Plugins.md) 的 SSH 章节
 
@@ -389,7 +388,7 @@ ansible支持主机列表的正则匹配
 远程主机环境参数
 
 - **ansible_python_interprete** # 目标主机的 python 路径.适用于的情况: 系统中有多个 Python, 或者命令路径不是"/usr/bin/python",比如  \*BSD, 或者 /usr/bin/python
-  - 不是 2.X 版本的 Python.我们不使用 "/usr/bin/env" 机制,因为这要求远程用户的路径设置正确,且要求 "python" 可执行程序名不可为 python以外的名字(实际有可能名为python26). 与 ansible_python_interpreter 的工作方式相同,可设定如 ruby 或 perl 的路径....
+    - 不是 2.X 版本的 Python.我们不使用 "/usr/bin/env" 机制,因为这要求远程用户的路径设置正确,且要求 "python" 可执行程序名不可为 python以外的名字(实际有可能名为python26). 与 ansible_python_interpreter 的工作方式相同,可设定如 ruby 或 perl 的路径....
 
 一个主机文件的例子:
 

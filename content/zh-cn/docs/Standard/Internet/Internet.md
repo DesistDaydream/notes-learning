@@ -1,6 +1,5 @@
 ---
 title: Internet
-linkTitle: Internet
 weight: 1
 ---
 
@@ -42,7 +41,7 @@ W3C 与 WHATWG
 - https://segmentfault.com/q/1010000002408941
 - 浏览器厂商和标准组织博弈出来的产物，重要的是明白它们背后的人是谁。WHATWG受到了Opera, Mozilla和Chrome, Safari的支持，而W3C的背后则隐藏着IE这个微软菊苣。私以为在工业发展速度远远超过标准定义的今天，WHATWG或许会更权威一点。关于HTML5标准的定制，最开始是WHATWG在做的，由于到后期大部分浏览器厂商都已经实现了统一标准，W3C想不支持也是不行的啊，这就是传说中的霸王硬上弓？
 - 关于这些网路上其实已经有很多的流传了吧，你可以搜索一下就知道各种缘由了：
-  - [HTML5 终于定稿，八年后我们再一次谈谈怎么改变世界](http://news.html5tricks.com/html5-finally-complete.html)
-  - [HTML5 标准定制完成，浏览器大战能消停吗？](http://www.codeceo.com/article/html5-done-broswer-fighting.html)
-  - [网页超文本工作技术小组](http://zh.wikipedia.org/wiki/%E7%B6%B2%E9%A0%81%E8%B6%85%E6%96%87%E6%9C%AC%E6%8A%80%E8%A1%93%E5%B7%A5%E4%BD%9C%E5%B0%8F%E7%B5%84)
-  - [HTML5](http://zh.wikipedia.org/wiki/HTML5)
+    - [HTML5 终于定稿，八年后我们再一次谈谈怎么改变世界](http://news.html5tricks.com/html5-finally-complete.html)
+    - [HTML5 标准定制完成，浏览器大战能消停吗？](http://www.codeceo.com/article/html5-done-broswer-fighting.html)
+    - [网页超文本工作技术小组](http://zh.wikipedia.org/wiki/%E7%B6%B2%E9%A0%81%E8%B6%85%E6%96%87%E6%9C%AC%E6%8A%80%E8%A1%93%E5%B7%A5%E4%BD%9C%E5%B0%8F%E7%B5%84)
+    - [HTML5](http://zh.wikipedia.org/wiki/HTML5)

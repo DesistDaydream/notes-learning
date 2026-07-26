@@ -1,6 +1,5 @@
 ---
 title: Operators
-linkTitle: Operators
 weight: 20
 ---
 

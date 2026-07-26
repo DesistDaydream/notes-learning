@@ -1,6 +1,5 @@
 ---
 title: Python 环境安装与使用
-linkTitle: Python 环境安装与使用
 weight: 1
 ---
 
@@ -87,6 +86,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 > [!Attention] yum, dnf 的问题
 > 使用第二种改变原始软链接的方式更换默认 Python 后，可能会由于依赖不足导致 yum/dnf 无法使用。而 `dnf` 模块本身是用 C 扩展写的，它的 `.so` 文件编译时绑定了特定的 Python ABI。系统里的 dnf 是针对 python3.9 编译安装的，直接用 3.10 加载会报 ABI 不兼容或者直接找不到模块。
 > 可以使用如下方式将 yum 和 dnf 调用的 Python 改回 3.0
+>
 > ```bash
 > sed -i '1s|.*|#!/usr/bin/python3.9|' /usr/bin/yum
 > sed -i '1s|.*|#!/usr/bin/python3.9|' /usr/bin/dnf
@@ -95,18 +95,18 @@ Type "help", "copyright", "credits" or "license" for more information.
 ### 编译注意事项
 
 > [!Attention] 编译出现问题时的处理
-> 要清理环境（执行 `make clean` 命令）后，重新执行 `./configure XXX && make` 命令。注意：不要执行 make install，避免直接生成最终 Python 环境。 
+> 要清理环境（执行 `make clean` 命令）后，重新执行 `./configure XXX && make` 命令。注意：不要执行 make install，避免直接生成最终 Python 环境。
 
 **编译 Python 时所需的依赖**
 
 在使用 `make` 命令编译的时候可能会出现这种提示：
 
 ```  bash
-The necessary bits to build these optional modules were not found:  
-_curses               _curses_panel         _dbm                 
-_gdbm                 _tkinter              nis                  
-readline                                                         
-To find the necessary bits, look in configure.ac and config.log.  
+The necessary bits to build these optional modules were not found:
+_curses               _curses_panel         _dbm               
+_gdbm                 _tkinter              nis                
+readline                                                       
+To find the necessary bits, look in configure.ac and config.log.
 ```
 
 这是提示编译 Python 环境的时候缺少一些模块，虽然这些模块的确实不会导致编译失败。但是在后续使用的过程中，如果代码依赖了这些模块，那么将无法使用，必须在安装完这些模块后<font color="#ff0000">**重新编译**</font>才可以解决。
@@ -158,15 +158,15 @@ dnf install gcc make openssl-devel libffi-devel zlib-devel \
 Python 自动安装 pip 和 setuptools 两个包，这两个包在 site-packages 目录中生成如下目录
 
 - pip 包包含目录
-  - pip
-  - pip-22.3.1.dist-info
-  - 另外还会在 Scripts 目录生成 3 个可执行文件。
+    - pip
+    - pip-22.3.1.dist-info
+    - 另外还会在 Scripts 目录生成 3 个可执行文件。
 - setuptools 包包含目录
-  - `_distutils_hack`
-  - distutils-precedence.pth
-  - pkg_resources
-  - setuptools-65.5.0.dist-info
-  - setuptools
+    - `_distutils_hack`
+    - distutils-precedence.pth
+    - pkg_resources
+    - setuptools-65.5.0.dist-info
+    - setuptools
 
 ## Windows 可嵌入的包
 

@@ -225,18 +225,18 @@ load_module modules/ngx_http_geoip2_module.so;
 定义名为 `$VariableName` 的变量
 
 - **PATH** # MaxMind 数据库中的数据路径，将该路径下的值，赋值给变量 `$VariableName`
-  - 注意：MaxMind 的 GeoIP2 数据库是 JSON 结构，所以 PATH 就是由以空格分割的字段名称组成。可以通过 [mmdblookup 工具](https://maxmind.github.io/libmaxminddb/mmdblookup.html)查找所需数据的路径
+    - 注意：MaxMind 的 GeoIP2 数据库是 JSON 结构，所以 PATH 就是由以空格分割的字段名称组成。可以通过 [mmdblookup 工具](https://maxmind.github.io/libmaxminddb/mmdblookup.html)查找所需数据的路径
 - **default=\<STRING>** # 若变量无法获取到值时，应该具有的默认值。
 - **source=\<IP>** # 指定要从数据库获取信息的 IP 地址。默认值来自 `$remote_addr` 变量的值
 
 #### EXAMPLE
 
 - 创建 `$geoip2_data_country_code` 变量，根据 `$remote_addr` 变量中的 IP 地址，查找数据库，将 IP 对应的 `.country.iso_code` 字段的值赋值给 ` $``geoip2_data_country_code ` 变量，若 `.country.iso_code` 字段为空，则变量的值为 US。
-  - **`$geoip2\_data\_country\_code default=US source=$remote_addr country iso_code;`**
-  - 其实就是获取两个字母的国家代码
+    - **`$geoip2\_data\_country\_code default=US source=$remote_addr country iso_code;`**
+    - 其实就是获取两个字母的国家代码
 - 创建 `$geoip2_city_country_name` 变量，根据 `$remote_addr` 变量中的 IP 地址，查找数据库，将 IP 对应的 `.country.name.zh-CN` 字段的值赋值给 `$geoip2_city_country_name` 变量
-  - **`$geoip2\_city\_country\_name source=$remote_addr country names zh-CN;`**
-  - 其实就是中文显示的国家名称
+    - **`$geoip2\_city\_country\_name source=$remote_addr country names zh-CN;`**
+    - 其实就是中文显示的国家名称
 
 # 配置示例
 

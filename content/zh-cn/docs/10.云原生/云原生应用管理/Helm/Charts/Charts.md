@@ -32,8 +32,8 @@ Chart 也有**海图**的概念，就好像 Helm 代表舵柄一样，当人们�
 - **charts/** # (OPTIONAL)包含该 Chart 所依赖的其他 Chart (这种被依赖的其他 Chart 称为 [**Subcharts 子图表**](https://thoughts.teambition.com/workspaces/603b04c9f83f2a00428f7321/docs/5fae78274cc5830001b9bbd6?scroll-to-block=6040f2c3a4b1ca00462d7837))。
 - **crds/** # (OPTIONAL)CRD 文件。该目录下的资源将会首先创建，其他资源等待 crds 资源 running 后，再创建。
 - **templates/** # 模板目录，与 values.yaml 相结合将生成有效的 kubernetes manifest 文件。
-  - 该目录下包含支撑 chart 的 manifests 文件，是各种 yaml 文件，只不过这些 yaml 文件是以模板形式存在的。
-  - [**模板详解见此处**](https://www.teambition.com/project/5f90e312755d8a00446050eb/app/5eba5fba6a92214d420a3219/workspaces/5f90e312c800160016ea22fb/docs/5f9a633937398300016bed65)
+    - 该目录下包含支撑 chart 的 manifests 文件，是各种 yaml 文件，只不过这些 yaml 文件是以模板形式存在的。
+    - [**模板详解见此处**](https://www.teambition.com/project/5f90e312755d8a00446050eb/app/5eba5fba6a92214d420a3219/workspaces/5f90e312c800160016ea22fb/docs/5f9a633937398300016bed65)
 - **templates/NOTES.txt** # (OPTIONAL)生成 release 后给用户的提示信息
 - **ci/** # 存放自定义的 values.yaml。这是非官方推荐的目录，只不过大家都这么用。
 
@@ -129,8 +129,8 @@ Helm 中，Chart 可以依赖其他任意数量的 Chart，这些可以被依赖
 - **version: STRING** # SubChart 的版本号
 - **repository: STRING** # The repository URL ("https://example.com/charts") or alias ("@repo-name")
 - **condition: STRING** # (可选的)根据条件控制这个 Chart 是否与上层 Chart 一起被安装。这个条件可以在 values.yaml 中定义(e.g. subchart1.enabled)
-  - 该字段非常重要与常见，假如我们定义 condition：`condition: abc.enabled`
-  - 然后我们可以在父 Chart 的 values.yaml 中定义字段 `abc.enabled`，若 `abc.enabled` 为 true 则该 Chart 将会与 父 Chart 一起被安装。
+    - 该字段非常重要与常见，假如我们定义 condition：`condition: abc.enabled`
+    - 然后我们可以在父 Chart 的 values.yaml 中定义字段 `abc.enabled`，若 `abc.enabled` 为 true 则该 Chart 将会与 父 Chart 一起被安装。
 - **tags: \[]STRING** # (可选的)该字段可以用来将 SubCharts 分组，以便统一启用或禁用
 - **enabled: true|false** # (可选的)控制这个 Chart 是否与上层 Chart 一起被安装
 - **import-values: \[]** # (可选的)ImportValues holds the mapping of source values to parent key to be imported. Each item can be a string or pair of child/parent sublist items.

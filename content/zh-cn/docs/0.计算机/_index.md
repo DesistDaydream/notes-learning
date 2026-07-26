@@ -1,12 +1,12 @@
 ---
-title: "💻0.计算机"
-linkTitle: "💻0.计算机"
-weight: 1
+title: 💻0.计算机
+weight: 100
 ---
 
 # 概述
 
 > 参考：
+>
 > - [Wiki, Computer](https://en.wikipedia.org/wiki/Computer)
 > - [Wiki, Von Neumann Architecture(冯·诺依曼架构)](https://en.wikipedia.org/wiki/Von_Neumann_architecture)
 > - [Wiki, Xia_Peisu](https://en.wikipedia.org/wiki/Xia_Peisu)(夏培肃，中国计算机之母)
@@ -35,6 +35,7 @@ CPU 的位是指一次性可处理的数据量是多少，1 字节=8 位，32 �
 # 计算机为什么叫计算机
 
 > 参考：
+>
 > - [原来是这样-150 期](https://www.ximalaya.com/keji/246622/30260075)
 
 计算机本质就是用来计算的
@@ -44,4 +45,5 @@ CPU 的位是指一次性可处理的数据量是多少，1 字节=8 位，32 �
 # BIOS 与 UEFI
 
 > 参考：
+>
 > - [公众号-OSC 开源社区，用户极力反对，Fedora 重新讨论 BIOS 未来](https://mp.weixin.qq.com/s/jTQu14SuoIj-c2L7hEiYzg)

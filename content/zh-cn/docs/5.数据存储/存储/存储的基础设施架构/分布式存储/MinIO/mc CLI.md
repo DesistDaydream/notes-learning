@@ -1,6 +1,5 @@
 ---
 title: mc CLI
-linkTitle: mc CLI
 weight: 100
 ---
 
@@ -17,37 +16,37 @@ weight: 100
 ```json
 ~]# cat ~/.mc/config.json
 {
-	"version": "10",
-	"aliases": {
-		"gcs": {
-			"url": "https://storage.googleapis.com",
-			"accessKey": "YOUR-ACCESS-KEY-HERE",
-			"secretKey": "YOUR-SECRET-KEY-HERE",
-			"api": "S3v2",
-			"path": "dns"
-		},
-		"local": {
-			"url": "http://0.0.0.0:9000",
-			"accessKey": "minioadmin",
-			"secretKey": "ehl@1234",
-			"api": "S3v4",
-			"path": "auto"
-		},
-		"play": {
-			"url": "https://play.min.io",
-			"accessKey": "Q3AM3UQ867SPQQA43P2F",
-			"secretKey": "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG",
-			"api": "S3v4",
-			"path": "auto"
-		},
-		"s3": {
-			"url": "https://s3.amazonaws.com",
-			"accessKey": "YOUR-ACCESS-KEY-HERE",
-			"secretKey": "YOUR-SECRET-KEY-HERE",
-			"api": "S3v4",
-			"path": "dns"
-		}
-	}
+ "version": "10",
+ "aliases": {
+  "gcs": {
+   "url": "https://storage.googleapis.com",
+   "accessKey": "YOUR-ACCESS-KEY-HERE",
+   "secretKey": "YOUR-SECRET-KEY-HERE",
+   "api": "S3v2",
+   "path": "dns"
+  },
+  "local": {
+   "url": "http://0.0.0.0:9000",
+   "accessKey": "minioadmin",
+   "secretKey": "ehl@1234",
+   "api": "S3v4",
+   "path": "auto"
+  },
+  "play": {
+   "url": "https://play.min.io",
+   "accessKey": "Q3AM3UQ867SPQQA43P2F",
+   "secretKey": "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG",
+   "api": "S3v4",
+   "path": "auto"
+  },
+  "s3": {
+   "url": "https://s3.amazonaws.com",
+   "accessKey": "YOUR-ACCESS-KEY-HERE",
+   "secretKey": "YOUR-SECRET-KEY-HERE",
+   "api": "S3v4",
+   "path": "dns"
+  }
+ }
 }
 ```
 
@@ -106,7 +105,7 @@ COMMAND
 EXAMPLE
 
 - 添加一个 host
-  - **mc alias host add miniodev130 http://10.8.208.130:9000 minioadmin minioadmin**
+    - **mc alias host add miniodev130 http://10.8.208.130:9000 minioadmin minioadmin**
 
 # ilm
 
@@ -134,7 +133,7 @@ FLAGS
 EXAMPLE
 
 - local/loki-bj-net 这个桶中创建的对象将在 7 天后过期
-  - **mc ilm add --expiry-days 7 local/loki-bj-net**
+    - **mc ilm add --expiry-days 7 local/loki-bj-net**
 
 ## ls
 
@@ -159,7 +158,7 @@ EXAMPLE
 EXAMPLE
 
 - 删除 local/chunks 桶中 id 为 cbod0cqqqqm5tvms1svg 的生命周期规则
-  - **mc ilm rm --id cbod0cqqqqm5tvms1svg local/chunks**
+    - **mc ilm rm --id cbod0cqqqqm5tvms1svg local/chunks**
 
 # rm
 
@@ -168,9 +167,9 @@ EXAMPLE
 EXAMPLE
 
 - 删除 local 环境下 thanos 桶中的所有对象
-  - **mc rm --recursive --force local/thanos**
+    - **mc rm --recursive --force local/thanos**
 - 删除 local 环境下 thanos-bj-test 桶中 24 小时前的所有对象
-  - **mc rm --recursive --force --older-than 24h local/thanos-bj-test**
+    - **mc rm --recursive --force --older-than 24h local/thanos-bj-test**
 
 # 最佳实践
 

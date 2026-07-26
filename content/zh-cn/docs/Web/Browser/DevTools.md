@@ -1,6 +1,5 @@
 ---
 title: DevTools
-linkTitle: DevTools
 weight: 20
 ---
 

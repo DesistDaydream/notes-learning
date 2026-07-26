@@ -1,6 +1,5 @@
 ---
 title: Custom Resource Definitions(CRD)
-linkTitle: Custom Resource Definitions(CRD)
 weight: 20
 ---
 

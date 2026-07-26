@@ -1,6 +1,5 @@
 ---
 title: API Resource
-linkTitle: API Resource
 weight: 1
 ---
 
@@ -37,15 +36,15 @@ Kubernetes 中各种资源(对象)的数据都通过 API 接口被提交到后�
 资源大体可以分为下面几类：
 
 - **workload(工作负载)** # 用于在集群上管理和运行容器
-  - Pod，Deployment，StatefuSet，DaemonSet，Job 等
+    - Pod，Deployment，StatefuSet，DaemonSet，Job 等
 - **Discovery & LB(服务发现及均衡)** # 可以使用这些资源类型的对象将工作负载“缝合”到一个外部可访问的、负载均衡的服务中。
-  - Service，Ingress 等
+    - Service，Ingress 等
 - **Config & Storage(配置与存储)** # 这种类型的资源是用于将初始化数据注入到应用程序中并保留容器外部数据的对象。
-  - Volume，ConfigMap，secret 等
+    - Volume，ConfigMap，secret 等
 - **Cluster(集群级资源)** # 这种类型的资源对象定义了群集本身的配置方式。这些通常仅由集群运营商使用。
-  - Namesapces,Node,Role,ClusterRole,RoleBinding,ClusterRoleBinding 等
+    - Namesapces,Node,Role,ClusterRole,RoleBinding,ClusterRoleBinding 等
 - **Metadata(元数据型资源)** # 这种类型的资源是用于配置集群中其他资源行为的对象。
-  - HPA，PodTemplate，LimitRange 等
+    - HPA，PodTemplate，LimitRange 等
 
 各种资源所用的 manifest 文件中的各个字段的含义就可以参考该页面找到详解。
 

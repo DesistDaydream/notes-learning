@@ -1,6 +1,5 @@
 ---
 title: OpenWrt
-linkTitle: OpenWrt
 weight: 90
 ---
 
@@ -114,6 +113,6 @@ https://drive.google.com/drive/folders/1MIzj4Hn9hdUZ3K8oksl2Efqs5inrBUQ7 # 各�
 虚拟机测试做法：
 
 - 将下载的 img 转成 qcow2
-  - qemu-img convert -f raw -O qcow2 openwrt-gdq-version-v1-2025-x86-64-generic-squashfs-legacy.img op.qcow2
+    - qemu-img convert -f raw -O qcow2 openwrt-gdq-version-v1-2025-x86-64-generic-squashfs-legacy.img op.qcow2
 - 安装时使用 "Import existing disk image"，启动后即可直接进入系统
 - 修改一下地址让自己可以访问到，即可直接访问 Web 页面

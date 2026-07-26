@@ -38,9 +38,9 @@ NetworkManager 通过 **Plugins(插件)** 的方式来管理 Connection 配置�
 **keyfile**
 
 - keyfile 插件是支持 NetworkManager 拥有的所有连接类型和功能的**通用插件**。它以 .ini 格式在 /etc/NetworkManager/system-connections 文件中写入连接配置。
-  - 有关文件格式的详细信息，请参阅 nm-settings-keyfile(5)。
+    - 有关文件格式的详细信息，请参阅 nm-settings-keyfile(5)。
 - keyfile 插件存储的连接文件可能包含纯文本形式的 passwords、secrets、private keys，因此它将仅对 root 用户可读，并且插件将忽略除 root 用户或组之外的任何用户或组可读或可写的文件。
-  - 有关如何避免以纯文本形式存储密码，请参阅 nm-settings(5) 中的“秘密标志类型”。
+    - 有关如何避免以纯文本形式存储密码，请参阅 nm-settings(5) 中的“秘密标志类型”。
 - 此插件始终处于活动状态，并将自动用于存储其他插件不支持的连接。
 
 **ifcfg-rh**
@@ -169,7 +169,7 @@ NetworkManager 提供了一个 API，用来管理 Connection、检查网络配�
 - **./conf.d/** # 类似 include 功能，是 NetworkManager.conf 文件的内容片段。
 - **./NetworkManager.conf** # NetworkManager 程序的运行时配置文件
 - **./system-connections/** # 每个 Connection 的配置文件保存路径。
-  - 在 RedHad 中，该路径被修改到 /etc/sysconfig/network-scripts/ 上去了。
+    - 在 RedHad 中，该路径被修改到 /etc/sysconfig/network-scripts/ 上去了。
 
 **/run/NetworkManager/** #
 
@@ -190,6 +190,6 @@ NetworkManager 提供了一个 API，用来管理 Connection、检查网络配�
 如果通过 NetworkManager 创建的 Bond 网络设备失效，有如下几种可用的解决方式：
 
 - 通过 ip 命令先删除网络设备，再通过 ip 命令添加即可。
-  - ip link set bond1 down
-  - ip link del bond1
-  - ip link add bond1 type bond mod 802.3ad
+    - ip link set bond1 down
+    - ip link del bond1
+    - ip link add bond1 type bond mod 802.3ad

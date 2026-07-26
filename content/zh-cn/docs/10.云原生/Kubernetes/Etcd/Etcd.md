@@ -1,6 +1,5 @@
 ---
 title: Etcd
-linkTitle: Etcd
 weight: 1
 ---
 

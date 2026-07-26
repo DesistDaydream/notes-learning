@@ -1,6 +1,5 @@
 ---
 title: Compose 文件规范
-linkTitle: Compose 文件规范
 weight: 2
 ---
 

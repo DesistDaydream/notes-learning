@@ -1,6 +1,5 @@
 ---
 title: Rack
-linkTitle: Rack
 weight: 20
 ---
 

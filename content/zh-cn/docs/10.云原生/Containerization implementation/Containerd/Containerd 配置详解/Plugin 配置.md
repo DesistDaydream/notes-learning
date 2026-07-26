@@ -1,6 +1,5 @@
 ---
 title: Plugin 配置
-linkTitle: Plugin 配置
 weight: 20
 ---
 
@@ -15,8 +14,8 @@ weight: 20
 Containerd 在 TOML 配置文件中，通过 TOML 表的方式来描述一个插件及其具有的功能，效果如下：
 
 - `[plugins."PLUGIN"]`
-  - PLUGIN = TYPE.ID
-  - TYPE = io.containerd.NAME.VERSION
+    - PLUGIN = TYPE.ID
+    - TYPE = io.containerd.NAME.VERSION
 
 所以，一个完整描述插件功能的的 TOML 表应该是这样的：
 
@@ -42,6 +41,7 @@ Containerd 在 TOML 配置文件中，通过 TOML 表的方式来描述一个插
 # \[grpc.v1.cri] - CRI 插件
 
 > 参考：
+>
 > - [GitHub 项目文档，containerd/docs/cri](https://github.com/containerd/containerd/tree/main/docs/cri)
 > - [GitHub 项目文档，containerd/docs/cri/config.md-CRI 插件配置指南](https://github.com/containerd/containerd/blob/main/docs/cri/config.md)
 
@@ -104,10 +104,10 @@ server = "https://docker.io"
 **\[REGISTRY]** # 访问 REGISTRY 镜像仓库时的配置。说白了就是发起 HTTP 请求时要设置的那些东西。
 
 - **\[tls]** # TLS 配置
-  - **insecure_skip_verify**(BOOLEAN) # 访问镜像仓库时是否跳过证书验证。`默认值：false`
+    - **insecure_skip_verify**(BOOLEAN) # 访问镜像仓库时是否跳过证书验证。`默认值：false`
 - **\[auth]** # 发起 HTTP 请求时要使用的认证方式
-  - **username**(STRING) # 访问镜像仓库的用户名
-  - **password**(STRING) # 访问镜像仓库的密码
+    - **username**(STRING) # 访问镜像仓库的用户名
+    - **password**(STRING) # 访问镜像仓库的密码
 
 ### \[mirrors] - 镜像注册中心的 mirrors 配置
 

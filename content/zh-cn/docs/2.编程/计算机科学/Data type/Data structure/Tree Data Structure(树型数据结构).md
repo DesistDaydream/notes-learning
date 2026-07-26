@@ -1,6 +1,5 @@
 ---
 title: Tree Data Structure(树型数据结构)
-linkTitle: Tree Data Structure(树型数据结构)
 weight: 100
 ---
 

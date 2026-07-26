@@ -1,6 +1,5 @@
 ---
 title: Promtail
-linkTitle: Promtail
 weight: 1
 ---
 

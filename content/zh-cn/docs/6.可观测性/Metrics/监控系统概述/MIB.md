@@ -1,6 +1,5 @@
 ---
 title: "MIB"
-linkTitle: "MIB"
 weight: 20
 ---
 
@@ -37,7 +36,7 @@ OID 有两种格式：
 
 - **symbolic(textual文本)** # `MIB::OBJECT.INDEX`
 - **numerical(数字)** # `.x.x.x.x.x.`
-  - 每一个 Object 都对应一个数字，而 Object 总是属于某一个 MIB，所以，可以将 文本 转换为 数字（反之亦然）。
+    - 每一个 Object 都对应一个数字，而 Object 总是属于某一个 MIB，所以，可以将 文本 转换为 数字（反之亦然）。
 
 这两种方式可以使用 [net-snmp-utils](/docs/6.可观测性/Metrics/Net-SNMP/net-snmp-utils.md) 中的 snmptranslate 命令进行转换，转换成字符串后，人类可以通过英文了解到大概意思，比如下图，表示的是该设备内存的大小。这是 snmpwalk 命令获取内存这个 OID 的当前的值(下图中=后面的内容是该 Object 的数据类型以及值，数据类型与值以冒号分隔)
 

@@ -1,6 +1,5 @@
 ---
 title: "Web SSH"
-linkTitle: "Web SSH"
 weight: 20
 ---
 
@@ -28,6 +27,7 @@ npm install xterm
 
 `<div id="terminal"></div>
 `
+
 - 在你的 JavaScript 文件中，导入 Terminal 类并创建一个新的实例
 
 `import { Terminal } from 'xterm';

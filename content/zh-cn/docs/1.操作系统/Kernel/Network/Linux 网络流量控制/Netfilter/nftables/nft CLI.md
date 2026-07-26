@@ -1,6 +1,5 @@
 ---
 title: "nft CLI"
-linkTitle: "nft CLI"
 weight: 20
 ---
 
@@ -9,7 +8,7 @@ weight: 20
 > 参考：
 >
 > - [Manual, nftables](https://www.netfilter.org/projects/nftables/manpage.html)
->   - https://www.mankier.com/8/nft
+>     - https://www.mankier.com/8/nft
 
 nft 是一个命令行工具，用于在 Linux 内核中设置、维护和检查 nftables 框架中的数据包过滤和分类规则。Linux 内核子系统被称为 nf_tables，其中 "nf" 代表 Netfilter。
 
@@ -49,7 +48,7 @@ COMMANDS 包括：
 修改 list ruleset 命令输出的规则集列表格式
 
 - **-a,--handle** # 在使用命令获得输出时，显示每个对象的句柄
-  - Note：handle(句柄)在 nftables 中，相当于标识符，nftables 中的每个对象都有一个 handle。
+    - Note：handle(句柄)在 nftables 中，相当于标识符，nftables 中的每个对象都有一个 handle。
 
 命令输出格式
 
@@ -163,7 +162,7 @@ EXAMPLE
 - `nft add set my_table my_set {type ipv4_addr; flags interval;}` # 在 ip 族的 my_table 表中创建一个名为 my_set 的集合，集合类型为 ipv4_addr ，标签为 interval。让该集合支持区间
 - `nft add element inet my_table my_set { 10.10.10.22, 10.10.10.33 }` # 向 my_set 集合中添加元素，一共添加了两个元素，是两个 ipv4 的地址
 - 删除元素。删除 my_table 表中，ssh_allowed_nets 集合内的 183.192.0.0/10 元素
-  - `nft delete element inet my_table ssh_allowed_nets { 183.192.0.0/10 }`
+    - `nft delete element inet my_table ssh_allowed_nets { 183.192.0.0/10 }`
 
 # 字典管理命令 TODO
 

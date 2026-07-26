@@ -1,6 +1,5 @@
 ---
 title: Runtime
-linkTitle: Runtime
 weight: 20
 ---
 

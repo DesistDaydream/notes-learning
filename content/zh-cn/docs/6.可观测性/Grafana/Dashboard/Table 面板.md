@@ -1,6 +1,5 @@
 ---
 title: Table 面板
-linkTitle: Table 面板
 weight: 20
 ---
 
@@ -8,7 +7,7 @@ weight: 20
 
 > 参考：
 >
-> - 
+> -
 
 Table 面板需要配合 Table 格式
 

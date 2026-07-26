@@ -1,6 +1,5 @@
 ---
 title: Docker Configuration
-linkTitle: Docker Configuration
 weight: 3
 ---
 
@@ -77,15 +76,15 @@ dockerd 配置文件是 JSON 格式，基本常用的配置内容如下。
 
 ## 日志配置
 
-**log-driver(STRING)** # 指定 docker 的日志驱动
+**log-driver**(STRING) # 指定 docker 的日志驱动
 
-**log-opts(OBJECT)** # 指定 docker 记录容器日志的参数
+**log-opts**(OBJECT) # 指定 docker 记录容器日志的参数
 
 ## 存储驱动配置
 
-**storage-driver(STRING)** # 在 Linux 上，Dockerd 进程支持多种不同的镜像层存储驱动程序: `overlay2`, `fuse-overlayfs`, `btrfs`, `zfs`, and `devicemapper`.
+**storage-driver**(STRING) # 在 Linux 上，Dockerd 进程支持多种不同的镜像层存储驱动程序: `overlay2`, `fuse-overlayfs`, `btrfs`, `zfs`, and `devicemapper`.
 
-**storage-opts(\[]STRING)** # 与存储驱动相关的选项。
+**storage-opts**(\[]STRING) # 与存储驱动相关的选项。
 
 - 很多选项随着版本的更新，会弃用，比如 `overlay2.override_kernel_check` 已于 [24.0+ 版本弃用](https://docs.docker.com/engine/deprecated/#support-for-the-overlay2override_kernel_check-storage-option)
 
@@ -93,7 +92,7 @@ dockerd 配置文件是 JSON 格式，基本常用的配置内容如下。
 
 **ip-forward-no-drop**(BOOLEAN) # 禁止 Docker 将 iptables 的 filter 表中 FORWARD 链的默认行为改为 DROP。`默认值: false`
 
-**bip** # 指定 docker0 桥的 IP
+**bip**(STRING) # 指定 docker0 桥的 IP
 
 # 代理配置
 

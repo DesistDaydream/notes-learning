@@ -5,6 +5,7 @@ title: libguestfs
 # 概述
 
 > 参考：
+>
 > - [GitHub 项目，libguestfs/libguestfs](https://github.com/libguestfs/libguestfs)
 > - [官网](https://libguestfs.org/)
 
@@ -13,6 +14,7 @@ Libguestfs 是用于访问和修改虚拟机磁盘映像的库和工具。
 ## 常见问题
 
 > 参考：
+>
 > - <https://access.redhat.com/solutions/4073061>
 > - <https://wandering-wolf.tistory.com/entry/Centos-7-KVM-%EC%97%90%EC%84%9C-rhel-8-vm-virt-sysperp-error>
 > - <https://dovangiang.wordpress.com/2021/08/06/errorcentos-mount-mount-exited-with-status-32-mount-wrong-fs-type-bad-option-bad-superblock/>
@@ -28,9 +30,9 @@ libguestfs: error: mount_options: mount exited with status 32: mount: wrong fs t
        dmesg | tail or so.
 guestmount: ‘/dev/ubuntu-vg/lv-0’ could not be mounted.
 guestmount: Did you mean to mount one of these filesystems?
-guestmount: 	/dev/sda1 (unknown)
-guestmount: 	/dev/sda2 (xfs)
-guestmount: 	/dev/ubuntu-vg/lv-0 (xfs)
+guestmount:  /dev/sda1 (unknown)
+guestmount:  /dev/sda2 (xfs)
+guestmount:  /dev/ubuntu-vg/lv-0 (xfs)
 ```
 
 其他依赖挂载的命令都是这种报错，比如 virt-sysprep、virt-edit 等等。
@@ -46,6 +48,7 @@ bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  s
 # guestmount
 
 > 参考：
+>
 > - [官方 Manual(手册)，guestmount](https://libguestfs.org/guestmount.1.html)
 
 # guestunmount
@@ -55,11 +58,13 @@ bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  s
 # virt-edit
 
 > 参考：
+>
 > - [Manual(手册),virt-edit(1)](https://libguestfs.org/virt-edit.1.html)
 
 # virt-sysprep
 
 > 参考：
+>
 > - [Manual(手册)，virt-sysprep(1)](https://libguestfs.org/virt-sysprep.1.html)
 > - <https://www.cnblogs.com/qiuhom-1874/p/13547752.html>
 
@@ -71,12 +76,12 @@ bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  s
 OPTIONS
 
 - **--copy-in <LocalPath:RemoteDir>** # 将本地宿主机上的 LocalPath 文件拷贝到虚拟机的 RemoteDir 目录中。
-  - 注意：RemoteDir 必须已存在。不能使用通配符
+    - 注意：RemoteDir 必须已存在。不能使用通配符
 
 EXAMPLE
 
 - 将宿主机上的当前目录中的 test.log 文件拷贝到 ubuntu-2004 虚拟机的 /root/ 目录下
-  - `virt-sysprep --copy-in test.log:/root/ -d ubuntu-2004`
+    - `virt-sysprep --copy-in test.log:/root/ -d ubuntu-2004`
 
 # virt-cat
 

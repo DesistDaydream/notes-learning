@@ -1,6 +1,5 @@
 ---
 title: C
-linkTitle: C
 weight: 1
 ---
 
@@ -118,4 +117,3 @@ int main(int argc,char **argv)
 ## 依赖管理
 
 ## 构建方式
-

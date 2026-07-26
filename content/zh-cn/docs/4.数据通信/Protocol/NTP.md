@@ -1,6 +1,5 @@
 ---
 title: NTP
-linkTitle: NTP
 weight: 20
 ---
 

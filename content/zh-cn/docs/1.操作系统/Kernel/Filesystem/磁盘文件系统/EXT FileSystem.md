@@ -1,6 +1,5 @@
 ---
 title: EXT FileSystem
-linkTitle: EXT FileSystem
 weight: 20
 ---
 
@@ -52,12 +51,12 @@ Inode号    用途
 
 - **DiskSize** # 磁盘空间
 - **BlockSize** # 通常为 4096 Bytes
-  - 可使用 mke2fs -b 手动指定
+    - 可使用 mke2fs -b 手动指定
 - **BlocksPerGroup** # 通常为 32768。每个块组中块的数量。
-  - 可使用 mke2fs -g 手动指定
+    - 可使用 mke2fs -g 手动指定
 - **BytesPerInode** # 通常为 16384 Bytes。创建文件系统时，为每块 BytesPerInode 大小的空间创建一个 Inode。
-  - BytesPerInode 也称为 inode_ratio，即.Inode 比率，全称应该是 Inode 分配比率，即每多少空间分配一个 Inode。
-  - 可使用 mke2fs -i 手动指定
+    - BytesPerInode 也称为 inode_ratio，即.Inode 比率，全称应该是 Inode 分配比率，即每多少空间分配一个 Inode。
+    - 可使用 mke2fs -i 手动指定
 - **InodeSize** # 通常为 256 Bytes。大小是 128 的倍数，最小为 128 Bytes。
 
 其中 BlocksPerGroup(每个块组中块的数量)、BytesPerInode(每个Inode负责的空间大小) 这种值是后续计算的基础。固定下来这些，就算分区空间自动扩容/缩容，也可以根据这种数据自动增加/删除块的数量和 Inode 的数量。

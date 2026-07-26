@@ -1,6 +1,5 @@
 ---
 title: LLVM
-linkTitle: LLVM
 weight: 12
 ---
 

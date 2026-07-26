@@ -7,7 +7,7 @@ weight: 100
 
 > 参考：
 >
-> - 
+> -
 
 # rabbitmqctl
 

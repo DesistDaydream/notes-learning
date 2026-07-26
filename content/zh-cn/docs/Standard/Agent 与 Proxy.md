@@ -16,7 +16,7 @@ Proxy Mode
 举个例子，Proxy 类似于会计事务所，而 Agent 类似于公司里做会计工作的员工，它们都是处理企业的财务问题，但是角色不同。
 
 > Agent 代理 通常指与用户接口的客户端程序
-> 
+>
 > Proxy 代理 接收用户请求并将请求发给服务器,然后接收服务器回应并返回给用户 实际上 Proxy 的功能就是代替用户访问服务器,用户被隐藏.
 
 ## The Etymology of "Agent" and "Proxy" in Computer Networking Discourse
@@ -66,7 +66,7 @@ Subsequently, the terms agents and proxy have become integral to the nomenclatur
 \[EWMA] European Workshop on Modeling Autonomous Agents in a Multi-Agent World (7th : 1996 : Eindhoven, Netherlands)
 \[Fill] Fillmore, "_The Case for Case_." Universals in Linguistic Theory. (Bach, E. and Harms, R., eds.) Holt, Rinehart, and Winston, New York. (1968) pp. 1-90.
 \[Fried1] Friedman B., and Millett L. _"It's the computer's fault" -- Reasoning about computers as moral agents_. Conference companion of the conference on Human Factors in Computing Systems, CHI '95. New York: Association for Computing Machinery. (May 1995) pp. 226- 227.
-\[Fried2] Friedman B, and Nissenbaum H. [Bias in computer systems ](https://link.zhihu.com/?target=http%3A//www.acm.org/pubs/citations/journals/tois/1996-14-3/p330-friedman/). ACM Trans. Inf. Syst. 14, 3 (Jul. 1996) pp. 330 - 347.
+\[Fried2] Friedman B, and Nissenbaum H. [Bias in computer systems](https://link.zhihu.com/?target=http%3A//www.acm.org/pubs/citations/journals/tois/1996-14-3/p330-friedman/). ACM Trans. Inf. Syst. 14, 3 (Jul. 1996) pp. 330 - 347.
 \[Fried3] Friedman B, and Nissenbaum H [Software agents and user autonomy](https://link.zhihu.com/?target=http%3A//www.acm.org/pubs/citations/proceedings/ai/267658/p466-friedman/). Autonomous agents. (1997) pp. 466 - 469.
 \[Maes] Maes, P. [Agents that Reduce Work and Information Overload.](https://link.zhihu.com/?target=http%3A//pattie.www.media.mit.edu/people/pattie/CACM-94/CACM-94.p1.html) Communications of the ACM. Vol. 37 No.7 (July 1994), pp. 31-40.
 \[Mins] Minsky, M, and D. Riecken. [A Conversation with Marvin Minsky about Agents](https://link.zhihu.com/?target=http%3A//www.acm.org/pubs/citations/journals/cacm/1994-37-7/p22-minsky/). _[Communications of the ACM](https://link.zhihu.com/?target=http%3A//www.acm.org/cacm/)_ Vol. 37, No. 7 (July 1994) pp. 22-29.

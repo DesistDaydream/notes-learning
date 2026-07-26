@@ -8,7 +8,6 @@ title: Kustomization Manifest 详解
 >
 > - [官方文档，任务 - 管理 Kubernetes 对象 - 使用 Kustomize 声明式得管理 Kubernetes 对象 - Kustomize 字段列表](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#kustomize-feature-list)
 
-
 # apiVersion: kustomize.config.k8s.io/v1beta1
 
 # kind: Kustomization
@@ -92,9 +91,9 @@ https://github.com/kubernetes-sigs/kustomize/blob/master/api/types/secretargs.go
 **type(STRING)** # Secret 的类型。`默认值：Opaque`
 
 - 可用的类型有：
-  - **kubernetes.io/tls** # 注意，如果是 tls 类型，则文件名必须是 tls.key 和 tls.crt
+    - **kubernetes.io/tls** # 注意，如果是 tls 类型，则文件名必须是 tls.key 和 tls.crt
 
-## generatorOptions:
+## generatorOptions
 
 **disableNameSuffixHash(BOOLEAN)** # 禁用将随机字符串添加到 ConfigMap 和 Secret 对象名称的后缀。`默认值：false`
 

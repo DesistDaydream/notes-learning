@@ -1,6 +1,5 @@
 ---
 title: "Domain"
-linkTitle: "Domain"
 weight: 2
 ---
 
@@ -45,12 +44,12 @@ Domain 对象对应 `<domain>` 根元素，该元素中有如下属性：
 **os** # 配置操作系统相关信息
 
 - **type** # 操作系统的类型。可用的值有 hvm、linux。
-  - 属性：
-    - arch # CPU 的架构。比如 x86_64
-    - machine # 机器类型
+    - 属性：
+        - arch # CPU 的架构。比如 x86_64
+        - machine # 机器类型
 - **boot** # 指定 Domain 下次如何引导启动。
-  - 属性：
-    - dev # 指定 Domain 下次启动时的引导设备，可指定多次设置多个引导设备。可用的值有: fd、hd、cdrom、network。（fd 指软盘，hd 指硬盘）
+    - 属性：
+        - dev # 指定 Domain 下次启动时的引导设备，可指定多次设置多个引导设备。可用的值有: fd、hd、cdrom、network。（fd 指软盘，hd 指硬盘）
 
 ## 配置示例
 

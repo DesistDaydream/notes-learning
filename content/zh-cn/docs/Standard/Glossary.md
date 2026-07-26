@@ -1,6 +1,5 @@
 ---
 title: Glossary
-linkTitle: Glossary
 weight: 2
 ---
 
@@ -43,7 +42,6 @@ weight: 2
 
 **Compression(压缩)** # 将数据通过算法进行压缩，比如把 1MiB 的数据压缩成 500KiB
 
-
 # IDC
 
 https://en.wikipedia.org/wiki/Data_center
@@ -55,7 +53,6 @@ https://en.wikipedia.org/wiki/Data_center
 https://en.wikipedia.org/wiki/Internet_service_provider
 
 **Internet service provider(互联网服务提供商，简称 ISP)** 是提供访问、使用、管理或参与 Internet 服务的组织。 ISP 可以以多种形式组织，例如商业、社区所有、非营利或其他私人所有。比如 中国移动、中国联通、中国电信、etc. 都属于 ISP
-
 
 # Bare metal(裸金属)
 

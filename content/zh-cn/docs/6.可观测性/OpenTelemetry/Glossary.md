@@ -1,6 +1,5 @@
 ---
 title: Glossary
-linkTitle: Glossary
 weight: 2
 ---
 
@@ -9,7 +8,6 @@ weight: 2
 > 参考：
 >
 > - [官方文档，概念 - 术语表](https://opentelemetry.io/docs/concepts/glossary)
-
 
 ## Attribute
 

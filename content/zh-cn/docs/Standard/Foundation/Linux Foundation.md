@@ -1,6 +1,5 @@
 ---
 title: Linux Foundation
-linkTitle: Linux Foundation
 weight: 20
 ---
 

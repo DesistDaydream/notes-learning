@@ -1,6 +1,5 @@
 ---
 title: fio 磁盘性能测试工具
-linkTitle: fio 磁盘性能测试工具
 weight: 1
 ---
 
@@ -128,8 +127,8 @@ JOB OPTIONS
 EXAMPLE
 
 - 注意，下面两条命令直接对整块磁盘进行写操作，会破坏文件，谨慎操作
-  - fio -filename=/dev/vdb1 -direct=1 -iodepth 64 -thread -rw=randwrite -ioengine=libaio -bs=4K -numjobs=8 -runtime=60 -group_reporting -name=test1
-  - fio -filename=/dev/vdb3 -direct=1 -iodepth 64 -thread -rw=write -ioengine=libaio -bs=512K -numjobs=8 -runtime=60 -group_reporting -name=test2
+    - fio -filename=/dev/vdb1 -direct=1 -iodepth 64 -thread -rw=randwrite -ioengine=libaio -bs=4K -numjobs=8 -runtime=60 -group_reporting -name=test1
+    - fio -filename=/dev/vdb3 -direct=1 -iodepth 64 -thread -rw=write -ioengine=libaio -bs=512K -numjobs=8 -runtime=60 -group_reporting -name=test2
 - **fio --rw=write --ioengine=sync --fdatasync=1 --directory=/var/lib/etcd --size=22m --bs=2300 --name="fioEtcdTest" --time_based --runtime=2m**
 - **fio --rw=write --ioengine=libaio --iodepth=4 --direct=1 --filename=fiotest --size=2G --bs=4k --name="Max throughput" --time_based --runtime=60**
 

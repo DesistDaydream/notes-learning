@@ -1,6 +1,5 @@
 ---
 title: "CLI"
-linkTitle: "CLI"
 weight: 20
 ---
 
@@ -13,7 +12,7 @@ weight: 20
 Python 生态中有很多用于 CLI 的库，例如：
 
 - **pyCLI**：一个用于创建简单、正确的命令行应用的框架，提供了标准的命令行解析、日志、测试和性能分析等功能。
-  - 好像不更新了？
+    - 好像不更新了？
 - **Python Fire**：一个用于自动从任何 Python 对象生成命令行接口的库，是一种在 Python 中创建 CLI 的简单方法。
 - **argparse**：Python 标准库中的一个模块，用于快速地创建 CLI 应用，无需安装第三方库。
 - **Click**：一个用于创建美观、可组合的命令行接口的 Python 包，代码量很少，配置灵活，提供了很多默认选项。
@@ -41,7 +40,7 @@ Python 生态中有很多用于 CLI 的库，例如：
 # Click
 
 > 参考：
-> 
+>
 > - [GitHub 项目，pallets/click](https://github.com/pallets/click)
 > - [官网](https://click.palletsprojects.com/)
 
@@ -82,4 +81,3 @@ Options:
   --name TEXT      The person to greet.
   --help           Show this message and exit.
 ```
-

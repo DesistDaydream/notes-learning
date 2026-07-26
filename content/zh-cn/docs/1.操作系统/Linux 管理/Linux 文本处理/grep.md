@@ -1,6 +1,5 @@
 ---
 title: grep
-linkTitle: grep
 weight: 20
 ---
 
@@ -59,9 +58,6 @@ grep 根据 PATTERNS(模式) 过滤给定的内容。其实就是使用正则表
 - **--exclude-dir=DIR** # 跳过指定目录，不让 grep 处理跳过的目录。可以使用通配符。
 - **-R, --dereference-recursive** # 递归地阅读每个目录下的所有文件并进行 grep 操作;该选项相当于-d recurse
 
-
-
-
 # 应用示例
 
 - ifconfig | egrep --color=auto -n '\[0-9]{1,3}.\[0-9]{1,3}.\[0-9]{1,3}.\[0-9]{1,3}'
@@ -72,7 +68,7 @@ grep 根据 PATTERNS(模式) 过滤给定的内容。其实就是使用正则表
 
 不区分大小写搜索 boot.log 文件中包含 Rh 中间含有任意字符的，并且不包含 Star 或 net 的所有行，并以高亮颜色显示搜索的字符串，|表示或的关系，正则表达式扩展内容，选项必须有 E 才能生效。
 
-- grep --color=auto -i R.\*h ./boot.log | grep -Evi "star|net" 
+- grep --color=auto -i R.\*h ./boot.log | grep -Evi "star|net"
 
 取出默认 shell 为 bash 且其 ID 号最大的用户
 

@@ -1,6 +1,5 @@
 ---
 title: QUIC
-linkTitle: QUIC
 weight: 20
 ---
 
@@ -77,8 +76,8 @@ weight: 20
 
 - QUIC LB 组件：基于 NGINX 4层 UDP Stream 模块开发，用来基于 QUIC DCID 中携带的服务端信息进行路由，以支持连接迁移。
 - NGINX QUIC 服务器：开发了 NGINX\_QUIC\_MODULE，每个 Worker 监听两种类型的端口：
-  - BASE PORT ，每个 Worker 使用的相同的端口号，以 Reuseport 的形式监听，并暴露给 QUIC LB，用以接收客户端过来的第一个 RTT 中的数据包，这类包的特点是 DCID 由客户端生成，没有路由信息。
-  - Working PORT，每个 Worker 使用的不同的端口号，是真正的工作端口，用以接收第一个 RTT 之后的 QUIC 包，这类包的特定是 DCID 由服务端的进程生成携带有服务端的信息。
+    - BASE PORT ，每个 Worker 使用的相同的端口号，以 Reuseport 的形式监听，并暴露给 QUIC LB，用以接收客户端过来的第一个 RTT 中的数据包，这类包的特点是 DCID 由客户端生成，没有路由信息。
+    - Working PORT，每个 Worker 使用的不同的端口号，是真正的工作端口，用以接收第一个 RTT 之后的 QUIC 包，这类包的特定是 DCID 由服务端的进程生成携带有服务端的信息。
 
 当前框架支持的能力包括如下：
 

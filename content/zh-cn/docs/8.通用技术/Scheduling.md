@@ -1,6 +1,5 @@
 ---
 title: Scheduling
-linkTitle: Scheduling
 weight: 20
 ---
 

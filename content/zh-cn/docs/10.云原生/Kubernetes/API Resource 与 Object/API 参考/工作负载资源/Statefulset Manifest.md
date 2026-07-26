@@ -1,6 +1,5 @@
 ---
 title: Statefulset Manifest
-linkTitle: Statefulset Manifest
 weight: 20
 ---
 
@@ -67,15 +66,15 @@ cs-prometheus-headless   ClusterIP   None            <none>        9090/TCP     
 注意：通过 volumeClaimTemplates 定义的 PVC 在 statefulset 删除后不会自动删除，详见：[官方 issue](https://github.com/kubernetes/kubernetes/issues/55045)
 
 - metadata:
-  - name: STRING # 指定 volumeClaimTemplates 的名称，该名称用于在 volumeMount 时使用
+    - name: STRING # 指定 volumeClaimTemplates 的名称，该名称用于在 volumeMount 时使用
 - spec:
-  - accessModes: # 指定该 volume 的访问模式
-    - ReadWriteOnce # 样例为读写模式
-  - resources: # 指定存储资源的申请量，样例为需求 30G
-    - requests:
-      - storage: 30Gi
-  - storageClassName: STRING # 指定要从哪个 storageclass 中申请资源
-  - volumeMode: Filesystem # 指定卷模式，样例为 Filesystem
+    - accessModes: # 指定该 volume 的访问模式
+        - ReadWriteOnce # 样例为读写模式
+    - resources: # 指定存储资源的申请量，样例为需求 30G
+        - requests:
+            - storage: 30Gi
+    - storageClassName: STRING # 指定要从哪个 storageclass 中申请资源
+    - volumeMode: Filesystem # 指定卷模式，样例为 Filesystem
 
 ## Pod 属性
 

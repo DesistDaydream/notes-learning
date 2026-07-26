@@ -1,6 +1,5 @@
 ---
 title: RPC
-linkTitle: RPC
 weight: 1
 ---
 

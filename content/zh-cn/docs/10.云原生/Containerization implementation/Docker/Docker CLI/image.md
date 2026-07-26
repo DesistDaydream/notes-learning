@@ -1,6 +1,5 @@
 ---
 title: image
-linkTitle: image
 weight: 20
 ---
 

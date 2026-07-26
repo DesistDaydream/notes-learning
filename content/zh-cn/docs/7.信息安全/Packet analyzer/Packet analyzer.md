@@ -1,6 +1,5 @@
 ---
 title: Packet analyzer
-linkTitle: Packet analyzer
 weight: 1
 ---
 
@@ -73,8 +72,8 @@ openQPA
     - 需要想办法安装在系统级别下的 CA 证书。
         - 有些 APP 内嵌证书，需要修改程序内部逻辑
     - 可能的方法
-      - 平行空间
-      - 获取系统 Root 权限
+        - 平行空间
+        - 获取系统 Root 权限
 
 解决方式：
 

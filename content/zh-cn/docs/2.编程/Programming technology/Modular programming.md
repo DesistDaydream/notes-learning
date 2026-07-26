@@ -1,6 +1,5 @@
 ---
 title: Modular programming
-linkTitle: Modular programming
 weight: 22
 ---
 

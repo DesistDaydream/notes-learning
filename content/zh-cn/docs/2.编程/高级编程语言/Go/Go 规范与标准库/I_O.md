@@ -1,6 +1,5 @@
 ---
 title: I/O
-linkTitle: I/O
 weight: 20
 ---
 
@@ -12,7 +11,7 @@ weight: 20
 > - [Go 标准库，bufio](https://pkg.go.dev/bufio)
 > - [公众号 - 云原生生态圈，Go 写文件的几种姿势，你喜欢哪一种？](https://mp.weixin.qq.com/s/56g5k17Zt4iytbWkYcouig)
 > - [Introduction to bufio package in Golang](https://medium.com/golangspec/introduction-to-bufio-package-in-golang-ad7d1877f762)
->   - [Go 语言中文网，Go 语言 bufio 包介绍](https://studygolang.com/articles/11824)
+>     - [Go 语言中文网，Go 语言 bufio 包介绍](https://studygolang.com/articles/11824)
 
 > [!Notes]
 > 想要理解 io 标准库的逻辑，必须要理解 [Method AND Interface](/docs/2.编程/高级编程语言/Go/Go%20规范与标准库/Method%20AND%20Interface/Method%20AND%20Interface.md) 中的 Interface(接口) 的概念，这是理解 I/O 的前提，否则不要往下阅读！

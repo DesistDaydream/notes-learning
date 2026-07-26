@@ -11,8 +11,8 @@ weight: 1
 
 - **Browser**# 浏览器就是 ECMAScript 的运行时环境。
 - **Node.js** # 在服务器或 PC 上安装 Node.js 环境以运行 ECMAScript 代码
-  - **Deno** # [GtiHub 项目，denoland/deno](https://github.com/denoland/deno)。据说要替代 Node.js，很尴尬的是。。。早期 18 年的 issue 中被各种国人无意义灌水
-  - **Bun** # [GtiHub 项目，oven-sh/bun](https://github.com/oven-sh/bun)
+    - **Deno** # [GtiHub 项目，denoland/deno](https://github.com/denoland/deno)。据说要替代 Node.js，很尴尬的是。。。早期 18 年的 issue 中被各种国人无意义灌水
+    - **Bun** # [GtiHub 项目，oven-sh/bun](https://github.com/oven-sh/bun)
 
 但是这两者可以提供的 API 能力各不相同
 

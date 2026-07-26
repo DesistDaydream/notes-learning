@@ -97,8 +97,8 @@ Controls 类型的请求头用来指定客户端如何处理本次 HTTP 请求�
 **Authorization** # Web 认证信息。IANA 维护了一个[身份验证方案的列表](https://www.iana.org/assignments/http-authschemes/http-authschemes.xhtml)
 
 - **Basic** # 基本认证。就是用户名和密码。如果用户名和密码为 `admin/admin1234` 的话，该字段应该是这样的：
-  - `Authorization: Basic YWRtaW46YWRtaW4xMjM0`
-  - 也就是说，用户名和密码是 `admin:admin1234` 这样的 base64 编码后的格式
+    - `Authorization: Basic YWRtaW46YWRtaW4xMjM0`
+    - 也就是说，用户名和密码是 `admin:admin1234` 这样的 base64 编码后的格式
 - **Bearer** # 不记名令牌。
 - ......
 

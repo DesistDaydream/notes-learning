@@ -1,6 +1,5 @@
 ---
 title: File transfer
-linkTitle: File transfer
 weight: 1
 ---
 
@@ -18,11 +17,11 @@ weight: 1
 文件传输协议分为两大种
 
 - **Packet switched Protocol(分组交换网络协议)**
-  - [FTP](/docs/4.数据通信/Protocol/FTP.md)
+    - [FTP](/docs/4.数据通信/Protocol/FTP.md)
 - **Serial Protocol(串行协议)**
-  - Modems(拨号调制解调器) 使用 XMODEM、YMODEM、ZMODEM 和类似的空调制解调器链接。TODO
+    - Modems(拨号调制解调器) 使用 XMODEM、YMODEM、ZMODEM 和类似的空调制解调器链接。TODO
 - 其他
-  - USB 等外部存储设备与计算机之间文件互传
+    - USB 等外部存储设备与计算机之间文件互传
 - etc.
 
 # X/Y/Z Modem

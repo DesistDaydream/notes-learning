@@ -1,6 +1,5 @@
 ---
 title: sysfs
-linkTitle: sysfs
 weight: 20
 ---
 
@@ -9,11 +8,11 @@ weight: 20
 > 参考：
 >
 > - [Manual(手册)，sysfs(5)](https://man7.org/linux/man-pages/man5/sysfs.5.html)
->   - 在 Man 中最后的 See Also 中提到了下面几个文档
->   - https://github.com/torvalds/linux/blob/master/Documentation/filesystems/sysfs.rst
->   - `Documentation/ABI`
->   - `Documentation/*/sysfs.txt`
->   - 基于此，可以通过在 Linux 仓库的 go to file 搜索框中，输入 `Documentation/sysfs` 这种关键字，找到很多与 sysfs 相关的文件。TODO: 如何利用 path 关键字使用统配或正则在 github 全局搜索文件？
+>     - 在 Man 中最后的 See Also 中提到了下面几个文档
+>     - https://github.com/torvalds/linux/blob/master/Documentation/filesystems/sysfs.rst
+>     - `Documentation/ABI`
+>     - `Documentation/*/sysfs.txt`
+>     - 基于此，可以通过在 Linux 仓库的 go to file 搜索框中，输入 `Documentation/sysfs` 这种关键字，找到很多与 sysfs 相关的文件。TODO: 如何利用 path 关键字使用统配或正则在 github 全局搜索文件？
 > - [Kernel 文档，管理员指南 - 关于如何访问 sysfs 中信息的规则](https://www.kernel.org/doc/html/latest/admin-guide/sysfs-rules.html)
 > - [Kernel 文档，管理员指南 - Linux ABI 描述](https://www.kernel.org/doc/html/latest/admin-guide/abi.html)
 > - [Wiki, Sysfs](https://en.wikipedia.org/wiki/Sysfs)

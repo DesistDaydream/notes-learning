@@ -5,8 +5,9 @@ title: K8s 集群稳定性：LIST 请求源码分析、性能评估与大规模�
 # 概述
 
 > 参考：
+>
 > - 原文链接：<https://mp.weixin.qq.com/s/fcytXp2skFIjbYBLs5VzSQ>
->   - <https://arthurchiao.art/blog/k8s-reliability-list-data-zh/>
+>     - <https://arthurchiao.art/blog/k8s-reliability-list-data-zh/>
 
 Published at 2022-05-19 | Last Update 2022-05-19
 
@@ -27,50 +28,50 @@ Published at 2022-05-19 | Last Update 2022-05-19
 ---
 
 - [1 引言](#1-%E5%BC%95%E8%A8%80)
-  - [1.1 K8s 架构：环形层次视图](#11-k8s-%E6%9E%B6%E6%9E%84%E7%8E%AF%E5%BD%A2%E5%B1%82%E6%AC%A1%E8%A7%86%E5%9B%BE)
-  - [1.2 ](#12-apiserveretcd-%E8%A7%92%E8%89%B2)`[apiserver/etcd](#12-apiserveretcd-%E8%A7%92%E8%89%B2)`[ 角色](#12-apiserveretcd-%E8%A7%92%E8%89%B2)
-  - [1.3 ](#13-apiserveretcd-list-%E5%BC%80%E9%94%80)`[apiserver/etcd](#13-apiserveretcd-list-%E5%BC%80%E9%94%80)`[ List 开销](#13-apiserveretcd-list-%E5%BC%80%E9%94%80)
-    - [1.3.1 请求举例](#131-%E8%AF%B7%E6%B1%82%E4%B8%BE%E4%BE%8B)
-    - [1.3.2 处理开销](#132-%E5%A4%84%E7%90%86%E5%BC%80%E9%94%80)
-  - [1.4 大规模部署时潜在的问题](#14-%E5%A4%A7%E8%A7%84%E6%A8%A1%E9%83%A8%E7%BD%B2%E6%97%B6%E6%BD%9C%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98)
-  - [1.5 本文目的](#15-%E6%9C%AC%E6%96%87%E7%9B%AE%E7%9A%84)
-- [2 apiserver ](#2-apiserver-list-%E6%93%8D%E4%BD%9C%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90)`[List()](#2-apiserver-list-%E6%93%8D%E4%BD%9C%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90)`[ 操作源码分析](#2-apiserver-list-%E6%93%8D%E4%BD%9C%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90)
-  - [2.1 调用栈和流程图](#21-%E8%B0%83%E7%94%A8%E6%A0%88%E5%92%8C%E6%B5%81%E7%A8%8B%E5%9B%BE)
-  - [2.2 请求处理入口：](#22-%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86%E5%85%A5%E5%8F%A3list)`[List()](#22-%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86%E5%85%A5%E5%8F%A3list)`
-  - [2.3 ](#23-listpredicate)`[ListPredicate()](#23-listpredicate)`
-  - [2.4 请求指定了资源名（resource name）：获取单个对象](#24-%E8%AF%B7%E6%B1%82%E6%8C%87%E5%AE%9A%E4%BA%86%E8%B5%84%E6%BA%90%E5%90%8Dresource-name%E8%8E%B7%E5%8F%96%E5%8D%95%E4%B8%AA%E5%AF%B9%E8%B1%A1)
-  - [2.5 请求未指定资源名，获取全量数据做过滤](#25-%E8%AF%B7%E6%B1%82%E6%9C%AA%E6%8C%87%E5%AE%9A%E8%B5%84%E6%BA%90%E5%90%8D%E8%8E%B7%E5%8F%96%E5%85%A8%E9%87%8F%E6%95%B0%E6%8D%AE%E5%81%9A%E8%BF%87%E6%BB%A4)
-    - [2.5.1 apiserver 缓存层：](#251-apiserver-%E7%BC%93%E5%AD%98%E5%B1%82getlist-%E5%A4%84%E7%90%86%E9%80%BB%E8%BE%91)`[GetList()](#251-apiserver-%E7%BC%93%E5%AD%98%E5%B1%82getlist-%E5%A4%84%E7%90%86%E9%80%BB%E8%BE%91)`[ 处理逻辑](#251-apiserver-%E7%BC%93%E5%AD%98%E5%B1%82getlist-%E5%A4%84%E7%90%86%E9%80%BB%E8%BE%91)
-    - [2.5.2 判断是否必须从 etcd 读数据：](#252-%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%BF%85%E9%A1%BB%E4%BB%8E-etcd-%E8%AF%BB%E6%95%B0%E6%8D%AEshoulddelegatelist)`[shouldDelegateList()](#252-%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%BF%85%E9%A1%BB%E4%BB%8E-etcd-%E8%AF%BB%E6%95%B0%E6%8D%AEshoulddelegatelist)`
-    - [2.5.3 情况一：ListOption 要求从 etcd 读数据](#253-%E6%83%85%E5%86%B5%E4%B8%80listoption-%E8%A6%81%E6%B1%82%E4%BB%8E-etcd-%E8%AF%BB%E6%95%B0%E6%8D%AE)
-    - [2.5.4 情况二：本地缓存还没建好，只能从 etcd 读数据](#254-%E6%83%85%E5%86%B5%E4%BA%8C%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E8%BF%98%E6%B2%A1%E5%BB%BA%E5%A5%BD%E5%8F%AA%E8%83%BD%E4%BB%8E-etcd-%E8%AF%BB%E6%95%B0%E6%8D%AE)
-    - [2.5.5 情况三：使用本地缓存](#255-%E6%83%85%E5%86%B5%E4%B8%89%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98)
+    - [1.1 K8s 架构：环形层次视图](#11-k8s-%E6%9E%B6%E6%9E%84%E7%8E%AF%E5%BD%A2%E5%B1%82%E6%AC%A1%E8%A7%86%E5%9B%BE)
+    - [1.2](#12-apiserveretcd-%E8%A7%92%E8%89%B2)`[apiserver/etcd](#12-apiserveretcd-%E8%A7%92%E8%89%B2)`[角色](#12-apiserveretcd-%E8%A7%92%E8%89%B2)
+    - [1.3](#13-apiserveretcd-list-%E5%BC%80%E9%94%80)`[apiserver/etcd](#13-apiserveretcd-list-%E5%BC%80%E9%94%80)`[List 开销](#13-apiserveretcd-list-%E5%BC%80%E9%94%80)
+        - [1.3.1 请求举例](#131-%E8%AF%B7%E6%B1%82%E4%B8%BE%E4%BE%8B)
+        - [1.3.2 处理开销](#132-%E5%A4%84%E7%90%86%E5%BC%80%E9%94%80)
+    - [1.4 大规模部署时潜在的问题](#14-%E5%A4%A7%E8%A7%84%E6%A8%A1%E9%83%A8%E7%BD%B2%E6%97%B6%E6%BD%9C%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98)
+    - [1.5 本文目的](#15-%E6%9C%AC%E6%96%87%E7%9B%AE%E7%9A%84)
+- [2 apiserver](#2-apiserver-list-%E6%93%8D%E4%BD%9C%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90)`[List()](#2-apiserver-list-%E6%93%8D%E4%BD%9C%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90)`[操作源码分析](#2-apiserver-list-%E6%93%8D%E4%BD%9C%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90)
+    - [2.1 调用栈和流程图](#21-%E8%B0%83%E7%94%A8%E6%A0%88%E5%92%8C%E6%B5%81%E7%A8%8B%E5%9B%BE)
+    - [2.2 请求处理入口：](#22-%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86%E5%85%A5%E5%8F%A3list)`[List()](#22-%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86%E5%85%A5%E5%8F%A3list)`
+    - [2.3](#23-listpredicate)`[ListPredicate()](#23-listpredicate)`
+    - [2.4 请求指定了资源名（resource name）：获取单个对象](#24-%E8%AF%B7%E6%B1%82%E6%8C%87%E5%AE%9A%E4%BA%86%E8%B5%84%E6%BA%90%E5%90%8Dresource-name%E8%8E%B7%E5%8F%96%E5%8D%95%E4%B8%AA%E5%AF%B9%E8%B1%A1)
+    - [2.5 请求未指定资源名，获取全量数据做过滤](#25-%E8%AF%B7%E6%B1%82%E6%9C%AA%E6%8C%87%E5%AE%9A%E8%B5%84%E6%BA%90%E5%90%8D%E8%8E%B7%E5%8F%96%E5%85%A8%E9%87%8F%E6%95%B0%E6%8D%AE%E5%81%9A%E8%BF%87%E6%BB%A4)
+        - [2.5.1 apiserver 缓存层：](#251-apiserver-%E7%BC%93%E5%AD%98%E5%B1%82getlist-%E5%A4%84%E7%90%86%E9%80%BB%E8%BE%91)`[GetList()](#251-apiserver-%E7%BC%93%E5%AD%98%E5%B1%82getlist-%E5%A4%84%E7%90%86%E9%80%BB%E8%BE%91)`[处理逻辑](#251-apiserver-%E7%BC%93%E5%AD%98%E5%B1%82getlist-%E5%A4%84%E7%90%86%E9%80%BB%E8%BE%91)
+        - [2.5.2 判断是否必须从 etcd 读数据：](#252-%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%BF%85%E9%A1%BB%E4%BB%8E-etcd-%E8%AF%BB%E6%95%B0%E6%8D%AEshoulddelegatelist)`[shouldDelegateList()](#252-%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%BF%85%E9%A1%BB%E4%BB%8E-etcd-%E8%AF%BB%E6%95%B0%E6%8D%AEshoulddelegatelist)`
+        - [2.5.3 情况一：ListOption 要求从 etcd 读数据](#253-%E6%83%85%E5%86%B5%E4%B8%80listoption-%E8%A6%81%E6%B1%82%E4%BB%8E-etcd-%E8%AF%BB%E6%95%B0%E6%8D%AE)
+        - [2.5.4 情况二：本地缓存还没建好，只能从 etcd 读数据](#254-%E6%83%85%E5%86%B5%E4%BA%8C%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E8%BF%98%E6%B2%A1%E5%BB%BA%E5%A5%BD%E5%8F%AA%E8%83%BD%E4%BB%8E-etcd-%E8%AF%BB%E6%95%B0%E6%8D%AE)
+        - [2.5.5 情况三：使用本地缓存](#255-%E6%83%85%E5%86%B5%E4%B8%89%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98)
 - [3 LIST 测试](#3-list-%E6%B5%8B%E8%AF%95)
-  - [3.1 指定 ](#31-%E6%8C%87%E5%AE%9A-limit2response-%E5%B0%86%E8%BF%94%E5%9B%9E%E5%88%86%E9%A1%B5%E4%BF%A1%E6%81%AFcontinue)`[limit=2](#31-%E6%8C%87%E5%AE%9A-limit2response-%E5%B0%86%E8%BF%94%E5%9B%9E%E5%88%86%E9%A1%B5%E4%BF%A1%E6%81%AFcontinue)`[：response 将返回分页信息（](#31-%E6%8C%87%E5%AE%9A-limit2response-%E5%B0%86%E8%BF%94%E5%9B%9E%E5%88%86%E9%A1%B5%E4%BF%A1%E6%81%AFcontinue)`[continue](#31-%E6%8C%87%E5%AE%9A-limit2response-%E5%B0%86%E8%BF%94%E5%9B%9E%E5%88%86%E9%A1%B5%E4%BF%A1%E6%81%AFcontinue)`[）](#31-%E6%8C%87%E5%AE%9A-limit2response-%E5%B0%86%E8%BF%94%E5%9B%9E%E5%88%86%E9%A1%B5%E4%BF%A1%E6%81%AFcontinue)
-    - [3.1.1 ](#311-curl-%E6%B5%8B%E8%AF%95)`[curl](#311-curl-%E6%B5%8B%E8%AF%95)`[ 测试](#311-curl-%E6%B5%8B%E8%AF%95)
-    - [3.1.2 ](#312-kubectl-%E6%B5%8B%E8%AF%95)`[kubectl](#312-kubectl-%E6%B5%8B%E8%AF%95)`[ 测试](#312-kubectl-%E6%B5%8B%E8%AF%95)
-  - [3.2 指定 ](#32-%E6%8C%87%E5%AE%9A-limit2resourceversion0limit2-%E5%B0%86%E8%A2%AB%E5%BF%BD%E7%95%A5%E8%BF%94%E5%9B%9E%E5%85%A8%E9%87%8F%E6%95%B0%E6%8D%AE)`[limit=2&resourceVersion=0](#32-%E6%8C%87%E5%AE%9A-limit2resourceversion0limit2-%E5%B0%86%E8%A2%AB%E5%BF%BD%E7%95%A5%E8%BF%94%E5%9B%9E%E5%85%A8%E9%87%8F%E6%95%B0%E6%8D%AE)`[：](#32-%E6%8C%87%E5%AE%9A-limit2resourceversion0limit2-%E5%B0%86%E8%A2%AB%E5%BF%BD%E7%95%A5%E8%BF%94%E5%9B%9E%E5%85%A8%E9%87%8F%E6%95%B0%E6%8D%AE)`[limit=2](#32-%E6%8C%87%E5%AE%9A-limit2resourceversion0limit2-%E5%B0%86%E8%A2%AB%E5%BF%BD%E7%95%A5%E8%BF%94%E5%9B%9E%E5%85%A8%E9%87%8F%E6%95%B0%E6%8D%AE)`[ 将被忽略，返回全量数据](#32-%E6%8C%87%E5%AE%9A-limit2resourceversion0limit2-%E5%B0%86%E8%A2%AB%E5%BF%BD%E7%95%A5%E8%BF%94%E5%9B%9E%E5%85%A8%E9%87%8F%E6%95%B0%E6%8D%AE)
-  - [3.3 指定 ](#33-%E6%8C%87%E5%AE%9A-specnodenamenode1resourceversion0-vs-specnodenamenode1)`[spec.nodeName=node1&resourceVersion=0](#33-%E6%8C%87%E5%AE%9A-specnodenamenode1resourceversion0-vs-specnodenamenode1)`[ vs. ](#33-%E6%8C%87%E5%AE%9A-specnodenamenode1resourceversion0-vs-specnodenamenode1)`[spec.nodeName=node1"](#33-%E6%8C%87%E5%AE%9A-specnodenamenode1resourceversion0-vs-specnodenamenode1)`
-    - [结果相同](#%E7%BB%93%E6%9E%9C%E7%9B%B8%E5%90%8C)
-    - [速度差异很大](#%E9%80%9F%E5%BA%A6%E5%B7%AE%E5%BC%82%E5%BE%88%E5%A4%A7)
+    - [3.1 指定](#31-%E6%8C%87%E5%AE%9A-limit2response-%E5%B0%86%E8%BF%94%E5%9B%9E%E5%88%86%E9%A1%B5%E4%BF%A1%E6%81%AFcontinue)`[limit=2](#31-%E6%8C%87%E5%AE%9A-limit2response-%E5%B0%86%E8%BF%94%E5%9B%9E%E5%88%86%E9%A1%B5%E4%BF%A1%E6%81%AFcontinue)`[：response 将返回分页信息（](#31-%E6%8C%87%E5%AE%9A-limit2response-%E5%B0%86%E8%BF%94%E5%9B%9E%E5%88%86%E9%A1%B5%E4%BF%A1%E6%81%AFcontinue)`[continue](#31-%E6%8C%87%E5%AE%9A-limit2response-%E5%B0%86%E8%BF%94%E5%9B%9E%E5%88%86%E9%A1%B5%E4%BF%A1%E6%81%AFcontinue)`[）](#31-%E6%8C%87%E5%AE%9A-limit2response-%E5%B0%86%E8%BF%94%E5%9B%9E%E5%88%86%E9%A1%B5%E4%BF%A1%E6%81%AFcontinue)
+        - [3.1.1](#311-curl-%E6%B5%8B%E8%AF%95)`[curl](#311-curl-%E6%B5%8B%E8%AF%95)`[测试](#311-curl-%E6%B5%8B%E8%AF%95)
+        - [3.1.2](#312-kubectl-%E6%B5%8B%E8%AF%95)`[kubectl](#312-kubectl-%E6%B5%8B%E8%AF%95)`[测试](#312-kubectl-%E6%B5%8B%E8%AF%95)
+    - [3.2 指定](#32-%E6%8C%87%E5%AE%9A-limit2resourceversion0limit2-%E5%B0%86%E8%A2%AB%E5%BF%BD%E7%95%A5%E8%BF%94%E5%9B%9E%E5%85%A8%E9%87%8F%E6%95%B0%E6%8D%AE)`[limit=2&resourceVersion=0](#32-%E6%8C%87%E5%AE%9A-limit2resourceversion0limit2-%E5%B0%86%E8%A2%AB%E5%BF%BD%E7%95%A5%E8%BF%94%E5%9B%9E%E5%85%A8%E9%87%8F%E6%95%B0%E6%8D%AE)`[：](#32-%E6%8C%87%E5%AE%9A-limit2resourceversion0limit2-%E5%B0%86%E8%A2%AB%E5%BF%BD%E7%95%A5%E8%BF%94%E5%9B%9E%E5%85%A8%E9%87%8F%E6%95%B0%E6%8D%AE)`[limit=2](#32-%E6%8C%87%E5%AE%9A-limit2resourceversion0limit2-%E5%B0%86%E8%A2%AB%E5%BF%BD%E7%95%A5%E8%BF%94%E5%9B%9E%E5%85%A8%E9%87%8F%E6%95%B0%E6%8D%AE)`[将被忽略，返回全量数据](#32-%E6%8C%87%E5%AE%9A-limit2resourceversion0limit2-%E5%B0%86%E8%A2%AB%E5%BF%BD%E7%95%A5%E8%BF%94%E5%9B%9E%E5%85%A8%E9%87%8F%E6%95%B0%E6%8D%AE)
+    - [3.3 指定](#33-%E6%8C%87%E5%AE%9A-specnodenamenode1resourceversion0-vs-specnodenamenode1)`[spec.nodeName=node1&resourceVersion=0](#33-%E6%8C%87%E5%AE%9A-specnodenamenode1resourceversion0-vs-specnodenamenode1)`[vs.](#33-%E6%8C%87%E5%AE%9A-specnodenamenode1resourceversion0-vs-specnodenamenode1)`[spec.nodeName=node1"](#33-%E6%8C%87%E5%AE%9A-specnodenamenode1resourceversion0-vs-specnodenamenode1)`
+        - [结果相同](#%E7%BB%93%E6%9E%9C%E7%9B%B8%E5%90%8C)
+        - [速度差异很大](#%E9%80%9F%E5%BA%A6%E5%B7%AE%E5%BC%82%E5%BE%88%E5%A4%A7)
 - [4 LIST 请求对控制平面压力：量化分析](#4-list-%E8%AF%B7%E6%B1%82%E5%AF%B9%E6%8E%A7%E5%88%B6%E5%B9%B3%E9%9D%A2%E5%8E%8B%E5%8A%9B%E9%87%8F%E5%8C%96%E5%88%86%E6%9E%90)
-  - [4.1 收集 LIST 请求](#41-%E6%94%B6%E9%9B%86-list-%E8%AF%B7%E6%B1%82)
-  - [2.2 测试 LIST 请求数据量和耗时](#22-%E6%B5%8B%E8%AF%95-list-%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E9%87%8F%E5%92%8C%E8%80%97%E6%97%B6)
-  - [4.3 测试结果分析](#43-%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90)
+    - [4.1 收集 LIST 请求](#41-%E6%94%B6%E9%9B%86-list-%E8%AF%B7%E6%B1%82)
+    - [2.2 测试 LIST 请求数据量和耗时](#22-%E6%B5%8B%E8%AF%95-list-%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E9%87%8F%E5%92%8C%E8%80%97%E6%97%B6)
+    - [4.3 测试结果分析](#43-%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90)
 - [5 大规模基础服务：部署和调优建议](#5-%E5%A4%A7%E8%A7%84%E6%A8%A1%E5%9F%BA%E7%A1%80%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2%E5%92%8C%E8%B0%83%E4%BC%98%E5%BB%BA%E8%AE%AE)
-  - [5.1 List 请求默认设置 ](#51-list-%E8%AF%B7%E6%B1%82%E9%BB%98%E8%AE%A4%E8%AE%BE%E7%BD%AE-resourceversion0)`[ResourceVersion=0](#51-list-%E8%AF%B7%E6%B1%82%E9%BB%98%E8%AE%A4%E8%AE%BE%E7%BD%AE-resourceversion0)`
-  - [5.2 优先使用 namespaced API](#52-%E4%BC%98%E5%85%88%E4%BD%BF%E7%94%A8-namespaced-api)
-  - [5.3 Restart backoff](#53-restart-backoff)
-  - [5.4 优先通过 label/field selector 在服务端做过滤](#54-%E4%BC%98%E5%85%88%E9%80%9A%E8%BF%87-labelfield-selector-%E5%9C%A8%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%81%9A%E8%BF%87%E6%BB%A4)
-    - [5.4.1 Label selector](#541-label-selector)
-    - [5.4.2 Field selector](#542-field-selector)
-    - [5.4.3 Namespace selector](#543-namespace-selector)
-  - [5.5 配套基础设施（监控、告警等）](#55-%E9%85%8D%E5%A5%97%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E7%9B%91%E6%8E%A7%E5%91%8A%E8%AD%A6%E7%AD%89)
-    - [5.5.1 使用独立 ServiceAccount](#551-%E4%BD%BF%E7%94%A8%E7%8B%AC%E7%AB%8B-serviceaccount)
-    - [5.5.2 Liveness 监控告警](#552-liveness-%E7%9B%91%E6%8E%A7%E5%91%8A%E8%AD%A6)
-    - [5.5.3 监控和调优 etcd](#553-%E7%9B%91%E6%8E%A7%E5%92%8C%E8%B0%83%E4%BC%98-etcd)
+    - [5.1 List 请求默认设置](#51-list-%E8%AF%B7%E6%B1%82%E9%BB%98%E8%AE%A4%E8%AE%BE%E7%BD%AE-resourceversion0)`[ResourceVersion=0](#51-list-%E8%AF%B7%E6%B1%82%E9%BB%98%E8%AE%A4%E8%AE%BE%E7%BD%AE-resourceversion0)`
+    - [5.2 优先使用 namespaced API](#52-%E4%BC%98%E5%85%88%E4%BD%BF%E7%94%A8-namespaced-api)
+    - [5.3 Restart backoff](#53-restart-backoff)
+    - [5.4 优先通过 label/field selector 在服务端做过滤](#54-%E4%BC%98%E5%85%88%E9%80%9A%E8%BF%87-labelfield-selector-%E5%9C%A8%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%81%9A%E8%BF%87%E6%BB%A4)
+        - [5.4.1 Label selector](#541-label-selector)
+        - [5.4.2 Field selector](#542-field-selector)
+        - [5.4.3 Namespace selector](#543-namespace-selector)
+    - [5.5 配套基础设施（监控、告警等）](#55-%E9%85%8D%E5%A5%97%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E7%9B%91%E6%8E%A7%E5%91%8A%E8%AD%A6%E7%AD%89)
+        - [5.5.1 使用独立 ServiceAccount](#551-%E4%BD%BF%E7%94%A8%E7%8B%AC%E7%AB%8B-serviceaccount)
+        - [5.5.2 Liveness 监控告警](#552-liveness-%E7%9B%91%E6%8E%A7%E5%91%8A%E8%AD%A6)
+        - [5.5.3 监控和调优 etcd](#553-%E7%9B%91%E6%8E%A7%E5%92%8C%E8%B0%83%E4%BC%98-etcd)
 - [6 其他](#6-%E5%85%B6%E4%BB%96)
-  - [6.1 Get 请求：](#61-get-%E8%AF%B7%E6%B1%82getoptions)`[GetOptions{}](#61-get-%E8%AF%B7%E6%B1%82getoptions)`
+    - [6.1 Get 请求：](#61-get-%E8%AF%B7%E6%B1%82getoptions)`[GetOptions{}](#61-get-%E8%AF%B7%E6%B1%82getoptions)`
 - [参考资料](#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99)
 
 ---
@@ -286,7 +287,6 @@ Fig 2-1. List operation processing in apiserver
 3. 初始化返回结果，`list := e.NewListFunc()`；
 4. 将 API 侧的 ListOption 转成底层存储的 ListOption，字段区别见下文
    `metainternalversion.ListOptions` 是 **API 侧的结构体**，包含了
-
 
      // staging/src/k8s.io/apimachinery/pkg/apis/meta/internalversion/types.go
 
@@ -607,7 +607,7 @@ e.Storage.GetList() 会执行到 cacher 代码。
 
 用 time 测量以上两种情况下的耗时，会发现对于大一些的集群，这两种请求的响应时间就会有明显差异。
 
-    $ time ./curl-k8s-apiserver.sh <url> > result
+    time ./curl-k8s-apiserver.sh <url> > result
 
 对于 4K nodes, 100K pods 规模的集群，以下数据供参考：
 
@@ -851,7 +851,6 @@ etcd 中 namespace 是前缀的一部分，因此能指定 namespace 过滤资�
 2. 带宽
 3. 大 LIST 请求数量及响应耗时
    比如下面这个 `LIST all pods` 日志：
-
 
      {  "level":"warn",  "msg":"apply request took too long",  "took":"5357.87304ms",  "expected-duration":"100ms",  "prefix":"read-only range ",  "request":"key:\"/registry/pods/\" range_end:\"/registry/pods0\" ",  "response":"range_response_count:60077 size:602251227"  }
 

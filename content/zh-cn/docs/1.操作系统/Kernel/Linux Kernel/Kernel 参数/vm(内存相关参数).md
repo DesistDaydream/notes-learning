@@ -1,6 +1,5 @@
 ---
 title: vm(内存相关参数)
-linkTitle: vm(内存相关参数)
 weight: 20
 ---
 
@@ -33,20 +32,20 @@ weight: 20
 配置是否允许[内存 overcommit](Memroy%20 的%20Over%20Commit%20 与%20OOM.md 管理/Memroy 的 Over Commit 与 OOM.md)，有 0、1、2 三种模式。`默认值：0`
 
 - **0** # heuristic overcommit(试探式允许 overcommit)。
-  - 当应用进程尝试申请内存时，内核会做一个检测。内核将检查是否有足够的**可用内存**可以分配。如果有足够的可用内存，内存申请允许；否则，内存申请失败。
+    - 当应用进程尝试申请内存时，内核会做一个检测。内核将检查是否有足够的**可用内存**可以分配。如果有足够的可用内存，内存申请允许；否则，内存申请失败。
 - **1** # always overcommit,never check(总是允许 overcommit)
-  - 对于内存的申请请求，内核不会做任何检测，并直接分配内存。
+    - 对于内存的申请请求，内核不会做任何检测，并直接分配内存。
 - **2** # never overcommit,always check(永不允许 overcommit)
-  - 说是永不允许 overcommit，其实只是通过其他参数来控制 overcommit(过量使用) 的大小。可以分配的总内存将会受到 /proc/meminfo 中的 CommitLimit 这个参数限制。
-  - `CommitLimit = (total_RAM - total_huge_TLB) * overcommit_ratio / 100 + total_swap`
-    - totaol_RAM # 系统内存总量(就是物理内存)
-    - total_huge_TLB # 为 huge pages 保留的内存量，一般没有保留，都是 0
-    - overcommit_ratio # /proc/sys/vm/overcommit_ratio 内核参数的值。
-    - total_swap # swap 空间的总量
-  - 比如我现在有一个 16G 内存的服务器，swap 空间为 16，overcommit_ratio 参数设为 50，那么 CommitLimit 的计算结果为 24G。
-    - 此时，如果 /proc/meminfo 中的 Commited_AS 参数 值为 23G，当一个程序申请超过 1G 内存时，则会失败。
-  - 所以从根本上讲，模式 2 下，可以分配的内存总量，受 overcommit_ration 这个内核参数控制。所谓的永远不会 overcommit，则是指 overcommit_ration 参数的值小于 100。
-  - 注意：从 Linux 内核 3.14 开始，如果 /proc/sys/vm/overcommit_kbytes 参数的值不为 0，则`CommitLimit = overcommit_kbytes + total_swap`
+    - 说是永不允许 overcommit，其实只是通过其他参数来控制 overcommit(过量使用) 的大小。可以分配的总内存将会受到 /proc/meminfo 中的 CommitLimit 这个参数限制。
+    - `CommitLimit = (total_RAM - total_huge_TLB) * overcommit_ratio / 100 + total_swap`
+        - totaol_RAM # 系统内存总量(就是物理内存)
+        - total_huge_TLB # 为 huge pages 保留的内存量，一般没有保留，都是 0
+        - overcommit_ratio # /proc/sys/vm/overcommit_ratio 内核参数的值。
+        - total_swap # swap 空间的总量
+    - 比如我现在有一个 16G 内存的服务器，swap 空间为 16，overcommit_ratio 参数设为 50，那么 CommitLimit 的计算结果为 24G。
+        - 此时，如果 /proc/meminfo 中的 Commited_AS 参数 值为 23G，当一个程序申请超过 1G 内存时，则会失败。
+    - 所以从根本上讲，模式 2 下，可以分配的内存总量，受 overcommit_ration 这个内核参数控制。所谓的永远不会 overcommit，则是指 overcommit_ration 参数的值小于 100。
+    - 注意：从 Linux 内核 3.14 开始，如果 /proc/sys/vm/overcommit_kbytes 参数的值不为 0，则`CommitLimit = overcommit_kbytes + total_swap`
 
 > 所以所有模式都可能会触发 OOM 机制。只不过模式 0 和 1 在程序申请内存时，行为不同；而模式 2 则受 overcommit_ration 参数的限制。
 

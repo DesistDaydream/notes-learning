@@ -1,6 +1,5 @@
 ---
 title: psql 命令
-linkTitle: psql 命令
 weight: 20
 ---
 
@@ -25,11 +24,11 @@ psql 中可以执行有多种类型的命令
 **OPTIONS**
 
 - 连接数据库相关选项
-  - **-U, --username USERNAME** # 使用指定的用户连接数据库。`默认值: 当前 Shell 环境的用户`。
-  - **-h, --host HOSTNAME** # 指定 PostgreSQL 服务端所在的 HOSTNAME，可以是 IP 或 Domain。如果该以 `\` 开头，则将其用作 Unix 域套接字的目录。
-  - **-p, --port PORT** # 指定 PostgreSQL 服务端监听的 TCP 端口或本地 Unix 域套接字文件扩展名。默认为 PGPORT 环境变量的值，`默认值: 5432`。
+    - **-U, --username USERNAME** # 使用指定的用户连接数据库。`默认值: 当前 Shell 环境的用户`。
+    - **-h, --host HOSTNAME** # 指定 PostgreSQL 服务端所在的 HOSTNAME，可以是 IP 或 Domain。如果该以 `\` 开头，则将其用作 Unix 域套接字的目录。
+    - **-p, --port PORT** # 指定 PostgreSQL 服务端监听的 TCP 端口或本地 Unix 域套接字文件扩展名。默认为 PGPORT 环境变量的值，`默认值: 5432`。
 - SQL 执行相关
-  - **-t, --tuples-only** # 关闭列名和结果行计数页脚等的打印。这相当于 `\t` 或 `\pset tuples_only`
+    - **-t, --tuples-only** # 关闭列名和结果行计数页脚等的打印。这相当于 `\t` 或 `\pset tuples_only`
 
 # Meta-Commands
 

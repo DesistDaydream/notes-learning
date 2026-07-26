@@ -1,6 +1,5 @@
 ---
 title: Scheduling
-linkTitle: Scheduling
 weight: 1
 ---
 
@@ -15,7 +14,7 @@ weight: 1
 与 Scheduling(调度) 伴生的，还有 **Preemption(抢占)** 与 **Eviction(驱逐)** 两个概念。顾名思义：
 
 - **Preemption(抢占)** 是指终止优先级较低的 Pod 的行为，以便优先级较高的 Pod 可以在节点上调度。
-  - 抢占行为通常发生在资源不足时，当一个新 Pod 需要调度，但是资源不足，那么就可能需要抢占优先级低的 Pod，这个低优先级的 Pod 将会被驱逐，以便让优先级高的 Pod 运行在节点上。
+    - 抢占行为通常发生在资源不足时，当一个新 Pod 需要调度，但是资源不足，那么就可能需要抢占优先级低的 Pod，这个低优先级的 Pod 将会被驱逐，以便让优先级高的 Pod 运行在节点上。
 - **Eviction(驱逐)** 是指终止节点上一个或多个 Pod 的行为。
 
 由 抢占 与 驱逐 两个行为，还引申出了 **Pod Disruption(中断)** 的概念。[Pod Disruption(中断)](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/) 是指节点上的 Pod 自愿或者非资源终止运行的行为。

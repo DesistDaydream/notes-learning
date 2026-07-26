@@ -6,7 +6,7 @@ weight: 20
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，项目配置-tsconfig.json 是什么](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
 > - [官方文档，TSConfig 参考](https://www.typescriptlang.org/tsconfig)
 
@@ -83,4 +83,3 @@ export default defineConfig({
 ```
 
 **include** # 通过在 include 中指定文件或目录，我们可以将声明的 interface 等默认导出并在其他地方使用，而不用在每个需要使用的地方使用 import 关键字显式导入了。
-

@@ -1,6 +1,5 @@
 ---
 title: Memory Virtualization
-linkTitle: Memory Virtualization
 weight: 3
 ---
 

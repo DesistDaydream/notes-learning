@@ -1,6 +1,5 @@
 ---
 title: "netfilter"
-linkTitle: "netfilter"
 weight: 20
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: Controller
-linkTitle: Controller
 weight: 1
 ---
 
@@ -92,7 +91,7 @@ kubernetes 有各种各样的资源，每个资源都有其自己的各种定义
 Controller 包括以下这些：不同的 controller 管理不同的资源。
 
 - Replication Controller # 副本控制器，主要用于保障 pod 的副本数量(副本就是复制)
-  - Deployment 可以管理 Pod 的多个副本，并确保 Pod 按照期望的状态运行。
+    - Deployment 可以管理 Pod 的多个副本，并确保 Pod 按照期望的状态运行。
 - Node Controller # 节点控制器，用于控制节点相关信息，比如该节点的 cidr 信息等。
 - CronJob Controller
 - Daemon Controller

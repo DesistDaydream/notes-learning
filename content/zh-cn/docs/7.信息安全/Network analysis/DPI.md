@@ -1,6 +1,5 @@
 ---
 title: DPI
-linkTitle: DPI
 weight: 3
 ---
 

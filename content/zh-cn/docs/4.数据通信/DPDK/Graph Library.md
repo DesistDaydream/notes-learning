@@ -1,6 +1,5 @@
 ---
 title: Graph Library
-linkTitle: Graph Library
 weight: 111
 ---
 

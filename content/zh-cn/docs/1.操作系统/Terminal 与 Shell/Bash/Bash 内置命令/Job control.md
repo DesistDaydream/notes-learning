@@ -1,13 +1,12 @@
 ---
 title: "Job control"
-linkTitle: "Job control"
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [Manual(手册)，Bash(1) - JOB_CONTROL](https://www.man7.org/linux/man-pages/man1/bash.1.html#JOB_CONTROL)
 
 Job control(作业控制) 是指有选择的**停止/挂起**进程的执行，并在稍后**继续/恢复**它们的执行能力。我们一般都是在 Shell 中使用此功能的，比如 Bash。

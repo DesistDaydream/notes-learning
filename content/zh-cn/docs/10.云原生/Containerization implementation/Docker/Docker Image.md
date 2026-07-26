@@ -1,6 +1,5 @@
 ---
 title: Docker Image
-linkTitle: Docker Image
 weight: 4
 ---
 

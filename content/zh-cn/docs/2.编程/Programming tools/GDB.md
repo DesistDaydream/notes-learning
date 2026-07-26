@@ -1,6 +1,5 @@
 ---
 title: GDB
-linkTitle: GDB
 weight: 41
 ---
 

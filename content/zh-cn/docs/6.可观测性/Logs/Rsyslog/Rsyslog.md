@@ -179,13 +179,13 @@ RsysLog 使用 **Facility(设施)** 来对各个程序产生的日志进行分�
 RsysLog 默认把日志保存在 /var/log/ 目录下的文件中，该目录下常见的日志文件有：
 
 - messages # 几乎所有系统发生的信息都会记录在这个文件中
-  - Ubuntu 发型版中是 syslog 文件
+    - Ubuntu 发型版中是 syslog 文件
 - boot.log #
 - cron # 记录 crontab 执行的信息
 - dmesg # 系统开机时内核检查过程所产生的各项信息
 - maillog 与 mail/\* # 记录邮件的往来日志主要是 postfix(SMTP)与 dovecot(POP3)所产生的信息
 - secure # 只要涉及到需要输入账号密码的软件，那么当登录时，会被记录在这个文件中。包括系统的 login 程序、su 和 sudo、ssh 等
-  - Ubuntu 发型版中是 auth.og 文件
+    - Ubuntu 发型版中是 auth.og 文件
 - lastlog # 记录系统上所有账号最近一次登录系统时的相关信息。lastlog 命令就是利用这个文件记录的信息来展示的
 - wtmp 与 faillog # 记录正确登录系统的账号信息与错误登录时所使用的账号信息。last 命令时读取的 wtmp 中的内容
 
@@ -210,12 +210,12 @@ Linux 相关的日志格式一般为：
 **/dev/log** # 一个 Unix Domain Socket，rsyslogd 从这个 Socket 中读取日志消息。这是传统的日志服务 Socket。在 CentOS 8 及以后的版本中，该文件是一个指向 /run/systemd/journal/syslog 文件的软链接
 
 - **/run/systemd/journal/syslog** # rsyslogd 会持续监听该 Socket，当有数据传入时，使用 recvmsg() 调用获取日志数据。
-  - 这个文件是由 [Systemd](/docs/1.操作系统/Systemd/Systemd.md) 提供的 Socket 文件，用以兼容传统 [Journal](/docs/6.可观测性/Logs/Journal.md) 日志服务，在 /etc/systemd/journald.conf 配置文件中，可以看到默认 ForwardToSyslog=yes 设置，即表示将自己的日志转发到 syslog 中。
+    - 这个文件是由 [Systemd](/docs/1.操作系统/Systemd/Systemd.md) 提供的 Socket 文件，用以兼容传统 [Journal](/docs/6.可观测性/Logs/Journal.md) 日志服务，在 /etc/systemd/journald.conf 配置文件中，可以看到默认 ForwardToSyslog=yes 设置，即表示将自己的日志转发到 syslog 中。
 
 **/var/log/** # 日志记录的位置。根据 rsyslog 程序的基础配置文件，各个 Linux 发行版的文件名也许不同，但是大体都差不多
 
 - ./message # CentOS 发行版的绝大部分日志文件
-  - ./syslog # Ubuntu 发型版的绝大部分日志文件
+    - ./syslog # Ubuntu 发型版的绝大部分日志文件
 - ./secure # 所有 authpriv 设施的日志，比如 su、sudo、sshd 的登录信息等等。
 - /var/log/maillog mail 记录
 - /var/log/utmp

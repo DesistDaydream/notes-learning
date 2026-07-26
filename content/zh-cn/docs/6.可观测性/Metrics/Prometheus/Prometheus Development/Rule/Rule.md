@@ -1,6 +1,5 @@
 ---
 title: Rule
-linkTitle: Rule
 weight: 1
 ---
 

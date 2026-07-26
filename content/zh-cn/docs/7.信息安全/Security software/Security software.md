@@ -1,6 +1,5 @@
 ---
 title: Security software
-linkTitle: Security software
 weight: 1
 ---
 

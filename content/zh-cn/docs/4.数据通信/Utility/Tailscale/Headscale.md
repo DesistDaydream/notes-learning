@@ -1,6 +1,5 @@
 ---
 title: Headscale
-linkTitle: Headscale
 weight: 100
 ---
 
@@ -9,6 +8,7 @@ weight: 100
 > 参考：
 >
 > - [GitHub 项目，juanfont/headscale](https://github.com/juanfont/headscale)
+>     - 第一次 Commit: [2020-06-21](https://github.com/juanfont/headscale/commit/8077923b681a051707d3026d127850cdb69b41cd)
 > - [公众号 - 云原声实验室，Tailscal 开源版本让你的 WireGuard 直接起飞](https://mp.weixin.qq.com/s/Y3z5RzuapZc8jS0UuHLhBw)
 > - [馆长博客，headscale 搭建和应用场景](https://zhangguanzhang.github.io/2024/07/25/headscale/)
 
@@ -66,9 +66,9 @@ wget https://raw.githubusercontent.com/juanfont/headscale/v${HeadscaleVersion}/c
 ```
 
 - 修改配置文件
-  - **server_url** # 改为公网 IP 或域名。**如果是国内服务器，域名必须要备案**。我的域名无法备案，所以我就直接用公网 IP 了。
-  - **magic_dns** # 如果暂时用不到 DNS 功能，该值设为 false
-  - **prefixes** # 可自定义私有网段
+    - **server_url** # 改为公网 IP 或域名。**如果是国内服务器，域名必须要备案**。我的域名无法备案，所以我就直接用公网 IP 了。
+    - **magic_dns** # 如果暂时用不到 DNS 功能，该值设为 false
+    - **prefixes** # 可自定义私有网段
 
 **创建 Systemd Unit 文件**
 
@@ -209,8 +209,8 @@ tailscale login --login-server=http://${headscale_server} --accept-routes=false 
 ~~曾经老版本还需要修改注册表，新版 1.70+ 不用修改注册表了~~
 
 - ~~添加注册表信息（两种方式）（在 `HKEY_LOCAL_MACHINE\SOFTWARE\Tailscale IPN` 位置生成信息）~~
-  - ~~点击页面中的 `Windows registry file`，下载注册表文件，并运行~~
-  - ~~或者执行下面的 PowerShell 命令添加注册表信息~~
+    - ~~点击页面中的 `Windows registry file`，下载注册表文件，并运行~~
+    - ~~或者执行下面的 PowerShell 命令添加注册表信息~~
 
 ```powershell
 $headscale_server="https://DOMAIN:PORT"

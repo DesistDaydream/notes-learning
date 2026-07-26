@@ -34,8 +34,6 @@ Perference->Setting-User 中加入配置 "default_line_ending": "unix"
 
 # 相关问题
 
-
-
 ## 报错 1：There are no packages available for installation
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/frqwsc/1616161737847-06e6b281-5be4-4877-ad55-a3b5112335a4.jpeg)

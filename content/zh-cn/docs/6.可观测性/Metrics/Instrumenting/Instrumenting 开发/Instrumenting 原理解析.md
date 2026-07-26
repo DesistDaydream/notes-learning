@@ -1,6 +1,5 @@
 ---
 title: Instrumenting 原理解析
-linkTitle: Instrumenting 原理解析
 weight: 100
 ---
 
@@ -30,22 +29,22 @@ https://pkg.go.dev/github.com/prometheus/client_golang/prometheus#Desc
 
 ```go
 type Desc struct {
-	// 完全限定名称。也就是 Metric 的名字，fqName 由 Namespace、Subsystem、Name 三部分组成
-	fqName string
-	// Metric 的帮助信息
-	help string
-	// constLabelPairs(常量标签对) 包含基于常量标签的预先计算的 DTO标签对。
-	constLabelPairs []*dto.LabelPair
-	// variableLabels 包含 metrics 为其维护变量值的标签名称。
-	variableLabels []string
-	// id 是 ConstLabels 与 fqName 两个值的 hash。
-	// 它在所有已注册的 Desc(描述符) 中必须是唯一的，因此可以用作 Desc(描述符) 的 ID(标识符)。
-	id uint64
-	// dimHash 是标签名称(预设和变量) 和 Help 这两个值的 hash。
-	// 具有相同 fqName 的每个 Desc 必须具有相同的 dimHash
-	dimHash uint64
-	// err 是在每次构建过程中发生的错误。这个错误信息会报告注册 Desc 的时间
-	err error
+ // 完全限定名称。也就是 Metric 的名字，fqName 由 Namespace、Subsystem、Name 三部分组成
+ fqName string
+ // Metric 的帮助信息
+ help string
+ // constLabelPairs(常量标签对) 包含基于常量标签的预先计算的 DTO标签对。
+ constLabelPairs []*dto.LabelPair
+ // variableLabels 包含 metrics 为其维护变量值的标签名称。
+ variableLabels []string
+ // id 是 ConstLabels 与 fqName 两个值的 hash。
+ // 它在所有已注册的 Desc(描述符) 中必须是唯一的，因此可以用作 Desc(描述符) 的 ID(标识符)。
+ id uint64
+ // dimHash 是标签名称(预设和变量) 和 Help 这两个值的 hash。
+ // 具有相同 fqName 的每个 Desc 必须具有相同的 dimHash
+ dimHash uint64
+ // err 是在每次构建过程中发生的错误。这个错误信息会报告注册 Desc 的时间
+ err error
 }
 ```
 
@@ -169,19 +168,19 @@ https://pkg.go.dev/github.com/prometheus/client_golang/prometheus#NewDesc
 ```go
 // Metrics 用来保存所有 Metrics
 type Metrics struct {
-	HelloWorldDesc *prometheus.Desc
-	mutex          sync.Mutex
+ HelloWorldDesc *prometheus.Desc
+ mutex          sync.Mutex
 }
 
 // NewMetrics 实例化所有的 Metrics,并为 Mestirs 设定一些基本信息
 func NewMetrics() *Metrics {
-	return &Metrics{
-		HelloWorldDesc: prometheus.NewDesc(
-			"exporter_hello_world",               // Metric 名称
-			"Help Info for exporter hello world", // Metric 的帮助信息
-			[]string{"name"}, nil,                // Metric 的可变标签值的标签 与 不可变标签值的标签
-		),
-	}
+ return &Metrics{
+  HelloWorldDesc: prometheus.NewDesc(
+   "exporter_hello_world",               // Metric 名称
+   "Help Info for exporter hello world", // Metric 的帮助信息
+   []string{"name"}, nil,                // Metric 的可变标签值的标签 与 不可变标签值的标签
+  ),
+ }
 }
 ```
 
@@ -264,11 +263,11 @@ A Collector whose Describe method does not yield any Desc is treated as unchecke
 ```go
 // 其实就是一个循环，逐一为每个 Collector 执行 Register()
 func (r *Registry) MustRegister(cs ...Collector) {
-	for _, c := range cs {
-		if err := r.Register(c); err != nil {
-			panic(err)
-		}
-	}
+ for _, c := range cs {
+  if err := r.Register(c); err != nil {
+   panic(err)
+  }
+ }
 }
 ```
 
@@ -307,13 +306,13 @@ Prometheus 暴露指标是通过 [promhttp.HandleFor()](https://pkg.go.dev/githu
 ```go
 // gauge 结构体实现了 gauge 接口
 type gauge struct {
-	// valBits contains the bits of the represented float64 value. It has
-	// to go first in the struct to guarantee alignment for atomic
-	// operations.  http://golang.org/pkg/sync/atomic/#pkg-note-BUG
-	valBits uint64
-	selfCollector
-	desc       *Desc
-	labelPairs []*dto.LabelPair
+ // valBits contains the bits of the represented float64 value. It has
+ // to go first in the struct to guarantee alignment for atomic
+ // operations.  http://golang.org/pkg/sync/atomic/#pkg-note-BUG
+ valBits uint64
+ selfCollector
+ desc       *Desc
+ labelPairs []*dto.LabelPair
 }
 ```
 
@@ -323,22 +322,22 @@ gauge 类型的 Metric 结构体，包含了 \*Desc 的属性。并且 NewGauge(
 
 ```go
 func NewGauge(opts GaugeOpts) Gauge {
-	desc := NewDesc(
-		BuildFQName(opts.Namespace, opts.Subsystem, opts.Name),
-		opts.Help,
-		nil,
-		opts.ConstLabels,
-	)
-	result := &gauge{desc: desc, labelPairs: desc.constLabelPairs}
-	result.init(result) // Init self-collection.
-	return result
+ desc := NewDesc(
+  BuildFQName(opts.Namespace, opts.Subsystem, opts.Name),
+  opts.Help,
+  nil,
+  opts.ConstLabels,
+ )
+ result := &gauge{desc: desc, labelPairs: desc.constLabelPairs}
+ result.init(result) // Init self-collection.
+ return result
 }
 ```
 
 ### 应用示例
 
 ```go
-var	cpuTemp = prometheus.NewGauge(prometheus.GaugeOpts{Name: "a_cpu_temperature_celsius",Help: "Current temperature of the CPU."})
+var cpuTemp = prometheus.NewGauge(prometheus.GaugeOpts{Name: "a_cpu_temperature_celsius",Help: "Current temperature of the CPU."})
 prometheus.MustRegister(cpuTemp)
 cpuTemp.Set(65.3)
 ```
@@ -349,7 +348,7 @@ cpuTemp.Set(65.3)
 
 ```go
 func MustRegister(cs ...Collector) {
-	DefaultRegisterer.MustRegister(cs...)
+ DefaultRegisterer.MustRegister(cs...)
 }
 ```
 

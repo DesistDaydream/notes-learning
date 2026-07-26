@@ -1,6 +1,5 @@
 ---
 title: network
-linkTitle: network
 weight: 20
 ---
 

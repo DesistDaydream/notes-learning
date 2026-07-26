@@ -1,6 +1,5 @@
 ---
 title: 自建CA并签署证书
-linkTitle: 自建CA并签署证书
 weight: 20
 ---
 
@@ -8,7 +7,7 @@ weight: 20
 
 > 参考：
 >
-> - 
+> -
 
 主要依赖 genrsa, req, x509 这三个子命令
 
@@ -25,6 +24,7 @@ export SSL_KEY=${SSL_COMMON_NAME}.key
 export SSL_CSR=${SSL_COMMON_NAME}.csr
 export SSL_CRT=${SSL_COMMON_NAME}.crt
 ```
+
 ## 1. 创建根 CA 私钥
 
 首先，创建一个强 RSA 私钥用于你的根 CA：

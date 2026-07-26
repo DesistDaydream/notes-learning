@@ -1,6 +1,5 @@
 ---
 title: Clash
-linkTitle: Clash
 weight: 10
 ---
 
@@ -16,7 +15,7 @@ weight: 10
 > Clash Core 删库跑路后的选择
 >
 > - https://github.com/MetaCubeX/Clash.Meta # Clash.Meta
->   - https://github.com/MetaCubeX/mihomo/tree/Meta # 这才是主干分支。改名为 **Mihomo**，用原神作为对外显示（笑）
+>     - https://github.com/MetaCubeX/mihomo/tree/Meta # 这才是主干分支。改名为 **Mihomo**，用原神作为对外显示（笑）
 
 Clash 是一个 Go 语言开发的[Proxy](/docs/Web/Proxy/Proxy.md)客户端，支持多种服务端协议，比如 [VMess](/docs/4.数据通信/Protocol/Tunneling%20Protocol/VMess.md)、Shadowsocks、Trojan、Snell 等。
 
@@ -62,22 +61,22 @@ Clash 特性：
 # Clash GUI 客户端
 
 - ClashForAndroid # 安卓客户端
-  - https://github.com/Kr328/ClashForAndroid
-  - 已删库
+    - https://github.com/Kr328/ClashForAndroid
+    - 已删库
 - ClashN
-  - https://github.com/2dust/clashN
-  - 已合并到 v2rayN 项目
+    - https://github.com/2dust/clashN
+    - 已合并到 v2rayN 项目
 - ClashX：Clash 的 Mac 图形客户端
-  - [GitHub 项目，yichengchen/clashX](https://github.com/yichengchen/clashX)
-  - 已删库
+    - [GitHub 项目，yichengchen/clashX](https://github.com/yichengchen/clashX)
+    - 已删库
 - ClashForAndroid：Clash 的 Android 图形客户端
-  - [GitHub 项目，Kr328/ClashForAndroid](https://github.com/Kr328/ClashForAndroid)
-  - 已删库
+    - [GitHub 项目，Kr328/ClashForAndroid](https://github.com/Kr328/ClashForAndroid)
+    - 已删库
 - Clash for Windows：Clash 的 Windows/macOS 图形客户端
-  - [GitHub 项目，Fndroid/clash_for_windows_pkg](https://github.com/Fndroid/clash_for_windows_pkg)。详见[下文](#Clash%20for%20Windows)
-  - 已删库
+    - [GitHub 项目，Fndroid/clash_for_windows_pkg](https://github.com/Fndroid/clash_for_windows_pkg)。详见[下文](#Clash%20for%20Windows)
+    - 已删库
 - clash-verge
-  - https://github.com/zzzgydi/clash-verge/tree/main 基于 [Clash.Meta](https://github.com/MetaCubeX/Clash.Meta)。已归档跑路
+    - https://github.com/zzzgydi/clash-verge/tree/main 基于 [Clash.Meta](https://github.com/MetaCubeX/Clash.Meta)。已归档跑路
 
 ---
 
@@ -176,19 +175,19 @@ parsers:
 
 - **raw** # 从 url 中获取到的配置文件内容
 - **{ axios, yaml, notify, console }** # 导入的工具类对象/方法。可以直接在 `parse()` 方法中调用
-  - axios # 一个处理网络请求的库，[GitHub 项目，axios/axios](https://github.com/axios/axios)
-  - yaml # YAML 解析器库，[GitHub 项目，eemeli/yaml](https://github.com/eemeli/yaml)
-  - notify # 发出系统通知方法，签名为 `function notify(title:string, message:string, silent:bool)`
-  - console # 这里的 console 可以将内容输出至文件，方便调试。在 Settings 界面中 Profiles.Console Output 出可以打开该文件
-    - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hr9k1t/1654315106258-ceecd242-6d51-4b9f-b9ba-a79377934be2.png)
-    - 该文件默认保存在 `%LOCALAPPDATA%\Temp\cw-parser.log` 处
-  - homeDir # Home Directory 目录
+    - axios # 一个处理网络请求的库，[GitHub 项目，axios/axios](https://github.com/axios/axios)
+    - yaml # YAML 解析器库，[GitHub 项目，eemeli/yaml](https://github.com/eemeli/yaml)
+    - notify # 发出系统通知方法，签名为 `function notify(title:string, message:string, silent:bool)`
+    - console # 这里的 console 可以将内容输出至文件，方便调试。在 Settings 界面中 Profiles.Console Output 出可以打开该文件
+        - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/hr9k1t/1654315106258-ceecd242-6d51-4b9f-b9ba-a79377934be2.png)
+        - 该文件默认保存在 `%LOCALAPPDATA%\Temp\cw-parser.log` 处
+    - homeDir # Home Directory 目录
 - **{ name, url, interval, selected }** # 配置文件元数据
-  - name # 订阅的名称
-  - url # 订阅的 URL
-  - interval # 订阅的更新策略
-  - selected：策略组选择缓存，数组
-  - mode：模式缓存
+    - name # 订阅的名称
+    - url # 订阅的 URL
+    - interval # 订阅的更新策略
+    - selected：策略组选择缓存，数组
+    - mode：模式缓存
 
 #### 简单示例
 

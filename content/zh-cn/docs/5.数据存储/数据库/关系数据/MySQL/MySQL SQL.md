@@ -1,6 +1,5 @@
 ---
 title: MySQL SQL
-linkTitle: MySQL SQL
 weight: 20
 ---
 
@@ -17,7 +16,7 @@ SQL 语言被细分为几个语言元素，包括：
 - Predicates，指定可以评估为 SQL[三值逻辑 (3VL)](https://en.wikipedia.org/wiki/Ternary_logic)（真/假/未知）或[布尔](https://en.wikipedia.org/wiki/Boolean_logic) [真值](https://en.wikipedia.org/wiki/Truth_value)的条件，用于限制语句和查询的效果，或更改程序流程。
 - 查询，根据特定条件检索数据。这是 SQL 的一个重要元素。
 - 语句，可能对模式和数据产生持久影响，或者可能控制[事务](https://en.wikipedia.org/wiki/Database_transaction)、程序流、连接、会话或诊断。
-  - SQL 语句还包括[分号](https://en.wikipedia.org/wiki/Semicolon)(";") 语句终止符。虽然不是每个平台都需要它，但它被定义为 SQL 语法的标准部分。
+    - SQL 语句还包括[分号](https://en.wikipedia.org/wiki/Semicolon)(";") 语句终止符。虽然不是每个平台都需要它，但它被定义为 SQL 语法的标准部分。
 - [SQL 语句和查询中通常会忽略无关紧要的空格](<https://en.wikipedia.org/wiki/Whitespace_(computer_science)>)，从而更容易格式化 SQL 代码以提高可读性。
 
 在 MySQL 中按照功能将各种语句进行了分类：
@@ -124,7 +123,6 @@ GROUP BY
 
 此时可以取到 diversion 表中，按照 datalakeName 和 privateNetName 分组后，每组中最新的一条数据。
 
-
 # 运算符
 
 > 参考：
@@ -151,7 +149,7 @@ GROUP BY
 | [->>](https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#operator_json-inline-path)               | Return value from JSON column after evaluating path and unquoting the result; equivalent to JSON_UNQUOTE(JSON_EXTRACT()).                                                                    |                                                                               |              |
 | [/](https://dev.mysql.com/doc/refman/8.0/en/arithmetic-functions.html#operator_divide)                            | Division operator                                                                                                                                                                            |                                                                               |              |
 | [:=](https://dev.mysql.com/doc/refman/8.0/en/assignment-operators.html#operator_assign-value)                     | 变量赋值                                                                                                                                                                                     |                                                                               |              |
-| [=](https://dev.mysql.com/doc/refman/8.0/en/assignment-operators.html#operator_assign-equal)                      | 变量赋值（作为[ SET](https://dev.mysql.com/doc/refman/8.0/en/set-variable.html) 语句的一部分，或作为 [UPDATE](https://dev.mysql.com/doc/refman/8.0/en/update.html) 语句中 SET 子句的一部分） |                                                                               |              |
+| [=](https://dev.mysql.com/doc/refman/8.0/en/assignment-operators.html#operator_assign-equal)                      | 变量赋值（作为[SET](https://dev.mysql.com/doc/refman/8.0/en/set-variable.html) 语句的一部分，或作为 [UPDATE](https://dev.mysql.com/doc/refman/8.0/en/update.html) 语句中 SET 子句的一部分） |                                                                               |              |
 | [=](https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html#operator_equal)                             | Equal operator                                                                                                                                                                               |                                                                               |              |
 | [^](https://dev.mysql.com/doc/refman/8.0/en/bit-functions.html#operator_bitwise-xor)                              | Bitwise XOR                                                                                                                                                                                  |                                                                               |              |
 | [AND,&&](https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html#operator_and)                             | Logical AND                                                                                                                                                                                  |                                                                               |              |
@@ -171,12 +169,12 @@ GROUP BY
 | [NOT IN()](https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html#operator_not-in)                     | Whether a value is not within a set of values                                                                                                                                                |                                                                               |              |
 | [NOT LIKE](https://dev.mysql.com/doc/refman/8.0/en/string-comparison-functions.html#operator_not-like)            | Negation of simple pattern matching                                                                                                                                                          |                                                                               |              |
 | [NOT REGEXP](https://dev.mysql.com/doc/refman/8.0/en/regexp.html#operator_not-regexp)                             | Negation of REGEXP                                                                                                                                                                           |                                                                               |              |
-| [OR,                                                                                                              |                                                                                                                                                                                              | ](https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html#operator_or) | Logical OR   |     |     |
+| [OR,                                                                                                              |                                                                                                                                                                                              |](https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html#operator_or) | Logical OR   |     |     |
 | [REGEXP](https://dev.mysql.com/doc/refman/8.0/en/regexp.html#operator_regexp)                                     | Whether string matches regular expression                                                                                                                                                    |                                                                               |              |
 | [RLIKE](https://dev.mysql.com/doc/refman/8.0/en/regexp.html#operator_regexp)                                      | Whether string matches regular expression                                                                                                                                                    |                                                                               |              |
 | [SOUNDS LIKE](https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#operator_sounds-like)                 | Compare sounds                                                                                                                                                                               |                                                                               |              |
 | [XOR](https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html#operator_xor)                                | Logical XOR                                                                                                                                                                                  |                                                                               |              |
-| [                                                                                                                 | ](https://dev.mysql.com/doc/refman/8.0/en/bit-functions.html#operator_bitwise-or)                                                                                                            | Bitwise OR                                                                    |              |     |
+| [|](https://dev.mysql.com/doc/refman/8.0/en/bit-functions.html#operator_bitwise-or)                                                                                                            | Bitwise OR                                                                    |              |     |
 | [~](https://dev.mysql.com/doc/refman/8.0/en/bit-functions.html#operator_bitwise-invert)                           | Bitwise inversion                                                                                                                                                                            |                                                                               |              |
 
 # 数据库管理语句
@@ -188,11 +186,11 @@ GROUP BY
 ### EXAMPLE
 
 - 查看创建 test 数据库的 sql 语句
-  - show create database test;
+    - show create database test;
 - 查看创建 test 表的 sql 语句
-  - show create table test;
+    - show create table test;
 - 显示数据库的状态信息
-  - show status;
+    - show status;
 
 # 实用程序语句
 

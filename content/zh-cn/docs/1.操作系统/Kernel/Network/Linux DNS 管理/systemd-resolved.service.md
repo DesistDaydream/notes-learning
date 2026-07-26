@@ -1,6 +1,5 @@
 ---
 title: systemd-resolved.service
-linkTitle: systemd-resolved.service
 weight: 100
 ---
 

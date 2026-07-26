@@ -1,6 +1,5 @@
 ---
 title: "PotPlayer"
-linkTitle: "PotPlayer"
 weight: 20
 ---
 
@@ -10,5 +9,3 @@ weight: 20
 >
 > - [官网](https://potplayer.tv/)
 > - [Wiki, PotPlayer](https://en.wikipedia.org/wiki/PotPlayer)
-
-

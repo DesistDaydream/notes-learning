@@ -1,6 +1,5 @@
 ---
 title: Service Manifests
-linkTitle: Service Manifests
 weight: 20
 ---
 
@@ -69,10 +68,10 @@ name: NAME # 与 Endpoints 所关联的 Service 的 name 想同
 subsets 描述子集
 
 - **addresses: []OBJECT**
-  - **ip: STRING** #
-  - **hostname: STRING** #
+    - **ip: STRING** #
+    - **hostname: STRING** #
 - **ports: []OBJECT** #
-  - **port: INT32** # Endpoint 的端口
+    - **port: INT32** # Endpoint 的端口
 
 # Manifests 样例
 

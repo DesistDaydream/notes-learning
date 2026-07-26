@@ -1,6 +1,5 @@
 ---
 title: Service Account
-linkTitle: Service Account
 weight: 20
 ---
 

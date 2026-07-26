@@ -1,6 +1,5 @@
 ---
 title: Tempo
-linkTitle: Tempo
 weight: 20
 ---
 

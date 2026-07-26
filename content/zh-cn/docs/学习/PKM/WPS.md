@@ -1,6 +1,5 @@
 ---
 title: WPS
-linkTitle: WPS
 weight: 20
 ---
 
@@ -22,6 +21,6 @@ weight: 20
 - C:/Users/DesistDaydream/AppData/Local/kingsoft/ # 不知道干啥用的
 - C:/Users/DesistDaydream/AppData/Roaming/kingsoft/ # 不知道干啥用的
 - **%我的文档%/KingsoftData/** #
-  - 暂时不知道win中“我的文档”的变量是什么。
+    - 暂时不知道win中“我的文档”的变量是什么。
 - **%我的文档%/WPS Cloud Files/**
-  - `./${ACCOUNT_ID}/cachedata/${RANDOM_NUM}/` # 金山文档通过 wps 方式打开后，会将文件缓存到该目录。每个文件占一个目录。
+    - `./${ACCOUNT_ID}/cachedata/${RANDOM_NUM}/` # 金山文档通过 wps 方式打开后，会将文件缓存到该目录。每个文件占一个目录。

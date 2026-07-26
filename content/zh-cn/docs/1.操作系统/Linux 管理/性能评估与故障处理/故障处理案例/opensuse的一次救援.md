@@ -1,6 +1,5 @@
 ---
 title: opensuse的一次救援
-linkTitle: opensuse的一次救援
 weight: 20
 source: https://zhangguanzhang.github.io/2019/12/05/suse-fix-data-but-device-busy/
 ---
@@ -9,7 +8,7 @@ source: https://zhangguanzhang.github.io/2019/12/05/suse-fix-data-but-device-bus
 
 > 参考：
 >
-> - 
+> -
 
 昨晚吃完晚饭回到办公室，右边同事在控制台看着一个suse起不来一直启动的时候卡在suse的蜥蜴logo背景图那。见我来了叫我看下，他们已经尝试过恢复快照，但是还不行，应该是很久之前损坏的，只不过因为没重启没发现，我叫他重启下看看卡在哪，重启后进入内核后显示背景图那按下esc然后看卡在/sysroot挂载那。目测分区损坏了，经历了ubuntu的安装iso的rescue mode就是渣渣后，我还是信任centos的iso。
 
@@ -17,7 +16,7 @@ source: https://zhangguanzhang.github.io/2019/12/05/suse-fix-data-but-device-bus
 
 ### 先备份和准备工作
 
-关闭虚机，后台拷贝下系统盘的卷先备份下。然后给虚机的IDE光驱挂载了个centos 7.5 DVD的iso，修改虚机启动顺序到ISO，进 `Troubleshooting` –> `Rescue a CentOS Linux system`  
+关闭虚机，后台拷贝下系统盘的卷先备份下。然后给虚机的IDE光驱挂载了个centos 7.5 DVD的iso，修改虚机启动顺序到ISO，进 `Troubleshooting` –> `Rescue a CentOS Linux system`
 一般损坏的都不建议选1，因为挂载不上，所以是选3手动处理
 
 ### Device or resource busy
@@ -52,7 +51,7 @@ root       6126  0.0  0.0  19940    840 pts/0      D+   11:56   0:00 /usr/bin/mo
 root       6113  0.0  0.0  19940    840 pts/0      D+   12:02   0:00 /usr/bin/mount -t xfs -o defaults,ro /dev/mapper/suse-lv_root /mnt/sysimage
 [anaconda root@localhost /]# ps -Al | grep mount
 4 D     0   6113   5862  0  80   0 -  4985 xfs_bu pts/0    00:00:00 mount
-[anaconda root@localhost /]# ps aux | grep 586[2] 
+[anaconda root@localhost /]# ps aux | grep 586[2]
 root       5862  0.0  0.0  19940    840 pts/0      D+   12:02   0:00 python anaconda
 ```
 
@@ -96,8 +95,8 @@ Note that destroying the log may cause corruption -- please attempt a mount
 of the filesystem before doing this.
 ```
 
-该报错大致意思是: 文件系统的log需要在repair之前先mount它来触发回放log，如果无法挂载，使用 `xfs_repair` 带上 `-L` 选项摧毁log强制修复  
-正确姿势是先使用 `xfs_metadump` 导出metadata，见文章 [https://serverfault.com/questions/777299/proper-way-to-deal-with-corrupt-xfs-filesystems](https://serverfault.com/questions/777299/proper-way-to-deal-with-corrupt-xfs-filesystems)  
+该报错大致意思是: 文件系统的log需要在repair之前先mount它来触发回放log，如果无法挂载，使用 `xfs_repair` 带上 `-L` 选项摧毁log强制修复
+正确姿势是先使用 `xfs_metadump` 导出metadata，见文章 [https://serverfault.com/questions/777299/proper-way-to-deal-with-corrupt-xfs-filesystems](https://serverfault.com/questions/777299/proper-way-to-deal-with-corrupt-xfs-filesystems)
 这里因为已经损坏了，没必要测试mount了，并且我未导出metadata，直接-L修复的，下次遇到了相似场景可以试下 `xfs_metadump`
 
 ```bash
@@ -256,11 +255,11 @@ vi /var/log/messages
 2019-12-04T22:02:05.868883+08:00 bpcprdascs1 wicked: org.freedesktop.DBus.Error.ServiceUnknown: The name org.opensuse.Network was not provided by any .service files
 ```
 
-这个错误找了一圈都没正确的解决办法，还是自己突发奇想在 `/etc/dbus-1/` 对比了下发现文件丢失  
+这个错误找了一圈都没正确的解决办法，还是自己突发奇想在 `/etc/dbus-1/` 对比了下发现文件丢失
 正常机器上
 
 ```bash
-bpcprdascs2:/etc/dbus-1/system.d # find /etc/dbus-1/ -type f 
+bpcprdascs2:/etc/dbus-1/system.d # find /etc/dbus-1/ -type f
 /etc/dbus-1/system.d/org.opensuse.Snapper.conf
 /etc/dbus-1/system.d/org.freedesktop.hostname1.conf
 /etc/dbus-1/system.d/org.freedesktop.import1.conf
@@ -296,7 +295,7 @@ bpcprdascs2:/etc/dbus-1/system.d # find /etc/dbus-1/ -type f
 该故障机器上
 
 ```bash
-bpcprdascs1:/var/log # find /etc/dbus-1/ -type f 
+bpcprdascs1:/var/log # find /etc/dbus-1/ -type f
 /etc/dbus-1/system.d/org.opensuse.Snapper.conf
 /etc/dbus-1/system.d/org.freedesktop.hostname1.conf
 /etc/dbus-1/system.d/org.freedesktop.import1.conf
@@ -317,7 +316,7 @@ bpcprdascs1:/var/log # find /etc/dbus-1/ -type f
 /etc/dbus-1/system.conf
 ```
 
-因为故障机器的网络无法启动，即使手动 `ip addr add` 也报错dbus，所以无法通过网络scp。于是在后台正常机器给添加了一个数据盘，把该目录的文件拷贝到数据盘上，再把数据盘挂载到故障机器上。然后cp拷贝完重启，然后网络起来了  
+因为故障机器的网络无法启动，即使手动 `ip addr add` 也报错dbus，所以无法通过网络scp。于是在后台正常机器给添加了一个数据盘，把该目录的文件拷贝到数据盘上，再把数据盘挂载到故障机器上。然后cp拷贝完重启，然后网络起来了
 只剩下故障
 
 ```bash

@@ -1,6 +1,5 @@
 ---
 title: "Driver"
-linkTitle: "Driver"
 weight: 1
 ---
 

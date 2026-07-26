@@ -1,6 +1,5 @@
 ---
 title: Deep learning
-linkTitle: Deep learning
 weight: 2
 ---
 
@@ -36,5 +35,3 @@ Paddle，百度飞桨
 > - [GitHub 项目，microsoft/DeepSpeed](https://github.com/microsoft/DeepSpeed)
 
 DeepSpeed Chat 一键式 RLHF 训练，让你的类 ChatGPT 千亿大模型提速省钱 15 倍
-
-

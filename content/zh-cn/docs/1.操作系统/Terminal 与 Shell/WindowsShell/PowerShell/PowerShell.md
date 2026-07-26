@@ -1,6 +1,5 @@
 ---
 title: "PowerShell"
-linkTitle: "PowerShell"
 weight: 1
 ---
 

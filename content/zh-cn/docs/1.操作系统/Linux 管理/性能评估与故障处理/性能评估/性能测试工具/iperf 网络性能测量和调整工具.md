@@ -1,6 +1,5 @@
 ---
 title: iperf 网络性能测量和调整工具
-linkTitle: iperf 网络性能测量和调整工具
 weight: 20
 ---
 
@@ -44,7 +43,7 @@ weight: 20
 - **-c, --client \<HOST>** # 在客户端模式下运行 iperf3，并连接到指定的服务端主机 HOST
 - **-u, --udp** # 使用 UPD 模式进行测试。默认为 TCP
 - **-b, --bandwidth \<NUM>** # 指定目标带宽上限，单位是 bits/s（0 表示无限制）（UDP 默认为 1 Mbit / sec，TCP 无限制）
-  - 该选项为每个线程的带宽上限，比如我如果 -P 选项为 2，-b 为 100M ，那么当前测试每个线程的带宽上限为 100M，总上限 200M
+    - 该选项为每个线程的带宽上限，比如我如果 -P 选项为 2，-b 为 100M ，那么当前测试每个线程的带宽上限为 100M，总上限 200M
 - --fq-rate # [KMG]enable fair-queuing based socket pacing in bits/sec (Linux only)
 - **-t, --time** # 指定传输数据的总时间。(默认为 10 秒)
 - **-n, --bytes [KMG]** # 要传输的字节数 (不可与 -t 选项同用)

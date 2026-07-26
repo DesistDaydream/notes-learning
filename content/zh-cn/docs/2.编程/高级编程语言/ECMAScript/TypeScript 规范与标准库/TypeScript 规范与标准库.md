@@ -6,7 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [TypeScript 官网](https://www.typescriptlang.org/)
 
 - **TypeScript 语言参考**描述了 TypeScript 语言的具体语法和语义

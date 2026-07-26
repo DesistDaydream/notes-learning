@@ -1,6 +1,5 @@
 ---
 title: "Slack"
-linkTitle: "Slack"
 weight: 20
 ---
 

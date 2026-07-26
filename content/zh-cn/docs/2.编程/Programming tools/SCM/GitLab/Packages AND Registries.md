@@ -1,6 +1,5 @@
 ---
 title: Packages AND Registries
-linkTitle: Packages AND Registries
 weight: 20
 ---
 

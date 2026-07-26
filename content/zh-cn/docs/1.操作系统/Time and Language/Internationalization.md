@@ -1,6 +1,5 @@
 ---
 title: Internationalization
-linkTitle: Internationalization
 weight: 20
 ---
 
@@ -107,6 +106,6 @@ EOF
 ### 注意事项
 
 - 在某些系统上，你可能还需要使用`localectl`命令来设置语言，例如：
-  - `sudo localectl set-locale LANG=en_US.UTF-8`
+    - `sudo localectl set-locale LANG=en_US.UTF-8`
 - 修改系统语言环境后，确保系统已经安装了对应的语言包，如果没有，可能需要使用包管理器（如`apt`或`yum`）来安装。
 - 以上步骤适用于大多数Linux发行版，但具体命令和文件路径可能因发行版而异，请根据实际情况调整。

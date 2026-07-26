@@ -5,7 +5,7 @@ title: DOM
 # 概述
 
 > 参考：
-> 
+>
 > - [WHATWG，DOM 标准](https://dom.spec.whatwg.org/)
 > - [MDN，参考-WebAPIs-DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
 

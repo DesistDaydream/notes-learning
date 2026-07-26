@@ -40,8 +40,8 @@ OBJECT 是 key=value 的键值对格式。key 为 API 组名称，value 为 true
 **--v NUM # 指定日志级别**
 
 - 参考：
-  - https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-output-verbosity-and-debugging
-  - https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/logging.md
+    - https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-output-verbosity-and-debugging
+    - https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/logging.md
 - --v=0 # 通常对此有用，*始终*对运维人员可见。
 - --v=1 # 如果您不想要详细程度，则为合理的默认日志级别。
 - --v=2 # 有关服务的有用稳定状态信息以及可能与系统中的重大更改相关的重要日志消息。这是大多数系统的建议默认日志级别。

@@ -1,6 +1,5 @@
 ---
 title: Kubeapps
-linkTitle: Kubeapps
 weight: 1
 ---
 
@@ -17,7 +16,7 @@ Kubeapps 可以实现下述功能：
 
 - 从 Chart 仓库浏览和部署 Helm
 - 检查、升级、删除集群中已经安装的基于 Helm 的应用程序。
-  - 可以看到，Kubeapps 与原生 Helm 结合比较紧密，这一点是 Rancher 做不到的。
+    - 可以看到，Kubeapps 与原生 Helm 结合比较紧密，这一点是 Rancher 做不到的。
 - 添加自定义和自由 Chart 仓库
 - 浏览和部署 Kubernetes Operator
 - 使用 OAuth2/OIDC 提供程序对 Kubeapps 进行安全身份验证
@@ -47,9 +46,9 @@ Kubeapps 会创建如下几个 ClusterRole 对象，以便进行权限管理：
 - kubeapps:controller:kubeops-ns-discovery-kubeapps # 查看名称空间
 - kubeapps:controller:kubeops-operators-kubeapps # 对 packagemanifests/icon 自定义资源的查看权限
 - APP 仓库管理权限
-  - kubeapps:kubeapps:apprepositories-read # 查看仓库
-  - kubeapps:kubeapps:apprepositories-refresh # 更新仓库
-  - kubeapps:kubeapps:apprepositories-write # 增删改查仓库，即对 apprepositories.kubeapps.com 这个自定义资源的全部权限
+    - kubeapps:kubeapps:apprepositories-read # 查看仓库
+    - kubeapps:kubeapps:apprepositories-refresh # 更新仓库
+    - kubeapps:kubeapps:apprepositories-write # 增删改查仓库，即对 apprepositories.kubeapps.com 这个自定义资源的全部权限
 
 ## 权限管理示例
 

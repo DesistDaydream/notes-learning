@@ -1,6 +1,5 @@
 ---
 title: 构建 OCI Image
-linkTitle: 构建 OCI Image
 weight: 1
 ---
 
@@ -31,7 +30,7 @@ Docker 通过读取 **Dockerfile 文件**中的指令来构建符合 OCI 标准�
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ymn9n3/1616121926992-8640dd4a-029c-487c-9fa2-f20ee1b61b83.png)
 
 - 找一个专用目录，在目录中放入默认的名为 Dockerfile 的文件，该文件名首字母必须大写
-  - Dockerfile 文件，类似于一个脚本，使用 docker build 命令创建镜像的时候默认使用名为 Dockerfile 的文件，通过该文件中的各种指令来执行操作。（如果想使用其余名字的文件，则需要使用-f 参数来指明需要使用的 DockerFile 的文件，这时候可以使用名字不为 Dockerfile 的文件）
+    - Dockerfile 文件，类似于一个脚本，使用 docker build 命令创建镜像的时候默认使用名为 Dockerfile 的文件，通过该文件中的各种指令来执行操作。（如果想使用其余名字的文件，则需要使用-f 参数来指明需要使用的 DockerFile 的文件，这时候可以使用名字不为 Dockerfile 的文件）
 - 如果该 Image 中需要打包进去很多文件(比如 rpm 包、配置文件等等)，则这些文件必须做好后，放到 Dockerfile 所在的目录中(可以有子目录)。
 - 使用 docker build 命令并用指定目录路径，则该命令会自动查找该目录下的名为 Dockerfile 文件并根据其中内容创建 Image，效果如上图所示
 
@@ -50,8 +49,8 @@ RUN apt install -y iproute2
 ```
 
 - 使用 docker build -t ubuntu-vi -f test /dockerfile/ 命令创建镜像
-  - 当创建镜像的时候，会使用命令中定义的 PATH 中的默认名为 Dockerfile 文件中的指令来进行自动操作，可以通过-f 选项来选择指定路径下的 Dockerfile 文件（注：命令会从/dockerfile/目录中查找 Dockerfile 文件，然后把/root 目录中的所有文件发送给 Docker daemon 来使用，所以定义创建环境的时候最好使用一个空目录）
-    - sending(发送)build context(创建环境)to(给)docker daemon(容器守护进程) 17.92KB(这个文件 17.92K)
+    - 当创建镜像的时候，会使用命令中定义的 PATH 中的默认名为 Dockerfile 文件中的指令来进行自动操作，可以通过-f 选项来选择指定路径下的 Dockerfile 文件（注：命令会从/dockerfile/目录中查找 Dockerfile 文件，然后把/root 目录中的所有文件发送给 Docker daemon 来使用，所以定义创建环境的时候最好使用一个空目录）
+        - sending(发送)build context(创建环境)to(给)docker daemon(容器守护进程) 17.92KB(这个文件 17.92K)
 
 ```bash
 ~]# docker build -t ubuntu-vi -f test /dockerfile/
@@ -137,7 +136,7 @@ ubuntu              latest              93fd78260bd1        7 days ago          
 
 - 该过程结束
 - 总结
-  - dockerfile 的每一个命令，就是给 base image 上新加一层 image
+    - dockerfile 的每一个命令，就是给 base image 上新加一层 image
 
 ### Dockerfile 构建镜像的过程
 

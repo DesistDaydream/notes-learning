@@ -30,7 +30,7 @@ INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`)
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/osqpuu/1616133530263-c38130ab-121b-4b17-a60a-cfab979b341d.png)
 
-## 2、在事务中进行插入处理。
+## 2、在事务中进行插入处理
 
 把插入修改成：
 
@@ -50,7 +50,7 @@ COMMIT;
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/osqpuu/1616133530313-c27041f7-5ee1-40ad-b700-39240dcf2a81.png)
 
-## 3、数据有序插入。
+## 3、数据有序插入
 
 数据有序的插入是指插入记录在主键上是有序排列，例如 datetime 是记录的主键：
 

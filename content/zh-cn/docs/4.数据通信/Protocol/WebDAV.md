@@ -1,6 +1,5 @@
 ---
 title: WebDAV
-linkTitle: WebDAV
 weight: 20
 ---
 
@@ -8,7 +7,7 @@ weight: 20
 
 > 参考：
 >
-> - [RFC 4918, HTTP Extensions for Web Distributed Authoring and Versioning (WebDAV) ](https://www.rfc-editor.org/rfc/rfc4918.html)
+> - [RFC 4918, HTTP Extensions for Web Distributed Authoring and Versioning (WebDAV)](https://www.rfc-editor.org/rfc/rfc4918.html)
 > - [Wiki, WebDAV](https://en.wikipedia.org/wiki/WebDAV)
 > - <https://www.zhihu.com/question/30719209>
 

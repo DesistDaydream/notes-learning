@@ -1,6 +1,5 @@
 ---
 title: Bypass switch
-linkTitle: Bypass switch
 weight: 4
 ---
 
@@ -25,8 +24,8 @@ Bypass tap 通常至少有 4 个端口。
 通常来说，这两种情况可以用两种模式来概括
 
 - **Normal mode** # 流量经过 Bypass 的 C 与 D 端口，到达其他设备后，再发送到下一跳的设备
-  - 有的地方也称为 **控制模式**
+    - 有的地方也称为 **控制模式**
 - **Bypass mode** # 流量经过 Bypass 的 A 与 B 端口，直接到达下一跳的设备
-  - 有的地方也称为 **直通模式**
+    - 有的地方也称为 **直通模式**
 
 > 在中文环境中也有的将 Bypass tap 称为 Optical swap(光切换设备，Optiswap)、光开关、etc.

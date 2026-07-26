@@ -1,6 +1,5 @@
 ---
 title: net-snmp-utils
-linkTitle: net-snmp-utils
 weight: 20
 ---
 
@@ -60,11 +59,11 @@ OPTIONS
 - **-c \<STRING>** # 团体名
 - **-v <1 | 2c | 3>** # snmp 版本
 - 认证相关选项
-  - **-u USERNAME** # 用户名
-  - -**a PROTOCOL** # 指定认证的算法
-  - **-A PASSWORD** # 指定认证的密码
-  - **-x PROTOCOL** # 指定加密的算法
-  - -**X PASSWORD** # 指定加密的密码
+    - **-u USERNAME** # 用户名
+    - -**a PROTOCOL** # 指定认证的算法
+    - **-A PASSWORD** # 指定认证的密码
+    - **-x PROTOCOL** # 指定加密的算法
+    - -**X PASSWORD** # 指定加密的密码
 
 EXAMPLE
 
@@ -100,7 +99,7 @@ OPTIONS
 EXAMPLE
 
 - 创建一个 snmp 的 v3 用户，只读模式，认证算法为 SHA，认证密码是 nm@tjiptv，加密算法是 AES，加密密码是 nm@tjiptv，用户名是 nm
-  - net-snmp-create-v3-user -ro -a SHA -A nm@tjiptv -x AES -X nm@tjiptv nm
+    - net-snmp-create-v3-user -ro -a SHA -A nm@tjiptv -x AES -X nm@tjiptv nm
 
 # snmptranslate - 转换 OID 的格式
 
@@ -127,7 +126,7 @@ EXAMPLE
 **EXAMPLE**
 
 - 根据当前配置，显示所有的 OID 的两种格式
-  - snmptranslate -Tz
+    - snmptranslate -Tz
 
 显示指定 OID 的数字及其详情
 

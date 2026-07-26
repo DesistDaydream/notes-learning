@@ -1,6 +1,5 @@
 ---
 title: PromQL Operators(运算符)
-linkTitle: PromQL Operators(运算符)
 weight: 2
 ---
 

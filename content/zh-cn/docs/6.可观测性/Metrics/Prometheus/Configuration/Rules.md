@@ -1,6 +1,5 @@
 ---
 title: Rules
-linkTitle: Rules
 weight: 2
 ---
 
@@ -84,7 +83,7 @@ groups:
 
 - alert # 告警规则的名称。
 - expr # 基于 PromQL 表达式告警触发条件，用于计算是否有时间序列满足该条件。
-  - 该样例的意思是某个值减去某几个值的和再除以某个值如果大于 20 就产生告警
+    - 该样例的意思是某个值减去某几个值的和再除以某个值如果大于 20 就产生告警
 - for # evaluation(评估) 等待时间，可选参数。用于表示只有当触发条件持续一段时间后才发送告警。在等待期间新产生告警的状态为 pending。
 - labels # 自定义标签，允许用户指定要附加到告警信息上的一组附加标签。
 - annotations # 用于指定一组注释，用于描述告警的详细信息，annotations 的内容在告警产生时会一同作为参数发送到 Alertmanager。这里面的 key 与 value 都可以自己定义。这一部分的内容是在讲告警发到接收者的时候，接收者能看到的信息。常用语描述告警信息以便管理员定位问题
@@ -109,8 +108,8 @@ groups:
 - **interval**(DURATION) # 对这个组中的规则进行 evaluated(评估) 的频率。`默认值: PrometheusServer 配置文件中的 global.evaluation_interval 的值`
 - **limit**(INT) # 限制警报规则和记录规则可以生成的警报系列的数量。 `默认值: 0`，0 表示没有限制。
 - **rules**(\[]OBJECT) # 定义 Prometheus Rule 详情。rules 字段下使用不同的子字段会对应不同的规则。
-  - 包含 record 字段时，则该规则为 [Recording Rule](#Recording%20Rule)
-  - 包含 alert 字段时，则该规则为 [Alerting Rule](#Alerting%20Rule)
+    - 包含 record 字段时，则该规则为 [Recording Rule](#Recording%20Rule)
+    - 包含 alert 字段时，则该规则为 [Alerting Rule](#Alerting%20Rule)
 
 Recording Rule 与 Alerting Rule 存在于规则组中。组中的规则以规定的时间间隔顺序运行，并具有相同的规则评估时间。Recording Rule 的名称必须是有效的 Metrics 名称。Alerting Rule 名称则比较宽泛，可以随意定义，一般来说，满足有效的标签值即可。
 

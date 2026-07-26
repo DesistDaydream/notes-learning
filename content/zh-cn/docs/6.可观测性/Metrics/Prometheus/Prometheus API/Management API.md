@@ -1,6 +1,5 @@
 ---
 title: Management API
-linkTitle: Management API
 weight: 20
 ---
 

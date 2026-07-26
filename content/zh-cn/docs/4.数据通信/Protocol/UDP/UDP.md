@@ -1,6 +1,5 @@
 ---
 title: UDP
-linkTitle: UDP
 weight: 1
 ---
 

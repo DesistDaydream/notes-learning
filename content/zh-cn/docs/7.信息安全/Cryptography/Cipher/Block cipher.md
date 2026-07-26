@@ -1,6 +1,5 @@
 ---
 title: "Block cipher"
-linkTitle: "Block cipher"
 weight: 20
 ---
 
@@ -30,7 +29,7 @@ Block cipher 算法设计了多种模式以适应各种加密需求：
 
 - [Padding(填充)](#padding)
 - [Initialization vector((初始化向量，简称 IV)](#iv)
-  - ECB 模式不需要 IV
+    - ECB 模式不需要 IV
 
 ## Padding
 
@@ -40,7 +39,7 @@ Block cipher 算法在加密时将明文分成固定长度的块（128 bit，i.e
 
 - **NoPadding** # 不填充，要求明文是 16 Bytes 的整数倍。
 - **PKCS5Padding/PKCS7Padding** # 按照 `PKCS#5` 或 `PKCS#7` 的标准进行填充，填充值为缺少的字节数，例如缺少 5 个字节，就填充 `05 05 05 05 05`。这两种方式在 [AES](/docs/7.信息安全/Cryptography/对称密钥加密/AES.md) 中没有区别。
-  - 与非对称加密标准中的 PKCS 好像不是一个概念？？
+    - 与非对称加密标准中的 PKCS 好像不是一个概念？？
 - **ISO10126Padding** # 除了最后一个字节表示缺少的字节数外，其他字节用随机数填充，例如缺少 5 个字节，就填充 `XX XX XX XX 05`（XX 表示随机数）。
 - **ZeroPadding** # 用 0 填充，如果明文刚好是 16 字节的整数倍，就再添加一个分组的 0。
 - **其他** # 还有一些其他的填充方式，如 ISO7816-4Padding、X923Padding、TBCPadding 等，具体可以参考网上的资料。
@@ -69,4 +68,3 @@ https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Electronic_codebook
 https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher_block_chaining_(CBC)
 
 **Cipher block chaining(密码块链)**
-

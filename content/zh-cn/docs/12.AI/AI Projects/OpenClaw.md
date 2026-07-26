@@ -1,6 +1,5 @@
 ---
 title: OpenClaw
-linkTitle: OpenClaw
 created: 2026-03-25T21:24
 weight: 100
 ---
@@ -36,7 +35,7 @@ https://github.com/duanyytop/agents-radar
 - [OpenClaw](https://github.com/openclaw/openclaw)
 - [NanoBot](https://github.com/HKUDS/nanobot)
 - [Zeroclaw](https://github.com/zeroclaw-labs/zeroclaw)
-- [PicoClaw](#PicoClaw)
+- [PicoClaw](#picoclaw)
 - [NanoClaw](https://github.com/qwibitai/nanoclaw)
 - [IronClaw](https://github.com/nearai/ironclaw)
 - [LobsterAI](https://github.com/netease-youdao/LobsterAI)
@@ -71,7 +70,7 @@ pkg/gateway/gateway.go
 
 **一.** `Run()` # PicoClaw 的 Gateway 模式启动
 
-**二.** `createStartupProvider()` # 创建并启动 [Providers](#Providers)
+**二.** `createStartupProvider()` # 创建并启动 [Providers](#providers)
 
 **三.** `bus.NewMessageBus()` # 实例化消息总线
 
@@ -88,7 +87,7 @@ pkg/gateway/gateway.go
 
 `pkg/agent/loop.go`
 
-**一.** `case msg, ok := <-al.bus.InboundChan()` # 消息入口。`InboundChan()` 接收到来自 [Channels](#Channels) 的消息后开始走这部分流程。
+**一.** `case msg, ok := <-al.bus.InboundChan()` # 消息入口。`InboundChan()` 接收到来自 [Channels](#channels) 的消息后开始走这部分流程。
 
 - `InboundChan()` 返回的是 `bus.InboundMessage` 类型的 Go 通道，名为 inbound。Channels 将消息推送到 inbound 后，由消息处理模块进行消费处理。
 
@@ -110,12 +109,14 @@ pkg/gateway/gateway.go
         - 加载 Skills
     - `turnState.agent.Tools.ToProviderDefs()` # 组装上下文，要发送给 LLM 的 [Tools](/docs/12.AI/自然语言处理/自然语言处理.md#Tools)
     - TODO: 非结构化的媒体文件怎么处理？
+
 > [!Tip] pkg/agent/context.go 中 `ContextBuilder.getIdentity()` 是代码中内置的 system prompt，设定了几个非常核心且简单的逻辑，包括工作路径，有限使用工具等。
 >
 > getIdentity 之后还会从其他几个文件中读取一些信息填充到 messages。
-- **turnLoop** # <font color="#ff0000">开始核心循环逻辑</font>。其中包括 调用 [Providers](#Providers) 获取推理结果、调用工具、etc. 。详见 [turnLoop](#turnLoop)
 
-**七.** `al.bus.PublishOutbound()` # 消息出口。将推理结果发送给 [Channels](#Channels)
+- **turnLoop** # <font color="#ff0000">开始核心循环逻辑</font>。其中包括 调用 [Providers](#providers) 获取推理结果、调用工具、etc. 。详见 [turnLoop](#turnloop)
+
+**七.** `al.bus.PublishOutbound()` # 消息出口。将推理结果发送给 [Channels](#channels)
 
 ## turnLoop
 
@@ -133,7 +134,7 @@ pkg/gateway/gateway.go
 
 **二.** `callLLM func()` # 调用 LLM
 
-- `providers.LLMProvider.Chat()` # LLMProvider 接口的 Chat 方法。调用 [Providers](#Providers) <font color="#ff0000">获取模型服务的推理结果</font>
+- `providers.LLMProvider.Chat()` # LLMProvider 接口的 Chat 方法。调用 [Providers](#providers) <font color="#ff0000">获取模型服务的推理结果</font>
 
 **三.** 若 LLM 返回了 `tool_calls`，则开始 [工具调用](#工具调用)
 
@@ -244,4 +245,3 @@ type LLMProvider interface{
     GetDefaultModel() string
 }
 ```
-

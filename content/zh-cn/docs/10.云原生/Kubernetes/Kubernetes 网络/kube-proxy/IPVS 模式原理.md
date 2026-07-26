@@ -34,7 +34,7 @@ kube-proxy 有三种模式：`userspace`、`iptables` 和 `IPVS`，其中 `users
 
 首先需要开启 Linux 的路由转发功能：
 
-    $ sysctl --write net.ipv4.ip_forward=1
+    sysctl --write net.ipv4.ip_forward=1
 
 接下来的命令主要做了这么几件事：
 
@@ -47,7 +47,6 @@ kube-proxy 有三种模式：`userspace`、`iptables` 和 `IPVS`，其中 `users
 - 为每个网络命名空间设定默认路由
 - 添加 iptables 规则，允许流量进出 `bridge_home` 接口
 - 添加 iptables 规则，针对 `10.0.0.0/24` 网段进行流量伪装
-
 
     $ ip link add dev bridge_home type bridge
     $ ip address add 10.0.0.1/24 dev bridge_home
@@ -80,18 +79,18 @@ kube-proxy 有三种模式：`userspace`、`iptables` 和 `IPVS`，其中 `users
 
 在网络命名空间 `netns_dustin` 中启动 HTTP 服务：
 
-    $ ip netns exec netns_dustin python3 -m http.server 8080
+    ip netns exec netns_dustin python3 -m http.server 8080
 
 打开另一个终端窗口，在网络命名空间 `netns_leah` 中启动 HTTP 服务：
 
-    $ ip netns exec netns_leah python3 -m http.server 8080
+    ip netns exec netns_leah python3 -m http.server 8080
 
 测试各个网络命名空间之间是否能正常通信：
 
-    $ curl 10.0.0.11:8080
-    $ curl 10.0.0.21:8080
-    $ ip netns exec netns_dustin curl 10.0.0.21:8080
-    $ ip netns exec netns_leah curl 10.0.0.11:8080
+    curl 10.0.0.11:8080
+    curl 10.0.0.21:8080
+    ip netns exec netns_dustin curl 10.0.0.21:8080
+    ip netns exec netns_leah curl 10.0.0.11:8080
 
 整个实验环境的网络拓扑结构如图：
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/tks8fg/1622427693866-6e003a1f-1ad3-4cdb-9d77-d29e432686cb.png)
@@ -100,7 +99,7 @@ kube-proxy 有三种模式：`userspace`、`iptables` 和 `IPVS`，其中 `users
 
 为了便于调试 IPVS 和 ipset，需要安装两个 CLI 工具：
 
-    $ apt install ipset ipvsadm --yes
+    apt install ipset ipvsadm --yes
 
 > 本文使用的 ipset 和 ipvsadm 版本分别为 `7.5-1~exp1` 和 `1:1.31-1`。
 
@@ -129,7 +128,7 @@ kube-proxy 有三种模式：`userspace`、`iptables` 和 `IPVS`，其中 `users
 该命令会将访问 `10.100.100.100:8080` 的 TCP 请求转发到 `10.0.0.11:8080`。这里的 `--masquerading` 参数和 iptables 中的 `MASQUERADE` 类似，如果不指定，IPVS 就会尝试使用路由表来转发流量，这样肯定是无法正常工作的。
 测试是否正常工作：
 
-    $ curl 10.100.100.100:8080
+    curl 10.100.100.100:8080
 
 实验成功，请求被成功转发到了后端的 HTTP 服务！
 
@@ -137,7 +136,7 @@ kube-proxy 有三种模式：`userspace`、`iptables` 和 `IPVS`，其中 `users
 
 上面只是在 Host 的网络命名空间中进行测试，现在我们进入网络命名空间 `netns_leah` 中进行测试：
 
-    $ ip netns exec netns_leah curl 10.100.100.100:8080
+    ip netns exec netns_leah curl 10.100.100.100:8080
 
 哦豁，访问失败！
 要想顺利通过测试，只需将 `10.100.100.100` 这个 IP 分配给一个虚拟网络接口。至于为什么要这么做，目前我还不清楚，我猜测可能是因为网桥 `bridge_home` 不会调用 IPVS，而将虚拟服务的 IP 地址分配给一个网络接口则可以绕过这个问题。
@@ -151,11 +150,11 @@ kube-proxy 有三种模式：`userspace`、`iptables` 和 `IPVS`，其中 `users
 
 看来 dummy 接口完美符合实验需求，那就创建一个 dummy 接口吧：
 
-    $ ip link add dev dustin-ipvs0 type dummy
+    ip link add dev dustin-ipvs0 type dummy
 
 将虚拟 IP 分配给 dummy 接口 `dustin-ipvs0` :
 
-    $ ip addr add 10.100.100.100/32 dev dustin-ipvs0
+    ip addr add 10.100.100.100/32 dev dustin-ipvs0
 
 到了这一步，仍然访问不了 HTTP 服务，还需要另外一个黑科技：`bridge-nf-call-iptables`。在解释 `bridge-nf-call-iptables` 之前，我们先来回顾下容器网络通信的基础知识。
 
@@ -183,12 +182,12 @@ Kubernetes 集群网络有很多种实现，有很大一部分都用到了 Linux
 启用 `bridge-nf-call-iptables` 这个内核参数 (置为 1)，表示 bridge 设备在二层转发时也去调用 iptables 配置的三层规则 (包含 conntrack)，所以开启这个参数就能够解决上述 Service 同节点通信问题。
 所以这里需要启用 `bridge-nf-call-iptables` :
 
-    $ modprobe br_netfilter
-    $ sysctl --write net.bridge.bridge-nf-call-iptables=1
+    modprobe br_netfilter
+    sysctl --write net.bridge.bridge-nf-call-iptables=1
 
 现在再来测试一下连通性：
 
-    $ ip netns exec netns_leah curl 10.100.100.100:8080
+    ip netns exec netns_leah curl 10.100.100.100:8080
 
 终于成功了！
 
@@ -196,25 +195,25 @@ Kubernetes 集群网络有很多种实现，有很大一部分都用到了 Linux
 
 虽然我们可以从网络命名空间 `netns_leah` 中通过虚拟服务成功访问另一个网络命名空间 `netns_dustin` 中的 HTTP 服务，但还没有测试过从 HTTP 服务所在的网络命名空间 `netns_dustin` 中直接通过虚拟服务访问自己，话不多说，直接测一把：
 
-    $ ip netns exec netns_dustin curl 10.100.100.100:8080
+    ip netns exec netns_dustin curl 10.100.100.100:8080
 
 啊哈？竟然失败了，这又是哪里的问题呢？不要慌，开启 `hairpin` 模式就好了。那么什么是 `hairpin` 模式呢？这是一个网络虚拟化技术中常提到的概念，也即交换机端口的 VEPA 模式。这种技术借助物理交换机解决了虚拟机间流量转发问题。很显然，这种情况下，源和目标都在一个方向，所以就是从哪里进从哪里出的模式。
 怎么配置呢？非常简单，只需一条命令：
 
-    $ brctl hairpin bridge_home veth_dustin on
+    brctl hairpin bridge_home veth_dustin on
 
 再次进行测试：
 
-    $ ip netns exec netns_dustin curl 10.100.100.100:8080
+    ip netns exec netns_dustin curl 10.100.100.100:8080
 
 还是失败了。。。
 然后我花了一个下午的时间，终于搞清楚了启用混杂模式后为什么还是不能解决这个问题，因为混杂模式和下面的选项要一起启用才能对 IPVS 生效：
 
-    $ sysctl --write net.ipv4.vs.conntrack=1
+    sysctl --write net.ipv4.vs.conntrack=1
 
 最后再测试一次：
 
-    $ ip netns exec netns_dustin curl 10.100.100.100:8080
+    ip netns exec netns_dustin curl 10.100.100.100:8080
 
 这次终于成功了，但我还是不太明白为什么启用 conntrack 能解决这个问题，有知道的大神欢迎留言告诉我！
 
@@ -224,15 +223,15 @@ Kubernetes 集群网络有很多种实现，有很大一部分都用到了 Linux
 什么是混杂模式呢？普通模式下网卡只接收发给本机的包（包括广播包）传递给上层程序，其它的包一律丢弃。混杂模式就是接收所有经过网卡的数据包，包括不是发给本机的包，即不验证 MAC 地址。
 **如果一个网桥开启了混杂模式，就等同于将所有连接到网桥上的端口（本文指的是 veth 接口）都启用了 `hairpin` 模式**。可以通过以下命令来启用 `bridge_home` 的混杂模式：
 
-    $ ip link set bridge_home promisc on
+    ip link set bridge_home promisc on
 
 现在即使你把 veth 接口的 `hairpin` 模式关闭：
 
-    $ brctl hairpin bridge_home veth_dustin off
+    brctl hairpin bridge_home veth_dustin off
 
 仍然可以通过连通性测试：
 
-    $ ip netns exec netns_dustin curl 10.100.100.100:8080
+    ip netns exec netns_dustin curl 10.100.100.100:8080
 
 ## 优化 MASQUERADE
 
@@ -272,12 +271,12 @@ Kubernetes 集群网络有很多种实现，有很大一部分都用到了 Linux
 
 然后使用 `ipset` 创建一个集合 (set) ：
 
-    $ ipset create DUSTIN-LOOP-BACK hash:ip,port,ip
+    ipset create DUSTIN-LOOP-BACK hash:ip,port,ip
 
 这条命令创建了一个名为 `DUSTIN-LOOP-BACK` 的集合，它是一个 `hashmap`，里面存储了目标 IP、目标端口和源 IP。
 接着向集合中添加条目：
 
-    $ ipset add DUSTIN-LOOP-BACK 10.0.0.11,tcp:8080,10.0.0.11
+    ipset add DUSTIN-LOOP-BACK 10.0.0.11,tcp:8080,10.0.0.11
 
 现在不管有多少网络命名空间，都只需要添加一条 iptables 规则：
 
@@ -290,9 +289,9 @@ Kubernetes 集群网络有很多种实现，有很大一部分都用到了 Linux
 
 网络连通性测试也没有问题：
 
-    $ curl 10.100.100.100:8080
-    $ ip netns exec netns_leah curl 10.100.100.100:8080
-    $ ip netns exec netns_dustin curl 10.100.100.100:8080
+    curl 10.100.100.100:8080
+    ip netns exec netns_leah curl 10.100.100.100:8080
+    ip netns exec netns_dustin curl 10.100.100.100:8080
 
 ## 新增虚拟服务的后端
 
@@ -306,11 +305,11 @@ Kubernetes 集群网络有很多种实现，有很大一部分都用到了 Linux
 
 再向 ipset 的集合 `DUSTIN-LOOP-BACK` 中添加一个条目：
 
-    $ ipset add DUSTIN-LOOP-BACK 10.0.0.21,tcp:8080,10.0.0.21
+    ipset add DUSTIN-LOOP-BACK 10.0.0.21,tcp:8080,10.0.0.21
 
 终极测试来了，试着多运行几次以下的测试命令：
 
-    $ curl 10.100.100.100:8080
+    curl 10.100.100.100:8080
 
 你会发现轮询算法起作用了：
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/tks8fg/1622427694199-d4b1438a-e6d2-4c38-91c7-d3b01c1efe22.png)

@@ -1,6 +1,5 @@
 ---
 title: BIND
-linkTitle: BIND
 weight: 11
 ---
 

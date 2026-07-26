@@ -1,6 +1,5 @@
 ---
 title: Systemd
-linkTitle: Systemd
 weight: 1
 ---
 
@@ -100,13 +99,13 @@ Units 配置就是指 Unit File。Systemd 会从多个目录中加载 Unit File�
 - **/run/systemd/transient** # 动态配置的临时单元(系统与全局用户共用)
 - **/run/systemd/generator.early** # 生成的高优先级单元(系统与全局用户共用)(参见 systemd.generator(7) 手册中对 early-dir 的说明)
 - **/etc/systemd/system/** # 人类根据需求，手动创建的 Unit File 所在路径。且当使用 systemctl enable UNIT 命令的时候，会自动在该目录中创建软连接到 /usr/lib/systemd/system/ 目录中的 Unit File
-  - ./UnitFileName.d/\*.conf # 嵌入式单元文件 存放路径
+    - ./UnitFileName.d/\*.conf # 嵌入式单元文件 存放路径
 - **/run/systemd/system/** # 程序运行时自动生成的 Unit File 所在路径。
-  - ./UnitFileName.d/\*.conf # 嵌入式单元文件 存放路径
+    - ./UnitFileName.d/\*.conf # 嵌入式单元文件 存放路径
 - **/run/systemd/generator** # 生成的中优先级系统单元(参见 systemd.generator(7) 手册中对 normal-dir 的说明)
 - **/usr/local/lib/systemd/system** # 本地软件包安装的系统单元
 - **/usr/lib/systemd/system/** # 通过系统的包管理器安装程序时，生成的 Unit File 所在路径。
-  - ./UnitFileName.d/\*.conf # 嵌入式单元文件 存放路径
+    - ./UnitFileName.d/\*.conf # 嵌入式单元文件 存放路径
 - **/run/systemd/generator.late** # 生成的低优先级系统单元(参见 systemd.generator(7) 手册中对 late-dir 的说明)
 
 ### 使用 --user 参数，以用户实例运行 systemd

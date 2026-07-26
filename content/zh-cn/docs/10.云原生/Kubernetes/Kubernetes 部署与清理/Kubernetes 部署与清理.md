@@ -1,6 +1,5 @@
 ---
 title: Kubernetes 部署与清理
-linkTitle: Kubernetes 部署与清理
 weight: 1
 ---
 
@@ -39,9 +38,9 @@ CNI 目录
 ## 配置安装环境
 
 - (可选)更新内核以解决 ipvs 的(在 k8s-1.11.0 版本)BUG
-  - [参考内核部署文档](1.Linux%20Kernel.md Kernel.md)
+    - [参考内核部署文档](1.Linux%20Kernel.md Kernel.md)
 - 关闭 iptables 和 firewalld 服务
-  - 由于 kubernetes 的 kube-proxy 会接管防火墙生成相关规则，所以最好关闭系统自带的
+    - 由于 kubernetes 的 kube-proxy 会接管防火墙生成相关规则，所以最好关闭系统自带的
 
 ```bash
 systemctl stop firewalld.service && systemctl disable firewalld.service
@@ -84,8 +83,8 @@ lsmod | grep ip_vs
 ```
 
 - 正常部署完集群后如果没启用 ipvs 功能，则还需要修改 proxy 配置
-  - kubectl edit configmap kube-proxy -n kube-system
-    - 在 mode:字段后面加上“ipvs”
+    - kubectl edit configmap kube-proxy -n kube-system
+        - 在 mode:字段后面加上“ipvs”
 
 ## 安装 Runtime
 
@@ -101,7 +100,7 @@ yum install -y docker-ce-19.03.11
 ```
 
 - 配置 Docker
-  - docker 自 1.13 版起会自动设置 iptables 的 FORWARD 默认策略为 DROP，这可能会影响 Kubernetes 集群依赖的报文转发功能，因此，需要在 docker 服务启动后，重新将 FORWARD 链的默认策略设备为 ACCEPT
+    - docker 自 1.13 版起会自动设置 iptables 的 FORWARD 默认策略为 DROP，这可能会影响 Kubernetes 集群依赖的报文转发功能，因此，需要在 docker 服务启动后，重新将 FORWARD 链的默认策略设备为 ACCEPT
 
 ```bash
 sed -i "14i ExecStartPost=/usr/sbin/iptables -P FORWARD ACCEPT" /usr/lib/systemd/system/docker.service
@@ -238,7 +237,7 @@ echo "KUBELET_EXTRA_ARGS=--cgroup-driver=systemd" > /etc/sysconfig/kubelet
 准备初始化所需镜像
 
 - 由于国内没法访问国际，镜像又都在谷歌上，所以需要翻墙或者提前以某些方式下载下来。如果不知道要用哪些镜像，可以直接使用 `kubeadm config images list` 命令查看初始化时所需镜像，然后从其他镜像仓库下载下来，并使用 docker tag 命令更改镜像。可以使用阿里云的镜像仓库，地址如下：
-  - registry.aliyuncs.com/k8sxio # XXX 为镜像名与版本号，zhangguanzhang 在阿里云创建的仓库
+    - registry.aliyuncs.com/k8sxio # XXX 为镜像名与版本号，zhangguanzhang 在阿里云创建的仓库
 
 初始化集群的 master 节点
 

@@ -22,7 +22,7 @@ Kubernetes APIServer 使用数字证书来加密 APIServer 的相关流量以及
 
 首页我们一个 kubeadm 的配置文件，如果一开始安装集群的时候你就是使用的配置文件，那么我们可以直接更新这个配置文件，但是如果你没有使用配置文件，直接使用的 kubeadm init 来安装的集群，那么我们可以从集群中获取 kubeadm 的配置信息来创建一个配置文件，因为 kubeadm 会将其配置写入到 kube-system 命名空间下面一个名为 kubeadm-config 的 ConfigMap 中。可以直接执行如下所示的命令将该配置导出：
 
-    $ kubectl -n kube-system get configmap kubeadm-config -o jsonpath='{.data.ClusterConfiguration}' > kubeadm-config.yaml
+    kubectl -n kube-system get configmap kubeadm-config -o jsonpath='{.data.ClusterConfiguration}' > kubeadm-config.yaml
 
 上面的命令会导出一个名为 kubeadm.yaml 的配置文件，内容如下所示：
 
@@ -71,7 +71,7 @@ apiServer:
 
 更新完 kubeadm 配置文件后我们就可以更新证书了，首先我们移动现有的 APIServer 的证书和密钥，因为 kubeadm 检测到他们已经存在于指定的位置，它就不会创建新的了。
 
-    $ mv /etc/kubernetes/pki/apiserver.{crt,key} ~
+    mv /etc/kubernetes/pki/apiserver.{crt,key} ~
 
 ## 生成新证书
 
@@ -117,10 +117,10 @@ apiServer:
 
 如果上面的操作都一切顺利，最后一步是将上面的集群配置信息保存到集群的 kubeadm-config 这个 ConfigMap 中去，这一点非常重要，这样以后当我们使用 kubeadm 来操作集群的时候，相关的数据不会丢失，比如升级的时候还是会带上 certSANs 中的数据进行签名的。
 
-    $ kubeadm config upload from-file --config kubeadm.yaml
+    kubeadm config upload from-file --config kubeadm.yaml
 
 使用上面的命令保存配置后，我们同样可以用下面的命令来验证是否保存成功了：
 
-    $ kubectl -n kube-system get configmap kubeadm-config -o yaml
+    kubectl -n kube-system get configmap kubeadm-config -o yaml
 
 更新 APIServer 证书的名称在很多场景下都会使用到，比如在控制平面前面添加一个负载均衡器，或者添加新的 DNS 名称或 IP 地址来使用控制平面的端点，所以掌握更新集群证书的方法也是非常有必要的。

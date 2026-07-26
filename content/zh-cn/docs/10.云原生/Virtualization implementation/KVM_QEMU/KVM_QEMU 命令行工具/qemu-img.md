@@ -1,6 +1,5 @@
 ---
 title: qemu-img
-linkTitle: qemu-img
 weight: 20
 ---
 
@@ -72,17 +71,17 @@ Note：
 OPTIONS
 
 - **-o OPTIONS** # 指定参数。可以使用 -o ? 来查看支持的参数。Note：查看可用的参数会根据不同的-f FMT，有不同的显示。Note：各个不同参数可以使用简化 OPTIONS 来指定
-  - **backing_file=BaseFILE** # 指定基础镜像为 BaseFILE。简化为 -b
-  - **size=SIZE** # 指定新镜像文件的大小为 SIZE
+    - **backing_file=BaseFILE** # 指定基础镜像为 BaseFILE。简化为 -b
+    - **size=SIZE** # 指定新镜像文件的大小为 SIZE
 
 ### EXAMPLE
 
 - 创建一个 1T 容量的 qcow2 格式的镜像文件
-  - **qemu-img create -f qcow2 -o size=1Ti data.bj-cs.qcow2**
+    - **qemu-img create -f qcow2 -o size=1Ti data.bj-cs.qcow2**
 - 基于 centos8-2004.qcow2 镜像文件，创建一个名为 desistdaydream.bj-net.qcow2 的增量镜像文件
-  - **qemu-img create -f qcow2 -b /var/lib/libvirt/images/backingFile/centos8-2004.qcow2 -F qcow2 desistdaydream.bj-net.qcow2**
-  - **qemu-img create -f qcow2 -b /var/lib/libvirt/images/backingFile/centos8-2004.qcow2 -F qcow2 desistdaydream.bj-net.qcow2** # 其中 -o backing_file 可以简写为 -b
-  - **qemu-img create -f qcow2 -b /var/lib/libvirt/images/backingFile/centos8-2004.qcow2 -o size=1Ti -F qcow2 desistdaydream.bj-net.qcow2** # 创建时指定新镜像文件的大小
+    - **qemu-img create -f qcow2 -b /var/lib/libvirt/images/backingFile/centos8-2004.qcow2 -F qcow2 desistdaydream.bj-net.qcow2**
+    - **qemu-img create -f qcow2 -b /var/lib/libvirt/images/backingFile/centos8-2004.qcow2 -F qcow2 desistdaydream.bj-net.qcow2** # 其中 -o backing_file 可以简写为 -b
+    - **qemu-img create -f qcow2 -b /var/lib/libvirt/images/backingFile/centos8-2004.qcow2 -o size=1Ti -F qcow2 desistdaydream.bj-net.qcow2** # 创建时指定新镜像文件的大小
 
 # convert - 转换 VM 镜像文件的格式
 
@@ -144,7 +143,7 @@ qemu-img: Could not open 'XXXXX.qcow2': Failed to get shared "write" lock
 EXAMPLE
 
 - 查看 test.qcow2 镜像的信息
-  - **qemu-img info test.qcow2**
+    - **qemu-img info test.qcow2**
 
 # resize - 设置 VM 磁盘容量
 

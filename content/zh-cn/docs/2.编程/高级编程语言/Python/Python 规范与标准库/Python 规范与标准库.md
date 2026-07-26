@@ -1,6 +1,5 @@
 ---
 title: Python 规范与标准库
-linkTitle: Python 规范与标准库
 weight: 1
 ---
 
@@ -8,7 +7,7 @@ weight: 1
 
 > 参考：
 >
-> - 
+> -
 
 - **Python 语言参考**描述了 Python 语言的具体语法和语义
 - **Python 标准库则**是与 Python 语言一起发行的一些可选功能，以便人们可以从一开始就轻松得使用 Python 进行编程。
@@ -62,11 +61,11 @@ weight: 1
 - **True**
 - **yield**
 - 复合语句
-  - **if**
-  - **while**
-  - **for**
-  - **try**
-  - **with** # [with](/docs/2.编程/高级编程语言/Python/Python%20规范与标准库/Control%20structure.md#with)
+    - **if**
+    - **while**
+    - **for**
+    - **try**
+    - **with** # [with](/docs/2.编程/高级编程语言/Python/Python%20规范与标准库/Control%20structure.md#with)
 
 # Python 语言规范
 

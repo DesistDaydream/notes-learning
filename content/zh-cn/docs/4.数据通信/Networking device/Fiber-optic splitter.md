@@ -1,6 +1,5 @@
 ---
 title: Fiber-optic splitter
-linkTitle: Fiber-optic splitter
 weight: 4
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: lshw
-linkTitle: lshw
 weight: 20
 ---
 
@@ -220,4 +219,4 @@ bj-test-desistdaydream-1
 OPTIONS
 
 - **-C, -class CLASS** # 只输出指定 CLASS 的信息。
-  - 所有可用的 CLASS 列表见：<https://ezix.org/project/wiki/HardwareLiSter#Deviceclasses>
+    - 所有可用的 CLASS 列表见：<https://ezix.org/project/wiki/HardwareLiSter#Deviceclasses>

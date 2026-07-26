@@ -1,6 +1,5 @@
 ---
 title: Skills
-linkTitle: Skills
 weight: 52
 ---
 

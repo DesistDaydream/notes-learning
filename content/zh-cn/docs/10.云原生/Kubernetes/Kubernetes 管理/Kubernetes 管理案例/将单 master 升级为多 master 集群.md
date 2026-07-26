@@ -41,7 +41,7 @@ $ cat /etc/hosts
 首页我们一个 kubeadm 的配置文件，如果一开始安装集群的时候你就是使用的配置文件，那么我们可以直接更新这个配置文件，但是如果你没有使用配置文件，直接使用的 kubeadm init 来安装的集群，那么我们可以从集群中获取 kubeadm 的配置信息来创建一个配置文件，因为 kubeadm 会将其配置写入到 kube-system 命名空间下面一个名为 kubeadm-config 的 ConfigMap 中。可以直接执行如下所示的命令将该配置导出：
 
 ```bash
-$ kubectl -n kube-system get configmap kubeadm-config -o jsonpath='{.data.ClusterConfiguration}' > kubeadm.yaml
+kubectl -n kube-system get configmap kubeadm-config -o jsonpath='{.data.ClusterConfiguration}' > kubeadm.yaml
 ```
 
 上面的命令会导出一个名为 kubeadm.yaml 的配置文件，内容如下所示：
@@ -92,7 +92,7 @@ apiServer:
 更新完 kubeadm 配置文件后我们就可以更新证书了，首先我们移动现有的 APIServer 的证书和密钥，因为 kubeadm 检测到他们已经存在于指定的位置，它就不会创建新的了。
 
 ```shell
-$ mv /etc/kubernetes/pki/apiserver.{crt,key} ~
+mv /etc/kubernetes/pki/apiserver.{crt,key} ~
 ```
 
 然后直接使用 kubeadm 命令生成一个新的证书：
@@ -140,13 +140,13 @@ Certificate:
 如果上面的操作都一切顺利，最后一步是将上面的集群配置信息保存到集群的 kubeadm-config 这个 ConfigMap 中去，这一点非常重要，这样以后当我们使用 kubeadm 来操作集群的时候，相关的数据不会丢失，比如升级的时候还是会带上  certSANs 中的数据进行签名的。
 
 ```bash
-$ kubeadm config upload from-file --config kubeadm.yaml
+kubeadm config upload from-file --config kubeadm.yaml
 ```
 
 使用上面的命令保存配置后，我们同样可以用下面的命令来验证是否保存成功了：
 
 ```bash
-$ kubectl -n kube-system get configmap kubeadm-config -o yaml
+kubectl -n kube-system get configmap kubeadm-config -o yaml
 ```
 
 更新 APIServer 证书的名称在很多场景下都会使用到，比如在控制平面前面添加一个负载均衡器，或者添加新的 DNS 名称或 IP 地址来使用控制平面的端点，所以掌握更新集群证书的方法也是非常有必要的。
@@ -284,7 +284,7 @@ $ kubectl -n kube-system edit cm kube-proxy
 首先，使用以下命令从 ConfigMap 中获取当前配置：
 
 ```shell
-$ kubectl -n kube-system get configmap kubeadm-config -o jsonpath='{.data.ClusterConfiguration}' > kubeadm.yaml
+kubectl -n kube-system get configmap kubeadm-config -o jsonpath='{.data.ClusterConfiguration}' > kubeadm.yaml
 ```
 
 然后在当前配置文件里面里面添加 controlPlaneEndpoint 属性，用于指定控制面板的负载均衡器的地址。
@@ -307,7 +307,7 @@ apiServer:
 编辑完文件后，使用以下命令将其上传回集群：
 
 ```bash
-$ kubeadm config upload from-file --config kubeadm.yaml
+kubeadm config upload from-file --config kubeadm.yaml
 ```
 
 然后需要在 kube-public 命名空间中更新 cluster-info 这个 ConfigMap，该命名空间包含一个 Kubeconfig 文件，该文件的 server: 一行指向单个控制平面节点。只需使用 kubectl -n kube-public edit cm cluster-info 更新该 server: 行以指向控制平面的负载均衡器即可。
@@ -364,13 +364,13 @@ $ kubeadm join <DNS CNAME of load balancer>:<load balancer port>
 获得了上面的添加命令过后，登录到 ydzs-master2 节点进行相关的操作，在 ydzs-master2 节点上安装软件：
 
 ```bash
-$ yum install -y kubeadm-1.17.11-0 kubelet-1.17.11-0 kubectl-1.17.11-0
+yum install -y kubeadm-1.17.11-0 kubelet-1.17.11-0 kubectl-1.17.11-0
 ```
 
 要加入控制平面，我们可以先拉取相关镜像：
 
 ```
-$ kubeadm config images pull --image-repository registry.aliyuncs.com/k8sxio
+kubeadm config images pull --image-repository registry.aliyuncs.com/k8sxio
 ```
 
 然后执行上面生成的 join 命令，将参数替换后如下所示：

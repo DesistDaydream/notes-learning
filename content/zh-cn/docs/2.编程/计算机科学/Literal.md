@@ -1,6 +1,5 @@
 ---
 title: Literal
-linkTitle: Literal
 weight: 2
 ---
 

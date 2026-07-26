@@ -72,17 +72,17 @@ func main() {
 pprof 库会暴露多个端点
 
 - **/debug/pprof/allocs** #
-  - 用与分析 Mem 申请内存频率过高的问题。比如 Go 频繁垃圾回收等
+    - 用与分析 Mem 申请内存频率过高的问题。比如 Go 频繁垃圾回收等
 - **/debug/pprof/block** # 查看导致阻塞同步的堆栈跟踪
 - **/debug/pprof/cmdline** #
 - **/debug/pprof/goroutine** # 查看当前所有运行的 goroutines 堆栈跟踪
-  - 用于分析 Goroutine 泄露问题
+    - 用于分析 Goroutine 泄露问题
 - **/debug/pprof/heap** # 查看活动对象的内存分配情况
-  - 用于分析 Mem 使用率高的问题
+    - 用于分析 Mem 使用率高的问题
 - **/debug/pprof/mutex** # 查看导致互斥锁的竞争持有者的堆栈跟踪
-  - 用于分析锁的抢占问题
+    - 用于分析锁的抢占问题
 - **/debug/pprof/profile** # 默认获取程序 30s 对 CPU 的使用情况的 Profile 文件。
-  - 用于分析 CPU 使用率高的问题
+    - 用于分析 CPU 使用率高的问题
 
 ## 不通过 net/http 标准库使用 pprof
 

@@ -1,6 +1,5 @@
 ---
 title: Function
-linkTitle: Function
 weight: 6
 ---
 
@@ -98,12 +97,12 @@ Greeting("hello:", "Joe", "Anna", "Eileen")
 匿名函数不能够独立存在
 
 - 可以把匿名函数赋值于某个变量。i.e.保存函数的地址到变量中。
-  - `fplus := func(x, y int) int { return x+y }`
-    - 然后可以同通过变量名对函数进行调用 i.e.`fplus(3,4)`
+    - `fplus := func(x, y int) int { return x+y }`
+        - 然后可以同通过变量名对函数进行调用 i.e.`fplus(3,4)`
 - 可以让匿名函数仅仅实现自身逻辑即可
-  - `func(x, y int) { fmt.Println(x + y) }(3, 4)`
-    - 第一个括号 `(x, y int)` 表示该函数的形参
-    - 最后的括号 `(3, 4)` 表示调用该函数的实参
+    - `func(x, y int) { fmt.Println(x + y) }(3, 4)`
+        - 第一个括号 `(x, y int)` 表示该函数的形参
+        - 最后的括号 `(3, 4)` 表示调用该函数的实参
 
 所谓的匿名函数，其实就是定义时即调用运行，而普通函数，定义后，在定义后不调用之前，是不会运行的。
 

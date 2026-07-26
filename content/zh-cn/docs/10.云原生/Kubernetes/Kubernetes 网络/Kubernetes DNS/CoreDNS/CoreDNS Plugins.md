@@ -1,6 +1,5 @@
 ---
 title: CoreDNS Plugins
-linkTitle: CoreDNS Plugins
 weight: 20
 ---
 

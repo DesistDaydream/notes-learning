@@ -1,6 +1,5 @@
 ---
 title: WireGuard
-linkTitle: WireGuard
 weight: 1
 ---
 
@@ -10,7 +9,8 @@ weight: 1
 >
 > - [官网](https://www.wireguard.com/)
 > - [zx2c4 源码，wireguard-linux](https://git.zx2c4.com/wireguard-linux)
->   - [GitHub 项目，WrieGuard/wireguard-linux](https://github.com/WireGuard/wireguard-linux)
+>     - [GitHub 项目，WrieGuard/wireguard-linux](https://github.com/WireGuard/wireguard-linux)
+>         - 第一次 Commit: [2005-04-17](https://github.com/WireGuard/wireguard-linux/commit/1da177e4c3f41524e886b7f1b8a0c1fc7321cac2)
 > - [Wiki, WireGuard](https://en.wikipedia.org/wiki/WireGuard)
 > - [张馆长博客，个人办公用 wireguard 组网笔记](https://zhangguanzhang.github.io/2020/08/05/wireguard-for-personal/)
 > - [米开朗基杨博客，WireGuard 教程：WireGuard 的工作原理](https://fuckcloudnative.io/posts/wireguard-docs-theory/)
@@ -95,7 +95,7 @@ WireGuard 直接在内核层面处理路由，直接使用系统内核的加密�
 
 ## WireGuard 工作原理
 
-中继服务器工作原理
+**中继服务器工作原理**
 
 中继服务器（Bounce Server）和普通的对等节点一样，它能够在 NAT 后面的 VPN 客户端之间充当中继服务器，可以将收到的任何 VPN 子网流量转发到正确的对等节点。事实上 WireGuard 并不关心流量是如何转发的，这个由系统内核和 iptables 规则处理。
 
@@ -105,7 +105,7 @@ WireGuard 直接在内核层面处理路由，直接使用系统内核的加密�
 
 WireGuard 是支持漫游的，也就是说，双方不管谁的地址变动了，WireGuard 在看到对方从新地址说话的时候，就会记住它的新地址（跟 mosh 一样，不过是双向的）。所以双方要是一直保持在线，并且通信足够频繁的话（比如配置 persistent-keepalive），两边的 IP 都不固定也不影响的。
 
-Wireguard 如何路由流量
+**Wireguard 如何路由流量**
 
 利用 WireGuard 可以组建非常复杂的网络拓扑，这里主要介绍几个典型的拓扑：
 
@@ -212,7 +212,7 @@ https://github.com/WireGuard/wireguard-tools 包含如下两个工具
 
 # WireGuard 衍生品
 
-[Tailscale](/docs/4.数据通信/Protocol/Tunneling%20Protocol/Tailscale/Tailscale.md)
+[Tailscale](/docs/4.数据通信/Utility/Tailscale/Tailscale.md)
 
 - 自研 DERP 协议
 - 一种基于 WireGuard 的虚拟组网工具
@@ -296,7 +296,7 @@ UDP 打洞的原理：
 
 #### UDP 打洞的局限性
 
-从 2019 年开始，很多以前用过的老式打洞方法都不再有效了。以前很著名的就是 **pwnat**\[6] 开创的一种新的打洞方法，它能够在不需要代理、第三方服务器、upnp、DMZ、sproofing、dns 转换的情况下实现 NAT 中的 P2P 通信。它的原理也很简单：
+从 2019 年开始，很多以前用过的老式打洞方法都不再有效了。以前很著名的就是 **pwnat** 开创的一种新的打洞方法，它能够在不需要代理、第三方服务器、upnp、DMZ、sproofing、dns 转换的情况下实现 NAT 中的 P2P 通信。它的原理也很简单：
 
 通过让客户端假装成为一个互联网上任意的 `ICMP` 跳跃点（ a random hop on the Internet）来解决这个问题，从而让服务端能够获取到客户端的 IP 地址。`traceroute` 命令也是使用这项技术来检测 Internet 上的跳跃点。
 

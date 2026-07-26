@@ -1,6 +1,5 @@
 ---
 title: "硬核致敬Linux ！30岁生日快乐！"
-linkTitle: "硬核致敬Linux ！30岁生日快乐！"
 slug: "cE4x63tYxoqrDinifeWqeg"
 date: 2021-08-26
 ---
@@ -10,7 +9,9 @@ date: 2021-08-26
 ![](https://mmbiz.qpic.cn/mmbiz_png/Pn4Sm0RsAuhH4SOtTAkhF5RQnT4PAWdG2NT9Smu9eqEV5PAwKq3PbC6iagpqsfWz47RFLIZibibcIDAn3IyVS0ahw/640?wx_fmt=png)
 
 1991年8月25日，21岁的Linus Torvalds（以下简称Linus）做了一个免费的操作系统“Linux”，并在这一天向外界公布这个由“业余爱好”主导的个人项目；如今，全球超级计算机500强和超过70%的智能手机都在运行Linux，因此，8月25日也被许多Linux的爱好者视为Linux真正的诞生日期。
+
 # 你好
+
 ![](https://mmbiz.qpic.cn/mmbiz_png/cYSwmJQric6nhH4RQfgaJfjrfmLsALibgH5rcBjAWV0lF8QBtlXSJgRrJqBP90P2rfTd8WpVRAtyzqxhbXd6QnNg/640?wx_fmt=png)
 
 30 年前，Linus Torvalds 首次发布 Linux 内核时还是赫尔辛基大学的一名 21 岁学生。他的声明是这样开始的，“我正在做一个（免费的）操作系统（只是一个爱好，不会很大和专业......）”。三十年后，排名前 500 的超级计算机都在运行 Linux，所有智能手机的 70% 以上都是如此。Linux 显然既庞大又专业。
@@ -23,7 +24,7 @@ date: 2021-08-26
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/cYSwmJQric6nhH4RQfgaJfjrfmLsALibgHE70XibBtS3DT8Nf3r5k48PGFo8ON6CPEsuyBOxIia8eLIQOuuz6JV1aA/640?wx_fmt=png)
 
-**Linux的历史**  
+**Linux的历史**
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/cYSwmJQric6nhH4RQfgaJfjrfmLsALibgHRicpx9aScqDmIdIib1M2UdibnVGVHJoTR5j94qiaCosHsT4G1XlPL1vYzA/640?wx_fmt=png)
 
@@ -33,24 +34,24 @@ date: 2021-08-26
 
 ![](https://mmbiz.qpic.cn/mmbiz_jpg/cYSwmJQric6nhH4RQfgaJfjrfmLsALibgH1QmL07tiarw5K00x2LuwJEaRFCR4eev2O1DI1uEd6rZPOKnNZHzv5Eg/640?wx_fmt=jpeg)
 
-Linux系统由硬件、kernel、系统调用、shell、c库、应用程序组成，架构层次分明，Linux内的各种层功能独立，程序在用户空间和内核空间之间的分离，能支持更多应用。  
+Linux系统由硬件、kernel、系统调用、shell、c库、应用程序组成，架构层次分明，Linux内的各种层功能独立，程序在用户空间和内核空间之间的分离，能支持更多应用。
 
 | 用户模态 | **用户应用** | 例如：Bash，LibreOffice，GIMP，Blender，0 A.D.，Mozilla Firefox等 |
-| 低层系统构件 | **系统守护进程**：  
-systemd，runit，logind，networkd，PulseAudio等 | **窗口系统**：  
-X11，Wayland，SurfaceFlinger(Android) | **其他库**：  
-GTK+, Qt, EFL, SDL, SFML, FLTK, GNUstep等 | **图形**：  
+| 低层系统构件 | **系统守护进程**：
+systemd，runit，logind，networkd，PulseAudio等 | **窗口系统**：
+X11，Wayland，SurfaceFlinger(Android) | **其他库**：
+GTK+, Qt, EFL, SDL, SFML, FLTK, GNUstep等 | **图形**：
 Mesa，AMD Catalyst等 |
-| **C标准库** | open()，exec()，sbrk()，socket()，fopen()，calloc()，... (直到2000个子例程)  
+| **C标准库** | open()，exec()，sbrk()，socket()，fopen()，calloc()，... (直到2000个子例程)
 glibc目标为POSIX/SUS兼容，musl和uClibc目标为嵌入式系统，bionic为Android而写等 |
-| 内核模态 | **Linux内核** | stat, splice, dup, read, open, ioctl, write, mmap, close, exit等（大约380个系统调用）  
+| 内核模态 | **Linux内核** | stat, splice, dup, read, open, ioctl, write, mmap, close, exit等（大约380个系统调用）
 Linux内核系统调用接口（SCI，目标为POSIX/SUS兼容） |
 | 进程调度子系统 | IPC子系统 | 内存管理子系统 | 虚拟文件子系统 | 网络子系统 |
-| 其他构件：ALSA，DRI，evdev，LVM，device mapper，Linux Network Scheduler，Netfilter  
+| 其他构件：ALSA，DRI，evdev，LVM，device mapper，Linux Network Scheduler，Netfilter
 Linux安全模块：SELinux，TOMOYO，AppArmor, Smack |
 | 硬件（CPU，内存，数据存储设备等。） |
 
-**Linux内核代码架构**  
+**Linux内核代码架构**
 
 **![](https://mmbiz.qpic.cn/mmbiz_jpg/cYSwmJQric6nhH4RQfgaJfjrfmLsALibgHSXWCabp9jDHopYuOGHSSq3HgXcQKLkWedlzYiaNOBStEEod9YkB8JAw/640?wx_fmt=jpeg)**
 
@@ -64,14 +65,13 @@ Linux代码包含核心几个子系统，比如**内存子系统**，**I/O子系
 
 ![](https://mmbiz.qpic.cn/mmbiz_jpg/cYSwmJQric6nhH4RQfgaJfjrfmLsALibgHzhTgCrceib1hkg2RZuwSgf86iaN2JfyHMptZFZGdw0fhQW1hNLgMBlHA/640?wx_fmt=jpeg)
 
-1.  Scheduling Policy，实现进程调度的策略，它决定哪个（或哪几个）进程将拥有CPU。
-    
-2.  Architecture-specific Schedulers，体系结构相关的部分，用于将对不同CPU的控制，抽象为统一的接口。这些控制主要在suspend和resume进程时使用，牵涉到CPU的寄存器访问、汇编指令操作等。
-    
-3.  Architecture-independent Scheduler，体系结构无关的部分。它会和“Scheduling Policy模块”沟通，决定接下来要执行哪个进程，然后通过“Architecture-specific Schedulers模块”resume指定的进程。
-    
-4.  System Call Interface，系统调用接口。进程调度子系统通过系统调用接口，将需要提供给用户空间的接口开放出去，同时屏蔽掉不需要用户空间程序关心的细节。
-    
+1. Scheduling Policy，实现进程调度的策略，它决定哪个（或哪几个）进程将拥有CPU。
+
+2. Architecture-specific Schedulers，体系结构相关的部分，用于将对不同CPU的控制，抽象为统一的接口。这些控制主要在suspend和resume进程时使用，牵涉到CPU的寄存器访问、汇编指令操作等。
+
+3. Architecture-independent Scheduler，体系结构无关的部分。它会和“Scheduling Policy模块”沟通，决定接下来要执行哪个进程，然后通过“Architecture-specific Schedulers模块”resume指定的进程。
+
+4. System Call Interface，系统调用接口。进程调度子系统通过系统调用接口，将需要提供给用户空间的接口开放出去，同时屏蔽掉不需要用户空间程序关心的细节。
 
 ### 内存子系统
 
@@ -81,12 +81,11 @@ Linux代码包含核心几个子系统，比如**内存子系统**，**I/O子系
 
 ![](https://mmbiz.qpic.cn/mmbiz_jpg/cYSwmJQric6nhH4RQfgaJfjrfmLsALibgHNY1OZLaKPcddjClNYLNRmEPuUt7fQf7iafZ7eJtrP46fWqws0wD5yww/640?wx_fmt=jpeg)
 
-1.  Architecture Specific Managers，体系结构相关部分。提供用于访问硬件Memory的虚拟接口。
-    
-2.  Architecture Independent Manager，体系结构无关部分。提供所有的内存管理机制，包括：以进程为单位的memory mapping；虚拟内存的Swapping。
-    
-3.  System Call Interface，系统调用接口。通过该接口，向用户空间程序应用程序提供内存的分配、释放，文件的map等功能。
-    
+1. Architecture Specific Managers，体系结构相关部分。提供用于访问硬件Memory的虚拟接口。
+
+2. Architecture Independent Manager，体系结构无关部分。提供所有的内存管理机制，包括：以进程为单位的memory mapping；虚拟内存的Swapping。
+
+3. System Call Interface，系统调用接口。通过该接口，向用户空间程序应用程序提供内存的分配、释放，文件的map等功能。
 
 ### 虚拟文件子系统（Virtual Filesystem, VFS）
 
@@ -100,16 +99,15 @@ Linux代码包含核心几个子系统，比如**内存子系统**，**I/O子系
 
 ![](https://mmbiz.qpic.cn/mmbiz_jpg/cYSwmJQric6nhH4RQfgaJfjrfmLsALibgHxGOz2c8yZ6yxrrHeibxu3ac8nibP9KGUkVkrXPmgIH9iasFgLjaofdWqA/640?wx_fmt=jpeg)
 
-1.  Device Drivers，设备驱动，用于控制所有的外部设备及控制器。由于存在大量不能相互兼容的硬件设备（特别是嵌入式产品），所以也有非常多的设备驱动。因此，Linux内核中将近一半的Source Code都是设备驱动，大多数的Linux底层工程师（特别是国内的企业）都是在编写或者维护设备驱动，而无暇估计其它内容（它们恰恰是Linux内核的精髓所在）。
-    
-2.  Device Independent Interface， 该模块定义了描述硬件设备的统一方式（统一设备模型），所有的设备驱动都遵守这个定义，可以降低开发的难度。同时可以用一致的形势向上提供接口。
-    
-3.  Logical Systems，每一种文件系统，都会对应一个Logical System（逻辑文件系统），它会实现具体的文件系统逻辑。
-    
-4.  System Independent Interface，该模块负责以统一的接口（快设备和字符设备）表示硬件设备和逻辑文件系统，这样上层软件就不再关心具体的硬件形态了。
-    
-5.  System Call Interface，系统调用接口，向用户空间提供访问文件系统和硬件设备的统一的接口。
-    
+1. Device Drivers，设备驱动，用于控制所有的外部设备及控制器。由于存在大量不能相互兼容的硬件设备（特别是嵌入式产品），所以也有非常多的设备驱动。因此，Linux内核中将近一半的Source Code都是设备驱动，大多数的Linux底层工程师（特别是国内的企业）都是在编写或者维护设备驱动，而无暇估计其它内容（它们恰恰是Linux内核的精髓所在）。
+
+2. Device Independent Interface， 该模块定义了描述硬件设备的统一方式（统一设备模型），所有的设备驱动都遵守这个定义，可以降低开发的难度。同时可以用一致的形势向上提供接口。
+
+3. Logical Systems，每一种文件系统，都会对应一个Logical System（逻辑文件系统），它会实现具体的文件系统逻辑。
+
+4. System Independent Interface，该模块负责以统一的接口（快设备和字符设备）表示硬件设备和逻辑文件系统，这样上层软件就不再关心具体的硬件形态了。
+
+5. System Call Interface，系统调用接口，向用户空间提供访问文件系统和硬件设备的统一的接口。
 
 ### 网络子系统（Net）
 
@@ -117,16 +115,15 @@ Linux代码包含核心几个子系统，比如**内存子系统**，**I/O子系
 
 ![](https://mmbiz.qpic.cn/mmbiz_jpg/cYSwmJQric6nhH4RQfgaJfjrfmLsALibgHy9IqgNnoDPLwVHDKqVBzD6iaJtzNk7wm3h9aSn1Nf6xOsNM870ScwEA/640?wx_fmt=jpeg)
 
-1.  Network Device Drivers，网络设备的驱动，和VFS子系统中的设备驱动是一样的。
-    
-2.  Device Independent Interface，和VFS子系统中的是一样的。
-    
-3.  Network Protocols，实现各种网络传输协议，例如IP, TCP, UDP等等。
-    
-4.  Protocol Independent Interface，屏蔽不同的硬件设备和网络协议，以相同的格式提供接口（socket)。
-    
-5.  System Call interface，系统调用接口，向用户空间提供访问网络设备的统一的接口。
-    
+1. Network Device Drivers，网络设备的驱动，和VFS子系统中的设备驱动是一样的。
+
+2. Device Independent Interface，和VFS子系统中的是一样的。
+
+3. Network Protocols，实现各种网络传输协议，例如IP, TCP, UDP等等。
+
+4. Protocol Independent Interface，屏蔽不同的硬件设备和网络协议，以相同的格式提供接口（socket)。
+
+5. System Call interface，系统调用接口，向用户空间提供访问网络设备的统一的接口。
 
 Linux内核版本时间线：
 
@@ -142,7 +139,7 @@ Linux内核版本时间线：
 
 **Linux具有设备独立性**，它内核具有高度适应能力，从而给系统提供了更高级的功能。GNU用户界面组件是大多数Linux操作系统的重要组成部分，提供常用的C函数库，Shell，还有许多常见的Unix实用工具，可以完成许多基本的操作系统任务。大多数Linux系统使用的图形用户界面建立在X窗口系统之上，由X窗口(XWindow)系统通过软件工具及架构协议来建立操作系统所用的图形用户界面.
 
-**基于Linux内核各种衍生OS系统**  
+**基于Linux内核各种衍生OS系统**
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/cYSwmJQric6nhH4RQfgaJfjrfmLsALibgHiaA5ia2r6z3iarNHHZN7gHOISWONZ0vfBibAz5wm0tJfxaBao2KOF4fM8Q/640?wx_fmt=png)
 
@@ -150,9 +147,9 @@ Linux内核版本时间线：
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/cYSwmJQric6nhH4RQfgaJfjrfmLsALibgHJQp1UUv39Vx04CB4W3DSdh2twrDS7kZV01ygjFXbyeUCfg92kJpiaqA/640?wx_fmt=png)
 
-当前比较流行发行版是：**Debian**、**Ubuntu**、**Fedora**、**CentOS**、**Arch Linux**和**openSUSE**等，每个发行版都有自己优势地方，都有一批忠实用户。  
+当前比较流行发行版是：**Debian**、**Ubuntu**、**Fedora**、**CentOS**、**Arch Linux**和**openSUSE**等，每个发行版都有自己优势地方，都有一批忠实用户。
 
-**基于Linux内核著名OS**  
+**基于Linux内核著名OS**
 
 **Android**
 
@@ -164,13 +161,13 @@ Linux内核版本时间线：
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/cYSwmJQric6nhH4RQfgaJfjrfmLsALibgHGtbgyZUUeFSicfcZCeRpTGicmJI5vzDibiaCibBfoA06demaPcn1iaVficviag/640?wx_fmt=png)
 
-**Chrome OS** 是由Google设计基于Linux内核的操作系统，并使用Google Chrome浏览器作为其主要用户界面。因此，Chrome OS主要支持Web应用程序\[6\]，2016年起开始陆续兼容Android应用程序（可通过Google Play商店下载）和Linux应用程序。  
+**Chrome OS** 是由Google设计基于Linux内核的操作系统，并使用Google Chrome浏览器作为其主要用户界面。因此，Chrome OS主要支持Web应用程序\[6\]，2016年起开始陆续兼容Android应用程序（可通过Google Play商店下载）和Linux应用程序。
 
-**鸿蒙OS**  
+**鸿蒙OS**
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/cYSwmJQric6nhH4RQfgaJfjrfmLsALibgHdmDMzZHEZR94PaMFm9CYibMfvicxDs2ULz9jQJVZKUQNOtAUduCqRJUA/640?wx_fmt=png)
 
-**鸿蒙**（**HarmonyOS**，开发代号Ark\[1\]）是华为自2012年开发的一款可兼容Android应用程序的跨平台分布式操作系统\[2\]。系统性能包括利用“分布式”技术将各款设备融合成一个“超级终端”，便于操作和共享各设备资源。\[3\]\[4\]\[5\]系统架构支持多内核，包括Linux内核、LiteOS和鸿蒙微内核，可按各种智能设备选择所需内核，例如在低功耗设备上使用LiteOS内核。\[6\]\[7\]2019年8月华为发布首款搭载鸿蒙操作系统的产品“荣耀智能屏”，之后于2021年6月发布搭载鸿蒙操作系统的智能手机、平板电脑和智能手表。  
+**鸿蒙**（**HarmonyOS**，开发代号Ark\[1\]）是华为自2012年开发的一款可兼容Android应用程序的跨平台分布式操作系统\[2\]。系统性能包括利用“分布式”技术将各款设备融合成一个“超级终端”，便于操作和共享各设备资源。\[3\]\[4\]\[5\]系统架构支持多内核，包括Linux内核、LiteOS和鸿蒙微内核，可按各种智能设备选择所需内核，例如在低功耗设备上使用LiteOS内核。\[6\]\[7\]2019年8月华为发布首款搭载鸿蒙操作系统的产品“荣耀智能屏”，之后于2021年6月发布搭载鸿蒙操作系统的智能手机、平板电脑和智能手表。
 
 Linux 内核是最大且变动最快的开源项目之一，它由大约 53,600 个文件和近 2,000 万行代码组成。在全世界范围内超过 15,600 位程序员为它贡献代码，Linux 内核项目的维护者使用了如下的协作模型。
 
@@ -180,7 +177,7 @@ Linux 内核是最大且变动最快的开源项目之一，它由大约 53,600 
 
 https://opensource.com/article/18/8/first-linux-kernel-patch
 
-Linux 开源代码仓库：  
+Linux 开源代码仓库：
 
 https://github.com/torvalds/linux
 
@@ -192,15 +189,15 @@ https://github.com/torvalds/linux
 
 **Linux内核学习资源**
 
-**源码：** 
+**源码：**
 
-https://elixir.bootlin.com/linux/latest/source  
+https://elixir.bootlin.com/linux/latest/source
 
 在线交叉索引看源码，包括Linux几乎所有版本；
 
 https://github.com/torvalds/linux
 
-内核github仓库，可以下载本地，编译，修改和开发。  
+内核github仓库，可以下载本地，编译，修改和开发。
 
 **网站**
 
@@ -218,14 +215,14 @@ Linux 内核最新消息，提供给了定期的与内核开发相关的报道
 
 **http://www.linuxdoc.org**
 
-Linux Documentation Project(Linux文档项目)，拥有大量称为“HowTo”  
+Linux Documentation Project(Linux文档项目)，拥有大量称为“HowTo”
 的文档，其中一些是技术性的，并涉及到一些内核相关的主题。
 
 **http://www.kerneltravel.net/**
 
 国内Linux内核之旅开源社区
 
-**http://www.linux-mm.org**  
+**http://www.linux-mm.org**
 该页面面向Linux内存管理开发，其中包含大量有用的信息，并且还包含大量与内核相关的Web站点链接。
 
 **http://www.wowotech.net**
@@ -242,7 +239,7 @@ dog250的文章都比较深刻，属于Linux内核进阶，可能不太适合入
 
 **https://www.kernel.org/doc**
 
-内核文档  
+内核文档
 
 **书籍**
 
@@ -270,7 +267,7 @@ dog250的文章都比较深刻，属于Linux内核进阶，可能不太适合入
 
 **git 架构**
 
-**Git** 是出于需要而创建的，不是因为发现源代码控制很有趣，而是因为其他多数源代码控制系统不好用，不能满足当时开发需求，并且 git 在 Linux 开发模型中确实运行得相当好，BitKeeper变得站不住脚。  
+**Git** 是出于需要而创建的，不是因为发现源代码控制很有趣，而是因为其他多数源代码控制系统不好用，不能满足当时开发需求，并且 git 在 Linux 开发模型中确实运行得相当好，BitKeeper变得站不住脚。
 
 完美适应现代开源软件的开发模式，分布式版本管理：
 
@@ -278,7 +275,7 @@ dog250的文章都比较深刻，属于Linux内核进阶，可能不太适合入
 
 ### Linux内核名人堂
 
-让我们膜拜一下对Linux内核做出核心贡献的大神们：  
+让我们膜拜一下对Linux内核做出核心贡献的大神们：
 
 ![](https://mmbiz.qpic.cn/mmbiz_jpg/cYSwmJQric6nhH4RQfgaJfjrfmLsALibgHtEVHKmWufP3VMY68yCQnh3fgdg40AFwfHhLmz2PaqLqXZJHCKQSn9Q/640?wx_fmt=jpeg)
 
@@ -302,7 +299,7 @@ dog250的文章都比较深刻，属于Linux内核进阶，可能不太适合入
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/cYSwmJQric6nhH4RQfgaJfjrfmLsALibgHBWhcnGvYiaDtbmsqnbjoRFnyXSTs5ibMAZ7Tm0vJuU573vKyrpzvvIjw/640?wx_fmt=png)
 
-**米格尔·德伊卡萨**（西班牙语：Miguel de Icaza ，1972年11月23日－），生于墨西哥市，著名墨西哥籍自由软件开发者，为GNOME项目与Mono项目的发起人。但后来\[何时？\]退出了GNOME项目。  
+**米格尔·德伊卡萨**（西班牙语：Miguel de Icaza ，1972年11月23日－），生于墨西哥市，著名墨西哥籍自由软件开发者，为GNOME项目与Mono项目的发起人。但后来\[何时？\]退出了GNOME项目。
 
 ![](https://mmbiz.qpic.cn/mmbiz_jpg/cYSwmJQric6nhH4RQfgaJfjrfmLsALibgHdkfW1X7mmFsq1ShM2iaHl6XJD5RPK1xaOJ60hAxiczdEDzGWrw2HorhA/640?wx_fmt=jpeg)
 
@@ -328,7 +325,7 @@ http://www.remword.com/kps\_result/all\_whole\_line\_country.html
 
 ### 最后
 
-30年的时间，Linux从一个个人玩具变成现在庞然大物，估值超过100亿美元，Linux还带来一股开源潮流，让开源软件百花齐放，对计算机发展和开源文化起到极大促进作用。  
+30年的时间，Linux从一个个人玩具变成现在庞然大物，估值超过100亿美元，Linux还带来一股开源潮流，让开源软件百花齐放，对计算机发展和开源文化起到极大促进作用。
 
 ![](https://mmbiz.qpic.cn/mmbiz_jpg/cYSwmJQric6nhH4RQfgaJfjrfmLsALibgHibFAnWeJmNESo5lWBCcEYdI2MpVkiabQ6n4B3FRpv1FwfDpYaTDWXG4w/640?wx_fmt=jpeg)
 
@@ -342,7 +339,7 @@ Linux 庞大的生态与发展过程，Linus伟大而富有创造力并不足以
 
 ### 参考和扩展
 
-http://www.atguigu.com/jsfx/5694.html  
+http://www.atguigu.com/jsfx/5694.html
 
 https://opensource.com/article/16/12/yearbook-9-lessons-25-years-linux-kernel-development
 

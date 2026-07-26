@@ -1,6 +1,5 @@
 ---
 title: kube-scheduler 实现调度器的程序
-linkTitle: kube-scheduler 实现调度器的程序
 weight: 20
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: SDK 开发
-linkTitle: SDK 开发
 weight: 100
 ---
 
@@ -51,12 +50,12 @@ pkg/my_sdk/
 
 ```go
 type Client struct {
-	token string
+ token string
 }
 
 type RequestOption struct {
-	Method string
-	Data   map[string]string
+ Method string
+ Data   map[string]string
 }
 
 func (c Client) Request(api string, options *RequestOption) ([]byte, error) {}
@@ -69,13 +68,13 @@ func (c Client) RequestObj(api string, container interface{}, options *RequestOp
 
 ```go
 func (c *ElbClient) ListIpGroups(request *model.ListIpGroupsRequest) (*model.ListIpGroupsResponse, error) {
-	requestDef := GenReqDefForListIpGroups()
+ requestDef := GenReqDefForListIpGroups()
 
-	if resp, err := c.HcClient.Sync(request, requestDef); err != nil {
-		return nil, err
-	} else {
-		return resp.(*model.ListIpGroupsResponse), nil
-	}
+ if resp, err := c.HcClient.Sync(request, requestDef); err != nil {
+  return nil, err
+ } else {
+  return resp.(*model.ListIpGroupsResponse), nil
+ }
 }
 ```
 
@@ -85,11 +84,11 @@ func (c *ElbClient) ListIpGroups(request *model.ListIpGroupsRequest) (*model.Lis
 
 ```go
 type UserService struct {
-	client *Client
+ client *Client
 }
 
 func (c UserService) Get(login string) (*UserInfo, error) {
-	_, err := c.client.RequestObj(url, &user, EmptyRO)
+ _, err := c.client.RequestObj(url, &user, EmptyRO)
 }
 ```
 

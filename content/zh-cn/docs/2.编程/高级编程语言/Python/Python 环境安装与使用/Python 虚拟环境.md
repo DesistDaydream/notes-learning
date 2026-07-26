@@ -1,6 +1,5 @@
 ---
 title: "Python 虚拟环境"
-linkTitle: "Python 虚拟环境"
 weight: 20
 ---
 

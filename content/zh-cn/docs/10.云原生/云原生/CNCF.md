@@ -1,6 +1,5 @@
 ---
 title: CNCF
-linkTitle: CNCF
 weight: 20
 ---
 

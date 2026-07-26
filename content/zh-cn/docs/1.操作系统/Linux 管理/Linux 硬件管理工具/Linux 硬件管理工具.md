@@ -1,6 +1,5 @@
 ---
 title: "Linux 硬件管理工具"
-linkTitle: "Linux 硬件管理工具"
 weight: 1
 ---
 
@@ -21,6 +20,7 @@ weight: 1
 ## usbutils
 
 > 参考：
+>
 > - [GitHub 项目，gregkh/usbutils](https://github.com/gregkh/usbutils)
 > - [官网](http://www.linux-usb.org/)
 > - [Manual(手册)，lsusb(8)](https://man7.org/linux/man-pages/man8/lsusb.8.html)
@@ -186,7 +186,7 @@ processor : 15
 - physical id # 有 2 个物理处理器(i.e.装在主板上的 CPU)（有 2 个）
 - cpu cores # 每个物理处理器有 4 个内核（为 4）
 - siblings # 每个物理处理器有 8 个逻辑处理器（为 8）
-  - 可见台机器的处理器开启了**超线程技术**，每个内核（core）被划分为了 2 个逻辑处理器（processor）
+    - 可见台机器的处理器开启了**超线程技术**，每个内核（core）被划分为了 2 个逻辑处理器（processor）
 - processor # 总共有 16 个逻辑处理器（有 16 个）
 
 **超线程技术**：超线程技术就是利用特殊的硬件指令，把两个逻辑处理器模拟成两个物理芯片，让单个处理器都能使用线程级并行计算，进而兼容多线程操作系统和软件，减少了 CPU 的闲置时间，提高的 CPU 的运行效率。
@@ -219,13 +219,14 @@ lspci | grep -i Ethernet
 所以要先过滤，过滤顺序如下：
 
 - 按名字过滤~~
-  - 过滤掉 `lo`
+    - 过滤掉 `lo`
 - 按驱动过滤~~
-  - 过滤掉驱动为 `dummy, veth, vboxnet, vmnet, vmxnet, vmxnet2, vmxnet3` 的网卡, 虚拟机中的
+    - 过滤掉驱动为 `dummy, veth, vboxnet, vmnet, vmxnet, vmxnet2, vmxnet3` 的网卡, 虚拟机中的
 - 按网卡类型过滤~~
-  - 过滤掉 `bridge` 类型的网卡
+    - 过滤掉 `bridge` 类型的网卡
 
 对于 sysfs 中的网卡信息，如果网卡接口同时存在于 `/sys/class/net/` 和 `/sys/devices/virtual/net/` 中，则需要过滤掉。
+
 ## Interface Name
 
 即是 `/sys/class/net/` 目录下的子目录名，这是网卡的网口在系统中对应的网络设备名称
@@ -289,7 +290,6 @@ Bus 001 Device 007: ID 0cf3:9271 Atheros Communications, Inc. AR9271 802.11n
 其中 `Subsystem` 之后的即是 `model` 信息。
 
 ## mii-tool
-
 
 # Bluetooth
 

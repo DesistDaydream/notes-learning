@@ -1,6 +1,5 @@
 ---
 title: GitHub
-linkTitle: GitHub
 weight: 1
 ---
 
@@ -26,7 +25,6 @@ https://desktop.github.com/
 https://ghproxy.link/
 
 - https://ghfast.top/
-
 
 这种加速站的使用方式通常都一样，只需要在地址前加上加速站点的地址即可，e.g. 要克隆 ggml-org/llama.cpp 项目，使用 https://ghfast.top/ 加速的场景下，执行如下命令：
 

@@ -1,6 +1,5 @@
 ---
 title: GitHub 管理
-linkTitle: GitHub 管理
 weight: 20
 ---
 

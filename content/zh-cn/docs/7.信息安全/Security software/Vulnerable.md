@@ -1,6 +1,5 @@
 ---
 title: Vulnerable
-linkTitle: Vulnerable
 weight: 20
 ---
 

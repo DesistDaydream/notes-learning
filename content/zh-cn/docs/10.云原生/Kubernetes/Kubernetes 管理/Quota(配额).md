@@ -25,11 +25,11 @@ title: Quota(配额)
 
 - 概念：<https://kubernetes.io/docs/concepts/policy/limit-range/>
 - 用法：
-  - <https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/cpu-constraint-namespace/>
-  - <https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-constraint-namespace/>
-  - <https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/cpu-default-namespace/>
-  - <https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/>
-  - .....等等
+    - <https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/cpu-constraint-namespace/>
+    - <https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-constraint-namespace/>
+    - <https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/cpu-default-namespace/>
+    - <https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/>
+    - .....等等
 
 ## ResourceQuota(资源配额)
 
@@ -39,9 +39,9 @@ title: Quota(配额)
 
 - 概念：<https://kubernetes.io/docs/concepts/policy/resource-quotas/>
 - 用法：
-  - <https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/quota-memory-cpu-namespace/>
-  - <https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/quota-pod-namespace/>
-  - <https://kubernetes.io/docs/tasks/administer-cluster/quota-api-object/> # 为指定的 API 对象设置 resourceQuota
+    - <https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/quota-memory-cpu-namespace/>
+    - <https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/quota-pod-namespace/>
+    - <https://kubernetes.io/docs/tasks/administer-cluster/quota-api-object/> # 为指定的 API 对象设置 resourceQuota
 
 资源配额分为三种类型：
 
@@ -53,8 +53,8 @@ title: Quota(配额)
 
 - 仅设置 ResourceQuota 时，如果不再 pod 上设置资源的需求和限制，则无法成功创建 pod，需要配合 LimitRange 设置 pod 的默认需求和限制，才可成功创建 pod
 - 两种控制策略的作用范围都是对于某一 namespace
-  - ResourceQuota 用来限制 namespace 中所有的 Pod 占用的总的资源 request 和 limit
-  - LimitRange 是用来设置 namespace 中 Pod 的默认的资源 request 和 limit 值，还有，Pod 的可用资源的 request 和 limit 值的最大与最小值。
+    - ResourceQuota 用来限制 namespace 中所有的 Pod 占用的总的资源 request 和 limit
+    - LimitRange 是用来设置 namespace 中 Pod 的默认的资源 request 和 limit 值，还有，Pod 的可用资源的 request 和 limit 值的最大与最小值。
 
 # 简单的应用示例
 

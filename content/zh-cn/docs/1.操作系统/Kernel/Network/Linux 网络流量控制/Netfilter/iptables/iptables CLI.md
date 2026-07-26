@@ -1,6 +1,5 @@
 ---
 title: iptables CLI
-linkTitle: iptables CLI
 weight: 2
 ---
 
@@ -21,10 +20,10 @@ Man 手册中，将 iptables 分为两部分，基本的 iptables 和用于描�
 
 - **Command** # 指定要执行的具体操作。比如 *增删改查规则/链* 等等。
 - **CHAIN** # 指定要执行操作的链。在不指定的时候，默认对所有链进行操作。
-  - CHAIN 其实不应该放在这，一般都是 COMMAND 中的组成部分。
+    - CHAIN 其实不应该放在这，一般都是 COMMAND 中的组成部分。
 - **RuleSpecifitcation = MATCHES TARGET** # 通常用在增加规则时，指定规则的具体规范。由两部分组成：\[MATCHES...] 和 \[TARGET]
-  - **MATCHES = \[基本匹配规则] \[扩展匹配规则]** # 匹配条件，可以指定多个。用以筛选出要执行 TARGET 的数据包的条件
-  - **TARGET = -j TargetName \[Per-Target-Options]** # 指定匹配到规则的数据包的 Target(目标) 是什么。
+    - **MATCHES = \[基本匹配规则] \[扩展匹配规则]** # 匹配条件，可以指定多个。用以筛选出要执行 TARGET 的数据包的条件
+    - **TARGET = -j TargetName \[Per-Target-Options]** # 指定匹配到规则的数据包的 Target(目标) 是什么。
 
 ## OPTIONS
 
@@ -32,32 +31,32 @@ Man 手册中，将 iptables 分为两部分，基本的 iptables 和用于描�
 - **-n, --numeric** # 所有输出以数字的形式展示。IP 地址、端口号等都以数字输出。默认情况下一般是显示主机名、网络名称、服务。
 - **--line-numbers** # 显示每个 chain 中的行号
 - **-v** # 显示更详细的信息，vv 更详细，vvv 再详细一些
-  - pkts # 报文数
-  - bytes # 字节数
-  - target #
-  - prot #
-  - in/out # 显示要限制的具体网卡，`*` 为所有
-  - source/destination #
+    - pkts # 报文数
+    - bytes # 字节数
+    - target #
+    - prot #
+    - in/out # 显示要限制的具体网卡，`*` 为所有
+    - source/destination #
 
 ## COMMAND
 
 - 增
-  - **-A, --append \<CHAIN> \<RuleSpecification>** # 在规则连末尾添加规则
-  - **-I, --insert \<CHAIN> \[RuleNum] \<RuleSpecification>** # 在规则链开头添加规则，也可以指定添加到指定的规则号
-  - **-N, --new-chain CHAIN** # 创建名为 CHAIN 的自定义规则链
+    - **-A, --append \<CHAIN> \<RuleSpecification>** # 在规则连末尾添加规则
+    - **-I, --insert \<CHAIN> \[RuleNum] \<RuleSpecification>** # 在规则链开头添加规则，也可以指定添加到指定的规则号
+    - **-N, --new-chain CHAIN** # 创建名为 CHAIN 的自定义规则链
 - 删
-  - **-F, --flush \[CHAIN \[RuleNum]]** # 删除所有 chain 下的所有规则，也可删除指定 chain 下的指定的规则
-  - **-D, --delete \<CHAIN> \<RULE>** # 删除一个 chain 中规则，RULE 可以是该 chain 中的行号，也可以是规则具体配置
-  - **-X, --delete-chain \[CHAIN]** # 删除用户自定义的空的 chain
+    - **-F, --flush \[CHAIN \[RuleNum]]** # 删除所有 chain 下的所有规则，也可删除指定 chain 下的指定的规则
+    - **-D, --delete \<CHAIN> \<RULE>** # 删除一个 chain 中规则，RULE 可以是该 chain 中的行号，也可以是规则具体配置
+    - **-X, --delete-chain \[CHAIN]** # 删除用户自定义的空的 chain
 - 改
-  - **-P, --policy \<CHAIN> \<TARGET>** # 设置指定的规则链(CHAIN)的默认策略为指定目标(Targe)
-  - **-E, --rename-chain \<OldChainName> \<NewChainName>** # 重命名自定义 chain，引用计数不为 0 的自定义 chain，无法改名也无法删除
-  - **-R, --replace CHAIN \[RuleNum] \<RuleSpecification>** # 替换指定链上的指定规则
+    - **-P, --policy \<CHAIN> \<TARGET>** # 设置指定的规则链(CHAIN)的默认策略为指定目标(Targe)
+    - **-E, --rename-chain \<OldChainName> \<NewChainName>** # 重命名自定义 chain，引用计数不为 0 的自定义 chain，无法改名也无法删除
+    - **-R, --replace CHAIN \[RuleNum] \<RuleSpecification>** # 替换指定链上的指定规则
 - 查
-  - **-L, --list \[CHAIN \[RuleNum]]** # 列出指定 CHAIN 的规则。`默认值: 不指定。i.e.列出所有 CHAIN 的规则`
-  - **-S, --list-rules \[CHAIN]** # 以 iptables-save 命令的方式列出指定 CHAIN 的规则。`默认值: 不指定。i.e.列出所有 CHAIN 的规则`
+    - **-L, --list \[CHAIN \[RuleNum]]** # 列出指定 CHAIN 的规则。`默认值: 不指定。i.e.列出所有 CHAIN 的规则`
+    - **-S, --list-rules \[CHAIN]** # 以 iptables-save 命令的方式列出指定 CHAIN 的规则。`默认值: 不指定。i.e.列出所有 CHAIN 的规则`
 - 其他
-  - **-Z, --zero \[CHAIN \[RULE_NUM]]** # 将所有链中的数据包和字节计数器归零，或者仅将给定链归零，或者仅将给定规则归零。
+    - **-Z, --zero \[CHAIN \[RULE_NUM]]** # 将所有链中的数据包和字节计数器归零，或者仅将给定链归零，或者仅将给定规则归零。
 
 ## MATCHES
 
@@ -83,7 +82,7 @@ MATCHES 的语法是一种类似命令行参数的写法
 - **-i, --in-interface 网卡名称** # 指定数据流入规则中要匹配的网卡，仅用于 PREROUTING、INPUT、FORWARD 链
 - **-o, --out-interface 网卡名称** # 指定数据流出规则中要匹配的网卡，仅用于 FORWARD、OUTPUT、POSTROUTING 链
 - **-p, --protocol PROTOCOL** # 指定规则中要匹配的协议，即 ip 首部中的 protocols 所标识的协议
-  - 可用的协议有 tcp、udp、icmp、等等
+    - 可用的协议有 tcp、udp、icmp、等等
 - **-m, --match MATCH** # 使用[扩展匹配语法](#扩展匹配语法)指定扩展匹配规则
 - **-j, --jump TARGET** # 指定 [TARGET](#target)
 
@@ -101,16 +100,16 @@ MATCHES 的语法是一种类似命令行参数的写法
 
 - **ACCEPT** # 允许流量通过
 - **REJECT** # 拒绝流量通过
-  - --reject-with icmp-host-prohibited # 通过 icmp 协议显示给客户机一条消息:主机拒绝(icmp-host-prohibited)
+    - --reject-with icmp-host-prohibited # 通过 icmp 协议显示给客户机一条消息:主机拒绝(icmp-host-prohibited)
 - **DROP** # 丢弃，不响应，发送方无法判断是被拒绝
 - **RETURN** # 返回调用链
 - **MARK** # 做防火墙标记
-  - 用于 nat 表的 target
-    - DNAT|SNAT # {目的|源}地址转换
-    - REDIRECT # 端口重定向
-    - MASQUERADE # 地址伪装类似于 SNAT，但是不用指明要转换的地址，而是自动选择要转换的地址，用于外部地址不固定的情况
-  - 用于 raw 表的 target
-    - NOTRACK # raw 表专用的 target，用于对匹配规则进行 notrack(不跟踪)处理
+    - 用于 nat 表的 target
+        - DNAT|SNAT # {目的|源}地址转换
+        - REDIRECT # 端口重定向
+        - MASQUERADE # 地址伪装类似于 SNAT，但是不用指明要转换的地址，而是自动选择要转换的地址，用于外部地址不固定的情况
+    - 用于 raw 表的 target
+        - NOTRACK # raw 表专用的 target，用于对匹配规则进行 notrack(不跟踪)处理
 - **LOG** # 记录日志信息
 - **引用自定义链** # 直接使用“-j|-g 自定义链的名称”即可，让基本 5 个 Chain 上匹配成功的数据包继续执行自定义链上的规则。
 

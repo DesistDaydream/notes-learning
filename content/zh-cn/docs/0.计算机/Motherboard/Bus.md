@@ -1,6 +1,5 @@
 ---
 title: Bus
-linkTitle: Bus
 weight: 20
 ---
 

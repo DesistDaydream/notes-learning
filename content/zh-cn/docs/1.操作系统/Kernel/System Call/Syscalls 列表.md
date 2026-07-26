@@ -1,6 +1,5 @@
 ---
 title: Syscalls 列表
-linkTitle: Syscalls 列表
 weight: 20
 ---
 

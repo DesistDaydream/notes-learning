@@ -1,6 +1,5 @@
 ---
 title: Containerization
-linkTitle: Containerization
 weight: 1
 ---
 
@@ -56,14 +55,14 @@ kata 是自带内核的虚拟机型的容器 runtime，官方网址：<https://k
 两种标准主要包含以下内容：
 
 - 容器运行时标准 （runtime spec）
-  - creating：使用 create 命令创建容器，这个过程称为创建中 b). created：容器创建出来，但是还没有运行，表示镜像和配置没有错误，容器能够运行在当前平台 c).
-  - running：容器的运行状态，里面的进程处于 up 状态，正在执行用户设定的任务 d)
-  - stopped：容器运行完成，或者运行出错，或者 stop 命令之后，容器处于暂停状态。这个状态，容器还有很多信息保存在平台中，并没有完全被删除
-  - ....等等
+    - creating：使用 create 命令创建容器，这个过程称为创建中 b). created：容器创建出来，但是还没有运行，表示镜像和配置没有错误，容器能够运行在当前平台 c).
+    - running：容器的运行状态，里面的进程处于 up 状态，正在执行用户设定的任务 d)
+    - stopped：容器运行完成，或者运行出错，或者 stop 命令之后，容器处于暂停状态。这个状态，容器还有很多信息保存在平台中，并没有完全被删除
+    - ....等等
 - 容器镜像标准（image spec）
-  - 文件系统：以 layer 保存的文件系统，每个 layer 保存了和上层之间变化的部分，layer 应该保存哪些文件，怎么表示增加、修改和删除的文件等;
-  - config 文件：保存了文件系统的层级信息（每个层级的 hash 值，以及历史信息），以及容器运行时需要的一些信息（比如环境变量、工作目录、命令参数、mount 列表），指定了镜像在某个特定平台和系统的配置。比较接近我们使用 docker inspect
-  - ....等等
+    - 文件系统：以 layer 保存的文件系统，每个 layer 保存了和上层之间变化的部分，layer 应该保存哪些文件，怎么表示增加、修改和删除的文件等;
+    - config 文件：保存了文件系统的层级信息（每个层级的 hash 值，以及历史信息），以及容器运行时需要的一些信息（比如环境变量、工作目录、命令参数、mount 列表），指定了镜像在某个特定平台和系统的配置。比较接近我们使用 docker inspect
+    - ....等等
 
 ## 五、容器的主要应用场景
 
@@ -102,14 +101,14 @@ kata 是自带内核的虚拟机型的容器 runtime，官方网址：<https://k
 
 - **Scheme://**# 访问 Registry 时所使用的协议，比如 HTTP、HTTPS
 - **Registry(注册中心)** # 提供 Image 管理服务的提供商，通常是一个域名
-  - 现阶段常见的 Registry 有：
-    - docker.io
-    - k8s.gcr.io
-    - quay.io
-    - ghcr.io
-    - ...... 等等
+    - 现阶段常见的 Registry 有：
+        - docker.io
+        - k8s.gcr.io
+        - quay.io
+        - ghcr.io
+        - ...... 等等
 - **Namespace(名称空间)** # 在一个 Registry 中可能会有多个同名的 Repository，所以需要通过 Namespace 将这些 Repository 隔开。
-  - docker.io 将用户注册的账户名称作为 Namespace，若 Namespace 被省略，则 Image 就是这个 Registry 官方的。
+    - docker.io 将用户注册的账户名称作为 Namespace，若 Namespace 被省略，则 Image 就是这个 Registry 官方的。
 - **Repository(仓库)** # 顾名思义，存放镜像的仓库
 - **Tag(标签)** #
 - **Digest(摘要)** # Image 内容的 sha256 计算结果。通常是互联网唯一的
@@ -137,7 +136,7 @@ Registry 上有多个 Repository，每个 Repository 中又包含了多个 TAG(�
 想要定位一个 Registry 下的一个 Repository，至少需要两部分
 
 - Namespace(名称空间) # 有的也称为 ProjectID。
-  - Docker 将用户注册的账户名称作为 Namespace，若 Namespace 被省略，则就是这个 Registry 官方的。所以也可以这么理解。
+    - Docker 将用户注册的账户名称作为 Namespace，若 Namespace 被省略，则就是这个 Registry 官方的。所以也可以这么理解。
 - Repository(仓库) # 仓库名称
 
 很多时候都将 Namespace 和 Repository 合起来，统一称为 Repository

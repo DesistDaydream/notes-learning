@@ -1,6 +1,5 @@
 ---
 title: ecs 中毒的一次处理过程
-linkTitle: ecs 中毒的一次处理过程
 weight: 20
 source: https://zhangguanzhang.github.io/2022/04/21/ecs-xmrig/
 ---
@@ -9,8 +8,7 @@ source: https://zhangguanzhang.github.io/2022/04/21/ecs-xmrig/
 
 > 参考：
 >
-> - 
-
+> -
 
 一次客户 ecs 中毒的处理过程，可以给读者参考下中毒的处理过程。
 
@@ -44,7 +42,7 @@ top 看到异常 cpu 的进程占用 cpu 很高：
 
 给它 `STOP` 信号不让 cpu 切换到它，而不是直接 kill 掉它：
 
-    $ kill -STOP 1206
+    kill -STOP 1206
 
 查看来源和清理：
 

@@ -1,6 +1,5 @@
 ---
 title: Journaling File System
-linkTitle: Journaling File System
 weight: 20
 ---
 

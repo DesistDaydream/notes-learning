@@ -1,13 +1,12 @@
 ---
 title: "Docsy"
-linkTitle: "Docsy"
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，google/docsy](https://github.com/google/docsy)
 > - [官网](https://www.docsy.dev/)
 
@@ -18,7 +17,7 @@ Kubernetes 的官网就是 Docsy 主题。
 # 预览和部署 Docsy 主题网站
 
 > 参考：
-> 
+>
 > - [官方文档，预览和部署](https://www.docsy.dev/docs/deployment/)
 
 ## 准备环境
@@ -101,11 +100,9 @@ Docsy 的配置主要在 Hugo CONFIG 配置文件中的 `[params]` 部分
 - https://github.com/google/docsy-example/blob/v0.11.0/hugo.yaml
 
 ## 多语言支持
- 
+
 https://www.docsy.dev/docs/language/#content-and-configuration
 
 Docsy 主题中的页面有些地方是没有翻译的，可以在 Hugo 项目根目录创建 `/i18n/` 目录，并按照语言目录名称对应配置文件（比如 `zh-cn/` 目录下的文章就会找 `zh-cn.toml` 文件），即可为这些地方显示对应语言的内容。
 
 > 配置文件内容可以参考 Kubernetes 的 https://github.com/kubernetes/website/blob/main/data/i18n/zh-cn/zh-cn.toml
-
-

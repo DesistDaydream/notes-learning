@@ -85,7 +85,7 @@ enum{
     TIMER_SOFTIRQ,
     NET_TX_SOFTIRQ,  // 网络数据包发送软中断
     NET_RX_SOFTIRQ,  // 网络数据包接受软中断
-        //... 
+        //...
 };
 ```
 
@@ -128,7 +128,7 @@ subsys_initcall(net_dev_init);
 网络数据的收发的延时，多数场景下都会和系统软中断处理相关，这里我们将重点分析 ping 包抖动时的软中断情况。这里我们采用基于 [BCC](https://github.com/iovisor/bcc) 的 [**traceicmpsoftirq.py**](https://gist.github.com/DavadDi/62ee75228f03631c845c51af292c2b17) 来协助定位 ping 包处理的内核情况。
 
 > BCC 为 Linux 内核 BPF 技术的前端程序，主要提供 Python 语言的绑定， `traceicmpsoftirq.py` 脚本依赖于 BCC 库，需要先安装 BCC 项目，各操作系统安装参见 [INSTALL.md](https://github.com/iovisor/bcc/blob/master/INSTALL.md) 。
-> 
+>
 > `traceicmpsoftirq.py` 脚本在 Linux 3.10 内核与 Linux 4.x 内核上的读写方式有差异，需要根据内核略有调整。
 
 使用 `traceicmpsoftirq.py` 在主机 B 上运行，我们发现出现抖动延时的时内核运行的内核线程都为 `ksoftirqd/0` 。
@@ -255,8 +255,8 @@ int __net_init ip_vs_estimator_net_init(struct netns_ipvs *ipvs)
 {
     INIT_LIST_HEAD(&ipvs->est_list);
     spin_lock_init(&ipvs->est_lock);
-    timer_setup(&ipvs->est_timer, estimation_timer, 0);  // 设置定时器函数 estimation_timer 
-    mod_timer(&ipvs->est_timer, jiffies + 2 * HZ);       // 启动第一次计时器，2秒启动 
+    timer_setup(&ipvs->est_timer, estimation_timer, 0);  // 设置定时器函数 estimation_timer
+    mod_timer(&ipvs->est_timer, jiffies + 2 * HZ);       // 启动第一次计时器，2秒启动
     return 0;
 }
 ```
@@ -280,7 +280,7 @@ static void estimation_timer(struct timer_list *t)
         rate = (s->kstats.conns - e->last_conns) << 9;
         e->last_conns = s->kstats.conns;
         e->cps += ((s64)rate - (s64)e->cps) >> 2;
-    
+
     // ...
     }
     spin_unlock(&ipvs->est_lock);
@@ -321,13 +321,12 @@ TCP  10.85.0.10:9153                     0        0        0        0        0
 
 到此，问题已经彻底定位，由于我们服务早期部署的历史原因，短期内调整 Service 的数目会导致大量的迁移工作，中间还有云厂商 SLB 产生的大量规则，也没有办法彻底根除，单从技术上解决的话，我们可以采用的方式有以下 3 种：
 
-1. 动态感知到宿主机 Network Namespace 中 ipvs `estimation_timer` 函数的函数，在 RPS 中设置关闭该 CPU 映射；
-	该方式需要调整 RPS 的配置，而且 ipvs 处理主机 Network Namespace 的核数不固定，需要识别并调整配置，还需要处理重启时候的 ipvs 主机 Network Namespace 的变动；
-2. 由于我们不需要 ipvs 这种统计的功能，可以通过修改 ipvs 驱动的方式来规避该问题；
-	修改 ipvs 的驱动模块，需要重新加载该内核模块，也会导致主机服务上的短暂中断；
-3. ipvs 模块将内核遍历统计调整成一个独立的内核线程进行统计；
-
-ipvs 规则在内核 timer 中遍历是 ipvs 移植到 k8s 上场景未适配的问题，社区应该需要把在 timer 中的遍历独立出去，但是这个方案需要社区的推动解决，远水解不了近渴。
+- 动态感知到宿主机 Network Namespace 中 ipvs `estimation_timer` 函数的函数，在 RPS 中设置关闭该 CPU 映射；
+    - 该方式需要调整 RPS 的配置，而且 ipvs 处理主机 Network Namespace 的核数不固定，需要识别并调整配置，还需要处理重启时候的 ipvs 主机 Network Namespace 的变动；
+- 由于我们不需要 ipvs 这种统计的功能，可以通过修改 ipvs 驱动的方式来规避该问题；
+    - 修改 ipvs 的驱动模块，需要重新加载该内核模块，也会导致主机服务上的短暂中断；
+- ipvs 模块将内核遍历统计调整成一个独立的内核线程进行统计；
+    - ipvs 规则在内核 timer 中遍历是 ipvs 移植到 k8s 上场景未适配的问题，社区应该需要把在 timer 中的遍历独立出去，但是这个方案需要社区的推动解决，远水解不了近渴。
 
 通过上述 3 种方案的对比，解决我们当前抖动的问题都不太容易实施，为了保证生产环境的稳定和实施的难易程度，最终我们把眼光定位在 Linux Kernel 热修的 [kpatch](https://github.com/dynup/kpatch) 方案上， kpath 实现的 livepatch 功能可以实时为正在运行的内核提供功能增强，无需重新启动系统。
 
@@ -344,7 +343,7 @@ $ git clone https://github.com/dynup/kpatch.git
 $ source test/integration/lib.sh
 # 中间会使用 yum 安装相关的依赖包，安装时间视网络情况而定，在阿里云的环境下需要的时间比较长
 $ sudo kpatch_dependencies
-$ cd kpatch 
+$ cd kpatch
 
 # 进行编译
 $ make
@@ -358,13 +357,13 @@ $ sudo make install
 在 kpatch 的使用过程中，需要使用到内核的源码，源码拉取的方式可以参考这里 [我需要内核的源代码](https://wiki.centos.org/zh/HowTos/I_need_the_Kernel_Source?highlight=\(kernel\)%7C\(src\)) 。
 
 ```
-$ rpm2cpio kernel-3.10.0-1062.9.1.el7.src.rpm |cpio -div 
-$ xz -d linux-3.10.0-1062.9.1.el7.tar.xz 
-$ tar -xvf linux-3.10.0-1062.9.1.el7.tar
-$ cp -ra linux-3.10.0-1062.9.1.el7/ linux-3.10.0-1062.9.1.el7-patch
+rpm2cpio kernel-3.10.0-1062.9.1.el7.src.rpm |cpio -div
+xz -d linux-3.10.0-1062.9.1.el7.tar.xz
+tar -xvf linux-3.10.0-1062.9.1.el7.tar
+cp -ra linux-3.10.0-1062.9.1.el7/ linux-3.10.0-1062.9.1.el7-patch
 ```
 
-此处我们将 `estimation_timer ` 函数的实现设置为空
+此处我们将 `estimation_timer` 函数的实现设置为空
 
 ```
 static void estimation_timer(unsigned long arg)
@@ -410,10 +409,12 @@ $ dmesg -T
 
 - kpatch 是基于内核版本生成的 ko 内核模块，必须保证后续 livepatch 的内核版本与编译机器的内核完全一致。
 - 通过手工 livepatch 的方式修复，如果保证机器在重启以后仍然生效需要通过 `install` 来启用 kpathc 服务进行保证。
+
 ```
 # /usr/local/sbin/kpatch install livepatch-ip_vs_timer_v1.ko
 # systemctl start kpatch
 ```
+
 - 在其他的机器上进行 livepatch 需要文件 `kpatch` 、 `livepatch-ip_vs_timer_v1.ko` 和 `kpatch.service` （用于 install 后重启生效） 3 个文件即可。
 
 ## 5\. 总结

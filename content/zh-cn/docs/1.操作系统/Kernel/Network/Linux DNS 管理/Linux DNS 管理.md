@@ -1,6 +1,5 @@
 ---
 title: Linux DNS 管理
-linkTitle: Linux DNS 管理
 weight: 3
 ---
 
@@ -10,7 +9,7 @@ weight: 3
 >
 > - [Manual(手册)，resolver(3)](https://man7.org/linux/man-pages/man3/resolver.3.html)
 > - [Manual(手册)，resolv.conf(5)](https://man7.org/linux/man-pages/man5/resolv.conf.5.html)
->   - resolver(5) 手册也指向了 resolv.conf(5)
+>     - resolver(5) 手册也指向了 resolv.conf(5)
 
 在 Linux 中，进行域名解析工作的是 Reslover(解析器)。
 
@@ -70,7 +69,7 @@ int dn_expand(const unsigned char *msg,
 > tips: 这些函数名前面带个 n 表示这是新的函数，老的函数没有 n，已经被弃用了。
 
 - res_ninit # 实例化并读取配置
-  - 每次调用 res_ninit 都需要调用 res_nclose 以释放由 res_ninit 和后续 res_nquery 分配的内存
+    - 每次调用 res_ninit 都需要调用 res_nclose 以释放由 res_ninit 和后续 res_nquery 分配的内存
 - res_nquery # 查询
 - res_nsearch # 搜索
 - res_nquerydomain # 串联查询
@@ -92,5 +91,5 @@ int dn_expand(const unsigned char *msg,
 **/PATH/TO/nsswitch.conf** # 名称服务切换配置。GUN C 库(glibc) 和 某些其他应用程序使用该配置文件来确定从哪些地方获取解析信息。比如是否要读取 /etc/hosts 文件
 
 - 该文件属于 glibc 包中的一部分。但是由于 CentOS 与 Ubuntu 中 glibc 的巨大差异，该文件所在路径也不同：
-  - CentOS 在 **/etc/nsswitch.conf**
-  - Ubuntu 在 **/usr/share/libc-bin/nsswitch.conf**
+    - CentOS 在 **/etc/nsswitch.conf**
+    - Ubuntu 在 **/usr/share/libc-bin/nsswitch.conf**

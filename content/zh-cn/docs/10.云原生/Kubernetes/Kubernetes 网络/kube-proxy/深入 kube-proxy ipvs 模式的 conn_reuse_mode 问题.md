@@ -183,7 +183,7 @@ Kubernetes 提供了 Pod 优雅删除机制。当我们决定干掉一个 Pod �
 ### 脚注
 
 \[1]
-kube-proxy ipvs conn*reuse_mode setting causes errors with high load from single client: *<https://github.com/kubernetes/kubernetes/issues/81775>_
+kube-proxy ipvs conn*reuse_mode setting causes errors with high load from single client:*<https://github.com/kubernetes/kubernetes/issues/81775>_
 \[2]
 IPVS 优雅删除: _<https://github.com/kubernetes/kubernetes/pull/66012>_
 \[3]

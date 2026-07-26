@@ -1,6 +1,5 @@
 ---
 title: Pod 是如何出现的
-linkTitle: Pod 是如何出现的
 weight: 20
 ---
 
@@ -9,7 +8,7 @@ weight: 20
 > 参考：
 >
 > - [公众号 - 程序员白日梦，一文讲明白-K8S各核心架构组件](https://mp.weixin.qq.com/s/bL-85BhOj8H5Dis_94lmrQ)
->   - https://www.cnblogs.com/ZhuChangwu/p/16441181.html
+>     - https://www.cnblogs.com/ZhuChangwu/p/16441181.html
 
 ## Pod 出现流程中的 Watch 机制的应用
 
@@ -27,7 +26,7 @@ weight: 20
 > 参考:
 >
 > - [GitHub 项目，jamiehannaford/what-happens-when-k8s](https://github.com/jamiehannaford/what-happens-when-k8s)
->   - https://icloudnative.io/posts/what-happens-when-k8s/ 多了一张图
+>     - https://icloudnative.io/posts/what-happens-when-k8s/ 多了一张图
 
 ![1000](https://notes-learning.oss-cn-beijing.aliyuncs.com/kubernetes/202408231539942.png)
 

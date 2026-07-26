@@ -1,6 +1,5 @@
 ---
 title: KVM/QEMU 命令行工具
-linkTitle: KVM/QEMU 命令行工具
 weight: 1
 ---
 
@@ -16,7 +15,7 @@ KVM/QEMU 的虚拟机的生命周期是通过一系列 KVM/QEMU 工具集管理�
 
 - **qemu-img** # 虚拟机镜像管理工具
 - **qemu-system-$ARCH** # 虚拟机运行时管理工具。
-  - 注意：在 CentOS 系统中，该二进制文件的名字是 qemu-kvm，并且是一个在 /usr/local/bin/qemu-kvm 指向 /usr/libexec/qemu-kvm 的软链接
+    - 注意：在 CentOS 系统中，该二进制文件的名字是 qemu-kvm，并且是一个在 /usr/local/bin/qemu-kvm 指向 /usr/libexec/qemu-kvm 的软链接
 - 等等
 
 通常情况下，我们不管是通过 virt-manager 程序创建的虚拟机、还是使用 Libvirt 工具包创建的虚拟机，本质上，都是调用的 **qemu-img、qemu-system-x86_64** 等工具。

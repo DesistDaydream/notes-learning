@@ -1,6 +1,5 @@
 ---
 title: Login info MGMT
-linkTitle: Login info MGMT
 weight: 20
 ---
 

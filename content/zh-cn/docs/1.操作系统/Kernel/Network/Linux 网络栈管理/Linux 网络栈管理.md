@@ -1,6 +1,5 @@
 ---
 title: Linux 网络栈管理
-linkTitle: Linux 网络栈管理
 weight: 1
 ---
 
@@ -11,9 +10,9 @@ weight: 1
 > - [Kernel 文档，Linux Networking Documentation](https://www.kernel.org/doc/html/latest/networking/index.html)
 > - [Kernel 文档，Linux Networking and Network Devices APIs](https://www.kernel.org/doc/html/latest/networking/kapi.html)
 > - [arthurchiao.art 的文章](http://arthurchiao.art/index.html)
->   - [[译] Linux 网络栈监控和调优：接收数据（2016）](http://arthurchiao.art/blog/tuning-stack-rx-zh/) — 老文章，作者不再推荐，查看 2022 之后的文章
->   - [[译] Linux 网络栈监控和调优：发送数据（2017）](http://arthurchiao.art/blog/tuning-stack-tx-zh/)
->   - [Linux 网络栈原理、监控与调优：前言（2022）](https://arthurchiao.art/blog/linux-net-stack-zh/)
+>     - [[译] Linux 网络栈监控和调优：接收数据（2016）](http://arthurchiao.art/blog/tuning-stack-rx-zh/) — 老文章，作者不再推荐，查看 2022 之后的文章
+>     - [[译] Linux 网络栈监控和调优：发送数据（2017）](http://arthurchiao.art/blog/tuning-stack-tx-zh/)
+>     - [Linux 网络栈原理、监控与调优：前言（2022）](https://arthurchiao.art/blog/linux-net-stack-zh/)
 
 和磁盘设备类似，Linux 用户想要使用网络功能，不能通过直接操作硬件完成，而需要直接或间接的操作一个 Linux 为我们抽象出来的设备，i.e. 通用的 **Linux 网络设备**来完成。一个常见的情况是，计算机里装有一个硬件网卡，Linux 会在系统里为其生成一个网络设备实例，e.g. eth0，用户需要对 eth0 发出命令以配置或使用它了。更多的硬件会带来更多的网络设备实例（另外，[虚拟化](/docs/10.云原生/Virtualization/Virtualization.md)的硬件也会带来更多的网络设备实例）。
 

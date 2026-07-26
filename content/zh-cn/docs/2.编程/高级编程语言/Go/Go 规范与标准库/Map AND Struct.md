@@ -1,6 +1,5 @@
 ---
 title: Map AND Struct
-linkTitle: Map AND Struct
 weight: 8
 ---
 

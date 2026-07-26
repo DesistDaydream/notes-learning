@@ -1,6 +1,5 @@
 ---
 title: lrzsz
-linkTitle: lrzsz
 weight: 20
 ---
 

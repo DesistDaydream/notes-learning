@@ -97,3 +97,60 @@ lunch with Christine         100
 - **.show** # 显示所有配置的当前值
 - **.tables \[TABLE]** # 列出所有表或指定的表
 - **.width \<NUM1 NUM2 ...>** # 为 column 模式设置列宽
+
+# 最佳实践
+
+## 获取表信息
+
+有多种方式可以获取某个表的信息，下面的示例以获取 dashboard 表信息为例。
+
+PRAGMA 扩展命令
+
+```SQL
+sqlite> PRAGMA table_info(dashboard);
+0|id|INTEGER|1||1
+1|version|INTEGER|1||0
+2|slug|TEXT|1||0
+3|title|TEXT|1||0
+4|data|TEXT|1||0
+5|org_id|INTEGER|1||0
+6|created|DATETIME|1||0
+7|updated|DATETIME|1||0
+8|updated_by|INTEGER|0||0
+9|created_by|INTEGER|0||0
+10|gnet_id|INTEGER|0||0
+11|plugin_id|TEXT|0||0
+12|folder_id|INTEGER|1|0|0
+13|is_folder|INTEGER|1|0|0
+14|has_acl|INTEGER|1|0|0
+15|uid|TEXT|0||0
+16|is_public|INTEGER|1|0|0
+17|deleted|DATETIME|0||0
+18|folder_uid|TEXT|0||0
+19|api_version|TEXT|0||0
+```
+
+.schema 点命令
+
+```sql
+sqlite> .schema dashboard
+CREATE TABLE `dashboard` (
+`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
+, `version` INTEGER NOT NULL
+, `slug` TEXT NOT NULL
+, `title` TEXT NOT NULL
+, `data` TEXT NOT NULL
+, `org_id` INTEGER NOT NULL
+, `created` DATETIME NOT NULL
+, `updated` DATETIME NOT NULL
+, `updated_by` INTEGER NULL, `created_by` INTEGER NULL, `gnet_id` INTEGER NULL, `plugin_id` TEXT NULL, `folder_id` INTEGER NOT NULL DEFAULT 0, `is_folder` INTEGER NOT NULL DEFAULT 0, `has_acl` INTEGER NOT NULL DEFAULT 0, `uid` TEXT NULL, `is_public` INTEGER NOT NULL DEFAULT 0, `deleted` DATETIME NULL, `folder_uid` TEXT NULL, `api_version` TEXT NULL);
+CREATE INDEX `IDX_dashboard_org_id` ON `dashboard` (`org_id`);
+CREATE INDEX `IDX_dashboard_gnet_id` ON `dashboard` (`gnet_id`);
+CREATE INDEX `IDX_dashboard_org_id_plugin_id` ON `dashboard` (`org_id`,`plugin_id`);
+CREATE UNIQUE INDEX `UQE_dashboard_org_id_uid` ON `dashboard` (`org_id`,`uid`);
+CREATE INDEX `IDX_dashboard_title` ON `dashboard` (`title`);
+CREATE INDEX `IDX_dashboard_is_folder` ON `dashboard` (`is_folder`);
+CREATE INDEX `IDX_dashboard_deleted` ON `dashboard` (`deleted`);
+CREATE INDEX `IDX_dashboard_org_id_folder_id_title` ON `dashboard` (`org_id`,`folder_id`,`title`);
+sqlite>
+```

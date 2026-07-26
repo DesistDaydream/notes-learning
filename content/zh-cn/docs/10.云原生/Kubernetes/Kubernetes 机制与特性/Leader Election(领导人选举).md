@@ -9,7 +9,7 @@ title: Leader Election(领导人选举)
 > - [官方博客, Kubernetes 的简单领导人选举](https://kubernetes.io/blog/2016/01/simple-leader-election-with-kubernetes/)
 > - [zhengyinyong](https://zhengyinyong.com/post/kubernetes-pod-leader-election/)
 > - 用法：
->   - [公众号-云原生实验室，巧用 Kubernetes 中的 Leader 选举机制来实现自己的 HA 应用](https://mp.weixin.qq.com/s/LnF9ZIoi-sCUV9rxxEvDvQ)
+>     - [公众号-云原生实验室，巧用 Kubernetes 中的 Leader 选举机制来实现自己的 HA 应用](https://mp.weixin.qq.com/s/LnF9ZIoi-sCUV9rxxEvDvQ)
 
 ## 为什么需要 Pod 之间的 Leader Election
 
@@ -509,4 +509,3 @@ func (le *LeaderElector) renew(ctx context.Context) {
 领导者节点续约的过程通过 `wait.PollImmediateUntil` 定时器定时执行，它接收一个 func 匿名函数（条件函数）和一个 stopCh，内部会定时调用条件函数，当条件函数返回 true 或 stopCh 关闭时，该定时器才会停止并退出。
 
 执行 `le.tryAcquireOrRenew` 函数来实现领导者节点的续约，其原理与资源锁获取过程相同。le.tryAcquireOrRenew 函数返回 true 说明续约成功，并进入下一个定时续约；返回 false 则退出并执行 le.release 函数且释放资源锁。
-

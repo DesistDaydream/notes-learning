@@ -1,5 +1,4 @@
 ---
 title: 📐Standard
-linkTitle: 📐Standard
-weight: 50
+weight: 300
 ---

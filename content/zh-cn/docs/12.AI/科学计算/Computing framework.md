@@ -1,6 +1,5 @@
 ---
 title: Computing framework
-linkTitle: Computing framework
 created: 2026-05-12T21:10
 weight: 50
 ---

@@ -1,6 +1,5 @@
 ---
 title: Method AND Interface
-linkTitle: Method AND Interface
 weight: 1
 ---
 
@@ -9,8 +8,8 @@ weight: 1
 > 参考：
 >
 > - [公众号-新亮笔记，回答连个被频繁问道的代码写法问题](https://mp.weixin.qq.com/s/gpMzEoRofGE9LmayeYw1qw)
->   - 1.强制检查类型是否实现接口
->   - 2.强制接口中所有方法只能在本包中实现
+>     - 1.强制检查类型是否实现接口
+>     - 2.强制接口中所有方法只能在本包中实现
 
 Method 与 Interface 是 Go 语言是想面向对象编程的一种解决方式，但是更轻量。
 
@@ -93,7 +92,7 @@ type InterfaceID interface {
 
 - 指向接口值的 **指针** 是 **非法** 的，不仅一点用没有，还会导致代码错误。说白了就是使用接口时不要带 `*` 符号
 - **接口=某个类型、某个类型=接口**。当某个类型实现了一个接口，就可以像加粗字那么描述。
-  - 因为下面这个代码可以看到，`DoDuck()` 的形参是接口类型，但是 `main()` 中调用 `DoDuck()` 的时候，是可以传递一个 `Chicken` 这个结构体类型。所以，当一个类型实现一个接口时，这个类型=接口。并且，`d.Quack()` 实际上是执行的 `c.Qucak()`
+    - 因为下面这个代码可以看到，`DoDuck()` 的形参是接口类型，但是 `main()` 中调用 `DoDuck()` 的时候，是可以传递一个 `Chicken` 这个结构体类型。所以，当一个类型实现一个接口时，这个类型=接口。并且，`d.Quack()` 实际上是执行的 `c.Qucak()`
 
 ```go
 type Duck interface {

@@ -1,6 +1,5 @@
 ---
 title: Symbolic link
-linkTitle: Symbolic link
 weight: 3
 tags:
   - 符号链接

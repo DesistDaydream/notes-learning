@@ -1,6 +1,5 @@
 ---
 title: X.509
-linkTitle: X.509
 weight: 2
 ---
 
@@ -38,7 +37,7 @@ X.509 在 1988 年作为 ITU(国际电信联盟) X.500 项目的一部分首次�
 > 只有一个
 
 - **Certificate**(OBJECT)
-    - **Data**([Data](#Data)) # 证书中的具体数据
+    - **Data**([Data](#data)) # 证书中的具体数据
     - **Signature Algorithm**(STRING) # 证书签名算法
     - **证书签名**
 

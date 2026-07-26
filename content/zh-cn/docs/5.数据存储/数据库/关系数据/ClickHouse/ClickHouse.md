@@ -1,6 +1,5 @@
 ---
 title: ClickHouse
-linkTitle: ClickHouse
 weight: 1
 ---
 
@@ -15,25 +14,25 @@ weight: 1
 
 https://clickhouse.com/docs/en/guides/sre/network-ports
 
-| 端口号   | 描述                                                                                                                               |
+| 端口号 | 描述 |
 | ----- | -------------------------------------------------------------------------------------------------------------------------------- |
-| 2181  | ZooKeeper default service port. **Note: see `9181` for ClickHouse Keeper**                                                       |
-| 8123  | HTTP default port                                                                                                                |
-| 8443  | HTTP SSL/TLS default port                                                                                                        |
-| 9000  | 原生协议端口（也称为 ClickHouse TCP 协议）。由 ClickHouse 生态的应用程序和进程使用（e.g. 各种语言利用 SDK 编写的程序、clickhouse-client 等自带程序、etc.）。也用于分布式查询的内部服务器之间的通信。 |
-| 9440  | 与 9000 的功能相同，但是带有 SSL/TLS                                                                                                        |
-| 9004  | MySQL emulation port                                                                                                             |
-| 9005  | PostgreSQL emulation port (also used for secure communication if SSL is enabled for ClickHouse).                                 |
-| 9009  | Inter-server communication port for low-level data access. Used for data exchange, replication, and inter-server communication.  |
-| 9010  | SSL/TLS for inter-server communications                                                                                          |
-| 9011  | Native protocol PROXYv1 protocol port                                                                                            |
-| 9019  | JDBC bridge                                                                                                                      |
-| 9100  | gRPC port                                                                                                                        |
-| 9181  | Recommended ClickHouse Keeper port                                                                                               |
-| 9234  | Recommended ClickHouse Keeper Raft port (also used for secure communication if `<secure>1</secure>` enabled)                     |
-| 9363  | 在 /metrics 路径下暴露 Prometheus 格式的 Metric 指标                                                                                        |
-| 9281  | Recommended Secure SSL ClickHouse Keeper port                                                                                    |
-| 42000 | Graphite default port                                                                                                            |
+| 2181 | ZooKeeper default service port. **Note: see `9181` for ClickHouse Keeper** |
+| 8123 | HTTP default port |
+| 8443 | HTTP SSL/TLS default port |
+| 9000 | 原生协议端口（也称为 ClickHouse TCP 协议）。由 ClickHouse 生态的应用程序和进程使用（e.g. 各种语言利用 SDK 编写的程序、clickhouse-client 等自带程序、etc.）。也用于分布式查询的内部服务器之间的通信。 |
+| 9440 | 与 9000 的功能相同，但是带有 SSL/TLS |
+| 9004 | MySQL emulation port |
+| 9005 | PostgreSQL emulation port (also used for secure communication if SSL is enabled for ClickHouse). |
+| 9009 | Inter-server communication port for low-level data access. Used for data exchange, replication, and inter-server communication. |
+| 9010 | SSL/TLS for inter-server communications |
+| 9011 | Native protocol PROXYv1 protocol port |
+| 9019 | JDBC bridge |
+| 9100 | gRPC port |
+| 9181 | Recommended ClickHouse Keeper port |
+| 9234 | Recommended ClickHouse Keeper Raft port (also used for secure communication if `<secure>1</secure>` enabled) |
+| 9363 | 在 /metrics 路径下暴露 Prometheus 格式的 Metric 指标 |
+| 9281 | Recommended Secure SSL ClickHouse Keeper port |
+| 42000 | Graphite default port |
 
 # 学习资料
 
@@ -58,7 +57,7 @@ https://clickhouse.com/docs/en/guides/sre/network-ports
 - **./config.xml** # ClickHouse Server 运行配置。
 - **./config.d/** # 配置文件可以拆分到该目录，程序运行时会将该目录下的文件合并到 config.xml 主配置文件
 - **./metrika.xml** # 默认的 include_from 文件。该文件中的配置用来替换主配置文件 config.xml 中的配置。
-  - e.g. config.xml 中有 `<remote_servers incl="clickhouse_remote_server"/>`，那么 metrika.xml 中的 `<clickhouse_remote_servers>` 部分配置就会作为 config.xml 中的 remote_servers。
+    - e.g. config.xml 中有 `<remote_servers incl="clickhouse_remote_server"/>`，那么 metrika.xml 中的 `<clickhouse_remote_servers>` 部分配置就会作为 config.xml 中的 remote_servers。
 - **./users.xml** # e.g. 认证信息、etc. 相关配置
 - **./users.d/** # 配置文件可以拆分到该目录，程序运行时会将该目录下的文件合并到 users.xml 主配置文件
 

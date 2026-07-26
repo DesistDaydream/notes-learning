@@ -1,6 +1,5 @@
 ---
 title: Tags
-linkTitle: Tags
 weight: 20
 date: 2025-01-06T22:09:00
 ---

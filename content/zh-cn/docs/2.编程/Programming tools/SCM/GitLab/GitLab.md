@@ -1,6 +1,5 @@
 ---
 title: GitLab
-linkTitle: GitLab
 weight: 1
 ---
 

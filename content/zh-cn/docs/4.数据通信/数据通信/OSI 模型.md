@@ -1,6 +1,5 @@
 ---
 title: OSI 模型
-linkTitle: OSI 模型
 weight: 20
 ---
 

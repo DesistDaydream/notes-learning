@@ -36,32 +36,32 @@ Mem：设备上的真实内存
 
 ## free 命令 与 /proc/meminfo 文件中信息的对应关系
 
-| free 命令输出         | `/proc/meminfo`文件的字段                                   |
+| free 命令输出 | `/proc/meminfo`文件的字段 |
 | ----------------- | ------------------------------------------------------ |
-| `Mem: total`      | `MemTotal`                                             |
-| `Mem: used`       | `MemTotal - MemFree - Buffers - Cached - SReclaimable` |
-| `Mem: free`       | `MemFree`                                              |
-| `Mem: shared`     | `Shmem`                                                |
-| `Mem: buff/cache` | `Buffers + Cached + SReclaimable`                      |
-| `Mem: available`  | `MemAvailable`                                         |
-| `Swap: total`     | `SwapTotal`                                            |
-| `Swap: used`      | `SwapTotal - SwapFree`                                 |
-| `Swap: free`      | `SwapFree`                                             |
+| `Mem: total` | `MemTotal` |
+| `Mem: used` | `MemTotal - MemFree - Buffers - Cached - SReclaimable` |
+| `Mem: free` | `MemFree` |
+| `Mem: shared` | `Shmem` |
+| `Mem: buff/cache` | `Buffers + Cached + SReclaimable` |
+| `Mem: available` | `MemAvailable` |
+| `Swap: total` | `SwapTotal` |
+| `Swap: used` | `SwapTotal - SwapFree` |
+| `Swap: free` | `SwapFree` |
 
 buff/cache = Buffers + Cached + SReclaimable
 
 从 procps 项目代码中查找 free 命令的具体逻辑 https://gitlab.com/procps-ng/procps/-/blob/v4.0.5/src/free.c?ref_type=tags#L329
 
 ```c
-		if (flags & FREE_WIDE) {
-			printf(" %11s", scale_size(MEMINFO_GET(mem_info, MEMINFO_MEM_BUFFERS, ul_int),
-				    args.exponent, flags & FREE_SI, flags & FREE_HUMANREADABLE));
-			printf(" %11s", scale_size(MEMINFO_GET(mem_info, MEMINFO_MEM_CACHED_ALL, ul_int)
-				    , args.exponent, flags & FREE_SI, flags & FREE_HUMANREADABLE));
-		} else {
-			printf(" %11s", scale_size(MEMINFO_GET(mem_info, MEMINFO_MEM_BUFFERS, ul_int) +
-				    MEMINFO_GET(mem_info, MEMINFO_MEM_CACHED_ALL, ul_int), args.exponent, flags & FREE_SI, flags & FREE_HUMANREADABLE));
-		}
+  if (flags & FREE_WIDE) {
+   printf(" %11s", scale_size(MEMINFO_GET(mem_info, MEMINFO_MEM_BUFFERS, ul_int),
+        args.exponent, flags & FREE_SI, flags & FREE_HUMANREADABLE));
+   printf(" %11s", scale_size(MEMINFO_GET(mem_info, MEMINFO_MEM_CACHED_ALL, ul_int)
+        , args.exponent, flags & FREE_SI, flags & FREE_HUMANREADABLE));
+  } else {
+   printf(" %11s", scale_size(MEMINFO_GET(mem_info, MEMINFO_MEM_BUFFERS, ul_int) +
+        MEMINFO_GET(mem_info, MEMINFO_MEM_CACHED_ALL, ul_int), args.exponent, flags & FREE_SI, flags & FREE_HUMANREADABLE));
+  }
 ```
 
 寻找 MEMINFO_MEM_CACHED_ALL 来源
@@ -92,7 +92,7 @@ SReclaimable:    1017548 kB
 SUnreclaim:       136096 kB
 ```
 
-buffers(20108) = Buffers(20108) 
+buffers(20108) = Buffers(20108)
 
 cache(2920016) = Cached(1902468) + SReclaimable(1017548)
 

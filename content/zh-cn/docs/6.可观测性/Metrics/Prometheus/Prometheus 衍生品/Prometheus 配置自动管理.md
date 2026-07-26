@@ -8,7 +8,7 @@ weight: 100
 
 > 参考：
 >
-> - 
+> -
 
 [jimmidyson/configmap-reload](https://github.com/jimmidyson/configmap-reload)
 
@@ -153,4 +153,3 @@ curl -X PUT "http://localhost:9100/v1/desistdaydream/alert/test" -H  "accept: ap
 ### GET /v1/tenancy # 查看所有 tennat 的状态
 
 # OpenAPI 3.0
-

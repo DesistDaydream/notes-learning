@@ -1,6 +1,5 @@
 ---
 title: "ChatBot"
-linkTitle: "ChatBot"
 created: "2026-03-13T09:35"
 weight: 100
 ---
@@ -19,8 +18,8 @@ https://github.com/zhayujie/chatgpt-on-wechat # <font color="#ff0000">Python 实
 
 - https://github.com/hanfangyuan4396/dify-on-wechat # <font color="#ff0000">Python 实现的</font>。基于 chatgpt-on-wechat，相当于其下游分支。为 channel 和 model 添加了对接目标。channel 的 wechat bot 可以对接 **Gewechat**；model 可以对接 **Dify**。
 - 加入了 Ollama 支持，个人不更新项目
-  - https://github.com/kaina404/chatgpt-on-wechat/tree/feature/ollama_support
-  - https://github.com/Joycc/chatgpt-on-wechat/tree/master
+    - https://github.com/kaina404/chatgpt-on-wechat/tree/feature/ollama_support
+    - https://github.com/Joycc/chatgpt-on-wechat/tree/master
 
 微信的 Chatbot 可以使用多种方式实现：
 

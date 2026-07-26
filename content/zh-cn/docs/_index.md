@@ -1,6 +1,5 @@
 ---
 title: 学习笔记
-linkTitle: 学习笔记
 date: 2018-05-02 21:26:00
 weight: 20
 menu:

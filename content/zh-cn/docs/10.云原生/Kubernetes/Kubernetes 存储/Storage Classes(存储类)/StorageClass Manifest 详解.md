@@ -12,11 +12,11 @@ title: StorageClass Manifest 详解
 
 ## kind: StorageClass
 
-## metadata:
+## metadata
 
 - name: <STRING> # 该 StorageClass 的名字
 
-## provisioner: <STRING> -required- # 指定要使用的 provisioner。
+## provisioner: <STRING> -required- # 指定要使用的 provisioner
 
 ## parameters \<map\[string]string> # Provisioner 的配置参数，不同的 Provisioner 具有不同的参数
 
@@ -41,9 +41,9 @@ drwxrwxrwx 4 root input 231 Dec  2 21:53 rabbitmq-persistence-test-server-2-pvc-
 StorageClass 动态创建的 PV 的回收策略。
 
 - Retain(保留) # 关联的 PVC 删除后，PV 保留，并变为 Released 状态。
-  - 再次创建 PVC 后，并不会绑定到被保留的 PV 上。
+    - 再次创建 PVC 后，并不会绑定到被保留的 PV 上。
 - Delete(删除) # 关联的 PVC 删除后，PV 删除。`默认值`
-  - PV 中的数据将会根据参数的 archiveOnDelete 的值来决定如何处理。
+    - PV 中的数据将会根据参数的 archiveOnDelete 的值来决定如何处理。
 
 ## allowVolumeExpansion: <BOOLEAN> # 存储类是否允许卷扩展
 

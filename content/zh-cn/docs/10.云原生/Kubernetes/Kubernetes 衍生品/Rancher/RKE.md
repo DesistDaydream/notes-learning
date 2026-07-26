@@ -1,6 +1,5 @@
 ---
 title: RKE
-linkTitle: RKE
 weight: 20
 ---
 
@@ -9,8 +8,8 @@ weight: 20
 > 参考：
 >
 > - 官方文档：
->   - https://rancher.com/docs/rke/latest/en/
->   - https://rancher2.docs.rancher.cn/docs/rke/_index/
+>     - https://rancher.com/docs/rke/latest/en/
+>     - https://rancher2.docs.rancher.cn/docs/rke/_index/
 
 **Rancher Kubernetes Engine(RKE)**，是经过 CNCF 认证的 Kubernetes 发行版，完全在 Docker 容器内运行。它适用于裸机和虚拟机。RKE 解决了安装复杂性的问题，这是 Kubernetes 社区中的常见问题。借助 RKE，Kubernetes 的安装和操作既简单又自动化，并且完全独立于所运行的操作系统和平台。只要服务器可以运行受支持的 Docker 版本，就可以使用 RKE 部署和运行 Kubernetes。
 
@@ -26,8 +25,8 @@ RKE 与 sealos 实现高可用的方式类似。不同点是 RKE 集群的 node 
 
 - 下载 rke 二进制文件。(在 github 上下载 rke 命令行工具)
 - 创建集群配置文件。
-  - RKE 默认使用名为 cluster.yml 的集群配置文件来确定集群中应该包含哪些节点以及如何部署 Kubernetes。
-  - 下面是一个单节点 cluster.yml 文件示例，
+    - RKE 默认使用名为 cluster.yml 的集群配置文件来确定集群中应该包含哪些节点以及如何部署 Kubernetes。
+    - 下面是一个单节点 cluster.yml 文件示例，
 
 ```bash
 cat > cluster.yml <<

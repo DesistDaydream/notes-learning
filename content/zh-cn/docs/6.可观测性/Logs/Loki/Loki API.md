@@ -1,6 +1,5 @@
 ---
 title: Loki API
-linkTitle: Loki API
 weight: 20
 ---
 
@@ -26,7 +25,7 @@ weight: 20
 
 - [GET /loki/api/v1/query](https://grafana.com/docs/loki/latest/api/#query-loki)
 - [GET /loki/api/v1/query_range](https://grafana.com/docs/loki/latest/api/#query-loki-over-a-range-of-time)
-  - [Step vs Interval](https://grafana.com/docs/loki/latest/api/#step-vs-interval)
+    - [Step vs Interval](https://grafana.com/docs/loki/latest/api/#step-vs-interval)
 - [GET /loki/api/v1/labels](https://grafana.com/docs/loki/latest/api/#list-labels-within-a-range-of-time)
 - [GET /loki/api/v1/label/\<name>/values](https://grafana.com/docs/loki/latest/api/#list-label-values-within-a-range-of-time)
 - [GET /loki/api/v1/series](https://grafana.com/docs/loki/latest/api/#list-series)

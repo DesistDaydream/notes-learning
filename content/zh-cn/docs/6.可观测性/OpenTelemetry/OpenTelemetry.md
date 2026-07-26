@@ -1,6 +1,5 @@
 ---
 title: OpenTelemetry
-linkTitle: OpenTelemetry
 weight: 1
 ---
 

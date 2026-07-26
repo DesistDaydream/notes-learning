@@ -1,6 +1,5 @@
 ---
 title: Array
-linkTitle: Array
 weight: 20
 ---
 
@@ -69,6 +68,6 @@ Dijkstra 是这样解释的：从下标 0 开始能够给出更好的不等式�
 > 参考:
 >
 > - [Wiki, Associative Array](https://en.wikipedia.org/wiki/Associative_array)(关联数组)
->   - [Wiki, Map](<https://en.wikipedia.org/wiki/Map_(computer_science)>) 被合并到关联数组
+>     - [Wiki, Map](<https://en.wikipedia.org/wiki/Map_(computer_science)>) 被合并到关联数组
 
 **Associative array(关联数组，也称为 map)**

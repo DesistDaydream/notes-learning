@@ -5,7 +5,7 @@ title: Wireguard配置详解
 # 概述
 
 > 参考：
-> 
+>
 > - <https://zhangguanzhang.github.io/2020/08/05/wireguard-for-personal/>
 > - <https://fuckcloudnative.io/posts/wireguard-docs-practice/#peer>
 
@@ -117,17 +117,17 @@ DNS = 1.1.1.1
 例如：
 
 - 从文件或某个命令的输出中读取配置值：
-  - PostUp = wg set %i private-key /etc/wireguard/wg0.key <(some command here)
+    - PostUp = wg set %i private-key /etc/wireguard/wg0.key <(some command here)
 - 添加一行日志到文件中：
-  - PostUp = echo "$(date +%s) WireGuard Started" >> /var/log/wireguard.log
+    - PostUp = echo "$(date +%s) WireGuard Started" >> /var/log/wireguard.log
 - 调用 WebHook：
-  - PostUp = curl https://events.example.dev/wireguard/started/?key=abcdefg
+    - PostUp = curl https://events.example.dev/wireguard/started/?key=abcdefg
 - 添加路由：
-  - PostUp = ip rule add ipproto tcp dport 22 table 1234
+    - PostUp = ip rule add ipproto tcp dport 22 table 1234
 - 添加 iptables 规则，启用数据包转发：
-  - PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+    - PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 - 强制 WireGuard 重新解析对端域名的 IP 地址：
-  - PostUp = resolvectl domain %i "~."; resolvectl dns %i 192.0.2.1; resolvectl dnssec %i yes
+    - PostUp = resolvectl domain %i "~."; resolvectl dns %i 192.0.2.1; resolvectl dnssec %i yes
 
 ## PreDown
 
@@ -135,9 +135,9 @@ DNS = 1.1.1.1
 例如：
 
 - 添加一行日志到文件中：
-  - PreDown = echo "$(date +%s) WireGuard Going Down" >> /var/log/wireguard.log
+    - PreDown = echo "$(date +%s) WireGuard Going Down" >> /var/log/wireguard.log
 - 调用 WebHook：
-  - PreDown = curl https://events.example.dev/wireguard/stopping/?key=abcdefg
+    - PreDown = curl https://events.example.dev/wireguard/stopping/?key=abcdefg
 
 ## PostDown
 
@@ -145,11 +145,11 @@ DNS = 1.1.1.1
 例如：
 
 - 添加一行日志到文件中：
-  - PostDown = echo "$(date +%s) WireGuard Going Down" >> /var/log/wireguard.log
+    - PostDown = echo "$(date +%s) WireGuard Going Down" >> /var/log/wireguard.log
 - 调用 WebHook：
-  - PostDown = curl https://events.example.dev/wireguard/stopping/?key=abcdefg
+    - PostDown = curl https://events.example.dev/wireguard/stopping/?key=abcdefg
 - 删除 iptables 规则，关闭数据包转发：
-  - PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+    - PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
 
 # \[Peer]
 

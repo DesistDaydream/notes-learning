@@ -1,6 +1,5 @@
 ---
 title: Log Queries
-linkTitle: Log Queries
 weight: 2
 ---
 
@@ -70,7 +69,7 @@ Log Pipeline 通常由一个或多个 **Expression(表达式)** 组成，多个�
 - [**Line Format Expression**](#Line%20Format(行格式化表达式))**(行格式化表达式)** #
 - [**Labels Format Expression**](#Labels%20Format(标签格式化表达式))**(标签格式化表达式)** #
 - [**Unwrap Expression**](https://grafana.com/docs/loki/latest/query/metric_queries/#unwrapped-range-aggregations) #
-  - 这是一个特殊的表达式，只能在 [Metric Queries](/docs/6.可观测性/Logs/Loki/LogQL/Metric%20Queries.md) 中使用。
+    - 这是一个特殊的表达式，只能在 [Metric Queries](/docs/6.可观测性/Logs/Loki/LogQL/Metric%20Queries.md) 中使用。
 
 其中一些表达式可以改变日志内容和相应的标签，然后可用于进一步 过滤和处理表达式 或 指标查询。
 
@@ -447,7 +446,6 @@ https://grafana.com/docs/loki/latest/query/log_queries/#labels-format-expression
 ## Drop Labels(丢弃标签)
 
 ## Keep Labels(保留标签)
-
 
 # LogQL 模板函数
 

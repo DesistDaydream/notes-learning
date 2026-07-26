@@ -1,6 +1,5 @@
 ---
 title: Port mirroring
-linkTitle: Port mirroring
 weight: 2
 ---
 

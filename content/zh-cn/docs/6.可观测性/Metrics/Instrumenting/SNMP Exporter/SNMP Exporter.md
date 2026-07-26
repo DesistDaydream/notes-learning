@@ -147,7 +147,7 @@ Prometheus 默认从 snmp_exporter 所监控的 9116 端口获取数据，其路
 
 - 第一种配置方式可以极大简化配置文件，让所有要采集的 SNMP 目标，都包含在同一个 job 中，但是思维方式比较抽象。
 - 第二种配置方式比较直观，但是每个要采集的 SNMP 目标都需要单独一个 job，并且配置文件内容过长。
-  - 并且，第二种配置方式是 prometheus operator 的 serviceMonitor 自动生成的配置文件的格式。
+    - 并且，第二种配置方式是 prometheus operator 的 serviceMonitor 自动生成的配置文件的格式。
 
 ## 第一种：一个 job 配置多个 SNMP 目标
 

@@ -7,7 +7,7 @@ title: qryn
 > 参考：
 >
 > - [GitHub 项目，metrico/qryn](https://github.com/metrico/qryn)
->   - 源项目：<https://github.com/lmangani/cLoki>
+>     - 源项目：<https://github.com/lmangani/cLoki>
 
 qryn 是一个灵活的 Loki 与 Tempo 兼容的 LogQL API，构建在 ClickHouse 之上。
 

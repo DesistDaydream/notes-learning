@@ -1,6 +1,5 @@
 ---
 title: Open vSwitch
-linkTitle: Open vSwitch
 weight: 20
 ---
 

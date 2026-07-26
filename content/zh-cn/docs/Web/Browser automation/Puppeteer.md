@@ -1,6 +1,5 @@
 ---
 title: Puppeteer
-linkTitle: Puppeteer
 weight: 20
 ---
 
@@ -10,7 +9,7 @@ weight: 20
 >
 > - [GitHub 项目，puppeteer/puppeteer](https://github.com/puppeteer/puppeteer)
 > - [官网](https://pptr.dev/)
->   - [中文文档？](https://puppeteer.bootcss.com/)
+>     - [中文文档？](https://puppeteer.bootcss.com/)
 > - [10分钟快速上手爬虫之Puppeteer](https://www.bilibili.com/video/BV13Z4y137Kt)
 
 Puppeteer 是一个 Node.js 库，它提供了一个高级 API 来通过 DevTools 协议控制 Chrome/Chromium。 Puppeteer 默认以无头模式运行，但可以配置为在完整（“有头”）Chrome/Chromium 中运行。

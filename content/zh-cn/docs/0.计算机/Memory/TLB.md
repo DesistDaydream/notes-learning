@@ -1,6 +1,5 @@
 ---
 title: TLB
-linkTitle: TLB
 weight: 20
 tags:
   - CPU

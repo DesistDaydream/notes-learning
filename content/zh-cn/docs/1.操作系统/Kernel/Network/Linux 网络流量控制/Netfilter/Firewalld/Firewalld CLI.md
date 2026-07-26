@@ -1,6 +1,5 @@
 ---
 title: Firewalld CLI
-linkTitle: Firewalld CLI
 weight: 20
 ---
 
@@ -44,10 +43,10 @@ TODO
 - firewall-cmd --zone=drop --change-interface=eth1 # 将经由 eth1 网卡的所有流量放在 drop 区域中进行处理
 - firewall-cmd --zone=public --add-service=cockpit --permanent # 在永久模式下，允许 cockpit 服务的流量通过 public 这个 ZONE 内的网络设备
 - 增
-  - firewall-cmd --add-source=10.10.10.0/24 # 绑定 10.10.10.0/24 网段的 IP 到默认 ZONE 中
-  - firewall-cmd --add-port=9100/tcp --permanent # 永久添加 9100 端口到默认 zone 中。
+    - firewall-cmd --add-source=10.10.10.0/24 # 绑定 10.10.10.0/24 网段的 IP 到默认 ZONE 中
+    - firewall-cmd --add-port=9100/tcp --permanent # 永久添加 9100 端口到默认 zone 中。
 - 查
-  - firewall-cmd --list-services # 列出当前默认 ZONE 中已经添加了的 service
+    - firewall-cmd --list-services # 列出当前默认 ZONE 中已经添加了的 service
 - rich-rule(丰富语言规则)i.e.高级模式，可以配置更详细的规则
-  - firewall-cmd --add-rich-rule='rule family=ipv4 source address="10.10.10.10" port port=1234 protocol=tcp accept'
-    - -A IN_public_allow -s 10.10.10.10/32 -p tcp -m tcp --dport 1234 -m conntrack --ctstate NEW -j ACCEPT
+    - firewall-cmd --add-rich-rule='rule family=ipv4 source address="10.10.10.10" port port=1234 protocol=tcp accept'
+        - -A IN_public_allow -s 10.10.10.10/32 -p tcp -m tcp --dport 1234 -m conntrack --ctstate NEW -j ACCEPT

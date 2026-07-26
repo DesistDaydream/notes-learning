@@ -1,6 +1,5 @@
 ---
 title: "Management"
-linkTitle: "Management"
 weight: 20
 ---
 
@@ -17,13 +16,13 @@ weight: 20
 - [Clear-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/clear-item?view=powershell-7.3)
 - [Copy-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/copy-item?view=powershell-7.3)
 - [Get-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/get-item?view=powershell-7.3)
-- [Invoke-Item](#Invoke-Item)
+- [Invoke-Item](#invoke-item)
 - [Move-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/move-item?view=powershell-7.3)
-- [New-Item](#New-Item)
+- [New-Item](#new-item)
 - [Remove-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/remove-item?view=powershell-7.3)
 - [Rename-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/rename-item?view=powershell-7.3)
 - [Set-Item](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/set-item?view=powershell-7.3)
-- [Get-ChildItem](#Get-ChildItem) # 获取指定位置的 Item 和 子Item。类似 ls 命令
+- [Get-ChildItem](#get-childitem) # 获取指定位置的 Item 和 子Item。类似 ls 命令
 
 ## New-Item
 
@@ -36,17 +35,17 @@ https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.managem
 **OPTIONS**
 
 - **-ItemType STRING** # 指定新 Item 类型，可用的类型取决于 PowerShell 的[提供程序](/docs/1.操作系统/Terminal%20与%20Shell/WindowsShell/PowerShell/提供程序.md)
-  - 由于不同提供可用的类型非常多，笔记里就不写了，具体还是看 Net-Item 官方文档吧
+    - 由于不同提供可用的类型非常多，笔记里就不写了，具体还是看 Net-Item 官方文档吧
 
 ### EXAMPLE
 
 创建 [Symbolic link](/docs/1.操作系统/Kernel/Filesystem/文件管理/Symbolic%20link.md)(软连接)
 
 - 创建 C:/Users/DesistDaydream/AppData/Roaming/yuzu 符号链接文件，指向 D:/Games/emulator/yuzu_data/user
-  - `New-Item -ItemType SymbolicLink -Path "C:/Users/DesistDaydream/AppData/Roaming/yuzu" -Target "D:/Games/emulator/yuzu_data/user"`
-  - Notes: 这种用法可以代替 mklink 命令
+    - `New-Item -ItemType SymbolicLink -Path "C:/Users/DesistDaydream/AppData/Roaming/yuzu" -Target "D:/Games/emulator/yuzu_data/user"`
+    - Notes: 这种用法可以代替 mklink 命令
 - 查看符号链接文件所指向的原始文件路径
-  - `(Get-Item ${PathToFile}).Target`
+    - `(Get-Item ${PathToFile}).Target`
 
 ## Invoke-Item
 
@@ -117,7 +116,6 @@ ls 命令是 Get-ChildItem 的别名。
 
 服务名称与显示名称可以在窗口页面看到效果，显示名称有点类似于简短的描述信息。
 
-
 ### Syntax(语法)
 
 Get-Service \[OPTIONS] [-Name] \<PATTERN>
@@ -137,7 +135,6 @@ PATTERN 支持通配符，前面的 -Name 可以省略，该命令默认通过**
 
 - Get-Service "s*" | Sort-Object status
 
-
 ## New-Service
 
 创建服务
@@ -152,9 +149,9 @@ PATTERN 支持通配符，前面的 -Name 可以省略，该命令默认通过**
 
 # 进程管理工具
 
-[Get-Process](#Get-Process)
+[Get-Process](#get-process)
 
-[Start-Process](#Start-Process)
+[Start-Process](#start-process)
 
 [Stop-Process](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/stop-process?view=powershell-7.3)
 
@@ -180,9 +177,9 @@ Start-Process 在本地计算机上启动一个或多个进程。默认情况下
 
 - **-ArgumentList** #
 - **-WindowStyle** # 指定新进程的窗口样式。`默认值：Normal`
-  - Hideen # 隐藏窗口
-  - Minimized # 最小化窗口
-  - Maximized # 最大化窗口
+    - Hideen # 隐藏窗口
+    - Minimized # 最小化窗口
+    - Maximized # 最大化窗口
 - **-RedirectStandardOutput** # 将进程产生的输出发送到指定的文件中。默认输出到控制台。
 - **-RedirectStandardError** # 将进程产生的所有错误发送到指定的文件中。默认输出到控制台。
 
@@ -212,4 +209,3 @@ https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.managem
 **OPTIONS**
 
 - **-Id** #
-

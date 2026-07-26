@@ -1,6 +1,5 @@
 ---
 title: Vim
-linkTitle: Vim
 weight: 1
 ---
 # 概述
@@ -9,8 +8,8 @@ weight: 1
 >
 > - [GitHub 项目，vim/vim](https://github.com/vim/vim)
 > - [官网](https://www.vim.org/)
->   - [用户手册](https://vimdoc.sourceforge.net/htmldoc/usr_toc.html) 可跳转到 [帮助文件](https://vimdoc.sourceforge.net/htmldoc/help.html)
->   - Carlo Teubner 维护的 [文档](https://vimhelp.org/)
+>     - [用户手册](https://vimdoc.sourceforge.net/htmldoc/usr_toc.html) 可跳转到 [帮助文件](https://vimdoc.sourceforge.net/htmldoc/help.html)
+>     - Carlo Teubner 维护的 [文档](https://vimhelp.org/)
 
 ## Syntax(语法)
 
@@ -24,7 +23,7 @@ OPTIONS：
 
 - **-o FILENAME1 FILENAME2 ......** # 水平分割使用 vi 打开多个文件
 - **-O FILENAME1 FILENAME2......** # 垂直分割使用 vi 打开多个文件
-  - 使用 ctrl+w 后，按上下左右箭头，切换编辑哪方向的文件
+    - 使用 ctrl+w 后，按上下左右箭头，切换编辑哪方向的文件
 - **+#** # 打开文件后直接让光标处于第#行的行首，不输入#默认为最后一行
 - **-b** # 使用二进制模式打开 vim
 
@@ -73,12 +72,12 @@ https://vimdoc.sourceforge.net/htmldoc/scroll.html
 
 进入搜索模式后，所有特殊字符都按正则表达式处理。直接在搜索指令后面加 `\c`，即可可不区分大小写搜索
 
-| 用法      | 描述                                        |
+| 用法 | 描述 |
 | ------- | ----------------------------------------- |
 | `/word` | 从当前光标处开始搜索字符串 word，按 n 移动到下个单词处，N 移动到上一个。 |
-| `?word` | 和上面类似，但是是反方向。                             |
-| `fX`    | 查找 X 这个字符并向前移动光标到 X 这个字符上                 |
-| `FX`    | 查找 X 这个字符并向后移动光标到 X 这个字符上                 |
+| `?word` | 和上面类似，但是是反方向。 |
+| `fX` | 查找 X 这个字符并向前移动光标到 X 这个字符上 |
+| `FX` | 查找 X 这个字符并向后移动光标到 X 这个字符上 |
 
 ### 替换
 
@@ -187,11 +186,11 @@ Vim 多缓冲区编辑
 搜索：
 
 - `:g` 即为 :global，该搜索命令极其强大，可以对 global 命令在\[range]指定的文本范围内（缺省为整个文件）查找 PATTERN，然后对匹配到的行执行命令 COMMAND，如果希望对没匹配上的行执行命令，则使用 global!或 vglobal 命令（注：模式 PATTERN 可以是字符串，也可是是正则表达式的筛选内容）
-  - 命令模式
-    - :\[range]global/PATTERN/COMMAND
-  - 应用例子：
-    - :g/^$/d # 搜索所有空白行并剪切
-    - :g/^#/d # 搜索所有所有开头带#号的行并剪切
+    - 命令模式
+        - :\[range]global/PATTERN/COMMAND
+    - 应用例子：
+        - :g/^$/d # 搜索所有空白行并剪切
+        - :g/^#/d # 搜索所有所有开头带#号的行并剪切
 - :v
 
 # 设置

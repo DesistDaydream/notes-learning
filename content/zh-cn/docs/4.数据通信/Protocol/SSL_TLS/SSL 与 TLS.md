@@ -1,6 +1,5 @@
 ---
 title: SSL 与 TLS
-linkTitle: SSL 与 TLS
 weight: 1
 tags:
   - Information_security
@@ -69,9 +68,9 @@ openSSL 与 gpg(pgp 协议)
 Linux 发行版中，有一个目录会保存一些常见的 CA 证书，称之为[信任仓库](/docs/7.信息安全/Cryptography(密码学)/公开密钥加密/证书%20 与%20PKI.md 与 PKI.md)：
 
 - CentOS 发行版
-  - **/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt** # 包含所有证书，每个证书前一行有注释
+    - **/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt** # 包含所有证书，每个证书前一行有注释
 - Ubuntu 发行版
-  - **/etc/ssl/certs/** # 该目录中一个证书一个文件
+    - **/etc/ssl/certs/** # 该目录中一个证书一个文件
 
 # TLS 扩展
 
@@ -96,8 +95,6 @@ SNI 的出现主要是为了解决这么一个问题：
 
 ![1000](https://notes-learning.oss-cn-beijing.aliyuncs.com/ssl_tls/sni_demo.png)
 
-
 不幸的是，在 HTTPS 协议中，TLS握手发生在数据的正式传递之前，因此其中的数据都是明文传递的，这就意味着，SNI 信息可能会被网络传说中的中间人监听，中间人可以轻易的知道用户准备访问哪个网站，用户因此就会泄露隐私，中间人还可以通过识别 SNI 的信息，阻断一部分TLS握手的建立
 
 这种攻击也就是 <font color="#ff0000">SNI 阻断</font>
-

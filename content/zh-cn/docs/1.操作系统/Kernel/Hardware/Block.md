@@ -1,6 +1,5 @@
 ---
 title: Block
-linkTitle: Block
 weight: 20
 ---
 
@@ -83,7 +82,7 @@ iostat -x 1
 **/sys/block/\<BLOCK>/queue/**
 
 - **./rotational** # 块设备旋转的类型，旋转就是 HHD，不旋转就是 SSD，非常形象生动得比喻磁盘使用的情况~哈哈。`0 表示 SSD`，`1 表示 HDD`
-  - 注意：如果磁盘已经被做了 Raid，那么这个值将会一直都是 1。这个说法忘记了出处，找到后补充。
+    - 注意：如果磁盘已经被做了 Raid，那么这个值将会一直都是 1。这个说法忘记了出处，找到后补充。
 
 **/sys/block/\<BLOCK>/stat** # stat 文件提供了有关块设备 \<BLOCK> 状态的多项统计信息，共 17 个字段。内容详见上文
 
@@ -92,25 +91,25 @@ iostat -x 1
 - https://www.kernel.org/doc/Documentation/block/stat.txt
 - https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats
 
-| 名称              | 单位           | 描述                                                    |
+| 名称 | 单位 | 描述 |
 | --------------- | ------------ | ----------------------------------------------------- |
-| read I/Os       | requests     | 已处理的读 I/O 总数                                          |
-| read merges     | requests     | number of read I/Os merged with in-queue I/O          |
-| read sectors    | sectors      | number of sectors read                                |
-| read ticks      | milliseconds | total wait time for read requests                     |
-| write I/Os      | requests     | 已处理的写 I/O 总数                                          |
-| write merges    | requests     | number of write I/Os merged with in-queue I/O         |
-| write sectors   | sectors      | number of sectors written                             |
-| write ticks     | milliseconds | total wait time for write requests                    |
-| in_flight       | requests     | number of I/Os currently in flight                    |
-| io_ticks        | milliseconds | 该块设备处于活动状态（执行 I/O 操作）的总时间。i.e. [磁盘 I/O 时间](#I/O%20时间) |
-| time_in_queue   | milliseconds | total wait time for all requests                      |
-| discard I/Os    | requests     | number of discard I/Os processed                      |
-| discard merges  | requests     | number of discard I/Os merged with in-queue I/O       |
-| discard sectors | sectors      | number of sectors discarded                           |
-| discard ticks   | milliseconds | total wait time for discard requests                  |
-| flush I/Os      | requests     | number of flush I/Os processed                        |
-| flush ticks     | milliseconds | total wait time for flush requests                    |
+| read I/Os | requests | 已处理的读 I/O 总数 |
+| read merges | requests | number of read I/Os merged with in-queue I/O |
+| read sectors | sectors | number of sectors read |
+| read ticks | milliseconds | total wait time for read requests |
+| write I/Os | requests | 已处理的写 I/O 总数 |
+| write merges | requests | number of write I/Os merged with in-queue I/O |
+| write sectors | sectors | number of sectors written |
+| write ticks | milliseconds | total wait time for write requests |
+| in_flight | requests | number of I/Os currently in flight |
+| io_ticks | milliseconds | 该块设备处于活动状态（执行 I/O 操作）的总时间。i.e. [磁盘 I/O 时间](#I/O%20时间) |
+| time_in_queue | milliseconds | total wait time for all requests |
+| discard I/Os | requests | number of discard I/Os processed |
+| discard merges | requests | number of discard I/Os merged with in-queue I/O |
+| discard sectors | sectors | number of sectors discarded |
+| discard ticks | milliseconds | total wait time for discard requests |
+| flush I/Os | requests | number of flush I/Os processed |
+| flush ticks | milliseconds | total wait time for flush requests |
 
 # Proc 中的磁盘信息
 

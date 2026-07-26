@@ -1,6 +1,5 @@
 ---
 title: Nmap
-linkTitle: Nmap
 weight: 20
 tags:
   - Network_analyzer

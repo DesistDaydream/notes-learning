@@ -1,6 +1,5 @@
 ---
 title: IPsec and L2TP
-linkTitle: IPsec and L2TP
 weight: 11
 ---
 

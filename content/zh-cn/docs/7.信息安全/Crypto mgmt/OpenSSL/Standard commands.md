@@ -1,6 +1,5 @@
 ---
 title: Standard commands
-linkTitle: Standard commands
 weight: 20
 ---
 
@@ -25,9 +24,9 @@ OPTIONS
 EXAMPLE
 
 - openssl passwd -1 123456
-  - 结果为：$1$ONQ8XSuX$Cv0wy2WbbbwOt/YkXuAlU/
+    - 结果为：$1$ONQ8XSuX$Cv0wy2WbbbwOt/YkXuAlU/
 - openssl passwd -1 -salt 123 123456
-  - 结果为：$1$123$7mft0jKnzzvAdU4t0unTG1
+    - 结果为：$1$123$7mft0jKnzzvAdU4t0unTG1
 
 ## openssl rand - 生成伪随机数字节
 
@@ -48,7 +47,7 @@ OPTIONS
 EXAMPLE
 
 - 在当前目录下生成一个 2048 位的名为 desistdaydream.key 的私钥（括号的作用是创建子 shell 执行命令，这样 umask 命令对当前 shell 没影响）
-  - **(umask 077; openssl genrsa -out ./desistdaydream.key 2048)**
+    - **(umask 077; openssl genrsa -out ./desistdaydream.key 2048)**
 
 ## openssl rsa - RSA 密钥管理
 
@@ -62,9 +61,9 @@ OPTIONS
 EXAMPLE
 
 - 从 desistdaydream.key 私钥中输出公钥信息，并将公钥信息写入到 lch.pub 文件中
-  - **openssl rsa -in desistdaydream.key -pubout -out desistdaydream.pub**
+    - **openssl rsa -in desistdaydream.key -pubout -out desistdaydream.pub**
 - 显示 ca.key 密钥的信息
-  - **openssl rsa -noout -text -in ca.key**
+    - **openssl rsa -noout -text -in ca.key**
 
 # 证书标准命令
 
@@ -75,8 +74,8 @@ EXAMPLE
 EXAMPLE
 
 - 在 CA 所在服务器使用 httpd.csr 的请求文件签署证书生成证书文件 httpd.crt，然后再把该证书文件，发送给请求方，整套流程就完成了。
-  - 注意：如果想要执行该命令，需要注意为该服务器进行 CA 的配置，详见本章前面的"配置文件说明"
-  - openssl ca -in httpd.csr -out httpd.crt -days 365
+    - 注意：如果想要执行该命令，需要注意为该服务器进行 CA 的配置，详见本章前面的"配置文件说明"
+    - openssl ca -in httpd.csr -out httpd.crt -days 365
 - openssl ca -revoke /etc/pki/CA/newcerts/SERIAL.pem # 吊销证书
 - openssl ca -gencrl -out
 
@@ -102,7 +101,7 @@ OPTIONS
 - **-text** # 以文本形式打印出证书
 - **-noout** # 不输出证书的编码格式内容
 - **-subj** # 在命令行设定 Subject 信息。可以避免交互式输入。Subject 符合 [X.509](/docs/7.信息安全/Cryptography/公开密钥加密/证书%20与%20PKI/X.509.md#DN(distinguished%20names)) 的 “DN” 格式
-  - 命令行参数的值的格式像这样: `/type0=value0/type1=value1/type2=...`。e.g. `-subj "/C=CN/CN=DesistDaydream-CA"`
+    - 命令行参数的值的格式像这样: `/type0=value0/type1=value1/type2=...`。e.g. `-subj "/C=CN/CN=DesistDaydream-CA"`
 
 ### EXAMPLE
 
@@ -120,9 +119,9 @@ openssl req -new -x509 -key /etc/pki/CA/private/ca.key -days 3650 -out /etc/pki/
 - Organization Name (eg, company) \[Default Company Ltd]:GuanDian # 组织名称。例如公司
 - Organizational Unit Name (eg, section) \[]:Ops # 组织单位名称，例如部门
 - Common Name (eg, your name or your server's hostname) \[]:master0 # 通用名称，例如 CA 名或者服务器主机名。
-  - Note：证书中的 CN 是很重要的标志，CN 可以使用主机名来表示，这样在使用证书来访问的时候，可以使用 CN 来验证域名是否可信。
-  - 如果 CN 不使用主机名，则在签发证书的时候，需要 subjectAltName 字段来设定 DNS 别名，否则会报错提示证书对某些域名不可用。
-  - 样例详见 harbor 使用私有证书部署：harbor 云原生注册中心.note
+    - Note：证书中的 CN 是很重要的标志，CN 可以使用主机名来表示，这样在使用证书来访问的时候，可以使用 CN 来验证域名是否可信。
+    - 如果 CN 不使用主机名，则在签发证书的时候，需要 subjectAltName 字段来设定 DNS 别名，否则会报错提示证书对某些域名不可用。
+    - 样例详见 harbor 使用私有证书部署：harbor 云原生注册中心.note
 - Email Address # 邮箱地址
 
 > Tips: 也可以使用 -subj 选项指定这些信息，避免交互式输入。

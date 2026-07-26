@@ -1,6 +1,5 @@
 ---
 title: Rancher 部署与清理
-linkTitle: Rancher 部署与清理
 weight: 20
 ---
 

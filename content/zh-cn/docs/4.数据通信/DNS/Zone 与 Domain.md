@@ -1,6 +1,5 @@
 ---
 title: Zone 与 Domain
-linkTitle: Zone 与 Domain
 weight: 3
 ---
 
@@ -8,7 +7,7 @@ weight: 3
 
 > 参考：
 >
-> - 
+> -
 
 # Delegation(授权)
 

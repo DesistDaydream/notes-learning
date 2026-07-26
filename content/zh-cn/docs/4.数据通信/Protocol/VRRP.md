@@ -1,6 +1,5 @@
 ---
 title: VRRP
-linkTitle: VRRP
 weight: 3
 ---
 

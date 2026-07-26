@@ -1,6 +1,5 @@
 ---
 title: WSGI
-linkTitle: WSGI
 weight: 20
 ---
 

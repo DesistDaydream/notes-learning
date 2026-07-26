@@ -1,6 +1,5 @@
 ---
 title: HTM
-linkTitle: HTML
 weight: 1
 ---
 

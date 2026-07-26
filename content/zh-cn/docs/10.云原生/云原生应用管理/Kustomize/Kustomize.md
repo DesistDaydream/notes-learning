@@ -1,6 +1,5 @@
 ---
 title: Kustomize
-linkTitle: Kustomize
 weight: 1
 ---
 
@@ -18,7 +17,7 @@ Kustomize 是一个通过 Kustomization 文件来管理 Manifests 的应用程�
 
 - kustomize 子命令
 - -k,--kustomize 标志来代替 kubectl apply 命令中的 -f 标志。
-  - 比如 kubectl apply -k \<KustomizationDIR>
+    - 比如 kubectl apply -k \<KustomizationDIR>
 
 Kustomize 与 Helm 非常类似，都可以用来渲染声明 Kubernetes 资源的 Manifests 文件，并部署到集群中，只不过，Kustomize 更轻便，更易用，但是，不像 Helm，并不能包装成 Chart 并统一上传到仓库中。
 

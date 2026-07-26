@@ -1,6 +1,5 @@
 ---
 title: "Torch"
-linkTitle: "Torch"
 weight: 20
 ---
 # 概述
@@ -18,5 +17,3 @@ Torch 自称为神经网络界的 [NumPy](/docs/12.AI/科学计算/NumPy.md)，�
 # 安装
 
 略，一般都安装 [PyTorch](/docs/12.AI/科学计算/PyTorch.md)
-
-

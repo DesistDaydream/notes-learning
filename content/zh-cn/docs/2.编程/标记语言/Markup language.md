@@ -1,6 +1,5 @@
 ---
 title: Markup language
-linkTitle: Markup language
 weight: 20
 ---
 

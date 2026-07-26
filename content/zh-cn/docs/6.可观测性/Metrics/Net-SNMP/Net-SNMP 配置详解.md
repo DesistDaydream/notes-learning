@@ -1,6 +1,5 @@
 ---
 title: Net-SNMP 配置详解
-linkTitle: Net-SNMP 配置详解
 weight: 20
 ---
 
@@ -8,8 +7,7 @@ weight: 20
 
 > 参考：
 >
-> - 
-
+> -
 
 # snmpd.conf 文件
 
@@ -22,4 +20,3 @@ weight: 20
 **mibs +HH3C-SERVER-AGENT-MIB**
 
 **mibs +HH3C-SERVER-TRAP-MIB**
-

@@ -1,6 +1,5 @@
 ---
 title: Redis CLI
-linkTitle: Redis CLI
 weight: 1
 ---
 
@@ -9,7 +8,7 @@ weight: 1
 > 参考：
 >
 > - [官方文档](https://redis.io/commands)
->   - 中文
+>     - 中文
 
 # redis-cli - 命令行客户端
 
@@ -23,8 +22,8 @@ help # 获取指定 command 的帮助信息
 
 - [generic](#generic) # 通用的
 - 不同数据类型的数据处理命令
-  - [string](#string)
-  - etc.
+    - [string](#string)
+    - etc.
 - [pubsub](#pubsub) # 发布与订阅
 - [connection](#connection) # redis 的客户端与服务端连接相关的命令
 - [server](#server) # 关于 redis 服务器的相关命令，包括查看配置等
@@ -146,4 +145,4 @@ db15:keys=14,expires=5,avg_ttl=682335
 
 `type XXX` # 显示 XXX 键的数据类型
 
-根据 [不同类型的数据处理命令组](#不同类型的数据处理命令组) 
+根据 [不同类型的数据处理命令组](#不同类型的数据处理命令组)

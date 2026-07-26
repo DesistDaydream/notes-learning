@@ -8,10 +8,10 @@ weight: 1
 > 参考：
 >
 > - [官方文档，参考 - API 概述 - API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23)(这里是通过单一页面显示 API 资源各字段详解)
->   - 链接里是 1.23 的，想查看其他版本 API，改变 URL 中的版本即可。随着版本更新，老版本的页面会删除。
->   - 该页面的原始文件是符合 OpenAPI 格式的 swagger.json，位置在 kubernetes/kubernetes 仓库的 [kubernetes/api/openapi-spec/swagger.json](https://github.com/kubernetes/kubernetes/blob/master/api/openapi-spec/swagger.json)
+>     - 链接里是 1.23 的，想查看其他版本 API，改变 URL 中的版本即可。随着版本更新，老版本的页面会删除。
+>     - 该页面的原始文件是符合 OpenAPI 格式的 swagger.json，位置在 kubernetes/kubernetes 仓库的 [kubernetes/api/openapi-spec/swagger.json](https://github.com/kubernetes/kubernetes/blob/master/api/openapi-spec/swagger.json)
 > - [官方文档，参考 - KubernetesAPI](https://kubernetes.io/docs/reference/kubernetes-api/)(这里是通过多级页面显示 API 资源各字段详解)
->   - 这些连接的内容，其实是 `kubectl explain` 命令的内容显示在浏览器中了。
+>     - 这些连接的内容，其实是 `kubectl explain` 命令的内容显示在浏览器中了。
 > - [GitHub 项目，kubernetes/api - core/v1/types.go](https://github.com/kubernetes/api/blob/master/core/v1/types.go)
 
 在本部分笔记后面的章节，各资源 Manifest 详解，其实已经描述了 API 中各个字段的含义。所以本篇文章不会详解每个 API，而是记录一下如何通过 Kubernetes 官网来查找 API 详解，以及如何使用官方文档查看 API 详解。

@@ -145,7 +145,7 @@ Documentation=man:systemd.special(7)
 
 具体顺序应该如下：
 
-- **local-s.target + swap.target **# 这两个 target 主要在挂载本机 /etc/fstab 里面所规范的文件系统与相关的内存交换空间。
+- **local-s.target + swap.target**# 这两个 target 主要在挂载本机 /etc/fstab 里面所规范的文件系统与相关的内存交换空间。
 - **sysinit.target** # 这个 target 主要在侦测硬件,载入所需要的核心模块等动作。核心所侦测到的各硬件设备，会被记录在 /proc/ 与 /sys/ 目录中，内核参数的修改详见 sysctl 命令。该 target 包括但不限于以下 Unit，详见/usr/lib/systemd/system/sysinit.target.wants/目录
     - 特殊文件系统装置的挂载：包括 dev-hugepages.mount、dev-mqueue.mount 等，主要在挂载跟巨量内存分页使用与消息队列的功能。成功后，会在/dev/目录下简历/dev/hugepages/、/dev/mqueue/等目录
     - 特殊文件系统的启动：包括磁盘阵列、网络驱动器(iscsi)、LVM 文件系统、文件系统对照服务(multipath)等等

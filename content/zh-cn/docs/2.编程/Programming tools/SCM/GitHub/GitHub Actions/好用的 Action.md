@@ -1,6 +1,5 @@
 ---
 title: 好用的 Action
-linkTitle: 好用的 Action
 weight: 20
 ---
 

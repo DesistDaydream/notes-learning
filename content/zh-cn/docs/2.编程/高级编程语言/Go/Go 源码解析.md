@@ -13,8 +13,8 @@ weight: 10
 
 go 源代码首先要通过 go build 编译为可执行文件，在 linux 平台上为 ELF 格式的可执行文件，编译阶段会经过编译器、汇编器、链接器三个过程最终生成可执行文件。
 
-- 1、编译器：_.go 源码通过 go 编译器生成为 _.s 的 plan9 汇编代码，Go 编译器入口是 compile/internal/gc/main.go 文件的 main 函数；
-- 2、汇编器：通过 go 汇编器将编译器生成的 _.s 汇编语言转换为机器代码，并写出最终的目标程序 _.o 文件，src/cmd/internal/obj 包实现了 go 汇编器；
+- 1、编译器：_.go 源码通过 go 编译器生成为_.s 的 plan9 汇编代码，Go 编译器入口是 compile/internal/gc/main.go 文件的 main 函数；
+- 2、汇编器：通过 go 汇编器将编译器生成的 _.s 汇编语言转换为机器代码，并写出最终的目标程序_.o 文件，src/cmd/internal/obj 包实现了 go 汇编器；
 - 3、链接器：汇编器生成的一个个 \*.o 目标文件通过链接处理得到最终的可执行程序，src/cmd/link/internal/ld 包实现了链接器；
 
 #### 二、运行
@@ -36,60 +36,60 @@ go 源码通过上述几个步骤生成可执行文件后，二进制文件在�
 `main.go`
 
 ```
-package main  
-  
-import "fmt"  
-  
-func main() {  
-    fmt.Println("hello world")  
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("hello world")
 }
 ```
 
 编译该程序并使用 gdb 进行调试。使用 gdb 调试时首先在程序入口处设置一个断点，然后进行单步调试即可看到该程序启动过程中的代码执行流程。
 
 ```
-$ go build -gcflags "-N -l" -o main main.go  
-  
-$ gdb ./main  
-  
-(gdb) info files  
-Symbols from "/home/gosoon/main".  
-Local exec file:  
-    `/home/gosoon/main', file type elf64-x86-64.  
-    Entry point: 0x465860  
-    0x0000000000401000 - 0x0000000000497893 is .text  
-    0x0000000000498000 - 0x00000000004dbb65 is .rodata  
-    0x00000000004dbd00 - 0x00000000004dc42c is .typelink  
-    0x00000000004dc440 - 0x00000000004dc490 is .itablink  
-    0x00000000004dc490 - 0x00000000004dc490 is .gosymtab  
-    0x00000000004dc4a0 - 0x0000000000534b90 is .gopclntab  
-    0x0000000000535000 - 0x0000000000535020 is .go.buildinfo  
-    0x0000000000535020 - 0x00000000005432e4 is .noptrdata  
-    0x0000000000543300 - 0x000000000054aa70 is .data  
-    0x000000000054aa80 - 0x00000000005781f0 is .bss  
-    0x0000000000578200 - 0x000000000057d510 is .noptrbss  
-    0x0000000000400f9c - 0x0000000000401000 is .note.go.buildid  
-(gdb) b *0x465860  
-Breakpoint 1 at 0x465860: file /home/gosoon/golang/go/src/runtime/rt0_linux_amd64.s, line 8.  
-(gdb) r  
-Starting program: /home/gaofeilei/./main  
-  
-Breakpoint 1, _rt0_amd64_linux () at /home/gaofeilei/golang/go/src/runtime/rt0_linux_amd64.s:8  
-8        JMP _rt0_amd64(SB)  
-(gdb) n  
-_rt0_amd64 () at /home/gaofeilei/golang/go/src/runtime/asm_amd64.s:15  
-15        MOVQ    0(SP), DI   // argc  
-(gdb) n  
-16        LEAQ    8(SP), SI   // argv  
-(gdb) n  
-17        JMP runtime·rt0_go(SB)  
-(gdb) n  
-runtime.rt0_go () at /home/gaofeilei/golang/go/src/runtime/asm_amd64.s:91  
-91        MOVQ    DI, AX      // argc  
-......  
-231        CALL    runtime·mstart(SB)  
-(gdb) n  
-hello world  
+$ go build -gcflags "-N -l" -o main main.go
+
+$ gdb ./main
+
+(gdb) info files
+Symbols from "/home/gosoon/main".
+Local exec file:
+    `/home/gosoon/main', file type elf64-x86-64.
+    Entry point: 0x465860
+    0x0000000000401000 - 0x0000000000497893 is .text
+    0x0000000000498000 - 0x00000000004dbb65 is .rodata
+    0x00000000004dbd00 - 0x00000000004dc42c is .typelink
+    0x00000000004dc440 - 0x00000000004dc490 is .itablink
+    0x00000000004dc490 - 0x00000000004dc490 is .gosymtab
+    0x00000000004dc4a0 - 0x0000000000534b90 is .gopclntab
+    0x0000000000535000 - 0x0000000000535020 is .go.buildinfo
+    0x0000000000535020 - 0x00000000005432e4 is .noptrdata
+    0x0000000000543300 - 0x000000000054aa70 is .data
+    0x000000000054aa80 - 0x00000000005781f0 is .bss
+    0x0000000000578200 - 0x000000000057d510 is .noptrbss
+    0x0000000000400f9c - 0x0000000000401000 is .note.go.buildid
+(gdb) b *0x465860
+Breakpoint 1 at 0x465860: file /home/gosoon/golang/go/src/runtime/rt0_linux_amd64.s, line 8.
+(gdb) r
+Starting program: /home/gaofeilei/./main
+
+Breakpoint 1, _rt0_amd64_linux () at /home/gaofeilei/golang/go/src/runtime/rt0_linux_amd64.s:8
+8        JMP _rt0_amd64(SB)
+(gdb) n
+_rt0_amd64 () at /home/gaofeilei/golang/go/src/runtime/asm_amd64.s:15
+15        MOVQ    0(SP), DI   // argc
+(gdb) n
+16        LEAQ    8(SP), SI   // argv
+(gdb) n
+17        JMP runtime·rt0_go(SB)
+(gdb) n
+runtime.rt0_go () at /home/gaofeilei/golang/go/src/runtime/asm_amd64.s:91
+91        MOVQ    DI, AX      // argc
+......
+231        CALL    runtime·mstart(SB)
+(gdb) n
+hello world
 [Inferior 1 (process 39563) exited normally]
 ```
 
@@ -120,7 +120,6 @@ hello world
 - 5、执行 needtls 代码块，初始化 tls 和 m0；
 - 6、执行 ok 代码块，首先将 m0 和 g0 绑定，然后调用 `runtime·args` 函数处理进程参数和环境变量，调用 `runtime·osinit` 函数初始化 cpu 数量，调用 `runtime·schedinit` 初始化调度器，调用 `runtime·newproc` 创建第一个 goroutine 执行 main 函数，调用 `runtime·mstart` 启动主线程，主线程会执行第一个 goroutine 来运行 main 函数，此处会阻塞住直到进程退出；
 
-
     TEXT runtime·rt0_go(SB),NOSPLIT|TOPFRAME,$0    // 处理命令行参数的代码    MOVQ    DI, AX      // AX = argc    MOVQ    SI, BX      // BX = argv    // 将栈扩大39字节，此处为什么扩大39字节暂时还没有搞清楚    SUBQ    $(4*8+7), SP    ANDQ    $~15, SP    // 调整为 16 字节对齐    MOVQ    AX, 16(SP)  //argc放在SP + 16字节处    MOVQ    BX, 24(SP)  //argv放在SP + 24字节处    // 开始初始化 g0，runtime·g0 是一个全局变量，变量在 src/runtime/proc.go 中定义，全局变量会保存在进程内存空间的数据区，下文会介绍查看 elf 二进制文件中的代码数据和全局变量的方法    // g0 的栈是从进程栈内存区进行分配的，g0 占用了大约 64k 大小。    MOVQ    $runtime·g0(SB), DI    // g0 的地址放入 DI 寄存器    LEAQ    (-64*1024+104)(SP), BX // BX = SP - 64*1024 + 104    // 开始初始化 g0 对象的 stackguard0,stackguard1,stack 这三个字段    MOVQ    BX, g_stackguard0(DI) // g0.stackguard0 = SP - 64*1024 + 104    MOVQ    BX, g_stackguard1(DI) // g0.stackguard1 = SP - 64*1024 + 104    MOVQ    BX, (g_stack+stack_lo)(DI) // g0.stack.lo = SP - 64*1024 + 104    MOVQ    SP, (g_stack+stack_hi)(DI) // g0.stack.hi = SP
 
 执行完以上指令后，进程内存空间布局如下所示：
@@ -145,7 +144,6 @@ tls 地址会写到 m0 中，而 m0 会和 g0 绑定，所以可以直接从 tls
 - 调用 `runtime·newproc` 为 main 函数创建 goroutine；
 - 调用 `runtime·mstart` 启动主线程，执行 main 函数；
 
-
     // 首先将 g0 地址保存在 tls 中，即 m0.tls[0] = &g0，然后将 m0 和 g0 绑定// 即 m0.g0 = g0, g0.m = m0ok:    get_tls(BX)                                // 获取tls地址到BX寄存器，即 BX = m0.tls[0]    LEAQ    runtime·g0(SB), CX  // CX = &g0    MOVQ    CX, g(BX)                   // m0.tls[0]=&g0    LEAQ    runtime·m0(SB), AX  // AX = &m0    MOVQ    CX, m_g0(AX)  // m0.g0 = g0    MOVQ    AX, g_m(CX)   // g0.m = m0    CLD             // convention is D is always left cleared    // check 函数检查了各种类型以及类型转换是否有问题，位于 runtime/runtime1.go#137 中    CALL    runtime·check(SB)    // 将 argc 和 argv 移动到 SP+0 和 SP+8 的位置    // 此处是为了将 argc 和 argv 作为 runtime·args 函数的参数    MOVL    16(SP), AX    MOVL    AX, 0(SP)    MOVQ    24(SP), AX    MOVQ    AX, 8(SP)    // args 函数会从栈中读取参数和环境变量等进行处理    // args 函数位于 runtime/runtime1.go#61    CALL    runtime·args(SB)    // osinit 函数用来初始化 cpu 数量，函数位于 runtime/os_linux.go#301    CALL    runtime·osinit(SB)    // schedinit 函数用来初始化调度器，函数位于 runtime/proc.go#654    CALL    runtime·schedinit(SB)    // 创建第一个 goroutine 执行 runtime.main 函数。获取 runtime.main 的地址，调用 newproc 创建 g    MOVQ    $runtime·mainPC(SB), AX    PUSHQ   AX            // runtime.main 作为 newproc 的第二个参数入栈    PUSHQ   $0            // newproc 的第一个参数入栈，该参数表示runtime.main函数需要的参数大小，runtime.main没有参数，所以这里是0    // newproc 创建一个新的 goroutine 并放置到等待队列里，该 goroutine 会执行runtime.main 函数， 函数位于 runtime/proc.go#4250    CALL    runtime·newproc(SB)    // 弹出栈顶的数据    POPQ    AX    POPQ    AX    // mstart 函数会启动主线程进入调度循环，然后运行刚刚创建的 goroutine，mstart 会阻塞住，除非函数退出，mstart 函数位于 runtime/proc.go#1328    CALL    runtime·mstart(SB)    CALL    runtime·abort(SB)   // mstart should never return    RET    // Prevent dead-code elimination of debugCallV2, which is    // intended to be called by debuggers.    MOVQ    $runtime·debugCallV2<ABIInternal>(SB), AX    RET
 
 此时进程内存空间布局如下所示：
@@ -156,7 +154,7 @@ tls 地址会写到 m0 中，而 m0 会和 g0 绑定，所以可以直接从 tls
 
 可以通过 readelf 命令查看 ELF 二进制文件的结构，可以看到二进制文件中代码区和数据区的内容，全局变量保存在数据区，函数保存在代码区。
 
-    $ readelf -s main | grep runtime.g0  1765: 000000000054b3a0   376 OBJECT  GLOBAL DEFAULT   11 runtime.g0// _cgo_init 为全局变量$ readelf -s main | grep -i _cgo_init  2159: 000000000054aa88     8 OBJECT  GLOBAL DEFAULT   11 _cgo_init
+    readelf -s main | grep runtime.g0  1765: 000000000054b3a0   376 OBJECT  GLOBAL DEFAULT   11 runtime.g0// _cgo_init 为全局变量$ readelf -s main | grep -i _cgo_init  2159: 000000000054aa88     8 OBJECT  GLOBAL DEFAULT   11 _cgo_init
 
 ### 总结
 

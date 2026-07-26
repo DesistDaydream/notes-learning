@@ -33,7 +33,7 @@ Redis Sentinel 为 Redis 提供了高可用性。这意味着，可以使用 Sen
 
 - **Automatic failover(自动故障转移)**# 如果 master 节点未按预期工作，则 Sentinel 将会启动 **Failover(故障转移)** 过程。在这个过程中，replica 节点将会升级为 master 节点，其他的 replica 节点将使用新的 master 信息。
 
-  - 在故障转移期间，所有 Redis 节点的配置文件、所有 Sentinel 节点的配置文件，都会被自动更新。正是由于这种机制，Sentinel 才可以正常完整自动故障转移流程。
+    - 在故障转移期间，所有 Redis 节点的配置文件、所有 Sentinel 节点的配置文件，都会被自动更新。正是由于这种机制，Sentinel 才可以正常完整自动故障转移流程。
 
 - **Configuration provider(配置提供器)** # Sentinel 作为客户端服务发现的权威来源：客户端连接到 Sentinels，以便询问负责特定服务的当前 Redis Master 节点的地址。如果发生故障转移，Sentinels 将报告新的地址。
 
@@ -136,9 +136,9 @@ Sentinel 工作流程
 
 - 每 10 秒 sentinel 会对 master 和 slave 执行 info 命令，这个任务达到两个目的：
 
-  - 发现 slave 节点
+    - 发现 slave 节点
 
-  - 确认主从关系
+    - 确认主从关系
 
 - 每 2 秒 sentinel 通过 master 节点的 channel 交换信息（pub/sub）。master 节点上有一个发布订阅的频道(**sentinel**:hello)。sentinel 节点通过 `__sentinel__:hello` 频道进行信息交换(对节点的"看法"和自身的信息)，达成共识。
 

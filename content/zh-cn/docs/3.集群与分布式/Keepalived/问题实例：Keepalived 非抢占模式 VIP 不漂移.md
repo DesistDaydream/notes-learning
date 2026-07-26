@@ -1,6 +1,5 @@
 ---
 title: 问题实例：Keepalived 非抢占模式 VIP 不漂移
-linkTitle: 问题实例：Keepalived 非抢占模式 VIP 不漂移
 weight: 100
 ---
 
@@ -8,7 +7,7 @@ weight: 100
 
 > 参考：
 >
-> - 
+> -
 
 # Keepalived 非抢占模式下 VIP 不漂移问题
 

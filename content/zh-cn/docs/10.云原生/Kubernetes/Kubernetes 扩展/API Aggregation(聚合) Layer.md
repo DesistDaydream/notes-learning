@@ -7,7 +7,7 @@ title: API Aggregation(聚合) Layer
 > 参考；
 >
 > - 官方文档参考：
->   - <https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/apiserver-aggregation/>
+>     - <https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/apiserver-aggregation/>
 
 api aggregation 称为 api 聚合。用于扩展 kubernetes 的 API 。如下所示。其中 v1beta1.metrics.k8s.io 是通过 prometheus-adapter 添加的新 API
 

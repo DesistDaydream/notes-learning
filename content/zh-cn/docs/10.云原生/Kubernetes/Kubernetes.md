@@ -1,6 +1,5 @@
 ---
 title: Kubernetes
-linkTitle: Kubernetes
 weight: 1
 ---
 
@@ -88,7 +87,7 @@ Dashboard 提供 web 界面的
 ### Container Resource Monitoring(容器资源监控)
 
 - heapster：是 Kubernetes 原生的集群监控方案。Heapster 以 Pod 的形式运行，它会自动发现集群节点、从节点上的 Kubelet 获取监控数据。Kubelet 则是从节点上的 cAdvisor 收集数据。
-  - Heapster 将数据按照 Pod 进行分组，将它们存储到预先配置的 backend 并进行可视化展示。Heapster 当前支持的 backend 有 InfluxDB（通过 Grafana 展示），Google Cloud Monitoring 等。
+    - Heapster 将数据按照 Pod 进行分组，将它们存储到预先配置的 backend 并进行可视化展示。Heapster 当前支持的 backend 有 InfluxDB（通过 Grafana 展示），Google Cloud Monitoring 等。
 - ingress
 
 ### Cluster-level Logging(集群级日志)
@@ -110,8 +109,8 @@ Kubernetes [Object](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/
 - workload：Pod，ReplicaSet，Deployment，StatefuSet()，DaemonSet，Job
 - 服务发现及均衡：Service，Ingress
 - 配置与存储：Volume
-  - ConfiMap，secret
-  - DownwardAPI
+    - ConfiMap，secret
+    - DownwardAPI
 - 集群级对象：Namesapces,Node,Role,ClusterRole,RoleBinding,ClusterRoleBinding
 - 元数据型对象：PodTemplate，LimitRange
 
@@ -139,17 +138,17 @@ Pod 是 Kubernetes 的最小工作单元。每个 Pod 包含一个或多个容�
 Kubernetes 引入 Pod 主要基于下面两个目的：
 
 - 可管理性。
-  - 有些容器天生就是需要紧密联系，一起工作。Pod 提供了比容器更高层次的抽象，将它们封装到一个部署单元中。Kubernetes 以 Pod 为最小单位进行调度、扩展、共享资源、管理生命周期。
+    - 有些容器天生就是需要紧密联系，一起工作。Pod 提供了比容器更高层次的抽象，将它们封装到一个部署单元中。Kubernetes 以 Pod 为最小单位进行调度、扩展、共享资源、管理生命周期。
 - 通信和资源共享。
-  - Pod 中的所有容器使用同一个网络 namespace，即相同的 IP 地址和 Port 空间。它们可以直接用 localhost 通信。同样的，这些容器可以共享存储，当 Kubernetes 挂载 volume 到 Pod，本质上是将 volume 挂载到 Pod 中的每一个容器。user,mnt,pnt。
+    - Pod 中的所有容器使用同一个网络 namespace，即相同的 IP 地址和 Port 空间。它们可以直接用 localhost 通信。同样的，这些容器可以共享存储，当 Kubernetes 挂载 volume 到 Pod，本质上是将 volume 挂载到 Pod 中的每一个容器。user,mnt,pnt。
 
 Pods 有两种使用方式：
 
 - 运行单一容器。
-  - one-container-per-Pod 是 Kubernetes 最常见的模型，这种情况下，只是将单个容器简单封装成 Pod。即便是只有一个容器，Kubernetes 管理的也是 Pod 而不是直接管理容器。
+    - one-container-per-Pod 是 Kubernetes 最常见的模型，这种情况下，只是将单个容器简单封装成 Pod。即便是只有一个容器，Kubernetes 管理的也是 Pod 而不是直接管理容器。
 - 运行多个容器。
-  - 这些容器联系必须非常紧密，而且需要直接共享资源的应该放到一个 Pod 中(注意：当使用多容器的时候，其中一个容器要加上 command 的参数，否则其中一个起不来来)
-    - 比如：File Puller 会定期从外部的 Content Manager 中拉取最新的文件，将其存放在共享的 volume 中。Web Server 从 volume 读取文件，响应 Consumer 的请求。这两个容器是紧密协作的，它们一起为 Consumer 提供最新的数据；同时它们也通过 volume 共享数据。所以放到一个 Pod 是合适的。
+    - 这些容器联系必须非常紧密，而且需要直接共享资源的应该放到一个 Pod 中(注意：当使用多容器的时候，其中一个容器要加上 command 的参数，否则其中一个起不来来)
+        - 比如：File Puller 会定期从外部的 Content Manager 中拉取最新的文件，将其存放在共享的 volume 中。Web Server 从 volume 读取文件，响应 Consumer 的请求。这两个容器是紧密协作的，它们一起为 Consumer 提供最新的数据；同时它们也通过 volume 共享数据。所以放到一个 Pod 是合适的。
 
 **Scheduler（kube-scheduler）：调度 POD**
 
@@ -185,10 +184,10 @@ kubernetes 的整体网络分为以下三类
 - Node IP，各节点网络
 - Cluster IP，Service 网络，虚拟的，是主机上 iptables 规则中的地址
 - Pod IP，Pod 网络
-  - 同一个 Pod 内的多个容器间通信，通过各容器的 lo 通信
-  - 各 Pod 之间的通信
-    - overlay 叠加网络转发二层报文，通过隧道方式转发三层报文
-  - Pod 与 Service 之间的通信，
+    - 同一个 Pod 内的多个容器间通信，通过各容器的 lo 通信
+    - 各 Pod 之间的通信
+        - overlay 叠加网络转发二层报文，通过隧道方式转发三层报文
+    - Pod 与 Service 之间的通信，
 
 通过 CNI(Container Network Interface 容器网络接口)来使用第三方 plugin 实现网络的解决方案
 

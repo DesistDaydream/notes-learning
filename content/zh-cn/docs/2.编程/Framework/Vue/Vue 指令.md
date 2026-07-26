@@ -1,6 +1,5 @@
 ---
 title: "Vue 指令"
-linkTitle: "Vue 指令"
 weight: 20
 ---
 

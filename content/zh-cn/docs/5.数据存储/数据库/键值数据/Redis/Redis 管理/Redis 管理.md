@@ -1,6 +1,5 @@
 ---
 title: Redis 管理
-linkTitle: Redis 管理
 weight: 1
 ---
 
@@ -9,7 +8,7 @@ weight: 1
 > 参考：
 >
 > - [官方文档，Redis 管理](https://redis.io/topics/admin)
->   - https://redis.io/docs/latest/operate/oss_and_stack/management/admin/
+>     - https://redis.io/docs/latest/operate/oss_and_stack/management/admin/
 
 在生产中配置和管理 Redis 的建议。
 

@@ -1,6 +1,5 @@
 ---
 title: Wireguard 流量伪装
-linkTitle: Wireguard 流量伪装
 weight: 20
 ---
 

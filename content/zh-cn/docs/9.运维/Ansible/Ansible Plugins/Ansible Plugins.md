@@ -1,6 +1,5 @@
 ---
 title: "AnsiblePlugins"
-linkTitle: "AnsiblePlugins"
 weight: 1
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: kubeadm Configuration
-linkTitle: kubeadm Configuration
 weight: 3
 ---
 
@@ -39,9 +38,9 @@ kubeadm 的配置文件可以看成是 kubeadm 几个资源的 Manifests 文件�
 
 - **apiVersion**: kubeadm.k8s.io/v1beta3
 - **kind**: InitConfiguration
-- **bootstrapTokens**([bootstrapTokens](#bootstrapTokens))
-- **nodeRegistration**([nodeRegistration](#nodeRegistration))
-- **LocalAPIEndpoint**([LocalAPIEndpoint](#LocalAPIEndpoint)) # API Server 暴露的 IP 和 Port
+- **bootstrapTokens**([bootstrapTokens](#bootstraptokens))
+- **nodeRegistration**([nodeRegistration](#noderegistration))
+- **LocalAPIEndpoint**([LocalAPIEndpoint](#localapiendpoint)) # API Server 暴露的 IP 和 Port
 - TODO: etc.
 
 ## bootstrapTokens
@@ -90,7 +89,7 @@ ClusterConfiguration 类型应用于配置群集范围的设置，包括以下�
 - 网络，其中包含集群网络拓扑的配置；使用它例如定制节点子网或服务子网。
 - Etcd 配置；使用它例如自定义本地 etcd 或配置 API 服务器以使用外部 etcd 集群。
 - kube-apiserver，kube-scheduler，kube-controller-manager 程序的运行时配置；通过添加自定义设置或覆盖 kubeadm 默认设置，使用它来自定义控制平面组件。
-  - 官方文档：<https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/control-plane-flags/>
+    - 官方文档：<https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/control-plane-flags/>
 
 ## Manifest 中的顶层字段
 
@@ -99,9 +98,9 @@ ClusterConfiguration 类型应用于配置群集范围的设置，包括以下�
 - **etcd**([etcd](#etcd)) # 集群中 etcd 配置
 - **networking**([networking](#networking)) # 集群中网络拓扑的配置
 - **controlPlaneEndpoint**(STRING) # 为控制平面设置一个 IP 或域名。`默认值：InitConfiguration 资源中 localAPIEndpoint.advertiseAddress + localAPIEndpoint.bindPort 两个字段的值`。
-  - 该字段就是设置访问 Kubernetes API 时，所要使用的端点，通过访问 Endpoint 就应该可以访问 Kubernetes 的 [API Server](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20Server/API%20Server.md)。同时，各种与 API Server 交互时所用到的证书，其中也会包含该字段的值。
+    - 该字段就是设置访问 Kubernetes API 时，所要使用的端点，通过访问 Endpoint 就应该可以访问 Kubernetes 的 [API Server](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20Server/API%20Server.md)。同时，各种与 API Server 交互时所用到的证书，其中也会包含该字段的值。
 - **apiServer**([apiServer](apiServer)) # 配置 [API Server](/docs/10.云原生/Kubernetes/API%20Resource%20与%20Object/API%20Server/API%20Server.md) 程序
-- **controllerManager**([controllerManager](#controllerManager)) # 配置 controller-manager 程序
+- **controllerManager**([controllerManager](#controllermanager)) # 配置 controller-manager 程序
 - **scheduler**([scheduler](#scheduler)) # 配置 scheduler 程序
 - **dns**([dns](#dns)) #  配置 DNS 插件
 - **certificateDir**(STRING) # 指定 kubeadm 生成和读取证书的路径。`默认值: /etc/kubernetes/pki`

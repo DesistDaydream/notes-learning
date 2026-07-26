@@ -1,6 +1,5 @@
 ---
 title: Prometheus-adapter
-linkTitle: Prometheus-adapter
 weight: 20
 ---
 
@@ -9,7 +8,7 @@ weight: 20
 > 参考:
 >
 > - [GitHub 项目，kubernetes-sigs/prometheus-adapter](https://github.com/DirectXMan12/k8s-prometheus-adapter)
->   - 该项目从 DirectXMan12/k8s-prometheus-adapter 移动到 kubernetes-sigs/prometheus-adapter
+>     - 该项目从 DirectXMan12/k8s-prometheus-adapter 移动到 kubernetes-sigs/prometheus-adapter
 
 **主要特性：**
 **一、adapter 在成功注册 API 之后，可以通过 Prometheus 实现 custom.metrics.k8s.io API 和 metrics.k8s.io API 的功能**
@@ -37,17 +36,17 @@ adapter 不像 metrics server 直接与 kubelet 交互，然后从 kubelet 的 c
 - MetricsName 值为 http_request_per_second
 - Resource 值为 namesapces 和 pods
 - Resource 的 Object 值分为两部分
-  - namespaces 资源的 object 值为 monitoring
-  - pods 资源的 object 值为 grafana-5c55845445-q2p9l
+    - namespaces 资源的 object 值为 monitoring
+    - pods 资源的 object 值为 grafana-5c55845445-q2p9l
 
 adapter 将这三个内容填充到配置文件中 metricsQuery 关键字定义的 Go 模板中，生成 PromQL，并向 prometheus 发起查询。
 
 # Adapter 配置
 
 > - 官方文档：
->   - 配置文件说明：<https://github.com/DirectXMan12/k8s-prometheus-adapter/blob/master/docs/config.md>
->   - 配置文件示例：<https://github.com/DirectXMan12/k8s-prometheus-adapter/blob/master/docs/config-walkthrough.md>
->   - 官方默认的配置文件：<https://github.com/DirectXMan12/k8s-prometheus-adapter/blob/master/deploy/manifests/custom-metrics-config-map.yaml>
+>     - 配置文件说明：<https://github.com/DirectXMan12/k8s-prometheus-adapter/blob/master/docs/config.md>
+>     - 配置文件示例：<https://github.com/DirectXMan12/k8s-prometheus-adapter/blob/master/docs/config-walkthrough.md>
+>     - 官方默认的配置文件：<https://github.com/DirectXMan12/k8s-prometheus-adapter/blob/master/deploy/manifests/custom-metrics-config-map.yaml>
 
 Adapter 的配置文件，是用来通过其中定义的 rules 来确定公开哪些 metrics ，以及如何公开它们。还有通过对 prometheus 查询获取样本值
 

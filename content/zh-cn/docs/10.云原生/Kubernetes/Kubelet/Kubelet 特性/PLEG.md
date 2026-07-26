@@ -5,7 +5,7 @@ title: PLEG
 # 概述
 
 > 参考：
-> 
+>
 > - [公众号,运维开发故事-PLEG is not healthy？幕后黑手居然是它！](https://mp.weixin.qq.com/s/lPYd9tNQyjidJ-sLt2sDLg)
 > - [公众号,云原生实验室-Kubelet 中的 “PLEG is not healthy” 到底是个什么鬼？](https://mp.weixin.qq.com/s/t7H2MQ2429LQB9XfrB23YA)
 > - <https://developers.redhat.com/blog/2019/11/13/pod-lifecycle-event-generator-understanding-the-pleg-is-not-healthy-issue-in-kubernetes#>
@@ -45,7 +45,7 @@ PLEG 是 Pod Lifecycle Events Generator 的缩写，基本上它的执行逻辑�
 
 整体的工作流程如下图所示，虚线部分是 PLEG 的工作内容。![](https://notes-learning.oss-cn-beijing.aliyuncs.com/35160200-5f9f-4cfd-911c-afa960062a5c/640)
 
-### 以 node notready 这个场景为例，来讲解 PLEG：
+### 以 node notready 这个场景为例，来讲解 PLEG
 
 Kubelet 中的 NodeStatus 机制会定期检查集群节点状况，并把节点状况同步到 API Server。而 NodeStatus 判断节点就绪状况的一个主要依据，就是 PLEG。
 

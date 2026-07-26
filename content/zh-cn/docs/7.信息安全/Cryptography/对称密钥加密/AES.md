@@ -1,6 +1,5 @@
 ---
 title: "AES"
-linkTitle: "AES"
 weight: 20
 ---
 

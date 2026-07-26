@@ -1,6 +1,5 @@
 ---
 title: "Algorithm"
-linkTitle: "Algorithm"
 weight: 20
 ---
 

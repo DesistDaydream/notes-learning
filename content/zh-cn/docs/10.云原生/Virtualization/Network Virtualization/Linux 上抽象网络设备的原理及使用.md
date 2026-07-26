@@ -1,6 +1,5 @@
 ---
 title: Linux 上抽象网络设备的原理及使用
-linkTitle: Linux 上抽象网络设备的原理及使用
 weight: 20
 ---
 

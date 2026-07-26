@@ -1,6 +1,5 @@
 ---
 title: BUG
-linkTitle: BUG
 weight: 20
 ---
 
@@ -9,8 +8,7 @@ weight: 20
 
 > 参考：
 >
-> - 
-
+> -
 
 # 已修复
 
@@ -99,7 +97,6 @@ aggregator_unavailable_apiservice
 ```bash
 watch chan error: etcdserver: mvcc: required revision has been compacted
 ```
-
 
 ```bash
 ~]# kubectl get cs

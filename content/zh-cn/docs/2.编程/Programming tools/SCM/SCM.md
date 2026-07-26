@@ -1,6 +1,5 @@
 ---
 title: SCM
-linkTitle: SCM
 weight: 1
 ---
 
@@ -26,4 +25,3 @@ SCM(Source Control Management，源代码控制管理系统)。
 - https://gitlawb.com/ 去中心化？
 
 SCM 可以算是源码管理相关工具的统称。
-

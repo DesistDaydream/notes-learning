@@ -1,6 +1,5 @@
 ---
 title: OCR
-linkTitle: OCR
 weight: 20
 ---
 
@@ -67,7 +66,7 @@ OCR 识别算法的输入数据一般是文本行，背景信息不多，文字�
 > 参考：
 >
 > - [GitHub 项目，PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
->   - https://www.bilibili.com/video/BV1iY4y1s7fx
+>     - https://www.bilibili.com/video/BV1iY4y1s7fx
 
 PaddleOCR 是百度开源的 OCR 工具。旨在打造一套丰富、领先、且实用的OCR工具库，助力开发者训练出更好的模型，并应用落地。
 
@@ -90,17 +89,17 @@ PaddleOCR 中集成了很多OCR算法，文本检测算法有 DB、EAST、SAST �
 在 [PP-OCR系列模型列表](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.7/doc/doc_ch/models_list.md) 处可以找到三个基本模型以及一个超轻量模型的简介、配置文件、下载地址。
 
 - 基本模型
-  - 文本检测模型
-  - 文本识别模型
-  - 文本方向分类模型
+    - 文本检测模型
+    - 文本识别模型
+    - 文本方向分类模型
 - 轻量模型
 
 模型都分为多个种类
 
 - 推理模型 # 用于预测引擎推理。通常默认下载这种模型。
 - 训练模型 与 预训练模型 # 训练过程中保存的模型的参数、优化器状态和训练中间信息，多用于模型指标评估和恢复训练
-  - 训练模型 # 是基于预训练模型在真实数据与竖排合成文本数据上finetune得到的模型，在真实应用场景中有着更好的表现
-  - 预训练模型 # 则是直接基于全量真实数据与合成数据训练得到，更适合用于在自己的数据集上finetune。
+    - 训练模型 # 是基于预训练模型在真实数据与竖排合成文本数据上finetune得到的模型，在真实应用场景中有着更好的表现
+    - 预训练模型 # 则是直接基于全量真实数据与合成数据训练得到，更适合用于在自己的数据集上finetune。
 - nb模型 # 经过飞桨Paddle-Lite工具优化后的模型，适用于移动端/IoT端等端侧部署场景（需使用飞桨Paddle Lite部署）。
 
 选择自己感兴趣的模型，下载即可。下载后，将对应的模型，解压到 `ch_PP-OCRv4_server_rec` 目录下对应模型的目录中。比如在 `2.1 中文识别模型` 章节中，找到 `ch_PP-OCRv4_server_rec` 推理模型，下载并解压到 `ch_PP-OCRv4_server_rec/rec/` 目录下即可。其他两个模型同理。这样就可以更换我们感兴趣的模型。

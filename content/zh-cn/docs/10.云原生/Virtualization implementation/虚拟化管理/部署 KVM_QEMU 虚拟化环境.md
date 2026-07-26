@@ -1,13 +1,12 @@
 ---
 title: "部署 KVM/QEMU 虚拟化环境"
-linkTitle: "部署 KVM/QEMU 虚拟化环境"
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [RedHat 官方文档，9-配置和管理虚拟化-开启虚拟化](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/configuring_and_managing_virtualization/assembly_enabling-virtualization-in-rhel-9_configuring-and-managing-virtualization)
 > - [Ubuntu 官方文档，虚拟化介绍](https://ubuntu.com/server/docs/virtualization-introduction)
 
@@ -22,25 +21,25 @@ weight: 20
 ## CentOS
 
 - yum group install -y 'Virtualization Host' # 安装虚拟化组
-  - 若安装完成后，模块未装载，则手动装载 KVM 模块
-    - modprobe kvm
-    - modprobe kvm-intel
-  - 验证系统是否已经准备好成为虚拟化主机
-    - virt-host-validate
+    - 若安装完成后，模块未装载，则手动装载 KVM 模块
+        - modprobe kvm
+        - modprobe kvm-intel
+    - 验证系统是否已经准备好成为虚拟化主机
+        - virt-host-validate
 - 启动 libvirt 服务
-  - systemctl enable libvirtd --now
+    - systemctl enable libvirtd --now
 - 创建连接使用命令
-  - ln -sv /usr/libexec/qemu-kvm /usr/bin/
+    - ln -sv /usr/libexec/qemu-kvm /usr/bin/
 - 安装 X 服务端程序
-  - yum install -y xorg-x11-xauth xorg-x11-server-utils
+    - yum install -y xorg-x11-xauth xorg-x11-server-utils
 - 安装图形管理工具
-  - yum install virt-manager -y
+    - yum install virt-manager -y
 - 安装 qemu 以模拟 I/O 设备
-  - yum install qemu-system-x86 qemu-img -y
+    - yum install qemu-system-x86 qemu-img -y
 - 安装 virt 安装命令
-  - yum install virt-install -y
+    - yum install virt-install -y
 - 安装虚拟机文件系统的管理工具
-  - yum install libguestfs-tools -y
+    - yum install libguestfs-tools -y
 
 ## Ubuntu
 

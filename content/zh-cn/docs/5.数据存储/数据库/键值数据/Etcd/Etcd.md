@@ -1,6 +1,5 @@
 ---
 title: Etcd
-linkTitle: Etcd
 weight: 1
 ---
 
@@ -21,7 +20,7 @@ Etcd 是 CoreOS 基于 [Raft 共识算法](/docs/3.集群与分布式/分布式�
 - 监听机制
 - key 的过期及续约机制，用于监控和服务发现
 - 原子 CAS 和 CAD，用于分布式锁和 leader 选举
-  - 选举机制详见：[Etcd 基于 RAFT 的一致性](/docs/5.数据存储/数据库/键值数据/Etcd/Etcd%20基于%20RAFT%20的一致性.md)
+    - 选举机制详见：[Etcd 基于 RAFT 的一致性](/docs/5.数据存储/数据库/键值数据/Etcd/Etcd%20基于%20RAFT%20的一致性.md)
 
 # Glossary(术语)
 
@@ -33,7 +32,7 @@ Etcd 是 CoreOS 基于 [Raft 共识算法](/docs/3.集群与分布式/分布式�
 - **Endpoint(端点)**# 指向 etcd 服务或资源的 URL 。比如 <http://172.38.40.212:2379> 就是 etcd 中的一个 endpoint ，这个 endpoint 指向了 172.38.40.212 设备的 2379 端口上的 etcd
 - **Node** # 一个 Raft 状态机实例。
 - **Member(成员)** # 一个 etcd 实例。它管理着一个 Node，并且可以为客户端请求提供服务。
-  - Member 是组成 etcd cluster 的一部分。一个逻辑概念，是集群中提供服务的 etcd 服务器。可以为一个 member 单独定义一个名字和描述等信息。
+    - Member 是组成 etcd cluster 的一部分。一个逻辑概念，是集群中提供服务的 etcd 服务器。可以为一个 member 单独定义一个名字和描述等信息。
 - **Cluster(集群)** # 由多个 Member 构成可以协同工作的 etcd 集群。
 - **Peer** # 对同一个 etcd 集群中另外一个 Member 的称呼。
 - **Client** # 向 etcd 集群发送 HTTP 请求的客户端。
@@ -160,8 +159,8 @@ ETCD_PEER_AUTO_TLS="false|ture" #是否让etcd自动生成peer证书
 - Store：用于处理 etcd 支持的各类功能的事务，包括数据索引、节点状态变更、监控与反馈、事件处理与执行等等，是 etcd 对用户提供的大多数 API 功能的具体实现。
 - Raft：Raft 强一致性算法的具体实现，是 etcd 的核心。
 - WAL：Write Ahead Log（预写式日志），是 etcd 的数据存储方式。除了在内存中存有所有数据的状态以及节点的索引以外，etcd 就通过 WAL 进行持久化存储。WAL 中，所有的数据提交前都会事先记录日志。
-  - Snapshot 是为了防止数据过多而进行的状态快照；
-  - Entry 表示存储的具体日志内容。
+    - Snapshot 是为了防止数据过多而进行的状态快照；
+    - Entry 表示存储的具体日志内容。
 
 通常，一个用户的请求发送过来，会经由 HTTP Server 转发给 Store 进行具体的事务处理，如果涉及到节点的修改，则交给 Raft 模块进行状态的变更、日志的记录，然后再同步给别的 etcd 节点以确认数据提交，最后进行数据的提交，再次同步。
 

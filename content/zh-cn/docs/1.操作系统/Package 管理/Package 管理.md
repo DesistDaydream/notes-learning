@@ -1,6 +1,5 @@
 ---
 title: Package 管理
-linkTitle: Package 管理
 weight: 1
 ---
 
@@ -29,5 +28,4 @@ weight: 1
 - OpenEuler: https://repo.openeuler.org/
 - CentOS: https://centos.pkgs.org/
 - Ubuntu: https://packages.ubuntu.com/
- 	- 在这里可以找到 jammy 版本(20.04 TLS)的所有软件包列表: https://packages.ubuntu.com/jammy/allpackages
-
+    - 在这里可以找到 jammy 版本(20.04 TLS)的所有软件包列表: https://packages.ubuntu.com/jammy/allpackages

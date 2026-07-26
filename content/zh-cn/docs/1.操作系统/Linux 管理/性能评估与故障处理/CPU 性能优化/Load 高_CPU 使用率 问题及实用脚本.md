@@ -5,6 +5,7 @@ title: Load 高/CPU 使用率 问题及实用脚本
 # Linux 资源&瓶颈分析概述
 
 > 参考：
+>
 > - [公众号,CPU 飙高，系统性能问题如何排查？](https://mp.weixin.qq.com/s/fzLcAkYwKhj-9hgoVkTzaw)
 > - [阿里云,ECS 运维指南之 LInux 系统诊断-找到 Linux 虚机 Load 高的元凶](https://developer.aliyun.com/topic/download?id=143)
 
@@ -90,8 +91,8 @@ Load Average 和 CPU 使用率 可被细分为不同的子域指标，指向不�
 
 - perf：Linux 自带性能分析工具，功能类似 hotmethod，基于事件采样原理，以性能事件为基础，支持针对处理器相关性能指标与操作系统相关性能指标的性能剖析。
 - jstack
-  - 结合 ps -Lp 或者 pidstat -p 一起使用，可初步定位热点线程。
-  - 结合 zprofile-threaddump 一起使用，可统计线程分布、等锁情况，常用与线程数增加分析。
+    - 结合 ps -Lp 或者 pidstat -p 一起使用，可初步定位热点线程。
+    - 结合 zprofile-threaddump 一起使用，可统计线程分布、等锁情况，常用与线程数增加分析。
 - strace：跟踪进程执行时的系统调用和所接收的信号。
 - tcpdump：抓包分析，常用于网络 I/O 瓶颈定位。
 

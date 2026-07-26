@@ -1,6 +1,5 @@
 ---
 title: Promtail 配置
-linkTitle: Promtail 配置
 weight: 20
 ---
 
@@ -20,10 +19,10 @@ Promtail 在 YAML 文件（通常称为 config.yaml）中进行配置，该文�
 - **global**([global](#global)) # 影响所有目标的全局设置。
 - **server**([server](#server)) #  配置 promtail 程序运行时行为。如指定监听的ip、port等信息。
 - **clients**([clients](#clients)) # 配置 Promtail 如何连接到 Loki 的多个实例，并向每个实例发送日志。
-  - Note：如果其中一台远程Loki服务器无法响应或发生任何可重试的错误，这将影响将日志发送到任何其他已配置的远程Loki服务器。
-  - 发送是在单个线程上完成的！ 如果要发送到多个远程Loki实例，通常建议并行运行多个Promtail客户端。
+    - Note：如果其中一台远程Loki服务器无法响应或发生任何可重试的错误，这将影响将日志发送到任何其他已配置的远程Loki服务器。
+    - 发送是在单个线程上完成的！ 如果要发送到多个远程Loki实例，通常建议并行运行多个Promtail客户端。
 - **positions**([positions](#positions)) # positions 文件用于记录 Promtail 发现的目标。该字段用于定义如何保存 postitions.yaml 文件。
-  - Promtail 发现的目标就是指日志文件。
+    - Promtail 发现的目标就是指日志文件。
 - **scrape_configs**([scrape_configs](#scrape_configs(占比最大的字段))) # 配置 Promtail 如何发现日志文件，以及如何从这些日志文件抓取日志。
 - **limits_config**(limits_config) # 为 Promtail 配置全局的限制功能
 - **target_config**(target_config) # Configures how tailed targets will be watched.
@@ -325,4 +324,3 @@ scrape_configs:
         regex: "/(.*)"
         target_label: "container"
 ```
-

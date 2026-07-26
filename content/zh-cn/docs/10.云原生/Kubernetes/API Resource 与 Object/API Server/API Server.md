@@ -1,6 +1,5 @@
 ---
 title: API Server
-linkTitle: API Server
 weight: 1
 ---
 
@@ -63,19 +62,19 @@ kubectl 处理对 API 服务器的定位和身份验证。如果你想通过 htt
 **方法二：使用拥有最高权限 ServiceAccount 的 Token 访问 https**
 
 - (可选)创建一个专门存放 SA 的名称空间
-  - kubectl create namespace user-sa-manage
+    - kubectl create namespace user-sa-manage
 - 创建一个 ServiceAccount
-  - kubectl create -n user-sa-manage serviceaccount test-admin
+    - kubectl create -n user-sa-manage serviceaccount test-admin
 - 将该 ServiceAccount 绑定到 cluster-admin 这个 clusterrole，以赋予最高权限
-  - kubectl create clusterrolebinding test-admin --clusterrole=cluster-admin --serviceaccount=user-sa-manage:test-admin
+    - kubectl create clusterrolebinding test-admin --clusterrole=cluster-admin --serviceaccount=user-sa-manage:test-admin
 - 将该 ServiceAccount 的 Token 的值注册到变量中
-  - TOKEN=$(kubectl get -n user-sa-manage secrets -o jsonpath="{.items\[?(@.metadata.annotations\['kubernetes.io/service-account.name']=='test-admin')].data.token}"|base64 -d)
+    - TOKEN=$(kubectl get -n user-sa-manage secrets -o jsonpath="{.items\[?(@.metadata.annotations\['kubernetes.io/service-account.name']=='test-admin')].data.token}"|base64 -d)
 - 确定 CA 文件位置(文件一般在 /etc/kubernetes/pki/ca.crt)
-  - CAPATH=/etc/kubernetes/pki/ca.crt
+    - CAPATH=/etc/kubernetes/pki/ca.crt
 - 确定要访问组件的的 IP
-  - IP=172.38.40.212
+    - IP=172.38.40.212
 - 使用令牌玩转 API
-  - curl -k $IP/api -H "Authorization: Bearer $TOKEN"
+    - curl -k $IP/api -H "Authorization: Bearer $TOKEN"
 
 Note：也可以从一个具有权限的 ServiceAccount 下的 secret 获取，可以使用现成的，也可以手动创建。比如下面用 promtheus 自带的 token。
 
@@ -104,16 +103,16 @@ curl -X GET $APISERVER/api --header "Authorization: Bearer $TOKEN" --insecure
 ### 访问 API Server
 
 - 执行访问 https 前准备方法一
-  - 通过证书与私钥访问
-    - `curl --cacert ${CAPATH} --cert /root/certs/admin.crt --key  /root/certs/admin.key  https://${IP}:6443/`
+    - 通过证书与私钥访问
+        - `curl --cacert ${CAPATH} --cert /root/certs/admin.crt --key  /root/certs/admin.key  https://${IP}:6443/`
 - 执行访问 https 前准备方法二
-  - 通过 https 的方式访问 API
-    - `curl --cacert ${CAPATH} -H "Authorization: Bearer ${TOKEN}"  https://${IP}:6443/`
+    - 通过 https 的方式访问 API
+        - `curl --cacert ${CAPATH} -H "Authorization: Bearer ${TOKEN}"  https://${IP}:6443/`
 - kubectl
-  - `kubectl get --raw /` # 让 kubectl 不再输出标准格式的数据，而是直接向 api server 请求原始数据
+    - `kubectl get --raw /` # 让 kubectl 不再输出标准格式的数据，而是直接向 api server 请求原始数据
 - kubectl proxy，一般监听在 6443 端口的 api server 使用该方式，监听在 8080 上的为 http，可直接访问
-  - `kubectl proxy --port=8080 --accept-hosts='^localhost$,^127.0.0.1$,^\[::1]$,10.10.100.151' --address='0.0.0.0'` # 在本地 8080 端口上启动 API Server 的一个代理网关，以便使用 curl 直接访问 api server 并使用命令 curl localhost:8080/获取数据
-    - 直接访问本地 8080 端口，即可通过 API Server 获取集群所有数据
+    - `kubectl proxy --port=8080 --accept-hosts='^localhost$,^127.0.0.1$,^\[::1]$,10.10.100.151' --address='0.0.0.0'` # 在本地 8080 端口上启动 API Server 的一个代理网关，以便使用 curl 直接访问 api server 并使用命令 curl localhost:8080/获取数据
+        - 直接访问本地 8080 端口，即可通过 API Server 获取集群所有数据
 
 ## 编程方式访问 API
 

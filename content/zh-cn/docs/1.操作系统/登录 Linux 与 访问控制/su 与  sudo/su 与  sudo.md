@@ -1,6 +1,5 @@
 ---
 title: su 与  sudo
-linkTitle: su 与  sudo
 weight: 20
 ---
 
@@ -77,7 +76,7 @@ OPTIONS
 - **-k, --reset-timestamp** # 删除时间戳，时间戳默认 5 分钟也会失效
 - **-u，--user=\<STRING>** # 以指定用户执行命令。STRING 可以 用户名 或 用户 ID
 - **-s, --shell** # 以目标用户运行 shell。
-  - 若直接使用 `sudo -s` 命令，相当于以 root 用户运行 shell，省去了 su - root 再输入密码的操作
+    - 若直接使用 `sudo -s` 命令，相当于以 root 用户运行 shell，省去了 su - root 再输入密码的操作
 
 EXAMPLE
 

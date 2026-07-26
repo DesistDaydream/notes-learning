@@ -1,6 +1,5 @@
 ---
 title: promtool
-linkTitle: promtool
 weight: 20
 ---
 
@@ -82,4 +81,3 @@ promtool query \
 使用单元测试文件中的规则，测试 Prom 的 查询、规则、etc. 是否符合预期
 
 单元测试文件的写法详见 [Unit testing](/docs/6.可观测性/Metrics/Prometheus/Configuration/Unit%20testing.md)
-

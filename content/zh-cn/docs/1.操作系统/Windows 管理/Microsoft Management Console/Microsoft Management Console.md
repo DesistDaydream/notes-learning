@@ -1,6 +1,5 @@
 ---
 title: Microsoft Management Console
-linkTitle: Microsoft Management Console
 weight: 1
 ---
 
@@ -23,42 +22,42 @@ https://jingyan.baidu.com/article/7e440953dcc56e6ec1e2ef17.html
 除第三个文件外，其他均在 `C:\WINDOWS\system32` 文件夹下
 
 - certmgr.msc
-  - 作用：系统认证证书编辑。
+    - 作用：系统认证证书编辑。
 - ciadv.msc
-  - 作用：索引服务，链接文件*:\System Volume Information
+    - 作用：索引服务，链接文件*:\System Volume Information
 - comexp.msc
-  - 所在文件夹：C:\WINDOWS\system32\Com
-  - 作用：组件服务，可以打开本地服务。
+    - 所在文件夹：C:\WINDOWS\system32\Com
+    - 作用：组件服务，可以打开本地服务。
 - compmgmt.msc
-  - 作用：本地计算机硬件和服务管理，功能很强大。
+    - 作用：本地计算机硬件和服务管理，功能很强大。
 - devmgmt.msc
-  - 作用：设备管理器
+    - 作用：设备管理器
 - dfrg.msc
-  - 作用：磁盘碎片整理程序
+    - 作用：磁盘碎片整理程序
 - diskmgmt.msc
-  - 作用：磁盘管理器，可以修改盘符，格式化和分区等。
+    - 作用：磁盘管理器，可以修改盘符，格式化和分区等。
 - eventvwr.msc
-  - 作用：事件查看器
+    - 作用：事件查看器
 - fsmgmt.msc
-  - 作用：共享文件夹管理
+    - 作用：共享文件夹管理
 - gpedit.msc
-  - 作用：组策略管理器，功能强大。TODO: 家庭版没有咋办？
+    - 作用：组策略管理器，功能强大。TODO: 家庭版没有咋办？
 - lusrmgr.msc
-  - 作用：本地用户和组管理器
+    - 作用：本地用户和组管理器
 - ntmsmgr.msc
-  - 作用：可移动存储管理器
+    - 作用：可移动存储管理器
 - ntmsoprq.msc
-  - 作用：可移动存储管理员操作请求
+    - 作用：可移动存储管理员操作请求
 - perfmon.msc
-  - 作用：性能察看管理器
+    - 作用：性能察看管理器
 - rsop.msc
-  - 作用：各种策略的结果集
+    - 作用：各种策略的结果集
 - secpol.msc
-  - 作用：本地安全策略设置
+    - 作用：本地安全策略设置
 - services.msc
-  - 作用：各项本地服务管理器
+    - 作用：各项本地服务管理器
 - wmimgmt.msc
-  - 作用：Windows管理体系结构（WMI）
+    - 作用：Windows管理体系结构（WMI）
 
 # gpedit.msc
 

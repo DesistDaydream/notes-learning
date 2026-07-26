@@ -1,6 +1,5 @@
 ---
 title: File Descriptor(文件描述符)
-linkTitle: File Descriptor(文件描述符)
 weight: 4
 ---
 

@@ -1,9 +1,8 @@
 ---
 title: Glossary
-linkTitle: Glossary
 weight: 200
 ---
- 
+
 # 概述
 
 > 参考：
@@ -49,7 +48,7 @@ Generative Pre-trained Transformer(生成式预训练变换器，简称 GPT)
 | Open-weight Model   | 开放权重模型 | ×    | √   |
 | Open-source Model   | 开源模型   | √    | √   |
 
-Generative AI(生成式 AI) # 
+Generative AI(生成式 AI) #
 
 Token # 不适合翻译成中文，一种抽象的概念，用来表示某种事物，所以类似代币的感觉
 
@@ -83,7 +82,7 @@ CNN 确实不基于 Transformer，没有序列长度限制，理论上可以处�
 Prompt(提示词)
 
 Randomness(随机性)
-  
+
 Temperature(温度) # 控制输出的随机性
 
 Top-K # 控制选择范围中最高的
@@ -100,7 +99,7 @@ Word Embedding(词嵌入) # 把文字转换成词向量的方式
 
 Vector Search(向量检索) # 对比词向量的相似度，以在 KB 中找到相关问题的答案的方式
 
-Multimoal(多模态) # 
+Multimoal(多模态) #
 
 Model Compression(模型压缩)
 
@@ -112,7 +111,7 @@ Distillation(蒸馏) # 用参数量大的模型指导参数量小的模型
 
 Pruning(剪枝) # 删除模型中不重要的神经元，让模型更稀疏以提高速度
 
-Low-Rank Adaptation # 
+Low-Rank Adaptation #
 
 Chain-of-Thought(思维链)
 
@@ -120,16 +119,15 @@ RLHF(人类反馈强化学习)
 
 Encoder/Decoder # Attention is all you need 论文 3.1 节
 
-**梯度** # 
+**梯度** #
 
-**残差** # 
+**残差** #
 
 ## Tensor
 
 [B 站，【闪客】它是深度学习的核心，但却被起了个烂名字，十分钟彻底搞懂张量！](https://www.bilibili.com/video/BV1SB2gBFEyu)
 
 **Tensor(张量)** 简单基础得可以理解为多维数组。一阶张量 等价于 一维数组
-
 
 TODO: 向量是二维张量，是张量的一种特殊形式。
 

@@ -1,5 +1,4 @@
 ---
-title: "📚学习"
-linkTitle: "📚学习"
-weight: 100
+title: 📚学习
+weight: 1
 ---

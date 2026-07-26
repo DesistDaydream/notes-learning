@@ -6,7 +6,7 @@ weight: 2
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，快速开始指南](https://docs.k3s.io/quick-start)
 > - [公众号-CNCF，利用 kube-vip 实现 K3s 高可用部署](https://mp.weixin.qq.com/s/Qe3oImSUJ1xFCsfXsUMdmA)
 
@@ -56,7 +56,7 @@ bash k3s-install.sh
 ```
 
 # 离线部署高可用集群
- 
+
 安装脚将会执行如下逻辑：
 
 - 生成用于 Systemd 的 Unit 文件
@@ -91,7 +91,7 @@ cp ./k3s-airgap-images-${ARCH}.tar /var/lib/rancher/k3s/agent/images/
 ### (可选)使用 kube-vip 提供 VIP
 
 > 参考：
-> 
+>
 > - [kube-vip 官方文档，K3S](https://kube-vip.io/docs/usage/k3s/)
 
 ### 为所有 mater 节点生成配置文件
@@ -268,13 +268,13 @@ fi
 
 # Ansible 部署 K3S
 
-> 参考： 
-> 
+> 参考：
+>
 > - [GitHub 项目，techno-tim/k3s-ansible](https://github.com/techno-tim/k3s-ansible)
->   - 起源于：
->     - https://github.com/k3s-io/k3s-ansible
->     - https://github.com/geerlingguy/turing-pi-cluster
->     - https://github.com/212850a/k3s-ansible
+>     - 起源于：
+>         - https://github.com/k3s-io/k3s-ansible
+>         - https://github.com/geerlingguy/turing-pi-cluster
+>         - https://github.com/212850a/k3s-ansible
 
 ansible-playbook site.yml -i inventory/my-cluster/hosts.ini
 

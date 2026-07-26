@@ -1,6 +1,5 @@
 ---
 title: Router And Switch
-linkTitle: Router And Switch
 weight: 3
 ---
 

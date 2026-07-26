@@ -6,7 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，概念-服务，负载均衡和网络-Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 > - 参考：<https://zhangguanzhang.github.io/2018/10/06/IngressController/>
 

@@ -95,25 +95,25 @@ func main(){
 package main
 
 import (
-	"os"
-	"text/template"
+ "os"
+ "text/template"
 )
 
 type Friend struct {
-	Fname string
+ Fname string
 }
 type Person struct {
-	UserName string
-	Emails   []string
-	Friends  []*Friend
+ UserName string
+ Emails   []string
+ Friends  []*Friend
 }
 
 func main() {
-	f1 := Friend{Fname: "xiaofang"}
-	f2 := Friend{Fname: "wugui"}
-	t := template.New("test")
-	t = template.Must(t.Parse(
-		`hello {{.UserName}}!
+ f1 := Friend{Fname: "xiaofang"}
+ f2 := Friend{Fname: "wugui"}
+ t := template.New("test")
+ t = template.Must(t.Parse(
+  `hello {{.UserName}}!
 {{ range .Emails }}
 an email {{ . }}
 {{- end }}
@@ -122,10 +122,10 @@ an email {{ . }}
 my friend name is {{.Fname}}
 {{- end }}
 {{ end }}`))
-	p := Person{UserName: "longshuai",
-		Emails:  []string{"a1@qq.com", "a2@gmail.com"},
-		Friends: []*Friend{&f1, &f2}}
-	t.Execute(os.Stdout, p)
+ p := Person{UserName: "longshuai",
+  Emails:  []string{"a1@qq.com", "a2@gmail.com"},
+  Friends: []*Friend{&f1, &f2}}
+ t.Execute(os.Stdout, p)
 }
 ```
 
@@ -213,6 +213,7 @@ pipeline 是指产生数据的操作。比如 `{{.}}`、`{{.Name}}`、`funcname 
 可以使用管道符号 `|` 链接多个命令，用法和 [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 下的管道类似: `|` 前面的命令将运算结果(或返回值)传递给后一个命令，当作命令的最后一个参数。
 
 > [!Example]
+>
 > ```go
 > {{ . | printf "%s\n" "abcd" }}
 > ```
@@ -409,6 +410,7 @@ func process(w http.ResponseWriter, r *http.Request) {
     t1.Execute(w, s)
 }
 ```
+
 # with...end
 
 **with 用来设置 `.` 的值**。两种格式：
@@ -493,26 +495,26 @@ arg1==arg2 || arg1==arg3 || arg1==arg4
 
 ```go
 func toUpper(s string) string {
-	return strings.ToUpper(s)
+ return strings.ToUpper(s)
 }
 
 func main() {
-	tmplFile := "pkg/template/template_file/function_custom.tmpl"
-	// 创建可以用在 Go tempalte 中的自定义函数
-	var tmplFunc = template.FuncMap{
-		"toUpper": toUpper,
-	}
+ tmplFile := "pkg/template/template_file/function_custom.tmpl"
+ // 创建可以用在 Go tempalte 中的自定义函数
+ var tmplFunc = template.FuncMap{
+  "toUpper": toUpper,
+ }
 
-	// Notes: Funcs() 必须在各种 ParseXXX() 用于解析模板主体的函数之前调用
-	// 所一要先 New()，然后 Funcs()，最后 ParseFiles()
-	// New() 的参数是模板的名字，要与 ParseFiles() 参数中的文件名一致
-	t := template.Must(
-		template.New("function_custom.tmpl").
-			Funcs(tmplFunc).
-			ParseFiles(tmplFile),
-	)
+ // Notes: Funcs() 必须在各种 ParseXXX() 用于解析模板主体的函数之前调用
+ // 所一要先 New()，然后 Funcs()，最后 ParseFiles()
+ // New() 的参数是模板的名字，要与 ParseFiles() 参数中的文件名一致
+ t := template.Must(
+  template.New("function_custom.tmpl").
+   Funcs(tmplFunc).
+   ParseFiles(tmplFile),
+ )
 
-	t.Execute(os.Stdout, "hello world")
+ t.Execute(os.Stdout, "hello world")
 }
 
 ```
@@ -838,4 +840,3 @@ func process(w http.ResponseWriter, r *http.Request) {
     t.Execute(w, template.HTML(r.FormValue("comment")))
 }
 ```
-

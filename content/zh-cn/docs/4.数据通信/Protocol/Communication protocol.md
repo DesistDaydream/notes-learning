@@ -1,6 +1,5 @@
 ---
 title: 通信协议
-linkTitle: Communication protocol
 weight: 1
 ---
 
@@ -11,10 +10,10 @@ weight: 1
 > - [Wiki, Communication Protocol](https://en.wikipedia.org/wiki/Communication_protocol)(通信协议)
 > - [Wiki, Encapsulation](<https://en.wikipedia.org/wiki/Encapsulation_(networking)>)(封装)
 > - [Wiki, PDU](https://en.wikipedia.org/wiki/Protocol_data_unit)
->   - 注：Wiki 中将网络层 PDU 描述为 Packet 不够准确，详见 RFC 1594 中 13 节 Packet 的名词解释
+>     - 注：Wiki 中将网络层 PDU 描述为 Packet 不够准确，详见 RFC 1594 中 13 节 Packet 的名词解释
 > - [Wiki, SDU](https://en.wikipedia.org/wiki/Service_data_unit)
 > - [RFC 1325](https://datatracker.ietf.org/doc/html/rfc1325)、[RFC 1594](https://datatracker.ietf.org/doc/html/rfc1594)、[RFC 2664](https://datatracker.ietf.org/doc/html/rfc2664)
->   - 这几个 RFC 是一些关于互联网的仅供参考的常见问答，里面包含一些名词解释，2664 是最新版
+>     - 这几个 RFC 是一些关于互联网的仅供参考的常见问答，里面包含一些名词解释，2664 是最新版
 
 **Communication Protocol(通信协议)** 是一个规则系统，允许通信系统的两个或多个实体通过[物理量](https://en.wikipedia.org/wiki/Physical_quantity)的任何变化来传输信息。该协议定义了通信的规则、语法、语义和同步以及可能的错误恢复方法。协议可以通过硬件、软件或两者的组合来实现。
 
@@ -39,12 +38,12 @@ weight: 1
 比如，主机 A 要向主机 B 发送一条信息。这条信息就称为 **Data(数据)/Payload(有效载荷)**。这条消息从主机 A 发送出去之前，会被各种协议进行处理，这个处理的过程，就是 Encapsulation(封装)，封装之后的产物就是 PDU，不同网络层的 PDU 叫法不同：
 
 - **Message(报文)** # 应用层的协议封装的 PDU
-  - 比如 HTTP Message(HTTP 报文)
+    - 比如 HTTP Message(HTTP 报文)
 - **Segment(段)** # 传输层的协议封装的 PDU
-  - 比如 TCP Segment(TCP 段)。为什么称为 Segment(段) 呢，可以想象，从应用层接收到的数据通常会大于 MSS(1460 Bytes)，只要大于 MSS 的数据，都会被分为一段一段的，逐一发送。
+    - 比如 TCP Segment(TCP 段)。为什么称为 Segment(段) 呢，可以想象，从应用层接收到的数据通常会大于 MSS(1460 Bytes)，只要大于 MSS 的数据，都会被分为一段一段的，逐一发送。
 - **Datagram(数据报)** # 网络层的协议封装的 PDU
-  - 比如 IP Datagram(IP 数据报)。当 IP Datagram 的大小超过 MTU 时，将会被 **Fragment(分片(动词))**，被拆分的每一个部分称为 **Fragment(片(名词))**
-    - 每一个 Framment 在很多场景和日常交流中，也被称为 **Packet(包)**，所以很多文档也将网络层协议封装的 PDU 称为 Packet
+    - 比如 IP Datagram(IP 数据报)。当 IP Datagram 的大小超过 MTU 时，将会被 **Fragment(分片(动词))**，被拆分的每一个部分称为 **Fragment(片(名词))**
+        - 每一个 Framment 在很多场景和日常交流中，也被称为 **Packet(包)**，所以很多文档也将网络层协议封装的 PDU 称为 Packet
 - **Frame(帧)** # 链路层的协议封装的 PDU
 - **bit(比特)** # 物理层的协议封装的 PDU
 
@@ -57,9 +56,9 @@ weight: 1
 一个完整的 PDU 由两个字段组成
 
 - **Header(首部)** # 用来定义数据要传输的目标
-  - 不同协议的首部信息各不相同。
+    - 不同协议的首部信息各不相同。
 - **Payload(有效载荷)** # 需要传输的数据
-  - 可以表示为最原本的数据，从下层协议来看，也可以把上层协议封装而成的 SDU 当做 Payload。
+    - 可以表示为最原本的数据，从下层协议来看，也可以把上层协议封装而成的 SDU 当做 Payload。
 
 通过抓包工具，抓出来的包，在 Wireshark 上查看，就可以看到各种协议封装后，PDU 中的信息。这里以一个 HTTP 的响应包为例
 

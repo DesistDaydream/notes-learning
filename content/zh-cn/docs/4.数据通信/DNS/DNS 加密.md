@@ -1,6 +1,5 @@
 ---
 title: DNS 加密
-linkTitle: DNS 加密
 weight: 100
 ---
 
@@ -32,4 +31,3 @@ DOH 与 HTTPS 共用443端口，从而更难被中间人识别攻击
 现在国内已经有了比较成熟的DOH供应商，比如阿里云、腾讯的DNS、国际上也有 CloudFlare、谷歌、etc. DOH 供应商
 
 DOH 已经是比较成熟的技术
-

@@ -1,13 +1,12 @@
 ---
 title: Connection Plugins
-linkTitle: Connection Plugins
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，Connection 插件](https://docs.ansible.com/ansible/latest/plugins/connection.html)
 
 连接插件允许 Ansible 连接到目标主机，以便它可以在它们上执行任务。 Ansible 附带了许多连接插件，但每个主机一次只能使用一个。
@@ -17,4 +16,3 @@ weight: 20
 # SSH
 
 https://docs.ansible.com/ansible/latest/collections/ansible/builtin/ssh_connection.html
-

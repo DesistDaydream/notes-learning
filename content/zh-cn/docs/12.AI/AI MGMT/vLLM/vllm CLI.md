@@ -1,6 +1,5 @@
 ---
 title: vllm CLI
-linkTitle: vllm CLI
 created: 2026-05-08T22:25
 weight: 11
 ---
@@ -44,21 +43,21 @@ serve 命令的参数非常多，可以分为多个大类
 
 - **--served-model-name**(STRING) # 用于在 API 中使用的模型名称。`默认值: 与 --model 参数的值相同`
 - 工具调用相关参数
-  - **--enable-auto-tool-choice** # 开启工具调用能力。不开启的话，进行工具调用时会报错: `tool choice requires --enable-auto-tool-choice and --tool-call-parser to be set`
-  - **--tool-call-parser**(STRING) # 告诉 vLLM 用哪种格式解析模型输出的工具调用。
-    - 可用的值参考: [官方文档，特性 - 工具调用](https://docs.vllm.ai/en/stable/features/tool_calling/)
+    - **--enable-auto-tool-choice** # 开启工具调用能力。不开启的话，进行工具调用时会报错: `tool choice requires --enable-auto-tool-choice and --tool-call-parser to be set`
+    - **--tool-call-parser**(STRING) # 告诉 vLLM 用哪种格式解析模型输出的工具调用。
+        - 可用的值参考: [官方文档，特性 - 工具调用](https://docs.vllm.ai/en/stable/features/tool_calling/)
 
 **ModelConfig**
 
 - **--max-model-len**(INT) # 最大上下文长度。`默认值: 使用模型中 config.json 文件的 max_position_embeddings 或 model_max_length 字段的值`。
 - **--enforce-eager** # 设为 True 后，禁用 CUDA Graph（在 NPU 上是禁用对应的图优化），强制用 eager 模式执行。`默认值: False`
 - **--dtype**(STRING) # 模型权重的数据类型。不指定的话 vLLM 默认用 bfloat16，昇腾不支持。`默认值: auto`
-  - 可用的值有: `auto`, `bfloat16`, `float`, `float16`, `float32`, `half`
+    - 可用的值有: `auto`, `bfloat16`, `float`, `float16`, `float32`, `half`
 
 **LoadConfig**
 
 - **--download-dir** # 用于下载和加载权重的目录。`默认值: Hugging Face 的默认缓存目录`
-  - 若设置了 `VLLM_USE_MODELSCOPE=True`，则默认值为 ModelScope 的默认缓存目录
+    - 若设置了 `VLLM_USE_MODELSCOPE=True`，则默认值为 ModelScope 的默认缓存目录
 
 **ParallelConfig**
 

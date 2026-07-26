@@ -1,6 +1,5 @@
 ---
 title: Loki
-linkTitle: Loki
 weight: 1
 ---
 
@@ -62,15 +61,15 @@ Loki 支持多租户，以使租户之间的数据完全分离。当 Loki 在多
 Loki 由多个组件组成，每个组件都可以实现特定的功能：
 
 - **写入日志数据**
-  - **Distributor(分配器)** # 对应 distributor 组件。负责处理客户端写入的日志，它是日志数据写入路径中的**第一站**，一旦 Distributor 收到日志数据，会将其拆分为多个批次，然后并行发送给一个或多个 Ingester
-  - **Ingester(摄取器)** # 对应 ingester 组件。负责将日志数据写入 本地文件系统 或 指定的存储后端(DynamoDB、S3、Cassandra 等)
+    - **Distributor(分配器)** # 对应 distributor 组件。负责处理客户端写入的日志，它是日志数据写入路径中的**第一站**，一旦 Distributor 收到日志数据，会将其拆分为多个批次，然后并行发送给一个或多个 Ingester
+    - **Ingester(摄取器)** # 对应 ingester 组件。负责将日志数据写入 本地文件系统 或 指定的存储后端(DynamoDB、S3、Cassandra 等)
 - **读取日志数据**，处理 LogQL 请求
-  - **Querier(查询器)** # 对应 querier 组件。接收客户端发送的 LogQL 请求并从定的存储中查询日志数据并返回给客户端
-  - **Query Frontend(查询前端)** # 对应 query-frontend 组件。为 Querier 组件提供负载均衡功能。
+    - **Querier(查询器)** # 对应 querier 组件。接收客户端发送的 LogQL 请求并从定的存储中查询日志数据并返回给客户端
+    - **Query Frontend(查询前端)** # 对应 query-frontend 组件。为 Querier 组件提供负载均衡功能。
 - **其他**
-  - **Table Manager 表管理器)** # 对应 table-manager 组件。负责所有数据中，Table 的维护工作。根据配置文件中 schema_config.configs 字段中的相关配置，在指定时间开始之前创建周期表，并在根据 table_manager 字段中的相关配置，将数据时间范围超过保留期的数据删除。
-  - **Compactor(压缩器)** # 2.6 版本时，Compactor 组件被设置为默认的用来实现数据保留功能的组件，暂时只支持 boltdb-shipper。准备要代替 table-manager 组件。
-  - **Ruler(规则管理器)** # 对应 ruler 组件。从存储中读取数据，根据规则发送给告警处理程序。
+    - **Table Manager 表管理器)** # 对应 table-manager 组件。负责所有数据中，Table 的维护工作。根据配置文件中 schema_config.configs 字段中的相关配置，在指定时间开始之前创建周期表，并在根据 table_manager 字段中的相关配置，将数据时间范围超过保留期的数据删除。
+    - **Compactor(压缩器)** # 2.6 版本时，Compactor 组件被设置为默认的用来实现数据保留功能的组件，暂时只支持 boltdb-shipper。准备要代替 table-manager 组件。
+    - **Ruler(规则管理器)** # 对应 ruler 组件。从存储中读取数据，根据规则发送给告警处理程序。
 
 loki 二进制文件的设计方式与 thanos 非常类似，都是在单一二进制文件中，可以运行指定的一个或多个组件。
 
@@ -152,7 +151,7 @@ Monolithic 模式非常适合于本地开发、小规模等场景，Monolithic �
 这种微服务架构与 Thanos 类似，可以通过一个 Loki 的二进制文件，使用子命令来启动不同的功能。
 
 - 每个组件都产生一个 gRPC 监听(默认 9095 端口)和一个 HTTP 监听(默认 3100 端口)。
-  - 通常情况下，gRPC 端口用于组件间通信；HTTP 端口用于暴露一些管理 API(比如 指标、运行状态、就绪性)
+    - 通常情况下，gRPC 端口用于组件间通信；HTTP 端口用于暴露一些管理 API(比如 指标、运行状态、就绪性)
 - 各个组件可以暴露的 HTTP API 详见 [Loki API](/docs/6.可观测性/Logs/Loki/Loki%20API.md) 笔记。通过 API，我们可以更清晰得了解到，每个组件可以实现的具体功能
 - 各个组件通过 memberlist 统一到一个哈希环上，以互相发现。当我们部署在 K8S 中时，将会配置 `memberlist.join_members` 字段，并且需要创建对应的 service 资源，service 的 endpoint 将会关联到所有 Distributor、Ingester、Querier 组件。
 

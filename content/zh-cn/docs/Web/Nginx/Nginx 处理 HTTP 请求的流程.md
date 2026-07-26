@@ -1,6 +1,5 @@
 ---
 title: Nginx 处理 HTTP 请求的流程
-linkTitle: Nginx 处理 HTTP 请求的流程
 weight: 20
 ---
 
@@ -9,7 +8,7 @@ weight: 20
 > 参考：
 >
 > - 原文：[Nginx 处理 HTTP 请求的 11 个阶段](https://iziyang.github.io/2020/04/12/5-nginx/)
->   - [博客园对该文章的排版更好](https://www.cnblogs.com/iziyang/p/12933565.html)
+>     - [博客园对该文章的排版更好](https://www.cnblogs.com/iziyang/p/12933565.html)
 
 前面给大家讲了 [Nginx 是如何处理 HTTP请求头部的](https://iziyang.github.io/2020/04/08/4-nginx/)，接下来就到了真正处理 HTTP 请求的阶段了。先看下面这张图，这张图是 Nginx 处理 HTTP 请求的示意图，虽然简单，但是却很好的说明了整个过程。
 
@@ -141,25 +140,25 @@ HTTP 协议中，有两个头部可以用来获取用户 IP：
 
 - 默认不会编译进 Nginx
 
-  - 需要通过 `--with-http_realip_module` 启用功能
+    - 需要通过 `--with-http_realip_module` 启用功能
 - 变量：如果还想要使用原来的 TCP 连接中的地址和端口，需要通过这两个变量保存
 
-  - `realip_remote_addr`
-  - `realip_remote_port`
+    - `realip_remote_addr`
+    - `realip_remote_port`
 - 功能
 
-  - 修改客户端地址
+    - 修改客户端地址
 - 指令
 
-  - `set_real_ip_from`
+    - `set_real_ip_from`
 
         指定可信的地址，只有从该地址建立的连接，获取的 realip 才是可信的
 
-  - `real_ip_header`
+    - `real_ip_header`
 
         指定从哪个头部取真实的 IP 地址，默认从 `X-Real-IP` 中取，如果设置从 `X-Forwarded-For` 中取，会先从最后一个 IP 开始取
 
-  - `real_ip_recursive`
+    - `real_ip_recursive`
 
         环回地址，默认关闭，打开的时候，如果 `X-Forwarded-For` 最后一个地址与客户端地址相同，会过滤掉该地址
 
@@ -293,14 +292,14 @@ Context: server, location, if
 返回状态码包括以下几种：
 
 - Nginx 自定义
-  - 444：立刻关闭连接，用户收不到响应
+    - 444：立刻关闭连接，用户收不到响应
 - HTTP 1.0 标准
-  - 301：永久重定向
-  - 302：临时重定向，禁止被缓存
+    - 301：永久重定向
+    - 302：临时重定向，禁止被缓存
 - HTTP 1.1 标准
-  - 303：临时重定向，允许改变方法，禁止被缓存
-  - 307：临时重定向，不允许改变方法，禁止被缓存
-  - 308：永久重定向，不允许改变方法
+    - 303：临时重定向，允许改变方法，禁止被缓存
+    - 307：临时重定向，不允许改变方法，禁止被缓存
+    - 308：永久重定向，不允许改变方法
 
 ### return 指令与 error_page
 
@@ -419,13 +418,13 @@ Context: server, location, if
 它的功能主要有下面几点：
 
 - 将 `regex` 指定的 URL 替换成 `replacement` 这个新的 URL
-  - 可以使用正则表达式及变量提取
+    - 可以使用正则表达式及变量提取
 - 当 `replacement` 以 http:// 或者 https:// 或者 $schema 开头，则直接返回 302 重定向
 - 替换后的 URL 根据 flag 指定的方式进行处理
-  - last：用 `replacement` 这个 URL 进行新的 location 匹配
-  - break：break 指令停止当前脚本指令的执行，等价于独立的 break 指令
-  - redirect：返回 302 重定向
-  - permanent：返回 301 重定向
+    - last：用 `replacement` 这个 URL 进行新的 location 匹配
+    - break：break 指令停止当前脚本指令的执行，等价于独立的 break 指令
+    - redirect：返回 302 重定向
+    - permanent：返回 301 重定向
 
 ### 指令示例
 
@@ -634,14 +633,14 @@ Context: http, server
 location 的匹配规则是仅匹配 URI，忽略参数，有下面三种大的情况：
 
 - 前缀字符串
-  - 常规匹配
-  - =：精确匹配
-  - ^~：匹配上后则不再进行正则表达式匹配
+    - 常规匹配
+    - =：精确匹配
+    - ^~：匹配上后则不再进行正则表达式匹配
 - 正则表达式
-  - ~：大小写敏感的正则匹配
-  - ~*：大小写不敏感
+    - ~：大小写敏感的正则匹配
+    - ~*：大小写不敏感
 - 用户内部跳转的命名 location
-  - @
+    - @
 
 对于这些规则刚看上去肯定是很懵的，完全不知道在说什么，下面来实战看几个例子。
 
@@ -753,9 +752,9 @@ stop regular expressions match!
 - 模块：`http_limit_conn_module`
 - 默认编译进 Nginx，通过 `--without-http_limit_conn_module` 禁用
 - 生效范围
-  - 全部 worker 进程（基于共享内存）
-  - 进入 preaccess 阶段前不生效
-  - 限制的有效性取决于 key 的设计：依赖 postread 阶段的 realip 模块取到真实 IP
+    - 全部 worker 进程（基于共享内存）
+    - 进入 preaccess 阶段前不生效
+    - 限制的有效性取决于 key 的设计：依赖 postread 阶段的 realip 模块取到真实 IP
 
 这里面有一点需要注意，就是 limit_conn key 的设计，所谓的 key 指的就是对哪个变量进行限制，通常我们取的都是用户的真实 IP。
 
@@ -865,8 +864,8 @@ server {
 - 默认编译进 Nginx，通过 `--without-http_limit_req_module` 禁用
 - 生效算法：leaky bucket 算法
 - 生效范围
-  - 全部 worker 进程（基于共享内存）
-  - 进入 preaccess 阶段前不生效
+    - 全部 worker 进程（基于共享内存）
+    - 进入 preaccess 阶段前不生效
 
 ### leaky bucket 算法
 
@@ -980,9 +979,9 @@ limit_req zone=one burst=3 nodelay;
 现在可以回答一下刚开始提出的两个问题：
 
 - limit_req 与 limit_conn 配置同时生效时，哪个优先级高？
-  - limit_req 在 limit_conn 处理之前，因此是 limit_req 会生效
+    - limit_req 在 limit_conn 处理之前，因此是 limit_req 会生效
 - nodelay 添加与否，有什么不同？
-  - 不添加 nodelay，请求会等待，直到能够处理请求；添加 nodelay，在不超出 burst 的限制的情况下会立刻处理并返回，超出限制则会返回 503。
+    - 不添加 nodelay，请求会等待，直到能够处理请求；添加 nodelay，在不超出 burst 的限制的情况下会立刻处理并返回，超出限制则会返回 503。
 
 # access 阶段
 
@@ -996,7 +995,7 @@ limit_req zone=one burst=3 nodelay;
 - 模块：`http_access_module`
 - 默认编译进 Nginx，通过 `--without-http_access_module` 禁用
 - 生效范围
-  - 进入 access 阶段前不生效
+    - 进入 access 阶段前不生效
 
 ### 指令语法
 
@@ -1032,8 +1031,8 @@ auth_basic 模块是用作用户认证的，当开启了这个模块之后，我
 
 - 基于 HTTP Basic Authutication 协议进行用户密码的认证
 - 默认编译进 Nginx
-  - --without-http_auth_basic_module
-  - disable ngx_http_auth_basic_module
+    - --without-http_auth_basic_module
+    - disable ngx_http_auth_basic_module
 
 ```nginx
 Syntax: auth_basic string | off;
@@ -1276,7 +1275,7 @@ mirror 模块可以实时拷贝流量，这对于需要同时访问多个环境�
 ### 指令语法
 
 - 模块：`ngx_http_mirror_module` 模块，默认编译进 Nginx
-  - 通过 --without-http_mirror_module 移除模块
+    - 通过 --without-http_mirror_module 移除模块
 - 功能：处理请求时，生成子请求访问其他服务，对子请求的返回值不做处理
 
 ```nginx
@@ -1762,9 +1761,9 @@ Context: http, server, location, if in location, limit_except
 
 - 日志缓存
 
-  - 功能：批量将内存中的日志写入磁盘
+    - 功能：批量将内存中的日志写入磁盘
 
-  - 写入磁盘的条件：
+    - 写入磁盘的条件：
 
         所有待写入磁盘的日志大小超出缓存大小；
 
@@ -1774,10 +1773,10 @@ Context: http, server, location, if in location, limit_except
 
 - 日志压缩
 
-  - 功能：批量压缩内存中的日志，再写入磁盘
-  - buffer 大小默认为 64KB
-  - 压缩级别默认为 1（1最快压缩率最低，9最慢压缩率最高）
-  - 打开日志压缩时，默认打开日志缓存功能
+    - 功能：批量压缩内存中的日志，再写入磁盘
+    - buffer 大小默认为 64KB
+    - 压缩级别默认为 1（1最快压缩率最低，9最慢压缩率最高）
+    - 打开日志压缩时，默认打开日志缓存功能
 
 ## 对日志文件名包含变量时的优化
 

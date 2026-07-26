@@ -1,6 +1,5 @@
 ---
 title: Computing Virtualization
-linkTitle: Computing Virtualization
 weight: 2
 ---
 

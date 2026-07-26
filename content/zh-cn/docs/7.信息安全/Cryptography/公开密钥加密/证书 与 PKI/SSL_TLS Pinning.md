@@ -1,6 +1,5 @@
 ---
 title: SSL/TLS Pinning
-linkTitle: SSL/TLS Pinning
 weight: 20
 ---
 

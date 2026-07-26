@@ -1,6 +1,5 @@
 ---
 title: "OAuth"
-linkTitle: "OAuth"
 weight: 20
 ---
 
@@ -25,4 +24,3 @@ OAuth 的出现主要是解决这么一个问题：第三方应用程序，如�
 > 另外一个场景是非敏感信息的，比如 用户名、头像 之类的。这种就可以不用本地部署，而是第三方程序在互联网提供服务，比如各种网站在登陆时通过 Google 登录，本质也是使用了 Google 的 OAuth 能力获取 邮箱、头像 等非敏感信息。
 
 ![600](Excalidraw/information_security/oauth.excalidraw.md)
-

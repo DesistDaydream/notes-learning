@@ -1,6 +1,5 @@
 ---
 title: Apifox
-linkTitle: Apifox
 weight: 20
 ---
 

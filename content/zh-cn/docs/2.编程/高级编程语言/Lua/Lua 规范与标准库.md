@@ -1,6 +1,5 @@
 ---
 title: Lua 规范与标准库
-linkTitle: Lua 规范与标准库
 weight: 20
 ---
 # 概述

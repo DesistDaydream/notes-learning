@@ -1,6 +1,5 @@
 ---
 title: Huge Pages
-linkTitle: Huge Pages
 weight: 20
 ---
 
@@ -54,15 +53,15 @@ x86 CPU 通常支持 4K 和 2M（如果架构支持，则为 1G）PageSize，ia6
 有多种方式可以设置 HugePages（TODO: 优先级？）
 
 - **内核引导参数** # 可以在系统引导配置中（e.g. grub2.cfg、etc.）中添加一些参数以设定大页的信息
-  - hugepagesz # HugePages 的页容量
-  - hugepages # HugePages 的页数量
-  - default_hugepagesz # 默认的 HugePages 容量
-  - etc.
+    - hugepagesz # HugePages 的页容量
+    - hugepages # HugePages 的页数量
+    - default_hugepagesz # 默认的 HugePages 容量
+    - etc.
 - **/proc/sys/vm/\*hugepages\*** # 仅为了向后兼容，保留这些文件。这些 HugePage 的用户空间接口已在 [sysfs](/docs/1.操作系统/Kernel/Filesystem/特殊文件系统/sysfs.md) 中的 /sys/kernel/mm/hugepages/ 实现。
 - **/sys/kernel/mm/hugepages/** # 由于要在运行时支持多个，该目录实现了 /proc/sys/vm/ 中大部分关于 HugePage 的用户空间接口
-  - **`./hugepages-${SIZE}kB/`** # 详见下文 [通用目录](#通用目录) 中的 `hugepages-${SIZE}kB` 介绍
+    - **`./hugepages-${SIZE}kB/`** # 详见下文 [通用目录](#通用目录) 中的 `hugepages-${SIZE}kB` 介绍
 - **`/sys/devices/system/node/node[0-9]*/hugepages/`** # 针对 [NUMA](/docs/1.操作系统/Kernel/Memory/NUMA.md) 为每个 Node 设置 HugePages
-  - **`./hugepages-${SIZE}kB/`** # 详见下文 [通用目录](#通用目录) 中的 `hugepages-${SIZE}kB` 介绍
+    - **`./hugepages-${SIZE}kB/`** # 详见下文 [通用目录](#通用目录) 中的 `hugepages-${SIZE}kB` 介绍
 
 Notes: 关于 NUMA 的 HugePages 的说明
 

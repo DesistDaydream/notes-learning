@@ -1,6 +1,5 @@
 ---
 title: jq
-linkTitle: jq
 weight: 20
 ---
 

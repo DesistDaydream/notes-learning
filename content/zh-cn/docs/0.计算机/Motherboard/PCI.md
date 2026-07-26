@@ -1,6 +1,5 @@
 ---
 title: PCI
-linkTitle: PCI
 weight: 20
 ---
 

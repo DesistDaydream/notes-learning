@@ -1,6 +1,5 @@
 ---
 title: Android 开发
-linkTitle: Android 开发
 weight: 3
 ---
 
@@ -44,5 +43,5 @@ https://github.com/topjohnwu/Magisk/ 对应用隐藏 Root 信息
 
 - https://github.com/NVISOsecurity/MagiskTrustUserCerts 2 年没更新了
 - https://github.com/nccgroup/ConscryptTrustUserCerts # 适用于 andriod 14 ？
-  - https://github.com/nccgroup/ConscryptTrustUserCerts/issues/3 有了下面那个仓库
+    - https://github.com/nccgroup/ConscryptTrustUserCerts/issues/3 有了下面那个仓库
 - https://github.com/lupohan44/TrustUserCertificates

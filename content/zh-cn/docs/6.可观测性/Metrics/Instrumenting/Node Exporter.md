@@ -159,10 +159,10 @@ func (h *handler) innerHandler(filters ...string) (http.Handler, error) {
 # Grafana 面板
 
 - 1860
-  - https://github.com/rfmoz/grafana-dashboards
+    - https://github.com/rfmoz/grafana-dashboards
 - [8919](https://grafana.com/grafana/dashboards/8919-1-node-exporter-for-prometheus-dashboard-cn-0413-consulmanager/)
-  - 国人出的，22 年4月12日之后不维护了
-  - [16098](https://grafana.com/grafana/dashboards/16098-1-node-exporter-for-prometheus-dashboard-cn-0417-job/) 新的，代替 8919
+    - 国人出的，22 年4月12日之后不维护了
+    - [16098](https://grafana.com/grafana/dashboards/16098-1-node-exporter-for-prometheus-dashboard-cn-0417-job/) 新的，代替 8919
 
 # 指标解析
 
@@ -177,15 +177,15 @@ func (h *handler) innerHandler(filters ...string) (http.Handler, error) {
 ```go
 func (c *diskstatsCollector) Update(ch chan<- prometheus.Metric) error {
   // prometheus/procfs 项目中的方法，返回的 IOStats 储存的是 /sys/block/<BLOCK>/stat 文件中的值
-	diskStats, err := c.fs.ProcDiskstats()
-	for _, stats := range diskStats {
-		for i, val := range []float64{
-			// ......前 9 个
-			float64(stats.IOsTotalTicks) * secondsPerTick, // 这就是 node_disk_io_time_seconds_total 指标
-			// ......后 7 个
-		}
-		ch <- c.descs[i].mustNewConstMetric(val, dev)
-	}
+ diskStats, err := c.fs.ProcDiskstats()
+ for _, stats := range diskStats {
+  for i, val := range []float64{
+   // ......前 9 个
+   float64(stats.IOsTotalTicks) * secondsPerTick, // 这就是 node_disk_io_time_seconds_total 指标
+   // ......后 7 个
+  }
+  ch <- c.descs[i].mustNewConstMetric(val, dev)
+ }
 }
 ```
 
@@ -217,7 +217,7 @@ float64(stats.IOsTotalTicks) * secondsPerTick
 ```bash
 >> grep home /proc/1/mounts
 /dev/sdb3 /home ext4 ro,relatime,stripe=704 0 0
->> grep home /proc/1/mountinfo 
+>> grep home /proc/1/mountinfo
 274 94 8:19 / /home rw,relatime shared:98 - ext4 /dev/sdb3 ro,stripe=704
 >> mkdir /home/tmp
 mkdir: cannot create directory "/home/tmp": Read-only file system

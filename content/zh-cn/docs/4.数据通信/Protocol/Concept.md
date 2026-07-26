@@ -1,6 +1,5 @@
 ---
 title: 概念
-linkTitle: Concept
 weight: 2
 ---
 

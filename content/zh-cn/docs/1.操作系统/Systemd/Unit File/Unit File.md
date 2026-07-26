@@ -1,6 +1,5 @@
 ---
 title: Unit File
-linkTitle: Unit File
 weight: 1
 ---
 
@@ -69,7 +68,7 @@ Systemd 会从最低优先级的目录 `/usr/lib/`下开始加载配置，注意
 - **NAME** # Unit 的名称。
 - **DOT** # `.` 符号。
 - **TYPE**# Unit 的类型。
-  - TYPE 必须是 ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".slice", or ".scope" 中的一个。
+    - TYPE 必须是 ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".slice", or ".scope" 中的一个。
 
 比如 `foo.server` 就是一个有效的 Unit File 名称。
 
@@ -137,16 +136,16 @@ WantedBy=multi-user.target
 假如现在有一个名为 `foo.service` 的 Unit File，那么，Systemd 会从加载 Unit File 的目录中，加载与之相关联的一系列文件
 
 - **UnitFileName.wants/ 与 UnitFileName.requires/** # 比如 foo.service.wants/  与  foo.service.requires/。该目录中可以放置许多指向其他 Unit Files 的软连接。 软连接所指向的 Unit 将会被当做  `foo.service`  的 Unit 文件中  `Wants=`  与  `Requires=`  指令的值
-  - 注意：即使文件中不存在 Wants 和 Requires 指令。只要存在对应的 _.wants/ 和_.requires/ 目录，就相当于为 Unit File 中加上了这两个指令。
-  - 这样就可以方便的为 Unit 添加依赖关系，而无需修改单元文件本身。 向  `*.wants/`  与  `*.requires/`  目录中添加软连接的首选方法是使用  [systemctl(1)](http://www.jinbuguo.com/systemd/systemctl.html#)  的  **enable**  命令， 它会读取 Unit File 的 \[Install] 部分。
+    - 注意：即使文件中不存在 Wants 和 Requires 指令。只要存在对应的 _.wants/ 和_.requires/ 目录，就相当于为 Unit File 中加上了这两个指令。
+    - 这样就可以方便的为 Unit 添加依赖关系，而无需修改单元文件本身。 向  `*.wants/`  与  `*.requires/`  目录中添加软连接的首选方法是使用  [systemctl(1)](http://www.jinbuguo.com/systemd/systemctl.html#)  的  **enable**  命令， 它会读取 Unit File 的 \[Install] 部分。
 - **UnitFileName.d/** # 比如 foo.service.d/。这就是配置文件的 include 功能。当解析完主 Unit File 之后，该目录中所有以 `.conf` 结尾的文件，都会被依次附加到主 Unit File 的末尾。
-  - 这样就可以方便的修改 Unit 的设置，或者为 Unit 添加额外的设置，而无需修改 Unit File 本身。
-  - 注意，include 功能中的文件遵守如下规则：
-    - 必须包含明确的 Sections (例如 `[Service]` 之类)。
-    - 对于从模板文件实例化而来的 Unit，会优先读取与此实例对应的 `UnitFileName.d/` 目录(例如 "`foo@bar.service.d/`")中的配置片段(`*.conf` 文件)， 然后才会读取与模板对应的 "`.d/`" 目录(例如 "`foo@.service.d/`")中的配置片段("`.conf`" 文件)。
-    - 对于名称中包含连字符("`-`")的单元，将会按特定顺序依次在一组(而不是一个)目录中搜索单元配置片段。 例如对于  `foo-bar-baz.service`  单元来说，将会依次在  `foo-.service.d/`, `foo-bar-.service.d/`, `foo-bar-baz.service.d/`  目录下搜索单元配置片段。
-      - 这个机制可以方便的为一组相关单元(单元名称的前缀都相同)定义共同的单元配置片段， 特别适合应用于 mount, automount, slice 类型的单元， 因为这些单元的命名规则就是基于连字符构建的。
-      - 注意，在前缀层次结构的下层目录中的单元配置片段，会覆盖上层目录中的同名文件， 也就是  `foo-bar-.service.d/10-override.conf`  会覆盖(取代) `foo-.service.d/10-override.conf`  文件。
+    - 这样就可以方便的修改 Unit 的设置，或者为 Unit 添加额外的设置，而无需修改 Unit File 本身。
+    - 注意，include 功能中的文件遵守如下规则：
+        - 必须包含明确的 Sections (例如 `[Service]` 之类)。
+        - 对于从模板文件实例化而来的 Unit，会优先读取与此实例对应的 `UnitFileName.d/` 目录(例如 "`foo@bar.service.d/`")中的配置片段(`*.conf` 文件)， 然后才会读取与模板对应的 "`.d/`" 目录(例如 "`foo@.service.d/`")中的配置片段("`.conf`" 文件)。
+        - 对于名称中包含连字符("`-`")的单元，将会按特定顺序依次在一组(而不是一个)目录中搜索单元配置片段。 例如对于  `foo-bar-baz.service`  单元来说，将会依次在  `foo-.service.d/`, `foo-bar-.service.d/`, `foo-bar-baz.service.d/`  目录下搜索单元配置片段。
+            - 这个机制可以方便的为一组相关单元(单元名称的前缀都相同)定义共同的单元配置片段， 特别适合应用于 mount, automount, slice 类型的单元， 因为这些单元的命名规则就是基于连字符构建的。
+            - 注意，在前缀层次结构的下层目录中的单元配置片段，会覆盖上层目录中的同名文件， 也就是  `foo-bar-.service.d/10-override.conf`  会覆盖(取代) `foo-.service.d/10-override.conf`  文件。
 
 注意：通常情况下，drop-in Unit File 放在 `/etc/systemd/{system,user}`  目录中， 还可以放置在  `/usr/lib/systemd/{system,user}`  与  `/run/systemd/{system,user}`  目录中。 虽然在优先级上，`/etc`  中的配置片段优先级最高、`/run`  中的配置片段优先级居中、 `/usr/lib`  中的配置片段优先级最低。但是这仅对同名配置片段之间的覆盖关系有意义。 因为所有 `.d/` 目录中的配置片段，无论其位于哪个目录， 都会被按照文件名的字典顺序，依次覆盖单元文件中的设置(相当于依次附加到主单元文件的末尾)。
 

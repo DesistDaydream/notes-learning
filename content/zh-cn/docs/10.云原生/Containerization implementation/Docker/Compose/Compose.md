@@ -1,6 +1,5 @@
 ---
 title: Compose
-linkTitle: Compose
 weight: 1
 ---
 
@@ -215,5 +214,3 @@ docker-compose up -d
 **为什么是“v5”？**
 
 为了避免与从 Docker Compose v1 继承而来的过时的 docker-compose 文件版本 2.x 和 3.x 造成（更多）混淆，我们决定在 Docker Compose v2 之后的下一个主要版本中跳过 3.0.0 。我们也跳过了 4.0.0 ，以便与这一遗留版本彻底区分开来。
-
-

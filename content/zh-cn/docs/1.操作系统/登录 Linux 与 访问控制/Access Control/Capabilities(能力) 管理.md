@@ -1,6 +1,5 @@
 ---
 title: Capabilities(能力) 管理
-linkTitle: Capabilities(能力) 管理
 weight: 3
 ---
 

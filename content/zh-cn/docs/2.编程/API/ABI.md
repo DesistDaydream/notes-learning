@@ -1,6 +1,5 @@
 ---
 title: ABI
-linkTitle: ABI
 weight: 20
 ---
 

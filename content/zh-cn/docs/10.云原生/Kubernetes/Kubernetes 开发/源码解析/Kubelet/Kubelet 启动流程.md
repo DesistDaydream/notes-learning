@@ -592,7 +592,7 @@ func (kl *Kubelet) Run(updates <-chan kubetypes.PodUpdate) {
 - 获取容器运行时状态
 - 检查 network 以及 runtime 是否处于 ready 状态
 - 如果 network 以及 runtime 都处于 ready 状态，则调用 `kubelet.initializeRuntimeDependentModules()` 初始化依赖容器 Runtime 的模块：
-  - 包括 cadvisor、containerManager、evictionManager、containerLogManager、pluginManage 等。
+    - 包括 cadvisor、containerManager、evictionManager、containerLogManager、pluginManage 等。
 
 ### kubelet.initializeRuntimeDependentModules() - 启动依赖容器 Runtime 的模块
 

@@ -1,6 +1,5 @@
 ---
 title: Bash
-linkTitle: Bash
 weight: 1
 ---
 
@@ -54,7 +53,7 @@ done
 - **~/.bash_login** # 仅对当前用户有效。该配置文件会对 ~/.bashrc 进行判断，如果存在，则加载 ~/.bashrc。
 - **~/.profile** # 仅对当前用户有效。该配置文件会对 ~/.bashrc 进行判断，如果存在，则加载 ~/.bashrc。
 - 其他
-  - **~/.bashrc** # 仅对当前用户有效。该配置文件会对 /etc/bashrc 进行判断，如果存在，则加载 /etc/bashrc。
+    - **~/.bashrc** # 仅对当前用户有效。该配置文件会对 /etc/bashrc 进行判断，如果存在，则加载 /etc/bashrc。
 
 Note：
 
@@ -79,14 +78,14 @@ Note：
 当我们运行一个 Shell 之后，Shell 会选择下面 4 中模式之一，作为运行本次 Shell 的模式，**不同的模式，加载的配置文件是不同的**。
 
 - **login + interactive # 登录交互。**
-  - 首先读取并执行 /etc/profile。
-  - 然后逐一加载 ~/.bash_profile、~/.bash_login、~/.profile。当任何一个文件存在时，都不再加载其余文件。
+    - 首先读取并执行 /etc/profile。
+    - 然后逐一加载 ~/.bash_profile、~/.bash_login、~/.profile。当任何一个文件存在时，都不再加载其余文件。
 - **login + non-interactive # 登录不交互。**
-  - 与 登录交互 模式相同。
+    - 与 登录交互 模式相同。
 - **non-login + interactive # 不登陆交互**
-  - 直接加载 ~/.bashrc 文件
+    - 直接加载 ~/.bashrc 文件
 - **non-login + non-interactive # 不登陆不交互**
-  - 与 不登录交互 模式相同
+    - 与 不登录交互 模式相同
 
 ## 如何判断是否为交互式 Shell? 有两种方式
 
@@ -188,8 +187,8 @@ EXAMPLE：
 
 - 开启一个新的 shell，读取并执行 File 中的命令。该 file 可以“无执行权限”
 - 注：两者在执行文件时的不同，是分别用自己的 shell 来跑文件。
-  - sh 使用“-n”选项进行 shell 脚本的语法检查，使用“-x”选项实现 shell 脚本逐条语句的跟踪
-  - 可以巧妙地利用 shell 的内置变量增强“-x”选项的输出信息等。
+    - sh 使用“-n”选项进行 shell 脚本的语法检查，使用“-x”选项实现 shell 脚本逐条语句的跟踪
+    - 可以巧妙地利用 shell 的内置变量增强“-x”选项的输出信息等。
 
 **bash \[OPTIONS] \[File]** #
 

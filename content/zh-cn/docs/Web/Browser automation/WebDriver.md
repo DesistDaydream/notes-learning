@@ -1,6 +1,5 @@
 ---
 title: WebDriver
-linkTitle: WebDriver
 weight: 2
 ---
 
@@ -42,7 +41,7 @@ Python 有个 selenium 库用于与 ChromeDriver 交互
 > 参考：
 >
 > - [Gitee 项目，g1879/DrissionPage](https://gitee.com/g1879/DrissionPage)
->   - [GitHub 备份](https://github.com/g1879/DrissionPage)
+>     - [GitHub 备份](https://github.com/g1879/DrissionPage)
 
 用 requests 做数据采集面对要登录的网站时，要分析数据包、JS 源码，构造复杂的请求，往往还要应付验证码、JS 混淆、签名参数等反爬手段，门槛较高，开发效率不高。 使用浏览器，可以很大程度上绕过这些坑，但浏览器运行效率不高。
 
@@ -53,4 +52,3 @@ Python 有个 selenium 库用于与 ChromeDriver 交互
 ## Selenium
 
 [Selenium](/docs/Web/Browser%20automation/Selenium.md)
-

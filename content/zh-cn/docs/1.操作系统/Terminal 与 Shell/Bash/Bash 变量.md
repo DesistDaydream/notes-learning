@@ -273,16 +273,16 @@ o $LINENO 显示的当前的行号
 **位置变量**：`$0` 该脚本所在的绝对路径 `$1` 脚本的第一个参数 `$2`.....等等
 
 - `$数字` # 是位置参数的用法。如果运行脚本的时候带参数，那么可以在脚本里通过 $1 获取第一个参数，$2 获取第二个参数......依此类推，一共可以直接获取 9 个参数（称为位置参数）。$0 用于获取脚本名称。相应地，如果 $+数字 用在函数里，那么表示获取函数的传入参数，$0 表示函数名。
-  - `$0` # 该脚本所在的绝对路径
-  - `$1` # 脚本的第一个参数
-  - `$2` # 脚本的第二个参数
-  - .....等等
-  - 比如：
-    - ./test.sh a b c # 运行该脚本时候，a 就是变量 $1(第一个参数)，b 就是变量 $2(第二个参数)，变量 $# 为 3,一共 3 个位置参数
+    - `$0` # 该脚本所在的绝对路径
+    - `$1` # 脚本的第一个参数
+    - `$2` # 脚本的第二个参数
+    - .....等等
+    - 比如：
+        - ./test.sh a b c # 运行该脚本时候，a 就是变量 $1(第一个参数)，b 就是变量 $2(第二个参数)，变量 $# 为 3,一共 3 个位置参数
 - 其他位置参数：
-  - `$#` # 位置变量的个数
-  - `$*` # 引用所有的位置参数，引用后就是显示或者执行引用的字符串
-  - `$@` # 引用所有的位置参数，引用后就是显示或者执行引用的字符串
+    - `$#` # 位置变量的个数
+    - `$*` # 引用所有的位置参数，引用后就是显示或者执行引用的字符串
+    - `$@` # 引用所有的位置参数，引用后就是显示或者执行引用的字符串
 
 **特殊变量**
 
@@ -299,28 +299,28 @@ o $LINENO 显示的当前的行号
 想要处理字符串，通常有如下几种方式：
 
 - 从指定位置截取字符串
-   - `${VARIABLE:START:LENGTH}` # 从 VARIABLE 值的 左边 起第 START 个字符开始，向右截取 LENGTH 个字符
-   - `${VARIABLE:0-START:LENGTH}` # 从 VARIABLE 值的 右边 起第 START 个字符开始，向右截取 LENGTH 个字符
-   - Note：
-      - :LENGTH 可省略。省略的话表示截取到变量值的末尾
-      - 从左边开始计数时，起始数字是 0（这符合程序员思维）；从右边开始计数时，起始数字是 1（这符合常人思维）。计数方向不同，起始数字也不同。
-      - 左数和右数的区别就是其实位置那个位置有没有 0- 这个标识符
-      - 不管从哪边开始计数，截取方向都是从左到右。
+    - `${VARIABLE:START:LENGTH}` # 从 VARIABLE 值的 左边 起第 START 个字符开始，向右截取 LENGTH 个字符
+    - `${VARIABLE:0-START:LENGTH}` # 从 VARIABLE 值的 右边 起第 START 个字符开始，向右截取 LENGTH 个字符
+    - Note：
+        - :LENGTH 可省略。省略的话表示截取到变量值的末尾
+        - 从左边开始计数时，起始数字是 0（这符合程序员思维）；从右边开始计数时，起始数字是 1（这符合常人思维）。计数方向不同，起始数字也不同。
+        - 左数和右数的区别就是其实位置那个位置有没有 0- 这个标识符
+        - 不管从哪边开始计数，截取方向都是从左到右。
 - 从指定字符串处截取字符串
-   - `${VARIABLE#*CHARS}` # 从左边开始到第一个 CHARS 为止的字符全部忽略，只留下右边的所有字符
-   - `${VARIABLE##*CHARS}` # 从左边开始到最后一个 CHARS 为止的字符全部忽略，只留下右边的所有字符
-   - `${VARIABLE%CHARS*}` # 从右边开始到第一个 CHARS 为止的字符全部忽略，只留下左边的所有字符
-   - `${VARIABLE%%CHARS*}` # 从右边开始到最后一个 CHARS 为止的字符全部忽略，只留下左边的所有字符
-   - Note:
-      - 截取时，CHARS 不被包含在内。CHARS 可以是一个字符，也可以是一个字符串，当作一个整体看待，不要把 CHARS 拆开。当 CHARS 为字符时，则在计数开始时，表示从出现该字符串整体开始算。
-      - `-` 符号只是一个通配符，可以省略。上面的语法中的 \* 就是表示 CHARS 左侧或者右侧的所有字符
-      - 比如 `${VARIABLE%%CHARS*}` 其实就是删掉从右数最后一个 CHARS 右侧的所有字符
-      - 这种截取方式无法指定字符串长度。
+    - `${VARIABLE#*CHARS}` # 从左边开始到第一个 CHARS 为止的字符全部忽略，只留下右边的所有字符
+    - `${VARIABLE##*CHARS}` # 从左边开始到最后一个 CHARS 为止的字符全部忽略，只留下右边的所有字符
+    - `${VARIABLE%CHARS*}` # 从右边开始到第一个 CHARS 为止的字符全部忽略，只留下左边的所有字符
+    - `${VARIABLE%%CHARS*}` # 从右边开始到最后一个 CHARS 为止的字符全部忽略，只留下左边的所有字符
+    - Note:
+        - 截取时，CHARS 不被包含在内。CHARS 可以是一个字符，也可以是一个字符串，当作一个整体看待，不要把 CHARS 拆开。当 CHARS 为字符时，则在计数开始时，表示从出现该字符串整体开始算。
+        - `-` 符号只是一个通配符，可以省略。上面的语法中的 \* 就是表示 CHARS 左侧或者右侧的所有字符
+        - 比如 `${VARIABLE%%CHARS*}` 其实就是删掉从右数最后一个 CHARS 右侧的所有字符
+        - 这种截取方式无法指定字符串长度。
 - 替换变量中匹配到的字符串
-   - `${VARIABLE/OldChars/NewChars}` # 将 VARIABLE 值中匹配到第一个的 OldChars 替换为 NewChars
-   - `${VARIABLE//OldChars/NewChars}` # 将 VARIABLE 值中匹配到所有的 OldChars 替换为 NewChars
+    - `${VARIABLE/OldChars/NewChars}` # 将 VARIABLE 值中匹配到第一个的 OldChars 替换为 NewChars
+    - `${VARIABLE//OldChars/NewChars}` # 将 VARIABLE 值中匹配到所有的 OldChars 替换为 NewChars
 - 获取变量值的长度
-   - `${#VARIABLE}` # 变量名前加 # 符号
+    - `${#VARIABLE}` # 变量名前加 # 符号
 
 **EXAMPLE**
 
@@ -328,28 +328,27 @@ o $LINENO 显示的当前的行号
 
 `export split='www.desistdaydream.com'`
 
--  `echo ${split:4:14}` # 从第四位字符开始(包括第四位)，一共截取14个字符。由于第一个字符是0号位置，所以第四位字符，按照人类的理解应该是第五个字符。
-  -  输出结果：desistdaydream
--  echo ${split:4} # 省略 length，截取到字符串末尾
-  -  输出结果：desistdaydream.com
--  `echo ${split: 0-18: 14}` # 从右边数，b是第 13 个字符。
-  -  输出结果：desistdaydream
--  `echo ${split: 0-18}` # 省略 length，直接截取到字符串末尾
-  -  输出结果：desistdaydream.com
+- `echo ${split:4:14}` # 从第四位字符开始(包括第四位)，一共截取14个字符。由于第一个字符是0号位置，所以第四位字符，按照人类的理解应该是第五个字符。
+- 输出结果：desistdaydream
+- echo ${split:4} # 省略 length，截取到字符串末尾
+- 输出结果：desistdaydream.com
+- `echo ${split: 0-18: 14}` # 从右边数，b是第 13 个字符。
+- 输出结果：desistdaydream
+- `echo ${split: 0-18}` # 省略 length，直接截取到字符串末尾
+- 输出结果：desistdaydream.com
 
 **从指定字符串处截取字符串**
 
 `split="http://www.desistdaydream.com/index.html"`
 
-- `echo ${split#*/}` # 也可以写为 `${split#*p:/}` 或 `${split#http:/}`，效果相同。注意带 * 和不带 * 的区别。
-  -  输出结果：/www.desistdaydream.com/index.html
--  `echo ${split##*/}`
-  -  输出结果：index.html
--  `echo ${split%/*}`
-  -  输出结果：[http://www.desistdaydream.com](http://www.desistdaydream.com)
--  `echo ${split%%/*}`
-  -  输出结果：http:
-
+- `echo ${split#*/}` # 也可以写为 `${split#*p:/}` 或 `${split#http:/}`，效果相同。注意带 *和不带* 的区别。
+    - 输出结果：/www.desistdaydream.com/index.html
+- `echo ${split##*/}`
+- 输出结果：index.html
+- `echo ${split%/*}`
+- 输出结果：[http://www.desistdaydream.com](http://www.desistdaydream.com)
+- `echo ${split%%/*}`
+- 输出结果：http:
 
 ## 使用 eval 命令让变量的值作为另一个变量的变量名
 

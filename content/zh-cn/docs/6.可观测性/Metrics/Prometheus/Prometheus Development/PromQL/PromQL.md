@@ -1,6 +1,5 @@
 ---
 title: PromQL
-linkTitle: PromQL
 weight: 1
 ---
 
@@ -18,12 +17,12 @@ weight: 1
 
 ```go
 func (api *API) query(r *http.Request) (result apiFuncResult) {
-	......
-	return apiFuncResult{&queryData{
-		ResultType: res.Value.Type(),
-		Result:     res.Value,
-		Stats:      qs,
-	}, nil, res.Warnings, qry.Close}
+ ......
+ return apiFuncResult{&queryData{
+  ResultType: res.Value.Type(),
+  Result:     res.Value,
+  Stats:      qs,
+ }, nil, res.Warnings, qry.Close}
 }
 ```
 
@@ -31,9 +30,9 @@ func (api *API) query(r *http.Request) (result apiFuncResult) {
 
 ```go
 type queryData struct {
-	ResultType parser.ValueType  `json:"resultType"`
-	Result     parser.Value      `json:"result"`
-	Stats      *stats.QueryStats `json:"stats,omitempty"`
+ ResultType parser.ValueType  `json:"resultType"`
+ Result     parser.Value      `json:"result"`
+ Stats      *stats.QueryStats `json:"stats,omitempty"`
 }
 ```
 
@@ -41,8 +40,8 @@ parser.Value 是一个接口
 
 ```go
 type Value interface {
-	Type() ValueType
-	String() string
+ Type() ValueType
+ String() string
 }
 ```
 
@@ -58,12 +57,12 @@ Matrix 是 Series 类型的数组
 
 ```go
 type Series struct {
-	Metric labels.Labels `json:"metric"`
-	Points []Point       `json:"values"`
+ Metric labels.Labels `json:"metric"`
+ Points []Point       `json:"values"`
 }
 type Point struct {
-	T int64
-	V float64
+ T int64
+ V float64
 }
 ```
 
@@ -91,36 +90,36 @@ Series 结构体的属性结构与通过 API 查询获取的结果保持一致
 // 如果 isCounter 参数为 true，则允许计数器重置。
 // 如果 isRate 参数为 true，则返回结果以每秒作为单位
 func extrapolatedRate(vals []parser.Value, args parser.Expressions, enh *EvalNodeHelper, isCounter bool, isRate bool) Vector {
-	......
+ ......
 }
 
 func instantValue(vals []parser.Value, out Vector, isRate bool) (Vector, annotations.Annotations) {
-	......
+ ......
 }
 
 // === delta(Matrix parser.ValueTypeMatrix) Vector ===
 func funcDelta(vals []parser.Value, args parser.Expressions, enh *EvalNodeHelper) Vector {
-	return extrapolatedRate(vals, args, enh, false, false)
+ return extrapolatedRate(vals, args, enh, false, false)
 }
 
 // === rate(node parser.ValueTypeMatrix) Vector ===
 func funcRate(vals []parser.Value, args parser.Expressions, enh *EvalNodeHelper) Vector {
-	return extrapolatedRate(vals, args, enh, true, true)
+ return extrapolatedRate(vals, args, enh, true, true)
 }
 
 // === increase(node parser.ValueTypeMatrix) Vector ===
 func funcIncrease(vals []parser.Value, args parser.Expressions, enh *EvalNodeHelper) Vector {
-	return extrapolatedRate(vals, args, enh, true, false)
+ return extrapolatedRate(vals, args, enh, true, false)
 }
 
 // === irate(node parser.ValueTypeMatrix) (Vector, Annotations) ===
 func funcIrate(vals []parser.Value, args parser.Expressions, enh *EvalNodeHelper) (Vector, annotations.Annotations) {
-	return instantValue(vals, enh.Out, true)
+ return instantValue(vals, enh.Out, true)
 }
 
 // === idelta(node model.ValMatrix) (Vector, Annotations) ===
 func funcIdelta(vals []parser.Value, args parser.Expressions, enh *EvalNodeHelper) (Vector, annotations.Annotations) {
-	return instantValue(vals, enh.Out, false)
+ return instantValue(vals, enh.Out, false)
 }
 ```
 
@@ -166,9 +165,9 @@ resultValue := lastValue - samples.Points[0].V + counterCorrection
 Rate 需要将计算结果除以选定时间范围的秒数
 
 ```go
-	if isRate {
-		resultValue /= ms.Range.Seconds()
-	}
+ if isRate {
+  resultValue /= ms.Range.Seconds()
+ }
 ```
 
 除了上述最基本的计算外，还有外推的逻辑来重新划定时间范围和选值

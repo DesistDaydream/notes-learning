@@ -16,7 +16,7 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub 项目，cobbler/cobbler](https://github.com/cobbler/cobbler)
 > - [官网](http://cobbler.github.io/)
 

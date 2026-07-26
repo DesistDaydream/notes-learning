@@ -1,6 +1,5 @@
 ---
 title: VFIO
-linkTitle: VFIO
 weight: 20
 ---
 

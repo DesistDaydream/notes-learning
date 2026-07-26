@@ -8,7 +8,7 @@ title: pt-ioprofile
 >
 > - [官方文档](https://www.percona.com/doc/percona-toolkit/LATEST/pt-ioprofile.html#environment)
 
-pt-ioprofile 是 [Percona ](https://www.percona.com/)出的 IO 查看工具。Percona 用来监视进程 IO 并打印文件和 I/O 活动表。
+pt-ioprofile 是 [Percona](https://www.percona.com/)出的 IO 查看工具。Percona 用来监视进程 IO 并打印文件和 I/O 活动表。
 
 **pt-ioprofile** 本质上就是一个 shell 脚本，只做两件事：
 
@@ -58,13 +58,13 @@ Tracing process ID 1833
 - **--aggregate, -a** # 聚合结果的方式，可用的值有 sum 与 avg。`默认值：sum`
 - 如果求和，则每个单元格将包含其中的值的总和。如果 avg，则每个单元格将包含其中值的平均值。
 - **--cell, -c \<STRING>** # 统计的数据。`默认值：times`
-  - count  # I/O 次数
-  - sizes  # I/O 大小
-  - times  # I/O 时间
+    - count  # I/O 次数
+    - sizes  # I/O 大小
+    - times  # I/O 时间
 - **--group-by, -g \<STRING>** # 对输出结果进行分组 `默认值：filename`
-  - all # 所有输出都在一行
-  - filename # 每个文件名输出一行
-  - pid # 每个进程 ID 输出一行
+    - all # 所有输出都在一行
+    - filename # 每个文件名输出一行
+    - pid # 每个进程 ID 输出一行
 - **--profile-pid \<INT>** # 指定要分析的进程的 PID，该值会覆盖 --profile-process 选项。
 - **--profile-process \<STRING>** # 指定要分析的进程名称。`默认值：mysqld`
 - **--run-time \<INT>** # 程序运行时长，单位秒。`默认值：30`

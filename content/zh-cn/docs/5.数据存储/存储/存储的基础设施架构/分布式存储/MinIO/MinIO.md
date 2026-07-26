@@ -1,6 +1,5 @@
 ---
 title: MinIO
-linkTitle: MinIO
 weight: 1
 ---
 

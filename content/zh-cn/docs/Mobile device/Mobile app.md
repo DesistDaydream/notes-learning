@@ -1,6 +1,5 @@
 ---
 title: Mobile APP
-linkTitle: Mobile APP
 weight: 100
 ---
 
@@ -60,14 +59,14 @@ weight: 100
 
 - https://github.com/Tencent/vConsole # 一个轻量、可拓展、针对手机网页的前端开发者调试面板。现在 vConsole 是微信小程序的官方调试工具。
 - https://github.com/weimobGroup/WeConsole # 替代了 vConsole。功能全面、界面与体验对标 Chrome devtools 的可定制化的小程序开发调试面板。个人开发，后被腾讯收编，项目转移到 微盟技术中心
-  - https://github.com/weimob-tech/WeConsole # 收编了 weimobGroup/WeConsole 后的项目所在仓库，位于 weimob-tech(微盟技术中心) 组织下
+    - https://github.com/weimob-tech/WeConsole # 收编了 weimobGroup/WeConsole 后的项目所在仓库，位于 weimob-tech(微盟技术中心) 组织下
 
 **间接使用官方的 devtools** - 这类项目通常需要使用类似 hook、拦截等方式。TODO: 到底是使用了原本就存在的官方 devtools 还是
 
 - https://github.com/x0tools/WeChatOpenDevTools # 通过 Frida Hook 注入开启小程序 DeBug。作者唐志远，因部分原因已删除库
-  - https://github.com/shuaibibobo/WeChatOpenDevTools # WeChatOpenDevTool 原仓库的 fork 备份
-  - https://github.com/JaveleyQAQ/WeChatOpenDevTools-Python # # WeChatOpenDevTool 的 Python 实现
-  - https://github.com/yuweiping/WeChatOpenDevTools # 另一个 Python 实现
+    - https://github.com/shuaibibobo/WeChatOpenDevTools # WeChatOpenDevTool 原仓库的 fork 备份
+    - https://github.com/JaveleyQAQ/WeChatOpenDevTools-Python # # WeChatOpenDevTool 的 Python 实现
+    - https://github.com/yuweiping/WeChatOpenDevTools # 另一个 Python 实现
 - https://github.com/evi0s/WMPFDebugger
 
 # 手机上的APP都是用什么编程语言写的？

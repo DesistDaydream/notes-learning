@@ -1,6 +1,5 @@
 ---
 title: AI Projects
-linkTitle: AI Projects
 weight: 1
 ---
 
@@ -43,7 +42,7 @@ MiniMax # AI 聚合平台
 > 参考：
 >
 > - [GitHub 项目，langchain-ai/langchain](https://github.com/langchain-ai/langchain)
->   - 仓库最早在 hwchase17/langchain
+>     - 仓库最早在 hwchase17/langchain
 > - [官网](https://langchain.com/)
 > - [B 站，AI必学知识点！Langchain到底是什么？开源干货详细解析！赚钱机会和未来展望！](https://www.bilibili.com/video/BV1GL411e7K4)
 > - [B 站，用自己的PDF文件定制Chatgpt！langchain代码实例详解！](https://www.bilibili.com/video/BV1xX4y1B7Vt)

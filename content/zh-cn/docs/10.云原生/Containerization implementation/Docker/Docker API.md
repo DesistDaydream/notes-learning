@@ -1,6 +1,5 @@
 ---
 title: Docker API
-linkTitle: Docker API
 weight: 20
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: Transformer inference
-linkTitle: Transformer inference
 created: 2026-04-08T14:50
 weight: 12
 ---

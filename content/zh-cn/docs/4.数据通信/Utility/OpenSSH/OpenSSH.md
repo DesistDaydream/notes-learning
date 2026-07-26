@@ -1,6 +1,5 @@
 ---
 title: OpenSSH
-linkTitle: OpenSSH
 weight: 1
 ---
 
@@ -35,8 +34,8 @@ Note：现在 OpenSSH 一般作为 Linux 发行版的标准远程登录工具默
 
 - 注意：OpenSSH 使用非对称加密的方式，与传统互联网的 https 使用方式相反。https 的公钥是交给客户端，用来验证服务端返回的网页是否可信。而 OpenSSH 则是将公钥交给服务端，用来验证客户端发送的信息是否可信。
 - 这也确实符合逻辑
-  - ssh 是一个客户端需要登录多个服务端，服务端要验证客户端发送的信息的真实性，要是不验证，那么就可以随便在自己服务器上执行命令了，这是不对的~
-  - 而互联网通过 https 访问，则是多个客户端对应一个服务端。
+    - ssh 是一个客户端需要登录多个服务端，服务端要验证客户端发送的信息的真实性，要是不验证，那么就可以随便在自己服务器上执行命令了，这是不对的~
+    - 而互联网通过 https 访问，则是多个客户端对应一个服务端。
 
 **~/.ssh/config** # OpenSSH 的 Client 端配置，该配置文件主要针对不同用户来使用，默认不存在，需要手动创建。
 
@@ -60,7 +59,7 @@ Last login: Fri Jul 10 22:56:38 2020 from 10.10.100.200
 - 利用防火墙设置 ssh 访问策略
 - 仅监听特定的 IP 地址
 - 基于口令认证时，使用强密码策略
-  - `tr -dc A-Za-z0-9_ < /dev/urandom | head -c 30 | xargs` # 生成 30 位随机字符串
+    - `tr -dc A-Za-z0-9_ < /dev/urandom | head -c 30 | xargs` # 生成 30 位随机字符串
 - 禁止使用空密码
 - 禁止 root 用户直接登录
 - 限制 ssh 的访问频度和并发(即同时)在线数
@@ -69,8 +68,8 @@ Last login: Fri Jul 10 22:56:38 2020 from 10.10.100.200
 # OpenSSH 优化
 
 - 提高 ssh 连接速度
-  - 修改 sshd_config 文件中 useDNS 为 no
-  - 修改 ssh_config 文件中 GSSAPIAuthentication 为 no
+    - 修改 sshd_config 文件中 useDNS 为 no
+    - 修改 ssh_config 文件中 GSSAPIAuthentication 为 no
 
 # 问题实例
 

@@ -1,6 +1,5 @@
 ---
 title: Peripheral
-linkTitle: Peripheral
 weight: 1
 ---
 
@@ -22,7 +21,7 @@ weight: 1
 在设备管理器中看到 Logitech Cordless Device 驱动异常，无法自动安装。现象为 Logitech 的 Unifying 设备（i.e. 无线接收器）无法被软件识别；但是鼠标还是可以用的。
 
 - https://priesdelly.medium.com/logitech-cordless-device-fix-driver-not-installed-db328b6f6bb2
-  - https://www.reddit.com/r/Windows10/comments/5s1m2w/comment/difegn3/?utm_source=share&utm_medium=web2x&context=3
+    - https://www.reddit.com/r/Windows10/comments/5s1m2w/comment/difegn3/?utm_source=share&utm_medium=web2x&context=3
 - 在 https://support.logi.com/hc/en-us/articles/360025141274 安装 SetPoint 即可让驱动正常。
 
 # 键盘
@@ -131,10 +130,10 @@ weight: 1
 
 ### 核心逻辑链
 
-```
+```text
 机械结构（X/Y轴）→ 角度检测（碳膜 → 霍尔）→ 回中机构（活塞 → 杠杆）→ 延迟优化
 ```
- 
+
 # SAS 卡
 
 SAS 的全称是 **串行附加SCSI**（Serial Attached SCSI）。它是一种用于连接硬盘驱动器、光盘驱动器等设备的接口标准。SAS卡提供了高速、高性能、高可靠性和高灵活性的数据传输解决方案。

@@ -1,6 +1,5 @@
 ---
 title: JSON
-linkTitle: JSON
 weight: 1
 ---
 
@@ -107,9 +106,9 @@ type Comment struct {
 数据转换时，遵循着一定的规范：
 
 - **只有可以表示为有效 JSON 的数据结构才会被编码：**
-  - **struct、slice、array、map 都可以转换成json**
-  - **struct 转换成 json的时候，struck 中只有字段首字母大写的属性才会被转换**
-  - **map转换的时候，key必须为string**
+    - **struct、slice、array、map 都可以转换成json**
+    - **struct 转换成 json的时候，struck 中只有字段首字母大写的属性才会被转换**
+    - **map转换的时候，key必须为string**
 - **封装的时候，如果是指针，会追踪指针指向的对象进行封装**
 - JSON 对象仅支持字符串作为键；要编码Go map 类型，它必须采用以下形式`map[string]T`（`T` json包支持的所有Go类型）。
 - Channel、complex、function 类型无法编码。
@@ -460,38 +459,38 @@ Marshal 和 Unmarshal 是一些方便的函数，它们可以将数据从一个�
 
 ```go
 type Person struct {
-	Name string
-	Age  int
+ Name string
+ Age  int
 }
 
 func main() {
-	// 创建一个缓冲区，用来存储编码后的数据
-	var buf bytes.Buffer
-	// 创建一个 Encoder，用来将 Person 结构体编码到缓冲区
-	enc := gob.NewEncoder(&buf)
-	// 创建一个 Person 实例
-	p := Person{Name: "Alice", Age: 25}
-	// 调用 Encode 方法，将 p 编码到缓冲区
-	err := enc.Encode(p)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	// 打印缓冲区的内容（二进制格式）
-	fmt.Println(buf.Bytes())
+ // 创建一个缓冲区，用来存储编码后的数据
+ var buf bytes.Buffer
+ // 创建一个 Encoder，用来将 Person 结构体编码到缓冲区
+ enc := gob.NewEncoder(&buf)
+ // 创建一个 Person 实例
+ p := Person{Name: "Alice", Age: 25}
+ // 调用 Encode 方法，将 p 编码到缓冲区
+ err := enc.Encode(p)
+ if err != nil {
+  fmt.Println(err)
+  return
+ }
+ // 打印缓冲区的内容（二进制格式）
+ fmt.Println(buf.Bytes())
 
-	// 创建一个 Decoder，用来将缓冲区的数据解码成 Person 结构体
-	dec := gob.NewDecoder(&buf)
-	// 创建一个空的 Person 实例
-	var q Person
-	// 调用 Decode 方法，将缓冲区的数据解码到 q 中
-	err = dec.Decode(&q)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	// 打印 q 的内容（结构体格式）
-	fmt.Println(q)
+ // 创建一个 Decoder，用来将缓冲区的数据解码成 Person 结构体
+ dec := gob.NewDecoder(&buf)
+ // 创建一个空的 Person 实例
+ var q Person
+ // 调用 Decode 方法，将缓冲区的数据解码到 q 中
+ err = dec.Decode(&q)
+ if err != nil {
+  fmt.Println(err)
+  return
+ }
+ // 打印 q 的内容（结构体格式）
+ fmt.Println(q)
 }
 ```
 
@@ -621,4 +620,3 @@ json.Unmarshal([]byte, &xx)
 来处理就好了。参数一是需要 decode 的 Json 数据, 参数二是用于接收这组数据的结构体字段。同样的我们也可以使用一个空接口来接收数据，也可以使用一一对应的结构体来放置数据。
 
 看了上面的一堆介绍有一个感觉，就处理 Json 数据和类型转换来说。。python 真是简单到爆炸，一个 dumps 一个 loads 轻松搞定。但是 Golang 严格的参数类型缺可以保证解析过来的数据一定是对应的数据结构和数据类型。不会在类型上报错更为严谨。个人觉得这很有趣，也很喜欢。
-

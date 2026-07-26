@@ -1,6 +1,5 @@
 ---
 title: Glossary
-linkTitle: Glossary
 weight: 200
 ---
 

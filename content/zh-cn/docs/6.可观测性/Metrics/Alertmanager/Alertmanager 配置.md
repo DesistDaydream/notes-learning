@@ -1,6 +1,5 @@
 ---
 title: Alertmanager 配置
-linkTitle: Alertmanager 配置
 weight: 2
 ---
 
@@ -24,7 +23,7 @@ weight: 2
 
 - BOOLEAN # 可以采用 true 或 false 值的布尔值
 - DURATION # 持续时间。可以使用正则表达式
-  - `((([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?((([0-9]+)m)?((([0-9]+)s)?((([0-9]+)ms)?|0)`，例如：1d、1h30m、5m、10s。
+    - `((([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?((([0-9]+)m)?((([0-9]+)s)?((([0-9]+)ms)?|0)`，例如：1d、1h30m、5m、10s。
 - FILENAME # 当前工作目录中的有效路径
 - HOST # 由主机名或 IP 后跟可选端口号组成的有效字符串。
 - INT # 一个整数值
@@ -81,7 +80,7 @@ weight: 2
 
 **smtp_force_implicit_tls**(BOOL) # 无论 SMTP 端口如何，均强制使用 implicit TLS(隐式TLS。这种方式默认使用 465 端口)。
 
-- 该字段自0.31 版本开始，支持 implicit_tls 配置。于[ 0.32 版本修复](https://github.com/prometheus/alertmanager/pull/5030)。
+- 该字段自0.31 版本开始，支持 implicit_tls 配置。于[0.32 版本修复](https://github.com/prometheus/alertmanager/pull/5030)。
 - 若不设为 true，Alertamanger 默认使用 STARTTLS，在连接 465 端口时会报错: `err="shanxi/email[0]: notify retry canceled after 10 attempts: 'require_tls' is true (default) but \"smtp.exmail.qq.com:465\" does not advertise the STARTTLS extension`
     - 该报错的原因：端口 `465` 使用的是 **Implicit TLS**（连接建立时直接加密），而 Alertmanager 的 `require_tls: true`（默认值）期望的是 **STARTTLS**（先明文连接，再通过协议升级加密）。两者不兼容，所以 `smtp.exmail.qq.com:465` 不响应 STARTTLS 握手。
 
@@ -126,6 +125,7 @@ weight: 2
 **matchers**(\[][matcher](#matcher)) # 匹配规则，凡是符合该规则的告警，将会进入当前节点。说白了，只有匹配上了，才会将告警发出去。
 
 > [!Tip]
+>
 > - 如果多个 Label 是“或”的关系，那就只能配置多个相同接收者的路由，每个路由的 matchers 不同。
 > - `matchers` 字段代替了在 0.22.0 版本开始被弃用的 `match` 与 `match_re` 字段
 
@@ -195,7 +195,7 @@ receivers:
 
 下面的配置可以覆盖全局默认 SMTP 信息，以便实现不同的接收者使用不同的发件人
 
-> [!Attention] 
+> [!Attention]
 > 注意：若想让收件人的**独立**配置生效，`smtp_XXX` 相关的全局配置的值哪怕设置为空，也要设置。e.g. `smtp_smarthost`, `smtp_from`, `smtp_auth_username`, `smtp_auth_password`, `smtp_require_tls`, etc.
 
 - **from**(tmpl_string) # `默认值: global.smtp_from`

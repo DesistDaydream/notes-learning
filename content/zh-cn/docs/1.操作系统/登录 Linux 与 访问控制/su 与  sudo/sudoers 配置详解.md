@@ -17,7 +17,7 @@ sudoers 文件由如下几类条目组成：
 - **Aliases(别名)** #
 - **User Specifications(用户规范)** # 即指定谁可以运行什么程序
 - **Defaults** # Defaults 条目的配置，可以在运行时变更 sudo 的运行行为。
-  - 比如配置日志输出路径等等。
+    - 比如配置日志输出路径等等。
 
 ## Aliases
 
@@ -125,18 +125,18 @@ root    ALL=(ALL)       ALL
 Defaults 语法：
 
 - Default_Type Parameter_List
-  - Default_type 可用的值有如下几个：
-    - Defautls
-    - Defaults @ Host_List
-    - Defaults : User_List
-    - Defaults ! Cmnd_List
-    - Defaults > Runas_List
-  - Parameter_List 格式如下：
-    - Parameter = Value
-    - Parameter += Value
-    - Parameter -= Value
-    - ! Parameter
-  - 可用的参数参考下文 Defautls 条目参数
+    - Default_type 可用的值有如下几个：
+        - Defautls
+        - Defaults @ Host_List
+        - Defaults : User_List
+        - Defaults ! Cmnd_List
+        - Defaults > Runas_List
+    - Parameter_List 格式如下：
+        - Parameter = Value
+        - Parameter += Value
+        - Parameter -= Value
+        - ! Parameter
+    - 可用的参数参考下文 Defautls 条目参数
 
 要在参数中包含文字反斜杠字符，必须对反斜杠进行两次转义。例如，要匹配 “\ n” 作为命令行参数的一部分，必须在 sudoers 文件中使用 “\ \ n”。这是由于存在两个转义级别，一个在 sudoers 解析器本身中，另一个在 fnmatch(3) 函数匹配命令行参数时。
 
@@ -205,13 +205,13 @@ Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
 EXAMPLE
 
 - 别名
-  - 设定别名 DOCKER，该 DOCKER 别名包括 docker 命令和 systemctl 中子命令对 docker 服务的操作
-    - Cmnd_Alias DOCKER = /usr/bin/docker*, /usr/bin/systemctl* docker\*
+    - 设定别名 DOCKER，该 DOCKER 别名包括 docker 命令和 systemctl 中子命令对 docker 服务的操作
+        - Cmnd_Alias DOCKER = /usr/bin/docker*, /usr/bin/systemctl* docker\*
 - 赋权
-  - 表示 desistdaydream 用户可以在所有主机执行所有命令
-    - desistdaydream ALL=ALL #
-  - 表示 desistdaydream 用户在所有主机，变换为 root 身份，可以执行所有命令
-    - desistdaydream ALL=(root) ALL
+    - 表示 desistdaydream 用户可以在所有主机执行所有命令
+        - desistdaydream ALL=ALL #
+    - 表示 desistdaydream 用户在所有主机，变换为 root 身份，可以执行所有命令
+        - desistdaydream ALL=(root) ALL
 
 赋予 developer 用户，可以操作 docker 和 nginx 的所有权限。i.e.通过 systemctl 控制 docker 和 nginx 服务，使用 docker 和 nginx 相关命令
 

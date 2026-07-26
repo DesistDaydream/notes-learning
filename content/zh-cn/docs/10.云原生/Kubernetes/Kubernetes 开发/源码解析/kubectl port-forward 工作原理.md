@@ -9,6 +9,7 @@ title: kubectl port-forward 工作原理
 通过 port-forward 流程的分析，梳理出 kubectl -> api-server -> kubelet -> 容器运行时 的交互，了解 cri 的工作方式。
 
 ![kubectl-port-forward](https://notes-learning.oss-cn-beijing.aliyuncs.com/kubernetes/source/port-forward.png)
+
 ## kubectl
 
 简单创建个 pod：
@@ -40,7 +41,7 @@ Forwarding from [::1]:8080 -> 8080
 
 当本地端口有连接接入时，`kubectl`  会**不断地在两个连接间拷贝数据**。
 
-### 参考源码：
+### 参考源码
 
 - staging/src/k8s.io/kubectl/pkg/cmd/portforward/portforward.go:389\[1]
 - staging/src/k8s.io/client-go/tools/portforward/portforward.go:242\[2]

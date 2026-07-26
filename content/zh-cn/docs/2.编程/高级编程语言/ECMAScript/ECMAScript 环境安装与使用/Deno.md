@@ -1,6 +1,5 @@
 ---
 title: Deno
-linkTitle: Deno
 weight: 20
 ---
 
@@ -37,7 +36,7 @@ Deno 甚至可以通过命令行工具的 `deno compile` 命令将程序编译�
 **${DENO_DIR}** # Deno 的缓存目录。类似于 GOPATH。可以通过 `deno info` 命令查看当前具体目录。`Windows 默认值: %LocalAppData%/deno/`
 
 - **./deps/** # Deno 直接管理的远程模块缓存数据保存路径。通常根据协议分为 https 和 http 等目录。有点类似 go 中的 `${GOPATH}/pkg/` 目录
-  - **./https/\${DOMAIN}/** # 依赖包保存在其所在域名的同名目录下。有点类似 go 中的 `${GOPATH}/pkg/mod/${DOMAIN}` 目录
+    - **./https/\${DOMAIN}/** # 依赖包保存在其所在域名的同名目录下。有点类似 go 中的 `${GOPATH}/pkg/mod/${DOMAIN}` 目录
 - **./npm/** # Deno 适配 package.json 文件后，npm 模块缓存数据保存路径。TODO: 待确认？
 - **./gen/** # Emitted 模块缓存数据保存路径。TODO: 这是啥？是构建或运行时生成的数据吗？
 - **./registries/** # Language server registries cache 这是啥？
@@ -58,7 +57,7 @@ Deno 有一个类似 go 一样的命令行工具 deno，内置了开发者需要
 https://docs.deno.com/runtime/manual/node 这里可以找到 Deno 兼容 Node 和 npm 模块的方式。当前有三种方式
 
 - 在 import 关键字语法中，使用 npm 和 node 修饰符，比如 `import CryptoJS from "npm:crypto-js"`
-  - 从 1.28 版本开始，Deno 可以直接使用 Nodejs 语法的 import 以导入想要使用的包（e.g. `import CryptoJS from "npm:crypto-js"`）。
+    - 从 1.28 版本开始，Deno 可以直接使用 Nodejs 语法的 import 以导入想要使用的包（e.g. `import CryptoJS from "npm:crypto-js"`）。
 - 读取 [package.json 文件](https://docs.deno.com/runtime/manual/node/package_json)，import 关键字中的语法不用变化。但是要让 package.json 文件中包含依赖包信息
 - 通过 [CDN](https://docs.deno.com/runtime/manual/node/cdns) 使用 npm 包。
 

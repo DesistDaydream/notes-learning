@@ -1,6 +1,5 @@
 ---
 title: Go
-linkTitle: Go
 weight: 1
 ---
 
@@ -12,8 +11,8 @@ weight: 1
 > - [官网](https://golang.org/)
 > - [Google 开放源代码](https://cs.opensource.google/go)
 > - [GitHub 项目，avelino/awesome-go](https://github.com/avelino/awesome-go)(收录了优秀的 Go 框架、库、软件)
->   - [中文版，GitHub 项目，yinggaozhen/awesome-go-cn](https://github.com/yinggaozhen/awesome-go-cn)
->   - 另一个 go awesome: <https://github.com/shockerli/go-awesome>
+>     - [中文版，GitHub 项目，yinggaozhen/awesome-go-cn](https://github.com/yinggaozhen/awesome-go-cn)
+>     - 另一个 go awesome: <https://github.com/shockerli/go-awesome>
 
 Go 是一种开源编程语言，可以轻松构建 **simple(简单)**、**reliable(可靠)** 和 **efficient(高效)** 的软件。
 
@@ -41,7 +40,7 @@ Go 是一种开源编程语言，可以轻松构建 **simple(简单)**、**relia
 
 - [GitHub 项目，unknowon/the-way-to-go](https://github.com/unknwon/the-way-to-go_ZH_CN)(Go 入门指南)
 - [GitHub 项目，gopl-zh/gopl-zh.github.com](https://github.com/gopl-zh/gopl-zh.github.com)(Go 语言圣经)
-  - [The Go Programming Language](https://www.k8stech.net/gopl/chapter0/)
+    - [The Go Programming Language](https://www.k8stech.net/gopl/chapter0/)
 
 视频
 
@@ -81,7 +80,7 @@ Hello World
 >
 > - [GitHub 项目 Wiki, golang/go-Wiki-Go 代码审查](https://github.com/golang/go/wiki/CodeReviewComments)
 > - [官方文档，有效的 Go-名称](https://go.dev/doc/effective_go#names)
->   - [MakeOptim 博客，Effective Go 中文](https://makeoptim.com/golang/effective-go)(官方文档的中文翻译)
+>     - [MakeOptim 博客，Effective Go 中文](https://makeoptim.com/golang/effective-go)(官方文档的中文翻译)
 > - [Go 博客，Package names](https://go.dev/blog/package-names)
 > - [博客园，不一样的 go 语言-gopher](https://www.cnblogs.com/laud/p/gopher.html)
 
@@ -105,9 +104,9 @@ go 程序的运行，需要依赖于两个基础的环境变量，GOROOT 与 GOP
 > 参考：
 >
 > - [GitHub 项目，golang-standards/project-layout](https://github.com/golang-standards/project-layout)
->   - [MakeOptim 博客，golang 编程规范-项目目录结构](https://makeoptim.com/golang/standards/project-layout)
+>     - [MakeOptim 博客，golang 编程规范-项目目录结构](https://makeoptim.com/golang/standards/project-layout)
 > - [知乎，该如何组织 Go 项目结构？](https://zhuanlan.zhihu.com/p/346573562)
->   - [Package Oriented Design](https://www.ardanlabs.com/blog/2017/02/package-oriented-design.html)
+>     - [Package Oriented Design](https://www.ardanlabs.com/blog/2017/02/package-oriented-design.html)
 
 gopher 第二条：按东西放在约定的地方。
 

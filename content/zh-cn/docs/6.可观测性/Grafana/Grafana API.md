@@ -1,6 +1,5 @@
 ---
 title: "Grafana API"
-linkTitle: "Grafana API"
 weight: 20
 ---
 

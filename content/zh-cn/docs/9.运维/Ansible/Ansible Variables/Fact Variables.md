@@ -1,6 +1,5 @@
 ---
 title: "Fact Variables"
-linkTitle: "Fact Variables"
 weight: 20
 ---
 

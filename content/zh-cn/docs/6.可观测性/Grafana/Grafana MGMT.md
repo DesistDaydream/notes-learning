@@ -1,6 +1,5 @@
 ---
 title: Grafana MGMT
-linkTitle: Grafana MGMT
 weight: 20
 ---
 

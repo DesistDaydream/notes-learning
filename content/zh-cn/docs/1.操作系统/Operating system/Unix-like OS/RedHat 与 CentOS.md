@@ -1,13 +1,12 @@
 ---
 title: RedHat 与 CentOS
-linkTitle: RedHat 与 CentOS
 weight: 70
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [RedHat 官方文档](https://access.redhat.com/products/red-hat-enterprise-linux/#knowledge)(在这里点击 Product Documentation)
 > - [RedHat7 生产环境文档](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7)
 > - [RedHat8 生产环境文档](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8)
@@ -28,7 +27,7 @@ CentOS 居然还用 python2
 # 安装 CentOS
 
 > 参考：
-> 
+>
 > - [GitHub 项目，rhinstaller/anaconda](https://github.com/rhinstaller/anaconda)(RedHat 相关发行版的操作系统安装器)
 
 RedHat 系列的 .iso 安装文件中包含了 Anaconda 安装器。
@@ -40,13 +39,14 @@ RedHat 系列的 .iso 安装文件中包含了 Anaconda 安装器。
 - <https://unix.stackexchange.com/questions/121318/this-mount-point-is-invalid-the-root-directory-must-be-on-file-system>
 - 代码：[https://github.com/rhinstaller/anaconda/blob/rhel6-branch/storage/**init**.py#L1084](https://github.com/rhinstaller/anaconda/blob/rhel6-branch/storage/__init__.py#L1084)
 - 高于 6 版本的分之代码将这个行为封装了
-  - <https://github.com/rhinstaller/anaconda/blob/rhel-9/pyanaconda/modules/storage/checker/utils.py#L31>
+    - <https://github.com/rhinstaller/anaconda/blob/rhel-9/pyanaconda/modules/storage/checker/utils.py#L31>
 
 # 关联文件与配置
 
 **/etc/sysconfig/** # Red Hat Linux 发行版的各种系统配置文件
 
 # CentOS 史
+
 ## CentOS 法律
 
 ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/wlni0v/1647171407465-5e7ad5f3-913d-4c93-a893-e3334b09bfbb.png)

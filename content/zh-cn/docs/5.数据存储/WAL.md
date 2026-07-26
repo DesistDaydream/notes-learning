@@ -1,6 +1,5 @@
 ---
 title: WAL
-linkTitle: WAL
 weight: 20
 ---
 

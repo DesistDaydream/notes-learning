@@ -1,6 +1,5 @@
 ---
 title: PromQL
-linkTitle: PromQL
 weight: 1
 ---
 
@@ -43,9 +42,9 @@ PromQL 没有绝对通用的语法，在不同场景查询条件下，语法也�
 在 PromQL 中，任何 **Expression(表达式)** 或者 **subExpression(子表达式)** 都可以归为四种类型：
 
 - **Instant Vector Selectors(即时向量选择器)** # 包含每个时间序列的单个样本的一组时间序列，共享相同的时间戳。
-  - **即时向量** 在有的地方也被翻译为 **瞬时向量**，都是同一个意思。
+    - **即时向量** 在有的地方也被翻译为 **瞬时向量**，都是同一个意思。
 - **Range Vector Selectors(范围向量选择器)** # 包含每个时间序列随时间变化的数据点的一组时间序列。
-  - **范围向量**
+    - **范围向量**
 - **String(字符串)** # 一个简单的字符串值(目前未被使用)
 - **Scalar(标量)** # 一个简单的数字浮点值
 
@@ -54,9 +53,9 @@ PromQL 没有绝对通用的语法，在不同场景查询条件下，语法也�
 这四种类型，又可以进行统一分类
 
 - Instant Vector Selectors 和 Range Vector Selectors 统称为 **TimeSeries Selectors(时间序列选择器)**
-  - 这种表达式会根据 Metrics 来获取指定的时间序列。
+    - 这种表达式会根据 Metrics 来获取指定的时间序列。
 - String 和 Scalar 统称为 [**Literal(字面量)**](/docs/2.编程/计算机科学/Literal.md)
-  - 给定不同类型的 Literal，就返回对应类型的的值，Prom 里只支持 string 和 scalar 这两种类型
+    - 给定不同类型的 Literal，就返回对应类型的的值，Prom 里只支持 string 和 scalar 这两种类型
 
 # Expression(表达式)
 
@@ -84,7 +83,7 @@ promhttp_metric_handler_requests_total{code="503", instance="172.38.40.250:9090"
 - `!=` # 完全不匹配。反之使用 `Label!="Value"` 则可以根据标签值匹配排除时间序列；
 - `=~` # 正则匹配。使用 `Label=~"RegEx"` 表示选择那些标签符合正则表达式定义的时间序列；
 - `!~` # 正则不匹配。反之使用 `Label!~"RegEx"` 进行排除；
-  - 正则匹配中，多个表达式之间使用 `|` 进行分隔：
+    - 正则匹配中，多个表达式之间使用 `|` 进行分隔：
 
 例如，如果我们只需要查询所有 promhttp_metric_handler_requests_total 指标中满足标签 code 的值为 200 的时间序列，则可以使用如下表达式：
 
@@ -244,7 +243,7 @@ Prometheus 支持多种对数据进行操作的函数。详见《[PromQL Functio
 不合法的表达式：
 
 - `{job=~".*"}`
-  - 注意，可以使用 `'{job=~"..*"}'` 来匹配所有 job 的 metric，但是官方不建议这么用，防止意外情况发生
+    - 注意，可以使用 `'{job=~"..*"}'` 来匹配所有 job 的 metric，但是官方不建议这么用，防止意外情况发生
 
 同时，除了使用{label=value}的形式以外，我们还可以使用内置的\_\_name\_\_标签来指定监控指标名称：
 

@@ -1,6 +1,5 @@
 ---
 title: Pub/Sub(发布/订阅)
-linkTitle: Pub/Sub(发布/订阅)
 weight: 4
 ---
 
@@ -9,8 +8,8 @@ weight: 4
 > 参考：
 >
 > - [官方文档，Redis 发布/订阅](https://redis.io/topics/pubsub)
->   - https://redis.io/docs/latest/develop/interact/pubsub/
->   - https://valkey.io/topics/pubsub/
+>     - https://redis.io/docs/latest/develop/interact/pubsub/
+>     - https://valkey.io/topics/pubsub/
 > - [Wiki, 发布/订阅 模式](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern)
 
 Redis 可以通过 SUBSCRIBE、UNSUBSCRIBE、PUBLISH 命令及其衍生命令，实现 **Publish/Subscribe(发布/订阅)** 模式。
@@ -161,4 +160,3 @@ OK
 - keyevent 显示逻辑是：消息来源是 set 这个命令，对 demokey 键执行的。
 
 # 最佳实践
-

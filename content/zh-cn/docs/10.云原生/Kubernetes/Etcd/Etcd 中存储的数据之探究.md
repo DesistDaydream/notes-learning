@@ -83,7 +83,7 @@ v1RangeAllocation&
 /$ etcdctl get /registry/services/endpoints/default/kubernetes
 /registry/services/endpoints/default/kubernetes
 k8s
-v1	Endpoints�
+v1 Endpoints�
 O
 kubernetesdefault"*$0b6bb724-f066-11e8-be14-000c29d2cb3a2ں��z;
 192.168.205.137
@@ -130,7 +130,7 @@ Events:            <none>
 
 /$ etcdctl get "" --prefix --keys-only |grep -Ev "^$" |grep "default" |grep "kubernetes"
 /registry/services/endpoints/default/kubernetes
-/registry/services/specs/default/kubernetes 
+/registry/services/specs/default/kubernetes
 ```
 
 我把`/registry/services/endpoints/default/kubernetes`输入到搜索引擎搜索了一下，发现[有人](https://github.com/kubernetes/kubernetes/issues/19989)在github上抛出类似的问题，从其`The three apiservers (Ip Adresses .31,.32,.33) are constantly overwriting the etcd-key /registry/services/endpoints/default/kubernetes`可以推测出来，这个值是api-server这个控件主动去写入的。
@@ -143,10 +143,10 @@ Events:            <none>
 
 # 参考
 
-*   [Production-Grade Container Orchestration - Kubernetes](https://kubernetes.io/) Kubernetes官网
-*   [Kubernetes是什么 \_ Kubernetes(K8S)中文文档\_Kubernetes中文社区](http://docs.kubernetes.org.cn/227.html) k8s中文文档
-*   [GitHub - cookeem/kubeadm-ha: Kubernetes high availiability deploy based on kubeadm (English/中文 for v1.11.x/v1.9.x/v1.7.x/v1.6.x)](https://github.com/cookeem/kubeadm-ha/) k8s高可用部署方案
-*   [Installing Calico for policy and flannel for networking](https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/flannel) 网络插件的安装
-*   [flannel Container Networking | Configuring flannel Networking](https://coreos.com/flannel/docs/latest/flannel-config.html) 描述了flannel配置etcd作为datastore的做法，可以推敲出etcd中保存的值可能的样子
-*   [flannel/configuration.md at master · coreos/flannel · GitHub](https://github.com/coreos/flannel/blob/master/Documentation/configuration.md) flannel配置etcd作为datastore的文档
-*   [Kubernetes service multiple apiserver endpoints · Issue #19989 · kubernetes/kubernetes · GitHub](https://github.com/kubernetes/kubernetes/issues/19989) 从这里的描述可以看出api-server本身主动向ETCD写数据
+- [Production-Grade Container Orchestration - Kubernetes](https://kubernetes.io/) Kubernetes官网
+- [Kubernetes是什么 \_ Kubernetes(K8S)中文文档\_Kubernetes中文社区](http://docs.kubernetes.org.cn/227.html) k8s中文文档
+- [GitHub - cookeem/kubeadm-ha: Kubernetes high availiability deploy based on kubeadm (English/中文 for v1.11.x/v1.9.x/v1.7.x/v1.6.x)](https://github.com/cookeem/kubeadm-ha/) k8s高可用部署方案
+- [Installing Calico for policy and flannel for networking](https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/flannel) 网络插件的安装
+- [flannel Container Networking | Configuring flannel Networking](https://coreos.com/flannel/docs/latest/flannel-config.html) 描述了flannel配置etcd作为datastore的做法，可以推敲出etcd中保存的值可能的样子
+- [flannel/configuration.md at master · coreos/flannel · GitHub](https://github.com/coreos/flannel/blob/master/Documentation/configuration.md) flannel配置etcd作为datastore的文档
+- [Kubernetes service multiple apiserver endpoints · Issue #19989 · kubernetes/kubernetes · GitHub](https://github.com/kubernetes/kubernetes/issues/19989) 从这里的描述可以看出api-server本身主动向ETCD写数据

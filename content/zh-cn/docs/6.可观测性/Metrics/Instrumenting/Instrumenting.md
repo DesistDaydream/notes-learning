@@ -1,6 +1,5 @@
 ---
 title: Instrumenting
-linkTitle: Instrumenting
 weight: 1
 ---
 
@@ -14,10 +13,10 @@ weight: 1
 Prometheus 可以从如下几类 Intrumenting 中 Scrape(抓取) 指标：
 
 - **Instrumentation(检测仪/仪表化)** # 内部仪表。本质上是 Prometheus 的 **Client Libraries(客户端库)** 添加到程序代码中，以此暴露一个 endpoint，Prometheus Server 可以通过该 Endpoiint 抓取到指标。
-  - 可以理解为内嵌的 Exporter，比如 Prometheus Server 的 9090 端口的 `/metrics` 就属于此类。
-  - 说白了，就是被监控目标自己就可以吐出符合 Prometheus 格式的指标数据
+    - 可以理解为内嵌的 Exporter，比如 Prometheus Server 的 9090 端口的 `/metrics` 就属于此类。
+    - 说白了，就是被监控目标自己就可以吐出符合 Prometheus 格式的指标数据
 - **Exporters** # 外部仪表。
-  - 概念更为宽泛，除了使用到 Instrumentation 实现的各种程序外，还有一些通过脚本产生的符合 Prometheus [Data Model(数据模型)](/docs/6.可观测性/Metrics/Prometheus/Storage/Data%20Model(数据模型).md) 的纯文本的程序也可以称为 Exporter。
+    - 概念更为宽泛，除了使用到 Instrumentation 实现的各种程序外，还有一些通过脚本产生的符合 Prometheus [Data Model(数据模型)](/docs/6.可观测性/Metrics/Prometheus/Storage/Data%20Model(数据模型).md) 的纯文本的程序也可以称为 Exporter。
 - **Pushgateway** # 针对需要推送指标的应用
 
 # Instrumentation

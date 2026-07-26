@@ -20,7 +20,7 @@ process-exporter: 采集进程指标
 process_names 下的数组定义进程组名称及该进程组的匹配条件，一共 3 个匹配方式
 
 - **comm** # 与 /proc/${pid}/stat 中第二个字段进行匹配
-- **exe** # 
+- **exe** #
 - **cmdline** # 与进程的所有参数进行匹配
 
 ```yaml
@@ -115,6 +115,7 @@ docker run -d --name nginx-exporter\
 # MySQL Exporter
 
 > 参考：
+>
 > - [GitHub 项目](https://github.com/prometheus/mysqld_exporter)
 
 端口默认 9104

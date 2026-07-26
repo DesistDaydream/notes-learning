@@ -1,6 +1,5 @@
 ---
 title: Modular
-linkTitle: Modular
 weight: 100
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: MCP
-linkTitle: MCP
 weight: 51
 ---
 
@@ -53,7 +52,7 @@ MCP 的工程化实现本质也是一个类似 C/S 的架构，但是在其中�
 
 > [!Tip]
 > 规范定义的架构看似复杂，实际上，由于加入了 AI，比传统的规范有了更大的灵活度。本质上， AI 需要的就是结构化的 Prompts，MCP Server 的各种能力定义本质也是 Prompts，只要这些定义清晰，那么 AI 也是可以处理的，规范的内容更多的是为了让 Host、Client、Server 之间的交互可以更加开放，不会受到某个公司限制，只要满足规范约定，都可以交互。
-> 
+>
 > 比如下面的简单示例，并没有完全遵守规范的所有交互数据的格式，仅仅让 Tools 的定义清晰明了，模型同样可以理解并返回正确的内容。这个示例是将 MCP Server 与 MCP Client 的行为都放在同一个行为里
 
 ```python
@@ -231,8 +230,6 @@ TODO: 待记录
 > - [MCP 规范 - 2025-03-26，客户端功能](https://modelcontextprotocol.io/specification/2025-11-25/client)
 
 > [!Note] 通常来说，各种 AI 工具都内置了 MCP Client，以便对接各种自定义的 MCP Server。但是若想自己的程序调用 MCP Server，还是要自己实现 MCP Client
-
-
 
 # 常见问题
 

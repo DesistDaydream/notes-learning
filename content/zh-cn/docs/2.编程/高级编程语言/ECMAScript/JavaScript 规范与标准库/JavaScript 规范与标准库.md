@@ -6,7 +6,7 @@ weight: 1
 # 概述
 
 > 参考：
-> 
+>
 > - [GitHub,DesistDaydream/javascript-learning](https://github.com/DesistDaydream/javascript-learning)(个人学习代码)
 > - [MDN 官方文档，Web 开发技术-Web APIs](https://developer.mozilla.org/en-US/docs/Web/API)
 
@@ -20,7 +20,7 @@ JavaScript 语言的标准库不像其他语言似的，由于运行时只有一
 # JavaScript 的基本语法
 
 > 参考：
-> 
+>
 > - [网道，JavaScript-JavaScript 的基本语法](https://wangdoc.com/javascript/basic/grammar.html)
 
 ## 语句
@@ -219,6 +219,7 @@ function countdown(n) {
 }
 countdown(3)
 ```
+
 上面代码中，`n --> 0`实际上会当作`n-- > 0`，因此输出 2、1、0。
 
 ## 区块
@@ -401,6 +402,7 @@ switch (x) {
     console.log('x 等于其他值');
 }
 ```
+
 `switch`语句部分和`case`语句部分，都可以使用表达式。
 
 ```javascript
@@ -431,7 +433,7 @@ switch (x) {
 
 上面代码中，由于变量`x`没有发生类型转换，所以不会执行`case true`的情况。这表明，`switch`语句内部采用的是“严格相等运算符”，详细解释请参考《运算符》一节。
 
-### 三元运算符 ?:
+### 三元运算符 ?
 
 JavaScript 还有一个三元运算符（即该运算符需要三个运算子）`?:`，也可以用于逻辑判断。
 

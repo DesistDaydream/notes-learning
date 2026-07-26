@@ -1,6 +1,5 @@
 ---
 title: DevOps
-linkTitle: DevOps
 weight: 20
 ---
 
@@ -27,11 +26,11 @@ DevOps 是一种文化，是一组过程、方法与系统的统称，用于促�
 计划-开发-构建-测试-修复-测试-交付运维-部署
 
 - CI：持续集成
-  - 当程序员开发完提交代码到类似 github 的地方上之后，有一款工具可以自动拉去代码进行构建，当出现问题时，会报告给程序员，重复执行“构建-测试”的过程
+    - 当程序员开发完提交代码到类似 github 的地方上之后，有一款工具可以自动拉去代码进行构建，当出现问题时，会报告给程序员，重复执行“构建-测试”的过程
 - CD：持续交付 Delivery
-  - 当有一款工具自动把测试好的东西(比如一个容器用的镜像)交付给运维，自动执行“构建-交付”的过程
+    - 当有一款工具自动把测试好的东西(比如一个容器用的镜像)交付给运维，自动执行“构建-交付”的过程
 - CD：持续部署 Deployment
-  - 当有一款工具，运维都不用了，可以直接部署的时候
+    - 当有一款工具，运维都不用了，可以直接部署的时候
 
 # GitOps
 
@@ -55,7 +54,7 @@ Git 仓库中的声明式配置描述了目标环境当前所需基础设施的�
 - [Skaffold](/docs/9.运维/DevOps/Skaffold/Skaffold.md)(k8s 专属)
 - [GitLab](/docs/2.编程/Programming%20tools/SCM/GitLab/GitLab.md)-ci
 - Dagger # Docker 创始人 Solomon Hykes 推出的产品
-  - [公众号，k8s 技术圈-Docker 创始人的新产品 Dagger 好用吗？](https://mp.weixin.qq.com/s/4hwtgV6WJ-60FL1lGHoAQw)
-  - [公众号，k8s 技术圈-数据约束语言 CUE 是何方神圣？](https://mp.weixin.qq.com/s/J2Hid1dO8ebkWL5UrVBeyA)
+    - [公众号，k8s 技术圈-Docker 创始人的新产品 Dagger 好用吗？](https://mp.weixin.qq.com/s/4hwtgV6WJ-60FL1lGHoAQw)
+    - [公众号，k8s 技术圈-数据约束语言 CUE 是何方神圣？](https://mp.weixin.qq.com/s/J2Hid1dO8ebkWL5UrVBeyA)
 - Zadig # [GitHub 项目，koderover/zadig](https://github.com/koderover/zadig)
-  - 一款面向开发者设计的云原生持续交付(Continuous Delivery)产品，具备高可用 CI/CD 能力，提供云原生运行环境，支持开发者本地联调、微服务并行构建和部署、集成测试等。Zadig 不改变现有流程，无缝集成 Github/Gitlab、Jenkins、多家云厂商等，运维成本极低。我们的目标是通过云原生技术的运用和工程产品赋能，打造极致、高效、愉悦的开发者工作体验，让工程师成为企业创新的核心引擎。
+    - 一款面向开发者设计的云原生持续交付(Continuous Delivery)产品，具备高可用 CI/CD 能力，提供云原生运行环境，支持开发者本地联调、微服务并行构建和部署、集成测试等。Zadig 不改变现有流程，无缝集成 Github/Gitlab、Jenkins、多家云厂商等，运维成本极低。我们的目标是通过云原生技术的运用和工程产品赋能，打造极致、高效、愉悦的开发者工作体验，让工程师成为企业创新的核心引擎。

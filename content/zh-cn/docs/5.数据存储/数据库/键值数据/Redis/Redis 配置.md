@@ -1,6 +1,5 @@
 ---
 title: Redis 配置
-linkTitle: Redis 配置
 weight: 2
 ---
 
@@ -9,7 +8,7 @@ weight: 2
 > 参考:
 >
 > - [官方文档](https://redis.io/topics/config)
->   - https://redis.io/docs/latest/operate/oss_and_stack/management/config/
+>     - https://redis.io/docs/latest/operate/oss_and_stack/management/config/
 
 Redis 可以在不使用配置文件的情况下使用内置的默认配置启动。但是一般情况，都会使用一个 Redis 的配置文件(文件名通常是 redis.conf)来启动 Redis。Redis 启动后，会将 redis.conf 文件的内容加载到内存中，通过 Redis 客户端的 **`config get *`** 命令，即可获取当前已经加载到内存中的配置。
 
@@ -137,13 +136,13 @@ replica-announce-ip "10.105.180.122"
 
 - **maxmemory BYTES** # 指定 Redis 可使用的最大内存量，单位: Bytes。如果达到限额，则需要配合 maxmemory-policy 配置指定的策略删除 key。Note: slave 的输出缓冲区是不计算在 maxmemory 内的。所以为了防止主机内存使用完，建议设置的 maxmemory 需要更小一些。
 - **maxmemory-policy POLICY** # 指定 redis 超过内存限额之后的策略，包括以下几种
-  - volatile-lru：利用 LRU 算法移除设置过过期时间的 key。
-  - volatile-random：随机移除设置过过期时间的 key。
-  - volatile-ttl：移除即将过期的 key，根据最近过期时间来删除（辅以 TTL）
-  - allkeys-lru：利用 LRU 算法移除任何 key。
-  - allkeys-random：随机移除任何 key。
-  - noeviction：不移除任何 key，只是返回一个写错误。
-  - Note:上面的这些驱逐策略，如果 redis 没有合适的 key 驱逐，对于写命令，还是会返回错误。redis 将不再接收写请求，只接收 get 请求。写命令包括：set setnx setex append incr decr rpush lpush rpushx lpushx linsert lset rpoplpush sadd sinter sinterstore sunion sunionstore sdiff sdiffstore zadd zincrby zunionstore zinterstore hset hsetnx hmset hincrby incrby decrby getset mset msetnx exec sort。
+    - volatile-lru：利用 LRU 算法移除设置过过期时间的 key。
+    - volatile-random：随机移除设置过过期时间的 key。
+    - volatile-ttl：移除即将过期的 key，根据最近过期时间来删除（辅以 TTL）
+    - allkeys-lru：利用 LRU 算法移除任何 key。
+    - allkeys-random：随机移除任何 key。
+    - noeviction：不移除任何 key，只是返回一个写错误。
+    - Note:上面的这些驱逐策略，如果 redis 没有合适的 key 驱逐，对于写命令，还是会返回错误。redis 将不再接收写请求，只接收 get 请求。写命令包括：set setnx setex append incr decr rpush lpush rpushx lpushx linsert lset rpoplpush sadd sinter sinterstore sunion sunionstore sdiff sdiffstore zadd zincrby zunionstore zinterstore hset hsetnx hmset hincrby incrby decrby getset mset msetnx exec sort。
 
 ## Append Only Mode 配置环境 AOF 功能配置
 
@@ -158,4 +157,3 @@ replica-announce-ip "10.105.180.122"
 ## EVENT NOTIFICATION 配置环境
 
 ## ADVANCED CONFIG 配置环境
-

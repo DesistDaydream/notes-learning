@@ -1,6 +1,5 @@
 ---
 title: Git 配置详解
-linkTitle: Git 配置详解
 weight: 2
 ---
 

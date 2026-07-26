@@ -1,6 +1,5 @@
 ---
 title: Redhat 包管理
-linkTitle: Redhat 包管理
 weight: 20
 ---
 # 概述
@@ -48,7 +47,7 @@ EXAMPLE
 - rpm -q –scripts kernel | less # 列出已安装 rpm 包自带的安装前和安装后脚本
 - rpm -qa –queryformat ‘Package %{NAME} was build on %{BUILDHOST}\n’ | less queryformat # 强大的查询
 - 可以列出 queryformat 可以使用的所有变量从而组合成更强大的查询
-  - rpm –querytags | less
+    - rpm –querytags | less
 
 **rpm -e \[OPTIONS] PACKAGE** # 删除软件包
 
@@ -171,7 +170,7 @@ EOF
 - --disableplugin=\[plugin] # disable plugins by name
 - --enableplugin=\[plugin] # enable plugins by name
 - **--skip-broken** # 跳过需要解决问题的包。即.忽略错误，强制安装。
-  - 如果安装多个包，其中一个包没有的话，就会停止，使用该选项则会继续安装其他包。
+    - 如果安装多个包，其中一个包没有的话，就会停止，使用该选项则会继续安装其他包。
 - --color=COLOR # control whether color is used
 - --releasever=RELEASEVER # set value of $releasever in yum config and repo files
 - **--downloadonly** # 在 yum 一个包时，不安装到系统中，仅下载该包及其依赖到默认的 /var/cache/yum/x86_64/7/REPO/packages/ 目录中。
@@ -190,14 +189,14 @@ EOF
 - **autoremove \<Package>** # 删除名为 Package 的包以及其依赖的包
 - **clean \<all|headers|packages|metadata|dbcache|plugins|expire-cache|rpmdb>** # 用于清理在 yum 缓存目录中随时间积累的各种东西
 - **deplist \<PACKAGE>** # 查看 Package 这个包的依赖关系
-  - dependency # 表示 PACKAGE 依赖哪些库
-  - provider # 表示 dependency 中的库由哪个包提供
+    - dependency # 表示 PACKAGE 依赖哪些库
+    - provider # 表示 dependency 中的库由哪个包提供
 - **groups** # 对一组安装包组执行操作
 - **info \<STRING>** # 显示包的详细信息，类似于 rpm -qai，可以使用 string 表达式，模糊搜索包名
 - **list \[LIST OPTIONS] \[STRING]** # 显示包的信息，类似于 rpm -qa，可以使用 string 表达式，模糊搜索包名
 - **install \<PACKAGE>** # 安装包
 - **localinstall** #
-  - 注意：install 与 localinstall
+    - 注意：install 与 localinstall
 - **makecache** # 生成 yum 缓存，以便使用 yum 命令进行安装或者查找的时候，可以从缓存中提取数据进行搜索
 - **repolist** # 列出当前所有已经启用的存储库
 - **search \<STRING>** # 从包名以及该包的描述中搜索 STRING(字符串)的内容
@@ -209,18 +208,18 @@ EOF
 ## EXAMPLE
 
 - 生成已经在 yum.repos.d 目录中源文件的缓存
-  - `yum makecache`
+    - `yum makecache`
 - 清理所有缓存
-  - `yum clean all`
+    - `yum clean all`
 - 列出 docker-ce 这个软件包的信息
-  - `yum info docker-ce`
-  - `yum --showduplicates list docker-ce`
+    - `yum info docker-ce`
+    - `yum --showduplicates list docker-ce`
 - 列出 libcurl 这个包的依赖关系
-  - `yum deplist libcurl`
+    - `yum deplist libcurl`
 - `yum --disablerepo="*" --enablerepo="elrepo-kernel" list available` #
 - 下载 kubectl 的 rpm 包，及其依赖(所依赖的文件取决于当前系统环境，i.e.已经安装的依赖不在其下载的依赖范围内)
-  - `yum install --downloadonly --downloaddir=./ kubectl`
+    - `yum install --downloadonly --downloaddir=./ kubectl`
 - 查看 kubernetes 源下的所有可用的包
-  - `yum --disablerepo="*" --enablerepo="kubernetes" --showduplicates list available`
+    - `yum --disablerepo="*" --enablerepo="kubernetes" --showduplicates list available`
 - 禁用 docker-ce-stable 与 kubernetes 仓库并执行升级操作
-  - `yum --disablerepo="docker-ce-stable,kubernetes" upgrade`
+    - `yum --disablerepo="docker-ce-stable,kubernetes" upgrade`

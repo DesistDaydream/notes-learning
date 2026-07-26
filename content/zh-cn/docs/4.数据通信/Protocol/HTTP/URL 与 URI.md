@@ -1,6 +1,5 @@
 ---
 title: URL 与 URI
-linkTitle: URL 与 URI
 weight: 20
 ---
 
@@ -42,7 +41,7 @@ URL 主要由四个部分组成：协议、主机、端口、路径
 - **UserInfo** # 认证信息。由于安全原因，现在这个年代，都省略这部分，而通过其他方式传递认证信息。
 - **Host:PORT** # 服务器 IP 地址或者域名:要访问的端口号
 - **/PATH** # 要访问的资源路径。即资源在主机上的存放相对路径。
-  - 注意：其实 `/` 也算作 PATH 的一部分，只不过访问一个网站时，访问的默认资源就是 `/`，并且也便于人类阅读，所以很多网站访问时虽然末尾没有 `/`，其实是隐藏了。
+    - 注意：其实 `/` 也算作 PATH 的一部分，只不过访问一个网站时，访问的默认资源就是 `/`，并且也便于人类阅读，所以很多网站访问时虽然末尾没有 `/`，其实是隐藏了。
 - **QUERY** # 其实就是参数。用于给动态网页或接口传递参数，可有多个参数，用“&”符号隔开，每个参数的名和值用“=”符号隔开。
 - **Fragment** # 片段，主要用于浏览器中。当前页面的其中一段的位置，比如一篇小说有 N 个章节在统一页面显示，开头有目录，点击某一个章节会跳到该页面的某一段，该段的开头就是整个页面的片段，类似于一个位置锚定的作用，该字段即实现这个功能
 
@@ -51,9 +50,9 @@ URL 主要由四个部分组成：协议、主机、端口、路径
 URL slug 是位于域扩展名之后的 URL 或链接的一部分。
 
 - 它们可用于网站：
-  - www.rebrandly.com/links # 'links' 是 URL Slug。
+    - www.rebrandly.com/links # 'links' 是 URL Slug。
 - 或者它们可以用于您的自定义短链接：
-  - rebrandly.rocks/content-curation # 'content-curation' 是 URL slug。
+    - rebrandly.rocks/content-curation # 'content-curation' 是 URL slug。
 
 # EXAMPLE
 
@@ -78,7 +77,7 @@ URL Encoding(URL 编码)
 在浏览器中，如果输入 `http://www.google.com/断念梦`，则会被编码为 `http://www.google.com/%E6%96%AD%E5%BF%B5%E6%A2%A6`。这里面的规则非常简单：
 
 - 这三个汉字的 UTF-8 编码结果分别为
-  - 断: E6 96 AD
-  - 念: E5 BF B5
-  - 梦: E6 A2 A6
+    - 断: E6 96 AD
+    - 念: E5 BF B5
+    - 梦: E6 A2 A6
 - “断念梦” 三个汉字的 Unicode 编码结果为 E4 BD A0 E5 A5 BD，每个字节前面加上个 `%`，就得到了 URL 编码。

@@ -1,6 +1,5 @@
 ---
 title: "PowerShell 变量"
-linkTitle: "PowerShell 变量"
 weight: 20
 ---
 
@@ -91,11 +90,11 @@ PowerShell 中有几种不同类型的变量：
 
 在 PowerShell 中，变量也可以称为一个 Item，因此可以由大多数与 Item 相关的 cmdlet 命令控制
 
--   [New-Variable](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/new-variable?view=powershell-7.3): Creates a variable
--   [Set-Variable](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-variable?view=powershell-7.3): Creates or changes the characteristics of one or more variables
--   [Get-Variable](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-variable?view=powershell-7.3): Gets information about one or more variables
--   [Clear-Variable](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/clear-variable?view=powershell-7.3): Deletes the value of one or more variables
--   [Remove-Variable](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/remove-variable?view=powershell-7.3): Deletes one or more variables
+- [New-Variable](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/new-variable?view=powershell-7.3): Creates a variable
+- [Set-Variable](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-variable?view=powershell-7.3): Creates or changes the characteristics of one or more variables
+- [Get-Variable](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-variable?view=powershell-7.3): Gets information about one or more variables
+- [Clear-Variable](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/clear-variable?view=powershell-7.3): Deletes the value of one or more variables
+- [Remove-Variable](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/remove-variable?view=powershell-7.3): Deletes one or more variables
 
 # PowerShell 自带的变量
 
@@ -104,9 +103,9 @@ PowerShell 中有几种不同类型的变量：
 - **PATH** # 包含操作系统搜索可执行文件的文件夹位置的列表。
 - **PATHEXT** # 包含 Windows 视为可执行文件的文件扩展名列表。
 - **XDG** # XDG [基本目录规范定义的 XDG](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) 环境变量
-  - XDG_CONFIG_HOME
-  - XDG_DATA_HOME
-  - XDG_CACHE_HOME
+    - XDG_CONFIG_HOME
+    - XDG_DATA_HOME
+    - XDG_CACHE_HOME
 
 # 最佳实践
 
@@ -129,10 +128,8 @@ PowerShell 中有几种不同类型的变量：
 [Environment]::SetEnvironmentVariable('Foo', '', 'User')
 ```
 
-
 ## 设置代理
 
 PowerShell
 
 - `$env:HTTPS_PROXY="http://127.0.0.1:7890"`
-

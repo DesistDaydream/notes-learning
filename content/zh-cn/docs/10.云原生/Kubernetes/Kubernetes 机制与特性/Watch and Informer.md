@@ -1,6 +1,5 @@
 ---
 title: Watch  and Informer
-linkTitle: Watch  and Informer
 weight: 20
 ---
 

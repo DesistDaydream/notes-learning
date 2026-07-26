@@ -1,6 +1,5 @@
 ---
 title: Computing platform
-linkTitle: Computing platform
 created: 2026-04-29T12:58
 weight: 1
 ---

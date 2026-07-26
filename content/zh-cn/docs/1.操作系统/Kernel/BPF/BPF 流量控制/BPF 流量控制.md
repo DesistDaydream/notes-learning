@@ -1,13 +1,12 @@
 ---
 title: BPF 流量控制
-linkTitle: BPF 流量控制
 weight: 1
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [Kernel 网络官方文档，Linux Socket Filtering aka Berkeley Packet Filter](https://www.kernel.org/doc/html/latest/networking/filter.html#)
 
 # 学习资料
@@ -21,7 +20,7 @@ weight: 1
 > 参考：
 >
 > - [arthurchiao.art 的文章](http://arthurchiao.art/index.html)
->   - [\[译\] 为容器时代设计的高级 eBPF 内核特性（FOSDEM, 2021)](http://arthurchiao.art/blog/advanced-bpf-kernel-features-for-container-age-zh/)
+>     - [\[译\] 为容器时代设计的高级 eBPF 内核特性（FOSDEM, 2021)](http://arthurchiao.art/blog/advanced-bpf-kernel-features-for-container-age-zh/)
 
 ## eBPF 架构
 

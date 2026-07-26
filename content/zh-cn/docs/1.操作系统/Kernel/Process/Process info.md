@@ -1,6 +1,5 @@
 ---
 title: Process info
-linkTitle: Process info
 weight: 20
 ---
 
@@ -8,7 +7,7 @@ weight: 20
 
 > 参考：
 >
-> - 
+> -
 
 Linux 中有多种途径可以获取进程信息
 
@@ -67,10 +66,10 @@ Linux 中有多种途径可以获取进程信息
 - dev 字段表示 device，格式为 major:minor。
 - inode 字段表示对应 device 的 inode，0 表示内存映射区域没有关联的 inode，如未初始化的 BSS 数据段就是这种情况。
 - pathname 字段用于内存映射的文件，对于 ELF 格式的文件来说，可以通过命令 readelf -l 查看 ELF 程序头部的 Offset 字段，与 maps 文件的 offset 字段作对比。pathname 可能为空，表示匿名映射，这种情况下难以调试进程，如 gdb、strace 等命令。除了正常的文件路径之外，pathname 还可能是下面的值：
-  - \[stack]     初始进程（主线程）的 stack
-  - \[stack:\<tid>]     线程 ID 为 tid 的 stack.  对应于/proc/\[pid]/task/\[tid]/路径
-  - \[vdso]    Virtual Dynamically linked Shared Object
-  - \[heap]     进程的 heap
+    - \[stack]     初始进程（主线程）的 stack
+    - \[stack:\<tid>]     线程 ID 为 tid 的 stack.  对应于/proc/\[pid]/task/\[tid]/路径
+    - \[vdso]    Virtual Dynamically linked Shared Object
+    - \[heap]     进程的 heap
 
 ## ./mounts
 
@@ -86,14 +85,14 @@ https://github.com/torvalds/linux/blob/v5.19/Documentation/filesystems/proc.rst#
 
 该文件中每一行都是一条挂载信息，每条挂载信息由如下几个部分组成：
 
-| 挂载 ID | 父 ID | major:minor | root  | mount point | mount options | optional fields | separator | filesystem type | mount source | super options      |
+| 挂载 ID | 父 ID | major:minor | root | mount point | mount options | optional fields | separator | filesystem type | mount source | super options |
 | ----- | ---- | ----------- | ----- | ----------- | ------------- | --------------- | --------- | --------------- | ------------ | ------------------ |
-| 36    | 35   | 98:00:00    | /mnt1 | /mnt2       | rw,noatime    | master:1        | -         | ext3            | /dev/root    | rw,errors=continue |
+| 36 | 35 | 98:00:00 | /mnt1 | /mnt2 | rw,noatime | master:1 | - | ext3 | /dev/root | rw,errors=continue |
 
 - **mount ID** # 挂载的唯一 ID
 - **parent ID** # the ID of the parent mount (or of self for the root of this mount namespace's mount tree).
-  - If a new mount is stacked on top of a previous existing mount (so that it hides the existing mount) at pathname P, then the parent of the new mount is the previous mount at that location. Thus, when looking at all the mounts stacked at a particular location, the top-most mount is the one that is not the parent of any other mount at the same location. (Note, however, that this top-most mount will be accessible only if the longest path subprefix of P that is a mount point is not itself hidden by a stacked mount.)
-  - If the parent mount lies outside the process's root directory (see chroot(2)), the ID shown here won't have a corresponding record in mountinfo whose mount ID (field 1) matches this parent mount ID (because mounts that lie outside the process's root directory are not shown in mountinfo). As a special case of this point, the process's root mount masy have a parent mount (for the initramfs filesystem) that lies outside the process's root directory, and an entry for that mount will not appear in mountinfo.
+    - If a new mount is stacked on top of a previous existing mount (so that it hides the existing mount) at pathname P, then the parent of the new mount is the previous mount at that location. Thus, when looking at all the mounts stacked at a particular location, the top-most mount is the one that is not the parent of any other mount at the same location. (Note, however, that this top-most mount will be accessible only if the longest path subprefix of P that is a mount point is not itself hidden by a stacked mount.)
+    - If the parent mount lies outside the process's root directory (see chroot(2)), the ID shown here won't have a corresponding record in mountinfo whose mount ID (field 1) matches this parent mount ID (because mounts that lie outside the process's root directory are not shown in mountinfo). As a special case of this point, the process's root mount masy have a parent mount (for the initramfs filesystem) that lies outside the process's root directory, and an entry for that mount will not appear in mountinfo.
 - **major:minor** # the value of st_dev for files on this filesystem (see [stat(2)](https://man7.org/linux/man-pages/man2/stat.2.html)).
 - **root** # 文件系统中构成此挂载的根目录的路径名
 - **mount point** # 挂载点，相对于进程根目录的挂载路径
@@ -152,7 +151,7 @@ ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsysca
 该进程的映射信息与 /proc/PID/maps 文件中的内容相同。该文件的每一个映射信息下面的都包含内存使用量
 
 - **Size** # 该映射的内存大小
-  - 通过 `cat smaps| grep ^Size | awk '{print $2}' | awk '{sum += $1};END {print sum}' && cat status | grep VmSize` 命令，可以看到 smaps 文件中的 Size 与 status 文件中的 VmSize 是相同的
+    - 通过 `cat smaps| grep ^Size | awk '{print $2}' | awk '{sum += $1};END {print sum}' && cat status | grep VmSize` 命令，可以看到 smaps 文件中的 Size 与 status 文件中的 VmSize 是相同的
 - **Rss** #
 - **Pss** #
 - ......

@@ -14,7 +14,7 @@ Domain0 要负责一些专门的工作。由于 hypervisor 中不包含任何与
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/fpcdzk/1616124139376-0a4f6b44-7eef-419c-ad71-617061d9e6d2.jpeg)
 
-# Xen 的组成部分：
+# Xen 的组成部分
 
 1. Xen Hypervisor：分配 CPU、Memory、Interrupt
 2. Domain0：特权域，安装完 Hypervisor 后，自动生成的一个特权 Virtual Machine，负责管理整个 Xen 的 VM，可以直接访问硬件 IO 资源，修改 Linux Kernel 以实现半虚拟化功能

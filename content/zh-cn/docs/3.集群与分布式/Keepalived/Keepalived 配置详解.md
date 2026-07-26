@@ -1,6 +1,5 @@
 ---
 title: Keepalived 配置详解
-linkTitle: Keepalived 配置详解
 weight: 20
 ---
 
@@ -8,7 +7,7 @@ weight: 20
 
 > 参考：
 >
-> - 
+> -
 
 # Keepalived 使用
 
@@ -146,15 +145,15 @@ VRRP 配置段主要用于定义 VRRP 组，在 Keepalived 发生任何状态变
 - **state** # 当前节点的初始状态
 - **interface** # 对外提供服务的网络接口，如 eth0 和 eth1，选择服务接口时，一定要核实清楚，LV Router 的 VIP 将会配置到这个物理接口上。也可以配置多个实例在同一个网卡上，然后每个实例配置不同优先级，HOST1 上的实例 1 是主实例 2 是备，HOST2 上的实例 1 是备实例 2 是主，这样可以实现两台 HOST 双主模式负载均衡流量
 - **virtual_Router_id** # VRID，虚拟路由标志，同一个 VRRP 实例使用唯一的标识。即同一个 VRRP 实例中，MASTER 和 BACKUP 状态的 VRRP 实例中，VRID 值是相同的，同时在全部 VRRP 组内是唯一的。
-  - Note：如果在同网段有相同的 vrid 号，则 keepalived 会无限输出报错日志。使用 tcpdump -nn -i any net 224.0.0.0/8 |grep vrid 命令可以查到该网段都有哪些 vrid 号正在使用
+    - Note：如果在同网段有相同的 vrid 号，则 keepalived 会无限输出报错日志。使用 tcpdump -nn -i any net 224.0.0.0/8 |grep vrid 命令可以查到该网段都有哪些 vrid 号正在使用
 - **priority** # 此参数指明了该 VRRP 实例的优先级，数字越大说明优先级越高，取值范围为 0-255 ，在同一个 VRRP 实例里， MASTER 的优先级高于 BACKUP。若 MASTER 的 Priority 值为 100 ，那 BACKUP 的 Priority 只能是 99 或更小的数值。
 - **nopreempt** # 开启非抢占模式。允许低优先级的节点保持 MASTER 角色，即使高优先级的节点从故障中恢复也是如此。i.e.不会触发选举过程。只有当前 BACKUP 节点 认为 MASTER 不存在时，才会重新选举。
-  - Note：该模式会引发这个问题 Keepalived 非抢占模式 VIP 不漂移问题
-    - 如果想要使用非抢占模式，主备的 keepalived 的 state 都不能是 MASTER。
+    - Note：该模式会引发这个问题 Keepalived 非抢占模式 VIP 不漂移问题
+        - 如果想要使用非抢占模式，主备的 keepalived 的 state 都不能是 MASTER。
 - **advert_int** # Master 路由发送 VRRP 广播的时间间隔，单位为秒。默认为 1 秒
 - **authentication {...}** # 包含验证类型和验证密码，类型主要有 PASS 和 AH 两种，通常使用的类型为 PASS 验证密码为明文，同一 VRRP 实例 MASTER 与 BACKUP 使用相同的密码才能正常通信。
-  - **auth_type PASS|AH** # 认证类型。Note：只能是 PASS 或 AH 选项，不能写别的，否则报错：unknown authentication type 'lvs'
-  - **auth_pass PASSWORD** # 认证的密码
+    - **auth_type PASS|AH** # 认证类型。Note：只能是 PASS 或 AH 选项，不能写别的，否则报错：unknown authentication type 'lvs'
+    - **auth_pass PASSWORD** # 认证的密码
 - **virtual_ipaddress {IP}** # 虚拟 IP 地址，即 VIP，可以有多个虚拟 IP 、地址，每个地址占一行，不需要指定子网掩码。作为 Standby 的负载均衡器，LB2 的 keepalived.conf 配置文件与 LB1 类似，其不同之处在于 VRRP 实例配置段中的的 VRRP 实例 State 和 Priority 参数的设置，如 LB1 中的 State 为 Master, LB2 中的 State 为 BACKUP ，并且 LB2 中 VRRP 实例的 Priority 必须小于 LB1 中的优先级。
 - **track_script {ScriptName}** # 引用全局配置段中 vrrp_script 关键字的名为 ScriptName 的脚本
 - **notify_master "/PATH/ScriptName ARGS"** # 定义该节点变为 master 后执行的脚本
@@ -177,9 +176,9 @@ VRRP 配置段主要用于定义 VRRP 组，在 Keepalived 发生任何状态变
 - delay_before_retry # 失败后，让 RS 重新加回 ipvs 组重试的次数。默认 1 次。当 rs 检查 1 次成功后，就将该 RS 重新加入 ipvs 组
 - sorry_server :用于定义当后端所有 real server 挂掉后，使用哪台设备进行回应
 - **real_server IP PORT {...}** # 后端服务器配置，i.e.lvs 中 RS 的配置
-  - **CHECK {...}** # 指定健康检查的方式。TCP 就是测试目标端口通不通。HTTP 则是测试指定资源的响应码
-    - 可用的 CHECK 有如下几个，常用的标黄
-    - HTTP_GET|SSL_GET|TCP_CHECK|SMTP_CHECK|DNS_CHECK|MISC_CHECK|BFD_CHECK|UDP_CHECK|PING_CHECK|FILE_CHECK
+    - **CHECK {...}** # 指定健康检查的方式。TCP 就是测试目标端口通不通。HTTP 则是测试指定资源的响应码
+        - 可用的 CHECK 有如下几个，常用的标黄
+        - HTTP_GET|SSL_GET|TCP_CHECK|SMTP_CHECK|DNS_CHECK|MISC_CHECK|BFD_CHECK|UDP_CHECK|PING_CHECK|FILE_CHECK
 
 ## 4. 其他配置
 

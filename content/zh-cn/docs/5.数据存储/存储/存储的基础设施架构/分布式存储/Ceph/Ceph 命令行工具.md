@@ -22,8 +22,8 @@ Orchestrator(编排器，简称 orch)
 COMMAND
 
 - **host** # 对集群中的节点进行管理
-  - **add \<HOSTNAME> \[ADDR] \[LABELs...] \[--maintenance]** # 向集群中添加一个节点
-  - **label add \<HOSTNAME> \<LABEL>** # 为节点添加一个标签
+    - **add \<HOSTNAME> \[ADDR] \[LABELs...] \[--maintenance]** # 向集群中添加一个节点
+    - **label add \<HOSTNAME> \<LABEL>** # 为节点添加一个标签
 - **ls** # 列出 Orch 已知的服务
 - **rm \<ServiceName>**# 移除一个服务
 

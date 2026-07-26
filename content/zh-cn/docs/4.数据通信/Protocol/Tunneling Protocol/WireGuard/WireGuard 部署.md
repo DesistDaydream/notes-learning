@@ -7,7 +7,7 @@ title: WireGuard 部署
 > 参考：
 >
 > - 原文链接：<https://mp.weixin.qq.com/s/vbt30eEGcp5JP5sHAPkwhw>
->   - 英文原文链接: https://github.com/pirate/wireguard-docs
+>     - 英文原文链接: https://github.com/pirate/wireguard-docs
 
 # 安装 WireGuard
 
@@ -17,8 +17,8 @@ title: WireGuard 部署
 
 - **wireguard** # WireGuard 的实现。wireguard 程序有两种实现方式，分为是**用户态的实现**与**内核态的实现**。
 - CLI
-  - **wg** # 管理 WireGuard 网络。生成密钥、设置网络设备信息、查看状态、etc.
-  - **wg-quick** # 用户友好的命令行工具，可以通过配置文件管理调用 wg 程序以启动或停止 WireGuard
+    - **wg** # 管理 WireGuard 网络。生成密钥、设置网络设备信息、查看状态、etc.
+    - **wg-quick** # 用户友好的命令行工具，可以通过配置文件管理调用 wg 程序以启动或停止 WireGuard
 
 > [!Tip] wireguard 用户态与内核态的实现
 >
@@ -211,17 +211,17 @@ wg-quick up /etc/wireguard/company.conf
 可以看到执行了如下几部操作
 
 - 创建 wireguard 类型的 网络设备，并设置该网络设备
-  - ip link add wg-company type wireguar
-  - ip link set mtu 1420 up dev wg-company
+    - ip link add wg-company type wireguar
+    - ip link set mtu 1420 up dev wg-company
 - 根据 `[Interface]` 部分的配置，为新添加的网络设备添加 IP 地址
-  - ip -4 address add 10.1.0.254/24 dev wg-company
+    - ip -4 address add 10.1.0.254/24 dev wg-company
 - 根据所有 `[Peer]` 部分的配置，为主机添加路由条目
-  - ip -4 route add 10.20.5.0/24 dev wg-company
-  - ip -4 route add 172.38.0.0/16 dev wg-company
+    - ip -4 route add 10.20.5.0/24 dev wg-company
+    - ip -4 route add 172.38.0.0/16 dev wg-company
 - 为了让中继服务器可以转发数据包，需要配置 Netfilter 规则。这个规则，可以在 `[Interface]` 部分的配置中通过 PostUp 字段定义
-  - iptables -A FORWARD -i wg-company -j ACCEPT
-  - iptables -A FORWARD -o wg-company -j ACCEPT
-  - iptables -t nat -A POSTROUTING -o ens3 -j MASQUERADE
+    - iptables -A FORWARD -i wg-company -j ACCEPT
+    - iptables -A FORWARD -o wg-company -j ACCEPT
+    - iptables -t nat -A POSTROUTING -o ens3 -j MASQUERADE
 
 可以看到，即使我们不使用 wg-quick 命令，通过上述操作，同样可以激活 WireGuard，毕竟，WireGuard 已经被包含在 Linux Kernel 当中了，我们只需要创建出来 WireGuard 类型的网络设备，并配置好路由条目，即可转发数据包，实现 VPN 的功能。
 

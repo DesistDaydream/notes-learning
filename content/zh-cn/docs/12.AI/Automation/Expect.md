@@ -1,6 +1,5 @@
 ---
 title: Expect
-linkTitle: Expect
 weight: 20
 ---
 

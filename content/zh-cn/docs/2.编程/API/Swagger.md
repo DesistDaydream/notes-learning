@@ -1,6 +1,5 @@
 ---
 title: Swagger
-linkTitle: Swagger
 weight: 20
 ---
 
@@ -14,9 +13,9 @@ weight: 20
 Swagger 有两种含义
 
 - **Swagger Specification(规范)** # 用于描述现代 API 的行业标准，已被广泛采用。
-  - 规范就是用 JSON 或 YAML 来描述的一组 API。
+    - 规范就是用 JSON 或 YAML 来描述的一组 API。
 - **Swagger ToolsSet(工具集)** # 实现 Swagger 规范 的一系列工具的集合。
-  - Swagger 衍生出来的一系列工具，可以做到生成各种格式的接口文档，生成多种语言的客户端和服务端的代码，以及在线接口调试页面等等
+    - Swagger 衍生出来的一系列工具，可以做到生成各种格式的接口文档，生成多种语言的客户端和服务端的代码，以及在线接口调试页面等等
 
 注意：Swagger 规范已于 2015 年捐赠给 Linux 基金会后改名为 OpenAPI，并定义最新的规范为 OpenAPI 3.0。
 

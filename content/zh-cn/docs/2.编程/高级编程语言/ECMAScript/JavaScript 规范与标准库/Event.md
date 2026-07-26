@@ -1,6 +1,5 @@
 ---
 title: Event
-linkTitle: Event
 weight: 20
 ---
 
@@ -84,8 +83,8 @@ divElement.onclick = function () {
 - **type** # 什么事件
 - **target** # 谁触发的
 - 如果是鼠标事件，那么还会记录
-  - **x** # 光标 x 坐标
-  - **y** # 光标 y 坐标
+    - **x** # 光标 x 坐标
+    - **y** # 光标 y 坐标
 - **等等......**
 
 比如我们模拟一下鼠标点击事件：
@@ -109,11 +108,11 @@ divElement.onclick = function (prop) {
 坐标信息
 
 - **offsetX 和 offsetY** # 相对于触发事件元素的坐标
-  - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/nzci2k/1641961872393-217cf16a-78e5-449c-9e33-d91f52c6dd96.png)
+    - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/nzci2k/1641961872393-217cf16a-78e5-449c-9e33-d91f52c6dd96.png)
 - **client 和 clientY**# 相对于浏览器可视窗口的坐标
-  - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/nzci2k/1641961917878-40b8b649-3846-4f31-81f1-9e98e407f320.png)
+    - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/nzci2k/1641961917878-40b8b649-3846-4f31-81f1-9e98e407f320.png)
 - **pageX 和 pageY** # 相对于页面文档流的坐标
-  - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/nzci2k/1641961945785-c13cc660-5702-444f-b6a3-2d21a341341f.png)
+    - ![image.png](https://notes-learning.oss-cn-beijing.aliyuncs.com/nzci2k/1641961945785-c13cc660-5702-444f-b6a3-2d21a341341f.png)
 
 ## 键盘事件对象
 

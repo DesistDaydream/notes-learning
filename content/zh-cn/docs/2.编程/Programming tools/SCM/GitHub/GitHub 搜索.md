@@ -1,6 +1,5 @@
 ---
 title: "GitHub 搜索"
-linkTitle: "GitHub 搜索"
 weight: 20
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: Snort Rule body
-linkTitle: Snort Rule body
 weight: 20
 ---
 

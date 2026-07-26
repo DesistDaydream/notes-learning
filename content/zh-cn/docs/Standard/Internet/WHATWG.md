@@ -1,6 +1,5 @@
 ---
 title: WHATWG
-linkTitle: WHATWG
 weight: 20
 ---
 

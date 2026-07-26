@@ -1,6 +1,5 @@
 ---
 title: CPU资源的调度和管理(CFS)
-linkTitle: CPU资源的调度和管理(CFS)
 weight: 20
 ---
 

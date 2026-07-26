@@ -1,6 +1,5 @@
 ---
 title: helm template 模板相关命令
-linkTitle: helm template 模板相关命令
 weight: 20
 ---
 

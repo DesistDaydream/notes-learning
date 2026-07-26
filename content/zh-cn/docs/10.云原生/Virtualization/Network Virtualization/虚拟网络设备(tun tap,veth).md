@@ -1,6 +1,5 @@
 ---
 title: 虚拟网络设备(tun tap,veth)
-linkTitle: 虚拟网络设备(tun tap,veth)
 weight: 20
 ---
 

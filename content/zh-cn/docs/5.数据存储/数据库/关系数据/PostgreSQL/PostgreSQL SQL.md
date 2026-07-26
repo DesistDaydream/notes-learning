@@ -1,6 +1,5 @@
 ---
 title: PostgreSQL SQL
-linkTitle: PostgreSQL SQL
 weight: 20
 ---
 
@@ -127,7 +126,6 @@ SELECT decode('RGVzaXN0RGF5ZHJlYW0K', 'base64')
 > 参考：
 >
 > - [官方文档，9.9 日期/时间 函数与运算符](https://www.postgresql.org/docs/current/functions-datetime.html)
-
 
 ### 基本的简单函数
 

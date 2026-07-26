@@ -1,6 +1,5 @@
 ---
 title: Blockchain
-linkTitle: Blockchain
 weight: 1
 ---
 
@@ -23,11 +22,10 @@ weight: 1
 > 参考：
 >
 > - 如何把狗狗币|柴犬币 shib|放在 imtoken 钱包和 metamask 狐狸钱包中？
->   - 这里教如何添加代币，如何添加钱包中的网络
->   - <https://www.youtube.com/watch?v=Gn4FCh5DEvg>
+>     - 这里教如何添加代币，如何添加钱包中的网络
+>     - <https://www.youtube.com/watch?v=Gn4FCh5DEvg>
 > - 【狐狸钱包】一分钟学会，如何一键添加各种主网？
->   - <https://www.youtube.com/watch?v=f1JU8TGImA0>
-
+>     - <https://www.youtube.com/watch?v=f1JU8TGImA0>
 
 ## 钱包
 

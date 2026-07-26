@@ -1,6 +1,5 @@
 ---
 title: Vector
-linkTitle: Vector
 weight: 1
 ---
 

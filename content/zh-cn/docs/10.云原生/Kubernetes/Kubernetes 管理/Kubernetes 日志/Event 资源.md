@@ -5,7 +5,7 @@ title: Event 资源
 # 概述
 
 > 参考：
-> 
+>
 > - [公众号，张晋涛-彻底搞懂 Kubernetes 中的 Events](https://mp.weixin.qq.com/s/lOM5BnvYixOnWFR7Axky8Q)
 
 之前我写了一篇[《更优雅的 Kubernetes 集群事件度量方案》](http://mp.weixin.qq.com/s?__biz=MzI2ODAwMzUwNA==&mid=2649296276&idx=1&sn=e4832b819db454fb13af5b052a3158d9&chksm=f2eb9c4bc59c155d24a253981db7ff39c50c38ea40f6c87a9f0f04ce5a0f3012627a3d7ccde0&scene=21#wechat_redirect)，利用 Jaeger 利用 tracing 的方式来采集 Kubernetes 集群中的 events 并进行展示。最终效果如下：
@@ -20,7 +20,7 @@ title: Event 资源
 创建一个新的名叫 moelove 的 namespace ，然后在其中创建一个叫做 redis 的 deployment。接下来查看这个 namespace 中的所有 events。
 (MoeLove) ➜ kubectl create ns moelove
 namespace/moelove created
-(MoeLove) ➜ kubectl -n moelove create deployment redis --image=ghcr.io/moelove/redis:alpine 
+(MoeLove) ➜ kubectl -n moelove create deployment redis --image=ghcr.io/moelove/redis:alpine
 deployment.apps/redis created
 (MoeLove) ➜ kubectl -n moelove get deploy
 NAME    READY   UP-TO-DATE   AVAILABLE   AGE
@@ -100,7 +100,7 @@ type: Normal
 
 - 对 Deployment 操作
 
-(MoeLove) ➜ kubectl -n moelove describe deploy/redis                
+(MoeLove) ➜ kubectl -n moelove describe deploy/redis
 Name:                   redis
 Namespace:              moelove
 ...
@@ -112,7 +112,7 @@ Events:
 - 对 Pod 操作
 
 (MoeLove) ➜ kubectl -n moelove describe pods redis-687967dbc5-27vmr
-Name:         redis-687967dbc5-27vmr                                                                 
+Name:         redis-687967dbc5-27vmr
 Namespace:    moelove
 Priority:     0
 Events:
@@ -139,7 +139,7 @@ non-exist-d9ddbdd84-tnrhd   0/1     ErrImagePull   0        �
 redis-687967dbc5-27vmr      1/1     Running        0          26m
 
 我们可以看到当前的 Pod 处于一个 ErrImagePull 的状态。查看当前 namespace 中的 events (我省略掉了之前 deploy/redis 的记录)
-(MoeLove) ➜ kubectl -n moelove get events --sort-by='{.metadata.creationTimestamp}'                                                           
+(MoeLove) ➜ kubectl -n moelove get events --sort-by='{.metadata.creationTimestamp}'
 LAST SEEN   TYPE      REASON              OBJECT                           MESSAGE
 35s         Normal    SuccessfulCreate    replicaset/non-exist-d9ddbdd84   Created pod: non-exist-d9ddbdd84-tnrhd
 35s         Normal    ScalingReplicaSet   deployment/non-exist             Scaled up replica set non-exist-d9ddbdd84 to 1
@@ -262,9 +262,9 @@ type EventSource struct {
 
 _// staging/src/k8s.io/api/core/v1/types.go_
 const (
- *// Information only and will not cause any problems*
+ _// Information only and will not cause any problems_
  EventTypeNormal string = "Normal"
- *// These events are to warn that something might go wrong*
+ _// These events are to warn that something might go wrong_
  EventTypeWarning string = "Warning"
 )
 

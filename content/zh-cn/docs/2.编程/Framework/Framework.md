@@ -1,6 +1,5 @@
 ---
 title: Framework
-linkTitle: Framework
 weight: 1
 ---
 

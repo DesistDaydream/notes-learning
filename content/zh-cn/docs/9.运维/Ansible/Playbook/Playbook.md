@@ -1,13 +1,12 @@
 ---
 title: Playbook
-linkTitle: Playbook
 weight: 1
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [官方文档，Playbook指南 - Playbook 介绍](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html)
 > - [官方文档，Playbook 指南 - 使用 Playbook](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks.html)
 > - [Ansible Galaxy](https://galaxy.ansible.com/) 类似于 playbook 仓库的地方

@@ -1,6 +1,5 @@
 ---
 title: Loki Server
-linkTitle: Loki Server
 weight: 1
 created: 2026-03-09T10:27
 ---
@@ -112,7 +111,7 @@ https://grafana.com/docs/loki/next/configuration/#common
 **ring**(OBJECT) # 所有使用哈希环的组件的通用哈希环配置。`heartbeat_period`?
 
 - **kvstore**(OBJECT) #
-  - **store**(STRING) # 用于保存哈希环的存储。`默认值：memberlist`
+    - **store**(STRING) # 用于保存哈希环的存储。`默认值：memberlist`
 
 ### 存储配置相关字段
 
@@ -125,8 +124,8 @@ Loki 不同组件共享使用的存储配置。该字段配置存储信息，用
 - **gcs**(GCS_Store_Config)
 - **swift**(Swift_Store_config)
 - **filesystem**([OBJECT](https://grafana.com/docs/loki/next/configuration/#filesystem)) # 将本地文件系统作为 Loki 组件存储数据的地方
-  - **chunks_directory**(STRING) # 存储 Chunks 和 Index 数据的目录
-  - **rules_directory**(STRING) # 存储 Loki Rules 文件的目录
+    - **chunks_directory**(STRING) # 存储 Chunks 和 Index 数据的目录
+    - **rules_directory**(STRING) # 存储 Loki Rules 文件的目录
 - **bos**(BOS_Storage_config) # Baidu Object Storage(百度对象存储) 的信息。
 - **hedging**([OBJECT](https://grafana.com/docs/loki/next/configuration/#hedging)) #
 
@@ -245,9 +244,9 @@ Loki 的 Ingester(摄取器) 配置，以及配置采集器如何将自己注册
 
 - **address**(STRING) # 127.0.0.1
 - **ring:** #
-  - **kvstore:** #
-    - **store**(STRING) # 用于 ring 的后端存储类型。值为 consul, etcd,inmemory, memberlist
-  - **replication_factor: 1** #
+    - **kvstore:** #
+        - **store**(STRING) # 用于 ring 的后端存储类型。值为 consul, etcd,inmemory, memberlist
+    - **replication_factor: 1** #
 - **final_sleep: 0s** #
 
 **chunk_idle_period: 5m** #
@@ -262,11 +261,13 @@ Loki 的 Ingester(摄取器) 配置，以及配置采集器如何将自己注册
 - **dir(/PATH/TO/DIR)** # WAL 存放目录。`默认值: wal`，即默认数据存储目录下的 /wal 目录。
 
 ## Querier 组件配置
+
 ### querier
 
 https://grafana.com/docs/loki/latest/configuration/#querier
 
 ## Query frontend 组件配置
+
 ### frontend
 
 https://grafana.com/docs/loki/latest/configuration/#frontend
@@ -290,7 +291,7 @@ https://grafana.com/docs/loki/latest/reference/loki-config-ref/#ruler
 **ring**(Object) #
 
 - **kvstore**(Object)
-  - **store**(STRING) # 可用的值有: inmemory, etc.
+    - **store**(STRING) # 可用的值有: inmemory, etc.
 
 ### 配置示例
 
@@ -564,7 +565,7 @@ table_manager:
 - **cache_location**(STRING) #
 - **cache_ttl**(DURATION) # `默认值：24h`
 - **shared_store**(STRING) # 用于保存 BoltDB 文件的存储。
-  - 在 2.4 版本之后，若 `common.storage` 定义了 s3，且 `schema_config.object_storage` 定义为 s3，则这个字段的值也为 s3。也就是说，Index 数据也会存到 S3。这个说法待验证。
+    - 在 2.4 版本之后，若 `common.storage` 定义了 s3，且 `schema_config.object_storage` 定义为 s3，则这个字段的值也为 s3。也就是说，Index 数据也会存到 S3。这个说法待验证。
 
 ## table_manager
 

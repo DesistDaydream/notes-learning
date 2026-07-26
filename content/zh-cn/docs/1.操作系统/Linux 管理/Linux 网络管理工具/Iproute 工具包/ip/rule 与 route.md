@@ -21,10 +21,10 @@ default via 172.19.42.1 dev ens3 proto static
 
 > 注意：如果默认网关已由 DHCP 分配，并且配置文件中指定了具有相同度量的同一网关，则在启动或启动接口时将发生错误。可能会显示以下错误消息：`RTNETLINK answers:File exists`。可以忽略此错误。
 
-| 目的地址           | via<br>下一跳  | dev<br>网络设备 | proto<br>生成路由条目的方式 | scope<br>覆盖范围 | 源地址           |
+| 目的地址 | via<br>下一跳 | dev<br>网络设备 | proto<br>生成路由条目的方式 | scope<br>覆盖范围 | 源地址 |
 | -------------- | ----------- | ----------- | ------------------ | ------------- | ------------- |
-| default        | 172.19.42.1 | ens3        | static             |               |               |
-| 172.19.42.0/24 |             | ens3        | kernel             | link          | 172.19.42.248 |
+| default | 172.19.42.1 | ens3 | static | | |
+| 172.19.42.0/24 | | ens3 | kernel | link | 172.19.42.248 |
 
 **Route Type(路由类型)**
 
@@ -63,7 +63,7 @@ Linux-2.x 版本内核以后，可以根据 **SELECTOR(选择器)** 将数据包
 
 - NODE_SPEC = \[ TYPE ] PREFIX \[ tos TOS ] \[ table TABLE_ID ] \[ proto RTPROTO ] \[ scope SCOPE ] \[ metric METRIC ] \[ ttl-propagate { enabled | disabled } ]
 - INFO_SPEC = { NH | nhid ID } OPTIONS FLAGS \[ nexthop NH ] ...
-  - NH := \[ encap ENCAP ] \[ via \[ FAMILY ] ADDRESS ] \[ dev STRING ] \[weight NUMBER ] NHFLAGS
+    - NH := \[ encap ENCAP ] \[ via \[ FAMILY ] ADDRESS ] \[ dev STRING ] \[weight NUMBER ] NHFLAGS
 
 **FAMILY := \[ inet | inet6 | mpls | bridge | link ]**
 
@@ -72,7 +72,7 @@ Linux-2.x 版本内核以后，可以根据 **SELECTOR(选择器)** 将数据包
 > 注意：此协议不是指传统意义上的 http、tcp 这种协议，而是指，生成路由条目的方式、或者说生成路由条目的实体。比如我们可以说内核自己生成了一个路由条目；也可以说通过 dhcp 获取 IP 时生成了路由条目；还可以说通过人为手动创建了一个路由条目；等等。
 
 - boot # 默认 RTPROTO。该路由条目在 bootup sequence 期间生成的。且路由守护进程启动时，这些条目将被删除
-  - 不太理解这个官方的解释？？用人话说，就是 ip 命令默认添加的路由条目在机器重启后会被删除。但是这个类型兜底是啥子意思哦？~
+    - 不太理解这个官方的解释？？用人话说，就是 ip 命令默认添加的路由条目在机器重启后会被删除。但是这个类型兜底是啥子意思哦？~
 - kernel # 该路由条目在内核自动配置期间生成。
 - dhcp #
 - static # 该路由条目由管理员手动添加以覆盖动态路由。路由守护进程会尊重它们，甚至可能将它们通告给它的 peers。
@@ -99,13 +99,13 @@ Linux-2.x 版本内核以后，可以根据 **SELECTOR(选择器)** 将数据包
 ## EXAMPLE
 
 - 查看名为 local 的路由表的条目
-  - ip route show table local
+    - ip route show table local
 - 查看该 IP 从哪里过来
-  - ip route get 192.168.0.1
+    - ip route get 192.168.0.1
 - 添加默认路由条目，经过 ens3 网络设备，下一跳是 172.19.42.1
-  - ip route add default via 172.19.42.1 dev ens3
+    - ip route add default via 172.19.42.1 dev ens3
 - 添加路由条目，目的地址是 10.10.10.0/24 网段的数据包的下一跳地址是 192.168.0.2 使用 eth0 网络设备
-  - ip route add 10.10.10.0/24 via 192.168.0.2 dev eth0
+    - ip route add 10.10.10.0/24 via 192.168.0.2 dev eth0
 
 # rule - 路由策略数据库管理
 
@@ -119,7 +119,7 @@ rule 可以操作路由策略数据库中的规则，控制路由选择算法。
 
 - **Selector(选择器)** # 通过一些规则，对数据包进行匹配，匹配到的数据包，将会执行 Action 定义的动作。
 - **Action(动作)** # 匹配到的数据包将要执行的动作。
-  - 比如有一个动作叫 lookup，用来指定要查找路由条目的路由表 ID。意思就是指，根据指定路由表中的路由条目，来决定 Selector 匹配到的数据包应该被路由到哪里
+    - 比如有一个动作叫 lookup，用来指定要查找路由条目的路由表 ID。意思就是指，根据指定路由表中的路由条目，来决定 Selector 匹配到的数据包应该被路由到哪里
 
 RPDB 按照优先级递减的顺序注意扫描这些规则(数字越小，优先级越高)。
 
@@ -133,20 +133,20 @@ root@desistdaydream:~# ip rule
 ```
 
 - 0: from all lookup local
-  - **local 路由表(ID 255)** # 是包含用于本地和广播地址的高优先级控制路由的特殊路由表。
-  - Priority(优先级) # 0
-  - Selector(选择器) # 匹配所有
-  - Action(动作) # 查找名为 local 的路由表。
+    - **local 路由表(ID 255)** # 是包含用于本地和广播地址的高优先级控制路由的特殊路由表。
+    - Priority(优先级) # 0
+    - Selector(选择器) # 匹配所有
+    - Action(动作) # 查找名为 local 的路由表。
 - 32766: from all lookup main
-  - **main 路由表(ID 254)** # 是包含所有非策略路由的正常路由表。可以通过管理员删除和/或覆盖此规则。我们平时配置的路由条目都是在这个表中配置的。
-  - Priority(优先级) # 32766
-  - Selector(选择器) # 匹配所有
-  - Action(动作) # 查找名为 local 的路由表。
+    - **main 路由表(ID 254)** # 是包含所有非策略路由的正常路由表。可以通过管理员删除和/或覆盖此规则。我们平时配置的路由条目都是在这个表中配置的。
+    - Priority(优先级) # 32766
+    - Selector(选择器) # 匹配所有
+    - Action(动作) # 查找名为 local 的路由表。
 - 32767: from all lookup default
-  - **default 路由表(ID 253)** # 为空。如果未选择先前的默认规则，则保留某些后处理。也可以删除此规则。
-  - Priority(优先级) # 327667
-  - Selector(选择器) # 匹配所有
-  - Action(动作) # 查找名为 local 的路由表。
+    - **default 路由表(ID 253)** # 为空。如果未选择先前的默认规则，则保留某些后处理。也可以删除此规则。
+    - Priority(优先级) # 327667
+    - Selector(选择器) # 匹配所有
+    - Action(动作) # 查找名为 local 的路由表。
 
 每个 RPDB 条目都有附加属性。每个规则都有一个指向某个路由表的指针。 NAT 和伪装规则有一个属性来选择要转换/伪装的新 IP 地址。除此之外，规则还有一些可选属性，路由也有，即领域。这些值不会覆盖路由表中包含的值。它们仅在路由未选择任何属性时使用。
 
@@ -171,4 +171,4 @@ root@desistdaydream:~# ip rule
 ## EXAMPLE
 
 - 添加优先级为 1，ID 为 2 的路由表，所有源地址是 192.168.0.0/24 网段的数据包都根据该路由表的规则进行路由。
-  - **ip rule add priority 1  from 192.168.0.0/24 table 2**
+    - **ip rule add priority 1  from 192.168.0.0/24 table 2**

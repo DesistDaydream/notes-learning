@@ -1,13 +1,12 @@
 ---
 title: "Windows 系统实用工具"
-linkTitle: "Windows 系统实用工具"
 weight: 20
 ---
 
 # 概述
 
 > 参考：
-> 
+>
 > - [公众号-差评，我从三百条留言中，筛选出了差友们推荐的好用软件](https://mp.weixin.qq.com/s/FER8XiGizhNOwAXf7cQbRQ)
 
 **图拉丁吧工具箱** # 需要的东西基本全了，没啥可说的。
@@ -32,9 +31,9 @@ Revo Uninstaller
 
 - https://www.revouninstaller.com/
 - https://www.bilibili.com/video/BV13x4y1G7Qc
-  - 30天过后请按照我的教程走一遍就好了哈
-  - 下载 Revo Uninstaller Pro
-  - 使用 `Revo Uninstaller Pro Full Version.zip` 中的文件替换掉 `C:\ProgramData\VS Revo Group\Revo Uninstaller Pro\revouninstallerpro5.lic` 文件
+    - 30天过后请按照我的教程走一遍就好了哈
+    - 下载 Revo Uninstaller Pro
+    - 使用 `Revo Uninstaller Pro Full Version.zip` 中的文件替换掉 `C:\ProgramData\VS Revo Group\Revo Uninstaller Pro\revouninstallerpro5.lic` 文件
 
 IObit Uninstaller
 
@@ -43,7 +42,7 @@ Total Uninstall
 Geek Uninstaller
 
 - https://geekuninstaller.com/
-  - 卸载完成后扫描系统和注册表，手动选择要删除的项目
+    - 卸载完成后扫描系统和注册表，手动选择要删除的项目
 
 ## 磁盘空间管理工具
 
@@ -105,7 +104,7 @@ PixPin # https://pixpinapp.com/
 ### eSearch
 
 > 参考：
-> 
+>
 > - [GitHub 项目，xushengfeng/eSearch](https://github.com/xushengfeng/eSearch)
 > - [官网](https://esearch-app.netlify.app/)
 
@@ -117,4 +116,3 @@ OpenArk # 一款开源的用于 Windows 的反 rookit (ARK) 工具
 
 - https://github.com/BlackINT3/OpenArk 2025年10月1日，GitHub 没有任何通知下，封禁了账号
 - http://openark.blackint3.com:88/
-

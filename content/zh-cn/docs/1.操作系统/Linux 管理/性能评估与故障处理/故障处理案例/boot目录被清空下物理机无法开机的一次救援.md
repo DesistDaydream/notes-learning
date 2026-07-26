@@ -1,6 +1,5 @@
 ---
 title: boot目录被清空下物理机无法开机的一次救援
-linkTitle: boot目录被清空下物理机无法开机的一次救援
 weight: 20
 source: https://zhangguanzhang.github.io/2019/10/12/boot-grub-rescue/
 ---
@@ -9,7 +8,7 @@ source: https://zhangguanzhang.github.io/2019/10/12/boot-grub-rescue/
 
 > 参考：
 >
-> - 
+> -
 
 今天下午到公司被通知苏州一个节点的客户的裸金属无法开机，14:00 上去到 16:50 终于给整好了，这里记录下笔记分享下
 
@@ -205,7 +204,7 @@ Exiting now.
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/dd979e87-2201-4df4-890e-d122c4681296/right.png)
 
-## 参考：
+## 参考
 
 <https://www.tecmint.com/recover-or-rescue-corrupted-grub-boot-loader-in-centos-7/>
 rescue mode 安装 kernel: <https://www.thegeekdiary.com/centos-rhel-7-how-to-install-kernel-from-rescue-mode/>

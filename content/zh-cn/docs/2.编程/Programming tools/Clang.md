@@ -1,6 +1,5 @@
 ---
 title: Clang
-linkTitle: Clang
 weight: 13
 ---
 
@@ -26,4 +25,3 @@ Clang 与 [LLVM](/docs/2.编程/Programming%20tools/LLVM.md) 编译器后端协�
 LLVM 项目最初计划使用 GCC 的前端。然而，GCC 的源代码庞大且略显繁琐；正如一位长期从事 GCC 开发的开发者在谈到 LLVM 时所说：“试图让河马跳舞可不是什么有趣的事。”此外，苹果软件使用 Objective-C ，而 Objective-C 对 GCC 开发者而言优先级较低。因此，GCC 无法顺利集成到苹果的集成开发环境中。 最后，GCC 的许可协议 ——GNU 通用公共许可证 (GPL) 第 3 版 ——要求分发 GCC 扩展或修改版本的开发者必须公开其源代码 ，而 LLVM 的宽松软件许可则没有这项要求。[ 6 ]
 
 基于这些原因，苹果公司开发了 Clang，这是一个支持 C、Objective-C 和 C++ 的新型编译器前端。 2007 年 7 月，该项目获得批准成为开源项目。
-

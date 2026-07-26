@@ -9,7 +9,7 @@ weight: 2
 >
 > - [官方文档，参考 - 规范 - 类型](https://go.dev/ref/spec#Types)
 
-**Data Type(数据类型)** 用来对一组相关值进行分类，描述可对其执行的操作并定义它们的存储方式。 
+**Data Type(数据类型)** 用来对一组相关值进行分类，描述可对其执行的操作并定义它们的存储方式。
 
 Go 语言将数据类型分为四类：基础类型、复合类型、引用类型和接口类型。虽然数据类型有很多，但是这些数据类型都是对程序中一个变量或状态的间接引用。这意味着对任一引用类型数据的修改都会影响所有该引用的拷贝。所谓的引用，是对值的引用。注意引用与指针的区别，详见 pointer.go
 
@@ -18,14 +18,14 @@ Go 语言将数据类型分为四类：基础类型、复合类型、引用类�
 数据中最基本的类型，是构成其余数据类型以及对象的最小单位，当定义其他数据类型时，同样需要定义基础数据类型。基础数据类型也是 Go 语言的**内置数据类型**
 
 - **Numeric(数字类型)**
-  - Integer Type(整数类型)
-  - Floating Point Numbers(浮点数型)
-  - complex 复数共两种复数，complex64 和 complex128，分别对应 float32 和 float64 两种浮点数精度。内置的 complex 函数用于构建复数，内建的 real 和 imag 函数分别返回复数的实部和虚部
+    - Integer Type(整数类型)
+    - Floating Point Numbers(浮点数型)
+    - complex 复数共两种复数，complex64 和 complex128，分别对应 float32 和 float64 两种浮点数精度。内置的 complex 函数用于构建复数，内建的 real 和 imag 函数分别返回复数的实部和虚部
 - **Strings(字符类型)**
 - **Booleans(布尔类型)**
-  - 注意：很多时候，Booleans 类型的值可以用数字表示
-    - 1 表示 true(真)
-    - 0 表示 false(假)
+    - 注意：很多时候，Booleans 类型的值可以用数字表示
+        - 1 表示 true(真)
+        - 0 表示 false(假)
 
 ## Composite Type(复合类型)
 

@@ -5,7 +5,7 @@ title: sshpass
 # 概述
 
 > 参考：
-> 
+>
 > - [源码](https://sourceforge.net/projects/sshpass/)
 > - [manual](https://man.cx/sshpass)
 
