@@ -106,13 +106,13 @@ Hello Hugo!
 
 我们创建完文件后，写入如下内容：
 
-```md
+```markdown
 ---
 title: "主页"
 date: 2023-05-29T11:14:20+08:00
 ---
 
-这些字符是在 content/_index.md 文件中的。
+这些字符是在 `content/_index.md` 文件中的。
 
 ## 概述
 
@@ -192,7 +192,7 @@ Hugo 打包非常简单，执行 `hugo` 命令即可在 `public/` 目录中生�
 
 > 参考：
 >
-> - [官方文档，入门-目录结构](https://gohugo.io/getting-started/directory-structure/)
+> - [官方文档，入门 - 目录结构](https://gohugo.io/getting-started/directory-structure/)
 
 ### archetypes
 
@@ -317,34 +317,3 @@ Hugo 运行时所需的缓存目录。包括需要使用的模块等：
     - **%TMP%/hugo_cache/** # 弃用
 - Linux:
     - **${TMP}/hugo_cache/**
-
-# Hugo 与 Obsidian
-
-## URL 与 markdown 链接问题
-
-> 参考：
->
-> - https://cloud.tencent.com/developer/article/1688894
-
-Obsidian 内部链接是这种格式 `[B cd](/A/b/B%20cd.md)`
-
-Hugo 生成的内容资源的 URL 是 https://demo.org/a/b/b-cd
-
-此时，如果我们从页面点击 B cd，将会跳转到 https://demo.org/A/b/B-cd 页面，此时将会看到 404。。。。
-
-解决方式：
-
-在 hugo.config 中添加 `disablePathToLower = true` 配置，以关闭转换为小写的功能。
-
-在 layouts/404.html 中添加如下脚本：
-
-```js
-<script>
-  var currenturl = location.href.replace(/%20/g, "-").replace(".md", "");
-  if (currenturl != location.href) {
-    location.href = currenturl;
-  }
-</script>
-```
-
-此时跳转到 404 时，将会去掉 `.md` 后缀，以及将所有的 `%20` 替换成 `-`

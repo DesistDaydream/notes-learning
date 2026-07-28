@@ -4,7 +4,7 @@ proxy = 'https://goproxy.cn,https://goproxy.io,direct'
 # replacements = "github.com/google/docsy -> ../../docsy"
 [hugoVersion]
 extended = true
-min = "0.122.0"
+min = "0.157.0"
 
 [[imports]]
 path = "github.com/google/docsy"

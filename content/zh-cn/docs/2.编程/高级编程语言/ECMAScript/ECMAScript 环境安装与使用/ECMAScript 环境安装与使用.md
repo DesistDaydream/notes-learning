@@ -104,7 +104,7 @@ source /etc/profile.d/nodejs.sh
 警告！！！由于 msi 安装包会修改 `$PREFIX` 为 `%APPDATA%\npm` ，并将该目录到 $PATH。我个人推荐下载 zip，并自己解压到想要的位置后，手动配置环境变量。
 
 ```powershell
-$NodejsVersion = "20.11.1"
+$NodejsVersion = "24.18.0"
 $NodejsUrl = "https://nodejs.org/dist/v$NodejsVersion/node-v$NodejsVersion-win-x64.zip"
 $TempZipFile = "D:\tmp\nodejs.zip"
 $ExtractPath = "D:\Tools"

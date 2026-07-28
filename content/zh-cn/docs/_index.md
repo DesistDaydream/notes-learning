@@ -20,6 +20,7 @@ Teambition Thoughts 无法找到注册时间。用过一段时间之后迁移到
 
 语雀注册于 2021-03-18 10:39 并开始使用
 
+尝试过 Notion 等等一系列笔记软件都不尽如人意
+
 GitHub notes-learning 项目开始于 2023-01-16 10:07，从此开始走上了纯 Markdown 的道路
 
-尝试过 Notion 等等一系列笔记软件都不尽如人意

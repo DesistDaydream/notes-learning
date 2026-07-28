@@ -1,5 +1,5 @@
 [zh-cn]
-languageName = "中文"
+label = "中文"
 # 用于权重的排序
 weight = 1
 
@@ -7,9 +7,11 @@ weight = 1
 title = "断念梦"
 description = "个人站点"
 
-# [en]
-# languageName = "English"
-# weight = 2
-# [en.params]
-# title = "DesistDaydream"
-# description = "Personal site"
+[en]
+label = "English"
+contentDir = "content/en"
+title = "Goldydocs"
+weight = 2
+[en.params]
+title = "DesistDaydream"
+description = "Personal site"

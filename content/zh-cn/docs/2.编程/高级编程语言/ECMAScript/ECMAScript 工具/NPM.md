@@ -57,8 +57,8 @@ store-dir 说明：
 
 设置包的存储路径：
 
-- Windows：`pnpm config -g set store-dir D:\Projects\.pnpm-store`
-- Linux：`pnpm config -g set store-dir /mnt/d/Projects/.pnpm-store`
+- Windows：`pnpm config -g set store-dir D:\projects\.pnpm-store`
+- Linux：`pnpm config -g set store-dir /mnt/d/projects/.pnpm-store`
 
 配置镜像源：
 
@@ -108,7 +108,7 @@ pnpm 使用 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的配置�
 
 通常，适用于 npm 的选项，也适用于 pnpm。不过也有部分命令是独属于 npm 或 pnpm 的
 
-**npm [OPTIONS] COMMAND [OPTIONS]**
+**npm \[OPTIONS] COMMAND \[OPTIONS]**
 
 **OPTIONS**
 
@@ -120,7 +120,7 @@ npm config 用来管理 npm 的配置文件，i.e.npmrc 文件。
 
 ### Syntax(语法)
 
-**npm config COMMAND [KEY=VALUE]**
+**npm config COMMAND \[KEY=VALUE]**
 
 **COMMAND**
 
@@ -132,9 +132,13 @@ npm config 用来管理 npm 的配置文件，i.e.npmrc 文件。
 
 **OPTIONS**
 
-- **-g, --global** # 对全局配置文件(${PREFIX}/etc/npmrc) 执行操作
+- **-g, --global** # 对全局配置文件(`${PREFIX}/etc/npmrc`) 执行操作
 
 ### EXAMPLE
+
+获取全局配置文件所在路径
+
+- npm config get globalconfig
 
 列出所有已知配置
 
@@ -150,10 +154,12 @@ npm config 用来管理 npm 的配置文件，i.e.npmrc 文件。
 
 ### Syntax(语法)
 
-**npm exec -- \<pkg>[@\<version>] [args...]**
-**npm exec --package=\<pkg>[@\<version>] -- \<cmd> [args...]**
-**npm exec -c '\<cmd> [args...]'**
-**npm exec --package=foo -c '\<cmd> [args...]'**
+```
+npm exec -- <pkg>[@<version>] [args...]
+npm exec --package=<pkg>[@<version>] -- <cmd> [args...]
+npm exec -c '<cmd> [args...]'
+npm exec --package=foo -c '<cmd> [args...]'
+```
 
 **OPTIONS**
 
@@ -179,7 +185,7 @@ install 可以简写为 i。
 
 ### Syntax(语法)
 
-npm init [INITIALIZER]
+npm init \[INITIALIZER]
 
 **OPTIONS**
 
@@ -219,6 +225,8 @@ https://pnpm.io/cli/store
 一个全局模块的声明周期
 
 ```bash
+# 获取全局配置文件所在路径
+npm config get globalconfig
 # 安装
 npm install -g vite
 # 列出

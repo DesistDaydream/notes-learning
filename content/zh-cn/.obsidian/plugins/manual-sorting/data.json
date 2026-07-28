@@ -2,7 +2,6 @@
   "customOrder": {
     "/": {
       "children": [
-        "Clippings",
         "_index.md",
         "about",
         "blog",
@@ -62,10 +61,6 @@
         "blog/copy/云原生/如何构建以应用为中心的Kubernetes.md",
         "blog/copy/云原生/ChatGPT 团队是如何使用Kubernetes的.md"
       ],
-      "sortOrder": "custom"
-    },
-    "Clippings": {
-      "children": [],
       "sortOrder": "custom"
     },
     "docs": {
@@ -5045,7 +5040,8 @@
         "docs/Web/网站搭建/Hugo/内容管理",
         "docs/Web/网站搭建/Hugo/模板",
         "docs/Web/网站搭建/Hugo/命令行工具.md",
-        "docs/Web/网站搭建/Hugo/主题"
+        "docs/Web/网站搭建/Hugo/主题",
+        "docs/Web/网站搭建/Hugo/Hugo MGMT.md"
       ],
       "sortOrder": "custom"
     },

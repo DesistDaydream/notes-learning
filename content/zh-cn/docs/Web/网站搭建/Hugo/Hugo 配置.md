@@ -28,7 +28,7 @@ foo = 'bar'
 
 除了 Hugo 本身会用到配置文件，有些主题也会使用，并具有各自可以识别的配置指令。比如 Docsy 主题。
 
-在[官方文档，配置-所有配置设置](https://gohugo.io/getting-started/configuration/#all-configuration-settings)我们可以找到 Hugo 的所有配置指令
+在[官方文档，配置 - 所有配置设置](https://gohugo.io/getting-started/configuration/#all-configuration-settings)我们可以找到 Hugo 的所有配置指令
 
 ## config 目录结构
 

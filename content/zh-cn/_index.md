@@ -4,7 +4,11 @@ title: "首页"
 
 <!-- 这是首页显示的内容 -->
 
-{{< blocks/cover title="学习使我快乐" image_anchor="top" height="full" >}}
+{{% blocks/cover
+  title="学习使我快乐"
+  height="full"
+  image_anchor="top"
+%}}
 <a class="btn btn-lg btn-primary me-3 mb-4" href="/docs/">
   学习 <i class="fas fa-arrow-alt-circle-right ml-2"></i>
 </a>

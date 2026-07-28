@@ -7,9 +7,15 @@ github_project_repo = "https://github.com/DesistDaydream/desistdaydream.github.i
 github_subdir = ""
 github_branch = "main"
 
+# TODO
+btn-lg = 'class="btn btn-lg btn-{1}" role="button"'
+FA = '<i class="fa-{1} fa-{2} text-{3} px-1"></i>'
+version = "0.15.0"
+
 # 页面显示内容配置
 [ui]
 sidebar_menu_foldable = true # 侧边栏菜单是否可折叠
+showLightDarkModeMenu = true # 是否显示浅暗模式菜单
 
 [ui.feedback]
 enable = true

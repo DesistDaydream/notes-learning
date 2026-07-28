@@ -20,16 +20,6 @@ Kubernetes 的官网就是 Docsy 主题。
 >
 > - [官方文档，预览和部署](https://www.docsy.dev/docs/deployment/)
 
-## 准备环境
-
-```bash
-npm install -D autoprefixer
-npm install -D postcss-cli
-npm install -D postcss
-```
-
-> 若不在本地安装，则使用 `hugo` 命令构建静态文件时将会报错
-
 ## 生成站点文件
 
 ### 生成模板站点
@@ -55,6 +45,16 @@ path = "github.com/google/docsy"
 EOL
 ```
 
+## 安装依赖
+
+```bash
+npm install -D autoprefixer
+npm install -D postcss-cli
+npm install -D postcss
+```
+
+> 若不在本地安装，则使用 `hugo` 命令构建静态文件时将会报错
+
 ## 预览
 
 ```bash
@@ -73,8 +73,10 @@ https://tomial.github.io/posts/hugo%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8
 
 无问题的版本组合
 
-- hugo 0.129.0
-- docsy 0.11.0
+| hugo    | docsy  | 截至时间       |
+| ------- | ------ | ---------- |
+| 0.129.0 | 0.11.0 | 2026-05-10 |
+| 0.164.0 | 0.15.0 |            |
 
 [构建站点时出错：# POSTCSS: failed to transform "scss/main.css"](https://github.com/google/docsy/issues/235)
 
