@@ -79,14 +79,6 @@ CNCF 将 可观测性 和 数据分析 归类为一个单独的类别，且划�
 
 可观测性也是一样：你越想让你的团队越快地添加功能，你就越应该在可观测性上投资。而且，虽然在可观测性上节省一些钱可能很诱人，但这些节省将在下一次缓慢修复事件中迅速消失。
 
-# SLA
-
-> 参考：
->
-> - [Wiki, SLA](https://en.wikipedia.org/wiki/Service-level_agreement)
-
-**Service level agreement(服务等级协议，简称 SLA)** 是
-
 # 可观测性三大支柱的反思
 
 https://flashcat.cloud/blog/beyond-the-3-pillars-of-observability/

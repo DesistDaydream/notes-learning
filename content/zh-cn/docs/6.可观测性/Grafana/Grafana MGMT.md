@@ -106,6 +106,12 @@ server {
 
 # Datasource
 
+## Infinity
+
+[GitHub 项目，grafana/grafana-infinity-datasource](https://github.com/grafana/grafana-infinity-datasource)
+
+可以从 JSON / CSV / TSV / XML / GraphQL 端点获取数据
+
 ## PostgreSQL
 
 当列的 data_type 为 `timestamp without time zone` 时， Grafana 的 PG 数据源会在查询到时间之后，把时间修改为页面设置的时区的值。此时将会产生一个问题，若真实时间是 2004-05-03T08:00:00+08:00，并且也存的是 2004-05-03 08:00:00 这个值，当 Grafana 的 PG 数据源插件在读取到该列的数据类型是 `timestamp without time zone` 时，会把该时间认为时 UTC 时间，若 Grafana 页面设置的是 CST，那么返回结果就会变成 2004-05-03 16:00:00。

@@ -26,7 +26,7 @@ weight: 100
 
 [GitHub 项目，nextlevelbuilder/goclaw](https://github.com/nextlevelbuilder/goclaw) # 越南人主导开发，Go 语言编写。与 OpenClaw, ZeroClaw, PicoClaw, GoClaw 做了对比。
 
-新闻
+**新闻**
 
 [GitHub 项目，gsscsd/big_model_radar](https://github.com/gsscsd/big_model_radar) # 每天早上 08:00 CST 自动运行的 GitHub Actions 工作流。追踪主流 AI CLI 工具的 GitHub 动态、OpenClaw 及其同赛道项目的生态活动、Anthropic 和 OpenAI 官网最新资讯，并每日监测 GitHub AI 热门仓库趋势，以中英双语每日简报的形式发布为 GitHub Issues 并提交为 Markdown 文件。每周和每月自动生成汇总报告。
 

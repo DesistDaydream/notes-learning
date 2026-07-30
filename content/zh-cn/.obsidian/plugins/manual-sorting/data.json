@@ -2542,7 +2542,7 @@
       "children": [
         "docs/6.可观测性/Best practices/_index.md",
         "docs/6.可观测性/Best practices/Best practices.md",
-        "docs/6.可观测性/Best practices/Alerting MGMT.md"
+        "docs/6.可观测性/Best practices/SLI_SLO_SLA.md"
       ],
       "sortOrder": "custom"
     },
@@ -5241,6 +5241,7 @@
     },
     "files": {
       "children": [
+        "files/告警治理：如何把每天 500+ 条告警降到 50 条.md",
         "files/test.md"
       ],
       "sortOrder": "custom"

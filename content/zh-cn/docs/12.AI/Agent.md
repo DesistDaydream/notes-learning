@@ -76,7 +76,7 @@ Zechner 的逻辑很直接：编程的本质就是读代码、写代码、改代
 
 # Agent 痛点
 
-故事来源：B 站，飞天闪客 的某期 Agent 视频
+故事来源：[B 站 - 飞天闪客，【闪客】揭秘 Clawdbot 背后干了什么？怪不得这么费钱...](https://www.bilibili.com/video/BV1sSF6z3Eku?t=288.9)
 
 现阶段的 Agent 就像这样：老板问我们今天几号
 
