@@ -1514,7 +1514,15 @@
     "docs/2.编程/高级编程语言/Rust": {
       "children": [
         "docs/2.编程/高级编程语言/Rust/_index.md",
-        "docs/2.编程/高级编程语言/Rust/Rust.md"
+        "docs/2.编程/高级编程语言/Rust/Rust.md",
+        "docs/2.编程/高级编程语言/Rust/Rust 环境安装与使用"
+      ],
+      "sortOrder": "custom"
+    },
+    "docs/2.编程/高级编程语言/Rust/Rust 环境安装与使用": {
+      "children": [
+        "docs/2.编程/高级编程语言/Rust/Rust 环境安装与使用/_index.md",
+        "docs/2.编程/高级编程语言/Rust/Rust 环境安装与使用/Rust 环境安装与使用.md"
       ],
       "sortOrder": "custom"
     },
@@ -5241,7 +5249,6 @@
     },
     "files": {
       "children": [
-        "files/告警治理：如何把每天 500+ 条告警降到 50 条.md",
         "files/test.md"
       ],
       "sortOrder": "custom"

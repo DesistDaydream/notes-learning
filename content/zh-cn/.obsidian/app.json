@@ -6,11 +6,12 @@
   "newLinkFormat": "absolute",
   "useMarkdownLinks": true,
   "showIndentGuide": true,
-  "tabSize": 2,
+  "tabSize": 4,
   "useTab": false,
   "smartIndentList": true,
   "showLineNumber": false,
   "strictLineBreaks": true,
   "vimMode": false,
-  "userIgnoreFilters": null
+  "userIgnoreFilters": null,
+  "settingsPopoutWindow": true
 }

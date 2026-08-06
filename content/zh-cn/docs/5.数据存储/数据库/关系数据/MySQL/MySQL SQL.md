@@ -48,13 +48,11 @@ SQL 语言被细分为几个语言元素，包括：
 >
 > - [MySQL 官方文档，函数与运算符 - 内置函数和运算符参考](https://dev.mysql.com/doc/refman/8.0/en/built-in-function-reference.html)
 
-| 函数名                                                                                                      | 功能                                             | 启用版本 | 弃用版本 |
-| ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------ | -------- | -------- |
-| [REPLACE()](https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_replace)                 | 替换掉指定字符串                                 |          |          |
-| [REGEXP_REPLACE()](https://dev.mysql.com/doc/refman/8.0/en/regexp.html#function_regexp-replace)             | 替换掉使用正则表达式匹配到的字符串               | 8.0.4    |          |
-| [SUBSTRING_INDEX()](https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_substring-index) | 从指定出现次数的分隔符之前的字符串中返回子字符串 |          |          |
-|                                                                                                             |                                                  |          |          |
-|                                                                                                             |                                                  |          |          |
+| 函数名                                                                                                         | 功能                       | 启用版本  | 弃用版本 |
+| ----------------------------------------------------------------------------------------------------------- | ------------------------ | ----- | ---- |
+| [REPLACE()](https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_replace)                 | 替换掉指定字符串                 |       |      |
+| [REGEXP_REPLACE()](https://dev.mysql.com/doc/refman/8.0/en/regexp.html#function_regexp-replace)             | 替换掉使用正则表达式匹配到的字符串        | 8.0.4 |      |
+| [SUBSTRING_INDEX()](https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_substring-index) | 从指定出现次数的分隔符之前的字符串中返回子字符串 |       |      |
 
 # 聚合函数
 

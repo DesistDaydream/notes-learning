@@ -30,7 +30,7 @@ sudo tar -C /usr/local -xvzf go${GoVersion}.linux-amd64.tar.gz
 ```bash
 sudo tee /etc/profile.d/go.sh > /dev/null <<-"EOF"
 # export GOPATH=/opt/gopath
-# export PATH=$PATH:\$GOPATH/bin:/usr/local/go/bin
+# export PATH=\$GOPATH/bin:/usr/local/go/bin:$PATH
 export PATH=/usr/local/go/bin:${PATH}
 export GO111MODULE=on
 export GOPROXY=https://goproxy.cn,https://goproxy.io,direct
@@ -158,7 +158,7 @@ docker run --rm -it -v /${YourPackageSrc}:/go/work \
 
 Go 程序的很多关联文件都可以通过 Go 环境变量进行配置，所以绝大部分关联文件都以变量的形式记录。
 
-**$GOPATH** # GOPATH 环境变量列出了寻找 Go 代码的位置。**同时也是存储 Go 模块的目录，即 go mod 相关命令保存数据的目录**。
+**$GOPATH** # GOPATH 环境变量列出了寻找 Go 依赖的位置。**同时也是存储 [Go Module](/docs/2.编程/高级编程语言/Go/Go%20环境安装与使用/Go%20Module.md) 的目录，i.e. go mod 相关命令保存数据的目录**。
 
 - **./pkg/mod/** # 存储依赖包的源代码
     - **./cache/** # 为避免重复下载，已下载过的依赖包会缓存在该目录
