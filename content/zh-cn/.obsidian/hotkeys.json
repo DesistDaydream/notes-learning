@@ -175,5 +175,6 @@
       "key": "Backspace"
     }
   ],
-  "editor:delete-paragraph": []
+  "editor:delete-paragraph": [],
+  "obsidian-excalidraw-plugin:save": []
 }

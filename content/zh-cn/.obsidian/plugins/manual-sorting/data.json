@@ -1515,7 +1515,8 @@
       "children": [
         "docs/2.编程/高级编程语言/Rust/_index.md",
         "docs/2.编程/高级编程语言/Rust/Rust.md",
-        "docs/2.编程/高级编程语言/Rust/Rust 环境安装与使用"
+        "docs/2.编程/高级编程语言/Rust/Rust 环境安装与使用",
+        "docs/2.编程/高级编程语言/Rust/Rust Ecosystem"
       ],
       "sortOrder": "custom"
     },
@@ -1523,6 +1524,13 @@
       "children": [
         "docs/2.编程/高级编程语言/Rust/Rust 环境安装与使用/_index.md",
         "docs/2.编程/高级编程语言/Rust/Rust 环境安装与使用/Rust 环境安装与使用.md"
+      ],
+      "sortOrder": "custom"
+    },
+    "docs/2.编程/高级编程语言/Rust/Rust Ecosystem": {
+      "children": [
+        "docs/2.编程/高级编程语言/Rust/Rust Ecosystem/_index.md",
+        "docs/2.编程/高级编程语言/Rust/Rust Ecosystem/Rust Ecosystem.md"
       ],
       "sortOrder": "custom"
     },
@@ -2541,8 +2549,7 @@
       "children": [
         "docs/6.可观测性/性能优化/_index.md",
         "docs/6.可观测性/性能优化/性能优化.md",
-        "docs/6.可观测性/性能优化/Flame Graphs(火焰图).md",
-        "docs/6.可观测性/性能优化/SLI_SLO.md"
+        "docs/6.可观测性/性能优化/Flame Graphs(火焰图).md"
       ],
       "sortOrder": "custom"
     },

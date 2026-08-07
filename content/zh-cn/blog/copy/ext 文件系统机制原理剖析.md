@@ -1,8 +1,7 @@
 ---
-title: "ext 文件系统机制原理剖析"
-slug: "ext_filesystem"
+title: ext 文件系统机制原理剖析
 date: 2020-10-25
-description: >
+description: |
   A short lead description about this content page. Text here can also be **bold** or _italic_ and can even be split over multiple paragraphs.
 ---
 

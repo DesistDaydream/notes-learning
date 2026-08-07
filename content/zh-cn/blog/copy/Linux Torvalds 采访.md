@@ -1,6 +1,5 @@
 ---
 title: Linux Torvalds 采访
-slug: "mVo3S_F0RoxCToawrTCnlA>"
 ---
 
 <https://mp.weixin.qq.com/s/mVo3S_F0RoxCToawrTCnlA>

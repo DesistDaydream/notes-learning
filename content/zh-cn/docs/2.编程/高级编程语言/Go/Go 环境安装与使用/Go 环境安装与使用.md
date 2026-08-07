@@ -11,7 +11,7 @@ weight: 1
 > - [官方文档，安装多个版本的 Go](https://golang.org/doc/manage-install)
 > - [Go 包，标准库 - cmd - go](https://pkg.go.dev/cmd/go)
 
-我们可以通过一个名为 go 的二进制文件实现绝大部分日常的 编码、编译 等工作，只要安装好 Go 的环境即可。
+我们可以通过一个名为 go 的二进制文件实现绝大部分日常的 编码、编译 等工作，只要安装好 [Go](/docs/2.编程/高级编程语言/Go/Go.md) 语言的环境即可。
 
 # 安装 Go
 

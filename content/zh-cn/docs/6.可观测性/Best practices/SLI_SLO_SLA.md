@@ -11,16 +11,18 @@ weight: 100
 > - [Wiki, Service level indicator](https://en.wikipedia.org/wiki/Service_level_indicator)
 > - [Wiki, Service level objective](https://en.wikipedia.org/wiki/Service-level_objective)
 > - [Wiki, Service level agreement](https://en.wikipedia.org/wiki/Service-level_agreement)
+> - [公众号，通过 Prometheus 来做 SLI/SLO 监控展示](https://mp.weixin.qq.com/s/GNx0a0IKwvtDQ4QzEro2cA)
 
-| 概念      | 英文全称                        | 核心含义                           | 简单比喻（以餐厅为例）                    |
-| ------- | --------------------------- | ------------------------------ | ------------------------------ |
-| **SLI** | Service Level **Indicator** | **服务级别指标**：实际测量出的定量数据。         | 厨房测量出的“实际平均上菜时间是25分钟”。         |
-| **SLO** | Service Level **Objective** | **服务级别目标**：团队内部期望达到的技术线。       | 店长给厨房定的目标：“95% 的菜品必须在30分钟内上桌”。 |
-| **SLA** | Service Level **Agreement** | **服务级别协议**：对客户的法律/商业承诺，没达到要赔钱。 | 菜单上的承诺：“上菜超过40分钟，本单免费”。        |
+| 概念      | 英文全称                        | 核心含义                                        | 简单比喻（以餐厅为例）                    |
+| ------- | --------------------------- | ------------------------------------------- | ------------------------------ |
+| **SLI** | Service Level **Indicator** | **服务级别指标**：实际测量出的定量数据。                      | 厨房测量出的“实际平均上菜时间是25分钟”。         |
+| **SLO** | Service Level **Objective** | **服务级别目标**：团队内部期望达到的技术线。比如"4 个 9"，"5 个 9"等。 | 店长给厨房定的目标：“95% 的菜品必须在30分钟内上桌”。 |
+| **SLA** | Service Level **Agreement** | **服务级别协议**：对客户的法律/商业承诺，没达到要赔钱。              | 菜单上的承诺：“上菜超过40分钟，本单免费”。        |
 
 SLI 是 SLO 的基础，SLO 是 SLA 的基础。先定 Indicator(指标)，再定该指标的 Objective(目标)，根据目标做出 Agreement(协议/承诺)。
 
-CPU 利用率单机阈值属于"病因指标"（cause metric），不是"症状指标"（symptom metric）。SRE 的建议是：**告警应该建立在症状上**——比如请求延迟升高、cgroup throttling、队列积压 —— 而不是直接对 CPU 数值本身设阈值。CPU 高不一定有实际影响（可能只是在跑批处理但服务正常），CPU 不高也不代表没问题（可能是被限流限制住了）。
+> [!important] 病因指标 与 症状指标
+> CPU 利用率单机阈值属于"病因指标"（cause metric），不是"症状指标"（symptom metric）。SRE 的建议是：**告警应该建立在症状上**——比如请求延迟升高、cgroup throttling、队列积压 —— 而不是直接对 CPU 数值本身设阈值。CPU 高不一定有实际影响（可能只是在跑批处理但服务正常），CPU 不高也不代表没问题（可能是被限流限制住了）。
 
 # 告警治理：如何把每天 500+ 条告警降到 50 条
 
