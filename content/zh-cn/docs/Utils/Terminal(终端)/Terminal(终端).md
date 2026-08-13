@@ -30,6 +30,22 @@ TODO: xterm 是什么？
 
 # GUI 终端工具
 
+https://github.com/Oublie-le/iTerm
+
+- 受 WindTerm 启发，使用 Rust 与 TS 开发
+- https://github.com/kingtoolbox/windterm/issues/3679
+
+https://github.com/fluxterm/fluxterm-release
+
+- 受 WindTerm 启发
+- https://github.com/kingtoolbox/windterm/issues/3675
+
+https://github.com/AnalyseDeCircuit/oxideterm
+
+- 受 WindTerm 启发
+- https://github.com/kingtoolbox/windterm/issues/3674
+- 居然还有内置 IDE，工作太杂乱了，并没有做好终端应有的本职功能
+
 ## Xmanager
 
 https://blog.csdn.net/zhouchen1998/article/details/103424698

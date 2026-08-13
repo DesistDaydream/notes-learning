@@ -23,11 +23,11 @@ weight: 2
 
 - MetricsQL 中有 `count_ne_over_time(my_metric[1h], 0)` 函数
 
-# SLO/SLI
+# SLI/SLO
 
 ## 根据过去一段时间的统计数据监测异常值
 
-参考 [Statistics](https://github.com/DesistDaydream/notes-science/blob/main/Math/Statistics.md) 中的 “检测和处理异常值”，使用 **Z-Score** 法，通过下面的公式实现
+参考 [Statistics](obsidian://open?vault=notes-science&file=Math%2FStatistics) 中的 “检测和处理异常值”，使用 **Z-Score** 法，通过下面的公式实现
 
 $$
 Z-score = \frac{x - \mu}{\sigma}
@@ -261,6 +261,17 @@ node_filesystem_files{fstype=~"ext4|xfs"}
 ```
 
 ## 网络
+
+若某个网卡的字节数变化异常导致带宽变化速率出现陡增毛刺，可以 clamp_max 来限制查询结果。比如这个网卡是 10G 上限，那就 `clamp_max(Metrics, 10737418240)`
+
+```promql
+sum without (device) (
+  clamp_max(
+    rate(hdf_network_receive_bytes_total{instance="111.6.113.158:16011"}[15m]) * 8,
+    10 * 1024 * 1024 * 1024
+  )
+)
+```
 
 ### 流量过高
 
