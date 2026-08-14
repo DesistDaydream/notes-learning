@@ -4747,7 +4747,6 @@
         "docs/12.AI/计算机视觉",
         "docs/12.AI/Prompt.md",
         "docs/12.AI/MCP.md",
-        "docs/12.AI/Skills.md",
         "docs/12.AI/Agent.md",
         "docs/12.AI/AI Projects",
         "docs/12.AI/AI MGMT",
@@ -5190,8 +5189,8 @@
     },
     "Excalidraw": {
       "children": [
-        "Excalidraw/encoding_and_decoding",
         "Excalidraw/demo.excalidraw.md",
+        "Excalidraw/encoding_and_decoding",
         "Excalidraw/cloud_native",
         "Excalidraw/Protocol",
         "Excalidraw/ClickHouse",

@@ -15,21 +15,39 @@ Prompt 解决方案
 - Tool calling
     - Function calling
     - [MCP](/docs/12.AI/MCP.md)
-- [Skills](/docs/12.AI/Skills.md)
+- [Skills](#Skills)
 
 # 历史
 
-最早期的  Prompt engineering(提示词工程)，甚至催生了提示词工程师 🤣
+**Prompt engineering(提示词工程)** # 最早期的称呼，甚至催生了提示词工程师 🤣
 
 - [GitHub 项目，f/awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts)
 - [GitHub 项目，PlexPt/awesome-chatgpt-prompts-zh](https://github.com/PlexPt/awesome-chatgpt-prompts-zh)
 - [公众号-云原生小白，你应该知道的ChatGPT提示语](https://mp.weixin.qq.com/s/BcJWxvhpTRFTE20rB55Sow)
 
-Content engineering # e.g RAG, MCP, Skills, etc.
+**Content engineering** # 通过各种人为定义的约束来管理 Prompt，e.g [RAG](#RAG), [MCP](/docs/12.AI/MCP.md), [Skills](/docs/12.AI/Skills.md), etc.
 
-Harness engineering
+**Agent** # [Agent](/docs/12.AI/Agent.md) 程序通过各种机制（调用工具、从 RAG 获取信息、etc.）管理大量 Prompt
+
+**Harness engineering** # 对 Agent 本身的管理，甚至可以加上对 Prompt 的管理。
 
 - [【闪客】你管这破玩意叫 Harness？虚拟世界的牛马套餐！](https://www.bilibili.com/video/BV1cNdrB4Evw)
+- Harness engineering 第一次出现于 2026-02-05 [mitchellh Blog, My AI Adoption Journey](https://mitchellh.com/writing/my-ai-adoption-journey#step-5-engineer-the-harness)
+
+个人感觉，Agent 的出现是个分水岭，从早期由人手工管理 Prompt，衍化成由程序管理 Prompt。
+
+# Tool calling
+
+**Tool calling(工具调用)**，它使 LLM(大型语言模型) 能够以结构化的方式和外部系统（可执行程序、API、etc.）进行交互。
+
+历史
+
+- **Function calling(函数调用)** 在 LLM 早期，由 OpenAI 公司推出的工具调用标准
+- [**MCP**](/docs/12.AI/MCP.md) 由 Anthropic 推出的工具调用标准
+
+很多模型把这些标准作为数据集进行训练，这样不用其他信息，只需要传输标准化的内容即可让模型返回格式化的信息
+
+最后，Tool calling 被模型作为内部的基本工作，加入到训练中，调用模型时，可以直接使用 tool 角色调用，参考 [Transformer inference](docs/12.AI/Machine%20learning/Transformer/Transformer%20inference.md) 中相关笔记。
 
 # RAG
 
@@ -54,13 +72,17 @@ Harness engineering
 
 使用超长上下文，避免切片太碎，但是。。。。资源消耗非常非常高。。。。
 
-# Tool calling
+# Skills
 
-**Tool calling(工具调用)**，它使 LLM(大型语言模型) 能够以结构化的方式和外部系统（可执行程序、API、etc.）进行交互。
+> 参考：
+>
+> - [GitHub 项目，anthropics/skills](https://github.com/anthropics/skills) - 2025-10-16 第一次提交
+> - [官网](https://agentskills.io/)
 
-历史
+## 学习资料
 
-- **Function calling(函数调用)** 在 LLM 早期，由 OpenAI 公司推出的工具调用标准
-- [**MCP**](/docs/12.AI/MCP.md) 由 Anthropic 推出的工具调用标准
+[公众号 - 差评，骗你的，其实AI根本不需要那么多提示词](https://mp.weixin.qq.com/s/OC0l_2M1sKGGhYy8WAgBXQ)
 
-很多模型把这些标准作为数据集进行训练，这样不用其他信息，只需要传输标准化的内容即可让模型返回格式化的信息
+https://github.com/heilcheng/awesome-agent-skills
+
+https://github.com/coreyhaines31/marketingskills

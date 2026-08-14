@@ -233,3 +233,7 @@ https://forum-zh.obsidian.md/t/topic/37120/2
     transform: translateX(-100%);
 }
 ```
+
+# 重要变化
+
+[2026-07-30 1.13 版本](https://obsidian.md/changelog/2026-07-30-desktop-v1.13.4/) 添加了图片预览与图片编辑

@@ -164,3 +164,16 @@ https://github.com/NousResearch/hermes-agent/issues/31584
 Claude code 代码泄露了出来的各种 Agent
 
 - [AtomCode](https://atomcode.atomgit.com/)
+
+# DeepSeek Harness
+
+> 参考：
+>
+> - [GitHub 项目，deepseek-ai/deepseek-harness](https://github.com/deepseek-ai/deepseek-harness)
+
+DeepSeek Harness 基于 [Cordis](https://github.com/cordiverse/cordis) 插件系统构建。Harness 让 Agent 在真实场景中持续工作
+
+- Cordis 内核 # Cordis 内核只负责插件的加载、卸载和依赖关系，不承载 Agent 的具体能力。
+- 插件提供能力 # 模型、工具、技能、会话、沙箱、存储、循环、调度、UI 等所有 Agent 能力均由插件提供，并通过 Cordis 服务与事件彼此协作。
+- 配置层自由组合 # 开发者无需改动源码，即可在配置层选择、替换或扩展任一能力。
+
