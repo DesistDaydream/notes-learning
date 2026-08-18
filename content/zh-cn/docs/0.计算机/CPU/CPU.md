@@ -67,7 +67,7 @@ CPU 等级
 
 # 命名规则
 
-不同体系的 CPU，样子不同，对应的 [Motherboard](docs/0.计算机/Motherboard/Motherboard.md) 芯片组也不一样。
+不同体系的 CPU，样子不同，对应的 [Motherboard](/docs/0.计算机/Motherboard/Motherboard.md) 芯片组也不一样。
 
 ## Intel
 

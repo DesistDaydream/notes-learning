@@ -19,7 +19,7 @@ weight: 1
 
 # 芯片组
 
-**Chipset(芯片组)** 是指集成在一个或多个集成电路上的电子元件的集合，用于管理 CPU、Memory、[Peripheral](docs/0.计算机/Peripheral/Peripheral.md) 之间的数据流。
+**Chipset(芯片组)** 是指集成在一个或多个集成电路上的电子元件的集合，用于管理 CPU、Memory、[Peripheral](/docs/0.计算机/Peripheral/Peripheral.md) 之间的数据流。
 
 > [!Attention] 有时候，不同类型的芯片组只能搭配特定的 CPU
 > e.g. Intel 的 B760 只能支持 Core i 系列（e.g. i3, i5, i7, i7），而 B860 只能支持 2023 年之后出的 Core Ultra 系列（e.g. U5, U7, U9）

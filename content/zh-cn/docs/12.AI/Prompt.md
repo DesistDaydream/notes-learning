@@ -47,7 +47,7 @@ Prompt 解决方案
 
 很多模型把这些标准作为数据集进行训练，这样不用其他信息，只需要传输标准化的内容即可让模型返回格式化的信息
 
-最后，Tool calling 被模型作为内部的基本工作，加入到训练中，调用模型时，可以直接使用 tool 角色调用，参考 [Transformer inference](docs/12.AI/Machine%20learning/Transformer/Transformer%20inference.md) 中相关笔记。
+最后，Tool calling 被模型作为内部的基本工作，加入到训练中，调用模型时，可以直接使用 tool 角色调用，参考 [Transformer inference](/docs/12.AI/Machine%20learning/Transformer/Transformer%20inference.md) 中相关笔记。
 
 # RAG
 

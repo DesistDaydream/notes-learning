@@ -22,6 +22,10 @@ weight: 1
 - Hz
 - FLOPS
 
+# 学习资料
+
+[超能网](https://www.expreview.com/) # CPU、显卡、电源 天梯图。科技热点，计算机硬件。
+
 # 计算机工作的原理
 
 > 参考：
@@ -212,9 +216,3 @@ CPU 表达机制就通过指令集来实现的。
 一个小小的开关竟然能构造出功能强大的 CPU ，这背后理论和制造工艺的突破是人类史上的里程碑时刻，说 CPU 是智慧的结晶简直再正确不过。
 
 本文从一枚开关开始讲解了 CPU 构造的基本原理，希望这篇对大家理解 CPU 有所帮助。
-
-# 参考资料
-
-1. [**程序员应如何理解 CPU？**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247483850&idx=1&sn=b90a78604fa174f0e7314227a3002bdc&chksm=fcb98694cbce0f82024467c835c6e3b4984773b1a2f6c1625d573066c36b14420d996819bed7&scene=21#wechat_redirect)
-2. [**CPU 空闲时在干嘛？**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247485379&idx=1&sn=77ccd2258f0280dfb536ad3d389cd43a&chksm=fcb9809dcbce098b6f89dc59e71cf7fb6af6e5152e40f2f84f7c33ba9ea62e5bc8390ffd0553&scene=21#wechat_redirect)
-3. [**CPU 与进程、线程、操作系统**](http://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247484768&idx=1&sn=049db350af9e5eea5cf3523ceb83f447&chksm=fcb9823ecbce0b28ca28d021e68c78138cde4a1b86ea7209c0c667d3d544d223d8b2aecbccec&scene=21#wechat_redirect)
