@@ -154,6 +154,8 @@ nothingislost/obsidian-bartender 不维护之后其他开发者的 fork
 
 https://github.com/Kh4f/manual-sorting 2025-02-10 开始的一个积极维护的手动排序插件
 
+- 改成了 https://github.com/kh4f/flexplorer
+
 ## Templater
 
 - https://github.com/SilentVoid13/Templater

@@ -5189,6 +5189,7 @@
     },
     "Excalidraw": {
       "children": [
+        "Excalidraw/Libraries",
         "Excalidraw/demo.excalidraw.md",
         "Excalidraw/encoding_and_decoding",
         "Excalidraw/cloud_native",
@@ -5246,6 +5247,16 @@
       ],
       "sortOrder": "custom"
     },
+    "Excalidraw/Libraries": {
+      "children": [
+        "Excalidraw/Libraries/bubbles.excalidrawlib",
+        "Excalidraw/Libraries/deep-learning.excalidrawlib",
+        "Excalidraw/Libraries/it-icons.excalidrawlib",
+        "Excalidraw/Libraries/local-library.excalidrawlib",
+        "Excalidraw/Libraries/Software_Logos.excalidrawlib"
+      ],
+      "sortOrder": "custom"
+    },
     "Excalidraw/Protocol": {
       "children": [
         "Excalidraw/Protocol/ip-datagram.excalidraw.md",
@@ -5255,6 +5266,7 @@
     },
     "files": {
       "children": [
+        "files/migrate_flexplorer.py",
         "files/test.md"
       ],
       "sortOrder": "custom"

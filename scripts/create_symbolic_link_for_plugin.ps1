@@ -61,7 +61,7 @@ $learningPlugins = "$baseDir\notes-learning\content\zh-cn\.obsidian\plugins"
 
 # 需要同步的插件
 $plugins = @(
-    "manual-sorting",
+    "flexplorer",
     "templater-obsidian",
     "editing-toolbar"
 )
