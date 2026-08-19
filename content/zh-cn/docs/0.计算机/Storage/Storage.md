@@ -1,5 +1,5 @@
 ---
-title: Disk
+title: Storage
 weight: 1
 ---
 
@@ -7,6 +7,14 @@ weight: 1
 
 > 参考：
 >
+> - [Wiki, Non volatile memory](https://en.wikipedia.org/wiki/Non-volatile_memory)
+
+Storage drive(存储驱动器，也称为 硬盘) 是一种 Non-volatile memory/Non-volatile storage(非易失性存储)，这是一种即使断电也能保留存储信息的 [Memory](/docs/0.计算机/Memory/Memory.md)。
+
+在现代计算机中，通常使用如下两种硬件作为存储：
+
+- **Hard disk drive(机械硬盘，简称 HDD)**
+- **Solid state drive(固态硬盘，简称 SSD)**
 
 # 学习资料
 

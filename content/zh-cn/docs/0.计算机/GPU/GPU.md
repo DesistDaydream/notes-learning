@@ -28,6 +28,8 @@ weight: 1
 
 其中 TimeSpy 天梯图，有显卡跑分排名
 
+[B 站 - 硬件茶谈，【硬核科普】GeForce Experience里那些被你忽略的强大功能](https://www.bilibili.com/video/BV1DG4y1i7Lu)
+
 # 显卡常见配置
 
 ## 垂直同步

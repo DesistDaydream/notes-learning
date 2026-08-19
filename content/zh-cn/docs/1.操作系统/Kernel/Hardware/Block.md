@@ -9,7 +9,7 @@ weight: 20
 >
 > -
 
-内核管理的 **Block(块)** 设备指的是 [Disk](/docs/0.计算机/Disk/Disk.md), etc. 硬件设备。
+内核管理的 **Block(块)** 设备指的是 [Storage](/docs/0.计算机/Storage/Storage.md), etc. 硬件设备。
 
 Block 设备包含的信息常见于如下几处
 

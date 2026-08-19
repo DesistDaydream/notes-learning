@@ -1,4 +1,4 @@
 ---
-title: "Disk"
+title: Storage
 weight: 5
 ---

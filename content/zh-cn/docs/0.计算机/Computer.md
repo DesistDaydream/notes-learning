@@ -8,14 +8,20 @@ weight: 1
 > 参考：
 >
 > - [Wiki, Computer](https://en.wikipedia.org/wiki/Computer)
+> - [Wiki, Computer data storage](https://en.wikipedia.org/wiki/Computer_data_storage)
 
 冯·诺依曼
 
-[CPU](/docs/1.操作系统/Kernel/CPU/CPU.md)
+组成计算机的组件
 
-[Memory](/docs/0.计算机/Memory/Memory.md)
+- [Power supply](/docs/0.计算机/Power%20supply.md)
+- [Motherboard](/docs/0.计算机/Motherboard/Motherboard.md)
+- [CPU](/docs/0.计算机/CPU/CPU.md)
+- [Memory](/docs/0.计算机/Memory/Memory.md) # Volatile memory(易失性存储器)。很多时候可以称为 内存、etc.
+- [Storage](/docs/0.计算机/Storage/Storage.md) # Non-volatile memory(非易失性存储器)。很多时候可以称为 外存、硬盘、etc.
+- etc.
 
-[Disk](/docs/0.计算机/Disk/Disk.md)
+计算机数据存储是指利用计算机组件和记录介质等技术手段来保存数字数据。数字数据存储是计算机的核心功能和基本组成部分。通常，速度较快且易失的存储组件被称为 [Memory](docs/0.计算机/Memory/Memory.md)，而速度较慢且持久的组件被称为 [Storage](docs/0.计算机/Storage/Storage.md)。冯·诺依曼架构进一步扩展了这种区分，其中 CPU 由两个主要部分组成：控制单元和算术逻辑单元(ALU)。前者控制 CPU 和 Memory 之间的数据流，后者对数据执行算术和逻辑运算。实际上，几乎所有计算机都使用内存层次结构，将 Memory 放置在靠近 CPU 的位置，而将 Storage 放置在较远的位置。
 
 常见计量单位
 
@@ -25,6 +31,30 @@ weight: 1
 # 学习资料
 
 [超能网](https://www.expreview.com/) # CPU、显卡、电源 天梯图。科技热点，计算机硬件。
+
+# 机箱
+
+> 参考：
+>
+> - [Wiki, Computer case](https://en.wikipedia.org/wiki/Computer_case)
+> - [知乎，组装电脑哪个机箱好看？如何选择电脑机箱？2026年机箱推荐及分析。](https://zhuanlan.zhihu.com/p/255070593)
+
+**Computer case/chassis(计算机机箱)** 是容纳电脑的绝大部分硬件的容器。机箱内部的组件（e.g. Motherboard, CPU, Memory, Disk, Power suppply, etc.）称为*内部硬件*；机箱外部的硬件（e.g. 线缆或即插即用的设备（显示器、音响、键盘、鼠标、etc.））称为*外部硬件*，通常也称为 [Peripheral](/docs/0.计算机/Peripheral/Peripheral.md)。
+
+通常，机箱是全封闭式的，四周有一些孔洞用于 [Computer cooling](/docs/0.计算机/Computer%20cooling.md)(计算机散热)
+
+**机箱的尺寸**
+
+> [!Attention] 机箱的选择要依据 [Motherboard](/docs/0.计算机/Motherboard/Motherboard.md#外形规格) 的外形规格以及 [显卡](/docs/0.计算机/GPU/GPU.md) 的长度。
+> 太小的机箱无法摆下 ATX 规格的主板，太短的机箱也无法让很长的显卡能查下
+
+一般情况下，机箱长 400mm 能满足绝大部分场景（一般双风扇显卡长 230mm，三风扇显卡长 300mm）。有些超长的显卡（e.g. 410mm），至少要保证机箱长度到 450mm 才行。
+
+满足了基本的显卡长度之后，通常也能满足绝大部分主板规格了。
+
+---
+
+品牌：先马、联力（TODO: 不分先后，待总结）
 
 # 计算机工作的原理
 

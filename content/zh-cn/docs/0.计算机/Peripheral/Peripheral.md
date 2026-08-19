@@ -54,9 +54,10 @@ weight: 1
 
 # 手柄
 
-[B 站 - Redknot-乔红，用最好的动画为你讲解--游戏摇杆的原理](https://www.bilibili.com/video/BV1Le2ABSEHz)
-
-[B 站 - Redknot-乔红，用最好的动画为你讲解--手柄扳机的原理](https://www.bilibili.com/video/BV1rSAnznEoA?spm_id_from=333.1245.0.0)
+> 参考：
+>
+> - [B 站 - Redknot-乔红，用最好的动画为你讲解--游戏摇杆的原理](https://www.bilibili.com/video/BV1Le2ABSEHz)
+> - [B 站 - Redknot-乔红，用最好的动画为你讲解--手柄扳机的原理](https://www.bilibili.com/video/BV1rSAnznEoA?spm_id_from=333.1245.0.0)
 
 ## 🎮 游戏摇杆的原理 - 来自 Claude 总结的视频字幕
 
@@ -173,7 +174,3 @@ SKN 是 Keychron 旗下的子品牌。
 **VGN**
 
 网页驱动配置: https://hub.vgnlab.com.cn
-
-# 攀升兄弟，名龙堂，宁美国度，京天华盛这四个哪个的主机好一些，自己不会组装，懒得组装，买个便宜的玩玩？
-
-原文: https://www.zhihu.com/question/435429789

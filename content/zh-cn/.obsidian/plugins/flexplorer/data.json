@@ -209,18 +209,20 @@
       "customOrder": [
         "_index.md",
         "Computer.md",
+        "Power supply.md",
         "Motherboard",
         "CPU",
         "Memory",
-        "Disk",
+        "Storage",
         "Peripheral",
         "GPU",
         "NPU.md",
-        "计算机厂家.md",
         "小型机器.md",
+        "Computer cooling.md",
+        "计算机厂家.md",
         "Rack.md",
-        "I_O.md",
-        "其他.md"
+        "PCB.md",
+        "I_O.md"
       ]
     },
     "docs/0.计算机/_index.md": {
@@ -251,10 +253,6 @@
       "isPinned": false,
       "isHidden": false
     },
-    "docs/0.计算机/其他.md": {
-      "isPinned": false,
-      "isHidden": false
-    },
     "docs/0.计算机/CPU": {
       "isPinned": false,
       "isHidden": false,
@@ -279,33 +277,6 @@
       "isHidden": false
     },
     "docs/0.计算机/CPU/精简指令集.md": {
-      "isPinned": false,
-      "isHidden": false
-    },
-    "docs/0.计算机/Disk": {
-      "isPinned": false,
-      "isHidden": false,
-      "sortOrder": "custom",
-      "customOrder": [
-        "_index.md",
-        "Disk.md",
-        "Raid.md",
-        "关于外存你需要了解的.md"
-      ]
-    },
-    "docs/0.计算机/Disk/_index.md": {
-      "isPinned": false,
-      "isHidden": false
-    },
-    "docs/0.计算机/Disk/Disk.md": {
-      "isPinned": false,
-      "isHidden": false
-    },
-    "docs/0.计算机/Disk/Raid.md": {
-      "isPinned": false,
-      "isHidden": false
-    },
-    "docs/0.计算机/Disk/关于外存你需要了解的.md": {
       "isPinned": false,
       "isHidden": false
     },
@@ -14898,6 +14869,7 @@
       "isHidden": false,
       "sortOrder": "custom",
       "customOrder": [
+        "vmware-architecture-design.excalidrawlib",
         "bubbles.excalidrawlib",
         "deep-learning.excalidrawlib",
         "it-icons.excalidrawlib",
@@ -14973,6 +14945,49 @@
       "isHidden": false
     },
     "obsidian_template/index_templater.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/0.计算机/PCB.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/0.计算机/Computer cooling.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/0.计算机/Power supply.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/0.计算机/Storage": {
+      "isPinned": false,
+      "isHidden": false,
+      "sortOrder": "custom",
+      "customOrder": [
+        "_index.md",
+        "Storage.md",
+        "Raid.md",
+        "关于外存你需要了解的.md"
+      ]
+    },
+    "docs/0.计算机/Storage/Raid.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/0.计算机/Storage/关于外存你需要了解的.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/0.计算机/Storage/_index.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/0.计算机/Storage/Storage.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "Excalidraw/Libraries/vmware-architecture-design.excalidrawlib": {
       "isPinned": false,
       "isHidden": false
     }

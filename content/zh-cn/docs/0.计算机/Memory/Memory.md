@@ -8,8 +8,9 @@ weight: 20
 > 参考：
 >
 > - [Wiki, Computer memory](https://en.wikipedia.org/wiki/Computer_memory)
+> - [Wiki, Volatile memory](https://en.wikipedia.org/wiki/Volatile_memory)
 
-**Random Access Memory(随机存取存储器，简称 RAM，也叫主存)，平时大家都叫 Memory(内存)**。
+**Random Access Memory(随机存取存储器，简称 RAM，也叫主存)，平时大家都叫 Memory(内存)**，是一种 Volatile memory(易失性存储)。
 
 RAM 是一种形式的计算机存储器可被读取和以任何顺序发生变化，通常用于存储工作数据和机器代码。甲随机存取存储器设备允许数据项被读出或写入在几乎相同的时间量，而不管存储器内数据的物理位置的。相反，对于其他直接访问数据存储介质，例如硬盘，CD-RW，DVD-RW和较旧的磁带和磁鼓存储器一样，由于机械限制（例如介质旋转速度和机械臂移动），读写数据项所需的时间根据其在记录介质上的物理位置而有很大不同。
 
@@ -19,7 +20,14 @@ RAM包含多路复用和多路分解电路，用于将数据线连接到寻址�
 
 易失性随机存取半导体存储器的两种主要类型是静态随机存取存储器（SRAM）和动态随机存取存储器（DRAM）。半导体RAM的商业用途可以追溯到1965年，当时IBM为他们的System / 360 Model 95计算机引入了SP95 SRAM芯片，而东芝则为其Toscal BC-1411电子计算器使用了DRAM存储单元，两者均基于双极晶体管。基于MOS晶体管的商用MOS存储器是在1960年代后期开发的，此后一直是所有商用半导体存储器的基础。1970年10月推出了第一款商用DRAM IC芯片Intel 1103。同步动态随机存取存储器（SDRAM）随后于1992年与三星KM48SL2000芯片一起首次亮相。
 
-# Error-Correcting Code memory
+# ECC memory
+
+> 参考：
+>
+> - [Wiki, ECC memory](https://en.wikipedia.org/wiki/ECC_memory)
+> - [B 站 - 硬件茶谈，【硬核科普】ECC内存是如何发现错误并纠正的？](https://www.bilibili.com/video/BV1GF411V7sC)
+
+**Error correction code memory (纠错码存储器，简称 ECC memory)** 是一种使用 ECC 机制来检测和纠正内存中发生的 bit 数据损坏。
 
 # Rank, 位宽, 颗粒
 
