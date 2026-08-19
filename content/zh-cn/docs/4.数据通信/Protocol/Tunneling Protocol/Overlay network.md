@@ -23,7 +23,7 @@ Overlay 技术的实现就是 VXLAN，关于 VXLAN 的介绍，可以参考 [Fla
 >
 > - 原文链接：<https://mp.weixin.qq.com/s/a1omUj17yNVUuymh6DYpRQ>
 
-对计算机网络或者 Kubernetes 网络稍有了解的工程师都应该听说过延展网络（Overlay Network），Overlay 网络其实并不是一门新技术，它是指构建在另一个网络上的计算机网络\[^1]，这是一种网络虚拟化技术的形式，近年来云计算虚拟化技术的演进促进了网络虚拟化技术的应用。
+对计算机网络或者 Kubernetes 网络稍有了解的工程师都应该听说过延展网络（Overlay Network），Overlay 网络其实并不是一门新技术，它是指构建在另一个网络上的计算机网络，这是一种网络虚拟化技术的形式，近年来云计算虚拟化技术的演进促进了网络虚拟化技术的应用。
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/lcrm4c/1624243869971-71eafc04-3ced-425e-9226-32b69b133817.webp)
 

@@ -209,7 +209,6 @@
       "customOrder": [
         "_index.md",
         "Computer.md",
-        "I_O.md",
         "Motherboard",
         "CPU",
         "Memory",
@@ -220,6 +219,7 @@
         "计算机厂家.md",
         "小型机器.md",
         "Rack.md",
+        "I_O.md",
         "其他.md"
       ]
     },

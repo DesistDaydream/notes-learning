@@ -7,7 +7,8 @@ function Create-SymbolicLinks {
         [Parameter(Mandatory=$true)]
         [string]$TargetDir,  # A 目录（创建链接的目录）
 
-        [string]$Filter = "*"  # 文件过滤器，默认所有文件
+        [string]$Filter = "*",  # 文件过滤器，默认所有文件
+        [string[]]$Exclude = @()  # 需要跳过的文件名/通配符
     )
 
     # 检查源目录是否存在
@@ -23,7 +24,8 @@ function Create-SymbolicLinks {
     }
 
     # 获取源目录中的文件
-    $files = Get-ChildItem -Path $SourceDir -Filter $Filter -File
+    $searchPath = Join-Path $SourceDir $Filter
+    $files = Get-ChildItem -Path $searchPath -Exclude $Exclude -File
 
     if ($files.Count -eq 0) {
         Write-Warning "未找到匹配的文件"
@@ -61,9 +63,11 @@ $learningPlugins = "$baseDir\notes-learning\content\zh-cn\.obsidian\plugins"
 
 # 需要同步的插件
 $plugins = @(
+    "editing-toolbar",
     "flexplorer",
-    "templater-obsidian",
-    "editing-toolbar"
+    "obsidian-image-auto-upload-plugin",
+    "obsidian-image-toolkit",
+    "templater-obsidian"
 )
 
 # 要将插件文件同步过去的目标项目
@@ -90,6 +94,6 @@ foreach ($plugin in $plugins) {
         Write-Host "目标: $project" -ForegroundColor Green
         Write-Host "========================================" -ForegroundColor Cyan
 
-        Create-SymbolicLinks -SourceDir $sourceDir -TargetDir $targetDir
+        Create-SymbolicLinks -SourceDir $sourceDir -TargetDir $targetDir -Exclude "data.json"
     }
 }
