@@ -222,6 +222,7 @@
         "计算机厂家.md",
         "Rack.md",
         "PCB.md",
+        "AC_DC.md",
         "I_O.md"
       ]
     },
@@ -4965,7 +4966,6 @@
         "SCM.md",
         "Git",
         "GitHub",
-        "GitHub 上的 PR 全过程.md",
         "GitLab",
         "定时同步 GitHub 的代码仓库到 Gitee.md"
       ]
@@ -4975,10 +4975,6 @@
       "isHidden": false
     },
     "docs/2.编程/Programming tools/SCM/SCM.md": {
-      "isPinned": false,
-      "isHidden": false
-    },
-    "docs/2.编程/Programming tools/SCM/GitHub 上的 PR 全过程.md": {
       "isPinned": false,
       "isHidden": false
     },
@@ -5032,7 +5028,8 @@
         "GitHub.md",
         "GitHub Actions",
         "GitHub 管理.md",
-        "GitHub 搜索.md"
+        "GitHub 搜索.md",
+        "GitHub 上的 PR 全过程.md"
       ]
     },
     "docs/2.编程/Programming tools/SCM/GitHub/_index.md": {
@@ -14988,6 +14985,14 @@
       "isHidden": false
     },
     "Excalidraw/Libraries/vmware-architecture-design.excalidrawlib": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/2.编程/Programming tools/SCM/GitHub/GitHub 上的 PR 全过程.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/0.计算机/AC_DC.md": {
       "isPinned": false,
       "isHidden": false
     }

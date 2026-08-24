@@ -3,13 +3,11 @@ title: GitHub 上的 PR 全过程
 weight: 20
 ---
 
-##
-
 # 概述
 
 > 参考：
 >
-> - [原文链接](https://mp.weixin.qq.com/s/8tKpPqFeZOEE4ldEWptMZg)
+> - 原文：[公众号，如何参与开源项目 - 细说 GitHub 上的 PR 全过程](https://mp.weixin.qq.com/s/8tKpPqFeZOEE4ldEWptMZg)
 
 **今天我准备和你详细介绍如何开始参与开源项目，帮助你在 GitHub 上完成第一个 PR 的合入**。
 
