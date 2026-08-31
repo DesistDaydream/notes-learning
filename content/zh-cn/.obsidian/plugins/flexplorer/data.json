@@ -6553,7 +6553,8 @@
         "数据库管理工具.md",
         "Percona",
         "Rsync.md",
-        "Rclone"
+        "Rclone",
+        "Syncthing.md"
       ]
     },
     "docs/5.数据存储/数据管理工具/_index.md": {
@@ -14993,6 +14994,10 @@
       "isHidden": false
     },
     "docs/0.计算机/AC_DC.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/5.数据存储/数据管理工具/Syncthing.md": {
       "isPinned": false,
       "isHidden": false
     }

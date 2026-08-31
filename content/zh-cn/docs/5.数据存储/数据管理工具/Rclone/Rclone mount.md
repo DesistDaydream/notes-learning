@@ -78,9 +78,9 @@ notes: 对于在 Windows 和 Linux 中的 rclone mount，上述缓存模式的�
 
 # 最佳实践
 
-挂载 alist webdav 到本地磁盘
+挂载 openlist webdav 到本地磁盘
 
-- `rclone mount alist-net:/ Z: --cache-dir D:\appdata\rclone-cache --vfs-cache-mode writes --vfs-cache-max-age 30d --vfs-cache-max-size 100G --vfs-cache-poll-interval 10m --no-modtime --header Referer: -v`
+- `rclone mount openlist-net:/ Z: --cache-dir D:\appdata\rclone-cache --vfs-cache-mode writes --vfs-cache-max-age 30d --vfs-cache-max-size 100G --vfs-cache-poll-interval 10m --no-modtime --header Referer: -v`
     - 让**文件夹视图**变为**小图标**可以避免打开文件夹时缓存全部文件，尤其是对于存图片的文件夹来说，可以极大得提高打开速度
     - 看视频的话，应该不用把视频缓存下来~ writes 模式就够了
 

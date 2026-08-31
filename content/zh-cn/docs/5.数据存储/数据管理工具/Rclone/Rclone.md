@@ -14,7 +14,7 @@ weight: 1
 
 Rclone 将存储提供者抽象为 **Remote**，在我们配置 Rclone 时，经常会看到 Remote 这个词，创建、删除 Remote 这种行为，就是在 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的配置文件中配置 Remote。这些 Remote 由指定类型的 **Backend** 提供支持。
 
-> 比如，我们可以这样描述: 我创建了一个名为 alist 的 Remote，使用的是 WebDav 类型的 Backend。
+> 比如，我们可以这样描述: 我创建了一个名为 openlist 的 Remote，使用的是 WebDav 类型的 Backend。
 
 Rclone 还可以将这些 Remote 作为磁盘挂载在 Windows、macOS、Linux 上，并通过 SFTP、HTTP、WebDAV、FTP、DLNA 对外提供存储能力。
 
@@ -26,12 +26,12 @@ rclone 的挂载使用 FUSE，需要安装 winfsp。
 
 **rclone.conf** # 各种 Remotes 信息。
 
-- 如果在某些已定义的位置都没有找到 rclone.conf 文件，则会在以下位置创建一个新的配置文件：
-    - Windows 上
-        - 在 **$APPDATA/rclone/rclone.conf**
-    - 类 Unix 上
-        - 如果定义了 `$XDG_CONFIG_HOME`，则在 **$XDG_CONFIG_HOME/rclone/rclone.conf**
-        - 如果未定义 `$XDG_CONFIG_HOME`，则在 **~/.config/rclone/rclone.conf**
+> [!Note] rclone.conf 文件在不同操作系统上的默认路径：
+> - [Microsoft OS](/docs/1.操作系统/Operating%20system/Microsoft%20OS/Microsoft%20OS.md)
+>     - **%APPDATA%/rclone/rclone.conf**
+> - [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md)
+>     - 如果定义了 `$XDG_CONFIG_HOME`，则在 **$XDG_CONFIG_HOME/rclone/rclone.conf**
+>     - 如果未定义 `$XDG_CONFIG_HOME`，则在 **~/.config/rclone/rclone.conf**
 
 # Syntax(语法)
 
@@ -86,7 +86,9 @@ copyto 可以在上传单个文件到目标目录下时，改变文件的原名�
 
 https://rclone.org/commands/rclone_sync/
 
-<font color="#ff0000">注意：sync 命令会导致**目标数据丢失**</font>，最好使用 --dry-run 或 -i, --interactive 标志进行测试
+> [!Attention] sync 命令会导致**目标数据丢失**
+>
+> 最好使用 --dry-run 或 -i, --interactive 标志进行测试
 
 ## Syntax(语法)
 
@@ -122,9 +124,9 @@ lsjson
 
 **rclone sync** 命令会在源和目标之间同步文件。 它会删除目标目录中源目录没有的文件，并且会更新目标目录中的文件。 **rclone copy** 命令只会在源和目标之间复制文件。 它不会删除目标目录中的文件，也不会更新文件。
 
-同步两个云盘中的数据（待验证，alist 好像有点问题）
+同步两个云盘中的数据（待验证，openlist 好像有点问题）
 
-- `nohup rclone sync alist-local:/aliyun alist-local:/baiduyun -vv >> /root/rclone.log 2>&1 &`
+- `nohup rclone sync openlist-local:/aliyun openlist-local:/baiduyun -vv >> /root/rclone.log 2>&1 &`
 
 rclone sync
 
@@ -137,16 +139,16 @@ rclone sync
 使用 Alist 的 阿里云网盘时，注意添加 `--header`，参考 [alist discussions 630](https://github.com/alist-org/alist/discussions/630)
 
 ```
-rclone mount --config rclone.conf alist:/ Z: --cache-dir D:\appdata\rclone --vfs-cache-mode full --header "Referer:"
+rclone mount --config rclone.conf openlist:/ Z: --cache-dir D:\appdata\rclone --vfs-cache-mode full --header "Referer:"
 ```
 
 可以参考 PowerShell 的 [Management](/docs/1.操作系统/Windows%20管理/Windows%20管理工具/PowerShell%20内置管理工具/Management.md) 模块下的 Start-Process 命令的，以便在后台运行，效果如下：
 
 ```powershell
-Start-Process "alist.exe" -ArgumentList "server --data D:\appdata\alist" -WindowStyle Hidden -RedirectStandardOutput "D:\Tools\Scripts\log\alist.log" -RedirectStandardError "D:\Tools\Scripts\log\alist-err.log"
+Start-Process "openlist.exe" -ArgumentList "server --data D:\appdata\openlist" -WindowStyle Hidden -RedirectStandardOutput "D:\Tools\Scripts\log\openlist.log" -RedirectStandardError "D:\Tools\Scripts\log\openlist-err.log"
 
 Start-Process "rclone.exe" `
--ArgumentList "mount alist-net:/ Z: --cache-dir D:\appdata\rclone-cache --vfs-cache-mode full --vfs-cache-max-age 24h --header Referer:" `
+-ArgumentList "mount openlist-net:/ Z: --cache-dir D:\appdata\rclone-cache --vfs-cache-mode full --vfs-cache-max-age 24h --header Referer:" `
 -WindowStyle Hidden `
 -RedirectStandardOutput "D:\Tools\Scripts\log\rclone.log" -RedirectStandardError "D:\Tools\Scripts\log\rclone-err.log"
 ```
