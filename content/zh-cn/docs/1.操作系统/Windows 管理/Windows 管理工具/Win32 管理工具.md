@@ -1,15 +1,38 @@
 ---
-title: "其他"
-weight: 20
+title: "Win32 管理工具"
+created: "2026-09-04T15:01"
+weight: 100
 ---
 
 # 概述
+
+> 参考：
+>
+> -
 
 # MSConfig
 
 **Microsoft System Configuration(系统配置，简称 msconfig)** 程序可以配置 Windows 的引导方式和启动方式、管理服务、自启动程序、打开一些实用的工具。
 
 自 Windows 10 版本 21H1 以及 Windows Server 21H1 半年频道版本起，WMIC 实用程序已弃用。该实用程序已被 Windows PowerShell for WMI 取代（请参阅第 7 章 — 使用 WMI）。此弃用仅适用于 WMI 命令行 (WMIC) 实用程序； Windows Management Instrumentation (WMI) 本身不受影响。另请参阅我们不再开发的 Windows 10 功能。
+
+# 网络
+
+## netsh
+
+> 参考：
+>
+> - [官方文档](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netsh)
+
+### Example
+
+```bash
+netsh interface portproxy add v4tov4 listenport=1070 listenaddress=0.0.0.0 connectport=70 connectaddress=10.241.105.201
+```
+
+该命令会在注册表中添加 `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PortProxy\v4tov4\tcp\0.0.0.0/20022` 条目
+
+使用 `netsh interface portproxy show all` 命令也可以查看
 
 # 链接文件管理
 
@@ -27,7 +50,7 @@ weight: 20
 
 为 target 创建一个名为 link 的链接文件。即 link 是要创建的新文件
 
-### EXAMPLE
+### Example
 
 - 创建链接
     - mklink /D C:/Users/DesistDaydream/AppData/Roaming/yuzu E:/emulator/user
@@ -55,7 +78,7 @@ OPTIONS
 - **/devicedisablewake \<DeviceName>** # 指定设备禁用唤醒系统功能
 - **/lastwake** # 查看系统最后一次被唤醒的信息
 
-### EXAMPLE
+### Example
 
 - 查找可以唤醒电脑的设备
     - powercfg /devicequery wake_armed

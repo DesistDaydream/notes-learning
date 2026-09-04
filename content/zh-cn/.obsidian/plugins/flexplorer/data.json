@@ -3006,8 +3006,8 @@
       "customOrder": [
         "_index.md",
         "Windows 管理工具.md",
-        "PowerShell 内置管理工具",
-        "其他.md"
+        "Win32 管理工具.md",
+        "PowerShell 内置管理工具"
       ]
     },
     "docs/1.操作系统/Windows 管理/Windows 管理工具/_index.md": {
@@ -3015,10 +3015,6 @@
       "isHidden": false
     },
     "docs/1.操作系统/Windows 管理/Windows 管理工具/Windows 管理工具.md": {
-      "isPinned": false,
-      "isHidden": false
-    },
-    "docs/1.操作系统/Windows 管理/Windows 管理工具/其他.md": {
       "isPinned": false,
       "isHidden": false
     },
@@ -14998,6 +14994,10 @@
       "isHidden": false
     },
     "docs/5.数据存储/数据管理工具/Syncthing.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/1.操作系统/Windows 管理/Windows 管理工具/Win32 管理工具.md": {
       "isPinned": false,
       "isHidden": false
     }
