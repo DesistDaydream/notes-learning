@@ -24,6 +24,12 @@ weight: 1
     - https://www.reddit.com/r/Windows10/comments/5s1m2w/comment/difegn3/?utm_source=share&utm_medium=web2x&context=3
 - 在 https://support.logi.com/hc/en-us/articles/360025141274 安装 SetPoint 即可让驱动正常。
 
+## 微动
+
+常见微动品牌
+
+- **Omron(欧姆龙)**
+
 # 键盘
 
 [B 站 - 硬件茶谈，【硬核科普】一个视频了解磁轴，静电容，机械轴，光轴键盘的原理](https://www.bilibili.com/video/BV1y2m6YSEfK)

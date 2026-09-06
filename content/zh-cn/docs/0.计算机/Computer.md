@@ -14,7 +14,7 @@ weight: 1
 
 组成计算机的组件
 
-- [Power supply](/docs/0.计算机/Power%20supply.md)
+- [Power supply unit](/docs/0.计算机/Power%20supply%20unit.md)
 - [Motherboard](/docs/0.计算机/Motherboard/Motherboard.md)
 - [CPU](/docs/0.计算机/CPU/CPU.md)
 - [Memory](/docs/0.计算机/Memory/Memory.md) # Volatile memory(易失性存储器)。很多时候可以称为 内存、etc.

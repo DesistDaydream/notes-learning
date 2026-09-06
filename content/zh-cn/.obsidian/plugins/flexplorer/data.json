@@ -209,7 +209,7 @@
       "customOrder": [
         "_index.md",
         "Computer.md",
-        "Power supply.md",
+        "Power supply unit.md",
         "Motherboard",
         "CPU",
         "Memory",
@@ -223,6 +223,7 @@
         "Rack.md",
         "PCB.md",
         "AC_DC.md",
+        "Power supply.md",
         "I_O.md"
       ]
     },
@@ -14913,13 +14914,8 @@
       "isHidden": false,
       "sortOrder": "custom",
       "customOrder": [
-        "migrate_flexplorer.py",
         "test.md"
       ]
-    },
-    "files/migrate_flexplorer.py": {
-      "isPinned": false,
-      "isHidden": false
     },
     "files/test.md": {
       "isPinned": false,
@@ -14998,6 +14994,10 @@
       "isHidden": false
     },
     "docs/1.操作系统/Windows 管理/Windows 管理工具/Win32 管理工具.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/0.计算机/Power supply unit.md": {
       "isPinned": false,
       "isHidden": false
     }
