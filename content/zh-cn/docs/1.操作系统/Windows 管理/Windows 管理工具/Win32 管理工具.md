@@ -26,7 +26,9 @@ weight: 100
 
 ### Example
 
-```bash
+本地监听 1070 端口，让 1070 端口映射到 10.241.105.201 的 70 端口：
+
+```powershell
 netsh interface portproxy add v4tov4 listenport=1070 listenaddress=0.0.0.0 connectport=70 connectaddress=10.241.105.201
 ```
 

@@ -18,3 +18,5 @@
 /public/
 
 /node_modules/
+
+scripts/migrate_flexplorer.py
