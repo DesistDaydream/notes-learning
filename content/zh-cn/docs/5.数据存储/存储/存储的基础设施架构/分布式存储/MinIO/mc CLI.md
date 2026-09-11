@@ -191,6 +191,12 @@ EXAMPLE
 /usr/bin/mc -C /root/.mc/ ls --recursive minio/
 ```
 
+**搜索 minio 端点中，所有桶内的对象，找到与 --regex 设定的值相匹配的对象**
+
+```bash
+/usr/bin/mc -C /root/.mc/ find minio/ --regex "${PATTERN}"
+```
+
 **显示 minio 端点下 2 级目录下的所有对象的统计信息（对象占用空间 及 对象数）**
 
 ```bash

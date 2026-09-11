@@ -8,6 +8,9 @@ weight: 20
 > 参考：
 >
 > - [Wiki, Cache(computing)](https://en.wikipedia.org/wiki/Cache_(computing))
+>
+> [^1]: 操作系统导论 - 19.2
+> [^2]: “Computer Architecture: A Quantitative Approach” John Hennessy and David Patterson - Morgan-Kaufmann, 2006
 
 **Cache(缓存)** 在 [Computer](/docs/0.计算机/Computer.md)(计算机) 中，是指一种用于存储数据的软件或硬件，以便可以更快的满足未来对该数据的请求；存储在缓存中的数据可能是早期计算的结果或存储在其他地方的数据的副本。作为缓存的组件的最低要求就是速度够快，避免对存储原始数据的组件产生过大压力。
 
@@ -16,9 +19,6 @@ weight: 20
 硬件缓存，无论是指令、数据还是地址转换（如 TLB），都利用了局部性，在小而快的芯片内存储器中保存一份内存副本。处理器可以先检查缓存中是否存在就近的副本，而不是必须访问（缓慢的）内存来满足请求。如果存在，处理器就可以很快地访问它（例如在几个 CPU 时钟内），避免花很多时间来访问内存（好多纳秒）。[^1]
 
 你可能会疑惑：既然像 TLB 这样的缓存这么好，为什么不做更大的缓存，装下所有的数据？可惜的是，这里我们遇到了更基本的定律，就像物理定律那样。如果想要快速地缓存，它就必须小，因为光速和其他物理限制会起作用。大的缓存注定慢，因此无法实现目的。所以，我们只能用小而快的缓存。剩下的问题就是如何利用好缓存来提升性能。[^1]
-
-[^1]: 操作系统导论 - 19.2
-[^2]: “Computer Architecture: A Quantitative Approach” John Hennessy and David Patterson - Morgan-Kaufmann, 2006
 
 # 写入策略
 

@@ -12,7 +12,7 @@ weight: 20
 
 # 两个奇技淫巧，将 Docker 镜像体积减小 99%
 
-https://mp.weixin.qq.com/s/6bgtD0Aer6-3u4u9jWBBhw
+原文: https://mp.weixin.qq.com/s/6bgtD0Aer6-3u4u9jWBBhw
 
 [^1]:Ephemeral Containers: https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/
 

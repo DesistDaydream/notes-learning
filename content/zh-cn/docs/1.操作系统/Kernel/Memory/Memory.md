@@ -13,6 +13,10 @@ weight: 1
 > - [公众号 - 小林coding，真棒！ 20 张图揭开内存管理的迷雾，瞬间豁然开朗](https://mp.weixin.qq.com/s/HJB_ATQFNqG82YBCRr97CA)
 >     - 该文是对《操作系统导论》一书中内存部分的提炼与总结。
 > - [公众号 - 码农的荒岛求生，神秘！申请内存时底层发生了什么？](https://mp.weixin.qq.com/s/0g3sS63yM2qbBja-blw5Dw)(malloc 简介)
+>
+> [^1]:《操作系统导论》 - 13.3
+> [^2]:《操作系统导论》 - 13.2
+
 
 **Linux Memory Management Subsystem(Linux 内存管理子系统)** 负责管理系统中的内存。这包括 **virtual memory(虚拟内存)** 和 **demand paging(请求分页)** 的实现、[Linux Kernel](/docs/1.操作系统/Kernel/Linux%20Kernel/Linux%20Kernel.md)内部结构和用户空间程序的内存分配、将文件映射到进程地址空间、etc.
 
@@ -106,9 +110,6 @@ Linux 中的内存管理是一个经过多年发展的复杂系统，包含越�
 但是现在有个问题，程序使用的虚拟地址和系统管理的物理地址之间是如何关联起来的？
 
 主要依赖 **Address translation(地址转换)** 功能，有时也称为 Hardware-based address translation(基于硬件的地址转换)。地址转换现阶段有两种方式，分别是**内存分段**和**内存分页**，分段是比较早提出的。
-
-[^1]:《操作系统导论》 - 13.3
-[^2]:《操作系统导论》 - 13.2
 
 ## Memory Segmentation(内存分段)
 
