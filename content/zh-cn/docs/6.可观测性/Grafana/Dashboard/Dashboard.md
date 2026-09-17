@@ -8,7 +8,7 @@ weight: 1
 > 参考：
 >
 > - [官方文档，仪表盘](https://grafana.com/docs/grafana/latest/dashboards/)
-> - 借助 [Grafana Play](https://play.grafana.org/d/000000041/)，您可以探索并了解 Grafana 的各种 Panel 工作原理，从实际示例中学习以加速您的开发
+> - 借助 [Grafana Play](https://play.grafana.org/d/000000041/)，我们可以探索并了解 Grafana 的各种 Panel 工作原理，从实际示例中学习以加速您的开发
 >     - https://play.grafana.org/dashboards/f/PGJ1Fr4Zz/demo3a-grafana-features 这是各种 Panel 的 Demo 集合。
 
 **Panel(面板)** 与 **Dashboard(仪表盘)**
@@ -21,9 +21,26 @@ weight: 1
 
 ![time-picker_1](https://notes-learning.oss-cn-beijing.aliyuncs.com/grafana/time-picker_1.png)
 
-# Panels(面板) 的类型
+# Dashboard 分组
+
+> 参考：
+>
+> - [官方文档，仪表盘分组](https://grafana.com/docs/grafana/latest/visualizations/dashboards/build-dashboards/create-dashboard/dashboard-groupings/)
+
+[从 v13.0.0 版本开始，动态 Dashboard 可用](https://grafana.com/whats-new/2026-04-08-dynamic-dashboards-is-now-generally-available/)，我们可以把各种 Panels 分组到 Rows 或 Tabs 中，并且从 v13.1.0 开始，可以在每个 Row 或 Tab 中设置独立的变量。
+
+我们可以将 Dashboard 视为一系列嵌套的 containers(容器)，Dashboard 是最大的容器，Rows 和 Tabs 是小容器，这些容器可以包含 Panels、Rows、Tabs。
+
+在这些容器的互相包含中，还有一些特殊的规则：
+
+- Tabs 不能直接嵌套在 Tabs，可以将 Tabs 嵌套在一个 Tab 的 Row 中
+- etc.
+
+# Panels 的类型
 
 > 其实就是说有多少种 Visualizations
+
+[Panel](docs/6.可观测性/Grafana/Dashboard/Panel/Panel.md)
 
 ### Alert list
 

@@ -133,3 +133,19 @@ FROM my_teble
 ```
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/grafana/mgmt_postgresql_datasource_data_type_without_time_zone.png)
+
+# 重大变化
+
+## v13.0.0
+
+2026-04-08 更新了整个 Dashboard 的布局引擎、编辑体验和结构，以实现动态 Dashboard。
+
+https://grafana.com/whats-new/2026-04-08-dynamic-dashboards-is-now-generally-available/
+
+## v13.1.0
+
+2026-06-11 可以在 Rows 与 Tabls 中添加独立变量
+
+https://grafana.com/whats-new/2026-06-11-section-level-variables-for-rows-and-tabs-now-generally-available/
+
+> [!Question] https://github.com/grafana/grafana/issues/11552 这里提到了让时间范围选择器也作为变量，可以为 panel 独立定义，既然已经可以在 row 和 tab 里添加独立变量了，那时间范围选择器感觉行应该也可以才对。为啥一直没做呢？
