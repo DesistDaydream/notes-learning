@@ -27,8 +27,9 @@ Headscale 由欧洲航天局的 Juan Font 使用 Go 语言开发，在 BSD 许�
 **准备一些环境变量**
 
 ```bash
-export HeadscaleVersion="0.22.3"
+export HeadscaleVersion="0.29.3"
 export HeadscaleArch="amd64"
+export HeadscaleBinaryName="headscale_${HeadscaleVersion}_linux_${HeadscaleArch}"
 # 各个 Tailscale 节点与 Headscale 通信的 IP
 export HeadscaleAddr="https://X.X.X.X:YYY"
 ```
@@ -36,10 +37,11 @@ export HeadscaleAddr="https://X.X.X.X:YYY"
 **准备 Headscale 相关文件及目录**。从 [GitHub 仓库的 Release 页面](https://github.com/juanfont/headscale/releases)下载最新版的二进制文件。
 
 ```bash
-wget --output-document=/usr/local/bin/headscale \
+wget --output-document=/usr/local/bin/headscale-${HeadscaleVersion} \
   https://github.com/juanfont/headscale/releases/download/v${HeadscaleVersion}/headscale_${HeadscaleVersion}_linux_${HeadscaleArch}
 
-chmod +x /usr/local/bin/headscale
+chmod +x /usr/local/bin/headscale-${HeadscaleVersion}
+ln -s /usr/local/bin/${HeadscaleBinaryName} /usr/local/bin/headscale
 ```
 
 创建相关目录及文件
@@ -124,7 +126,7 @@ Headscale 只是实现了 Tailscale 的控制台，想要接入，依然需要�
 在 Tailscale 部署的节点准备环境变量
 
 ```bash
-export TailscaleVersion="1.94.1"
+export TailscaleVersion="1.102.4"
 export TailscaleArch="amd64"
 export HeadscaleAddr="https://X.X.X.X:YYY"
 ```

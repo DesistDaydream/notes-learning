@@ -41,7 +41,9 @@ weight: 20
 
 **-D \<\[Bind_Address]:PORT>** # Dynamic(动态) 转发。启用动态转发的 ssh 程序相当于一个代理服务，通过监听的端口，可以将流量送到指定的目标主机。
 
-**-L \<XXX>** # Local(本地) 转发。发往本地的 TCP 端口 或 Unix Socket 上的流量转发到远端 TCP 端口 或 Unix Socket 上。
+**-L**(XXX) # Local(本地) 转发。发往本地的 TCP 端口 或 Unix Socket 上的流量转发到远端 TCP 端口 或 Unix Socket 上。
+
+> 本地转发 可以将 Remote 服务通过 sshd 程序暴露到 Local 上。e.g. Remote 只开了 22，Local 想要访问 Remote 的其他端口
 
 - XXX 有多种语法格式：
 - **-L \[Bind_Address:]LocalPort:RemoteHost:RemoteHostPort**
@@ -52,7 +54,9 @@ weight: 20
 - Local 表示 A 主机，Remote 表示 C 主机
 - 访问 A Port 就是访问 C Port
 
-**-R \<XXX>** # Remote(远程) 转发。发往指定 `RemotePort` 或 `RemoteSocket` 上的流量转发到 `本地端口` 或 `Unix Socket` 上。远程转发其实更像将 Local 服务通过 ssh 程序以类似 nat 的方式暴露到 Remote 上。
+**-R**(XXX) # Remote(远程) 转发。发往指定 `RemotePort` 或 `RemoteSocket` 上的流量转发到 `本地端口` 或 `Unix Socket` 上。
+
+> 远程转发 可以将 Local 服务通过 sshd 程序暴露到 Remote 上。e.g. Remote 无法访问 Local 的 22（但是 Local 可以访问 Remote），Remote 想要访问 Local 的 22 即可使用远程转发
 
 - XXX 有多种语法格式：
 - **-R \[bind_address:]RemotePort:LocalHost:LocalPort**

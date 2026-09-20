@@ -6165,7 +6165,8 @@
         "tailscale CLI.md",
         "Tailscale How it works.md",
         "Headscale.md",
-        "Headscale MGMT.md"
+        "Headscale MGMT.md",
+        "Tailcat.md"
       ]
     },
     "docs/4.数据通信/Utility/Tailscale/_index.md": {
@@ -14998,6 +14999,10 @@
       "isHidden": false
     },
     "docs/0.计算机/Power supply unit.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/4.数据通信/Utility/Tailscale/Tailcat.md": {
       "isPinned": false,
       "isHidden": false
     }
