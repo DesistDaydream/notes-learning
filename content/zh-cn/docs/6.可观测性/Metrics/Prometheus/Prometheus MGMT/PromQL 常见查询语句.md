@@ -100,7 +100,7 @@ abs(
 
 ### 服务中断了多少时间
 
-这个前提是，服务状态为 0 或者 1。
+这个前提是，服务状态只为 0 或者 1；0 是离线，1 是在线。
 
 ```bash
 avg_over_time(up{}[1h])
@@ -113,13 +113,13 @@ avg_over_time(up{}[1h])
 查询端口接收的实时带宽。注意:是带宽
 
 ```promql
-irate(ifHCInOctets{instance="IP.IP.IP.IP",ifAlias="XXXX"}[6m]) * 8
+irate(ifHCInOctets{instance="${IP}",ifAlias="XXXX"}[6m]) * 8
 ```
 
 查询端口发送的实时带宽。注意:是带宽
 
 ```promql
-irate(ifHCOutOctets{instance="IP.IP.IP.IP",ifAlias="XXXX"}[6m]) * 8
+irate(ifHCOutOctets{instance="${IP}",ifAlias="XXXX"}[6m]) * 8
 ```
 
 # 物理机资源查询语句

@@ -6288,7 +6288,8 @@
         "分布式存储.md",
         "GlusterFS",
         "Ceph",
-        "MinIO"
+        "MinIO",
+        "RustFS.md"
       ]
     },
     "docs/5.数据存储/存储/存储的基础设施架构/分布式存储/_index.md": {
@@ -15003,6 +15004,10 @@
       "isHidden": false
     },
     "docs/4.数据通信/Utility/Tailscale/Tailcat.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/5.数据存储/存储/存储的基础设施架构/分布式存储/RustFS.md": {
       "isPinned": false,
       "isHidden": false
     }

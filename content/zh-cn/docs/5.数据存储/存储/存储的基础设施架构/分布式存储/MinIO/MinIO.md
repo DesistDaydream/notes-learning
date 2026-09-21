@@ -3,11 +3,12 @@ title: MinIO
 weight: 1
 ---
 
-> [!Attention] 已闭源
-> 与 2025 年 12 月 3 日的 [Commit](https://github.com/minio/minio/commit/27742d469462e1561c776f88ca7a1f26816d69e2) 中，修改了 README 信息，声明：将项目变更为维护模式，不再接受新的开发。推荐使用闭源且商业付费的 AIStor
+> [!Danger] 已闭源
+> 于 2025-12-03 的 [Commit](https://github.com/minio/minio/commit/27742d469462e1561c776f88ca7a1f26816d69e2) 中，修改了 README 信息，声明：将项目变更为维护模式，不再接受新的开发。推荐使用闭源且商业付费的 AIStor
 >
-> TODO: 用什么替代品？[RustFS](https://github.com/rustfs/rustfs)？
-
+> TODO: 用什么替代品？[RustFS](/docs/5.数据存储/存储/存储的基础设施架构/分布式存储/RustFS.md)？
+>
+> 2026-09-11 连 DockerHub 上的 MinIO 仓库和镜像都删了，官方在有人提问 [issue 21647](https://github.com/minio/minio/issues/21647) 后回复不再提供构建，只保留代码。这不单单是要变现可以理解了，纯纯恶心人了。
 # 概述
 
 > 参考：
