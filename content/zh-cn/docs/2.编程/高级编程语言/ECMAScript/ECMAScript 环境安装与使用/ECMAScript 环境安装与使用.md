@@ -83,7 +83,7 @@ Browser 和 Node.js 都是 ECMAScript 的运行时环境，但是这两者可以
 从[官网](https://nodejs.org/zh-cn/download/)下载 Linux 版的 `.tar.xg` 包，并解压
 
 ```bash
-export NodejsVersion="v24.14.0"
+export NodejsVersion="v24.21.0"
 wget https://nodejs.org/dist/${NodejsVersion}/node-${NodejsVersion}-linux-x64.tar.xz
 sudo tar -xvf node-${NodejsVersion}-linux-x64.tar.xz -C /usr/local/
 
@@ -101,18 +101,18 @@ source /etc/profile.d/nodejs.sh
 
 ### Windows
 
-警告！！！由于 msi 安装包会修改 `$PREFIX` 为 `%APPDATA%\npm` ，并将该目录到 $PATH。我个人推荐下载 zip，并自己解压到想要的位置后，手动配置环境变量。
+> [!Warning] 由于 msi 安装包会修改 `$PREFIX` 为 `%APPDATA%\npm` ，并将该目录加入到 $PATH。个人推荐下载 zip，并自己解压到想要的位置后，手动配置环境变量。
 
 ```powershell
-$NodejsVersion = "24.18.0"
+$NodejsVersion = "24.21.0"
 $NodejsUrl = "https://nodejs.org/dist/v$NodejsVersion/node-v$NodejsVersion-win-x64.zip"
 $TempZipFile = "D:\tmp\nodejs.zip"
 $ExtractPath = "D:\Tools"
 
-# Download the zip file to a temporary location
+# 将 zip 文件下载到临时位置
 Invoke-WebRequest -Uri $NodejsUrl -OutFile $TempZipFile
 
-# Extract the contents of the zip file to the installation directory and rename the top-level directory to "nodejs"
+# 将 zip 文件内容解压到安装目录并将顶级目录重命名为 "nodejs"
 Expand-Archive -Path $TempZipFile -DestinationPath $ExtractPath
 Rename-Item -Path "$ExtractPath\node-v$NodejsVersion-win-x64" -NewName "nodejs"
 ```
@@ -125,7 +125,7 @@ $newPath = "D:\Tools\nodejs"
 [Environment]::SetEnvironmentVariable("Path", "$path;$newPath", "User")
 ```
 
-### 目录结构
+### 初次安装后的目录结构
 
 Linux 目录结构，node_modules/ 目录在 lib/ 目录下，这点与 Windows 不同。
 
@@ -176,6 +176,10 @@ $ tree -L 2 -F
 ├── npx*
 └── npx.cmd*
 ```
+
+### 初次安装后的配置
+
+配置 [NPM](docs/2.编程/高级编程语言/ECMAScript/ECMAScript%20工具/NPM.md)。通常需要 配置 npm 镜像源、添加 pnpm、修改 pnpm 镜像源、修改 pnpm 存储路径
 
 ### NVM
 

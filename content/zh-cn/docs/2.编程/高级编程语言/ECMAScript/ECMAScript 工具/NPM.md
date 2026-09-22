@@ -100,7 +100,7 @@ pnpm 使用 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的配置�
     - 用人话说是：假如我的项目在 `D:/Projects/DesistDaydream/javascript-learning/`，那模块将会默认下载到 `D:/.pnpm-store/` 目录中。
 - 注意：可以从不同的磁盘设置同一个存储，但在这种情况下，pnpm 将复制包而**不是硬链接**它们，因为**硬链接只能发生在同一文件系统上**。
 
-# npm 与 pnpm 语法
+# Syntax
 
 > 参考：
 >
@@ -117,8 +117,6 @@ pnpm 使用 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的配置�
 ## npm config
 
 npm config 用来管理 npm 的配置文件，i.e.npmrc 文件。
-
-### Syntax(语法)
 
 **npm config COMMAND \[KEY=VALUE]**
 
@@ -152,24 +150,11 @@ npm config 用来管理 npm 的配置文件，i.e.npmrc 文件。
 
 从本地或远程 npm 包运行命令
 
-### Syntax(语法)
-
-```
-npm exec -- <pkg>[@<version>] [args...]
-npm exec --package=<pkg>[@<version>] -- <cmd> [args...]
-npm exec -c '<cmd> [args...]'
-npm exec --package=foo -c '<cmd> [args...]'
-```
-
-**OPTIONS**
-
 ## npm install
 
 安装项目的所有依赖
 
 install 可以简写为 i。
-
-### Syntax(语法)
 
 **OPTIONS**
 
@@ -182,12 +167,6 @@ install 可以简写为 i。
 创建一个 package.json 文件。用来初始化一个项目。
 
 可以指定一个 **Initializer(初始化程序)** 并执行其 bin/ 下的 js/ts 文件以运行其他与初始化相关的操作。
-
-### Syntax(语法)
-
-npm init \[INITIALIZER]
-
-**OPTIONS**
 
 ## npm list
 
