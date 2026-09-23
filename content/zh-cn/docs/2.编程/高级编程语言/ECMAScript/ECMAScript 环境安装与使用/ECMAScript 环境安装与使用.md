@@ -179,7 +179,7 @@ $ tree -L 2 -F
 
 ### 初次安装后的配置
 
-配置 [NPM](docs/2.编程/高级编程语言/ECMAScript/ECMAScript%20工具/NPM.md)。通常需要 配置 npm 镜像源、添加 pnpm、修改 pnpm 镜像源、修改 pnpm 存储路径
+配置 [NPM](/docs/2.编程/高级编程语言/ECMAScript/ECMAScript%20工具/NPM.md)。通常需要 配置 npm 镜像源、添加 pnpm、修改 pnpm 镜像源、修改 pnpm 存储路径
 
 ### NVM
 

@@ -16,6 +16,7 @@
 
 /resources/
 /public/
+/agent_tmp/
 
 /node_modules/
 

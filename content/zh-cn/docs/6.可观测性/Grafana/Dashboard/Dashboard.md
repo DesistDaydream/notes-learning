@@ -40,7 +40,7 @@ weight: 1
 
 > 其实就是说有多少种 Visualizations
 
-[Panel](docs/6.可观测性/Grafana/Dashboard/Panel/Panel.md)
+[Panel](/docs/6.可观测性/Grafana/Dashboard/Panel/Panel.md)
 
 ### Alert list
 

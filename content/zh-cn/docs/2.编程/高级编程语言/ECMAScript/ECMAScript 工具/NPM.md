@@ -21,8 +21,8 @@ npm 从 命令行、环境变量、npmrc 文件 这些地方获取其配置信�
 - **命令行标志**
 - **环境变量**
 - **npmrc 文件** # npm 从以下几个地方依次读取 npmrc 文件
-    - **/PATH/TO/NPM/npmrc** # npm 内置的配置文件。这内置的文件是不是不可见的？o(╯□╰)o
     - **`${PREFIX}/etc/npmrc`** # 全局配置文件，可以通过 `--globalconfig` 命令行选项或 `${NPM_CONFIG_GLOBALCONFIG}` 环境变量改变其值
+    - **/PATH/TO/NPM/npmrc** # npm 内置的配置文件。这内置的文件是不是不可见的？o(╯□╰)o
     - **~/.npmrc** # 用户配置文件，可以通过 `--userconfig` 命令行选项或 `${NPM_CONFIG_USERCONFIG}` 环境变量改变其值
     - **/PATH/TO/MY/PROJECT/.npmrc** # 每个项目自己的配置
 
@@ -55,19 +55,20 @@ store-dir 说明：
 
 使用 `corepack enable` 指令启用 pnpm
 
+配置镜像源：
+
+- `pnpm config -g set registry="https://registry.npmmirror.com"`
+
 设置包的存储路径：
 
 - Windows：`pnpm config -g set store-dir D:\projects\.pnpm-store`
 - Linux：`pnpm config -g set store-dir /mnt/d/projects/.pnpm-store`
 
-配置镜像源：
-
-- `pnpm config -g set registry="https://registry.npmmirror.com"`
-
-若 Windows 无法执行 pnpm，报错：`pnpm : 无法加载文件 D:\Tools\nodejs\pnpm.ps1，因为在此系统上禁止运行脚本。有关详细信息，请参阅 https:/go.microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。`
-
-- 此时需要在 PowerShell 中执行 `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` 指令。详见[微软官网解释](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.2)。
-    - 其中 `-Scope CurrentUser` 是指针对当前用户的操作，若使用管理员运行 VSCode 或 PowerShell，则不用加这个选项。
+> [!Question]
+> 若 Windows 无法执行 pnpm，报错：`pnpm : 无法加载文件 D:\Tools\nodejs\pnpm.ps1，因为在此系统上禁止运行脚本。有关详细信息，请参阅 https:/go.microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。`
+>
+> - 此时需要在 PowerShell 中执行 `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` 指令。详见[微软官网解释](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.2)。
+>     - 其中 `-Scope CurrentUser` 是指针对当前用户的操作，若使用管理员运行 VSCode 或 PowerShell，则不用加这个选项。
 
 **更新 pnpm**
 

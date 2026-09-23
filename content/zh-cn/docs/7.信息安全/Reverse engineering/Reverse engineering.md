@@ -62,7 +62,7 @@ https://github.com/BlackINT3/OpenArk # 一款 Windows 平台上的开源Ark工�
 
 ## 反编译
 
-[IDA Pro](https://hex-rays.com/ida-pro/) # Interactive Disassembler Professional
+[IDA Pro](https://hex-rays.com/ida-pro/) # Interactive Disassembler Professional(交互式反汇编专业版)
 
 - [百度网盘，IDAPro7.0 调试工具Windows版本](https://pan.baidu.com/s/1_-PorRCwHDMpmUI1t_cKcQ?pwd=t39m)
 

@@ -86,3 +86,12 @@ Prompt 解决方案
 https://github.com/heilcheng/awesome-agent-skills
 
 https://github.com/coreyhaines31/marketingskills
+
+# 记忆
+
+[MCP Memory Server](https://github.com/modelcontextprotocol/servers/tree/main/src/memory)
+
+- https://www.npmjs.com/package/@modelcontextprotocol/server-memory
+
+[GitHub 项目，Gentleman-Programming/engram](https://github.com/Gentleman-Programming/engram)
+
