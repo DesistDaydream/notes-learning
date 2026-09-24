@@ -8576,6 +8576,7 @@
         "Reverse engineering",
         "Crawler",
         "Hacking.md",
+        "Sandbox.md",
         "Bastion Host.md",
         "中间人攻击与HTTPS抓包.md",
         "Utility"
@@ -15008,6 +15009,10 @@
       "isHidden": false
     },
     "docs/5.数据存储/存储/存储的基础设施架构/分布式存储/RustFS.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/7.信息安全/Sandbox.md": {
       "isPinned": false,
       "isHidden": false
     }
