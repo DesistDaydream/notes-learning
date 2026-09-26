@@ -3297,6 +3297,7 @@
         "ECMAScript 模块与包.md",
         "package.json.md",
         "TSConfig.md",
+        "Node.js.md",
         "Deno.md"
       ]
     },
@@ -15015,12 +15016,12 @@
     "docs/12.AI/Agent": {
       "isPinned": false,
       "isHidden": false,
+      "sortOrder": "custom",
       "customOrder": [
         "_index.md",
         "Agent.md",
         "Deepseek Harness.md"
-      ],
-      "sortOrder": "custom"
+      ]
     },
     "docs/12.AI/Agent/Agent.md": {
       "isPinned": false,
@@ -15031,6 +15032,10 @@
       "isHidden": false
     },
     "docs/12.AI/Agent/Deepseek Harness.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 环境安装与使用/Node.js.md": {
       "isPinned": false,
       "isHidden": false
     }

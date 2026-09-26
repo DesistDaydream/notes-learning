@@ -43,6 +43,10 @@ weight: 100
 
 [B 站 - 笛子的日常，《焊武帝养成攻略》零基础三分钟低成本精通焊接 穿越机入门必备技能](https://www.bilibili.com/video/BV1STqpBqEa5)
 
+## 焊接夹具
+
+TODO: 万向竹节管 鳄鱼夹 电磁阀底座
+
 # 各种 PCBA
 
 ## 电源管理 PCBA

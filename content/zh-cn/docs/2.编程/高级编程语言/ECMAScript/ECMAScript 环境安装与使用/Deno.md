@@ -26,7 +26,7 @@ Deno 甚至可以通过命令行工具的 `deno compile` 命令将程序编译�
 
 从 [Release](https://github.com/denoland/deno/releases) 处下载 Deno 二进制文件后即可直接使用。非常简单，[deno-x86_64-pc-windows-msvc.zip](https://github.com/denoland/deno/releases/download/v1.39.4/deno-x86_64-pc-windows-msvc.zip) 就是一个非常简单直接的二进制文件，放到 $PATH 中即可直接使用。
 
-# Deno 关联文件与配置
+# 关联文件与配置
 
 **deno.json** # 适用于每个项目的配置文件
 
