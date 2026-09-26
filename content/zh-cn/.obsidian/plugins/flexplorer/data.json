@@ -13397,9 +13397,9 @@
         "计算机视觉",
         "Prompt.md",
         "MCP.md",
-        "Agent.md",
-        "AI Projects",
+        "Agent",
         "AI MGMT",
+        "AI Projects",
         "Hugging Face.md",
         "最佳实践.md",
         "Automation",
@@ -13419,10 +13419,6 @@
       "isHidden": false
     },
     "docs/12.AI/MCP.md": {
-      "isPinned": false,
-      "isHidden": false
-    },
-    "docs/12.AI/Agent.md": {
       "isPinned": false,
       "isHidden": false
     },
@@ -15013,6 +15009,28 @@
       "isHidden": false
     },
     "docs/7.信息安全/Sandbox.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/12.AI/Agent": {
+      "isPinned": false,
+      "isHidden": false,
+      "customOrder": [
+        "_index.md",
+        "Agent.md",
+        "Deepseek Harness.md"
+      ],
+      "sortOrder": "custom"
+    },
+    "docs/12.AI/Agent/Agent.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/12.AI/Agent/_index.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/12.AI/Agent/Deepseek Harness.md": {
       "isPinned": false,
       "isHidden": false
     }

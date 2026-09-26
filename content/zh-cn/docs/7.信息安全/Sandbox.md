@@ -63,7 +63,7 @@ weight: 100
 - **Kubernetes 的 PodSandbox** # CRI 术语，对应 Pod 的 infra(pause) 容器所维持的那组 namespace
 - **CNCF Sandbox** # 项目成熟度分级，与安全无关
 - **Mock / 测试沙盒环境** # 指与生产隔离的试验环境
-- **Agent 沙箱** # 见 [Agent](/docs/12.AI/Agent.md) — 约束 LLM Agent 执行命令时的文件影响，把「不受限的 shell」收进一个可审批的边界
+- **Agent 沙箱** # 见 [Agent](/docs/12.AI/Agent/Agent.md) — 约束 LLM Agent 执行命令时的文件影响，把「不受限的 shell」收进一个可审批的边界
 
 # 一份粗略对照
 
@@ -94,4 +94,4 @@ weight: 100
 
 最初的 bubblewrap 代码存在于用户命名空间之前 - 它继承了 xdg-app helper 的代码，而 又远远地源自 [linux-user-chroot](https://git.gnome.org/browse/linux-user-chroot)
 
-有些 AI [Agent](/docs/12.AI/Agent.md) （e.g. Deepseek Harness、etc.）在 Linux 中运行，会调用 bubblewrap 开启沙箱来运行某些命令。
+有些 AI [Agent](/docs/12.AI/Agent/Agent.md) （e.g. Deepseek Harness、etc.）在 Linux 中运行，会调用 bubblewrap 开启沙箱来运行某些命令。

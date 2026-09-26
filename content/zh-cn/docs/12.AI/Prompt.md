@@ -27,7 +27,7 @@ Prompt 解决方案
 
 **Content engineering** # 通过各种人为定义的约束来管理 Prompt，e.g [RAG](#RAG), [MCP](/docs/12.AI/MCP.md), [Skills](/docs/12.AI/Skills.md), etc.
 
-**Agent** # [Agent](/docs/12.AI/Agent.md) 程序通过各种机制（调用工具、从 RAG 获取信息、etc.）管理大量 Prompt
+**Agent** # [Agent](/docs/12.AI/Agent/Agent.md) 程序通过各种机制（调用工具、从 RAG 获取信息、etc.）管理大量 Prompt
 
 **Harness engineering** # 对 Agent 本身的管理，甚至可以加上对 Prompt 的管理。
 
@@ -93,5 +93,6 @@ https://github.com/coreyhaines31/marketingskills
 
 - https://www.npmjs.com/package/@modelcontextprotocol/server-memory
 
-[GitHub 项目，Gentleman-Programming/engram](https://github.com/Gentleman-Programming/engram)
+[GitHub 项目，Gentleman-Programming/engram](https://github.com/Gentleman-Programming/engram) # 纯代码项目层的记忆，通用限制很多
 
+https://github.com/mnemon-dev/mnemon # Go 写的，比较符合现阶段（2026-09-26）预期。
