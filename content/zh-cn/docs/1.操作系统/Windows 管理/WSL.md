@@ -26,12 +26,81 @@ weight: 101
 
 ## 安装 Linux 发行版
 
-在 PowerShell 执行指令
-
 安装 Ubuntu 发行版的 WSL
 
+```powershell
+wsl --install -d Ubuntu --location D:\wsl\ubuntu
 ```
-wsl --install -d Ubuntu
+
+安装完成后的效果如下（截至 2026-09-27）：
+
+```powershell
+PS D:\tmp> wsl --list --all -v
+  NAME      STATE           VERSION
+* Ubuntu    Stopped         2
+PS D:\tmp> Get-ChildItem 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss'
+
+    Hive: HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss
+
+Name                           Property
+----                           --------
+{8da0eb82-dda5-426e-b1d1-b0326 State               : 1
+05f666d}                       DistributionName    : Ubuntu
+                               Version             : 2
+                               BasePath            : D:\wsl\ubuntu
+                               Flags               : 15
+                               DefaultUid          : 0
+                               RunOOBE             : 1
+                               VhdFileName         : ext4.vhdx
+                               Flavor              : ubuntu
+                               OsVersion           : 26.04
+                               Modern              : 1
+                               ShortcutPath        : C:\Users\DesistDaydream\AppData\Roaming\Microsoft\Windows\Start Menu\Ubuntu.lnk
+                               TerminalProfilePath : C:\Users\DesistDaydream\AppData\Local\Microsoft\Windows Terminal\Fragments\Microsoft.WSL\{43d032ed-a194-5119-b8c9-2678fde75d34}.json
+```
+
+---
+
+导入发行版，使用本地 VHD 文件（直接使用源文件，不会创建新的 .vhdx 文件）
+
+```powershell
+wsl --import-in-place Ubuntu D:\wsl\ubuntu\ext4.vhdx
+# 导入的发行版默认使用 root 用户登录，若想使用之前的非 root 用户需要设置一下
+wsl --manage Ubuntu --set-default-user <用户名>
+```
+
+导入效果如下（截至 2026-09-27）：
+
+```powershell
+PS D:\tmp> wsl --import-in-place Ubuntu D:\wsl\ubuntu\ext4.vhdx
+操作成功完成。
+PS D:\tmp> Get-ChildItem 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss'
+
+    Hive: HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss
+
+Name                           Property
+----                           --------
+{c309f3b3-c68c-47e2-b1d8-2736b State               : 1
+e5221d9}                       DistributionName    : Ubuntu
+                               Version             : 2
+                               BasePath            : \\?\D:\wsl\ubuntu
+                               Flags               : 15
+                               DefaultUid          : 0
+                               RunOOBE             : 0
+                               VhdFileName         : ext4.vhdx
+                               Flavor              : ubuntu
+                               OsVersion           : 22.04
+                               Modern              : 1
+                               ShortcutPath        : C:\Users\DesistDaydream\AppData\Roaming\Microsoft\Windows\Start Menu\Ubuntu.lnk
+                               TerminalProfilePath : C:\Users\DesistDaydream\AppData\Local\Microsoft\Windows Terminal\Fragments\Microsoft.WSL\{f2f4fb13-5f14-5917-afb3-966191939623}.json
+```
+
+---
+
+导入发行版，使用 tar 文件（源文件不动，创建一个新的 .vhdx 文件）
+
+```powershell
+wsl --import Ubuntu D:\wsl\ubuntu D:\wsl\tmp\ext4.vhdx --vhd
 ```
 
 ## 常见问题
@@ -71,7 +140,7 @@ wsl.exe --user root
 > [!Note]
 > 该文件早期存放在 `%LOCALAPPDATA%/Packages/CanonicalGroupLimited.XXXXX/LocalState/ext4.vhdx`，通过应用商店安装后的程序数据保存路径。e.g. CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc。其中还包括一些配置信息。后来那些配置信息都不在文件中，改到注册表中保存。
 
-**`HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss\${GUID}\`** # 注册表键。保存了 WSL 发行版的各种信息。GUID 是每个 WSL 发行版的唯一标识符。
+**`HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss\${GUID}\`** # [注册表](/docs/1.操作系统/Windows%20管理/注册表.md)键。保存了 WSL 发行版的各种信息。GUID 是每个 WSL 发行版的唯一标识符。
 
 - **./BasePath** # .vhdx 文件所在目录
 - **./DistributionName** # 发行版的名称
@@ -91,7 +160,7 @@ wsl.exe --user root
 
 ## Syntax(语法)
 
-**wsl [OPTOINS]**
+**wsl \[OPTOINS]**
 
 **OPTONS**
 
@@ -100,7 +169,7 @@ wsl.exe --user root
 
 WSL 子系统管理选项
 
-- **--install \[DISTRIBUTION] [OPTIONS]** #
+- **--install \[DISTRIBUTION] \[OPTIONS]** #
 - **--shutdown** # 立即终止所有正在运行在 wsl 子系统上的 Linux 发行版
 - **--status** # 显示 wsl 子系统的状态。
 - **--update** # 更新 wsl 子系统程序包。

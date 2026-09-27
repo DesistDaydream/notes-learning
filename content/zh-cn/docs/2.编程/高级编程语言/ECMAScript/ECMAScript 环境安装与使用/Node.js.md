@@ -148,7 +148,7 @@ $ tree -L 2 -F
 >
 > - [GitHub 项目，nodejs/corepack](https://github.com/nodejs/corepack)
 
-Corepack 是一个零运行时依赖的 Node.js 脚本，充当 Node.js 项目与包管理器（e.g. [NPM](docs/2.编程/高级编程语言/ECMAScript/ECMAScript%20工具/NPM.md)、Yarn、etc.）之间的桥梁。
+Corepack 是一个零运行时依赖的 Node.js 脚本，充当 Node.js 项目与包管理器（e.g. [NPM](/docs/2.编程/高级编程语言/ECMAScript/ECMAScript%20工具/NPM.md)、Yarn、etc.）之间的桥梁。
 
 ## Corepack 关联文件与配置
 

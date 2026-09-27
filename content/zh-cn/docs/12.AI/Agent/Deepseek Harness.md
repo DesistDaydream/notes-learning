@@ -18,19 +18,21 @@ DeepSeek Harness 基于 [Cordis](https://github.com/cordiverse/cordis) 插件�
 
 > [!TODO]
 > ~/.dsh/ 目录 和 工作区中，都可以放 AGENTS.md 文件。~/.dsh/AGENTS.md 文件可以被在任何工作区的任务读取。核心的个人偏好逻辑可以放在这里。
->
-> 记忆可以使用 Go 语言开发的 [engram](https://github.com/Gentleman-Programming/engram)，任何记忆程序的使用方式可以放在 AGENTS.md 中，因为 AGENTS.md 是任务开始时第一批 Prompt。
 
 # 关联文件与配置
 
 **~/.dsh/** # Web 运行时数据保存目录。包括 会话、配置、etc.
 
-- **./profiles/** # 各类应用程序的配置
-    - **./web/** # Web 端的配置
-    - **./desktop/** # 桌面端的配置（桌面端是 Electron 实现，但是本质也会启动 Web 端的后台，与 Web 端交互）。
+- **./profiles/${APP}/** # 各类应用程序的配置。
+    - **./cordis.patch.yml** # patch 配置文件。包括 DSH 配置、插件配置、etc.
 - **`./sessions/${工作区ID}/session-${会话ID}/`** # 针对每个工作区的会话记录
 - **./storages/** # 
 - **settings.yaml** # 
+
+${APP} 可用的值有：
+
+- **web** # Web 端的配置
+- **desktop** # 桌面端的配置（桌面端是 Electron 实现，但是本质也会启动 Web 端的后台，与 Web 端交互）。
 
 # 记忆
 

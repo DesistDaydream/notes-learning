@@ -1,6 +1,6 @@
 ---
 title: MCP
-weight: 51
+weight: 11
 ---
 
 # 概述

@@ -1,6 +1,6 @@
 ---
 title: Prompt
-weight: 50
+weight: 1
 ---
 
 # 概述
@@ -14,7 +14,7 @@ Prompt 解决方案
 - RAG
 - Tool calling
     - Function calling
-    - [MCP](/docs/12.AI/MCP.md)
+    - [MCP](/docs/12.AI/Prompt/MCP.md)
 - [Skills](#Skills)
 
 # 历史
@@ -25,7 +25,7 @@ Prompt 解决方案
 - [GitHub 项目，PlexPt/awesome-chatgpt-prompts-zh](https://github.com/PlexPt/awesome-chatgpt-prompts-zh)
 - [公众号-云原生小白，你应该知道的ChatGPT提示语](https://mp.weixin.qq.com/s/BcJWxvhpTRFTE20rB55Sow)
 
-**Content engineering** # 通过各种人为定义的约束来管理 Prompt，e.g [RAG](#RAG), [MCP](/docs/12.AI/MCP.md), [Skills](/docs/12.AI/Skills.md), etc.
+**Content engineering** # 通过各种人为定义的约束来管理 Prompt，e.g [RAG](#RAG), [MCP](/docs/12.AI/Prompt/MCP.md), [Skills](/docs/12.AI/Skills.md), etc.
 
 **Agent** # [Agent](/docs/12.AI/Agent/Agent.md) 程序通过各种机制（调用工具、从 RAG 获取信息、etc.）管理大量 Prompt
 
@@ -43,7 +43,7 @@ Prompt 解决方案
 历史
 
 - **Function calling(函数调用)** 在 LLM 早期，由 OpenAI 公司推出的工具调用标准
-- [**MCP**](/docs/12.AI/MCP.md) 由 Anthropic 推出的工具调用标准
+- [**MCP**](/docs/12.AI/Prompt/MCP.md) 由 Anthropic 推出的工具调用标准
 
 很多模型把这些标准作为数据集进行训练，这样不用其他信息，只需要传输标准化的内容即可让模型返回格式化的信息
 
@@ -95,4 +95,53 @@ https://github.com/coreyhaines31/marketingskills
 
 [GitHub 项目，Gentleman-Programming/engram](https://github.com/Gentleman-Programming/engram) # 纯代码项目层的记忆，通用限制很多
 
-https://github.com/mnemon-dev/mnemon # Go 写的，比较符合现阶段（2026-09-26）预期。
+Mnemon # Go 写的，比较符合现阶段（2026-09-26）预期。
+
+我个人对记忆系统需求（待完善）
+
+- 记录我的每一天
+- 可以根据对话实时更新个人偏好
+- 可以快速检索出内容（是否需要对记忆分类呢？记忆是否应该有分类？一件事情很可能会关联多个分类的。分类可以穷尽吗？）
+
+TODO: https://www.bilibili.com/video/BV1DWGK6PE9r
+
+- https://workspace.mirrochou.com/systemprompt-showcase/agents/original-report.html
+
+TODO: **"每天一条长总结"塞进空间并不理想**——一天叙事揉成一条，向量会被平均掉，查什么都不精准。空间放"从当天总结里再抽出来的 3~5 条事实"，整天的流水留给 Obsidian。
+
+这里面的向量会被平均掉 是什么意思？所以日常记忆不适合放在数据库里被检索吗？
+
+## Mnemon
+
+> 参考：
+>
+> - [GitHub 项目，mnemon-dev/mnemon](https://github.com/mnemon-dev/mnemon)
+> - [GitHub 项目，omdsh-dev/dsh-mnemon](https://github.com/omdsh-dev/dsh-mnemon)
+
+TODO: mnemon 二进制文件 与 dsh-mnemon 之间的边界在哪里？到底是哪个项目执行的存储记忆的逻辑？
+
+[存储模型](https://github.com/omdsh-dev/dsh-mnemon/blob/main/docs/zh-CN/reference/storage-model.md)
+
+三层记忆
+
+| 英文                | 中文   | 保存方式           | 如何进入 Agent 上下文 | 记忆上限                | 备注  |
+| ----------------- | ---- | -------------- | -------------- | ------------------- | --- |
+| **Runtime**       | 运行时  | 本地 Markdown 文件 | 每次对话直接带入       | USER 4K; MEMORY 10K |     |
+| **Documents**     | 档案   | 本地 Markdown 文件 | 按需检索           | 10M                 |     |
+| **Memory Spaces** | 记忆空间 | SQLite         | 按需检索           | 数据库中，不设上限           |     |
+
+这种分层的记忆设计，个人感觉比较不错。个人偏好和规矩的记忆不多，但是每次都会带入上下文；然后有一些近期常用的记忆；全量的记忆可以进入数据库持久保存，里面可以包含细节和总结。
+
+记忆空间需要手动创建，甚至可以关联其他记忆系统（e.g. Mem0、OpenViking、etc.），从中获取记忆。根据[这里](https://github.com/omdsh-dev/dsh-mnemon/blob/v0.5.16/plugins/dsh-mnemon-strategy-default-three-tier/src/guidance.ts#L18)定义的 Prompt，会让 AI 在合适的时候将记忆沉淀到记忆空间中。
+
+### Mnemon 关联文件与配置
+
+**${MnemonHome}** # 
+
+> [!Note] 不同系统的默认路径
+>
+> Unix-like: `${HOME}/.mnemon/`
+
+- **./runtime/** # Runtime 层记忆保存位置
+- **./documents/** # Documents 层记忆保存位置
+- **./data/** # Memory Spaces 层记忆保存位置

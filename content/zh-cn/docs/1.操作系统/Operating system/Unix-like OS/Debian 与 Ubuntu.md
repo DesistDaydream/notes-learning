@@ -48,4 +48,40 @@ Ubuntu 由英国公司 [Canonical](https://en.wikipedia.org/wiki/Canonical_(comp
 
 Ubuntu Server 安装完成后，通常需要关闭自动更新，详见 [Debian 包管理](/docs/1.操作系统/Package%20管理/Debian%20包管理.md#包的自动更新)
 
+## 更新 LTS 版本
+
+```bash
+# 1. 先把当前系统更新到最新
+sudo apt update && sudo apt upgrade -y
+
+# 2. 确保升级工具已安装
+sudo apt install update-manager-core -y
+
+# 3. 检查升级策略
+cat /etc/update-manager/release-upgrades
+# Prompt=lts    → 只能升级到下一个 LTS 版本
+# Prompt=normal → 也可以升级到非 LTS 版本
+
+# 4. 执行升级
+sudo do-release-upgrade
+```
+
+只检查不执行
+
+```bash
+sudo do-release-upgrade -c
+```
+
+查看当前的版本
+
+```bash
+lsb_release -a
+```
+
 # 关联文件与配置
+
+# 版本生命周期
+
+https://ubuntu.com/about/release-cycle
+
+https://ubuntu.com/project/docs/release-team/list-of-releases/

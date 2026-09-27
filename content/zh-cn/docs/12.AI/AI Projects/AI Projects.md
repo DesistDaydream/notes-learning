@@ -31,7 +31,7 @@ MiniMax # AI 聚合平台
 
 # IDE 工具
 
-**Cline** # IDE中的自主编码代理，能够在每一步的每一步中使用浏览器来创建/编辑文件，使用浏览器以及更多内容。实现了 [MCP](/docs/12.AI/MCP.md)
+**Cline** # IDE中的自主编码代理，能够在每一步的每一步中使用浏览器来创建/编辑文件，使用浏览器以及更多内容。实现了 [MCP](/docs/12.AI/Prompt/MCP.md)
 
 - https://github.com/cline/cline
 
