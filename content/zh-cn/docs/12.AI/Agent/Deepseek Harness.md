@@ -44,3 +44,7 @@ https://deepseek-harness.github.io/deepseek-harness/guide/mcp-memory
 
 # Plugins
 
+https://github.com/topics/dsh-plugin 这里的信息太多了，各种没有强关联的独立项目也加上了  dsh-plugin 这个 topics，明显是蹭热度引流的。
+
+https://github.com/dshworks/awesome-dsh-plugins
+

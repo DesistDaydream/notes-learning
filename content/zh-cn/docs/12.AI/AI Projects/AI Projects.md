@@ -140,3 +140,17 @@ https://tongyi.aliyun.com/
 # AI 在线服务聚合
 
 [GitHub 项目，songquanpeng/one-api](https://github.com/songquanpeng/one-api)
+
+# 中转站
+
+让 Claude、Openai 、Deepseek、etc. 订阅统一接入，支持拼车共享，更高效分摊成本，原生工具无缝使用。
+
+[GitHub 项目，Wei-Shaw/sub2api](https://github.com/Wei-Shaw/sub2api)
+
+# 搜索
+
+Brave 或 Tavily 是专为 LLM 提供联网搜索和数据抓取能力的主流 Web 搜索 API 工具。它们让 AI 能够像人类一样实时检索互联网上的最新信息。
+
+有的 LLM 提供商会内置该能力。
+
+如果是中转站，需要自己填 Brave 或 Tavily 的 API Key。

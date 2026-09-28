@@ -36,6 +36,18 @@ Prompt 解决方案
 
 个人感觉，Agent 的出现是个分水岭，从早期由人手工管理 Prompt，衍化成由程序管理 Prompt。
 
+# 学习资料
+
+[公众号 - 差评，骗你的，其实AI根本不需要那么多提示词](https://mp.weixin.qq.com/s/OC0l_2M1sKGGhYy8WAgBXQ)
+
+https://github.com/heilcheng/awesome-agent-skills
+
+https://github.com/coreyhaines31/marketingskills
+
+[karpathy/llm-wiki.md](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+
+- [公众号，Karpathy 亲手终结了RAG的草莽时代](https://mp.weixin.qq.com/s/y0JLrC_Af9X0cA_t08ymjg)
+
 # Tool calling
 
 **Tool calling(工具调用)**，它使 LLM(大型语言模型) 能够以结构化的方式和外部系统（可执行程序、API、etc.）进行交互。
@@ -78,14 +90,6 @@ Prompt 解决方案
 >
 > - [GitHub 项目，anthropics/skills](https://github.com/anthropics/skills) - 2025-10-16 第一次提交
 > - [官网](https://agentskills.io/)
-
-## 学习资料
-
-[公众号 - 差评，骗你的，其实AI根本不需要那么多提示词](https://mp.weixin.qq.com/s/OC0l_2M1sKGGhYy8WAgBXQ)
-
-https://github.com/heilcheng/awesome-agent-skills
-
-https://github.com/coreyhaines31/marketingskills
 
 # 记忆
 

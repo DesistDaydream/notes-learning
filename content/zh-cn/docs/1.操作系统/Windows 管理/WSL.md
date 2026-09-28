@@ -139,6 +139,8 @@ wsl.exe --user root
 
 > [!Note]
 > 该文件早期存放在 `%LOCALAPPDATA%/Packages/CanonicalGroupLimited.XXXXX/LocalState/ext4.vhdx`，通过应用商店安装后的程序数据保存路径。e.g. CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc。其中还包括一些配置信息。后来那些配置信息都不在文件中，改到注册表中保存。
+>
+> 早期安装的 WSL 可以使用 `Get-AppxPackage *Ubuntu* | Remove-AppxPackage` 这种方式卸载
 
 **`HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss\${GUID}\`** # [注册表](/docs/1.操作系统/Windows%20管理/注册表.md)键。保存了 WSL 发行版的各种信息。GUID 是每个 WSL 发行版的唯一标识符。
 

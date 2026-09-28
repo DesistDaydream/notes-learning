@@ -9,6 +9,7 @@ created: 2026-08-19T21:54
 > 参考：
 >
 > - [Wiki, Computer cooling](https://en.wikipedia.org/wiki/Computer_cooling)
+> - [Wiki, Thermal design power](https://en.wikipedia.org/wiki/Thermal_design_power)
 > - [B 站 - 硬件茶谈，【硬核科普】电脑散热也讲风水？全网最详细电脑散热器工作原理科普](https://www.bilibili.com/video/BV1Ca4y1W73e)
 > - [B 站 - 硬件茶谈，【硬核科普】机箱风扇怎么安装，如何科学的布置机箱风道？](https://www.bilibili.com/video/BV1Mi4y1M7Mz) # 9 分钟之后开始，有 up 推荐的最佳实践，什么情况下转多少个机房风扇
 > - [B 站 - 硬件茶谈，【硬核科普】全网最详细显卡散热工作原理科普](https://www.bilibili.com/video/BV13f4y1h7Z6)

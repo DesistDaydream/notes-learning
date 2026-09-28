@@ -9019,7 +9019,8 @@
       "sortOrder": "custom",
       "customOrder": [
         "_index.md",
-        "Reverse engineering.md"
+        "Reverse engineering.md",
+        "Decompiler.md"
       ]
     },
     "docs/7.信息安全/Reverse engineering/_index.md": {
@@ -15049,6 +15050,10 @@
       "isHidden": false
     },
     "docs/12.AI/Prompt/_index.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/7.信息安全/Reverse engineering/Decompiler.md": {
       "isPinned": false,
       "isHidden": false
     }
