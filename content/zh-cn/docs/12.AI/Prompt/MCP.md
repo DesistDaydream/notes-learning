@@ -141,6 +141,19 @@ for i in range(2):
     print(res)
 ```
 
+# Transports
+
+> 参考
+>
+> - [MCP 规范 - 2026-07-28，传输方式](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports)
+
+**Transports(传输方式)** 定义了与 MCP Server/MCP Client 的交互规范。
+
+传输方式如下：
+
+- **stdio** # 标准输入输出，通过 MCP Client 启动的子进程进行交互
+- **Streamable HTTP** # 每条消息都是向单个 MCP 端点发送的 HTTP POST 请求
+
 # MCP Server
 
 > 参考：
@@ -242,3 +255,10 @@ TODO: 待记录
 [Claude 博客，使用 MCP 构建能够对接生产系统的智能体](https://claude.com/blog/building-agents-that-reach-production-systems-with-mcp)
 
 - [公众号，Anthropic最新博客：MCP没有死，我们又救活了。](https://mp.weixin.qq.com/s/w4BlVa3WnStuhm4QwpoJuw)
+
+# 最佳实践
+
+## MCP Client 配置最简示例
+
+```json
+```
