@@ -28,7 +28,7 @@ Chrome 运行产生的用户数据包含 Profile 数据、运行时状态数据�
 
 - 操作系统。Linux、Windows、Macos 等等
 - 基于 Chromium 的各种品牌。Chrome、Edge、等等
-- Release 版本。比如 stable、beta、dev、canary、等等。
+- [Release 版本](/docs/2.编程/Program.md#常见软件版本名称)。比如 stable、beta、dev、canary、等等。
 
 不同系统下的默认路径详见官网，这里就不写了，在 [Chrome](/docs/Web/Browser/Chrome.md) 里有概述
 
