@@ -66,7 +66,7 @@ Job 要执行的具体内容的相关字段
 
 **expire_in**(STRING) # Artifacts 的过期时间。过期的 Artifacts 将会被删除。可用的格式有: `never、42、42 seconds、3 mins 4 sec、2 hrs 20 min、2h20min、6 mos 1 day、47 yrs 6 mos and 4d、3 weeks and 2 days`。`默认值: never`。若不指定单位只使用数字，则默认单位: 秒。
 
-**name**(STRING) # 指定 [Archive File(归档文件)](/docs/1.操作系统/Filesystem/Archive%20File(归档文件).md) 类型的 Artifacts 的名字。`默认值: artifacts`，默认生成 artifacts.zip 文件。
+**name**(STRING) # 指定 [Archive file](/docs/5.数据存储/Archive%20file/Archive%20file.md) 类型的 Artifacts 的名字。`默认值: artifacts`，默认生成 artifacts.zip 文件。
 
 **reports**([reports](#reports)) # 处理 [Report](/docs/2.编程/Programming%20tools/SCM/GitLab/GitLab%20CI/Artifacts.md#Report%20Artifacts) 类型的 Artifacts。用以指定一些额外的内容作为 Artifacts。
 

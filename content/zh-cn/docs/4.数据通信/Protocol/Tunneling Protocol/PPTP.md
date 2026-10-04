@@ -17,7 +17,7 @@ PPTP 使用 TCP 控制通道和通用路由封装隧道来封装 PPP 数据包�
 
 Poptop 是 The PPTP Server for Linux
 
-官方网址：http://poptop.sourceforge.net/
+官方网址: http://poptop.sourceforge.net/
 
 ## Poptop 的安装
 

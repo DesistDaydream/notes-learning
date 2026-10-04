@@ -650,8 +650,7 @@
       "sortOrder": "custom",
       "customOrder": [
         "_index.md",
-        "Filesystem.md",
-        "Archive File(归档文件).md"
+        "Filesystem.md"
       ]
     },
     "docs/1.操作系统/Filesystem/_index.md": {
@@ -659,10 +658,6 @@
       "isHidden": false
     },
     "docs/1.操作系统/Filesystem/Filesystem.md": {
-      "isPinned": false,
-      "isHidden": false
-    },
-    "docs/1.操作系统/Filesystem/Archive File(归档文件).md": {
       "isPinned": false,
       "isHidden": false
     },
@@ -6231,8 +6226,9 @@
         "大数据",
         "数据管理工具",
         "Retrieval",
-        "其他",
-        "WAL.md"
+        "Archive file",
+        "WAL.md",
+        "其他"
       ]
     },
     "docs/5.数据存储/_index.md": {
@@ -15054,6 +15050,28 @@
       "isHidden": false
     },
     "docs/7.信息安全/Reverse engineering/Decompiler.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/5.数据存储/Archive file": {
+      "isPinned": false,
+      "isHidden": false,
+      "customOrder": [
+        "_index.md",
+        "Archive file.md",
+        "Data compression.md"
+      ],
+      "sortOrder": "custom"
+    },
+    "docs/5.数据存储/Archive file/Data compression.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/5.数据存储/Archive file/_index.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/5.数据存储/Archive file/Archive file.md": {
       "isPinned": false,
       "isHidden": false
     }

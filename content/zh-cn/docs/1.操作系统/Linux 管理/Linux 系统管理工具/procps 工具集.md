@@ -6,7 +6,7 @@ title: procps 工具集
 
 > 参考：
 >
-> - https://sourceforge.net/projects/procps-ng/
+> - [SourceForge 项目，procps-ng](https://sourceforge.net/projects/procps-ng/)
 > - [GitLab 项目，procps-ng/procps](https://gitlab.com/procps-ng/procps)
 > - [GitHub 项目，uutils/procps](https://github.com/uutils/procps) # 有人用 Rust 重写了 procps 项目
 

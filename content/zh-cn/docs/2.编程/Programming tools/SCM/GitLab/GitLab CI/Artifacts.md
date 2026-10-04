@@ -9,7 +9,7 @@ weight: 20
 >
 > - [官方文档，CI - jobs - job 工件](https://docs.gitlab.com/ee/ci/jobs/job_artifacts.html)
 
-每个 Job 可以输出一些 包含文件和目录的 [Archive File(归档文件)](/docs/1.操作系统/Filesystem/Archive%20File(归档文件).md)、元数据、etc. ，这些输出称为 **Artifacts(工件)**。
+每个 Job 可以输出一些 包含文件和目录的 [Archive file](/docs/5.数据存储/Archive%20file/Archive%20file.md)、元数据、etc. ，这些输出称为 **Artifacts(工件)**。
 
 > [!Warning]
 > Artifacts 通常指我们构建的二进制文件、打包好的归档文件、etc. 。这些文件对项目来说，通常都是提供给使用者的，比如像 [GitHub](/docs/2.编程/Programming%20tools/SCM/GitHub/GitHub.md) 的 Release 中的 Assets。
