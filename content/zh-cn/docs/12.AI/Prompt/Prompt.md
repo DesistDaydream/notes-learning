@@ -11,10 +11,10 @@ weight: 1
 
 Prompt 解决方案
 
-- RAG
-- Tool calling
+- [Tool calling](#Tool%20calling)
     - Function calling
     - [MCP](/docs/12.AI/Prompt/MCP.md)
+- [RAG](#RAG)
 - [Skills](#Skills)
 
 # 历史

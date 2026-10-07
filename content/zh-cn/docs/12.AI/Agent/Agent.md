@@ -56,7 +56,61 @@ Agent 的起点来源于 [Pi](#pi-mono) 项目
 
 ![800](Excalidraw/AI/agent-flow.excalidraw.md)
 
-# Pi-mono
+# Agent tools
+
+Agent tools(Agent 工具) 本质是 [Prompt](docs/12.AI/Prompt/Prompt.md#Tool%20calling) 的 Tool calling 功能。i.e. [Transformer inference](docs/12.AI/Machine%20learning/Transformer/Transformer%20inference.md#Tools) 时向模型传输的 tool_call 部分
+
+# Agent 痛点
+
+## 逻辑问题
+
+故事来源：[B 站 - 飞天闪客，【闪客】揭秘 Clawdbot 背后干了什么？怪不得这么费钱...](https://www.bilibili.com/video/BV1sSF6z3Eku?t=288.9)
+
+现阶段的 Agent 就像这样：老板问我们今天几号
+
+我们分析：这个任务需要看手机。开始执行任务
+
+掏出手机；发现手机没电了，需要找充电器；没找到充电器，需要去楼下超市买个充电器；到超市门口发现超市关门了，但是发现可以去另外一个超市，但是需要打车；下车之后发现手机没电没法付款，又没有现金，所以需要去银行取钱；到银行取钱发现钱不够，那就先把手机抵押给司机。
+
+此时到了新超市，用奇妙的方式买到了充电器，发现手机没了；所以需要买个手机，但是钱不够，需要去银行贷款。
+
+最终，花了一整天的时间，丢掉了原来的手机，欠了一屁股债买了个新手机，最终回复给我们，今天是 X 年 X 月 X 日。
+
+## 记忆问题
+
+https://github.com/zeroclaw-labs/zeroclaw/issues/9048
+
+https://github.com/NousResearch/hermes-agent/issues/31584
+
+当前实现将对话历史、长期记忆、系统指令混为一谈，导致提示词注入威胁面扩大与 token 浪费。
+
+> 个人愚见：是不是应该在分词的时候，就添加一个 memory 的标识符？就像 think 似的。在训练时就做好区分。所有类型的记忆混在 prompt 里，终归会很容易幻觉。
+>
+> 但是记忆本身的内容量又过大，真这么区分也不现实，总不能每次都把全量记忆直接注入。只能通过某种方式检索后再输入，那检索后的结果只是来源是记忆，输入到模型的就依然是对话了。
+
+# 常见 Agent
+
+商业产品
+
+[Claude code](https://claude.com/product/claude-code)
+
+[Codex](https://chatgpt.com/codex/) # 商业产品
+
+---
+
+开源项目
+
+Claude code 代码泄露了出来的各种 Agent
+
+- [AtomCode](https://atomcode.atomgit.com/)
+
+[Cline](https://github.com/cline/cline) # 自己定位 coding
+
+[OpenCode](https://github.com/anomalyco/opencode) # 自己定位 coding
+
+[Deepseek Harness](/docs/12.AI/Agent/Deepseek%20Harness.md)
+
+## Pi-mono
 
 > 参考：
 >
@@ -74,36 +128,20 @@ pi-mono 只保留四个工具：
 
 Zechner 的逻辑很直接：编程的本质就是读代码、写代码、改代码、跑代码。这四个工具组合起来能覆盖大部分编程场景。
 
-# Agent 痛点
+# 常见 Agent tools
 
-**逻辑问题**
+Pi 里定义的最基础工具：
 
-故事来源：[B 站 - 飞天闪客，【闪客】揭秘 Clawdbot 背后干了什么？怪不得这么费钱...](https://www.bilibili.com/video/BV1sSF6z3Eku?t=288.9)
+- read
+- write
+- edit
+- bash
 
-现阶段的 Agent 就像这样：老板问我们今天几号
-
-我们分析：这个任务需要看手机。开始执行任务
-
-掏出手机；发现手机没电了，需要找充电器；没找到充电器，需要去楼下超市买个充电器；到超市门口发现超市关门了，但是发现可以去另外一个超市，但是需要打车；下车之后发现手机没电没法付款，又没有现金，所以需要去银行取钱；到银行取钱发现钱不够，那就先把手机抵押给司机。
-
-此时到了新超市，用奇妙的方式买到了充电器，发现手机没了；所以需要买个手机，但是钱不够，需要去银行贷款。
-
-最终，花了一整天的时间，丢掉了原来的手机，欠了一屁股债买了个新手机，最终回复给我们，今天是 X 年 X 月 X 日。
-
----
-
-**记忆问题**
-
-https://github.com/zeroclaw-labs/zeroclaw/issues/9048
-
-https://github.com/NousResearch/hermes-agent/issues/31584
-
-当前实现将对话历史、长期记忆、系统指令混为一谈，导致提示词注入威胁面扩大与 token 浪费。
-
-> 个人愚见：是不是应该在分词的时候，就添加一个 memory 的标识符？就像 think 似的。在训练时就做好区分。所有类型的记忆混在 prompt 里，终归会很容易幻觉。
-
+web_fetch # 抓取指定 URL 的完整 HTML
 
 # 知乎-北方的狼 智能体
+
+源: https://zhuanlan.zhihu.com/p/1978738837611095231 最下面内容提要部分
 
 **本书目录**
 
@@ -150,29 +188,3 @@ https://github.com/NousResearch/hermes-agent/issues/31584
 **第五部分：社会 —— 多智能体协作 (Multi-Agent)**
 
 **第六部分：结语 —— 迈向工业级**
-
-——完——
-
-[@北方的郎](https://www.zhihu.com/people/7af62e4119791a452e88718cb5ccc0be) · 专注模型与代码
-
-# 常见 Agent
-
-商业产品
-
-[Claude code](https://claude.com/product/claude-code)
-
-[Codex](https://chatgpt.com/codex/) # 商业产品
-
----
-
-开源项目
-
-Claude code 代码泄露了出来的各种 Agent
-
-- [AtomCode](https://atomcode.atomgit.com/)
-
-[Cline](https://github.com/cline/cline) # 自己定位 coding
-
-[OpenCode](https://github.com/anomalyco/opencode) # 自己定位 coding
-
-[Deepseek Harness](/docs/12.AI/Agent/Deepseek%20Harness.md)

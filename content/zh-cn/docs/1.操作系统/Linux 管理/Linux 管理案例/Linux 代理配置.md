@@ -7,7 +7,7 @@ title: Linux 代理配置
 
 在 [Unix-like OS](/docs/1.操作系统/Operating%20system/Unix-like%20OS/Unix-like%20OS.md) 中，很多程序都会读取 [Terminal 与 Shell](/docs/1.操作系统/Terminal%20与%20Shell/Terminal%20与%20Shell.md) 中的某些变量来读取代理信息
 
-> TODO: 这些变量到底应该大写还是小写？wget 命令无法识别到大写的变量。
+> [!TODO] 这些变量到底应该大写还是小写？wget 命令无法识别到大写的变量。
 
 - http_proxy | https_proxy | ftp_proxy | all_proxy # 此变量值用于所有 http、https、ftp 或者所有流量
 - socks_proxy # 在大多数情况下，它用于 TCP 和 UDP 流量。其值通常采用 socks：// address：port 格式。

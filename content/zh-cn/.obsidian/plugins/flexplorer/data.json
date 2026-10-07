@@ -15056,12 +15056,12 @@
     "docs/5.数据存储/Archive file": {
       "isPinned": false,
       "isHidden": false,
+      "sortOrder": "custom",
       "customOrder": [
         "_index.md",
         "Archive file.md",
         "Data compression.md"
-      ],
-      "sortOrder": "custom"
+      ]
     },
     "docs/5.数据存储/Archive file/Data compression.md": {
       "isPinned": false,
