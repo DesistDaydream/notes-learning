@@ -19,6 +19,14 @@ DeepSeek Harness 基于 [Cordis](https://github.com/cordiverse/cordis) 插件�
 > [!TODO]
 > ~/.dsh/ 目录 和 工作区中，都可以放 AGENTS.md 文件。~/.dsh/AGENTS.md 文件可以被在任何工作区的任务读取。核心的个人偏好逻辑可以放在这里。
 
+# 安装与部署
+
+这样装好像也挺简单，依赖都在 pnpm 的缓存里，
+
+```bash
+pnpm add -g @deepseek-ai/dsh@0.2.1-alpha.2
+```
+
 # 关联文件与配置
 
 **~/.dsh/** # Web 运行时数据保存目录。包括 会话、配置、etc.
@@ -26,6 +34,7 @@ DeepSeek Harness 基于 [Cordis](https://github.com/cordiverse/cordis) 插件�
 - **./profiles/${APP}/** # 各类应用程序的配置。
     - **./cordis.patch.yml** # patch 配置文件。包括 DSH 配置、插件配置、etc.
 - **`./sessions/${工作区ID}/session-${会话ID}/`** # 针对每个工作区的会话记录
+- **./attachments/** # 会话中的附件保存目录。会话里的 图片、文件、etc. 都属于附件。附件名是内容的 SHA-256 指纹。
 - **./storages/** # 
 - **settings.yaml** # 
 
@@ -47,4 +56,3 @@ https://deepseek-harness.github.io/deepseek-harness/guide/mcp-memory
 https://github.com/topics/dsh-plugin 这里的信息太多了，各种没有强关联的独立项目也加上了  dsh-plugin 这个 topics，明显是蹭热度引流的。
 
 https://github.com/dshworks/awesome-dsh-plugins
-

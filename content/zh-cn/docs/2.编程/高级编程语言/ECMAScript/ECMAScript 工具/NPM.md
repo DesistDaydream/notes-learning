@@ -79,27 +79,33 @@ corepack prepare pnpm@${PNPM_VERSION} --activate
 
 ## pnpm 关联文件与配置
 
-> Notes: pnpm 的官方文档中依然使用 .npmrc 这个单词作为自己得配置文件，但是实际上，配置文件的名称只是 rc。
+> 参考：
+>
+> - [官方文档，CLI - 配置](https://pnpm.io/cli/config)
 
-pnpm 使用 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的配置文件。若想使用独立于本地项目的配置文件，可以建立一个名为 `.npmrc` 的文件在项目的根目录。
+> [!Notes]
+> pnpm 的官方文档中依然使用 .npmrc 这个单词作为自己得配置文件，但是实际上，配置文件的名称只是 rc。
+>
+> 11.0.0 版本（2026-04-28 发布）开始，使用 config.yaml 作为默认 PNPM 默认配置文件名
 
-**/PATH/TO/rc** # pnpm 配置文件。`pnpm config` 命令控制的配置即是控制该文件。在[官方文档，CLI 命令-其他-pnpm config](https://pnpm.io/next/cli/config)中可以看到 pnpm 配置文件的保存路径：
+pnpm 使用 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的配置文件（11.0.0 版本开始，使用 [YAML](docs/2.编程/无法分类的语言/YAML.md) 格式的配置文件）。若想使用独立于本地项目的配置文件，可以建立一个名为 `.npmrc` 的文件在项目的根目录。
 
-- 如果设置了 `$XDG_CONFIG_HOME` 环境变量，则为 `$XDG_CONFIG_HOME/pnpm/rc`
-- 在 Windows 上：**%LOCALAPPDATA%/pnpm/config/rc**
-- 在 macOS 上：**~/Library/Preferences/pnpm/rc**
-- 在 Linux 上：**~/.config/pnpm/rc**
+**/PATH/TO/config.yaml** # pnpm 配置文件。`pnpm config` 命令控制的配置即是控制该文件。在[官方文档，CLI 命令-其他-pnpm config](https://pnpm.io/next/cli/config)中可以看到 pnpm 配置文件的保存路径：
+
+- Windows 默认路径 # **%LOCALAPPDATA%/pnpm/config/config.yaml**
+- Linux 默认路径 # **${XDG_CONFIG_HOME}/pnpm/rc**
 
 **/PATH/TO/.pnpm-store/** # pnpm 管理的依赖保存路径。可以通过 `pnpm config -g set store-dir <DIR>` 修改。`pnpm store path` 命令会显示当前 .pnpm-store 的完整路径。在 [官方文档，配置-.npmrc](https://pnpm.io/next/npmrc#store-dir) 中可以看到 pnpm 存储目录的默认值位置：
 
+- Windows 默认路径 # **%LOCALAPPDATA%/pnpm/store**
+- Linux 默认路径 # **${XDG_DATA_HOME}/pnpm/store**
 - 如果存在 `$PNPM_HOME` 环境变量，则为 `$PNPM_HOME/pnpm/store`
-- 如果设置了 `$XDG_DATA_HOME` 环境变量，则为 `$XDG_DATA_HOME/pnpm/store`
-- 在 Windows 上: **~/AppData/Local/pnpm/store**
-- 在 macOS 上: **~/Library/pnpm/store**
-- 在 Linux 上: **~/.local/share/pnpm/store**
-- 特殊默认值规则：pnpm 的管理的包的存储位置应始终与项目目录保持在同一磁盘上，因此每个磁盘将有一个存储。 如果在使用磁盘中具有主目录，存储目录就会创建在这里。 如果磁盘上没有主目录，那么将在文件系统的根目录中创建该存储。 例如，如果安装发生在挂载在 `/mnt` 的文件系统上，那么存储将在 `/mnt/.pnpm-store/` 目录中创建。 Windows 系统上也是如此。
-    - 用人话说是：假如我的项目在 `D:/Projects/DesistDaydream/javascript-learning/`，那模块将会默认下载到 `D:/.pnpm-store/` 目录中。
-- 注意：可以从不同的磁盘设置同一个存储，但在这种情况下，pnpm 将复制包而**不是硬链接**它们，因为**硬链接只能发生在同一文件系统上**。
+
+> [!Attention] 特殊默认值规则
+>
+> pnpm 的管理的包的存储位置应始终与项目目录保持在同一磁盘上，因此每个磁盘将有一个存储。 如果在使用磁盘中具有主目录，存储目录就会创建在这里。 如果磁盘上没有主目录，那么将在文件系统的根目录中创建该存储。 例如，如果安装发生在挂载在 `/mnt` 的文件系统上，那么存储将在 `/mnt/.pnpm-store/` 目录中创建。 Windows 系统上也是如此。
+> - 用人话说是：假如我的项目在 `D:/Projects/DesistDaydream/javascript-learning/`，那模块将会默认下载到 `D:/.pnpm-store/` 目录中。
+> - 注意：可以从不同的磁盘设置同一个存储，但在这种情况下，pnpm 将复制包而**不是硬链接**它们，因为**硬链接只能发生在同一文件系统上**。
 
 # Syntax
 
