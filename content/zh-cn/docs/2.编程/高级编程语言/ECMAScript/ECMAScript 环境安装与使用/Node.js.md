@@ -158,7 +158,7 @@ Corepack 是一个零运行时依赖的 Node.js 脚本，充当 Node.js 项目�
 >
 > Windows: `%LOCALAPPDATA%/node/corepack/`
 >
-> Unix-like: `${HOME}/.cache/node/corepack/`
+> Unix-like: `$XDG_CACHE_HOME/node/corepack/`
 
 - **./lastKnownGood.json** # Known Good Release(已知的良好版本，简称 KGR) 的清单。通过 Corepack 使用的 npm、pnpm、yarn 默认版本记录在该文件中。KGR 中包管理器的版本会随着 Corepack 的更新而更新。
 - **./v1/** # 目录组织结构的版本

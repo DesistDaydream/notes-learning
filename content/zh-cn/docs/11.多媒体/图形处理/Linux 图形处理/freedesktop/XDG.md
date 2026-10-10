@@ -17,6 +17,15 @@ freedesktop.org 制定互操作性规范，但我们不是官方标准机构。�
 
 # 常见变量
 
-https://specifications.freedesktop.org/basedir-spec/latest/ar01s03.html
+> 参考：
+>
+> - [freedesktop 规范，基础目录 - 变量](https://specifications.freedesktop.org/basedir-spec/latest/ar01s03.html)
+>     - https://specifications.freedesktop.org/basedir/latest/#variables
 
-`XDG_CACHE_HOME` 定义了应该存储用户特定的非必要数据文件的基本目录。如果 `$XDG_CACHE_HOME` 未设置或为空，则应使用等于 `$HOME/.cache` 的默认值。这是一个 Linux 和 Unix 操作系统环境变量，Windows 系统中并没有这个环境变量。
+`$XDG_DATA_HOME` # 定义了存放用户专属**数据文件**的基准目录。`默认值: $HOME/.local/share`
+
+`$XDG_CONFIG_HOME` # 定义了存放用户专属**配置文件**的基准目录。`默认值: $HOME/.config`
+
+`$XDG_STATE_HOME` # 定义了存放用户专属**状态文件**的基准目录。`默认值: $HOME/.local/state`
+
+`$XDG_CACHE_HOME` # 定义了存放用户专属**非必要数据文件（i.e. 缓存）**的基准目录。`默认值: $HOME/.cache`
