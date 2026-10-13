@@ -45,7 +45,7 @@ EOF
 **缓存的储存目录**
 
 - Windows: `%LOCALAPPDATA%\uv\cache\`
-- Unix: `$XDG_CACHE_HOME/uv/` 或 `$HOME/.cache/uv/`
+- Unix: `$XDG_CACHE_HOME/uv/`
 
 > [!Note] 缓存的储存目录可以通过如下几种方式修改：
 >

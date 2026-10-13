@@ -88,7 +88,7 @@ corepack install -g pnpm@${PNPM_VERSION}
 >
 > 11.0.0 版本（2026-04-28 发布）开始，使用 config.yaml 作为默认 PNPM 默认配置文件名
 
-pnpm 使用 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的配置文件（11.0.0 版本开始，使用 [YAML](docs/2.编程/无法分类的语言/YAML.md) 格式的配置文件）。若想使用独立于本地项目的配置文件，可以建立一个名为 `.npmrc` 的文件在项目的根目录。
+pnpm 使用 [INI](/docs/2.编程/无法分类的语言/INI.md) 格式的配置文件（11.0.0 版本开始，使用 [YAML](/docs/2.编程/无法分类的语言/YAML.md) 格式的配置文件）。若想使用独立于本地项目的配置文件，可以建立一个名为 `.npmrc` 的文件在项目的根目录。
 
 **/PATH/TO/config.yaml** # pnpm 配置文件。`pnpm config` 命令控制的配置即是控制该文件。在[官方文档，CLI 命令-其他-pnpm config](https://pnpm.io/next/cli/config)中可以看到 pnpm 配置文件的保存路径：
 

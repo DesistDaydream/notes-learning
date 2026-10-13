@@ -13393,6 +13393,7 @@
         "Machine learning",
         "自然语言处理",
         "计算机视觉",
+        "计算机听觉",
         "Prompt",
         "Agent",
         "AI MGMT",
@@ -15072,6 +15073,23 @@
       "isHidden": false
     },
     "docs/5.数据存储/Archive file/Archive file.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/12.AI/计算机听觉": {
+      "isPinned": false,
+      "isHidden": false,
+      "customOrder": [
+        "_index.md",
+        "计算机听觉.md"
+      ],
+      "sortOrder": "custom"
+    },
+    "docs/12.AI/计算机听觉/_index.md": {
+      "isPinned": false,
+      "isHidden": false
+    },
+    "docs/12.AI/计算机听觉/计算机听觉.md": {
       "isPinned": false,
       "isHidden": false
     }

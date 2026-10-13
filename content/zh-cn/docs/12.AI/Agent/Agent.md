@@ -58,7 +58,7 @@ Agent 的起点来源于 [Pi](#pi-mono) 项目
 
 # Agent tools
 
-Agent tools(Agent 工具) 本质是 [Prompt](docs/12.AI/Prompt/Prompt.md#Tool%20calling) 的 Tool calling 功能。i.e. [Transformer inference](docs/12.AI/Machine%20learning/Transformer/Transformer%20inference.md#Tools) 时向模型传输的 tool_call 部分
+Agent tools(Agent 工具) 本质是 [Prompt](/docs/12.AI/Prompt/Prompt.md#Tool%20calling) 的 Tool calling 功能。i.e. [Transformer inference](/docs/12.AI/Machine%20learning/Transformer/Transformer%20inference.md#Tools) 时向模型传输的 tool_call 部分
 
 # Agent 痛点
 
