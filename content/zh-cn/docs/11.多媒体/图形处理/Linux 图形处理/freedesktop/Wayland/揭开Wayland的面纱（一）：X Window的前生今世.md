@@ -1,6 +1,7 @@
 ---
 title: 揭开Wayland的面纱（一）：X Window的前生今世
 ---
+原文： https://imtx.me/blog/introduce-wayland-2/
 
 今天大家可能在"Wow! Ubuntu"或其他地方看到了这篇文章：Ubuntu 决定未来将启用 Wayland X-Server。
 
@@ -74,7 +75,7 @@ X Window 刚出现那会，主要提供一个在操作系统内核上的抽象�
 
 一个典型的例子，如果你要用 X 来画点，就要在你的程序中通过"XDrawPoint"来进行，X Server 收到消息后，便会画出相应的点。
 
-现在，稍微接触过图形开发的人都知道了，在 X Window 下，一般都通过 GTK+和 Qt 来进行了。更深一层的是，通过 Cairo（Qt 不是）来绘制图形。Cairo 是什么？它是一个绘图＋渲染引擎，著名的浏览器 Firefox，便是使用 Cairo 来渲染网页和文字的。
+现在，稍微接触过图形开发的人都知道了，在 X Window 下，一般都通过 GTK+ 和 Qt 来进行了。更深一层的是，通过 Cairo（Qt 不是）来绘制图形。Cairo 是什么？它是一个绘图＋渲染引擎，著名的浏览器 Firefox，便是使用 Cairo 来渲染网页和文字的。
 
 Cairo 是一个全能的、跨平台的矢量绘图库，它不是简单的包装一下各个平台的绘图库而已，尽管它最初是基于 X Window 开发出来的绘图库。现在 Cairo 支持各种不同的后端，来向其输出图形，比如 X、Windows 的 GDI、Mac OS X 的 Quartz，还有各种文件格式：PNG、PDF，当然还有 SVG。可以说，Cairo 是一个很彻底的、全能的绘图库，现在无论绘制什么图形，都不会考虑到用 XLib 了。
 

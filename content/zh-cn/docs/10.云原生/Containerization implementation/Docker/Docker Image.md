@@ -89,7 +89,7 @@ overlay on /var/lib/docker/overlay2/XXXXXXX/merged type overlay (rw,relatime,low
 
 # Docker Image 的管理标准(OCI 标准)介绍
 
-OCI 规范详见：[OCI Image 规范](/docs/10.云原生/Containerization/Open%20Containers%20Initiative(开放容器倡议)/OCI%20Image%20规范.md)
+OCI 规范详见：[OCI Image 规范](/docs/10.云原生/Containerization/OCI/OCI%20Image%20规范.md)
 
 ## docker pull 命令的大概过程
 

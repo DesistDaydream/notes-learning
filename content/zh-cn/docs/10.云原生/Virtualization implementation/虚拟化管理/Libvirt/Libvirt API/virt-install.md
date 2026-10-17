@@ -7,7 +7,7 @@ weight: 20
 
 > 参考：
 >
-> - [GitHub 项目，virt-manager/virt-manager 中的 Manual(手册)](https://github.com/virt-manager/virt-manager/blob/main/man/virt-install.rst)
+> - [GitHub 项目，virt-manager/virt-manager - Manual(手册)](https://github.com/virt-manager/virt-manager/blob/main/man/virt-install.rst)
 > - [Manual(手册)，virt-install(1)](https://man.cx/virt-install)（另一个网站的 Manual）
 
 virt-install 是一个命令行工具，用于通过 Libvirt 管理程序管理库创建新的 KVM、Xen 或 Linux 容器。请参阅本文档末尾的[示例部分](https://github.com/virt-manager/virt-manager/blob/main/man/virt-install.rst#examples)以快速入门。
@@ -137,7 +137,7 @@ virt-install 命令中很多参数都可以在 [XML 文件](/docs/10.云原生/V
 
 ## MISCELLANEOUS OPTIONS(其他选项)
 
-# 应用示例
+# 最佳实践
 
 使用本地文件当做磁盘镜像，VM 名字为 test，1024M 大小的内存，1 个 CPU，指定操作系统版本为 centos7，指定所使用的存储文件为 /var/lib/images/test.qcow2(该文件会自动创建)，指定网络桥接到 br0 上、模式为 virtio，指定图形模式为 vnc、把 vnc 暴露到宿主机上、监听端口为 5910
 
@@ -170,9 +170,24 @@ virt-install --name centos7 \
 
 这是最基本的创建方式，virt-install 会自动创建很多默认的虚拟设备以满足所需。我们只需要指定网络、连接显示的方式、系统版本、cpu、内存即可
 
-### 其他安装
+### 自建 qcow2 文件
 
-爱快，使用通用的 linux
+```bash
+# 1) 先建一个 100G 的空白 qcow2（虚拟容量 100G，文件本身只有几百 KB）
+qemu-img create -f qcow2 /var/lib/libvirt/images/base.qcow2 100G
+
+# 2) virt-install 只给 path（不再给 size）
+virt-install --name base \
+  --memory 65536 --vcpus 32 --cpu host-passthrough \
+  --machine virt --boot uefi,cdrom,hd \
+  --disk path=/var/lib/libvirt/images/base.qcow2,format=qcow2,bus=virtio \
+  --cdrom /root/iso/openEuler-22.03-LTS-SP1-everything-aarch64-dvd.iso \
+  --network network=default,model=virtio \
+  --graphics vnc,listen=0.0.0.0 --video virtio \
+  --noautoconsole
+```
+
+### 爱快，使用通用的 linux
 
 ```bash
 virt-install --name ikuaios \

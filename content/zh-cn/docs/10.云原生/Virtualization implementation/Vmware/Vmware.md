@@ -1,5 +1,8 @@
 ---
 title: Vmware
+weight: 1
+tags:
+  - VirtualMachine
 ---
 
 # 概述

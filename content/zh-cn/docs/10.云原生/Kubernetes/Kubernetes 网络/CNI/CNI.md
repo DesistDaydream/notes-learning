@@ -10,7 +10,7 @@ weight: 1
 > - [GitHub 项目](https://github.com/containernetworking/cni)
 > - [GitHub,containernetworking-cni-规范](https://github.com/containernetworking/cni/blob/master/SPEC.md)
 
-CNI 与 [OCI](/docs/10.云原生/Containerization/Open%20Containers%20Initiative(开放容器倡议)/Open%20Containers%20Initiative(开放容器倡议).md) 是类似的东西，都是一种规范。
+CNI 与 [OCI](/docs/10.云原生/Containerization/OCI/OCI.md) 是类似的东西，都是一种规范。
 
 **Container Network Interface(容器网络接口，简称 CNI)** 是一个 CNCF 项目，用于编写为 Linux 容器配置网络接口的插件。CNI 由两部分组成：
 

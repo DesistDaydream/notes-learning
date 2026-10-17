@@ -1,6 +1,8 @@
 ---
 title: Thanos
 weight: 1
+tags:
+  - Observability
 ---
 
 # 概述

@@ -1,6 +1,10 @@
 ---
 title: SNMP(传统监控标准)
 weight: 20
+tags:
+  - Observability
+  - OID
+  - MIB
 ---
 
 # 概述

@@ -235,7 +235,7 @@ QEMU_AUDIO_DRV=none
 
 EXAMLPE
 
-- virsh dumpxml lchTest # 显示 lchTest 这个虚拟机的 xml 信息
+- virsh dumpxml ddTest # 显示 ddTest 这个虚拟机的 xml 信息
 
 # edit - 编辑一个 domain 的 XML 配置
 
@@ -255,7 +255,7 @@ EXAMLPE
 
 # start - 启动一个 domain
 
-# undefine - 取消定义一个 domain。i.e.删除一台虚拟机
+# undefine - 取消定义一个 domain。i.e. 删除一台虚拟机
 
 该命令会删除 /etc/libvirt/qemu/ 目录下描述该 domain 的 xml 文件
 

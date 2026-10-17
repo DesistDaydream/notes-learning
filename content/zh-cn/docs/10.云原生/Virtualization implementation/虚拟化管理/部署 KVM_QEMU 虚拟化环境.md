@@ -41,6 +41,10 @@ weight: 20
 - 安装虚拟机文件系统的管理工具
     - yum install libguestfs-tools -y
 
+若 CPU 的 [指令集架构](/docs/0.计算机/CPU/指令集架构.md) 是 ARM64 的，则还需要安装如下几个包
+
+- yum install edk2-aarch64
+
 ## Ubuntu
 
 检查环境

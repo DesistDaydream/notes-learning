@@ -1,6 +1,8 @@
 ---
 title: Virtualization
 weight: 1
+tags:
+  - virtualization
 ---
 
 # 概述

@@ -1,6 +1,12 @@
 ---
 title: Containerization implementation
 weight: 1
+tags:
+  - lcx
+  - runc
+  - kata
+  - docker
+  - containerd
 ---
 
 # 概述
@@ -28,7 +34,7 @@ weight: 1
 
 需要注意的是，低级运行时和高级运行时有本质区别，各自解决的问题也不同。
 
-## 低级运行时
+# 低级运行时
 
 低级运行时的功能有限，通常执行运行容器的低级任务。大多数开发者日常工作中不会使用到。其一般指按照 OCI 规范、能够接收可运行 roofs 文件系统和配置文件并运行隔离进程的实现。这种运行时只负责将进程运行在相对隔离的资源空间里，不提供存储实现和网络实现。但是其他实现可以在系统中预设好相关资源，低级容器运行时可通过 config.json 声明加载对应资源。低级运行时的特点是底层、轻量，限制也很一目了然：
 
@@ -37,15 +43,23 @@ weight: 1
 - 不提供持久实现
 - 无法跨平台等
 
-### RunC
+### LXC
+
+> 参考：
+>
+> - [GitHub 项目，lxc/lxc](https://github.com/lxc/lxc)
+
+[Docker](/docs/10.云原生/Containerization%20implementation/Docker/Docker.md) 早期使用了 LXC 实现，后来不满足需求，自己开发了 libcontainer 代替 LXC
+
+## RunC
 
 > 参考：
 >
 > - [GitHub 项目，opencontainers/runc](https://github.com/opencontainers/runc)
 
-runc 是一个 CLI 工具，用于根据 OCI 规范生成和运行容器。
+runc 是一个 CLI 工具，用于根据 OCI 规范生成和运行容器。由 Docker 从 libcontainer 独立出来，并共享给 [OCI](/docs/10.云原生/Containerization/OCI/OCI.md)
 
-### youki
+## youki
 
 > 参考：
 >
@@ -53,7 +67,7 @@ runc 是一个 CLI 工具，用于根据 OCI 规范生成和运行容器。
 
 使用 Rust 语言写的，类似于 Runc 的容器运行时，
 
-### Sysbox
+## Sysbox
 
 > 参考：
 >
@@ -66,7 +80,7 @@ Sysbox 是一个新型的 OCI 容器运行时，对标 runc。相比于 runc，S
 
 最初 Sysbox 只支持 Docker，但最新版本 v0.4.0 已支持直接作为 Kubernetes 的 CRI 运行时。
 
-### Kata Container
+## Kata Container
 
 > 参考：
 >
@@ -76,7 +90,7 @@ Kata Containers 是一个开源项目和社区，致力于构建轻量级虚拟�
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ctvy4o/1616122531941-6b13921a-78c5-45a1-9a38-6695b517bca8.png)
 
-## 高级运行时
+# 高级运行时
 
 高级运行时负责容器镜像的传输和管理，解压镜像，并传递给低级运行时来运行容器。通常情况下，高级运行时提供一个守护程序和一个 API，远程应用程序可以使用它来运行容器并监控它们，它们位于低层运行时或其他高级运行时之上。
 
@@ -86,10 +100,98 @@ Kata Containers 是一个开源项目和社区，致力于构建轻量级虚拟�
 
 ![](https://notes-learning.oss-cn-beijing.aliyuncs.com/ctvy4o/1653966607306-f97afdfd-66fd-4d4d-ab04-364b1b60f27e.png)
 
-### Docker
+## Containerd
+
+[Containerd](/docs/10.云原生/Containerization%20implementation/Containerd/Containerd.md)
+
+## Docker
 
 [Docker](/docs/10.云原生/Containerization%20implementation/Docker/Docker.md)
 
-### Containerd
+## Podman
 
-[Containerd](/docs/10.云原生/Containerization%20implementation/Containerd/Containerd.md)
+> 参考：
+>
+> - [GitHub 项目，containers/libpod](https://github.com/containers/libpod)
+>     - https://github.com/podman-container-tools/podman
+
+alias docker=podman
+
+podman 与 cri-o 同属 libpod 项目，<https://github.com/containers/podman>
+
+### podman 命令行工具
+
+**podman \[OPTIONS] COMMAND**
+
+**generate - 生成结构化数据**
+
+通过该命令，可以根据已经运行的容器生成 pod 类型的 yaml 文件或者 systemd 类型的 daemon 文件
+
+Note：仅可对一个容器执行该命令，如果对俩容器执行命令则会报错：
+
+```bash
+~]# podman generate systemd generate_test test
+Error: provide only one container name or ID`
+```
+
+pod 类型 yaml 生成效果如下：
+
+```yaml
+~]# podman generate kube generate_test
+# Generation of Kubernetes YAML is still under development!
+#
+# Save the output of this file and use kubectl create -f to import
+# it into Kubernetes.
+#
+# Created with podman-1.4.4
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2020-01-21T03:02:52Z"
+  labels:
+    app: generatetest
+  name: generatetest
+spec:
+  containers:
+  - command:
+    - ..... #内容省略
+    image: docker.io/lchdzh/network-test:v2.0
+    name: generatetest
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: true
+      capabilities: {}
+      privileged: false
+      readOnlyRootFilesystem: false
+    workingDir: /
+status: {}
+```
+
+systemd 生成效果如下：
+
+```ini
+~]# podman generate systemd generate_test
+[Unit]
+Description=efa0ab2e648439a516372ecb907f5e506631d033e50978666f032ab5d9ecb788 Podman Container
+[Service]
+Restart=on-failure
+ExecStart=/usr/bin/podman start efa0ab2e648439a516372ecb907f5e506631d033e50978666f032ab5d9ecb788
+ExecStop=/usr/bin/podman stop -t 10 efa0ab2e648439a516372ecb907f5e506631d033e50978666f032ab5d9ecb788
+KillMode=none
+Type=forking
+PIDFile=/var/lib/containers/storage/overlay-containers/efa0ab2e648439a516372ecb907f5e506631d033e50978666f032ab5d9ecb788/userdata/efa0ab2e648439a516372ecb907f5e506631d033e50978666f032ab5d9ecb788.pid
+[Install]
+WantedBy=multi-user.target
+```
+
+## LXD
+
+> 参考：
+>
+> - [GitHub 项目，canonical/lxd](https://github.com/canonical/lxd)
+
+LXD 则是基于 LXC 的一个容器引擎，只不过大多数容器引擎的目标是容器化应用不同，lxd 的目标则是容器化操作系统。想让容器内部具有更多的操作系统样子（e.g. systemd, etc.），但是依然与宿主机共享内核。
+
+始于 2018 年，2014 年由 Canonical 主导，2020 年 LXD 4.0 添加了真正的虚拟机管理
+
+MicroCloud 基于 LXD，类似于 [K3S](/docs/10.云原生/Kubernetes/Kubernetes%20衍生品/K3S/K3S.md) 的角色（这个生态下没有类似 K8S、OpenStack 那种大型的编排系统）。

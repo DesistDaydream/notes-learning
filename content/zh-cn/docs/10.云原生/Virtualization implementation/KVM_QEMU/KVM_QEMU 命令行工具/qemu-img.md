@@ -19,7 +19,7 @@ weight: 20
 
 ### Standard OPTIONS
 
-- **-U, --force-share** #
+- **-U, --force-share** # 以共享模式打开 Image。当文件被占用时，使用此参数以只读方式打开 Image。
 - **-f**(STRING) # 指定第一个镜像文件的格式。`默认值: raw`
 - **-F**(STRING) # 指定第二个镜像文件的格式。`默认值: raw`
 
@@ -156,3 +156,9 @@ EXAMPLE
 # snapshot - 为 VM 创建、删除、应用、列出快照
 
 **qemu-img snapshot \[-q] \[-l | -a snapshot | -c snapshot | -d snapshot] filename**
+
+**OPTIONS**
+
+- **-a** # 还原快照
+- **-c** # 创建一个快照
+- **-d** # 删除一个快照

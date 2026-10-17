@@ -1,6 +1,8 @@
 ---
 title: KVM/QEMU
 weight: 1
+tags:
+  - VirtualMachine
 ---
 
 # 概述

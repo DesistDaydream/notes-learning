@@ -35,16 +35,17 @@ https://github.com/Oublie-le/iTerm
 - 受 WindTerm 启发，使用 Rust 与 TS 开发
 - https://github.com/kingtoolbox/windterm/issues/3679
 
-https://github.com/fluxterm/fluxterm-release
-
-- 受 WindTerm 启发
-- https://github.com/kingtoolbox/windterm/issues/3675
-
 https://github.com/AnalyseDeCircuit/oxideterm
 
 - 受 WindTerm 启发
 - https://github.com/kingtoolbox/windterm/issues/3674
 - 居然还有内置 IDE，工作太杂乱了，并没有做好终端应有的本职功能
+
+https://github.com/fluxterm/fluxterm-release
+
+- 受 WindTerm 启发
+- https://github.com/kingtoolbox/windterm/issues/3675
+- 2026-09-20 项目已归档， https://github.com/fluxterm/fluxterm 项目还在
 
 ## Xmanager
 
@@ -147,9 +148,3 @@ Bold colors(加粗颜色) # 影响文件名之类的？TODO
 >
 > - [GitHub 项目，Eugeny/tabby](https://github.com/Eugeny/tabby)
 
-## Warp
-
-> 参考：
->
-> - [GitHub 项目，warpdotdev/Warp](https://github.com/warpdotdev/Warp)
-> - [官网](https://www.warp.dev/)

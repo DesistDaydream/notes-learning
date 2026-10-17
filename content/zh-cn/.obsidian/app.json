@@ -9,7 +9,7 @@
   "tabSize": 4,
   "useTab": false,
   "smartIndentList": true,
-  "showLineNumber": false,
+  "showLineNumber": true,
   "strictLineBreaks": true,
   "vimMode": false,
   "userIgnoreFilters": null,

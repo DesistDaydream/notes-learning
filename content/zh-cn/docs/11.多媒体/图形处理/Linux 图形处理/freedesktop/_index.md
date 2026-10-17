@@ -1,4 +1,4 @@
 ---
-title: "freedesktop"
-weight: 20
+title: freedesktop
+weight: 12
 ---

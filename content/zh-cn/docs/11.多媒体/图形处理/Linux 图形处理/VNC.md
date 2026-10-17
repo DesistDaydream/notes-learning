@@ -39,3 +39,5 @@ Ubuntu
 > 参考：
 >
 > - [官网](https://www.realvnc.com/en/)
+
+VNC Viewer
