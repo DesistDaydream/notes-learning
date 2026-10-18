@@ -1,5 +1,8 @@
 ---
 title: Bond 与 Team
+weight: 20
+tags:
+  - team
 ---
 
 # 概述
@@ -22,7 +25,7 @@ title: Bond 与 Team
 > Peer(对等方) 指的是与本网络设备直连的可以实现 LACP 的对端网络设备
 > LACP 数据包通常称为 **Link Aggregation Control Protocol Data Unit(链路汇聚控制协议数据单元，简称 LACPDU)**
 
-# Bond，网卡绑定
+# Bond(网卡绑定)
 
 Bond 类型的网络设备是通过把多个网络设备绑定为一个逻辑网络设备，实现本地网络设备的冗余、带宽扩容和负载均衡。在应用部署中是一种常用的技术。
 

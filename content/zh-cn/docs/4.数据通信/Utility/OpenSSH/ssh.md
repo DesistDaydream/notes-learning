@@ -43,7 +43,8 @@ weight: 20
 
 **-L**(XXX) # Local(本地) 转发。发往本地的 TCP 端口 或 Unix Socket 上的流量转发到远端 TCP 端口 或 Unix Socket 上。
 
-> 本地转发 可以将 Remote 服务通过 sshd 程序暴露到 Local 上。e.g. Remote 只开了 22，Local 想要访问 Remote 的其他端口
+> [!Tip] 本地转发 可将 Remote 服务通过 sshd 程序暴露到 Local 上。
+> e.g. Remote 只开了 22，Local 想要访问 Remote 的其他端口
 
 - XXX 有多种语法格式：
 - **-L \[Bind_Address:]LocalPort:RemoteHost:RemoteHostPort**
@@ -56,7 +57,8 @@ weight: 20
 
 **-R**(XXX) # Remote(远程) 转发。发往指定 `RemotePort` 或 `RemoteSocket` 上的流量转发到 `本地端口` 或 `Unix Socket` 上。
 
-> 远程转发 可以将 Local 服务通过 sshd 程序暴露到 Remote 上。e.g. Remote 无法访问 Local 的 22（但是 Local 可以访问 Remote），Remote 想要访问 Local 的 22 即可使用远程转发
+> [!Tip] 远程转发 可将 Local 服务通过 sshd 程序暴露到 Remote 上。
+> e.g. Remote 无法访问 Local 的 22（但是 Local 可以访问 Remote），Remote 想要访问 Local 的 22 即可使用远程转发
 
 - XXX 有多种语法格式：
 - **-R \[bind_address:]RemotePort:LocalHost:LocalPort**

@@ -209,7 +209,7 @@ monitor
 
 ## 第二部分
 
-在 ip address show 命令中列出的网络设备，可能包含这样的名称 eth0.2@eth0 。其实设备名就是 eth0.2(其中 2 表示 vlan 号)，至于后面的`@`则是一个关联同等级网络设备的符号，表示 eth0.2 这个设备是与 eth0 关联的。如果是 bridge 和 bond 之类的网络设备，则没有`@`符号，因为和 bridge 或者 bond 关联的设备都是属于下级设备。
+在 ip address show 命令中列出的网络设备，可能包含这样的名称 eth0.2@eth0 。其实设备名就是 eth0.2(其中 2 表示 vlan 号)，至于后面的`@`则是一个关联同等级网络设备的符号，表示 eth0.2 这个设备是与 eth0 关联的。如果是 bridge 和 bond 之类的网络设备，则没有 `@` 符号，因为和 bridge 或者 bond 关联的设备都是属于下级设备。
 
 ## 第三部分
 
@@ -231,3 +231,52 @@ TODO:
 - qdisc # 队列管理机制？
 - noqueue
 - qlen # 队列的长度？
+
+# 最佳实践
+
+## 查看网络设备详情
+
+显示链路详细信息，包括： 接收与发送的 字节、数据包、错包、etc.
+
+```bash
+ip -s link show
+```
+
+显示链路详细信息，包括： 网络设备的 类型、全名、etc.
+
+```bash
+ip -d link show
+```
+
+## 其他
+
+查看所有 bridge 类型的网络设备
+
+- ip link show type bridge
+
+启动或者停止 eth0 网卡，可以简写为 `ip l s eth0 up`
+
+- ip link set dev eth0 up|down
+
+添加名字为 veth1.1 的链路，类型为 veth，veth 的另一半名字为 veth1.2
+
+- ip link add veth1.1 type veth peer name veth1.2
+
+把 veth1.1 这个设备绑定到名为 r1 的 namespace 上(注意：一个网络设备只能绑定到一个 namespace 上，一个 namesapce 可以绑定多个网络设备)
+
+- ip link set veth1.1 netns r1
+
+将 vnet0 设备绑定到 br0 桥上
+
+- ip link set dev vnet0 master br0
+
+创建 Bond 类型网络设备
+
+- 创建 802.3ad 模式的 Bond 类型网络设备
+    - ip link add bond1 type bond mod 802.3ad
+- 将物理网卡关联到的网络设备先关掉，再添加到 Bond 网络设备中
+    - ip link set enp6s0f0 master down
+    - ip link set enp6s0f0 down
+    - ip link set enp6s0f0 master bond1
+    - ip link set enp6s0f1 down
+    - ip link set enp6s0f1 master bond1

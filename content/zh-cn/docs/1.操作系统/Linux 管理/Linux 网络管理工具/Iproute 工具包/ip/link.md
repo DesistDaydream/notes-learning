@@ -106,27 +106,3 @@ done | column -t
 ```
 
 **ip link show \[ DEVICE | group GROUP ] \[ up ] \[ master DEVICE ] \[ type ETYPE ] \[ vrf NAME ]**
-
-# 应用示例
-
-- 显示链路详细信息，包括接收与发送的数据包数以及错误数，丢弃数等
-    - ip -s link show
-- 查看所有 bridge 类型的网络设备
-    - ip link show type bridge
-- 启动或者停止 eth0 网卡，可以简写为 `ip l s eth0 up`
-    - ip link set dev eth0 up|down
-- 添加名字为 veth1.1 的链路，类型为 veth，veth 的另一半名字为 veth1.2
-    - ip link add veth1.1 type veth peer name veth1.2
-- 把 veth1.1 这个设备绑定到名为 r1 的 namespace 上(注意：一个网络设备只能绑定到一个 namespace 上，一个 namesapce 可以绑定多个网络设备)
-    - ip link set veth1.1 netns r1
-- 将 vnet0 设备绑定到 br0 桥上
-    - ip link set dev vnet0 master br0
-- 创建 Bond 类型网络设备
-    - 创建 802.3ad 模式的 Bond 类型网络设备
-        - ip link add bond1 type bond mod 802.3ad
-    - 将物理网卡关联到的网络设备先关掉，再添加到 Bond 网络设备中
-        - ip link set enp6s0f0 master down
-        - ip link set enp6s0f0 down
-        - ip link set enp6s0f0 master bond1
-        - ip link set enp6s0f1 down
-        - ip link set enp6s0f1 master bond1

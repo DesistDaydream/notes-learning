@@ -6,6 +6,8 @@ weight: 2
 # 概述
 
 > 参考：
+>
+> - 
 
 CPU 虚拟化(vCPU=virtual CPU # 虚拟 CPU)
 
@@ -13,7 +15,9 @@ CPU 虚拟化(vCPU=virtual CPU # 虚拟 CPU)
 
 使用如下命令可以查看该 CPU 是否支持虚拟化
 
+```bash
 egrep -o '(vmx|svm)' /proc/cpuinfo
+```
 
 如果有输出 vmx 或者 svm，就说明当前的 CPU 支持 KVM。CPU 厂商 Intel 和 AMD 都支持虚拟化了，除非是非常老的 CPU。
 

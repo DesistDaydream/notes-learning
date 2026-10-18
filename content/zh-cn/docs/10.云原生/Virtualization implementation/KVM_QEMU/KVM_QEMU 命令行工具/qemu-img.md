@@ -32,10 +32,14 @@ weight: 20
 - convert \[-c] \[-p] \[-q] \[-n] \[-f fmt] \[-t cache] \[-T src_cache] \[-O output_fmt] \[-o options] \[-s snapshot_name] \[-S sparse_size] filename \[filename2 \[...]] output_filename
 - info \[-f fmt] \[--output=ofmt] \[--backing-chain] filename
 - map \[-f fmt] \[--output=ofmt] filename
-- snapshot \[-q] \[-l | -a snapshot | -c snapshot | -d snapshot] filename
+- [**snapshot**](#snapshot) # 为 VM 创建、删除、应用、列出快照
 - rebase \[-q] \[-f fmt] \[-t cache] \[-T src_cache] \[-p] \[-u] -b backing_file \[-F backing_fmt] filename
 - resize \[-q] filename \[+ | -]size
 - amend \[-q] \[-f fmt] \[-t cache] -o options filename
+
+通用命令参数说明
+
+- FILENAME # 磁盘镜像的文件名。i.e. 虚拟机文件的名称。
 
 # check - 检查 VM 镜像文件
 
@@ -153,12 +157,13 @@ EXAMPLE
 
 - qemu-img resize test.qcow2 +40G # 给 test.qcow2 镜像的磁盘量容量添加 40G
 
-# snapshot - 为 VM 创建、删除、应用、列出快照
+# snapshot
 
-**qemu-img snapshot \[-q] \[-l | -a snapshot | -c snapshot | -d snapshot] filename**
+**qemu-img snapshot OPTIONS FILENAME**
 
 **OPTIONS**
 
-- **-a** # 还原快照
-- **-c** # 创建一个快照
-- **-d** # 删除一个快照
+- **-a**(STRING) # 还原快照
+- **-c**(STRING) # 创建一个快照
+- **-d**(STRING) # 删除一个快照
+- **-l** # 列出所有快照

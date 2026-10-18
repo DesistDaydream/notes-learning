@@ -9,9 +9,10 @@
   "tabSize": 4,
   "useTab": false,
   "smartIndentList": true,
-  "showLineNumber": true,
+  "showLineNumber": false,
   "strictLineBreaks": true,
   "vimMode": false,
   "userIgnoreFilters": null,
-  "settingsPopoutWindow": true
+  "settingsPopoutWindow": true,
+  "showInlineTitle": true
 }

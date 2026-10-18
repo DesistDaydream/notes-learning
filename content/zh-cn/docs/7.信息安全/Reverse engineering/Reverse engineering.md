@@ -60,6 +60,8 @@ http://www.cnlans.com/lx/tools 李玺的爬虫逆向工具
 
 https://github.com/BlackINT3/OpenArk # 一款 Windows 平台上的开源Ark工具. Ark 是 Anti-Rootkit（对抗恶意程序）的简写, OpenArk 目标成为逆向工程师、编程人员的工具，同时也能为那些希望清理恶意软件的用户服务。
 
+[GitHub 项目，morluto/rea](https://github.com/morluto/rea) # 一个用于对二进制文件、应用程序和运行时行为进行逆向工程的 [MCP](/docs/12.AI/Prompt/MCP.md)。
+
 ## 反编译器
 
 [Decompiler](/docs/7.信息安全/Reverse%20engineering/Decompiler.md)
