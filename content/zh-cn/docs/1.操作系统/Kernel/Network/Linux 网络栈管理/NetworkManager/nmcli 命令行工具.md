@@ -45,13 +45,13 @@ OBJECT
 - **a\[gent]** # NetworkManager secret agent or polkit agent
 - **m\[onitor]** # monitor NetworkManager changes
 
-# g\[eneral] # NetworkManager 的一般状态和操作
+# g\[eneral] - NetworkManager 的一般状态和操作
 
-# n\[etworking] # overall networking control
+# n\[etworking] - overall networking control
 
-# r\[adio] # NetworkManager radio switches
+# r\[adio] - NetworkManager radio switches
 
-# c\[onnection] # Connections 的管理命令，常用命令
+# c\[onnection] - Connections 的管理命令，常用命令
 
 详见：[nmcli connection 子命令](/docs/1.操作系统/Kernel/Network/Linux%20网络栈管理/NetworkManager/nmcli%20connection%20子命令.md)
 
@@ -85,8 +85,8 @@ import \[--temporary] type \<type> file \<file to import>
 
 export \[id | uuid | path] \<ID> \[\<output file>]
 
-# d\[evice] # 通过 NetworkManager 来管理网络设备
+# d\[evice] - 通过 NetworkManager 来管理网络设备
 
-# a\[gent] # NetworkManager secret agent or polkit agent
+# a\[gent] - NetworkManager secret agent or polkit agent
 
-# m\[onitor] # monitor NetworkManager changes
+# m\[onitor] - monitor NetworkManager changes

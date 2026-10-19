@@ -55,6 +55,36 @@ https://deepseek-harness.github.io/deepseek-harness/guide/mcp-memory
 
 # Plugins
 
-https://github.com/topics/dsh-plugin 这里的信息太多了，各种没有强关联的独立项目也加上了  dsh-plugin 这个 topics，明显是蹭热度引流的。
+https://github.com/topics/dsh-plugin # 这里的信息太多了，各种没有强关联的独立项目也加上了  dsh-plugin 这个 topics，明显是蹭热度引流的。
+
+2026-09-26 cuitianyi 在 X 上发了[关于插件的内容](https://x.com/tianyi/status/2103534313463783831)，他惦记后面时不时个人推荐一些好用的 DSH 插件。
+
+[GitHub 组织，omdsh-dev](https://github.com/omdsh-dev) # 围绕 DeepSeek Harness，分享社区作品、交流使用经验
 
 https://github.com/dshworks/awesome-dsh-plugins
+
+- https://awesome-dsh-plugin.com/
+
+https://dshmarket.com/ # 插件市场
+
+https://dshfind.com/ # 插件市场
+
+---
+
+https://github.com/deepseek-ai/dsh-libreoffice-kit # Office 文件处理。在 Node.js 中实现字体友好的 Office 转换与渲染。
+
+https://github.com/oh-my-dsh/dsh-plugin-upgrade-skill # 帮助 DSH 插件作者升级自己插件、适配 DSH 新版本 的 skill
+
+ - cuitianyi 推荐 https://x.com/tianyi/status/2107030904233460208
+
+页面增强
+
+- https://github.com/omdsh-dev/DSH-better-sidebar # 侧边栏增强，随意拖动，还有底边栏。
+
+观测系统
+
+- https://github.com/bowenliang123/dsh-context # 用量观测，上下文洞察。
+
+记忆系统
+
+- [Mnemon](docs/12.AI/Prompt/Prompt.md#Mnemon)

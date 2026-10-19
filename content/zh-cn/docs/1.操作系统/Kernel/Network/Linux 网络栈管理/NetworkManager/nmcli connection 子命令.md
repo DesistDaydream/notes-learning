@@ -131,7 +131,7 @@ bond.options:                           mode=active-backup
 
 ## Vlan 配置
 
-创建一个 Blan 类型的连接，意思就是为指定的网络设备 DEV 划分 vlan。创建一个名为 DEV.VLANID 的新网络设备，凡是通过该设备发送的数据包都会添加上 VLANID。
+创建一个 Vlan 类型的连接，意思就是为指定的网络设备 DEV 划分 vlan。创建一个名为 DEV.VLANID 的新网络设备，凡是通过该设备发送的数据包都会添加上 VLANID。
 
 为 Bond 配置 VLAN 标签
 

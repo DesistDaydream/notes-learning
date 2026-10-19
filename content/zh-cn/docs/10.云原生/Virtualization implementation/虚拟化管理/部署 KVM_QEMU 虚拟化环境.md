@@ -69,6 +69,21 @@ weight: 20
 - yum install -y tigervnc-server # 安装 vnc 服务端
 - yum groups install -y 'GNOME Desktop' #
 
+# 配置网络
+
+创建网桥，并把管理口加到网桥中
+
+```bash
+export CIRD="192.168.10.10/24"
+export GATEWAY="192.168.10.1"
+export NIC="eth0"
+nmcli con add type bridge con-name br0 ifname br0 \
+ ipv4.method manual ip4 ${CIRD} gw4 ${GATEWAY} \
+ ipv6.method ignore \
+ bridge.stp no
+nmcli con add type ethernet ifname ${NIC} master br0 && nmcli con up bridge-slave-${NIC}
+```
+
 # 其他
 
 yum -y install mesa-libGLES-devel.x86_64 mesa-dri-drivers

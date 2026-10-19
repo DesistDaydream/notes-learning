@@ -93,21 +93,19 @@ https://github.com/coreyhaines31/marketingskills
 
 # 记忆
 
+我个人对记忆系统需求（待完善）
+
+- 详见 my-ai-agent 项目中的 AGENTS.md
+
 [MCP Memory Server](https://github.com/modelcontextprotocol/servers/tree/main/src/memory)
 
 - https://www.npmjs.com/package/@modelcontextprotocol/server-memory
 
 [GitHub 项目，Gentleman-Programming/engram](https://github.com/Gentleman-Programming/engram) # 纯代码项目层的记忆，通用限制很多
 
-Mnemon # Go 写的，比较符合现阶段（2026-09-26）预期。
+[Mnemon](#Mnemon) # Go 写的，比较符合现阶段（2026-09-26）预期。
 
-我个人对记忆系统需求（待完善）
-
-- 记录我的每一天
-- 可以根据对话实时更新个人偏好
-- 可以快速检索出内容（是否需要对记忆分类呢？记忆是否应该有分类？一件事情很可能会关联多个分类的。分类可以穷尽吗？）
-
-TODO: https://www.bilibili.com/video/BV1DWGK6PE9r
+[B 站，OpenClaw都凉透了，我却花140天把隐私全交给它，蒸馏出了真正可用的赛博秘书。【X.PIN】](https://www.bilibili.com/video/BV1DWGK6PE9r)
 
 - https://workspace.mirrochou.com/systemprompt-showcase/agents/original-report.html
 

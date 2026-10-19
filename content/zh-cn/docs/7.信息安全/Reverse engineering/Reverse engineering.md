@@ -42,6 +42,8 @@ APP 加壳
 
 # 逆向常用工具
 
+[Packet analyzer](/docs/7.信息安全/Packet%20analyzer/Packet%20analyzer.md) # 数据包分析工具
+
 **x64dbg** # 适用于 Windows 的开源用户模式调试器。针对逆向工程和恶意软件分析进行了优化。
 
 - [GitHub 项目，x64dbg/x64dbg](https://github.com/x64dbg/x64dbg)
@@ -54,11 +56,18 @@ APP 加壳
 
 - [GitHub 项目，cheat-engine/cheat-engine](https://github.com/cheat-engine/cheat-engine)
 
-[Packet analyzer](/docs/7.信息安全/Packet%20analyzer/Packet%20analyzer.md)
+https://github.com/BlackINT3/OpenArk # 一款 Windows 平台上的开源 Ark 工具
 
-http://www.cnlans.com/lx/tools 李玺的爬虫逆向工具
+> [!Quote] Ark 是 Anti-Rootkit（对抗恶意程序）的简写, OpenArk 目标成为逆向工程师、编程人员的工具，同时也能为那些希望清理恶意软件的用户服务。
 
-https://github.com/BlackINT3/OpenArk # 一款 Windows 平台上的开源Ark工具. Ark 是 Anti-Rootkit（对抗恶意程序）的简写, OpenArk 目标成为逆向工程师、编程人员的工具，同时也能为那些希望清理恶意软件的用户服务。
+[GitHub 项目，HanZzzzz000/iv8](https://github.com/HanZzzzz000/iv8) # Python 原生的 V8 + 浏览器环境运行时。
+
+- 补 JS 运行环境用，主要用来模拟真实浏览请求，避免被识别。
+- 有人搞了个该项目的开源版 https://github.com/64yuer/lv8
+
+---
+
+http://www.cnlans.com/lx/tools # 李玺的爬虫逆向工具
 
 [GitHub 项目，morluto/rea](https://github.com/morluto/rea) # 一个用于对二进制文件、应用程序和运行时行为进行逆向工程的 [MCP](/docs/12.AI/Prompt/MCP.md)。
 
