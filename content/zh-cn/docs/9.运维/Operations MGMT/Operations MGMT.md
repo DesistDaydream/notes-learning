@@ -143,11 +143,11 @@ Go 语言实现的
 
 # 运维平台最佳实践
 
-https://github.com/openspug/spug # 开源运维平台：面向中小型企业设计的轻量级无Agent的自动化运维平台，整合了主机管理、主机批量执行、主机在线终端、文件在线上传下载、应用发布部署、在线任务计划、配置中心、监控、报警等一系列功能。
+https://github.com/openspug/spug # Python。开源运维平台：面向中小型企业设计的轻量级无Agent的自动化运维平台，整合了主机管理、主机批量执行、主机在线终端、文件在线上传下载、应用发布部署、在线任务计划、配置中心、监控、报警等一系列功能。
 
-https://github.com/veops/cmdb
+https://github.com/veops/cmdb # 
 
-https://github.com/starsliao/TenSunS
+https://github.com/starsliao/TenSunS # Python，[Node Exporter](docs/6.可观测性/Metrics/Instrumenting/Node%20Exporter.md) 主机面板作者的产品，基于 Consul 的运维平台，更偏向于 K8S。开源精神不够足，后来也就不积极迭代了
 
 https://github.com/search?q=language%3AGo%20cmdb&type=repositories # Go 语言 CMDB 在 GitHub 的搜索
 
@@ -159,6 +159,19 @@ https://github.com/search?q=language%3AGo%20cmdb&type=repositories # Go 语言 C
 - https://github.com/tahopetis/Pustaka # 单 CMDB
 - https://github.com/ydcloud-dy/cmdb-server # K8S多集群管理平台、CMDB、CICD后端
     - 最后一次 commit 2024年12月27日
+
+https://github.com/coolxer-studio/zenvis # Java，国人的项目，开源精神不够足。由配置驱动的一整套框架，外部插件实现具体能力。
+
+---
+
+**个人总结**
+
+都可以自定义资产模型、数据模型、等各种模型，建立模型之间的关系。最后产生数据的项目：
+
+- ecmd
+- zenvis
+
+> [!Quote] 蓝鲸虽然也是自己建模型这种架子，但是首先 ta 是腾讯的，其次，商业味儿太冲，迭代更是基本没有。
 
 # AI 运维最佳实践
 

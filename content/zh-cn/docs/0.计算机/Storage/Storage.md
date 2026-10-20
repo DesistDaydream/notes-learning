@@ -9,7 +9,9 @@ weight: 1
 >
 > - [Wiki, Non volatile memory](https://en.wikipedia.org/wiki/Non-volatile_memory)
 
-Storage drive(存储驱动器，也称为 硬盘) 是一种 Non-volatile memory/Non-volatile storage(非易失性存储)，这是一种即使断电也能保留存储信息的 [Memory](/docs/0.计算机/Memory/Memory.md)。
+**Storage drive(存储驱动器，也称为 硬盘)** 是一种 **Non-volatile memory/Non-volatile storage(非易失性存储，简称 NVM)**，这是一种即使断电也能保留存储信息的 [Memory](/docs/0.计算机/Memory/Memory.md)。
+
+> [!Question] NVRAM 与 NVM 有啥区别？
 
 在现代计算机中，通常使用如下两种硬件作为存储：
 

@@ -22,3 +22,57 @@ weight: 2
         - xfs_growfs /dev/mapper/vg0-root
     - EXT 文件系统
         - resize2fs /dev/mapper/vg0-root (-f 强制扩展)
+
+## 不进虚拟机扩展非 LVM 磁盘
+
+```bash
+cd /var/lib/libvirt/images
+
+cp --sparse=always hdf-01.qcow2 hdf-01.qcow2.pre-resize-$(date +%Y%m%d)
+
+# 镜像变为 V3 格式（V2 不支持带快照扩容）
+qemu-img amend -o compat=1.1 hdf-01.qcow2
+
+qemu-img resize hdf-01.qcow2 +100G
+
+# 加载 nbd 模块
+modprobe nbd max_part=16
+# 把虚拟机磁盘挂载到宿主机的 /dev/nbd0 上
+qemu-nbd -c /dev/nbd0 hdf-01.qcow2
+
+parted -s /dev/nbd0 resizepart 4 100%; partprobe /dev/nbd0
+```
+
+> [!Attention] 下面的 op4 中的 4 是分区号，由于要扩展 / 分区，所以这里的示例要保证根分区在最后一个盘符，且是第 4 个分区。
+
+```bash
+e2fsck -f /dev/nbd0p4 && resize2fs /dev/nbd0p4
+
+# 将虚拟机镜像与 /dev/nbd0 断开
+qemu-nbd -d /dev/nbd0
+virsh start hdf-01
+```
+
+---
+
+若 resizepart 时报错
+
+```bash
+警告: 并非所有可用于 /dev/nbd0 的空间都被用到了，您可以修正 GPT 以使用所有的空间 (额外的 209715200 个区块)，还是说要继续使用目前的设置？
+错误: 无法满足分区的所有限制。
+Warning: 并非所有可用于 /dev/nbd0 的空间都被用到了，您可以修正 GPT 以使用所有的空间 (额外的 209715200 个区块)，还是说要继续使用目前的设置？
+```
+
+> [!Quote] 原因：磁盘文件已经扩展到 200G，但 **GPT 备份头还停在旧的磁盘末尾**（100G 处）。使用 `-s` 非交互模式时，它无法回答那句 “Fix/Ignore?” 提示，便按“不修”继续；于是它认为可用末端只到旧的磁盘尾部，`100%` 落在该范围之外，从而报出 “无法满足分区的所有限制”
+
+则执行如下方式修复后继续
+
+```bash
+~]# sgdisk -e /dev/nbd0
+The operation has completed successfully.
+~]# partprobe /dev/nbd0
+~]# parted -s /dev/nbd0 resizepart 4 100%
+~]# partprobe /dev/nbd0
+~]# parted -s /dev/nbd0 unit s print
+# ...略
+```

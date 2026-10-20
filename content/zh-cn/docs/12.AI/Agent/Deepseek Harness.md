@@ -55,6 +55,14 @@ https://deepseek-harness.github.io/deepseek-harness/guide/mcp-memory
 
 # Plugins
 
+若在某台电脑上安装了插件，在另一台电脑同步了 .dsh 的话，则只有插件名称，没有能运行插件的文件。可以通过下面命令强制重新安装，就在新电脑上也有插件了
+
+```bash
+dsh plugin --profile web install --force
+```
+
+## 插件推荐
+
 https://github.com/topics/dsh-plugin # 这里的信息太多了，各种没有强关联的独立项目也加上了  dsh-plugin 这个 topics，明显是蹭热度引流的。
 
 2026-09-26 cuitianyi 在 X 上发了[关于插件的内容](https://x.com/tianyi/status/2103534313463783831)，他惦记后面时不时个人推荐一些好用的 DSH 插件。

@@ -139,6 +139,18 @@ virt-install 命令中很多参数都可以在 [XML 文件](/docs/10.云原生/V
 
 # 最佳实践
 
+配置可用的通用默认配置
+
+```bash
+# ######## 网络配置 ########
+# 默认网络
+export NETWORK="--network network=default,model=virtio"
+# 桥接网络
+export NETWORK="--network bridge=br0,model=virtio"
+```
+
+## 使用本地已有磁盘镜像
+
 使用本地文件当做磁盘镜像，VM 名字为 test，1024M 大小的内存，1 个 CPU，指定操作系统版本为 centos7，指定所使用的存储文件为 /var/lib/images/test.qcow2(该文件会自动创建)，指定网络桥接到 br0 上、模式为 virtio，指定图形模式为 vnc、把 vnc 暴露到宿主机上、监听端口为 5910
 
 ```bash
@@ -146,7 +158,7 @@ virt-install --import --name test \
 --memory 2048 --vcpus 2 \
 --os-variant centos7.0 \
 --disk /var/lib/libvirt/images/test/test.qcow2,size=100 \
---network bridge=br0,model=virtio \
+${NETWORK} \
 --graphics vnc,listen=0.0.0.0,port=5910
 ```
 
@@ -178,11 +190,12 @@ qemu-img create -f qcow2 /var/lib/libvirt/images/base.qcow2 100G
 
 # 2) virt-install 只给 path（不再给 size）
 virt-install --name base \
-  --memory 65536 --vcpus 32 --cpu host-passthrough \
+  --memory 65536 --vcpus 32 --cpu host-model \
   --machine virt --boot uefi,cdrom,hd \
+  --os-variant openeuler22.03 \
   --disk path=/var/lib/libvirt/images/base.qcow2,format=qcow2,bus=virtio \
-  --cdrom /root/iso/openEuler-22.03-LTS-SP1-everything-aarch64-dvd.iso \
-  --network network=default,model=virtio \
+  --cdrom /opt/iso/openEuler-22.03-LTS-SP1-everything-aarch64-dvd.iso \
+  ${NETWORK} \
   --graphics vnc,listen=0.0.0.0 --video virtio \
   --noautoconsole
 ```
