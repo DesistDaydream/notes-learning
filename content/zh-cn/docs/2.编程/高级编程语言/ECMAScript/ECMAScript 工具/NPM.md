@@ -64,6 +64,8 @@ store-dir 说明：
 - Windows：`pnpm config -g set store-dir D:\projects\.pnpm-store`
 - Linux：`pnpm config -g set store-dir /mnt/d/projects/.pnpm-store`
 
+> [!Attention] 若在 WSL 中，没必要设置包的存储路径，默认 `${XDG_DATA_HOME}/pnpm/store` 会在内部文件系统里。不会有跨文件系统的读写较慢的问题
+
 > [!Question]
 > 若 Windows 无法执行 pnpm，报错：`pnpm : 无法加载文件 D:\Tools\nodejs\pnpm.ps1，因为在此系统上禁止运行脚本。有关详细信息，请参阅 https:/go.microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。`
 >

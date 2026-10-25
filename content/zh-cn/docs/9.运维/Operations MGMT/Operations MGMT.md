@@ -145,9 +145,9 @@ Go 语言实现的
 
 https://github.com/openspug/spug # Python。开源运维平台：面向中小型企业设计的轻量级无Agent的自动化运维平台，整合了主机管理、主机批量执行、主机在线终端、文件在线上传下载、应用发布部署、在线任务计划、配置中心、监控、报警等一系列功能。
 
-https://github.com/veops/cmdb # 
+https://github.com/veops/cmdb #
 
-https://github.com/starsliao/TenSunS # Python，[Node Exporter](docs/6.可观测性/Metrics/Instrumenting/Node%20Exporter.md) 主机面板作者的产品，基于 Consul 的运维平台，更偏向于 K8S。开源精神不够足，后来也就不积极迭代了
+https://github.com/starsliao/TenSunS # Python，[Node Exporter](/docs/6.可观测性/Metrics/Instrumenting/Node%20Exporter.md) 主机面板作者的产品，基于 Consul 的运维平台，更偏向于 K8S。开源精神不够足，后来也就不积极迭代了
 
 https://github.com/search?q=language%3AGo%20cmdb&type=repositories # Go 语言 CMDB 在 GitHub 的搜索
 

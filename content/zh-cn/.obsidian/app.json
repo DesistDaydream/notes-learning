@@ -12,7 +12,9 @@
   "showLineNumber": false,
   "strictLineBreaks": true,
   "vimMode": false,
-  "userIgnoreFilters": null,
+  "userIgnoreFilters": [
+    "Excalidraw/"
+  ],
   "settingsPopoutWindow": true,
   "showInlineTitle": true,
   "pdfExportSettings": {

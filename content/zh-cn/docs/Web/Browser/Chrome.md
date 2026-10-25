@@ -1,6 +1,8 @@
 ---
 title: Chrome
 weight: 3
+tags:
+  - cdp
 ---
 
 # 概述
@@ -46,7 +48,15 @@ Headless Chrome 是 Chrome 浏览器的无界面形态，可以在不打开浏�
 
 [GitHub 项目，FelisCatus/SwitchyOmega](https://github.com/FelisCatus/SwitchyOmega) # 快速切换浏览器要使用的代理
 
-# 常见问题
+# CDP
+
+> 参考：
+>
+> - https://chromedevtools.github.io/devtools-protocol/
+
+**Chrome DevTools Protocol(Chrom 开发工具协议，简称 CDP)** 是一种基于 [JSON](/docs/2.编程/无法分类的语言/JSON.md) 的协议，它将调试和自动化目标（例如浏览上下文和工作进程）与受信任的调试和自动化客户端连接起来。它允许工具对 Chromium、Chrome 和其他基于 Blink 内核的浏览器进行检测、检查、调试和分析。
+
+# 最佳实践
 
 ## 如何避免打开谷歌自动跳转到香港 GOOGLE.COM.HK？
 

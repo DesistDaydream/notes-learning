@@ -1,4 +1,4 @@
 ---
-title: "Extensions"
-weight: 20
+title: Extensions
+weight: 100
 ---

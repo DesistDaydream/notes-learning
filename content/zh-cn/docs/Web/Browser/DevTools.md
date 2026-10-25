@@ -1,6 +1,8 @@
 ---
 title: DevTools
 weight: 20
+tags:
+  - cdp
 ---
 
 # 概述
@@ -8,7 +10,7 @@ weight: 20
 > 参考：
 >
 > - [Chrome 开发者工具官方文档](https://developer.chrome.com/docs/devtools/)
-> - [Wiki, Web_development_tools](https://en.wikipedia.org/wiki/Web_development_tools)
+> - [Wiki, Web development tools](https://en.wikipedia.org/wiki/Web_development_tools)
 
 Chrome DevTools 是一组内置于 Chrome 浏览器中的 Web 开发者工具（通常使用 F12 快捷键打开；`Ctrl + Shift +i` 也是常见的默认快捷键）。
 

@@ -18487,8 +18487,8 @@
         "Chromium.md",
         "Chrome.md",
         "Edge.md",
-        "Extensions",
-        "DevTools.md"
+        "DevTools.md",
+        "Extensions"
       ]
     },
     "docs/Web/Browser/_index.md": {
@@ -18513,7 +18513,7 @@
       "isPinned": false,
       "isHidden": false,
       "ctime": 1785157482992,
-      "mtime": 1785157482992
+      "mtime": 1792892389499
     },
     "docs/Web/Browser/Edge.md": {
       "isPinned": false,
@@ -18525,7 +18525,7 @@
       "isPinned": false,
       "isHidden": false,
       "ctime": 1785157482993,
-      "mtime": 1785157482993
+      "mtime": 1792892454752
     },
     "docs/Web/Browser/Extensions": {
       "isPinned": false,
@@ -18533,16 +18533,10 @@
       "sortOrder": "custom",
       "customOrder": [
         "_index.md",
-        "Tampermonkey.md"
+        "Extensions.md"
       ]
     },
     "docs/Web/Browser/Extensions/_index.md": {
-      "isPinned": false,
-      "isHidden": false,
-      "ctime": 1785157482994,
-      "mtime": 1785157482994
-    },
-    "docs/Web/Browser/Extensions/Tampermonkey.md": {
       "isPinned": false,
       "isHidden": false,
       "ctime": 1785157482994,
@@ -19295,7 +19289,7 @@
       "isPinned": false,
       "isHidden": false,
       "ctime": 1791717525138,
-      "mtime": 1792385972780
+      "mtime": 1792892020401
     },
     "docs/2.编程/高级编程语言/ECMAScript/ECMAScript 环境安装与使用/Node.js.md": {
       "isPinned": false,
@@ -19462,6 +19456,12 @@
       "isHidden": false,
       "ctime": 1792389172791,
       "mtime": 1792389179351
+    },
+    "docs/Web/Browser/Extensions/Extensions.md": {
+      "isPinned": false,
+      "isHidden": false,
+      "ctime": 1785157482994,
+      "mtime": 1792892512326
     }
   },
   "showHidden": false,

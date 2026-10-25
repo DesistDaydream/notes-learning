@@ -26,7 +26,7 @@ DeepSeek Harness 基于 [Cordis](https://github.com/cordiverse/cordis) 插件�
 这样装好像也挺简单，依赖都在 pnpm 的缓存里
 
 ```bash
-pnpm add -g @deepseek-ai/dsh@0.2.1-alpha.2
+pnpm add -g @deepseek-ai/dsh@0.2.1-rc.2
 ```
 
 # 关联文件与配置
@@ -37,8 +37,8 @@ pnpm add -g @deepseek-ai/dsh@0.2.1-alpha.2
     - **./cordis.patch.yml** # patch 配置文件。包括 DSH 配置、插件配置、etc.
 - **`./sessions/${工作区ID}/session-${会话ID}/`** # 针对每个工作区的会话记录
 - **./attachments/** # 会话中的附件保存目录。会话里的 图片、文件、etc. 都属于附件。附件名是内容的 SHA-256 指纹。
-- **./storages/** # 
-- **settings.yaml** # 
+- **./storages/** #
+- **settings.yaml** #
 
 ${APP} 可用的值有：
 
@@ -85,14 +85,36 @@ https://github.com/oh-my-dsh/dsh-plugin-upgrade-skill # 帮助 DSH 插件作者�
 
  - cuitianyi 推荐 https://x.com/tianyi/status/2107030904233460208
 
-页面增强
+**界面定制**
 
 - https://github.com/omdsh-dev/DSH-better-sidebar # 侧边栏增强，随意拖动，还有底边栏。
 
-观测系统
+**观测系统**
 
 - https://github.com/bowenliang123/dsh-context # 用量观测，上下文洞察。
 
-记忆系统
+**记忆系统**
 
-- [Mnemon](docs/12.AI/Prompt/Prompt.md#Mnemon)
+- [Mnemon](/docs/12.AI/Prompt/Prompt.md#Mnemon)
+
+**浏览器控制**
+
+|                | BrowserSkill                                                    | dsh-builtin-browser                                           | dsh-browser-cdp                                                                   | dsh-browser                                                       |
+| -------------- | --------------------------------------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| 共用登录态          | 天然共享                                                            | 独立 profile，需各站登一次                                             | 独立 profile，可导入 cookie                                                             | 天然共享                                                              |
+| 控制方式           | CDP + 插件连接 debugger                                             | 自起浏览器 + CDP                                                   | CDP + 自管浏览器<br>（内置运行时，可附着已有调试端点）                                                  | content script 注入<br>合成 DOM 事件                                    |
+| 事件 `isTrusted` | **true**                                                        | **true**                                                      | **true**（CDP 回传）                                                                  | **false**                                                         |
+| 环境要求           | dsh 插件 + 浏览器扩展 + bsk CLI                                        | dsh 插件 + Electron                                             | dsh 插件 + Chromium                                                                 | dsh 插件 + 浏览器扩展                                                    |
+| 浏览器归属          | 用我的浏览器                                                          | 自己启动浏览器                                                       | 自己启动浏览器 or 用我的浏览器                                                                 | 自己启动浏览器                                                           |
+| 可见痕迹           | 顶部黄条 + 页面控制浮层                                                   | 无黄条；有页内虚拟光标                                                   | 无黄条；DSH 侧有实时观察窗                                                                   | 无黄条，无浮层                                                           |
+| 能力上限           | 读、操作、观测、调试                                                      | 读、操作、观测（部分）                                                   | 读、操作、观测（部分）                                                                       | 读、操作                                                              |
+| 反爬角度           | 事件真实，但 CDP 可被探测                                                 | 事件真实、无扩展痕迹，但行为节奏仍可判                                           | 同左，另可导入 cookie 后走独立 profile                                                       | 最容易被识别（`isTrusted=false`）                                         |
+| 维护             | 积极                                                              | 活跃（0.4.14，10-19）                                              | 活跃（1.6.1，10-24）                                                                   | 三周未提交                                                             |
+| 链接             | [Tencent/BrowserSkill](https://github.com/Tencent/BrowserSkill) | [wqty123/dsh-browser](https://github.com/wqty123/dsh-browser) | [drscrewdriver/dsh-browser-cdp](https://github.com/drscrewdriver/dsh-browser-cdp) | [omdsh-dev/dsh-browser](https://github.com/omdsh-dev/dsh-browser) |
+| 备注             |                                                                 |                                                               | 依赖 [ego](https://github.com/citrolabs/ego-lite) 控制 Chromium                       |                                                                   |
+
+**页面标注**
+
+这类插件可以快捷得标注页面中的元素，让 AI 更直接得理解想要描述得是页面哪部分的内容
+
+https://github.com/alaliqing/dsh-annotate
