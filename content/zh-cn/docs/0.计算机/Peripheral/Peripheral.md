@@ -58,6 +58,12 @@ weight: 1
 
 **线性** #
 
+## 驱动
+
+[这一个网页，驱动了市面上 99% 的键盘。](https://www.bilibili.com/video/BV1nrxF6vEED)
+
+键盘驱动一般是指 PCB 驱动，据说，绝大部分的键盘驱动都是 松翰、荣源、中颖、Witmod、HFD 这几家的。
+
 # 手柄
 
 > 参考：

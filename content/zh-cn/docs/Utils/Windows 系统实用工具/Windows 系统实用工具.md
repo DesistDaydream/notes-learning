@@ -101,6 +101,8 @@ PixPin # https://pixpinapp.com/
 
 [GitHub 项目，mg-chao/snow-shot](https://github.com/mg-chao/snow-shot)
 
+- https://github.com/mg-chao/snow-apps
+
 ### eSearch
 
 > 参考：
