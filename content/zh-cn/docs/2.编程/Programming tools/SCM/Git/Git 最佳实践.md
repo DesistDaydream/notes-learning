@@ -40,6 +40,10 @@ git log
 git reset --hard d07466766d46710e54a627f913eea5661382331a
 ```
 
+# 将本地 commit 与远端 commit 合并
+
+
+
 ## 修改 git commit 信息
 
 对自己的提交进行修改

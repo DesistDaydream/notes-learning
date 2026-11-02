@@ -243,6 +243,7 @@
         "Mobile device",
         "Utils",
         "Blockchain",
+        "Product",
         "Standard"
       ]
     },
@@ -19462,11 +19463,35 @@
       "isHidden": false,
       "ctime": 1785157482994,
       "mtime": 1792892512326
+    },
+    "docs/Product": {
+      "isPinned": false,
+      "isHidden": false,
+      "sortOrder": "custom",
+      "customOrder": [
+        "_index.md",
+        "Product.md"
+      ],
+      "ctime": 1793341921017,
+      "mtime": 1793341921017
+    },
+    "docs/Product/_index.md": {
+      "isPinned": false,
+      "isHidden": false,
+      "ctime": 1793341948939,
+      "mtime": 1793341953159
+    },
+    "docs/Product/Product.md": {
+      "isPinned": false,
+      "isHidden": false,
+      "ctime": 1793341956107,
+      "mtime": 1793341968148
     }
   },
   "showHidden": false,
   "hidePatterns": [],
   "newItemPlacement": "top",
+  "copyPlacement": "above",
   "persistOrderOnCreateDelete": true,
   "debugMode": false
 }

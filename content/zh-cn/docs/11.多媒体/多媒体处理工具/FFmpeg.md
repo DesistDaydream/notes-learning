@@ -19,15 +19,15 @@ FFmpeg 本身是一个庞大的项目，包含许多组件和库文件，最常�
 
 https://www.bilibili.com/read/cv23895928/
 
-可以根据 [官方文档](https://www.ffmpeg.org/download.html) 先完成安装。
+根据 [官方文档](https://www.ffmpeg.org/download.html) 先完成安装。
 
-首先来到FFmpeg的官网https://ffmpeg.org，根据你使用的电脑平台进行下载。这里我们下载Windows版本，这里有两个版本，具体选择哪个版本可以参考下面这句话自行决定。这里选择 [Windows builds by BtbN](https://github.com/BtbN/FFmpeg-Builds/releases) 版本进行下载。
+首先来到 FFmpeg 的官网 https://ffmpeg.org 下载Windows版本，这里有两个版本，具体选择哪个版本可以参考下面这句话自行决定。这里选择 [Windows builds by BtbN](https://github.com/BtbN/FFmpeg-Builds/releases) 版本进行下载。
 
-> Notes: 在Windows系统上，Gyan.dev 和 BtbN 都提供了 FFmpeg 的预编译版本。Gyan.dev 通常使用 MSVC 编译器，而 BtbN 使用 MinGW 编译器。因此，Gyan.dev 的版本可能会更符合 Windows 标准，而 BtbN 的版本可能会更加开放和跨平台。
+> [!Note] 在 Windows 系统上，Gyan.dev 和 BtbN 都提供了 FFmpeg 的预编译版本。Gyan.dev 通常使用 MSVC 编译器，而 BtbN 使用 MinGW 编译器。因此，Gyan.dev 的版本可能会更符合 Windows 标准，而 BtbN 的版本可能会更加开放和跨平台。
 
 这时候来到 GitHub 页面，选择其中的 Windows 版本下载。这里有两个版本，具体下载哪个版本根据下面这段话自行决定，两者区别如下：
 
-> Notes: 完整版适用于终端用户，因为它包含了所有的可执行文件和静态库，用户可以从命令行调用 FFmpeg 的工具来进行视频处理；
+> [!Note] 完整版适用于终端用户，因为它包含了所有的可执行文件和静态库，用户可以从命令行调用 FFmpeg 的工具来进行视频处理；
 >
 > Shared 版仅包含共享库和工具，不包含可执行文件和静态库，这使得开发者可以使用 FFmpeg 的功能实现自己的应用程序或集成 FFmpeg 到自己的项目中。
 
