@@ -148,6 +148,14 @@ TODO: mnemon 二进制文件 与 dsh-mnemon 之间的边界在哪里？到底是
 - **./documents/** # Documents 层记忆保存位置
 - **./data/** # Memory Spaces 层记忆保存位置
 
+### Mnemon 的向量嵌入（embedding）
+
+Mnemon 可以将人类可读的文本通过嵌入模型转为向量保存起来。召回（i.e. 查询）时可以直接进行向量匹配，以查找内容。
+
+> [!Attention] 该功能依赖 *嵌入模型*，虽然嵌入模型本身不大，但是一般机器（本地模型）或者 deepseek 官方（/v1/embeddings ）都没有。
+>
+> 但是 mnemon 却默认开启该功能还没法关闭。。。。
+
 # 最佳实践
 
 # 如何编写复杂长程任务的提示词
