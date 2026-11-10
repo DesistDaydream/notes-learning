@@ -60,15 +60,12 @@ e.g. 在 [这篇文章](https://adoyle.me/Today-I-Learned/others/file-naming-wit
 - This_is_a_single_word
 - This-is-a-sentence-with-multiple-words
 
-> Tips: 很多时候，在我们进行编辑时（不管是 ide 写代码还是编辑文件名），利用 “按住 ctrl + 左右方向键” 功能快速跳过单词时，除了会直接跳到下一个空格外，还会直接跳到 `-`，而 `_` 则被当作一整个单词跳过（不过跳到 `_`）。
+> [!Tip]
+> 很多时候，在我们进行编辑时（不管是 IDE 写代码还是编辑文件名），利用 “按住 ctrl + 左右方向键” 功能快速跳过单词时，除了会直接跳到下一个空格外，还会直接跳到 `-`，而 `_` 则被当作一整个单词跳过。
 
 # 知识管理工具
 
 [Notion](https://www.notion.so/)
-
-[AppFlowy](https://github.com/AppFlowy-IO/AppFlowy) # 开源版 Notion
-
-- 现阶段(0.0.4)只是一个本地应用程序，无法通过浏览器使用
 
 [语雀](https://www.yuque.com/)
 
@@ -88,11 +85,21 @@ e.g. 在 [这篇文章](https://adoyle.me/Today-I-Learned/others/file-naming-wit
 
 - 飞书转 Markdown: https://github.com/Wsine/feishu2md
 
-[Dendron](https://github.com/dendronhq/dendron) # 开源的、本地优先的、基于 MarkDown 的笔记工具
+---
+
+[Obsidian](/docs/学习/PKM/Obsidian.md) # 闭源的 Markdown 管理程序，有庞大的插件社区生态。
+
+[Dendron](https://github.com/dendronhq/dendron) # 开源的、本地优先的、基于 MarkDown 的笔记工具。第一次提交时间： 2020-04-11；最后一次提交时间： 2025-06-02
 
 - [公众号-Github 爱好者，专为开发人员构建的个人知识管理工具-Dendron](https://mp.weixin.qq.com/s/HbM93O49aOgW6w_ZX9lzlA)
 
-[Obsidian](/docs/学习/PKM/Obsidian.md) # Markdown 渲染程序
+Tolaria # 开源的 Markdown 管理程序。第一次提交时间： 2026-02-15
+
+- https://github.com/refactoringhq/tolaria
+
+[AppFlowy](https://github.com/AppFlowy-IO/AppFlowy) # 开源版 Notion
+
+- 现阶段(0.0.4)只是一个本地应用程序，无法通过浏览器使用
 
 # 社区
 
