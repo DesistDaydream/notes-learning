@@ -12,6 +12,8 @@ weight: 1
 
 **Minimum Viable Product(最小可行产品，简称 MVP)**
 
+**Product Requirements Document(产品需求文档，简称 PRD)**
+
 TODO: 产品基本要素：
 
 - **产品背景** # 这个产品为了什么而做
@@ -19,3 +21,5 @@ TODO: 产品基本要素：
 - **产品的基本运行方案** # 产品上线后，保证产品的内容可以快速推广落地
 - **交互稿** # 交互逻辑清晰的交互稿
 - **产品逻辑** # 产品内的原子功能与运行逻辑
+
+**Technical Design Document(技术设计文档，简称 TDD)** / **Technical Requirements Document(技术需求文档，简称 TRD)** 

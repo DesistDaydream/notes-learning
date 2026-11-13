@@ -629,4 +629,11 @@ Golang 开辟了一种新的网络编程模型。这种模型在应用层看来�
 
 # Web 框架
 
-[Gin](/docs/2.编程/高级编程语言/Go/Go%20网络编程/Gin.md)
+[2026 年 Go Web 框架概览：net/http、chi、Gin、Echo、Fiber 对比](https://glukhov.org/app-architecture/api-architecture/go-web-frameworks-stdlib-chi-gin-echo-fiber/)
+
+- 这里提到了想要结构又不想绑定框架的服务，多数 Go 团队最后会收敛到 chi 加标准库。
+
+常见框架：
+
+- [Gin](/docs/2.编程/高级编程语言/Go/Go%20网络编程/Gin.md)
+- [GitHub 项目，go-chi/chi](https://github.com/go-chi/chi)
