@@ -27,6 +27,8 @@
     "author": "multitext",
     "excalidraw-export-internal-links": "checkbox",
     "created": "datetime",
-    "date": "datetime"
+    "date": "datetime",
+    "excalidraw-anchors": "multitext",
+    "excalidraw-thumbnail": "text"
   }
 }
