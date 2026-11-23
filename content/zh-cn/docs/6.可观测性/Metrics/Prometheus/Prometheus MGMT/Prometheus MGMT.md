@@ -40,6 +40,18 @@ https://prometheus.io/docs/introduction/faq/#can-i-change-the-timezone-why-is-ev
 
 若想使用其他时区，现阶段（2024-10-14）的解决方案是在编译时直接修改 promlog 库中上面的代码，将 `.UTC()` 去掉
 
+## Prometheus 管理 API 问题
+
+https://github.com/prometheus/prometheus/issues/1623
+
+https://github.com/prometheus/alertmanager/issues/552
+
+Prometheus 基于对配置管理的权威来源的一致性的需求，配置文件作为唯一可信来源，不提供 HTTP API 来管理 [Rules](docs/6.可观测性/Metrics/Prometheus/Configuration/Rules.md)。
+
+所以，使用者需要自己构建 HTTP API 程序来包装对各种文件的管理，才可以通过 API 甚至在 Web 上修改 Prometheus 或 Alertmanger 的配置。
+
+暂未找到合适的项目，曾经存在过的各种项目都是很久不更新了
+
 # 重大变化
 
 ## v2.39
